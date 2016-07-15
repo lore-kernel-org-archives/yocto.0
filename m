@@ -1,64 +1,35 @@
-Return-Path: <bruce.ashfield@gmail.com>
+Return-Path: <sgw@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A6802E00F56; Fri, 15 Jul 2016 07:43:19 -0700 (PDT)
+	id 21D95E00F54; Fri, 15 Jul 2016 08:32:41 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (bruce.ashfield[at]gmail.com)
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.65 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.195 listed in list.dnswl.org]
-Received: from mail-qk0-f195.google.com (mail-qk0-f195.google.com
-	[209.85.220.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 62E7CE00F4F
-	for <yocto@yoctoproject.org>; Fri, 15 Jul 2016 07:43:16 -0700 (PDT)
-Received: by mail-qk0-f195.google.com with SMTP id n202so4851249qke.0
-	for <yocto@yoctoproject.org>; Fri, 15 Jul 2016 07:43:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=fud1Cm4UxVJ3Eys19yfc2Ezq2ePr8mFiV8GpvXKiQmY=;
-	b=YMq3zHNBns5m7Lp04F8zorSye1BZ9Ccx/vTi4ESCqtcb6c8WeegsHCHedE23w9nPAs
-	1MaM3kN3WGXGrqYzFDxdIpjpmzXcco9M5d/v1S4zD8XD6cFHrKt2ARlq/5hlbr+4mhN/
-	k+DhpOXQE5xBjU15ImfQmDs8rwqlZ46kmv55EyTvPYkoGscZVY6N9Cmrj62gIBHT/VXI
-	H2tfBTCmWCWcX8TeWuvxVjDwx4WUaxvKF0HpUIbFM+uOyVr3hzAdEf1PIr+YjXYeSfNL
-	M0FeIivk/SVSZDSphGF6Ya7IXE6ILLZa8BvPuhKeV50uuZcYt2HSS1DDoypTa8PTwnw8
-	IA2A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=fud1Cm4UxVJ3Eys19yfc2Ezq2ePr8mFiV8GpvXKiQmY=;
-	b=ZHup/rANHXVdlF4Xe2v2+2JAbJR/2LrQriiHNTFDXC2e6WsVG5I843Y60Pfi3lcA9V
-	6uohQxILsgyx/tc8O291DAtDlT30IQ5Dr54658wb2pk8bQCtzTnltiqY0HJmUKu/vGmA
-	bGVyZwdtxvbf6e9UDz/Mr0ERpyYYD1t5w4GqHkWccuNTtgvicJxGiIBXg0oI7XeMHflx
-	VLBt6qD3KiT78Zj3tsSfRn+Auc+FkdFtJq3+b0AydrcWUqb6AjxC307OvOPDoT+AObu+
-	1hZa0hm0IZV8+iTc0Rva1pIcYMYKCLUgSx73Ruf5/qgCQjK+p09NArO2O2OilRqqTDLY
-	42Jw==
-X-Gm-Message-State: ALyK8tIjCtDY855YV3A6XarMNa8MQtrHrlQdsZUlyZxP4eUMDi1j7l/4NTcNblNnasTZsHCsAVXdJhnwpeIB7w==
-X-Received: by 10.55.23.25 with SMTP id i25mr26113075qkh.142.1468593796161;
-	Fri, 15 Jul 2016 07:43:16 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.200.50.137 with HTTP; Fri, 15 Jul 2016 07:43:15 -0700 (PDT)
-In-Reply-To: <CAF3SDA5hVSS6ERFPUQ02YqMWCMwhHGLt95+MfMSrrP4WxiWg=A@mail.gmail.com>
-References: <CAF3SDA5hVSS6ERFPUQ02YqMWCMwhHGLt95+MfMSrrP4WxiWg=A@mail.gmail.com>
-From: Bruce Ashfield <bruce.ashfield@gmail.com>
-Date: Fri, 15 Jul 2016 10:43:15 -0400
-Message-ID: <CADkTA4Oeqi8e-SysL=AZdphpyAh1o0ZbRF3JhFqmaXU38JF++Q@mail.gmail.com>
-To: "Daniel." <danielhilst@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Docker and Yocto
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DC7A1E00A11
+	for <yocto@yoctoproject.org>; Fri, 15 Jul 2016 08:32:37 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga103.jf.intel.com with ESMTP; 15 Jul 2016 08:32:37 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.28,368,1464678000"; 
+	d="scan'208,217";a="995978346"
+Received: from swold-mobl2.jf.intel.com ([10.255.93.103])
+	by orsmga001.jf.intel.com with ESMTP; 15 Jul 2016 08:32:37 -0700
+Message-ID: <1468596746.6912.772.camel@linux.intel.com>
+From: Saul Wold <sgw@linux.intel.com>
+To: Yocto Discussion <yocto@yoctoproject.org>, OpenEmbedded List
+	<openembedded-core@lists.openembedded.org>
+Date: Fri, 15 Jul 2016 08:32:26 -0700
+X-Mailer: Evolution 3.18.5.2 (3.18.5.2-1.fc23) 
+Mime-Version: 1.0
+Subject: Yocto Project Status WW29
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,73 +41,207 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Jul 2016 14:43:19 -0000
-Content-Type: multipart/alternative; boundary=001a114596a88a28000537ada34a
+X-List-Received-Date: Fri, 15 Jul 2016 15:32:41 -0000
+Content-Type: multipart/alternative; boundary="=-Ab4wBw8eIKnDPNXCXSnh"
 
---001a114596a88a28000537ada34a
-Content-Type: text/plain; charset=UTF-8
-
-Yep, that's something that we test consistently with the docker support in
-meta-virtualization.
-
-Bruce
-
-On Fri, Jul 15, 2016 at 9:56 AM, Daniel. <danielhilst@gmail.com> wrote:
-
-> Is anybory out there using Docker containers inside Yocto images? I
-> have some machines running at ARMv7 architeture and I want to know if
-> there is somebody already using Docker on non-x86 embedded platforms
-> and if it can help deploying applications in this case too!?
->
-> Regards,
->
-> --
-> "Do or do not. There is no try"
->   Yoda Master
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+--=-Ab4wBw8eIKnDPNXCXSnh
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
 
+Current Dev Position: YP 2.2 M2
+Next Deadline: YP 2.2 M2 cut off would
+be: 7/18/16 (This coming Monday - 5:00pm GMT)
 
--- 
-"Thou shalt not follow the NULL pointer, for chaos and madness await thee
-at its end"
+SWAT team rotation: Paul -> Ross
+https://wiki.yoctoproject.org/wiki/Yoct
+o_Build_Failure_Swat_Team
 
---001a114596a88a28000537ada34a
-Content-Type: text/html; charset=UTF-8
+Key Status/Updates:
+ * Richard has been out this week, so the report will be thin.
+ * Performance regressions were narrowed down to the GCC6 Update, movingto GTK3 and the Python3 port. Investigation into how to mitigate thisis ongoing.
+ * We’re considering removing uclibc and GCC 5.4 (preferring musl and GCC6) from OE Core 2.2, so if this would impact you please speak up.
+ * 2.1.1 Completed QA, but there was a High found to do with supportingFedora 24, which released very soon after 2.1 initially released andshould be a supported build host. This will delay 2.1.1 until after M2QA is completed.
+ * Reminder that the M2 cut off is this coming Monday!
+
+Key YP 2.2 Dates:
+ * YP 2.2 M1 release would be: 6/24/16
+ * YP 2.2 M2 cut off would be: 7/18/16
+ * YP 2.2 M2 release would be: 7/29/16
+ * YP 2.2 M3 cut off would be: 8/29/16
+ * YP 2.2 M3 release would be: 9/9/16
+ * YP 2.2 M4 cut off would be: 10/3/16
+ * YP 2.2 M4 release would be: 10/28/16
+
+Tracking Metrics:
+	WDD 2698 (last week 2747)
+(https://wiki.yoctoproject.org/charts/combo.html)
+
+Key Status Links for YP:
+https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.2_Status
+https://wiki.yoctoproject.org/wiki/Yocto_2.2_Schedule
+https://wiki.yoctoproject.org/wiki/Yocto_2.2_Features
+
+[If anyone has suggestions for other information you’d like to see on this weekly status update, let us know!]
+
+
+--=-Ab4wBw8eIKnDPNXCXSnh
+Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Yep, that&#39;s something that we test consistently w=
-ith the docker support in meta-virtualization.<br><br></div>Bruce<br></div>=
-<div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On Fri, Jul 15, 2=
-016 at 9:56 AM, Daniel. <span dir=3D"ltr">&lt;<a href=3D"mailto:danielhilst=
-@gmail.com" target=3D"_blank">danielhilst@gmail.com</a>&gt;</span> wrote:<b=
-r><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:=
-1px #ccc solid;padding-left:1ex">Is anybory out there using Docker containe=
-rs inside Yocto images? I<br>
-have some machines running at ARMv7 architeture and I want to know if<br>
-there is somebody already using Docker on non-x86 embedded platforms<br>
-and if it can help deploying applications in this case too!?<br>
-<br>
-Regards,<br>
-<span class=3D"HOEnZb"><font color=3D"#888888"><br>
---<br>
-&quot;Do or do not. There is no try&quot;<br>
-=C2=A0 Yoda Master<br>
---<br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-</font></span></blockquote></div><br><br clear=3D"all"><br>-- <br><div clas=
-s=3D"gmail_signature" data-smartmail=3D"gmail_signature">&quot;Thou shalt n=
-ot follow the NULL pointer, for chaos and madness await thee at its end&quo=
-t;</div>
-</div>
+<html><head></head><body><div><br></div><div><span id=3D"docs-internal-guid=
+-f2717342-ef2e-0efe-96ce-f8b96f699fec"><p dir=3D"ltr" style=3D"line-height:=
+1.38;margin-top:0pt;margin-bottom:0pt;"><span style=3D"font-size: 14.666666=
+666666666px; font-family: Arial; color: rgb(0, 0, 0); background-color: tra=
+nsparent; vertical-align: baseline; white-space: pre-wrap;">Current Dev Pos=
+ition: YP 2.2 M2</span></p><p dir=3D"ltr" style=3D"line-height:1.38;margin-=
+top:0pt;margin-bottom:0pt;"><span style=3D"font-size: 14.666666666666666px;=
+ font-family: Arial; color: rgb(0, 0, 0); background-color: transparent; ve=
+rtical-align: baseline; white-space: pre-wrap;">Next Deadline: YP 2.2 M2 cu=
+t off would be: 7/18/16 (This coming Monday - 5:00pm GMT)</span></p><br><p =
+dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><s=
+pan style=3D"font-size: 14.666666666666666px; font-family: Arial; color: rg=
+b(0, 0, 0); background-color: transparent; vertical-align: baseline; white-=
+space: pre-wrap;">SWAT team rotation: Paul -&gt; Ross</span></p><p dir=3D"l=
+tr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><a href=3D=
+"https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team" style=3D=
+"text-decoration:none;"><span style=3D"font-size: 14.666666666666666px; fon=
+t-family: Consolas; color: rgb(17, 85, 204); background-color: transparent;=
+ text-decoration: underline; vertical-align: baseline; white-space: pre-wra=
+p;">https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team</span>=
+</a></p><br><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-=
+bottom:0pt;"><span style=3D"font-size: 14.666666666666666px; font-family: A=
+rial; color: rgb(0, 0, 0); background-color: transparent; vertical-align: b=
+aseline; white-space: pre-wrap;">Key Status/Updates:</span></p><ul style=3D=
+"margin-top:0pt;margin-bottom:0pt;"><li dir=3D"ltr" style=3D"list-style-typ=
+e: disc; font-size: 14.666666666666666px; font-family: Arial; color: rgb(0,=
+ 0, 0); background-color: transparent; vertical-align: baseline;"><p dir=3D=
+"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span st=
+yle=3D"font-size: 14.666666666666666px; background-color: transparent; vert=
+ical-align: baseline; white-space: pre-wrap;">Richard has been out this wee=
+k, so the report will be thin.</span></p></li><li dir=3D"ltr" style=3D"list=
+-style-type: disc; font-size: 14.666666666666666px; font-family: Arial; col=
+or: rgb(0, 0, 0); background-color: transparent; vertical-align: baseline;"=
+><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;=
+"><span style=3D"font-size: 14.666666666666666px; background-color: transpa=
+rent; vertical-align: baseline; white-space: pre-wrap;">Performance regress=
+ions were narrowed down to the GCC6 Update, moving to GTK3 and the Python3 =
+port. Investigation into how to mitigate this is ongoing.</span></p></li><l=
+i dir=3D"ltr" style=3D"list-style-type: disc; font-size: 14.666666666666666=
+px; font-family: Arial; color: rgb(0, 0, 0); background-color: transparent;=
+ vertical-align: baseline;"><p dir=3D"ltr" style=3D"line-height:1.38;margin=
+-top:0pt;margin-bottom:0pt;"><span style=3D"font-size: 14.666666666666666px=
+; background-color: transparent; vertical-align: baseline; white-space: pre=
+-wrap;">We=E2=80=99re considering removing uclibc and GCC 5.4 (preferring m=
+usl and GCC 6) from OE Core 2.2, so if this would impact you please speak u=
+p.</span></p></li><li dir=3D"ltr" style=3D"list-style-type: disc; font-size=
+: 14.666666666666666px; font-family: Arial; color: rgb(0, 0, 0); background=
+-color: transparent; vertical-align: baseline;"><p dir=3D"ltr" style=3D"lin=
+e-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style=3D"font-size: =
+14.666666666666666px; background-color: transparent; vertical-align: baseli=
+ne; white-space: pre-wrap;">2.1.1 Completed QA, but there was a High found =
+to do with supporting Fedora 24, which released very soon after 2.1 initial=
+ly released and should be a supported build host. This will delay 2.1.1 unt=
+il after M2 QA is completed.</span></p></li><li dir=3D"ltr" style=3D"list-s=
+tyle-type: disc; font-size: 14.666666666666666px; font-family: Arial; color=
+: rgb(0, 0, 0); background-color: transparent; vertical-align: baseline;"><=
+p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;">=
+<span style=3D"font-size: 14.666666666666666px; background-color: transpare=
+nt; vertical-align: baseline; white-space: pre-wrap;">Reminder that the M2 =
+cut off is this coming Monday!</span></p></li></ul><br><p dir=3D"ltr" style=
+=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style=3D"font=
+-size: 14.666666666666666px; font-family: Arial; color: rgb(0, 0, 0); backg=
+round-color: transparent; vertical-align: baseline; white-space: pre-wrap;"=
+>Key YP 2.2 Dates:</span></p><ul style=3D"margin-top:0pt;margin-bottom:0pt;=
+"><li dir=3D"ltr" style=3D"list-style-type: disc; font-size: 14.66666666666=
+6666px; font-family: Arial; color: rgb(0, 0, 0); background-color: transpar=
+ent; vertical-align: baseline;"><p dir=3D"ltr" style=3D"line-height:1.38;ma=
+rgin-top:0pt;margin-bottom:0pt;"><span style=3D"font-size: 14.6666666666666=
+66px; background-color: transparent; vertical-align: baseline; white-space:=
+ pre-wrap;">YP 2.2 M1 release would be: 6/24/16</span></p></li><li dir=3D"l=
+tr" style=3D"list-style-type: disc; font-size: 14.666666666666666px; font-f=
+amily: Arial; color: rgb(0, 0, 0); background-color: transparent; vertical-=
+align: baseline;"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;m=
+argin-bottom:0pt;"><span style=3D"font-size: 14.666666666666666px; backgrou=
+nd-color: transparent; vertical-align: baseline; white-space: pre-wrap;">YP=
+ 2.2 M2 cut off would be: 7/18/16</span></p></li><li dir=3D"ltr" style=3D"l=
+ist-style-type: disc; font-size: 14.666666666666666px; font-family: Arial; =
+color: rgb(0, 0, 0); background-color: transparent; vertical-align: baselin=
+e;"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0=
+pt;"><span style=3D"font-size: 14.666666666666666px; background-color: tran=
+sparent; vertical-align: baseline; white-space: pre-wrap;">YP 2.2 M2 releas=
+e would be: 7/29/16</span></p></li><li dir=3D"ltr" style=3D"list-style-type=
+: disc; font-size: 14.666666666666666px; font-family: Arial; color: rgb(0, =
+0, 0); background-color: transparent; vertical-align: baseline;"><p dir=3D"=
+ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span sty=
+le=3D"font-size: 14.666666666666666px; background-color: transparent; verti=
+cal-align: baseline; white-space: pre-wrap;">YP 2.2 M3 cut off would be: 8/=
+29/16</span></p></li><li dir=3D"ltr" style=3D"list-style-type: disc; font-s=
+ize: 14.666666666666666px; font-family: Arial; color: rgb(0, 0, 0); backgro=
+und-color: transparent; vertical-align: baseline;"><p dir=3D"ltr" style=3D"=
+line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style=3D"font-siz=
+e: 14.666666666666666px; background-color: transparent; vertical-align: bas=
+eline; white-space: pre-wrap;">YP 2.2 M3 release would be: 9/9/16</span></p=
+></li><li dir=3D"ltr" style=3D"list-style-type: disc; font-size: 14.6666666=
+66666666px; font-family: Arial; color: rgb(0, 0, 0); background-color: tran=
+sparent; vertical-align: baseline;"><p dir=3D"ltr" style=3D"line-height:1.3=
+8;margin-top:0pt;margin-bottom:0pt;"><span style=3D"font-size: 14.666666666=
+666666px; background-color: transparent; vertical-align: baseline; white-sp=
+ace: pre-wrap;">YP 2.2 M4 cut off would be: 10/3/16</span></p></li><li dir=
+=3D"ltr" style=3D"list-style-type: disc; font-size: 14.666666666666666px; f=
+ont-family: Arial; color: rgb(0, 0, 0); background-color: transparent; vert=
+ical-align: baseline;"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:=
+0pt;margin-bottom:0pt;"><span style=3D"font-size: 14.666666666666666px; bac=
+kground-color: transparent; vertical-align: baseline; white-space: pre-wrap=
+;">YP 2.2 M4 release would be: 10/28/16</span></p></li></ul><br><p dir=3D"l=
+tr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span styl=
+e=3D"font-size: 14.666666666666666px; font-family: Arial; color: rgb(0, 0, =
+0); background-color: transparent; vertical-align: baseline; white-space: p=
+re-wrap;">Tracking Metrics:</span></p><p dir=3D"ltr" style=3D"line-height:1=
+.38;margin-top:0pt;margin-bottom:0pt;"><span style=3D"font-size: 14.6666666=
+66666666px; font-family: Arial; color: rgb(0, 0, 0); background-color: tran=
+sparent; vertical-align: baseline; white-space: pre-wrap;"><span class=3D"A=
+pple-tab-span" style=3D"white-space:pre;">	</span></span><span style=3D"fon=
+t-size: 14.666666666666666px; font-family: Arial; color: rgb(0, 0, 0); back=
+ground-color: transparent; vertical-align: baseline; white-space: pre-wrap;=
+">WDD 2698 (last week 2747)</span></p><p dir=3D"ltr" style=3D"line-height:1=
+.38;margin-top:0pt;margin-bottom:0pt;text-indent: 36pt;"><span style=3D"fon=
+t-size: 14.666666666666666px; font-family: Consolas; color: rgb(0, 0, 0); b=
+ackground-color: transparent; vertical-align: baseline; white-space: pre-wr=
+ap;">(</span><a href=3D"https://wiki.yoctoproject.org/charts/combo.html" st=
+yle=3D"text-decoration:none;"><span style=3D"font-size: 14.666666666666666p=
+x; font-family: Arial; color: rgb(17, 85, 204); background-color: transpare=
+nt; text-decoration: underline; vertical-align: baseline; white-space: pre-=
+wrap;">https://wiki.yoctoproject.org/charts/combo.html</span></a><span styl=
+e=3D"font-size: 14.666666666666666px; font-family: Consolas; color: rgb(0, =
+0, 0); background-color: transparent; vertical-align: baseline; white-space=
+: pre-wrap;">)</span></p><br><p dir=3D"ltr" style=3D"line-height:1.38;margi=
+n-top:0pt;margin-bottom:0pt;"><span style=3D"font-size: 14.666666666666666p=
+x; font-family: Arial; color: rgb(0, 0, 0); background-color: transparent; =
+vertical-align: baseline; white-space: pre-wrap;">Key Status Links for YP:<=
+/span></p><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bo=
+ttom:0pt;"><a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.2=
+_Status" style=3D"text-decoration:none;"><span style=3D"font-size: 14.66666=
+6666666666px; font-family: Consolas; color: rgb(17, 85, 204); background-co=
+lor: transparent; text-decoration: underline; vertical-align: baseline; whi=
+te-space: pre-wrap;">https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.2_=
+Status</span></a></p><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0p=
+t;margin-bottom:0pt;"><a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_2=
+.2_Schedule" style=3D"text-decoration:none;"><span style=3D"font-size: 14.6=
+66666666666666px; font-family: Consolas; color: rgb(17, 85, 204); backgroun=
+d-color: transparent; text-decoration: underline; vertical-align: baseline;=
+ white-space: pre-wrap;">https://wiki.yoctoproject.org/wiki/Yocto_2.2_Sched=
+ule</span></a></p><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;m=
+argin-bottom:0pt;"><a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_2.2_=
+Features" style=3D"text-decoration:none;"><span style=3D"font-size: 14.6666=
+66666666666px; font-family: Consolas; color: rgb(17, 85, 204); background-c=
+olor: transparent; text-decoration: underline; vertical-align: baseline; wh=
+ite-space: pre-wrap;">https://wiki.yoctoproject.org/wiki/Yocto_2.2_Features=
+</span></a></p><br><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;=
+margin-bottom:0pt;"><span style=3D"font-size: 14.666666666666666px; font-fa=
+mily: Arial; color: rgb(0, 0, 0); background-color: transparent; vertical-a=
+lign: baseline; white-space: pre-wrap;">[If anyone has suggestions for othe=
+r information you=E2=80=99d like to see on this weekly status update, let u=
+s know!]</span></p><br></span></div><div></div></body></html>
 
---001a114596a88a28000537ada34a--
+--=-Ab4wBw8eIKnDPNXCXSnh--
