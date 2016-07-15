@@ -1,69 +1,58 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4856FE00E48; Fri, 15 Jul 2016 00:49:28 -0700 (PDT)
+	id 9643FE00EAE; Fri, 15 Jul 2016 01:33:54 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.192.196 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pf0-f196.google.com (mail-pf0-f196.google.com
-	[209.85.192.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 149BCE00D8B
-	for <yocto@yoctoproject.org>; Fri, 15 Jul 2016 00:49:23 -0700 (PDT)
-Received: by mail-pf0-f196.google.com with SMTP id t190so5957238pfb.2
-	for <yocto@yoctoproject.org>; Fri, 15 Jul 2016 00:49:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=subject:mime-version:from:in-reply-to:date:cc:message-id:references
-	:to; bh=s+cC54TPxumb65eZ9rs7FXYaY784hrCS2qaIEmKvQ2k=;
-	b=CxdkDWHLMSsKw6Ha/NNlzB7Hb1l9iGpWzsCG9VdBy23zWZrPalcGJR0S/UoZKI9HUI
-	hHE7/ZhSCBOrFIxWWwFmUHiK3Daurwnonb1kAtuil/xcQAhZxr+vIGcSWyvCuY2DV3ip
-	yHd4LwgxwHPgHmft5HB6/nktdwfbFLwAoObgiEyjTTy1EuGGarXq6iqk5xRGvZV7lC69
-	d+Ke2bpgqX/O5HQ/PJd8AO0OS9KN3kBHozJu+dVhjagO4MbzqXwrk+Y3GEw9FYI6DuX3
-	9hnI8WFMxoz77A+IUPZ/aCZPuojt9SHiXFzqftnZ5F/gcdeV/l8KMWmYs/8/lqtyjwee
-	osKQ==
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.214.54 listed in list.dnswl.org]
+Received: from mail-it0-f54.google.com (mail-it0-f54.google.com
+	[209.85.214.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 52E57E00E44
+	for <yocto@yoctoproject.org>; Fri, 15 Jul 2016 01:33:49 -0700 (PDT)
+Received: by mail-it0-f54.google.com with SMTP id f6so13600357ith.0
+	for <yocto@yoctoproject.org>; Fri, 15 Jul 2016 01:33:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=IXbdzJGn7dx/TKsfOEIUILG7HrNtX08u88idpZXGCqc=;
+	b=qw24E3nxoZvBSwEi0K95SYIIbrN0M2RivDe+JrnS26lkFnUP9MoarZn1GOH7PcrV/I
+	S6JNq6iyQNs/V+8LKKA5Q0ZiBFvyNX19rtEXth0Wev81aDCKPW/1DRiKeOTore3YDuBK
+	v5/PVPeoWtk2c6yvviTX8038eU3xsXbpwSwS3U6mLzE9fS7lYvR6zWG7NApXL1Vnal4D
+	Vg4hozur/3ZxhBRaWRw79xEF6w93vbTWwbjXe6T8OMDsu5XLUYMdShx+Mpiobg9m7c8G
+	yDHGBWBSLc0kQvfJr3TvSer+dyG2Dt/OBnYykpOYhuXlpAq7jNyGd7zM+ECZXGL8sNqn
+	1N7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:subject:mime-version:from:in-reply-to:date:cc
-	:message-id:references:to;
-	bh=s+cC54TPxumb65eZ9rs7FXYaY784hrCS2qaIEmKvQ2k=;
-	b=NG5Ij7+/7Fkb1UfShkST67HLxGeBsag/sNKKfP2nMamO5jsTxiceGWEhf63c8i2TeX
-	F7XHul+C3q9+FoxCqx2UvccdShJGs5KA0/2F05sqURz5dYfJAjQQ98D+UhdOEUp0Mo97
-	gi/6ViWFuMQfExQOEKodowvJV4cJ1l02zC90QJx/yY0kHz9Zhy8GKaUqkIfuKw0KEpH8
-	ckxUw0UAE3uUl3YISMEa8yUo4/uesBVzkcN88jyAqWr3dgIqNze22S25qIsdNR+PMgPj
-	80ZOJ/Eq3jZjIvGUxLdmsobG+MBcxx8N9ls59EBgcMgn21ZrmcAOp0Fi1cI0iZ6UUnBk
-	voAQ==
-X-Gm-Message-State: ALyK8tIl82D1M378ZnZ/kwdXrUfQEq9HOp/08AY6vXyPtehDYECLNw1z8MjZtykAVfK4cQ==
-X-Received: by 10.98.20.201 with SMTP id 192mr19539659pfu.144.1468568962769;
-	Fri, 15 Jul 2016 00:49:22 -0700 (PDT)
-Received: from ?IPv6:2601:646:8882:b8c:484e:ddb0:204b:d826?
-	([2601:646:8882:b8c:484e:ddb0:204b:d826])
-	by smtp.gmail.com with ESMTPSA id
-	t80sm2837082pfj.38.2016.07.15.00.49.21
-	(version=TLS1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Fri, 15 Jul 2016 00:49:22 -0700 (PDT)
-Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
-X-Pgp-Agent: GPGMail
-From: Khem Raj <raj.khem@gmail.com>
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=IXbdzJGn7dx/TKsfOEIUILG7HrNtX08u88idpZXGCqc=;
+	b=FmRlR2NFSa7r1izFmRcfwqC4Wl5Hq/65dEoVNt1K+jHcsos4C0nQMsQohmJVBRAkqk
+	1p92yX2xwfrwquv2HM0HLEscG3cShmxdlVGwleum3epTD4M1KP555x1VZEPn5Rla4mPH
+	0cPIHDRCW1vLto8LoJWEw/KrCVqMuQx0JKK6Tx7YeNTdVwAjxvOTRDP7Rqf1vZZt6f6H
+	zSG+QFXC5VawygLrq5kDXsmBooX2wW2hqX0YK1yH0DhyHAhtX4LLBlgPC1m58cH1jIeX
+	RrZue4jejMO3HOksEoQcffaHCA/utKl/hBWseAIHZvxpcpWIUrlD5OWMXvCrU1VffH8H
+	XDpw==
+X-Gm-Message-State: ALyK8tIXNxG2K6xaBsjIlP5QZLFcjF6EieB6qbsJUkI3TQfZCDrQ4/wcnsW/DSRAXYmGvtKK9V9ezOT9G6c+hyr5
+X-Received: by 10.36.57.70 with SMTP id l67mr20378236ita.22.1468571628865;
+	Fri, 15 Jul 2016 01:33:48 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.107.18.17 with HTTP; Fri, 15 Jul 2016 01:33:29 -0700 (PDT)
 In-Reply-To: <CAEKp-abX0bVE0zwCm_oMrG+KSjY9TQH_fAHWLFKLmpTqEwy0OQ@mail.gmail.com>
-Date: Fri, 15 Jul 2016 00:49:15 -0700
-Message-Id: <9F875290-E7FA-46E9-8533-CE26D7FCFBA4@gmail.com>
 References: <CAEKp-abX0bVE0zwCm_oMrG+KSjY9TQH_fAHWLFKLmpTqEwy0OQ@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Fri, 15 Jul 2016 09:33:29 +0100
+Message-ID: <CAJTo0La7hUL98Ssxme6Rt-Y3Y9-OAm=W2zzwbNyeLktTb3Zc9w@mail.gmail.com>
 To: Rudolf Streif <rudolf.streif@gmail.com>
-X-Mailer: Apple Mail (2.3124)
 Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
 Subject: Re: [Devtool] RPM Source Package
 X-BeenThere: yocto@yoctoproject.org
@@ -77,121 +66,64 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Jul 2016 07:49:28 -0000
-X-Groupsio-MsgNum: 31077
-Content-Type: multipart/signed;
-	boundary="Apple-Mail=_C1B22B11-CF7A-46DB-8C97-D073740B8C93";
-	protocol="application/pgp-signature"; micalg=pgp-sha1
+X-List-Received-Date: Fri, 15 Jul 2016 08:33:54 -0000
+Content-Type: multipart/alternative; boundary=001a114a9c66448aff0537a87ab4
 
---Apple-Mail=_C1B22B11-CF7A-46DB-8C97-D073740B8C93
-Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_A49C57A7-4339-4763-8D49-CD3F0B92F2A3"
+--001a114a9c66448aff0537a87ab4
+Content-Type: text/plain; charset=UTF-8
 
---Apple-Mail=_A49C57A7-4339-4763-8D49-CD3F0B92F2A3
+On 15 July 2016 at 08:43, Rudolf Streif <rudolf.streif@gmail.com> wrote:
+
+> Devtool works reasonably well with repos and packaged source tarballs. We
+> did a test with a source RPM which resulted in a simple stub recipe
+> although the source rpm contained an autotooled package. devtool did not
+> even make an attempt to unpack the source RPM into the workspace and
+> analyze the code.
+>
+
+Please file an enhancement request, it should clearly be unpacking a SRPM
+and examining the internal tarball to see if it can do anything useful with
+the sources.
+
+
+> Are there any plans or a roadmap for devtool to support source RPMs? When
+> Tizen moved from OBS to YP the developers created a Python script [1] to
+> convert an OBS spec file to a YP recipe. A possible starting point.
+>
+
+To be honest I'll basically veto this: the transformation from RPM spec to
+Bitbake bb is non-trivial and we'll get better results by examining the
+upstream sources instead.  If you actually look at what spec2yocto
+generates you'll see that it's not anything you'd wish to maintain by hand.
+
+Ross
+
+--001a114a9c66448aff0537a87ab4
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=us-ascii
 
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 15 July 2016 at 08:43, Rudolf Streif <span dir=3D"ltr">&lt;<a href=3D"ma=
+ilto:rudolf.streif@gmail.com" target=3D"_blank">rudolf.streif@gmail.com</a>=
+&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0=
+ 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr">Devto=
+ol works reasonably well with repos and packaged source tarballs. We did a =
+test with a source RPM which resulted in a simple stub recipe although the =
+source rpm contained an autotooled package. devtool did not even make an at=
+tempt to unpack the source RPM into the workspace and analyze the code.</di=
+v></blockquote><div><br></div><div>Please file an enhancement request, it s=
+hould clearly be unpacking a SRPM and examining the internal tarball to see=
+ if it can do anything useful with the sources.</div><div>=C2=A0</div><bloc=
+kquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #cc=
+c solid;padding-left:1ex"><div dir=3D"ltr"><div>Are there any plans or a ro=
+admap for devtool to support source RPMs? When Tizen moved from OBS to YP t=
+he developers created a Python script [1] to convert an OBS spec file to a =
+YP recipe. A possible starting point.</div></div></blockquote></div><br>To =
+be honest I&#39;ll basically veto this: the transformation from RPM spec to=
+ Bitbake bb is non-trivial and we&#39;ll get better results by examining th=
+e upstream sources instead.=C2=A0 If you actually look at what spec2yocto g=
+enerates you&#39;ll see that it&#39;s not anything you&#39;d wish to mainta=
+in by hand.</div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_e=
+xtra">Ross</div></div>
 
-> On Jul 15, 2016, at 12:43 AM, Rudolf Streif <rudolf.streif@gmail.com> =
-wrote:
->=20
-> Devtool works reasonably well with repos and packaged source tarballs. =
-We did a test with a source RPM which resulted in a simple stub recipe =
-although the source rpm contained an autotooled package. devtool did not =
-even make an attempt to unpack the source RPM into the workspace and =
-analyze the code.
->=20
-> Are there any plans or a roadmap for devtool to support source RPMs?
-
-I think surely, this is a good feature enhancement. Are there more src =
-pkgs formats may be of relevance too. Please file an enhancement bug =
-nevertheless.
-
-> When Tizen moved from OBS to YP the developers created a Python script =
-[1] to convert an OBS spec file to a YP recipe. A possible starting =
-point.
->=20
-> Cheers,
-> :rjs
->=20
->=20
->=20
-> [1] =
-https://review.tizen.org/git/?p=3Dscm/bb/tizen.git;a=3Dblob;f=3Dtools/spec=
-2yocto.py;h=3D90ff2b064e8cabff25987c3c9a9fd59a04550495;hb=3DHEAD =
-<https://review.tizen.org/git/?p=3Dscm/bb/tizen.git;a=3Dblob;f=3Dtools/spe=
-c2yocto.py;h=3D90ff2b064e8cabff25987c3c9a9fd59a04550495;hb=3DHEAD>
->=20
->=20
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
-
---Apple-Mail=_A49C57A7-4339-4763-8D49-CD3F0B92F2A3
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=us-ascii
-
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
-charset=3Dus-ascii"></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
-class=3D""><br class=3D""><div><blockquote type=3D"cite" class=3D""><div =
-class=3D"">On Jul 15, 2016, at 12:43 AM, Rudolf Streif &lt;<a =
-href=3D"mailto:rudolf.streif@gmail.com" =
-class=3D"">rudolf.streif@gmail.com</a>&gt; wrote:</div><br =
-class=3D"Apple-interchange-newline"><div class=3D""><div dir=3D"ltr" =
-class=3D"">Devtool works reasonably well with repos and packaged source =
-tarballs. We did a test with a source RPM which resulted in a simple =
-stub recipe although the source rpm contained an autotooled package. =
-devtool did not even make an attempt to unpack the source RPM into the =
-workspace and analyze the code.<div class=3D""><br class=3D""></div><div =
-class=3D"">Are there any plans or a roadmap for devtool to support =
-source RPMs? </div></div></div></blockquote><div><br =
-class=3D""></div><div>I think surely, this is a good feature =
-enhancement. Are there more src pkgs formats may be of relevance too. =
-Please file an enhancement bug nevertheless.</div><br =
-class=3D""><blockquote type=3D"cite" class=3D""><div class=3D""><div =
-dir=3D"ltr" class=3D""><div class=3D"">When Tizen moved from OBS to YP =
-the developers created a Python script [1] to convert an OBS spec file =
-to a YP recipe. A possible starting point.</div><div class=3D""><br =
-class=3D""></div><div class=3D"">Cheers,</div><div =
-class=3D"">:rjs</div><div class=3D""><br class=3D""></div><div =
-class=3D""><br class=3D""></div><div class=3D""><br class=3D""></div><div =
-class=3D"">[1]&nbsp;<a =
-href=3D"https://review.tizen.org/git/?p=3Dscm/bb/tizen.git;a=3Dblob;f=3Dto=
-ols/spec2yocto.py;h=3D90ff2b064e8cabff25987c3c9a9fd59a04550495;hb=3DHEAD" =
-class=3D"">https://review.tizen.org/git/?p=3Dscm/bb/tizen.git;a=3Dblob;f=3D=
-tools/spec2yocto.py;h=3D90ff2b064e8cabff25987c3c9a9fd59a04550495;hb=3DHEAD=
-</a><br clear=3D"all" class=3D""><div class=3D""><br class=3D""></div><br =
-class=3D"">
-</div></div>
--- <br class=3D"">_______________________________________________<br =
-class=3D"">yocto mailing list<br class=3D""><a =
-href=3D"mailto:yocto@yoctoproject.org" =
-class=3D"">yocto@yoctoproject.org</a><br =
-class=3D"">https://lists.yoctoproject.org/listinfo/yocto<br =
-class=3D""></div></blockquote></div><br class=3D""></body></html>=
-
---Apple-Mail=_A49C57A7-4339-4763-8D49-CD3F0B92F2A3--
-
---Apple-Mail=_C1B22B11-CF7A-46DB-8C97-D073740B8C93
-Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment;
-	filename=signature.asc
-Content-Type: application/pgp-signature;
-	name=signature.asc
-Content-Description: Message signed with OpenPGP using GPGMail
-
------BEGIN PGP SIGNATURE-----
-Comment: GPGTools - https://gpgtools.org
-
-iEYEARECAAYFAleIlYEACgkQuwUzVZGdMxTK5QCeIFZiVtXfmoM9hivqvxQWrStH
-Y5oAnRsHnUu1plCGwAY12n33Y/BnJRxQ
-=HCfC
------END PGP SIGNATURE-----
-
---Apple-Mail=_C1B22B11-CF7A-46DB-8C97-D073740B8C93--
+--001a114a9c66448aff0537a87ab4--
