@@ -1,71 +1,60 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <mont3z.claro5@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BB502E00A7F; Fri, 15 Jul 2016 08:48:00 -0700 (PDT)
+	id 48651E00A6D; Fri, 15 Jul 2016 09:49:24 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (akuster808[at]gmail.com)
+	mail provider *      (mont3z.claro5[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.161.174 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.66 listed in list.dnswl.org]
-Received: from mail-pa0-f66.google.com (mail-pa0-f66.google.com
-	[209.85.220.66])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3D1C5E00A11
-	for <yocto@yoctoproject.org>; Fri, 15 Jul 2016 08:47:58 -0700 (PDT)
-Received: by mail-pa0-f66.google.com with SMTP id ez1so2891770pab.3
-	for <yocto@yoctoproject.org>; Fri, 15 Jul 2016 08:47:58 -0700 (PDT)
+Received: from mail-yw0-f174.google.com (mail-yw0-f174.google.com
+	[209.85.161.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8D8C7E00A6D
+	for <yocto@yoctoproject.org>; Fri, 15 Jul 2016 09:49:23 -0700 (PDT)
+Received: by mail-yw0-f174.google.com with SMTP id w127so107703968ywf.3
+	for <yocto@yoctoproject.org>; Fri, 15 Jul 2016 09:49:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=subject:to:references:from:message-id:date:user-agent:mime-version
-	:in-reply-to:content-transfer-encoding;
-	bh=2apEiWA8UtgE5+KiEeC4aeYlwywJpB0OYDwrqKOluK4=;
-	b=xf6sme2wQclhXgkr3g7Ub+3bR81zOa2qFsf4N1mBf1hyuLdELHdHid1qUBMTVEFpjx
-	aL26omCvSviq854dof/tFVTQ3t4ohAi+D9xkWE41YLZk2TlDMdok3xh9QDL0Z3UJE1VX
-	uPNBLDNn9UJGspJV652CXIHFo5jACHbEkPJvDjizJCbmDcH2tG5T86rDrEm8dsInnt6M
-	Zus8DnosJGZUkzgJF65kiK9H0XYK/F9zBLfPzx6s/y85suTgde+pvppNTeOogd4e55R/
-	nmOAVUxjRAwffUcWqU2uStn62sYWLmPkyw7xH0D2VHN8YxK3SrogbQp0ZXapf6MVlsMY
-	7wiQ==
+	h=mime-version:from:date:message-id:subject:to;
+	bh=3hNgafrj1lCkfX7lhlBlDR3SCLs4JwYa31uHfLaa9xk=;
+	b=P/K1E4TB7BhJBwi9CN5HXL2qUJRFZl5H8T4FrS1KitFpKtrD45lPzk5yUhNvC45GuV
+	0entlAiWxBQgqcjZJwir53SqkmsvWC1R2CnZrahUOmhxeqUxLthNNWz8cS8mBi39KXbg
+	Nwtp3kbMSrt1yn4Shp/tZZGSdWsSeCS0sPYiWbBNdFXScJPB2G3NYfqNQnH/TMJy1tpy
+	aIVdljebRuI96DYbOlkeP9qhJK2sMBzvKXlLokyay9zc7q3UQz+gOBAk7YMudXsyJDYq
+	Tn0+LeUKwxMzSXluJcSv1Z/3lkgNzcIkudHtbMX4BQ5TsQWT4aT7aGEJnMDyMcdIQzk0
+	KNPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:subject:to:references:from:message-id:date
-	:user-agent:mime-version:in-reply-to:content-transfer-encoding;
-	bh=2apEiWA8UtgE5+KiEeC4aeYlwywJpB0OYDwrqKOluK4=;
-	b=CepL1mWQoXUTnpiVO4sduFTUDrUPR+VhJgxW3jqeH8JpuhFvhtZwv32tHqx9pmfGp4
-	MfYDQhYxKNYGmqaaG7FXE7IYzSPWsRNz3efLsj6SWXpcjRx51hOn436kEUTucKg1hl8E
-	4jm9TBGp04e+Ybs8NYsI9bch7GfuGF+ijfeSEN5ch18mBkZgH3Lb9gi1XUjWO4Igpje9
-	53EA7vClH5Qal4J67s5kfSA6elPAZ1H5A7TGTtFl45MzrlV1H8o5EJFxZnDTXhHo8LAo
-	+CUMWckGns8XKz8CQGz9pL3CMdssOYLL7cg9mL/t8gByZN5ARvZ7IrP274SQK4YU8kDs
-	OV4A==
-X-Gm-Message-State: ALyK8tL2PnCzVll+XdI01hNvTsisDN7raHIoswgnQmNi99WG0noflURRKlMYWhipfnlHrA==
-X-Received: by 10.66.170.44 with SMTP id aj12mr33047320pac.131.1468597678471; 
-	Fri, 15 Jul 2016 08:47:58 -0700 (PDT)
-Received: from ?IPv6:2601:202:4001:9ea0:194d:2232:d2ef:3b9c?
-	([2601:202:4001:9ea0:194d:2232:d2ef:3b9c])
-	by smtp.googlemail.com with ESMTPSA id
-	lf11sm5644055pab.17.2016.07.15.08.47.56
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 15 Jul 2016 08:47:57 -0700 (PDT)
-To: Saul Wold <sgw@linux.intel.com>, Yocto Discussion <yocto@yoctoproject.org>,
-	OpenEmbedded List <openembedded-core@lists.openembedded.org>
-References: <1468596746.6912.772.camel@linux.intel.com>
-From: akuster808 <akuster808@gmail.com>
-Message-ID: <578905AB.4090701@gmail.com>
-Date: Fri, 15 Jul 2016 08:47:55 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.8.0
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=3hNgafrj1lCkfX7lhlBlDR3SCLs4JwYa31uHfLaa9xk=;
+	b=JqLY/sS9ym9reTbf44bV655UJ5iwseENgNKSMZaNl1J6UNLwI1GDKUFpvGxjaR+NbJ
+	ON8J5bONOah0z7JJku8EaFdJW0BhPGwceHMZdHVOEqsyOR8BXeNJ9F5jacKttGhvdlm0
+	L6qp2jU60IQ1HgkZG7mla7ZJvmxCSoOQ0TMtYXRHqdz3nVRQFuEMXkvhw2obBbjsSet6
+	3DYsHfn3Z9L1okFdhQEunW0HdEKrrHvvk0AY28dQZaxjkXenTtYiO4swzstphOwZ6whg
+	2Wx5B0Pbas8SJqqgy6D3nm/c8+AqKxZz0CouYF9vB86Fvi2+4FWJL48vTtBXuYQFljrw
+	gwDg==
+X-Gm-Message-State: ALyK8tJW9M4qP6SbgyvWuHO5YpDV1mhoqdrdyhg35aZ5lK+FJdK2A+YfgEn5ht943XFTpkUNSZO3GL4A+HIJdA==
+X-Received: by 10.37.87.11 with SMTP id l11mr13826383ybb.31.1468601362354;
+	Fri, 15 Jul 2016 09:49:22 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <1468596746.6912.772.camel@linux.intel.com>
-Subject: Re: Yocto Project Status WW29
+Received: by 10.129.132.150 with HTTP; Fri, 15 Jul 2016 09:49:21 -0700 (PDT)
+From: Mont3z Claros <mont3z.claro5@gmail.com>
+Date: Fri, 15 Jul 2016 09:49:21 -0700
+Message-ID: <CAJ70iBRUvmB2HP8kxNiQZUYOz2=jE4DeRgOfsMuyt_F5L_r91A@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Development of stage recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -77,56 +66,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Jul 2016 15:48:00 -0000
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Fri, 15 Jul 2016 16:49:24 -0000
+Content-Type: multipart/alternative; boundary=001a113e7e5c85212b0537af667b
 
+--001a113e7e5c85212b0537af667b
+Content-Type: text/plain; charset=UTF-8
 
+Hi All,
 
-On 07/15/2016 08:32 AM, Saul Wold wrote:
-> 
-> Current Dev Position: YP 2.2 M2
-> Next Deadline: YP 2.2 M2 cut off would
-> be: 7/18/16 (This coming Monday - 5:00pm GMT)
-> 
-> SWAT team rotation: Paul -> Ross
-> https://wiki.yoctoproject.org/wiki/Yoct
-> o_Build_Failure_Swat_Team
-> 
-> Key Status/Updates:
->  * Richard has been out this week, so the report will be thin.
->  * Performance regressions were narrowed down to the GCC6 Update, movingto GTK3 and the Python3 port. Investigation into how to mitigate thisis ongoing.
->  * We’re considering removing uclibc and GCC 5.4 (preferring musl and GCC6) from OE Core 2.2, so if this would impact you please speak up.
->  * 2.1.1 Completed QA, but there was a High found to do with supportingFedora 24, which released very soon after 2.1 initially released andshould be a supported build host. This will delay 2.1.1 until after M2QA is completed.
+I'm making a recipe to generate a component called ARM Trusted Firmware.
+This component is not to be deployed and it'll be used by u-boot recipe to
+generate a u-boot image.
 
-Any idea on an ETA on M2QA will start. Since 2.1.1 is being delayed,
-does that open the door for more back ports not related to the F24 fixes ?
+I was thinking on using STAGING_LOADER_DIR but it seems that  this is
+deprecated. I would like to ask what is the advised directory for such
+binary file which is an intermediate product?
 
-- armin
+I also would like to confirm that I should use:
 
->  * Reminder that the M2 cut off is this coming Monday!
-> 
-> Key YP 2.2 Dates:
->  * YP 2.2 M1 release would be: 6/24/16
->  * YP 2.2 M2 cut off would be: 7/18/16
->  * YP 2.2 M2 release would be: 7/29/16
->  * YP 2.2 M3 cut off would be: 8/29/16
->  * YP 2.2 M3 release would be: 9/9/16
->  * YP 2.2 M4 cut off would be: 10/3/16
->  * YP 2.2 M4 release would be: 10/28/16
-> 
-> Tracking Metrics:
-> 	WDD 2698 (last week 2747)
-> (https://wiki.yoctoproject.org/charts/combo.html)
-> 
-> Key Status Links for YP:
-> https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.2_Status
-> https://wiki.yoctoproject.org/wiki/Yocto_2.2_Schedule
-> https://wiki.yoctoproject.org/wiki/Yocto_2.2_Features
-> 
-> [If anyone has suggestions for other information you’d like to see on this weekly status update, let us know!]
-> 
-> 
-> 
-> 
+FILES_${PN} = ""
+ALLOW_EMPTY_${PN} = "1"
 
+to avoid this package from being deployed.
+
+Regards,
+Montez
+
+--001a113e7e5c85212b0537af667b
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><div><div><div><div><div>Hi All,<br><br></div>I&#39;m=
+ making a recipe to generate a component called ARM Trusted Firmware. This =
+component is not to be deployed and it&#39;ll be used by u-boot recipe to g=
+enerate a u-boot image.<br><br></div>I was thinking on using STAGING_LOADER=
+_DIR but it seems that=C2=A0 this is deprecated. I would like to ask what i=
+s the advised directory for such binary file which is an intermediate produ=
+ct?<br><br></div>I also would like to confirm that I should use:<br><br>FIL=
+ES_${PN} =3D &quot;&quot;<br>ALLOW_EMPTY_${PN} =3D &quot;1&quot;<br><br></d=
+iv>to avoid this package from being deployed.<br><br></div>Regards,<br></di=
+v>Montez<br><br><div><div><div><br></div></div></div></div>
+
+--001a113e7e5c85212b0537af667b--
