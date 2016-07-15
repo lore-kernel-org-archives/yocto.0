@@ -1,6 +1,6 @@
 Return-Path: <tmatsuzawa@uievolution.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9EE50E00E8B; Thu, 14 Jul 2016 19:25:15 -0700 (PDT)
+	id BA395E00E4D; Thu, 14 Jul 2016 22:32:38 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,7 +9,7 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	SPF_HELO_PASS autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [104.47.34.71 listed in list.dnswl.org]
+	*      [104.47.37.60 listed in list.dnswl.org]
 	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
@@ -17,56 +17,58 @@ X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 47029 seconds by postgrey-1.32 at yocto-www;
-	Thu, 14 Jul 2016 19:25:12 PDT
-Received: from NAM01-BY2-obe.outbound.protection.outlook.com
-	(mail-by2nam01on0071.outbound.protection.outlook.com [104.47.34.71])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 07154E00D93
-	for <yocto@yoctoproject.org>; Thu, 14 Jul 2016 19:25:12 -0700 (PDT)
+X-Greylist: delayed 59142 seconds by postgrey-1.32 at yocto-www;
+	Thu, 14 Jul 2016 22:32:34 PDT
+Received: from NAM02-CY1-obe.outbound.protection.outlook.com
+	(mail-cys01nam02on0060.outbound.protection.outlook.com
+	[104.47.37.60])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 648ABE00E44
+	for <yocto@yoctoproject.org>; Thu, 14 Jul 2016 22:32:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=uievolution.onmicrosoft.com; s=selector1-uievolution-com;
 	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
-	bh=uwOEUNY9sfnh0FPOcH8xJqiv3IbXR536IzCaI0yfp6I=;
-	b=Xauoc1Q+MqFrsR21H5zpduq2N7kv39mXKfh6sgRfMVv636Pj9hDsccpsIOClK/jl+bv1jQadtH9PfNGa80lVG4RWuY3YKf06gnW5HSu7qIqY1NX/UH5Uz1Ho1QpPDcnSN9phgGBhx1VuEvRpinrVgRP4wYQGux47cBKJhRDc8M4=
+	bh=PEBEU8MpBXUasix1ysrWiLUvzp5m1taVWVF3s9Wf07s=;
+	b=MRZeOGFMmBplcLtS3gfUBfe8tBD0DzBzs8+p7pI5JLegGUP0Gffbud9EoE4bbj/hXghik6FlBZrsBFxoMIgSf8Mf4EDrxgVLjSztnpp05qXFs8ZVBHQdn7gZEyUkuA5+OTCJ7yhqedqYHstLPusUmmA+raU3A7/1KZYYKDIaOx0=
 Received: from CY1PR0101MB1594.prod.exchangelabs.com (10.163.139.13) by
-	CY1PR0101MB1596.prod.exchangelabs.com (10.163.139.14) with Microsoft
-	SMTP Server (TLS) id 15.1.539.14; Fri, 15 Jul 2016 02:25:10 +0000
+	CY1PR0101MB1595.prod.exchangelabs.com (10.163.139.139) with Microsoft
+	SMTP Server (TLS) id 15.1.539.14; Fri, 15 Jul 2016 05:32:32 +0000
 Received: from CY1PR0101MB1594.prod.exchangelabs.com ([10.163.139.13]) by
 	CY1PR0101MB1594.prod.exchangelabs.com ([10.163.139.13]) with mapi id
-	15.01.0534.023; Fri, 15 Jul 2016 02:25:10 +0000
+	15.01.0534.023; Fri, 15 Jul 2016 05:32:33 +0000
 From: Takashi Matsuzawa <tmatsuzawa@uievolution.com>
-To: "Maxin B. John" <maxin.john@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Thread-Topic: [yocto] image-vmdk with genericx86
-Thread-Index: AQHR3PORhGVbgABKl0GCaRhP5tboYaAWeUMAgAFsjQiAAOBlSg==
-Date: Fri, 15 Jul 2016 02:25:09 +0000
-Message-ID: <CY1PR0101MB15948C7F33906CFB5C9A6308D7330@CY1PR0101MB1594.prod.exchangelabs.com>
+Thread-Index: AQHR3PORhGVbgABKl0GCaRhP5tboYaAWeUMAgAFsjQiAAOBlSoAAMy55
+Date: Fri, 15 Jul 2016 05:32:32 +0000
+Message-ID: <CY1PR0101MB1594B2A93629A15D839EF317D7330@CY1PR0101MB1594.prod.exchangelabs.com>
 References: <CY1PR0101MB15949FCDF452F57DF16C5374D7310@CY1PR0101MB1594.prod.exchangelabs.com>,
 	<20160713151652.GA6070@mbabyjoh-desk.ger.corp.intel.com>,
-	<CY1PR0101MB1594D50A022FF0DB174D3D56D7320@CY1PR0101MB1594.prod.exchangelabs.com>
-In-Reply-To: <CY1PR0101MB1594D50A022FF0DB174D3D56D7320@CY1PR0101MB1594.prod.exchangelabs.com>
+	<CY1PR0101MB1594D50A022FF0DB174D3D56D7320@CY1PR0101MB1594.prod.exchangelabs.com>,
+	<CY1PR0101MB15948C7F33906CFB5C9A6308D7330@CY1PR0101MB1594.prod.exchangelabs.com>
+In-Reply-To: <CY1PR0101MB15948C7F33906CFB5C9A6308D7330@CY1PR0101MB1594.prod.exchangelabs.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 authentication-results: spf=none (sender IP is )
 	smtp.mailfrom=tmatsuzawa@uievolution.com; 
 x-originating-ip: [132.245.44.5]
-x-ms-office365-filtering-correlation-id: 5059f8aa-b7de-4793-bfb6-08d3ac573eda
-x-microsoft-exchange-diagnostics: 1; CY1PR0101MB1596;
-	6:dx1uZ8CbIPm7XAfSqknxDSSqorG4AG23+Lrjc/078+4bfLFAZUC1UVA5jwXhTQbEVCOwVHYignTe2wuhGs6NejEFe5nCwG3Gmb+g0mr1/bJfnNJP8ufsr7DoFFFVHUcr30gqtk2rDOSddjVXoBl69stGUKrQYK50qKi+Yky1M5w65cmOc6awOERhmGTmnMfikarZ055c8lRANx6dP/nfAi4WhBGpF+MV2TL0aCO4P/lQtPJIQ4jSCo/50nHQIbcxAEphJq4YQo+gSLGIuZDhV7uUkrKjRv0sGQcWq/MI5qM=;
-	5:6w23527TKxxTZflWmOzbsgC/i3BzCXRSBiYh7+nJVNJeyWmir1CTtBH2r3kApmU+h8BDnC/DW80QXodsvE1xSnQ26v/thY1zp3f6c0/BpSfOchtzdO3KPqvtOsDRnU2vv+U3sH/P46qQTcVHMlbcDA==;
-	24:OrxOUfCmYcfrMHnFOpBL/S3FIk03FPWaDxzR5DK8dDD/M4VZCaq/Rj37RRR1lh0YyGYGLBfheE8MyZQpuKEsOqKwxhy7vElWXo7zYT2RiAo=;
-	7:w0aMLkMBUpFZYpFZj7j9OCfp/oUZATlhDE4SP3DgIpIMMP890nJ/T+O3ybHuzcnvHGEQGoZr9Lguuw/Zz4ocUtM5zrbb9bKA7NtbfXBYMD8tAUZio3aZWMy3VW6juYr62Cn6RQRLDIBYKqdSbtEDtS1GLk7XoilztL/zhcXA5Gdtr//Qf9eQ0AfbpnOcp7q8i07XVKHAS0b0t7Pkm5fgfrusIKz4hHfG8NtCq08CnRp6FpEP6/RfqDa0i5qhNqZ+
-x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:CY1PR0101MB1596;
-x-microsoft-antispam-prvs: <CY1PR0101MB1596A317D6915256ED803BA0D7330@CY1PR0101MB1596.prod.exchangelabs.com>
+x-ms-office365-filtering-correlation-id: e3ec5ff0-7680-49df-2f91-08d3ac716c13
+x-microsoft-exchange-diagnostics: 1; CY1PR0101MB1595;
+	6:PapeCkha38mGg3WoDhD2wi3DWr7NL30vAfEOe4cipP6J8JYdFy4wHDgt6HMbw/Vw8vcyTELgh96qV5sgyoYcxqwe+n16nYwLLdM6z9THLgJc8E7eiq8eh0olxxw6MOPLAY8ig2VApTZTsHiPBF6y8AxUS/Mzjjazpp5JGLEo+65i432FNDNWNF8vsCrPEceSObOVnqpcYRoVM/ieCbrBanhzjrURvcRAUWdFHtTMkBsBafmScklRPcb0pJOUoIeNRwAt2E/STyhlesHe+3nWUV9bDnHTEpdMjk6tZdPTrTQ=;
+	5:7nuZgHgrr/6fB0xyZMw7TkjH5liLtGHVdqKo5Ef8I4ZX3pWiK1KDF6E9/WBqkUqNwqU+iTe5DQ4YQaenQxO3XfcyYpN6SRIiLbi+bBhtFEzHr8MafhoE+55K3wh8DGe8Ay2P07sCSdE7MQkWm6NowA==;
+	24:wng5Kcj2osicsf+s6Q3py773U6+g341cLtPG637jfd9NI02tzbCduNNXr4eQ4SX3l8GKNWErPoM3Ts6A8qt2WaISlyZXJm3RTMOV67tqKnY=;
+	7:m0rgrH84yvG0AmM34hTh/VaJsboX4f2sPIWMnRrNouzK6iHRVme71u7kJRGHR34tHepMO9PEBEEQw8XdEPjNfkKwNoGra+wB4KTAeHgKvhgXe4hMcRCEMHmAmv7qgavEsQj5Yx9CXYgsKY9wS+xlr64Mecl1xU+QloGCiVV+dg4ncL+2y5kF8Mn/7uK94q99Bbk8XMgGNO99viNDREpr8+BtUIsUaLAwtxOEFls+3daxBCpltipfnlumUnGQM4Qd
+x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:CY1PR0101MB1595;
+x-microsoft-antispam-prvs: <CY1PR0101MB15955F8A12BF1A38EF4C3BCAD7330@CY1PR0101MB1595.prod.exchangelabs.com>
 x-exchange-antispam-report-test: UriScan:(228905959029699);
 x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
 	RULEID:(2401047)(8121501046)(5005006)(3002001)(10201501046);
-	SRVR:CY1PR0101MB1596; BCL:0; PCL:0; RULEID:;
-	SRVR:CY1PR0101MB1596; 
+	SRVR:CY1PR0101MB1595; BCL:0; PCL:0; RULEID:;
+	SRVR:CY1PR0101MB1595; 
 x-forefront-prvs: 00046D390F
 x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10009020)(6009001)(7916002)(199003)(189002)(52314003)(377454003)(24454002)(4326007)(2900100001)(2950100001)(77096005)(3846002)(586003)(6116002)(102836003)(2906002)(5002640100001)(8936002)(8676002)(81156014)(81166006)(74316002)(110136002)(97736004)(92566002)(19627405001)(7736002)(5003600100003)(106356001)(7846002)(7696003)(189998001)(106116001)(68736007)(9686002)(105586002)(86362001)(11100500001)(122556002)(19625215002)(3660700001)(16236675004)(33656002)(50986999)(3280700002)(54356999)(101416001)(19580405001)(19580395003)(76176999)(66066001)(10400500002)(87936001)(3900700001)(21314002);
-	DIR:OUT; SFP:1101; SCL:1; SRVR:CY1PR0101MB1596;
+	SFS:(10009020)(6009001)(7916002)(377454003)(199003)(52314003)(24454002)(189002)(101416001)(2950100001)(2900100001)(93886004)(19625215002)(87936001)(3900700001)(5002640100001)(81156014)(81166006)(2501003)(5003600100003)(4326007)(7696003)(77096005)(7736002)(19627405001)(3280700002)(122556002)(8676002)(1730700003)(68736007)(3660700001)(7846002)(86362001)(10400500002)(74316002)(54356999)(76176999)(50986999)(5640700001)(8936002)(102836003)(16236675004)(92566002)(110136002)(97736004)(19580405001)(9686002)(586003)(106356001)(6116002)(3846002)(106116001)(189998001)(66066001)(33656002)(19580395003)(105586002)(2351001)(2906002)(21314002);
+	DIR:OUT; SFP:1101; SCL:1; SRVR:CY1PR0101MB1595;
 	H:CY1PR0101MB1594.prod.exchangelabs.com; FPR:; SPF:None;
 	PTR:InfoNoRecords; A:1; MX:1; LANG:en; 
 received-spf: None (protection.outlook.com: uievolution.com does not designate
@@ -75,11 +77,10 @@ spamdiagnosticoutput: 1:99
 spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
 X-OriginatorOrg: uievolution.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Jul 2016 02:25:09.6258 (UTC)
+X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Jul 2016 05:32:32.9876 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: e0a7ca1f-2458-4cd6-a7c7-d733c07495ab
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY1PR0101MB1596
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY1PR0101MB1595
 Subject: Re: image-vmdk with genericx86
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -92,14 +93,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Jul 2016 02:25:15 -0000
+X-List-Received-Date: Fri, 15 Jul 2016 05:32:38 -0000
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_CY1PR0101MB15948C7F33906CFB5C9A6308D7330CY1PR0101MB1594_"
+	boundary="_000_CY1PR0101MB1594B2A93629A15D839EF317D7330CY1PR0101MB1594_"
 
---_000_CY1PR0101MB15948C7F33906CFB5C9A6308D7330CY1PR0101MB1594_
+--_000_CY1PR0101MB1594B2A93629A15D839EF317D7330CY1PR0101MB1594_
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
+
+Hello.
+
+
+Well, the below line actually inheriting image-live.bbclass.  The variable =
+values I can see by '-e' option may be the final values, not in the middle =
+of parsing.
+
+
+>IMAGE_TYPE_live =3D "${@build_live(d)}"
+>
+>inherit ${IMAGE_TYPE_live}
+
+
+The solution I came up is, to copy genericx86.conf to build/conf/machines/g=
+enerix86.conf (into local conf file folder) and do necessary modification t=
+o it.
+So that I can cancel whatever IMAGE_FSTYPES value set by x86-base.inc.
+
+________________________________
+From: Takashi Matsuzawa
+Sent: Friday, July 15, 2016 11:25 AM
+To: Maxin B. John
+Cc: yocto@yoctoproject.org
+Subject: Re: [yocto] image-vmdk with genericx86
+
 
 Hello.
 
@@ -235,7 +262,7 @@ imal-initramfs/1.0-r0/temp/log.do_rootfs.20432
 Best Regards,
 Maxin
 
---_000_CY1PR0101MB15948C7F33906CFB5C9A6308D7330CY1PR0101MB1594_
+--_000_CY1PR0101MB1594B2A93629A15D839EF317D7330CY1PR0101MB1594_
 Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
@@ -249,6 +276,46 @@ n-bottom:0;} --></style>
 <body dir=3D"ltr">
 <div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;back=
 ground-color:#FFFFFF;font-family:Calibri,Arial,Helvetica,sans-serif;">
+<p>Hello.</p>
+<p><br>
+</p>
+<p>Well, the below line actually inheriting image-live.bbclass. &nbsp;The v=
+ariable values I can see by&nbsp;'-e' option may be the final values, not i=
+n the middle of parsing.</p>
+<p><br>
+</p>
+<p></p>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 16px;">
+&gt;IMAGE_TYPE_live =3D &quot;${@build_live(d)}&quot;</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 16px;">
+&gt;</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 16px;">
+&gt;inherit ${IMAGE_TYPE_live}</div>
+<br>
+<p></p>
+The solution I came up is, to copy genericx86.conf to build/conf/machines/g=
+enerix86.conf (into local conf file folder)&nbsp;and do necessary modificat=
+ion to it.
+<div>So that I can cancel whatever&nbsp;IMAGE_FSTYPES value set by x86-base=
+.inc.<br>
+<div>
+<div><br>
+<div style=3D"color: rgb(0, 0, 0);">
+<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" co=
+lor=3D"#000000" style=3D"font-size:11pt"><b>From:</b> Takashi Matsuzawa<br>
+<b>Sent:</b> Friday, July 15, 2016 11:25 AM<br>
+<b>To:</b> Maxin B. John<br>
+<b>Cc:</b> yocto@yoctoproject.org<br>
+<b>Subject:</b> Re: [yocto] image-vmdk with genericx86</font>
+<div>&nbsp;</div>
+</div>
+<div>
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt; color:#000000; ba=
+ckground-color:#FFFFFF; font-family:Calibri,Arial,Helvetica,sans-serif">
 <p></p>
 <div>Hello.</div>
 <div><br>
@@ -321,7 +388,7 @@ ky/meta/classes/image.bbclass:129</div>
 </div>
 <p></p>
 <br>
-<div style=3D"color: rgb(0, 0, 0);">
+<div style=3D"color:rgb(0,0,0)">
 <hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
 <div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" co=
 lor=3D"#000000" style=3D"font-size:11pt"><b>From:</b> Takashi Matsuzawa<br>
@@ -430,7 +497,13 @@ Maxin<br>
 </div>
 </div>
 </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </body>
 </html>
 
---_000_CY1PR0101MB15948C7F33906CFB5C9A6308D7330CY1PR0101MB1594_--
+--_000_CY1PR0101MB1594B2A93629A15D839EF317D7330CY1PR0101MB1594_--
