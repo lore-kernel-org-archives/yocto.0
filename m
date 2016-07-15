@@ -1,87 +1,36 @@
-Return-Path: <tmatsuzawa@uievolution.com>
+Return-Path: <amarnath.valluri@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BA395E00E4D; Thu, 14 Jul 2016 22:32:38 -0700 (PDT)
+	id 2A89EE00E48; Fri, 15 Jul 2016 00:21:36 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [104.47.37.60 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.88 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 59142 seconds by postgrey-1.32 at yocto-www;
-	Thu, 14 Jul 2016 22:32:34 PDT
-Received: from NAM02-CY1-obe.outbound.protection.outlook.com
-	(mail-cys01nam02on0060.outbound.protection.outlook.com
-	[104.47.37.60])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 648ABE00E44
-	for <yocto@yoctoproject.org>; Thu, 14 Jul 2016 22:32:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=uievolution.onmicrosoft.com; s=selector1-uievolution-com;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
-	bh=PEBEU8MpBXUasix1ysrWiLUvzp5m1taVWVF3s9Wf07s=;
-	b=MRZeOGFMmBplcLtS3gfUBfe8tBD0DzBzs8+p7pI5JLegGUP0Gffbud9EoE4bbj/hXghik6FlBZrsBFxoMIgSf8Mf4EDrxgVLjSztnpp05qXFs8ZVBHQdn7gZEyUkuA5+OTCJ7yhqedqYHstLPusUmmA+raU3A7/1KZYYKDIaOx0=
-Received: from CY1PR0101MB1594.prod.exchangelabs.com (10.163.139.13) by
-	CY1PR0101MB1595.prod.exchangelabs.com (10.163.139.139) with Microsoft
-	SMTP Server (TLS) id 15.1.539.14; Fri, 15 Jul 2016 05:32:32 +0000
-Received: from CY1PR0101MB1594.prod.exchangelabs.com ([10.163.139.13]) by
-	CY1PR0101MB1594.prod.exchangelabs.com ([10.163.139.13]) with mapi id
-	15.01.0534.023; Fri, 15 Jul 2016 05:32:33 +0000
-From: Takashi Matsuzawa <tmatsuzawa@uievolution.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto] image-vmdk with genericx86
-Thread-Index: AQHR3PORhGVbgABKl0GCaRhP5tboYaAWeUMAgAFsjQiAAOBlSoAAMy55
-Date: Fri, 15 Jul 2016 05:32:32 +0000
-Message-ID: <CY1PR0101MB1594B2A93629A15D839EF317D7330@CY1PR0101MB1594.prod.exchangelabs.com>
-References: <CY1PR0101MB15949FCDF452F57DF16C5374D7310@CY1PR0101MB1594.prod.exchangelabs.com>,
-	<20160713151652.GA6070@mbabyjoh-desk.ger.corp.intel.com>,
-	<CY1PR0101MB1594D50A022FF0DB174D3D56D7320@CY1PR0101MB1594.prod.exchangelabs.com>,
-	<CY1PR0101MB15948C7F33906CFB5C9A6308D7330@CY1PR0101MB1594.prod.exchangelabs.com>
-In-Reply-To: <CY1PR0101MB15948C7F33906CFB5C9A6308D7330@CY1PR0101MB1594.prod.exchangelabs.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=tmatsuzawa@uievolution.com; 
-x-originating-ip: [132.245.44.5]
-x-ms-office365-filtering-correlation-id: e3ec5ff0-7680-49df-2f91-08d3ac716c13
-x-microsoft-exchange-diagnostics: 1; CY1PR0101MB1595;
-	6:PapeCkha38mGg3WoDhD2wi3DWr7NL30vAfEOe4cipP6J8JYdFy4wHDgt6HMbw/Vw8vcyTELgh96qV5sgyoYcxqwe+n16nYwLLdM6z9THLgJc8E7eiq8eh0olxxw6MOPLAY8ig2VApTZTsHiPBF6y8AxUS/Mzjjazpp5JGLEo+65i432FNDNWNF8vsCrPEceSObOVnqpcYRoVM/ieCbrBanhzjrURvcRAUWdFHtTMkBsBafmScklRPcb0pJOUoIeNRwAt2E/STyhlesHe+3nWUV9bDnHTEpdMjk6tZdPTrTQ=;
-	5:7nuZgHgrr/6fB0xyZMw7TkjH5liLtGHVdqKo5Ef8I4ZX3pWiK1KDF6E9/WBqkUqNwqU+iTe5DQ4YQaenQxO3XfcyYpN6SRIiLbi+bBhtFEzHr8MafhoE+55K3wh8DGe8Ay2P07sCSdE7MQkWm6NowA==;
-	24:wng5Kcj2osicsf+s6Q3py773U6+g341cLtPG637jfd9NI02tzbCduNNXr4eQ4SX3l8GKNWErPoM3Ts6A8qt2WaISlyZXJm3RTMOV67tqKnY=;
-	7:m0rgrH84yvG0AmM34hTh/VaJsboX4f2sPIWMnRrNouzK6iHRVme71u7kJRGHR34tHepMO9PEBEEQw8XdEPjNfkKwNoGra+wB4KTAeHgKvhgXe4hMcRCEMHmAmv7qgavEsQj5Yx9CXYgsKY9wS+xlr64Mecl1xU+QloGCiVV+dg4ncL+2y5kF8Mn/7uK94q99Bbk8XMgGNO99viNDREpr8+BtUIsUaLAwtxOEFls+3daxBCpltipfnlumUnGQM4Qd
-x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:CY1PR0101MB1595;
-x-microsoft-antispam-prvs: <CY1PR0101MB15955F8A12BF1A38EF4C3BCAD7330@CY1PR0101MB1595.prod.exchangelabs.com>
-x-exchange-antispam-report-test: UriScan:(228905959029699);
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(2401047)(8121501046)(5005006)(3002001)(10201501046);
-	SRVR:CY1PR0101MB1595; BCL:0; PCL:0; RULEID:;
-	SRVR:CY1PR0101MB1595; 
-x-forefront-prvs: 00046D390F
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10009020)(6009001)(7916002)(377454003)(199003)(52314003)(24454002)(189002)(101416001)(2950100001)(2900100001)(93886004)(19625215002)(87936001)(3900700001)(5002640100001)(81156014)(81166006)(2501003)(5003600100003)(4326007)(7696003)(77096005)(7736002)(19627405001)(3280700002)(122556002)(8676002)(1730700003)(68736007)(3660700001)(7846002)(86362001)(10400500002)(74316002)(54356999)(76176999)(50986999)(5640700001)(8936002)(102836003)(16236675004)(92566002)(110136002)(97736004)(19580405001)(9686002)(586003)(106356001)(6116002)(3846002)(106116001)(189998001)(66066001)(33656002)(19580395003)(105586002)(2351001)(2906002)(21314002);
-	DIR:OUT; SFP:1101; SCL:1; SRVR:CY1PR0101MB1595;
-	H:CY1PR0101MB1594.prod.exchangelabs.com; FPR:; SPF:None;
-	PTR:InfoNoRecords; A:1; MX:1; LANG:en; 
-received-spf: None (protection.outlook.com: uievolution.com does not designate
-	permitted sender hosts)
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
-MIME-Version: 1.0
-X-OriginatorOrg: uievolution.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Jul 2016 05:32:32.9876 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: e0a7ca1f-2458-4cd6-a7c7-d733c07495ab
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY1PR0101MB1595
-Subject: Re: image-vmdk with genericx86
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0A8D3E00D8B
+	for <yocto@yoctoproject.org>; Fri, 15 Jul 2016 00:21:33 -0700 (PDT)
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+	by fmsmga101.fm.intel.com with ESMTP; 15 Jul 2016 00:21:24 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.28,367,1464678000"; d="scan'208";a="139623758"
+Received: from linux.intel.com ([10.54.29.200])
+	by fmsmga004.fm.intel.com with ESMTP; 15 Jul 2016 00:21:24 -0700
+Received: from avalluri-GigaByte.fi.intel.com (avalluri-gigabyte.fi.intel.com
+	[10.237.72.170]) (using TLSv1 with cipher AES128-SHA (128/128 bits))
+	(No client certificate requested)
+	by linux.intel.com (Postfix) with ESMTP id 819256A4080
+	for <yocto@yoctoproject.org>; Fri, 15 Jul 2016 00:21:15 -0700 (PDT)
+From: Amarnath Valluri <amarnath.valluri@intel.com>
+To: yocto@yoctoproject.org
+Date: Fri, 15 Jul 2016 10:21:17 +0300
+Message-Id: <1468567278-7137-1-git-send-email-amarnath.valluri@intel.com>
+X-Mailer: git-send-email 2.5.0
+Subject: [meta-swupd][PATCH 1/2] swupd-client, swupd-server: Patch swupd to treate /home/* as non-state
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -93,417 +42,226 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Jul 2016 05:32:38 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_CY1PR0101MB1594B2A93629A15D839EF317D7330CY1PR0101MB1594_"
+X-List-Received-Date: Fri, 15 Jul 2016 07:21:36 -0000
 
---_000_CY1PR0101MB1594B2A93629A15D839EF317D7330CY1PR0101MB1594_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+This allows bundles to deploy content specific to user
 
-Hello.
+Signed-off-by: Amarnath Valluri <amarnath.valluri@intel.com>
+---
+ .../0001-Do-not-consider-home-as-user-state.patch  | 29 ++++++++++++++++++++++
+ .../0001-Do-not-consider-home-as-user-state.patch  | 29 ++++++++++++++++++++++
+ recipes-core/swupd-client/swupd-client_2.87.bb     |  1 +
+ recipes-core/swupd-client/swupd-client_git.bb      |  1 +
+ .../0001-Don-t-treate-home-as-user-state.patch     | 29 ++++++++++++++++++++++
+ .../0001-Don-t-treate-home-as-user-state.patch     | 29 ++++++++++++++++++++++
+ recipes-core/swupd-server/swupd-server_2.53.bb     |  1 +
+ recipes-core/swupd-server/swupd-server_git.bb      |  1 +
+ 8 files changed, 120 insertions(+)
+ create mode 100644 recipes-core/swupd-client/swupd-client-2.87/0001-Do-not-consider-home-as-user-state.patch
+ create mode 100644 recipes-core/swupd-client/swupd-client/0001-Do-not-consider-home-as-user-state.patch
+ create mode 100644 recipes-core/swupd-server/swupd-server-2.53/0001-Don-t-treate-home-as-user-state.patch
+ create mode 100644 recipes-core/swupd-server/swupd-server/0001-Don-t-treate-home-as-user-state.patch
+
+diff --git a/recipes-core/swupd-client/swupd-client-2.87/0001-Do-not-consider-home-as-user-state.patch b/recipes-core/swupd-client/swupd-client-2.87/0001-Do-not-consider-home-as-user-state.patch
+new file mode 100644
+index 0000000..be847af
+--- /dev/null
++++ b/recipes-core/swupd-client/swupd-client-2.87/0001-Do-not-consider-home-as-user-state.patch
+@@ -0,0 +1,29 @@
++From 849d54da5d9184eaaf706df9aafea28e6f45fd64 Mon Sep 17 00:00:00 2001
++From: Amarnath Valluri <amarnath.valluri@intel.com>
++Date: Wed, 13 Jul 2016 14:37:26 +0300
++Subject: [PATCH] Do not consider /home/* as user state
++
++This allows to deploy user home folder as part of a bundle.
++
++Upstream-Status: Pending
++
++Signed-off-by: Amarnath Valluri <amarnath.valluri@intel.com>
++---
++ src/heuristics.c | 1 -
++ 1 file changed, 1 deletion(-)
++
++diff --git a/src/heuristics.c b/src/heuristics.c
++index e7c0632..28b2bb2 100644
++--- a/src/heuristics.c
+++++ b/src/heuristics.c
++@@ -64,7 +64,6 @@ bool is_state(char *filename)
++ 
++ 	if ((strncmp(filename, "/data", 5) == 0) ||
++ 	    (strncmp(filename, "/dev/", 5) == 0) ||
++-	    (strncmp(filename, "/home/", 6) == 0) ||
++ 	    (strncmp(filename, "/lost+found", 11) == 0) ||
++ 	    (strncmp(filename, "/proc/", 6) == 0) ||
++ 	    (strncmp(filename, "/root/", 6) == 0) ||
++-- 
++2.5.0
++
+diff --git a/recipes-core/swupd-client/swupd-client/0001-Do-not-consider-home-as-user-state.patch b/recipes-core/swupd-client/swupd-client/0001-Do-not-consider-home-as-user-state.patch
+new file mode 100644
+index 0000000..be847af
+--- /dev/null
++++ b/recipes-core/swupd-client/swupd-client/0001-Do-not-consider-home-as-user-state.patch
+@@ -0,0 +1,29 @@
++From 849d54da5d9184eaaf706df9aafea28e6f45fd64 Mon Sep 17 00:00:00 2001
++From: Amarnath Valluri <amarnath.valluri@intel.com>
++Date: Wed, 13 Jul 2016 14:37:26 +0300
++Subject: [PATCH] Do not consider /home/* as user state
++
++This allows to deploy user home folder as part of a bundle.
++
++Upstream-Status: Pending
++
++Signed-off-by: Amarnath Valluri <amarnath.valluri@intel.com>
++---
++ src/heuristics.c | 1 -
++ 1 file changed, 1 deletion(-)
++
++diff --git a/src/heuristics.c b/src/heuristics.c
++index e7c0632..28b2bb2 100644
++--- a/src/heuristics.c
+++++ b/src/heuristics.c
++@@ -64,7 +64,6 @@ bool is_state(char *filename)
++ 
++ 	if ((strncmp(filename, "/data", 5) == 0) ||
++ 	    (strncmp(filename, "/dev/", 5) == 0) ||
++-	    (strncmp(filename, "/home/", 6) == 0) ||
++ 	    (strncmp(filename, "/lost+found", 11) == 0) ||
++ 	    (strncmp(filename, "/proc/", 6) == 0) ||
++ 	    (strncmp(filename, "/root/", 6) == 0) ||
++-- 
++2.5.0
++
+diff --git a/recipes-core/swupd-client/swupd-client_2.87.bb b/recipes-core/swupd-client/swupd-client_2.87.bb
+index 96e7a10..8a005ff 100644
+--- a/recipes-core/swupd-client/swupd-client_2.87.bb
++++ b/recipes-core/swupd-client/swupd-client_2.87.bb
+@@ -18,6 +18,7 @@ SRC_URI = "\
+     file://0001-manifest.c-Always-initialize-preserver-pointer-of-fi.patch \
+     file://0001-Add-configure-option-to-re-enable-updating-of-config.patch \
+     file://0001-staging.c-Protect-tar-command-against-special-charac.patch \
++    file://0001-Do-not-consider-home-as-user-state.patch \
+ "
+ 
+ SRC_URI[md5sum] = "5d272c62edb8a9c576005ac5e1182ea3"
+diff --git a/recipes-core/swupd-client/swupd-client_git.bb b/recipes-core/swupd-client/swupd-client_git.bb
+index 7e2bdd9..6ab289a 100644
+--- a/recipes-core/swupd-client/swupd-client_git.bb
++++ b/recipes-core/swupd-client/swupd-client_git.bb
+@@ -10,6 +10,7 @@ SRC_URI = "\
+     git://github.com/clearlinux/swupd-client.git;protocol=https \
+     file://Change-systemctl-path-to-OE-systemctl-path.patch \
+     file://0001-Add-configure-option-to-re-enable-updating-of-config.patch \
++    file://0001-Do-not-consider-home-as-user-state.patch \
+ "
+ SRCREV = "f4000c5b22be47ec1af2f8748fd71a36148b5dc4"
+ 
+diff --git a/recipes-core/swupd-server/swupd-server-2.53/0001-Don-t-treate-home-as-user-state.patch b/recipes-core/swupd-server/swupd-server-2.53/0001-Don-t-treate-home-as-user-state.patch
+new file mode 100644
+index 0000000..99f926d
+--- /dev/null
++++ b/recipes-core/swupd-server/swupd-server-2.53/0001-Don-t-treate-home-as-user-state.patch
+@@ -0,0 +1,29 @@
++From 47e0f11ec452b3d8134e3c4047e31d8c5fff3801 Mon Sep 17 00:00:00 2001
++From: Amarnath Valluri <amarnath.valluri@intel.com>
++Date: Thu, 14 Jul 2016 12:33:42 +0300
++Subject: [PATCH] Don't treate /home/* as user state
++
++This allows to deploy user home folder as part of a bundle
++
++Ustream-Status: Pending
++
++Signed-off-by: Amarnath Valluri <amarnath.valluri@intel.com>
++---
++ src/heuristics.c | 1 -
++ 1 file changed, 1 deletion(-)
++
++diff --git a/src/heuristics.c b/src/heuristics.c
++index 94eee53..f133a82 100644
++--- a/src/heuristics.c
+++++ b/src/heuristics.c
++@@ -59,7 +59,6 @@ static void runtime_state_heuristics(struct file *file)
++ 	/* the contents of these directory are state, ideally this never
++ 	 * triggers if our package builds are clean */
++ 	if ((strncmp(file->filename, "/dev/", 5) == 0) ||
++-	    (strncmp(file->filename, "/home/", 6) == 0) ||
++ 	    (strncmp(file->filename, "/proc/", 6) == 0) ||
++ 	    (strncmp(file->filename, "/root/", 6) == 0) ||
++ 	    (strncmp(file->filename, "/run/", 5) == 0) ||
++-- 
++2.5.0
++
+diff --git a/recipes-core/swupd-server/swupd-server/0001-Don-t-treate-home-as-user-state.patch b/recipes-core/swupd-server/swupd-server/0001-Don-t-treate-home-as-user-state.patch
+new file mode 100644
+index 0000000..99f926d
+--- /dev/null
++++ b/recipes-core/swupd-server/swupd-server/0001-Don-t-treate-home-as-user-state.patch
+@@ -0,0 +1,29 @@
++From 47e0f11ec452b3d8134e3c4047e31d8c5fff3801 Mon Sep 17 00:00:00 2001
++From: Amarnath Valluri <amarnath.valluri@intel.com>
++Date: Thu, 14 Jul 2016 12:33:42 +0300
++Subject: [PATCH] Don't treate /home/* as user state
++
++This allows to deploy user home folder as part of a bundle
++
++Ustream-Status: Pending
++
++Signed-off-by: Amarnath Valluri <amarnath.valluri@intel.com>
++---
++ src/heuristics.c | 1 -
++ 1 file changed, 1 deletion(-)
++
++diff --git a/src/heuristics.c b/src/heuristics.c
++index 94eee53..f133a82 100644
++--- a/src/heuristics.c
+++++ b/src/heuristics.c
++@@ -59,7 +59,6 @@ static void runtime_state_heuristics(struct file *file)
++ 	/* the contents of these directory are state, ideally this never
++ 	 * triggers if our package builds are clean */
++ 	if ((strncmp(file->filename, "/dev/", 5) == 0) ||
++-	    (strncmp(file->filename, "/home/", 6) == 0) ||
++ 	    (strncmp(file->filename, "/proc/", 6) == 0) ||
++ 	    (strncmp(file->filename, "/root/", 6) == 0) ||
++ 	    (strncmp(file->filename, "/run/", 5) == 0) ||
++-- 
++2.5.0
++
+diff --git a/recipes-core/swupd-server/swupd-server_2.53.bb b/recipes-core/swupd-server/swupd-server_2.53.bb
+index edb4407..fe99af3 100644
+--- a/recipes-core/swupd-server/swupd-server_2.53.bb
++++ b/recipes-core/swupd-server/swupd-server_2.53.bb
+@@ -17,6 +17,7 @@ SRC_URI = "\
+     file://0008-Clean-up-tar-commands-always-put-files-after-options.patch \
+     file://0009-Add-compatibility-with-libarchive-s-bsdtar-command.patch \
+     file://fullfiles.c-work-around-pseudo-bug.patch \
++    file://0001-Don-t-treate-home-as-user-state.patch \
+ "
+ 
+ SRC_URI[md5sum] = "14f25677b5a4f0b33785910b03860939"
+diff --git a/recipes-core/swupd-server/swupd-server_git.bb b/recipes-core/swupd-server/swupd-server_git.bb
+index fccc0fe..593dd62 100644
+--- a/recipes-core/swupd-server/swupd-server_git.bb
++++ b/recipes-core/swupd-server/swupd-server_git.bb
+@@ -10,6 +10,7 @@ PV = "3.2.3+git${SRCPV}"
+ SRC_URI = "\
+     git://github.com/clearlinux/swupd-server.git;protocol=https \
+     file://fullfiles.c-work-around-pseudo-bug.patch \
++    file://0001-Don-t-treate-home-as-user-state.patch \
+ "
+ SRCREV = "9d4df7e0350d3d8d1aa8af9f92d752046dbc72d0"
+ 
+-- 
+2.5.0
+
+---------------------------------------------------------------------
+Intel Finland Oy
+Registered Address: PL 281, 00181 Helsinki 
+Business Identity Code: 0357606 - 4 
+Domiciled in Helsinki 
+
+This e-mail and any attachments may contain confidential material for
+the sole use of the intended recipient(s). Any review or distribution
+by others is strictly prohibited. If you are not the intended
+recipient, please contact the sender and delete all copies.
 
 
-Well, the below line actually inheriting image-live.bbclass.  The variable =
-values I can see by '-e' option may be the final values, not in the middle =
-of parsing.
-
-
->IMAGE_TYPE_live =3D "${@build_live(d)}"
->
->inherit ${IMAGE_TYPE_live}
-
-
-The solution I came up is, to copy genericx86.conf to build/conf/machines/g=
-enerix86.conf (into local conf file folder) and do necessary modification t=
-o it.
-So that I can cancel whatever IMAGE_FSTYPES value set by x86-base.inc.
-
-________________________________
-From: Takashi Matsuzawa
-Sent: Friday, July 15, 2016 11:25 AM
-To: Maxin B. John
-Cc: yocto@yoctoproject.org
-Subject: Re: [yocto] image-vmdk with genericx86
-
-
-Hello.
-
-Though the build successfully completes, but the image does not boot and I =
-believe parameters are not set properly for my image.
-
-What I am trying to do is to build xxx.hdddirect image instead of xxx.hddim=
-g for genericx86(, on fido).
-
-As I inspect with '-e' option, I believe, at least the following is wrong.
-
-> # $SYSLINUX_ROOT [3 operations]
-> #   set /mnt/ssd2/yocto/dev/wk/x86/wk3/build-root/sources/poky/meta/class=
-es/image-live.bbclass:5
-> #     "root=3D/dev/ram0"
-> #   set? /mnt/ssd2/yocto/dev/wk/x86/wk3/build-root/sources/poky/meta/clas=
-ses/image-vmdk.bbclass:4
-> #     "root=3D/dev/sda2"
-> #   set? /mnt/ssd2/yocto/dev/wk/x86/wk3/build-root/sources/> poky/meta/cl=
-asses/boot-directdisk.bbclass:63
-> #     "root=3D/dev/sda2"
-> # pre-expansion value:
-> #   "root=3D/dev/ram0"
-> SYSLINUX_ROOT=3D"root=3D/dev/ram0"
-
-I think SYSLINUX_ROOT here is set by image-live.bbclass's value, not by boo=
-t-directdisk.bbclass's.
-
-I feel this is strange that in my local.conf, I have explicitly removed 'li=
-ve' from IMAGE_FSTYPES and added 'vmdk'.
-
-But, in the above, image-live.bbclass seems to be interpreted and affecting=
- the variable expansion.
-
-I think, the following line in image.bbclass is deciding if it reads image-=
-live.bbclass or not.
-
->IMAGE_TYPE_live =3D "${@build_live(d)}"
->
->inherit ${IMAGE_TYPE_live}
-
-Since IMAGE_TYPE_live is set to '' as follows, I believe image-live.bbclass=
- should never interpreted?
-
-> # $IMAGE_TYPE_live
-> #   set /mnt/ssd2/yocto/dev/wk/x86/wk3/build-root/sources/poky/meta/class=
-es/image.bbclass:129
-> #     "${@build_live(d)}"
-> IMAGE_TYPE_live=3D""
-
-I tried BBMASK'ing image-live.bbclass, but it still seems to be read.
-
-So, I am a bit of stuck here.
-
-
-________________________________
-From: Takashi Matsuzawa
-Sent: Thursday, July 14, 2016 10:06 PM
-To: Maxin B. John
-Cc: yocto@yoctoproject.org
-Subject: Re: [yocto] image-vmdk with genericx86
-
-
-Hello
-
->IMAGE_FSTYPES +=3D "vmdk"
-
-Thank you it worked.
-(I should remember  '_append'  applied after all '=3D' assignments are done=
-.)
-
-After .hdddirect image is successfully created, I am still working on the f=
-ollowing.
-
-i) image does not boot, maybe its boot device path thing...
-ii) hddimage, iso images are also generated.  I may want to disable generat=
-ion of these (and leave images types that I need only), so that bitbake com=
-pletes much earlier.
-iii) same can be sade to do_populatesdk it seems to run default.
-
-________________________________
-From: Maxin B. John <maxin.john@intel.com>
-Sent: Thursday, July 14, 2016 12:16 AM
-To: Takashi Matsuzawa
-Cc: yocto@yoctoproject.org
-Subject: Re: [yocto] image-vmdk with genericx86
-
-Hi Takashi-san,
-
-On Wed, Jul 13, 2016 at 10:51:34AM +0000, Takashi Matsuzawa wrote:
->Hello, Yocto.
->
->Should it be possible to simply change image class of genericx86 from xxxx=
-.hddimg to xxxx.hdddirect?
->
->I have been successfully building genericx86 image (that is image-live.bbc=
-lass based), and now trying to build it with directdisk (xxxx.hdddirect).
->
->I thought it would be simpler to use pre-existing imageclass, so I tried f=
-ollowing after finding image-vmdk.bbclass inherits boot-directdisk.
->
->Currently my build is based on Yocto 1.8 (fido).
->
->
->(in my local.conf)
->
->IMAGE_FSTYPES_remove =3D " live"
->IMAGE_FSTYPES_append =3D " vmdk"
-
-Instead of the above two, could you use the following line in local.conf an=
-d build again ?
-
-IMAGE_FSTYPES +=3D "vmdk"
-
->But this caused following error.
->
->I am currently looking into the class files to find the cause of error, bu=
-t anyway, this should work?
->
->
->>ERROR: No IMAGE_CMD defined for IMAGE_FSTYPES entry 'vmdk' - possibly inv=
-alid type name or missing support class
->> ERROR: Function failed: do_rootfs
->> ERROR: Logfile of failure stored in:
->>/mnt/ssd2/yocto/dev/tmp/x86-wk3/work/genericx86-poky-linux/core-image-min=
-imal-initramfs/1.0-r0/temp/log.do_rootfs.20432
->> ERROR: Task 229
->>(/mnt/ssd2/yocto/dev/wk/x86/wk3/build-root/sources/poky/meta/recipes-core=
-/images/core-image-minimal-initramfs.bb, do_rootfs) failed with exit code '=
-1'
-
-
-Best Regards,
-Maxin
-
---_000_CY1PR0101MB1594B2A93629A15D839EF317D7330CY1PR0101MB1594_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
-</head>
-<body dir=3D"ltr">
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;back=
-ground-color:#FFFFFF;font-family:Calibri,Arial,Helvetica,sans-serif;">
-<p>Hello.</p>
-<p><br>
-</p>
-<p>Well, the below line actually inheriting image-live.bbclass. &nbsp;The v=
-ariable values I can see by&nbsp;'-e' option may be the final values, not i=
-n the middle of parsing.</p>
-<p><br>
-</p>
-<p></p>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 16px;">
-&gt;IMAGE_TYPE_live =3D &quot;${@build_live(d)}&quot;</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 16px;">
-&gt;</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 16px;">
-&gt;inherit ${IMAGE_TYPE_live}</div>
-<br>
-<p></p>
-The solution I came up is, to copy genericx86.conf to build/conf/machines/g=
-enerix86.conf (into local conf file folder)&nbsp;and do necessary modificat=
-ion to it.
-<div>So that I can cancel whatever&nbsp;IMAGE_FSTYPES value set by x86-base=
-.inc.<br>
-<div>
-<div><br>
-<div style=3D"color: rgb(0, 0, 0);">
-<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" co=
-lor=3D"#000000" style=3D"font-size:11pt"><b>From:</b> Takashi Matsuzawa<br>
-<b>Sent:</b> Friday, July 15, 2016 11:25 AM<br>
-<b>To:</b> Maxin B. John<br>
-<b>Cc:</b> yocto@yoctoproject.org<br>
-<b>Subject:</b> Re: [yocto] image-vmdk with genericx86</font>
-<div>&nbsp;</div>
-</div>
-<div>
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt; color:#000000; ba=
-ckground-color:#FFFFFF; font-family:Calibri,Arial,Helvetica,sans-serif">
-<p></p>
-<div>Hello.</div>
-<div><br>
-</div>
-<div>Though the build successfully completes, but the image does not boot a=
-nd I believe parameters are not set properly for my image.</div>
-<div><br>
-</div>
-<div>What I am trying to do is to build xxx.hdddirect image instead of xxx.=
-hddimg for genericx86(, on fido).</div>
-<div><br>
-</div>
-<div>As I inspect with '-e' option, I believe, at least the following is wr=
-ong.</div>
-<div><br>
-</div>
-<div>&gt; # $SYSLINUX_ROOT [3 operations]</div>
-<div>&gt; # &nbsp; set /mnt/ssd2/yocto/dev/wk/x86/wk3/build-root/sources/po=
-ky/meta/classes/image-live.bbclass:5</div>
-<div>&gt; # &nbsp; &nbsp; &quot;root=3D/dev/ram0&quot;</div>
-<div>&gt; # &nbsp; set? /mnt/ssd2/yocto/dev/wk/x86/wk3/build-root/sources/p=
-oky/meta/classes/image-vmdk.bbclass:4</div>
-<div>&gt; # &nbsp; &nbsp; &quot;root=3D/dev/sda2&quot;</div>
-<div>&gt; # &nbsp; set? /mnt/ssd2/yocto/dev/wk/x86/wk3/build-root/sources/&=
-gt; poky/meta/classes/boot-directdisk.bbclass:63</div>
-<div>&gt; # &nbsp; &nbsp; &quot;root=3D/dev/sda2&quot;</div>
-<div>&gt; # pre-expansion value:</div>
-<div>&gt; # &nbsp; &quot;root=3D/dev/ram0&quot;</div>
-<div>&gt; SYSLINUX_ROOT=3D&quot;root=3D/dev/ram0&quot;</div>
-<div><br>
-</div>
-<div>I think SYSLINUX_ROOT here is set by image-live.bbclass's value, not b=
-y boot-directdisk.bbclass's.</div>
-<div><br>
-</div>
-<div>I feel this is strange that in my local.conf, I have explicitly remove=
-d 'live' from IMAGE_FSTYPES and added 'vmdk'.</div>
-<div><br>
-</div>
-<div>But, in the above, image-live.bbclass seems to be interpreted and affe=
-cting the variable expansion.</div>
-<div><br>
-</div>
-<div>I think, the following line in image.bbclass is deciding if it reads i=
-mage-live.bbclass or not.</div>
-<div><br>
-</div>
-<div>&gt;IMAGE_TYPE_live =3D &quot;${@build_live(d)}&quot;</div>
-<div>&gt;</div>
-<div>&gt;inherit ${IMAGE_TYPE_live}</div>
-<div><br>
-</div>
-<div>Since IMAGE_TYPE_live is set to '' as follows, I believe image-live.bb=
-class should never interpreted?</div>
-<div><br>
-</div>
-<div>&gt; # $IMAGE_TYPE_live</div>
-<div>&gt; # &nbsp; set /mnt/ssd2/yocto/dev/wk/x86/wk3/build-root/sources/po=
-ky/meta/classes/image.bbclass:129</div>
-<div>&gt; # &nbsp; &nbsp; &quot;${@build_live(d)}&quot;</div>
-<div>&gt; IMAGE_TYPE_live=3D&quot;&quot;</div>
-<div><br>
-</div>
-<div>I tried BBMASK'ing image-live.bbclass, but it still seems to be read.<=
-/div>
-<div><br>
-</div>
-<div>So, I am a bit of stuck here.</div>
-<div><br>
-</div>
-<p></p>
-<br>
-<div style=3D"color:rgb(0,0,0)">
-<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" co=
-lor=3D"#000000" style=3D"font-size:11pt"><b>From:</b> Takashi Matsuzawa<br>
-<b>Sent:</b> Thursday, July 14, 2016 10:06 PM<br>
-<b>To:</b> Maxin B. John<br>
-<b>Cc:</b> yocto@yoctoproject.org<br>
-<b>Subject:</b> Re: [yocto] image-vmdk with genericx86</font>
-<div>&nbsp;</div>
-</div>
-<div>
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt; color:#000000; ba=
-ckground-color:#FFFFFF; font-family:Calibri,Arial,Helvetica,sans-serif">
-<p>Hello</p>
-<p><br style=3D"color:rgb(33,33,33); font-size:13.3333px">
-<span style=3D"color:rgb(33,33,33); font-size:13.3333px">&gt;IMAGE_FSTYPES =
-&#43;=3D &quot;vmdk&quot;</span><br>
-</p>
-<div><br>
-</div>
-Thank you it worked.
-<div>(I should remember &nbsp;'_append' &nbsp;applied after all '=3D' assig=
-nments are done.)</div>
-<div><br>
-</div>
-<div>After .hdddirect image is successfully&nbsp;created,&nbsp;I am still w=
-orking on the following.</div>
-<div><br>
-</div>
-<div>i) image does not boot, maybe its boot device path thing...<br>
-<div>ii) hddimage, iso images are also generated. &nbsp;I may want to disab=
-le generation of these (and leave images types that I need only), so that b=
-itbake completes much earlier.</div>
-<div>iii) same can be sade to do_populatesdk it seems to run default.&nbsp;=
-<br>
-<div>
-<div><br>
-<div style=3D"color:rgb(0,0,0)">
-<div>
-<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
-<div id=3D"x_divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" =
-color=3D"#000000" style=3D"font-size:11pt"><b>From:</b> Maxin B. John &lt;m=
-axin.john@intel.com&gt;<br>
-<b>Sent:</b> Thursday, July 14, 2016 12:16 AM<br>
-<b>To:</b> Takashi Matsuzawa<br>
-<b>Cc:</b> yocto@yoctoproject.org<br>
-<b>Subject:</b> Re: [yocto] image-vmdk with genericx86</font>
-<div>&nbsp;</div>
-</div>
-</div>
-<font size=3D"2"><span style=3D"font-size:10pt">
-<div class=3D"PlainText">Hi Takashi-san,<br>
-<br>
-On Wed, Jul 13, 2016 at 10:51:34AM &#43;0000, Takashi Matsuzawa wrote:<br>
-&gt;Hello, Yocto.<br>
-&gt;<br>
-&gt;Should it be possible to simply change image class of genericx86 from x=
-xxx.hddimg to xxxx.hdddirect?<br>
-&gt;<br>
-&gt;I have been successfully building genericx86 image (that is image-live.=
-bbclass based), and now trying to build it with directdisk (xxxx.hdddirect)=
-.<br>
-&gt;<br>
-&gt;I thought it would be simpler to use pre-existing imageclass, so I trie=
-d following after finding image-vmdk.bbclass inherits boot-directdisk.<br>
-&gt;<br>
-&gt;Currently my build is based on Yocto 1.8 (fido).<br>
-&gt;<br>
-&gt;<br>
-&gt;(in my local.conf)<br>
-&gt;<br>
-&gt;IMAGE_FSTYPES_remove =3D &quot; live&quot;<br>
-&gt;IMAGE_FSTYPES_append =3D &quot; vmdk&quot;<br>
-<br>
-Instead of the above two, could you use the following line in local.conf an=
-d build again ?<br>
-<br>
-IMAGE_FSTYPES &#43;=3D &quot;vmdk&quot;<br>
-<br>
-&gt;But this caused following error.<br>
-&gt;<br>
-&gt;I am currently looking into the class files to find the cause of error,=
- but anyway, this should work?<br>
-&gt;<br>
-&gt;<br>
-&gt;&gt;ERROR: No IMAGE_CMD defined for IMAGE_FSTYPES entry 'vmdk' - possib=
-ly invalid type name or missing support class<br>
-&gt;&gt; ERROR: Function failed: do_rootfs<br>
-&gt;&gt; ERROR: Logfile of failure stored in:<br>
-&gt;&gt;/mnt/ssd2/yocto/dev/tmp/x86-wk3/work/genericx86-poky-linux/core-ima=
-ge-minimal-initramfs/1.0-r0/temp/log.do_rootfs.20432<br>
-&gt;&gt; ERROR: Task 229<br>
-&gt;&gt;(/mnt/ssd2/yocto/dev/wk/x86/wk3/build-root/sources/poky/meta/recipe=
-s-core/images/core-image-minimal-initramfs.bb, do_rootfs) failed with exit =
-code '1'<br>
-<br>
-<br>
-Best Regards,<br>
-Maxin<br>
-</div>
-</span></font></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</body>
-</html>
-
---_000_CY1PR0101MB1594B2A93629A15D839EF317D7330CY1PR0101MB1594_--
