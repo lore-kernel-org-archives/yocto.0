@@ -1,51 +1,75 @@
-Return-Path: <william.c.randle@intel.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A1FCBE00CEC; Fri, 15 Jul 2016 16:54:17 -0700 (PDT)
+	id A0AD5E00D4D; Fri, 15 Jul 2016 17:02:47 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.24 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.216.177 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 21B3DE00A6D
-	for <yocto@yoctoproject.org>; Fri, 15 Jul 2016 16:54:15 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by orsmga102.jf.intel.com with ESMTP; 15 Jul 2016 16:54:16 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.28,370,1464678000"; 
-	d="scan'208,217";a="1007796267"
-Received: from orsmsx106.amr.corp.intel.com ([10.22.225.133])
-	by fmsmga001.fm.intel.com with ESMTP; 15 Jul 2016 16:54:15 -0700
-Received: from orsmsx161.amr.corp.intel.com (10.22.240.84) by
-	ORSMSX106.amr.corp.intel.com (10.22.225.133) with Microsoft SMTP Server
-	(TLS) id 14.3.248.2; Fri, 15 Jul 2016 16:54:15 -0700
-Received: from orsmsx105.amr.corp.intel.com ([169.254.2.220]) by
-	ORSMSX161.amr.corp.intel.com ([169.254.4.132]) with mapi id
-	14.03.0248.002; Fri, 15 Jul 2016 16:54:14 -0700
-From: "Randle, William C" <william.c.randle@intel.com>
-To: "joshua.g.lock@linux.intel.com" <joshua.g.lock@linux.intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto-autobuilder][PATCH 2/4] BuildImages.py: build toaster
-	eventlog only when requested
-Thread-Index: AQHR3fINIhg9TwOZ4EKdPa1wzCgt6KAae4wAgAAmSQA=
-Date: Fri, 15 Jul 2016 23:54:14 +0000
-Message-ID: <1468626854.17397.2.camel@intel.com>
-References: <1468515952-12949-1-git-send-email-william.c.randle@intel.com>
-	<1468515952-12949-3-git-send-email-william.c.randle@intel.com>
-	<1468618632.3500.12.camel@linux.intel.com>
-In-Reply-To: <1468618632.3500.12.camel@linux.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.254.26.14]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-qt0-f177.google.com (mail-qt0-f177.google.com
+	[209.85.216.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3C1E3E00D13
+	for <yocto@yoctoproject.org>; Fri, 15 Jul 2016 17:02:43 -0700 (PDT)
+Received: by mail-qt0-f177.google.com with SMTP id j35so67580848qtj.2
+	for <yocto@yoctoproject.org>; Fri, 15 Jul 2016 17:02:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-transfer-encoding;
+	bh=2V4PykPqLqEq2xVOVLfLW3qT87Nq/4wvfZYOCrntlMY=;
+	b=rOwqTVXtx0oBYRKjDdMY/01dj9raLDU41Tk9Mkyw5Sa5IJh+VHcWqojc+mQu5KeL1j
+	AbACdDj458ROde5jw1SMVzJl23Em+G7mB+6Ew41S2/zliaMOjJOTA8/6JhQrGZlDyb7D
+	IuId+8vOgHs9Ae3wZkpI1N76iCiz+w0nvQQ8fscJREp4Gy73ORuMzM+TyPBARXirgL4L
+	0nJvlN5+0duMb6Rxzx7vN/B4bsuyrFKJ8rB94fF+Wsxb/RgB1h2fmRV8K/oW0hZMkMtF
+	HR9HZ26ydSW7EpcfOfrvHfXHWRPqL1DAGNiehYaQdLuZ09Z896T5XdButRtcc+3oUnaW
+	yT2A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=2V4PykPqLqEq2xVOVLfLW3qT87Nq/4wvfZYOCrntlMY=;
+	b=MU5KN4jLAqIDDF/k2s2bd5RciHtgAvcl5Eo2QhDv+J/pdpPH+jM9VIzcLMszvjiwzF
+	0AT76Cm+y3tcDBVGV0J11CGxRQTWc216db/iT4yFXwGF6lQnEC47T9d/QHTsbJ0AxPb3
+	hJx0SsjWSZj9hpGA9yVk12fwSmhiCsRUoYukmzt7KuTk4Ka64Aidw3k0vHraI9ka5s1Y
+	oW9w4Nzjf6gCLl7hYSn5taVQua5kNI6AtSqAOZgyhr9hPnKTyfQK4roZ0UFWuxBmZR/P
+	MXN1mpz8rkZZ+wqMGFAORdthSF5Inm3tE5NSHUCU1bVz3qANGY8VPm6JXrN+i1aG9cn8
+	5nQQ==
+X-Gm-Message-State: ALyK8tI1MB0Tk9Jo7r7vm7eLxJ5L/kO6i76olxDS0IYdxjp7laruopfEX4Z5GUBBf61Zw8lOTsYPOwgM63A7Rw==
+X-Received: by 10.200.48.141 with SMTP id v13mr33800428qta.76.1468627362176;
+	Fri, 15 Jul 2016 17:02:42 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Re: [yocto-autobuilder][PATCH 2/4] BuildImages.py: build toaster eventlog only when requested
+Received: by 10.55.214.83 with HTTP; Fri, 15 Jul 2016 17:02:12 -0700 (PDT)
+In-Reply-To: <CAEfap_C-JBVEo9jmPf02E+tK2uzO00gCjRPzA3JNkij0J6MdmQ@mail.gmail.com>
+References: <CAEfap_CAJpEnc6xWUbcYUkMx2CRa2HVT+FOBXy+rYb67jv16gw@mail.gmail.com>
+	<CAMKF1soyZBMzFUo0FLgk3Hb69PfMGiyQ7TNqsDBdVdHz7UNX8w@mail.gmail.com>
+	<CAEfap_BV6LRYUyG3u9oLDvXrpy9ztgVM-UaPNSHo9i1xbNj24w@mail.gmail.com>
+	<CAMKF1sqGSWkd-aTcY3fNk=88iL8BW5ihGnvSy14bCiSfeVUvzw@mail.gmail.com>
+	<CAEfap_BpFoi66j9PJO=PiZURULiivtR0Z6yCSedebLgTvzcY0g@mail.gmail.com>
+	<CAEfap_DQrSiDkDrBH7T7Ecez5R2D-KM_V+Lnm2nombozFBKF4w@mail.gmail.com>
+	<CAMKF1srjRAkFueO5A-dXy-E+n4PjpcZM57xF=BbU7P7NJH4csg@mail.gmail.com>
+	<CAEfap_ATPbqdD9H6gYikvs+Afa6XhxvbC-DU9-v-sUzhCANE9Q@mail.gmail.com>
+	<CAEfap_BDcUGfDEViXOQ6TiT16bcsxOjUBCsd5xaKEOpr_+EJPQ@mail.gmail.com>
+	<CAMKF1so2w-6-vvtvubJcGw-HF0As2WaymTweoOnJX1_LCYpv0w@mail.gmail.com>
+	<CAEfap_C=OON++bN=VWhF8-WC=Kpt-esTEMzNjUSfCxytiYS+yQ@mail.gmail.com>
+	<CAEfap_C-JBVEo9jmPf02E+tK2uzO00gCjRPzA3JNkij0J6MdmQ@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Fri, 15 Jul 2016 17:02:12 -0700
+Message-ID: <CAMKF1soBbUcqK9y1Dx8dnXiy6v92ZhtQS_Ghu46nQphj1V3CkA@mail.gmail.com>
+To: Simon Bolek <simon.bolek@googlemail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [genericx86-jethro] core-image-sato HDDIMG 'install' - no hard drive selected - /etc/fstab no such file or directory
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -57,217 +81,514 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Jul 2016 23:54:17 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_1468626854173972camelintelcom_"
+X-List-Received-Date: Sat, 16 Jul 2016 00:02:47 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
---_000_1468626854173972camelintelcom_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+On Fri, Jul 15, 2016 at 3:17 PM, Simon Bolek <simon.bolek@googlemail.com> w=
+rote:
+> Hi Raj,
+>
+> Maybe you could help me with this.
+> I found out that during rootfs (meta/lib/oe/rootfs.py), depmodwrapper scr=
+ipt
+> is beeing called.
+> I noticed, that it does generate /lib/modules/<kernel>.. directory struct=
+ure
+> under:
+> poky/build/tmp/work/genericx86-poky-linux/core-image-sato
+> However, at the end of the bitbake process, there is no /lib/modules
+> direcotry in
+> core-image-minimal-initramfs-genericx86-20160715210400.rootfs.cpio.gz
+>
+> Where are the steps, where this .cpio.gz file is beeing generated. There
+> must be a place where all the files, that are inside, are beeing put
+> together.
 
-T24gRnJpLCAyMDE2LTA3LTE1IGF0IDIyOjM3ICswMTAwLCBKb3NodWEgRyBMb2NrIHdyb3RlOg0K
-DQpPbiBUaHUsIDIwMTYtMDctMTQgYXQgMTA6MDUgLTA3MDAsIEJpbGwgUmFuZGxlIHdyb3RlOg0K
-DQoNClF1YWxpZnkgY3JlYXRpb24gb2YgdGhlIHRvYXN0ZXIgZXZlbnRsb2cgYmFzZWQgb24gdGhl
-IHNldHRpbmcgb2YgdGhlDQpuZXcNCidjdXN0b21fY3JlYXRlX2V2ZW50bG9nJyBwcm9wZXJ0eS4g
-UGxhY2UgdGhlIGV2ZW50bG9nIGluDQpidWlsZC90bXAvbG9nLA0KaW5zdGVhZCBvZiBidWlsZCBh
-bmQgYWRkIGEgdGltZXN0YW1wIHRvIHRoZSBldmVudGxvZyBmaWxlbmFtZSBzaW5jZQ0KbXVsdGlw
-bGUgZXZlbnQgbG9ncyBjYW4gYmUgZ2VuZXJhdGVkIGR1cmluZyBhIG11bHRpLWltYWdlIGJ1aWxk
-c2V0DQphbmQNCm90aGVyd2lzZSBvbmx5IHRoZSBsYXN0IG9uZSB3b3VsZCBvdGhlcndpc2UgYmUg
-c2F2ZWQuDQoNCltZT0NUTyAjOTg4NF0NCg0KU2lnbmVkLW9mZi1ieTogQmlsbCBSYW5kbGUgPHdp
-bGxpYW0uYy5yYW5kbGVAaW50ZWwuY29tPG1haWx0bzp3aWxsaWFtLmMucmFuZGxlQGludGVsLmNv
-bT4+DQotLS0NCiAuLi4vYXV0b2J1aWxkZXIvYnVpbGRzdGVwcy9CdWlsZEltYWdlcy5weSAgICAg
-ICAgICB8IDI0DQorKysrKysrKysrKysrKysrKy0tLS0tDQogMSBmaWxlIGNoYW5nZWQsIDE5IGlu
-c2VydGlvbnMoKyksIDUgZGVsZXRpb25zKC0pDQoNCmRpZmYgLS1naXQgYS9saWIvcHl0aG9uMi43
-L3NpdGUtDQpwYWNrYWdlcy9hdXRvYnVpbGRlci9idWlsZHN0ZXBzL0J1aWxkSW1hZ2VzLnB5IGIv
-bGliL3B5dGhvbjIuNy9zaXRlLQ0KcGFja2FnZXMvYXV0b2J1aWxkZXIvYnVpbGRzdGVwcy9CdWls
-ZEltYWdlcy5weQ0KaW5kZXggN2VmOGFhYi4uOWVhMzUwZiAxMDA2NDQNCi0tLSBhL2xpYi9weXRo
-b24yLjcvc2l0ZS0NCnBhY2thZ2VzL2F1dG9idWlsZGVyL2J1aWxkc3RlcHMvQnVpbGRJbWFnZXMu
-cHkNCisrKyBiL2xpYi9weXRob24yLjcvc2l0ZS0NCnBhY2thZ2VzL2F1dG9idWlsZGVyL2J1aWxk
-c3RlcHMvQnVpbGRJbWFnZXMucHkNCkBAIC0xNSw3ICsxNSw3IEBAIGZyb20gYnVpbGRib3Quc3Rl
-cHMuc2hlbGwgaW1wb3J0IFNoZWxsQ29tbWFuZA0KIGZyb20gYnVpbGRib3QucHJvY2Vzcy5idWls
-ZHN0ZXAgaW1wb3J0IExvZ0xpbmVPYnNlcnZlcg0KIGZyb20gZGlzdHV0aWxzLnZlcnNpb24gaW1w
-b3J0IFN0cmljdFZlcnNpb24NCiBmcm9tIGJ1aWxkYm90LnN0YXR1cy5yZXN1bHRzIGltcG9ydCBT
-VUNDRVNTLCBTS0lQUEVEDQotaW1wb3J0IG9zDQoraW1wb3J0IG9zLCBkYXRldGltZQ0KDQogZnJv
-bSBsaWIuYnVpbGRzdGVwcyBpbXBvcnQgQml0YmFrZVNoZWxsQ29tbWFuZA0KDQpAQCAtNDcsOCAr
-NDcsMjMgQEAgY2xhc3MgQnVpbGRJbWFnZXMoQml0YmFrZVNoZWxsQ29tbWFuZCk6DQogICAgICAg
-ICAgICAgc2VsZi5kZXBsb3ljaGVjayA9DQpzZWxmLmdldFByb3BlcnR5KCdjdXN0b21fZGVwbG95
-X2FydGlmYWN0cycpDQogICAgICAgICBleGNlcHQ6DQogICAgICAgICAgICAgc2VsZi5kZXBsb3lj
-aGVjayA9ICJUcnVlIg0KKw0KKyAgICAgICAgIyB0aGUgZXZlbnRsb2cgY2FwYWJpbGl0eSBleGlz
-dHMgb25seSBpbiBiaXRiYWtlIDEuMjUgYW5kDQpuZXdlcg0KKyAgICAgICAgc2VsZi5jcmVhdGVf
-ZXZlbnRsb2cgPSAiRmFsc2UiDQorICAgICAgICBpZiBzZWxmLmdldFByb3BlcnR5KCdiaXRiYWtl
-dmVyc2lvbicpIFwNCisgICAgICAgICAgIGFuZCBTdHJpY3RWZXJzaW9uKHNlbGYuZ2V0UHJvcGVy
-dHkoJ2JpdGJha2V2ZXJzaW9uJykpID49DQpTdHJpY3RWZXJzaW9uKCIxLjI1Iik6DQorICAgICAg
-ICAgICAgdHJ5Og0KKyAgICAgICAgICAgICAgICBzZWxmLmNyZWF0ZV9ldmVudGxvZyA9DQpzZWxm
-LmdldFByb3BlcnR5KCJjdXN0b21fY3JlYXRlX2V2ZW50bG9nIikNCisgICAgICAgICAgICAgICAg
-aWYgc2VsZi5jcmVhdGVfZXZlbnRsb2cgPT0gIlRydWUiOg0KKyAgICAgICAgICAgICAgICAgICAg
-dGltZXN0YW1wID0NCmRhdGV0aW1lLmRhdGV0aW1lLm5vdygpLnN0cmZ0aW1lKCIlWSVtJWQlSCVN
-JVMiKQ0KKyAgICAgICAgICAgICAgICAgICAgc2VsZi5ldmVudGxvZ19uYW1lID0gInRtcC9sb2cv
-Yml0YmFrZV9ldmVudGxvZy0NCiVzLmpzb24iICUgdGltZXN0YW1wDQorICAgICAgICAgICAgZXhj
-ZXB0Og0KKyAgICAgICAgICAgICAgICBwYXNzDQoNCg0KDQpEbyB3ZSByZWFsbHkgd2FudCB0byBj
-YXRjaCBhbGwgZXhjZXB0aW9ucyBoZXJlIGFuZCBpZ25vcmUgdGhlbT8gV2hhdA0KZXhjZXB0aW9u
-IG1pZ2h0IGJlIHRocm93biBieSB0aGUgYWJvdmUgY29kZT8NCg0KDQoNClRoZSBvbmx5IGV4Y2Vw
-dGlvbiBJIGtub3cgb2Ygd291bGQgYmUgdGhlIGNhc2Ugd2hlcmUgdGhlIHByb3BlcnR5IGlzIG5v
-dCBkZWZpbmVkIGJlY2F1c2UgdGhlIGNvZGUgd2FzIGludm9rZWQgZnJvbSBhIHBhZ2UgdGhhdCBk
-aWQgbm90IHNldCBpdCAobm90IGFsbCBwYWdlcyBkbykuDQoNCg0KDQorDQogICAgICAgICBpZiBz
-ZWxmLmltYWdlcyA9PSAiI1RPQVNURVIiOg0KLSAgICAgICAgICAgIGJpdGJha2VmbGFncyA9ICIt
-ayAtdyAnYml0YmFrZV9ldmVudGxvZy5qc29uJyAiDQorICAgICAgICAgICAgYml0YmFrZWZsYWdz
-ID0gIi1rICINCisgICAgICAgICAgICBpZiBzZWxmLmNyZWF0ZV9ldmVudGxvZyA9PSAiVHJ1ZSI6
-DQorICAgICAgICAgICAgICAgIGJpdGJha2VmbGFncyArPSAiLXcgJyIgKyBzZWxmLmV2ZW50bG9n
-X25hbWUgKyAiJyAiDQogICAgICAgICAgICAgc2VsZi5pbWFnZXM9c2VsZi5nZXRQcm9wZXJ0eSgi
-Y3VzdG9tX2ltYWdlcyIpDQogICAgICAgICAgICAgc2VsZi5jb21tYW5kID0gIi4gLi9vZS1pbml0
-LWJ1aWxkLWVudjsgYml0YmFrZSAiICsNCmJpdGJha2VmbGFncyArIHNlbGYuaW1hZ2VzDQogICAg
-ICAgICAgICAgc2VsZi5kZXNjcmlwdGlvbiA9IFsiQnVpbGRpbmcgIiArIHN0cihzZWxmLmltYWdl
-cyldDQpAQCAtMTMwLDkgKzE0NSw4IEBAIGNsYXNzIEJ1aWxkSW1hZ2VzKEJpdGJha2VTaGVsbENv
-bW1hbmQpOg0KICAgICAgICAgICAgICAgICBzZWxmLmRlc2NyaXB0aW9uID0gWyJTa2lwcGluZyBC
-dWlsZC4gTm8gSW1hZ2VzIHRvIGJlDQpidWlsdCJdDQogICAgICAgICAgICAgZWxzZToNCiAgICAg
-ICAgICAgICAgICAgYml0YmFrZWZsYWdzID0gIi1rICINCi0gICAgICAgICAgICAgICAgIyAtdyBv
-bmx5IGV4aXN0cyBpbiBiaXRiYWtlIDEuMjUgYW5kIG5ld2VyLCB1c2UNCmRpc3Ryb3ZlcnNpb24g
-c3RyaW5nIGFuZCBtYWtlIHN1cmUgd2UncmUgb24gcG9reSA+MS43DQotICAgICAgICAgICAgICAg
-IGlmIHNlbGYuZ2V0UHJvcGVydHkoJ2JpdGJha2V2ZXJzaW9uJykgYW5kDQpTdHJpY3RWZXJzaW9u
-KHNlbGYuZ2V0UHJvcGVydHkoJ2JpdGJha2V2ZXJzaW9uJykpID49DQpTdHJpY3RWZXJzaW9uKCIx
-LjI1Iik6DQotICAgICAgICAgICAgICAgICAgICBiaXRiYWtlZmxhZ3MgKz0gIi13ICdiaXRiYWtl
-X2V2ZW50bG9nLmpzb24nICINCisgICAgICAgICAgICAgICAgaWYgc2VsZi5jcmVhdGVfZXZlbnRs
-b2cgPT0gIlRydWUiOg0KKyAgICAgICAgICAgICAgICAgICAgYml0YmFrZWZsYWdzICs9ICItdyAn
-IiArIHNlbGYuZXZlbnRsb2dfbmFtZSArICInDQoiDQogICAgICAgICAgICAgICAgIGlmIHNlbGYu
-bWlubm93RXhpc3RzIGlzIE5vbmUgb3Igc2VsZi5taW5ub3dFeGlzdHMgPT0NCiJUcnVlIjoNCiAg
-ICAgICAgICAgICAgICAgICAgIHNlbGYuY29tbWFuZCA9ICIuIC4vb2UtaW5pdC1idWlsZC1lbnY7
-IGJpdGJha2UgIg0KKyBiaXRiYWtlZmxhZ3MgKyBzZWxmLmltYWdlcw0KICAgICAgICAgICAgICAg
-ICAgICAgc2VsZi5kZXNjcmlwdGlvbiA9IFsiQnVpbGRpbmcgIiArDQpzdHIoc2VsZi5pbWFnZXMp
-XQ0KDQo=
+initramfs image is a separate image. What you are seeing is the final image=
+.
+you might have to add the kernel module to you machine conf
 
---_000_1468626854173972camelintelcom_
-Content-Type: text/html; charset="utf-8"
-Content-ID: <360104B949FAE44AA9E43D7DB9760DAE@intel.com>
-Content-Transfer-Encoding: base64
+MACHINE_EXTRA_RRECOMMENDS =3D " kernel-modules"
 
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjwvaGVhZD4NCjxib2R5IGJnY29sb3I9IiNmN2Y3
-ZjciIHRleHQ9IiMyYzJjMmMiIGxpbms9IiM0YTkwZDkiIHZsaW5rPSIjNGE5MGQ5Ij4NCjxkaXY+
-T24gRnJpLCAyMDE2LTA3LTE1IGF0IDIyOjM3ICYjNDM7MDEwMCwgSm9zaHVhIEcgTG9jayB3cm90
-ZTo8L2Rpdj4NCjxibG9ja3F1b3RlIHR5cGU9ImNpdGUiPg0KPHByZT5PbiBUaHUsIDIwMTYtMDct
-MTQgYXQgMTA6MDUgLTA3MDAsIEJpbGwgUmFuZGxlIHdyb3RlOg0KPGJsb2NrcXVvdGUgdHlwZT0i
-Y2l0ZSI+DQpRdWFsaWZ5IGNyZWF0aW9uIG9mIHRoZSB0b2FzdGVyIGV2ZW50bG9nIGJhc2VkIG9u
-IHRoZSBzZXR0aW5nIG9mIHRoZQ0KbmV3DQonY3VzdG9tX2NyZWF0ZV9ldmVudGxvZycgcHJvcGVy
-dHkuIFBsYWNlIHRoZSBldmVudGxvZyBpbg0KYnVpbGQvdG1wL2xvZywNCmluc3RlYWQgb2YgYnVp
-bGQgYW5kIGFkZCBhIHRpbWVzdGFtcCB0byB0aGUgZXZlbnRsb2cgZmlsZW5hbWUgc2luY2UNCm11
-bHRpcGxlIGV2ZW50IGxvZ3MgY2FuIGJlIGdlbmVyYXRlZCBkdXJpbmcgYSBtdWx0aS1pbWFnZSBi
-dWlsZHNldA0KYW5kDQpvdGhlcndpc2Ugb25seSB0aGUgbGFzdCBvbmUgd291bGQgb3RoZXJ3aXNl
-IGJlIHNhdmVkLg0KDQpbWU9DVE8gIzk4ODRdDQoNClNpZ25lZC1vZmYtYnk6IEJpbGwgUmFuZGxl
-ICZsdDs8YSBocmVmPSJtYWlsdG86d2lsbGlhbS5jLnJhbmRsZUBpbnRlbC5jb20iPndpbGxpYW0u
-Yy5yYW5kbGVAaW50ZWwuY29tPC9hPiZndDsNCi0tLQ0KJm5ic3A7Li4uL2F1dG9idWlsZGVyL2J1
-aWxkc3RlcHMvQnVpbGRJbWFnZXMucHkmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
-cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDt8IDI0DQomIzQzOyYjNDM7JiM0MzsmIzQzOyYjNDM7
-JiM0MzsmIzQzOyYjNDM7JiM0MzsmIzQzOyYjNDM7JiM0MzsmIzQzOyYjNDM7JiM0MzsmIzQzOyYj
-NDM7LS0tLS0NCiZuYnNwOzEgZmlsZSBjaGFuZ2VkLCAxOSBpbnNlcnRpb25zKCYjNDM7KSwgNSBk
-ZWxldGlvbnMoLSkNCg0KZGlmZiAtLWdpdCBhL2xpYi9weXRob24yLjcvc2l0ZS0NCnBhY2thZ2Vz
-L2F1dG9idWlsZGVyL2J1aWxkc3RlcHMvQnVpbGRJbWFnZXMucHkgYi9saWIvcHl0aG9uMi43L3Np
-dGUtDQpwYWNrYWdlcy9hdXRvYnVpbGRlci9idWlsZHN0ZXBzL0J1aWxkSW1hZ2VzLnB5DQppbmRl
-eCA3ZWY4YWFiLi45ZWEzNTBmIDEwMDY0NA0KLS0tIGEvbGliL3B5dGhvbjIuNy9zaXRlLQ0KcGFj
-a2FnZXMvYXV0b2J1aWxkZXIvYnVpbGRzdGVwcy9CdWlsZEltYWdlcy5weQ0KJiM0MzsmIzQzOyYj
-NDM7IGIvbGliL3B5dGhvbjIuNy9zaXRlLQ0KcGFja2FnZXMvYXV0b2J1aWxkZXIvYnVpbGRzdGVw
-cy9CdWlsZEltYWdlcy5weQ0KQEAgLTE1LDcgJiM0MzsxNSw3IEBAIGZyb20gYnVpbGRib3Quc3Rl
-cHMuc2hlbGwgaW1wb3J0IFNoZWxsQ29tbWFuZA0KJm5ic3A7ZnJvbSBidWlsZGJvdC5wcm9jZXNz
-LmJ1aWxkc3RlcCBpbXBvcnQgTG9nTGluZU9ic2VydmVyDQombmJzcDtmcm9tIGRpc3R1dGlscy52
-ZXJzaW9uIGltcG9ydCBTdHJpY3RWZXJzaW9uDQombmJzcDtmcm9tIGJ1aWxkYm90LnN0YXR1cy5y
-ZXN1bHRzIGltcG9ydCBTVUNDRVNTLCBTS0lQUEVEDQotaW1wb3J0IG9zDQomIzQzO2ltcG9ydCBv
-cywgZGF0ZXRpbWUNCiZuYnNwOw0KJm5ic3A7ZnJvbSBsaWIuYnVpbGRzdGVwcyBpbXBvcnQgQml0
-YmFrZVNoZWxsQ29tbWFuZA0KJm5ic3A7DQpAQCAtNDcsOCAmIzQzOzQ3LDIzIEBAIGNsYXNzIEJ1
-aWxkSW1hZ2VzKEJpdGJha2VTaGVsbENvbW1hbmQpOg0KJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7c2Vs
-Zi5kZXBsb3ljaGVjayA9DQpzZWxmLmdldFByb3BlcnR5KCdjdXN0b21fZGVwbG95X2FydGlmYWN0
-cycpDQombmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
-cDtleGNlcHQ6DQombmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
-cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDtzZWxmLmRlcGxveWNoZWNrID0gJnF1b3Q7
-VHJ1ZSZxdW90Ow0KJiM0MzsNCiYjNDM7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
-c3A7Jm5ic3A7Jm5ic3A7IyB0aGUgZXZlbnRsb2cgY2FwYWJpbGl0eSBleGlzdHMgb25seSBpbiBi
-aXRiYWtlIDEuMjUgYW5kDQpuZXdlcg0KJiM0MzsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
-cDsmbmJzcDsmbmJzcDsmbmJzcDtzZWxmLmNyZWF0ZV9ldmVudGxvZyA9ICZxdW90O0ZhbHNlJnF1
-b3Q7DQomIzQzOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
-O2lmIHNlbGYuZ2V0UHJvcGVydHkoJ2JpdGJha2V2ZXJzaW9uJykgXA0KJiM0MzsmbmJzcDsmbmJz
-cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDth
-bmQgU3RyaWN0VmVyc2lvbihzZWxmLmdldFByb3BlcnR5KCdiaXRiYWtldmVyc2lvbicpKSAmZ3Q7
-PQ0KU3RyaWN0VmVyc2lvbigmcXVvdDsxLjI1JnF1b3Q7KToNCiYjNDM7Jm5ic3A7Jm5ic3A7Jm5i
-c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-dHJ5Og0KJiM0MzsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
-cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDtzZWxmLmNy
-ZWF0ZV9ldmVudGxvZyA9DQpzZWxmLmdldFByb3BlcnR5KCZxdW90O2N1c3RvbV9jcmVhdGVfZXZl
-bnRsb2cmcXVvdDspDQomIzQzOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZu
-YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
-O2lmIHNlbGYuY3JlYXRlX2V2ZW50bG9nID09ICZxdW90O1RydWUmcXVvdDs6DQomIzQzOyZuYnNw
-OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZu
-YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
-O3RpbWVzdGFtcCA9DQpkYXRldGltZS5kYXRldGltZS5ub3coKS5zdHJmdGltZSgmcXVvdDslWSVt
-JWQlSCVNJVMmcXVvdDspDQomIzQzOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
-OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZu
-YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwO3NlbGYuZXZlbnRsb2dfbmFtZSA9ICZxdW90O3Rt
-cC9sb2cvYml0YmFrZV9ldmVudGxvZy0NCiVzLmpzb24mcXVvdDsgJSB0aW1lc3RhbXANCiYjNDM7
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
-c3A7Jm5ic3A7Jm5ic3A7ZXhjZXB0Og0KJiM0MzsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
-cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsm
-bmJzcDsmbmJzcDtwYXNzDQo8L2Jsb2NrcXVvdGU+DQoNCkRvIHdlIHJlYWxseSB3YW50IHRvIGNh
-dGNoIGFsbCBleGNlcHRpb25zIGhlcmUgYW5kIGlnbm9yZSB0aGVtPyBXaGF0DQpleGNlcHRpb24g
-bWlnaHQgYmUgdGhyb3duIGJ5IHRoZSBhYm92ZSBjb2RlPw0KDQo8L3ByZT4NCjwvYmxvY2txdW90
-ZT4NCjxkaXY+PGJyPg0KPC9kaXY+DQo8ZGl2PlRoZSBvbmx5IGV4Y2VwdGlvbiBJIGtub3cgb2Yg
-d291bGQgYmUgdGhlIGNhc2Ugd2hlcmUgdGhlIHByb3BlcnR5IGlzIG5vdCBkZWZpbmVkIGJlY2F1
-c2UgdGhlIGNvZGUgd2FzIGludm9rZWQgZnJvbSBhIHBhZ2UgdGhhdCBkaWQgbm90IHNldCBpdCAo
-bm90IGFsbCBwYWdlcyBkbykuPC9kaXY+DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPGJsb2NrcXVvdGUg
-dHlwZT0iY2l0ZSI+DQo8cHJlPjxibG9ja3F1b3RlIHR5cGU9ImNpdGUiPg0KJiM0MzsNCiZuYnNw
-OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwO2lmIHNlbGYu
-aW1hZ2VzID09ICZxdW90OyNUT0FTVEVSJnF1b3Q7Og0KLSZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
-OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwO2JpdGJha2Vm
-bGFncyA9ICZxdW90Oy1rIC13ICdiaXRiYWtlX2V2ZW50bG9nLmpzb24nICZxdW90Ow0KJiM0Mzsm
-bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
-cDsmbmJzcDsmbmJzcDtiaXRiYWtlZmxhZ3MgPSAmcXVvdDstayAmcXVvdDsNCiYjNDM7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
-c3A7Jm5ic3A7aWYgc2VsZi5jcmVhdGVfZXZlbnRsb2cgPT0gJnF1b3Q7VHJ1ZSZxdW90OzoNCiYj
-NDM7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Yml0YmFrZWZsYWdzICYj
-NDM7PSAmcXVvdDstdyAnJnF1b3Q7ICYjNDM7IHNlbGYuZXZlbnRsb2dfbmFtZSAmIzQzOyAmcXVv
-dDsnICZxdW90Ow0KJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
-c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7c2VsZi5pbWFnZXM9c2VsZi5nZXRQcm9w
-ZXJ0eSgmcXVvdDtjdXN0b21faW1hZ2VzJnF1b3Q7KQ0KJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7c2Vs
-Zi5jb21tYW5kID0gJnF1b3Q7LiAuL29lLWluaXQtYnVpbGQtZW52OyBiaXRiYWtlICZxdW90OyAm
-IzQzOw0KYml0YmFrZWZsYWdzICYjNDM7IHNlbGYuaW1hZ2VzDQombmJzcDsmbmJzcDsmbmJzcDsm
-bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
-cDtzZWxmLmRlc2NyaXB0aW9uID0gWyZxdW90O0J1aWxkaW5nICZxdW90OyAmIzQzOyBzdHIoc2Vs
-Zi5pbWFnZXMpXQ0KQEAgLTEzMCw5ICYjNDM7MTQ1LDggQEAgY2xhc3MgQnVpbGRJbWFnZXMoQml0
-YmFrZVNoZWxsQ29tbWFuZCk6DQombmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsm
-bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
-cDsmbmJzcDtzZWxmLmRlc2NyaXB0aW9uID0gWyZxdW90O1NraXBwaW5nIEJ1aWxkLiBObyBJbWFn
-ZXMgdG8gYmUNCmJ1aWx0JnF1b3Q7XQ0KJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
-c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7ZWxzZToNCiZuYnNw
-OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZu
-YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwO2JpdGJha2VmbGFncyA9ICZx
-dW90Oy1rICZxdW90Ow0KLSZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
-OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyMg
-LXcgb25seSBleGlzdHMgaW4gYml0YmFrZSAxLjI1IGFuZCBuZXdlciwgdXNlDQpkaXN0cm92ZXJz
-aW9uIHN0cmluZyBhbmQgbWFrZSBzdXJlIHdlJ3JlIG9uIHBva3kgJmd0OzEuNw0KLSZuYnNwOyZu
-YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
-OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwO2lmIHNlbGYuZ2V0UHJvcGVydHkoJ2JpdGJh
-a2V2ZXJzaW9uJykgYW5kDQpTdHJpY3RWZXJzaW9uKHNlbGYuZ2V0UHJvcGVydHkoJ2JpdGJha2V2
-ZXJzaW9uJykpICZndDs9DQpTdHJpY3RWZXJzaW9uKCZxdW90OzEuMjUmcXVvdDspOg0KLSZuYnNw
-OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZu
-YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
-O2JpdGJha2VmbGFncyAmIzQzOz0gJnF1b3Q7LXcgJ2JpdGJha2VfZXZlbnRsb2cuanNvbicgJnF1
-b3Q7DQomIzQzOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
-OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwO2lmIHNlbGYu
-Y3JlYXRlX2V2ZW50bG9nID09ICZxdW90O1RydWUmcXVvdDs6DQomIzQzOyZuYnNwOyZuYnNwOyZu
-YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
-OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwO2JpdGJha2Vm
-bGFncyAmIzQzOz0gJnF1b3Q7LXcgJyZxdW90OyAmIzQzOyBzZWxmLmV2ZW50bG9nX25hbWUgJiM0
-MzsgJnF1b3Q7Jw0KJnF1b3Q7DQombmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsm
-bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
-cDsmbmJzcDtpZiBzZWxmLm1pbm5vd0V4aXN0cyBpcyBOb25lIG9yIHNlbGYubWlubm93RXhpc3Rz
-ID09DQomcXVvdDtUcnVlJnF1b3Q7Og0KJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
-c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7c2VsZi5jb21tYW5kID0gJnF1b3Q7
-LiAuL29lLWluaXQtYnVpbGQtZW52OyBiaXRiYWtlICZxdW90Ow0KJiM0MzsgYml0YmFrZWZsYWdz
-ICYjNDM7IHNlbGYuaW1hZ2VzDQombmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsm
-bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
-cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDtzZWxmLmRlc2NyaXB0aW9uID0gWyZxdW90
-O0J1aWxkaW5nICZxdW90OyAmIzQzOw0Kc3RyKHNlbGYuaW1hZ2VzKV0NCjwvYmxvY2txdW90ZT48
-L3ByZT4NCjwvYmxvY2txdW90ZT4NCjwvYm9keT4NCjwvaHRtbD4NCg==
+>
+> HELP!
+> kind regards
+> Simon :-)
+>
+>
+>
+> On Fri, Jul 15, 2016 at 10:59 AM, Simon Bolek <simon.bolek@googlemail.com=
+>
+> wrote:
+>>
+>> Thanks, but neither:
+>> pkg_postinst_kernel-base ()
+>> nor:
+>> pkg_postinst_kernel-image ()
+>> from /meta/classes/kernel.bbclass gets called when running:
+>> - bitbake core-image-sato or
+>> - bitbake linux-yocto
+>>
+>> I put some commands in there, which are definitely wrong (like foobar) a=
+nd
+>> bitbake run successfully.
+>> Whereas, in other funtions it caused problems.
+>> Any ideas how can fix this?
+>>
+>> thanks and best regards
+>> Simon :-)
+>>
+>>
+>> On Fri, Jul 15, 2016 at 1:30 AM, Khem Raj <raj.khem@gmail.com> wrote:
+>>>
+>>> On Thu, Jul 14, 2016 at 4:16 PM, Simon Bolek <simon.bolek@googlemail.co=
+m>
+>>> wrote:
+>>> > Hi Raj,
+>>> >
+>>> > About depmod again.
+>>> > Should it be run from meta/classes/kernel.bbclass  ?
+>>> > ...
+>>> > pkg_postinst_kernel-base () {
+>>> >     if [ ! -e "$D/lib/modules/${KERNEL_VERSION}" ]; then
+>>> >         mkdir -p $D/lib/modules/${KERNEL_VERSION}
+>>> >     fi
+>>> >     if [ -n "$D" ]; then
+>>> >         depmodwrapper -a -b $D ${KERNEL_VERSION}
+>>> >     else
+>>> >         depmod -a ${KERNEL_VERSION}
+>>> >     fi
+>>> > }
+>>> > ...
+>>> >
+>>> > Where is this function beeing called?
+>>>
+>>> It should be called during rootfs and image creation time. as well as
+>>> when you update the package using online package manager.
+>>>
+>>> > I did not find it anywhere.
+>>> > thanks and kind regards
+>>> > Simon :-)
+>>> >
+>>> > On Thu, Jul 14, 2016 at 8:32 AM, Simon Bolek
+>>> > <simon.bolek@googlemail.com>
+>>> > wrote:
+>>> >>
+>>> >>
+>>> >> On Wed, Jul 13, 2016 at 4:56 PM, Khem Raj <raj.khem@gmail.com> wrote=
+:
+>>> >>>
+>>> >>> On Wed, Jul 13, 2016 at 4:57 AM, Simon Bolek
+>>> >>> <simon.bolek@googlemail.com>
+>>> >>> wrote:
+>>> >>> > Hi Raj,
+>>> >>> >
+>>> >>> > So i tried to do manually, what init script does and udev
+>>> >>> > definitely
+>>> >>> > does
+>>> >>> > not recognize the SSD drive.
+>>> >>> > I ran
+>>> >>> >  /lib/udev/udevd --daemon --debug > udev.debug 2>&1 &
+>>> >>> > from the cli and there is no trace of recognizing the SSD. Only t=
+he
+>>> >>> > /dev/sda, which is the USB stick I am running the installation
+>>> >>> > from.
+>>> >>> >
+>>> >>> > I used 'meld' to compare the /initrd from current jethro image an=
+d
+>>> >>> > previous
+>>> >>> > working fido image.
+>>> >>> > They are almost the same:
+>>> >>> > - in jethro /lib/modules... file structure is missing with:
+>>> >>> > modules.alias
+>>> >>> > modules.alias.bin
+>>> >>> > modules.builtin.bin
+>>> >>> > modules.dep
+>>> >>> > modules.dep.bin
+>>> >>> > modules.devname
+>>> >>> > modules.softdep
+>>> >>> > modules.symbols
+>>> >>> > modules.symbols.bin
+>>> >>>
+>>> >>> this means depmod did not run during initramfs image creation
+>>> >>
+>>> >> How can I make this happen during bitbake, so i have those files in
+>>> >> the
+>>> >> HDDIMG?
+>>> >>
+>>> >>>
+>>> >>> >
+>>> >>> > - there are slight differences between
+>>> >>> > /etc/init.d/udev
+>>> >>> > /etc/udev/scripts/mount.sh
+>>> >>> > , but I cannot tell, if this is the reason.
+>>> >>>
+>>> >>> what are the differences ?
+>>> >>
+>>> >>
+>>> >> Sorry for this patch-like copy/paste, but this was the simplest way =
+of
+>>> >> presenting the changes.
+>>> >> Do you see something important here, that might cause the SDD not
+>>> >> beeing
+>>> >> recognized?
+>>> >>
+>>> >> --- /home/simon/Development/Yocto-Project/initrd-ok/etc/init.d/udev
+>>> >> +++
+>>> >> /home/simon/Development/Yocto-Project/initrd-jethro/etc/init.d/udev
+>>> >> @@ -14,20 +14,27 @@
+>>> >>  [ -d /sys/class ] || exit 1
+>>> >>  [ -r /proc/mounts ] || exit 1
+>>> >>  [ -x /lib/udev/udevd ] || exit 1
+>>> >> +SYSCONF_CACHED=3D"/etc/udev/cache.data"
+>>> >> +SYSCONF_TMP=3D"/dev/shm/udev.cache"
+>>> >> +DEVCACHE_REGEN=3D"/dev/shm/udev-regen" # create to request cache re=
+gen
+>>> >> +
+>>> >> +# A list of files which are used as a criteria to judge whether the
+>>> >> udev
+>>> >> cache could be reused.
+>>> >> +CMP_FILE_LIST=3D"/proc/version /proc/cmdline /proc/devices"
+>>> >> +[ -f /proc/atags ] && CMP_FILE_LIST=3D"$CMP_FILE_LIST /proc/atags"
+>>> >> +
+>>> >> +# List of files whose metadata (size/mtime/name) will be included i=
+n
+>>> >> cached
+>>> >> +# system state.
+>>> >> +META_FILE_LIST=3D"lib/udev/rules.d/* etc/udev/rules.d/*"
+>>> >> +
+>>> >> +# Command to compute system configuration.
+>>> >> +sysconf_cmd () {
+>>> >> +    cat -- $CMP_FILE_LIST
+>>> >> +    stat -c '%s %Y %n' -- $META_FILE_LIST | awk -F/ '{print $1 " "
+>>> >> $NF;}'
+>>> >> +}
+>>> >> +
+>>> >>  [ -f /etc/default/udev-cache ] && . /etc/default/udev-cache
+>>> >>  [ -f /etc/udev/udev.conf ] && . /etc/udev/udev.conf
+>>> >>  [ -f /etc/default/rcS ] && . /etc/default/rcS
+>>> >> -
+>>> >> -readfiles () {
+>>> >> -   READDATA=3D""
+>>> >> -   for filename in $@; do
+>>> >> -       if [ -r $filename ]; then
+>>> >> -           while read line; do
+>>> >> -               READDATA=3D"$READDATA$line"
+>>> >> -           done < $filename
+>>> >> -       fi
+>>> >> -   done
+>>> >> -}
+>>> >>
+>>> >>  kill_udevd () {
+>>> >>      pid=3D`pidof -x udevd`
+>>> >> @@ -57,38 +64,35 @@
+>>> >>      # the automount rule for udev needs /tmp directory available, a=
+s
+>>> >> /tmp
+>>> >> is a symlink
+>>> >>      # to /var/tmp which in turn is a symlink to /var/volatile/tmp, =
+we
+>>> >> need to make sure
+>>> >>      # /var/volatile/tmp directory to be available.
+>>> >> -    mkdir -p /var/volatile/tmp
+>>> >> +    mkdir -m 1777 -p /var/volatile/tmp
+>>> >>
+>>> >>      # Cache handling.
+>>> >> -    # A list of files which are used as a criteria to judge whether
+>>> >> the
+>>> >> udev cache could be reused.
+>>> >> -    CMP_FILE_LIST=3D"/proc/version /proc/cmdline /proc/devices
+>>> >> /proc/atags"
+>>> >>      if [ "$DEVCACHE" !=3D "" ]; then
+>>> >>              if [ -e $DEVCACHE ]; then
+>>> >> -            readfiles $CMP_FILE_LIST
+>>> >> -            NEWDATA=3D"$READDATA"
+>>> >> -            readfiles /etc/udev/cache.data
+>>> >> -            OLDDATA=3D"$READDATA"
+>>> >> -            if [ "$OLDDATA" =3D "$NEWDATA" ]; then
+>>> >> -                            (cd /; tar xf $DEVCACHE > /dev/null 2>&=
+1)
+>>> >> +            sysconf_cmd > "$SYSCONF_TMP"
+>>> >> +            if cmp $SYSCONF_CACHED $SYSCONF_TMP >/dev/null; then
+>>> >> +                            tar xmf $DEVCACHE -C / -m
+>>> >>                              not_first_boot=3D1
+>>> >>                              [ "$VERBOSE" !=3D "no" ] && echo "udev:
+>>> >> using
+>>> >> cache file $DEVCACHE"
+>>> >> -                            [ -e /dev/shm/udev.cache ] && rm -f
+>>> >> /dev/shm/udev.cache
+>>> >> +                            [ -e $SYSCONF_TMP ] && rm -f
+>>> >> "$SYSCONF_TMP"
+>>> >> +                            [ -e "$DEVCACHE_REGEN" ] && rm -f
+>>> >> "$DEVCACHE_REGEN"
+>>> >>                      else
+>>> >>                  # Output detailed reason why the cached /dev is not
+>>> >> used
+>>> >> -                if [ "$VERBOSE" !=3D "no" ]; then
+>>> >> -                    echo "udev: udev cache not used"
+>>> >> -                    echo "udev: we use $CMP_FILE_LIST as criteria t=
+o
+>>> >> judge whether the cache /dev could be resued"
+>>> >> -                    echo "udev: olddata: $OLDDATA"
+>>> >> -                    echo "udev: newdata: $NEWDATA"
+>>> >> -                fi
+>>> >> -                echo "$NEWDATA" > /dev/shm/udev.cache
+>>> >> +                cat <<EOF
+>>> >> +udev: Not using udev cache because of changes detected in the
+>>> >> following
+>>> >> files:
+>>> >> +udev:     $CMP_FILE_LIST
+>>> >> +udev:     $META_FILE_LIST
+>>> >> +udev: The udev cache will be regenerated. To identify the detected
+>>> >> changes,
+>>> >> +udev: compare the cached sysconf at   $SYSCONF_CACHED
+>>> >> +udev: against the current sysconf at  $SYSCONF_TMP
+>>> >> +EOF
+>>> >> +                touch "$DEVCACHE_REGEN"
+>>> >>                      fi
+>>> >>          else
+>>> >>              if [ "$ROOTFS_READ_ONLY" !=3D "yes" ]; then
+>>> >>                  # If rootfs is not read-only, it's possible that a
+>>> >> new
+>>> >> udev cache would be generated;
+>>> >>                  # otherwise, we do not bother to read files.
+>>> >> -                readfiles $CMP_FILE_LIST
+>>> >> -                echo "$READDATA" > /dev/shm/udev.cache
+>>> >> +                touch "$DEVCACHE_REGEN"
+>>> >>              fi
+>>> >>              fi
+>>> >>      fi
+>>> >> @@ -97,7 +101,7 @@
+>>> >>      kill_udevd > "/dev/null" 2>&1
+>>> >>
+>>> >>      # trigger the sorted events
+>>> >> -    echo -e '\000\000\000\000' > /proc/sys/kernel/hotplug
+>>> >> +    [ -e /proc/sys/kernel/hotplug ] && echo -e '\000'
+>>> >> >/proc/sys/kernel/hotplug
+>>> >>      /lib/udev/udevd -d
+>>> >>
+>>> >>      udevadm control --env=3DSTARTUP=3D1
+>>> >>
+>>> >>
+>>> >>>
+>>> >>> >
+>>> >>> > Unfortunately I did not dig inside binary /lib/udev/udevd.
+>>> >>> >
+>>> >>> > So do you have any other ideas, what might be the reason for not
+>>> >>> > recognizing
+>>> >>> > the SSD? Maybe there are some additional recipes needed from jeth=
+ro
+>>> >>> > on?
+>>> >>> >
+>>> >>> >
+>>> >>> > thanks & kind regards
+>>> >>> > Simon :-)
+>>> >>> >
+>>> >>> > mit freundlichem Gruss / kind regards / pozdrawiam
+>>> >>> > Simon P. Bolek
+>>> >>> > ------------------------------------------------------
+>>> >>> > Dipl. Inf. Simon P. Bolek
+>>> >>> > SAP Integration Architect
+>>> >>> > Business Mobile and IVI Solutions
+>>> >>> > mailto: simon.bolek@arcom-ivi.de
+>>> >>> > http://www.arcom-ivi.de/
+>>> >>> > XING: https://www.xing.com/profile/SimonP_Bolek
+>>> >>> >
+>>> >>> > On Wed, Jul 13, 2016 at 9:03 AM, Simon Bolek
+>>> >>> > <simon.bolek@googlemail.com>
+>>> >>> > wrote:
+>>> >>> >>
+>>> >>> >> Thank you,
+>>> >>> >>
+>>> >>> >> I just guess, that it is the following function in init script t=
+o
+>>> >>> >> put
+>>> >>> >> the
+>>> >>> >> echos to? Is it?
+>>> >>> >>
+>>> >>> >> udev_daemon() {
+>>> >>> >>     OPTIONS=3D"/sbin/udev/udevd /sbin/udevd /lib/udev/udevd
+>>> >>> >> /lib/systemd/systemd-udevd"
+>>> >>> >>
+>>> >>> >>     for o in $OPTIONS; do
+>>> >>> >>         if [ -x "$o" ]; then
+>>> >>> >>             echo $o
+>>> >>> >>             return 0
+>>> >>> >>         fi
+>>> >>> >>     done
+>>> >>> >>
+>>> >>> >>     return 1
+>>> >>> >> }
+>>> >>> >>
+>>> >>> >>
+>>> >>> >> cheers
+>>> >>> >> Simon:-)
+>>> >>> >>
+>>> >>> >> Viele Gr=C3=BCsse
+>>> >>> >> Simon Bolek :-)
+>>> >>> >>
+>>> >>> >> mit freundlichem Gruss / kind regards / pozdrawiam
+>>> >>> >> Simon P. Bolek
+>>> >>> >> ------------------------------------------------------
+>>> >>> >> Dipl. Inf. Simon P. Bolek
+>>> >>> >> SAP Integration Architect
+>>> >>> >> Business Mobile and IVI Solutions
+>>> >>> >> mailto: simon.bolek@arcom-ivi.de
+>>> >>> >> http://www.arcom-ivi.de/
+>>> >>> >> XING: https://www.xing.com/profile/SimonP_Bolek
+>>> >>> >>
+>>> >>> >> On Wed, Jul 13, 2016 at 8:36 AM, Khem Raj <raj.khem@gmail.com>
+>>> >>> >> wrote:
+>>> >>> >>>
+>>> >>> >>> On Tue, Jul 12, 2016 at 11:28 PM, Simon Bolek
+>>> >>> >>> <simon.bolek@googlemail.com> wrote:
+>>> >>> >>> > Thank you Raj,
+>>> >>> >>> >
+>>> >>> >>> > Is there a standard way to activate these initramfs logs, or =
+do
+>>> >>> >>> > I
+>>> >>> >>> > have
+>>> >>> >>> > to
+>>> >>> >>> > implement it myself somewhere?
+>>> >>> >>>
+>>> >>> >>> you have to add printf etc. yourself into the init script in
+>>> >>> >>> initramfs
+>>> >>> >>> image
+>>> >>> >>>
+>>> >>> >>> >
+>>> >>> >>> > thank you and kind regards
+>>> >>> >>> > Simon :-)
+>>> >>> >>> >
+>>> >>> >>> > Viele Gr=C3=BCsse
+>>> >>> >>> > Simon Bolek :-)
+>>> >>> >>> >
+>>> >>> >>> > mit freundlichem Gruss / kind regards / pozdrawiam
+>>> >>> >>> > Simon P. Bolek
+>>> >>> >>> > ------------------------------------------------------
+>>> >>> >>> > Dipl. Inf. Simon P. Bolek
+>>> >>> >>> > SAP Integration Architect
+>>> >>> >>> > Business Mobile and IVI Solutions
+>>> >>> >>> > mailto: simon.bolek@arcom-ivi.de
+>>> >>> >>> > http://www.arcom-ivi.de/
+>>> >>> >>> > XING: https://www.xing.com/profile/SimonP_Bolek
+>>> >>> >>> >
+>>> >>> >>> > On Wed, Jul 13, 2016 at 1:36 AM, Khem Raj <raj.khem@gmail.com=
+>
+>>> >>> >>> > wrote:
+>>> >>> >>> >>
+>>> >>> >>> >> On Tue, Jul 12, 2016 at 3:45 AM, Simon Bolek
+>>> >>> >>> >> <simon.bolek@googlemail.com>
+>>> >>> >>> >> wrote:
+>>> >>> >>> >> > Hello everyone!
+>>> >>> >>> >> >
+>>> >>> >>> >> > I am trying to install genericx86 core-image-sato (jethro)
+>>> >>> >>> >> > HDDIMG to
+>>> >>> >>> >> > an
+>>> >>> >>> >> > atom-pc.
+>>> >>> >>> >> > For this 2GB USB stick is used.
+>>> >>> >>> >> > When choosing 'install' option from boot menu I get the
+>>> >>> >>> >> > message:
+>>> >>> >>> >> >
+>>> >>> >>> >> > "Searching for hard drives...
+>>> >>> >>> >> > No hard drive selected. Installation aborted."
+>>> >>> >>> >> >
+>>> >>> >>> >> > Installatiion stops and i get the console.
+>>> >>> >>> >> > When I try to run fsck, it says: can't read '/etc/fstab': =
+No
+>>> >>> >>> >> > such
+>>> >>> >>> >> > file
+>>> >>> >>> >> > or
+>>> >>> >>> >> > directory
+>>> >>> >>> >> >
+>>> >>> >>> >> > fdisk -l  shows only the partitions of USB stick.
+>>> >>> >>> >> >
+>>> >>> >>> >> > After I choose 'boot' option to boot into live image, SDD
+>>> >>> >>> >> > drive
+>>> >>> >>> >> > is
+>>> >>> >>> >> > under
+>>> >>> >>> >> > /dev/sdb and USB installation stick under /dev/sda,
+>>> >>> >>> >> >
+>>> >>> >>> >> > What recipe/package is my installation missing? The SSD ha=
+rd
+>>> >>> >>> >> > drive
+>>> >>> >>> >> > is
+>>> >>> >>> >> > not
+>>> >>> >>> >> > recognized for some reason. With previous yocto releases
+>>> >>> >>> >> > this
+>>> >>> >>> >> > package
+>>> >>> >>> >> > list
+>>> >>> >>> >> > DID work fine.
+>>> >>> >>> >> > So there is something missing in the background.
+>>> >>> >>> >> > Do you have any idea what this might be?
+>>> >>> >>> >>
+>>> >>> >>> >> udev should have run and found your hdd. So it seems its not
+>>> >>> >>> >> finding
+>>> >>> >>> >> it when running from initramfs. Can you try to add logs to
+>>> >>> >>> >> initramfs
+>>> >>> >>> >> and see what udev is doing ?
+>>> >>> >>> >>
+>>> >>> >>> >> >
+>>> >>> >>> >> > Below is my package list from local.conf.
+>>> >>> >>> >> >
+>>> >>> >>> >> > thank you and kind regards
+>>> >>> >>> >> > Simon :-)
+>>> >>> >>> >> >
+>>> >>> >>> >> > EXTRA_IMAGE_FEATURES =3D "debug-tweaks ssh-server-openssh"
+>>> >>> >>> >> > IMAGE_INSTALL_append =3D " make \
+>>> >>> >>> >> >      initscripts \
+>>> >>> >>> >> >      grub \
+>>> >>> >>> >> >      initramfs-boot \
+>>> >>> >>> >> >      syslinux \
+>>> >>> >>> >> >      initramfs-live-install \
+>>> >>> >>> >> >      initramfs-live-install-efi \
+>>> >>> >>> >> >      initramfs-live-boot \
+>>> >>> >>> >> >      xinit \
+>>> >>> >>> >> >      xwininfo \
+>>> >>> >>> >> >      openssh-sftp \
+>>> >>> >>> >> >      openssh-sftp-server \
+>>> >>> >>> >> >      qtbase-plugins \
+>>> >>> >>> >> >      qtconnectivity \
+>>> >>> >>> >> >      qtdeclarative \
+>>> >>> >>> >> >      qtdeclarative-plugins \
+>>> >>> >>> >> >      qtdeclarative-tools \
+>>> >>> >>> >> >      qtdeclarative-qmlplugins \
+>>> >>> >>> >> >      qtenginio \
+>>> >>> >>> >> >      qtlocation \
+>>> >>> >>> >> >      qtmultimedia \
+>>> >>> >>> >> >      qtmultimedia-plugins \
+>>> >>> >>> >> >      qtmultimedia-qmlplugins \
+>>> >>> >>> >> >      qtsystems \
+>>> >>> >>> >> > "
+>>> >>> >>> >> >
+>>> >>> >>> >> > Viele Gr=C3=BCsse
+>>> >>> >>> >> > Simon Bolek :-)
+>>> >>> >>> >> >
+>>> >>> >>> >> > mit freundlichem Gruss / kind regards / pozdrawiam
+>>> >>> >>> >> > Simon P. Bolek
+>>> >>> >>> >> > ------------------------------------------------------
+>>> >>> >>> >> > Dipl. Inf. Simon P. Bolek
+>>> >>> >>> >> > SAP Integration Architect
+>>> >>> >>> >> > Business Mobile and IVI Solutions
+>>> >>> >>> >> > mailto: simon.bolek@arcom-ivi.de
+>>> >>> >>> >> > http://www.arcom-ivi.de/
+>>> >>> >>> >> > XING: https://www.xing.com/profile/SimonP_Bolek
+>>> >>> >>> >> >
+>>> >>> >>> >> > --
+>>> >>> >>> >> > _______________________________________________
+>>> >>> >>> >> > yocto mailing list
+>>> >>> >>> >> > yocto@yoctoproject.org
+>>> >>> >>> >> > https://lists.yoctoproject.org/listinfo/yocto
+>>> >>> >>> >> >
+>>> >>> >>> >
+>>> >>> >>> >
+>>> >>> >>
+>>> >>> >>
+>>> >>> >
+>>> >>
+>>> >>
+>>> >
+>>
+>>
+>
 
---_000_1468626854173972camelintelcom_--
