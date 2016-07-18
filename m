@@ -1,37 +1,61 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <stiffstone@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CE6EEE00E5E; Tue, 19 Jul 2016 05:47:22 -0700 (PDT)
+	id ABFF5E00D03; Mon, 18 Jul 2016 06:55:48 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (stiffstone[at]gmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from dan.rpsys.net (5751f4a1.skybroadband.com [87.81.244.161])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2B22AE00E54
-	for <yocto@yoctoproject.org>; Tue, 19 Jul 2016 05:47:20 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by dan.rpsys.net (8.14.4/8.14.4/Debian-4.1ubuntu1) with ESMTP id
-	u6JClIBk012734; Tue, 19 Jul 2016 13:47:18 +0100
-Received: from dan.rpsys.net ([127.0.0.1])
-	by localhost (dan.rpsys.net [127.0.0.1]) (amavisd-new, port 10024)
-	with LMTP id srXWb5mezaIX; Tue, 19 Jul 2016 13:47:18 +0100 (BST)
-Received: from hex ([192.168.3.34]) (authenticated bits=0)
-	by dan.rpsys.net (8.14.4/8.14.4/Debian-4.1ubuntu1) with ESMTP id
-	u6JClGHD012731
-	(version=TLSv1/SSLv3 cipher=AES128-GCM-SHA256 bits=128 verify=NOT);
-	Tue, 19 Jul 2016 13:47:17 +0100
-Message-ID: <1468932436.22733.1.camel@linuxfoundation.org>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: "Maier, Chris" <C.Maier@geze.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Date: Tue, 19 Jul 2016 13:47:16 +0100
-In-Reply-To: <2AA7D088591C49498E92D6491C58159334C887BF@gcxdb1.corp.geze.com>
-References: <2AA7D088591C49498E92D6491C58159334C887BF@gcxdb1.corp.geze.com>
-X-Mailer: Evolution 3.16.5-1ubuntu3.1 
-Mime-Version: 1.0
-Subject: Re: do_rootfs OSError: [Errno 13] Permission denied
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.218.43 listed in list.dnswl.org]
+Received: from mail-oi0-f43.google.com (mail-oi0-f43.google.com
+	[209.85.218.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3F10FE009A0
+	for <yocto@yoctoproject.org>; Mon, 18 Jul 2016 06:55:45 -0700 (PDT)
+Received: by mail-oi0-f43.google.com with SMTP id j185so246327400oih.0
+	for <yocto@yoctoproject.org>; Mon, 18 Jul 2016 06:55:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=wUHNqv2vNu/XfyaCugvUUJidYkBzdLHZfB4FWrdoHk4=;
+	b=ShTSPIKsvj0TUB4tCp/9iYcPJyHCMGwUh4ew0WmR8OmkuiiTyI1I1Z67vVNdMVvPyM
+	EBrA5VjEfUjQTMGqCXghlzzCy/5vmWz/AZ2oF0gcmRwAiXbJhktLlHlUgBt+OWJntZu3
+	wco3Pf+GAMLoGO+IPfq5J3JRmWCsveIDt3vgcrK8y9siSNhJSa4TOGZfor0R/NmQ3RE+
+	XcD4Wdo3sYi+iANeQAqAgoFWjo05hcE8E7+g8Z3WDr+tlp5Gqjzc8zugAXgyVErtisSv
+	uu9v8G5xgvC74kncEm0IxXxFT/29PTgXYUEsBQ6Jfa0hPhfhhdprIUFCD+jleUPX6laK
+	BTxQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=wUHNqv2vNu/XfyaCugvUUJidYkBzdLHZfB4FWrdoHk4=;
+	b=D194eci21e4SFvQ82cgQz1JULPlvgoXZdF5mV0obY8lJNAjFbpG9M2204xr9qB6rdF
+	VMjOCRt9kdc94xHyQbVFSBz1ocU52QLvduv7LUhj7IEZG9QbhOlfxouj7jQtgEUJR+3s
+	l18VUSxs9QxJWl4z2Rgh9WflM4tnRL5l5aZBqXzVOqXn/vkzJXUT+jPc74jSXq/r0PET
+	iz1X6d5nkXy+y3JHmwwGZkhFaBy1XKxtb/HgIVuHNHYIqGhItJiNTX9DxUXJvpRyQMHV
+	6qGD6f39xE7KShzGyODep3qj12MJdJzDf4nXUZObXenIhskXKIspuoc0ROzZKm3Sr/bJ
+	q4Dg==
+X-Gm-Message-State: ALyK8tIzaVS69czNY4LJLPnx/812XvB9NiJglEr4x3ANr/fT/ZSmUMQCLh7GyhmGzYXxPI2Z2g+4I6lvIcHpLQ==
+X-Received: by 10.202.85.151 with SMTP id j145mr17108553oib.67.1468850145035; 
+	Mon, 18 Jul 2016 06:55:45 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.202.48.129 with HTTP; Mon, 18 Jul 2016 06:55:44 -0700 (PDT)
+From: Yile Ku <stiffstone@gmail.com>
+Date: Mon, 18 Jul 2016 07:55:44 -0600
+Message-ID: <CAAGP=A-UHjPdFrNQrErEJcaogH2UQdaey=79tk9XL8EJgONitw@mail.gmail.com>
+To: yocto@yoctoproject.org
+X-Mailman-Approved-At: Tue, 19 Jul 2016 06:42:33 -0700
+Subject: NOTE: Not creating empty RPM package for libvolk
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,42 +67,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Jul 2016 12:47:22 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 18 Jul 2016 13:55:48 -0000
+Content-Type: multipart/alternative; boundary=001a113def361f8b1c0537e95372
 
-On Tue, 2016-07-19 at 07:17 +0000, Maier, Chris wrote:
-> Hello together,
->  
-> I ran into an “Permission denied” error while trying to setup a
-> nightly build on our Jenkins server and I can’t figure out where the
-> problem comes from.
-> It seems that the problem is coming from creating and executing a
-> child process, but why?
->  
-> The build is working fine on my linux machine but it doesn’t finish
-> successfully on the server (SUSE Linux Enterprise Server 12 SP1 
-> (x86_64)).
->  
-> The build log and the error message is attached.
->  
-> What I already did:
-> -          Checking the file system space (11GB left)
-> -          Deleted the whole build directory and did a rebuild
-> -          Checked the filesystem permission, seems normal. It all
-> belongs to user and group Jenkins.
+--001a113def361f8b1c0537e95372
+Content-Type: text/plain; charset=UTF-8
 
-It looks like you have the source code under svn control and its
-finding a .svn directory in the "intercepts" directory and trying to
-execute it. I'm guessing this is the scripts/postinst-intercepts
-directory where its finding it.
-
-Somehow you'd need to teach the code to skip the .svn directory, remove
-that directory before the build or use a different source control
-system.
-
-Cheers,
-
-Richard
+I am getting this error when building for PowerPC 64.
 
 
+The file:
+meta-sdr/recipes-core/gnuradio/gnuradio_git.bb
+
+says to include the libraries
+FILES_libvolk = "${libdir}/libvolk.so*"
+FILES_libvolk-dbg = "${libdir}/.debug/libvolk.so*"
+
+when I look for the libraries it shows:
+build-v2$ find . -name "libvolk*.so*" -print
+./tmp/work/ppc64e6500-fsl-linux/gnuradio/3.7.5-r0/build/volk/lib/libvolk.so.0.0.0
+./tmp/work/ppc64e6500-fsl-linux/gnuradio/3.7.5-r0/build/volk/lib/libvolk.so
+./tmp/work/ppc64e6500-fsl-linux/gnuradio/3.7.5-r0/package/usr/lib/.debug/libvolk.so.0.0.0
+./tmp/work/ppc64e6500-fsl-linux/gnuradio/3.7.5-r0/package/usr/lib/libvolk.so.0.0.0
+./tmp/work/ppc64e6500-fsl-linux/gnuradio/3.7.5-r0/package/usr/lib/libvolk.so
+./tmp/work/ppc64e6500-fsl-linux/gnuradio/3.7.5-r0/image/usr/lib/libvolk.so.0.0.0
+./tmp/work/ppc64e6500-fsl-linux/gnuradio/3.7.5-r0/image/usr/lib/libvolk.so
+
+
+Are the files not being copied to the right place?
+
+Thanks,
+Y-
+
+--001a113def361f8b1c0537e95372
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><div><div>I am getting this error when building for P=
+owerPC 64. <br><br><br>The file:<br>meta-sdr/recipes-core/gnuradio/<a href=
+=3D"http://gnuradio_git.bb">gnuradio_git.bb</a><br><br>says to include the =
+libraries<br>FILES_libvolk =3D &quot;${libdir}/libvolk.so*&quot;<br>FILES_l=
+ibvolk-dbg =3D &quot;${libdir}/.debug/libvolk.so*&quot;<br><br>when I look =
+for the libraries it shows:<br>build-v2$ find . -name &quot;libvolk*.so*&qu=
+ot; -print<br>./tmp/work/ppc64e6500-fsl-linux/gnuradio/3.7.5-r0/build/volk/=
+lib/libvolk.so.0.0.0<br>./tmp/work/ppc64e6500-fsl-linux/gnuradio/3.7.5-r0/b=
+uild/volk/lib/libvolk.so<br>./tmp/work/ppc64e6500-fsl-linux/gnuradio/3.7.5-=
+r0/package/usr/lib/.debug/libvolk.so.0.0.0<br>./tmp/work/ppc64e6500-fsl-lin=
+ux/gnuradio/3.7.5-r0/package/usr/lib/libvolk.so.0.0.0<br>./tmp/work/ppc64e6=
+500-fsl-linux/gnuradio/3.7.5-r0/package/usr/lib/libvolk.so<br>./tmp/work/pp=
+c64e6500-fsl-linux/gnuradio/3.7.5-r0/image/usr/lib/libvolk.so.0.0.0<br>./tm=
+p/work/ppc64e6500-fsl-linux/gnuradio/3.7.5-r0/image/usr/lib/libvolk.so<br><=
+br><br></div>Are the files not being copied to the right place?<br><br></di=
+v>Thanks,<br></div>Y-<br></div>
+
+--001a113def361f8b1c0537e95372--
