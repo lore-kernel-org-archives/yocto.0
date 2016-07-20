@@ -1,33 +1,59 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <piotr.lewicki@elfin.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 06227E00CE5; Tue, 19 Jul 2016 23:50:35 -0700 (PDT)
+	id 1ADCCE00D8F; Wed, 20 Jul 2016 02:31:42 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [74.125.82.48 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.analogue-micro.com (mail.analogue-micro.com
-	[217.144.149.242])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A30B7E00CE5
-	for <yocto@yoctoproject.org>; Tue, 19 Jul 2016 23:50:33 -0700 (PDT)
-Received: by mail.analogue-micro.com (Postfix, from userid 999)
-	id C241168A01C; Wed, 20 Jul 2016 07:50:31 +0100 (BST)
-Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
-	by mail.analogue-micro.com (Postfix) with ESMTP id 6F61A68A019;
-	Wed, 20 Jul 2016 07:50:31 +0100 (BST)
-Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
-	by zeus.mlbassoc.com (Postfix) with ESMTP id 169956740361;
-	Wed, 20 Jul 2016 08:50:31 +0200 (CEST)
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-From: Gary Thomas <gary@mlbassoc.com>
-Message-ID: <578F1F36.5030601@mlbassoc.com>
-Date: Wed, 20 Jul 2016 08:50:30 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.8.0
-MIME-Version: 1.0
-Subject: Stuck tainted task
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wm0-f48.google.com (mail-wm0-f48.google.com [74.125.82.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9CD71E00D82
+	for <yocto@yoctoproject.org>; Wed, 20 Jul 2016 02:31:36 -0700 (PDT)
+Received: by mail-wm0-f48.google.com with SMTP id q128so48354747wma.1
+	for <yocto@yoctoproject.org>; Wed, 20 Jul 2016 02:31:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=elfin.de; s=google;
+	h=from:to:subject:date:message-id;
+	bh=3dXjTMMBiJT+3/xTIopGKnYKBil77CXk45onwdIfeow=;
+	b=kI5U9oKGtnkIAw/io7sjQ6vTPWVCcYsH1XVKFmoesohHn4eKC5kz6KTFqcnnmprTJ7
+	0ysR7k3IgB/2DpooSlzN4Hr39ec65PoipmNZJKNA1p2YWUUZECP8sZHnlpNTudDve0nz
+	ffeeZIT5WZNSWvamlOnCK73v62WBLGChfoj8U67JAJfOaSihpLIZRelbbA3n+mo9PyIX
+	GCFDQEqpjh9wSxJX5NYynPBzaLRkFu+aSpe8mvRZIg2oNJyqA1cQBmMtd52k6ltpi7gH
+	EJickHnSb43lLcrwSAjpTzY0aMZKBjaUlDHb0nlqP2N5XJT3w6/+p4FvS7HxooT4F/Np
+	WGDQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:from:to:subject:date:message-id;
+	bh=3dXjTMMBiJT+3/xTIopGKnYKBil77CXk45onwdIfeow=;
+	b=OQNsgsQ9qfWXI5XyDXNPxgv2CIuCtIr2qXEwoBzA01q9GT2QlbilSa5TSmo3/Nhgoz
+	lY6B+s0wPmrhu7KdggohS0g48Ke9FW1ciP0NRKONk2o4qn+Ew+f8Jj9zvboohcqqux0g
+	UQWYhljrsVT+t+jRWAM5da4BtbGesUDwDY2ZL+qT0EilNKlFfIZWVM87gis8BZb96D+N
+	oZegeeHZDTT+0Ab+QvhJi007QWgxYI7H1Qp6l5A/f2/hqcbt+H5do3Dkuy5/MVlECevd
+	LJok8pv+PMqrWH6hlrPV0jigy+COUVuhUrS9fJewfVQ6Ud3zNpgbwq/54jZm+tPHAm0I
+	zPEQ==
+X-Gm-Message-State: ALyK8tLOsDG5EMp2rH6ECh8rUSKzBZVg0uXGQS3lyh3v+5wyom9z95qbzaoAnuLokvzrcA==
+X-Received: by 10.28.69.80 with SMTP id s77mr10110696wma.92.1469007094978;
+	Wed, 20 Jul 2016 02:31:34 -0700 (PDT)
+Received: from localhost.localdomain (b2b-94-79-174-114.unitymedia.biz.
+	[94.79.174.114]) by smtp.gmail.com with ESMTPSA id
+	v189sm30409313wmv.12.2016.07.20.02.31.34 for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Wed, 20 Jul 2016 02:31:34 -0700 (PDT)
+From: "piotr.lewicki" <piotr.lewicki@elfin.de>
+To: yocto@yoctoproject.org
+Date: Wed, 20 Jul 2016 11:31:14 +0200
+Message-Id: <1469007075-4945-1-git-send-email-piotr.lewicki@elfin.de>
+X-Mailer: git-send-email 2.7.4
+Subject: [meta-raspberrypi][PATCH 00/01] Fix bundling initramfs to kernel
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,29 +65,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 20 Jul 2016 06:50:35 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 20 Jul 2016 09:31:42 -0000
 
-Sometimes I like to make a quick change/test, e.g. in the Linux
-kernel, and then rebuild using
-   % bitbake virtual/kernel -C compile
-This works great and does just what I want.  However, the "tainted
-task" flag remains even if the recipe is rebuilt from scratch, say
-after I commit the change and update my kernel recipe.  Shouldn't
-it be cleared if some task (step/phase) which precedes it is run?
 
-To be clear, this message happens every run after the "-C compile" run:
-   WARNING: /local/poky-cutting-edge/meta-fsl-arm-extra/recipes-kernel/linux/linux-boundary_3.14.52.bb.do_compile is 
-tainted from a forced run
-and the only way to clear it is to run
-   % bitbake virtual/kernel -c clean
+Fixes error:
+| /home/piotr.lewicki/yocto-raspberry/2016-07-18/build/tmp/work/raspberrypi3-poky-linux-gnueabi/linux-raspberrypi/1_4.4.13+gitAUTOINC+680be5e27a-r0/temp/run.do_bundle_initramfs.19144: 152: /home/piotr.lewicki/yocto-raspberry/2016-07-18/build/tmp/work/raspberrypi3-poky-linux-gnueabi/linux-raspberrypi/1_4.4.13+gitAUTOINC+680be5e27a-r0/temp/run.do_bundle_initramfs.19144: /home/piotr.lewicki/yocto-raspberry/2016-07-18/build/tmp/sysroots/x86_64-linux/usr/bin/mkknlimg: not found
+| WARNING: exit code 127 from a shell command.
+| ERROR: Function failed: do_bundle_initramfs (log file is located at /home/piotr.lewicki/yocto-raspberry/2016-07-18/build/tmp/work/raspberrypi3-poky-linux-gnueabi/linux-raspberrypi/1_4.4.13+gitAUTOINC+680be5e27a-r0/temp/log.do_bundle_initramfs.19144)
 
-Is this behavior correct, or buggy?
+After removing rpi-mkimage from the layer tool mkknlimg is not available (and not needed with kernels 4.4+).
+To fix execution of do_bundle_initramfs task I have removed lines appended to this task in linux-raspberrypi.inc.
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+Tested with kernel 4.4.13.
+
+Unfortunately I don't know how this works with older kernels (3.18 and 4.1) but since we don't have mkknlimg anymore-
+bundling initramfs should also fail there.
 
