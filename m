@@ -1,39 +1,60 @@
-Return-Path: <herve.jourdain@neuf.fr>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A7CFEE00CAE; Wed, 20 Jul 2016 11:11:21 -0700 (PDT)
+	id 0E396E00CA1; Wed, 20 Jul 2016 11:31:40 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [93.17.128.1 listed in list.dnswl.org]
+	*      [209.85.223.180 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from smtp26.services.sfr.fr (smtp26.services.sfr.fr [93.17.128.1])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 873A1E00C52
-	for <yocto@yoctoproject.org>; Wed, 20 Jul 2016 11:11:18 -0700 (PDT)
-Received: from localhost.localdomain (unknown [8.36.234.10])
-	by msfrf2616.sfr.fr (SMTP Server) with ESMTP id EF1171C000832;
-	Wed, 20 Jul 2016 20:11:17 +0200 (CEST)
-Received: from localhost.localdomain (unknown [8.36.234.10])	(using TLSv1.2
-	with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))	(No client
-	certificate requested)	(Authenticated sender: herve.jourdain@neuf.fr)
-	by msfrf2616.sfr.fr (SMTP Server) with ESMTPSA;
-	Wed, 20 Jul 2016 20:11:17 +0200 (CEST)
-Authentication-Results: sfr.fr; auth=pass (LOGIN)
-	smtp.auth=herve.jourdain@neuf.fr
-From: Herve Jourdain <herve.jourdain@neuf.fr>
-To: yocto@yoctoproject.org
-Date: Thu, 21 Jul 2016 02:10:18 +0800
-Message-Id: <1469038218-52221-2-git-send-email-herve.jourdain@neuf.fr>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1469038218-52221-1-git-send-email-herve.jourdain@neuf.fr>
-References: <1469038218-52221-1-git-send-email-herve.jourdain@neuf.fr>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-io0-f180.google.com (mail-io0-f180.google.com
+	[209.85.223.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1ECF5E00C52
+	for <yocto@yoctoproject.org>; Wed, 20 Jul 2016 11:31:35 -0700 (PDT)
+Received: by mail-io0-f180.google.com with SMTP id q83so55468469iod.1
+	for <yocto@yoctoproject.org>; Wed, 20 Jul 2016 11:31:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=3gZ9L1rr2x9Hmgalw9r0KltIznFg6yE8Tmq9FB4qVLU=;
+	b=MSnj9hLBWSZI1IG7g3PjsetIT+hGSK4kowwQnTVxYPwJK7cQMEaQGCDxrqwyQuRy0x
+	k7253TCMEcjYxMP7HYYXuUgApKOiG0mqODPU2X88CIXotQrHBOTAL5TNDmoTfp2+7Shb
+	d0VuD3kiRlATPzZ3CsP/W9qvbBJffDulJjg8FNZOzKlWlxCoynpX3VfDu/ldh7u2jGLP
+	P1PuC4Y/8dI4ETfC/FvtlUo15M3NoFc+2GMy6KoO7uA6p2CczpY2koIQ2mzOc9h5ScOj
+	4Iho7HZ/oEYsPHFuJZMW+JeSaxQiiztke0i+cVAdZgZOUa+i7oWQHpqDBszn8JEHQ9H9
+	QeEA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=3gZ9L1rr2x9Hmgalw9r0KltIznFg6yE8Tmq9FB4qVLU=;
+	b=YLtlLl6fhNy6GsBQhLKqqnZKQKr12wt0tr7wGPxQxv6ZCUjNWy+V1MNA4pRPfcCYGR
+	fI0jMqAwGItgT01avJr6NgP3waaGYBTYw4yU9mlEYd5VdAldlswAFKaRZ2Vc3/xbhIqd
+	xusLJ6yInXKKeLx1Z/vV7ZiLW9TJ1GE1zjHZq521GAuwP+2bcFyNffT87Rm3tTT5Vk8f
+	C1ZeQjJeODLc3YOd/SlmH5o5v3HdsvjCqo05iDYvhQZnzNBAxWoYefx4+HLZ6s2Os0qH
+	1bxMjkT5TLqjCGKhA7JCAD+oIbgmnT8rahLXQ7N1WB3K+iGgM7JOlIbAEuG7zU9JNRca
+	ccLQ==
+X-Gm-Message-State: ALyK8tIlk52wm3I7EpHqOb5W1a4T9HBZ8a0qYIEbSJpwk5a2wCg2dYpSLrMaB4jgj9anOduZxa2FlHwdDRxTykSo
+X-Received: by 10.107.135.142 with SMTP id r14mr50886418ioi.133.1469039494972; 
+	Wed, 20 Jul 2016 11:31:34 -0700 (PDT)
 MIME-Version: 1.0
-X-sfr-mailing: LEGIT
-Subject: [meta-raspberrypi][PATCH 1/1] Patch for implementing GstGlMemoryEGL for gstreamer 1.8.2
+Received: by 10.107.18.17 with HTTP; Wed, 20 Jul 2016 11:31:15 -0700 (PDT)
+In-Reply-To: <nmocev$1gg$1@ger.gmane.org>
+References: <nmocev$1gg$1@ger.gmane.org>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 20 Jul 2016 19:31:15 +0100
+Message-ID: <CAJTo0LYw26iyqNpypnnjfCEdiAP4z+XTWpzj2rKCB+mm3mKpPQ@mail.gmail.com>
+To: Robert Berger <gmane@reliableembeddedsystems.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: custom internal toolchain/glibc
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,531 +66,67 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 20 Jul 2016 18:11:21 -0000
+X-List-Received-Date: Wed, 20 Jul 2016 18:31:40 -0000
+Content-Type: multipart/alternative; boundary=001a113eccbc426092053815694e
+
+--001a113eccbc426092053815694e
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
 
-Signed-off-by: Herve Jourdain <herve.jourdain@neuf.fr>
----
- .../0001-gl-implement-GstGlMemoryEGL.patch         | 494 +++++++++++++++++++++
- .../gstreamer1.0-plugins-bad_1.8.2.bbappend        |   6 +
- 2 files changed, 500 insertions(+)
- create mode 100644 recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad-1.8.2/0001-gl-implement-GstGlMemoryEGL.patch
- create mode 100644 recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.8.2.bbappend
+On 20 July 2016 at 18:30, Robert Berger <gmane@reliableembeddedsystems.com>
+wrote:
 
-diff --git a/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad-1.8.2/0001-gl-implement-GstGlMemoryEGL.patch b/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad-1.8.2/0001-gl-implement-GstGlMemoryEGL.patch
-new file mode 100644
-index 0000000..bd7258c
---- /dev/null
-+++ b/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad-1.8.2/0001-gl-implement-GstGlMemoryEGL.patch
-@@ -0,0 +1,494 @@
-+From 806bbe75b0b6947f589bce3960c28fee51b5c6c2 Mon Sep 17 00:00:00 2001
-+From: Gwang Yoon Hwang <yoon@igalia.com>
-+Date: Thu, 21 Jan 2016 22:18:17 +0900
-+Subject: [PATCH] gl: implement GstGLMemoryEGL
-+
-+Because current GstEGLImageMemory does not inherit GstGLMemory, GLUpload
-+allocates additional GLMemory and upload the decoded contents from the decoder
-+which uses EGLImage (e.g. gst-omx in RPi).
-+
-+This work adds GstGLMemoryEGL to avoid this overhead. Decoders allocate
-+GstGLMemoryEGL and decode its contents to the EGLImage of GstGLMemoryEGL.  And
-+GLUpload uses this memory without allocation of additional textures and blit
-+operations.
-+
-+https://bugzilla.gnome.org/show_bug.cgi?id=760916
-+---
-+ gst-libs/gst/gl/egl/Makefile.am        |   2 +
-+ gst-libs/gst/gl/egl/gstgldisplay_egl.c |   2 +
-+ gst-libs/gst/gl/egl/gstglmemoryegl.c   | 241 +++++++++++++++++++++++++++++++++
-+ gst-libs/gst/gl/egl/gstglmemoryegl.h   | 108 +++++++++++++++
-+ gst-libs/gst/gl/gstgl_fwd.h            |   4 +
-+ gst-libs/gst/gl/gstgldisplay.c         |   2 +
-+ gst-libs/gst/gl/gstglupload.c          |   8 ++
-+ 7 files changed, 367 insertions(+)
-+ create mode 100644 gst-libs/gst/gl/egl/gstglmemoryegl.c
-+ create mode 100644 gst-libs/gst/gl/egl/gstglmemoryegl.h
-+
-+diff --git a/gst-libs/gst/gl/egl/Makefile.am b/gst-libs/gst/gl/egl/Makefile.am
-+index b808178..878f16c 100644
-+--- a/gst-libs/gst/gl/egl/Makefile.am
-++++ b/gst-libs/gst/gl/egl/Makefile.am
-+@@ -5,6 +5,7 @@ noinst_LTLIBRARIES = libgstgl-egl.la
-+ libgstgl_egl_la_SOURCES = \
-+ 	gstgldisplay_egl.c \
-+ 	gstglcontext_egl.c \
-++	gstglmemoryegl.c \
-+ 	gsteglimagememory.c
-+ 
-+ noinst_HEADERS =
-+@@ -13,6 +14,7 @@ libgstgl_eglincludedir = $(includedir)/gstreamer-@GST_API_VERSION@/gst/gl/egl
-+ libgstgl_eglinclude_HEADERS = \
-+ 	gstgldisplay_egl.h \
-+ 	gstglcontext_egl.h \
-++	gstglmemoryegl.h \
-+ 	gsteglimagememory.h \
-+ 	gstegl.h
-+ 
-+diff --git a/gst-libs/gst/gl/egl/gstgldisplay_egl.c b/gst-libs/gst/gl/egl/gstgldisplay_egl.c
-+index 9acf4f0..20816c2 100644
-+--- a/gst-libs/gst/gl/egl/gstgldisplay_egl.c
-++++ b/gst-libs/gst/gl/egl/gstgldisplay_egl.c
-+@@ -24,6 +24,7 @@
-+ 
-+ #include <gst/gl/egl/gstgldisplay_egl.h>
-+ #include <gst/gl/egl/gsteglimagememory.h>
-++#include <gst/gl/egl/gstglmemoryegl.h>
-+ 
-+ GST_DEBUG_CATEGORY_STATIC (gst_gl_display_debug);
-+ #define GST_CAT_DEFAULT gst_gl_display_debug
-+@@ -51,6 +52,7 @@ gst_gl_display_egl_init (GstGLDisplayEGL * display_egl)
-+   display_egl->foreign_display = FALSE;
-+ 
-+   gst_egl_image_memory_init ();
-++  gst_gl_memory_egl_init_once ();
-+ }
-+ 
-+ static void
-+diff --git a/gst-libs/gst/gl/egl/gstglmemoryegl.c b/gst-libs/gst/gl/egl/gstglmemoryegl.c
-+new file mode 100644
-+index 0000000..03cf432
-+--- /dev/null
-++++ b/gst-libs/gst/gl/egl/gstglmemoryegl.c
-+@@ -0,0 +1,241 @@
-++/*
-++ * GStreamer
-++ * Copyright (C) 2012 Collabora Ltd.
-++ *   @author: Sebastian Dröge <sebastian.droege@collabora.co.uk>
-++ * Copyright (C) 2014 Julien Isorce <julien.isorce@gmail.com>
-++ * Copyright (C) 2015 Igalia
-++ *    Author: Gwang Yoon Hwang <yoon@igalia.com>
-++ *
-++ * This library is free software; you can redistribute it and/or
-++ * modify it under the terms of the GNU Library General Public
-++ * License as published by the Free Software Foundation; either
-++ * version 2 of the License, or (at your option) any later version.
-++ *
-++ * This library is distributed in the hope that it will be useful,
-++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
-++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-++ * Library General Public License for more details.
-++ *
-++ * You should have received a copy of the GNU Library General Public
-++ * License along with this library; if not, write to the
-++ * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
-++ * Boston, MA 02110-1301, USA.
-++ */
-++
-++#ifdef HAVE_CONFIG_H
-++#include "config.h"
-++#endif
-++
-++#include <string.h>
-++
-++#include <gst/gl/egl/gstglmemoryegl.h>
-++
-++static GstAllocator *_gl_memory_egl_allocator;
-++
-++GST_DEBUG_CATEGORY_STATIC (GST_CAT_GL_MEMORY);
-++#define GST_CAT_DEFAULT GST_CAT_GL_MEMORY
-++
-++#define parent_class gst_gl_memory_egl_allocator_parent_class
-++G_DEFINE_TYPE (GstGLMemoryEGLAllocator, gst_gl_memory_egl_allocator,
-++    GST_TYPE_GL_MEMORY_ALLOCATOR);
-++
-++gboolean
-++gst_is_gl_memory_egl (GstMemory * mem)
-++{
-++  return mem != NULL && mem->allocator != NULL
-++      && g_type_is_a (G_OBJECT_TYPE (mem->allocator),
-++      GST_TYPE_GL_MEMORY_EGL_ALLOCATOR);
-++}
-++
-++static GstGLMemoryEGL *
-++_gl_mem_get_parent (GstGLMemoryEGL * gl_mem)
-++{
-++  GstGLMemoryEGL *parent = (GstGLMemoryEGL *)gl_mem->mem.mem.mem.parent;
-++  return parent ? parent : gl_mem;
-++}
-++
-++EGLImageKHR
-++gst_gl_memory_egl_get_image (GstGLMemoryEGL * mem)
-++{
-++  g_return_val_if_fail (gst_is_gl_memory_egl (GST_MEMORY_CAST (mem)),
-++                        EGL_NO_IMAGE_KHR);
-++  return _gl_mem_get_parent(mem)->image;
-++}
-++
-++EGLDisplay
-++gst_gl_memory_egl_get_display (GstGLMemoryEGL * mem)
-++{
-++  g_return_val_if_fail (gst_is_gl_memory_egl (GST_MEMORY_CAST (mem)), NULL);
-++  return GST_GL_CONTEXT_EGL(_gl_mem_get_parent(mem))->egl_display;
-++}
-++
-++GstVideoGLTextureOrientation
-++gst_gl_memory_egl_get_orientation (GstGLMemoryEGL * mem)
-++{
-++  g_return_val_if_fail (gst_is_gl_memory_egl (GST_MEMORY_CAST (mem)),
-++      GST_VIDEO_GL_TEXTURE_ORIENTATION_X_NORMAL_Y_NORMAL);
-++
-++  return _gl_mem_get_parent(mem)->orientation;
-++}
-++
-++void
-++gst_gl_memory_egl_set_orientation (GstGLMemoryEGL * mem,
-++    GstVideoGLTextureOrientation orientation)
-++{
-++  g_return_if_fail (gst_is_gl_memory_egl (GST_MEMORY_CAST (mem)));
-++
-++  _gl_mem_get_parent(mem)->orientation = orientation;
-++}
-++
-++static GstMemory *
-++_gl_mem_alloc (GstAllocator * allocator, gsize size,
-++               GstAllocationParams * params)
-++{
-++  g_warning ("Use gst_gl_base_memory_allocator_alloc() to allocate from this "
-++      "GstGLMemoryEGL allocator");
-++
-++  return NULL;
-++}
-++
-++static void
-++_gl_mem_destroy (GstGLMemoryEGL * mem)
-++{
-++  /* Shared memory should not destroy all the data */
-++  if (!mem->mem.mem.mem.parent) {
-++    GstGLContextEGL *context = GST_GL_CONTEXT_EGL(mem->mem.mem.context);
-++    context->eglDestroyImage (context->egl_display, mem->image);
-++  }
-++
-++  GST_GL_BASE_MEMORY_ALLOCATOR_CLASS (parent_class)->destroy ((GstGLBaseMemory
-++          *) mem);
-++}
-++
-++static void
-++_gl_mem_init (GstGLMemoryEGL * mem, GstAllocator * allocator,
-++    GstMemory * parent, GstGLContext * context, GstGLTextureTarget target,
-++    GstAllocationParams * params, GstVideoInfo * info,
-++    guint plane, GstVideoAlignment * valign, gpointer user_data,
-++    GDestroyNotify notify)
-++{
-++  gst_gl_memory_init ((GstGLMemory *) mem, allocator, parent,
-++      context, target, params, info, plane, valign, user_data, notify);
-++}
-++
-++static GstGLMemoryEGL *
-++_gl_mem_egl_alloc (GstGLBaseMemoryAllocator * allocator,
-++    GstGLVideoAllocationParams * params)
-++{
-++  guint alloc_flags = params->parent.alloc_flags;
-++  GstGLMemoryEGL *mem;
-++
-++  g_return_val_if_fail (alloc_flags & GST_GL_ALLOCATION_PARAMS_ALLOC_FLAG_VIDEO,
-++      NULL);
-++  g_return_val_if_fail ((alloc_flags &
-++      GST_GL_ALLOCATION_PARAMS_ALLOC_FLAG_WRAP_GPU_HANDLE) == 0, NULL);
-++  g_return_val_if_fail ((alloc_flags &
-++      GST_GL_ALLOCATION_PARAMS_ALLOC_FLAG_WRAP_SYSMEM) == 0, NULL);
-++
-++  mem = g_new0 (GstGLMemoryEGL, 1);
-++  mem->image = EGL_NO_IMAGE_KHR;
-++
-++  _gl_mem_init (mem, GST_ALLOCATOR_CAST (allocator), NULL,
-++      params->parent.context, params->target, params->parent.alloc_params,
-++      params->v_info, params->plane, params->valign, params->parent.user_data,
-++      params->parent.notify);
-++
-++  return mem;
-++}
-++
-++static gboolean
-++_gl_mem_create (GstGLMemoryEGL * gl_mem, GError ** error)
-++{
-++  GstGLContextEGL *context = GST_GL_CONTEXT_EGL (gl_mem->mem.mem.context);
-++  GstGLBaseMemoryAllocatorClass *alloc_class;
-++
-++  if (!gst_gl_context_check_feature (GST_GL_CONTEXT (context),
-++                                     "EGL_KHR_image_base")) {
-++    g_set_error (error, GST_GL_CONTEXT_ERROR, GST_GL_CONTEXT_ERROR_WRONG_API,
-++                 "EGL_KHR_image_base is not supported");
-++    return FALSE;
-++  }
-++
-++  alloc_class = GST_GL_BASE_MEMORY_ALLOCATOR_CLASS (parent_class);
-++  if (!alloc_class->create ((GstGLBaseMemory *) gl_mem, error))
-++    return FALSE;
-++
-++  gl_mem->image = context->eglCreateImage (context->egl_display,
-++      context->egl_context, EGL_GL_TEXTURE_2D_KHR,
-++      (EGLClientBuffer) GSIZE_TO_POINTER (gl_mem->mem.tex_id), NULL);
-++
-++  GST_TRACE ("Generating EGLImage handle:%p from a texture:%u",
-++              gl_mem->image, gl_mem->mem.tex_id);
-++
-++  if (eglGetError () != EGL_SUCCESS) {
-++    g_set_error (error, GST_GL_CONTEXT_ERROR, GST_GL_CONTEXT_ERROR_FAILED,
-++                 "Failed to create EGLImage");
-++    return FALSE;
-++  }
-++
-++  return TRUE;
-++}
-++
-++static GstMemory *
-++_gl_mem_copy (GstGLMemoryEGL * src, gssize offset, gssize size)
-++{
-++  GST_CAT_ERROR (GST_CAT_GL_MEMORY, "GstGLMemoryEGL does not support copy");
-++  return NULL;
-++}
-++
-++static void
-++gst_gl_memory_egl_allocator_class_init (GstGLMemoryEGLAllocatorClass * klass)
-++{
-++  GstGLBaseMemoryAllocatorClass *gl_base;
-++  GstGLMemoryAllocatorClass *gl_tex;
-++  GstAllocatorClass *allocator_class;
-++
-++  gl_tex = (GstGLMemoryAllocatorClass *) klass;
-++  gl_base = (GstGLBaseMemoryAllocatorClass *) klass;
-++  allocator_class = (GstAllocatorClass *) klass;
-++
-++  gl_base->alloc = (GstGLBaseMemoryAllocatorAllocFunction) _gl_mem_egl_alloc;
-++  gl_base->create = (GstGLBaseMemoryAllocatorCreateFunction) _gl_mem_create;
-++  gl_base->destroy = (GstGLBaseMemoryAllocatorDestroyFunction) _gl_mem_destroy;
-++  gl_tex->copy = (GstGLBaseMemoryAllocatorCopyFunction) _gl_mem_copy;
-++
-++  allocator_class->alloc = _gl_mem_alloc;
-++}
-++
-++static void
-++gst_gl_memory_egl_allocator_init (GstGLMemoryEGLAllocator * allocator)
-++{
-++  GstAllocator *alloc = GST_ALLOCATOR_CAST (allocator);
-++
-++  alloc->mem_type = GST_GL_MEMORY_EGL_ALLOCATOR_NAME;
-++
-++  GST_OBJECT_FLAG_SET (allocator, GST_ALLOCATOR_FLAG_CUSTOM_ALLOC);
-++}
-++
-++/**
-++ * gst_gl_memory_egl_init_once:
-++ *
-++ * Initializes the GL Memory allocator. It is safe to call this function
-++ * multiple times.  This must be called before any other GstGLMemoryEGL operation.
-++ */
-++void
-++gst_gl_memory_egl_init_once (void)
-++{
-++  static volatile gsize _init = 0;
-++
-++  if (g_once_init_enter (&_init)) {
-++    gst_gl_memory_init_once ();
-++
-++    GST_DEBUG_CATEGORY_INIT (GST_CAT_GL_MEMORY, "glmemory", 0,
-++        "OpenGL Texture with EGLImage memory");
-++
-++    _gl_memory_egl_allocator = g_object_new (GST_TYPE_GL_MEMORY_EGL_ALLOCATOR, NULL);
-++
-++    gst_allocator_register (GST_GL_MEMORY_EGL_ALLOCATOR_NAME,
-++        gst_object_ref (_gl_memory_egl_allocator));
-++    g_once_init_leave (&_init, 1);
-++  }
-++}
-+diff --git a/gst-libs/gst/gl/egl/gstglmemoryegl.h b/gst-libs/gst/gl/egl/gstglmemoryegl.h
-+new file mode 100644
-+index 0000000..7256d33
-+--- /dev/null
-++++ b/gst-libs/gst/gl/egl/gstglmemoryegl.h
-+@@ -0,0 +1,108 @@
-++/*
-++ * GStreamer
-++ * Copyright (C) 2012 Collabora Ltd.
-++ *   @author: Sebastian Dröge <sebastian.droege@collabora.co.uk>
-++ * Copyright (C) 2014 Julien Isorce <julien.isorce@gmail.com>
-++ *
-++ * This library is free software; you can redistribute it and/or
-++ * modify it under the terms of the GNU Library General Public
-++ * License as published by the Free Software Foundation; either
-++ * version 2 of the License, or (at your option) any later version.
-++ *
-++ * This library is distributed in the hope that it will be useful,
-++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
-++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-++ * Library General Public License for more details.
-++ *
-++ * You should have received a copy of the GNU Library General Public
-++ * License along with this library; if not, write to the
-++ * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
-++ * Boston, MA 02110-1301, USA.
-++ */
-++
-++#ifndef _GST_GL_MEMORY_EGL_H_
-++#define _GST_GL_MEMORY_EGL_H_
-++
-++#include <gst/gst.h>
-++#include <gst/gstallocator.h>
-++#include <gst/gstmemory.h>
-++#include <gst/video/video.h>
-++
-++#include <gst/gl/gl.h>
-++#include "gstglcontext_egl.h"
-++
-++#include <gst/gl/gstglmemory.h>
-++
-++G_BEGIN_DECLS
-++
-++#define GST_TYPE_GL_MEMORY_EGL_ALLOCATOR (gst_gl_memory_egl_allocator_get_type())
-++GType gst_gl_memory_egl_allocator_get_type(void);
-++
-++#define GST_IS_GL_MEMORY_EGL_ALLOCATOR(obj)              (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GST_TYPE_GL_MEMORY_EGL_ALLOCATOR))
-++#define GST_IS_GL_MEMORY_EGL_ALLOCATOR_CLASS(klass)      (G_TYPE_CHECK_CLASS_TYPE ((klass), GST_TYPE_GL_MEMORY_EGL_ALLOCATOR))
-++#define GST_GL_MEMORY_EGL_ALLOCATOR_GET_CLASS(obj)       (G_TYPE_INSTANCE_GET_CLASS ((obj), GST_TYPE_GL_MEMORY_EGL_ALLOCATOR, GstGLMemoryEGLAllocatorClass))
-++#define GST_GL_MEMORY_EGL_ALLOCATOR(obj)                 (G_TYPE_CHECK_INSTANCE_CAST ((obj), GST_TYPE_GL_MEMORY_EGL_ALLOCATOR, GstGLMemoryEGLAllocator))
-++#define GST_GL_MEMORY_EGL_ALLOCATOR_CLASS(klass)         (G_TYPE_CHECK_CLASS_CAST ((klass), GST_TYPE_GL_MEMORY_EGL_ALLOCATOR, GstGLAllocatorClass))
-++#define GST_GL_MEMORY_EGL_ALLOCATOR_CAST(obj)            ((GstGLMemoryEGLAllocator *)(obj))
-++
-++typedef void (*GstEGLImageDestroyNotify) (GstGLContextEGL * context,
-++    gpointer data);
-++
-++typedef struct _GstEGLImageMemory GstEGLImageMemory;
-++
-++
-++/**
-++ * GstGLMemoryEGL:
-++ *
-++ * Private instance
-++ */
-++struct _GstGLMemoryEGL
-++{
-++  GstGLMemory mem;
-++
-++  EGLImageKHR image;
-++  GstVideoGLTextureOrientation orientation;
-++};
-++
-++/**
-++ * GST_GL_MEMORY_EGL_ALLOCATOR:
-++ *
-++ * The name of the GL Memory EGL allocator
-++ */
-++#define GST_GL_MEMORY_EGL_ALLOCATOR_NAME "GLMemoryEGL"
-++
-++void          gst_gl_memory_egl_init_once               (void);
-++gboolean      gst_is_gl_memory_egl                      (GstMemory * mem);
-++
-++EGLImageKHR   gst_gl_memory_egl_get_image               (GstGLMemoryEGL * mem);
-++EGLDisplay    gst_gl_memory_egl_get_display             (GstGLMemoryEGL * mem);
-++
-++GstVideoGLTextureOrientation gst_gl_memory_egl_get_orientation
-++                                                        (GstGLMemoryEGL * mem);
-++
-++void          gst_gl_memory_egl_set_orientation         (GstGLMemoryEGL * mem,
-++                                      GstVideoGLTextureOrientation orientation);
-++
-++/**
-++ * GstGLAllocator
-++ *
-++ * Opaque #GstGLAllocator struct
-++ */
-++struct _GstGLMemoryEGLAllocator
-++{
-++  GstGLMemoryAllocator parent;
-++};
-++
-++/**
-++ * GstGLAllocatorClass:
-++ *
-++ * The #GstGLAllocatorClass only contains private data
-++ */
-++struct _GstGLMemoryEGLAllocatorClass
-++{
-++  GstGLMemoryAllocatorClass parent_class;
-++};
-++
-++G_END_DECLS
-++
-++#endif /* _GST_GL_MEMORY_EGL_H_ */
-+diff --git a/gst-libs/gst/gl/gstgl_fwd.h b/gst-libs/gst/gl/gstgl_fwd.h
-+index fb64ff6..73e17bd 100644
-+--- a/gst-libs/gst/gl/gstgl_fwd.h
-++++ b/gst-libs/gst/gl/gstgl_fwd.h
-+@@ -55,6 +55,10 @@ typedef struct _GstGLMemoryPBO GstGLMemoryPBO;
-+ typedef struct _GstGLMemoryPBOAllocator GstGLMemoryPBOAllocator;
-+ typedef struct _GstGLMemoryPBOAllocatorClass GstGLMemoryPBOAllocatorClass;
-+ 
-++typedef struct _GstGLMemoryEGL GstGLMemoryEGL;
-++typedef struct _GstGLMemoryEGLAllocator GstGLMemoryEGLAllocator;
-++typedef struct _GstGLMemoryEGLAllocatorClass GstGLMemoryEGLAllocatorClass;
-++
-+ typedef struct _GstGLSLStage        GstGLSLStage;
-+ typedef struct _GstGLSLStagePrivate GstGLSLStagePrivate;
-+ typedef struct _GstGLSLStageClass   GstGLSLStageClass;
-+diff --git a/gst-libs/gst/gl/gstgldisplay.c b/gst-libs/gst/gl/gstgldisplay.c
-+index 60dec6a..34770d0 100644
-+--- a/gst-libs/gst/gl/gstgldisplay.c
-++++ b/gst-libs/gst/gl/gstgldisplay.c
-+@@ -68,6 +68,7 @@
-+ #if GST_GL_HAVE_PLATFORM_EGL
-+ #include <gst/gl/egl/gstgldisplay_egl.h>
-+ #include <gst/gl/egl/gsteglimagememory.h>
-++#include <gst/gl/egl/gstglmemoryegl.h>
-+ #endif
-+ 
-+ GST_DEBUG_CATEGORY_STATIC (gst_context);
-+@@ -144,6 +145,7 @@ gst_gl_display_init (GstGLDisplay * display)
-+ 
-+ #if GST_GL_HAVE_PLATFORM_EGL
-+   gst_egl_image_memory_init ();
-++  gst_gl_memory_egl_init_once ();
-+ #endif
-+ }
-+ 
-+diff --git a/gst-libs/gst/gl/gstglupload.c b/gst-libs/gst/gl/gstglupload.c
-+index 16ed5ea..73a9029 100644
-+--- a/gst-libs/gst/gl/gstglupload.c
-++++ b/gst-libs/gst/gl/gstglupload.c
-+@@ -29,6 +29,7 @@
-+ 
-+ #if GST_GL_HAVE_PLATFORM_EGL
-+ #include "egl/gsteglimagememory.h"
-++#include "egl/gstglmemoryegl.h"
-+ #endif
-+ 
-+ #if GST_GL_HAVE_DMABUF
-+@@ -301,6 +302,13 @@ _gl_memory_upload_propose_allocation (gpointer impl, GstQuery * decide_query,
-+             context));
-+     gst_query_add_allocation_param (query, allocator, &params);
-+     gst_object_unref (allocator);
-++
-++#if GST_GL_HAVE_PLATFORM_EGL
-++    allocator =
-++        GST_ALLOCATOR (gst_allocator_find (GST_GL_MEMORY_EGL_ALLOCATOR_NAME));
-++    gst_query_add_allocation_param (query, allocator, &params);
-++    gst_object_unref (allocator);
-++#endif
-+   }
-+ 
-+   n_pools = gst_query_get_n_allocation_pools (query);
-+-- 
-+2.5.0
-+
-+
-+
-diff --git a/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.8.2.bbappend b/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.8.2.bbappend
-new file mode 100644
-index 0000000..794af15
---- /dev/null
-+++ b/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.8.2.bbappend
-@@ -0,0 +1,6 @@
-+FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
-+
-+SRC_URI += " \
-+             file://0001-gl-implement-GstGlMemoryEGL.patch \
-+           "
-+
--- 
-2.7.4
+> I was wondering what's the process if someone wanted to use, say Jethro
+> or Krogoth, but with different/custom versions of gcc, binutils, glibc
+> e.g. to cook some syscalls and to compile ancient Linux kernels.
+>
+> I came across tcmode-default.inc[1] where such things are defined:
+>
+> GCCVERSION ?= "6.1%"
+> SDKGCCVERSION ?= "${GCCVERSION}"
+> BINUVERSION ?= "2.26%"
+> GDBVERSION ?= "7.11%"
+> GLIBCVERSION ?= "2.24"
+> UCLIBCVERSION ?= "1.0%"
+> LINUXLIBCVERSION ?= "4.4"
+>
+> Would hacking/duplicating and hacking this be a good starting point?
+>
 
+Absolutely - if you provide your own gcc/binutils/etc recipes then these
+are the variables to change to use them.  It's not unusual for oe-core to
+ship with more than one GCC version for example.
 
+Ross
+
+--001a113eccbc426092053815694e
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 20 July 2016 at 18:30, Robert Berger <span dir=3D"ltr">&lt;<a href=3D"ma=
+ilto:gmane@reliableembeddedsystems.com" target=3D"_blank">gmane@reliableemb=
+eddedsystems.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote"=
+ style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><d=
+iv id=3D":4v7" class=3D"a3s aXjCH m156095d0ffc9f9a9">I was wondering what&#=
+39;s the process if someone wanted to use, say Jethro<br>
+or Krogoth, but with different/custom versions of gcc, binutils, glibc<br>
+e.g. to cook some syscalls and to compile ancient Linux kernels.<br>
+<br>
+I came across tcmode-default.inc[1] where such things are defined:<br>
+<br>
+GCCVERSION ?=3D &quot;6.1%&quot;<br>
+SDKGCCVERSION ?=3D &quot;${GCCVERSION}&quot;<br>
+BINUVERSION ?=3D &quot;2.26%&quot;<br>
+GDBVERSION ?=3D &quot;7.11%&quot;<br>
+GLIBCVERSION ?=3D &quot;2.24&quot;<br>
+UCLIBCVERSION ?=3D &quot;1.0%&quot;<br>
+LINUXLIBCVERSION ?=3D &quot;4.4&quot;<br>
+<br>
+Would hacking/duplicating and hacking this be a good starting point?</div><=
+/blockquote></div><br>Absolutely - if you provide your own gcc/binutils/etc=
+ recipes then these are the variables to change to use them.=C2=A0 It&#39;s=
+ not unusual for oe-core to ship with more than one GCC version for example=
+.</div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Ross=
+</div></div>
+
+--001a113eccbc426092053815694e--
