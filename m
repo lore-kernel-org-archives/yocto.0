@@ -1,67 +1,43 @@
-Return-Path: <piotr.lewicki@elfin.de>
+Return-Path: <herve.jourdain@neuf.fr>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1F45BE0045E; Wed, 20 Jul 2016 06:10:56 -0700 (PDT)
+	id BA6A2E009FA; Wed, 20 Jul 2016 07:52:13 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [74.125.82.41 listed in list.dnswl.org]
+	*      [93.17.128.163 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f41.google.com (mail-wm0-f41.google.com [74.125.82.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B8304E0043B
-	for <yocto@yoctoproject.org>; Wed, 20 Jul 2016 06:10:52 -0700 (PDT)
-Received: by mail-wm0-f41.google.com with SMTP id q128so55788996wma.1
-	for <yocto@yoctoproject.org>; Wed, 20 Jul 2016 06:10:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=elfin.de; s=google;
-	h=subject:to:references:from:message-id:date:user-agent:mime-version
-	:in-reply-to; bh=WeVsbTFSs7dv/bvAGTHOC4o9iCP7YnPFsaJJJDv++zs=;
-	b=WGKvsM7TLow2l+I9tZsUOttMC6XiiGVeA7yphlEWZX32BTv47LnU/uaVlo6BXkHHjA
-	4LoLzb2sPb5/Vsnc54lV4mXuVWN1JL5qhezLLQuc6WXFcrurzoXW74zWGvug7b53CzNR
-	6x1JGP7GNgb93Pr5TDuh0C3PWOijNZd44vLbKQ9quRQ5YbCW/pqPvo23bpd3j0yzDzUt
-	uUhE/1vuozNgytIDJCk0fKr5xZY7/HE7oENjoXG8MD6YIFkXEtqCJAqFx5gsNK7sZFuu
-	Sgs7T4ZUq83VJXV4ZsuYIrqYokqoNYXQm/E3PksJxYhCE1s7iGlSJR3/UqV9BytXQ1mY
-	Ok0g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:subject:to:references:from:message-id:date
-	:user-agent:mime-version:in-reply-to;
-	bh=WeVsbTFSs7dv/bvAGTHOC4o9iCP7YnPFsaJJJDv++zs=;
-	b=hRcJmuaVVF+pfv7aqfFnXNyLlsrbVdmfZkbZN3ElSqchjDDSA5HMqB3F3ptUTswrfY
-	qhEnI+VQwlSC/xFJIBahCNjZLk3HU12DAinpvcrZt4cAaa1AcM79E7CZGOuIrcIeGvZQ
-	BkC7S49aepl8uf0mLjoKtKCkVTHtOn9lyaF0925EKLmNXk7Cgh9yo7EZnCOOLoV1rAxa
-	Y1807LcWOvte1Exj/E3Nf/SGMr9q/hv4NmW6cTXIp78yyqUZ+wME/1qLx+PS8OKGFpk2
-	86kiCpY95l7wlnEP2VIM0Jza8nb8ykspwHXOAaLvQvdnVHFCKKsGgTcM9/GxaZ0RXB4E
-	VCmA==
-X-Gm-Message-State: ALyK8tLV+c3GvtRt6NwpYwpi3RrrrKFg5ftebM3oCgjrESi139B06OGMtq2mYkiZWuT7ZQ==
-X-Received: by 10.194.187.236 with SMTP id fv12mr1251951wjc.93.1469020251135; 
-	Wed, 20 Jul 2016 06:10:51 -0700 (PDT)
-Received: from [192.168.2.129] (b2b-94-79-174-114.unitymedia.biz.
-	[94.79.174.114])
-	by smtp.gmail.com with ESMTPSA id f3sm1231754wjt.30.2016.07.20.06.10.50
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 20 Jul 2016 06:10:50 -0700 (PDT)
-To: =?UTF-8?Q?J=c3=b6rg_Wittenberger?= <Joerg.Wittenberger@janztec.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-References: <3713fdcdd74c4147b650120d1dbb88b2@itjeexch02.is.janz.local>
-From: "piotr.lewicki" <piotr.lewicki@elfin.de>
-Message-ID: <7a4105a4-edec-1646-c18b-34e1192e1ec3@elfin.de>
-Date: Wed, 20 Jul 2016 15:10:49 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.2.0
+Received: from smtp26.services.sfr.fr (smtp26.services.sfr.fr [93.17.128.163])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 02847E00990
+	for <yocto@yoctoproject.org>; Wed, 20 Jul 2016 07:52:09 -0700 (PDT)
+Received: from nbhjo (unknown [8.36.234.10])
+	by msfrf2606.sfr.fr (SMTP Server) with ESMTP id DA4081C00101F;
+	Wed, 20 Jul 2016 16:52:03 +0200 (CEST)
+Received: from nbhjo (unknown [8.36.234.10])	(using TLSv1.2
+	with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))	(No client
+	certificate requested)	(Authenticated sender: herve.jourdain@neuf.fr)
+	by msfrf2606.sfr.fr (SMTP Server) with ESMTPSA;
+	Wed, 20 Jul 2016 16:52:00 +0200 (CEST)
+Authentication-Results: sfr.fr; auth=pass (LOGIN)
+	smtp.auth=herve.jourdain@neuf.fr
+From: Herve Jourdain <herve.jourdain@neuf.fr>
+To: 'Francois Muller' <forlorn18@gmail.com>, yocto@yoctoproject.org
+References: <1466177739-77627-1-git-send-email-herve.jourdain@neuf.fr>
+	<1466177739-77627-4-git-send-email-herve.jourdain@neuf.fr>
+	<1466869709.19352.170.camel@gmail.com>
+In-Reply-To: <1466869709.19352.170.camel@gmail.com>
+Date: Wed, 20 Jul 2016 16:51:56 +0200
+Message-ID: <00dd01d1e296$464df160$d2e9d420$@neuf.fr>
 MIME-Version: 1.0
-In-Reply-To: <3713fdcdd74c4147b650120d1dbb88b2@itjeexch02.is.janz.local>
-Subject: Re: customizing system configuration files in my image
+X-Mailer: Microsoft Outlook 15.0
+Thread-Index: AQGCAPBFKXP05h/2mkYut2eXOyTfJgE6E1QjAYUiHYOgqy7qEA==
+X-sfr-mailing: LEGIT
+Subject: Re: ***SPAM*** Re: [meta-raspberrypi][PATCH v5 3/4] linux-raspberrypi-base.bbclass: support for .dtbo files for dtb overlays
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,116 +49,182 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 20 Jul 2016 13:10:56 -0000
+X-List-Received-Date: Wed, 20 Jul 2016 14:52:13 -0000
 Content-Type: multipart/alternative;
-	boundary="------------1006C70FFB1446B9D95918EC"
+	boundary="----=_NextPart_000_00DE_01D1E2A7.09D820F0"
+Content-Language: fr
 
---------------1006C70FFB1446B9D95918EC
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 8bit
+------=_NextPart_000_00DE_01D1E2A7.09D820F0
+Content-Type: text/plain;
+	charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-It's always helpful to first check here: 
-http://www.yoctoproject.org/docs/2.1/ref-manual/ref-manual.html
+Hi Fran=C3=A7ois,
 
-and here: 
-https://www.yoctoproject.org/docs/1.6/bitbake-user-manual/bitbake-user-manual.html
+=20
 
-But find an answer attached..
+Sorry for the late response, I=E2=80=99ve been busy on other things =
+recently.
 
+=20
 
-On 20.07.2016 13:41, Jörg Wittenberger wrote:
->
-> Hi all,
->
-> yet another newbie here stumbling around…
->
-> I’m not trying to find „any way“ to do what I need.  I’m trying to 
-> learn how these thing sould be done in yocto.  Looks to mea s if I’m 
-> missing something basic.
->
-> Zhenhua Lu wrote:
->
-> > Usually I do it by adding bbappend of corresponding packages to 
-> override original files, the interfaces is provided by init-ifupdown, 
-> the inittab is provided by sysvinit-inittab.
->
-> >
->
-> > An example: 
-> http://git.yoctoproject.org/cgit/cgit.cgi/meta-fsl-ppc/tree/recipes-core/init-ifupdown
->
-> I failed trying to follow this example.
->
-> I  have this samba_4.%.bbappend :
->
-> ----
->
-> FILESEXTRAPATHS_prepend := "${THISDIR}/iris:"
->
-You should add a line
-SRC_URI += "file://smb.conf"
-that will copy a file from your "${THISDIR}/iris:" to ${WORKDIR}
-and then..
+Actually, it=E2=80=99s not a typo, it=E2=80=99s just that we=E2=80=99re =
+using the =E2=80=9Coverlays=E2=80=9D variable for storing 2 things, =
+depending on the value of the parameter =E2=80=9Cout=E2=80=9D of the =
+split_overlays() function:
 
-> do_install_append() {
->
->     install -m644 iris/smb.conf ${D}${sysconfdir}/samba/smb.conf
->
-> }
->
-..install this with "install -m 0644 ${WORKDIR}/smb.conf 
-${D}${sysconfdir}/samba/smb.conf"
+1. either all the overlays
 
-Also make sure that you have a directory ${D}${sysconfdir}/samba by 
-adding the line:
-install -d ${D}${sysconfdir}/samba
->
-> And in the same directory a subdirectory „iris“ which contrains the 
-> „smb.conf“ I want to install.
->
-> Does not work.  Using `bitbake -c devshell samba` I found no copy of 
-> my „iris“ directory.
->
-> Thanks so much.
->
-> /Jörg
->
+2. or all the dtb that are not overlays
+
+=20
+
+The case you=E2=80=99re mentioning is for =E2=80=9Cout=E2=80=9D being =
+selected, so you want to exclude all the overlays from the dts, and =
+store that in the =E2=80=9Coverlays=E2=80=9D variable (the naming of the =
+variable is a bit unfortunate in this context, I must admit, but I only =
+re-used the existing one).
+
+So now, you not only need to exclude the =E2=80=9C-overlay.dtb=E2=80=9D =
+files, but also the =E2=80=9C.dtbo=E2=80=9D files.
+
+So the second pass takes the output of the first pass, in =
+=E2=80=9Coverlays=E2=80=9D, and filters out the =E2=80=9C.dtbo=E2=80=9D =
+if any.
+
+=20
+
+Hope that helps,
+
+=20
+
+Herv=C3=A9
+
+=20
+
+From: yocto-bounces@yoctoproject.org =
+[mailto:yocto-bounces@yoctoproject.org] On Behalf Of Francois Muller
+Sent: samedi 25 juin 2016 17:48
+To: yocto@yoctoproject.org
+Subject: ***SPAM*** Re: [yocto] [meta-raspberrypi][PATCH v5 3/4] =
+linux-raspberrypi-base.bbclass: support for .dtbo files for dtb overlays
+
+=20
+
+Hi Herv=C3=A9,
+
+=20
+
+I haven't tested your patch yet, but while reviewing the diff I'm a bit =
+surprised about this:
+
+         overlays =3D oe.utils.str_filter_out('\S+\-overlay\.dtb$', dts, =
+d)
+
++        overlays =3D oe.utils.str_filter_out('\S+\.dtbo$', overlays, d)
+
+Shouldn't .dtbo files be filtered out from 'dts' instead of 'overlays' =
+in the added line?
+
+Seems like a typo to me.
+
+=20
 
 BR,
-Piotr
->
->
->
+
+Fran=C3=A7ois
+
+=20
+
+Le vendredi 17 juin 2016 =C3=A0 23:35 +0800, Herve Jourdain a =C3=A9crit =
+:
+
+Kernel 4.4.6+ on RaspberryPi support .dtbo files for overlays, instead =
+of .dtb.
+Add support for both variants of overlays ("-overlay.dtb" and ".dtbo")
+Change which variant needs to be supported based on the kernel version
+=20
+CAUTION: when called from IMAGE_CMD_rpi-sdimg, 'TMPDIR' is not set, =
+causing 'STAGING_KERNEL_BUILDDIR' to not be expanded, causing =
+get_kernelversion_file() to fail!
+To avoid this problem, get_dts() and split_overlays() MUST be called =
+with the kernel version parameter set, when called from =
+IMAGE_CMD_rpi-sdimg!
+=20
+Signed-off-by: Herve Jourdain <herve.jourdain@neuf.fr =
+<mailto:herve.jourdain@neuf.fr> >
+---
+ classes/linux-raspberrypi-base.bbclass | 19 ++++++++++++-------
+ 1 file changed, 12 insertions(+), 7 deletions(-)
+=20
+diff --git a/classes/linux-raspberrypi-base.bbclass =
+b/classes/linux-raspberrypi-base.bbclass
+index 40beef1..930fc44 100644
+--- a/classes/linux-raspberrypi-base.bbclass
++++ b/classes/linux-raspberrypi-base.bbclass
+@@ -1,7 +1,8 @@
+ inherit linux-kernel-base
+=20
+-
+ def get_dts(d, ver):
++    import re
++
+     staging_dir =3D d.getVar("STAGING_KERNEL_BUILDDIR", True)
+     dts =3D d.getVar("KERNEL_DEVICETREE", True)
+=20
+@@ -20,20 +21,24 @@ def get_dts(d, ver):
+=20
+     # Always turn off device tree support for kernel's < 3.18
+     try:
+-        if int(min_ver[0]) <=3D 3:
+-            if int(min_ver[1]) < 18:
+-                dts =3D ""
++        if int(min_ver[0]) >=3D 4:
++            if (int(min_ver[1]) < 4) or (int(min_ver[1]) =3D=3D 4 and =
+int(min_ver[2]) < 6):
++                dts =3D ' '.join([(re.sub(r'(.*)\.dtbo$', =
+r'\1-overlay.dtb', x)) for x in dts.split()])
++        elif int(min_ver[1]) < 18:
++            dts =3D ""
+     except IndexError:
+         min_ver =3D None
+=20
+     return dts
+=20
+=20
+-def split_overlays(d, out):
+-    dts =3D get_dts(d, None)
++def split_overlays(d, ver, out):
++    dts =3D get_dts(d, ver)
+     if out:
+         overlays =3D oe.utils.str_filter_out('\S+\-overlay\.dtb$', dts, =
+d)
++        overlays =3D oe.utils.str_filter_out('\S+\.dtbo$', overlays, d)
+     else:
+-        overlays =3D oe.utils.str_filter('\S+\-overlay\.dtb$', dts, d)
++        overlays =3D oe.utils.str_filter('\S+\-overlay\.dtb$', dts, d) =
++ \
++                   " " + oe.utils.str_filter('\S+\.dtbo$', dts, d)
+=20
+     return overlays
+--=20
+2.7.4
+=20
 
 
---------------1006C70FFB1446B9D95918EC
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: 8bit
+------=_NextPart_000_00DE_01D1E2A7.09D820F0
+Content-Type: text/html;
+	charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-<html>
-  <head>
-    <meta content="text/html; charset=windows-1252"
-      http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <p>It's always helpful to first check here:
-      <a class="moz-txt-link-freetext" href="http://www.yoctoproject.org/docs/2.1/ref-manual/ref-manual.html">http://www.yoctoproject.org/docs/2.1/ref-manual/ref-manual.html</a></p>
-    <p>and here:
-<a class="moz-txt-link-freetext" href="https://www.yoctoproject.org/docs/1.6/bitbake-user-manual/bitbake-user-manual.html">https://www.yoctoproject.org/docs/1.6/bitbake-user-manual/bitbake-user-manual.html</a></p>
-    <p>But find an answer attached..<br>
-    </p>
-    <br>
-    <div class="moz-cite-prefix">On 20.07.2016 13:41, Jörg Wittenberger
-      wrote:<br>
-    </div>
-    <blockquote
-      cite="mid:3713fdcdd74c4147b650120d1dbb88b2@itjeexch02.is.janz.local"
-      type="cite">
-      <meta http-equiv="Content-Type" content="text/html;
-        charset=windows-1252">
-      <meta name="Generator" content="Microsoft Word 15 (filtered
-        medium)">
-      <style><!--
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8"><meta =
+name=3DGenerator content=3D"Microsoft Word 15 (filtered =
+medium)"><style><!--
 /* Font Definitions */
 @font-face
 	{font-family:"Cambria Math";
@@ -190,21 +232,30 @@ Content-Transfer-Encoding: 8bit
 @font-face
 	{font-family:Calibri;
 	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;}
 /* Style Definitions */
 p.MsoNormal, li.MsoNormal, div.MsoNormal
 	{margin:0cm;
 	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
 a:link, span.MsoHyperlink
 	{mso-style-priority:99;
-	color:#0563C1;
+	color:blue;
 	text-decoration:underline;}
 a:visited, span.MsoHyperlinkFollowed
 	{mso-style-priority:99;
-	color:#954F72;
+	color:purple;
 	text-decoration:underline;}
+pre
+	{mso-style-priority:99;
+	mso-style-link:"HTML Preformatted Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Courier New";}
 p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
 	{mso-style-priority:34;
 	margin-top:0cm;
@@ -212,119 +263,204 @@ p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
 	margin-bottom:0cm;
 	margin-left:36.0pt;
 	margin-bottom:.0001pt;
-	font-size:11.0pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+span.HTMLPreformattedChar
+	{mso-style-name:"HTML Preformatted Char";
+	mso-style-priority:99;
+	mso-style-link:"HTML Preformatted";
+	font-family:"Consolas",serif;}
+span.EmailStyle19
+	{mso-style-type:personal-reply;
 	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-span.E-MailFormatvorlage17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
+	color:#1F497D;}
 .MsoChpDefault
 	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
+	font-size:10.0pt;}
 @page WordSection1
 	{size:612.0pt 792.0pt;
-	margin:70.85pt 70.85pt 2.0cm 70.85pt;}
+	margin:70.85pt 70.85pt 70.85pt 70.85pt;}
 div.WordSection1
 	{page:WordSection1;}
 --></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext="edit" spidmax="1026" />
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
 </xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext="edit">
-<o:idmap v:ext="edit" data="1" />
-</o:shapelayout></xml><![endif]-->
-      <div class="WordSection1">
-        <p class="MsoNormal">Hi all,<o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal">yet another newbie here stumbling around…<o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal">I’m not trying to find „any way“ to do what
-          I need.  I’m trying to learn how these thing sould be done in
-          yocto.  Looks to mea s if I’m missing something basic.<o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal">Zhenhua Lu wrote:<o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal">&gt; Usually I do it by adding bbappend of
-          corresponding packages to override original files, the
-          interfaces is provided by init-ifupdown, the inittab is
-          provided by sysvinit-inittab.<o:p></o:p></p>
-        <p class="MsoNormal">&gt; <o:p></o:p></p>
-        <p class="MsoNormal">&gt; An example: <a moz-do-not-send="true"
-href="http://git.yoctoproject.org/cgit/cgit.cgi/meta-fsl-ppc/tree/recipes-core/init-ifupdown">
-http://git.yoctoproject.org/cgit/cgit.cgi/meta-fsl-ppc/tree/recipes-core/init-ifupdown</a><o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal">I failed trying to follow this example. <o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal">I  have this samba_4.%.bbappend :<o:p></o:p></p>
-        <p class="MsoNormal">----<o:p></o:p></p>
-        <p class="MsoNormal">FILESEXTRAPATHS_prepend :=
-          "${THISDIR}/iris:"</p>
-      </div>
-    </blockquote>
-    You should add a line<br>
-    SRC_URI += <a class="moz-txt-link-rfc2396E" href="file://smb.conf">"file://smb.conf"</a><br>
-    that will copy a file from your "${THISDIR}/iris:" to ${WORKDIR}<br>
-    and then..<br>
-    <br>
-    <blockquote
-      cite="mid:3713fdcdd74c4147b650120d1dbb88b2@itjeexch02.is.janz.local"
-      type="cite">
-      <div class="WordSection1">
-        <p class="MsoNormal"><o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal">do_install_append() {<o:p></o:p></p>
-        <p class="MsoNormal">    install -m644 iris/smb.conf
-          ${D}${sysconfdir}/samba/smb.conf<o:p></o:p></p>
-        <div
-          style="mso-element:para-border-div;border:none;border-bottom:solid
-          windowtext 1.0pt;padding:0cm 0cm 1.0pt 0cm">
-          <p class="MsoNormal" style="border:none;padding:0cm">}</p>
-        </div>
-      </div>
-    </blockquote>
-    ..install this with "install -m 0644 ${WORKDIR}/smb.conf
-    ${D}${sysconfdir}/samba/smb.conf"<br>
-    <br>
-    Also make sure that you have a directory ${D}${sysconfdir}/samba by
-    adding the line:<br>
-    install -d ${D}${sysconfdir}/samba
-    <blockquote
-      cite="mid:3713fdcdd74c4147b650120d1dbb88b2@itjeexch02.is.janz.local"
-      type="cite">
-      <div class="WordSection1">
-        <div
-          style="mso-element:para-border-div;border:none;border-bottom:solid
-          windowtext 1.0pt;padding:0cm 0cm 1.0pt 0cm">
-          <p class="MsoNormal" style="border:none;padding:0cm"><o:p></o:p></p>
-        </div>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal">And in the same directory a subdirectory
-          „iris“ which contrains the „smb.conf“ I want to install.<o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal">Does not work.  Using `bitbake -c devshell
-          samba` I found no copy of my „iris“ directory.<o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal">Thanks so much.<o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal">/Jörg<o:p></o:p></p>
-      </div>
-    </blockquote>
-    <br>
-    BR,<br>
-    Piotr<br>
-    <blockquote
-      cite="mid:3713fdcdd74c4147b650120d1dbb88b2@itjeexch02.is.janz.local"
-      type="cite">
-      <div class="WordSection1">
-        <p class="MsoNormal"><o:p> </o:p></p>
-      </div>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <br>
-    </blockquote>
-    <br>
-  </body>
-</html>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DFR link=3Dblue =
+vlink=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>Hi Fran=C3=A7ois,<o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>Sorry for the late response, I=E2=80=99ve =
+been busy on other things recently.<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>Actually, it=E2=80=99s not a typo, =
+it=E2=80=99s just that we=E2=80=99re using the =
+=E2=80=9Coverlays=E2=80=9D variable for storing 2 things, depending on =
+the value of the parameter =E2=80=9Cout=E2=80=9D of the split_overlays() =
+function:<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>1. either all the =
+overlays<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>2. or all the dtb that are not =
+overlays<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>The case you=E2=80=99re mentioning is for =
+=E2=80=9Cout=E2=80=9D being selected, so you want to exclude all the =
+overlays from the dts, and store that in the =E2=80=9Coverlays=E2=80=9D =
+variable (the naming of the variable is a bit unfortunate in this =
+context, I must admit, but I only re-used the existing =
+one).<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>So now, you not only need to exclude the =
+=E2=80=9C-overlay.dtb=E2=80=9D files, but also the =
+=E2=80=9C.dtbo=E2=80=9D files.<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>So the second pass takes the output of the =
+first pass, in =E2=80=9Coverlays=E2=80=9D, and filters out the =
+=E2=80=9C.dtbo=E2=80=9D if any.<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>Hope that helps,<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>Herv=C3=A9<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><div><div =
+style=3D'border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0cm =
+0cm 0cm'><p class=3DMsoNormal><b><span lang=3DEN-US =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif'>From:</span><=
+/b><span lang=3DEN-US =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif'> =
+yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org] =
+<b>On Behalf Of </b>Francois Muller<br><b>Sent:</b> samedi 25 juin 2016 =
+17:48<br><b>To:</b> yocto@yoctoproject.org<br><b>Subject:</b> ***SPAM*** =
+Re: [yocto] [meta-raspberrypi][PATCH v5 3/4] =
+linux-raspberrypi-base.bbclass: support for .dtbo files for dtb =
+overlays<o:p></o:p></span></p></div></div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><div><p class=3DMsoNormal>Hi =
+Herv=C3=A9,<o:p></o:p></p></div><div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div><div><p class=3DMsoNormal>I =
+haven't tested your patch yet, but while reviewing the diff I'm a bit =
+surprised about this:<o:p></o:p></p></div><blockquote =
+style=3D'margin-top:5.0pt;margin-bottom:5.0pt'><div><p =
+class=3DMsoNormal>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;o=
+verlays =3D oe.utils.str_filter_out('\S+\-overlay\.dtb$', =
+<b><u>dts</u></b>, d)<o:p></o:p></p></div><div><p =
+class=3DMsoNormal>+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;overla=
+ys =3D oe.utils.str_filter_out('\S+\.dtbo$', <b><u>overlays</u></b>, =
+d)<o:p></o:p></p></div></blockquote><div><p class=3DMsoNormal>Shouldn't =
+.dtbo files be filtered out from 'dts' instead of 'overlays' in the =
+added line?<o:p></o:p></p></div><div><p class=3DMsoNormal>Seems like a =
+typo to me.<o:p></o:p></p></div><div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div><div><p =
+class=3DMsoNormal>BR,<o:p></o:p></p></div><div><p =
+class=3DMsoNormal>Fran=C3=A7ois<o:p></o:p></p></div><div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div><div><p =
+class=3DMsoNormal>Le vendredi 17 juin 2016 =C3=A0 23:35 +0800, Herve =
+Jourdain a =C3=A9crit&nbsp;:<o:p></o:p></p></div><blockquote =
+style=3D'margin-top:5.0pt;margin-bottom:5.0pt'><pre>Kernel 4.4.6+ on =
+RaspberryPi support .dtbo files for overlays, instead of =
+.dtb.<o:p></o:p></pre><pre>Add support for both variants of overlays =
+(&quot;-overlay.dtb&quot; and =
+&quot;.dtbo&quot;)<o:p></o:p></pre><pre>Change which variant needs to be =
+supported based on the kernel =
+version<o:p></o:p></pre><pre><o:p>&nbsp;</o:p></pre><pre>CAUTION: when =
+called from IMAGE_CMD_rpi-sdimg, 'TMPDIR' is not set, causing =
+'STAGING_KERNEL_BUILDDIR' to not be expanded, causing =
+get_kernelversion_file() to fail!<o:p></o:p></pre><pre>To avoid this =
+problem, get_dts() and split_overlays() MUST be called with the kernel =
+version parameter set, when called from =
+IMAGE_CMD_rpi-sdimg!<o:p></o:p></pre><pre><o:p>&nbsp;</o:p></pre><pre>Sig=
+ned-off-by: Herve Jourdain &lt;<a =
+href=3D"mailto:herve.jourdain@neuf.fr">herve.jourdain@neuf.fr</a>&gt;<o:p=
+></o:p></pre><pre>---<o:p></o:p></pre><pre> =
+classes/linux-raspberrypi-base.bbclass | 19 =
+++++++++++++-------<o:p></o:p></pre><pre> 1 file changed, 12 =
+insertions(+), 7 =
+deletions(-)<o:p></o:p></pre><pre><o:p>&nbsp;</o:p></pre><pre>diff --git =
+a/classes/linux-raspberrypi-base.bbclass =
+b/classes/linux-raspberrypi-base.bbclass<o:p></o:p></pre><pre>index =
+40beef1..930fc44 100644<o:p></o:p></pre><pre>--- =
+a/classes/linux-raspberrypi-base.bbclass<o:p></o:p></pre><pre>+++ =
+b/classes/linux-raspberrypi-base.bbclass<o:p></o:p></pre><pre>@@ -1,7 =
++1,8 @@<o:p></o:p></pre><pre> inherit =
+linux-kernel-base<o:p></o:p></pre><pre> =
+<o:p></o:p></pre><pre>-<o:p></o:p></pre><pre> def get_dts(d, =
+ver):<o:p></o:p></pre><pre>+=C2=A0=C2=A0=C2=A0 import =
+re<o:p></o:p></pre><pre>+<o:p></o:p></pre><pre>=C2=A0=C2=A0=C2=A0=C2=A0 =
+staging_dir =3D d.getVar(&quot;STAGING_KERNEL_BUILDDIR&quot;, =
+True)<o:p></o:p></pre><pre>=C2=A0=C2=A0=C2=A0=C2=A0 dts =3D =
+d.getVar(&quot;KERNEL_DEVICETREE&quot;, True)<o:p></o:p></pre><pre> =
+<o:p></o:p></pre><pre>@@ -20,20 +21,24 @@ def get_dts(d, =
+ver):<o:p></o:p></pre><pre> =
+<o:p></o:p></pre><pre>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0# Always turn off =
+device tree support for kernel's &lt; =
+3.18<o:p></o:p></pre><pre>=C2=A0=C2=A0=C2=A0=C2=A0 =
+try:<o:p></o:p></pre><pre>-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if =
+int(min_ver[0]) &lt;=3D =
+3:<o:p></o:p></pre><pre>-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 if int(min_ver[1]) &lt; =
+18:<o:p></o:p></pre><pre>-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dts =3D =
+&quot;&quot;<o:p></o:p></pre><pre>+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 if int(min_ver[0]) &gt;=3D =
+4:<o:p></o:p></pre><pre>+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 if (int(min_ver[1]) &lt; 4) or (int(min_ver[1]) =
+=3D=3D 4 and int(min_ver[2]) &lt; =
+6):<o:p></o:p></pre><pre>+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dts =3D ' =
+'.join([(re.sub(r'(.*)\.dtbo$', r'\1-overlay.dtb', x)) for x in =
+dts.split()])<o:p></o:p></pre><pre>+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 elif int(min_ver[1]) &lt; =
+18:<o:p></o:p></pre><pre>+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 dts =3D =
+&quot;&quot;<o:p></o:p></pre><pre>=C2=A0=C2=A0=C2=A0=C2=A0 except =
+IndexError:<o:p></o:p></pre><pre>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 min_ver =3D None<o:p></o:p></pre><pre> =
+<o:p></o:p></pre><pre>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return =
+dts<o:p></o:p></pre><pre> =
+<o:p></o:p></pre><pre>=C2=A0<o:p></o:p></pre><pre>-def split_overlays(d, =
+out):<o:p></o:p></pre><pre>-=C2=A0=C2=A0=C2=A0 dts =3D get_dts(d, =
+None)<o:p></o:p></pre><pre>+def split_overlays(d, ver, =
+out):<o:p></o:p></pre><pre>+=C2=A0=C2=A0=C2=A0 dts =3D get_dts(d, =
+ver)<o:p></o:p></pre><pre>=C2=A0=C2=A0=C2=A0=C2=A0 if =
+out:<o:p></o:p></pre><pre>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ overlays =3D oe.utils.str_filter_out('\S+\-overlay\.dtb$', dts, =
+d)<o:p></o:p></pre><pre>+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
+overlays =3D oe.utils.str_filter_out('\S+\.dtbo$', overlays, =
+d)<o:p></o:p></pre><pre>=C2=A0=C2=A0=C2=A0=C2=A0 =
+else:<o:p></o:p></pre><pre>-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
+overlays =3D oe.utils.str_filter('\S+\-overlay\.dtb$', dts, =
+d)<o:p></o:p></pre><pre>+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
+overlays =3D oe.utils.str_filter('\S+\-overlay\.dtb$', dts, d) + =
+\<o:p></o:p></pre><pre>+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 &quot; &quot; =
++ oe.utils.str_filter('\S+\.dtbo$', dts, d)<o:p></o:p></pre><pre> =
+<o:p></o:p></pre><pre>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return =
+overlays<o:p></o:p></pre><pre>-- =
+<o:p></o:p></pre><pre>2.7.4<o:p></o:p></pre><pre><o:p>&nbsp;</o:p></pre><=
+/blockquote></div></body></html>
 
---------------1006C70FFB1446B9D95918EC--
+------=_NextPart_000_00DE_01D1E2A7.09D820F0--
