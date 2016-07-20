@@ -1,45 +1,40 @@
-Return-Path: <gley-yocto@m.gmane.org>
+Return-Path: <herve.jourdain@neuf.fr>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8FD45E009C3; Wed, 20 Jul 2016 10:30:31 -0700 (PDT)
+	id D9C05E00C69; Wed, 20 Jul 2016 11:08:29 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: *
-X-Spam-Status: No, score=1.1 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-	RCVD_NUMERIC_HELO, SPF_HELO_PASS, TO_NO_BRKTS_PCNT,
-	WEIRD_PORT autolearn=no version=3.3.1
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [80.91.229.3 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	* 1.2 RCVD_NUMERIC_HELO Received: contains an IP address used for HELO
-	*  0.0 WEIRD_PORT URI: Uses non-standard port number for HTTP
+	*      [93.17.128.1 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  2.5 TO_NO_BRKTS_PCNT To: lacks brackets + percentage
-Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B625DE0086E
-	for <yocto@yoctoproject.org>; Wed, 20 Jul 2016 10:30:28 -0700 (PDT)
-Received: from list by plane.gmane.org with local (Exim 4.69)
-	(envelope-from <gley-yocto@m.gmane.org>) id 1bPvKE-0007Kv-34
-	for yocto@yoctoproject.org; Wed, 20 Jul 2016 19:30:26 +0200
-Received: from 62.74.16.245 ([62.74.16.245])
-	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
-	id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Wed, 20 Jul 2016 19:30:26 +0200
-Received: from gmane by 62.74.16.245 with local (Gmexim 0.1 (Debian))
-	id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Wed, 20 Jul 2016 19:30:26 +0200
-X-Injected-Via-Gmane: http://gmane.org/
-To: yocto@yoctoproject.org
-From: Robert Berger <gmane@reliableembeddedsystems.com>
-Date: Wed, 20 Jul 2016 20:30:06 +0300
-Message-ID: <nmocev$1gg$1@ger.gmane.org>
-Mime-Version: 1.0
-X-Complaints-To: usenet@ger.gmane.org
-X-Gmane-NNTP-Posting-Host: 62.74.16.245
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.6.0
-Subject: custom internal toolchain/glibc
+Received: from smtp26.services.sfr.fr (smtp26.services.sfr.fr [93.17.128.1])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 50570E00C43
+	for <yocto@yoctoproject.org>; Wed, 20 Jul 2016 11:08:25 -0700 (PDT)
+Received: from nbhjo (unknown [8.36.234.10])
+	by msfrf2616.sfr.fr (SMTP Server) with ESMTP id 241AC1C000832;
+	Wed, 20 Jul 2016 20:08:23 +0200 (CEST)
+Received: from nbhjo (unknown [8.36.234.10])	(using TLSv1.2
+	with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))	(No client
+	certificate requested)	(Authenticated sender: herve.jourdain@neuf.fr)
+	by msfrf2616.sfr.fr (SMTP Server) with ESMTPSA;
+	Wed, 20 Jul 2016 20:08:22 +0200 (CEST)
+Authentication-Results: sfr.fr; auth=pass (LOGIN)
+	smtp.auth=herve.jourdain@neuf.fr
+From: Herve Jourdain <herve.jourdain@neuf.fr>
+To: "'piotr.lewicki'" <piotr.lewicki@elfin.de>, yocto@yoctoproject.org
+References: <55b8f36a-dac2-a328-ff8f-6925fcd849a9@elfin.de>
+In-Reply-To: <55b8f36a-dac2-a328-ff8f-6925fcd849a9@elfin.de>
+Date: Wed, 20 Jul 2016 20:08:19 +0200
+Message-ID: <00f401d1e2b1$b3581cc0$1a085640$@neuf.fr>
+MIME-Version: 1.0
+X-Mailer: Microsoft Outlook 15.0
+Thread-Index: AQKBexfNx2Dk04fEzuW+CjgyeKD8uJ7CbI5A
+X-sfr-mailing: LEGIT
+Subject: Re: [meta-raspberrypi] problem with building gstreamer1.0-omx
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,44 +46,91 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 20 Jul 2016 17:30:31 -0000
-Content-Type: text/plain; charset=utf-8
+X-List-Received-Date: Wed, 20 Jul 2016 18:08:29 -0000
+Content-Type: text/plain; charset=us-ascii
 Content-Transfer-Encoding: 7bit
+Content-Language: fr
 
 Hi,
 
-I was wondering what's the process if someone wanted to use, say Jethro
-or Krogoth, but with different/custom versions of gcc, binutils, glibc
-e.g. to cook some syscalls and to compile ancient Linux kernels.
+I have the exact same problem...
+I believe the patch that Khem has sent depends on another patch in
+gstreamer, that wasn't sent...
+I'll send a patch soon to fix that "locally" (with a .bbappend to gstreamer
+in meta-raspberrypi), though it should end up ultimately in oe, once
+properly tested on other platforms.
 
-I came across tcmode-default.inc[1] where such things are defined:
+Herve
 
-GCCVERSION ?= "6.1%"
-SDKGCCVERSION ?= "${GCCVERSION}"
-BINUVERSION ?= "2.26%"
-GDBVERSION ?= "7.11%"
-GLIBCVERSION ?= "2.24"
-UCLIBCVERSION ?= "1.0%"
-LINUXLIBCVERSION ?= "4.4"
+-----Original Message-----
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org]
+On Behalf Of piotr.lewicki
+Sent: mercredi 20 juillet 2016 13:58
+To: yocto@yoctoproject.org
+Subject: [yocto] [meta-raspberrypi] problem with building gstreamer1.0-omx
 
-Would hacking/duplicating and hacking this be a good starting point?
+Hi,
 
-With TCMODE I could get poky to pick up some external toolchain, but I
-would like it to build a custom one instead.
+After recent update of meta-raspberrypi I have a problem with building
+gstreamer1.0-omx package.
 
-Please advise.
+I have one strange warning and one error due to missing gstglmemoryegl.h
+file (marked with pluses below):
+
+| In file included from ../../gst-omx-1.2.0/omx/gstomx.h:48:0,
+|                  from ../../gst-omx-1.2.0/omx/gstomx.c:30:
+| 
+/home/piotr.lewicki/yocto-raspberry/2016-07-18/build/tmp/sysroots/raspberryp
+i3/usr/include/IL/OMX_Core.h:45:4: 
+warning: #warning OMX_SKIP64BIT is not defined - this will be incompatible
+with the VC GPU code. [-Wcpp]
+++++++++|    #warning OMX_SKIP64BIT is not defined - this will be
+incompatible with the VC GPU code.
+|     ^
+++++++++| ../../gst-omx-1.2.0/omx/gstomxvideodec.c:41:39: fatal error: 
+gst/gl/egl/gstglmemoryegl.h: No such file or directory
+| compilation terminated.
+| make[2]: *** [libgstomx_la-gstomxvideodec.lo] Error 1
+| make[2]: *** Waiting for unfinished jobs....
+| make[2]: Leaving directory
+`/home/piotr.lewicki/yocto-raspberry/2016-07-18/build/tmp/work/raspberrypi3-
+poky-linux-gnueabi/gstreamer1.0-omx/1.2.0-r1/build/omx'
+| make[1]: *** [all-recursive] Error 1
+| make[1]: Leaving directory
+`/home/piotr.lewicki/yocto-raspberry/2016-07-18/build/tmp/work/raspberrypi3-
+poky-linux-gnueabi/gstreamer1.0-omx/1.2.0-r1/build'
+| make: *** [all] Error 2
+| WARNING: exit code 1 from a shell command.
+| ERROR: Function failed: do_compile (log file is located at
+/home/piotr.lewicki/yocto-raspberry/2016-07-18/build/tmp/work/raspberrypi3-p
+oky-linux-gnueabi/gstreamer1.0-omx/1.2.0-r1/temp/log.do_compile.4424)
+ERROR: Task
+/home/piotr.lewicki/yocto-raspberry/2016-07-18/build/../layers/poky/meta/rec
+ipes-multimedia/gstreamer/gstreamer1.0-omx_1.2.0.bb:do_compile
+(/home/piotr.lewicki/yocto-raspberry/2016-07-18/build/../layers/poky/meta/re
+cipes-multimedia/gstreamer/gstreamer1.0-omx_1.2.0.bb:do_compile)
+failed with exit code '1'
+
+
+Do you have any idea why I have those messages?
+
+I use gstreamer1.0 1.8.2 and corresponding plugin versions.
+
+I have noticed that after removing
+file://0007-omxvideodec-Use-gstglmemoryegl-for-the-RPi.patch from
+gstreamer1.0-omx_1.2.0.bbappend - the package builds..
+
+Any hint why I don't have this gstglmemoryegl.h header?
+
 
 Thanks,
 
-Robert
+Piotr
 
-[1]
-http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/conf/distro/include/tcmode-default.inc..."My
-employer doesn't even agree with me about C indentation style." - Used
-as a disclaimer
-
-My public pgp key is available,at:
-http://pgp.mit.edu:11371/pks/lookup?op=get&search=0x90320BF1
-
+--
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 
 
