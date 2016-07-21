@@ -1,40 +1,39 @@
 Return-Path: <herve.jourdain@neuf.fr>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2F187E00EC2; Thu, 21 Jul 2016 05:32:58 -0700 (PDT)
+	id B43AEE00EE6; Thu, 21 Jul 2016 05:33:03 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-	TVD_SPACE_RATIO autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
 	*      [93.17.128.10 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 TVD_SPACE_RATIO TVD_SPACE_RATIO
 Received: from smtp26.services.sfr.fr (smtp26.services.sfr.fr [93.17.128.10])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8F673E00EB8
-	for <yocto@yoctoproject.org>; Thu, 21 Jul 2016 05:32:57 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7ACF8E00EC2
+	for <yocto@yoctoproject.org>; Thu, 21 Jul 2016 05:32:59 -0700 (PDT)
 Received: from localhost.localdomain (unknown [74.95.113.124])
-	by msfrf2625.sfr.fr (SMTP Server) with ESMTP id 032981C00043A;
-	Thu, 21 Jul 2016 14:32:57 +0200 (CEST)
+	by msfrf2625.sfr.fr (SMTP Server) with ESMTP id E28AF1C00043A;
+	Thu, 21 Jul 2016 14:32:58 +0200 (CEST)
 Received: from localhost.localdomain (unknown [74.95.113.124])	(using TLSv1.2
 	with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))	(No client
 	certificate requested)	(Authenticated sender: herve.jourdain@neuf.fr)
 	by msfrf2625.sfr.fr (SMTP Server) with ESMTPSA;
-	Thu, 21 Jul 2016 14:32:56 +0200 (CEST)
+	Thu, 21 Jul 2016 14:32:58 +0200 (CEST)
 Authentication-Results: sfr.fr; auth=pass (PLAIN)
 	smtp.auth=herve.jourdain@neuf.fr
 From: Herve Jourdain <herve.jourdain@neuf.fr>
 To: yocto@yoctoproject.org
-Date: Thu, 21 Jul 2016 20:32:14 +0800
-Message-Id: <1469104337-21068-10-git-send-email-herve.jourdain@neuf.fr>
+Date: Thu, 21 Jul 2016 20:32:15 +0800
+Message-Id: <1469104337-21068-11-git-send-email-herve.jourdain@neuf.fr>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1469104337-21068-1-git-send-email-herve.jourdain@neuf.fr>
 References: <1469104337-21068-1-git-send-email-herve.jourdain@neuf.fr>
 X-sfr-mailing: LEGIT
 MIME-Version: 1.0
-Subject: [meta-raspberrypi][PATCH v4 09/12] weston/weston_%.bbappend: modify configuration options to support vc4graphics
+Subject: [meta-raspberrypi][PATCH v4 10/12] mesa_%.bbappend: new file to add the correct configuration options to support vc4graphics
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,32 +45,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Jul 2016 12:32:58 -0000
+X-List-Received-Date: Thu, 21 Jul 2016 12:33:03 -0000
 
 Signed-off-by: Herve Jourdain <herve.jourdain@neuf.fr>
 ---
- recipes-graphics/weston/weston_%.bbappend | 13 +++++++------
- 1 file changed, 7 insertions(+), 6 deletions(-)
+ recipes-graphics/mesa/mesa_%.bbappend | 4 ++++
+ 1 file changed, 4 insertions(+)
+ create mode 100644 recipes-graphics/mesa/mesa_%.bbappend
 
-diff --git a/recipes-graphics/weston/weston_%.bbappend b/recipes-graphics/weston/weston_%.bbappend
-index 3ec311d..70f4360 100644
---- a/recipes-graphics/weston/weston_%.bbappend
-+++ b/recipes-graphics/weston/weston_%.bbappend
-@@ -1,7 +1,8 @@
--EXTRA_OECONF += "--enable-rpi-compositor \
--             --disable-resize-optimization \
--             --disable-setuid-install \
--             --disable-xwayland-test \
--             --disable-simple-egl-clients \
--             WESTON_NATIVE_BACKEND=rpi-backend.so \
-+PACKAGECONFIG_rpi_remove = "${@bb.utils.contains('MACHINE_FEATURES', 'vc4graphics', ' fbdev', '', d)}"
-+EXTRA_OECONF += "--disable-xwayland-test \
-+                 --disable-simple-egl-clients \
- "
-+EXTRA_OECONF += "${@bb.utils.contains('MACHINE_FEATURES', 'vc4graphics', '', '--enable-rpi-compositor', d)}"
-+EXTRA_OECONF += "${@bb.utils.contains('MACHINE_FEATURES', 'vc4graphics', '', '--disable-resize-optimization', d)}"
-+EXTRA_OECONF += "${@bb.utils.contains('MACHINE_FEATURES', 'vc4graphics', '', '--disable-setuid-install', d)}"
-+EXTRA_OECONF += "${@bb.utils.contains('MACHINE_FEATURES', 'vc4graphics', '', 'WESTON_NATIVE_BACKEND=rpi-backend.so', d)}"
+diff --git a/recipes-graphics/mesa/mesa_%.bbappend b/recipes-graphics/mesa/mesa_%.bbappend
+new file mode 100644
+index 0000000..b182388
+--- /dev/null
++++ b/recipes-graphics/mesa/mesa_%.bbappend
+@@ -0,0 +1,4 @@
++PACKAGECONFIG_append_rpi = " gallium"
++GALLIUMDRIVERS_rpi = "vc4"
++DRIDRIVERS_rpi = ""
++
 -- 
 2.7.4
 
