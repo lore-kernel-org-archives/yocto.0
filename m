@@ -1,66 +1,40 @@
-Return-Path: <jacob.kroon@gmail.com>
+Return-Path: <paul@paulbarker.me.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EEE68E0086E; Thu, 21 Jul 2016 07:24:14 -0700 (PDT)
+	id 47DAFE00BFF; Thu, 21 Jul 2016 08:20:44 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (jacob.kroon[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.218.65 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-oi0-f65.google.com (mail-oi0-f65.google.com
-	[209.85.218.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 199DEE0045D
-	for <yocto@yoctoproject.org>; Thu, 21 Jul 2016 07:24:11 -0700 (PDT)
-Received: by mail-oi0-f65.google.com with SMTP id d204so7821705oig.3
-	for <yocto@yoctoproject.org>; Thu, 21 Jul 2016 07:24:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=+XRwq1ebmwxJ2kWPYsTHSHU0FQhqvTMZ4N1mNE6dGHg=;
-	b=eUU91KcKog9Ms6YrueieNc7MB3zLS2PaojTlrCimhiXZflhxwpap9Pq5dVT0pZl2ND
-	M3yUtIz53uuBgci2lQfXZQEYuKORllgDaFCi6xNQ/hQJt7xmKirrFRrlt8pcRX4pQTX2
-	Eh8E3wB0244yOS8W83UUpEC+suT9H3kwKOxldIwHPt9qqfYQJN5YDSr2EN5NXcFsyMRA
-	41t7HOPc3JJRyAOLX+z80jOseMAzpx3GaoKho5N0LeLV1CqCq6d6k9W5uRO6tqfNwyQE
-	EW+CouwcVSR2L8KpUiQ8/6NmmL1WYt13XXuZMFM9otX4lrUzC7rfej2Y1VKK+sYnVb4X
-	ysJA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=+XRwq1ebmwxJ2kWPYsTHSHU0FQhqvTMZ4N1mNE6dGHg=;
-	b=incSVkT4I8mi0mn5qBEVnsoln/aMUqxQ5swrQ6QAHMPluzpEvVv5KC9d3jDh+6Grbw
-	euFyeIknPnpJfXCrNJZAOl3nZnzDesxIbW3F8whQ5onGiX3jI5ltjDTTmIWDUFPRUX4f
-	U0TXiJZ1hsVekV72n//hrGbRx2TB2ly2BbGXGnhEYEijMfpDzyAMAb054LDW2YR7H5yF
-	xEfiJQUBZf5qVcZNiNvuFh1x8WuYfoShqzZO5OSDVkiQp8hCLF02J1wHb5R34c8wT20I
-	GYdoQZk2mje7ieQ58Zf9s0viqiZbwydoQcOtNoS/7sohX2BXrhcrBL+JQNvRv4CZm7Uj
-	G+Ig==
-X-Gm-Message-State: ALyK8tL9CZGdZDHL0cXXrMz+SwpQ25GIBJlhkujJu17opD9fnMIpGKjin7TInZqlbazNlhx8IRScJ/LfhJAAZw==
-X-Received: by 10.202.48.82 with SMTP id w79mr26553635oiw.62.1469111050874;
-	Thu, 21 Jul 2016 07:24:10 -0700 (PDT)
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0010]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [178.33.109.111 listed in list.dnswl.org]
+X-Greylist: delayed 16799 seconds by postgrey-1.32 at yocto-www;
+	Thu, 21 Jul 2016 08:20:40 PDT
+Received: from 2.mo5.mail-out.ovh.net (2.mo5.mail-out.ovh.net [178.33.109.111])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 05B90E009FA
+	for <yocto@yoctoproject.org>; Thu, 21 Jul 2016 08:20:40 -0700 (PDT)
+Received: from player763.ha.ovh.net (b9.ovh.net [213.186.33.59])
+	by mo5.mail-out.ovh.net (Postfix) with ESMTP id B5901FF9BDB
+	for <yocto@yoctoproject.org>; Thu, 21 Jul 2016 09:02:40 +0200 (CEST)
+Received: from nuc.betafive.co.uk
+	(cpc11-shep11-2-0-cust130.8-3.cable.virginm.net [86.27.96.131])
+	(Authenticated sender: paul@betafive.co.uk)
+	by player763.ha.ovh.net (Postfix) with ESMTPSA id E1F293C007F;
+	Thu, 21 Jul 2016 09:02:38 +0200 (CEST)
+Date: Thu, 21 Jul 2016 08:02:36 +0100
+From: Paul Barker <paul@paulbarker.me.uk>
+To: yocto@yoctoproject.org
+Message-ID: <20160721080236.0ed7287e@nuc.betafive.co.uk>
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Received: by 10.182.24.71 with HTTP; Thu, 21 Jul 2016 07:24:10 -0700 (PDT)
-In-Reply-To: <5790C8ED.5040107@windriver.com>
-References: <CAPbeDCmbBpkOe9PY8UJMYUg2e9ddwSEiJufXFwyY_MkzaKJm6w@mail.gmail.com>
-	<a2afecd0-e6c0-ee36-5643-c08ecfd7adbb@windriver.com>
-	<CAPbeDC=7xHq6WaT8zfvAD3e17GhdkpKoog5wFg=aJwe05ruwyQ@mail.gmail.com>
-	<5790C6F8.3060402@windriver.com> <5790C8ED.5040107@windriver.com>
-From: Jacob Kroon <jacob.kroon@gmail.com>
-Date: Thu, 21 Jul 2016 16:24:10 +0200
-Message-ID: <CAPbeDCkck+wXjE3dhCZdix2CUkp1A0ZNo0G_=zM_7JXYzQdQtg@mail.gmail.com>
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-Cc: Yocto Project <yocto@yoctoproject.org>, jason.wessel@windriver.com
-Subject: Re: kernel menuconfig/ncurses patch in linux-yocto
+X-Ovh-Tracer-Id: 8327155715087370665
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrfeeltddrheeggdduudekucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddm
+Subject: [meta-raspberrypi] linux-raspberrypi versions
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,78 +46,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Jul 2016 14:24:15 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 21 Jul 2016 15:20:44 -0000
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Thu, Jul 21, 2016 at 3:06 PM, Bruce Ashfield
-<bruce.ashfield@windriver.com> wrote:
-> On 2016-07-21 08:58 AM, Bruce Ashfield wrote:
->>
->> On 2016-07-21 02:35 AM, Jacob Kroon wrote:
->>>
->>> On Thu, Jul 21, 2016 at 5:22 AM, Bruce Ashfield
->>> <bruce.ashfield@windriver.com> wrote:
->>>>
->>>> On 2016-07-20 4:19 PM, Jacob Kroon wrote:
->>>>>
->>>>>
->>>>> Hi,
->>>>> I'm trying to get the SDK to be able to run the kernel's "make
->>>>> menuconfig" target
->>>>> using nativesdk-ncurses from the SDK. Looking at
->>>>>
->>>>>
->>>>>
->>>>> http://git.yoctoproject.org/cgit/cgit.cgi/linux-yocto-4.4/commit/scripts/kconfig/lxdialog/check-lxdialog.sh?h=standard/beaglebone&id=badf6fedf455958fe0ff3c060c8e3965ef6d80dc
->>>>>
->>>>>
->>>>> I figured out I could pass CROSS_CURSES_[INC,LIB], but the second chunk
->>>>> in that patch looks weird:
->>>>>
->>>>>      elif pkg-config --cflags ncurses 2>/dev/null; then
->>>>>          echo '-DCURSES_LOC="<ncurses.h>"'
->>>>> +   if [ x"$CROSS_CURSES_INC" != x ]; then
->>>>> +   echo "$CROSS_CURSES_INC"
->>>>> +   exit
->>>>> +   fi
->>>>>      elif [ -f /usr/include/ncursesw/curses.h ]; then
->>>>>          echo '-I/usr/include/ncursesw -DCURSES_LOC="<curses.h>"'
->>>>>
->>>>> (I had to do manual indentation with spaces in gmail)
->>>>> Is the indentation or the logic incorrect ?
->>>>
->>>>
->>>>
->>>> In the commit itself, the indentation is fine.
->>>>
->>>> That block of code is just dumping flags that are used in the
->>>> build. So in this case, it is correct. If the variable is
->>>> non empty, it is echoed and then processing exits.
->>>
->>>
->>> The check if CROSS_CURSES_INC is non-empty is only done if the preceeding
->>>   "elif"-check is true, and not unconditionally as one would expect
->>> judging by the indentation.
->>
->>
->> Yep, that's the point. It goes to pkgconfig first, and then falls
->> back to that.
->>
->> The indention is fine in the actual repository.
->
->
-> oh wait.
->
-> I had my coffee and I see now what you mean, I was checking
-> older repos, and when this merged into the 4.4 tree it does
-> look like the conditional is hosed.
->
-> I'll queue up a closer look at this later today.
->
-> Bruce
->
+Hi all,
 
-Ah, that explains it. Thank you for looking into it.
+I'm planning to look at the linux-raspberypi recipes once I've had time
+to send V2 of my u-boot patches. I'd like to know people's thoughts on
+the available kernel versions in the meta-raspberrypi layer:
 
-Jacob
+Is anyone still using the linux-raspberrypi 3.18 recipe? The commit
+referenced in SRCREV is from June 2015. I think it's probably time to
+retire this unless anyone has a reason to keep it around.
+
+Is there any reason to keep linux-raspberrypi 4.1 as the default
+recipe? The last commit to the 4.1 branch was in April and the
+default branch on the linux-raspberrypi GitHub repository has been
+4.4 since then. I think we should change the default version to 4.4
+unless there's a good reason not to.
+
+If there's no objections I'll send a couple of patches to drop 3.18 and
+change the default to 4.4.
+
+Thanks,
+Paul Barker
 
