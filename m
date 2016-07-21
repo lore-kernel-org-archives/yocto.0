@@ -1,40 +1,42 @@
-Return-Path: <herve.jourdain@neuf.fr>
+Return-Path: <Bruce.Ashfield@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0D450E00C15; Thu, 21 Jul 2016 08:40:19 -0700 (PDT)
+	id E8BE2E00C80; Thu, 21 Jul 2016 10:01:37 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [93.17.128.163 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.146.13 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from smtp26.services.sfr.fr (smtp26.services.sfr.fr [93.17.128.163])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BCB85E00A07
-	for <yocto@yoctoproject.org>; Thu, 21 Jul 2016 08:40:14 -0700 (PDT)
-Received: from nbhjo (unknown [8.36.234.10])
-	by msfrf2606.sfr.fr (SMTP Server) with ESMTP id 4E2C01C001C2D;
-	Thu, 21 Jul 2016 17:40:10 +0200 (CEST)
-Received: from nbhjo (unknown [8.36.234.10])	(using TLSv1.2
-	with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))	(No client
-	certificate requested)	(Authenticated sender: herve.jourdain@neuf.fr)
-	by msfrf2606.sfr.fr (SMTP Server) with ESMTPSA;
-	Thu, 21 Jul 2016 17:39:52 +0200 (CEST)
-Authentication-Results: sfr.fr; auth=pass (LOGIN)
-	smtp.auth=herve.jourdain@neuf.fr
-From: Herve Jourdain <herve.jourdain@neuf.fr>
-To: 'Paul Barker' <paul@paulbarker.me.uk>, yocto@yoctoproject.org
-References: <20160721080236.0ed7287e@nuc.betafive.co.uk>
-In-Reply-To: <20160721080236.0ed7287e@nuc.betafive.co.uk>
-Date: Thu, 21 Jul 2016 17:39:49 +0200
-Message-ID: <001e01d1e366$2908ffc0$7b1aff40$@neuf.fr>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 43B26E00C69
+	for <yocto@yoctoproject.org>; Thu, 21 Jul 2016 10:01:34 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id u6LH1VUm003911
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Thu, 21 Jul 2016 10:01:32 -0700 (PDT)
+Received: from [128.224.56.48] (128.224.56.48) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.248.2;
+	Thu, 21 Jul 2016 10:01:31 -0700
+To: Jacob Kroon <jacob.kroon@gmail.com>
+References: <CAPbeDCmbBpkOe9PY8UJMYUg2e9ddwSEiJufXFwyY_MkzaKJm6w@mail.gmail.com>
+	<a2afecd0-e6c0-ee36-5643-c08ecfd7adbb@windriver.com>
+	<CAPbeDC=7xHq6WaT8zfvAD3e17GhdkpKoog5wFg=aJwe05ruwyQ@mail.gmail.com>
+	<5790C6F8.3060402@windriver.com> <5790C8ED.5040107@windriver.com>
+	<CAPbeDCkck+wXjE3dhCZdix2CUkp1A0ZNo0G_=zM_7JXYzQdQtg@mail.gmail.com>
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+Message-ID: <5790FFEA.5000401@windriver.com>
+Date: Thu, 21 Jul 2016 13:01:30 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+	Thunderbird/38.8.0
 MIME-Version: 1.0
-X-Mailer: Microsoft Outlook 15.0
-Thread-Index: AQGns7zzwvXWFP6vUBGSdcsdnnLgdqB3ZADg
-X-sfr-mailing: LEGIT
-Subject: Re: [meta-raspberrypi] linux-raspberrypi versions
+In-Reply-To: <CAPbeDCkck+wXjE3dhCZdix2CUkp1A0ZNo0G_=zM_7JXYzQdQtg@mail.gmail.com>
+Cc: Yocto Project <yocto@yoctoproject.org>, jason.wessel@windriver.com
+Subject: Re: kernel menuconfig/ncurses patch in linux-yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,52 +48,94 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Jul 2016 15:40:19 -0000
-Content-Type: text/plain; charset=us-ascii
+X-List-Received-Date: Thu, 21 Jul 2016 17:01:38 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-Content-Language: fr
 
-Hi Paul,
+On 2016-07-21 10:24 AM, Jacob Kroon wrote:
+> On Thu, Jul 21, 2016 at 3:06 PM, Bruce Ashfield
+> <bruce.ashfield@windriver.com> wrote:
+>> On 2016-07-21 08:58 AM, Bruce Ashfield wrote:
+>>>
+>>> On 2016-07-21 02:35 AM, Jacob Kroon wrote:
+>>>>
+>>>> On Thu, Jul 21, 2016 at 5:22 AM, Bruce Ashfield
+>>>> <bruce.ashfield@windriver.com> wrote:
+>>>>>
+>>>>> On 2016-07-20 4:19 PM, Jacob Kroon wrote:
+>>>>>>
+>>>>>>
+>>>>>> Hi,
+>>>>>> I'm trying to get the SDK to be able to run the kernel's "make
+>>>>>> menuconfig" target
+>>>>>> using nativesdk-ncurses from the SDK. Looking at
+>>>>>>
+>>>>>>
+>>>>>>
+>>>>>> http://git.yoctoproject.org/cgit/cgit.cgi/linux-yocto-4.4/commit/scripts/kconfig/lxdialog/check-lxdialog.sh?h=standard/beaglebone&id=badf6fedf455958fe0ff3c060c8e3965ef6d80dc
+>>>>>>
+>>>>>>
+>>>>>> I figured out I could pass CROSS_CURSES_[INC,LIB], but the second chunk
+>>>>>> in that patch looks weird:
+>>>>>>
+>>>>>>       elif pkg-config --cflags ncurses 2>/dev/null; then
+>>>>>>           echo '-DCURSES_LOC="<ncurses.h>"'
+>>>>>> +   if [ x"$CROSS_CURSES_INC" != x ]; then
+>>>>>> +   echo "$CROSS_CURSES_INC"
+>>>>>> +   exit
+>>>>>> +   fi
+>>>>>>       elif [ -f /usr/include/ncursesw/curses.h ]; then
+>>>>>>           echo '-I/usr/include/ncursesw -DCURSES_LOC="<curses.h>"'
+>>>>>>
+>>>>>> (I had to do manual indentation with spaces in gmail)
+>>>>>> Is the indentation or the logic incorrect ?
+>>>>>
+>>>>>
+>>>>>
+>>>>> In the commit itself, the indentation is fine.
+>>>>>
+>>>>> That block of code is just dumping flags that are used in the
+>>>>> build. So in this case, it is correct. If the variable is
+>>>>> non empty, it is echoed and then processing exits.
+>>>>
+>>>>
+>>>> The check if CROSS_CURSES_INC is non-empty is only done if the preceeding
+>>>>    "elif"-check is true, and not unconditionally as one would expect
+>>>> judging by the indentation.
+>>>
+>>>
+>>> Yep, that's the point. It goes to pkgconfig first, and then falls
+>>> back to that.
+>>>
+>>> The indention is fine in the actual repository.
+>>
+>>
+>> oh wait.
+>>
+>> I had my coffee and I see now what you mean, I was checking
+>> older repos, and when this merged into the 4.4 tree it does
+>> look like the conditional is hosed.
+>>
+>> I'll queue up a closer look at this later today.
+>>
+>> Bruce
+>>
+>
+> Ah, that explains it. Thank you for looking into it.
 
-I had the same line of thoughts...
-I believe 3.18 should be dropped, maybe even 4.1, default to 4.4, and maybe
-add 4.7 to the mix, since 4.7 seems to be where the bulk of the work is done
-now.
+Yup. The original patch (of 3.14 vintage) had migrated that chunk over
+time to an invalid location.
 
-Herve
+I fixed the block in the 4.4 kernel, and have refreshed the path so
+it will be fixed for the next linux-yocto kernel as well.
 
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org]
-On Behalf Of Paul Barker
-Sent: jeudi 21 juillet 2016 09:03
-To: yocto@yoctoproject.org
-Subject: [yocto] [meta-raspberrypi] linux-raspberrypi versions
+I've pushed the changes to the tree, and will follow up with SRCREV
+bumps when my next change queue is ready.
 
-Hi all,
+Bruce
 
-I'm planning to look at the linux-raspberypi recipes once I've had time to
-send V2 of my u-boot patches. I'd like to know people's thoughts on the
-available kernel versions in the meta-raspberrypi layer:
-
-Is anyone still using the linux-raspberrypi 3.18 recipe? The commit
-referenced in SRCREV is from June 2015. I think it's probably time to retire
-this unless anyone has a reason to keep it around.
-
-Is there any reason to keep linux-raspberrypi 4.1 as the default recipe? The
-last commit to the 4.1 branch was in April and the default branch on the
-linux-raspberrypi GitHub repository has been
-4.4 since then. I think we should change the default version to 4.4 unless
-there's a good reason not to.
-
-If there's no objections I'll send a couple of patches to drop 3.18 and
-change the default to 4.4.
-
-Thanks,
-Paul Barker
---
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
+>
+> Jacob
+>
 
 
