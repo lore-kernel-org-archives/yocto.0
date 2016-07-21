@@ -1,39 +1,37 @@
-Return-Path: <herve.jourdain@neuf.fr>
+Return-Path: <Bruce.Ashfield@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0C940E00ECB; Thu, 21 Jul 2016 05:33:05 -0700 (PDT)
+	id 9976CE00EB2; Thu, 21 Jul 2016 05:58:39 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [93.17.128.10 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from smtp26.services.sfr.fr (smtp26.services.sfr.fr [93.17.128.10])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2BB24E00EC5
-	for <yocto@yoctoproject.org>; Thu, 21 Jul 2016 05:33:03 -0700 (PDT)
-Received: from localhost.localdomain (unknown [74.95.113.124])
-	by msfrf2625.sfr.fr (SMTP Server) with ESMTP id 939411C00043A;
-	Thu, 21 Jul 2016 14:33:02 +0200 (CEST)
-Received: from localhost.localdomain (unknown [74.95.113.124])	(using TLSv1.2
-	with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))	(No client
-	certificate requested)	(Authenticated sender: herve.jourdain@neuf.fr)
-	by msfrf2625.sfr.fr (SMTP Server) with ESMTPSA;
-	Thu, 21 Jul 2016 14:33:01 +0200 (CEST)
-Authentication-Results: sfr.fr; auth=pass (PLAIN)
-	smtp.auth=herve.jourdain@neuf.fr
-From: Herve Jourdain <herve.jourdain@neuf.fr>
-To: yocto@yoctoproject.org
-Date: Thu, 21 Jul 2016 20:32:17 +0800
-Message-Id: <1469104337-21068-13-git-send-email-herve.jourdain@neuf.fr>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1469104337-21068-1-git-send-email-herve.jourdain@neuf.fr>
-References: <1469104337-21068-1-git-send-email-herve.jourdain@neuf.fr>
-X-sfr-mailing: LEGIT
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 65FADE00EAC
+	for <yocto@yoctoproject.org>; Thu, 21 Jul 2016 05:58:35 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id u6LCwY5S030158
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=OK);
+	Thu, 21 Jul 2016 05:58:34 -0700
+Received: from [128.224.56.48] (128.224.56.48) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.248.2;
+	Thu, 21 Jul 2016 05:58:33 -0700
+To: Jacob Kroon <jacob.kroon@gmail.com>
+References: <CAPbeDCmbBpkOe9PY8UJMYUg2e9ddwSEiJufXFwyY_MkzaKJm6w@mail.gmail.com>
+	<a2afecd0-e6c0-ee36-5643-c08ecfd7adbb@windriver.com>
+	<CAPbeDC=7xHq6WaT8zfvAD3e17GhdkpKoog5wFg=aJwe05ruwyQ@mail.gmail.com>
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+Message-ID: <5790C6F8.3060402@windriver.com>
+Date: Thu, 21 Jul 2016 08:58:32 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+	Thunderbird/38.8.0
 MIME-Version: 1.0
-Subject: [meta-raspberrypi][PATCH v4 12/12] linux-raspberrypi-4.4: add patch to enable proper operation of renderD128 device
+In-Reply-To: <CAPbeDC=7xHq6WaT8zfvAD3e17GhdkpKoog5wFg=aJwe05ruwyQ@mail.gmail.com>
+Cc: Yocto Project <yocto@yoctoproject.org>, jason.wessel@windriver.com
+Subject: Re: kernel menuconfig/ncurses patch in linux-yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,62 +43,83 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Jul 2016 12:33:05 -0000
+X-List-Received-Date: Thu, 21 Jul 2016 12:58:39 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Herve Jourdain <herve.jourdain@neuf.fr>
----
- .../0002-vc4-ioctl-rendering-allow.patch           | 29 ++++++++++++++++++++++
- recipes-kernel/linux/linux-raspberrypi_4.4.bb      |  1 +
- 2 files changed, 30 insertions(+)
- create mode 100644 recipes-kernel/linux/linux-raspberrypi-4.4/0002-vc4-ioctl-rendering-allow.patch
+On 2016-07-21 02:35 AM, Jacob Kroon wrote:
+> On Thu, Jul 21, 2016 at 5:22 AM, Bruce Ashfield
+> <bruce.ashfield@windriver.com> wrote:
+>> On 2016-07-20 4:19 PM, Jacob Kroon wrote:
+>>>
+>>> Hi,
+>>> I'm trying to get the SDK to be able to run the kernel's "make
+>>> menuconfig" target
+>>> using nativesdk-ncurses from the SDK. Looking at
+>>>
+>>>
+>>> http://git.yoctoproject.org/cgit/cgit.cgi/linux-yocto-4.4/commit/scripts/kconfig/lxdialog/check-lxdialog.sh?h=standard/beaglebone&id=badf6fedf455958fe0ff3c060c8e3965ef6d80dc
+>>>
+>>> I figured out I could pass CROSS_CURSES_[INC,LIB], but the second chunk
+>>> in that patch looks weird:
+>>>
+>>>      elif pkg-config --cflags ncurses 2>/dev/null; then
+>>>          echo '-DCURSES_LOC="<ncurses.h>"'
+>>> +   if [ x"$CROSS_CURSES_INC" != x ]; then
+>>> +   echo "$CROSS_CURSES_INC"
+>>> +   exit
+>>> +   fi
+>>>      elif [ -f /usr/include/ncursesw/curses.h ]; then
+>>>          echo '-I/usr/include/ncursesw -DCURSES_LOC="<curses.h>"'
+>>>
+>>> (I had to do manual indentation with spaces in gmail)
+>>> Is the indentation or the logic incorrect ?
+>>
+>>
+>> In the commit itself, the indentation is fine.
+>>
+>> That block of code is just dumping flags that are used in the
+>> build. So in this case, it is correct. If the variable is
+>> non empty, it is echoed and then processing exits.
+>
+> The check if CROSS_CURSES_INC is non-empty is only done if the preceeding
+>   "elif"-check is true, and not unconditionally as one would expect
+> judging by the indentation.
 
-diff --git a/recipes-kernel/linux/linux-raspberrypi-4.4/0002-vc4-ioctl-rendering-allow.patch b/recipes-kernel/linux/linux-raspberrypi-4.4/0002-vc4-ioctl-rendering-allow.patch
-new file mode 100644
-index 0000000..59d0ed7
---- /dev/null
-+++ b/recipes-kernel/linux/linux-raspberrypi-4.4/0002-vc4-ioctl-rendering-allow.patch
-@@ -0,0 +1,29 @@
-+This patch has been accepted upstream in kernel 4.7-rc3
-+But it has not yet been backported to 4.4...
-+Upstream-Status: Accepted [http://www.gossamer-threads.com/lists/linux/kernel/2459302]
-+Signed-off-by: Herve Jourdain <herve.jourdain@neuf.fr>
-+---
-+
-+diff --git a/drivers/gpu/drm/vc4/vc4_drv.c b/drivers/gpu/drm/vc4/vc4_drv.c
-+index a5b68c1..14b5ec1 100644
-+--- a/drivers/gpu/drm/vc4/vc4_drv.c
-++++ b/drivers/gpu/drm/vc4/vc4_drv.c
-+@@ -75,12 +75,12 @@ static const struct file_operations vc4_drm_fops = {
-+ };
-+ 
-+ static const struct drm_ioctl_desc vc4_drm_ioctls[] = {
-+-	DRM_IOCTL_DEF_DRV(VC4_SUBMIT_CL, vc4_submit_cl_ioctl, 0),
-+-	DRM_IOCTL_DEF_DRV(VC4_WAIT_SEQNO, vc4_wait_seqno_ioctl, 0),
-+-	DRM_IOCTL_DEF_DRV(VC4_WAIT_BO, vc4_wait_bo_ioctl, 0),
-+-	DRM_IOCTL_DEF_DRV(VC4_CREATE_BO, vc4_create_bo_ioctl, 0),
-+-	DRM_IOCTL_DEF_DRV(VC4_MMAP_BO, vc4_mmap_bo_ioctl, 0),
-+-	DRM_IOCTL_DEF_DRV(VC4_CREATE_SHADER_BO, vc4_create_shader_bo_ioctl, 0),
-++	DRM_IOCTL_DEF_DRV(VC4_SUBMIT_CL, vc4_submit_cl_ioctl, 0|DRM_RENDER_ALLOW),
-++	DRM_IOCTL_DEF_DRV(VC4_WAIT_SEQNO, vc4_wait_seqno_ioctl, 0|DRM_RENDER_ALLOW),
-++	DRM_IOCTL_DEF_DRV(VC4_WAIT_BO, vc4_wait_bo_ioctl, 0|DRM_RENDER_ALLOW),
-++	DRM_IOCTL_DEF_DRV(VC4_CREATE_BO, vc4_create_bo_ioctl, 0|DRM_RENDER_ALLOW),
-++	DRM_IOCTL_DEF_DRV(VC4_MMAP_BO, vc4_mmap_bo_ioctl, 0|DRM_RENDER_ALLOW),
-++	DRM_IOCTL_DEF_DRV(VC4_CREATE_SHADER_BO, vc4_create_shader_bo_ioctl, 0|DRM_RENDER_ALLOW),
-+ 	DRM_IOCTL_DEF_DRV(VC4_GET_HANG_STATE, vc4_get_hang_state_ioctl,
-+ 			  DRM_ROOT_ONLY),
-+ };
-diff --git a/recipes-kernel/linux/linux-raspberrypi_4.4.bb b/recipes-kernel/linux/linux-raspberrypi_4.4.bb
-index b13925c..8fe5330 100644
---- a/recipes-kernel/linux/linux-raspberrypi_4.4.bb
-+++ b/recipes-kernel/linux/linux-raspberrypi_4.4.bb
-@@ -5,5 +5,6 @@ LINUX_VERSION ?= "4.4.13"
- SRCREV = "680be5e27a9593cf26079c6e5744a04cc2809d13"
- SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-4.4.y \
-            file://0001-fix-dtbo-rules.patch \
-+           file://0002-vc4-ioctl-rendering-allow.patch \
- "
- require linux-raspberrypi.inc
--- 
-2.7.4
+Yep, that's the point. It goes to pkgconfig first, and then falls
+back to that.
+
+The indention is fine in the actual repository.
+
+--- a/scripts/kconfig/lxdialog/check-lxdialog.sh
++++ b/scripts/kconfig/lxdialog/check-lxdialog.sh
+@@ -4,6 +4,10 @@
+  # What library to link
+  ldflags()
+  {
++       if [ "$CROSS_CURSES_LIB" != "" ]; then
++               echo "$CROSS_CURSES_LIB"
++               exit
++       fi
+         pkg-config --libs ncursesw 2>/dev/null && exit
+         pkg-config --libs ncurses 2>/dev/null && exit
+         for ext in so a dll.a dylib ; do
+@@ -25,6 +29,10 @@ ccflags()
+                 echo '-DCURSES_LOC="<ncurses.h>" -DNCURSES_WIDECHAR=1'
+         elif pkg-config --cflags ncurses 2>/dev/null; then
+                 echo '-DCURSES_LOC="<ncurses.h>"'
++       if [ x"$CROSS_CURSES_INC" != x ]; then
++               echo "$CROSS_CURSES_INC"
++               exit
++       fi
+         elif [ -f /usr/include/ncursesw/curses.h ]; then
+                 echo '-I/usr/include/ncursesw -DCURSES_LOC="<curses.h>"'
+                 echo ' -DNCURSES_WIDECHAR=1'
+
+
+
+Bruce
+
+>
 
 
