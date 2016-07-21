@@ -1,6 +1,6 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BFB1AE00EB2; Thu, 21 Jul 2016 06:27:43 -0700 (PDT)
+	id 2B0E7E00EB5; Thu, 21 Jul 2016 06:39:05 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -11,7 +11,7 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (raj.khem[at]gmail.com)
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.216.175 listed in list.dnswl.org]
+	*      [209.85.216.194 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,59 +19,45 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qt0-f175.google.com (mail-qt0-f175.google.com
-	[209.85.216.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4CB32E00E99
-	for <yocto@yoctoproject.org>; Thu, 21 Jul 2016 06:27:40 -0700 (PDT)
-Received: by mail-qt0-f175.google.com with SMTP id x25so43688802qtx.2
-	for <yocto@yoctoproject.org>; Thu, 21 Jul 2016 06:27:40 -0700 (PDT)
+Received: from mail-qt0-f194.google.com (mail-qt0-f194.google.com
+	[209.85.216.194])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 86042E00E77
+	for <yocto@yoctoproject.org>; Thu, 21 Jul 2016 06:39:02 -0700 (PDT)
+Received: by mail-qt0-f194.google.com with SMTP id j37so3796664qta.0
+	for <yocto@yoctoproject.org>; Thu, 21 Jul 2016 06:39:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=1XsEhnv5kShKmL2968o86rVfZwmQZJAo/Za3mxaGsNs=;
-	b=IC/pVf+zGb1RZWdFleWV5bC+2SbO+AA3EzVjmUe10oc4qC0qE6GnG8bCetKDWjj/7D
-	BkO7Ao85tFIQ/60a6A2EziDA2Vq8xn7HqntY31ATcGY8nxEjpp/kRIkp/myBiiYQR4jW
-	BbKblccGpYQxw4jyMc6S7lxz7lLM2v9MHbeHmeVyryCkUldb4itEMAGsSmAMwr8uvJrs
-	enD1bei+80TL6OJ+3tw6uc1PF55+mhLt//7U//PJW2bF05naoJ0uOrSuYN6Rov90aSya
-	af5Tuf66212W5mB0l2TxANBGAMn7JgCAtNTPhGVjtTZ8CnhEx0oYTGM5yx62Ws6x9Ai3
-	pJqA==
+	:cc; bh=JXUNWW2qzDm36NED31US8mXdqr4MxMxIBmR1BuFtNhI=;
+	b=QQIuGFq4lX7/hJdkqysxtkEyi18lvNOt0s/HfGN91UIwqJY80TR8y84j/OD+IdUNDw
+	HFKiJp6HANCYJlA8irqHBZ83HROZl15h5X9EtD2QRPeFuxkTfUehly9/+qI8+Nui/q1a
+	y2YL2obXExoJO6I9KLyoK/VNNi4nq7SEWfVudOXv+u4/N/TsQWJtPNJQp+3qTXZWth+y
+	AlYfln6C86XyelzUhki/DJbL3ZHDDGxiyS6zaPcFx4VMvHPw9N7JMFANgS/TxLsM1Nnb
+	6FBzWnJ53fjkkwZOXfBSKG+oWPWb6bGQ3zECKu+RQaVXbgn+qCulwFaq695AcFPWmlZa
+	b75A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=1XsEhnv5kShKmL2968o86rVfZwmQZJAo/Za3mxaGsNs=;
-	b=Pw/Iz+8FkugknxrR7XQPHnbKZtU+9L0qk7frsXGEqUmNIzZUraZryZgFwEHR3h+wyj
-	n8uP/Hd8xw7lkDP9C7Vq8Xv5VzrhIl9PjWN5yIYkHmjrp6u8efZV0pzE0e2T79TTFvGD
-	drH45mfHr12lgDkf4UuFH5gdyD7hwRPuYhWc/KYITxdT7XmShtZnuIntrumHfN1q2+A4
-	r+wnhGarBsVaihRFhj6kOcEdy2zSjElXt1Fnb4cB/eEr3K6RQDUSeZEJzsJ1PIB3ROf1
-	I/hIDuvqTfg+RPP0ONQQnuuW0vAHQcRdGAJZ3v6vbcVZi4gmtmkz1Yxd56UHxfNrWHBE
-	KJSA==
-X-Gm-Message-State: ALyK8tINA4fPyG70Vv6u2INsAmyHITAEQR73caMH4v+J93J3ZtreMNgQN89wKI2HOrXNKtMDxcx3HKX8Rsa3HA==
-X-Received: by 10.237.35.76 with SMTP id i12mr43533303qtc.41.1469107659886;
-	Thu, 21 Jul 2016 06:27:39 -0700 (PDT)
+	:message-id:subject:to:cc;
+	bh=JXUNWW2qzDm36NED31US8mXdqr4MxMxIBmR1BuFtNhI=;
+	b=feWPQ+ZpvGU5yP6LSE+4CuWdHuZPnQpmT3vYvyHBl7lBG3Vh0TT+pxAQsPlZyhE+LK
+	eihg/fubsOoPZxnHwF448GvOwvGl5l5ftIGPESQTnXRsW7D5sog8SBY1guoY7uFV0ALH
+	Op3WZrBoPIky2ENYrj7nM4gNnmAbgU/t5naPMb55Sk0NdL+J4SWznmGTt5mhbOIENJVF
+	ioHny+QcSh902fhY8XbIhp0z4jJTo8VV179jYi+3Z/tSfqisTTzQumnztp/KI0CdLLWz
+	R2UPuVuUnv3o4U9gwFvsbJ+t8l+ZL5fVKuh6ahNy6iHZnJFJxQVUO5bSDtELLWafuy+L
+	XJMw==
+X-Gm-Message-State: ALyK8tInDAOW5NrgeiRveA/d9vvB+ZpouzJ4fhewzx9rI1Ylerr6kej4viXCnAl57+tVpY2LXtXAJF+/6S6b2A==
+X-Received: by 10.237.50.35 with SMTP id y32mr43506660qtd.98.1469108342371;
+	Thu, 21 Jul 2016 06:39:02 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.55.214.83 with HTTP; Thu, 21 Jul 2016 06:27:10 -0700 (PDT)
-In-Reply-To: <CAEfap_Dg4cKZokee=fprKrNCRod9gP-F_7qFcmQiXcnnB0qyMQ@mail.gmail.com>
-References: <CAEfap_CAJpEnc6xWUbcYUkMx2CRa2HVT+FOBXy+rYb67jv16gw@mail.gmail.com>
-	<CAMKF1soyZBMzFUo0FLgk3Hb69PfMGiyQ7TNqsDBdVdHz7UNX8w@mail.gmail.com>
-	<CAEfap_BV6LRYUyG3u9oLDvXrpy9ztgVM-UaPNSHo9i1xbNj24w@mail.gmail.com>
-	<CAMKF1sqGSWkd-aTcY3fNk=88iL8BW5ihGnvSy14bCiSfeVUvzw@mail.gmail.com>
-	<CAEfap_BpFoi66j9PJO=PiZURULiivtR0Z6yCSedebLgTvzcY0g@mail.gmail.com>
-	<CAEfap_DQrSiDkDrBH7T7Ecez5R2D-KM_V+Lnm2nombozFBKF4w@mail.gmail.com>
-	<CAMKF1srjRAkFueO5A-dXy-E+n4PjpcZM57xF=BbU7P7NJH4csg@mail.gmail.com>
-	<CAEfap_ATPbqdD9H6gYikvs+Afa6XhxvbC-DU9-v-sUzhCANE9Q@mail.gmail.com>
-	<CAEfap_BDcUGfDEViXOQ6TiT16bcsxOjUBCsd5xaKEOpr_+EJPQ@mail.gmail.com>
-	<CAMKF1so2w-6-vvtvubJcGw-HF0As2WaymTweoOnJX1_LCYpv0w@mail.gmail.com>
-	<CAEfap_C=OON++bN=VWhF8-WC=Kpt-esTEMzNjUSfCxytiYS+yQ@mail.gmail.com>
-	<CAEfap_C-JBVEo9jmPf02E+tK2uzO00gCjRPzA3JNkij0J6MdmQ@mail.gmail.com>
-	<CAMKF1soBbUcqK9y1Dx8dnXiy6v92ZhtQS_Ghu46nQphj1V3CkA@mail.gmail.com>
-	<CAEfap_Dg4cKZokee=fprKrNCRod9gP-F_7qFcmQiXcnnB0qyMQ@mail.gmail.com>
+Received: by 10.55.214.83 with HTTP; Thu, 21 Jul 2016 06:38:33 -0700 (PDT)
+In-Reply-To: <1469090900-29903-1-git-send-email-thomas.perrot@tupi.fr>
+References: <1469090900-29903-1-git-send-email-thomas.perrot@tupi.fr>
 From: Khem Raj <raj.khem@gmail.com>
-Date: Thu, 21 Jul 2016 06:27:10 -0700
-Message-ID: <CAMKF1soc7o7_8J4A1MXwOU+ZYiAysjNuNZDBj_xN+Z3tbfoUPQ@mail.gmail.com>
-To: Simon Bolek <simon.bolek@googlemail.com>
+Date: Thu, 21 Jul 2016 06:38:33 -0700
+Message-ID: <CAMKF1sqMoqDB7DVaKUnX8BcnvSJ4V6PLk8ZnkeFae1nfgCn8_w@mail.gmail.com>
+To: Thomas Perrot <thomas.perrot@tupi.fr>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [genericx86-jethro] core-image-sato HDDIMG 'install' - no hard drive selected - /etc/fstab no such file or directory
+Subject: Re: [meta-security][PATCH] Fix a trousers build on when not in use systemd: unparsed line: 'inherit'
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -83,587 +69,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Jul 2016 13:27:43 -0000
+X-List-Received-Date: Thu, 21 Jul 2016 13:39:05 -0000
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jul 21, 2016 at 2:15 AM, Simon Bolek <simon.bolek@googlemail.com> w=
-rote:
-> Hi Raj,
-> Thank you.
-> I have already tried this.
+On Thu, Jul 21, 2016 at 1:48 AM, Thomas Perrot <thomas.perrot@tupi.fr> wrote:
+> Signed-off-by: Thomas Perrot <thomas.perrot@tupi.fr>
+> ---
+>  recipes-tpm/trousers/trousers_0.3.13.bb | 3 +--
+>  1 file changed, 1 insertion(+), 2 deletions(-)
 >
-> I managed to start the USB installation by addding
-> kernel-modules
-> to core-image-minimal-initramfs.bb
+> diff --git a/recipes-tpm/trousers/trousers_0.3.13.bb b/recipes-tpm/trousers/trousers_0.3.13.bb
+> index e274972..6853f18 100644
+> --- a/recipes-tpm/trousers/trousers_0.3.13.bb
+> +++ b/recipes-tpm/trousers/trousers_0.3.13.bb
+> @@ -16,8 +16,7 @@ SRC_URI = "http://sourceforge.net/projects/trousers/files/${BPN}/${PV}/${BPN}-${
+>  SRC_URI[md5sum] = "ad508f97b406f6e48cd90e85d78e7ca8"
+>  SRC_URI[sha256sum] = "bb908e4a3c88a17b247a4fc8e0fff3419d8a13170fe7bdfbe0e2c5c082a276d3"
 >
-> However after the installation, system will not boot up due to kernel pan=
-ic:
-> VFS: Cannot open root device "sda2" or unknown block (0,0) Please append =
-a
-> correct "root=3D" boot option;
+> -inherit autotools pkgconfig useradd update-rc.d
+> -inherit ${@bb.utils.contains('VIRTUAL-RUNTIME_init_manager','systemd','systemd','', d)}
+> +inherit autotools pkgconfig useradd update-rc.d ${@bb.utils.contains('VIRTUAL-RUNTIME_init_manager','systemd','systemd','', d)}
 
-can you add
-
-SYSLINUX_ROOT =3D "root=3D/dev/hda2"
-
-to local.conf and rebuild ?
+while this is ok. For consistency may be check for systemd in
+DISTRO_FEATURES check is better since thats what is used in other
+places.
 
 >
-> It seems, the SDD hard drive is found on installation time, but not on bo=
-ot
-> time.
-> How is that possible? It did work with FIDO, but is not working with JETH=
-RO.
-> Any hint what I have to look for now? Is it the drivers missing? Or maybe
-> some scripts not running at boot?
-> What will run at boot prior to mounting what is stated in root=3D in grub=
-.cfg?
+>  PACKAGECONFIG ?= "gmp "
+>  PACKAGECONFIG[gmp] = "--with-gmp, --with-gmp=no, gmp"
+> --
+> 2.1.4
 >
-> kind regards
-> Simon :-)
->
->
-> On Sat, Jul 16, 2016 at 2:02 AM, Khem Raj <raj.khem@gmail.com> wrote:
->>
->> On Fri, Jul 15, 2016 at 3:17 PM, Simon Bolek <simon.bolek@googlemail.com=
->
->> wrote:
->> > Hi Raj,
->> >
->> > Maybe you could help me with this.
->> > I found out that during rootfs (meta/lib/oe/rootfs.py), depmodwrapper
->> > script
->> > is beeing called.
->> > I noticed, that it does generate /lib/modules/<kernel>.. directory
->> > structure
->> > under:
->> > poky/build/tmp/work/genericx86-poky-linux/core-image-sato
->> > However, at the end of the bitbake process, there is no /lib/modules
->> > direcotry in
->> > core-image-minimal-initramfs-genericx86-20160715210400.rootfs.cpio.gz
->> >
->> > Where are the steps, where this .cpio.gz file is beeing generated. The=
-re
->> > must be a place where all the files, that are inside, are beeing put
->> > together.
->>
->> initramfs image is a separate image. What you are seeing is the final
->> image.
->> you might have to add the kernel module to you machine conf
->>
->> MACHINE_EXTRA_RRECOMMENDS =3D " kernel-modules"
->>
->> >
->> > HELP!
->> > kind regards
->> > Simon :-)
->> >
->> >
->> >
->> > On Fri, Jul 15, 2016 at 10:59 AM, Simon Bolek
->> > <simon.bolek@googlemail.com>
->> > wrote:
->> >>
->> >> Thanks, but neither:
->> >> pkg_postinst_kernel-base ()
->> >> nor:
->> >> pkg_postinst_kernel-image ()
->> >> from /meta/classes/kernel.bbclass gets called when running:
->> >> - bitbake core-image-sato or
->> >> - bitbake linux-yocto
->> >>
->> >> I put some commands in there, which are definitely wrong (like foobar=
-)
->> >> and
->> >> bitbake run successfully.
->> >> Whereas, in other funtions it caused problems.
->> >> Any ideas how can fix this?
->> >>
->> >> thanks and best regards
->> >> Simon :-)
->> >>
->> >>
->> >> On Fri, Jul 15, 2016 at 1:30 AM, Khem Raj <raj.khem@gmail.com> wrote:
->> >>>
->> >>> On Thu, Jul 14, 2016 at 4:16 PM, Simon Bolek
->> >>> <simon.bolek@googlemail.com>
->> >>> wrote:
->> >>> > Hi Raj,
->> >>> >
->> >>> > About depmod again.
->> >>> > Should it be run from meta/classes/kernel.bbclass  ?
->> >>> > ...
->> >>> > pkg_postinst_kernel-base () {
->> >>> >     if [ ! -e "$D/lib/modules/${KERNEL_VERSION}" ]; then
->> >>> >         mkdir -p $D/lib/modules/${KERNEL_VERSION}
->> >>> >     fi
->> >>> >     if [ -n "$D" ]; then
->> >>> >         depmodwrapper -a -b $D ${KERNEL_VERSION}
->> >>> >     else
->> >>> >         depmod -a ${KERNEL_VERSION}
->> >>> >     fi
->> >>> > }
->> >>> > ...
->> >>> >
->> >>> > Where is this function beeing called?
->> >>>
->> >>> It should be called during rootfs and image creation time. as well a=
-s
->> >>> when you update the package using online package manager.
->> >>>
->> >>> > I did not find it anywhere.
->> >>> > thanks and kind regards
->> >>> > Simon :-)
->> >>> >
->> >>> > On Thu, Jul 14, 2016 at 8:32 AM, Simon Bolek
->> >>> > <simon.bolek@googlemail.com>
->> >>> > wrote:
->> >>> >>
->> >>> >>
->> >>> >> On Wed, Jul 13, 2016 at 4:56 PM, Khem Raj <raj.khem@gmail.com>
->> >>> >> wrote:
->> >>> >>>
->> >>> >>> On Wed, Jul 13, 2016 at 4:57 AM, Simon Bolek
->> >>> >>> <simon.bolek@googlemail.com>
->> >>> >>> wrote:
->> >>> >>> > Hi Raj,
->> >>> >>> >
->> >>> >>> > So i tried to do manually, what init script does and udev
->> >>> >>> > definitely
->> >>> >>> > does
->> >>> >>> > not recognize the SSD drive.
->> >>> >>> > I ran
->> >>> >>> >  /lib/udev/udevd --daemon --debug > udev.debug 2>&1 &
->> >>> >>> > from the cli and there is no trace of recognizing the SSD. Onl=
-y
->> >>> >>> > the
->> >>> >>> > /dev/sda, which is the USB stick I am running the installation
->> >>> >>> > from.
->> >>> >>> >
->> >>> >>> > I used 'meld' to compare the /initrd from current jethro image
->> >>> >>> > and
->> >>> >>> > previous
->> >>> >>> > working fido image.
->> >>> >>> > They are almost the same:
->> >>> >>> > - in jethro /lib/modules... file structure is missing with:
->> >>> >>> > modules.alias
->> >>> >>> > modules.alias.bin
->> >>> >>> > modules.builtin.bin
->> >>> >>> > modules.dep
->> >>> >>> > modules.dep.bin
->> >>> >>> > modules.devname
->> >>> >>> > modules.softdep
->> >>> >>> > modules.symbols
->> >>> >>> > modules.symbols.bin
->> >>> >>>
->> >>> >>> this means depmod did not run during initramfs image creation
->> >>> >>
->> >>> >> How can I make this happen during bitbake, so i have those files =
-in
->> >>> >> the
->> >>> >> HDDIMG?
->> >>> >>
->> >>> >>>
->> >>> >>> >
->> >>> >>> > - there are slight differences between
->> >>> >>> > /etc/init.d/udev
->> >>> >>> > /etc/udev/scripts/mount.sh
->> >>> >>> > , but I cannot tell, if this is the reason.
->> >>> >>>
->> >>> >>> what are the differences ?
->> >>> >>
->> >>> >>
->> >>> >> Sorry for this patch-like copy/paste, but this was the simplest w=
-ay
->> >>> >> of
->> >>> >> presenting the changes.
->> >>> >> Do you see something important here, that might cause the SDD not
->> >>> >> beeing
->> >>> >> recognized?
->> >>> >>
->> >>> >> --- /home/simon/Development/Yocto-Project/initrd-ok/etc/init.d/ud=
-ev
->> >>> >> +++
->> >>> >> /home/simon/Development/Yocto-Project/initrd-jethro/etc/init.d/ud=
-ev
->> >>> >> @@ -14,20 +14,27 @@
->> >>> >>  [ -d /sys/class ] || exit 1
->> >>> >>  [ -r /proc/mounts ] || exit 1
->> >>> >>  [ -x /lib/udev/udevd ] || exit 1
->> >>> >> +SYSCONF_CACHED=3D"/etc/udev/cache.data"
->> >>> >> +SYSCONF_TMP=3D"/dev/shm/udev.cache"
->> >>> >> +DEVCACHE_REGEN=3D"/dev/shm/udev-regen" # create to request cache
->> >>> >> regen
->> >>> >> +
->> >>> >> +# A list of files which are used as a criteria to judge whether
->> >>> >> the
->> >>> >> udev
->> >>> >> cache could be reused.
->> >>> >> +CMP_FILE_LIST=3D"/proc/version /proc/cmdline /proc/devices"
->> >>> >> +[ -f /proc/atags ] && CMP_FILE_LIST=3D"$CMP_FILE_LIST /proc/atag=
-s"
->> >>> >> +
->> >>> >> +# List of files whose metadata (size/mtime/name) will be include=
-d
->> >>> >> in
->> >>> >> cached
->> >>> >> +# system state.
->> >>> >> +META_FILE_LIST=3D"lib/udev/rules.d/* etc/udev/rules.d/*"
->> >>> >> +
->> >>> >> +# Command to compute system configuration.
->> >>> >> +sysconf_cmd () {
->> >>> >> +    cat -- $CMP_FILE_LIST
->> >>> >> +    stat -c '%s %Y %n' -- $META_FILE_LIST | awk -F/ '{print $1 "=
- "
->> >>> >> $NF;}'
->> >>> >> +}
->> >>> >> +
->> >>> >>  [ -f /etc/default/udev-cache ] && . /etc/default/udev-cache
->> >>> >>  [ -f /etc/udev/udev.conf ] && . /etc/udev/udev.conf
->> >>> >>  [ -f /etc/default/rcS ] && . /etc/default/rcS
->> >>> >> -
->> >>> >> -readfiles () {
->> >>> >> -   READDATA=3D""
->> >>> >> -   for filename in $@; do
->> >>> >> -       if [ -r $filename ]; then
->> >>> >> -           while read line; do
->> >>> >> -               READDATA=3D"$READDATA$line"
->> >>> >> -           done < $filename
->> >>> >> -       fi
->> >>> >> -   done
->> >>> >> -}
->> >>> >>
->> >>> >>  kill_udevd () {
->> >>> >>      pid=3D`pidof -x udevd`
->> >>> >> @@ -57,38 +64,35 @@
->> >>> >>      # the automount rule for udev needs /tmp directory available=
-,
->> >>> >> as
->> >>> >> /tmp
->> >>> >> is a symlink
->> >>> >>      # to /var/tmp which in turn is a symlink to /var/volatile/tm=
-p,
->> >>> >> we
->> >>> >> need to make sure
->> >>> >>      # /var/volatile/tmp directory to be available.
->> >>> >> -    mkdir -p /var/volatile/tmp
->> >>> >> +    mkdir -m 1777 -p /var/volatile/tmp
->> >>> >>
->> >>> >>      # Cache handling.
->> >>> >> -    # A list of files which are used as a criteria to judge
->> >>> >> whether
->> >>> >> the
->> >>> >> udev cache could be reused.
->> >>> >> -    CMP_FILE_LIST=3D"/proc/version /proc/cmdline /proc/devices
->> >>> >> /proc/atags"
->> >>> >>      if [ "$DEVCACHE" !=3D "" ]; then
->> >>> >>              if [ -e $DEVCACHE ]; then
->> >>> >> -            readfiles $CMP_FILE_LIST
->> >>> >> -            NEWDATA=3D"$READDATA"
->> >>> >> -            readfiles /etc/udev/cache.data
->> >>> >> -            OLDDATA=3D"$READDATA"
->> >>> >> -            if [ "$OLDDATA" =3D "$NEWDATA" ]; then
->> >>> >> -                            (cd /; tar xf $DEVCACHE > /dev/null
->> >>> >> 2>&1)
->> >>> >> +            sysconf_cmd > "$SYSCONF_TMP"
->> >>> >> +            if cmp $SYSCONF_CACHED $SYSCONF_TMP >/dev/null; then
->> >>> >> +                            tar xmf $DEVCACHE -C / -m
->> >>> >>                              not_first_boot=3D1
->> >>> >>                              [ "$VERBOSE" !=3D "no" ] && echo "ud=
-ev:
->> >>> >> using
->> >>> >> cache file $DEVCACHE"
->> >>> >> -                            [ -e /dev/shm/udev.cache ] && rm -f
->> >>> >> /dev/shm/udev.cache
->> >>> >> +                            [ -e $SYSCONF_TMP ] && rm -f
->> >>> >> "$SYSCONF_TMP"
->> >>> >> +                            [ -e "$DEVCACHE_REGEN" ] && rm -f
->> >>> >> "$DEVCACHE_REGEN"
->> >>> >>                      else
->> >>> >>                  # Output detailed reason why the cached /dev is
->> >>> >> not
->> >>> >> used
->> >>> >> -                if [ "$VERBOSE" !=3D "no" ]; then
->> >>> >> -                    echo "udev: udev cache not used"
->> >>> >> -                    echo "udev: we use $CMP_FILE_LIST as criteri=
-a
->> >>> >> to
->> >>> >> judge whether the cache /dev could be resued"
->> >>> >> -                    echo "udev: olddata: $OLDDATA"
->> >>> >> -                    echo "udev: newdata: $NEWDATA"
->> >>> >> -                fi
->> >>> >> -                echo "$NEWDATA" > /dev/shm/udev.cache
->> >>> >> +                cat <<EOF
->> >>> >> +udev: Not using udev cache because of changes detected in the
->> >>> >> following
->> >>> >> files:
->> >>> >> +udev:     $CMP_FILE_LIST
->> >>> >> +udev:     $META_FILE_LIST
->> >>> >> +udev: The udev cache will be regenerated. To identify the detect=
-ed
->> >>> >> changes,
->> >>> >> +udev: compare the cached sysconf at   $SYSCONF_CACHED
->> >>> >> +udev: against the current sysconf at  $SYSCONF_TMP
->> >>> >> +EOF
->> >>> >> +                touch "$DEVCACHE_REGEN"
->> >>> >>                      fi
->> >>> >>          else
->> >>> >>              if [ "$ROOTFS_READ_ONLY" !=3D "yes" ]; then
->> >>> >>                  # If rootfs is not read-only, it's possible that=
- a
->> >>> >> new
->> >>> >> udev cache would be generated;
->> >>> >>                  # otherwise, we do not bother to read files.
->> >>> >> -                readfiles $CMP_FILE_LIST
->> >>> >> -                echo "$READDATA" > /dev/shm/udev.cache
->> >>> >> +                touch "$DEVCACHE_REGEN"
->> >>> >>              fi
->> >>> >>              fi
->> >>> >>      fi
->> >>> >> @@ -97,7 +101,7 @@
->> >>> >>      kill_udevd > "/dev/null" 2>&1
->> >>> >>
->> >>> >>      # trigger the sorted events
->> >>> >> -    echo -e '\000\000\000\000' > /proc/sys/kernel/hotplug
->> >>> >> +    [ -e /proc/sys/kernel/hotplug ] && echo -e '\000'
->> >>> >> >/proc/sys/kernel/hotplug
->> >>> >>      /lib/udev/udevd -d
->> >>> >>
->> >>> >>      udevadm control --env=3DSTARTUP=3D1
->> >>> >>
->> >>> >>
->> >>> >>>
->> >>> >>> >
->> >>> >>> > Unfortunately I did not dig inside binary /lib/udev/udevd.
->> >>> >>> >
->> >>> >>> > So do you have any other ideas, what might be the reason for n=
-ot
->> >>> >>> > recognizing
->> >>> >>> > the SSD? Maybe there are some additional recipes needed from
->> >>> >>> > jethro
->> >>> >>> > on?
->> >>> >>> >
->> >>> >>> >
->> >>> >>> > thanks & kind regards
->> >>> >>> > Simon :-)
->> >>> >>> >
->> >>> >>> > mit freundlichem Gruss / kind regards / pozdrawiam
->> >>> >>> > Simon P. Bolek
->> >>> >>> > ------------------------------------------------------
->> >>> >>> > Dipl. Inf. Simon P. Bolek
->> >>> >>> > SAP Integration Architect
->> >>> >>> > Business Mobile and IVI Solutions
->> >>> >>> > mailto: simon.bolek@arcom-ivi.de
->> >>> >>> > http://www.arcom-ivi.de/
->> >>> >>> > XING: https://www.xing.com/profile/SimonP_Bolek
->> >>> >>> >
->> >>> >>> > On Wed, Jul 13, 2016 at 9:03 AM, Simon Bolek
->> >>> >>> > <simon.bolek@googlemail.com>
->> >>> >>> > wrote:
->> >>> >>> >>
->> >>> >>> >> Thank you,
->> >>> >>> >>
->> >>> >>> >> I just guess, that it is the following function in init scrip=
-t
->> >>> >>> >> to
->> >>> >>> >> put
->> >>> >>> >> the
->> >>> >>> >> echos to? Is it?
->> >>> >>> >>
->> >>> >>> >> udev_daemon() {
->> >>> >>> >>     OPTIONS=3D"/sbin/udev/udevd /sbin/udevd /lib/udev/udevd
->> >>> >>> >> /lib/systemd/systemd-udevd"
->> >>> >>> >>
->> >>> >>> >>     for o in $OPTIONS; do
->> >>> >>> >>         if [ -x "$o" ]; then
->> >>> >>> >>             echo $o
->> >>> >>> >>             return 0
->> >>> >>> >>         fi
->> >>> >>> >>     done
->> >>> >>> >>
->> >>> >>> >>     return 1
->> >>> >>> >> }
->> >>> >>> >>
->> >>> >>> >>
->> >>> >>> >> cheers
->> >>> >>> >> Simon:-)
->> >>> >>> >>
->> >>> >>> >> Viele Gr=C3=BCsse
->> >>> >>> >> Simon Bolek :-)
->> >>> >>> >>
->> >>> >>> >> mit freundlichem Gruss / kind regards / pozdrawiam
->> >>> >>> >> Simon P. Bolek
->> >>> >>> >> ------------------------------------------------------
->> >>> >>> >> Dipl. Inf. Simon P. Bolek
->> >>> >>> >> SAP Integration Architect
->> >>> >>> >> Business Mobile and IVI Solutions
->> >>> >>> >> mailto: simon.bolek@arcom-ivi.de
->> >>> >>> >> http://www.arcom-ivi.de/
->> >>> >>> >> XING: https://www.xing.com/profile/SimonP_Bolek
->> >>> >>> >>
->> >>> >>> >> On Wed, Jul 13, 2016 at 8:36 AM, Khem Raj <raj.khem@gmail.com=
->
->> >>> >>> >> wrote:
->> >>> >>> >>>
->> >>> >>> >>> On Tue, Jul 12, 2016 at 11:28 PM, Simon Bolek
->> >>> >>> >>> <simon.bolek@googlemail.com> wrote:
->> >>> >>> >>> > Thank you Raj,
->> >>> >>> >>> >
->> >>> >>> >>> > Is there a standard way to activate these initramfs logs, =
-or
->> >>> >>> >>> > do
->> >>> >>> >>> > I
->> >>> >>> >>> > have
->> >>> >>> >>> > to
->> >>> >>> >>> > implement it myself somewhere?
->> >>> >>> >>>
->> >>> >>> >>> you have to add printf etc. yourself into the init script in
->> >>> >>> >>> initramfs
->> >>> >>> >>> image
->> >>> >>> >>>
->> >>> >>> >>> >
->> >>> >>> >>> > thank you and kind regards
->> >>> >>> >>> > Simon :-)
->> >>> >>> >>> >
->> >>> >>> >>> > Viele Gr=C3=BCsse
->> >>> >>> >>> > Simon Bolek :-)
->> >>> >>> >>> >
->> >>> >>> >>> > mit freundlichem Gruss / kind regards / pozdrawiam
->> >>> >>> >>> > Simon P. Bolek
->> >>> >>> >>> > ------------------------------------------------------
->> >>> >>> >>> > Dipl. Inf. Simon P. Bolek
->> >>> >>> >>> > SAP Integration Architect
->> >>> >>> >>> > Business Mobile and IVI Solutions
->> >>> >>> >>> > mailto: simon.bolek@arcom-ivi.de
->> >>> >>> >>> > http://www.arcom-ivi.de/
->> >>> >>> >>> > XING: https://www.xing.com/profile/SimonP_Bolek
->> >>> >>> >>> >
->> >>> >>> >>> > On Wed, Jul 13, 2016 at 1:36 AM, Khem Raj
->> >>> >>> >>> > <raj.khem@gmail.com>
->> >>> >>> >>> > wrote:
->> >>> >>> >>> >>
->> >>> >>> >>> >> On Tue, Jul 12, 2016 at 3:45 AM, Simon Bolek
->> >>> >>> >>> >> <simon.bolek@googlemail.com>
->> >>> >>> >>> >> wrote:
->> >>> >>> >>> >> > Hello everyone!
->> >>> >>> >>> >> >
->> >>> >>> >>> >> > I am trying to install genericx86 core-image-sato
->> >>> >>> >>> >> > (jethro)
->> >>> >>> >>> >> > HDDIMG to
->> >>> >>> >>> >> > an
->> >>> >>> >>> >> > atom-pc.
->> >>> >>> >>> >> > For this 2GB USB stick is used.
->> >>> >>> >>> >> > When choosing 'install' option from boot menu I get the
->> >>> >>> >>> >> > message:
->> >>> >>> >>> >> >
->> >>> >>> >>> >> > "Searching for hard drives...
->> >>> >>> >>> >> > No hard drive selected. Installation aborted."
->> >>> >>> >>> >> >
->> >>> >>> >>> >> > Installatiion stops and i get the console.
->> >>> >>> >>> >> > When I try to run fsck, it says: can't read '/etc/fstab=
-':
->> >>> >>> >>> >> > No
->> >>> >>> >>> >> > such
->> >>> >>> >>> >> > file
->> >>> >>> >>> >> > or
->> >>> >>> >>> >> > directory
->> >>> >>> >>> >> >
->> >>> >>> >>> >> > fdisk -l  shows only the partitions of USB stick.
->> >>> >>> >>> >> >
->> >>> >>> >>> >> > After I choose 'boot' option to boot into live image, S=
-DD
->> >>> >>> >>> >> > drive
->> >>> >>> >>> >> > is
->> >>> >>> >>> >> > under
->> >>> >>> >>> >> > /dev/sdb and USB installation stick under /dev/sda,
->> >>> >>> >>> >> >
->> >>> >>> >>> >> > What recipe/package is my installation missing? The SSD
->> >>> >>> >>> >> > hard
->> >>> >>> >>> >> > drive
->> >>> >>> >>> >> > is
->> >>> >>> >>> >> > not
->> >>> >>> >>> >> > recognized for some reason. With previous yocto release=
-s
->> >>> >>> >>> >> > this
->> >>> >>> >>> >> > package
->> >>> >>> >>> >> > list
->> >>> >>> >>> >> > DID work fine.
->> >>> >>> >>> >> > So there is something missing in the background.
->> >>> >>> >>> >> > Do you have any idea what this might be?
->> >>> >>> >>> >>
->> >>> >>> >>> >> udev should have run and found your hdd. So it seems its
->> >>> >>> >>> >> not
->> >>> >>> >>> >> finding
->> >>> >>> >>> >> it when running from initramfs. Can you try to add logs t=
-o
->> >>> >>> >>> >> initramfs
->> >>> >>> >>> >> and see what udev is doing ?
->> >>> >>> >>> >>
->> >>> >>> >>> >> >
->> >>> >>> >>> >> > Below is my package list from local.conf.
->> >>> >>> >>> >> >
->> >>> >>> >>> >> > thank you and kind regards
->> >>> >>> >>> >> > Simon :-)
->> >>> >>> >>> >> >
->> >>> >>> >>> >> > EXTRA_IMAGE_FEATURES =3D "debug-tweaks ssh-server-opens=
-sh"
->> >>> >>> >>> >> > IMAGE_INSTALL_append =3D " make \
->> >>> >>> >>> >> >      initscripts \
->> >>> >>> >>> >> >      grub \
->> >>> >>> >>> >> >      initramfs-boot \
->> >>> >>> >>> >> >      syslinux \
->> >>> >>> >>> >> >      initramfs-live-install \
->> >>> >>> >>> >> >      initramfs-live-install-efi \
->> >>> >>> >>> >> >      initramfs-live-boot \
->> >>> >>> >>> >> >      xinit \
->> >>> >>> >>> >> >      xwininfo \
->> >>> >>> >>> >> >      openssh-sftp \
->> >>> >>> >>> >> >      openssh-sftp-server \
->> >>> >>> >>> >> >      qtbase-plugins \
->> >>> >>> >>> >> >      qtconnectivity \
->> >>> >>> >>> >> >      qtdeclarative \
->> >>> >>> >>> >> >      qtdeclarative-plugins \
->> >>> >>> >>> >> >      qtdeclarative-tools \
->> >>> >>> >>> >> >      qtdeclarative-qmlplugins \
->> >>> >>> >>> >> >      qtenginio \
->> >>> >>> >>> >> >      qtlocation \
->> >>> >>> >>> >> >      qtmultimedia \
->> >>> >>> >>> >> >      qtmultimedia-plugins \
->> >>> >>> >>> >> >      qtmultimedia-qmlplugins \
->> >>> >>> >>> >> >      qtsystems \
->> >>> >>> >>> >> > "
->> >>> >>> >>> >> >
->> >>> >>> >>> >> > Viele Gr=C3=BCsse
->> >>> >>> >>> >> > Simon Bolek :-)
->> >>> >>> >>> >> >
->> >>> >>> >>> >> > mit freundlichem Gruss / kind regards / pozdrawiam
->> >>> >>> >>> >> > Simon P. Bolek
->> >>> >>> >>> >> > ------------------------------------------------------
->> >>> >>> >>> >> > Dipl. Inf. Simon P. Bolek
->> >>> >>> >>> >> > SAP Integration Architect
->> >>> >>> >>> >> > Business Mobile and IVI Solutions
->> >>> >>> >>> >> > mailto: simon.bolek@arcom-ivi.de
->> >>> >>> >>> >> > http://www.arcom-ivi.de/
->> >>> >>> >>> >> > XING: https://www.xing.com/profile/SimonP_Bolek
->> >>> >>> >>> >> >
->> >>> >>> >>> >> > --
->> >>> >>> >>> >> > _______________________________________________
->> >>> >>> >>> >> > yocto mailing list
->> >>> >>> >>> >> > yocto@yoctoproject.org
->> >>> >>> >>> >> > https://lists.yoctoproject.org/listinfo/yocto
->> >>> >>> >>> >> >
->> >>> >>> >>> >
->> >>> >>> >>> >
->> >>> >>> >>
->> >>> >>> >>
->> >>> >>> >
->> >>> >>
->> >>> >>
->> >>> >
->> >>
->> >>
->> >
->
->
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
