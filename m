@@ -1,6 +1,6 @@
 Return-Path: <herve.jourdain@neuf.fr>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D4840E00EC2; Thu, 21 Jul 2016 05:32:54 -0700 (PDT)
+	id 351A4E00EC3; Thu, 21 Jul 2016 05:32:56 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,28 +12,28 @@ X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from smtp26.services.sfr.fr (smtp26.services.sfr.fr [93.17.128.10])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 166C1E00EB9
-	for <yocto@yoctoproject.org>; Thu, 21 Jul 2016 05:32:54 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CBF6FE00EBF
+	for <yocto@yoctoproject.org>; Thu, 21 Jul 2016 05:32:55 -0700 (PDT)
 Received: from localhost.localdomain (unknown [74.95.113.124])
-	by msfrf2625.sfr.fr (SMTP Server) with ESMTP id 7E5301C00043A;
-	Thu, 21 Jul 2016 14:32:53 +0200 (CEST)
+	by msfrf2625.sfr.fr (SMTP Server) with ESMTP id 3FD271C00043A;
+	Thu, 21 Jul 2016 14:32:55 +0200 (CEST)
 Received: from localhost.localdomain (unknown [74.95.113.124])	(using TLSv1.2
 	with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))	(No client
 	certificate requested)	(Authenticated sender: herve.jourdain@neuf.fr)
 	by msfrf2625.sfr.fr (SMTP Server) with ESMTPSA;
-	Thu, 21 Jul 2016 14:32:52 +0200 (CEST)
+	Thu, 21 Jul 2016 14:32:54 +0200 (CEST)
 Authentication-Results: sfr.fr; auth=pass (PLAIN)
 	smtp.auth=herve.jourdain@neuf.fr
 From: Herve Jourdain <herve.jourdain@neuf.fr>
 To: yocto@yoctoproject.org
-Date: Thu, 21 Jul 2016 20:32:12 +0800
-Message-Id: <1469104337-21068-8-git-send-email-herve.jourdain@neuf.fr>
+Date: Thu, 21 Jul 2016 20:32:13 +0800
+Message-Id: <1469104337-21068-9-git-send-email-herve.jourdain@neuf.fr>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1469104337-21068-1-git-send-email-herve.jourdain@neuf.fr>
 References: <1469104337-21068-1-git-send-email-herve.jourdain@neuf.fr>
 X-sfr-mailing: LEGIT
 MIME-Version: 1.0
-Subject: [meta-raspberrypi][PATCH v4 07/12] rpi-config_git.bb: add v4c overlay to config.txt to support vc4graphics
+Subject: [meta-raspberrypi][PATCH v4 08/12] wayland/weston_%.bbappend: modify configuration options to support vc4graphics
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,46 +45,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Jul 2016 12:32:54 -0000
+X-List-Received-Date: Thu, 21 Jul 2016 12:32:56 -0000
 
 Signed-off-by: Herve Jourdain <herve.jourdain@neuf.fr>
 ---
- recipes-bsp/bootfiles/rpi-config_git.bb | 10 +++++++++-
- 1 file changed, 9 insertions(+), 1 deletion(-)
+ recipes-graphics/wayland/weston_%.bbappend | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
 
-diff --git a/recipes-bsp/bootfiles/rpi-config_git.bb b/recipes-bsp/bootfiles/rpi-config_git.bb
-index 4bc8eb7..f610718 100644
---- a/recipes-bsp/bootfiles/rpi-config_git.bb
-+++ b/recipes-bsp/bootfiles/rpi-config_git.bb
-@@ -13,12 +13,14 @@ SRC_URI = "git://github.com/Evilpaul/RPi-config.git;protocol=git;branch=master \
- 
- S = "${WORKDIR}/git"
- 
--PR = "r4"
-+PR = "r5"
- 
- PITFT="${@bb.utils.contains("MACHINE_FEATURES", "pitft", "1", "0", d)}"
- PITFT22="${@bb.utils.contains("MACHINE_FEATURES", "pitft22", "1", "0", d)}"
- PITFT28r="${@bb.utils.contains("MACHINE_FEATURES", "pitft28r", "1", "0", d)}"
- 
-+VC4GRAPHICS="${@bb.utils.contains("MACHINE_FEATURES", "vc4graphics", "1", "0", d)}"
+diff --git a/recipes-graphics/wayland/weston_%.bbappend b/recipes-graphics/wayland/weston_%.bbappend
+index c3a7421..57b8079 100644
+--- a/recipes-graphics/wayland/weston_%.bbappend
++++ b/recipes-graphics/wayland/weston_%.bbappend
+@@ -1,4 +1,2 @@
+-EXTRA_OECONF_append_rpi = "\
+-        --enable-rpi-compositor \
+-        WESTON_NATIVE_BACKEND=rpi-backend.so \
+-       "
++EXTRA_OECONF_append_rpi = "${@bb.utils.contains('MACHINE_FEATURES', 'vc4graphics', '', ' --enable-rpi-compositor WESTON_NATIVE_BACKEND=rpi-backend.so', d)}"
 +
- inherit deploy
- 
- do_deploy() {
-@@ -102,6 +104,12 @@ do_deploy() {
-         echo "# Enable UART" >>${DEPLOYDIR}/bcm2835-bootfiles/config.txt
-         echo "enable_uart=1" >>${DEPLOYDIR}/bcm2835-bootfiles/config.txt
-     fi
-+
-+    # VC4 Graphics support
-+    if [ "${VC4GRAPHICS}" = "1" ]; then
-+        echo "# Enable VC4 Graphics" >> ${DEPLOYDIR}/bcm2835-bootfiles/config.txt
-+        echo "dtoverlay=vc4-kms-v3d,${VC4_CMA_SIZE}" >> ${DEPLOYDIR}/bcm2835-bootfiles/config.txt
-+    fi
- }
- 
- addtask deploy before do_package after do_install
 -- 
 2.7.4
 
