@@ -1,6 +1,6 @@
 Return-Path: <herve.jourdain@neuf.fr>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B43AEE00EE6; Thu, 21 Jul 2016 05:33:03 -0700 (PDT)
+	id EFAE5E00EC9; Thu, 21 Jul 2016 05:33:04 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,28 +12,28 @@ X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from smtp26.services.sfr.fr (smtp26.services.sfr.fr [93.17.128.10])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7ACF8E00EC2
-	for <yocto@yoctoproject.org>; Thu, 21 Jul 2016 05:32:59 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4A520E00ECE
+	for <yocto@yoctoproject.org>; Thu, 21 Jul 2016 05:33:01 -0700 (PDT)
 Received: from localhost.localdomain (unknown [74.95.113.124])
-	by msfrf2625.sfr.fr (SMTP Server) with ESMTP id E28AF1C00043A;
-	Thu, 21 Jul 2016 14:32:58 +0200 (CEST)
+	by msfrf2625.sfr.fr (SMTP Server) with ESMTP id B1E741C00043A;
+	Thu, 21 Jul 2016 14:33:00 +0200 (CEST)
 Received: from localhost.localdomain (unknown [74.95.113.124])	(using TLSv1.2
 	with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))	(No client
 	certificate requested)	(Authenticated sender: herve.jourdain@neuf.fr)
 	by msfrf2625.sfr.fr (SMTP Server) with ESMTPSA;
-	Thu, 21 Jul 2016 14:32:58 +0200 (CEST)
+	Thu, 21 Jul 2016 14:32:59 +0200 (CEST)
 Authentication-Results: sfr.fr; auth=pass (PLAIN)
 	smtp.auth=herve.jourdain@neuf.fr
 From: Herve Jourdain <herve.jourdain@neuf.fr>
 To: yocto@yoctoproject.org
-Date: Thu, 21 Jul 2016 20:32:15 +0800
-Message-Id: <1469104337-21068-11-git-send-email-herve.jourdain@neuf.fr>
+Date: Thu, 21 Jul 2016 20:32:16 +0800
+Message-Id: <1469104337-21068-12-git-send-email-herve.jourdain@neuf.fr>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1469104337-21068-1-git-send-email-herve.jourdain@neuf.fr>
 References: <1469104337-21068-1-git-send-email-herve.jourdain@neuf.fr>
 X-sfr-mailing: LEGIT
 MIME-Version: 1.0
-Subject: [meta-raspberrypi][PATCH v4 10/12] mesa_%.bbappend: new file to add the correct configuration options to support vc4graphics
+Subject: [meta-raspberrypi][PATCH v4 11/12] linux-rpi.inc: add the configuration options required to support vc4graphics
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,24 +45,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Jul 2016 12:33:03 -0000
+X-List-Received-Date: Thu, 21 Jul 2016 12:33:05 -0000
 
 Signed-off-by: Herve Jourdain <herve.jourdain@neuf.fr>
 ---
- recipes-graphics/mesa/mesa_%.bbappend | 4 ++++
- 1 file changed, 4 insertions(+)
- create mode 100644 recipes-graphics/mesa/mesa_%.bbappend
+ recipes-kernel/linux/linux-rpi.inc | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-diff --git a/recipes-graphics/mesa/mesa_%.bbappend b/recipes-graphics/mesa/mesa_%.bbappend
-new file mode 100644
-index 0000000..b182388
---- /dev/null
-+++ b/recipes-graphics/mesa/mesa_%.bbappend
-@@ -0,0 +1,4 @@
-+PACKAGECONFIG_append_rpi = " gallium"
-+GALLIUMDRIVERS_rpi = "vc4"
-+DRIDRIVERS_rpi = ""
+diff --git a/recipes-kernel/linux/linux-rpi.inc b/recipes-kernel/linux/linux-rpi.inc
+index 4b65fc2..3eeefee 100644
+--- a/recipes-kernel/linux/linux-rpi.inc
++++ b/recipes-kernel/linux/linux-rpi.inc
+@@ -111,6 +111,16 @@ do_configure_prepend() {
+     # Activate CONFIG_LEGACY_PTYS
+     kernel_configure_variable LEGACY_PTYS y
+ 
++    # Activate the configuration options for VC4
++    VC4GRAPHICS="${@bb.utils.contains("MACHINE_FEATURES", "vc4graphics", "1", "0", d)}"
++    if [ ${VC4GRAPHICS} = "1" ]; then
++        kernel_configure_variable I2C_BCM2835 y
++        kernel_configure_variable DRM y
++        kernel_configure_variable DRM_FBDEV_EMULATION n
++        kernel_configure_variable DRM_VC4 y
++        kernel_configure_variable FB_BCM2708 n
++    fi
 +
+     # Keep this the last line
+     # Remove all modified configs and add the rest to .config
+     sed -e "${CONF_SED_SCRIPT}" < '${WORKDIR}/defconfig' >> '${B}/.config'
 -- 
 2.7.4
 
