@@ -1,42 +1,60 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
+Return-Path: <vijayakumarmb@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E8BE2E00C80; Thu, 21 Jul 2016 10:01:37 -0700 (PDT)
+	id ED67AE00E08; Thu, 21 Jul 2016 14:51:58 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (vijayakumarmb[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 43B26E00C69
-	for <yocto@yoctoproject.org>; Thu, 21 Jul 2016 10:01:34 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id u6LH1VUm003911
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 21 Jul 2016 10:01:32 -0700 (PDT)
-Received: from [128.224.56.48] (128.224.56.48) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.248.2;
-	Thu, 21 Jul 2016 10:01:31 -0700
-To: Jacob Kroon <jacob.kroon@gmail.com>
-References: <CAPbeDCmbBpkOe9PY8UJMYUg2e9ddwSEiJufXFwyY_MkzaKJm6w@mail.gmail.com>
-	<a2afecd0-e6c0-ee36-5643-c08ecfd7adbb@windriver.com>
-	<CAPbeDC=7xHq6WaT8zfvAD3e17GhdkpKoog5wFg=aJwe05ruwyQ@mail.gmail.com>
-	<5790C6F8.3060402@windriver.com> <5790C8ED.5040107@windriver.com>
-	<CAPbeDCkck+wXjE3dhCZdix2CUkp1A0ZNo0G_=zM_7JXYzQdQtg@mail.gmail.com>
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-Message-ID: <5790FFEA.5000401@windriver.com>
-Date: Thu, 21 Jul 2016 13:01:30 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.8.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.213.66 listed in list.dnswl.org]
+Received: from mail-vk0-f66.google.com (mail-vk0-f66.google.com
+	[209.85.213.66])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C5621E00DFF
+	for <yocto@yoctoproject.org>; Thu, 21 Jul 2016 14:51:55 -0700 (PDT)
+Received: by mail-vk0-f66.google.com with SMTP id r135so7801652vkf.3
+	for <yocto@yoctoproject.org>; Thu, 21 Jul 2016 14:51:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=y9sF5JPC+kdpemK2aoePmDy6oBIiUZklKZToXcC4k34=;
+	b=Z01Us8HtkFVjOOyFmAzVBxBcvcy4TRNzvAxnZqbGikXmBpgTHDE2GQGO/Wo3qWAwkf
+	T9S38Ps95arESHlBSCBaOlKwGl+wXPlyYSatLws/iB/9ifdT0eX1oOJ0vcadxtjEvatV
+	OnPAbbgsw2F4C7zRtcwAcz6/xIjWAUepvodE+gXInygCK02K1Cxhr2oCHNwtsu8NyjtG
+	5WXQqbV3wsia3dMAjBlo2cOjrL4qg3SARl9KK7DkxHyB11KsRRIw/0MFpKnkDDeDhFXL
+	nGKwCdiu1o8YuIqF/7QXLN2LqldfiJExBmq/kBtikhU5DSbhoKepfkNy3QSnOiQxGONO
+	obNQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=y9sF5JPC+kdpemK2aoePmDy6oBIiUZklKZToXcC4k34=;
+	b=LxcBPGAbZT7DLog8Q0CLVtG8VtmIpIiHLC7cwrbpVKeh5mIZBYAkxXlEoT4SqnbVmE
+	pMP/jFmFYH1MH4KHTReDFO5Z204tvO7zaRixPrP34Kj7lDwxb8g5wkY0Cs+4KA9S9bnf
+	8MbsSN7t22mg4g93POXFsAZKaEGdIHaDBPWdwK3+lYm/VO0i1iu6COPEaoXqKDjw/cn+
+	Ucbdlm8WR13gFZ1CGAKV6jqSyED5mSFrUUVi7XQwQQqVqTsT0dlZGw97PpQguCZQ6EEv
+	1c9EE6LCea4sQe6fLRmgHv5lQtloJkzbpzXM+QUdNehKO9JWyH97k0su0xsy3PPPWakC
+	Y69A==
+X-Gm-Message-State: AEkooutPOjRNuueFVVhhM1JWtybKbv7NsXuDg8GPvhBUjGLyOL/RxdQAUIMhQKqg66SOF1ULpJPGjkAVoMA6ZA==
+X-Received: by 10.159.38.108 with SMTP id 99mr249336uag.126.1469137913814;
+	Thu, 21 Jul 2016 14:51:53 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CAPbeDCkck+wXjE3dhCZdix2CUkp1A0ZNo0G_=zM_7JXYzQdQtg@mail.gmail.com>
-Cc: Yocto Project <yocto@yoctoproject.org>, jason.wessel@windriver.com
-Subject: Re: kernel menuconfig/ncurses patch in linux-yocto
+Received: by 10.103.70.7 with HTTP; Thu, 21 Jul 2016 14:51:34 -0700 (PDT)
+From: Vijayakumar Badiger <vijayakumarmb@gmail.com>
+Date: Thu, 21 Jul 2016 14:51:34 -0700
+Message-ID: <CAJ58UNn4pFMngrKG8MeffP+GQGTd-qQVE3_Roc01PcWpK_FF9Q@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Error during adding a new recipe.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,94 +66,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Jul 2016 17:01:38 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 21 Jul 2016 21:51:59 -0000
+Content-Type: multipart/alternative; boundary=001a113aaed67aa46105382c53a0
 
-On 2016-07-21 10:24 AM, Jacob Kroon wrote:
-> On Thu, Jul 21, 2016 at 3:06 PM, Bruce Ashfield
-> <bruce.ashfield@windriver.com> wrote:
->> On 2016-07-21 08:58 AM, Bruce Ashfield wrote:
->>>
->>> On 2016-07-21 02:35 AM, Jacob Kroon wrote:
->>>>
->>>> On Thu, Jul 21, 2016 at 5:22 AM, Bruce Ashfield
->>>> <bruce.ashfield@windriver.com> wrote:
->>>>>
->>>>> On 2016-07-20 4:19 PM, Jacob Kroon wrote:
->>>>>>
->>>>>>
->>>>>> Hi,
->>>>>> I'm trying to get the SDK to be able to run the kernel's "make
->>>>>> menuconfig" target
->>>>>> using nativesdk-ncurses from the SDK. Looking at
->>>>>>
->>>>>>
->>>>>>
->>>>>> http://git.yoctoproject.org/cgit/cgit.cgi/linux-yocto-4.4/commit/scripts/kconfig/lxdialog/check-lxdialog.sh?h=standard/beaglebone&id=badf6fedf455958fe0ff3c060c8e3965ef6d80dc
->>>>>>
->>>>>>
->>>>>> I figured out I could pass CROSS_CURSES_[INC,LIB], but the second chunk
->>>>>> in that patch looks weird:
->>>>>>
->>>>>>       elif pkg-config --cflags ncurses 2>/dev/null; then
->>>>>>           echo '-DCURSES_LOC="<ncurses.h>"'
->>>>>> +   if [ x"$CROSS_CURSES_INC" != x ]; then
->>>>>> +   echo "$CROSS_CURSES_INC"
->>>>>> +   exit
->>>>>> +   fi
->>>>>>       elif [ -f /usr/include/ncursesw/curses.h ]; then
->>>>>>           echo '-I/usr/include/ncursesw -DCURSES_LOC="<curses.h>"'
->>>>>>
->>>>>> (I had to do manual indentation with spaces in gmail)
->>>>>> Is the indentation or the logic incorrect ?
->>>>>
->>>>>
->>>>>
->>>>> In the commit itself, the indentation is fine.
->>>>>
->>>>> That block of code is just dumping flags that are used in the
->>>>> build. So in this case, it is correct. If the variable is
->>>>> non empty, it is echoed and then processing exits.
->>>>
->>>>
->>>> The check if CROSS_CURSES_INC is non-empty is only done if the preceeding
->>>>    "elif"-check is true, and not unconditionally as one would expect
->>>> judging by the indentation.
->>>
->>>
->>> Yep, that's the point. It goes to pkgconfig first, and then falls
->>> back to that.
->>>
->>> The indention is fine in the actual repository.
->>
->>
->> oh wait.
->>
->> I had my coffee and I see now what you mean, I was checking
->> older repos, and when this merged into the 4.4 tree it does
->> look like the conditional is hosed.
->>
->> I'll queue up a closer look at this later today.
->>
->> Bruce
->>
->
-> Ah, that explains it. Thank you for looking into it.
+--001a113aaed67aa46105382c53a0
+Content-Type: text/plain; charset=UTF-8
 
-Yup. The original patch (of 3.14 vintage) had migrated that chunk over
-time to an invalid location.
+Hello all,
 
-I fixed the block in the 4.4 kernel, and have refreshed the path so
-it will be fixed for the next linux-yocto kernel as well.
-
-I've pushed the changes to the tree, and will follow up with SRCREV
-bumps when my next change queue is ready.
-
-Bruce
-
->
-> Jacob
->
+I am facing error while integrating a new recipe in to my Yacto project.
 
 
+/local/mnt/workspace/c_vbadig/LV/poky/build/tmp-glibc/work/aarch64-poky-linux/system-core/git-r17/system/core/libsync/sync.c:24:24:
+fatal error: linux/sync.h: No such file or directory
+compilation terminated.
+make[2]: *** [libsync_la-sync.lo] Error 1
+
+Not sure why its complaining about this missing header file. I am trying to
+integrate the system/core in to the Yacto baseline . Please can some one
+help as I am blocked because of this. Thanks.
+
+Cheers,
+Vijay
+
+--001a113aaed67aa46105382c53a0
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hello all,<div><br></div><div>I am facing error while inte=
+grating a new recipe in to my Yacto project.=C2=A0</div><div><br></div><div=
+><br></div><div><div>/local/mnt/workspace/c_vbadig/LV/poky/build/tmp-glibc/=
+work/aarch64-poky-linux/system-core/git-r17/system/core/libsync/sync.c:24:2=
+4: fatal error: linux/sync.h: No such file or directory</div><div>compilati=
+on terminated.</div><div>make[2]: *** [libsync_la-sync.lo] Error 1</div></d=
+iv><div><br></div><div>Not sure why its complaining about this missing head=
+er file. I am trying to integrate the system/core in to the Yacto baseline =
+. Please can some one help as I am blocked because of this. Thanks.</div><d=
+iv><br></div><div>Cheers,<br>Vijay</div><div><br></div></div>
+
+--001a113aaed67aa46105382c53a0--
