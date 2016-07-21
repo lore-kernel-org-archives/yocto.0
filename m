@@ -1,60 +1,42 @@
-Return-Path: <vomegaz@gmail.com>
+Return-Path: <earwigz@naver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AF149E00E2E; Thu, 21 Jul 2016 01:48:28 -0700 (PDT)
+	id 57BDCE00E9C; Thu, 21 Jul 2016 01:59:20 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [74.125.82.66 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f66.google.com (mail-wm0-f66.google.com [74.125.82.66])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5FA48E00DA9
-	for <yocto@yoctoproject.org>; Thu, 21 Jul 2016 01:48:26 -0700 (PDT)
-Received: by mail-wm0-f66.google.com with SMTP id o80so1756214wme.0
-	for <yocto@yoctoproject.org>; Thu, 21 Jul 2016 01:48:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=sender:from:to:cc:subject:date:message-id;
-	bh=s7s88lHmLwmpzdtbun8aCG/b2RN67CSbMV1GpAqs8xs=;
-	b=PA5QLYNr3OJ0PhuUmBQ6fW1t+S1lYxP8/FEv8S2YFV27V/jqICI39BUGY+lTz49TqZ
-	4MaOXpDcpFiqxtmVeZoPSXgrV0EZub602OAEfetzigVJhGDuk+cxTrOYp+GdBPl4CJjy
-	/8iOALhT/p1iqCv41l7Jr+CkrqOACi9hvAYOyY7Y3PSvq2hMUW6EbLAQvnjeVyRQvu3v
-	VVvaqSvlXFvX1vuDKvmal0WIubwB8Mm2qPsXlEumItEkjnkpdySBUfa0dOfoqh/hzKZG
-	jN7ISSe13uLhWIPC4s7GxbAhR3sPQTCmTosPkmjL4k83gsIkIo+PFvbp09v5k9XAdLqk
-	kzGg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:sender:from:to:cc:subject:date:message-id;
-	bh=s7s88lHmLwmpzdtbun8aCG/b2RN67CSbMV1GpAqs8xs=;
-	b=gW0k89T9qKrMzqzrtjZCCR6Xqlay0kQc5ovSLcnRUhyIQEFAHfmjxn7g1bv2adRvrl
-	EpYg9ARQcESZAdBO5H468MUwbMUUgJvBEP5jndaJdfYkxLESP9HJ1EDnZVBSvgAUbCGM
-	pV065Aj0PGQfddS81Tc5x10joO8gSJ6PWODpoN0QIlIkyZW3dIv1Ffw8vxfQRFkYLdIp
-	jqFpDpnNIDzNy8bgXxXmsNyiUTluBQE470ZF1UT+EKsVJAJ+ExQ1TQmIeus4LW4X/6Zj
-	ZezcwGYUxlgJJuu2S5bTkCqyBAdeymuuTGPmJhIH8MFy6252tMUHFItBRQmAVVOMqPQz
-	7G7Q==
-X-Gm-Message-State: ALyK8tLJOfkKPuL2ElthwvwYAsDenF3gVvEarAI9pUsx7kYH46ABDYDMksmNrv0uhxUCxA==
-X-Received: by 10.194.193.103 with SMTP id hn7mr5787986wjc.115.1469090904959; 
-	Thu, 21 Jul 2016 01:48:24 -0700 (PDT)
-Received: from sgxcmp131.sigfox.io ([217.114.201.133])
-	by smtp.gmail.com with ESMTPSA id ej2sm5271937wjd.8.2016.07.21.01.48.23
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Thu, 21 Jul 2016 01:48:23 -0700 (PDT)
-Sender: Thomas PERROT <vomegaz@gmail.com>
-From: Thomas Perrot <thomas.perrot@tupi.fr>
+X-Spam-Level: **
+X-Spam-Status: No, score=2.5 required=5.0 tests=BAYES_50,HTML_IMAGE_ONLY_08,
+	HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	T_REMOTE_IMAGE autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [125.209.239.206 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* 1.7 HTML_IMAGE_ONLY_08 BODY: HTML: images with 400-800 bytes of words
+	*  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
+	*      [score: 0.5000]
+	*  0.0 T_REMOTE_IMAGE Message contains an external image
+X-Greylist: delayed 400 seconds by postgrey-1.32 at yocto-www;
+	Thu, 21 Jul 2016 01:59:18 PDT
+Received: from cmailsend29.nm.naver.com (cmailsend29.nm.naver.com
+	[125.209.239.206])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 052ABE00DBB
+	for <yocto@yoctoproject.org>; Thu, 21 Jul 2016 01:59:18 -0700 (PDT)
+Received: (qmail 24618 invoked by uid 100); 21 Jul 2016 08:52:37 -0000
+Received: from 10.114.49.164 (HELO cweb02.nm.nhnsystem.com) (10.114.49.164)
+	by cmailsend29.nm.naver.com with SMTP;21 Jul 2016 08:52:37 -0000
+Date: Thu, 21 Jul 2016 17:52:37 +0900 (KST)
+From: =?UTF-8?B?7Jyk7JiB7ISd?= <earwigz@naver.com>
 To: yocto@yoctoproject.org
-Date: Thu, 21 Jul 2016 10:48:20 +0200
-Message-Id: <1469090900-29903-1-git-send-email-thomas.perrot@tupi.fr>
-X-Mailer: git-send-email 2.1.4
-Subject: [meta-security][PATCH] Fix a trousers build on when not in use systemd: unparsed line: 'inherit'
+Message-ID: <2ca9ddd559d0c9472c97597b631c9@cweb02.nm.nhnsystem.com>
+MIME-Version: 1.0
+Importance: normal
+X-Priority: 3 (Normal)
+X-Naver-CIP: 61.107.31.52
+Subject: Is it possible to install *.deb file directly in the yocto platform?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: =?UTF-8?B?7Jyk7JiB7ISd?= <earwigz@naver.com>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -63,28 +45,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Jul 2016 08:48:28 -0000
+X-List-Received-Date: Thu, 21 Jul 2016 08:59:20 -0000
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_919988_923267972.1469091157169"
 
-Signed-off-by: Thomas Perrot <thomas.perrot@tupi.fr>
----
- recipes-tpm/trousers/trousers_0.3.13.bb | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+------=_Part_919988_923267972.1469091157169
+Content-Type: text/plain;
+	charset=UTF-8
+Content-Transfer-Encoding: base64
 
-diff --git a/recipes-tpm/trousers/trousers_0.3.13.bb b/recipes-tpm/trousers/trousers_0.3.13.bb
-index e274972..6853f18 100644
---- a/recipes-tpm/trousers/trousers_0.3.13.bb
-+++ b/recipes-tpm/trousers/trousers_0.3.13.bb
-@@ -16,8 +16,7 @@ SRC_URI = "http://sourceforge.net/projects/trousers/files/${BPN}/${PV}/${BPN}-${
- SRC_URI[md5sum] = "ad508f97b406f6e48cd90e85d78e7ca8"
- SRC_URI[sha256sum] = "bb908e4a3c88a17b247a4fc8e0fff3419d8a13170fe7bdfbe0e2c5c082a276d3"
- 
--inherit autotools pkgconfig useradd update-rc.d
--inherit ${@bb.utils.contains('VIRTUAL-RUNTIME_init_manager','systemd','systemd','', d)}
-+inherit autotools pkgconfig useradd update-rc.d ${@bb.utils.contains('VIRTUAL-RUNTIME_init_manager','systemd','systemd','', d)}
- 
- PACKAGECONFIG ?= "gmp "
- PACKAGECONFIG[gmp] = "--with-gmp, --with-gmp=no, gmp"
--- 
-2.1.4
+aGksCiAKaSBqdXN0IHdhbnQgdG8gaW5zdGFsbCBzb21lIGRlYiBmaWxlLCBJcyBpdCBwb3NzaWJs
+ZT8KIAp0aGFua3MuCg==
 
+------=_Part_919988_923267972.1469091157169
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: base64
 
+PGh0bWw+PGhlYWQ+PHN0eWxlPnB7bWFyZ2luLXRvcDowcHg7bWFyZ2luLWJvdHRvbTowcHg7fTwv
+c3R5bGU+PC9oZWFkPjxib2R5PjxkaXYgc3R5bGU9ImZvbnQtc2l6ZToxMHB0OyBmb250LWZhbWls
+eTpHdWxpbTsiPjxwPmhpLDwvcD48cD4mbmJzcDs8L3A+PHA+aSBqdXN0IHdhbnQgdG8gaW5zdGFs
+bCBzb21lIGRlYiBmaWxlLCBJcyBpdCBwb3NzaWJsZT88L3A+PHA+Jm5ic3A7PC9wPjxwPnRoYW5r
+cy48L3A+PC9kaXY+PC9ib2R5PjwvaHRtbD4KPHRhYmxlIHN0eWxlPSJkaXNwbGF5Om5vbmUiPjx0
+cj48dGQ+PGltZyBzcmM9Imh0dHA6Ly9tYWlsLm5hdmVyLmNvbS9yZWFkUmVjZWlwdC9ub3RpZnkv
+P2ltZz1mWFJOMUIlMkJaTTZFbE02S1poQVJQcHozdkZ4RWxwQUlvYXh0WEs0S2xGcUVsRnJVcktx
+Sm9hRUlvJTJCcmtTS0FVNVc0ZDVXNEM1YlgwcSUyQnprUjc0RlRXeCUyRnNENmVvJTJCemVnRDZl
+byUyQnplbWI0ZThwNkZkNzRlWnBtJTNEJTNELmdpZiIgYm9yZGVyPSIwIj48L3RkPjwvdHI+PC90
+YWJsZT4=
+
+------=_Part_919988_923267972.1469091157169--
