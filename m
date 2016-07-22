@@ -1,57 +1,39 @@
-Return-Path: <nicolas.dechesne@linaro.org>
+Return-Path: <maxin.john@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 12CBAE00F11; Fri, 22 Jul 2016 02:24:42 -0700 (PDT)
+	id 427E5E00F06; Fri, 22 Jul 2016 04:29:45 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [74.125.82.46 listed in list.dnswl.org]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.20 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f46.google.com (mail-wm0-f46.google.com [74.125.82.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BD5E1E00D5F
-	for <yocto@yoctoproject.org>; Fri, 22 Jul 2016 02:24:39 -0700 (PDT)
-Received: by mail-wm0-f46.google.com with SMTP id q128so7379078wma.1
-	for <yocto@yoctoproject.org>; Fri, 22 Jul 2016 02:24:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=xENAb8t+1TcQKHnu4mIlBj0Xx3H40x+mchJC4x3uBc0=;
-	b=iGOvcaZeIOVzAy3hGQaIhKGp0pIhOSuVbdoDgDyvuIPzOvO76b9Izysn/HgUep8Wym
-	UPUvxV29G8eNplg2Xy8tBxk1inDDpRDBIU8H7Li1fcYzMvrDpo0ENqdNcB0hftE9Z1Rf
-	IEPLH0WvI5LVrc40Cwh3V7fIrXeWoxAAGF/hU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=xENAb8t+1TcQKHnu4mIlBj0Xx3H40x+mchJC4x3uBc0=;
-	b=mbWzrzJpOWqvOsuYQbQYnmDSjBDPH1dfYh+PFipEi9sOyFb7q86Ni6ZXst9oxsXXqd
-	qc2FrqUUR5SZDG7wc8dqF4pTHvqj5ug0u+2wsLBwdat7efDgVKixYOj7h0GEY9LblYmP
-	sp63Qk0ZoU0wF8P+B9+SozO2wLV++Eba3WfXGlhCt2+IT9lQYd8GNfJarZUGMiDfH/gk
-	paE+rBNew/KvPzGwDaJLTpmStYAhi9vXoBJwrryKCOSmFcNBuh0mM+VPUyqHEGRse+Wb
-	OB8rwjk+lzhR11jJDJ3oIUI+iOvkMYaWnAPBDnJUiP4wL7dfEcdffceHM0DiJLOk+nOL
-	4Tgw==
-X-Gm-Message-State: AEkoousjVRRcnJA0TmNEFrb8+EGZ8kldREZc1bxHZ4n6MER3bL5h+el9RYFTvvEtRQznRbLgTE1c4s5wCtHUIbmZ
-X-Received: by 10.28.193.8 with SMTP id r8mr4003389wmf.13.1469179478446; Fri,
-	22 Jul 2016 02:24:38 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.194.163.225 with HTTP; Fri, 22 Jul 2016 02:24:19 -0700 (PDT)
-In-Reply-To: <CAP3RZoj5vuUqnWy5EAPtT2u2RLND-teYNT-q9RUOTa=uSFp2qQ@mail.gmail.com>
-References: <CAP3RZoj5vuUqnWy5EAPtT2u2RLND-teYNT-q9RUOTa=uSFp2qQ@mail.gmail.com>
-From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Date: Fri, 22 Jul 2016 13:24:19 +0400
-Message-ID: <CAP71WjySt2KB1U1KgmWcs9Xg85W43GF0=hWHxLL++=FnXhz+_A@mail.gmail.com>
-To: jags gediya <jags.gediya@gmail.com>
-Cc: "meta-freescale@yoctoproject.org" <meta-freescale@yoctoproject.org>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: regarding bbappend file
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C6890E00D5F
+	for <yocto@yoctoproject.org>; Fri, 22 Jul 2016 04:29:44 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 22 Jul 2016 04:29:44 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.28,404,1464678000"; 
+	d="scan'208,217";a="1000457377"
+Received: from linux.intel.com ([10.54.29.200])
+	by orsmga001.jf.intel.com with ESMTP; 22 Jul 2016 04:29:45 -0700
+Received: from mbabyjoh-desk.fi.intel.com (mbabyjoh-desk.fi.intel.com
+	[10.237.72.71])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by linux.intel.com (Postfix) with ESMTP id 43C1E6A4006;
+	Fri, 22 Jul 2016 04:29:33 -0700 (PDT)
+From: "Maxin B. John" <maxin.john@intel.com>
+To: yocto@yoctoproject.org
+Date: Fri, 22 Jul 2016 14:28:56 +0300
+Message-Id: <1469186936-2848-1-git-send-email-maxin.john@intel.com>
+X-Mailer: git-send-email 2.4.0
+Cc: srifenbark@gmail.com
+Subject: [PATCH] swabber: remove from documentation
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -63,15 +45,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 22 Jul 2016 09:24:42 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Fri, 22 Jul 2016 11:29:45 -0000
 
-On Fri, Jul 22, 2016 at 1:18 PM, jags gediya <jags.gediya@gmail.com> wrote:
-> Can i have 2 bbappend file for single recipe?
-> I want to add something to the recipe whom bbappend file is already
-> available but i don't want to modify that file directly. I want to add new
-> bbappend file for that recipe in my custom layer, Is it possible?
+Remove documentation as swabber was removed from
+oe-core with this commit:
+commit a7ddbea345c90646e6b9ddb89f768865caffdf07
+Author: Richard Purdie <richard.purdie@linuxfoundation.org>
+Date:   Mon Jun 6 12:08:56 2016 +0100
 
-yes, you can have more than 1 .bbappend for a recipe. Note that the
-files will be appended based on layer priority.
+    meta: Drop swabber
+
+Signed-off-by: Maxin B. John <maxin.john@intel.com>
+---
+ documentation/ref-manual/ref-classes.xml | 16 ----------------
+ 1 file changed, 16 deletions(-)
+
+diff --git a/documentation/ref-manual/ref-classes.xml b/documentation/ref-manual/ref-classes.xml
+index e919bd7..9fdfcaf 100644
+--- a/documentation/ref-manual/ref-classes.xml
++++ b/documentation/ref-manual/ref-classes.xml
+@@ -1381,22 +1381,6 @@
+     </para>
+ </section>
+ 
+-<section id='ref-classes-image-swab'>
+-    <title><filename>image-swab.bbclass</filename></title>
+-
+-    <para>
+-        The <filename>image-swab</filename> class enables the
+-        <ulink url='&YOCTO_HOME_URL;/tools-resources/projects/swabber'>Swabber</ulink>
+-        tool in order to detect and log accesses to the host system during
+-        the OpenEmbedded build process.
+-        <note>
+-            This class is currently unmaintained.
+-            The <filename>strace</filename> package needs to be installed
+-            in the build host as a dependency for this tool.
+-        </note>
+-    </para>
+-</section>
+-
+ <section id='ref-classes-image-vm'>
+     <title><filename>image-vm.bbclass</filename></title>
+ 
+-- 
+2.4.0
+
 
