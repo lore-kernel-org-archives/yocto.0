@@ -1,6 +1,6 @@
 Return-Path: <simon.bolek@googlemail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6C400E00D20; Sat, 23 Jul 2016 11:31:44 -0700 (PDT)
+	id A9F7BE00D20; Sat, 23 Jul 2016 14:31:21 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -11,7 +11,7 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (simon.bolek[at]googlemail.com)
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.223.171 listed in list.dnswl.org]
+	*      [209.85.223.174 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -20,48 +20,49 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-io0-f171.google.com (mail-io0-f171.google.com
-	[209.85.223.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 125D8E00D19
-	for <yocto@yoctoproject.org>; Sat, 23 Jul 2016 11:31:40 -0700 (PDT)
-Received: by mail-io0-f171.google.com with SMTP id b62so131062492iod.3
-	for <yocto@yoctoproject.org>; Sat, 23 Jul 2016 11:31:40 -0700 (PDT)
+Received: from mail-io0-f174.google.com (mail-io0-f174.google.com
+	[209.85.223.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3A408E00D0A
+	for <yocto@yoctoproject.org>; Sat, 23 Jul 2016 14:31:17 -0700 (PDT)
+Received: by mail-io0-f174.google.com with SMTP id q83so133268592iod.1
+	for <yocto@yoctoproject.org>; Sat, 23 Jul 2016 14:31:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=googlemail.com; s=20120113;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=A9UAXJMPdisEkNju9NeB0l0ObCe91fqulLqqrflA61Q=;
-	b=OfWTb0ewdmzOFF7OSkJfOM6JByEz8qXizO7eFyZToGcTQ5kysRawX/9zaDCwPReMdj
-	WhcHPVXMeO0Lx/13g5cpTMD3v/EPshGjMuxav+pagkNpdzNPFuO2/aT+uo4QMbgqM+5h
-	2+iNNvbz5CQfybdctuw9701eBuygz/4oMIdOkERvOQkrhrnarQyorKip3rucKPdfYNQT
-	ipUBBFVi1C748+l1P3TMAbbJhBNYiXyrEUrFt3Z0GpCB8+ACHHNx4tbcMmqoFRMnEJ3R
-	r0O8F3jX54Dd99dbxfAu07fjI5EPPfPjA8YQwPvUExT1qoA0B/Oiq9KM5hsI8gDteV1M
-	ugsA==
+	:cc; bh=w5lfnkXGw49SvnZSik+L6seU0Q6qmKttfFVVKASl7IE=;
+	b=tUNzBm6hh1yh1Ty4X2c9CxYI/inhJrRud6qbmvXyzUTEpe4tFLXZgEdTN+NQ08yvym
+	pgUAy5XRKM5OGJx2XHc9q+SR4ravDsNlUGC5u8Do/udXYsBeSEgqmiM+Yh/AKB+MoCOw
+	rScSV+jBgNoI7U9zO53ZI1K6ji4SQPuYS8aiw94vzLXaDv5HXVxGVNngLksCZtNa7XW+
+	vjTBY/OdHlVYT+7j7SQqvLjoh3EIjvBNE62HDvDQ1bbIB6QDDLqzmBT3UpS5GWXWV6Ep
+	JNE+kH7d60j8GE3Cvu7wG5M76Sox9WRnI5kCe/gREbiv7UYjdqTKnW9eJ7IzAkt5v3k4
+	cgwg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=A9UAXJMPdisEkNju9NeB0l0ObCe91fqulLqqrflA61Q=;
-	b=MT6k57nCB/yB1hVN/PUUYmaxr/q4lBPfrA+whSw/Il8f0SF+gbySiJtex+Zn1MGXUU
-	kp9iouhaVj2NziajvUt82DvDqMdA7VEQ3TBXSz5Yx6/G/KonSlj3WQHOV9ip3ha8wzXI
-	JxMKybf46k42oQToo8OKnqTe3yJP4Icdwq89XkWUnGfoeHUbI080P21Zmkigdu2SvTAg
-	P3FHp0T6YfJmnab5WpKrSpsiufD4dB/nonRLMUo+uaOk7AZ9JGC4i3VyZM9ErcZ9j1mT
-	IuxzZdrfgK86iJrNj64PPF4ZYHe6G487G2Ia3+ls9hZ8KNPrmFPOYVp3khBORiSLWvwA
-	pqgw==
-X-Gm-Message-State: AEkoousp80PDTVA+ppbQBB8qJU2dkqPtGZh7hnJc0go62LvMgA2xhey7wmTWMeZVWyCzJ9pVtr+txZ8kxc1pow==
-X-Received: by 10.107.154.196 with SMTP id c187mr11585750ioe.99.1469298699955; 
-	Sat, 23 Jul 2016 11:31:39 -0700 (PDT)
+	bh=w5lfnkXGw49SvnZSik+L6seU0Q6qmKttfFVVKASl7IE=;
+	b=j3FQJkZulLDHtqwSyIZmQqkhtRQd1uKhtARDh4mVPmzkRRik+Wol7us3Oh9pfholke
+	8aNRyUz09nlL+B52OmHM5fT0wsExeanesMAWcpix+t0PTv4mmoXE9oG1jvw+AvRE65+4
+	hfgafsnnhXFaaB55P5kQGaHmI93fStiJQkNhPleD2A7ssQp2ss2wQ0tSF5kTbbs+wNxp
+	7pFByZ9uU3Dm53csiuZSbL5Qn1Ijz76S3kcxYwlU7uPtTW250SzItM83MN5h5EZJwHWr
+	6eglCTcV8VaCK+AxGW5mk392sACC41XPmHE0IejgDACD3psOC/TZn3mqX6rUVw8FP+tG
+	Ua5A==
+X-Gm-Message-State: AEkoouvTg21uogrYr8Rx7gePXrjT990TxsrN7rzeV3bb8v1zReihvXpvFgYfNwSx8nnhKaK9wPdwsRI+Y7a/yg==
+X-Received: by 10.107.1.20 with SMTP id 20mr12882135iob.74.1469309477173; Sat,
+	23 Jul 2016 14:31:17 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.36.55.135 with HTTP; Sat, 23 Jul 2016 11:31:20 -0700 (PDT)
-In-Reply-To: <CAMKF1sp3nvxZdrGVFJDp7Ks2_DjON-44=PtJT8c585Wd4PFrVA@mail.gmail.com>
+Received: by 10.36.55.135 with HTTP; Sat, 23 Jul 2016 14:30:57 -0700 (PDT)
+In-Reply-To: <CAEfap_C0qC4vY4nEHzyns4z+hy4FSA7ADv_OCEnbwVyn5+mODQ@mail.gmail.com>
 References: <CAEfap_ADomjxhF0nEfJFwvWZ04bvJZ=+puboRLzX+4hAJrL4eg@mail.gmail.com>
 	<BFCE6CA4-9E2A-4212-8F5A-4B31439AB944@gmail.com>
 	<CAEfap_A4horxvBuf+awOrPRNJajfeX18+qon8edPeY-syeu4VQ@mail.gmail.com>
 	<CAMKF1spEA3hWMUv5+Lob2xvGSuQJFPkhmN0PdDTurdftJGwF3w@mail.gmail.com>
 	<CAEfap_DiAeLSfnH9RKCiWhKJNLizFJa5TLboukzZG2FvYQ5A2A@mail.gmail.com>
 	<CAMKF1sp3nvxZdrGVFJDp7Ks2_DjON-44=PtJT8c585Wd4PFrVA@mail.gmail.com>
+	<CAEfap_C0qC4vY4nEHzyns4z+hy4FSA7ADv_OCEnbwVyn5+mODQ@mail.gmail.com>
 From: Simon Bolek <simon.bolek@googlemail.com>
-Date: Sat, 23 Jul 2016 20:31:20 +0200
-Message-ID: <CAEfap_C0qC4vY4nEHzyns4z+hy4FSA7ADv_OCEnbwVyn5+mODQ@mail.gmail.com>
+Date: Sat, 23 Jul 2016 23:30:57 +0200
+Message-ID: <CAEfap_CJHHJmAmtUoZO_Jr7svdydFtw1ehmWTQxKk-x9tvoFFQ@mail.gmail.com>
 To: Khem Raj <raj.khem@gmail.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: [genericx86-jethro] core-image-sato - VFS: Cannot open root device "PARTUUID=8316.." or unknown-block(0, 0): error -6
@@ -76,245 +77,291 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 23 Jul 2016 18:31:44 -0000
-Content-Type: multipart/alternative; boundary=001a1140e81e1472e3053851c3f0
+X-List-Received-Date: Sat, 23 Jul 2016 21:31:21 -0000
+Content-Type: multipart/alternative; boundary=001a11397da873c1500538544583
 
---001a1140e81e1472e3053851c3f0
+--001a11397da873c1500538544583
 Content-Type: text/plain; charset=UTF-8
 
-On Sat, Jul 23, 2016 at 7:33 PM, Khem Raj <raj.khem@gmail.com> wrote:
+One more questions about the Grub2 and EFI system for /dev/sda1
+Is it actually possible to boot the system without initrd set?
+It is not set during installation process in grub.cfg
+It was also not in the FIDO install.sh, but FIDO was not:
+parted ${device} mktable gpt
+but:
+parted /dev/${device} mklabel msdos
 
-> On Sat, Jul 23, 2016 at 9:49 AM, Simon Bolek <simon.bolek@googlemail.com>
-> wrote:
-> > Thanks, sorry that I bother you all the time, but I do not seem to make
-> any
-> > progress :(
-> > Is there anything else I can check?
-> > It seems, on boot time this device is not mounted, only ram0...15.
+and the grub.cfg worked OK:
+menuentry "Linux" {
+    set root=(hd0,1)
+    linux /vmlinuz root=/dev/sda2 rw quiet
+}
+
+So the initramfs you are talking about is actually missing now?
+
+kind regards
+Simon :-)
+
+
+On Sat, Jul 23, 2016 at 8:31 PM, Simon Bolek <simon.bolek@googlemail.com>
+wrote:
+
+> On Sat, Jul 23, 2016 at 7:33 PM, Khem Raj <raj.khem@gmail.com> wrote:
 >
-> It so seems that driver may be missing in initramfs could be one
-> reason.
-
-You mean in on the boot partition under /grub/i386-pc/ among *.mod files?
-In this case, that would be /dev/sda2.
-Or am should I look for that somewhere else?
-
-
-
-> other reason could
-> be that udev is not settling down for this device. So may be changing
-> the udevadm to wait
-> a bit for devices to mount might help
+>> On Sat, Jul 23, 2016 at 9:49 AM, Simon Bolek <simon.bolek@googlemail.com>
+>> wrote:
+>> > Thanks, sorry that I bother you all the time, but I do not seem to make
+>> any
+>> > progress :(
+>> > Is there anything else I can check?
+>> > It seems, on boot time this device is not mounted, only ram0...15.
+>>
+>> It so seems that driver may be missing in initramfs could be one
+>> reason.
 >
-Could you tell me where would I do that? I mean, where exactly is the
-udevadm set-up at boot? I cannot find the place. Is it somewhere inside
-/vmlinuz on /dev/sda2 ?
-
-thanks
-s:-)
-
-
+> You mean in on the boot partition under /grub/i386-pc/ among *.mod files?
+> In this case, that would be /dev/sda2.
+> Or am should I look for that somewhere else?
 >
-> >
-> > thank you
-> > Simon :-)
-> >
-> >
-> >
-> > On Sat, Jul 23, 2016 at 6:07 PM, Khem Raj <raj.khem@gmail.com> wrote:
-> >>
-> >> On Sat, Jul 23, 2016 at 8:57 AM, Simon Bolek <
-> simon.bolek@googlemail.com>
-> >> wrote:
-> >> > Hi,
-> >> >
-> >> > Well it is, as far as what
-> >> > parted /dev/sda print
-> >> >  says.
-> >> >
-> >> > generated grub.cfg matches that with PARTUUID, so it looks fine.
-> >> >
-> >> > menuentry "Linux" {
-> >> >     search --no-floppy --fs-uuid e88ec2c7-3438-4fe3-9033-83eb81957875
-> >> > --set
-> >> > root
-> >> >     linux /vmlinuz root=PARTUUID=8316255c-f839-43fa-b2c6-d83bbed80962
-> >> > rw
-> >> > quiet
-> >>
-> >> this seems ok to me.
-> >>
-> >> >
-> >> > }
-> >> >
-> >> > However fdisks -l shows only /dev/sda1, which ist strange.
-> >> >
-> >> > Is there something wrong with install.sh script?
-> >> > Compared to FIDO, it is GPT, not MSDOS. But i did not touch anything
-> >> > there.
-> >> > Maybe you can take a look at it?
-> >> >
-> >> >
-> http://git.yoctoproject.org/cgit.cgi/poky/plain/meta/recipes-core/initrdscripts/files/init-install.sh?h=jethro
-> >> > It always checks the grub version, however in FIDO Grub was also 2.00,
-> >> > so I
-> >> > do not get the IFs.
-> >> >
-> >> > thank you!
-> >> > Simon :-)
-> >> >
-> >> >
-> >> > On Sat, Jul 23, 2016 at 4:52 PM, Khem Raj <raj.khem@gmail.com> wrote:
-> >> >>
-> >> >>
-> >> >> > On Jul 23, 2016, at 5:25 AM, Simon Bolek <
-> simon.bolek@googlemail.com>
-> >> >> > wrote:
-> >> >> >
-> >> >> > Hello!
-> >> >> >
-> >> >> > I am trying to install genericx86 core-image-sato on a atom-pc
-> device
-> >> >> > with 80GB Intel SSD drive.
-> >> >> > I have created an image with
-> >> >> > bitbake core-image-sato
-> >> >> > without changing anything in the kernel via menuconfig, etc.
-> >> >> >
-> >> >> > ps. after installation I had to set /dev/sda1 to bootable with disk
-> >> >>
-> >> >> it seems your rootfs is on /dev/sda3 can you check kernel parameters
-> >> >> what
-> >> >> is it passing for root=
-> >> >>
-> >> >> >
-> >> >> > After installation I have got this ugly error while booting the
-> >> >> > device.
-> >> >> > PLEASE HELP ME!
-> >> >> >
-> >> >> >
-> >> >> > "...
-> >> >> > VFS: Cannot open root device "PARTUUID=8316.." or
-> unknown-block(0,0):
-> >> >> > error -6
-> >> >> > Pease append a correct "root=" boot option; here are the available
-> >> >> > partitions:
-> >> >> > 0100 4096 ram0 (driver?)
-> >> >> > ...
-> >> >> > 010f 4096 ram15 (driver?)
-> >> >> > ..."
-> >> >> >
-> >> >> >
-> >> >> > I noticed that install.sh script is creating GPT
-> >> >> > parted ${device} mktable gpt
-> >> >> > not MSDOS as in previous yocto versions, e.g. fido.
-> >> >> >
-> >> >> > Any hint is more than welcome. The device will just not boot :((((
-> >> >> >
-> >> >> > Here are some details about the device:
-> >> >> >
-> >> >> >
-> >> >> > +++
-> >> >> > blkid says:
-> >> >> > /dev/sda2: UUID="e88ec2c7-3438-4fe3-9033-83eb81957875" TYPE="ext3"
-> >> >> > PARTLABEL="boot" PARTUUID="57f43ab0-6e30-4721-81e2-c565f6c184c8"
-> >> >> > /dev/sda3: UUID="cbb77742-c9fe-4f19-85d7-399af99c3aa8" TYPE="ext3"
-> >> >> > PARTLABEL="root" PARTUUID="8316255c-f839-43fa-b2c6-d83bbed80962"
-> >> >> > /dev/sda4: TYPE="swap" PARTLABEL="swap"
-> >> >> > PARTUUID="15ddbd73-15b3-40a8-97e7-6377048a79eb"
-> >> >> > /dev/sdb: SEC_TYPE="msdos" LABEL="boot" UUID="3C80-C1D7"
-> TYPE="vfat"
-> >> >> > /dev/sda1: PARTLABEL="bios_boot"
-> >> >> > PARTUUID="11cf26d2-2333-4c5b-a876-59d65929085f"
-> >> >> >
-> >> >> > +++
-> >> >> > /etc/fstab says
-> >> >> > # stock fstab - you probably want to override this with a machine
-> >> >> > specific one
-> >> >> >
-> >> >> > /dev/root            /                    auto       defaults
-> >> >> > 1  1
-> >> >> > proc                 /proc                proc       defaults
-> >> >> > 0  0
-> >> >> > devpts               /dev/pts             devpts
->  mode=0620,gid=5
-> >> >> > 0  0
-> >> >> > tmpfs                /run                 tmpfs
-> >> >> > mode=0755,nodev,nosuid,strictatime 0  0
-> >> >> > tmpfs                /var/volatile        tmpfs      defaults
-> >> >> > 0  0
-> >> >> >
-> >> >> > # uncomment this if your device has a SD/MMC/Transflash slot
-> >> >> > #/dev/mmcblk0p1       /media/card          auto
-> >> >> > defaults,sync,noauto  0  0
-> >> >> >
-> >> >> > /dev/sda2         /                      ext3         rw
-> >> >> > 0  1
-> >> >> > /dev/disk/by-partuuid/15ddbd73-15b3-40a8-97e7-6377048a79eb
-> >> >> > swap             swap       defaults              0  0
-> >> >> > UUID=e88ec2c7-3438-4fe3-9033-83eb81957875              /boot
-> >> >> > ext3       defaults              1  2
-> >> >> >
-> >> >> >
-> >> >> > +++
-> >> >> > fdisk -l says
-> >> >> > Disk /dev/sda: 80.0 GB, 80026361856 bytes
-> >> >> > 255 heads, 63 sectors/track, 9729 cylinders
-> >> >> > Units = cylinders of 16065 * 512 = 8225280 bytes
-> >> >> >
-> >> >> >    Device Boot      Start         End      Blocks  Id System
-> >> >> > /dev/sda1   *           1        9730    78150743+ ee EFI GPT
-> >> >> >
-> >> >> > +++
-> >> >> > parted /dev/sda says
-> >> >> > Model: ATA INTEL SSDSA2M080 (scsi)
-> >> >> > Disk /dev/sda: 80.0GB
-> >> >> > Sector size (logical/physical): 512B/512B
-> >> >> > Partition Table: gpt
-> >> >> > Disk Flags: pmbr_boot
-> >> >> >
-> >> >> > Number  Start   End     Size    File system     Name       Flags
-> >> >> >  1      1049kB  2097kB  1049kB                  bios_boot
-> bios_grub
-> >> >> >  2      2097kB  19.9MB  17.8MB  ext3            boot
-> >> >> >  3      22.0MB  76.0GB  76.0GB  ext3            root
-> >> >> >  4      76.0GB  80.0GB  4001MB  linux-swap(v1)  swap
-> >> >> >
-> >> >> > +++
-> >> >> > lspci says
-> >> >> > Device:    00:1f.2
-> >> >> > Class:    IDE interface
-> >> >> > Vendor:    Intel Corporation
-> >> >> > Device:    NM10/ICH7 Family SATA Controller [IDE mode]
-> >> >> > SVendor:    Intel Corporation
-> >> >> > SDevice:    Device 464c
-> >> >> > Rev:    01
-> >> >> > ProgIf:    8a
-> >> >> > Driver:    ata_piix
-> >> >> > Module:    ata_piix
-> >> >> >
-> >> >> >
-> >> >> > thank you
-> >> >> > Simon :-)
-> >> >> >
-> >> >> >
-> >> >> >
-> >> >>
-> >> >
-> >
-> >
+>
+>
+>> other reason could
+>> be that udev is not settling down for this device. So may be changing
+>> the udevadm to wait
+>> a bit for devices to mount might help
+>>
+> Could you tell me where would I do that? I mean, where exactly is the
+> udevadm set-up at boot? I cannot find the place. Is it somewhere inside
+> /vmlinuz on /dev/sda2 ?
+>
+> thanks
+> s:-)
+>
+>
+>>
+>> >
+>> > thank you
+>> > Simon :-)
+>> >
+>> >
+>> >
+>> > On Sat, Jul 23, 2016 at 6:07 PM, Khem Raj <raj.khem@gmail.com> wrote:
+>> >>
+>> >> On Sat, Jul 23, 2016 at 8:57 AM, Simon Bolek <
+>> simon.bolek@googlemail.com>
+>> >> wrote:
+>> >> > Hi,
+>> >> >
+>> >> > Well it is, as far as what
+>> >> > parted /dev/sda print
+>> >> >  says.
+>> >> >
+>> >> > generated grub.cfg matches that with PARTUUID, so it looks fine.
+>> >> >
+>> >> > menuentry "Linux" {
+>> >> >     search --no-floppy --fs-uuid e88ec2c7-3438-4fe3-9033-83eb81957875
+>> >> > --set
+>> >> > root
+>> >> >     linux /vmlinuz root=PARTUUID=8316255c-f839-43fa-b2c6-d83bbed80962
+>> >> > rw
+>> >> > quiet
+>> >>
+>> >> this seems ok to me.
+>> >>
+>> >> >
+>> >> > }
+>> >> >
+>> >> > However fdisks -l shows only /dev/sda1, which ist strange.
+>> >> >
+>> >> > Is there something wrong with install.sh script?
+>> >> > Compared to FIDO, it is GPT, not MSDOS. But i did not touch anything
+>> >> > there.
+>> >> > Maybe you can take a look at it?
+>> >> >
+>> >> >
+>> http://git.yoctoproject.org/cgit.cgi/poky/plain/meta/recipes-core/initrdscripts/files/init-install.sh?h=jethro
+>> >> > It always checks the grub version, however in FIDO Grub was also
+>> 2.00,
+>> >> > so I
+>> >> > do not get the IFs.
+>> >> >
+>> >> > thank you!
+>> >> > Simon :-)
+>> >> >
+>> >> >
+>> >> > On Sat, Jul 23, 2016 at 4:52 PM, Khem Raj <raj.khem@gmail.com>
+>> wrote:
+>> >> >>
+>> >> >>
+>> >> >> > On Jul 23, 2016, at 5:25 AM, Simon Bolek <
+>> simon.bolek@googlemail.com>
+>> >> >> > wrote:
+>> >> >> >
+>> >> >> > Hello!
+>> >> >> >
+>> >> >> > I am trying to install genericx86 core-image-sato on a atom-pc
+>> device
+>> >> >> > with 80GB Intel SSD drive.
+>> >> >> > I have created an image with
+>> >> >> > bitbake core-image-sato
+>> >> >> > without changing anything in the kernel via menuconfig, etc.
+>> >> >> >
+>> >> >> > ps. after installation I had to set /dev/sda1 to bootable with
+>> disk
+>> >> >>
+>> >> >> it seems your rootfs is on /dev/sda3 can you check kernel parameters
+>> >> >> what
+>> >> >> is it passing for root=
+>> >> >>
+>> >> >> >
+>> >> >> > After installation I have got this ugly error while booting the
+>> >> >> > device.
+>> >> >> > PLEASE HELP ME!
+>> >> >> >
+>> >> >> >
+>> >> >> > "...
+>> >> >> > VFS: Cannot open root device "PARTUUID=8316.." or
+>> unknown-block(0,0):
+>> >> >> > error -6
+>> >> >> > Pease append a correct "root=" boot option; here are the available
+>> >> >> > partitions:
+>> >> >> > 0100 4096 ram0 (driver?)
+>> >> >> > ...
+>> >> >> > 010f 4096 ram15 (driver?)
+>> >> >> > ..."
+>> >> >> >
+>> >> >> >
+>> >> >> > I noticed that install.sh script is creating GPT
+>> >> >> > parted ${device} mktable gpt
+>> >> >> > not MSDOS as in previous yocto versions, e.g. fido.
+>> >> >> >
+>> >> >> > Any hint is more than welcome. The device will just not boot :((((
+>> >> >> >
+>> >> >> > Here are some details about the device:
+>> >> >> >
+>> >> >> >
+>> >> >> > +++
+>> >> >> > blkid says:
+>> >> >> > /dev/sda2: UUID="e88ec2c7-3438-4fe3-9033-83eb81957875" TYPE="ext3"
+>> >> >> > PARTLABEL="boot" PARTUUID="57f43ab0-6e30-4721-81e2-c565f6c184c8"
+>> >> >> > /dev/sda3: UUID="cbb77742-c9fe-4f19-85d7-399af99c3aa8" TYPE="ext3"
+>> >> >> > PARTLABEL="root" PARTUUID="8316255c-f839-43fa-b2c6-d83bbed80962"
+>> >> >> > /dev/sda4: TYPE="swap" PARTLABEL="swap"
+>> >> >> > PARTUUID="15ddbd73-15b3-40a8-97e7-6377048a79eb"
+>> >> >> > /dev/sdb: SEC_TYPE="msdos" LABEL="boot" UUID="3C80-C1D7"
+>> TYPE="vfat"
+>> >> >> > /dev/sda1: PARTLABEL="bios_boot"
+>> >> >> > PARTUUID="11cf26d2-2333-4c5b-a876-59d65929085f"
+>> >> >> >
+>> >> >> > +++
+>> >> >> > /etc/fstab says
+>> >> >> > # stock fstab - you probably want to override this with a machine
+>> >> >> > specific one
+>> >> >> >
+>> >> >> > /dev/root            /                    auto       defaults
+>> >> >> > 1  1
+>> >> >> > proc                 /proc                proc       defaults
+>> >> >> > 0  0
+>> >> >> > devpts               /dev/pts             devpts
+>>  mode=0620,gid=5
+>> >> >> > 0  0
+>> >> >> > tmpfs                /run                 tmpfs
+>> >> >> > mode=0755,nodev,nosuid,strictatime 0  0
+>> >> >> > tmpfs                /var/volatile        tmpfs      defaults
+>> >> >> > 0  0
+>> >> >> >
+>> >> >> > # uncomment this if your device has a SD/MMC/Transflash slot
+>> >> >> > #/dev/mmcblk0p1       /media/card          auto
+>> >> >> > defaults,sync,noauto  0  0
+>> >> >> >
+>> >> >> > /dev/sda2         /                      ext3         rw
+>> >> >> > 0  1
+>> >> >> > /dev/disk/by-partuuid/15ddbd73-15b3-40a8-97e7-6377048a79eb
+>> >> >> > swap             swap       defaults              0  0
+>> >> >> > UUID=e88ec2c7-3438-4fe3-9033-83eb81957875              /boot
+>> >> >> > ext3       defaults              1  2
+>> >> >> >
+>> >> >> >
+>> >> >> > +++
+>> >> >> > fdisk -l says
+>> >> >> > Disk /dev/sda: 80.0 GB, 80026361856 bytes
+>> >> >> > 255 heads, 63 sectors/track, 9729 cylinders
+>> >> >> > Units = cylinders of 16065 * 512 = 8225280 bytes
+>> >> >> >
+>> >> >> >    Device Boot      Start         End      Blocks  Id System
+>> >> >> > /dev/sda1   *           1        9730    78150743+ ee EFI GPT
+>> >> >> >
+>> >> >> > +++
+>> >> >> > parted /dev/sda says
+>> >> >> > Model: ATA INTEL SSDSA2M080 (scsi)
+>> >> >> > Disk /dev/sda: 80.0GB
+>> >> >> > Sector size (logical/physical): 512B/512B
+>> >> >> > Partition Table: gpt
+>> >> >> > Disk Flags: pmbr_boot
+>> >> >> >
+>> >> >> > Number  Start   End     Size    File system     Name       Flags
+>> >> >> >  1      1049kB  2097kB  1049kB                  bios_boot
+>> bios_grub
+>> >> >> >  2      2097kB  19.9MB  17.8MB  ext3            boot
+>> >> >> >  3      22.0MB  76.0GB  76.0GB  ext3            root
+>> >> >> >  4      76.0GB  80.0GB  4001MB  linux-swap(v1)  swap
+>> >> >> >
+>> >> >> > +++
+>> >> >> > lspci says
+>> >> >> > Device:    00:1f.2
+>> >> >> > Class:    IDE interface
+>> >> >> > Vendor:    Intel Corporation
+>> >> >> > Device:    NM10/ICH7 Family SATA Controller [IDE mode]
+>> >> >> > SVendor:    Intel Corporation
+>> >> >> > SDevice:    Device 464c
+>> >> >> > Rev:    01
+>> >> >> > ProgIf:    8a
+>> >> >> > Driver:    ata_piix
+>> >> >> > Module:    ata_piix
+>> >> >> >
+>> >> >> >
+>> >> >> > thank you
+>> >> >> > Simon :-)
+>> >> >> >
+>> >> >> >
+>> >> >> >
+>> >> >>
+>> >> >
+>> >
+>> >
+>>
+>
 >
 
---001a1140e81e1472e3053851c3f0
+--001a11397da873c1500538544583
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><div class=3D"gmail_quote">On S=
-at, Jul 23, 2016 at 7:33 PM, Khem Raj <span dir=3D"ltr">&lt;<a href=3D"mail=
-to:raj.khem@gmail.com" target=3D"_blank">raj.khem@gmail.com</a>&gt;</span> =
-wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;bord=
-er-left:1px #ccc solid;padding-left:1ex"><span class=3D"">On Sat, Jul 23, 2=
-016 at 9:49 AM, Simon Bolek &lt;<a href=3D"mailto:simon.bolek@googlemail.co=
-m">simon.bolek@googlemail.com</a>&gt; wrote:<br>
+<div dir=3D"ltr"><div><div><div><div>One more questions about the Grub2 and=
+ EFI system for /dev/sda1<br></div>Is it actually possible to boot the syst=
+em without initrd set?<br></div>It is not set during installation process i=
+n grub.cfg<br></div>It was also not in the FIDO install.sh, but FIDO was no=
+t:<br>parted ${device} mktable gpt<br></div>but:<br><div><div><div><div><di=
+v>parted /dev/${device} mklabel msdos<div class=3D"gmail_extra"><br></div><=
+div class=3D"gmail_extra">and the grub.cfg worked OK:<br>menuentry &quot;Li=
+nux&quot; {<br>=C2=A0=C2=A0=C2=A0 set root=3D(hd0,1)<br>=C2=A0=C2=A0=C2=A0 =
+linux /vmlinuz root=3D/dev/sda2 rw quiet<br>}<br><br></div><div class=3D"gm=
+ail_extra">So the initramfs you are talking about is actually missing now?<=
+br><br></div><div class=3D"gmail_extra">kind regards<br></div><div class=3D=
+"gmail_extra">Simon :-)<br></div><div class=3D"gmail_extra"><br></div><div =
+class=3D"gmail_extra"><br><div class=3D"gmail_quote">On Sat, Jul 23, 2016 a=
+t 8:31 PM, Simon Bolek <span dir=3D"ltr">&lt;<a href=3D"mailto:simon.bolek@=
+googlemail.com" target=3D"_blank">simon.bolek@googlemail.com</a>&gt;</span>=
+ wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.=
+8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"lt=
+r"><div class=3D"gmail_extra"><div class=3D"gmail_quote"><span class=3D"">O=
+n Sat, Jul 23, 2016 at 7:33 PM, Khem Raj <span dir=3D"ltr">&lt;<a href=3D"m=
+ailto:raj.khem@gmail.com" target=3D"_blank">raj.khem@gmail.com</a>&gt;</spa=
+n> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px =
+0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><span>On Sat=
+, Jul 23, 2016 at 9:49 AM, Simon Bolek &lt;<a href=3D"mailto:simon.bolek@go=
+oglemail.com" target=3D"_blank">simon.bolek@googlemail.com</a>&gt; wrote:<b=
+r>
 &gt; Thanks, sorry that I bother you all the time, but I do not seem to mak=
 e any<br>
 &gt; progress :(<br>
@@ -322,20 +369,23 @@ e any<br>
 &gt; It seems, on boot time this device is not mounted, only ram0...15.<br>
 <br>
 </span>It so seems that driver may be missing in initramfs could be one<br>
-reason. </blockquote><div>You mean in on the boot partition under /grub/i38=
-6-pc/ among *.mod files?<br>In this case, that would be /dev/sda2.<br></div=
-><div>Or am should I look for that somewhere else?<br></div><div><br>=C2=A0=
-</div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-l=
-eft:1px #ccc solid;padding-left:1ex">other reason could<br>
+reason. </blockquote></span><div>You mean in on the boot partition under /g=
+rub/i386-pc/ among *.mod files?<br>In this case, that would be /dev/sda2.<b=
+r></div><div>Or am should I look for that somewhere else?<br></div><span cl=
+ass=3D""><div><br>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"ma=
+rgin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:=
+1ex">other reason could<br>
 be that udev is not settling down for this device. So may be changing<br>
 the udevadm to wait<br>
-a bit for devices to mount might help<br></blockquote><div>Could you tell m=
-e where would I do that? I mean, where exactly is the udevadm set-up at boo=
-t? I cannot find the place. Is it somewhere inside /vmlinuz on /dev/sda2 ?<=
-br><br></div><div>thanks<br></div><div>s:-)<br></div><div>=C2=A0</div><bloc=
-kquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #cc=
-c solid;padding-left:1ex">
-<div class=3D"HOEnZb"><div class=3D"h5"><br>
+a bit for devices to mount might help<br></blockquote></span><div>Could you=
+ tell me where would I do that? I mean, where exactly is the udevadm set-up=
+ at boot? I cannot find the place. Is it somewhere inside /vmlinuz on /dev/=
+sda2 ?<br><br></div><div>thanks<span class=3D""><font color=3D"#888888"><br=
+></font></span></div><span class=3D""><font color=3D"#888888"><div>s:-)<br>=
+</div></font></span><div><div class=3D"h5"><div>=C2=A0</div><blockquote cla=
+ss=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid =
+rgb(204,204,204);padding-left:1ex">
+<div><div><br>
 &gt;<br>
 &gt; thank you<br>
 &gt; Simon :-)<br>
@@ -343,10 +393,11 @@ c solid;padding-left:1ex">
 &gt;<br>
 &gt;<br>
 &gt; On Sat, Jul 23, 2016 at 6:07 PM, Khem Raj &lt;<a href=3D"mailto:raj.kh=
-em@gmail.com">raj.khem@gmail.com</a>&gt; wrote:<br>
+em@gmail.com" target=3D"_blank">raj.khem@gmail.com</a>&gt; wrote:<br>
 &gt;&gt;<br>
 &gt;&gt; On Sat, Jul 23, 2016 at 8:57 AM, Simon Bolek &lt;<a href=3D"mailto=
-:simon.bolek@googlemail.com">simon.bolek@googlemail.com</a>&gt;<br>
+:simon.bolek@googlemail.com" target=3D"_blank">simon.bolek@googlemail.com</=
+a>&gt;<br>
 &gt;&gt; wrote:<br>
 &gt;&gt; &gt; Hi,<br>
 &gt;&gt; &gt;<br>
@@ -395,12 +446,13 @@ lso 2.00,<br>
 &gt;&gt; &gt;<br>
 &gt;&gt; &gt;<br>
 &gt;&gt; &gt; On Sat, Jul 23, 2016 at 4:52 PM, Khem Raj &lt;<a href=3D"mail=
-to:raj.khem@gmail.com">raj.khem@gmail.com</a>&gt; wrote:<br>
+to:raj.khem@gmail.com" target=3D"_blank">raj.khem@gmail.com</a>&gt; wrote:<=
+br>
 &gt;&gt; &gt;&gt;<br>
 &gt;&gt; &gt;&gt;<br>
 &gt;&gt; &gt;&gt; &gt; On Jul 23, 2016, at 5:25 AM, Simon Bolek &lt;<a href=
-=3D"mailto:simon.bolek@googlemail.com">simon.bolek@googlemail.com</a>&gt;<b=
-r>
+=3D"mailto:simon.bolek@googlemail.com" target=3D"_blank">simon.bolek@google=
+mail.com</a>&gt;<br>
 &gt;&gt; &gt;&gt; &gt; wrote:<br>
 &gt;&gt; &gt;&gt; &gt;<br>
 &gt;&gt; &gt;&gt; &gt; Hello!<br>
@@ -579,6 +631,7 @@ r [IDE mode]<br>
 &gt;&gt; &gt;<br>
 &gt;<br>
 &gt;<br>
-</div></div></blockquote></div><br></div></div>
+</div></div></blockquote></div></div></div><br></div></div>
+</blockquote></div><br></div></div></div></div></div></div></div>
 
---001a1140e81e1472e3053851c3f0--
+--001a11397da873c1500538544583--
