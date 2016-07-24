@@ -1,14 +1,15 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <opensource@keylevel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CC2D3E00C49; Sun, 24 Jul 2016 14:38:15 -0700 (PDT)
+	id C0782E00C66; Sun, 24 Jul 2016 15:36:19 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE autolearn=unavailable
+	version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [89.248.60.180 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -16,48 +17,46 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.216.193 listed in list.dnswl.org]
-Received: from mail-qt0-f193.google.com (mail-qt0-f193.google.com
-	[209.85.216.193])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8142FE00C31
-	for <yocto@yoctoproject.org>; Sun, 24 Jul 2016 14:38:12 -0700 (PDT)
-Received: by mail-qt0-f193.google.com with SMTP id j37so7786051qta.0
-	for <yocto@yoctoproject.org>; Sun, 24 Jul 2016 14:38:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=BUNiSXPRaHi8vJW+ziLqk20j84DNx1CHjPOlfAhaeTs=;
-	b=Wid8HGTxCya+qnxsraQokoNUKW/Rf4GvgMTnrB0vN6Mdmj27j6xej3SSfBzKEh6fXd
-	FWFXZo3+lBmyOrDUn0nWP5ef0oT6JGBOr+8osUGBONajq3Q8RAnRpL37rTvKg8QWIYgF
-	YVcD6l1avUDwHmiWItSTCrFYdOzRx9RvBVZe1kXetRG35SOU9LSpCFoCoCmVfmsWdMDE
-	glVeJ1ROfnY8maHzy8df3s9DMBg5GXg1WL3wlbZ4PpR9wkjnIAPCztv98/4lSlEbq3yu
-	k5JqLiu+LZLz0nr/BFA2lEGVh039KSNLhtLp8fpXmOmVI2bYIblr/s3djcV4bXyr6+wH
-	oOeA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=BUNiSXPRaHi8vJW+ziLqk20j84DNx1CHjPOlfAhaeTs=;
-	b=OjCEHBFXKe+G0lVI+jThIYQpfAKwoJmZACIrVSvpIe63VdkwhBGx/QOpCFIYo3uQDG
-	RfGsyJmwDGSl0GrxIzdn1374UAmaqS4SNfiJBoK0j8aLLhMXOC4mu+F0EKOfzdLiVGFn
-	InsmKPxUcvVGW+KA9gkb4PK8WHXg57x8cK5IZGZl/5slftivDlwc8utnJASL++m8h4cK
-	ujiVoIgg+aBhtLIgtXeiqJpvgXaWkjPHo6A3BENCnElwGSEJkF2oU1mluWEWsvaIV75c
-	HkG9i/e4+yfMVrfQAXp/Sdjwzy0DRyTAWBCPrChhuPCzgCJQlk39tmDUwhsNnphSaXot
-	WtWg==
-X-Gm-Message-State: AEkooutYvQJG3FSttlrBIgK9KsS3ulOMPUPZAYVhApowPeidH3DXsKfOfb7E5H7+6eKkbQ9jtKg1kM8/7Jwl5Q==
-X-Received: by 10.237.50.35 with SMTP id y32mr24580861qtd.98.1469396291399;
-	Sun, 24 Jul 2016 14:38:11 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.55.214.83 with HTTP; Sun, 24 Jul 2016 14:37:42 -0700 (PDT)
-In-Reply-To: <3b9801df-33bc-ce6b-842b-7dc2f4ee083b@newforest-technology.co.uk>
-References: <3b9801df-33bc-ce6b-842b-7dc2f4ee083b@newforest-technology.co.uk>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Sun, 24 Jul 2016 14:37:42 -0700
-Message-ID: <CAMKF1soM8ayvX3-g15dQgCAD8STBfSfuEZSb1W1f2=xRu+JgZg@mail.gmail.com>
-To: Chris Sykes <chris@newforest-technology.co.uk>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: linux-yocto: memory leak in krogoth 4.1.28 kernel
+X-Greylist: delayed 1595 seconds by postgrey-1.32 at yocto-www;
+	Sun, 24 Jul 2016 15:36:15 PDT
+Received: from a180.4uh.net (a180.4uh.net [89.248.60.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 89563E00C37
+	for <yocto@yoctoproject.org>; Sun, 24 Jul 2016 15:36:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=keylevel.com; s=default; h=Mime-Version:To:Date:Message-Id:Subject:
+	Content-Transfer-Encoding:Content-Type:From:Sender:Reply-To:Cc:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=bF3w3UvFWYq3YgnDLrMYRGqPxOHfyTj+ZtU6bvceNFM=;
+	b=t7iFCcyoZSlwhRj5TNXYXDlKi1
+	LjMqqjtXoe70L+uKfMEl7DLWcuFxn49L4zSUq7BuBY5KZ1K77FK1L9mCFLXb5DlZabFw688AveKV4
+	+Y7poMXobt8LQkPK1mSJmyNolvMhjWpGc1lhm/CRJ5c2HDsibklmH0YNnwaVYSdFLTbc=; 
+Received: from keylevel.plus.com ([212.159.18.174]:3782
+	helo=macbook-pro.durham.keylevel.com)
+	by a180.4uh.net with esmtpsa (TLSv1:ECDHE-RSA-AES256-SHA:256)
+	(Exim 4.87) (envelope-from <opensource@keylevel.com>)
+	id 1bRRac-0028Ht-5T; Sun, 24 Jul 2016 23:09:38 +0100
+From: Chris Tapp <opensource@keylevel.com>
+Message-Id: <829C58DE-3920-4E09-836C-2B75E0836725@keylevel.com>
+Date: Sun, 24 Jul 2016 23:09:44 +0100
+To: Yocto Project <yocto@yoctoproject.org>,
+ meta-intel@yoctoproject.org
+Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
+X-Mailer: Apple Mail (2.3124)
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - a180.4uh.net
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - keylevel.com
+X-Get-Message-Sender-Via: a180.4uh.net: authenticated_id:
+	chris.tapp@keylevel.com
+X-Authenticated-Sender: a180.4uh.net: chris.tapp@keylevel.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: Kernel bug 109051
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,35 +68,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 24 Jul 2016 21:38:15 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Sun, 24 Jul 2016 22:36:19 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-On Sun, Jul 24, 2016 at 11:42 AM, Chris Sykes
-<chris@newforest-technology.co.uk> wrote:
-> Hi,
->
-> At the end of last week I hit a known kernel memory leak in the linux-yocto
-> 4.1 branch, as delivered in 2.1 / krogoth.  It rather quickly results in an
-> OOM kernel panic on my platform (x86, 1G RAM).
->
-> The patch below fixed the problem for me:
-> http://www.spinics.net/lists/stable/msg138760.html
->
-> It's already queued for 4.1.29, but thought I'd mention it here for the
-> benefit of the list. Perhaps it might be worth expediting a fix for 2.1?
->
-> I also raised bugzilla 10014 - I hope this was the right thing to do...
+I=E2=80=99m using the meta-intel =E2=80=9Cvalley-island=E2=80=9D BSP =
+under =E2=80=9Ckrogoth=E2=80=9D and think I may have run into =
+https://bugzilla.kernel.org/show_bug.cgi?id=3D109051.
 
-Thanks for report, you did the right thing. Our Kernel maintainer will
-take care of it.
+I=E2=80=99m using a J1900 (listed as affected) and the system locks up =
+totally (running a graphics-based application) after an indeterminate =
+period.
 
->
-> --
-> Chris Sykes
-> New Forest Technology Ltd.
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+Using the scripts referenced on the related bug page for comment 437 =
+(https://bugzilla.kernel.org/show_bug.cgi?id=3D109051#c437) appears to =
+resolve the issue.
+
+Is anyone aware of this and/or know if it will be fixed within the Yocto =
+kernel tree?
+
+--
+
+Chris Tapp
+opensource@keylevel.com
+www.keylevel.com
+
 
