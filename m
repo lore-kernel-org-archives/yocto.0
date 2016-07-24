@@ -1,33 +1,59 @@
-Return-Path: <timothy.t.orling@linux.intel.com>
+Return-Path: <edwingate8@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F413EE00D3D; Sat, 23 Jul 2016 15:18:49 -0700 (PDT)
+	id 7FE8EE0107D; Sat, 23 Jul 2016 22:49:11 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (edwingate8[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.216.176 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 41D80E00D3B
-	for <yocto@yoctoproject.org>; Sat, 23 Jul 2016 15:18:41 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by fmsmga101.fm.intel.com with ESMTP; 23 Jul 2016 15:18:41 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.28,411,1464678000"; d="scan'208";a="1022657333"
-Received: from timo-fedora.jf.intel.com ([10.7.201.162])
-	by orsmga002.jf.intel.com with ESMTP; 23 Jul 2016 15:18:42 -0700
-From: Tim Orling <timothy.t.orling@linux.intel.com>
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-qt0-f176.google.com (mail-qt0-f176.google.com
+	[209.85.216.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 50B58E0107A
+	for <yocto@yoctoproject.org>; Sat, 23 Jul 2016 22:49:06 -0700 (PDT)
+Received: by mail-qt0-f176.google.com with SMTP id x25so82182955qtx.2
+	for <yocto@yoctoproject.org>; Sat, 23 Jul 2016 22:49:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=BrJEXrMRAZODHgDivG/Yve++LQaWkuwtQ55Ecy5O9KY=;
+	b=hAJ9Dp5GUInbVH/60XxM8yHOUygBe/jbONEXQGO7pm/fZrMG/bHO4YiXpzQjzZp1y5
+	J0awnkCR5TXYQvxl8chVUg+EwqgBgL1YYxz6Pggb7xbHttAzaI1yOXiIVD4yvCGnglFa
+	/PtLkKRKRDhSG7s2s05fZIqaOvWAbt3ePGd3vIwxXod8GJNL3fJv96QWAJqBCp3Jkljd
+	UZNHFRLSAztxKNU2aCwApiL7v+rsFvQNiPWV4onj9VLMkbYWqBvQ/MvMv4E02hQclQeu
+	9m5XUnS6jJha+u0Jn7vaTnH8iXU+bnFQl3RvDsOS8yebcl+lzt/Hgn3CIZ8VJXL9OcaZ
+	vF7g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=BrJEXrMRAZODHgDivG/Yve++LQaWkuwtQ55Ecy5O9KY=;
+	b=C/PNeq29hlaygfgrSbE628DWJnuikFFe5HwCNr63h6uQgHoECWV9nKxk1FKItrk65c
+	5L5NxpwZC9IM8sCd32tnjE/J5/IedmWB9G9dIO4wqyh8fDJg0t0dANEy77UnQE00GVX/
+	I1zt20fQF6tqkKOVJ4kolXhBfJ8PAeu4uyRhEvRyC3EPPivv9d0H6HhslILsSVqv2ANR
+	eIWjGSu8/Qg3Izf2bbw4S77VLI7K3umD7fvE6wdec+LYJ3zc9K023OAvukmDHw2QTUoc
+	v4UO1OLZ6Wo9EJH5797McirY8KmkkpUOEfN8NZTmv2RdqRLDxqBql4J1yrc4w5T0fVec
+	RIFA==
+X-Gm-Message-State: AEkoouucbntMyIJXD5xeU2kh6dY9JrbJsvSHcri4PkDeD8cjWAOAmLSbqjHZqP2tuH11+kiM74bS0N6AkHdA4Q==
+X-Received: by 10.237.36.38 with SMTP id r35mr19939671qtc.3.1469339345612;
+	Sat, 23 Jul 2016 22:49:05 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.200.56.99 with HTTP; Sat, 23 Jul 2016 22:49:05 -0700 (PDT)
+From: Edward Wingate <edwingate8@gmail.com>
+Date: Sat, 23 Jul 2016 22:49:05 -0700
+Message-ID: <CAGMdoFkMe=gbzKMsS-WPF5ORJ8uV8S+XCuR+bHNT-reC63Er7w@mail.gmail.com>
 To: yocto@yoctoproject.org
-Date: Sat, 23 Jul 2016 15:19:09 -0700
-Message-Id: <1469312349-9657-2-git-send-email-timothy.t.orling@linux.intel.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1469312349-9657-1-git-send-email-timothy.t.orling@linux.intel.com>
-References: <1469312349-9657-1-git-send-email-timothy.t.orling@linux.intel.com>
-Subject: [meta-qt4][master][PATCH 2/2] qt4-native: inhibit strip for debug packages
+Subject: Help with DISTRO settings
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,29 +65,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 23 Jul 2016 22:18:50 -0000
+X-List-Received-Date: Sun, 24 Jul 2016 05:49:11 -0000
+Content-Type: text/plain; charset=UTF-8
 
-Apply the same patch from qt4-4.8.7.inc to qt4-native.
-This will avoid "already-stripped" QA warnings
+This is in my layer's conf/distro/mydistro.conf file:
 
-Signed-off-by: Tim Orling <timothy.t.orling@linux.intel.com>
----
- recipes-qt4/qt4/qt4-native.inc | 1 +
- 1 file changed, 1 insertion(+)
+    require conf/distro/poky.conf
+    DISTRO = "mydistro"
+    DISTRO_NAME = "MyDistro"
 
-diff --git a/recipes-qt4/qt4/qt4-native.inc b/recipes-qt4/qt4/qt4-native.inc
-index 02fd784..5a873de 100644
---- a/recipes-qt4/qt4/qt4-native.inc
-+++ b/recipes-qt4/qt4/qt4-native.inc
-@@ -15,6 +15,7 @@ SRC_URI = "http://download.qt-project.org/official_releases/qt/4.8/${PV}/qt-ever
-            file://0001-qlibraryinfo-allow-to-set-qt.conf-from-the-outside-u.patch \
-            file://0002-qkbdtty_qws-fix-build-with-old-kernel-headers.patch \
-            file://0003-webkit2-set-OUTPUT_DIR-value-if-empty.patch \
-+	   file://0015-configure-add-nostrip-for-debug-packages.patch  \
-            file://0021-configure-make-qt4-native-work-with-long-building-pa.patch \
- 	   file://0036-qt-everywhere-opensource-src-4.8.7-gcc6.patch \
- 	   file://gcc-6.patch \
--- 
-2.7.4
+These variables took effect before, but now bitbake is reverting back
+to DISTRO="poky" and DISTRO_NAME = "Poky (Yocto Project Reference
+Distro)" (used for /etc/issue) for some reason.
 
+How can I determine what is reverting it?  I don't know what I might
+have changed to make it do this. Thank you.
 
