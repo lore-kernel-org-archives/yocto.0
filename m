@@ -1,59 +1,39 @@
-Return-Path: <pidge@toganlabs.com>
+Return-Path: <leonardo.sandoval.gonzalez@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 36370E009E3; Mon, 25 Jul 2016 06:47:40 -0700 (PDT)
+	id 4A71CE009EF; Mon, 25 Jul 2016 06:56:24 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [23.83.209.23 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.20 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from brown.birch.relay.mailchannels.net
-	(brown.birch.relay.mailchannels.net [23.83.209.23])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 91E22E009C3
-	for <yocto@yoctoproject.org>; Mon, 25 Jul 2016 06:47:36 -0700 (PDT)
-X-Sender-Id: hostpapa|x-authuser|pidge@toganlabs.com
-Received: from relay.mailchannels.net (localhost [127.0.0.1])
-	by relay.mailchannels.net (Postfix) with ESMTP id E2D49643CE;
-	Mon, 25 Jul 2016 13:37:43 +0000 (UTC)
-Received: from hp181.hostpapa.com (ip-10-27-139-41.us-west-2.compute.internal
-	[10.27.139.41])
-	by relay.mailchannels.net (Postfix) with ESMTPA id 400EC65485;
-	Mon, 25 Jul 2016 13:37:42 +0000 (UTC)
-X-Sender-Id: hostpapa|x-authuser|pidge@toganlabs.com
-Received: from hp181.hostpapa.com ([TEMPUNAVAIL]. [10.107.128.240])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384)
-	by 0.0.0.0:2500 (trex/5.7.3); Mon, 25 Jul 2016 13:37:43 +0000
-X-MC-Relay: Neutral
-X-MailChannels-SenderId: hostpapa|x-authuser|pidge@toganlabs.com
-X-MailChannels-Auth-Id: hostpapa
-X-MC-Loop-Signature: 1469453862867:974108440
-X-MC-Ingress-Time: 1469453862866
-Received: from ip-217-103-177-37.ip.prioritytelecom.net
-	([217.103.177.37]:40616 helo=[10.191.255.204])
-	by hp181.hostpapa.com with esmtpsa
-	(TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.86_1)
-	(envelope-from <pidge@toganlabs.com>)
-	id 1bRg4c-0036Gn-P5; Mon, 25 Jul 2016 15:37:36 +0200
-Message-ID: <1469453851.12579.1.camel@toganlabs.com>
-From: Beth 'pidge' Flanagan <pidge@toganlabs.com>
-To: Bill Randle <william.c.randle@intel.com>, yocto@yoctoproject.org
-Date: Mon, 25 Jul 2016 15:37:31 +0200
-In-Reply-To: <1469286665-16059-1-git-send-email-william.c.randle@intel.com>
-References: <1469286665-16059-1-git-send-email-william.c.randle@intel.com>
-Organization: toganlabs.com
-X-Mailer: Evolution 3.18.5.2-0ubuntu3 
-Mime-Version: 1.0
-X-OutGoing-Spam-Status: No, score=-1.0
-X-AuthUser: pidge@toganlabs.com
-Subject: Re: [yocto-autobuilder][PATCH 0/2] Allow OPTIMIZED_GIT_CLONE to be False
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CA447E009E6
+	for <yocto@yoctoproject.org>; Mon, 25 Jul 2016 06:56:22 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by orsmga101.jf.intel.com with ESMTP; 25 Jul 2016 06:56:22 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.28,419,1464678000"; d="scan'208";a="1028670511"
+Received: from unknown (HELO [10.252.135.40]) ([10.252.135.40])
+	by fmsmga002.fm.intel.com with ESMTP; 25 Jul 2016 06:56:20 -0700
+To: "piotr.lewicki" <piotr.lewicki@elfin.de>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <b44125f5-8305-978c-2282-01e54add131d@elfin.de>
+From: Leonardo Sandoval <leonardo.sandoval.gonzalez@linux.intel.com>
+Message-ID: <b85c6663-e050-6729-a639-672c1d6af55f@linux.intel.com>
+Date: Mon, 25 Jul 2016 08:58:58 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.2.0
+MIME-Version: 1.0
+In-Reply-To: <b44125f5-8305-978c-2282-01e54add131d@elfin.de>
+Subject: Re: changing ownership of a file in a package
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: pidge@toganlabs.com
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -62,46 +42,62 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 25 Jul 2016 13:47:40 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 25 Jul 2016 13:56:24 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Sat, 2016-07-23 at 08:11 -0700, Bill Randle wrote:
-> The autobuilder code assumes OPTIMIZED_GIT_CLONE is always set True,
-> because things break if it is set to False. I had a case where it
-> needed to be set False because the git trash folder was on a
-> different
-> file system than the build directory. This caused the CheckOutLayers
-> build
-> step to fail.
+As a workaround, have you tried using the other class to include users 
+(useradd)? Look at the 'note' of this section
 
-Part of me is tempted to just say "Don't Do That!" The plan was to
-eventually just use the optimized git clone, but if people are actually
-doing the above, then yes, this is needed.
+http://www.yoctoproject.org/docs/2.1/ref-manual/ref-manual.html#ref-classes-extrausers
 
-Let me review and then I'll push.
+Leo
 
--b
 
->=20
-> In addition, I still wanted to use the git mirror even with
-> OPTIMIZED_GIT_CLONE
-> set False, so allow that case, too.
->=20
-> [YOCTO #10010]
->=20
-> Bill Randle (2):
-> =C2=A0 BuildSet.py: allow using local git mirror even if
-> OPTIMIZED_GIT_CLONE is False
-> =C2=A0 yoctogit.py: ensure mirrordir is set before trying to use it
->=20
-> =C2=A0lib/python2.7/site-packages/autobuilder/BuildSet.py=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0|=20
-> 2 ++
-> =C2=A0.../buildbot-0.8.8-py2.7.egg/buildbot/steps/source/yoctogit.py=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0|=20
-> 7 +++++--
-> =C2=A02 files changed, 7 insertions(+), 2 deletions(-)
->=20
+El 07/25/2016 a las 07:22 AM, piotr.lewicki escribió:
+> Hi,
+>
+> I have a package where I want to install some files into a home 
+> directory of a user "testuser". I create a user in my image bb file 
+> using "extrausers".
+>
+> My problem is that I'm unable to change ownership of those files from 
+> root to the testuser.
+>
+> Simple "chown testuser:testuser -R /home/testuser" inside do_install 
+> task makes those files being owned by "nobody".
+>
+> How can I manage ownership of those files properly?
+>
+>
+>
+> The recipe is like so:
+>
+> DESCRIPTION = "Files installed in testuser user home directory"
+> LICENSE = "CLOSED"
+>
+> SRC_URI += " \
+>            file://authorized_keys \
+>            file://bash_profile \
+>            file://bashrc \
+>            "
+>
+> do_install(){
+>     install -d ${D}/home/testuser/
+>     install -m 0644 ${WORKDIR}/bash_profile 
+> ${D}/home/testuser/.bash_profile
+>     install -m 0644 ${WORKDIR}/bashrc ${D}/home/testuser/.bashrc
+>
+>     install -d ${D}/home/testuser/.ssh
+>     install -m 0644 ${WORKDIR}/authorized_keys ${D}/home/testuser/.ssh/
+> }
+>
+> FILES_${PN} = "/home/testuser"
+>
+>
+> Thanks,
+>
+> Piotr
+>
+
 
