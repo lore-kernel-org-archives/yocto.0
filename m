@@ -1,62 +1,35 @@
-Return-Path: <opensource@keylevel.com>
+Return-Path: <Bruce.Ashfield@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C0782E00C66; Sun, 24 Jul 2016 15:36:19 -0700 (PDT)
+	id 1DD80E010DE; Sun, 24 Jul 2016 19:41:16 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE autolearn=unavailable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
 	version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [89.248.60.180 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 1595 seconds by postgrey-1.32 at yocto-www;
-	Sun, 24 Jul 2016 15:36:15 PDT
-Received: from a180.4uh.net (a180.4uh.net [89.248.60.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 89563E00C37
-	for <yocto@yoctoproject.org>; Sun, 24 Jul 2016 15:36:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=keylevel.com; s=default; h=Mime-Version:To:Date:Message-Id:Subject:
-	Content-Transfer-Encoding:Content-Type:From:Sender:Reply-To:Cc:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=bF3w3UvFWYq3YgnDLrMYRGqPxOHfyTj+ZtU6bvceNFM=;
-	b=t7iFCcyoZSlwhRj5TNXYXDlKi1
-	LjMqqjtXoe70L+uKfMEl7DLWcuFxn49L4zSUq7BuBY5KZ1K77FK1L9mCFLXb5DlZabFw688AveKV4
-	+Y7poMXobt8LQkPK1mSJmyNolvMhjWpGc1lhm/CRJ5c2HDsibklmH0YNnwaVYSdFLTbc=; 
-Received: from keylevel.plus.com ([212.159.18.174]:3782
-	helo=macbook-pro.durham.keylevel.com)
-	by a180.4uh.net with esmtpsa (TLSv1:ECDHE-RSA-AES256-SHA:256)
-	(Exim 4.87) (envelope-from <opensource@keylevel.com>)
-	id 1bRRac-0028Ht-5T; Sun, 24 Jul 2016 23:09:38 +0100
-From: Chris Tapp <opensource@keylevel.com>
-Message-Id: <829C58DE-3920-4E09-836C-2B75E0836725@keylevel.com>
-Date: Sun, 24 Jul 2016 23:09:44 +0100
-To: Yocto Project <yocto@yoctoproject.org>,
- meta-intel@yoctoproject.org
-Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
-X-Mailer: Apple Mail (2.3124)
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - a180.4uh.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-X-Get-Message-Sender-Via: a180.4uh.net: authenticated_id:
-	chris.tapp@keylevel.com
-X-Authenticated-Sender: a180.4uh.net: chris.tapp@keylevel.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: Kernel bug 109051
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E52CFE00E88;
+	Sun, 24 Jul 2016 19:41:12 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id u6P2f1f2015825
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=OK);
+	Sun, 24 Jul 2016 19:41:01 -0700
+Received: from server.local (147.11.116.196) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.40) with Microsoft SMTP Server id 14.3.248.2;
+	Sun, 24 Jul 2016 19:41:00 -0700
+To: Chris Tapp <opensource@keylevel.com>, Yocto Project
+	<yocto@yoctoproject.org>, <meta-intel@yoctoproject.org>
+References: <829C58DE-3920-4E09-836C-2B75E0836725@keylevel.com>
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+Message-ID: <c798ca0d-2c13-1ca5-978a-6d4a75efd8aa@windriver.com>
+Date: Sun, 24 Jul 2016 22:40:59 -0400
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:45.0)
+	Gecko/20100101 Thunderbird/45.2.0
+MIME-Version: 1.0
+In-Reply-To: <829C58DE-3920-4E09-836C-2B75E0836725@keylevel.com>
+Subject: Re: Kernel bug 109051
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,29 +41,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 24 Jul 2016 22:36:19 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 25 Jul 2016 02:41:16 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 8bit
 
-I=E2=80=99m using the meta-intel =E2=80=9Cvalley-island=E2=80=9D BSP =
-under =E2=80=9Ckrogoth=E2=80=9D and think I may have run into =
-https://bugzilla.kernel.org/show_bug.cgi?id=3D109051.
+On 2016-07-24 6:09 PM, Chris Tapp wrote:
+> I’m using the meta-intel “valley-island” BSP under “krogoth” and think I may have run into https://bugzilla.kernel.org/show_bug.cgi?id=109051.
+>
+> I’m using a J1900 (listed as affected) and the system locks up totally (running a graphics-based application) after an indeterminate period.
+>
+> Using the scripts referenced on the related bug page for comment 437 (https://bugzilla.kernel.org/show_bug.cgi?id=109051#c437) appears to resolve the issue.
+>
+> Is anyone aware of this and/or know if it will be fixed within the Yocto kernel tree?
 
-I=E2=80=99m using a J1900 (listed as affected) and the system locks up =
-totally (running a graphics-based application) after an indeterminate =
-period.
+Not unless someone sends a patch.
 
-Using the scripts referenced on the related bug page for comment 437 =
-(https://bugzilla.kernel.org/show_bug.cgi?id=3D109051#c437) appears to =
-resolve the issue.
+If you have a platform showing the error, and have tested a fix .. why
+not just send the patch ?
 
-Is anyone aware of this and/or know if it will be fixed within the Yocto =
-kernel tree?
+Bruce
 
---
-
-Chris Tapp
-opensource@keylevel.com
-www.keylevel.com
+>
+> --
+>
+> Chris Tapp
+> opensource@keylevel.com
+> www.keylevel.com
+>
 
 
