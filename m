@@ -1,34 +1,44 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
+Return-Path: <ajlennon@dynamicdevices.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 70FA6E00C09; Tue, 26 Jul 2016 08:31:46 -0700 (PDT)
+	id EAA90E00C40; Tue, 26 Jul 2016 08:36:57 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2B58BE009AA
-	for <yocto@yoctoproject.org>; Tue, 26 Jul 2016 08:31:42 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id u6QFVXBI004057
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=OK);
-	Tue, 26 Jul 2016 08:31:34 -0700
-Received: from [128.224.56.48] (128.224.56.48) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.248.2;
-	Tue, 26 Jul 2016 08:31:33 -0700
-To: Mircea Gliga <mircea.gliga@vitheia.com>, <yocto@yoctoproject.org>
-References: <e00d74d8-fdca-0a3d-0b5e-0a2441badcc0@vitheia.com>
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-Message-ID: <57978254.9080905@windriver.com>
-Date: Tue, 26 Jul 2016 11:31:32 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.8.0
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0031]
+X-Greylist: delayed 145 seconds by postgrey-1.32 at yocto-www;
+	Tue, 26 Jul 2016 08:36:51 PDT
+Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
+	[89.200.136.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AA31CE009E7
+	for <yocto@yoctoproject.org>; Tue, 26 Jul 2016 08:36:51 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by www.dynamicdevices.co.uk (Postfix) with ESMTP id 0CD8627EA63;
+	Tue, 26 Jul 2016 15:36:51 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
+Received: from www.dynamicdevices.co.uk ([127.0.0.1])
+	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id dTdH_lM7A7oi; Tue, 26 Jul 2016 15:36:28 +0000 (UTC)
+Received: from [172.20.10.2] (unknown [46.188.200.205])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id 00EEF27EA5F;
+	Tue, 26 Jul 2016 15:36:27 +0000 (UTC)
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>,
+	Yocto discussion list <yocto@yoctoproject.org>
+References: <alpine.LFD.2.20.1607070341590.7238@localhost.localdomain>
+From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+Message-ID: <f2913201-774a-d8d9-cdf6-d86620093b93@dynamicdevices.co.uk>
+Date: Tue, 26 Jul 2016 17:36:38 +0200
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:45.0) Gecko/20100101
+	Thunderbird/45.2.0
 MIME-Version: 1.0
-In-Reply-To: <e00d74d8-fdca-0a3d-0b5e-0a2441badcc0@vitheia.com>
-Subject: Re: Some partial kernel configs applied some are ignored
+In-Reply-To: <alpine.LFD.2.20.1607070341590.7238@localhost.localdomain>
+Subject: Re: is meta-mono layer actively supported?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,97 +50,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 26 Jul 2016 15:31:46 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
+X-List-Received-Date: Tue, 26 Jul 2016 15:36:58 -0000
+Content-Type: text/plain; charset=windows-1252
 Content-Transfer-Encoding: 7bit
 
-On 2016-07-26 02:32 AM, Mircea Gliga wrote:
-> Hello
->
-> I have my own layer and I am trying to configure the kernel using
-> partial configs.
-> I'm trying to enable netfilter support into the kernel - not as modules,
-> so I set the CONFIG.... to "y"
-> I've created a bbappend file in my layer, here:
-> recipes-kernel/linux/linux-yocto_3.14.bbappend
-
-Which branch is this ? 3.14 spanned a few releases, so I can't
-tell from the kernel version alone.
-
-> The content of this file is:
-> ---
-> FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-> SRC_URI += "file://ipv6enable.cfg file://netfilter_minimal.cfg"
->
-> SRCREV_machine = "${SRCREV}"
-> ---
->
-> In the ipv6enable.cfg file I also enable the ipv6.
->
-> recipes-kernel/linux/linux-yocto/netfilter_minimal.cfg:
-> CONFIG_NF_CONNTRACK=y
-> CONFIG_NF_NAT=y
-> CONFIG_NETFILTER_XTABLES=y
-> CONFIG_NETFILTER_XT_MATCH_CONNTRACK=y
-> CONFIG_NETFILTER_XT_MATCH_STATE=y
-> CONFIG_NF_DEFRAG_IPV6=y
-> CONFIG_NF_CONNTRACK_IPV6=y
-> CONFIG_IP6_NF_IPTABLES=y
-> CONFIG_NF_NAT_IPV6=y
->
-> recipes-kernel/linux/linux-yocto/ipv6enable.cfg:
-> CONFIG_IPV6=y
-> CONFIG_INET6_TUNNEL=y
-> CONFIG_IPV6_TUNNEL=y
-> CONFIG_IPV6_ROUTER_PREF=y
->
-> Now I'm configuring the kernel, cleaning first:
-> * bitbake -c cleansstate linux-yocto
-> * bitbake linux-yocto -c configure
->
-> When inspecting the .config file from
-> tmp/work/qemuarm-poky-linux-gnueabi/linux-yocto/3.14.36+gitAUTOINC+060fa80b79_4817747912-r0/linux-qemuarm-standard-build:
->
-> most of the kernel options related to netfilter are set to "m", it's
-> like my options from my layer are ignored.
-
-They wouldn't be ignored, but if they are not the last configs, a
-dependency or select statement is in play, the option could be changed.
-
-In particular, check "bitbake -e" and the linux-yocto kernel recipe
-for KERNEL_FEATURES .. we have them for netfilter options in particular.
-
-KERNEL_FEATURES are applied last (something that has been tweaked in
-master, but would be the case in an older release).
-
-They are applied last, since they are a hard error if they aren't set
-.. which means that something on the SRC_URI can't simply override
-them, it has to be another KERNEL_FEATURE.
-
-There is a way to create a KERNEL_FEATURE in your bbappend, but in the
-case of the netfilter options, they are enabled via the
-KERNEL_EXTRA_FEATURES variable, so you can override and clear that
-variable to avoid the kernel feature coming in and changing what you
-are trying to set.
-
-Bruce
 
 
-> But the options from the ipv6enable.cfg file are set correctly (even if
-> set to "n" or "y" changes are reflected in the output file .config)
+On 07/07/2016 09:50, Robert P. J. Day wrote:
+>   out of nowhere, a client of mine wants to port from WEC7 to linux
+> using YP; they already have a working app written in C# .NET and want
+> to drag it with them, obviously using mono.
 >
-> I've created the netfilter_minimal.cfg file in this way:
-> * configure a kernel without any of my changes
-> * made a backup of .config
-> * run bitbake linux-yocto -c menuconfig and set the options from there
-> * save the results to a different file
-> * resulting file compared with the original file: changes saved in
-> netfilter_minimal.cfg
+>   i see the YP wiki page on running .NET apps here:
 >
+> https://wiki.yoctoproject.org/wiki/Building_and_running_embedded_Linux_.NET_applications_from_first_principles
 >
-> Thanks in advance
-> M.
+> which looks like it has the info they need, given that i know
+> absolutely *zero* about C#/.NET/mono, but i might as well learn
+> something about it.
 >
->
+>   the history of that page suggests it's actively supported, can
+> anyone confirm that it really does walk one through how to incorporate
+> a .NET app in a YP image? given some time this weekend, i'll try to
+> follow how to add and run a simple example. thanks.
+
+Hi Robert,
+
+Apologies for the latency. I've been otherwise occupied and have only
+just seen this.
+
+Yes, I wrote this piece and the intention is that it does what it says
+on the tin - on the basis I have been expecting for some time that
+business would be wishing to leverage Mono/Linux for their existing
+WinCE codebases.
+
+If you have any issues let me know and I'll be pleased to try to support
+you.
+
+Cheers,
+
+Alex
 
 
