@@ -1,34 +1,42 @@
-Return-Path: <mircea.gliga@vitheia.com>
+Return-Path: <gley-yocto@m.gmane.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B23D3E00D2E; Mon, 25 Jul 2016 23:17:14 -0700 (PDT)
+	id 5AE42E00D44; Mon, 25 Jul 2016 23:18:16 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+	SPF_HELO_PASS,WEIRD_PORT autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [80.91.229.3 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*  0.0 WEIRD_PORT URI: Uses non-standard port number for HTTP
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 387 seconds by postgrey-1.32 at yocto-www;
-	Mon, 25 Jul 2016 23:17:10 PDT
-Received: from zeus.integrasoft.ro (zeus.integrasoft.ro [193.231.162.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 34877E00D25
-	for <yocto@yoctoproject.org>; Mon, 25 Jul 2016 23:17:10 -0700 (PDT)
-Received: from [193.231.162.34] (echelon.integrasoft.ro [193.231.162.34])
-	(authenticated bits=0)
-	by zeus.integrasoft.ro (8.13.8/8.13.8) with ESMTP id u6Q6H9TL011573
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES128-SHA bits=128 verify=NO)
-	for <yocto@yoctoproject.org>; Tue, 26 Jul 2016 09:17:09 +0300
+Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 93227E00D28
+	for <yocto@yoctoproject.org>; Mon, 25 Jul 2016 23:18:14 -0700 (PDT)
+Received: from list by plane.gmane.org with local (Exim 4.69)
+	(envelope-from <gley-yocto@m.gmane.org>) id 1bRvgy-0001A7-BU
+	for yocto@yoctoproject.org; Tue, 26 Jul 2016 08:18:12 +0200
+Received: from host-82-135-29-140.customer.m-online.net ([82.135.29.140])
+	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Tue, 26 Jul 2016 08:18:12 +0200
+Received: from gmane by host-82-135-29-140.customer.m-online.net with local
+	(Gmexim 0.1 (Debian)) id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Tue, 26 Jul 2016 08:18:12 +0200
+X-Injected-Via-Gmane: http://gmane.org/
 To: yocto@yoctoproject.org
-References: <CAJ5vXcRgkgH8by89cv9Hi_g=Vo18kXAENCwy2zUNb00UTaat1w@mail.gmail.com>
-From: Mircea Gliga <mircea.gliga@vitheia.com>
-Message-ID: <eaef999c-db52-05e7-49c5-e8ea2ae67790@vitheia.com>
-Date: Tue, 26 Jul 2016 09:17:08 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Icedove/45.1.0
-MIME-Version: 1.0
-In-Reply-To: <CAJ5vXcRgkgH8by89cv9Hi_g=Vo18kXAENCwy2zUNb00UTaat1w@mail.gmail.com>
-Subject: Re: config file
+From: Robert Berger <gmane@reliableembeddedsystems.com>
+Date: Tue, 26 Jul 2016 09:18:05 +0300
+Message-ID: <nn6vat$c6p$1@ger.gmane.org>
+Mime-Version: 1.0
+X-Complaints-To: usenet@ger.gmane.org
+X-Gmane-NNTP-Posting-Host: host-82-135-29-140.customer.m-online.net
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.6.0
+Subject: empty packages
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,98 +48,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 26 Jul 2016 06:17:14 -0000
-Content-Type: multipart/alternative;
-	boundary="------------1332743F1E07841A335B999A"
-
---------------1332743F1E07841A335B999A
-Content-Type: text/plain; charset=windows-1252; format=flowed
+X-List-Received-Date: Tue, 26 Jul 2016 06:18:16 -0000
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 7bit
 
-Hi
+Hi,
 
-This part of the documentation is of interest: 
-http://www.yoctoproject.org/docs/2.0.2/dev-manual/dev-manual.html#configuring-the-kernel
-The idea is that the .config file is located in your Build Directory, in 
-the area where the specific kernel is built. Could be something like this:
+According to [1]:
 
-poky/build/tmp/work/qemux86-poky-linux/linux-yocto-3.14.11+git1+84f...
-         ...656ed30-r1/linux-qemux86-standard-build
+"By default, BitBake does not produce empty packages."
 
-BR
+This does not seem to be the case at least for Jethro.
+
+If I bitbake something like this[2] for qemuarm I see empty packages
+like e.g. the -dev package.
+
+Now it's getting even more interesting.
+
+[3] says:
+
+The list of packages to be created from the recipe. The default value is
+the following:
+
+${PN}-dbg ${PN}-staticdev ${PN}-dev ${PN}-doc ${PN}-locale
+${PACKAGE_BEFORE_PN} ${PN}
+
+... but ...
+
+a non empty -dbg package is being built
+an empty -dev package is being built
+no -locale package is being built
+
+Is this expected behavior? If yes please explain.
+
+Regards,
+
+Robert
 
 
-On 07/26/2016 08:55 AM, nousi wrote:
-> Hi,
->
-> I have downloaded the poky repo and it is clean.
-> I do not find any .config file in poky directory.
-> Please, point me to the location under poky tree to copy the .config 
-> file from the external source so that bitbake can use .config file 
-> configuration.
->
-> -- 
-> /Thanks & Regards,
-> B.Nousilal,
-> /
->
->
+[1]
+http://www.yoctoproject.org/docs/latest/mega-manual/mega-manual.html#var-ALLOW_EMPTY
+[2]
+http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/documentation/ref-manual/examples/hello-single/hello.bb
+[3]
+http://www.yoctoproject.org/docs/latest/mega-manual/mega-manual.html#var-PACKAGES..."The
+three principal virtues of a programmer are Laziness, Impatience, and
+Hubris." - Larry Wall
+
+My public pgp key is available,at:
+http://pgp.mit.edu:11371/pks/lookup?op=get&search=0x90320BF1
 
 
---------------1332743F1E07841A335B999A
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: 8bit
 
-<html>
-  <head>
-    <meta content="text/html; charset=windows-1252"
-      http-equiv="Content-Type">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    Hi<br>
-    <br>
-    This part of the documentation is of interest:
-<a class="moz-txt-link-freetext" href="http://www.yoctoproject.org/docs/2.0.2/dev-manual/dev-manual.html#configuring-the-kernel">http://www.yoctoproject.org/docs/2.0.2/dev-manual/dev-manual.html#configuring-the-kernel</a><br>
-    The idea is that the .config file is located in your Build
-    Directory, in the area where the specific kernel is built.
-    Could be something like this:<br>
-    <pre class="literallayout">poky/build/tmp/work/qemux86-poky-linux/linux-yocto-3.14.11+git1+84f...
-        ...656ed30-r1/linux-qemux86-standard-build</pre>
-    BR<br>
-    <br>
-    <br>
-    <div class="moz-cite-prefix">On 07/26/2016 08:55 AM, nousi wrote:<br>
-    </div>
-    <blockquote
-cite="mid:CAJ5vXcRgkgH8by89cv9Hi_g=Vo18kXAENCwy2zUNb00UTaat1w@mail.gmail.com"
-      type="cite">
-      <div dir="ltr">Hi,
-        <div><br>
-        </div>
-        <div>I have downloaded the poky repo and it is clean.</div>
-        <div>I do not find any .config file in poky directory.</div>
-        <div>Please, point me to the location under poky tree to copy
-          the .config file from the external source so that bitbake can
-          use .config file configuration.</div>
-        <div>
-          <div><br>
-          </div>
-          -- <br>
-          <div class="gmail_signature" data-smartmail="gmail_signature"><i
-              style="color:rgb(51,51,255)"><font
-                style="font-family:arial,helvetica,sans-serif" size="2">Thanks
-                &amp; Regards,<br>
-                B.Nousilal,<br>
-              </font></i><br>
-          </div>
-        </div>
-      </div>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <br>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------1332743F1E07841A335B999A--
