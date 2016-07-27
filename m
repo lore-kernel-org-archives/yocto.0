@@ -1,6 +1,6 @@
 Return-Path: <timothy.t.orling@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 21B49E00EC6; Wed, 27 Jul 2016 13:45:21 -0700 (PDT)
+	id 3E82EE00EC3; Wed, 27 Jul 2016 13:45:21 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,20 +12,22 @@ X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AFCBBE009C9
-	for <yocto@yoctoproject.org>; Wed, 27 Jul 2016 13:45:18 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 95246E0083D
+	for <yocto@yoctoproject.org>; Wed, 27 Jul 2016 13:45:14 -0700 (PDT)
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
 	by fmsmga101.fm.intel.com with ESMTP; 27 Jul 2016 13:45:14 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.28,431,1464678000"; d="scan'208";a="1025121634"
+X-IronPort-AV: E=Sophos;i="5.28,431,1464678000"; d="scan'208";a="1025121643"
 Received: from timo-fedora.jf.intel.com ([10.7.201.162])
 	by orsmga002.jf.intel.com with ESMTP; 27 Jul 2016 13:45:06 -0700
 From: Tim Orling <timothy.t.orling@linux.intel.com>
 To: yocto@yoctoproject.org
-Date: Wed, 27 Jul 2016 13:45:53 -0700
-Message-Id: <1469652355-27486-1-git-send-email-timothy.t.orling@linux.intel.com>
+Date: Wed, 27 Jul 2016 13:45:54 -0700
+Message-Id: <1469652355-27486-2-git-send-email-timothy.t.orling@linux.intel.com>
 X-Mailer: git-send-email 2.7.4
-Subject: [meta-qt4][krogoth 0/2] fixes for qt4-native
+In-Reply-To: <1469652355-27486-1-git-send-email-timothy.t.orling@linux.intel.com>
+References: <1469652355-27486-1-git-send-email-timothy.t.orling@linux.intel.com>
+Subject: [meta-qt4][krogoth 1/2] qt4-native: fix build for gcc-6
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,23 +43,37 @@ X-List-Received-Date: Wed, 27 Jul 2016 20:45:21 -0000
 
 [YOCTO #10038]
 
-qt4-native does not inherit from qt4-4.8.7.inc, so patches
-applied to target qt4 have not been applied to native.
+Apply patches from qt4-4.8.7.inc to qt4-native as well.
+(Now that Fedora-24 host is gcc-6)
 
-This blocks the -lsb images from building for Fedora-24
+Signed-off-by: Tim Orling <timothy.t.orling@linux.intel.com>
+---
+ recipes-qt4/qt4/qt4-native.inc | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-A separate series will also be sent for master, tracked
-on a separate bug to make sure the issue is resolved.
-
-Obsoletes prior series with similar intent.
-
-Tim Orling (2):
-  qt4-native: fix build for gcc-6
-  qt4-native: inhibit strip for debug packages
-
- recipes-qt4/qt4/qt4-native.inc | 6 ++++++
- 1 file changed, 6 insertions(+)
-
+diff --git a/recipes-qt4/qt4/qt4-native.inc b/recipes-qt4/qt4/qt4-native.inc
+index 58acac8..2aae86a 100644
+--- a/recipes-qt4/qt4/qt4-native.inc
++++ b/recipes-qt4/qt4/qt4-native.inc
+@@ -16,6 +16,8 @@ SRC_URI = "http://download.qt-project.org/official_releases/qt/4.8/${PV}/qt-ever
+            file://0002-qkbdtty_qws-fix-build-with-old-kernel-headers.patch \
+            file://0003-webkit2-set-OUTPUT_DIR-value-if-empty.patch \
+            file://0021-configure-make-qt4-native-work-with-long-building-pa.patch \
++	   file://0036-qt-everywhere-opensource-src-4.8.7-gcc6.patch \
++	   file://gcc-6.patch \
+            file://g++.conf \
+            file://linux.conf \
+ 	"
+@@ -25,6 +27,9 @@ UPSTREAM_CHECK_REGEX = "(?P<pver>\d+(\.\d+)+)/"
+ 
+ S = "${WORKDIR}/qt-everywhere-opensource-src-${PV}"
+ 
++# workaround for class std::auto_ptr' is deprecated with gcc-6
++CXXFLAGS += "-std=gnu++98 -Wno-deprecated"
++
+ EXTRA_OECONF = "-prefix ${prefix} \
+                 -bindir ${bindir} \
+                 -libdir ${libdir} \
 -- 
 2.7.4
 
