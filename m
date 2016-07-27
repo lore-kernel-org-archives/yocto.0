@@ -1,61 +1,83 @@
-Return-Path: <jan.lindaker@axis.com>
+Return-Path: <tmatsuzawa@uievolution.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 00183E00E4F; Wed, 27 Jul 2016 01:33:20 -0700 (PDT)
+	id A068FE00E51; Wed, 27 Jul 2016 02:47:50 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [195.60.68.11 listed in list.dnswl.org]
+	*      [104.47.32.49 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 437 seconds by postgrey-1.32 at yocto-www;
-	Wed, 27 Jul 2016 01:33:11 PDT
-Received: from bastet.se.axis.com (bastet.se.axis.com [195.60.68.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BD25CE00E44
-	for <yocto@yoctoproject.org>; Wed, 27 Jul 2016 01:33:11 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by bastet.se.axis.com (Postfix) with ESMTP id 4767E18186
-	for <yocto@yoctoproject.org>; Wed, 27 Jul 2016 10:25:53 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at bastet.se.axis.com
-Received: from bastet.se.axis.com ([IPv6:::ffff:127.0.0.1])
-	by localhost (bastet.se.axis.com [::ffff:127.0.0.1]) (amavisd-new,
-	port 10024) with LMTP id nY0RaCWcm9uv for <yocto@yoctoproject.org>;
-	Wed, 27 Jul 2016 10:25:51 +0200 (CEST)
-Received: from boulder.se.axis.com (boulder.se.axis.com [10.0.2.104])
-	by bastet.se.axis.com (Postfix) with ESMTP id CF7BF18181
-	for <yocto@yoctoproject.org>; Wed, 27 Jul 2016 10:25:51 +0200 (CEST)
-Received: from boulder.se.axis.com (localhost [127.0.0.1])
-	by postfix.imss71 (Postfix) with ESMTP id BC8161B43
-	for <yocto@yoctoproject.org>; Wed, 27 Jul 2016 10:25:51 +0200 (CEST)
-Received: from seth.se.axis.com (seth.se.axis.com [10.0.2.172])
-	by boulder.se.axis.com (Postfix) with ESMTP id AC54B1B40
-	for <yocto@yoctoproject.org>; Wed, 27 Jul 2016 10:25:51 +0200 (CEST)
-Received: from XBOX02.axis.com (xbox02.axis.com [10.0.5.16])
-	by seth.se.axis.com (Postfix) with ESMTP id AA72F443
-	for <yocto@yoctoproject.org>; Wed, 27 Jul 2016 10:25:51 +0200 (CEST)
-Received: from XBOX01.axis.com (10.0.5.15) by XBOX02.axis.com (10.0.5.16) with
-	Microsoft SMTP Server (TLS) id 15.0.1156.6;
-	Wed, 27 Jul 2016 10:25:51 +0200
-Received: from XBOX01.axis.com ([fe80::29b8:9a78:62b3:f680]) by
-	XBOX01.axis.com ([fe80::29b8:9a78:62b3:f680%22]) with mapi id
-	15.00.1156.000; Wed, 27 Jul 2016 10:25:51 +0200
-From: =?utf-8?B?SmFuIExpbmTDpWtlcg==?= <jan.lindaker@axis.com>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from NAM01-SN1-obe.outbound.protection.outlook.com
+	(mail-sn1nam01on0049.outbound.protection.outlook.com [104.47.32.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1FDE4E00E4C
+	for <yocto@yoctoproject.org>; Wed, 27 Jul 2016 02:47:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=uievolution.onmicrosoft.com; s=selector1-uievolution-com;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
+	bh=RnzNgyxZh/lHH8FuKMq0m084PrRZcn3GVYByCcNW4mg=;
+	b=tTJP4WfBm68HKy5bsK8tYmLpgWrIseKPX2b89YLSA9zcm6mZtVAGGOxnKYMYUjNr0BJNnflZmA9OxPK4d2mEJJMb5HXIdZPUTrZhq1BKV9Wtnu3TXY9407DZ27zBGHwiPgbzFPsYHhZXkjDMiEpv3q2+EYalP3i6X9+Int3CuVQ=
+Received: from CY1PR0101MB1594.prod.exchangelabs.com (10.163.139.13) by
+	CY1PR0101MB1594.prod.exchangelabs.com (10.163.139.13) with Microsoft
+	SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
+	15.1.544.10; Wed, 27 Jul 2016 09:31:44 +0000
+Received: from CY1PR0101MB1594.prod.exchangelabs.com ([10.163.139.13]) by
+	CY1PR0101MB1594.prod.exchangelabs.com ([10.163.139.13]) with mapi id
+	15.01.0544.019; Wed, 27 Jul 2016 09:31:44 +0000
+From: Takashi Matsuzawa <tmatsuzawa@uievolution.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Missing files in rootfs when adding links /bin ->/usr/bin and
-	/lib -> /usr/lib  in recipe base-files
-Thread-Index: AQHR59ikdOiLZdjWyEOe7SPrA6Onzw==
-Date: Wed, 27 Jul 2016 08:25:51 +0000
-Message-ID: <1469607951109.50216@axis.com>
+Thread-Topic: autotool __init_array_end not found
+Thread-Index: AQHR482PDGaqzThgRUCSunk7S+G7t6AsCrj8
+Date: Wed, 27 Jul 2016 09:31:42 +0000
+Message-ID: <CY1PR0101MB1594F877E5E2B9A464185CA0D70F0@CY1PR0101MB1594.prod.exchangelabs.com>
+References: <CY1PR0101MB159437FBA234CD6D4596E099D70A0@CY1PR0101MB1594.prod.exchangelabs.com>
+In-Reply-To: <CY1PR0101MB159437FBA234CD6D4596E099D70A0@CY1PR0101MB1594.prod.exchangelabs.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.0.5.60]
+authentication-results: spf=none (sender IP is )
+	smtp.mailfrom=tmatsuzawa@uievolution.com; 
+x-originating-ip: [118.238.252.194]
+x-ms-office365-filtering-correlation-id: ca97771f-e714-40c0-f0e6-08d3b600d2b8
+x-microsoft-exchange-diagnostics: 1; CY1PR0101MB1594;
+	6:6S3JUD+dgAynYdu0kZAIPM/riALTMOTJDhcTBr27KVwy3ivmGdxHnZY2hgCZ1DAy3C2fyrqO1M0E/7Nsm7XVBaowZ8pypgxwb37qvIt3FHBH/FyTloBHa8Z9xwqQCgwgMSqBXQrYYRa6KMfM4eT5RnIxAerCeNusxzfNd9DMAFmsP+ds2I5E/WUj4vBKKGZTSh5IE1hl2gzpzrOcFVNLFKShoz4SxSIjQnQucb5aUm/RmU6F30SdoUXbnvjyZATHCrPqUj41B4jzQPVtcbNtQE7rK7BbzVezt2q4kDBZWtc=;
+	5:s+YQdLLCIExEtu1miabP8TwGv6Zwf7UYuCVEr2SjCD5LPxndCINxVJIQlnsnNwJL/Cd5el+Doa+YG1++bDKuxvqA+sY1fbkZWwFyADxZ3WzRhDkUyZnzQq/0R2/vslfAodwc6d9vSBGqqzxjBV5z4A==;
+	24:DQswGTXc8+peFVMumY8srgdF/4mU1pJoX7+LIfxp9rPzQtXDld8HIYuk6s4HspHSQtsL4uZl9Jy5irXFhqPsivk8d5WUc8t94RiYwzv28qE=;
+	7:IYQOxRZSy6K/8XBb+llU/9i5n5wVwKIhTF7tv4f8MCffeN1BMKAxMzkFHx58mUY6BhJuadP7gK6UadBxileHgvL+tlLem898xRthKJ9hQOuMLQahMe2I7IaBVCPVipEmlc1tsfeat6DqcTftopQfyOr+fLQ0tfud23KS9gg+PfIVQMOihmlOSWl6dxb7OOEOM1AtE1yIkhJ2+YyJN0UZgGl6412WdFetw0PPEEKbQ8+CsB3mtufTKQyGBojsbBDB
+x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:CY1PR0101MB1594;
+x-microsoft-antispam-prvs: <CY1PR0101MB1594F62CA03B84F198572C0AD70F0@CY1PR0101MB1594.prod.exchangelabs.com>
+x-exchange-antispam-report-test: UriScan:;
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(2401047)(5005006)(8121501046)(10201501046)(3002001);
+	SRVR:CY1PR0101MB1594; BCL:0; PCL:0; RULEID:;
+	SRVR:CY1PR0101MB1594; 
+x-forefront-prvs: 0016DEFF96
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10009020)(6009001)(7916002)(189002)(199003)(377454003)(54094003)(33656002)(19580405001)(19580395003)(5002640100001)(10400500002)(86362001)(74316002)(87936001)(450100001)(76176999)(92566002)(19627405001)(122556002)(54356999)(50986999)(2950100001)(16236675004)(7696003)(106356001)(106116001)(2351001)(2900100001)(5003600100003)(7736002)(7846002)(101416001)(107886002)(81156014)(2501003)(97736004)(2906002)(3660700001)(1730700003)(586003)(8936002)(9686002)(110136002)(105586002)(102836003)(19625215002)(5640700001)(66066001)(11100500001)(68736007)(81166006)(189998001)(3900700001)(6116002)(3280700002)(77096005)(8676002)(3846002);
+	DIR:OUT; SFP:1101; SCL:1; SRVR:CY1PR0101MB1594;
+	H:CY1PR0101MB1594.prod.exchangelabs.com; FPR:; SPF:None;
+	PTR:InfoNoRecords; MX:1; A:1; LANG:en; 
+received-spf: None (protection.outlook.com: uievolution.com does not designate
+	permitted sender hosts)
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-Subject: Missing files in rootfs when adding links /bin ->/usr/bin and /lib -> /usr/lib in recipe base-files
+X-OriginatorOrg: uievolution.com
+X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Jul 2016 09:31:42.8641 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: e0a7ca1f-2458-4cd6-a7c7-d733c07495ab
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY1PR0101MB1594
+Subject: Re: autotool __init_array_end not found
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,125 +89,278 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 27 Jul 2016 08:33:21 -0000
+X-List-Received-Date: Wed, 27 Jul 2016 09:47:50 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/alternative;
+	boundary="_000_CY1PR0101MB1594F877E5E2B9A464185CA0D70F0CY1PR0101MB1594_"
 
-SSdtIHRyeWluZyB0b8KgCgpXaGVuIGNoYW5naW5nIHBhY2thZ2UgYmFzZS1maWxlcywgc28gdGhh
-dCB0aGUgL2JpbiBkaXJlY3RvcnkgaXMgc29mdCBsaW5rZWQgdG8gL3Vzci9iaW4gYW5kIHRoZSAv
-bGliIGRpcmVjdG9yeSBpcyBzb2Z0IGxpbmtlZCB0byAvdXNyL2xpYiwgdGhlIHJlc3VsdGluZyBp
-bWFnZS9yb290ZnMgZGlyZWN0b3J5IHN0cnVjdHVyZSBpcyBtaXNzaW5nIGEgbG90IG9mIGZpbGVz
-LCBtb3N0IG9mIHdoaWNoIGFyZSB1bnJlbGF0ZWQgdG8gYW55IG9mIHRoZSAgZGlyZWN0b3JpZXMg
-bWVudGlvbmVkIGFib3ZlLiBFLmcuIGZpbGU6Ly9ldGMvZnN0YWIgaXMgbWlzc2luZy4gV2hlbiBp
-bnNwZWN0aW5nIHRoZSBiYXNlLWZpbGVzIC5ycG0gaXQgY29udGFpbnMgdGhlIGZpbGUgc3RydWN0
-dXJl4oCLIHRoYXQgaXMgZXhwZWN0ZWQuIEZvciBzb21lIHJlYXNvbiB0aGUgcGFja2FnZSBpbnN0
-YWxsIG9yZGVyIGNoYW5nZXMgd2hlbiBidWlsZGluZyByb290ZnMgd2hlbiB0aGUgbGlua3MgZnJv
-bSAvbGliIGFuZCAvdXNyIGFyZSBwcmVzZW50LgoKSSBrbm93IHRvbyBsaXR0bGUgYWJvdXQgWW9j
-dG8va2VybmVsIGltYWdlIGJ1aWxkaW5nIHRvIGJlIGFibGUgdG8gZGVidWcgdGhpcyBlZmZlY3Rp
-dmVseSwgc2luY2UgdGhlcmUgaXMgbm8gZXJyb3JzIHJlcG9ydGVkIGFuZCB0aGUgYnVpbGQgcHJv
-Y2VzcyBpcyBxdWl0ZSBjb21wbGV4LiBBbnkgc29sdXRpb25zIG9yIGhlbHAgd2l0aCB3aGVyZSB0
-byBjb250aW51ZSBteSBpbnZlc3RpZ2F0aW9ucyB3b3VsZCBiZSBoaWdobHkgYXBwcmVjaWF0ZWQu
-CgpBY3Rpb25zIHRvIHJlcHJvZHVjZToKSSBmaXJzdCBkZXRlY3RlZCB0aGUgcHJvYmxlbSBpbiBh
-biBhZGFwdGF0aW9uIG9mIFlvY3RvLCBidXQgSSBoYXZlIHJlcHJvZHVjZWQgaXQgaW4gdGhlIHBy
-b2plY3QgZGVzY3JpYmVkIGluIHRoZSBxdWljayBzdGFydDogaHR0cDovL3d3dy55b2N0b3Byb2pl
-Y3Qub3JnL2RvY3MvMS44L3lvY3RvLXByb2plY3QtcXMveW9jdG8tcHJvamVjdC1xcy5odG1sCgox
-LiBTZXQgdXAgYSBuZXcgWW9jdG8gcHJvamVjdCBhcyBkZXNjcmliZWQgaW4gdGhlIGxpbmsgYWJv
-dmUKMi4gU2V0IHVwIGEgbmV3IGxheWVyIHdpdGggYSAuYmJhcHBlbmRmaWxlIGFzIGZvbGxvd3MK
-Ci0tIC4uL3JlY2VwaWVzLWxpbmtkaXIvYmFzZS1maWxlcy9iYXNlLWZpbGVzXyUuYmJhcHBlbmQg
-LS0tLS0tLS0tLS0tLS0tLS0tLQpkaXJzNzU1X3JlbW92ZSA9ICIvYmluIC9saWIiCgpkb19pbnN0
-YWxsX2V4dHJhX2xpbmtzKCkgewrCoCDCoCBsbiAtc3J2ZiAke0R9L3Vzci9iaW4gJHtEfS9iaW4K
-wqAgwqAgbG4gLXNydmYgJHtEfS91c3IvbGliICR7RH0vbGliCn0KCmFkZHRhc2sgaW5zdGFsbF9l
-eHRyYV9saW5rcyBhZnRlciBkb19pbnN0YWxsIGJlZm9yZSBkb19wb3B1bGF0ZV9zeXNyb290IGRv
-X3BhY2thZwoKLS0gLi4vbWV0YS1saW5rZGlyL2NvbmYvbGF5ZXIuY29uZiAtLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCiMgV2UgaGF2ZSBhIGNvbmYgYW5kIGNsYXNzZXMg
-ZGlyZWN0b3J5LCBhZGQgdG8gQkJQQVRIwqAKQkJQQVRIID0uICIke0xBWUVSRElSfToiwqAKIyBX
-ZSBoYXZlIGEgcGFja2FnZXMgZGlyZWN0b3J5LCBhZGQgdG8gQkJGSUxFU8KgCkJCRklMRVMgKz0g
-IiR7TEFZRVJESVJ9L3JlY2lwZXMtKi8qLyouYmIgXMKgCsKgIMKgIMKgIMKgIMKgIMKgICR7TEFZ
-RVJESVJ9L3JlY2lwZXMtKi8qLyouYmJhcHBlbmQiCsKgIMKgIMKgIMKgIMKgIMKgwqAKQkJGSUxF
-X0NPTExFQ1RJT05TICs9ICJsaW5rZGlyIsKgCkJCRklMRV9QQVRURVJOX2xpbmtkaXIgOj0gIl4k
-e0xBWUVSRElSfS8iwqAKQkJGSUxFX1BSSU9SSVRZX2xpbmtkaXIgOj0gIjYiCgotLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0KCjMuIEJ1aWxkIHRoZSBzb2Z0d2FyZQokIGJpdGJha2UgY29yZS1pbWFnZS1zYXRv
-Cgo0LiBJbnNwZWN0IHRoZSAucnBtCnJwbSAtbHZwcSAuL3RtcC93b3JrL3FlbXV4ODYtcG9reS1s
-aW51eC9iYXNlLWZpbGVzLzMuMC4xNC1yODkvZGVwbG95LXJwbXMvcWVtdXg4Ni9iYXNlLWZpbGVz
-LWRldi0zLjAuMTQtcjg5LnFlbXV4ODYucnBtCk5vdGUgdGhhdDogL2JpbiAtPiAvdXNyL2Jpbiwg
-L2xpYiAtPiAvdXNlci9saWIgYW5kIHRoYXQgL2V0Yy9mc3RhYiBpcyBwcmVzZW50Cgo1LiBTYXZl
-IHRoZSBnZW5lcmF0ZWQgZmlsZS1zdHJ1Y3V0cmUKJCBwdXNoZCAuL3RtcC93b3JrL3FlbXV4ODYt
-cG9reS1saW51eC9jb3JlLWltYWdlLXNhdG8vMS4wLXIwL3Jvb3RmcwokIExDX0FMTD1DIGZpbmQg
-LiAtZXhlYyAic3RhdCAtYyAnJU4nIHt9IFw7IiA+IC90bXAveW9jdG9fbGlua19mcy50eHQKJCBw
-b3BkCgo2LiBTYXZlIHRoZSBidWlsZCBsb2cgZnJvbSByb290ZnMgYnVpbGQKJCBjcCAudG1wL3dv
-cmsvcWVtdXg4Ni1wb2t5LWxpbnV4L2NvcmUtaW1hZ2Utc2F0by8xLjAtcjAvdGVtcC9sb2cuZG9f
-cm9vdGZzIC90bXAvbG9nLmRvX3Jvb3Rmcy5saW5rCgo3LiBUbyBiZSBhYmxlIHRvIGNvbXBhcmUg
-d2l0aCB0aGUgb3JpZ2luYWwgZmlsZXN5c3RlbSwgZGlzYWJsZSB0aGUgY2hhbmdlcyBpbiB0aGUg
-LmJiLWFwcGVuZCBmaWxlLCBpLmUuIGVkaXQgaXQgdG8gbG9vayBsaWtlIHRoaXM6Ci0tIC4uL3Jl
-Y2VwaWVzLWxpbmtkaXIvYmFzZS1maWxlcy9iYXNlLWZpbGVzXyUuYmJhcHBlbmQgLS0tLS0tLS0t
-LS0tLS0tLS0tLQojIGRpcnM3NTVfcmVtb3ZlID0gIi9iaW4gL2xpYiIKCmRvX2luc3RhbGxfZXh0
-cmFfbGlua3MoKSB7CsKgIMKgIGxuIC1zcnZmICR7RH0vdXNyL2JpbiAke0R9L2JpbgrCoCDCoCBs
-biAtc3J2ZiAke0R9L3Vzci9saWIgJHtEfS9saWIKfQoKIyBhZGR0YXNrIGluc3RhbGxfZXh0cmFf
-bGlua3MgYWZ0ZXIgZG9faW5zdGFsbCBiZWZvcmUgZG9fcG9wdWxhdGVfc3lzcm9vdCBkb19wYWNr
-YWcKCjguIFJlYnVpbGQgdGhlIHByb2plY3QKJCBiaXRiYWtlIC1jIGNsZWFuYWxsIGJhc2UtZmls
-ZXMKJCBiaXRiYWtlIGNvcmUtaW1hZ2Utc2F0bwoKOS4gSW5zcGVjdCB0aGUgLnJwbQpycG0gLWx2
-cHEgLi90bXAvd29yay9xZW11eDg2LXBva3ktbGludXgvYmFzZS1maWxlcy8zLjAuMTQtcjg5L2Rl
-cGxveS1ycG1zL3FlbXV4ODYvYmFzZS1maWxlcy1kZXYtMy4wLjE0LXI4OS5xZW11eDg2LnJwbQpO
-b3RlIHRoYXQ6IC9iaW4gYW5kIC9saWIgYXJlIG5vcm1hbCBkaXJlY3RvcmllcyBhbmQgdGhhdCAv
-ZXRjL2ZzdGFiIGlzIHByZXNlbnQKCjEwLiBTYXZlIHRoZSBnZW5lcmF0ZWQgZmlsZS1zdHJ1Y3V0
-cmUKJCBwdXNoZCAuL3RtcC93b3JrL3FlbXV4ODYtcG9reS1saW51eC9jb3JlLWltYWdlLXNhdG8v
-MS4wLXIwL3Jvb3RmcwokIExDX0FMTD1DIGZpbmQgLiAtZXhlYyAic3RhdCAtYyAnJU4nIHt9IFw7
-IiA+IC90bXAveW9jdG9fb3JpZ19mcy50eHQKJCBwb3BkCgoxMS4gU2F2ZSB0aGUgYnVpbGQgbG9n
-IGZyb20gcm9vdGZzIGJ1aWxkCiQgY3AgLnRtcC93b3JrL3FlbXV4ODYtcG9reS1saW51eC9jb3Jl
-LWltYWdlLXNhdG8vMS4wLXIwL3RlbXAvbG9nLmRvX3Jvb3RmcyAvdG1wL2xvZy5kb19yb290ZnMu
-b3JpZwoKMTIuIENvbXBhcmUgdGhlIGRpZmZlcmVuY2UgYW5kIG5vdGUgdGhhdCBmaWxlcyBhcmUg
-ZXhjbHVzaXZlbHkgbWlzc2luZyBmcm9tIHRoZSBidWlsZCB3aGVyZSB0aGUgc29mdC1saW5rcyB3
-aGVyZSBhZGRlZC4KJCDCoGRpZmYgL3RtcC95b2N0b19vcmlnX2ZzLnR4dCAvdG1wL3lvY3RvX2xp
-bmtzX2ZzLnR4dAoyZDEKPCAnLi9wcm9jJwoxNmQxNAo8ICcuL3Vzci9zaGFyZS9pbmZvJwozNjQz
-ZDM2NDAKPCAnLi91c3Ivc2hhcmUvZGljdCcKNTA2OCw1MDcwZDUwNjQKPCAnLi91c3Ivc2hhcmUv
-ZGJ1cy0xL2ludGVyZmFjZXMvb3JnLmZyZWVkZXNrdG9wLkNvbnNvbGVLaXQuU2VhdC54bWwnCjwg
-Jy4vdXNyL3NoYXJlL2RidXMtMS9pbnRlcmZhY2VzL29yZy5mcmVlZGVza3RvcC5Db25zb2xlS2l0
-LlNlc3Npb24ueG1sJwo8ICcuL3Vzci9zaGFyZS9kYnVzLTEvaW50ZXJmYWNlcy9vcmcuZnJlZWRl
-c2t0b3AuQ29uc29sZUtpdC5NYW5hZ2VyLnhtbCcKNTA3NWQ1MDY4CjwgJy4vdXNyL3NoYXJlL2Ri
-dXMtMS9zeXN0ZW0tc2VydmljZXMvb3JnLmZyZWVkZXNrdG9wLkNvbnNvbGVLaXQuc2VydmljZScK
-NTM4MmQ1Mzc0CjwgJy4vdXNyL3NoYXJlL21hbicKNTM4NmQ1Mzc3CjwgJy4vdXNyL3NyYycKNTQ4
-OGQ1NDc4CjwgJy4vdXNyL2Jpbi9jay1sYXVuY2gtc2Vzc2lvbicKNTYwM2Q1NTkyCjwgJy4vdXNy
-L2Jpbi9jay1saXN0LXNlc3Npb25zJwo1Njc0ZDU2NjIKPCAnLi91c3IvYmluL2NrLWhpc3Rvcnkn
-CjU3MDhkNTY5NQo8ICcuL3Vzci9zYmluL2NrLWxvZy1zeXN0ZW0tcmVzdGFydCcKNTcxMGQ1Njk2
-CjwgJy4vdXNyL3NiaW4vY2stbG9nLXN5c3RlbS1zdG9wJwo1NzU4ZDU3NDMKPCAnLi91c3Ivc2Jp
-bi9jay1sb2ctc3lzdGVtLXN0YXJ0Jwo1NzcxZDU3NTUKPCAnLi91c3Ivc2Jpbi9jb25zb2xlLWtp
-dC1kYWVtb24nCjYxMTlkNjEwMgo8ICcuL3Vzci9saWIvbGliY2stY29ubmVjdG9yLnNvLjAuMC4w
-Jwo2Mjg3ZDYyNjkKPCAnLi91c3IvbGliL2xpYmNrLWNvbm5lY3Rvci5zby4wJyAtPiAnbGliY2st
-Y29ubmVjdG9yLnNvLjAuMC4wJwo3NTcwLDc1NzFkNzU1MQo8ICcuL3Vzci9saWIvQ29uc29sZUtp
-dC9zY3JpcHRzL2NrLXN5c3RlbS1zdG9wJwo8ICcuL3Vzci9saWIvQ29uc29sZUtpdC9zY3JpcHRz
-L2NrLXN5c3RlbS1yZXN0YXJ0Jwo3NTk3LDc1OTlkNzU3Ngo8ICcuL3Vzci9saWIvY29uc29sZWtp
-dC9jay1nZXQteDExLWRpc3BsYXktZGV2aWNlJwo8ICcuL3Vzci9saWIvY29uc29sZWtpdC9jay1n
-ZXQteDExLXNlcnZlci1waWQnCjwgJy4vdXNyL2xpYi9jb25zb2xla2l0L2NrLWNvbGxlY3Qtc2Vz
-c2lvbi1pbmZvJwo3NzM5LDc3NDBkNzcxNQo8ICcuL2RldicKPCAnLi9ydW4nCjc4MTIsNzgxM2Q3
-Nzg2CjwgJy4vaG9tZScKPCAnLi9ob21lL3Jvb3QnCjc4MThkNzc5MAo8ICcuL2V0Yy9uc3N3aXRj
-aC5jb25mJwo3ODIzZDc3OTQKPCAnLi9ldGMvZGVmYXVsdC91c2JkJwo3OTEwZDc4ODAKPCAnLi9l
-dGMvZnN0YWInCjc5MzZkNzkwNQo8ICcuL2V0Yy9ob3N0bmFtZScKNzk4M2Q3OTUxCjwgJy4vZXRj
-L21vdGQnCjgwMjBkNzk4Nwo8ICcuL2V0Yy9wcm9maWxlJwo4MDg2ZDgwNTIKPCAnLi9ldGMvbXRh
-YicgLT4gJy9wcm9jL21vdW50cycKODA5OGQ4MDYzCjwgJy4vZXRjL2ZpbGVzeXN0ZW1zJwo4MTM4
-ZDgxMDIKPCAnLi9ldGMvaXNzdWUubmV0Jwo4MTYzZDgxMjYKPCAnLi9ldGMvaG9zdC5jb25mJwo4
-MjI3ZDgxODkKPCAnLi9ldGMvZGJ1cy0xL3N5c3RlbS5kL0NvbnNvbGVLaXQuY29uZicKODQzNGQ4
-Mzk1CjwgJy4vZXRjL2lzc3VlJwo4NDQ2ZDg0MDYKPCAnLi9ldGMvQ29uc29sZUtpdC9zZWF0cy5k
-LzAwLXByaW1hcnkuc2VhdCcKODQ2MCw4NDY1ZDg0MTkKPCAnLi9ldGMvaW5wdXRyYycKPCAnLi9l
-dGMvc2tlbCcKPCAnLi9ldGMvc2tlbC8uYmFzaHJjJwo8ICcuL2V0Yy9za2VsLy5wcm9maWxlJwo8
-ICcuL3RtcCcKPCAnLi9zeXMnCjg1MzNkODQ4Ngo8ICcuL21lZGlhJwo4NTM1ZDg0ODcKPCAnLi92
-YXIvbG9jaycgLT4gJy4uL3J1bi9sb2NrJwo4NTQ0LDg1NDljODQ5Ngo8ICcuL3Zhci92b2xhdGls
-ZScKPCAnLi92YXIvcnVuJyAtPiAnLi4vcnVuJwo8ICcuL3Zhci90bXAnIC0+ICd2b2xhdGlsZS90
-bXAnCjwgJy4vdmFyL2JhY2t1cHMnCjwgJy4vdmFyL2xvY2FsJwo8ICcuL3Zhci9sb2cnIC0+ICd2
-b2xhdGlsZS9sb2cnCi0tLQo+ICcuL3Zhci9sb2cnCjg1NjJkODUwOAo8ICcuL3Zhci9saWIvbWlz
-YycKCjEzLiBOb3RlIHRoYXQgdGhlIHBhY2thZ2UgaW5zdGFsbCBvcmRlciAoZm9yIHNvbWUgc3Ry
-YW5nZSByYXNvbikgaGFzIGNoYW5nZWQgYnkgY29tcGFyaW5nIHRoZSByb290ZnMtbG9ncwpkaWZm
-IC90bXAvbG9nLmRvX3Jvb3RmcwoudG1wL3dvcmsvcTE3NzUtcG9reS1saW51eC9heGlzLWltYWdl
-LWN2cC8xLjAtcjAvdGVtcC9sb2cuZG9fcm9vdGZzCgoKQ29uY2x1c2lvbi9FeHBlY3RlZCByZXN1
-bHRzCj09PT09PT09PT0KClRoZSByZXN1bHRpbmcgZmlsZS1zeXN0ZW0gaXMgbm90IHRoZSBpbnRl
-bmRlZCB3aXRoIG1hbnkgbWlzc2luZyBmaWxlcyAocmVnYXJkbGVzcyBvZiBpZiB0aGVyZSBhcmUg
-YnVncyBpbiBZb2N0bywgdGhlIHBhY2thZ2VzLCBvciB0aGF0IHRoZSBjaGFuZ2UgbWFkZSBpcyBu
-b3QgcG9zc2libGUgdG8gZG8gZm9yIHRlY2huaWNhbCByZWFzb25zKS4gUmVnYXJkbGVzcyBvZiB0
-aGUgcm9vdCBjYXVzZSBvZiB0aGUgYmFkIGZpbGUtc3lzdGVtLCBubyAgZXJyb3IgbWVzc2FnZXMg
-YXJlIHByZXNlbnRlZCBieSBZb2N0byBvciB0aGUgcGFja2FnZSBpbnN0YWxsYXRpb24gcHJvY2Vz
-cy4gSXQgaXMgdW5jbGVhciBmb3IgbWUgd2hldGhlciB0aGUgbGF0dGVyIGRlcGVuZHMgb24gYnVn
-cyBpbiB0aGUgcnBtIHBhY2thZ2luZyBzeXN0ZW0sIHRoZSBwYWNrYWdlcyBvciB0aGF0IFlvY3Rv
-IGVhdHMgdGhlIGVycm9yIHJlcG9ydGluZyBmcm9tIHJwbS4KCi9CZXN0IHJlZ2FyZHMgSmFuCgoK
-ICAg
+--_000_CY1PR0101MB1594F877E5E2B9A464185CA0D70F0CY1PR0101MB1594_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
+Well, I could workaround below by patching configure.ac of the package.
+
+May not really have been an yocto issue..
+
+________________________________
+From: Takashi Matsuzawa
+Sent: Friday, July 22, 2016 1:01 PM
+To: yocto@yoctoproject.org
+Subject: autotool __init_array_end not found
+
+
+Hello Yocto.
+
+I am now trying to build autotool based (inherit autotool) recipe on Yocto =
+2.0 based environent.
+Howerver, I am seeng following error.
+I wonder if this is a known problem and you already have workaround?
+
+It says __init_array_end/start is not found which is referred in libc_nonsh=
+ared.a(elf-init.oS).
+I googled and learned that this can happen if parameters are not set proper=
+ly to g++ when building shared library, and in fact, if I remove '-lc' from=
+ the final linker command line, the build error is gone.
+
+>-lm -lc -lgcc_s -lgcc =3D> NG
+>-lm -lgcc_s -lgcc =3D> OK
+
+The problem is, these liker parameters are set by the configure script into=
+ libtool script and so far I could not find easy configurable option to exp=
+licity remove '-lc' from here.
+
+I think configure recognizes that '-lc' is not necessary to build shared li=
+brary (through 'build_libtool_need_lc', etc. test), but it takes these from=
+ somewhere (from its tests or its default template?) and embedding to linke=
+r command parameters.
+
+This error did not happen with Yocto 1.8 based build (where the same recipe=
+ could built w/o break).
+So, it can be toolchain issue (c library difference, autotool difference, e=
+tc.) or libc quirk, maybe fixed problem in recent versions, or specific to =
+my cross-environment, but I have not yet figured out handy workaround.
+
+I am trying here with protobuf package, butI am not yet sure if this happen=
+s with all of the autotool based packages.
+
+=3D=3D=3D=3D
+| arm-poky-linux-gnueabi-libtool: link: arm-poky-linux-gnueabi-g++
+-march=3Darmv7-a -mfloat-abi=3Dhard -mfpu=3Dneon -mtune=3Dcortex-a15
+--sysroot=3D/mnt/ssd2/yocto/dev/tmp/agl-rcr-wk2/sysroots/porter  -fPIC
+-DPIC -shared -nostdlib
+/mnt/ssd2/yocto/dev/tmp/agl-rcr-wk2/sysroots/porter/usr/lib/Scrt1.o
+/mnt/ssd2/yocto/dev/tmp/agl-rcr-wk2/sysroots/porter/usr/lib/crti.o
+/mnt/ssd2/yocto/dev/tmp/agl-rcr-wk2/sysroots/porter/usr/lib/arm-poky-linux-=
+gnueabi/5.2.0/crtbeginS.o
+ google/protobuf/stubs/.libs/atomicops_internals_x86_gcc.o
+google/protobuf/stubs/.libs/atomicops_internals_x86_msvc.o
+[...]
+google/protobuf/io/.libs/zero_copy_stream_impl.o
+google/protobuf/compiler/.libs/importer.o
+google/protobuf/compiler/.libs/parser.o   -lpthread -lz
+-L/mnt/ssd2/yocto/dev/tmp/agl-rcr-wk2/sysroots/x86_64-linux/usr/lib/arm-pok=
+y-linux-gnueabi/gcc/arm-poky-linux-gnueabi/5.2.0
+-L/mnt/ssd2/yocto/dev/tmp/agl-rcr-wk2/sysroots/porter/lib
+-L/mnt/ssd2/yocto/dev/tmp/agl-rcr-wk2/sysroots/porter/usr/lib/arm-poky-linu=
+x-gnueabi/5.2.0
+-L/mnt/ssd2/yocto/dev/tmp/agl-rcr-wk2/sysroots/porter/usr/lib
+/mnt/ssd2/yocto/dev/tmp/agl-rcr-wk2/sysroots/porter/usr/lib/libstdc++.so
+-lm -lc -lgcc_s -lgcc
+/mnt/ssd2/yocto/dev/tmp/agl-rcr-wk2/sysroots/porter/usr/lib/arm-poky-linux-=
+gnueabi/5.2.0/crtendS.o
+/mnt/ssd2/yocto/dev/tmp/agl-rcr-wk2/sysroots/porter/usr/lib/crtn.o
+-march=3Darmv7-a -mfloat-abi=3Dhard -mfpu=3Dneon -mtune=3Dcortex-a15
+--sysroot=3D/mnt/ssd2/yocto/dev/tmp/agl-rcr-wk2/sysroots/porter -pthread
+-O2 -g -fstack-protector-all -Wl,-O1 -Wl,--hash-style=3Dgnu
+-Wl,--as-needed -Wl,-z -Wl,relro -Wl,-z -Wl,now   -pthread -Wl,-soname
+-Wl,libprotobuf.so.10 -o .libs/libprotobuf.so.10.0.0
+| /mnt/ssd2/yocto/dev/tmp/agl-rcr-wk2/sysroots/porter/usr/lib/libc_nonshare=
+d.a(elf-init.oS):
+In function `__libc_csu_init':
+| /mnt/ssd2/yocto/dev/tmp/agl-rcr-wk2/work/cortexa15hf-vfp-neon-poky-linux-=
+gnueabi/glibc/2.22-r0/git/csu/elf-init.c:89:
+undefined reference to `__init_array_end'
+| /mnt/ssd2/yocto/dev/tmp/agl-rcr-wk2/work/cortexa15hf-vfp-neon-poky-linux-=
+gnueabi/glibc/2.22-r0/git/csu/elf-init.c:89:
+undefined reference to `__init_array_start'
+| /mnt/ssd2/yocto/dev/tmp/agl-rcr-wk2/sysroots/x86_64-linux/usr/libexec/arm=
+-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/5.2.0/ld:
+.libs/libprotobuf-lite.so.10.0.0: hidden symbol `__init_array_end'
+isn't defined
+| /mnt/ssd2/yocto/dev/tmp/agl-rcr-wk2/sysroots/x86_64-linux/usr/libexec/arm=
+-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/5.2.0/ld:
+final link failed: Bad value
+| collect2: error: ld returned 1 exit status
+| Makefile:1492: recipe for target 'libprotobuf-lite.la' failed
+| make[3]: *** [libprotobuf-lite.la] Error 1
+| make[3]: *** Waiting for unfinished jobs....
+| /mnt/ssd2/yocto/dev/tmp/agl-rcr-wk2/sysroots/porter/usr/lib/libc_nonshare=
+d.a(elf-init.oS):
+In function `__libc_csu_init':
+| /mnt/ssd2/yocto/dev/tmp/agl-rcr-wk2/work/cortexa15hf-vfp-neon-poky-linux-=
+gnueabi/glibc/2.22-r0/git/csu/elf-init.c:89:
+undefined reference to `__init_array_end'
+| /mnt/ssd2/yocto/dev/tmp/agl-rcr-wk2/work/cortexa15hf-vfp-neon-poky-linux-=
+gnueabi/glibc/2.22-r0/git/csu/elf-init.c:89:
+undefined reference to `__init_array_start'
+| /mnt/ssd2/yocto/dev/tmp/agl-rcr-wk2/sysroots/x86_64-linux/usr/libexec/arm=
+-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/5.2.0/ld:
+.libs/libprotobuf.so.10.0.0: hidden symbol `__init_array_end' isn't
+defined
+| /mnt/ssd2/yocto/dev/tmp/agl-rcr-wk2/sysroots/x86_64-linux/usr/libexec/arm=
+-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/5.2.0/ld:
+final link failed: Bad value
+| collect2: error: ld returned 1 exit status
+=3D=3D=3D=3D
+
+
+--_000_CY1PR0101MB1594F877E5E2B9A464185CA0D70F0CY1PR0101MB1594_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+</head>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;back=
+ground-color:#FFFFFF;font-family:Calibri,Arial,Helvetica,sans-serif;">
+<p>Well, I could workaround below by patching&nbsp;configure.ac of the pack=
+age.</p>
+<p>May not really have been&nbsp;an yocto issue..</p>
+<br>
+<div style=3D"color: rgb(0, 0, 0);">
+<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" co=
+lor=3D"#000000" style=3D"font-size:11pt"><b>From:</b> Takashi Matsuzawa<br>
+<b>Sent:</b> Friday, July 22, 2016 1:01 PM<br>
+<b>To:</b> yocto@yoctoproject.org<br>
+<b>Subject:</b> autotool __init_array_end not found</font>
+<div>&nbsp;</div>
+</div>
+<div>
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt; color:#000000; ba=
+ckground-color:#FFFFFF; font-family:Calibri,Arial,Helvetica,sans-serif">
+<p></p>
+<div>Hello Yocto.<br>
+<br>
+I am now trying to build autotool based (inherit autotool) recipe on Yocto =
+2.0 based environent.<br>
+Howerver, I am seeng following error.<br>
+I wonder if this is a known problem and you already have workaround?<br>
+<br>
+It says __init_array_end/start is not found which is referred in libc_nonsh=
+ared.a(elf-init.oS).<br>
+I googled and learned that this can happen if parameters are not set proper=
+ly to g&#43;&#43; when building shared library, and in fact, if I remove '-=
+lc' from the final linker command line, the build error is gone.<br>
+<br>
+&gt;-lm -lc -lgcc_s -lgcc =3D&gt; NG<br>
+&gt;-lm -lgcc_s -lgcc =3D&gt; OK<br>
+<br>
+The problem is, these liker parameters are set by the configure script into=
+ libtool script and so far I could not find easy configurable option to exp=
+licity remove '-lc' from here.<br>
+<br>
+I think configure recognizes that '-lc' is not necessary to build shared li=
+brary (through 'build_libtool_need_lc', etc. test), but it takes these from=
+ somewhere (from its tests or its default template?) and embedding to linke=
+r command parameters.<br>
+<br>
+This error did not happen with Yocto 1.8 based build (where the same recipe=
+ could built w/o break).<br>
+So, it can be toolchain issue (c library difference, autotool difference, e=
+tc.) or libc quirk, maybe fixed problem in recent versions, or specific to =
+my cross-environment, but I have not yet figured out handy workaround.<br>
+<br>
+I am trying here with protobuf package, butI am not yet sure if this happen=
+s with all of the autotool based packages.<br>
+<br>
+=3D=3D=3D=3D<br>
+| arm-poky-linux-gnueabi-libtool: link: arm-poky-linux-gnueabi-g&#43;&#43;<=
+br>
+-march=3Darmv7-a -mfloat-abi=3Dhard -mfpu=3Dneon -mtune=3Dcortex-a15<br>
+--sysroot=3D/mnt/ssd2/yocto/dev/tmp/agl-rcr-wk2/sysroots/porter&nbsp; -fPIC=
+<br>
+-DPIC -shared -nostdlib<br>
+/mnt/ssd2/yocto/dev/tmp/agl-rcr-wk2/sysroots/porter/usr/lib/Scrt1.o<br>
+/mnt/ssd2/yocto/dev/tmp/agl-rcr-wk2/sysroots/porter/usr/lib/crti.o<br>
+/mnt/ssd2/yocto/dev/tmp/agl-rcr-wk2/sysroots/porter/usr/lib/arm-poky-linux-=
+gnueabi/5.2.0/crtbeginS.o<br>
+&nbsp;google/protobuf/stubs/.libs/atomicops_internals_x86_gcc.o<br>
+google/protobuf/stubs/.libs/atomicops_internals_x86_msvc.o<br>
+[...]<br>
+google/protobuf/io/.libs/zero_copy_stream_impl.o<br>
+google/protobuf/compiler/.libs/importer.o<br>
+google/protobuf/compiler/.libs/parser.o&nbsp;&nbsp; -lpthread -lz<br>
+-L/mnt/ssd2/yocto/dev/tmp/agl-rcr-wk2/sysroots/x86_64-linux/usr/lib/arm-pok=
+y-linux-gnueabi/gcc/arm-poky-linux-gnueabi/5.2.0<br>
+-L/mnt/ssd2/yocto/dev/tmp/agl-rcr-wk2/sysroots/porter/lib<br>
+-L/mnt/ssd2/yocto/dev/tmp/agl-rcr-wk2/sysroots/porter/usr/lib/arm-poky-linu=
+x-gnueabi/5.2.0<br>
+-L/mnt/ssd2/yocto/dev/tmp/agl-rcr-wk2/sysroots/porter/usr/lib<br>
+/mnt/ssd2/yocto/dev/tmp/agl-rcr-wk2/sysroots/porter/usr/lib/libstdc&#43;&#4=
+3;.so<br>
+-lm -lc -lgcc_s -lgcc<br>
+/mnt/ssd2/yocto/dev/tmp/agl-rcr-wk2/sysroots/porter/usr/lib/arm-poky-linux-=
+gnueabi/5.2.0/crtendS.o<br>
+/mnt/ssd2/yocto/dev/tmp/agl-rcr-wk2/sysroots/porter/usr/lib/crtn.o<br>
+-march=3Darmv7-a -mfloat-abi=3Dhard -mfpu=3Dneon -mtune=3Dcortex-a15<br>
+--sysroot=3D/mnt/ssd2/yocto/dev/tmp/agl-rcr-wk2/sysroots/porter -pthread<br=
+>
+-O2 -g -fstack-protector-all -Wl,-O1 -Wl,--hash-style=3Dgnu<br>
+-Wl,--as-needed -Wl,-z -Wl,relro -Wl,-z -Wl,now&nbsp;&nbsp; -pthread -Wl,-s=
+oname<br>
+-Wl,libprotobuf.so.10 -o .libs/libprotobuf.so.10.0.0<br>
+| /mnt/ssd2/yocto/dev/tmp/agl-rcr-wk2/sysroots/porter/usr/lib/libc_nonshare=
+d.a(elf-init.oS):<br>
+In function `__libc_csu_init':<br>
+| /mnt/ssd2/yocto/dev/tmp/agl-rcr-wk2/work/cortexa15hf-vfp-neon-poky-linux-=
+gnueabi/glibc/2.22-r0/git/csu/elf-init.c:89:<br>
+undefined reference to `__init_array_end'<br>
+| /mnt/ssd2/yocto/dev/tmp/agl-rcr-wk2/work/cortexa15hf-vfp-neon-poky-linux-=
+gnueabi/glibc/2.22-r0/git/csu/elf-init.c:89:<br>
+undefined reference to `__init_array_start'<br>
+| /mnt/ssd2/yocto/dev/tmp/agl-rcr-wk2/sysroots/x86_64-linux/usr/libexec/arm=
+-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/5.2.0/ld:<br>
+.libs/libprotobuf-lite.so.10.0.0: hidden symbol `__init_array_end'<br>
+isn't defined<br>
+| /mnt/ssd2/yocto/dev/tmp/agl-rcr-wk2/sysroots/x86_64-linux/usr/libexec/arm=
+-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/5.2.0/ld:<br>
+final link failed: Bad value<br>
+| collect2: error: ld returned 1 exit status<br>
+| Makefile:1492: recipe for target 'libprotobuf-lite.la' failed<br>
+| make[3]: *** [libprotobuf-lite.la] Error 1<br>
+| make[3]: *** Waiting for unfinished jobs....<br>
+| /mnt/ssd2/yocto/dev/tmp/agl-rcr-wk2/sysroots/porter/usr/lib/libc_nonshare=
+d.a(elf-init.oS):<br>
+In function `__libc_csu_init':<br>
+| /mnt/ssd2/yocto/dev/tmp/agl-rcr-wk2/work/cortexa15hf-vfp-neon-poky-linux-=
+gnueabi/glibc/2.22-r0/git/csu/elf-init.c:89:<br>
+undefined reference to `__init_array_end'<br>
+| /mnt/ssd2/yocto/dev/tmp/agl-rcr-wk2/work/cortexa15hf-vfp-neon-poky-linux-=
+gnueabi/glibc/2.22-r0/git/csu/elf-init.c:89:<br>
+undefined reference to `__init_array_start'<br>
+| /mnt/ssd2/yocto/dev/tmp/agl-rcr-wk2/sysroots/x86_64-linux/usr/libexec/arm=
+-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/5.2.0/ld:<br>
+.libs/libprotobuf.so.10.0.0: hidden symbol `__init_array_end' isn't<br>
+defined<br>
+| /mnt/ssd2/yocto/dev/tmp/agl-rcr-wk2/sysroots/x86_64-linux/usr/libexec/arm=
+-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/5.2.0/ld:<br>
+final link failed: Bad value<br>
+| collect2: error: ld returned 1 exit status<br>
+=3D=3D=3D=3D<br>
+</div>
+<br>
+<p></p>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
+
+--_000_CY1PR0101MB1594F877E5E2B9A464185CA0D70F0CY1PR0101MB1594_--
