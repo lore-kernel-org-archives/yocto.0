@@ -1,26 +1,60 @@
-Return-Path: <auh@auh.yoctoproject.org>
+Return-Path: <vijayakumarmb@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2B057E00D7E; Tue, 26 Jul 2016 16:51:52 -0700 (PDT)
+	id 332F1E00CAB; Tue, 26 Jul 2016 19:18:14 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (vijayakumarmb[at]gmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from auh.yoctoproject.org (unknown [198.145.29.2])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ECDF9E00D72
-	for <yocto@yoctoproject.org>; Tue, 26 Jul 2016 16:51:48 -0700 (PDT)
-Received: from auh.yoctoproject.org (localhost [127.0.0.1])
-	by auh.yoctoproject.org (Postfix) with ESMTP id 309B06FE110D
-	for <yocto@yoctoproject.org>; Tue, 26 Jul 2016 23:54:21 +0000 (UTC)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.217.180 listed in list.dnswl.org]
+Received: from mail-ua0-f180.google.com (mail-ua0-f180.google.com
+	[209.85.217.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E6CC3E00C65
+	for <yocto@yoctoproject.org>; Tue, 26 Jul 2016 19:18:07 -0700 (PDT)
+Received: by mail-ua0-f180.google.com with SMTP id k90so8495811uak.0
+	for <yocto@yoctoproject.org>; Tue, 26 Jul 2016 19:18:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=ntyhjK/KE+Tx+fLZuxfB77WGh186gfhVd5gfgFdm6o4=;
+	b=ARj9iyfXuhi0PDmFEWk/fcvqu/7bWgqHbDtIu6SwX4DiirTTTjyOGpBA2evd2whLDV
+	EsKhkjy77S0Lak0uu7v81abldARawUjWzWfpxiW2eKJ+lGEu3+1gQcLob0rT1i6g9i1G
+	zCuodKOp8fhzR5z3/ifDuRq1c3NRUjikdHGOFHdqh/n0lGHfF3nsDA+bf2lG6HMZi9St
+	ePtxztdxq8a/wSZlVqxma23EiqkTDL2COGfsHK4YrxeR32IS51bL5tYjPl7mklegCNxO
+	ANc/vxbgqs+O4jd4EuUnnO8YDlFu/+rRyMJmT3TUanhTXrBG5Sh4H3tIg2LJX+Cb2+gr
+	055w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=ntyhjK/KE+Tx+fLZuxfB77WGh186gfhVd5gfgFdm6o4=;
+	b=Ss+p8WXn3NrM+3dO80AM704i/Z0y8I67rK2l0LGeJinjDkL61ycpzTjSJJM9bZqCvK
+	HhmV0Sa+q9NCUVxfuLl5Bkh0kJmuFp9IqryCZeUonsviGJLhh+9utsxMsQaJgoH0dCed
+	In1gokdFKW9nTnKvkqt/73wuO/p0NJjbkzr4oKgXVxfR1XCRk9gznrdMMHGSx+ogqW02
+	4tkIGiYSR7IxnoVpX5C3y5fiAVryZ73ivYCeb4N72dm/VbRPbJe0pHXIusbA/XeWYtuh
+	Rxgif72Ggn3iTMzxAlL/5muoNuBeLQxd95a1FW78d3FPSH+/jBNsriiCpd50D4cagCKX
+	s4tQ==
+X-Gm-Message-State: AEkoouvyDfOSHzVDRLJg8wFbVz7jDDONTMllm17+kxg6yUiNfzPeCQ6zSTCAfGwEeTUjTz3Izu+Ezm0plTShgA==
+X-Received: by 10.176.69.180 with SMTP id u49mr11273613uau.24.1469585886651;
+	Tue, 26 Jul 2016 19:18:06 -0700 (PDT)
 MIME-Version: 1.0
-From: auh@auh.yoctoproject.org
+Received: by 10.103.70.7 with HTTP; Tue, 26 Jul 2016 19:17:47 -0700 (PDT)
+From: Vijayakumar Badiger <vijayakumarmb@gmail.com>
+Date: Tue, 26 Jul 2016 19:17:47 -0700
+Message-ID: <CAJ58UNmbwN3L=hDvW495x7J0F1Bu4kHDgdcDYtZOkAB77QEG3Q@mail.gmail.com>
 To: yocto@yoctoproject.org
-Message-Id: <20160726235421.309B06FE110D@auh.yoctoproject.org>
-Date: Tue, 26 Jul 2016 23:54:21 +0000 (UTC)
-Subject: [AUH] Upgrade status: 2016-07-26
+Subject: Compilation error while adding perf tool to the rootfs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,70 +66,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 26 Jul 2016 23:51:52 -0000
-Content-Type: multipart/mixed; boundary="===============4694080487111686602=="
+X-List-Received-Date: Wed, 27 Jul 2016 02:18:14 -0000
+Content-Type: multipart/alternative; boundary=94eb2c11ab08bda9d9053894a0ee
 
---===============4694080487111686602==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+--94eb2c11ab08bda9d9053894a0ee
+Content-Type: text/plain; charset=UTF-8
 
-AUH finished upgrade batch the result patches/logs can be found at:
-https://logs.yoctoproject.org/auh//20160726000002.tar.gz, next are the statistics:
+Hello All,
 
-Recipe upgrade statistics:
+I am trying to integrate perf tool to my custom rootfs image, while
+bitbaking the perf I am getting below error.
 
-    * Failed(do_fetch): 2
-        python3-setuptools, 25.1.0, Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
-        git, 2.9.2, Robert Yang <liezhi.yang@windriver.com>
-    * Failed(do_compile): 1
-        python-git, 2.0.7, Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
-    * Succeeded: 20
-        wayland-protocols, 1.5, Jussi Kukkonen <jussi.kukkonen@intel.com>
-        python3-git, 2.0.7, Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
-        dropbear, 2016.74, Jussi Kukkonen <jussi.kukkonen@intel.com>
-        libinput, 1.4.0, Jussi Kukkonen <jussi.kukkonen@intel.com>
-        harfbuzz, 1.3.0, Maxin B. John <maxin.john@intel.com>
-        kmod, 23+gitAUTOINC+65a885df5f, Chen Qi <Qi.Chen@windriver.com>
-        glew, 2.0.0, Jussi Kukkonen <jussi.kukkonen@intel.com>
-        python-numpy, 1.11.1, Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
-        libcap-ng, 0.7.8, Robert Yang <liezhi.yang@windriver.com>
-        bluez5, 5.41, Maxin B. John <maxin.john@intel.com>
-        libgcrypt, 1.7.2, Hongxu Jia <hongxu.jia@windriver.com>
-        libtasn1, 4.9, Maxin B. John <maxin.john@intel.com>
-        libassuan, 2.4.3, Alexander Kanavin <alexander.kanavin@intel.com>
-        connman, 1.33, Maxin B. John <maxin.john@intel.com>
-        cmake, 3.6.1, Alexander Kanavin <alexander.kanavin@intel.com>
-        curl, 7.50.0, Chen Qi <Qi.Chen@windriver.com>
-        libgpg-error, 1.24, Jussi Kukkonen <jussi.kukkonen@intel.com>
-        xserver-xorg, 1.18.4, Jussi Kukkonen <jussi.kukkonen@intel.com>
-        man-pages, 4.07, Hongxu Jia <hongxu.jia@windriver.com>
-        libsolv, 0.6.23, Maxin B. John <maxin.john@intel.com>
-    * Failed(other errors): 9
-        tcf-agent, 1.4+gitAUTOINC+2dddd5f440, Randy Witt <randy.e.witt@linux.intel.com>
-        lighttpd, 1.4.40, Alexander Kanavin <alexander.kanavin@intel.com>
-        libidn, 1.33, Alexander Kanavin <alexander.kanavin@intel.com>
-        perl, 5.24.1, Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
-        libdrm, 2.4.70, Jussi Kukkonen <jussi.kukkonen@intel.com>
-        lsbinitscripts, 9.67, Ross Burton <ross.burton@intel.com>
-        nss, 3.25, Alexander Kanavin <alexander.kanavin@intel.com>
-        python-setuptools, 25.1.0, Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
-        guile, 2.0.12, Robert Yang <liezhi.yang@windriver.com>
-    * Failed(do_configure): 1
-        gnupg, 2.1.14, Hongxu Jia <hongxu.jia@windriver.com>
+ *fatal error: asm/preempt.h: No such file or directory*
 
-    TOTAL: attempted=33 succeeded=20(60.61%) failed=13(39.39%)
 
-Recipe upgrade statistics per Maintainer:
+Can you pls let me know how to fix this issue. Thanks.
 
-    Robert Yang <liezhi.yang: attempted=3 succeeded=1(33.33%) failed=2(66.67%)
-    Maxin B. John <maxin.john: attempted=5 succeeded=5(100.00%) failed=0(0.00%)
-    Alejandro Hernandez <alejandro.hernandez: attempted=6 succeeded=2(33.33%) failed=4(66.67%)
-    Jussi Kukkonen <jussi.kukkonen: attempted=7 succeeded=6(85.71%) failed=1(14.29%)
-    Randy Witt <randy.e.witt: attempted=1 succeeded=0(0.00%) failed=1(100.00%)
-    Alexander Kanavin <alexander.kanavin: attempted=5 succeeded=2(40.00%) failed=3(60.00%)
-    Chen Qi <Qi.Chen: attempted=2 succeeded=2(100.00%) failed=0(0.00%)
-    Hongxu Jia <hongxu.jia: attempted=3 succeeded=2(66.67%) failed=1(33.33%)
-    Ross Burton <ross.burton: attempted=1 succeeded=0(0.00%) failed=1(100.00%)
+Cheers,
+Vijay
 
---===============4694080487111686602==--
+--94eb2c11ab08bda9d9053894a0ee
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hello All,<div><br></div><div>I am trying to integrate per=
+f tool to my custom rootfs image, while bitbaking the perf I am getting bel=
+ow error.</div><div><br></div><div><div>=C2=A0<b>fatal error: asm/preempt.h=
+: No such file or directory</b></div></div><div><br></div><div><br></div><d=
+iv>Can you pls let me know how to fix this issue. Thanks.</div><div><br></d=
+iv><div>Cheers,</div><div>Vijay</div><div><br></div></div>
+
+--94eb2c11ab08bda9d9053894a0ee--
