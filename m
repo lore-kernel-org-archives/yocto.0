@@ -1,67 +1,117 @@
-Return-Path: <vijayakumarmb@gmail.com>
+Return-Path: <Manish.Jaggi@cavium.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D57DCE00F89; Thu, 28 Jul 2016 09:54:53 -0700 (PDT)
+	id E1B30E00FB8; Thu, 28 Jul 2016 16:23:51 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (vijayakumarmb[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.217.194 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [104.47.34.82 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ua0-f194.google.com (mail-ua0-f194.google.com
-	[209.85.217.194])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8D655E00CF2
-	for <yocto@yoctoproject.org>; Thu, 28 Jul 2016 09:54:50 -0700 (PDT)
-Received: by mail-ua0-f194.google.com with SMTP id 15so2792294uai.1
-	for <yocto@yoctoproject.org>; Thu, 28 Jul 2016 09:54:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=nfTFA08v19d3ByGTCBZzvRjb4LH6TqCEnGG3qVec5Q4=;
-	b=ThBK8uHsAj90jYY4fHawZiR7oqEOXumdsGfaxmZ+JlnpX4PUYFRqO5n1Yro7OBxO39
-	PC5USYK0s2B/mbRcTBW4wM/hqYMF8b0PELi2wGMvpcqdzUnGc8FZ4exQMnFQ9gttqm8F
-	+EO+cgp2QkrX+vbO16hufr53agBJ0TQfxw93nMVa+5+7lQagGpWa0ZiYtmxvhAMmWDrF
-	SO3QInfPUHVVTlgzZX0tM8TnLMo4jRRpVaWDDB6yDiZPRrKM+rr8ka0FsZjuApi5nfUl
-	itWi5u8VYJDTKLXYw98CiaRvuF0ZjoTt+o/69bDBBAYPzIceGvn3a31jPkAoRpPKSqID
-	mVaA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=nfTFA08v19d3ByGTCBZzvRjb4LH6TqCEnGG3qVec5Q4=;
-	b=X3kMszI7NqxJ5ADwGjEbxubkGvPCS3cMRhgHzqlK3GbUnx80b450aT6xWvMOsX1Lmm
-	HeAQq+jToQYzD/EV5Woss72CGOgOTgeLmlgIPdS71XPIzlkZH9mX+EFVWlMCMckswhw8
-	7ttmF/yK6dIhCW759tOn2/zEXAsoSp7S/l8VRslFCIHdvVKbHHdw7Lqu9NCjsM1wG/i9
-	PaLNXK9POos7XnMK8qbElnmTr22MX/f2e2NUOWcczcvKTgYP3tiFO7W3xPlTP4iFF+9B
-	dmoZ/k5M1rnZTuF2KzRhaluHAX9aXUOoHlO6LKlMrz/YhjH+6Q9JJIWubQOscpYI78U0
-	hOZw==
-X-Gm-Message-State: AEkoousQVVwenmIXeCi325oodbo0a3IH7pRLk1hW7CiImP4jJ/UZGXDF2vmuy2WiT74x5Ubqp2adBHodOrdZSg==
-X-Received: by 10.176.6.137 with SMTP id g9mr16032759uag.91.1469724889524;
-	Thu, 28 Jul 2016 09:54:49 -0700 (PDT)
+X-Greylist: delayed 123882 seconds by postgrey-1.32 at yocto-www;
+	Thu, 28 Jul 2016 16:23:47 PDT
+Received: from NAM01-BY2-obe.outbound.protection.outlook.com
+	(mail-by2nam01on0082.outbound.protection.outlook.com [104.47.34.82])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8309FE00FB3
+	for <yocto@yoctoproject.org>; Thu, 28 Jul 2016 16:23:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=CAVIUMNETWORKS.onmicrosoft.com; s=selector1-cavium-com;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
+	bh=vxqVUpfMO0ScnhW3Ggo9VyOKb3wjrxWR2j6nGLWw2TY=;
+	b=iD65MkG7v8vTOkf+f2KZggWDzzxBkmz0Aj8sVybc5uiVSyNTLvsqFUbRGIrfO9nNwN09qnaKpXScEzoVG08m8bDBOErtrGZLh7LnpZiH8liVKldnts5g6AGjV/ufXEbaoMnJzy+cSAlOrPZuYqcaTE2kkhMGn8avySiwJGN4J3E=
+Authentication-Results: spf=none (sender IP is )
+	smtp.mailfrom=Manish.Jaggi@cavium.com; 
+Received: from [192.168.46.178] (12.108.191.226) by
+	BLUPR0701MB1586.namprd07.prod.outlook.com (10.163.84.148) with
+	Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
+	15.1.549.15; Thu, 28 Jul 2016 22:52:11 +0000
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+From: Manish Jaggi <mjaggi@caviumnetworks.com>
+Message-ID: <579A8C93.2030603@caviumnetworks.com>
+Date: Fri, 29 Jul 2016 04:22:03 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+	Thunderbird/38.8.0
 MIME-Version: 1.0
-Received: by 10.103.70.7 with HTTP; Thu, 28 Jul 2016 09:54:30 -0700 (PDT)
-In-Reply-To: <CAJTo0Lbu71UvxpfT+5i71nZ3unTVMX7BogP9xk3pgq2Qsbc4Ow@mail.gmail.com>
-References: <CAJ58UNmbwN3L=hDvW495x7J0F1Bu4kHDgdcDYtZOkAB77QEG3Q@mail.gmail.com>
-	<CAJ58UNnqwa6VDch0BDihS7uYguTMTZmnwkgUabJG-i_ff--L5w@mail.gmail.com>
-	<CAJ58UNno9BmFXRE82_8oZAVG=P+m9C4eD4M6x9J4ZBm7ZAG=Tw@mail.gmail.com>
-	<CAJTo0Lbu71UvxpfT+5i71nZ3unTVMX7BogP9xk3pgq2Qsbc4Ow@mail.gmail.com>
-From: Vijayakumar Badiger <vijayakumarmb@gmail.com>
-Date: Thu, 28 Jul 2016 09:54:30 -0700
-Message-ID: <CAJ58UNmbNu3RpyPyh3OiEK=zWigVsednEydqegnuXqw7H=LyyA@mail.gmail.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Compilation error while adding perf tool to the rootfs
+X-Originating-IP: [12.108.191.226]
+X-ClientProxiedBy: CY1PR13CA0078.namprd13.prod.outlook.com (10.163.230.174) To
+	BLUPR0701MB1586.namprd07.prod.outlook.com (10.163.84.148)
+X-MS-Office365-Filtering-Correlation-Id: 2bbad46f-76f5-40ed-0361-08d3b739d0c8
+X-Microsoft-Exchange-Diagnostics: 1; BLUPR0701MB1586;
+	2:C+fRcU21e+VZQKaK/z1VB5Otj/NDsNI0QXjmoQoH0YY5Jb0drUbjNaynIFSZNJwxdCFqGyynH4Rv+uI1EneoFhPNiR+txdowcGpYFtR4iueMiRMxK+AFTpvfkEovycWeFqjBLyFONPfzx4QGe7FJtRCzcQdfp4IFTkfWsCaDyUK4gEbfGOTEbWsAiR/CI1bu;
+	3:W4F9HoE7I/MLzW2H6paFhTtWm7P4UMb53eYy8fkIYkrS4yBv4Nms8ZsV/Cozzk18CfxRsBOWf5yGKfU7svMuVtXrfclAu1JVCpo+QyOicjs3t/CNgyZy/0bFpx0OxtKY;
+	25:FTTQMLx3R0b3AKdtTgLrRiXOuHKQxYxj738S7CueIitySQdGgJdfJELF5lc1sttdWbfgy2/zeuqiZ7IKcEgBLZYdSuGA2sRIbx77OymhH4T3uIK3o1DET94vRSNNpCU5M6Noa3rTuLyflJhOWga8zmhI96wLfEvVkBJtVl61clSi9LjXugG9KBfpyg+SGS4sUld/rCHnMUx1ApwJJd1TWceV3yhv89oQCjUutWQ8KzDAnhPg5FOE/DOWv3o0SbqLX1IJoTt0J3GiAMwTjw9J1bCdp7dYHEcsHqY7Akh+kPXhAupGx2BU6ly8aOyUHZrn5u2la89IDdwSBJuiDmSkDuOfFRd1sESqsZLby23u+t9d6rGcypjqDcGcG1teSTldDwJynh5iqcPOb/cf4RAq79ThHTexJ36DjYOa4Y7iJXM=
+X-Microsoft-Antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:BLUPR0701MB1586;
+X-Microsoft-Exchange-Diagnostics: 1; BLUPR0701MB1586;
+	31:CMCYYtlOK4ooKTRFTnH/slWmIen0EHOKyXsmehyX6Yj+uxWkw+4eW64snPolUNWBbIClee5nUAOJxznKZ8+DpnChEeoypvRQKUKRicsAXaEHjnUbe3KkMr1j/jhA/4Djx4eQwXPElbH7N6YSYjcC08gi9eQfuDJL9AKMohJ2fxa9u3HvGZWUJVrboyMK/AaFNdvc1HuDDuwyHFjOVkFgEg==;
+	20:+Z4AT1fevrgu2Qa563pTV/NzOT0p8b5qVDXkdGhE6Bc6nt50of/icGyGVZwu8XJuXphwLPXMfT0DIWLTFMotuVvhx8JNQz3peMHeLRp+9SaoQKpzg/OscZAH/dAtZ/MZeM6aQoL2yjbIntgdc09LYnNAdQYqQ0LTcfNvYnnndAUzFd0Uc1y6IPETpnL1P+l/i/TbmDclO7WKHewqalHbg2RAO2dYJg5NccGmg5yQmNGO3Riu7rOysLBFJVK4Oold0IenHPLu4M+nh/ee8FwKiKwjzoMlvDiAxri4erghQTkqi7CE5+XQe/jCuJmD2A64tTTffW8SyKs6RzJewvSwdDlzClljLJ3mt9kjDRkkVSfH2KSAGdJQ19/JsTol4iC9q5pKWxzCOyR0PgcWFRmvDza57w1ZrZInMNu+njL3kACQQlf+Do/05AmSrmxtAqvz6o/2UhI68nc6cSrxa2f/lPAtSJOxJ+bAt4R+r1a0iE2+PzJQfiRTBvM4MznVT6rwzCX4ahyRVeN5VTi2xIzApGZWAatKpoC8fOeekfExyPqi4f4uYnGEcS6aCunNjKQY1ArB9uoP7mx0g1PEXRhGzJXH1rAzkAi5lS4DF1A+35M=
+X-Microsoft-Antispam-PRVS: <BLUPR0701MB1586A2858E513BB0C9402F3EEC000@BLUPR0701MB1586.namprd07.prod.outlook.com>
+X-Exchange-Antispam-Report-Test: UriScan:;
+X-Exchange-Antispam-Report-CFA-Test: BCL:0; PCL:0;
+	RULEID:(601004)(2401047)(5005006)(8121501046)(3002001)(10201501046);
+	SRVR:BLUPR0701MB1586; BCL:0; PCL:0; RULEID:;
+	SRVR:BLUPR0701MB1586; 
+X-Microsoft-Exchange-Diagnostics: 1; BLUPR0701MB1586;
+	4:XbwZO3+Btg7eJaG/M3xWtYMCL9LpjhFm3llExWar7oJ6nncLiUBlG0pGhxLBrwD9Q9xswRlhkhTzDHANOBpo46MrebodEbEwokb3E7ksavH6cqif6GjzxKqVrXio8KAi3yC6OxM+oUGwsK6tBR+2cxBP/Sbv3wHknwuecBtR+Ud7ph0KsgdS58qeu01dFBTcscr9zvKwPA0Wg+BikER+2K4H+i5UWym2pgYthISUI0GE3wB+GQ+JVTPZ86ysL4ZpwhnlOF+3J+14QwPhxcmtF4FwQfcWkDEL0CrocvQtO9wda8QIvCXM6sUiGe9MAFh11XLKNPRsUrC/kyHHtbf/Fkb53ck0wghQG00mzMclyJieI7YSsnJquH7/PRadkYJv
+X-Forefront-PRVS: 00179089FD
+X-Forefront-Antispam-Report: SFV:NSPM;
+	SFS:(10009020)(4630300001)(6049001)(6009001)(7916002)(199003)(69234005)(189002)(105586002)(33656002)(36756003)(64126003)(101416001)(19580395003)(50466002)(65816999)(450100001)(3846002)(80316001)(42186005)(83506001)(50986999)(54356999)(87266999)(2501003)(117156001)(77096005)(92566002)(6116002)(59896002)(23676002)(47776003)(2351001)(2906002)(586003)(1730700003)(81156014)(81166006)(8676002)(106356001)(68736007)(7846002)(66066001)(107886002)(97736004)(65956001)(65806001)(189998001)(230700001)(110136002)(229853001)(7736002)(305945005)(4001350100001)(5640700001);
+	DIR:OUT; SFP:1101; SCL:1; SRVR:BLUPR0701MB1586;
+	H:[192.168.46.178]; FPR:; SPF:None; PTR:InfoNoRecords; A:1; MX:1;
+	LANG:en; 
+Received-SPF: None (protection.outlook.com: cavium.com does not designate
+	permitted sender hosts)
+X-Microsoft-Exchange-Diagnostics: =?utf-8?B?MTtCTFVQUjA3MDFNQjE1ODY7MjM6WURrSGhFdEl2ZVdxSVZxN1dISFUvZm1N?=
+	=?utf-8?B?TzlCY1pXVkp0L0lhd0dqMFQyWXo2ajdNbXEvd1h4eXlobmlzWHREeDZjUXdj?=
+	=?utf-8?B?VXpGdCtXNEVJVVVwTi9jT2VLdUtidEtobVBBaHNjRGQ2Y0dsbndDcTlRTHpa?=
+	=?utf-8?B?elRyZFNMRXBYa3VNaUtHcmtKV0tXRGxGUXlPR1BHakp2MHhzQWtPNnBZTzFi?=
+	=?utf-8?B?RUFMSHJiWFplR2ZacWR6ZUQwTUtSYlFiTkxkZ3NFam4zZlhIbzFOQVpzRTBT?=
+	=?utf-8?B?aTJ0djZrMVhFcjJieGhpZjVZVGQ4ZnIvMytMTjBMSWtxdTZYa051Rm1OOTdw?=
+	=?utf-8?B?cmFYck9kYjlwZDdxRE50WEErS2Q2MURLKzFDSTFlS2JHSys3QXRtaVJCdEtl?=
+	=?utf-8?B?RUFaSHg5VEpDTTNHaDJPWGZmU1JaeURVcEpaa2FXMVJad0RxOFgyMEd0S3BC?=
+	=?utf-8?B?b0w3QVhEZ211eWRRY2k4UEtRY2hmVVFRNTRubjhVdHdONnRtSzZrOUUxV3Vp?=
+	=?utf-8?B?TzBGZ2xPZHQzUXRxVkJwTEtDLzNZaERCSlFJN2lyR29ORk5veHpwMmZwcVBv?=
+	=?utf-8?B?KzRGUURjNjVxTFdmRXJxWFBwazFuSzZ6cE9tcXdxZkNTU0IrTTRINmJQUUZ3?=
+	=?utf-8?B?SUFtcUphTHlYQjhaNVpxNWwxRGl6N3hVVjB3Mjh2eTVseVlpSnhxT1JJZ0tY?=
+	=?utf-8?B?RldvL1Q5d3o5NGFJQ1czV1N2elA3T05OSk53QlU2bk4vZE9aQmlSYmpjREdu?=
+	=?utf-8?B?QWxBb3dLZm5LMEtQOVFwTGI0U3lvQ2g3VHF6VHUySnl5aGptNkVKaFdxM1pJ?=
+	=?utf-8?B?YnV4aXF0MldDUFNRSW5vQkZUOWl2QUMxSSswZ3k4RW5NY0U4R3ZNMXV0VUF3?=
+	=?utf-8?B?SGdYTFNZb3RoNk9vcTV6ZklrOTBVYnBRMTZRSmtZZnJQMGNENUVkektReHJp?=
+	=?utf-8?B?aGdsTU5lNG5xSE1IaWZCSUw5OUErUzhlVExIcDZyWnJGdTFtN0wzN3dERkxi?=
+	=?utf-8?B?WWFKMFBuc3VZemg0RElGNUY5dXd0dGppcW9Oelc1NldTVHJnNDRtd1hiOGpo?=
+	=?utf-8?B?Z21YY28vVGR4TzZVK1NnbGVUTkVIMTJONnBpbjFvdU4yUzAvc2ZWRE56REZU?=
+	=?utf-8?B?cE5qV3NZYWgvR1ZCTTErY2VXYlk3QmwwU3dBbDROb3JRNVJhSkZ3N2hkMm5y?=
+	=?utf-8?B?cWhNOEY5d0V6YSt5SDREZDEvb1M2Rlg1cWxWUjJ0ZCsrdHU3dXpvTXk4ZDA1?=
+	=?utf-8?B?bkg2VVR0VVVQckNZRkJxb0xkS0Y3OHJnbG1qTzVxenJlTkcwcExRbXA3WWlY?=
+	=?utf-8?B?dmR2R3I3SXhwZTI1SWk5eXlncGpaSDZIcU5JV2FRcTZPSHhzVHZlbHRuZ1FK?=
+	=?utf-8?B?SjVjbEo2UXhlM2dOUW5CQ3NQNTZoa200eUdOVUo2RjVKbWxMMUlQTFp5SlNr?=
+	=?utf-8?B?SFQvRFlQeFpFdHBWaEUxR3YyYVg0d1EwTDBXK2xyTzMwaTZBeE5uU01xemdl?=
+	=?utf-8?B?b01ncWEwSTlNbkdaRGRSQWtCZ3hXc3Vpc1pjcU1TbXphblJ2dUoxSi9EU0NP?=
+	=?utf-8?B?M2hTZCtmV2JTeWFoKzRzKzhRUFlxZlRXK2Z5bFhFa1dudUxUb1RTQkZWQjN2?=
+	=?utf-8?B?aVk4akREUFNrcm9tbEFHWWlYUFp6RjRvalYyKzBqV2dGSzlkUytUSVlWOGVI?=
+	=?utf-8?B?WGpUNE9NRlYwYlZ6eHVKOWR2bEJpNGlZZEtueGd0MmtmNVY5QWVRb0YwWmJJ?=
+	=?utf-8?B?YU9NQmExY0ExeDZSYXdHWmREcVE3QTBmaGNOeGN5UkpKM0hwbWZJM2xadzVX?=
+	=?utf-8?Q?a+wZhjKxLtssPt7?=
+X-Microsoft-Exchange-Diagnostics: 1; BLUPR0701MB1586;
+	6:8qR+1AG93BGZWU4nQHqG8XqvI90WbCnAmti1yb2+9qO3v5FmSr+CzzPKOMOf5bfI9IA24NAdfnX/Sd46V6MALZzUdX5NUI/yI1YAzP6Ymo/J1Mt8oocR4nwcTKATJKjUKgFId4Z/qRCGCI3Z5vo5PVOhOPkTUwxTNNzUWxsGJcO4hiXmMnocch1yWhZ1R9V2oXuFwZv1UpaQnC8E8sXj26XuDNiOa3PH5TIfeF3t6milotNCMre8Z9VIxgvmVMxnKGdIOkiy8hFUZgtAmDjkez6XlsE9hjPN4pD9szKRWIQ=;
+	5:9DeFHzufW2ttQ9toPZl+UohlX5ePI7Va+Ml5reX9Lvnj56HJbLkQR60B7kYUukQ+deihewKF9IyaEhSm3rpsK58QNsIgRhYk7ZAuF98aeMsO4PW7PAKkNRULaoGTZxzJKzVxGDoo3k5KpwhtXqJ9nA==;
+	24:CI7BU0g5NTrmv3V5uPnS2LByndlgqa5podHpXq3kU9428AUSDgwu5i2U1t1v3nXWXgiFGtMmN9goRO1AXMdgjZ9JtQC7mVzsGkU9Brcrva8=;
+	7:FLCrckXZZhzsXuA3Z8ehZFlspRO7OZI8Rf1pEjHolrIEAZopzCZF0TDKwhNMjY6t70nJyg9ggoN8p1Zl/tBqOafWqa85F29GEfDwPqvcUs6PXBn8gVyhGqnDaEYjpQXhde5vWfNHH6Gce6e/lQue5lqw+QWUKx5WKL6iiiODleCGYHc4U6VX7GRDMGK7vacfrTxPSReJ7ta+6stmWnV4UQTdbTmpjHenomiGU1mM414Ex6VHk+9SKy+0F9gsuo98
+SpamDiagnosticOutput: 1:99
+SpamDiagnosticMetadata: NSPM
+X-OriginatorOrg: caviumnetworks.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jul 2016 22:52:11.8076 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BLUPR0701MB1586
+Subject: populate_sdk mutlilib and sysroots
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,72 +123,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 28 Jul 2016 16:54:53 -0000
-Content-Type: multipart/alternative; boundary=94eb2c048124f531560538b4fdc7
+X-List-Received-Date: Thu, 28 Jul 2016 23:23:52 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
 
---94eb2c048124f531560538b4fdc7
-Content-Type: text/plain; charset=UTF-8
-
-Hello Ross,
-
-I am using my own kernel [3.18] + oe-core's perf recipe to build the perf
-utility. Thanks.
-
-Cheers
-Vijay
+On krogoth branch of poky  trying to create a multilib sdk (aarch64 aarch64_ilp32)
+Using the below local.conf
 
 
-On Thu, Jul 28, 2016 at 2:17 AM, Burton, Ross <ross.burton@intel.com> wrote:
+CONF_VERSION = "1"
+MACHINE = "TestMachine"
+CORE_IMAGE_EXTRA_INSTALL_append += " openssl"
+PREFERRED_VERSION_linux-thunderx-81xx = "4.4.3"
+BB_NUMBER_THREADS="32"
+PREFERRED_PROVIDER_virtual/kernel = "linux-thunderx-81xx"
+require conf/multilib.conf
+MULTILIBS = "multilib:lib32"
+DEFAULTTUNE_virtclass-multilib-lib32 = "aarch64_ilp32"
 
->
-> On 27 July 2016 at 22:53, Vijayakumar Badiger <vijayakumarmb@gmail.com>
-> wrote:
->
->> We have a requirement here to set up the perf tool through our Yocto
->> frame work.
->> As Perf source comes with linux kernel under tools/perf ,so I added this
->> perf tool to be installed
->> as part of my rootfs image.
->>
->> But when I build the image I am getting error related to headerfile
->> missing.
->>
->> *fatal error: asm/preempt.h: No such file or directory*
->>
->
-> Perf builds for me fine using oe-core's perf recipe and meta-intel's
-> kernel, so are you using your own recipe for perf or the kernel?
->
-> Ross
->
 
---94eb2c048124f531560538b4fdc7
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+after bitbake core-image-minimal
+and bitbake -c populate_sdk core-image-minimal
 
-<div dir=3D"ltr">Hello Ross,<div><br></div><div>I am using my own kernel [3=
-.18] + oe-core&#39;s perf recipe to build the perf utility. Thanks.</div><d=
-iv><br></div><div>Cheers</div><div>Vijay</div><div><br></div></div><div cla=
-ss=3D"gmail_extra"><br><div class=3D"gmail_quote">On Thu, Jul 28, 2016 at 2=
-:17 AM, Burton, Ross <span dir=3D"ltr">&lt;<a href=3D"mailto:ross.burton@in=
-tel.com" target=3D"_blank">ross.burton@intel.com</a>&gt;</span> wrote:<br><=
-blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px=
- #ccc solid;padding-left:1ex"><div dir=3D"ltr"><div class=3D"gmail_extra"><=
-span class=3D""><br><div class=3D"gmail_quote">On 27 July 2016 at 22:53, Vi=
-jayakumar Badiger <span dir=3D"ltr">&lt;<a href=3D"mailto:vijayakumarmb@gma=
-il.com" target=3D"_blank">vijayakumarmb@gmail.com</a>&gt;</span> wrote:<br>=
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div>We have a requirement here to set up th=
-e perf tool through our Yocto frame work.</div><div>As Perf source comes wi=
-th linux kernel under tools/perf ,so I added this perf tool to be installed=
-</div><div>as part of my rootfs image.</div><div><br></div><div>But when I =
-build the image I am getting error related to headerfile missing.</div><spa=
-n><div><b><br></b></div><div><b>fatal error: asm/preempt.h: No such file or=
- directory</b></div></span></blockquote></div><br></span>Perf builds for me=
- fine using oe-core&#39;s perf recipe and meta-intel&#39;s kernel, so are y=
-ou using your own recipe for perf or the kernel?</div><span class=3D"HOEnZb=
-"><font color=3D"#888888"><div class=3D"gmail_extra"><br></div><div class=
-=3D"gmail_extra">Ross</div></font></span></div>
-</blockquote></div><br></div>
+The sysroot directory in tmp/sysroots has sysroots for both 64 and ilp32
+TestMachine
+lib32-TestMachine
 
---94eb2c048124f531560538b4fdc7--
+But when installed the sdk using populate sdk generated script, sysroots is only for aarch64 and not for aarch64_ilp32
+
+ls ~/sdk_install_poky/sysroots/
+aarch64-poky-linux  x86_64-pokysdk-linux
+
+
+What could be missing here?
+
+FYI The generated rootfs has multi libs, libssl for 32bit and 64bit are present.
+
+
