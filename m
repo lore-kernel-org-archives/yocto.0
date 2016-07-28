@@ -1,6 +1,6 @@
 Return-Path: <Manish.Jaggi@cavium.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 26262E00E8B; Wed, 27 Jul 2016 08:32:04 -0700 (PDT)
+	id C784EE00FAB; Thu, 28 Jul 2016 15:36:00 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,7 +9,7 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	SPF_HELO_PASS autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [104.47.32.48 listed in list.dnswl.org]
+	*      [104.47.41.70 listed in list.dnswl.org]
 	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
@@ -17,66 +17,68 @@ X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from NAM01-SN1-obe.outbound.protection.outlook.com
-	(mail-sn1nam01on0048.outbound.protection.outlook.com [104.47.32.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 63B79E00E7F
-	for <yocto@yoctoproject.org>; Wed, 27 Jul 2016 08:32:00 -0700 (PDT)
+X-Greylist: delayed 120076 seconds by postgrey-1.32 at yocto-www;
+	Thu, 28 Jul 2016 15:35:56 PDT
+Received: from NAM03-DM3-obe.outbound.protection.outlook.com
+	(mail-dm3nam03on0070.outbound.protection.outlook.com [104.47.41.70])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6D54AE00D34
+	for <yocto@yoctoproject.org>; Thu, 28 Jul 2016 15:35:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=CAVIUMNETWORKS.onmicrosoft.com; s=selector1-cavium-com;
 	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
-	bh=Aa4o/aUL4X0m+MQJsJFNpTO9J5hp6uMDk6fqqvtUbSY=;
-	b=c0iSbMaxjQMXR9N3miNaVZEM38yCkQQBN6eVaM21JN/MqacrtBKsE8OBXfOb5irN738+iEfMdsDYbXyPjKxMFpppe9YynH1KgN1ehcd/Wf5nPs+bAeADbpyqARbP861TeXaY34dor0EiEs2X6KAiwi466Ol2loGq8IWIXq3WztA=
-Received: from CY1PR0701MB1600.namprd07.prod.outlook.com (10.163.20.15) by
-	CY1PR0701MB1599.namprd07.prod.outlook.com (10.163.20.149) with
+	bh=yfXqbHsnYEbSH/yZDdBZHMCt5QxhllrbGb4V/lK6BoM=;
+	b=D20Lp9Utz9CbkKqF7xgitm9OYrEi6tA4vIinu77QELZgw5AkihUAbo3cpOpAo56zkbtxjDuLNotU6fb8iEjlsHHGreWn/hrQ5/F5BHm7XvpqUJLo29+I0b2T3ajefc57piyi33j0fwFmA4mrGX2erTj2ZdCc+CwDww/CKitBG5w=
+Received: from BY1PR0701MB1594.namprd07.prod.outlook.com (10.162.110.148) by
+	BY1PR0701MB1596.namprd07.prod.outlook.com (10.162.110.15) with
 	Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
-	15.1.544.10; Wed, 27 Jul 2016 12:59:02 +0000
-Received: from CY1PR0701MB1600.namprd07.prod.outlook.com ([10.163.20.15]) by
-	CY1PR0701MB1600.namprd07.prod.outlook.com ([10.163.20.15]) with mapi id
-	15.01.0544.019; Wed, 27 Jul 2016 12:59:02 +0000
+	15.1.549.15; Thu, 28 Jul 2016 22:35:53 +0000
+Received: from BY1PR0701MB1594.namprd07.prod.outlook.com ([10.162.110.148]) by
+	BY1PR0701MB1594.namprd07.prod.outlook.com ([10.162.110.148]) with
+	mapi id 15.01.0549.016; Thu, 28 Jul 2016 22:35:53 +0000
 From: "Jaggi, Manish" <Manish.Jaggi@cavium.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: populate_sdk does not generate multilib sysroots
-Thread-Index: AQHR6AWWSoApc3V150iKSU+DXIaPjQ==
-Date: Wed, 27 Jul 2016 12:59:02 +0000
-Message-ID: <CY1PR0701MB16009208F2BBF82401A045DFEC0F0@CY1PR0701MB1600.namprd07.prod.outlook.com>
+Thread-Topic: populate_sdk multilib not generating lib32 sysrots
+Thread-Index: AQHR6SBmlJ0W13nFLUKM/b9TrA0G7w==
+Date: Thu, 28 Jul 2016 22:35:53 +0000
+Message-ID: <BY1PR0701MB15948444C67E8C271BE9FEF5EC000@BY1PR0701MB1594.namprd07.prod.outlook.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 authentication-results: spf=none (sender IP is )
 	smtp.mailfrom=Manish.Jaggi@cavium.com; 
-x-originating-ip: [50.233.148.158]
-x-ms-office365-filtering-correlation-id: 0bcb42c2-7c59-4e5f-7904-08d3b61dc8a8
-x-microsoft-exchange-diagnostics: 1; CY1PR0701MB1599;
-	6:CSKBnYlNjndtczcjuBFsUl2w30IdnnnQzJ3zgMMqjC6i6s1LV7ca9wK/HrHzhjwnVmbChzcbkrjqEWhq5FezO3uVFqvBzExi7T9iEGW1WU5vZTd4J8S3O0jlJ5xoPiMgMa6bRx6TSC6ub2pxLAluTMOw4GqONiIcwTRTA5tNiNq4Cn5/mxqvNr5CZesy7JDWkdY7PFz4WpXnAlgS1pmFGpyV4rZevyae96S93qP3zjYMHp6SMfZkxy/ARpqURNdxr6QQzHjDZKs9diwHDcZv3/mvxLgS1b6fvYTNHJ+V6m0=;
-	5:BhzhFDyioAyYD7KNqNnOJDKL1m2mOitnFAYctOR2TRTGU0Y7cqqRrMAa0gp6whErerX+QuocvcweYXv+qIaKs4jAk2zY72PD7cwt6HurNpmIQ0y/eLLBStBTW2Taxy75znvFCJ9LvAmYEHajXQLOKg==;
-	24:CgeasS8ARwh10ee0na42qvBu3pUU1isdf+78dhTKOp+mgE6gNbWA0irbkBiVvaRAm3pHj2zF1Orf//Yk//YHiVGJbwORddZTX3TXPmUhn4g=;
-	7:DYETVqlGcbybSPCqpGcvhSUJZXCHzmKGIS2PewKdM7wvT9rQJX8gTbLg0VLJWV0cxiuZ1BORqREgBE2rUWO4C5WQKqGBcMtdAguiFxkZZelYQylLeQxs4VEBFq8GUfJ9SuWnTB82GFNDxrwul78ImiT99YOmNX4EbDXsstYDAF19Mz5cOpdhCRYzl27YWclT6St0ryngkhb4bIpMULXfdTHBgfX2YP7BnlkaVs9+j42xYS7vIABgzWj5FlkkQ+Nb
-x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:CY1PR0701MB1599;
-x-microsoft-antispam-prvs: <CY1PR0701MB159969CF9F2705E550B8EA97EC0F0@CY1PR0701MB1599.namprd07.prod.outlook.com>
+x-originating-ip: [12.108.191.226]
+x-ms-office365-filtering-correlation-id: da323896-2c70-4d95-98a6-08d3b73788de
+x-microsoft-exchange-diagnostics: 1; BY1PR0701MB1596;
+	6:BN3gBINBuhusgYl06VCA0sxUmE/oh/wSPpQ0l+3VgtpleBKcZH18OuxJMu42tHaJq3gsSDNaInU0215DgxLuRLdm55SxJJxnHmsxfMuh6W8AkID3zk6g6DMeXt6e4ZQBzoChb3HcoRkhoxORGr8thSZE+N3qJn8SdSfNnu0ExuVjvuFZIDUCubXxP0zfmzOnPVKnxPyStpcl3sYHPUSPfvhDslQy4fZSBJH/4I07d6b9K+IfZFPMXisivS4al3HD5vAu5LWhrIDP7eFFxUoa9+quJJnOFlP7Ej8JERqhINo=;
+	5:tyBmqVjGAbHHbrBfTwClPpuPh1K1ksuJgH9XZ13lrWJp4e86obld3KFzVKDH3RL5yRB0atosKxC+lGQGAjkk0BDvMukUQ6rSX3Aux1gt7dAJWO6zbKL6Y7A2KW+wY/9nm9PuEgdLn/K4/8dF3ip52w==;
+	24:iEmqesUVNo7bUwhRi4pQqA0sJG03M1CDQ3+gNutt+DqIgFVavAhro4puP87dhtf3Eytx1KAhBiV51Gi4yc0iiWkK/yi+BVBqL/ct+CZxjjA=;
+	7:x2nqPaxzzLDFin1/tiEGfPMJ4lpV+WajOZ6ZghDH23vLKAXiUyH+sjCnPKGA92SY+ARob0aWdkewRgzh8YIR4E7rjK6V2vDVKZdfwc0oOF8QW/gHIEFfFmPTPsJAi/exisSJwOQYy81W7GRmsIu1Uatq4oDYHjwa9+sSFVRA+DWNAaXuYGDCZ0DTbb8Be9tcMB7micci0JkIGRS2A6BKsEzdassf0gl/qq2VZ+5/1frXnVT/uRcyIgrEfQj7Wuz2
+x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:BY1PR0701MB1596;
+x-microsoft-antispam-prvs: <BY1PR0701MB1596A60AB819C613BD175D4AEC000@BY1PR0701MB1596.namprd07.prod.outlook.com>
 x-exchange-antispam-report-test: UriScan:;
 x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(601004)(2401047)(8121501046)(5005006)(3002001)(10201501046);
-	SRVR:CY1PR0701MB1599; BCL:0; PCL:0; RULEID:;
-	SRVR:CY1PR0701MB1599; 
-x-forefront-prvs: 0016DEFF96
+	RULEID:(601004)(2401047)(8121501046)(5005006)(10201501046)(3002001);
+	SRVR:BY1PR0701MB1596; BCL:0; PCL:0; RULEID:;
+	SRVR:BY1PR0701MB1596; 
+x-forefront-prvs: 00179089FD
 x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10009020)(6009001)(7916002)(69234005)(189002)(199003)(2900100001)(2906002)(92566002)(101416001)(5002640100001)(8936002)(77096005)(19625215002)(3660700001)(81156014)(3280700002)(107886002)(54356999)(110136002)(97736004)(189998001)(66066001)(105586002)(11100500001)(1730700003)(87936001)(99286002)(81166006)(68736007)(50986999)(106116001)(450100001)(106356001)(2501003)(8676002)(5640700001)(122556002)(229853001)(2351001)(7736002)(5003600100003)(7696003)(33656002)(74316002)(19627405001)(3846002)(102836003)(16236675004)(86362001)(6116002)(19580395003)(7846002)(10400500002)(9686002)(76576001)(586003);
-	DIR:OUT; SFP:1101; SCL:1; SRVR:CY1PR0701MB1599;
-	H:CY1PR0701MB1600.namprd07.prod.outlook.com; FPR:; SPF:None;
-	PTR:InfoNoRecords; MX:1; A:1; LANG:en; 
+	SFS:(10009020)(6009001)(7916002)(199003)(189002)(69234005)(3846002)(50986999)(87936001)(74316002)(86362001)(54356999)(76576001)(7846002)(6116002)(101416001)(7736002)(19625215002)(3660700001)(66066001)(97736004)(3280700002)(102836003)(110136002)(107886002)(189998001)(99286002)(16236675004)(10400500002)(586003)(105586002)(7696003)(2501003)(77096005)(122556002)(2900100001)(19627405001)(92566002)(106116001)(106356001)(5640700001)(450100001)(2351001)(33656002)(11100500001)(5002640100001)(2906002)(8676002)(19580395003)(68736007)(8936002)(81166006)(1730700003)(81156014)(9686002)(229853001);
+	DIR:OUT; SFP:1101; SCL:1; SRVR:BY1PR0701MB1596;
+	H:BY1PR0701MB1594.namprd07.prod.outlook.com; FPR:; SPF:None;
+	PTR:InfoNoRecords; A:1; MX:1; LANG:en; 
 received-spf: None (protection.outlook.com: cavium.com does not designate
 	permitted sender hosts)
 spamdiagnosticoutput: 1:99
 spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
 X-OriginatorOrg: cavium.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Jul 2016 12:59:02.1528 (UTC)
+X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Jul 2016 22:35:53.5014 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 711e4ccf-2e9b-4bcf-a551-4094005b6194
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY1PR0701MB1599
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY1PR0701MB1596
 X-Mailman-Approved-At: Fri, 29 Jul 2016 02:04:17 -0700
-Subject: populate_sdk does not generate multilib sysroots
+Subject: populate_sdk multilib not generating lib32 sysrots
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -88,18 +90,17 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 27 Jul 2016 15:32:04 -0000
+X-List-Received-Date: Thu, 28 Jul 2016 22:36:00 -0000
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_CY1PR0701MB16009208F2BBF82401A045DFEC0F0CY1PR0701MB1600_"
+	boundary="_000_BY1PR0701MB15948444C67E8C271BE9FEF5EC000BY1PR0701MB1594_"
 
---_000_CY1PR0701MB16009208F2BBF82401A045DFEC0F0CY1PR0701MB1600_
+--_000_BY1PR0701MB15948444C67E8C271BE9FEF5EC000BY1PR0701MB1594_
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
 On krogoth branch of poky  trying to create a multilib sdk (aarch64 aarch64=
 _ilp32)
-
 Using the below local.conf
 
 
@@ -115,16 +116,11 @@ DEFAULTTUNE_virtclass-multilib-lib32 =3D "aarch64_ilp32"
 
 
 after bitbake core-image-minimal
-
 and bitbake -c populate_sdk core-image-minimal
 
-
 The sysroot directory in tmp/sysroots has sysroots for both 64 and ilp32
-
 TestMachine
-
 lib32-TestMachine
-
 
 But when installed the sdk using populate sdk generated script, sysroots is=
  only for aarch64 and not for aarch64_ilp32
@@ -135,16 +131,16 @@ aarch64-poky-linux  x86_64-pokysdk-linux
 
 What could be missing here?
 
-
 FYI The generated rootfs has multi libs, libssl for 32bit and 64bit are pre=
 sent.
+
 
 
 
 Regards,
 Manish Jaggi
 
---_000_CY1PR0701MB16009208F2BBF82401A045DFEC0F0CY1PR0701MB1600_
+--_000_BY1PR0701MB15948444C67E8C271BE9FEF5EC000BY1PR0701MB1594_
 Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
@@ -158,12 +154,16 @@ n-bottom:0;} --></style>
 <body dir=3D"ltr">
 <div id=3D"divtagdefaultwrapper" style=3D"font-size:10pt;color:#000000;back=
 ground-color:#FFFFFF;font-family:Candara,Sans-Serif;">
-<p>On krogoth branch of poky&nbsp; trying to create a multilib sdk (aarch64=
- aarch64_ilp32)</p>
-<p>Using the below local.conf</p>
-<p><br>
-</p>
-<p></p>
+<p><span id=3D"ms-rterangepaste-start"></span><font face=3D"Candara,Sans-Se=
+rif" color=3D"black" size=3D"2"><span style=3D"font-size:10pt;background-co=
+lor:white;" id=3D"divtagdefaultwrapper"></p>
+<div style=3D"margin-top:0;margin-bottom:0;">On krogoth branch of poky&nbsp=
+; trying to create a multilib sdk (aarch64 aarch64_ilp32)</div>
+<div style=3D"margin-top:0;margin-bottom:0;">Using the below local.conf</di=
+v>
+<div style=3D"margin-top:0;margin-bottom:0;"><br>
+</div>
+<div style=3D"margin-top:0;margin-bottom:0;">&nbsp;</div>
 <div>CONF_VERSION =3D &quot;1&quot;</div>
 <div>MACHINE =3D &quot;TestMachine&quot;</div>
 <div>CORE_IMAGE_EXTRA_INSTALL_append &#43;=3D &quot; openssl&quot;</div>
@@ -176,36 +176,41 @@ ground-color:#FFFFFF;font-family:Candara,Sans-Serif;">
 <div>DEFAULTTUNE_virtclass-multilib-lib32 =3D &quot;aarch64_ilp32&quot;</di=
 v>
 <br>
-<p></p>
-<p>after bitbake core-image-minimal&nbsp;</p>
-<p>and bitbake -c populate_sdk core-image-minimal&nbsp;</p>
-<p><br>
-</p>
-<p>The sysroot directory in tmp/sysroots has sysroots for both 64 and ilp32=
-</p>
-<p><span><span style=3D"font-family: Candara, sans-serif, &quot;Apple Color=
- Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot;Segoe UI Sy=
-mbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size: 13.3333px;"=
->TestMachine</span></span></p>
-<p><span>lib32-TestMachine</span><br>
-</p>
-<p><span><br>
-</span></p>
-<p><span>But when installed the sdk using populate sdk generated&nbsp;scrip=
-t, sysroots is only for aarch64 and not for aarch64_ilp32</span></p>
-<p><span></p>
+<div style=3D"margin-top:0;margin-bottom:0;">&nbsp;</div>
+<div style=3D"margin-top:0;margin-bottom:0;">after bitbake core-image-minim=
+al&nbsp;</div>
+<div style=3D"margin-top:0;margin-bottom:0;">and bitbake -c populate_sdk co=
+re-image-minimal&nbsp;</div>
+<div style=3D"margin-top:0;margin-bottom:0;"><br>
+</div>
+<div style=3D"margin-top:0;margin-bottom:0;">The sysroot directory in tmp/s=
+ysroots has sysroots for both 64 and ilp32</div>
+<div style=3D"margin-top:0;margin-bottom:0;"><font face=3D"Candara,Sans-Ser=
+if,Apple Color Emoji,Segoe UI Emoji,NotoColorEmoji,Segoe UI Symbol,Android =
+Emoji,EmojiSymbols" size=3D"1"><span style=3D"font-size:13.32px;">TestMachi=
+ne</span></font></div>
+<div style=3D"margin-top:0;margin-bottom:0;">lib32-TestMachine<br>
+</div>
+<div style=3D"margin-top:0;margin-bottom:0;"><br>
+</div>
+<div style=3D"margin-top:0;margin-bottom:0;">But when installed the sdk usi=
+ng populate sdk generated&nbsp;script, sysroots is only for aarch64 and not=
+ for aarch64_ilp32</div>
+<div style=3D"margin-top:0;margin-bottom:0;">&nbsp;</div>
 <div>ls ~/sdk_install_poky/sysroots/</div>
 <div>aarch64-poky-linux &nbsp;x86_64-pokysdk-linux</div>
 <br>
-</span>
+<div style=3D"margin-top:0;margin-bottom:0;">&nbsp;</div>
+<div style=3D"margin-top:0;margin-bottom:0;">What could be missing here?</d=
+iv>
+<div style=3D"margin-top:0;margin-bottom:0;"><br>
+</div>
+<div style=3D"margin-top:0;margin-bottom:0;">FYI&nbsp;The generated rootfs =
+has multi libs, libssl for 32bit and 64bit are present.</div>
+<div style=3D"margin-top:0;margin-bottom:0;"><br>
+</div>
+</span></font><span id=3D"ms-rterangepaste-end"></span><br>
 <p></p>
-<p>What could be missing here?</p>
-<p><br>
-</p>
-<p>FYI&nbsp;The generated rootfs has multi libs, libssl for 32bit and 64bit=
- are present.</p>
-<p><br>
-</p>
 <p><br>
 </p>
 <div id=3D"Signature">
@@ -220,4 +225,4 @@ div>
 </body>
 </html>
 
---_000_CY1PR0701MB16009208F2BBF82401A045DFEC0F0CY1PR0701MB1600_--
+--_000_BY1PR0701MB15948444C67E8C271BE9FEF5EC000BY1PR0701MB1594_--
