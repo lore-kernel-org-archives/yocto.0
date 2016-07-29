@@ -1,84 +1,63 @@
-Return-Path: <Manish.Jaggi@cavium.com>
+Return-Path: <bobadeshrikant@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C784EE00FAB; Thu, 28 Jul 2016 15:36:00 -0700 (PDT)
+	id 11FE8E004F1; Fri, 29 Jul 2016 02:09:02 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [104.47.41.70 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (bobadeshrikant[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.214.67 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 120076 seconds by postgrey-1.32 at yocto-www;
-	Thu, 28 Jul 2016 15:35:56 PDT
-Received: from NAM03-DM3-obe.outbound.protection.outlook.com
-	(mail-dm3nam03on0070.outbound.protection.outlook.com [104.47.41.70])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6D54AE00D34
-	for <yocto@yoctoproject.org>; Thu, 28 Jul 2016 15:35:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=CAVIUMNETWORKS.onmicrosoft.com; s=selector1-cavium-com;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
-	bh=yfXqbHsnYEbSH/yZDdBZHMCt5QxhllrbGb4V/lK6BoM=;
-	b=D20Lp9Utz9CbkKqF7xgitm9OYrEi6tA4vIinu77QELZgw5AkihUAbo3cpOpAo56zkbtxjDuLNotU6fb8iEjlsHHGreWn/hrQ5/F5BHm7XvpqUJLo29+I0b2T3ajefc57piyi33j0fwFmA4mrGX2erTj2ZdCc+CwDww/CKitBG5w=
-Received: from BY1PR0701MB1594.namprd07.prod.outlook.com (10.162.110.148) by
-	BY1PR0701MB1596.namprd07.prod.outlook.com (10.162.110.15) with
-	Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
-	15.1.549.15; Thu, 28 Jul 2016 22:35:53 +0000
-Received: from BY1PR0701MB1594.namprd07.prod.outlook.com ([10.162.110.148]) by
-	BY1PR0701MB1594.namprd07.prod.outlook.com ([10.162.110.148]) with
-	mapi id 15.01.0549.016; Thu, 28 Jul 2016 22:35:53 +0000
-From: "Jaggi, Manish" <Manish.Jaggi@cavium.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: populate_sdk multilib not generating lib32 sysrots
-Thread-Index: AQHR6SBmlJ0W13nFLUKM/b9TrA0G7w==
-Date: Thu, 28 Jul 2016 22:35:53 +0000
-Message-ID: <BY1PR0701MB15948444C67E8C271BE9FEF5EC000@BY1PR0701MB1594.namprd07.prod.outlook.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=Manish.Jaggi@cavium.com; 
-x-originating-ip: [12.108.191.226]
-x-ms-office365-filtering-correlation-id: da323896-2c70-4d95-98a6-08d3b73788de
-x-microsoft-exchange-diagnostics: 1; BY1PR0701MB1596;
-	6:BN3gBINBuhusgYl06VCA0sxUmE/oh/wSPpQ0l+3VgtpleBKcZH18OuxJMu42tHaJq3gsSDNaInU0215DgxLuRLdm55SxJJxnHmsxfMuh6W8AkID3zk6g6DMeXt6e4ZQBzoChb3HcoRkhoxORGr8thSZE+N3qJn8SdSfNnu0ExuVjvuFZIDUCubXxP0zfmzOnPVKnxPyStpcl3sYHPUSPfvhDslQy4fZSBJH/4I07d6b9K+IfZFPMXisivS4al3HD5vAu5LWhrIDP7eFFxUoa9+quJJnOFlP7Ej8JERqhINo=;
-	5:tyBmqVjGAbHHbrBfTwClPpuPh1K1ksuJgH9XZ13lrWJp4e86obld3KFzVKDH3RL5yRB0atosKxC+lGQGAjkk0BDvMukUQ6rSX3Aux1gt7dAJWO6zbKL6Y7A2KW+wY/9nm9PuEgdLn/K4/8dF3ip52w==;
-	24:iEmqesUVNo7bUwhRi4pQqA0sJG03M1CDQ3+gNutt+DqIgFVavAhro4puP87dhtf3Eytx1KAhBiV51Gi4yc0iiWkK/yi+BVBqL/ct+CZxjjA=;
-	7:x2nqPaxzzLDFin1/tiEGfPMJ4lpV+WajOZ6ZghDH23vLKAXiUyH+sjCnPKGA92SY+ARob0aWdkewRgzh8YIR4E7rjK6V2vDVKZdfwc0oOF8QW/gHIEFfFmPTPsJAi/exisSJwOQYy81W7GRmsIu1Uatq4oDYHjwa9+sSFVRA+DWNAaXuYGDCZ0DTbb8Be9tcMB7micci0JkIGRS2A6BKsEzdassf0gl/qq2VZ+5/1frXnVT/uRcyIgrEfQj7Wuz2
-x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:BY1PR0701MB1596;
-x-microsoft-antispam-prvs: <BY1PR0701MB1596A60AB819C613BD175D4AEC000@BY1PR0701MB1596.namprd07.prod.outlook.com>
-x-exchange-antispam-report-test: UriScan:;
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(601004)(2401047)(8121501046)(5005006)(10201501046)(3002001);
-	SRVR:BY1PR0701MB1596; BCL:0; PCL:0; RULEID:;
-	SRVR:BY1PR0701MB1596; 
-x-forefront-prvs: 00179089FD
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10009020)(6009001)(7916002)(199003)(189002)(69234005)(3846002)(50986999)(87936001)(74316002)(86362001)(54356999)(76576001)(7846002)(6116002)(101416001)(7736002)(19625215002)(3660700001)(66066001)(97736004)(3280700002)(102836003)(110136002)(107886002)(189998001)(99286002)(16236675004)(10400500002)(586003)(105586002)(7696003)(2501003)(77096005)(122556002)(2900100001)(19627405001)(92566002)(106116001)(106356001)(5640700001)(450100001)(2351001)(33656002)(11100500001)(5002640100001)(2906002)(8676002)(19580395003)(68736007)(8936002)(81166006)(1730700003)(81156014)(9686002)(229853001);
-	DIR:OUT; SFP:1101; SCL:1; SRVR:BY1PR0701MB1596;
-	H:BY1PR0701MB1594.namprd07.prod.outlook.com; FPR:; SPF:None;
-	PTR:InfoNoRecords; A:1; MX:1; LANG:en; 
-received-spf: None (protection.outlook.com: cavium.com does not designate
-	permitted sender hosts)
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
-MIME-Version: 1.0
-X-OriginatorOrg: cavium.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Jul 2016 22:35:53.5014 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 711e4ccf-2e9b-4bcf-a551-4094005b6194
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY1PR0701MB1596
-X-Mailman-Approved-At: Fri, 29 Jul 2016 02:04:17 -0700
-Subject: populate_sdk multilib not generating lib32 sysrots
+Received: from mail-it0-f67.google.com (mail-it0-f67.google.com
+	[209.85.214.67])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0E9E5E0045D
+	for <yocto@yoctoproject.org>; Fri, 29 Jul 2016 02:09:00 -0700 (PDT)
+Received: by mail-it0-f67.google.com with SMTP id f6so6591811ith.2
+	for <yocto@yoctoproject.org>; Fri, 29 Jul 2016 02:09:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:cc:subject:date:message-id;
+	bh=RklcrxzRuIwu6DkklihBTgRbVkBYRuCaAWc4jYr6/H4=;
+	b=rGxoLIerohtu62PJ3u9TfggIwXWFoyOGols+MaU16xUXoJIXe8tRh+MhDQ1oq3Tfbo
+	ywj9HySIaWCKV6M6VvQVYEb9eu/2eXMc9Bl/0d19IjVOy7glgOZPnNpAVmct5750hPFI
+	uANwpn/+0H7L/VDndCa8CKBmKGr83ElWM2fvGRQXrvuE9XQBGhuR+XCVqJ8b2FSOIYQC
+	BP4gD+nd2lBtVe7na0Ks4oPJ90KPd6A5jI1oPpPqZwawaT/VpkfXdEsg51Ibk+7Nk29x
+	m2hMyQEsTZL5X3+4oZCtp7MQQ+Y20RHqLJtxdb1YnSP4sgLtD5jOCCrhUZljbsO6JNRJ
+	j28w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=RklcrxzRuIwu6DkklihBTgRbVkBYRuCaAWc4jYr6/H4=;
+	b=BTvEp0WKOsVZXP9/QGrsgzSL2QxUlU+7WeKw9gFLEt5J2ZiM0fNqvHHTrNGCBiQKlh
+	lVhZ1+7xm6IQ11EMffV4gWHWrRNrks0ZJwtG36p3uJyVSvf+lMybZ61gylSO3w2UsB7O
+	oToCKpxMKNB4bHOTtzDaXBYjNshy5xiwhRFgvlnwRXM9tLiLRmx3gfEx42SckgDwQIAq
+	n6kCaWX9Y3qpOiMvq0uzEzoK+Xq7mi8YBxU3ZXCrJ3ARM1u6J0oSgyRb6EBopwZQvocZ
+	FgURV6xfD2JVGhtEBSXUYHatY1rEnisy5D77jdEoNFa3dQ2O8RfNHkLTqAumWxdQ+RoK
+	L0og==
+X-Gm-Message-State: AEkoouszsDy8W1W5dpYVt5+8wIvk0zkxaV7PaLxAk38HkxBTaltIV4+AKsUZPCVDJkTaCA==
+X-Received: by 10.36.21.65 with SMTP id 62mr45505487itq.20.1469783339859;
+	Fri, 29 Jul 2016 02:08:59 -0700 (PDT)
+Received: from shrikant-VirtualBox.inp.mentorg.com ([139.181.35.34])
+	by smtp.gmail.com with ESMTPSA id u7sm955449ita.21.2016.07.29.02.08.58
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Fri, 29 Jul 2016 02:08:59 -0700 (PDT)
+From: Shrikant Bobade <bobadeshrikant@gmail.com>
+To: yocto@yoctoproject.org
+Date: Fri, 29 Jul 2016 14:38:49 +0530
+Message-Id: <1469783329-6890-1-git-send-email-bobadeshrikant@gmail.com>
+X-Mailer: git-send-email 1.9.1
+Cc: Shrikant Bobade <shrikant_bobade@mentor.com>
+Subject: [meta-selinux][RFC 1/8] systemd:unconfined:lib: add systemd services allow rules
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -90,139 +69,171 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 28 Jul 2016 22:36:00 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_BY1PR0701MB15948444C67E8C271BE9FEF5EC000BY1PR0701MB1594_"
+X-List-Received-Date: Fri, 29 Jul 2016 09:09:02 -0000
 
---_000_BY1PR0701MB15948444C67E8C271BE9FEF5EC000BY1PR0701MB1594_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+From: Shrikant Bobade <shrikant_bobade@mentor.com>
 
-On krogoth branch of poky  trying to create a multilib sdk (aarch64 aarch64=
-_ilp32)
-Using the below local.conf
+systemd allow rules for systemd service file operations: start, stop, restart
+& allow rule for unconfined systemd service.
+
+without this change we are geting avc denials and access denied to perform
+operations service file.
+
+Signed-off-by: Shrikant Bobade <shrikant_bobade@mentor.com>
+---
+ ...onfined-lib-add-systemd-services-allow-ru.patch | 123 +++++++++++++++++++++
+ .../refpolicy/refpolicy_2.20151208.inc             |   9 ++
+ 2 files changed, 132 insertions(+)
+ create mode 100644 recipes-security/refpolicy/refpolicy-2.20151208/0001-systemd-unconfined-lib-add-systemd-services-allow-ru.patch
+
+diff --git a/recipes-security/refpolicy/refpolicy-2.20151208/0001-systemd-unconfined-lib-add-systemd-services-allow-ru.patch b/recipes-security/refpolicy/refpolicy-2.20151208/0001-systemd-unconfined-lib-add-systemd-services-allow-ru.patch
+new file mode 100644
+index 0000000..2b09e1c
+--- /dev/null
++++ b/recipes-security/refpolicy/refpolicy-2.20151208/0001-systemd-unconfined-lib-add-systemd-services-allow-ru.patch
+@@ -0,0 +1,123 @@
++From 0bd77bedc3edab3703738f018cf76c70c8026a16 Mon Sep 17 00:00:00 2001
++From: Shrikant Bobade <shrikant_bobade@mentor.com>
++Date: Mon, 25 Jul 2016 16:58:59 +0530
++Subject: [PATCH 1/6] systemd:unconfined:lib: add systemd services allow rules
++
++systemd allow rules for systemd service file operations: start, stop, restart
++& allow rule for unconfined systemd service.
++
++without this change we are getting these errors:
++:~# systemctl status selinux-init.service
++Failed to get properties: Access denied
++
++:~# systemctl stop selinux-init.service
++Failed to stop selinux-init.service: Access denied
++
++:~# systemctl restart  selinux-init.service
++audit: type=1107 audit: pid=1 uid=0 auid=4294967295 ses=4294967295 subj=
++system_u:system_r:init_t:s0 msg='avc:  denied  { start } for auid=n/a uid=0
++gid=0 path="/lib/systemd/system/selinux-init.service" cmdline="systemctl
++restart selinux-init.service" scontext=unconfined_u:unconfined_r:
++unconfined_t:s0-s0:c0.c1023 tcontext=system_u:object_r:lib_t:s0 tclass=service
++
++upstream-status: pending
++
++Signed-off-by: Shrikant Bobade <shrikant_bobade@mentor.com>
++---
++ policy/modules/system/init.te       |  6 +++++-
++ policy/modules/system/libraries.te  |  3 +++
++ policy/modules/system/systemd.if    | 40 +++++++++++++++++++++++++++++++++++++
++ policy/modules/system/unconfined.te |  6 ++++++
++ 4 files changed, 54 insertions(+), 1 deletion(-)
++
++diff --git a/policy/modules/system/init.te b/policy/modules/system/init.te
++index d710fb0..f9d7114 100644
++--- a/policy/modules/system/init.te
+++++ b/policy/modules/system/init.te
++@@ -1100,4 +1100,8 @@ optional_policy(`
++ # systemd related allow rules
++ allow kernel_t init_t:process dyntransition;
++ allow devpts_t device_t:filesystem associate;
++-allow init_t self:capability2 block_suspend;
++\ No newline at end of file
+++allow init_t self:capability2 block_suspend;
+++allow init_t self:capability2 audit_read;
+++
+++allow initrc_t init_t:system { start status };
+++allow initrc_t init_var_run_t:service { start status };
++diff --git a/policy/modules/system/libraries.te b/policy/modules/system/libraries.te
++index 0f5cd56..df98fe9 100644
++--- a/policy/modules/system/libraries.te
+++++ b/policy/modules/system/libraries.te
++@@ -144,3 +144,6 @@ optional_policy(`
++ optional_policy(`
++ 	unconfined_domain(ldconfig_t)
++ ')
+++
+++# systemd: init domain to start lib domain service
+++systemd_service_lib_function(lib_t)
++diff --git a/policy/modules/system/systemd.if b/policy/modules/system/systemd.if
++index 3cd6670..822c03d 100644
++--- a/policy/modules/system/systemd.if
+++++ b/policy/modules/system/systemd.if
++@@ -171,3 +171,43 @@ interface(`systemd_start_power_units',`
++ 
++ 	allow $1 power_unit_t:service start;
++ ')
+++
+++
+++########################################
+++## <summary>
+++## Allow specified domain to start stop reset systemd service
+++## </summary>
+++## <param name="domain">
+++## <summary>
+++## Domain to not audit.
+++## </summary>
+++## </param>
+++#
+++interface(`systemd_service_file_operations',`
+++         gen_require(`
+++               class service { start status stop };
+++         ')
+++
+++	allow $1 lib_t:service { start status stop };
+++
+++')
+++
+++
+++########################################
+++## <summary>
+++## Allow init domain to start lib domain service
+++## </summary>
+++## <param name="domain">
+++## <summary>
+++## Domain to not audit.
+++## </summary>
+++## </param>
+++#
+++interface(`systemd_service_lib_function',`
+++         gen_require(`
+++               class service start;
+++         ')
+++
+++	allow initrc_t $1:service start;
+++
+++')
++diff --git a/policy/modules/system/unconfined.te b/policy/modules/system/unconfined.te
++index 99cab31..87a1b03 100644
++--- a/policy/modules/system/unconfined.te
+++++ b/policy/modules/system/unconfined.te
++@@ -220,3 +220,9 @@ unconfined_domain_noaudit(unconfined_execmem_t)
++ optional_policy(`
++ 	unconfined_dbus_chat(unconfined_execmem_t)
++ ')
+++
+++
+++# systemd: specified domain to start stop reset systemd service
+++systemd_service_file_operations(unconfined_t)
+++
+++allow unconfined_t init_t:system reload;
++-- 
++1.9.1
++
+diff --git a/recipes-security/refpolicy/refpolicy_2.20151208.inc b/recipes-security/refpolicy/refpolicy_2.20151208.inc
+index ce90b13..861bfdc 100644
+--- a/recipes-security/refpolicy/refpolicy_2.20151208.inc
++++ b/recipes-security/refpolicy/refpolicy_2.20151208.inc
+@@ -57,4 +57,13 @@ SRC_URI += " \
+             file://ftp-add-ftpd_t-to-mlsfilewrite.patch \
+            "
+ 
++
++# systemd policy fixes
++SRC_URI += "${@bb.utils.contains('DISTRO_FEATURES', 'systemd', ' ${SYSTEMD_REFPOLICY_PATCHES}', '', d)}"
++
++SYSTEMD_REFPOLICY_PATCHES = "\
++	file://0001-systemd-unconfined-lib-add-systemd-services-allow-ru.patch \
++"
++
++
+ include refpolicy_common.inc
+-- 
+1.9.1
 
 
-CONF_VERSION =3D "1"
-MACHINE =3D "TestMachine"
-CORE_IMAGE_EXTRA_INSTALL_append +=3D " openssl"
-PREFERRED_VERSION_linux-thunderx-81xx =3D "4.4.3"
-BB_NUMBER_THREADS=3D"32"
-PREFERRED_PROVIDER_virtual/kernel =3D "linux-thunderx-81xx"
-require conf/multilib.conf
-MULTILIBS =3D "multilib:lib32"
-DEFAULTTUNE_virtclass-multilib-lib32 =3D "aarch64_ilp32"
-
-
-after bitbake core-image-minimal
-and bitbake -c populate_sdk core-image-minimal
-
-The sysroot directory in tmp/sysroots has sysroots for both 64 and ilp32
-TestMachine
-lib32-TestMachine
-
-But when installed the sdk using populate sdk generated script, sysroots is=
- only for aarch64 and not for aarch64_ilp32
-
-ls ~/sdk_install_poky/sysroots/
-aarch64-poky-linux  x86_64-pokysdk-linux
-
-
-What could be missing here?
-
-FYI The generated rootfs has multi libs, libssl for 32bit and 64bit are pre=
-sent.
-
-
-
-
-Regards,
-Manish Jaggi
-
---_000_BY1PR0701MB15948444C67E8C271BE9FEF5EC000BY1PR0701MB1594_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
-</head>
-<body dir=3D"ltr">
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:10pt;color:#000000;back=
-ground-color:#FFFFFF;font-family:Candara,Sans-Serif;">
-<p><span id=3D"ms-rterangepaste-start"></span><font face=3D"Candara,Sans-Se=
-rif" color=3D"black" size=3D"2"><span style=3D"font-size:10pt;background-co=
-lor:white;" id=3D"divtagdefaultwrapper"></p>
-<div style=3D"margin-top:0;margin-bottom:0;">On krogoth branch of poky&nbsp=
-; trying to create a multilib sdk (aarch64 aarch64_ilp32)</div>
-<div style=3D"margin-top:0;margin-bottom:0;">Using the below local.conf</di=
-v>
-<div style=3D"margin-top:0;margin-bottom:0;"><br>
-</div>
-<div style=3D"margin-top:0;margin-bottom:0;">&nbsp;</div>
-<div>CONF_VERSION =3D &quot;1&quot;</div>
-<div>MACHINE =3D &quot;TestMachine&quot;</div>
-<div>CORE_IMAGE_EXTRA_INSTALL_append &#43;=3D &quot; openssl&quot;</div>
-<div>PREFERRED_VERSION_linux-thunderx-81xx =3D &quot;4.4.3&quot;</div>
-<div>BB_NUMBER_THREADS=3D&quot;32&quot;</div>
-<div>PREFERRED_PROVIDER_virtual/kernel =3D &quot;linux-thunderx-81xx&quot;<=
-/div>
-<div>require conf/multilib.conf</div>
-<div>MULTILIBS =3D &quot;multilib:lib32&quot;</div>
-<div>DEFAULTTUNE_virtclass-multilib-lib32 =3D &quot;aarch64_ilp32&quot;</di=
-v>
-<br>
-<div style=3D"margin-top:0;margin-bottom:0;">&nbsp;</div>
-<div style=3D"margin-top:0;margin-bottom:0;">after bitbake core-image-minim=
-al&nbsp;</div>
-<div style=3D"margin-top:0;margin-bottom:0;">and bitbake -c populate_sdk co=
-re-image-minimal&nbsp;</div>
-<div style=3D"margin-top:0;margin-bottom:0;"><br>
-</div>
-<div style=3D"margin-top:0;margin-bottom:0;">The sysroot directory in tmp/s=
-ysroots has sysroots for both 64 and ilp32</div>
-<div style=3D"margin-top:0;margin-bottom:0;"><font face=3D"Candara,Sans-Ser=
-if,Apple Color Emoji,Segoe UI Emoji,NotoColorEmoji,Segoe UI Symbol,Android =
-Emoji,EmojiSymbols" size=3D"1"><span style=3D"font-size:13.32px;">TestMachi=
-ne</span></font></div>
-<div style=3D"margin-top:0;margin-bottom:0;">lib32-TestMachine<br>
-</div>
-<div style=3D"margin-top:0;margin-bottom:0;"><br>
-</div>
-<div style=3D"margin-top:0;margin-bottom:0;">But when installed the sdk usi=
-ng populate sdk generated&nbsp;script, sysroots is only for aarch64 and not=
- for aarch64_ilp32</div>
-<div style=3D"margin-top:0;margin-bottom:0;">&nbsp;</div>
-<div>ls ~/sdk_install_poky/sysroots/</div>
-<div>aarch64-poky-linux &nbsp;x86_64-pokysdk-linux</div>
-<br>
-<div style=3D"margin-top:0;margin-bottom:0;">&nbsp;</div>
-<div style=3D"margin-top:0;margin-bottom:0;">What could be missing here?</d=
-iv>
-<div style=3D"margin-top:0;margin-bottom:0;"><br>
-</div>
-<div style=3D"margin-top:0;margin-bottom:0;">FYI&nbsp;The generated rootfs =
-has multi libs, libssl for 32bit and 64bit are present.</div>
-<div style=3D"margin-top:0;margin-bottom:0;"><br>
-</div>
-</span></font><span id=3D"ms-rterangepaste-end"></span><br>
-<p></p>
-<p><br>
-</p>
-<div id=3D"Signature">
-<div name=3D"divtagdefaultwrapper" style=3D"font-family:Calibri,Arial,Helve=
-tica,sans-serif; font-size:; margin:0">
-<font face=3D"Cordia New, sans-serif" size=3D"2">Regards,</font>
-<div><font face=3D"Cordia New, sans-serif" size=3D"2">Manish Jaggi</font></=
-div>
-</div>
-</div>
-</div>
-</body>
-</html>
-
---_000_BY1PR0701MB15948444C67E8C271BE9FEF5EC000BY1PR0701MB1594_--
