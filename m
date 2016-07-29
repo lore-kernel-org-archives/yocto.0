@@ -1,63 +1,32 @@
-Return-Path: <bobadeshrikant@gmail.com>
+Return-Path: <mircea.gliga@vitheia.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 45786E0073D; Fri, 29 Jul 2016 02:24:28 -0700 (PDT)
+	id C0920E0073D; Fri, 29 Jul 2016 02:50:30 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (bobadeshrikant[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.223.193 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-io0-f193.google.com (mail-io0-f193.google.com
-	[209.85.223.193])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EE12FE0045D
-	for <yocto@yoctoproject.org>; Fri, 29 Jul 2016 02:24:24 -0700 (PDT)
-Received: by mail-io0-f193.google.com with SMTP id y34so9274079ioi.3
-	for <yocto@yoctoproject.org>; Fri, 29 Jul 2016 02:24:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to; 
-	bh=Zj/MDzidjFsMxS1/Mo4o4zTaqaCv4TVY8K1AyQ1ckWA=;
-	b=0YpcrNt7VRV6f2ClUO0chSPbPCX08QfEvY1gbXmRK8M3z0rfRo1eXBANLnR/ZOVAwJ
-	H3D1Kd+Sm47OVgKSzzqJTyg+Ma+FOoUP0Z/pnQ9JRggO7lRnq+aeY0Oe7eohultZAbks
-	g2VRHxb8rTjjyMLPt7aY1MXRYe+JO4dj1zQaSwcmyupP9qwq62OHsqJAx6tKocDKjbXz
-	LJbiyBLbz9hGveZ7Ouubnb+9jE+KUY2AqonFFIrMt3Acd+gC44loHVU4ZR3/QArM4zXT
-	TnKgkNFDzs0PyIGVjF+KxI9lqplnpM9LRNXVffQSa8g8E/lH9IFtJm5G/4+GfvTTUeCA
-	QHkg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to;
-	bh=Zj/MDzidjFsMxS1/Mo4o4zTaqaCv4TVY8K1AyQ1ckWA=;
-	b=muSzn8lxFmfMRETiXkzfqe6jpBz642rgOF2HSa+W4qIkotUGhQcLmv7YvD+zVyJopy
-	RwAwwkaH6uWo2Mk/r/hLao73Xv+VOI7cu36d5P/kKKAfhgafQiEtrWsQNneo52RFJdOX
-	GHRVhYWr9LB2Nvv1mXVcIAKJFCRHbKHDBDXCwroD+2uurle0LLcKhcEZNc7hmrqmud+Y
-	n/s9Ix43HjAwnIgXFcXWZpsMemU6ehnSlTns186/6Nqyh+G4vHy4VdgzsdaT5uvhFtWn
-	S4wkOfC/8S2/YHm5/se7CeZN3LtpBYzdLLWocC4X54Io057CnF112OzHVDIJvTEZ5Z6k
-	j8zQ==
-X-Gm-Message-State: AEkoouuxD+pywG9V3uaZcf6V72gBYFsSAXqcicxEOo1+TAKNkGOT7/KR+gMcl9KeLVTwQkmL8W68G+ih2jOBDQ==
-X-Received: by 10.107.184.70 with SMTP id i67mr41673791iof.26.1469784263666;
-	Fri, 29 Jul 2016 02:24:23 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.107.51.75 with HTTP; Fri, 29 Jul 2016 02:24:23 -0700 (PDT)
-In-Reply-To: <CALwQErovo9JQV7apy+-Qnk9Dv5SDArmS+793GuwWoznF-gWAcQ@mail.gmail.com>
-References: <CALwQErovo9JQV7apy+-Qnk9Dv5SDArmS+793GuwWoznF-gWAcQ@mail.gmail.com>
-From: Shrikant Bobade <bobadeshrikant@gmail.com>
-Date: Fri, 29 Jul 2016 14:54:23 +0530
-Message-ID: <CALwQEroevj9bs_adtYoSFWoPCOtpAw1t4Xi6LP-dDyT-zP3reg@mail.gmail.com>
+Received: from zeus.integrasoft.ro (zeus.integrasoft.ro [193.231.162.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 365B1E0045D
+	for <yocto@yoctoproject.org>; Fri, 29 Jul 2016 02:50:26 -0700 (PDT)
+Received: from [193.231.162.34] (echelon.integrasoft.ro [193.231.162.34])
+	(authenticated bits=0)
+	by zeus.integrasoft.ro (8.13.8/8.13.8) with ESMTP id u6T9oLfd024547
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES128-SHA bits=128 verify=NO)
+	for <yocto@yoctoproject.org>; Fri, 29 Jul 2016 12:50:21 +0300
 To: yocto@yoctoproject.org
-Subject: Re: [meta-selinux] Regarding "systemd" support with refpolicy-minimum v20151208
+References: <e00d74d8-fdca-0a3d-0b5e-0a2441badcc0@vitheia.com>
+	<57978254.9080905@windriver.com>
+From: Mircea Gliga <mircea.gliga@vitheia.com>
+Message-ID: <101debc7-def8-2ab4-6bb5-2cc87070644e@vitheia.com>
+Date: Fri, 29 Jul 2016 12:50:20 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Icedove/45.1.0
+MIME-Version: 1.0
+In-Reply-To: <57978254.9080905@windriver.com>
+Subject: Re: Some partial kernel configs applied some are ignored
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,143 +38,144 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 29 Jul 2016 09:24:28 -0000
-Content-Type: multipart/alternative; boundary=94eb2c06d362eed7f40538c2d028
+X-List-Received-Date: Fri, 29 Jul 2016 09:50:30 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
---94eb2c06d362eed7f40538c2d028
-Content-Type: text/plain; charset=UTF-8
+Thanks for your reply Bruce!
+Indeed that was the problem with my partial kernel configs that got 
+'ignored'.
+The recipe poky/meta/recipes-kernel/linux/linux-yocto_3.14.bb sets the 
+KERNEL_FEATURES:
 
-Hi,
+KERNEL_EXTRA_FEATURES ?= "features/netfilter/netfilter.scc"
+KERNEL_FEATURES_append = " ${KERNEL_EXTRA_FEATURES}"
 
+KERNEL_FEATURES having a higher priority, resets my configuration options.
 
-Request for comment set from:
-https://lists.yoctoproject.org/pipermail/yocto/2016-July/031362.html to
-https://lists.yoctoproject.org/pipermail/yocto/2016-July/031369.html
+So in my bbapend file, from my layer,I've set KERNEL_EXTRA_FEATURES = ""
 
-checked on below build config. with refpolicy-minimum using systemd as init
-manager.
+Now it works as expected.
+I was not aware - from the documentation, if there is any regarding this 
+priorities - that KERNEL_FEATURES are applied last and could override my 
+configs.
 
-These are comparative boot logs.
-refpolicy-minimum without RFC set: http://paste.ubuntu.com/21383917/
+To answer your first question here is my Build Configuration:
 
-refpolicy-minimum with RFC set: http://paste.ubuntu.com/21383939/
-
-
-
-Build Configuration:
-BB_VERSION        = "1.31.0"
+BB_VERSION        = "1.28.0"
 BUILD_SYS         = "x86_64-linux"
-NATIVELSBSTRING   = "universal"
+NATIVELSBSTRING   = "Debian-8.5"
 TARGET_SYS        = "arm-poky-linux-gnueabi"
 MACHINE           = "qemuarm"
-DISTRO            = "poky-selinux"
-DISTRO_VERSION    = "2.1+snapshot-20160729"
+DISTRO            = "poky-lsb"
+DISTRO_VERSION    = "2.0.1"
 TUNE_FEATURES     = "arm armv5 thumb dsp"
 TARGET_FPU        = "soft"
+meta-atmel        = "jethro:4765d7064e4916784c15095347eda21cc10aabb4"
+meta-smartcom     = "master:8577784729b3d4346ea56df8edb08f4c43d03ccb"
+meta-qt5          = "jethro:ea37a0bc987aa9484937ad68f762b4657c198617"
 meta
-meta-poky
-meta-yocto-bsp    = "master:039f47ad197a9a53109c9f3deadd9c35e62c056d"
-meta-selinux      = "master:d0f889259b610c3365962775c6e96a7cba407177"
+meta-yocto
+meta-yocto-bsp    = "jethro:f117786f2447d86810d2b8078f125363632c7662"
+meta-oe
+meta-networking
+meta-python
+meta-ruby
+meta-multimedia   = "jethro:d69386740b85b7865ea1ca844b91bbacd27041d8"
+
+Have a nice day.
 
 
+On 07/26/2016 06:31 PM, Bruce Ashfield wrote:
+> On 2016-07-26 02:32 AM, Mircea Gliga wrote:
+>> Hello
+>>
+>> I have my own layer and I am trying to configure the kernel using
+>> partial configs.
+>> I'm trying to enable netfilter support into the kernel - not as modules,
+>> so I set the CONFIG.... to "y"
+>> I've created a bbappend file in my layer, here:
+>> recipes-kernel/linux/linux-yocto_3.14.bbappend
+>
+> Which branch is this ? 3.14 spanned a few releases, so I can't
+> tell from the kernel version alone.
+>
+>> The content of this file is:
+>> ---
+>> FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+>> SRC_URI += "file://ipv6enable.cfg file://netfilter_minimal.cfg"
+>>
+>> SRCREV_machine = "${SRCREV}"
+>> ---
+>>
+>> In the ipv6enable.cfg file I also enable the ipv6.
+>>
+>> recipes-kernel/linux/linux-yocto/netfilter_minimal.cfg:
+>> CONFIG_NF_CONNTRACK=y
+>> CONFIG_NF_NAT=y
+>> CONFIG_NETFILTER_XTABLES=y
+>> CONFIG_NETFILTER_XT_MATCH_CONNTRACK=y
+>> CONFIG_NETFILTER_XT_MATCH_STATE=y
+>> CONFIG_NF_DEFRAG_IPV6=y
+>> CONFIG_NF_CONNTRACK_IPV6=y
+>> CONFIG_IP6_NF_IPTABLES=y
+>> CONFIG_NF_NAT_IPV6=y
+>>
+>> recipes-kernel/linux/linux-yocto/ipv6enable.cfg:
+>> CONFIG_IPV6=y
+>> CONFIG_INET6_TUNNEL=y
+>> CONFIG_IPV6_TUNNEL=y
+>> CONFIG_IPV6_ROUTER_PREF=y
+>>
+>> Now I'm configuring the kernel, cleaning first:
+>> * bitbake -c cleansstate linux-yocto
+>> * bitbake linux-yocto -c configure
+>>
+>> When inspecting the .config file from
+>> tmp/work/qemuarm-poky-linux-gnueabi/linux-yocto/3.14.36+gitAUTOINC+060fa80b79_4817747912-r0/linux-qemuarm-standard-build: 
+>>
+>>
+>> most of the kernel options related to netfilter are set to "m", it's
+>> like my options from my layer are ignored.
+>
+> They wouldn't be ignored, but if they are not the last configs, a
+> dependency or select statement is in play, the option could be changed.
+>
+> In particular, check "bitbake -e" and the linux-yocto kernel recipe
+> for KERNEL_FEATURES .. we have them for netfilter options in particular.
+>
+> KERNEL_FEATURES are applied last (something that has been tweaked in
+> master, but would be the case in an older release).
+>
+> They are applied last, since they are a hard error if they aren't set
+> .. which means that something on the SRC_URI can't simply override
+> them, it has to be another KERNEL_FEATURE.
+>
+> There is a way to create a KERNEL_FEATURE in your bbappend, but in the
+> case of the netfilter options, they are enabled via the
+> KERNEL_EXTRA_FEATURES variable, so you can override and clear that
+> variable to avoid the kernel feature coming in and changing what you
+> are trying to set.
+>
+> Bruce
+>
+>
+>> But the options from the ipv6enable.cfg file are set correctly (even if
+>> set to "n" or "y" changes are reflected in the output file .config)
+>>
+>> I've created the netfilter_minimal.cfg file in this way:
+>> * configure a kernel without any of my changes
+>> * made a backup of .config
+>> * run bitbake linux-yocto -c menuconfig and set the options from there
+>> * save the results to a different file
+>> * resulting file compared with the original file: changes saved in
+>> netfilter_minimal.cfg
+>>
+>>
+>> Thanks in advance
+>> M.
+>>
+>>
+>
 
-Please advice, It will be a great help !
 
-
-Thanks
-Shrikant
-
-
-On Fri, Jul 1, 2016 at 7:13 PM, Shrikant Bobade <bobadeshrikant@gmail.com>
-wrote:
-
-> Hi,
->
-> Using refpolicy-minimum v20151208 with systemd as init manager,
->
-> I am facing few issues during enforcing mode,
-> 1. systemd service status check, start & stop
-> 2. auditd logfile error, so it is mixing with the boot log.
-> 3. also other avc denials related to tmpfs & other types etc..
->
->
-> setup details:poky and meta-selinux: both at master head & systemd enabled.
-> with these SELinux booleans enabled: i.systemd_tmpfiles_manage_all
-> ii.allow_mount_anyfile
->
-> captured the avc denial to fix the systemd execution well, attached
-> SELinux-Modules.txt :- the allow rules generated using audit tools.
-> I am trying to merge these module into actual refpolicy modules, so we get
-> the out of box experience for smooth systemd execution.
-> Observed policy store seems corrupted some time, when start inserting the
-> prepared policy modules allow rules into actual refpolicy modules..
->
-> Does anyone also faced similar issues?
->
-> Any pointers or references will be a great help.
->
->
-> Thanks
-> Shrikant
->
->
-
---94eb2c06d362eed7f40538c2d028
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div><div><div>Hi,<br><br><br></div>Request for comment se=
-t from: <a href=3D"https://lists.yoctoproject.org/pipermail/yocto/2016-July=
-/031362.html">https://lists.yoctoproject.org/pipermail/yocto/2016-July/0313=
-62.html</a> to <a href=3D"https://lists.yoctoproject.org/pipermail/yocto/20=
-16-July/031369.html">https://lists.yoctoproject.org/pipermail/yocto/2016-Ju=
-ly/031369.html</a><br><br></div><div>checked on below build config. with re=
-fpolicy-minimum using systemd as init manager.<br><br></div><div>These are =
-comparative boot logs.<br></div><div>refpolicy-minimum without RFC set: <a =
-href=3D"http://paste.ubuntu.com/21383917/">http://paste.ubuntu.com/21383917=
-/</a> <br></div><div><br></div><div>refpolicy-minimum with RFC set: <a href=
-=3D"http://paste.ubuntu.com/21383939/">http://paste.ubuntu.com/21383939/</a=
-> <br></div><div><br><br><br>Build Configuration:<br>BB_VERSION=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;1.31.0&quot;<br>BUILD_SYS=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;x86_64-linux&quot;<br>NAT=
-IVELSBSTRING=C2=A0=C2=A0 =3D &quot;universal&quot;<br>TARGET_SYS=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;arm-poky-linux-gnueabi&quot;<br=
->MACHINE=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &q=
-uot;qemuarm&quot;<br>DISTRO=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 =3D &quot;poky-selinux&quot;<br>DISTRO_VERSION=C2=A0=C2=
-=A0=C2=A0 =3D &quot;2.1+snapshot-20160729&quot;<br>TUNE_FEATURES=C2=A0=C2=
-=A0=C2=A0=C2=A0 =3D &quot;arm armv5 thumb dsp&quot;<br>TARGET_FPU=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;soft&quot;<br>meta=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <br>meta=
--poky=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <br>meta-yocto-bsp=C2=
-=A0=C2=A0=C2=A0 =3D &quot;master:039f47ad197a9a53109c9f3deadd9c35e62c056d&q=
-uot;<br>meta-selinux=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;master:d0f8892=
-59b610c3365962775c6e96a7cba407177&quot;<br><br><br><br></div><div>Please ad=
-vice, It will be a great help !<br><br></div><div><br></div>Thanks<br></div=
->Shrikant<br><div><div><div><br></div></div></div></div><div class=3D"gmail=
-_extra"><br><div class=3D"gmail_quote">On Fri, Jul 1, 2016 at 7:13 PM, Shri=
-kant Bobade <span dir=3D"ltr">&lt;<a href=3D"mailto:bobadeshrikant@gmail.co=
-m" target=3D"_blank">bobadeshrikant@gmail.com</a>&gt;</span> wrote:<br><blo=
-ckquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #c=
-cc solid;padding-left:1ex"><div dir=3D"ltr"><div><div>Hi,<br><br></div>Usin=
-g refpolicy-minimum v20151208 with systemd as init manager, <br><br>I am fa=
-cing few issues during enforcing mode, <br>1. systemd service status check,=
- start &amp; stop<br>
-2. auditd logfile error, so it is mixing with the boot log. <br>3. also oth=
-er avc denials related to tmpfs &amp; other types etc..<br><br><br>setup de=
-tails:poky and meta-selinux: both at master head &amp; systemd enabled.<br>=
-with these SELinux booleans enabled: i.systemd_tmpfiles_manage_all ii.allow=
-_mount_anyfile <br><br>captured the avc denial to fix the systemd execution=
- well, attached SELinux-Modules.txt :- the allow rules generated using audi=
-t tools.<br></div><div>I am trying to merge these module into actual refpol=
-icy modules, so we get the out of box experience for smooth systemd executi=
-on.<br></div><div>Observed policy store seems corrupted some time, when sta=
-rt inserting the prepared policy modules allow rules into actual refpolicy =
-modules..<br><br></div><div>Does anyone also faced similar issues? <br><br>=
-</div><div>Any pointers or references will be a great help.<br></div><div><=
-br><br></div><div>Thanks<span class=3D"HOEnZb"><font color=3D"#888888"><br>=
-</font></span></div><span class=3D"HOEnZb"><font color=3D"#888888"><div>Shr=
-ikant<br></div><div></div><br></font></span></div>
-</blockquote></div><br></div>
-
---94eb2c06d362eed7f40538c2d028--
