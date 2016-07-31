@@ -1,67 +1,69 @@
-Return-Path: <andrei@gherzan.ro>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 13E23E01071; Sun, 31 Jul 2016 11:55:05 -0700 (PDT)
+	id 3C4AAE00D09; Sun, 31 Jul 2016 12:52:20 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [74.125.82.67 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.216.195 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f67.google.com (mail-wm0-f67.google.com [74.125.82.67])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3AAC5E00CD2
-	for <yocto@yoctoproject.org>; Sun, 31 Jul 2016 11:55:03 -0700 (PDT)
-Received: by mail-wm0-f67.google.com with SMTP id x83so23261388wma.3
-	for <yocto@yoctoproject.org>; Sun, 31 Jul 2016 11:55:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-disposition:in-reply-to:user-agent;
-	bh=+mB1BqL3Ho1ODN5fIynbI1xY6ZsHp8xXke6mXO3YIgQ=;
-	b=ttej4fGWfp7DRl+djGpRG9yJ1KBY2+4AQj7BXnkeFm8CWSGUaiKSmhIRzAqNZ5S4wg
-	TMo9G184ELiaVruQsB7p9VC3fZ6Na8CMP4B1TOc0HULur3AEWECPBDcHzetsA2KcL8/6
-	pMUAbAGWkMhyRcyYCd6z4asez3cbCDQHvA2ZwnGNuqQS0a6+VPq7179SYo0Kf4gZlTgk
-	3jtW8wBQD4mF+iwV/GWd9vstrNgI2b/AGYTl4JErEkkxA7SnV4di/BRjfxp47LTuJ418
-	txCE/4S8VYW9qPqnKGFOHKNkbF5H4HdU2SQxvf1A4wAx6e0nWZVCvfDCB2cGQtnTEs7q
-	iPZQ==
+Received: from mail-qt0-f195.google.com (mail-qt0-f195.google.com
+	[209.85.216.195])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D8C58E00CFF
+	for <yocto@yoctoproject.org>; Sun, 31 Jul 2016 12:52:16 -0700 (PDT)
+Received: by mail-qt0-f195.google.com with SMTP id j37so7235546qta.0
+	for <yocto@yoctoproject.org>; Sun, 31 Jul 2016 12:52:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=fa2KR10L99haO4wqhD+QyF6EUEhkHptLbPIznQRNJsM=;
+	b=hVLGzrNGBZNG3puJxp6lTa6wU+OrOgUqhp2emvmNgR1Foos5aQlcDgn5N6nOkULVbd
+	yjzSD3toxUlWIfdj0wiloxmmCyXXP7NxXdsKI17YswBjxV90La2r2gxsgT3AaddXEb9Q
+	l2YhtDx4s68zRAkfi8aSI3aLlk0C1taDTXZrspiTD9PwMpVdmWmyfQ07b2UsFD3SdKwI
+	DQbTYtJBqNLWXCHvPADK0v52t2ndrnxByVDVtxoItdL6S9YjzoqkOMb0sdkuZfd5JrzG
+	QgKa6NvNsWse3vKkS0Dte8MmDGibqkI0vuodESdXOrw9H76nEMpqqtRT2BbRa4k7IwRU
+	GseA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-	:mime-version:content-disposition:in-reply-to:user-agent;
-	bh=+mB1BqL3Ho1ODN5fIynbI1xY6ZsHp8xXke6mXO3YIgQ=;
-	b=US7bGuhN+I++y7BG6gOnjO70sJ+ztJKJQSktOf8ZlXP+UN9qVdRhQLEuJVAIcO0m1M
-	4HbbbOUBSSRnQYH7htKBn1/4F93QlnZiaaiGOcx6TOIZgcWF5Z1DiDGUFbcUMwjsEO/+
-	xMPKSw52RRX4oMYfacQKxK/FpkX6q8Q4sY0ZFj/Nas9+zJiCGki5ojMEW99okADh8v/9
-	u3SK7vhCfgA2ji6gXysU+7k4KtYCr0dGBiA3joatEB4ymheQMRWmMVfH++Ay+qoBNdzN
-	ODY3Nt8T9655iTzHeTs3y9kRyK4AEXBpY0/YXQWcu6JMt+BqtRD3iQ5hEGuMfVlO0F31
-	c9/w==
-X-Gm-Message-State: AEkoouuODHrwgz/LatJjeQAjRXhJ02th7ze+F3KmyLaw556CDRcUVcCnIx43sruTuqHsCQ==
-X-Received: by 10.28.174.76 with SMTP id x73mr52025897wme.60.1469991302692;
-	Sun, 31 Jul 2016 11:55:02 -0700 (PDT)
-Received: from resin.home (host86-186-205-140.range86-186.btcentralplus.com.
-	[86.186.205.140]) by smtp.gmail.com with ESMTPSA id
-	bw9sm26770896wjc.33.2016.07.31.11.55.01
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sun, 31 Jul 2016 11:55:01 -0700 (PDT)
-Date: Sun, 31 Jul 2016 19:54:59 +0100
-From: Andrei Gherzan <andrei@gherzan.ro>
-To: Khem Raj <raj.khem@gmail.com>
-Message-ID: <20160731185459.GC29087@resin.home>
-References: <20160721080236.0ed7287e@nuc.betafive.co.uk>
-	<001e01d1e366$2908ffc0$7b1aff40$@neuf.fr>
-	<543dea85-f500-9551-12f2-25bc718b47d2@elfin.de>
-	<CAMKF1srbdtSSthhR0mBq_Lfz=O14oANhnvwJjzRFFGSxPtVBLw@mail.gmail.com>
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=fa2KR10L99haO4wqhD+QyF6EUEhkHptLbPIznQRNJsM=;
+	b=PL7DVV6QNcT0yETF9wFesIrKPYTfrPCOF+lBocnuEG/4TvPjKqOxWU0ct8aNgHMMge
+	b4chiMQkfh0oS6kJxsIkPnoocyP2al8zAkiFCtUI8SUq/51xj3MtP3fYxF4Dp3tEBD6c
+	HHUcBJa9Nm9+HBfe6I4HzxwGuCI46UNWRAyKiDJmeFDyG3oX+bRvHlzY4I8DT7h+zhb0
+	supJ+9F3QGGIiMwg+kJAQgK3itdGmAJur2CCr5agdUT+faR8JFNWHEqVzpWOX2bXSmX5
+	amv5IPkrpTx3wvZwd5o5rZ/+KM2BzPpAfCDASVkRBowCvgFa3hSdFCLYeNw30c1YY9xc
+	S64Q==
+X-Gm-Message-State: AEkoousyuiel4epClCb/KGUkD06GlD3g+1H7n+mhojjMCT1Zad0UfQADOt5ufSpS8ZWkrSkE3wsfOwi+Vw6B8w==
+X-Received: by 10.200.56.155 with SMTP id f27mr83173412qtc.26.1469994735622;
+	Sun, 31 Jul 2016 12:52:15 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CAMKF1srbdtSSthhR0mBq_Lfz=O14oANhnvwJjzRFFGSxPtVBLw@mail.gmail.com>
-User-Agent: Mutt/1.6.2 (2016-07-01)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi] linux-raspberrypi versions
+Received: by 10.55.214.83 with HTTP; Sun, 31 Jul 2016 12:52:14 -0700 (PDT)
+Received: by 10.55.214.83 with HTTP; Sun, 31 Jul 2016 12:52:14 -0700 (PDT)
+In-Reply-To: <CAMKF1sp4pS2+7gkr2RttBbkGiifWqSOEX2J09ygK3uZnVbAKwg@mail.gmail.com>
+References: <1469052039-7746-1-git-send-email-herve.jourdain@neuf.fr>
+	<70B61AEF-DB1A-4E60-8A14-878623073F1A@gmail.com>
+	<20160731184820.GA29087@resin.home>
+	<CAMKF1soL5FLZNAvZm3qdGyqj-XYuKWMgnepb_r1Vs6hHuCLgLg@mail.gmail.com>
+	<CAMKF1sp4pS2+7gkr2RttBbkGiifWqSOEX2J09ygK3uZnVbAKwg@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Sun, 31 Jul 2016 13:52:14 -0600
+Message-ID: <CAMKF1soRNGyMpYL17y5VxBeHpVEhn0hnWKgPg8BBZXpUTF-5Mw@mail.gmail.com>
+To: Andrei Gherzan <andrei@gherzan.ro>
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-raspberrypi][PATCH v6 0/4] Support for .dtbo files for dtb overlays, required by kernels 4.4.6+
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,129 +75,218 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 31 Jul 2016 18:55:05 -0000
-X-Groupsio-MsgNum: 31315
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="qtZFehHsKgwS5rPz"
-Content-Disposition: inline
+X-List-Received-Date: Sun, 31 Jul 2016 19:52:20 -0000
+Content-Type: multipart/alternative; boundary=001a113783be09e1680538f3d256
 
---qtZFehHsKgwS5rPz
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+--001a113783be09e1680538f3d256
+Content-Type: text/plain; charset=UTF-8
 
-On Fri, Jul 22, 2016 at 07:07:07AM -0700, Khem Raj wrote:
-> On Fri, Jul 22, 2016 at 12:03 AM, piotr.lewicki <piotr.lewicki@elfin.de> wrote:
-> > Hi all,
-> >
-> > I also think that's a good idea. In my opinion we should at least make
-> > latest LTS (4.4) the default kernel and try to add latest mainline.
-> >
-> > Probably the "proper way" of dealing with the issue is using branches. This
-> > way (as it is in oe-core): jethro would have kernel 3.18 and 4.1, krogoth
-> > would have 4.4 and 4.1 and master would only have 4.4 and latest mainline.
+On Jul 31, 2016 12:48 PM, "Andrei Gherzan" <andrei@gherzan.ro> wrote:
 >
-> 4.1 is also LTS, So it should be kept along with 4.4 until next LTS
-
-I'm 100% on removing < 4 and keep 4.4 default along with LTS 4.1 and the
-current tip.
-
+> On Thu, Jul 28, 2016 at 06:41:25PM -0700, Khem Raj wrote:
+> >
+> > > On Jul 20, 2016, at 3:00 PM, Herve Jourdain <herve.jourdain@neuf.fr>
+wrote:
+> > >
+> > > v6: rebased
+> > >
+> > > v5: modifications after more review
+> > > * Added an Upstream-Status to the kernel patch
+> > > * Only one instance of KERNEL_DEVICETREE defined (with the new .dtbo
+syntax)
+> > > * Modification of the KERNEL_DEVICETREE is done in
+linux-raspberry-base.bbclass, based on the kernel version
+> > >
+> > > v4: rebased
+> > > For kernels 4.4.9+, the behavior for the device tree overlays loading
+has been modified on RaspberryPi.
+> > > For overlays, it loads .dtbo files, not .dtb anymore.
+> > > Also, it does not check for -overlay extension, so the name of the
+overlay that is placed in the "overlays" directory must be
+<overlay_name>.dtbo, instead of <overlay_name>-overlay.dtb.
+> > >
+> > > This patch addresses the issue for kernels 4.4+, while keeping the
+same behavior for older kernels.
+> > > This patch must be used in conjunction with another patch to
+meta/recipes-kernel/linux-dtb.inc, which will allow the processing of .dtbo
+files for overlays, instead of only .dtb like before.
+> > >
+> > > .dtb are still in use, but only for the "real" device trees (not the
+overlays).
+> >
+> > I have staged this series in
+> >
+> > https://github.com/kraj/meta-raspberrypi kraj/master
+> >
+> > However, this all has to wait on two things.
+> >
+> > The OE-core patch
+> >
+> > https://patchwork.openembedded.org/patch/123747/
+> >
 >
+> What is happening with this patch? So I can't merge these as long as
+> this one is not merged.
+
+Yes. I am working on upstreaming it. We have to wait until this goes in. I
+have staged all rpi patches in my tree. So obe place to look for all
+>
+> > and we need to branch out for krogoth
 > >
-> > Don't you think that it would be a good idea to create some "quasi" krogoth
-> > branch out of what is on master and then cleaning the master (e.g. removing
-> > kernel 3.18 and 4.1) ?
+> > >
+> > > Herve Jourdain (4):
+> > >  linux-raspberrypi_4.4.bb: support for .dtbo files for dtb overlays
+> > >  rpi-base.inc: support for .dtbo files for dtb overlays
+> > >  linux-raspberrypi-base.bbclass: support for .dtbo files for dtb
+> > >    overlays
+> > >  sdcard_image-rpi.bbclass: support for .dtbo files for dtb overlays
+> > >
+> > > classes/linux-raspberrypi-base.bbclass             | 19 ++++++----
+> > > classes/sdcard_image-rpi.bbclass                   | 15 +++++---
+> > > conf/machine/include/rpi-base.inc                  | 30
++++++++--------
+> > > .../0001-fix-dtbo-rules.patch                      | 44
+++++++++++++++++++++++
+> > > recipes-kernel/linux/linux-raspberrypi_4.4.bb      |  1 +
+> > > 5 files changed, 81 insertions(+), 28 deletions(-)
+> > > create mode 100644
+recipes-kernel/linux/linux-raspberrypi-4.4/0001-fix-dtbo-rules.patch
+> > >
+> > > --
+> > > 2.7.4
+> > >
+> > > --
+> > > _______________________________________________
+> > > yocto mailing list
+> > > yocto@yoctoproject.org
+> > > https://lists.yoctoproject.org/listinfo/yocto
 > >
-> >
-> > BR,
-> >
-> > Piotr
-> >
-> >
-> >
-> > On 21.07.2016 17:39, Herve Jourdain wrote:
-> >>
-> >> Hi Paul,
-> >>
-> >> I had the same line of thoughts...
-> >> I believe 3.18 should be dropped, maybe even 4.1, default to 4.4, and
-> >> maybe
-> >> add 4.7 to the mix, since 4.7 seems to be where the bulk of the work is
-> >> done
-> >> now.
-> >>
-> >> Herve
-> >>
-> >> -----Original Message-----
-> >> From: yocto-bounces@yoctoproject.org
-> >> [mailto:yocto-bounces@yoctoproject.org]
-> >> On Behalf Of Paul Barker
-> >> Sent: jeudi 21 juillet 2016 09:03
-> >> To: yocto@yoctoproject.org
-> >> Subject: [yocto] [meta-raspberrypi] linux-raspberrypi versions
-> >>
-> >> Hi all,
-> >>
-> >> I'm planning to look at the linux-raspberypi recipes once I've had time to
-> >> send V2 of my u-boot patches. I'd like to know people's thoughts on the
-> >> available kernel versions in the meta-raspberrypi layer:
-> >>
-> >> Is anyone still using the linux-raspberrypi 3.18 recipe? The commit
-> >> referenced in SRCREV is from June 2015. I think it's probably time to
-> >> retire
-> >> this unless anyone has a reason to keep it around.
-> >>
-> >> Is there any reason to keep linux-raspberrypi 4.1 as the default recipe?
-> >> The
-> >> last commit to the 4.1 branch was in April and the default branch on the
-> >> linux-raspberrypi GitHub repository has been
-> >> 4.4 since then. I think we should change the default version to 4.4 unless
-> >> there's a good reason not to.
-> >>
-> >> If there's no objections I'll send a couple of patches to drop 3.18 and
-> >> change the default to 4.4.
-> >>
-> >> Thanks,
-> >> Paul Barker
-> >> --
-> >> _______________________________________________
-> >> yocto mailing list
-> >> yocto@yoctoproject.org
-> >> https://lists.yoctoproject.org/listinfo/yocto
-> >>
-> >
+>
+>
+>
 > > --
 > > _______________________________________________
 > > yocto mailing list
 > > yocto@yoctoproject.org
 > > https://lists.yoctoproject.org/listinfo/yocto
+>
+>
 > --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+> Andrei Gherzan
 
---
-Andrei Gherzan
+--001a113783be09e1680538f3d256
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
---qtZFehHsKgwS5rPz
-Content-Type: application/pgp-signature; name="signature.asc"
+<p dir=3D"ltr"></p>
+<p dir=3D"ltr">On Jul 31, 2016 12:48 PM, &quot;Andrei Gherzan&quot; &lt;<a =
+href=3D"mailto:andrei@gherzan.ro">andrei@gherzan.ro</a>&gt; wrote:<br>
+&gt;<br>
+&gt; On Thu, Jul 28, 2016 at 06:41:25PM -0700, Khem Raj wrote:<br>
+&gt; &gt;<br>
+&gt; &gt; &gt; On Jul 20, 2016, at 3:00 PM, Herve Jourdain &lt;<a href=3D"m=
+ailto:herve.jourdain@neuf.fr">herve.jourdain@neuf.fr</a>&gt; wrote:<br>
+&gt; &gt; &gt;<br>
+&gt; &gt; &gt; v6: rebased<br>
+&gt; &gt; &gt;<br>
+&gt; &gt; &gt; v5: modifications after more review<br>
+&gt; &gt; &gt; * Added an Upstream-Status to the kernel patch<br>
+&gt; &gt; &gt; * Only one instance of KERNEL_DEVICETREE defined (with the n=
+ew .dtbo syntax)<br>
+&gt; &gt; &gt; * Modification of the KERNEL_DEVICETREE is done in linux-ras=
+pberry-base.bbclass, based on the kernel version<br>
+&gt; &gt; &gt;<br>
+&gt; &gt; &gt; v4: rebased<br>
+&gt; &gt; &gt; For kernels 4.4.9+, the behavior for the device tree overlay=
+s loading has been modified on RaspberryPi.<br>
+&gt; &gt; &gt; For overlays, it loads .dtbo files, not .dtb anymore.<br>
+&gt; &gt; &gt; Also, it does not check for -overlay extension, so the name =
+of the overlay that is placed in the &quot;overlays&quot; directory must be=
+ &lt;overlay_name&gt;.dtbo, instead of &lt;overlay_name&gt;-overlay.dtb.<br=
+>
+&gt; &gt; &gt;<br>
+&gt; &gt; &gt; This patch addresses the issue for kernels 4.4+, while keepi=
+ng the same behavior for older kernels.<br>
+&gt; &gt; &gt; This patch must be used in conjunction with another patch to=
+ meta/recipes-kernel/linux-dtb.inc, which will allow the processing of .dtb=
+o files for overlays, instead of only .dtb like before.<br>
+&gt; &gt; &gt;<br>
+&gt; &gt; &gt; .dtb are still in use, but only for the &quot;real&quot; dev=
+ice trees (not the overlays).<br>
+&gt; &gt;<br>
+&gt; &gt; I have staged this series in<br>
+&gt; &gt;<br>
+&gt; &gt; <a href=3D"https://github.com/kraj/meta-raspberrypi">https://gith=
+ub.com/kraj/meta-raspberrypi</a> kraj/master<br>
+&gt; &gt;<br>
+&gt; &gt; However, this all has to wait on two things.<br>
+&gt; &gt;<br>
+&gt; &gt; The OE-core patch<br>
+&gt; &gt;<br>
+&gt; &gt; <a href=3D"https://patchwork.openembedded.org/patch/123747/">http=
+s://patchwork.openembedded.org/patch/123747/</a><br>
+&gt; &gt;<br>
+&gt;<br>
+&gt; What is happening with this patch? So I can&#39;t merge these as long =
+as<br>
+&gt; this one is not merged.</p>
+<p dir=3D"ltr">Yes. I am working on upstreaming it. We have to wait until t=
+his goes in. I have staged all rpi patches in my tree. So obe place to look=
+ for all<br>
+&gt;<br>
+&gt; &gt; and we need to branch out for krogoth<br>
+&gt; &gt;<br>
+&gt; &gt; &gt;<br>
+&gt; &gt; &gt; Herve Jourdain (4):<br>
+&gt; &gt; &gt;=C2=A0 <a href=3D"http://linux-raspberrypi_4.4.bb">linux-rasp=
+berrypi_4.4.bb</a>: support for .dtbo files for dtb overlays<br>
+&gt; &gt; &gt;=C2=A0 rpi-base.inc: support for .dtbo files for dtb overlays=
+<br>
+&gt; &gt; &gt;=C2=A0 linux-raspberrypi-base.bbclass: support for .dtbo file=
+s for dtb<br>
+&gt; &gt; &gt;=C2=A0 =C2=A0 overlays<br>
+&gt; &gt; &gt;=C2=A0 sdcard_image-rpi.bbclass: support for .dtbo files for =
+dtb overlays<br>
+&gt; &gt; &gt;<br>
+&gt; &gt; &gt; classes/linux-raspberrypi-base.bbclass=C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0| 19 ++++++----<br>
+&gt; &gt; &gt; classes/sdcard_image-rpi.bbclass=C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| 15 +++++---<br>
+&gt; &gt; &gt; conf/machine/include/rpi-base.inc=C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 | 30 +++++++--------<br>
+&gt; &gt; &gt; .../0001-fix-dtbo-rules.patch=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 | 44 ++++++++++++++++++++++<b=
+r>
+&gt; &gt; &gt; recipes-kernel/linux/<a href=3D"http://linux-raspberrypi_4.4=
+.bb">linux-raspberrypi_4.4.bb</a>=C2=A0 =C2=A0 =C2=A0 |=C2=A0 1 +<br>
+&gt; &gt; &gt; 5 files changed, 81 insertions(+), 28 deletions(-)<br>
+&gt; &gt; &gt; create mode 100644 recipes-kernel/linux/linux-raspberrypi-4.=
+4/0001-fix-dtbo-rules.patch<br>
+&gt; &gt; &gt;<br>
+&gt; &gt; &gt; --<br>
+&gt; &gt; &gt; 2.7.4<br>
+&gt; &gt; &gt;<br>
+&gt; &gt; &gt; --<br>
+&gt; &gt; &gt; _______________________________________________<br>
+&gt; &gt; &gt; yocto mailing list<br>
+&gt; &gt; &gt; <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject=
+.org</a><br>
+&gt; &gt; &gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto">ht=
+tps://lists.yoctoproject.org/listinfo/yocto</a><br>
+&gt; &gt;<br>
+&gt;<br>
+&gt;<br>
+&gt;<br>
+&gt; &gt; --<br>
+&gt; &gt; _______________________________________________<br>
+&gt; &gt; yocto mailing list<br>
+&gt; &gt; <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org<=
+/a><br>
+&gt; &gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto">https:/=
+/lists.yoctoproject.org/listinfo/yocto</a><br>
+&gt;<br>
+&gt;<br>
+&gt; --<br>
+&gt; Andrei Gherzan<br></p>
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2
-
-iQIcBAEBCAAGBQJXnkmCAAoJEHO76Gt+erfPhqwQAK91kvWglZs8idf3PkwurShn
-3nqGxE8Rvw9QPDIWCgV0EfPOgb+AEankwKWWkBDaldiJaPR32gQV+vxmt4mkJfpq
-/KTYPvus+Qn7cfyezscBR0NhyMHrapKBzj08pICB7IDbsOaTQjTbuIQKQtmRO2Bx
-SsGCyDgoiBhpZ3it6VaaJxYm6ANB7TssUBlQ/KK+WWpe4kMZDWcaD+xxRVmbcCj0
-jqZiBFU1SdrCerwdyPVHSODzfZT1Jl02HfxvW9kYfbfpDPSQfZH4/EsaI+PpFHt3
-SUZz3I0dUi/Gi9zOhwoTOAAOk1KDJ4YOcMt8RCMgKZ1i/EcjWEEfQvDa6nOYDNCH
-ttltmUcNH1Q2i8M4ztt7PmsszNq3AXWCYHDUIYRKEVG4YA/tI6hSw9B4TyvGpavV
-ok50cBmbFQ1k9/f+x4oZvB/Q0XmKXTenUyzzVlKkFyh3w4ZdDT4P7g19FhMSSjmy
-MSm6u1SnbW0acQ5/zIhN4qX0hM2BGcS0dcT5yg1YZjYTNTmRg0K89g4sQxScUEOJ
-5FGFyzPz6fe4cbtbckS/xtfriVp0zO9SL/M5nPYORS2ePZwsE9XukeXl9/ctSc+S
-kUhGdd5Z/ESK6eyZOLKm7M3SRneCAIPEO3Q0kMmZMMiDH6nEbgKiIGeUHatZtvHt
-0orC/5/22FtVBcVVwUDT
-=SDnK
------END PGP SIGNATURE-----
-
---qtZFehHsKgwS5rPz--
+--001a113783be09e1680538f3d256--
