@@ -1,17 +1,19 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4EB9AE01076; Sun, 31 Jul 2016 12:54:18 -0700 (PDT)
+	id A8CFBE00D09; Sun, 31 Jul 2016 12:56:26 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
+X-Spam-Status: No, score=-1.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW, URIBL_BLACK autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 1.7 URIBL_BLACK Contains an URL listed in the URIBL
+	blacklist *      [URIs: gherzan.ro]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (raj.khem[at]gmail.com)
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.220.179 listed in list.dnswl.org]
+	*      [209.85.216.194 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -20,50 +22,47 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qk0-f179.google.com (mail-qk0-f179.google.com
-	[209.85.220.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AD8A5E01083
-	for <yocto@yoctoproject.org>; Sun, 31 Jul 2016 12:54:02 -0700 (PDT)
-Received: by mail-qk0-f179.google.com with SMTP id s63so130236711qkb.2
-	for <yocto@yoctoproject.org>; Sun, 31 Jul 2016 12:54:02 -0700 (PDT)
+Received: from mail-qt0-f194.google.com (mail-qt0-f194.google.com
+	[209.85.216.194])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 407B3E00CC3
+	for <yocto@yoctoproject.org>; Sun, 31 Jul 2016 12:56:24 -0700 (PDT)
+Received: by mail-qt0-f194.google.com with SMTP id q11so7230495qtb.2
+	for <yocto@yoctoproject.org>; Sun, 31 Jul 2016 12:56:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=GanfqRlLM9o1Dj+rrlgvLBOdRhLWLG2IvuZH19TM2OI=;
-	b=OtG7Ybk9fCwhagCL4MD3oVLL2xu5bSaAWHMA4srKtlsIm8hqjzOubioteU+3N8n5br
-	gX10nPacwVC+YwT4Kbjyq3qP0Ma3ETjV3W4zTN4zlEmzYrrnEhgs/XTRp6thNju2jzZ3
-	mtaU4BQIbUrE9KBL6bxseFsAhYdSZLEQGPTihgjSw+kKZxna2nDkTGD4HeMt9t7sOajd
-	QjTYp57w8lf6x2lukZ+bigEX2rbpJVlkAYT/b4c6TDCW/3co9PwQgl9lwHiWKubUtU5E
-	Ud3ohgOM6NUpZdbDdczqrlbY4Uvg8nI164wu12X/dHN6YAGnT1+d5xN0jHhtYzCZvSgr
-	PY6Q==
+	:cc; bh=GETm4/ftCV8aI72QoQYD5XYSoY5vS+zcjaQyTDG9Yl8=;
+	b=xqJh7eoOVLs99AOFo1zNKP36T01LZFOibLezABMQSlOBluwgHgH+qzMKO8zwSKoAj/
+	ep6uZ3EsfnB/ITnXMD5PKjQSt6mi/ti2Cdg73z/WsJ1ZpVD6w+iC/ksBioYE26+jhlCX
+	+tKb6gfWzCbM+BKmXrB69Gr/Ruw6sGIiaTYs7C83JYYDEqD4uUHrEpgfWe91HTClXGWl
+	RvXcWHDDHaRTa0lEZYKJ2wURCknh8P29S1929pAQyLeW4yCnt1gFqdqsBh2T6sA9NSQ1
+	WAfqY/8hUg9z0QCwDcuJpbU4gyYmAB6NMFt8KXVtvdfuCnSkHj/xtN+3yOMzmGevDdrq
+	0Ywg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=GanfqRlLM9o1Dj+rrlgvLBOdRhLWLG2IvuZH19TM2OI=;
-	b=h4pLknziN6dwKPjDFTEVp/pjx7fiQK6SXFB3Z2+6hH3Vcz+i8WwY1KddQfbADCc2Ml
-	4HK7JLutxddWmjcfQIrjNc04nIJ5y5/OJ5E1YV2Tz/ewIGHkbuFLXaL4ZjB0PZtAdJO4
-	UFi1554q7UYksWCx4DXOI3bG2OY+KsK/0fpOeLO6sIHkx9AY3DfoFR4fqYaqnWADvZDA
-	jOr8S8DympdjSU/VsvP/x0GfFpBe8y0YPfkbz3T7tjYy8NxDKJ5rbd5mwo9AX0pzQtIb
-	01+5Jtg/B+6+sCJ8nztVMoq/LCGAk3jmMzKP5xEBcBicx0/SACaCaZ6c13PzE7+6kbZE
-	w5qA==
-X-Gm-Message-State: AEkooutw+afjE7OcRevZlxj0tlpKW5vM91USI1f73g7B441yMObt1aHuKoleV9uAyFEYZiTuCL1GejNETS8OGw==
-X-Received: by 10.55.178.195 with SMTP id b186mr59079194qkf.81.1469994842040; 
-	Sun, 31 Jul 2016 12:54:02 -0700 (PDT)
+	bh=GETm4/ftCV8aI72QoQYD5XYSoY5vS+zcjaQyTDG9Yl8=;
+	b=LJjrkhwhWPm2hZ7q1Z2RCfUmNWeb3qHdgho5jyCmnUq+s8xIdRjJtIPxDt88BrrVc0
+	FZ7tp9DIjyLt8MN/0dJ9TK0vgOz4ns0fp3PyEyI7Q5oiZA9HC4C/VAdMhDsQfQljFtdp
+	XOOvPyvepTnAtMtJ3gp6wqrKDj3iAEExaNMgSkcrbshrGjucNZUbrknOS9DYzAN/VRa0
+	qBLvvKZPX99wrQZNVXFJSPmbzNjMufzTNE7zISuRrQP7JBZh84yDT6GVvyB1LQPf+E/G
+	+GophZRFDrRt4PB4t8mvV9zNGU8iReb+0BVD3p1RxvY8EcQJSLAMJtCnSf45nZagL/8W
+	ejEA==
+X-Gm-Message-State: AEkoout7EtaKOf4DGqO2UPZtP3KeegB5Teb0kIXOrpPwcQJcFEYUGfr0TPWXkQiKlwLmmK8VvqrZuaovfrMkjQ==
+X-Received: by 10.237.35.76 with SMTP id i12mr82672948qtc.41.1469994983359;
+	Sun, 31 Jul 2016 12:56:23 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.55.214.83 with HTTP; Sun, 31 Jul 2016 12:54:01 -0700 (PDT)
-Received: by 10.55.214.83 with HTTP; Sun, 31 Jul 2016 12:54:01 -0700 (PDT)
-In-Reply-To: <20160731185459.GC29087@resin.home>
-References: <20160721080236.0ed7287e@nuc.betafive.co.uk>
-	<001e01d1e366$2908ffc0$7b1aff40$@neuf.fr>
-	<543dea85-f500-9551-12f2-25bc718b47d2@elfin.de>
-	<CAMKF1srbdtSSthhR0mBq_Lfz=O14oANhnvwJjzRFFGSxPtVBLw@mail.gmail.com>
-	<20160731185459.GC29087@resin.home>
+Received: by 10.55.214.83 with HTTP; Sun, 31 Jul 2016 12:56:22 -0700 (PDT)
+Received: by 10.55.214.83 with HTTP; Sun, 31 Jul 2016 12:56:22 -0700 (PDT)
+In-Reply-To: <20160731185258.GB29087@resin.home>
+References: <1469104337-21068-1-git-send-email-herve.jourdain@neuf.fr>
+	<20160731185258.GB29087@resin.home>
 From: Khem Raj <raj.khem@gmail.com>
-Date: Sun, 31 Jul 2016 13:54:01 -0600
-Message-ID: <CAMKF1sqS=BWF-69Jri+cPouw+skdzts5bEfqjKLTdCDWKW=M3A@mail.gmail.com>
+Date: Sun, 31 Jul 2016 13:56:22 -0600
+Message-ID: <CAMKF1sq4dMGCoF3H-4WwHW7t5APvZSHkhmrDHqFPh32hB_b4aQ@mail.gmail.com>
 To: Andrei Gherzan <andrei@gherzan.ro>
 Cc: yocto@yoctoproject.org
-Subject: Re: [meta-raspberrypi] linux-raspberrypi versions
+Subject: Re: [meta-raspberrypi][PATCH v4 00/12] Support for VC4 graphics driver
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,223 +74,302 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 31 Jul 2016 19:54:18 -0000
-Content-Type: multipart/alternative; boundary=94eb2c06ee0461b1bc0538f3d8e0
+X-List-Received-Date: Sun, 31 Jul 2016 19:56:26 -0000
+Content-Type: multipart/alternative; boundary=001a113c8026ce0a820538f3e090
 
---94eb2c06ee0461b1bc0538f3d8e0
+--001a113c8026ce0a820538f3e090
 Content-Type: text/plain; charset=UTF-8
 
-On Jul 31, 2016 12:55 PM, "Andrei Gherzan" <andrei@gherzan.ro> wrote:
+On Jul 31, 2016 12:54 PM, "Andrei Gherzan" <andrei@gherzan.ro> wrote:
 >
-> On Fri, Jul 22, 2016 at 07:07:07AM -0700, Khem Raj wrote:
-> > On Fri, Jul 22, 2016 at 12:03 AM, piotr.lewicki <piotr.lewicki@elfin.de>
-wrote:
-> > > Hi all,
-> > >
-> > > I also think that's a good idea. In my opinion we should at least make
-> > > latest LTS (4.4) the default kernel and try to add latest mainline.
-> > >
-> > > Probably the "proper way" of dealing with the issue is using
-branches. This
-> > > way (as it is in oe-core): jethro would have kernel 3.18 and 4.1,
-krogoth
-> > > would have 4.4 and 4.1 and master would only have 4.4 and latest
-mainline.
+> On Thu, Jul 21, 2016 at 08:32:05PM +0800, Herve Jourdain wrote:
+> > v4 series:
+> > a. rebased
+> > b. Upstream-Status added to the patch to the VC4 driver (needed only
+for kernel 4.4, accepted upstream in 4.7)
 > >
-> > 4.1 is also LTS, So it should be kept along with 4.4 until next LTS
->
-> I'm 100% on removing < 4 and keep 4.4 default along with LTS 4.1 and the
-> current tip.
->
-
-Good so we are on same page. I have staged patches for this too.
-
+> > v3 series:
+> > a. patch rebased
+> > b. new revision of kernel, to get a version of the VC4 graphics driver
+that handles render nodes
+> > c. patch to the VC4 driver to enable proper working of the render nodes
+(need to add authorization for IOCTLs)
 > >
-> > >
-> > > Don't you think that it would be a good idea to create some "quasi"
-krogoth
-> > > branch out of what is on master and then cleaning the master (e.g.
-removing
-> > > kernel 3.18 and 4.1) ?
-> > >
-> > >
-> > > BR,
-> > >
-> > > Piotr
-> > >
-> > >
-> > >
-> > > On 21.07.2016 17:39, Herve Jourdain wrote:
-> > >>
-> > >> Hi Paul,
-> > >>
-> > >> I had the same line of thoughts...
-> > >> I believe 3.18 should be dropped, maybe even 4.1, default to 4.4, and
-> > >> maybe
-> > >> add 4.7 to the mix, since 4.7 seems to be where the bulk of the work
-is
-> > >> done
-> > >> now.
-> > >>
-> > >> Herve
-> > >>
-> > >> -----Original Message-----
-> > >> From: yocto-bounces@yoctoproject.org
-> > >> [mailto:yocto-bounces@yoctoproject.org]
-> > >> On Behalf Of Paul Barker
-> > >> Sent: jeudi 21 juillet 2016 09:03
-> > >> To: yocto@yoctoproject.org
-> > >> Subject: [yocto] [meta-raspberrypi] linux-raspberrypi versions
-> > >>
-> > >> Hi all,
-> > >>
-> > >> I'm planning to look at the linux-raspberypi recipes once I've had
-time to
-> > >> send V2 of my u-boot patches. I'd like to know people's thoughts on
-the
-> > >> available kernel versions in the meta-raspberrypi layer:
-> > >>
-> > >> Is anyone still using the linux-raspberrypi 3.18 recipe? The commit
-> > >> referenced in SRCREV is from June 2015. I think it's probably time to
-> > >> retire
-> > >> this unless anyone has a reason to keep it around.
-> > >>
-> > >> Is there any reason to keep linux-raspberrypi 4.1 as the default
-recipe?
-> > >> The
-> > >> last commit to the 4.1 branch was in April and the default branch on
-the
-> > >> linux-raspberrypi GitHub repository has been
-> > >> 4.4 since then. I think we should change the default version to 4.4
-unless
-> > >> there's a good reason not to.
-> > >>
-> > >> If there's no objections I'll send a couple of patches to drop 3.18
-and
-> > >> change the default to 4.4.
-> > >>
-> > >> Thanks,
-> > >> Paul Barker
-> > >> --
-> > >> _______________________________________________
-> > >> yocto mailing list
-> > >> yocto@yoctoproject.org
-> > >> https://lists.yoctoproject.org/listinfo/yocto
-> > >>
-> > >
-> > > --
-> > > _______________________________________________
-> > > yocto mailing list
-> > > yocto@yoctoproject.org
-> > > https://lists.yoctoproject.org/listinfo/yocto
+> > v2 series:
+> > a. Fix the 4.4.10 kernel revision
+> > b. Effectively add vc4-kms-v3d overlay to the list of overlays to build
+(forgotten previously)
+> > c. Make the parameter to the v4c-kms-v3d overlay configurable
+> > d. Add default values for the cma parameter to the v4c-kms-v3d overlay,
+depending on the board (and the memory it has)
+> >
+> > This patch series enables the support for the VC4 graphics driver from
+Eric Anholt.
+> > There was a previous patch series by Javier Martinez Canillas, but it
+required use of a different kernel.
+> > VC4 is now supported in the raspberrypi official kernel, at least for
+4.4.9+.
+> > The support in 4.1 exists, but it is NOT STABLE, so it has been deemed
+unreasonable to support VC4 with 4.1 kernels.
+> >
+> > THEREFORE, VC4 graphics is supported ONLY for kernel versions 4.4.9 and
+later.
+> >
+> > This patch series proposes to support VC4 by only adding 'vc4graphics'
+to MACHINE_FEATURES, for raspberrypi. If this is set, it will trigger all
+the necessary configuration/changes to use the VC4 driver, including
+mesa/wayland/weston currently, and adding the overlay required.
+> > In order for this series to work, some previous patches are needed
+(support for .dtbo, and fix of the mesa packaging when there is no DRI
+driver).
+> > The memory reserved for the VC4 driver has default values depending on
+the version of the board used, but it can be configured by setting
+VC4_CMA_SIZE to a value supported by the overlay ('cma-256', 'cma-192',
+'cma-128', 'cma-96', 'cma-64').
+> > 'cma-256' is the recommended value, but it might not be possible on
+boards with 512MB or DRAM, or less...
+> > 'cma-64' is known to not being able to support FHD/1080p.
+> >
+> > It was tested with wayland/weston, without the support for X11.
+> >
+> > This patch series depends on two other patch series previously posted,
+that enable the support for .dtbo overlay files.
+> >
+> > Herve Jourdain (12):
+> >   rpi-default-providers.inc: change default providers to support
+> >     vc4graphics
+> >   rpi-base.inc: add vc4-kms-v3d to the overlays to support vc4graphics
+> >   raspberrypi.conf: set the default value of VC4_CMA_SIZE to support
+> >     vc4graphics
+> >   raspberrypi0.conf: set the default value of VC4_CMA_SIZE to support
+> >     vc4graphics
+> >   raspberrypi2.conf: set the default value of VC4_CMA_SIZE to support
+> >     vc4graphics
+> >   raspberrypi3.conf: set the default value of VC4_CMA_SIZE to support
+> >     vc4graphics
+> >   rpi-config_git.bb: add v4c overlay to config.txt to support
+> >     vc4graphics
+> >   wayland/weston_%.bbappend: modify configuration options to support
+> >     vc4graphics
+> >   weston/weston_%.bbappend: modify configuration options to support
+> >     vc4graphics
+> >   mesa_%.bbappend: new file to add the correct configuration options to
+> >     support vc4graphics
+> >   linux-rpi.inc: add the configuration options required to support
+> >     vc4graphics
+> >   linux-raspberrypi-4.4: add patch to enable proper operation of
+> >     renderD128 device
+> >
+> >  conf/machine/include/rpi-base.inc                  |  1 +
+> >  conf/machine/include/rpi-default-providers.inc     |  8 +++---
+> >  conf/machine/raspberrypi.conf                      |  2 ++
+> >  conf/machine/raspberrypi0.conf                     |  2 ++
+> >  conf/machine/raspberrypi2.conf                     |  2 ++
+> >  conf/machine/raspberrypi3.conf                     |  2 ++
+> >  recipes-bsp/bootfiles/rpi-config_git.bb            | 10 +++++++-
+> >  recipes-graphics/mesa/mesa_%.bbappend              |  4 +++
+> >  recipes-graphics/wayland/weston_%.bbappend         |  6 ++---
+> >  recipes-graphics/weston/weston_%.bbappend          | 13 +++++-----
+> >  .../0002-vc4-ioctl-rendering-allow.patch           | 29
+++++++++++++++++++++++
+> >  recipes-kernel/linux/linux-raspberrypi_4.4.bb      |  1 +
+> >  recipes-kernel/linux/linux-rpi.inc                 | 10 ++++++++
+> >  13 files changed, 75 insertions(+), 15 deletions(-)
+> >  create mode 100644 recipes-graphics/mesa/mesa_%.bbappend
+> >  create mode 100644
+recipes-kernel/linux/linux-raspberrypi-4.4/0002-vc4-ioctl-rendering-allow.patch
+> >
+> > --
+> > 2.7.4
+> >
 > > --
 > > _______________________________________________
 > > yocto mailing list
 > > yocto@yoctoproject.org
 > > https://lists.yoctoproject.org/listinfo/yocto
 >
+> I would have wanted to merge this but they depend on dtbo support which
+> doesn't have the required bits in oe.core. So I can't merge this until
+> that lands in oe-core.
+
+Let's wait for few days. I have staged it in my guthub tree. Until then
+>
+> Regards,
+>
 > --
 > Andrei Gherzan
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
---94eb2c06ee0461b1bc0538f3d8e0
+--001a113c8026ce0a820538f3e090
 Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-<p dir="ltr"></p>
-<p dir="ltr">On Jul 31, 2016 12:55 PM, &quot;Andrei Gherzan&quot; &lt;<a href="mailto:andrei@gherzan.ro">andrei@gherzan.ro</a>&gt; wrote:<br>
+<p dir=3D"ltr"></p>
+<p dir=3D"ltr">On Jul 31, 2016 12:54 PM, &quot;Andrei Gherzan&quot; &lt;<a =
+href=3D"mailto:andrei@gherzan.ro">andrei@gherzan.ro</a>&gt; wrote:<br>
 &gt;<br>
-&gt; On Fri, Jul 22, 2016 at 07:07:07AM -0700, Khem Raj wrote:<br>
-&gt; &gt; On Fri, Jul 22, 2016 at 12:03 AM, piotr.lewicki &lt;<a href="mailto:piotr.lewicki@elfin.de">piotr.lewicki@elfin.de</a>&gt; wrote:<br>
-&gt; &gt; &gt; Hi all,<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; I also think that&#39;s a good idea. In my opinion we should at least make<br>
-&gt; &gt; &gt; latest LTS (4.4) the default kernel and try to add latest mainline.<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; Probably the &quot;proper way&quot; of dealing with the issue is using branches. This<br>
-&gt; &gt; &gt; way (as it is in oe-core): jethro would have kernel 3.18 and 4.1, krogoth<br>
-&gt; &gt; &gt; would have 4.4 and 4.1 and master would only have 4.4 and latest mainline.<br>
+&gt; On Thu, Jul 21, 2016 at 08:32:05PM +0800, Herve Jourdain wrote:<br>
+&gt; &gt; v4 series:<br>
+&gt; &gt; a. rebased<br>
+&gt; &gt; b. Upstream-Status added to the patch to the VC4 driver (needed o=
+nly for kernel 4.4, accepted upstream in 4.7)<br>
 &gt; &gt;<br>
-&gt; &gt; 4.1 is also LTS, So it should be kept along with 4.4 until next LTS<br>
-&gt;<br>
-&gt; I&#39;m 100% on removing &lt; 4 and keep 4.4 default along with LTS 4.1 and the<br>
-&gt; current tip.<br>
-&gt;</p>
-<p dir="ltr">Good so we are on same page. I have staged patches for this too.</p>
-<p dir="ltr">&gt; &gt;<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; Don&#39;t you think that it would be a good idea to create some &quot;quasi&quot; krogoth<br>
-&gt; &gt; &gt; branch out of what is on master and then cleaning the master (e.g. removing<br>
-&gt; &gt; &gt; kernel 3.18 and 4.1) ?<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; BR,<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; Piotr<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; On 21.07.2016 17:39, Herve Jourdain wrote:<br>
-&gt; &gt; &gt;&gt;<br>
-&gt; &gt; &gt;&gt; Hi Paul,<br>
-&gt; &gt; &gt;&gt;<br>
-&gt; &gt; &gt;&gt; I had the same line of thoughts...<br>
-&gt; &gt; &gt;&gt; I believe 3.18 should be dropped, maybe even 4.1, default to 4.4, and<br>
-&gt; &gt; &gt;&gt; maybe<br>
-&gt; &gt; &gt;&gt; add 4.7 to the mix, since 4.7 seems to be where the bulk of the work is<br>
-&gt; &gt; &gt;&gt; done<br>
-&gt; &gt; &gt;&gt; now.<br>
-&gt; &gt; &gt;&gt;<br>
-&gt; &gt; &gt;&gt; Herve<br>
-&gt; &gt; &gt;&gt;<br>
-&gt; &gt; &gt;&gt; -----Original Message-----<br>
-&gt; &gt; &gt;&gt; From: <a href="mailto:yocto-bounces@yoctoproject.org">yocto-bounces@yoctoproject.org</a><br>
-&gt; &gt; &gt;&gt; [mailto:<a href="mailto:yocto-bounces@yoctoproject.org">yocto-bounces@yoctoproject.org</a>]<br>
-&gt; &gt; &gt;&gt; On Behalf Of Paul Barker<br>
-&gt; &gt; &gt;&gt; Sent: jeudi 21 juillet 2016 09:03<br>
-&gt; &gt; &gt;&gt; To: <a href="mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-&gt; &gt; &gt;&gt; Subject: [yocto] [meta-raspberrypi] linux-raspberrypi versions<br>
-&gt; &gt; &gt;&gt;<br>
-&gt; &gt; &gt;&gt; Hi all,<br>
-&gt; &gt; &gt;&gt;<br>
-&gt; &gt; &gt;&gt; I&#39;m planning to look at the linux-raspberypi recipes once I&#39;ve had time to<br>
-&gt; &gt; &gt;&gt; send V2 of my u-boot patches. I&#39;d like to know people&#39;s thoughts on the<br>
-&gt; &gt; &gt;&gt; available kernel versions in the meta-raspberrypi layer:<br>
-&gt; &gt; &gt;&gt;<br>
-&gt; &gt; &gt;&gt; Is anyone still using the linux-raspberrypi 3.18 recipe? The commit<br>
-&gt; &gt; &gt;&gt; referenced in SRCREV is from June 2015. I think it&#39;s probably time to<br>
-&gt; &gt; &gt;&gt; retire<br>
-&gt; &gt; &gt;&gt; this unless anyone has a reason to keep it around.<br>
-&gt; &gt; &gt;&gt;<br>
-&gt; &gt; &gt;&gt; Is there any reason to keep linux-raspberrypi 4.1 as the default recipe?<br>
-&gt; &gt; &gt;&gt; The<br>
-&gt; &gt; &gt;&gt; last commit to the 4.1 branch was in April and the default branch on the<br>
-&gt; &gt; &gt;&gt; linux-raspberrypi GitHub repository has been<br>
-&gt; &gt; &gt;&gt; 4.4 since then. I think we should change the default version to 4.4 unless<br>
-&gt; &gt; &gt;&gt; there&#39;s a good reason not to.<br>
-&gt; &gt; &gt;&gt;<br>
-&gt; &gt; &gt;&gt; If there&#39;s no objections I&#39;ll send a couple of patches to drop 3.18 and<br>
-&gt; &gt; &gt;&gt; change the default to 4.4.<br>
-&gt; &gt; &gt;&gt;<br>
-&gt; &gt; &gt;&gt; Thanks,<br>
-&gt; &gt; &gt;&gt; Paul Barker<br>
-&gt; &gt; &gt;&gt; --<br>
-&gt; &gt; &gt;&gt; _______________________________________________<br>
-&gt; &gt; &gt;&gt; yocto mailing list<br>
-&gt; &gt; &gt;&gt; <a href="mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-&gt; &gt; &gt;&gt; <a href="https://lists.yoctoproject.org/listinfo/yocto">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-&gt; &gt; &gt;&gt;<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; --<br>
-&gt; &gt; &gt; _______________________________________________<br>
-&gt; &gt; &gt; yocto mailing list<br>
-&gt; &gt; &gt; <a href="mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-&gt; &gt; &gt; <a href="https://lists.yoctoproject.org/listinfo/yocto">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+&gt; &gt; v3 series:<br>
+&gt; &gt; a. patch rebased<br>
+&gt; &gt; b. new revision of kernel, to get a version of the VC4 graphics d=
+river that handles render nodes<br>
+&gt; &gt; c. patch to the VC4 driver to enable proper working of the render=
+ nodes (need to add authorization for IOCTLs)<br>
+&gt; &gt;<br>
+&gt; &gt; v2 series:<br>
+&gt; &gt; a. Fix the 4.4.10 kernel revision<br>
+&gt; &gt; b. Effectively add vc4-kms-v3d overlay to the list of overlays to=
+ build (forgotten previously)<br>
+&gt; &gt; c. Make the parameter to the v4c-kms-v3d overlay configurable<br>
+&gt; &gt; d. Add default values for the cma parameter to the v4c-kms-v3d ov=
+erlay, depending on the board (and the memory it has)<br>
+&gt; &gt;<br>
+&gt; &gt; This patch series enables the support for the VC4 graphics driver=
+ from Eric Anholt.<br>
+&gt; &gt; There was a previous patch series by Javier Martinez Canillas, bu=
+t it required use of a different kernel.<br>
+&gt; &gt; VC4 is now supported in the raspberrypi official kernel, at least=
+ for 4.4.9+.<br>
+&gt; &gt; The support in 4.1 exists, but it is NOT STABLE, so it has been d=
+eemed unreasonable to support VC4 with 4.1 kernels.<br>
+&gt; &gt;<br>
+&gt; &gt; THEREFORE, VC4 graphics is supported ONLY for kernel versions 4.4=
+.9 and later.<br>
+&gt; &gt;<br>
+&gt; &gt; This patch series proposes to support VC4 by only adding &#39;vc4=
+graphics&#39; to MACHINE_FEATURES, for raspberrypi. If this is set, it will=
+ trigger all the necessary configuration/changes to use the VC4 driver, inc=
+luding mesa/wayland/weston currently, and adding the overlay required.<br>
+&gt; &gt; In order for this series to work, some previous patches are neede=
+d (support for .dtbo, and fix of the mesa packaging when there is no DRI dr=
+iver).<br>
+&gt; &gt; The memory reserved for the VC4 driver has default values dependi=
+ng on the version of the board used, but it can be configured by setting VC=
+4_CMA_SIZE to a value supported by the overlay (&#39;cma-256&#39;, &#39;cma=
+-192&#39;, &#39;cma-128&#39;, &#39;cma-96&#39;, &#39;cma-64&#39;).<br>
+&gt; &gt; &#39;cma-256&#39; is the recommended value, but it might not be p=
+ossible on boards with 512MB or DRAM, or less...<br>
+&gt; &gt; &#39;cma-64&#39; is known to not being able to support FHD/1080p.=
+<br>
+&gt; &gt;<br>
+&gt; &gt; It was tested with wayland/weston, without the support for X11.<b=
+r>
+&gt; &gt;<br>
+&gt; &gt; This patch series depends on two other patch series previously po=
+sted, that enable the support for .dtbo overlay files.<br>
+&gt; &gt;<br>
+&gt; &gt; Herve Jourdain (12):<br>
+&gt; &gt;=C2=A0 =C2=A0rpi-default-providers.inc: change default providers t=
+o support<br>
+&gt; &gt;=C2=A0 =C2=A0 =C2=A0vc4graphics<br>
+&gt; &gt;=C2=A0 =C2=A0rpi-base.inc: add vc4-kms-v3d to the overlays to supp=
+ort vc4graphics<br>
+&gt; &gt;=C2=A0 =C2=A0raspberrypi.conf: set the default value of VC4_CMA_SI=
+ZE to support<br>
+&gt; &gt;=C2=A0 =C2=A0 =C2=A0vc4graphics<br>
+&gt; &gt;=C2=A0 =C2=A0raspberrypi0.conf: set the default value of VC4_CMA_S=
+IZE to support<br>
+&gt; &gt;=C2=A0 =C2=A0 =C2=A0vc4graphics<br>
+&gt; &gt;=C2=A0 =C2=A0raspberrypi2.conf: set the default value of VC4_CMA_S=
+IZE to support<br>
+&gt; &gt;=C2=A0 =C2=A0 =C2=A0vc4graphics<br>
+&gt; &gt;=C2=A0 =C2=A0raspberrypi3.conf: set the default value of VC4_CMA_S=
+IZE to support<br>
+&gt; &gt;=C2=A0 =C2=A0 =C2=A0vc4graphics<br>
+&gt; &gt;=C2=A0 =C2=A0<a href=3D"http://rpi-config_git.bb">rpi-config_git.b=
+b</a>: add v4c overlay to config.txt to support<br>
+&gt; &gt;=C2=A0 =C2=A0 =C2=A0vc4graphics<br>
+&gt; &gt;=C2=A0 =C2=A0wayland/weston_%.bbappend: modify configuration optio=
+ns to support<br>
+&gt; &gt;=C2=A0 =C2=A0 =C2=A0vc4graphics<br>
+&gt; &gt;=C2=A0 =C2=A0weston/weston_%.bbappend: modify configuration option=
+s to support<br>
+&gt; &gt;=C2=A0 =C2=A0 =C2=A0vc4graphics<br>
+&gt; &gt;=C2=A0 =C2=A0mesa_%.bbappend: new file to add the correct configur=
+ation options to<br>
+&gt; &gt;=C2=A0 =C2=A0 =C2=A0support vc4graphics<br>
+&gt; &gt;=C2=A0 =C2=A0linux-rpi.inc: add the configuration options required=
+ to support<br>
+&gt; &gt;=C2=A0 =C2=A0 =C2=A0vc4graphics<br>
+&gt; &gt;=C2=A0 =C2=A0linux-raspberrypi-4.4: add patch to enable proper ope=
+ration of<br>
+&gt; &gt;=C2=A0 =C2=A0 =C2=A0renderD128 device<br>
+&gt; &gt;<br>
+&gt; &gt;=C2=A0 conf/machine/include/rpi-base.inc=C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 |=C2=A0 1 +<br>
+&gt; &gt;=C2=A0 conf/machine/include/rpi-default-providers.inc=C2=A0 =C2=A0=
+ =C2=A0|=C2=A0 8 +++---<br>
+&gt; &gt;=C2=A0 conf/machine/raspberrypi.conf=C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 |=C2=A0 2 ++<br>
+&gt; &gt;=C2=A0 conf/machine/raspberrypi0.conf=C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0|=C2=A0 2 ++<br>
+&gt; &gt;=C2=A0 conf/machine/raspberrypi2.conf=C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0|=C2=A0 2 ++<br>
+&gt; &gt;=C2=A0 conf/machine/raspberrypi3.conf=C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0|=C2=A0 2 ++<br>
+&gt; &gt;=C2=A0 recipes-bsp/bootfiles/<a href=3D"http://rpi-config_git.bb">=
+rpi-config_git.bb</a>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 | 10 +++++++=
+-<br>
+&gt; &gt;=C2=A0 recipes-graphics/mesa/mesa_%.bbappend=C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 |=C2=A0 4 +++<br>
+&gt; &gt;=C2=A0 recipes-graphics/wayland/weston_%.bbappend=C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0|=C2=A0 6 ++---<br>
+&gt; &gt;=C2=A0 recipes-graphics/weston/weston_%.bbappend=C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 | 13 +++++-----<br>
+&gt; &gt;=C2=A0 .../0002-vc4-ioctl-rendering-allow.patch=C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0| 29 ++++++++++++++++++++++<br>
+&gt; &gt;=C2=A0 recipes-kernel/linux/<a href=3D"http://linux-raspberrypi_4.=
+4.bb">linux-raspberrypi_4.4.bb</a>=C2=A0 =C2=A0 =C2=A0 |=C2=A0 1 +<br>
+&gt; &gt;=C2=A0 recipes-kernel/linux/linux-rpi.inc=C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| 10 ++++++++<br>
+&gt; &gt;=C2=A0 13 files changed, 75 insertions(+), 15 deletions(-)<br>
+&gt; &gt;=C2=A0 create mode 100644 recipes-graphics/mesa/mesa_%.bbappend<br=
+>
+&gt; &gt;=C2=A0 create mode 100644 recipes-kernel/linux/linux-raspberrypi-4=
+.4/0002-vc4-ioctl-rendering-allow.patch<br>
+&gt; &gt;<br>
+&gt; &gt; --<br>
+&gt; &gt; 2.7.4<br>
+&gt; &gt;<br>
 &gt; &gt; --<br>
 &gt; &gt; _______________________________________________<br>
 &gt; &gt; yocto mailing list<br>
-&gt; &gt; <a href="mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-&gt; &gt; <a href="https://lists.yoctoproject.org/listinfo/yocto">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+&gt; &gt; <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org<=
+/a><br>
+&gt; &gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto">https:/=
+/lists.yoctoproject.org/listinfo/yocto</a><br>
+&gt;<br>
+&gt; I would have wanted to merge this but they depend on dtbo support whic=
+h<br>
+&gt; doesn&#39;t have the required bits in oe.core. So I can&#39;t merge th=
+is until<br>
+&gt; that lands in oe-core.</p>
+<p dir=3D"ltr">Let&#39;s wait for few days. I have staged it in my guthub t=
+ree. Until then<br>
+&gt;<br>
+&gt; Regards,<br>
 &gt;<br>
 &gt; --<br>
-&gt; Andrei Gherzan<br></p>
+&gt; Andrei Gherzan<br>
+&gt;<br>
+&gt; --<br>
+&gt; _______________________________________________<br>
+&gt; yocto mailing list<br>
+&gt; <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><b=
+r>
+&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto">https://list=
+s.yoctoproject.org/listinfo/yocto</a><br>
+&gt;</p>
 
---94eb2c06ee0461b1bc0538f3d8e0--
+--001a113c8026ce0a820538f3e090--
