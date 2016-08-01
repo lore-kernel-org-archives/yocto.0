@@ -1,62 +1,52 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <c.andersen@kostal.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 26F94E00E85; Mon,  1 Aug 2016 07:28:52 -0700 (PDT)
+	id E0C07E00E7C; Mon,  1 Aug 2016 08:07:07 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.214.47 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [193.22.205.229 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-it0-f47.google.com (mail-it0-f47.google.com
-	[209.85.214.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A845CE00E61
-	for <yocto@yoctoproject.org>; Mon,  1 Aug 2016 07:28:50 -0700 (PDT)
-Received: by mail-it0-f47.google.com with SMTP id u186so247961113ita.0
-	for <yocto@yoctoproject.org>; Mon, 01 Aug 2016 07:28:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=Nr3n8bfCmoaePniyhJ7vO6qL46blmO7lUhZiPmg6eq8=;
-	b=W36d7m3C4ukTO3qS1MX1+9GyGqe8aOSRLT0uRipkBh+GhbESKV/0KVJ/FS65qUqfGe
-	UH0EVyDXGWAXWMY4LxtE05Htrn77zSVZcasEgOXc6F6kiMkfFTWgdn0ZVr+yQN8U+86a
-	AJ3l4+p7IVbOiaPk808br5XXrhcHbIoJvfx2/CjCrx8oi8IJZc0BdnKZdwUPBY89Iqoj
-	pLQMMVh7aryqFsnfzF/ywlZxrK2PtJCZRrM0Jbo1E/7k4ihKqBKylnIC1V25tVMk/+C4
-	0yOLdoyTkn+4dyNdd6uET2dbZt8DOWuUJq0r5+29u0R4UR3xaNPHpLnNo0+b1WVsfhJ0
-	yvYg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=Nr3n8bfCmoaePniyhJ7vO6qL46blmO7lUhZiPmg6eq8=;
-	b=Enh1R/DTNlBBTxZaH5FRI1HN44mm4zru+umAsHzrIbmjvGW4DPJB7th3sKZw4y8GBO
-	4biLBjo5DROYbJW+YL3uUDPIXQw7UYsggtYzmBtBK3viyekhnFC9K8YF4OdCFvlghSe3
-	UAVcXTf84TzVgq8gQ3RehY5wsq+zzchuoO9ZFJDBlQQ3eX+JKj1LpqVWjAUJZPPf5G8Q
-	a19r3GVxp5+hLPbbqtv/e7mg/V4NFuldMze0URaaNd0+Zapc58FwEFfNgZTC0QC9uTlC
-	07eClwOhmRCPI1dR9ShGhgxykO6kwKxaBxWe55gKqpQ3dihLe6FWJIrbasJQGfpOjOFT
-	w0yw==
-X-Gm-Message-State: AEkooutvYJ45Ncq/Wbk931z+Maa1UGidU2QLo5tjauIpltpq4Q5ZNr2KBorZtRyeyD/aUtgHAhOcuu62IiaYZ7Zl
-X-Received: by 10.36.19.75 with SMTP id 72mr55994430itz.83.1470061729427; Mon,
-	01 Aug 2016 07:28:49 -0700 (PDT)
+X-Greylist: delayed 316 seconds by postgrey-1.32 at yocto-www;
+	Mon, 01 Aug 2016 08:07:04 PDT
+Received: from securemail.kostal.com (securemail.kostal.com [193.22.205.229])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 12F56E00E73
+	for <yocto@yoctoproject.org>; Mon,  1 Aug 2016 08:07:04 -0700 (PDT)
+Received: from debesgmg001.de.kostal.int ([193.22.205.239]) by 
+	securemail.kostal.com (8.14.7/8.14.7) with ESMTP id u71EwOSK028867 
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO) 
+	for <yocto@yoctoproject.org>; Mon, 1 Aug 2016 16:58:24 +0200
+Received: from debesgmg001.de.kostal.int 
+	(debesgmg001.de.kostal.int [127.0.0.1]) by debesgmg001.de.kostal.int 
+	(Postfix) with ESMTP id B3C5539804E for <yocto@yoctoproject.org>; Mon,
+	1 Aug 2016 17:01:41 +0200 (CEST)
+From: "Andersen, Christian" <c.andersen@kostal.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto] Trouble with yocto sdk in collaboration with 
+	eclipse	and cmake
+Thread-Index: AQHR6/vWa+o9cJDcO0u8LtllVbV+8qA0LduQ
+Date: Mon, 1 Aug 2016 15:01:36 +0000
+Message-ID: <5af8ce966c1747b7ac0a7454a814d684@DEBEMAIL001.kostal.int>
+References: <f6b417b9e59c4208bf7bc9e42b48cfbd@DEBEMAIL001.kostal.int> 
+	<B692FAD6-991B-491A-9B8C-F0ECECA6C1A1@gmail.com> 
+	<73e7977df57b4fefb44dec4ef46e60b6@DEBEMAIL001.kostal.int> 
+	<CAMKF1srzYMqzHVW5_bp5QAoLGQiM6msBPex5=7AdLRg6xrycJA@mail.gmail.com>
+In-Reply-To: <CAMKF1srzYMqzHVW5_bp5QAoLGQiM6msBPex5=7AdLRg6xrycJA@mail.gmail.com>
+Accept-Language: de-DE, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.20.2.192]
 MIME-Version: 1.0
-Received: by 10.107.18.17 with HTTP; Mon, 1 Aug 2016 07:28:30 -0700 (PDT)
-In-Reply-To: <6dc9bda6-6399-19ce-37d3-6886e38b4054@mlbassoc.com>
-References: <579C6829.8080804@mlbassoc.com>
-	<CAJTo0LZ=h9Yoya4CyMNz3jeJR2XzeDqWi+cgmr6rcPRKBxZCJQ@mail.gmail.com>
-	<6dc9bda6-6399-19ce-37d3-6886e38b4054@mlbassoc.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Mon, 1 Aug 2016 15:28:30 +0100
-Message-ID: <CAJTo0LZcshBKQ7TFNXRhy=9LjpkZ-t9PKf-9uEH2Q7vdq-VSkw@mail.gmail.com>
-To: Gary Thomas <gary@mlbassoc.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: A question of sstate and compilers
+X-SafeGuard_MailGateway: Version: 5.80.2.12968 SGMG_SOPHOS Date: 
+	20160801150141Z
+X-OriginalId: qfu71F2pir004638
+x-msw-jemd-spam: not checked
+Subject: Re: Trouble with yocto sdk in collaboration with eclipse	and cmake
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,35 +58,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 01 Aug 2016 14:28:52 -0000
-Content-Type: multipart/alternative; boundary=001a1145180a2e50e60539036b7d
+X-List-Received-Date: Mon, 01 Aug 2016 15:07:08 -0000
+Content-Language: de-DE
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
---001a1145180a2e50e60539036b7d
-Content-Type: text/plain; charset=UTF-8
+SGksDQoNCj4+IE9uIEp1bCAyOSwgMjAxNiwgYXQgMToyNyBBTSwgSGFydHdpZywgR3VpZG8gPGcu
+aGFydHdpZ0Brb3N0YWwuY29tPiB3cm90ZToNCj4+DQo+PiBIaSwNCj4+IEkgaGF2ZSBzb21lIHRy
+b3VibGUgd2l0aCB0aGUgeW9jdG8gc2RrIGluIGNvbGxhYm9yYXRpb24gd2l0aCBlY2xpcHNlIGFu
+ZCB5b2N0byBDTWFrZSBwcm9qZWN0LiBJIGhhdmUgaW5zdGFsbCBhbGwgbmVjZXNzYXJ5IGVjbGlw
+c2UgcGx1Z2lucyBhbmQgbGlua2VkIG15IHNkayB3aXRoIHRoZSB5b2N0by1wbHVnaW4gYXMgZGVz
+Y3JpYmVkIGluIHRoZSBtYW51YWwuIFdoZW4gSSB0cnkgdG8gYnVpbGQgdGhlICJIZWxsbyBXb3Js
+ZCIgeW9jdG8gY21ha2UgcHJvamVjdCBpdCBmYWlscyB3aXRoIGZvbGxvd2luZyBtZXNzYWdlOg0K
+Pj4NCj4+IC4uDQo+PiBDTWFrZSBFcnJvciBhdA0KPj4gL3Vzci9zaGFyZS9jbWFrZS0yLjgvTW9k
+dWxlcy9DTWFrZVRlc3RDQ29tcGlsZXIuY21ha2U6NjEgKG1lc3NhZ2UpOiBUaGUgQyBjb21waWxl
+ciAiL29wdC9wdWNrLzEuMC4wL3N5c3Jvb3RzL3g4Nl82NC1wdWNrc2RrLWxpbnV4L3Vzci9iaW4v
+YXJtLWtvc3RhbC1saW51eC1nbnVlYWJpL2FybS1rb3N0YWwtbGludXgtZ251ZWFiaS1nY2MiDQo+
+PiAgaXMgbm90IGFibGUgdG8gY29tcGlsZSBhIHNpbXBsZSB0ZXN0IHByb2dyYW0gLi4uDQo+Pg0K
+Pj4gVGhpcyBlcnJvciBvY2N1cnMgYmVjYXVzZSB0aGUgY29tcGlsZXIgaXMgY2FsbGVkIHdpdGgg
+dGhlIHdyb25nIGZsYWdzLg0KDQp0aGUgZXJyb3Igc2VlbXMgdG8gYmUgYWxyZWFkeSBmaXhlZCBp
+biB0aGUgZWNsaXBzZS1wb2t5IHJlcG9zaXRvcnkuIENvbW1pdCAjODMxNWQzZWM4NCB0byBsdW5h
+L2tyb2dvdGggYnJhbmNoOg0KDQpvcmcueW9jdG8uc2RrLmlkZTogVXNlIENGTEFHUyBmcm9tIEND
+IHZhcmlhYmxlIGluIGNtYWtlIHRvb2xjaGFpbiBmaWxlDQpUaGUgQ0MgYW5kIENYWCB2YXJpYWJs
+ZXMgaW1wb3J0ZWQgZnJvbSB0aGUgWW9jdG8gYnVpbGQgZW52aXJvbm1lbnQNCm1heSBjb250YWlu
+IGFkZGl0aW9uYWwgY29tcGlsZXIgZmxhZ3MgYWZ0ZXIgdGhlIGNvbXBpbGVyIG5hbWUuIEV4dHJh
+Y3QNCnRob3NlIGFuZCBhZGQgdGhlbSB0byBjbWFrZSB0b29sY2hhaW4gZmlsZSB2YXJpYWJsZXMs
+IHRvby4NCg0KVGhpcyBpcyB0aGUgZXhhY3QgaXNzdWUgd2UgaGF2ZSBzZWVuLiBVbmZvcnR1bmF0
+ZWx5IHRoaXMgY2hhbmdlIGhhcyBiZWVuIGNvbW1pdGVkIGFmdGVyIHRoZSB0YWcgZm9yIHlvY3Rv
+LTIuMSB3YXMgY3JlYXRlZCBhbmQgc28gdGhpcyBpcyBub3QgcmVsZWFzZWQgeWV0LiBBZnRlciBi
+dWlsZGluZyBhIG5ldyB2ZXJzaW9uIG9mIHRoZSBlY2xpcHNlIHBsdWdpbiBiYXNlZCBvbiB0aGUg
+bHVuYS9rcm9nb3RoIGJyYW5jaCB0aGUgZXJyb3IgbWVudGlvbmVkIGFib3ZlIGlzIGdvbmUuDQoN
+ClJlZ2FyZHMNCkNocmlzdGlhbg0KDQoNCktPU1RBTCBJbmR1c3RyaWUgRWxla3RyaWsgR21iSCAt
+IFNpdHogTMO8ZGVuc2NoZWlkLCBSZWdpc3RlcmdlcmljaHQgSXNlcmxvaG4gSFJCIDM5MjQgLSBV
+U3QtSWQtTnIuL1ZhdCBOby46IERFIDgxMzc0MjE3MA0KUG9zdGFuc2NocmlmdDogQW4gZGVyIEJl
+bGxtZXJlaSAxMCwgRC01ODUxMyBMw7xkZW5zY2hlaWQgKiBUZWxlZm9uOiArNDkgIDIzNTEgMTYt
+MCAqIFRlbGVmYXg6ICs0OSAgMjM1MSAxNi0yNDAwDQpXZXJrc2Fuc2NocmlmdDogTGFuZ2UgRWNr
+IDExLCBELTU4MDk5IEhhZ2VuICogVGVsLiArNDkgMjMzMSA4MDQwLTYwMSAqIEZheCArNDkgMjMz
+MSA4MDQwLTYwMg0KR2VzY2jDpGZ0c2bDvGhydW5nOiBBeGVsIFppbW1lcm1hbm4sIERpcGwuLUlu
+Zy4gTWFyd2luIEtpbnpsLCBEaXBsLi1PZWMuIEFuZHJlYXMgS29zdGFsDQoNCg==
 
-On 1 August 2016 at 15:26, Gary Thomas <gary@mlbassoc.com> wrote:
-
-> Nothing else changed, I'm sure.
->
-
-*Something* changed, although it may be something that shouldn't have
-caused a rebuild (at which point printdiff is useful to find that out).
-
-Ross
-
---001a1145180a2e50e60539036b7d
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 1 August 2016 at 15:26, Gary Thomas <span dir=3D"ltr">&lt;<a href=3D"mai=
-lto:gary@mlbassoc.com" target=3D"_blank">gary@mlbassoc.com</a>&gt;</span> w=
-rote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;borde=
-r-left:1px #ccc solid;padding-left:1ex"><div id=3D":cy" class=3D"a3s aXjCH =
-m156467f74b3e654e">Nothing else changed, I&#39;m sure.<br></div></blockquot=
-e><div><br></div><div>*Something* changed, although it may be something tha=
-t shouldn&#39;t have caused a rebuild (at which point printdiff is useful t=
-o find that out).</div><div><br></div><div>Ross=C2=A0</div></div><br></div>=
-</div>
-
---001a1145180a2e50e60539036b7d--
