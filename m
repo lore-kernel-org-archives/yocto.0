@@ -1,32 +1,39 @@
-Return-Path: <stephen.k.jolley@intel.com>
+Return-Path: <gary@mlbassoc.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 21201E00E96; Mon,  1 Aug 2016 09:45:36 -0700 (PDT)
+	id 09636E010C4; Mon,  1 Aug 2016 10:56:56 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [192.55.52.115 listed in list.dnswl.org]
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DB772E00E90
-	for <yocto@yoctoproject.org>; Mon,  1 Aug 2016 09:45:34 -0700 (PDT)
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-	by fmsmga103.fm.intel.com with ESMTP; 01 Aug 2016 09:45:21 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.28,456,1464678000"; d="scan'208";a="857366581"
-Received: from swold-mobl2.amr.corp.intel.com ([10.254.5.132])
-	by orsmga003.jf.intel.com with ESMTP; 01 Aug 2016 09:45:21 -0700
-Message-ID: <1470069921.3175.145.camel@linux.intel.com>
-From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Mon, 01 Aug 2016 09:45:21 -0700
-X-Mailer: Evolution 3.20.4 (3.20.4-1.fc24) 
-Mime-Version: 1.0
-Subject: Reminder: Yocto Project Technical Team Meeting - Tuesday, August 2, 2016 8:00 AM US Pacific Time
+Received: from mail.analogue-micro.com (mail.analogue-micro.com
+	[217.144.149.242])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AC392E00EA5
+	for <yocto@yoctoproject.org>; Mon,  1 Aug 2016 10:56:54 -0700 (PDT)
+Received: by mail.analogue-micro.com (Postfix, from userid 999)
+	id 0C18668A01A; Mon,  1 Aug 2016 18:56:52 +0100 (BST)
+Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
+	by mail.analogue-micro.com (Postfix) with ESMTP id 65BA968A019;
+	Mon,  1 Aug 2016 18:56:52 +0100 (BST)
+Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
+	by zeus.mlbassoc.com (Postfix) with ESMTP id 1C2FD6740075;
+	Mon,  1 Aug 2016 19:56:52 +0200 (CEST)
+To: "Burton, Ross" <ross.burton@intel.com>
+References: <579C6829.8080804@mlbassoc.com>
+	<CAJTo0LZ=h9Yoya4CyMNz3jeJR2XzeDqWi+cgmr6rcPRKBxZCJQ@mail.gmail.com>
+	<6dc9bda6-6399-19ce-37d3-6886e38b4054@mlbassoc.com>
+	<CAJTo0LZcshBKQ7TFNXRhy=9LjpkZ-t9PKf-9uEH2Q7vdq-VSkw@mail.gmail.com>
+From: Gary Thomas <gary@mlbassoc.com>
+Message-ID: <b59b4b4d-b87b-28e9-05f6-2ea3bbf55598@mlbassoc.com>
+Date: Mon, 1 Aug 2016 19:56:52 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.2.0
+MIME-Version: 1.0
+In-Reply-To: <CAJTo0LZcshBKQ7TFNXRhy=9LjpkZ-t9PKf-9uEH2Q7vdq-VSkw@mail.gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: A question of sstate and compilers
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,49 +45,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 01 Aug 2016 16:45:36 -0000
-Content-Type: multipart/mixed; boundary="=-FOtXTSzwesxomY49EJYV"
+X-List-Received-Date: Mon, 01 Aug 2016 17:56:56 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
---=-FOtXTSzwesxomY49EJYV
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+On 2016-08-01 16:28, Burton, Ross wrote:
+>
+> On 1 August 2016 at 15:26, Gary Thomas <gary@mlbassoc.com <mailto:gary@mlbassoc.com>> wrote:
+>
+>     Nothing else changed, I'm sure.
+>
+>
+> *Something* changed, although it may be something that shouldn't have caused a rebuild (at which point printdiff is
+> useful to find that out).
 
-Tuesday, August 2, 2016 8:00 AM US Pacific Time
- 
-Agenda:
- 
-* Opens collection - 5 min (Stephen)
-* Yocto Project status - 5 min (Stephen/team)
-https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.2_Status
-https://wiki.yoctoproject.org/wiki/Yocto_2.2_Schedule
-https://wiki.yoctoproject.org/wiki/Yocto_2.2_Features
-* Opens - 10 min
-* Team Sharing - 10 min
- 
- 
-We encourage people attending the meeting to logon the Yocto Project
-IRC chancel during the meeting (optional):
- 
-Yocto IRC: http://webchat.freenode.net/?channels=#yocto
-IRC Tutorial: http://www.irchelp.org/irchelp/irctutorial.html
- 
-Conference Details:
-Company:           WIND RIVER SYS
-Ready-Access Number: 8007302996/9139049836
-Access Code:     2705751
- 
-For International numbers see: https://www.yoctoproject.org/tools-resou
-rces/community/monthly-technical-call
- 
-Thanks,
+I'll try running this and report, but the only thing that changed
+is the line in local.conf selecting the version of GCC
 
- Sau!
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
- -- 
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
-
-
---=-FOtXTSzwesxomY49EJYV--
