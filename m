@@ -1,65 +1,60 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 17AB3E010B4; Mon,  1 Aug 2016 06:56:53 -0700 (PDT)
+	id DF097E00E74; Mon,  1 Aug 2016 07:04:50 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.214.49 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.171 listed in list.dnswl.org]
-Received: from mail-qk0-f171.google.com (mail-qk0-f171.google.com
-	[209.85.220.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9D193E00E6C
-	for <yocto@yoctoproject.org>; Mon,  1 Aug 2016 06:56:49 -0700 (PDT)
-Received: by mail-qk0-f171.google.com with SMTP id v123so13024033qkh.3
-	for <yocto@yoctoproject.org>; Mon, 01 Aug 2016 06:56:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+Received: from mail-it0-f49.google.com (mail-it0-f49.google.com
+	[209.85.214.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B1432E00E6E
+	for <yocto@yoctoproject.org>; Mon,  1 Aug 2016 07:04:45 -0700 (PDT)
+Received: by mail-it0-f49.google.com with SMTP id j124so173378861ith.1
+	for <yocto@yoctoproject.org>; Mon, 01 Aug 2016 07:04:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=bOi/TYT1q9JmVjiOgBG0sF3l1yO+0P16n9PJgRoncu4=;
-	b=gMHd2VK5wL87k+c7lWk5oUMQ++d8Q+SpQQygPdWhzPfzXLL1is6PU4xrQVjTzETMZF
-	QAcVNgHJKwiSxmE3SCBBxfoZ+gP1AUqKR7GCvno9SihRWLqjtgj+PVnuSEjfQDqOfcbY
-	QDPRw1QLwUWj13oHnRNIr3tJWk7bTiSafsmFhO+PPdvlS++K2qODemU1Cu56cikN59sB
-	JHQQejsqS7hz2PQonOwnTvTbQOfCeAdmMHxRybzrTwL0wqO5swM5P7piZc6SuE7CK6A7
-	Of83XCqdwcSk+UwEEmz2SBw+JFaqcJ++bN8anpej5E22akBGSPYs41Bl/oE//DH8Gfhk
-	48iw==
+	:cc; bh=nuA7BgkYqtl8RygolTYrdjvzP/RbpePQHXqs4kclVkk=;
+	b=zqxSa/VBCzbjDs9AIGsQijY1LiZOYxvbRAzNJDdC6WfSvcfLG+Jtwud5v7OyQcYbhw
+	ge/X7a6CQ0vozgrwoaLH/3dZJgC80VG5VROlermJu1WcESPjVmMYxoDCYtd4Juuh7na5
+	HGF3DYgjzI6YL2uAXO1vTL0Vg+hXY20Q+H/I/D1ooR+1gIJun5GmVkVhX/Lsmts9ZPZd
+	GjS7Ix7nA3mncmgVQxTdRGswgNDk7KpANJvERNj65o8Iv/Jw+wEhCJiipdgb9EqIw8EA
+	R9huYAoUBhuKm0cZnLxzqEgFD0YdlmAk5PjAx/zTfoDoz2c8+7wsS4IDKA030IVYqPNA
+	1Q1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=bOi/TYT1q9JmVjiOgBG0sF3l1yO+0P16n9PJgRoncu4=;
-	b=Ib1c/uLisfDXm2gkySb1uC1DpeHm5Tr8S4aHs4V2rXh6Kr3s71sccNnM+Ur5BZ1Eo2
-	ledlIZzox2Hm/fRRTKOOc8SYAQ/pGOFC2u82uuRtxmhq6Ed8R4My7OpOjbjVPb6SoJdn
-	lqJXitWzYKkMcvF6uscR564AAGX3WpMh8P/ZH24KnV+xzVbF6JYG7a9qldLDZz7H1Uwb
-	QPp0yLWZsszjHphJw36MWt7F2jOtOHHAuzoY23N8dLT0vMmCJ3ECL+wq9xrSG1ZV1rIB
-	IdEmRhhVD31aHr17ha21h5l6gLTZI1fVik4EVT3pJFdBWr15IEknPyrorKscL/Ju7ptC
-	raMQ==
-X-Gm-Message-State: AEkoousSt8nNHaVG5Qhu6s/9ScmNu4L+DfbTKiVsf93TFxfZi7IbynyJ7WatNlGCLSMv7Zw0Xyl8U3o885FXaQ==
-X-Received: by 10.55.40.222 with SMTP id o91mr30611070qko.151.1470059809355;
-	Mon, 01 Aug 2016 06:56:49 -0700 (PDT)
+	bh=nuA7BgkYqtl8RygolTYrdjvzP/RbpePQHXqs4kclVkk=;
+	b=QqDAthusvUfUoEsL+pLKCV7RBMkSD6XHQ8Qdg1kdfyt62Fh8KQgLN+R4JTfFGrrNZ8
+	ewKVoUhjezBh1AFTv9BDjoqcI3hTgG6Cmc6ni3Pn6BbM1VrA2eILQsHfOtC+cDhN5i1I
+	TqrRy41yPpUraCqXkWWi2j+XulCPIP24wAoAvCoXIbNhcDIjobzQ8mzC1o7EK/KTjyCU
+	0qdQNu/yfN1D2f31ILD3MBj9Gx3cP/mNkZzQpmlp2dorut7E3h7gGyWDutDxi7Jm9dxM
+	YcjhNTf2fRQCJ+zGDBrkytU8k8uNHn4PAp9gkHzMchgGwHNfVdoMgyhFr5LGzssRIyvo
+	Jaiw==
+X-Gm-Message-State: AEkoouvtrB7RYpd8blugoYeBDiCCHjaslwoVEv7OyqNTaiNvsvLqclyk4YxYaeynGd2QUH7Fd+CmfsHwVburQQ0y
+X-Received: by 10.36.121.204 with SMTP id z195mr14058793itc.22.1470060285250; 
+	Mon, 01 Aug 2016 07:04:45 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.55.215.13 with HTTP; Mon, 1 Aug 2016 06:56:18 -0700 (PDT)
-In-Reply-To: <CAFrQVPPN3iVVakjYLGOBnP=rc5oeO40SfEV5s6tyE4jiN9Z_eA@mail.gmail.com>
-References: <1470052915-2839-1-git-send-email-bkylerussell@gmail.com>
-	<CAJTo0LZKE9cf8i5x2Cz7AjT3ve_BVFTcMbLhHa8Ys+bkaz+BVA@mail.gmail.com>
-	<CAFrQVPPN3iVVakjYLGOBnP=rc5oeO40SfEV5s6tyE4jiN9Z_eA@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Mon, 1 Aug 2016 07:56:18 -0600
-Message-ID: <CAMKF1sqbt7sqTjys_B5+vfXhNoXzzQLSL_tO3j_Xb7Dq-FZh3g@mail.gmail.com>
-To: Kyle Russell <bkylerussell@gmail.com>
+Received: by 10.107.18.17 with HTTP; Mon, 1 Aug 2016 07:04:25 -0700 (PDT)
+In-Reply-To: <579C6829.8080804@mlbassoc.com>
+References: <579C6829.8080804@mlbassoc.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Mon, 1 Aug 2016 15:04:25 +0100
+Message-ID: <CAJTo0LZ=h9Yoya4CyMNz3jeJR2XzeDqWi+cgmr6rcPRKBxZCJQ@mail.gmail.com>
+To: Gary Thomas <gary@mlbassoc.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta][PATCH v2] python-3.4-manifest: Add some missing RDEPENDS
+Subject: Re: A question of sstate and compilers
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,33 +66,66 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 01 Aug 2016 13:56:53 -0000
+X-List-Received-Date: Mon, 01 Aug 2016 14:04:50 -0000
+Content-Type: multipart/alternative; boundary=001a114aa46619e33f0539031523
+
+--001a114aa46619e33f0539031523
 Content-Type: text/plain; charset=UTF-8
 
-and when patch is ready send it to openembedded-core ml
+On 30 July 2016 at 09:41, Gary Thomas <gary@mlbassoc.com> wrote:
 
-On Mon, Aug 1, 2016 at 6:49 AM, Kyle Russell <bkylerussell@gmail.com> wrote:
-> Well, that makes sense.  I'm just tripping all over this one.
+> I'm trying to isolate a problem that showed up in my builds
+> in the last month.  Little has changed in the sources, but
+> the one big change was I moved from GCC/4.9 to GCC/5.x  On
+> the surface, this seemed to be a non-consequence, but I have
+> one very subtle corner case that is now broken.  In an effort
+> to isolate the issue (I no longer think it was the compiler
+> change), I went back to GCC/4.9.  This caused my build (tree)
+> which has existed for many months (the same build tree started
+> in Feb 2016) to basically rebuild everything.
 >
-> On Mon, Aug 1, 2016 at 8:29 AM, Burton, Ross <ross.burton@intel.com> wrote:
->>
->>
->> On 1 August 2016 at 13:01, Kyle Russell <bkylerussell@gmail.com> wrote:
->>>
->>>  scripts/contrib/python/generate-manifest-3.4.py | 10 +++++-----
->>
->>
->> Sorry, but you need to edit the script and then run the script, so the
->> patch contains both the script and inc file changes.
->>
->> Ross
->
->
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+> There's the rub - shouldn't the sstate-cache hold all of those
+> old bits and just be able to re-stage?  I'm a bit confused about
+> that.  Even worse, I switched back to GCC/5.x, didn't touch
+> anything else in my sources or build tree, and now it's off
+> again, [re]building the majority of my packages.
 >
 
+It's possible that there was some other change that caused a rebuild.
+ bitbake-whatchanged, bitbake -S printdiff, etc will help you chase this if
+you want to.
+
+Ross
+
+--001a114aa46619e33f0539031523
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 30 July 2016 at 09:41, Gary Thomas <span dir=3D"ltr">&lt;<a href=3D"mail=
+to:gary@mlbassoc.com" target=3D"_blank">gary@mlbassoc.com</a>&gt;</span> wr=
+ote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border=
+-left:1px #ccc solid;padding-left:1ex"><div id=3D":bh" class=3D"a3s aXjCH m=
+1563af8147c4b5d9">I&#39;m trying to isolate a problem that showed up in my =
+builds<br>
+in the last month.=C2=A0 Little has changed in the sources, but<br>
+the one big change was I moved from GCC/4.9 to GCC/5.x=C2=A0 On<br>
+the surface, this seemed to be a non-consequence, but I have<br>
+one very subtle corner case that is now broken.=C2=A0 In an effort<br>
+to isolate the issue (I no longer think it was the compiler<br>
+change), I went back to GCC/4.9.=C2=A0 This caused my build (tree)<br>
+which has existed for many months (the same build tree started<br>
+in Feb 2016) to basically rebuild everything.<br>
+<br>
+There&#39;s the rub - shouldn&#39;t the sstate-cache hold all of those<br>
+old bits and just be able to re-stage?=C2=A0 I&#39;m a bit confused about<b=
+r>
+that.=C2=A0 Even worse, I switched back to GCC/5.x, didn&#39;t touch<br>
+anything else in my sources or build tree, and now it&#39;s off<br>
+again, [re]building the majority of my packages.</div></blockquote></div><b=
+r>It&#39;s possible that there was some other change that caused a rebuild.=
+ =C2=A0bitbake-whatchanged, bitbake -S printdiff, etc will help you chase t=
+his if you want to.</div><div class=3D"gmail_extra"><br></div><div class=3D=
+"gmail_extra">Ross</div></div>
+
+--001a114aa46619e33f0539031523--
