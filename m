@@ -1,65 +1,60 @@
-Return-Path: <bkylerussell@gmail.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C9A20E00E48; Mon,  1 Aug 2016 05:02:15 -0700 (PDT)
+	id 56533E010A1; Mon,  1 Aug 2016 05:30:03 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (bkylerussell[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.223.194 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.214.45 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-io0-f194.google.com (mail-io0-f194.google.com
-	[209.85.223.194])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6E7D9E00E3E
-	for <yocto@yoctoproject.org>; Mon,  1 Aug 2016 05:02:12 -0700 (PDT)
-Received: by mail-io0-f194.google.com with SMTP id g86so13861332ioj.1
-	for <yocto@yoctoproject.org>; Mon, 01 Aug 2016 05:02:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id;
-	bh=/XgllMXh3rjjOandks0bPAYFvZY10mfzulpQn1yUPMI=;
-	b=ePvwJvzwzn9MkymwzI0eshwMzYOrPByND9uJepNnlPJzCI+WDqM+Ac67PNE/ZCeenk
-	qrclNz7aUL4zcMZYOenOy8896Ce0K2/H7YWJ1OGDHGa9zR21rfQjA1OFb3+dkuo0pvGW
-	knfXKb6t0y3R8yHL10OZHsZJl+O6fhVN6bRlDDz+mBY1Wbh9BqlkF6QL0ilMNQ2OQ43P
-	aiLscD3nLb/9BaGh087AYoQDgEGlXD96XXqCGorKVSdpEBE36b4jmKp7hwl4guuje24F
-	ObL/zGRduSx6ppLAdRSGzqzgC/SDBv0gDR7jBCIf4tfzHrHX6ov+T+mzyJKxVZEkPx64
-	PhoQ==
+Received: from mail-it0-f45.google.com (mail-it0-f45.google.com
+	[209.85.214.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E4D59E0109D
+	for <yocto@yoctoproject.org>; Mon,  1 Aug 2016 05:30:01 -0700 (PDT)
+Received: by mail-it0-f45.google.com with SMTP id f6so244395028ith.1
+	for <yocto@yoctoproject.org>; Mon, 01 Aug 2016 05:30:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=f8AHDjC8T+tlQnA7gH88ERkxd0Kh9Xe1lLpPswoc26Y=;
+	b=gXGTwL9ThjGJOIhAemWH2BuQONT4qPcQMbN8FRqq3sYftGlYK+rTLQTmeCfz1iNQD1
+	3Ma5fczo+SCWyTOtDiXtvK1YgCvRKOtrw+5tczNpPeQhrGddpV3c+PAicckGvvCpEmWg
+	I9lLfoq2wqWaJgvjyIe3HMk/lKg3/YI0p5KJRU7y1NHup8ZXl0gaiFFkNsuGXo+2+H/4
+	Eo9W2BTXjoGKVoGlpWIz8eFmr2XIYEEzbTQNSGqMyB6FELdzHnIJ/TdKlVW9vXAnhlgK
+	Hya04+XI8mSsLIjAXFb15c+pl8aqnCbQ9FkyyM9w/0DTB5bEeFiQazGP+n+ExzKDq9tj
+	qkyw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=/XgllMXh3rjjOandks0bPAYFvZY10mfzulpQn1yUPMI=;
-	b=cMk+fmw5FCRf4cnMleuvDPK3eLWsXO1GFnF4UHhIjGioTV5CdCMqlHkV68kRTvqTbn
-	3yIdHuwLcllbhGLAVb5Ujuu4YFJi+pB8oOQ9eUtKv3TNnI2LtK0t5iMtGJSQHT+mF7eu
-	IR/roIMIzkIhN3CHsbgEMgpXCh/WPi1RFCoHr4xJp3cfykPM1hPaTEp+jjO5Mm4kAxqN
-	L2uILX1uM5uVfGaoFmxUv0F2MF0Le1zuVC/SlAM59j5MWXNCkzDLzTJzWdKfzJ/q+dk8
-	fFoPtrLUAbBMX6jBIN3Y1cdEBQC6/CuZyisLbFw+vFpFBSkls2ByaSW9p2p9jDdNTc66
-	doBw==
-X-Gm-Message-State: AEkooutITPa5+OR1ZlvYbE3NQoqsh2nyPiXkX/0exEvqq8a/2hzWoF7/6OAqDaG8RZu2hw==
-X-Received: by 10.107.40.133 with SMTP id o127mr53564578ioo.183.1470052931366; 
-	Mon, 01 Aug 2016 05:02:11 -0700 (PDT)
-Received: from brrussell-Latitude-E6530.natcky.rr.com
-	(cpe-76-177-112-62.natcky.res.rr.com. [76.177.112.62])
-	by smtp.gmail.com with ESMTPSA id
-	d67sm13482821ioe.5.2016.08.01.05.02.10
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Mon, 01 Aug 2016 05:02:10 -0700 (PDT)
-From: Kyle Russell <bkylerussell@gmail.com>
-To: yocto@yoctoproject.org
-Date: Mon,  1 Aug 2016 08:01:55 -0400
-Message-Id: <1470052915-2839-1-git-send-email-bkylerussell@gmail.com>
-X-Mailer: git-send-email 1.9.1
-Cc: Kyle Russell <bkylerussell@gmail.com>
-Subject: [meta][PATCH v2] python-3.4-manifest: Add some missing RDEPENDS
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=f8AHDjC8T+tlQnA7gH88ERkxd0Kh9Xe1lLpPswoc26Y=;
+	b=GkVKQI+8YhfVMtz04bdnvZaiDYW5CWFUY7DXo8SPj3CVWyoh8qeVM1TuKuF2eQM3a9
+	vys00Pa68hXejmFFEBuDxRPq8OXNmqGtbFctJDkV7TddeK3SMXnrNgKYIvEbtX8mgcwZ
+	/oNapHxp5hXc4AL3srT5b27W4hRuBFAG+0xZszr6LRsfUQEyHZnYR8Ivb0+/KwW/FQzQ
+	H52rxbK4t2T9r3K0/3Ns/R8pUZHmhQFbORSdFZ9vk8dkvthsFIZHO90vfT+G7uSFiuyc
+	8xU2iP9gVIoB+6mKLNWqegdAtlmzQnENc2YSkIoQSH/sj9Ko0d6CRZ25LfTDZDJnSpmY
+	Om9g==
+X-Gm-Message-State: AEkoouuc7b5v6BcCLervWwvFOnNY4+UE5AEtLlvJovGPTmsnedW6e6fmlekI9T4uQ8vVRegoTGMH1r8HNAMxjV0j
+X-Received: by 10.36.87.140 with SMTP id u134mr59496282ita.38.1470054601080;
+	Mon, 01 Aug 2016 05:30:01 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.107.18.17 with HTTP; Mon, 1 Aug 2016 05:29:41 -0700 (PDT)
+In-Reply-To: <1470052915-2839-1-git-send-email-bkylerussell@gmail.com>
+References: <1470052915-2839-1-git-send-email-bkylerussell@gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Mon, 1 Aug 2016 13:29:41 +0100
+Message-ID: <CAJTo0LZKE9cf8i5x2Cz7AjT3ve_BVFTcMbLhHa8Ys+bkaz+BVA@mail.gmail.com>
+To: Kyle Russell <bkylerussell@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta][PATCH v2] python-3.4-manifest: Add some missing RDEPENDS
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,60 +66,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 01 Aug 2016 12:02:15 -0000
+X-List-Received-Date: Mon, 01 Aug 2016 12:30:03 -0000
+Content-Type: multipart/alternative; boundary=001a1135018c4c80b5053901c2f7
 
-Several packages were missing RDEPENDS on other modules they import.
+--001a1135018c4c80b5053901c2f7
+Content-Type: text/plain; charset=UTF-8
 
-Signed-off-by: Kyle Russell <bkylerussell@gmail.com>
----
- scripts/contrib/python/generate-manifest-3.4.py | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+On 1 August 2016 at 13:01, Kyle Russell <bkylerussell@gmail.com> wrote:
 
-diff --git a/scripts/contrib/python/generate-manifest-3.4.py b/scripts/contrib/python/generate-manifest-3.4.py
-index ca2fa61..ba4ab72 100755
---- a/scripts/contrib/python/generate-manifest-3.4.py
-+++ b/scripts/contrib/python/generate-manifest-3.4.py
-@@ -229,7 +229,7 @@ if __name__ == "__main__":
-     m.addPackage( "${PN}-curses", "Python curses support", "${PN}-core",
-     "curses lib-dynload/_curses.*.so lib-dynload/_curses_panel.*.so" ) # directory + low level module
- 
--    m.addPackage( "${PN}-ctypes", "Python C types support", "${PN}-core",
-+    m.addPackage( "${PN}-ctypes", "Python C types support", "${PN}-core ${PN}-subprocess",
-     "ctypes lib-dynload/_ctypes.*.so lib-dynload/_ctypes_test.*.so" ) # directory + low level module
- 
-     m.addPackage( "${PN}-datetime", "Python calendar and time support", "${PN}-core ${PN}-codecs",
-@@ -282,7 +282,7 @@ if __name__ == "__main__":
-     m.addPackage( "${PN}-json", "Python JSON support", "${PN}-core ${PN}-math ${PN}-re",
-     "json lib-dynload/_json.*.so" ) # package
- 
--    m.addPackage( "${PN}-lang", "Python low-level language support", "${PN}-core",
-+    m.addPackage( "${PN}-lang", "Python low-level language support", "${PN}-core ${PN}-importlib",
-     "lib-dynload/_bisect.*.so lib-dynload/_collections.*.so lib-dynload/_heapq.*.so lib-dynload/_weakref.*.so lib-dynload/_functools.*.so " +
-     "lib-dynload/array.*.so lib-dynload/itertools.*.so lib-dynload/operator.*.so lib-dynload/parser.*.so " +
-     "atexit.* bisect.* code.* codeop.* collections.* _collections_abc.* dis.* functools.* heapq.* inspect.* keyword.* opcode.* symbol.* repr.* token.* " +
-@@ -294,7 +294,7 @@ if __name__ == "__main__":
-     m.addPackage( "${PN}-mailbox", "Python mailbox format support", "${PN}-core ${PN}-mime",
-     "mailbox.*" )
- 
--    m.addPackage( "${PN}-math", "Python math support", "${PN}-core",
-+    m.addPackage( "${PN}-math", "Python math support", "${PN}-core ${PN}-crypt",
-     "lib-dynload/cmath.*.so lib-dynload/math.*.so lib-dynload/_random.*.so random.* sets.*" )
- 
-     m.addPackage( "${PN}-mime", "Python MIME handling APIs", "${PN}-core ${PN}-io",
-@@ -340,10 +340,10 @@ if __name__ == "__main__":
-     m.addPackage( "${PN}-resource", "Python resource control interface", "${PN}-core",
-     "lib-dynload/resource.*.so" )
- 
--    m.addPackage( "${PN}-shell", "Python shell-like functionality", "${PN}-core ${PN}-re",
-+    m.addPackage( "${PN}-shell", "Python shell-like functionality", "${PN}-core ${PN}-re ${PN}-compression",
-     "cmd.* commands.* dircache.* fnmatch.* glob.* popen2.* shlex.* shutil.*" )
- 
--    m.addPackage( "${PN}-subprocess", "Python subprocess support", "${PN}-core ${PN}-io ${PN}-re ${PN}-fcntl ${PN}-pickle",
-+    m.addPackage( "${PN}-subprocess", "Python subprocess support", "${PN}-core ${PN}-io ${PN}-re ${PN}-fcntl ${PN}-pickle ${PN}-threading",
-     "subprocess.*" )
- 
-     m.addPackage( "${PN}-sqlite3", "Python Sqlite3 database support", "${PN}-core ${PN}-datetime ${PN}-lang ${PN}-crypt ${PN}-io ${PN}-threading",
--- 
-1.9.1
+>  scripts/contrib/python/generate-manifest-3.4.py | 10 +++++-----
+>
 
+Sorry, but you need to edit the script and then run the script, so the
+patch contains both the script and inc file changes.
 
+Ross
+
+--001a1135018c4c80b5053901c2f7
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 1 August 2016 at 13:01, Kyle Russell <span dir=3D"ltr">&lt;<a href=3D"ma=
+ilto:bkylerussell@gmail.com" target=3D"_blank">bkylerussell@gmail.com</a>&g=
+t;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0=
+ .8ex;border-left:1px #ccc solid;padding-left:1ex"><div id=3D":gh" class=3D=
+"a3s aXjCH m15645fd6f848810f">=C2=A0scripts/contrib/python/<a href=3D"http:=
+//generate-manifest-3.4.py" rel=3D"noreferrer" target=3D"_blank">generate-m=
+anifest-3.4.py</a> | 10 +++++-----<br></div></blockquote></div><br>Sorry, b=
+ut you need to edit the script and then run the script, so the patch contai=
+ns both the script and inc file changes.</div><div class=3D"gmail_extra"><b=
+r></div><div class=3D"gmail_extra">Ross</div></div>
+
+--001a1135018c4c80b5053901c2f7--
