@@ -1,6 +1,6 @@
-Return-Path: <g.hartwig@kostal.com>
+Return-Path: <pidge@toganlabs.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AD0D7E00F4F; Mon,  1 Aug 2016 23:19:31 -0700 (PDT)
+	id 88A76E00F4F; Mon,  1 Aug 2016 23:29:11 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,47 +8,53 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [193.22.205.227 listed in list.dnswl.org]
+	*      [23.83.223.166 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from securemail.kostal.com (securemail.kostal.com [193.22.205.227])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2F4C8E00F46
-	for <yocto@yoctoproject.org>; Mon,  1 Aug 2016 23:19:26 -0700 (PDT)
-Received: from debesgmg001.de.kostal.int ([193.22.205.239]) by 
-	securemail.kostal.com (8.14.7/8.14.7) with ESMTP id u726KJa1000777 
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO) 
-	for <yocto@yoctoproject.org>; Tue, 2 Aug 2016 08:20:20 +0200
-Received: from debesgmg001.de.kostal.int 
-	(debesgmg001.de.kostal.int [127.0.0.1]) by debesgmg001.de.kostal.int 
-	(Postfix) with ESMTP id 710B039804E for <yocto@yoctoproject.org>; Tue,
-	2 Aug 2016 08:19:04 +0200 (CEST)
-From: "Hartwig, Guido" <g.hartwig@kostal.com>
-To: Khem Raj <raj.khem@gmail.com>
-Thread-Topic: [yocto] Trouble with yocto sdk in collaboration with eclipse 
-	and cmake
-Thread-Index: AdHpcvzurMqwDL3qTduUd0vVPxPs0gARbzSAAIBWvuAADDP2AAAmhTBQ
-Date: Tue, 2 Aug 2016 06:18:49 +0000
-Message-ID: <c6be5f0b545b482e97d12f10331862f2@DEBEMAIL001.kostal.int>
-References: <f6b417b9e59c4208bf7bc9e42b48cfbd@DEBEMAIL001.kostal.int> 
-	<B692FAD6-991B-491A-9B8C-F0ECECA6C1A1@gmail.com> 
-	<73e7977df57b4fefb44dec4ef46e60b6@DEBEMAIL001.kostal.int> 
-	<CAMKF1srzYMqzHVW5_bp5QAoLGQiM6msBPex5=7AdLRg6xrycJA@mail.gmail.com>
-In-Reply-To: <CAMKF1srzYMqzHVW5_bp5QAoLGQiM6msBPex5=7AdLRg6xrycJA@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.20.2.192]
-MIME-Version: 1.0
-X-SafeGuard_MailGateway: Version: 5.80.2.12968 SGMG_SOPHOS Date: 
-	20160802061904Z
-X-OriginalId: qfu726FUMp010386
-x-msw-jemd-spam: not checked
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Trouble with yocto sdk in collaboration with eclipse and cmake
+Received: from silver.cherry.relay.mailchannels.net
+	(silver.cherry.relay.mailchannels.net [23.83.223.166])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DBDB5E00F46
+	for <yocto@yoctoproject.org>; Mon,  1 Aug 2016 23:29:03 -0700 (PDT)
+X-Sender-Id: hostpapa|x-authuser|pidge@toganlabs.com
+Received: from relay.mailchannels.net (localhost [127.0.0.1])
+	by relay.mailchannels.net (Postfix) with ESMTP id 113D7100A1E;
+	Tue,  2 Aug 2016 06:28:56 +0000 (UTC)
+Received: from hp181.hostpapa.com (ip-10-229-10-199.us-west-2.compute.internal
+	[10.229.10.199])
+	by relay.mailchannels.net (Postfix) with ESMTPA id 3D624100CA7;
+	Tue,  2 Aug 2016 06:28:55 +0000 (UTC)
+X-Sender-Id: hostpapa|x-authuser|pidge@toganlabs.com
+Received: from hp181.hostpapa.com (hp181.hostpapa.com [10.21.150.52])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384)
+	by 0.0.0.0:2500 (trex/5.7.3); Tue, 02 Aug 2016 06:28:56 +0000
+X-MC-Relay: Neutral
+X-MailChannels-SenderId: hostpapa|x-authuser|pidge@toganlabs.com
+X-MailChannels-Auth-Id: hostpapa
+X-MC-Loop-Signature: 1470119335764:381106210
+X-MC-Ingress-Time: 1470119335763
+Received: from [37.228.246.5] (port=39116 helo=[192.168.0.37])
+	by hp181.hostpapa.com with esmtpsa
+	(TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.86_1)
+	(envelope-from <pidge@toganlabs.com>)
+	id 1bUTC2-002SLG-UO; Tue, 02 Aug 2016 08:28:53 +0200
+Message-ID: <1470119325.2990.0.camel@toganlabs.com>
+From: Beth 'pidge' Flanagan <pidge@toganlabs.com>
+To: =?ISO-8859-1?Q?An=EDbal_Lim=F3n?= <anibal.limon@linux.intel.com>, 
+	yocto@yoctoproject.org
+Date: Tue, 02 Aug 2016 07:28:45 +0100
+In-Reply-To: <1469808791-17092-1-git-send-email-anibal.limon@linux.intel.com>
+References: <1469808791-17092-1-git-send-email-anibal.limon@linux.intel.com>
+Organization: toganlabs.com
+X-Mailer: Evolution 3.18.5.2-0ubuntu3 
+Mime-Version: 1.0
+X-OutGoing-Spam-Status: No, score=-1.0
+X-AuthUser: pidge@toganlabs.com
+Cc: joshua.g.lock@intel.com
+Subject: Re: [PATCHv2][yocto-autobuilder] lib/buildsteps.py: fix report creation in nigthly-oecore
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: pidge@toganlabs.com
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -57,101 +63,63 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 02 Aug 2016 06:19:31 -0000
-Content-Language: de-DE
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Tue, 02 Aug 2016 06:29:11 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-SSBzYXcgdGhhdCB0aGlzIGlzc3VlIGlzIGFscmVhZHkgc29sdmVkIGluIHRoZSBtYXN0ZXJicmFu
-Y2ggb2YgdGhlIHlvY3RvIGVjbGlwc2UgcGx1Z2luIChodHRwOi8vZ2l0LnlvY3RvcHJvamVjdC5v
-cmcvY2dpdC9jZ2l0LmNnaS9lY2xpcHNlLXBva3kvY29tbWl0Lz9pZD0wNmZhMjYyZDMwOTYyOGUz
-MTY0ODk5NGM1NTMyNGJjNzBmNWQ3ZGM4KS4gVGhhbmsgeW91IGZvciB5b3VyIHN1cHBvcnQuDQoN
-Ci0tLS0tVXJzcHLDvG5nbGljaGUgTmFjaHJpY2h0LS0tLS0NClZvbjogS2hlbSBSYWogW21haWx0
-bzpyYWoua2hlbUBnbWFpbC5jb21dIA0KR2VzZW5kZXQ6IE1vbnRhZywgMS4gQXVndXN0IDIwMTYg
-MTU6NTANCkFuOiBIYXJ0d2lnLCBHdWlkbyA8Zy5oYXJ0d2lnQGtvc3RhbC5jb20+DQpDYzogeW9j
-dG9AeW9jdG9wcm9qZWN0Lm9yZw0KQmV0cmVmZjogUmU6IFt5b2N0b10gVHJvdWJsZSB3aXRoIHlv
-Y3RvIHNkayBpbiBjb2xsYWJvcmF0aW9uIHdpdGggZWNsaXBzZSBhbmQgY21ha2UNCg0KT24gTW9u
-LCBBdWcgMSwgMjAxNiBhdCAxMjowNCBBTSwgSGFydHdpZywgR3VpZG8gPGcuaGFydHdpZ0Brb3N0
-YWwuY29tPiB3cm90ZToNCj4gSSBoYXZlIG1hbnVhbGx5IGFkZGVkIHRoZSBmbGFncyBmcm9tIEND
-ICgtbWFyY2g9YXJtdjctYSAtbWFybSAtbWZwdT1uZW9uICAtbWZsb2F0LWFiaT1oYXJkIC1tY3B1
-PWNvcnRleC1hOCkgdG8gdGhlIE9FQ01BS0VfQ19GTEFHUyBhbmQgdGhlbiBpdCB3b3Jrcy4gSSB0
-cnkgdG8gZmluZCBhIHdheSwgd2hlcmUgQ01BS0Ugd29ya3Mgb3V0IG9mIHRoZSBCb3ggd2l0aCB5
-b2N0by1wbHVnaW4uIEkgdGhpbmsgdGhlIHBsdWdpbiBpcyB0aGUgcHJvYmxlbSBmb3IgdGhpcyBp
-c3N1ZS4NCg0KUGxlYXNlIG9wZW4gYSBidWcgZm9yIHRoaXMgaXNzdWUgaW4gYnVnemlsbGENCg0K
-Pg0KPiAtLS0tLVVyc3Byw7xuZ2xpY2hlIE5hY2hyaWNodC0tLS0tDQo+IFZvbjogS2hlbSBSYWog
-W21haWx0bzpyYWoua2hlbUBnbWFpbC5jb21dDQo+IEdlc2VuZGV0OiBGcmVpdGFnLCAyOS4gSnVs
-aSAyMDE2IDIwOjQ2DQo+IEFuOiBIYXJ0d2lnLCBHdWlkbyA8Zy5oYXJ0d2lnQGtvc3RhbC5jb20+
-DQo+IENjOiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQo+IEJldHJlZmY6IFJlOiBbeW9jdG9dIFRy
-b3VibGUgd2l0aCB5b2N0byBzZGsgaW4gY29sbGFib3JhdGlvbiB3aXRoIA0KPiBlY2xpcHNlIGFu
-ZCBjbWFrZQ0KPg0KPg0KPj4gT24gSnVsIDI5LCAyMDE2LCBhdCAxOjI3IEFNLCBIYXJ0d2lnLCBH
-dWlkbyA8Zy5oYXJ0d2lnQGtvc3RhbC5jb20+IHdyb3RlOg0KPj4NCj4+IEhpLA0KPj4gSSBoYXZl
-IHNvbWUgdHJvdWJsZSB3aXRoIHRoZSB5b2N0byBzZGsgaW4gY29sbGFib3JhdGlvbiB3aXRoIGVj
-bGlwc2UgYW5kIHlvY3RvIENNYWtlIHByb2plY3QuIEkgaGF2ZSBpbnN0YWxsIGFsbCBuZWNlc3Nh
-cnkgZWNsaXBzZSBwbHVnaW5zIGFuZCBsaW5rZWQgbXkgc2RrIHdpdGggdGhlIHlvY3RvLXBsdWdp
-biBhcyBkZXNjcmliZWQgaW4gdGhlIG1hbnVhbC4gV2hlbiBJIHRyeSB0byBidWlsZCB0aGUgIkhl
-bGxvIFdvcmxkIiB5b2N0byBjbWFrZSBwcm9qZWN0IGl0IGZhaWxzIHdpdGggZm9sbG93aW5nIG1l
-c3NhZ2U6DQo+Pg0KPj4gLi4NCj4+IENNYWtlIEVycm9yIGF0DQo+PiAvdXNyL3NoYXJlL2NtYWtl
-LTIuOC9Nb2R1bGVzL0NNYWtlVGVzdENDb21waWxlci5jbWFrZTo2MSAobWVzc2FnZSk6IFRoZSBD
-IGNvbXBpbGVyICIvb3B0L3B1Y2svMS4wLjAvc3lzcm9vdHMveDg2XzY0LXB1Y2tzZGstbGludXgv
-dXNyL2Jpbi9hcm0ta29zdGFsLWxpbnV4LWdudWVhYmkvYXJtLWtvc3RhbC1saW51eC1nbnVlYWJp
-LWdjYyINCj4+ICBpcyBub3QgYWJsZSB0byBjb21waWxlIGEgc2ltcGxlIHRlc3QgcHJvZ3JhbSAu
-Li4NCj4+DQo+PiBUaGlzIGVycm9yIG9jY3VycyBiZWNhdXNlIHRoZSBjb21waWxlciBpcyBjYWxs
-ZWQgd2l0aCB0aGUgd3JvbmcgZmxhZ3MuDQo+PiBUaGUgU0RLIGVudmlyb25tZW50LXNldHVwIHNj
-cmlwdCBleHBvcnQgdGhlIGZvbGxvd2luZyBlbnZpcm9ubWVudCANCj4+IHZhcmlhYmxlcyBleHBv
-cnQgQ0M9ImFybS1rb3N0YWwtbGludXgtZ251ZWFiaS1nY2MgIC1tYXJjaD1hcm12Ny1hIC1tYXJt
-IC1tZnB1PW5lb24gIC1tZmxvYXQtYWJpPWhhcmQgLW1jcHU9Y29ydGV4LWE4IC0tc3lzcm9vdD0k
-U0RLVEFSR0VUU1lTUk9PVCINCj4+IGV4cG9ydCBDRkxBR1M9IiAtTzIgLXBpcGUgLWcgLWZlbGlt
-aW5hdGUtdW51c2VkLWRlYnVnLXR5cGVzIC1mZGVidWctcHJlZml4LW1hcD0vaG9tZS9oYXJ0d2ln
-MDIvV29ya3NwYWNlL2J1aWxkLXB1Y2svYnVpbGQvdG1wL3dvcmsveDg2XzY0LW5hdGl2ZXNkay1w
-dWNrc2RrLWxpbnV4L21ldGEtZW52aXJvbm1lbnQtc2NiLzEuMC1yOD0vdXNyL3NyYy9kZWJ1Zy9t
-ZXRhLWVudmlyb25tZW50LXNjYi8xLjAtcjggLWZkZWJ1Zy1wcmVmaXgtbWFwPS9ob21lL2hhcnR3
-aWcwMi9Xb3Jrc3BhY2UvYnVpbGQtcHVjay9idWlsZC90bXAvc3lzcm9vdHMveDg2XzY0LWxpbnV4
-PSAtZmRlYnVnLXByZWZpeC1tYXA9L2hvbWUvaGFydHdpZzAyL1dvcmtzcGFjZS9idWlsZC1wdWNr
-L2J1aWxkL3RtcC9zeXNyb290cy94ODZfNjQtbmF0aXZlc2RrLXB1Y2tzZGstbGludXg9ICINCj4+
-DQo+PiBUaGUgZWNsaXBzZSBlbnZpcm9ubWVudCAoc2V0IGJ5IHRoZSB5b2N0byBwbHVnaW4pIHNo
-b3dzIHRoZSBmb2xsb3dpbmcgZW52aXJvbm1lbnQ6DQo+PiBDQyA9IGFybS1rb3N0YWwtbGludXgt
-Z251ZWFiaS1nY2MgIC1tYXJjaD1hcm12Ny1hIC1tYXJtIC1tZnB1PW5lb24gDQo+PiAtbWZsb2F0
-LWFiaT1oYXJkIC1tY3B1PWNvcnRleC1hOCANCj4+IC0tc3lzcm9vdD0vb3B0L3B1Y2svMS4wLjAv
-c3lzcm9vdHMvY29ydGV4YThoZi1uZW9uLWtvc3RhbC1saW51eC1nbnVlYQ0KPj4gYg0KPj4gaSBD
-RkxBR1MgPQ0KPj4gLS1zeXNyb290PS9vcHQvcHVjay8xLjAuMC9zeXNyb290cy9jb3J0ZXhhOGhm
-LW5lb24ta29zdGFsLWxpbnV4LWdudWVhDQo+PiBiIGkgT0VDTUFLRV9DX0NPTVBJTEVSID0gYXJt
-LWtvc3RhbC1saW51eC1nbnVlYWJpLWdjYw0KPj4gT0VDTUFLRV9DX0ZMQUdTID0gICAgLS1zeXNy
-b290PS9vcHQvcHVjay8xLjAuMC9zeXNyb290cy9jb3J0ZXhhOGhmLW5lb24ta29zdGFsLWxpbnV4
-LWdudWVhYmkNCj4+DQo+PiBJIGFzc3VtZSB0aGF0IHlvY3RvIGNtYWtlIHVzZXMgdGhlIE9FQ01B
-S0UqIHZhcmlhYmxlcyB0byBidWlsZCB0aGUgcHJvZ3JhbS4NCj4+IFRoZSBlcnJvciBvY2N1cnMg
-YmVjYXVzZSB0aGUgZm9sbG93aW5nIGNvbXBpbGVyIG9wdGlvbnMgKFR1bmVzKSBhcmUgbWlzc2lu
-ZyAiLW1hcmNoPWFybXY3LWEgLW1hcm0gLW1mcHU9bmVvbiAgLW1mbG9hdC1hYmk9aGFyZCAtbWNw
-dT1jb3J0ZXgtYTgiDQo+Pg0KPj4gTm93IG15IHF1ZXN0aW9ucw0KPj4gMS4gICAgSXMgaXQgcmln
-aHQgdGhhdCB0aGUgeW9jdG8gcGx1Z2luIGN1dHMgb2ZmIHRoZSB0dW5lcyBmcm9tIHRoZSBPRUNN
-QUtFX0NfQ09NUElMRVI/DQo+PiAyLiAgICBJcyB0aGVyZSBhIHJlYXNvbiB0aGF0IHRoaXMgY29t
-cGlsZXIgb3B0aW9ucyBhcmUgbm90IGFwcGVuZGVkIHRvIHRoZSBDRkxBR1M/DQo+DQo+IENGTEFH
-UyBzaG91bGQgYmUgcGFzc2VkIGRvd24gdG8gY21ha2UgYnVpbGQgc3lzdGVtLiBUaGF0IHNlZW1z
-IHRvIGJlIHRoZSBwcm9ibGVtIHlvdSBhcmUgc2VlaW5nLiBIYXZlIHlvdSB0cmllZCB0byBhcHBl
-bmQgQ0ZMQUdTIHRvIE9FQ01BS0VfQ19GTEFHUyA/DQo+DQo+Pg0KPj4gVGhhbmsgeW91IGZvciB5
-b3VyIGhlbHANCj4+DQo+Pg0KPj4NCj4+IE1pdCBmcmV1bmRsaWNoZW4gR3LDvMOfZW4gLyBLaW5k
-IHJlZ2FyZHMNCj4+DQo+PiBLT1NUQUwgSW5kdXN0cmllIEVsZWt0cmlrIEdtYkgNCj4+DQo+PiBE
-aXBsLi1JbmcuDQo+PiBHdWlkbyBIYXJ0d2lnDQo+PiBJRTEgRW50d2lja2x1bmcgRWxla3Ryb25p
-aw0KPj4gUiAmIEQgRWxlY3Ryb25pY3MNCj4+DQo+PiBMYW5nZSBFY2sgMTEsIDU4MDk5IEhhZ2Vu
-DQo+PiBEZXV0c2NobGFuZCAvIEdlcm1hbnkNCj4+IFRlbGVmb246ICs0OSAyMzMxIDgwNDAgLSA2
-ODgNCj4+IFRlbGVmYXg6ICs0OSAyMzMxIDgwNDAgLSA0NjYwDQo+PiBFLU1haWw6IGcuaGFydHdp
-Z0Brb3N0YWwuY29tDQo+Pg0KPj4gSW50ZXJuZXQ6IGh0dHA6Ly93d3cua29zdGFsLmNvbS9pbmR1
-c3RyaWUNCj4+DQo+Pg0KPj4NCj4+IEtPU1RBTCBJbmR1c3RyaWUgRWxla3RyaWsgR21iSCAtIFNp
-dHogTMO8ZGVuc2NoZWlkLCBSZWdpc3RlcmdlcmljaHQgDQo+PiBJc2VybG9obiBIUkIgMzkyNCAt
-IFVTdC1JZC1Oci4vVmF0IE5vLjogREUgODEzNzQyMTcwDQo+PiBQb3N0YW5zY2hyaWZ0OiBBbiBk
-ZXIgQmVsbG1lcmVpIDEwLCBELTU4NTEzIEzDvGRlbnNjaGVpZCAqIFRlbGVmb246IA0KPj4gKzQ5
-DQo+PiAyMzUxIDE2LTAgKiBUZWxlZmF4OiArNDkgMjM1MSAxNi0yNDAwDQo+PiBXZXJrc2Fuc2No
-cmlmdDogTGFuZ2UgRWNrIDExLCBELTU4MDk5IEhhZ2VuICogVGVsLiArNDkgMjMzMSA4MDQwLTYw
-MSANCj4+ICogRmF4ICs0OSAyMzMxIDgwNDAtNjAyDQo+PiBHZXNjaMOkZnRzZsO8aHJ1bmc6IEF4
-ZWwgWmltbWVybWFubiwgRGlwbC4tSW5nLiBNYXJ3aW4gS2luemwsIERpcGwuLU9lYy4NCj4+IEFu
-ZHJlYXMgS29zdGFsDQo+Pg0KPj4gLS0NCj4+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fDQo+PiB5b2N0byBtYWlsaW5nIGxpc3QNCj4+IHlvY3RvQHlvY3Rv
-cHJvamVjdC5vcmcNCj4+IGh0dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9saXN0aW5mby95
-b2N0bw0KPg0KPg0KPg0KDQpLT1NUQUwgSW5kdXN0cmllIEVsZWt0cmlrIEdtYkggLSBTaXR6IEzD
-vGRlbnNjaGVpZCwgUmVnaXN0ZXJnZXJpY2h0IElzZXJsb2huIEhSQiAzOTI0IC0gVVN0LUlkLU5y
-Li9WYXQgTm8uOiBERSA4MTM3NDIxNzANClBvc3RhbnNjaHJpZnQ6IEFuIGRlciBCZWxsbWVyZWkg
-MTAsIEQtNTg1MTMgTMO8ZGVuc2NoZWlkICogVGVsZWZvbjogKzQ5ICAyMzUxIDE2LTAgKiBUZWxl
-ZmF4OiArNDkgIDIzNTEgMTYtMjQwMA0KV2Vya3NhbnNjaHJpZnQ6IExhbmdlIEVjayAxMSwgRC01
-ODA5OSBIYWdlbiAqIFRlbC4gKzQ5IDIzMzEgODA0MC02MDEgKiBGYXggKzQ5IDIzMzEgODA0MC02
-MDINCkdlc2Now6RmdHNmw7xocnVuZzogQXhlbCBaaW1tZXJtYW5uLCBEaXBsLi1JbmcuIE1hcndp
-biBLaW56bCwgRGlwbC4tT2VjLiBBbmRyZWFzIEtvc3RhbA0KDQo=
+On Fri, 2016-07-29 at 11:13 -0500, An=C3=ADbal Lim=C3=B3n wrote:
+> nightly-oecore buildset doesn't prove got_revision property
+> so when got_revision is None use got_revision_oecore instead.
+>=20
+
+pulled into master, thanks!
+
+-b
+
+> [YOCTO #10051]
+>=20
+> Signed-off-by: An=C3=ADbal Lim=C3=B3n <anibal.limon@linux.intel.com>
+> ---
+> =C2=A0lib/python2.7/site-packages/autobuilder/lib/buildsteps.py | 11
+> +++++++++--
+> =C2=A01 file changed, 9 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/lib/python2.7/site-
+> packages/autobuilder/lib/buildsteps.py b/lib/python2.7/site-
+> packages/autobuilder/lib/buildsteps.py
+> index eee0c1b..f7b1921 100644
+> --- a/lib/python2.7/site-packages/autobuilder/lib/buildsteps.py
+> +++ b/lib/python2.7/site-packages/autobuilder/lib/buildsteps.py
+> @@ -118,8 +118,15 @@ class BitbakeShellCommand(ShellCommand):
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0report['target_sy=
+s'] =3D vrs['TARGET_SYS']
+> =C2=A0
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0report['component=
+'] =3D 'bitbake'
+> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0report['branch_commit'=
+] =3D self.getProperty('branch') + ': '
+> + \
+> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0self.getProperty('got_revision')
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0try:
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+branch =3D self.getProperty('branch')
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+revision =3D self.getProperty('got_revision')
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+if not revision:
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0revision =3D self.getProperty('got_revision_oecor=
+e')
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0except:
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+branch =3D "unknown_branch"
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+revision =3D "unknown_revision"
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0report['branch_commit'=
+] =3D branch + ': ' + revision
+> =C2=A0
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0failure =3D {}
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0failure['package'=
+] =3D "bitbake-%s" % vrs['BB_VERSION']
 
