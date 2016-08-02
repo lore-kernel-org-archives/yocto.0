@@ -1,60 +1,36 @@
-Return-Path: <pidge@toganlabs.com>
+Return-Path: <Wenzong.Fan@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 88A76E00F4F; Mon,  1 Aug 2016 23:29:11 -0700 (PDT)
+	id EB13BE00F57; Tue,  2 Aug 2016 03:32:46 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [23.83.223.166 listed in list.dnswl.org]
+X-Spam-Status: No, score=-0.8 required=5.0 tests=BAYES_00, URI_HEX autolearn=no
+	version=3.3.1
+X-Spam-HAM-Report: * 1.1 URI_HEX URI: URI hostname has long hexadecimal
+	sequence
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from silver.cherry.relay.mailchannels.net
-	(silver.cherry.relay.mailchannels.net [23.83.223.166])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DBDB5E00F46
-	for <yocto@yoctoproject.org>; Mon,  1 Aug 2016 23:29:03 -0700 (PDT)
-X-Sender-Id: hostpapa|x-authuser|pidge@toganlabs.com
-Received: from relay.mailchannels.net (localhost [127.0.0.1])
-	by relay.mailchannels.net (Postfix) with ESMTP id 113D7100A1E;
-	Tue,  2 Aug 2016 06:28:56 +0000 (UTC)
-Received: from hp181.hostpapa.com (ip-10-229-10-199.us-west-2.compute.internal
-	[10.229.10.199])
-	by relay.mailchannels.net (Postfix) with ESMTPA id 3D624100CA7;
-	Tue,  2 Aug 2016 06:28:55 +0000 (UTC)
-X-Sender-Id: hostpapa|x-authuser|pidge@toganlabs.com
-Received: from hp181.hostpapa.com (hp181.hostpapa.com [10.21.150.52])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384)
-	by 0.0.0.0:2500 (trex/5.7.3); Tue, 02 Aug 2016 06:28:56 +0000
-X-MC-Relay: Neutral
-X-MailChannels-SenderId: hostpapa|x-authuser|pidge@toganlabs.com
-X-MailChannels-Auth-Id: hostpapa
-X-MC-Loop-Signature: 1470119335764:381106210
-X-MC-Ingress-Time: 1470119335763
-Received: from [37.228.246.5] (port=39116 helo=[192.168.0.37])
-	by hp181.hostpapa.com with esmtpsa
-	(TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.86_1)
-	(envelope-from <pidge@toganlabs.com>)
-	id 1bUTC2-002SLG-UO; Tue, 02 Aug 2016 08:28:53 +0200
-Message-ID: <1470119325.2990.0.camel@toganlabs.com>
-From: Beth 'pidge' Flanagan <pidge@toganlabs.com>
-To: =?ISO-8859-1?Q?An=EDbal_Lim=F3n?= <anibal.limon@linux.intel.com>, 
-	yocto@yoctoproject.org
-Date: Tue, 02 Aug 2016 07:28:45 +0100
-In-Reply-To: <1469808791-17092-1-git-send-email-anibal.limon@linux.intel.com>
-References: <1469808791-17092-1-git-send-email-anibal.limon@linux.intel.com>
-Organization: toganlabs.com
-X-Mailer: Evolution 3.18.5.2-0ubuntu3 
-Mime-Version: 1.0
-X-OutGoing-Spam-Status: No, score=-1.0
-X-AuthUser: pidge@toganlabs.com
-Cc: joshua.g.lock@intel.com
-Subject: Re: [PATCHv2][yocto-autobuilder] lib/buildsteps.py: fix report creation in nigthly-oecore
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F3871E00F50
+	for <yocto@yoctoproject.org>; Tue,  2 Aug 2016 03:32:43 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id u72AWgCx003056
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=OK)
+	for <yocto@yoctoproject.org>; Tue, 2 Aug 2016 03:32:42 -0700
+Received: from pek-lpggp1.wrs.com (128.224.153.74) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.40) with Microsoft SMTP Server id 14.3.248.2;
+	Tue, 2 Aug 2016 03:32:42 -0700
+From: <wenzong.fan@windriver.com>
+To: <yocto@yoctoproject.org>
+Date: Tue, 2 Aug 2016 06:32:40 -0400
+Message-ID: <1470133960-190757-1-git-send-email-wenzong.fan@windriver.com>
+X-Mailer: git-send-email 2.8.1
+MIME-Version: 1.0
+Subject: [PATCH][meta-selinux] refpolicy-targeted: remove duplicate type rules
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: pidge@toganlabs.com
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -63,63 +39,104 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 02 Aug 2016 06:29:11 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 02 Aug 2016 10:32:47 -0000
+Content-Type: text/plain
 
-On Fri, 2016-07-29 at 11:13 -0500, An=C3=ADbal Lim=C3=B3n wrote:
-> nightly-oecore buildset doesn't prove got_revision property
-> so when got_revision is None use got_revision_oecore instead.
->=20
+From: Wenzong Fan <wenzong.fan@windriver.com>
 
-pulled into master, thanks!
+Remove duplicate type rules from init_t to init_script_file_type,
+they have been included by systemd policies. This also fixes the
+errors while installing modules for refpolicy-targeted if systemd
+support is enabled:
 
--b
+| Conflicting type rules
+| Binary policy creation failed at line 327 of \
+  .../tmp/work/qemux86-poky-linux/refpolicy-targeted/git-r0/image\
+  /var/lib/selinux/targeted/tmp/modules/100/init/cil
+| Failed to generate binary
+| semodule:  Failed!
 
-> [YOCTO #10051]
->=20
-> Signed-off-by: An=C3=ADbal Lim=C3=B3n <anibal.limon@linux.intel.com>
-> ---
-> =C2=A0lib/python2.7/site-packages/autobuilder/lib/buildsteps.py | 11
-> +++++++++--
-> =C2=A01 file changed, 9 insertions(+), 2 deletions(-)
->=20
-> diff --git a/lib/python2.7/site-
-> packages/autobuilder/lib/buildsteps.py b/lib/python2.7/site-
-> packages/autobuilder/lib/buildsteps.py
-> index eee0c1b..f7b1921 100644
-> --- a/lib/python2.7/site-packages/autobuilder/lib/buildsteps.py
-> +++ b/lib/python2.7/site-packages/autobuilder/lib/buildsteps.py
-> @@ -118,8 +118,15 @@ class BitbakeShellCommand(ShellCommand):
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0report['target_sy=
-s'] =3D vrs['TARGET_SYS']
-> =C2=A0
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0report['component=
-'] =3D 'bitbake'
-> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0report['branch_commit'=
-] =3D self.getProperty('branch') + ': '
-> + \
-> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0self.getProperty('got_revision')
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0try:
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-branch =3D self.getProperty('branch')
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-revision =3D self.getProperty('got_revision')
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-if not revision:
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0revision =3D self.getProperty('got_revision_oecor=
-e')
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0except:
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-branch =3D "unknown_branch"
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-revision =3D "unknown_revision"
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0report['branch_commit'=
-] =3D branch + ': ' + revision
-> =C2=A0
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0failure =3D {}
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0failure['package'=
-] =3D "bitbake-%s" % vrs['BB_VERSION']
+Signed-off-by: Wenzong Fan <wenzong.fan@windriver.com>
+---
+ ...efpolicy-remove-duplicate-type_transition.patch | 46 ++++++++++++++++++++++
+ .../refpolicy/refpolicy-targeted_2.20151208.bb     |  1 +
+ .../refpolicy/refpolicy-targeted_git.bb            |  1 +
+ 3 files changed, 48 insertions(+)
+ create mode 100644 recipes-security/refpolicy/refpolicy-targeted/refpolicy-remove-duplicate-type_transition.patch
+
+diff --git a/recipes-security/refpolicy/refpolicy-targeted/refpolicy-remove-duplicate-type_transition.patch b/recipes-security/refpolicy/refpolicy-targeted/refpolicy-remove-duplicate-type_transition.patch
+new file mode 100644
+index 0000000..b6c64c6
+--- /dev/null
++++ b/recipes-security/refpolicy/refpolicy-targeted/refpolicy-remove-duplicate-type_transition.patch
+@@ -0,0 +1,46 @@
++From e1693b640f889818091c976a90041ea6a843fafd Mon Sep 17 00:00:00 2001
++From: Wenzong Fan <wenzong.fan@windriver.com>
++Date: Wed, 17 Feb 2016 08:35:51 -0500
++Subject: [PATCH] remove duplicate type_transition
++
++Remove duplicate type rules from init_t to init_script_file_type,
++they have been included by systemd policies. This also fixes the
++errors while installing modules for refpolicy-targeted if systemd
++support is enabled:
++
++| Conflicting type rules
++| Binary policy creation failed at line 327 of \
++  .../tmp/work/qemux86-poky-linux/refpolicy-targeted/git-r0/image\
++  /var/lib/selinux/targeted/tmp/modules/100/init/cil
++| Failed to generate binary
++| semodule:  Failed!
++
++Upstream-Status: Inappropriate
++
++Signed-off-by: Wenzong Fan <wenzong.fan@windriver.com>
++---
++ policy/modules/system/init.if | 4 ++--
++ 1 file changed, 2 insertions(+), 2 deletions(-)
++
++diff --git a/policy/modules/system/init.if b/policy/modules/system/init.if
++index f50c6e1..b445886 100644
++--- a/policy/modules/system/init.if
+++++ b/policy/modules/system/init.if
++@@ -1307,12 +1307,12 @@ interface(`init_spec_domtrans_script',`
++ #
++ interface(`init_domtrans_script',`
++ 	gen_require(`
++-		type initrc_t;
+++		type initrc_t, initrc_exec_t;
++ 		attribute init_script_file_type;
++ 	')
++ 
++ 	files_list_etc($1)
++-	domtrans_pattern($1, init_script_file_type, initrc_t)
+++	domtrans_pattern($1, initrc_exec_t, initrc_t)
++ 
++ 	ifdef(`enable_mcs',`
++ 		range_transition $1 init_script_file_type:process s0;
++-- 
++1.9.1
++
+diff --git a/recipes-security/refpolicy/refpolicy-targeted_2.20151208.bb b/recipes-security/refpolicy/refpolicy-targeted_2.20151208.bb
+index b169604..f795bf7 100644
+--- a/recipes-security/refpolicy/refpolicy-targeted_2.20151208.bb
++++ b/recipes-security/refpolicy/refpolicy-targeted_2.20151208.bb
+@@ -17,4 +17,5 @@ include refpolicy_${PV}.inc
+ SRC_URI += " \
+             file://refpolicy-fix-optional-issue-on-sysadm-module.patch \
+             file://refpolicy-unconfined_u-default-user.patch \
++            ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'file://refpolicy-remove-duplicate-type_transition.patch', '', d)} \
+            "
+diff --git a/recipes-security/refpolicy/refpolicy-targeted_git.bb b/recipes-security/refpolicy/refpolicy-targeted_git.bb
+index b169604..f795bf7 100644
+--- a/recipes-security/refpolicy/refpolicy-targeted_git.bb
++++ b/recipes-security/refpolicy/refpolicy-targeted_git.bb
+@@ -17,4 +17,5 @@ include refpolicy_${PV}.inc
+ SRC_URI += " \
+             file://refpolicy-fix-optional-issue-on-sysadm-module.patch \
+             file://refpolicy-unconfined_u-default-user.patch \
++            ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'file://refpolicy-remove-duplicate-type_transition.patch', '', d)} \
+            "
+-- 
+2.8.1
+
 
