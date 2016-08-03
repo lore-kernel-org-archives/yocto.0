@@ -1,37 +1,35 @@
-Return-Path: <maxin.john@intel.com>
+Return-Path: <philip@balister.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 91269E00DE7; Wed,  3 Aug 2016 00:41:45 -0700 (PDT)
+	id E3A80E00CD9; Wed,  3 Aug 2016 06:19:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [216.168.135.166 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 50B3CE00DD1
-	for <yocto@yoctoproject.org>; Wed,  3 Aug 2016 00:41:43 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by fmsmga101.fm.intel.com with ESMTP; 03 Aug 2016 00:41:44 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.28,465,1464678000"; d="scan'208";a="1028839609"
-Received: from mbabyjoh-desk.fi.intel.com (HELO
-	mbabyjoh-desk.ger.corp.intel.com) ([10.237.72.71])
-	by orsmga002.jf.intel.com with ESMTP; 03 Aug 2016 00:41:37 -0700
-Date: Wed, 3 Aug 2016 10:41:22 +0300
-From: "Maxin B. John" <maxin.john@intel.com>
-To: Scott Rifenbark <srifenbark@gmail.com>
-Message-ID: <20160803074122.GA12566@mbabyjoh-desk.ger.corp.intel.com>
-References: <1469186936-2848-1-git-send-email-maxin.john@intel.com>
-	<CAFNP8OtXx_G4s6wS5G24UJAEGv2=udYfGDYDMUhTrrg+fk1y5w@mail.gmail.com>
+Received: from starfish.geekisp.com (starfish.geekisp.com [216.168.135.166])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 43311E00C09
+	for <yocto@yoctoproject.org>; Wed,  3 Aug 2016 06:19:29 -0700 (PDT)
+Received: (qmail 10113 invoked by uid 1003); 3 Aug 2016 13:19:28 -0000
+Received: from unknown (HELO ?192.168.11.142?)
+	(philip@opensdr.com@71.171.12.218)
+	by mail.geekisp.com with (DHE-RSA-AES128-SHA encrypted) SMTP;
+	3 Aug 2016 13:19:28 -0000
+To: "Jolley, Stephen K" <stephen.k.jolley@intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <1470151429.3175.189.camel@linux.intel.com>
+From: Philip Balister <philip@balister.org>
+Message-ID: <5598b740-e529-52a3-91e0-e4b34d2bde01@balister.org>
+Date: Wed, 3 Aug 2016 09:19:27 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.1.1
 MIME-Version: 1.0
-In-Reply-To: <CAFNP8OtXx_G4s6wS5G24UJAEGv2=udYfGDYDMUhTrrg+fk1y5w@mail.gmail.com>
-User-Agent: Mutt/1.5.23 (2014-03-12)
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH] swabber: remove from documentation
+In-Reply-To: <1470151429.3175.189.camel@linux.intel.com>
+Subject: Re: Minutes: Yocto Project Technical Team Meeting - Tuesday, June 7, 2016 8:00 AM US Pacific Time
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,32 +41,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 Aug 2016 07:41:45 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Wed, 03 Aug 2016 13:19:32 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
 
-Hi Scott,
 
-On Fri, Jul 22, 2016 at 08:14:24AM -0700, Scott Rifenbark wrote:
->Hi,
->
->>Is it safe to apply this patch to the docs?  In the past, I have applied patches too soon to the docs.  Let me know.
 
-Since swabber support in oe-core is a dead parrot now, this patch
-is safe to apply to the docs :)
+On 08/02/2016 11:23 AM, Jolley, Stephen K wrote:
+> Attendees: Saul, David Wolfe, Joshua, Belen, Ross, Mark, Bill
+>  
+....
 
->Thanks,
->Scott
->>
->>On Fri, Jul 22, 2016 at 4:28 AM, Maxin B. John <maxin.john@intel.com> wrote:
->>
->> Remove documentation as swabber was removed from
->> oe-core with this commit:
->> commit a7ddbea345c90646e6b9ddb89f768865caffdf07
->> Author: Richard Purdie <richard.purdie@linuxfoundation.org>
->> Date:   Mon Jun 6 12:08:56 2016 +010
-<snip>
+>         Poky - LTS/LTM Branch
+>         - Community Driven
+>         - 2 Years
+>         - Companies continue to push on older branches that they are
+> interested in.
+>         - Most patches would be in Oe-Core meta-data
 
-Best Regards,
-Maxin
+This kind of jumped out at me. Can anyone explain why the Yocto Project
+needs an LTS version of the reference distribution?
+
+Philip
+
+
+> 
+> * Team Sharing - 10 min
+>  RP has branch with multi-config in parallel
+>   - fixes various other tools
+>   - Distributed builds in 2.2 is unlikely due to resource constraits
+> 
+> Thanks,
+>  
+> Sau!
+> 
 
