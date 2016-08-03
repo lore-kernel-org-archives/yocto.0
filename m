@@ -1,16 +1,15 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <joel.zhou@broadcom.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D3303E00D34; Wed,  3 Aug 2016 08:17:17 -0700 (PDT)
+	id D2B0CE00C9E; Wed,  3 Aug 2016 09:48:31 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (akuster808[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
@@ -18,55 +17,39 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.192.172 listed in list.dnswl.org]
-Received: from mail-pf0-f172.google.com (mail-pf0-f172.google.com
-	[209.85.192.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B17A8E009AC
-	for <yocto@yoctoproject.org>; Wed,  3 Aug 2016 08:17:14 -0700 (PDT)
-Received: by mail-pf0-f172.google.com with SMTP id y134so78449631pfg.0
-	for <yocto@yoctoproject.org>; Wed, 03 Aug 2016 08:17:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=subject:to:references:from:message-id:date:user-agent:mime-version
-	:in-reply-to:content-transfer-encoding;
-	bh=durMrox2ebaoImQla0yhrtXWneCg+l0fMHjFXF2O/mA=;
-	b=DRac6wBgeGIg0Pmh9gEfI5jCBt7Deq/Hg2rTVLD3sS1HgIfCR0G0+oD4KaaioeirOa
-	HJQ7nd+jr9J10rneAMr74GEupGlLCXnQmv6NlRumM8+CcX+pEEXhDtWLn8FJxxp/mOOx
-	w//MlzuGZXa8ii8f0dz/Ayz9YYqm0gZ9PEfLY/aBViCpSOL6UzGPNkO95dcZNvdBsZEv
-	onsXSchKJ7xizn1khEIJFXyukaRJ6gv3M4HIlUPctSVADsBkLck1Uprty6nnQKPSf8Hj
-	M6MjdNQJfpfDoGxKuF3xVHdTeYw5Eb2GdY7gA0S6Lchk8ZcQMV0U74Z8JTaBpOQVF6sk
-	L2Kw==
+	*      [209.85.218.41 listed in list.dnswl.org]
+Received: from mail-oi0-f41.google.com (mail-oi0-f41.google.com
+	[209.85.218.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 611B9E00A75
+	for <yocto@yoctoproject.org>; Wed,  3 Aug 2016 09:48:26 -0700 (PDT)
+Received: by mail-oi0-f41.google.com with SMTP id 4so78633602oih.2
+	for <yocto@yoctoproject.org>; Wed, 03 Aug 2016 09:48:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=broadcom.com; s=google;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=Su/Z0sCMYOj2z6eSiJaesaNIx7HlkP4VbCH5k8zAnW8=;
+	b=IagCbVmhee6G1ofFAxeWgK/16gRyqBQSwyMQRkw/WnqA8J+nyLSvQiv6A9XlCdRXPi
+	Otqrdd+MJ9AyEVPusO/kticmox6OBmyRuu4U6Cn3GRi1/W5JSAaLr66imIjZq9b3CBV5
+	Okpj0WyUS2cI16b+NlZvHLVP/BfzZlIA/pl/E=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:subject:to:references:from:message-id:date
-	:user-agent:mime-version:in-reply-to:content-transfer-encoding;
-	bh=durMrox2ebaoImQla0yhrtXWneCg+l0fMHjFXF2O/mA=;
-	b=adWYpOrveIzzgO+j18o/9e/EbPk6zzvg69yKfoo7ZJ+Hcd8X0+6PLoNoM/0eGjIIax
-	L+lXAsJ321ZuLRp1O1G0KByb2psNbCECza7MLC/2hrzaiec+ZY+TBjkhw6o/MxPTHKe4
-	vtQz+9k6tE4f+ZNG6vZhdEkCqb9a57WTV7zZGWbvfNp4p+0txVV9od5qJzzi0iRuoj/1
-	JNPzD9TaTEXHcWeUEO0MK8X0x+KR4gtJiiOHW6Krye14Jxbzh516wy6QKs38Z0uweG2b
-	3U8E20A8lnYYFeIgL6bzxciEh5pIqptTk+qrE2xI5tp2bHGFSl56w5fGrzALNwqwYipm
-	/hrQ==
-X-Gm-Message-State: AEkooutmYHLewy1FFcWUQlHDPOvHseo9BJORnqysCcurADxfA4cmKVUZZ4M1Svzcr5ZspQ==
-X-Received: by 10.98.208.1 with SMTP id p1mr117183662pfg.10.1470237433770;
-	Wed, 03 Aug 2016 08:17:13 -0700 (PDT)
-Received: from Akusters-laptop.local ([2601:202:4001:9ea0:e0fd:73c8:47d3:3d91])
-	by smtp.googlemail.com with ESMTPSA id
-	n13sm13540727pfj.16.2016.08.03.08.17.12
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 03 Aug 2016 08:17:12 -0700 (PDT)
-To: Philip Balister <philip@balister.org>,
-	"Jolley, Stephen K" <stephen.k.jolley@intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-References: <1470151429.3175.189.camel@linux.intel.com>
-	<5598b740-e529-52a3-91e0-e4b34d2bde01@balister.org>
-From: akuster808 <akuster808@gmail.com>
-Message-ID: <32f35f59-c150-838f-4a53-d7dab0648252@gmail.com>
-Date: Wed, 3 Aug 2016 08:17:16 -0700
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:45.0)
-	Gecko/20100101 Thunderbird/45.2.0
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=Su/Z0sCMYOj2z6eSiJaesaNIx7HlkP4VbCH5k8zAnW8=;
+	b=l3Mnyi+n2bTHfMRrHXF85JdzgXyIds6V+I+nbeW1aLLRhEc3X5mh4G/vFnngnWk8Cd
+	qXVSFn80oQsDhCBwQ5F9BmhBYUOvl8v2icT7YYQjXZIsf32ewFTIXpJiAFJiz+J3Ny7e
+	6/iOJZ8DsUQv5AGg1qwwDb96g7yTbVX1/46aiXnXXGeLcOZ5BQGbE92aaN9wxobCHahp
+	nnFHigAeE9BK9TS0sBk+TvzqG4IxY1xsLscLt287cdWu/JRS3uGsnG+VB9tmaTj6a459
+	3NUEK9MGyWuKXwWGFvSGYaVaj+rcxGWeOGkaK7p0XPk0P7THkgDH0ITmNrKE9qgQqDJK
+	8laA==
+X-Gm-Message-State: AEkoouu7RHJhuFNKEggn8/f6QuGM1Ra7EVvWVeW+uFrX9TIYKwrcP5eHHyMs3Vr3VPwpP+eQl5KC/H/AzgMbie2R
+X-Received: by 10.157.11.112 with SMTP id p45mr12665871otd.21.1470242905971;
+	Wed, 03 Aug 2016 09:48:25 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <5598b740-e529-52a3-91e0-e4b34d2bde01@balister.org>
-Subject: Re: Minutes: Yocto Project Technical Team Meeting - Tuesday, June 7, 2016 8:00 AM US Pacific Time
+Received: by 10.202.50.10 with HTTP; Wed, 3 Aug 2016 09:48:25 -0700 (PDT)
+From: Joel Zhou <joel.zhou@broadcom.com>
+Date: Wed, 3 Aug 2016 12:48:25 -0400
+Message-ID: <CAAJbk1F3CKtvc2sJgh8E=vXfUUET47GxxCch2FfFUXn9Gvh+Jw@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: libatomic missing in krogoth Yocto 2.1
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -78,64 +61,80 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 Aug 2016 15:17:17 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 03 Aug 2016 16:48:31 -0000
+Content-Type: multipart/alternative; boundary=001a11476cd82581fc05392d9a3d
 
-On 8/3/16 6:19 AM, Philip Balister wrote:
->
-> On 08/02/2016 11:23 AM, Jolley, Stephen K wrote:
->> Attendees: Saul, David Wolfe, Joshua, Belen, Ross, Mark, Bill
->>  
-> ....
->
->>         Poky - LTS/LTM Branch
->>         - Community Driven
->>         - 2 Years
->>         - Companies continue to push on older branches that they are
->> interested in.
->>         - Most patches would be in Oe-Core meta-data
-> This kind of jumped out at me. Can anyone explain why the Yocto Project
-> needs an LTS version of the reference distribution?
+--001a11476cd82581fc05392d9a3d
+Content-Type: text/plain; charset=UTF-8
 
-I am glad you asked.
+Hi all,
 
-In order for a Yocto Member to be Yocto Compatible, any changes made to
-Bitbake or OE-core have to be submitted to the mailing list. If I have
-to submit changes then is makes sense that there be a central place like
-a repo where these changes can live. We have this for the first year.
-MontaVista and I am sure other Member's support products beyond the
-first year.  It seems natural to have a process in place to continue the
-behavior and work Yocto Members are required to perform to maintain
-Yocto compatibility. Or are you saying Yocto Compatible is only good for
-1 year?
+I'm building core-image-minimal with Yocto 2.1 krogoth.
+It failed with missing libatomic. The only thing closest is libatomic-ops.
+meta/recipes-support/libatomic-ops/libatomic-ops_7.4.2.bb
 
-It not so much having an LTS Poky as much as having LTS branches for OE
-core and bitbake. This means Poky would not have to be kept updated nor
-would the Yocto Project need to build or QA the LTS branches.
+[joelz@ldt-joelz]:(krogoth)$ bitbake core-image-minimal
+Parsing recipes: 100%
+|####################################################################################################################################|
+Time: 00:02:20
+Parsing of 1948 .bb files complete (0 cached, 1948 parsed). 2514 targets,
+389 skipped, 0 masked, 0 errors.
+NOTE: Resolving any missing task queue dependencies
+ERROR: Nothing RPROVIDES 'libatomic' (but
+/home/joelz/poky/build/../meta/recipes-core/packagegroups/
+packagegroup-core-standalone-sdk-target.bb RDEPENDS on or otherwise
+requires it)
+NOTE: Runtime target 'libatomic' is unbuildable, removing...
+Missing or unbuildable dependency chain was: ['libatomic']
+NOTE: Runtime target 'packagegroup-core-standalone-sdk-target' is
+unbuildable, removing...
+Missing or unbuildable dependency chain was:
+['packagegroup-core-standalone-sdk-target', 'libatomic']
+ERROR: Required build target 'core-image-minimal' has no buildable
+providers.
+Missing or unbuildable dependency chain was: ['core-image-minimal',
+'packagegroup-core-standalone-sdk-target', 'libatomic']
 
-As I see it, an LTS branch would only exist if there is a need and is
-supported by the ones who desire the LTS branch.  I am sure there will
-be some prerequisites in doing this.  I don't see this as a bad thing
-for the community or the Project.
+Summary: There were 6 WARNING messages shown.
+Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
 
-regards,
-Armin
+Any suggestion?
 
+Thanks,
+Joel
 
+--001a11476cd82581fc05392d9a3d
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
->
-> Philip
->
->
->> * Team Sharing - 10 min
->>  RP has branch with multi-config in parallel
->>   - fixes various other tools
->>   - Distributed builds in 2.2 is unlikely due to resource constraits
->>
->> Thanks,
->>  
->> Sau!
->>
+<div dir=3D"ltr">Hi all,<div><br></div><div>I&#39;m building core-image-min=
+imal with Yocto 2.1 krogoth.</div><div>It failed with missing libatomic. Th=
+e only thing closest is libatomic-ops.</div><div>meta/recipes-support/libat=
+omic-ops/<a href=3D"http://libatomic-ops_7.4.2.bb">libatomic-ops_7.4.2.bb</=
+a><br></div><div><br></div><div><div>[joelz@ldt-joelz]:(krogoth)$ bitbake c=
+ore-image-minimal</div><div>Parsing recipes: 100% |########################=
+###########################################################################=
+#################################| Time: 00:02:20</div><div>Parsing of 1948=
+ .bb files complete (0 cached, 1948 parsed). 2514 targets, 389 skipped, 0 m=
+asked, 0 errors.</div><div>NOTE: Resolving any missing task queue dependenc=
+ies</div><div>ERROR: Nothing RPROVIDES &#39;libatomic&#39; (but /home/joelz=
+/poky/build/../meta/recipes-core/packagegroups/<a href=3D"http://packagegro=
+up-core-standalone-sdk-target.bb">packagegroup-core-standalone-sdk-target.b=
+b</a> RDEPENDS on or otherwise requires it)</div><div>NOTE: Runtime target =
+&#39;libatomic&#39; is unbuildable, removing...</div><div>Missing or unbuil=
+dable dependency chain was: [&#39;libatomic&#39;]</div><div>NOTE: Runtime t=
+arget &#39;packagegroup-core-standalone-sdk-target&#39; is unbuildable, rem=
+oving...</div><div>Missing or unbuildable dependency chain was: [&#39;packa=
+gegroup-core-standalone-sdk-target&#39;, &#39;libatomic&#39;]</div><div>ERR=
+OR: Required build target &#39;core-image-minimal&#39; has no buildable pro=
+viders.</div><div>Missing or unbuildable dependency chain was: [&#39;core-i=
+mage-minimal&#39;, &#39;packagegroup-core-standalone-sdk-target&#39;, &#39;=
+libatomic&#39;]</div><div><br></div><div>Summary: There were 6 WARNING mess=
+ages shown.</div><div>Summary: There were 2 ERROR messages shown, returning=
+ a non-zero exit code.</div><div><br></div><div>Any suggestion?</div><div><=
+br></div><div><div class=3D"gmail_signature" data-smartmail=3D"gmail_signat=
+ure"><div dir=3D"ltr"><div><div dir=3D"ltr"><div>Thanks,</div><div>Joel</di=
+v></div></div></div></div></div>
+</div></div>
 
-
+--001a11476cd82581fc05392d9a3d--
