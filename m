@@ -1,58 +1,64 @@
-Return-Path: <anil.k.kumar@intel.com>
+Return-Path: <btv1==024c701824e==Fred.Ollinger@seescan.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0160BE00CFC; Thu,  4 Aug 2016 08:52:16 -0700 (PDT)
+	id 51BCDE0049B; Thu,  4 Aug 2016 10:01:25 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.20 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BC0AFE00A07;
-	Thu,  4 Aug 2016 08:52:13 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by orsmga101.jf.intel.com with ESMTP; 04 Aug 2016 08:52:13 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.28,470,1464678000"; d="scan'208";a="1035125684"
-Received: from fmsmsx105.amr.corp.intel.com ([10.18.124.203])
-	by fmsmga002.fm.intel.com with ESMTP; 04 Aug 2016 08:52:12 -0700
-Received: from fmsmsx155.amr.corp.intel.com (10.18.116.71) by
-	FMSMSX105.amr.corp.intel.com (10.18.124.203) with Microsoft SMTP Server
-	(TLS) id 14.3.248.2; Thu, 4 Aug 2016 08:52:12 -0700
-Received: from fmsmsx117.amr.corp.intel.com ([169.254.3.214]) by
-	FMSMSX155.amr.corp.intel.com ([169.254.5.160]) with mapi id
-	14.03.0248.002; Thu, 4 Aug 2016 08:52:11 -0700
-From: "Kumar, Anil K" <anil.k.kumar@intel.com>
-To: "Wold, Saul" <saul.wold@intel.com>, Felipe Balbi
-	<felipe.balbi@linux.intel.com>, "Ashfield, Bruce (Wind River)"
-	<bruce.ashfield@windriver.com>, "linux-yocto@yoctoproject.org"
-	<linux-yocto@yoctoproject.org>, "bruce.ashfield@gmail.com"
-	<bruce.ashfield@gmail.com>
-Thread-Topic: [GIT PULL | BXT-REBASE] USB Perihperal RTPM fixes
-Thread-Index: AQHR7kQ4EbNsl2FveUu7H5hqlJk336A43vuwgACHHQD//41U4A==
-Date: Thu, 4 Aug 2016 15:52:11 +0000
-Message-ID: <97161206A1AC0C4498663F483150B6F155245940@fmsmsx117.amr.corp.intel.com>
-References: <87lh0cu5s2.fsf@linux.intel.com>
-	<97161206A1AC0C4498663F483150B6F1552453C3@fmsmsx117.amr.corp.intel.com>
-	<1470325278.3175.351.camel@intel.com>
-In-Reply-To: <1470325278.3175.351.camel@intel.com>
+X-Spam-Status: No, score=-0.0 required=5.0 tests=BAYES_40 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -0.0 BAYES_40 BODY: Bayes spam probability is 20 to 40%
+	*      [score: 0.2390]
+X-Greylist: delayed 825 seconds by postgrey-1.32 at yocto-www;
+	Thu, 04 Aug 2016 10:01:21 PDT
+Received: from mail.seescan.com (mail3.seescan.com [69.43.145.36])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2FB51E0043B
+	for <yocto@yoctoproject.org>; Thu,  4 Aug 2016 10:01:21 -0700 (PDT)
+X-ASG-Debug-ID: 1470329255-0b39aa1573309880001-yzSStA
+Received: from WRIGHT.seescan.com ([192.168.11.30]) by mail.seescan.com with
+	ESMTP id gb05ckGD9bDr24x4 (version=TLSv1
+	cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NO) for
+	<yocto@yoctoproject.org>; Thu, 04 Aug 2016 09:47:35 -0700 (PDT)
+X-Barracuda-Envelope-From: Fred.Ollinger@seescan.com
+Received: from WRIGHT.seescan.com (192.168.11.30) by WRIGHT.seescan.com
+	(192.168.11.30) with Microsoft SMTP Server (TLS) id 15.0.1044.25;
+	Thu, 4 Aug 2016 09:47:35 -0700
+Received: from WRIGHT.seescan.com ([fe80::e4a9:8176:6f01:abfa]) by
+	WRIGHT.seescan.com ([fe80::e4a9:8176:6f01:abfa%12]) with mapi id
+	15.00.1044.021; Thu, 4 Aug 2016 09:47:35 -0700
+From: Fred Ollinger <Fred.Ollinger@seescan.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: where to find license files?
+X-ASG-Orig-Subj: where to find license files?
+Thread-Index: AQHR7m/mzwlO3/2mc0yUcfNiF+Beog==
+Date: Thu, 4 Aug 2016 16:47:34 +0000
+Message-ID: <1470329247657.58080@seescan.com>
+References: <DB6PR0601MB26639479A0DD3507DB733BF1CF070@DB6PR0601MB2663.eurprd06.prod.outlook.com>,
+	<CAD4b0_Js_XrQSGLbzqbGO5ihN9x-LkdYBz7vM-BTEdeGfh-0hA@mail.gmail.com>
+In-Reply-To: <CAD4b0_Js_XrQSGLbzqbGO5ihN9x-LkdYBz7vM-BTEdeGfh-0hA@mail.gmail.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.1.200.108]
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [50.59.178.98]
 MIME-Version: 1.0
-X-Mailman-Approved-At: Thu, 04 Aug 2016 08:57:37 -0700
-Cc: "Hart, Patrick J" <patrick.j.hart@intel.com>, "Renganathan,
-	Prabu" <prabu.renganathan@intel.com>, "Ponnusamy,
-	Siva Prasath" <siva.prasath.ponnusamy@intel.com>, "Svahn,
-	Kai" <kai.svahn@intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Leblanc,
-	Darrell" <darrell.leblanc@intel.com>
-Subject: Re: [GIT PULL | BXT-REBASE] USB Perihperal RTPM fixes
+X-Barracuda-Connect: UNKNOWN[192.168.11.30]
+X-Barracuda-Start-Time: 1470329255
+X-Barracuda-Encrypted: ECDHE-RSA-AES256-SHA
+X-Barracuda-URL: https://barracuda.seescan.com:443/cgi-mod/mark.cgi
+X-Barracuda-Scan-Msg-Size: 339
+X-Virus-Scanned: by bsmtpd at seescan.com
+X-Barracuda-BRTS-Status: 1
+X-Barracuda-Bayes: INNOCENT GLOBAL 0.1050 1.0000 -1.3627
+X-Barracuda-Spam-Score: -1.36
+X-Barracuda-Spam-Status: No,
+	SCORE=-1.36 using global scores of TAG_LEVEL=1000.0
+	QUARANTINE_LEVEL=1000.0 KILL_LEVEL=1000.0 tests=
+X-Barracuda-Spam-Report: Code version 3.2, rules version 3.2.3.31749
+	Rule breakdown below
+	pts rule name              description
+	---- ----------------------
+	--------------------------------------------------
+Subject: where to find license files?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -64,68 +70,21 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 04 Aug 2016 15:52:17 -0000
+X-List-Received-Date: Thu, 04 Aug 2016 17:01:25 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-DQoNCkFuaWwgSyBLdW1hciwgUGhEDQpQcmluY2lwYWwgRW5naW5lZXINCkxlYWQgU3lzdGVtIEFy
-Y2hpdGVjdA0KTWFrZXJzICYgSW5ub3ZhdG9ycyBHcm91cCAoTUlHKSAvIE5ldyBUZWNobm9sb2d5
-IEdyb3VwIChOVEcpDQoNCg0KLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCkZyb206IFdvbGQs
-IFNhdWwgDQpTZW50OiBUaHVyc2RheSwgQXVndXN0IDQsIDIwMTYgODo0MSBBTQ0KVG86IEt1bWFy
-LCBBbmlsIEsgPGFuaWwuay5rdW1hckBpbnRlbC5jb20+OyBGZWxpcGUgQmFsYmkgPGZlbGlwZS5i
-YWxiaUBsaW51eC5pbnRlbC5jb20+OyBBc2hmaWVsZCwgQnJ1Y2UgKFdpbmQgUml2ZXIpIDxicnVj
-ZS5hc2hmaWVsZEB3aW5kcml2ZXIuY29tPg0KQ2M6IFJlbmdhbmF0aGFuLCBQcmFidSA8cHJhYnUu
-cmVuZ2FuYXRoYW5AaW50ZWwuY29tPjsgU3ZhaG4sIEthaSA8a2FpLnN2YWhuQGludGVsLmNvbT47
-IFBvbm51c2FteSwgU2l2YSBQcmFzYXRoIDxzaXZhLnByYXNhdGgucG9ubnVzYW15QGludGVsLmNv
-bT47IEhhcnQsIFBhdHJpY2sgSiA8cGF0cmljay5qLmhhcnRAaW50ZWwuY29tPjsgTGVibGFuYywg
-RGFycmVsbCA8ZGFycmVsbC5sZWJsYW5jQGludGVsLmNvbT47IHlvY3RvQHlvY3RvcHJvamVjdC5v
-cmcNClN1YmplY3Q6IFJlOiBbR0lUIFBVTEwgfCBCWFQtUkVCQVNFXSBVU0IgUGVyaWhwZXJhbCBS
-VFBNIGZpeGVzDQoNCg0KVGhlc2UgcmVxdWVzdHMgbmVlZCB0byBnbyB0byB0aGUgbGludXgteW9j
-dG9AeW9jdG9wcm9qZWN0Lm9yZ8KgbGlzdC4NCsKgVGhpcyBpcyBwYXJ0IG9mIHRoZSBvcGVuIHNv
-dXJjZSBwcm9jZXNzIGFuZCBuZWVkcyB0byBiZSBmb2xsb3dlZCBmb3IgdHJhbnNwYXJlbmN5Lg0K
-DQpTZW5kaW5nIGl0IHRvIG1lIG9yIGRpcmVjdGx5IHRvIEJydWNlIHdpbGwgbm90IHdvcmsuDQoN
-CkFsc28sIHBsZWFzZSB1bmRlcnN0YW5kIHRoYXQgQnJ1Y2UgaXMgb24gdmFjYXRpb24gdGhpcyB3
-ZWVrLCBoZSB3aWxsIG1lcmdlIHRoaW5ncyB0aW1lIHBlcm1pdHRpbmcsIGJ1dCBoaXMgZ21haWwg
-ZW1haWwgbXVzdCBhbHNvIGJlIENDJ2VkIG90aGVyd2lzZSBoZSBtYXkgbm90IHNlZSBpdC4gKGJy
-dWNlLmFzaGZpZWxkQGdtYWlsLmNvbSkuDQoNCg0KU2F1IQ0KDQoNCk9uIFRodSwgMjAxNi0wOC0w
-NCBhdCAwNzozNyAtMDcwMCwgS3VtYXIsIEFuaWwgSyB3cm90ZToNCj4gKyBTYXVsDQo+IA0KPiBB
-bmlsIEsgS3VtYXIsIFBoRA0KPiBQcmluY2lwYWwgRW5naW5lZXINCj4gTGVhZCBTeXN0ZW0gQXJj
-aGl0ZWN0DQo+IE1ha2VycyAmIElubm92YXRvcnMgR3JvdXAgKE1JRykgLyBOZXcgVGVjaG5vbG9n
-eSBHcm91cCAoTlRHKQ0KPiANCj4gDQo+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+IEZy
-b206IEZlbGlwZSBCYWxiaSBbbWFpbHRvOmZlbGlwZS5iYWxiaUBsaW51eC5pbnRlbC5jb21dDQo+
-IFNlbnQ6IFRodXJzZGF5LCBBdWd1c3QgNCwgMjAxNiA0OjM0IEFNDQo+IFRvOiBBc2hmaWVsZCwg
-QnJ1Y2UgKFdpbmQgUml2ZXIpIDxicnVjZS5hc2hmaWVsZEB3aW5kcml2ZXIuY29tPg0KPiBDYzog
-S3VtYXIsIEFuaWwgSyA8YW5pbC5rLmt1bWFyQGludGVsLmNvbT47IFJlbmdhbmF0aGFuLCBQcmFi
-dSA8cHJhYnUgDQo+IC5yZW5nYW5hdGhhbkBpbnRlbC5jb20+OyBTdmFobiwgS2FpIDxrYWkuc3Zh
-aG5AaW50ZWwuY29tPjsgUG9ubnVzYW15LCANCj4gU2l2YSBQcmFzYXRoIDxzaXZhLnByYXNhdGgu
-cG9ubnVzYW15QGludGVsLmNvbT47IEhhcnQsIFBhdHJpY2sgSiA8cGF0IA0KPiByaWNrLmouaGFy
-dEBpbnRlbC5jb20+OyBMZWJsYW5jLCBEYXJyZWxsIDxkYXJyZWxsLmxlYmxhbmNAaW50ZWwuY29t
-PjsgDQo+IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcNCj4gU3ViamVjdDogW0dJVCBQVUxMIHwgQlhU
-LVJFQkFTRV0gVVNCIFBlcmlocGVyYWwgUlRQTSBmaXhlcw0KPiANCj4gDQo+IEhpIEJydWNlLA0K
-PiANCj4gcGxlYXNlIHB1bGwgZm9sbG93aW5nIGJyYW5jaCBhbmQgYXBwbHkgb24gdG9wIG9mIGJ4
-dC1yZWJhc2UuIEl0IGZpeGVzIA0KPiBhIGZldyBpc3N1ZXMgd2l0aCBydW50aW1lIFBNIHdpdGgg
-ZHJpdmVycy91c2IvZHdjMy8NCj4gDQo+IEJlc3QNCj4gDQo+IFRoZSBmb2xsb3dpbmcgY2hhbmdl
-cyBzaW5jZSBjb21taXQNCj4gMTdhMTY0M2U3MDMxODMxNmM0Y2QyNzVkMWMxZjI1MmQwYTk3ZjQ2
-ZjoNCj4gDQo+IMKgIE1lcmdlIGJyYW5jaCAnc3RhbmRhcmQvaW50ZWwvYmFzZScgaW50byBzdGFu
-ZGFyZC9pbnRlbC9ieHQtcmViYXNlDQo+ICgyMDE2LTA3LTI1IDIzOjU2OjUzIC0wNDAwKQ0KPiAN
-Cj4gYXJlIGF2YWlsYWJsZSBpbiB0aGUgZ2l0IHJlcG9zaXRvcnkgYXQ6DQo+IA0KPiDCoCBnaXQ6
-Ly9naXQua2VybmVsLm9yZy9wdWIvc2NtL2xpbnV4L2tlcm5lbC9naXQvYmFsYmkvdXNiLmdpdCBi
-eHQtIA0KPiB0ZXN0aW5nLXBtDQo+IA0KPiBmb3IgeW91IHRvIGZldGNoIGNoYW5nZXMgdXAgdG8N
-Cj4gZmVhMGU1NTQxOTI3MmQ2MTg1YzFkMTlhMWE1Yjg5ZTA1NDVjYmMzOToNCj4gDQo+IMKgIHVz
-YjogZHdjMzogcGNpOiBjYWxsIF9EU00gZm9yIHN1c3BlbmQvcmVzdW1lICgyMDE2LTA4LTA0IDA5
-OjM1OjQ0DQo+ICswMzAwKQ0KPiANCj4gLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KPiBGZWxpcGUgQmFsYmkgKDUpOg0KPiDC
-oMKgwqDCoMKgwqB1c2I6IGR3YzM6IHBjaTogcnVudGltZV9yZXN1bWUgY2hpbGQgZGV2aWNlDQo+
-IMKgwqDCoMKgwqDCoHVzYjogZHdjMzogY29yZTogYWxsb3cgZGV2aWNlIHRvIHJ1bnRpbWVfc3Vz
-cGVuZCBzZXZlcmFsIHRpbWVzDQo+IMKgwqDCoMKgwqDCoHVzYjogZHdjMzogZ2FkZ2V0OiBpbmNy
-ZW1lbnQgcmVxdWVzdC0+YWN0dWFsIG9uY2UNCj4gwqDCoMKgwqDCoMKgdXNiOiBkd2MzOiBtYWtl
-IHN1cmUgVVhfRVhJVF9QWCBpcyBjbGVhcmVkDQo+IMKgwqDCoMKgwqDCoHVzYjogZHdjMzogcGNp
-OiBjYWxsIF9EU00gZm9yIHN1c3BlbmQvcmVzdW1lDQo+IA0KPiDCoGRyaXZlcnMvdXNiL2R3YzMv
-Y29yZS5jwqDCoMKgwqDCoHzCoMKgwqA3ICsrKw0KPiDCoGRyaXZlcnMvdXNiL2R3YzMvY29yZS5o
-wqDCoMKgwqDCoHzCoMKgwqAxICsNCj4gwqBkcml2ZXJzL3VzYi9kd2MzL2R3YzMtcGNpLmMgfCAx
-MDUNCj4gKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKy0tLS0tLS0NCj4gwqBk
-cml2ZXJzL3VzYi9kd2MzL2dhZGdldC5jwqDCoMKgfMKgwqAxOSArKysrLS0tLQ0KPiDCoDQgZmls
-ZXMgY2hhbmdlZCwgMTA3IGluc2VydGlvbnMoKyksIDI1IGRlbGV0aW9ucygtKQ0KPiANCj4gDQo+
-IC0tDQo+IGJhbGJpDQo=
+I'm working on getting a list of license files and I don't know where to ge=
+t the exact text of each license.=0A=
+=0A=
+Is there a place where this is provided by yocto?=0A=
+=0A=
+For example, is there some directory which has all the license files?=0A=
+=0A=
+I see there's an md5sum for each file so I assume this is the case.=0A=
+=0A=
+Thanks in advance.=0A=
+=0A=
+Frederick Ollinger=
 
