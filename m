@@ -1,38 +1,47 @@
-Return-Path: <sgw@linux.intel.com>
+Return-Path: <philippe.coval@osg.samsung.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7E06EE00F36; Fri,  5 Aug 2016 09:30:55 -0700 (PDT)
+	id 519F8E00F3E; Fri,  5 Aug 2016 10:41:26 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RDNS_DYNAMIC autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [134.134.136.65 listed in list.dnswl.org]
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3DCBEE00EF2
-	for <yocto@yoctoproject.org>; Fri,  5 Aug 2016 09:30:52 -0700 (PDT)
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-	by orsmga103.jf.intel.com with ESMTP; 05 Aug 2016 09:30:51 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.28,474,1464678000"; 
-	d="scan'208,217";a="744708569"
-Received: from swold-mobl2.amr.corp.intel.com ([10.255.76.148])
-	by FMSMGA003.fm.intel.com with ESMTP; 05 Aug 2016 09:30:52 -0700
-Message-ID: <1470414650.3175.420.camel@linux.intel.com>
-From: Saul Wold <sgw@linux.intel.com>
-To: Yocto Discussion <yocto@yoctoproject.org>, OpenEmbedded List
-	<openembedded-core@lists.openembedded.org>
-Date: Fri, 05 Aug 2016 09:30:50 -0700
-X-Mailer: Evolution 3.20.4 (3.20.4-1.fc24) 
-Mime-Version: 1.0
-Subject: Yocto Project Status WW32
+	*  1.0 RDNS_DYNAMIC Delivered to internal network by host with
+	*      dynamic-looking rDNS
+Received: from s-opensource.com
+	(ec2-52-27-115-49.us-west-2.compute.amazonaws.com [52.27.115.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 86316E00F38
+	for <yocto@yoctoproject.org>; Fri,  5 Aug 2016 10:41:23 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by s-opensource.com (Postfix) with ESMTP id 22352A0E78;
+	Fri,  5 Aug 2016 17:41:26 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at osg.samsung.com
+Received: from s-opensource.com ([127.0.0.1])
+	by localhost (s-opensource.com [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id ZPpNdz5l5Ttx; Fri,  5 Aug 2016 17:41:24 +0000 (UTC)
+Received: from [192.168.0.2] (unknown [82.236.136.171])
+	by s-opensource.com (Postfix) with ESMTPSA id 0180FA0E77;
+	Fri,  5 Aug 2016 17:41:23 +0000 (UTC)
+From: Phil Coval <philippe.coval@osg.samsung.com>
+References: <1470258571-29721-1-git-send-email-philippe.coval@osg.samsung.com>
+	<CAJTo0LaWDDbfxsdpHaTpB0fx8S34S1XgxNPVsvFWfmXbiCc5Rg@mail.gmail.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+Organization: https://blogs.s-osg.org/author/pcoval/
+Message-ID: <8cd50177-e11a-b448-c307-61d4dad0e3b3@osg.samsung.com>
+Date: Fri, 5 Aug 2016 19:41:17 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.2.0
+MIME-Version: 1.0
+In-Reply-To: <CAJTo0LaWDDbfxsdpHaTpB0fx8S34S1XgxNPVsvFWfmXbiCc5Rg@mail.gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, kishen.maloor@intel.com
+Subject: Re: [meta-oic][PATCH] Update for IoTivity 1.1.1
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: philippe.coval@osg.samsung.com
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -41,212 +50,125 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Aug 2016 16:30:55 -0000
-Content-Type: multipart/alternative; boundary="=-qe0GKr7eaYlxSL0K2z1l"
+X-List-Received-Date: Fri, 05 Aug 2016 17:41:26 -0000
+Content-Type: multipart/alternative;
+	boundary="------------E25633BCC7CEB611EC17D171"
 
---=-qe0GKr7eaYlxSL0K2z1l
-Content-Type: text/plain; charset="UTF-8"
+--------------E25633BCC7CEB611EC17D171
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+
+
+On 04/08/16 10:36, Burton, Ross wrote:
+>
+> On 3 August 2016 at 22:09, Philippe Coval 
+> <philippe.coval@osg.samsung.com 
+> <mailto:philippe.coval@osg.samsung.com>> wrote:
+>
+>     +INSANE_SKIP_${PN}-dev = "ldflags"
+>
+>
+> This happens because the recipe isn't respecting LDFLAGS.  You really 
+> should be ensuring LDFLAGS is used by the build instead of skipping 
+> the warning.
+>
+> Ross
+
+Hi thanks for feedback,
+
+Yes, I am considering this to be done upstream first, my plan is :
+
+1/ to commit in upstream's maintenance branch (1.1-rel)
+2/ propose an other patch to update SRCREV and remove those lines from 
+this bitbake file.
+
+Does this sound correct ?
+
+Anyway, I wont be be able to touch this code until September.
+
+
+By the way there is an other binary patch,
+that can be applied to meta-oic (it was needed for 1.1.0 too), check:
+
+https://github.com/TizenTeam/meta-oic/commit/1ef5a6dfbd13728892cba862ff92ffcf2d243204#
+iotivity-sensorboard: Fix FTBFS by linking to pthread
+
+Regards and stay tunned.
+
+-- 
+mailto:philippe.coval@osg.samsung.com  gpg:0x467094BC
+https://blogs.s-osg.org/author/pcoval/
+
+
+--------------E25633BCC7CEB611EC17D171
+Content-Type: text/html; charset=utf-8
 Content-Transfer-Encoding: 8bit
 
+<html>
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <br>
+    <div class="moz-cite-prefix">On 04/08/16 10:36, Burton, Ross wrote:<br>
+    </div>
+    <blockquote
+cite="mid:CAJTo0LaWDDbfxsdpHaTpB0fx8S34S1XgxNPVsvFWfmXbiCc5Rg@mail.gmail.com"
+      type="cite">
+      <div dir="ltr">
+        <div class="gmail_extra"><br>
+          <div class="gmail_quote">On 3 August 2016 at 22:09, Philippe
+            Coval <span dir="ltr">&lt;<a moz-do-not-send="true"
+                href="mailto:philippe.coval@osg.samsung.com"
+                target="_blank">philippe.coval@osg.samsung.com</a>&gt;</span>
+            wrote:<br>
+            <blockquote class="gmail_quote" style="margin:0 0 0
+              .8ex;border-left:1px #ccc solid;padding-left:1ex">
+              <div id=":5l0" class="a3s aXjCH m156523ff9c6a7947">+INSANE_SKIP_${PN}-dev
+                = "ldflags"<br>
+                <br>
+              </div>
+            </blockquote>
+          </div>
+          <br>
+          This happens because the recipe isn't respecting LDFLAGS.  You
+          really should be ensuring LDFLAGS is used by the build instead
+          of skipping the warning.</div>
+        <div class="gmail_extra"><br>
+        </div>
+        <div class="gmail_extra">Ross</div>
+      </div>
+    </blockquote>
+    <br>
+    Hi thanks for feedback,<br>
+    <br>
+    Yes, I am considering this to be done upstream first, my plan is :<br>
+    <br>
+    1/ to commit in upstream's maintenance branch (1.1-rel)<br>
+    2/ propose an other patch to update SRCREV and remove those lines
+    from this bitbake file.<br>
+    <br>
+    Does this sound correct ? <br>
+    <br>
+    Anyway, I wont be be able to touch this code until September.<br>
+    <br>
+    <br>
+    By the way there is an other binary patch,<br>
+    that can be applied to meta-oic (it was needed for 1.1.0 too),
+    check:<br>
+    <br>
+    <a class="moz-txt-link-freetext"
+href="https://github.com/TizenTeam/meta-oic/commit/1ef5a6dfbd13728892cba862ff92ffcf2d243204">https://github.com/TizenTeam/meta-oic/commit/1ef5a6dfbd13728892cba862ff92ffcf2d243204#</a><br>
+    iotivity-sensorboard: Fix FTBFS by linking to pthread<br>
+    <br>
+    Regards and stay tunned.<br>
+    <br>
+    <pre class="moz-signature" cols="72">-- 
+<a class="moz-txt-link-freetext" href="mailto:philippe.coval@osg.samsung.com">mailto:philippe.coval@osg.samsung.com</a> gpg:0x467094BC
+<a class="moz-txt-link-freetext" href="https://blogs.s-osg.org/author/pcoval/">https://blogs.s-osg.org/author/pcoval/</a>
 
-Current Dev Position: YP 2.2 M3
-Next Deadline: YP 2.2 M3 which will be Aug 29th (5:00pm GMT)
+</pre>
+  </body>
+</html>
 
-SWAT team rotation: Randy -> Leo
-https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team
-
-Key Status/Updates:
- * We decided to release M2 with known issues. We have a good handle on some of them, there are others which are unknown but there is no one specific cause of the bugs. 
- * We will run another full QA pass before M3 to try and make sure we are dealing with the known bugs.
- * Merging of patches continues to be slow as it is proving hard to work out which patches are causing which breakage. The test matrix continues to increase with people being upset if their personal favourite set of options breaks yet we can’t expect to test and catch every regression. We’re not sure what to do about this, the scope of the testing is greater than it ever has been but it does seem to be slowing things down.
- * A patch for performance issues with pseudo when using xattrs have was merged
- * 2.1.1 is currently in QA and is expected to be completed early next week, this update contains numerous fixes for for a variety of areas including CVEs, GCC 6.x on Host OS and updated SRC_URIs
-
-Key YP 2.2 Dates:
- * YP 2.2 M1 release would be: 6/24/16
- * YP 2.2 M2 cut off would be: 7/18/16
- * YP 2.2 M2 release would be: 7/29/16
- * YP 2.2 M3 cut off would be: 8/29/16
- * YP 2.2 M3 release would be: 9/9/16
- * YP 2.2 M4 cut off would be: 10/3/16
- * YP 2.2 M4 release would be: 10/28/16
-
-Tracking Metrics:
-	WDD 2714 (last week 2744)
-(https://wiki.yoctoproject.org/charts/combo.html)
-
-Key Status Links for YP:
-https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.2_Status
-https://wiki.yoctoproject.org/wiki/Yocto_2.2_Schedule
-https://wiki.yoctoproject.org/wiki/Yocto_2.2_Features
-
-[If anyone has suggestions for other information you’d like to see on this weekly status update, let us know!]
-
---=-qe0GKr7eaYlxSL0K2z1l
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-<html><head></head><body><div><span id=3D"docs-internal-guid-389028ff-5b89-=
-e111-e3f2-266673a74654"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top=
-:0pt;margin-bottom:0pt;"><span style=3D"color: rgb(0, 0, 0); font-family: A=
-rial; font-size: 14.666666666666666px; white-space: pre-wrap; background-co=
-lor: transparent; line-height: 1.38;"><br></span></p><p dir=3D"ltr" style=
-=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style=3D"colo=
-r: rgb(0, 0, 0); font-family: Arial; font-size: 14.666666666666666px; white=
--space: pre-wrap; background-color: transparent; line-height: 1.38;">Curren=
-t Dev Position: YP 2.2 M3</span></p><p dir=3D"ltr" style=3D"line-height:1.3=
-8;margin-top:0pt;margin-bottom:0pt;"><span style=3D"font-size: 14.666666666=
-666666px; font-family: Arial; color: rgb(0, 0, 0); background-color: transp=
-arent; vertical-align: baseline; white-space: pre-wrap;">Next Deadline: YP =
-2.2 M3 which will be Aug 29th (5:00pm GMT)</span></p><br><p dir=3D"ltr" sty=
-le=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style=3D"fo=
-nt-size: 14.666666666666666px; font-family: Arial; color: rgb(0, 0, 0); bac=
-kground-color: transparent; vertical-align: baseline; white-space: pre-wrap=
-;">SWAT team rotation: Randy -&gt; Leo</span></p><p dir=3D"ltr" style=3D"li=
-ne-height:1.38;margin-top:0pt;margin-bottom:0pt;"><a href=3D"https://wiki.y=
-octoproject.org/wiki/Yocto_Build_Failure_Swat_Team" style=3D"text-decoratio=
-n:none;"><span style=3D"font-size: 14.666666666666666px; font-family: Conso=
-las; color: rgb(17, 85, 204); background-color: transparent; text-decoratio=
-n: underline; vertical-align: baseline; white-space: pre-wrap;">https://wik=
-i.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team</span></a></p><br><p =
-dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><s=
-pan style=3D"font-size: 14.666666666666666px; font-family: Arial; color: rg=
-b(0, 0, 0); background-color: transparent; vertical-align: baseline; white-=
-space: pre-wrap;">Key Status/Updates:</span></p><ul style=3D"margin-top:0pt=
-;margin-bottom:0pt;"><li dir=3D"ltr" style=3D"list-style-type: disc; font-s=
-ize: 14.666666666666666px; font-family: Arial; color: rgb(0, 0, 0); backgro=
-und-color: transparent; vertical-align: baseline;"><p dir=3D"ltr" style=3D"=
-line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style=3D"font-siz=
-e: 14.666666666666666px; background-color: transparent; vertical-align: bas=
-eline; white-space: pre-wrap;">We decided to release M2 with known issues. =
-We have a good handle on some of them, there are others which are unknown b=
-ut there is no one specific cause of the bugs. </span></p></li><li dir=3D"l=
-tr" style=3D"list-style-type: disc; font-size: 14.666666666666666px; font-f=
-amily: Arial; color: rgb(0, 0, 0); background-color: transparent; vertical-=
-align: baseline;"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;m=
-argin-bottom:0pt;"><span style=3D"font-size: 14.666666666666666px; backgrou=
-nd-color: transparent; vertical-align: baseline; white-space: pre-wrap;">We=
- will run another full QA pass before M3 to try and make sure we are dealin=
-g with the known bugs.</span></p></li><li dir=3D"ltr" style=3D"list-style-t=
-ype: disc; font-size: 14.666666666666666px; font-family: Arial; color: rgb(=
-0, 0, 0); background-color: transparent; vertical-align: baseline;"><p dir=
-=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span=
- style=3D"font-size: 14.666666666666666px; background-color: transparent; v=
-ertical-align: baseline; white-space: pre-wrap;">Merging of patches continu=
-es to be slow as it is proving hard to work out which patches are causing w=
-hich breakage. The test matrix continues to increase with people being upse=
-t if their personal favourite set of options breaks yet we can=E2=80=99t ex=
-pect to test and catch every regression. We=E2=80=99re not sure what to do =
-about this, the scope of the testing is greater than it ever has been but i=
-t does seem to be slowing things down.</span></p></li><li dir=3D"ltr" style=
-=3D"list-style-type: disc; font-size: 14.666666666666666px; font-family: Ar=
-ial; color: rgb(0, 0, 0); background-color: transparent; vertical-align: ba=
-seline;"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bot=
-tom:0pt;"><span style=3D"font-size: 14.666666666666666px; background-color:=
- transparent; vertical-align: baseline; white-space: pre-wrap;">A patch for=
- performance issues with pseudo when using xattrs have was merged</span></p=
-></li><li dir=3D"ltr" style=3D"list-style-type: disc; font-size: 14.6666666=
-66666666px; font-family: Arial; color: rgb(0, 0, 0); background-color: tran=
-sparent; vertical-align: baseline;"><p dir=3D"ltr" style=3D"line-height:1.3=
-8;margin-top:0pt;margin-bottom:0pt;"><span style=3D"font-size: 14.666666666=
-666666px; background-color: transparent; vertical-align: baseline; white-sp=
-ace: pre-wrap;">2.1.1 is currently in QA and is expected to be completed ea=
-rly next week, this update contains numerous fixes for for a variety of are=
-as including CVEs, GCC 6.x on Host OS and updated SRC_URIs</span></p></li><=
-/ul><br><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bott=
-om:0pt;"><span style=3D"font-size: 14.666666666666666px; font-family: Arial=
-; color: rgb(0, 0, 0); background-color: transparent; vertical-align: basel=
-ine; white-space: pre-wrap;">Key YP 2.2 Dates:</span></p><ul style=3D"margi=
-n-top:0pt;margin-bottom:0pt;"><li dir=3D"ltr" style=3D"list-style-type: dis=
-c; font-size: 14.666666666666666px; font-family: Arial; color: rgb(0, 0, 0)=
-; background-color: transparent; vertical-align: baseline;"><p dir=3D"ltr" =
-style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style=3D=
-"font-size: 14.666666666666666px; background-color: transparent; vertical-a=
-lign: baseline; white-space: pre-wrap;">YP 2.2 M1 release would be: 6/24/16=
-</span></p></li><li dir=3D"ltr" style=3D"list-style-type: disc; font-size: =
-14.666666666666666px; font-family: Arial; color: rgb(0, 0, 0); background-c=
-olor: transparent; vertical-align: baseline;"><p dir=3D"ltr" style=3D"line-=
-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style=3D"font-size: 14=
-.666666666666666px; background-color: transparent; vertical-align: baseline=
-; white-space: pre-wrap;">YP 2.2 M2 cut off would be: 7/18/16</span></p></l=
-i><li dir=3D"ltr" style=3D"list-style-type: disc; font-size: 14.66666666666=
-6666px; font-family: Arial; color: rgb(0, 0, 0); background-color: transpar=
-ent; vertical-align: baseline;"><p dir=3D"ltr" style=3D"line-height:1.38;ma=
-rgin-top:0pt;margin-bottom:0pt;"><span style=3D"font-size: 14.6666666666666=
-66px; background-color: transparent; vertical-align: baseline; white-space:=
- pre-wrap;">YP 2.2 M2 release would be: 7/29/16</span></p></li><li dir=3D"l=
-tr" style=3D"list-style-type: disc; font-size: 14.666666666666666px; font-f=
-amily: Arial; color: rgb(0, 0, 0); background-color: transparent; vertical-=
-align: baseline;"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;m=
-argin-bottom:0pt;"><span style=3D"font-size: 14.666666666666666px; backgrou=
-nd-color: transparent; vertical-align: baseline; white-space: pre-wrap;">YP=
- 2.2 M3 cut off would be: 8/29/16</span></p></li><li dir=3D"ltr" style=3D"l=
-ist-style-type: disc; font-size: 14.666666666666666px; font-family: Arial; =
-color: rgb(0, 0, 0); background-color: transparent; vertical-align: baselin=
-e;"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0=
-pt;"><span style=3D"font-size: 14.666666666666666px; background-color: tran=
-sparent; vertical-align: baseline; white-space: pre-wrap;">YP 2.2 M3 releas=
-e would be: 9/9/16</span></p></li><li dir=3D"ltr" style=3D"list-style-type:=
- disc; font-size: 14.666666666666666px; font-family: Arial; color: rgb(0, 0=
-, 0); background-color: transparent; vertical-align: baseline;"><p dir=3D"l=
-tr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span styl=
-e=3D"font-size: 14.666666666666666px; background-color: transparent; vertic=
-al-align: baseline; white-space: pre-wrap;">YP 2.2 M4 cut off would be: 10/=
-3/16</span></p></li><li dir=3D"ltr" style=3D"list-style-type: disc; font-si=
-ze: 14.666666666666666px; font-family: Arial; color: rgb(0, 0, 0); backgrou=
-nd-color: transparent; vertical-align: baseline;"><p dir=3D"ltr" style=3D"l=
-ine-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style=3D"font-size=
-: 14.666666666666666px; background-color: transparent; vertical-align: base=
-line; white-space: pre-wrap;">YP 2.2 M4 release would be: 10/28/16</span></=
-p></li></ul><br><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;mar=
-gin-bottom:0pt;"><span style=3D"font-size: 14.666666666666666px; font-famil=
-y: Arial; color: rgb(0, 0, 0); background-color: transparent; vertical-alig=
-n: baseline; white-space: pre-wrap;">Tracking Metrics:</span></p><p dir=3D"=
-ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span sty=
-le=3D"font-size: 14.666666666666666px; font-family: Arial; color: rgb(0, 0,=
- 0); background-color: transparent; vertical-align: baseline; white-space: =
-pre-wrap;"><span class=3D"Apple-tab-span" style=3D"white-space:pre;">	</spa=
-n></span><span style=3D"font-size: 14.666666666666666px; font-family: Arial=
-; color: rgb(0, 0, 0); background-color: transparent; vertical-align: basel=
-ine; white-space: pre-wrap;">WDD 2714 (last week 2744)</span></p><p dir=3D"=
-ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-indent=
-: 36pt;"><span style=3D"font-size: 14.666666666666666px; font-family: Conso=
-las; color: rgb(0, 0, 0); background-color: transparent; vertical-align: ba=
-seline; white-space: pre-wrap;">(</span><a href=3D"https://wiki.yoctoprojec=
-t.org/charts/combo.html" style=3D"text-decoration:none;"><span style=3D"fon=
-t-size: 14.666666666666666px; font-family: Arial; color: rgb(17, 85, 204); =
-background-color: transparent; text-decoration: underline; vertical-align: =
-baseline; white-space: pre-wrap;">https://wiki.yoctoproject.org/charts/comb=
-o.html</span></a><span style=3D"font-size: 14.666666666666666px; font-famil=
-y: Consolas; color: rgb(0, 0, 0); background-color: transparent; vertical-a=
-lign: baseline; white-space: pre-wrap;">)</span></p><br><p dir=3D"ltr" styl=
-e=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style=3D"fon=
-t-size: 14.666666666666666px; font-family: Arial; color: rgb(0, 0, 0); back=
-ground-color: transparent; vertical-align: baseline; white-space: pre-wrap;=
-">Key Status Links for YP:</span></p><p dir=3D"ltr" style=3D"line-height:1.=
-38;margin-top:0pt;margin-bottom:0pt;"><a href=3D"https://wiki.yoctoproject.=
-org/wiki/Yocto_Project_v2.2_Status" style=3D"text-decoration:none;"><span s=
-tyle=3D"font-size: 14.666666666666666px; font-family: Consolas; color: rgb(=
-17, 85, 204); background-color: transparent; text-decoration: underline; ve=
-rtical-align: baseline; white-space: pre-wrap;">https://wiki.yoctoproject.o=
-rg/wiki/Yocto_Project_v2.2_Status</span></a></p><p dir=3D"ltr" style=3D"lin=
-e-height:1.38;margin-top:0pt;margin-bottom:0pt;"><a href=3D"https://wiki.yo=
-ctoproject.org/wiki/Yocto_2.2_Schedule" style=3D"text-decoration:none;"><sp=
-an style=3D"font-size: 14.666666666666666px; font-family: Consolas; color: =
-rgb(17, 85, 204); background-color: transparent; text-decoration: underline=
-; vertical-align: baseline; white-space: pre-wrap;">https://wiki.yoctoproje=
-ct.org/wiki/Yocto_2.2_Schedule</span></a></p><p dir=3D"ltr" style=3D"line-h=
-eight:1.38;margin-top:0pt;margin-bottom:0pt;"><a href=3D"https://wiki.yocto=
-project.org/wiki/Yocto_2.2_Features" style=3D"text-decoration:none;"><span =
-style=3D"font-size: 14.666666666666666px; font-family: Consolas; color: rgb=
-(17, 85, 204); background-color: transparent; text-decoration: underline; v=
-ertical-align: baseline; white-space: pre-wrap;">https://wiki.yoctoproject.=
-org/wiki/Yocto_2.2_Features</span></a></p><br><p dir=3D"ltr" style=3D"line-=
-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style=3D"font-size: 14=
-.666666666666666px; font-family: Arial; color: rgb(0, 0, 0); background-col=
-or: transparent; vertical-align: baseline; white-space: pre-wrap;">[If anyo=
-ne has suggestions for other information you=E2=80=99d like to see on this =
-weekly status update, let us know!]</span></p><br></span></div><div></div><=
-/body></html>
-
---=-qe0GKr7eaYlxSL0K2z1l--
+--------------E25633BCC7CEB611EC17D171--
