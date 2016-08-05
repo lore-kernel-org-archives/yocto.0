@@ -1,76 +1,37 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <S.Jaritz@esa-grimma.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 914DDE00D03; Fri,  5 Aug 2016 01:00:42 -0700 (PDT)
+	id F1DC9E00DD1; Fri,  5 Aug 2016 01:14:29 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.220.49 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (raj.khem[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pa0-f49.google.com (mail-pa0-f49.google.com
-	[209.85.220.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C8437E00CFE
-	for <yocto@yoctoproject.org>; Fri,  5 Aug 2016 01:00:39 -0700 (PDT)
-Received: by mail-pa0-f49.google.com with SMTP id iw10so90719579pac.2
-	for <yocto@yoctoproject.org>; Fri, 05 Aug 2016 01:00:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=subject:to:references:cc:from:organization:message-id:date
-	:user-agent:mime-version:in-reply-to:content-transfer-encoding;
-	bh=yniM7QzGpfzm5cXJn+N/UUoPOcRGh0WmxBi3o0E/XnI=;
-	b=mOuRlXW2uMgmPGTl40EQ1qsIQJIDQ8oMS4xFNzOkvUuDMjZ7P+vtJegPxV8KE/D+na
-	Cqv0zZsu+8pJq3JuEplKQSj+Yn6LXVVBNvs9vzF6c5OX4DH11NSGYRS00f6wWz159b+O
-	BQ5C9UhY3yz1TA9IWHG44IlV6yguosOIVFPVIxhS+1L2NVhYd5zm39l/5z1Hw0hBSP8p
-	sPKmZy6MjGf+NKX5VSVAdsZuJpGBaqFae56q14o7PBVsVHcKHK9Tv7ZTtX5ILOhkIwz6
-	+TbcvXqh47wkaHR1+mJLbNo9fuhUaHr5u3gabIkM4T3fK0/Pb3fpiRLhwOYt7rU6nCSv
-	jrfw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:subject:to:references:cc:from:organization
-	:message-id:date:user-agent:mime-version:in-reply-to
-	:content-transfer-encoding;
-	bh=yniM7QzGpfzm5cXJn+N/UUoPOcRGh0WmxBi3o0E/XnI=;
-	b=UIvlZ8LyxZjC7Kk8381W8lhynFanclfC9X4CjBCGAJaQuIYwP85noYEorp/WEAOLt1
-	eUeb6Bn0oboB9e0CQERlMMUhzL+zoC1fDOgoLMHiRm002hQTrQ+wH89dm98EIhESOCX/
-	7IwyMuzGmsPmnWxtPH/n/s0atNo87Q18YBlGzGopEf7lxinFapq2zQOG4naSG0L/R4Lt
-	XqEo7U7N5vJ0WyUNIIm3Y8GoMwwLranJJhQ2I0CXdHT+aELsoXOB9gLYnzlHALR+8h9g
-	7Mp6hg50tpHDAh5n3IiUve47UoEgRS+gwvlLkRtFi/XcTQOudMDsd16MoMxzPHeoJ/Yb
-	ZAXw==
-X-Gm-Message-State: AEkooutB72qLbvntVV39QeKjj2DuUGiMQZ3SMbcIodLApJjOqiERCroBaYU3PoqtudQPKA==
-X-Received: by 10.66.100.162 with SMTP id ez2mr108055918pab.123.1470384038174; 
-	Fri, 05 Aug 2016 01:00:38 -0700 (PDT)
-Received: from CACSVMO-14452.local ([2601:646:8882:b8c:4ce8:4a2:83d6:3a55])
-	by smtp.gmail.com with ESMTPSA id
-	l191sm25563028pfc.91.2016.08.05.01.00.36
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 05 Aug 2016 01:00:36 -0700 (PDT)
-To: S.Jaritz@esa-grimma.de
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from gse01.esa-grimma.de (gse01.esa-grimma.de [62.41.26.213])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 05862E00CFE
+	for <yocto@yoctoproject.org>; Fri,  5 Aug 2016 01:14:24 -0700 (PDT)
+In-Reply-To: <d60ef8ed-fe99-2f06-ae97-754e2c4b563f@gmail.com>
 References: <OF371096A6.242D0E60-ONC1258006.0025F610-C1258006.0026E5CC@esa-grimma.de>
 	<47ea7f13-1abc-f969-c928-1da2e0075b36@gmail.com>
 	<OF66EF9F5A.E44F4404-ONC1258006.00282195-C1258006.0028AE4A@esa-grimma.de>
 	<8bd3a89e-89c9-258e-1957-25373abb9e71@gmail.com>
 	<OF857CF978.55289CE6-ONC1258006.002A1AD6-C1258006.002B4528@esa-grimma.de>
-From: Khem Raj <raj.khem@gmail.com>
-Organization: himvis.com
-Message-ID: <d60ef8ed-fe99-2f06-ae97-754e2c4b563f@gmail.com>
-Date: Fri, 5 Aug 2016 01:00:55 -0700
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:45.0)
-	Gecko/20100101 Thunderbird/45.2.0
+	<d60ef8ed-fe99-2f06-ae97-754e2c4b563f@gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <OF857CF978.55289CE6-ONC1258006.002A1AD6-C1258006.002B4528@esa-grimma.de>
+X-KeepSent: F8521353:BA311E01-C1258006:002D2ACF;
+ type=4; name=$KeepSent
+X-Mailer: IBM Notes Release 9.0 March 08, 2013
+Message-ID: <OFF8521353.BA311E01-ONC1258006.002D2ACF-C1258006.002D432C@esa-grimma.de>
+From: S.Jaritz@esa-grimma.de
+Date: Fri, 5 Aug 2016 10:14:23 +0200
+X-MIMETrack: Serialize by Router on GSE01/Server/ESA-Grimma/DE(Release
+	9.0.1FP3 HF42|February 03, 2015) at 05.08.2016 10:14:26,
+	Serialize complete at 05.08.2016 10:14:26
 Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: Antwort: Re: Antwort: Re: How to set the sysroot toolchain to hard float
+Subject: Antwort: Re: Antwort: Re: Antwort: Re: How to set the sysroot toolchain to hard float
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -82,9 +43,66 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Aug 2016 08:00:42 -0000
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Fri, 05 Aug 2016 08:14:30 -0000
+Content-Type: multipart/alternative;
+	boundary="=_alternative 002D432CC1258006_="
+
+--=_alternative 002D432CC1258006_=
+Content-Type: text/plain; charset="ISO-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+when forcing dpkg it is installed and it works.
+
+Stefan Jaritz
+
+------------------------------------------------------------
+ESA Elektroschaltanlagen Grimma GmbH
+Broner Ring 30
+04668 Grimma
+Telefon: +49 3437 9211 176
+Telefax: +49 3437 9211 26
+E-Mail: s.jaritz@esa-grimma.de
+Internet: www.esa-grimma.de
+
+
+Gesch=E4ftsf=FChrer:
+Dipl.-Ing. J=F6rg Gaitzsch
+J=F6rg Reinker
+
+Sitz der Gesellschaft: Grimma
+Ust.-ID: DE 141784437
+Amtsgericht: Leipzig, HRB 5159
+Steuernummer: 238/108/00755
+
+
+Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte=20
+Informationen.=20
+Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=FCmlich=20
+erhalten=20
+haben, informieren Sie bitte sofort den Absender und l=F6schen Sie diese=20
+Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe dieser=20
+Mail=20
+ist nicht gestattet.
+
+This e-mail may contain confidential and/or privileged information. If you =
+
+are=20
+not the intended recipient (or have received this e-mail in error) please=20
+notify the sender immediately and destroy this e-mail. Any unauthorized=20
+copying, disclosure or distribution of the material in this e-mail is=20
+strictly=20
+forbidden.
+
+
+
+Von:    Khem Raj <raj.khem@gmail.com>
+An:     S.Jaritz@esa-grimma.de
+Kopie:  Yocto Project <yocto@yoctoproject.org>
+Datum:  05.08.2016 10:00
+Betreff:        Re: Antwort: Re: Antwort: Re: [yocto] How to set the=20
+sysroot toolchain to hard float
+
+
 
 
 
@@ -92,20 +110,23 @@ On 8/5/16 12:52 AM, S.Jaritz@esa-grimma.de wrote:
 > I read the printings like you and I am confused.
 > let's take valgrind as example:
 > 1.) the rootfs build goes to:
-> /poky/build/tmp/work/cortexa5hf-vfp-poky-linux-gnueabi/valgrind/3.11.0-r0/deploy-debs/cortexa5hf-vfp/valgrind_3.11.0-r0_armhf.deb
-> 
-> 
+>=20
+/poky/build/tmp/work/cortexa5hf-vfp-poky-linux-gnueabi/valgrind/3.11.0-r0/d=
+eploy-debs/cortexa5hf-vfp/valgrind=5F3.11.0-r0=5Farmhf.deb
+>=20
+>=20
 > the extension of the deb package say it its hard float.
-> 
+>=20
 > 2.) I transfer it to my device
-> 
+>=20
 > 3.) console at the evalboard
 > #############
 > root@sama5d3xek:/tmp# dpkg -r valgrind
 > (Reading database ... 14780 files and directories currently installed.)
 > Removing valgrind:armhf (3.11.0-r0) ...
-> root@sama5d3xek:/tmp# dpkg -i valgrind_3.11.0-r0_armhf.deb
-> dpkg: error processing archive valgrind_3.11.0-r0_armhf.deb (--install):
+> root@sama5d3xek:/tmp# dpkg -i valgrind=5F3.11.0-r0=5Farmhf.deb
+> dpkg: error processing archive valgrind=5F3.11.0-r0=5Farmhf.deb (--instal=
+l):
 >  package architecture (armhf) does not match system (armel)
 
 can you force it using dpkg -i --force-architecture and see if the
@@ -113,19 +134,24 @@ installed package works ? if it does then its the dpkg package arches
 which aren't correct.
 
 > Errors were encountered while processing:
->  valgrind_3.11.0-r0_armhf.deb
+>  valgrind=5F3.11.0-r0=5Farmhf.deb
 > root@sama5d3xek:/tmp#
 > #############
-> 
+>=20
 > I got the information from here(hope it works):
-> https://books.google.de/books?id=yNi6BwAAQBAJ&pg=PA148&lpg=PA148&dq=yocto+set+floating+point&source=bl&ots=HXh65nWpHc&sig=4UElzv4dz70xECsqw5lnCYuUZiI&hl=de&sa=X&ved=0ahUKEwjOhrib2KnOAhVB1RQKHbXkAPAQ6AEIQDAE#v=onepage&q=yocto%20set%20floating%20point&f=false
-> 
-> 
+>=20
+https://books.google.de/books?id=3DyNi6BwAAQBAJ&pg=3DPA148&lpg=3DPA148&dq=
+=3Dyocto+set+floating+point&source=3Dbl&ots=3DHXh65nWpHc&sig=3D4UElzv4dz70x=
+ECsqw5lnCYuUZiI&hl=3Dde&sa=3DX&ved=3D0ahUKEwjOhrib2KnOAhVB1RQKHbXkAPAQ6AEIQ=
+DAE#v=3Donepage&q=3Dyocto%20set%20floating%20point&f=3Dfalse
+
+>=20
+>=20
 > Maybe the deb generation has a bug?
-> 
-> 
+>=20
+>=20
 > Stefan Jaritz
-> 
+>=20
 > ------------------------------------------------------------
 > ESA Elektroschaltanlagen Grimma GmbH
 > Broner Ring 30
@@ -134,37 +160,38 @@ which aren't correct.
 > Telefax: +49 3437 9211 26
 > E-Mail: s.jaritz@esa-grimma.de
 > Internet: www.esa-grimma.de
-> 
-> 
-> Geschäftsführer:
-> Dipl.-Ing. Jörg Gaitzsch
-> Jörg Reinker
-> 
+>=20
+>=20
+> Gesch=E4ftsf=FChrer:
+> Dipl.-Ing. J=F6rg Gaitzsch
+> J=F6rg Reinker
+>=20
 > Sitz der Gesellschaft: Grimma
 > Ust.-ID: DE 141784437
 > Amtsgericht: Leipzig, HRB 5159
 > Steuernummer: 238/108/00755
-> 
-> 
-> Diese E-Mail enthält vertrauliche und/oder rechtlich geschützte
+>=20
+>=20
+> Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte
 > Informationen.
-> Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrtümlich
+> Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=FCmlich
 > erhalten
-> haben, informieren Sie bitte sofort den Absender und löschen Sie diese
+> haben, informieren Sie bitte sofort den Absender und l=F6schen Sie diese
 > Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe dieser
 > Mail
 > ist nicht gestattet.
-> 
+>=20
 > This e-mail may contain confidential and/or privileged information. If
 > you are
-> not the intended recipient (or have received this e-mail in error) please
+> not the intended recipient (or have received this e-mail in error)=20
+please
 > notify the sender immediately and destroy this e-mail. Any unauthorized
 > copying, disclosure or distribution of the material in this e-mail is
 > strictly
 > forbidden.
-> 
-> 
-> 
+>=20
+>=20
+>=20
 > Von:        Khem Raj <raj.khem@gmail.com>
 > An:        S.Jaritz@esa-grimma.de
 > Kopie:        Yocto Project <yocto@yoctoproject.org>
@@ -172,11 +199,11 @@ which aren't correct.
 > Betreff:        Re: Antwort: Re: [yocto] How to set the sysroot
 > toolchain to hard float
 > ------------------------------------------------------------------------
-> 
-> 
-> 
-> 
-> 
+>=20
+>=20
+>=20
+>=20
+>=20
 > On 8/5/16 12:24 AM, S.Jaritz@esa-grimma.de wrote:
 >> hej
 >>
@@ -187,32 +214,33 @@ which aren't correct.
 >> @print configuration output:
 >> ###########
 >> Build Configuration:
->> BB_VERSION        = "1.30.0"
->> BUILD_SYS         = "x86_64-linux"
->> NATIVELSBSTRING   = "universal"
->> TARGET_SYS        = "arm-poky-linux-gnueabi"
->> MACHINE           = "sama5d3xek"
->> DISTRO            = "poky-atmel"
->> DISTRO_VERSION    = "2.1.1"
->> TUNE_FEATURES     = "arm armv7a vfp thumb            callconvention-hard
-> 
+>> BB=5FVERSION        =3D "1.30.0"
+>> BUILD=5FSYS         =3D "x86=5F64-linux"
+>> NATIVELSBSTRING   =3D "universal"
+>> TARGET=5FSYS        =3D "arm-poky-linux-gnueabi"
+>> MACHINE           =3D "sama5d3xek"
+>> DISTRO            =3D "poky-atmel"
+>> DISTRO=5FVERSION    =3D "2.1.1"
+>> TUNE=5FFEATURES     =3D "arm armv7a vfp thumb callconvention-hard
+>=20
 > here it is marking that your build is using hard-float. are you running
 > image from same build on the target ? or is it some prebuilt image that
 > you are trying to add on to ?
-> 
+>=20
 >>            cortexa5"
->> TARGET_FPU        = "hard"
->> meta              
->> meta-poky        
->> meta-yocto-bsp    = "krogoth:f5da2a5913319ad6ac2141438ba1aa17576326ab"
->> meta-atmel        = "krogoth:784a6a7fe94e6939325f60f4dd2cc24987ff090d"
->> meta-skeleton     = "krogoth:f5da2a5913319ad6ac2141438ba1aa17576326ab"
->> meta-oe          
->> meta-networking  
->> meta-python       = "krogoth:247b1267bbe95719cd4877d2d3cfbaf2a2f4865a"
+>> TARGET=5FFPU        =3D "hard"
+>> meta=20
+>> meta-poky=20
+>> meta-yocto-bsp    =3D "krogoth:f5da2a5913319ad6ac2141438ba1aa17576326ab"
+>> meta-atmel        =3D "krogoth:784a6a7fe94e6939325f60f4dd2cc24987ff090d"
+>> meta-skeleton     =3D "krogoth:f5da2a5913319ad6ac2141438ba1aa17576326ab"
+>> meta-oe=20
+>> meta-networking=20
+>> meta-python       =3D "krogoth:247b1267bbe95719cd4877d2d3cfbaf2a2f4865a"
 >> ###########
 >>
->> @TOOLCHAIN_OPTIONS: Where these are set in custom layers(like meta-atmel)?
+>> @TOOLCHAIN=5FOPTIONS: Where these are set in custom layers(like=20
+meta-atmel)?
 >>
 >> regards
 >>
@@ -228,9 +256,9 @@ which aren't correct.
 >> Internet: www.esa-grimma.de
 >>
 >>
->> Geschäftsführer:
->> Dipl.-Ing. Jörg Gaitzsch
->> Jörg Reinker
+>> Gesch=E4ftsf=FChrer:
+>> Dipl.-Ing. J=F6rg Gaitzsch
+>> J=F6rg Reinker
 >>
 >> Sitz der Gesellschaft: Grimma
 >> Ust.-ID: DE 141784437
@@ -238,18 +266,20 @@ which aren't correct.
 >> Steuernummer: 238/108/00755
 >>
 >>
->> Diese E-Mail enthält vertrauliche und/oder rechtlich geschützte
+>> Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte
 >> Informationen.
->> Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrtümlich
+>> Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=FCmlich
 >> erhalten
->> haben, informieren Sie bitte sofort den Absender und löschen Sie diese
->> Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe dieser
+>> haben, informieren Sie bitte sofort den Absender und l=F6schen Sie diese
+>> Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe=20
+dieser
 >> Mail
 >> ist nicht gestattet.
 >>
 >> This e-mail may contain confidential and/or privileged information. If
 >> you are
->> not the intended recipient (or have received this e-mail in error) please
+>> not the intended recipient (or have received this e-mail in error)=20
+please
 >> notify the sender immediately and destroy this e-mail. Any unauthorized
 >> copying, disclosure or distribution of the material in this e-mail is
 >> strictly
@@ -258,10 +288,13 @@ which aren't correct.
 >>
 >>
 >> Von:        Khem Raj <raj.khem@gmail.com>
->> An:        S.Jaritz@esa-grimma.de, Yocto Project <yocto@yoctoproject.org>
+>> An:        S.Jaritz@esa-grimma.de, Yocto Project=20
+<yocto@yoctoproject.org>
 >> Datum:        05.08.2016 09:16
->> Betreff:        Re: [yocto] How to set the sysroot toolchain to hard float
->> ------------------------------------------------------------------------
+>> Betreff:        Re: [yocto] How to set the sysroot toolchain to hard=20
+float
+>>=20
+------------------------------------------------------------------------
 >>
 >>
 >>
@@ -271,27 +304,31 @@ which aren't correct.
 >>> Hej
 >>>
 >>> I am building for the Atmel Evalbaord SAMA5D3x a Yocto Image. It works
->>> fine, but sysroot toolchain is set to soft float instead of hard float.
+>>> fine, but sysroot toolchain is set to soft float instead of hard=20
+float.
 >>> How can I set the sysroot toolchain to hard float?
 >>>
 >>> My actual configuration:
 >>> 1.) use meta-atmel layer
->>> 2.) in /build/conf/layer.conf -> MACHINE ??= "sama5d3xek"
+>>> 2.) in /build/conf/layer.conf -> MACHINE ??=3D "sama5d3xek"
 >>>
 >>> @meta-atmel:
 >>> /conf/machine/sama5d3xek.conf includes sama5d3.inc
 >>> in this file:
->>> SOC_FAMILY = "sama5:sama5d3"
->>> DEFAULTTUNE = "cortexa5thf"
+>>> SOC=5FFAMILY =3D "sama5:sama5d3"
+>>> DEFAULTTUNE =3D "cortexa5thf"
 >>>
->>> I am not understanding why for the sysroot the default tune is not used.
+>>> I am not understanding why for the sysroot the default tune is not=20
+used.
 >>> Any ideas are welcome.
 >>
->> How did you find that out ? can you send your build configuration output
+>> How did you find that out ? can you send your build configuration=20
+output
 >> that bitbake prints when starting the build ?
->> secondly, TOOLCHAIN_OPTIONS is what decides this ABI
->> so when you use CC and CXX and friends, the right thing happens since it
->> will be appending TOOLCHAIN_OPTIONS to these vars. but if you use bare
+>> secondly, TOOLCHAIN=5FOPTIONS is what decides this ABI
+>> so when you use CC and CXX and friends, the right thing happens since=20
+it
+>> will be appending TOOLCHAIN=5FOPTIONS to these vars. but if you use bare
 >> cross compiler that will default to soft-float
 >>
 >>>
@@ -309,9 +346,9 @@ which aren't correct.
 >>> Internet: www.esa-grimma.de
 >>>
 >>>
->>> Geschäftsführer:
->>> Dipl.-Ing. Jörg Gaitzsch
->>> Jörg Reinker
+>>> Gesch=E4ftsf=FChrer:
+>>> Dipl.-Ing. J=F6rg Gaitzsch
+>>> J=F6rg Reinker
 >>>
 >>> Sitz der Gesellschaft: Grimma
 >>> Ust.-ID: DE 141784437
@@ -319,24 +356,434 @@ which aren't correct.
 >>> Steuernummer: 238/108/00755
 >>>
 >>>
->>> Diese E-Mail enthält vertrauliche und/oder rechtlich geschützte
+>>> Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte
 >>> Informationen.
->>> Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrtümlich
+>>> Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=FCmlich
 >>> erhalten
->>> haben, informieren Sie bitte sofort den Absender und löschen Sie diese
->>> Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe dieser
+>>> haben, informieren Sie bitte sofort den Absender und l=F6schen Sie diese
+>>> Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe=20
+dieser
 >>> Mail
 >>> ist nicht gestattet.
 >>>
 >>> This e-mail may contain confidential and/or privileged information. If
 >>> you are
->>> not the intended recipient (or have received this e-mail in error) please
->>> notify the sender immediately and destroy this e-mail. Any unauthorized
+>>> not the intended recipient (or have received this e-mail in error)=20
+please
+>>> notify the sender immediately and destroy this e-mail. Any=20
+unauthorized
 >>> copying, disclosure or distribution of the material in this e-mail is
 >>> strictly
 >>> forbidden.
 >>>
 >>>
 >>
-> 
+>=20
 
+
+--=_alternative 002D432CC1258006_=
+Content-Type: text/html; charset="ISO-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<font size=3D2 face=3D"sans-serif">when forcing dpkg it is installed and it
+works.</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">Stefan Jaritz<br>
+</font>
+<br><font size=3D2 face=3D"sans-serif">------------------------------------=
+------------------------<br>
+ESA Elektroschaltanlagen Grimma GmbH<br>
+Broner Ring 30<br>
+04668 Grimma<br>
+Telefon: +49 3437 9211 176<br>
+Telefax: +49 3437 9211 26<br>
+E-Mail: s.jaritz@esa-grimma.de<br>
+Internet: </font><a href=3D"www.esa-grimma.de"><font size=3D2 face=3D"sans-=
+serif">www.esa-grimma.de</font></a><font size=3D2 face=3D"sans-serif"><br>
+<br>
+<br>
+Gesch=E4ftsf=FChrer:<br>
+Dipl.-Ing. J=F6rg Gaitzsch<br>
+J=F6rg Reinker<br>
+<br>
+Sitz der Gesellschaft: Grimma<br>
+Ust.-ID: DE 141784437<br>
+Amtsgericht: Leipzig, HRB 5159<br>
+Steuernummer: 238/108/00755<br>
+<br>
+<br>
+Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte Informa=
+tionen.
+<br>
+Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=FCmlich
+erhalten <br>
+haben, informieren Sie bitte sofort den Absender und l=F6schen Sie diese
+<br>
+Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe dieser
+Mail <br>
+ist nicht gestattet.<br>
+<br>
+This e-mail may contain confidential and/or privileged information. If
+you are <br>
+not the intended recipient (or have received this e-mail in error) please
+<br>
+notify the sender immediately and destroy this e-mail. Any unauthorized
+<br>
+copying, disclosure or distribution of the material in this e-mail is stric=
+tly
+<br>
+forbidden.</font>
+<br>
+<br>
+<br>
+<br><font size=3D1 color=3D#5f5f5f face=3D"sans-serif">Von: &nbsp; &nbsp; &=
+nbsp;
+&nbsp;</font><font size=3D1 face=3D"sans-serif">Khem Raj &lt;raj.khem@gmail=
+.com&gt;</font>
+<br><font size=3D1 color=3D#5f5f5f face=3D"sans-serif">An: &nbsp; &nbsp; &n=
+bsp;
+&nbsp;</font><font size=3D1 face=3D"sans-serif">S.Jaritz@esa-grimma.de</fon=
+t>
+<br><font size=3D1 color=3D#5f5f5f face=3D"sans-serif">Kopie: &nbsp; &nbsp;=
+ &nbsp;
+&nbsp;</font><font size=3D1 face=3D"sans-serif">Yocto Project &lt;yocto@yoc=
+toproject.org&gt;</font>
+<br><font size=3D1 color=3D#5f5f5f face=3D"sans-serif">Datum: &nbsp; &nbsp;=
+ &nbsp;
+&nbsp;</font><font size=3D1 face=3D"sans-serif">05.08.2016 10:00</font>
+<br><font size=3D1 color=3D#5f5f5f face=3D"sans-serif">Betreff: &nbsp; &nbs=
+p;
+&nbsp; &nbsp;</font><font size=3D1 face=3D"sans-serif">Re: Antwort:
+Re: Antwort: Re: [yocto] How to set the sysroot toolchain to hard float</fo=
+nt>
+<br>
+<hr noshade>
+<br>
+<br>
+<br><tt><font size=3D2><br>
+<br>
+On 8/5/16 12:52 AM, S.Jaritz@esa-grimma.de wrote:<br>
+&gt; I read the printings like you and I am confused.<br>
+&gt; let's take valgrind as example:<br>
+&gt; 1.) the rootfs build goes to:<br>
+&gt; /poky/build/tmp/work/cortexa5hf-vfp-poky-linux-gnueabi/valgrind/3.11.0=
+-r0/deploy-debs/cortexa5hf-vfp/valgrind=5F3.11.0-r0=5Farmhf.deb<br>
+&gt; <br>
+&gt; <br>
+&gt; the extension of the deb package say it its hard float.<br>
+&gt; <br>
+&gt; 2.) I transfer it to my device<br>
+&gt; <br>
+&gt; 3.) console at the evalboard<br>
+&gt; #############<br>
+&gt; root@sama5d3xek:/tmp# dpkg -r valgrind<br>
+&gt; (Reading database ... 14780 files and directories currently installed.=
+)<br>
+&gt; Removing valgrind:armhf (3.11.0-r0) ...<br>
+&gt; root@sama5d3xek:/tmp# dpkg -i valgrind=5F3.11.0-r0=5Farmhf.deb<br>
+&gt; dpkg: error processing archive valgrind=5F3.11.0-r0=5Farmhf.deb (--ins=
+tall):<br>
+&gt; &nbsp;package architecture (armhf) does not match system (armel)<br>
+<br>
+can you force it using dpkg -i --force-architecture and see if the<br>
+installed package works ? if it does then its the dpkg package arches<br>
+which aren't correct.<br>
+<br>
+&gt; Errors were encountered while processing:<br>
+&gt; &nbsp;valgrind=5F3.11.0-r0=5Farmhf.deb<br>
+&gt; root@sama5d3xek:/tmp#<br>
+&gt; #############<br>
+&gt; <br>
+&gt; I got the information from here(hope it works):<br>
+&gt; </font></tt><a href=3D"https://books.google.de/books?id=3DyNi6BwAAQBAJ=
+&amp;pg=3DPA148&amp;lpg=3DPA148&amp;dq=3Dyocto+set+floating+point&amp;sourc=
+e=3Dbl&amp;ots=3DHXh65nWpHc&amp;sig=3D4UElzv4dz70xECsqw5lnCYuUZiI&amp;hl=3D=
+de&amp;sa=3DX&amp;ved=3D0ahUKEwjOhrib2KnOAhVB1RQKHbXkAPAQ6AEIQDAE#v=3Donepa=
+ge&amp;q=3Dyocto%20set%20floating%20point&amp;f=3Dfalse"><tt><font size=3D2=
+>https://books.google.de/books?id=3DyNi6BwAAQBAJ&amp;pg=3DPA148&amp;lpg=3DP=
+A148&amp;dq=3Dyocto+set+floating+point&amp;source=3Dbl&amp;ots=3DHXh65nWpHc=
+&amp;sig=3D4UElzv4dz70xECsqw5lnCYuUZiI&amp;hl=3Dde&amp;sa=3DX&amp;ved=3D0ah=
+UKEwjOhrib2KnOAhVB1RQKHbXkAPAQ6AEIQDAE#v=3Donepage&amp;q=3Dyocto%20set%20fl=
+oating%20point&amp;f=3Dfalse</font></tt></a><tt><font size=3D2><br>
+&gt; <br>
+&gt; <br>
+&gt; Maybe the deb generation has a bug?<br>
+&gt; <br>
+&gt; <br>
+&gt; Stefan Jaritz<br>
+&gt; <br>
+&gt; ------------------------------------------------------------<br>
+&gt; ESA Elektroschaltanlagen Grimma GmbH<br>
+&gt; Broner Ring 30<br>
+&gt; 04668 Grimma<br>
+&gt; Telefon: +49 3437 9211 176<br>
+&gt; Telefax: +49 3437 9211 26<br>
+&gt; E-Mail: s.jaritz@esa-grimma.de<br>
+&gt; Internet: </font></tt><a href=3D"www.esa-grimma.de"><tt><font size=3D2=
+>www.esa-grimma.de</font></tt></a><tt><font size=3D2><br>
+&gt; <br>
+&gt; <br>
+&gt; Gesch=E4ftsf=FChrer:<br>
+&gt; Dipl.-Ing. J=F6rg Gaitzsch<br>
+&gt; J=F6rg Reinker<br>
+&gt; <br>
+&gt; Sitz der Gesellschaft: Grimma<br>
+&gt; Ust.-ID: DE 141784437<br>
+&gt; Amtsgericht: Leipzig, HRB 5159<br>
+&gt; Steuernummer: 238/108/00755<br>
+&gt; <br>
+&gt; <br>
+&gt; Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte<br>
+&gt; Informationen.<br>
+&gt; Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=FCmli=
+ch<br>
+&gt; erhalten<br>
+&gt; haben, informieren Sie bitte sofort den Absender und l=F6schen Sie die=
+se<br>
+&gt; Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe
+dieser<br>
+&gt; Mail<br>
+&gt; ist nicht gestattet.<br>
+&gt; <br>
+&gt; This e-mail may contain confidential and/or privileged information.
+If<br>
+&gt; you are<br>
+&gt; not the intended recipient (or have received this e-mail in error)
+please<br>
+&gt; notify the sender immediately and destroy this e-mail. Any unauthorize=
+d<br>
+&gt; copying, disclosure or distribution of the material in this e-mail
+is<br>
+&gt; strictly<br>
+&gt; forbidden.<br>
+&gt; <br>
+&gt; <br>
+&gt; <br>
+&gt; Von: &nbsp; &nbsp; &nbsp; &nbsp;Khem Raj &lt;raj.khem@gmail.com&gt;<br>
+&gt; An: &nbsp; &nbsp; &nbsp; &nbsp;S.Jaritz@esa-grimma.de<br>
+&gt; Kopie: &nbsp; &nbsp; &nbsp; &nbsp;Yocto Project &lt;yocto@yoctoproject=
+.org&gt;<br>
+&gt; Datum: &nbsp; &nbsp; &nbsp; &nbsp;05.08.2016 09:27<br>
+&gt; Betreff: &nbsp; &nbsp; &nbsp; &nbsp;Re: Antwort: Re: [yocto] How to
+set the sysroot<br>
+&gt; toolchain to hard float<br>
+&gt; ----------------------------------------------------------------------=
+--<br>
+&gt; <br>
+&gt; <br>
+&gt; <br>
+&gt; <br>
+&gt; <br>
+&gt; On 8/5/16 12:24 AM, S.Jaritz@esa-grimma.de wrote:<br>
+&gt;&gt; hej<br>
+&gt;&gt;<br>
+&gt;&gt; @find out:<br>
+&gt;&gt; transfer a build package into the evalboard and try to install
+it. I am<br>
+&gt;&gt; using deb packages. dpkg gives me an error &nbsp;because of archit=
+ecture.<br>
+&gt;&gt;<br>
+&gt;&gt; @print configuration output:<br>
+&gt;&gt; ###########<br>
+&gt;&gt; Build Configuration:<br>
+&gt;&gt; BB=5FVERSION &nbsp; &nbsp; &nbsp; &nbsp;=3D &quot;1.30.0&quot;<br>
+&gt;&gt; BUILD=5FSYS &nbsp; &nbsp; &nbsp; &nbsp; =3D &quot;x86=5F64-linux&q=
+uot;<br>
+&gt;&gt; NATIVELSBSTRING &nbsp; =3D &quot;universal&quot;<br>
+&gt;&gt; TARGET=5FSYS &nbsp; &nbsp; &nbsp; &nbsp;=3D &quot;arm-poky-linux-g=
+nueabi&quot;<br>
+&gt;&gt; MACHINE &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =3D &quot;sama5d3xek&qu=
+ot;<br>
+&gt;&gt; DISTRO &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=3D &quot;poky-atm=
+el&quot;<br>
+&gt;&gt; DISTRO=5FVERSION &nbsp; &nbsp;=3D &quot;2.1.1&quot;<br>
+&gt;&gt; TUNE=5FFEATURES &nbsp; &nbsp; =3D &quot;arm armv7a vfp thumb &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;callconvention-hard<br>
+&gt; <br>
+&gt; here it is marking that your build is using hard-float. are you runnin=
+g<br>
+&gt; image from same build on the target ? or is it some prebuilt image
+that<br>
+&gt; you are trying to add on to ?<br>
+&gt; <br>
+&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;cortexa5&quot;<br>
+&gt;&gt; TARGET=5FFPU &nbsp; &nbsp; &nbsp; &nbsp;=3D &quot;hard&quot;<br>
+&gt;&gt; meta &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<br>
+&gt;&gt; meta-poky &nbsp; &nbsp; &nbsp; &nbsp;<br>
+&gt;&gt; meta-yocto-bsp &nbsp; &nbsp;=3D &quot;krogoth:f5da2a5913319ad6ac21=
+41438ba1aa17576326ab&quot;<br>
+&gt;&gt; meta-atmel &nbsp; &nbsp; &nbsp; &nbsp;=3D &quot;krogoth:784a6a7fe9=
+4e6939325f60f4dd2cc24987ff090d&quot;<br>
+&gt;&gt; meta-skeleton &nbsp; &nbsp; =3D &quot;krogoth:f5da2a5913319ad6ac21=
+41438ba1aa17576326ab&quot;<br>
+&gt;&gt; meta-oe &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<br>
+&gt;&gt; meta-networking &nbsp;<br>
+&gt;&gt; meta-python &nbsp; &nbsp; &nbsp; =3D &quot;krogoth:247b1267bbe9571=
+9cd4877d2d3cfbaf2a2f4865a&quot;<br>
+&gt;&gt; ###########<br>
+&gt;&gt;<br>
+&gt;&gt; @TOOLCHAIN=5FOPTIONS: Where these are set in custom layers(like
+meta-atmel)?<br>
+&gt;&gt;<br>
+&gt;&gt; regards<br>
+&gt;&gt;<br>
+&gt;&gt; Stefan Jaritz<br>
+&gt;&gt;<br>
+&gt;&gt; ------------------------------------------------------------<br>
+&gt;&gt; ESA Elektroschaltanlagen Grimma GmbH<br>
+&gt;&gt; Broner Ring 30<br>
+&gt;&gt; 04668 Grimma<br>
+&gt;&gt; Telefon: +49 3437 9211 176<br>
+&gt;&gt; Telefax: +49 3437 9211 26<br>
+&gt;&gt; E-Mail: s.jaritz@esa-grimma.de<br>
+&gt;&gt; Internet: </font></tt><a href=3D"www.esa-grimma.de"><tt><font size=
+=3D2>www.esa-grimma.de</font></tt></a><tt><font size=3D2><br>
+&gt;&gt;<br>
+&gt;&gt;<br>
+&gt;&gt; Gesch=E4ftsf=FChrer:<br>
+&gt;&gt; Dipl.-Ing. J=F6rg Gaitzsch<br>
+&gt;&gt; J=F6rg Reinker<br>
+&gt;&gt;<br>
+&gt;&gt; Sitz der Gesellschaft: Grimma<br>
+&gt;&gt; Ust.-ID: DE 141784437<br>
+&gt;&gt; Amtsgericht: Leipzig, HRB 5159<br>
+&gt;&gt; Steuernummer: 238/108/00755<br>
+&gt;&gt;<br>
+&gt;&gt;<br>
+&gt;&gt; Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzt=
+e<br>
+&gt;&gt; Informationen.<br>
+&gt;&gt; Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=
+=FCmlich<br>
+&gt;&gt; erhalten<br>
+&gt;&gt; haben, informieren Sie bitte sofort den Absender und l=F6schen Sie
+diese<br>
+&gt;&gt; Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe
+dieser<br>
+&gt;&gt; Mail<br>
+&gt;&gt; ist nicht gestattet.<br>
+&gt;&gt;<br>
+&gt;&gt; This e-mail may contain confidential and/or privileged information.
+If<br>
+&gt;&gt; you are<br>
+&gt;&gt; not the intended recipient (or have received this e-mail in error)
+please<br>
+&gt;&gt; notify the sender immediately and destroy this e-mail. Any unautho=
+rized<br>
+&gt;&gt; copying, disclosure or distribution of the material in this e-mail
+is<br>
+&gt;&gt; strictly<br>
+&gt;&gt; forbidden.<br>
+&gt;&gt;<br>
+&gt;&gt;<br>
+&gt;&gt;<br>
+&gt;&gt; Von: &nbsp; &nbsp; &nbsp; &nbsp;Khem Raj &lt;raj.khem@gmail.com&gt=
+;<br>
+&gt;&gt; An: &nbsp; &nbsp; &nbsp; &nbsp;S.Jaritz@esa-grimma.de, Yocto Proje=
+ct
+&lt;yocto@yoctoproject.org&gt;<br>
+&gt;&gt; Datum: &nbsp; &nbsp; &nbsp; &nbsp;05.08.2016 09:16<br>
+&gt;&gt; Betreff: &nbsp; &nbsp; &nbsp; &nbsp;Re: [yocto] How to set the
+sysroot toolchain to hard float<br>
+&gt;&gt; ------------------------------------------------------------------=
+------<br>
+&gt;&gt;<br>
+&gt;&gt;<br>
+&gt;&gt;<br>
+&gt;&gt;<br>
+&gt;&gt;<br>
+&gt;&gt; On 8/5/16 12:04 AM, S.Jaritz@esa-grimma.de wrote:<br>
+&gt;&gt;&gt; Hej<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; I am building for the Atmel Evalbaord SAMA5D3x a Yocto Image.
+It works<br>
+&gt;&gt;&gt; fine, but sysroot toolchain is set to soft float instead of
+hard float.<br>
+&gt;&gt;&gt; How can I set the sysroot toolchain to hard float?<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; My actual configuration:<br>
+&gt;&gt;&gt; 1.) use meta-atmel layer<br>
+&gt;&gt;&gt; 2.) in /build/conf/layer.conf -&gt; MACHINE ??=3D &quot;sama5d=
+3xek&quot;<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; @meta-atmel:<br>
+&gt;&gt;&gt; /conf/machine/sama5d3xek.conf includes sama5d3.inc<br>
+&gt;&gt;&gt; in this file:<br>
+&gt;&gt;&gt; SOC=5FFAMILY =3D &quot;sama5:sama5d3&quot;<br>
+&gt;&gt;&gt; DEFAULTTUNE =3D &quot;cortexa5thf&quot;<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; I am not understanding why for the sysroot the default tune
+is not used.<br>
+&gt;&gt;&gt; Any ideas are welcome.<br>
+&gt;&gt;<br>
+&gt;&gt; How did you find that out ? can you send your build configuration
+output<br>
+&gt;&gt; that bitbake prints when starting the build ?<br>
+&gt;&gt; secondly, TOOLCHAIN=5FOPTIONS is what decides this ABI<br>
+&gt;&gt; so when you use CC and CXX and friends, the right thing happens
+since it<br>
+&gt;&gt; will be appending TOOLCHAIN=5FOPTIONS to these vars. but if you
+use bare<br>
+&gt;&gt; cross compiler that will default to soft-float<br>
+&gt;&gt;<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; Regards!<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; Stefan Jaritz<br>
+&gt;&gt;&gt; ------------------------------------------------------------<b=
+r>
+&gt;&gt;&gt; ESA Elektroschaltanlagen Grimma GmbH<br>
+&gt;&gt;&gt; Broner Ring 30<br>
+&gt;&gt;&gt; 04668 Grimma<br>
+&gt;&gt;&gt; Telefon: +49 3437 9211 176<br>
+&gt;&gt;&gt; Telefax: +49 3437 9211 26<br>
+&gt;&gt;&gt; E-Mail: s.jaritz@esa-grimma.de<br>
+&gt;&gt;&gt; Internet: </font></tt><a href=3D"www.esa-grimma.de"><tt><font =
+size=3D2>www.esa-grimma.de</font></tt></a><tt><font size=3D2><br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; Gesch=E4ftsf=FChrer:<br>
+&gt;&gt;&gt; Dipl.-Ing. J=F6rg Gaitzsch<br>
+&gt;&gt;&gt; J=F6rg Reinker<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; Sitz der Gesellschaft: Grimma<br>
+&gt;&gt;&gt; Ust.-ID: DE 141784437<br>
+&gt;&gt;&gt; Amtsgericht: Leipzig, HRB 5159<br>
+&gt;&gt;&gt; Steuernummer: 238/108/00755<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=
+=FCtzte<br>
+&gt;&gt;&gt; Informationen.<br>
+&gt;&gt;&gt; Wenn Sie nicht der richtige Adressat sind oder diese E-Mail
+irrt=FCmlich<br>
+&gt;&gt;&gt; erhalten<br>
+&gt;&gt;&gt; haben, informieren Sie bitte sofort den Absender und l=F6schen
+Sie diese<br>
+&gt;&gt;&gt; Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weiterg=
+abe
+dieser<br>
+&gt;&gt;&gt; Mail<br>
+&gt;&gt;&gt; ist nicht gestattet.<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; This e-mail may contain confidential and/or privileged informa=
+tion.
+If<br>
+&gt;&gt;&gt; you are<br>
+&gt;&gt;&gt; not the intended recipient (or have received this e-mail in
+error) please<br>
+&gt;&gt;&gt; notify the sender immediately and destroy this e-mail. Any
+unauthorized<br>
+&gt;&gt;&gt; copying, disclosure or distribution of the material in this
+e-mail is<br>
+&gt;&gt;&gt; strictly<br>
+&gt;&gt;&gt; forbidden.<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;<br>
+&gt; <br>
+</font></tt>
+<br>
+
+--=_alternative 002D432CC1258006_=--
