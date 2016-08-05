@@ -1,29 +1,71 @@
-Return-Path: <S.Jaritz@esa-grimma.de>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 28F25E00EEE; Fri,  5 Aug 2016 00:04:58 -0700 (PDT)
+	id 847F0E00DD1; Fri,  5 Aug 2016 00:16:36 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.66 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from gse01.esa-grimma.de (gse01.esa-grimma.de [62.41.26.213])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ABD01E00D03
-	for <yocto@yoctoproject.org>; Fri,  5 Aug 2016 00:04:53 -0700 (PDT)
-To: Yocto Project <yocto@yoctoproject.org>
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pa0-f66.google.com (mail-pa0-f66.google.com
+	[209.85.220.66])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 559EAE00D00
+	for <yocto@yoctoproject.org>; Fri,  5 Aug 2016 00:16:32 -0700 (PDT)
+Received: by mail-pa0-f66.google.com with SMTP id cf3so18797585pad.2
+	for <yocto@yoctoproject.org>; Fri, 05 Aug 2016 00:16:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=subject:to:references:from:organization:message-id:date:user-agent
+	:mime-version:in-reply-to:content-transfer-encoding;
+	bh=qLEnjSwnPJFkVqAQGPeJofRyoUyvDCBj4h9xBxWuuWs=;
+	b=ZIsVrUh1u1MqXYOsxCWnls4+VlfU4sCwvrTMI/68/ZhXEc+va7t6LuJ8POQUBfKtsS
+	nDlEBl8oFdXMw6/nj0n8kAF+Ra9gH842iqEjdQK7naIPqSMZ8hE102rRN/a+2d/ZneIk
+	gOIsHGH+pcJ9Hf54EEbobg9Dl+TTlzfuspIbb1vS0w0zCAEKURf7SYTAe0i6/LpR1NR5
+	AncI9k5y1Rb8BAhNHCaTmKuyexut6RS794p2SX4pF1fmNYx/fPrkWiOX0daQeoKutk0E
+	1IdYcMpJEsCXgSJglqId54j4SGmApL5L9GUUS+9mp0oXntgEyaBOOtEZdO9hrnxB+o2z
+	fuhQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:subject:to:references:from:organization
+	:message-id:date:user-agent:mime-version:in-reply-to
+	:content-transfer-encoding;
+	bh=qLEnjSwnPJFkVqAQGPeJofRyoUyvDCBj4h9xBxWuuWs=;
+	b=m1nYPh2+Edby0XUxwm1aPZy1teHk5FAqq6TAu4KdONp3EWzXpeRHXBnBMFTLzSaXoj
+	iOxJGKCM7wumIUMAy0SYTwsNV3ArzHOTI/a1WwBWzCMElOXGWMi1c5djQ6wwyIPsVS1u
+	wFMd/5tKkdLNog9J9Nk7VvwpiRJF2TD/LaoPTi/dxIpaZcVx8UOWmOA5axGqKixLBign
+	lByqyUJCJmf79GuwPpbEvAkLLpnwB5j3nY5APMiDsSarnaxF9TnMAiD9j6+B7Y/aawjW
+	4VpuYg6LoW+CncmMF5v0fgBhfzowbHYOzx01NdIlrAyd885KiQFpSq8jqDJ35GaG5Qcd
+	82Vg==
+X-Gm-Message-State: AEkooutekNQUcSfMAK4LBcC/Xmi8FiqwuSco7zdEJX2GYl/WdndHVDghXNhWVZlroqw5TQ==
+X-Received: by 10.66.165.67 with SMTP id yw3mr134062795pab.8.1470381391849;
+	Fri, 05 Aug 2016 00:16:31 -0700 (PDT)
+Received: from CACSVMO-14452.local ([2601:646:8882:b8c:4ce8:4a2:83d6:3a55])
+	by smtp.gmail.com with ESMTPSA id
+	yp10sm25253185pab.25.2016.08.05.00.16.30
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Fri, 05 Aug 2016 00:16:30 -0700 (PDT)
+To: S.Jaritz@esa-grimma.de, Yocto Project <yocto@yoctoproject.org>
+References: <OF371096A6.242D0E60-ONC1258006.0025F610-C1258006.0026E5CC@esa-grimma.de>
+From: Khem Raj <raj.khem@gmail.com>
+Organization: himvis.com
+Message-ID: <47ea7f13-1abc-f969-c928-1da2e0075b36@gmail.com>
+Date: Fri, 5 Aug 2016 00:16:49 -0700
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:45.0)
+	Gecko/20100101 Thunderbird/45.2.0
 MIME-Version: 1.0
-X-KeepSent: 371096A6:242D0E60-C1258006:0025F610;
- type=4; name=$KeepSent
-X-Mailer: IBM Notes Release 9.0 March 08, 2013
-Message-ID: <OF371096A6.242D0E60-ONC1258006.0025F610-C1258006.0026E5CC@esa-grimma.de>
-From: S.Jaritz@esa-grimma.de
-Date: Fri, 5 Aug 2016 09:04:52 +0200
-X-MIMETrack: Serialize by Router on GSE01/Server/ESA-Grimma/DE(Release
-	9.0.1FP3 HF42|February 03, 2015) at 05.08.2016 09:04:54,
-	Serialize complete at 05.08.2016 09:04:54
-Subject: How to set the sysroot toolchain to hard float
+In-Reply-To: <OF371096A6.242D0E60-ONC1258006.0025F610-C1258006.0026E5CC@esa-grimma.de>
+Subject: Re: How to set the sysroot toolchain to hard float
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,150 +77,80 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Aug 2016 07:04:58 -0000
-Content-Type: multipart/alternative;
-	boundary="=_alternative 0026E5C8C1258006_="
-
---=_alternative 0026E5C8C1258006_=
-Content-Type: text/plain; charset="ISO-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-Hej
-
-I am building for the Atmel Evalbaord SAMA5D3x a Yocto Image. It works=20
-fine, but sysroot toolchain is set to soft float instead of hard float.=20
-How can I set the sysroot toolchain to hard float?
-
-My actual configuration:
-1.) use meta-atmel layer
-2.) in /build/conf/layer.conf -> MACHINE ??=3D "sama5d3xek"
-
-@meta-atmel:
-/conf/machine/sama5d3xek.conf includes sama5d3.inc
-in this file:
-SOC=5FFAMILY =3D "sama5:sama5d3"
-DEFAULTTUNE =3D "cortexa5thf"
-
-I am not understanding why for the sysroot the default tune is not used.=20
-Any ideas are welcome.
+X-List-Received-Date: Fri, 05 Aug 2016 07:16:36 -0000
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: 8bit
 
 
-Regards!
 
-Stefan Jaritz
-------------------------------------------------------------
-ESA Elektroschaltanlagen Grimma GmbH
-Broner Ring 30
-04668 Grimma
-Telefon: +49 3437 9211 176
-Telefax: +49 3437 9211 26
-E-Mail: s.jaritz@esa-grimma.de
-Internet: www.esa-grimma.de
+On 8/5/16 12:04 AM, S.Jaritz@esa-grimma.de wrote:
+> Hej
+> 
+> I am building for the Atmel Evalbaord SAMA5D3x a Yocto Image. It works
+> fine, but sysroot toolchain is set to soft float instead of hard float.
+> How can I set the sysroot toolchain to hard float?
+> 
+> My actual configuration:
+> 1.) use meta-atmel layer
+> 2.) in /build/conf/layer.conf -> MACHINE ??= "sama5d3xek"
+> 
+> @meta-atmel:
+> /conf/machine/sama5d3xek.conf includes sama5d3.inc
+> in this file:
+> SOC_FAMILY = "sama5:sama5d3"
+> DEFAULTTUNE = "cortexa5thf"
+> 
+> I am not understanding why for the sysroot the default tune is not used.
+> Any ideas are welcome.
 
+How did you find that out ? can you send your build configuration output
+that bitbake prints when starting the build ?
+secondly, TOOLCHAIN_OPTIONS is what decides this ABI
+so when you use CC and CXX and friends, the right thing happens since it
+will be appending TOOLCHAIN_OPTIONS to these vars. but if you use bare
+cross compiler that will default to soft-float
 
-Gesch=E4ftsf=FChrer:
-Dipl.-Ing. J=F6rg Gaitzsch
-J=F6rg Reinker
+> 
+> 
+> Regards!
+> 
+> Stefan Jaritz
+> ------------------------------------------------------------
+> ESA Elektroschaltanlagen Grimma GmbH
+> Broner Ring 30
+> 04668 Grimma
+> Telefon: +49 3437 9211 176
+> Telefax: +49 3437 9211 26
+> E-Mail: s.jaritz@esa-grimma.de
+> Internet: www.esa-grimma.de
+> 
+> 
+> Geschäftsführer:
+> Dipl.-Ing. Jörg Gaitzsch
+> Jörg Reinker
+> 
+> Sitz der Gesellschaft: Grimma
+> Ust.-ID: DE 141784437
+> Amtsgericht: Leipzig, HRB 5159
+> Steuernummer: 238/108/00755
+> 
+> 
+> Diese E-Mail enthält vertrauliche und/oder rechtlich geschützte
+> Informationen.
+> Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrtümlich
+> erhalten
+> haben, informieren Sie bitte sofort den Absender und löschen Sie diese
+> Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe dieser
+> Mail
+> ist nicht gestattet.
+> 
+> This e-mail may contain confidential and/or privileged information. If
+> you are
+> not the intended recipient (or have received this e-mail in error) please
+> notify the sender immediately and destroy this e-mail. Any unauthorized
+> copying, disclosure or distribution of the material in this e-mail is
+> strictly
+> forbidden.
+> 
+> 
 
-Sitz der Gesellschaft: Grimma
-Ust.-ID: DE 141784437
-Amtsgericht: Leipzig, HRB 5159
-Steuernummer: 238/108/00755
-
-
-Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte=20
-Informationen.=20
-Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=FCmlich=20
-erhalten=20
-haben, informieren Sie bitte sofort den Absender und l=F6schen Sie diese=20
-Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe dieser=20
-Mail=20
-ist nicht gestattet.
-
-This e-mail may contain confidential and/or privileged information. If you =
-
-are=20
-not the intended recipient (or have received this e-mail in error) please=20
-notify the sender immediately and destroy this e-mail. Any unauthorized=20
-copying, disclosure or distribution of the material in this e-mail is=20
-strictly=20
-forbidden.
-
---=_alternative 0026E5C8C1258006_=
-Content-Type: text/html; charset="ISO-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<font size=3D2 face=3D"sans-serif">Hej</font>
-<br>
-<br><font size=3D2 face=3D"sans-serif">I am building for the Atmel Evalbaord
-SAMA5D3x a Yocto Image. It works fine, but sysroot toolchain is set to
-soft float instead of hard float. How can I set the sysroot toolchain to
-hard float?</font>
-<br>
-<br><font size=3D2 face=3D"sans-serif">My actual configuration:</font>
-<br><font size=3D2 face=3D"sans-serif">1.) use meta-atmel layer</font>
-<br><font size=3D2 face=3D"sans-serif">2.) in /build/conf/layer.conf -&gt;
-MACHINE ??=3D &quot;sama5d3xek&quot;</font>
-<br>
-<br><font size=3D2 face=3D"sans-serif">@meta-atmel:</font>
-<br><font size=3D2 face=3D"sans-serif">/conf/machine/sama5d3xek.conf includ=
-es
-sama5d3.inc</font>
-<br><font size=3D2 face=3D"sans-serif">in this file:</font>
-<br><font size=3D2 face=3D"sans-serif">SOC=5FFAMILY =3D &quot;sama5:sama5d3=
-&quot;</font>
-<br><font size=3D2 face=3D"sans-serif">DEFAULTTUNE =3D &quot;cortexa5thf&qu=
-ot;</font>
-<br>
-<br><font size=3D2 face=3D"sans-serif">I am not understanding why for the s=
-ysroot
-the default tune is not used. Any ideas are welcome.</font>
-<br>
-<br>
-<br><font size=3D2 face=3D"sans-serif">Regards!<br>
-<br>
-Stefan Jaritz<br>
-------------------------------------------------------------<br>
-ESA Elektroschaltanlagen Grimma GmbH<br>
-Broner Ring 30<br>
-04668 Grimma<br>
-Telefon: +49 3437 9211 176<br>
-Telefax: +49 3437 9211 26<br>
-E-Mail: s.jaritz@esa-grimma.de<br>
-Internet: </font><a href=3D"www.esa-grimma.de"><font size=3D2 face=3D"sans-=
-serif">www.esa-grimma.de</font></a><font size=3D2 face=3D"sans-serif"><br>
-<br>
-<br>
-Gesch=E4ftsf=FChrer:<br>
-Dipl.-Ing. J=F6rg Gaitzsch<br>
-J=F6rg Reinker<br>
-<br>
-Sitz der Gesellschaft: Grimma<br>
-Ust.-ID: DE 141784437<br>
-Amtsgericht: Leipzig, HRB 5159<br>
-Steuernummer: 238/108/00755<br>
-<br>
-<br>
-Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte Informa=
-tionen.
-<br>
-Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=FCmlich
-erhalten <br>
-haben, informieren Sie bitte sofort den Absender und l=F6schen Sie diese
-<br>
-Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe dieser
-Mail <br>
-ist nicht gestattet.<br>
-<br>
-This e-mail may contain confidential and/or privileged information. If
-you are <br>
-not the intended recipient (or have received this e-mail in error) please
-<br>
-notify the sender immediately and destroy this e-mail. Any unauthorized
-<br>
-copying, disclosure or distribution of the material in this e-mail is stric=
-tly
-<br>
-forbidden.</font>
-
---=_alternative 0026E5C8C1258006_=--
