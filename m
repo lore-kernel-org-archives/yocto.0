@@ -1,72 +1,69 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DE0B1E0108E; Mon,  8 Aug 2016 16:06:03 -0700 (PDT)
+	id E151BE0108D; Mon,  8 Aug 2016 16:16:30 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.192.193 listed in list.dnswl.org]
-Received: from mail-pf0-f193.google.com (mail-pf0-f193.google.com
-	[209.85.192.193])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BEA09E01083
-	for <yocto@yoctoproject.org>; Mon,  8 Aug 2016 16:06:00 -0700 (PDT)
-Received: by mail-pf0-f193.google.com with SMTP id i6so25784451pfe.0
-	for <yocto@yoctoproject.org>; Mon, 08 Aug 2016 16:06:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=subject:mime-version:from:in-reply-to:date:cc:message-id:references
-	:to; bh=/b3TYUqYqV7CgKvFrtkoDbTyuGGm7GZbj/M9KbsPgAg=;
-	b=G/XziXZewuzmSjSB1Hth9BZa31Lq8GWuqoJR1ErkeuHpTJh9eZ1renB6qH+EMjToYF
-	PUxkH340/qqNt+o45yM9hHBfx91cAAiZjBPuFseS+KgB7xTjqn7Um7/qgB+qeuMWetNd
-	HeE4z7MfJo77B+msAD26X9+ZJZU+wN6Cle1EdvsdivGa7StTTJbTa5V/IDYMgqRTW4xe
-	mvf1BjKHmZ8J9r7ByQj5OnoYZBu+P7+Hx7d8jIWn44dkVqosrx21TP5IlZrwEIO7scUJ
-	zN+Al0pNI1F9iujcErN25wQWbT6aNVXaAGFfhvu33flBKdoTk+X3eukbmZ6Gcepnx3+h
-	QOuA==
+	*      [209.85.214.41 listed in list.dnswl.org]
+Received: from mail-it0-f41.google.com (mail-it0-f41.google.com
+	[209.85.214.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 983F7E00DBD
+	for <yocto@yoctoproject.org>; Mon,  8 Aug 2016 16:16:25 -0700 (PDT)
+Received: by mail-it0-f41.google.com with SMTP id f6so148652ith.0
+	for <yocto@yoctoproject.org>; Mon, 08 Aug 2016 16:16:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=su0tfLLVT97z5vkG5MINEll7u/mRR+3LU8XTK/kcYnk=;
+	b=m+9MzFc/r7eVznFFTvAtZBKhfNCjeAZpNpLUldGFrkxFjg+L+7UJDDPsNVaUHFzP8q
+	HbHnT6W+IRmFcVEbV0q88OLnXLrNRHeIqE3ij3eul2f4x6wiV6+Ri11Bb8RSWe0AKzfQ
+	8Pxo2ymvJaz5fIQ1eawtULZkGi4V0/nZmivTPgYrIxmNMNDXNHNs3++kO2zGt3/QUAI5
+	kzkHwZdFVHg7c5PStTZ+nucYoPnhDrqThxTgBhXcVs/8W6C7BHSbNlw2r7sT5OeEM7FI
+	zV7YaAkgjX6BCypJZ+5fU+4i+/lF24igsMYo12wSmWZORZI/+GrszKF+c5b3fP0o8Iad
+	wbEw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:subject:mime-version:from:in-reply-to:date:cc
-	:message-id:references:to;
-	bh=/b3TYUqYqV7CgKvFrtkoDbTyuGGm7GZbj/M9KbsPgAg=;
-	b=h0hCo3U2dN5N01Uogy9ZCYyclQgNWyHpV7DD/PvbR/of1VwnRAa30mkK0mx8ae/WLv
-	fvejSgA0l5MwZW3L4OJ4UGNdjA0wZPbPEj4BHCqzDfXrnd/vZFtEYGfWxR0aJMuO1UUG
-	odraaZ1rQes9/K03NyvGHiHabBExZOfq7BJys2a21D6w9rKVaQonMGZlQxsOXwlqvu5l
-	zoKvypkes7Xwo2m2xLLpiy/5hJpGsyi7dMo9LGe0i9fz09UP336M8esLlFVQe0TNN+UF
-	bZZ1Q8vyEo39f9p52uTqshXqRqJjqKPk0qFwnWPteKOKHqGpDaDiD7lfhSeC9hAvBwTA
-	Ihog==
-X-Gm-Message-State: AEkoouuHr7EURp2/PUddm4mSMH/gza+78lPDpyglTDPkeTTAxBeUuJQGJ3pLqfnsXQ7OnQ==
-X-Received: by 10.98.77.70 with SMTP id a67mr164824177pfb.151.1470697560128;
-	Mon, 08 Aug 2016 16:06:00 -0700 (PDT)
-Received: from ?IPv6:2601:646:8882:b8c:8833:ac66:d76e:6708?
-	([2601:646:8882:b8c:8833:ac66:d76e:6708])
-	by smtp.gmail.com with ESMTPSA id
-	81sm50530787pfm.90.2016.08.08.16.05.59
-	(version=TLS1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Mon, 08 Aug 2016 16:05:59 -0700 (PDT)
-Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
-X-Pgp-Agent: GPGMail
-From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <1470637705.8166.29.camel@linuxfoundation.org>
-Date: Mon, 8 Aug 2016 16:06:35 -0700
-Message-Id: <63866A53-6AA3-417A-9F72-F98288B55039@gmail.com>
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=su0tfLLVT97z5vkG5MINEll7u/mRR+3LU8XTK/kcYnk=;
+	b=TjBG/cMFBLLJoJF4xWd7MjU6PDM0FU9u9haBPUwH/96eNCEp5icTR92ETCJJs55eev
+	hilVh8AF6n2qDfoVkCGFnJ1R7tRCrVcCWIZbxOIMg52aAvaAPs2tUv6dDCmxMkKbEDZg
+	WOTEWebvGka6QTgK77u7j3FhAqwRiIfI99zaNC7yYnpHhUkuIqh8/KrfHRLSL51JD5Ib
+	fi4AImveqV8PYtbD1pGqebUnUyX9222XQB4oxNCvZa9VqPcB046bjR3HobKmYDrCZ6zH
+	+Gn8bt5LR9TYM7iGI5fKIuHoWn0jOiasZp1hvKyXARFic4fhQD9/1e30pR23DqCgjol8
+	DQ9A==
+X-Gm-Message-State: AEkooutub7NMHOleJk3+nJJYxX7iNv9COBoimot5hW2z/PLEeMV6K8230DjOrazjioL9JicHq/mDl8TVHaV+OIxY
+X-Received: by 10.36.20.75 with SMTP id 72mr20546865itg.83.1470698185183; Mon,
+	08 Aug 2016 16:16:25 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.107.18.17 with HTTP; Mon, 8 Aug 2016 16:16:04 -0700 (PDT)
+In-Reply-To: <1470671991.8166.44.camel@linuxfoundation.org>
 References: <CC61EFE1-5F39-4848-AD71-8E9C8DEC43C8@gmail.com>
 	<1470637705.8166.29.camel@linuxfoundation.org>
+	<8C207C42-3D61-4C3F-A1DE-F305AA6617BA@gmail.com>
+	<1470644094.8166.37.camel@linuxfoundation.org>
+	<1470646210.8166.38.camel@rpsys.net>
+	<1470647765.4581.23.camel@andred.net>
+	<ACB9AEF7-A7DF-4A88-9762-7569D91AD12D@gmail.com>
+	<1470671991.8166.44.camel@linuxfoundation.org>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Tue, 9 Aug 2016 00:16:04 +0100
+Message-ID: <CAJTo0LY-MVSANSLRBzBGTL2ZJ=Ga=Xijps6jwAGosLK3aE4QLg@mail.gmail.com>
 To: Richard Purdie <richard.purdie@linuxfoundation.org>
-X-Mailer: Apple Mail (2.3124)
-Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>,
+Cc: =?UTF-8?Q?Andr=C3=A9_Draszik?= <git@andred.net>,
 	OpenEmbedded Devel List <openembedded-devel@lists.openembedded.org>,
-	OE-core <openembedded-core@lists.openembedded.org>
+	OE-core <openembedded-core@lists.openembedded.org>,
+	Yocto Discussion Mailing List <yocto@yoctoproject.org>
 Subject: Re: [OE-core] [RFT] binutils 2.27
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -79,79 +76,81 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 08 Aug 2016 23:06:04 -0000
-X-Groupsio-MsgNum: 31417
-Content-Type: multipart/signed;
-	boundary="Apple-Mail=_4A7663E1-595A-4780-BEB7-95375E53D3CE";
-	protocol="application/pgp-signature"; micalg=pgp-sha1
+X-List-Received-Date: Mon, 08 Aug 2016 23:16:31 -0000
+Content-Type: multipart/alternative; boundary=001a11446942e66d310539979a8e
 
---Apple-Mail=_4A7663E1-595A-4780-BEB7-95375E53D3CE
+--001a11446942e66d310539979a8e
+Content-Type: text/plain; charset=UTF-8
+
+On 8 August 2016 at 16:59, Richard Purdie <
+richard.purdie@linuxfoundation.org> wrote:
+
+> FWIW, I think the connmand segfault on mips and powerpc is hinted at
+> with this bug:
+>
+> https://bugs.launchpad.net/ubuntu/+source/lua5.3/+bug/1570055
+>
+> connmand is a binary linked with a linker version-script. If I build
+> connmand without that option, it doesn't segfault, at least on mips.
+>
+> The binutils manuals say you shouldn't build binaries with version
+> scripts:
+>
+> http://ftp.gnu.org/old-gnu/Manuals/ld-2.9.1/html_node/ld_25.html
+>
+> Its suspected connman might do this to limit the function exposure to
+> its plugins.
+>
+> Now sure exactly what needs to happen here without more research but it
+> certainly hits at where the problem is. I suspect its the same issue on
+> ppc.
+>
+
+I've verified that with binutils 2.26 on x86-64, a minimal test case for an
+executable using a version script to limit exported symbols to dlopen()d
+modules does in fact work.  A toolchain is building now to see what happens
+in different environments.
+
+Ross
+
+--001a11446942e66d310539979a8e
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=us-ascii
 
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 8 August 2016 at 16:59, Richard Purdie <span dir=3D"ltr">&lt;<a href=3D"=
+mailto:richard.purdie@linuxfoundation.org" target=3D"_blank">richard.purdie=
+@linuxfoundation.org</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_qu=
+ote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex=
+"><div id=3D":37i" class=3D"a3s aXjCH m1566ae22eb3a0c11">FWIW, I think the =
+connmand segfault on mips and powerpc is hinted at<br>
+with this bug:<br>
+<br>
+<a href=3D"https://bugs.launchpad.net/ubuntu/+source/lua5.3/+bug/1570055" r=
+el=3D"noreferrer" target=3D"_blank">https://bugs.launchpad.net/<wbr>ubuntu/=
++source/lua5.3/+bug/<wbr>1570055</a><br>
+<br>
+connmand is a binary linked with a linker version-script. If I build<br>
+connmand without that option, it doesn&#39;t segfault, at least on mips.<br=
+>
+<br>
+The binutils manuals say you shouldn&#39;t build binaries with version<br>
+scripts:<br>
+<br>
+<a href=3D"http://ftp.gnu.org/old-gnu/Manuals/ld-2.9.1/html_node/ld_25.html=
+" rel=3D"noreferrer" target=3D"_blank">http://ftp.gnu.org/old-gnu/<wbr>Manu=
+als/ld-2.9.1/html_node/ld_<wbr>25.html</a><br>
+<br>
+Its suspected connman might do this to limit the function exposure to<br>
+its plugins.<br>
+<br>
+Now sure exactly what needs to happen here without more research but it<br>
+certainly hits at where the problem is. I suspect its the same issue on<br>
+ppc.</div></blockquote></div><br>I&#39;ve verified that with binutils 2.26 =
+on x86-64, a minimal test case for an executable using a version script to =
+limit exported symbols to dlopen()d modules does in fact work.=C2=A0 A tool=
+chain is building now to see what happens in different environments.</div><=
+div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Ross</div></=
+div>
 
-> On Aug 7, 2016, at 11:28 PM, Richard Purdie =
-<richard.purdie@linuxfoundation.org> wrote:
->=20
-> On Sun, 2016-08-07 at 01:39 -0700, Khem Raj wrote:
->> I have put together upgrade for binutils 2.27 here ( kraj/master
->> branch )
->>=20
->> https://github.com/kraj/openembedded-core/commit/b98f5761d2285ffd773e
->> c6ecb901b799302ebd6b
->>=20
->> I have started bunch of test builds. but I would appreciate any help
->> in testing it out in your
->> environments and report any issues you see.
->=20
-> I ran this through the autobuilder:
->=20
-> bitbake world shows issues in libunwind (from gold?):
->=20
-> =
-https://autobuilder.yoctoproject.org/main/builders/nightly-world/builds
-> /889/steps/BuildImages/logs/stdio
->=20
-> bitbake world with no x11 also shows it:
->=20
-> =
-https://autobuilder.yoctoproject.org/main/builders/nightly-no-x11/build
-> s/231/steps/BuildImages/logs/stdio
->=20
-> Other than that, things don't seem too bad though.
->=20
-
-
-I posted couple of patches for libunwind and webkitgtk recipes which =
-should take care of build issues.
-
-https://patchwork.openembedded.org/patch/128733/
-https://patchwork.openembedded.org/patch/128731/
-
-
-
-> Cheers,
->=20
-> Richard
->=20
->=20
-
-
---Apple-Mail=_4A7663E1-595A-4780-BEB7-95375E53D3CE
-Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment;
-	filename=signature.asc
-Content-Type: application/pgp-signature;
-	name=signature.asc
-Content-Description: Message signed with OpenPGP using GPGMail
-
------BEGIN PGP SIGNATURE-----
-Comment: GPGTools - https://gpgtools.org
-
-iEYEARECAAYFAlepEHsACgkQuwUzVZGdMxQGFACePa5a0wPcOYhMMieRfGfR8xim
-n3kAnizI0UZx+n0NzwXr4ce3xfRq8R1X
-=vAuy
------END PGP SIGNATURE-----
-
---Apple-Mail=_4A7663E1-595A-4780-BEB7-95375E53D3CE--
+--001a11446942e66d310539979a8e--
