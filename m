@@ -1,6 +1,6 @@
-Return-Path: <wpdster@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 98906E00DDE; Mon,  8 Aug 2016 10:16:15 -0700 (PDT)
+	id DE0B1E0108E; Mon,  8 Aug 2016 16:06:03 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,10 +8,7 @@ X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (wpdster[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.218.54 listed in list.dnswl.org]
+	mail provider *      (raj.khem[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,41 +16,58 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-oi0-f54.google.com (mail-oi0-f54.google.com
-	[209.85.218.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 11C48E00DC9
-	for <yocto@yoctoproject.org>; Mon,  8 Aug 2016 10:16:13 -0700 (PDT)
-Received: by mail-oi0-f54.google.com with SMTP id 4so245789376oih.2
-	for <yocto@yoctoproject.org>; Mon, 08 Aug 2016 10:16:13 -0700 (PDT)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.193 listed in list.dnswl.org]
+Received: from mail-pf0-f193.google.com (mail-pf0-f193.google.com
+	[209.85.192.193])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BEA09E01083
+	for <yocto@yoctoproject.org>; Mon,  8 Aug 2016 16:06:00 -0700 (PDT)
+Received: by mail-pf0-f193.google.com with SMTP id i6so25784451pfe.0
+	for <yocto@yoctoproject.org>; Mon, 08 Aug 2016 16:06:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=A75fvGsrtDMyGSbaeKSrOrzWneldvcImFMQCHqqRIHU=;
-	b=qVqsDMUw2+4+CbxRNhrTCGpOYnNqCh9YftcCRvCu3v5+/FqsA1S3xcqNregTLqlL9S
-	22HIqHffN8hdQY+9dbYOm6n5vF0oTOvRfJhcTDg/iS3oWr05wMUHFOtnz62PqSoaJLej
-	EJkuQi8tvfbHhwppC6Dges0GSFqpOXyfGzAoKSeRL7aQ7xfqYaLiiMqrcx4br0DiMtxV
-	wk43XQO2Osl61RUBB13F6537ImzXnB/vJYe3tm5AGzdeuOccK/bNRrbDUDAE4mm1u2wz
-	lffwQ01Lc8bgr434tUwyisydrYpsXwAnBWQXoUP2rHK6E1bkYxM6whpzq60Mz4SyJHiv
-	WJAA==
+	h=subject:mime-version:from:in-reply-to:date:cc:message-id:references
+	:to; bh=/b3TYUqYqV7CgKvFrtkoDbTyuGGm7GZbj/M9KbsPgAg=;
+	b=G/XziXZewuzmSjSB1Hth9BZa31Lq8GWuqoJR1ErkeuHpTJh9eZ1renB6qH+EMjToYF
+	PUxkH340/qqNt+o45yM9hHBfx91cAAiZjBPuFseS+KgB7xTjqn7Um7/qgB+qeuMWetNd
+	HeE4z7MfJo77B+msAD26X9+ZJZU+wN6Cle1EdvsdivGa7StTTJbTa5V/IDYMgqRTW4xe
+	mvf1BjKHmZ8J9r7ByQj5OnoYZBu+P7+Hx7d8jIWn44dkVqosrx21TP5IlZrwEIO7scUJ
+	zN+Al0pNI1F9iujcErN25wQWbT6aNVXaAGFfhvu33flBKdoTk+X3eukbmZ6Gcepnx3+h
+	QOuA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=A75fvGsrtDMyGSbaeKSrOrzWneldvcImFMQCHqqRIHU=;
-	b=XsWod3pbGBHmbBtd3sCCLya0M1Xcci88gbEmmb85YDJN0DN2C9qcWZlP9bdeB3d3pc
-	vcRN1SagaKhmAjAU3KHxBmUc14BLbcc3N6NN/StrmON112IPkJMe9Q+7qJenlNU8Cix9
-	qb+IY6Ag46VtruzFtl1bIqB4RaNiPv6sLPuhsBbvGL//ZA10fN3ovdtPrUXkMiZy0rHA
-	1tTUasq9GyUZir/U/pT54FQI1TYXNCDX4x6WuQrSs4TcDV9Qmyw6S/slj2c4J+nQoZ3a
-	otV5ulLWi9ytC7D5DgLg2VczKiWu1ku9Mq3YBnpXQCYXWEsPhANErOc7ZyjvodvCAPZZ
-	bb1w==
-X-Gm-Message-State: AEkoouuabFKXPTH4qbE/B5x57WOk98Ox/sPiRKSXS1X8kQB8Fw2e4vaQuO4znmbVidQHuGHr75v5l6zVy0lhcg==
-X-Received: by 10.202.237.65 with SMTP id l62mr8570666oih.21.1470676572856;
-	Mon, 08 Aug 2016 10:16:12 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.157.13.137 with HTTP; Mon, 8 Aug 2016 10:15:42 -0700 (PDT)
-From: Patrick Doyle <wpdster@gmail.com>
-Date: Mon, 8 Aug 2016 13:15:42 -0400
-Message-ID: <CAF_dkJBdaF9JtNmKO=s1Ji61kc1H2a7fhH8wo7LzoSjbB8_nsQ@mail.gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: What is the simplest way to test a new kernel configuration in a Yocto Project?
+	h=x-gm-message-state:subject:mime-version:from:in-reply-to:date:cc
+	:message-id:references:to;
+	bh=/b3TYUqYqV7CgKvFrtkoDbTyuGGm7GZbj/M9KbsPgAg=;
+	b=h0hCo3U2dN5N01Uogy9ZCYyclQgNWyHpV7DD/PvbR/of1VwnRAa30mkK0mx8ae/WLv
+	fvejSgA0l5MwZW3L4OJ4UGNdjA0wZPbPEj4BHCqzDfXrnd/vZFtEYGfWxR0aJMuO1UUG
+	odraaZ1rQes9/K03NyvGHiHabBExZOfq7BJys2a21D6w9rKVaQonMGZlQxsOXwlqvu5l
+	zoKvypkes7Xwo2m2xLLpiy/5hJpGsyi7dMo9LGe0i9fz09UP336M8esLlFVQe0TNN+UF
+	bZZ1Q8vyEo39f9p52uTqshXqRqJjqKPk0qFwnWPteKOKHqGpDaDiD7lfhSeC9hAvBwTA
+	Ihog==
+X-Gm-Message-State: AEkoouuHr7EURp2/PUddm4mSMH/gza+78lPDpyglTDPkeTTAxBeUuJQGJ3pLqfnsXQ7OnQ==
+X-Received: by 10.98.77.70 with SMTP id a67mr164824177pfb.151.1470697560128;
+	Mon, 08 Aug 2016 16:06:00 -0700 (PDT)
+Received: from ?IPv6:2601:646:8882:b8c:8833:ac66:d76e:6708?
+	([2601:646:8882:b8c:8833:ac66:d76e:6708])
+	by smtp.gmail.com with ESMTPSA id
+	81sm50530787pfm.90.2016.08.08.16.05.59
+	(version=TLS1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Mon, 08 Aug 2016 16:05:59 -0700 (PDT)
+Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
+X-Pgp-Agent: GPGMail
+From: Khem Raj <raj.khem@gmail.com>
+In-Reply-To: <1470637705.8166.29.camel@linuxfoundation.org>
+Date: Mon, 8 Aug 2016 16:06:35 -0700
+Message-Id: <63866A53-6AA3-417A-9F72-F98288B55039@gmail.com>
+References: <CC61EFE1-5F39-4848-AD71-8E9C8DEC43C8@gmail.com>
+	<1470637705.8166.29.camel@linuxfoundation.org>
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
+X-Mailer: Apple Mail (2.3124)
+Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>,
+	OpenEmbedded Devel List <openembedded-devel@lists.openembedded.org>,
+	OE-core <openembedded-core@lists.openembedded.org>
+Subject: Re: [OE-core] [RFT] binutils 2.27
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -65,41 +79,79 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 08 Aug 2016 17:16:15 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Mon, 08 Aug 2016 23:06:04 -0000
+X-Groupsio-MsgNum: 31417
+Content-Type: multipart/signed;
+	boundary="Apple-Mail=_4A7663E1-595A-4780-BEB7-95375E53D3CE";
+	protocol="application/pgp-signature"; micalg=pgp-sha1
 
-Back story:
-I have an Intel Edison board running some form of a Yocto distibution
-(from ubilinux-edison-150309.tar.gz).  I want to change the kernel
-configuration.  Following Intel's documention, I have downloaded the
-Yocto build for this board and have seperately learned that I can run:
+--Apple-Mail=_4A7663E1-595A-4780-BEB7-95375E53D3CE
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=us-ascii
 
-$ bitbake virtual/kernel -c menuconfig
-# enable some other kernel modules
-$ bitbake virtual/kernel -c compile -f
-$ bitbake edison-image u-boot
 
-(Yes, this could probably be optimized a bit... but at the moment I
-just want to try out my tweaked kernel).
+> On Aug 7, 2016, at 11:28 PM, Richard Purdie =
+<richard.purdie@linuxfoundation.org> wrote:
+>=20
+> On Sun, 2016-08-07 at 01:39 -0700, Khem Raj wrote:
+>> I have put together upgrade for binutils 2.27 here ( kraj/master
+>> branch )
+>>=20
+>> https://github.com/kraj/openembedded-core/commit/b98f5761d2285ffd773e
+>> c6ecb901b799302ebd6b
+>>=20
+>> I have started bunch of test builds. but I would appreciate any help
+>> in testing it out in your
+>> environments and report any issues you see.
+>=20
+> I ran this through the autobuilder:
+>=20
+> bitbake world shows issues in libunwind (from gold?):
+>=20
+> =
+https://autobuilder.yoctoproject.org/main/builders/nightly-world/builds
+> /889/steps/BuildImages/logs/stdio
+>=20
+> bitbake world with no x11 also shows it:
+>=20
+> =
+https://autobuilder.yoctoproject.org/main/builders/nightly-no-x11/build
+> s/231/steps/BuildImages/logs/stdio
+>=20
+> Other than that, things don't seem too bad though.
+>=20
 
-So, how would I try out my tweaked kernel?
 
-I see in tmp/deploy/ipk/edison a set of .ipk files that were just
-assembled, including the suggestively usefully named
-kernel-image-3.10.98-poky-edison+_1.0-r2_edison.ipk file, but also the
-confusingly named kernel-dev_1.0-r2_edison.ipk and
-kernel-modules_1.0-r2_edison.ipk files along with 23 files of the form
-kernel-module-*.ipk.
+I posted couple of patches for libunwind and webkitgtk recipes which =
+should take care of build issues.
 
-I just want to try the new kernel and the new modules compiled with
-that kernel.  How might I do that?  I feel like I am going down a path
-of copy the .ipk files over to the device (much as I would copy .deb
-files over) and run "sudo ipkg -i *.ipk".
+https://patchwork.openembedded.org/patch/128733/
+https://patchwork.openembedded.org/patch/128731/
 
-But I wonder if I might be sorry just doing that.  So I figured I'd
-ask around first.
 
-Any thoughts?
 
---wpd
+> Cheers,
+>=20
+> Richard
+>=20
+>=20
 
+
+--Apple-Mail=_4A7663E1-595A-4780-BEB7-95375E53D3CE
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+	filename=signature.asc
+Content-Type: application/pgp-signature;
+	name=signature.asc
+Content-Description: Message signed with OpenPGP using GPGMail
+
+-----BEGIN PGP SIGNATURE-----
+Comment: GPGTools - https://gpgtools.org
+
+iEYEARECAAYFAlepEHsACgkQuwUzVZGdMxQGFACePa5a0wPcOYhMMieRfGfR8xim
+n3kAnizI0UZx+n0NzwXr4ce3xfRq8R1X
+=vAuy
+-----END PGP SIGNATURE-----
+
+--Apple-Mail=_4A7663E1-595A-4780-BEB7-95375E53D3CE--
