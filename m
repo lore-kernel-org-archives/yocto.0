@@ -1,34 +1,73 @@
-Return-Path: <S.Jaritz@esa-grimma.de>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 84B5FE00CE1; Sun,  7 Aug 2016 23:46:18 -0700 (PDT)
+	id BA379E00CD2; Mon,  8 Aug 2016 00:23:52 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.193 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from gse01.esa-grimma.de (gse01.esa-grimma.de [62.41.26.213])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 60C5DE00CB5
-	for <yocto@yoctoproject.org>; Sun,  7 Aug 2016 23:46:14 -0700 (PDT)
-In-Reply-To: <8f8e112c-ef50-3190-6b33-2ffb28e6b2f1@reliableembeddedsystems.com>
-References: <OF371096A6.242D0E60-ONC1258006.0025F610-C1258006.0026E5CC@esa-grimma.de>	<47ea7f13-1abc-f969-c928-1da2e0075b36@gmail.com>
-	<OF66EF9F5A.E44F4404-ONC1258006.00282195-C1258006.0028AE4A@esa-grimma.de>
-	<8f8e112c-ef50-3190-6b33-2ffb28e6b2f1@reliableembeddedsystems.com>
-To: yocto@yoctoproject.org
-MIME-Version: 1.0
-X-KeepSent: C4CB1189:5391F362-C1258009:0023F284;
- type=4; name=$KeepSent
-X-Mailer: IBM Notes Release 9.0 March 08, 2013
-Message-ID: <OFC4CB1189.5391F362-ONC1258009.0023F284-C1258009.00253060@esa-grimma.de>
-From: S.Jaritz@esa-grimma.de
-Date: Mon, 8 Aug 2016 08:46:12 +0200
-X-MIMETrack: Serialize by Router on GSE01/Server/ESA-Grimma/DE(Release
-	9.0.1FP3 HF42|February 03, 2015) at 08.08.2016 08:46:16,
-	Serialize complete at 08.08.2016 08:46:16
-Cc: "robert.berger@gmane" <gmane@reliableembeddedsystems.com>
-Subject: Antwort: Re: Antwort: Re: How to set the sysroot toolchain to hard	float
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pf0-f193.google.com (mail-pf0-f193.google.com
+	[209.85.192.193])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 633B4E00C2E
+	for <yocto@yoctoproject.org>; Mon,  8 Aug 2016 00:23:49 -0700 (PDT)
+Received: by mail-pf0-f193.google.com with SMTP id i6so24530943pfe.0
+	for <yocto@yoctoproject.org>; Mon, 08 Aug 2016 00:23:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=subject:mime-version:from:in-reply-to:date:cc:message-id:references
+	:to; bh=8TvkB+3scMzEVNEEwSYaRSfXRMPXYZLc+9pOCghj4og=;
+	b=mq2pWNkXpLJ0Uruc4v3RPx+QjcXAao1b4VZU/DPnGMaHvNm2jJoqSng+D5X1j3p8qo
+	ZHePXhFQJcuuY911AdQheQ2fgCSXJMg0jYlkogoWpWW7yUt5Xp4MHFFMytVfFULtgDHz
+	02A582WnlSfFrOej4Q13d0nlSeRJsti+M6NxwcR1tqs3t9xwIWB2bGNsCbxxZ+lSFcKp
+	ftZhZrk3BUrbEkY4UVJvyMKNkGtso2sYyfVS0DZz8Kq4WfVe2lyNBAfsaY1sleuUAR2i
+	lcNX5K1QstAQgL2f516y826DYCXExMDzUalPUWOu0Zh0HLNXODY9JZhYp/alR1zIptz6
+	SlyQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:subject:mime-version:from:in-reply-to:date:cc
+	:message-id:references:to;
+	bh=8TvkB+3scMzEVNEEwSYaRSfXRMPXYZLc+9pOCghj4og=;
+	b=ddCq7ffTkncfCJMDpc4PdWbqTtrDyDIoHBJmdC3OVllqdCefQzq8hBd1K1lAH1y1gj
+	4mlQUGQ6IRTNAa0piJEyI8jAHcSi3WLmxlbo+KXXum0pw+GHY9dKmhDim5N+DGrFF01M
+	XinQw6w9q7K4G/vQuIYmINQYccyuB0WcvHeEXVH+HEzRei2PLH7+/HepCR2ycpndrtJE
+	rWzM/J9ZeaM7GMMCHRIQ1sb7Uki54yeYXsCdAXw8tcdh4WTRRRpPdI3UEQw/KY+jkiyS
+	WtiPM3mIGeQkTfOi2LHeirzBNZzfUkqcTuTzb0RNU6WF0NpAWPjknR/UfviX5VwjC7Mu
+	+Mzg==
+X-Gm-Message-State: AEkoouuctn5kFFN8yA9qR+nXeUBjblqX3gaQYGw9K0t9QfB9GBkVzC7BZWy/C6HKxkUD4A==
+X-Received: by 10.98.27.200 with SMTP id b191mr159482976pfb.111.1470641029528; 
+	Mon, 08 Aug 2016 00:23:49 -0700 (PDT)
+Received: from ?IPv6:2601:646:8882:b8c:7ced:64fa:b426:f5b4?
+	([2601:646:8882:b8c:7ced:64fa:b426:f5b4])
+	by smtp.gmail.com with ESMTPSA id
+	j2sm45323703paa.46.2016.08.08.00.23.44
+	(version=TLS1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Mon, 08 Aug 2016 00:23:48 -0700 (PDT)
+Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
+X-Pgp-Agent: GPGMail
+From: Khem Raj <raj.khem@gmail.com>
+In-Reply-To: <1470637705.8166.29.camel@linuxfoundation.org>
+Date: Mon, 8 Aug 2016 00:24:13 -0700
+Message-Id: <8C207C42-3D61-4C3F-A1DE-F305AA6617BA@gmail.com>
+References: <CC61EFE1-5F39-4848-AD71-8E9C8DEC43C8@gmail.com>
+	<1470637705.8166.29.camel@linuxfoundation.org>
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
+X-Mailer: Apple Mail (2.3124)
+Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>,
+	OpenEmbedded Devel List <openembedded-devel@lists.openembedded.org>,
+	OE-core <openembedded-core@lists.openembedded.org>
+Subject: Re: [OE-core] [RFT] binutils 2.27
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,318 +79,82 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 08 Aug 2016 06:46:18 -0000
-Content-Type: multipart/alternative;
-	boundary="=_alternative 0025305FC1258009_="
+X-List-Received-Date: Mon, 08 Aug 2016 07:23:52 -0000
+X-Groupsio-MsgNum: 31408
+Content-Type: multipart/signed;
+	boundary="Apple-Mail=_3EF67517-6E1F-45B8-BEA2-DB52E20A821E";
+	protocol="application/pgp-signature"; micalg=pgp-sha1
 
---=_alternative 0025305FC1258009_=
-Content-Type: text/plain; charset="ISO-8859-1"
+--Apple-Mail=_3EF67517-6E1F-45B8-BEA2-DB52E20A821E
 Content-Transfer-Encoding: quoted-printable
-
-Hej ho
-
-Thank you. I already know the files. My question was targeting the way how =
-
-to set the tune option manually.
-
-Maybee something is missed up by the layers. My bblayers.conf looks like:
-#########
-# POKY=5FBBLAYERS=5FCONF=5FVERSION is increased each time=20
-build/conf/bblayers.conf
-# changes incompatibly
-POKY=5FBBLAYERS=5FCONF=5FVERSION =3D "2"
-
-BBPATH =3D "${TOPDIR}"
-BBFILES ?=3D ""
-
-BBLAYERS ?=3D " \
-myTC/poky/meta \
-myTC/poky/meta-poky \
-myTC/poky/meta-yocto-bsp \
-myTC/poky/meta-atmel \
-myTC/poky/meta-skeleton \
-myTC/poky/meta-openembedded/meta-oe \
-myTC/poky/meta-openembedded/meta-networking \
-myTC/poky/meta-openembedded/meta-python \
-myTC/poky/meta-mylayer \
-"
-#########
-
-The priorities are set that way:
-
-BBFILE=5FPRIORITY=5Fatmel =3D "10"
-BBFILE=5FPRIORITY=5Fmylayer =3D "20"
-
-Regards!
-
-Stefan Jaritz
+Content-Type: text/plain;
+	charset=utf-8
 
 
-------------------------------------------------------------
-ESA Elektroschaltanlagen Grimma GmbH
-Broner Ring 30
-04668 Grimma
-Telefon: +49 3437 9211 176
-Telefax: +49 3437 9211 26
-E-Mail: s.jaritz@esa-grimma.de
-Internet: www.esa-grimma.de
+> On Aug 7, 2016, at 11:28 PM, Richard Purdie =
+<richard.purdie@linuxfoundation.org> wrote:
+>=20
+> On Sun, 2016-08-07 at 01:39 -0700, Khem Raj wrote:
+>> I have put together upgrade for binutils 2.27 here ( kraj/master
+>> branch )
+>>=20
+>> https://github.com/kraj/openembedded-core/commit/b98f5761d2285ffd773e
+>> c6ecb901b799302ebd6b
+>>=20
+>> I have started bunch of test builds. but I would appreciate any help
+>> in testing it out in your
+>> environments and report any issues you see.
+>=20
+> I ran this through the autobuilder:
+>=20
+> bitbake world shows issues in libunwind (from gold?):
+>=20
+
+yes, however, use of gold for libunwind in OE was an escape route
+where we were relying upon gold=E2=80=99s inability to detect this issue =
+while BFD linker
+was detecting it earlier. Now in 2.27 gold has caught up as well.
+
+see
+=
+https://sourceware.org/git/gitweb.cgi?p=3Dbinutils-gdb.git;h=3D6eeb0170bbb=
+43ffb73e8f01b8b481adde8194c21
+
+so now we have to get to nub of this issue to resolve it.
+
+> =
+https://autobuilder.yoctoproject.org/main/builders/nightly-world/builds
+> /889/steps/BuildImages/logs/stdio
+>=20
+> bitbake world with no x11 also shows it:
+>=20
+> =
+https://autobuilder.yoctoproject.org/main/builders/nightly-no-x11/build
+> s/231/steps/BuildImages/logs/stdio
+>=20
+> Other than that, things don't seem too bad though.
+>=20
+> Cheers,
+>=20
+> Richard
+>=20
+>=20
 
 
-Gesch=E4ftsf=FChrer:
-Dipl.-Ing. J=F6rg Gaitzsch
-J=F6rg Reinker
+--Apple-Mail=_3EF67517-6E1F-45B8-BEA2-DB52E20A821E
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+	filename=signature.asc
+Content-Type: application/pgp-signature;
+	name=signature.asc
+Content-Description: Message signed with OpenPGP using GPGMail
 
-Sitz der Gesellschaft: Grimma
-Ust.-ID: DE 141784437
-Amtsgericht: Leipzig, HRB 5159
-Steuernummer: 238/108/00755
+-----BEGIN PGP SIGNATURE-----
+Comment: GPGTools - https://gpgtools.org
 
+iEYEARECAAYFAleoM6IACgkQuwUzVZGdMxROMwCghGSidA3CJlfwF8ro+4w2xkkZ
+6J8An0xUwvG7CDGLUakN8VGjsfX+0IMR
+=HGBo
+-----END PGP SIGNATURE-----
 
-Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte=20
-Informationen.=20
-Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=FCmlich=20
-erhalten=20
-haben, informieren Sie bitte sofort den Absender und l=F6schen Sie diese=20
-Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe dieser=20
-Mail=20
-ist nicht gestattet.
-
-This e-mail may contain confidential and/or privileged information. If you =
-
-are=20
-not the intended recipient (or have received this e-mail in error) please=20
-notify the sender immediately and destroy this e-mail. Any unauthorized=20
-copying, disclosure or distribution of the material in this e-mail is=20
-strictly=20
-forbidden.
-
-
-
-Von:    "robert.berger@gmane" <gmane@reliableembeddedsystems.com>
-An:     yocto@yoctoproject.org
-Kopie:  public-yocto-EtnWKYl6rD/WsZ/bQMPhNw=20
-<public-yocto-EtnWKYl6rD/WsZ/bQMPhNw@plane.gmane.org>, Khem Raj=20
-<public-raj.khem-Re5JQEeQqe8AvxtiuMwx3w@plane.gmane.org>
-Datum:  06.08.2016 09:23
-Betreff:        Re: [yocto] Antwort: Re: How to set the sysroot toolchain=20
-to hard float
-Gesendet von:   yocto-bounces@yoctoproject.org
-
-
-
-Hi,
-
-On 2016-08-05 10:24, S.Jaritz@esa-grimma.de wrote:
->
-> @TOOLCHAIN=5FOPTIONS: Where these are set in custom layers(like=20
-meta-atmel)?
->
-
-If you ask me I would say here [1]:
-
-DEFAULTTUNE =3D "cortexa5thf"
-
-Here [2] are the available HF options:
-
-# HF Tunes
-AVAILTUNES +=3D "cortexa5hf cortexa5thf cortexa5hf-neon cortexa5thf-neon"
-
-[1]=20
-https://github.com/linux4sam/meta-atmel/blob/master/conf/machine/include/sa=
-ma5d3.inc
-
-[2]=20
-http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/conf/machine/inclu=
-de/tune-cortexa5.inc
-
-
-Regards,
-
-Robert
-
-
---=20
-=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=
-=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
-
-
---=_alternative 0025305FC1258009_=
-Content-Type: text/html; charset="ISO-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<font size=3D2 face=3D"sans-serif">Hej ho</font>
-<br>
-<br><font size=3D2 face=3D"sans-serif">Thank you. I already know the files.
-My question was targeting the way how to set the tune option manually.</fon=
-t>
-<br>
-<br><font size=3D2 face=3D"sans-serif">Maybee something is missed up by the
-layers. My bblayers.conf looks like:</font>
-<br><font size=3D2 face=3D"sans-serif">#########</font>
-<br><font size=3D2 face=3D"sans-serif"># POKY=5FBBLAYERS=5FCONF=5FVERSION i=
-s increased
-each time build/conf/bblayers.conf</font>
-<br><font size=3D2 face=3D"sans-serif"># changes incompatibly</font>
-<br><font size=3D2 face=3D"sans-serif">POKY=5FBBLAYERS=5FCONF=5FVERSION =3D=
- &quot;2&quot;</font>
-<br>
-<br><font size=3D2 face=3D"sans-serif">BBPATH =3D &quot;${TOPDIR}&quot;</fo=
-nt>
-<br><font size=3D2 face=3D"sans-serif">BBFILES ?=3D &quot;&quot;</font>
-<br>
-<br><font size=3D2 face=3D"sans-serif">BBLAYERS ?=3D &quot; \</font>
-<br><font size=3D2 face=3D"sans-serif">myTC/poky/meta \</font>
-<br><font size=3D2 face=3D"sans-serif">myTC/poky/meta-poky \</font>
-<br><font size=3D2 face=3D"sans-serif">myTC/poky/meta-yocto-bsp \</font>
-<br><font size=3D2 face=3D"sans-serif">myTC/poky/meta-atmel \</font>
-<br><font size=3D2 face=3D"sans-serif">myTC/poky/meta-skeleton \</font>
-<br><font size=3D2 face=3D"sans-serif">myTC/poky/meta-openembedded/meta-oe
-\</font>
-<br><font size=3D2 face=3D"sans-serif">myTC/poky/meta-openembedded/meta-net=
-working
-\</font>
-<br><font size=3D2 face=3D"sans-serif">myTC/poky/meta-openembedded/meta-pyt=
-hon
-\</font>
-<br><font size=3D2 face=3D"sans-serif">myTC/poky/meta-mylayer \</font>
-<br><font size=3D2 face=3D"sans-serif">&quot;</font>
-<br><font size=3D2 face=3D"sans-serif">#########</font>
-<br>
-<br><font size=3D2 face=3D"sans-serif">The priorities are set that way:</fo=
-nt>
-<br>
-<br><font size=3D2 face=3D"sans-serif">BBFILE=5FPRIORITY=5Fatmel =3D &quot;=
-10&quot;</font>
-<br><font size=3D2 face=3D"sans-serif">BBFILE=5FPRIORITY=5Fmylayer =3D &quo=
-t;20&quot;</font>
-<br>
-<br><font size=3D2 face=3D"sans-serif">Regards!</font>
-<br><font size=3D2 face=3D"sans-serif"><br>
-Stefan Jaritz<br>
-<br>
-<br>
-------------------------------------------------------------<br>
-ESA Elektroschaltanlagen Grimma GmbH<br>
-Broner Ring 30<br>
-04668 Grimma<br>
-Telefon: +49 3437 9211 176<br>
-Telefax: +49 3437 9211 26<br>
-E-Mail: s.jaritz@esa-grimma.de<br>
-Internet: </font><a href=3D"www.esa-grimma.de"><font size=3D2 face=3D"sans-=
-serif">www.esa-grimma.de</font></a><font size=3D2 face=3D"sans-serif"><br>
-<br>
-<br>
-Gesch=E4ftsf=FChrer:<br>
-Dipl.-Ing. J=F6rg Gaitzsch<br>
-J=F6rg Reinker<br>
-<br>
-Sitz der Gesellschaft: Grimma<br>
-Ust.-ID: DE 141784437<br>
-Amtsgericht: Leipzig, HRB 5159<br>
-Steuernummer: 238/108/00755<br>
-<br>
-<br>
-Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte Informa=
-tionen.
-<br>
-Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=FCmlich
-erhalten <br>
-haben, informieren Sie bitte sofort den Absender und l=F6schen Sie diese
-<br>
-Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe dieser
-Mail <br>
-ist nicht gestattet.<br>
-<br>
-This e-mail may contain confidential and/or privileged information. If
-you are <br>
-not the intended recipient (or have received this e-mail in error) please
-<br>
-notify the sender immediately and destroy this e-mail. Any unauthorized
-<br>
-copying, disclosure or distribution of the material in this e-mail is stric=
-tly
-<br>
-forbidden.</font>
-<br>
-<br>
-<br>
-<br><font size=3D1 color=3D#5f5f5f face=3D"sans-serif">Von: &nbsp; &nbsp; &=
-nbsp;
-&nbsp;</font><font size=3D1 face=3D"sans-serif">&quot;robert.berger@gmane&q=
-uot;
-&lt;gmane@reliableembeddedsystems.com&gt;</font>
-<br><font size=3D1 color=3D#5f5f5f face=3D"sans-serif">An: &nbsp; &nbsp; &n=
-bsp;
-&nbsp;</font><font size=3D1 face=3D"sans-serif">yocto@yoctoproject.org</fon=
-t>
-<br><font size=3D1 color=3D#5f5f5f face=3D"sans-serif">Kopie: &nbsp; &nbsp;=
- &nbsp;
-&nbsp;</font><font size=3D1 face=3D"sans-serif">public-yocto-EtnWKYl6rD/WsZ=
-/bQMPhNw
-&lt;public-yocto-EtnWKYl6rD/WsZ/bQMPhNw@plane.gmane.org&gt;, Khem Raj &lt;p=
-ublic-raj.khem-Re5JQEeQqe8AvxtiuMwx3w@plane.gmane.org&gt;</font>
-<br><font size=3D1 color=3D#5f5f5f face=3D"sans-serif">Datum: &nbsp; &nbsp;=
- &nbsp;
-&nbsp;</font><font size=3D1 face=3D"sans-serif">06.08.2016 09:23</font>
-<br><font size=3D1 color=3D#5f5f5f face=3D"sans-serif">Betreff: &nbsp; &nbs=
-p;
-&nbsp; &nbsp;</font><font size=3D1 face=3D"sans-serif">Re: [yocto]
-Antwort: Re: How to set the sysroot toolchain to hard &nbsp; &nbsp; &nbsp;
-&nbsp;float</font>
-<br><font size=3D1 color=3D#5f5f5f face=3D"sans-serif">Gesendet von: &nbsp;=
- &nbsp;
-&nbsp; &nbsp;</font><font size=3D1 face=3D"sans-serif">yocto-bounces@yoctop=
-roject.org</font>
-<br>
-<hr noshade>
-<br>
-<br>
-<br><tt><font size=3D2>Hi,<br>
-<br>
-On 2016-08-05 10:24, S.Jaritz@esa-grimma.de wrote:<br>
-&gt;<br>
-&gt; @TOOLCHAIN=5FOPTIONS: Where these are set in custom layers(like meta-a=
-tmel)?<br>
-&gt;<br>
-<br>
-If you ask me I would say here [1]:<br>
-<br>
-DEFAULTTUNE =3D &quot;cortexa5thf&quot;<br>
-<br>
-Here [2] are the available HF options:<br>
-<br>
-# HF Tunes<br>
-AVAILTUNES +=3D &quot;cortexa5hf cortexa5thf cortexa5hf-neon cortexa5thf-ne=
-on&quot;<br>
-<br>
-[1] <br>
-</font></tt><a href=3D"https://github.com/linux4sam/meta-atmel/blob/master/=
-conf/machine/include/sama5d3.inc"><tt><font size=3D2>https://github.com/lin=
-ux4sam/meta-atmel/blob/master/conf/machine/include/sama5d3.inc</font></tt><=
-/a><tt><font size=3D2><br>
-[2] <br>
-</font></tt><a href=3D"http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/=
-meta/conf/machine/include/tune-cortexa5.inc"><tt><font size=3D2>http://git.=
-yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/conf/machine/include/tune-cor=
-texa5.inc</font></tt></a><tt><font size=3D2><br>
-<br>
-Regards,<br>
-<br>
-Robert<br>
-<br>
-<br>
--- <br>
-=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=
-=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F<br>
-yocto mailing list<br>
-yocto@yoctoproject.org<br>
-</font></tt><a href=3Dhttps://lists.yoctoproject.org/listinfo/yocto><tt><fo=
-nt size=3D2>https://lists.yoctoproject.org/listinfo/yocto</font></tt></a><t=
-t><font size=3D2><br>
-</font></tt>
-<br>
-
---=_alternative 0025305FC1258009_=--
+--Apple-Mail=_3EF67517-6E1F-45B8-BEA2-DB52E20A821E--
