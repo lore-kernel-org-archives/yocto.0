@@ -1,70 +1,31 @@
-Return-Path: <krussell7711@gmail.com>
+Return-Path: <timothy.t.orling@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 59733E01243; Thu, 11 Aug 2016 14:14:53 -0700 (PDT)
+	id 28469E01041; Thu, 11 Aug 2016 16:30:10 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (bkylerussell[at]gmail.com)
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.93 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.182 listed in list.dnswl.org]
-Received: from mail-yb0-f182.google.com (mail-yb0-f182.google.com
-	[209.85.213.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 28D5AE01239
-	for <yocto@yoctoproject.org>; Thu, 11 Aug 2016 14:14:49 -0700 (PDT)
-Received: by mail-yb0-f182.google.com with SMTP id x196so2775341ybe.1
-	for <yocto@yoctoproject.org>; Thu, 11 Aug 2016 14:14:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:from:date:message-id
-	:subject:to:cc;
-	bh=iHhX+k+4Meyc2P18DobxUgF7+BC9Rm5aqDphGA1yT3E=;
-	b=iZdMbf4d3OO83oZ8yujbRNQOlqj72xVeXe5YUJixUJdrgWECemV67rHXV+AeIIWLol
-	b4/6fvx7bWoO6XGBfls+RCMQqu3NEHwYQPOqS6CA90TmaEVr8/mNDAlX2LRdFzyCtTaZ
-	aoxFXzSH6ycJ6Nq/rR+fF58T3cR7fZe+5yDJ3OqwvgorHwnZtWZu1nG9JhO4PYvTkKY4
-	DHp3y5EQtyX2ylWvN2niAvvVkUA6gK8tHbep+4cmZP8Ozs7A5Q1I+3cHY7KbFX6A2Ntj
-	DaNUUx4q3d983ybR1e9iMKxvLk9bhEp+tNiTuRX65JhJSruZrvQ/XT/xQcsYCo1QGH6y
-	+IWg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:sender:in-reply-to:references:from
-	:date:message-id:subject:to:cc;
-	bh=iHhX+k+4Meyc2P18DobxUgF7+BC9Rm5aqDphGA1yT3E=;
-	b=B7n9JjWmSiEZluPN6EJjMLZek6lCQ3+flhsW87Y1JYZgE6fufTiPp1nYFBAGlNbhE/
-	8UWaL/UK7VuAy+//EAO6fq2v9YQqHLnZScBiqWzRFx+jxqWOUtbEmalkYyKAj0CO8zro
-	F4Be3DL36jqYFsraBRE7/+YawpnonD93weAFrPF2ucH032XFcAntx2u0rcC0O0zGWNpT
-	iUbQ2IaN85XfDJ3pzFwY5ko5CIlug2H/+1dG7WcJ76C+vmnSg6dNhsQbUHIfUQtRWVNf
-	0Y1ToQQOQ51TCXZbLyy5caUi0LCgv0pZ7pkmfKbXcvPXh1ZRlTM/0Iebl/PCQH9pRv99
-	kmhA==
-X-Gm-Message-State: AEkoousMBsD0xOGal4pLKRoqWIBY3racatnJDydh8jWJzHdWAKhVUPycsUO3P0ojBStrK/u/qSzplaLDlLzjeA==
-X-Received: by 10.37.34.3 with SMTP id i3mr7690795ybi.143.1470950088226; Thu,
-	11 Aug 2016 14:14:48 -0700 (PDT)
-MIME-Version: 1.0
-Sender: krussell7711@gmail.com
-Received: by 10.129.132.20 with HTTP; Thu, 11 Aug 2016 14:14:27 -0700 (PDT)
-In-Reply-To: <CAMKF1sqbt7sqTjys_B5+vfXhNoXzzQLSL_tO3j_Xb7Dq-FZh3g@mail.gmail.com>
-References: <1470052915-2839-1-git-send-email-bkylerussell@gmail.com>
-	<CAJTo0LZKE9cf8i5x2Cz7AjT3ve_BVFTcMbLhHa8Ys+bkaz+BVA@mail.gmail.com>
-	<CAFrQVPPN3iVVakjYLGOBnP=rc5oeO40SfEV5s6tyE4jiN9Z_eA@mail.gmail.com>
-	<CAMKF1sqbt7sqTjys_B5+vfXhNoXzzQLSL_tO3j_Xb7Dq-FZh3g@mail.gmail.com>
-From: Kyle Russell <bkylerussell@gmail.com>
-Date: Thu, 11 Aug 2016 17:14:27 -0400
-X-Google-Sender-Auth: yhZVXVJzDtvtQtpnLAXFIHC-4J4
-Message-ID: <CAFrQVPNSvxoiyZ9Y7UZZhArG3VLT5CPfOUcdd0fgqrJPL-_nDQ@mail.gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta][PATCH v2] python-3.4-manifest: Add some missing RDEPENDS
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E5380E01039
+	for <yocto@yoctoproject.org>; Thu, 11 Aug 2016 16:30:05 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by fmsmga102.fm.intel.com with ESMTP; 11 Aug 2016 16:30:05 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.28,507,1464678000"; d="scan'208";a="1012911202"
+Received: from timo-fedora.jf.intel.com ([10.7.201.162])
+	by orsmga001.jf.intel.com with ESMTP; 11 Aug 2016 16:30:04 -0700
+From: Tim Orling <timothy.t.orling@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Thu, 11 Aug 2016 16:31:03 -0700
+Message-Id: <1470958271-28279-1-git-send-email-timothy.t.orling@linux.intel.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [eclipse-poky][PATCH 0/8] Add neon-master
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,100 +37,119 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 11 Aug 2016 21:14:53 -0000
-Content-Type: multipart/alternative; boundary=001a11c156bc7dbb960539d24152
+X-List-Received-Date: Thu, 11 Aug 2016 23:30:10 -0000
 
---001a11c156bc7dbb960539d24152
-Content-Type: text/plain; charset=UTF-8
+[YOCTO #9562]
+Minimum required java version for Neon is 1.8.
 
-In case anyone is interested, I posted an update for both the script and
-.inc to openembedded-core (which now has master at python 3.5), but it
-doesn't seem to have gone anywhere yet.
+[YOCTO #9907]
+Update to latest Eclipse release (Neon v4.6).
 
-http://lists.openembedded.org/pipermail/openembedded-core/2016-August/124672.html
+[YOCTO #9908]
+Cleanup excessive number of compiler warnings.
 
-On Mon, Aug 1, 2016 at 9:56 AM, Khem Raj <raj.khem@gmail.com> wrote:
+This series is also staged at:
+http://git.yoctoproject.org/cgit/cgit.cgi/eclipse-poky-contrib/log/?h=neon-master-next
 
-> and when patch is ready send it to openembedded-core ml
->
-> On Mon, Aug 1, 2016 at 6:49 AM, Kyle Russell <bkylerussell@gmail.com>
-> wrote:
-> > Well, that makes sense.  I'm just tripping all over this one.
-> >
-> > On Mon, Aug 1, 2016 at 8:29 AM, Burton, Ross <ross.burton@intel.com>
-> wrote:
-> >>
-> >>
-> >> On 1 August 2016 at 13:01, Kyle Russell <bkylerussell@gmail.com> wrote:
-> >>>
-> >>>  scripts/contrib/python/generate-manifest-3.4.py | 10 +++++-----
-> >>
-> >>
-> >> Sorry, but you need to edit the script and then run the script, so the
-> >> patch contains both the script and inc file changes.
-> >>
-> >> Ross
-> >
-> >
-> >
-> > --
-> > _______________________________________________
-> > yocto mailing list
-> > yocto@yoctoproject.org
-> > https://lists.yoctoproject.org/listinfo/yocto
-> >
->
+Tim Orling (8):
+  Update to Neon (4.6.0) release
+  fix the build
+  add script to update java version; update all to JavaSE-1.8
+  org.yocto.sdk/feature.xml: clean up unused dependencies
+  org.yocto.bc.ui: cleanup unused imports; fix generics warnings
+  org.yocto.remote.utils: fix or supress warnings
+  org.yocto.sdk.ide: remove InvokeAction usage
+  org.yocto.sdk.remotetools: SubProgressMonitor -> SubMonitor
 
---001a11c156bc7dbb960539d24152
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+ .../org.yocto.bc.headless.build/build.properties   |   4 +-
+ .../org.yocto.doc.headless.build/build.properties  |   4 +-
+ .../org.yocto.sdk.headless.build/build.properties  |   4 +-
+ features/org.yocto.sdk/feature.xml                 |   3 -
+ .../build.properties                               |   4 +-
+ plugins/org.yocto.bc.ui/.classpath                 |   2 +-
+ plugins/org.yocto.bc.ui/META-INF/MANIFEST.MF       |   6 +-
+ .../src/org/yocto/bc/bitbake/BBRecipe.java         |  12 +-
+ .../src/org/yocto/bc/bitbake/BBSession.java        | 126 +++++++++++----------
+ .../org/yocto/bc/bitbake/ProjectInfoHelper.java    |   3 -
+ .../src/org/yocto/bc/ui/Activator.java             |  37 +++---
+ .../ui/actions/AbstractBitbakeCommandAction.java   |   5 +-
+ .../yocto/bc/ui/actions/LaunchToasterDialog.java   |  17 +--
+ .../bc/ui/actions/LaunchVariableWizardAction.java  |   3 +-
+ .../org/yocto/bc/ui/builder/BitbakeBuilder.java    |   6 +-
+ .../yocto/bc/ui/builder/ToggleNatureAction.java    |   5 +-
+ .../src/org/yocto/bc/ui/decorators/ReadOnly.java   |   9 +-
+ .../bc/ui/editors/bitbake/BBVariableTextHover.java |   2 +-
+ .../yocto/bc/ui/filesystem/CustomLocalFile.java    |   1 +
+ .../src/org/yocto/bc/ui/filesystem/OEFile.java     |   4 +-
+ .../org/yocto/bc/ui/filesystem/OEFileSystem.java   |   6 +-
+ .../org/yocto/bc/ui/filesystem/OEIgnoreFile.java   |  11 +-
+ .../src/org/yocto/bc/ui/filesystem/Policy.java     |   4 +-
+ .../perspectives/BitbakeCommanderPerspective.java  |  13 +--
+ .../org/yocto/bc/ui/popup/actions/NewAction.java   |   1 -
+ .../yocto/bc/ui/views/RecipeContentProvider.java   |   7 +-
+ .../src/org/yocto/bc/ui/views/RecipeView.java      |   2 -
+ .../bc/ui/wizards/BitbakeRecipeUIElement.java      |   6 +-
+ .../org/yocto/bc/ui/wizards/FiniteStateWizard.java |  10 +-
+ .../yocto/bc/ui/wizards/FiniteStateWizardPage.java |  26 ++---
+ .../bc/ui/wizards/NewBitBakeFileRecipeWizard.java  |   5 +-
+ .../ui/wizards/NewBitBakeFileRecipeWizardPage.java |  13 +--
+ .../ui/wizards/importProject/BBCProjectPage.java   |   2 +-
+ .../importProject/ImportYoctoProjectWizard.java    |  11 +-
+ .../yocto/bc/ui/wizards/install/InstallWizard.java |  16 +--
+ .../yocto/bc/ui/wizards/install/OptionsPage.java   |  19 +---
+ .../BBConfigurationInitializeOperation.java        |   1 -
+ .../newproject/CreateBBCProjectOperation.java      |   4 +-
+ .../yocto/bc/ui/wizards/variable/VariablePage.java |  13 ++-
+ .../bc/ui/wizards/variable/VariableWizard.java     |   8 +-
+ plugins/org.yocto.cmake.managedbuilder/.classpath  |   2 +-
+ .../.settings/org.eclipse.jdt.core.prefs           |   6 +-
+ .../META-INF/MANIFEST.MF                           |   5 +-
+ plugins/org.yocto.doc.user/.classpath              |   2 +-
+ plugins/org.yocto.doc.user/META-INF/MANIFEST.MF    |   2 +-
+ plugins/org.yocto.remote.utils/.classpath          |   2 +-
+ .../.settings/org.eclipse.jdt.core.prefs           |   6 +-
+ .../org.yocto.remote.utils/META-INF/MANIFEST.MF    |   2 +-
+ .../org/yocto/remote/utils/OutputProcessor.java    |   2 +
+ .../src/org/yocto/remote/utils/RemoteHelper.java   |  31 ++---
+ .../src/org/yocto/remote/utils/RemoteMachine.java  |   9 +-
+ .../org/yocto/remote/utils/TerminalHandler.java    |   1 +
+ plugins/org.yocto.sdk.ide.doc.user/.classpath      |   2 +-
+ .../.settings/org.eclipse.jdt.core.prefs           |   6 +-
+ .../META-INF/MANIFEST.MF                           |   2 +-
+ plugins/org.yocto.sdk.ide/.classpath               |   2 +-
+ .../.settings/org.eclipse.jdt.core.prefs           |   6 +-
+ plugins/org.yocto.sdk.ide/META-INF/MANIFEST.MF     |   3 +-
+ plugins/org.yocto.sdk.ide/build.properties         |   3 +-
+ .../src/org/yocto/sdk/ide/YoctoSDKChecker.java     |   1 -
+ .../yocto/sdk/ide/actions/InvokeSyncAction.java    | 110 ------------------
+ .../yocto/sdk/ide/actions/ReconfigYoctoAction.java |  44 -------
+ .../sdk/ide/actions/ReconfigYoctoHandler.java      |  71 ++++--------
+ .../natures/YoctoSDKAutotoolsProjectNature.java    |   1 +
+ .../src/org/yocto/sdk/ide/utils/YoctoSDKUtils.java |   5 -
+ plugins/org.yocto.sdk.remotetools/.classpath       |   2 +-
+ .../.settings/org.eclipse.jdt.core.prefs           |   6 +-
+ .../org.yocto.sdk.remotetools/META-INF/MANIFEST.MF |   2 +-
+ plugins/org.yocto.sdk.remotetools/build.properties |   3 +-
+ .../org/yocto/sdk/remotetools/YoctoJSONHelper.java |   6 +
+ .../yocto/sdk/remotetools/actions/BaseModel.java   |  12 +-
+ .../sdk/remotetools/actions/OprofileModel.java     |   6 +-
+ .../sdk/remotetools/actions/PowertopModel.java     |   6 +-
+ .../sdk/remotetools/actions/SystemtapHandler.java  |   2 +
+ .../actions/SystemtapSettingDialog.java            |   1 +
+ .../yocto/sdk/remotetools/actions/Ust2Model.java   |  16 +--
+ .../yocto/sdk/remotetools/views/BaseFileView.java  |   1 +
+ .../sdk/remotetools/views/TerminalViewTab.java     |   6 +-
+ .../sdk/remotetools/views/TerminalViewer.java      |   3 +-
+ .../remotetools/wizards/bsp/PropertiesPage.java    |   1 +
+ scripts/build.sh                                   |   9 +-
+ scripts/change-java-version.sh                     |  94 +++++++++++++++
+ scripts/setup.sh                                   |  36 +++---
+ 83 files changed, 432 insertions(+), 541 deletions(-)
+ delete mode 100644 plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/actions/InvokeSyncAction.java
+ delete mode 100644 plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/actions/ReconfigYoctoAction.java
+ create mode 100755 scripts/change-java-version.sh
 
-<div dir=3D"ltr">In case anyone is interested, I posted an update for both =
-the script and .inc to openembedded-core (which now has master at python 3.=
-5), but it doesn&#39;t seem to have gone anywhere yet.<div><br></div><div><=
-a href=3D"http://lists.openembedded.org/pipermail/openembedded-core/2016-Au=
-gust/124672.html">http://lists.openembedded.org/pipermail/openembedded-core=
-/2016-August/124672.html</a><br></div></div><div class=3D"gmail_extra"><br>=
-<div class=3D"gmail_quote">On Mon, Aug 1, 2016 at 9:56 AM, Khem Raj <span d=
-ir=3D"ltr">&lt;<a href=3D"mailto:raj.khem@gmail.com" target=3D"_blank">raj.=
-khem@gmail.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" s=
-tyle=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">and =
-when patch is ready send it to openembedded-core ml<br>
-<div class=3D"HOEnZb"><div class=3D"h5"><br>
-On Mon, Aug 1, 2016 at 6:49 AM, Kyle Russell &lt;<a href=3D"mailto:bkylerus=
-sell@gmail.com">bkylerussell@gmail.com</a>&gt; wrote:<br>
-&gt; Well, that makes sense.=C2=A0 I&#39;m just tripping all over this one.=
-<br>
-&gt;<br>
-&gt; On Mon, Aug 1, 2016 at 8:29 AM, Burton, Ross &lt;<a href=3D"mailto:ros=
-s.burton@intel.com">ross.burton@intel.com</a>&gt; wrote:<br>
-&gt;&gt;<br>
-&gt;&gt;<br>
-&gt;&gt; On 1 August 2016 at 13:01, Kyle Russell &lt;<a href=3D"mailto:bkyl=
-erussell@gmail.com">bkylerussell@gmail.com</a>&gt; wrote:<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt;=C2=A0 scripts/contrib/python/<a href=3D"http://generate-manife=
-st-3.4.py" rel=3D"noreferrer" target=3D"_blank">generat<wbr>e-manifest-3.4.=
-py</a> | 10 +++++-----<br>
-&gt;&gt;<br>
-&gt;&gt;<br>
-&gt;&gt; Sorry, but you need to edit the script and then run the script, so=
- the<br>
-&gt;&gt; patch contains both the script and inc file changes.<br>
-&gt;&gt;<br>
-&gt;&gt; Ross<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-</div></div><div class=3D"HOEnZb"><div class=3D"h5">&gt; --<br>
-&gt; ______________________________<wbr>_________________<br>
-&gt; yocto mailing list<br>
-&gt; <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><b=
-r>
-&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noref=
-errer" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto=
-</a><br>
-&gt;<br>
-</div></div></blockquote></div><br></div>
+-- 
+2.7.4
 
---001a11c156bc7dbb960539d24152--
+
