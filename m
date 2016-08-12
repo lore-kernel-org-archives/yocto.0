@@ -1,6 +1,6 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A48DCE0104C; Thu, 11 Aug 2016 18:06:21 -0700 (PDT)
+	id 83BDDE01241; Thu, 11 Aug 2016 18:06:22 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,7 +9,7 @@ X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [209.85.192.194 listed in list.dnswl.org]
+	*      [209.85.192.195 listed in list.dnswl.org]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
 	provider *      (raj.khem[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
@@ -19,48 +19,48 @@ X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pf0-f194.google.com (mail-pf0-f194.google.com
-	[209.85.192.194])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 46ECFE0103E
-	for <yocto@yoctoproject.org>; Thu, 11 Aug 2016 18:06:19 -0700 (PDT)
-Received: by mail-pf0-f194.google.com with SMTP id g202so588984pfb.1
-	for <yocto@yoctoproject.org>; Thu, 11 Aug 2016 18:06:19 -0700 (PDT)
+Received: from mail-pf0-f195.google.com (mail-pf0-f195.google.com
+	[209.85.192.195])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3136CE0104C
+	for <yocto@yoctoproject.org>; Thu, 11 Aug 2016 18:06:21 -0700 (PDT)
+Received: by mail-pf0-f195.google.com with SMTP id y134so582535pfg.3
+	for <yocto@yoctoproject.org>; Thu, 11 Aug 2016 18:06:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=from:to:cc:subject:date:message-id:in-reply-to:references;
-	bh=iEh3jJC23TbaEL+Vj5+3PV9KosHQWAEkrx9rBRFtXEs=;
-	b=AwUFtnrRPKoodPUo6n67Pnjo7lwlbbt06onQj/u5WnHdjJpLOcKI4VYvE568IXwN2Z
-	uYkGeF1T4pSH48b94xUmi4quaBEVNRT0FOlD/aCtxUdA4oUTNvL55P+182slzkzfsuzZ
-	uqS82UDLCzD74g7KquiSaR3FW2wYCUNpzJFok5gZfrFysy51PMgJvVmilk500gj2ZBEo
-	1Tmeg2E/f5CIQGZ1bzx8f4+/2XJnvk+Nv8ksgDYF5zq2yfnfWhd+dpkqK1cvSs+EttUg
-	G6dYkbyo3+gVAjouGURZJNBaqqK7jk8mUqZTZ1svipK4Sq00sZfTCZDbMki5MZ/F8X8g
-	Cr8Q==
+	bh=levjmlgthwZVVfSvdaH2UBDmjH7JVtqY+4Wxvb/Vq2c=;
+	b=HqD6e0f5g2Kh7+quzbven7jKYETu+V3ZnKQea1PAM2P1KlU4PnIJxLCkL/oAV2Cd+q
+	UV3udgix0BrUd975dVdmo6vTuN5ds6Zg7LaJXh+peCkqj9lOSiq/bb3p3zoRBUrdAW0K
+	R699qslqOU2r2yYCBYNwqQL8LM1JfZ3tTTrO8+o1FzwNugs+J0/5/9pW/7Je16N47n4r
+	cROvLLHCwxXUhg3bJGMO6+iJGYM4ANKKTk32aUmxPRU4rSK0G/urEezJhDCBOBJK1ew+
+	+idX5nfUINN3vC3A569HtD8L9lBNRqgRjscZoILzDQ908srPzHza8YFcZzQhXS+lQjow
+	TgDQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
 	:references;
-	bh=iEh3jJC23TbaEL+Vj5+3PV9KosHQWAEkrx9rBRFtXEs=;
-	b=SO7TNS15a/nNmLJ/JqGUyBYJqYl63n0gU+jUwjI0/VA7wjrFnzdkwUmaq89PZonHhM
-	W0Jy8LlI18IjL8DBCoXxYIO5tKDrn57dkLeNXZL7EAPbgX6y/i0Bk5lu3gBUuYh5V684
-	dTbdp574TrFeps3S64dKKNONaWMgtPmBqSWUD36h08h51Ekq4nns4Z5xAcsJYceQHYq6
-	y8rjwWXDMFCWQmLZOCJSU9PdEfv2CLvQfEz7yVwX+TAEjr74+HyVTf4GyBWPs06bzJfV
-	0vAaaDIYU5QAmb3UmTCNYLjvm4407yUbNiHEWovFuoSB2sBLp3MgAG0g6pLvLSj9adPk
-	MNrQ==
-X-Gm-Message-State: AEkoouvTzIV9mC2dwJWGPslG/2hDHXTyYExuDcI1KTyrw9BLS/6e4jrDQBL04aUcJ+X2AQ==
-X-Received: by 10.98.207.6 with SMTP id b6mr22300081pfg.25.1470963979039;
-	Thu, 11 Aug 2016 18:06:19 -0700 (PDT)
+	bh=levjmlgthwZVVfSvdaH2UBDmjH7JVtqY+4Wxvb/Vq2c=;
+	b=eonVMTaIX4CYIYF3miPcyQASfZyV/fyqBE898j0M4i8RvTpM1UWsZNtHCDYGbT5QyT
+	EmH9sbUorn/ttKHRo8BLd7lK4MZ5iyEfNAo3XmalydyBXQaaLaxx3dj97nPnXQapU390
+	gtiwm1fCeM2jmerWd4zRYmWYKAfz4D9utrdi3H8i+nTTC5frzbUCWPsRvffspX/WpT5E
+	e/VLJDKwBAwa8vrOY1xM2J2eTpBRNbgdgqdMRNaXGP9abnPmcyNb2O4vbJ9ga1inRsTn
+	PfC7iv1LtCGO3v0Dl4XVqrwV4TO2y89tlAKUviYCFTZPXBsoyUcxjNoDSAcIfD1eBXlG
+	nFsA==
+X-Gm-Message-State: AEkoousQ/xln39w0c2HFmqBluYhP9tce+iTfQJhWJtxEFl7xcgYmvBwW38mt0Cf7o/5vTQ==
+X-Received: by 10.98.17.83 with SMTP id z80mr22732172pfi.38.1470963981271;
+	Thu, 11 Aug 2016 18:06:21 -0700 (PDT)
 Received: from localhost.localdomain (c-76-102-32-192.hsd1.ca.comcast.net.
 	[76.102.32.192])
-	by smtp.gmail.com with ESMTPSA id a5sm7955260pfc.89.2016.08.11.18.06.18
+	by smtp.gmail.com with ESMTPSA id a5sm7955260pfc.89.2016.08.11.18.06.20
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Thu, 11 Aug 2016 18:06:18 -0700 (PDT)
+	Thu, 11 Aug 2016 18:06:20 -0700 (PDT)
 From: Khem Raj <raj.khem@gmail.com>
 To: yocto@yoctoproject.org
-Date: Thu, 11 Aug 2016 18:05:49 -0700
-Message-Id: <20160812010608.31182-4-raj.khem@gmail.com>
+Date: Thu, 11 Aug 2016 18:05:51 -0700
+Message-Id: <20160812010608.31182-6-raj.khem@gmail.com>
 X-Mailer: git-send-email 2.9.2
 In-Reply-To: <20160812010608.31182-1-raj.khem@gmail.com>
 References: <20160812010608.31182-1-raj.khem@gmail.com>
-Subject: [meta-raspberrypi][PATCH 04/23] sdcard_image-rpi.bbclass: support for .dtbo files for dtb overlays
+Subject: [meta-raspberrypi][PATCH 06/23] rpi-base.inc: add vc4-kms-v3d to the overlays to support vc4graphics
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,70 +72,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Aug 2016 01:06:21 -0000
+X-List-Received-Date: Fri, 12 Aug 2016 01:06:22 -0000
 
 From: Herve Jourdain <herve.jourdain@neuf.fr>
-
-Kernel 4.4.6+ on RaspberryPi support .dtbo files for overlays, instead of .dtb.
-Add support for both extensions for overlays (".dtb" and ".dtbo")
-
-CAUTION: in IMAGE_CMD_rpi-sdimg, 'TMPDIR' is not set, causing 'STAGING_KERNEL_BUILDDIR' to not be expanded, causing get_dts() to not being able to get the kernel version!
-To avoid this problem, the kernel version is added in a new variable outside the scope of IMAGE_CMD_rpi-sdimg, and its value passed to get_dts() and split_overlays()!
 
 Signed-off-by: Herve Jourdain <herve.jourdain@neuf.fr>
 Signed-off-by: Khem Raj <raj.khem@gmail.com>
 ---
- classes/sdcard_image-rpi.bbclass | 15 +++++++++------
- 1 file changed, 9 insertions(+), 6 deletions(-)
+ conf/machine/include/rpi-base.inc | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/classes/sdcard_image-rpi.bbclass b/classes/sdcard_image-rpi.bbclass
-index 57cefea..a04204a 100644
---- a/classes/sdcard_image-rpi.bbclass
-+++ b/classes/sdcard_image-rpi.bbclass
-@@ -75,6 +75,8 @@ IMAGEDATESTAMP = "${@time.strftime('%Y.%m.%d',time.gmtime())}"
- IMAGE_CMD_rpi-sdimg[vardepsexclude] += "IMAGEDATESTAMP"
- IMAGE_CMD_rpi-sdimg[vardepsexclude] += "DATETIME"
+diff --git a/conf/machine/include/rpi-base.inc b/conf/machine/include/rpi-base.inc
+index 47eb23b..aabc131 100644
+--- a/conf/machine/include/rpi-base.inc
++++ b/conf/machine/include/rpi-base.inc
+@@ -37,6 +37,7 @@ KERNEL_DEVICETREE ?= " \
+     overlays/w1-gpio.dtbo \
+     overlays/w1-gpio-pullup.dtbo \
+     overlays/pi3-miniuart-bt.dtbo \
++    overlays/vc4-kms-v3d.dtbo \
+     "
+ KERNEL_IMAGETYPE ?= "Image"
  
-+RPI_KERNEL_VERSION := "${@get_kernelversion_file('${STAGING_KERNEL_BUILDDIR}')}"
-+
- IMAGE_CMD_rpi-sdimg () {
- 
- 	# Align partitions
-@@ -85,7 +87,7 @@ IMAGE_CMD_rpi-sdimg () {
- 	echo "Creating filesystem with Boot partition ${BOOT_SPACE_ALIGNED} KiB and RootFS $ROOTFS_SIZE KiB"
- 
- 	# Check if we are building with device tree support
--	DTS="${@get_dts(d, None)}"
-+	DTS="${@get_dts(d, '${RPI_KERNEL_VERSION}')}"
- 
- 	# Initialize sdcard image file
- 	dd if=/dev/zero of=${SDIMG} bs=1024 count=0 seek=${SDIMG_SIZE}
-@@ -105,9 +107,9 @@ IMAGE_CMD_rpi-sdimg () {
- 	mkfs.vfat -n "${BOOTDD_VOLUME_ID}" -S 512 -C ${WORKDIR}/boot.img $BOOT_BLOCKS
- 	mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/bcm2835-bootfiles/* ::/
- 	if test -n "${DTS}"; then
--		# Device Tree Overlays are assumed to be suffixed by '-overlay.dtb' string and will be put in a dedicated folder
--		DT_OVERLAYS="${@split_overlays(d, 0)}"
--		DT_ROOT="${@split_overlays(d, 1)}"
-+		# Device Tree Overlays are assumed to be suffixed by '-overlay.dtb' (4.1.x) or by '.dtbo' (4.4.9+) string and will be put in a dedicated folder
-+		DT_OVERLAYS="${@split_overlays(d, '${RPI_KERNEL_VERSION}', 0)}"
-+		DT_ROOT="${@split_overlays(d, '${RPI_KERNEL_VERSION}', 1)}"
- 
- 		# Copy board device trees to root folder
- 		for DTB in ${DT_ROOT}; do
-@@ -119,9 +121,10 @@ IMAGE_CMD_rpi-sdimg () {
- 		# Copy device tree overlays to dedicated folder
- 		mmd -i ${WORKDIR}/boot.img overlays
- 		for DTB in ${DT_OVERLAYS}; do
--			DTB_BASE_NAME=`basename ${DTB} .dtb`
-+				DTB_EXT=${DTB##*.}
-+				DTB_BASE_NAME=`basename ${DTB} ."${DTB_EXT}"`
- 
--			mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/${KERNEL_IMAGETYPE}-${DTB_BASE_NAME}.dtb ::overlays/${DTB_BASE_NAME}.dtb
-+			mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/${KERNEL_IMAGETYPE}-${DTB_BASE_NAME}.${DTB_EXT} ::overlays/${DTB_BASE_NAME}.${DTB_EXT}
- 		done
- 	fi
- 	case "${KERNEL_IMAGETYPE}" in
 -- 
 2.9.2
 
