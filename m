@@ -1,6 +1,6 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6D7F0E01041; Thu, 11 Aug 2016 18:06:19 -0700 (PDT)
+	id 6DF58E0104D; Thu, 11 Aug 2016 18:06:21 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,7 +9,7 @@ X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [209.85.192.194 listed in list.dnswl.org]
+	*      [209.85.220.65 listed in list.dnswl.org]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
 	provider *      (raj.khem[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
@@ -19,48 +19,48 @@ X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pf0-f194.google.com (mail-pf0-f194.google.com
-	[209.85.192.194])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 17B50E0103D
-	for <yocto@yoctoproject.org>; Thu, 11 Aug 2016 18:06:18 -0700 (PDT)
-Received: by mail-pf0-f194.google.com with SMTP id h186so581273pfg.2
-	for <yocto@yoctoproject.org>; Thu, 11 Aug 2016 18:06:18 -0700 (PDT)
+Received: from mail-pa0-f65.google.com (mail-pa0-f65.google.com
+	[209.85.220.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B814FE01040
+	for <yocto@yoctoproject.org>; Thu, 11 Aug 2016 18:06:20 -0700 (PDT)
+Received: by mail-pa0-f65.google.com with SMTP id ez1so558342pab.3
+	for <yocto@yoctoproject.org>; Thu, 11 Aug 2016 18:06:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=from:to:cc:subject:date:message-id:in-reply-to:references;
-	bh=0I1RLQY/7PbnpQnDWeybKVGg4MTsyUGVqIPHjN2Xpps=;
-	b=obEXidnj37c7vyStwnwHKA/c7rcRSqIxNd99LlCnqlMdPWSqd/51cjW0uT6bQRUH0i
-	G8zGP3A0aGzdz3cmCaLnyp9Kn+CZEbfFpqFamg5SPQLwJSxsWHVjoJSC4mmsJUQfGcZ3
-	xAbegX1UejuU0/V+xQ7EBWlD7dJIAik4mKrBKU67c3hckhyy5Flme0PCEKnviCDXjfKV
-	XuKqb+daQZUAeaye0lTtzQxbegjswEVQoQZoMuKhQhc6kWKSivXD/XBjHNivVuusZjgH
-	V+7CETw/mBki9ix531WUVnKQjKeubK9RvFmpOco9L/6cJYZMM0FOQPWpkHnejvc/RqXW
-	rabg==
+	bh=yD4qIyfhuKaWOgI0TCKoKJfe2dp1+I5TaVWH5ey8mgw=;
+	b=u0At/8KFawPoOsp6jJswA4rtBgCg38JOspj/kxfu8fOT7MmDTWEbWNpjfCVoB7lYYe
+	KSfxmDs84HvVfdZthWtBng9BokWCPpEceciRYRbpyz1if4G3mQfrxU+xwShBD5m0zVnb
+	r4CVnSp6qY9acLbJMgWKB97WSHz+U6jLZABMtM7/WT0FSmEoExAVFAxMyAeVtTcjJGM+
+	8oYV5o/Du0IBnYGkFGeRA6D/C8lqtyny9z1kPY3NMNexNRYVqiW8JZ76ANWOiQwqgd+o
+	PLhzWvt0IXOBchZ5Lmnd8a8d0Tzcr4pzBXz+zl4sUYoeXAEbGaw2Mxb5lp+iGdhU9HUe
+	Mnvw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
 	:references;
-	bh=0I1RLQY/7PbnpQnDWeybKVGg4MTsyUGVqIPHjN2Xpps=;
-	b=PqtSnSc2rKSndWcAY6ZA03dioT0JFZhWa+B6Oc3KQC3xREGBX8FAIE1WmaaGNi+wZM
-	sSYhzg7kCznICV1RzDm49H+5MLnfacVsy8GTYYonzrg4laI634vuV6zMoJ0v+MwaXIDK
-	iudC0AcPnOEdYOKS6xxjh8PClHA0Lrdw1+r9mXr9UjJQczSyyGJUgl2e6C9Nu0Sk/tFJ
-	00FiwvZZdJd6IxiqdOdk0RXmzka+ECQIhRyTQ+RhPUaXSJM5rrVM/f8eg+gqhcSB4+Hh
-	WkQ0G4obRa4jQqCAzYyB7NNc0akciHbFiPTGCRSajSl/9zYUMMPVM0LJK1S+7Mbhxg8O
-	WMrw==
-X-Gm-Message-State: AEkoousMhTcDv+iHSdWTYoHd8LvEElQ80DHG7nDsEzPKRCZG4SYYMAj8azjrs/4vwIylGg==
-X-Received: by 10.98.74.201 with SMTP id c70mr22318660pfj.113.1470963978109;
-	Thu, 11 Aug 2016 18:06:18 -0700 (PDT)
+	bh=yD4qIyfhuKaWOgI0TCKoKJfe2dp1+I5TaVWH5ey8mgw=;
+	b=B+k45kOG+P8Wh7CEmrB9q3v8jpbRxJLPlCEWe8fLCCtf5GP5QDweYKGFk+O1IQxMPs
+	ZYmf+3eqzZzh9T88iJPmzO06wEyb9RwPbRJ2a8rXOMLPfJELRaABCu977enqSfd4xcta
+	lgq+qzSu1Qpe0Te14L/cJs7lIG8LGAxAU7o2f39B+TlKbHRLraCDOufPhfZ6oDVEUYXQ
+	4oikIaxJOSGjrtFxP3dCWt0rqiQhd8VfrJF2mQWCdr54jqbs1MQ0dP3faWaye8z7bDZV
+	tLQuuvGRbFZYV4OE3doU0DVvk6RtD1hYfL84I+MLzrifbreNsq+lw18lWwq0ahTdEmT5
+	a4dg==
+X-Gm-Message-State: AEkoousIogKubjSEEwLTuCq0gFl2YpzTSdhUDy5hSlCBHe0SrSE6GaftCc49QXTHP+vqNA==
+X-Received: by 10.66.127.38 with SMTP id nd6mr22428571pab.74.1470963980052;
+	Thu, 11 Aug 2016 18:06:20 -0700 (PDT)
 Received: from localhost.localdomain (c-76-102-32-192.hsd1.ca.comcast.net.
 	[76.102.32.192])
-	by smtp.gmail.com with ESMTPSA id a5sm7955260pfc.89.2016.08.11.18.06.16
+	by smtp.gmail.com with ESMTPSA id a5sm7955260pfc.89.2016.08.11.18.06.19
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Thu, 11 Aug 2016 18:06:17 -0700 (PDT)
+	Thu, 11 Aug 2016 18:06:19 -0700 (PDT)
 From: Khem Raj <raj.khem@gmail.com>
 To: yocto@yoctoproject.org
-Date: Thu, 11 Aug 2016 18:05:48 -0700
-Message-Id: <20160812010608.31182-3-raj.khem@gmail.com>
+Date: Thu, 11 Aug 2016 18:05:50 -0700
+Message-Id: <20160812010608.31182-5-raj.khem@gmail.com>
 X-Mailer: git-send-email 2.9.2
 In-Reply-To: <20160812010608.31182-1-raj.khem@gmail.com>
 References: <20160812010608.31182-1-raj.khem@gmail.com>
-Subject: [meta-raspberrypi][PATCH 03/23] linux-raspberrypi-base.bbclass: support for .dtbo files for dtb overlays
+Subject: [meta-raspberrypi][PATCH 05/23] rpi-default-providers.inc: change default providers to support vc4graphics
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,68 +72,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Aug 2016 01:06:19 -0000
+X-List-Received-Date: Fri, 12 Aug 2016 01:06:21 -0000
 
 From: Herve Jourdain <herve.jourdain@neuf.fr>
-
-Kernel 4.4.6+ on RaspberryPi support .dtbo files for overlays, instead of .dtb.
-Add support for both variants of overlays ("-overlay.dtb" and ".dtbo")
-Change which variant needs to be supported based on the kernel version
-
-CAUTION: when called from IMAGE_CMD_rpi-sdimg, 'TMPDIR' is not set, causing 'STAGING_KERNEL_BUILDDIR' to not be expanded, causing get_kernelversion_file() to fail!
-To avoid this problem, get_dts() and split_overlays() MUST be called with the kernel version parameter set, when called from IMAGE_CMD_rpi-sdimg!
 
 Signed-off-by: Herve Jourdain <herve.jourdain@neuf.fr>
 Signed-off-by: Khem Raj <raj.khem@gmail.com>
 ---
- classes/linux-raspberrypi-base.bbclass | 19 ++++++++++++-------
- 1 file changed, 12 insertions(+), 7 deletions(-)
+ conf/machine/include/rpi-default-providers.inc | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/classes/linux-raspberrypi-base.bbclass b/classes/linux-raspberrypi-base.bbclass
-index 40beef1..930fc44 100644
---- a/classes/linux-raspberrypi-base.bbclass
-+++ b/classes/linux-raspberrypi-base.bbclass
-@@ -1,7 +1,8 @@
- inherit linux-kernel-base
+diff --git a/conf/machine/include/rpi-default-providers.inc b/conf/machine/include/rpi-default-providers.inc
+index 359870d..078e9d6 100644
+--- a/conf/machine/include/rpi-default-providers.inc
++++ b/conf/machine/include/rpi-default-providers.inc
+@@ -2,8 +2,8 @@
  
--
- def get_dts(d, ver):
-+    import re
-+
-     staging_dir = d.getVar("STAGING_KERNEL_BUILDDIR", True)
-     dts = d.getVar("KERNEL_DEVICETREE", True)
- 
-@@ -20,20 +21,24 @@ def get_dts(d, ver):
- 
-     # Always turn off device tree support for kernel's < 3.18
-     try:
--        if int(min_ver[0]) <= 3:
--            if int(min_ver[1]) < 18:
--                dts = ""
-+        if int(min_ver[0]) >= 4:
-+            if (int(min_ver[1]) < 4) or (int(min_ver[1]) == 4 and int(min_ver[2]) < 6):
-+                dts = ' '.join([(re.sub(r'(.*)\.dtbo$', r'\1-overlay.dtb', x)) for x in dts.split()])
-+        elif int(min_ver[1]) < 18:
-+            dts = ""
-     except IndexError:
-         min_ver = None
- 
-     return dts
- 
- 
--def split_overlays(d, out):
--    dts = get_dts(d, None)
-+def split_overlays(d, ver, out):
-+    dts = get_dts(d, ver)
-     if out:
-         overlays = oe.utils.str_filter_out('\S+\-overlay\.dtb$', dts, d)
-+        overlays = oe.utils.str_filter_out('\S+\.dtbo$', overlays, d)
-     else:
--        overlays = oe.utils.str_filter('\S+\-overlay\.dtb$', dts, d)
-+        overlays = oe.utils.str_filter('\S+\-overlay\.dtb$', dts, d) + \
-+                   " " + oe.utils.str_filter('\S+\.dtbo$', dts, d)
- 
-     return overlays
+ PREFERRED_PROVIDER_virtual/kernel ?= "linux-raspberrypi"
+ PREFERRED_PROVIDER_virtual/xserver ?= "xserver-xorg"
+-PREFERRED_PROVIDER_virtual/egl ?= "userland"
+-PREFERRED_PROVIDER_virtual/libgles2 ?= "userland"
+-PREFERRED_PROVIDER_virtual/libgl ?= "mesa-gl"
+-PREFERRED_PROVIDER_virtual/mesa ?= "mesa-gl"
++PREFERRED_PROVIDER_virtual/egl ?= "${@bb.utils.contains("MACHINE_FEATURES", "vc4graphics", "mesa", "userland", d)}"
++PREFERRED_PROVIDER_virtual/libgles2 ?= "${@bb.utils.contains("MACHINE_FEATURES", "vc4graphics", "mesa", "userland", d)}"
++PREFERRED_PROVIDER_virtual/libgl ?= "${@bb.utils.contains("MACHINE_FEATURES", "vc4graphics", "mesa", "mesa-gl", d)}"
++PREFERRED_PROVIDER_virtual/mesa ?= "${@bb.utils.contains("MACHINE_FEATURES", "vc4graphics", "mesa", "mesa-gl", d)}"
+ PREFERRED_PROVIDER_jpeg ?= "jpeg"
 -- 
 2.9.2
 
