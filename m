@@ -1,35 +1,60 @@
-Return-Path: <joshua.g.lock@linux.intel.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 44AC3E01431; Fri, 12 Aug 2016 06:52:10 -0700 (PDT)
+	id B1DF5E012F9; Fri, 12 Aug 2016 06:53:54 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.24 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.223.172 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C425AE0142F
-	for <yocto@yoctoproject.org>; Fri, 12 Aug 2016 06:52:09 -0700 (PDT)
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-	by orsmga102.jf.intel.com with ESMTP; 12 Aug 2016 06:52:09 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.28,510,1464678000"; d="scan'208";a="154812462"
-Received: from jlock-mobl1.ger.corp.intel.com ([10.252.28.64])
-	by fmsmga004.fm.intel.com with ESMTP; 12 Aug 2016 06:52:06 -0700
-Message-ID: <1471009925.19073.6.camel@linux.intel.com>
-From: Joshua G Lock <joshua.g.lock@linux.intel.com>
-To: "Kumar, Shrawan" <Shrawan.Kumar@harman.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Date: Fri, 12 Aug 2016 14:52:05 +0100
-In-Reply-To: <9eea2233da3d4fbd8722005093c1311d@HIBDWSMB02.ad.harman.com>
-References: <9eea2233da3d4fbd8722005093c1311d@HIBDWSMB02.ad.harman.com>
-X-Mailer: Evolution 3.20.5 (3.20.5-1.fc24) 
-Mime-Version: 1.0
-Subject: Re: Access Control List (ACL) permissions attributes not getting preserved in rootfs
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-io0-f172.google.com (mail-io0-f172.google.com
+	[209.85.223.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3B734E012F6
+	for <yocto@yoctoproject.org>; Fri, 12 Aug 2016 06:53:51 -0700 (PDT)
+Received: by mail-io0-f172.google.com with SMTP id b62so25032358iod.3
+	for <yocto@yoctoproject.org>; Fri, 12 Aug 2016 06:53:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=DPc+mWWU3/SL0aMfK3N7zs+Lh0rrByO2ajrhrhD3374=;
+	b=bLcCVA8qTOKxrH/ZysoGVXtM0fUGkcYZYz6D5j+8xPNTRKmzOriA2SF/Y9rHQYXbNr
+	ftxyfMgVweT9DTuZMujGoWBLWnenadPb3PuiPu9dsxjcq2WjFD7Mh2WWf/f/MQ9WczcH
+	UU9SJB9dsYzhG5Ttg2A4PUMTeSXXwIhGwPm2yqXHpKYMnXWjGOe/lEC2UzxQVFkv7sMS
+	0a6jYTHg4olcznmeiRYL/ZJjIcXWrFCbm3a+bslg/xGs2cD+Os1T/nMy7/xczPV+qkSE
+	rwoDYVH316u5WSq2dys2YrmyHpA67GtPSxphQKra87Q3sH4A0NrEOGdGtQCExEY08hIM
+	ooFg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=DPc+mWWU3/SL0aMfK3N7zs+Lh0rrByO2ajrhrhD3374=;
+	b=OiA6wVGpqyyMhXeYDBHpoRNwUBvxaFS46ZvZohjBCESj8HpsCktxLQYl0vy8Ibj+Oo
+	KVjLiT+zCgpN67qEi2Ul1D0bFMeF1/NJoWwBNW+hRG8E4QISfseVgsFXyJXm7SvygQ1/
+	WKTeSzBkXK5L7U3u1L5raOQdkivw8YVJfZlfHlMoE+F/vp6qYSkfJMUgrSC9s2EcnWis
+	17M1P8vfWP4NY2w7TZ/DuZnc0lvB9Hh5Dnq5G6pK5o0iBJ+G/MVSWHmklkbXeuQxwPtL
+	kwVrBtQlw/p4KP8udhJrtMLl8EwH1VbneKsZUveslivLBVO4yiYf5JWM4TlFYVphb50R
+	Fm4Q==
+X-Gm-Message-State: AEkoouvB8VtQVdE7/REnvCerKl4zm/AAdeXyJUSEfF0XdELdTFytnLyDx/8hSd0Er2ORtDsdtv3CoAoB2QTxOng+
+X-Received: by 10.107.135.142 with SMTP id r14mr19609156ioi.133.1471010031126; 
+	Fri, 12 Aug 2016 06:53:51 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.107.18.17 with HTTP; Fri, 12 Aug 2016 06:53:30 -0700 (PDT)
+In-Reply-To: <alpine.LFD.2.20.1608120742050.15976@localhost.localdomain>
+References: <alpine.LFD.2.20.1608120742050.15976@localhost.localdomain>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Fri, 12 Aug 2016 14:53:30 +0100
+Message-ID: <CAJTo0LZSb=4WkQ_9vuonqAGPCwiK9Xc6wgv4zAx=EWkVci4Cxg@mail.gmail.com>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: can one use "ASSUME_PROVIDED += mono-native" to avoid compiling?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,71 +66,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Aug 2016 13:52:10 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Fri, 12 Aug 2016 13:53:54 -0000
+Content-Type: multipart/alternative; boundary=001a113eccbc5ddf450539e036ad
 
-On Fri, 2016-08-12 at 12:33 +0000, Kumar, Shrawan wrote:
-> Hello All,
->  
-> I am  using  poky “ jethro”  , and  though  one of my recipe, I have
-> created user1 & user2 and then trying to set ACL rules  on
-> “helloworld” bin as below :
->  
->  
-> do_install() {
->                     install -d ${D}${bindir}
->                     install -m 0700 helloworld ${D}${bindir}
->                     install -d ${D}/lib/systemd/system
->                     install -m 0700 hello.service
-> ${D}/lib/systemd/system/
->                     chown    user1:group1 ${D}${bindir}/helloworld
->                    setfacl -m u:user2:r-- ${D}${bindir}/helloworld
-> }
->  
->  
-> è When I see   on the devshell ( bitbake HelloWorld –c devshell)  :
-> poky/build_qemux86/tmp/work/qemux86-poky-linux/core-image-
-> minimal/1.0-r0/rootfs/usr/bin# getfacl helloworld    , I could see
-> that ACL permissions are set correctly as below :
-> -        # file: helloworld
-> -        # owner: user1
-> -        # group: group1
-> -        user::rwx
-> -        user:user2:r--
-> -        group::---
-> -        mask::r--
-> -        other::---
->  
-> However, It does not seems to be getting preserved in rootfs. :
-> /poky/build_qemux86/tmp/work/qemux86-poky-linux/core-image-
-> minimal/1.0-r0/rootfs/usr/bin# getfacl helloworld
-> # file: helloworld
-> # owner: user1
-> # group: group1
-> user::rwx
-> group::---
-> other::---
->  
-> quick help  here would be highly appreciated
+--001a113eccbc5ddf450539e036ad
+Content-Type: text/plain; charset=UTF-8
 
-This is due to the fact that we don't currently have a mechanism to
-preserve xattr through to image construction[1].
+On 12 August 2016 at 11:50, Robert P. J. Day <rpjday@crashcourse.ca> wrote:
 
-The largest barrier for doig so is that the package managers (certainly
-dpkg and rpm) don't have any support for xattrs in packages (an image
-is populated via the package manager).
+>   built mono for the first time, and a significant amount of time was
+> spent compiling mono-native. if i already have mono on my build host,
+> is it worth checking if i can take advantage of it?
+>
 
-To the best of my knowledge the only option for adding some xattr/ACL
-is to use a postinst[2] to set the attributes after the package has
-been installed.
+sstate obviously means if it doesn't change then you won't be rebuilding it
+again for a while, but yeah you can look at that.  Obviously it's your
+responsibility if the host mono isn't good enough (too old, missing
+patches, etc) but before I got a faster machine I put a fair number of
+tools in ASSUME_PROVIDED for this reason.
 
-Regards,
+Ross
 
-Joshua
+--001a113eccbc5ddf450539e036ad
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-1. https://bugzilla.yoctoproject.org/show_bug.cgi?id=9858
-2. http://www.yoctoproject.org/docs/2.1/dev-manual/dev-manual.html#new-
-recipe-post-installation-scripts
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 12 August 2016 at 11:50, Robert P. J. Day <span dir=3D"ltr">&lt;<a href=
+=3D"mailto:rpjday@crashcourse.ca" target=3D"_blank">rpjday@crashcourse.ca</=
+a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0=
+ 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div id=3D":3jw" cla=
+ss=3D"a3s aXjCH m1567e7135a169fce">=C2=A0 built mono for the first time, an=
+d a significant amount of time was<br>
+spent compiling mono-native. if i already have mono on my build host,<br>
+is it worth checking if i can take advantage of it?<br></div></blockquote><=
+/div><br>sstate obviously means if it doesn&#39;t change then you won&#39;t=
+ be rebuilding it again for a while, but yeah you can look at that.=C2=A0 O=
+bviously it&#39;s your responsibility if the host mono isn&#39;t good enoug=
+h (too old, missing patches, etc) but before I got a faster machine I put a=
+ fair number of tools in ASSUME_PROVIDED for this reason.</div><div class=
+=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Ross</div></div>
 
-
+--001a113eccbc5ddf450539e036ad--
