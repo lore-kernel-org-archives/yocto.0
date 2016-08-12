@@ -1,29 +1,60 @@
-Return-Path: <S.Jaritz@esa-grimma.de>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 408B1E0126E; Fri, 12 Aug 2016 01:46:14 -0700 (PDT)
+	id DD29DE0126E; Fri, 12 Aug 2016 02:51:27 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from gse01.esa-grimma.de (gse01.esa-grimma.de [62.41.26.213])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 81409E0103E
-	for <yocto@yoctoproject.org>; Fri, 12 Aug 2016 01:46:09 -0700 (PDT)
-To: yocto@yoctoproject.org
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.223.173 listed in list.dnswl.org]
+Received: from mail-io0-f173.google.com (mail-io0-f173.google.com
+	[209.85.223.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B19EEE01086
+	for <yocto@yoctoproject.org>; Fri, 12 Aug 2016 02:51:24 -0700 (PDT)
+Received: by mail-io0-f173.google.com with SMTP id q83so20189604iod.1
+	for <yocto@yoctoproject.org>; Fri, 12 Aug 2016 02:51:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=nOiAWzr9CKOUvtp4Ib6S7yCHpSL3HGkvF6crcnZB4uk=;
+	b=ZzrSkGMnZWUSQ5nuNFiAUKauBrBuSgC7Ts+RkYDumRX5vfSTRrW5D3+KQ+7D53pK9u
+	4aV/aUsjlD3xld9Y4uU9Q2CQgDcsthaWBRnNotuL3ybt6h89WWGRRSheu2S8VxgK9i37
+	2vrHliJSjyFtPOy6hf51UlSj1jGqiVo/iwXfysILhRla/gi1Hk+GfoyUnnqV1UAW92iJ
+	ioP5fJXYTKFY3ez+3wGqeH18hIyY0iOA0cBTuOn8qIftRltGK3AmXSAxOhpfaFbCQt85
+	f3cLirSwRwBxVM5CoQTllEiT2EMF9jarZ0ShwvuCEYzLzi7ysgKnOp8yZRt0aou4SGx7
+	PnrA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=nOiAWzr9CKOUvtp4Ib6S7yCHpSL3HGkvF6crcnZB4uk=;
+	b=SW+M/xcUWYeAFFGmUOVLCI7kaU0CtWf0/X+GVFyuZR9uBtY1DzcxrzMXXREJVb0vVc
+	b5ilEdmKXXhqoMRRSDbNz3yTs0aDcWj4US2qlmmQzcYWx6ZtP7v1wtNrc9jm6fWbzino
+	3cx9sx/1WIVLD71RALTVbaAALuxyfWotALyUPrrcoPlrOMo1O1iiri5Uyb5fjNXZQStg
+	bHi07Eyp7t1Lf12Cgc5XVZyrUB9b92MjM1hAgJSuZv1wb+USY7YjW285s+CR+SiCmy3X
+	V+CzuhHpR9Fb8rEvuDxg95mgLg8lXVhztFfppKk87TRhwQvzlYaT/3t4M75GR2xbWuSn
+	ikMQ==
+X-Gm-Message-State: AEkoouvKCf6hSSUz4CKdwTOJyo1eJM0JjQ0cpLXj70wxZly0Kc4o7ifLdpc0uMCWL7gp11d85zcc7dy8+NmLLX1c
+X-Received: by 10.107.135.142 with SMTP id r14mr18275658ioi.133.1470995483893; 
+	Fri, 12 Aug 2016 02:51:23 -0700 (PDT)
 MIME-Version: 1.0
-X-KeepSent: 32FA6141:8D0EA4BB-C125800D:002EFDC8;
- type=4; name=$KeepSent
-X-Mailer: IBM Notes Release 9.0 March 08, 2013
-Message-ID: <OF32FA6141.8D0EA4BB-ONC125800D.002EFDC8-C125800D.00302AD6@esa-grimma.de>
-From: S.Jaritz@esa-grimma.de
-Date: Fri, 12 Aug 2016 10:46:07 +0200
-X-MIMETrack: Serialize by Router on GSE01/Server/ESA-Grimma/DE(Release
-	9.0.1FP3 HF42|February 03, 2015) at 12.08.2016 10:46:10,
-	Serialize complete at 12.08.2016 10:46:10
-Subject: if else blocks in recipes(bitbake)
+Received: by 10.107.18.17 with HTTP; Fri, 12 Aug 2016 02:51:03 -0700 (PDT)
+In-Reply-To: <OF32FA6141.8D0EA4BB-ONC125800D.002EFDC8-C125800D.00302AD6@esa-grimma.de>
+References: <OF32FA6141.8D0EA4BB-ONC125800D.002EFDC8-C125800D.00302AD6@esa-grimma.de>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Fri, 12 Aug 2016 10:51:03 +0100
+Message-ID: <CAJTo0LZGydoC2+_x-rWrz5CzUHNb3XJT1B1twALKe=nx9ys4AA@mail.gmail.com>
+To: S.Jaritz@esa-grimma.de
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: if else blocks in recipes(bitbake)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,210 +66,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Aug 2016 08:46:14 -0000
-Content-Type: multipart/alternative;
-	boundary="=_alternative 00302AD3C125800D_="
+X-List-Received-Date: Fri, 12 Aug 2016 09:51:28 -0000
+Content-Type: multipart/alternative; boundary=001a113eccbc48baaa0539dcd341
 
---=_alternative 00302AD3C125800D_=
-Content-Type: text/plain; charset="ISO-8859-1"
+--001a113eccbc48baaa0539dcd341
+Content-Type: text/plain; charset=UTF-8
+
+On 12 August 2016 at 09:46, <S.Jaritz@esa-grimma.de> wrote:
+
+>
+> If have a simple problem. On one system a program is started as a daemon
+> and on the other one not. In my recipe the program is build. by using
+> update-rc.d I create the init script for systemV. The code looks like:
+
+
+The easy solution here is to build two packages, one with the app in and
+another that just contains the init script.  Then systems where you just
+want the applications can install just the application, and systems where
+you want the init script too can install both.
+
+Or, always build with the init script and use a rootfs post-image hook to
+remove it.
+
+Ross
+
+--001a113eccbc48baaa0539dcd341
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Hej
-
-If have a simple problem. On one system a program is started as a daemon=20
-and on the other one not. In my recipe the program is build. by using=20
-update-rc.d I create the init script for systemV. The code looks like:
-##########
-SUMMARY =3D "myApp"
-SECTION =3D "myApp"
-LICENSE =3D "CLOSED"
-
-DEPENDS =3D "dbus glibmm libsigc++-2.0 libconfig"
-RDEPENDS=5F${PN} =3D "bash initscripts"
-
-inherit cmake update-rc.d
-
-SRCREV =3D "${AUTOREV}"
-SRC=5FURI =3D "gitsm://myServer/myApp;protocol=3Dhttp;branch=3Ddevelop"
-
-PVBASE :=3D "${PV}"
-PV =3D "${PVBASE}.${SRCPV}"
-
-S =3D "${WORKDIR}/git/"
-
-INITSCRIPT=5FPARAMS =3D "start 95 2 3 4 5 . stop 01 0 1 6 ."
-INITSCRIPT=5FNAME =3D "myAppD.sh"
-
-CONFFILES=5F${PN} +=3D "${sysconfdir}/init.d/myAppD.sh"
-##########
-Would like to that(pseudo-code):
-##########
-BUILDVAR =3D "yes"
-
-if BUILDVAR =3D=3D "yes" then
-        INITSCRIPT=5FPARAMS =3D "start 95 2 3 4 5 . stop 01 0 1 6 ."
-        INITSCRIPT=5FNAME =3D "myAppD.sh"
-=20
-        CONFFILES=5F${PN} +=3D "${sysconfdir}/init.d/myAppD.sh"
-endif
-##########
-
-How to tell this bitbake?=20
-
-Regards!
-
-Stefan Jaritz
-
-------------------------------------------------------------
-ESA Elektroschaltanlagen Grimma GmbH
-Broner Ring 30
-04668 Grimma
-Telefon: +49 3437 9211 176
-Telefax: +49 3437 9211 26
-E-Mail: s.jaritz@esa-grimma.de
-Internet: www.esa-grimma.de
-
-
-Gesch=E4ftsf=FChrer:
-Dipl.-Ing. J=F6rg Gaitzsch
-J=F6rg Reinker
-
-Sitz der Gesellschaft: Grimma
-Ust.-ID: DE 141784437
-Amtsgericht: Leipzig, HRB 5159
-Steuernummer: 238/108/00755
-
-
-Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte=20
-Informationen.=20
-Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=FCmlich=20
-erhalten=20
-haben, informieren Sie bitte sofort den Absender und l=F6schen Sie diese=20
-Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe dieser=20
-Mail=20
-ist nicht gestattet.
-
-This e-mail may contain confidential and/or privileged information. If you =
-
-are=20
-not the intended recipient (or have received this e-mail in error) please=20
-notify the sender immediately and destroy this e-mail. Any unauthorized=20
-copying, disclosure or distribution of the material in this e-mail is=20
-strictly=20
-forbidden.
-
---=_alternative 00302AD3C125800D_=
-Content-Type: text/html; charset="ISO-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<font size=3D2 face=3D"sans-serif">Hej</font>
-<br>
-<br><font size=3D2 face=3D"sans-serif">If have a simple problem. On one sys=
-tem
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 12 August 2016 at 09:46,  <span dir=3D"ltr">&lt;<a href=3D"mailto:S.Jari=
+tz@esa-grimma.de" target=3D"_blank">S.Jaritz@esa-grimma.de</a>&gt;</span> w=
+rote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;borde=
+r-left:1px #ccc solid;padding-left:1ex"><br><font size=3D"2" face=3D"sans-s=
+erif">If have a simple problem. On one system
 a program is started as a daemon and on the other one not. In my recipe
 the program is build. by using update-rc.d I create the init script for
-systemV. The code looks like:</font>
-<br><font size=3D2 face=3D"sans-serif">##########</font>
-<br><font size=3D2 face=3D"sans-serif">SUMMARY =3D &quot;myApp&quot;</font>
-<br><font size=3D2 face=3D"sans-serif">SECTION =3D &quot;myApp&quot;</font>
-<br><font size=3D2 face=3D"sans-serif">LICENSE =3D &quot;CLOSED&quot;</font>
-<br>
-<br><font size=3D2 face=3D"sans-serif">DEPENDS =3D &quot;dbus glibmm libsig=
-c++-2.0
-libconfig&quot;</font>
-<br><font size=3D2 face=3D"sans-serif">RDEPENDS=5F${PN} =3D &quot;bash init=
-scripts&quot;</font>
-<br>
-<br><font size=3D2 face=3D"sans-serif">inherit cmake update-rc.d</font>
-<br>
-<br><font size=3D2 face=3D"sans-serif">SRCREV =3D &quot;${AUTOREV}&quot;</f=
-ont>
-<br><font size=3D2 face=3D"sans-serif">SRC=5FURI =3D &quot;gitsm://myServer=
-/myApp;protocol=3Dhttp;branch=3Ddevelop&quot;</font>
-<br>
-<br><font size=3D2 face=3D"sans-serif">PVBASE :=3D &quot;${PV}&quot;</font>
-<br><font size=3D2 face=3D"sans-serif">PV =3D &quot;${PVBASE}.${SRCPV}&quot=
-;</font>
-<br>
-<br><font size=3D2 face=3D"sans-serif">S =3D &quot;${WORKDIR}/git/&quot;</f=
-ont>
-<br>
-<br><font size=3D2 face=3D"sans-serif">INITSCRIPT=5FPARAMS =3D &quot;start =
-95 2
-3 4 5 . stop 01 0 1 6 .&quot;</font>
-<br><font size=3D2 face=3D"sans-serif">INITSCRIPT=5FNAME =3D &quot;myAppD.s=
-h&quot;</font>
-<br>
-<br><font size=3D2 face=3D"sans-serif">CONFFILES=5F${PN} +=3D &quot;${sysco=
-nfdir}/init.d/myAppD.sh&quot;</font>
-<br><font size=3D2 face=3D"sans-serif">##########</font>
-<br><font size=3D2 face=3D"sans-serif">Would like to that(pseudo-code):</fo=
-nt>
-<br><font size=3D2 face=3D"sans-serif">##########</font>
-<br><font size=3D2 face=3D"sans-serif">BUILDVAR =3D &quot;yes&quot;</font>
-<br>
-<br><font size=3D2 face=3D"sans-serif">if BUILDVAR =3D=3D &quot;yes&quot; t=
-hen</font>
-<br><font size=3D2 face=3D"sans-serif">&nbsp; &nbsp; &nbsp; &nbsp; INITSCRI=
-PT=5FPARAMS
-=3D &quot;start 95 2 3 4 5 . stop 01 0 1 6 .&quot;</font>
-<br><font size=3D2 face=3D"sans-serif">&nbsp; &nbsp; &nbsp; &nbsp; INITSCRI=
-PT=5FNAME
-=3D &quot;myAppD.sh&quot;</font>
-<br><font size=3D2 face=3D"sans-serif">&nbsp; &nbsp; &nbsp; &nbsp; </font>
-<br><font size=3D2 face=3D"sans-serif">&nbsp; &nbsp; &nbsp; &nbsp; CONFFILE=
-S=5F${PN}
-+=3D &quot;${sysconfdir}/init.d/myAppD.sh&quot;</font>
-<br><font size=3D2 face=3D"sans-serif">endif</font>
-<br><font size=3D2 face=3D"sans-serif">##########</font>
-<br>
-<br><font size=3D2 face=3D"sans-serif">How to tell this bitbake? </font>
-<br>
-<br><font size=3D2 face=3D"sans-serif">Regards!<br>
-<br>
-Stefan Jaritz<br>
-<br>
-------------------------------------------------------------<br>
-ESA Elektroschaltanlagen Grimma GmbH<br>
-Broner Ring 30<br>
-04668 Grimma<br>
-Telefon: +49 3437 9211 176<br>
-Telefax: +49 3437 9211 26<br>
-E-Mail: s.jaritz@esa-grimma.de<br>
-Internet: </font><a href=3D"www.esa-grimma.de"><font size=3D2 face=3D"sans-=
-serif">www.esa-grimma.de</font></a><font size=3D2 face=3D"sans-serif"><br>
-<br>
-<br>
-Gesch=E4ftsf=FChrer:<br>
-Dipl.-Ing. J=F6rg Gaitzsch<br>
-J=F6rg Reinker<br>
-<br>
-Sitz der Gesellschaft: Grimma<br>
-Ust.-ID: DE 141784437<br>
-Amtsgericht: Leipzig, HRB 5159<br>
-Steuernummer: 238/108/00755<br>
-<br>
-<br>
-Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte Informa=
-tionen.
-<br>
-Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=FCmlich
-erhalten <br>
-haben, informieren Sie bitte sofort den Absender und l=F6schen Sie diese
-<br>
-Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe dieser
-Mail <br>
-ist nicht gestattet.<br>
-<br>
-This e-mail may contain confidential and/or privileged information. If
-you are <br>
-not the intended recipient (or have received this e-mail in error) please
-<br>
-notify the sender immediately and destroy this e-mail. Any unauthorized
-<br>
-copying, disclosure or distribution of the material in this e-mail is stric=
-tly
-<br>
-forbidden.</font>
+systemV. The code looks like:</font></blockquote><div><br></div><div>The ea=
+sy solution here is to build two packages, one with the app in and another =
+that just contains the init script.=C2=A0 Then systems where you just want =
+the applications can install just the application, and systems where you wa=
+nt the init script too can install both.</div><div><br></div><div>Or, alway=
+s build with the init script and use a rootfs post-image hook to remove it.=
+</div><div><br></div><div>Ross</div></div></div></div>
 
---=_alternative 00302AD3C125800D_=--
+--001a113eccbc48baaa0539dcd341--
