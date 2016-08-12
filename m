@@ -1,33 +1,63 @@
-Return-Path: <timothy.t.orling@linux.intel.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 78F04E0124E; Thu, 11 Aug 2016 16:30:29 -0700 (PDT)
+	id 9E36EE0103C; Thu, 11 Aug 2016 18:06:17 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [192.55.52.120 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.192.196 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (raj.khem[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 694FAE01252
-	for <yocto@yoctoproject.org>; Thu, 11 Aug 2016 16:30:28 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by fmsmga104.fm.intel.com with ESMTP; 11 Aug 2016 16:30:28 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.28,507,1464678000"; d="scan'208";a="1012911461"
-Received: from timo-fedora.jf.intel.com ([10.7.201.162])
-	by orsmga001.jf.intel.com with ESMTP; 11 Aug 2016 16:30:28 -0700
-From: Tim Orling <timothy.t.orling@linux.intel.com>
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pf0-f196.google.com (mail-pf0-f196.google.com
+	[209.85.192.196])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 15C81E01252
+	for <yocto@yoctoproject.org>; Thu, 11 Aug 2016 18:06:16 -0700 (PDT)
+Received: by mail-pf0-f196.google.com with SMTP id h186so581229pfg.2
+	for <yocto@yoctoproject.org>; Thu, 11 Aug 2016 18:06:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:cc:subject:date:message-id;
+	bh=FsWP1f4ZPm9JqZDZfkkAO4I2aVrnQgsKFTzD8e+yrQs=;
+	b=AfzePFpEJavj4xZIZY0E2Dbd00d1w77/Mau9AKxLtWdwzecAT1gkQyr5QvH978gIU5
+	NNRCBv/X4+Qnbb9DydFHepYZqwRr2i+5v6bORZh80YSP3Nizv2YQN6axCopSZ/bl6q4+
+	JHtyUkUb+u5BIrwpO4vIcSuU59XTKI5F2Cjmal+L2UXrgYnBt1IhoyKPkgERiML2LEvN
+	+QRVjHeoDvV+srOQVYDKVgkMXkEVB9DL5mryAX8iAHwxYaiEL10oufJyV4RGjOcpfgKh
+	w1L12aaOecQI+9Fy2qHxYG53eZbzNntR1k4rwdU0mBUKmnkL1PGX8Nd7JKx/pkNkaJ1/
+	Tdvg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=FsWP1f4ZPm9JqZDZfkkAO4I2aVrnQgsKFTzD8e+yrQs=;
+	b=UO/+e9A68PbxmtJNmnVGKG2jPYSyci4zJ88cWomUddiZA3LpJ34QuQO3QI/cP6K5qE
+	a16nMAdXhWfgi2E17iKv/ixdksG06/w57meVtfet39KPLQ0G5viqpWd2pxmjX7p7fezQ
+	sNxWjm6kGbBqfQbmcCoWYHF1Fml9oUfIcYSlJQVow4YXLvkSDRr552U9o0KchTipTi+q
+	4KuAM388m/JSnblw/Zl1y9luqSXumR2gZpQQ8b40eXQm9KBB4QEOBMUgw+gRecKAUoMo
+	WCrD+/MBiY9MmW0SHzSK0p3eDLkstOOF+V8HKbF9IJmX9F6jYg+YH15Og9FkThpmJUYq
+	W/YQ==
+X-Gm-Message-State: AEkoouvt1wyklqWHBsXg8hiU3K6lY9HVVdvSCUsUuEy0QSFZaHxKw1Yer0oNcxndZkzhvA==
+X-Received: by 10.98.135.13 with SMTP id i13mr22469525pfe.44.1470963975590;
+	Thu, 11 Aug 2016 18:06:15 -0700 (PDT)
+Received: from localhost.localdomain (c-76-102-32-192.hsd1.ca.comcast.net.
+	[76.102.32.192])
+	by smtp.gmail.com with ESMTPSA id a5sm7955260pfc.89.2016.08.11.18.06.13
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Thu, 11 Aug 2016 18:06:14 -0700 (PDT)
+From: Khem Raj <raj.khem@gmail.com>
 To: yocto@yoctoproject.org
-Date: Thu, 11 Aug 2016 16:31:11 -0700
-Message-Id: <1470958271-28279-9-git-send-email-timothy.t.orling@linux.intel.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1470958271-28279-1-git-send-email-timothy.t.orling@linux.intel.com>
-References: <1470958271-28279-1-git-send-email-timothy.t.orling@linux.intel.com>
-Subject: [eclipse-poky][PATCH 8/8] org.yocto.sdk.remotetools: SubProgressMonitor -> SubMonitor
+Date: Thu, 11 Aug 2016 18:05:46 -0700
+Message-Id: <20160812010608.31182-1-raj.khem@gmail.com>
+X-Mailer: git-send-email 2.9.2
+Subject: [meta-raspberrypi][PATCH 01/23] linux-raspberrypi_4.4.bb: support for .dtbo files for dtb overlays
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,321 +69,83 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 11 Aug 2016 23:30:29 -0000
+X-List-Received-Date: Fri, 12 Aug 2016 01:06:17 -0000
 
-[YOCTO #9908]
+From: Herve Jourdain <herve.jourdain@neuf.fr>
 
-Suppress restriction, unchecked and unused warnings.
-Cleanup unused imports/variables.
-Comment out some imports that were only used in commented out code.
+Kernel 4.4.6+ on RaspberryPi support .dtbo files for overlays, instead of .dtb.
+Patch the kernel, which has faulty rules to generate .dtbo the way yocto does
 
-Signed-off-by: Tim Orling <timothy.t.orling@linux.intel.com>
+Signed-off-by: Herve Jourdain <herve.jourdain@neuf.fr>
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
 ---
- .../src/org/yocto/sdk/remotetools/YoctoJSONHelper.java   |  6 ++++++
- .../src/org/yocto/sdk/remotetools/actions/BaseModel.java | 12 ++++++------
- .../org/yocto/sdk/remotetools/actions/OprofileModel.java |  6 +++---
- .../org/yocto/sdk/remotetools/actions/PowertopModel.java |  6 +++---
- .../yocto/sdk/remotetools/actions/SystemtapHandler.java  |  2 ++
- .../sdk/remotetools/actions/SystemtapSettingDialog.java  |  1 +
- .../src/org/yocto/sdk/remotetools/actions/Ust2Model.java | 16 ++++++++--------
- .../org/yocto/sdk/remotetools/views/BaseFileView.java    |  1 +
- .../org/yocto/sdk/remotetools/views/TerminalViewTab.java |  6 ++++--
- .../org/yocto/sdk/remotetools/views/TerminalViewer.java  |  3 ++-
- .../sdk/remotetools/wizards/bsp/PropertiesPage.java      |  1 +
- 11 files changed, 37 insertions(+), 23 deletions(-)
+ .../0001-fix-dtbo-rules.patch                      | 44 ++++++++++++++++++++++
+ recipes-kernel/linux/linux-raspberrypi_4.4.bb      |  1 +
+ 2 files changed, 45 insertions(+)
+ create mode 100644 recipes-kernel/linux/linux-raspberrypi-4.4/0001-fix-dtbo-rules.patch
 
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/YoctoJSONHelper.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/YoctoJSONHelper.java
-index 37ce54d..36723d9 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/YoctoJSONHelper.java
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/YoctoJSONHelper.java
-@@ -32,6 +32,7 @@ public class YoctoJSONHelper {
- 		try {
- 			
- 			JSONObject obj = (JSONObject)JSONValue.parse(new FileReader(PROPERTIES_FILE));
-+			@SuppressWarnings("unchecked")
- 			Set<String> keys = obj.keySet();
- 			if (!keys.isEmpty()) {
- 				Iterator<String> iter = keys.iterator();
-@@ -57,8 +58,13 @@ public class YoctoJSONHelper {
- 		return properties;
- 	}
- 
-+	@SuppressWarnings("unchecked")
- 	public static void createBspJSONFile(HashSet<YoctoBspPropertyElement> properties) {
- 		try {
-+			/* should be JSONObject<String, Object> obj = new JSONObject<String, Object>();
-+			 * but upstream json-simple would have to change.
-+			 * See http://stackoverflow.com/questions/16415436/json-and-generics-in-java-type-safety-warning
-+			 */
- 			JSONObject obj = new JSONObject();
- 			if (!properties.isEmpty()) {
- 				Iterator<YoctoBspPropertyElement> it = properties.iterator();
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/BaseModel.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/BaseModel.java
-index 6686d39..d6004aa 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/BaseModel.java
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/BaseModel.java
-@@ -15,7 +15,7 @@ import java.io.InputStream;
- import java.lang.reflect.InvocationTargetException;
- 
- import org.eclipse.core.runtime.IProgressMonitor;
--import org.eclipse.core.runtime.SubProgressMonitor;
-+import org.eclipse.core.runtime.SubMonitor;
- import org.eclipse.jface.operation.IRunnableWithProgress;
- import org.eclipse.rse.core.model.IHost;
- import org.yocto.remote.utils.RemoteHelper;
-@@ -84,23 +84,23 @@ abstract public class BaseModel implements IRunnableWithProgress {
- 			monitor.beginTask(RUN_MSG + taskName, WORKLOAD);
- 
- 			monitor.subTask(INIT_MSG + taskName + DOTS);
--			init(new SubProgressMonitor(monitor, INIT_PERCENT));
-+			init(SubMonitor.convert(monitor, INIT_PERCENT));
- 
- 			monitor.subTask(PRE_PROCESS_MSG + taskName + DOTS);
--			preProcess(new SubProgressMonitor(monitor, PRE_PROCESS_PERCENT));
-+			preProcess(SubMonitor.convert(monitor, PRE_PROCESS_PERCENT));
- 
- 			monitor.subTask(PROCESS_MSG + taskName + DOTS);
--			process(new SubProgressMonitor(monitor, PROCESS_PERCENT));
-+			process(SubMonitor.convert(monitor, PROCESS_PERCENT));
- 
- 			monitor.subTask(POST_PROCESS_MSG + taskName + DOTS);
--			postProcess(new SubProgressMonitor(monitor, POST_PROCESS_PERCENT));
-+			postProcess(SubMonitor.convert(monitor, POST_PROCESS_PERCENT));
- 		} catch (InterruptedException e){
- 			throw new InterruptedException("User cancelled!");
- 		} catch (InvocationTargetException e) {
- 			throw e;
- 		} finally {
- 			monitor.subTask(CLEAN_MSG + taskName + DOTS);
--			clean(new SubProgressMonitor(monitor, CLEAN_PERCENT));
-+			clean(SubMonitor.convert(monitor, CLEAN_PERCENT));
- 			monitor.done();
- 		}
- 	}
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/OprofileModel.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/OprofileModel.java
-index 7fbe7c6..d482448 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/OprofileModel.java
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/OprofileModel.java
-@@ -17,7 +17,7 @@ import java.io.IOException;
- import java.lang.reflect.InvocationTargetException;
- 
- import org.eclipse.core.runtime.IProgressMonitor;
--import org.eclipse.core.runtime.SubProgressMonitor;
-+import org.eclipse.core.runtime.SubMonitor;
- import org.eclipse.jface.preference.IPreferenceStore;
- import org.eclipse.rse.core.model.IHost;
- import org.eclipse.ui.IWorkbenchWindow;
-@@ -118,7 +118,7 @@ public class OprofileModel extends BaseModel {
- 			monitor.beginTask("Starting oprofile", 100);	
- 			//start oprofile-server
- 			monitor.subTask("Starting oprofile-server");
--			startServer(new SubProgressMonitor(monitor,80));
-+			startServer(SubMonitor.convert(monitor,80));
- 			
- 			//start local oprofile-viewer
- 			monitor.subTask("oprofile-viewer is running locally");
-@@ -140,7 +140,7 @@ public class OprofileModel extends BaseModel {
- 				//stop oprofile-server
- 				if(stopServer) {
- 					monitor.subTask("Stopping oprofile-viewer");
--					stopServer(new SubProgressMonitor(monitor,30));
-+					stopServer(SubMonitor.convert(monitor,30));
- 				}
- 			}
- 		}catch (InterruptedException e){
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/PowertopModel.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/PowertopModel.java
-index 79bef61..20dc0e4 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/PowertopModel.java
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/PowertopModel.java
-@@ -16,7 +16,7 @@ import java.text.SimpleDateFormat;
- import java.util.Calendar;
- 
- import org.eclipse.core.runtime.IProgressMonitor;
--import org.eclipse.core.runtime.SubProgressMonitor;
-+import org.eclipse.core.runtime.SubMonitor;
- import org.eclipse.rse.core.model.IHost;
- import org.eclipse.swt.widgets.Display;
- import org.eclipse.ui.IWorkbenchPage;
-@@ -74,10 +74,10 @@ public class PowertopModel extends BaseModel {
- 		try {
- 			//running powertop
- 			monitor.subTask("Generating powertop data file remotely");
--			generateData(new SubProgressMonitor(monitor,30));
-+			generateData(SubMonitor.convert(monitor,30));
- 			//download datafile
- 			monitor.subTask("Downloading powertop data file");
--			getDataFile(new SubProgressMonitor(monitor,30));
-+			getDataFile(SubMonitor.convert(monitor,30));
- 			//show it in the powertop view
- 			display.syncExec(new Runnable() {
- 				public void run() {
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapHandler.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapHandler.java
-index 466f0c3..886e635 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapHandler.java
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapHandler.java
-@@ -9,6 +9,7 @@
-  * Intel - initial API and implementation
-  *******************************************************************************/
- package org.yocto.sdk.remotetools.actions;
+diff --git a/recipes-kernel/linux/linux-raspberrypi-4.4/0001-fix-dtbo-rules.patch b/recipes-kernel/linux/linux-raspberrypi-4.4/0001-fix-dtbo-rules.patch
+new file mode 100644
+index 0000000..5113e23
+--- /dev/null
++++ b/recipes-kernel/linux/linux-raspberrypi-4.4/0001-fix-dtbo-rules.patch
+@@ -0,0 +1,44 @@
++From 13c8784da3dbd977f64cec740eba775b6fab11c2 Mon Sep 17 00:00:00 2001
++From: Herve Jourdain <herve.jourdain@neuf.fr>
++Date: Fri, 20 May 2016 16:02:23 +0800
++Subject: [yocto][meta-raspberrypi][PATCH v4 4/5] linux-raspberrypi_4.4.inc:
++ support for .dtbo files for dtb overlays
 +
- import java.lang.reflect.InvocationTargetException;
- 
- import org.eclipse.core.commands.AbstractHandler;
-@@ -34,6 +35,7 @@ import org.eclipse.ui.IWorkbenchWindow;
- import org.eclipse.ui.handlers.HandlerUtil;
- import org.yocto.remote.utils.RemoteHelper;
- 
-+@SuppressWarnings("restriction")
- public class SystemtapHandler extends AbstractHandler {
- 	protected SystemtapSettingDialog setting;
- 	protected String changeTerm="export TERM=vt100;";
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapSettingDialog.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapSettingDialog.java
-index 5c14c9a..ed11017 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapSettingDialog.java
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapSettingDialog.java
-@@ -219,6 +219,7 @@ public class SystemtapSettingDialog extends Dialog {
- 	
-  	@Override
- 	protected void okPressed() {
-+		@SuppressWarnings("unused")
- 		IDialogSettings settings = Activator.getDefault().getDialogSettings();
- 		metadata_location = metadataLocationText.getText();
- 		if ( (metadata_location == null) || metadata_location.isEmpty()) {
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/Ust2Model.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/Ust2Model.java
-index 8dcc5b3..854a6a0 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/Ust2Model.java
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/Ust2Model.java
-@@ -25,7 +25,7 @@ import org.eclipse.core.resources.ResourcesPlugin;
- import org.eclipse.core.runtime.IPath;
- import org.eclipse.core.runtime.IProgressMonitor;
- import org.eclipse.core.runtime.Path;
--import org.eclipse.core.runtime.SubProgressMonitor;
-+import org.eclipse.core.runtime.SubMonitor;
- import org.eclipse.rse.core.model.IHost;
- import org.eclipse.ui.IWorkbenchWindow;
- 
-@@ -46,6 +46,7 @@ public class Ust2Model extends BaseModel {
- 	
- 	private String prj_name;
- 	
-+	@SuppressWarnings("unused")
- 	private IWorkbenchWindow window;
- 	
- 	public Ust2Model(IHost host, String trace, String project, IWorkbenchWindow window) {
-@@ -89,6 +90,7 @@ public class Ust2Model extends BaseModel {
- 		String traceName = localFile.substring(0,localFile.length()-LOCAL_FILE_SUFFIX.length());
- 		
- 		IWorkspaceRoot wsroot = ResourcesPlugin.getWorkspace().getRoot();
-+		@SuppressWarnings("unused")
- 		IPath full_path = wsroot.getFullPath();
- 		IProject project = wsroot.getProject(prj_name);
- 		IFolder traceFolder = project.getFolder(TRACE_FOLDER_NAME);
-@@ -111,6 +113,7 @@ public class Ust2Model extends BaseModel {
- 		}
- 	}
- 	
-+	@SuppressWarnings("unused")
- 	private String[] generateViewerParam() throws Exception {
- 		String viewerParam=new String(LOCAL_EXEC);
- 		int i;
-@@ -135,23 +138,20 @@ public class Ust2Model extends BaseModel {
- 	@Override
- 	public void process(IProgressMonitor monitor)
- 			throws InvocationTargetException, InterruptedException {
--		// TODO Auto-generated method stub
--		
--		String datafile;
--		
++Upstream-Status: Pending
 +
- 		monitor.beginTask("Running ust", 100);		
- 		try {
- 			//preparing remote trace
- 			
- 			monitor.subTask("Preparing user space lttng data file remotely");
--			generateData(new SubProgressMonitor(monitor,30));
-+			generateData(SubMonitor.convert(monitor,30));
- 			
- 			//download datafile to local
- 			monitor.subTask("Downloading user space lttng data file");
--			getDataFile(new SubProgressMonitor(monitor,30));
-+			getDataFile(SubMonitor.convert(monitor,30));
- 			
- 			//extract datafile and import to lttng project
--			importToProject(new SubProgressMonitor(monitor,30));
-+			importToProject(SubMonitor.convert(monitor,30));
- 				
- 		}catch (InterruptedException e){
- 			throw e;
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/views/BaseFileView.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/views/BaseFileView.java
-index a5801c7..1df5a67 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/views/BaseFileView.java
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/views/BaseFileView.java
-@@ -85,6 +85,7 @@ public class BaseFileView extends ViewPart {
- 					if(line!=null)
- 						elements.add(line);
- 				}while(line!=null);
-+				in.close();
- 			}catch (Exception e) {
- 				e.printStackTrace();
- 			}
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/views/TerminalViewTab.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/views/TerminalViewTab.java
-index c3fbd6a..8c169f3 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/views/TerminalViewTab.java
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/views/TerminalViewTab.java
-@@ -38,7 +38,7 @@ import org.eclipse.swt.graphics.Font;
- import org.eclipse.swt.layout.FillLayout;
- import org.eclipse.swt.layout.GridData;
- import org.eclipse.swt.widgets.Composite;
--import org.eclipse.swt.widgets.Menu;
-+// import org.eclipse.swt.widgets.Menu;
- import org.eclipse.tm.internal.terminal.control.ITerminalViewControl;
- import org.eclipse.tm.internal.terminal.control.actions.TerminalActionClearAll;
- import org.eclipse.tm.internal.terminal.control.actions.TerminalActionCopy;
-@@ -59,7 +59,8 @@ public class TerminalViewTab extends Composite {
++Kernel 4.4.6+ on RaspberryPi support .dtbo files for overlays, instead of .dtb.
++Patch the kernel, which has faulty rules to generate .dtbo the way yocto does
++
++Signed-off-by: Herve Jourdain <herve.jourdain@neuf.fr>
++---
++ .../0001-fix-dtbo-rules.patch                      | 27 ++++++++++++++++++++++
++ 1 file changed, 27 insertions(+)
++ create mode 100644 recipes-kernel/linux/linux-raspberrypi-4.4/0001-fix-dtbo-rules.patch
++
++diff --git a/arch/arm/Makefile b/arch/arm/Makefile
++index a2e7cf7..673c1cb 100644
++--- a/arch/arm/Makefile
+++++ b/arch/arm/Makefile
++@@ -333,6 +333,8 @@ $(INSTALL_TARGETS):
++ 
++ %.dtb: | scripts
++ 	$(Q)$(MAKE) $(build)=$(boot)/dts MACHINE=$(MACHINE) $(boot)/dts/$@
+++%.dtbo: | scripts
+++	$(Q)$(MAKE) $(build)=$(boot)/dts MACHINE=$(MACHINE) $(boot)/dts/$@
++ 
++ PHONY += dtbs dtbs_install
++ 
++diff --git a/scripts/Makefile.lib b/scripts/Makefile.lib
++index 3079c4f..6cc3766 100644
++--- a/scripts/Makefile.lib
+++++ b/scripts/Makefile.lib
++@@ -293,7 +293,8 @@ $(obj)/%.dtb: $(src)/%.dts FORCE
++ 	$(call if_changed_dep,dtc)
++ 
++ quiet_cmd_dtco = DTCO    $@
++-cmd_dtco = $(CPP) $(dtc_cpp_flags) -x assembler-with-cpp -o $(dtc-tmp) $< ; \
+++cmd_dtco = mkdir -p $(dir ${dtc-tmp}) ; \
+++	$(CPP) $(dtc_cpp_flags) -x assembler-with-cpp -o $(dtc-tmp) $< ; \
++ 	$(objtree)/scripts/dtc/dtc -@ -H epapr -O dtb -o $@ -b 0 \
++ 		-i $(dir $<) $(DTC_FLAGS) \
++ 		-d $(depfile).dtc.tmp $(dtc-tmp) ; \
+diff --git a/recipes-kernel/linux/linux-raspberrypi_4.4.bb b/recipes-kernel/linux/linux-raspberrypi_4.4.bb
+index 3291ffd..b13925c 100644
+--- a/recipes-kernel/linux/linux-raspberrypi_4.4.bb
++++ b/recipes-kernel/linux/linux-raspberrypi_4.4.bb
+@@ -4,5 +4,6 @@ LINUX_VERSION ?= "4.4.13"
  
- 	private IPropertyChangeListener propertyChangeListener;
- 
--	private Menu menu;
-+	//  Only used in commented out code
-+	//  Menu menu;
- 
- 	private boolean fMenuAboutToShow;
- 
-@@ -193,6 +194,7 @@ public class TerminalViewTab extends Composite {
- 		}
- 	}
- 
-+	@SuppressWarnings("deprecation")
- 	public void updateTheme(final ITerminalViewControl control) {
- 		if (control != null) {
- 			IThemeManager mgr = PlatformUI.getWorkbench().getThemeManager();
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/views/TerminalViewer.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/views/TerminalViewer.java
-index 21d010c..38c6b5e 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/views/TerminalViewer.java
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/views/TerminalViewer.java
-@@ -131,7 +131,8 @@ public class TerminalViewer extends ViewPart implements ISelectionListener,
-             pagebook.showPage(noTabShownLabel);
-     }
-     
--    private void showTabsPage(){
-+    @SuppressWarnings("unused")
-+	private void showTabsPage(){
-         pagebook.showPage(tabFolder);
-     }
- 
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/wizards/bsp/PropertiesPage.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/wizards/bsp/PropertiesPage.java
-index 18149e7..58ee11f 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/wizards/bsp/PropertiesPage.java
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/wizards/bsp/PropertiesPage.java
-@@ -442,6 +442,7 @@ public class PropertiesPage extends WizardPage {
- 	}
- 
- 	private void updateKernelValues(final String value, String property) {
-+		@SuppressWarnings("unused")
- 		String build_dir = "";
- 		if ((bspElem.getBuildLoc() == null) || bspElem.getBuildLoc().isEmpty())
- 			build_dir = bspElem.getMetadataLoc()+"/build";
+ SRCREV = "680be5e27a9593cf26079c6e5744a04cc2809d13"
+ SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-4.4.y \
++           file://0001-fix-dtbo-rules.patch \
+ "
+ require linux-raspberrypi.inc
 -- 
-2.7.4
+2.9.2
 
 
