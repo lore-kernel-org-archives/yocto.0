@@ -1,31 +1,26 @@
-Return-Path: <william.c.randle@intel.com>
+Return-Path: <auh@auh.yoctoproject.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B231DE00EF6; Fri, 12 Aug 2016 20:45:09 -0700 (PDT)
+	id 78000E00D5B; Sat, 13 Aug 2016 06:55:55 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7ACBEE00ED3
-	for <yocto@yoctoproject.org>; Fri, 12 Aug 2016 20:45:04 -0700 (PDT)
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-	by fmsmga101.fm.intel.com with ESMTP; 12 Aug 2016 20:45:04 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.28,513,1464678000"; d="scan'208";a="748110976"
-Received: from wcrandle-mobl1.amr.corp.intel.com ([10.254.41.237])
-	by FMSMGA003.fm.intel.com with ESMTP; 12 Aug 2016 20:45:03 -0700
-From: Bill Randle <william.c.randle@intel.com>
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from auh.yoctoproject.org (unknown [198.145.29.2])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5209AE00288
+	for <yocto@yoctoproject.org>; Sat, 13 Aug 2016 06:55:52 -0700 (PDT)
+Received: from auh.yoctoproject.org (localhost [127.0.0.1])
+	by auh.yoctoproject.org (Postfix) with ESMTP id 288726FE110D
+	for <yocto@yoctoproject.org>; Sat, 13 Aug 2016 13:58:46 +0000 (UTC)
+MIME-Version: 1.0
+From: auh@auh.yoctoproject.org
 To: yocto@yoctoproject.org
-Date: Fri, 12 Aug 2016 20:44:59 -0700
-Message-Id: <1471059899-16091-1-git-send-email-william.c.randle@intel.com>
-X-Mailer: git-send-email 2.5.5
-Subject: [yocto-autobuilder][PATCH] PublishArtifacts.py: generate md5sums for buildtools
+Message-Id: <20160813135846.288726FE110D@auh.yoctoproject.org>
+Date: Sat, 13 Aug 2016 13:58:46 +0000 (UTC)
+Subject: [AUH] Upgrade status: 2016-08-13
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,98 +32,94 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 13 Aug 2016 03:45:09 -0000
+X-List-Received-Date: Sat, 13 Aug 2016 13:55:55 -0000
+Content-Type: multipart/mixed; boundary="===============3926787367030692580=="
 
-Md5sum files were not being generated for the buildtools artifacts. Also,
-ignore files with a .md5sum extension when doing the sum.
+--===============3926787367030692580==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Bill Randle <william.c.randle@intel.com>
----
- .../autobuilder/buildsteps/PublishArtifacts.py     | 27 ++++++++++++++--------
- 1 file changed, 18 insertions(+), 9 deletions(-)
+AUH finished upgrade batch the result patches/logs can be found at:
+https://logs.yoctoproject.org/auh//20160812000002.tar.gz, next are the statistics:
 
-diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/PublishArtifacts.py b/lib/python2.7/site-packages/autobuilder/buildsteps/PublishArtifacts.py
-index f9ff4f6..1a938fc 100644
---- a/lib/python2.7/site-packages/autobuilder/buildsteps/PublishArtifacts.py
-+++ b/lib/python2.7/site-packages/autobuilder/buildsteps/PublishArtifacts.py
-@@ -112,9 +112,11 @@ class PublishArtifacts(ShellCommand):
-                                         os.path.join(self.tmpdir, "deploy/images/*.zip") + \
-                                         " " + DEST + "/" + BA_PUBLISH_DIR + ";"
-                 elif artifact == "buildtools-tarball":
-+                    artifact_name, deploy_image_dir = self.getDeployNames(artifact, buildername)
-+                    command=command+self.generateMD5cmd(artifact, deploy_image_dir)
-                     command=command+"mkdir -p " + DEST + "/buildtools;"
-                     command=command+"cp -R --no-dereference --preserve=links " + \
--                                    os.path.join(self.tmpdir, "deploy/sdk/*buildtools*") + \
-+                                    os.path.join(deploy_image_dir, "*buildtools*") + \
-                                     " " + DEST + "/buildtools;"
-                 elif artifact == "rpm":
-                     command=command+"mkdir -p " + os.path.join(DEST, RPM_PUBLISH_DIR) + ";"
-@@ -144,22 +146,26 @@ class PublishArtifacts(ShellCommand):
-                     else:
-                         command=command+"echo 'Skipping copy of sstate, PUBLISH_SSTATE not set.';"
-                 elif artifact == "toolchain":
-+                    artifact_name, deploy_image_dir = self.getDeployNames(artifact, buildername)
-+                    command=command+self.generateMD5cmd(artifact, deploy_image_dir)
-                     command=command+"mkdir -p " + os.path.join(DEST, X86TC_PUBLISH_DIR) + ";"
-                     command=command+"cp -R --no-dereference --preserve=links " + \
--                                    os.path.join(self.tmpdir, "deploy/sdk/poky-*i686-core-image*.sh ") + \
-+                                    os.path.join(deploy_image_dir, "poky-*i686-core-image*.sh ") + \
-                                     os.path.join(DEST, X86TC_PUBLISH_DIR) + ";"
-                     command=command+"mkdir -p " + os.path.join(DEST, X8664TC_PUBLISH_DIR) + ";"
-                     command=command+"cp -R --no-dereference --preserve=links " + \
--                                    os.path.join(self.tmpdir, "deploy/sdk/poky-*x86_64-core-image*.sh ") + \
-+                                    os.path.join(deploy_image_dir, "poky-*x86_64-core-image*.sh ") + \
-                                     os.path.join(DEST, X8664TC_PUBLISH_DIR) + ";"
-                 elif artifact == "uninative":
-+                    artifact_name, deploy_image_dir = self.getDeployNames(artifact, buildername)
-+                    command=command+self.generateMD5cmd(artifact, deploy_image_dir)
-                     command=command+"mkdir -p " + os.path.join(DEST, X86TC_PUBLISH_DIR) + ";"
-                     command=command+"cp -R --no-dereference --preserve=links " + \
--                                    os.path.join(self.tmpdir, "deploy/sdk/i686-nativesdk-libc* ") + \
-+                                    os.path.join(deploy_image_dir, "i686-nativesdk-libc* ") + \
-                                     os.path.join(DEST, X86TC_PUBLISH_DIR) + ";"
-                     command=command+"mkdir -p " + os.path.join(DEST, X8664TC_PUBLISH_DIR) + ";"
-                     command=command+"cp -R --no-dereference --preserve=links " + \
--                                    os.path.join(self.tmpdir, "deploy/sdk/x86_64-nativesdk-libc* ") + \
-+                                    os.path.join(deploy_image_dir, "x86_64-nativesdk-libc* ") + \
-                                     os.path.join(DEST, X8664TC_PUBLISH_DIR) + ";"
-                 elif artifact == "oe-toolchain":
-                     command=command+"mkdir -p " + os.path.join(DEST, X86TC_PUBLISH_DIR) + ";"
-@@ -209,7 +215,7 @@ class PublishArtifacts(ShellCommand):
-                                      os.path.join(self.basedir, "conf/") + \
-                                      "/* " + DEST + "/" + MACHINE_PUBLISH_DIR + "/" + artifact_name + "/conf;"
-                 elif artifact == "md5sums":
--                    command = command + "echo 'MD5sums are generated and deployed from the image artifact';"
-+                    command = command + "echo 'MD5sums are generated and deployed from the image or toolchain artifact';"
-                 elif artifact == "None":
-                     command=command+"echo 'Skipping copy of " + artifact + ".';"
-                 else:
-@@ -248,8 +254,8 @@ class PublishArtifacts(ShellCommand):
-     def generateMD5cmd(self, artifact, deploy_dir):
-         cmd = ""
-         if os.environ.get('GEN_IMG_MD5') == "True":
--            cmd += "for x in `find " + deploy_dir + " -type f -maxdepth 5`;"
--            cmd += "do md5sum $x >> " + "$x.md5sum; done;"
-+            cmd += "for x in `find " + deploy_dir + " -maxdepth 5 -type f`;"
-+            cmd += "do if [[ $x != *.md5sum ]]; then md5sum $x >> " + "$x.md5sum; fi; done;"
-         return cmd
- 
-     def getDeployNames(self, artifact, buildername):
-@@ -258,8 +264,11 @@ class PublishArtifacts(ShellCommand):
-             artifact_name = artifact_name + "-lsb"
-         if "-wic" in buildername:
-             deploy_dir_image = os.path.join(os.path.join(self.tmpdir, "deploy/wic_images/"), artifact)
--        elif artifact_name is "md5sums":
-+        elif artifact_name == "md5sums":
-             deploy_dir_image = os.path.join(self.tmpdir, "deploy/images/")
-+        elif artifact_name == "uninative" or artifact_name == "buildtools-tarball" \
-+          or artifact_name == "toolchain":
-+            deploy_dir_image = os.path.join(self.tmpdir, "deploy/sdk/")
-         else:
-             if self.layerversion_core is not None and int(self.layerversion_core) > 2:
-                 deploy_dir_image = os.path.join(os.path.join(self.tmpdir, "deploy/images/"), artifact)
--- 
-2.5.5
+Recipe upgrade statistics:
 
+    * Succeeded: 21
+        swig, 3.0.10, Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
+        libwebp, 0.5.1, Alexander Kanavin <alexander.kanavin@intel.com>
+        gnupg, 2.1.14, Hongxu Jia <hongxu.jia@windriver.com>
+        subversion, 1.9.4, Richard Purdie <richard.purdie@linuxfoundation.org>
+        util-linux, 2.28.1, Chen Qi <Qi.Chen@windriver.com>
+        iproute2, 4.7.0, Maxin B. John <maxin.john@intel.com>
+        libinput, 1.4.1, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        man-pages, 4.07, Hongxu Jia <hongxu.jia@windriver.com>
+        kmod, 23+gitAUTOINC+65a885df5f, Chen Qi <Qi.Chen@windriver.com>
+        curl, 7.50.1, Chen Qi <Qi.Chen@windriver.com>
+        sqlite3, 3.14.1, Maxin B. John <maxin.john@intel.com>
+        e2fsprogs, 1.43.1, Robert Yang <liezhi.yang@windriver.com>
+        gnome-themes-standard, 3.20.2, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        diffutils, 3.4, Chen Qi <Qi.Chen@windriver.com>
+        json-glib, 1.2.2, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        vte, 0.44.2, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        gtk+3, 3.20.8, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        iso-codes, 3.69, Alexander Kanavin <alexander.kanavin@intel.com>
+        python3-numpy, 1.11.1, Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
+        xf86-input-synaptics, 1.8.99.1, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        btrfs-tools, 4.7, Alexander Kanavin <alexander.kanavin@intel.com>
+    * Failed(do_fetch): 5
+        python3-git, 2.0.8, Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
+        lttng-tools, 2.8.1+gitAUTOINC+d11e0dba0d, Richard Purdie <richard.purdie@linuxfoundation.org>
+        lttng-ust, 2.8.1+gitAUTOINC+514a87f3b6, Richard Purdie <richard.purdie@linuxfoundation.org>
+        lttng-modules, 2.8.0+gitAUTOINC+4a24ffe737, Richard Purdie <richard.purdie@linuxfoundation.org>
+        python3-setuptools, 25.1.6, Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
+    * Failed(do_compile): 3
+        python-git, 2.0.8, Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
+        kexec-tools, 2.0.13, Alexander Kanavin <alexander.kanavin@intel.com>
+        ruby, 2.3.1, Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
+    * Failed(do_configure): 1
+        pinentry, 0.9.7, Armin Kuster <akuster808@gmail.com>
+    * Failed(other errors): 24
+        bdwgc, 7.6.0, Alexander Kanavin <alexander.kanavin@intel.com>
+        libpng, 1.6.24, Maxin B. John <maxin.john@intel.com>
+        nfs-utils, 1.3.4, Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
+        lighttpd, 1.4.41, Alexander Kanavin <alexander.kanavin@intel.com>
+        openssh, 7.3p1, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        rpm, 5.4.17, Mark Hatle <mark.hatle@windriver.com>
+        libpcap, 1.8.0, Maxin B. John <maxin.john@intel.com>
+        gdb, 7.11.1, Richard Purdie <richard.purdie@linuxfoundation.org>
+        texinfo, 6.1, Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
+        libidn, 1.33, Alexander Kanavin <alexander.kanavin@intel.com>
+        nss, 3.25, Alexander Kanavin <alexander.kanavin@intel.com>
+        fontconfig, 2.12.1, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        nasm, 2.12.02, Richard Purdie <richard.purdie@linuxfoundation.org>
+        systemd-boot, 231+gitAUTOINC+38b383d9fe, Chen Qi <Qi.Chen@windriver.com>
+        libdrm, 2.4.70, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        python-setuptools, 25.1.6, Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
+        lsbinitscripts, 9.68, Ross Burton <ross.burton@intel.com>
+        perl, 5.24.1, Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
+        ifupdown, 0.8.13, Maxin B. John <maxin.john@intel.com>
+        ltp, 20160510, Robert Yang <liezhi.yang@windriver.com>
+        gobject-introspection, 1.49.1, Alexander Kanavin <alexander.kanavin@intel.com>
+        u-boot-mkimage, v2016.07+gitAUTOINC+19ce924ff9, Denys Dmytriyenko <denis@denix.org>
+        busybox, 1.25.0, Chen Qi <Qi.Chen@windriver.com>
+        prelink, 20151030.+gitAUTOINC+927979bbd1, Mark Hatle <mark.hatle@windriver.com>
 
+    TOTAL: attempted=54 succeeded=21(38.89%) failed=33(61.11%)
+
+Recipe upgrade statistics per Maintainer:
+
+    Mark Hatle <mark.hatle: attempted=2 succeeded=0(0.00%) failed=2(100.00%)
+    Chen Qi <Qi.Chen: attempted=6 succeeded=4(66.67%) failed=2(33.33%)
+    Alejandro Hernandez <alejandro.hernandez: attempted=10 succeeded=2(20.00%) failed=8(80.00%)
+    Alexander Kanavin <alexander.kanavin: attempted=9 succeeded=3(33.33%) failed=6(66.67%)
+    Armin Kuster <akuster808: attempted=1 succeeded=0(0.00%) failed=1(100.00%)
+    Richard Purdie <richard.purdie: attempted=6 succeeded=1(16.67%) failed=5(83.33%)
+    Robert Yang <liezhi.yang: attempted=2 succeeded=1(50.00%) failed=1(50.00%)
+    Hongxu Jia <hongxu.jia: attempted=2 succeeded=2(100.00%) failed=0(0.00%)
+    Denys Dmytriyenko <denis: attempted=1 succeeded=0(0.00%) failed=1(100.00%)
+    Jussi Kukkonen <jussi.kukkonen: attempted=9 succeeded=6(66.67%) failed=3(33.33%)
+    Ross Burton <ross.burton: attempted=1 succeeded=0(0.00%) failed=1(100.00%)
+    Maxin B. John <maxin.john: attempted=5 succeeded=2(40.00%) failed=3(60.00%)
+
+--===============3926787367030692580==--
