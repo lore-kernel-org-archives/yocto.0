@@ -1,26 +1,71 @@
-Return-Path: <recipe-report@yoctoproject.org>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EB7B3E00DAA; Sun, 14 Aug 2016 21:32:15 -0700 (PDT)
+	id 850BFE00510; Mon, 15 Aug 2016 09:10:11 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.192.196 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (akuster808[at]gmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from packages.yoctoproject.org (unknown [198.145.29.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8AC76E00D4A
-	for <yocto@yoctoproject.org>; Sun, 14 Aug 2016 21:32:11 -0700 (PDT)
-Received: from packages.yoctoproject.org (localhost [IPv6:::1])
-	by packages.yoctoproject.org (Postfix) with ESMTP id 79FF8807CE93
-	for <yocto@yoctoproject.org>; Mon, 15 Aug 2016 00:32:10 -0400 (EDT)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pf0-f196.google.com (mail-pf0-f196.google.com
+	[209.85.192.196])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 251BCE0043B;
+	Mon, 15 Aug 2016 09:10:07 -0700 (PDT)
+Received: by mail-pf0-f196.google.com with SMTP id g202so3966699pfb.1;
+	Mon, 15 Aug 2016 09:10:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=subject:to:references:from:message-id:date:user-agent:mime-version
+	:in-reply-to:content-transfer-encoding;
+	bh=J92fSL1d4/qorm2Gd+IKXBlOTV2jNGtG6/LdMrldkew=;
+	b=slvqwI4t3j8pF57DRoo+NGM15dv8jt8LG/x0CN1BNDjHkJyGVdAIo97n/gqtmSOPM4
+	ivBjWZHemM46pwTuq+/q4e87s+jUdNubOnu+nCsr702pimIu0A7MmA8GUwwSceHraulM
+	PVgzrZfvqCR/Zv6h7kkQqlFQ7XlrGR2lMR5zPElzZKthSIg2ZS+8De50+XZYB28psoKW
+	v3hBSraRgv/IQfX9K1UvfnLurLnyZVp1AF8ToJjaI4dkp4HTHm0DqX73jJj0pHyibIDS
+	/XhVuVPwdW9gcdwJQp4LDZZqBznIZhq3467HTIMJpA+XuCqe0sxgViSyTOg6cpWd9jk2
+	7ydA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:subject:to:references:from:message-id:date
+	:user-agent:mime-version:in-reply-to:content-transfer-encoding;
+	bh=J92fSL1d4/qorm2Gd+IKXBlOTV2jNGtG6/LdMrldkew=;
+	b=cQVxe3D3jpQ9bhm5S1QOwTh3j2N3Ju7Uh3hVow+icmjKHItO3EpDlxdPcbTbcKSFY7
+	Kh9J9LMgCwg/ZB1WfpHvFNhwfKBgtWud7X0ogOFSCBmdIHkYNSFkyK2XbKXki6IvU4w0
+	bgu5MLIIF3+3cT2GqQ33dcH/ATp28jiOzyBZWDhkpVhiPDnIEeRmtbvRu4naZ8m/tPau
+	AGbkDaPuMLkRIG5TrEGvBWHdYKlgzi22UWuRbYsEtH+/jaFR4F009aq+JvSOs1UHtICr
+	YPwQv4za2fXkZ+YnmWIXv1yxA3Af0QPRnhR/naDylZmt4NY7rYWbqzGu+vi/R9A/EsVW
+	Xoug==
+X-Gm-Message-State: AEkooutUE3WeUmabe9evO6ddO8r0tkRruoo9DOyFzvqyTyF2ipj9VrxsWgNLyguCksm46Q==
+X-Received: by 10.98.84.65 with SMTP id i62mr54807054pfb.72.1471277406495;
+	Mon, 15 Aug 2016 09:10:06 -0700 (PDT)
+Received: from ?IPv6:2601:202:4001:9ea0:94d9:eae7:71b3:4646?
+	([2601:202:4001:9ea0:94d9:eae7:71b3:4646])
+	by smtp.googlemail.com with ESMTPSA id
+	ty6sm32633289pac.18.2016.08.15.09.10.04
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Mon, 15 Aug 2016 09:10:05 -0700 (PDT)
+To: Tracy Graydon <tracy.graydon@intel.com>, yocto-announce@yoctoproject.org, 
+	yocto@yoctoproject.org
+References: <57AE8BAE.20902@intel.com>
+From: akuster808 <akuster808@gmail.com>
+Message-ID: <57B1E95B.6030501@gmail.com>
+Date: Mon, 15 Aug 2016 09:10:03 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+	Thunderbird/38.8.0
 MIME-Version: 1.0
-From: recipe-report@yoctoproject.org
-To: yocto@yoctoproject.org
-Date: Mon, 15 Aug 2016 04:32:10 -0000
-Message-ID: <20160815043210.5855.23837@packages.yoctoproject.org>
-Subject: [Recipe reporting system] Upgradable recipe name list
+In-Reply-To: <57AE8BAE.20902@intel.com>
+Subject: Re: [ANNOUNCEMENT] Yocto Project 2.1.1 (Krogoth 15.0.1) Released
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,141 +77,330 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 15 Aug 2016 04:32:16 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 15 Aug 2016 16:10:11 -0000
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: 7bit
 
-This mail was sent out by Recipe reporting system.
 
-This message list those recipes which need to be upgraded. If maintainers
-believe some of them needn't to upgrade at this time, they can fill
-RECIPE_NO_UPDATE_REASON in respective recipe file to ignore this remainder
-until newer upstream version was detected.
 
-Example:
-RECIPE_NO_UPDATE_REASON = "Version 2.0 is unstable"
+On 08/12/2016 07:53 PM, Tracy Graydon wrote:
+> Hello,
+> 
+> The latest release of the Yocto Project 2.1.1 (krogoth-15.0.1) is now available for download at:
+> 
+> http://downloads.yoctoproject.org/releases/yocto/yocto-2.1.1/poky-krogoth-15.0.1.tar.bz2
+> http://mirrors.kernel.org/yocto/yocto/yocto-2.1.1/poky-krogoth-15.0.1.tar.bz2
 
-You can check the detail information at:
+I would like to thank all of you who assisted me in making this update
+possible.
 
-http://recipes.yoctoproject.org/
+Many thanks,
+Armin
 
-Package               Version        Upstream version      Maintainer           NoUpgradeReason
---------------------  -------------  --------------------  -------------------  ------------------------------
-perl                  5.22.1         5.24.1                Alejandro Hernandez
-swig                  3.0.8          3.0.10                Alejandro Hernandez
-python-git            2.0.7          2.0.8                 Alejandro Hernandez
-python3-setuptools    22.0.5         25.2.0                Alejandro Hernandez
-nfs-utils             1.3.3          1.3.4                 Alejandro Hernandez
-ruby                  2.2.5          2.3.1                 Alejandro Hernandez
-python-setuptools     22.0.5         25.2.0                Alejandro Hernandez
-python3-numpy         1.11.0         1.11.1                Alejandro Hernandez
-python3-git           2.0.7          2.0.8                 Alejandro Hernandez
-texinfo               6.0            6.1                   Alejandro Hernandez
-perl-native           5.22.1         5.24.1                Alejandro Hernandez
-lighttpd              1.4.39         1.4.41                Alexander Kanavin
-liberation-fonts      1.04           2.00.1                Alexander Kanavin    2.x depends on fontforge pa...
-ffmpeg                3.1.1          3.1.2                 Alexander Kanavin
-bash-completion       2.3            2.4                   Alexander Kanavin
-btrfs-tools           4.6.1          4.7                   Alexander Kanavin
-gnutls                3.5.1          3.5.3                 Alexander Kanavin
-gobject-introspec...  1.48.0         1.49.1                Alexander Kanavin
-iso-codes             3.68           3.69                  Alexander Kanavin
-bdwgc                 7.4.4          7.6.0                 Alexander Kanavin
-mpg123                1.23.5         1.23.6                Alexander Kanavin
-libwebp               0.5.0          0.5.1                 Alexander Kanavin
-libidn                1.32           1.33                  Alexander Kanavin
-mkelfimage            4.0+gitX       4.4+gitAUTOINC+58...  Alexander Kanavin    mkelfimage has been removed...
-nss                   3.24           3.25                  Alexander Kanavin
-kexec-tools           2.0.12         2.0.13                Alexander Kanavin
-dpkg                  1.18.7         1.18.10               Aníbal Limón
-pinentry              0.9.2          0.9.7                 Armin Kuster
-linux-libc-headers    4.4            4.7                   Bruce Ashfield
-guilt-native          0.35+gitX      0.36+gitAUTOINC+2...  Bruce Ashfield
-systemd               230+gitX       231+gitAUTOINC+38...  Chen Qi
-systemd-boot          230+gitX       231+gitAUTOINC+38...  Chen Qi
-util-linux            2.28           2.28.1                Chen Qi
-kmod                  22+gitX        23+gitAUTOINC+65a...  Chen Qi
-diffutils             3.3            3.4                   Chen Qi
-curl                  7.50.0         7.50.1                Chen Qi
-kmod-native           22+gitX        23+gitAUTOINC+65a...  Chen Qi
-build-appliance-i...  15.0.0         15.0.1                Cristian Iorga
-u-boot-fw-utils       v2016.03+gitX  v2016.07+gitAUTOI...  Denys Dmytriyenko
-u-boot-mkimage        v2016.03+gitX  v2016.07+gitAUTOI...  Denys Dmytriyenko
-u-boot                v2016.03+gitX  v2016.07+gitAUTOI...  Denys Dmytriyenko
-man-pages             4.06           4.07                  Hongxu Jia
-createrepo            0.4.11         0.10.4                Hongxu Jia           Versions after 0.9.* use YU...
-ncurses               6.0+20160319   6.0+20160625          Hongxu Jia
-gnupg                 2.1.12         2.1.14                Hongxu Jia
-libinput              1.3.0          1.4.1                 Jussi Kukkonen
-gtk-icon-utils-na...  3.20.6         3.20.8                Jussi Kukkonen
-xf86-input-synaptics  1.8.3          1.8.99.1              Jussi Kukkonen
-openssh               7.2p2          7.3p1                 Jussi Kukkonen
-libdrm                2.4.68         2.4.70                Jussi Kukkonen
-gnome-themes-stan...  3.18.0         3.20.2                Jussi Kukkonen
-wayland-protocols     1.5            1.6                   Jussi Kukkonen
-gtk+3                 3.20.6         3.20.8                Jussi Kukkonen
-json-glib             1.2.0          1.2.2                 Jussi Kukkonen
-sgmlspl-native        1.1+gitX       1.03+gitAUTOINC+f...  Jussi Kukkonen
-fontconfig            2.12.0         2.12.1                Jussi Kukkonen
-vte                   0.44.1         0.44.2                Jussi Kukkonen
-linuxdoc-tools-na...  0.9.69         0.9.72                Jussi Kukkonen
-prelink               1.0+gitX       20151030.+gitAUTO...  Mark Hatle
-rpm                   5.4.16         5.4.17                Mark Hatle
-db                    6.0.30         6.2.23                Mark Hatle           latest db does not work wit...
-libpfm4               4.6.0          4.7.0                 Matthew McClintock
-iproute2              4.6.0          4.7.0                 Maxin B. John
-libpcap               1.7.4          1.8.0                 Maxin B. John
-ifupdown              0.8.2          0.8.13                Maxin B. John
-gstreamer1.0-omx      1.2.0          1.9.1                 Maxin B. John
-libpng                1.6.23         1.6.24                Maxin B. John
-sqlite3               3.13.0         3.14.1                Maxin B. John
-gstreamer1.0-plug...  1.8.2+gitX     1.9.1+gitAUTOINC+...  Maxin B. John
-gdb-cross-canadia...  7.11           7.11.1                No maintainer
-gdb-cross-i586        7.11           7.11.1                No maintainer
-lttng-tools           2.7.1+gitX     2.8.1+gitAUTOINC+...  Richard Purdie
-subversion            1.9.3          1.9.4                 Richard Purdie
-lttng-modules         2.7.3+gitX     2.8.0+gitAUTOINC+...  Richard Purdie
-gdb                   7.11           7.11.1                Richard Purdie
-lttng-ust             2.7.1+gitX     2.8.1+gitAUTOINC+...  Richard Purdie
-nasm                  2.11.08        2.12.02               Richard Purdie
-ltp                   20160126       20160510              Robert Yang
-e2fsprogs             1.43           1.43.1                Robert Yang
-git                   2.9.2          2.9.3                 Robert Yang
-lsbinitscripts        9.64           9.68                  Ross Burton
-alsa-lib              1.1.1          1.1.2                 Tanu Kaskinen
-alsa-utils            1.1.1          1.1.2                 Tanu Kaskinen
-alsa-utils-scripts    1.1.1          1.1.2                 Tanu Kaskinen
-chkconfig             1.3.58         1.8                   Wenzong Fan          Version 1.5 requires selinux
-
-Upgradable count: 80
-Upgradable total count: 85
-
-The based commit is:
-
-commit a92c196449c516fe51786d429078bbb1213bb029
-Author: Stephano Cetola <stephano.cetola@linux.intel.com>
-Date:   Wed Aug 10 13:03:16 2016 -0700
-
-    Allow for simultaneous do_rootfs tasks with rpm
-    
-    Give each rootfs its own RPM channel to use.  This puts the RPM metadata
-    in a private subdirectory of $WORKDIR, rather than living in DEPLOY_DIR
-    where other tasks may race with it.
-    
-    This allows us to reduce the time that the rpm.lock is held to only the
-    time needed to hardlink the RPMs, allowing the majority of the rootfs
-    operation to run in parallel.
-    
-    Also, this fixes the smart tests by generating an index for all packages
-    at the time of the test, rather than using the one provided by the
-    rootfs process.
-    
-    Original credit for the enhancement should go to Steven Walter
-    stevenrwalter@gmail.com.
-    
-    Signed-off-by: Stephano Cetola <stephano.cetola@linux.intel.com>
-    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
-
-Any problem, please contact Anibal Limon <anibal.limon@intel.com> 
-
+> 
+> A gpg signed version of these release notes is available at:
+> 
+> http://downloads.yoctoproject.org/releases/yocto/yocto-2.1.1/RELEASENOTES
+> 
+> Full pass test report is available at:
+> 
+> https://wiki.yoctoproject.org/wiki/WW32_-_2016-08-01_-_Test_Cycle_2.1.1_rc2
+> 
+> Thanks go out to everyone for all their hard work during this release!
+> 
+> Sincerely,
+> 
+> Tracy Graydon
+> Yocto Project
+> Build and Release
+> 
+> 
+> -------------------
+> yocto-2.1.1 Errata
+> -------------------
+> 
+> Release Name: eclipse-poky-kepler-krogoth-15.0.1
+> Branch: kepler/krogoth
+> Tag: kepler/krogoth-15.0.1
+> Hash: f402f9a24114f26c9a057a74206bdca87473367b
+> md5: cc6705706304b9bef56bfafe4d5cffcf
+> Download Locations:
+> http://downloads.yoctoproject.org/releases/yocto/yocto-2.1.1/eclipse-poky-kepler-krogoth-15.0.1.tar.bz2
+> http://mirrors.kernel.org/yocto/yocto/yocto-2.1.1/eclipse-poky-kepler-krogoth-15.0.1.tar.bz2
+> 
+> Release Name: eclipse-poky-luna-krogoth-15.0.1
+> Branch: luna/krogoth
+> Tag: luna/krogoth-15.0.1
+> Hash: 155aefbdd7ea776504dedeb7468db2ecd4228629
+> md5: 81ccc03dad94d04496189322f72d78d6
+> Download Locations:
+> http://downloads.yoctoproject.org/releases/yocto/yocto-2.1.1/eclipse-poky-luna-krogoth-15.0.1.tar.bz2
+> http://mirrors.kernel.org/yocto/yocto/yocto-2.1.1/eclipse-poky-luna-krogoth-15.0.1.tar.bz2
+> 
+> Release Name: eclipse-poky-mars-krogoth-15.0.1
+> Branch: mars/krogoth
+> Tag: mars/krogoth-15.0.1
+> Hash: 9b10b9eeaa87580c2126f18d74fe2ff9c8eaf951
+> md5: c58b98e9ac742f7283e3b06068ff7c21
+> Download Locations:
+> http://downloads.yoctoproject.org/releases/yocto/yocto-2.1.1/eclipse-poky-mars-krogoth-15.0.1.tar.bz2
+> http://mirrors.kernel.org/yocto/yocto/yocto-2.1.1/eclipse-poky-mars-krogoth-15.0.1.tar.bz2
+> 
+> Release Name: meta-qt3-krogoth-15.0.1
+> Branch: krogoth
+> Tag: krogoth-15.0.1
+> Hash: 7d958b928a4a38a186746fabbc0d8169dd8bb3a6
+> md5: 43fe89220ce1c1efa4b1f176562649bb
+> Download Locations:
+> http://downloads.yoctoproject.org/releases/yocto/yocto-2.1.1/meta-qt3-krogoth-15.0.1.tar.bz2
+> http://mirrors.kernel.org/yocto/yocto/yocto-2.1.1/meta-qt3-krogoth-15.0.1.tar.bz2
+> 
+> Release Name: meta-qt4-krogoth-15.0.1
+> Branch: krogoth
+> Tag: krogoth-15.0.1
+> Hash: 92a72a790a427af5f85ce86fea4fce86a72c7b58
+> md5: 55ba7c7f0c99a6541c983bb3a4cf98ec
+> Download Locations:
+> http://downloads.yoctoproject.org/releases/yocto/yocto-2.1.1/meta-qt4-krogoth-15.0.1.tar.bz2
+> http://mirrors.kernel.org/yocto/yocto/yocto-2.1.1/meta-qt4-krogoth-15.0.1.tar.bz2
+> 
+> Release Name: poky-krogoth-15.0.1
+> Branch: krogoth
+> Tag: krogoth-15.0.1
+> Hash: f5da2a5913319ad6ac2141438ba1aa17576326ab
+> md5: 891932438c5a89e757a1e9a9f3e0084a
+> Download Locations:
+> http://downloads.yoctoproject.org/releases/yocto/yocto-2.1.1/poky-krogoth-15.0.1.tar.bz2
+> http://mirrors.kernel.org/yocto/yocto/yocto-2.1.1/poky-krogoth-15.0.1.tar.bz2
+> 
+> 
+> ----------------
+>  Known Issues
+> ----------------
+> 
+> Bug #9362: https://bugzilla.yoctoproject.org/show_bug.cgi?id=9362
+> Failed to run and debug a project to qemux86 in Eclipse
+> Fix is on master. Commit: 6deadf5498d091462b92a261e5467f2f754d4921
+> 
+> ----------------
+> Security Fixes
+> ----------------
+> foomatic-filters: Security fixes CVE-2015-8327
+> foomatic-filters: Security fix CVE-2015-8560
+> glibc: Security fix for CVE-2016-4429
+> glibc: Security fix for CVE-2016-3706
+> libpcre: Fix CVE-2016-3191
+> gcc: Security fix CVE-2016-4490
+> gcc: Security fix CVE-2016-2226
+> gcc: Security fix CVE-2016-4489
+> gcc: Security fix CVE-2016-4488
+> qemu: Security fix CVE-2016-2858
+> qemu: Security fix CVE-2016-2857
+> busybox: Security fix CVE-2016-2147
+> busybox: Security Fix CVE-2016-2148
+> openssh: Security Fix CVE-2016-3115
+> tiff: Security fixes CVE-2015-8665 and CVE-2015-8683
+> 
+> 
+> ----------------
+> Fixes
+> ----------------
+> build-appliance-image: Update to krogoth head revision
+> libproxy: use snapshot.debian.org for SRC_URI
+> libaio: use snapshot.debian.org for SRC_URI
+> blktool: use snapshot.debian.org for SRC_URI
+> linuxdoc-tools: use snapshot.debian.org for SRC_URI
+> docbook-xml-dtd4: use snapshot.debian.org for SRC_URI
+> netbase: use snapshot.debian.org for SRC_URI
+> serf: use snapshot.debian.org for SRC_URI
+> mailx: use snapshot.debian.org for SRC_URI
+> ossp-uuid: use snapshot.debian.org for SRC_URI
+> apmd: use snapshot.debian.org for SRC_URI
+> at: use snapshot.debian.org for SRC_URI
+> dpkg: use snapshot.debian.org for SRC_URI
+> oeqa/recipetool: update recipe test to pass SHA
+> grub: Fix build with gcc-6
+> oeqa/devtool: update recipe test as libmatchbox changed
+> nss: fix build for gcc-6
+> tzcode-native: update to 2016f
+> tzdata: update to 2016f
+> gcc-5.3: fix build for gcc-6
+> openjade-native: work around bug exposed by GCC 6
+> binutils: disable werror on native build
+> glib-2.0: Ignore useless warning found with gcc-6
+> rpm: Fix build with gcc6
+> elfutils: Fix build for gcc-6
+> elfutils-0.148: Fix build with gcc6
+> pkgconfig: Fix build with gcc-6
+> binutils: backport fix for TLSDESC relocations with no TLS segment on arch64
+> musl: Update to v1.1.15 release
+> dropbear: Remove incorrect SFTPSERVER_PATH from CFLAGS
+> musl: Upgrade to tip
+> musl: Update to latest tip
+> musl: Upgrade to tip of tree
+> systemtap: Add missing memory flag to fix stap module compilation
+> ghostscript: update SRC_URI
+> toaster: toasterconf.json Remove master release
+> build-appliance-image: Update to krogoth head revision
+> poky.conf: Bump version for 2.1.1 krogoth release
+> build-appliance-image: Update to krogoth head revision
+> wic: rawcopy: make source filenames unique
+> gcc: make sure header path is set correctly
+> feature-arm-vfp.inc: fix overzealous ARMPKGSFX_FPU modification
+> gcc-5: Fix hang with mmusl option on cmdline
+> devshell.bbclass: fix double unbuffering
+> Revert "openssl: prevent ABI break from earlier krogoth releases"
+> image.bbclass: do exact match for rootfs type
+> scripts/lib/bsp/kernel.py: force patching when branch is machine branch is re-use
+> bitbake: fetch2: Safer check for BB_ORIGENV datastore
+> useradd-staticids.bbclass: Allow missing UIDs/GIDs to generate warnings
+> useradd-staticids.bbclass: Restore failure on missing UIDs/GIDs
+> documentation.conf: Add information about USERADD variables
+> pseudo: remove rpath from libpseudo.so
+> openssh: fix init script restart with read-only-rootfs
+> binutils: configure with --enable-deterministic-archives
+> bitbake.conf: don't set CCACHE_DIR to $HOME by default
+> initramfs-framework: base: Ensures /run/lock is available
+> initramfs-framework: mdev: Add a runtime dependency on busybox-mdev
+> tzdata: update to 2016e
+> tzcode: update to 2016e
+> libxml2: upgrade to 2.9.4
+> gcc-runtime, libgcc: Symlink c++ header and startup files in target_triplet for SDK use
+> musl: Create symlinks for stub libraries
+> linux-yocto/4.1: fix musb compilation error
+> linux-yocto/4.4: integrate v4.4.11
+> linux-yocto/4.4: beaglebone: build in the usb controller drivers
+> linux-yocto/4.1: v4.1.24 and gcc6 powerpc fixes
+> linux-yocto-rt, core-image-rt*: Explicitly skip when PREFERRED_PROVIDER_virtual/kernel isn't set to linux-yocto-rt
+> linux-yocto/4.4: gcc6 build fixes (powerpc and mips)
+> eudev: remove eudev-hwdb from RRECOMMENDS_eudev
+> linux-yocto-rt/4.4: Update KBRANCH
+> perl: reorder tar arguments in do_install_ptest()
+> syslinux.bbclass: Added configurable SYSLINUX_ALLOWOPTIONS variable
+> lib/oe/rootfs: Fix DEBUGFS generation, without openssl
+> zip: update SRC_URI
+> classes/base: get_lic_checksum_file_list imporve validaton of url's
+> coreutils: fix for native and nativesdk
+> gnu-efi: set COMPATIBLE_HOST_armv4 to null
+> cogl-1.0: set COMPATIBLE_HOST_armv4 to null
+> openssh: change URI to http:
+> unzip: update SRC_URI
+> wic: fix path parsing, use last occurrence
+> mkefidisk.sh: mount images as read-only
+> python-smartpm: Fix channel command --remove-all option (again)
+> python-numpy: fix build failure with python-matplotlib
+> openssl: prevent ABI break from earlier krogoth releases
+> bitbake.conf: add default for IMAGE_FSTYPES_DEBUGFS
+> metadata_scm.bbclass: Do not assume ${COREBASE} is a Git repo
+> lttng-tools: filter random filename of ptest output
+> feature-arm-neon.inc: restore vfpv3-d16 support
+> populate_sdk_ext: Change lockedsigs task mismatch to a warning
+> populate_sdk_ext.bbclass : Show logfile in case the SDK EXT installation failed
+> classes/image_vm: allow different filesystems to be used for VM images.
+> image_types: fix image/compression dependency collection
+> librsvg: Security fixes via update to 2.40.15
+> alsa-lib: Fix incorrect appl pointer when mmap_commit() returns error.
+> gdb: fix QA warning (uClibc)
+> base-files: add some safety checks in profile
+> bitbake.conf: change APACHE_MIRROR to point at archive.apache.org
+> mesa: add PACKAGECONFIG for gbm
+> libxsettings-client: fix COPYING file
+> dbus-test: install executables not libtool wrapper scripts
+> mesa-demos: remove demos using obsolete screen surface
+> arch-powerpc64.inc: disable the use of qemu usermode on ppc64
+> eudev: add PACKAGECONFIG for hwdb
+> libxml2: fix dependencies and QA Issues
+> bash: fix dependencies and QA Issue
+> popt: fix dependencies and QA Issue
+> oeqa/selftest/buildoptions: remove buildhistory signature test
+> mesa-gl: add missing MESA_CRYPTO to PACKAGECONFIG
+> cross-localedef-native_2.22.bb: Use autotools configure
+> insane.bbclass: remove workdir from package_qa_check_license()
+> qemu: remove explicit but redundant native build dependencies
+> webkitgtk: remove gnome-common dependency
+> gnome-desktop3: remove redundant gnome-common dependency
+> python-pygobject: remove redundant gnome-common dependency
+> recipetool: create: fix falling back to declared license for npm packages
+> recipetool: create: fix picking up false npm package directories
+> arch-armv7ve: inherit armv7a tunes file
+> autotools: add default for CACHED_CONFIGUREVARS
+> packagegroup-core-lsb: fix whitespace in meta-qt* warnings
+> sysvinit-inittab: restrict labels to 4 chars
+> toolchain-scripts: replace source built-in call
+> oeqa/sstatetests: remove temporary DL_DIRs in noop_samesigs
+> oeqa/sstatetests: add http_proxy to no-op hash test
+> bluez5: enable out-of-tree builds
+> mx: move to autotools instead of autotools-brokensep
+> mx-1.0: inherit gtk-doc
+> meta: add comments to explain autotools-brokensep use
+> wic: isoimage-isohybrid: fix splash file paths
+> image.bbclass: don't execute compression commands multiple times
+> grub_git: set COMPATIBLE_HOST_armv7a to null
+> wic: isoimage-isohybrid: add grubefi configfile support
+> busybox: don't build ar
+> bash: fixed ptest run-builtins failed
+> libunwind: backport aarch64_be support
+> image.bbclass: don't emit redundant IMAGE_CMD_xxx functions
+> linux-firmware: break out bnx2 mips firmware and WHENCE license
+> package: ensure do_split_packages doesn't return duplicates
+> kernel-uimage: change target image to vmlinux
+> packagegroup-core-tools-profile: Enable valgrind on ARMv7a and above
+> gcc-sanitizers: Depend on target gcc
+> bluez5: fixed path to bluetoothd in sysvinit script
+> toasterconf.json: exclude releases Toaster can't build
+> bitbake: fetch2: export DBUS_SESSION_BUS_ADDRESS to support authentication agents
+> gdb: Backport patch to changes with AVX and MPX
+> gcc-4.9: fix build with gcc 6
+> lib/oe/rootfs: Fix DEBUGFS generation for opkg & openssl-cnf
+> devtool: Fix build-sdk when pn doesn't match filename
+> lib/classextend: Fix determinism issue
+> update-alternatives: Fix determinism issue
+> image: Fix IMAGE_FEATURES determinism issue
+> openssl: Security fix via update to 1.0.2h
+> linux-yocto/4.4: bump to v4.4.10
+> linux-yocto/4.4: beaglebone: Enable drm for omap
+> linux-yocto/4.4: update to v4.4.9
+> linux-yocto/4.4: bump to v4.4.8
+> linux-yocto-rt/4.1: update to rt23
+> linux-yocto/4.4: bump to v4.4.8
+> linux-yocto/4.4: broxton enablement and refactoring
+> linux-yocto/4.4: skylake configuration
+> linux-yocto/4.4: BXT mmc fixes + PUNIT, tubropower, and telemetry backport
+> linux-yocto/4.1: make ltsi content available
+> linux-yocto/4.1: update to v4.1.22
+> kernel-yocto: allow branch auditing to be suspended
+> kern-tools: handle directories with, or without, trailing /
+> linux-yocto/4.4: sched/cgroup: Fix/cleanup cgroup teardown/init
+> linux-yocto/uvesafb: print error message when task timeout occurs
+> gcc: obey ldflags in the link of libgcc
+> bitbake: toaster: fix progress bar in MySQL environment
+> ref-manual: Added GObject Introspection to 2.1 migration section.
+> dev-manual: Added Gobject Introspection section.
+> ref-manual: Added new 2.1 migration misc. Change
+> sdk-manual: Applied review edits throughout the manual.
+> ref-manual: Applied 2.1 Migration section review edits.
+> sdk-manual: Updated the normal customization.xml file.
+> ref-manual: Fixed a grammar consistency error
+> ref-manual: Applied review edit comments to the 2.1 migration section.
+> dev-manual: Updated the "varname" use to "VARNAME"
+> sdk-manual: Updated eclipse customization file.
+> busybox: musl mips64 ip fix
+> rpm: explicitly disable tomcrypt
+> recipetool.newappend: fix syntax error for 'not path_ok' error
+> matchbox-panel-2: Depend on dbus-glib-native
+> connman-gnome: Depend on dbus-glib-native
+> gobject-introspection: Depend on native flex and bison
+> gobject-introspection: fix floating dep on python-mako
+> sdk.py: preserve packaging data when SDKIMAGE_FEATURES has "package-management"
+> lib/oe/rootfs: Fix DEBUGFS generation when using opkg
+> boost: improve configure
+> boost: delete the build directory before rebuilding
+> license.bbclass: make sure that image manifest dir exists
+> busybox: update flock behavior to match upstream
+> valgrind: turn off the file level dependency
+> tzdata: update to 2016d
+> tzcode: update to 2016d
+> meta: add missing intltool-native dependency
+> pulseaudio: Add intltool-native dependency
+> 
 
