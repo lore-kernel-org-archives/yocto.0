@@ -1,39 +1,40 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
+Return-Path: <rpjday@crashcourse.ca>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 28F5DE00E7B; Tue, 16 Aug 2016 08:18:58 -0700 (PDT)
+	id B3B2EE00E88; Tue, 16 Aug 2016 08:37:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [208.80.204.84 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 496B0E00E35;
-	Tue, 16 Aug 2016 08:18:56 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id u7GFItLc013087
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Tue, 16 Aug 2016 08:18:55 -0700 (PDT)
-Received: from [128.224.56.48] (128.224.56.48) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.248.2;
-	Tue, 16 Aug 2016 08:18:54 -0700
-To: <kai.kang@windriver.com>
-References: <20160816032135.26626-1-kai.kang@windriver.com>
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-Message-ID: <9902c64e-d16d-e40a-1246-8689311d82a0@windriver.com>
-Date: Tue, 16 Aug 2016 11:18:53 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.2.0
+Received: from smtp484.redcondor.net (smtp484.redcondor.net [208.80.204.84])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 87B0DE00E83
+	for <yocto@yoctoproject.org>; Tue, 16 Aug 2016 08:37:28 -0700 (PDT)
+Received: from astoria.ccjclearline.com ([64.235.106.9])
+	by smtp484.redcondor.net ({c48374e7-08df-40d9-a0de-96cc9883a037})
+	via TCP (outbound) with ESMTPS id 20160816153726565_0484;
+	Tue, 16 Aug 2016 15:37:26 +0000
+X-RC-FROM: <rpjday@crashcourse.ca>
+Received: from [216.191.234.70] (port=14580 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1bZgSV-0007Fv-Ok; Tue, 16 Aug 2016 11:39:19 -0400
+Date: Tue, 16 Aug 2016 11:37:16 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@ca624034.mitel.com
+To: Patrick Doyle <wpdster@gmail.com>
+In-Reply-To: <CAF_dkJD9wqM7rg7U1VeiDs+adEREcoNna58dghfN2BvbxVLWqA@mail.gmail.com>
+Message-ID: <alpine.LFD.2.20.1608161134290.9097@ca624034.mitel.com>
+References: <CAF_dkJD9wqM7rg7U1VeiDs+adEREcoNna58dghfN2BvbxVLWqA@mail.gmail.com>
+User-Agent: Alpine 2.20 (LFD 67 2015-01-07)
 MIME-Version: 1.0
-In-Reply-To: <20160816032135.26626-1-kai.kang@windriver.com>
-Cc: yocto@yoctoproject.org, "meta-virtualization@yoctoproject.org"
-	<meta-virtualization@yoctoproject.org>
-Subject: Re: [meta-virtualization][PATCH] libvirt: fix CVE-2016-5008
+X-MAG-OUTBOUND: ccj.redcondor.net@64.235.106.9/32
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: How to maintain a global DL_DIR?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,131 +46,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 16 Aug 2016 15:18:58 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 16 Aug 2016 15:37:32 -0000
+Content-Type: text/plain; charset=US-ASCII
 
-Still going to the wrong list use: meta-virtualization@yoctoproject.org.
+On Tue, 16 Aug 2016, Patrick Doyle wrote:
 
-On 2016-08-15 11:21 PM, kai.kang@windriver.com wrote:
-> From: Kai Kang <kai.kang@windriver.com>
+> As I am playing with several different Yocto/OE projects, I thought
+> it would be nice to set up a global downloads directory.
 >
-> Backport patch to fix CVE-2016-5008 from:
+> Also, being a somewhat forgetful sort, I thought it would be nice if
+> I could set DL_DIR in my .bashrc and not have to remember to edit
+> conf/local.conf each time I follow the directions from a third party
+> site to set up their Yocto based distribution.
 >
-> https://libvirt.org/git/?p=libvirt.git;a=commit;h=f32441c
+> Can I do this?  If so, how?
 
-I typically prefer uprevs to backports for these sorts of things, but
-since it is a CVE, I've taken the change an pushed it.
+  if you're talking about creating a local source mirror for tarballs
+to be shared across multiple projects, i taught an OE/YP course last
+week based on a digi ConnectCore 6 dev kit, and i wrote some wiki
+pages for it, including this one:
 
-Bruce
+http://www.crashcourse.ca/wiki/index.php/CC6_local_source_mirror
 
->
-> Signed-off-by: Kai Kang <kai.kang@windriver.com>
-> ---
->  ...pty-default-VNC-password-work-as-document.patch | 81 ++++++++++++++++++++++
->  recipes-extended/libvirt/libvirt_1.3.5.bb          |  1 +
->  2 files changed, 82 insertions(+)
->  create mode 100644 recipes-extended/libvirt/libvirt-1.3.5/0001-qemu-Let-empty-default-VNC-password-work-as-document.patch
->
-> diff --git a/recipes-extended/libvirt/libvirt-1.3.5/0001-qemu-Let-empty-default-VNC-password-work-as-document.patch b/recipes-extended/libvirt/libvirt-1.3.5/0001-qemu-Let-empty-default-VNC-password-work-as-document.patch
-> new file mode 100644
-> index 0000000..1d13dd3
-> --- /dev/null
-> +++ b/recipes-extended/libvirt/libvirt-1.3.5/0001-qemu-Let-empty-default-VNC-password-work-as-document.patch
-> @@ -0,0 +1,81 @@
-> +Upstream-Status: Backport
-> +
-> +Backport patch to fix CVE-2016-5008 from:
-> +
-> +https://libvirt.org/git/?p=libvirt.git;a=commit;h=f32441c69bf450d6ac593c3acd621c37e120cdaf
-> +
-> +Signed-off-by: Kai Kang <kai.kang@windriver.com>
-> +---
-> +From f32441c69bf450d6ac593c3acd621c37e120cdaf Mon Sep 17 00:00:00 2001
-> +From: Jiri Denemark <jdenemar@redhat.com>
-> +Date: Tue, 28 Jun 2016 14:39:58 +0200
-> +Subject: [PATCH] qemu: Let empty default VNC password work as documented
-> +
-> +CVE-2016-5008
-> +
-> +Setting an empty graphics password is documented as a way to disable
-> +VNC/SPICE access, but QEMU does not always behaves like that. VNC would
-> +happily accept the empty password. Let's enforce the behavior by setting
-> +password expiration to "now".
-> +
-> +https://bugzilla.redhat.com/show_bug.cgi?id=1180092
-> +
-> +Signed-off-by: Jiri Denemark <jdenemar@redhat.com>
-> +(cherry picked from commit bb848feec0f3f10e92dd8e5231ae7aa89b5598f3)
-> +---
-> + src/qemu/qemu_hotplug.c | 14 +++++++-------
-> + 1 file changed, 7 insertions(+), 7 deletions(-)
-> +
-> +diff --git a/src/qemu/qemu_hotplug.c b/src/qemu/qemu_hotplug.c
-> +index 5f12d77..fda28b0 100644
-> +--- a/src/qemu/qemu_hotplug.c
-> ++++ b/src/qemu/qemu_hotplug.c
-> +@@ -3547,6 +3547,7 @@ qemuDomainChangeGraphicsPasswords(virQEMUDriverPtr driver,
-> +     time_t now = time(NULL);
-> +     char expire_time [64];
-> +     const char *connected = NULL;
-> ++    const char *password;
-> +     int ret = -1;
-> +     virQEMUDriverConfigPtr cfg = virQEMUDriverGetConfig(driver);
-> +
-> +@@ -3554,16 +3555,14 @@ qemuDomainChangeGraphicsPasswords(virQEMUDriverPtr driver,
-> +         ret = 0;
-> +         goto cleanup;
-> +     }
-> ++    password = auth->passwd ? auth->passwd : defaultPasswd;
-> +
-> +     if (auth->connected)
-> +         connected = virDomainGraphicsAuthConnectedTypeToString(auth->connected);
-> +
-> +     if (qemuDomainObjEnterMonitorAsync(driver, vm, asyncJob) < 0)
-> +         goto cleanup;
-> +-    ret = qemuMonitorSetPassword(priv->mon,
-> +-                                 type,
-> +-                                 auth->passwd ? auth->passwd : defaultPasswd,
-> +-                                 connected);
-> ++    ret = qemuMonitorSetPassword(priv->mon, type, password, connected);
-> +
-> +     if (ret == -2) {
-> +         if (type != VIR_DOMAIN_GRAPHICS_TYPE_VNC) {
-> +@@ -3571,14 +3570,15 @@ qemuDomainChangeGraphicsPasswords(virQEMUDriverPtr driver,
-> +                            _("Graphics password only supported for VNC"));
-> +             ret = -1;
-> +         } else {
-> +-            ret = qemuMonitorSetVNCPassword(priv->mon,
-> +-                                            auth->passwd ? auth->passwd : defaultPasswd);
-> ++            ret = qemuMonitorSetVNCPassword(priv->mon, password);
-> +         }
-> +     }
-> +     if (ret != 0)
-> +         goto end_job;
-> +
-> +-    if (auth->expires) {
-> ++    if (password[0] == '\0') {
-> ++        snprintf(expire_time, sizeof(expire_time), "now");
-> ++    } else if (auth->expires) {
-> +         time_t lifetime = auth->validTo - now;
-> +         if (lifetime <= 0)
-> +             snprintf(expire_time, sizeof(expire_time), "now");
-> +--
-> +2.9.0
-> +
-> diff --git a/recipes-extended/libvirt/libvirt_1.3.5.bb b/recipes-extended/libvirt/libvirt_1.3.5.bb
-> index 7ff2c5f..6222b69 100644
-> --- a/recipes-extended/libvirt/libvirt_1.3.5.bb
-> +++ b/recipes-extended/libvirt/libvirt_1.3.5.bb
-> @@ -34,6 +34,7 @@ SRC_URI = "http://libvirt.org/sources/libvirt-${PV}.tar.gz;name=libvirt \
->             file://Revert-build-add-prefix-to-SYSTEMD_UNIT_DIR.patch \
->             file://install-missing-file.patch \
->             file://0001-nsslinktest-also-build-virAtomic.h.patch \
-> +           file://0001-qemu-Let-empty-default-VNC-password-work-as-document.patch \
->            "
->
->  SRC_URI[libvirt.md5sum] = "f9dc1e63d559eca50ae0ee798a4c6c6d"
->
+that explains how to create a globally accessible directory full of
+tarballs, how to configure each new project to look there first, and
+there's even a script so that, if a new project *does* have to
+download a bit of stuff that's not in your local source mirror, you
+can run that script from the downloads/ directory, and it will copy
+all the newly-downloaded stuff into your local source mirror.
+
+  let me know if anything on that page is unclear.
+
+rday
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
 
