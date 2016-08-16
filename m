@@ -1,71 +1,139 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <manjukumar.harthikote-matha@xilinx.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 850BFE00510; Mon, 15 Aug 2016 09:10:11 -0700 (PDT)
+	id A94A4E00D07; Mon, 15 Aug 2016 18:18:56 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.192.196 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (akuster808[at]gmail.com)
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [104.47.38.60 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pf0-f196.google.com (mail-pf0-f196.google.com
-	[209.85.192.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 251BCE0043B;
-	Mon, 15 Aug 2016 09:10:07 -0700 (PDT)
-Received: by mail-pf0-f196.google.com with SMTP id g202so3966699pfb.1;
-	Mon, 15 Aug 2016 09:10:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=subject:to:references:from:message-id:date:user-agent:mime-version
-	:in-reply-to:content-transfer-encoding;
-	bh=J92fSL1d4/qorm2Gd+IKXBlOTV2jNGtG6/LdMrldkew=;
-	b=slvqwI4t3j8pF57DRoo+NGM15dv8jt8LG/x0CN1BNDjHkJyGVdAIo97n/gqtmSOPM4
-	ivBjWZHemM46pwTuq+/q4e87s+jUdNubOnu+nCsr702pimIu0A7MmA8GUwwSceHraulM
-	PVgzrZfvqCR/Zv6h7kkQqlFQ7XlrGR2lMR5zPElzZKthSIg2ZS+8De50+XZYB28psoKW
-	v3hBSraRgv/IQfX9K1UvfnLurLnyZVp1AF8ToJjaI4dkp4HTHm0DqX73jJj0pHyibIDS
-	/XhVuVPwdW9gcdwJQp4LDZZqBznIZhq3467HTIMJpA+XuCqe0sxgViSyTOg6cpWd9jk2
-	7ydA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:subject:to:references:from:message-id:date
-	:user-agent:mime-version:in-reply-to:content-transfer-encoding;
-	bh=J92fSL1d4/qorm2Gd+IKXBlOTV2jNGtG6/LdMrldkew=;
-	b=cQVxe3D3jpQ9bhm5S1QOwTh3j2N3Ju7Uh3hVow+icmjKHItO3EpDlxdPcbTbcKSFY7
-	Kh9J9LMgCwg/ZB1WfpHvFNhwfKBgtWud7X0ogOFSCBmdIHkYNSFkyK2XbKXki6IvU4w0
-	bgu5MLIIF3+3cT2GqQ33dcH/ATp28jiOzyBZWDhkpVhiPDnIEeRmtbvRu4naZ8m/tPau
-	AGbkDaPuMLkRIG5TrEGvBWHdYKlgzi22UWuRbYsEtH+/jaFR4F009aq+JvSOs1UHtICr
-	YPwQv4za2fXkZ+YnmWIXv1yxA3Af0QPRnhR/naDylZmt4NY7rYWbqzGu+vi/R9A/EsVW
-	Xoug==
-X-Gm-Message-State: AEkooutUE3WeUmabe9evO6ddO8r0tkRruoo9DOyFzvqyTyF2ipj9VrxsWgNLyguCksm46Q==
-X-Received: by 10.98.84.65 with SMTP id i62mr54807054pfb.72.1471277406495;
-	Mon, 15 Aug 2016 09:10:06 -0700 (PDT)
-Received: from ?IPv6:2601:202:4001:9ea0:94d9:eae7:71b3:4646?
-	([2601:202:4001:9ea0:94d9:eae7:71b3:4646])
-	by smtp.googlemail.com with ESMTPSA id
-	ty6sm32633289pac.18.2016.08.15.09.10.04
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Mon, 15 Aug 2016 09:10:05 -0700 (PDT)
-To: Tracy Graydon <tracy.graydon@intel.com>, yocto-announce@yoctoproject.org, 
-	yocto@yoctoproject.org
-References: <57AE8BAE.20902@intel.com>
-From: akuster808 <akuster808@gmail.com>
-Message-ID: <57B1E95B.6030501@gmail.com>
-Date: Mon, 15 Aug 2016 09:10:03 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.8.0
+X-Greylist: delayed 1067 seconds by postgrey-1.32 at yocto-www;
+	Mon, 15 Aug 2016 18:18:51 PDT
+Received: from NAM02-BL2-obe.outbound.protection.outlook.com
+	(mail-bl2nam02on0060.outbound.protection.outlook.com [104.47.38.60])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 07F8CE00CFF
+	for <yocto@yoctoproject.org>; Mon, 15 Aug 2016 18:18:51 -0700 (PDT)
+Received: from SN1NAM02FT023.eop-nam02.prod.protection.outlook.com
+	(10.152.72.59) by SN1NAM02HT035.eop-nam02.prod.protection.outlook.com
+	(10.152.72.193) with Microsoft SMTP Server (version=TLS1_0,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA_P384) id 15.1.567.7;
+	Tue, 16 Aug 2016 00:46:26 +0000
+Authentication-Results: spf=pass (sender IP is 149.199.60.100)
+	smtp.mailfrom=xilinx.com; yoctoproject.org;
+	dkim=none (message not signed)
+	header.d=none;yoctoproject.org; dmarc=bestguesspass action=none
+	header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+	149.199.60.100 as permitted sender) receiver=protection.outlook.com;
+	client-ip=149.199.60.100; helo=xsj-pvapsmtpgw02;
+Received: from xsj-pvapsmtpgw02 (149.199.60.100) by
+	SN1NAM02FT023.mail.protection.outlook.com (10.152.72.156) with
+	Microsoft SMTP Server (version=TLS1_0,
+	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.567.7
+	via Frontend Transport; Tue, 16 Aug 2016 00:46:26 +0000
+Received: from unknown-38-66.xilinx.com ([149.199.38.66]:38857
+	helo=xsj-pvapsmtp01) by xsj-pvapsmtpgw02 with esmtp (Exim 4.63)
+	(envelope-from <manjukumar.harthikote-matha@xilinx.com>)
+	id 1bZSWN-0007Ku-UJ
+	for yocto@yoctoproject.org; Mon, 15 Aug 2016 17:46:23 -0700
+Received: from [127.0.0.1] (helo=xsj-smtp-dlp2.xlnx.xilinx.com)
+	by xsj-pvapsmtp01 with esmtp (Exim 4.63)
+	(envelope-from <manjukumar.harthikote-matha@xilinx.com>)
+	id 1bZSWM-0001oo-UL
+	for yocto@yoctoproject.org; Mon, 15 Aug 2016 17:46:22 -0700
+Received: from xsj-pvapsmtp01 (xsj-smtp.xilinx.com [149.199.38.66])
+	by xsj-smtp-dlp2.xlnx.xilinx.com (8.13.8/8.13.1) with ESMTP id
+	u7G0kMqD019903
+	for <yocto@yoctoproject.org>; Mon, 15 Aug 2016 17:46:22 -0700
+Received: from [172.19.74.183] by xsj-pvapsmtp01 with esmtp (Exim 4.63)
+	(envelope-from <manjukumar.harthikote-matha@xilinx.com>)
+	id 1bZSWM-0001oi-7A
+	for yocto@yoctoproject.org; Mon, 15 Aug 2016 17:46:22 -0700
+To: <yocto@yoctoproject.org>
+From: Manjukumar Harthikote Matha <manjukumar.harthikote-matha@xilinx.com>
+Message-ID: <ebf6a9f3-caad-9d46-b949-d91cbd4dedf7@xilinx.com>
+Date: Mon, 15 Aug 2016 17:43:23 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.2.0
 MIME-Version: 1.0
-In-Reply-To: <57AE8BAE.20902@intel.com>
-Subject: Re: [ANNOUNCEMENT] Yocto Project 2.1.1 (Krogoth 15.0.1) Released
+X-RCIS-Action: ALLOW
+X-TM-AS-Product-Ver: IMSS-7.1.0.1224-8.0.0.1202-22514.005
+X-TM-AS-User-Approved-Sender: Yes;Yes
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-Forefront-Antispam-Report: CIP:149.199.60.100; IPV:NLI; CTRY:US; EFV:NLI;
+	SFV:NSPM;
+	SFS:(10009020)(6009001)(7916002)(2980300002)(438002)(189002)(199003)(106466001)(107886002)(50466002)(9786002)(450100001)(31686004)(33646002)(64126003)(23676002)(11100500001)(7846002)(586003)(86362001)(63266004)(36756003)(110136002)(305945005)(356003)(8936002)(50986999)(189998001)(31696002)(83506001)(230700001)(65956001)(87936001)(2906002)(54356999)(92566002)(229853001)(4001350100001)(2351001)(65806001)(47776003)(8676002)(81166006)(81156014)(626004)(77096005)(65826006)(107986001)(5001870100001);
+	DIR:OUT; SFP:1101; SCL:1; SRVR:SN1NAM02HT035; H:xsj-pvapsmtpgw02;
+	FPR:; SPF:Pass; PTR:xapps1.xilinx.com,unknown-60-100.xilinx.com;
+	MX:1; A:1; LANG:en; 
+X-Microsoft-Exchange-Diagnostics: 1; SN1NAM02FT023;
+	1:CRvD/wlMykC6MHZeXgtMEaXWwMWTOPfgTMZr0Dcbha/XTkWQ1UVl6g9LSJLjUf1DQ0O207EIwUKAboHuMPU1TcIwxH1eL+0PwGn7dBCDg53EGaGO9hZulEyEbc2Y1T3XVH7KPrHT1fW3xc7D5voBCeTKiwW3eHmJqgB5Z5iusIGyyPw9OpMYlVETY0lzX1U9E0S7/LOGiMV4OXvVtPjiHOY/odxzY9c379tGq+mPQ3Ck8E3HqYis0vPMhswi6kaxw1eMBR4qhVCW0dA89kEq7LRWq+efuuS1FrDJ1zbL6EFw6aWJlKnlYtSe3eJWsCqlLr/xYDxySVp14HLkn23BR/MyRnV00rP3Y8gVX0G3K6Yy3Lk+YlRIVjPPFdbtMrwDEu1gNIu9zCRsknkxCB/pyeM2QMAWLUiNCQL0cFm/TZSPKbNFdCmfXHRqlItuo4s/bLlm9pNvJ22TB3P3WA9nmHPppi+WZWRnnQEFo9p4Ajmut24yWi4DdQzLlHLRQ1A7rcIv+FYjCUytJZupyT+GV/2WNcCGsDgTBTFE7uv0mt4ZFUIuLLYfsDbfeik5WbJQ
+X-MS-Office365-Filtering-Correlation-Id: ab0871cd-a71b-4e8b-6053-08d3c56ec112
+X-Microsoft-Exchange-Diagnostics: 1; SN1NAM02HT035;
+	2:9i5jq4WmXCfknbBkyYEncvO0QgmYDw82+JC10SnTGOQ8ir4pcf3ZUSGp4CQez00R44XZJWXpv2no00BU/zCuiANzL1mm4TXSwgPVcYI5wTEMIBzR6ZNcff8fafcdQs/L+pFXq+RHAu6yhe0XMnClosJhuN2IRz+/3IyEJN1g2fWXsWFMDsyrvhNWEdCmfmDo;
+	3:lzb6bpR0kdUsoErVSaVxVMG6OUBq0hw9MLGydqvAbug1Sn3TGIHAZEMrsgbMkIOyDyug56+kSBpNZd7oA1djgblAMGTD1BaNHiVLqMdNtn9SKYlVDdjPmDLE4BHmCwtLst3DTg/9+CYD5h4z6w44su6e8ERFrm/XRfaoywjPX0KOdqvXTBuE80i8Gcr0u4irGRN312f5LtY+3GS27luIEwip7O5PuOg9PkxORKuTeTueiKUvh/lVxLEsFLlQeKWSuXD/ryuUJJL1ozos4COYQQ==;
+	25:nbuUuoJ2QMvDKSSycqeWWUaW0LHr5mHPfdSYVeqqE7Srit02vUHc98fGsH70Bb4VqQRPlJxQ15Ky56rEn4HoAAWpLaRAeuJlZY0jf0TQGsgk22z4ISxAW2yDeGzMDd03Mgoq4uOI5uXs0g0DTRtedv+Bi30TxgBv34lNxLJV/L7QAe06HkKwZ9ue5DOEvas13IUoP2RFu5Kds+lKp57ovHeHy+LB1cJPVV3M0ByBoZRMuBeZaNsnrMm+fsylxMzyV1bdZ8jIF10H6qXImqeQJNhN47xtN+HCfdPHqQuI2bHXrBNIN4Me5vi62VI6aZSfwjn0XjJWoaeuZQGU+snxIcadIK9GA4kXs+B2bkde2f2j6OlGjs1zPy239B6gLPtw6C9848W3CLTJ7GmNMn3bJCkw3vBSziCivrSDTnwF4Lg=
+X-Microsoft-Antispam: UriScan:; BCL:0; PCL:0; RULEID:(8251501002);
+	SRVR:SN1NAM02HT035; 
+X-Microsoft-Exchange-Diagnostics: 1; SN1NAM02HT035;
+	31:04RFtyZQwxNxSKjh5OAFyBwef7SEiOZt7IVhDzSrBO+C4Sq7sAD1bjqRsOYS02IgAysYvzTdkKF35JMfpEuRjYbYZxcpNbFDqsV+apGpcgWgIBxxvSAOMTPddkJ2ZIJ2OH1Fzab2hxJnoIrnET6xczQEG3AVhHGbZH/R6TTEbEKHtknyFFyKA8+/nuX7kxRllimPCBu0ezmwipLcQ26qC3Y7wQIp9rCXjOn3VZ1H9vE=;
+	20:Dx5mJv34+KTVbaL4wBInL8peewavMEGqUmUH/1gmKobn2XzeH4BLdym5szSGkU6qSOnbVGAVk6JhvFQI6xYu4C02o3u3vhLQbXPB1IRlB6hfcIiIjhI4808QKj8iuQ9pBmlLK0hjO/ITlAfRwE4PacXZTotIgRz8o5hjzOuwBE/g/I0KXqswzPfVokqG7bSCE69nK2McDDxk6rm+15Fv3ISEfxZAsGwAY6Mpd6GcI3YprKMkAiLCNJm51FgUQFcyWt1sRpIf0yzyNvlMLjbUZEkpZ1dmfDSr2w2nAXLkgEteD2BWyUYuhpSsprC7uJWsBmNXOZ+ncITY59qhTueyPVk9cuOJ/jhsl/T90gUS8cZAjx1X8BRCep28R/x+u8axuUk8SbWO2Z118QQKVOhStuQXUSY+6B6wnfpMm4kkzfDBQkTOBkGZLCK0YSBUbl1y9zkN9qnDUNvW2Hp4Hhi3Da1ZTH7mJ1eCDPW/ZogFMDMO6p8yGYW0N0uuCjXloBjF
+X-Microsoft-Antispam-PRVS: <4ae51d4dfc0940aca0ec20ad7561d7ab@SN1NAM02HT035.eop-nam02.prod.protection.outlook.com>
+X-Exchange-Antispam-Report-Test: UriScan:;
+X-Exchange-Antispam-Report-CFA-Test: BCL:0; PCL:0;
+	RULEID:(6040176)(601004)(2401047)(5005006)(13018025)(8121501046)(13015025)(13023025)(13024025)(13017025)(3002001)(10201501046)(6055026);
+	SRVR:SN1NAM02HT035; BCL:0; PCL:0; RULEID:; SRVR:SN1NAM02HT035; 
+X-Microsoft-Exchange-Diagnostics: 1; SN1NAM02HT035;
+	4:kzPF9SbG8cpqvd6g0j/YZLeG7NY6R+bbNa+qt63IrQdGykmFCnQXyrFYCQbTA1RtS8XpTYnKHsBqJwCpItNjX/oESqERZPFuw1VfcmJvyp66xiMBrl3ZM2l5DBP/CsvSucl2+uWPzcc50wmsLKepJnb8tpcN01U2yJa8WAnjmYHFJEhDUDeLU46I/T6ylzEDoj3cTpnkqY6QQ0RB3pSOjB8/siS6zCESj/odVmMflc73W1eQ3XKH73F0418cVbOwkiUPIXqSw6Py3fUoCOM9IxF2fwMR4SkahE+3DU0MNDumDv3azbGIisgWQgefjEyBjZmQkZkGxS0TWvA8vEi889joZLjCyNmgUNdZr5S99RsNu1w0dM0I3fzNCuTUEqFc3HNYoDXpGKUOGMbu4S8ojzKnVG4nmZKqemHNHIsQgRvV6hq67CuHyrhrzSZSvt+T+SmUlizLX0t/0I8hjRC8IDYoUSsyocDj7DY8SSUGZHYONt5NdvTNp+n3Vq4fpnuV
+X-Forefront-PRVS: 0036736630
+X-Microsoft-Exchange-Diagnostics: =?utf-8?B?MTtTTjFOQU0wMkhUMDM1OzIzOjMrUTdKbTB3cnAwNE51L3ZwM0h5K3RiNzhu?=
+	=?utf-8?B?NCs3czQ5WWp1N01WdW1Ldzg3ZC9QT1NNdXhKRjZTZVJsNXpwTld2WHFhQlJL?=
+	=?utf-8?B?TjVhZ3JzTjEvVEFsSWdvZ0U0RGpUb0I5Z2R2ZXNQUTAwOFF3K2x3SkMyanpv?=
+	=?utf-8?B?cFhja0FZM1hnTHJ6azZ3a0c0WDJkRm5mRDZNTStybGQzMWxVRVJ0bjlwQk9U?=
+	=?utf-8?B?dnVkSUtNSXF5MzY4N214bWVaWGN2YzR6SE1wcUZzQ0lmVEdndml4dVFqN1Vx?=
+	=?utf-8?B?eEt6R0NrOG00eEJUTWsyWXhxN1dHWHY4Yys1SmNybUlRQkN5ZTFsL2pZSDU2?=
+	=?utf-8?B?T3Q0Sm5pWkhRYy94ajVxeDEwQ1UwZmlpc3lpYTJjcmxsRDdWQjZzUldxWHhE?=
+	=?utf-8?B?L3JCUjYrOUl5NzI5T0kzTHdVeHJQZm1WcVloNFpSdzVGNUV3eVltOGtwN0Fs?=
+	=?utf-8?B?eUJiK0wxQURaOG1aWW93Z2twWHM3VEUrSG1YTUpMaUMyZjNyd004OWxyLzJl?=
+	=?utf-8?B?UUlib1pUOUZxR00vRHVEZ3ZpVCtaSWZvT0hLWG9yNC9HR0tUemU2Nnd2N3Nx?=
+	=?utf-8?B?SzM5UTZnL1pISHpYMVJxanhpTllIakVaMWtGcEg5YkJwWERWTm94Y1Mwb0V2?=
+	=?utf-8?B?WFUxdmRWUkJwTnVKUFZMbTdUcnRPazdtK0VFZnc5YjVYU1laNDRmN0wzNGpr?=
+	=?utf-8?B?NlZsUno5bGZMcXAvVEZrUkkxOFZrUGF3a2ZzbHFPVUxzU09Yb0tFblJpWkZj?=
+	=?utf-8?B?cm1EcjkxbUFKZWFjK1VPd1Q1SUZoRTBsSUtEQ1Z6OE45YTJJbjRtZVFqMjdi?=
+	=?utf-8?B?NTlLb2MvZjVWK1BvcnYwTHI2NXFaQmMxaWd3SkZoWnpsRXV3c1VCUjE1dytW?=
+	=?utf-8?B?WGdCUFVOR0ZGY0hHS1FGcGozR0lOUWcrUHQ0K2lMalFKVHN1ZE9NWDZGd0k0?=
+	=?utf-8?B?NVlUTThvWUVtNGxVRnBJSGVOUEptYkt0WW0vc3VSU1Q1SmRFNFZDdDliMlpo?=
+	=?utf-8?B?K2s1enN2Snp0bHRlRDBEUjlBbGNRbWlNdU8xa2J5UUNuUFVCK21ONUp1d2xS?=
+	=?utf-8?B?VEluNlE1SjlKOFNvcU9ya1FTeHBSSEl6YXBQRWxNdkQySWpYOWNkMUk5K2hl?=
+	=?utf-8?B?S3ZkVzVqSDRvTkhNQmRwa2t5dlNLakhYb3drcFFvT3ZuMEtVZ0JoVmV5cWlM?=
+	=?utf-8?B?bTVrVHVrSEhISzc3bU9Hb1hhUk1SdkRTQ3Q2ZjNyZ0JnY3M1aEZRdjFNUTJH?=
+	=?utf-8?B?ODY0bjNqaUoyVTlNckZEbVQrVmFSdEVSZkhiTEhrT0FSeWVxM3hwNnJEdnVz?=
+	=?utf-8?B?MWFsQWlGTEw0YnZDSjh5UENteXB6Z2NvSlpzQkkvTHFYYmhpZ2lkeWY2Q01u?=
+	=?utf-8?B?bVFWWWJZeW1HWHZMdHQveUgvMVBRcFNwbm1VbU1WT0dkaVphVVVzMVVlUVRw?=
+	=?utf-8?B?eXBBWit3NzBwNXA5bjhsaU4vZ1dZWmZxdTQ3ZVRUY1IxWHNlS3ozekhYL1BL?=
+	=?utf-8?B?R1dJMW9qTUF1SGJjVytRc3ExcytVcEFkQURhTjcrNFdqZ2RobGErU3ZoVTVp?=
+	=?utf-8?Q?wf0iP98LZtc7SmDoW6kJ3a9LUz2qAWPBrjru8wxiPAjI=3D?=
+X-Microsoft-Exchange-Diagnostics: 1; SN1NAM02HT035;
+	6:eJwDor/J8E9cLt6yYk0PINs835lioDFZb6UlSFvbSuvsgmggeMXW8i2ccPLSGhdd65p2ky7eb+GWJ40aZMryytCuLfRp1tN4hZ4YFTS13rTmfZLUWFayByP2UdtCEzGfP3kZArXrQua+IglTnmFrYah9VZY517FnwUnWSxXCL5nL6GPIbisrJumP1D5cwY2rbsjYDbkP9K9Bb/LNKZwZaWRrbwxz0wVXQVH9rUEfURHp5qGH3naVdiMalZoSHaPp3ylDK8BqynEFOeWBWmmfzcsttpySkyjB+eyndBWy1KZK7DDS185+4GtUviKcXExi1ufzT6fbIob5LOU+UEN2Ig==;
+	5:+zpFWRo+phPGFj7uILImXTblLtfma2M24BHFcZmw4CZuLoyJy2f2hkwzlNbE7kefPTLrqJpbxxFUta8ZbbGXjr+w94/xzM7cq8RlvM1D+X2IDypl7PN6TDmVGds6i70Uxo8JE5JSwFlcYmaTJ78v9A==;
+	24:wigaOpz/ts7yEeELYSx2kUo2rEIXnn73aNhdRs7UpkqYCUSTIvszE8qZNqla0Ly/JYClWgsHu6WkVwRVY5zF/I1osgpadyKPg1Tjz1u1B8c=;
+	7:yL8dunmPtX+v5l0ofmqAv5xbnkoa0LujKD0mdi86P+9N+gLkfAEz+UcHtBwllkIjqYqywIhSk01qeU3WXr8kxU3QJvPPysOLtfRCt4aa5LDCFq/Kr290M8Yl6cz/i1wJpmGF7FCvSuVUaatIDn97rRZ2VK3v3gmBZInMza4CNqmmxFvSlQEYvCGjm6nDvFVn27/2fW6TsAfysTQi021A/BxCed/jcySQUOFkWOvwurH+vltRbXrAd64f36Hd0QYD
+SpamDiagnosticOutput: 1:99
+SpamDiagnosticMetadata: NSPM
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Aug 2016 00:46:26.4246 (UTC)
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;
+	Ip=[149.199.60.100]; Helo=[xsj-pvapsmtpgw02]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN1NAM02HT035
+Subject: eSDK errors and sstate signature issues
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -77,330 +145,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 15 Aug 2016 16:10:11 -0000
-Content-Type: text/plain; charset=windows-1252
+X-List-Received-Date: Tue, 16 Aug 2016 01:18:56 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Transfer-Encoding: 7bit
 
+All,
 
 
-On 08/12/2016 07:53 PM, Tracy Graydon wrote:
-> Hello,
-> 
-> The latest release of the Yocto Project 2.1.1 (krogoth-15.0.1) is now available for download at:
-> 
-> http://downloads.yoctoproject.org/releases/yocto/yocto-2.1.1/poky-krogoth-15.0.1.tar.bz2
-> http://mirrors.kernel.org/yocto/yocto/yocto-2.1.1/poky-krogoth-15.0.1.tar.bz2
+I am trying to build Yocto eSDK with OE_core and meta-xilinx layers.
 
-I would like to thank all of you who assisted me in making this update
-possible.
+Having issues while extracting the eSDK, it warns quite a bit on 
+signature mismatch. Can this happen due to the fact that I am using 
+external tool chain??
 
-Many thanks,
-Armin
+And eventually bails stating
+ERROR: Unexpected tasks or setscene left over to be executed:
 
-> 
-> A gpg signed version of these release notes is available at:
-> 
-> http://downloads.yoctoproject.org/releases/yocto/yocto-2.1.1/RELEASENOTES
-> 
-> Full pass test report is available at:
-> 
-> https://wiki.yoctoproject.org/wiki/WW32_-_2016-08-01_-_Test_Cycle_2.1.1_rc2
-> 
-> Thanks go out to everyone for all their hard work during this release!
-> 
-> Sincerely,
-> 
-> Tracy Graydon
-> Yocto Project
-> Build and Release
-> 
-> 
-> -------------------
-> yocto-2.1.1 Errata
-> -------------------
-> 
-> Release Name: eclipse-poky-kepler-krogoth-15.0.1
-> Branch: kepler/krogoth
-> Tag: kepler/krogoth-15.0.1
-> Hash: f402f9a24114f26c9a057a74206bdca87473367b
-> md5: cc6705706304b9bef56bfafe4d5cffcf
-> Download Locations:
-> http://downloads.yoctoproject.org/releases/yocto/yocto-2.1.1/eclipse-poky-kepler-krogoth-15.0.1.tar.bz2
-> http://mirrors.kernel.org/yocto/yocto/yocto-2.1.1/eclipse-poky-kepler-krogoth-15.0.1.tar.bz2
-> 
-> Release Name: eclipse-poky-luna-krogoth-15.0.1
-> Branch: luna/krogoth
-> Tag: luna/krogoth-15.0.1
-> Hash: 155aefbdd7ea776504dedeb7468db2ecd4228629
-> md5: 81ccc03dad94d04496189322f72d78d6
-> Download Locations:
-> http://downloads.yoctoproject.org/releases/yocto/yocto-2.1.1/eclipse-poky-luna-krogoth-15.0.1.tar.bz2
-> http://mirrors.kernel.org/yocto/yocto/yocto-2.1.1/eclipse-poky-luna-krogoth-15.0.1.tar.bz2
-> 
-> Release Name: eclipse-poky-mars-krogoth-15.0.1
-> Branch: mars/krogoth
-> Tag: mars/krogoth-15.0.1
-> Hash: 9b10b9eeaa87580c2126f18d74fe2ff9c8eaf951
-> md5: c58b98e9ac742f7283e3b06068ff7c21
-> Download Locations:
-> http://downloads.yoctoproject.org/releases/yocto/yocto-2.1.1/eclipse-poky-mars-krogoth-15.0.1.tar.bz2
-> http://mirrors.kernel.org/yocto/yocto/yocto-2.1.1/eclipse-poky-mars-krogoth-15.0.1.tar.bz2
-> 
-> Release Name: meta-qt3-krogoth-15.0.1
-> Branch: krogoth
-> Tag: krogoth-15.0.1
-> Hash: 7d958b928a4a38a186746fabbc0d8169dd8bb3a6
-> md5: 43fe89220ce1c1efa4b1f176562649bb
-> Download Locations:
-> http://downloads.yoctoproject.org/releases/yocto/yocto-2.1.1/meta-qt3-krogoth-15.0.1.tar.bz2
-> http://mirrors.kernel.org/yocto/yocto/yocto-2.1.1/meta-qt3-krogoth-15.0.1.tar.bz2
-> 
-> Release Name: meta-qt4-krogoth-15.0.1
-> Branch: krogoth
-> Tag: krogoth-15.0.1
-> Hash: 92a72a790a427af5f85ce86fea4fce86a72c7b58
-> md5: 55ba7c7f0c99a6541c983bb3a4cf98ec
-> Download Locations:
-> http://downloads.yoctoproject.org/releases/yocto/yocto-2.1.1/meta-qt4-krogoth-15.0.1.tar.bz2
-> http://mirrors.kernel.org/yocto/yocto/yocto-2.1.1/meta-qt4-krogoth-15.0.1.tar.bz2
-> 
-> Release Name: poky-krogoth-15.0.1
-> Branch: krogoth
-> Tag: krogoth-15.0.1
-> Hash: f5da2a5913319ad6ac2141438ba1aa17576326ab
-> md5: 891932438c5a89e757a1e9a9f3e0084a
-> Download Locations:
-> http://downloads.yoctoproject.org/releases/yocto/yocto-2.1.1/poky-krogoth-15.0.1.tar.bz2
-> http://mirrors.kernel.org/yocto/yocto/yocto-2.1.1/poky-krogoth-15.0.1.tar.bz2
-> 
-> 
-> ----------------
->  Known Issues
-> ----------------
-> 
-> Bug #9362: https://bugzilla.yoctoproject.org/show_bug.cgi?id=9362
-> Failed to run and debug a project to qemux86 in Eclipse
-> Fix is on master. Commit: 6deadf5498d091462b92a261e5467f2f754d4921
-> 
-> ----------------
-> Security Fixes
-> ----------------
-> foomatic-filters: Security fixes CVE-2015-8327
-> foomatic-filters: Security fix CVE-2015-8560
-> glibc: Security fix for CVE-2016-4429
-> glibc: Security fix for CVE-2016-3706
-> libpcre: Fix CVE-2016-3191
-> gcc: Security fix CVE-2016-4490
-> gcc: Security fix CVE-2016-2226
-> gcc: Security fix CVE-2016-4489
-> gcc: Security fix CVE-2016-4488
-> qemu: Security fix CVE-2016-2858
-> qemu: Security fix CVE-2016-2857
-> busybox: Security fix CVE-2016-2147
-> busybox: Security Fix CVE-2016-2148
-> openssh: Security Fix CVE-2016-3115
-> tiff: Security fixes CVE-2015-8665 and CVE-2015-8683
-> 
-> 
-> ----------------
-> Fixes
-> ----------------
-> build-appliance-image: Update to krogoth head revision
-> libproxy: use snapshot.debian.org for SRC_URI
-> libaio: use snapshot.debian.org for SRC_URI
-> blktool: use snapshot.debian.org for SRC_URI
-> linuxdoc-tools: use snapshot.debian.org for SRC_URI
-> docbook-xml-dtd4: use snapshot.debian.org for SRC_URI
-> netbase: use snapshot.debian.org for SRC_URI
-> serf: use snapshot.debian.org for SRC_URI
-> mailx: use snapshot.debian.org for SRC_URI
-> ossp-uuid: use snapshot.debian.org for SRC_URI
-> apmd: use snapshot.debian.org for SRC_URI
-> at: use snapshot.debian.org for SRC_URI
-> dpkg: use snapshot.debian.org for SRC_URI
-> oeqa/recipetool: update recipe test to pass SHA
-> grub: Fix build with gcc-6
-> oeqa/devtool: update recipe test as libmatchbox changed
-> nss: fix build for gcc-6
-> tzcode-native: update to 2016f
-> tzdata: update to 2016f
-> gcc-5.3: fix build for gcc-6
-> openjade-native: work around bug exposed by GCC 6
-> binutils: disable werror on native build
-> glib-2.0: Ignore useless warning found with gcc-6
-> rpm: Fix build with gcc6
-> elfutils: Fix build for gcc-6
-> elfutils-0.148: Fix build with gcc6
-> pkgconfig: Fix build with gcc-6
-> binutils: backport fix for TLSDESC relocations with no TLS segment on arch64
-> musl: Update to v1.1.15 release
-> dropbear: Remove incorrect SFTPSERVER_PATH from CFLAGS
-> musl: Upgrade to tip
-> musl: Update to latest tip
-> musl: Upgrade to tip of tree
-> systemtap: Add missing memory flag to fix stap module compilation
-> ghostscript: update SRC_URI
-> toaster: toasterconf.json Remove master release
-> build-appliance-image: Update to krogoth head revision
-> poky.conf: Bump version for 2.1.1 krogoth release
-> build-appliance-image: Update to krogoth head revision
-> wic: rawcopy: make source filenames unique
-> gcc: make sure header path is set correctly
-> feature-arm-vfp.inc: fix overzealous ARMPKGSFX_FPU modification
-> gcc-5: Fix hang with mmusl option on cmdline
-> devshell.bbclass: fix double unbuffering
-> Revert "openssl: prevent ABI break from earlier krogoth releases"
-> image.bbclass: do exact match for rootfs type
-> scripts/lib/bsp/kernel.py: force patching when branch is machine branch is re-use
-> bitbake: fetch2: Safer check for BB_ORIGENV datastore
-> useradd-staticids.bbclass: Allow missing UIDs/GIDs to generate warnings
-> useradd-staticids.bbclass: Restore failure on missing UIDs/GIDs
-> documentation.conf: Add information about USERADD variables
-> pseudo: remove rpath from libpseudo.so
-> openssh: fix init script restart with read-only-rootfs
-> binutils: configure with --enable-deterministic-archives
-> bitbake.conf: don't set CCACHE_DIR to $HOME by default
-> initramfs-framework: base: Ensures /run/lock is available
-> initramfs-framework: mdev: Add a runtime dependency on busybox-mdev
-> tzdata: update to 2016e
-> tzcode: update to 2016e
-> libxml2: upgrade to 2.9.4
-> gcc-runtime, libgcc: Symlink c++ header and startup files in target_triplet for SDK use
-> musl: Create symlinks for stub libraries
-> linux-yocto/4.1: fix musb compilation error
-> linux-yocto/4.4: integrate v4.4.11
-> linux-yocto/4.4: beaglebone: build in the usb controller drivers
-> linux-yocto/4.1: v4.1.24 and gcc6 powerpc fixes
-> linux-yocto-rt, core-image-rt*: Explicitly skip when PREFERRED_PROVIDER_virtual/kernel isn't set to linux-yocto-rt
-> linux-yocto/4.4: gcc6 build fixes (powerpc and mips)
-> eudev: remove eudev-hwdb from RRECOMMENDS_eudev
-> linux-yocto-rt/4.4: Update KBRANCH
-> perl: reorder tar arguments in do_install_ptest()
-> syslinux.bbclass: Added configurable SYSLINUX_ALLOWOPTIONS variable
-> lib/oe/rootfs: Fix DEBUGFS generation, without openssl
-> zip: update SRC_URI
-> classes/base: get_lic_checksum_file_list imporve validaton of url's
-> coreutils: fix for native and nativesdk
-> gnu-efi: set COMPATIBLE_HOST_armv4 to null
-> cogl-1.0: set COMPATIBLE_HOST_armv4 to null
-> openssh: change URI to http:
-> unzip: update SRC_URI
-> wic: fix path parsing, use last occurrence
-> mkefidisk.sh: mount images as read-only
-> python-smartpm: Fix channel command --remove-all option (again)
-> python-numpy: fix build failure with python-matplotlib
-> openssl: prevent ABI break from earlier krogoth releases
-> bitbake.conf: add default for IMAGE_FSTYPES_DEBUGFS
-> metadata_scm.bbclass: Do not assume ${COREBASE} is a Git repo
-> lttng-tools: filter random filename of ptest output
-> feature-arm-neon.inc: restore vfpv3-d16 support
-> populate_sdk_ext: Change lockedsigs task mismatch to a warning
-> populate_sdk_ext.bbclass : Show logfile in case the SDK EXT installation failed
-> classes/image_vm: allow different filesystems to be used for VM images.
-> image_types: fix image/compression dependency collection
-> librsvg: Security fixes via update to 2.40.15
-> alsa-lib: Fix incorrect appl pointer when mmap_commit() returns error.
-> gdb: fix QA warning (uClibc)
-> base-files: add some safety checks in profile
-> bitbake.conf: change APACHE_MIRROR to point at archive.apache.org
-> mesa: add PACKAGECONFIG for gbm
-> libxsettings-client: fix COPYING file
-> dbus-test: install executables not libtool wrapper scripts
-> mesa-demos: remove demos using obsolete screen surface
-> arch-powerpc64.inc: disable the use of qemu usermode on ppc64
-> eudev: add PACKAGECONFIG for hwdb
-> libxml2: fix dependencies and QA Issues
-> bash: fix dependencies and QA Issue
-> popt: fix dependencies and QA Issue
-> oeqa/selftest/buildoptions: remove buildhistory signature test
-> mesa-gl: add missing MESA_CRYPTO to PACKAGECONFIG
-> cross-localedef-native_2.22.bb: Use autotools configure
-> insane.bbclass: remove workdir from package_qa_check_license()
-> qemu: remove explicit but redundant native build dependencies
-> webkitgtk: remove gnome-common dependency
-> gnome-desktop3: remove redundant gnome-common dependency
-> python-pygobject: remove redundant gnome-common dependency
-> recipetool: create: fix falling back to declared license for npm packages
-> recipetool: create: fix picking up false npm package directories
-> arch-armv7ve: inherit armv7a tunes file
-> autotools: add default for CACHED_CONFIGUREVARS
-> packagegroup-core-lsb: fix whitespace in meta-qt* warnings
-> sysvinit-inittab: restrict labels to 4 chars
-> toolchain-scripts: replace source built-in call
-> oeqa/sstatetests: remove temporary DL_DIRs in noop_samesigs
-> oeqa/sstatetests: add http_proxy to no-op hash test
-> bluez5: enable out-of-tree builds
-> mx: move to autotools instead of autotools-brokensep
-> mx-1.0: inherit gtk-doc
-> meta: add comments to explain autotools-brokensep use
-> wic: isoimage-isohybrid: fix splash file paths
-> image.bbclass: don't execute compression commands multiple times
-> grub_git: set COMPATIBLE_HOST_armv7a to null
-> wic: isoimage-isohybrid: add grubefi configfile support
-> busybox: don't build ar
-> bash: fixed ptest run-builtins failed
-> libunwind: backport aarch64_be support
-> image.bbclass: don't emit redundant IMAGE_CMD_xxx functions
-> linux-firmware: break out bnx2 mips firmware and WHENCE license
-> package: ensure do_split_packages doesn't return duplicates
-> kernel-uimage: change target image to vmlinux
-> packagegroup-core-tools-profile: Enable valgrind on ARMv7a and above
-> gcc-sanitizers: Depend on target gcc
-> bluez5: fixed path to bluetoothd in sysvinit script
-> toasterconf.json: exclude releases Toaster can't build
-> bitbake: fetch2: export DBUS_SESSION_BUS_ADDRESS to support authentication agents
-> gdb: Backport patch to changes with AVX and MPX
-> gcc-4.9: fix build with gcc 6
-> lib/oe/rootfs: Fix DEBUGFS generation for opkg & openssl-cnf
-> devtool: Fix build-sdk when pn doesn't match filename
-> lib/classextend: Fix determinism issue
-> update-alternatives: Fix determinism issue
-> image: Fix IMAGE_FEATURES determinism issue
-> openssl: Security fix via update to 1.0.2h
-> linux-yocto/4.4: bump to v4.4.10
-> linux-yocto/4.4: beaglebone: Enable drm for omap
-> linux-yocto/4.4: update to v4.4.9
-> linux-yocto/4.4: bump to v4.4.8
-> linux-yocto-rt/4.1: update to rt23
-> linux-yocto/4.4: bump to v4.4.8
-> linux-yocto/4.4: broxton enablement and refactoring
-> linux-yocto/4.4: skylake configuration
-> linux-yocto/4.4: BXT mmc fixes + PUNIT, tubropower, and telemetry backport
-> linux-yocto/4.1: make ltsi content available
-> linux-yocto/4.1: update to v4.1.22
-> kernel-yocto: allow branch auditing to be suspended
-> kern-tools: handle directories with, or without, trailing /
-> linux-yocto/4.4: sched/cgroup: Fix/cleanup cgroup teardown/init
-> linux-yocto/uvesafb: print error message when task timeout occurs
-> gcc: obey ldflags in the link of libgcc
-> bitbake: toaster: fix progress bar in MySQL environment
-> ref-manual: Added GObject Introspection to 2.1 migration section.
-> dev-manual: Added Gobject Introspection section.
-> ref-manual: Added new 2.1 migration misc. Change
-> sdk-manual: Applied review edits throughout the manual.
-> ref-manual: Applied 2.1 Migration section review edits.
-> sdk-manual: Updated the normal customization.xml file.
-> ref-manual: Fixed a grammar consistency error
-> ref-manual: Applied review edit comments to the 2.1 migration section.
-> dev-manual: Updated the "varname" use to "VARNAME"
-> sdk-manual: Updated eclipse customization file.
-> busybox: musl mips64 ip fix
-> rpm: explicitly disable tomcrypt
-> recipetool.newappend: fix syntax error for 'not path_ok' error
-> matchbox-panel-2: Depend on dbus-glib-native
-> connman-gnome: Depend on dbus-glib-native
-> gobject-introspection: Depend on native flex and bison
-> gobject-introspection: fix floating dep on python-mako
-> sdk.py: preserve packaging data when SDKIMAGE_FEATURES has "package-management"
-> lib/oe/rootfs: Fix DEBUGFS generation when using opkg
-> boost: improve configure
-> boost: delete the build directory before rebuilding
-> license.bbclass: make sure that image manifest dir exists
-> busybox: update flock behavior to match upstream
-> valgrind: turn off the file level dependency
-> tzdata: update to 2016d
-> tzcode: update to 2016d
-> meta: add missing intltool-native dependency
-> pulseaudio: Add intltool-native dependency
-> 
+meta-xilinx/recipes-kernel/linux/linux-xlnx_4.6.bb, do_fetch
+meta-xilinx/recipes-kernel/linux/linux-xlnx_4.6.bb, do_unpack
+meta-xilinx/recipes-kernel/linux/linux-xlnx_4.6.bb, do_kernel_configme
+....
+
+How do I go about investigating why set scene was corrupted or not 
+executed correctly while building kernel?
+
+Any help is appreciated
+
+Thanks
+Manju
+
 
