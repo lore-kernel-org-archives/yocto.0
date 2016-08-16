@@ -1,74 +1,59 @@
-Return-Path: <Shrawan.Kumar@harman.com>
+Return-Path: <wpdster@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B18CFE00E25; Tue, 16 Aug 2016 04:55:29 -0700 (PDT)
+	id 90356E00E6D; Tue, 16 Aug 2016 07:44:19 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [216.82.243.195 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (wpdster[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail1.bemta8.messagelabs.com (mail1.bemta8.messagelabs.com
-	[216.82.243.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 63B0DE00E25
-	for <yocto@yoctoproject.org>; Tue, 16 Aug 2016 04:55:25 -0700 (PDT)
-Received: from [216.82.241.195] by server-3.bemta-8.messagelabs.com id
-	6E/7D-13762-D2FF2B75; Tue, 16 Aug 2016 11:55:25 +0000
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprLKsWRWlGSWpSXmKPExsXinSZ8TFfn/6Z
-	wg6V/DC1mHdrJZjHp5Ro2ByaPeScDPdpP9LEFMEWxZuYl5VcksGbcnX2DqeCpfMWHV6/ZGhg3
-	yHcxcnEICWxhlPi+sJUVzlny7Ah7FyMnkHOQUeL9dh8Qm03AUOJKz11GEFtEIFXi0vOjbCC2s
-	ECaxNePC1kh4ukSr1Z+h6oxkjj0upcZxGYRUJVofXUOrIZXwF3ia+8WRoj5xRI7OtrA5nAKmE
-	v86XzMBGIzCshKfGlcDdbLLCAucevJfLC4hICAxJI955khbFGJl4//sULYBhJbl+5jgbAVJFZ
-	2NwDN5ADq1ZRYv0sfYoyixJTuh+wQJwhKnJz5hAXiBFWJLQt/s0xgFJuFZNsshO5ZSLpnIele
-	wMiyilG9OLWoLLVI10QvqSgzPaMkNzEzR9fQwEIvN7W4ODE9NScxqVgvOT93EyMwqhiAYAfjn
-	T7nQ4ySHExKorwzJ24MF+JLyk+pzEgszogvKs1JLT7EqMHBIXDl4JHZjFIsefl5qUoSvI1/N4
-	ULCRalpqdWpGXmAOMeplSCg0dJhHceSJq3uCAxtzgzHSJ1ilFRSpz3EkhCACSRUZoH1wZLNZc
-	YZaWEeRmBjhLiKUgtys0sQZV/xSjOwagkzHsVZApPZl4J3PRXQIuZgBbrS28AWVySiJCSamAs
-	1qg7dM9nRcTtgLT6ueWXToq2XbbsDsxctuKRBGOj2bV3lr82v4j3mGWWW3NZRXT1DpfPEZaLE
-	loi3qy3lLjHVbOATSc/2U/YrvaT0qaDxvOsWJLN2RXvzX6n9XnX7fqY2NkzWWqu159T4V/OPc
-	d37fFrF6b/F+wq3mXpYZ2btOLriyd+vvlKLMUZiYZazEXFiQBCDtB0MAMAAA==
-X-Env-Sender: Shrawan.Kumar@harman.com
-X-Msg-Ref: server-4.tower-119.messagelabs.com!1471348524!58725658!1
-X-Originating-IP: [75.102.19.198]
-X-StarScan-Received: 
-X-StarScan-Version: 8.77; banners=-,-,-
-X-VirusChecked: Checked
-Received: (qmail 12933 invoked from network); 16 Aug 2016 11:55:24 -0000
-Received: from unknown.ord.scnet.net (HELO HICGWSEXHC01.ad.harman.com)
-	(75.102.19.198)
-	by server-4.tower-119.messagelabs.com with AES128-SHA encrypted SMTP;
-	16 Aug 2016 11:55:24 -0000
-Received: from HIBDWSMB06.ad.harman.com (10.99.236.96) by
-	HICGWSEXHC01.ad.harman.com (10.10.23.65) with Microsoft SMTP Server
-	(TLS) id 14.3.235.1; Tue, 16 Aug 2016 06:55:24 -0500
-Received: from HIBDWSMB05.ad.harman.com (10.99.236.95) by
-	HIBDWSMB06.ad.harman.com (10.99.236.96) with Microsoft SMTP Server
-	(TLS) id 15.0.1130.7; Tue, 16 Aug 2016 17:25:20 +0530
-Received: from HIBDWSMB05.ad.harman.com ([fe80::18d8:b6af:4383:8957]) by
-	HIBDWSMB05.ad.harman.com ([fe80::18d8:b6af:4383:8957%16]) with mapi id
-	15.00.1130.005; Tue, 16 Aug 2016 17:25:19 +0530
-From: "Kumar, Shrawan" <Shrawan.Kumar@harman.com>
-To: Joshua G Lock <joshua.g.lock@linux.intel.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] Access Control List (ACL) permissions attributes not
-	getting preserved in rootfs
-Thread-Index: AQHR9KDlAw1Mgmic4E2ORVjDTkQ6JKBLdVBQ
-Date: Tue, 16 Aug 2016 11:55:19 +0000
-Message-ID: <b80a230f7b11491b93bf0dfe9cc93a16@HIBDWSMB05.ad.harman.com>
-References: <9eea2233da3d4fbd8722005093c1311d@HIBDWSMB02.ad.harman.com>
-	<1471009925.19073.6.camel@linux.intel.com>
-In-Reply-To: <1471009925.19073.6.camel@linux.intel.com>
-Accept-Language: en-GB, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.99.236.43]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.218.46 listed in list.dnswl.org]
+Received: from mail-oi0-f46.google.com (mail-oi0-f46.google.com
+	[209.85.218.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F2B69E00E3D
+	for <yocto@yoctoproject.org>; Tue, 16 Aug 2016 07:44:18 -0700 (PDT)
+Received: by mail-oi0-f46.google.com with SMTP id 4so101624669oih.2
+	for <yocto@yoctoproject.org>; Tue, 16 Aug 2016 07:44:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=dKC3xipXMfVL5EUGOT40BHadCIrYDwV1QqgC5Xn3zRw=;
+	b=ct6jtQNDFp05ZyTgnEF0XBT49eF+0XgQgjVi0Rhmq8swBNGAd9PHVmHgOTVnWrCA9J
+	LJ597lJ0WdIo1OrknBampqlaIQrz3BGerZBh6lQj1japT0QbFzka0Zgdzy8iekzfvCJ0
+	5BtYIAd9QxRy4sTJPjH6a+MHwOzE0FQtOJl6s9ayLY7PsXrRci84BvK4x/3L2EcaRndY
+	JVP9OqCJRiDzf/hk3X9eDS0d8zQZX+XY3Um+yGP+MQv14Zuw+vVZ9pXVb7NiMen83Wgs
+	jg9kzRn2mcvI6kaLal1K1nKadm0BGbE0EJBrSaPMeczOi4K7AHqVX4ul6X5yH6/La/Rx
+	yEOw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=dKC3xipXMfVL5EUGOT40BHadCIrYDwV1QqgC5Xn3zRw=;
+	b=ijfLCvuTWoxIrTvZSPdnfJicPxnuyWTXX2oSqkX01bTuhzqPnbZH4/NEalHC/6aAXK
+	CXPF3xuBD3NR8SIi81zzE2tF+OTdii0NEwCWru5E+fKS26zOYMpVec26rrAZz74JlCqb
+	hJll4lq+5ue3vFXwlE6gdrk8Lr52JEURWiNkrUQX/L22UR416Rp8RnMqPp4skewxdmfZ
+	KAtL2N18QhuKVTMIhxqCLw+wuGlJ8ADZ5tN2aEfi32lGYfReiK81umiiZX2soLpQ5cBz
+	TMiQJm0/Wt/iCZBlqaFrbV3yOHOp1/NQNHdxz9P9uUv0B/U7luiWYBp8EN0A7I5713nB
+	qu9A==
+X-Gm-Message-State: AEkoouumYzxoN13mjUmibDOMot1zmJzHZ52uuI92qlxQLNU3XCmRFII929gGVu7az/Nfi0g6J3tcUnkKl68lFg==
+X-Received: by 10.202.253.207 with SMTP id b198mr1139285oii.89.1471358657900; 
+	Tue, 16 Aug 2016 07:44:17 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Re: Access Control List (ACL) permissions attributes not getting preserved in rootfs
+Received: by 10.157.13.137 with HTTP; Tue, 16 Aug 2016 07:43:47 -0700 (PDT)
+From: Patrick Doyle <wpdster@gmail.com>
+Date: Tue, 16 Aug 2016 10:43:47 -0400
+Message-ID: <CAF_dkJD9wqM7rg7U1VeiDs+adEREcoNna58dghfN2BvbxVLWqA@mail.gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: How to maintain a global DL_DIR?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -80,62 +65,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 16 Aug 2016 11:55:29 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Tue, 16 Aug 2016 14:44:19 -0000
+Content-Type: text/plain; charset=UTF-8
 
-VGhhbmtzIEpvc2h1YSwNCg0KInBvc3RpbnN0IiAgd29ya3MhISAgSSBjb3VsZCBzZWUgdGhlIGF0
-dHJpYnV0ZXMgc2V0IHVuZGVyICJwb2t5L2J1aWxkX3FlbXV4ODYvdG1wL3dvcmsvcWVtdXg4Ni1w
-b2t5LWxpbnV4L2NvcmUtaW1hZ2UtbWluaW1hbC8xLjAtcjAvcm9vdGZzLyIuDQoNCiBIb3dldmVy
-LCBJIHN0aWxsIGNvdWxkIG5vdCBzZWUgdGhlIGF0dHJpYnV0ZXMgYWZ0ZXIgYm9vdGluZyBxZW11
-LiBJdCBzZWVtcyBkdXJpbmcgcm9vdGZzLmV4dDQgKG1rZnMuZXh0NCBjb21tYW5kICljcmVhdGlv
-biB3aGVuICJjcmVhdGVfaW1hZ2VfZXh0NC5zaCIgaXMgY2FsbGVkICwgYWdhaW4gdGhpcyBpcyBn
-ZXR0aW5nICAgbG9zdC4NCg0KQW55IGlkZWEgb24gdGhpcyA/DQoNCg0KUmVnYXJkcw0KU2hyYXdh
-bg0KDQoNCg0KDQoNCi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQpGcm9tOiBKb3NodWEgRyBM
-b2NrIFttYWlsdG86am9zaHVhLmcubG9ja0BsaW51eC5pbnRlbC5jb21dIA0KU2VudDogRnJpZGF5
-LCBBdWd1c3QgMTIsIDIwMTYgNzoyMiBQTQ0KVG86IEt1bWFyLCBTaHJhd2FuOyB5b2N0b0B5b2N0
-b3Byb2plY3Qub3JnDQpTdWJqZWN0OiBSZTogW3lvY3RvXSBBY2Nlc3MgQ29udHJvbCBMaXN0IChB
-Q0wpIHBlcm1pc3Npb25zIGF0dHJpYnV0ZXMgbm90IGdldHRpbmcgcHJlc2VydmVkIGluIHJvb3Rm
-cw0KDQpPbiBGcmksIDIwMTYtMDgtMTIgYXQgMTI6MzMgKzAwMDAsIEt1bWFyLCBTaHJhd2FuIHdy
-b3RlOg0KPiBIZWxsbyBBbGwsDQo+IMKgDQo+IEkgYW0gwqB1c2luZyDCoHBva3kg4oCcIGpldGhy
-b+KAnSDCoCwgYW5kIMKgdGhvdWdoIMKgb25lIG9mIG15IHJlY2lwZSwgSSBoYXZlIA0KPiBjcmVh
-dGVkIHVzZXIxICYgdXNlcjIgYW5kIHRoZW4gdHJ5aW5nIHRvIHNldCBBQ0wgcnVsZXMgwqBvbiAN
-Cj4g4oCcaGVsbG93b3JsZOKAnSBiaW4gYXMgYmVsb3cgOg0KPiDCoA0KPiDCoA0KPiBkb19pbnN0
-YWxsKCkgew0KPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIMKgwqDCoMKgIGluc3RhbGwg
-LWQgJHtEfSR7YmluZGlyfQ0KPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIMKgwqDCoMKg
-IGluc3RhbGwgLW0gMDcwMCBoZWxsb3dvcmxkICR7RH0ke2JpbmRpcn0NCj4gwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoCDCoMKgwqDCoCBpbnN0YWxsIC1kICR7RH0vbGliL3N5c3RlbWQvc3lz
-dGVtDQo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgwqDCoMKgwqAgaW5zdGFsbCAtbSAw
-NzAwIGhlbGxvLnNlcnZpY2UgDQo+ICR7RH0vbGliL3N5c3RlbWQvc3lzdGVtLw0KPiDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgIMKgwqDCoMKgIGNob3duwqDCoMKgIHVzZXIxOmdyb3VwMSAk
-e0R9JHtiaW5kaXJ9L2hlbGxvd29ybGQNCj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCDCoMKgwqDC
-oMKgwqDCoHNldGZhY2wgLW0gdTp1c2VyMjpyLS0gJHtEfSR7YmluZGlyfS9oZWxsb3dvcmxkIH0N
-Cj4gwqANCj4gwqANCj4gw6ggV2hlbiBJIHNlZcKgIMKgb24gdGhlIGRldnNoZWxsICggYml0YmFr
-ZSBIZWxsb1dvcmxkIOKAk2MgZGV2c2hlbGwpIMKgOg0KPiBwb2t5L2J1aWxkX3FlbXV4ODYvdG1w
-L3dvcmsvcWVtdXg4Ni1wb2t5LWxpbnV4L2NvcmUtaW1hZ2UtDQo+IG1pbmltYWwvMS4wLXIwL3Jv
-b3Rmcy91c3IvYmluIyBnZXRmYWNsIGhlbGxvd29ybGTCoMKgwqAgLCBJIGNvdWxkIHNlZSANCj4g
-dGhhdCBBQ0wgcGVybWlzc2lvbnMgYXJlIHNldCBjb3JyZWN0bHkgYXMgYmVsb3cgOg0KPiAtwqDC
-oMKgwqDCoMKgwqAgIyBmaWxlOiBoZWxsb3dvcmxkDQo+IC3CoMKgwqDCoMKgwqDCoCAjIG93bmVy
-OiB1c2VyMQ0KPiAtwqDCoMKgwqDCoMKgwqAgIyBncm91cDogZ3JvdXAxDQo+IC3CoMKgwqDCoMKg
-wqDCoCB1c2VyOjpyd3gNCj4gLcKgwqDCoMKgwqDCoMKgIHVzZXI6dXNlcjI6ci0tDQo+IC3CoMKg
-wqDCoMKgwqDCoCBncm91cDo6LS0tDQo+IC3CoMKgwqDCoMKgwqDCoCBtYXNrOjpyLS0NCj4gLcKg
-wqDCoMKgwqDCoMKgIG90aGVyOjotLS0NCj4gwqANCj4gSG93ZXZlciwgSXQgZG9lcyBub3Qgc2Vl
-bXMgdG8gYmUgZ2V0dGluZyBwcmVzZXJ2ZWQgaW4gcm9vdGZzLiA6DQo+IC9wb2t5L2J1aWxkX3Fl
-bXV4ODYvdG1wL3dvcmsvcWVtdXg4Ni1wb2t5LWxpbnV4L2NvcmUtaW1hZ2UtDQo+IG1pbmltYWwv
-MS4wLXIwL3Jvb3Rmcy91c3IvYmluIyBnZXRmYWNsIGhlbGxvd29ybGQgIyBmaWxlOiBoZWxsb3dv
-cmxkICMgDQo+IG93bmVyOiB1c2VyMSAjIGdyb3VwOiBncm91cDEgdXNlcjo6cnd4DQo+IGdyb3Vw
-OjotLS0NCj4gb3RoZXI6Oi0tLQ0KPiDCoA0KPiBxdWljayBoZWxwIMKgaGVyZSB3b3VsZCBiZSBo
-aWdobHkgYXBwcmVjaWF0ZWQNCg0KVGhpcyBpcyBkdWUgdG8gdGhlIGZhY3QgdGhhdCB3ZSBkb24n
-dCBjdXJyZW50bHkgaGF2ZSBhIG1lY2hhbmlzbSB0byBwcmVzZXJ2ZSB4YXR0ciB0aHJvdWdoIHRv
-IGltYWdlIGNvbnN0cnVjdGlvblsxXS4NCg0KVGhlIGxhcmdlc3QgYmFycmllciBmb3IgZG9pZyBz
-byBpcyB0aGF0IHRoZSBwYWNrYWdlIG1hbmFnZXJzIChjZXJ0YWlubHkgZHBrZyBhbmQgcnBtKSBk
-b24ndCBoYXZlIGFueSBzdXBwb3J0IGZvciB4YXR0cnMgaW4gcGFja2FnZXMgKGFuIGltYWdlIGlz
-IHBvcHVsYXRlZCB2aWEgdGhlIHBhY2thZ2UgbWFuYWdlcikuDQoNClRvIHRoZSBiZXN0IG9mIG15
-IGtub3dsZWRnZSB0aGUgb25seSBvcHRpb24gZm9yIGFkZGluZyBzb21lIHhhdHRyL0FDTCBpcyB0
-byB1c2UgYSBwb3N0aW5zdFsyXSB0byBzZXQgdGhlIGF0dHJpYnV0ZXMgYWZ0ZXIgdGhlIHBhY2th
-Z2UgaGFzIGJlZW4gaW5zdGFsbGVkLg0KDQpSZWdhcmRzLA0KDQpKb3NodWENCg0KMS7CoGh0dHBz
-Oi8vYnVnemlsbGEueW9jdG9wcm9qZWN0Lm9yZy9zaG93X2J1Zy5jZ2k/aWQ9OTg1OA0KMi7CoGh0
-dHA6Ly93d3cueW9jdG9wcm9qZWN0Lm9yZy9kb2NzLzIuMS9kZXYtbWFudWFsL2Rldi1tYW51YWwu
-aHRtbCNuZXctDQpyZWNpcGUtcG9zdC1pbnN0YWxsYXRpb24tc2NyaXB0cw0KDQo=
+As I am playing with several different Yocto/OE projects, I thought it
+would be nice to set up a global downloads directory.
+
+Also, being a somewhat forgetful sort, I thought it would be nice if I
+could set DL_DIR in my .bashrc and not have to remember to edit
+conf/local.conf each time I follow the directions from a third party
+site to set up their Yocto based distribution.
+
+Can I do this?  If so, how?
+
+Do I add DL_DIR to BB_ENV_WHITELIST?  Do I add it to
+BB_ENV_EXTRAWHITE?  But I note that poky/scripts/oe-buildenv-internal
+arbitrarily blasts its own values into BB_ENV_EXTRAWHITE, so setting
+BB_ENV_EXTRAWHITE in my .bashrc won't work.
+
+Perhaps I am misunderstanding the concept of the whitelist.  Perhaps I
+should just ask for some help.
+
+Help.
+
+Can I maintain a single global download directory specified solely
+through environment variables?  If so, how?
+
+Thanks.
+
+--wpd
 
