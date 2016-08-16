@@ -1,37 +1,64 @@
-Return-Path: <joshua.g.lock@linux.intel.com>
+Return-Path: <peter.kjellerstedt@axis.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A1A41E006C6; Tue, 16 Aug 2016 12:53:45 -0700 (PDT)
+	id 22C73E0073D; Tue, 16 Aug 2016 13:33:24 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [195.60.68.11 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 39BC1E0043B
-	for <yocto@yoctoproject.org>; Tue, 16 Aug 2016 12:53:42 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by fmsmga101.fm.intel.com with ESMTP; 16 Aug 2016 12:53:42 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.28,529,1464678000"; d="scan'208";a="1015493458"
-Received: from sudhirk1-mobl1.ger.corp.intel.com ([10.252.10.144])
-	by orsmga001.jf.intel.com with ESMTP; 16 Aug 2016 12:53:40 -0700
-Message-ID: <1471377128.8414.7.camel@linux.intel.com>
-From: Joshua G Lock <joshua.g.lock@linux.intel.com>
-To: "Kumar, Shrawan" <Shrawan.Kumar@harman.com>, "yocto@yoctoproject.org"
+X-Greylist: delayed 549 seconds by postgrey-1.32 at yocto-www;
+	Tue, 16 Aug 2016 13:33:19 PDT
+Received: from bastet.se.axis.com (bastet.se.axis.com [195.60.68.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C9B0AE0043F
+	for <yocto@yoctoproject.org>; Tue, 16 Aug 2016 13:33:19 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by bastet.se.axis.com (Postfix) with ESMTP id D4D5718200;
+	Tue, 16 Aug 2016 22:24:07 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at bastet.se.axis.com
+Received: from bastet.se.axis.com ([IPv6:::ffff:127.0.0.1])
+	by localhost (bastet.se.axis.com [::ffff:127.0.0.1]) (amavisd-new,
+	port 10024)
+	with LMTP id 6Ybo43gRFEAI; Tue, 16 Aug 2016 22:24:06 +0200 (CEST)
+Received: from boulder.se.axis.com (boulder.se.axis.com [10.0.2.104])
+	by bastet.se.axis.com (Postfix) with ESMTP id 52646181FF;
+	Tue, 16 Aug 2016 22:24:06 +0200 (CEST)
+Received: from boulder.se.axis.com (localhost [127.0.0.1])
+	by postfix.imss71 (Postfix) with ESMTP id 338D61946;
+	Tue, 16 Aug 2016 22:24:06 +0200 (CEST)
+Received: from seth.se.axis.com (seth.se.axis.com [10.0.2.172])
+	by boulder.se.axis.com (Postfix) with ESMTP id 28C1A1702;
+	Tue, 16 Aug 2016 22:24:06 +0200 (CEST)
+Received: from XBOX04.axis.com (xbox04.axis.com [10.0.5.18])
+	by seth.se.axis.com (Postfix) with ESMTP id 2714E4AE;
+	Tue, 16 Aug 2016 22:24:06 +0200 (CEST)
+Received: from XBOX02.axis.com (10.0.5.16) by XBOX04.axis.com (10.0.5.18) with
+	Microsoft SMTP Server (TLS) id 15.0.1156.6;
+	Tue, 16 Aug 2016 22:24:05 +0200
+Received: from XBOX02.axis.com ([fe80::d00f:cb52:1b56:20d]) by XBOX02.axis.com
+	([fe80::d00f:cb52:1b56:20d%21]) with mapi id 15.00.1156.000;
+	Tue, 16 Aug 2016 22:24:06 +0200
+From: Peter Kjellerstedt <peter.kjellerstedt@axis.com>
+To: Patrick Doyle <wpdster@gmail.com>, "yocto@yoctoproject.org"
 	<yocto@yoctoproject.org>
-In-Reply-To: <b80a230f7b11491b93bf0dfe9cc93a16@HIBDWSMB05.ad.harman.com>
-References: <9eea2233da3d4fbd8722005093c1311d@HIBDWSMB02.ad.harman.com>
-	<1471009925.19073.6.camel@linux.intel.com>
-	<b80a230f7b11491b93bf0dfe9cc93a16@HIBDWSMB05.ad.harman.com>
-Date: Tue, 16 Aug 2016 20:52:08 +0100
-Mime-Version: 1.0
-X-Mailer: Evolution 3.20.5 (3.20.5-1.fc24) 
-Subject: Re: Access Control List (ACL) permissions attributes not getting preserved in rootfs
+Thread-Topic: [yocto] How to maintain a global DL_DIR?
+Thread-Index: AQHR98zLYvOMZOiZ+kCs7NAeV+igq6BLkDOAgABwKrA=
+Date: Tue, 16 Aug 2016 20:24:06 +0000
+Message-ID: <d92af01d6a634d8d969be96a43808106@XBOX02.axis.com>
+References: <CAF_dkJD9wqM7rg7U1VeiDs+adEREcoNna58dghfN2BvbxVLWqA@mail.gmail.com>
+	<CAF_dkJBvmdC-QXVUf6TU5xC_nVPWa1YeZYnGFbudshtNLWnLig@mail.gmail.com>
+In-Reply-To: <CAF_dkJBvmdC-QXVUf6TU5xC_nVPWa1YeZYnGFbudshtNLWnLig@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.0.5.60]
+MIME-Version: 1.0
+Subject: Re: How to maintain a global DL_DIR?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,147 +70,101 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 16 Aug 2016 19:53:45 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Tue, 16 Aug 2016 20:33:24 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, 2016-08-16 at 11:55 +0000, Kumar, Shrawan wrote:
-> Thanks Joshua,
-> 
-> "postinst"  works!!  I could see the attributes set under
-> "poky/build_qemux86/tmp/work/qemux86-poky-linux/core-image-
-> minimal/1.0-r0/rootfs/".
-> 
->  However, I still could not see the attributes after booting qemu. It
-> seems during rootfs.ext4 (mkfs.ext4 command )creation when
-> "create_image_ext4.sh" is called , again this is getting   lost.
-> 
-> Any idea on this ?
-
-
-I'm not sure why the attribute isn't preserved in the image, it could
-be a another missing piece for me to track in the quest to better
-support xattr.
-
-There is a way to work around it, though — you can force the postinst
-to be run on the target at first boot, as documented in that same
-manual section. For example I have a test recipe with:
-
-8<----snip--------
-
-pkg_postinst_${PN}() {
-    chown foo:foo $D${datadir}/xattrtest/xattrtest
-    # Force setfacl to run on the target, not at image creation
-    if [ x"$D" = "x" ]; then
-        setfacl -m u:bar:r-- $D${datadir}/xattrtest/xattrtest
-    else
-        exit 1
-    fi
-}
-
-USERADD_PACKAGES = "${PN}"
-USERADD_PARAM_${PN} = "-m foo;-m bar"
-RDEPENDS_${PN} += "acl"
-
-8<----snip--------
-
-which results in:
-
-$ getfacl /usr/share/xattrtest/xattrtest
-getfacl: Removing leading '/' from absolute path names
-# file /usr/share/xattrtest/xattrtest
-# owner: foo
-# group: foo
-user::rw-
-user:bar:r--
-group::r--
-mask::r--
-other::r--
-
-The downside here is that your image has to include postinst support
-and the acl package (per the RDEPENDS_${PN} line in the snippet above).
-
-Regards,
-
-Joshua
-
-> 
-> Regards
-> Shrawan
-> 
-> 
-> 
-> 
-> 
 > -----Original Message-----
-> From: Joshua G Lock [mailto:joshua.g.lock@linux.intel.com] 
-> Sent: Friday, August 12, 2016 7:22 PM
-> To: Kumar, Shrawan; yocto@yoctoproject.org
-> Subject: Re: [yocto] Access Control List (ACL) permissions attributes
-> not getting preserved in rootfs
-> 
-> On Fri, 2016-08-12 at 12:33 +0000, Kumar, Shrawan wrote:
-> > 
-> > Hello All,
-> >  
-> > I am  using  poky “ jethro”  , and  though  one of my recipe, I
-> > have 
-> > created user1 & user2 and then trying to set ACL rules  on 
-> > “helloworld” bin as below :
-> >  
-> >  
-> > do_install() {
-> >                     install -d ${D}${bindir}
-> >                     install -m 0700 helloworld ${D}${bindir}
-> >                     install -d ${D}/lib/systemd/system
-> >                     install -m 0700 hello.service 
-> > ${D}/lib/systemd/system/
-> >                     chown    user1:group1 ${D}${bindir}/helloworld
-> >                    setfacl -m u:user2:r-- ${D}${bindir}/helloworld
-> > }
-> >  
-> >  
-> > è When I see   on the devshell ( bitbake HelloWorld –c devshell)  :
-> > poky/build_qemux86/tmp/work/qemux86-poky-linux/core-image-
-> > minimal/1.0-r0/rootfs/usr/bin# getfacl helloworld    , I could see 
-> > that ACL permissions are set correctly as below :
-> > -        # file: helloworld
-> > -        # owner: user1
-> > -        # group: group1
-> > -        user::rwx
-> > -        user:user2:r--
-> > -        group::---
-> > -        mask::r--
-> > -        other::---
-> >  
-> > However, It does not seems to be getting preserved in rootfs. :
-> > /poky/build_qemux86/tmp/work/qemux86-poky-linux/core-image-
-> > minimal/1.0-r0/rootfs/usr/bin# getfacl helloworld # file:
-> > helloworld # 
-> > owner: user1 # group: group1 user::rwx
-> > group::---
-> > other::---
-> >  
-> > quick help  here would be highly appreciated
-> 
-> This is due to the fact that we don't currently have a mechanism to
-> preserve xattr through to image construction[1].
-> 
-> The largest barrier for doig so is that the package managers
-> (certainly dpkg and rpm) don't have any support for xattrs in
-> packages (an image is populated via the package manager).
-> 
-> To the best of my knowledge the only option for adding some xattr/ACL
-> is to use a postinst[2] to set the attributes after the package has
-> been installed.
-> 
-> Regards,
-> 
-> Joshua
-> 
-> 1. https://bugzilla.yoctoproject.org/show_bug.cgi?id=9858
-> 2. http://www.yoctoproject.org/docs/2.1/dev-manual/dev-manual.html#ne
-> w-
-> recipe-post-installation-scripts
-> 
+> From: yocto-bounces@yoctoproject.org [mailto:yocto-
+> bounces@yoctoproject.org] On Behalf Of Patrick Doyle
+> Sent: den 16 augusti 2016 17:13
+> To: yocto@yoctoproject.org
+> Subject: Re: [yocto] How to maintain a global DL_DIR?
+>=20
+> Oh this is ugly...
+> I tried setting BB_ENV_EXTRAWHITE to DL_DIR in my .bashrc, but found
+> that BB_ENV_EXTRAWHITE gets overwritten by oe-buildenv-internal as I
+> mentioned previously.
+
+You seem to be using an old version of Poky. The code in=20
+oe-buildenv-internal was changed in Krogoth to add the variables=20
+that OE requires to BB_ENV_EXTRAWHITE. So if you are using Krogoth=20
+or later it should be possible to do=20
+export BB_ENV_EXTRAWHITE=3D"DL_DIR"
+in your .bashrc and get it to work as expected...
+
+If you do not have the option of using Krogoth or newer, you could=20
+use this trick in your .bashrc:
+
+alias bitbake=3D"BB_ENV_EXTRAWHITE=3D\"$BB_ENV_EXTRAWHITE DL_DIR\" bitbake"
+
+It may not be kosher, but it works. ;)
+
+> I tried setting BB_ENV_WHITELIST to DL_DIR in my .bashrc and found
+> that bitbake just stopped working.
+>=20
+> After rereading the manual
+> (https://www.yoctoproject.org/docs/1.6/bitbake-user-manual/bitbake-
+> user-manual.html#var-BB_ENV_WHITELIST)
+> I tried setting BB_ENV_WHITELIST to "BBPATH BB_RESERVE_ENV
+> BB_ENV_WHITELIST BB_ENV_EXTRAWHITE DL_DIR", and bitbake still didn't
+> work.
+>=20
+> So I looked in poky/bitbake/lib/bb/utils.py and found the following:
+>=20
+> def preserved_envvars_exported():
+>     """Variables which are taken from the environment and placed in and
+> exported
+>     from the metadata"""
+>     return [
+>         'BB_TASKHASH',
+>         'HOME',
+>         'LOGNAME',
+>         'PATH',
+>         'PWD',
+>         'SHELL',
+>         'TERM',
+>         'USER',
+>     ]
+>=20
+> def preserved_envvars():
+>     """Variables which are taken from the environment and placed in
+> the metadata"""
+>     v =3D [
+>         'BBPATH',
+>         'BB_PRESERVE_ENV',
+>         'BB_ENV_WHITELIST',
+>         'BB_ENV_EXTRAWHITE',
+>     ]
+>     return v + preserved_envvars_exported()
+>=20
+> ...
+>     if 'BB_ENV_WHITELIST' in os.environ:
+>         approved =3D os.environ['BB_ENV_WHITELIST'].split()
+>         approved.extend(['BB_ENV_WHITELIST'])
+>     else:
+>         approved =3D preserved_envvars()
+>=20
+> This looks like, if BB_ENV_WHITELIST is defined in the environment,
+> bitbake will use it (arbitrarily appending BB_ENV_WHITELIST to the end
+> of whatever was defined in the environment variable).  If it is not
+> defined, then BB_ENV_WHITELIST is initialized to be:
+>=20
+> ['BBPATH', 'BB_PRESERVE_ENV', 'BB_ENV_WHITELIST', 'BB_ENV_EXTRAWHITE',
+> 'BB_TASKHASH', 'HOME', ...]
+>=20
+> So I finally tried setting BB_ENV_WHITELIST in .bashrc to be "BBPATH
+> BB_PRESERVE_ENV BB_ENV_EXTRAWHITE BB_TASKHASH HOME LOGNAME PATH PWD
+> SHELL TERM USER DL_DIR"
+>=20
+> But it is very sadly ugly... not terribly maintainable... and makes me
+> think I'm missing something important.
+>=20
+> Please tell me I'm missing something important.
+>=20
+> --wpd
+
+//Peter
+
 
