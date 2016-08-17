@@ -1,6 +1,6 @@
-Return-Path: <william.c.randle@intel.com>
+Return-Path: <joshua.g.lock@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E3BD8E00ED6; Wed, 17 Aug 2016 09:10:33 -0700 (PDT)
+	id C47A0E00EE2; Wed, 17 Aug 2016 09:13:07 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,38 +8,31 @@ X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
 	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
+	*      [192.55.52.93 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 317D6E00EBE
-	for <yocto@yoctoproject.org>; Wed, 17 Aug 2016 09:10:31 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by fmsmga101.fm.intel.com with ESMTP; 17 Aug 2016 09:09:44 -0700
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5E2E1E00EBE
+	for <yocto@yoctoproject.org>; Wed, 17 Aug 2016 09:13:03 -0700 (PDT)
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+	by fmsmga102.fm.intel.com with ESMTP; 17 Aug 2016 09:12:43 -0700
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="5.28,529,1464678000"; 
-	d="scan'208,217";a="1016049440"
-Received: from orsmsx101.amr.corp.intel.com ([10.22.225.128])
-	by orsmga001.jf.intel.com with ESMTP; 17 Aug 2016 09:09:41 -0700
-Received: from orsmsx105.amr.corp.intel.com ([169.254.2.201]) by
-	ORSMSX101.amr.corp.intel.com ([169.254.8.239]) with mapi id
-	14.03.0248.002; Wed, 17 Aug 2016 09:09:40 -0700
-From: "Randle, William C" <william.c.randle@intel.com>
-To: "joshua.g.lock@linux.intel.com" <joshua.g.lock@linux.intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto-autobuilder][PATCH] cleanup and restart crashed vnc server
-Thread-Index: AQHR+BubRqDBiCGJzEGFyy0mOS5jAaBNxccAgAAC3YA=
-Date: Wed, 17 Aug 2016 16:09:40 +0000
-Message-ID: <1471450179.2860.57.camel@intel.com>
+	d="scan'208,217";a="867030551"
+Received: from jlock-mobl1.ger.corp.intel.com ([10.252.4.209])
+	by orsmga003.jf.intel.com with ESMTP; 17 Aug 2016 09:12:42 -0700
+Message-ID: <1471450360.19448.6.camel@linux.intel.com>
+From: Joshua G Lock <joshua.g.lock@linux.intel.com>
+To: "Randle, William C" <william.c.randle@intel.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Date: Wed, 17 Aug 2016 17:12:40 +0100
+In-Reply-To: <1471450179.2860.57.camel@intel.com>
 References: <1471392559-5756-1-git-send-email-william.c.randle@intel.com>
 	<1471449564.3023.11.camel@linux.intel.com>
-In-Reply-To: <1471449564.3023.11.camel@linux.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.7.199.151]
-MIME-Version: 1.0
+	<1471450179.2860.57.camel@intel.com>
+X-Mailer: Evolution 3.20.5 (3.20.5-1.fc24) 
+Mime-Version: 1.0
 Subject: Re: [yocto-autobuilder][PATCH] cleanup and restart crashed vnc server
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -52,290 +45,378 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 17 Aug 2016 16:10:34 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_1471450179286057camelintelcom_"
+X-List-Received-Date: Wed, 17 Aug 2016 16:13:07 -0000
+Content-Type: multipart/alternative; boundary="=-azkBcNSVQwmgOwU/QkWf"
 
---_000_1471450179286057camelintelcom_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--=-azkBcNSVQwmgOwU/QkWf
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-T24gV2VkLCAyMDE2LTA4LTE3IGF0IDE2OjU5ICswMTAwLCBKb3NodWEgRyBMb2NrIHdyb3RlOg0K
-DQpPbiBUdWUsIDIwMTYtMDgtMTYgYXQgMTc6MDkgLTA3MDAsIEJpbGwgUmFuZGxlIHdyb3RlOg0K
-DQoNClVzZSBhIGNvbW1vbiBzY3JpcHQgdG8gY2hlY2sgZm9yIGEgcnVubmluZyB2bmMgc2VydmVy
-LCBhbmQgaWYgbm90DQpydW5uaW5nDQpjbGVhbnVwIGRhbmdsaW5nIGxvY2sgZmlsZXMgYW5kIHJl
-c3RhcnQgdGhlIHNlcnZlci4NCg0KW1lPQ1RPICM4MjEwXQ0KDQpTaWduZWQtb2ZmLWJ5OiBCaWxs
-IFJhbmRsZSA8d2lsbGlhbS5jLnJhbmRsZUBpbnRlbC5jb208bWFpbHRvOndpbGxpYW0uYy5yYW5k
-bGVAaW50ZWwuY29tPj4NCi0tLQ0KIGJpbi9jaGVja3ZuYyAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwgMTANCisrKysrKysrKysNCiAuLi4vc2l0ZS1w
-YWNrYWdlcy9hdXRvYnVpbGRlci9idWlsZHN0ZXBzL1J1bkVTREtTYW5pdHlUZXN0cy5weSB8ICAz
-DQorLS0NCiAuLi4vc2l0ZS1wYWNrYWdlcy9hdXRvYnVpbGRlci9idWlsZHN0ZXBzL1J1bk9lU2Vs
-ZnRlc3QucHkgICAgICB8ICAzDQorLS0NCiAuLi4vc2l0ZS1wYWNrYWdlcy9hdXRvYnVpbGRlci9i
-dWlsZHN0ZXBzL1J1blNES1Nhbml0eVRlc3RzLnB5ICB8ICAzDQorLS0NCiAuLi4vc2l0ZS1wYWNr
-YWdlcy9hdXRvYnVpbGRlci9idWlsZHN0ZXBzL1J1blNhbml0eVRlc3RzLnB5ICAgICB8ICAzDQor
-LS0NCiA1IGZpbGVzIGNoYW5nZWQsIDE0IGluc2VydGlvbnMoKyksIDggZGVsZXRpb25zKC0pDQog
-Y3JlYXRlIG1vZGUgMTAwNzU1IGJpbi9jaGVja3ZuYw0KDQpkaWZmIC0tZ2l0IGEvYmluL2NoZWNr
-dm5jIGIvYmluL2NoZWNrdm5jDQpuZXcgZmlsZSBtb2RlIDEwMDc1NQ0KaW5kZXggMDAwMDAwMC4u
-NTc0YmE0OA0KLS0tIC9kZXYvbnVsbA0KKysrIGIvYmluL2NoZWNrdm5jDQpAQCAtMCwwICsxLDEw
-IEBADQorIyEvYmluL3NoDQorIw0KKyMgY2hlY2sgaWYgdm5jIHNlcnZlciBpcyBydW5uaW5nLCBh
-bmQgaWYgbm90LCBjbGVhbnVwIGFuZCByZXN0YXJ0DQorIw0KK3BpZD0kKHBpZG9mIFh2bmMpDQor
-aWYgW1sgJD8gIT0gMCBdXTsgdGhlbg0KKyAgICBlY2hvICJYdm5jIG5vdCBydW5uaW5nLCBhdHRl
-bXB0aW5nIHJlc3RhcnQiDQorICAgIHZuY3NlcnZlciAta2lsbCA6MQ0KKyAgICB2bmNzZXJ2ZXIN
-Cg0KDQoNClRoZSB2bmNzZXJ2ZXIgaXMgY3VycmVudGx5IHN0YXJ0ZWQgd2l0aCBgdm5jc2VydmVy
-IDoxYCwgd2hlcmVhcyB0aGlzDQpzY3JpcHQganVzdCBjYWxscyBgdm5jc2VydmVyYCDigJQgaXMg
-dGhhdCBpbnRlbnRpb25hbC9kZXNpcmFibGU/DQoNCldvdWxkIGl0IGJlIGEgbGl0dGxlIGNsZWFu
-ZXIvbW9yZSByb2J1c3QgaWYgd2UgZGlkbid0IGFzc3VtZSBvbmx5IG9uZQ0KWHZuYyBpbnN0YW5j
-ZSB3YXMgcnVubmluZyBhbmQgaW5zdGVhZCB3cml0ZSB0aGUgcGlkIG9mIHRoZSBwcm9jZXNzIHdl
-DQpzdGFydCB0byBhIGZpbGUgYW5kIHVzZSB0aGF0IGZpbGUgdG8gY2hlY2sgdGhlIHN0YXR1cz8N
-Cg0KUmVnYXJkcywNCg0KSm9zaHVhDQoNCg0KDQpUaGUgdm5jc2VydmVyIHByb2dyYW0gaXMgYSBz
-aGVsbCBzY3JpcHQgYW5kIHVzZXMgOjEgYXMgdGhlIGRlZmF1bHQgZGlzcGxheS4NCg0KVGhlIHBp
-ZCBvZiBYdm5jIGlzIHdyaXR0ZW4gdG8gYSBmaWxlIGFscmVhZHkuIFRoZSBwcm9ibGVtIGlzLCBp
-ZiBYdm1jIGNyYXNoZXMsIHRoZSBwaWQgZmlsZSAoYW5kIGxvY2sgZmlsZSkgYXJlIGxlZnQgYXJv
-dW5kLCBzbyBqdXN0IGxvb2tpbmcgYXQgdGhlIHBpZCBmaWxlIGV4aXN0YW5jZSwgeW91IGNhbid0
-IHRlbGwgaWYgaXQncyBhY3R1YWxseSBydW5uaW5nIG9yIG5vdC4NCg0KICAgIC0gQmlsbA0KDQoN
-Cg0KK2ZpDQpkaWZmIC0tZ2l0IGEvbGliL3B5dGhvbjIuNy9zaXRlLQ0KcGFja2FnZXMvYXV0b2J1
-aWxkZXIvYnVpbGRzdGVwcy9SdW5FU0RLU2FuaXR5VGVzdHMucHkNCmIvbGliL3B5dGhvbjIuNy9z
-aXRlLQ0KcGFja2FnZXMvYXV0b2J1aWxkZXIvYnVpbGRzdGVwcy9SdW5FU0RLU2FuaXR5VGVzdHMu
-cHkNCmluZGV4IDc0NzFkM2QuLmMxNmM4YzIgMTAwNjQ0DQotLS0gYS9saWIvcHl0aG9uMi43L3Np
-dGUtDQpwYWNrYWdlcy9hdXRvYnVpbGRlci9idWlsZHN0ZXBzL1J1bkVTREtTYW5pdHlUZXN0cy5w
-eQ0KKysrIGIvbGliL3B5dGhvbjIuNy9zaXRlLQ0KcGFja2FnZXMvYXV0b2J1aWxkZXIvYnVpbGRz
-dGVwcy9SdW5FU0RLU2FuaXR5VGVzdHMucHkNCkBAIC00Nyw4ICs0Nyw3IEBAIGNsYXNzIFJ1bkVT
-REtTYW5pdHlUZXN0cyhCaXRiYWtlU2hlbGxDb21tYW5kKToNCiAgICAgICAgIGxheWVydmVyc2lv
-biA9IHNlbGYuZ2V0UHJvcGVydHkoImxheWVydmVyc2lvbl9jb3JlIikNCiAgICAgICAgIGNvbW1h
-bmQgPSAiIg0KICAgICAgICAgY29tbWFuZCA9IGNvbW1hbmQgKyAiLiAuL29lLWluaXQtYnVpbGQt
-ZW52OyAiDQotICAgICAgICBjb21tYW5kID0gY29tbWFuZCArICJuZXRzdGF0IC1hbiB8IGdyZXAg
-LXEgNTkwMSA7Ig0KLSAgICAgICAgY29tbWFuZCA9IGNvbW1hbmQgKyAnaWYgWyAkPyAtbmUgMCBd
-OyB0aGVuIGVjaG8gIlN0YXJ0aW5nIGENClZOQyBzZXJ2ZXIgb24gOjEiOyB2bmNzZXJ2ZXIgOjE7
-IGVsc2UgZWNobyAiV2lsbCB1c2UgYSBWTkMgc2VydmVyDQphbHJlYWR5IHJ1bm5pbmcgb24gOjEi
-OyBmaTsnDQorICAgICAgICBjb21tYW5kID0gY29tbWFuZCArICJjaGVja3ZuYzsgIg0KICAgICAg
-ICAgaWYgbGF5ZXJ2ZXJzaW9uIGFuZCBpbnQobGF5ZXJ2ZXJzaW9uKSA+PSA3Og0KICAgICAgICAg
-ICAgIGNvbW1hbmQgPSBjb21tYW5kICsgImVjaG8gJ0lOSEVSSVQgKz0gXCJ0ZXN0c2RrXCInID4+
-DQouL2NvbmYvYXV0by5jb25mOyINCiAgICAgICAgICAgICBjb21tYW5kID0gY29tbWFuZCArICJl
-Y2hvICdURVNUX1FFTVVCT09UX1RJTUVPVVQgPQ0KXCIxNTAwXCInID4+IC4vY29uZi9hdXRvLmNv
-bmY7Ig0KZGlmZiAtLWdpdCBhL2xpYi9weXRob24yLjcvc2l0ZS0NCnBhY2thZ2VzL2F1dG9idWls
-ZGVyL2J1aWxkc3RlcHMvUnVuT2VTZWxmdGVzdC5weQ0KYi9saWIvcHl0aG9uMi43L3NpdGUtcGFj
-a2FnZXMvYXV0b2J1aWxkZXIvYnVpbGRzdGVwcy9SdW5PZVNlbGZ0ZXN0LnB5DQppbmRleCA4MDli
-Y2MzLi44NGQzMmZlIDEwMDY0NA0KLS0tIGEvbGliL3B5dGhvbjIuNy9zaXRlLQ0KcGFja2FnZXMv
-YXV0b2J1aWxkZXIvYnVpbGRzdGVwcy9SdW5PZVNlbGZ0ZXN0LnB5DQorKysgYi9saWIvcHl0aG9u
-Mi43L3NpdGUtDQpwYWNrYWdlcy9hdXRvYnVpbGRlci9idWlsZHN0ZXBzL1J1bk9lU2VsZnRlc3Qu
-cHkNCkBAIC0zMSw4ICszMSw3IEBAIGNsYXNzIFJ1bk9lU2VsZnRlc3QoU2hlbGxDb21tYW5kKToN
-CiAgICAgZGVmIHN0YXJ0KHNlbGYpOg0KICAgICAgICAgc2VsZi5jb21tYW5kID0gIiINCiAgICAg
-ICAgIHNlbGYuY29tbWFuZCArPSAiLiAuL29lLWluaXQtYnVpbGQtZW52OyAiDQotICAgICAgICBz
-ZWxmLmNvbW1hbmQgKz0gIm5ldHN0YXQgLWFuIHwgZ3JlcCAtcSA1OTAxIDsiDQotICAgICAgICBz
-ZWxmLmNvbW1hbmQgKz0gImlmIFsgJD8gLW5lIDAgXTsgdGhlbiBlY2hvICdTdGFydGluZyBhIFZO
-Qw0Kc2VydmVyIG9uIDoxJzsgdm5jc2VydmVyIDoxOyBlbHNlIGVjaG8gJ1dpbGwgdXNlIGEgVk5D
-IHNlcnZlciBhbHJlYWR5DQpydW5uaW5nIG9uIDoxJzsgZmk7Ig0KKyAgICAgICAgc2VsZi5jb21t
-YW5kICs9ICJjaGVja3ZuYzsgIg0KICAgICAgICAgaWYgc2VsZi50ZXN0cyA9PSBOb25lOg0KICAg
-ICAgICAgICAgIHNlbGYuY29tbWFuZCArPSAiaWYgWyAtZCAuLi9tZXRhLXNlbGZ0ZXN0IF07IHRo
-ZW4gZXhwb3J0DQpESVNQTEFZPToxOyBvZS1zZWxmdGVzdCAtLXJ1bi1hbGwtdGVzdHM7IGVsc2Ug
-ZWNobyAnU2tpcHBpbmcgc3RlcCAtDQpubyBtZXRhLXNlbGZ0ZXN0IGxheWVyIGhlcmUnOyBmaSIN
-CiAgICAgICAgIGVsc2U6DQpkaWZmIC0tZ2l0IGEvbGliL3B5dGhvbjIuNy9zaXRlLQ0KcGFja2Fn
-ZXMvYXV0b2J1aWxkZXIvYnVpbGRzdGVwcy9SdW5TREtTYW5pdHlUZXN0cy5weQ0KYi9saWIvcHl0
-aG9uMi43L3NpdGUtDQpwYWNrYWdlcy9hdXRvYnVpbGRlci9idWlsZHN0ZXBzL1J1blNES1Nhbml0
-eVRlc3RzLnB5DQppbmRleCA5YjZlYjViLi42ZmIzMTI3IDEwMDY0NA0KLS0tIGEvbGliL3B5dGhv
-bjIuNy9zaXRlLQ0KcGFja2FnZXMvYXV0b2J1aWxkZXIvYnVpbGRzdGVwcy9SdW5TREtTYW5pdHlU
-ZXN0cy5weQ0KKysrIGIvbGliL3B5dGhvbjIuNy9zaXRlLQ0KcGFja2FnZXMvYXV0b2J1aWxkZXIv
-YnVpbGRzdGVwcy9SdW5TREtTYW5pdHlUZXN0cy5weQ0KQEAgLTQ3LDggKzQ3LDcgQEAgY2xhc3Mg
-UnVuU0RLU2FuaXR5VGVzdHMoQml0YmFrZVNoZWxsQ29tbWFuZCk6DQogICAgICAgICBsYXllcnZl
-cnNpb24gPSBzZWxmLmdldFByb3BlcnR5KCJsYXllcnZlcnNpb25fY29yZSIpDQogICAgICAgICBj
-b21tYW5kID0gIiINCiAgICAgICAgIGNvbW1hbmQgPSBjb21tYW5kICsgIi4gLi9vZS1pbml0LWJ1
-aWxkLWVudjsgIg0KLSAgICAgICAgY29tbWFuZCA9IGNvbW1hbmQgKyAibmV0c3RhdCAtYW4gfCBn
-cmVwIC1xIDU5MDEgOyINCi0gICAgICAgIGNvbW1hbmQgPSBjb21tYW5kICsgJ2lmIFsgJD8gLW5l
-IDAgXTsgdGhlbiBlY2hvICJTdGFydGluZyBhDQpWTkMgc2VydmVyIG9uIDoxIjsgdm5jc2VydmVy
-IDoxOyBlbHNlIGVjaG8gIldpbGwgdXNlIGEgVk5DIHNlcnZlcg0KYWxyZWFkeSBydW5uaW5nIG9u
-IDoxIjsgZmk7Jw0KKyAgICAgICAgY29tbWFuZCA9IGNvbW1hbmQgKyAiY2hlY2t2bmM7ICINCiAg
-ICAgICAgIGlmIGxheWVydmVyc2lvbiBhbmQgaW50KGxheWVydmVyc2lvbikgPj0gNjoNCiAgICAg
-ICAgICAgICBjb21tYW5kID0gY29tbWFuZCArICJlY2hvICdJTkhFUklUICs9IFwidGVzdGltYWdl
-XCInID4+DQouL2NvbmYvYXV0by5jb25mOyINCiAgICAgICAgICAgICBjb21tYW5kID0gY29tbWFu
-ZCArICJlY2hvICdURVNUX1FFTVVCT09UX1RJTUVPVVQgPQ0KXCIxNTAwXCInID4+IC4vY29uZi9h
-dXRvLmNvbmY7Ig0KZGlmZiAtLWdpdCBhL2xpYi9weXRob24yLjcvc2l0ZS0NCnBhY2thZ2VzL2F1
-dG9idWlsZGVyL2J1aWxkc3RlcHMvUnVuU2FuaXR5VGVzdHMucHkNCmIvbGliL3B5dGhvbjIuNy9z
-aXRlLQ0KcGFja2FnZXMvYXV0b2J1aWxkZXIvYnVpbGRzdGVwcy9SdW5TYW5pdHlUZXN0cy5weQ0K
-aW5kZXggNGZhNmRhYy4uODFlMjBjZCAxMDA2NDQNCi0tLSBhL2xpYi9weXRob24yLjcvc2l0ZS0N
-CnBhY2thZ2VzL2F1dG9idWlsZGVyL2J1aWxkc3RlcHMvUnVuU2FuaXR5VGVzdHMucHkNCisrKyBi
-L2xpYi9weXRob24yLjcvc2l0ZS0NCnBhY2thZ2VzL2F1dG9idWlsZGVyL2J1aWxkc3RlcHMvUnVu
-U2FuaXR5VGVzdHMucHkNCkBAIC00OCw4ICs0OCw3IEBAIGNsYXNzIFJ1blNhbml0eVRlc3RzKEJp
-dGJha2VTaGVsbENvbW1hbmQpOg0KICAgICAgICAgZGlzdHJvID0gc2VsZi5nZXRQcm9wZXJ0eSgi
-RElTVFJPIikNCiAgICAgICAgIGNvbW1hbmQgPSAiIg0KICAgICAgICAgY29tbWFuZCA9IGNvbW1h
-bmQgKyAiLiAuL29lLWluaXQtYnVpbGQtZW52OyAiDQotICAgICAgICBjb21tYW5kID0gY29tbWFu
-ZCArICJuZXRzdGF0IC1hbiB8IGdyZXAgLXEgNTkwMSA7Ig0KLSAgICAgICAgY29tbWFuZCA9IGNv
-bW1hbmQgKyAnaWYgWyAkPyAtbmUgMCBdOyB0aGVuIGVjaG8gIlN0YXJ0aW5nIGENClZOQyBzZXJ2
-ZXIgb24gOjEiOyB2bmNzZXJ2ZXIgOjE7IGVsc2UgZWNobyAiV2lsbCB1c2UgYSBWTkMgc2VydmVy
-DQphbHJlYWR5IHJ1bm5pbmcgb24gOjEiOyBmaTsnDQorICAgICAgICBjb21tYW5kID0gY29tbWFu
-ZCArICJjaGVja3ZuYzsgIg0KICAgICAgICAgaWYgZGlzdHJvID09ICJwb2t5LWxzYiIgYW5kIGxh
-eWVydmVyc2lvbiBhbmQNCmludChsYXllcnZlcnNpb24pIDwgNjoNCiAgICAgICAgICAgICBjb21t
-YW5kID0gImVjaG8gJ1NraXBwaW5nIHN0ZXAuJyINCiAgICAgICAgIGVsaWYgbGF5ZXJ2ZXJzaW9u
-IGFuZCBpbnQobGF5ZXJ2ZXJzaW9uKSA+IDE6DQoNCg==
+On Wed, 2016-08-17 at 16:09 +0000, Randle, William C wrote:
+> 
+> On Wed, 2016-08-17 at 16:59 +0100, Joshua G Lock wrote:
+> 
+> > On Tue, 2016-08-16 at 17:09 -0700, Bill Randle wrote:
+> > > Use a common script to check for a running vnc server, and if not
+> > > running
+> > > cleanup dangling lock files and restart the server.
+> > > 
+> > > [YOCTO #8210]
+> > > 
+> > > > > > Signed-off-by: Bill Randle <william.c.randle@intel.com>
+> > > ---
+> > > > > >  bin/checkvnc                                                   |
+10
+> > > ++++++++++
+> > > > > >  .../site-packages/autobuilder/buildsteps/RunESDKSanityTests.py
+|  3
+> > > +--
+> > > > > >  .../site-
+packages/autobuilder/buildsteps/RunOeSelftest.py      |  3
+> > > +--
+> > > > > >  .../site-
+packages/autobuilder/buildsteps/RunSDKSanityTests.py  |  3
+> > > +--
+> > > > > >  .../site-
+packages/autobuilder/buildsteps/RunSanityTests.py     |  3
+> > > +--
+> > >  5 files changed, 14 insertions(+), 8 deletions(-)
+> > >  create mode 100755 bin/checkvnc
+> > > 
+> > > diff --git a/bin/checkvnc b/bin/checkvnc
+> > > new file mode 100755
+> > > index 0000000..574ba48
+> > > --- /dev/null
+> > > +++ b/bin/checkvnc
+> > > @@ -0,0 +1,10 @@
+> > > +#!/bin/sh
+> > > +#
+> > > > > > +# check if vnc server is running, and if not, cleanup and
+restart
+> > > +#
+> > > +pid=$(pidof Xvnc)
+> > > +if [[ $? != 0 ]]; then
+> > > +    echo "Xvnc not running, attempting restart"
+> > > +    vncserver -kill :1
+> > > +    vncserver
+> > 
+> > > > The vncserver is currently started with `vncserver :1`, whereas
+this
+> > script just calls `vncserver` — is that intentional/desirable?
+> > 
+> > > > Would it be a little cleaner/more robust if we didn't assume only
+one
+> > > > Xvnc instance was running and instead write the pid of the process
+we
+> > start to a file and use that file to check the status?
+> > 
+> > Regards,
+> > 
+> > Joshua
+> > 
+> > 
+> 
+> 
+> 
+> 
+> > The vncserver program is a shell script and uses :1 as the default
+display.
+> 
+> 
+> 
+> 
+> 
+> > > > The pid of Xvnc is written to a file already. The problem is, if Xvmc
+crashes, the pid file (and lock file) are left around, so just
+looking at the pid file existance, you can't tell if it's actually
+running or not.
+> 
 
---_000_1471450179286057camelintelcom_
+
+Can we read the pid from the pidfile and do the tidy up if the process
+isn't running? My main concern here is that we assume only a single
+instance of Xvnc is running, I'm not sure if that is a safe assumption
+to make?
+
+Thanks,
+
+Joshua
+
+> > > > 
+>     - Bill
+
+> 
+
+
+> > > > 
+> > > 
++fi
+diff --git a/lib/python2.7/site-
+packages/autobuilder/buildsteps/RunESDKSanityTests.py
+b/lib/python2.7/site-
+packages/autobuilder/buildsteps/RunESDKSanityTests.py
+index 7471d3d..c16c8c2 100644
+--- a/lib/python2.7/site-
+packages/autobuilder/buildsteps/RunESDKSanityTests.py
++++ b/lib/python2.7/site-
+packages/autobuilder/buildsteps/RunESDKSanityTests.py
+@@ -47,8 +47,7 @@ class RunESDKSanityTests(BitbakeShellCommand):
+         layerversion = self.getProperty("layerversion_core")
+         command = ""
+         command = command + ". ./oe-init-build-env; "
+-        command = command + "netstat -an | grep -q 5901 ;"
+-        command = command + 'if [ $? -ne 0 ]; then echo "Starting a
+VNC server on :1"; vncserver :1; else echo "Will use a VNC server
+already running on :1"; fi;'
++        command = command + "checkvnc; "
+         if layerversion and int(layerversion) >= 7:
+             command = command + "echo 'INHERIT += \"testsdk\"' >>
+./conf/auto.conf;"
+             command = command + "echo 'TEST_QEMUBOOT_TIMEOUT =
+\"1500\"' >> ./conf/auto.conf;"
+diff --git a/lib/python2.7/site-
+packages/autobuilder/buildsteps/RunOeSelftest.py
+b/lib/python2.7/site-packages/autobuilder/buildsteps/RunOeSelftest.py
+index 809bcc3..84d32fe 100644
+--- a/lib/python2.7/site-
+packages/autobuilder/buildsteps/RunOeSelftest.py
++++ b/lib/python2.7/site-
+packages/autobuilder/buildsteps/RunOeSelftest.py
+@@ -31,8 +31,7 @@ class RunOeSelftest(ShellCommand):
+     def start(self):
+         self.command = ""
+         self.command += ". ./oe-init-build-env; "
+-        self.command += "netstat -an | grep -q 5901 ;"
+-        self.command += "if [ $? -ne 0 ]; then echo 'Starting a VNC
+server on :1'; vncserver :1; else echo 'Will use a VNC server already
+running on :1'; fi;"
++        self.command += "checkvnc; "
+         if self.tests == None:
+             self.command += "if [ -d ../meta-selftest ]; then export
+DISPLAY=:1; oe-selftest --run-all-tests; else echo 'Skipping step -
+no meta-selftest layer here'; fi"
+         else:
+diff --git a/lib/python2.7/site-
+packages/autobuilder/buildsteps/RunSDKSanityTests.py
+b/lib/python2.7/site-
+packages/autobuilder/buildsteps/RunSDKSanityTests.py
+index 9b6eb5b..6fb3127 100644
+--- a/lib/python2.7/site-
+packages/autobuilder/buildsteps/RunSDKSanityTests.py
++++ b/lib/python2.7/site-
+packages/autobuilder/buildsteps/RunSDKSanityTests.py
+@@ -47,8 +47,7 @@ class RunSDKSanityTests(BitbakeShellCommand):
+         layerversion = self.getProperty("layerversion_core")
+         command = ""
+         command = command + ". ./oe-init-build-env; "
+-        command = command + "netstat -an | grep -q 5901 ;"
+-        command = command + 'if [ $? -ne 0 ]; then echo "Starting a
+VNC server on :1"; vncserver :1; else echo "Will use a VNC server
+already running on :1"; fi;'
++        command = command + "checkvnc; "
+         if layerversion and int(layerversion) >= 6:
+             command = command + "echo 'INHERIT += \"testimage\"' >>
+./conf/auto.conf;"
+             command = command + "echo 'TEST_QEMUBOOT_TIMEOUT =
+\"1500\"' >> ./conf/auto.conf;"
+diff --git a/lib/python2.7/site-
+packages/autobuilder/buildsteps/RunSanityTests.py
+b/lib/python2.7/site-
+packages/autobuilder/buildsteps/RunSanityTests.py
+index 4fa6dac..81e20cd 100644
+--- a/lib/python2.7/site-
+packages/autobuilder/buildsteps/RunSanityTests.py
++++ b/lib/python2.7/site-
+packages/autobuilder/buildsteps/RunSanityTests.py
+@@ -48,8 +48,7 @@ class RunSanityTests(BitbakeShellCommand):
+         distro = self.getProperty("DISTRO")
+         command = ""
+         command = command + ". ./oe-init-build-env; "
+-        command = command + "netstat -an | grep -q 5901 ;"
+-        command = command + 'if [ $? -ne 0 ]; then echo "Starting a
+VNC server on :1"; vncserver :1; else echo "Will use a VNC server
+already running on :1"; fi;'
++        command = command + "checkvnc; "
+         if distro == "poky-lsb" and layerversion and
+int(layerversion) < 6:
+             command = "echo 'Skipping step.'"
+         elif layerversion and int(layerversion) > 1:
+
+
+
+
+
+--=-azkBcNSVQwmgOwU/QkWf
 Content-Type: text/html; charset="utf-8"
-Content-ID: <5817E6DF64DC8B49B4ECCB272DF0BF88@intel.com>
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 8bit
 
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjwvaGVhZD4NCjxib2R5IGJnY29sb3I9IiNmN2Y3
-ZjciIHRleHQ9IiMyYzJjMmMiIGxpbms9IiM0YTkwZDkiIHZsaW5rPSIjNGE5MGQ5Ij4NCjxkaXY+
-T24gV2VkLCAyMDE2LTA4LTE3IGF0IDE2OjU5ICYjNDM7MDEwMCwgSm9zaHVhIEcgTG9jayB3cm90
-ZTo8L2Rpdj4NCjxibG9ja3F1b3RlIHR5cGU9ImNpdGUiPg0KPHByZT5PbiBUdWUsIDIwMTYtMDgt
-MTYgYXQgMTc6MDkgLTA3MDAsIEJpbGwgUmFuZGxlIHdyb3RlOg0KPGJsb2NrcXVvdGUgdHlwZT0i
-Y2l0ZSI+DQpVc2UgYSBjb21tb24gc2NyaXB0IHRvIGNoZWNrIGZvciBhIHJ1bm5pbmcgdm5jIHNl
-cnZlciwgYW5kIGlmIG5vdA0KcnVubmluZw0KY2xlYW51cCBkYW5nbGluZyBsb2NrIGZpbGVzIGFu
-ZCByZXN0YXJ0IHRoZSBzZXJ2ZXIuDQoNCltZT0NUTyAjODIxMF0NCg0KU2lnbmVkLW9mZi1ieTog
-QmlsbCBSYW5kbGUgJmx0OzxhIGhyZWY9Im1haWx0bzp3aWxsaWFtLmMucmFuZGxlQGludGVsLmNv
-bSI+d2lsbGlhbS5jLnJhbmRsZUBpbnRlbC5jb208L2E+Jmd0Ow0KLS0tDQombmJzcDtiaW4vY2hl
-Y2t2bmMmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
-cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsm
-bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
-cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsm
-bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
-cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDt8IDEwDQomIzQzOyYjNDM7JiM0MzsmIzQzOyYjNDM7
-JiM0MzsmIzQzOyYjNDM7JiM0MzsmIzQzOw0KJm5ic3A7Li4uL3NpdGUtcGFja2FnZXMvYXV0b2J1
-aWxkZXIvYnVpbGRzdGVwcy9SdW5FU0RLU2FuaXR5VGVzdHMucHkgfCZuYnNwOyZuYnNwOzMNCiYj
-NDM7LS0NCiZuYnNwOy4uLi9zaXRlLXBhY2thZ2VzL2F1dG9idWlsZGVyL2J1aWxkc3RlcHMvUnVu
-T2VTZWxmdGVzdC5weSZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwO3wmbmJzcDsm
-bmJzcDszDQomIzQzOy0tDQombmJzcDsuLi4vc2l0ZS1wYWNrYWdlcy9hdXRvYnVpbGRlci9idWls
-ZHN0ZXBzL1J1blNES1Nhbml0eVRlc3RzLnB5Jm5ic3A7Jm5ic3A7fCZuYnNwOyZuYnNwOzMNCiYj
-NDM7LS0NCiZuYnNwOy4uLi9zaXRlLXBhY2thZ2VzL2F1dG9idWlsZGVyL2J1aWxkc3RlcHMvUnVu
-U2FuaXR5VGVzdHMucHkmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDt8Jm5ic3A7Jm5ic3A7
-Mw0KJiM0MzstLQ0KJm5ic3A7NSBmaWxlcyBjaGFuZ2VkLCAxNCBpbnNlcnRpb25zKCYjNDM7KSwg
-OCBkZWxldGlvbnMoLSkNCiZuYnNwO2NyZWF0ZSBtb2RlIDEwMDc1NSBiaW4vY2hlY2t2bmMNCg0K
-ZGlmZiAtLWdpdCBhL2Jpbi9jaGVja3ZuYyBiL2Jpbi9jaGVja3ZuYw0KbmV3IGZpbGUgbW9kZSAx
-MDA3NTUNCmluZGV4IDAwMDAwMDAuLjU3NGJhNDgNCi0tLSAvZGV2L251bGwNCiYjNDM7JiM0Mzsm
-IzQzOyBiL2Jpbi9jaGVja3ZuYw0KQEAgLTAsMCAmIzQzOzEsMTAgQEANCiYjNDM7IyEvYmluL3No
-DQomIzQzOyMNCiYjNDM7IyBjaGVjayBpZiB2bmMgc2VydmVyIGlzIHJ1bm5pbmcsIGFuZCBpZiBu
-b3QsIGNsZWFudXAgYW5kIHJlc3RhcnQNCiYjNDM7Iw0KJiM0MztwaWQ9JChwaWRvZiBYdm5jKQ0K
-JiM0MztpZiBbWyAkPyAhPSAwIF1dOyB0aGVuDQomIzQzOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
-O2VjaG8gJnF1b3Q7WHZuYyBub3QgcnVubmluZywgYXR0ZW1wdGluZyByZXN0YXJ0JnF1b3Q7DQom
-IzQzOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwO3ZuY3NlcnZlciAta2lsbCA6MQ0KJiM0MzsmbmJz
-cDsmbmJzcDsmbmJzcDsmbmJzcDt2bmNzZXJ2ZXINCjwvYmxvY2txdW90ZT4NCg0KVGhlIHZuY3Nl
-cnZlciBpcyBjdXJyZW50bHkgc3RhcnRlZCB3aXRoIGB2bmNzZXJ2ZXIgOjFgLCB3aGVyZWFzIHRo
-aXMNCnNjcmlwdCBqdXN0IGNhbGxzIGB2bmNzZXJ2ZXJgIOKAlCBpcyB0aGF0IGludGVudGlvbmFs
-L2Rlc2lyYWJsZT8NCg0KV291bGQgaXQgYmUgYSBsaXR0bGUgY2xlYW5lci9tb3JlIHJvYnVzdCBp
-ZiB3ZSBkaWRuJ3QgYXNzdW1lIG9ubHkgb25lDQpYdm5jIGluc3RhbmNlIHdhcyBydW5uaW5nIGFu
-ZCBpbnN0ZWFkIHdyaXRlIHRoZSBwaWQgb2YgdGhlIHByb2Nlc3Mgd2UNCnN0YXJ0IHRvIGEgZmls
-ZSBhbmQgdXNlIHRoYXQgZmlsZSB0byBjaGVjayB0aGUgc3RhdHVzPw0KDQpSZWdhcmRzLA0KDQpK
-b3NodWENCg0KPC9wcmU+DQo8L2Jsb2NrcXVvdGU+DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPGRpdj5U
-aGUgdm5jc2VydmVyIHByb2dyYW0gaXMgYSBzaGVsbCBzY3JpcHQgYW5kIHVzZXMgOjEgYXMgdGhl
-IGRlZmF1bHQgZGlzcGxheS48L2Rpdj4NCjxkaXY+PGJyPg0KPC9kaXY+DQo8ZGl2PlRoZSBwaWQg
-b2YgWHZuYyBpcyB3cml0dGVuIHRvIGEgZmlsZSBhbHJlYWR5LiBUaGUgcHJvYmxlbSBpcywgaWYg
-WHZtYyBjcmFzaGVzLCB0aGUgcGlkIGZpbGUgKGFuZCBsb2NrIGZpbGUpIGFyZSBsZWZ0IGFyb3Vu
-ZCwgc28ganVzdCBsb29raW5nIGF0IHRoZSBwaWQgZmlsZSBleGlzdGFuY2UsIHlvdSBjYW4ndCB0
-ZWxsIGlmIGl0J3MgYWN0dWFsbHkgcnVubmluZyBvciBub3QuPC9kaXY+DQo8ZGl2Pjxicj4NCjwv
-ZGl2Pg0KPGRpdj4mbmJzcDsgJm5ic3A7IC0gQmlsbDwvZGl2Pg0KPGRpdj48YnI+DQo8L2Rpdj4N
-CjxibG9ja3F1b3RlIHR5cGU9ImNpdGUiPg0KPHByZT48YmxvY2txdW90ZSB0eXBlPSJjaXRlIj4N
-CiYjNDM7ZmkNCmRpZmYgLS1naXQgYS9saWIvcHl0aG9uMi43L3NpdGUtDQpwYWNrYWdlcy9hdXRv
-YnVpbGRlci9idWlsZHN0ZXBzL1J1bkVTREtTYW5pdHlUZXN0cy5weQ0KYi9saWIvcHl0aG9uMi43
-L3NpdGUtDQpwYWNrYWdlcy9hdXRvYnVpbGRlci9idWlsZHN0ZXBzL1J1bkVTREtTYW5pdHlUZXN0
-cy5weQ0KaW5kZXggNzQ3MWQzZC4uYzE2YzhjMiAxMDA2NDQNCi0tLSBhL2xpYi9weXRob24yLjcv
-c2l0ZS0NCnBhY2thZ2VzL2F1dG9idWlsZGVyL2J1aWxkc3RlcHMvUnVuRVNES1Nhbml0eVRlc3Rz
-LnB5DQomIzQzOyYjNDM7JiM0MzsgYi9saWIvcHl0aG9uMi43L3NpdGUtDQpwYWNrYWdlcy9hdXRv
-YnVpbGRlci9idWlsZHN0ZXBzL1J1bkVTREtTYW5pdHlUZXN0cy5weQ0KQEAgLTQ3LDggJiM0Mzs0
-Nyw3IEBAIGNsYXNzIFJ1bkVTREtTYW5pdHlUZXN0cyhCaXRiYWtlU2hlbGxDb21tYW5kKToNCiZu
-YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwO2xheWVy
-dmVyc2lvbiA9IHNlbGYuZ2V0UHJvcGVydHkoJnF1b3Q7bGF5ZXJ2ZXJzaW9uX2NvcmUmcXVvdDsp
-DQombmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDtj
-b21tYW5kID0gJnF1b3Q7JnF1b3Q7DQombmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
-cDsmbmJzcDsmbmJzcDsmbmJzcDtjb21tYW5kID0gY29tbWFuZCAmIzQzOyAmcXVvdDsuIC4vb2Ut
-aW5pdC1idWlsZC1lbnY7ICZxdW90Ow0KLSZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZu
-YnNwOyZuYnNwOyZuYnNwO2NvbW1hbmQgPSBjb21tYW5kICYjNDM7ICZxdW90O25ldHN0YXQgLWFu
-IHwgZ3JlcCAtcSA1OTAxIDsmcXVvdDsNCi0mbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsm
-bmJzcDsmbmJzcDsmbmJzcDtjb21tYW5kID0gY29tbWFuZCAmIzQzOyAnaWYgWyAkPyAtbmUgMCBd
-OyB0aGVuIGVjaG8gJnF1b3Q7U3RhcnRpbmcgYQ0KVk5DIHNlcnZlciBvbiA6MSZxdW90Ozsgdm5j
-c2VydmVyIDoxOyBlbHNlIGVjaG8gJnF1b3Q7V2lsbCB1c2UgYSBWTkMgc2VydmVyDQphbHJlYWR5
-IHJ1bm5pbmcgb24gOjEmcXVvdDs7IGZpOycNCiYjNDM7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Y29tbWFuZCA9IGNvbW1hbmQgJiM0MzsgJnF1b3Q7Y2hl
-Y2t2bmM7ICZxdW90Ow0KJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7aWYgbGF5ZXJ2ZXJzaW9uIGFuZCBpbnQobGF5ZXJ2ZXJzaW9uKSAmZ3Q7PSA3
-Og0KJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Y29tbWFuZCA9IGNvbW1hbmQgJiM0MzsgJnF1b3Q7ZWNo
-byAnSU5IRVJJVCAmIzQzOz0gXCZxdW90O3Rlc3RzZGtcJnF1b3Q7JyAmZ3Q7Jmd0Ow0KLi9jb25m
-L2F1dG8uY29uZjsmcXVvdDsNCiZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZu
-YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwO2NvbW1hbmQgPSBjb21tYW5k
-ICYjNDM7ICZxdW90O2VjaG8gJ1RFU1RfUUVNVUJPT1RfVElNRU9VVCA9DQpcJnF1b3Q7MTUwMFwm
-cXVvdDsnICZndDsmZ3Q7IC4vY29uZi9hdXRvLmNvbmY7JnF1b3Q7DQpkaWZmIC0tZ2l0IGEvbGli
-L3B5dGhvbjIuNy9zaXRlLQ0KcGFja2FnZXMvYXV0b2J1aWxkZXIvYnVpbGRzdGVwcy9SdW5PZVNl
-bGZ0ZXN0LnB5DQpiL2xpYi9weXRob24yLjcvc2l0ZS1wYWNrYWdlcy9hdXRvYnVpbGRlci9idWls
-ZHN0ZXBzL1J1bk9lU2VsZnRlc3QucHkNCmluZGV4IDgwOWJjYzMuLjg0ZDMyZmUgMTAwNjQ0DQot
-LS0gYS9saWIvcHl0aG9uMi43L3NpdGUtDQpwYWNrYWdlcy9hdXRvYnVpbGRlci9idWlsZHN0ZXBz
-L1J1bk9lU2VsZnRlc3QucHkNCiYjNDM7JiM0MzsmIzQzOyBiL2xpYi9weXRob24yLjcvc2l0ZS0N
-CnBhY2thZ2VzL2F1dG9idWlsZGVyL2J1aWxkc3RlcHMvUnVuT2VTZWxmdGVzdC5weQ0KQEAgLTMx
-LDggJiM0MzszMSw3IEBAIGNsYXNzIFJ1bk9lU2VsZnRlc3QoU2hlbGxDb21tYW5kKToNCiZuYnNw
-OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwO2RlZiBzdGFydChzZWxmKToNCiZuYnNwOyZuYnNwOyZu
-YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwO3NlbGYuY29tbWFuZCA9ICZx
-dW90OyZxdW90Ow0KJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
-c3A7Jm5ic3A7c2VsZi5jb21tYW5kICYjNDM7PSAmcXVvdDsuIC4vb2UtaW5pdC1idWlsZC1lbnY7
-ICZxdW90Ow0KLSZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
-O3NlbGYuY29tbWFuZCAmIzQzOz0gJnF1b3Q7bmV0c3RhdCAtYW4gfCBncmVwIC1xIDU5MDEgOyZx
-dW90Ow0KLSZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwO3Nl
-bGYuY29tbWFuZCAmIzQzOz0gJnF1b3Q7aWYgWyAkPyAtbmUgMCBdOyB0aGVuIGVjaG8gJ1N0YXJ0
-aW5nIGEgVk5DDQpzZXJ2ZXIgb24gOjEnOyB2bmNzZXJ2ZXIgOjE7IGVsc2UgZWNobyAnV2lsbCB1
-c2UgYSBWTkMgc2VydmVyIGFscmVhZHkNCnJ1bm5pbmcgb24gOjEnOyBmaTsmcXVvdDsNCiYjNDM7
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7c2VsZi5jb21t
-YW5kICYjNDM7PSAmcXVvdDtjaGVja3ZuYzsgJnF1b3Q7DQombmJzcDsmbmJzcDsmbmJzcDsmbmJz
-cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDtpZiBzZWxmLnRlc3RzID09IE5vbmU6DQom
-bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
-cDsmbmJzcDsmbmJzcDsmbmJzcDtzZWxmLmNvbW1hbmQgJiM0Mzs9ICZxdW90O2lmIFsgLWQgLi4v
-bWV0YS1zZWxmdGVzdCBdOyB0aGVuIGV4cG9ydA0KRElTUExBWT06MTsgb2Utc2VsZnRlc3QgLS1y
-dW4tYWxsLXRlc3RzOyBlbHNlIGVjaG8gJ1NraXBwaW5nIHN0ZXAgLQ0Kbm8gbWV0YS1zZWxmdGVz
-dCBsYXllciBoZXJlJzsgZmkmcXVvdDsNCiZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZu
-YnNwOyZuYnNwOyZuYnNwOyZuYnNwO2Vsc2U6DQpkaWZmIC0tZ2l0IGEvbGliL3B5dGhvbjIuNy9z
-aXRlLQ0KcGFja2FnZXMvYXV0b2J1aWxkZXIvYnVpbGRzdGVwcy9SdW5TREtTYW5pdHlUZXN0cy5w
-eQ0KYi9saWIvcHl0aG9uMi43L3NpdGUtDQpwYWNrYWdlcy9hdXRvYnVpbGRlci9idWlsZHN0ZXBz
-L1J1blNES1Nhbml0eVRlc3RzLnB5DQppbmRleCA5YjZlYjViLi42ZmIzMTI3IDEwMDY0NA0KLS0t
-IGEvbGliL3B5dGhvbjIuNy9zaXRlLQ0KcGFja2FnZXMvYXV0b2J1aWxkZXIvYnVpbGRzdGVwcy9S
-dW5TREtTYW5pdHlUZXN0cy5weQ0KJiM0MzsmIzQzOyYjNDM7IGIvbGliL3B5dGhvbjIuNy9zaXRl
-LQ0KcGFja2FnZXMvYXV0b2J1aWxkZXIvYnVpbGRzdGVwcy9SdW5TREtTYW5pdHlUZXN0cy5weQ0K
-QEAgLTQ3LDggJiM0Mzs0Nyw3IEBAIGNsYXNzIFJ1blNES1Nhbml0eVRlc3RzKEJpdGJha2VTaGVs
-bENvbW1hbmQpOg0KJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
-c3A7Jm5ic3A7bGF5ZXJ2ZXJzaW9uID0gc2VsZi5nZXRQcm9wZXJ0eSgmcXVvdDtsYXllcnZlcnNp
-b25fY29yZSZxdW90OykNCiZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
-OyZuYnNwOyZuYnNwO2NvbW1hbmQgPSAmcXVvdDsmcXVvdDsNCiZuYnNwOyZuYnNwOyZuYnNwOyZu
-YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwO2NvbW1hbmQgPSBjb21tYW5kICYjNDM7
-ICZxdW90Oy4gLi9vZS1pbml0LWJ1aWxkLWVudjsgJnF1b3Q7DQotJm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Y29tbWFuZCA9IGNvbW1hbmQgJiM0MzsgJnF1
-b3Q7bmV0c3RhdCAtYW4gfCBncmVwIC1xIDU5MDEgOyZxdW90Ow0KLSZuYnNwOyZuYnNwOyZuYnNw
-OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwO2NvbW1hbmQgPSBjb21tYW5kICYjNDM7ICdp
-ZiBbICQ/IC1uZSAwIF07IHRoZW4gZWNobyAmcXVvdDtTdGFydGluZyBhDQpWTkMgc2VydmVyIG9u
-IDoxJnF1b3Q7OyB2bmNzZXJ2ZXIgOjE7IGVsc2UgZWNobyAmcXVvdDtXaWxsIHVzZSBhIFZOQyBz
-ZXJ2ZXINCmFscmVhZHkgcnVubmluZyBvbiA6MSZxdW90OzsgZmk7Jw0KJiM0MzsmbmJzcDsmbmJz
-cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDtjb21tYW5kID0gY29tbWFuZCAm
-IzQzOyAmcXVvdDtjaGVja3ZuYzsgJnF1b3Q7DQombmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
-cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDtpZiBsYXllcnZlcnNpb24gYW5kIGludChsYXllcnZl
-cnNpb24pICZndDs9IDY6DQombmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
-cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDtjb21tYW5kID0gY29tbWFuZCAm
-IzQzOyAmcXVvdDtlY2hvICdJTkhFUklUICYjNDM7PSBcJnF1b3Q7dGVzdGltYWdlXCZxdW90Oycg
-Jmd0OyZndDsNCi4vY29uZi9hdXRvLmNvbmY7JnF1b3Q7DQombmJzcDsmbmJzcDsmbmJzcDsmbmJz
-cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDtj
-b21tYW5kID0gY29tbWFuZCAmIzQzOyAmcXVvdDtlY2hvICdURVNUX1FFTVVCT09UX1RJTUVPVVQg
-PQ0KXCZxdW90OzE1MDBcJnF1b3Q7JyAmZ3Q7Jmd0OyAuL2NvbmYvYXV0by5jb25mOyZxdW90Ow0K
-ZGlmZiAtLWdpdCBhL2xpYi9weXRob24yLjcvc2l0ZS0NCnBhY2thZ2VzL2F1dG9idWlsZGVyL2J1
-aWxkc3RlcHMvUnVuU2FuaXR5VGVzdHMucHkNCmIvbGliL3B5dGhvbjIuNy9zaXRlLQ0KcGFja2Fn
-ZXMvYXV0b2J1aWxkZXIvYnVpbGRzdGVwcy9SdW5TYW5pdHlUZXN0cy5weQ0KaW5kZXggNGZhNmRh
-Yy4uODFlMjBjZCAxMDA2NDQNCi0tLSBhL2xpYi9weXRob24yLjcvc2l0ZS0NCnBhY2thZ2VzL2F1
-dG9idWlsZGVyL2J1aWxkc3RlcHMvUnVuU2FuaXR5VGVzdHMucHkNCiYjNDM7JiM0MzsmIzQzOyBi
-L2xpYi9weXRob24yLjcvc2l0ZS0NCnBhY2thZ2VzL2F1dG9idWlsZGVyL2J1aWxkc3RlcHMvUnVu
-U2FuaXR5VGVzdHMucHkNCkBAIC00OCw4ICYjNDM7NDgsNyBAQCBjbGFzcyBSdW5TYW5pdHlUZXN0
-cyhCaXRiYWtlU2hlbGxDb21tYW5kKToNCiZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZu
-YnNwOyZuYnNwOyZuYnNwOyZuYnNwO2Rpc3RybyA9IHNlbGYuZ2V0UHJvcGVydHkoJnF1b3Q7RElT
-VFJPJnF1b3Q7KQ0KJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
-c3A7Jm5ic3A7Y29tbWFuZCA9ICZxdW90OyZxdW90Ow0KJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Y29tbWFuZCA9IGNvbW1hbmQgJiM0MzsgJnF1
-b3Q7LiAuL29lLWluaXQtYnVpbGQtZW52OyAmcXVvdDsNCi0mbmJzcDsmbmJzcDsmbmJzcDsmbmJz
-cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDtjb21tYW5kID0gY29tbWFuZCAmIzQzOyAmcXVvdDtu
-ZXRzdGF0IC1hbiB8IGdyZXAgLXEgNTkwMSA7JnF1b3Q7DQotJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
-c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Y29tbWFuZCA9IGNvbW1hbmQgJiM0MzsgJ2lmIFsg
-JD8gLW5lIDAgXTsgdGhlbiBlY2hvICZxdW90O1N0YXJ0aW5nIGENClZOQyBzZXJ2ZXIgb24gOjEm
-cXVvdDs7IHZuY3NlcnZlciA6MTsgZWxzZSBlY2hvICZxdW90O1dpbGwgdXNlIGEgVk5DIHNlcnZl
-cg0KYWxyZWFkeSBydW5uaW5nIG9uIDoxJnF1b3Q7OyBmaTsnDQomIzQzOyZuYnNwOyZuYnNwOyZu
-YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwO2NvbW1hbmQgPSBjb21tYW5kICYjNDM7
-ICZxdW90O2NoZWNrdm5jOyAmcXVvdDsNCiZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZu
-YnNwOyZuYnNwOyZuYnNwOyZuYnNwO2lmIGRpc3RybyA9PSAmcXVvdDtwb2t5LWxzYiZxdW90OyBh
-bmQgbGF5ZXJ2ZXJzaW9uIGFuZA0KaW50KGxheWVydmVyc2lvbikgJmx0OyA2Og0KJm5ic3A7Jm5i
-c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7Y29tbWFuZCA9ICZxdW90O2VjaG8gJ1NraXBwaW5nIHN0ZXAuJyZxdW90Ow0K
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7ZWxp
-ZiBsYXllcnZlcnNpb24gYW5kIGludChsYXllcnZlcnNpb24pICZndDsgMToNCjwvYmxvY2txdW90
-ZT48L3ByZT4NCjwvYmxvY2txdW90ZT4NCjwvYm9keT4NCjwvaHRtbD4NCg==
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body><div>On Wed, 2016-08-17 at 16:09 +0000, Randle, William C wrote:</div><blockquote type="cite">
+<div>On Wed, 2016-08-17 at 16:59 +0100, Joshua G Lock wrote:</div>
+<blockquote type="cite">
+<pre>On Tue, 2016-08-16 at 17:09 -0700, Bill Randle wrote:
+<blockquote type="cite">
+Use a common script to check for a running vnc server, and if not
+running
+cleanup dangling lock files and restart the server.
 
---_000_1471450179286057camelintelcom_--
+[YOCTO #8210]
+
+Signed-off-by: Bill Randle &lt;<a href="mailto:william.c.randle@intel.com">william.c.randle@intel.com</a>&gt;
+---
+&nbsp;bin/checkvnc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 10
+++++++++++
+&nbsp;.../site-packages/autobuilder/buildsteps/RunESDKSanityTests.py |&nbsp;&nbsp;3
++--
+&nbsp;.../site-packages/autobuilder/buildsteps/RunOeSelftest.py&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;3
++--
+&nbsp;.../site-packages/autobuilder/buildsteps/RunSDKSanityTests.py&nbsp;&nbsp;|&nbsp;&nbsp;3
++--
+&nbsp;.../site-packages/autobuilder/buildsteps/RunSanityTests.py&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;3
++--
+&nbsp;5 files changed, 14 insertions(+), 8 deletions(-)
+&nbsp;create mode 100755 bin/checkvnc
+
+diff --git a/bin/checkvnc b/bin/checkvnc
+new file mode 100755
+index 0000000..574ba48
+--- /dev/null
++++ b/bin/checkvnc
+@@ -0,0 +1,10 @@
++#!/bin/sh
++#
++# check if vnc server is running, and if not, cleanup and restart
++#
++pid=$(pidof Xvnc)
++if [[ $? != 0 ]]; then
++&nbsp;&nbsp;&nbsp;&nbsp;echo "Xvnc not running, attempting restart"
++&nbsp;&nbsp;&nbsp;&nbsp;vncserver -kill :1
++&nbsp;&nbsp;&nbsp;&nbsp;vncserver
+</blockquote>
+
+The vncserver is currently started with `vncserver :1`, whereas this
+script just calls `vncserver` — is that intentional/desirable?
+
+Would it be a little cleaner/more robust if we didn't assume only one
+Xvnc instance was running and instead write the pid of the process we
+start to a file and use that file to check the status?
+
+Regards,
+
+Joshua
+
+</pre>
+</blockquote>
+<div><br>
+</div>
+<div>The vncserver program is a shell script and uses :1 as the default display.</div>
+<div><br>
+</div>
+<div>The pid of Xvnc is written to a file already. The problem is, if Xvmc crashes, the pid file (and lock file) are left around, so just looking at the pid file existance, you can't tell if it's actually running or not.</div>
+</blockquote><div><br>
+</div><div>Can we read the pid from the pidfile and do the tidy up if the process isn't running? My main concern here is that we assume only a single instance of Xvnc is running, I'm not sure if that is a safe assumption to make?</div><div><br></div><div>Thanks,</div><div><br></div><div>Joshua</div><div><br></div><blockquote type="cite">
+<div>&nbsp; &nbsp; - Bill</div>
+<div><br>
+</div>
+<blockquote type="cite">
+<pre><blockquote type="cite">
++fi
+diff --git a/lib/python2.7/site-
+packages/autobuilder/buildsteps/RunESDKSanityTests.py
+b/lib/python2.7/site-
+packages/autobuilder/buildsteps/RunESDKSanityTests.py
+index 7471d3d..c16c8c2 100644
+--- a/lib/python2.7/site-
+packages/autobuilder/buildsteps/RunESDKSanityTests.py
++++ b/lib/python2.7/site-
+packages/autobuilder/buildsteps/RunESDKSanityTests.py
+@@ -47,8 +47,7 @@ class RunESDKSanityTests(BitbakeShellCommand):
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;layerversion = self.getProperty("layerversion_core")
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;command = ""
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;command = command + ". ./oe-init-build-env; "
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;command = command + "netstat -an | grep -q 5901 ;"
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;command = command + 'if [ $? -ne 0 ]; then echo "Starting a
+VNC server on :1"; vncserver :1; else echo "Will use a VNC server
+already running on :1"; fi;'
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;command = command + "checkvnc; "
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if layerversion and int(layerversion) &gt;= 7:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;command = command + "echo 'INHERIT += \"testsdk\"' &gt;&gt;
+./conf/auto.conf;"
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;command = command + "echo 'TEST_QEMUBOOT_TIMEOUT =
+\"1500\"' &gt;&gt; ./conf/auto.conf;"
+diff --git a/lib/python2.7/site-
+packages/autobuilder/buildsteps/RunOeSelftest.py
+b/lib/python2.7/site-packages/autobuilder/buildsteps/RunOeSelftest.py
+index 809bcc3..84d32fe 100644
+--- a/lib/python2.7/site-
+packages/autobuilder/buildsteps/RunOeSelftest.py
++++ b/lib/python2.7/site-
+packages/autobuilder/buildsteps/RunOeSelftest.py
+@@ -31,8 +31,7 @@ class RunOeSelftest(ShellCommand):
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;def start(self):
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.command = ""
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.command += ". ./oe-init-build-env; "
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.command += "netstat -an | grep -q 5901 ;"
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.command += "if [ $? -ne 0 ]; then echo 'Starting a VNC
+server on :1'; vncserver :1; else echo 'Will use a VNC server already
+running on :1'; fi;"
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.command += "checkvnc; "
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if self.tests == None:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.command += "if [ -d ../meta-selftest ]; then export
+DISPLAY=:1; oe-selftest --run-all-tests; else echo 'Skipping step -
+no meta-selftest layer here'; fi"
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else:
+diff --git a/lib/python2.7/site-
+packages/autobuilder/buildsteps/RunSDKSanityTests.py
+b/lib/python2.7/site-
+packages/autobuilder/buildsteps/RunSDKSanityTests.py
+index 9b6eb5b..6fb3127 100644
+--- a/lib/python2.7/site-
+packages/autobuilder/buildsteps/RunSDKSanityTests.py
++++ b/lib/python2.7/site-
+packages/autobuilder/buildsteps/RunSDKSanityTests.py
+@@ -47,8 +47,7 @@ class RunSDKSanityTests(BitbakeShellCommand):
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;layerversion = self.getProperty("layerversion_core")
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;command = ""
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;command = command + ". ./oe-init-build-env; "
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;command = command + "netstat -an | grep -q 5901 ;"
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;command = command + 'if [ $? -ne 0 ]; then echo "Starting a
+VNC server on :1"; vncserver :1; else echo "Will use a VNC server
+already running on :1"; fi;'
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;command = command + "checkvnc; "
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if layerversion and int(layerversion) &gt;= 6:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;command = command + "echo 'INHERIT += \"testimage\"' &gt;&gt;
+./conf/auto.conf;"
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;command = command + "echo 'TEST_QEMUBOOT_TIMEOUT =
+\"1500\"' &gt;&gt; ./conf/auto.conf;"
+diff --git a/lib/python2.7/site-
+packages/autobuilder/buildsteps/RunSanityTests.py
+b/lib/python2.7/site-
+packages/autobuilder/buildsteps/RunSanityTests.py
+index 4fa6dac..81e20cd 100644
+--- a/lib/python2.7/site-
+packages/autobuilder/buildsteps/RunSanityTests.py
++++ b/lib/python2.7/site-
+packages/autobuilder/buildsteps/RunSanityTests.py
+@@ -48,8 +48,7 @@ class RunSanityTests(BitbakeShellCommand):
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;distro = self.getProperty("DISTRO")
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;command = ""
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;command = command + ". ./oe-init-build-env; "
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;command = command + "netstat -an | grep -q 5901 ;"
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;command = command + 'if [ $? -ne 0 ]; then echo "Starting a
+VNC server on :1"; vncserver :1; else echo "Will use a VNC server
+already running on :1"; fi;'
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;command = command + "checkvnc; "
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if distro == "poky-lsb" and layerversion and
+int(layerversion) &lt; 6:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;command = "echo 'Skipping step.'"
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;elif layerversion and int(layerversion) &gt; 1:
+</blockquote></pre>
+</blockquote>
+
+
+</blockquote></body></html>
+
+--=-azkBcNSVQwmgOwU/QkWf--
