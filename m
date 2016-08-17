@@ -1,33 +1,39 @@
-Return-Path: <muellcontainer@6th-dimension.com>
+Return-Path: <joshua.g.lock@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CBFBCE00EAC; Wed, 17 Aug 2016 07:00:31 -0700 (PDT)
+	id D7C2CE00EA9; Wed, 17 Aug 2016 07:58:04 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [88.198.40.25 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.93 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from tux111.hoststar.ch (tux111.hoststar.ch [88.198.40.25])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5A589E00EA5
-	for <yocto@yoctoproject.org>; Wed, 17 Aug 2016 07:00:28 -0700 (PDT)
-Received: from webmail.hoststar.ch (webmail.hoststar.ch [78.46.40.20])
-	(authenticated bits=0)
-	by tux111.hoststar.ch (8.14.9/8.12.11) with ESMTP id u7HE0RT7012963
-	for <yocto@yoctoproject.org>; Wed, 17 Aug 2016 16:00:27 +0200
-MIME-Version: 1.0
-Date: Wed, 17 Aug 2016 16:00:26 +0200
-From: muellcontainer@6th-dimension.com
-To: Yocto <yocto@yoctoproject.org>
-Message-ID: <af62219d292861333e96c13fc82de172@6th-dimension.com>
-X-Sender: muellcontainer@6th-dimension.com
-User-Agent: Hoststar Webmail/0.9.2
-X-HS-BS-Header: lnvp0KjWGt4Qae/IiYBO2Q
-X-Scanned-By: mimedefang-scanned
-Subject: Installing a rootfs inside a rootfs
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6C9A8E009AC
+	for <yocto@yoctoproject.org>; Wed, 17 Aug 2016 07:58:02 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 17 Aug 2016 07:57:57 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.28,529,1464678000"; d="scan'208";a="1027042241"
+Received: from jlock-mobl1.ger.corp.intel.com ([10.252.4.209])
+	by fmsmga001.fm.intel.com with ESMTP; 17 Aug 2016 07:57:56 -0700
+Message-ID: <1471445874.3023.4.camel@linux.intel.com>
+From: Joshua G Lock <joshua.g.lock@linux.intel.com>
+To: "Kumar, Shrawan" <Shrawan.Kumar@harman.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Date: Wed, 17 Aug 2016 15:57:54 +0100
+In-Reply-To: <294d0bec2b3444abbd143a3dd7b4ebf3@HIBDWSMB05.ad.harman.com>
+References: <9eea2233da3d4fbd8722005093c1311d@HIBDWSMB02.ad.harman.com>
+	<1471009925.19073.6.camel@linux.intel.com>
+	<b80a230f7b11491b93bf0dfe9cc93a16@HIBDWSMB05.ad.harman.com>
+	<1471377128.8414.7.camel@linux.intel.com>
+	<294d0bec2b3444abbd143a3dd7b4ebf3@HIBDWSMB05.ad.harman.com>
+X-Mailer: Evolution 3.20.5 (3.20.5-1.fc24) 
+Mime-Version: 1.0
+Subject: Re: Access Control List (ACL) permissions attributes not getting preserved in rootfs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,75 +45,211 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 17 Aug 2016 14:00:31 -0000
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 17 Aug 2016 14:58:04 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-Hi,
+On Wed, 2016-08-17 at 04:47 +0000, Kumar, Shrawan wrote:
+> Hello Joshua,
+> 
+> We did not want bins like setfacl,setcap,chsmack  etc.. to be kept on
+> target .
 
-thanks for accepting me to the yocto mailing list.
+Understandable.
 
-Here is my first question :)
+> 
+> - wanted to understand "how does this postscript gets copied to
+> target and at which path"?
 
-For container testing purposes, I would like to write a recipe which 
-downloads the latest arch linux arm image and installs its contents into 
-"/container" on the rootfs. However, during do_rootfs, my recipe fails - 
-it seems because of automatically generated dependencies. You will 
-notice, that I have already tried several options to come closer to a 
-solution, without success. Please help:
+Any postinsts which fail to run at image creation time will be saved
+into a package-manager prefixed directory of sysconfdir (i.e. /etc/rpm-
+postinsts) by the rootfs construction routine.
 
-My recipe:
+> -  I will have multiple recipe that will have this postscript to set
+> respective packages bin's "acl" permissions and "smack" rules. Is it
+> possible that after executing all the post script from   all the
+> recipes , I shall be able to uninstall the acl and smack rpms ? Same
+> applies for "setcap" rpms.
 
-DESCRIPTION = "Test root fs Arch Linux ARM"
-SECTION = "container test"
-LICENSE = "GPLv1"
-LIC_FILES_CHKSUM = 
-"file://${COMMON_LICENSE_DIR}/GPL-1.0;md5=e9e36a9de734199567a4d769498f743d"
-ALLOW_EMPTY_${PN} = "1"
+It's possible, though I'd wager on a system where you don't want to
+include setfacl and friends you probably don't want to keep a package
+manager either? Could get messy.
 
-RPM_LDD_IGNORE_CHECK = "*"
-INSANE_SKIP_${PN} += "dev-so file-rdeps"
+> - Do you have near plan to fix these :) ?
 
-FILES_${PN} = "\
-      /container"
+It appears to be related to running under pseudo: 
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=10158
 
-FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
+I don't have a concrete plan or timeframe for fixing this issue at this
+time, I'm afraid. You can watch the bug for updates as it should be
+triaged in the YP triage meeting tomorrow and that will influence the
+schedule.
 
-SRC_URI = 
-"http://os.archlinuxarm.org/os/ArchLinuxARM-am33x-latest.tar.gz;unpack=0"
-BB_STRICT_CHECKSUM = "0"
+Regards,
 
-INHIBIT_PACKAGE_STRIP = "1"
-INHIBIT_PACKAGE_DEBUG_SPLIT = "1"
-INHIBIT_DEFAULT_DEPS = "1"
+Joshua
 
-S = "${WORKDIR}"
-
-do_install() {
-     install -d "${D}/container"
-     tar xzf "${S}/ArchLinuxARM-am33x-latest.tar.gz" -C "${D}/container"
-}
-
-do_package_qa[noexec] = "1"
-
-
-And I get the following error:
-
-ERROR: Unable to install packages. Command 
-'/usr/local/buildspace/build-xxx/tmp/sysroots/x86_64-linux/usr/bin/smart 
---log-level=warning 
---data-dir=/usr/local/buildspace/build-xxx/tmp/work/bbb-poky-linux-gnueabi/ses-image-release/1.0-r0/rootfs/var/lib/smart install -y run-postinsts@all alarm@cortexa8hf_vfp_neon kernel-modules@bbb lxc@cortexa8hf_vfp_neon ebs-config-ovl@cortexa8hf_vfp_neon packagegroup-base-extended@bbb packagegroup-core-boot@bbb locale-base-en-us@cortexa8hf_vfp_neon locale-base-en-gb@cortexa8hf_vfp_neon' returned 1:
-Loading cache...
-Updating cache...               ######################################## 
-[100%]
-
-Computing transaction...error: Can't install 
-alarm-1.0-r0@cortexa8hf_vfp_neon: no package provides libgc.so.1
-
-
-Thanks for any help!!
-AJR
-
-
+> 
+> 
+> Thanks and Regards
+> Shrawan
+> 
+> -----Original Message-----
+> From: Joshua G Lock [mailto:joshua.g.lock@linux.intel.com] 
+> Sent: Wednesday, August 17, 2016 1:22 AM
+> To: Kumar, Shrawan; yocto@yoctoproject.org
+> Subject: Re: [yocto] Access Control List (ACL) permissions attributes
+> not getting preserved in rootfs
+> 
+> On Tue, 2016-08-16 at 11:55 +0000, Kumar, Shrawan wrote:
+> > 
+> > Thanks Joshua,
+> > 
+> > "postinst"  works!!  I could see the attributes set under
+> > "poky/build_qemux86/tmp/work/qemux86-poky-linux/core-image-
+> > minimal/1.0-r0/rootfs/".
+> > 
+> >  However, I still could not see the attributes after booting qemu.
+> > It 
+> > seems during rootfs.ext4 (mkfs.ext4 command )creation when 
+> > "create_image_ext4.sh" is called , again this is getting   lost.
+> > 
+> > Any idea on this ?
+> 
+> 
+> I'm not sure why the attribute isn't preserved in the image, it could
+> be a another missing piece for me to track in the quest to better
+> support xattr.
+> 
+> There is a way to work around it, though — you can force the postinst
+> to be run on the target at first boot, as documented in that same
+> manual section. For example I have a test recipe with:
+> 
+> 8<----snip--------
+> 
+> pkg_postinst_${PN}() {
+>     chown foo:foo $D${datadir}/xattrtest/xattrtest
+>     # Force setfacl to run on the target, not at image creation
+>     if [ x"$D" = "x" ]; then
+>         setfacl -m u:bar:r-- $D${datadir}/xattrtest/xattrtest
+>     else
+>         exit 1
+>     fi
+> }
+> 
+> USERADD_PACKAGES = "${PN}"
+> USERADD_PARAM_${PN} = "-m foo;-m bar"
+> RDEPENDS_${PN} += "acl"
+> 
+> 8<----snip--------
+> 
+> which results in:
+> 
+> $ getfacl /usr/share/xattrtest/xattrtest
+> getfacl: Removing leading '/' from absolute path names # file
+> /usr/share/xattrtest/xattrtest # owner: foo # group: foo
+> user::rw-
+> user:bar:r--
+> group::r--
+> mask::r--
+> other::r--
+> 
+> The downside here is that your image has to include postinst support
+> and the acl package (per the RDEPENDS_${PN} line in the snippet
+> above).
+> 
+> Regards,
+> 
+> Joshua
+> 
+> > 
+> > 
+> > Regards
+> > Shrawan
+> > 
+> > 
+> > 
+> > 
+> > 
+> > -----Original Message-----
+> > From: Joshua G Lock [mailto:joshua.g.lock@linux.intel.com]
+> > Sent: Friday, August 12, 2016 7:22 PM
+> > To: Kumar, Shrawan; yocto@yoctoproject.org
+> > Subject: Re: [yocto] Access Control List (ACL) permissions
+> > attributes 
+> > not getting preserved in rootfs
+> > 
+> > On Fri, 2016-08-12 at 12:33 +0000, Kumar, Shrawan wrote:
+> > > 
+> > > 
+> > > Hello All,
+> > >  
+> > > I am  using  poky “ jethro”  , and  though  one of my recipe, I
+> > > have 
+> > > created user1 & user2 and then trying to set ACL rules  on 
+> > > “helloworld” bin as below :
+> > >  
+> > >  
+> > > do_install() {
+> > >                     install -d ${D}${bindir}
+> > >                     install -m 0700 helloworld ${D}${bindir}
+> > >                     install -d ${D}/lib/systemd/system
+> > >                     install -m 0700 hello.service 
+> > > ${D}/lib/systemd/system/
+> > >                     chown    user1:group1
+> > > ${D}${bindir}/helloworld
+> > >                    setfacl -m u:user2:r--
+> > > ${D}${bindir}/helloworld }
+> > >  
+> > >  
+> > > è When I see   on the devshell ( bitbake HelloWorld –c devshell)
+> > >  :
+> > > poky/build_qemux86/tmp/work/qemux86-poky-linux/core-image-
+> > > minimal/1.0-r0/rootfs/usr/bin# getfacl helloworld    , I could
+> > > see 
+> > > that ACL permissions are set correctly as below :
+> > > -        # file: helloworld
+> > > -        # owner: user1
+> > > -        # group: group1
+> > > -        user::rwx
+> > > -        user:user2:r--
+> > > -        group::---
+> > > -        mask::r--
+> > > -        other::---
+> > >  
+> > > However, It does not seems to be getting preserved in rootfs. :
+> > > /poky/build_qemux86/tmp/work/qemux86-poky-linux/core-image-
+> > > minimal/1.0-r0/rootfs/usr/bin# getfacl helloworld # file:
+> > > helloworld #
+> > > owner: user1 # group: group1 user::rwx
+> > > group::---
+> > > other::---
+> > >  
+> > > quick help  here would be highly appreciated
+> > 
+> > This is due to the fact that we don't currently have a mechanism
+> > to 
+> > preserve xattr through to image construction[1].
+> > 
+> > The largest barrier for doig so is that the package managers 
+> > (certainly dpkg and rpm) don't have any support for xattrs in
+> > packages 
+> > (an image is populated via the package manager).
+> > 
+> > To the best of my knowledge the only option for adding some
+> > xattr/ACL 
+> > is to use a postinst[2] to set the attributes after the package
+> > has 
+> > been installed.
+> > 
+> > Regards,
+> > 
+> > Joshua
+> > 
+> > 1. https://bugzilla.yoctoproject.org/show_bug.cgi?id=9858
+> > 2. http://www.yoctoproject.org/docs/2.1/dev-manual/dev-manual.html#
+> > ne
+> > w-
+> > recipe-post-installation-scripts
+> > 
 
