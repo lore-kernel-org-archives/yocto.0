@@ -1,70 +1,139 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <manjukumar.harthikote-matha@xilinx.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1CE5DE009CA; Tue, 16 Aug 2016 17:19:05 -0700 (PDT)
+	id 2B81FE009CA; Tue, 16 Aug 2016 17:21:56 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.68 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [104.47.36.81 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pa0-f68.google.com (mail-pa0-f68.google.com
-	[209.85.220.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DDBF6E009B1
-	for <yocto@yoctoproject.org>; Tue, 16 Aug 2016 17:18:59 -0700 (PDT)
-Received: by mail-pa0-f68.google.com with SMTP id hh10so5981545pac.1
-	for <yocto@yoctoproject.org>; Tue, 16 Aug 2016 17:18:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=subject:mime-version:from:in-reply-to:date:cc:message-id:references
-	:to; bh=EmTJy6uR2X0BaQYD+AoHxBXm/KrDqhWmKEGJyhAYIJ4=;
-	b=xQeK+MG4/5vbbp1lZffiG7uMrXGir5oJxPb30UG6JWJ5S5FViomfYqCnj+EMY7z/1C
-	DP55pjnLN/KlYeuiAOJrFe+6eb6ZFbIYymJdPXr4VnPASPQIQVYJyyZK7J+Lafa9mLDx
-	+TXdnXh0Jy8PSJmbmSCso9dYy9deFR/03+e6/QjCWMUH4Zi2Xk7aTltRbymD0ekZfuSr
-	3wKLe/Z/58lIZrs8ih/9rktf8pboI4m2aKvRt9VVzcd52hjrL5gbVeSN0bZyDTymT9JI
-	sf2HW90yFR8H/hv0haZbnXFVDu9665pDVbiq31sMWZlnSZgL1FPsqwvSjW2UH5zi12g+
-	gkCw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:subject:mime-version:from:in-reply-to:date:cc
-	:message-id:references:to;
-	bh=EmTJy6uR2X0BaQYD+AoHxBXm/KrDqhWmKEGJyhAYIJ4=;
-	b=VZx9Wdc4pNNCcsQUgQsTPXfwQTcUEPIV2b7bZoIlsDUlkmMr12JcLjdYlyABQ1Ot+j
-	8p/XSDFGwvhYwTlpjRgHYF6SuBOhg3lqKtEtZNcmVqXxMTre27QRBGROBUcxoCcKAmrL
-	kShux4avfyCnSsG/Wf61bx8jhEVMeXJcGMe+bbhkvGKQ9Kcvw6guv7dvPRqe9Uz6Wkw3
-	pR1mzezF+s2Nm4JXh1fUyRfu8FUff4uTgaQIao5mw/SGWX4svLq/Vb2NK/7nWvNEuvJw
-	tDTGQun60Yy+gHFS7uSytC8pVpda59CmLKOzyQaTgOOFJnjNtyyS94jaDAcOB5hik8Y8
-	02Lg==
-X-Gm-Message-State: AEkoouvhlRkX+IHMbKjeOWO7yKWiqdrxBO7WGURAK4ujh83FLMl40QPljslT9j4fVJmKNw==
-X-Received: by 10.66.0.202 with SMTP id 10mr70380491pag.129.1471393139110;
-	Tue, 16 Aug 2016 17:18:59 -0700 (PDT)
-Received: from ?IPv6:2601:646:8882:b8c:7934:66f:2860:bf87?
-	([2601:646:8882:b8c:7934:66f:2860:bf87])
-	by smtp.gmail.com with ESMTPSA id
-	75sm41983060pfw.92.2016.08.16.17.18.57
-	(version=TLS1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Tue, 16 Aug 2016 17:18:57 -0700 (PDT)
-Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
-X-Pgp-Agent: GPGMail
-From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <1471389134-55008-1-git-send-email-jianxun.zhang@linux.intel.com>
-Date: Tue, 16 Aug 2016 17:18:52 -0700
-Message-Id: <4BA368C6-B881-4299-9D28-56D790A70A48@gmail.com>
-References: <1471389134-55008-1-git-send-email-jianxun.zhang@linux.intel.com>
-To: Jianxun Zhang <jianxun.zhang@linux.intel.com>
-X-Mailer: Apple Mail (2.3124)
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH] rmc: fix allocating buffer issue in read_file() (32 bit)
+X-Greylist: delayed 84924 seconds by postgrey-1.32 at yocto-www;
+	Tue, 16 Aug 2016 17:21:52 PDT
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com
+	(mail-sn1nam02on0081.outbound.protection.outlook.com [104.47.36.81])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3BDCEE00563
+	for <yocto@yoctoproject.org>; Tue, 16 Aug 2016 17:21:52 -0700 (PDT)
+Received: from SN1NAM02FT023.eop-nam02.prod.protection.outlook.com
+	(10.152.72.52) by SN1NAM02HT184.eop-nam02.prod.protection.outlook.com
+	(10.152.72.142) with Microsoft SMTP Server (version=TLS1_0,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA_P384) id 15.1.567.7;
+	Wed, 17 Aug 2016 00:21:51 +0000
+Authentication-Results: spf=pass (sender IP is 149.199.60.83)
+	smtp.mailfrom=xilinx.com; yoctoproject.org;
+	dkim=none (message not signed)
+	header.d=none;yoctoproject.org; dmarc=bestguesspass action=none
+	header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+	149.199.60.83 as permitted sender) receiver=protection.outlook.com;
+	client-ip=149.199.60.83; helo=xsj-pvapsmtpgw01;
+Received: from xsj-pvapsmtpgw01 (149.199.60.83) by
+	SN1NAM02FT023.mail.protection.outlook.com (10.152.72.156) with
+	Microsoft SMTP Server (version=TLS1_0,
+	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.577.8
+	via Frontend Transport; Wed, 17 Aug 2016 00:21:50 +0000
+Received: from unknown-38-66.xilinx.com ([149.199.38.66] helo=xsj-pvapsmtp01)
+	by xsj-pvapsmtpgw01 with esmtp (Exim 4.63)
+	(envelope-from <manjukumar.harthikote-matha@xilinx.com>)
+	id 1bZoc9-0001CH-26
+	for yocto@yoctoproject.org; Tue, 16 Aug 2016 17:21:49 -0700
+Received: from [127.0.0.1] (helo=xsj-smtp-dlp2.xlnx.xilinx.com)
+	by xsj-pvapsmtp01 with esmtp (Exim 4.63)
+	(envelope-from <manjukumar.harthikote-matha@xilinx.com>)
+	id 1bZoc9-0002OL-IM
+	for yocto@yoctoproject.org; Tue, 16 Aug 2016 17:21:49 -0700
+Received: from xsj-pvapsmtp01 (mailhost.xilinx.com [149.199.38.66])
+	by xsj-smtp-dlp2.xlnx.xilinx.com (8.13.8/8.13.1) with ESMTP id
+	u7H0Lmh4031106
+	for <yocto@yoctoproject.org>; Tue, 16 Aug 2016 17:21:49 -0700
+Received: from [172.19.74.183] by xsj-pvapsmtp01 with esmtp (Exim 4.63)
+	(envelope-from <manjukumar.harthikote-matha@xilinx.com>)
+	id 1bZoc8-0002OD-Tt
+	for yocto@yoctoproject.org; Tue, 16 Aug 2016 17:21:48 -0700
+To: <yocto@yoctoproject.org>
+From: Manjukumar Harthikote Matha <manjukumar.harthikote-matha@xilinx.com>
+Message-ID: <b4774eb7-0301-a5ea-070f-093860a22d49@xilinx.com>
+Date: Tue, 16 Aug 2016 17:18:49 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.2.0
+MIME-Version: 1.0
+X-RCIS-Action: ALLOW
+X-TM-AS-Product-Ver: IMSS-7.1.0.1224-8.0.0.1202-22516.005
+X-TM-AS-User-Approved-Sender: Yes;Yes
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-Forefront-Antispam-Report: CIP:149.199.60.83; IPV:NLI; CTRY:US; EFV:NLI;
+	SFV:NSPM;
+	SFS:(10009020)(6009001)(7916002)(2980300002)(438002)(189002)(199003)(64126003)(81156014)(9786002)(92566002)(36756003)(86362001)(65956001)(54356999)(87936001)(50466002)(83506001)(4001350100001)(33646002)(65806001)(110136002)(107886002)(189998001)(50986999)(558084003)(2906002)(81166006)(450100001)(7846002)(586003)(356003)(47776003)(305945005)(3480700004)(8936002)(229853001)(2351001)(8676002)(106466001)(63266004)(11100500001)(626004)(31696002)(23676002)(31686004)(77096005)(230700001)(7116002)(65826006)(107986001);
+	DIR:OUT; SFP:1101; SCL:1; SRVR:SN1NAM02HT184; H:xsj-pvapsmtpgw01;
+	FPR:; SPF:Pass; PTR:unknown-60-83.xilinx.com; MX:1; A:1; LANG:en;
+X-Microsoft-Exchange-Diagnostics: 1; SN1NAM02FT023;
+	1:19ClRs++0t5wF9dnWgWp6TIZr9KF8/nmc98G2CrIHQfEp6woYHFqmU88s7Ygt5X9UKy2dBlvTk85lyNdO3NNUAXe+ReKUqMFHzn+NYJAvKJdpM4m8TdEnHkzOS5fzh2/f6TEJ8i5nDaqPzlMy4xk1JK5hvaWeidtBl3UAirwVQJCIHimy4tduQMRcIefcfcEGM0pn4WCPzLBLKgf0xBTqotLWzoLC0jz4jTDQSdDz+dww8AHNI/ZS7TJKMpe/mnB4oPhLrQ+3xet5bOu6S5EnBDEyFzoJDM6zq+NW6nHChsDcx3BIr3g0o8vSD9kQ4g5N6XB+f4ux8j9QPSoCgL4qYyemecqtgv8aCYwwCuf1Fd7/2BY3jgeWgiJV+jPFCyAAYE8Mw7Db5zQ4Bnc30xPFLZ3zNgBjQsv/OXo+Kdw89gZh5sFirVP2g6hKoYxxKtm+V42CRgh0bUjPig7y31smkdQe290n+R5t1K6saJR2hULoVnMfTD7tRrbEFbs3HV60fgJu8L+niLpsRhmBd+qDdLeFBpMKW585NKS0YyDZ2+YcNI+p6cU0M1j0QM+NhdW
+X-MS-Office365-Filtering-Correlation-Id: 07e674db-ec1e-4779-cb3f-08d3c6347c47
+X-Microsoft-Exchange-Diagnostics: 1; SN1NAM02HT184;
+	2:ATMyTPRW3noB4PNvC1gBb2Iuu6qoxG1xHnOaHdXXhkIRDW8/b4nL2RfPPjYsf33IWwMg4GIIzQqnhzbdo1LHCbxHiB5fH+W1UCqF1LcVb6eZZ8ooOOYucOis8MVlv1GU0cUd6cuEEwgm/Sv+UGFc0H2NKekaOzdmcVs0g/XTxijXnJrlSG+JNLc70k3wgZGq;
+	3:ZGpzZWZOPcBvBktZOeBzy+prxkbi9HZZarRc3T3K6RoeMHVYjgGXFHE2Tasm+NMmW5wUjU3rNToJKv1RWJ8SB/dHMVo6bu0FXJymnrPczsbULwlga9UJey1aEMOwUarEaKcfiq0YMQZB1kIQg5SaV8rHBNpJPt04Td5bBTBiJ6o6Xc+HkKFnN+ZO9GVotTpPtTiAkWK+WDakHleF+vic0v94lwJs9/Wy/EEqMwRJSNV14RynkhCkq+oQkE2t/qEcRUTu1ZMWfORoYe+TTWCZ9g==;
+	25:vSvDiqmTeiah/ieZdGGQWiOaxa9/xj93blq5qXYlbgvJmrAc4OphwwJyk9OZWdY3zuiX4h2P6gyrVGbmT0axwFgAKm73SY2KMqN/FlZTAeePUnH4ze6qTZUpkcCoGXfgeyJh+G++dO5PRu6UBGEIidDxfEE6ifwKx0nQUb3IJGFiw7F48Kv6v0rVId4p464DaiHUpRvKi7t1E+zEvAisUXNFVF8WR3C9L0lIpebvfTRvvmjm+pUcEeeuZZXZekQQTR/A+8btqTN6Wp5kYK+quvokPEGDQ43d75qhg5BxIihrF5y70Vy4lDzv/+eZt75cwrCMyudV3mi3oHHvwN5qeqeJJ8JH/ldyqd1RgakYsTt9YVZJ6m5mYcE7VXki3vmot+wBTRqfqIBCgYWgnWY774JL/urQU/1ugG6wZqaxQfE=
+X-Microsoft-Antispam: UriScan:; BCL:0; PCL:0; RULEID:(8251501002);
+	SRVR:SN1NAM02HT184; 
+X-Microsoft-Exchange-Diagnostics: 1; SN1NAM02HT184;
+	31:onePuT20TJykX/cBMYRYxkZT2Rpqp+1+jq4qpxQ1ZIoKBgz7cP8UyohRm68+xQj8ntdYaH8aZ4dj5MT3YszTMzB8Uo5E2oJp1lllCBKouYAueQxzfYW2Tn230QqPb51xkmpF9JUcxXZrY+Lt0Op5R4usJg7z4mwiqLVlVAqj2PNAfSicAT2Ck8lu2CnmzZo9zVpbOAvtJS8n6cU0Or1BMEZU62VGj/WFKS3JjZKsFxY=;
+	20:gqKSGv4aw0JEDrMa+WeVkatA9cnGwefHZAGckXL8DYhYGgUAKZbz/i2btPBBeZMZcKGbTg31MxOgMwZjOeA0YKB3dW6tonbo7uiHmWrvu1Pjc9sOSpODTlhdKDEtiViVVwS72oEyI5t9Fe5Vqty6QEZQdx4d3oDHgszlXdnTIxtfg94MyEpn02ciXWw8EutRwnGdLSxp2AnR5IMLmnPez9OVTNkhXC4JtjqluDfcQaBn+YXIg7lAzQ9ALjEgN1h6M2X2JrA9JmcDpKp0lFRw4jwlLWDdb3O46F5cYCVNdwc/nvdtIDQbSLj49gGa8JpKyBU4XMF3fa+UjT15PxHBUU8Ts42IZgXQHp6dhy5gUiOmayHYvo5himn6rtpWjDEpiDf6rEY+AsxnRviHBBYOAjn3+/xjEZQvPnQTjVvGOyYkihFmEpeuJ0bSFwmNES/k6kjlc2ouDetqgjN4zrSQ2/DeYfE7QfVECFaL5GlHuQkQQ8Td+gQQzZb9d32lBYlD
+X-Microsoft-Antispam-PRVS: <23266645504d439c9364cc92255b4257@SN1NAM02HT184.eop-nam02.prod.protection.outlook.com>
+X-Exchange-Antispam-Report-Test: UriScan:;
+X-Exchange-Antispam-Report-CFA-Test: BCL:0; PCL:0;
+	RULEID:(6040176)(601004)(2401047)(13015025)(13023025)(13017025)(8121501046)(5005006)(13018025)(13024025)(10201501046)(3002001)(6055026);
+	SRVR:SN1NAM02HT184; BCL:0; PCL:0; RULEID:; SRVR:SN1NAM02HT184; 
+X-Microsoft-Exchange-Diagnostics: 1; SN1NAM02HT184;
+	4:LfLRJwqdRdkTYb3G8V2CprjjZmG8kNkB8hChVOh0WWqes2SRNA0vOntL+LR4jpTV9lJAMggx8gUcKraRCxrcLPLi++Fka/BPKNYGL2LO9IAWQiUX0jis10B7dhWmaL5afGvBlDRYxcPVZ06gF3yoT6L2gEe/C68CKjHz6gF3qerXwGj0DZfWxxdnGItmpsvcTlJFNh+uvvm1J/0OcdIXTEaWbqhKDFhHNtNvvUYzWizol4kFoJCX2PHJ06PCCxB6lw0s+Neh0+aR2Jx9mb7vH7N04U34f1k3YpVB806/p7bXFoD2Adohayy/mBMwaXd+xdzwngB3YWwuIfmWvPjh1gzwsFUUKJFVkUutwlaHrrUz9qusF9WCYGORQOULB+FdYs09LKeGkaJxpLWpJ//E4KC9WTN4uVB32A/O26DAVtnwuIDr6pTXz03VbE984WBq19D4FNzOAI9dL+Br5VwPcqvWWmgky7Q05zbSssxlHhDNrAEPFfkEtI4KZ1AmEBZK
+X-Forefront-PRVS: 0037FD6480
+X-Microsoft-Exchange-Diagnostics: =?utf-8?B?MTtTTjFOQU0wMkhUMTg0OzIzOnhDVUpuOEkwajlpY0hvLzVhSXE4WmtnMkIx?=
+	=?utf-8?B?M2haK3R4S2szSnQ1VjZua3d0bHZ4cGcwekhsOUZhc0YxTTdDVEVxVUZJSzFm?=
+	=?utf-8?B?UWxxOTlXWWxKdXVFWndFUU9XSTlEbW9oQlRXcEdpUVFrUktuWnJsS0IzdFhq?=
+	=?utf-8?B?d2prWVNsNUl1dkIxdlRxcFFZZGpyM2tMTEtSVzNqUDdIdzUwRlF2c01iczM0?=
+	=?utf-8?B?UEtldVdIdjNKWHhDdEhUaStPWGVEdHdpR2xFSlhvTHVSSXk0NTRBM0JRUysw?=
+	=?utf-8?B?dmhINjNXdG9HaFJuNU1aaWdRS3owbDNuNnpWa0ZhcEhRa1RyOGdCQUo0L0dX?=
+	=?utf-8?B?cUV5VlpwS3Z1OVM2cWwvcDJPUVZsRUlibW9iQmhRcGJaUUdGVDgrK3oyWG1r?=
+	=?utf-8?B?dEJaalpQM1hIWXJFMFlWSTRBM2lIb2tTQ0dxMWNkZ08rWExaVTloTHZCKzg2?=
+	=?utf-8?B?L2VUK1lUbys1ckt4dVJUTDJQV0FqckgxVnJaS0R3c2JXZXJnUE9aSnA5L25t?=
+	=?utf-8?B?cWdodC9ZcFY5SndDMGRGVWIzNlF3aXd1T0FsMWFHTHB6dXFHUTJuUE5ZTHpH?=
+	=?utf-8?B?MUdlNTl3TFFvSG1UZ0g0MDdFQXpRWVhJdytxcEZMdWRHSkJwNlRqVmFTMjZF?=
+	=?utf-8?B?YzAvMkRGMXZDdWhPOVRQT1hhd0N3N2tubFh3bi9xWlNEMkF5WnVYc2hyYTF5?=
+	=?utf-8?B?MmxGV1Q4MElMMGJJazl4ZjBLa0Y2VXdjOHl2MUM0NmdzQTYvWjJiVHBxcGZz?=
+	=?utf-8?B?MHhTQ2xCNVY1aVhEb0QxUWNxay9zTHVheVA3TS9kbEdmZkp2eFFpMEE1a1V0?=
+	=?utf-8?B?dWpTTEdPL0N6M0JvOTRxeGpRTCtETzVBbXBscmtGYUlYMXRlL2xkTVcwSG1i?=
+	=?utf-8?B?WG9iZUtjMUFQbHpjRjUyUllvWUMyZTBPSkh5VmJWZngrVjgwT1FZYmloN3hv?=
+	=?utf-8?B?ZVgreUpiM3M0WnZpNWZta0p4Y3lvV1VyMlBjNlZGN2tGN0EwY2tWVkkzaHpL?=
+	=?utf-8?B?d0JhNHpLVDNuUGhVblI1cWJabDM0c0pLWnlicEl1VnVNbk9GaGVkdWttNlpM?=
+	=?utf-8?B?NjdpK3BIS3VwZWMydVFoZWJWOWR3ZXQ3T0UvdXdzLzdRRnJSZjlhbWZWZWpI?=
+	=?utf-8?B?MDBsa0hPZDd0aktGcnpSdld1WlJHd3drbDFPQ2xOUXRvYWZXYlZtLzJVVjFI?=
+	=?utf-8?B?Tm15L21PZUdRSHVVVEJBMDc5eCtITjYzMFhaVEEySk9EZmpKMlJDUEtCMWdT?=
+	=?utf-8?B?YitIQ054bjE2QUlTUzh4VXV0d0VhK0R1cE5ZYXBCOG5QMzhDRC9Yb2pDcW5h?=
+	=?utf-8?B?SlVMSHpndG5aSnR4Q3BuMGtBY1o1T2xzdGkzb3ZzTk1SNWYvT1JQc051SVFR?=
+	=?utf-8?B?NEFkcWtRNTBrNmxxWm1rR0w3Tk1DMVVrSjNobVl2bWUvQ2VLYkdoaEhZdHUy?=
+	=?utf-8?B?SFFHWUUvWUltUWlZTXJhRHFoa09KMEQrYW1qeGMwdDRkNW83dXQ2RkVNQ2FB?=
+	=?utf-8?B?Qkk5a0VYTnBWb05VY2c0RnZib0FBMW1sN05za0ppQklndkpCMkdsbDZKZGJI?=
+	=?utf-8?B?YUEwTndIUUFlc1dGdXdsM0V1bFdLcVVab1A0QkF0UXNzUEIrZVNHVWQ1TDI3?=
+	=?utf-8?B?elJLV3pkeTFRaFhDNmRiZTVyVXJBdDBKTXBmV3NnTktOTVVpRVhRMExRPT0=?=
+X-Microsoft-Exchange-Diagnostics: 1; SN1NAM02HT184;
+	6:h+dItfC6uPYVCyXtegJuBoKifw51NE0fye0h1Z9XW+0Kbid5KLxfB5KDHhFZDJ4aEKBjFxadHBD+CBoAWHRVPZ8FQsWKvDszTL90hixHEI7h87yLAlTgAw1S79jICTlY6KTNHayYJ/mp35oobjEOeXh/0kRR6gZLJciXmJzpuF4PK8O0dj00FjDprzy5GpjWI7f0zp/bEGJDzra33FOXGcZdXCMsdHhTVBm95e5uIm4TnjoD9XiwcRaW+MwEPw2JUjjU8DhEFwF/VxXXKnwIBJxJbl5HNUTtNrMtvkHzaX6ZK/8iIjtPLzgvdufNS8FiOftQyc48GZLnoFatO0WsAQ==;
+	5:jfOsr8APFb9KIoWm9t0t8dpY/6k9+xe9pvR08LrdDlzGeOR0tC+Cw5nTNST1wez38Sqo/38odJXRIF20dUfBOfOhjW1YcjkGfKVb+KA8xVfDVOxZIfB00r4fybg5Uhvn1OM049xaq+X8tWDu/2IRUg==;
+	24:VDlWBX5hyPWsxDDMgzmP+FDVBqeVhR/fDLimYE3MyHzGIThzt+ZC5WpEp2Gb7E4mObfGYRIks6VT6NXWYkNoMtuyLLYnY+ssgaQy0tX5Lcg=;
+	7:4mKzVbgs/sbY0NK4SNuSq/MoARbLeWkY/L7UQx1Kuu6Wpo+QrFaKc4VULkHgl8dxwH5Yb2soRp7WoHqjBcqLessy8PtmFw8c45/9OkRlTO8d1+NU1qRHdxl2eV22yn2LaMoZ0UEy2ZQtB8bPeTU1XhI1AiEDhFVPSbYmfTKqZImOIPhreRLeEeEa/p8GauqihJy+sYCWBhxxkMDuBny+zPn/EUSqjNOtSHxIZOJ3RYaq1THwymEls+9Vr6utXU9W
+SpamDiagnosticOutput: 1:99
+SpamDiagnosticMetadata: NSPM
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Aug 2016 00:21:50.9269 (UTC)
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;
+	Ip=[149.199.60.83]; Helo=[xsj-pvapsmtpgw01]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN1NAM02HT184
+Subject: Yocto Extensible SDK question
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,86 +145,17 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 17 Aug 2016 00:19:05 -0000
-X-Groupsio-MsgNum: 31515
-Content-Type: multipart/signed;
-	boundary="Apple-Mail=_582C1C39-1249-42D3-8794-06943C8D0EAF";
-	protocol="application/pgp-signature"; micalg=pgp-sha1
-
---Apple-Mail=_582C1C39-1249-42D3-8794-06943C8D0EAF
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=us-ascii
-
-
-> On Aug 16, 2016, at 4:12 PM, Jianxun Zhang =
-<jianxun.zhang@linux.intel.com> wrote:
->=20
-> Runtime test script failed on T100TA (32 bit) machine because
-> read_file() function in rmc.c gets a wrong value of st_size from
-> the buffer returned by stat(). We include rmc header files prior
-> to the rest of standard header files in rmc.c, so standard data
-> subsequently defined could be affected by "#pragma pack(1)" in rmc
-> header files.
-
-
-perhaps resetting the pragma would make it independent of positioning =
-sequence ?
-
->=20
-> Runtime test passes on T100TA and other two boards with this change.
->=20
-> Signed-off-by: Jianxun Zhang <jianxun.zhang@linux.intel.com>
-> ---
-> src/rmc.c | 4 ++--
-> 1 file changed, 2 insertions(+), 2 deletions(-)
->=20
-> diff --git a/src/rmc.c b/src/rmc.c
-> index 714ae3a..6cf584e 100644
-> --- a/src/rmc.c
-> +++ b/src/rmc.c
-> @@ -10,8 +10,6 @@
-> #include <stdio.h>
-> #include <unistd.h>
-> #include <ctype.h>
-> -#include <rmcl.h>
-> -#include <rsmp.h>
-> #include <sys/types.h>
-> #include <sys/stat.h>
-> #include <fcntl.h>
-> @@ -20,6 +18,8 @@
-> #include <sys/stat.h>
-> #include <sys/mman.h>
->=20
-> +#include <rmcl.h>
-> +#include <rsmp.h>
->=20
-> #define USAGE "RMC (Runtime Machine configuration) Tool\n" \
->     "NOTE: Most of usages require root permission (sudo)\n" \
-> --
-> 2.7.4
->=20
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
-
---Apple-Mail=_582C1C39-1249-42D3-8794-06943C8D0EAF
+X-List-Received-Date: Wed, 17 Aug 2016 00:21:56 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment;
-	filename=signature.asc
-Content-Type: application/pgp-signature;
-	name=signature.asc
-Content-Description: Message signed with OpenPGP using GPGMail
 
------BEGIN PGP SIGNATURE-----
-Comment: GPGTools - https://gpgtools.org
+Hi,
 
-iEYEARECAAYFAlezrXAACgkQuwUzVZGdMxRc5QCdFfpmals26JVkbKgjcPOw57RZ
-9DAAmwRc6ZyubFAfCOieT4dGO4ragoJp
-=sn5I
------END PGP SIGNATURE-----
+Is there a way to disable recipes to be excluded in eSDK?
 
---Apple-Mail=_582C1C39-1249-42D3-8794-06943C8D0EAF--
+I am facing issues while extracting an SDK, which complains about kernel 
+fragments are left over in setscene
+
+Thanks
+Manju
+
