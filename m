@@ -1,6 +1,6 @@
 Return-Path: <joshua.g.lock@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D7C2CE00EA9; Wed, 17 Aug 2016 07:58:04 -0700 (PDT)
+	id B06EEE00ECF; Wed, 17 Aug 2016 08:59:50 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,32 +8,27 @@ X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
+	*      [134.134.136.20 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6C9A8E009AC
-	for <yocto@yoctoproject.org>; Wed, 17 Aug 2016 07:58:02 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 17 Aug 2016 07:57:57 -0700
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DF4CFE00EBA
+	for <yocto@yoctoproject.org>; Wed, 17 Aug 2016 08:59:45 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 17 Aug 2016 08:59:28 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.28,529,1464678000"; d="scan'208";a="1027042241"
+X-IronPort-AV: E=Sophos;i="5.28,529,1464678000"; d="scan'208";a="1016040364"
 Received: from jlock-mobl1.ger.corp.intel.com ([10.252.4.209])
-	by fmsmga001.fm.intel.com with ESMTP; 17 Aug 2016 07:57:56 -0700
-Message-ID: <1471445874.3023.4.camel@linux.intel.com>
+	by orsmga001.jf.intel.com with ESMTP; 17 Aug 2016 08:59:25 -0700
+Message-ID: <1471449564.3023.11.camel@linux.intel.com>
 From: Joshua G Lock <joshua.g.lock@linux.intel.com>
-To: "Kumar, Shrawan" <Shrawan.Kumar@harman.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Date: Wed, 17 Aug 2016 15:57:54 +0100
-In-Reply-To: <294d0bec2b3444abbd143a3dd7b4ebf3@HIBDWSMB05.ad.harman.com>
-References: <9eea2233da3d4fbd8722005093c1311d@HIBDWSMB02.ad.harman.com>
-	<1471009925.19073.6.camel@linux.intel.com>
-	<b80a230f7b11491b93bf0dfe9cc93a16@HIBDWSMB05.ad.harman.com>
-	<1471377128.8414.7.camel@linux.intel.com>
-	<294d0bec2b3444abbd143a3dd7b4ebf3@HIBDWSMB05.ad.harman.com>
+To: Bill Randle <william.c.randle@intel.com>, yocto@yoctoproject.org
+Date: Wed, 17 Aug 2016 16:59:24 +0100
+In-Reply-To: <1471392559-5756-1-git-send-email-william.c.randle@intel.com>
+References: <1471392559-5756-1-git-send-email-william.c.randle@intel.com>
 X-Mailer: Evolution 3.20.5 (3.20.5-1.fc24) 
 Mime-Version: 1.0
-Subject: Re: Access Control List (ACL) permissions attributes not getting preserved in rootfs
+Subject: Re: [yocto-autobuilder][PATCH] cleanup and restart crashed vnc server
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,211 +40,148 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 17 Aug 2016 14:58:04 -0000
+X-List-Received-Date: Wed, 17 Aug 2016 15:59:50 -0000
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
 
-On Wed, 2016-08-17 at 04:47 +0000, Kumar, Shrawan wrote:
-> Hello Joshua,
+On Tue, 2016-08-16 at 17:09 -0700, Bill Randle wrote:
+> Use a common script to check for a running vnc server, and if not
+> running
+> cleanup dangling lock files and restart the server.
 > 
-> We did not want bins like setfacl,setcap,chsmack  etc.. to be kept on
-> target .
-
-Understandable.
-
+> [YOCTO #8210]
 > 
-> - wanted to understand "how does this postscript gets copied to
-> target and at which path"?
+> Signed-off-by: Bill Randle <william.c.randle@intel.com>
+> ---
+>  bin/checkvnc                                                   | 10
+> ++++++++++
+>  .../site-packages/autobuilder/buildsteps/RunESDKSanityTests.py |  3
+> +--
+>  .../site-packages/autobuilder/buildsteps/RunOeSelftest.py      |  3
+> +--
+>  .../site-packages/autobuilder/buildsteps/RunSDKSanityTests.py  |  3
+> +--
+>  .../site-packages/autobuilder/buildsteps/RunSanityTests.py     |  3
+> +--
+>  5 files changed, 14 insertions(+), 8 deletions(-)
+>  create mode 100755 bin/checkvnc
+> 
+> diff --git a/bin/checkvnc b/bin/checkvnc
+> new file mode 100755
+> index 0000000..574ba48
+> --- /dev/null
+> +++ b/bin/checkvnc
+> @@ -0,0 +1,10 @@
+> +#!/bin/sh
+> +#
+> +# check if vnc server is running, and if not, cleanup and restart
+> +#
+> +pid=$(pidof Xvnc)
+> +if [[ $? != 0 ]]; then
+> +    echo "Xvnc not running, attempting restart"
+> +    vncserver -kill :1
+> +    vncserver
 
-Any postinsts which fail to run at image creation time will be saved
-into a package-manager prefixed directory of sysconfdir (i.e. /etc/rpm-
-postinsts) by the rootfs construction routine.
+The vncserver is currently started with `vncserver :1`, whereas this
+script just calls `vncserver` — is that intentional/desirable?
 
-> -  I will have multiple recipe that will have this postscript to set
-> respective packages bin's "acl" permissions and "smack" rules. Is it
-> possible that after executing all the post script from   all the
-> recipes , I shall be able to uninstall the acl and smack rpms ? Same
-> applies for "setcap" rpms.
-
-It's possible, though I'd wager on a system where you don't want to
-include setfacl and friends you probably don't want to keep a package
-manager either? Could get messy.
-
-> - Do you have near plan to fix these :) ?
-
-It appears to be related to running under pseudo: 
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=10158
-
-I don't have a concrete plan or timeframe for fixing this issue at this
-time, I'm afraid. You can watch the bug for updates as it should be
-triaged in the YP triage meeting tomorrow and that will influence the
-schedule.
+Would it be a little cleaner/more robust if we didn't assume only one
+Xvnc instance was running and instead write the pid of the process we
+start to a file and use that file to check the status?
 
 Regards,
 
 Joshua
 
-> 
-> 
-> Thanks and Regards
-> Shrawan
-> 
-> -----Original Message-----
-> From: Joshua G Lock [mailto:joshua.g.lock@linux.intel.com] 
-> Sent: Wednesday, August 17, 2016 1:22 AM
-> To: Kumar, Shrawan; yocto@yoctoproject.org
-> Subject: Re: [yocto] Access Control List (ACL) permissions attributes
-> not getting preserved in rootfs
-> 
-> On Tue, 2016-08-16 at 11:55 +0000, Kumar, Shrawan wrote:
-> > 
-> > Thanks Joshua,
-> > 
-> > "postinst"  works!!  I could see the attributes set under
-> > "poky/build_qemux86/tmp/work/qemux86-poky-linux/core-image-
-> > minimal/1.0-r0/rootfs/".
-> > 
-> >  However, I still could not see the attributes after booting qemu.
-> > It 
-> > seems during rootfs.ext4 (mkfs.ext4 command )creation when 
-> > "create_image_ext4.sh" is called , again this is getting   lost.
-> > 
-> > Any idea on this ?
-> 
-> 
-> I'm not sure why the attribute isn't preserved in the image, it could
-> be a another missing piece for me to track in the quest to better
-> support xattr.
-> 
-> There is a way to work around it, though — you can force the postinst
-> to be run on the target at first boot, as documented in that same
-> manual section. For example I have a test recipe with:
-> 
-> 8<----snip--------
-> 
-> pkg_postinst_${PN}() {
->     chown foo:foo $D${datadir}/xattrtest/xattrtest
->     # Force setfacl to run on the target, not at image creation
->     if [ x"$D" = "x" ]; then
->         setfacl -m u:bar:r-- $D${datadir}/xattrtest/xattrtest
->     else
->         exit 1
->     fi
-> }
-> 
-> USERADD_PACKAGES = "${PN}"
-> USERADD_PARAM_${PN} = "-m foo;-m bar"
-> RDEPENDS_${PN} += "acl"
-> 
-> 8<----snip--------
-> 
-> which results in:
-> 
-> $ getfacl /usr/share/xattrtest/xattrtest
-> getfacl: Removing leading '/' from absolute path names # file
-> /usr/share/xattrtest/xattrtest # owner: foo # group: foo
-> user::rw-
-> user:bar:r--
-> group::r--
-> mask::r--
-> other::r--
-> 
-> The downside here is that your image has to include postinst support
-> and the acl package (per the RDEPENDS_${PN} line in the snippet
-> above).
-> 
-> Regards,
-> 
-> Joshua
-> 
-> > 
-> > 
-> > Regards
-> > Shrawan
-> > 
-> > 
-> > 
-> > 
-> > 
-> > -----Original Message-----
-> > From: Joshua G Lock [mailto:joshua.g.lock@linux.intel.com]
-> > Sent: Friday, August 12, 2016 7:22 PM
-> > To: Kumar, Shrawan; yocto@yoctoproject.org
-> > Subject: Re: [yocto] Access Control List (ACL) permissions
-> > attributes 
-> > not getting preserved in rootfs
-> > 
-> > On Fri, 2016-08-12 at 12:33 +0000, Kumar, Shrawan wrote:
-> > > 
-> > > 
-> > > Hello All,
-> > >  
-> > > I am  using  poky “ jethro”  , and  though  one of my recipe, I
-> > > have 
-> > > created user1 & user2 and then trying to set ACL rules  on 
-> > > “helloworld” bin as below :
-> > >  
-> > >  
-> > > do_install() {
-> > >                     install -d ${D}${bindir}
-> > >                     install -m 0700 helloworld ${D}${bindir}
-> > >                     install -d ${D}/lib/systemd/system
-> > >                     install -m 0700 hello.service 
-> > > ${D}/lib/systemd/system/
-> > >                     chown    user1:group1
-> > > ${D}${bindir}/helloworld
-> > >                    setfacl -m u:user2:r--
-> > > ${D}${bindir}/helloworld }
-> > >  
-> > >  
-> > > è When I see   on the devshell ( bitbake HelloWorld –c devshell)
-> > >  :
-> > > poky/build_qemux86/tmp/work/qemux86-poky-linux/core-image-
-> > > minimal/1.0-r0/rootfs/usr/bin# getfacl helloworld    , I could
-> > > see 
-> > > that ACL permissions are set correctly as below :
-> > > -        # file: helloworld
-> > > -        # owner: user1
-> > > -        # group: group1
-> > > -        user::rwx
-> > > -        user:user2:r--
-> > > -        group::---
-> > > -        mask::r--
-> > > -        other::---
-> > >  
-> > > However, It does not seems to be getting preserved in rootfs. :
-> > > /poky/build_qemux86/tmp/work/qemux86-poky-linux/core-image-
-> > > minimal/1.0-r0/rootfs/usr/bin# getfacl helloworld # file:
-> > > helloworld #
-> > > owner: user1 # group: group1 user::rwx
-> > > group::---
-> > > other::---
-> > >  
-> > > quick help  here would be highly appreciated
-> > 
-> > This is due to the fact that we don't currently have a mechanism
-> > to 
-> > preserve xattr through to image construction[1].
-> > 
-> > The largest barrier for doig so is that the package managers 
-> > (certainly dpkg and rpm) don't have any support for xattrs in
-> > packages 
-> > (an image is populated via the package manager).
-> > 
-> > To the best of my knowledge the only option for adding some
-> > xattr/ACL 
-> > is to use a postinst[2] to set the attributes after the package
-> > has 
-> > been installed.
-> > 
-> > Regards,
-> > 
-> > Joshua
-> > 
-> > 1. https://bugzilla.yoctoproject.org/show_bug.cgi?id=9858
-> > 2. http://www.yoctoproject.org/docs/2.1/dev-manual/dev-manual.html#
-> > ne
-> > w-
-> > recipe-post-installation-scripts
-> > 
+> +fi
+> diff --git a/lib/python2.7/site-
+> packages/autobuilder/buildsteps/RunESDKSanityTests.py
+> b/lib/python2.7/site-
+> packages/autobuilder/buildsteps/RunESDKSanityTests.py
+> index 7471d3d..c16c8c2 100644
+> --- a/lib/python2.7/site-
+> packages/autobuilder/buildsteps/RunESDKSanityTests.py
+> +++ b/lib/python2.7/site-
+> packages/autobuilder/buildsteps/RunESDKSanityTests.py
+> @@ -47,8 +47,7 @@ class RunESDKSanityTests(BitbakeShellCommand):
+>          layerversion = self.getProperty("layerversion_core")
+>          command = ""
+>          command = command + ". ./oe-init-build-env; "
+> -        command = command + "netstat -an | grep -q 5901 ;"
+> -        command = command + 'if [ $? -ne 0 ]; then echo "Starting a
+> VNC server on :1"; vncserver :1; else echo "Will use a VNC server
+> already running on :1"; fi;'
+> +        command = command + "checkvnc; "
+>          if layerversion and int(layerversion) >= 7:
+>              command = command + "echo 'INHERIT += \"testsdk\"' >>
+> ./conf/auto.conf;"
+>              command = command + "echo 'TEST_QEMUBOOT_TIMEOUT =
+> \"1500\"' >> ./conf/auto.conf;"
+> diff --git a/lib/python2.7/site-
+> packages/autobuilder/buildsteps/RunOeSelftest.py
+> b/lib/python2.7/site-packages/autobuilder/buildsteps/RunOeSelftest.py
+> index 809bcc3..84d32fe 100644
+> --- a/lib/python2.7/site-
+> packages/autobuilder/buildsteps/RunOeSelftest.py
+> +++ b/lib/python2.7/site-
+> packages/autobuilder/buildsteps/RunOeSelftest.py
+> @@ -31,8 +31,7 @@ class RunOeSelftest(ShellCommand):
+>      def start(self):
+>          self.command = ""
+>          self.command += ". ./oe-init-build-env; "
+> -        self.command += "netstat -an | grep -q 5901 ;"
+> -        self.command += "if [ $? -ne 0 ]; then echo 'Starting a VNC
+> server on :1'; vncserver :1; else echo 'Will use a VNC server already
+> running on :1'; fi;"
+> +        self.command += "checkvnc; "
+>          if self.tests == None:
+>              self.command += "if [ -d ../meta-selftest ]; then export
+> DISPLAY=:1; oe-selftest --run-all-tests; else echo 'Skipping step -
+> no meta-selftest layer here'; fi"
+>          else:
+> diff --git a/lib/python2.7/site-
+> packages/autobuilder/buildsteps/RunSDKSanityTests.py
+> b/lib/python2.7/site-
+> packages/autobuilder/buildsteps/RunSDKSanityTests.py
+> index 9b6eb5b..6fb3127 100644
+> --- a/lib/python2.7/site-
+> packages/autobuilder/buildsteps/RunSDKSanityTests.py
+> +++ b/lib/python2.7/site-
+> packages/autobuilder/buildsteps/RunSDKSanityTests.py
+> @@ -47,8 +47,7 @@ class RunSDKSanityTests(BitbakeShellCommand):
+>          layerversion = self.getProperty("layerversion_core")
+>          command = ""
+>          command = command + ". ./oe-init-build-env; "
+> -        command = command + "netstat -an | grep -q 5901 ;"
+> -        command = command + 'if [ $? -ne 0 ]; then echo "Starting a
+> VNC server on :1"; vncserver :1; else echo "Will use a VNC server
+> already running on :1"; fi;'
+> +        command = command + "checkvnc; "
+>          if layerversion and int(layerversion) >= 6:
+>              command = command + "echo 'INHERIT += \"testimage\"' >>
+> ./conf/auto.conf;"
+>              command = command + "echo 'TEST_QEMUBOOT_TIMEOUT =
+> \"1500\"' >> ./conf/auto.conf;"
+> diff --git a/lib/python2.7/site-
+> packages/autobuilder/buildsteps/RunSanityTests.py
+> b/lib/python2.7/site-
+> packages/autobuilder/buildsteps/RunSanityTests.py
+> index 4fa6dac..81e20cd 100644
+> --- a/lib/python2.7/site-
+> packages/autobuilder/buildsteps/RunSanityTests.py
+> +++ b/lib/python2.7/site-
+> packages/autobuilder/buildsteps/RunSanityTests.py
+> @@ -48,8 +48,7 @@ class RunSanityTests(BitbakeShellCommand):
+>          distro = self.getProperty("DISTRO")
+>          command = ""
+>          command = command + ". ./oe-init-build-env; "
+> -        command = command + "netstat -an | grep -q 5901 ;"
+> -        command = command + 'if [ $? -ne 0 ]; then echo "Starting a
+> VNC server on :1"; vncserver :1; else echo "Will use a VNC server
+> already running on :1"; fi;'
+> +        command = command + "checkvnc; "
+>          if distro == "poky-lsb" and layerversion and
+> int(layerversion) < 6:
+>              command = "echo 'Skipping step.'"
+>          elif layerversion and int(layerversion) > 1:
 
