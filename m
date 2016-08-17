@@ -1,37 +1,44 @@
-Return-Path: <craig.mcqueen@innerrange.com>
+Return-Path: <rpjday@crashcourse.ca>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 96DF9E00E0D; Tue, 16 Aug 2016 23:29:43 -0700 (PDT)
+	id 23672E00E0D; Tue, 16 Aug 2016 23:46:31 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.0 required=5.0 tests=BAYES_20 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -0.0 BAYES_20 BODY: Bayes spam probability is 5 to 20%
-	*      [score: 0.0700]
-X-Greylist: delayed 65 seconds by postgrey-1.32 at yocto-www;
-	Tue, 16 Aug 2016 23:29:41 PDT
-Received: from remote.innerrange.com (vpn.innerrange.com.au [203.122.143.146])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 00A41E00E05
-	for <yocto@yoctoproject.org>; Tue, 16 Aug 2016 23:29:41 -0700 (PDT)
-Received: from IR-CENTRAL.corp.innerrange.com ([fe80::216f:2d6c:20cc:241b]) by
-	IR-CENTRAL.corp.innerrange.com ([fe80::216f:2d6c:20cc:241b%15]) with
-	mapi; Wed, 17 Aug 2016 16:28:31 +1000
-From: Craig McQueen <craig.mcqueen@innerrange.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Wed, 17 Aug 2016 16:28:29 +1000
-Thread-Topic: Package mono-libs-4.5 size increase in Mono version 4.4.x
-Thread-Index: AdH4T24IZo0Q1CXGRzeCiDO2PFVFdQ==
-Message-ID: <5500469A22567C4BAF673A6E86AFA3A4022D2BE1F204@IR-CENTRAL.corp.innerrange.com>
-Accept-Language: en-US, en-AU
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US, en-AU
-x-tm-as-product-ver: SMEX-11.1.0.1278-8.000.1202-22518.005
-x-tm-as-result: No--40.033000-5.000000-31
-x-tm-as-user-approved-sender: No
-x-tm-as-user-blocked-sender: No
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [208.80.204.85 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+Received: from smtp485.redcondor.net (smtp485.redcondor.net [208.80.204.85])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7422EE00E05
+	for <yocto@yoctoproject.org>; Tue, 16 Aug 2016 23:46:25 -0700 (PDT)
+Received: from astoria.ccjclearline.com ([64.235.106.9])
+	by smtp485.redcondor.net ({3be039ea-4351-44b0-a8af-642c38b25916})
+	via TCP (outbound) with ESMTPS id 20160817064610761_0485;
+	Wed, 17 Aug 2016 06:46:10 +0000
+X-RC-FROM: <rpjday@crashcourse.ca>
+Received: from [174.114.62.25] (port=47476 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1bZudv-0006Xs-4c; Wed, 17 Aug 2016 02:48:03 -0400
+Date: Wed, 17 Aug 2016 02:45:58 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@localhost.localdomain
+To: Gary Thomas <gary@mlbassoc.com>
+In-Reply-To: <3090aa77-4d98-46e0-53fa-b4ba6183e29b@mlbassoc.com>
+Message-ID: <alpine.LFD.2.20.1608170245260.17602@localhost.localdomain>
+References: <CAF_dkJD9wqM7rg7U1VeiDs+adEREcoNna58dghfN2BvbxVLWqA@mail.gmail.com>
+	<alpine.LFD.2.20.1608161134290.9097@ca624034.mitel.com>
+	<07E2CC82-5296-4ED3-8F74-E213EC509F4D@gmail.com>
+	<alpine.LFD.2.20.1608161237490.11037@ca624034.mitel.com>
+	<3090aa77-4d98-46e0-53fa-b4ba6183e29b@mlbassoc.com>
+User-Agent: Alpine 2.20 (LFD 67 2015-01-07)
 MIME-Version: 1.0
-Subject: Package mono-libs-4.5 size increase in Mono version 4.4.x
+X-MAG-OUTBOUND: ccj.redcondor.net@64.235.106.9/32
+Cc: yocto@yoctoproject.org
+Subject: Re: How to maintain a global DL_DIR?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,27 +50,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 17 Aug 2016 06:29:43 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 17 Aug 2016 06:46:31 -0000
+Content-Type: text/plain; charset=US-ASCII
 
-I've just had to upgrade from Mono 4.2.x to Mono 4.4.x, to get a fix for SM=
-TP SSL/TLS.
+On Wed, 17 Aug 2016, Gary Thomas wrote:
 
-I'm using the mono-libs-4.5 package. I see that the size of it has increase=
-d quite a lot (several MB) due to the upgrade. It looks as though it's now =
-putting a bunch of files in /usr/lib/mono/4.5-api in addition to the old /u=
-sr/lib/mono/4.5.
+> On 2016-08-16 18:38, Robert P. J. Day wrote:
+> > On Tue, 16 Aug 2016, Khem Raj wrote:
+> >
+> > > > On Aug 16, 2016, at 8:37 AM, Robert P. J. Day <rpjday@crashcourse.ca>
+> > > > wrote:
+> > > >
+> > > > On Tue, 16 Aug 2016, Patrick Doyle wrote:
+> > > >
+> > > > > As I am playing with several different Yocto/OE projects, I thought
+> > > > > it would be nice to set up a global downloads directory.
+> > > > >
+> > > > > Also, being a somewhat forgetful sort, I thought it would be nice if
+> > > > > I could set DL_DIR in my .bashrc and not have to remember to edit
+> > > > > conf/local.conf each time I follow the directions from a third party
+> > > > > site to set up their Yocto based distribution.
+> > > > >
+> > > > > Can I do this?  If so, how?
+> > > >
+> > > > if you're talking about creating a local source mirror for tarballs
+> > > > to be shared across multiple projects, i taught an OE/YP course last
+> > > > week based on a digi ConnectCore 6 dev kit, and i wrote some wiki
+> > > > pages for it, including this one:
+> > > >
+> > > > http://www.crashcourse.ca/wiki/index.php/CC6_local_source_mirror
+> > >
+> > > a small nit, perhaps its better to use rsync instead of cp.
+> >
+> >   good point, i will adjust that later. anything else i overlooked?
+>
+> I use the attached script to manage my download mirror...
 
-I can see this mentioned in the Mono 4.4.0 release notes:
-http://www.mono-project.com/docs/about-mono/releases/4.4.0/
+  well, *that* escalated quickly. :-)
 
-But the rationale is not entirely clear to me. Is it possible to cut down t=
-he Yocto image size by removing one of /usr/lib/mono/4.5-api and /usr/lib/m=
-ono/4.5, or some other refactoring?
+rday
 
---=20
-Craig McQueen
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
 
