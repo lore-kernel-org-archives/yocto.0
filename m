@@ -1,6 +1,6 @@
 Return-Path: <joshua.g.lock@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B06EEE00ECF; Wed, 17 Aug 2016 08:59:50 -0700 (PDT)
+	id 82CF2E00ED0; Wed, 17 Aug 2016 09:07:49 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,27 +8,27 @@ X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.20 listed in list.dnswl.org]
+	*      [134.134.136.65 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DF4CFE00EBA
-	for <yocto@yoctoproject.org>; Wed, 17 Aug 2016 08:59:45 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 17 Aug 2016 08:59:28 -0700
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4ADCAE00EBA
+	for <yocto@yoctoproject.org>; Wed, 17 Aug 2016 09:07:45 -0700 (PDT)
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+	by orsmga103.jf.intel.com with ESMTP; 17 Aug 2016 09:07:42 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.28,529,1464678000"; d="scan'208";a="1016040364"
+X-IronPort-AV: E=Sophos;i="5.28,529,1464678000"; d="scan'208";a="749994043"
 Received: from jlock-mobl1.ger.corp.intel.com ([10.252.4.209])
-	by orsmga001.jf.intel.com with ESMTP; 17 Aug 2016 08:59:25 -0700
-Message-ID: <1471449564.3023.11.camel@linux.intel.com>
+	by FMSMGA003.fm.intel.com with ESMTP; 17 Aug 2016 09:07:18 -0700
+Message-ID: <1471450037.19448.0.camel@linux.intel.com>
 From: Joshua G Lock <joshua.g.lock@linux.intel.com>
 To: Bill Randle <william.c.randle@intel.com>, yocto@yoctoproject.org
-Date: Wed, 17 Aug 2016 16:59:24 +0100
-In-Reply-To: <1471392559-5756-1-git-send-email-william.c.randle@intel.com>
-References: <1471392559-5756-1-git-send-email-william.c.randle@intel.com>
+Date: Wed, 17 Aug 2016 17:07:17 +0100
+In-Reply-To: <1471059899-16091-1-git-send-email-william.c.randle@intel.com>
+References: <1471059899-16091-1-git-send-email-william.c.randle@intel.com>
 X-Mailer: Evolution 3.20.5 (3.20.5-1.fc24) 
 Mime-Version: 1.0
-Subject: Re: [yocto-autobuilder][PATCH] cleanup and restart crashed vnc server
+Subject: Re: [yocto-autobuilder][PATCH] PublishArtifacts.py: generate md5sums for buildtools
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,148 +40,160 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 17 Aug 2016 15:59:50 -0000
+X-List-Received-Date: Wed, 17 Aug 2016 16:07:49 -0000
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
 
-On Tue, 2016-08-16 at 17:09 -0700, Bill Randle wrote:
-> Use a common script to check for a running vnc server, and if not
-> running
-> cleanup dangling lock files and restart the server.
-> 
-> [YOCTO #8210]
-> 
-> Signed-off-by: Bill Randle <william.c.randle@intel.com>
-> ---
->  bin/checkvnc                                                   | 10
-> ++++++++++
->  .../site-packages/autobuilder/buildsteps/RunESDKSanityTests.py |  3
-> +--
->  .../site-packages/autobuilder/buildsteps/RunOeSelftest.py      |  3
-> +--
->  .../site-packages/autobuilder/buildsteps/RunSDKSanityTests.py  |  3
-> +--
->  .../site-packages/autobuilder/buildsteps/RunSanityTests.py     |  3
-> +--
->  5 files changed, 14 insertions(+), 8 deletions(-)
->  create mode 100755 bin/checkvnc
-> 
-> diff --git a/bin/checkvnc b/bin/checkvnc
-> new file mode 100755
-> index 0000000..574ba48
-> --- /dev/null
-> +++ b/bin/checkvnc
-> @@ -0,0 +1,10 @@
-> +#!/bin/sh
-> +#
-> +# check if vnc server is running, and if not, cleanup and restart
-> +#
-> +pid=$(pidof Xvnc)
-> +if [[ $? != 0 ]]; then
-> +    echo "Xvnc not running, attempting restart"
-> +    vncserver -kill :1
-> +    vncserver
+On Fri, 2016-08-12 at 20:44 -0700, Bill Randle wrote:
+> Md5sum files were not being generated for the buildtools artifacts.
+> Also,
+> ignore files with a .md5sum extension when doing the sum.
 
-The vncserver is currently started with `vncserver :1`, whereas this
-script just calls `vncserver` — is that intentional/desirable?
-
-Would it be a little cleaner/more robust if we didn't assume only one
-Xvnc instance was running and instead write the pid of the process we
-start to a file and use that file to check the status?
-
-Regards,
+Pushed to master, thanks.
 
 Joshua
 
-> +fi
+> 
+> Signed-off-by: Bill Randle <william.c.randle@intel.com>
+> ---
+>  .../autobuilder/buildsteps/PublishArtifacts.py     | 27
+> ++++++++++++++--------
+>  1 file changed, 18 insertions(+), 9 deletions(-)
+> 
 > diff --git a/lib/python2.7/site-
-> packages/autobuilder/buildsteps/RunESDKSanityTests.py
+> packages/autobuilder/buildsteps/PublishArtifacts.py
 > b/lib/python2.7/site-
-> packages/autobuilder/buildsteps/RunESDKSanityTests.py
-> index 7471d3d..c16c8c2 100644
+> packages/autobuilder/buildsteps/PublishArtifacts.py
+> index f9ff4f6..1a938fc 100644
 > --- a/lib/python2.7/site-
-> packages/autobuilder/buildsteps/RunESDKSanityTests.py
+> packages/autobuilder/buildsteps/PublishArtifacts.py
 > +++ b/lib/python2.7/site-
-> packages/autobuilder/buildsteps/RunESDKSanityTests.py
-> @@ -47,8 +47,7 @@ class RunESDKSanityTests(BitbakeShellCommand):
->          layerversion = self.getProperty("layerversion_core")
->          command = ""
->          command = command + ". ./oe-init-build-env; "
-> -        command = command + "netstat -an | grep -q 5901 ;"
-> -        command = command + 'if [ $? -ne 0 ]; then echo "Starting a
-> VNC server on :1"; vncserver :1; else echo "Will use a VNC server
-> already running on :1"; fi;'
-> +        command = command + "checkvnc; "
->          if layerversion and int(layerversion) >= 7:
->              command = command + "echo 'INHERIT += \"testsdk\"' >>
-> ./conf/auto.conf;"
->              command = command + "echo 'TEST_QEMUBOOT_TIMEOUT =
-> \"1500\"' >> ./conf/auto.conf;"
-> diff --git a/lib/python2.7/site-
-> packages/autobuilder/buildsteps/RunOeSelftest.py
-> b/lib/python2.7/site-packages/autobuilder/buildsteps/RunOeSelftest.py
-> index 809bcc3..84d32fe 100644
-> --- a/lib/python2.7/site-
-> packages/autobuilder/buildsteps/RunOeSelftest.py
-> +++ b/lib/python2.7/site-
-> packages/autobuilder/buildsteps/RunOeSelftest.py
-> @@ -31,8 +31,7 @@ class RunOeSelftest(ShellCommand):
->      def start(self):
->          self.command = ""
->          self.command += ". ./oe-init-build-env; "
-> -        self.command += "netstat -an | grep -q 5901 ;"
-> -        self.command += "if [ $? -ne 0 ]; then echo 'Starting a VNC
-> server on :1'; vncserver :1; else echo 'Will use a VNC server already
-> running on :1'; fi;"
-> +        self.command += "checkvnc; "
->          if self.tests == None:
->              self.command += "if [ -d ../meta-selftest ]; then export
-> DISPLAY=:1; oe-selftest --run-all-tests; else echo 'Skipping step -
-> no meta-selftest layer here'; fi"
+> packages/autobuilder/buildsteps/PublishArtifacts.py
+> @@ -112,9 +112,11 @@ class PublishArtifacts(ShellCommand):
+>                                          os.path.join(self.tmpdir,
+> "deploy/images/*.zip") + \
+>                                          " " + DEST + "/" +
+> BA_PUBLISH_DIR + ";"
+>                  elif artifact == "buildtools-tarball":
+> +                    artifact_name, deploy_image_dir =
+> self.getDeployNames(artifact, buildername)
+> +                    command=command+self.generateMD5cmd(artifact,
+> deploy_image_dir)
+>                      command=command+"mkdir -p " + DEST +
+> "/buildtools;"
+>                      command=command+"cp -R --no-dereference --
+> preserve=links " + \
+> -                                    os.path.join(self.tmpdir,
+> "deploy/sdk/*buildtools*") + \
+> +                                    os.path.join(deploy_image_dir,
+> "*buildtools*") + \
+>                                      " " + DEST + "/buildtools;"
+>                  elif artifact == "rpm":
+>                      command=command+"mkdir -p " + os.path.join(DEST,
+> RPM_PUBLISH_DIR) + ";"
+> @@ -144,22 +146,26 @@ class PublishArtifacts(ShellCommand):
+>                      else:
+>                          command=command+"echo 'Skipping copy of
+> sstate, PUBLISH_SSTATE not set.';"
+>                  elif artifact == "toolchain":
+> +                    artifact_name, deploy_image_dir =
+> self.getDeployNames(artifact, buildername)
+> +                    command=command+self.generateMD5cmd(artifact,
+> deploy_image_dir)
+>                      command=command+"mkdir -p " + os.path.join(DEST,
+> X86TC_PUBLISH_DIR) + ";"
+>                      command=command+"cp -R --no-dereference --
+> preserve=links " + \
+> -                                    os.path.join(self.tmpdir,
+> "deploy/sdk/poky-*i686-core-image*.sh ") + \
+> +                                    os.path.join(deploy_image_dir,
+> "poky-*i686-core-image*.sh ") + \
+>                                      os.path.join(DEST,
+> X86TC_PUBLISH_DIR) + ";"
+>                      command=command+"mkdir -p " + os.path.join(DEST,
+> X8664TC_PUBLISH_DIR) + ";"
+>                      command=command+"cp -R --no-dereference --
+> preserve=links " + \
+> -                                    os.path.join(self.tmpdir,
+> "deploy/sdk/poky-*x86_64-core-image*.sh ") + \
+> +                                    os.path.join(deploy_image_dir,
+> "poky-*x86_64-core-image*.sh ") + \
+>                                      os.path.join(DEST,
+> X8664TC_PUBLISH_DIR) + ";"
+>                  elif artifact == "uninative":
+> +                    artifact_name, deploy_image_dir =
+> self.getDeployNames(artifact, buildername)
+> +                    command=command+self.generateMD5cmd(artifact,
+> deploy_image_dir)
+>                      command=command+"mkdir -p " + os.path.join(DEST,
+> X86TC_PUBLISH_DIR) + ";"
+>                      command=command+"cp -R --no-dereference --
+> preserve=links " + \
+> -                                    os.path.join(self.tmpdir,
+> "deploy/sdk/i686-nativesdk-libc* ") + \
+> +                                    os.path.join(deploy_image_dir,
+> "i686-nativesdk-libc* ") + \
+>                                      os.path.join(DEST,
+> X86TC_PUBLISH_DIR) + ";"
+>                      command=command+"mkdir -p " + os.path.join(DEST,
+> X8664TC_PUBLISH_DIR) + ";"
+>                      command=command+"cp -R --no-dereference --
+> preserve=links " + \
+> -                                    os.path.join(self.tmpdir,
+> "deploy/sdk/x86_64-nativesdk-libc* ") + \
+> +                                    os.path.join(deploy_image_dir,
+> "x86_64-nativesdk-libc* ") + \
+>                                      os.path.join(DEST,
+> X8664TC_PUBLISH_DIR) + ";"
+>                  elif artifact == "oe-toolchain":
+>                      command=command+"mkdir -p " + os.path.join(DEST,
+> X86TC_PUBLISH_DIR) + ";"
+> @@ -209,7 +215,7 @@ class PublishArtifacts(ShellCommand):
+>                                       os.path.join(self.basedir,
+> "conf/") + \
+>                                       "/* " + DEST + "/" +
+> MACHINE_PUBLISH_DIR + "/" + artifact_name + "/conf;"
+>                  elif artifact == "md5sums":
+> -                    command = command + "echo 'MD5sums are generated
+> and deployed from the image artifact';"
+> +                    command = command + "echo 'MD5sums are generated
+> and deployed from the image or toolchain artifact';"
+>                  elif artifact == "None":
+>                      command=command+"echo 'Skipping copy of " +
+> artifact + ".';"
+>                  else:
+> @@ -248,8 +254,8 @@ class PublishArtifacts(ShellCommand):
+>      def generateMD5cmd(self, artifact, deploy_dir):
+>          cmd = ""
+>          if os.environ.get('GEN_IMG_MD5') == "True":
+> -            cmd += "for x in `find " + deploy_dir + " -type f
+> -maxdepth 5`;"
+> -            cmd += "do md5sum $x >> " + "$x.md5sum; done;"
+> +            cmd += "for x in `find " + deploy_dir + " -maxdepth 5
+> -type f`;"
+> +            cmd += "do if [[ $x != *.md5sum ]]; then md5sum $x >> "
+> + "$x.md5sum; fi; done;"
+>          return cmd
+>  
+>      def getDeployNames(self, artifact, buildername):
+> @@ -258,8 +264,11 @@ class PublishArtifacts(ShellCommand):
+>              artifact_name = artifact_name + "-lsb"
+>          if "-wic" in buildername:
+>              deploy_dir_image =
+> os.path.join(os.path.join(self.tmpdir, "deploy/wic_images/"),
+> artifact)
+> -        elif artifact_name is "md5sums":
+> +        elif artifact_name == "md5sums":
+>              deploy_dir_image = os.path.join(self.tmpdir,
+> "deploy/images/")
+> +        elif artifact_name == "uninative" or artifact_name ==
+> "buildtools-tarball" \
+> +          or artifact_name == "toolchain":
+> +            deploy_dir_image = os.path.join(self.tmpdir,
+> "deploy/sdk/")
 >          else:
-> diff --git a/lib/python2.7/site-
-> packages/autobuilder/buildsteps/RunSDKSanityTests.py
-> b/lib/python2.7/site-
-> packages/autobuilder/buildsteps/RunSDKSanityTests.py
-> index 9b6eb5b..6fb3127 100644
-> --- a/lib/python2.7/site-
-> packages/autobuilder/buildsteps/RunSDKSanityTests.py
-> +++ b/lib/python2.7/site-
-> packages/autobuilder/buildsteps/RunSDKSanityTests.py
-> @@ -47,8 +47,7 @@ class RunSDKSanityTests(BitbakeShellCommand):
->          layerversion = self.getProperty("layerversion_core")
->          command = ""
->          command = command + ". ./oe-init-build-env; "
-> -        command = command + "netstat -an | grep -q 5901 ;"
-> -        command = command + 'if [ $? -ne 0 ]; then echo "Starting a
-> VNC server on :1"; vncserver :1; else echo "Will use a VNC server
-> already running on :1"; fi;'
-> +        command = command + "checkvnc; "
->          if layerversion and int(layerversion) >= 6:
->              command = command + "echo 'INHERIT += \"testimage\"' >>
-> ./conf/auto.conf;"
->              command = command + "echo 'TEST_QEMUBOOT_TIMEOUT =
-> \"1500\"' >> ./conf/auto.conf;"
-> diff --git a/lib/python2.7/site-
-> packages/autobuilder/buildsteps/RunSanityTests.py
-> b/lib/python2.7/site-
-> packages/autobuilder/buildsteps/RunSanityTests.py
-> index 4fa6dac..81e20cd 100644
-> --- a/lib/python2.7/site-
-> packages/autobuilder/buildsteps/RunSanityTests.py
-> +++ b/lib/python2.7/site-
-> packages/autobuilder/buildsteps/RunSanityTests.py
-> @@ -48,8 +48,7 @@ class RunSanityTests(BitbakeShellCommand):
->          distro = self.getProperty("DISTRO")
->          command = ""
->          command = command + ". ./oe-init-build-env; "
-> -        command = command + "netstat -an | grep -q 5901 ;"
-> -        command = command + 'if [ $? -ne 0 ]; then echo "Starting a
-> VNC server on :1"; vncserver :1; else echo "Will use a VNC server
-> already running on :1"; fi;'
-> +        command = command + "checkvnc; "
->          if distro == "poky-lsb" and layerversion and
-> int(layerversion) < 6:
->              command = "echo 'Skipping step.'"
->          elif layerversion and int(layerversion) > 1:
+>              if self.layerversion_core is not None and
+> int(self.layerversion_core) > 2:
+>                  deploy_dir_image =
+> os.path.join(os.path.join(self.tmpdir, "deploy/images/"), artifact)
 
