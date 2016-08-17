@@ -1,60 +1,46 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <rpjday@crashcourse.ca>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 355E6E00E06; Wed, 17 Aug 2016 01:50:47 -0700 (PDT)
+	id B375FE00EA5; Wed, 17 Aug 2016 06:42:35 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.223.178 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [208.80.206.84 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-io0-f178.google.com (mail-io0-f178.google.com
-	[209.85.223.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DA0CFE00D02
-	for <yocto@yoctoproject.org>; Wed, 17 Aug 2016 01:50:44 -0700 (PDT)
-Received: by mail-io0-f178.google.com with SMTP id b62so130300999iod.3
-	for <yocto@yoctoproject.org>; Wed, 17 Aug 2016 01:50:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=NKyxtuNX2mZY80j1dSwDOq7VHW6WhfsBfXEOzOWJjnA=;
-	b=Q83gfi2ouYaXuKOEX+L9jMM6RUS00Jothpjc0V3c8kkwG7tKwEG9JjbdN/2QzFnmKc
-	gYdCRmmqsUAds4x4A0l/bzgn2GmcVHFAQFPGnntVKQ1dlTNNQe62wsnpKQBUxtSWcOLQ
-	vtvbOVoisZtl5idQF3mvnD8Nkyxk1VPj8FVAH1x/fohp0g+ydBmkhX2ylzOZnUH8N5zC
-	DKbHnwg/2Vi5ILb7izI4bJoK7DbaTDl5izLSL7BP9wctFGgpW6HFa60A3PaTVls+QYqo
-	flWZvW15nmFiqTiNWAVSuAgMQrDtMh10vO7rNAhYmuaLdD8zurxqhnGG4R1933qcDY4p
-	fUfQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=NKyxtuNX2mZY80j1dSwDOq7VHW6WhfsBfXEOzOWJjnA=;
-	b=LeZ7tnjXX5wW9rAIYGYPUQXrl705+u0UEljPARlIDD95ISrHjCJf+KQCDBtF+EKMBx
-	3M0c1WuglUjSAKEqA9Y02FPBBgunGC8SeufhmsW8PZLBRgFU5GqY4I6pHbqyBwVTHkW8
-	F4GxnsuNUaYk/k3JFSYjr0q/MmUCsCVMk8VzUkbQEluMYixCXBfuM94ZLZEZbW+f4qzx
-	vNeJMmOjln2FuYLFPBOCsDveOxpbw4n48dUs0IOd2Er/7tNqc3j1InpYPv2BUaRsUQV3
-	wtZKFqIgRzF6nDQ8b/XN5/fa81w7xH2yHA2Hix20VLlM6SyGM4t5GnCn7RlK98C9whe6
-	TWQQ==
-X-Gm-Message-State: AEkoouuYqhyA+3CAQys4bhqF0pcA3/RLy6fkO12Anuk02kEhx1outANmeuNoDSLmyQf4jDbGB0A2jMVdorYDWZ9s
-X-Received: by 10.107.138.212 with SMTP id c81mr44068450ioj.148.1471423844058; 
-	Wed, 17 Aug 2016 01:50:44 -0700 (PDT)
+X-Greylist: delayed 210 seconds by postgrey-1.32 at yocto-www;
+	Wed, 17 Aug 2016 06:42:31 PDT
+Received: from smtp684.redcondor.net (smtp684.redcondor.net [208.80.206.84])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5177FE00E9C
+	for <yocto@yoctoproject.org>; Wed, 17 Aug 2016 06:42:31 -0700 (PDT)
+Received: from astoria.ccjclearline.com ([64.235.106.9])
+	by smtp684.redcondor.net ({700db0a8-6fb7-4c8b-9b2a-6812225182d8})
+	via TCP (outbound) with ESMTPS id 20160817133847243_0684;
+	Wed, 17 Aug 2016 13:38:47 +0000
+X-RC-FROM: <rpjday@crashcourse.ca>
+Received: from [216.191.234.70] (port=55618 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1ba15E-00078W-7p; Wed, 17 Aug 2016 09:40:40 -0400
+Date: Wed, 17 Aug 2016 09:38:35 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@ca624034.mitel.com
+To: Gary Thomas <gary@mlbassoc.com>
+In-Reply-To: <3090aa77-4d98-46e0-53fa-b4ba6183e29b@mlbassoc.com>
+Message-ID: <alpine.LFD.2.20.1608170927450.11498@ca624034.mitel.com>
+References: <CAF_dkJD9wqM7rg7U1VeiDs+adEREcoNna58dghfN2BvbxVLWqA@mail.gmail.com>
+	<alpine.LFD.2.20.1608161134290.9097@ca624034.mitel.com>
+	<07E2CC82-5296-4ED3-8F74-E213EC509F4D@gmail.com>
+	<alpine.LFD.2.20.1608161237490.11037@ca624034.mitel.com>
+	<3090aa77-4d98-46e0-53fa-b4ba6183e29b@mlbassoc.com>
+User-Agent: Alpine 2.20 (LFD 67 2015-01-07)
 MIME-Version: 1.0
-Received: by 10.107.18.17 with HTTP; Wed, 17 Aug 2016 01:50:23 -0700 (PDT)
-In-Reply-To: <OFA386058F.B9202DAA-ONC1258012.00240ACD-C1258012.00257505@esa-grimma.de>
-References: <OFA386058F.B9202DAA-ONC1258012.00240ACD-C1258012.00257505@esa-grimma.de>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 17 Aug 2016 09:50:23 +0100
-Message-ID: <CAJTo0Lb35+SygrQppjfFmN+x-R9FLf=neSQ=fHHWp2aWj-nW-Q@mail.gmail.com>
-To: S.Jaritz@esa-grimma.de
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: How to generate a debug version of a single application and deploy it into the image?
+X-MAG-OUTBOUND: ccj.redcondor.net@64.235.106.9/32
+Cc: yocto@yoctoproject.org
+Subject: Re: How to maintain a global DL_DIR?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,44 +52,106 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 17 Aug 2016 08:50:47 -0000
-Content-Type: multipart/alternative; boundary=001a113ed9328a2495053a408fb7
+X-List-Received-Date: Wed, 17 Aug 2016 13:42:35 -0000
+Content-Type: text/plain; charset=US-ASCII
 
---001a113ed9328a2495053a408fb7
-Content-Type: text/plain; charset=UTF-8
+On Wed, 17 Aug 2016, Gary Thomas wrote:
 
-On 17 August 2016 at 07:49, <S.Jaritz@esa-grimma.de> wrote:
-
-> In my case I have a software which do logging. The amount of the logs
-> depends on type of the build (Release skips all debug messages). Let's
-> assume that my recipe for the software(myApp) is called myApp.bb. It is
-> downloaded from an external git source and build through cmake.
+> On 2016-08-16 18:38, Robert P. J. Day wrote:
+> > On Tue, 16 Aug 2016, Khem Raj wrote:
+> >
+> > > > On Aug 16, 2016, at 8:37 AM, Robert P. J. Day <rpjday@crashcourse.ca>
+> > > > wrote:
+> > > >
+> > > > On Tue, 16 Aug 2016, Patrick Doyle wrote:
+> > > >
+> > > > > As I am playing with several different Yocto/OE projects, I thought
+> > > > > it would be nice to set up a global downloads directory.
+> > > > >
+> > > > > Also, being a somewhat forgetful sort, I thought it would be nice if
+> > > > > I could set DL_DIR in my .bashrc and not have to remember to edit
+> > > > > conf/local.conf each time I follow the directions from a third party
+> > > > > site to set up their Yocto based distribution.
+> > > > >
+> > > > > Can I do this?  If so, how?
+> > > >
+> > > > if you're talking about creating a local source mirror for tarballs
+> > > > to be shared across multiple projects, i taught an OE/YP course last
+> > > > week based on a digi ConnectCore 6 dev kit, and i wrote some wiki
+> > > > pages for it, including this one:
+> > > >
+> > > > http://www.crashcourse.ca/wiki/index.php/CC6_local_source_mirror
+> > >
+> > > a small nit, perhaps its better to use rsync instead of cp.
+> >
+> >   good point, i will adjust that later. anything else i overlooked?
 >
+> I use the attached script to manage my download mirror.  There are
+> two differences with the one Robert proposed:
+>
+> * It copies all files, regardless of name.  This is important if you
+>   want your download mirror to be useful in a no-network environment
+>   (which seems to be very important to some of my larger customers)
+>   I normally run my builds with BB_NO_NETWORK="1" which lets me know
+>   immediately if my download mirror needs updating.  I disable BB_NO_NETWORK
+>   to download the new images, then update the mirror and turn it back
+>   on again.
 
-Have a PACKAGECONFIG or similar to control whether debug is on or not, and
-manipulate it through your local.conf (eg PACKAGECONFIG_append_pn-myrecipe
-= " debug").
+  i can appreciate that ... i'm always a little irked that the bash
+patches are downloaded from the 'Net.
 
-Ross
+> * Once uploaded to the mirror, files are replaced by symbolic links
+>   just as if the file had been present in the first place.  This has
+>   two benefits - the downloads directory stays as small as possible
+>   and the next time the 'save_downloads' script runs, it won't have
+>   to bother with files already uploaded.  I use this process on a
+>   number of build machines, some with Poky/Yocto build trees that have
+>   been around for a long time (sometimes years) and keeping all those
+>   old files in 'downloads' can really add up.
 
---001a113ed9328a2495053a408fb7
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+  true, but given that i keep my local mirror reasonably up to date,
+i'm not overly concerned about leaving the occasional downloaded
+tarball in a project directory. but here's something i *am* still
+curious about.
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 17 August 2016 at 07:49,  <span dir=3D"ltr">&lt;<a href=3D"mailto:S.Jari=
-tz@esa-grimma.de" target=3D"_blank">S.Jaritz@esa-grimma.de</a>&gt;</span> w=
-rote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;borde=
-r-left:1px #ccc solid;padding-left:1ex"><font size=3D"2" face=3D"sans-serif=
-">In my case I have a software which do
-logging. The amount of the logs depends on type of the build (Release skips
-all debug messages). Let&#39;s assume that my recipe for the software(myApp=
-)
-is called myApp.bb. It is downloaded from an external git source and build
-through cmake.</font>
-<br></blockquote></div><br>Have a PACKAGECONFIG or similar to control wheth=
-er debug is on or not, and manipulate it through your local.conf (eg PACKAG=
-ECONFIG_append_pn-myrecipe =3D &quot; debug&quot;).</div><div class=3D"gmai=
-l_extra"><br></div><div class=3D"gmail_extra">Ross</div></div>
+  after a while, if you just keep adding to your local mirror, it gets
+bigger and bigger and ... after a while, will contain versions of
+tarballs that are utterly obsolete in that no current recipes refer to
+them anymore, and it's useful to just clear out the rubbish once in a
+while.
 
---001a113ed9328a2495053a408fb7--
+  is there a clever way to do that? is there some way to list all
+versions of all sopurce that are, in any way, referenced by the
+current set of recipes in the layers you have? after all, just because
+you have a newer version of a tarball in no way means that the older
+version(s) are unnecessary.
+
+  way back when, i came up with a hacky solution: i start a new
+project, point it at my local mirror, then run:
+
+  $ bitbake -c fetchall world
+
+what i end up with is, of course, piles of symlinks in the downloads/
+directory, plus any new content as actual tarballs. at that point, if
+i think what i've downloaded represents a decent cleaned
+representation, everything in the downloads/ directory is used as the
+basis for a new local source mirror, and the rest is thrown away.
+
+  sure, i'm likely to toss a few things that will be referenced in the
+future but so what, they'll be downloaded again and life will go on.
+or is there a more clever way to do this?
+
+rday
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
+
+
+
