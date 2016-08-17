@@ -1,77 +1,63 @@
-Return-Path: <Shrawan.Kumar@harman.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F1547E00DF0; Tue, 16 Aug 2016 21:47:43 -0700 (PDT)
+	id 7850FE00E05; Tue, 16 Aug 2016 21:58:19 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [216.82.243.195 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.196 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail1.bemta8.messagelabs.com (mail1.bemta8.messagelabs.com
-	[216.82.243.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7E48FE00DE5
-	for <yocto@yoctoproject.org>; Tue, 16 Aug 2016 21:47:42 -0700 (PDT)
-Received: from [216.82.242.131] by server-3.bemta-8.messagelabs.com id
-	A9/82-13762-D6CE3B75; Wed, 17 Aug 2016 04:47:41 +0000
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprPKsWRWlGSWpSXmKPExsXinSZ8TDf3zeZ
-	wg48TRC1mHdrJZjHp5Ro2ByaPeScDPdpP9LEFMEWxZuYl5VcksGYcuXOVqWCdRcWzR0cZGxgv
-	mHcxcnEICWxhlNj9/g07nLN26wdGCOcgo8SGdf9Yuxg5OdgEDCWu9NxlBLFFBFIlLj0/ygZiC
-	wukSXz9uJAVIp4u8Wrld6AaDiDbSeLG4QyQMIuAqkTb9cdgJbwC7hItlzqYIebfZZQ407ULLM
-	EpYCYx6+R0sJmMArISXxpXM4PYzALiEreezGcCsSUEBCSW7DnPDGGLSrx8DHGbhICBxNal+1g
-	gbAWJld0NbCA3MAtoSqzfpQ8xRlFiSvdDdogbBCVOznwCVi4EdNuWhb9ZJjCKzUKybRZC9ywk
-	3bOQdC9gZFnFqFGcWlSWWqRraK6XVJSZnlGSm5iZo2toYKGXm1pcnJiempOYVKyXnJ+7iREYW
-	fUMDIw7GKfsdj/EKMnBpCTKO3PixnAhvqT8lMqMxOKM+KLSnNTiQ4waHBwCVw4emc0oxZKXn5
-	eqJMF7+tXmcCHBotT01Iq0zBxg7MOUSnDwKInwXgNJ8xYXJOYWZ6ZDpE4xKkqJ874CSQiAJDJ
-	K8+DaYOnmEqOslDAvIwMDgxBPQWpRbmYJqvwrRnEORiVh3hMgU3gy80rgpr8CWswEtFhfegPI
-	4pJEhJRUA+OkU7vy5lcZK/zbbKpyQGtD+vnZ+ia1jEl9E2+VOcc3Pr924u3+276FLTPvq5vuq
-	7u99vS6GZIrvujvzD5U97jfPqHyCU9igL5G2V7DixrHc29xls3a+1Pi3u7mF8zGcsZaeSuv//
-	x1cOm8r8//RjyLeLSuyvJGfklwgbCCX2HL1aufF7GrypxTYinOSDTUYi4qTgQA7WWy+DIDAAA
-	=
-X-Env-Sender: Shrawan.Kumar@harman.com
-X-Msg-Ref: server-6.tower-76.messagelabs.com!1471409260!68589961!1
-X-Originating-IP: [75.102.19.198]
-X-StarScan-Received: 
-X-StarScan-Version: 8.84; banners=-,-,-
-X-VirusChecked: Checked
-Received: (qmail 19977 invoked from network); 17 Aug 2016 04:47:41 -0000
-Received: from unknown.ord.scnet.net (HELO HICGWSEXHC03.ad.harman.com)
-	(75.102.19.198)
-	by server-6.tower-76.messagelabs.com with AES128-SHA encrypted SMTP;
-	17 Aug 2016 04:47:41 -0000
-Received: from HIBDWSMB03.ad.harman.com (10.99.236.93) by
-	HICGWSEXHC03.ad.harman.com (10.10.23.93) with Microsoft SMTP Server
-	(TLS) id 14.3.235.1; Tue, 16 Aug 2016 23:47:40 -0500
-Received: from HIBDWSMB05.ad.harman.com (10.99.236.95) by
-	HIBDWSMB03.ad.harman.com (10.99.236.93) with Microsoft SMTP Server
-	(TLS) id 15.0.1130.7; Wed, 17 Aug 2016 10:17:15 +0530
-Received: from HIBDWSMB05.ad.harman.com ([fe80::18d8:b6af:4383:8957]) by
-	HIBDWSMB05.ad.harman.com ([fe80::18d8:b6af:4383:8957%16]) with mapi id
-	15.00.1130.005; Wed, 17 Aug 2016 10:17:15 +0530
-From: "Kumar, Shrawan" <Shrawan.Kumar@harman.com>
-To: Joshua G Lock <joshua.g.lock@linux.intel.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] Access Control List (ACL) permissions attributes not
-	getting preserved in rootfs
-Thread-Index: AQHR9KDlAw1Mgmic4E2ORVjDTkQ6JKBLdVBQgAA0kgCAAO9OMA==
-Date: Wed, 17 Aug 2016 04:47:13 +0000
-Message-ID: <294d0bec2b3444abbd143a3dd7b4ebf3@HIBDWSMB05.ad.harman.com>
-References: <9eea2233da3d4fbd8722005093c1311d@HIBDWSMB02.ad.harman.com>
-	<1471009925.19073.6.camel@linux.intel.com>
-	<b80a230f7b11491b93bf0dfe9cc93a16@HIBDWSMB05.ad.harman.com>
-	<1471377128.8414.7.camel@linux.intel.com>
-In-Reply-To: <1471377128.8414.7.camel@linux.intel.com>
-Accept-Language: en-GB, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.99.236.43]
-MIME-Version: 1.0
-Subject: Re: Access Control List (ACL) permissions attributes not getting preserved in rootfs
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pf0-f196.google.com (mail-pf0-f196.google.com
+	[209.85.192.196])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4C75BE00DF5
+	for <yocto@yoctoproject.org>; Tue, 16 Aug 2016 21:58:15 -0700 (PDT)
+Received: by mail-pf0-f196.google.com with SMTP id y134so6818230pfg.3
+	for <yocto@yoctoproject.org>; Tue, 16 Aug 2016 21:58:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:cc:subject:date:message-id;
+	bh=2cF/ZHHjelk4T3Nwxv1Iz7VjzV35yxxMYDPnV8Fiq+E=;
+	b=EDgVbhC4p9Cqj4tS3E5KbC38qTUBwk0EVJZqyICXcuMyJlh0KwRQnRC0ulzksndv2b
+	lx/M3nSjUrFF+eYmbT1yNPDdsPM3cFvFi2Oo36oyEcFwoCPaSHz6x+mGxcZnBXsJhES2
+	92khpkraEZTCaS3dxnLZWV17qoqMGD67e8Eu00y3i753Ud4tryD4gZlhmruTHuYiigkA
+	V9uU5jcEmjfGvLdYbTItLvPDnFrL39hHimxaJXn/mVdqQFbAZD0tQCSvEQ6RJaIMIKz2
+	F75FgO+35DKLEVdJ8jE++lN4JmpSeXAUNtfY99gyoCW7YbIhnYumPmiuJN8nDMCIu6eI
+	P+hw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=2cF/ZHHjelk4T3Nwxv1Iz7VjzV35yxxMYDPnV8Fiq+E=;
+	b=ZEuuGi14G8mVOW7MNyOFpHytgQQaWp0Ufu6NXl37oW026bAkHm8s6y69tCnr28Q6jT
+	4S5JeR/zq3tqJ7uhdudSOopbYqKuJC7Cxsr/RQf3iQuoOuLWlDrJbLo+X2xt4jKX2TUF
+	t6mD84RNp1/CSzfQCl5SjI5THsxroVotY/Emnt7ZlACzzvnfLgkDxcnEDWcxPhoZ28uE
+	NN4C5CXxEuGoUGq97XeGEFqJcMeONea1HDKSLoiKLD7qKvqA04G/1S6nA4LMUmjj1o9T
+	izNOlCFZ77ygUtVPylyZZDuFU8wHDAHo2biRQKy3dofokWoCyEBas888aZgFVEIpxBuw
+	cWLQ==
+X-Gm-Message-State: AEkoouv4lconegC+ilvYWboX16ckWmIZuxYmT5vu0y19gM72T5atcl6ZxfMmiRhxneB71w==
+X-Received: by 10.98.201.2 with SMTP id k2mr19341540pfg.95.1471409895401;
+	Tue, 16 Aug 2016 21:58:15 -0700 (PDT)
+Received: from localhost.localdomain (c-76-102-32-192.hsd1.ca.comcast.net.
+	[76.102.32.192]) by smtp.gmail.com with ESMTPSA id
+	t126sm43123935pfd.28.2016.08.16.21.58.13
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Tue, 16 Aug 2016 21:58:14 -0700 (PDT)
+From: Khem Raj <raj.khem@gmail.com>
+To: yocto@yoctoproject.org
+Date: Tue, 16 Aug 2016 21:58:07 -0700
+Message-Id: <20160817045807.17275-1-raj.khem@gmail.com>
+X-Mailer: git-send-email 2.9.3
+Subject: [meta-raspberrypi][PATCH] sdcard_image-rpi.bbclass: exclude IMAGEDATESTAMP from signatures of do_image_rpi_sdimg
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -83,103 +69,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 17 Aug 2016 04:47:44 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Wed, 17 Aug 2016 04:58:19 -0000
 
-SGVsbG8gSm9zaHVhLA0KDQpXZSBkaWQgbm90IHdhbnQgYmlucyBsaWtlIHNldGZhY2wsc2V0Y2Fw
-LGNoc21hY2sgIGV0Yy4uIHRvIGJlIGtlcHQgb24gdGFyZ2V0IC4NCg0KLSB3YW50ZWQgdG8gdW5k
-ZXJzdGFuZCAiaG93IGRvZXMgdGhpcyBwb3N0c2NyaXB0IGdldHMgY29waWVkIHRvIHRhcmdldCBh
-bmQgYXQgd2hpY2ggcGF0aCI/DQotICBJIHdpbGwgaGF2ZSBtdWx0aXBsZSByZWNpcGUgdGhhdCB3
-aWxsIGhhdmUgdGhpcyBwb3N0c2NyaXB0IHRvIHNldCByZXNwZWN0aXZlIHBhY2thZ2VzIGJpbidz
-ICJhY2wiIHBlcm1pc3Npb25zIGFuZCAic21hY2siIHJ1bGVzLiBJcyBpdCBwb3NzaWJsZSB0aGF0
-IGFmdGVyIGV4ZWN1dGluZyBhbGwgdGhlIHBvc3Qgc2NyaXB0IGZyb20gICBhbGwgdGhlIHJlY2lw
-ZXMgLCBJIHNoYWxsIGJlIGFibGUgdG8gdW5pbnN0YWxsIHRoZSBhY2wgYW5kIHNtYWNrIHJwbXMg
-PyBTYW1lIGFwcGxpZXMgZm9yICJzZXRjYXAiIHJwbXMuDQoNCi0gRG8geW91IGhhdmUgbmVhciBw
-bGFuIHRvIGZpeCB0aGVzZSA6KSA/DQoNCg0KDQpUaGFua3MgYW5kIFJlZ2FyZHMNClNocmF3YW4N
-Cg0KLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCkZyb206IEpvc2h1YSBHIExvY2sgW21haWx0
-bzpqb3NodWEuZy5sb2NrQGxpbnV4LmludGVsLmNvbV0gDQpTZW50OiBXZWRuZXNkYXksIEF1Z3Vz
-dCAxNywgMjAxNiAxOjIyIEFNDQpUbzogS3VtYXIsIFNocmF3YW47IHlvY3RvQHlvY3RvcHJvamVj
-dC5vcmcNClN1YmplY3Q6IFJlOiBbeW9jdG9dIEFjY2VzcyBDb250cm9sIExpc3QgKEFDTCkgcGVy
-bWlzc2lvbnMgYXR0cmlidXRlcyBub3QgZ2V0dGluZyBwcmVzZXJ2ZWQgaW4gcm9vdGZzDQoNCk9u
-IFR1ZSwgMjAxNi0wOC0xNiBhdCAxMTo1NSArMDAwMCwgS3VtYXIsIFNocmF3YW4gd3JvdGU6DQo+
-IFRoYW5rcyBKb3NodWEsDQo+IA0KPiAicG9zdGluc3QiwqDCoHdvcmtzISHCoMKgSSBjb3VsZCBz
-ZWUgdGhlIGF0dHJpYnV0ZXMgc2V0IHVuZGVyDQo+ICJwb2t5L2J1aWxkX3FlbXV4ODYvdG1wL3dv
-cmsvcWVtdXg4Ni1wb2t5LWxpbnV4L2NvcmUtaW1hZ2UtDQo+IG1pbmltYWwvMS4wLXIwL3Jvb3Rm
-cy8iLg0KPiANCj4gwqBIb3dldmVyLCBJIHN0aWxsIGNvdWxkIG5vdCBzZWUgdGhlIGF0dHJpYnV0
-ZXMgYWZ0ZXIgYm9vdGluZyBxZW11LiBJdCANCj4gc2VlbXMgZHVyaW5nIHJvb3Rmcy5leHQ0ICht
-a2ZzLmV4dDQgY29tbWFuZCApY3JlYXRpb24gd2hlbiANCj4gImNyZWF0ZV9pbWFnZV9leHQ0LnNo
-IiBpcyBjYWxsZWQgLCBhZ2FpbiB0aGlzIGlzIGdldHRpbmfCoMKgwqBsb3N0Lg0KPiANCj4gQW55
-IGlkZWEgb24gdGhpcyA/DQoNCg0KSSdtIG5vdCBzdXJlIHdoeSB0aGUgYXR0cmlidXRlIGlzbid0
-IHByZXNlcnZlZCBpbiB0aGUgaW1hZ2UsIGl0IGNvdWxkIGJlIGEgYW5vdGhlciBtaXNzaW5nIHBp
-ZWNlIGZvciBtZSB0byB0cmFjayBpbiB0aGUgcXVlc3QgdG8gYmV0dGVyIHN1cHBvcnQgeGF0dHIu
-DQoNClRoZXJlIGlzIGEgd2F5IHRvIHdvcmsgYXJvdW5kIGl0LCB0aG91Z2gg4oCUIHlvdSBjYW4g
-Zm9yY2UgdGhlIHBvc3RpbnN0IHRvIGJlIHJ1biBvbiB0aGUgdGFyZ2V0IGF0IGZpcnN0IGJvb3Qs
-IGFzIGRvY3VtZW50ZWQgaW4gdGhhdCBzYW1lIG1hbnVhbCBzZWN0aW9uLiBGb3IgZXhhbXBsZSBJ
-IGhhdmUgYSB0ZXN0IHJlY2lwZSB3aXRoOg0KDQo4PC0tLS1zbmlwLS0tLS0tLS0NCg0KcGtnX3Bv
-c3RpbnN0XyR7UE59KCkgew0KwqAgwqAgY2hvd24gZm9vOmZvbyAkRCR7ZGF0YWRpcn0veGF0dHJ0
-ZXN0L3hhdHRydGVzdA0KwqAgwqAgIyBGb3JjZSBzZXRmYWNsIHRvIHJ1biBvbiB0aGUgdGFyZ2V0
-LCBub3QgYXQgaW1hZ2UgY3JlYXRpb24NCsKgwqDCoMKgaWYgWyB4IiREIiA9ICJ4IiBdOyB0aGVu
-DQrCoMKgwqDCoMKgwqDCoMKgc2V0ZmFjbCAtbSB1OmJhcjpyLS0gJEQke2RhdGFkaXJ9L3hhdHRy
-dGVzdC94YXR0cnRlc3QNCsKgwqDCoMKgZWxzZQ0KwqDCoMKgwqDCoMKgwqDCoGV4aXQgMQ0KwqDC
-oMKgwqBmaQ0KfQ0KDQpVU0VSQUREX1BBQ0tBR0VTID0gIiR7UE59Ig0KVVNFUkFERF9QQVJBTV8k
-e1BOfSA9ICItbSBmb287LW0gYmFyIg0KUkRFUEVORFNfJHtQTn0gKz0gImFjbCINCg0KODwtLS0t
-c25pcC0tLS0tLS0tDQoNCndoaWNoIHJlc3VsdHMgaW46DQoNCiQgZ2V0ZmFjbCAvdXNyL3NoYXJl
-L3hhdHRydGVzdC94YXR0cnRlc3QNCmdldGZhY2w6IFJlbW92aW5nIGxlYWRpbmcgJy8nIGZyb20g
-YWJzb2x1dGUgcGF0aCBuYW1lcyAjIGZpbGUgL3Vzci9zaGFyZS94YXR0cnRlc3QveGF0dHJ0ZXN0
-ICMgb3duZXI6IGZvbyAjIGdyb3VwOiBmb28NCnVzZXI6OnJ3LQ0KdXNlcjpiYXI6ci0tDQpncm91
-cDo6ci0tDQptYXNrOjpyLS0NCm90aGVyOjpyLS0NCg0KVGhlIGRvd25zaWRlIGhlcmUgaXMgdGhh
-dCB5b3VyIGltYWdlIGhhcyB0byBpbmNsdWRlIHBvc3RpbnN0IHN1cHBvcnQgYW5kIHRoZSBhY2wg
-cGFja2FnZSAocGVyIHRoZSBSREVQRU5EU18ke1BOfSBsaW5lIGluIHRoZSBzbmlwcGV0IGFib3Zl
-KS4NCg0KUmVnYXJkcywNCg0KSm9zaHVhDQoNCj4gDQo+IFJlZ2FyZHMNCj4gU2hyYXdhbg0KPiAN
-Cj4gDQo+IA0KPiANCj4gDQo+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+IEZyb206IEpv
-c2h1YSBHIExvY2sgW21haWx0bzpqb3NodWEuZy5sb2NrQGxpbnV4LmludGVsLmNvbV0NCj4gU2Vu
-dDogRnJpZGF5LCBBdWd1c3QgMTIsIDIwMTYgNzoyMiBQTQ0KPiBUbzogS3VtYXIsIFNocmF3YW47
-IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcNCj4gU3ViamVjdDogUmU6IFt5b2N0b10gQWNjZXNzIENv
-bnRyb2wgTGlzdCAoQUNMKSBwZXJtaXNzaW9ucyBhdHRyaWJ1dGVzIA0KPiBub3QgZ2V0dGluZyBw
-cmVzZXJ2ZWQgaW4gcm9vdGZzDQo+IA0KPiBPbiBGcmksIDIwMTYtMDgtMTIgYXQgMTI6MzMgKzAw
-MDAsIEt1bWFyLCBTaHJhd2FuIHdyb3RlOg0KPiA+IA0KPiA+IEhlbGxvIEFsbCwNCj4gPiDCoA0K
-PiA+IEkgYW0gwqB1c2luZyDCoHBva3kg4oCcIGpldGhyb+KAnSDCoCwgYW5kIMKgdGhvdWdoIMKg
-b25lIG9mIG15IHJlY2lwZSwgSSBoYXZlIA0KPiA+IGNyZWF0ZWQgdXNlcjEgJiB1c2VyMiBhbmQg
-dGhlbiB0cnlpbmcgdG8gc2V0IEFDTCBydWxlcyDCoG9uIA0KPiA+IOKAnGhlbGxvd29ybGTigJ0g
-YmluIGFzIGJlbG93IDoNCj4gPiDCoA0KPiA+IMKgDQo+ID4gZG9faW5zdGFsbCgpIHsNCj4gPiDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIMKgwqDCoMKgIGluc3RhbGwgLWQgJHtEfSR7Ymlu
-ZGlyfQ0KPiA+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgwqDCoMKgwqAgaW5zdGFsbCAt
-bSAwNzAwIGhlbGxvd29ybGQgJHtEfSR7YmluZGlyfQ0KPiA+IMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqAgwqDCoMKgwqAgaW5zdGFsbCAtZCAke0R9L2xpYi9zeXN0ZW1kL3N5c3RlbQ0KPiA+
-IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgwqDCoMKgwqAgaW5zdGFsbCAtbSAwNzAwIGhl
-bGxvLnNlcnZpY2UgDQo+ID4gJHtEfS9saWIvc3lzdGVtZC9zeXN0ZW0vDQo+ID4gwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoCDCoMKgwqDCoCBjaG93bsKgwqDCoCB1c2VyMTpncm91cDEgJHtE
-fSR7YmluZGlyfS9oZWxsb3dvcmxkDQo+ID4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCDCoMKgwqDC
-oMKgwqDCoHNldGZhY2wgLW0gdTp1c2VyMjpyLS0gJHtEfSR7YmluZGlyfS9oZWxsb3dvcmxkIH0N
-Cj4gPiDCoA0KPiA+IMKgDQo+ID4gw6ggV2hlbiBJIHNlZcKgIMKgb24gdGhlIGRldnNoZWxsICgg
-Yml0YmFrZSBIZWxsb1dvcmxkIOKAk2MgZGV2c2hlbGwpIMKgOg0KPiA+IHBva3kvYnVpbGRfcWVt
-dXg4Ni90bXAvd29yay9xZW11eDg2LXBva3ktbGludXgvY29yZS1pbWFnZS0NCj4gPiBtaW5pbWFs
-LzEuMC1yMC9yb290ZnMvdXNyL2JpbiMgZ2V0ZmFjbCBoZWxsb3dvcmxkwqDCoMKgICwgSSBjb3Vs
-ZCBzZWUgDQo+ID4gdGhhdCBBQ0wgcGVybWlzc2lvbnMgYXJlIHNldCBjb3JyZWN0bHkgYXMgYmVs
-b3cgOg0KPiA+IC3CoMKgwqDCoMKgwqDCoCAjIGZpbGU6IGhlbGxvd29ybGQNCj4gPiAtwqDCoMKg
-wqDCoMKgwqAgIyBvd25lcjogdXNlcjENCj4gPiAtwqDCoMKgwqDCoMKgwqAgIyBncm91cDogZ3Jv
-dXAxDQo+ID4gLcKgwqDCoMKgwqDCoMKgIHVzZXI6OnJ3eA0KPiA+IC3CoMKgwqDCoMKgwqDCoCB1
-c2VyOnVzZXIyOnItLQ0KPiA+IC3CoMKgwqDCoMKgwqDCoCBncm91cDo6LS0tDQo+ID4gLcKgwqDC
-oMKgwqDCoMKgIG1hc2s6OnItLQ0KPiA+IC3CoMKgwqDCoMKgwqDCoCBvdGhlcjo6LS0tDQo+ID4g
-wqANCj4gPiBIb3dldmVyLCBJdCBkb2VzIG5vdCBzZWVtcyB0byBiZSBnZXR0aW5nIHByZXNlcnZl
-ZCBpbiByb290ZnMuIDoNCj4gPiAvcG9reS9idWlsZF9xZW11eDg2L3RtcC93b3JrL3FlbXV4ODYt
-cG9reS1saW51eC9jb3JlLWltYWdlLQ0KPiA+IG1pbmltYWwvMS4wLXIwL3Jvb3Rmcy91c3IvYmlu
-IyBnZXRmYWNsIGhlbGxvd29ybGQgIyBmaWxlOg0KPiA+IGhlbGxvd29ybGQgIw0KPiA+IG93bmVy
-OiB1c2VyMSAjIGdyb3VwOiBncm91cDEgdXNlcjo6cnd4DQo+ID4gZ3JvdXA6Oi0tLQ0KPiA+IG90
-aGVyOjotLS0NCj4gPiDCoA0KPiA+IHF1aWNrIGhlbHAgwqBoZXJlIHdvdWxkIGJlIGhpZ2hseSBh
-cHByZWNpYXRlZA0KPiANCj4gVGhpcyBpcyBkdWUgdG8gdGhlIGZhY3QgdGhhdCB3ZSBkb24ndCBj
-dXJyZW50bHkgaGF2ZSBhIG1lY2hhbmlzbSB0byANCj4gcHJlc2VydmUgeGF0dHIgdGhyb3VnaCB0
-byBpbWFnZSBjb25zdHJ1Y3Rpb25bMV0uDQo+IA0KPiBUaGUgbGFyZ2VzdCBiYXJyaWVyIGZvciBk
-b2lnIHNvIGlzIHRoYXQgdGhlIHBhY2thZ2UgbWFuYWdlcnMgDQo+IChjZXJ0YWlubHkgZHBrZyBh
-bmQgcnBtKSBkb24ndCBoYXZlIGFueSBzdXBwb3J0IGZvciB4YXR0cnMgaW4gcGFja2FnZXMgDQo+
-IChhbiBpbWFnZSBpcyBwb3B1bGF0ZWQgdmlhIHRoZSBwYWNrYWdlIG1hbmFnZXIpLg0KPiANCj4g
-VG8gdGhlIGJlc3Qgb2YgbXkga25vd2xlZGdlIHRoZSBvbmx5IG9wdGlvbiBmb3IgYWRkaW5nIHNv
-bWUgeGF0dHIvQUNMIA0KPiBpcyB0byB1c2UgYSBwb3N0aW5zdFsyXSB0byBzZXQgdGhlIGF0dHJp
-YnV0ZXMgYWZ0ZXIgdGhlIHBhY2thZ2UgaGFzIA0KPiBiZWVuIGluc3RhbGxlZC4NCj4gDQo+IFJl
-Z2FyZHMsDQo+IA0KPiBKb3NodWENCj4gDQo+IDEuwqBodHRwczovL2J1Z3ppbGxhLnlvY3RvcHJv
-amVjdC5vcmcvc2hvd19idWcuY2dpP2lkPTk4NTgNCj4gMi7CoGh0dHA6Ly93d3cueW9jdG9wcm9q
-ZWN0Lm9yZy9kb2NzLzIuMS9kZXYtbWFudWFsL2Rldi1tYW51YWwuaHRtbCNuZQ0KPiB3LQ0KPiBy
-ZWNpcGUtcG9zdC1pbnN0YWxsYXRpb24tc2NyaXB0cw0KPiANCg==
+Fixes taskhash mismatch e.g.
+
+ERROR: core-image-minimal-1.0-r0 do_image_rpi_sdimg: Taskhash mismatch 78b2e0830a66052318e5e7ffffeba193 versus 4b9bbe5dba1b48cf5cb5ad365d991de9 for /a/builder/home/kraj/work/oe/openembedded-core/meta/recipes-core/images/core-image-minimal.bb.do_image_rpi_sdimg
+ERROR: Taskhash mismatch 78b2e0830a66052318e5e7ffffeba193 versus 4b9bbe5dba1b48cf5cb5ad365d991de9 for /a/builder/home/kraj/work/oe/openembedded-core/meta/recipes-core/images/core-image-minimal.bb.do_image_rpi_sdimg
+
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
+---
+ classes/sdcard_image-rpi.bbclass | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/classes/sdcard_image-rpi.bbclass b/classes/sdcard_image-rpi.bbclass
+index a04204a..62df0b3 100644
+--- a/classes/sdcard_image-rpi.bbclass
++++ b/classes/sdcard_image-rpi.bbclass
+@@ -74,6 +74,7 @@ FATPAYLOAD ?= ""
+ IMAGEDATESTAMP = "${@time.strftime('%Y.%m.%d',time.gmtime())}"
+ IMAGE_CMD_rpi-sdimg[vardepsexclude] += "IMAGEDATESTAMP"
+ IMAGE_CMD_rpi-sdimg[vardepsexclude] += "DATETIME"
++do_image_rpi_sdimg[vardepsexclude] += "DATETIME IMAGEDATESTAMP"
+ 
+ RPI_KERNEL_VERSION := "${@get_kernelversion_file('${STAGING_KERNEL_BUILDDIR}')}"
+ 
+-- 
+2.9.3
+
 
