@@ -1,39 +1,36 @@
-Return-Path: <rpjday@crashcourse.ca>
+Return-Path: <jianxun.zhang@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 282CDE009E6; Wed, 17 Aug 2016 10:58:00 -0700 (PDT)
+	id C61EDE0096A; Wed, 17 Aug 2016 11:11:48 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [208.80.204.84 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from smtp484.redcondor.net (smtp484.redcondor.net [208.80.204.84])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0A4D8E00815
-	for <yocto@yoctoproject.org>; Wed, 17 Aug 2016 10:57:58 -0700 (PDT)
-Received: from astoria.ccjclearline.com ([64.235.106.9])
-	by smtp484.redcondor.net ({c48374e7-08df-40d9-a0de-96cc9883a037})
-	via TCP (outbound) with ESMTPS id 20160817175756628_0484
-	for <yocto@yoctoproject.org>; Wed, 17 Aug 2016 17:57:56 +0000
-X-RC-FROM: <rpjday@crashcourse.ca>
-X-RC-RCPT: <yocto@yoctoproject.org>
-Received: from [174.114.62.25] (port=57366 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1ba583-0006qF-0a
-	for yocto@yoctoproject.org; Wed, 17 Aug 2016 13:59:51 -0400
-Date: Wed, 17 Aug 2016 13:57:47 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost.localdomain
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.LFD.2.20.1608171352080.10401@localhost.localdomain>
-User-Agent: Alpine 2.20 (LFD 67 2015-01-07)
-MIME-Version: 1.0
-X-MAG-OUTBOUND: ccj.redcondor.net@64.235.106.9/32
-Subject: OE/YP on digi connectcore 6, and upcoming linuxcon in toronto
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [134.134.136.24 listed in list.dnswl.org]
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2E468E00752
+	for <yocto@yoctoproject.org>; Wed, 17 Aug 2016 11:11:45 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by orsmga102.jf.intel.com with ESMTP; 17 Aug 2016 11:11:45 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.28,535,1464678000"; d="scan'208";a="1027162604"
+Received: from jzhang80-mac02.jf.intel.com ([10.24.4.201])
+	by fmsmga001.fm.intel.com with ESMTP; 17 Aug 2016 11:11:45 -0700
+Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
+From: Jianxun Zhang <jianxun.zhang@linux.intel.com>
+In-Reply-To: <4BA368C6-B881-4299-9D28-56D790A70A48@gmail.com>
+Date: Wed, 17 Aug 2016 11:11:44 -0700
+Message-Id: <E13D4908-3FD5-4A1D-8D5E-5F9DE08B54EE@linux.intel.com>
+References: <1471389134-55008-1-git-send-email-jianxun.zhang@linux.intel.com>
+	<4BA368C6-B881-4299-9D28-56D790A70A48@gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+X-Mailer: Apple Mail (2.3124)
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH] rmc: fix allocating buffer issue in read_file() (32 bit)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,36 +42,71 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 17 Aug 2016 17:58:00 -0000
-Content-Type: text/plain; charset=US-ASCII
+X-List-Received-Date: Wed, 17 Aug 2016 18:11:48 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
 
-  first, just last week, i taught an entire week on OE/YP on the digi
-connectcore 6:
+> On Aug 16, 2016, at 5:18 PM, Khem Raj <raj.khem@gmail.com> wrote:
+>=20
+>=20
+>> On Aug 16, 2016, at 4:12 PM, Jianxun Zhang =
+<jianxun.zhang@linux.intel.com> wrote:
+>>=20
+>> Runtime test script failed on T100TA (32 bit) machine because
+>> read_file() function in rmc.c gets a wrong value of st_size from
+>> the buffer returned by stat(). We include rmc header files prior
+>> to the rest of standard header files in rmc.c, so standard data
+>> subsequently defined could be affected by "#pragma pack(1)" in rmc
+>> header files.
+>=20
+>=20
+> perhaps resetting the pragma would make it independent of positioning =
+sequence ?
+Khem,
+Good suggestion. I think pragma pack(push,1) and pop should be a =
+solution. I will try it and submit a V2 if test passes.
 
-http://www.digi.com/products/embedded-systems/single-board-computers/connectcore-6-sbc
+Thanks
 
-and, as i always do, i wrote a bunch of wiki pages on it to use during
-the class, so you're welcome to them:
-
-  http://www.crashcourse.ca/wiki/index.php/Digi_CC6
-
-not claiming those pages are totally self-contained/stand alone, but
-they're what i used and if they're helpful, terrific.
-
-  second, i'm in toronto next week for linux con/container con, so if
-any OE/YP are going to be there, hey, let's do dinner. or something.
-
-rday
-
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+>>=20
+>> Runtime test passes on T100TA and other two boards with this change.
+>>=20
+>> Signed-off-by: Jianxun Zhang <jianxun.zhang@linux.intel.com>
+>> ---
+>> src/rmc.c | 4 ++--
+>> 1 file changed, 2 insertions(+), 2 deletions(-)
+>>=20
+>> diff --git a/src/rmc.c b/src/rmc.c
+>> index 714ae3a..6cf584e 100644
+>> --- a/src/rmc.c
+>> +++ b/src/rmc.c
+>> @@ -10,8 +10,6 @@
+>> #include <stdio.h>
+>> #include <unistd.h>
+>> #include <ctype.h>
+>> -#include <rmcl.h>
+>> -#include <rsmp.h>
+>> #include <sys/types.h>
+>> #include <sys/stat.h>
+>> #include <fcntl.h>
+>> @@ -20,6 +18,8 @@
+>> #include <sys/stat.h>
+>> #include <sys/mman.h>
+>>=20
+>> +#include <rmcl.h>
+>> +#include <rsmp.h>
+>>=20
+>> #define USAGE "RMC (Runtime Machine configuration) Tool\n" \
+>>    "NOTE: Most of usages require root permission (sudo)\n" \
+>> --
+>> 2.7.4
+>>=20
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>=20
 
 
