@@ -1,44 +1,29 @@
-Return-Path: <rpjday@crashcourse.ca>
+Return-Path: <S.Jaritz@esa-grimma.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 23672E00E0D; Tue, 16 Aug 2016 23:46:31 -0700 (PDT)
+	id 54C46E00E06; Tue, 16 Aug 2016 23:49:13 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [208.80.204.85 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from smtp485.redcondor.net (smtp485.redcondor.net [208.80.204.85])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7422EE00E05
-	for <yocto@yoctoproject.org>; Tue, 16 Aug 2016 23:46:25 -0700 (PDT)
-Received: from astoria.ccjclearline.com ([64.235.106.9])
-	by smtp485.redcondor.net ({3be039ea-4351-44b0-a8af-642c38b25916})
-	via TCP (outbound) with ESMTPS id 20160817064610761_0485;
-	Wed, 17 Aug 2016 06:46:10 +0000
-X-RC-FROM: <rpjday@crashcourse.ca>
-Received: from [174.114.62.25] (port=47476 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1bZudv-0006Xs-4c; Wed, 17 Aug 2016 02:48:03 -0400
-Date: Wed, 17 Aug 2016 02:45:58 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost.localdomain
-To: Gary Thomas <gary@mlbassoc.com>
-In-Reply-To: <3090aa77-4d98-46e0-53fa-b4ba6183e29b@mlbassoc.com>
-Message-ID: <alpine.LFD.2.20.1608170245260.17602@localhost.localdomain>
-References: <CAF_dkJD9wqM7rg7U1VeiDs+adEREcoNna58dghfN2BvbxVLWqA@mail.gmail.com>
-	<alpine.LFD.2.20.1608161134290.9097@ca624034.mitel.com>
-	<07E2CC82-5296-4ED3-8F74-E213EC509F4D@gmail.com>
-	<alpine.LFD.2.20.1608161237490.11037@ca624034.mitel.com>
-	<3090aa77-4d98-46e0-53fa-b4ba6183e29b@mlbassoc.com>
-User-Agent: Alpine 2.20 (LFD 67 2015-01-07)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from gse01.esa-grimma.de (gse01.esa-grimma.de [62.41.26.213])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 14510E00D02
+	for <yocto@yoctoproject.org>; Tue, 16 Aug 2016 23:49:10 -0700 (PDT)
+To: yocto@yoctoproject.org
 MIME-Version: 1.0
-X-MAG-OUTBOUND: ccj.redcondor.net@64.235.106.9/32
-Cc: yocto@yoctoproject.org
-Subject: Re: How to maintain a global DL_DIR?
+X-KeepSent: A386058F:B9202DAA-C1258012:00240ACD;
+ type=4; name=$KeepSent
+X-Mailer: IBM Notes Release 9.0 March 08, 2013
+Message-ID: <OFA386058F.B9202DAA-ONC1258012.00240ACD-C1258012.00257505@esa-grimma.de>
+From: S.Jaritz@esa-grimma.de
+Date: Wed, 17 Aug 2016 08:49:07 +0200
+X-MIMETrack: Serialize by Router on GSE01/Server/ESA-Grimma/DE(Release
+	9.0.1FP3 HF42|February 03, 2015) at 17.08.2016 08:49:11,
+	Serialize complete at 17.08.2016 08:49:11
+Subject: How to generate a debug version of a single application and deploy it into the image?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,54 +35,182 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 17 Aug 2016 06:46:31 -0000
-Content-Type: text/plain; charset=US-ASCII
+X-List-Received-Date: Wed, 17 Aug 2016 06:49:13 -0000
+Content-Type: multipart/alternative;
+	boundary="=_alternative 00257505C1258012_="
 
-On Wed, 17 Aug 2016, Gary Thomas wrote:
+--=_alternative 00257505C1258012_=
+Content-Type: text/plain; charset="ISO-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-> On 2016-08-16 18:38, Robert P. J. Day wrote:
-> > On Tue, 16 Aug 2016, Khem Raj wrote:
-> >
-> > > > On Aug 16, 2016, at 8:37 AM, Robert P. J. Day <rpjday@crashcourse.ca>
-> > > > wrote:
-> > > >
-> > > > On Tue, 16 Aug 2016, Patrick Doyle wrote:
-> > > >
-> > > > > As I am playing with several different Yocto/OE projects, I thought
-> > > > > it would be nice to set up a global downloads directory.
-> > > > >
-> > > > > Also, being a somewhat forgetful sort, I thought it would be nice if
-> > > > > I could set DL_DIR in my .bashrc and not have to remember to edit
-> > > > > conf/local.conf each time I follow the directions from a third party
-> > > > > site to set up their Yocto based distribution.
-> > > > >
-> > > > > Can I do this?  If so, how?
-> > > >
-> > > > if you're talking about creating a local source mirror for tarballs
-> > > > to be shared across multiple projects, i taught an OE/YP course last
-> > > > week based on a digi ConnectCore 6 dev kit, and i wrote some wiki
-> > > > pages for it, including this one:
-> > > >
-> > > > http://www.crashcourse.ca/wiki/index.php/CC6_local_source_mirror
-> > >
-> > > a small nit, perhaps its better to use rsync instead of cp.
-> >
-> >   good point, i will adjust that later. anything else i overlooked?
->
-> I use the attached script to manage my download mirror...
+Hej
 
-  well, *that* escalated quickly. :-)
+Some software can be only tested on the final system. For that it would be =
 
-rday
+usefull to start with a debug version of that app and change it later to=20
+release.
 
--- 
+In my case I have a software which do logging. The amount of the logs=20
+depends on type of the build (Release skips all debug messages). Let's=20
+assume that my recipe for the software(myApp) is called myApp.bb. It is=20
+downloaded from an external git source and build through cmake.
 
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
+Some idea how to do that?
 
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+Below the pseudo recipe as a starting point:
+### myApp.bb ###
+SUMMARY =3D "my App"
+SECTION =3D "my"
+LICENSE =3D "CLOSED"
+
+inherit cmake
+
+DEPENDS =3D "libconfig libg3log"
+
+SRCREV =3D "${AUTOREV}"
+SRC=5FURI =3D "gitsm://myGitSrv/myApp;protocol=3Dhttp;branch=3Ddevelop"
+
+PVBASE :=3D "${PV}"
+PV =3D "${PVBASE}.${SRCPV}"
+
+S =3D "${WORKDIR}/git/"
+
+BBCLASSEXTEND =3D "native nativesdk"
+################
+
+Regads!
+
+Stefan Jaritz
+
+------------------------------------------------------------
+ESA Elektroschaltanlagen Grimma GmbH
+Broner Ring 30
+04668 Grimma
+Telefon: +49 3437 9211 176
+Telefax: +49 3437 9211 26
+E-Mail: s.jaritz@esa-grimma.de
+Internet: www.esa-grimma.de
 
 
+Gesch=E4ftsf=FChrer:
+Dipl.-Ing. J=F6rg Gaitzsch
+J=F6rg Reinker
+
+Sitz der Gesellschaft: Grimma
+Ust.-ID: DE 141784437
+Amtsgericht: Leipzig, HRB 5159
+Steuernummer: 238/108/00755
+
+
+Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte=20
+Informationen.=20
+Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=FCmlich=20
+erhalten=20
+haben, informieren Sie bitte sofort den Absender und l=F6schen Sie diese=20
+Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe dieser=20
+Mail=20
+ist nicht gestattet.
+
+This e-mail may contain confidential and/or privileged information. If you =
+
+are=20
+not the intended recipient (or have received this e-mail in error) please=20
+notify the sender immediately and destroy this e-mail. Any unauthorized=20
+copying, disclosure or distribution of the material in this e-mail is=20
+strictly=20
+forbidden.
+
+--=_alternative 00257505C1258012_=
+Content-Type: text/html; charset="ISO-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<font size=3D2 face=3D"sans-serif">Hej</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">Some software can be only tested on
+the final system. For that it would be usefull to start with a debug version
+of that app and change it later to release.</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">In my case I have a software which do
+logging. The amount of the logs depends on type of the build (Release skips
+all debug messages). Let's assume that my recipe for the software(myApp)
+is called myApp.bb. It is downloaded from an external git source and build
+through cmake.</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">Some idea how to do that?</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">Below the pseudo recipe as a starting
+point:</font>
+<br><font size=3D2 face=3D"sans-serif">### myApp.bb ###</font>
+<br><font size=3D2 face=3D"sans-serif">SUMMARY =3D &quot;my App&quot;</font>
+<br><font size=3D2 face=3D"sans-serif">SECTION =3D &quot;my&quot;</font>
+<br><font size=3D2 face=3D"sans-serif">LICENSE =3D &quot;CLOSED&quot;</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">inherit cmake</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">DEPENDS =3D &quot;libconfig libg3log=
+&quot;</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">SRCREV =3D &quot;${AUTOREV}&quot;</f=
+ont>
+<br><font size=3D2 face=3D"sans-serif">SRC=5FURI =3D &quot;gitsm://myGitSrv=
+/myApp;protocol=3Dhttp;branch=3Ddevelop&quot;</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">PVBASE :=3D &quot;${PV}&quot;</font>
+<br><font size=3D2 face=3D"sans-serif">PV =3D &quot;${PVBASE}.${SRCPV}&quot=
+;</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">S =3D &quot;${WORKDIR}/git/&quot;</f=
+ont>
+<br>
+<br><font size=3D2 face=3D"sans-serif">BBCLASSEXTEND =3D &quot;native nativ=
+esdk&quot;</font>
+<br><font size=3D2 face=3D"sans-serif">################</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">Regads!</font>
+<br><font size=3D2 face=3D"sans-serif"><br>
+Stefan Jaritz<br>
+<br>
+------------------------------------------------------------<br>
+ESA Elektroschaltanlagen Grimma GmbH<br>
+Broner Ring 30<br>
+04668 Grimma<br>
+Telefon: +49 3437 9211 176<br>
+Telefax: +49 3437 9211 26<br>
+E-Mail: s.jaritz@esa-grimma.de<br>
+Internet: </font><a href=3D"www.esa-grimma.de"><font size=3D2 face=3D"sans-=
+serif">www.esa-grimma.de</font></a><font size=3D2 face=3D"sans-serif"><br>
+<br>
+<br>
+Gesch=E4ftsf=FChrer:<br>
+Dipl.-Ing. J=F6rg Gaitzsch<br>
+J=F6rg Reinker<br>
+<br>
+Sitz der Gesellschaft: Grimma<br>
+Ust.-ID: DE 141784437<br>
+Amtsgericht: Leipzig, HRB 5159<br>
+Steuernummer: 238/108/00755<br>
+<br>
+<br>
+Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte Informa=
+tionen.
+<br>
+Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=FCmlich
+erhalten <br>
+haben, informieren Sie bitte sofort den Absender und l=F6schen Sie diese
+<br>
+Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe dieser
+Mail <br>
+ist nicht gestattet.<br>
+<br>
+This e-mail may contain confidential and/or privileged information. If
+you are <br>
+not the intended recipient (or have received this e-mail in error) please
+<br>
+notify the sender immediately and destroy this e-mail. Any unauthorized
+<br>
+copying, disclosure or distribution of the material in this e-mail is stric=
+tly
+<br>
+forbidden.</font>
+
+--=_alternative 00257505C1258012_=--
