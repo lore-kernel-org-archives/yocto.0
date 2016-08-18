@@ -1,38 +1,51 @@
-Return-Path: <craig.mcqueen@innerrange.com>
+Return-Path: <william.c.randle@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EF80CE00FDC; Wed, 17 Aug 2016 18:20:03 -0700 (PDT)
+	id C78E9E00FF5; Wed, 17 Aug 2016 18:41:13 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.93 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from remote.innerrange.com (vpn.innerrange.com.au [203.122.143.146])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6AECEE00C4D
-	for <yocto@yoctoproject.org>; Wed, 17 Aug 2016 18:19:58 -0700 (PDT)
-Received: from IR-CENTRAL.corp.innerrange.com ([fe80::216f:2d6c:20cc:241b]) by
-	IR-CENTRAL.corp.innerrange.com ([fe80::216f:2d6c:20cc:241b%15]) with
-	mapi; Thu, 18 Aug 2016 11:19:52 +1000
-From: Craig McQueen <craig.mcqueen@innerrange.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"ajlennon@dynamicdevices.co.uk" <ajlennon@dynamicdevices.co.uk>
-Date: Thu, 18 Aug 2016 11:19:50 +1000
-Thread-Topic: Package mono-libs-4.5 size increase in Mono version 4.4.x
-Thread-Index: AdH4T24IZo0Q1CXGRzeCiDO2PFVFdQAnhGuQ
-Message-ID: <5500469A22567C4BAF673A6E86AFA3A4022D2BE1F2C2@IR-CENTRAL.corp.innerrange.com>
-References: <5500469A22567C4BAF673A6E86AFA3A4022D2BE1F204@IR-CENTRAL.corp.innerrange.com>
-In-Reply-To: <5500469A22567C4BAF673A6E86AFA3A4022D2BE1F204@IR-CENTRAL.corp.innerrange.com>
-Accept-Language: en-US, en-AU
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 30FBBE00FF1
+	for <yocto@yoctoproject.org>; Wed, 17 Aug 2016 18:41:11 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 17 Aug 2016 18:41:11 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.28,536,1464678000"; 
+	d="scan'208,217";a="1027371704"
+Received: from orsmsx109.amr.corp.intel.com ([10.22.240.7])
+	by fmsmga001.fm.intel.com with ESMTP; 17 Aug 2016 18:41:11 -0700
+Received: from orsmsx153.amr.corp.intel.com (10.22.226.247) by
+	ORSMSX109.amr.corp.intel.com (10.22.240.7) with Microsoft SMTP Server
+	(TLS) id 14.3.248.2; Wed, 17 Aug 2016 18:41:11 -0700
+Received: from orsmsx105.amr.corp.intel.com ([169.254.2.201]) by
+	ORSMSX153.amr.corp.intel.com ([169.254.12.206]) with mapi id
+	14.03.0248.002; Wed, 17 Aug 2016 18:41:10 -0700
+From: "Randle, William C" <william.c.randle@intel.com>
+To: "joshua.g.lock@linux.intel.com" <joshua.g.lock@linux.intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto-autobuilder][PATCH] cleanup and restart crashed vnc server
+Thread-Index: AQHR+BubRqDBiCGJzEGFyy0mOS5jAaBNxccAgAAC3YCAAADYAIAAntWA
+Date: Thu, 18 Aug 2016 01:41:09 +0000
+Message-ID: <1471484469.2860.65.camel@intel.com>
+References: <1471392559-5756-1-git-send-email-william.c.randle@intel.com>
+	<1471449564.3023.11.camel@linux.intel.com>
+	<1471450179.2860.57.camel@intel.com>
+	<1471450360.19448.6.camel@linux.intel.com>
+In-Reply-To: <1471450360.19448.6.camel@linux.intel.com>
+Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-acceptlanguage: en-US, en-AU
-x-tm-as-product-ver: SMEX-11.1.0.1278-8.000.1202-22518.006
-x-tm-as-result: No--44.210500-5.000000-31
-x-tm-as-user-approved-sender: No
-x-tm-as-user-blocked-sender: No
+x-originating-ip: [10.7.199.151]
 MIME-Version: 1.0
-Subject: Re: Package mono-libs-4.5 size increase in Mono version 4.4.x
+Subject: Re: [yocto-autobuilder][PATCH] cleanup and restart crashed vnc server
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,46 +57,126 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 18 Aug 2016 01:20:04 -0000
+X-List-Received-Date: Thu, 18 Aug 2016 01:41:13 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/alternative;
+	boundary="_000_1471484469286065camelintelcom_"
 
-I wrote:
-> I've just had to upgrade from Mono 4.2.x to Mono 4.4.x, to get a fix for =
-SMTP
-> SSL/TLS.
->=20
-> I'm using the mono-libs-4.5 package. I see that the size of it has increa=
-sed
-> quite a lot (several MB) due to the upgrade. It looks as though it's now
-> putting a bunch of files in /usr/lib/mono/4.5-api in addition to the old
-> /usr/lib/mono/4.5.
->=20
-> I can see this mentioned in the Mono 4.4.0 release notes:
-> http://www.mono-project.com/docs/about-mono/releases/4.4.0/
->=20
-> But the rationale is not entirely clear to me. Is it possible to cut down=
- the
-> Yocto image size by removing one of /usr/lib/mono/4.5-api and
-> /usr/lib/mono/4.5, or some other refactoring?
+--_000_1471484469286065camelintelcom_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-It looks as though, in my image for the device, I only need /usr/lib/mono/4=
-.5.
+T24gV2VkLCAyMDE2LTA4LTE3IGF0IDE3OjEyICswMTAwLCBKb3NodWEgRyBMb2NrIHdyb3RlOg0K
+T24gV2VkLCAyMDE2LTA4LTE3IGF0IDE2OjA5ICswMDAwLCBSYW5kbGUsIFdpbGxpYW0gQyB3cm90
+ZToNCk9uIFdlZCwgMjAxNi0wOC0xNyBhdCAxNjo1OSArMDEwMCwgSm9zaHVhIEcgTG9jayB3cm90
+ZToNCg0KT24gVHVlLCAyMDE2LTA4LTE2IGF0IDE3OjA5IC0wNzAwLCBCaWxsIFJhbmRsZSB3cm90
+ZToNCg0KDQpVc2UgYSBjb21tb24gc2NyaXB0IHRvIGNoZWNrIGZvciBhIHJ1bm5pbmcgdm5jIHNl
+cnZlciwgYW5kIGlmIG5vdA0KcnVubmluZw0KY2xlYW51cCBkYW5nbGluZyBsb2NrIGZpbGVzIGFu
+ZCByZXN0YXJ0IHRoZSBzZXJ2ZXIuDQoNCltZT0NUTyAjODIxMF0NCg0KU2lnbmVkLW9mZi1ieTog
+QmlsbCBSYW5kbGUgPHdpbGxpYW0uYy5yYW5kbGVAaW50ZWwuY29tPG1haWx0bzp3aWxsaWFtLmMu
+cmFuZGxlQGludGVsLmNvbT4+DQotLS0NCiBiaW4vY2hlY2t2bmMgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB8IDEwDQorKysrKysrKysrDQogLi4uL3Np
+dGUtcGFja2FnZXMvYXV0b2J1aWxkZXIvYnVpbGRzdGVwcy9SdW5FU0RLU2FuaXR5VGVzdHMucHkg
+fCAgMw0KKy0tDQogLi4uL3NpdGUtcGFja2FnZXMvYXV0b2J1aWxkZXIvYnVpbGRzdGVwcy9SdW5P
+ZVNlbGZ0ZXN0LnB5ICAgICAgfCAgMw0KKy0tDQogLi4uL3NpdGUtcGFja2FnZXMvYXV0b2J1aWxk
+ZXIvYnVpbGRzdGVwcy9SdW5TREtTYW5pdHlUZXN0cy5weSAgfCAgMw0KKy0tDQogLi4uL3NpdGUt
+cGFja2FnZXMvYXV0b2J1aWxkZXIvYnVpbGRzdGVwcy9SdW5TYW5pdHlUZXN0cy5weSAgICAgfCAg
+Mw0KKy0tDQogNSBmaWxlcyBjaGFuZ2VkLCAxNCBpbnNlcnRpb25zKCspLCA4IGRlbGV0aW9ucygt
+KQ0KIGNyZWF0ZSBtb2RlIDEwMDc1NSBiaW4vY2hlY2t2bmMNCg0KZGlmZiAtLWdpdCBhL2Jpbi9j
+aGVja3ZuYyBiL2Jpbi9jaGVja3ZuYw0KbmV3IGZpbGUgbW9kZSAxMDA3NTUNCmluZGV4IDAwMDAw
+MDAuLjU3NGJhNDgNCi0tLSAvZGV2L251bGwNCisrKyBiL2Jpbi9jaGVja3ZuYw0KQEAgLTAsMCAr
+MSwxMCBAQA0KKyMhL2Jpbi9zaA0KKyMNCisjIGNoZWNrIGlmIHZuYyBzZXJ2ZXIgaXMgcnVubmlu
+ZywgYW5kIGlmIG5vdCwgY2xlYW51cCBhbmQgcmVzdGFydA0KKyMNCitwaWQ9JChwaWRvZiBYdm5j
+KQ0KK2lmIFtbICQ/ICE9IDAgXV07IHRoZW4NCisgICAgZWNobyAiWHZuYyBub3QgcnVubmluZywg
+YXR0ZW1wdGluZyByZXN0YXJ0Ig0KKyAgICB2bmNzZXJ2ZXIgLWtpbGwgOjENCisgICAgdm5jc2Vy
+dmVyDQoNCg0KDQpUaGUgdm5jc2VydmVyIGlzIGN1cnJlbnRseSBzdGFydGVkIHdpdGggYHZuY3Nl
+cnZlciA6MWAsIHdoZXJlYXMgdGhpcw0Kc2NyaXB0IGp1c3QgY2FsbHMgYHZuY3NlcnZlcmAg4oCU
+IGlzIHRoYXQgaW50ZW50aW9uYWwvZGVzaXJhYmxlPw0KDQpXb3VsZCBpdCBiZSBhIGxpdHRsZSBj
+bGVhbmVyL21vcmUgcm9idXN0IGlmIHdlIGRpZG4ndCBhc3N1bWUgb25seSBvbmUNClh2bmMgaW5z
+dGFuY2Ugd2FzIHJ1bm5pbmcgYW5kIGluc3RlYWQgd3JpdGUgdGhlIHBpZCBvZiB0aGUgcHJvY2Vz
+cyB3ZQ0Kc3RhcnQgdG8gYSBmaWxlIGFuZCB1c2UgdGhhdCBmaWxlIHRvIGNoZWNrIHRoZSBzdGF0
+dXM/DQoNClJlZ2FyZHMsDQoNCkpvc2h1YQ0KDQoNCg0KVGhlIHZuY3NlcnZlciBwcm9ncmFtIGlz
+IGEgc2hlbGwgc2NyaXB0IGFuZCB1c2VzIDoxIGFzIHRoZSBkZWZhdWx0IGRpc3BsYXkuDQoNClRo
+ZSBwaWQgb2YgWHZuYyBpcyB3cml0dGVuIHRvIGEgZmlsZSBhbHJlYWR5LiBUaGUgcHJvYmxlbSBp
+cywgaWYgWHZtYyBjcmFzaGVzLCB0aGUgcGlkIGZpbGUgKGFuZCBsb2NrIGZpbGUpIGFyZSBsZWZ0
+IGFyb3VuZCwgc28ganVzdCBsb29raW5nIGF0IHRoZSBwaWQgZmlsZSBleGlzdGFuY2UsIHlvdSBj
+YW4ndCB0ZWxsIGlmIGl0J3MgYWN0dWFsbHkgcnVubmluZyBvciBub3QuDQoNCkNhbiB3ZSByZWFk
+IHRoZSBwaWQgZnJvbSB0aGUgcGlkZmlsZSBhbmQgZG8gdGhlIHRpZHkgdXAgaWYgdGhlIHByb2Nl
+c3MgaXNuJ3QgcnVubmluZz8gTXkgbWFpbiBjb25jZXJuIGhlcmUgaXMgdGhhdCB3ZSBhc3N1bWUg
+b25seSBhIHNpbmdsZSBpbnN0YW5jZSBvZiBYdm5jIGlzIHJ1bm5pbmcsIEknbSBub3Qgc3VyZSBp
+ZiB0aGF0IGlzIGEgc2FmZSBhc3N1bXB0aW9uIHRvIG1ha2U/DQoNCg0KSSdsbCB0YWtlIGEgbG9v
+ayBhdCBpdC4gWW91IGNhbiBob2xkIG9mZiBtZXJnaW5nIHRoaXMgb25lIGZvciBub3cuDQoNCiAg
+ICAtQmlsbA0KDQpUaGFua3MsDQoNCkpvc2h1YQ0KDQoNCg0K
 
-In my custom layer, I've made a mono_4.4.%.bbappend file which contains:
+--_000_1471484469286065camelintelcom_
+Content-Type: text/html; charset="utf-8"
+Content-ID: <67FDDFE583A2F84288B45A9EB77B7193@intel.com>
+Content-Transfer-Encoding: base64
 
-    # Split /usr/lib/mono/4.5-api off into a separate package.
-    PACKAGES +=3D "${PN}-libs-4.5-api"
-   =20
-    FILES_${PN}-libs-4.5-api                =3D "${libdir}/mono/4.5-api/*"
-    FILES_${PN}-libs-4.5                    =3D "${libdir}/mono/4.5/*"
+PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
+dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjwvaGVhZD4NCjxib2R5IGJnY29sb3I9IiNmN2Y3
+ZjciIHRleHQ9IiMyYzJjMmMiIGxpbms9IiM0YTkwZDkiIHZsaW5rPSIjNGE5MGQ5Ij4NCjxkaXY+
+T24gV2VkLCAyMDE2LTA4LTE3IGF0IDE3OjEyICYjNDM7MDEwMCwgSm9zaHVhIEcgTG9jayB3cm90
+ZTo8L2Rpdj4NCjxibG9ja3F1b3RlIHR5cGU9ImNpdGUiPg0KPGRpdj5PbiBXZWQsIDIwMTYtMDgt
+MTcgYXQgMTY6MDkgJiM0MzswMDAwLCBSYW5kbGUsIFdpbGxpYW0gQyB3cm90ZTo8L2Rpdj4NCjxi
+bG9ja3F1b3RlIHR5cGU9ImNpdGUiPg0KPGRpdj5PbiBXZWQsIDIwMTYtMDgtMTcgYXQgMTY6NTkg
+JiM0MzswMTAwLCBKb3NodWEgRyBMb2NrIHdyb3RlOjwvZGl2Pg0KPGJsb2NrcXVvdGUgdHlwZT0i
+Y2l0ZSI+DQo8cHJlPk9uIFR1ZSwgMjAxNi0wOC0xNiBhdCAxNzowOSAtMDcwMCwgQmlsbCBSYW5k
+bGUgd3JvdGU6DQo8YmxvY2txdW90ZSB0eXBlPSJjaXRlIj4NClVzZSBhIGNvbW1vbiBzY3JpcHQg
+dG8gY2hlY2sgZm9yIGEgcnVubmluZyB2bmMgc2VydmVyLCBhbmQgaWYgbm90DQpydW5uaW5nDQpj
+bGVhbnVwIGRhbmdsaW5nIGxvY2sgZmlsZXMgYW5kIHJlc3RhcnQgdGhlIHNlcnZlci4NCg0KW1lP
+Q1RPICM4MjEwXQ0KDQpTaWduZWQtb2ZmLWJ5OiBCaWxsIFJhbmRsZSAmbHQ7PGEgaHJlZj0ibWFp
+bHRvOndpbGxpYW0uYy5yYW5kbGVAaW50ZWwuY29tIj53aWxsaWFtLmMucmFuZGxlQGludGVsLmNv
+bTwvYT4mZ3Q7DQotLS0NCiZuYnNwO2Jpbi9jaGVja3ZuYyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
+OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZu
+YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
+OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZu
+YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
+OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwO3wg
+MTANCiYjNDM7JiM0MzsmIzQzOyYjNDM7JiM0MzsmIzQzOyYjNDM7JiM0MzsmIzQzOyYjNDM7DQom
+bmJzcDsuLi4vc2l0ZS1wYWNrYWdlcy9hdXRvYnVpbGRlci9idWlsZHN0ZXBzL1J1bkVTREtTYW5p
+dHlUZXN0cy5weSB8Jm5ic3A7Jm5ic3A7Mw0KJiM0MzstLQ0KJm5ic3A7Li4uL3NpdGUtcGFja2Fn
+ZXMvYXV0b2J1aWxkZXIvYnVpbGRzdGVwcy9SdW5PZVNlbGZ0ZXN0LnB5Jm5ic3A7Jm5ic3A7Jm5i
+c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7fCZuYnNwOyZuYnNwOzMNCiYjNDM7LS0NCiZuYnNwOy4uLi9z
+aXRlLXBhY2thZ2VzL2F1dG9idWlsZGVyL2J1aWxkc3RlcHMvUnVuU0RLU2FuaXR5VGVzdHMucHkm
+bmJzcDsmbmJzcDt8Jm5ic3A7Jm5ic3A7Mw0KJiM0MzstLQ0KJm5ic3A7Li4uL3NpdGUtcGFja2Fn
+ZXMvYXV0b2J1aWxkZXIvYnVpbGRzdGVwcy9SdW5TYW5pdHlUZXN0cy5weSZuYnNwOyZuYnNwOyZu
+YnNwOyZuYnNwOyZuYnNwO3wmbmJzcDsmbmJzcDszDQomIzQzOy0tDQombmJzcDs1IGZpbGVzIGNo
+YW5nZWQsIDE0IGluc2VydGlvbnMoJiM0MzspLCA4IGRlbGV0aW9ucygtKQ0KJm5ic3A7Y3JlYXRl
+IG1vZGUgMTAwNzU1IGJpbi9jaGVja3ZuYw0KDQpkaWZmIC0tZ2l0IGEvYmluL2NoZWNrdm5jIGIv
+YmluL2NoZWNrdm5jDQpuZXcgZmlsZSBtb2RlIDEwMDc1NQ0KaW5kZXggMDAwMDAwMC4uNTc0YmE0
+OA0KLS0tIC9kZXYvbnVsbA0KJiM0MzsmIzQzOyYjNDM7IGIvYmluL2NoZWNrdm5jDQpAQCAtMCww
+ICYjNDM7MSwxMCBAQA0KJiM0MzsjIS9iaW4vc2gNCiYjNDM7Iw0KJiM0MzsjIGNoZWNrIGlmIHZu
+YyBzZXJ2ZXIgaXMgcnVubmluZywgYW5kIGlmIG5vdCwgY2xlYW51cCBhbmQgcmVzdGFydA0KJiM0
+MzsjDQomIzQzO3BpZD0kKHBpZG9mIFh2bmMpDQomIzQzO2lmIFtbICQ/ICE9IDAgXV07IHRoZW4N
+CiYjNDM7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7ZWNobyAmcXVvdDtYdm5jIG5vdCBydW5uaW5n
+LCBhdHRlbXB0aW5nIHJlc3RhcnQmcXVvdDsNCiYjNDM7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
+dm5jc2VydmVyIC1raWxsIDoxDQomIzQzOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwO3ZuY3NlcnZl
+cg0KPC9ibG9ja3F1b3RlPg0KDQpUaGUgdm5jc2VydmVyIGlzIGN1cnJlbnRseSBzdGFydGVkIHdp
+dGggYHZuY3NlcnZlciA6MWAsIHdoZXJlYXMgdGhpcw0Kc2NyaXB0IGp1c3QgY2FsbHMgYHZuY3Nl
+cnZlcmAg4oCUIGlzIHRoYXQgaW50ZW50aW9uYWwvZGVzaXJhYmxlPw0KDQpXb3VsZCBpdCBiZSBh
+IGxpdHRsZSBjbGVhbmVyL21vcmUgcm9idXN0IGlmIHdlIGRpZG4ndCBhc3N1bWUgb25seSBvbmUN
+Clh2bmMgaW5zdGFuY2Ugd2FzIHJ1bm5pbmcgYW5kIGluc3RlYWQgd3JpdGUgdGhlIHBpZCBvZiB0
+aGUgcHJvY2VzcyB3ZQ0Kc3RhcnQgdG8gYSBmaWxlIGFuZCB1c2UgdGhhdCBmaWxlIHRvIGNoZWNr
+IHRoZSBzdGF0dXM/DQoNClJlZ2FyZHMsDQoNCkpvc2h1YQ0KDQo8L3ByZT4NCjwvYmxvY2txdW90
+ZT4NCjxkaXY+PGJyPg0KPC9kaXY+DQo8ZGl2PlRoZSB2bmNzZXJ2ZXIgcHJvZ3JhbSBpcyBhIHNo
+ZWxsIHNjcmlwdCBhbmQgdXNlcyA6MSBhcyB0aGUgZGVmYXVsdCBkaXNwbGF5LjwvZGl2Pg0KPGRp
+dj48YnI+DQo8L2Rpdj4NCjxkaXY+VGhlIHBpZCBvZiBYdm5jIGlzIHdyaXR0ZW4gdG8gYSBmaWxl
+IGFscmVhZHkuIFRoZSBwcm9ibGVtIGlzLCBpZiBYdm1jIGNyYXNoZXMsIHRoZSBwaWQgZmlsZSAo
+YW5kIGxvY2sgZmlsZSkgYXJlIGxlZnQgYXJvdW5kLCBzbyBqdXN0IGxvb2tpbmcgYXQgdGhlIHBp
+ZCBmaWxlIGV4aXN0YW5jZSwgeW91IGNhbid0IHRlbGwgaWYgaXQncyBhY3R1YWxseSBydW5uaW5n
+IG9yIG5vdC48L2Rpdj4NCjwvYmxvY2txdW90ZT4NCjxkaXY+PGJyPg0KPC9kaXY+DQo8ZGl2PkNh
+biB3ZSByZWFkIHRoZSBwaWQgZnJvbSB0aGUgcGlkZmlsZSBhbmQgZG8gdGhlIHRpZHkgdXAgaWYg
+dGhlIHByb2Nlc3MgaXNuJ3QgcnVubmluZz8gTXkgbWFpbiBjb25jZXJuIGhlcmUgaXMgdGhhdCB3
+ZSBhc3N1bWUgb25seSBhIHNpbmdsZSBpbnN0YW5jZSBvZiBYdm5jIGlzIHJ1bm5pbmcsIEknbSBu
+b3Qgc3VyZSBpZiB0aGF0IGlzIGEgc2FmZSBhc3N1bXB0aW9uIHRvIG1ha2U/PC9kaXY+DQo8ZGl2
+Pjxicj4NCjwvZGl2Pg0KPC9ibG9ja3F1b3RlPg0KPGRpdj48YnI+DQo8L2Rpdj4NCjxkaXY+SSds
+bCB0YWtlIGEgbG9vayBhdCBpdC4gWW91IGNhbiBob2xkIG9mZiBtZXJnaW5nIHRoaXMgb25lIGZv
+ciBub3cuPC9kaXY+DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPGRpdj4mbmJzcDsgJm5ic3A7IC1CaWxs
+PC9kaXY+DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPGJsb2NrcXVvdGUgdHlwZT0iY2l0ZSI+DQo8ZGl2
+PlRoYW5rcyw8L2Rpdj4NCjxkaXY+PGJyPg0KPC9kaXY+DQo8ZGl2Pkpvc2h1YTwvZGl2Pg0KPGJs
+b2NrcXVvdGUgdHlwZT0iY2l0ZSI+DQo8YmxvY2txdW90ZSB0eXBlPSJjaXRlIj4NCjxwcmU+PGJs
+b2NrcXVvdGUgdHlwZT0iY2l0ZSI+DQo8L2Jsb2NrcXVvdGU+PC9wcmU+DQo8L2Jsb2NrcXVvdGU+
+DQo8L2Jsb2NrcXVvdGU+DQo8L2Jsb2NrcXVvdGU+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
 
-My image includes the package mono-libs-4.5 (as it did before when I was us=
-ing Mono 4.2.x). Now the image size is back to near what it was for Mono 4.=
-2.x, and everything on the target device seems to be running fine.
-
---=20
-Craig McQueen
-
-
+--_000_1471484469286065camelintelcom_--
