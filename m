@@ -1,28 +1,31 @@
-Return-Path: <pokybuild@yoctoproject.org>
+Return-Path: <william.c.randle@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C8564E0104D; Fri, 19 Aug 2016 08:22:37 -0700 (PDT)
+	id 8B1EDE00547; Fri, 19 Aug 2016 09:27:58 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=unavailable version=3.3.1
-X-Spam-HAM-Report: * -1.0 ALL_TRUSTED Passed through trusted hosts only via
-	SMTP * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.88 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from ubuntu1404.i.yoctoproject.org (ab02 [10.0.10.102])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 10BDBE00F57;
-	Fri, 19 Aug 2016 08:22:35 -0700 (PDT)
-Received: by ubuntu1404.i.yoctoproject.org (Postfix, from userid 1006)
-	id AE0DF54009C; Fri, 19 Aug 2016 15:22:34 +0000 (UTC)
-Date: Fri, 19 Aug 2016 15:22:34 +0000
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 618A8E00288
+	for <yocto@yoctoproject.org>; Fri, 19 Aug 2016 09:27:54 -0700 (PDT)
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+	by fmsmga101.fm.intel.com with ESMTP; 19 Aug 2016 09:27:54 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.28,544,1464678000"; d="scan'208";a="868336691"
+Received: from wcrandle-mobl1.amr.corp.intel.com ([10.254.99.187])
+	by orsmga003.jf.intel.com with ESMTP; 19 Aug 2016 09:27:54 -0700
+From: Bill Randle <william.c.randle@intel.com>
 To: yocto@yoctoproject.org
-User-Agent: Heirloom mailx 12.5 6/20/10
-MIME-Version: 1.0
-Message-Id: <20160819152234.AE0DF54009C@ubuntu1404.i.yoctoproject.org>
-From: pokybuild@yoctoproject.org (Poky Build User)
-X-Mailman-Approved-At: Fri, 19 Aug 2016 08:56:23 -0700
-Cc: otavio@ossystems.com.br
-Subject: Build available for QA
+Date: Fri, 19 Aug 2016 09:27:33 -0700
+Message-Id: <1471624053-7572-1-git-send-email-william.c.randle@intel.com>
+X-Mailer: git-send-email 2.5.5
+Subject: [yocto-autobuilder][PATCH] SendQAEmail.py: cleanup email formatting
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,28 +37,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 19 Aug 2016 15:22:37 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 19 Aug 2016 16:27:58 -0000
 
--e 
-    A build identified as needing QA has finished on the autobuilder. This
-    build is located at:
+"-e" option is not required and gets inserted into email text if present.
 
+Signed-off-by: Bill Randle <william.c.randle@intel.com>
+---
+ lib/python2.7/site-packages/autobuilder/buildsteps/SendQAEmail.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-    http://autobuilder.yoctoproject.org/pub/nightly/20160819-1
+diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/SendQAEmail.py b/lib/python2.7/site-packages/autobuilder/buildsteps/SendQAEmail.py
+index 3691cc6..1bb2893 100644
+--- a/lib/python2.7/site-packages/autobuilder/buildsteps/SendQAEmail.py
++++ b/lib/python2.7/site-packages/autobuilder/buildsteps/SendQAEmail.py
+@@ -95,7 +95,7 @@ Please begin QA on this build as soon as possible.''' % (rel_name, self.getPrope
+ 
+             email_header += "Subject: " + mailsubject + "\n"
+ 
+-            mailcmd = 'echo -e "' + email_header + "\n" + email_base + '\n' + email_body + '\n' + mailsig + ' " | sendmail -t'
++            mailcmd = 'echo "' + email_header + "\n" + email_base + '\n' + email_body + '\n' + mailsig + ' " | sendmail -t'
+ 
+             self.command = mailcmd
+         else:
+-- 
+2.5.5
 
-
-Build hash information: 
-meta-qt4 : 92a72a790a427af5f85ce86fea4fce86a72c7b58 
-meta-intel : 5326759e90180523da3617becfab4a7e21d7ebde 
-meta-minnow : 9c965ef5252e383843d796cd8b50c61b3034b6ae 
-meta-qt3 : 44cbc64ccaee2050d1c1d5755023c0bf604615a1 
-poky : f038f069977170e323c9c6884c69e0b9e1cf1c6f 
-
-
-This is an automated message from
-The Yocto Project Autobuilder
-Git: git://git.yoctoproject.org/yocto-autobuilder
-Email: pidge@toganlabs.com 
 
