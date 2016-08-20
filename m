@@ -1,68 +1,64 @@
-Return-Path: <chriskot@quietwind.net>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C86FDE00D47; Sat, 20 Aug 2016 01:34:18 -0700 (PDT)
+	id 9C222E00DEA; Sat, 20 Aug 2016 10:19:45 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00, HTML_FONT_FACE_BAD, 
-	HTML_MESSAGE,RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (akuster808[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.194 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  1.0 HTML_FONT_FACE_BAD BODY: HTML font face is not a word
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [69.89.23.142 listed in list.dnswl.org]
-X-Greylist: delayed 396 seconds by postgrey-1.32 at yocto-www;
-	Sat, 20 Aug 2016 01:34:16 PDT
-Received: from gproxy4-pub.mail.unifiedlayer.com
-	(gproxy4-pub.mail.unifiedlayer.com [69.89.23.142])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 79E9EE007B1
-	for <yocto@yoctoproject.org>; Sat, 20 Aug 2016 01:34:16 -0700 (PDT)
-Received: (qmail 2286 invoked by uid 0); 20 Aug 2016 08:27:35 -0000
-Received: from unknown (HELO CMOut01) (10.0.90.82)
-	by gproxy4.mail.unifiedlayer.com with SMTP; 20 Aug 2016 08:27:35 -0000
-Received: from host288.hostmonster.com ([74.220.215.88]) by CMOut01 with 
-	id ZLTT1t00P1v0fLi01LTW6C; Sat, 20 Aug 2016 02:27:34 -0600
-X-Authority-Analysis: v=2.1 cv=FKmImYYs c=1 sm=1 tr=0
-	a=ELBcn9xbBe8RKOfaP8USrg==:117 a=ELBcn9xbBe8RKOfaP8USrg==:17
-	a=L9H7d07YOLsA:10 a=9cW_t1CCXrUA:10 a=s5jvgZ67dGcA:10 a=clz3kh7j980A:10
-	a=elf5DX8K3HcA:10 a=7z1cN_iqozsA:10 a=r77TgQKjGQsHNAKrUKIA:9
-	a=bBPkwenoCCrbGojT5eIA:9 a=QEXdDO2ut3YA:10 a=gGqrDZ-pKeX1utRhvs0A:9
-	a=08FI0AyVIkROfgPA:21 a=_W_S_7VecoQA:10
-Received: from 45-17-238-199.lightspeed.rcsntx.sbcglobal.net
-	([45.17.238.199]:36656 helo=localhost.localdomain)
-	by host288.hostmonster.com with esmtpsa
-	(TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.86_2)
-	(envelope-from <chriskot@quietwind.net>) id 1bb1cm-0004mi-MW
-	for yocto@yoctoproject.org; Sat, 20 Aug 2016 02:27:28 -0600
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pf0-f194.google.com (mail-pf0-f194.google.com
+	[209.85.192.194])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 401BAE00DDF
+	for <yocto@yoctoproject.org>; Sat, 20 Aug 2016 10:19:43 -0700 (PDT)
+Received: by mail-pf0-f194.google.com with SMTP id g202so3325258pfb.1
+	for <yocto@yoctoproject.org>; Sat, 20 Aug 2016 10:19:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:subject:date:message-id;
+	bh=kzAYhclu2+eMtVI9SCv3HavuAedLo7hS0/n3GYJzyCc=;
+	b=YTTVltGRajmJakt9J7b5/iBbcQr4ncN1So5kaEYRylPpuQre/Cdytgd/Wu6jJJYUyr
+	smGDM8xrOEyRpXU39cMYrEQgmUJiC4bI/9FaKckCya9BKzLaK38DQB32miTgf0UmIQT5
+	GIHkdtVQBygVIk6+Fmy5Poj/J9vwhVmB/eUA1CHfkUwMH6DXtN+0bEkkgYyb9sz0ekV6
+	hKsIsPH2l/AyP65dN1eQdE9pxe6WSAPvzuM8I/hhZMo+POvF/m4gR7ipxshr41ld5pBL
+	irtm8mUjxy5mYs1fwA6m5Ek/ncBkvvTMmZ1SKIjqwU/IFRXaCs9xOZAHLSSP/qfR9elM
+	uDCA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:from:to:subject:date:message-id;
+	bh=kzAYhclu2+eMtVI9SCv3HavuAedLo7hS0/n3GYJzyCc=;
+	b=XWEYdXkWm75n4fr+s3zMsATySQyK+/qIRxrkXxF2MbpAcgsDLdyU/mVOdPM0AoUoxM
+	rnKTk7KXaNs3FzzDBxiBKVYJoGd617jZmjqtW8vHeiZTS46HuS8cBYNeCbwejoGwi5y+
+	K3KEdUXqU8Q6/FUHfMXu1qAaWZr9UFRg5HcsSkHWx5Wit0dVj7o3IXwA6dttLEyE0EmY
+	/lUgcP6m8VUDzcJJunXTreiELuej5i8bDcvqI2iCWj84zq0jf5X8tRv6meaUlmQChNRp
+	k5H5ybZYVUhT4wGAUFAGpqKHK0sZtHIAjJ4s8+3bJzwR7e05lrgODvzwgqNxOTaKZ4Fn
+	QJ8g==
+X-Gm-Message-State: AEkoouuwvK4FFhaUOvey6HREbXZhTFqynRH3Fp2X6HKOvNeS2NEAHJn2FlNImWSJSI6VDg==
+X-Received: by 10.98.30.133 with SMTP id e127mr26101125pfe.104.1471713582967; 
+	Sat, 20 Aug 2016 10:19:42 -0700 (PDT)
+Received: from localhost.localdomain
+	([2600:100f:b006:11d8:c88c:14a3:603f:3b7d])
+	by smtp.gmail.com with ESMTPSA id
+	f12sm15365466pfj.31.2016.08.20.10.19.39 for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Sat, 20 Aug 2016 10:19:41 -0700 (PDT)
+From: Armin Kuster <akuster808@gmail.com>
 To: yocto@yoctoproject.org
-From: Chris Kottaridis <chriskot@quietwind.net>
-Message-ID: <f13cdd53-4e5c-4fa0-54b5-6cf02971f494@quietwind.net>
-Date: Sat, 20 Aug 2016 03:27:27 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.0
-MIME-Version: 1.0
-X-Identified-User: {2690:host288.hostmonster.com:quietwin:quietwind.net}
-	{sentby:smtp auth 45.17.238.199 authed with
-	chriskot@quietwind.net}
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - host288.hostmonster.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - quietwind.net
-X-Source-IP: 45.17.238.199
-X-Exim-ID: 1bb1cm-0004mi-MW
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Source-Sender: 45-17-238-199.lightspeed.rcsntx.sbcglobal.net
-	(localhost.localdomain) [45.17.238.199]:36656
-X-Source-Auth: chriskot@quietwind.net
-X-Email-Count: 0
-X-Source-Cap: cXVpZXR3aW47cXVpZXR3aW47aG9zdDI4OC5ob3N0bW9uc3Rlci5jb20=
-Subject: Accessing analog pins on BeagleBone Black
+Date: Sat, 20 Aug 2016 10:19:35 -0700
+Message-Id: <1471713575-19243-1-git-send-email-akuster808@gmail.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [meta-security][PATCH] clamav: fix gcc 6.x build failure.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,139 +70,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 20 Aug 2016 08:34:18 -0000
-Content-Type: multipart/alternative;
-	boundary="------------8B2AC8BF94F74D987301819A"
+X-List-Received-Date: Sat, 20 Aug 2016 17:19:45 -0000
 
---------------8B2AC8BF94F74D987301819A
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+./llvm/include/llvm/Support/AlignOf.h:57:24: error: expected unqualified-id before 'alignof'
+ static inline unsigned alignof() { return AlignOf<T>::Alignment; }
+                        ^~~~~~~
 
-I followed the quick start guide, essentially
-==========================
-1. checked out krogoth
+compile with -std=gnu++98
 
-ran:
-2. source oe-init-build-env
+alt in future is to us llvm3X and configure --with-system-llvm --with-llvm-linking=dynamic.
 
-3. Changed config file to enable BEAGLEBONE
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ recipes-security/clamav/clamav_0.99.2.bb | 2 ++
+ 1 file changed, 2 insertions(+)
 
-MACHINE ?= "beaglebone"
-
-ran
-4. $ bitbake core-image-sato
-
-5. Found steps to build image on micro SD
-
-Successfully booted from microSD and got login prompt on serial port and 
-a graphical output on HDMI.
-
-6. Tested control of LEDs
-I was able to follow these steps to control the 4 LEDs on the board
-
-Set LED = 53-56 and run this
-echo $LED > /sys/class/gpio/export
-echo out > /sys/class/gpio/gpio$LED/direction
-
-Then I can set each LED by writing a $VAL of either 1 or 0 turn turn on 
-and off the LED:
-
-echo $VAL > /sys/class/gpio/gpio$LED/value
-==================================
+diff --git a/recipes-security/clamav/clamav_0.99.2.bb b/recipes-security/clamav/clamav_0.99.2.bb
+index 184d605..73905a7 100644
+--- a/recipes-security/clamav/clamav_0.99.2.bb
++++ b/recipes-security/clamav/clamav_0.99.2.bb
+@@ -50,6 +50,8 @@ EXTRA_OECONF += " --with-user=${UID}  --with-group=${GID} \
+             --disable-rpath \
+             "
+ 
++CXXFLAGS += "--std=gnu++98"
++
+ do_configure () {
+     cd ${S}
+     ./configure ${CONFIGUREOPTS} ${EXTRA_OECONF} 
+-- 
+2.7.4
 
 
-All of this is great but I want access to the Analog to Digital pins to 
-read an analog value on one of the pins.
-
-The only instructions I can find claim I have to do the following to 
-create the ain* devices
-
-|echo cape-bone-iio > /sys/devices/bone_capemgr.*/slots|
-
-But on my machine I don't have a /sys/devices/bone_capemgr directory.
-
-So, I don't know if these steps apply to Yocto kernel or not, or if I 
-need to enable a kernel config option that isn't enabled by default to 
-get the bone_capemgr directory to appear.
-
-How do I get access to the Analog to Digital pins on the BeagleBone 
-Black board in Yocto ?
-
-Any pointers appreciated.
-
-Thanks
-Chris Kottaridis
-
-
---------------8B2AC8BF94F74D987301819A
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 7bit
-
-<html>
-  <head>
-
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    I followed the quick start guide, essentially<br>
-    ==========================<br>
-    1. checked out krogoth<br>
-    <br>
-    ran:<br>
-    2. source oe-init-build-env<br>
-    <br>
-    3. Changed config file to enable BEAGLEBONE<br>
-    <br>
-    MACHINE ?= "beaglebone"<br>
-    <br>
-    ran<br>
-    4. $ bitbake core-image-sato<br>
-    <br>
-    5. Found steps to build image on micro SD<br>
-    <br>
-    Successfully booted from microSD and got login prompt on serial port
-    and a graphical output on HDMI.<br>
-    <br>
-    6. Tested control of LEDs<br>
-    I was able to follow these steps to control the 4 LEDs on the board<br>
-    <br>
-    Set LED = 53-56 and run this<br>
-    echo $LED &gt; /sys/class/gpio/export<br>
-    echo out &gt; /sys/class/gpio/gpio$LED/direction<br>
-    <br>
-    Then I can set each LED by writing a $VAL of either 1 or 0 turn turn
-    on and off the LED:<br>
-    <br>
-    echo $VAL &gt; /sys/class/gpio/gpio$LED/value<br>
-    ==================================<br>
-    <br>
-    <br>
-    All of this is great but I want access to the Analog to Digital pins
-    to read an analog value on one of the pins.<br>
-    <br>
-    The only instructions I can find claim I have to do the following to
-    create the ain* devices<br>
-    <br>
-    <font color="#666666" face="'courier new', monospace" size="3"><span
-        style="line-height:20px"><code>echo cape-bone-iio &gt;
-          /sys/devices/bone_capemgr.*/slots</code></span></font><br>
-    <br>
-    But on my machine I don't have a /sys/devices/bone_capemgr
-    directory.<br>
-    <br>
-    So, I don't know if these steps apply to Yocto kernel or not, or if
-    I need to enable a kernel config option that isn't enabled by
-    default to get the bone_capemgr directory to appear.<br>
-    <br>
-    How do I get access to the Analog to Digital pins on the BeagleBone
-    Black board in Yocto ?<br>
-    <br>
-    Any pointers appreciated.<br>
-    <br>
-    Thanks<br>
-    Chris Kottaridis<br>
-    <br>
-  </body>
-</html>
-
---------------8B2AC8BF94F74D987301819A--
