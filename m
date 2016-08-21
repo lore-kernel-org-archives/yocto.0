@@ -1,30 +1,59 @@
-Return-Path: <william.c.randle@intel.com>
+Return-Path: <andreas2025@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 121A3E007B7; Sat, 20 Aug 2016 15:51:34 -0700 (PDT)
+	id EF4A3E00F0E; Sun, 21 Aug 2016 06:55:06 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (andreas2025[at]gmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 63 seconds by postgrey-1.32 at yocto-www;
-	Sat, 20 Aug 2016 15:51:30 PDT
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DE69BE004F1
-	for <yocto@yoctoproject.org>; Sat, 20 Aug 2016 15:51:30 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga105.jf.intel.com with ESMTP; 20 Aug 2016 15:50:27 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.28,551,1464678000"; d="scan'208";a="1017946555"
-Received: from wcrandle-mobl1.amr.corp.intel.com ([10.255.88.194])
-	by orsmga001.jf.intel.com with ESMTP; 20 Aug 2016 15:50:26 -0700
-From: Bill Randle <william.c.randle@intel.com>
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.217.177 listed in list.dnswl.org]
+Received: from mail-ua0-f177.google.com (mail-ua0-f177.google.com
+	[209.85.217.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6B521E00F08
+	for <yocto@yoctoproject.org>; Sun, 21 Aug 2016 06:55:03 -0700 (PDT)
+Received: by mail-ua0-f177.google.com with SMTP id 97so149877899uav.3
+	for <yocto@yoctoproject.org>; Sun, 21 Aug 2016 06:55:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=ndDi2yFGHEUF92asJrTJ/Y8kX5p7upZre1lHGYIhi4o=;
+	b=boc47oAyDm3LAaGiW1u06RPUxj9yX+w2p4aJIo9d6VVhvPvzNh9VXyzZljJw26yQ3R
+	nHieEoI/wmfhTTp/EhQmxwnsx1TsFHUXYYfL9nM9vWDOgsW5EBRWzuom0Q6WtIBvBLGy
+	XHa78wFalW8qBq2tCSeRRdWn8JMehzOEd2nrc6mk8anQw5Qv+wzWu+WDgzQgohwvkX5n
+	HYLCpZDHlyo1pOc0lLXDle9FbO46mjbuLS+gNVynlw7KD6P41pgOpqHgblIUtAAv81x5
+	M31bjIDF+9hJf04J1rtkWfttcERuHWAY46aiE9f9zFBNck5V5iBBiCIdUFMMa2mfA+R5
+	JnvQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=ndDi2yFGHEUF92asJrTJ/Y8kX5p7upZre1lHGYIhi4o=;
+	b=cSyVbzxFwvJCLBwjNfIVtyrn9neRAIDFQCbyJGCeYeC8oVcjPfLBSohT5BM3Qgjul0
+	a1R0V9vdh9g5ysTp3R/iVQAj3ugAo6fNGqNnAj6dWyJa6RziUv5WA2N3L3uTHaDfw7Jh
+	bCUOB92rX0ZQxDab/h8L6IX4PSMB7fO/IaNKa/h3dHJSgJeRw3DcCjvDgvcCJ+/I5L2Z
+	lsLZg3F2rZjyqd01ANJPCxm0nXMo+14S4xgULUK7cIgcAtk4hJLhqfGaSbvi9pDQxawS
+	lQCPRXTKjpRRMfTFmL4wo5NjphjmXpVB83YAdCY7ioLcCKWSS7JeWI6WrZEarv9S8/2Y
+	psTQ==
+X-Gm-Message-State: AEkoouv83LbjyO2U1jOa2AfjcJh+soHt7SLo6+fqKNqCN3R9haas8CAcVIUvOaQJU6D+Nommu2jrp3J0+AfGlA==
+X-Received: by 10.176.5.67 with SMTP id 61mr8733160uax.35.1471787702402; Sun,
+	21 Aug 2016 06:55:02 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.103.124.207 with HTTP; Sun, 21 Aug 2016 06:55:02 -0700 (PDT)
+From: Andy Ng <andreas2025@gmail.com>
+Date: Sun, 21 Aug 2016 14:55:02 +0100
+Message-ID: <CAAVaN8xtJH-qwxO-n+0z8C8T5axW9iQXV=mvj6-hZxxQay_PRQ@mail.gmail.com>
 To: yocto@yoctoproject.org
-Date: Sat, 20 Aug 2016 15:50:21 -0700
-Message-Id: <1471733421-27188-1-git-send-email-william.c.randle@intel.com>
-X-Mailer: git-send-email 2.5.5
-Subject: [yocto-autobuilder][PATCH] PublishArtifacts.py: fix file check to work under dash
+Subject: debug version of a package
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,33 +65,13 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 20 Aug 2016 22:51:34 -0000
+X-List-Received-Date: Sun, 21 Aug 2016 13:55:07 -0000
+Content-Type: text/plain; charset=UTF-8
 
-An earlier patch (ed3857990) to check for existing msd5sum files worked
-fine when tested under bash, but failed with an error message about [[
-not found when run under dash. Updated the test to not rely on bashisms.
+Hi,
 
-Signed-off-by: Bill Randle <william.c.randle@intel.com>
----
- lib/python2.7/site-packages/autobuilder/buildsteps/PublishArtifacts.py | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+How do I trigger the build of the debug version of a single package?
 
-diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/PublishArtifacts.py b/lib/python2.7/site-packages/autobuilder/buildsteps/PublishArtifacts.py
-index d8b554f..58048f0 100644
---- a/lib/python2.7/site-packages/autobuilder/buildsteps/PublishArtifacts.py
-+++ b/lib/python2.7/site-packages/autobuilder/buildsteps/PublishArtifacts.py
-@@ -259,8 +259,9 @@ class PublishArtifacts(ShellCommand):
-     def generateMD5cmd(self, artifact, deploy_dir):
-         cmd = ""
-         if os.environ.get('GEN_IMG_MD5') == "True":
-+            # crufty test for existing md5sum file required for dash shell
-             cmd += "for x in `find " + deploy_dir + " -maxdepth 5 -type f`;"
--            cmd += "do if [[ $x != *.md5sum ]]; then md5sum $x >> " + "$x.md5sum; fi; done;"
-+            cmd += "do echo ${x} | grep -q '\.md5sum'; if [ $? -ne 0 ]; then md5sum $x >> " + "$x.md5sum; fi; done;"
-         return cmd
- 
-     def getDeployNames(self, artifact, buildername):
--- 
-2.5.5
-
+Thank you
+Andy
 
