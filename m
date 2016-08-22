@@ -1,64 +1,60 @@
-Return-Path: <bobadeshrikant@gmail.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1D46CE00F81; Mon, 22 Aug 2016 06:08:39 -0700 (PDT)
+	id B0741E00F39; Mon, 22 Aug 2016 06:39:31 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (bobadeshrikant[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.192.195 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.223.171 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pf0-f195.google.com (mail-pf0-f195.google.com
-	[209.85.192.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 18C5CE00F43
-	for <yocto@yoctoproject.org>; Mon, 22 Aug 2016 06:08:28 -0700 (PDT)
-Received: by mail-pf0-f195.google.com with SMTP id y134so6336956pfg.3
-	for <yocto@yoctoproject.org>; Mon, 22 Aug 2016 06:08:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id;
-	bh=178KZnHzIz8m8kUiJn5MurkPS6NBEsQXJs38BcMOq5w=;
-	b=OzQGu9S8DaokH1lM+48D2bOoKCdtNiBM9ZE8dKe2qM2UJhF1niJWKYJxIJRdvx5ttD
-	eZSEhWu9b/Z8HOUBkMsG+MuBQZbwOrsKK1jbDsqPxV276Resz0IbKN3Gf2zpjtNWtLDD
-	WO9acjfegxPZNnJGknhk+HeDvmXas9tAW/4NniuUKFhqdsbJQcOLr1psY2hVOENV3UYx
-	22fmqit6w6dYaafEtbvjJqYRuHs11cEdaJCXr1uZg1dmiO7VR8fnKR3pZcV0d2c/Vl2i
-	VTfJxDWRUMODlRcmeCyHR/eP+V759KkC3FniKbi519ERUKCYC2J446AiUKMqU/2TOp5T
-	7yHg==
+Received: from mail-io0-f171.google.com (mail-io0-f171.google.com
+	[209.85.223.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0A0F7E00E4C
+	for <yocto@yoctoproject.org>; Mon, 22 Aug 2016 06:39:28 -0700 (PDT)
+Received: by mail-io0-f171.google.com with SMTP id m101so109945460ioi.2
+	for <yocto@yoctoproject.org>; Mon, 22 Aug 2016 06:39:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=7avYzOvMjz6gHwoiN/m8P9pNHWw1xlHQni5HgzkbG5k=;
+	b=GlxXB1ekWOinXDMMjxhHYqTzSkXJSYARkSIHycUM8i7vK1ixTwqJs9KSY4sr54XhN5
+	kGu8QIGh1VoI9m4mIJCXOk4hbzbfZMpSzsWhfTLqbrRCfWjitxnxDt6tTj84DD92Le4H
+	/Fb4w+ASH/pJ0EYfQ52iOMkIgMFZKNGgqpWTG4ADbR8nj1LQaLQQlkNaBVdx47ghNN8T
+	T2B/RNbrIbhiHSpBObX16JEroP0ebl1hVk2xVa55xHqzcY6CWD8x3hMx13GTz31DXB5F
+	rISlA1pJ4V6xUrZgtleyJJvRX4W5qI7pu+rqk/+jN/w6ohn2m6NsY+rIOJqpZtHxxm8u
+	poqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=178KZnHzIz8m8kUiJn5MurkPS6NBEsQXJs38BcMOq5w=;
-	b=ih8YDKJHOLHruZOGHip55drqF4zDAtaD6f/etFnKyKzUsbLusg2SSNcklLPjwFuuxK
-	eBOkD8Gpm1xmOr/rcYOFVeJFRQoR1CigF6nUlthjWQgj+WEME2Ymb8VNfos4BeQgNgC3
-	6rBY3x29UfaVQqFaj2KewW1xnb668E7KMVfG8nhjQUrRvI0Dnd8du7DVzNtNyXjpYTIS
-	qT+jJxV1v1jT8doGeq2FUWV7h2Ids04Brc3C2xEFMVj2aCus0H+VJaBZvyNSdOkEqF2c
-	UdAEd9sGkt2poU1yphDtNjM8At3iGN5zwqGEbCPJZM2n7ar++vX2SDV15a10xWHDk+H9
-	BfzA==
-X-Gm-Message-State: AEkoout23WBLrbs8PaedwOrMRz93u32M76hZwLKcttOjZfkJmdmCchGu+G+HsVRWvsww9A==
-X-Received: by 10.98.147.156 with SMTP id r28mr43012504pfk.154.1471871303405; 
-	Mon, 22 Aug 2016 06:08:23 -0700 (PDT)
-Received: from shrikant-VirtualBox.inp.mentorg.com ([139.181.35.34])
-	by smtp.gmail.com with ESMTPSA id
-	y184sm27247105pfg.94.2016.08.22.06.08.21
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Mon, 22 Aug 2016 06:08:22 -0700 (PDT)
-From: Shrikant Bobade <bobadeshrikant@gmail.com>
-To: yocto@yoctoproject.org
-Date: Mon, 22 Aug 2016 18:38:18 +0530
-Message-Id: <1471871298-28225-1-git-send-email-bobadeshrikant@gmail.com>
-X-Mailer: git-send-email 1.9.1
-Cc: Shrikant Bobade <shrikant_bobade@mentor.com>
-Subject: [meta-selinux][PATCH 5/5] refpolicy_common.inc: add refpolicy minimum banner at selinux config.
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=7avYzOvMjz6gHwoiN/m8P9pNHWw1xlHQni5HgzkbG5k=;
+	b=NPVSBpb72F8NPLPVZ3Jq47cYFb9lfhvUtXk6fkvpP0EVCTCQhzpBcSzab1volbnn2V
+	DPcMXUHytK9uL5mrILyCGmNdUncC6WHKJFhP5CRhZXesJJcSi/bj3pCm7c26wg7wWKSn
+	q4e69nrJawD64M+GogauWGnBFTBfLCL0Cdkrtq29fPId/Ac0+laG/L17G0mHX1n/Icu0
+	PFh0gmrAk2UD9vMe5FG5PxbaNpV64hVRwvKaS2198b3vivdeecS87li8LdkrNPM3Td4w
+	iDQjN+yZLHYvEhY4qZIb4eOgcHMvjr9w+qJLV6i51W+N3DwiyKyGXN9tRRn574JiCRnB
+	c+JA==
+X-Gm-Message-State: AEkoouvT/wOjMmRHEJL+FUcp6vFphQC2pF7aw7hvu702ouzb4CVA7Zc4ZTzSTmiGXdhZFJ8cClIS4/X57ZPA7gcS
+X-Received: by 10.107.154.196 with SMTP id c187mr22758607ioe.99.1471872694469; 
+	Mon, 22 Aug 2016 06:31:34 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.107.18.17 with HTTP; Mon, 22 Aug 2016 06:31:14 -0700 (PDT)
+In-Reply-To: <BN3PR1201MB096367B23D96E0998DA7C22BA5160@BN3PR1201MB0963.namprd12.prod.outlook.com>
+References: <BN3PR1201MB096367B23D96E0998DA7C22BA5160@BN3PR1201MB0963.namprd12.prod.outlook.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Mon, 22 Aug 2016 14:31:14 +0100
+Message-ID: <CAJTo0Lbxd4fx+R91H1TGD-SRgakUo-gnaro2RNhbgx6-3rwN+A@mail.gmail.com>
+To: Richard Zhang <richard.zhang@pica8.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: How to run a runqemu with intel-corei7-64?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,28 +66,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 22 Aug 2016 13:08:39 -0000
+X-List-Received-Date: Mon, 22 Aug 2016 13:39:31 -0000
+Content-Type: multipart/alternative; boundary=001a1140e81e1c284b053aa9111f
 
-From: Shrikant Bobade <shrikant_bobade@mentor.com>
+--001a1140e81e1c284b053aa9111f
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Shrikant Bobade <shrikant_bobade@mentor.com>
----
- recipes-security/refpolicy/refpolicy_common.inc | 1 +
- 1 file changed, 1 insertion(+)
+On 19 August 2016 at 02:50, Richard Zhang <richard.zhang@pica8.com> wrote:
 
-diff --git a/recipes-security/refpolicy/refpolicy_common.inc b/recipes-security/refpolicy/refpolicy_common.inc
-index e1eac50..a9dc466 100644
---- a/recipes-security/refpolicy/refpolicy_common.inc
-+++ b/recipes-security/refpolicy/refpolicy_common.inc
-@@ -158,6 +158,7 @@ install_config () {
- #     disabled - No SELinux policy is loaded.
- SELINUX=${DEFAULT_ENFORCING}
- # SELINUXTYPE= can take one of these values:
-+#     minimum - Minimum Security protection.
- #     standard - Standard Security protection.
- #     mls - Multi Level Security protection.
- #     targeted - Targeted processes are protected.
--- 
-1.9.1
+> After built an =E2=80=98intel-corei7-64=E2=80=99 image with Toaster, I tr=
+y to run a
+> runqemu, it can=E2=80=99t run.
+>
+> ERROR: unable to classify arg [intel-corei7-64].
+>
+> Does intel-corei7-64 could be run with runqemu?
+>
+>
+Currently, not out of the box, although it should be possible if you run
+qemu directly.
 
+There is work ongoing to allow BSPs to extend runqemu so this could work,
+but for now if you wish to run images in qemu frequently then it's
+recommended to use the qemux86-64 machine, as it will include a few pieces
+(kernel modules, graphics drivers, etc) which increase performance inside
+qemu.
 
+Ross
+
+--001a1140e81e1c284b053aa9111f
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 19 August 2016 at 02:50, Richard Zhang <span dir=3D"ltr">&lt;<a href=3D"=
+mailto:richard.zhang@pica8.com" target=3D"_blank">richard.zhang@pica8.com</=
+a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0=
+ 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><p class=3D"MsoNorma=
+l" style=3D"text-indent:21.0pt"><span lang=3D"EN-US">After built an =E2=80=
+=98intel-corei7-64=E2=80=99 image with Toaster, I try to run a runqemu, it =
+can=E2=80=99t run.<u></u><u></u></span></p>
+<p class=3D"MsoNormal" style=3D"text-indent:21.0pt"><span lang=3D"EN-US">ER=
+ROR: unable to classify arg [intel-corei7-64].<u></u><u></u></span></p>
+<p class=3D"MsoNormal" style=3D"text-indent:21.0pt"><span lang=3D"EN-US">Do=
+es intel-corei7-64 could be run with runqemu?<u></u><u></u></span></p>
+<p class=3D"MsoNormal"></p></blockquote></div><br>Currently, not out of the=
+ box, although it should be possible if you run qemu directly.</div><div cl=
+ass=3D"gmail_extra"><br></div><div class=3D"gmail_extra">There is work ongo=
+ing to allow BSPs to extend runqemu so this could work, but for now if you =
+wish to run images in qemu frequently then it&#39;s recommended to use the =
+qemux86-64 machine, as it will include a few pieces (kernel modules, graphi=
+cs drivers, etc) which increase performance inside qemu.</div><div class=3D=
+"gmail_extra"><br></div><div class=3D"gmail_extra">Ross</div></div>
+
+--001a1140e81e1c284b053aa9111f--
