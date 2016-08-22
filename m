@@ -1,6 +1,6 @@
 Return-Path: <bobadeshrikant@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id ACC1BE00DFC; Mon, 22 Aug 2016 06:06:34 -0700 (PDT)
+	id F412CE00E21; Mon, 22 Aug 2016 06:07:15 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -11,7 +11,7 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (bobadeshrikant[at]gmail.com)
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.220.68 listed in list.dnswl.org]
+	*      [209.85.192.196 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,46 +19,46 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pa0-f68.google.com (mail-pa0-f68.google.com
-	[209.85.220.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 540D9E00DD3
-	for <yocto@yoctoproject.org>; Mon, 22 Aug 2016 06:06:33 -0700 (PDT)
-Received: by mail-pa0-f68.google.com with SMTP id vy10so8073274pac.0
-	for <yocto@yoctoproject.org>; Mon, 22 Aug 2016 06:06:33 -0700 (PDT)
+Received: from mail-pf0-f196.google.com (mail-pf0-f196.google.com
+	[209.85.192.196])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5D5FAE00F54
+	for <yocto@yoctoproject.org>; Mon, 22 Aug 2016 06:07:12 -0700 (PDT)
+Received: by mail-pf0-f196.google.com with SMTP id g202so6356667pfb.1
+	for <yocto@yoctoproject.org>; Mon, 22 Aug 2016 06:07:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=from:to:cc:subject:date:message-id;
-	bh=DL3JMONRihg8JHINFQoFNdLcddxZoDh/HmFdSVTMZx4=;
-	b=LeNhqwtmQF78X39anJ8cudu2ovBtK8EWkM7ghhmNivZmsNpyH3cz0ihyW4XSjA1N+j
-	RlP3KNP7dcxtSlCwDhhMx0AxFPlJgmLl9jFcj5HGcK8L9i4Mh2Y8IYUzWcaDKkCyIAMo
-	EKTpEPZ2TrEf6sGFlszMDY0TPrLx6QcFELJQF4YJYaNtulqGz5L1Jd7y7dhmcOaieg/D
-	c86sm5eEOfLcZm2nx7UIwghaTyieN2rXovwfMzlZU6OM1GZrZ8RJoCF8UjzXqO8ty1d4
-	rwmoO8HE9jztXZEH3mitWfcBjVsi6S4mqQFQovU444D9cY2svSTFujoczcoFzVPJzXKj
-	UyRw==
+	bh=/7IIBrLZCRLupdEb7KNMmyLkkZ/3AitfdEpaMSr9d2w=;
+	b=cb7lcytkPMw5UPW/z8/yc2sNyx1/bjZkNfR0bpoj4YXOIqYMlrAhSpP/gu6aXsfp6S
+	cG9FL/bqOxitKmm7pRxof7x5PG4n7RU+ReK07wrY2bmfAmeEaxLCbRQyLyfv5dg8kLuO
+	JEOdTMFFyMBT4WtTHrD6Lvy1FD8jDydh2eMCfAS5sN0o648VwZUoKjN0nVmyRm/HNrIg
+	5X3469R7M3KHFnNz1k0mu3ZAhoXjjeaZRa5+i8wzKjxh+4gtvPprQFFHp9sihO5a2TbG
+	+arr6fkMZCBJAbeDf6dyrVFYfIimgAkNZpizXQ+c4ne/poD8Hbrmx5eNo8siyNephjCK
+	ZASA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=DL3JMONRihg8JHINFQoFNdLcddxZoDh/HmFdSVTMZx4=;
-	b=Tna3H1FiUNZftjgkNSHoxGJjJchXOLSmZZO2ZAfI8q5YVFBVn0tYbiwa+AvGrGYmJa
-	b6YEkdTmSiW6Yw0eHf/FmoDAZdlFg6w3KWGN0oeeE8fiIce23PTtjeoNy31B5ZmU/R9s
-	vcsmiv/Ga2wpg+fr/XRnDSDvP/tydvCJS9RTfqOXosGR5fxqA4jhi9B6U+2WFVzTogVL
-	y7iJhBgYJ74Spy1C27IGSoysorIDGeBidecsgJoAbIK8VEaaagfCvKmJZJoz05BW5R0V
-	Z4oCgXULS3ipUlLo6u+yUqDz+eL5XPN0G/orlb0YQHttNqfnT6kUhT7Vwe0PYEdgtcbN
-	BMiw==
-X-Gm-Message-State: AEkooutl7DyBsJ4OWi0Pf/jbwrIZj30EpXw3QBqIuT+SZMo7uDP3SlRlyHQ+64wIxqCjcQ==
-X-Received: by 10.66.138.74 with SMTP id qo10mr41825463pab.135.1471871192568; 
-	Mon, 22 Aug 2016 06:06:32 -0700 (PDT)
+	bh=/7IIBrLZCRLupdEb7KNMmyLkkZ/3AitfdEpaMSr9d2w=;
+	b=Sx+5CKx4i5RrAD00OHhEhCxbQFrh0URM+0qwGfrioMwhwDGX97FT5ngExpyR2BGsJY
+	CrtyjGGL6Rp+h8LRKR/L0py0+icKJpa7ksI77XPSkmd59YYoP18JMCZ/88j8Po6YJevI
+	QM4hBPQjjLHLPpJoDfjbuzhMyjElyyDuMLHAKDPhjTV5iprB/5T88y0+nFKIxMsgkp7q
+	etCioFn5vY6g+mDnImCeiewD91QPNUGeI2WPaoJuP5AB/o/hxUYzcWYZ879Lg0c6Oojy
+	CQkQ0eOHAYSV83zWbgvw6PwLrSg9P/zRhDd+6YMWqRU8dxPuugH/9A/C1SSqSxtsIjBQ
+	wrtw==
+X-Gm-Message-State: AEkoouuMjb04WSwH9U2bHfOrYIZqffO8kMJpKUu1Kc/NM1PfHFYIqN3MnJbruGgZpnzmag==
+X-Received: by 10.98.58.149 with SMTP id v21mr42162439pfj.19.1471871232490;
+	Mon, 22 Aug 2016 06:07:12 -0700 (PDT)
 Received: from shrikant-VirtualBox.inp.mentorg.com ([139.181.35.34])
 	by smtp.gmail.com with ESMTPSA id
-	q1sm27262871pfd.48.2016.08.22.06.06.30
+	r2sm32352830pal.14.2016.08.22.06.07.10
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Mon, 22 Aug 2016 06:06:31 -0700 (PDT)
+	Mon, 22 Aug 2016 06:07:11 -0700 (PDT)
 From: Shrikant Bobade <bobadeshrikant@gmail.com>
 To: yocto@yoctoproject.org
-Date: Mon, 22 Aug 2016 18:36:20 +0530
-Message-Id: <1471871180-28072-1-git-send-email-bobadeshrikant@gmail.com>
+Date: Mon, 22 Aug 2016 18:37:06 +0530
+Message-Id: <1471871226-28111-1-git-send-email-bobadeshrikant@gmail.com>
 X-Mailer: git-send-email 1.9.1
 Cc: Shrikant Bobade <shrikant_bobade@mentor.com>
-Subject: [meta-selinux][PATCH 1/5] selinux-initsh.inc: add systemd support
+Subject: [meta-selinux][PATCH 2/5] selinux-init: add systemd service file support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,45 +70,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 22 Aug 2016 13:06:34 -0000
+X-List-Received-Date: Mon, 22 Aug 2016 13:07:16 -0000
 
 From: Shrikant Bobade <shrikant_bobade@mentor.com>
 
-add support for systemd service file and handling of script required by
-systemd service file.
+add systemd service file for handling selinux initialization, this change
+improves handling of systemd service functionality like:status check, debug
+etc. compared to sysvinit compatibility mode scripts.
 
 Signed-off-by: Shrikant Bobade <shrikant_bobade@mentor.com>
 ---
- recipes-security/selinux/selinux-initsh.inc | 12 +++++++++++-
- 1 file changed, 11 insertions(+), 1 deletion(-)
+ recipes-security/selinux/selinux-init/selinux-init.service | 11 +++++++++++
+ recipes-security/selinux/selinux-init_0.1.bb               |  5 ++++-
+ 2 files changed, 15 insertions(+), 1 deletion(-)
+ create mode 100644 recipes-security/selinux/selinux-init/selinux-init.service
 
-diff --git a/recipes-security/selinux/selinux-initsh.inc b/recipes-security/selinux/selinux-initsh.inc
-index f7348bb..bcdd449 100644
---- a/recipes-security/selinux/selinux-initsh.inc
-+++ b/recipes-security/selinux/selinux-initsh.inc
-@@ -13,11 +13,21 @@ CONFFILES_${PN} += "${sysconfdir}/init.d/${SELINUX_SCRIPT_DST}"
- 
- PACKAGE_ARCH ?= "${MACHINE_ARCH}"
- 
--inherit update-rc.d
-+inherit update-rc.d systemd
+diff --git a/recipes-security/selinux/selinux-init/selinux-init.service b/recipes-security/selinux/selinux-init/selinux-init.service
+new file mode 100644
+index 0000000..93cc6ce
+--- /dev/null
++++ b/recipes-security/selinux/selinux-init/selinux-init.service
+@@ -0,0 +1,11 @@
++[Unit]
++Description=SELinux init service loading
++DefaultDependencies=no
++Before=sysinit.target
 +
-+SYSTEMD_SERVICE_${PN} = "${SELINUX_SCRIPT_SRC}.service"
- 
- do_install () {
- 	install -d ${D}${sysconfdir}/init.d/
- 	install -m 0755 ${WORKDIR}/${SELINUX_SCRIPT_SRC}.sh ${D}${sysconfdir}/init.d/${SELINUX_SCRIPT_DST}
++[Service]
++Type=oneshot
++ExecStart=/usr/bin/selinux-init.sh
 +
-+	install -d ${D}${systemd_unitdir}/system
-+	install -m 0644 ${WORKDIR}/${SELINUX_SCRIPT_SRC}.service ${D}${systemd_unitdir}/system
-+
-+	if ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'true', 'false', d)}; then
-+		install -d ${D}${bindir}
-+		install -m 0755 ${WORKDIR}/${SELINUX_SCRIPT_SRC}.sh ${D}${bindir}
-+	fi
- }
++[Install]
++WantedBy=multi-user.target
+diff --git a/recipes-security/selinux/selinux-init_0.1.bb b/recipes-security/selinux/selinux-init_0.1.bb
+index 54932e8..38b5900 100644
+--- a/recipes-security/selinux/selinux-init_0.1.bb
++++ b/recipes-security/selinux/selinux-init_0.1.bb
+@@ -14,7 +14,10 @@ ${PN}_RDEPENDS = " \
+     policycoreutils-setfiles \
+ "
  
- sysroot_stage_all_append () {
+-SRC_URI = "file://${BPN}.sh"
++SRC_URI = "file://${BPN}.sh \
++		file://${BPN}.service \
++	"
++
+ INITSCRIPT_PARAMS = "start 01 S ."
+ 
+ require selinux-initsh.inc
 -- 
 1.9.1
 
