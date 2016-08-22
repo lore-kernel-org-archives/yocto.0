@@ -1,6 +1,6 @@
-Return-Path: <wangxin2015.fnst@cn.fujitsu.com>
+Return-Path: <recipe-report@yoctoproject.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 05227E00D09; Sun, 21 Aug 2016 20:22:04 -0700 (PDT)
+	id DB69EE00D20; Sun, 21 Aug 2016 21:06:01 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,31 +9,18 @@ X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-X-Greylist: delayed 64 seconds by postgrey-1.32 at yocto-www;
-	Sun, 21 Aug 2016 20:22:02 PDT
-Received: from heian.cn.fujitsu.com (unknown [59.151.112.132])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 39F7AE00C80
-	for <yocto@yoctoproject.org>; Sun, 21 Aug 2016 20:22:01 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.22,518,1449504000"; d="scan'208";a="10134349"
-Received: from unknown (HELO cn.fujitsu.com) ([10.167.33.5])
-	by heian.cn.fujitsu.com with ESMTP; 22 Aug 2016 11:20:49 +0800
-Received: from G08CNEXCHPEKD02.g08.fujitsu.local (unknown [10.167.33.83])
-	by cn.fujitsu.com (Postfix) with ESMTP id 1495E42CD11E
-	for <yocto@yoctoproject.org>; Mon, 22 Aug 2016 11:20:47 +0800 (CST)
-Received: from ubuntu.g08.fujitsu.local (10.167.226.120) by
-	G08CNEXCHPEKD02.g08.fujitsu.local (10.167.33.89) with Microsoft SMTP
-	Server (TLS) id 14.3.279.2; Mon, 22 Aug 2016 11:20:50 +0800
-From: Wang Xin <wangxin2015.fnst@cn.fujitsu.com>
-To: <yocto@yoctoproject.org>
-Date: Sun, 21 Aug 2016 23:20:43 -0400
-Message-ID: <1471836043-1393-1-git-send-email-wangxin2015.fnst@cn.fujitsu.com>
-X-Mailer: git-send-email 1.9.1
+Received: from packages.yoctoproject.org (unknown [198.145.29.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7F7D0E00D05
+	for <yocto@yoctoproject.org>; Sun, 21 Aug 2016 21:05:58 -0700 (PDT)
+Received: from packages.yoctoproject.org (localhost [IPv6:::1])
+	by packages.yoctoproject.org (Postfix) with ESMTP id 5C8B784B176F
+	for <yocto@yoctoproject.org>; Mon, 22 Aug 2016 00:05:57 -0400 (EDT)
 MIME-Version: 1.0
-X-Originating-IP: [10.167.226.120]
-X-yoursite-MailScanner-ID: 1495E42CD11E.A7E51
-X-yoursite-MailScanner: Found to be clean
-X-yoursite-MailScanner-From: wangxin2015.fnst@cn.fujitsu.com
-Subject: [meta-selinux][PATCH] audit: 2.5 -> 2.6.6
+From: recipe-report@yoctoproject.org
+To: yocto@yoctoproject.org
+Date: Mon, 22 Aug 2016 04:05:57 -0000
+Message-ID: <20160822040557.16064.19629@packages.yoctoproject.org>
+Subject: [Recipe reporting system] Upgradable recipe name list
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,53 +32,135 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 22 Aug 2016 03:22:04 -0000
-Content-Type: text/plain
+X-List-Received-Date: Mon, 22 Aug 2016 04:06:01 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-1) Upgrade audit from 2.5 to 2.6.6.
-2) Modify audit-python.patch, since the data has changed.
+This mail was sent out by Recipe reporting system.
 
-Signed-off-by: Wang Xin <wangxin2015.fnst@cn.fujitsu.com>
----
- recipes-security/audit/audit/audit-python.patch         | 2 +-
- recipes-security/audit/{audit_2.5.bb => audit_2.6.6.bb} | 4 ++--
- 2 files changed, 3 insertions(+), 3 deletions(-)
- rename recipes-security/audit/{audit_2.5.bb => audit_2.6.6.bb} (96%)
+This message list those recipes which need to be upgraded. If maintainers
+believe some of them needn't to upgrade at this time, they can fill
+RECIPE_NO_UPDATE_REASON in respective recipe file to ignore this remainder
+until newer upstream version was detected.
 
-diff --git a/recipes-security/audit/audit/audit-python.patch b/recipes-security/audit/audit/audit-python.patch
-index 1f9cf5c..0c2dc1c 100644
---- a/recipes-security/audit/audit/audit-python.patch
-+++ b/recipes-security/audit/audit/audit-python.patch
-@@ -18,7 +18,7 @@ index cc68df3..998b990 100644
-  
-  CONFIG_CLEAN_FILES = *.loT *.rej *.orig
-  
---SUBDIRS = @pybind_dir@ @gobind_dir@ swig
-+-SUBDIRS = python golang swig
- +SUBDIRS = swig
- +if HAVE_PYTHON
- +SUBDIRS += python
-diff --git a/recipes-security/audit/audit_2.5.bb b/recipes-security/audit/audit_2.6.6.bb
-similarity index 96%
-rename from recipes-security/audit/audit_2.5.bb
-rename to recipes-security/audit/audit_2.6.6.bb
-index 7affecd..3823731 100644
---- a/recipes-security/audit/audit_2.5.bb
-+++ b/recipes-security/audit/audit_2.6.6.bb
-@@ -15,8 +15,8 @@ SRC_URI = "http://people.redhat.com/sgrubb/${BPN}/${BPN}-${PV}.tar.gz \
-            file://auditd.service \
-            file://audit-volatile.conf \
- "
--SRC_URI[md5sum] = "e721d48f3e1927c84b7c176b3bdbc443"
--SRC_URI[sha256sum] = "9b0a0760c6f37d80cbbfe46a74db722e60ac8100b28eb31953878ffca8ac14b4"
-+SRC_URI[md5sum] = "871fbc03039a5101b5191c5dcc6e8ac2"
-+SRC_URI[sha256sum] = "61d8dc61e882fdbb75153a1316817a8f8c8fca25de588256edd81fbb03e7994b"
- 
- inherit autotools pythonnative update-rc.d systemd
- 
--- 
-2.7.4
+Example:
+RECIPE_NO_UPDATE_REASON = "Version 2.0 is unstable"
 
+You can check the detail information at:
 
+http://recipes.yoctoproject.org/
+
+Package               Version        Upstream version      Maintainer           NoUpgradeReason
+--------------------  -------------  --------------------  -------------------  ------------------------------
+texinfo               6.0            6.1                   Alejandro Hernandez
+python-git            2.0.7          2.0.8                 Alejandro Hernandez
+ruby                  2.2.5          2.3.1                 Alejandro Hernandez
+nfs-utils             1.3.3          1.3.4                 Alejandro Hernandez
+perl                  5.22.1         5.24.1                Alejandro Hernandez
+python3-git           2.0.7          2.0.8                 Alejandro Hernandez
+swig                  3.0.8          3.0.10                Alejandro Hernandez
+python3-setuptools    22.0.5         25.2.0                Alejandro Hernandez
+python-setuptools     22.0.5         25.2.0                Alejandro Hernandez
+python3-numpy         1.11.0         1.11.1                Alejandro Hernandez
+perl-native           5.22.1         5.24.1                Alejandro Hernandez
+liberation-fonts      1.04           2.00.1                Alexander Kanavin    2.x depends on fontforge pa...
+bdwgc                 7.4.4          7.6.0                 Alexander Kanavin
+gnutls                3.5.1          3.5.3                 Alexander Kanavin
+libwebp               0.5.0          0.5.1                 Alexander Kanavin
+libidn                1.32           1.33                  Alexander Kanavin
+nss                   3.24           3.25                  Alexander Kanavin
+mpg123                1.23.5         1.23.6                Alexander Kanavin
+lighttpd              1.4.39         1.4.41                Alexander Kanavin
+ffmpeg                3.1.1          3.1.2                 Alexander Kanavin
+kexec-tools           2.0.12         2.0.13                Alexander Kanavin
+bash-completion       2.3            2.4                   Alexander Kanavin
+gobject-introspec...  1.48.0         1.49.1                Alexander Kanavin
+btrfs-tools           4.6.1          4.7                   Alexander Kanavin
+iso-codes             3.68           3.69                  Alexander Kanavin
+mkelfimage            4.0+gitX       4.4+gitAUTOINC+58...  Alexander Kanavin    mkelfimage has been removed...
+qemu                  2.6.0          2.6.1                 Aníbal Limón
+dpkg                  1.18.7         1.18.10               Aníbal Limón
+pinentry              0.9.2          0.9.7                 Armin Kuster
+linux-libc-headers    4.4            4.7.1                 Bruce Ashfield
+linux-yocto-rt        4.4.15+gitX    4.4.16+gitAUTOINC...  Bruce Ashfield
+linux-yocto           4.4.15+gitX    4.4.16+gitAUTOINC...  Bruce Ashfield
+linux-yocto-tiny      4.4.15+gitX    4.4.16+gitAUTOINC...  Bruce Ashfield
+guilt-native          0.35+gitX      0.36+gitAUTOINC+2...  Bruce Ashfield
+kmod-native           22+gitX        23+gitAUTOINC+65a...  Chen Qi
+systemd-boot          230+gitX       231+gitAUTOINC+38...  Chen Qi
+dbus-test             1.10.8         1.10.10               Chen Qi
+dbus                  1.10.8         1.10.10               Chen Qi
+diffutils             3.3            3.4                   Chen Qi
+systemd               230+gitX       231+gitAUTOINC+38...  Chen Qi
+util-linux            2.28           2.28.1                Chen Qi
+kmod                  22+gitX        23+gitAUTOINC+65a...  Chen Qi
+sysstat               11.3.5         11.4.0                Chen Qi
+build-appliance-i...  15.0.0         15.0.1                Cristian Iorga
+u-boot-fw-utils       v2016.03+gitX  v2016.07+gitAUTOI...  Denys Dmytriyenko
+u-boot-mkimage        v2016.03+gitX  v2016.07+gitAUTOI...  Denys Dmytriyenko
+u-boot                v2016.03+gitX  v2016.07+gitAUTOI...  Denys Dmytriyenko
+createrepo            0.4.11         0.10.4                Hongxu Jia           Versions after 0.9.* use YU...
+libgcrypt             1.7.2          1.7.3                 Hongxu Jia
+libinput              1.3.0          1.4.1                 Jussi Kukkonen
+wayland               1.11.0         1.11.91               Jussi Kukkonen
+weston                1.11.0         1.11.91               Jussi Kukkonen
+gtk-icon-utils-na...  3.20.6         3.20.9                Jussi Kukkonen
+xf86-input-synaptics  1.8.3          1.8.99.1              Jussi Kukkonen
+openssh               7.2p2          7.3p1                 Jussi Kukkonen
+sgmlspl-native        1.1+gitX       1.03+gitAUTOINC+f...  Jussi Kukkonen
+glib-2.0              2.48.1         2.48.2                Jussi Kukkonen
+gnome-themes-stan...  3.18.0         3.20.2                Jussi Kukkonen
+vte                   0.44.1         0.44.2                Jussi Kukkonen
+wayland-protocols     1.5            1.7                   Jussi Kukkonen
+gtk+3                 3.20.6         3.20.9                Jussi Kukkonen
+libdrm                2.4.68         2.4.70                Jussi Kukkonen
+fontconfig            2.12.0         2.12.1                Jussi Kukkonen
+json-glib             1.2.0          1.2.2                 Jussi Kukkonen
+linuxdoc-tools-na...  0.9.69         0.9.72                Jussi Kukkonen
+prelink               1.0+gitX       20151030.+gitAUTO...  Mark Hatle
+db                    6.0.30         6.2.23                Mark Hatle           latest db does not work wit...
+rpm                   5.4.16         5.4.17                Mark Hatle
+libpfm4               4.6.0          4.7.0                 Matthew McClintock
+libpcap               1.7.4          1.8.0                 Maxin B. John
+sqlite3               3.14.0         3.14.1                Maxin B. John
+ifupdown              0.8.2          0.8.13                Maxin B. John
+gstreamer1.0-omx      1.2.0          1.9.1                 Maxin B. John
+gstreamer1.0-plug...  1.8.2+gitX     1.9.1+gitAUTOINC+...  Maxin B. John
+gdb-cross-canadia...  7.11           7.11.1                No maintainer
+gdb-cross-i586        7.11           7.11.1                No maintainer
+lttng-tools           2.7.1+gitX     2.8.1+gitAUTOINC+...  Richard Purdie
+lttng-ust             2.7.1+gitX     2.8.1+gitAUTOINC+...  Richard Purdie
+subversion            1.9.3          1.9.4                 Richard Purdie
+gdb                   7.11           7.11.1                Richard Purdie
+lttng-modules         2.7.3+gitX     2.8.0+gitAUTOINC+...  Richard Purdie
+nasm                  2.11.08        2.12.02               Richard Purdie
+ltp                   20160126       20160510              Robert Yang
+e2fsprogs             1.43           1.43.1                Robert Yang
+git                   2.9.2          2.9.3                 Robert Yang
+base-passwd           3.5.29         3.5.40                Ross Burton          Version 3.5.38 requires cde...
+lsbinitscripts        9.64           9.68                  Ross Burton
+alsa-utils-scripts    1.1.1          1.1.2                 Tanu Kaskinen
+alsa-utils            1.1.1          1.1.2                 Tanu Kaskinen
+alsa-lib              1.1.1          1.1.2                 Tanu Kaskinen
+chkconfig             1.3.58         1.8                   Wenzong Fan          Version 1.5 requires selinux
+
+Upgradable count: 85
+Upgradable total count: 91
+
+The based commit is:
+
+commit 0865a5b8b8fbf478fb4b2310f808bcffff84a091
+Author: Robert Yang <liezhi.yang@windriver.com>
+Date:   Wed Aug 17 23:16:56 2016 -0700
+
+    packagefeed-stability.bbclass: cleansstate should remove pkgs from deploy dir
+    
+    "bitbake recipe -ccleansstate" should remove binary pkgs from deploy dir
+    as normal cleansstate does without packagefeed-stability.bbclass.
+    
+    Signed-off-by: Robert Yang <liezhi.yang@windriver.com>
+    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+
+Any problem, please contact Anibal Limon <anibal.limon@intel.com> 
 
 
