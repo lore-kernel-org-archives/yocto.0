@@ -1,45 +1,73 @@
-Return-Path: <jbudde@huth.org>
+Return-Path: <martin.jansa@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D48BDE00FD9; Tue, 23 Aug 2016 06:16:03 -0700 (PDT)
+	id 5CF1AE00FDC; Tue, 23 Aug 2016 06:18:44 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [195.14.225.167 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (martin.jansa[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [74.125.82.67 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 130 seconds by postgrey-1.32 at yocto-www;
-	Tue, 23 Aug 2016 06:16:00 PDT
-Received: from mail.huth.org (mail.huth.org [195.14.225.167])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2091AE00FB8
-	for <yocto@yoctoproject.org>; Tue, 23 Aug 2016 06:16:00 -0700 (PDT)
-Received: from exchange2013.huth.local ([192.168.0.101]:7440
-	helo=mail.huth.org)
-	by mail.huth.org with esmtps (TLSv1.2:AES256-SHA:256)
-	(Exim 4.82_1-5b7a7c0-XX) (envelope-from <JBudde@huth.org>)
-	id 1bcBWU-00021k-0K
-	for yocto@yoctoproject.org; Tue, 23 Aug 2016 15:13:46 +0200
-Received: from Exchange2013.HUTH.LOCAL (192.168.0.101) by
-	Exchange2013.HUTH.LOCAL (192.168.0.101) with Microsoft SMTP Server
-	(TLS) id 15.0.1104.5; Tue, 23 Aug 2016 15:13:45 +0200
-Received: from Exchange2013.HUTH.LOCAL ([::1]) by Exchange2013.HUTH.LOCAL
-	([::1]) with mapi id 15.00.1104.000; Tue, 23 Aug 2016 15:13:45 +0200
-From: "Budde, Jan" <JBudde@huth.org>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: How to build qtwebengine vom meta-qt5 correctly?
-Thread-Index: AQHR/UAtAYFljqhwx0O5YXQGSj5TAw==
-Date: Tue, 23 Aug 2016 13:13:45 +0000
-Message-ID: <e75b4469637c481fa94f4eba10495625@Exchange2013.HUTH.LOCAL>
-Accept-Language: de-DE, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [192.168.1.210]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wm0-f67.google.com (mail-wm0-f67.google.com [74.125.82.67])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B36C8E00FDA
+	for <yocto@yoctoproject.org>; Tue, 23 Aug 2016 06:18:42 -0700 (PDT)
+Received: by mail-wm0-f67.google.com with SMTP id i5so18124548wmg.2
+	for <yocto@yoctoproject.org>; Tue, 23 Aug 2016 06:18:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:date:to:cc:subject:message-id:references:mime-version
+	:content-disposition:in-reply-to:user-agent;
+	bh=e43tWt9xhYESLeHilQnTyMQliqryDRDv/QI/G+aBY9c=;
+	b=m6uHbyJOdU2IPGPQ9gPyDgELl4tqzPja6f2mSuoY5k1xKvJd6SVG0pZ2O3OMZMdIKA
+	syfry3kuVmgdzqUvDo2aj5jZAKY5kTeFbgWwwKrlSyLUZ9ahCmz5RT8ufOHdgKbjdEb9
+	n4ksWNn6NG7oPpoqKgbv1uWBttP2TEWTmQVK69jb4flJd6qt7pa0AIgcUXorf5nwkEZm
+	J9ZY4o/wh7esfzH6dwK3asnxcqjr0qnL/0AF+ddwTPQbtItatF/01GkRfvUR8gPnUfJJ
+	rh0smw22R2PeYf7Bga9JvioGax2lczzIKBxEsenQdq1EjK+gCT/2yCsqIo19mynnLm5E
+	gnEw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:from:date:to:cc:subject:message-id:references
+	:mime-version:content-disposition:in-reply-to:user-agent;
+	bh=e43tWt9xhYESLeHilQnTyMQliqryDRDv/QI/G+aBY9c=;
+	b=meNKOIgrxPIns26oPyP+N4YRqOONrAPOsrmdni4GiGL+nTGCkuirEK1BbTj6U89YNv
+	lWT6OezTri2bdkirZLGGLmNYdJoU3gbJdku/FGpgf6rZQfNU0BKDMTpg5H731E/Iyehs
+	7CTkXALCXkL5ERGJb63D84FIh+cyGio6V9PlygqDX5gry9wPReRYIbqbzo8Di1gotkbs
+	Rn2xLi/7q1845aHq6TeTEA9T4dmgYCIcDeLWhAsGvUZM3gVLcL4BLTmO6hHOPt7BaCm4
+	/oWJAUOmpYlCL9RXpa/AnxCdDJn1biM8F+Hw12FW0ZKanmOFI7PKu1p0Pfups7u1vHVY
+	rziw==
+X-Gm-Message-State: AEkooutI8b5OVJNpC8D52RCI3fSA2Yd61EXOyvDk8OJ+gKuiNGsihKOh7YGNG651OY4yVQ==
+X-Received: by 10.194.75.198 with SMTP id e6mr23770939wjw.31.1471958321525;
+	Tue, 23 Aug 2016 06:18:41 -0700 (PDT)
+Received: from localhost (ip-89-176-104-169.net.upcbroadband.cz.
+	[89.176.104.169])
+	by smtp.gmail.com with ESMTPSA id 3sm4465826wms.1.2016.08.23.06.18.39
+	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+	Tue, 23 Aug 2016 06:18:39 -0700 (PDT)
+From: Martin Jansa <martin.jansa@gmail.com>
+X-Google-Original-From: Martin Jansa <Martin.Jansa@gmail.com>
+Date: Tue, 23 Aug 2016 15:18:40 +0200
+To: "Burton, Ross" <ross.burton@intel.com>
+Message-ID: <20160823131840.dkxlcyn3rrfe35cu@jama>
+References: <1471593718-23587-1-git-send-email-maxin.john@intel.com>
+	<20160819081331.xuaqej3p7l6yon7m@jama>
+	<20160819084237.GC16863@mbabyjoh-desk.ger.corp.intel.com>
+	<CAJTo0LY4dgMJz_mh37BQhnkhSCkcOvrn1z0vm51thAGAJGgMnA@mail.gmail.com>
 MIME-Version: 1.0
-Subject: How to build qtwebengine vom meta-qt5 correctly?
+In-Reply-To: <CAJTo0LY4dgMJz_mh37BQhnkhSCkcOvrn1z0vm51thAGAJGgMnA@mail.gmail.com>
+User-Agent: Mutt/1.6.2 (2016-06-11)
+Cc: Paul Eggleton <paul.eggleton@linux.intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-qt4][PATCH 1/2] qt4-embedded.inc: provide PACKAGECONFIG for tslib
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,118 +79,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 23 Aug 2016 13:16:03 -0000
-Content-Language: de-DE
-Content-Type: text/plain; charset="iso-8859-1"
+X-List-Received-Date: Tue, 23 Aug 2016 13:18:44 -0000
+X-Groupsio-MsgNum: 31611
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="yd5tubsdsci25azj"
+Content-Disposition: inline
+
+--yd5tubsdsci25azj
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-I'm learning to use Yocto with version 2.1.1 "krogoth" and want to
-create an image for an intel-corei7-64 machine containing Qt 5.6 from
-the meta-qt5 layer for X11. After several attempts I manage to build
-all the required components, but a minimal example application using
-the QtWebEngine module crashes with a "segmentation fault" as soon as
-a webengine view is instantiated. If I install the official pre-built
-Qt package from the Qt Company at www.qt.io instead, the application
-works as expected.
+On Mon, Aug 22, 2016 at 09:37:56PM +0100, Burton, Ross wrote:
+> On 19 August 2016 at 09:42, Maxin B. John <maxin.john@intel.com> wrote:
+>=20
+> > (A quick grep in meta-qt4 for PACKAGECONFIG_CONFARGS returned zero resu=
+lts)
+> >
+>=20
+> FWIW it's a relatively new feature: when PACKAGECONFIG is evaluated it
+> writes the enabled/disabled values to PACKAGECONFIG_CONFARGS, which class=
+es
+> can then use to set the relevant variable.  For now it also sets
+> EXTRA_OECONF but that was meant to be changed now that we're unfrozen.
+>=20
+> Martin, would you be able to write and test the change to remove
+> EXTRA_OECONF from the PACKAGECONFIG handling?
 
-I assume I might be missing some package configuration option. Is
-there some kind of example recipe or tutorial for the kind of image
-I'm trying to create? Can anyone with more experience give me a hint
-what I might be doing wrong?
+I've prepared such change and will include it in next world build to see
+how many things still abuse EXTRA_OECONF (hopefully buildhistory will
+catch at least some differences once the options are gone from the
+build).
 
-I'm using the "krogoth" branch of the following additional layers:
+Unfortunately the world status isn't so great now, so many issues might
+be hidden.
 
-  meta-intel (https://github.com/meta-qt5/meta-qt5)
-  meta-qt5 (git://git.yoctoproject.org/meta-intel)
-  meta-ruby
-  meta-multimedia
-  meta-oe (git://git.openembedded.org/meta-openembedded)
+--=20
+Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
 
+--yd5tubsdsci25azj
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
 
-My image inherits 'core-image' and 'distro-check'
+-----BEGIN PGP SIGNATURE-----
 
-IMAGE_FEATURES +=3D "splash package-management x11 hwcodecs ssh-server-open=
-ssh"
+iEYEARECAAYFAle8TS8ACgkQN1Ujt2V2gBzuOACeMeG/g/ksUDOF7btHSedNi3ja
+KxoAniMPmlptOSpl0e6HN8wlW1Wq5CsG
+=+11G
+-----END PGP SIGNATURE-----
 
-
-I'm including the following recipes in my image:
-
-  IMAGE_INSTALL_append =3D "\
-    packagegroup-core-full-cmdline \
-    packagegroup-core-lsb \
-    tree \
-    openbox \
-    xinit \
-    xterm \
-    setxkbmap \
-    binutils \
-    \
-    fontconfig \
-    xorg-minimal-fonts \
-    xorg-fonts-100dpi \
-    font-cursor-misc \
-    font-adobe-100dpi \
-    liberation-fonts \
-    font-bh-lucidatypewriter-100dpi \
-    font-misc-misc \
-    font-bitstream-100dpi \
-    font-bh-100dpi \
-    font-adobe-utopia-100dpi \
-    xlsfonts \
-    \
-    qtbase \
-    qtbase-fonts \
-    qtbase-plugins \
-    qtbase-tools \
-    qttools-plugins \
-    qtdeclarative \
-    qtdeclarative-plugins \
-    qtdeclarative-tools \
-    qtdeclarative-qmlplugins \
-    qtmultimedia \
-    qtmultimedia-plugins \
-    qtmultimedia-qmlplugins \
-    qtquickcontrols-qmlplugins \
-    qtsvg \
-    qtsvg-plugins \
-    qtimageformats-plugins \
-    qtsystems \
-    qtsystems-tools \
-    qtsystems-qmlplugins \
-    qtscript \
-    qtgraphicaleffects-qmlplugins \
-    qtquickcontrols \
-    qtquickcontrols-qmlplugins \
-    \
-    qtwebengine \
-    qtwebsockets \
-    qtquickcontrols2 \
-    qtserialport \
-    \
-    mesa-demos \
-    \
-    boost \
-    \
-    gdbserver \
-    openssh-sftp-server \
-    strace \
-    "
-
-
-I build Qt5 with the following package configuration options:
-
-  PACKAGECONFIG_append =3D " icu gl accessibility alsa glib zlib xcb sql-sq=
-lite2 iconv fontconfig openssl libproxy jpeg libpng freetype harfbuzz"
-
-
-Am I missing something? What additional information is useful?
-
-Thank you
-
-  Jan
----------------------------------------------------------------------------=
----------------
-HUTH Elektronik Systeme GmbH, 53842 Troisdorf-Spich
-Gesch=E4ftsf=FChrer: Ralf Zimmermann, Benno Kerling
-Amtsgericht Siegburg HRB 5386
-
+--yd5tubsdsci25azj--
