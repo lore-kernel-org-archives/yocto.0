@@ -1,89 +1,40 @@
-Return-Path: <tmatsuzawa@uievolution.com>
+Return-Path: <o.campana@videotec.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B74A6E0103E; Tue, 23 Aug 2016 21:19:23 -0700 (PDT)
+	id E8FB1E00FEA; Wed, 24 Aug 2016 00:59:22 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [104.47.34.62 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*      [95.229.80.3 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 9253 seconds by postgrey-1.32 at yocto-www;
-	Tue, 23 Aug 2016 21:19:21 PDT
-Received: from NAM01-BY2-obe.outbound.protection.outlook.com
-	(mail-by2nam01on0062.outbound.protection.outlook.com [104.47.34.62])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 74489E01039
-	for <yocto@yoctoproject.org>; Tue, 23 Aug 2016 21:19:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=uievolution.onmicrosoft.com; s=selector1-uievolution-com;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
-	bh=vFY5O0IIMEDKM3UBhEx7syJu+fMznGPFO2z9r1CIqBs=;
-	b=0KqMkckR5oZdhoNlNIGHJ8Z5sC9s33MmiAMjkKO0mKasXDrk5tFMcRPEuD1L/j0C/RJUfx9d0V4AdMNKgU132p+zprObsk76eZnnIU7JylHJSjkgujORpsY6QoX75qer07Qbilh8qZ8EDxj+LIu03SzSMRDZD4u8gQ49g8PjIt4=
-Received: from BLUPR0101MB1586.prod.exchangelabs.com (10.163.119.13) by
-	BLUPR0101MB1587.prod.exchangelabs.com (10.163.119.139) with Microsoft
-	SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
-	15.1.587.9; Wed, 24 Aug 2016 01:45:06 +0000
-Received: from BLUPR0101MB1586.prod.exchangelabs.com ([10.163.119.13]) by
-	BLUPR0101MB1586.prod.exchangelabs.com ([10.163.119.13]) with mapi id
-	15.01.0549.029; Wed, 24 Aug 2016 01:45:05 +0000
-From: Takashi Matsuzawa <tmatsuzawa@uievolution.com>
-To: Peter Kjellerstedt <peter.kjellerstedt@axis.com>, Andre McCurdy
-	<armccurdy@gmail.com>
-Thread-Topic: [yocto] BBMASK issue
-Thread-Index: AQHR/ODLzU+cZtHRnkGcb9k9zyc8N6BWADKAgACBSACAANZqzA==
-Date: Wed, 24 Aug 2016 01:45:05 +0000
-Message-ID: <BLUPR0101MB15868D717222F2CEC58FDB62D7EA0@BLUPR0101MB1586.prod.exchangelabs.com>
-References: <CY1PR0101MB1594A8354DB33AC3CC1A3A6CD7EB0@CY1PR0101MB1594.prod.exchangelabs.com>
-	<CAJ86T=UU06z69pPN5GE6=Ua7hmzn8NvG3kBWh=gmafmLjTcRCw@mail.gmail.com>,
-	<ad10b75b2a73413bac5b6b1bdf20b17f@XBOX02.axis.com>
-In-Reply-To: <ad10b75b2a73413bac5b6b1bdf20b17f@XBOX02.axis.com>
-Accept-Language: en-US
+X-Greylist: delayed 384 seconds by postgrey-1.32 at yocto-www;
+	Wed, 24 Aug 2016 00:59:19 PDT
+Received: from mail.videotec.com (mail2.videotec.com [95.229.80.3])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 44528E00FDE
+	for <yocto@yoctoproject.org>; Wed, 24 Aug 2016 00:59:19 -0700 (PDT)
+Received: from maia.sede.videotec.com (unknown [192.168.68.109])
+	by mail.videotec.com (Postfix) with ESMTPS id 072902402A4
+	for <yocto@yoctoproject.org>; Wed, 24 Aug 2016 09:52:53 +0200 (CEST)
+Received: from MAIA.sede.videotec.com ([fe80::f8bc:1eb3:ca06:a09c]) by
+	MAIA.sede.videotec.com ([fe80::f8bc:1eb3:ca06:a09c%11]) with mapi id
+	14.03.0301.000; Wed, 24 Aug 2016 09:51:41 +0200
+From: Ottavio Campana <o.campana@videotec.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Tuning for a machine based on Cortex-A9
+Thread-Index: AdH92kKBI2h/TTkYQLaVSDDHW2d0Sg==
+Date: Wed, 24 Aug 2016 07:51:40 +0000
+Message-ID: <5637116E3E13BE46B0D936BF364783C1F651AD@MAIA.sede.videotec.com>
+Accept-Language: it-IT, en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=tmatsuzawa@uievolution.com; 
-x-originating-ip: [132.245.44.5]
-x-ms-office365-filtering-correlation-id: fc52c3e5-d9d6-4feb-b610-08d3cbc04601
-x-microsoft-exchange-diagnostics: 1; BLUPR0101MB1587;
-	6:uhUtN9G0rKgrEK5dOZipLkYdl2v6uDhlL3KTnBEKp1aLp20qxrSX8++bba1mmIa/CaUi7AUj+RDvlo58kLolkpu/cm7lXO4+1EJxzeHnXOBvy9hHuBsEwUWTd/yZsGZW/+oKC9XZm7QTi6mKCdB4P5fwsN9htj68yacemtTkYqth3388sjCoPWj1N0VD7/6cd1BZ1yo2lPmXSGYzKCM4nZ910PBU096Lx8uHDGRWqe0R3PIP7KuEy1aZRqryjS7j1EO+Y1ZU74zpjGThj+KqG4N0hMjCfUXvkd4Wk9AX7jQ=;
-	5:ScalhUXILSYoSMETyxKguQhVZU7bxvDZ5wVJn5pxnQMWqaNGwP621L5HMurt80T5eFL7NGdgUdJ4ROUF7MWJMxjRCssFbHsqbTdXIQPhU1SUV71DmzJFgDvhwVKMoFwPuoBG8n+bjncvMKcTqLy8Sw==;
-	24:F+4TYlFxIcqeSf4b5dCxE5yf8ByUQItHV1W96NcILVULHlRxnhUB/Wfk29FbuozDpM5Mypkag9nv1nW0ZfSh4xkJnkL6Y59jF3YTSjZfsuI=;
-	7:AVIWqMeexBjHaP/Cz/hIT8h1vSN0xm5rCDFv9EGWSlG37v51FRVqd/UiB6laWbxnu3bUG7BgDRFZ/r9sm/sQtDFJJgyXN/b7IB/WJyzzGfLZABy1eFAFr96d5kG5QVCJCWgJm499chJy9DYi8dooID6zHBZpugXrNDKR5ULzllOEPVgGdRhxDtQYHasjPR+R9UgVwiHzUg0poc3Lb73acuzt5YKNiV8bFG7fC0eB33MS7vePpcyWHErK1iKkBWSX
-x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:BLUPR0101MB1587;
-x-microsoft-antispam-prvs: <BLUPR0101MB1587AE2465DB338C7E475882D7EA0@BLUPR0101MB1587.prod.exchangelabs.com>
-x-exchange-antispam-report-test: UriScan:;
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(6040176)(2401047)(5005006)(8121501046)(3002001)(10201501046);
-	SRVR:BLUPR0101MB1587; BCL:0; PCL:0; RULEID:;
-	SRVR:BLUPR0101MB1587; 
-x-forefront-prvs: 0044C17179
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10009020)(6009001)(7916002)(189002)(199003)(101416001)(586003)(68736007)(102836003)(6116002)(86362001)(3846002)(106116001)(66066001)(2906002)(50986999)(76176999)(19580395003)(105586002)(87936001)(4326007)(5660300001)(54356999)(81166006)(106356001)(9686002)(81156014)(8936002)(5001770100001)(8676002)(10400500002)(97736004)(2950100001)(2900100001)(7696003)(7846002)(7736002)(33656002)(122556002)(19625215002)(16236675004)(92566002)(74316002)(189998001)(19627405001)(77096005)(3660700001)(5002640100001)(3280700002);
-	DIR:OUT; SFP:1101; SCL:1; SRVR:BLUPR0101MB1587;
-	H:BLUPR0101MB1586.prod.exchangelabs.com; FPR:; SPF:None;
-	PTR:InfoNoRecords; MX:1; A:1; LANG:en; 
-received-spf: None (protection.outlook.com: uievolution.com does not designate
-	permitted sender hosts)
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
+x-originating-ip: [92.223.223.26]
 MIME-Version: 1.0
-X-OriginatorOrg: uievolution.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Aug 2016 01:45:05.5946 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: e0a7ca1f-2458-4cd6-a7c7-d733c07495ab
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BLUPR0101MB1587
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: BBMASK issue
+Subject: Tuning for a machine based on Cortex-A9
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -95,139 +46,226 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 Aug 2016 04:19:23 -0000
-Content-Language: en-US
+X-List-Received-Date: Wed, 24 Aug 2016 07:59:23 -0000
+Content-Language: it-IT
 Content-Type: multipart/alternative;
-	boundary="_000_BLUPR0101MB15868D717222F2CEC58FDB62D7EA0BLUPR0101MB1586_"
+	boundary="_000_5637116E3E13BE46B0D936BF364783C1F651ADMAIAsedevideotecc_"
 
---_000_BLUPR0101MB15868D717222F2CEC58FDB62D7EA0BLUPR0101MB1586_
+--_000_5637116E3E13BE46B0D936BF364783C1F651ADMAIAsedevideotecc_
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-Hello.
+Hello,
+
+I am trying to port a third-party BSP based on buildroot to yocto, but I am=
+ not able to tune the compiler to extactly match the original one.
+
+Particularly, if I run readelf on a binary compiled with the gcc that is us=
+ed by buildroot I get this output
+
+ottavio@ottavio:~$ readelf -A hello_world
+Attribute Section: aeabi
+File Attributes
+  Tag_CPU_name: "Cortex-A9"
+  Tag_CPU_arch: v7
+  Tag_CPU_arch_profile: Application
+  Tag_ARM_ISA_use: Yes
+  Tag_THUMB_ISA_use: Thumb-2
+  Tag_FP_arch: VFPv3
+  Tag_Advanced_SIMD_arch: NEONv1
+  Tag_ABI_PCS_wchar_t: 4
+  Tag_ABI_FP_rounding: Needed
+  Tag_ABI_FP_denormal: Needed
+  Tag_ABI_FP_exceptions: Needed
+  Tag_ABI_FP_number_model: IEEE 754
+  Tag_ABI_align_needed: 8-byte
+  Tag_ABI_align_preserved: 8-byte, except leaf SP
+  Tag_ABI_enum_size: int
+  Tag_CPU_unaligned_access: v6
+  Tag_MPextension_use: Allowed
+  Tag_Virtualization_use: TrustZone
+ottavio@ottavio:~$
+
+I tried to replicate this by configuring a new machine, and my machine conf=
+iguration looks like this
+
+require ../../../meta/conf/machine/include/tune-cortexa9.inc
+
+AVAILTUNES +=3D "cortexa9t-vfpv3-neon"
+ARMPKGARCH_tune-cortexa9t-vfpv3-neon          =3D "cortexa9"
+TUNE_FEATURES_tune-cortexa9t-vfpv3-neon       =3D "${TUNE_FEATURES_tune-arm=
+v7at-vfpv3} neon cortexa9"
+PACKAGE_EXTRA_ARCHS_tune-cortexa9t-vfpv3-neon =3D "${PACKAGE_EXTRA_ARCHS_tu=
+ne-armv7at-vfpv3} cortexa9-vfp cortexa9-vfpv3 cortexa9t2-vfp cortexa9t2-vfp=
+v3 cortexa9-neon"
+
+DEFAULTTUNE =3D "cortexa9t-vfpv3-neon"
+
+If I run readelf on any compiled binary obtained with yocto, I get this res=
+ult:
+
+ottavio@ottavio:~/poky/build-xxx/tmp/work/cortexa9-vfpv3-poky-linux-gnueabi=
+/bzip2/1.0.6-r5/build$ readelf -A .libs/bzip2
+Attribute Section: aeabi
+File Attributes
+  Tag_CPU_name: "Cortex-A9"
+  Tag_CPU_arch: v7
+  Tag_CPU_arch_profile: Application
+  Tag_ARM_ISA_use: Yes
+  Tag_THUMB_ISA_use: Thumb-2
+  Tag_FP_arch: VFPv3
+  Tag_ABI_PCS_wchar_t: 4
+  Tag_ABI_FP_rounding: Needed
+  Tag_ABI_FP_denormal: Needed
+  Tag_ABI_FP_exceptions: Needed
+  Tag_ABI_FP_number_model: IEEE 754
+  Tag_ABI_align_needed: 8-byte
+  Tag_ABI_align_preserved: 8-byte, except leaf SP
+  Tag_ABI_enum_size: int
+  Tag_CPU_unaligned_access: v6
+  Tag_MPextension_use: Allowed
+  Tag_Virtualization_use: TrustZone
+ottavio@ottavio:~/poky/build-xxx/tmp/work/cortexa9-vfpv3-poky-linux-gnueabi=
+/bzip2/1.0.6-r5/build$
+
+I am quite close to get a similar binary, the missing part is the Tag_Advan=
+ced_SIMD_arch: NEONv1 .  I get exactly the same result if I use DEFAULTTUNE=
+ =3D "cortexa9t-vfpv3", thus it seems that the neon and cortexa9-neon optio=
+ns I tried to add are ignored.
+
+At this point I have two questions
+
+Question #1
+
+How should I change ARMPKGARCH_tune-cortexa9t-vfpv3-neon , TUNE_FEATURES_tu=
+ne-cortexa9t-vfpv3-neon and PACKAGE_EXTRA_ARCHS_tune-cortexa9t-vfpv3-neon t=
+o have exactly the same kind of elf?
+
+Question # 2
+
+Why the only options for neon in meta/conf/machine/include/tune-cortexa9.in=
+c are offered for HF tunes?
 
 
->Please note that BBMASK was changed in Krogoth to allow multiple regular
->expressions (see commit a948f5252 in Poky). Basically, with Krogoth and
->later you can do:
->
->BBMASK =3D "aaa bbb ccc"
->BBMASK +=3D "ddd eee"
->BBMASK_append =3D " fff ggg"
+Thank you for your help
 
+Ottavio
 
-This is good, since everyone can always do append, not overwriting someone'=
-s definition.
-
-
-For now (for my pre-2.1 build), I ended up to copy BSP's BBMASK definition =
-to my local.conf to include everything.
-
-
---_000_BLUPR0101MB15868D717222F2CEC58FDB62D7EA0BLUPR0101MB1586_
+--_000_5637116E3E13BE46B0D936BF364783C1F651ADMAIAsedevideotecc_
 Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<html>
+<html dir=3D"ltr">
 <head>
 <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
 1">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
+<style id=3D"owaParaStyle" type=3D"text/css">P {margin-top:0;margin-bottom:=
+0;}</style>
 </head>
-<body dir=3D"ltr">
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;back=
-ground-color:#FFFFFF;font-family:Calibri,Arial,Helvetica,sans-serif;">
-<p>Hello.</p>
-<p><br>
-</p>
-<p><span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot=
-;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot=
-;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size:=
- 13.3333px;">&gt;Please note that BBMASK was changed in Krogoth to allow mu=
-ltiple
- regular&nbsp;</span><br style=3D"font-family: Calibri, Arial, Helvetica, s=
-ans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoC=
-olorEmoji, &quot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSym=
-bols; font-size: 13.3333px;">
-<span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot;Ap=
-ple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot;Se=
-goe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size: 13=
-.3333px;"><span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif=
-, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji=
-, &quot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; fon=
-t-size: 13.3333px;">&gt;</span>expressions
- (see commit a948f5252 in Poky). Basically, with Krogoth and&nbsp;</span><b=
-r style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot;Apple =
-Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot;Segoe =
-UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size: 13.333=
-3px;">
-<span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot;Ap=
-ple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot;Se=
-goe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size: 13=
-.3333px;"><span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif=
-, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji=
-, &quot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; fon=
-t-size: 13.3333px;">&gt;</span>later
- you can do:</span><br style=3D"font-family: Calibri, Arial, Helvetica, san=
-s-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoCol=
-orEmoji, &quot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbo=
-ls; font-size: 13.3333px;">
-<span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot;Ap=
-ple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot;Se=
-goe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size: 13=
-.3333px;">&gt;</span><br style=3D"font-family: Calibri, Arial, Helvetica, s=
-ans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoC=
-olorEmoji, &quot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSym=
-bols; font-size: 13.3333px;">
-<span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot;Ap=
-ple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot;Se=
-goe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size: 13=
-.3333px;"><span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif=
-, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji=
-, &quot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; fon=
-t-size: 13.3333px;">&gt;</span>BBMASK
- =3D &quot;aaa bbb ccc&quot;&nbsp;&nbsp;</span><br style=3D"font-family: Ca=
-libri, Arial, Helvetica, sans-serif, &quot;Apple Color Emoji&quot;, &quot;S=
-egoe UI Emoji&quot;, NotoColorEmoji, &quot;Segoe UI Symbol&quot;, &quot;And=
-roid Emoji&quot;, EmojiSymbols; font-size: 13.3333px;">
-<span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot;Ap=
-ple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot;Se=
-goe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size: 13=
-.3333px;"><span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif=
-, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji=
-, &quot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; fon=
-t-size: 13.3333px;">&gt;</span>BBMASK
- &#43;=3D &quot;ddd eee&quot;</span><br style=3D"font-family: Calibri, Aria=
-l, Helvetica, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emo=
-ji&quot;, NotoColorEmoji, &quot;Segoe UI Symbol&quot;, &quot;Android Emoji&=
-quot;, EmojiSymbols; font-size: 13.3333px;">
-<span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot;Ap=
-ple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot;Se=
-goe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size: 13=
-.3333px;"><span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif=
-, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji=
-, &quot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; fon=
-t-size: 13.3333px;">&gt;</span>BBMASK_append
- =3D &quot; fff ggg&quot;</span><br style=3D"font-family: Calibri, Arial, H=
-elvetica, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&q=
-uot;, NotoColorEmoji, &quot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot=
-;, EmojiSymbols; font-size: 13.3333px;">
+<body ocsi=3D"0" fpstyle=3D"1">
+<div style=3D"direction: ltr;font-family: Tahoma;color: #000000;font-size: =
+10pt;">Hello,
 <br>
-</p>
-<p>This is good, since everyone can always do append, not overwriting someo=
-ne's definition.</p>
-<p><br>
-</p>
-<p>For now (for my pre-2.1 build), I ended up to copy BSP's BBMASK definiti=
-on to my local.conf to include everything.</p>
-<div style=3D"color: rgb(0, 0, 0);"><font size=3D"2"><span style=3D"font-si=
-ze:10pt;">
-<div class=3D"PlainText"><br>
-</div>
-</span></font></div>
+<br>
+I am trying to port a third-party BSP based on buildroot to yocto, but I am=
+ not able to tune the compiler to extactly match the original one.<br>
+<br>
+Particularly, if I run readelf on a binary compiled with the gcc that is us=
+ed by buildroot I get this output
+<br>
+<br>
+<font face=3D"Courier New">ottavio@ottavio:~$ readelf -A hello_world<br>
+Attribute Section: aeabi<br>
+File Attributes<br>
+&nbsp; Tag_CPU_name: &quot;Cortex-A9&quot;<br>
+&nbsp; Tag_CPU_arch: v7<br>
+&nbsp; Tag_CPU_arch_profile: Application<br>
+&nbsp; Tag_ARM_ISA_use: Yes<br>
+&nbsp; Tag_THUMB_ISA_use: Thumb-2<br>
+&nbsp; Tag_FP_arch: VFPv3<br>
+&nbsp; Tag_Advanced_SIMD_arch: NEONv1<br>
+&nbsp; Tag_ABI_PCS_wchar_t: 4<br>
+&nbsp; Tag_ABI_FP_rounding: Needed<br>
+&nbsp; Tag_ABI_FP_denormal: Needed<br>
+&nbsp; Tag_ABI_FP_exceptions: Needed<br>
+&nbsp; Tag_ABI_FP_number_model: IEEE 754<br>
+&nbsp; Tag_ABI_align_needed: 8-byte<br>
+&nbsp; Tag_ABI_align_preserved: 8-byte, except leaf SP<br>
+&nbsp; Tag_ABI_enum_size: int<br>
+&nbsp; Tag_CPU_unaligned_access: v6<br>
+&nbsp; Tag_MPextension_use: Allowed<br>
+&nbsp; Tag_Virtualization_use: TrustZone<br>
+ottavio@ottavio:~$</font><br>
+<br>
+I tried to replicate this by configuring a new machine, and my machine conf=
+iguration looks like this<br>
+<br>
+<font face=3D"Courier New">require ../../../meta/conf/machine/include/tune-=
+cortexa9.inc<br>
+<br>
+AVAILTUNES &#43;=3D &quot;cortexa9t-vfpv3-neon&quot;<br>
+ARMPKGARCH_tune-cortexa9t-vfpv3-neon&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp; =3D &quot;cortexa9&quot;<br>
+TUNE_FEATURES_tune-cortexa9t-vfpv3-neon&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+ =3D &quot;${TUNE_FEATURES_tune-armv7at-vfpv3} neon cortexa9&quot;<br>
+PACKAGE_EXTRA_ARCHS_tune-cortexa9t-vfpv3-neon =3D &quot;${PACKAGE_EXTRA_ARC=
+HS_tune-armv7at-vfpv3} cortexa9-vfp cortexa9-vfpv3 cortexa9t2-vfp cortexa9t=
+2-vfpv3 cortexa9-neon&quot;<br>
+<br>
+DEFAULTTUNE =3D &quot;cortexa9t-vfpv3-neon&quot;</font><br>
+<br>
+If I run readelf on any compiled binary obtained with yocto, I get this res=
+ult:<br>
+<br>
+<font face=3D"Courier New">ottavio@ottavio:~/poky/build-xxx/tmp/work/cortex=
+a9-vfpv3-poky-linux-gnueabi/bzip2/1.0.6-r5/build$ readelf -A .libs/bzip2<br=
+>
+Attribute Section: aeabi<br>
+File Attributes<br>
+&nbsp; Tag_CPU_name: &quot;Cortex-A9&quot;<br>
+&nbsp; Tag_CPU_arch: v7<br>
+&nbsp; Tag_CPU_arch_profile: Application<br>
+&nbsp; Tag_ARM_ISA_use: Yes<br>
+&nbsp; Tag_THUMB_ISA_use: Thumb-2<br>
+&nbsp; Tag_FP_arch: VFPv3<br>
+&nbsp; Tag_ABI_PCS_wchar_t: 4<br>
+&nbsp; Tag_ABI_FP_rounding: Needed<br>
+&nbsp; Tag_ABI_FP_denormal: Needed<br>
+&nbsp; Tag_ABI_FP_exceptions: Needed<br>
+&nbsp; Tag_ABI_FP_number_model: IEEE 754<br>
+&nbsp; Tag_ABI_align_needed: 8-byte<br>
+&nbsp; Tag_ABI_align_preserved: 8-byte, except leaf SP<br>
+&nbsp; Tag_ABI_enum_size: int<br>
+&nbsp; Tag_CPU_unaligned_access: v6<br>
+&nbsp; Tag_MPextension_use: Allowed<br>
+&nbsp; Tag_Virtualization_use: TrustZone<br>
+ottavio@ottavio:~/poky/build-xxx/tmp/work/cortexa9-vfpv3-poky-linux-gnueabi=
+/bzip2/1.0.6-r5/build$</font><br>
+<br>
+I am quite close to get a similar binary, the missing part is the Tag_Advan=
+ced_SIMD_arch: NEONv1 .&nbsp; I get exactly the same result if I use DEFAUL=
+TTUNE =3D &quot;cortexa9t-vfpv3&quot;, thus it seems that the neon and cort=
+exa9-neon options I tried to add are ignored.<br>
+<br>
+At this point I have two questions<br>
+<br>
+<b>Question #1</b><br>
+<br>
+How should I change ARMPKGARCH_tune-cortexa9t-vfpv3-neon , TUNE_FEATURES_tu=
+ne-cortexa9t-vfpv3-neon and PACKAGE_EXTRA_ARCHS_tune-cortexa9t-vfpv3-neon t=
+o have exactly the same kind of elf?<br>
+<br>
+<b>Question # 2</b><br>
+<br>
+Why the only options for neon in meta/conf/machine/include/tune-cortexa9.in=
+c are offered for HF tunes?<br>
+<br>
+<br>
+Thank you for your help<br>
+<br>
+Ottavio<br>
 </div>
 </body>
 </html>
 
---_000_BLUPR0101MB15868D717222F2CEC58FDB62D7EA0BLUPR0101MB1586_--
+--_000_5637116E3E13BE46B0D936BF364783C1F651ADMAIAsedevideotecc_--
