@@ -1,30 +1,89 @@
-Return-Path: <jianxun.zhang@linux.intel.com>
+Return-Path: <tmatsuzawa@uievolution.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F395EE00FEE; Tue, 23 Aug 2016 17:31:04 -0700 (PDT)
+	id B74A6E0103E; Tue, 23 Aug 2016 21:19:23 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [104.47.34.62 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 62 seconds by postgrey-1.32 at yocto-www;
-	Tue, 23 Aug 2016 17:31:03 PDT
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ED3FCE00F13
-	for <yocto@yoctoproject.org>; Tue, 23 Aug 2016 17:31:03 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga105.fm.intel.com with ESMTP; 23 Aug 2016 17:30:01 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.28,568,1464678000"; d="scan'208";a="1030287972"
-Received: from chang-s2600cp.jf.intel.com ([10.54.77.22])
-	by fmsmga001.fm.intel.com with ESMTP; 23 Aug 2016 17:30:01 -0700
-From: Jianxun Zhang <jianxun.zhang@linux.intel.com>
-To: yocto@yoctoproject.org
-Date: Tue, 23 Aug 2016 17:32:24 -0700
-Message-Id: <1471998744-240257-1-git-send-email-jianxun.zhang@linux.intel.com>
-X-Mailer: git-send-email 2.7.4
-Subject: [RMC][PATCH] doc: update README file
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+X-Greylist: delayed 9253 seconds by postgrey-1.32 at yocto-www;
+	Tue, 23 Aug 2016 21:19:21 PDT
+Received: from NAM01-BY2-obe.outbound.protection.outlook.com
+	(mail-by2nam01on0062.outbound.protection.outlook.com [104.47.34.62])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 74489E01039
+	for <yocto@yoctoproject.org>; Tue, 23 Aug 2016 21:19:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=uievolution.onmicrosoft.com; s=selector1-uievolution-com;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
+	bh=vFY5O0IIMEDKM3UBhEx7syJu+fMznGPFO2z9r1CIqBs=;
+	b=0KqMkckR5oZdhoNlNIGHJ8Z5sC9s33MmiAMjkKO0mKasXDrk5tFMcRPEuD1L/j0C/RJUfx9d0V4AdMNKgU132p+zprObsk76eZnnIU7JylHJSjkgujORpsY6QoX75qer07Qbilh8qZ8EDxj+LIu03SzSMRDZD4u8gQ49g8PjIt4=
+Received: from BLUPR0101MB1586.prod.exchangelabs.com (10.163.119.13) by
+	BLUPR0101MB1587.prod.exchangelabs.com (10.163.119.139) with Microsoft
+	SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
+	15.1.587.9; Wed, 24 Aug 2016 01:45:06 +0000
+Received: from BLUPR0101MB1586.prod.exchangelabs.com ([10.163.119.13]) by
+	BLUPR0101MB1586.prod.exchangelabs.com ([10.163.119.13]) with mapi id
+	15.01.0549.029; Wed, 24 Aug 2016 01:45:05 +0000
+From: Takashi Matsuzawa <tmatsuzawa@uievolution.com>
+To: Peter Kjellerstedt <peter.kjellerstedt@axis.com>, Andre McCurdy
+	<armccurdy@gmail.com>
+Thread-Topic: [yocto] BBMASK issue
+Thread-Index: AQHR/ODLzU+cZtHRnkGcb9k9zyc8N6BWADKAgACBSACAANZqzA==
+Date: Wed, 24 Aug 2016 01:45:05 +0000
+Message-ID: <BLUPR0101MB15868D717222F2CEC58FDB62D7EA0@BLUPR0101MB1586.prod.exchangelabs.com>
+References: <CY1PR0101MB1594A8354DB33AC3CC1A3A6CD7EB0@CY1PR0101MB1594.prod.exchangelabs.com>
+	<CAJ86T=UU06z69pPN5GE6=Ua7hmzn8NvG3kBWh=gmafmLjTcRCw@mail.gmail.com>,
+	<ad10b75b2a73413bac5b6b1bdf20b17f@XBOX02.axis.com>
+In-Reply-To: <ad10b75b2a73413bac5b6b1bdf20b17f@XBOX02.axis.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+	smtp.mailfrom=tmatsuzawa@uievolution.com; 
+x-originating-ip: [132.245.44.5]
+x-ms-office365-filtering-correlation-id: fc52c3e5-d9d6-4feb-b610-08d3cbc04601
+x-microsoft-exchange-diagnostics: 1; BLUPR0101MB1587;
+	6:uhUtN9G0rKgrEK5dOZipLkYdl2v6uDhlL3KTnBEKp1aLp20qxrSX8++bba1mmIa/CaUi7AUj+RDvlo58kLolkpu/cm7lXO4+1EJxzeHnXOBvy9hHuBsEwUWTd/yZsGZW/+oKC9XZm7QTi6mKCdB4P5fwsN9htj68yacemtTkYqth3388sjCoPWj1N0VD7/6cd1BZ1yo2lPmXSGYzKCM4nZ910PBU096Lx8uHDGRWqe0R3PIP7KuEy1aZRqryjS7j1EO+Y1ZU74zpjGThj+KqG4N0hMjCfUXvkd4Wk9AX7jQ=;
+	5:ScalhUXILSYoSMETyxKguQhVZU7bxvDZ5wVJn5pxnQMWqaNGwP621L5HMurt80T5eFL7NGdgUdJ4ROUF7MWJMxjRCssFbHsqbTdXIQPhU1SUV71DmzJFgDvhwVKMoFwPuoBG8n+bjncvMKcTqLy8Sw==;
+	24:F+4TYlFxIcqeSf4b5dCxE5yf8ByUQItHV1W96NcILVULHlRxnhUB/Wfk29FbuozDpM5Mypkag9nv1nW0ZfSh4xkJnkL6Y59jF3YTSjZfsuI=;
+	7:AVIWqMeexBjHaP/Cz/hIT8h1vSN0xm5rCDFv9EGWSlG37v51FRVqd/UiB6laWbxnu3bUG7BgDRFZ/r9sm/sQtDFJJgyXN/b7IB/WJyzzGfLZABy1eFAFr96d5kG5QVCJCWgJm499chJy9DYi8dooID6zHBZpugXrNDKR5ULzllOEPVgGdRhxDtQYHasjPR+R9UgVwiHzUg0poc3Lb73acuzt5YKNiV8bFG7fC0eB33MS7vePpcyWHErK1iKkBWSX
+x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:BLUPR0101MB1587;
+x-microsoft-antispam-prvs: <BLUPR0101MB1587AE2465DB338C7E475882D7EA0@BLUPR0101MB1587.prod.exchangelabs.com>
+x-exchange-antispam-report-test: UriScan:;
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(6040176)(2401047)(5005006)(8121501046)(3002001)(10201501046);
+	SRVR:BLUPR0101MB1587; BCL:0; PCL:0; RULEID:;
+	SRVR:BLUPR0101MB1587; 
+x-forefront-prvs: 0044C17179
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10009020)(6009001)(7916002)(189002)(199003)(101416001)(586003)(68736007)(102836003)(6116002)(86362001)(3846002)(106116001)(66066001)(2906002)(50986999)(76176999)(19580395003)(105586002)(87936001)(4326007)(5660300001)(54356999)(81166006)(106356001)(9686002)(81156014)(8936002)(5001770100001)(8676002)(10400500002)(97736004)(2950100001)(2900100001)(7696003)(7846002)(7736002)(33656002)(122556002)(19625215002)(16236675004)(92566002)(74316002)(189998001)(19627405001)(77096005)(3660700001)(5002640100001)(3280700002);
+	DIR:OUT; SFP:1101; SCL:1; SRVR:BLUPR0101MB1587;
+	H:BLUPR0101MB1586.prod.exchangelabs.com; FPR:; SPF:None;
+	PTR:InfoNoRecords; MX:1; A:1; LANG:en; 
+received-spf: None (protection.outlook.com: uievolution.com does not designate
+	permitted sender hosts)
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
+MIME-Version: 1.0
+X-OriginatorOrg: uievolution.com
+X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Aug 2016 01:45:05.5946 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: e0a7ca1f-2458-4cd6-a7c7-d733c07495ab
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BLUPR0101MB1587
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: BBMASK issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,145 +95,139 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 Aug 2016 00:31:05 -0000
+X-List-Received-Date: Wed, 24 Aug 2016 04:19:23 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_BLUPR0101MB15868D717222F2CEC58FDB62D7EA0BLUPR0101MB1586_"
 
-Update some sections with new information of workflow.
+--_000_BLUPR0101MB15868D717222F2CEC58FDB62D7EA0BLUPR0101MB1586_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Jianxun Zhang <jianxun.zhang@linux.intel.com>
----
- README | 86 ++++++++++++++++++++++++++++++++++++++++++++++++++----------------
- 1 file changed, 65 insertions(+), 21 deletions(-)
-
-diff --git a/README b/README
-index 371e7d1..94eac5a 100644
---- a/README
-+++ b/README
-@@ -1,20 +1,30 @@
- Runtime Machine Configuration (RMC)
- ================================================================================
- 
-+=====
-+Introduction
-+=====
- RMC project provides BSP and OEM a new way to deal with configuration at a board
--or product level on multiple hardware targets at runtime. It answers two
--questions in a centralized approach:
-+or product level in a generic software stack at runtime. It answers two questions
-+with a centralized approach:
- 
--1) A unified way to identify a type of board in a software stack
-+1) How to identify a type of board in a software stack
- 
--Developers run RMC tool on a running board to obtain a fingerprint file from a
--running board. The fingerprint file is the identity of board 'type' in software.
-+2) How to access to data associated to a type of board at runtime
- 
--Fingerprint file so far is the only RMC-specific data exposed to outside. Any
--software calling RMC to get board-specific data doesn't need to carry finger-
--print. It is only used to map data and board type in a RMC database.
--
--2) Access to data associated to a type of board based on its identity at runtime
-+With RMC, developer of a client software can have a generic implementation of
-+logic and hardcoded configuration file names in source code. RMC magically
-+returns data for the type of the running board at runtime. The final effect is a
-+better isolation between a generic stack and quirks for different board types.
-+
-+=====
-+How it works
-+=====
-+Developer runs RMC tool on a board to obtain a fingerprint file. A fingerprint
-+is the software identity of a type of board. Fingerprint so far is the only RMC-
-+specific data exposed to outside. Any software calling RMC to get board-specific
-+data doesn't need to carry fingerprint. It is only used to map data and board
-+type in a RMC database.
- 
- With the same RMC tool, developers can generate a RMC record file which contains
- a signature computed from board's fingerprint and all data specific to the type
-@@ -25,24 +35,29 @@ for different boards.
- 
- At runtime, clients (software to call RMC) query files for the type of the
- running board with filenames. Once called, via RMC tool or APIs provided from
--RMC libraris, RMC collects fingerprint of the running board, computes its
--signature, seeks any possible records in RMC database file (provided by callers),
--to match the board it runs on with signatures, and then return the file blob
--to caller if there is a blob with same name specified by the caller.
-+RMC libraries, RMC collects fingerprint of the running board, computes its
-+signature, seeks any possible records in RMC database file to match the board it
-+runs on with signatures, and then returns the file blob to its caller if there
-+is a blob with the same _name_ specified by the caller.
- 
- RMC tool (CLI) lives in Linux user space. RMC libraries provides APIs in C, so
- that any programs can link with RMC libraries and call these APIs to get data
- specific to a type of board at runtime. RMC libraries can also be linked in EFI
- context for bootloaders, as well as in Linux user space.
- 
--Further refactor work is planned to simplify the integration
--between RMC and other software clients.
-+=====
-+Build:
-+=====
-+To build libraries and RMC tool for user space, run:
-+ make
- 
--With RMC, developer of a client software can have a generic implementation of
--logic and hardcoded configuration file names in source code. RMC magically
--returns data for the type of running board at runtime.
-+To build 64-bit libraries for UEFI context, run:
-+ RMC_EFI_ARCH=x86_64 make -f Makefile.efi
- 
--To compile RMC, simply run "make" in top directory of rmc project.
-+To build 32-bit libraries for UEFI context, run:
-+ RMC_EFI_ARCH=ia32 make -f Makefile.efi
-+
-+RMC_CFLAGS can be used to pass extra flags.
- 
- To get usage of RMC tool, just compile the project and run "rmc" without any
- arguments. Examples are also provided in usage message, in a rough order of
-@@ -51,7 +66,7 @@ recommended workflow.
- Refer to rmcl.h and rsmp.h for APIs. RMC tool itself uses these APIs, so it can
- be a good example (rmc.c).
- 
--To integrate RMC into a build system (yocto, Android...):
-+To integrate RMC into a build system (Yocto, Android...):
- On build host, compile RMC tool for host architecture and use it to generate RMC
- database files with all fingerprints and board-specific data checked in source
- tree. Build system is responsible to manage fingerprints and data. RMC database
-@@ -61,5 +76,34 @@ For target, compile RMC tool and libraries again for target architecture. RMC
- tool, an executable, can be deployed to target for clients like scripts. RMC
- libraries are expected to be linked in programs.
- 
-+Further refactor work is planned to simplify the integration
-+between RMC and other software clients.
-+
-+=====
-+Requirements
-+=====
- Board is required to have UEFI and SMBIOS compliant firmware. The efi driver in
- Linux kernel is also necessary.
-+
-+=====
-+Patch submission & Maintenance
-+=====
-+1. Developers please submit patches to yocto@yoctoproject.org mailing list for
-+review. We suggest developers to have "RMC" or "rmc" in mail subjects for
-+visibility in this generic mailing list.
-+
-+2. Once there is no any open items from code review in a period, maintainer pulls
-+the patches and run test in rmc project.
-+
-+3. Maintainer merges patch to branch "rmc-dev" that always holds changes passed
-+review and internal test, otherwise informs submitter to re-work if test fails.
-+
-+4. Maintainer tests changes pending on "rmc-dev" branch with any build system
-+integrated with RMC (e.g. a Yocto BSP).
-+
-+5. Maintainer merges the pending patches from "rmc-dev" to "master" branch that
-+shall be always for good changes passed code review, internal test and system
-+test.
-+
-+Maintainer:
-+jianxun.zhang@linux.intel.com
--- 
-2.7.4
+Hello.
 
 
+>Please note that BBMASK was changed in Krogoth to allow multiple regular
+>expressions (see commit a948f5252 in Poky). Basically, with Krogoth and
+>later you can do:
+>
+>BBMASK =3D "aaa bbb ccc"
+>BBMASK +=3D "ddd eee"
+>BBMASK_append =3D " fff ggg"
+
+
+This is good, since everyone can always do append, not overwriting someone'=
+s definition.
+
+
+For now (for my pre-2.1 build), I ended up to copy BSP's BBMASK definition =
+to my local.conf to include everything.
+
+
+--_000_BLUPR0101MB15868D717222F2CEC58FDB62D7EA0BLUPR0101MB1586_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+</head>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;back=
+ground-color:#FFFFFF;font-family:Calibri,Arial,Helvetica,sans-serif;">
+<p>Hello.</p>
+<p><br>
+</p>
+<p><span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot=
+;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot=
+;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size:=
+ 13.3333px;">&gt;Please note that BBMASK was changed in Krogoth to allow mu=
+ltiple
+ regular&nbsp;</span><br style=3D"font-family: Calibri, Arial, Helvetica, s=
+ans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoC=
+olorEmoji, &quot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSym=
+bols; font-size: 13.3333px;">
+<span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot;Ap=
+ple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot;Se=
+goe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size: 13=
+.3333px;"><span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif=
+, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji=
+, &quot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; fon=
+t-size: 13.3333px;">&gt;</span>expressions
+ (see commit a948f5252 in Poky). Basically, with Krogoth and&nbsp;</span><b=
+r style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot;Apple =
+Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot;Segoe =
+UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size: 13.333=
+3px;">
+<span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot;Ap=
+ple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot;Se=
+goe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size: 13=
+.3333px;"><span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif=
+, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji=
+, &quot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; fon=
+t-size: 13.3333px;">&gt;</span>later
+ you can do:</span><br style=3D"font-family: Calibri, Arial, Helvetica, san=
+s-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoCol=
+orEmoji, &quot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbo=
+ls; font-size: 13.3333px;">
+<span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot;Ap=
+ple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot;Se=
+goe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size: 13=
+.3333px;">&gt;</span><br style=3D"font-family: Calibri, Arial, Helvetica, s=
+ans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoC=
+olorEmoji, &quot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSym=
+bols; font-size: 13.3333px;">
+<span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot;Ap=
+ple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot;Se=
+goe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size: 13=
+.3333px;"><span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif=
+, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji=
+, &quot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; fon=
+t-size: 13.3333px;">&gt;</span>BBMASK
+ =3D &quot;aaa bbb ccc&quot;&nbsp;&nbsp;</span><br style=3D"font-family: Ca=
+libri, Arial, Helvetica, sans-serif, &quot;Apple Color Emoji&quot;, &quot;S=
+egoe UI Emoji&quot;, NotoColorEmoji, &quot;Segoe UI Symbol&quot;, &quot;And=
+roid Emoji&quot;, EmojiSymbols; font-size: 13.3333px;">
+<span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot;Ap=
+ple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot;Se=
+goe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size: 13=
+.3333px;"><span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif=
+, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji=
+, &quot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; fon=
+t-size: 13.3333px;">&gt;</span>BBMASK
+ &#43;=3D &quot;ddd eee&quot;</span><br style=3D"font-family: Calibri, Aria=
+l, Helvetica, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emo=
+ji&quot;, NotoColorEmoji, &quot;Segoe UI Symbol&quot;, &quot;Android Emoji&=
+quot;, EmojiSymbols; font-size: 13.3333px;">
+<span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot;Ap=
+ple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot;Se=
+goe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size: 13=
+.3333px;"><span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif=
+, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji=
+, &quot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; fon=
+t-size: 13.3333px;">&gt;</span>BBMASK_append
+ =3D &quot; fff ggg&quot;</span><br style=3D"font-family: Calibri, Arial, H=
+elvetica, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&q=
+uot;, NotoColorEmoji, &quot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot=
+;, EmojiSymbols; font-size: 13.3333px;">
+<br>
+</p>
+<p>This is good, since everyone can always do append, not overwriting someo=
+ne's definition.</p>
+<p><br>
+</p>
+<p>For now (for my pre-2.1 build), I ended up to copy BSP's BBMASK definiti=
+on to my local.conf to include everything.</p>
+<div style=3D"color: rgb(0, 0, 0);"><font size=3D"2"><span style=3D"font-si=
+ze:10pt;">
+<div class=3D"PlainText"><br>
+</div>
+</span></font></div>
+</div>
+</body>
+</html>
+
+--_000_BLUPR0101MB15868D717222F2CEC58FDB62D7EA0BLUPR0101MB1586_--
