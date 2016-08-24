@@ -1,59 +1,31 @@
-Return-Path: <mikehabibi@gmail.com>
+Return-Path: <lsorense@csclub.uwaterloo.ca>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 97391E009AC; Wed, 24 Aug 2016 11:54:19 -0700 (PDT)
+	id 14E16E009EF; Wed, 24 Aug 2016 13:49:46 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (mikehabibi[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.173 listed in list.dnswl.org]
-Received: from mail-yb0-f173.google.com (mail-yb0-f173.google.com
-	[209.85.213.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 41FDBE00815
-	for <yocto@yoctoproject.org>; Wed, 24 Aug 2016 11:54:17 -0700 (PDT)
-Received: by mail-yb0-f173.google.com with SMTP id z10so8787632ybh.2
-	for <yocto@yoctoproject.org>; Wed, 24 Aug 2016 11:54:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=0pWWIsKLcekucHAc+cb7ieZDeWzBiataTHHfYaDuRqE=;
-	b=O8srkiqrhwqbVAklMrR4Kc6HOUr2KAb9o0lfx2XkJ9hZf0f6kdCESRGU2nNa5KiLh+
-	4BuIu/mtTt2zZ38ARJ/K/47cDdMR+4Vtg9c5wGP1E6435rKXuSurHZrZhmz1T2jjQCH/
-	9maN9D1OsNfBGUaS3ZqwexTRptzxBRpsTj4zAzNpBxIC2+jczP3knoPvHsJbo++w6OWY
-	JiDlEBOHMaA0H7zbNwlDaCFaVPyM1O4KTtGknxMH30oaShgNBboLYuoljq3B1Wegk96c
-	Ml04atAMb/vfn7Y5xGxaZDp+Mt1mgjs6k4KiDm+ebwIooM64WG4OTiaeJMnNNoB42OLG
-	nBnA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=0pWWIsKLcekucHAc+cb7ieZDeWzBiataTHHfYaDuRqE=;
-	b=XDUs2OduwkpHTdorJWv6tZ8NqJnRZB0oHXgaKC2qoJKypF7Lghd2kumeBrXyOxf9Rb
-	JEw3SW2zR97avCt6nVGMduTVhM+8+SqnWky8G2Zk0gUxvHLQUUWN1xcT1MWb/RSkr3kB
-	iGseUftwRxvJ8f8PM50nRH8KR20eaZDocuMAwSVhksIOnL+axODLm3r2EWqYcVwcyZre
-	oPEMXCXy67QabMK/NW8Kkin9J20eeLsyuYVm7qac/NwDmU4MnYopBsikm3kUrnATIEcT
-	mvhjmWt8TguLk4IKrCEObR+5Iha99WahSqefatVN5ecFCrLUphMrpQXKFeRufN2natvk
-	fOmA==
-X-Gm-Message-State: AEkoouu9GRrmrWnjSp8oNU0MZoW/OLe0w9XLmmJbJv58tuvr5OM6YLOWQQ7undtwv9Obf6OxDfCNezBjXwLyXQ==
-X-Received: by 10.37.219.6 with SMTP id g6mr3558640ybf.180.1472064856317; Wed,
-	24 Aug 2016 11:54:16 -0700 (PDT)
+X-Greylist: delayed 386 seconds by postgrey-1.32 at yocto-www;
+	Wed, 24 Aug 2016 13:49:42 PDT
+Received: from caffeine.csclub.uwaterloo.ca (caffeine.csclub.uwaterloo.ca
+	[129.97.134.17])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C2E61E00874
+	for <yocto@yoctoproject.org>; Wed, 24 Aug 2016 13:49:42 -0700 (PDT)
+Received: by caffeine.csclub.uwaterloo.ca (Postfix, from userid 20367)
+	id C24A3C025C; Wed, 24 Aug 2016 16:43:15 -0400 (EDT)
+Date: Wed, 24 Aug 2016 16:43:15 -0400
+To: Ottavio Campana <o.campana@videotec.com>
+Message-ID: <20160824204315.GA14313@csclub.uwaterloo.ca>
+References: <5637116E3E13BE46B0D936BF364783C1F651AD@MAIA.sede.videotec.com>
 MIME-Version: 1.0
-Received: by 10.37.86.70 with HTTP; Wed, 24 Aug 2016 11:54:15 -0700 (PDT)
-From: Michael Habibi <mikehabibi@gmail.com>
-Date: Wed, 24 Aug 2016 13:54:15 -0500
-Message-ID: <CAOsp8o8fjX4eV3fwYHuN6QdXMN3ANi7K2ZRXDPHxrNBQ+TgVeQ@mail.gmail.com>
-To: Yocto <yocto@yoctoproject.org>
-Subject: Building applications and distributions separately, but integrate into final image
+In-Reply-To: <5637116E3E13BE46B0D936BF364783C1F651AD@MAIA.sede.videotec.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
+From: lsorense@csclub.uwaterloo.ca (Lennart Sorensen)
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Tuning for a machine based on Cortex-A9
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -65,53 +37,110 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 Aug 2016 18:54:19 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 24 Aug 2016 20:49:46 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-All,
+On Wed, Aug 24, 2016 at 07:51:40AM +0000, Ottavio Campana wrote:
+> Hello,
+> 
+> I am trying to port a third-party BSP based on buildroot to yocto, but I am not able to tune the compiler to extactly match the original one.
+> 
+> Particularly, if I run readelf on a binary compiled with the gcc that is used by buildroot I get this output
+> 
+> ottavio@ottavio:~$ readelf -A hello_world
+> Attribute Section: aeabi
+> File Attributes
+>   Tag_CPU_name: "Cortex-A9"
+>   Tag_CPU_arch: v7
+>   Tag_CPU_arch_profile: Application
+>   Tag_ARM_ISA_use: Yes
+>   Tag_THUMB_ISA_use: Thumb-2
+>   Tag_FP_arch: VFPv3
+>   Tag_Advanced_SIMD_arch: NEONv1
+>   Tag_ABI_PCS_wchar_t: 4
+>   Tag_ABI_FP_rounding: Needed
+>   Tag_ABI_FP_denormal: Needed
+>   Tag_ABI_FP_exceptions: Needed
+>   Tag_ABI_FP_number_model: IEEE 754
+>   Tag_ABI_align_needed: 8-byte
+>   Tag_ABI_align_preserved: 8-byte, except leaf SP
+>   Tag_ABI_enum_size: int
+>   Tag_CPU_unaligned_access: v6
+>   Tag_MPextension_use: Allowed
+>   Tag_Virtualization_use: TrustZone
+> ottavio@ottavio:~$
+> 
+> I tried to replicate this by configuring a new machine, and my machine configuration looks like this
+> 
+> require ../../../meta/conf/machine/include/tune-cortexa9.inc
+> 
+> AVAILTUNES += "cortexa9t-vfpv3-neon"
+> ARMPKGARCH_tune-cortexa9t-vfpv3-neon          = "cortexa9"
+> TUNE_FEATURES_tune-cortexa9t-vfpv3-neon       = "${TUNE_FEATURES_tune-armv7at-vfpv3} neon cortexa9"
+> PACKAGE_EXTRA_ARCHS_tune-cortexa9t-vfpv3-neon = "${PACKAGE_EXTRA_ARCHS_tune-armv7at-vfpv3} cortexa9-vfp cortexa9-vfpv3 cortexa9t2-vfp cortexa9t2-vfpv3 cortexa9-neon"
+> 
+> DEFAULTTUNE = "cortexa9t-vfpv3-neon"
+> 
+> If I run readelf on any compiled binary obtained with yocto, I get this result:
+> 
+> ottavio@ottavio:~/poky/build-xxx/tmp/work/cortexa9-vfpv3-poky-linux-gnueabi/bzip2/1.0.6-r5/build$ readelf -A .libs/bzip2
+> Attribute Section: aeabi
+> File Attributes
+>   Tag_CPU_name: "Cortex-A9"
+>   Tag_CPU_arch: v7
+>   Tag_CPU_arch_profile: Application
+>   Tag_ARM_ISA_use: Yes
+>   Tag_THUMB_ISA_use: Thumb-2
+>   Tag_FP_arch: VFPv3
+>   Tag_ABI_PCS_wchar_t: 4
+>   Tag_ABI_FP_rounding: Needed
+>   Tag_ABI_FP_denormal: Needed
+>   Tag_ABI_FP_exceptions: Needed
+>   Tag_ABI_FP_number_model: IEEE 754
+>   Tag_ABI_align_needed: 8-byte
+>   Tag_ABI_align_preserved: 8-byte, except leaf SP
+>   Tag_ABI_enum_size: int
+>   Tag_CPU_unaligned_access: v6
+>   Tag_MPextension_use: Allowed
+>   Tag_Virtualization_use: TrustZone
+> ottavio@ottavio:~/poky/build-xxx/tmp/work/cortexa9-vfpv3-poky-linux-gnueabi/bzip2/1.0.6-r5/build$
+> 
+> I am quite close to get a similar binary, the missing part is the Tag_Advanced_SIMD_arch: NEONv1 .  I get exactly the same result if I use DEFAULTTUNE = "cortexa9t-vfpv3", thus it seems that the neon and cortexa9-neon options I tried to add are ignored.
+> 
+> At this point I have two questions
+> 
+> Question #1
+> 
+> How should I change ARMPKGARCH_tune-cortexa9t-vfpv3-neon , TUNE_FEATURES_tune-cortexa9t-vfpv3-neon and PACKAGE_EXTRA_ARCHS_tune-cortexa9t-vfpv3-neon to have exactly the same kind of elf?
+> 
+> Question # 2
+> 
+> Why the only options for neon in meta/conf/machine/include/tune-cortexa9.inc are offered for HF tunes?
 
-I am looking at Yocto as a replacement for our embedded distribution.
-Currently we build everything as a distribution. This includes
-building the Linux kernel, open source packages, as well as our own IP
-and applications.
+Well it looks to me like the HF neon options imply vfp, while the vfp3
+tunes imply not neon.  Since they share registers the performance may
+in fact be better if they are not mixed.
 
-As you can imagine, a vast majority of our build is taken up by
-repeatedly building distribution components and not our actual IP,
-which is a majority of what changes day to day.
+Of course there exists A9's without neon, so one might want to build
+for that.
 
-In moving to Yocto, my first plan was to create all the necessary
-layers and separate out what changes from what doesn't (in fact much
-of what doesn't change is already included in Yocto or the many
-freely-available layers online).
+The git commit that added the vfpv3 tunes says they are for 32 register
+VFP on A9s.  Neon already implies 32 registers for the vfp.
 
-However, this would still require application developers to have to
-learn and use Yocto to build the entire distribution. Ideally, I'd
-like to separate the applications from the main build, so that
-application developers have to learn less about Yocto, and more
-importantly, save on build time when they make their changes.
+As far as I can tell, you can set DEFAULTTUNE to cortexa9t-neon to get
+softfp with neon support, or you can set it to cortexa9thf-neon to get
+hardfp with neon support.
 
-I am exploring exactly how I can use the available SDK options as a
-solution. If I create an image with the base distribution and required
-applications, I'm wondering if I can create a separate tree for the
-application developers. They would then build that entire tree with
-the yocto SDK. I haven't quite figured out yet how I can then
-integrate their applications into the Yocto image, and prepare it for
-deployment. I'm also unclear how we can define new dependencies if the
-base distribution is pre-built. For example, if we introduce a new
-dependency (our custom application now requires zlib, for example), it
-doesn't seem for there to be a way to then ensure zlib is built into
-the final image with the SDK option.
+Certainly cortexa9t-vfpv3 should NOT do neon as far as I can tell.
 
-Unfortunately, we can't build the distribution and then install the
-applications directly onto the target. Based on how our codebase is
-currently designed, it requires a fully-complete image to be installed
-on the target as a whole, and not piecemeal. This is why I need to
-integrate on the host/build environment first before we create the
-deployable image.
+Getting the output you had above with neon support in it, I believe
+means doing DEFAULTTUNE=cortexa9thf-neon
 
-Can anyone share any workflows that they use that may fit with what we
-need? In the mean time I am continuing to play with Yocto and the SDK
-to see what else I can come up with.
+There is no such option as cortexa9t-vfpv3-neon that I can find in the
+files anywhere, so that wouldn't work.  No point trying to invent one
+since neon implies vfpv3 already.
 
-Thanks all for your time.
+-- 
+Len Sorensen
 
