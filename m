@@ -1,6 +1,6 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <hasanvand.milad@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D7136E01093; Thu, 25 Aug 2016 10:08:09 -0700 (PDT)
+	id 770A3E01000; Wed, 24 Aug 2016 02:26:52 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,10 +8,10 @@ X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
+	mail provider *      (hasanvand.milad[at]gmail.com)
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.220.54 listed in list.dnswl.org]
+	*      [209.85.214.50 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -20,52 +20,42 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pa0-f54.google.com (mail-pa0-f54.google.com
-	[209.85.220.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A1259E0108D
-	for <yocto@yoctoproject.org>; Thu, 25 Aug 2016 10:08:06 -0700 (PDT)
-Received: by mail-pa0-f54.google.com with SMTP id fi15so18555488pac.1
-	for <yocto@yoctoproject.org>; Thu, 25 Aug 2016 10:08:06 -0700 (PDT)
+Received: from mail-it0-f50.google.com (mail-it0-f50.google.com
+	[209.85.214.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0374CE00FE3
+	for <yocto@yoctoproject.org>; Wed, 24 Aug 2016 02:26:49 -0700 (PDT)
+Received: by mail-it0-f50.google.com with SMTP id f6so24791696ith.0
+	for <yocto@yoctoproject.org>; Wed, 24 Aug 2016 02:26:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=subject:mime-version:from:in-reply-to:date:cc:message-id:references
-	:to; bh=0PgiDcierTpA3gI1l+lWsGcTzR+yc56IZ0EKVNk/JrI=;
-	b=UsZFVhtFi9OUrRGIaJZkt6XWN1g8b0Iz5jQiHMu+jwBJcfikNA9Vxy2KwCALUvEgIF
-	kUKMuV3DeKHUcFfHsu0znywu6fc393gT9mUyKGuDnXUu8Zc74UkRkOCt0+JMLeB7CwGi
-	n3nE/TgyVeFVMhCY6myGoyaQs+fNr9gF/o+dFVXP3Tm2LUsiErJ0By/cwNKo16/Dz7yx
-	Mgu8ANmsMTJBXzWo75q68ftAZjrwUECbIpkr4i3oB58JUZRJBihtyJ7tAQZPuealOhLR
-	mDZqX7YaaqQnbkpJk47q1G9fiJaSaS+vTQpJ3I5zAWZYcyPQyINhzNawg+zRJjba9UJ4
-	uXVw==
+	h=mime-version:from:date:message-id:subject:to;
+	bh=L+Y40hRGgVzME6lExmlvHvzsjR7tx8ZvH5Mj4ZetUGo=;
+	b=dKAOOoY+773F5dMMevcecEaOWjCaqi/VgrVA7BXmGOALW1xiEtcN3CutAeCn9JoPc7
+	5Or5Shp+A1+e8u3qor37Dk4CBUhydl5I3xqM5NAE+XQhuqM4tdAOtOjjjkDkrlG1SdJl
+	I0LdxNbpeamjl8zBgpaMN/CImOpwOGQM77CVGGdXRciGBB0B7mx3GNgNZQqCFTRG2hRa
+	xZHHAO+K4fIl+r6fdVCkLAlDtFAU2M6XKYK3azrypuhp+RS0xuqbgq7wH4XuiBVZy29Z
+	yVfT+JI1PEAPORbAhwmJktT0M5V+AxNoWcf8hpvmwjEv9XY2BqHEsIveM40D2SrYysYw
+	SNAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:subject:mime-version:from:in-reply-to:date:cc
-	:message-id:references:to;
-	bh=0PgiDcierTpA3gI1l+lWsGcTzR+yc56IZ0EKVNk/JrI=;
-	b=PDLUinMYio+rH+jYhkAEdYpRx7mRKAgCwITDBer87Cx6EYa8B8K6F29Kv11h/a850P
-	PF++11HcUfZ8Cw9G9/yvey9Ndfp0BKet01So2wIpcq6Ff1z4goYLpUeIVcQ1EsxlxszY
-	0n2yVqug9o5rzk/eRt10btJczy/SJAlN0ochzhmx6fPTmf5NVSJwHtyr0df+SvzKg2+h
-	jCyWfZUWLuHIqNjzEoVRrKX/yxRwY1DoCsEs/ai2OywlteQaEEKal4MNB/mVUEXEJX+W
-	v80GKl7x9zfLj9eSdXOzLyQ25soB9J0iuvnOmqK+twlMsIINko7FIwW/J+HFKiIl4zYR
-	OnUg==
-X-Gm-Message-State: AE9vXwNCb5/8mFttbeAf/u5bskAZSElLyMS7VUnu2cLLMbRNVjfnRSpevasUhC/fK6gssw==
-X-Received: by 10.66.62.164 with SMTP id z4mr17874786par.156.1472144885709;
-	Thu, 25 Aug 2016 10:08:05 -0700 (PDT)
-Received: from ?IPv6:2601:647:4c00:3edf:157a:f659:3403:a165?
-	([2601:647:4c00:3edf:157a:f659:3403:a165])
-	by smtp.gmail.com with ESMTPSA id
-	e2sm22234125pfd.45.2016.08.25.10.08.04
-	(version=TLS1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Thu, 25 Aug 2016 10:08:04 -0700 (PDT)
-Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
-X-Pgp-Agent: GPGMail
-From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <OF43D5FF2A.20B2A60C-ONC125801A.0032C979-C125801A.003C454B@esa-grimma.de>
-Date: Thu, 25 Aug 2016 10:08:35 -0700
-Message-Id: <56DA04E8-BDB8-4D3A-AE8F-D41271B73EFF@gmail.com>
-References: <OF43D5FF2A.20B2A60C-ONC125801A.0032C979-C125801A.003C454B@esa-grimma.de>
-To: S.Jaritz@esa-grimma.de
-X-Mailer: Apple Mail (2.3124)
-Cc: yocto@yoctoproject.org
-Subject: Re: How to add a textline to the busybox-syslog syslog.conf?
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=L+Y40hRGgVzME6lExmlvHvzsjR7tx8ZvH5Mj4ZetUGo=;
+	b=lk7lqDEw64i5DEDATHlmtV6jCyfR/m3KXFPj2PmeXJ7OcTWaZn/EamFOLWqI8XKqxm
+	WE2mn0/I+Vu/KjmLZDRYt2iX1btlkE0OzQwaKsSxXopr0c9RSAGZCDekr/LDtE+O7OAa
+	ic29cngMgWpb0+dBANyVEdPVobk1akRQGaoxZdVdxEKJtwz0Q6oQoCa8hYccLIgB5CTa
+	RngybpEQC2T32Du9l2UZX618EfdeMyUXpZIze0Eg8G4hQemt1buqkK1JcT1iI9mUS6gF
+	k3sTtsz7Dr8WKIw4oRP+C0/mWMf6NhIPukgl7yCrkrQs8iAo+fHAPULcJVce1vXxKeAn
+	4IkA==
+X-Gm-Message-State: AEkoousBw+yypToqDeZCyil0yrblXz98aig8d9GYeW74AsT9clhsyhF7jyG59xhuudcYQnhilZd2H1gcx3wFCA==
+X-Received: by 10.107.62.68 with SMTP id l65mr2944794ioa.185.1472030808496;
+	Wed, 24 Aug 2016 02:26:48 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.79.68.3 with HTTP; Wed, 24 Aug 2016 02:26:48 -0700 (PDT)
+From: milad hasanvand <hasanvand.milad@gmail.com>
+Date: Wed, 24 Aug 2016 13:56:48 +0430
+Message-ID: <CAPSYY_TjsenT5D1vkPCY9ZUFSSZ+zgsVPdwbyrqvNGU85m=d5A@mail.gmail.com>
+To: yocto@yoctoproject.org
+X-Mailman-Approved-At: Thu, 25 Aug 2016 11:21:29 -0700
+Subject: problem with yocto and qt5
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -77,273 +67,275 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 25 Aug 2016 17:08:09 -0000
-X-Groupsio-MsgNum: 31652
-Content-Type: multipart/signed;
-	boundary="Apple-Mail=_714C8DB8-F44A-45D8-9A48-1DFE928B7B4C";
-	protocol="application/pgp-signature"; micalg=pgp-sha1
+X-List-Received-Date: Wed, 24 Aug 2016 09:26:52 -0000
+X-Groupsio-MsgNum: 31653
+Content-Type: multipart/mixed; boundary=94eb2c06146a7133a7053acde160
 
---Apple-Mail=_714C8DB8-F44A-45D8-9A48-1DFE928B7B4C
-Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_6B12193D-3169-4B1E-AEAA-377C3BBB41D5"
+--94eb2c06146a7133a7053acde160
+Content-Type: multipart/alternative; boundary=94eb2c06146a7133a0053acde15e
 
---Apple-Mail=_6B12193D-3169-4B1E-AEAA-377C3BBB41D5
+--94eb2c06146a7133a0053acde15e
+Content-Type: text/plain; charset=UTF-8
+
+Dear all,
+
+i have frustrating issue with compiling qt5 using yocto and it is
+definitely going to kill me.
+i am using qemux86 as the target. i attached the bblayers.conf and
+local.conf. i also added the -qpa eglfs to packageconfig but it fails when
+it comes to do-configure task of qt base.
+please help me out because it has almost been two months since i stuck with
+this problem.
+
+--94eb2c06146a7133a0053acde15e
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=iso-8859-1
 
+<div dir=3D"ltr">Dear all,<div><br></div><div>i have frustrating issue with=
+ compiling qt5 using yocto and it is definitely going to kill me.</div><div=
+>i am using qemux86 as the target. i attached the bblayers.conf and local.c=
+onf. i also added the -qpa eglfs to packageconfig but it fails when it come=
+s to do-configure task of qt base.</div><div>please help me out because it =
+has almost been two months since i stuck with this problem.</div><div><br><=
+/div></div>
 
-> On Aug 25, 2016, at 3:58 AM, S.Jaritz@esa-grimma.de wrote:
->=20
-> Hej ho
->=20
-> I have an app that is using syslog. For it I like to set the amount of =
-log data.
->=20
-> I am using the std. yocto(krogoth) together with the std. meta-atmel =
-layer. This layers are installing the "busybox-syslog"-package. This =
-comes with the "/etc/syslog.conf" file.
->=20
-> My question is: How to append the syslog.conf with a line like =
-"myApp,auth.notice /var/log/messages" out of a recipe?
+--94eb2c06146a7133a0053acde15e--
 
-you can write a bbappend for busybox recipe in your own layer and add =
-do_install_append there
+--94eb2c06146a7133a7053acde160
+Content-Type: application/octet-stream; name="bblayers.conf"
+Content-Disposition: attachment; filename="bblayers.conf"
+Content-Transfer-Encoding: base64
+X-Attachment-Id: f_is8p4hk70
 
+IyBMQVlFUl9DT05GX1ZFUlNJT04gaXMgaW5jcmVhc2VkIGVhY2ggdGltZSBidWlsZC9jb25mL2Ji
+bGF5ZXJzLmNvbmYKIyBjaGFuZ2VzIGluY29tcGF0aWJseQpMQ09ORl9WRVJTSU9OID0gIjYiCgpC
+QlBBVEggPSAiJHtUT1BESVJ9IgpCQkZJTEVTID89ICIiCgpCQkxBWUVSUyA/PSAiIFwKICAvaG9t
+ZS9taWxhZC9Eb2N1bWVudHMvbGFzdHRyeS9wb2t5L21ldGEgXAogIC9ob21lL21pbGFkL0RvY3Vt
+ZW50cy9sYXN0dHJ5L3Bva3kvbWV0YS15b2N0byBcCiAgL2hvbWUvbWlsYWQvRG9jdW1lbnRzL2xh
+c3R0cnkvcG9reS9tZXRhLXlvY3RvLWJzcCBcCiAgL2hvbWUvbWlsYWQvRG9jdW1lbnRzL2xhc3R0
+cnkvcG9reS9tZXRhLXF0NSBcCiAgL2hvbWUvbWlsYWQvRG9jdW1lbnRzL2xhc3R0cnkvcG9reS9t
+ZXRhLW9wZW5lbWJlZGRlZC9tZXRhLW9lIFwKICAvaG9tZS9taWxhZC9Eb2N1bWVudHMvbGFzdHRy
+eS9wb2t5L21ldGEtb3BlbmVtYmVkZGVkL21ldGEtcnVieSBcCiAgL2hvbWUvbWlsYWQvRG9jdW1l
+bnRzL2xhc3R0cnkvcG9reS9tZXRhLW9wZW5lbWJlZGRlZC9tZXRhLW11bHRpbWVkaWEgXAogIC9o
+b21lL21pbGFkL0RvY3VtZW50cy9sYXN0dHJ5L3Bva3kvbWV0YS15b2N0by1ic3AgXAogICIKQkJM
+QVlFUlNfTk9OX1JFTU9WQUJMRSA/PSAiIFwKICAvaG9tZS9taWxhZC9Eb2N1bWVudHMvbGFzdHRy
+eS9wb2t5L21ldGEgXAogIC9ob21lL21pbGFkL0RvY3VtZW50cy9sYXN0dHJ5L3Bva3kvbWV0YS15
+b2N0byBcCiAgIgo=
 
+--94eb2c06146a7133a7053acde160
+Content-Type: application/octet-stream; name="local.conf"
+Content-Disposition: attachment; filename="local.conf"
+Content-Transfer-Encoding: base64
+X-Attachment-Id: f_is8p4hkb1
 
->=20
-> My idea of the dummy recipe looks like:
-> ######## myApp.bb ########
-> SUMMARY =3D "myApp"
-> SECTION =3D "demo"
-> LICENSE =3D "GPL"
->=20
-> inherit cmake
->=20
-> DEPENDS =3D "busybox-syslog"
->=20
-> SRC_URI =3D "gitsm://mygit/myApp.git;protocol=3Dhttp;branch=3Ddevelop"
->=20
-> PV =3D "1.0.0"
->=20
-> S =3D "${WORKDIR}/git/"
->=20
-> BBCLASSEXTEND =3D "native nativesdk"
->=20
-> do_install_append() {
->         echo 'myApp.*        /var/log/messages' >> /etc/syslog.conf
-> }
-> #########################
->=20
-> Any ideas how to do it in a nice way?
->=20
-> Regards!
->=20
-> Stefan Jaritz
->=20
-> ------------------------------------------------------------
-> ESA Elektroschaltanlagen Grimma GmbH
-> Broner Ring 30
-> 04668 Grimma
-> Telefon: +49 3437 9211 176
-> Telefax: +49 3437 9211 26
-> E-Mail: s.jaritz@esa-grimma.de
-> Internet: www.esa-grimma.de <x-msg://18/www.esa-grimma.de>
->=20
->=20
-> Gesch=E4ftsf=FChrer:
-> Dipl.-Ing. J=F6rg Gaitzsch
-> J=F6rg Reinker
->=20
-> Sitz der Gesellschaft: Grimma
-> Ust.-ID: DE 141784437
-> Amtsgericht: Leipzig, HRB 5159
-> Steuernummer: 238/108/00755
->=20
->=20
-> Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte =
-Informationen.
-> Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=FCmlich=
- erhalten
-> haben, informieren Sie bitte sofort den Absender und l=F6schen Sie =
-diese
-> Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe =
-dieser Mail
-> ist nicht gestattet.
->=20
-> This e-mail may contain confidential and/or privileged information. If =
-you are
-> not the intended recipient (or have received this e-mail in error) =
-please
-> notify the sender immediately and destroy this e-mail. Any =
-unauthorized
-> copying, disclosure or distribution of the material in this e-mail is =
-strictly
-> forbidden.--
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+IwojIFRoaXMgZmlsZSBpcyB5b3VyIGxvY2FsIGNvbmZpZ3VyYXRpb24gZmlsZSBhbmQgaXMgd2hl
+cmUgYWxsIGxvY2FsIHVzZXIgc2V0dGluZ3MKIyBhcmUgcGxhY2VkLiBUaGUgY29tbWVudHMgaW4g
+dGhpcyBmaWxlIGdpdmUgc29tZSBndWlkZSB0byB0aGUgb3B0aW9ucyBhIG5ldyB1c2VyCiMgdG8g
+dGhlIHN5c3RlbSBtaWdodCB3YW50IHRvIGNoYW5nZSBidXQgcHJldHR5IG11Y2ggYW55IGNvbmZp
+Z3VyYXRpb24gb3B0aW9uIGNhbgojIGJlIHNldCBpbiB0aGlzIGZpbGUuIE1vcmUgYWR2ZW50dXJv
+dXMgdXNlcnMgY2FuIGxvb2sgYXQgbG9jYWwuY29uZi5leHRlbmRlZCAKIyB3aGljaCBjb250YWlu
+cyBvdGhlciBleGFtcGxlcyBvZiBjb25maWd1cmF0aW9uIHdoaWNoIGNhbiBiZSBwbGFjZWQgaW4g
+dGhpcyBmaWxlCiMgYnV0IG5ldyB1c2VycyBsaWtlbHkgd29uJ3QgbmVlZCBhbnkgb2YgdGhlbSBp
+bml0aWFsbHkuCiMKIyBMaW5lcyBzdGFydGluZyB3aXRoIHRoZSAnIycgY2hhcmFjdGVyIGFyZSBj
+b21tZW50ZWQgb3V0IGFuZCBpbiBzb21lIGNhc2VzIHRoZSAKIyBkZWZhdWx0IHZhbHVlcyBhcmUg
+cHJvdmlkZWQgYXMgY29tbWVudHMgdG8gc2hvdyBwZW9wbGUgZXhhbXBsZSBzeW50YXguIEVuYWJs
+aW5nCiMgdGhlIG9wdGlvbiBpcyBhIHF1ZXN0aW9uIG9mIHJlbW92aW5nIHRoZSAjIGNoYXJhY3Rl
+ciBhbmQgbWFraW5nIGFueSBjaGFuZ2UgdG8gdGhlCiMgdmFyaWFibGUgYXMgcmVxdWlyZWQuCgoj
+CiMgTWFjaGluZSBTZWxlY3Rpb24KIwojIFlvdSBuZWVkIHRvIHNlbGVjdCBhIHNwZWNpZmljIG1h
+Y2hpbmUgdG8gdGFyZ2V0IHRoZSBidWlsZCB3aXRoLiBUaGVyZSBhcmUgYSBzZWxlY3Rpb24KIyBv
+ZiBlbXVsYXRlZCBtYWNoaW5lcyBhdmFpbGFibGUgd2hpY2ggY2FuIGJvb3QgYW5kIHJ1biBpbiB0
+aGUgUUVNVSBlbXVsYXRvcjoKIwojTUFDSElORSA/PSAicWVtdWFybSIKI01BQ0hJTkUgPz0gInFl
+bXVhcm02NCIKI01BQ0hJTkUgPz0gInFlbXVtaXBzIgojTUFDSElORSA/PSAicWVtdXBwYyIKI01B
+Q0hJTkUgPz0gInFlbXV4ODYiCiNNQUNISU5FID89ICJxZW11eDg2LTY0IgojCiMgVGhlcmUgYXJl
+IGFsc28gdGhlIGZvbGxvd2luZyBoYXJkd2FyZSBib2FyZCB0YXJnZXQgbWFjaGluZXMgaW5jbHVk
+ZWQgZm9yIAojIGRlbW9uc3RyYXRpb24gcHVycG9zZXM6CiMKI01BQ0hJTkUgPz0gImJlYWdsZWJv
+bmUiCiNNQUNISU5FID89ICJnZW5lcmljeDg2IgojTUFDSElORSA/PSAiZ2VuZXJpY3g4Ni02NCIK
+I01BQ0hJTkUgPz0gIm1wYzgzMTVlLXJkYiIKI01BQ0hJTkUgPz0gImVkZ2Vyb3V0ZXIiCiMKIyBU
+aGlzIHNldHMgdGhlIGRlZmF1bHQgbWFjaGluZSB0byBiZSBxZW11eDg2IGlmIG5vIG90aGVyIG1h
+Y2hpbmUgaXMgc2VsZWN0ZWQ6Ck1BQ0hJTkUgPz89ICJxZW11eDg2IgoKIwojIFdoZXJlIHRvIHBs
+YWNlIGRvd25sb2FkcwojCiMgRHVyaW5nIGEgZmlyc3QgYnVpbGQgdGhlIHN5c3RlbSB3aWxsIGRv
+d25sb2FkIG1hbnkgZGlmZmVyZW50IHNvdXJjZSBjb2RlIHRhcmJhbGxzCiMgZnJvbSB2YXJpb3Vz
+IHVwc3RyZWFtIHByb2plY3RzLiBUaGlzIGNhbiB0YWtlIGEgd2hpbGUsIHBhcnRpY3VsYXJseSBp
+ZiB5b3VyIG5ldHdvcmsKIyBjb25uZWN0aW9uIGlzIHNsb3cuIFRoZXNlIGFyZSBhbGwgc3RvcmVk
+IGluIERMX0RJUi4gV2hlbiB3aXBpbmcgYW5kIHJlYnVpbGRpbmcgeW91CiMgY2FuIHByZXNlcnZl
+IHRoaXMgZGlyZWN0b3J5IHRvIHNwZWVkIHVwIHRoaXMgcGFydCBvZiBzdWJzZXF1ZW50IGJ1aWxk
+cy4gVGhpcyBkaXJlY3RvcnkKIyBpcyBzYWZlIHRvIHNoYXJlIGJldHdlZW4gbXVsdGlwbGUgYnVp
+bGRzIG9uIHRoZSBzYW1lIG1hY2hpbmUgdG9vLgojCiMgVGhlIGRlZmF1bHQgaXMgYSBkb3dubG9h
+ZHMgZGlyZWN0b3J5IHVuZGVyIFRPUERJUiB3aGljaCBpcyB0aGUgYnVpbGQgZGlyZWN0b3J5Lgoj
+CkRMX0RJUiA/PSAiL2hvbWUvbWlsYWQvRG9jdW1lbnRzL2xhc3R0cnkvcG9reS9sYXN0LWJ1aWxk
+L2Rvd25sb2FkcyIKCiMKIyBXaGVyZSB0byBwbGFjZSBzaGFyZWQtc3RhdGUgZmlsZXMKIwojIEJp
+dEJha2UgaGFzIHRoZSBjYXBhYmlsaXR5IHRvIGFjY2VsZXJhdGUgYnVpbGRzIGJhc2VkIG9uIHBy
+ZXZpb3VzbHkgYnVpbHQgb3V0cHV0LgojIFRoaXMgaXMgZG9uZSB1c2luZyAic2hhcmVkIHN0YXRl
+IiBmaWxlcyB3aGljaCBjYW4gYmUgdGhvdWdodCBvZiBhcyBjYWNoZSBvYmplY3RzCiMgYW5kIHRo
+aXMgb3B0aW9uIGRldGVybWluZXMgd2hlcmUgdGhvc2UgZmlsZXMgYXJlIHBsYWNlZC4KIwojIFlv
+dSBjYW4gd2lwZSBvdXQgVE1QRElSIGxlYXZpbmcgdGhpcyBkaXJlY3RvcnkgaW50YWN0IGFuZCB0
+aGUgYnVpbGQgd291bGQgcmVnZW5lcmF0ZQojIGZyb20gdGhlc2UgZmlsZXMgaWYgbm8gY2hhbmdl
+cyB3ZXJlIG1hZGUgdG8gdGhlIGNvbmZpZ3VyYXRpb24uIElmIGNoYW5nZXMgd2VyZSBtYWRlCiMg
+dG8gdGhlIGNvbmZpZ3VyYXRpb24sIG9ubHkgc2hhcmVkIHN0YXRlIGZpbGVzIHdoZXJlIHRoZSBz
+dGF0ZSB3YXMgc3RpbGwgdmFsaWQgd291bGQKIyBiZSB1c2VkIChkb25lIHVzaW5nIGNoZWNrc3Vt
+cykuCiMKIyBUaGUgZGVmYXVsdCBpcyBhIHNzdGF0ZS1jYWNoZSBkaXJlY3RvcnkgdW5kZXIgVE9Q
+RElSLgojCiNTU1RBVEVfRElSID89ICIke1RPUERJUn0vc3N0YXRlLWNhY2hlIgoKIwojIFdoZXJl
+IHRvIHBsYWNlIHRoZSBidWlsZCBvdXRwdXQKIwojIFRoaXMgb3B0aW9uIHNwZWNpZmllcyB3aGVy
+ZSB0aGUgYnVsayBvZiB0aGUgYnVpbGRpbmcgd29yayBzaG91bGQgYmUgZG9uZSBhbmQKIyB3aGVy
+ZSBCaXRCYWtlIHNob3VsZCBwbGFjZSBpdHMgdGVtcG9yYXJ5IGZpbGVzIGFuZCBvdXRwdXQuIEtl
+ZXAgaW4gbWluZCB0aGF0CiMgdGhpcyBpbmNsdWRlcyB0aGUgZXh0cmFjdGlvbiBhbmQgY29tcGls
+YXRpb24gb2YgbWFueSBhcHBsaWNhdGlvbnMgYW5kIHRoZSB0b29sY2hhaW4KIyB3aGljaCBjYW4g
+dXNlIEdpZ2FieXRlcyBvZiBoYXJkIGRpc2sgc3BhY2UuCiMKIyBUaGUgZGVmYXVsdCBpcyBhIHRt
+cCBkaXJlY3RvcnkgdW5kZXIgVE9QRElSLgojCiNUTVBESVIgPSAiJHtUT1BESVJ9L3RtcCIKCiMK
+IyBEZWZhdWx0IHBvbGljeSBjb25maWcKIwojIFRoZSBkaXN0cmlidXRpb24gc2V0dGluZyBjb250
+cm9scyB3aGljaCBwb2xpY3kgc2V0dGluZ3MgYXJlIHVzZWQgYXMgZGVmYXVsdHMuCiMgVGhlIGRl
+ZmF1bHQgdmFsdWUgaXMgZmluZSBmb3IgZ2VuZXJhbCBZb2N0byBwcm9qZWN0IHVzZSwgYXQgbGVh
+c3QgaW5pdGlhbGx5LgojIFVsdGltYXRlbHkgd2hlbiBjcmVhdGluZyBjdXN0b20gcG9saWN5LCBw
+ZW9wbGUgd2lsbCBsaWtlbHkgZW5kIHVwIHN1YmNsYXNzaW5nIAojIHRoZXNlIGRlZmF1bHRzLgoj
+CkRJU1RSTyA/PSAicG9reSIKIyBBcyBhbiBleGFtcGxlIG9mIGEgc3ViY2xhc3MgdGhlcmUgaXMg
+YSAiYmxlZWRpbmciIGVkZ2UgcG9saWN5IGNvbmZpZ3VyYXRpb24KIyB3aGVyZSBtYW55IHZlcnNp
+b25zIGFyZSBzZXQgdG8gdGhlIGFic29sdXRlIGxhdGVzdCBjb2RlIGZyb20gdGhlIHVwc3RyZWFt
+IAojIHNvdXJjZSBjb250cm9sIHN5c3RlbXMuIFRoaXMgaXMganVzdCBtZW50aW9uZWQgaGVyZSBh
+cyBhbiBleGFtcGxlLCBpdHMgbm90CiMgdXNlZnVsIHRvIG1vc3QgbmV3IHVzZXJzLgojIERJU1RS
+TyA/PSAicG9reS1ibGVlZGluZyIKCiMKIyBQYWNrYWdlIE1hbmFnZW1lbnQgY29uZmlndXJhdGlv
+bgojCiMgVGhpcyB2YXJpYWJsZSBsaXN0cyB3aGljaCBwYWNrYWdpbmcgZm9ybWF0cyB0byBlbmFi
+bGUuIE11bHRpcGxlIHBhY2thZ2UgYmFja2VuZHMgCiMgY2FuIGJlIGVuYWJsZWQgYXQgb25jZSBh
+bmQgdGhlIGZpcnN0IGl0ZW0gbGlzdGVkIGluIHRoZSB2YXJpYWJsZSB3aWxsIGJlIHVzZWQgCiMg
+dG8gZ2VuZXJhdGUgdGhlIHJvb3QgZmlsZXN5c3RlbXMuCiMgT3B0aW9ucyBhcmU6CiMgIC0gJ3Bh
+Y2thZ2VfZGViJyBmb3IgZGViaWFuIHN0eWxlIGRlYiBmaWxlcwojICAtICdwYWNrYWdlX2lwaycg
+Zm9yIGlwayBmaWxlcyBhcmUgdXNlZCBieSBvcGtnIChhIGRlYmlhbiBzdHlsZSBlbWJlZGRlZCBw
+YWNrYWdlIG1hbmFnZXIpCiMgIC0gJ3BhY2thZ2VfcnBtJyBmb3IgcnBtIHN0eWxlIHBhY2thZ2Vz
+CiMgRS5nLjogUEFDS0FHRV9DTEFTU0VTID89ICJwYWNrYWdlX3JwbSBwYWNrYWdlX2RlYiBwYWNr
+YWdlX2lwayIKIyBXZSBkZWZhdWx0IHRvIHJwbToKUEFDS0FHRV9DTEFTU0VTID89ICJwYWNrYWdl
+X3JwbSBwYWNrYWdlX2RlYiBwYWNrYWdlX2lwayIKCiMKIyBTREsvQURUIHRhcmdldCBhcmNoaXRl
+Y3R1cmUKIwojIFRoaXMgdmFyaWFibGUgc3BlY2lmaWVzIHRoZSBhcmNoaXRlY3R1cmUgdG8gYnVp
+bGQgU0RLL0FEVCBpdGVtcyBmb3IgYW5kIG1lYW5zCiMgeW91IGNhbiBidWlsZCB0aGUgU0RLIHBh
+Y2thZ2VzIGZvciBhcmNoaXRlY3R1cmVzIG90aGVyIHRoYW4gdGhlIG1hY2hpbmUgeW91IGFyZSAK
+IyBydW5uaW5nIHRoZSBidWlsZCBvbiAoaS5lLiBidWlsZGluZyBpNjg2IHBhY2thZ2VzIG9uIGFu
+IHg4Nl82NCBob3N0KS4KIyBTdXBwb3J0ZWQgdmFsdWVzIGFyZSBpNjg2IGFuZCB4ODZfNjQKI1NE
+S01BQ0hJTkUgPz0gImk2ODYiCgojCiMgRXh0cmEgaW1hZ2UgY29uZmlndXJhdGlvbiBkZWZhdWx0
+cwojCiMgVGhlIEVYVFJBX0lNQUdFX0ZFQVRVUkVTIHZhcmlhYmxlIGFsbG93cyBleHRyYSBwYWNr
+YWdlcyB0byBiZSBhZGRlZCB0byB0aGUgZ2VuZXJhdGVkIAojIGltYWdlcy4gU29tZSBvZiB0aGVz
+ZSBvcHRpb25zIGFyZSBhZGRlZCB0byBjZXJ0YWluIGltYWdlIHR5cGVzIGF1dG9tYXRpY2FsbHku
+IFRoZQojIHZhcmlhYmxlIGNhbiBjb250YWluIHRoZSBmb2xsb3dpbmcgb3B0aW9uczoKIyAgImRi
+Zy1wa2dzIiAgICAgICAtIGFkZCAtZGJnIHBhY2thZ2VzIGZvciBhbGwgaW5zdGFsbGVkIHBhY2th
+Z2VzCiMgICAgICAgICAgICAgICAgICAgICAoYWRkcyBzeW1ib2wgaW5mb3JtYXRpb24gZm9yIGRl
+YnVnZ2luZy9wcm9maWxpbmcpCiMgICJkZXYtcGtncyIgICAgICAgLSBhZGQgLWRldiBwYWNrYWdl
+cyBmb3IgYWxsIGluc3RhbGxlZCBwYWNrYWdlcwojICAgICAgICAgICAgICAgICAgICAgKHVzZWZ1
+bCBpZiB5b3Ugd2FudCB0byBkZXZlbG9wIGFnYWluc3QgbGlicyBpbiB0aGUgaW1hZ2UpCiMgICJw
+dGVzdC1wa2dzIiAgICAgLSBhZGQgLXB0ZXN0IHBhY2thZ2VzIGZvciBhbGwgcHRlc3QtZW5hYmxl
+ZCBwYWNrYWdlcwojICAgICAgICAgICAgICAgICAgICAgKHVzZWZ1bCBpZiB5b3Ugd2FudCB0byBy
+dW4gdGhlIHBhY2thZ2UgdGVzdCBzdWl0ZXMpCiMgICJ0b29scy1zZGsiICAgICAgLSBhZGQgZGV2
+ZWxvcG1lbnQgdG9vbHMgKGdjYywgbWFrZSwgcGtnY29uZmlnIGV0Yy4pCiMgICJ0b29scy1kZWJ1
+ZyIgICAgLSBhZGQgZGVidWdnaW5nIHRvb2xzIChnZGIsIHN0cmFjZSkKIyAgImVjbGlwc2UtZGVi
+dWciICAtIGFkZCBFY2xpcHNlIHJlbW90ZSBkZWJ1Z2dpbmcgc3VwcG9ydAojICAidG9vbHMtcHJv
+ZmlsZSIgIC0gYWRkIHByb2ZpbGluZyB0b29scyAob3Byb2ZpbGUsIGV4bWFwLCBsdHRuZywgdmFs
+Z3JpbmQpCiMgICJ0b29scy10ZXN0YXBwcyIgLSBhZGQgdXNlZnVsIHRlc3RpbmcgdG9vbHMgKHRz
+X3ByaW50LCBhcGxheSwgYXJlY29yZCBldGMuKQojICAiZGVidWctdHdlYWtzIiAgIC0gbWFrZSBh
+biBpbWFnZSBzdWl0YWJsZSBmb3IgZGV2ZWxvcG1lbnQKIyAgICAgICAgICAgICAgICAgICAgIGUu
+Zy4gc3NoIHJvb3QgYWNjZXNzIGhhcyBhIGJsYW5rIHBhc3N3b3JkCiMgVGhlcmUgYXJlIG90aGVy
+IGFwcGxpY2F0aW9uIHRhcmdldHMgdGhhdCBjYW4gYmUgdXNlZCBoZXJlIHRvbywgc2VlCiMgbWV0
+YS9jbGFzc2VzL2ltYWdlLmJiY2xhc3MgYW5kIG1ldGEvY2xhc3Nlcy9jb3JlLWltYWdlLmJiY2xh
+c3MgZm9yIG1vcmUgZGV0YWlscy4KIyBXZSBkZWZhdWx0IHRvIGVuYWJsaW5nIHRoZSBkZWJ1Z2dp
+bmcgdHdlYWtzLgpFWFRSQV9JTUFHRV9GRUFUVVJFUyA9ICJkZWJ1Zy10d2Vha3Mgc3NoLXNlcnZl
+ci1vcGVuc3NoIgoKSU1BR0VfSU5TVEFMTF9hcHBlbmQgPSAiYm9vc3QgY21ha2UgXAogICAgcnVi
+eSBcCiAgICBjcHVmcmVxdXRpbHMgXAogICAgbmFubyBcCiAgICBnZGIgXAogICAgZ3N0cmVhbWVy
+IFwKICAgIGdzdC1tZXRhLXZpZGVvIFwKICAgIGdzdC1wbHVnaW5zLWJhc2UtYXBwIFwKICAgIGdz
+dC1wbHVnaW5zLWJhc2UgXAogICAgZ3N0LXBsdWdpbnMtZ29vZCBcCiAgICBnc3QtcGx1Z2lucy1n
+b29kLXJ0c3AgXAogICAgZ3N0LXBsdWdpbnMtZ29vZC11ZHAgXAogICAgZ3N0LXBsdWdpbnMtZ29v
+ZC1ydHBtYW5hZ2VyIFwKICAgIGdzdC1wbHVnaW5zLWdvb2QtcnRwIFwKICAgIGdzdC1wbHVnaW5z
+LWdvb2QtdmlkZW80bGludXgyIFwKICAgIG9wZW5zc2gtc2Z0cC1zZXJ2ZXIgXAkKICAgIHF0YmFz
+ZS1mb250cyBcCiAgICBxdGJhc2UtcGx1Z2lucyBcCiAgICBxdGJhc2UtdG9vbHMgXAogICAgcXRi
+YXNlLWV4YW1wbGVzIFwKICAgIHF0ZGVjbGFyYXRpdmUgXAogICAgcXRkZWNsYXJhdGl2ZS1wbHVn
+aW5zIFwKICAgIHF0ZGVjbGFyYXRpdmUtdG9vbHMgXAogICAgcXRkZWNsYXJhdGl2ZS1leGFtcGxl
+cyBcCiAgICBxdGRlY2xhcmF0aXZlLXFtbHBsdWdpbnMgXAogICAgcXRtdWx0aW1lZGlhIFwKICAg
+IHF0bXVsdGltZWRpYS1wbHVnaW5zIFwKICAgIHF0bXVsdGltZWRpYS1leGFtcGxlcyBcCiAgICBx
+dG11bHRpbWVkaWEtcW1scGx1Z2lucyBcCiAgICBxdHN2ZyBcCiAgICBxdHN2Zy1wbHVnaW5zIFwK
+ICAgIHF0c2Vuc29ycyBcCiAgICBxdGltYWdlZm9ybWF0cy1wbHVnaW5zIFwKICAgIHF0c3lzdGVt
+cyBcCiAgICBxdHN5c3RlbXMtdG9vbHMgXAogICAgcXRzeXN0ZW1zLWV4YW1wbGVzIFwKICAgIHF0
+c3lzdGVtcy1xbWxwbHVnaW5zIFwKICAgIHF0c2NyaXB0IFwKICAgIHF0M2QgXAogICAgcXQzZC1l
+eGFtcGxlcyBcCiAgICBxdDNkLXFtbHBsdWdpbnMgXAogICAgcXQzZC10b29scyBcCiAgICBxdHdl
+YmtpdCBcCiAgICBxdHdlYmtpdC1leGFtcGxlcy1leGFtcGxlcyBcCiAgICBxdHdlYmtpdC1xbWxw
+bHVnaW5zIFwKICAgIHF0Z3JhcGhpY2FsZWZmZWN0cy1xbWxwbHVnaW5zIFwKICAgIHF0Y29ubmVj
+dGl2aXR5LXFtbHBsdWdpbnMgXAogICAgcXRsb2NhdGlvbi1wbHVnaW5zIFwKICAgIHF0bG9jYXRp
+b24tcW1scGx1Z2lucyBcCiAgICBjaW5lbWF0aWNleHBlcmllbmNlIFwKICAgIGNhaXJvIHBhbmdv
+IGZvbnRjb25maWcgZnJlZXR5cGUgcHVsc2VhdWRpbyBkYnVzIFwKICAgIGkyYy10b29scyBcIAog
+ICAgaWN1IFwKICAgICIKUEFDS0FHRUNPTkZJR19yZW1vdmUgPSAiIHgxMSB3YXlsYW5kIgpESVNU
+Uk9fRkVBVFVSRVNfcmVtb3ZlID0gIngxMSB3YXlsYW5kIgpESVNUUk9fRkVBVFVSRVNfYXBwZW5k
+ID0gIm9wZW5nbCIKCiMKIyBBZGRpdGlvbmFsIGltYWdlIGZlYXR1cmVzCiMKIyBUaGUgZm9sbG93
+aW5nIGlzIGEgbGlzdCBvZiBhZGRpdGlvbmFsIGNsYXNzZXMgdG8gdXNlIHdoZW4gYnVpbGRpbmcg
+aW1hZ2VzIHdoaWNoCiMgZW5hYmxlIGV4dHJhIGZlYXR1cmVzLiBTb21lIGF2YWlsYWJsZSBvcHRp
+b25zIHdoaWNoIGNhbiBiZSBpbmNsdWRlZCBpbiB0aGlzIHZhcmlhYmxlIAojIGFyZToKIyAgIC0g
+J2J1aWxkc3RhdHMnIGNvbGxlY3QgYnVpbGQgc3RhdGlzdGljcwojICAgLSAnaW1hZ2UtbWtsaWJz
+JyB0byByZWR1Y2Ugc2hhcmVkIGxpYnJhcnkgZmlsZXMgc2l6ZSBmb3IgYW4gaW1hZ2UKIyAgIC0g
+J2ltYWdlLXByZWxpbmsnIGluIG9yZGVyIHRvIHByZWxpbmsgdGhlIGZpbGVzeXN0ZW0gaW1hZ2UK
+IyAgIC0gJ2ltYWdlLXN3YWInIHRvIHBlcmZvcm0gaG9zdCBzeXN0ZW0gaW50cnVzaW9uIGRldGVj
+dGlvbgojIE5PVEU6IGlmIGxpc3RpbmcgbWtsaWJzICYgcHJlbGluayBib3RoLCB0aGVuIG1ha2Ug
+c3VyZSBta2xpYnMgaXMgYmVmb3JlIHByZWxpbmsKIyBOT1RFOiBta2xpYnMgYWxzbyBuZWVkcyB0
+byBiZSBleHBsaWNpdGx5IGVuYWJsZWQgZm9yIGEgZ2l2ZW4gaW1hZ2UsIHNlZSBsb2NhbC5jb25m
+LmV4dGVuZGVkCiMgTk9URTogaW1hZ2UtcHJlbGluayBpcyBjdXJyZW50bHkgYnJva2VuIGR1ZSB0
+byBwcm9ibGVtcyB3aXRoIHRoZSBwcmVsaW5rZXIuICBJdCBpcyBhZHZpc2VkCiMgdGhhdCB5b3Ug
+ZG8gTk9UIHJ1biB0aGUgcHJlbGlua2VyIGF0IHRoaXMgdGltZS4gClVTRVJfQ0xBU1NFUyA/PSAi
+YnVpbGRzdGF0cyBpbWFnZS1ta2xpYnMiCgojCiMgUnVudGltZSB0ZXN0aW5nIG9mIGltYWdlcwoj
+CiMgVGhlIGJ1aWxkIHN5c3RlbSBjYW4gdGVzdCBib290aW5nIHZpcnR1YWwgbWFjaGluZSBpbWFn
+ZXMgdW5kZXIgcWVtdSAoYW4gZW11bGF0b3IpCiMgYWZ0ZXIgYW55IHJvb3QgZmlsZXN5c3RlbXMg
+YXJlIGNyZWF0ZWQgYW5kIHJ1biB0ZXN0cyBhZ2FpbnN0IHRob3NlIGltYWdlcy4gVG8KIyBlbmFi
+bGUgdGhpcyB1bmNvbW1lbnQgdGhpcyBsaW5lLiBTZWUgY2xhc3Nlcy90ZXN0aW1hZ2UoLWF1dG8p
+LmJiY2xhc3MgZm9yCiMgZnVydGhlciBkZXRhaWxzLgojVEVTVF9JTUFHRSA9ICIxIgojCiMgSW50
+ZXJhY3RpdmUgc2hlbGwgY29uZmlndXJhdGlvbgojCiMgVW5kZXIgY2VydGFpbiBjaXJjdW1zdGFu
+Y2VzIHRoZSBzeXN0ZW0gbWF5IG5lZWQgaW5wdXQgZnJvbSB5b3UgYW5kIHRvIGRvIHRoaXMgaXQg
+CiMgY2FuIGxhdW5jaCBhbiBpbnRlcmFjdGl2ZSBzaGVsbC4gSXQgbmVlZHMgdG8gZG8gdGhpcyBz
+aW5jZSB0aGUgYnVpbGQgaXMgCiMgbXVsdGl0aHJlYWRlZCBhbmQgbmVlZHMgdG8gYmUgYWJsZSB0
+byBoYW5kbGUgdGhlIGNhc2Ugd2hlcmUgbW9yZSB0aGFuIG9uZSBwYXJhbGxlbAojIHByb2Nlc3Mg
+bWF5IHJlcXVpcmUgdGhlIHVzZXIncyBhdHRlbnRpb24uIFRoZSBkZWZhdWx0IGlzIGl0ZXJhdGUg
+b3ZlciB0aGUgYXZhaWxhYmxlCiMgdGVybWluYWwgdHlwZXMgdG8gZmluZCBvbmUgdGhhdCB3b3Jr
+cy4KIwojIEV4YW1wbGVzIG9mIHRoZSBvY2Nhc2lvbnMgdGhpcyBtYXkgaGFwcGVuIGFyZSB3aGVu
+IHJlc29sdmluZyBwYXRjaGVzIHdoaWNoIGNhbm5vdAojIGJlIGFwcGxpZWQsIHRvIHVzZSB0aGUg
+ZGV2c2hlbGwgb3IgdGhlIGtlcm5lbCBtZW51Y29uZmlnCiMKIyBTdXBwb3J0ZWQgdmFsdWVzIGFy
+ZSBhdXRvLCBnbm9tZSwgeGZjZSwgcnh2dCwgc2NyZWVuLCBrb25zb2xlIChLREUgMy54IG9ubHkp
+LCBub25lCiMgTm90ZTogY3VycmVudGx5LCBLb25zb2xlIHN1cHBvcnQgb25seSB3b3JrcyBmb3Ig
+S0RFIDMueCBkdWUgdG8gdGhlIHdheQojIG5ld2VyIEtvbnNvbGUgdmVyc2lvbnMgYmVoYXZlCiNP
+RV9URVJNSU5BTCA9ICJhdXRvIgojIEJ5IGRlZmF1bHQgZGlzYWJsZSBpbnRlcmFjdGl2ZSBwYXRj
+aCByZXNvbHV0aW9uICh0YXNrcyB3aWxsIGp1c3QgZmFpbCBpbnN0ZWFkKToKUEFUQ0hSRVNPTFZF
+ID0gIm5vb3AiCgojCiMgRGlzayBTcGFjZSBNb25pdG9yaW5nIGR1cmluZyB0aGUgYnVpbGQKIwoj
+IE1vbml0b3IgdGhlIGRpc2sgc3BhY2UgZHVyaW5nIHRoZSBidWlsZC4gSWYgdGhlcmUgaXMgbGVz
+cyB0aGF0IDFHQiBvZiBzcGFjZSBvciBsZXNzCiMgdGhhbiAxMDBLIGlub2RlcyBpbiBhbnkga2V5
+IGJ1aWxkIGxvY2F0aW9uIChUTVBESVIsIERMX0RJUiwgU1NUQVRFX0RJUiksIGdyYWNlZnVsbHkK
+IyBzaHV0ZG93biB0aGUgYnVpbGQuIElmIHRoZXJlIGlzIGxlc3MgdGhhdCAxMDBNQiBvciAxSyBp
+bm9kZXMsIHBlcmZvcm0gYSBoYXJkIGFib3J0CiMgb2YgdGhlIGJ1aWxkLiBUaGUgcmVhc29uIGZv
+ciB0aGlzIGlzIHRoYXQgcnVubmluZyBjb21wbGV0ZWx5IG91dCBvZiBzcGFjZSBjYW4gY29ycnVw
+dAojIGZpbGVzIGFuZCBkYW1hZ2VzIHRoZSBidWlsZCBpbiB3YXlzIHdoaWNoIG1heSBub3QgYmUg
+ZWFzaWx5IHJlY292ZXJhYmxlLgojIEl0J3MgbmVjZXNhcnkgdG8gbW9uaXRvciAvdG1wLCBpZiB0
+aGVyZSBpcyBubyBzcGFjZSBsZWZ0IHRoZSBidWlsZCB3aWxsIGZhaWwKIyB3aXRoIHZlcnkgZXhv
+dGljIGVycm9ycy4KQkJfRElTS01PTl9ESVJTID0gIlwKICAgIFNUT1BUQVNLUywke1RNUERJUn0s
+MUcsMTAwSyBcCiAgICBTVE9QVEFTS1MsJHtETF9ESVJ9LDFHLDEwMEsgXAogICAgU1RPUFRBU0tT
+LCR7U1NUQVRFX0RJUn0sMUcsMTAwSyBcCiAgICBTVE9QVEFTS1MsL3RtcCwxMDBNLDEwMEsgXAog
+ICAgQUJPUlQsJHtUTVBESVJ9LDEwME0sMUsgXAogICAgQUJPUlQsJHtETF9ESVJ9LDEwME0sMUsg
+XAogICAgQUJPUlQsJHtTU1RBVEVfRElSfSwxMDBNLDFLIFwKICAgIEFCT1JULC90bXAsMTBNLDFL
+IgoKIwojIFNoYXJlZC1zdGF0ZSBmaWxlcyBmcm9tIG90aGVyIGxvY2F0aW9ucwojCiMgQXMgbWVu
+dGlvbmVkIGFib3ZlLCBzaGFyZWQgc3RhdGUgZmlsZXMgYXJlIHByZWJ1aWx0IGNhY2hlIGRhdGEg
+b2JqZWN0cyB3aGljaCBjYW4gCiMgdXNlZCB0byBhY2NlbGVyYXRlIGJ1aWxkIHRpbWUuIFRoaXMg
+dmFyaWFibGUgY2FuIGJlIHVzZWQgdG8gY29uZmlndXJlIHRoZSBzeXN0ZW0KIyB0byBzZWFyY2gg
+b3RoZXIgbWlycm9yIGxvY2F0aW9ucyBmb3IgdGhlc2Ugb2JqZWN0cyBiZWZvcmUgaXQgYnVpbGRz
+IHRoZSBkYXRhIGl0c2VsZi4KIwojIFRoaXMgY2FuIGJlIGEgZmlsZXN5c3RlbSBkaXJlY3Rvcnks
+IG9yIGEgcmVtb3RlIHVybCBzdWNoIGFzIGh0dHAgb3IgZnRwLiBUaGVzZQojIHdvdWxkIGNvbnRh
+aW4gdGhlIHNzdGF0ZS1jYWNoZSByZXN1bHRzIGZyb20gcHJldmlvdXMgYnVpbGRzIChwb3NzaWJs
+eSBmcm9tIG90aGVyIAojIG1hY2hpbmVzKS4gVGhpcyB2YXJpYWJsZSB3b3JrcyBsaWtlIGZldGNo
+ZXIgTUlSUk9SUy9QUkVNSVJST1JTIGFuZCBwb2ludHMgdG8gdGhlIAojIGNhY2hlIGxvY2F0aW9u
+cyB0byBjaGVjayBmb3IgdGhlIHNoYXJlZCBvYmplY3RzLgojIE5PVEU6IGlmIHRoZSBtaXJyb3Ig
+dXNlcyB0aGUgc2FtZSBzdHJ1Y3R1cmUgYXMgU1NUQVRFX0RJUiwgeW91IG5lZWQgdG8gYWRkIFBB
+VEgKIyBhdCB0aGUgZW5kIGFzIHNob3duIGluIHRoZSBleGFtcGxlcyBiZWxvdy4gVGhpcyB3aWxs
+IGJlIHN1YnN0aXR1dGVkIHdpdGggdGhlCiMgY29ycmVjdCBwYXRoIHdpdGhpbiB0aGUgZGlyZWN0
+b3J5IHN0cnVjdHVyZS4KI1NTVEFURV9NSVJST1JTID89ICJcCiNmaWxlOi8vLiogaHR0cDovL3Nv
+bWVzZXJ2ZXIudGxkL3NoYXJlL3NzdGF0ZS9QQVRIO2Rvd25sb2FkZmlsZW5hbWU9UEFUSCBcbiBc
+CiNmaWxlOi8vLiogZmlsZTovLy9zb21lL2xvY2FsL2Rpci9zc3RhdGUvUEFUSCIKCgojCiMgUWVt
+dSBjb25maWd1cmF0aW9uCiMKIyBCeSBkZWZhdWx0IHFlbXUgd2lsbCBidWlsZCB3aXRoIGEgYnVp
+bHRpbiBWTkMgc2VydmVyIHdoZXJlIGdyYXBoaWNhbCBvdXRwdXQgY2FuIGJlCiMgc2Vlbi4gVGhl
+IHR3byBsaW5lcyBiZWxvdyBlbmFibGUgdGhlIFNETCBiYWNrZW5kIHRvby4gQnkgZGVmYXVsdCBs
+aWJzZGwtbmF0aXZlIHdpbGwKIyBiZSBidWlsdCwgaWYgeW91IHdhbnQgdG8gdXNlIHlvdXIgaG9z
+dCdzIGxpYlNETCBpbnN0ZWFkIG9mIHRoZSBtaW5pbWFsIGxpYnNkbCBidWlsdAojIGJ5IGxpYnNk
+bC1uYXRpdmUgdGhlbiB1bmNvbW1lbnQgdGhlIEFTU1VNRV9QUk9WSURFRCBsaW5lIGJlbG93LgpQ
+QUNLQUdFQ09ORklHX2FwcGVuZF9wbi1xZW11LW5hdGl2ZSA9ICIgc2RsIgpQQUNLQUdFQ09ORklH
+X2FwcGVuZF9wbi1uYXRpdmVzZGstcWVtdSA9ICIgc2RsIgojQVNTVU1FX1BST1ZJREVEICs9ICJs
+aWJzZGwtbmF0aXZlIgoKCiMgQ09ORl9WRVJTSU9OIGlzIGluY3JlYXNlZCBlYWNoIHRpbWUgYnVp
+bGQvY29uZi8gY2hhbmdlcyBpbmNvbXBhdGlibHkgYW5kIGlzIHVzZWQgdG8KIyB0cmFjayB0aGUg
+dmVyc2lvbiBvZiB0aGlzIGZpbGUgd2hlbiBpdCB3YXMgZ2VuZXJhdGVkLiBUaGlzIGNhbiBzYWZl
+bHkgYmUgaWdub3JlZCBpZgojIHRoaXMgZG9lc24ndCBtZWFuIGFueXRoaW5nIHRvIHlvdS4KQ09O
+Rl9WRVJTSU9OID0gIjEiCg==
 
-
---Apple-Mail=_6B12193D-3169-4B1E-AEAA-377C3BBB41D5
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=iso-8859-1
-
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
-charset=3Diso-8859-1"></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
-class=3D""><br class=3D""><div><blockquote type=3D"cite" class=3D""><div =
-class=3D"">On Aug 25, 2016, at 3:58 AM, <a =
-href=3D"mailto:S.Jaritz@esa-grimma.de" =
-class=3D"">S.Jaritz@esa-grimma.de</a> wrote:</div><br =
-class=3D"Apple-interchange-newline"><div class=3D""><font size=3D"2" =
-face=3D"sans-serif" class=3D"">Hej ho</font>
-<br class=3D"">
-<br class=3D""><font size=3D"2" face=3D"sans-serif" class=3D"">I have an =
-app that is using syslog.
-For it I like to set the amount of log data.</font>
-<br class=3D"">
-<br class=3D""><font size=3D"2" face=3D"sans-serif" class=3D"">I am =
-using the std. yocto(krogoth) together
-with the std. meta-atmel layer. This layers are installing the =
-"busybox-syslog"-package.
-This comes with the "/etc/syslog.conf" file.</font>
-<br class=3D"">
-<br class=3D""><font size=3D"2" face=3D"sans-serif" class=3D"">My =
-question is: How to append the syslog.conf
-with a line like "myApp,auth.notice /var/log/messages" out of
-a recipe?</font>
-<br class=3D""></div></blockquote><div><br class=3D""></div><div>you can =
-write a bbappend for busybox recipe in your own layer and add =
-do_install_append there</div><div><br class=3D""></div><div><br =
-class=3D""></div><br class=3D""><blockquote type=3D"cite" class=3D""><div =
-class=3D"">
-<br class=3D""><font size=3D"2" face=3D"sans-serif" class=3D"">My idea =
-of the dummy recipe looks like:</font>
-<br class=3D""><font size=3D"2" face=3D"sans-serif" class=3D"">######## =
-myApp.bb ########</font>
-<br class=3D""><font size=3D"2" face=3D"sans-serif" class=3D"">SUMMARY =3D=
- "myApp"</font>
-<br class=3D""><font size=3D"2" face=3D"sans-serif" class=3D"">SECTION =3D=
- "demo"</font>
-<br class=3D""><font size=3D"2" face=3D"sans-serif" class=3D"">LICENSE =3D=
- "GPL"</font>
-<br class=3D"">
-<br class=3D""><font size=3D"2" face=3D"sans-serif" class=3D"">inherit =
-cmake</font>
-<br class=3D"">
-<br class=3D""><font size=3D"2" face=3D"sans-serif" class=3D"">DEPENDS =3D=
- "busybox-syslog"</font>
-<br class=3D"">
-<br class=3D""><font size=3D"2" face=3D"sans-serif" class=3D"">SRC_URI =3D=
- "<a href=3D"gitsm://mygit/myApp.git;protocol=3Dhttp;branch=3Ddevelop" =
-class=3D"">gitsm://mygit/myApp.git;protocol=3Dhttp;branch=3Ddevelop</a>"</=
-font>
-<br class=3D"">
-<br class=3D""><font size=3D"2" face=3D"sans-serif" class=3D"">PV =3D =
-"1.0.0"</font>
-<br class=3D"">
-<br class=3D""><font size=3D"2" face=3D"sans-serif" class=3D"">S =3D =
-"${WORKDIR}/git/"</font>
-<br class=3D"">
-<br class=3D""><font size=3D"2" face=3D"sans-serif" =
-class=3D"">BBCLASSEXTEND =3D "native nativesdk"</font>
-<br class=3D"">
-<br class=3D""><font size=3D"2" face=3D"sans-serif" =
-class=3D"">do_install_append() {</font>
-<br class=3D""><font size=3D"2" face=3D"sans-serif" class=3D"">&nbsp; =
-&nbsp; &nbsp; &nbsp; </font><tt class=3D""><font size=3D"2" =
-class=3D"">echo
-'</font></tt><font size=3D"2" face=3D"sans-serif" class=3D"">myApp.* =
-&nbsp; &nbsp; &nbsp;
-&nbsp;/var/log/messages</font><tt class=3D""><font size=3D"2" class=3D"">'=
- &gt;&gt; </font></tt><font size=3D"2" face=3D"sans-serif" =
-class=3D"">/etc/syslog.conf</font>
-<br class=3D""><font size=3D"2" face=3D"sans-serif" class=3D"">}</font>
-<br class=3D""><font size=3D"2" face=3D"sans-serif" =
-class=3D"">#########################</font>
-<br class=3D"">
-<br class=3D""><font size=3D"2" face=3D"sans-serif" class=3D"">Any ideas =
-how to do it in a nice way?</font>
-<br class=3D"">
-<br class=3D""><font size=3D"2" face=3D"sans-serif" class=3D"">Regards!<br=
- class=3D"">
-<br class=3D"">
-Stefan Jaritz<br class=3D"">
-<br class=3D"">
-------------------------------------------------------------<br =
-class=3D"">
-ESA Elektroschaltanlagen Grimma GmbH<br class=3D"">
-Broner Ring 30<br class=3D"">
-04668 Grimma<br class=3D"">
-Telefon: +49 3437 9211 176<br class=3D"">
-Telefax: +49 3437 9211 26<br class=3D"">
-E-Mail: <a href=3D"mailto:s.jaritz@esa-grimma.de" =
-class=3D"">s.jaritz@esa-grimma.de</a><br class=3D"">
-Internet: </font><a href=3D"x-msg://18/www.esa-grimma.de" class=3D""><font=
- size=3D"2" face=3D"sans-serif" =
-class=3D"">www.esa-grimma.de</font></a><font size=3D"2" =
-face=3D"sans-serif" class=3D""><br class=3D"">
-<br class=3D"">
-<br class=3D"">
-Gesch=E4ftsf=FChrer:<br class=3D"">
-Dipl.-Ing. J=F6rg Gaitzsch<br class=3D"">
-J=F6rg Reinker<br class=3D"">
-<br class=3D"">
-Sitz der Gesellschaft: Grimma<br class=3D"">
-Ust.-ID: DE 141784437<br class=3D"">
-Amtsgericht: Leipzig, HRB 5159<br class=3D"">
-Steuernummer: 238/108/00755<br class=3D"">
-<br class=3D"">
-<br class=3D"">
-Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte =
-Informationen.
-<br class=3D"">
-Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=FCmlich
-erhalten <br class=3D"">
-haben, informieren Sie bitte sofort den Absender und l=F6schen Sie diese
-<br class=3D"">
-Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe dieser
-Mail <br class=3D"">
-ist nicht gestattet.<br class=3D"">
-<br class=3D"">
-This e-mail may contain confidential and/or privileged information. If
-you are <br class=3D"">
-not the intended recipient (or have received this e-mail in error) =
-please
-<br class=3D"">
-notify the sender immediately and destroy this e-mail. Any unauthorized
-<br class=3D"">
-copying, disclosure or distribution of the material in this e-mail is =
-strictly
-<br class=3D"">
-forbidden.</font>-- <br =
-class=3D"">_______________________________________________<br =
-class=3D"">yocto mailing list<br class=3D""><a =
-href=3D"mailto:yocto@yoctoproject.org" =
-class=3D"">yocto@yoctoproject.org</a><br =
-class=3D"">https://lists.yoctoproject.org/listinfo/yocto<br =
-class=3D""></div></blockquote></div><br class=3D""></body></html>=
-
---Apple-Mail=_6B12193D-3169-4B1E-AEAA-377C3BBB41D5--
-
---Apple-Mail=_714C8DB8-F44A-45D8-9A48-1DFE928B7B4C
-Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment;
-	filename=signature.asc
-Content-Type: application/pgp-signature;
-	name=signature.asc
-Content-Description: Message signed with OpenPGP using GPGMail
-
------BEGIN PGP SIGNATURE-----
-Comment: GPGTools - https://gpgtools.org
-
-iEYEARECAAYFAle/JhMACgkQuwUzVZGdMxQfEQCfT7O+nu6977pjfTDCZFCiyVgS
-eL8AniR7xq10hyjHAYoC/AGC1D1HYW9d
-=JW6K
------END PGP SIGNATURE-----
-
---Apple-Mail=_714C8DB8-F44A-45D8-9A48-1DFE928B7B4C--
+--94eb2c06146a7133a7053acde160--
