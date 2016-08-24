@@ -1,64 +1,39 @@
-Return-Path: <mikehabibi@gmail.com>
+Return-Path: <leonardo.sandoval.gonzalez@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4D8B2E00CC0; Wed, 24 Aug 2016 06:51:35 -0700 (PDT)
+	id 66C8BE00CE7; Wed, 24 Aug 2016 07:15:43 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (mikehabibi[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.174 listed in list.dnswl.org]
-Received: from mail-yb0-f174.google.com (mail-yb0-f174.google.com
-	[209.85.213.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D17E5E009C9
-	for <yocto@yoctoproject.org>; Wed, 24 Aug 2016 06:51:32 -0700 (PDT)
-Received: by mail-yb0-f174.google.com with SMTP id z10so5634697ybh.2
-	for <yocto@yoctoproject.org>; Wed, 24 Aug 2016 06:51:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=1eaLOTaO9wVjxFrLRLhi+yw2lTa3EsArlWYdMLV79Qs=;
-	b=ViShSmtAV5J9XMC+C+pJa/AgFg5y/cSoCEbpEAw1c6UWkK/Xf9705BszV00ODMpyP+
-	fARn66nSM1tYa4V24d5XYZQA0d6fL9bh7WB56jWHQIYlwFxOBhUiEjaN3wzQDP/1COe6
-	5vDlE7cyv3kU0meA9lHrXbfTVF+4ecc3FyAl7vHKtNhNQN3E+5p2VN++gJ/WLOnMnVJp
-	cgnO3isduMwVFm8Ka8zwjRiQ3Igve5yUfeEOfYoPY2qp5AEigl378OpGZpDvfBHWgEHq
-	Nq9S8uOQeXUEhEadzcljeFOpcKu0hBo9kA3EtkPMq8LlA7WYEyEEfG4boOGsN5x8QjZ+
-	yW0A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=1eaLOTaO9wVjxFrLRLhi+yw2lTa3EsArlWYdMLV79Qs=;
-	b=VtLQ33d9+z1V/57aDy5adLte03lFIDgi+9712q0MRugDvjTsIWZ+VtafqTlI4qZo7z
-	6n61hMs3khyH2zunzkcFSlLZ0fGgCDcbvgghj/8sJSOvmhf0duUn/rRdB65EoRV0W72/
-	pqwlwQ01XyOy6xR1pF9v+2yXV7kOUT6zgkDIFqwbfp4A/C+8+cYIAHfh/O0LN586oLXL
-	6tFPNhiRppCPkYXSAwJGBU9AO0h6QpbEQS82LOGNr27j66O6fhGI6L6Ta4f3OyD2BeeY
-	z12sFubIKKD8iKRCgHIbjOhBzgsa+HUwXctCaBdwLEmhwwt46v3HRucMGXxEIWryOqnY
-	OEsg==
-X-Gm-Message-State: AEkoouvDBEUmFnCGo/r/mQVYg4ZW7/jUfZCPmFo6ZeP4kjneHbxfL3CghMo4BaXYsBczCcjNti9MJGnpjNRD7A==
-X-Received: by 10.37.39.199 with SMTP id n190mr2379361ybn.30.1472046691726;
-	Wed, 24 Aug 2016 06:51:31 -0700 (PDT)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [134.134.136.65 listed in list.dnswl.org]
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A1CFEE009C9
+	for <yocto@yoctoproject.org>; Wed, 24 Aug 2016 07:15:41 -0700 (PDT)
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+	by orsmga103.jf.intel.com with ESMTP; 24 Aug 2016 07:15:41 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.28,570,1464678000"; 
+	d="scan'208,217";a="160338240"
+Received: from lsandov1-mobl2.zpn.intel.com (HELO [10.219.5.144])
+	([10.219.5.144])
+	by fmsmga004.fm.intel.com with ESMTP; 24 Aug 2016 07:15:41 -0700
+To: Tanasa Bogdan <bogdan.tanasa@saabgroup.com>,
+	"'yocto@yoctoproject.org'" <yocto@yoctoproject.org>
+References: <749b7f156f314157b4440421102957d8@corpappl846.corp.saab.se>
+From: Leonardo Sandoval <leonardo.sandoval.gonzalez@linux.intel.com>
+Message-ID: <fe777f3e-f15c-e6d2-30c2-13024442e7ca@linux.intel.com>
+Date: Wed, 24 Aug 2016 09:18:51 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.2.0
 MIME-Version: 1.0
-Received: by 10.37.86.70 with HTTP; Wed, 24 Aug 2016 06:51:31 -0700 (PDT)
-In-Reply-To: <20160824105126.GA17259@linux.intel.com>
-References: <CAOsp8o8jNrRhcYp=vWAve+v+s1Mi2ApQD1zmVot-iD+0uVnbjg@mail.gmail.com>
-	<20160824105126.GA17259@linux.intel.com>
-From: Michael Habibi <mikehabibi@gmail.com>
-Date: Wed, 24 Aug 2016 08:51:31 -0500
-Message-ID: <CAOsp8o-YYspLj39YS_ZNpgqBsVLkUwQkvCNRO3No1Rs2fR+3XA@mail.gmail.com>
-To: ed.bartosh@linux.intel.com
-Cc: Yocto <yocto@yoctoproject.org>
-Subject: Re: Trying to run toaster off master, running into issues w/ django
+In-Reply-To: <749b7f156f314157b4440421102957d8@corpappl846.corp.saab.se>
+Subject: Re: profiling tools on a T4240RDB board
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,74 +45,141 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 Aug 2016 13:51:35 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 24 Aug 2016 14:15:43 -0000
+Content-Type: multipart/alternative;
+	boundary="------------60981544932368275603C6F4"
 
-Excellent. Thanks! I knew using latest was going to burn me eventually :)
+--------------60981544932368275603C6F4
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Wed, Aug 24, 2016 at 5:51 AM, Ed Bartosh <ed.bartosh@linux.intel.com> wrote:
-> On Tue, Aug 23, 2016 at 04:49:42PM -0500, Michael Habibi wrote:
->> I am running the master branch and trying to run toaster to play
->> around with the web interface (already successfully completed a build
->> w/o toaster setup).
->>
->> I followed the instructions in the documentation. I created a
->> virtualenv, sourced/activated my virtualenv, and while under venv I
->> did a pip install. It believes Django is installed, but I cannot run
->> toaster. See below:
->>
->> (venv)habibim@bvm-poc8:/projects/yocto-git/build$ pip install -r
->> /projects/yocto-git/bitbake/toaster-requirements.txt
->> Requirement already satisfied (use --upgrade to upgrade):
->> Django>1.8,<1.9 in /home/habibim/venv/lib/python2.7/site-packages
->> (from -r /projects/yocto-git/bitbake/toaster-requirements.txt (line
->> 1))
->> Requirement already satisfied (use --upgrade to upgrade):
->> beautifulsoup4>=4.4.0 in
->> /home/habibim/venv/lib/python2.7/site-packages (from -r
->> /projects/yocto-git/bitbake/toaster-requirements.txt (line 2))
->> Requirement already satisfied (use --upgrade to upgrade): pytz in
->> /home/habibim/venv/lib/python2.7/site-packages (from -r
->> /projects/yocto-git/bitbake/toaster-requirements.txt (line 3))
->> Cleaning up...
->> (venv)habibim@bvm-poc8:/projects/yocto-git/build$ python --version
->> Python 2.7.6
->>
->> ...
->>
->>
->> (venv)habibim@bvm-poc8:/projects/yocto-git$ source oe-init-build-env
->>
->> ### Shell environment set up for builds. ###
->>
->> You can now run 'bitbake <target>'
->>
->> Common targets are:
->>     core-image-minimal
->>     core-image-sato
->>     meta-toolchain
->>     meta-ide-support
->>
->> You can also run generated qemu images with a command like 'runqemu qemux86'
->> (venv)habibim@bvm-poc8:/projects/yocto-git/build$ source ../bitbake/bin/toaster
->> Traceback (most recent call last):
->>   File "<stdin>", line 1, in <module>
->> ImportError: No module named 'django'
->> This program needs Django>1.8,<1.9
->> Please install with pip install -r
->> /projects/yocto-git/bitbake/toaster-requirements.txt
->>
->> Am I going insane? I did some google-fu and people recommended
->> cleaning up manage.py, but those changes did not seem to affect this
->> outcome.
+
+
+El 08/24/2016 a las 04:01 AM, Tanasa Bogdan escribió:
 >
-> Looks like python3 issue to me. You should install requirements with
-> pip3 for python3 to be able to import them.
+> Hi,
 >
-> You probably used old setup instructions. Please, read the latest manual here:
-> http://www.yoctoproject.org/docs/latest/toaster-manual/toaster-manual.html#toaster-manual-setup-and-use
+> We are using the (freescale) linux yocto 1.6 on a T4240RDB board where 
+> we want to have "tools-profile" set in our local.conf file. When 
+> building the fsl-image-minimal we see that there are some packages 
+> that are graphics-related (like gtk+, pixbuf, etc..). The card does 
+> not have any graphics capabilities. Why does these packets install at 
+> all? Is it possible to have the profiling tools without any gtk 
+> dependencies? How the local.conf should look like?
 >
-> Regards,
-> Ed
+I believe the image you are using include those graphic-related pkgs so 
+that is why you are seeing them. You may redefine your image, at the end 
+fsl-image-minimal is just an example that you can modify. Also you may 
+have more answers  on a FSL (NXP?) channel/mailing-list
+
+> PS: These dependencies are there even when we choose tools-sdk in 
+> order to have gcc in the final image.
+>
+> Thanks,
+>
+> Bogdan.
+>
+>
 >
 
+
+--------------60981544932368275603C6F4
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <p><br>
+    </p>
+    <br>
+    <div class="moz-cite-prefix">El 08/24/2016 a las 04:01 AM, Tanasa
+      Bogdan escribió:<br>
+    </div>
+    <blockquote
+      cite="mid:749b7f156f314157b4440421102957d8@corpappl846.corp.saab.se"
+      type="cite">
+      <meta http-equiv="Content-Type" content="text/html;
+        charset=windows-1252">
+      <meta name="Generator" content="Microsoft Word 15 (filtered
+        medium)">
+      <style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 70.85pt 70.85pt 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext="edit" spidmax="1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext="edit">
+<o:idmap v:ext="edit" data="1" />
+</o:shapelayout></xml><![endif]-->
+      <div class="WordSection1">
+        <p class="MsoNormal">Hi,<o:p></o:p></p>
+        <p class="MsoNormal"><o:p> </o:p></p>
+        <p class="MsoNormal">We are using the (freescale) linux yocto
+          1.6 on a T4240RDB board where we want to have "tools-profile"
+          set in our local.conf file. When building the
+          fsl-image-minimal we see that there are some packages that are
+          graphics-related (like gtk+, pixbuf, etc..). The card does not
+          have any graphics capabilities. Why does these packets install
+          at all? Is it possible to have the profiling tools without any
+          gtk dependencies? How the local.conf should look like?
+          <o:p></o:p></p>
+      </div>
+    </blockquote>
+    I believe the image you are using include those graphic-related pkgs
+    so that is why you are seeing them. You may redefine your image, at
+    the end fsl-image-minimal is just an example that you can modify.
+    Also you may have more answers  on a FSL (NXP?) channel/mailing-list<br>
+    <br>
+    <blockquote
+      cite="mid:749b7f156f314157b4440421102957d8@corpappl846.corp.saab.se"
+      type="cite">
+      <div class="WordSection1">
+        <p class="MsoNormal"><o:p> </o:p></p>
+        <p class="MsoNormal">PS: These dependencies are there even when
+          we choose tools-sdk in order to have gcc in the final image.<o:p></o:p></p>
+        <p class="MsoNormal"><o:p> </o:p></p>
+        <p class="MsoNormal">Thanks,<o:p></o:p></p>
+        <p class="MsoNormal">Bogdan.<o:p></o:p></p>
+      </div>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <br>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------60981544932368275603C6F4--
