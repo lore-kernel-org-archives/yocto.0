@@ -1,17 +1,17 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <mikehabibi@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B25D8E003DB; Thu, 25 Aug 2016 11:28:27 -0700 (PDT)
+	id 7207FE00563; Thu, 25 Aug 2016 14:24:37 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.217.194 listed in list.dnswl.org]
+	mail provider *      (mikehabibi[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.161.175 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,45 +19,41 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ua0-f194.google.com (mail-ua0-f194.google.com
-	[209.85.217.194])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0643BE002AC
-	for <yocto@yoctoproject.org>; Thu, 25 Aug 2016 11:28:26 -0700 (PDT)
-Received: by mail-ua0-f194.google.com with SMTP id 2so100198uax.2
-	for <yocto@yoctoproject.org>; Thu, 25 Aug 2016 11:28:26 -0700 (PDT)
+Received: from mail-yw0-f175.google.com (mail-yw0-f175.google.com
+	[209.85.161.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E5EF5E00519
+	for <yocto@yoctoproject.org>; Thu, 25 Aug 2016 14:24:36 -0700 (PDT)
+Received: by mail-yw0-f175.google.com with SMTP id z8so37695893ywa.1
+	for <yocto@yoctoproject.org>; Thu, 25 Aug 2016 14:24:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=UOVvDEfirlnxHZJ5jO0wY9PhjFLOiubS3Kx6gxqMW0Y=;
-	b=lFdgZuBQcIP76wfrrLvuccYZRdfzxOAoSEE872qSSD+M/csrChkJNo1EJHyvnu/1P4
-	p8X+xlYfr1uLpn0FXD3yQa9G8vaZL5F19psDxL7c96IbPVcXHhvCUZ7ZNq1Qvoouirc4
-	c3qk6aNN5MHzrIzbAwslNp8wj2U+Gc/7NdOpbPwlbtVVQvi8Rmf0Pnm/f4Kjnjwl0qj5
-	/S0k+PCcVJtfwufY4+xdMzeaGlkoY0Yv1+npzWbHse21o/BiZSBlWq0gruNt1FXwmnaG
-	1+vxfXPYTm5CCPI6XOG1CuSIQowOJL/ECzgW5VP5Lp6mC7qsv5FtAfMk+ksE8UzzICet
-	EkhQ==
+	h=mime-version:from:date:message-id:subject:to;
+	bh=Vj1ofEp18OpGLoBmV+dNMfKAfEAZo+471NtSj6/RaNI=;
+	b=BHFI6YzhN6EzBQlFxkTkHpNvUmV9d59yPLvKnZeJBr4OkVQ1+FpC5sMNCkBvc8NYip
+	33fPnYBB0zi+ekXuz/1VylLVIp8uUoJU/hChk0DCYuL9P4R23gVxrqcL/K3iZGWOuwZo
+	SnsfW4hx60APhz/9y2+yhunT0B0JUM0o09OsnywNXh/W8o4YlLmenCaf4z13SbIufkUH
+	BVqr7QB+f/+Obz2Agocq9edU+mYrTdRcUVhnEzPnGpWiHRDd25dGho05s2We0qpNgzMo
+	EUuHcx7YjWR3K6nlSjKel/OG4zGAIuacghKRkZ1zZz874ohUXrpT9++DqUeX/Eo0bRaU
+	Qd1Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=UOVvDEfirlnxHZJ5jO0wY9PhjFLOiubS3Kx6gxqMW0Y=;
-	b=FFox9ancP4TYHU2ehscGOp/NkY9pAChJr4Kwi9XFCUB80TKpIFA1y/8zBbmFFjPkzK
-	79NB0NTM8R6/ec3BwrJQRSuGXg8c8DBgrLgEx8cb0/YYwgCpBRWf+KfXRElX+TM/2dpY
-	CsEkoLIrVFtYHU/NqqLkZtiOyBC/k3bkHrdZJXVoUhknHxQTomK01GJU5cd00fF1pdMp
-	dt2GdgxuKHH9soDHg/8oEkM+TkreMtDlfVs3cxSteovSY6B7dDUGqHVJneiX5gvXMss8
-	nNFfOZLICovAFljKrbn+3SLoPzRTmCPhcJHNHUV+UQJveKwMQYamQNvybnZvh1U6xSmK
-	ohNQ==
-X-Gm-Message-State: AEkoousFXI99JXEgQ/Y4RmHwnnfNct6YFuD4vSBNhH0KaZqFQ8x4EPaq2aNSYC64BrEBxAZPFTJppv7NIwHZTw==
-X-Received: by 10.31.227.196 with SMTP id a187mr5508161vkh.89.1472149705909;
-	Thu, 25 Aug 2016 11:28:25 -0700 (PDT)
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=Vj1ofEp18OpGLoBmV+dNMfKAfEAZo+471NtSj6/RaNI=;
+	b=hdvNUYz/xk6z8p+Uehl1AZbK65PAVGXHEAfYA9+Co8OugA+LPerNExJjKHMeXTkMLV
+	9OJJhfvc4DrMVNdOIN6N4dms4H3QXIejJU3XHopUvg7+iPaB9GzTP2UzvwxqfI0/89u8
+	gH8w9gzW23dt/QVwYicJaHR9AOkNe6Tk/LbP/Zjdn/CBKlFNYRA0avXQCWgdw929ddPE
+	LQsWzq7URuOrLGxM0if734MGxtS0ElrqI3bOWcQ7JwOgduKzlYICfDCvzhhyvswaiJsQ
+	lEm5TETnnyYI64mwfxpoLHtElE24QLzcqxtLDjr+B1+ubk7BZx8+tvyZkRhL/I4Ayw6K
+	BqWA==
+X-Gm-Message-State: AE9vXwND8G9vD2FPtnZiF3epxpER52l63aAWa9UViHoeH52L7yRIm4eEaIOfccHjIa9v7osqGc1VedMDRKUCzA==
+X-Received: by 10.13.247.131 with SMTP id h125mr9043833ywf.18.1472160274780;
+	Thu, 25 Aug 2016 14:24:34 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.176.64.138 with HTTP; Thu, 25 Aug 2016 11:27:55 -0700 (PDT)
-In-Reply-To: <CAPSYY_TjsenT5D1vkPCY9ZUFSSZ+zgsVPdwbyrqvNGU85m=d5A@mail.gmail.com>
-References: <CAPSYY_TjsenT5D1vkPCY9ZUFSSZ+zgsVPdwbyrqvNGU85m=d5A@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Thu, 25 Aug 2016 11:27:55 -0700
-Message-ID: <CAMKF1soTs6DMGMOc86hsQSic+1tDCU_Leb7aPbMFwZ3ZaiDh3g@mail.gmail.com>
-To: milad hasanvand <hasanvand.milad@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: problem with yocto and qt5
+Received: by 10.37.86.70 with HTTP; Thu, 25 Aug 2016 14:24:34 -0700 (PDT)
+From: Michael Habibi <mikehabibi@gmail.com>
+Date: Thu, 25 Aug 2016 16:24:34 -0500
+Message-ID: <CAOsp8o8NNynmKHsuP3D341riayK51YpqjGhW5EkpuTgLJdTjxA@mail.gmail.com>
+To: Yocto <yocto@yoctoproject.org>
+Subject: Git/yocto newbie question re: submodules and multiple layers
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,31 +65,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 25 Aug 2016 18:28:27 -0000
+X-List-Received-Date: Thu, 25 Aug 2016 21:24:37 -0000
 Content-Type: text/plain; charset=UTF-8
 
-On Wed, Aug 24, 2016 at 2:26 AM, milad hasanvand
-<hasanvand.milad@gmail.com> wrote:
-> Dear all,
->
-> i have frustrating issue with compiling qt5 using yocto and it is definitely
-> going to kill me.
-> i am using qemux86 as the target. i attached the bblayers.conf and
-> local.conf. i also added the -qpa eglfs to packageconfig but it fails when
-> it comes to do-configure task of qt base.
+Hi, I am well-versed with Git but I haven't really ever had to use
+submodules. I am trying to create a git repository on our server that
+will host our yocto distribution. Our distribution will include the
+yocto repo, plus meta-openembedded repo, plus maybe some other layers.
 
-How does it fail ? perhaps you should share the logs and messages so
-someone might
-relate to the error
+The difficulty I have is thus:
 
-> please help me out because it has almost been two months since i stuck with
-> this problem.
->
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+my_git_repo/ <--- what my platform developers will 'git clone'
+my_git_repo/yocto_git/... <-- yocto framework
+my_git_repo/yocto_git/meta-openembedded <-- another git repo nested
+inside yocto repo
+my_git_repo/yocto_git/meta-intel <-- another example layer.
+
+I would like for developers to be able to 'git clone' a single repo,
+but pull down all the necessary layers from various git repos.
+Basically it will comprise all repos, including yocto, OE layers,
+intel layers, etc.
+
+I believe the only way I can nest submodules inside pre-existing repos
+is for me to create a local clone of yocto git and add the submodules
+to that clone. That means the master git repo (my_git_repo in example
+above) will point to *our* clone of yocto git and not yocto project's
+git repo. In our local clone of yocto git, I will add a submodule for
+each layer I want to add.
+
+Does that make sense? Is this the right approach or is there a smarter way?
 
