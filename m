@@ -1,68 +1,59 @@
-Return-Path: <schnitzeltony@googlemail.com>
+Return-Path: <christoph@macht-blau.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DC63BE0108F; Thu, 25 Aug 2016 09:14:28 -0700 (PDT)
+	id 0E4EFE01090; Thu, 25 Aug 2016 09:55:25 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (schnitzeltony[at]googlemail.com)
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.220.169 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.217.175 listed in list.dnswl.org]
-Received: from mail-ua0-f175.google.com (mail-ua0-f175.google.com
-	[209.85.217.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 89A4DE00DAD
-	for <yocto@yoctoproject.org>; Thu, 25 Aug 2016 09:14:25 -0700 (PDT)
-Received: by mail-ua0-f175.google.com with SMTP id l94so29254470ual.0
-	for <yocto@yoctoproject.org>; Thu, 25 Aug 2016 09:14:25 -0700 (PDT)
+Received: from mail-qk0-f169.google.com (mail-qk0-f169.google.com
+	[209.85.220.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CA19DE0108D
+	for <yocto@yoctoproject.org>; Thu, 25 Aug 2016 09:55:21 -0700 (PDT)
+Received: by mail-qk0-f169.google.com with SMTP id l2so51685702qkf.3
+	for <yocto@yoctoproject.org>; Thu, 25 Aug 2016 09:55:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=googlemail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=fNb+PzFjyKHVGTRtmmG+l1d/oNKB8C+sKvegQD1OfYk=;
-	b=pGUKYKjNdMRmgg1zLZlTU01LkjMO21zLZiR8q1r5l9umEg458FVsIlHwpPCBIQ9U2G
-	IEbaDIzwt1Gl1xjO8QBfJQ1jcLdzBkiYZnwMTl59E30iO6/SPsM4O0/oIq5t5Gewd3tF
-	dQErKXTWfIVh9nWjtKq/rvLp1i4miwfsAMoSGtB7gJwSXzhWleXUtVpfAxb1NFk078MV
-	sXRP+QBfT0ycRX/ZcUsY3+mFnvN33X20EOa5y1HWJnaSoCrebC+3lE8k00JiFiltjXA/
-	sLjBjPYul3aPb8FR9XTW6LZNtYhNpWVw/aAmUYRMMqQmKY8ppWL4/SUSS09g77AvNLHJ
-	1+Eg==
+	d=macht-blau-org.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:sender:from:date:message-id:subject:to;
+	bh=xHInS88wRdf4Jdp22Reqe8us06pV4fuOlt1Txx9HFcE=;
+	b=zd0BRG8QP01ETZdTGlaYEzUQHmOuC78sZJJIa+TDa53trJkuxD3hJRugtJ99H/QyTN
+	jHjCLGvCELETYl8wToWz5wSvoPFlXbQbDlfsXTWRgl7qogeq3QA/mLAAgSCCKL6GRSK/
+	FWo51Oyk64iR4Kp4h6HxQkh8jWslGg0AJJiBocwaWvyHokvXed/kAEXSO9hy6NrIcHuZ
+	I3PAGBAh0IjSxjV5Q2SGAi4svZ7523tdvrdeeOQeypXPmo+dINjGiIjqUXRaD0SrcU0v
+	yGB4R0i2+QijOwsuNS9K0FueR6dT8hhvYREtmBe25TNUL64OTtOgdMXDq9FfmFWeBzFt
+	KQtg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=fNb+PzFjyKHVGTRtmmG+l1d/oNKB8C+sKvegQD1OfYk=;
-	b=OhEvGs6/z7uH2YKc/IuQoNozDTW+1lOWkSx7L4ziJpJ+MuwQXfWZ/qGcqp1/Xn6NOs
-	OwyY3GVwRworqLsWDkqvtGnBvrZkIqdnwmibWfO8f3Ktn6z5+GOkoXyNBlpie7z3aUEZ
-	RibcMWn0qrZ/ZXt731zuc2Qolgqa+xnqaAXwh+1iBs5dZM/j2HHriPKBp12PD255djxD
-	KKNetheVLDM6br+q3WBCAVwNY/CUOTJ3cANaPrpcGv7LAeH1FZrDw13hO0npt8fxm/Nf
-	OCeC03avoNN/c5DJPGux3rLNW+cAGn0H59pTGfRStNAp4whIuB7OmIBe33bKFElAhZXD
-	6kqA==
-X-Gm-Message-State: AEkoout+opfP744RDYqpYjFja3h/KBBJ2oxUlO6NzSudVDH1UwQzoo41XbpzupaBarW8sthKQik2uoSKzO9sQw==
-X-Received: by 10.31.21.4 with SMTP id 4mr2134325vkv.135.1472141664311; Thu,
-	25 Aug 2016 09:14:24 -0700 (PDT)
+	h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
+	:to; bh=xHInS88wRdf4Jdp22Reqe8us06pV4fuOlt1Txx9HFcE=;
+	b=XAgwCui2klU96+tdj70VE3aX1wn5PNRu8M3zfGFt5sfDo/hnaeB2Cy5WR4hft/dJe2
+	QtXsZsb2/UmGgnqGCTCxYop6Wrq9ZUOlnRr5Hb78yZTospgh8dOH2vQGe9U4B01rsP9C
+	lZJHmCwka7aZsQOxKIWaNytpkBorFVPu6j+B0uSzT1PwmUAN63pd5XyIKUIlIFrltPQ4
+	0X9n+ISzXxlpP/iGCrPGEfxSibS5e8NQkVifNzIjSDris9j3YPCiWGayqdU+IweqYVHC
+	6YNQ2igGvTjiGrk2uFKxG9UJgNc8j+RgBdCkf5vuJuEMLuhI/qH1pgFsY/eKbw2jYucb
+	+fVA==
+X-Gm-Message-State: AE9vXwMOGIMY0Hi0ttzvTnWPrwatjI9SiJ2t2XL3YGc5iqNTOn8iIsNJnLKSthRD3AWvZaCiSx5Ei0hR8M+6tA==
+X-Received: by 10.55.100.21 with SMTP id y21mr11133696qkb.281.1472144120711;
+	Thu, 25 Aug 2016 09:55:20 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.176.65.130 with HTTP; Thu, 25 Aug 2016 09:14:23 -0700 (PDT)
-In-Reply-To: <1719889.ALCIjRXcpG@peggleto-mobl.ger.corp.intel.com>
-References: <CALbNGRSzRPjO693=9wCsyyBrB8iPWmKhhQ=9MX1NZSzNwcd19Q@mail.gmail.com>
-	<CALbNGRSJKT+9wSKE-mSZbeEo4bWpw3XfpBnpenP7vSvtkMXFqg@mail.gmail.com>
-	<CALbNGRRL6-9S_a3r-R=Qtv+_yUbYEW2spNz_v7YT4cPuoy6k1g@mail.gmail.com>
-	<1719889.ALCIjRXcpG@peggleto-mobl.ger.corp.intel.com>
-From: =?UTF-8?Q?Andreas_M=C3=BCller?= <schnitzeltony@googlemail.com>
-Date: Thu, 25 Aug 2016 18:14:23 +0200
-Message-ID: <CALbNGRQCiSe317HT8es4NjWhjOFiyr-nB2AcMWBoUR3MxKU8aA@mail.gmail.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: OpenEmbedded Metadata: Recipe update broken
+Sender: christoph@macht-blau.org
+Received: by 10.55.142.67 with HTTP; Thu, 25 Aug 2016 09:55:20 -0700 (PDT)
+X-Originating-IP: [140.181.87.162]
+From: "C. Handel" <opensource@macht-blau.org>
+Date: Thu, 25 Aug 2016 18:55:20 +0200
+X-Google-Sender-Auth: Liw2PY-qzcglsaCrgrmATqfeVy8
+Message-ID: <CADjFtT=xLSMVF_AK87F2H9nUen+DV3ovwixJypfW8bDTy42Ncw@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: systemd-networkd
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,67 +65,125 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 25 Aug 2016 16:14:28 -0000
+X-List-Received-Date: Thu, 25 Aug 2016 16:55:25 -0000
+Content-Type: multipart/alternative; boundary=94eb2c05602e5fadc2053ae843ee
+
+--94eb2c05602e5fadc2053ae843ee
 Content-Type: text/plain; charset=UTF-8
+
+   hi,
+
+i'm trying to build an image with systemd that runs systemd-networkd to
+initialize the network.
+
+So far it boots, the interface goes up and it receives an IP via dhcp.
+
+I now try to update my hostname from the one received by dhcp. As far as i
+understand systemd, the systemd-networkd sends a dbus message, this will
+trigger systemd-hostnamed. The setting of the hostname is protected by
+polkit. This is all configured. I can see the message on the bus and is
+also see the log entry of hostnamed. But the hostname does not change
+
+Aug 25 16:29:08 genericx86-64 systemd-networkd[203]: enp0s3: Gained carrier
+Aug 25 16:29:08 genericx86-64 systemd[1]: Starting Hostname Service...
+Aug 25 16:29:08 genericx86-64 systemd[1]: Starting Authorization Manager...
+Aug 25 16:29:08 genericx86-64 systemd-hostnamed[216]: Changed host name to
+'vm009'
+
+
+Did I miss anything?
+
+Greetings
+   Christoph
+
+
+
+the bbappend for systemd
+
+FILESEXTRAPATHS_append := "${THISDIR}/files:"
+SRC_URI += "file://eth.network"
+
+FILES_${PN} += "{sysconfdir}/systemd/network/*"
+
+PACKAGECONFIG += "networkd resolved timesyncd hostnamed polkit myhostname"
+
+# for version 230 yocto fixes this
+# networkd requires a user
+USERADD_PARAM_${PN} += "--system -d / -M --shell /bin/nologin
+systemd-network;"
+# resolved requires a user
+USERADD_PARAM_${PN} += "--system -d / -M --shell /bin/nologin
+systemd-resolve;"
+# timesyncd requires a user
+USERADD_PARAM_${PN} += "--system -d / -M --shell /bin/nologin
+systemd-timesync;"
+
+do_install_append() {
+  install -d ${D}${sysconfdir}/systemd/network/
+  install -m 0644 ${WORKDIR}/*.network ${D}${sysconfdir}/systemd/network/
+}
+
+
+
+and the eth.network
+
+
+[Match]
+Name=en*
+
+[Network]
+DHCP=ipv4
+
+[DHCP]
+UseDNS=true
+UseNTP=true
+UseHostname=true
+UseDomains=true
+UseRoutes=true
+# otherwise a uuid is generated and we only assign via MAC address
+ClientIdentifier=mac
+
+--94eb2c05602e5fadc2053ae843ee
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jul 13, 2016 at 6:00 AM, Paul Eggleton
-<paul.eggleton@linux.intel.com> wrote:
-> On Fri, 19 Feb 2016 08:05:09 Andreas M=C3=BCller wrote:
->> On Wed, Feb 3, 2016 at 9:06 PM, Andreas M=C3=BCller
->> <schnitzeltony@googlemail.com> wrote:
->> > On Wed, Feb 3, 2016 at 8:10 PM, Paul Eggleton
->> > <paul.eggleton@linux.intel.com> wrote:
->> >> On Wed, 03 Feb 2016 14:41:42 Andreas M=C3=BCller wrote:
->> >>> FAQ for layerindex says recipes are updated every 3 hours but I thin=
-k
->> >>> it does not work. E.g meta-oe geis/grail/frame are not mentioned but
->> >>> were committed few days ago.
->> >>
->> >> I do know there's a problem, but I'm honestly not sure what's causing=
- it.
->> >> Unfortunately I don't have time to dig into it now but let me see if =
-I
->> >> can resync meta-oe at least.
->> >
->> > No need for manual update - it was just a heads up. I was not sure
->> > that it is a known issue.
->>
->> I checked in history:
->>
->> meta-openwrt added 4 weeks ago is the last layer for that was
->> analyzed. meta-cpan and all published after that were not analysed
->> anymore - they are reported having no recipes.
->>
->> As this is a strong tool I have at daily use: Is there something I can
->> do to get this working again?
->
-> So, it was a long time coming, but I finally figured out what was going w=
-rong
-> at least for some cases - basically, newer versions of GitPython actually
-> recognise renamed files instead of treating them as an add and a delete, =
-but
-> since I didn't know about this change I didn't fix the layer index code t=
-o
-> accommodate this. With the recent layer index upgrade to support Python 3=
- for
-> master, the fix for this issue was also applied, and each layer is also n=
-ow
-> parsed in a separate subprocess which should finally take care of memory =
-leaks
-> and any other rubbish being left behind affecting parsing of subsequent
-> layers. Hopefully we shouldn't see any more of this type of problem again
-> (aside from actually broken metadata) but as always please do let me know=
- if
-> you see anything strange.
->
-> Cheers,
-> Paul
->
-Hi,
+<div dir=3D"ltr">=C2=A0 =C2=A0hi,<div><br></div><div>i&#39;m trying to buil=
+d an image with systemd that runs systemd-networkd to initialize the networ=
+k.</div><div><br></div><div>So far it boots, the interface goes up and it r=
+eceives an IP via dhcp.=C2=A0</div><div><br></div><div>I now try to update =
+my hostname from the one received by dhcp. As far as i understand systemd, =
+the systemd-networkd sends a dbus message, this will trigger systemd-hostna=
+med. The setting of the hostname is protected by polkit. This is all config=
+ured. I can see the message on the bus and is also see the log entry of hos=
+tnamed. But the hostname does not change</div><div><br></div><div>Aug 25 16=
+:29:08 genericx86-64 systemd-networkd[203]: enp0s3: Gained carrier<br></div=
+><div>Aug 25 16:29:08 genericx86-64 systemd[1]: Starting Hostname Service..=
+.<br></div><div><div>Aug 25 16:29:08 genericx86-64 systemd[1]: Starting Aut=
+horization Manager...</div></div><div>Aug 25 16:29:08 genericx86-64 systemd=
+-hostnamed[216]: Changed host name to &#39;vm009&#39;<br></div><div><br></d=
+iv><div><br></div><div>Did I miss anything?</div><div><br></div><div>Greeti=
+ngs</div><div>=C2=A0 =C2=A0Christoph</div><div><br></div><div><br></div><di=
+v><br></div><div>the bbappend for systemd</div><div><br></div><div><div>FIL=
+ESEXTRAPATHS_append :=3D &quot;${THISDIR}/files:&quot;</div><div>SRC_URI +=
+=3D &quot;file://eth.network&quot;</div><div><br></div><div>FILES_${PN} +=
+=3D &quot;{sysconfdir}/systemd/network/*&quot;</div><div><br></div><div>PAC=
+KAGECONFIG +=3D &quot;networkd resolved timesyncd hostnamed polkit myhostna=
+me&quot;</div><div><br></div><div># for version 230 yocto fixes this</div><=
+div># networkd requires a user</div><div>USERADD_PARAM_${PN} +=3D &quot;--s=
+ystem -d / -M --shell /bin/nologin systemd-network;&quot;</div><div># resol=
+ved requires a user</div><div>USERADD_PARAM_${PN} +=3D &quot;--system -d / =
+-M --shell /bin/nologin systemd-resolve;&quot;</div><div># timesyncd requir=
+es a user</div><div>USERADD_PARAM_${PN} +=3D &quot;--system -d / -M --shell=
+ /bin/nologin systemd-timesync;&quot;</div><div><br></div><div>do_install_a=
+ppend() {</div><div>=C2=A0 install -d ${D}${sysconfdir}/systemd/network/</d=
+iv><div>=C2=A0 install -m 0644 ${WORKDIR}/*.network ${D}${sysconfdir}/syste=
+md/network/</div><div>}</div></div><div><br></div><div><br></div><div><br><=
+/div><div>and the eth.network</div><div><br></div><div><br></div><div><div>=
+[Match]</div><div>Name=3Den*</div><div><br></div><div>[Network]</div><div>D=
+HCP=3Dipv4</div><div><br></div><div>[DHCP]</div><div>UseDNS=3Dtrue</div><di=
+v>UseNTP=3Dtrue</div><div>UseHostname=3Dtrue</div><div>UseDomains=3Dtrue</d=
+iv><div>UseRoutes=3Dtrue</div><div># otherwise a uuid is generated and we o=
+nly assign via MAC address</div><div>ClientIdentifier=3Dmac</div></div><div=
+><br></div><div><br></div><div><br></div></div>
 
-seems layer list update is broken again e.g I am committing on
-meta-qt5-extra regularly but last commit reported is one month ago.
-
-Andreas
-
+--94eb2c05602e5fadc2053ae843ee--
