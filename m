@@ -1,40 +1,72 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <anders@chargestorm.se>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 19C8FE00A16; Thu, 25 Aug 2016 21:25:10 -0700 (PDT)
+	id 2366DE00AF2; Thu, 25 Aug 2016 23:24:01 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=unavailable version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D1BB1E00A16;
-	Thu, 25 Aug 2016 21:25:06 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by fmsmga101.fm.intel.com with ESMTP; 25 Aug 2016 21:25:06 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.28,579,1464678000"; d="scan'208";a="1041726450"
-Received: from alee19-mobl1.gar.corp.intel.com (HELO
-	peggleto-mobl.ger.corp.intel.com) ([10.255.153.55])
-	by orsmga002.jf.intel.com with ESMTP; 25 Aug 2016 21:25:02 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Michael Halstead <michael@yoctoproject.org>
-Date: Thu, 25 Aug 2016 21:25 -0700
-Message-ID: <3949264.c7xyDP8xx9@peggleto-mobl.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.14.10 (Linux/4.6.6-200.fc23.x86_64; KDE/4.14.20; x86_64; ;
-	)
-In-Reply-To: <CALbNGRQCiSe317HT8es4NjWhjOFiyr-nB2AcMWBoUR3MxKU8aA@mail.gmail.com>
-References: <CALbNGRSzRPjO693=9wCsyyBrB8iPWmKhhQ=9MX1NZSzNwcd19Q@mail.gmail.com>
-	<1719889.ALCIjRXcpG@peggleto-mobl.ger.corp.intel.com>
-	<CALbNGRQCiSe317HT8es4NjWhjOFiyr-nB2AcMWBoUR3MxKU8aA@mail.gmail.com>
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.215.52 listed in list.dnswl.org]
+Received: from mail-lf0-f52.google.com (mail-lf0-f52.google.com
+	[209.85.215.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C99F6E00ACE
+	for <yocto@yoctoproject.org>; Thu, 25 Aug 2016 23:23:54 -0700 (PDT)
+Received: by mail-lf0-f52.google.com with SMTP id f93so49774112lfi.2
+	for <yocto@yoctoproject.org>; Thu, 25 Aug 2016 23:23:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=chargestorm-se.20150623.gappssmtp.com; s=20150623;
+	h=date:from:to:subject:message-id:mail-followup-to:references
+	:mime-version:content-disposition:in-reply-to:organization
+	:user-agent; bh=s1teAuE//CusznSsOautE094AYqUUJDly94pfZgTDI4=;
+	b=gFtxxnBBs8WiY+JoDRYNYzS2UKyWHGkJy3g8x1KQUw0biRuPvbigd32tjji7AsP86u
+	KiiHzl6Lh2CEZ708vXAOgALFo2F9aA2U8vgFpHmTiMZlZ83FiJK0ppvOVTpeXo0Agowk
+	TrH5MZ6fNGMo3xajGEcl0dqnjpUxc/LCbalzJqMuzghQ3rPiRcDgU8y/sOAsSCE9ASFa
+	KhKnI7FMdSbQ3KcXtXqbQlwdxRPgAuRSlZYPcdSNe6H/ReQ53U94gULGRYuEqrfTi+Ad
+	C3Xf+l4bCckMItT5Fj/Yxv3tI1I3m9NJ7wP+OYrWzNSW1j+qfJL8H1R5/m79/UANfgx0
+	H6SA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:date:from:to:subject:message-id:mail-followup-to
+	:references:mime-version:content-disposition:in-reply-to
+	:organization:user-agent;
+	bh=s1teAuE//CusznSsOautE094AYqUUJDly94pfZgTDI4=;
+	b=XN+8gKA0hXTUggS3t/VRjX9yGGaZU/bb2yVRIYXyFftZnC4alW+fRwdOsvX6ss1CwG
+	9WUHVcJsqbeZC6VOjXzlBDsRT2CkJ9KYHwxD8H6SixfQa1TDXiw9SZNHuto+k1IE46rI
+	ZS6mLvrmS+aAbMOuoA8vN8Zay5RZ6eIB9EQ4Q3UhDxhiUs0reeDZSvjHn5iSfbNxOo//
+	m87MFMoWqRXxLZDfwjn5fUesvBNTvoicdy7hdg6Qo14HTLctzCH2H9vPw22aEz4XgNIP
+	eqDG/K1Inu3cAb9F2KVNG5jILPE+s5IZzDC0k0qVaajOaonxyo2g57F7vOQ+YLT7Thyl
+	mtkg==
+X-Gm-Message-State: AE9vXwMGlpWG95n/fNtHXo77JVcgej6o+gqgfeLaTK21/Lz3HC8GUWp89JYUT1DLiAI/AA==
+X-Received: by 10.25.24.30 with SMTP id o30mr398724lfi.58.1472192632468;
+	Thu, 25 Aug 2016 23:23:52 -0700 (PDT)
+Received: from ad.chargestorm.se (213-64-218-130-no126.business.telia.com.
+	[213.64.218.130])
+	by smtp.gmail.com with ESMTPSA id d15sm3592762lfg.0.2016.08.25.23.23.51
+	for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+	Thu, 25 Aug 2016 23:23:51 -0700 (PDT)
+Date: Fri, 26 Aug 2016 08:23:49 +0200
+From: Anders Darander <anders@chargestorm.se>
+To: yocto@yoctoproject.org
+Message-ID: <20160826062349.ctfykucbnwzy3ngd@ad.chargestorm.se>
+Mail-Followup-To: yocto@yoctoproject.org
+References: <CAOsp8o8NNynmKHsuP3D341riayK51YpqjGhW5EkpuTgLJdTjxA@mail.gmail.com>
 MIME-Version: 1.0
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: OpenEmbedded Metadata: Recipe update broken
+In-Reply-To: <CAOsp8o8NNynmKHsuP3D341riayK51YpqjGhW5EkpuTgLJdTjxA@mail.gmail.com>
+X-Accept-Language: sv, en, de
+X-GPG-Fingerprint: 5AF0 B2E9 78FE 9D75 D110  6F8F 3E31 84D7 920E 938C
+X-GPG-Key-Id: 0x920E938C
+X-GPG-Keyserver: hkp://keys.gnupg.net
+Organization: ChargeStorm AB
+User-Agent: Mutt/1.6.2-neo (2016-08-08)
+Subject: Re: Git/yocto newbie question re: submodules and multiple layers
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,82 +78,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 26 Aug 2016 04:25:10 -0000
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+X-List-Received-Date: Fri, 26 Aug 2016 06:24:01 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On Thu, 25 Aug 2016 18:14:23 Andreas M=FCller wrote:
-> On Wed, Jul 13, 2016 at 6:00 AM, Paul Eggleton
-> <paul.eggleton@linux.intel.com> wrote:
-> > On Fri, 19 Feb 2016 08:05:09 Andreas M=FCller wrote:
-> >> On Wed, Feb 3, 2016 at 9:06 PM, Andreas M=FCller
-> >> <schnitzeltony@googlemail.com> wrote:
-> >> > On Wed, Feb 3, 2016 at 8:10 PM, Paul Eggleton
-> >> >=20
-> >> > <paul.eggleton@linux.intel.com> wrote:
-> >> >> On Wed, 03 Feb 2016 14:41:42 Andreas M=FCller wrote:
-> >> >>> FAQ for layerindex says recipes are updated every 3 hours but =
-I think
-> >> >>> it does not work. E.g meta-oe geis/grail/frame are not mention=
-ed but
-> >> >>> were committed few days ago.
-> >> >>=20
-> >> >> I do know there's a problem, but I'm honestly not sure what's c=
-ausing
-> >> >> it.
-> >> >> Unfortunately I don't have time to dig into it now but let me s=
-ee if I
-> >> >> can resync meta-oe at least.
-> >> >=20
-> >> > No need for manual update - it was just a heads up. I was not su=
-re
-> >> > that it is a known issue.
-> >>=20
-> >> I checked in history:
-> >>=20
-> >> meta-openwrt added 4 weeks ago is the last layer for that was
-> >> analyzed. meta-cpan and all published after that were not analysed=
+* Michael Habibi <mikehabibi@gmail.com> [160825 23:26]:
 
-> >> anymore - they are reported having no recipes.
-> >>=20
-> >> As this is a strong tool I have at daily use: Is there something I=
- can
-> >> do to get this working again?
-> >=20
-> > So, it was a long time coming, but I finally figured out what was g=
-oing
-> > wrong at least for some cases - basically, newer versions of GitPyt=
-hon
-> > actually recognise renamed files instead of treating them as an add=
- and a
-> > delete, but since I didn't know about this change I didn't fix the =
-layer
-> > index code to accommodate this. With the recent layer index upgrade=
- to
-> > support Python 3 for master, the fix for this issue was also applie=
-d, and
-> > each layer is also now parsed in a separate subprocess which should=
+> The difficulty I have is thus:
 
-> > finally take care of memory leaks and any other rubbish being left =
-behind
-> > affecting parsing of subsequent layers. Hopefully we shouldn't see =
-any
-> > more of this type of problem again (aside from actually broken meta=
-data)
-> > but as always please do let me know if you see anything strange.
->=20
-> seems layer list update is broken again e.g I am committing on
-> meta-qt5-extra regularly but last commit reported is one month ago.
+> my_git_repo/ <--- what my platform developers will 'git clone'
+> my_git_repo/yocto_git/... <-- yocto framework
+> my_git_repo/yocto_git/meta-openembedded <-- another git repo nested
+> inside yocto repo
 
-Michael, I'm still not receiving any layer index update script emails. =
-Is=20
-there a way we can fix that so I can see what might be going wrong?
+> my_git_repo/yocto_git/meta-intel <-- another example layer.
 
-Thanks,
-Paul
+> I would like for developers to be able to 'git clone' a single repo,
+> but pull down all the necessary layers from various git repos.
+> Basically it will comprise all repos, including yocto, OE layers,
+> intel layers, etc.
 
---=20
+> I believe the only way I can nest submodules inside pre-existing repos
+> is for me to create a local clone of yocto git and add the submodules
+> to that clone. That means the master git repo (my_git_repo in example
+> above) will point to *our* clone of yocto git and not yocto project's
+> git repo. In our local clone of yocto git, I will add a submodule for
+> each layer I want to add.
 
-Paul Eggleton
-Intel Open Source Technology Centre
+> Does that make sense? Is this the right approach or is there a smarter way?
+
+I'm using submodules, but I put them like:
+
+my_git_repo/ <--- what my platform developers will 'git clone'
+my_git_repo/yocto_git/... <-- yocto framework
+my_git_repo/meta-openembedded 
+
+Well, I'm using bitbake and openembedded-core repos directly instead of
+yocto, but that doesn't really matter.
+
+Cheers,
+Anders
+
+-- 
+Anders Darander, Senior System Architect
+ChargeStorm AB / eStorm AB
 
