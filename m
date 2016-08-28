@@ -1,71 +1,26 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <auh@auh.yoctoproject.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2DD96E00CBF; Fri, 26 Aug 2016 16:25:01 -0700 (PDT)
+	id 1E9CCE00E7F; Sat, 27 Aug 2016 20:25:21 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.65 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pa0-f65.google.com (mail-pa0-f65.google.com
-	[209.85.220.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 06CF5E00CBA
-	for <yocto@yoctoproject.org>; Fri, 26 Aug 2016 16:24:54 -0700 (PDT)
-Received: by mail-pa0-f65.google.com with SMTP id ez1so5364818pab.3
-	for <yocto@yoctoproject.org>; Fri, 26 Aug 2016 16:24:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=subject:to:references:from:organization:message-id:date:user-agent
-	:mime-version:in-reply-to:content-transfer-encoding;
-	bh=XTMeaFOS8k4oGgHi4mm9QxC3frk1n7HTP6e8VE1ahkw=;
-	b=vp5gfRKerDa5xq7o8aaaljjz3QRHOJoXz7ybjyjxtunwXUAEMq1/B3y3Owqrr1zWjD
-	OsPhIpzr3lxHFO40GCgSYrZ+K6AuxRkyZdKU59PFl0sJW+seZDv1W8iXiR7kqWmEHHhI
-	jVpkd8LirpzTYYDDHkIbqe/FXOicMLMA3rE7IpeKCpr/clG/E0LytEhk5ARzDIdM5b4R
-	zqnJzkKK5fTJkdxlbQKMXr2lQIfzenJWoyzR/gTXqIXYGNMAwzCf2+J55gE0SfcS79Bc
-	MXft0ROMyonsYnTa4BH/hr8t0GE4gnVO4C88syjUkFHSXTPjoqfG5lr64Dm8Qslq61H+
-	3mSA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:subject:to:references:from:organization
-	:message-id:date:user-agent:mime-version:in-reply-to
-	:content-transfer-encoding;
-	bh=XTMeaFOS8k4oGgHi4mm9QxC3frk1n7HTP6e8VE1ahkw=;
-	b=H5uxpy068LgkXemfV9Qi/wNSihDdGgH6nCqOa+RdTsIXBAhOev5z+JnOKXHsL3ZS1i
-	hytK42fDliL4o2R6gppsgASUfWEJW2BSAzR0cVRns7dURqhgRMaD51pITrAU1xc4eqxy
-	zAsAa+1Q0woJDatiUY1IOU2jX4aADcD6mcRULL3KQhMzOlqFFxRMQf1rFCYpKflU4LU1
-	nlMBZk5ZHmUDjeIjN3+vMiyiOZRxgmXmPxG5ee8O9/g/WlaXklopPuZaVG/CJ12hlk41
-	wrRvqgcl3wasnHin/chQkk0OkRixZF08rWBzlOLIpRYw++fgX6TkZpXJ8OFuHVdLO6Q/
-	eMxw==
-X-Gm-Message-State: AE9vXwN8TADSEP/pAal+LqgtVjsAm9KpNkB4z0AqIW/dJPkou/hOqjuHjM3GhQuP51xrXw==
-X-Received: by 10.66.78.5 with SMTP id x5mr10259037paw.108.1472253894572;
-	Fri, 26 Aug 2016 16:24:54 -0700 (PDT)
-Received: from CACSVMO-14452.local ([2601:646:8882:b8c:d8cc:d2a6:73a8:6faf])
-	by smtp.gmail.com with ESMTPSA id
-	i137sm31220840pfe.64.2016.08.26.16.24.53
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 26 Aug 2016 16:24:53 -0700 (PDT)
-To: Jianxun Zhang <jianxun.zhang@linux.intel.com>, yocto@yoctoproject.org
-References: <1472251502-16136-1-git-send-email-jianxun.zhang@linux.intel.com>
-From: Khem Raj <raj.khem@gmail.com>
-Organization: himvis.com
-Message-ID: <85d58522-48a1-7bfe-f846-aa9255f2fbbe@gmail.com>
-Date: Fri, 26 Aug 2016 16:25:28 -0700
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:45.0)
-	Gecko/20100101 Thunderbird/45.2.0
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from auh.yoctoproject.org (unknown [198.145.29.2])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E0CC4E00E7C
+	for <yocto@yoctoproject.org>; Sat, 27 Aug 2016 20:25:18 -0700 (PDT)
+Received: from auh.yoctoproject.org (localhost [127.0.0.1])
+	by auh.yoctoproject.org (Postfix) with ESMTP id 5365C6FE1806
+	for <yocto@yoctoproject.org>; Sun, 28 Aug 2016 03:28:29 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <1472251502-16136-1-git-send-email-jianxun.zhang@linux.intel.com>
-Subject: Re: [PATCH] Makefile: remove static linking in Linux build
+From: auh@auh.yoctoproject.org
+To: yocto@yoctoproject.org
+Message-Id: <20160828032829.5365C6FE1806@auh.yoctoproject.org>
+Date: Sun, 28 Aug 2016 03:28:29 +0000 (UTC)
+Subject: [AUH] Upgrade status: 2016-08-28
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -77,40 +32,109 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 26 Aug 2016 23:25:01 -0000
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sun, 28 Aug 2016 03:25:21 -0000
+Content-Type: multipart/mixed; boundary="===============8804695908656708686=="
 
+--===============8804695908656708686==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
 
+QVVIIGZpbmlzaGVkIHVwZ3JhZGUgYmF0Y2ggdGhlIHJlc3VsdCBwYXRjaGVzL2xvZ3MgY2FuIGJl
+IGZvdW5kIGF0OgpodHRwczovL2xvZ3MueW9jdG9wcm9qZWN0Lm9yZy9hdWgvLzIwMTYwODI2MDAw
+MDAyLnRhci5neiwgbmV4dCBhcmUgdGhlIHN0YXRpc3RpY3M6CgpSZWNpcGUgdXBncmFkZSBzdGF0
+aXN0aWNzOgoKICAgICogU3VjY2VlZGVkOiAyMQogICAgICAgIGdudXBnLCAyLjEuMTUsIEhvbmd4
+dSBKaWEgPGhvbmd4dS5qaWFAd2luZHJpdmVyLmNvbT4KICAgICAgICB4Zjg2LWlucHV0LXN5bmFw
+dGljcywgMS44Ljk5LjEsIEp1c3NpIEt1a2tvbmVuIDxqdXNzaS5rdWtrb25lbkBpbnRlbC5jb20+
+CiAgICAgICAgYnRyZnMtdG9vbHMsIDQuNy4xLCBBbGV4YW5kZXIgS2FuYXZpbiA8YWxleGFuZGVy
+LmthbmF2aW5AaW50ZWwuY29tPgogICAgICAgIGxpYmV2ZGV2LCAxLjUuMywgSnVzc2kgS3Vra29u
+ZW4gPGp1c3NpLmt1a2tvbmVuQGludGVsLmNvbT4KICAgICAgICB3ZWJraXRndGssIDIuMTIuNCwg
+QWxleGFuZGVyIEthbmF2aW4gPGFsZXhhbmRlci5rYW5hdmluQGludGVsLmNvbT4KICAgICAgICBn
+c3RyZWFtZXIxLjAsIDEuOC4zLCBNYXhpbiBCLiBKb2huIDxtYXhpbi5qb2huQGludGVsLmNvbT4K
+ICAgICAgICBzd2lnLCAzLjAuMTAsIEFsZWphbmRybyBIZXJuYW5kZXogPGFsZWphbmRyby5oZXJu
+YW5kZXpAbGludXguaW50ZWwuY29tPgogICAgICAgIGJhc2gtY29tcGxldGlvbiwgMi40LCBBbGV4
+YW5kZXIgS2FuYXZpbiA8YWxleGFuZGVyLmthbmF2aW5AaW50ZWwuY29tPgogICAgICAgIGdzdHJl
+YW1lcjEuMC1ydHNwLXNlcnZlciwgMS44LjMsIE1heGluIEIuIEpvaG4gPG1heGluLmpvaG5AaW50
+ZWwuY29tPgogICAgICAgIGdzdHJlYW1lcjEuMC1wbHVnaW5zLWdvb2QsIDEuOC4zLCBNYXhpbiBC
+LiBKb2huIDxtYXhpbi5qb2huQGludGVsLmNvbT4KICAgICAgICBweXRob24zLW51bXB5LCAxLjEx
+LjEsIEFsZWphbmRybyBIZXJuYW5kZXogPGFsZWphbmRyby5oZXJuYW5kZXpAbGludXguaW50ZWwu
+Y29tPgogICAgICAgIHN5c3N0YXQsIDExLjQuMCwgQ2hlbiBRaSA8UWkuQ2hlbkB3aW5kcml2ZXIu
+Y29tPgogICAgICAgIHNxbGl0ZTMsIDMuMTQuMSwgTWF4aW4gQi4gSm9obiA8bWF4aW4uam9obkBp
+bnRlbC5jb20+CiAgICAgICAgbGlid2VicCwgMC41LjEsIEFsZXhhbmRlciBLYW5hdmluIDxhbGV4
+YW5kZXIua2FuYXZpbkBpbnRlbC5jb20+CiAgICAgICAgZTJmc3Byb2dzLCAxLjQzLjEsIFJvYmVy
+dCBZYW5nIDxsaWV6aGkueWFuZ0B3aW5kcml2ZXIuY29tPgogICAgICAgIGlzby1jb2RlcywgMy42
+OSwgQWxleGFuZGVyIEthbmF2aW4gPGFsZXhhbmRlci5rYW5hdmluQGludGVsLmNvbT4KICAgICAg
+ICBnc3RyZWFtZXIxLjAtcGx1Z2lucy1iYXNlLCAxLjguMywgTWF4aW4gQi4gSm9obiA8bWF4aW4u
+am9obkBpbnRlbC5jb20+CiAgICAgICAgZ2F3aywgNC4xLjQsIENoZW4gUWkgPFFpLkNoZW5Ad2lu
+ZHJpdmVyLmNvbT4KICAgICAgICBkaWZmdXRpbHMsIDMuNSwgQ2hlbiBRaSA8UWkuQ2hlbkB3aW5k
+cml2ZXIuY29tPgogICAgICAgIHFlbXUsIDIuNi4xLCBBbsOtYmFsIExpbcOzbiA8YW5pYmFsLmxp
+bW9uQGxpbnV4LmludGVsLmNvbT4KICAgICAgICBweXRob24tcGV4cGVjdCwgNC4yLjEsIEFsZWph
+bmRybyBIZXJuYW5kZXogPGFsZWphbmRyby5oZXJuYW5kZXpAbGludXguaW50ZWwuY29tPgogICAg
+KiBGYWlsZWQoZG9fY29uZmlndXJlKTogMQogICAgICAgIHBpbmVudHJ5LCAwLjkuNywgQXJtaW4g
+S3VzdGVyIDxha3VzdGVyODA4QGdtYWlsLmNvbT4KICAgICogRmFpbGVkKGRvX2NvbXBpbGUpOiAz
+CiAgICAgICAgcnVieSwgMi4zLjEsIEFsZWphbmRybyBIZXJuYW5kZXogPGFsZWphbmRyby5oZXJu
+YW5kZXpAbGludXguaW50ZWwuY29tPgogICAgICAgIHB5dGhvbi1naXQsIDIuMC44LCBBbGVqYW5k
+cm8gSGVybmFuZGV6IDxhbGVqYW5kcm8uaGVybmFuZGV6QGxpbnV4LmludGVsLmNvbT4KICAgICAg
+ICBrZXhlYy10b29scywgMi4wLjEzLCBBbGV4YW5kZXIgS2FuYXZpbiA8YWxleGFuZGVyLmthbmF2
+aW5AaW50ZWwuY29tPgogICAgKiBGYWlsZWQob3RoZXIgZXJyb3JzKTogMjIKICAgICAgICBsaWJw
+Y2FwLCAxLjguMCwgTWF4aW4gQi4gSm9obiA8bWF4aW4uam9obkBpbnRlbC5jb20+CiAgICAgICAg
+cnBtLCA1LjQuMTcsIE1hcmsgSGF0bGUgPG1hcmsuaGF0bGVAd2luZHJpdmVyLmNvbT4KICAgICAg
+ICBnc3RyZWFtZXIxLjAtcGx1Z2lucy1iYWQsIDEuOC4zLCBNYXhpbiBCLiBKb2huIDxtYXhpbi5q
+b2huQGludGVsLmNvbT4KICAgICAgICBuZnMtdXRpbHMsIDEuMy40LCBBbGVqYW5kcm8gSGVybmFu
+ZGV6IDxhbGVqYW5kcm8uaGVybmFuZGV6QGxpbnV4LmludGVsLmNvbT4KICAgICAgICBsdHAsIDIw
+MTYwNTEwLCBEZW5na2UgRHUgPGRlbmdrZS5kdUB3aW5kcml2ZXIuY29tPgogICAgICAgIHRleGlu
+Zm8sIDYuMSwgQWxlamFuZHJvIEhlcm5hbmRleiA8YWxlamFuZHJvLmhlcm5hbmRlekBsaW51eC5p
+bnRlbC5jb20+CiAgICAgICAgbnNzLCAzLjI1LCBBbGV4YW5kZXIgS2FuYXZpbiA8YWxleGFuZGVy
+LmthbmF2aW5AaW50ZWwuY29tPgogICAgICAgIGdvYmplY3QtaW50cm9zcGVjdGlvbiwgMS40OS4x
+LCBBbGV4YW5kZXIgS2FuYXZpbiA8YWxleGFuZGVyLmthbmF2aW5AaW50ZWwuY29tPgogICAgICAg
+IGJ1c3lib3gsIDEuMjUuMCwgQ2hlbiBRaSA8UWkuQ2hlbkB3aW5kcml2ZXIuY29tPgogICAgICAg
+IG9wZW5zc2wsIDEuMS4wLCBBbGV4YW5kZXIgS2FuYXZpbiA8YWxleGFuZGVyLmthbmF2aW5AaW50
+ZWwuY29tPgogICAgICAgIHB5dGhvbi1zZXR1cHRvb2xzLCAyNi4wLjAsIEFsZWphbmRybyBIZXJu
+YW5kZXogPGFsZWphbmRyby5oZXJuYW5kZXpAbGludXguaW50ZWwuY29tPgogICAgICAgIHBlcmws
+IDUuMjQuMSwgQWxlamFuZHJvIEhlcm5hbmRleiA8YWxlamFuZHJvLmhlcm5hbmRlekBsaW51eC5p
+bnRlbC5jb20+CiAgICAgICAgc3lzcHJvZiwgMy4yMS45MCtnaXRBVVRPSU5DKzY1ODUxZjUyOWMs
+IEFsZXhhbmRlciBLYW5hdmluIDxhbGV4YW5kZXIua2FuYXZpbkBpbnRlbC5jb20+CiAgICAgICAg
+dS1ib290LW1raW1hZ2UsIHYyMDE2LjA3K2dpdEFVVE9JTkMrMTljZTkyNGZmOSwgRGVueXMgRG15
+dHJpeWVua28gPGRlbmlzQGRlbml4Lm9yZz4KICAgICAgICB3YXlsYW5kLCAxLjExLjkxLCBKdXNz
+aSBLdWtrb25lbiA8anVzc2kua3Vra29uZW5AaW50ZWwuY29tPgogICAgICAgIGlmdXBkb3duLCAw
+LjguMTMsIE1heGluIEIuIEpvaG4gPG1heGluLmpvaG5AaW50ZWwuY29tPgogICAgICAgIHByZWxp
+bmssIDIwMTUxMDMwLitnaXRBVVRPSU5DKzkyNzk3OWJiZDEsIE1hcmsgSGF0bGUgPG1hcmsuaGF0
+bGVAd2luZHJpdmVyLmNvbT4KICAgICAgICBsaWdodHRwZCwgMS40LjQxLCBBbGV4YW5kZXIgS2Fu
+YXZpbiA8YWxleGFuZGVyLmthbmF2aW5AaW50ZWwuY29tPgogICAgICAgIHdlc3RvbiwgMS4xMS45
+MSwgSnVzc2kgS3Vra29uZW4gPGp1c3NpLmt1a2tvbmVuQGludGVsLmNvbT4KICAgICAgICBnZGIs
+IDcuMTEuMSwgUmljaGFyZCBQdXJkaWUgPHJpY2hhcmQucHVyZGllQGxpbnV4Zm91bmRhdGlvbi5v
+cmc+CiAgICAgICAgYmR3Z2MsIDcuNi4wLCBBbGV4YW5kZXIgS2FuYXZpbiA8YWxleGFuZGVyLmth
+bmF2aW5AaW50ZWwuY29tPgogICAgICAgIHN5c3RlbWQtYm9vdCwgMjMxK2dpdEFVVE9JTkMrMzhi
+MzgzZDlmZSwgQ2hlbiBRaSA8UWkuQ2hlbkB3aW5kcml2ZXIuY29tPgogICAgKiBGYWlsZWQoZG9f
+ZmV0Y2gpOiA1CiAgICAgICAgcHl0aG9uMy1naXQsIDIuMC44LCBBbGVqYW5kcm8gSGVybmFuZGV6
+IDxhbGVqYW5kcm8uaGVybmFuZGV6QGxpbnV4LmludGVsLmNvbT4KICAgICAgICBweXRob24zLXNl
+dHVwdG9vbHMsIDI2LjAuMCwgQWxlamFuZHJvIEhlcm5hbmRleiA8YWxlamFuZHJvLmhlcm5hbmRl
+ekBsaW51eC5pbnRlbC5jb20+CiAgICAgICAgbHR0bmctdG9vbHMsIDIuOC4xK2dpdEFVVE9JTkMr
+ZDExZTBkYmEwZCwgUmljaGFyZCBQdXJkaWUgPHJpY2hhcmQucHVyZGllQGxpbnV4Zm91bmRhdGlv
+bi5vcmc+CiAgICAgICAgbHR0bmctdXN0LCAyLjguMStnaXRBVVRPSU5DKzUxNGE4N2YzYjYsIFJp
+Y2hhcmQgUHVyZGllIDxyaWNoYXJkLnB1cmRpZUBsaW51eGZvdW5kYXRpb24ub3JnPgogICAgICAg
+IGx0dG5nLW1vZHVsZXMsIDIuOC4wK2dpdEFVVE9JTkMrNGEyNGZmZTczNywgUmljaGFyZCBQdXJk
+aWUgPHJpY2hhcmQucHVyZGllQGxpbnV4Zm91bmRhdGlvbi5vcmc+CgogICAgVE9UQUw6IGF0dGVt
+cHRlZD01MiBzdWNjZWVkZWQ9MjEoNDAuMzglKSBmYWlsZWQ9MzEoNTkuNjIlKQoKUmVjaXBlIHVw
+Z3JhZGUgc3RhdGlzdGljcyBwZXIgTWFpbnRhaW5lcjoKCiAgICBKdXNzaSBLdWtrb25lbiA8anVz
+c2kua3Vra29uZW46IGF0dGVtcHRlZD00IHN1Y2NlZWRlZD0yKDUwLjAwJSkgZmFpbGVkPTIoNTAu
+MDAlKQogICAgTWFyayBIYXRsZSA8bWFyay5oYXRsZTogYXR0ZW1wdGVkPTIgc3VjY2VlZGVkPTAo
+MC4wMCUpIGZhaWxlZD0yKDEwMC4wMCUpCiAgICBEZW55cyBEbXl0cml5ZW5rbyA8ZGVuaXM6IGF0
+dGVtcHRlZD0xIHN1Y2NlZWRlZD0wKDAuMDAlKSBmYWlsZWQ9MSgxMDAuMDAlKQogICAgQWxlamFu
+ZHJvIEhlcm5hbmRleiA8YWxlamFuZHJvLmhlcm5hbmRlejogYXR0ZW1wdGVkPTExIHN1Y2NlZWRl
+ZD0zKDI3LjI3JSkgZmFpbGVkPTgoNzIuNzMlKQogICAgQXJtaW4gS3VzdGVyIDxha3VzdGVyODA4
+OiBhdHRlbXB0ZWQ9MSBzdWNjZWVkZWQ9MCgwLjAwJSkgZmFpbGVkPTEoMTAwLjAwJSkKICAgIEhv
+bmd4dSBKaWEgPGhvbmd4dS5qaWE6IGF0dGVtcHRlZD0xIHN1Y2NlZWRlZD0xKDEwMC4wMCUpIGZh
+aWxlZD0wKDAuMDAlKQogICAgRGVuZ2tlIER1IDxkZW5na2UuZHU6IGF0dGVtcHRlZD0xIHN1Y2Nl
+ZWRlZD0wKDAuMDAlKSBmYWlsZWQ9MSgxMDAuMDAlKQogICAgTWF4aW4gQi4gSm9obiA8bWF4aW4u
+am9objogYXR0ZW1wdGVkPTggc3VjY2VlZGVkPTUoNjIuNTAlKSBmYWlsZWQ9MygzNy41MCUpCiAg
+ICBBbGV4YW5kZXIgS2FuYXZpbiA8YWxleGFuZGVyLmthbmF2aW46IGF0dGVtcHRlZD0xMiBzdWNj
+ZWVkZWQ9NSg0MS42NyUpIGZhaWxlZD03KDU4LjMzJSkKICAgIENoZW4gUWkgPFFpLkNoZW46IGF0
+dGVtcHRlZD01IHN1Y2NlZWRlZD0zKDYwLjAwJSkgZmFpbGVkPTIoNDAuMDAlKQogICAgUmljaGFy
+ZCBQdXJkaWUgPHJpY2hhcmQucHVyZGllOiBhdHRlbXB0ZWQ9NCBzdWNjZWVkZWQ9MCgwLjAwJSkg
+ZmFpbGVkPTQoMTAwLjAwJSkKICAgIFJvYmVydCBZYW5nIDxsaWV6aGkueWFuZzogYXR0ZW1wdGVk
+PTEgc3VjY2VlZGVkPTEoMTAwLjAwJSkgZmFpbGVkPTAoMC4wMCUpCiAgICBBbsOtYmFsIExpbcOz
+biA8YW5pYmFsLmxpbW9uOiBhdHRlbXB0ZWQ9MSBzdWNjZWVkZWQ9MSgxMDAuMDAlKSBmYWlsZWQ9
+MCgwLjAwJSkK
 
-On 8/26/16 3:45 PM, Jianxun Zhang wrote:
-> The removed static linking was for a desire to make rmc run
-> on systems where c libraries are not provided.
-> 
-> But it is nothing wrong to dynamically link rmc with libraries.
-> We also don't have to hardcode the way of linking in Makefile
-> since people can specify it in RMC_CFLAGS passed to make command.
-> 
-
-have you tested the dynamic version ?
-
-> Signed-off-by: Jianxun Zhang <jianxun.zhang@linux.intel.com>
-> ---
->  Makefile | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/Makefile b/Makefile
-> index e873af6..f152829 100644
-> --- a/Makefile
-> +++ b/Makefile
-> @@ -17,7 +17,7 @@ RMC_INSTALL_BIN_PATH := $(RMC_INSTALL_PREFIX)/bin/
->  
->  ALL_OBJS := $(RMC_TOOL_OBJ) $(RMCL_OBJ) $(RSMP_OBJ)
->  
-> -CFLAGS := -static -Wall -O2 -Iinc $(RMC_CFLAGS)
-> +CFLAGS := -Wall -O2 -Iinc $(RMC_CFLAGS)
->  
->  all: rmc librmcl librsmp
->  
-> 
-
+--===============8804695908656708686==--
