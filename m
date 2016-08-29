@@ -1,44 +1,65 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
+Return-Path: <bobadeshrikant@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BB581E00F27; Mon, 29 Aug 2016 06:27:48 -0700 (PDT)
+	id AF734E00F24; Mon, 29 Aug 2016 06:36:10 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_LOW,
+	URI_HEX autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (bobadeshrikant[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.194 listed in list.dnswl.org]
+	*  1.1 URI_HEX URI: URI hostname has long hexadecimal sequence
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 44918E00F1A
-	for <yocto@yoctoproject.org>; Mon, 29 Aug 2016 06:27:47 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id u7TDRhZ8018785
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Mon, 29 Aug 2016 06:27:43 -0700 (PDT)
-Received: from [128.224.56.48] (128.224.56.48) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.248.2;
-	Mon, 29 Aug 2016 06:27:43 -0700
-To: Ioan-Adrian Ratiu <adrian.ratiu@ni.com>, Bruce Ashfield
-	<bruce.ashfield@gmail.com>
-References: <20160829091905.1068-1-adrian.ratiu@ni.com>
-	<CADkTA4MS=7NyodK3chia_1Ev-cr_jNvyMnUWKWSstZZxFMTb5Q@mail.gmail.com>
-	<53f27a58-40a5-7953-eb7c-9a68af4c28b8@windriver.com>
-	<87mvjvvhea.fsf@ni.com>
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-Message-ID: <87233111-bf08-080a-962c-1d000edbdb5f@windriver.com>
-Date: Mon, 29 Aug 2016 09:27:42 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.2.0
-MIME-Version: 1.0
-In-Reply-To: <87mvjvvhea.fsf@ni.com>
-Cc: Yocto Project Discussion <yocto@yoctoproject.org>,
-	Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>
-Subject: Re: [OE-core][yocto-kernel-tools][PATCH] merge_configs.sh: fail loudly if make also fails
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pf0-f194.google.com (mail-pf0-f194.google.com
+	[209.85.192.194])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4CB84E00F1A
+	for <yocto@yoctoproject.org>; Mon, 29 Aug 2016 06:36:03 -0700 (PDT)
+Received: by mail-pf0-f194.google.com with SMTP id y134so9378515pfg.3
+	for <yocto@yoctoproject.org>; Mon, 29 Aug 2016 06:36:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:cc:subject:date:message-id;
+	bh=ocU9JdDi0MT/aXlfpG5yP8aRqjuB4vSXgbzYbU5lyhA=;
+	b=wx17s4NSRyBNlMHBbrds7hV/loe0xOSdIjwfDF07A1GZCyJAhZmKxgpWRSDPGSy3+X
+	RBs6Up9k12z1Zw797jd8K2dsRsUr2HzyXO4DnjUOFTYG7DwGE9J1DZvN7a//LW1rVTUm
+	0CWTulvZj6fh3vKPtSMskH99MNS/1XSkcbT1w8gZMXy9fzw5DcVuJ/qMnmMIx8lDjJgF
+	R4EAaehyiBggx/cCxUmn6PiRaMI4Illn8UoZdEKU8a+WIswqokvyOl6b2qchrWfNYH+V
+	HwwaLnjB5gWko6vJW+hv2+CB1/1oORcQTT0K5i7w7KfThbgs2C0yOC+G6xhDjbnayAIx
+	oRJQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=ocU9JdDi0MT/aXlfpG5yP8aRqjuB4vSXgbzYbU5lyhA=;
+	b=V+WaVw/WI8ZvWcJjgok3gWqQai3k9OyLxNZAhfAsuzrPmkmZfe1EA211BFK1HXcWb0
+	MjsooK6KjzcwBJuW5LX3ddigiGa1tBXO6CfADdjNk5RFEYqKTz5VjN26l7xlumsisExF
+	WN0Hw2jo5EpGqK9Wfa9qzcu0q5tAj92rVXSIYsgF/qDWOc/+AvfrhaSEG9D2eNWoWbyI
+	BwspUkhSMJLXZmm3e+bt1T64jCAhvQdWgLZbDjhphtmhNgZQpS+Sy+51Y4KOnw3b0MYf
+	jQlG6GbAtvDF3RXUlqu4gqymSII5KUzE9LLGxu7Anf/W6Pdbi2vjCTY5yoOpr0gKdAK+
+	eDeg==
+X-Gm-Message-State: AE9vXwO36VO4j05tA7THYuGl2oDIwOCvEfkYFc2BVwyL8MLGl61aWgLLxQJv9tSODz1/ow==
+X-Received: by 10.98.12.200 with SMTP id 69mr32756483pfm.15.1472477762648;
+	Mon, 29 Aug 2016 06:36:02 -0700 (PDT)
+Received: from shrikant-VirtualBox.inp.mentorg.com ([139.181.35.34])
+	by smtp.gmail.com with ESMTPSA id
+	u1sm49595382pfu.12.2016.08.29.06.36.00
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Mon, 29 Aug 2016 06:36:01 -0700 (PDT)
+From: Shrikant Bobade <bobadeshrikant@gmail.com>
+To: yocto@yoctoproject.org
+Date: Mon, 29 Aug 2016 19:05:39 +0530
+Message-Id: <1472477739-25795-1-git-send-email-bobadeshrikant@gmail.com>
+X-Mailer: git-send-email 1.9.1
+Cc: Shrikant Bobade <shrikant_bobade@mentor.com>
+Subject: [meta-selinux] [PATCH 1/9] refpolicy-minimum: systemd:unconfined:lib: add systemd services allow rules
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,113 +71,169 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 29 Aug 2016 13:27:48 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 29 Aug 2016 13:36:10 -0000
 
-On 2016-08-29 09:22 AM, Ioan-Adrian Ratiu wrote:
-> On Mon, 29 Aug 2016, Bruce Ashfield <bruce.ashfield@windriver.com> wrote:
->> On 2016-08-29 08:07 AM, Bruce Ashfield wrote:
->>>
->>>
->>> On Mon, Aug 29, 2016 at 5:19 AM, Ioan-Adrian Ratiu <adrian.ratiu@ni.com
->>> <mailto:adrian.ratiu@ni.com>> wrote:
->>>
->>>     merge_configs.sh calls make on the generated kernel config from
->>>     the defconfig + fragments to fill in any missing symbols. make
->>>     can fail and this can lead to nasty errors further on in the
->>>     build like generating an unbootable kernel image.
->>>
->>>     Check the make return code and fail loudly if non-zero.
->>>
->>>
->>> We don't want merge config to fail in a scenario like this. It is up to
->>> whatever
->>> calls merge_config to add that sort of logic. Which is what I do with
->>> the kernel
->>> audit phase of linux-yocto.
->>
->> I saw the other patch after replying here. So this is causing some sort
->> of non Kconfig related error (i.e. host contamination) ? If so, that is
->> a different scenario than I was thinking of when I wrote this.
->
-> Yes, exactly.
->
->>
->> Either way, like I said in my other email, I'd like to understand why
->> this is popping up now, since I'm not seeing anything like it in my
->> builds .. with my recent changes, all that I've essentially done is
->> expose merge_config to the actual tasks, so if this is showing an error
->> I jiggled something else, or it was always around.
->
-> It was always around, even before the cleanup you did in this area .
-> Remember I sent you a year ago patches for this issue when you were on
-> vacation and you told me you didn't need that patch?
+From: Shrikant Bobade <shrikant_bobade@mentor.com>
 
-Let me spin up a couple more builds.
+systemd allow rules for systemd service file operations: start, stop, restart
+& allow rule for unconfined systemd service.
 
-I'm about to push v4.8 support, and I'd like to see if I can trigger
-the same issue in my clean builds.
+without this change we are geting avc denials and access denied to perform
+operations on service file.
 
-If I can't make it happen, my answer will still be the same :D But
-If I do see this, I'll queue the patch with my series and let you
-know.
+Signed-off-by: Shrikant Bobade <shrikant_bobade@mentor.com>
+---
+ ...inimum-systemd-unconfined-lib-add-systemd.patch | 124 +++++++++++++++++++++
+ .../refpolicy/refpolicy-minimum_2.20151208.bb      |   7 ++
+ 2 files changed, 131 insertions(+)
+ create mode 100644 recipes-security/refpolicy/refpolicy-minimum/0001-refpolicy-minimum-systemd-unconfined-lib-add-systemd.patch
 
-Bruce
-
->
-> These patches are a rebase on top of the current master of those from
-> a year ago. This issue is around since the sysroot poisoning commit back
-> in 2014.
->
->>
->> Bruce
->>
->>>
->>> If you do want to try and make it fail in a scenario like this, the
->>> patch needs to
->>> go to the linux kernel mailing list.
->>>
->>> Cheers,
->>>
->>> Bruce
->>>
->>>
->>>
->>>     Signed-off-by: Ioan-Adrian Ratiu <adrian.ratiu@ni.com
->>>     <mailto:adrian.ratiu@ni.com>>
->>>     ---
->>>      tools/merge_config.sh | 5 ++++-
->>>      1 file changed, 4 insertions(+), 1 deletion(-)
->>>
->>>     diff --git a/tools/merge_config.sh b/tools/merge_config.sh
->>>     index 67d1314..5212f37 100755
->>>     --- a/tools/merge_config.sh
->>>     +++ b/tools/merge_config.sh
->>>     @@ -152,7 +152,10 @@ fi
->>>      # alldefconfig: Fills in any missing symbols with Kconfig default
->>>      # allnoconfig: Fills in any missing symbols with # CONFIG_* is not set
->>>      make KCONFIG_ALLCONFIG=$TMP_FILE $OUTPUT_ARG $ALLTARGET
->>>     -
->>>     +if [ "$?" -ne 0 ]; then
->>>     +    echo "Make failed to fill missing config symbols. Exit." >&2
->>>     +    exit 1
->>>     +fi
->>>
->>>
->>>      # Check all specified config values took (might have
->>>     missed-dependency issues)
->>>      for CFG in $(sed -n "$SED_CONFIG_EXP" $TMP_FILE); do
->>>     --
->>>     2.9.3
->>>
->>>
->>>
->>>
->>> --
->>> "Thou shalt not follow the NULL pointer, for chaos and madness await
->>> thee at its end"
->>>
->>>
+diff --git a/recipes-security/refpolicy/refpolicy-minimum/0001-refpolicy-minimum-systemd-unconfined-lib-add-systemd.patch b/recipes-security/refpolicy/refpolicy-minimum/0001-refpolicy-minimum-systemd-unconfined-lib-add-systemd.patch
+new file mode 100644
+index 0000000..7a72f18
+--- /dev/null
++++ b/recipes-security/refpolicy/refpolicy-minimum/0001-refpolicy-minimum-systemd-unconfined-lib-add-systemd.patch
+@@ -0,0 +1,124 @@
++From 17507a42ce91376b00069ff22b43786894910ed6 Mon Sep 17 00:00:00 2001
++From: Shrikant Bobade <shrikant_bobade@mentor.com>
++Date: Fri, 26 Aug 2016 17:51:32 +0530
++Subject: [PATCH 1/9] refpolicy-minimum: systemd:unconfined:lib: add systemd
++ services allow rules
++
++systemd allow rules for systemd service file operations: start, stop, restart
++& allow rule for unconfined systemd service.
++
++without this change we are getting these errors:
++:~# systemctl status selinux-init.service
++Failed to get properties: Access denied
++
++:~# systemctl stop selinux-init.service
++Failed to stop selinux-init.service: Access denied
++
++:~# systemctl restart  selinux-init.service
++audit: type=1107 audit: pid=1 uid=0 auid=4294967295 ses=4294967295 subj=
++system_u:system_r:init_t:s0 msg='avc:  denied  { start } for auid=n/a uid=0
++gid=0 path="/lib/systemd/system/selinux-init.service" cmdline="systemctl
++restart selinux-init.service" scontext=unconfined_u:unconfined_r:
++unconfined_t:s0-s0:c0.c1023 tcontext=system_u:object_r:lib_t:s0 tclass=service
++
++Upstream-Status: Pending
++
++Signed-off-by: Shrikant Bobade <shrikant_bobade@mentor.com>
++---
++ policy/modules/system/init.te       |  6 +++++-
++ policy/modules/system/libraries.te  |  3 +++
++ policy/modules/system/systemd.if    | 40 +++++++++++++++++++++++++++++++++++++
++ policy/modules/system/unconfined.te |  6 ++++++
++ 4 files changed, 54 insertions(+), 1 deletion(-)
++
++diff --git a/policy/modules/system/init.te b/policy/modules/system/init.te
++index d710fb0..f9d7114 100644
++--- a/policy/modules/system/init.te
+++++ b/policy/modules/system/init.te
++@@ -1100,4 +1100,8 @@ optional_policy(`
++ # systemd related allow rules
++ allow kernel_t init_t:process dyntransition;
++ allow devpts_t device_t:filesystem associate;
++-allow init_t self:capability2 block_suspend;
++\ No newline at end of file
+++allow init_t self:capability2 block_suspend;
+++allow init_t self:capability2 audit_read;
+++
+++allow initrc_t init_t:system { start status };
+++allow initrc_t init_var_run_t:service { start status };
++diff --git a/policy/modules/system/libraries.te b/policy/modules/system/libraries.te
++index 0f5cd56..df98fe9 100644
++--- a/policy/modules/system/libraries.te
+++++ b/policy/modules/system/libraries.te
++@@ -144,3 +144,6 @@ optional_policy(`
++ optional_policy(`
++ 	unconfined_domain(ldconfig_t)
++ ')
+++
+++# systemd: init domain to start lib domain service
+++systemd_service_lib_function(lib_t)
++diff --git a/policy/modules/system/systemd.if b/policy/modules/system/systemd.if
++index 3cd6670..822c03d 100644
++--- a/policy/modules/system/systemd.if
+++++ b/policy/modules/system/systemd.if
++@@ -171,3 +171,43 @@ interface(`systemd_start_power_units',`
++ 
++ 	allow $1 power_unit_t:service start;
++ ')
+++
+++
+++########################################
+++## <summary>
+++## Allow specified domain to start stop reset systemd service
+++## </summary>
+++## <param name="domain">
+++## <summary>
+++## Domain to not audit.
+++## </summary>
+++## </param>
+++#
+++interface(`systemd_service_file_operations',`
+++         gen_require(`
+++               class service { start status stop };
+++         ')
+++
+++	allow $1 lib_t:service { start status stop };
+++
+++')
+++
+++
+++########################################
+++## <summary>
+++## Allow init domain to start lib domain service
+++## </summary>
+++## <param name="domain">
+++## <summary>
+++## Domain to not audit.
+++## </summary>
+++## </param>
+++#
+++interface(`systemd_service_lib_function',`
+++         gen_require(`
+++               class service start;
+++         ')
+++
+++	allow initrc_t $1:service start;
+++
+++')
++diff --git a/policy/modules/system/unconfined.te b/policy/modules/system/unconfined.te
++index 99cab31..87a1b03 100644
++--- a/policy/modules/system/unconfined.te
+++++ b/policy/modules/system/unconfined.te
++@@ -220,3 +220,9 @@ unconfined_domain_noaudit(unconfined_execmem_t)
++ optional_policy(`
++ 	unconfined_dbus_chat(unconfined_execmem_t)
++ ')
+++
+++
+++# systemd: specified domain to start stop reset systemd service
+++systemd_service_file_operations(unconfined_t)
+++
+++allow unconfined_t init_t:system reload;
++-- 
++1.9.1
++
+diff --git a/recipes-security/refpolicy/refpolicy-minimum_2.20151208.bb b/recipes-security/refpolicy/refpolicy-minimum_2.20151208.bb
+index 04ceadd..16592e5 100644
+--- a/recipes-security/refpolicy/refpolicy-minimum_2.20151208.bb
++++ b/recipes-security/refpolicy/refpolicy-minimum_2.20151208.bb
+@@ -67,3 +67,10 @@ prepare_policy_store () {
+ 		cp ${MOD_FILE} ${MOD_DIR}/hll
+ 	done
+ }
++
++SRC_URI += "${@bb.utils.contains('DISTRO_FEATURES', 'systemd', ' ${SYSTEMD_REFPOLICY_PATCHES}', '', d)}"
++
++
++SYSTEMD_REFPOLICY_PATCHES = " \
++        file://0001-refpolicy-minimum-systemd-unconfined-lib-add-systemd.patch \
++	"
+-- 
+1.9.1
 
 
