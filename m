@@ -1,65 +1,65 @@
 Return-Path: <bobadeshrikant@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 72C12E00F51; Mon, 29 Aug 2016 06:39:32 -0700 (PDT)
+	id DE6C6E00E9A; Mon, 29 Aug 2016 07:07:37 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_LOW,
-	URI_HEX autolearn=no version=3.3.1
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (bobadeshrikant[at]gmail.com)
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.192.193 listed in list.dnswl.org]
-	*  1.1 URI_HEX URI: URI hostname has long hexadecimal sequence
+	*      [209.85.214.44 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pf0-f193.google.com (mail-pf0-f193.google.com
-	[209.85.192.193])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B6A3AE00F46
-	for <yocto@yoctoproject.org>; Mon, 29 Aug 2016 06:39:04 -0700 (PDT)
-Received: by mail-pf0-f193.google.com with SMTP id i6so9385520pfe.0
-	for <yocto@yoctoproject.org>; Mon, 29 Aug 2016 06:39:04 -0700 (PDT)
+Received: from mail-it0-f44.google.com (mail-it0-f44.google.com
+	[209.85.214.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 73C2BE00B47
+	for <yocto@yoctoproject.org>; Mon, 29 Aug 2016 07:07:35 -0700 (PDT)
+Received: by mail-it0-f44.google.com with SMTP id g62so98262991ith.1
+	for <yocto@yoctoproject.org>; Mon, 29 Aug 2016 07:07:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id;
-	bh=NNpPRzHSmK3ws6EOAqe134NcLbcWbnP6uYyW4ZZcasc=;
-	b=XJKZthdFu08F8EgO9AxNb3yrIkv5xs2zWk9Aa0Pmc31lgV1QQgOtz5QlKrlq9Ceoxx
-	hGlwqBvIyWpyH6ASdrz6aidGhmg1h1+qWCmPX8iXDULXzfuIssyGbfBCgZmlQ9YUZ9MH
-	UQwJxQrQqJW7EBmN11gQoFTLPlA6Fw2RDuWh2wqmlT4yD3G9YLQuFWuyzMuZ6D5WWvN6
-	x8r/zddRqhk3ewnglMl+oNfYlTxswEhU5n5MnZbiLXyim8Hk4BOODwCHflUiFdi5gqeN
-	m7nj0nZQkAkYfE4VqeohQnUxcNHJh/2aMd4Pw7LdUdeUkGBaGD09NFZY4yDeRtwgs5bM
-	m5Pg==
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=CYpuhbUW/3u28AZsevjlq1OeiZ3JL9dZ/EsGk/XgNo8=;
+	b=lFWyli373qE6JmRiYnTvmQ4vNoFdCRx5b3aLeFdzwdBYZ6tHwGxPsWhDQe+WAwGo3I
+	6PD1/5bypCeNEunefGtPV4iNE4zwapIMoIIs+9o2Sf18Nw7RLWLULaehr8l+uUpdZCJB
+	Fc1CPPrXrhSZZfm7Yzta+HdWz/mPUEKFPSC6sny4WC1S3pZc3lOGtnjqRnZ8ywX6zDuU
+	o7RJw6+OeGDHN7dwKkMAbZJ6cjhWeQQYZ28pI2eOKM6ahHsneiVgXTEwNMk3yEWMdNCE
+	TMgOwTZqXH6l662j0rtj+EJR+F0EvOEffQbfkQFoO8nF7FTldeoBiincDWzMdxWLfE2I
+	j/0Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=NNpPRzHSmK3ws6EOAqe134NcLbcWbnP6uYyW4ZZcasc=;
-	b=j6V7J1dhOAh7tI6S+2ui9X0mQKT3gBbJcP6ZX9B7gllWu4yj+LofkpshdXRbS8c0k9
-	fTubHDPohAPIKzRToXihoIaA9fYjwSzL9oVwVH3P0P7YA7o1FrBsRS9XhsvUXGAFp6i5
-	xaaEFxBbXRSIICkDzX56WkA5hImT3X0iNR6B/DUEozRJcjAZe5D0Hn9MGd5w6cT64GfD
-	PqdLxDZXLUDywwuVSFvkR8hcTwU1NTqoyRK7n98/T7asGKXH2K5HWcADwIGXCIS8try8
-	5zZnLnHODPe5BzXKhqz1+RZamGuicD5iVlm/S5rL62Il9yf6hg/QNYI3D2VTuGpkAYqn
-	m9mw==
-X-Gm-Message-State: AE9vXwPT0Q/SKBJAk9mwEi7/zh/yPBQeRZi0ZyVZAXi4fG6hrufZ//aRTX+E8Fjvu7WBFw==
-X-Received: by 10.98.72.201 with SMTP id q70mr32608633pfi.159.1472477943954;
-	Mon, 29 Aug 2016 06:39:03 -0700 (PDT)
-Received: from shrikant-VirtualBox.inp.mentorg.com ([139.181.35.34])
-	by smtp.gmail.com with ESMTPSA id
-	k78sm49576156pfa.78.2016.08.29.06.39.02
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Mon, 29 Aug 2016 06:39:03 -0700 (PDT)
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=CYpuhbUW/3u28AZsevjlq1OeiZ3JL9dZ/EsGk/XgNo8=;
+	b=B5sdUh/KcqsFigrfMLT+QtwVxCEjjmXu1ainQRM6GDEKYGG/5y/xDz2EJwPIBRsjdt
+	/WnUSAhyly49/Zqt05K7/K3J/U13+hULqJ78jKEOhcvv5tOWQRsNgGOvHGRXhWYqWJdz
+	l74MJsRB1bTWm3T7+wuAFJFhJpMYav/jTSAnKZ6VfYAPupKkqPURZAoifCnQIK1g4vDl
+	AuVugBaIekgZx6viO6R4qmWy9QhEBJ9dRJu8qGnwhY1wclB0mvtpDFtcOs6flOde7eIQ
+	2goKtkRyDKF7+yDBNgakaKGACpcUQ0wFKVCok5/6VqYHkMnuAlLlMI3zj+3gMwMWVebK
+	Fk8A==
+X-Gm-Message-State: AE9vXwNrPgDIr1NFn31hldg1WUYi7KPFsX3y7OvuCEgZiN5pXPR8iM/2RjabUjYmUeA+N8p3mMxOmNpLSZHasA==
+X-Received: by 10.36.88.83 with SMTP id f80mr17116032itb.36.1472479654361;
+	Mon, 29 Aug 2016 07:07:34 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.107.175.169 with HTTP; Mon, 29 Aug 2016 07:07:33 -0700 (PDT)
+In-Reply-To: <CALwQEroevj9bs_adtYoSFWoPCOtpAw1t4Xi6LP-dDyT-zP3reg@mail.gmail.com>
+References: <CALwQErovo9JQV7apy+-Qnk9Dv5SDArmS+793GuwWoznF-gWAcQ@mail.gmail.com>
+	<CALwQEroevj9bs_adtYoSFWoPCOtpAw1t4Xi6LP-dDyT-zP3reg@mail.gmail.com>
 From: Shrikant Bobade <bobadeshrikant@gmail.com>
+Date: Mon, 29 Aug 2016 19:37:33 +0530
+Message-ID: <CALwQErog-d+5hbeGRJEFi8f3Xp7tzxW7S9i2y52h5eWOedNrcA@mail.gmail.com>
 To: yocto@yoctoproject.org
-Date: Mon, 29 Aug 2016 19:08:57 +0530
-Message-Id: <1472477937-26101-1-git-send-email-bobadeshrikant@gmail.com>
-X-Mailer: git-send-email 1.9.1
-Cc: Shrikant Bobade <shrikant_bobade@mentor.com>
-Subject: [meta-selinux] [PATCH 9/9] refpolicy-minimum: systemd: fix for syslog
+Cc: Shrikant Bobade <Shrikant_Bobade@mentor.com>
+Subject: Re: [meta-selinux] Regarding "systemd" support with refpolicy-minimum v20151208
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,106 +71,193 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 29 Aug 2016 13:39:32 -0000
+X-List-Received-Date: Mon, 29 Aug 2016 14:07:37 -0000
+Content-Type: multipart/alternative; boundary=001a1144bf22bcc332053b3662e3
 
-From: Shrikant Bobade <shrikant_bobade@mentor.com>
+--001a1144bf22bcc332053b3662e3
+Content-Type: text/plain; charset=UTF-8
 
-syslog & getty related allow rules required to fix the syslog mixup with
-boot log, while using systemd as init manager.
-
-Signed-off-by: Shrikant Bobade <shrikant_bobade@mentor.com>
----
- ...-refpolicy-minimum-systemd-fix-for-syslog.patch | 69 ++++++++++++++++++++++
- .../refpolicy/refpolicy-minimum_2.20151208.bb      |  1 +
- 2 files changed, 70 insertions(+)
- create mode 100644 recipes-security/refpolicy/refpolicy-minimum/0009-refpolicy-minimum-systemd-fix-for-syslog.patch
-
-diff --git a/recipes-security/refpolicy/refpolicy-minimum/0009-refpolicy-minimum-systemd-fix-for-syslog.patch b/recipes-security/refpolicy/refpolicy-minimum/0009-refpolicy-minimum-systemd-fix-for-syslog.patch
-new file mode 100644
-index 0000000..b01947d
---- /dev/null
-+++ b/recipes-security/refpolicy/refpolicy-minimum/0009-refpolicy-minimum-systemd-fix-for-syslog.patch
-@@ -0,0 +1,69 @@
-+From 9476fb0aad7caa725014e72cd009b78389ba66d5 Mon Sep 17 00:00:00 2001
-+From: Shrikant Bobade <shrikant_bobade@mentor.com>
-+Date: Fri, 26 Aug 2016 17:54:29 +0530
-+Subject: [PATCH 9/9] refpolicy-minimum: systemd: fix for syslog
-+
-+syslog & getty related allow rules required to fix the syslog mixup with
-+boot log, while using systemd as init manager.
-+
-+without this change we are getting these avc denials:
-+
-+audit: avc:  denied  { search } for  pid=484 comm="syslogd" name="/"
-+dev="tmpfs" ino=7269 scontext=system_u:system_r:syslogd_t:s0 tcontext=
-+system_u:object_r:tmpfs_t:s0 tclass=dir permissive=0
-+
-+audit: avc:  denied  { write } for  pid=372 comm="syslogd" name="log" dev=
-+"tmpfs" ino=954 scontext=system_u:system_r:syslogd_t:s0 tcontext=system_u:
-+object_r:tmpfs_t:s0 tclass=dir permissive=0
-+
-+audit: avc:  denied  { add_name } for  pid=390 comm="syslogd" name=
-+"messages" scontext=system_u:system_r:syslogd_t:s0 tcontext=system_u:object_r
-+:tmpfs_t:s0 tclass=dir permissive=0
-+
-+audit: avc:  denied  { sendto } for  pid=558 comm="agetty" path="/run/systemd
-+/journal/dev-log" scontext=system_u:system_r:getty_t:s0 tcontext=system_u:
-+system_r:initrc_t:s0 tclass=unix_dgram_socket permissive=0
-+
-+audit: avc:  denied  { create } for  pid=374 comm="syslogd" name="messages"
-+scontext=system_u:system_r:syslogd_t:s0 tcontext=system_u:object_r:tmpfs_t:
-+s0 tclass=file permissive=0
-+
-+audit: avc:  denied  { append } for  pid=423 comm="syslogd" name="messages"
-+dev="tmpfs" ino=7995 scontext=system_u:system_r:syslogd_t:s0 tcontext=
-+system_u:object_r:tmpfs_t:s0 tclass=file permissive=0
-+
-+audit: avc:  denied  { getattr } for  pid=425 comm="syslogd" path="/var/
-+volatile/log/messages" dev="tmpfs" ino=8857 scontext=system_u:system_r:
-+syslogd_t:s0 tcontext=system_u:object_r:tmpfs_t:s0 tclass=file permissive=0
-+
-+Upstream-Status: Pending
-+
-+Signed-off-by: Shrikant Bobade <shrikant_bobade@mentor.com>
-+---
-+ policy/modules/system/getty.te   | 1 +
-+ policy/modules/system/logging.te | 3 ++-
-+ 2 files changed, 3 insertions(+), 1 deletion(-)
-+
-+diff --git a/policy/modules/system/getty.te b/policy/modules/system/getty.te
-+index 84eaf77..2e53daf 100644
-+--- a/policy/modules/system/getty.te
-++++ b/policy/modules/system/getty.te
-+@@ -142,3 +142,4 @@ optional_policy(`
-+ 
-+ allow getty_t tmpfs_t:dir search;
-+ allow getty_t tmpfs_t:file { open write lock };
-++allow getty_t initrc_t:unix_dgram_socket sendto;
-+diff --git a/policy/modules/system/logging.te b/policy/modules/system/logging.te
-+index 107db03..95de86d 100644
-+--- a/policy/modules/system/logging.te
-++++ b/policy/modules/system/logging.te
-+@@ -581,4 +581,5 @@ allow klogd_t initrc_t:unix_dgram_socket sendto;
-+ allow syslogd_t self:shm create;
-+ allow syslogd_t self:sem { create read unix_write write };
-+ allow syslogd_t self:shm { read unix_read unix_write write };
-+-allow syslogd_t tmpfs_t:file { read write };
-++allow syslogd_t tmpfs_t:file { read write create getattr append open };
-++allow syslogd_t tmpfs_t:dir { search write add_name };
-+-- 
-+1.9.1
-+
-diff --git a/recipes-security/refpolicy/refpolicy-minimum_2.20151208.bb b/recipes-security/refpolicy/refpolicy-minimum_2.20151208.bb
-index 9f01492..da6626e 100644
---- a/recipes-security/refpolicy/refpolicy-minimum_2.20151208.bb
-+++ b/recipes-security/refpolicy/refpolicy-minimum_2.20151208.bb
-@@ -80,4 +80,5 @@ SYSTEMD_REFPOLICY_PATCHES = " \
- 	file://0006-refpolicy-minimum-systemd-mount-enable-requiried-ref.patch \
- 	file://0007-refpolicy-minimum-systemd-fix-for-login-journal-serv.patch \
- 	file://0008-refpolicy-minimum-systemd-fix-for-systemd-tmp-files-.patch \
-+	file://0009-refpolicy-minimum-systemd-fix-for-syslog.patch \
- 	"
--- 
-1.9.1
+Hi,
 
 
+Patch set for systemd and related fixes for refpolicy-minimum v2.20151208
+from https://lists.yoctoproject.org/pipermail/yocto/2016-August/031763.html
+to https://lists.yoctoproject.org/pipermail/yocto/2016-August/031771.html
+
+Verified core-image-selinux build with refpolicy-minimum and systemd as
+init manager, below are reference logs.
+
+refpolicy-minimum with patch set: http://paste.ubuntu.com/23107423/
+
+refpolicy-minimum without patch set: http://paste.ubuntu.com/23107437/
+
+Please advise !
+
+
+Thanks
+Shrikant
+
+
+On Fri, Jul 29, 2016 at 2:54 PM, Shrikant Bobade <bobadeshrikant@gmail.com>
+wrote:
+
+> Hi,
+>
+>
+> Request for comment set from: https://lists.yoctoproject.
+> org/pipermail/yocto/2016-July/031362.html to https://lists.yoctoproject.
+> org/pipermail/yocto/2016-July/031369.html
+>
+> checked on below build config. with refpolicy-minimum using systemd as
+> init manager.
+>
+> These are comparative boot logs.
+> refpolicy-minimum without RFC set: http://paste.ubuntu.com/21383917/
+>
+> refpolicy-minimum with RFC set: http://paste.ubuntu.com/21383939/
+>
+>
+>
+> Build Configuration:
+> BB_VERSION        = "1.31.0"
+> BUILD_SYS         = "x86_64-linux"
+> NATIVELSBSTRING   = "universal"
+> TARGET_SYS        = "arm-poky-linux-gnueabi"
+> MACHINE           = "qemuarm"
+> DISTRO            = "poky-selinux"
+> DISTRO_VERSION    = "2.1+snapshot-20160729"
+> TUNE_FEATURES     = "arm armv5 thumb dsp"
+> TARGET_FPU        = "soft"
+> meta
+> meta-poky
+> meta-yocto-bsp    = "master:039f47ad197a9a53109c9f3deadd9c35e62c056d"
+> meta-selinux      = "master:d0f889259b610c3365962775c6e96a7cba407177"
+>
+>
+>
+> Please advice, It will be a great help !
+>
+>
+> Thanks
+> Shrikant
+>
+>
+> On Fri, Jul 1, 2016 at 7:13 PM, Shrikant Bobade <bobadeshrikant@gmail.com>
+> wrote:
+>
+>> Hi,
+>>
+>> Using refpolicy-minimum v20151208 with systemd as init manager,
+>>
+>> I am facing few issues during enforcing mode,
+>> 1. systemd service status check, start & stop
+>> 2. auditd logfile error, so it is mixing with the boot log.
+>> 3. also other avc denials related to tmpfs & other types etc..
+>>
+>>
+>> setup details:poky and meta-selinux: both at master head & systemd
+>> enabled.
+>> with these SELinux booleans enabled: i.systemd_tmpfiles_manage_all
+>> ii.allow_mount_anyfile
+>>
+>> captured the avc denial to fix the systemd execution well, attached
+>> SELinux-Modules.txt :- the allow rules generated using audit tools.
+>> I am trying to merge these module into actual refpolicy modules, so we
+>> get the out of box experience for smooth systemd execution.
+>> Observed policy store seems corrupted some time, when start inserting the
+>> prepared policy modules allow rules into actual refpolicy modules..
+>>
+>> Does anyone also faced similar issues?
+>>
+>> Any pointers or references will be a great help.
+>>
+>>
+>> Thanks
+>> Shrikant
+>>
+>>
+>
+
+--001a1144bf22bcc332053b3662e3
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><div><div><div><div><div>Hi,<br><br><br></div>Patch s=
+et for systemd and related fixes for refpolicy-minimum v2.20151208 from <a =
+href=3D"https://lists.yoctoproject.org/pipermail/yocto/2016-August/031763.h=
+tml">https://lists.yoctoproject.org/pipermail/yocto/2016-August/031763.html=
+</a> to <a href=3D"https://lists.yoctoproject.org/pipermail/yocto/2016-Augu=
+st/031771.html">https://lists.yoctoproject.org/pipermail/yocto/2016-August/=
+031771.html</a> <br><br></div>Verified core-image-selinux build with refpol=
+icy-minimum and systemd as init manager, below are reference logs. <br></di=
+v><br>refpolicy-minimum with patch set: <a href=3D"http://paste.ubuntu.com/=
+23107423/">http://paste.ubuntu.com/23107423/</a> <br><br></div>refpolicy-mi=
+nimum without patch set: <a href=3D"http://paste.ubuntu.com/23107437/">http=
+://paste.ubuntu.com/23107437/</a><br><br></div><div>Please advise !<br><br>=
+</div><div><br></div>Thanks<br></div>Shrikant<br><div><div><div><div><div><=
+div><br><div><div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote"=
+>On Fri, Jul 29, 2016 at 2:54 PM, Shrikant Bobade <span dir=3D"ltr">&lt;<a =
+href=3D"mailto:bobadeshrikant@gmail.com" target=3D"_blank">bobadeshrikant@g=
+mail.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=
+=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
+-left:1ex"><div dir=3D"ltr"><div><div><div>Hi,<br><br><br></div>Request for=
+ comment set from: <a href=3D"https://lists.yoctoproject.org/pipermail/yoct=
+o/2016-July/031362.html" target=3D"_blank">https://lists.yoctoproject.<wbr>=
+org/pipermail/yocto/2016-July/<wbr>031362.html</a> to <a href=3D"https://li=
+sts.yoctoproject.org/pipermail/yocto/2016-July/031369.html" target=3D"_blan=
+k">https://lists.yoctoproject.<wbr>org/pipermail/yocto/2016-July/<wbr>03136=
+9.html</a><br><br></div><div>checked on below build config. with refpolicy-=
+minimum using systemd as init manager.<br><br></div><div>These are comparat=
+ive boot logs.<br></div><div>refpolicy-minimum without RFC set: <a href=3D"=
+http://paste.ubuntu.com/21383917/" target=3D"_blank">http://paste.ubuntu.co=
+m/<wbr>21383917/</a> <br></div><div><br></div><div>refpolicy-minimum with R=
+FC set: <a href=3D"http://paste.ubuntu.com/21383939/" target=3D"_blank">htt=
+p://paste.ubuntu.com/<wbr>21383939/</a> <br></div><div><br><br><br>Build Co=
+nfiguration:<br>BB_VERSION=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &q=
+uot;1.31.0&quot;<br>BUILD_SYS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 =3D &quot;x86_64-linux&quot;<br>NATIVELSBSTRING=C2=A0=C2=A0 =3D &quot;u=
+niversal&quot;<br>TARGET_SYS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D =
+&quot;arm-poky-linux-gnueabi&quot;<br>MACHINE=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;qemuarm&quot;<br>DISTRO=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;poky-se=
+linux&quot;<br>DISTRO_VERSION=C2=A0=C2=A0=C2=A0 =3D &quot;2.1+snapshot-2016=
+0729&quot;<br>TUNE_FEATURES=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;arm armv5 thu=
+mb dsp&quot;<br>TARGET_FPU=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &q=
+uot;soft&quot;<br>meta=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 <br>meta-poky=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 <br>meta-yocto-bsp=C2=A0=C2=A0=C2=A0 =3D &quot;master:<wbr>=
+039f47ad197a9a53109c9f3deadd9c<wbr>35e62c056d&quot;<br>meta-selinux=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;master:<wbr>d0f889259b610c3365962775c6e9=
+6a<wbr>7cba407177&quot;<br><br><br><br></div><div>Please advice, It will be=
+ a great help !<br><br></div><div><br></div>Thanks<span class=3D""><font co=
+lor=3D"#888888"><br></font></span></div><span class=3D""><font color=3D"#88=
+8888">Shrikant<br><div><div><div><br></div></div></div></font></span></div>=
+<div class=3D""><div class=3D"h5"><div class=3D"gmail_extra"><br><div class=
+=3D"gmail_quote">On Fri, Jul 1, 2016 at 7:13 PM, Shrikant Bobade <span dir=
+=3D"ltr">&lt;<a href=3D"mailto:bobadeshrikant@gmail.com" target=3D"_blank">=
+bobadeshrikant@gmail.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmai=
+l_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,20=
+4,204);padding-left:1ex"><div dir=3D"ltr"><div><div>Hi,<br><br></div>Using =
+refpolicy-minimum v20151208 with systemd as init manager, <br><br>I am faci=
+ng few issues during enforcing mode, <br>1. systemd service status check, s=
+tart &amp; stop<br>
+2. auditd logfile error, so it is mixing with the boot log. <br>3. also oth=
+er avc denials related to tmpfs &amp; other types etc..<br><br><br>setup de=
+tails:poky and meta-selinux: both at master head &amp; systemd enabled.<br>=
+with these SELinux booleans enabled: i.systemd_tmpfiles_manage_all ii.allow=
+_mount_anyfile <br><br>captured the avc denial to fix the systemd execution=
+ well, attached SELinux-Modules.txt :- the allow rules generated using audi=
+t tools.<br></div><div>I am trying to merge these module into actual refpol=
+icy modules, so we get the out of box experience for smooth systemd executi=
+on.<br></div><div>Observed policy store seems corrupted some time, when sta=
+rt inserting the prepared policy modules allow rules into actual refpolicy =
+modules..<br><br></div><div>Does anyone also faced similar issues? <br><br>=
+</div><div>Any pointers or references will be a great help.<br></div><div><=
+br><br></div><div>Thanks<span><font color=3D"#888888"><br></font></span></d=
+iv><span><font color=3D"#888888"><div>Shrikant<br></div><div></div><br></fo=
+nt></span></div>
+</blockquote></div><br></div>
+</div></div></blockquote></div><br></div></div></div></div></div></div></di=
+v></div></div></div>
+
+--001a1144bf22bcc332053b3662e3--
