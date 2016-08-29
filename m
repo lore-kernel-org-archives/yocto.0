@@ -1,66 +1,34 @@
-Return-Path: <scottellis.developer@gmail.com>
+Return-Path: <jianxun.zhang@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1E61CE00F24; Mon, 29 Aug 2016 05:46:58 -0700 (PDT)
+	id 6DF02E00503; Mon, 29 Aug 2016 11:10:13 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (scottellis.developer[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.178 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qk0-f178.google.com (mail-qk0-f178.google.com
-	[209.85.220.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 36FD3E00F23
-	for <yocto@yoctoproject.org>; Mon, 29 Aug 2016 05:46:51 -0700 (PDT)
-Received: by mail-qk0-f178.google.com with SMTP id v123so136021102qkh.2
-	for <yocto@yoctoproject.org>; Mon, 29 Aug 2016 05:46:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id;
-	bh=1l7edjfw9hddQWW/ERB+if8IMSPLSvg3RlGCxSI7vuA=;
-	b=USwe7sjNE8q4ZeDbNdXPEP8Gsj5qqOwr6aCVGPsaaUr4VUEOAwtKHauxZYgHxsxPjd
-	AcbbbQROCFIUAgiyrVVmUT0YeDpDPHKVebA8vwdn2bjhwc6mQ9zD1iAxu53e3xwg1aJ7
-	OKZIZ9fOFHuRIzX4WFF3LtnUwrIAMmm/QLKqKFSCA8O3zoPFR4jXjLra1cJkuqiXJ/R1
-	ymaHtNDTbq1OX7gXDAJz24ZD7sQrQZ/hzq9pZZzXYBo0qVzg9LyMXeRGKIj4ansR92SJ
-	GbRj6juNTcDLqx41LPUfD70rxVrtFWJs2Sz3JQkcDtsMivFTSDEoEhtvcheRjBKCOdiE
-	BVug==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=1l7edjfw9hddQWW/ERB+if8IMSPLSvg3RlGCxSI7vuA=;
-	b=eVFX9p/HqpefOhxZkei6Lub5EIwInG8zNJnUK3q5EDX7EibdG2zXCZ1NmnVUS6GPs1
-	Kg04EcCa3sCjoIhPXRNNhwI+1cozQIogvrL0KONZ7Y/aAiQ2nbBHE7njzfC/k3/gIhXL
-	ZrbatPMqoOqP962Zu+GLCKgG2YGXPESK6OgtO0bXAmabI4zbH/DbEvegWylOo+3y0WrX
-	fbFAgJeLAVF2FIUekGVoubGFOVg9fjqZguLcDYW2rK7nGsRYOfjikhx+pr3hyVyCWsuo
-	fp1z3fl4PkO6I+0fKJPEypCrflzEJHMHM15uLIG9qNcLw3+Fsld54yFPyRZdc0p6ZED1
-	haUg==
-X-Gm-Message-State: AE9vXwMIY0zhenWdL7h/Qc9OyL9jQuqALJxuTZyADTRAEp3+k6BYTz2kS9lFUsWPT28VUg==
-X-Received: by 10.55.26.36 with SMTP id a36mr18861922qka.273.1472474811265;
-	Mon, 29 Aug 2016 05:46:51 -0700 (PDT)
-Received: from fractal.jumpnow (c-73-47-157-211.hsd1.me.comcast.net.
-	[73.47.157.211]) by smtp.gmail.com with ESMTPSA id
-	11sm14789067qkl.15.2016.08.29.05.46.50
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Mon, 29 Aug 2016 05:46:50 -0700 (PDT)
-From: Scott Ellis <scottellis.developer@gmail.com>
-X-Google-Original-From: Scott Ellis <scott@jumpnowtek.com>
-To: yocto@yoctoproject.org
-Date: Mon, 29 Aug 2016 08:46:41 -0400
-Message-Id: <1472474801-32112-1-git-send-email-scott@jumpnowtek.com>
-X-Mailer: git-send-email 2.7.4
-X-Mailman-Approved-At: Mon, 29 Aug 2016 10:33:41 -0700
-Cc: Scott Ellis <scott@jumpnowtek.com>
-Subject: [meta-raspberrypi][PATCH] userland: Add bash to RDEPENDS
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 17353E0044F
+	for <yocto@yoctoproject.org>; Mon, 29 Aug 2016 11:10:11 -0700 (PDT)
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+	by orsmga104.jf.intel.com with ESMTP; 29 Aug 2016 11:10:11 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.30,597,1470726000"; 
+   d="scan'208";a="2371988"
+Received: from jzhang80-mac02.jf.intel.com ([10.24.2.112])
+	by orsmga005.jf.intel.com with ESMTP; 29 Aug 2016 11:10:11 -0700
+Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
+From: Jianxun Zhang <jianxun.zhang@linux.intel.com>
+In-Reply-To: <85d58522-48a1-7bfe-f846-aa9255f2fbbe@gmail.com>
+Date: Mon, 29 Aug 2016 11:10:21 -0700
+Message-Id: <91E6AEA1-C95E-4D16-BAE9-6F1437A9D7D4@linux.intel.com>
+References: <1472251502-16136-1-git-send-email-jianxun.zhang@linux.intel.com>
+	<85d58522-48a1-7bfe-f846-aa9255f2fbbe@gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+X-Mailer: Apple Mail (2.3124)
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH] Makefile: remove static linking in Linux build
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,28 +40,72 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 29 Aug 2016 12:46:58 -0000
+X-List-Received-Date: Mon, 29 Aug 2016 18:10:13 -0000
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: quoted-printable
 
-WARNING: userland-git-r5 do_package_qa: QA Issue: /usr/bin/dtoverlay-post
-contained in package userland requires /bin/bash, but no providers found
-in RDEPENDS_userland? [file-rdeps]
 
-Signed-off-by: Scott Ellis <scott@jumpnowtek.com>
----
- recipes-graphics/userland/userland_git.bb | 2 ++
- 1 file changed, 2 insertions(+)
+> On Aug 26, 2016, at 4:25 PM, Khem Raj <raj.khem@gmail.com> wrote:
+>=20
+>=20
+>=20
+> On 8/26/16 3:45 PM, Jianxun Zhang wrote:
+>> The removed static linking was for a desire to make rmc run
+>> on systems where c libraries are not provided.
+>>=20
+>> But it is nothing wrong to dynamically link rmc with libraries.
+>> We also don't have to hardcode the way of linking in Makefile
+>> since people can specify it in RMC_CFLAGS passed to make command.
+>>=20
+>=20
+> have you tested the dynamic version ?
+Khem,
 
-diff --git a/recipes-graphics/userland/userland_git.bb b/recipes-graphics/userland/userland_git.bb
-index 6e73ca7..99cf02c 100644
---- a/recipes-graphics/userland/userland_git.bb
-+++ b/recipes-graphics/userland/userland_git.bb
-@@ -71,3 +71,5 @@ FILES_${PN}-doc += "${datadir}/install"
- FILES_${PN}-dbg += "${libdir}/plugins/.debug"
- 
- PACKAGE_ARCH = "${MACHINE_ARCH}"
-+
-+RDEPENDS_${PN} += "bash"
--- 
-2.7.4
+In RMC, two different test stages are defined in workflow. Please refer =
+to "Patch submission & Maintenance=94 in README in rmc project.
+
+This patch to upstream rmc project was tested against rmc internal test =
+suite (1st test stage) with yocto minimal images, RMC binaries built =
+with the image, and another pending hash-style patch in recipe. See =
+below.
+
+A QA checker of hash style in OE will fail once the --static is gone =
+because it only expects gnu_hash for SYMTAB in dynamic section in ELF. =
+The patch of hash issue in rmc recipe is under test (2nd test stage) =
+with builtin examples in meta-intel for the next rmc revision update. =
+This fix for an OE-specifc enforcement should be another step beyond =
+this upstream patch=92s submission and rmc project.
+
+But I probably should mention it in submission for a better clarity. =
+Hope the info could help. Feel free to let me know anything I missed.
+
+Thanks!
+
+
+
+
+
+
+>=20
+>> Signed-off-by: Jianxun Zhang <jianxun.zhang@linux.intel.com>
+>> ---
+>> Makefile | 2 +-
+>> 1 file changed, 1 insertion(+), 1 deletion(-)
+>>=20
+>> diff --git a/Makefile b/Makefile
+>> index e873af6..f152829 100644
+>> --- a/Makefile
+>> +++ b/Makefile
+>> @@ -17,7 +17,7 @@ RMC_INSTALL_BIN_PATH :=3D =
+$(RMC_INSTALL_PREFIX)/bin/
+>>=20
+>> ALL_OBJS :=3D $(RMC_TOOL_OBJ) $(RMCL_OBJ) $(RSMP_OBJ)
+>>=20
+>> -CFLAGS :=3D -static -Wall -O2 -Iinc $(RMC_CFLAGS)
+>> +CFLAGS :=3D -Wall -O2 -Iinc $(RMC_CFLAGS)
+>>=20
+>> all: rmc librmcl librsmp
+>>=20
+>>=20
 
 
