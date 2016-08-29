@@ -1,37 +1,66 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <scottellis.developer@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A59D0E00F2F; Mon, 29 Aug 2016 08:52:36 -0700 (PDT)
+	id 1E61CE00F24; Mon, 29 Aug 2016 05:46:58 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (scottellis.developer[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.178 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.analogue-micro.com (mail.analogue-micro.com
-	[217.144.149.242])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5B0D8E00F2A
-	for <yocto@yoctoproject.org>; Mon, 29 Aug 2016 08:52:33 -0700 (PDT)
-Received: by mail.analogue-micro.com (Postfix, from userid 999)
-	id 2C90868A01B; Mon, 29 Aug 2016 16:52:32 +0100 (BST)
-Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
-	by mail.analogue-micro.com (Postfix) with ESMTP id 8441368A019;
-	Mon, 29 Aug 2016 16:52:31 +0100 (BST)
-Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
-	by zeus.mlbassoc.com (Postfix) with ESMTP id 1A58467402E9;
-	Mon, 29 Aug 2016 17:52:31 +0200 (CEST)
-To: "Maxin B. John" <maxin.john@intel.com>
-References: <94135907-910a-eea9-263d-89e9ef21bf56@mlbassoc.com>
-	<20160829114913.GB5724@mbabyjoh-desk.ger.corp.intel.com>
-From: Gary Thomas <gary@mlbassoc.com>
-Message-ID: <90b87072-3f5d-a439-9bf2-8f216655f386@mlbassoc.com>
-Date: Mon, 29 Aug 2016 17:52:31 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.2.0
-MIME-Version: 1.0
-In-Reply-To: <20160829114913.GB5724@mbabyjoh-desk.ger.corp.intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: X display touch calibration
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-qk0-f178.google.com (mail-qk0-f178.google.com
+	[209.85.220.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 36FD3E00F23
+	for <yocto@yoctoproject.org>; Mon, 29 Aug 2016 05:46:51 -0700 (PDT)
+Received: by mail-qk0-f178.google.com with SMTP id v123so136021102qkh.2
+	for <yocto@yoctoproject.org>; Mon, 29 Aug 2016 05:46:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:cc:subject:date:message-id;
+	bh=1l7edjfw9hddQWW/ERB+if8IMSPLSvg3RlGCxSI7vuA=;
+	b=USwe7sjNE8q4ZeDbNdXPEP8Gsj5qqOwr6aCVGPsaaUr4VUEOAwtKHauxZYgHxsxPjd
+	AcbbbQROCFIUAgiyrVVmUT0YeDpDPHKVebA8vwdn2bjhwc6mQ9zD1iAxu53e3xwg1aJ7
+	OKZIZ9fOFHuRIzX4WFF3LtnUwrIAMmm/QLKqKFSCA8O3zoPFR4jXjLra1cJkuqiXJ/R1
+	ymaHtNDTbq1OX7gXDAJz24ZD7sQrQZ/hzq9pZZzXYBo0qVzg9LyMXeRGKIj4ansR92SJ
+	GbRj6juNTcDLqx41LPUfD70rxVrtFWJs2Sz3JQkcDtsMivFTSDEoEhtvcheRjBKCOdiE
+	BVug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=1l7edjfw9hddQWW/ERB+if8IMSPLSvg3RlGCxSI7vuA=;
+	b=eVFX9p/HqpefOhxZkei6Lub5EIwInG8zNJnUK3q5EDX7EibdG2zXCZ1NmnVUS6GPs1
+	Kg04EcCa3sCjoIhPXRNNhwI+1cozQIogvrL0KONZ7Y/aAiQ2nbBHE7njzfC/k3/gIhXL
+	ZrbatPMqoOqP962Zu+GLCKgG2YGXPESK6OgtO0bXAmabI4zbH/DbEvegWylOo+3y0WrX
+	fbFAgJeLAVF2FIUekGVoubGFOVg9fjqZguLcDYW2rK7nGsRYOfjikhx+pr3hyVyCWsuo
+	fp1z3fl4PkO6I+0fKJPEypCrflzEJHMHM15uLIG9qNcLw3+Fsld54yFPyRZdc0p6ZED1
+	haUg==
+X-Gm-Message-State: AE9vXwMIY0zhenWdL7h/Qc9OyL9jQuqALJxuTZyADTRAEp3+k6BYTz2kS9lFUsWPT28VUg==
+X-Received: by 10.55.26.36 with SMTP id a36mr18861922qka.273.1472474811265;
+	Mon, 29 Aug 2016 05:46:51 -0700 (PDT)
+Received: from fractal.jumpnow (c-73-47-157-211.hsd1.me.comcast.net.
+	[73.47.157.211]) by smtp.gmail.com with ESMTPSA id
+	11sm14789067qkl.15.2016.08.29.05.46.50
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Mon, 29 Aug 2016 05:46:50 -0700 (PDT)
+From: Scott Ellis <scottellis.developer@gmail.com>
+X-Google-Original-From: Scott Ellis <scott@jumpnowtek.com>
+To: yocto@yoctoproject.org
+Date: Mon, 29 Aug 2016 08:46:41 -0400
+Message-Id: <1472474801-32112-1-git-send-email-scott@jumpnowtek.com>
+X-Mailer: git-send-email 2.7.4
+X-Mailman-Approved-At: Mon, 29 Aug 2016 10:33:41 -0700
+Cc: Scott Ellis <scott@jumpnowtek.com>
+Subject: [meta-raspberrypi][PATCH] userland: Add bash to RDEPENDS
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,68 +72,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 29 Aug 2016 15:52:36 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 29 Aug 2016 12:46:58 -0000
 
-On 2016-08-29 13:49, Maxin B. John wrote:
-> Hi Gary,
->
-> On Mon, Aug 29, 2016 at 11:09:25AM +0200, Gary Thomas wrote:
->> How is the touchscreen calibration supposed to work now (after
->> the recent changes dropping pointercal, tslib, etc)?  I can
->> see when I launch X that the screen calibration program runs,
->> but I think only briefly as the main [matchbox] screen immediately
->> comes up and without calibration, my pointer (touchscreen) is pretty
->> useless...
->
-> Could you share some more details about the device that you are using?
+WARNING: userland-git-r5 do_package_qa: QA Issue: /usr/bin/dtoverlay-post
+contained in package userland requires /bin/bash, but no providers found
+in RDEPENDS_userland? [file-rdeps]
 
-I'm using an i.MX6Q SabreLite (Boundary Devices) with a 7" LCD that has
-a TSC-2004 resistive touch screen.
+Signed-off-by: Scott Ellis <scott@jumpnowtek.com>
+---
+ recipes-graphics/userland/userland_git.bb | 2 ++
+ 1 file changed, 2 insertions(+)
 
->
-> Most likely, the layer which supports your device, already provides a
-> default "/etc/pointercal.xinput" file. Removing that file and restarting
-> the device should bring back the screen calibration program during boot.
-
-I removed that file and still the same behavior.
-
->
->> Ideas / pointers?
->
-> Please update that .bbappend file or provide a "reasonable"(which works
-> with the latest xinput_calibrator) set of default values in the
-> pointercal.xinput file.
-
-Since the autocalibrate isn't working, can you give some guidance
-what this looks like?  The one created by the [erroneous] .bbappend
-looks like this:
-   xinput set-int-prop "EETI eGalax Touch Screen" "Evdev Axis Calibration" 42060 2062 -8 -783544 1 1549 65536
-   xinput set-int-prop "EETI eGalax Touch Screen" "Evdev Axes Swap" 8 0
-
-Note: the reason you didn't see my error when you built for imx28 was
-that this specific file is i.MX6 specific.
-
-Also, in the past I used a [manually crafted] file:
-     ================= /etc/X11/xorg.conf.d/11-touchscreen.conf
-     Section "InputClass"
-     Identifier "tsc2004"
-     MatchProduct "tsc2004"
-     MatchDevicePath "/dev/input/event*"
-     Driver "evdev"
-     Option "InvertX" "true"
-     Option  "Calibration"   "85 4045 166 3991"
-     EndSection
-
-The touchscreen still works if I include this but I was trying to play
-by the new rules and use the new configuration tools, so I removed it
-and /etc/pointercal*
-
-
+diff --git a/recipes-graphics/userland/userland_git.bb b/recipes-graphics/userland/userland_git.bb
+index 6e73ca7..99cf02c 100644
+--- a/recipes-graphics/userland/userland_git.bb
++++ b/recipes-graphics/userland/userland_git.bb
+@@ -71,3 +71,5 @@ FILES_${PN}-doc += "${datadir}/install"
+ FILES_${PN}-dbg += "${libdir}/plugins/.debug"
+ 
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
++
++RDEPENDS_${PN} += "bash"
 -- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+2.7.4
+
 
