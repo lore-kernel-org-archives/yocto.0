@@ -1,17 +1,17 @@
 Return-Path: <bobadeshrikant@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C2DC1E00F51; Mon, 29 Aug 2016 06:36:58 -0700 (PDT)
+	id A093EE00F26; Mon, 29 Aug 2016 06:37:04 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_LOW,
 	URI_HEX autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (bobadeshrikant[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.65 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.192.194 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (bobadeshrikant[at]gmail.com)
 	*  1.1 URI_HEX URI: URI hostname has long hexadecimal sequence
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
@@ -20,46 +20,46 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pa0-f65.google.com (mail-pa0-f65.google.com
-	[209.85.220.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E82D0E00F25
-	for <yocto@yoctoproject.org>; Mon, 29 Aug 2016 06:36:41 -0700 (PDT)
-Received: by mail-pa0-f65.google.com with SMTP id vy10so9007063pac.0
-	for <yocto@yoctoproject.org>; Mon, 29 Aug 2016 06:36:41 -0700 (PDT)
+Received: from mail-pf0-f194.google.com (mail-pf0-f194.google.com
+	[209.85.192.194])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F4226E00F26
+	for <yocto@yoctoproject.org>; Mon, 29 Aug 2016 06:36:53 -0700 (PDT)
+Received: by mail-pf0-f194.google.com with SMTP id g202so9393665pfb.1
+	for <yocto@yoctoproject.org>; Mon, 29 Aug 2016 06:36:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=from:to:cc:subject:date:message-id;
-	bh=ManFzzpU/+z/7Hu8rHRKcidvCE/eJH2n76BXTnvCwFc=;
-	b=SqYScJm5yJA6ggvDYvGxt9canfroGUmQuPLSOWVBzAR7xhOYfQxyUlyy8NuknFcGOL
-	AVvovv3RUDSK60rXluqsBIamggr21RIqfsxa91pNNh29g7ZNRWFCwOkqgJoDV5fW3zBv
-	6/T9C94SrnZhM+h2v6EV3VKCTmXEVt2mmv8sMDn21SJZcyGPPMmyzuPB/CzI3Ey4KGNS
-	e7tye/Wp+5GWjNPsfW0RnZBtbEfayN8wabgnpdUYS2irIqAxJRdYhRUL9KLzZjMKrVRf
-	4r6S6xoq7+X//9nX/iXIr/klLTf7QSOjVEU88R/tsxqeUAfMBgewKOxSG/ZxbU89x0B0
-	OxZw==
+	bh=MgW2bq9N6zS4OzykN6PBHmY7R8UgZd7Y431WZD4Tz48=;
+	b=Zgq/RlmMEXIoUcTvkBt3N4Js6Q5oLeyXZAMAqMWtPNFbaiCSini3U4EOunupocPKw0
+	xEGigh7pLC/MCjK0wUgFpq1ICL31d7AZIn/DTKq5AQGzsjaHsOafiBAuNO1nHCK5JjnD
+	etkxb0WlTibxC6av7SJB9hSXBC2jFiVlhwfYrPBx7fsIMedesEvaAW8TS28Lwm1p6ILX
+	msiBAcZp6a694iBIDhVimmhBVVyGPG89BjlxHrjZF0AmX4DGPL2+aMN1CHmMoh9x4orn
+	9d1gxrSJ/CiFpuADXx0VX18tLTC1J2N11Pi/DPS3FahHVp7Oht7oxl93lCYhTddBy44m
+	Dh/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=ManFzzpU/+z/7Hu8rHRKcidvCE/eJH2n76BXTnvCwFc=;
-	b=VZx8nMr5u9K9MYzDXALyU9Z+pDSHnOxxRtZ7779eIUEK26G9je81K4doTcwVygOy8N
-	hpTc5/k2VycJtl8AK06andptiMOWzGFaXIXYtZlMlbPvsxzg29fAJd0Uyhb6dHzBbfGc
-	AQB3txEOb97uLDoe5nCBwE27RKdEoVdYCce8agsB99Ct1OrRWi6gEZBwacypZC0O7R8s
-	ojRG7D7pleMhCZuedneGKaBrTA66fRtXGaWUdE1BA3Mxd3NyeG74dbV2xBJItC9Lv1UZ
-	rRPvqG0OHC1cyHk5jRrtKZ4iTjxW6KHXx4HhzYuBdlsJGeSCRIPcd0gEFKBilX5ZSaN7
-	+Q9Q==
-X-Gm-Message-State: AE9vXwMlBQi6T7+/fMUPdf91lGc+xBjrq3KdiU5vhhRG/63HuPYv80Lw9R5rAcgM24Oneg==
-X-Received: by 10.67.1.35 with SMTP id bd3mr32764263pad.16.1472477801077;
-	Mon, 29 Aug 2016 06:36:41 -0700 (PDT)
+	bh=MgW2bq9N6zS4OzykN6PBHmY7R8UgZd7Y431WZD4Tz48=;
+	b=LHk1IKKnBZy7yIAMNjy5xH/gV/U16INsFU8Un86Y0etv7gln3fdlTtbB3K7XTOFzXT
+	5zfqOdsiKWF9sEhOzz+L64eNh8FGEZP9EtsN9Stc3Yftjbl+Efy6X/sJil7Hk8KmOeGA
+	XDglfmZUFkvHXdhVt2MOqEUaZBnHMjFrAWiHcPlv+sENllo11umQzCdKbrwzjH4xhS8A
+	ZTqh8xL8azoJ5kn1/3fQhP5x/E1Kvghq5pDGSt8vD83MidfOXHhzJtEpM4ZS5ZM5ZKyQ
+	wDQvzy6i9onbVPauILbPqeNY977GOp2HIFbUouoanbfHxDabjHBW65aRvFixAJy5Mpw2
+	xh8w==
+X-Gm-Message-State: AE9vXwPP7jDhHNpdVDYIVOxmT3M3+h/OfE09ihOWei47EX0fHvu3YCFI8gHdyJtNqVOcaA==
+X-Received: by 10.98.54.134 with SMTP id d128mr32744099pfa.150.1472477813716; 
+	Mon, 29 Aug 2016 06:36:53 -0700 (PDT)
 Received: from shrikant-VirtualBox.inp.mentorg.com ([139.181.35.34])
 	by smtp.gmail.com with ESMTPSA id
-	c64sm49581523pfg.35.2016.08.29.06.36.39
+	ps2sm49696726pab.10.2016.08.29.06.36.51
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Mon, 29 Aug 2016 06:36:40 -0700 (PDT)
+	Mon, 29 Aug 2016 06:36:53 -0700 (PDT)
 From: Shrikant Bobade <bobadeshrikant@gmail.com>
 To: yocto@yoctoproject.org
-Date: Mon, 29 Aug 2016 19:06:33 +0530
-Message-Id: <1472477793-25834-1-git-send-email-bobadeshrikant@gmail.com>
+Date: Mon, 29 Aug 2016 19:06:47 +0530
+Message-Id: <1472477807-25872-1-git-send-email-bobadeshrikant@gmail.com>
 X-Mailer: git-send-email 1.9.1
 Cc: Shrikant Bobade <shrikant_bobade@mentor.com>
-Subject: [meta-selinux] [PATCH 2/9] refpolicy-minimum: audit: logging: getty: audit related allow rules
+Subject: [meta-selinux] [PATCH 3/9] refpolicy-minimum: systemd: mount: logging: authlogin: add allow rules
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,101 +71,129 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 29 Aug 2016 13:36:58 -0000
+X-List-Received-Date: Mon, 29 Aug 2016 13:37:04 -0000
 
 From: Shrikant Bobade <shrikant_bobade@mentor.com>
 
-add allow rules for audit.log file & resolve dependent avc denials.
+add allow rules for avc denails for systemd, mount, logging & authlogin
+modules. without this change we are  getting avc. denials from these
+modules.
 
 Signed-off-by: Shrikant Bobade <shrikant_bobade@mentor.com>
 ---
- ...inimum-audit-logging-getty-audit-related-.patch | 67 ++++++++++++++++++++++
+ ...inimum-systemd-mount-logging-authlogin-ad.patch | 93 ++++++++++++++++++++++
  .../refpolicy/refpolicy-minimum_2.20151208.bb      |  1 +
- 2 files changed, 68 insertions(+)
- create mode 100644 recipes-security/refpolicy/refpolicy-minimum/0002-refpolicy-minimum-audit-logging-getty-audit-related-.patch
+ 2 files changed, 94 insertions(+)
+ create mode 100644 recipes-security/refpolicy/refpolicy-minimum/0003-refpolicy-minimum-systemd-mount-logging-authlogin-ad.patch
 
-diff --git a/recipes-security/refpolicy/refpolicy-minimum/0002-refpolicy-minimum-audit-logging-getty-audit-related-.patch b/recipes-security/refpolicy/refpolicy-minimum/0002-refpolicy-minimum-audit-logging-getty-audit-related-.patch
+diff --git a/recipes-security/refpolicy/refpolicy-minimum/0003-refpolicy-minimum-systemd-mount-logging-authlogin-ad.patch b/recipes-security/refpolicy/refpolicy-minimum/0003-refpolicy-minimum-systemd-mount-logging-authlogin-ad.patch
 new file mode 100644
-index 0000000..23bc397
+index 0000000..35a8e1b
 --- /dev/null
-+++ b/recipes-security/refpolicy/refpolicy-minimum/0002-refpolicy-minimum-audit-logging-getty-audit-related-.patch
-@@ -0,0 +1,67 @@
-+From edbc234baecfbf5b8e2dbadc976750071d5e7f7f Mon Sep 17 00:00:00 2001
++++ b/recipes-security/refpolicy/refpolicy-minimum/0003-refpolicy-minimum-systemd-mount-logging-authlogin-ad.patch
+@@ -0,0 +1,93 @@
++From edae03ea521a501a2b3229383609f1aec85575c1 Mon Sep 17 00:00:00 2001
 +From: Shrikant Bobade <shrikant_bobade@mentor.com>
-+Date: Fri, 26 Aug 2016 17:51:44 +0530
-+Subject: [PATCH 2/9] refpolicy-minimum: audit: logging: getty: audit related
-+ allow rules
++Date: Fri, 26 Aug 2016 17:53:37 +0530
++Subject: [PATCH 3/9] refpolicy-minimum: systemd: mount: logging: authlogin:
++ add allow rules
 +
-+add allow rules for audit.log file & resolve dependent avc denials.
++add allow rules for avc denails for systemd, mount, logging & authlogin
++modules.
 +
-+without this change we are getting audit avc denials mixed into bootlog &
-+audit other avc denials.
++without this change we are getting avc denial like these:
 +
-+audit: type=1400 audit(): avc:  denied  { getattr } for  pid=217 comm="mount"
-+name="/" dev="proc" ino=1 scontext=system_u:system_r:mount_t:s0 tcontext=system_0
-+audit: type=1400 audit(): avc:  denied  { sendto } for  pid=310 comm="klogd"
-+path="/run/systemd/journal/dev-log" scontext=sy0
-+audit: type=1400 audit(): avc:  denied  { sendto } for  pid=310 comm="klogd"
-+path="/run/systemd/journal/dev-log" scontext=system_u:system_r:klogd_t:s0
-+audit(): avc:  denied  { open } for  pid=540 comm="agetty" path="/var/
-+volatile/log/wtmp" dev="tmpfs" ino=9536 scontext=system_u:system_r:getty_t
-+:s0 tcontext=system_u:object_r:tmpfs_t:s0 tclass=file permissive=0
++type=AVC msg=audit(): avc:  denied  { sendto } for pid=893 comm="systemd-
++tmpfile" path="/run/systemd/journal/socket" scontext=system_u:system_r:
++systemd_tmpfiles_t:s0 tcontext=system_u:system_r:initrc_t:s0 tclass=
++unix_dgram_socket permissive=0
++
++type=AVC msg=audit(): avc:  denied  { open } for  pid=703 comm="systemd-
++tmpfile" path="/proc/1/environ" dev="proc" ino=8841 scontext=system_u:
++system_r:systemd_tmpfiles_t:s0 tcontext=system_u:system_r:init_t:s0 tclass=
++file permissive=0
++
++type=AVC msg=audit(): avc:  denied  { read write } for  pid=486 comm="mount"
++path="socket:[9717]" dev="sockfs" ino=9717 scontext=system_u:system_r:
++mount_t:s0 tcontext=system_u:system_r:initrc_t:s0 tclass=udp_socket
++
++type=AVC msg=audit(): avc:  denied  { unix_read unix_write } for  pid=292
++comm="syslogd" key=1095648583  scontext=system_u:system_r:syslogd_t:s0
++tcontext=system_u:system_r:syslogd_t:s0 tclass=shm permissive=1
 +
 +Upstream-Status: Pending
 +
 +Signed-off-by: Shrikant Bobade <shrikant_bobade@mentor.com>
 +---
-+ policy/modules/system/getty.te   | 3 +++
-+ policy/modules/system/logging.te | 8 ++++++++
-+ 2 files changed, 11 insertions(+)
++ policy/modules/system/authlogin.te | 2 ++
++ policy/modules/system/logging.te   | 7 ++++++-
++ policy/modules/system/mount.te     | 3 +++
++ policy/modules/system/systemd.te   | 6 ++++++
++ 4 files changed, 17 insertions(+), 1 deletion(-)
 +
-+diff --git a/policy/modules/system/getty.te b/policy/modules/system/getty.te
-+index f6743ea..84eaf77 100644
-+--- a/policy/modules/system/getty.te
-++++ b/policy/modules/system/getty.te
-+@@ -139,3 +139,6 @@ optional_policy(`
-+ optional_policy(`
-+ 	udev_read_db(getty_t)
++diff --git a/policy/modules/system/authlogin.te b/policy/modules/system/authlogin.te
++index f80dfcb..5fab54a 100644
++--- a/policy/modules/system/authlogin.te
+++++ b/policy/modules/system/authlogin.te
++@@ -464,3 +464,5 @@ optional_policy(`
++ 	samba_read_var_files(nsswitch_domain)
++ 	samba_dontaudit_write_var_files(nsswitch_domain)
 + ')
 ++
-++allow getty_t tmpfs_t:dir search;
-++allow getty_t tmpfs_t:file { open write lock };
+++allow chkpwd_t proc_t:filesystem getattr;
 +diff --git a/policy/modules/system/logging.te b/policy/modules/system/logging.te
-+index 9b18aad..fdf86ef 100644
++index fdf86ef..107db03 100644
 +--- a/policy/modules/system/logging.te
 ++++ b/policy/modules/system/logging.te
-+@@ -238,6 +238,7 @@ allow audisp_t self:unix_stream_socket create_stream_socket_perms;
-+ allow audisp_t self:unix_dgram_socket create_socket_perms;
++@@ -576,4 +576,9 @@ allow auditd_t tmpfs_t:file { getattr setattr create open read append };
++ allow auditd_t tmpfs_t:dir { open read search add_name write getattr search };
++ allow auditd_t initrc_t:unix_dgram_socket sendto;
 + 
-+ allow audisp_t auditd_t:unix_stream_socket rw_socket_perms;
-++allow audisp_t initrc_t:unix_dgram_socket sendto;
-+ 
-+ manage_sock_files_pattern(audisp_t, audisp_var_run_t, audisp_var_run_t)
-+ files_pid_filetrans(audisp_t, audisp_var_run_t, sock_file)
-+@@ -569,3 +570,10 @@ optional_policy(`
-+ 	# log to the xconsole
-+ 	xserver_rw_console(syslogd_t)
++-allow klogd_t initrc_t:unix_dgram_socket sendto;
++\ No newline at end of file
+++allow klogd_t initrc_t:unix_dgram_socket sendto;
+++
+++allow syslogd_t self:shm create;
+++allow syslogd_t self:sem { create read unix_write write };
+++allow syslogd_t self:shm { read unix_read unix_write write };
+++allow syslogd_t tmpfs_t:file { read write };
++diff --git a/policy/modules/system/mount.te b/policy/modules/system/mount.te
++index 1c2fc33..b699309 100644
++--- a/policy/modules/system/mount.te
+++++ b/policy/modules/system/mount.te
++@@ -229,3 +229,6 @@ optional_policy(`
++ 	files_etc_filetrans_etc_runtime(unconfined_mount_t, file)
++ 	unconfined_domain(unconfined_mount_t)
 + ')
 ++
+++allow mount_t proc_t:filesystem getattr;
+++allow mount_t initrc_t:udp_socket { read write };
++diff --git a/policy/modules/system/systemd.te b/policy/modules/system/systemd.te
++index fdb9fef..734d455 100644
++--- a/policy/modules/system/systemd.te
+++++ b/policy/modules/system/systemd.te
++@@ -262,3 +262,9 @@ tunable_policy(`systemd_tmpfiles_manage_all',`
++ 	files_relabel_non_security_dirs(systemd_tmpfiles_t)
++ 	files_relabel_non_security_files(systemd_tmpfiles_t)
++ ')
 ++
-++allow auditd_t tmpfs_t:file { getattr setattr create open read append };
-++allow auditd_t tmpfs_t:dir { open read search add_name write getattr search };
-++allow auditd_t initrc_t:unix_dgram_socket sendto;
-++
-++allow klogd_t initrc_t:unix_dgram_socket sendto;
-+\ No newline at end of file
+++allow systemd_tmpfiles_t init_t:dir search;
+++allow systemd_tmpfiles_t proc_t:filesystem getattr;
+++allow systemd_tmpfiles_t init_t:file read;
+++allow systemd_tmpfiles_t initrc_t:unix_dgram_socket sendto;
+++allow systemd_tmpfiles_t self:capability net_admin;
 +-- 
 +1.9.1
 +
 diff --git a/recipes-security/refpolicy/refpolicy-minimum_2.20151208.bb b/recipes-security/refpolicy/refpolicy-minimum_2.20151208.bb
-index 16592e5..9e1dc9b 100644
+index 9e1dc9b..f4b80bc 100644
 --- a/recipes-security/refpolicy/refpolicy-minimum_2.20151208.bb
 +++ b/recipes-security/refpolicy/refpolicy-minimum_2.20151208.bb
-@@ -73,4 +73,5 @@ SRC_URI += "${@bb.utils.contains('DISTRO_FEATURES', 'systemd', ' ${SYSTEMD_REFPO
- 
+@@ -74,4 +74,5 @@ SRC_URI += "${@bb.utils.contains('DISTRO_FEATURES', 'systemd', ' ${SYSTEMD_REFPO
  SYSTEMD_REFPOLICY_PATCHES = " \
          file://0001-refpolicy-minimum-systemd-unconfined-lib-add-systemd.patch \
-+	file://0002-refpolicy-minimum-audit-logging-getty-audit-related-.patch \
+ 	file://0002-refpolicy-minimum-audit-logging-getty-audit-related-.patch \
++	file://0003-refpolicy-minimum-systemd-mount-logging-authlogin-ad.patch \
  	"
 -- 
 1.9.1
