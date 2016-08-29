@@ -1,17 +1,17 @@
 Return-Path: <bobadeshrikant@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 76CC4E00F2C; Mon, 29 Aug 2016 06:39:21 -0700 (PDT)
+	id 72C12E00F51; Mon, 29 Aug 2016 06:39:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_LOW,
 	URI_HEX autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.220.67 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (bobadeshrikant[at]gmail.com)
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (bobadeshrikant[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.193 listed in list.dnswl.org]
 	*  1.1 URI_HEX URI: URI hostname has long hexadecimal sequence
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
@@ -20,46 +20,46 @@ X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pa0-f67.google.com (mail-pa0-f67.google.com
-	[209.85.220.67])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 04E0CE00F26
-	for <yocto@yoctoproject.org>; Mon, 29 Aug 2016 06:38:49 -0700 (PDT)
-Received: by mail-pa0-f67.google.com with SMTP id cf3so9017949pad.2
-	for <yocto@yoctoproject.org>; Mon, 29 Aug 2016 06:38:49 -0700 (PDT)
+Received: from mail-pf0-f193.google.com (mail-pf0-f193.google.com
+	[209.85.192.193])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B6A3AE00F46
+	for <yocto@yoctoproject.org>; Mon, 29 Aug 2016 06:39:04 -0700 (PDT)
+Received: by mail-pf0-f193.google.com with SMTP id i6so9385520pfe.0
+	for <yocto@yoctoproject.org>; Mon, 29 Aug 2016 06:39:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=from:to:cc:subject:date:message-id;
-	bh=UJ9EOyiYDU6Lj65OlY46ypuG7xC5jOQJFywSPS0I9bY=;
-	b=ooIgW/AiKRGAFQM6Qq08UtINfuMZAj5Yj3cdP65OccHT6I1Tp3ZvVejR2hv+1Ydozf
-	S1sYMnzFVgRTEygg0yCSR0zpJ80Vr0lyvBxtlgPxtDlrNEGqcvmDJZwELQKC8dlLTMYR
-	aTpp3trJ4QmxCWd4aCp2CwI/W+xwvkH8+3MFTFHwV8ef5V7L+aYNzgE4/9O0NiRoRRyf
-	LeM3LFlFDt7rZ9PudSDX6qtDk2MHQyy1OTJ/0QlkEJ4bB3pSdg4xVW3Jo10IIK5HlQaf
-	n//JH+KdZV3zntlsR22fdp2yVUl68FJFAePeIq0rOOnoXgH3hIgZZvDa1i/Tr0mxgZdE
-	PfAw==
+	bh=NNpPRzHSmK3ws6EOAqe134NcLbcWbnP6uYyW4ZZcasc=;
+	b=XJKZthdFu08F8EgO9AxNb3yrIkv5xs2zWk9Aa0Pmc31lgV1QQgOtz5QlKrlq9Ceoxx
+	hGlwqBvIyWpyH6ASdrz6aidGhmg1h1+qWCmPX8iXDULXzfuIssyGbfBCgZmlQ9YUZ9MH
+	UQwJxQrQqJW7EBmN11gQoFTLPlA6Fw2RDuWh2wqmlT4yD3G9YLQuFWuyzMuZ6D5WWvN6
+	x8r/zddRqhk3ewnglMl+oNfYlTxswEhU5n5MnZbiLXyim8Hk4BOODwCHflUiFdi5gqeN
+	m7nj0nZQkAkYfE4VqeohQnUxcNHJh/2aMd4Pw7LdUdeUkGBaGD09NFZY4yDeRtwgs5bM
+	m5Pg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=UJ9EOyiYDU6Lj65OlY46ypuG7xC5jOQJFywSPS0I9bY=;
-	b=P8dqMTkQUt8LBA5ZBwKNj597ovRP3X5h2Cg0cdrZi1Q/M9v51PMcNAhJ6uVSH/FNH0
-	quqYwPJVbVryEzXRzo3Fdbl3DvFZEhUDI9PK9IFhnCSyADKqvr3VKbfGo1m2R/cyjEWV
-	zXobfRoiv2KNlWPzZJE+lUigeT9B60U7Jyv0doehMF75hnXc1gM5+NXlsilUqyqc3BTf
-	SVNXlfFa+zKrv0O3T3V1ND0jMSB2HSVZsjs9BTlL/LrCHY5tl34ULpWpkWRSSgkOeUfD
-	QSIb6/uZfhxMwjIeA0ugpLMagX8oBPcvJJV91+0Zz4nJbCqfNXaYZnsAO5EA72Vnq77P
-	+OgA==
-X-Gm-Message-State: AE9vXwM/oi6UKdmQySg94OhBSV+Mv8TPljvIcb2+QtMLSJvevjpE8cWZzxrMecuPT6Y0eQ==
-X-Received: by 10.66.2.135 with SMTP id 7mr32696369pau.136.1472477929139;
-	Mon, 29 Aug 2016 06:38:49 -0700 (PDT)
+	bh=NNpPRzHSmK3ws6EOAqe134NcLbcWbnP6uYyW4ZZcasc=;
+	b=j6V7J1dhOAh7tI6S+2ui9X0mQKT3gBbJcP6ZX9B7gllWu4yj+LofkpshdXRbS8c0k9
+	fTubHDPohAPIKzRToXihoIaA9fYjwSzL9oVwVH3P0P7YA7o1FrBsRS9XhsvUXGAFp6i5
+	xaaEFxBbXRSIICkDzX56WkA5hImT3X0iNR6B/DUEozRJcjAZe5D0Hn9MGd5w6cT64GfD
+	PqdLxDZXLUDywwuVSFvkR8hcTwU1NTqoyRK7n98/T7asGKXH2K5HWcADwIGXCIS8try8
+	5zZnLnHODPe5BzXKhqz1+RZamGuicD5iVlm/S5rL62Il9yf6hg/QNYI3D2VTuGpkAYqn
+	m9mw==
+X-Gm-Message-State: AE9vXwPT0Q/SKBJAk9mwEi7/zh/yPBQeRZi0ZyVZAXi4fG6hrufZ//aRTX+E8Fjvu7WBFw==
+X-Received: by 10.98.72.201 with SMTP id q70mr32608633pfi.159.1472477943954;
+	Mon, 29 Aug 2016 06:39:03 -0700 (PDT)
 Received: from shrikant-VirtualBox.inp.mentorg.com ([139.181.35.34])
 	by smtp.gmail.com with ESMTPSA id
-	s1sm49684463paz.47.2016.08.29.06.38.47
+	k78sm49576156pfa.78.2016.08.29.06.39.02
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Mon, 29 Aug 2016 06:38:48 -0700 (PDT)
+	Mon, 29 Aug 2016 06:39:03 -0700 (PDT)
 From: Shrikant Bobade <bobadeshrikant@gmail.com>
 To: yocto@yoctoproject.org
-Date: Mon, 29 Aug 2016 19:08:43 +0530
-Message-Id: <1472477923-26063-1-git-send-email-bobadeshrikant@gmail.com>
+Date: Mon, 29 Aug 2016 19:08:57 +0530
+Message-Id: <1472477937-26101-1-git-send-email-bobadeshrikant@gmail.com>
 X-Mailer: git-send-email 1.9.1
 Cc: Shrikant Bobade <shrikant_bobade@mentor.com>
-Subject: [meta-selinux] [PATCH 8/9] refpolicy-minimum: systemd: fix for systemd tmp-files services
+Subject: [meta-selinux] [PATCH 9/9] refpolicy-minimum: systemd: fix for syslog
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,146 +71,104 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 29 Aug 2016 13:39:21 -0000
+X-List-Received-Date: Mon, 29 Aug 2016 13:39:32 -0000
 
 From: Shrikant Bobade <shrikant_bobade@mentor.com>
 
-fix for systemd tmp files setup services:
-systemd-journal-flush.service & systemd-logind.service.
+syslog & getty related allow rules required to fix the syslog mixup with
+boot log, while using systemd as init manager.
 
 Signed-off-by: Shrikant Bobade <shrikant_bobade@mentor.com>
 ---
- ...inimum-systemd-fix-for-systemd-tmp-files-.patch | 111 +++++++++++++++++++++
- .../refpolicy/refpolicy-minimum_2.20151208.bb      |   1 +
- 2 files changed, 112 insertions(+)
- create mode 100644 recipes-security/refpolicy/refpolicy-minimum/0008-refpolicy-minimum-systemd-fix-for-systemd-tmp-files-.patch
+ ...-refpolicy-minimum-systemd-fix-for-syslog.patch | 69 ++++++++++++++++++++++
+ .../refpolicy/refpolicy-minimum_2.20151208.bb      |  1 +
+ 2 files changed, 70 insertions(+)
+ create mode 100644 recipes-security/refpolicy/refpolicy-minimum/0009-refpolicy-minimum-systemd-fix-for-syslog.patch
 
-diff --git a/recipes-security/refpolicy/refpolicy-minimum/0008-refpolicy-minimum-systemd-fix-for-systemd-tmp-files-.patch b/recipes-security/refpolicy/refpolicy-minimum/0008-refpolicy-minimum-systemd-fix-for-systemd-tmp-files-.patch
+diff --git a/recipes-security/refpolicy/refpolicy-minimum/0009-refpolicy-minimum-systemd-fix-for-syslog.patch b/recipes-security/refpolicy/refpolicy-minimum/0009-refpolicy-minimum-systemd-fix-for-syslog.patch
 new file mode 100644
-index 0000000..a7338e1
+index 0000000..b01947d
 --- /dev/null
-+++ b/recipes-security/refpolicy/refpolicy-minimum/0008-refpolicy-minimum-systemd-fix-for-systemd-tmp-files-.patch
-@@ -0,0 +1,111 @@
-+From ec96260a28f9aae44afc8eec0e089bf95a36b557 Mon Sep 17 00:00:00 2001
++++ b/recipes-security/refpolicy/refpolicy-minimum/0009-refpolicy-minimum-systemd-fix-for-syslog.patch
+@@ -0,0 +1,69 @@
++From 9476fb0aad7caa725014e72cd009b78389ba66d5 Mon Sep 17 00:00:00 2001
 +From: Shrikant Bobade <shrikant_bobade@mentor.com>
-+Date: Fri, 26 Aug 2016 17:54:17 +0530
-+Subject: [PATCH 8/9] refpolicy-minimum: systemd: fix for systemd tmp-files
-+ services
++Date: Fri, 26 Aug 2016 17:54:29 +0530
++Subject: [PATCH 9/9] refpolicy-minimum: systemd: fix for syslog
 +
-+fix for systemd tmp files setup service while using refpolicy-minimum and
-+systemd as init manager.
++syslog & getty related allow rules required to fix the syslog mixup with
++boot log, while using systemd as init manager.
 +
-+these allow rules require kernel domain & files access, so added interfaces
-+at systemd.te to merge these allow rules.
++without this change we are getting these avc denials:
 +
-+without these changes we are getting avc denails like these and below
-+systemd services failure:
++audit: avc:  denied  { search } for  pid=484 comm="syslogd" name="/"
++dev="tmpfs" ino=7269 scontext=system_u:system_r:syslogd_t:s0 tcontext=
++system_u:object_r:tmpfs_t:s0 tclass=dir permissive=0
 +
-+audit[]: AVC avc:  denied  { getattr } for  pid=232 comm="systemd-tmpfile"
-+path="/var/tmp" dev="mmcblk2p2" ino=4993 scontext=system_u:system_r:systemd
-+_tmpfiles_t:s0 tcontext=system_u:object_r:tmp_t:s0 tclass=lnk_file
++audit: avc:  denied  { write } for  pid=372 comm="syslogd" name="log" dev=
++"tmpfs" ino=954 scontext=system_u:system_r:syslogd_t:s0 tcontext=system_u:
++object_r:tmpfs_t:s0 tclass=dir permissive=0
 +
-+audit[]: AVC avc:  denied  { search } for  pid=232 comm="systemd-tmpfile"
-+name="kernel" dev="proc" ino=9341 scontext=system_u:system_r:
-+systemd_tmpfiles_t:s0 tcontext=system_u:object_r:sysctl_kernel_t:s0
-+tclass=dir permissive=0
++audit: avc:  denied  { add_name } for  pid=390 comm="syslogd" name=
++"messages" scontext=system_u:system_r:syslogd_t:s0 tcontext=system_u:object_r
++:tmpfs_t:s0 tclass=dir permissive=0
 +
-+[FAILED] Failed to start Create Static Device Nodes in /dev.
-+See 'systemctl status systemd-tmpfiles-setup-dev.service' for details.
++audit: avc:  denied  { sendto } for  pid=558 comm="agetty" path="/run/systemd
++/journal/dev-log" scontext=system_u:system_r:getty_t:s0 tcontext=system_u:
++system_r:initrc_t:s0 tclass=unix_dgram_socket permissive=0
 +
-+[FAILED] Failed to start Create Volatile Files and Directories.
-+See 'systemctl status systemd-tmpfiles-setup.service' for details.
++audit: avc:  denied  { create } for  pid=374 comm="syslogd" name="messages"
++scontext=system_u:system_r:syslogd_t:s0 tcontext=system_u:object_r:tmpfs_t:
++s0 tclass=file permissive=0
++
++audit: avc:  denied  { append } for  pid=423 comm="syslogd" name="messages"
++dev="tmpfs" ino=7995 scontext=system_u:system_r:syslogd_t:s0 tcontext=
++system_u:object_r:tmpfs_t:s0 tclass=file permissive=0
++
++audit: avc:  denied  { getattr } for  pid=425 comm="syslogd" path="/var/
++volatile/log/messages" dev="tmpfs" ino=8857 scontext=system_u:system_r:
++syslogd_t:s0 tcontext=system_u:object_r:tmpfs_t:s0 tclass=file permissive=0
 +
 +Upstream-Status: Pending
 +
 +Signed-off-by: Shrikant Bobade <shrikant_bobade@mentor.com>
 +---
-+ policy/modules/kernel/files.if   | 19 +++++++++++++++++++
-+ policy/modules/kernel/kernel.if  | 23 +++++++++++++++++++++++
-+ policy/modules/system/systemd.te |  3 +++
-+ 3 files changed, 45 insertions(+)
++ policy/modules/system/getty.te   | 1 +
++ policy/modules/system/logging.te | 3 ++-
++ 2 files changed, 3 insertions(+), 1 deletion(-)
 +
-+diff --git a/policy/modules/kernel/files.if b/policy/modules/kernel/files.if
-+index 1cedea2..4ea7d55 100644
-+--- a/policy/modules/kernel/files.if
-++++ b/policy/modules/kernel/files.if
-+@@ -6729,3 +6729,22 @@ interface(`files_unconfined',`
++diff --git a/policy/modules/system/getty.te b/policy/modules/system/getty.te
++index 84eaf77..2e53daf 100644
++--- a/policy/modules/system/getty.te
+++++ b/policy/modules/system/getty.te
++@@ -142,3 +142,4 @@ optional_policy(`
 + 
-+ 	typeattribute $1 files_unconfined_type;
-+ ')
-++
-++########################################
-++## <summary>
-++##	systemd tmp files access to kernel tmp files domain
-++## </summary>
-++## <param name="domain">
-++##	<summary>
-++##	Domain allowed access.
-++##	</summary>
-++## </param>
-++#
-++interface(`systemd_service_allow_kernel_files_domain_to_tmp_t',`
-++	gen_require(`
-++	type tmp_t;
-++        class lnk_file getattr;
-++	')
-++
-++	allow $1 tmp_t:lnk_file getattr;
-++')
-+diff --git a/policy/modules/kernel/kernel.if b/policy/modules/kernel/kernel.if
-+index f1130d1..4604441 100644
-+--- a/policy/modules/kernel/kernel.if
-++++ b/policy/modules/kernel/kernel.if
-+@@ -3323,3 +3323,26 @@ interface(`kernel_unconfined',`
-+ 	typeattribute $1 kern_unconfined;
-+ 	kernel_load_module($1)
-+ ')
-++
-++########################################
-++## <summary>
-++##	systemd tmp files access to kernel sysctl domain
-++## </summary>
-++## <param name="domain">
-++##	<summary>
-++##	Domain allowed access.
-++##	</summary>
-++## </param>
-++#
-++interface(`systemd_service_allow_kernel_domain_access_to_sysctl_kernel_t',`
-++         gen_require(`
-++                type sysctl_kernel_t;
-++                class dir search;
-++                class file { open read };
-++         ')
-++
-++        allow $1 sysctl_kernel_t:dir search;
-++        allow $1 sysctl_kernel_t:file { open read };
-++
-++')
-++
-+diff --git a/policy/modules/system/systemd.te b/policy/modules/system/systemd.te
-+index 22021eb..8813664 100644
-+--- a/policy/modules/system/systemd.te
-++++ b/policy/modules/system/systemd.te
-+@@ -269,3 +269,6 @@ allow systemd_tmpfiles_t initrc_t:unix_dgram_socket sendto;
-+ allow systemd_tmpfiles_t self:capability net_admin;
-+ 
-+ allow systemd_tmpfiles_t init_t:file { open getattr read };
-++
-++systemd_service_allow_kernel_domain_access_to_sysctl_kernel_t(systemd_tmpfiles_t)
-++systemd_service_allow_kernel_files_domain_to_tmp_t(systemd_tmpfiles_t)
++ allow getty_t tmpfs_t:dir search;
++ allow getty_t tmpfs_t:file { open write lock };
+++allow getty_t initrc_t:unix_dgram_socket sendto;
++diff --git a/policy/modules/system/logging.te b/policy/modules/system/logging.te
++index 107db03..95de86d 100644
++--- a/policy/modules/system/logging.te
+++++ b/policy/modules/system/logging.te
++@@ -581,4 +581,5 @@ allow klogd_t initrc_t:unix_dgram_socket sendto;
++ allow syslogd_t self:shm create;
++ allow syslogd_t self:sem { create read unix_write write };
++ allow syslogd_t self:shm { read unix_read unix_write write };
++-allow syslogd_t tmpfs_t:file { read write };
+++allow syslogd_t tmpfs_t:file { read write create getattr append open };
+++allow syslogd_t tmpfs_t:dir { search write add_name };
 +-- 
 +1.9.1
 +
 diff --git a/recipes-security/refpolicy/refpolicy-minimum_2.20151208.bb b/recipes-security/refpolicy/refpolicy-minimum_2.20151208.bb
-index 7312ada..9f01492 100644
+index 9f01492..da6626e 100644
 --- a/recipes-security/refpolicy/refpolicy-minimum_2.20151208.bb
 +++ b/recipes-security/refpolicy/refpolicy-minimum_2.20151208.bb
-@@ -79,4 +79,5 @@ SYSTEMD_REFPOLICY_PATCHES = " \
- 	file://0005-refpolicy-minimum-init-fix-reboot-with-systemd-as-in.patch \
+@@ -80,4 +80,5 @@ SYSTEMD_REFPOLICY_PATCHES = " \
  	file://0006-refpolicy-minimum-systemd-mount-enable-requiried-ref.patch \
  	file://0007-refpolicy-minimum-systemd-fix-for-login-journal-serv.patch \
-+	file://0008-refpolicy-minimum-systemd-fix-for-systemd-tmp-files-.patch \
+ 	file://0008-refpolicy-minimum-systemd-fix-for-systemd-tmp-files-.patch \
++	file://0009-refpolicy-minimum-systemd-fix-for-syslog.patch \
  	"
 -- 
 1.9.1
