@@ -1,36 +1,64 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <schnitzeltony@googlemail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E938CE00CE9; Tue, 30 Aug 2016 14:05:17 -0700 (PDT)
+	id DA457E00DC2; Tue, 30 Aug 2016 14:32:34 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (schnitzeltony[at]googlemail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B69C1E00510
-	for <yocto@yoctoproject.org>; Tue, 30 Aug 2016 14:05:16 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 30 Aug 2016 14:04:03 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.30,258,1470726000"; d="scan'208";a="1049368811"
-Received: from ashuvini-mobl.gar.corp.intel.com (HELO
-	peggleto-mobl.ger.corp.intel.com) ([10.255.145.135])
-	by fmsmga002.fm.intel.com with ESMTP; 30 Aug 2016 14:04:01 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: yocto@yoctoproject.org
-Date: Wed, 31 Aug 2016 09:03:31 +1200
-Message-Id: <00bae9978dda09f859a26756263b8f38ea94edd4.1472590929.git.paul.eggleton@linux.intel.com>
-X-Mailer: git-send-email 2.5.5
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.217.178 listed in list.dnswl.org]
+Received: from mail-ua0-f178.google.com (mail-ua0-f178.google.com
+	[209.85.217.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5C0C0E00CE9
+	for <yocto@yoctoproject.org>; Tue, 30 Aug 2016 14:32:32 -0700 (PDT)
+Received: by mail-ua0-f178.google.com with SMTP id l94so56391851ual.0
+	for <yocto@yoctoproject.org>; Tue, 30 Aug 2016 14:32:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=googlemail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=J5LK6Ah5uikM2Bg3srEJ5vHZ0JWKBo9kudXrZX1v4CU=;
+	b=Z1Li7UKBtphh4Sp30iwEPksSlhcMgpZuGEXQmUIv9ixKOUvPbOfo6G/NDAs9KZRWAe
+	xf+plWmfIxgpG+NDyqz+I4vsKJLxOt0jQnykf1I8FA6phM/Xu9a2cE66a7HbZtHxbYNE
+	c9WXOJN7uGj7WQqTVCep1oTjMiNWjdWniFGf8M9RwR9Mq5OMRnOIIrN8egswJDBSFzf0
+	MWwI0R21ZF+zgO5fWfQF38Ht2TqsNzwNihwllSyQ+8eDUn/BSpOtr5gEXrCawEeT+owS
+	6F69TAJwFC6E58sfiacyDKTMAV9GYNHc8M5pztOx/YnOc24SqzsF4Vr9HCp5RH2k9ILA
+	tNCA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=J5LK6Ah5uikM2Bg3srEJ5vHZ0JWKBo9kudXrZX1v4CU=;
+	b=FYnTW3mkMHu2J8w65WIYOQKyPWulSQJ/rnJrSHzivcsDVqiYc2gdnpdwqoWETxYSg/
+	uJh5xAAR+GXgyTq3e7dk7mVpD+ulrucNR3R78feDmt3XmAruciBEmAo7gs2BL/ucRjJp
+	5A9NEilrkjnj/UjzT272S3ESQSopxTzfsHw6ZMkPr2eqJMS4KEtA04IF0j4FP731pz9c
+	8i4c41UYJHzamRxNwumPW9SsPe2kMLvoTzyitOx74iMTsV8VdHLQV3QnN9fgYbE1XUhA
+	t6TAcd+6ZZRM/ckJu1XcBXSALrSpbcChJ4cv7vWISE1IEkwoFddFFVByrG4I57rBkE7f
+	AL7g==
+X-Gm-Message-State: AE9vXwNMaZUJOAPjXtma7M4RIhVLMho2GD3+m7xjFXfBVAX3fxSEnEh/tLK1KIpONFc0jzb/d4sKgsvDhkJoHg==
+X-Received: by 10.31.95.137 with SMTP id t131mr3191151vkb.67.1472592751703;
+	Tue, 30 Aug 2016 14:32:31 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.176.65.130 with HTTP; Tue, 30 Aug 2016 14:32:31 -0700 (PDT)
 In-Reply-To: <cover.1472590929.git.paul.eggleton@linux.intel.com>
 References: <cover.1472590929.git.paul.eggleton@linux.intel.com>
-In-Reply-To: <cover.1472590929.git.paul.eggleton@linux.intel.com>
-References: <cover.1472590929.git.paul.eggleton@linux.intel.com>
-Subject: [layerindex-web][PATCH 3/3] update_layer.py: fix up for bitbake API change
+From: =?UTF-8?Q?Andreas_M=C3=BCller?= <schnitzeltony@googlemail.com>
+Date: Tue, 30 Aug 2016 23:32:31 +0200
+Message-ID: <CALbNGRTd1CfSJvGWQxkpp7sg3mG4dW5x3q3mJP4QJ2qQuy-uJQ@mail.gmail.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [layerindex-web][PATCH 0/3] Layer index fixes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,124 +70,21 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 30 Aug 2016 21:05:18 -0000
+X-List-Received-Date: Tue, 30 Aug 2016 21:32:34 -0000
+Content-Type: text/plain; charset=UTF-8
 
-The multiconfig changes broke the calls here to loadDataFull(). To avoid
-this being an issue in future, make use of tinfoil's new parse_recipe_file()
-function (if available) to isolate the code here from any future changes to
-bitbake's internal code.
+On Tue, Aug 30, 2016 at 11:03 PM, Paul Eggleton
+<paul.eggleton@linux.intel.com> wrote:
+> Some minor fixes for the recent python3 work in the layer index, but more
+> importantly fix parsing in master for the multiconfig changes that recently
+> went into bitbake.
+>
+> NOTE: this depends on the bitbake patchset I just sent in order to work.
+>
+>
+> The following changes since commit 1d76228675e93add50dd5216c43e00f977e1aaa8:
+>
+Thanks
 
-Part of the fix for [YOCTO #10192].
-
-Signed-off-by: Paul Eggleton <paul.eggleton@linux.intel.com>
----
- layerindex/tools/import_classic.py | 11 +++++++----
- layerindex/update_layer.py         | 17 ++++++++++-------
- 2 files changed, 17 insertions(+), 11 deletions(-)
-
-diff --git a/layerindex/tools/import_classic.py b/layerindex/tools/import_classic.py
-index ee99246..45ccaa9 100755
---- a/layerindex/tools/import_classic.py
-+++ b/layerindex/tools/import_classic.py
-@@ -1,4 +1,4 @@
--#!/usr/bin/env python
-+#!/usr/bin/env python3
- 
- # Import OE-Classic recipe data into the layer index database
- #
-@@ -27,11 +27,14 @@ import recipeparse
- logger = utils.logger_create('LayerIndexUpdate')
- 
- 
--def update_recipe_file(data, path, recipe, layerdir_start, repodir):
-+def update_recipe_file(tinfoil, data, path, recipe, layerdir_start, repodir):
-     fn = str(os.path.join(path, recipe.filename))
-     try:
-         logger.debug('Updating recipe %s' % fn)
--        envdata = bb.cache.Cache.loadDataFull(fn, [], data)
-+        if hasattr(tinfoil, 'parse_recipe_file'):
-+            envdata = tinfoil.parse_recipe_file(fn, appends=False, config_data=data)
-+        else:
-+            envdata = bb.cache.Cache.loadDataFull(fn, [], data)
-         envdata.setVar('SRCPV', 'X')
-         envdata.setVar('SRCDATE', 'X')
-         envdata.setVar('SRCREV', 'X')
-@@ -182,7 +185,7 @@ def main():
-                     recipe.layerbranch = layerbranch
-                     recipe.filename = filename
-                     recipe.filepath = filepath
--                    update_recipe_file(config_data_copy, root, recipe, layerdir_start, oeclassicpath)
-+                    update_recipe_file(tinfoil, config_data_copy, root, recipe, layerdir_start, oeclassicpath)
-                     recipe.save()
- 
-         layerbranch.vcs_last_fetch = datetime.now()
-diff --git a/layerindex/update_layer.py b/layerindex/update_layer.py
-index fd8d3d4..13b508f 100644
---- a/layerindex/update_layer.py
-+++ b/layerindex/update_layer.py
-@@ -54,11 +54,14 @@ def split_recipe_fn(path):
-         pv = "1.0"
-     return (pn, pv)
- 
--def update_recipe_file(data, path, recipe, layerdir_start, repodir):
-+def update_recipe_file(tinfoil, data, path, recipe, layerdir_start, repodir):
-     fn = str(os.path.join(path, recipe.filename))
-     try:
-         logger.debug('Updating recipe %s' % fn)
--        envdata = bb.cache.Cache.loadDataFull(fn, [], data)
-+        if hasattr(tinfoil, 'parse_recipe_file'):
-+            envdata = tinfoil.parse_recipe_file(fn, appends=False, config_data=data)
-+        else:
-+            envdata = bb.cache.Cache.loadDataFull(fn, [], data)
-         envdata.setVar('SRCPV', 'X')
-         recipe.pn = envdata.getVar("PN", True)
-         recipe.pv = envdata.getVar("PV", True)
-@@ -356,7 +359,7 @@ def main():
-                                     recipe.filepath = newfilepath
-                                     recipe.filename = newfilename
-                                     recipe.save()
--                                    update_recipe_file(config_data_copy, os.path.join(layerdir, newfilepath), recipe, layerdir_start, repodir)
-+                                    update_recipe_file(tinfoil, config_data_copy, os.path.join(layerdir, newfilepath), recipe, layerdir_start, repodir)
-                                     updatedrecipes.add(os.path.join(oldfilepath, oldfilename))
-                                     updatedrecipes.add(os.path.join(newfilepath, newfilename))
-                                 else:
-@@ -471,7 +474,7 @@ def main():
-                                 results = layerrecipes.filter(filepath=filepath).filter(filename=filename)[:1]
-                                 if results:
-                                     recipe = results[0]
--                                    update_recipe_file(config_data_copy, os.path.join(layerdir, filepath), recipe, layerdir_start, repodir)
-+                                    update_recipe_file(tinfoil, config_data_copy, os.path.join(layerdir, filepath), recipe, layerdir_start, repodir)
-                                     recipe.save()
-                                     updatedrecipes.add(recipe.full_path())
-                             elif typename == 'machine':
-@@ -487,7 +490,7 @@ def main():
- 
-                     for recipe in dirtyrecipes:
-                         if not recipe.full_path() in updatedrecipes:
--                            update_recipe_file(config_data_copy, os.path.join(layerdir, recipe.filepath), recipe, layerdir_start, repodir)
-+                            update_recipe_file(tinfoil, config_data_copy, os.path.join(layerdir, recipe.filepath), recipe, layerdir_start, repodir)
-                 else:
-                     # Collect recipe data from scratch
- 
-@@ -513,7 +516,7 @@ def main():
-                                 # Recipe still exists, update it
-                                 results = layerrecipes.filter(id=v['id'])[:1]
-                                 recipe = results[0]
--                                update_recipe_file(config_data_copy, root, recipe, layerdir_start, repodir)
-+                                update_recipe_file(tinfoil, config_data_copy, root, recipe, layerdir_start, repodir)
-                             else:
-                                 # Recipe no longer exists, mark it for later on
-                                 layerrecipes_delete.append(v)
-@@ -575,7 +578,7 @@ def main():
-                     recipe.filename = os.path.basename(added)
-                     root = os.path.dirname(added)
-                     recipe.filepath = os.path.relpath(root, layerdir)
--                    update_recipe_file(config_data_copy, root, recipe, layerdir_start, repodir)
-+                    update_recipe_file(tinfoil, config_data_copy, root, recipe, layerdir_start, repodir)
-                     recipe.save()
- 
-                 for deleted in layerrecipes_delete:
--- 
-2.5.5
-
+Andreas
 
