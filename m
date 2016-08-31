@@ -1,36 +1,36 @@
-Return-Path: <joshua.g.lock@linux.intel.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 74872E009CE; Wed, 31 Aug 2016 13:26:36 -0700 (PDT)
+	id E012CE00BF8; Wed, 31 Aug 2016 15:23:50 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,PLING_QUERY
+	autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [134.134.136.24 listed in list.dnswl.org]
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 46DA8E009BF
-	for <yocto@yoctoproject.org>; Wed, 31 Aug 2016 13:26:33 -0700 (PDT)
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-	by orsmga102.jf.intel.com with ESMTP; 31 Aug 2016 13:26:33 -0700
+	*  1.0 PLING_QUERY Subject has exclamation mark and question mark
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 721F7E00BC1
+	for <yocto@yoctoproject.org>; Wed, 31 Aug 2016 15:23:49 -0700 (PDT)
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+	by fmsmga105.fm.intel.com with ESMTP; 31 Aug 2016 15:23:49 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.30,263,1470726000"; 
-   d="scan'208";a="3205388"
-Received: from jlock-mobl1.ger.corp.intel.com ([10.252.7.133])
-	by fmsmga005.fm.intel.com with ESMTP; 31 Aug 2016 13:26:31 -0700
-Message-ID: <1472675189.2904.22.camel@linux.intel.com>
-From: Joshua Lock <joshua.g.lock@linux.intel.com>
-To: =?ISO-8859-1?Q?An=EDbal_Lim=F3n?= <anibal.limon@linux.intel.com>, 
-	yocto@yoctoproject.org
-Date: Wed, 31 Aug 2016 21:26:29 +0100
-In-Reply-To: <1472571975-24370-1-git-send-email-anibal.limon@linux.intel.com>
-References: <1472571975-24370-1-git-send-email-anibal.limon@linux.intel.com>
-X-Mailer: Evolution 3.20.5 (3.20.5-1.fc24) 
-Mime-Version: 1.0
-Subject: Re: [PATCH][yocto-autobuilder] nightly-qa-systemd.conf: Add create_eventlog property
+X-IronPort-AV: E=Sophos;i="5.30,264,1470726000"; d="scan'208";a="163035865"
+Received: from clim59-mobl.gar.corp.intel.com (HELO
+	peggleto-mobl.ger.corp.intel.com) ([10.255.178.177])
+	by fmsmga004.fm.intel.com with ESMTP; 31 Aug 2016 15:23:46 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: "Daniel." <danielhilst@gmail.com>
+Date: Thu, 01 Sep 2016 10:23:43 +1200
+Message-ID: <1888254.UId6usnihk@peggleto-mobl.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.14.10 (Linux/4.6.7-200.fc23.x86_64; KDE/4.14.20; x86_64; ;
+	)
+In-Reply-To: <CAF3SDA445Eh-L501nQvd+VBuVGpER0kX4DZd3GZ16RvvQ_qZOQ@mail.gmail.com>
+References: <CAF3SDA445Eh-L501nQvd+VBuVGpER0kX4DZd3GZ16RvvQ_qZOQ@mail.gmail.com>
+MIME-Version: 1.0
+Cc: yocto@yoctoproject.org, Edwin Plauchu <edwin.plauchu.camacho@intel.com>
+Subject: Re: Automating imaging building and testing, what aproach to use!?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,42 +42,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 31 Aug 2016 20:26:36 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Wed, 31 Aug 2016 22:23:51 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On Tue, 2016-08-30 at 10:46 -0500, Aníbal Limón wrote:
-> This buildset also needs the create_eventlog property for only
-> enable the toaster event log creation when required. See rev [1].
+Hi Daniel,
+
+On Tue, 30 Aug 2016 17:18:44 Daniel. wrote:
+> While writing software we're used to delivery packages, libraries and
+> stacks. There are out there a lot of continuos integration solutions
+> to automaticaly build and test these kinds of software. But when
+> dealing to images the thing is more tricky.
 > 
-> [1] 0b083509beaf7421f1dde4b679a934741ac4a3bc
-
-Pushed to master, thanks!
-
-Joshua
-
+> I can't run the tests at the same machine that build the image because
+> crosscompilation take place on 99% of the cases. What is aproach that
+> you guys are using to automate and increase the quality of your
+> images?
 > 
-> Signed-off-by: Aníbal Limón <anibal.limon@linux.intel.com>
-> ---
->  buildset-config.controller/nightly-qa-systemd.conf | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/buildset-config.controller/nightly-qa-systemd.conf
-> b/buildset-config.controller/nightly-qa-systemd.conf
-> index f95021dc..662caa6 100644
-> --- a/buildset-config.controller/nightly-qa-systemd.conf
-> +++ b/buildset-config.controller/nightly-qa-systemd.conf
-> @@ -4,6 +4,10 @@ repos: [{'poky':
->              {'repourl':'git://git.yoctoproject.org/poky',
->               'layerversion':{'core':'meta', 'yoctobsp':'meta-yocto-
-> bsp', 'yocto':'meta-yocto', 'poky':'meta-poky'},
->               'branch':'master'}}]
-> +props: [{'create_eventlog':{'prop_type':'ChoiceStringParameter',
-> +                       'choices': ['False', 'True'],
-> +                       'name': 'create_eventlog',
-> +                       'label':'<hr>Create Toaster event log as part
-> of image creation?:'}}]
->  steps: [{'SetDest':{}},
->          {'CheckOutLayers': {}},
->          {'RunPreamble': {}},
+> Automating the build is the easy part my concert is about automating
+> the runtime tests that need the target board to run. In my case I
+> depend on hardware to fully test the image features. Is there any
+> reliable way to automate image installation and boot!?
+
+There are some folks here working on automated hardware tests (on CC), perhaps
+they can expand on what we're currently doing in that area. At least in the
+existing code we do have basic support for running tests on real hardware that
+may be worth looking into - at the moment though it's pretty rudimentary when
+it comes to interacting directly with the hardware though. You can see what
+we've currently got here:
+
+  http://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#hardware-image-enabling-tests
+
+We've looked at LAVA several times, and I'm sorry to say the conclusion each
+time is that its a mess - both from a usage perspective and looking at the
+code. It was disappointing to us because initially it looked like it was going
+to solve a lot of our problems. Maybe others have had different experiences -
+I'd love to hear details if anyone is prepared to share.
+
+Cheers,
+Paul
+
+-- 
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
