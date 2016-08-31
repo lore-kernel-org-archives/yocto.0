@@ -1,35 +1,40 @@
-Return-Path: <maxin.john@intel.com>
+Return-Path: <damir.anicic@psi.ch>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 82403E00AB4; Wed, 31 Aug 2016 03:21:14 -0700 (PDT)
+	id 2E6E5E00EF9; Wed, 31 Aug 2016 05:55:53 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [82.130.99.26 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F3FEFE007C2
-	for <yocto@yoctoproject.org>; Wed, 31 Aug 2016 03:21:13 -0700 (PDT)
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-	by fmsmga105.fm.intel.com with ESMTP; 31 Aug 2016 03:21:12 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.30,261,1470726000"; d="scan'208";a="755381307"
-Received: from mbabyjoh-desk.fi.intel.com (HELO
-	mbabyjoh-desk.ger.corp.intel.com) ([10.237.72.71])
-	by FMSMGA003.fm.intel.com with ESMTP; 31 Aug 2016 03:21:12 -0700
-Date: Wed, 31 Aug 2016 13:18:53 +0300
-From: "Maxin B. John" <maxin.john@intel.com>
-To: Gary Thomas <gary@mlbassoc.com>
-Message-ID: <20160831101853.GB27076@mbabyjoh-desk.ger.corp.intel.com>
-References: <94135907-910a-eea9-263d-89e9ef21bf56@mlbassoc.com>
-	<20160829114913.GB5724@mbabyjoh-desk.ger.corp.intel.com>
-	<90b87072-3f5d-a439-9bf2-8f216655f386@mlbassoc.com>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+X-Greylist: delayed 186 seconds by postgrey-1.32 at yocto-www;
+	Wed, 31 Aug 2016 05:55:47 PDT
+Received: from edge20.ethz.ch (edge20.ethz.ch [82.130.99.26])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 56983E00EF5
+	for <yocto@yoctoproject.org>; Wed, 31 Aug 2016 05:55:47 -0700 (PDT)
+Received: from CAS12.d.ethz.ch (172.31.38.212) by edge20.ethz.ch
+	(82.130.99.26) with Microsoft SMTP Server (TLS) id 14.3.301.0;
+	Wed, 31 Aug 2016 14:52:36 +0200
+Received: from MBX114.d.ethz.ch ([fe80::4875:1a61:8b1c:148]) by
+	CAS12.d.ethz.ch ([fe80::7861:4ecb:7c42:cad4%10]) with mapi id
+	14.03.0301.000; Wed, 31 Aug 2016 14:52:39 +0200
+From: "Anicic Damir (PSI)" <damir.anicic@psi.ch>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: u-boot-mkimage in SDK
+Thread-Index: AdIDhfmmlQJSz8BpQ1mTtPKPdvq3HA==
+Date: Wed, 31 Aug 2016 12:52:38 +0000
+Message-ID: <DB23C91B06C303459B24BC3208AF424A20F7F1B1@MBX114.d.ethz.ch>
+Accept-Language: en-US, de-DE, de-CH
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [129.129.145.249]
 MIME-Version: 1.0
-In-Reply-To: <90b87072-3f5d-a439-9bf2-8f216655f386@mlbassoc.com>
-User-Agent: Mutt/1.5.23 (2014-03-12)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: X display touch calibration
+Subject: u-boot-mkimage in SDK
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,75 +46,98 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 31 Aug 2016 10:21:14 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Wed, 31 Aug 2016 12:55:53 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_DB23C91B06C303459B24BC3208AF424A20F7F1B1MBX114dethzch_"
 
-Hi,
+--_000_DB23C91B06C303459B24BC3208AF424A20F7F1B1MBX114dethzch_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Aug 29, 2016 at 05:52:31PM +0200, Gary Thomas wrote:
-> On 2016-08-29 13:49, Maxin B. John wrote:
-> >Hi Gary,
-> >
-> >On Mon, Aug 29, 2016 at 11:09:25AM +0200, Gary Thomas wrote:
-> >>How is the touchscreen calibration supposed to work now (after
-> >>the recent changes dropping pointercal, tslib, etc)?  I can
-> >>see when I launch X that the screen calibration program runs,
-> >>but I think only briefly as the main [matchbox] screen immediately
-> >>comes up and without calibration, my pointer (touchscreen) is pretty
-> >>useless...
-> >
-> >Could you share some more details about the device that you are using?
-> 
-> I'm using an i.MX6Q SabreLite (Boundary Devices) with a 7" LCD that has
-> a TSC-2004 resistive touch screen.
-> 
-> >
-> >Most likely, the layer which supports your device, already provides a
-> >default "/etc/pointercal.xinput" file. Removing that file and restarting
-> >the device should bring back the screen calibration program during boot.
-> 
-> I removed that file and still the same behavior.
+Hi all,
 
-Looks a bit strange :(
 
-> >
-> >>Ideas / pointers?
-> >
-> >Please update that .bbappend file or provide a "reasonable"(which works
-> >with the latest xinput_calibrator) set of default values in the
-> >pointercal.xinput file.
-> 
-> Since the autocalibrate isn't working, can you give some guidance
-> what this looks like?  The one created by the [erroneous] .bbappend
-> looks like this:
->   xinput set-int-prop "EETI eGalax Touch Screen" "Evdev Axis Calibration" 42060 2062 -8 -783544 1 1549 65536
->   xinput set-int-prop "EETI eGalax Touch Screen" "Evdev Axes Swap" 8 0
-> 
-> Note: the reason you didn't see my error when you built for imx28 was
-> that this specific file is i.MX6 specific.
+I have built Yocto 2.1, for PowerPC (E6500):
 
-Oh, ok.
+Build Configuration:
+BB_VERSION        =3D "1.30.0"
+BUILD_SYS         =3D "x86_64-linux"
+NATIVELSBSTRING   =3D "universal"
+TARGET_SYS        =3D "powerpc-poky-linux"
+MACHINE           =3D "powerpc-ppce6500"
+DISTRO            =3D "gfa-ppce6500"
+DISTRO_VERSION    =3D "2.1"
+TUNE_FEATURES     =3D "m32 fpu-hard e6500 altivec"
+TARGET_FPU        =3D ""
 
-> Also, in the past I used a [manually crafted] file:
->     ================= /etc/X11/xorg.conf.d/11-touchscreen.conf
->     Section "InputClass"
->     Identifier "tsc2004"
->     MatchProduct "tsc2004"
->     MatchDevicePath "/dev/input/event*"
->     Driver "evdev"
->     Option "InvertX" "true"
->     Option  "Calibration"   "85 4045 166 3991"
->     EndSection
-> 
-> The touchscreen still works if I include this but I was trying to play
-> by the new rules and use the new configuration tools, so I removed it
-> and /etc/pointercal*
 
-Good to hear that it works with the manually created file. To debug the problem
-further, is it possible to share the output from the target ?
-# xinput_calibrator --list
 
-Best Regards,
-Maxin
 
+
+Now, if I am cross-compiling additional uImage kernels outside bitbake,
+I need mkimage.
+But it is not in SDK.
+
+I have managed to get mkimage into rootfs, (added to IMAGE_INSTALL +=3D...)
+but how to get it inside cross-toolchain?
+
+Regards,
+Damir
+
+
+--_000_DB23C91B06C303459B24BC3208AF424A20F7F1B1MBX114dethzch_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html dir=3D"ltr">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style id=3D"owaParaStyle" type=3D"text/css">P {margin-top:0;margin-bottom:=
+0;}</style>
+</head>
+<body ocsi=3D"0" fpstyle=3D"1">
+<div style=3D"direction: ltr;font-family: Tahoma;color: #000000;font-size: =
+10pt;">Hi all,<br>
+<br>
+<br>
+I have built Yocto 2.1, for PowerPC (E6500):<br>
+<br>
+Build Configuration:<br>
+BB_VERSION&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;1.30.0&quot;=
+<br>
+BUILD_SYS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;x86_64-=
+linux&quot;<br>
+NATIVELSBSTRING&nbsp;&nbsp; =3D &quot;universal&quot;<br>
+TARGET_SYS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;powerpc-poky=
+-linux&quot;<br>
+MACHINE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D &qu=
+ot;powerpc-ppce6500&quot;<br>
+DISTRO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+=3D &quot;gfa-ppce6500&quot;<br>
+DISTRO_VERSION&nbsp;&nbsp;&nbsp; =3D &quot;2.1&quot;<br>
+TUNE_FEATURES&nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;m32 fpu-hard e6500 altivec&=
+quot;<br>
+TARGET_FPU&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;&quot;<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+Now, if I am cross-compiling additional uImage kernels outside bitbake,<br>
+I need mkimage.<br>
+But it is not in SDK.<br>
+<br>
+I have managed to get mkimage into rootfs, (added to IMAGE_INSTALL &#43;=3D=
+...)<br>
+but how to get it inside cross-toolchain?<br>
+<br>
+Regards,<br>
+Damir<br>
+<br>
+</div>
+</body>
+</html>
+
+--_000_DB23C91B06C303459B24BC3208AF424A20F7F1B1MBX114dethzch_--
