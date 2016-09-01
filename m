@@ -1,6 +1,6 @@
 Return-Path: <humberto.ibarra.lopez@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AF157E00DB9; Thu,  1 Sep 2016 12:36:51 -0700 (PDT)
+	id 9E6AEE00DEC; Thu,  1 Sep 2016 12:37:58 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,25 +8,26 @@ X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.65 listed in list.dnswl.org]
+	*      [192.55.52.93 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1CB0BE00DA6
-	for <yocto@yoctoproject.org>; Thu,  1 Sep 2016 12:36:50 -0700 (PDT)
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-	by orsmga103.jf.intel.com with ESMTP; 01 Sep 2016 12:36:50 -0700
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 95080E00DAD
+	for <yocto@yoctoproject.org>; Thu,  1 Sep 2016 12:37:44 -0700 (PDT)
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+	by fmsmga102.fm.intel.com with ESMTP; 01 Sep 2016 12:37:43 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.30,268,1470726000"; d="scan'208";a="163522982"
+X-IronPort-AV: E=Sophos;i="5.30,268,1470726000"; 
+   d="scan'208";a="3607144"
 Received: from jhibarra-mobl1.zpn.intel.com ([10.219.26.58])
-	by fmsmga004.fm.intel.com with ESMTP; 01 Sep 2016 12:36:50 -0700
+	by fmsmga005.fm.intel.com with ESMTP; 01 Sep 2016 12:37:43 -0700
 From: Humberto Ibarra <humberto.ibarra.lopez@intel.com>
 To: yocto@yoctoproject.org
-Date: Thu,  1 Sep 2016 14:38:58 -0500
-Message-Id: <1472758738-4428-1-git-send-email-humberto.ibarra.lopez@intel.com>
+Date: Thu,  1 Sep 2016 14:39:46 -0500
+Message-Id: <1472758786-4503-1-git-send-email-humberto.ibarra.lopez@intel.com>
 X-Mailer: git-send-email 2.4.11
 Cc: joshua.g.lock@intel.com
-Subject: [PATCH] RunOeSelftest.py: changed to new oe-selftest syntax
+Subject: [PATCH v3][yocto-autobuilder] RunOeSelftest.py: changed to new oe-selftest syntax
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,7 +39,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 Sep 2016 19:36:51 -0000
+X-List-Received-Date: Thu, 01 Sep 2016 19:37:58 -0000
 
 oe-selftest is changing syntax with YOCTO #8938. This patch checks the correct syntax version and uses the right command to avoid breaking oe-seltest autobuilder. Should be integrated together with the syntax changing patch.
 
