@@ -1,37 +1,62 @@
-Return-Path: <wangxin2015.fnst@cn.fujitsu.com>
+Return-Path: <maciej.borzecki@rndity.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2BBB3E00CE0; Wed, 31 Aug 2016 23:42:29 -0700 (PDT)
+	id 77096E00CDC; Thu,  1 Sep 2016 00:50:27 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_LOW,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.217.179 listed in list.dnswl.org]
+	*  1.0 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.217.179 listed in dnsbl.sorbs.net]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from heian.cn.fujitsu.com (unknown [59.151.112.132])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 502D9E00C51
-	for <yocto@yoctoproject.org>; Wed, 31 Aug 2016 23:42:25 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.22,518,1449504000"; d="scan'208";a="10499507"
-Received: from unknown (HELO cn.fujitsu.com) ([10.167.33.5])
-	by heian.cn.fujitsu.com with ESMTP; 01 Sep 2016 14:42:20 +0800
-Received: from G08CNEXCHPEKD02.g08.fujitsu.local (unknown [10.167.33.83])
-	by cn.fujitsu.com (Postfix) with ESMTP id 5B2F6400A1C4
-	for <yocto@yoctoproject.org>; Thu,  1 Sep 2016 14:42:15 +0800 (CST)
-Received: from ubuntu.g08.fujitsu.local (10.167.226.120) by
-	G08CNEXCHPEKD02.g08.fujitsu.local (10.167.33.89) with Microsoft SMTP
-	Server (TLS) id 14.3.279.2; Thu, 1 Sep 2016 14:42:14 +0800
-From: Wang Xin <wangxin2015.fnst@cn.fujitsu.com>
-To: <yocto@yoctoproject.org>
-Date: Thu, 1 Sep 2016 02:42:12 -0400
-Message-ID: <1472712132-1823-1-git-send-email-wangxin2015.fnst@cn.fujitsu.com>
-X-Mailer: git-send-email 1.9.1
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-ua0-f179.google.com (mail-ua0-f179.google.com
+	[209.85.217.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2B0E7E00C51
+	for <yocto@yoctoproject.org>; Thu,  1 Sep 2016 00:50:22 -0700 (PDT)
+Received: by mail-ua0-f179.google.com with SMTP id l94so131537309ual.0
+	for <yocto@yoctoproject.org>; Thu, 01 Sep 2016 00:50:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=rndity-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=/omwZtGZ1WHHjf4Y45dga5bN38+256LrhdDCZtix3jI=;
+	b=vcnKvUD7/j/4bFa5vPKh3MnDMHk+pco4OtWfipRYWEZMRrYAWryu99Qlv9DO6ynn6T
+	D+btS1v5axlIlFabkkkVQtpfgTgDtyTB+eyWQR2PM5tiDofRvyhavEaI6WgK5yzwYmkL
+	4+u/GY31dtV8FGsKATWzrnTUjPtEVVP+C3UKyhsynobWAoQCNDrnH8IiljtiURgebDga
+	xTIwdJ1odMnSBpSSuN0Yn+CoPtv1jICDsuHERR8PsuOr5QU7c/MHyJv2hdXYR9tpvJxl
+	8nCVuaOyzilTvwf2Bl9c50nF1GBWG3trG9PPMjgIdhGNyW+z5cohupWZwkB0EvBz5vQb
+	SIkQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=/omwZtGZ1WHHjf4Y45dga5bN38+256LrhdDCZtix3jI=;
+	b=Kon4c7DrObPciKfygggBTG/b8+r3qbkyHotDj2nFyfEHSoTpaTaXJazUuNLSFgornJ
+	qkw03JdLcuI7hemFQ99f+FYEIaWC9TBRlG5zmaIM7Uj0ni6Dxaw4AF13A1YBUXIbQywT
+	CBRbE12diMYMJrzHouK15PRycJbvQ8OwA0dkY+ZQdJQ3GZ8Kkrs9yjiLQRizrS1uyteA
+	1biGCFrJFwH+5a21ZrYr+3ixPlLKrJchCgPLiX2qe6e/wEJV4R7D3XF+RK3ab8X/Aw84
+	+qtQ9ISRe+aJcJiYnSV5UJrWOeYz1M+EUJUTAsMqZkAgmmuPsSK2AAi+nYHMyobJfzrD
+	wr0A==
+X-Gm-Message-State: AE9vXwOZb1GnYw2siAYK1HenmimQ4TKirCnDOQDMeYdUnuPS+t17FuNh6KqmgxZBCUx6wimQsxNIBAUH+ZYUsg==
+X-Received: by 10.176.1.183 with SMTP id 52mr7322499ual.3.1472716222082; Thu,
+	01 Sep 2016 00:50:22 -0700 (PDT)
 MIME-Version: 1.0
-X-Originating-IP: [10.167.226.120]
-X-yoursite-MailScanner-ID: 5B2F6400A1C4.A4334
-X-yoursite-MailScanner: Found to be clean
-X-yoursite-MailScanner-From: wangxin2015.fnst@cn.fujitsu.com
-Subject: [meta-security][PATCH] samhain-client: 4.1.4 -> 4.1.5
+Received: by 10.103.73.23 with HTTP; Thu, 1 Sep 2016 00:50:01 -0700 (PDT)
+In-Reply-To: <87poooc2ha.fsf@posteo.net>
+References: <87poooc2ha.fsf@posteo.net>
+From: =?UTF-8?Q?Maciej_Borz=C4=99cki?= <maciej.borzecki@rndity.com>
+Date: Thu, 1 Sep 2016 09:50:01 +0200
+Message-ID: <CAD4b0_JqqWmkL5egXgbSVvq5xpb-ck2-sj9rr3hBbcOeEB5-VQ@mail.gmail.com>
+To: Pietro <pulsarpietro@posteo.net>
+Cc: yocto@yoctoproject.org
+Subject: Re: Yocto and Google protobuffer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,40 +68,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 Sep 2016 06:42:29 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 01 Sep 2016 07:50:27 -0000
+Content-Type: text/plain; charset=UTF-8
 
-Upgrade samhain-client from 4.1.4 to 4.1.5.
+On Wed, Aug 31, 2016 at 6:44 PM, Pietro <pulsarpietro@posteo.net> wrote:
+> Hi all,
+>
+> I am new to the Yocto building system and I could be talking nonsense. I
+> used to work with buildroot time ago and I remember there is an area
+> where compiled software/packages/tools previously built are "staged" and
+> used when building other packages.
+>
+> Is there something like that available with Yocto ? Specifically I would
+> like to add a package which uses the Google Protocol Buffer, I do not have
+> administrator rights on the machine and I can't install the packages I
+> need system wise.
+>
+> Is it possible to add recipes and use them at building time without
+> including them in the image being generated ?
+>
+> A good example for that would be the protoc, the protocol buffer description
+> file compiler.
+>
 
-Signed-off-by: Wang Xin <wangxin2015.fnst@cn.fujitsu.com>
----
- .../samhain/{samhain-client_4.1.4.bb => samhain-client_4.1.5.bb}      | 0
- recipes-security/samhain/samhain.inc                                  | 4 ++--
- 2 files changed, 2 insertions(+), 2 deletions(-)
- rename recipes-security/samhain/{samhain-client_4.1.4.bb => samhain-client_4.1.5.bb} (100%)
+There is a recipe for protobuf in meta-oe (2.6.1). All you need to do,
+is include meta-oe in your layers (bblayers.conf) and have
+protobuf-native listed in DEPENDS inside your package recipe.
 
-diff --git a/recipes-security/samhain/samhain-client_4.1.4.bb b/recipes-security/samhain/samhain-client_4.1.5.bb
-similarity index 100%
-rename from recipes-security/samhain/samhain-client_4.1.4.bb
-rename to recipes-security/samhain/samhain-client_4.1.5.bb
-diff --git a/recipes-security/samhain/samhain.inc b/recipes-security/samhain/samhain.inc
-index 907f431..5bf2ee7 100644
---- a/recipes-security/samhain/samhain.inc
-+++ b/recipes-security/samhain/samhain.inc
-@@ -9,8 +9,8 @@ SRC_URI = "http://la-samhna.de/archive/samhain_signed-${PV}.tar.gz \
- 	   file://${INITSCRIPT_NAME}.default \
- 	  "
- 
--SRC_URI[md5sum] = "1ab697b7000d0a272d9ade05bb1bc6e0"
--SRC_URI[sha256sum] = "32ee7477af11d9f2f64f30b9cb316c351897c1c994c7b98b0ef17fc0ca5e1d1a"
-+SRC_URI[md5sum] = "bdb6d2653d706f3180e37ef3d95c824d"
-+SRC_URI[sha256sum] = "4ff4c38765c942abbaac2577df4c8c4940482a1bffc4a719f181c4fca6f173a7"
- 
- S = "${WORKDIR}/samhain-${PV}"
- 
+The protoc compiler will be available in the PATH when package is
+being built, so autotools checks like AC_CHECK_PROG/AC_PATH_PROG
+should be able to find it.
+
+Cheers,
 -- 
-2.7.4
-
-
-
+Maciej Borzecki
+RnDity
 
