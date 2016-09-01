@@ -1,54 +1,71 @@
-Return-Path: <me@herrie.org>
+Return-Path: <danielhilst@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 57891E00B5F; Thu,  1 Sep 2016 07:40:35 -0700 (PDT)
+	id 9D531E00B5F; Thu,  1 Sep 2016 07:54:36 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [149.210.149.73 listed in list.dnswl.org]
+X-Spam-Status: No, score=0.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,MISSING_HEADERS,PLING_QUERY,
+	RCVD_IN_DNSWL_LOW,RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (danielhilst[at]gmail.com)
+	*  1.0 MISSING_HEADERS Missing To: header
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.217.195 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from outbound2.mail.transip.nl (outbound2.mail.transip.nl
-	[149.210.149.73])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D62CFE00B46
-	for <yocto@yoctoproject.org>; Thu,  1 Sep 2016 07:40:31 -0700 (PDT)
-Received: from submission6.mail.transip.nl (submission6.mail.transip.nl
-	[149.210.149.10])
-	by outbound2.mail.transip.nl (Postfix) with ESMTP id 3sQ4fz08b3zYwm1;
-	Thu,  1 Sep 2016 16:40:27 +0200 (CEST)
-Received: from webmail.frontend (web0.mail.transip.nl [149.210.149.95])
-	by submission6.mail.transip.nl (Postfix) with ESMTPA id
-	3sQ4fy2gJYz12LjQ; Thu,  1 Sep 2016 16:40:26 +0200 (CEST)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  1.0 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.217.195 listed in dnsbl.sorbs.net]
+	*  1.0 PLING_QUERY Subject has exclamation mark and question mark
+Received: from mail-ua0-f195.google.com (mail-ua0-f195.google.com
+	[209.85.217.195])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 802BCE00B46
+	for <yocto@yoctoproject.org>; Thu,  1 Sep 2016 07:54:32 -0700 (PDT)
+Received: by mail-ua0-f195.google.com with SMTP id a1so1940367uaa.0
+	for <yocto@yoctoproject.org>; Thu, 01 Sep 2016 07:54:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:cc; 
+	bh=Frtj5pvtkhJQza1xXj+R1Oc8sQm36+K2hvO9ihBA5s0=;
+	b=Yl3SfaP8Tp6VeqrWmw+EkXafXl/b7SccAVnPBuyLGYBvqp/7w2tCzrQjtWpBN/VZKl
+	mC9rgl2Z8dy2kLnZUVdalPYTz2bptuchZuiAUcd7BN2EUOVcK0OrSk9jwngYLK2sjxBJ
+	HClKwuvwCu7t5ikpeGu08JupPpo50aChJlK77uljktd5PJSPsmZUPP4HgfEFGNkVRHmL
+	FBQxNFF01bwem5Cvg81YuRxe4GPwaFJWdMfYFioz0uCaEQKrhSXtjd7yXm3MPGZDISVN
+	dAzLYOlkJ/4QwkXjqb1nk6u4FECjkKlM2lYLMKakcRPXopPwtZ+rhk2T943/AZ80xkUR
+	BTqA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:cc;
+	bh=Frtj5pvtkhJQza1xXj+R1Oc8sQm36+K2hvO9ihBA5s0=;
+	b=C/HhGC/op0RB+vXve16AX6MzJXh4ASVdz+BcO5lnk7cN1Tn+12BidIT3Oo6C18iZDm
+	LVwERGsguPSyT1BYfO2ttD9hBxs7H7OvcmLSgqcaNDXgyNI6qt3fbY3PmO3k51vHDP1c
+	vpveh555mLP2BYY2IFHFGoqZHImHTANxzXIfynZ049v4wTZmFS4kSXVf4Arj5jFl5riF
+	anxDr1uGSDc97zX4Msef4zFPRSf4rzGCF6qJUbf9Xxu8VPum64XS2XXBpbGGKTgz8ISR
+	hFkUjAin8bwrHbkX3YixUQ4ZKFLktJ/GJWRjmsqPZucXngr0y0r9cYbx3wLSpUeBQgks
+	BOnA==
+X-Gm-Message-State: AE9vXwPSMFRzl+OI8pMW+bJLOsuZfaOHlNKthlMKzxTuViC+JvSE0QjxpCq/r714lJzPGGjVEbyOZVt04hGIdg==
+X-Received: by 10.159.34.117 with SMTP id 108mr8048619uad.120.1472741671411;
+	Thu, 01 Sep 2016 07:54:31 -0700 (PDT)
 MIME-Version: 1.0
-Date: Thu, 01 Sep 2016 16:40:26 +0200
-From: Herman van Hazendonk <me@herrie.org>
-To: Pietro <pulsarpietro@posteo.net>
-Mail-Reply-To: yoctoproject.org@herrie.org
-In-Reply-To: <87zinraduo.fsf@posteo.net>
-References: <87poooc2ha.fsf@posteo.net>
-	<CAD4b0_JqqWmkL5egXgbSVvq5xpb-ck2-sj9rr3hBbcOeEB5-VQ@mail.gmail.com>
-	<87k2ewau7z.fsf@posteo.net>
-	<CAD4b0_JE1iN8WgT9k=VtjPLtKvSNs1B0=zZBeAsUaXJWcC8zEw@mail.gmail.com>
-	<87fupkarqt.fsf@posteo.net>
-	<85bd928a2ecb47663d9a90ca24756f16@herrie.org>
-	<CAHiDW_GBefiLcDQOgEEPVXeKTQGun8w6n62H33V6W4bvCv6sSA@mail.gmail.com>
-	<87bn07bw9s.fsf@posteo.net> <874m5zbuwl.fsf@posteo.net>
-	<5ab4fbf1a8106fa4a5d7db3b457db8fb@herrie.org>
-	<87zinraduo.fsf@posteo.net>
-Message-ID: <2470b2c489daa8d6863159ea44d04367@herrie.org>
-X-Sender: me@herrie.org
-User-Agent: Webmail
-X-Scanned-By: ClueGetter at submission6.mail.transip.nl
-X-Report-Abuse-To: abuse@transip.nl
-Cc: yocto@yoctoproject.org
-Subject: Re: Yocto and Google protobuffer
+Received: by 10.176.81.41 with HTTP; Thu, 1 Sep 2016 07:54:30 -0700 (PDT)
+In-Reply-To: <0ded4d99-a310-e7a0-fbe7-206a481a568c@windriver.com>
+References: <CAF3SDA445Eh-L501nQvd+VBuVGpER0kX4DZd3GZ16RvvQ_qZOQ@mail.gmail.com>
+	<1888254.UId6usnihk@peggleto-mobl.ger.corp.intel.com>
+	<0ded4d99-a310-e7a0-fbe7-206a481a568c@windriver.com>
+From: "Daniel." <danielhilst@gmail.com>
+Date: Thu, 1 Sep 2016 11:54:30 -0300
+Message-ID: <CAF3SDA5z6NSLPP0GZqmHLAkyyJY771-w4y5JtzZA8kh_XQGp_Q@mail.gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Automating imaging building and testing, what aproach to use!?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: yoctoproject.org@herrie.org
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -57,157 +74,105 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 Sep 2016 14:40:35 -0000
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 01 Sep 2016 14:54:36 -0000
+Content-Type: text/plain; charset=UTF-8
 
-If it takes the wrong version, it could be your layers aren't in the 
-right order. That's the first thing to check.
+Hi Paul, Bruce
 
-You might want to try to run bitbake with
+Thanks for the replies,
 
--f protobuf -c cleanall or -f protobuf-native -c cleanall
+Paul,
 
-This will remove all locally ;)
+I take a look at the documentation. It's an amazing feature I'll try
+it as soon as got time avaible.
+My next question is about that "master image" that is installed at
+target hardware so that the image
+is deployed automagically. I read that it writes the image to a second
+partition... Well.. I'm dealing
+with NAND Flash memory here I would like to avoid writing as much as
+possible. Even more for
+machines that will be reflashing at each new image built. I know how easy
+is to setup an NFS + TFTP server and get u-boot booting things from
+network. Also, with this kind
+of setup booting a fresh new image is just a matter of rebooting
+(which makes the master image
+very simple). Would be possible to customise the master image and the
+autodeploy to the hardware target!?
 
-Then rebuild it... I haven't played much with the -native bits, so not 
-sure how those work.
+Regards,
+
+2016-08-31 19:43 GMT-03:00 Bruce Ashfield <bruce.ashfield@windriver.com>:
+> On 2016-08-31 6:23 PM, Paul Eggleton wrote:
+>>
+>> Hi Daniel,
+>>
+>> On Tue, 30 Aug 2016 17:18:44 Daniel. wrote:
+>>>
+>>> While writing software we're used to delivery packages, libraries and
+>>> stacks. There are out there a lot of continuos integration solutions
+>>> to automaticaly build and test these kinds of software. But when
+>>> dealing to images the thing is more tricky.
+>>>
+>>> I can't run the tests at the same machine that build the image because
+>>> crosscompilation take place on 99% of the cases. What is aproach that
+>>> you guys are using to automate and increase the quality of your
+>>> images?
+>>>
+>>> Automating the build is the easy part my concert is about automating
+>>> the runtime tests that need the target board to run. In my case I
+>>> depend on hardware to fully test the image features. Is there any
+>>> reliable way to automate image installation and boot!?
+>>
+>>
+>> There are some folks here working on automated hardware tests (on CC),
+>> perhaps
+>> they can expand on what we're currently doing in that area. At least in
+>> the
+>> existing code we do have basic support for running tests on real hardware
+>> that
+>> may be worth looking into - at the moment though it's pretty rudimentary
+>> when
+>> it comes to interacting directly with the hardware though. You can see
+>> what
+>> we've currently got here:
+>>
+>>
+>> http://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#hardware-image-enabling-tests
+>>
+>> We've looked at LAVA several times, and I'm sorry to say the conclusion
+>> each
+>> time is that its a mess - both from a usage perspective and looking at the
+>> code. It was disappointing to us because initially it looked like it was
+>> going
+>> to solve a lot of our problems. Maybe others have had different
+>> experiences -
+>> I'd love to hear details if anyone is prepared to share.
+>
+>
+> We've been using LAVA extensively within WRind River, and haven't run
+> into any major issues with the code and usage. Perhaps it depends on
+> the type of test cases that are being run ?
+>
+> LAVA was active, extensible and able to integrate with our wide range
+> of targets.
+>
+> That's not to say that we didn't add a lot of our own tests,
+> infrastructure, etc, but that was expected work with whatever we
+> chose.
+>
+> Cheers,
+>
+> Bruce
+>
+>>
+>> Cheers,
+>> Paul
+>>
+>
 
 
 
-On 2016-09-01 16:34, Pietro wrote:
-> Herman van Hazendonk <me@herrie.org>
-> writes:
-> 
->> Hi Pietro,
->> 
->> You shouldn't need to specify a version. DEPENDS = "protobuf" or
->> DEPENDS = "protobuf-native" should do :)
->> 
->> Herrie
->> 
->> 
->> 
-> 
-> Indeed my recipe gets built first and I can see 
-> do_protobuf_3.0.0[..](),
-> nonetheless when my package, which depends on libprotobuf compiles it
-> fails since it does not find the right version of the library.
-> 
-> It still finds the older version
-> 
-> You don't have protoc 3.0.0 installed in your path.
-> | Please install Google protocol buffers 3.0.0 and its compiler.
-> | You can find it here:
-> |
-> |    https://github.com/google/protobuf/releases/tag/v3.0.0
-> |
-> | Here is what I get when trying to evaluate your version of protoc:
-> |
-> | protoc --version
-> | libprotoc 2.4.1
-> | make: [system-check] Error 1 (ignored)
-> |
-> 
-> The version should be 3.0.0. What am I doing wrong ?
-> 
-> 
-> 
-> 
-> 
->> On 2016-09-01 15:40, Pietro wrote:
->>> Pietro <pulsarpietro@posteo.net> writes:
->>> 
->>>> Jussi Kukkonen <jussi.kukkonen@intel.com>
->>>> writes:
->>>> 
->>>>> On 1 September 2016 at 13:21, Herman van Hazendonk
->>>>> <me@herrie.org> wrote:
->>>>> 
->>>>>     Hi Pietro,
->>>>> 
->>>>>     You can override the recipe by adding a recipe for version 
->>>>> 3.0.0+
->>>>>     in your own layer and making sure your layer has a higher
->>>>> priority
->>>>>     in bblayers.conf. See for example what we do in our project:
->>>>> 
->>>>>     
->>>>> https://github.com/webOS-ports/webos-ports-setup/blob/testing/conf/bblayers.conf
->>>>> 
->>>>> 
->>>>>     openembedded-core provides ofono 1.1.7 for example with
->>>>>     
->>>>> https://github.com/openembedded/openembedded-core/tree/krogoth/meta/recipes-
->>>>>    connectivity/ofono
->>>>> 
->>>>>     However we want to use ANOTHER version of ofono (1.1.7 based, 
->>>>> but
->>>>>     from a different repo/project).
->>>>> 
->>>>>     So we have our own .bbappend at
->>>>>     
->>>>> https://github.com/webOS-ports/meta-webos-ports/blob/krogoth/meta-luneos/recipes-connectiv
->>>>>    ity/ofono/ofono_git.bbappend where we specify the different repo
->>>>>     etc to use.
->>>>> 
->>>>>     This doesn't apply 1:1 in your case, but you could simply add a
->>>>>     protobuf_3.0.0.bb in your own layer and it should build that
->>>>>     instead. Just make sure you have your layer at a higher 
->>>>> position
->>>>>     compared to meta-openembedded in your bblayers.conf
->>>> 
->>>> Thanks a lot.
->>>> I have written my own repice and added it into my own layer, it
->>>> does not compile though :
->>>> 
->>>> |
->>>> | autoreconf: configure.ac: tracing
->>>> |
->>>> | autoreconf: configure.ac: subdirectory gmock not present
->>>> | autoreconf: configure.ac: not using Libtool
->>>> | autoreconf: running:
->>>> |
->>>> /export/arm/pietro/PD15.1/build/tmp-glibc/sysroots/x86_64-linux/usr/bin/autoconf
->>>> |
->>>> --include=/export/arm/pietro/PD15.1/build/tmp-glibc/work/cortexa8t2hf-vfp-neon-phytec-linux-gnueabi/proto
->>>> buf/3.0.0-r0/git/m4/ --force
->>>> |
->>>> | configure.ac:93: error: possibly undefined macro: AC_PROG_LIBTOOL
->>>> |
->>>> |       If this token and others are legitimate, please use
->>>> |       m4_pattern_allow.
->>>> |       See the Autoconf documentation.
->>>> |
->>>> | autoreconf:
->>>> |
->>>> /export/arm/pietro/PD15.1/build/tmp-glibc/sysroots/x86_64-linux/usr/bin/autoconf
->>>> | failed with exit status: 1
->>>> |
->>>> | + bbfatal autoreconf execution failed.
->>>> 
->>>> I understand this is a completely different matter now, but has
->>>> anybody else seen this before ? I have tried to compile the same
->>>> revision on my local machine "natively" and it's built fine.
->>>> 
->>>> That library should be a dependency for another package/recipe I am
->>>> working on, is it allowed to specify a version inside the DEPENDS
->>>> recipe's clause ? I have tried to google the problem but I haven't
->>>> found
->>>> a working example as yet.
->>>> 
->>>> Cheers,
->>>> P.
->>> Forget about it, I was pointing to a broken commit it.
->>> My recipe name is protobuf_3.0.0.bb, how do I make it a dependency of
->>> another package ?
->>> 
->>> I have tried many solution but none of them is working :
->>> DEPENDS = "protobuf > 3.0.0" ... "protobuf_3.0.0" ... etc etc
->>> 
->>> Any thoughts ?
->>> 
->>> P.
-
+-- 
+"Do or do not. There is no try"
+  Yoda Master
 
