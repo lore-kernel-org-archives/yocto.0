@@ -1,40 +1,44 @@
-Return-Path: <earwigz@naver.com>
+Return-Path: <Bruce.Ashfield@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 47DE6E00E7B; Fri,  2 Sep 2016 03:36:54 -0700 (PDT)
+	id F037FE00F46; Fri,  2 Sep 2016 06:58:48 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: *
-X-Spam-Status: No, score=1.7 required=5.0 tests=BAYES_40,HTML_IMAGE_ONLY_08,
-	HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	T_REMOTE_IMAGE autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 BAYES_40 BODY: Bayes spam probability is 20 to 40%
-	*      [score: 0.3817]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* 1.7 HTML_IMAGE_ONLY_08 BODY: HTML: images with 400-800 bytes of words
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [125.209.208.216 listed in list.dnswl.org]
-	*  0.0 T_REMOTE_IMAGE Message contains an external image
-Received: from cmailsend07.nm.naver.com (cmailsend07.nm.naver.com
-	[125.209.208.216])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C6842E00E79
-	for <yocto@yoctoproject.org>; Fri,  2 Sep 2016 03:36:50 -0700 (PDT)
-Received: (qmail 22042 invoked by uid 100); 2 Sep 2016 10:36:49 -0000
-Received: from 10.114.49.75 (HELO cweb08.nm.nhnsystem.com) (10.114.49.75)
-	by cmailsend07.nm.naver.com with SMTP;2 Sep 2016 10:36:49 -0000
-Date: Fri, 2 Sep 2016 19:36:49 +0900 (KST)
-From: =?UTF-8?B?7Jyk7JiB7ISd?= <earwigz@naver.com>
-To: yoctoproject <yocto@yoctoproject.org>
-Message-ID: <044ba16ff655bfee62106f8a5b231@cweb08.nm.nhnsystem.com>
+X-Spam-Level: 
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A82B5E00F3F
+	for <yocto@yoctoproject.org>; Fri,  2 Sep 2016 06:58:46 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id u82DwTsQ014130
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Fri, 2 Sep 2016 06:58:33 -0700 (PDT)
+Received: from [128.224.56.48] (128.224.56.48) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.248.2;
+	Fri, 2 Sep 2016 06:58:28 -0700
+To: Mircea Gliga <mircea.gliga@vitheia.com>, <yocto@yoctoproject.org>
+References: <a32fef25-dfed-2e61-1a38-e79063078062@vitheia.com>
+	<704c1142-0ba3-f5df-2801-c6d31ee19574@windriver.com>
+	<e59e7316-2027-85f0-26a4-c9bbabd504a9@vitheia.com>
+	<706ab63f-2747-a14f-1ce6-dab3c1accbfc@windriver.com>
+	<1b067ad8-be70-c4ff-1e85-96967cb578a8@vitheia.com>
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+Message-ID: <3876aba6-a0ec-b575-0b68-2d76193f1e42@windriver.com>
+Date: Fri, 2 Sep 2016 09:58:28 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.2.0
 MIME-Version: 1.0
-Importance: normal
-X-Priority: 3 (Normal)
-X-Naver-CIP: 61.107.31.52
-Subject: how to cached source code in yocto platform?
+In-Reply-To: <1b067ad8-be70-c4ff-1e85-96967cb578a8@vitheia.com>
+Subject: Re: custom linux kernel recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: =?UTF-8?B?7Jyk7JiB7ISd?= <earwigz@naver.com>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -43,35 +47,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 02 Sep 2016 10:36:54 -0000
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_399575_1030837953.1472812609310"
+X-List-Received-Date: Fri, 02 Sep 2016 13:58:49 -0000
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-------=_Part_399575_1030837953.1472812609310
-Content-Type: text/plain;
-	charset=UTF-8
-Content-Transfer-Encoding: base64
+On 2016-09-02 03:51 AM, Mircea Gliga wrote:
+> Hi Bruce,
+>
+> Do you have any new input in regards with qemuarm booting with kernel
+> 4.7.2 LTS ?
+> Have you managed to test this ?
+> I wander if this can be reproduce elsewhere and what's the solution for it.
 
-aGksCllvY3RvIGJ1aWxkIHN5c3RlbSBpcyBzbyBzbG93LCBpbiBteSB0aG91Z2h0LCBzb3VyY2Ug
-Y29kZSBkb3dubG9hZGluZyBpcyB0b28gc3BlbmQgdGltZS4KIApTbyBpIHdhbnQgdG8gZmluZCBi
-ZXR0ZXIgd2F5IHRvIG1ha2UgYnVpbGQgbW9yZSBzcGVlZHkuCiAKY291bGQgeW91IGdpdmUgbWUg
-YWR2aWNlPwogCnRoYW5rcwo=
+I was tied up with the introduction of the 4.8 kernel, but I *think*
+the coast is clear on that front (for the moment).
 
-------=_Part_399575_1030837953.1472812609310
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: base64
+I can try and spin up a korg based 4.7.x build and see how it goes.
 
-PGh0bWw+PGhlYWQ+PHN0eWxlPnB7bWFyZ2luLXRvcDowcHg7bWFyZ2luLWJvdHRvbTowcHg7fTwv
-c3R5bGU+PC9oZWFkPjxib2R5PjxkaXYgc3R5bGU9ImZvbnQtc2l6ZToxMHB0OyBmb250LWZhbWls
-eTpHdWxpbTsiPjxwPmhpLDwvcD48cD5Zb2N0byBidWlsZCBzeXN0ZW0gaXMgc28gc2xvdywgaW4g
-bXkgdGhvdWdodCwgc291cmNlIGNvZGUgZG93bmxvYWRpbmcgaXMgdG9vIHNwZW5kIHRpbWUuPC9w
-PjxwPiZuYnNwOzwvcD48cD5TbyBpIHdhbnQgdG8gZmluZCBiZXR0ZXIgd2F5IHRvIG1ha2UgYnVp
-bGQgbW9yZSBzcGVlZHkuPC9wPjxwPiZuYnNwOzwvcD48cD5jb3VsZCB5b3UgZ2l2ZSBtZSBhZHZp
-Y2U/PC9wPjxwPiZuYnNwOzwvcD48cD50aGFua3M8L3A+PC9kaXY+PC9ib2R5PjwvaHRtbD4KPHRh
-YmxlIHN0eWxlPSJkaXNwbGF5Om5vbmUiPjx0cj48dGQ+PGltZyBzcmM9Imh0dHA6Ly9tYWlsLm5h
-dmVyLmNvbS9yZWFkUmVjZWlwdC9ub3RpZnkvP2ltZz1mZUZOMUIlMkJaTTZrU0ZBdG1oQVJQTXh1
-cnA0TXJGeGtTcDRrMEZvVXdLQXA0YXp1OU1vVXFLRUlvJTJCcmtTS0EyNVc0ZDVXNEM1YlgwcSUy
-QnprUjc0RlRXeCUyRnNENmVvJTJCemVnRDZlbyUyQnplbWI0ZThwNkZkNzRlWnBtJTNEJTNELmdp
-ZiIgYm9yZGVyPSIwIj48L3RkPjwvdHI+PC90YWJsZT4=
+Bruce
 
-------=_Part_399575_1030837953.1472812609310--
+>
+> Thanks
+> Mircea
+>
+> On 08/30/2016 06:09 PM, Bruce Ashfield wrote:
+>>
+>> I'm finishing up 4.8 today, but without doing a boot test, I can't say
+>> for sure. I'll see if I can cycle in some korg 4.7.x testing tomorrow to
+>> see if I can get a clean boot.
+>
+
+
