@@ -1,63 +1,68 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <xerofoify@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C5CD3E00905; Fri,  2 Sep 2016 13:38:54 -0700 (PDT)
+	id 919C8E009B1; Fri,  2 Sep 2016 14:00:31 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_LOW,
-	RCVD_IN_SORBS_SPAM autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.214.44 listed in dnsbl.sorbs.net]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.214.44 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.214.53 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (xerofoify[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-it0-f44.google.com (mail-it0-f44.google.com
-	[209.85.214.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 98F10E0083D
-	for <yocto@yoctoproject.org>; Fri,  2 Sep 2016 13:38:51 -0700 (PDT)
-Received: by mail-it0-f44.google.com with SMTP id e124so58561586ith.0
-	for <yocto@yoctoproject.org>; Fri, 02 Sep 2016 13:38:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=gjVEio1KCdHcPJISWMmpybOHPQX9CU06+qO/lGUTuWo=;
-	b=S3rYWBU0eVjc5VAwzbDZWVIvteKXtlVFv7AEQmZC+xdiW8T517YFVjQmVEeBcWfalP
-	Hn4009G+2QQPURMAYYvKSvLHyFFE/6kNdZFLOeHtr4yTVxrTdD4v+k7cPFgiftIsJVVN
-	7x3lx8WdrzuAMDXw6MphPy6aiCk9cv7qDtTLq88UC2zFomOPiwlTmtKYD/b6F6+w9zyP
-	M6p/ZKYEfyhrLaiG6NmT/BUJvSdiYv0aQMikGrjAxJfNQSKuKRwRxNV4NJrEtZ6wEQGk
-	AtMrqz8SJO3ULcnmrB5nkEv2BeLEomFCUWHPsEpz4+AVBALny4DuCFGVjc0m6AQ0GWHC
-	xAGA==
+Received: from mail-it0-f53.google.com (mail-it0-f53.google.com
+	[209.85.214.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0A18AE00905
+	for <yocto@yoctoproject.org>; Fri,  2 Sep 2016 14:00:30 -0700 (PDT)
+Received: by mail-it0-f53.google.com with SMTP id e124so59451649ith.0
+	for <yocto@yoctoproject.org>; Fri, 02 Sep 2016 14:00:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=to:from:subject:message-id:date:user-agent:mime-version
+	:content-transfer-encoding;
+	bh=PVUQagRN6vOoEt5mMLkobh6CRizt/EUgvrIYTN9lDFU=;
+	b=jFARCzSMSYCCFaaocuLF9UOFMkO+3Ait8VlnNnVUh5yVsv7hl9yZPb0WSyecTX8zgh
+	1Tjl3IO0uXHbhCzSdhso0V7tVgDd+TCp7u3dkuPXGj9MbXMuFutlT6J87DH7cqBgOPS3
+	j8ZGZU8kQq8gZf0M/cLp1wlj2Jb3QC0lj7fj0vsxRqfr2PoqliJVyRKVdZZ4DLMKfTxU
+	AB4NBAOKCS/8Y1VGUh2hgjUXBbrYhx9znw8GP4zhyz4Guu25Ufv8bkuAtk2ZKP4Hl86/
+	YVOB3vH1++Bl9vnsGyB8RjK2qcbjlUTjYSLVWPr+Tmf7ZUlkfFqJe+dFVnD7zzB9hFrL
+	rpXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=gjVEio1KCdHcPJISWMmpybOHPQX9CU06+qO/lGUTuWo=;
-	b=diefj3qIBkVn4xVZp+LcPOu8LKP387PQSX505uSG1954KzT2TinL9x5yj9se8C4aTJ
-	7Vtdo0uiooLFb/suEakI0QZZAPJloXoQJETmIAw5K3tAC1gybZhOX+WqzjfEB6kREEOd
-	RIhT7PrvPS1dA0SBo7bRBlzc50ZFw3DJGWacGsX0DtstLPG6oGkt6rTk0YNrOqEZH0FU
-	p64HU2pprPBaHAzI4V7UTWRXQCdjkDvYuDOW9i/VnXnH8pDcdd8SuIlJdudDj/VDZVlz
-	pHo7ULN3twTFqJsH6WmtAB0Qb3qhd0w5Hr2yWMwNjoTA8diM4fuTQwWCHV9ASOCP2avP
-	mYRg==
-X-Gm-Message-State: AE9vXwMK4C44O1MDjY1LcXJI9E8qQKpMg/a5XaGoYRye0WBeNNtFstO6vY+Iam2tYxaj22XKDTF3I3QShjPwuguS
-X-Received: by 10.36.20.204 with SMTP id 195mr7008597itg.83.1472848730249;
-	Fri, 02 Sep 2016 13:38:50 -0700 (PDT)
+	h=x-gm-message-state:to:from:subject:message-id:date:user-agent
+	:mime-version:content-transfer-encoding;
+	bh=PVUQagRN6vOoEt5mMLkobh6CRizt/EUgvrIYTN9lDFU=;
+	b=IcRGohIM9AAIZxdAZNrtN+zVnyTQZuhjsC9JNjrX0njDwKR3Zheeb30aILzZsmAzJK
+	LLjL+BQr16ygvnAeyxbzK7XGbK7FIY5CQGqdvce+r/8cARXf5SlX054yrY1/YpKqB3Mp
+	0mKlznQzezUrlE9eAlK6Bn7Evg8ZSXJNGVgcP33KJlqRLDutUgCiF3dk+KuXYjE3xRgk
+	ZjYo5JQAqRg0mLcpuxAFzIHK3nRIh/RVaBmVWO7omZBWbP+Bp871QvC/DfQl9n/aqApN
+	WdAz3No59BKFxg9R/OBXN826Yt/6yWnb4xJ3Fi6aPx+nZ2n0bFblZNZ+moHS4teNb7eR
+	CIsQ==
+X-Gm-Message-State: AE9vXwPfvpgLuKGWEl5S7U3vZ3kf51PY95p23QtqQyI0MSLw+Q374isYx/9Oi0UZtwdvGw==
+X-Received: by 10.107.174.14 with SMTP id x14mr1388308ioe.134.1472850029676;
+	Fri, 02 Sep 2016 14:00:29 -0700 (PDT)
+Received: from [192.168.0.10]
+	(CPEbc4dfb2691f3-CMbc4dfb2691f0.cpe.net.cable.rogers.com.
+	[99.250.193.223]) by smtp.googlemail.com with ESMTPSA id
+	j63sm3216558itj.19.2016.09.02.14.00.28 for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Fri, 02 Sep 2016 14:00:28 -0700 (PDT)
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+From: nick <xerofoify@gmail.com>
+Message-ID: <52148e60-3e1c-5c7e-96c3-56b124c2fd64@gmail.com>
+Date: Fri, 2 Sep 2016 17:00:28 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.2.0
 MIME-Version: 1.0
-Received: by 10.107.18.17 with HTTP; Fri, 2 Sep 2016 13:38:29 -0700 (PDT)
-In-Reply-To: <1472809074511.4904346.d7b67376df474a2c9d5e3203df7516240d1e1763@spica.telekom.de>
-References: <1472809074511.4904346.d7b67376df474a2c9d5e3203df7516240d1e1763@spica.telekom.de>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Fri, 2 Sep 2016 21:38:29 +0100
-Message-ID: <CAJTo0La9v8M1e7GajBmya2AeH7PnMZniTtyB0Hhs_Wf4xBJxhQ@mail.gmail.com>
-To: "pirmin.weisser@t-online.de" <pirmin.weisser@t-online.de>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: yocto web-kiosk project matchbox-keyboard
+Subject: Interested in Helping Out
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,59 +74,12 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 02 Sep 2016 20:38:54 -0000
-Content-Type: multipart/alternative; boundary=001a1143e4e4601b89053b8c51b6
+X-List-Received-Date: Fri, 02 Sep 2016 21:00:31 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
 
---001a1143e4e4601b89053b8c51b6
-Content-Type: text/plain; charset=UTF-8
+Greetings All,
+I am interested in helping out here. In addition I do have some experience with the project
+so just giving me a heads up on where to start or what is the current focus would be great.
+Nick
 
-On 2 September 2016 at 10:37, pirmin.weisser@t-online.de <
-pirmin.weisser@t-online.de> wrote:
-
-> One function is not working on the target system: The automatic popup of
-> the virtual keyboard when I select a text entry field (e.g. by touching it).
->
-> Display and Touch are working fine, internet connection via Ethernet is
-> there and the midori browser comes up automatically.
->
-> If I start the matchbox-keyboard manually with
->
-> >Display=:0.0 matchbox-keyboard
->
-> the keboard windows comes up and it works as expected: I can use the touch
-> screen to enter text.
->
->
-What version of Poky are you using?  This was broken in a previous release
-but should have been fixed now.
-
-Ross
-
---001a1143e4e4601b89053b8c51b6
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 2 September 2016 at 10:37, <a href=3D"mailto:pirmin.weisser@t-online.de"=
->pirmin.weisser@t-online.de</a> <span dir=3D"ltr">&lt;<a href=3D"mailto:pir=
-min.weisser@t-online.de" target=3D"_blank">pirmin.weisser@t-online.de</a>&g=
-t;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0=
- .8ex;border-left:1px #ccc solid;padding-left:1ex"><p style=3D"margin:0px 5=
-px 0px 0px">One function is not working on the target system: The automatic=
- popup of the virtual keyboard when I select a text entry field (e.g. by to=
-uching it).</p>
-<p style=3D"margin:0px 5px 0px 0px">Display and Touch are working fine, int=
-ernet connection via Ethernet is there and the midori browser comes up auto=
-matically.</p>
-<p style=3D"margin:0px 5px 0px 0px">If I start the matchbox-keyboard manual=
-ly with</p>
-<p style=3D"margin:0px 5px 0px 0px">&gt;Display=3D:0.0 matchbox-keyboard</p=
->
-<p style=3D"margin:0px 5px 0px 0px">the keboard windows comes up and it wor=
-ks as expected: I can use the touch screen to enter text.</p>
-<p style=3D"margin:0px 5px 0px 0px"></p></blockquote></div><br>What version=
- of Poky are you using?=C2=A0 This was broken in a previous release but sho=
-uld have been fixed now.</div><div class=3D"gmail_extra"><br></div><div cla=
-ss=3D"gmail_extra">Ross</div></div>
-
---001a1143e4e4601b89053b8c51b6--
