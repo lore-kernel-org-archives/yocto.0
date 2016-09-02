@@ -1,41 +1,32 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
+Return-Path: <humberto.ibarra.lopez@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F037FE00F46; Fri,  2 Sep 2016 06:58:48 -0700 (PDT)
+	id 2BF14E00EBB; Fri,  2 Sep 2016 08:16:26 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.88 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
-	*      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A82B5E00F3F
-	for <yocto@yoctoproject.org>; Fri,  2 Sep 2016 06:58:46 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id u82DwTsQ014130
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 2 Sep 2016 06:58:33 -0700 (PDT)
-Received: from [128.224.56.48] (128.224.56.48) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.248.2;
-	Fri, 2 Sep 2016 06:58:28 -0700
-To: Mircea Gliga <mircea.gliga@vitheia.com>, <yocto@yoctoproject.org>
-References: <a32fef25-dfed-2e61-1a38-e79063078062@vitheia.com>
-	<704c1142-0ba3-f5df-2801-c6d31ee19574@windriver.com>
-	<e59e7316-2027-85f0-26a4-c9bbabd504a9@vitheia.com>
-	<706ab63f-2747-a14f-1ce6-dab3c1accbfc@windriver.com>
-	<1b067ad8-be70-c4ff-1e85-96967cb578a8@vitheia.com>
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-Message-ID: <3876aba6-a0ec-b575-0b68-2d76193f1e42@windriver.com>
-Date: Fri, 2 Sep 2016 09:58:28 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.2.0
-MIME-Version: 1.0
-In-Reply-To: <1b067ad8-be70-c4ff-1e85-96967cb578a8@vitheia.com>
-Subject: Re: custom linux kernel recipe
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A66CEE00EAF
+	for <yocto@yoctoproject.org>; Fri,  2 Sep 2016 08:16:24 -0700 (PDT)
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+	by fmsmga101.fm.intel.com with ESMTP; 02 Sep 2016 08:16:24 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.30,271,1470726000"; d="scan'208";a="163898808"
+Received: from jhibarra-mobl1.zpn.intel.com ([10.219.26.58])
+	by fmsmga004.fm.intel.com with ESMTP; 02 Sep 2016 08:16:24 -0700
+From: Humberto Ibarra <humberto.ibarra.lopez@intel.com>
+To: yocto@yoctoproject.org
+Date: Fri,  2 Sep 2016 10:18:31 -0500
+Message-Id: <1472829511-3816-1-git-send-email-humberto.ibarra.lopez@intel.com>
+X-Mailer: git-send-email 2.4.11
+Cc: joshua.g.lock@intel.com
+Subject: [PATCH v4][yocto-autobuilder] RunOeSelftest.py: changed to new oe-selftest syntax
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,34 +38,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 02 Sep 2016 13:58:49 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 02 Sep 2016 15:16:26 -0000
 
-On 2016-09-02 03:51 AM, Mircea Gliga wrote:
-> Hi Bruce,
->
-> Do you have any new input in regards with qemuarm booting with kernel
-> 4.7.2 LTS ?
-> Have you managed to test this ?
-> I wander if this can be reproduce elsewhere and what's the solution for it.
+oe-selftest is changing syntax with YOCTO #8938. This patch checks the correct syntax version and uses the right command to avoid breaking oe-seltest autobuilder.
 
-I was tied up with the introduction of the 4.8 kernel, but I *think*
-the coast is clear on that front (for the moment).
+[YOCTO #8938]
 
-I can try and spin up a korg based 4.7.x build and see how it goes.
+Signed-off-by: Humberto Ibarra <humberto.ibarra.lopez@intel.com>
+---
+ .../autobuilder/buildsteps/RunOeSelftest.py              | 16 ++++++++++++++--
+ 1 file changed, 14 insertions(+), 2 deletions(-)
 
-Bruce
-
->
-> Thanks
-> Mircea
->
-> On 08/30/2016 06:09 PM, Bruce Ashfield wrote:
->>
->> I'm finishing up 4.8 today, but without doing a boot test, I can't say
->> for sure. I'll see if I can cycle in some korg 4.7.x testing tomorrow to
->> see if I can get a clean boot.
->
+diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/RunOeSelftest.py b/lib/python2.7/site-packages/autobuilder/buildsteps/RunOeSelftest.py
+index 84d32fe..18629f0 100644
+--- a/lib/python2.7/site-packages/autobuilder/buildsteps/RunOeSelftest.py
++++ b/lib/python2.7/site-packages/autobuilder/buildsteps/RunOeSelftest.py
+@@ -33,9 +33,21 @@ class RunOeSelftest(ShellCommand):
+         self.command += ". ./oe-init-build-env; "
+         self.command += "checkvnc; "
+         if self.tests == None:
+-            self.command += "if [ -d ../meta-selftest ]; then export DISPLAY=:1; oe-selftest --run-all-tests; else echo 'Skipping step - no meta-selftest layer here'; fi"
++            oe_selftest_cmd = ("run","--run-all-tests")
+         else:
+-            self.command += "if [ -d ../meta-selftest ]; then export DISPLAY=:1; oe-selftest " + self.tests + "; else echo 'Skipping step - no meta-selftest layer here'; fi"
++            oe_selftest_cmd = ("run --tests %s" % self.tests, "--run-tests %s" % self.tests)
++        self.command += """ \
++if [ -d ../meta-selftest ]; then \
++    export DISPLAY=:1; \
++    VERSION=$(oe-selftest --version 2> /dev/null | cut -d' ' -f2); \
++    if [ \"$VERSION\" == '2.0' ]; then \
++        oe-selftest %s; \
++    else \
++        oe-selftest %s; \
++    fi; \
++else \
++    echo 'Skipping step - no meta-selftest layer here';
++fi""" % oe_selftest_cmd
+         ShellCommand.start(self)
+ 
+     def _createOESelftestErrorReport(self, log):
+-- 
+2.4.11
 
 
