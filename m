@@ -1,68 +1,39 @@
-Return-Path: <xerofoify@gmail.com>
+Return-Path: <gary@mlbassoc.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 919C8E009B1; Fri,  2 Sep 2016 14:00:31 -0700 (PDT)
+	id 9EAEFE00CD4; Sat,  3 Sep 2016 01:05:04 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.214.53 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (xerofoify[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-it0-f53.google.com (mail-it0-f53.google.com
-	[209.85.214.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0A18AE00905
-	for <yocto@yoctoproject.org>; Fri,  2 Sep 2016 14:00:30 -0700 (PDT)
-Received: by mail-it0-f53.google.com with SMTP id e124so59451649ith.0
-	for <yocto@yoctoproject.org>; Fri, 02 Sep 2016 14:00:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=to:from:subject:message-id:date:user-agent:mime-version
-	:content-transfer-encoding;
-	bh=PVUQagRN6vOoEt5mMLkobh6CRizt/EUgvrIYTN9lDFU=;
-	b=jFARCzSMSYCCFaaocuLF9UOFMkO+3Ait8VlnNnVUh5yVsv7hl9yZPb0WSyecTX8zgh
-	1Tjl3IO0uXHbhCzSdhso0V7tVgDd+TCp7u3dkuPXGj9MbXMuFutlT6J87DH7cqBgOPS3
-	j8ZGZU8kQq8gZf0M/cLp1wlj2Jb3QC0lj7fj0vsxRqfr2PoqliJVyRKVdZZ4DLMKfTxU
-	AB4NBAOKCS/8Y1VGUh2hgjUXBbrYhx9znw8GP4zhyz4Guu25Ufv8bkuAtk2ZKP4Hl86/
-	YVOB3vH1++Bl9vnsGyB8RjK2qcbjlUTjYSLVWPr+Tmf7ZUlkfFqJe+dFVnD7zzB9hFrL
-	rpXw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:to:from:subject:message-id:date:user-agent
-	:mime-version:content-transfer-encoding;
-	bh=PVUQagRN6vOoEt5mMLkobh6CRizt/EUgvrIYTN9lDFU=;
-	b=IcRGohIM9AAIZxdAZNrtN+zVnyTQZuhjsC9JNjrX0njDwKR3Zheeb30aILzZsmAzJK
-	LLjL+BQr16ygvnAeyxbzK7XGbK7FIY5CQGqdvce+r/8cARXf5SlX054yrY1/YpKqB3Mp
-	0mKlznQzezUrlE9eAlK6Bn7Evg8ZSXJNGVgcP33KJlqRLDutUgCiF3dk+KuXYjE3xRgk
-	ZjYo5JQAqRg0mLcpuxAFzIHK3nRIh/RVaBmVWO7omZBWbP+Bp871QvC/DfQl9n/aqApN
-	WdAz3No59BKFxg9R/OBXN826Yt/6yWnb4xJ3Fi6aPx+nZ2n0bFblZNZ+moHS4teNb7eR
-	CIsQ==
-X-Gm-Message-State: AE9vXwPfvpgLuKGWEl5S7U3vZ3kf51PY95p23QtqQyI0MSLw+Q374isYx/9Oi0UZtwdvGw==
-X-Received: by 10.107.174.14 with SMTP id x14mr1388308ioe.134.1472850029676;
-	Fri, 02 Sep 2016 14:00:29 -0700 (PDT)
-Received: from [192.168.0.10]
-	(CPEbc4dfb2691f3-CMbc4dfb2691f0.cpe.net.cable.rogers.com.
-	[99.250.193.223]) by smtp.googlemail.com with ESMTPSA id
-	j63sm3216558itj.19.2016.09.02.14.00.28 for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 02 Sep 2016 14:00:28 -0700 (PDT)
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-From: nick <xerofoify@gmail.com>
-Message-ID: <52148e60-3e1c-5c7e-96c3-56b124c2fd64@gmail.com>
-Date: Fri, 2 Sep 2016 17:00:28 -0400
+Received: from mail.analogue-micro.com (mail.analogue-micro.com
+	[217.144.149.242])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2D730E00AAF
+	for <yocto@yoctoproject.org>; Sat,  3 Sep 2016 01:05:00 -0700 (PDT)
+Received: by mail.analogue-micro.com (Postfix, from userid 999)
+	id 1C08668A01A; Sat,  3 Sep 2016 09:04:59 +0100 (BST)
+Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
+	by mail.analogue-micro.com (Postfix) with ESMTP id 2A2C768A019;
+	Sat,  3 Sep 2016 09:04:57 +0100 (BST)
+Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
+	by zeus.mlbassoc.com (Postfix) with ESMTP id 78D6F67403A6;
+	Sat,  3 Sep 2016 10:04:57 +0200 (CEST)
+From: Gary Thomas <gary@mlbassoc.com>
+To: "Maxin B. John" <maxin.john@intel.com>
+References: <94135907-910a-eea9-263d-89e9ef21bf56@mlbassoc.com>
+	<20160829114913.GB5724@mbabyjoh-desk.ger.corp.intel.com>
+	<90b87072-3f5d-a439-9bf2-8f216655f386@mlbassoc.com>
+	<20160831101853.GB27076@mbabyjoh-desk.ger.corp.intel.com>
+Message-ID: <3f8ee068-04d2-5319-282f-d2a966c00948@mlbassoc.com>
+Date: Sat, 3 Sep 2016 10:04:57 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
 	Thunderbird/45.2.0
 MIME-Version: 1.0
-Subject: Interested in Helping Out
+In-Reply-To: <20160831101853.GB27076@mbabyjoh-desk.ger.corp.intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: X display touch calibration
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,12 +45,92 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 02 Sep 2016 21:00:31 -0000
-Content-Type: text/plain; charset=utf-8
+X-List-Received-Date: Sat, 03 Sep 2016 08:05:04 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Greetings All,
-I am interested in helping out here. In addition I do have some experience with the project
-so just giving me a heads up on where to start or what is the current focus would be great.
-Nick
+On 2016-08-31 12:18, Maxin B. John wrote:
+> Hi,
+>
+> On Mon, Aug 29, 2016 at 05:52:31PM +0200, Gary Thomas wrote:
+>> On 2016-08-29 13:49, Maxin B. John wrote:
+>>> Hi Gary,
+>>>
+>>> On Mon, Aug 29, 2016 at 11:09:25AM +0200, Gary Thomas wrote:
+>>>> How is the touchscreen calibration supposed to work now (after
+>>>> the recent changes dropping pointercal, tslib, etc)?  I can
+>>>> see when I launch X that the screen calibration program runs,
+>>>> but I think only briefly as the main [matchbox] screen immediately
+>>>> comes up and without calibration, my pointer (touchscreen) is pretty
+>>>> useless...
+>>>
+>>> Could you share some more details about the device that you are using?
+>>
+>> I'm using an i.MX6Q SabreLite (Boundary Devices) with a 7" LCD that has
+>> a TSC-2004 resistive touch screen.
+>>
+>>>
+>>> Most likely, the layer which supports your device, already provides a
+>>> default "/etc/pointercal.xinput" file. Removing that file and restarting
+>>> the device should bring back the screen calibration program during boot.
+>>
+>> I removed that file and still the same behavior.
+>
+> Looks a bit strange :(
+>
+>>>
+>>>> Ideas / pointers?
+>>>
+>>> Please update that .bbappend file or provide a "reasonable"(which works
+>>> with the latest xinput_calibrator) set of default values in the
+>>> pointercal.xinput file.
+>>
+>> Since the autocalibrate isn't working, can you give some guidance
+>> what this looks like?  The one created by the [erroneous] .bbappend
+>> looks like this:
+>>   xinput set-int-prop "EETI eGalax Touch Screen" "Evdev Axis Calibration" 42060 2062 -8 -783544 1 1549 65536
+>>   xinput set-int-prop "EETI eGalax Touch Screen" "Evdev Axes Swap" 8 0
+>>
+>> Note: the reason you didn't see my error when you built for imx28 was
+>> that this specific file is i.MX6 specific.
+>
+> Oh, ok.
+>
+>> Also, in the past I used a [manually crafted] file:
+>>     ================= /etc/X11/xorg.conf.d/11-touchscreen.conf
+>>     Section "InputClass"
+>>     Identifier "tsc2004"
+>>     MatchProduct "tsc2004"
+>>     MatchDevicePath "/dev/input/event*"
+>>     Driver "evdev"
+>>     Option "InvertX" "true"
+>>     Option  "Calibration"   "85 4045 166 3991"
+>>     EndSection
+>>
+>> The touchscreen still works if I include this but I was trying to play
+>> by the new rules and use the new configuration tools, so I removed it
+>> and /etc/pointercal*
+>
+> Good to hear that it works with the manually created file. To debug the problem
+> further, is it possible to share the output from the target ?
+> # xinput_calibrator --list
+
+This is what I get:
+   root@nitrogen6x:~# xinput_calibrator --list
+   Device "tsc2004" id=7
+
+This video shows what my system looks like when I boot:
+   http://www.mlbassoc.com/misc/bad.mp4
+
+You can see that it comes up and runs the calibration tool but
+then immediately switches to the matchbox desktop.  Note that
+I currently do not have an /etc/pointercal.xinput file
+
+n.b. sorry for the slow reply - I was away on a short holiday :-)
+
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
