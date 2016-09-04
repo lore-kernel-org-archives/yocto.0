@@ -1,6 +1,6 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9EAEFE00CD4; Sat,  3 Sep 2016 01:05:04 -0700 (PDT)
+	id B186AE00DAB; Sun,  4 Sep 2016 15:18:24 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,32 +8,30 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
 	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.analogue-micro.com (mail.analogue-micro.com
-	[217.144.149.242])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2D730E00AAF
-	for <yocto@yoctoproject.org>; Sat,  3 Sep 2016 01:05:00 -0700 (PDT)
-Received: by mail.analogue-micro.com (Postfix, from userid 999)
-	id 1C08668A01A; Sat,  3 Sep 2016 09:04:59 +0100 (BST)
-Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
-	by mail.analogue-micro.com (Postfix) with ESMTP id 2A2C768A019;
-	Sat,  3 Sep 2016 09:04:57 +0100 (BST)
-Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
-	by zeus.mlbassoc.com (Postfix) with ESMTP id 78D6F67403A6;
-	Sat,  3 Sep 2016 10:04:57 +0200 (CEST)
-From: Gary Thomas <gary@mlbassoc.com>
-To: "Maxin B. John" <maxin.john@intel.com>
-References: <94135907-910a-eea9-263d-89e9ef21bf56@mlbassoc.com>
-	<20160829114913.GB5724@mbabyjoh-desk.ger.corp.intel.com>
-	<90b87072-3f5d-a439-9bf2-8f216655f386@mlbassoc.com>
-	<20160831101853.GB27076@mbabyjoh-desk.ger.corp.intel.com>
-Message-ID: <3f8ee068-04d2-5319-282f-d2a966c00948@mlbassoc.com>
-Date: Sat, 3 Sep 2016 10:04:57 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.2.0
-MIME-Version: 1.0
-In-Reply-To: <20160831101853.GB27076@mbabyjoh-desk.ger.corp.intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: X display touch calibration
+Received: from dan.rpsys.net (5751f4a1.skybroadband.com [87.81.244.161])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9E892E00CE9
+	for <yocto@yoctoproject.org>; Sun,  4 Sep 2016 15:18:22 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by dan.rpsys.net (8.14.4/8.14.4/Debian-4.1ubuntu1) with ESMTP id
+	u84MIKXd030730; Sun, 4 Sep 2016 23:18:20 +0100
+Received: from dan.rpsys.net ([127.0.0.1])
+	by localhost (dan.rpsys.net [127.0.0.1]) (amavisd-new, port 10024)
+	with LMTP id rAR7ZLQIIcYr; Sun,  4 Sep 2016 23:18:20 +0100 (BST)
+Received: from hex ([192.168.3.34]) (authenticated bits=0)
+	by dan.rpsys.net (8.14.4/8.14.4/Debian-4.1ubuntu1) with ESMTP id
+	u84MIJCp030727
+	(version=TLSv1/SSLv3 cipher=AES128-GCM-SHA256 bits=128 verify=NOT);
+	Sun, 4 Sep 2016 23:18:20 +0100
+Message-ID: <1473027499.20226.7.camel@linuxfoundation.org>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: "Daniel." <danielhilst@gmail.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Date: Sun, 04 Sep 2016 23:18:19 +0100
+In-Reply-To: <CAF3SDA7xnKy6nGNqzzOcp+nwERrT522OdZVUnaFqyjhR9y3_ng@mail.gmail.com>
+References: <CAF3SDA7xnKy6nGNqzzOcp+nwERrT522OdZVUnaFqyjhR9y3_ng@mail.gmail.com>
+X-Mailer: Evolution 3.18.5.2-0ubuntu3 
+Mime-Version: 1.0
+Subject: Re: libSegFault.so crashing on Daisy
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,92 +43,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 03 Sep 2016 08:05:04 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sun, 04 Sep 2016 22:18:24 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-On 2016-08-31 12:18, Maxin B. John wrote:
-> Hi,
->
-> On Mon, Aug 29, 2016 at 05:52:31PM +0200, Gary Thomas wrote:
->> On 2016-08-29 13:49, Maxin B. John wrote:
->>> Hi Gary,
->>>
->>> On Mon, Aug 29, 2016 at 11:09:25AM +0200, Gary Thomas wrote:
->>>> How is the touchscreen calibration supposed to work now (after
->>>> the recent changes dropping pointercal, tslib, etc)?  I can
->>>> see when I launch X that the screen calibration program runs,
->>>> but I think only briefly as the main [matchbox] screen immediately
->>>> comes up and without calibration, my pointer (touchscreen) is pretty
->>>> useless...
->>>
->>> Could you share some more details about the device that you are using?
->>
->> I'm using an i.MX6Q SabreLite (Boundary Devices) with a 7" LCD that has
->> a TSC-2004 resistive touch screen.
->>
->>>
->>> Most likely, the layer which supports your device, already provides a
->>> default "/etc/pointercal.xinput" file. Removing that file and restarting
->>> the device should bring back the screen calibration program during boot.
->>
->> I removed that file and still the same behavior.
->
-> Looks a bit strange :(
->
->>>
->>>> Ideas / pointers?
->>>
->>> Please update that .bbappend file or provide a "reasonable"(which works
->>> with the latest xinput_calibrator) set of default values in the
->>> pointercal.xinput file.
->>
->> Since the autocalibrate isn't working, can you give some guidance
->> what this looks like?  The one created by the [erroneous] .bbappend
->> looks like this:
->>   xinput set-int-prop "EETI eGalax Touch Screen" "Evdev Axis Calibration" 42060 2062 -8 -783544 1 1549 65536
->>   xinput set-int-prop "EETI eGalax Touch Screen" "Evdev Axes Swap" 8 0
->>
->> Note: the reason you didn't see my error when you built for imx28 was
->> that this specific file is i.MX6 specific.
->
-> Oh, ok.
->
->> Also, in the past I used a [manually crafted] file:
->>     ================= /etc/X11/xorg.conf.d/11-touchscreen.conf
->>     Section "InputClass"
->>     Identifier "tsc2004"
->>     MatchProduct "tsc2004"
->>     MatchDevicePath "/dev/input/event*"
->>     Driver "evdev"
->>     Option "InvertX" "true"
->>     Option  "Calibration"   "85 4045 166 3991"
->>     EndSection
->>
->> The touchscreen still works if I include this but I was trying to play
->> by the new rules and use the new configuration tools, so I removed it
->> and /etc/pointercal*
->
-> Good to hear that it works with the manually created file. To debug the problem
-> further, is it possible to share the output from the target ?
-> # xinput_calibrator --list
+On Fri, 2016-09-02 at 16:36 -0300, Daniel. wrote:
+> Hi everybody,
+> 
+> I was trying to use libSegFault.so to capture stacktraces but the
+> libSegFault it self is crashing? Can someone try to reproduce this?
+> 
+> 1) Install libc6-dbg. This will give you access to libSegFault.so at
+> /lib/.debug/libSegFault.so
+> 2) Set LD_PRELOAD: export LD_PRELOAD=/lib/.debug/libSegFault.so
+> 3) Running any executable results in a crash for me :/
 
-This is what I get:
-   root@nitrogen6x:~# xinput_calibrator --list
-   Device "tsc2004" id=7
+I suspect you want a /lib/libSegFault.so rather than the file in a
+.debug directory since the .debug version is just the debug symbols.
+Try the libsegfault package itself?
 
-This video shows what my system looks like when I boot:
-   http://www.mlbassoc.com/misc/bad.mp4
+Cheers,
 
-You can see that it comes up and runs the calibration tool but
-then immediately switches to the matchbox desktop.  Note that
-I currently do not have an /etc/pointercal.xinput file
-
-n.b. sorry for the slow reply - I was away on a short holiday :-)
-
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+Richard
 
