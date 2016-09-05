@@ -1,63 +1,74 @@
-Return-Path: <eystein@mender.io>
+Return-Path: <xerofoify@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 238DFE00EDF; Mon,  5 Sep 2016 12:39:51 -0700 (PDT)
+	id 054B5E00F1C; Mon,  5 Sep 2016 13:50:26 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.220.45 listed in list.dnswl.org]
+X-Spam-Status: No, score=-0.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_LOW,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (xerofoify[at]gmail.com)
+	*  2.4 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.214.48 listed in dnsbl.sorbs.net]
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.214.48 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pa0-f45.google.com (mail-pa0-f45.google.com
-	[209.85.220.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EB0A4E00ECA
-	for <yocto@yoctoproject.org>; Mon,  5 Sep 2016 12:39:47 -0700 (PDT)
-Received: by mail-pa0-f45.google.com with SMTP id hb8so63607638pac.2
-	for <yocto@yoctoproject.org>; Mon, 05 Sep 2016 12:39:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=mender-io.20150623.gappssmtp.com; s=20150623;
-	h=to:from:subject:message-id:date:user-agent:mime-version
-	:content-transfer-encoding;
-	bh=Nq41iSZFqYUUvoCoEm9q1va4dh+dhyXvo1d59AZnWJM=;
-	b=UELIF/QCZ90fXSHcws75jMlk9Th6rvZpQV1V4IetEjgBV5t0UcCESrnJXyiZY02Djv
-	SKFBaHr5/mKmEmoGmPhaQRktYTz0l5C8moHXC+L5yN35THb0r91cfDoNRk7ltUFVdwAR
-	3AGiPNkagvnjJkY7kZHdtO9ZbKPdDQ5BD6hXhRiMMO5RTECCbsHVJk1c6mrrzCTRrtJc
-	fiE1rho4dyDyONKtAsBLKRbE8Gj57hAMkY10KFTgrwv7YeUiYP7OaNtR5oDOQP3loAoD
-	RtJ5P/Or4TBsiPicquxpPMFy+qs/NoQFdWLIgXjWMMGafe64MvrGO6qNZAicTAy463lo
-	WS2A==
+Received: from mail-it0-f48.google.com (mail-it0-f48.google.com
+	[209.85.214.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1CDF6E00F18
+	for <yocto@yoctoproject.org>; Mon,  5 Sep 2016 13:50:24 -0700 (PDT)
+Received: by mail-it0-f48.google.com with SMTP id c198so162566089ith.1
+	for <yocto@yoctoproject.org>; Mon, 05 Sep 2016 13:50:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=subject:to:references:cc:from:message-id:date:user-agent
+	:mime-version:in-reply-to:content-transfer-encoding;
+	bh=Zx4cnCivA7cHKxD45QoXgfGl8vmz14Rb8xeUW8AJQJI=;
+	b=bnliKIRfuI67wcbW9/BltX/DigIWrAV+XTzD5f1PogTM2E2XtM8qakQeLyUADDkjeC
+	udw3IGw1ufpkxpAL4Zh/YUOjaRiG9o8l77lwOiwK0nTp6VHUrqpPRSm6bsfKc2ztEtEy
+	CQ0sjjeAHN8Iwl0RzRctGKNPURFERis5u1pJuyg0ogfE2eDUhNTUPfpWa1VQr+aq5eU0
+	sLrSETdRlN5P2DonMoGpbTT4sQNp4jp65i5Z+jAQdyASMGx8U1TagjWjj9gjLeFPELZj
+	YWVVk1UMQPx30tHmoEfAvbcD+xipHENLOftWTZo7WPyivkm18C8IB2xOgzlxyH9MYULq
+	K/Bg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:to:from:subject:message-id:date:user-agent
-	:mime-version:content-transfer-encoding;
-	bh=Nq41iSZFqYUUvoCoEm9q1va4dh+dhyXvo1d59AZnWJM=;
-	b=kSusOIa8qjWVVWA/cA7CzN0I7rBjxPRDanavyEyFfds1iPcKbXtb/NhaLSY2rIEybe
-	gXQGiaf+9i50rwnC+OaoAHNVJ/KZ874K/CQfLt950/yhKVZr2F+WqNjE5GSl1uV7G17V
-	kUGw57TiK5eV5iWYZeExeLr0S4+FSBT2pYAx24v2HK6JaIxTouAh2uQtOEBXHccdkd8Z
-	knGcoVq7hwrvK+DZaEgE+0xCXav+1zkAtToZDsUr4emXWOVI2zAcSHOcqm1HpjuNj8nu
-	qpjKXh6M93LnlQBuG9vVSlrCQ7uAABFNPN/N7dkkisRh5/cJXPwuLyDns60JC6XGUoXO
-	GqrQ==
-X-Gm-Message-State: AE9vXwMORDt6D56HzlXsbqAzf//Pp2BF8APZj0GOfqcAgwvANRfBbO3YFmD60J9LVY1S7g==
-X-Received: by 10.66.250.196 with SMTP id ze4mr66685940pac.86.1473104386563;
-	Mon, 05 Sep 2016 12:39:46 -0700 (PDT)
-Received: from [192.168.1.8] ([192.77.237.64])
-	by smtp.gmail.com with ESMTPSA id
-	yd9sm6523056pab.43.2016.09.05.12.39.45 for <yocto@yoctoproject.org>
+	h=x-gm-message-state:subject:to:references:cc:from:message-id:date
+	:user-agent:mime-version:in-reply-to:content-transfer-encoding;
+	bh=Zx4cnCivA7cHKxD45QoXgfGl8vmz14Rb8xeUW8AJQJI=;
+	b=azuN+c7S+0g8SLMt4lPTtyxqc8mJc5CfR79uREJmb06C37pFlEpvE0J5CUpnyeLibW
+	AKV8WiWIOol+5LbQSJ+2rVYYQU1UrDcmzxxqvrAnzoraHn85jxSOU4l5umI3yP2bu9r5
+	osG/2V+l4P3y07huRVLM6+6rwDh3aIG5n7TSLkoGGgADjuCwai887FZFPdFJLYcQe5fq
+	KOIm65SxhJ3opZXXHmex23gd2qJvDvtD5uJ/thfeT4FGjqaUXJe6QAVcAQ9uepJZ04uK
+	LvUEysJzrcAYf4cNlQBsIXGeR8i/1Op3yyP38rnsbiJy5gJZHb4j38TNTHdT0zjuLW7o
+	UDrw==
+X-Gm-Message-State: AE9vXwNNSQPc8/A0dIPVk00R0jyasyIe9kRqm/v2NQf0M4n5BpXoGWu0FMQxqjdFXg3N7w==
+X-Received: by 10.107.201.81 with SMTP id z78mr1311023iof.143.1473108623912;
+	Mon, 05 Sep 2016 13:50:23 -0700 (PDT)
+Received: from [192.168.0.10]
+	(CPEbc4dfb2691f3-CMbc4dfb2691f0.cpe.net.cable.rogers.com.
+	[99.250.193.223]) by smtp.googlemail.com with ESMTPSA id
+	z125sm9251512itc.0.2016.09.05.13.50.22
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Mon, 05 Sep 2016 12:39:45 -0700 (PDT)
-To: yocto@yoctoproject.org
-From: =?UTF-8?Q?Eystein_M=c3=a5l=c3=b8y_Stenberg?= <eystein@mender.io>
-Message-ID: <c3e2d09b-7a92-6d06-afa9-00cd8b7ed61d@mender.io>
-Date: Mon, 5 Sep 2016 12:39:45 -0700
+	Mon, 05 Sep 2016 13:50:23 -0700 (PDT)
+To: "Daniel." <danielhilst@gmail.com>
+References: <52148e60-3e1c-5c7e-96c3-56b124c2fd64@gmail.com>
+	<CAF3SDA4dyTKjjNaNZqFUCRrb=_Nc8uZCnRLM+TBdMTu4E6y1Cg@mail.gmail.com>
+From: nick <xerofoify@gmail.com>
+Message-ID: <330cb3c9-8548-d0a0-4317-4a31a55c67ca@gmail.com>
+Date: Mon, 5 Sep 2016 16:50:22 -0400
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
 	Thunderbird/45.2.0
 MIME-Version: 1.0
-Subject: Yocto Project SDK Quickstart Guide
+In-Reply-To: <CAF3SDA4dyTKjjNaNZqFUCRrb=_Nc8uZCnRLM+TBdMTu4E6y1Cg@mail.gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Interested in Helping Out
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,26 +80,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 05 Sep 2016 19:39:51 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
+X-List-Received-Date: Mon, 05 Sep 2016 20:50:26 -0000
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 7bit
 
-Hi,
 
-The Yocto Project Software Development Kit (SDK) can save us a lot of 
-time when developing embedded applications.
 
-To make it easier to approach we have published a guide for using the 
-SDK with simple example applications. It should take about 30 minutes to 
-follow and give a basic understanding of the SDK's use-cases.
-
-You can find the SDK quickstart here: 
-https://mender.io/resources/yocto-sdk-quickstart
-
-Please let me know if have comments or questions.
-
--- 
-
-Eystein Stenberg
-Mender.io
+On 2016-09-05 08:49 AM, Daniel. wrote:
+> https://bugzilla.yoctoproject.org/buglist.cgi?query_format=specific&order=relevance+desc&bug_status=__open__&product=&content=
+> :)
+>
+Thanks Daniel, 
+I had some ideas for the naming issues currently being discussed as related to open embedded and the
+Yocto projects. If people are interested in my input I would be glad to share it.
+Nick
+ 
+> 2016-09-02 18:00 GMT-03:00 nick <xerofoify@gmail.com>:
+>> Greetings All,
+>> I am interested in helping out here. In addition I do have some experience with the project
+>> so just giving me a heads up on where to start or what is the current focus would be great.
+>> Nick
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+> 
+> 
+> 
 
