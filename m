@@ -1,15 +1,15 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DA1E7E00D5A; Tue,  6 Sep 2016 10:22:25 -0700 (PDT)
+	id 0C136E00F83; Tue,  6 Sep 2016 10:28:38 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_LOW,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [209.85.220.68 listed in list.dnswl.org]
+	*      [209.85.220.65 listed in list.dnswl.org]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
 	provider *      (raj.khem[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
@@ -19,53 +19,54 @@ X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  2.4 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.220.68 listed in dnsbl.sorbs.net]
-Received: from mail-pa0-f68.google.com (mail-pa0-f68.google.com
-	[209.85.220.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BD3FBE00D44
-	for <yocto@yoctoproject.org>; Tue,  6 Sep 2016 10:22:22 -0700 (PDT)
-Received: by mail-pa0-f68.google.com with SMTP id gi6so1481430pac.1
-	for <yocto@yoctoproject.org>; Tue, 06 Sep 2016 10:22:22 -0700 (PDT)
+Received: from mail-pa0-f65.google.com (mail-pa0-f65.google.com
+	[209.85.220.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DCC9BE00D5A
+	for <yocto@yoctoproject.org>; Tue,  6 Sep 2016 10:28:36 -0700 (PDT)
+Received: by mail-pa0-f65.google.com with SMTP id pp5so4756295pac.2
+	for <yocto@yoctoproject.org>; Tue, 06 Sep 2016 10:28:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=subject:mime-version:from:in-reply-to:date:cc:message-id:references
-	:to; bh=2RrgklpqifFfXvzfivXxhzVsqQ5U84TgipmroASk2Og=;
-	b=UuMctTq6NgnWSBnRFkH1634HsDJr8c7dHA/wugmXp1DZSNzQdfVnuu3hrUnpErmDkw
-	E4F97alsa6VfFcQPK0DGgdUdQni+WU2A31Zoc1ULcR7++OluKy1XlsrYv8XO0Lxgfjp2
-	X7j4gb88TlJvjnyLJP8IrC4hPNXxCGaWE6ND7+TSnkWKy+HByjOWvlEFMeuSR0ixj2sw
-	nwpDhAbViwl6BdmbGMBqBBni++N0Egm9qrS+7bL/uPpH7FH3Zm8B0Cjwz8C0WU+K+l2z
-	yKFSMsRIr7oILrDiXRh1cjXSDl0Ur+Cq6Ea1n0yIVbRKX3+idhGKomQ2gwFkMYMzjX7P
-	QTOg==
+	:to; bh=tP42qCdTqbdlGEuy0HJKKJjXS9238Kx1PDVpL/qBHwA=;
+	b=1Ei1AvtlpRDlMHu9h4mCXYP6ClzNujLnO2NSXCT5yedhF+zOUsbRuzf7y0lNaskKLX
+	peY5NbvljzMU5Vmd8dEH70i1ugptIIiBtconJSZzfFXua0+o20c8RhGMxGgsCys2aAJP
+	SRiYHCbRGiIx1qFbK47QXr76mCLaavbX8f5E5R2li4gGMDvrBd3Gk3BBjJfq00AjR/iK
+	8V6t0tdLBGCkZR9zydRMsNMLb+3RiFnnn5C2+ZQb1vYeeAtcqK9sB1hTw5GZoXxnVpoK
+	I1JZVtomaFgOcp1yJY1nWRfamSuOTgzUU3ON9O8jvNFs6zM5L3CY+HmoZwN8fcGUyWQJ
+	PTBg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:subject:mime-version:from:in-reply-to:date:cc
 	:message-id:references:to;
-	bh=2RrgklpqifFfXvzfivXxhzVsqQ5U84TgipmroASk2Og=;
-	b=Vf4m3E/PfBeAUpANa5uOzyb7/W0SHGblssdDibuiLpd3u9UejvCn9QMAoXCJA+8wcG
-	d2PMlvRmK1xPPFvqFNnkPBhO9oRHzBm3zyLd0pdPLjcbW22Ha1iu4/YQ/L3NqhmbrsT1
-	rzukTBVuQwFjgiS1awiohEJU3LSmwEQYtWw/jYmrdl84P/Oj7okOFpgLTUcm+cy1QIV5
-	XuFRKqVQKUlSTyf6TMRfV3p80ztE26C/swxJAkUPr0mqIITmuVl0DEMDfUz2v1V4QlrP
-	oMPZQ955MCsaxsh4f83Hv4EYaWTdOQEgLYks4jZ/mOmp6lS+0Eb8r2TiHLK7gmcKK9td
-	Dh1A==
-X-Gm-Message-State: AE9vXwN3HMW/cErolIBuXH9ABzNGwn1aPs1uZfrVSXnNiRtYcOPqZaxF6PXGX/Eu35eZcw==
-X-Received: by 10.66.17.164 with SMTP id p4mr71392543pad.136.1473182542298;
-	Tue, 06 Sep 2016 10:22:22 -0700 (PDT)
+	bh=tP42qCdTqbdlGEuy0HJKKJjXS9238Kx1PDVpL/qBHwA=;
+	b=mo6CjuW0lnfH4XnI3Ll+b187R1IV3VxbO1zBKUL/0ZRiA5q+C5rjFhtTjFtLP5+rcq
+	W80rfg3l2UALFmr+3eGmBhIcJMPDPIjC+YTwgKkgKX7sybFts9esnVd34rFzaOkJLIPm
+	vu17I02e6XemQoTd0JTHZBx2+keu5DBb3RQPNEFYjkeIhT1jldqIWkMoKufFW1N3r0SE
+	5gakWtyDLla7gH71ho4s07+hqfNe/Zizmi7F3MyrdINxbgsqlRKWhugRZqADVEg0h/9N
+	AmdHc5bGEBQEd4Ailq0y9NPmQkXbesK/DsWkTi/F6wN4TptT/GZ2wlSUwErkFzUNfM1k
+	Pi1g==
+X-Gm-Message-State: AE9vXwMnh2A7ytOzpbsrncvpFJ/vK9kZwpr3b8GgnF3xk+uWtt9e066c1k7RRPPpTp0OrQ==
+X-Received: by 10.66.83.72 with SMTP id o8mr41707660pay.54.1473182916106;
+	Tue, 06 Sep 2016 10:28:36 -0700 (PDT)
 Received: from ?IPv6:2601:647:4c00:3edf:99d4:c55f:fbd3:66fa?
 	([2601:647:4c00:3edf:99d4:c55f:fbd3:66fa])
-	by smtp.gmail.com with ESMTPSA id y6sm42651970pav.1.2016.09.06.10.22.20
+	by smtp.gmail.com with ESMTPSA id
+	b64sm42439550pfa.82.2016.09.06.10.28.35
 	(version=TLS1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Tue, 06 Sep 2016 10:22:21 -0700 (PDT)
+	Tue, 06 Sep 2016 10:28:35 -0700 (PDT)
 Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
 X-Pgp-Agent: GPGMail
 From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <CANsWYUXE=HupyZ6PFc9q=g=tyH_PEA=j0YTgXXwSL19kZ263LA@mail.gmail.com>
-Date: Tue, 6 Sep 2016 10:22:18 -0700
-Message-Id: <DA405E55-0FB4-43E8-B93F-2E83C71EBFB6@gmail.com>
-References: <CANsWYUXE=HupyZ6PFc9q=g=tyH_PEA=j0YTgXXwSL19kZ263LA@mail.gmail.com>
-To: Jaghathiswari Rankappagounder Natarajan <jaghu@google.com>
+In-Reply-To: <87wpiq8psf.fsf@posteo.net>
+Date: Tue, 6 Sep 2016 10:28:32 -0700
+Message-Id: <BA617E8C-BB3C-44ED-9FB2-C95211B22003@gmail.com>
+References: <871t0ya6co.fsf@posteo.net>
+	<CAF3SDA44veF1YgepzyN0L-ntKGTr9Z4NwwMFGb4yw9XW_RNokw@mail.gmail.com>
+	<87wpiq8psf.fsf@posteo.net>
+To: Pietro <pulsarpietro@posteo.net>
 X-Mailer: Apple Mail (2.3124)
 Cc: yocto@yoctoproject.org
-Subject: Re: Add some changes to a existing machine.conf file
+Subject: Re: arm-*-linux-gnueabi : unrecognized option -Wl, -soname
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -77,31 +78,103 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 Sep 2016 17:22:25 -0000
-X-Groupsio-MsgNum: 31804
+X-List-Received-Date: Tue, 06 Sep 2016 17:28:38 -0000
+X-Groupsio-MsgNum: 31805
 Content-Type: multipart/signed;
-	boundary="Apple-Mail=_78F98B02-F741-40B3-956B-D1D63EB56940";
+	boundary="Apple-Mail=_78E92FA8-CAC0-4F80-8699-4EDFB9FBCB86";
 	protocol="application/pgp-signature"; micalg=pgp-sha1
 
---Apple-Mail=_78F98B02-F741-40B3-956B-D1D63EB56940
+--Apple-Mail=_78E92FA8-CAC0-4F80-8699-4EDFB9FBCB86
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain;
-	charset=us-ascii
+	charset=utf-8
 
 
-> On Sep 6, 2016, at 9:08 AM, Jaghathiswari Rankappagounder Natarajan =
-<jaghu@google.com> wrote:
+> On Sep 5, 2016, at 6:00 AM, Pietro <pulsarpietro@posteo.net> wrote:
 >=20
-> Hi... what would the correct way to add some changes via my layer to a =
-machine.conf file(existing in another layer)? The qemuarm.conf already =
-exists in meta/conf/ .. I want to add some dependencies to machine type =
-qemuarm in my layer..(qemuarm.conf file under meta/conf only gets =
-included and the qemuarm.conf file under my-layer/conf does not get =
-included even though my layer has higher priority)
+> Well,
+>=20
+> I am cross-compiling the gRPC using the Yocto build system, I have
+> created a recipe for a new package which generates the gRPC
+> library(ies).
+>=20
+> The error comes from here *guess* :
+> ifeq ($(SYSTEM),Darwin)
+>     $(Q) $(LD) $(LDFLAGS) -L$(LIBDIR)/$(CONFIG) -install_name
+>     $(SHARED_PREFIX)gpr$(SHARED_VERSION).$(SHARED_EXT) -dynamiclib -o
+>     $(LIBDIR)/$(CONFIG)/libgpr$(SHARED_VERSION).$(SHARED_EXT)
+>     $(LIBGPR_OBJS) $(LDLIBS) $(ZLIB_MERGE_LIBS)
+>     else
+>        $(Q) $(LD) $(LDFLAGS) -L$(LIBDIR)/$(CONFIG) -shared
+>        -Wl,-soname,libgpr.so.1 -o
+>        $(LIBDIR)/$(CONFIG)/libgpr$(SHARED_VERSION).$(SHARED_EXT)
+>        $(LIBGPR_OBJS) $(LDLIBS) $(ZLIB_MERGE_LIBS)
+>                       $(Q) ln -sf
+>                       =
+$(SHARED_PREFIX)gpr$(SHARED_VERSION).$(SHARED_EXT)
+>                       $(LIBDIR)/$(CONFIG)/libgpr$(SHARED_VERSION).so.1
+>                        $(Q) ln -sf
+>                        =
+$(SHARED_PREFIX)gpr$(SHARED_VERSION).$(SHARED_EXT)
+>                        $(LIBDIR)/$(CONFIG)/libgpr$(SHARED_VERSION).so
+>                        endif
+>=20
+> What's puzzles me is that the same source code builds without problem =
+on
+> my machine (not cross compiled).
+>=20
+> It might be a question for gRPC developers though
 
-you should define your own machine config file which inherits qemuarm =
-and mentions additional changes as you need.
 
+that option -Wl,-soname,xxxx assumes LD =3D =E2=80=9Cgcc driver=E2=80=9D
+however when using OE, that may not be case LD variable may point to
+bare ld. So in your recipe you should take care of the assumption
+your makefile is making and set LD =3D CC
+
+>=20
+> "Daniel." <danielhilst@gmail.com> writes:
+>=20
+>> I *guess* that it should be -Wl,-soname=3Dlibgpr.so.1 intead of
+>> -Wl,-soname,libgpr.so.1. Now from where this flags are comming is a
+>> good question..
+>>=20
+>> 2016-09-05 9:17 GMT-03:00 Pietro <pulsarpietro@posteo.net>:
+>>>=20
+>>> Hi all,
+>>>=20
+>>> I want to cross compile the gRPC library for ARM and I am using the
+>>> Yocto build system.
+>>>=20
+>>> The build fails for the following error, which I am suspicious has
+>>> something to do with the compiler being used:
+>>>=20
+>>>=20
+>>> [LD]      Linking
+>>> =
+/export/arm/xxx/PD15.1/build/tmp-glibc/work/cortexa8t2hf-vfp-neon-phytec-l=
+inux-gnueabi/libgrpc/1.0.0-r0/git/libs/opt/libgpr.so.1.0.0-pre1
+>>>=20
+>>> arm-phytec-linux-gnueabi-ld
+>>> : unrecognized option '
+>>> -Wl,-soname,libgpr.so.1
+>>>=20
+>>>=20
+>>> arm-phytec-linux-gnueabi-ld
+>>> : use the --help option for usage information
+>>>=20
+>>>=20
+>>> --
+>>> _______________________________________________
+>>> yocto mailing list
+>>> yocto@yoctoproject.org
+>>> https://lists.yoctoproject.org/listinfo/yocto
+>>=20
+>>=20
+>>=20
+>> --
+>> "Do or do not. There is no try"
+>>  Yoda Master
+>=20
 > --
 > _______________________________________________
 > yocto mailing list
@@ -109,7 +182,7 @@ and mentions additional changes as you need.
 > https://lists.yoctoproject.org/listinfo/yocto
 
 
---Apple-Mail=_78F98B02-F741-40B3-956B-D1D63EB56940
+--Apple-Mail=_78E92FA8-CAC0-4F80-8699-4EDFB9FBCB86
 Content-Transfer-Encoding: 7bit
 Content-Disposition: attachment;
 	filename=signature.asc
@@ -120,9 +193,9 @@ Content-Description: Message signed with OpenPGP using GPGMail
 -----BEGIN PGP SIGNATURE-----
 Comment: GPGTools - https://gpgtools.org
 
-iEYEARECAAYFAlfO+08ACgkQuwUzVZGdMxTy6wCgg74g1pN9cNeJjSD6Pg2Oyaf5
-YkMAnjW+V489LaS9mZrN2y0aT4bH6Thc
-=eiTO
+iEYEARECAAYFAlfO/MUACgkQuwUzVZGdMxQ+YQCbBEOh4KzFNKtYGBVTIZnWZrzC
+mHEAmwSkBfeOse6SEJdVbo5uD8VxIHx9
+=fIiR
 -----END PGP SIGNATURE-----
 
---Apple-Mail=_78F98B02-F741-40B3-956B-D1D63EB56940--
+--Apple-Mail=_78E92FA8-CAC0-4F80-8699-4EDFB9FBCB86--
