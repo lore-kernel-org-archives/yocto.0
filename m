@@ -1,74 +1,44 @@
-Return-Path: <xerofoify@gmail.com>
+Return-Path: <Bruce.Ashfield@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 054B5E00F1C; Mon,  5 Sep 2016 13:50:26 -0700 (PDT)
+	id 33DB4E00CC0; Mon,  5 Sep 2016 19:07:56 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_LOW,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (xerofoify[at]gmail.com)
-	*  2.4 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.214.48 listed in dnsbl.sorbs.net]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.214.48 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.146.13 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-it0-f48.google.com (mail-it0-f48.google.com
-	[209.85.214.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1CDF6E00F18
-	for <yocto@yoctoproject.org>; Mon,  5 Sep 2016 13:50:24 -0700 (PDT)
-Received: by mail-it0-f48.google.com with SMTP id c198so162566089ith.1
-	for <yocto@yoctoproject.org>; Mon, 05 Sep 2016 13:50:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=subject:to:references:cc:from:message-id:date:user-agent
-	:mime-version:in-reply-to:content-transfer-encoding;
-	bh=Zx4cnCivA7cHKxD45QoXgfGl8vmz14Rb8xeUW8AJQJI=;
-	b=bnliKIRfuI67wcbW9/BltX/DigIWrAV+XTzD5f1PogTM2E2XtM8qakQeLyUADDkjeC
-	udw3IGw1ufpkxpAL4Zh/YUOjaRiG9o8l77lwOiwK0nTp6VHUrqpPRSm6bsfKc2ztEtEy
-	CQ0sjjeAHN8Iwl0RzRctGKNPURFERis5u1pJuyg0ogfE2eDUhNTUPfpWa1VQr+aq5eU0
-	sLrSETdRlN5P2DonMoGpbTT4sQNp4jp65i5Z+jAQdyASMGx8U1TagjWjj9gjLeFPELZj
-	YWVVk1UMQPx30tHmoEfAvbcD+xipHENLOftWTZo7WPyivkm18C8IB2xOgzlxyH9MYULq
-	K/Bg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:subject:to:references:cc:from:message-id:date
-	:user-agent:mime-version:in-reply-to:content-transfer-encoding;
-	bh=Zx4cnCivA7cHKxD45QoXgfGl8vmz14Rb8xeUW8AJQJI=;
-	b=azuN+c7S+0g8SLMt4lPTtyxqc8mJc5CfR79uREJmb06C37pFlEpvE0J5CUpnyeLibW
-	AKV8WiWIOol+5LbQSJ+2rVYYQU1UrDcmzxxqvrAnzoraHn85jxSOU4l5umI3yP2bu9r5
-	osG/2V+l4P3y07huRVLM6+6rwDh3aIG5n7TSLkoGGgADjuCwai887FZFPdFJLYcQe5fq
-	KOIm65SxhJ3opZXXHmex23gd2qJvDvtD5uJ/thfeT4FGjqaUXJe6QAVcAQ9uepJZ04uK
-	LvUEysJzrcAYf4cNlQBsIXGeR8i/1Op3yyP38rnsbiJy5gJZHb4j38TNTHdT0zjuLW7o
-	UDrw==
-X-Gm-Message-State: AE9vXwNNSQPc8/A0dIPVk00R0jyasyIe9kRqm/v2NQf0M4n5BpXoGWu0FMQxqjdFXg3N7w==
-X-Received: by 10.107.201.81 with SMTP id z78mr1311023iof.143.1473108623912;
-	Mon, 05 Sep 2016 13:50:23 -0700 (PDT)
-Received: from [192.168.0.10]
-	(CPEbc4dfb2691f3-CMbc4dfb2691f0.cpe.net.cable.rogers.com.
-	[99.250.193.223]) by smtp.googlemail.com with ESMTPSA id
-	z125sm9251512itc.0.2016.09.05.13.50.22
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Mon, 05 Sep 2016 13:50:23 -0700 (PDT)
-To: "Daniel." <danielhilst@gmail.com>
-References: <52148e60-3e1c-5c7e-96c3-56b124c2fd64@gmail.com>
-	<CAF3SDA4dyTKjjNaNZqFUCRrb=_Nc8uZCnRLM+TBdMTu4E6y1Cg@mail.gmail.com>
-From: nick <xerofoify@gmail.com>
-Message-ID: <330cb3c9-8548-d0a0-4317-4a31a55c67ca@gmail.com>
-Date: Mon, 5 Sep 2016 16:50:22 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.2.0
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 92A16E00CB4
+	for <yocto@yoctoproject.org>; Mon,  5 Sep 2016 19:07:54 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id u8627f6Q011074
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Mon, 5 Sep 2016 19:07:46 -0700 (PDT)
+Received: from server.local (147.11.117.90) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.40) with Microsoft SMTP Server id 14.3.248.2;
+	Mon, 5 Sep 2016 19:07:41 -0700
+To: Mircea Gliga <mircea.gliga@vitheia.com>, <yocto@yoctoproject.org>
+References: <a32fef25-dfed-2e61-1a38-e79063078062@vitheia.com>
+	<704c1142-0ba3-f5df-2801-c6d31ee19574@windriver.com>
+	<e59e7316-2027-85f0-26a4-c9bbabd504a9@vitheia.com>
+	<706ab63f-2747-a14f-1ce6-dab3c1accbfc@windriver.com>
+	<1b067ad8-be70-c4ff-1e85-96967cb578a8@vitheia.com>
+	<3876aba6-a0ec-b575-0b68-2d76193f1e42@windriver.com>
+	<83171542-fd07-a930-b61c-59b6fbcda184@windriver.com>
+	<bf568d3b-bfb2-6f98-2e83-0b14fb6583d0@vitheia.com>
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+Message-ID: <b527f705-608e-9225-d589-68de1583b5f3@windriver.com>
+Date: Mon, 5 Sep 2016 22:07:40 -0400
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:45.0)
+	Gecko/20100101 Thunderbird/45.2.0
 MIME-Version: 1.0
-In-Reply-To: <CAF3SDA4dyTKjjNaNZqFUCRrb=_Nc8uZCnRLM+TBdMTu4E6y1Cg@mail.gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Interested in Helping Out
+In-Reply-To: <bf568d3b-bfb2-6f98-2e83-0b14fb6583d0@vitheia.com>
+Subject: Re: custom linux kernel recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -80,32 +50,113 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 05 Sep 2016 20:50:26 -0000
-Content-Type: text/plain; charset=utf-8
+X-List-Received-Date: Tue, 06 Sep 2016 02:07:56 -0000
+Content-Type: text/plain; charset="windows-1252"; format=flowed
 Content-Transfer-Encoding: 7bit
 
-
-
-On 2016-09-05 08:49 AM, Daniel. wrote:
-> https://bugzilla.yoctoproject.org/buglist.cgi?query_format=specific&order=relevance+desc&bug_status=__open__&product=&content=
-> :)
+On 2016-09-05 6:06 AM, Mircea Gliga wrote:
+> Thanks Bruce for your help!
 >
-Thanks Daniel, 
-I had some ideas for the naming issues currently being discussed as related to open embedded and the
-Yocto projects. If people are interested in my input I would be glad to share it.
-Nick
- 
-> 2016-09-02 18:00 GMT-03:00 nick <xerofoify@gmail.com>:
->> Greetings All,
->> I am interested in helping out here. In addition I do have some experience with the project
->> so just giving me a heads up on where to start or what is the current focus would be great.
->> Nick
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
-> 
-> 
-> 
+> It works now, with the defconfig from 4.8.
+
+Great news!
+
+Bruce
+
+>
+> Have a nice day !
+> Mircea
+>
+> On 09/02/2016 06:26 PM, Bruce Ashfield wrote:
+>> On 2016-09-02 09:58 AM, Bruce Ashfield wrote:
+>>> On 2016-09-02 03:51 AM, Mircea Gliga wrote:
+>>>> Hi Bruce,
+>>>>
+>>>> Do you have any new input in regards with qemuarm booting with kernel
+>>>> 4.7.2 LTS ?
+>>>> Have you managed to test this ?
+>>>> I wander if this can be reproduce elsewhere and what's the solution
+>>>> for it.
+>>>
+>>> I was tied up with the introduction of the 4.8 kernel, but I *think*
+>>> the coast is clear on that front (for the moment).
+>>>
+>>> I can try and spin up a korg based 4.7.x build and see how it goes.
+>>
+>> The issue is in your defconfig.
+>>
+>> qemuarm login: root
+>> root@qemuarm:~# uname -a
+>> Linux qemuarm 4.7.2-yocto-standard #1 PREEMPT Fri Sep 2 11:15:30 EDT
+>> 2016 armv5tejl GNU/Linux
+>> root@qemuarm:~#
+>>
+>> I created a similar recipe:
+>>
+>> --------
+>> inherit kernel
+>>
+>> require recipes-kernel/linux/linux-yocto.inc
+>>
+>> FILESEXTRAPATHS_prepend := "${THISDIR}/linux-stable:"
+>>
+>> KBRANCH ?= "linux-4.7.y"
+>>
+>> SRCREV ?= "84fae3f89282ce86a0c0da30e35fe66dbcadda6f"
+>>
+>> KBRANCH ?= "linux-4.7.y"
+>> SRCREV_machine_qemuarm ?= "84fae3f89282ce86a0c0da30e35fe66dbcadda6f"
+>>
+>> KERNEL_DEVICETREE_qemuarm = "versatile-pb.dtb"
+>>
+>> KBRANCH_qemuarm ?= "linux-4.7.y"
+>>
+>> SRC_URI =
+>> "git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git;bareclone=1;branch=${KBRANCH}"
+>>
+>>
+>> SRC_URI += "file://defconfig"
+>>
+>> LINUX_VERSION = "4.7.2"
+>> PV = "${LINUX_VERSION}+git${SRCPV}"
+>>
+>> COMPATIBLE_MACHINE = "qemuarm"
+>>
+>> ----------
+>>
+>> And I took the "defconfig" from the -stable tree (the
+>> defconfig_versatile).
+>>
+>> When I built and booted that, I had no output.
+>>
+>> So I grabbed the .config from my 4.8 build, copied it into my layer
+>> as the 'defconfig', rebuilt .. and was able to log in with the prompt
+>> you see above.
+>>
+>> So the 4.7 defconfig is missing something, I didn't iterate to find
+>> it.
+>>
+>> Cheers,
+>>
+>> Bruce
+>>
+>>
+>>>
+>>> Bruce
+>>>
+>>>>
+>>>> Thanks
+>>>> Mircea
+>>>>
+>>>> On 08/30/2016 06:09 PM, Bruce Ashfield wrote:
+>>>>>
+>>>>> I'm finishing up 4.8 today, but without doing a boot test, I can't say
+>>>>> for sure. I'll see if I can cycle in some korg 4.7.x testing
+>>>>> tomorrow to
+>>>>> see if I can get a clean boot.
+>>>>
+>>>
+>>
+>
+
 
