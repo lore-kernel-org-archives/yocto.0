@@ -1,58 +1,70 @@
-Return-Path: <ronaldo@brc2.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6A90DE00D4A; Tue,  6 Sep 2016 10:11:07 -0700 (PDT)
+	id 409A7E00D4A; Tue,  6 Sep 2016 10:12:27 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, RCVD_IN_DNSWL_LOW,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.218.47 listed in list.dnswl.org]
-	*  2.4 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.218.47 listed in dnsbl.sorbs.net]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.65 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-oi0-f47.google.com (mail-oi0-f47.google.com
-	[209.85.218.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0CD64E00D33
-	for <yocto@yoctoproject.org>; Tue,  6 Sep 2016 10:11:04 -0700 (PDT)
-Received: by mail-oi0-f47.google.com with SMTP id s131so45097180oie.2
-	for <yocto@yoctoproject.org>; Tue, 06 Sep 2016 10:11:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=brc2-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=Y0oDT6Vf2fjhM+i8mT1vxW3tVp/cKDw6FCpvfVAkB+g=;
-	b=zOAUyUztYkrEA1xts77aGyiemNqd4b7PQQOwzdVfnWffLdD6VDVWzyuGOdpZa9EDLc
-	0J5E3ZFgcLSek0o1K/sMyVqsutZssDYdrTpOL+RJ5T1D2JNsjjsKPCnf/jbJxXHgTwwQ
-	NE3IdHdKi9q5D0MhMlmyfQzJrWDBl8tL2Yv5i3bYC93x3SfhhioQbq7OQkg61O45vCgc
-	ySYIb6G4cnVzc4ArTyZGg9kD5OWiD6Iwf/ME0YA8KTSj5t9kQ9modCJZFCNR//JMhBS1
-	U7UJuGck8IcaEjsxiwT7RlilL/vsvnKT+4qB7S8qYqVzi3PVZ/U7ti5DeCsdr6XRehhQ
-	+KSw==
+Received: from mail-pa0-f65.google.com (mail-pa0-f65.google.com
+	[209.85.220.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E1731E00D33
+	for <yocto@yoctoproject.org>; Tue,  6 Sep 2016 10:12:25 -0700 (PDT)
+Received: by mail-pa0-f65.google.com with SMTP id h5so853136pao.0
+	for <yocto@yoctoproject.org>; Tue, 06 Sep 2016 10:12:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=subject:mime-version:from:in-reply-to:date:cc:message-id:references
+	:to; bh=FjaYTF2TY2/fPDlL/tPhmOb/0uTBPGiBbnWPCGDkeus=;
+	b=Q47L8edNWvZr+reYypMyiKj219VMglS61oLpOd9FEKnincCU2f23RbC6HWsBW0k7Tx
+	9RK2MjfRLt4kdkbFhgsP7WxBgwQ/rLx66mRQCaDtKn+NeATih2cX6q18bl6GoMMM8xGG
+	iWJv/cPQlC1yT+hdsH2tT7NckE7enAKv5rWXYbTvQbfUBFHXUnLVkE3mQMREh1T7Iq1i
+	JJ9T8+xFx+DYtE5I7ybgrCveKx0f4sTlRkaPbJbY0EXF3I64lj+T7Fc/osKnZSSoMJag
+	umTAbNURd5wr66lJMjtzw+tf/VfeyTNQUpE3KAFtBQpg5pccSxJxzvw52awrUX0QNeEF
+	gUQw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=Y0oDT6Vf2fjhM+i8mT1vxW3tVp/cKDw6FCpvfVAkB+g=;
-	b=IPp60y5YOCuHevmDx9wtnrsob59aZ1BqTn5cRbW4Xbg3WSEorN0KuzDMJumht/PA0w
-	/g/QpJloAYUWQ+oVBn54f2TevN0tNcTvc13sG9TneFL3eE5ckTRMqqBXBBDBlg4cOcRV
-	YIPGBBeSLFfZ6ZmNsQvDf8Th3t5ppC6X76FlJQWrFosRyYKqWK8/LxphH2ocu1DPIwhf
-	raQcxmpbGk/EpSPoa7BgtUWTeJChm5RUz/O1Z6nodck83ZpCwnt0X9/s8484mtNxADLn
-	gKpOXurEH63SnVfvVTc7MyaPzp7J/j2n6DK+iJ9R1jlEpG4DNDMZfUuMsO0DuKpGSBP1
-	N4UQ==
-X-Gm-Message-State: AE9vXwMfwOKk8Q8QeOcrTtnF0sz8YzoqLWCoNBjZ8ecZAyPBMZ06MZdwbhsuBJllHsxpgaOWht72gVH46I3WDg==
-X-Received: by 10.157.38.202 with SMTP id i10mr3993350otd.79.1473181863621;
-	Tue, 06 Sep 2016 10:11:03 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.202.253.65 with HTTP; Tue, 6 Sep 2016 10:11:02 -0700 (PDT)
-From: Ronald Oakes <ronaldo@brc2.com>
-Date: Tue, 6 Sep 2016 11:11:02 -0600
-Message-ID: <CALRMKQr9upirFMexg8nkFEXY8DN9uA7LaCngNGQpk4EroHN3tw@mail.gmail.com>
-To: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Building a Kernel Module that uses /lib/modules/<version>/build/Makefile
+	h=x-gm-message-state:subject:mime-version:from:in-reply-to:date:cc
+	:message-id:references:to;
+	bh=FjaYTF2TY2/fPDlL/tPhmOb/0uTBPGiBbnWPCGDkeus=;
+	b=VtBQJdE7sAp8Bpn8aTL9BlCZLxYTMpTcpgrWeL1qiLED9L83QsBdWEzSmOVZPOCknn
+	V/Wz17kSPX0g1cb6TU4FMMuopeC3Hyev7871hE4viuDq5tfXWkD/7UnLghXYK9PWDbmv
+	Q9tB0gLUyv3TVX+UevhHipW6T68G4vP9rOsgjt2tQNV/7ZnlRNsg69aYx2/jbrz/4HnY
+	cYwHg8FGOWsaHT+bu53u7dSAKwM60LzJkwcBoGGWfSmu8GFDVvFaF8pqdR7BtejlZzf1
+	UZv3hQCWKO8rQxABfYdtCKjJVRsG7Ket8I3YoRaT7mVebv11r+x5Z4OkUuibfuYuJ+pS
+	tbNw==
+X-Gm-Message-State: AE9vXwMCWQefEsAh7qfJUmHS5kw2Q0tpDCL7ryUKkUVBqJjZ0D+iYKHad/Kaqek7UoRRqQ==
+X-Received: by 10.66.216.130 with SMTP id oq2mr74564078pac.89.1473181944662;
+	Tue, 06 Sep 2016 10:12:24 -0700 (PDT)
+Received: from ?IPv6:2601:647:4c00:3edf:99d4:c55f:fbd3:66fa?
+	([2601:647:4c00:3edf:99d4:c55f:fbd3:66fa])
+	by smtp.gmail.com with ESMTPSA id
+	p4sm42390037pfp.60.2016.09.06.10.12.22
+	(version=TLS1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Tue, 06 Sep 2016 10:12:22 -0700 (PDT)
+Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
+X-Pgp-Agent: GPGMail
+From: Khem Raj <raj.khem@gmail.com>
+In-Reply-To: <5637116E3E13BE46B0D936BF364783C1F694D2@MAIA.sede.videotec.com>
+Date: Tue, 6 Sep 2016 10:12:20 -0700
+Message-Id: <0A389ECF-0B5C-4312-BB42-97EF21996E4B@gmail.com>
+References: <5637116E3E13BE46B0D936BF364783C1F694D2@MAIA.sede.videotec.com>
+To: Ottavio Campana <o.campana@videotec.com>
+X-Mailer: Apple Mail (2.3124)
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Building kernel with non standard source structure
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -64,38 +76,93 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 Sep 2016 17:11:07 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Tue, 06 Sep 2016 17:12:27 -0000
+X-Groupsio-MsgNum: 31803
+Content-Type: multipart/signed;
+	boundary="Apple-Mail=_3FCC3B87-4CDC-467F-924F-0040DE4E9770";
+	protocol="application/pgp-signature"; micalg=pgp-sha1
 
-I'm trying to integrate a 3rd party kernel module for some hardware
-that we are using as part of our project.  Following the directions
-that work on the native Linux installation for building it doesn't
-quite work for a number of reasons, so I'm now modifying the generated
-Makefile.
+--Apple-Mail=_3FCC3B87-4CDC-467F-924F-0040DE4E9770
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=us-ascii
 
-However, it appears that the bulk of the work is done by a standard
-makefile located in /lib/modules/$(KERNEL_VERSION)/build (which was
-actually hard-coded by the configure before I started modifying the
-makefile).  But, I'm not able to locate this in the files that Yocto
-has produced when building the embedded kernel and the other kernel
-modules.
 
-I've not booted the target and looked there - but I'd rather not build
-this on the target.  Ideally, I'd like to have everything built on my
-development system (not that we won't have the horsepower to build on
-the target, but I'd rather not be putting the compilers there, nor
-have to be having a module build as part of bring up each time - we
-won't have any non-volitate memory so everything will have to be
-loaded each time we boot.
+> On Aug 29, 2016, at 11:41 PM, Ottavio Campana <o.campana@videotec.com> =
+wrote:
+>=20
+> Hello,
+>=20
+> I'm trying to port the kernel compilation of a bsp to yocto. My =
+problem is that this kernel has a bunch of drivers that are out of the =
+kernel sources tree and all the includes are hard coded with an uncommon =
+structure.
+>=20
+> To give you the idea, the source is organized in this way
+>=20
+> kernel/linux/ # Where the kernel sources are (there are pointers to =
+the other directories)
+> gpldrivers/ # Some drievrs with GPL license (there are pointers to the =
+other directories)proprietarydrivers/ # Some drivers wit non free =
+license (there are pointers to the other directories)
+>=20
+> Kernel and drivers are in git repository.
+>=20
+> I started to develop a recipe inhering from kernel, I am having doubts =
+about setting the S and B variables
+>=20
+> S =3D "${WORKDIR}/git"
+> B =3D "${WORKDIR}/git/kernel/linux"
+>=20
+> By using this settings, if I run bitbake -c devshell I enter into a =
+kernel-source directory that has the directories kernel, gpldrivers and =
+proprietarydrivers correctly copied.
+>=20
+> My problem is that at this point if I try to compile the kernel I get =
+the error that in kernel-source there is no way to a make oldconfig.
+>=20
+> How can I have the recipe entering into kernel/linux before copying =
+defconfig and starting compilation?
 
-Similarly, building the binary and just including that may be
-difficult as our build system is running a much older kernel than our
-target (3.10 versus 4.4), so we'd still be in a cross-target situation
-and the 3rd party supplier assumes that one is building for the system
-one is running on and provides limited support otherwise in their
-documentation (I've not contacted them for assistance yet)
 
-Any suggestions/recomendations?
+One option perhaps is that you write a recipe for your kernel proper and =
+then write several recipes for your external modules.
+this is a well known model in yocto world, you might even find examples =
+in metadata on external kernel module recipes. This however would mean =
+that you will have to do some cleanups in your kernel source =
+organization which seems quite monolithic and entangled
+as you describe it.
 
-Ron Oakes
+Other option would be to write your own do_compile and do_install steps =
+and make the assumptions of source code locations
+w.r.t. ${S}
 
+
+>=20
+> Thank you
+>=20
+> Ottavio
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
+
+--Apple-Mail=_3FCC3B87-4CDC-467F-924F-0040DE4E9770
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+	filename=signature.asc
+Content-Type: application/pgp-signature;
+	name=signature.asc
+Content-Description: Message signed with OpenPGP using GPGMail
+
+-----BEGIN PGP SIGNATURE-----
+Comment: GPGTools - https://gpgtools.org
+
+iEYEARECAAYFAlfO+PgACgkQuwUzVZGdMxRfTgCfZ2tjXZPXgprYd3Thc8Ias3UA
+xYQAnj20EYSGncO+IdU3oP+T2AsrxwfT
+=50r0
+-----END PGP SIGNATURE-----
+
+--Apple-Mail=_3FCC3B87-4CDC-467F-924F-0040DE4E9770--
