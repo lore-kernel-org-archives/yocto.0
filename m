@@ -1,34 +1,37 @@
-Return-Path: <gley-yocto@m.gmane.org>
+Return-Path: <f_l_k@t-online.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 58167E00F5A; Tue,  6 Sep 2016 03:49:41 -0700 (PDT)
+	id 3EE4AE00F68; Tue,  6 Sep 2016 05:09:19 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [194.25.134.20 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from blaine.gmane.org (unknown [195.159.176.226])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0047EE00CFD
-	for <yocto@yoctoproject.org>; Tue,  6 Sep 2016 03:49:36 -0700 (PDT)
-Received: from list by blaine.gmane.org with local (Exim 4.84_2)
-	(envelope-from <gley-yocto@m.gmane.org>) id 1bhDwa-00018r-Ao
-	for yocto@yoctoproject.org; Tue, 06 Sep 2016 12:49:32 +0200
-X-Injected-Via-Gmane: http://gmane.org/
-To: yocto@yoctoproject.org
-From: Pietro <pulsarpietro@posteo.net>
-Date: Tue, 06 Sep 2016 10:49:44 +0000
-Message-ID: <8760q98fqv.fsf@posteo.net>
-References: <871t0ya6co.fsf@posteo.net>
-	<CAF3SDA44veF1YgepzyN0L-ntKGTr9Z4NwwMFGb4yw9XW_RNokw@mail.gmail.com>
-	<87fupd8ht2.fsf@posteo.net>
-	<CAD4b0_JXoL7ErkBb9rXh5XWUE4uvqXyDU16yeB=xAMhcq4F0Mg@mail.gmail.com>
-Mime-Version: 1.0
-X-Complaints-To: usenet@blaine.gmane.org
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/24.4 (gnu/linux)
-Cancel-Lock: sha1:Cm7Cw+oS/+5mOPFLsIvzA1v2SQE=
-Subject: Re: arm-*-linux-gnueabi : unrecognized option -Wl, -soname
+Received: from mailout08.t-online.de (mailout08.t-online.de [194.25.134.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D1C48E00D07
+	for <yocto@yoctoproject.org>; Tue,  6 Sep 2016 05:09:16 -0700 (PDT)
+Received: from fwd10.aul.t-online.de (fwd10.aul.t-online.de [172.20.26.152])
+	by mailout08.t-online.de (Postfix) with SMTP id C7F9C41DAE1C
+	for <yocto@yoctoproject.org>; Tue,  6 Sep 2016 14:09:12 +0200 (CEST)
+Received: from [192.168.2.113]
+	(Tz4+EMZJohgWnvN+6hXv+TeMUI0lR7513ETlfdP-x7mgNDY1Qr-X1dZ5vobSAx5w9v@[84.188.177.208])
+	by fwd10.t-online.de with (TLSv1:ECDHE-RSA-AES256-SHA encrypted)
+	esmtp id 1bhFBc-0CivJY0; Tue, 6 Sep 2016 14:09:08 +0200
+Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
+From: Markus Volk <f_l_k@t-online.de>
+In-Reply-To: <4CC0AD41-6C9A-4A21-9854-C201DC44D582@t-online.de>
+Date: Tue, 6 Sep 2016 14:09:08 +0200
+Message-Id: <B1C45373-B0A8-41E3-AEF2-09D5DB3A8FB7@t-online.de>
+References: <4CC0AD41-6C9A-4A21-9854-C201DC44D582@t-online.de>
+To: Yocto discussion list <yocto@yoctoproject.org>
+X-Mailer: Apple Mail (2.3124)
+X-ID: Tz4+EMZJohgWnvN+6hXv+TeMUI0lR7513ETlfdP-x7mgNDY1Qr-X1dZ5vobSAx5w9v
+X-TOI-MSGID: 665e57b6-b3a7-4615-9261-eceb98b97cb1
+Subject: Re: infinite build loop
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,91 +43,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 Sep 2016 10:49:41 -0000
+X-List-Received-Date: Tue, 06 Sep 2016 12:09:19 -0000
 Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
 
-Maciej Borzęcki
-<maciej.borzecki@rndity.com> writes:
+it already has been fixed =E2=80=A6 thank you
 
-> On Tue, Sep 6, 2016 at 12:05 PM, Pietro <pulsarpietro@posteo.net> wrote:
->>
->>
->>
->> "Daniel." <danielhilst@gmail.com> writes:
->>
->>> I *guess* that it should be -Wl,-soname=libgpr.so.1 intead of
->>> -Wl,-soname,libgpr.so.1. Now from where this flags are comming is a
->>> good question..
->>
->> No that is correct, I double checked.
->>
->> I would love to build the library "by hand" - namely without using
->> bitbake -  from the build directory, the build log tells :
->>
->> + bbnote make -j 4
->>  CC=arm-phytec-linux-gnueabi-gcc  -march=armv7-a -marm -mthumb-interwork
->>  -mfloat-abi=hard -mfpu=neon -mtune=cortex-a8
->>  --sysroot=/export/arm/pietro/PD15.1/build/tmp-glibc/sysroots/phycore-am335x-1
->>  LDFLAGS=""
->>  -I/export/arm/pietro/PD15.1/build/tmp-glibc/work/cortexa8t2hf-vfp-neon-phytec-linux-gnueabi/libgrpc/1.0.0-r0/git/include
->>  BUILDDIR=/export/arm/pietro/PD15.1/build/tmp-glibc/work/cortexa8t2hf-vfp-neon-phytec-linux-gnueabi/libgrpc/1.0.0-r0/git
->>  + echo NOTE: make -j 4 CC=arm-phytec-linux-gnueabi-gcc  -march=armv7-a
->>  -marm -mthumb-interwork -mfloat-abi=hard -mfpu=neon -mtune=cortex-a8
->>  --sysroot=/export/arm/pietro/PD15.1/build/tmp-glibc/sysroots/phycore-am335x-1
->>  LDFLAGS=""
->>  -I/export/arm/pietro/PD15.1/build/tmp-glibc/work/cortexa8t2hf-vfp-neon-phytec-linux-gnueabi/libgrpc/1.0.0-r0/git/include
->>  BUILDDIR=/export/arm/pietro/PD15.1/build/tmp-glibc/work/cortexa8t2hf-vfp-neon-phytec-linux-gnueabi/libgrpc/1.0.0-r0/git
->>
->> Of course jumping in the build directory and issuing the command does
->> not work as the make tool does not recognize options such as -marm and
->> companions as they are gcc's options.
->>
->> I have manually added the cross compiler folder to my local PATH but and
->> I have quoted all the gcc's options under the CC variable:
->>
->>
->> CC='arm-phytec-linux-gnueabi-gcc  -march=armv7-a -marm -mthumb-interwork
->> ...'
->>
->> Is there a standard/better way to do it ? That results in an error as
->> some header files could not be found
->>
->> [C]       Compiling src/core/lib/profiling/basic_timers.c
->> In file included from
->> /export/arm/pietro/PD15.1/build/tmp-glibc/sysroots/phycore-am335x-1/usr/include/features.h:389:0,
->> from include/grpc/impl/codegen/port_platform.h:193,
->> from
->> include/grpc/support/port_platform.h:37,
->> from
->> src/core/lib/profiling/basic_timers.c:34:
->> /export/arm/pietro/PD15.1/build/tmp-glibc/sysroots/phycore-am335x-1/usr/include/gnu/stubs.h:7:29:
->> fatal error:
->> gnu/stubs-soft.h: No
->> such file or
->> directory
->> # include <gnu/stubs-soft.h>
->>
->> I am not getting this error when building using bitbake therefore I am
->> pretty sure I am missing some include paths or .. what ?
->>
->
-> Maybe the Makefile they have is just not up to the task of cross
-> compilation. I see that gRPC comes with a cmake setup as well, why not
-> use that? You'll need `inherit cmake` in your recipe and try with
-> default build scripts first.
->
-> Cheers,
-> -- 
-> Maciej Borzecki
-> RnDity
-
-I did try but I am getting errors, cmake results in error when
-compiling from my machine as well and in fact the gRPC webpage tells
-CMake is in experimental  state:
-
-https://github.com/grpc/grpc/blob/master/INSTALL.md
-
-
+> Am 06.09.2016 um 10:52 schrieb Markus Volk <f_l_k@t-online.de>:
+>=20
+> With latest changes in the master tree i=C2=B4m getting infinite build =
+loops at task do_package for recipes that  contain a line like this in =
+do_install:
+>=20
+> echo "whatever"              > ${D}/whatever=20
+>=20
+> can anyone confirm this ?
+>=20
+> regards
+> Markus
+> --=20
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
 
