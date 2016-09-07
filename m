@@ -1,70 +1,39 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <Bruce.Ashfield@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9AADCE00CC1; Wed,  7 Sep 2016 09:49:32 -0700 (PDT)
+	id 928B2E01115; Wed,  7 Sep 2016 16:13:56 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.68 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.146.13 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pa0-f68.google.com (mail-pa0-f68.google.com
-	[209.85.220.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 216E3E00A4B
-	for <yocto@yoctoproject.org>; Wed,  7 Sep 2016 09:49:29 -0700 (PDT)
-Received: by mail-pa0-f68.google.com with SMTP id gi6so1142549pac.1
-	for <yocto@yoctoproject.org>; Wed, 07 Sep 2016 09:49:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=subject:mime-version:from:in-reply-to:date:cc:message-id:references
-	:to; bh=PVEKfO9phGLt9FYnbe/HAH4UL+P379YZYg0VwFKpYu4=;
-	b=aaIHLjGofcWl5/bLrRzj2+ZodULUolMvAL63hr8Z2rulUxiEuoaBBnHTleXXmikkuQ
-	pNYj4eErDb0EhZMSE433SGpwKYZXBwp3sIrX1j9eROzMB9U7uboGPng+XxeJL8io6qEO
-	0jK3wy7pBYVztNreiCAg6ohNoC+dRCXYFWRLZ/CFrFv51Czz27am1rs5SToOfLDuH4ml
-	s6OhMd/PmYu15dk6D9rYAOwLel2j5fy82GUTtLQDdhllhnegTYS2WsDlqqvAqKYGQBsf
-	rkL2dF8sMeuoio3rp9HKwe4DmjCU0dgveb4sRRxgiRO7x76kf6Xf1ee2IcCYaXno0VSE
-	p9iQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:subject:mime-version:from:in-reply-to:date:cc
-	:message-id:references:to;
-	bh=PVEKfO9phGLt9FYnbe/HAH4UL+P379YZYg0VwFKpYu4=;
-	b=YdVrx+eM5v7Pj/by6IH0LCDbuWYojSHvd89yiO0AJBazVSq5W5tzYhRvvFxIUq2bce
-	W8MobI3Dy25h97GzBDoIkJ+mCBjY2bWApqH3RuzqDdVPEofBOXW+joItJ4PLy6ouQtVB
-	osKkhxgQo/Lej35r3/BcRf17xZFOuBxsYvMMYDUyBVYl7LizPap35U76xV4MijZcdkaW
-	XcDgdxG2uubWWC9cWqRNaMZ0MAqtvQ+ritnDyiAQt3ZI+Lrtsg7N37QCxI/UkSIwnxmX
-	i4a349tfsKZyae+7222KnG2lC9de3/v2dXt9kc6smsd/gllhQCrPood1gg+52KsDS7zF
-	bkpA==
-X-Gm-Message-State: AE9vXwPOsiDe5VmxC7UjemlIKhHfKjIICz/uu5Fv5smQ957nXuZyDy0m9tF7n6RIBdABAQ==
-X-Received: by 10.66.139.110 with SMTP id qx14mr85166238pab.101.1473266969163; 
-	Wed, 07 Sep 2016 09:49:29 -0700 (PDT)
-Received: from ?IPv6:2601:647:4c00:3edf:9989:9d3a:10f0:29e7?
-	([2601:647:4c00:3edf:9989:9d3a:10f0:29e7])
-	by smtp.gmail.com with ESMTPSA id
-	f84sm50105484pfd.87.2016.09.07.09.49.27
-	(version=TLS1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Wed, 07 Sep 2016 09:49:27 -0700 (PDT)
-Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
-X-Pgp-Agent: GPGMail
-From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <1473260047-22303-1-git-send-email-zeenix@gmail.com>
-Date: Wed, 7 Sep 2016 09:49:30 -0700
-Message-Id: <A964B2AD-AE58-4B6E-A606-1EF2FB113BB9@gmail.com>
-References: <1473260047-22303-1-git-send-email-zeenix@gmail.com>
-To: Zeeshan Ali <zeenix@gmail.com>
-X-Mailer: Apple Mail (2.3124)
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH] Update Geoclue2
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 52FC4E0110E
+	for <yocto@yoctoproject.org>; Wed,  7 Sep 2016 16:13:52 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id u87NDnFv005105
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Wed, 7 Sep 2016 16:13:49 -0700 (PDT)
+Received: from server.local (147.11.117.230) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.40) with Microsoft SMTP Server id 14.3.248.2;
+	Wed, 7 Sep 2016 16:13:48 -0700
+To: "Clark, Mark A" <Mark.Clark2@nov.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+References: <BY1PR15MB0038C23C62995E16B5C66E2EBCF90@BY1PR15MB0038.namprd15.prod.outlook.com>
+	<7697eebf-7ade-cc6f-1ec7-cfb47dc34b32@windriver.com>
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+Message-ID: <6668b4da-0fcb-a22a-f1ae-6603b33265c7@windriver.com>
+Date: Wed, 7 Sep 2016 19:13:47 -0400
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:45.0)
+	Gecko/20100101 Thunderbird/45.2.0
+MIME-Version: 1.0
+In-Reply-To: <7697eebf-7ade-cc6f-1ec7-cfb47dc34b32@windriver.com>
+Subject: Re: Update on issue witn do_package_qa
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,223 +45,227 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 07 Sep 2016 16:49:32 -0000
-X-Groupsio-MsgNum: 31824
-Content-Type: multipart/signed;
-	boundary="Apple-Mail=_04673459-71AE-4481-B256-CCC523F13311";
-	protocol="application/pgp-signature"; micalg=pgp-sha1
+X-List-Received-Date: Wed, 07 Sep 2016 23:13:56 -0000
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 8bit
 
---Apple-Mail=_04673459-71AE-4481-B256-CCC523F13311
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=us-ascii
+On 2016-09-06 8:42 PM, Bruce Ashfield wrote:
+> On 2016-09-06 2:17 PM, Clark, Mark A wrote:
+>> Did a complete clone / checkout of krogoth this morning.  Same
+>> results.   Can’t get a core-image-rt build of the latest poky.
+>
+> I'll fire off a build for this on Wednesday. As I mentioned, I've
+> fixed this in other branches, and this is very likely the same
+> thing.
+>
+> I've just been chasing 4.8 issues and haven't had a chance to look
+> at it yet.
+
+I ran a build on this, and it was what I thought it was .. but the
+fix turned out to be a bit more than I expected.
+
+See my three top commits on: 
+http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=zedd/krogoth
+
+The first two commits, I'll send for merging into krogoth, the top
+one labelled "scratch", is to illustrate what you need to add to have
+a valid BSP definition for genericx86 on preempt-rt.
+
+The summary of the fix is:
+
+  - CONFIG_64BIT wasn't being turned off
+  - It wasn't being turned off since there wasn't a BSP definition
+    for genericx86 on preempt-rt, hence common-pc wasn't being
+    used as the base. My 3rd patch defines it.
+  - You weren't warned of this auto generated BSP, due to some variables
+    not being expanded in the kconf check routine (which is my 2nd patch)
+  - The meta data is slightly out of date on krogoth for 4.4, so I bumped
+    the SRCREV for it (my first patch).
+
+If you try the branch that I pointed to above, it should work. I'll wait
+to hear about the QA check passing for you before sending those updates
+for merging.
+
+Cheers,
+
+Bruce
+
+>
+> Bruce
+>
+>>
+>>
+>>
+>> yocto@yocto-HP-Pavilion-dv7-Notebook-PC:~/poky/build$ bitbake
+>> core-image-rt
+>>
+>> Parsing recipes: 100%
+>> |####################################################################################|
+>>
+>> Time: 00:00:23
+>>
+>> Parsing of 871 .bb files complete (0 cached, 871 parsed). 1301 targets,
+>> 46 skipped, 0 masked, 0 errors.
+>>
+>> NOTE: Resolving any missing task queue dependencies
+>>
+>>
+>>
+>> Build Configuration:
+>>
+>> BB_VERSION        = "1.30.0"
+>>
+>> BUILD_SYS         = "x86_64-linux"
+>>
+>> NATIVELSBSTRING   = "Ubuntu-14.04"
+>>
+>> TARGET_SYS        = "i686-poky-linux"
+>>
+>> MACHINE           = "genericx86"
+>>
+>> DISTRO            = "poky"
+>>
+>> DISTRO_VERSION    = "2.1.1"
+>>
+>> TUNE_FEATURES     = "m32 core2"
+>>
+>> TARGET_FPU        = ""
+>>
+>> meta
+>>
+>> meta-poky
+>>
+>> meta-yocto-bsp    = "krogoth:aad7166704021d82ad3a5ec468552f8f10360d41"
+>>
+>>
+>>
+>> NOTE: Fetching uninative binary shim from
+>> http://downloads.yoctoproject.org/releases/uninative/1.0.1/x86_64-nativesdk-libc.tar.bz2;sha256sum=acf1e44a0ac2e855e81da6426197d36358bf7b4e88e552ef933128498c8910f8
+>>
+>>
+>> NOTE: Preparing RunQueue
+>>
+>> NOTE: Executing SetScene Tasks
+>>
+>> NOTE: Executing RunQueue Tasks
+>>
+>> WARNING: quilt-native-0.64-r0 do_fetch: Failed to fetch URL
+>> http://download.savannah.gnu.org/releases/quilt/quilt-0.64.tar.gz,
+>> attempting MIRRORS if available
+>>
+>> WARNING: attr-native-2.4.47-r0 do_fetch: Failed to fetch URL
+>> http://download.savannah.gnu.org/releases/attr/attr-2.4.47.src.tar.gz,
+>> attempting MIRRORS if available
+>>
+>> WARNING: acl-native-2.2.52-r0 do_fetch: Failed to fetch URL
+>> http://download.savannah.gnu.org/releases/acl/acl-2.2.52.src.tar.gz,
+>> attempting MIRRORS if available
+>>
+>> ERROR: linux-yocto-rt-4.4.11+gitAUTOINC+6ec93aaa70_bf2fbe7f2c-r0
+>> do_package_qa: QA Issue: Architecture did not match (3 to 62) on
+>> work/genericx86-poky-linux/linux-yocto-rt/4.4.11+gitAUTOINC+6ec93aaa70_bf2fbe7f2c-r0/packages-split/kernel-vmlinux/boot/vmlinux-4.4.11-rt3-yocto-preempt-rt
+>>
+>> [arch]
+>>
+>> ERROR: linux-yocto-rt-4.4.11+gitAUTOINC+6ec93aaa70_bf2fbe7f2c-r0
+>> do_package_qa: QA run found fatal errors. Please consider fixing them.
+>>
+>> ERROR: linux-yocto-rt-4.4.11+gitAUTOINC+6ec93aaa70_bf2fbe7f2c-r0
+>> do_package_qa: Function failed: do_package_qa
+>>
+>> ERROR: Logfile of failure stored in:
+>> /home/yocto/poky/build/tmp/work/genericx86-poky-linux/linux-yocto-rt/4.4.11+gitAUTOINC+6ec93aaa70_bf2fbe7f2c-r0/temp/log.do_package_qa.2446
+>>
+>>
+>> ERROR: Task 61
+>> (/home/yocto/poky/meta/recipes-kernel/linux/linux-yocto-rt_4.4.bb,
+>> do_package_qa) failed with exit code '1'
+>>
+>> NOTE: Tasks Summary: Attempted 1552 tasks of which 14 didn't need to be
+>> rerun and 1 failed.
+>>
+>> Waiting for 0 running tasks to finish:
+>>
+>>
+>>
+>> Summary: 1 task failed:
+>>
+>>   /home/yocto/poky/meta/recipes-kernel/linux/linux-yocto-rt_4.4.bb,
+>> do_package_qa
+>>
+>> Summary: There were 3 WARNING messages shown.
+>>
+>> Summary: There were 3 ERROR messages shown, returning a non-zero exit
+>> code.
+>>
+>> yocto@yocto-HP-Pavilion-dv7-Notebook-PC:~/poky/build$
+>>
+>>
+>>
+>> ===============
+>>
+>>
+>>
+>> Changes from local.conf
+>>
+>>
+>>
+>> yocto@yocto-HP-Pavilion-dv7-Notebook-PC:~/poky/build/conf$ diff
+>> local.conf local.conf.org
+>>
+>> 32c32
+>>
+>> < MACHINE ?= "genericx86"
+>>
+>> ---
+>>
+>>> #MACHINE ?= "genericx86"
+>>
+>> 117c117
+>>
+>> < SDKMACHINE ?= "i686"
+>>
+>> ---
+>>
+>>> #SDKMACHINE ?= "i686"
+>>
+>> 239,240d238
+>>
+>> < PREFERRED_PROVIDER_virtual/kernel = "linux-yocto-rt"
+>>
+>> < COMPATIBLE_MACHINE_genericx86 = "genericx86"
+>>
+>> yocto@yocto-HP-Pavilion-dv7-Notebook-PC:~/poky/build/conf$
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>> *Mark Clark*
+>>
+>> Embedded Software Engineer
+>>
+>> Embedded Software, Cedar Park, TX
+>>
+>> Description: Description: Description: Description: National Oilwell
+>> Varco Logo Color CMYK.jpg
+>>
+>>  Wellbore Technologies – Dynamic Drilling Solutions
+>>
+>> Global Software Engineering
+>>
+>> Office: (512) 340-5435
+>>
+>> Mobile: (512) 736-9396
+>>
+>> /“One Team – Infinite Solutions”/
+>>
+>>
+>>
+>>
+>>
+>
 
 
-> On Sep 7, 2016, at 7:54 AM, Zeeshan Ali <zeenix@gmail.com> wrote:
->=20
-> From: Zeeshan Ali <zeeshan.ali@pelagicore.com>
->=20
-> Also drop redundant and now unusable patch.
-
-Please send this patch to openembedded-devel mailing list.
-
-> ---
-> .../geoclue/files/soup-session-fix.patch           | 30 --------------
-> .../recipes-navigation/geoclue/geoclue_2.0.0.bb    | 33 =
----------------
-> .../recipes-navigation/geoclue/geoclue_2.4.4.bb    | 47 =
-++++++++++++++++++++++
-> 3 files changed, 47 insertions(+), 63 deletions(-)
-> delete mode 100644 =
-meta-oe/recipes-navigation/geoclue/files/soup-session-fix.patch
-> delete mode 100644 meta-oe/recipes-navigation/geoclue/geoclue_2.0.0.bb
-> create mode 100644 meta-oe/recipes-navigation/geoclue/geoclue_2.4.4.bb
->=20
-> diff --git =
-a/meta-oe/recipes-navigation/geoclue/files/soup-session-fix.patch =
-b/meta-oe/recipes-navigation/geoclue/files/soup-session-fix.patch
-> deleted file mode 100644
-> index 70fe3f5..0000000
-> --- a/meta-oe/recipes-navigation/geoclue/files/soup-session-fix.patch
-> +++ /dev/null
-> @@ -1,30 +0,0 @@
-> -Upstream-Status: Upstream-Status: Inappropriate [poky 9.0 has older =
-libsoup]
-> -
-> -Signed-off-by: Felipe F. Tonello <eu@felipetonello.com>
-> -
-> -diff --git a/src/gclue-ipclient.c b/src/gclue-ipclient.c
-> -index 09add30..1771d5c 100644
-> ---- a/src/gclue-ipclient.c
-> -+++ b/src/gclue-ipclient.c
-> -@@ -83,7 +83,7 @@ gclue_ipclient_init (GClueIpclient *ipclient)
-> - {
-> -         ipclient->priv =3D G_TYPE_INSTANCE_GET_PRIVATE ((ipclient), =
-GCLUE_TYPE_IPCLIENT, GClueIpclientPrivate);
-> -
-> --        ipclient->priv->soup_session =3D soup_session_new ();
-> -+        ipclient->priv->soup_session =3D soup_session_sync_new ();
-> - }
-> -
-> - /**
-> -diff --git a/src/geoip-server/geoip-update.c =
-b/src/geoip-server/geoip-update.c
-> -index 6cce7b2..ef672ba 100644
-> ---- a/src/geoip-server/geoip-update.c
-> -+++ b/src/geoip-server/geoip-update.c
-> -@@ -214,7 +214,7 @@ main (int argc, char **argv)
-> -                         path =3D GEOIP_DATABASE_PATH;
-> -         }
-> -
-> --        session =3D soup_session_new ();
-> -+        session =3D soup_session_sync_new ();
-> -
-> -         for (i =3D 0; i < G_N_ELEMENTS (db_info_map); i++) {
-> -                 SoupMessage *msg =3D NULL;
-> diff --git a/meta-oe/recipes-navigation/geoclue/geoclue_2.0.0.bb =
-b/meta-oe/recipes-navigation/geoclue/geoclue_2.0.0.bb
-> deleted file mode 100644
-> index 90e8533..0000000
-> --- a/meta-oe/recipes-navigation/geoclue/geoclue_2.0.0.bb
-> +++ /dev/null
-> @@ -1,33 +0,0 @@
-> -SUMMARY =3D "The Geolocation Service"
-> -DESCRIPTION =3D "Geoclue is a D-Bus service that provides location =
-information. \
-> -The primary goal of the Geoclue project is to make creating =
-location-aware applications \
-> -as simple as possible, while the secondary goal is to ensure that no =
-application \
-> -can access location information without explicit permission from =
-user."
-> -LICENSE =3D "GPLv2.0+"
-> -SECTION =3D "console/network"
-> -
-> -LIC_FILES_CHKSUM =3D =
-"file://COPYING;md5=3D8114b83a0435d8136b47bd70111ce5cd"
-> -
-> -DEPENDS =3D "glib-2.0 dbus dbus-glib json-glib libsoup-2.4 =
-intltool-native"
-> -
-> -inherit autotools pkgconfig gtk-doc
-> -
-> -SRC_URI =3D " \
-> -    =
-http://www.freedesktop.org/software/geoclue/releases/2.0/geoclue-${PV}.tar=
-.xz \
-> -    file://soup-session-fix.patch \
-> -"
-> -
-> -SRC_URI[md5sum] =3D "401ff99d530b177c62afacef0a33efd9"
-> -SRC_URI[sha256sum] =3D =
-"4a82f184e55a163d86e0ad69bbe1bba9960bb5094220fe1f01350bceda8c67a1"
-> -
-> -PACKAGECONFIG[geoip] =3D =
-"--enable-geoip-server,--disable-geoip-server,geoip"
-> -
-> -EXTRA_OECONF +=3D " \
-> -    --with-dbus-service-user=3Droot \
-> -    --with-dbus-sys-dir=3D${sysconfdir}/dbus-1/system.d \
-> -"
-> -
-> -FILES_${PN} +=3D " \
-> -    =
-${datadir}/dbus-1/system-services/org.freedesktop.GeoClue2.service \
-> -    ${datadir}/geoclue-2.0/geoclue-interface.xml \
-> -"
-> diff --git a/meta-oe/recipes-navigation/geoclue/geoclue_2.4.4.bb =
-b/meta-oe/recipes-navigation/geoclue/geoclue_2.4.4.bb
-> new file mode 100644
-> index 0000000..64f0546
-> --- /dev/null
-> +++ b/meta-oe/recipes-navigation/geoclue/geoclue_2.4.4.bb
-> @@ -0,0 +1,47 @@
-> +SUMMARY =3D "The Geolocation Service"
-> +DESCRIPTION =3D "Geoclue is a D-Bus service that provides location =
-information. \
-> +The primary goal of the Geoclue project is to make creating =
-location-aware applications \
-> +as simple as possible, while the secondary goal is to ensure that no =
-application \
-> +can access location information without explicit permission from =
-user."
-> +LICENSE =3D "GPLv2.0+"
-> +SECTION =3D "console/network"
-> +
-> +LIC_FILES_CHKSUM =3D =
-"file://COPYING;md5=3D8114b83a0435d8136b47bd70111ce5cd"
-> +
-> +DEPENDS =3D "glib-2.0 dbus json-glib libsoup-2.4 intltool-native"
-> +
-> +inherit autotools pkgconfig gtk-doc
-> +
-> +SRC_URI =3D " \
-> +	=
-http://www.freedesktop.org/software/geoclue/releases/2.4/geoclue-${PV}.tar=
-.xz \
-> +"
-> +
-> +SRC_URI[md5sum] =3D "d2a5b05f4bad032673fe23afbce27926"
-> +SRC_URI[sha256sum] =3D =
-"9c43fb9d0c12067ea64400500abb0640194947d4c2c55e38545afe5d9c5c315c"
-> +
-> +export BUILD_SYS
-> +export HOST_SYS
-> +export STAGING_INCDIR
-> +export STAGING_LIBDIR
-> +
-> +# Without this line, package is delcared a library and named =
-libgeoclue*
-> +AUTO_LIBNAME_PKGS =3D ""
-> +
-> +PACKAGECONFIG ??=3D "3g modem-gps cdma nmea lib"
-> +PACKAGECONFIG[3g] =3D =
-"--enable-3g-source,--disable-3g-source,modemmanager"
-> +PACKAGECONFIG[modem-gps] =3D =
-"--enable-modem-gps-source,--disable-modem-gps-source,modemmanager"
-> +PACKAGECONFIG[cdma] =3D =
-"--enable-cdma-source,--disable-cdma-source,modemmanager"
-> +PACKAGECONFIG[nmea] =3D =
-"--enable-nmea-source,--disable-nmea-source,avahi"
-> +PACKAGECONFIG[lib] =3D =
-"--enable-libgeoclue,--disable-libgeoclue,gobject-introspection"
-> +
-> +EXTRA_OECONF +=3D " \
-> +    --with-dbus-service-user=3Droot \
-> +    --with-dbus-sys-dir=3D${sysconfdir}/dbus-1/system.d \
-> +    --enable-demo-agent=3Dno \
-> +"
-> +
-> +FILES_${PN} +=3D " \
-> +    =
-${datadir}/dbus-1/system-services/org.freedesktop.GeoClue2.service \
-> +    ${datadir}/dbus-1/interfaces/org.freedesktop.GeoClue2.xml \
-> +    ${prefix}/libexec \
-> +"
-> --
-> 2.7.4
->=20
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
-
---Apple-Mail=_04673459-71AE-4481-B256-CCC523F13311
-Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment;
-	filename=signature.asc
-Content-Type: application/pgp-signature;
-	name=signature.asc
-Content-Description: Message signed with OpenPGP using GPGMail
-
------BEGIN PGP SIGNATURE-----
-Comment: GPGTools - https://gpgtools.org
-
-iEYEARECAAYFAlfQRR4ACgkQuwUzVZGdMxRkcgCdH9AluQC3566/nHmKV9PWwHvN
-d64AmwRwgRgh/zVE4evfhFN2oA+JJLjU
-=YaWo
------END PGP SIGNATURE-----
-
---Apple-Mail=_04673459-71AE-4481-B256-CCC523F13311--
