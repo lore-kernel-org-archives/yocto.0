@@ -1,74 +1,81 @@
-Return-Path: <xerofoify@gmail.com>
+Return-Path: <tmatsuzawa@uievolution.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6090AE01036; Tue,  6 Sep 2016 19:28:19 -0700 (PDT)
+	id 36A7AE00FFC; Wed,  7 Sep 2016 00:55:21 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (xerofoify[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.218.54 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [104.47.32.56 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-oi0-f54.google.com (mail-oi0-f54.google.com
-	[209.85.218.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B0325E00E51
-	for <yocto@yoctoproject.org>; Tue,  6 Sep 2016 19:28:18 -0700 (PDT)
-Received: by mail-oi0-f54.google.com with SMTP id y2so6745332oie.0
-	for <yocto@yoctoproject.org>; Tue, 06 Sep 2016 19:28:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=disposition-notification-to:return-receipt-to:user-agent
-	:in-reply-to:references:mime-version:content-transfer-encoding
-	:subject:from:date:to:cc:message-id;
-	bh=8M+pPJR9q/3HO5vGNE6ZpStcIEa2LEqseJxDs3Wl1L8=;
-	b=eUUjsgTMwAAKojc18SBFzcAs+CqLMIdSKO3J6UVyG47u1CKOPO4f17o6jeOWzQz0a+
-	6ucMLTLJdErpfkMbOEioLC2AIpnZvR+VQmuOrhDeHXASmlIsHp++8qzB+pG3taDumHn6
-	KNjuVjuM3iwHyJzAq59++dTii7Z+rPXAbXHU1h6880T3VFM7ODuLru3uUE0FEPhjJ3xq
-	TbyQZp65rkVgUOV7lC2LLAF382nw3rAFtlxXtRwzzrEZTO+xfakjU638ItS9c66Mhp9e
-	gZl8F7OXkjJAK8fPtHPNwnw1GebhxogE7sR2gMoaJPPMr73IfE2Sv3ds554WY8NSTg/2
-	h/MQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:disposition-notification-to:return-receipt-to
-	:user-agent:in-reply-to:references:mime-version
-	:content-transfer-encoding:subject:from:date:to:cc:message-id;
-	bh=8M+pPJR9q/3HO5vGNE6ZpStcIEa2LEqseJxDs3Wl1L8=;
-	b=ZJ+rYaQy1G8jnjW8/TaTblAbVuFR7NEUD+QiDKxKe26KwEuhGGT4FRR+I9pHQePGK4
-	qdJhUGht4u2AyF8y7Z8TpE76N0GxPBIl8JQnhaZ53ew0+zial6DlinvHVjfsoFJK3VMk
-	1+fFw3Ze0jpwSq/GCM31WTbUYVxBtqLHCvVgMFVOSHeFwmxY+qJNllnjp8i9Tbw/KoQj
-	3TbHIFmCoQIC0ckZ61vRw20vMWe8luBc33E0zbXO31EdudfEhjs5jlmzWNVdn/KNvoZ6
-	u324HYSTalHLvQBLqUy/FvsXnlJuCFO+SOYWlAXqd/HQcv+hIpiqke4fDFw6zYOE/da7
-	JuJw==
-X-Gm-Message-State: AE9vXwPEgbqnPhM/tDXeUUPgGgnjeTfblWqDxld05OyAOCneDw4oILvFyZMSDyy0A04++Q==
-X-Received: by 10.36.216.138 with SMTP id b132mr2892686itg.38.1473215297756;
-	Tue, 06 Sep 2016 19:28:17 -0700 (PDT)
-Received: from [192.168.0.11]
-	(CPEbc4dfb2691f3-CMbc4dfb2691f0.cpe.net.cable.rogers.com.
-	[99.250.193.223])
-	by smtp.gmail.com with ESMTPSA id v7sm1376541ita.9.2016.09.06.19.28.17
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 06 Sep 2016 19:28:17 -0700 (PDT)
-User-Agent: K-9 Mail for Android
-In-Reply-To: <SN2PR10MB00940D62C2AD81857308535ACFF80@SN2PR10MB0094.namprd10.prod.outlook.com>
-References: <SN2PR10MB009442733EA473DB41981EB1CFF90@SN2PR10MB0094.namprd10.prod.outlook.com>,
-	<CAPDOMVhBu=nEJZM1FSfiiS=e-BfmQy8tVKPb7MajUUfQQBps1w@mail.gmail.com>
-	<SN2PR10MB00940D62C2AD81857308535ACFF80@SN2PR10MB0094.namprd10.prod.outlook.com>
+Received: from NAM01-SN1-obe.outbound.protection.outlook.com
+	(mail-sn1nam01on0056.outbound.protection.outlook.com [104.47.32.56])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DCD8EE00E39
+	for <yocto@yoctoproject.org>; Wed,  7 Sep 2016 00:55:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=uievolution.onmicrosoft.com; s=selector1-uievolution-com;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
+	bh=qqWTLyz4DPQaT845LzJduoDP+KMGet6KxnPhVHnPjBg=;
+	b=WGAJvbHbrX55wen8AZaoeDGREaPeoKhwA4sH/i8WVS06qthGY2yN+B0exKTT4KgvmOguP00jTKVkK9KmJgylic2CQX+AJAOb3UZz9EOzYDo9RWUe1RxZO58eB20dOcsbbsx7FFGBKCmK2zPf5jzFqHf1EFCMedlaJr5r9YABut4=
+Received: from CY1PR0101MB1594.prod.exchangelabs.com (10.163.139.13) by
+	CY1PR0101MB1593.prod.exchangelabs.com (10.163.139.12) with Microsoft
+	SMTP Server (version=TLS1_0,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA_P384) id
+	15.1.599.9; Wed, 7 Sep 2016 07:21:53 +0000
+Received: from CY1PR0101MB1594.prod.exchangelabs.com ([10.163.139.13]) by
+	CY1PR0101MB1594.prod.exchangelabs.com ([10.163.139.13]) with mapi id
+	15.01.0599.016; Wed, 7 Sep 2016 07:21:53 +0000
+From: Takashi Matsuzawa <tmatsuzawa@uievolution.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: debugging pkg_postinst?
+Thread-Index: AQHSCNhpSvRt/u0itEuiX3rk4H9Gbw==
+Date: Wed, 7 Sep 2016 07:21:53 +0000
+Message-ID: <CY1PR0101MB159490801395422206AEB75AD7F80@CY1PR0101MB1594.prod.exchangelabs.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+	smtp.mailfrom=tmatsuzawa@uievolution.com; 
+x-originating-ip: [132.245.44.5]
+x-ms-office365-filtering-correlation-id: 2b86e9c4-8171-4929-098c-08d3d6efa484
+x-microsoft-exchange-diagnostics: 1; CY1PR0101MB1593;
+	6:+uysSvU1bhBkBJj5/nLV4Q+7U1RKXdZ4glAl4q0wmH/mQ9/2D1+pJ+o8ZL6WfyJDSPeKRAQFyUhi+QSAOQb24lrttWrOVpGfhgWp56Ntnp2AC9Qz47FGnhT8YAyMhG+x30e0nN1J3sSIttRggKSXVMW6Lem+4b7wrafFk67kaiAtGovxtXoc7b0Vx6UEmBHNOZiPrVeS0/UId8o7w5NgrmvhyJbx1diKIVOI+jlw2QmTFhcODE2dNjXdn5i7MVQVIGv/wr429JGKwhBu9icLnzOjaXgnBIVYsSAFxLgO44c=;
+	5:Qg0chkL7d7Ske/1g+lOu7kzkpY6dZzl0MV5yhsrAAQ+0vpPqbhR8fYqPhke+ZvEmxFUJXsqLzP8Uxq4FvtY6ZDQpt7geUheNKMY8zjy0RnEXC/AUAFJqOHNrMVU0oNI0bGy7qU8FLzdPJlNHw83qrA==;
+	24:fmd22QBmsGaJWPCsJSxZUzabLhKo1wi2cGz7qibn79bG6WJDs8kG1cRL3jtY7V9mEUrwAvLsJryQqlfKZbMLYb3pdewebphGYIj5jr5va3g=;
+	7:qHQ1P4xpuui2MIXuIWCP97we7QFiFnROu0i62imVbwCqZVsfnbEGt5m0eMOPYzSIZQnJeqwJDNKw4cXZ2yqAf7wD9MkySTfsT1Ltqa8L3fSyL/zbNZoDRat3Kmzb1J0/0D+w64DlIUW0Kh8SU04Xpja7tTDd80T043lZaSMXFGZknE0wkvp22rKCoyahE8cd42afBo8jSnQZRlvq1ymu6JUi2av/69Uz4OpIkaH/MGQPzFGvjyY1zVCRLAfGyWv5
+x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:CY1PR0101MB1593;
+x-microsoft-antispam-prvs: <CY1PR0101MB1593056FBD6C2DAAB8AD3416D7F80@CY1PR0101MB1593.prod.exchangelabs.com>
+x-exchange-antispam-report-test: UriScan:;
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(6040176)(2401047)(8121501046)(5005006)(3002001)(10201501046);
+	SRVR:CY1PR0101MB1593; BCL:0; PCL:0; RULEID:;
+	SRVR:CY1PR0101MB1593; 
+x-forefront-prvs: 0058ABBBC7
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10009020)(6009001)(7916002)(189002)(54094003)(199003)(8936002)(86362001)(1730700003)(10400500002)(16236675004)(5640700001)(9686002)(50986999)(54356999)(107886002)(11100500001)(110136002)(33656002)(87936001)(19625215002)(5002640100001)(3280700002)(3660700001)(450100001)(189998001)(68736007)(74316002)(8676002)(7846002)(2906002)(3846002)(101416001)(19627405001)(586003)(102836003)(2900100001)(77096005)(6116002)(2501003)(7736002)(7696003)(106356001)(105586002)(92566002)(7116003)(122556002)(2351001)(5660300001)(81156014)(97736004)(106116001)(81166006)(229853001)(66066001);
+	DIR:OUT; SFP:1101; SCL:1; SRVR:CY1PR0101MB1593;
+	H:CY1PR0101MB1594.prod.exchangelabs.com; FPR:; SPF:None;
+	PTR:InfoNoRecords; MX:1; A:1; LANG:en; 
+received-spf: None (protection.outlook.com: uievolution.com does not designate
+	permitted sender hosts)
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-From: Nicholas Krause <xerofoify@gmail.com>
-Date: Tue, 06 Sep 2016 22:28:14 -0400
-To: Adolfo Sanchez <adolfo_sm_cr@hotmail.com>
-Message-ID: <B740C381-8A9D-4584-BAA3-5896118753B9@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Failing build following Quick Start
+X-OriginatorOrg: uievolution.com
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Sep 2016 07:21:53.2243 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: e0a7ca1f-2458-4cd6-a7c7-d733c07495ab
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY1PR0101MB1593
+Subject: debugging pkg_postinst?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -80,98 +87,71 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 07 Sep 2016 02:28:19 -0000
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain;
- charset=UTF-8
+X-List-Received-Date: Wed, 07 Sep 2016 07:55:21 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_CY1PR0101MB159490801395422206AEB75AD7F80CY1PR0101MB1594_"
+
+--_000_CY1PR0101MB159490801395422206AEB75AD7F80CY1PR0101MB1594_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+Hello Yocto.
+
+This may be a novice question, but just in case you have suggestion:
 
 
+Debugging pkg_postinst script is simply taking time for me, since I wait ro=
+otfs creation to confirm its result.
 
-On September 6, 2016 10:22:35 PM EDT, Adolfo Sanchez <adolfo_sm_cr@hotmail.com> wrote:
->Hello Nick
->
->
->Thanks for your feedback.
->
->I tried installing the libtool as you suggested, also performed and
->apt-get upgrade just in case
->
->I am still getting the same error
->
->
->Best Regards,
->
->Adolfo
->
-Adolfo, 
-Try installing libxmu as that's 
-for the library. 
-Nick 
->________________________________
->De: xerofoify <xerofoify@gmail.com>
->Enviado: martes 6 de septiembre de 2016 09:47:59 a.m.
->Para: Adolfo Sanchez
->Cc: yocto@yoctoproject.org
->Asunto: Re: [yocto] Failing build following Quick Start
->
->On Tue, Sep 6, 2016 at 9:13 AM, Adolfo Sanchez
-><adolfo_sm_cr@hotmail.com> wrote:
->> Hello
->>
->>
->>
->> I am new to Yocto and trying to learn the basics of the system
->>
->>
->> I am following the Yocto Quick Start guide:
->>
->>
->http://www.yoctoproject.org/docs/2.1/yocto-project-qs/yocto-project-qs.html
->>
->>
->> Details:
->>
->> 1) I am using Lubuntu 16.04 64bits on a Oracle VirtualBox VM, over a
->> Windows10 host.
->>
->> 2) I downloaded the poky from the Yocto page instead of download it
->via git
->>
->> 3) I am tryting to build the basic core-image-sato for qemu
->>
->> 4) I am getting  the following error:
->>
->> ERROR: Task 1921
->>
->(virtual:native:/home/adolfo/Yocto-testin/poky-krogoth-15.0.1/meta/recipes-support/gmp/gmp_6.1.0.bb,
->> do_compile) failed with exit code '1'
->> 5) I test  the ${WORKDIR}/temp/run.do_compile I get the following
->error:
->> x86_64-linux-libtool:   error: 'abs.lo' is not a valid libtool object
->> Makefile:421: recipe for target 'libmpq.la' failed
->> make[2]: *** [libmpq.la] Error 1
->>
->>
->> Any help would be appreciated.
->>
->> Best regards,
->>
->> Adolfo Sanchez
->>
->>
->>
->>
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->>
->Do you actually have libtool installed and the latest version for
->Lubuntu 16.04, if not try installing it using apt-get.
->See if that helps fix the issue if not report back with the error
->messages you are getting after installing libtool.
->Cheers,
->Nick
+This is a overkill since rpm creation is just a few min, but generating who=
+le rootfs takes hours.
+
+I wonder if there is a better way to do this.
 
 
+I imagine trying install of individual rpm file on target may give me infor=
+mation (since rpm installation shall run postinst script as well).
+
+But, rather, it would be handy if I can invoke bitbake command and let it j=
+ust run rootfs portion of my component.
+
+
+--_000_CY1PR0101MB159490801395422206AEB75AD7F80CY1PR0101MB1594_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+</head>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;back=
+ground-color:#FFFFFF;font-family:Calibri,Arial,Helvetica,sans-serif;">
+<p>Hello Yocto.</p>
+<p><span style=3D"font-size: 12pt;">This may be a novice question, but just=
+ in case you have suggestion:</span><br>
+</p>
+<p><br>
+</p>
+<p>Debugging pkg_postinst script is simply taking time for me, since I wait=
+ rootfs creation to confirm its result.</p>
+<p>This is a overkill since rpm creation is just a few min, but generating =
+whole rootfs takes hours.</p>
+<p>I wonder if there is a better way to do this.</p>
+<p><br>
+</p>
+<p>I imagine trying install of individual rpm file on target may give me in=
+formation (since rpm installation shall run postinst script as well).</p>
+<p>But, rather, it would be handy if I can invoke&nbsp;bitbake command and =
+let it just run rootfs portion of my component.</p>
+<p><br>
+</p>
+</div>
+</body>
+</html>
+
+--_000_CY1PR0101MB159490801395422206AEB75AD7F80CY1PR0101MB1594_--
