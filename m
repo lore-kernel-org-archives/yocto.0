@@ -1,35 +1,60 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
+Return-Path: <jefro.net@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 618C9E01025; Tue,  6 Sep 2016 17:42:56 -0700 (PDT)
+	id 33356E00E30; Tue,  6 Sep 2016 18:52:26 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_LOW,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [74.125.82.54 listed in list.dnswl.org]
+	*  2.4 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.82.54 listed in dnsbl.sorbs.net]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C5727E01021
-	for <yocto@yoctoproject.org>; Tue,  6 Sep 2016 17:42:53 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id u870gl7M019355
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=OK);
-	Tue, 6 Sep 2016 17:42:47 -0700
-Received: from server.local (147.11.117.90) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.40) with Microsoft SMTP Server id 14.3.248.2;
-	Tue, 6 Sep 2016 17:42:46 -0700
-To: "Clark, Mark A" <Mark.Clark2@nov.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-References: <BY1PR15MB0038C23C62995E16B5C66E2EBCF90@BY1PR15MB0038.namprd15.prod.outlook.com>
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-Message-ID: <7697eebf-7ade-cc6f-1ec7-cfb47dc34b32@windriver.com>
-Date: Tue, 6 Sep 2016 20:42:45 -0400
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:45.0)
-	Gecko/20100101 Thunderbird/45.2.0
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wm0-f54.google.com (mail-wm0-f54.google.com [74.125.82.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 241EFE00E23
+	for <yocto@yoctoproject.org>; Tue,  6 Sep 2016 18:52:23 -0700 (PDT)
+Received: by mail-wm0-f54.google.com with SMTP id w12so5706415wmf.0
+	for <yocto@yoctoproject.org>; Tue, 06 Sep 2016 18:52:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:sender:from:date:message-id:subject:to
+	:content-transfer-encoding;
+	bh=Ae1hq9RfIEI+GPpsyfAWx/QQAxKKxTAK/EqyCChfGpc=;
+	b=sC7WVor81mXjWDb2QJA8WBhNbyfC4LaAJyWDHXRhc+dEA0lVXEu10gFvrjJTdvkA+K
+	VAXNoFScoz5cWIhdeXFC5VBR3uh+OvSDcWA4OVRFIzwaovWU26WZ2vYrTwrjOIs4QsRf
+	SvCjkRLTSfYkSgADTe2SGO3t6TvjzISCHF5UBJRV5ekLc2KJSXTXWEH5i0QOQXWiKy+O
+	/HvBLQ0+S7QTg4ENf+95A0zD0QOW8H6UVKfqBoAxkL8BTOv+JbR9s/UlYB2zACNxk9yY
+	hSxugLglK/uWmsNNgN1ffA94Xn4THbpgU4Q3t1y3GrbG27cSe0SRGJiOR+voSrgj0kTL
+	FGvA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
+	:to:content-transfer-encoding;
+	bh=Ae1hq9RfIEI+GPpsyfAWx/QQAxKKxTAK/EqyCChfGpc=;
+	b=DTaARoSRGace+q5IH6QthA0IHUZ43eXh95knFII8NzLVHtt196mVyZ333FepAQslxc
+	qo5BEnxDTNq2B6XL6lhxMF+jjxX5+wgOz2Ewrkjg0MLhXNgt5Mtj5+3jRlvGKIUSYE4K
+	T9rIL3/48lmeze+tP9Ak0W+v5MYZftC3XAbX2E0NXVlKPodFFkewyjgZ6Gb3pjeRDeR7
+	5HBxoXoWABi+iuP8MhGD2U466/J2c6JwL1TBnJl2kSkrXeb2XG83MPqNv0fm/V6+uBFM
+	yEYIfqTnEWhMk986nnfwcQaK7tBgSJbQ3/y32fcQr7sS5/04oJRkEBI3cFnIXokIZOKT
+	sMPQ==
+X-Gm-Message-State: AE9vXwNKxJszJuNleJtcct1rUHFYCsUYeFxDeq3rC0mbmDZTnp1xGTuYGPN6pnTFeb6ZmDKawjtcHSvbOqHZcQ==
+X-Received: by 10.28.238.212 with SMTP id j81mr1249675wmi.10.1473213142601;
+	Tue, 06 Sep 2016 18:52:22 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <BY1PR15MB0038C23C62995E16B5C66E2EBCF90@BY1PR15MB0038.namprd15.prod.outlook.com>
-Subject: Re: Update on issue witn do_package_qa
+Sender: jefro.net@gmail.com
+Received: by 10.80.151.3 with HTTP; Tue, 6 Sep 2016 18:52:02 -0700 (PDT)
+From: Jeff Osier-Mixon <jefro@jefro.net>
+Date: Tue, 6 Sep 2016 18:52:02 -0700
+X-Google-Sender-Auth: s_taVPup1TTv8_u3BnGPV_oSBuA
+Message-ID: <CA+YB3rZUZ2GfAF4CZ8X3PviiiUPW=B+jQkWTJwqS8NRRf8Tdzg@mail.gmail.com>
+To: Yocto Project <yocto@yoctoproject.org>
+Subject: Register Today - Yocto Project Developer Day Europe 2016
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,189 +66,64 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 07 Sep 2016 00:42:56 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Wed, 07 Sep 2016 01:52:26 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On 2016-09-06 2:17 PM, Clark, Mark A wrote:
-> Did a complete clone / checkout of krogoth this morning.  Same
-> results.   Can’t get a core-image-rt build of the latest poky.
+Join us to learn more about Yocto Project=E2=80=99s open source, high-quali=
+ty
+infrastructure and tools. Build your own Linux distribution and choose
+a development board to take home! Available options: MinnowBoard
+Turbot, BeagleBone Black, or DragonBoard 410c.
 
-I'll fire off a build for this on Wednesday. As I mentioned, I've
-fixed this in other branches, and this is very likely the same
-thing.
+Our trainers have prepared a preliminary agenda. Check it out below,
+and if you have any topics that you want to see covered, reach out to
+our community manager, Jefro.
 
-I've just been chasing 4.8 issues and haven't had a chance to look
-at it yet.
+Introductory Track
 
-Bruce
+Introduction to the Yocto Project
+Key Concepts
+Build System Workflow
+Examining Recipes
+Standard Recipe Build Steps
+Working with Layers
+Build and Boot Your Custom Image
+Working with Applications
 
->
->
->
-> yocto@yocto-HP-Pavilion-dv7-Notebook-PC:~/poky/build$ bitbake core-image-rt
->
-> Parsing recipes: 100%
-> |####################################################################################|
-> Time: 00:00:23
->
-> Parsing of 871 .bb files complete (0 cached, 871 parsed). 1301 targets,
-> 46 skipped, 0 masked, 0 errors.
->
-> NOTE: Resolving any missing task queue dependencies
->
->
->
-> Build Configuration:
->
-> BB_VERSION        = "1.30.0"
->
-> BUILD_SYS         = "x86_64-linux"
->
-> NATIVELSBSTRING   = "Ubuntu-14.04"
->
-> TARGET_SYS        = "i686-poky-linux"
->
-> MACHINE           = "genericx86"
->
-> DISTRO            = "poky"
->
-> DISTRO_VERSION    = "2.1.1"
->
-> TUNE_FEATURES     = "m32 core2"
->
-> TARGET_FPU        = ""
->
-> meta
->
-> meta-poky
->
-> meta-yocto-bsp    = "krogoth:aad7166704021d82ad3a5ec468552f8f10360d41"
->
->
->
-> NOTE: Fetching uninative binary shim from
-> http://downloads.yoctoproject.org/releases/uninative/1.0.1/x86_64-nativesdk-libc.tar.bz2;sha256sum=acf1e44a0ac2e855e81da6426197d36358bf7b4e88e552ef933128498c8910f8
->
-> NOTE: Preparing RunQueue
->
-> NOTE: Executing SetScene Tasks
->
-> NOTE: Executing RunQueue Tasks
->
-> WARNING: quilt-native-0.64-r0 do_fetch: Failed to fetch URL
-> http://download.savannah.gnu.org/releases/quilt/quilt-0.64.tar.gz,
-> attempting MIRRORS if available
->
-> WARNING: attr-native-2.4.47-r0 do_fetch: Failed to fetch URL
-> http://download.savannah.gnu.org/releases/attr/attr-2.4.47.src.tar.gz,
-> attempting MIRRORS if available
->
-> WARNING: acl-native-2.2.52-r0 do_fetch: Failed to fetch URL
-> http://download.savannah.gnu.org/releases/acl/acl-2.2.52.src.tar.gz,
-> attempting MIRRORS if available
->
-> ERROR: linux-yocto-rt-4.4.11+gitAUTOINC+6ec93aaa70_bf2fbe7f2c-r0
-> do_package_qa: QA Issue: Architecture did not match (3 to 62) on
-> work/genericx86-poky-linux/linux-yocto-rt/4.4.11+gitAUTOINC+6ec93aaa70_bf2fbe7f2c-r0/packages-split/kernel-vmlinux/boot/vmlinux-4.4.11-rt3-yocto-preempt-rt
-> [arch]
->
-> ERROR: linux-yocto-rt-4.4.11+gitAUTOINC+6ec93aaa70_bf2fbe7f2c-r0
-> do_package_qa: QA run found fatal errors. Please consider fixing them.
->
-> ERROR: linux-yocto-rt-4.4.11+gitAUTOINC+6ec93aaa70_bf2fbe7f2c-r0
-> do_package_qa: Function failed: do_package_qa
->
-> ERROR: Logfile of failure stored in:
-> /home/yocto/poky/build/tmp/work/genericx86-poky-linux/linux-yocto-rt/4.4.11+gitAUTOINC+6ec93aaa70_bf2fbe7f2c-r0/temp/log.do_package_qa.2446
->
-> ERROR: Task 61
-> (/home/yocto/poky/meta/recipes-kernel/linux/linux-yocto-rt_4.4.bb,
-> do_package_qa) failed with exit code '1'
->
-> NOTE: Tasks Summary: Attempted 1552 tasks of which 14 didn't need to be
-> rerun and 1 failed.
->
-> Waiting for 0 running tasks to finish:
->
->
->
-> Summary: 1 task failed:
->
->   /home/yocto/poky/meta/recipes-kernel/linux/linux-yocto-rt_4.4.bb,
-> do_package_qa
->
-> Summary: There were 3 WARNING messages shown.
->
-> Summary: There were 3 ERROR messages shown, returning a non-zero exit code.
->
-> yocto@yocto-HP-Pavilion-dv7-Notebook-PC:~/poky/build$
->
->
->
-> ===============
->
->
->
-> Changes from local.conf
->
->
->
-> yocto@yocto-HP-Pavilion-dv7-Notebook-PC:~/poky/build/conf$ diff
-> local.conf local.conf.org
->
-> 32c32
->
-> < MACHINE ?= "genericx86"
->
-> ---
->
->> #MACHINE ?= "genericx86"
->
-> 117c117
->
-> < SDKMACHINE ?= "i686"
->
-> ---
->
->> #SDKMACHINE ?= "i686"
->
-> 239,240d238
->
-> < PREFERRED_PROVIDER_virtual/kernel = "linux-yocto-rt"
->
-> < COMPATIBLE_MACHINE_genericx86 = "genericx86"
->
-> yocto@yocto-HP-Pavilion-dv7-Notebook-PC:~/poky/build/conf$
->
->
->
->
->
->
->
-> *Mark Clark*
->
-> Embedded Software Engineer
->
-> Embedded Software, Cedar Park, TX
->
-> Description: Description: Description: Description: National Oilwell
-> Varco Logo Color CMYK.jpg
->
->  Wellbore Technologies – Dynamic Drilling Solutions
->
-> Global Software Engineering
->
-> Office: (512) 340-5435
->
-> Mobile: (512) 736-9396
->
-> /“One Team – Infinite Solutions”/
->
->
->
->
->
+Advanced Track
 
+New workflows and features
+Deep dive on WIC
+Deep dive and class exercises on CROPS
+Deep dive and class exercises on devtool and Extensible SDKs
+Deep dive and class exercises on Toaster and Layer Index
+Q and A, and Giveaways
+More to come!
+
+
+Date: Monday, October 10, 2016
+
+Time: 9:00 am - 5:00 pm
+
+Location: The Maritim Hotel in Berlin
+Stauffenbergstra=C3=9Fe 26, 10785 Berlin, Germany
+
+EVENT DESCRIPTION:
+https://www.yoctoproject.org/yocto-project-developer-day-europe-2016
+
+From September 4 through the event, the registration fee will be US$249.
+
+If you are already planning to attend ELCE, you can add Yocto Dev Day
+to the Agenda section of your Embedded Linux Conference Europe
+registration: https://www.regonline.com/register/login.aspx?eventID=3D17674=
+49&MethodId=3D0&EventsessionId=3D&Email_Address=3D&membershipID=3D.
+
+For those not planning to attend ELC Europe, individual registrations
+can be purchased here: https://www.regonline.com/YPDevDayEU2016.
+
+
+Thanks,
+
+The Yocto Project Developer Day Team
 
