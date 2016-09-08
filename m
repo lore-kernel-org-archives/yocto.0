@@ -1,19 +1,17 @@
-Return-Path: <s.stirtzel@googlemail.com>
+Return-Path: <danielhilst@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 79A5BE00D42; Thu,  8 Sep 2016 05:43:06 -0700 (PDT)
+	id 07F28E00D42; Thu,  8 Sep 2016 06:11:40 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_LOW,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (s.stirtzel[at]googlemail.com)
+	mail provider *      (danielhilst[at]gmail.com)
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [74.125.82.51 listed in list.dnswl.org]
-	*  2.4 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.82.51 listed in dnsbl.sorbs.net]
+	*      [209.85.217.170 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -21,53 +19,45 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f51.google.com (mail-wm0-f51.google.com [74.125.82.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 12CB9E00D25
-	for <yocto@yoctoproject.org>; Thu,  8 Sep 2016 05:43:04 -0700 (PDT)
-Received: by mail-wm0-f51.google.com with SMTP id w12so86797136wmf.0
-	for <yocto@yoctoproject.org>; Thu, 08 Sep 2016 05:43:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=googlemail.com; s=20120113;
+Received: from mail-ua0-f170.google.com (mail-ua0-f170.google.com
+	[209.85.217.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CB90DE00D29
+	for <yocto@yoctoproject.org>; Thu,  8 Sep 2016 06:11:33 -0700 (PDT)
+Received: by mail-ua0-f170.google.com with SMTP id u68so39915110uau.1
+	for <yocto@yoctoproject.org>; Thu, 08 Sep 2016 06:11:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=eumOCkw70bv7ye/nSWGdIB1AOkCem05B93OJQEhG7DU=;
-	b=gS6ZuXKyuzlo/e4v0Q3E0ke15UrlMiTlmpL5dk8xnfnePcT5L8Tum+s7IVlzx0CWea
-	ZXo0hG82jsTcD0DiK14B4I+nSpAGCgPhoZ9JYe+E58hsHo/ZqpAvyqHx3an6Vot0oW05
-	rNkY7PWy8krZafxFO1GAZTBmInFscdHNHvHUHcN9Rv4iuFD8vTYryT30Gy/02zJbXNOg
-	tYSuNZsiHj5zFAsWb7mOviEOYwKJMHuEyyLOXwjUyJLn0MX0L50q17/3LWjMj979aTvw
-	4sEwQMndxxWWZEW8X2b33T9d9tyZGYlYuZDo3vBZJwzVToVhPVwGBTL/Fe1DjxhyoB/o
-	j8pA==
+	:cc; bh=eKpHHLDQYX3OQGRkuxg/bgMeWGeOyNJaynExEI9iH6Y=;
+	b=LK9xlWABYVwwzMFOhxiOoByVxx8oUgh58RoNwab9BozaXGRU3DOIIOXrs509hoYq/i
+	kiA6QsJOe27eymbENpUucgrmUPovc9GAZJ70oaEZPoXv3xNDeKeBta8lO7pAKg/IX59u
+	TiBUekFRfqQhvBu90KnyRMgKA6d5FWMBpOH3jG0Rk73NFwliZoEReR9u+ICrtigIxObr
+	/trJr1U/yg8gYXQVwzISVCmXfJRe13Wf6ejghaGZesLso/po+sXp0LYPAqLDbP4SXnz8
+	ki28SsdEXHyxxOJ+zqS9BRbMvI16bTmIID0GCvI4VY6zr8z9AaWFFFQa459VhpD07wqt
+	egzw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=eumOCkw70bv7ye/nSWGdIB1AOkCem05B93OJQEhG7DU=;
-	b=YX5rcn2J2uDXC5OUJwy9rGmo391QnNeTKDztIUwvZ3PiAzX0wbL3Dj2AzKjI0yp02G
-	2YGpCWhpvQi6uvjxkmYJi5mq9Y8bktG/X9xGgsQ1lyGp8IQAXnRx0xNIiUQmvaUij6HC
-	9LKntu0mEgI1WCVXOiwcY/cVQBsd7NGf1y3+K+EVUUf5wcFln4MBNlYzZH0mu/VeasnU
-	Iiyxir5dDpVMV8+AJkJZgFWiOz7MUywsFy4gW0iXpzJim4bfOvwUGFwzOL0hNJsQVYGU
-	MpmmzAJcxxFC0c0cqM0pps9Ou+2FH3AKKOEr9ddWgE1oZfXkO8FDTBu4Sb7droVhPcml
-	L4qg==
-X-Gm-Message-State: AE9vXwNbPj1IasDt2voRYPknztpAIazIEMnxCvsgjJyP6L6D8/QBlHbF3o/CU+dAg7sdHME9Zp34cfebmICTBQ==
-X-Received: by 10.194.24.73 with SMTP id s9mr22732856wjf.74.1473338583658;
-	Thu, 08 Sep 2016 05:43:03 -0700 (PDT)
+	bh=eKpHHLDQYX3OQGRkuxg/bgMeWGeOyNJaynExEI9iH6Y=;
+	b=VjhNuSEBbjDfBz1515AqgIwLRmjXqT71JCZMiBi5rpwORwCYY13Ov80PGtCn+NIxlN
+	Y7nHMfa9mpcw7av8YDsITeiCpsKvBbB2Pu8YCjOUsRN8zAYce4VJg4AqHrFK0fKrEkzI
+	nSVBEZzVZAqO2xtrAwXa6+HQMLh3A1Ua5TU8lIA60mVz4B8NlG6rANqO2FAcfYb/FcLh
+	JW3pbkwFejanBFkn/Bcl5bKpFSToY3GWfPCQiglQ7arY11BxhozJvv6mcf6/B9U55yXE
+	st2TnedNtp1ivnUjPh2BQu/fuQIJW2TrLQmz5+qvkrOguEKLhu2jBREjxo0ysYC7PN4j
+	nn3A==
+X-Gm-Message-State: AE9vXwPikvKLLgYwCvc73xuF5MhGVdp9kyKFddiBrVbQAEKU8p9NsJAQwJ6FkK+d81/OlALF9aacPNw5tNgc8g==
+X-Received: by 10.159.34.177 with SMTP id 46mr32829424uan.111.1473340292774;
+	Thu, 08 Sep 2016 06:11:32 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.28.22.201 with HTTP; Thu, 8 Sep 2016 05:42:33 -0700 (PDT)
-In-Reply-To: <5A1D0C5D-A6AF-4C6F-A058-1E07935E8A93@gmail.com>
-References: <87poooc2ha.fsf@posteo.net>
-	<CAD4b0_JqqWmkL5egXgbSVvq5xpb-ck2-sj9rr3hBbcOeEB5-VQ@mail.gmail.com>
-	<87k2ewau7z.fsf@posteo.net>
-	<CAD4b0_JE1iN8WgT9k=VtjPLtKvSNs1B0=zZBeAsUaXJWcC8zEw@mail.gmail.com>
-	<87fupkarqt.fsf@posteo.net>
-	<85bd928a2ecb47663d9a90ca24756f16@herrie.org>
-	<CAHiDW_GBefiLcDQOgEEPVXeKTQGun8w6n62H33V6W4bvCv6sSA@mail.gmail.com>
-	<CAGiJk9fFfgezxUdR3+bEXmoRhqEubNgRQTs8yeBc3-QoBE5Wyg@mail.gmail.com>
-	<5A1D0C5D-A6AF-4C6F-A058-1E07935E8A93@gmail.com>
-From: Samuel Stirtzel <s.stirtzel@googlemail.com>
-Date: Thu, 8 Sep 2016 14:42:33 +0200
-Message-ID: <CAGiJk9ePvhuwH6FempLsy+_=QpXvvNBTnZvK-1ivqMk3KdXSuA@mail.gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: Yocto and Google protobuffer
+Received: by 10.176.81.147 with HTTP; Thu, 8 Sep 2016 06:11:32 -0700 (PDT)
+In-Reply-To: <CY1PR0101MB1594A28319500402879A0B79D7FB0@CY1PR0101MB1594.prod.exchangelabs.com>
+References: <CY1PR0101MB1594A28319500402879A0B79D7FB0@CY1PR0101MB1594.prod.exchangelabs.com>
+From: "Daniel." <danielhilst@gmail.com>
+Date: Thu, 8 Sep 2016 10:11:32 -0300
+Message-ID: <CAF3SDA70bFmPZkbVaQZ8Zr8tD_c8hvc3zjgLkq267bBrLEfuHA@mail.gmail.com>
+To: Takashi Matsuzawa <tmatsuzawa@uievolution.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: pkg_postinst behavior?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -79,27 +69,84 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 08 Sep 2016 12:43:06 -0000
+X-List-Received-Date: Thu, 08 Sep 2016 13:11:40 -0000
 Content-Type: text/plain; charset=UTF-8
 
-2016-09-06 20:11 GMT+02:00 Khem Raj <raj.khem@gmail.com>:
+Hi,
+
+I thinking you're messing up packages and recipes names. Mulitple
+packages can be built from one recipe. Packages are the .rpm .ipk and
+.deb file generated to be installed on image. Usualy recipes build
+three packages: ${PN} ${PN}-dev ${PN}-dbg. Other packages can be
+generated like -doc, -license etc... pkg_postinst_* run just after the
+*package* is installed in the image. If the execution of postint exit
+with success the scripts are removed (since they had run already) if
+not they are keeped and run again at first boot. People use this to
+defer the execution of post install script that need hardware to
+complete.
+
+Usually you may declare they as:
+pkg_postinst_${PN} () {
+  ...
+}
+
+pkg_postinst_${PN}-dev () {
+  ...
+}
+
+Here are some examples:
+https://github.com/openembedded/meta-openembedded/blob/master/meta-initramfs/recipes-bsp/kexecboot/kexecboot_0.6.bb
+https://github.com/openembedded/meta-openembedded/blob/master/meta-efl/recipes-efl/e17/enjoy_git.bb
+
+On .bbappend you should use _append operator to extend pkg_postinst_${PN} like:
+pkg_postinst_${PN}_append () {
+    ...
+}
+
+
+Regards,
+
+2016-09-08 9:07 GMT-03:00 Takashi Matsuzawa <tmatsuzawa@uievolution.com>:
+> Hello, Yocto.
+> I just want to confirm how pkg_postinst scripts are called.
 >
->> On Sep 1, 2016, at 3:57 AM, Samuel Stirtzel <s.stirtzel@googlemail.com> wrote:
->>
->> Hi,
->>
->> protobuf 2.x and 3.x are incompatible, there is also a protobuf3
->> recipe in meta-maker.
->>
+> Provided the following scripts are provided, in two bbappend recipes as
+> below, which of them are actually executed and which are not?
+> I have briefly tried and 'OK's below are called and 'NG's are not.
 >
-> why is it in meta-maker and not in meta-oe ?
+> The yocto manual says posttest scripts must be suffixed by package names,
+> but which package names?
+> postinst scripts with package names from the other recipe (script in AAA
+> referring BBB package name) can be invoked at BBB package installation?
+>
+> AAA.bbappend:
+>
+> pkg_postinst_AAA() {} - OK
+> pkg_postinst_AAA_append() {} - OK
+> pkg_postinst_BBB() {} - NG
+> pkg_postinst_BBB_append() {} - NG
+>
+> BBB.bbappend:
+>
+> pkg_postinst_AAA() {} - NG
+> pkg_postinst_AAA_append() {} - NG
+> pkg_postinst_BBB() {} - OK
+> pkg_postinst_BBB_append() {} - OK
+>
+> And, multiple _append() once could be added, but if _append() is not there
+> only one of such script for the same name is executed?
+>
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 >
 
-No idea,
-it would be easier to ask the author (Koen).
 
 
 -- 
-Regards
-Samuel
+"Do or do not. There is no try"
+  Yoda Master
 
