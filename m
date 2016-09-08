@@ -1,81 +1,55 @@
-Return-Path: <tmatsuzawa@uievolution.com>
+Return-Path: <jeffrey.siegel@nokia.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 70C1DE00CC5; Fri,  9 Sep 2016 04:48:47 -0700 (PDT)
+	id 17219E00A07; Thu,  8 Sep 2016 15:17:35 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [104.47.32.51 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI,RCVD_IN_SORBS_SPAM autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [135.245.18.28 listed in list.dnswl.org]
+	*  2.4 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [135.245.18.28 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from NAM01-SN1-obe.outbound.protection.outlook.com
-	(mail-sn1nam01on0051.outbound.protection.outlook.com [104.47.32.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A8828E00CBC
-	for <yocto@yoctoproject.org>; Fri,  9 Sep 2016 04:48:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=uievolution.onmicrosoft.com; s=selector1-uievolution-com;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
-	bh=U9LQ3OU78p6XWLCy9gFpTHZc00PPE63kp8hSPfK5bQE=;
-	b=3Ch2azcUk4uBLt5psWOJaQs/oraZEYmRrgbU//g1QPLE79mOWNKYpCE/0VcANjvQaJboNQofP8vzYSXcfztMZw/JxNbXaSS4vZDwp1SQ5K1edKIKSYBFr7P1nD9xx0i7uAlBng+PPbPTINyRJgRMfZyluWIml/6YFjjmLiEBaJk=
-Received: from BLUPR0101MB1586.prod.exchangelabs.com (10.163.119.13) by
-	BLUPR0101MB1586.prod.exchangelabs.com (10.163.119.13) with Microsoft
-	SMTP Server (version=TLS1_0,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA_P384) id
-	15.1.609.9; Fri, 9 Sep 2016 11:33:03 +0000
-Received: from BLUPR0101MB1586.prod.exchangelabs.com ([10.163.119.13]) by
-	BLUPR0101MB1586.prod.exchangelabs.com ([10.163.119.13]) with mapi id
-	15.01.0609.016; Fri, 9 Sep 2016 11:33:03 +0000
-From: Takashi Matsuzawa <tmatsuzawa@uievolution.com>
+X-Greylist: delayed 644 seconds by postgrey-1.32 at yocto-www;
+	Thu, 08 Sep 2016 15:17:33 PDT
+Received: from smtp-us.alcatel-lucent.com (us-hpatc-esg-02.alcatel-lucent.com
+	[135.245.18.28])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 803CEE009FD
+	for <yocto@yoctoproject.org>; Thu,  8 Sep 2016 15:17:33 -0700 (PDT)
+Received: from us70tumx2.dmz.alcatel-lucent.com (unknown [135.245.18.14])
+	by Websense Email Security Gateway with ESMTPS id 5F0755CB9419C
+	for <yocto@yoctoproject.org>; Thu,  8 Sep 2016 22:06:46 +0000 (GMT)
+Received: from us70tusmtp2.zam.alcatel-lucent.com
+	(us70tusmtp2.zam.alcatel-lucent.com [135.5.2.64])
+	by us70tumx2.dmz.alcatel-lucent.com (GMO) with ESMTP id u88M6mAe012878
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=OK)
+	for <yocto@yoctoproject.org>; Thu, 8 Sep 2016 22:06:48 GMT
+Received: from US70TWXCHHUB04.zam.alcatel-lucent.com
+	(us70twxchhub04.zam.alcatel-lucent.com [135.5.2.36])
+	by us70tusmtp2.zam.alcatel-lucent.com (GMO) with ESMTP id
+	u88M6mZM024949
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Thu, 8 Sep 2016 22:06:48 GMT
+Received: from US70UWXCHMBA02.zam.alcatel-lucent.com ([169.254.8.175]) by
+	US70TWXCHHUB04.zam.alcatel-lucent.com ([135.5.2.36]) with mapi id
+	14.03.0195.001; Thu, 8 Sep 2016 18:06:48 -0400
+From: "Siegel, Jeffrey (Nokia - US)" <jeffrey.siegel@nokia.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: ac_cv_sizeof_long size definition by SDK
-Thread-Index: AQHSCo3tMep/f59FTUGurMdvGu1AVw==
-Date: Fri, 9 Sep 2016 11:33:03 +0000
-Message-ID: <BLUPR0101MB1586CBD9B1FAC1B7B8AB6EA7D7FA0@BLUPR0101MB1586.prod.exchangelabs.com>
+Thread-Topic: 'bb' utility fails on attempt to import 'commands' module
+Thread-Index: AdIKHUpIDlK0cGuGSY2VskoA0mvdOQ==
+Date: Thu, 8 Sep 2016 22:06:46 +0000
+Message-ID: <4B3F5767F3F5754FAD4E230B6B1D4F792130C338@US70UWXCHMBA02.zam.alcatel-lucent.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=tmatsuzawa@uievolution.com; 
-x-originating-ip: [132.245.44.5]
-x-ms-office365-filtering-correlation-id: ff274b05-e33d-4926-ed01-08d3d8a50ff1
-x-microsoft-exchange-diagnostics: 1; BLUPR0101MB1586;
-	6:neb4kF+kSQWcJsbGPMh49i4kHDN+5w4T355fTs32iWwIeBrHCRlClWcC3FH/GrM416qsZq+G5wpBMMmn2CK8kdeakwUY5rWC9nnkyDtS/x0LZwEfpnNTLinAyGt+8JYdQh6mcoKmh/usI0wKYliB9d2jvKd34XT/MN1nGIEBWkEKc+HHCRcFy6d/tx8YZWWMUivMYZZE91ZgCEZCDJekcbQtipgitG8M+dgbxAM/mwiVAZnTeyvm6RhbodJHZyIcaadTOKmTBo4fx8bKvFv+cB5QtnUh4+cMSmasx+rF1S0=;
-	5:8TmDo1A+QwawIc1Fz9om5WrI/uoMcXRhENeGxRbpaoY3L3wqBG9tCA0I/ZyBf2fSmA6hmp6oGpvWGiEOH8efLUNElBUrrgXgl1sdaoW2wZuYODtcjv2iVCkjXAcJfCcFtUbFGPsYq8ae56MJK+fBnQ==;
-	24:A5vcwH5BFieWzg61S+tk9YpZcZb8/luaMiFGHEDVlWPdtHxsA41vww4oianWvFcMfGLWZcTJ7s5bUw63FQ37mx4x39fdsDnsqZln1S6rAa8=;
-	7:7CsFUS2KoiayviYeAKqZ1PaiQs1gSu5ZOteyNoXiF2ln44+WitnyBA1d8R7voMsrgpMpQqUtSJy0qBMu98O3Ff6eqJ1GravX59/67AiYNKwDGGj9H0o3lqKQ1+uCEn9dapoXH2fjeXA690FvBkprwFF0czkAe2Yy1yxy1soB67ug5yUoBwFrGaCL6GLkpYRQVfnIZajRDEaobEe2uBJnrc2TQ/cPik4k93SmWrOiCbHPM+NjJGysK7IyqS0HIiF0
-x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:BLUPR0101MB1586;
-x-microsoft-antispam-prvs: <BLUPR0101MB15862B2E3E65E38B63630A7FD7FA0@BLUPR0101MB1586.prod.exchangelabs.com>
-x-exchange-antispam-report-test: UriScan:;
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(6040176)(2401047)(8121501046)(5005006)(10201501046)(3002001);
-	SRVR:BLUPR0101MB1586; BCL:0; PCL:0; RULEID:;
-	SRVR:BLUPR0101MB1586; 
-x-forefront-prvs: 00603B7EEF
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10009020)(6009001)(7916002)(199003)(189002)(189998001)(19627405001)(54356999)(450100001)(11100500001)(2900100001)(10400500002)(122556002)(33656002)(8676002)(5002640100001)(1730700003)(81156014)(9686002)(5640700001)(74316002)(81166006)(77096005)(7846002)(5660300001)(106116001)(68736007)(8936002)(107886002)(110136002)(6116002)(66066001)(101416001)(7736002)(105586002)(7696004)(2351001)(87936001)(2906002)(16236675004)(3660700001)(106356001)(229853001)(19625215002)(3846002)(92566002)(86362001)(2501003)(3280700002)(97736004)(102836003)(586003)(50986999);
-	DIR:OUT; SFP:1101; SCL:1; SRVR:BLUPR0101MB1586;
-	H:BLUPR0101MB1586.prod.exchangelabs.com; FPR:; SPF:None;
-	PTR:InfoNoRecords; A:1; MX:1; LANG:en; 
-received-spf: None (protection.outlook.com: uievolution.com does not designate
-	permitted sender hosts)
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
+x-originating-ip: [135.5.27.18]
 MIME-Version: 1.0
-X-OriginatorOrg: uievolution.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Sep 2016 11:33:03.6447 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: e0a7ca1f-2458-4cd6-a7c7-d733c07495ab
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BLUPR0101MB1586
-Subject: ac_cv_sizeof_long size definition by SDK
+X-Mailman-Approved-At: Fri, 09 Sep 2016 06:40:31 -0700
+Subject: 'bb' utility fails on attempt to import 'commands' module
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -87,109 +61,177 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 09 Sep 2016 11:48:47 -0000
+X-List-Received-Date: Thu, 08 Sep 2016 22:17:35 -0000
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_BLUPR0101MB1586CBD9B1FAC1B7B8AB6EA7D7FA0BLUPR0101MB1586_"
+	boundary="_000_4B3F5767F3F5754FAD4E230B6B1D4F792130C338US70UWXCHMBA02z_"
 
---_000_BLUPR0101MB1586CBD9B1FAC1B7B8AB6EA7D7FA0BLUPR0101MB1586_
-Content-Type: text/plain; charset="iso-8859-1"
+--_000_4B3F5767F3F5754FAD4E230B6B1D4F792130C338US70UWXCHMBA02z_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hello, Yocto.
+Hi,
+I'm fairly new to Yocto, several web article recommend the use of Chris Lar=
+son's 'bb' utility. I understand 'bb' is not part of Yocto, but perhaps som=
+eone here knows the answer to my problem. Running 'bb log' in my build dire=
+ctory results in:
+
+[siegel@xxx junk]$ bb log
+Traceback (most recent call last):
+  File "/home/siegel/oe/dist/bin/bb/libexec/bb-log", line 10, in <module>
+    import bbcmd
+  File "/home/siegel/oe/dist/bin/bb/libexec/bbcmd.py", line 18, in <module>
+    import bb.cache
+  File "/home/siegel/poky/bitbake/bin/../lib/bb/__init__.py", line 77, in <=
+module>
+    import bb.msg
+  File "/home/siegel/poky/bitbake/bin/../lib/bb/msg.py", line 32, in <modul=
+e>
+    import bb.event
+  File "/home/siegel/poky/bitbake/bin/../lib/bb/event.py", line 35, in <mod=
+ule>
+    import bb.utils
+  File "/home/siegel/poky/bitbake/bin/../lib/bb/utils.py", line 37, in <mod=
+ule>
+    from commands import getstatusoutput
+ImportError: No module named 'commands'
+
+'bb' Python source contains shebang path '/usr/bin/env python3' , which mea=
+ns it expects to be run by a Python 3.x interpreter. But then it imports py=
+thon code from bitbake/lib, and bitbake/Yocto use Python 2.7.x.  'bb' fails=
+ upon trying to import 'commands', which is a non-existent module in Python=
+3.
+
+Any suggestions? I have installed 'bb' according to its directions, put in =
+my .bashrc:
+eval "$(~/oe/dist/bin/bb/bin/bb init -)"
+
+Regards,
+Jeff
 
 
-I am now puzzled by this variable ste in $CONFIG_SITE setup file in Yocto-g=
-enerated SDK.
-
-
-I generated x86_64 host, arm (32bit) target SDK.
-
-And if I invoke $CC (arm-poky-linux-gnueabi-gcc), using this SDK, sizeof (l=
-ong) is 4 (long =3D int)
-
-
-However, if I look into $CONFIG_SITE's definition of ac_cv_sizeof_long, it =
-is defined as '8'.
-
-I feel this is strange since if this cached configure data is for the targe=
-t (and cross-compiling), this value should be 4, to match the above (arm-po=
-ky-linux-gnueabi-gcc) result.
-
-(I think this part of the cache is being copied from poky/meta/site/x86_64-=
-linux, )
-
-
-This is causing break if I build autotool based program using the SDK.
-
-
-Am I doing mis-use of SDK here?
-
-
-
---_000_BLUPR0101MB1586CBD9B1FAC1B7B8AB6EA7D7FA0BLUPR0101MB1586_
-Content-Type: text/html; charset="iso-8859-1"
+--_000_4B3F5767F3F5754FAD4E230B6B1D4F792130C338US70UWXCHMBA02z_
+Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<html>
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
 <head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
 </head>
-<body dir=3D"ltr">
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;back=
-ground-color:#FFFFFF;font-family:Calibri,Arial,Helvetica,sans-serif;">
-<p>Hello, Yocto.</p>
-<p><br>
-</p>
-<p>I am now puzzled by this variable ste in $CONFIG_SITE setup file in Yoct=
-o-generated&nbsp;SDK.&nbsp;</p>
-<p><span style=3D"font-size: 12pt;"><br>
-</span></p>
-<p><span style=3D"font-size: 12pt;">I generated x86_64 host, arm (</span><s=
-pan style=3D"font-size: 12pt;">32bit) target SDK.</span><br>
-</p>
-<p></p>
-<p style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot;Apple=
- Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot;Segoe=
- UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size: 16px;=
-">
-And if I&nbsp;invoke $CC (arm-poky-linux-gnueabi-gcc), using this SDK,&nbsp=
-;sizeof (long) is 4 (long =3D int)</p>
-<div><br>
-</div>
-<p>However,&nbsp;<span style=3D"font-size: 12pt;">if I look into $CONFIG_SI=
-TE's definition of ac_cv_sizeof_long, it is defined as '8'.</span></p>
-<p></p>
-<p><span style=3D"font-size: 12pt;">I feel this is strange since if this ca=
-ched&nbsp;</span><span style=3D"font-size: 12pt;">configure data is for the=
- target (and cross-compiling), this value should be 4, to match the above (=
-</span>arm-poky-linux-gnueabi-gcc<span style=3D"font-size: 12pt;">)&nbsp;</=
-span><span style=3D"font-size: 12pt;">result.</span><br>
-</p>
-<p>(<span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quo=
-t;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quo=
-t;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size=
-: 16px;">I think this part of the cache is being&nbsp;</span><span style=3D=
-"font-family: Calibri, Arial, Helvetica, sans-serif, &quot;Apple Color Emoj=
-i&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot;Segoe UI Symbol&=
-quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size: 16px;">copied
- from poky/meta/site/x86_64-linux,&nbsp;</span>)</p>
-<p><br>
-</p>
-<p>This is causing break if I build autotool based program using the SDK.</=
-p>
-<p><br>
-</p>
-<p>Am I doing mis-use of SDK here?</p>
-<p><br>
-</p>
-<p><br>
-</p>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi,<o:p></o:p></p>
+<p class=3D"MsoNormal">I&#8217;m fairly new to Yocto, several web article r=
+ecommend the use of Chris Larson&#8217;s &#8216;bb&#8217; utility. I unders=
+tand &#8216;bb&#8217; is not part of Yocto, but perhaps someone here knows =
+the answer to my problem. Running &#8216;bb log&#8217; in my build director=
+y results
+ in:<o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
+urier New&quot;"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
+urier New&quot;">[siegel@xxx junk]$ bb log<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
+urier New&quot;">Traceback (most recent call last):<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
+urier New&quot;">&nbsp; File &quot;/home/siegel/oe/dist/bin/bb/libexec/bb-l=
+og&quot;, line 10, in &lt;module&gt;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
+urier New&quot;">&nbsp;&nbsp;&nbsp; import bbcmd<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
+urier New&quot;">&nbsp; File &quot;/home/siegel/oe/dist/bin/bb/libexec/bbcm=
+d.py&quot;, line 18, in &lt;module&gt;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
+urier New&quot;">&nbsp;&nbsp;&nbsp; import bb.cache<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
+urier New&quot;">&nbsp; File &quot;/home/siegel/poky/bitbake/bin/../lib/bb/=
+__init__.py&quot;, line 77, in &lt;module&gt;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
+urier New&quot;">&nbsp;&nbsp;&nbsp; import bb.msg<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
+urier New&quot;">&nbsp; File &quot;/home/siegel/poky/bitbake/bin/../lib/bb/=
+msg.py&quot;, line 32, in &lt;module&gt;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
+urier New&quot;">&nbsp;&nbsp;&nbsp; import bb.event<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
+urier New&quot;">&nbsp; File &quot;/home/siegel/poky/bitbake/bin/../lib/bb/=
+event.py&quot;, line 35, in &lt;module&gt;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
+urier New&quot;">&nbsp;&nbsp;&nbsp; import bb.utils<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
+urier New&quot;">&nbsp; File &quot;/home/siegel/poky/bitbake/bin/../lib/bb/=
+utils.py&quot;, line 37, in &lt;module&gt;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
+urier New&quot;">&nbsp;&nbsp;&nbsp; from commands import getstatusoutput<o:=
+p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
+urier New&quot;">ImportError: No module named 'commands'<o:p></o:p></span><=
+/p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
+urier New&quot;"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal">&#8216;bb&#8217; Python source contains shebang path=
+ &#8216;/usr/bin/env python3&#8217; , which means it expects to be run by a=
+ Python 3.x interpreter. But then it imports python code from bitbake/lib, =
+and bitbake/Yocto use Python 2.7.x. &nbsp;&#8216;bb&#8217; fails upon tryin=
+g
+ to import &#8216;commands&#8217;, which is a non-existent module in Python=
+3.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Any suggestions? I have installed &#8216;bb&#8217; a=
+ccording to its directions, put in my .bashrc:<o:p></o:p></p>
+<p class=3D"MsoNormal">eval &quot;$(~/oe/dist/bin/bb/bin/bb init -)&quot;<o=
+:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Regards,<o:p></o:p></p>
+<p class=3D"MsoNormal">Jeff<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 </div>
 </body>
 </html>
 
---_000_BLUPR0101MB1586CBD9B1FAC1B7B8AB6EA7D7FA0BLUPR0101MB1586_--
+--_000_4B3F5767F3F5754FAD4E230B6B1D4F792130C338US70UWXCHMBA02z_--
