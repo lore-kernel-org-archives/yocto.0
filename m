@@ -1,6 +1,6 @@
-Return-Path: <stephen.k.jolley@intel.com>
+Return-Path: <jeffrey.siegel@nokia.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CF746E00444; Fri,  9 Sep 2016 08:05:08 -0700 (PDT)
+	id 6A08AE00444; Fri,  9 Sep 2016 08:12:36 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,41 +8,46 @@ X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
 	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
+	*      [135.245.18.28 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 96193E00404
-	for <yocto@yoctoproject.org>; Fri,  9 Sep 2016 08:05:05 -0700 (PDT)
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-	by fmsmga101.fm.intel.com with ESMTP; 09 Sep 2016 08:05:01 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.30,305,1470726000"; d="scan'208,217";a="6372915"
-Received: from fmsmsx105.amr.corp.intel.com ([10.18.124.203])
-	by fmsmga005.fm.intel.com with ESMTP; 09 Sep 2016 08:05:00 -0700
-Received: from fmsmsx153.amr.corp.intel.com (10.18.125.6) by
-	FMSMSX105.amr.corp.intel.com (10.18.124.203) with Microsoft SMTP Server
-	(TLS) id 14.3.248.2; Fri, 9 Sep 2016 08:05:00 -0700
-Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.129]) by
-	FMSMSX153.amr.corp.intel.com ([169.254.9.124]) with mapi id
-	14.03.0248.002; Fri, 9 Sep 2016 08:04:56 -0700
-From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"openembedded-core@lists.openembedded.org"
-	<openembedded-core@lists.openembedded.org>
-Thread-Topic: Yocto Bugzilla category cleanup
-Thread-Index: AdIKq4B6+6Vi+G3RSR+79QeIaPFXfg==
-Date: Fri, 9 Sep 2016 15:04:56 +0000
-Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155E572467FB@fmsmsx111.amr.corp.intel.com>
+Received: from smtp-us.alcatel-lucent.com (us-hpatc-esg-02.alcatel-lucent.com
+	[135.245.18.28])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6A79DE00404
+	for <yocto@yoctoproject.org>; Fri,  9 Sep 2016 08:12:34 -0700 (PDT)
+Received: from us70tumx2.dmz.alcatel-lucent.com (unknown [135.245.18.14])
+	by Websense Email Security Gateway with ESMTPS id 5F71BC78771C3
+	for <yocto@yoctoproject.org>; Fri,  9 Sep 2016 15:12:31 +0000 (GMT)
+Received: from us70tusmtp2.zam.alcatel-lucent.com
+	(us70tusmtp2.zam.alcatel-lucent.com [135.5.2.64])
+	by us70tumx2.dmz.alcatel-lucent.com (GMO) with ESMTP id u89FCXxE019263
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=OK)
+	for <yocto@yoctoproject.org>; Fri, 9 Sep 2016 15:12:33 GMT
+Received: from US70UWXCHHUB01.zam.alcatel-lucent.com
+	(us70uwxchhub01.zam.alcatel-lucent.com [135.5.2.48])
+	by us70tusmtp2.zam.alcatel-lucent.com (GMO) with ESMTP id
+	u89FCTM1013946
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Fri, 9 Sep 2016 15:12:33 GMT
+Received: from US70UWXCHMBA02.zam.alcatel-lucent.com ([169.254.8.168]) by
+	US70UWXCHHUB01.zam.alcatel-lucent.com ([135.5.2.48]) with mapi id
+	14.03.0195.001; Fri, 9 Sep 2016 11:12:18 -0400
+From: "Siegel, Jeffrey (Nokia - US)" <jeffrey.siegel@nokia.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto] 'bb' utility fails on attempt to import 'commands' module
+Thread-Index: AdIKHUpIDlK0cGuGSY2VskoA0mvdOQApJIiAAAVb2JA=
+Date: Fri, 9 Sep 2016 15:12:17 +0000
+Message-ID: <4B3F5767F3F5754FAD4E230B6B1D4F7921316B6E@US70UWXCHMBA02.zam.alcatel-lucent.com>
+References: <4B3F5767F3F5754FAD4E230B6B1D4F792130C338@US70UWXCHMBA02.zam.alcatel-lucent.com>
+	<CAJTo0LY5Z8P3QJiHbfxSNe6eR180oH0+gzH8B5XX3r08y3XJ5A@mail.gmail.com>
+In-Reply-To: <CAJTo0LY5Z8P3QJiHbfxSNe6eR180oH0+gzH8B5XX3r08y3XJ5A@mail.gmail.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-ctpclassification: CTP_IC
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiM2I3MWNlYTMtMTAxNS00MGVlLWI5YjEtMWIyNjZjMDM2ZmM0IiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX0lDIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE1LjkuNi42IiwiVHJ1c3RlZExhYmVsSGFzaCI6IktjUEt2QXFyT2xFaUlDTjlFdmpHbUsxWno5YTlcL2orcTNDbzdkalBkY0NjPSJ9
-x-originating-ip: [10.1.200.106]
+x-originating-ip: [135.5.27.17]
 MIME-Version: 1.0
-Subject: Yocto Bugzilla category cleanup
+Subject: Re: 'bb' utility fails on attempt to import 'commands' module
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,179 +59,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 09 Sep 2016 15:05:08 -0000
+X-List-Received-Date: Fri, 09 Sep 2016 15:12:36 -0000
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155E572467FBfmsmsx111amrcor_"
+	boundary="_000_4B3F5767F3F5754FAD4E230B6B1D4F7921316B6EUS70UWXCHMBA02z_"
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E572467FBfmsmsx111amrcor_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+--_000_4B3F5767F3F5754FAD4E230B6B1D4F7921316B6EUS70UWXCHMBA02z_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-All,
+VGhhbmtzLCB0aGlzIGZpeGVkIHRoZSBpc3N1ZS4gQWZ0ZXIgY2hlY2tpbmcgdGhlIG91dHB1dCBv
+ZiDigJhnaXQgbG9n4oCZLCBJIHBpY2tlZCB0aGlzIGNvbW1pdDoNCmdpdCBjaGVja291dCBkNDU4
+YjMNCg0KSmVmZg0K
 
+--_000_4B3F5767F3F5754FAD4E230B6B1D4F7921316B6EUS70UWXCHMBA02z_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTIgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
+YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
+IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
+IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJ
+Zm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJvbWFuIiwic2VyaWYi
+O30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0K
+CWNvbG9yOmJsdWU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQphOnZpc2l0ZWQsIHNw
+YW4uTXNvSHlwZXJsaW5rRm9sbG93ZWQNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9y
+OnB1cnBsZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCnNwYW4uRW1haWxTdHlsZTE3
+DQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFsLXJlcGx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJp
+Iiwic2Fucy1zZXJpZiI7DQoJY29sb3I6IzFGNDk3RDt9DQouTXNvQ2hwRGVmYXVsdA0KCXttc28t
+c3R5bGUtdHlwZTpleHBvcnQtb25seTt9DQpAcGFnZSBXb3JkU2VjdGlvbjENCgl7c2l6ZTo4LjVp
+biAxMS4waW47DQoJbWFyZ2luOjEuMGluIDEuMGluIDEuMGluIDEuMGluO30NCmRpdi5Xb3JkU2Vj
+dGlvbjENCgl7cGFnZTpXb3JkU2VjdGlvbjE7fQ0KLS0+PC9zdHlsZT48IS0tW2lmIGd0ZSBtc28g
+OV0+PHhtbD4NCjxvOnNoYXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRtYXg9IjEwMjYiIC8+
+DQo8L3htbD48IVtlbmRpZl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlbGF5
+b3V0IHY6ZXh0PSJlZGl0Ij4NCjxvOmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRhPSIxIiAvPg0KPC9v
+OnNoYXBlbGF5b3V0PjwveG1sPjwhW2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJvZHkgbGFuZz0iRU4t
+VVMiIGxpbms9ImJsdWUiIHZsaW5rPSJwdXJwbGUiPg0KPGRpdiBjbGFzcz0iV29yZFNlY3Rpb24x
+Ij4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2Zv
+bnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xv
+cjojMUY0OTdEIj5UaGFua3MsIHRoaXMgZml4ZWQgdGhlIGlzc3VlLiBBZnRlciBjaGVja2luZyB0
+aGUgb3V0cHV0IG9mIOKAmGdpdCBsb2figJksIEkgcGlja2VkIHRoaXMgY29tbWl0OjxvOnA+PC9v
+OnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPmdpdCBjaGVja291dCBkNDU4YjM8
+bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9w
+Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SmVmZjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0
+O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztj
+b2xvcjojMUY0OTdEIj48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjwvYm9keT4NCjwv
+aHRtbD4NCg==
 
-We are planning to spin up a team to look at redefining/cleaning up the cat=
-egories in Yocto's bugzilla.  We will then work on the migration to these n=
-ew categories and ensure each category has the correct default owner.   If =
-you are interested in being an active participant, please let stephen.k.jol=
-ley@intel.com<mailto:stephen.k.jolley@intel.com> know.  The meeting will li=
-kely be at a time suitable for Americas and EU people since several key par=
-ticipants are in these time zones and will happen early in the 2.3 cycle.
-
-
-
-Thanks,
-
-Stephen K. Jolley
-Yocto Project Program Manager
-INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-*   Work Telephone:        (503) 712-0534
-*    Cell:               (208) 244-4460
-* Email:                            stephen.k.jolley@intel.com
-
-
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E572467FBfmsmsx111amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Consolas;
-	panose-1:2 11 6 9 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:"ms sans serif";}
-@font-face
-	{font-family:"Comic Sans MS";
-	panose-1:3 15 7 2 3 3 2 2 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
-	{mso-style-priority:99;
-	mso-style-link:"Plain Text Char";
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-span.PlainTextChar
-	{mso-style-name:"Plain Text Char";
-	mso-style-priority:99;
-	mso-style-link:"Plain Text";
-	font-family:"Calibri",sans-serif;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoPlainText">All,<o:p></o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">We are planning to spin up a team to look at rede=
-fining/cleaning up the categories in Yocto&#8217;s bugzilla.&nbsp; We will =
-then work on the migration to these new categories and ensure each category=
- has the correct default owner.&nbsp;&nbsp; If you are
- interested in being an active participant, please let <a href=3D"mailto:st=
-ephen.k.jolley@intel.com">
-stephen.k.jolley@intel.com</a> know.&nbsp; The meeting will likely be at a =
-time suitable for Americas and EU people since several key participants are=
- in these time zones and will happen early in the 2.3 cycle.<o:p></o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
-ot;,serif;color:purple">Stephen K. Jolley</span></i></b><b><i><span style=
-=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,sans-serif;color:purple=
-"><o:p></o:p></span></i></b></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
-Courier New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></spa=
-n></b></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
-or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-<o:p></o:p></span></b></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Wingdings;color:black">(<=
-/span><span style=3D"font-family:&quot;ms sans serif&quot;;color:teal">
-</span><span style=3D"font-size:8.0pt;font-family:&quot;ms sans serif&quot;=
-;color:teal">&nbsp;&nbsp;</span><b><span style=3D"font-size:8.0pt;font-fami=
-ly:&quot;Comic Sans MS&quot;;color:teal">Work Telephone</span></b><span sty=
-le=3D"font-family:&quot;ms sans serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;ms sans serif&quot;=
-">(503) 712-0534<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;ms s=
-ans serif&quot;;color:teal">&nbsp;&nbsp;&nbsp;
-</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
-ot;;color:teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&=
-quot;ms sans serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;ms sans serif&quot;=
-">(208) 244-4460<span style=3D"color:black"><o:p></o:p></span></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-">* </span>
-<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
-MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
-.0pt;font-family:&quot;ms sans serif&quot;;color:teal">:</span><span lang=
-=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;ms sans serif&quot;">&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;
-<u><span style=3D"color:blue">stephen.k.jolley@intel.com</span></u></span><=
-span lang=3D"FR" style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,sa=
-ns-serif"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
-
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E572467FBfmsmsx111amrcor_--
+--_000_4B3F5767F3F5754FAD4E230B6B1D4F7921316B6EUS70UWXCHMBA02z_--
