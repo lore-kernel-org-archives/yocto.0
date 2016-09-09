@@ -1,55 +1,60 @@
-Return-Path: <jeffrey.siegel@nokia.com>
+Return-Path: <kernelraj@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 17219E00A07; Thu,  8 Sep 2016 15:17:35 -0700 (PDT)
+	id C4392E00CC0; Fri,  9 Sep 2016 00:15:15 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI,RCVD_IN_SORBS_SPAM autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [135.245.18.28 listed in list.dnswl.org]
-	*  2.4 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [135.245.18.28 listed in dnsbl.sorbs.net]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (kernelraj[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 644 seconds by postgrey-1.32 at yocto-www;
-	Thu, 08 Sep 2016 15:17:33 PDT
-Received: from smtp-us.alcatel-lucent.com (us-hpatc-esg-02.alcatel-lucent.com
-	[135.245.18.28])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 803CEE009FD
-	for <yocto@yoctoproject.org>; Thu,  8 Sep 2016 15:17:33 -0700 (PDT)
-Received: from us70tumx2.dmz.alcatel-lucent.com (unknown [135.245.18.14])
-	by Websense Email Security Gateway with ESMTPS id 5F0755CB9419C
-	for <yocto@yoctoproject.org>; Thu,  8 Sep 2016 22:06:46 +0000 (GMT)
-Received: from us70tusmtp2.zam.alcatel-lucent.com
-	(us70tusmtp2.zam.alcatel-lucent.com [135.5.2.64])
-	by us70tumx2.dmz.alcatel-lucent.com (GMO) with ESMTP id u88M6mAe012878
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=OK)
-	for <yocto@yoctoproject.org>; Thu, 8 Sep 2016 22:06:48 GMT
-Received: from US70TWXCHHUB04.zam.alcatel-lucent.com
-	(us70twxchhub04.zam.alcatel-lucent.com [135.5.2.36])
-	by us70tusmtp2.zam.alcatel-lucent.com (GMO) with ESMTP id
-	u88M6mZM024949
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Thu, 8 Sep 2016 22:06:48 GMT
-Received: from US70UWXCHMBA02.zam.alcatel-lucent.com ([169.254.8.175]) by
-	US70TWXCHHUB04.zam.alcatel-lucent.com ([135.5.2.36]) with mapi id
-	14.03.0195.001; Thu, 8 Sep 2016 18:06:48 -0400
-From: "Siegel, Jeffrey (Nokia - US)" <jeffrey.siegel@nokia.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: 'bb' utility fails on attempt to import 'commands' module
-Thread-Index: AdIKHUpIDlK0cGuGSY2VskoA0mvdOQ==
-Date: Thu, 8 Sep 2016 22:06:46 +0000
-Message-ID: <4B3F5767F3F5754FAD4E230B6B1D4F792130C338@US70UWXCHMBA02.zam.alcatel-lucent.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [135.5.27.18]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [74.125.82.42 listed in list.dnswl.org]
+Received: from mail-wm0-f42.google.com (mail-wm0-f42.google.com [74.125.82.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2BB24E00CBB
+	for <yocto@yoctoproject.org>; Fri,  9 Sep 2016 00:15:11 -0700 (PDT)
+Received: by mail-wm0-f42.google.com with SMTP id b187so15260631wme.1
+	for <yocto@yoctoproject.org>; Fri, 09 Sep 2016 00:15:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=jLPMLfIUYsrqo5pWuOGCqSdKgQJgK1bsf55uSJWQGag=;
+	b=eFQw/2M5YL66ArR3tjVMpGTCR7EPFaqNiYqUqTA1hibSQFauq1+/WoVqirPONOHrfh
+	S9vUR9z5JJcDAH9IGVWVkC2d2KUgyhnqLXUvAS7E4uF7dX8NyAhaR0i0pM9Dzct76zle
+	Qutof3rFwYC/5I07NAgA1DlgpID68kHBZkXQfI+wDltJ4WadqxcqfUnHpz0/TE2++Zvp
+	WoIg+TAbMk7eCOgGlk6mQaJeiysiEDslXtDcLU8erTCBZp2Jh46rImgnK+GxEggrzSo0
+	PNZd+nNRZ0k/mpryydLuu63TeCtcbiD5x+TSECpJ4SAwXlWbCGWSgEFRIFR3ujFb7A/i
+	RuQg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=jLPMLfIUYsrqo5pWuOGCqSdKgQJgK1bsf55uSJWQGag=;
+	b=IOAr4LdFWd6Agv8F2/rjEny5Fa9j6/XBjRnS1rMhPajS5zw+Hu7EoY05rnaffsBYAj
+	EC0c+h1D+6FjcawgBghktol+cUZkMRlAM3kTeTgBbfd5DOBy4rGJ+seN9TvWTggGd6UY
+	rABz4A/sAGwrV7LiGzt/xk8zLjaD4izIrpRhY/dI9mErxhlvGwFG59Dk9BFOAnwu0ekU
+	gKF8N1BJLuWg2sm0+cQBKwssZMlKn5ompKr6I4DmFA02ziQOetmzRTJSoPQF+zJDKXi4
+	oZzAkMgUPGdyQyzn7fb17Xcdv6qsVU5MBlyKinHRbRxYSxVuFqizZeo8bvnhyDa45BDH
+	b+2Q==
+X-Gm-Message-State: AE9vXwPOMY/8p6c+AwJaHSh+T6m7+L7/RAbBWeRZhjzGTQBksDPlaJB9Wt/tRMJMCIB+wPskooNeYxZVWhzvWg==
+X-Received: by 10.194.145.101 with SMTP id st5mr1859637wjb.94.1473405310735;
+	Fri, 09 Sep 2016 00:15:10 -0700 (PDT)
 MIME-Version: 1.0
+Received: by 10.80.166.69 with HTTP; Fri, 9 Sep 2016 00:15:10 -0700 (PDT)
+From: BHARATH RAJ <kernelraj@gmail.com>
+Date: Fri, 9 Sep 2016 00:15:10 -0700
+Message-ID: <CAJz+W7BLRn8p+AVmfYcr4=53vo4PSTzqxdmXioJGdWrKBLfdZw@mail.gmail.com>
+To: yocto@yoctoproject.org
 X-Mailman-Approved-At: Fri, 09 Sep 2016 06:40:31 -0700
-Subject: 'bb' utility fails on attempt to import 'commands' module
+Subject: [Yocot] : undefined reference to `__init_array_start' error.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -61,177 +66,230 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 08 Sep 2016 22:17:35 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_4B3F5767F3F5754FAD4E230B6B1D4F792130C338US70UWXCHMBA02z_"
+X-List-Received-Date: Fri, 09 Sep 2016 07:15:15 -0000
+Content-Type: multipart/alternative; boundary=089e01229b66281969053c0de87a
 
---_000_4B3F5767F3F5754FAD4E230B6B1D4F792130C338US70UWXCHMBA02z_
-Content-Type: text/plain; charset="us-ascii"
+--089e01229b66281969053c0de87a
+Content-Type: text/plain; charset=UTF-8
+
+I am now trying to build one recipe on Yocto 2.0 based environent.
+
+Howerver, I am seeng following error.I wonder if this is a known
+problem and you already have workaround?
+
+
+It says undefined reference to `__init_array_start'.
+
+
+
+This error did not happen with Yocto 1.8 based build, So, it can be
+toolchain issue
+
+
+| aarch64-poky-linux-libtool: link: aarch64-poky-linux-g++
+--sysroot=/local/mnt/workspace/narasimha/AGL_NEW/poky/build/tmp-glibc/sysroot/xxxxx
+ -fPIC -DPIC -shared -nostdlib
+/local/mnt/workspace/narasimha/AGL_NEW/poky/build/tmp-glibc/sysroots/xxxxxx/usr/lib64/Scrt1.o
+/local/mnt/workspace/narasimha/AGL_NEW/poky/build/tmp-glibc/sysroots/xxxxx/usr/lib64/crti.o
+/local/mnt/workspace/narasimha/AGL_NEW/poky/build/tmp-glibc/sysroots/xxxx/usr/lib64/aarch64-poky-linux/5.2.0/crtbeginS.o
+ .libs/libbinder_la-AppOpsManager.o .libs/libbinder_la-Binder.o
+.libs/libbinder_la-BpBinder.o .libs/libbinder_la-BufferedTextOutput.o
+.libs/libbinder_la-Debug.o .libs/libbinder_la-IAppOpsCallback.o
+.libs/libbinder_la-IAppOpsService.o .libs/libbinder_la-IBatteryStats.o
+.libs/libbinder_la-IInterface.o .libs/libbinder_la-IMemory.o
+.libs/libbinder_la-IPCThreadState.o
+.libs/libbinder_la-IPermissionController.o
+.libs/libbinder_la-IProcessInfoService.o
+.libs/libbinder_la-ProcessInfoService.o
+.libs/libbinder_la-IServiceManager.o .libs/libbinder_la-MemoryDealer.o
+.libs/libbinder_la-MemoryBase.o .libs/libbinder_la-MemoryHeapBase.o
+.libs/libbinder_la-Parcel.o .libs/libbinder_la-PermissionCache.o
+.libs/libbinder_la-ProcessState.o .libs/libbinder_la-Static.o
+.libs/libbinder_la-TextOutput.o
+-L/local/mnt/workspace/narasimha/AGL_NEW/poky/build/tmp-glibc/sysroot/xxxxxx/usr/lib64
+/local/mnt/workspace/narasimha/AGL_NEW/poky/build/tmp-glibc/sysroots/xxxxxx/usr/lib64/libcutils.so
+/local/mnt/workspace/narasimha/AGL_NEW/poky/build/tmp-glibc/sysroot/xxxxxx/usr/lib64/liblog.so
+-lpthread /local/mnt/workspace/narasimha/AGL_NEW/poky/build/tmp-glibc/sysroot/xxxxxx/usr/lib64/libutils.so
+-L/local/mnt/workspace/narasimha/AGL_NEW/poky/build/tmp-glibc/sysroots/x86_64-linux/usr/lib/aarch64-poky-linux/gcc/aarch64-poky-linux/5.2.0
+-L/local/mnt/workspace/narasimha/AGL_NEW/poky/build/tmp-glibc/sysroots/xxxxxx/lib64
+-L/local/mnt/workspace/narasimha/AGL_NEW/poky/build/tmp-glibc/sysroots/xxxxxxx/usr/lib64/aarch64-poky-linux/5.2.0
+/local/mnt/workspace/narasimha/AGL_NEW/poky/build/tmp-glibc/sysroots/xxxxxxx/usr/lib64/libstdc++.so
+-lm -lc -lgcc_s -lgcc
+/local/mnt/workspace/narasimha/AGL_NEW/poky/build/tmp-glibc/sysroots/xxxxxxx/usr/lib64/aarch64-poky-linux/5.2.0/crtendS.o
+/local/mnt/workspace/narasimha/AGL_NEW/poky/build/tmp-glibc/sysroots/xxxxxxx/usr/lib64/crtn.o
+ --sysroot=/local/mnt/workspace/narasimha/AGL_NEW/poky/build/tmp-glibc/sysroots/xxxxxxxx/
+-g -fstack-protector-all -Wl,-O1 -Wl,--hash-style=gnu -Wl,--as-needed
+-Wl,-z -Wl,relro -Wl,-z -Wl,now   -Wl,-soname -Wl,libbinder.so.0 -o
+.libs/libbinder.so.0.0.0
+| /local/mnt/workspace/narasimha/AGL_NEW/poky/build/tmp-glibc/sysroots/xxxxxxx/usr/lib64/libc_nonshared.a(elf-init.oS):
+In function `__libc_csu_init':
+| /local/mnt/workspace/narasimha/AGL_NEW/poky/build/tmp-glibc/work/aarch64-poky-linux/glibc/2.22-r0/git/csu/elf-init.c:87:
+undefined reference to `__init_array_start'
+| /local/mnt/workspace/narasimha/AGL_NEW/poky/build/tmp-glibc/sysroots/x86_64-linux/usr/libexec/aarch64-poky-linux/gcc/aarch64-poky-linux/5.2.0/ld:
+/local/mnt/workspace/narasimha/AGL_NEW/poky/build/tmp-glibc/sysroots/xxxxxxx/lib64/libc_nonshared.a(elf-init.oS):
+relocation R_AARCH64_ADR_PREL_PG_HI21 against external symbol
+`__init_array_start' can not be used when making a shared object;
+recompile with -fPIC
+| /local/mnt/workspace/narasimha/AGL_NEW/poky/build/tmp-glibc/work/aarch64-poky-linux/glibc/2.22-r0/git/csu/elf-init.c:87:
+undefined reference to `__init_array_end'
+| /local/mnt/workspace/narasimha/AGL_NEW/poky/build/tmp-glibc/sysroots/x86_64-linux/usr/libexec/aarch64-poky-linux/gcc/aarch64-poky-linux/5.2.0/ld:
+/local/mnt/workspace/narasimha/AGL_NEW/poky/build/tmp-glibc/sysroots/xxxxxxx/usr/lib64/libc_nonshared.a(elf-init.oS):
+relocation R_AARCH64_ADR_PREL_PG_HI21 against external symbol
+`__init_array_end' can not be used when making a shared object;
+recompile with -fPIC
+| /local/mnt/workspace/narasimha/AGL_NEW/poky/build/tmp-glibc/work/aarch64-poky-linux/glibc/2.22-r0/git/csu/elf-init.c:87:
+undefined reference to `__init_array_start'
+| /local/mnt/workspace/narasimha/AGL_NEW/poky/build/tmp-glibc/work/aarch64-poky-linux/glibc/2.22-r0/git/csu/elf-init.c:87:
+undefined reference to `__init_array_end'
+| /local/mnt/workspace/narasimha/AGL_NEW/poky/build/tmp-glibc/sysroots/x86_64-linux/usr/libexec/aarch64-poky-linux/gcc/aarch64-poky-linux/5.2.0/ld:
+.libs/libbinder.so.0.0.0: hidden symbol `__init_array_end' isn't
+defined
+| /local/mnt/workspace/narasimha/AGL_NEW/poky/build/tmp-glibc/sysroots/x86_64-linux/usr/libexec/aarch64-poky-linux/gcc/aarch64-poky-linux/5.2.0/ld:
+final link failed: Bad value
+| collect2: error: ld returned 1 exit status
+| make[2]: *** [libbinder.la] Error 1
+| make[2]: Leaving directory
+`/local/mnt/workspace/narasimha/AGL_NEW/poky/build/tmp-glibc/work/aarch64-poky-linux/native-frameworks/git-r0/build/libs/binder'
+| make[1]: *** [all-recursive] Error 1
+| make[1]: Leaving directory
+`/local/mnt/workspace/narasimha/AGL_NEW/poky/build/tmp-glibc/work/aarch64-poky-linux/native-frameworks/git-r0/build'
+| make: *** [all] Error 2
+| ERROR: oe_runmake failed
+| ERROR: Function failed: do_compile (log file is located at
+/local/mnt/workspace/narasimha/AGL_NEW/poky/build/tmp-glibc/work/aarch64-poky-linux/native-frameworks/git-r0/temp/log.do_compile.13017)
+
+Regards
+
+Raj.
+
+--089e01229b66281969053c0de87a
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
-I'm fairly new to Yocto, several web article recommend the use of Chris Lar=
-son's 'bb' utility. I understand 'bb' is not part of Yocto, but perhaps som=
-eone here knows the answer to my problem. Running 'bb log' in my build dire=
-ctory results in:
+<div dir=3D"ltr"><pre style=3D"font-family:courier,&quot;courier new&quot;,=
+monospace;font-size:14px;white-space:pre-wrap;word-wrap:break-word;margin-t=
+op:0px;margin-bottom:0px;color:rgb(0,0,0);line-height:19.6px">I am now tryi=
+ng to build one recipe on Yocto 2.0 based environent.
+<br></pre><pre style=3D"font-family:courier,&quot;courier new&quot;,monospa=
+ce;font-size:14px;white-space:pre-wrap;word-wrap:break-word;margin-top:0px;=
+margin-bottom:0px;color:rgb(0,0,0);line-height:19.6px">Howerver, I am seeng=
+ following error.I wonder if this is a known problem and you already have w=
+orkaround?</pre><pre style=3D"font-family:courier,&quot;courier new&quot;,m=
+onospace;font-size:14px;white-space:pre-wrap;word-wrap:break-word;margin-to=
+p:0px;margin-bottom:0px;color:rgb(0,0,0);line-height:19.6px"><br></pre><pre=
+ style=3D"font-family:courier,&quot;courier new&quot;,monospace;font-size:1=
+4px;white-space:pre-wrap;word-wrap:break-word;margin-top:0px;margin-bottom:=
+0px;color:rgb(0,0,0);line-height:19.6px">It says <span style=3D"line-height=
+:19.6px">undefined reference to `__init_array_start&#39;.</span></pre><pre =
+style=3D"font-family:courier,&quot;courier new&quot;,monospace;font-size:14=
+px;white-space:pre-wrap;word-wrap:break-word;margin-top:0px;margin-bottom:0=
+px;color:rgb(0,0,0);line-height:19.6px"><span style=3D"line-height:19.6px">=
+<br></span></pre><pre style=3D"font-family:courier,&quot;courier new&quot;,=
+monospace;font-size:14px;white-space:pre-wrap;word-wrap:break-word;margin-t=
+op:0px;margin-bottom:0px;color:rgb(0,0,0);line-height:19.6px"><span style=
+=3D"line-height:19.6px"><br></span></pre><pre style=3D"font-family:courier,=
+&quot;courier new&quot;,monospace;font-size:14px;white-space:pre-wrap;word-=
+wrap:break-word;margin-top:0px;margin-bottom:0px;color:rgb(0,0,0);line-heig=
+ht:19.6px"><pre style=3D"font-family:courier,&quot;courier new&quot;,monosp=
+ace;white-space:pre-wrap;word-wrap:break-word;margin-top:0px;margin-bottom:=
+0px;line-height:19.6px">This error did not happen with Yocto 1.8 based buil=
+d, So, it can be toolchain issue</pre></pre><pre style=3D"font-family:couri=
+er,&quot;courier new&quot;,monospace;font-size:14px;white-space:pre-wrap;wo=
+rd-wrap:break-word;margin-top:0px;margin-bottom:0px;color:rgb(0,0,0);line-h=
+eight:19.6px"><br></pre><pre style=3D"word-wrap:break-word;margin-top:0px;m=
+argin-bottom:0px"><p class=3D"MsoNormal"><font color=3D"#000000" face=3D"co=
+urier, courier new, monospace"><span style=3D"font-size:14px;line-height:19=
+.6px;white-space:pre-wrap">| aarch64-poky-linux-libtool: link: aarch64-poky=
+-linux-g++  --sysroot=3D/local/mnt/workspace/narasimha/AGL_NEW/poky/build/t=
+mp-glibc/sysroot/xxxxx  -fPIC -DPIC -shared -nostdlib /local/mnt/workspace/=
+narasimha/AGL_NEW/poky/build/tmp-glibc/sysroots/xxxxxx/usr/lib64/Scrt1.o /l=
+ocal/mnt/workspace/narasimha/AGL_NEW/poky/build/tmp-glibc/sysroots/xxxxx/us=
+r/lib64/crti.o /local/mnt/workspace/narasimha/AGL_NEW/poky/build/tmp-glibc/=
+sysroots/xxxx/usr/lib64/aarch64-poky-linux/5.2.0/crtbeginS.o  .libs/libbind=
+er_la-AppOpsManager.o .libs/libbinder_la-Binder.o .libs/libbinder_la-BpBind=
+er.o .libs/libbinder_la-BufferedTextOutput.o .libs/libbinder_la-Debug.o .li=
+bs/libbinder_la-IAppOpsCallback.o .libs/libbinder_la-IAppOpsService.o .libs=
+/libbinder_la-IBatteryStats.o .libs/libbinder_la-IInterface.o .libs/libbind=
+er_la-IMemory.o .libs/libbinder_la-IPCThreadState.o .libs/libbinder_la-IPer=
+missionController.o .libs/libbinder_la-IProcessInfoService.o .libs/libbinde=
+r_la-ProcessInfoService.o .libs/libbinder_la-IServiceManager.o .libs/libbin=
+der_la-MemoryDealer.o .libs/libbinder_la-MemoryBase.o .libs/libbinder_la-Me=
+moryHeapBase.o .libs/libbinder_la-Parcel.o .libs/libbinder_la-PermissionCac=
+he.o .libs/libbinder_la-ProcessState.o .libs/libbinder_la-Static.o .libs/li=
+bbinder_la-TextOutput.o   -L/local/mnt/workspace/narasimha/AGL_NEW/poky/bui=
+ld/tmp-glibc/sysroot/xxxxxx/usr/lib64 /local/mnt/workspace/narasimha/AGL_NE=
+W/poky/build/tmp-glibc/sysroots/xxxxxx/usr/lib64/libcutils.so /local/mnt/wo=
+rkspace/narasimha/AGL_NEW/poky/build/tmp-glibc/sysroot/xxxxxx/usr/lib64/lib=
+log.so -lpthread /local/mnt/workspace/narasimha/AGL_NEW/poky/build/tmp-glib=
+c/sysroot/xxxxxx/usr/lib64/libutils.so -L/local/mnt/workspace/narasimha/AGL=
+_NEW/poky/build/tmp-glibc/sysroots/x86_64-linux/usr/lib/aarch64-poky-linux/=
+gcc/aarch64-poky-linux/5.2.0 -L/local/mnt/workspace/narasimha/AGL_NEW/poky/=
+build/tmp-glibc/sysroots/xxxxxx/lib64 -L/local/mnt/workspace/narasimha/AGL_=
+NEW/poky/build/tmp-glibc/sysroots/xxxxxxx/usr/lib64/aarch64-poky-linux/5.2.=
+0 /local/mnt/workspace/narasimha/AGL_NEW/poky/build/tmp-glibc/sysroots/xxxx=
+xxx/usr/lib64/libstdc++.so -lm -lc -lgcc_s -lgcc /local/mnt/workspace/naras=
+imha/AGL_NEW/poky/build/tmp-glibc/sysroots/xxxxxxx/usr/lib64/aarch64-poky-l=
+inux/5.2.0/crtendS.o /local/mnt/workspace/narasimha/AGL_NEW/poky/build/tmp-=
+glibc/sysroots/xxxxxxx/usr/lib64/crtn.o  --sysroot=3D/local/mnt/workspace/n=
+arasimha/AGL_NEW/poky/build/tmp-glibc/sysroots/xxxxxxxx/ -g -fstack-protect=
+or-all -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl,--as-needed -Wl,-z -Wl,relro -Wl,=
+-z -Wl,now   -Wl,-soname -Wl,libbinder.so.0 -o .libs/libbinder.so.0.0.0
+| /local/mnt/workspace/narasimha/AGL_NEW/poky/build/tmp-glibc/sysroots/xxxx=
+xxx/usr/lib64/libc_nonshared.a(elf-init.oS): In function `__libc_csu_init&#=
+39;:
+| /local/mnt/workspace/narasimha/AGL_NEW/poky/build/tmp-glibc/work/aarch64-=
+poky-linux/glibc/2.22-r0/git/csu/elf-init.c:87: undefined reference to `__i=
+nit_array_start&#39;
+| /local/mnt/workspace/narasimha/AGL_NEW/poky/build/tmp-glibc/sysroots/x86_=
+64-linux/usr/libexec/aarch64-poky-linux/gcc/aarch64-poky-linux/5.2.0/ld: /l=
+ocal/mnt/workspace/narasimha/AGL_NEW/poky/build/tmp-glibc/sysroots/xxxxxxx/=
+lib64/libc_nonshared.a(elf-init.oS): relocation R_AARCH64_ADR_PREL_PG_HI21 =
+against external symbol `__init_array_start&#39; can not be used when makin=
+g a shared object; recompile with -fPIC
+| /local/mnt/workspace/narasimha/AGL_NEW/poky/build/tmp-glibc/work/aarch64-=
+poky-linux/glibc/2.22-r0/git/csu/elf-init.c:87: undefined reference to `__i=
+nit_array_end&#39;
+| /local/mnt/workspace/narasimha/AGL_NEW/poky/build/tmp-glibc/sysroots/x86_=
+64-linux/usr/libexec/aarch64-poky-linux/gcc/aarch64-poky-linux/5.2.0/ld: /l=
+ocal/mnt/workspace/narasimha/AGL_NEW/poky/build/tmp-glibc/sysroots/xxxxxxx/=
+usr/lib64/libc_nonshared.a(elf-init.oS): relocation R_AARCH64_ADR_PREL_PG_H=
+I21 against external symbol `__init_array_end&#39; can not be used when mak=
+ing a shared object; recompile with -fPIC
+| /local/mnt/workspace/narasimha/AGL_NEW/poky/build/tmp-glibc/work/aarch64-=
+poky-linux/glibc/2.22-r0/git/csu/elf-init.c:87: undefined reference to `__i=
+nit_array_start&#39;
+| /local/mnt/workspace/narasimha/AGL_NEW/poky/build/tmp-glibc/work/aarch64-=
+poky-linux/glibc/2.22-r0/git/csu/elf-init.c:87: undefined reference to `__i=
+nit_array_end&#39;
+| /local/mnt/workspace/narasimha/AGL_NEW/poky/build/tmp-glibc/sysroots/x86_=
+64-linux/usr/libexec/aarch64-poky-linux/gcc/aarch64-poky-linux/5.2.0/ld: .l=
+ibs/libbinder.so.0.0.0: hidden symbol `__init_array_end&#39; isn&#39;t defi=
+ned
+| /local/mnt/workspace/narasimha/AGL_NEW/poky/build/tmp-glibc/sysroots/x86_=
+64-linux/usr/libexec/aarch64-poky-linux/gcc/aarch64-poky-linux/5.2.0/ld: fi=
+nal link failed: Bad value
+| collect2: error: ld returned 1 exit status
+| make[2]: *** [<a href=3D"http://libbinder.la">libbinder.la</a>] Error 1
+| make[2]: Leaving directory `/local/mnt/workspace/narasimha/AGL_NEW/poky/b=
+uild/tmp-glibc/work/aarch64-poky-linux/native-frameworks/git-r0/build/libs/=
+binder&#39;
+| make[1]: *** [all-recursive] Error 1
+| make[1]: Leaving directory `/local/mnt/workspace/narasimha/AGL_NEW/poky/b=
+uild/tmp-glibc/work/aarch64-poky-linux/native-frameworks/git-r0/build&#39;
+| make: *** [all] Error 2
+| ERROR: oe_runmake failed
+| ERROR: Function failed: do_compile (log file is located at /local/mnt/wor=
+kspace/narasimha/AGL_NEW/poky/build/tmp-glibc/work/aarch64-poky-linux/nativ=
+e-frameworks/git-r0/temp/log.do_compile.13017)
+</span></font></p><div style=3D"color:rgb(0,0,0);font-family:courier,&quot;=
+courier new&quot;,monospace;font-size:14px;line-height:19.6px;white-space:p=
+re-wrap"><br></div><font color=3D"#000000" face=3D"courier, courier new, mo=
+nospace"><span style=3D"font-size:14px;line-height:19.6px;white-space:pre-w=
+rap">Regards</span></font></pre><pre style=3D"word-wrap:break-word;margin-t=
+op:0px;margin-bottom:0px"><font color=3D"#000000" face=3D"courier, courier =
+new, monospace"><span style=3D"font-size:14px;line-height:19.6px;white-spac=
+e:pre-wrap">Raj.
 
-[siegel@xxx junk]$ bb log
-Traceback (most recent call last):
-  File "/home/siegel/oe/dist/bin/bb/libexec/bb-log", line 10, in <module>
-    import bbcmd
-  File "/home/siegel/oe/dist/bin/bb/libexec/bbcmd.py", line 18, in <module>
-    import bb.cache
-  File "/home/siegel/poky/bitbake/bin/../lib/bb/__init__.py", line 77, in <=
-module>
-    import bb.msg
-  File "/home/siegel/poky/bitbake/bin/../lib/bb/msg.py", line 32, in <modul=
-e>
-    import bb.event
-  File "/home/siegel/poky/bitbake/bin/../lib/bb/event.py", line 35, in <mod=
-ule>
-    import bb.utils
-  File "/home/siegel/poky/bitbake/bin/../lib/bb/utils.py", line 37, in <mod=
-ule>
-    from commands import getstatusoutput
-ImportError: No module named 'commands'
+</span></font></pre></div>
 
-'bb' Python source contains shebang path '/usr/bin/env python3' , which mea=
-ns it expects to be run by a Python 3.x interpreter. But then it imports py=
-thon code from bitbake/lib, and bitbake/Yocto use Python 2.7.x.  'bb' fails=
- upon trying to import 'commands', which is a non-existent module in Python=
-3.
-
-Any suggestions? I have installed 'bb' according to its directions, put in =
-my .bashrc:
-eval "$(~/oe/dist/bin/bb/bin/bb init -)"
-
-Regards,
-Jeff
-
-
---_000_4B3F5767F3F5754FAD4E230B6B1D4F792130C338US70UWXCHMBA02z_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi,<o:p></o:p></p>
-<p class=3D"MsoNormal">I&#8217;m fairly new to Yocto, several web article r=
-ecommend the use of Chris Larson&#8217;s &#8216;bb&#8217; utility. I unders=
-tand &#8216;bb&#8217; is not part of Yocto, but perhaps someone here knows =
-the answer to my problem. Running &#8216;bb log&#8217; in my build director=
-y results
- in:<o:p></o:p></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">[siegel@xxx junk]$ bb log<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">Traceback (most recent call last):<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">&nbsp; File &quot;/home/siegel/oe/dist/bin/bb/libexec/bb-l=
-og&quot;, line 10, in &lt;module&gt;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">&nbsp;&nbsp;&nbsp; import bbcmd<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">&nbsp; File &quot;/home/siegel/oe/dist/bin/bb/libexec/bbcm=
-d.py&quot;, line 18, in &lt;module&gt;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">&nbsp;&nbsp;&nbsp; import bb.cache<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">&nbsp; File &quot;/home/siegel/poky/bitbake/bin/../lib/bb/=
-__init__.py&quot;, line 77, in &lt;module&gt;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">&nbsp;&nbsp;&nbsp; import bb.msg<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">&nbsp; File &quot;/home/siegel/poky/bitbake/bin/../lib/bb/=
-msg.py&quot;, line 32, in &lt;module&gt;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">&nbsp;&nbsp;&nbsp; import bb.event<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">&nbsp; File &quot;/home/siegel/poky/bitbake/bin/../lib/bb/=
-event.py&quot;, line 35, in &lt;module&gt;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">&nbsp;&nbsp;&nbsp; import bb.utils<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">&nbsp; File &quot;/home/siegel/poky/bitbake/bin/../lib/bb/=
-utils.py&quot;, line 37, in &lt;module&gt;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">&nbsp;&nbsp;&nbsp; from commands import getstatusoutput<o:=
-p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">ImportError: No module named 'commands'<o:p></o:p></span><=
-/p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal">&#8216;bb&#8217; Python source contains shebang path=
- &#8216;/usr/bin/env python3&#8217; , which means it expects to be run by a=
- Python 3.x interpreter. But then it imports python code from bitbake/lib, =
-and bitbake/Yocto use Python 2.7.x. &nbsp;&#8216;bb&#8217; fails upon tryin=
-g
- to import &#8216;commands&#8217;, which is a non-existent module in Python=
-3.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Any suggestions? I have installed &#8216;bb&#8217; a=
-ccording to its directions, put in my .bashrc:<o:p></o:p></p>
-<p class=3D"MsoNormal">eval &quot;$(~/oe/dist/bin/bb/bin/bb init -)&quot;<o=
-:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Regards,<o:p></o:p></p>
-<p class=3D"MsoNormal">Jeff<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
-
---_000_4B3F5767F3F5754FAD4E230B6B1D4F792130C338US70UWXCHMBA02z_--
+--089e01229b66281969053c0de87a--
