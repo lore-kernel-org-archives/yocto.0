@@ -1,82 +1,81 @@
-Return-Path: <zhenhua.luo@nxp.com>
+Return-Path: <tmatsuzawa@uievolution.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DE238E00CC1; Fri,  9 Sep 2016 02:31:18 -0700 (PDT)
+	id 70C1DE00CC5; Fri,  9 Sep 2016 04:48:47 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
 	SPF_HELO_PASS autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [104.47.2.49 listed in list.dnswl.org]
+	*      [104.47.32.51 listed in list.dnswl.org]
 	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from EUR01-DB5-obe.outbound.protection.outlook.com
-	(mail-db5eur01on0049.outbound.protection.outlook.com [104.47.2.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4030AE00CBC
-	for <yocto@yoctoproject.org>; Fri,  9 Sep 2016 02:31:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1; 
+Received: from NAM01-SN1-obe.outbound.protection.outlook.com
+	(mail-sn1nam01on0051.outbound.protection.outlook.com [104.47.32.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A8828E00CBC
+	for <yocto@yoctoproject.org>; Fri,  9 Sep 2016 04:48:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=uievolution.onmicrosoft.com; s=selector1-uievolution-com;
 	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
-	bh=590FixGuCJyN7wUnr77/u0PqSlppGB3XujNlpY0cSs4=;
-	b=i9vEigK8w7pR5rRlFk6ymmvM0vVSAgc5pN1yW+tFy9R67sf1rfZLmDvxWXhYz8uccnSCHwnfgzvIgWbGZXwLtIK8Ae4v1lnP+HH6kF1WbdTXWV43JgKyv0EwX9jpFy8fKBYz8KN/pRGWJULyN56QbtdmrIRq+FmkQnJ2kTrw3Eo=
-Received: from DB6PR0401MB2630.eurprd04.prod.outlook.com (10.169.225.139) by
-	DB6PR0401MB2630.eurprd04.prod.outlook.com (10.169.225.139) with
-	Microsoft SMTP Server (version=TLS1_0,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA_P384)
-	id 15.1.609.3; Fri, 9 Sep 2016 07:58:48 +0000
-Received: from DB6PR0401MB2630.eurprd04.prod.outlook.com ([10.169.225.139]) by
-	DB6PR0401MB2630.eurprd04.prod.outlook.com ([10.169.225.139]) with
-	mapi id 15.01.0609.016; Fri, 9 Sep 2016 07:58:48 +0000
-From: Zhenhua Luo <zhenhua.luo@nxp.com>
-To: "'yocto@yoctoproject.org'" <yocto@yoctoproject.org>
-Thread-Topic: Cortex-M4 build support
-Thread-Index: AdIKb7GAmo83mHHiRt+SgpS1CJ5BJQ==
-Date: Fri, 9 Sep 2016 07:58:48 +0000
-Message-ID: <DB6PR0401MB26303ED7C7F9D20C58F0A218EEFA0@DB6PR0401MB2630.eurprd04.prod.outlook.com>
+	bh=U9LQ3OU78p6XWLCy9gFpTHZc00PPE63kp8hSPfK5bQE=;
+	b=3Ch2azcUk4uBLt5psWOJaQs/oraZEYmRrgbU//g1QPLE79mOWNKYpCE/0VcANjvQaJboNQofP8vzYSXcfztMZw/JxNbXaSS4vZDwp1SQ5K1edKIKSYBFr7P1nD9xx0i7uAlBng+PPbPTINyRJgRMfZyluWIml/6YFjjmLiEBaJk=
+Received: from BLUPR0101MB1586.prod.exchangelabs.com (10.163.119.13) by
+	BLUPR0101MB1586.prod.exchangelabs.com (10.163.119.13) with Microsoft
+	SMTP Server (version=TLS1_0,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA_P384) id
+	15.1.609.9; Fri, 9 Sep 2016 11:33:03 +0000
+Received: from BLUPR0101MB1586.prod.exchangelabs.com ([10.163.119.13]) by
+	BLUPR0101MB1586.prod.exchangelabs.com ([10.163.119.13]) with mapi id
+	15.01.0609.016; Fri, 9 Sep 2016 11:33:03 +0000
+From: Takashi Matsuzawa <tmatsuzawa@uievolution.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: ac_cv_sizeof_long size definition by SDK
+Thread-Index: AQHSCo3tMep/f59FTUGurMdvGu1AVw==
+Date: Fri, 9 Sep 2016 11:33:03 +0000
+Message-ID: <BLUPR0101MB1586CBD9B1FAC1B7B8AB6EA7D7FA0@BLUPR0101MB1586.prod.exchangelabs.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=zhenhua.luo@nxp.com; 
-x-originating-ip: [199.59.225.131]
-x-ms-office365-filtering-correlation-id: e697a2f6-c360-4352-27f2-08d3d8872166
-x-microsoft-exchange-diagnostics: 1; DB6PR0401MB2630;
-	6:mTv6ZJwWfE1bfEQxiqcdH2asSaDqV69ihAn1NsYa26j7da2FC09kbPMmbwgiEHfR2uZ4PDpczvgCr+VTjz8SrFub7xRNw1k6pNRGB3MXntALhAejl3lYzxilQhe2mfj8y7RCG3CgXJnCRBuM0d0WkVR+8X6mjs+TfoHlhOWEQXRD14FV6s/XlqIfffkVKqLFmXCOChni+h9PxRonD/eVoysVUZqAa7I/GrWpeU1ctKGeZda79t6bvisEOKNLAkgLHvCBekZopijhN5/KVe/Xb6GfkPY3ptFIj6aWte9qQ/kytW6YfVygdrWCHhcM5gc8IZ7OqB16y7PV7Ewxg2hTzg==;
-	5:lxZIIgl+NyNtfE52Ug9mIq90MJ2lTpINPWF9swufTTsoaspxSH2Ka+Dx1HsVpUOYZwb4J/g/0RbEgZElyf1CN2Skv0B1zTy126zXPG+D0D+GEwbydndLq0OvfktEQZslQzc1wnUWIQ75cPneu9Xc4A==;
-	24:LxX8o3ilsymcvCdFXthWkpM2Z+EcSrvaABvCGREw9PZPm0eikWEBHB7LfMFHpTfbTiBeCrPDHY1NO6anMMPGDcx23gcSe85XqxqYAXpYr3s=;
-	7:tpFaEm3hK9j3J+0x9NvrybpWm1ZtduMZNxu/IhnvF7JD0o2lt4av3ZRxStEyxhJ7Nf/HpP0bBd/VaSIhsiYQYhgmpeB1yhRSPNoDvvXVfgZxplpu1D44ZjPZImZuy8hKWPFCBLgXZSkFlz70pqMHtoS+tbJhqokk2ujA/FW9hXyA52WIj6d4+0f+2w2VEHE+66TD1dEOhEVnaog/KvgKrK9lB5AefAQ2BBdtG8KWx5iyH/54YpeYOBHwKe/nbjkI
-x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:DB6PR0401MB2630;
-x-microsoft-antispam-prvs: <DB6PR0401MB26303041A9FED833AD0467A1EEFA0@DB6PR0401MB2630.eurprd04.prod.outlook.com>
-x-exchange-antispam-report-test: UriScan:(21748063052155);
+	smtp.mailfrom=tmatsuzawa@uievolution.com; 
+x-originating-ip: [132.245.44.5]
+x-ms-office365-filtering-correlation-id: ff274b05-e33d-4926-ed01-08d3d8a50ff1
+x-microsoft-exchange-diagnostics: 1; BLUPR0101MB1586;
+	6:neb4kF+kSQWcJsbGPMh49i4kHDN+5w4T355fTs32iWwIeBrHCRlClWcC3FH/GrM416qsZq+G5wpBMMmn2CK8kdeakwUY5rWC9nnkyDtS/x0LZwEfpnNTLinAyGt+8JYdQh6mcoKmh/usI0wKYliB9d2jvKd34XT/MN1nGIEBWkEKc+HHCRcFy6d/tx8YZWWMUivMYZZE91ZgCEZCDJekcbQtipgitG8M+dgbxAM/mwiVAZnTeyvm6RhbodJHZyIcaadTOKmTBo4fx8bKvFv+cB5QtnUh4+cMSmasx+rF1S0=;
+	5:8TmDo1A+QwawIc1Fz9om5WrI/uoMcXRhENeGxRbpaoY3L3wqBG9tCA0I/ZyBf2fSmA6hmp6oGpvWGiEOH8efLUNElBUrrgXgl1sdaoW2wZuYODtcjv2iVCkjXAcJfCcFtUbFGPsYq8ae56MJK+fBnQ==;
+	24:A5vcwH5BFieWzg61S+tk9YpZcZb8/luaMiFGHEDVlWPdtHxsA41vww4oianWvFcMfGLWZcTJ7s5bUw63FQ37mx4x39fdsDnsqZln1S6rAa8=;
+	7:7CsFUS2KoiayviYeAKqZ1PaiQs1gSu5ZOteyNoXiF2ln44+WitnyBA1d8R7voMsrgpMpQqUtSJy0qBMu98O3Ff6eqJ1GravX59/67AiYNKwDGGj9H0o3lqKQ1+uCEn9dapoXH2fjeXA690FvBkprwFF0czkAe2Yy1yxy1soB67ug5yUoBwFrGaCL6GLkpYRQVfnIZajRDEaobEe2uBJnrc2TQ/cPik4k93SmWrOiCbHPM+NjJGysK7IyqS0HIiF0
+x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:BLUPR0101MB1586;
+x-microsoft-antispam-prvs: <BLUPR0101MB15862B2E3E65E38B63630A7FD7FA0@BLUPR0101MB1586.prod.exchangelabs.com>
+x-exchange-antispam-report-test: UriScan:;
 x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(6040176)(601004)(2401047)(8121501046)(5005006)(3002001)(10201501046)(6055026);
-	SRVR:DB6PR0401MB2630; BCL:0; PCL:0; RULEID:;
-	SRVR:DB6PR0401MB2630; 
+	RULEID:(6040176)(2401047)(8121501046)(5005006)(10201501046)(3002001);
+	SRVR:BLUPR0101MB1586; BCL:0; PCL:0; RULEID:;
+	SRVR:BLUPR0101MB1586; 
 x-forefront-prvs: 00603B7EEF
 x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10009020)(6009001)(7916002)(53754006)(189002)(199003)(102836003)(106356001)(107886002)(229853001)(558084003)(74316002)(86362001)(5660300001)(2900100001)(110136002)(87936001)(7696004)(3280700002)(5002640100001)(97736004)(7846002)(10400500002)(15975445007)(66066001)(7736002)(9686002)(81156014)(76576001)(11100500001)(77096005)(8936002)(33656002)(68736007)(50986999)(2906002)(16236675004)(8676002)(54356999)(101416001)(790700001)(92566002)(3846002)(6116002)(81166006)(122556002)(3660700001)(19580395003)(105586002)(19625215002)(450100001)(189998001)(586003)(19300405004)(491001);
-	DIR:OUT; SFP:1101; SCL:1; SRVR:DB6PR0401MB2630;
-	H:DB6PR0401MB2630.eurprd04.prod.outlook.com; FPR:; SPF:None;
-	PTR:InfoNoRecords; MX:1; A:1; LANG:en; 
-received-spf: None (protection.outlook.com: nxp.com does not designate
+	SFS:(10009020)(6009001)(7916002)(199003)(189002)(189998001)(19627405001)(54356999)(450100001)(11100500001)(2900100001)(10400500002)(122556002)(33656002)(8676002)(5002640100001)(1730700003)(81156014)(9686002)(5640700001)(74316002)(81166006)(77096005)(7846002)(5660300001)(106116001)(68736007)(8936002)(107886002)(110136002)(6116002)(66066001)(101416001)(7736002)(105586002)(7696004)(2351001)(87936001)(2906002)(16236675004)(3660700001)(106356001)(229853001)(19625215002)(3846002)(92566002)(86362001)(2501003)(3280700002)(97736004)(102836003)(586003)(50986999);
+	DIR:OUT; SFP:1101; SCL:1; SRVR:BLUPR0101MB1586;
+	H:BLUPR0101MB1586.prod.exchangelabs.com; FPR:; SPF:None;
+	PTR:InfoNoRecords; A:1; MX:1; LANG:en; 
+received-spf: None (protection.outlook.com: uievolution.com does not designate
 	permitted sender hosts)
 spamdiagnosticoutput: 1:99
 spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Sep 2016 07:58:48.0918 (UTC)
+X-OriginatorOrg: uievolution.com
+X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Sep 2016 11:33:03.6447 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB6PR0401MB2630
-Subject: Cortex-M4 build support
+X-MS-Exchange-CrossTenant-id: e0a7ca1f-2458-4cd6-a7c7-d733c07495ab
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BLUPR0101MB1586
+Subject: ac_cv_sizeof_long size definition by SDK
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -88,100 +87,109 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 09 Sep 2016 09:31:18 -0000
+X-List-Received-Date: Fri, 09 Sep 2016 11:48:47 -0000
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_DB6PR0401MB26303ED7C7F9D20C58F0A218EEFA0DB6PR0401MB2630_"
+	boundary="_000_BLUPR0101MB1586CBD9B1FAC1B7B8AB6EA7D7FA0BLUPR0101MB1586_"
 
---_000_DB6PR0401MB26303ED7C7F9D20C58F0A218EEFA0DB6PR0401MB2630_
-Content-Type: text/plain; charset="us-ascii"
+--_000_BLUPR0101MB1586CBD9B1FAC1B7B8AB6EA7D7FA0BLUPR0101MB1586_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-Hi all,
-
-Can Yocto support image build for Cortex-M4 targets? If no, does somebody k=
-now if there is some distro/packaging tool which can support Cortex-M4?
+Hello, Yocto.
 
 
-Best Regards,
+I am now puzzled by this variable ste in $CONFIG_SITE setup file in Yocto-g=
+enerated SDK.
 
-Zhenhua
 
---_000_DB6PR0401MB26303ED7C7F9D20C58F0A218EEFA0DB6PR0401MB2630_
-Content-Type: text/html; charset="us-ascii"
+I generated x86_64 host, arm (32bit) target SDK.
+
+And if I invoke $CC (arm-poky-linux-gnueabi-gcc), using this SDK, sizeof (l=
+ong) is 4 (long =3D int)
+
+
+However, if I look into $CONFIG_SITE's definition of ac_cv_sizeof_long, it =
+is defined as '8'.
+
+I feel this is strange since if this cached configure data is for the targe=
+t (and cross-compiling), this value should be 4, to match the above (arm-po=
+ky-linux-gnueabi-gcc) result.
+
+(I think this part of the cache is being copied from poky/meta/site/x86_64-=
+linux, )
+
+
+This is causing break if I build autotool based program using the SDK.
+
+
+Am I doing mis-use of SDK here?
+
+
+
+--_000_BLUPR0101MB1586CBD9B1FAC1B7B8AB6EA7D7FA0BLUPR0101MB1586_
+Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:m=3D"http://schema=
-s.microsoft.com/office/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-html=
-40">
+<html>
 <head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:\5B8B\4F53;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:"\@\5B8B\4F53";
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.25in 1.0in 1.25in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
 </head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi all, <o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Can Yocto support image build for Cortex-M4 targets?=
- If no, does somebody know if there is some distro/packaging tool which can=
- support Cortex-M4?
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Best Regards,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Zhenhua <o:p></o:p></p>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;back=
+ground-color:#FFFFFF;font-family:Calibri,Arial,Helvetica,sans-serif;">
+<p>Hello, Yocto.</p>
+<p><br>
+</p>
+<p>I am now puzzled by this variable ste in $CONFIG_SITE setup file in Yoct=
+o-generated&nbsp;SDK.&nbsp;</p>
+<p><span style=3D"font-size: 12pt;"><br>
+</span></p>
+<p><span style=3D"font-size: 12pt;">I generated x86_64 host, arm (</span><s=
+pan style=3D"font-size: 12pt;">32bit) target SDK.</span><br>
+</p>
+<p></p>
+<p style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot;Apple=
+ Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot;Segoe=
+ UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size: 16px;=
+">
+And if I&nbsp;invoke $CC (arm-poky-linux-gnueabi-gcc), using this SDK,&nbsp=
+;sizeof (long) is 4 (long =3D int)</p>
+<div><br>
+</div>
+<p>However,&nbsp;<span style=3D"font-size: 12pt;">if I look into $CONFIG_SI=
+TE's definition of ac_cv_sizeof_long, it is defined as '8'.</span></p>
+<p></p>
+<p><span style=3D"font-size: 12pt;">I feel this is strange since if this ca=
+ched&nbsp;</span><span style=3D"font-size: 12pt;">configure data is for the=
+ target (and cross-compiling), this value should be 4, to match the above (=
+</span>arm-poky-linux-gnueabi-gcc<span style=3D"font-size: 12pt;">)&nbsp;</=
+span><span style=3D"font-size: 12pt;">result.</span><br>
+</p>
+<p>(<span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quo=
+t;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quo=
+t;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size=
+: 16px;">I think this part of the cache is being&nbsp;</span><span style=3D=
+"font-family: Calibri, Arial, Helvetica, sans-serif, &quot;Apple Color Emoj=
+i&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot;Segoe UI Symbol&=
+quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size: 16px;">copied
+ from poky/meta/site/x86_64-linux,&nbsp;</span>)</p>
+<p><br>
+</p>
+<p>This is causing break if I build autotool based program using the SDK.</=
+p>
+<p><br>
+</p>
+<p>Am I doing mis-use of SDK here?</p>
+<p><br>
+</p>
+<p><br>
+</p>
 </div>
 </body>
 </html>
 
---_000_DB6PR0401MB26303ED7C7F9D20C58F0A218EEFA0DB6PR0401MB2630_--
+--_000_BLUPR0101MB1586CBD9B1FAC1B7B8AB6EA7D7FA0BLUPR0101MB1586_--
