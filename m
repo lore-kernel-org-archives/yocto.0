@@ -1,60 +1,79 @@
-Return-Path: <vijayakumarmb@gmail.com>
+Return-Path: <hgujulan@visteon.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0699DE00B30; Mon, 12 Sep 2016 18:25:37 -0700 (PDT)
+	id C34E8E00ACE; Mon, 12 Sep 2016 18:36:25 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (vijayakumarmb[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.217.170 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [104.47.2.113 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ua0-f170.google.com (mail-ua0-f170.google.com
-	[209.85.217.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8EBEAE00AB6
-	for <yocto@yoctoproject.org>; Mon, 12 Sep 2016 18:25:36 -0700 (PDT)
-Received: by mail-ua0-f170.google.com with SMTP id v13so3486341uav.0
-	for <yocto@yoctoproject.org>; Mon, 12 Sep 2016 18:25:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=azrL3SGgxbiHpaepTNFP+szyhq0yioO883aROd7d7AY=;
-	b=X0e19c7NdIfVTQL/29IayeSkWkGcl8IbTA7ATHj9Ah6kqT5exrf6YPxJjHDyg2PsQ0
-	snWesuzJrCLTDOr2bmWE9ka27RBd7mtydmAbNde8o23sSSN/E/MOwlAuyIekjHGD6xd0
-	pfasu9Hki7EaNtVntnWuTYXgGQFE2ivl2DuV2TWHGVx1PEaHMw48C4B7DN+i+qzC8dKg
-	H4OFS90ta0yfAGnirwgj82ZhLFfga9WcOfYmshr4M24/+nK1auMx6yc2giZldz0LydcW
-	uxSCrdamXfX9U12UuYVLeacRonXeFYx4Jbb6/hhR5ODHa3UW8LQH0uemEc5vmZ/4XmfZ
-	GvFg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=azrL3SGgxbiHpaepTNFP+szyhq0yioO883aROd7d7AY=;
-	b=JO7jIoOEusNbR0ZkL/fU0x4OTsUmLN+5y1ujj17Ojyc+USKME/TGC6ktZ6xyJSGV+X
-	2Rbg2AadovzNmzxHw/zrRX1r8Y4MVOGHl7hetGUGm+SqYCzcj1M1i+Ghzq0Wq/rdaqN8
-	EazDPUfrojyEp6D4qOgh9GsBKBZ18PwOCf59fdWLdmtx5BPenVFkGKPpv2S+0bZF2Jfu
-	ITT5iTrEC6f9uO7axQMLGPfOMvsz8fjxzbLe6PDCoA9p7nIahTiqliCmrKoUuYkt7Nrf
-	sLLlUVqkIwXFJgfyE8Mt/Ia9AfEhcWfPh2aztzoEjjs/gSO8HfD7gniMZ+g0pJmam+0k
-	0jIQ==
-X-Gm-Message-State: AE9vXwMm4CBaRD0O/QOKAPW2+7Isyd9ruHimd4Kt+a2cEpY015R+ft7GiiWbOmM3/J93/hWdzoobezQZObs5Dw==
-X-Received: by 10.176.0.74 with SMTP id 68mr901931uai.11.1473729935543; Mon,
-	12 Sep 2016 18:25:35 -0700 (PDT)
+Received: from EUR01-DB5-obe.outbound.protection.outlook.com
+	(mail-db5eur01on0113.outbound.protection.outlook.com [104.47.2.113])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 51E21E00A6A
+	for <yocto@yoctoproject.org>; Mon, 12 Sep 2016 18:36:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=visteon.onmicrosoft.com; s=selector1-visteon-com;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
+	bh=O5Dd+0HrqTznAl1lLMO5QjP8iR+3UKv3qsjWQq1HGYo=;
+	b=tW5hyarcen/ZKfWZCgz93ws3BPycKg7a7/MH2uC3tq07dPjp3hP/9mOrpGlJb9lVLTMSTFy14x3Z7gg1I6sUsE2Kc3HuV61VLZZHia+NAQDpcbt3miU7uyfu3eLVj19F+2KlZOOCTxTHNK30EW2vMGYXWDeS6Ra+fig/nkClgEs=
+Received: from DB6PR0601MB2663.eurprd06.prod.outlook.com (10.168.82.16) by
+	DB6PR0601MB2663.eurprd06.prod.outlook.com (10.168.82.16) with Microsoft
+	SMTP Server (version=TLS1_0,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA_P384) id
+	15.1.609.9; Mon, 12 Sep 2016 14:02:27 +0000
+Received: from DB6PR0601MB2663.eurprd06.prod.outlook.com ([10.168.82.16]) by
+	DB6PR0601MB2663.eurprd06.prod.outlook.com ([10.168.82.16]) with mapi id
+	15.01.0609.018; Mon, 12 Sep 2016 14:02:27 +0000
+From: "Gujulan Elango, Hari Prasath (H.)" <hgujulan@visteon.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Modify fetch URL in BBappend file
+Thread-Index: AdIM/Ve1Dz1g7Bg3T+Wyh335JqQyZQ==
+Date: Mon, 12 Sep 2016 14:02:27 +0000
+Message-ID: <DB6PR0601MB26638DB2BE028C31DBEBFB48CFFF0@DB6PR0601MB2663.eurprd06.prod.outlook.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: yoctoproject.org; dkim=none (message not signed)
+	header.d=none;yoctoproject.org; dmarc=none action=none
+	header.from=visteon.com;
+x-originating-ip: [49.207.185.191]
+x-ms-office365-filtering-correlation-id: 060f2b7e-6684-4940-b1c3-08d3db156e02
+x-microsoft-exchange-diagnostics: 1; DB6PR0601MB2663;
+	6:y9wCrA56kEozsKd2KN/T5zkNWPbi2EbQkuLaGLEePc0Eqa1fmAVrmKD0CPfi3UuKjJ9OCft+9iQy6pXoAVSBVLOuVShrsqclmV72IpP97zpce2Nhww4waogcE1QKVldjJr1wfAuggThs2lb84r9BLfM1gSCwLc9Hd8XXQdqEDbtMacgGDJu34EWfVtZO8w2f5GkVpbx74+dwqJYPGNtmKxLiP0CJfP4V9EF6h5ayBsUxTjWx87s2vie2oUiqJx8VuVbH+xtwnoYEiZQgBTepH1NrJrj3hJJBUKsgBIQzGzQ/Yoeq4P83j+6UhTf0jTguyenjx5E6d69obm8J6oUOcA==;
+	5:7ooq5DUNT3Kkp2x+3n/CRqn22LcWF7G6Z6NgOGJ/TSQ3JJrd+cO0QRRMXY+aX4Xtsjey+fY64kVJaoksCdchFWx2iPnzu/5yCye0OwYTD9avIOgDYNejBphXIQxRmJ9aUueWY1NV46VYJNU3Fkw8TQ==;
+	24:r0M+3464ffztA/lVeGfEox9OfxDQNMaKshB9Qb2i2CDJ/fXK8/bviMjqmWjd4X0m32goCMjFABVglxbLfv6NOI2g7X21wQvDufuHhkx+9hE=;
+	7:tGcHBgbHkqk2M/3aKXBFMoVychZ34Qf3oCWbbIaeIryBb05SMXJqPcApZEfcY0E/FKW/r6dammKdKaK7RiQLjixDG0iuFY4KlHALhflW5vdqdbV7/2nq14W8Qcv/BwHkw7tibNKBc8oHTwy1e7hFkCEcM3uu6bINHEysLijzSPU7v1nJYcQGDi7FmvJ9DAZiOrG7YSC4kR6J3rTW9ycWd4puJrCraZ9CZjVyV8Jyd0eQ4aov1ur6wGxomP64wa/0
+x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:DB6PR0601MB2663;
+x-microsoft-antispam-prvs: <DB6PR0601MB2663FD38605E76304B4D5263CFFF0@DB6PR0601MB2663.eurprd06.prod.outlook.com>
+x-exchange-antispam-report-test: UriScan:;
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(6040176)(601004)(2401047)(8121501046)(5005006)(10201501046)(3002001)(6055026);
+	SRVR:DB6PR0601MB2663; BCL:0; PCL:0; RULEID:;
+	SRVR:DB6PR0601MB2663; 
+x-forefront-prvs: 006339698F
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10019020)(6009001)(7916002)(53754006)(76576001)(86362001)(54356999)(6116002)(50986999)(5660300001)(33656002)(3846002)(102836003)(122556002)(2351001)(11100500001)(15975445007)(5640700001)(8936002)(229853001)(2900100001)(77096005)(1730700003)(8676002)(110136002)(586003)(66066001)(3660700001)(9686002)(7736002)(107886002)(4001520100001)(7846002)(305945005)(19580395003)(87936001)(92566002)(189998001)(10400500002)(81166006)(2906002)(74316002)(450100001)(2501003)(3280700002)(5002640100001)(87386001)(7696004)(5001760100003);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:DB6PR0601MB2663;
+	H:DB6PR0601MB2663.eurprd06.prod.outlook.com; FPR:; SPF:None;
+	LANG:en; 
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-Received: by 10.103.67.132 with HTTP; Mon, 12 Sep 2016 18:25:15 -0700 (PDT)
-From: Vijayakumar Badiger <vijayakumarmb@gmail.com>
-Date: Mon, 12 Sep 2016 18:25:15 -0700
-Message-ID: <CAJ58UNkB-kvS=bcSKSe6h4RHhg-rOqqJy+c9URsYOfNzN-f58A@mail.gmail.com>
-To: yoctoproject <yocto@yoctoproject.org>
-Subject: Compilation error
+X-OriginatorOrg: visteon.com
+X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Sep 2016 14:02:27.3836 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 7a147aaf-01ec-498c-80a1-e34a8c63c548
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB6PR0601MB2663
+Subject: Modify fetch URL in BBappend file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,36 +85,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 13 Sep 2016 01:25:37 -0000
-Content-Type: multipart/alternative; boundary=001a113525fc4d9389053c597d5c
-
---001a113525fc4d9389053c597d5c
-Content-Type: text/plain; charset=UTF-8
-
-Hello All,
-
-I am getting an compilation error like below. Can you pls let me know how
-to fix this one. Thanks in advance.
-
-
-
- error: implicit declaration of function 'close'
-[-Werror=implicit-function-declaration]
-|             close(fd);
-
-Cheers,
-Vijay
-
---001a113525fc4d9389053c597d5c
-Content-Type: text/html; charset=UTF-8
+X-List-Received-Date: Tue, 13 Sep 2016 01:36:25 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hello All,<div><br></div><div>I am getting an compilation =
-error like below. Can you pls let me know how to fix this one. Thanks in ad=
-vance.=C2=A0</div><div><br></div><div><br></div><div><br></div><div><div>=
-=C2=A0error: implicit declaration of function &#39;close&#39; [-Werror=3Dim=
-plicit-function-declaration]</div><div>| =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 close(fd);</div></div><div><br></div><div>Cheers,</div><div>Vijay</=
-div></div>
+Hello All
 
---001a113525fc4d9389053c597d5c--
+We are including the meta-ivi layer in our custom distribution. There is a =
+package 'dlt-daemon' whose fetch URL got modified upstream in the recipe fi=
+le due to some corruption in the repositories. I want to modify this URL in=
+ the corresponding bbappend file in my custom BSP layer. I tried specifying=
+ the new URL using the SRC_URI+, but when I built the package it ends up wi=
+th error as it tries to fetch the URL in the original .bb file and doesn't =
+take the fixed URL from the bbappend file.
+
+http://git.yoctoproject.org/cgit/cgit.cgi/meta-ivi/commit/?h=3D10.0&id=3D2a=
+aa1d7bdd2f112bb4fa9f5e55f9966f4deb4679
+
+The link above shows the commit that fixed the URL change in upstream which=
+ I am trying to bring in my bbappend file. I am not sure if I am missing so=
+mething here.
+
+Regards,
+Hari Prasath
+
+
