@@ -1,54 +1,60 @@
-Return-Path: <matthew_stanger@trimble.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CF872E00971; Mon, 12 Sep 2016 11:22:44 -0700 (PDT)
+	id BBADDE009BF; Mon, 12 Sep 2016 12:16:25 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.214.51 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [74.125.82.51 listed in list.dnswl.org]
-Received: from mail-wm0-f51.google.com (mail-wm0-f51.google.com [74.125.82.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B9493E00971
-	for <yocto@yoctoproject.org>; Mon, 12 Sep 2016 11:22:41 -0700 (PDT)
-Received: by mail-wm0-f51.google.com with SMTP id a6so68001234wmc.0
-	for <yocto@yoctoproject.org>; Mon, 12 Sep 2016 11:22:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=trimble.com; s=google;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=5tY0oIajkfxQUb35cnJfpdo8/Q5f0pQ/RsUsGZb6Wzk=;
-	b=rAl9NDt4VfaEB1wrkVeOCTY5oMtCdWby4Dx6Z4WuRTT5mGptMHfv4IP0C8azwRWBlv
-	s/Xx1SakI0y6mML6vXgXlSjhvRJvDYRJH85zjhIPRkBrAP3MW/tnC5seZqRfcDDc0jRd
-	kvfySwMJK0YTrf1JqSsYglRsT2ZuFzA5GHyZ4=
+Received: from mail-it0-f51.google.com (mail-it0-f51.google.com
+	[209.85.214.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DF207E00997
+	for <yocto@yoctoproject.org>; Mon, 12 Sep 2016 12:16:23 -0700 (PDT)
+Received: by mail-it0-f51.google.com with SMTP id 186so25101786itf.0
+	for <yocto@yoctoproject.org>; Mon, 12 Sep 2016 12:16:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=gfc+3WtWbzIW+AX0xgDvp7l7zfVOZXk63S3+jB6iJ1k=;
+	b=zK7+tgTFuTY+Rr6n7LA5soE2Jt/H6Oq72lleUzk8QHycxH1ihUe29FVFHQGKSD1qo7
+	mRLuLZkKMad4fMO9NTOeeMUkP151w1z96PbnY13GCyYi6ZdZym0jQ6bubUK5N7T91BSj
+	jmoJZD+ttodNHdKZk+lpT/AKFzRQifJb1dJru4g/U/tD4lDo7y58tthWDlC8kalfsTG3
+	/1xepFsMAC3Dom+rfUMyzhoRHOAy3wXFOmatM+76z70HNtvk23xYUk7eFNEVnA/mhzX5
+	77esHCj0lwpph8m4jEr460eNddwbbze+EzOrngbtkgrxNDHuBJal0Tf1FC9XZTLgWKxw
+	S8yw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=5tY0oIajkfxQUb35cnJfpdo8/Q5f0pQ/RsUsGZb6Wzk=;
-	b=bK4ZaDJx7jyLd/oke/LAaArCOvqCEobIQMg9A1xlBKb1WiuZBz/EsXd3KU2kHPyOI0
-	kU0FQlRGgEmTvJyi0lNzSo+giKH4Vw2zQxXnrDRw5G3XpwOvOvdZ9J5T3hS1FTbl9Vrn
-	xb5oxdFyoUMaLdkhkNtwdN+QUf7MBPFDNbPl/6QXukQlDpbJ6ecZFIX03nxbz8FmfQK5
-	/ocHMGTBk/RQk2uxG/sTeU04O+MlD3oLM07MLI3swQ3l/aTaVh6YGkLFKhBI4dpVRZN3
-	DLkQJFQQ0i+knVD1w2/BcM35azqG649w4wqX+29dhyDmzNmDD4ME3qUdlyHdZElMeyOp
-	AGYg==
-X-Gm-Message-State: AE9vXwNrGldfvu1W3R7BBKAahr1G7P11SJLjkbshRBbYEXe8hjk/22DLxXauK6VMgIOZTdzPgm9W8lnnCAJ/oBoU
-X-Received: by 10.28.125.209 with SMTP id y200mr12567580wmc.25.1473704560232; 
-	Mon, 12 Sep 2016 11:22:40 -0700 (PDT)
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=gfc+3WtWbzIW+AX0xgDvp7l7zfVOZXk63S3+jB6iJ1k=;
+	b=WPWP1T/hzYnRmNGwTLtGRh5mHo8xFbwTR4lNkfyP1h+XM3759SkJBp7sbuuAmArDeO
+	R2HPSZSCUMgt9JTAg0PXU+v/auOdvNp0kWnskMbYDBzzbALYNhkhEoHhaY8DQhZWWKfX
+	9sNoKJEwbSon0mQCp5+T8a64Wad7lc6jSPXFKmdQcgeauFvQsd59dqiAJd59X5xRdnQb
+	+GZgDGjrpF34RFqwbojPO2bLZKt10m6pcoz2gdiQr96YZniG4jZsuGDcF3Qiw5ZVtkGQ
+	ZFcqy9Q/PIUydsFsTezmHYViHG44X3kEKjGirQteu00NEknuESo9ZsP5cro6ScLMnVJJ
+	e8Ow==
+X-Gm-Message-State: AE9vXwOgrP42uTn15VwaeFteRWEkb6OBLsLB3tbXxgzZNA9Vv5mNek1UIoH0SX+kXpoNdhMTjLZoGrx1C53DLeVY
+X-Received: by 10.157.37.25 with SMTP id k25mr21759520otb.136.1473707783135;
+	Mon, 12 Sep 2016 12:16:23 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.80.154.67 with HTTP; Mon, 12 Sep 2016 11:22:39 -0700 (PDT)
-From: Matthew Stanger <matthew_stanger@trimble.com>
-Date: Mon, 12 Sep 2016 12:22:39 -0600
-Message-ID: <CANr77M1Oj+M6k3QqHKTNSS8YFtsgVm5N7qCh4oxSCGWbSNKLNg@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: Striping cross-compiled paths
+Received: by 10.107.135.27 with HTTP; Mon, 12 Sep 2016 12:16:02 -0700 (PDT)
+In-Reply-To: <CANr77M1Oj+M6k3QqHKTNSS8YFtsgVm5N7qCh4oxSCGWbSNKLNg@mail.gmail.com>
+References: <CANr77M1Oj+M6k3QqHKTNSS8YFtsgVm5N7qCh4oxSCGWbSNKLNg@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Mon, 12 Sep 2016 20:16:02 +0100
+Message-ID: <CAJTo0La9QzpZUN8-d-u1BO_BggZ380d67bqcf5JJOfS9Hxn+Qw@mail.gmail.com>
+To: Matthew Stanger <matthew_stanger@trimble.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Striping cross-compiled paths
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -60,41 +66,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 12 Sep 2016 18:22:44 -0000
-Content-Type: multipart/alternative; boundary=001a1141e660d1a638053c539431
+X-List-Received-Date: Mon, 12 Sep 2016 19:16:25 -0000
+Content-Type: multipart/alternative; boundary=001a1141c16ceac6fb053c54545a
 
---001a1141e660d1a638053c539431
+--001a1141c16ceac6fb053c54545a
 Content-Type: text/plain; charset=UTF-8
 
-I'm using Yocto 1.7.1 I'd like built programs to have the build path
-striped down. The goal is if I'm looking at some programs log after cross
-compiling I want this:
+On 12 September 2016 at 19:22, Matthew Stanger <matthew_stanger@trimble.com>
+wrote:
 
-src/program.c:388
+> I'm using Yocto 1.7.1 I'd like built programs to have the build path
+> striped down. The goal is if I'm looking at some programs log after cross
+> compiling I want this:
+>
+> src/program.c:388
+>
+> where I currently get this:
+>
+> /usr/local/jenkins/workspace/project-build-manual/Project/
+> build-project/tmp/work/arm926ejste-poky-linux-gnuebi/
+> program/2.5.992+gitAUTOINC+1c6d246619-r0/git/src/program.c:388
+>
+> Is it possible to configure Yocto to do this for me? If so where can I
+> find info on how I would do this?
+>
 
-where I currently get this:
+If those paths come from __FILE__ and so on, then currently no.  It would
+be great if GCC could do this, but currently it can not.
 
-/usr/local/jenkins/workspace/project-build-manual/Project/build-project/tmp/work/arm926ejste-poky-linux-gnuebi/program/2.5.992+gitAUTOINC+1c6d246619-r0/git/src/program.c:388
+Ross
 
-Is it possible to configure Yocto to do this for me? If so where can I find
-info on how I would do this?
-
-Thanks,
-Matt
-
---001a1141e660d1a638053c539431
+--001a1141c16ceac6fb053c54545a
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>I&#39;m using Yocto 1.7.1 I&#39;d like built programs=
- to have the build path striped down. The goal is if I&#39;m looking at som=
-e programs log after cross compiling I want this:</div><div><br></div><div>=
-src/program.c:388</div><div><br></div><div>where I currently get this:</div=
-><div><br></div><div>/usr/local/jenkins/workspace/project-build-manual/Proj=
-ect/build-project/tmp/work/arm926ejste-poky-linux-gnuebi/program/2.5.992+gi=
-tAUTOINC+1c6d246619-r0/git/src/program.c:388</div><div><br></div><div>Is it=
- possible to configure Yocto to do this for me? If so where can I find info=
- on how I would do this?<br></div><div><br></div><div>Thanks,</div><div>Mat=
-t</div></div>
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 12 September 2016 at 19:22, Matthew Stanger <span dir=3D"ltr">&lt;<a hre=
+f=3D"mailto:matthew_stanger@trimble.com" target=3D"_blank">matthew_stanger@=
+trimble.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" styl=
+e=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div>I&=
+#39;m using Yocto 1.7.1 I&#39;d like built programs to have the build path =
+striped down. The goal is if I&#39;m looking at some programs log after cro=
+ss compiling I want this:</div><div><br></div><div>src/program.c:388</div><=
+div><br></div><div>where I currently get this:</div><div><br></div><div>/us=
+r/local/jenkins/workspace/<wbr>project-build-manual/Project/<wbr>build-proj=
+ect/tmp/work/<wbr>arm926ejste-poky-linux-gnuebi/<wbr>program/2.5.992+gitAUT=
+OINC+<wbr>1c6d246619-r0/git/src/program.<wbr>c:388</div><div><br></div><div=
+>Is it possible to configure Yocto to do this for me? If so where can I fin=
+d info on how I would do this?<br></div><div></div></blockquote></div><br>I=
+f those paths come from __FILE__ and so on, then currently no.=C2=A0 It wou=
+ld be great if GCC could do this, but currently it can not.</div><div class=
+=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Ross</div></div>
 
---001a1141e660d1a638053c539431--
+--001a1141c16ceac6fb053c54545a--
