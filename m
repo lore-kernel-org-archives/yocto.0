@@ -1,64 +1,54 @@
-Return-Path: <ronaldo@brc2.com>
+Return-Path: <matthew_stanger@trimble.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 77D5BE0086E; Mon, 12 Sep 2016 10:03:49 -0700 (PDT)
+	id CF872E00971; Mon, 12 Sep 2016 11:22:44 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, RCVD_IN_DNSWL_LOW,
-	RCVD_IN_SORBS_SPAM autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.218.68 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.0 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.218.68 listed in dnsbl.sorbs.net]
-Received: from mail-oi0-f68.google.com (mail-oi0-f68.google.com
-	[209.85.218.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 19260E007B7
-	for <yocto@yoctoproject.org>; Mon, 12 Sep 2016 10:03:47 -0700 (PDT)
-Received: by mail-oi0-f68.google.com with SMTP id 2so23116133oif.2
-	for <yocto@yoctoproject.org>; Mon, 12 Sep 2016 10:03:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=brc2-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=Ln7fldy++6XDSlZRqdM3XuO6KP1+qoYMEvlYfoFRjxM=;
-	b=0Q6j60sji5ziWhRjg5Q391Mcqjpfp0BGOyVZmIHu/8KEWWlwfSlHQTZmElNinC2qfK
-	pYmQZSgF7xU3w4xUJ0wl7/0HV6NHbuuVf1cQrpgkc/xTHlTWim3LeY7wQ4ujQCxF1gPH
-	XTdqtS15nSvbwPYOXdJuWKRKwX4d7x4W6OR5ObZBzO37kDMlEKOFwul6nK7o84I1+B/K
-	ug02NskGEOB/POHT3a1lT3Z61haAwqy+MQ7YVLrd6UzPK+/wJNBcHNHwI6lRiUOfZrfk
-	eEoNjpN02mrvvuSGXgqsPX5SM+MwXHftdZF77ktPK3cQv36inqM0AfnKeK8rgyedIole
-	vW7w==
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [74.125.82.51 listed in list.dnswl.org]
+Received: from mail-wm0-f51.google.com (mail-wm0-f51.google.com [74.125.82.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B9493E00971
+	for <yocto@yoctoproject.org>; Mon, 12 Sep 2016 11:22:41 -0700 (PDT)
+Received: by mail-wm0-f51.google.com with SMTP id a6so68001234wmc.0
+	for <yocto@yoctoproject.org>; Mon, 12 Sep 2016 11:22:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=trimble.com; s=google;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=5tY0oIajkfxQUb35cnJfpdo8/Q5f0pQ/RsUsGZb6Wzk=;
+	b=rAl9NDt4VfaEB1wrkVeOCTY5oMtCdWby4Dx6Z4WuRTT5mGptMHfv4IP0C8azwRWBlv
+	s/Xx1SakI0y6mML6vXgXlSjhvRJvDYRJH85zjhIPRkBrAP3MW/tnC5seZqRfcDDc0jRd
+	kvfySwMJK0YTrf1JqSsYglRsT2ZuFzA5GHyZ4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=Ln7fldy++6XDSlZRqdM3XuO6KP1+qoYMEvlYfoFRjxM=;
-	b=lp0OTiT+64APHbkyOT5B0f9TeQbue+7BBP87LItA79DSDtwWIMsPI0smyATx38LCZs
-	IpQc4moEKj/62WlsQM4Aolzv9ODoWBrqfXTLThKgMDKCoBW4LKFsJWGeTDhMzN+QE2yl
-	TsCmjb+7zf0PiyPqXnBMSa3TrWFeqfzoQkJy9Fx3CZNFIcLr7hi8vQAtBndOsZi1SLot
-	iLIQ/Ah6BaYFH82RjzgcZJm5V+L8dw1B7La90ag+h1aEHNFmWaTaobIJzna0YLG0iikA
-	13ywWeIk0Gsc2K/ho9madQ1VgoSIr1WRzQCz0VP+a6EvoXEVxHRWjKWfmOE9KyX28Bwi
-	CqDA==
-X-Gm-Message-State: AE9vXwNAc0KnrlInXEYzstVFL2a7MDFBLxBrNnur4omHGM7/xTRl77EDKp1T0ZnErmPlKAlz8cid4DjE5Ibt4g==
-X-Received: by 10.202.245.206 with SMTP id t197mr1594296oih.162.1473699827109; 
-	Mon, 12 Sep 2016 10:03:47 -0700 (PDT)
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=5tY0oIajkfxQUb35cnJfpdo8/Q5f0pQ/RsUsGZb6Wzk=;
+	b=bK4ZaDJx7jyLd/oke/LAaArCOvqCEobIQMg9A1xlBKb1WiuZBz/EsXd3KU2kHPyOI0
+	kU0FQlRGgEmTvJyi0lNzSo+giKH4Vw2zQxXnrDRw5G3XpwOvOvdZ9J5T3hS1FTbl9Vrn
+	xb5oxdFyoUMaLdkhkNtwdN+QUf7MBPFDNbPl/6QXukQlDpbJ6ecZFIX03nxbz8FmfQK5
+	/ocHMGTBk/RQk2uxG/sTeU04O+MlD3oLM07MLI3swQ3l/aTaVh6YGkLFKhBI4dpVRZN3
+	DLkQJFQQ0i+knVD1w2/BcM35azqG649w4wqX+29dhyDmzNmDD4ME3qUdlyHdZElMeyOp
+	AGYg==
+X-Gm-Message-State: AE9vXwNrGldfvu1W3R7BBKAahr1G7P11SJLjkbshRBbYEXe8hjk/22DLxXauK6VMgIOZTdzPgm9W8lnnCAJ/oBoU
+X-Received: by 10.28.125.209 with SMTP id y200mr12567580wmc.25.1473704560232; 
+	Mon, 12 Sep 2016 11:22:40 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.202.79.208 with HTTP; Mon, 12 Sep 2016 10:03:46 -0700 (PDT)
-In-Reply-To: <20160912160242.GB14313@csclub.uwaterloo.ca>
-References: <CALRMKQqgbk9Oj42figT=iXqJJfhHRgTjQ9PkUtwTUEzUomyX=w@mail.gmail.com>
-	<CALRMKQqP5KT+batqRh20AbO=jSWKRhYrhtWF=SzHms0LwfMsLA@mail.gmail.com>
-	<20160912160242.GB14313@csclub.uwaterloo.ca>
-From: Ronald Oakes <ronaldo@brc2.com>
-Date: Mon, 12 Sep 2016 11:03:46 -0600
-Message-ID: <CALRMKQqrEeVMcN=TnfLB5g1PP1oQCbMmKVJ97SjSK28MxutY3A@mail.gmail.com>
-To: Lennart Sorensen <lsorense@csclub.uwaterloo.ca>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: Naive Questsions about 3rd Party Kernel Module
+Received: by 10.80.154.67 with HTTP; Mon, 12 Sep 2016 11:22:39 -0700 (PDT)
+From: Matthew Stanger <matthew_stanger@trimble.com>
+Date: Mon, 12 Sep 2016 12:22:39 -0600
+Message-ID: <CANr77M1Oj+M6k3QqHKTNSS8YFtsgVm5N7qCh4oxSCGWbSNKLNg@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Striping cross-compiled paths
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,42 +60,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 12 Sep 2016 17:03:49 -0000
+X-List-Received-Date: Mon, 12 Sep 2016 18:22:44 -0000
+Content-Type: multipart/alternative; boundary=001a1141e660d1a638053c539431
+
+--001a1141e660d1a638053c539431
 Content-Type: text/plain; charset=UTF-8
 
-I was able to resovle my problem (with a bit of help from Google and
-Stack Overflow) by including a stub version of __stack_check_fail() in
-my recepie.
+I'm using Yocto 1.7.1 I'd like built programs to have the build path
+striped down. The goal is if I'm looking at some programs log after cross
+compiling I want this:
 
-It appears that the shared object libarary was not needed after all,
-and was just a red herring in my invesgagation.
+src/program.c:388
 
-Thank you for your assistance.
+where I currently get this:
 
-Ron Oakes
+/usr/local/jenkins/workspace/project-build-manual/Project/build-project/tmp/work/arm926ejste-poky-linux-gnuebi/program/2.5.992+gitAUTOINC+1c6d246619-r0/git/src/program.c:388
 
-On Mon, Sep 12, 2016 at 10:02 AM, Lennart Sorensen
-<lsorense@csclub.uwaterloo.ca> wrote:
-> On Fri, Sep 09, 2016 at 04:02:21PM -0600, Ronald Oakes wrote:
->> Following up as I've done more investigation and debugging this afternoon:
->>
->> I've been able to resolve my problem with the missing symbolic link to
->> <filename>.so by explicitly including a runtime dependency
->> (RDEPENDS_${PN}) to the -dev module, so my link is now present on the
->> filesystem image at boot.  I've also found reasonably strong evidence
->> that that library contains the function __stack_chk_fail; but the
->> evidence could equally indicate that that library calls it as I found
->> the string using the strings function.
->>
->> Either way, it looks like I have a critical kernel module, and a less
->> critical kernel module, that are relying on a shared library that
->> either are missing on my image or are not available properly in kernel
->> space.  Any suggestions on how I can resolve this would be greatly
->> appreciated.
->
-> Kernel modules only use kernel code.  They never use user space libraries.
-> It simply doesn't work that way.
->
-> --
-> Len Sorensen
+Is it possible to configure Yocto to do this for me? If so where can I find
+info on how I would do this?
 
+Thanks,
+Matt
+
+--001a1141e660d1a638053c539431
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>I&#39;m using Yocto 1.7.1 I&#39;d like built programs=
+ to have the build path striped down. The goal is if I&#39;m looking at som=
+e programs log after cross compiling I want this:</div><div><br></div><div>=
+src/program.c:388</div><div><br></div><div>where I currently get this:</div=
+><div><br></div><div>/usr/local/jenkins/workspace/project-build-manual/Proj=
+ect/build-project/tmp/work/arm926ejste-poky-linux-gnuebi/program/2.5.992+gi=
+tAUTOINC+1c6d246619-r0/git/src/program.c:388</div><div><br></div><div>Is it=
+ possible to configure Yocto to do this for me? If so where can I find info=
+ on how I would do this?<br></div><div><br></div><div>Thanks,</div><div>Mat=
+t</div></div>
+
+--001a1141e660d1a638053c539431--
