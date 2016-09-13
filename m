@@ -1,32 +1,64 @@
-Return-Path: <gley-yocto@m.gmane.org>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E0D79E006C7; Tue, 13 Sep 2016 12:29:44 -0700 (PDT)
+	id B8A18E006D2; Tue, 13 Sep 2016 13:10:25 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.213.179 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from blaine.gmane.org (unknown [195.159.176.226])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A2ABEE00563
-	for <yocto@yoctoproject.org>; Tue, 13 Sep 2016 12:29:40 -0700 (PDT)
-Received: from list by blaine.gmane.org with local (Exim 4.84_2)
-	(envelope-from <gley-yocto@m.gmane.org>) id 1bjtOX-0002eB-IO
-	for yocto@yoctoproject.org; Tue, 13 Sep 2016 21:29:25 +0200
-X-Injected-Via-Gmane: http://gmane.org/
-To: yocto@yoctoproject.org
-From: "robert.berger@gmane" <gmane@reliableembeddedsystems.com>
-Date: Tue, 13 Sep 2016 22:29:15 +0300
-Message-ID: <09ebab78-b480-edb6-7691-2d60ecb1ed91@reliableembeddedsystems.com>
-References: <CALRMKQqDgV5U_3=i_oQQ+2SzQTGhE3d1szfsomKH0rNp5++Uxg@mail.gmail.com>
-Mime-Version: 1.0
-X-Complaints-To: usenet@blaine.gmane.org
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.2.0
-In-Reply-To: <CALRMKQqDgV5U_3=i_oQQ+2SzQTGhE3d1szfsomKH0rNp5++Uxg@mail.gmail.com>
-Subject: Re: Out-of-Tree Modules and __stack_chk_fail()
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-yb0-f179.google.com (mail-yb0-f179.google.com
+	[209.85.213.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5FE34E00563
+	for <yocto@yoctoproject.org>; Tue, 13 Sep 2016 13:10:23 -0700 (PDT)
+Received: by mail-yb0-f179.google.com with SMTP id u125so66630133ybg.3
+	for <yocto@yoctoproject.org>; Tue, 13 Sep 2016 13:10:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-transfer-encoding;
+	bh=1uxY6pmQ4ScMXS7FE8ptW1NWfRUVnFBgIXZLoB0DCfI=;
+	b=l2d38nwmUmKCHrfIpY38/VJ4vnPHOwilQ5DZvsGsI0PpjG2wuNqMFu6tv6PEWN1Z4Q
+	Il1oQXlD/vBqqOE0AFiEirgI0x1/XrEJMpm73FcEKPLkJK2QtCD76mtWUuBlTewTgdJ9
+	bFx/wVlhIM8+abwaJ2B1TnKg5OAoNWG+iFimQoQ0Ui2gbg86fvnRCnNisDVDPPaEYVot
+	yuV4ZPV4fsP39777/CW5RH2pFsick2t49q0zjfm8AlMcoSlwRNcKGgPN+EZBhyQR7JLn
+	aIKct2IqXyq6KZeIKqfMNxYxo0jWXwglIY9BmCAUP/dS/PixbxnfIqgtUHhuX/kejlGM
+	8r9A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=1uxY6pmQ4ScMXS7FE8ptW1NWfRUVnFBgIXZLoB0DCfI=;
+	b=iLHW+GuafXhYczqx81lRIKYa7333ubhElpCSoTBxkw1O6qfx+ZpS6wXLyxczTxSLCe
+	SvGxwzECrNQ1YqZA9uFmVaiohL9QaJvqNfAIAR/gY0qAAIZNm7MDJLL43ctHCLTKGlEi
+	2s1y7OZ/6aBtWt61Jo22+5FlzmqAmWxDthpjl3XWJ25rr4jr6zzaTQ1yIV6kvlqKAHcu
+	+F9LHSNmHEy5t9jWN3UjywjHVncKYOT3B2WWW4chexQRjjVazTABgwGewssq2OZErne8
+	uYKgCt8pYdPjt2z81ylJqTi0RLpw5f1ls29OPl2m4EDwTvkdPwVhww7LsU6bbU/YAqAp
+	wkyw==
+X-Gm-Message-State: AE9vXwMk7LfcZ7pcjMKzGWVFcEXzYbLQHEjFituk7tMDdpGOdnbSc4HK5oPBOB5r6vm26K9rFEXuiTwRHR2Www==
+X-Received: by 10.37.87.10 with SMTP id l10mr2953449ybb.133.1473797422985;
+	Tue, 13 Sep 2016 13:10:22 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.159.34.120 with HTTP; Tue, 13 Sep 2016 13:09:52 -0700 (PDT)
+In-Reply-To: <DB6PR0601MB26638DB2BE028C31DBEBFB48CFFF0@DB6PR0601MB2663.eurprd06.prod.outlook.com>
+References: <DB6PR0601MB26638DB2BE028C31DBEBFB48CFFF0@DB6PR0601MB2663.eurprd06.prod.outlook.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Tue, 13 Sep 2016 13:09:52 -0700
+Message-ID: <CAMKF1srFtioXXmsfULkqfH=hLyKh9Z4oCdZ4EKyXEDf8TE6nYQ@mail.gmail.com>
+To: "Gujulan Elango, Hari Prasath (H.)" <hgujulan@visteon.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Modify fetch URL in BBappend file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,127 +70,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 13 Sep 2016 19:29:45 -0000
-X-Groupsio-MsgNum: 31906
-Content-Type: multipart/mixed; boundary="------------8F239E07E3924D41D40D6BE0"
+X-List-Received-Date: Tue, 13 Sep 2016 20:10:25 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
---------------8F239E07E3924D41D40D6BE0
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
-
-Hi,
-
-On 2016-09-13 21:55, Ronald Oakes wrote:
+On Mon, Sep 12, 2016 at 7:02 AM, Gujulan Elango, Hari Prasath (H.)
+<hgujulan@visteon.com> wrote:
+> Hello All
 >
-> Any ideas how to proceed?
+> We are including the meta-ivi layer in our custom distribution. There is =
+a package 'dlt-daemon' whose fetch URL got modified upstream in the recipe =
+file due to some corruption in the repositories. I want to modify this URL =
+in the corresponding bbappend file in my custom BSP layer. I tried specifyi=
+ng the new URL using the SRC_URI+, but when I built the package it ends up =
+with error as it tries to fetch the URL in the original .bb file and doesn'=
+t take the fixed URL from the bbappend file.
+>
+> http://git.yoctoproject.org/cgit/cgit.cgi/meta-ivi/commit/?h=3D10.0&id=3D=
+2aaa1d7bdd2f112bb4fa9f5e55f9966f4deb4679
+>
+> The link above shows the commit that fixed the URL change in upstream whi=
+ch I am trying to bring in my bbappend file. I am not sure if I am missing =
+something here.
 
-1) Can you try to use it from an in-tree kernel module? (modify the 
-attachment)
+Its better to cherry-pick the above commit into your meta-ivi layer.
+Managing it via bbappend will be clunky, since you have to redefine
+complete SRC_URI including patches and so on.
 
-2) Can you grep in your kernel config for
+>
+> Regards,
+> Hari Prasath
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-CONFIG_CC_STACKPROTECTOR and friends?
-
-Regards,
-
-Robert
-
-
-
---------------8F239E07E3924D41D40D6BE0
-Content-Type: text/x-patch;
- name="yocto-testmod.patch"
-Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment;
- filename="yocto-testmod.patch"
-
-From 69cabc395bd097dde34664b4e1fe1c57ced39f6e Mon Sep 17 00:00:00 2001
-From: genius user <genius@ReliableEmbeddedSystems.com>
-Date: Thu, 27 Aug 2015 16:44:46 +0000
-Subject: [PATCH] Yocto kernel module
-
-Signed-off-by: genius user <genius@ReliableEmbeddedSystems.com>
----
- drivers/misc/Kconfig         |  5 +++++
- drivers/misc/Makefile        |  1 +
- drivers/misc/yocto-testmod.c | 38 ++++++++++++++++++++++++++++++++++++++
- 3 files changed, 44 insertions(+)
- create mode 100644 drivers/misc/yocto-testmod.c
-
-diff --git a/drivers/misc/Kconfig b/drivers/misc/Kconfig
-index 006242c..31e90be 100644
---- a/drivers/misc/Kconfig
-+++ b/drivers/misc/Kconfig
-@@ -372,6 +372,11 @@ config HMC6352
- 	  This driver provides support for the Honeywell HMC6352 compass,
- 	  providing configuration and heading data via sysfs.
- 
-+config YOCTO_TESTMOD
-+       tristate "Yocto Test Driver"
-+       help
-+         This driver provides a silly message for testing Yocto.
-+
- config DS1682
- 	tristate "Dallas DS1682 Total Elapsed Time Recorder with Alarm"
- 	depends on I2C
-diff --git a/drivers/misc/Makefile b/drivers/misc/Makefile
-index 7d5c4cd..f6c21ba 100644
---- a/drivers/misc/Makefile
-+++ b/drivers/misc/Makefile
-@@ -36,6 +36,7 @@ obj-$(CONFIG_DS1682)		+= ds1682.o
- obj-$(CONFIG_TI_DAC7512)	+= ti_dac7512.o
- obj-$(CONFIG_C2PORT)		+= c2port/
- obj-$(CONFIG_HMC6352)		+= hmc6352.o
-+obj-$(CONFIG_YOCTO_TESTMOD)     += yocto-testmod.o
- obj-y				+= eeprom/
- obj-y				+= cb710/
- obj-$(CONFIG_SPEAR13XX_PCIE_GADGET)	+= spear13xx_pcie_gadget.o
-diff --git a/drivers/misc/yocto-testmod.c b/drivers/misc/yocto-testmod.c
-new file mode 100644
-index 0000000..c643624
---- /dev/null
-+++ b/drivers/misc/yocto-testmod.c
-@@ -0,0 +1,38 @@
-+/*
-+ * Copyright 2013 Intel Corporation
-+ * Authored-by:  Tom Zanussi <tom.zanussi@linux.intel.com>
-+ *
-+ * This program is free software; you can redistribute it and/or modify
-+ * it under the terms of the GNU General Public License version 2 as
-+ * published by the Free Software Foundation.
-+ *
-+ * This program is distributed in the hope that it will be useful,
-+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
-+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-+ * GNU General Public License for more details.
-+ *
-+ * You should have received a copy of the GNU General Public License along
-+ * with this program; if not, write to the Free Software Foundation, Inc.,
-+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-+ */
-+
-+#include <linux/module.h>
-+
-+static int __init yocto_testmod_init(void)
-+{
-+       printk("Billroy quacked here!");
-+
-+       return 0;
-+}
-+
-+static void __exit yocto_testmod_exit(void)
-+{
-+       printk("Billroy did not quack here!");
-+}
-+
-+module_init(yocto_testmod_init);
-+module_exit(yocto_testmod_exit);
-+
-+MODULE_AUTHOR("Tom Zanussi <tom.zanussi@linux.intel.com");
-+MODULE_DESCRIPTION("Yocto Test Driver");
-+MODULE_LICENSE("GPL");
--- 
-1.9.1
-
-
---------------8F239E07E3924D41D40D6BE0--
