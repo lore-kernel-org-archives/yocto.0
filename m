@@ -1,64 +1,63 @@
-Return-Path: <schnitzeltony@googlemail.com>
+Return-Path: <jussi.kukkonen@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 682EEE00D18; Mon, 12 Sep 2016 23:40:32 -0700 (PDT)
+	id 8B490E00D12; Tue, 13 Sep 2016 00:12:06 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (schnitzeltony[at]googlemail.com)
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_LOW,
+	RCVD_IN_SORBS_SPAM autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.218.51 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.217.193 listed in list.dnswl.org]
-Received: from mail-ua0-f193.google.com (mail-ua0-f193.google.com
-	[209.85.217.193])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E1BA9E00D01
-	for <yocto@yoctoproject.org>; Mon, 12 Sep 2016 23:40:28 -0700 (PDT)
-Received: by mail-ua0-f193.google.com with SMTP id v13so316145uav.0
-	for <yocto@yoctoproject.org>; Mon, 12 Sep 2016 23:40:28 -0700 (PDT)
+	*  0.0 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.218.51 listed in dnsbl.sorbs.net]
+Received: from mail-oi0-f51.google.com (mail-oi0-f51.google.com
+	[209.85.218.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 31D9FE00B30
+	for <yocto@yoctoproject.org>; Tue, 13 Sep 2016 00:12:03 -0700 (PDT)
+Received: by mail-oi0-f51.google.com with SMTP id d191so150957372oih.2
+	for <yocto@yoctoproject.org>; Tue, 13 Sep 2016 00:12:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=googlemail.com; s=20120113;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=3Ry9zHglunAJ0RRAiomn9ilHlNWLnpaWp21MbwOADcA=;
-	b=wL7g2eoCXG+Y60QKNLzGsRapPVEmCW8G/gnocAHq83kH02EnCSH4TmhRJe4AfuGLJu
-	GsC3tjV8qxwRpHqat5X7rMWHznVpSyxROxRNjA7UJZG5jgbbkPm6zGMfZ1S5EQi20XkU
-	BKmPZL7X/DTg4ZtBorO8umoUGR6RMaJQnB6qEL4gl10W6K3PsXIaQloFEUheJmLm5Fxj
-	edN3tmcM+dow+W4MCNX6rrQoivtFC/1QeZ2Ei5OOYJCQiCsgHF5ieFJBgBTMkHV/6Heo
-	n5/OqOngIGm+aCQWIKy1kwZzPsQxCn2pceITXuZwqPiNfZFabGbSQOWxkiCN8wasPxNF
-	mXXg==
+	:cc; bh=qPVNi2oykyB3IfzlPeUBmRGhRA6npBy/bdaHj/uP2Tg=;
+	b=X8XxvN9KmXqy1oyLaTq2dHEFIaQH5rZ4zUZUvN4sFYjbN01+QLKF4v9CcgRD+mkam0
+	5CAjrQjOlCb41xdnpHqqZny1cJNVgu2dBZUn4i49G5gfI+wltvMdWQVPfJ6WQbKdPdMy
+	uqJM6zyvg/+yRKD7YMqg1VTvamRNqJWxPv5a1xhi//y70fn0zYTn42LTBNUNNm5XUv17
+	+cHN3XINQgtu3GlsAHtAluJ5NRNUmhN+MJAqZX8QXETsL6eQ401WcvKgGSVUKNp2WfaI
+	k8jpKm/yc3ptBgvDVhqvmlvRF/xWPz9Vwu0/q4NTpr1N8aU1wkKM4Yvvmcq5Pv/lMEBK
+	7Zbw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=3Ry9zHglunAJ0RRAiomn9ilHlNWLnpaWp21MbwOADcA=;
-	b=eckBVlfTLw4hEu2BlH7/jtLMY2DiSZqFmJHToAypFMFW/4HDAQcNkyWPld8HKXPmQn
-	sVYiKItpLnvQUFaMcxe+BVSd9EwNHnSn7Th8rs+9DkrCyib83CJLXR31AZuUgjyfseA5
-	9SuF9LQ1Q9XSTjwIdlsZexzZ4a+eK1oovgIPoLpU3LJ3Kz1bbIFM6Wz/o+F/s+dnsM3g
-	h4DWTYLOD8bjwl5rxm7LpPd8ZAtOeQhNargihddNnxgQrk5pBAfWaxLupPi3OdDhcKB0
-	q7SgpZLSSB0vs722CiTSYF2y/o9SdTicZqLjq0M/BWpg4zOl7lvfeOIbrD3Ux3AX1L0O
-	nBsw==
-X-Gm-Message-State: AE9vXwOaDvu24NgvcES3JbBvQCEu2+GsQqOfcIDKgHryYynPyUKz7wLRIxX1GnF2McOVULvO8d3EWGrkCuFlMA==
-X-Received: by 10.176.82.24 with SMTP id i24mr1495608uaa.85.1473748827979;
-	Mon, 12 Sep 2016 23:40:27 -0700 (PDT)
+	bh=qPVNi2oykyB3IfzlPeUBmRGhRA6npBy/bdaHj/uP2Tg=;
+	b=Rf2zTSZw1PGBb/lYlOrPbDjMaRiaI8B4bJMuFz4vn2uq3LYtcmjrBKpOuqmBQxj3Cx
+	L8X15Q5/l54f71yAPoJpGpHGzB7kk27wK5UUFhAnQTOpxaR9d2nn7YMS6FiWDd7CRGzf
+	ipGIp7W9At8BKvRAWuWxQroGBhh6b1v1NSg/RgRNFPTm8/VZKozk6DGN9Zjm7amGM5ue
+	AC+p0KZPYSXfwE5pLEjuwZGm7VQAju3oMwwu0sQFUhLzAji8sF1Wqn0OCHjJ+yH3+Xsz
+	14Uph4r9ddih37iRK/nCz+I82ev1zsrHpq9Rm25z9KO2hE9qelHcrk5VeG+JDFj09r8M
+	4GbA==
+X-Gm-Message-State: AE9vXwM6Bee+YXub2bSAnR1WUZT55xo8xTI1xbJ6/VYtapHCdl3xURqmSKsnHdgL9o8/XB6iaP5Q8YFPeD/rpzhv
+X-Received: by 10.157.40.86 with SMTP id h22mr28750665otd.66.1473750723150;
+	Tue, 13 Sep 2016 00:12:03 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.176.65.130 with HTTP; Mon, 12 Sep 2016 23:40:27 -0700 (PDT)
-In-Reply-To: <20160913020611.9265-1-net147@gmail.com>
-References: <20160913020611.9265-1-net147@gmail.com>
-From: =?UTF-8?Q?Andreas_M=C3=BCller?= <schnitzeltony@googlemail.com>
-Date: Tue, 13 Sep 2016 08:40:27 +0200
-Message-ID: <CALbNGRQFTfcPkzzgbaJxTQcmnj7GUuF=KF8L=qu2opHonm_CCw@mail.gmail.com>
-To: Jonathan Liu <net147@gmail.com>
+Received: by 10.202.241.11 with HTTP; Tue, 13 Sep 2016 00:11:32 -0700 (PDT)
+In-Reply-To: <CAJz+W7ASjdtmamR3KGfkt4yaKhB9pA3sSMrR4kHbxVtgOs+vig@mail.gmail.com>
+References: <CAJz+W7ASjdtmamR3KGfkt4yaKhB9pA3sSMrR4kHbxVtgOs+vig@mail.gmail.com>
+From: Jussi Kukkonen <jussi.kukkonen@intel.com>
+Date: Tue, 13 Sep 2016 10:11:32 +0300
+Message-ID: <CAHiDW_Gp9jehbXJQ2kgiKH2krbKrt01w-rt+Cieirv-+jUeHhw@mail.gmail.com>
+To: BHARATH RAJ <kernelraj@gmail.com>
 Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi][PATCH] sdcard_image-rpi.bbclass: remove redundant IMAGEDATESTAMP
+Subject: Re: : error: '__uint128_t' does not name a type
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,49 +69,220 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 13 Sep 2016 06:40:32 -0000
+X-List-Received-Date: Tue, 13 Sep 2016 07:12:06 -0000
+Content-Type: multipart/alternative; boundary=001a11392fbe575ab5053c5e5481
+
+--001a11392fbe575ab5053c5e5481
 Content-Type: text/plain; charset=UTF-8
 
-On Tue, Sep 13, 2016 at 4:06 AM, Jonathan Liu <net147@gmail.com> wrote:
-> The IMAGE_NAME variable already contains the date and time so it is
-> redundant to also include the date again with IMAGEDATESTAMP
-> when writing to image-version-info in the boot partition.
+On 12 September 2016 at 07:39, BHARATH RAJ <kernelraj@gmail.com> wrote:
+
+> Hi All,
 >
-> Signed-off-by: Jonathan Liu <net147@gmail.com>
-> ---
->  classes/sdcard_image-rpi.bbclass | 8 ++------
->  1 file changed, 2 insertions(+), 6 deletions(-)
+> I am trying to build one recipes on Yocto2.0 based environment.
 >
-> diff --git a/classes/sdcard_image-rpi.bbclass b/classes/sdcard_image-rpi.bbclass
-> index 57cefea..388398b 100644
-> --- a/classes/sdcard_image-rpi.bbclass
-> +++ b/classes/sdcard_image-rpi.bbclass
-> @@ -71,10 +71,6 @@ SDIMG = "${DEPLOY_DIR_IMAGE}/${IMAGE_NAME}.rootfs.rpi-sdimg"
->  # Additional files and/or directories to be copied into the vfat partition from the IMAGE_ROOTFS.
->  FATPAYLOAD ?= ""
+> However I am seeing following error.I wonder if this is a known problem.
 >
-> -IMAGEDATESTAMP = "${@time.strftime('%Y.%m.%d',time.gmtime())}"
-> -IMAGE_CMD_rpi-sdimg[vardepsexclude] += "IMAGEDATESTAMP"
-> -IMAGE_CMD_rpi-sdimg[vardepsexclude] += "DATETIME"
-> -
->  IMAGE_CMD_rpi-sdimg () {
+> It says error: '__uint128_t' does not name a type
 >
->         # Align partitions
-> @@ -143,8 +139,8 @@ IMAGE_CMD_rpi-sdimg () {
->         fi
+
+Details might help: e.g. what arch are you building for? What are you
+building exactly?
+
+
+
+> /local/mnt/workspace/narasimha/AGL_NEW/poky/build/tmp-glibc/sysroots/usr/
+> include/bits/mathcalls.h:240:1: warning: invoking macro __MATH_PRECNAME
+> argument 2: empty macro arguments are undefined in ISO C90 and ISO C++98
+> [enabled by default]
+> /local/mnt/workspace/narasimha/AGL_NEW/poky/build/tmp-glibc/sysroots/usr/
+> include/bits/mathcalls.h:250:31: warning: invoking macro __MATHDECL
+> argument 3: empty macro arguments are undefined in ISO C90 and ISO C++98
+> [enabled by default]
+> /local/mnt/workspace/narasimha/AGL_NEW/poky/build/tmp-glibc/sysroots/usr/
+> include/bits/mathcalls.h:279:1: warning: invoking macro __MATHDECL_1
+> argument 3: empty macro arguments are undefined in ISO C90 and ISO C++98
+> [enabled by default]
+>  __MATHCALL (rint,, (_Mdouble_ __x));
+>  ^
+> /local/mnt/workspace/narasimha/AGL_NEW/poky/build/tmp-glibc/sysroots/usr/
+> include/bits/mathcalls.h:240:1: warning: invoking macro __CONCAT argument
+> 2: empty macro arguments are undefined in ISO C90 and ISO C++98 [enabled by
+> default]
+> In file included from /local/mnt/workspace/narasimha/AGL_NEW/poky/build/
+> tmp-glibc/sysroots/usr/include/bits/sigcontext.h:27:0,
+>                  from /local/mnt/workspace/narasimha/AGL_NEW/poky/build/
+> tmp-glibc/sysroots/usr/include/signal.h:306,
+>                  from /local/mnt/workspace/narasimha/AGL_NEW/poky/build/
+> tmp-glibc/sysroots/usr/include/glib-2.0/glib/gbacktrace.h:33,
+>                  from /local/mnt/workspace/narasimha/AGL_NEW/poky/build/
+> tmp-glibc/sysroots/usr/include/glib-2.0/glib.h:34,
+>                  from <command-line>:0:
+> /local/mnt/workspace/narasimha/AGL_NEW/poky/build/tmp-glibc/sysroots/usr/include/asm/sigcontext.h:53:2:
+> error: '__uint128_t' does not name a type
+>   __uint128_t vregs[32];
+>   ^
+> /local/mnt/workspace/narasimha/AGL_NEW/poky/build/tmp-glibc/sysroots/usr/include/bits/mathcalls.h:82:1:
+> warning: invoking macro __MATHDECL argument 3: empty macro arguments are
+> undefined in ISO C90 and ISO C++98 [enabled by default]
+> /local/mnt/workspace/narasimha/AGL_NEW/poky/build/tmp-rglibc/sysroots/usr/
+> include/bits/mathcalls.h:279:1: warning: invoking macro __MATH_PRECNAME
+> argument 2: empty macro arguments are undefined in ISO C90 and ISO C++98
+> [enabled by default]
+> /local/mnt/workspace/narasimha/AGL_NEW/poky/build/tmp-glibc/sysroots/usr/
+> include/bits/mathcalls.h:217:1: warning: invoking macro __MATHDECL_1
+> argument 3: empty macro arguments are undefined in ISO C90 and ISO C++98
+> [enabled by default]
+>  __MATHCALLX (copysign,, (_Mdouble_ __x, _Mdouble_ __y), (__const__));
+>  ^
+> /local/mnt/workspace/narasimha/AGL_NEW/poky/build/tmp-glibc/sysroots/usr/
+> include/bits/mathcalls.h:250:31: warning: invoking macro __MATHDECL_1
+> argument 3: empty macro arguments are undefined in ISO C90 and ISO C++98
+> [enabled by default]
+> /local/mnt/workspace/narasimha/AGL_NEW/poky/build/tmp-glibc/sysroots/usr/
+> include/bits/mathcalls.h:250:31: warning: invoking macro __MATH_PRECNAME
+> argument 2: empty macro arguments are undefined in ISO C90 and ISO C++98
+> [enabled by default]
+> /local/mnt/workspace/narasimha/AGL_NEW/poky/build/tmp-glibc/sysroots/usr/
+> include/bits/mathcalls.h:217:1: warning: invoking macro __MATH_PRECNAME
+> argument 2: empty macro arguments are undefined in ISO C90 and ISO C++98
+> [enabled by default]
+> /local/mnt/workspace/narasimha/AGL_NEW/poky/build/tmp-glibc/sysroots/usr/include/bits/mathcalls.h:82:1:
+> warning: invoking macro __MATHDECL_1 argument 3: empty macro arguments are
+> undefined in ISO C90 and ISO C++98 [enabled by default]
+> /local/mnt/workspace/narasimha/AGL_NEW/poky/build/tmp-glibc/sysroots/usr/include/bits/mathcalls.h:82:1:
+> warning: invoking macro __MATH_PRECNAME argument 2: empty macro arguments
+> are undefined in ISO C90 and ISO C++98 [enabled by default]
+> /local/mnt/workspace/narasimha/AGL_NEW/poky/build/tmp-glibc/sysroots/usr/
+> include/bits/mathcalls.h:241:29: warning: invoking macro __MATHCALL
+> argument 2: empty macro arguments are undefined in ISO C90 and ISO C++98
+> [enabled by default]
 >
->         # Add stamp file
-> -       echo "${IMAGE_NAME}-${IMAGEDATESTAMP}" > ${WORKDIR}/image-version-info
-> -       mcopy -i ${WORKDIR}/boot.img -v ${WORKDIR}//image-version-info ::
-> +       echo "${IMAGE_NAME}" > ${WORKDIR}/image-version-info
-> +       mcopy -i ${WORKDIR}/boot.img -v ${WORKDIR}/image-version-info ::
 >
->         # Burn Partitions
->         dd if=${WORKDIR}/boot.img of=${SDIMG} conv=notrunc seek=1 bs=$(expr ${IMAGE_ROOTFS_ALIGNMENT} \* 1024) && sync && sync
+> Regards
+> Bharath
+>
+>
+>
 > --
-> 2.9.3
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 >
-Yes this is better solution than Khem's and mine
+>
 
-Andreas
+--001a11392fbe575ab5053c5e5481
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr"><div class=3D"gmail_extra"><div class=3D"gmail_quote">On 1=
+2 September 2016 at 07:39, BHARATH RAJ <span dir=3D"ltr">&lt;<a href=3D"mai=
+lto:kernelraj@gmail.com" target=3D"_blank">kernelraj@gmail.com</a>&gt;</spa=
+n> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;b=
+order-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr">Hi All,<div><b=
+r></div><div>I am trying to build one recipes on Yocto2.0 based environment=
+.</div><div><br></div><div>However I am seeing following error.I wonder if =
+this is a known problem.</div><div><br></div><div>It says=C2=A0error: &#39;=
+__uint128_t&#39; does not name a type</div></div></blockquote><div><br></di=
+v><div>Details might help: e.g. what arch are you building for? What are yo=
+u building exactly?=C2=A0</div><div><br></div><div><br></div><blockquote cl=
+ass=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;p=
+adding-left:1ex"><div dir=3D"ltr"><div><br></div><div><div style=3D"color:r=
+gb(0,0,0);font-family:tahoma;font-size:13.3333px">/local/mnt/workspace/<wbr=
+>narasimha/AGL_NEW/poky/build/<wbr>tmp-glibc/sysroots/usr/<wbr>include/bits=
+/mathcalls.h:240:<wbr>1: warning: invoking macro __MATH_PRECNAME argument 2=
+: empty macro arguments are undefined in ISO C90 and ISO C++98 [enabled by =
+default]</div><div style=3D"color:rgb(0,0,0);font-family:tahoma;font-size:1=
+3.3333px">/local/mnt/workspace/<wbr>narasimha/AGL_NEW/poky/build/<wbr>tmp-g=
+libc/sysroots/usr/<wbr>include/bits/mathcalls.h:250:<wbr>31: warning: invok=
+ing macro __MATHDECL argument 3: empty macro arguments are undefined in ISO=
+ C90 and ISO C++98 [enabled by default]</div><div style=3D"color:rgb(0,0,0)=
+;font-family:tahoma;font-size:13.3333px">/local/mnt/workspace/<wbr>narasimh=
+a/AGL_NEW/poky/build/<wbr>tmp-glibc/sysroots/usr/<wbr>include/bits/mathcall=
+s.h:279:<wbr>1: warning: invoking macro __MATHDECL_1 argument 3: empty macr=
+o arguments are undefined in ISO C90 and ISO C++98 [enabled by default]</di=
+v><div style=3D"color:rgb(0,0,0);font-family:tahoma;font-size:13.3333px">=
+=C2=A0__MATHCALL (rint,, (_Mdouble_ __x));</div><div style=3D"color:rgb(0,0=
+,0);font-family:tahoma;font-size:13.3333px">=C2=A0^</div><div style=3D"colo=
+r:rgb(0,0,0);font-family:tahoma;font-size:13.3333px">/local/mnt/workspace/<=
+wbr>narasimha/AGL_NEW/poky/build/<wbr>tmp-glibc/sysroots/usr/<wbr>include/b=
+its/mathcalls.h:240:<wbr>1: warning: invoking macro __CONCAT argument 2: em=
+pty macro arguments are undefined in ISO C90 and ISO C++98 [enabled by defa=
+ult]</div><div style=3D"color:rgb(0,0,0);font-family:tahoma;font-size:13.33=
+33px">In file included from /local/mnt/workspace/<wbr>narasimha/AGL_NEW/pok=
+y/build/<wbr>tmp-glibc/sysroots/usr/<wbr>include/bits/sigcontext.h:27:<wbr>=
+0,</div><div style=3D"color:rgb(0,0,0);font-family:tahoma;font-size:13.3333=
+px">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0from /loc=
+al/mnt/workspace/<wbr>narasimha/AGL_NEW/poky/build/<wbr>tmp-glibc/sysroots/=
+usr/<wbr>include/signal.h:306,</div><div style=3D"color:rgb(0,0,0);font-fam=
+ily:tahoma;font-size:13.3333px">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0from /local/mnt/workspace/<wbr>narasimha/AGL_NEW/poky/b=
+uild/<wbr>tmp-glibc/sysroots/usr/<wbr>include/glib-2.0/glib/<wbr>gbacktrace=
+.h:33,</div><div style=3D"color:rgb(0,0,0);font-family:tahoma;font-size:13.=
+3333px">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0from =
+/local/mnt/workspace/<wbr>narasimha/AGL_NEW/poky/build/<wbr>tmp-glibc/sysro=
+ots/usr/<wbr>include/glib-2.0/glib.h:34,</div><div style=3D"color:rgb(0,0,0=
+);font-family:tahoma;font-size:13.3333px">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0from &lt;command-line&gt;:0:</div><div style=
+=3D"color:rgb(0,0,0);font-family:tahoma;font-size:13.3333px">/local/mnt/wor=
+kspace/<wbr>narasimha/AGL_NEW/poky/build/<wbr>tmp-glibc/sysroots/usr/<wbr>i=
+nclude/asm/sigcontext.h:53:2: error: &#39;__uint128_t&#39; does not name a =
+type</div><div style=3D"color:rgb(0,0,0);font-family:tahoma;font-size:13.33=
+33px">=C2=A0 __uint128_t vregs[32];</div><div style=3D"color:rgb(0,0,0);fon=
+t-family:tahoma;font-size:13.3333px">=C2=A0 ^</div><div style=3D"color:rgb(=
+0,0,0);font-family:tahoma;font-size:13.3333px">/local/mnt/workspace/<wbr>na=
+rasimha/AGL_NEW/poky/build/<wbr>tmp-glibc/sysroots/usr/<wbr>include/bits/ma=
+thcalls.h:82:1: warning: invoking macro __MATHDECL argument 3: empty macro =
+arguments are undefined in ISO C90 and ISO C++98 [enabled by default]</div>=
+<div style=3D"color:rgb(0,0,0);font-family:tahoma;font-size:13.3333px">/loc=
+al/mnt/workspace/<wbr>narasimha/AGL_NEW/poky/build/<wbr>tmp-rglibc/sysroots=
+/usr/<wbr>include/bits/mathcalls.h:279:<wbr>1: warning: invoking macro __MA=
+TH_PRECNAME argument 2: empty macro arguments are undefined in ISO C90 and =
+ISO C++98 [enabled by default]</div><div style=3D"color:rgb(0,0,0);font-fam=
+ily:tahoma;font-size:13.3333px">/local/mnt/workspace/<wbr>narasimha/AGL_NEW=
+/poky/build/<wbr>tmp-glibc/sysroots/usr/<wbr>include/bits/mathcalls.h:217:<=
+wbr>1: warning: invoking macro __MATHDECL_1 argument 3: empty macro argumen=
+ts are undefined in ISO C90 and ISO C++98 [enabled by default]</div><div st=
+yle=3D"color:rgb(0,0,0);font-family:tahoma;font-size:13.3333px">=C2=A0__MAT=
+HCALLX (copysign,, (_Mdouble_ __x, _Mdouble_ __y), (__const__));</div><div =
+style=3D"color:rgb(0,0,0);font-family:tahoma;font-size:13.3333px">=C2=A0^</=
+div><div style=3D"color:rgb(0,0,0);font-family:tahoma;font-size:13.3333px">=
+/local/mnt/workspace/<wbr>narasimha/AGL_NEW/poky/build/<wbr>tmp-glibc/sysro=
+ots/usr/<wbr>include/bits/mathcalls.h:250:<wbr>31: warning: invoking macro =
+__MATHDECL_1 argument 3: empty macro arguments are undefined in ISO C90 and=
+ ISO C++98 [enabled by default]</div><div style=3D"color:rgb(0,0,0);font-fa=
+mily:tahoma;font-size:13.3333px">/local/mnt/workspace/<wbr>narasimha/AGL_NE=
+W/poky/build/<wbr>tmp-glibc/sysroots/usr/<wbr>include/bits/mathcalls.h:250:=
+<wbr>31: warning: invoking macro __MATH_PRECNAME argument 2: empty macro ar=
+guments are undefined in ISO C90 and ISO C++98 [enabled by default]</div><d=
+iv style=3D"color:rgb(0,0,0);font-family:tahoma;font-size:13.3333px">/local=
+/mnt/workspace/<wbr>narasimha/AGL_NEW/poky/build/<wbr>tmp-glibc/sysroots/us=
+r/<wbr>include/bits/mathcalls.h:217:<wbr>1: warning: invoking macro __MATH_=
+PRECNAME argument 2: empty macro arguments are undefined in ISO C90 and ISO=
+ C++98 [enabled by default]</div><div style=3D"color:rgb(0,0,0);font-family=
+:tahoma;font-size:13.3333px">/local/mnt/workspace/<wbr>narasimha/AGL_NEW/po=
+ky/build/<wbr>tmp-glibc/sysroots/usr/<wbr>include/bits/mathcalls.h:82:1: wa=
+rning: invoking macro __MATHDECL_1 argument 3: empty macro arguments are un=
+defined in ISO C90 and ISO C++98 [enabled by default]</div><div style=3D"co=
+lor:rgb(0,0,0);font-family:tahoma;font-size:13.3333px">/local/mnt/workspace=
+/<wbr>narasimha/AGL_NEW/poky/build/<wbr>tmp-glibc/sysroots/usr/<wbr>include=
+/bits/mathcalls.h:82:1: warning: invoking macro __MATH_PRECNAME argument 2:=
+ empty macro arguments are undefined in ISO C90 and ISO C++98 [enabled by d=
+efault]</div><div style=3D"color:rgb(0,0,0);font-family:tahoma;font-size:13=
+.3333px">/local/mnt/workspace/<wbr>narasimha/AGL_NEW/poky/build/<wbr>tmp-gl=
+ibc/sysroots/usr/<wbr>include/bits/mathcalls.h:241:<wbr>29: warning: invoki=
+ng macro __MATHCALL argument 2: empty macro arguments are undefined in ISO =
+C90 and ISO C++98 [enabled by default]</div></div><div><br></div><div><br><=
+/div><div>Regards</div><span class=3D"HOEnZb"><font color=3D"#888888"><div>=
+Bharath</div><div><br></div><div><br></div></font></span></div>
+<br>--<br>
+______________________________<wbr>_________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto</a><=
+br>
+<br></blockquote></div><br></div></div>
+
+--001a11392fbe575ab5053c5e5481--
