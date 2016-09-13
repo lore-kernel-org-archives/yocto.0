@@ -1,60 +1,33 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <S.Jaritz@esa-grimma.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9B026E00D12; Tue, 13 Sep 2016 02:59:14 -0700 (PDT)
+	id EF6DCE00D3D; Tue, 13 Sep 2016 07:29:45 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.214.51 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-it0-f51.google.com (mail-it0-f51.google.com
-	[209.85.214.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A7828E00B30
-	for <yocto@yoctoproject.org>; Tue, 13 Sep 2016 02:59:09 -0700 (PDT)
-Received: by mail-it0-f51.google.com with SMTP id n143so29702043ita.1
-	for <yocto@yoctoproject.org>; Tue, 13 Sep 2016 02:59:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=Ix48LCK5waZSqKuAIBWTCqhlDeIGedzj5N8cegON84M=;
-	b=KmE/WHeyJWFMxcbaTtk8y+r5T7Ol6zn+8IIdwpe2PokQNEpHec7fILWXwrWhzcXupB
-	HHQfzipi/5x8Zkh9nz/y/a/7zVeBrtQC0ySR8z4ZTycq448uhpC4bjwzeUCTZEywi3GU
-	ilOmFTY4ebCO2Z6xUhtQTelGgA2B/jS3Qmq2C3in5l90BpJpJEcJ0Xppfpm9InZ9WGmW
-	A76ZZu+5AYqv9h5J/TYSHXBCzIiEemObvG+/eU5mzK8k1mNrX0Nm80Rgb4iG2gPS7uV5
-	lgLvP/4YnbNrQQhH02cUKZKJVgaOx+11zC+zD5nw9QPq2yjOprN0iSwCj4rNjkzWVshh
-	bO2A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=Ix48LCK5waZSqKuAIBWTCqhlDeIGedzj5N8cegON84M=;
-	b=Su//0WxR/VUfqqHiHASPw9DGci8MNPdLuZpgzHV41zpKaGEWn9gJAcmQyImPbsQqpN
-	nh0/Tlp/uBl8owIQsvdN6h8AUqVuluDTnN00iDyrvH23FBYa7KaeZUKTxmoQKT1Jd3Po
-	CBu2Sow8xUX0y5QG5XsenAi2f4godBQHb5rpV+yE5NNk5UZNpjRxp6alJFxONKjvyy3M
-	AYEU7s3WpPfJyShW9/jIJO2scYpgTxbgotz6gq2HBLVsI2bGucEMss5xwKcnLAsBVNgr
-	6cXnqGjvxJQizQcdbjIDD1ww2ijm6zHDjzp2bPjhv+q4ZNwKc31Gz1Tr+GqqIY7F4C84
-	UViQ==
-X-Gm-Message-State: AE9vXwP2N06Uk5wJHGEpNE9v8+fd+iKOJGzf1lvE37U0TbXCGSrZN8EEXqPRHI60vrnabr2/4vNO9fZnJxyEJlu2
-X-Received: by 10.107.176.144 with SMTP id z138mr767682ioe.133.1473760749137; 
-	Tue, 13 Sep 2016 02:59:09 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.107.135.27 with HTTP; Tue, 13 Sep 2016 02:58:48 -0700 (PDT)
-In-Reply-To: <OFE21B4224.870E1AD3-ONC125802D.0024F863-C125802D.002731A6@esa-grimma.de>
+Received: from gse01.esa-grimma.de (gse01.esa-grimma.de [185.141.66.29])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3B6A6E00D34
+	for <yocto@yoctoproject.org>; Tue, 13 Sep 2016 07:29:40 -0700 (PDT)
+In-Reply-To: <CAJTo0LYBXyfDKAffd0VNNO+yCjR6nD=ua6mmSD6VPzUd9mQm+A@mail.gmail.com>
 References: <OFE21B4224.870E1AD3-ONC125802D.0024F863-C125802D.002731A6@esa-grimma.de>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Tue, 13 Sep 2016 10:58:48 +0100
-Message-ID: <CAJTo0LYBXyfDKAffd0VNNO+yCjR6nD=ua6mmSD6VPzUd9mQm+A@mail.gmail.com>
-To: S.Jaritz@esa-grimma.de
+	<CAJTo0LYBXyfDKAffd0VNNO+yCjR6nD=ua6mmSD6VPzUd9mQm+A@mail.gmail.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+MIME-Version: 1.0
+X-KeepSent: 163FE52B:2E663506-C125802D:004F0852;
+ type=4; name=$KeepSent
+X-Mailer: IBM Notes Release 9.0 March 08, 2013
+Message-ID: <OF163FE52B.2E663506-ONC125802D.004F0852-C125802D.004F9D00@esa-grimma.de>
+From: S.Jaritz@esa-grimma.de
+Date: Tue, 13 Sep 2016 16:29:36 +0200
+X-MIMETrack: Serialize by Router on GSE01/Server/ESA-Grimma/DE(Release
+	9.0.1FP3 HF42|February 03, 2015) at 13.09.2016 16:29:42,
+	Serialize complete at 13.09.2016 16:29:42
 Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: How to extract an archive in a git repostry and copy it to a defined position in the rootfs?
+Subject: Antwort: Re: How to extract an archive in a git repostry and copy it to a defined position in the rootfs? (Solved)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,59 +39,220 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 13 Sep 2016 09:59:14 -0000
-Content-Type: multipart/alternative; boundary=001a11438ad4eff5c8053c60a930
+X-List-Received-Date: Tue, 13 Sep 2016 14:29:46 -0000
+Content-Type: multipart/alternative;
+	boundary="=_alternative 004F9CFFC125802D_="
 
---001a11438ad4eff5c8053c60a930
-Content-Type: text/plain; charset=UTF-8
+--=_alternative 004F9CFFC125802D_=
+Content-Type: text/plain; charset="ISO-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+Thanks for the help! The solution is simple. As mentioned by Ross No=20
+do=5Ffetch extension is needed. The extract + copy goes into do=5Finstall.
+
+#### part of the recipe ####
+do=5Finstall () {
+        install -d ${D}/opt
+        tar -xzf example.tar.gz -C ${D}/opt/
+}
+
+FILES=5F${PN} +=3D "/opt/*"
+########
+
+Regards
+
+Stefan Jaritz
+
+------------------------------------------------------------
+ESA Elektroschaltanlagen Grimma GmbH
+Broner Ring 30
+04668 Grimma
+Telefon: +49 3437 9211 176
+Telefax: +49 3437 9211 26
+E-Mail: s.jaritz@esa-grimma.de
+Internet: www.esa-grimma.de
+
+
+Gesch=E4ftsf=FChrer:
+Dipl.-Ing. J=F6rg Gaitzsch
+J=F6rg Reinker
+
+Sitz der Gesellschaft: Grimma
+Ust.-ID: DE 141784437
+Amtsgericht: Leipzig, HRB 5159
+Steuernummer: 238/108/00755
+
+
+Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte=20
+Informationen.=20
+Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=FCmlich=20
+erhalten=20
+haben, informieren Sie bitte sofort den Absender und l=F6schen Sie diese=20
+Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe dieser=20
+Mail=20
+ist nicht gestattet.
+
+This e-mail may contain confidential and/or privileged information. If you =
+
+are=20
+not the intended recipient (or have received this e-mail in error) please=20
+notify the sender immediately and destroy this e-mail. Any unauthorized=20
+copying, disclosure or distribution of the material in this e-mail is=20
+strictly=20
+forbidden.
+
+
+
+Von:    "Burton, Ross" <ross.burton@intel.com>
+An:     S.Jaritz@esa-grimma.de
+Kopie:  Yocto Project <yocto@yoctoproject.org>
+Datum:  13.09.2016 11:59
+Betreff:        Re: [yocto] How to extract an archive in a git repostry=20
+and copy it to a defined position in the rootfs?
+
+
+
 
 On 13 September 2016 at 08:08, <S.Jaritz@esa-grimma.de> wrote:
->
-> ??? do_fetch_append () {
-> ???        extract ${S}/example.tar.gz
-> ??? }
+??? do=5Ffetch=5Fappend () {=20
+???        extract ${S}/example.tar.gz=20
+??? } =20
 
+??? do=5Finstall () {=20
+???        copy ${S}/ ${D}/opt/=20
+??? }=20
 
-> ??? do_install () {
-> ???        copy ${S}/ ${D}/opt/
-> ??? }
-
-
-It's a tarball so use "tar" to extract, and you'll need to mkdir ${D}/opt
+It's a tarball so use "tar" to extract, and you'll need to mkdir ${D}/opt=20
 before copying. but that's barely just pseudocode.
 
-The only gotcha is that do_fetch() is a Python function so you can't just
-append shell code.  Simply move the extract into do_install().
+The only gotcha is that do=5Ffetch() is a Python function so you can't just=
+=20
+append shell code.  Simply move the extract into do=5Finstall().
 
 Ross
 
---001a11438ad4eff5c8053c60a930
-Content-Type: text/html; charset=UTF-8
+--=_alternative 004F9CFFC125802D_=
+Content-Type: text/html; charset="ISO-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 13 September 2016 at 08:08,  <span dir=3D"ltr">&lt;<a href=3D"mailto:S.J=
-aritz@esa-grimma.de" target=3D"_blank">S.Jaritz@esa-grimma.de</a>&gt;</span=
-> wrote:<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border=
--left:1px #ccc solid;padding-left:1ex"><font size=3D"2" face=3D"sans-serif"=
->??? do_fetch_append () {</font>
-<br><font size=3D"2" face=3D"sans-serif">??? =C2=A0 =C2=A0 =C2=A0 =C2=A0ext=
-ract
-${S}/example.tar.gz</font>
-<br><font size=3D"2" face=3D"sans-serif">??? }</font>=C2=A0=C2=A0</blockquo=
-te><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left=
-:1px #ccc solid;padding-left:1ex">
-<br><font size=3D"2" face=3D"sans-serif">??? do_install () {</font>
-<br><font size=3D"2" face=3D"sans-serif">??? =C2=A0 =C2=A0 =C2=A0 =C2=A0cop=
-y
-${S}/ ${D}/opt/</font>
-<br><font size=3D"2" face=3D"sans-serif">??? }</font>
-</blockquote></div><br>It&#39;s a tarball so use &quot;tar&quot; to extract=
-, and you&#39;ll need to mkdir ${D}/opt before copying. but that&#39;s bare=
-ly just pseudocode.</div><div class=3D"gmail_extra"><br></div><div class=3D=
-"gmail_extra">The only gotcha is that do_fetch() is a Python function so yo=
-u can&#39;t just append shell code.=C2=A0 Simply move the extract into do_i=
-nstall().</div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_ext=
-ra">Ross</div></div>
+<font size=3D2 face=3D"sans-serif">Thanks for the help! The solution is sim=
+ple.
+As mentioned by Ross No do=5Ffetch extension is needed. The extract + copy
+goes into do=5Finstall.</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">#### part of the recipe ####</font>
+<br><font size=3D2 face=3D"sans-serif">do=5Finstall () {</font>
+<br><font size=3D2 face=3D"sans-serif">&nbsp; &nbsp; &nbsp; &nbsp; install
+-d ${D}/opt</font>
+<br><font size=3D2 face=3D"sans-serif">&nbsp; &nbsp; &nbsp; &nbsp; tar
+-xzf example.tar.gz -C ${D}/opt/</font>
+<br><font size=3D2 face=3D"sans-serif">}</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">FILES=5F${PN} +=3D &quot;/opt/*&quot=
+;</font>
+<br><font size=3D2 face=3D"sans-serif">########</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">Regards<br>
+<br>
+Stefan Jaritz<br>
+<br>
+------------------------------------------------------------<br>
+ESA Elektroschaltanlagen Grimma GmbH<br>
+Broner Ring 30<br>
+04668 Grimma<br>
+Telefon: +49 3437 9211 176<br>
+Telefax: +49 3437 9211 26<br>
+E-Mail: s.jaritz@esa-grimma.de<br>
+Internet: </font><a href=3D"www.esa-grimma.de"><font size=3D2 face=3D"sans-=
+serif">www.esa-grimma.de</font></a><font size=3D2 face=3D"sans-serif"><br>
+<br>
+<br>
+Gesch=E4ftsf=FChrer:<br>
+Dipl.-Ing. J=F6rg Gaitzsch<br>
+J=F6rg Reinker<br>
+<br>
+Sitz der Gesellschaft: Grimma<br>
+Ust.-ID: DE 141784437<br>
+Amtsgericht: Leipzig, HRB 5159<br>
+Steuernummer: 238/108/00755<br>
+<br>
+<br>
+Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte Informa=
+tionen.
+<br>
+Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=FCmlich
+erhalten <br>
+haben, informieren Sie bitte sofort den Absender und l=F6schen Sie diese
+<br>
+Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe dieser
+Mail <br>
+ist nicht gestattet.<br>
+<br>
+This e-mail may contain confidential and/or privileged information. If
+you are <br>
+not the intended recipient (or have received this e-mail in error) please
+<br>
+notify the sender immediately and destroy this e-mail. Any unauthorized
+<br>
+copying, disclosure or distribution of the material in this e-mail is stric=
+tly
+<br>
+forbidden.</font>
+<br>
+<br>
+<br>
+<br><font size=3D1 color=3D#5f5f5f face=3D"sans-serif">Von: &nbsp; &nbsp; &=
+nbsp;
+&nbsp;</font><font size=3D1 face=3D"sans-serif">&quot;Burton, Ross&quot;
+&lt;ross.burton@intel.com&gt;</font>
+<br><font size=3D1 color=3D#5f5f5f face=3D"sans-serif">An: &nbsp; &nbsp; &n=
+bsp;
+&nbsp;</font><font size=3D1 face=3D"sans-serif">S.Jaritz@esa-grimma.de</fon=
+t>
+<br><font size=3D1 color=3D#5f5f5f face=3D"sans-serif">Kopie: &nbsp; &nbsp;=
+ &nbsp;
+&nbsp;</font><font size=3D1 face=3D"sans-serif">Yocto Project &lt;yocto@yoc=
+toproject.org&gt;</font>
+<br><font size=3D1 color=3D#5f5f5f face=3D"sans-serif">Datum: &nbsp; &nbsp;=
+ &nbsp;
+&nbsp;</font><font size=3D1 face=3D"sans-serif">13.09.2016 11:59</font>
+<br><font size=3D1 color=3D#5f5f5f face=3D"sans-serif">Betreff: &nbsp; &nbs=
+p;
+&nbsp; &nbsp;</font><font size=3D1 face=3D"sans-serif">Re: [yocto]
+How to extract an archive in a git repostry and copy it to a defined positi=
+on
+in the rootfs?</font>
+<br>
+<hr noshade>
+<br>
+<br>
+<br>
+<br><font size=3D3>On 13 September 2016 at 08:08, &lt;</font><a href=3D"mai=
+lto:S.Jaritz@esa-grimma.de" target=3D=5Fblank><font size=3D3 color=3Dblue><=
+u>S.Jaritz@esa-grimma.de</u></font></a><font size=3D3>&gt;
+wrote:</font>
+<br><font size=3D2 face=3D"sans-serif">??? do=5Ffetch=5Fappend () {</font><=
+font size=3D3>
+</font><font size=3D2 face=3D"sans-serif"><br>
+??? &nbsp; &nbsp; &nbsp; &nbsp;extract ${S}/example.tar.gz</font><font size=
+=3D3>
+</font><font size=3D2 face=3D"sans-serif"><br>
+??? }</font><font size=3D3>&nbsp;&nbsp;</font>
+<br><font size=3D2 face=3D"sans-serif"><br>
+??? do=5Finstall () {</font><font size=3D3> </font><font size=3D2 face=3D"s=
+ans-serif"><br>
+??? &nbsp; &nbsp; &nbsp; &nbsp;copy ${S}/ ${D}/opt/</font><font size=3D3>
+</font><font size=3D2 face=3D"sans-serif"><br>
+??? }</font><font size=3D3> </font>
+<br><font size=3D3><br>
+It's a tarball so use &quot;tar&quot; to extract, and you'll need to mkdir
+${D}/opt before copying. but that's barely just pseudocode.</font>
+<br>
+<br><font size=3D3>The only gotcha is that do=5Ffetch() is a Python function
+so you can't just append shell code.&nbsp; Simply move the extract into
+do=5Finstall().</font>
+<br>
+<br><font size=3D3>Ross</font>
+<br>
 
---001a11438ad4eff5c8053c60a930--
+--=_alternative 004F9CFFC125802D_=--
