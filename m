@@ -1,58 +1,32 @@
-Return-Path: <ronaldo@brc2.com>
+Return-Path: <gley-yocto@m.gmane.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B8963E00563; Tue, 13 Sep 2016 11:55:14 -0700 (PDT)
+	id E0D79E006C7; Tue, 13 Sep 2016 12:29:44 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, RCVD_IN_DNSWL_LOW,
-	RCVD_IN_SORBS_SPAM autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.218.44 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.218.44 listed in dnsbl.sorbs.net]
-Received: from mail-oi0-f44.google.com (mail-oi0-f44.google.com
-	[209.85.218.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4272BE0043F
-	for <yocto@yoctoproject.org>; Tue, 13 Sep 2016 11:55:11 -0700 (PDT)
-Received: by mail-oi0-f44.google.com with SMTP id y2so397618952oie.0
-	for <yocto@yoctoproject.org>; Tue, 13 Sep 2016 11:55:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=brc2-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=B+HST6Jot41NUVvV1uYtt/ZLOqVaiBv7YuImU9xNvok=;
-	b=upA30YekzQETIyZx1vrn0gKQRePX0rSK181gkqSY9+yq3k6uzBABkW6cUWbJELEV7X
-	fhpMRpRAwugfhCAnaeq6IT0ybzHLVuH90hiKrNXYE9JydxOOleCoPgPUOlpZg/soSdQJ
-	ufpIVIlSAcaD5ZAsUC4bej7LTJE0qPlPiQ9yeJkfo1SNzxSevsNM92aNVji9sOoVsZeB
-	mWN91ct/cmhT735R1QdRWAeskvzZUldetJbxU14WZH8Va49ayP16saOaEKyfQaVdCcy+
-	L4s+5l1HZM7F/s2us6/Ycy2JpsDAth6zDvqAsN5RgXuHn1lvoIzMt8jidvr6+EM2GIFo
-	T2zQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=B+HST6Jot41NUVvV1uYtt/ZLOqVaiBv7YuImU9xNvok=;
-	b=K8lWQdCevJ/2eviz6rKQzbFJv1RvER0ZpcTWarMa+GTicXmtmYN4idIXo06k3lE7a6
-	g/INtExsRigmCiLciS9Dz5MbOJp7olfWxV3aRVNTehL17ZzKvqWQUay9MfzieIJ3lPOD
-	rS9hEhY0MO1heQTEfx2bZU3NqEC+WB79ERYpni5gws6RCrQqxNh36P/wIsTt4BM3dfXq
-	xRFY4UugBUw+kNXu//rEDiDhtO70Zx/G8VNUd+Ty4xE9YO/myMTy1RJfYY3xlEEhO+VH
-	OvWb46otl9yl1Ii2sxMJbFsNZdV2zVicksNByAo6DUmtFX3Os0y9M0rXJQIJg1qPF50x
-	44KQ==
-X-Gm-Message-State: AE9vXwMzltbTh6uuXGwinU+pBpRfY4/ALezsfGe2apt7zOdZ842cKZ9Jvw2q5hZo2VQeOY5VyPP+jYEMJfqHFQ==
-X-Received: by 10.157.18.199 with SMTP id g65mr174833otg.182.1473792910855;
-	Tue, 13 Sep 2016 11:55:10 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.202.79.208 with HTTP; Tue, 13 Sep 2016 11:55:10 -0700 (PDT)
-From: Ronald Oakes <ronaldo@brc2.com>
-Date: Tue, 13 Sep 2016 12:55:10 -0600
-Message-ID: <CALRMKQqDgV5U_3=i_oQQ+2SzQTGhE3d1szfsomKH0rNp5++Uxg@mail.gmail.com>
-To: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Out-of-Tree Modules and __stack_chk_fail()
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from blaine.gmane.org (unknown [195.159.176.226])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A2ABEE00563
+	for <yocto@yoctoproject.org>; Tue, 13 Sep 2016 12:29:40 -0700 (PDT)
+Received: from list by blaine.gmane.org with local (Exim 4.84_2)
+	(envelope-from <gley-yocto@m.gmane.org>) id 1bjtOX-0002eB-IO
+	for yocto@yoctoproject.org; Tue, 13 Sep 2016 21:29:25 +0200
+X-Injected-Via-Gmane: http://gmane.org/
+To: yocto@yoctoproject.org
+From: "robert.berger@gmane" <gmane@reliableembeddedsystems.com>
+Date: Tue, 13 Sep 2016 22:29:15 +0300
+Message-ID: <09ebab78-b480-edb6-7691-2d60ecb1ed91@reliableembeddedsystems.com>
+References: <CALRMKQqDgV5U_3=i_oQQ+2SzQTGhE3d1szfsomKH0rNp5++Uxg@mail.gmail.com>
+Mime-Version: 1.0
+X-Complaints-To: usenet@blaine.gmane.org
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.2.0
+In-Reply-To: <CALRMKQqDgV5U_3=i_oQQ+2SzQTGhE3d1szfsomKH0rNp5++Uxg@mail.gmail.com>
+Subject: Re: Out-of-Tree Modules and __stack_chk_fail()
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -64,41 +38,127 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 13 Sep 2016 18:55:14 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Tue, 13 Sep 2016 19:29:45 -0000
+X-Groupsio-MsgNum: 31906
+Content-Type: multipart/mixed; boundary="------------8F239E07E3924D41D40D6BE0"
 
-Furthering my investagation into why my vendor supplied kernel modules
-were failing to load due to the error "Unknown symbol __stack_chk_fail
-(err 0)," I conducted the following experiment:
+--------------8F239E07E3924D41D40D6BE0
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
-1: I took the sample code from
-poky/meta-skeleton/recipes-kernel/helo-mod and moved it into a new
-layer as meta-ron/recipes-kernel/ron-mod, renaminging and modifying
-the files from hello to ron as needed.
+Hi,
 
-2: I added a new, otherwise dead, function to the (now named) ron.c
-function that made a call to __stack_check_fail, which I declared as
-"extern."
+On 2016-09-13 21:55, Ronald Oakes wrote:
+>
+> Any ideas how to proceed?
 
-3: Included it into a new image the same way I've been pulling my
-vendor kernel modules in.
+1) Can you try to use it from an in-tree kernel module? (modify the 
+attachment)
 
-When I did this, and ran the resulting image in qemu, I confirmed that
-when I attempt to insmod the installed ron.ko, I get the same "Unknown
-symbol __stack_chk_fail (err 0)" error.  This was built with the
-unmodified Makefile (other than changing the target name) supplied in
-the skeleton example, so it should have been pulling in all of the
-libraries etc.
+2) Can you grep in your kernel config for
 
-So, it appears that even following this procedure the functions from
-panic.c aren't getting included in the built module.  And, while I can
-continue to work around this with an empty stub version of
-__stack_chk_fail(), this leaves me with a module that responds to
-stack issues by ignoring them and continuing rather than causing a
-kernel panic, which I suspect would be a much more useful behavior in
-the long term.
+CONFIG_CC_STACKPROTECTOR and friends?
 
-Any ideas how to proceed?
+Regards,
 
-Ron Oakes
+Robert
 
+
+
+--------------8F239E07E3924D41D40D6BE0
+Content-Type: text/x-patch;
+ name="yocto-testmod.patch"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+ filename="yocto-testmod.patch"
+
+From 69cabc395bd097dde34664b4e1fe1c57ced39f6e Mon Sep 17 00:00:00 2001
+From: genius user <genius@ReliableEmbeddedSystems.com>
+Date: Thu, 27 Aug 2015 16:44:46 +0000
+Subject: [PATCH] Yocto kernel module
+
+Signed-off-by: genius user <genius@ReliableEmbeddedSystems.com>
+---
+ drivers/misc/Kconfig         |  5 +++++
+ drivers/misc/Makefile        |  1 +
+ drivers/misc/yocto-testmod.c | 38 ++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 44 insertions(+)
+ create mode 100644 drivers/misc/yocto-testmod.c
+
+diff --git a/drivers/misc/Kconfig b/drivers/misc/Kconfig
+index 006242c..31e90be 100644
+--- a/drivers/misc/Kconfig
++++ b/drivers/misc/Kconfig
+@@ -372,6 +372,11 @@ config HMC6352
+ 	  This driver provides support for the Honeywell HMC6352 compass,
+ 	  providing configuration and heading data via sysfs.
+ 
++config YOCTO_TESTMOD
++       tristate "Yocto Test Driver"
++       help
++         This driver provides a silly message for testing Yocto.
++
+ config DS1682
+ 	tristate "Dallas DS1682 Total Elapsed Time Recorder with Alarm"
+ 	depends on I2C
+diff --git a/drivers/misc/Makefile b/drivers/misc/Makefile
+index 7d5c4cd..f6c21ba 100644
+--- a/drivers/misc/Makefile
++++ b/drivers/misc/Makefile
+@@ -36,6 +36,7 @@ obj-$(CONFIG_DS1682)		+= ds1682.o
+ obj-$(CONFIG_TI_DAC7512)	+= ti_dac7512.o
+ obj-$(CONFIG_C2PORT)		+= c2port/
+ obj-$(CONFIG_HMC6352)		+= hmc6352.o
++obj-$(CONFIG_YOCTO_TESTMOD)     += yocto-testmod.o
+ obj-y				+= eeprom/
+ obj-y				+= cb710/
+ obj-$(CONFIG_SPEAR13XX_PCIE_GADGET)	+= spear13xx_pcie_gadget.o
+diff --git a/drivers/misc/yocto-testmod.c b/drivers/misc/yocto-testmod.c
+new file mode 100644
+index 0000000..c643624
+--- /dev/null
++++ b/drivers/misc/yocto-testmod.c
+@@ -0,0 +1,38 @@
++/*
++ * Copyright 2013 Intel Corporation
++ * Authored-by:  Tom Zanussi <tom.zanussi@linux.intel.com>
++ *
++ * This program is free software; you can redistribute it and/or modify
++ * it under the terms of the GNU General Public License version 2 as
++ * published by the Free Software Foundation.
++ *
++ * This program is distributed in the hope that it will be useful,
++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ * GNU General Public License for more details.
++ *
++ * You should have received a copy of the GNU General Public License along
++ * with this program; if not, write to the Free Software Foundation, Inc.,
++ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
++ */
++
++#include <linux/module.h>
++
++static int __init yocto_testmod_init(void)
++{
++       printk("Billroy quacked here!");
++
++       return 0;
++}
++
++static void __exit yocto_testmod_exit(void)
++{
++       printk("Billroy did not quack here!");
++}
++
++module_init(yocto_testmod_init);
++module_exit(yocto_testmod_exit);
++
++MODULE_AUTHOR("Tom Zanussi <tom.zanussi@linux.intel.com");
++MODULE_DESCRIPTION("Yocto Test Driver");
++MODULE_LICENSE("GPL");
+-- 
+1.9.1
+
+
+--------------8F239E07E3924D41D40D6BE0--
