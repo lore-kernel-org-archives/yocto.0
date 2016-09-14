@@ -1,53 +1,60 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <danielhilst@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 43003E00A48; Wed, 14 Sep 2016 07:50:38 -0700 (PDT)
+	id 68EC2E0049A; Wed, 14 Sep 2016 11:22:11 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-0.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, MISSING_HEADERS,
+	RCVD_IN_DNSWL_NONE, 
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (danielhilst[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.161.177 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.161.177 listed in dnsbl.sorbs.net]
+	*  1.0 MISSING_HEADERS Missing To: header
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.218.43 listed in list.dnswl.org]
-Received: from mail-oi0-f43.google.com (mail-oi0-f43.google.com
-	[209.85.218.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 81549E00A21
-	for <yocto@yoctoproject.org>; Wed, 14 Sep 2016 07:50:33 -0700 (PDT)
-Received: by mail-oi0-f43.google.com with SMTP id m11so24959628oif.1
-	for <yocto@yoctoproject.org>; Wed, 14 Sep 2016 07:50:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=vkokbx+zxbkcc+zlH6TjznROjhCJYUJ3MgpngDUMT1A=;
-	b=YdeIxsXyy6lB3BzzWElZIZ+7MhiFbNYwbMYHsMOJlsA1txV/2WyQCuIAkw8iH4aieQ
-	YomIKSw8OlPhtKx0A5hcZmNJddGkVIwfViPVPet9aeBFJROGzWPdXhCBUq3w+9LpYMD5
-	4II/HRBVtDAWkrQkCaONl2uWrXwmy1dNZ+lm6ud9DG2sXYxUZPEyJJ7dg3YadFwrrp4h
-	926u7na2sRwrvoB7bTdEc52S7QAQPOui2Ce16qSXXCgJt+PcOH0nnlqCJzFQZoDt6pGu
-	lA5Tg5+wS5ekLxAiRbEzWp5cOFcKIE8ueeFo89vSp8RCHr98Bev8ZuuHjlpG6cEfAyxp
-	Imxg==
+Received: from mail-yw0-f177.google.com (mail-yw0-f177.google.com
+	[209.85.161.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CFBE4E0043F
+	for <yocto@yoctoproject.org>; Wed, 14 Sep 2016 11:22:09 -0700 (PDT)
+Received: by mail-yw0-f177.google.com with SMTP id t67so31367661ywg.3
+	for <yocto@yoctoproject.org>; Wed, 14 Sep 2016 11:22:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:cc; 
+	bh=2XpFRToUztD9ZHl49i2uXwRKAjZTuLQp7BaCJBjfGPk=;
+	b=rWM/qDMmwpkx4CXWJpkVoisnLDPCaosGa1gKb/y+BXXt9i1Z1NeOmWetmhZA5S5Vsg
+	WjjF0imdtXsJslY1AkizQCm/43mVolh38bbiGgFngMrqrnQhiDY9n9vygyLnLG9NNEmL
+	cl3YXQQYEcqR9PGNwmFG+ObvGR2YoExexCvROals2rjqcFA+hWX/YJBecPkfrJNkjGCK
+	Fx2c2atNAyaPS94XlbtTSJ7BbnjsL+4zw8hw1KIV0Ynf+DG5/Wz479GePFHUd/RMHkkk
+	t2YkwFLhPf4HSxwzzN/r5PuO66EKccpn0dPwAzyzTMIZYasz6vrfSsIYuqlnlVzk8EQK
+	rmVg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=vkokbx+zxbkcc+zlH6TjznROjhCJYUJ3MgpngDUMT1A=;
-	b=eCMDltWVfW3KNjpm63Imtummiko2+gN0ped6kM0zknBsxvBWmBQF9Vb0hFnOm98XPK
-	dGvmGGVKScocc3nmqUk05d+G1Hf+tG4TmpycLgsTyNT8n1e3zFVVLKnia4S/OyjY6qQT
-	Ge5mgJPJL38VJ3uLgMudzUuOOmXQjvV57rnXNYh0LpAwc0JCO3t2/xnZZtmqntVPkp0h
-	EGtoZpaXhXwjpUSokuskfhVPqnwrGpexDBTOyFCzkV0nM+PJaIOLej0ZBZSMTENB+SXL
-	IpGGU0z6ib9csGOw3XUbZxDbMlbU57N5+lHKuoAoU2sN/wLKZq6DQDNqKc2FoT9Rb9cv
-	YLvA==
-X-Gm-Message-State: AE9vXwPpDH4EAJxaJFNQeoC+02aevK2G2SlY0EMmRKVNEKbvVH/oqYHNZX1Ca47R3Amy2LKBBG/9iCMsbR6BgD5L
-X-Received: by 10.107.35.13 with SMTP id j13mr6820090ioj.189.1473864632566;
-	Wed, 14 Sep 2016 07:50:32 -0700 (PDT)
+	:message-id:subject:cc;
+	bh=2XpFRToUztD9ZHl49i2uXwRKAjZTuLQp7BaCJBjfGPk=;
+	b=PLad/MC1rl17DqGnu6NsNqXIk6l1b8UXazrakzed2oK6zsmYPQzW/mS9vjuQ4OUJiF
+	Or5I/tpqz5ClWC3wNHYBUgA4atzRUxQnt2G799DQt0A4QbfK+73dU6xt3HIKr3FkhPak
+	lOoF4XWz9eZhMb+rIMFxEGkMsamkEy5rBhEooGwMn7yrlYvPnJ9fnRNpOgodh1cVcRBo
+	EVUsdh5xBbppVw7dnTUI9gKcf8QwXJHN74uoyb5uLa3MmSA4OFi8R46oPHB5AXhM8HmP
+	iQIgyPYs0qRgiTNWLusmdKG1dow230AaECZHoQ9p9xcoP5A/46mAxDyyw+alFJZDghv3
+	m/Kg==
+X-Gm-Message-State: AE9vXwN9zSlX1mLqqga9Y3G06XC9HcofKLqOgKrs7AbV+jQ6NMUhmsT5OzEldIT5scsyg255NQneqdHp0UlBbg==
+X-Received: by 10.129.17.142 with SMTP id 136mt4345885ywr.304.1473877329108;
+	Wed, 14 Sep 2016 11:22:09 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.107.135.27 with HTTP; Wed, 14 Sep 2016 07:50:12 -0700 (PDT)
-In-Reply-To: <DB23C91B06C303459B24BC3208AF424A20F82247@MBX114.d.ethz.ch>
+Received: by 10.159.35.72 with HTTP; Wed, 14 Sep 2016 11:22:08 -0700 (PDT)
+In-Reply-To: <CAJTo0LaM90asKkN0cEzAF+ksLxbD09iEHuovHjiDydZOTdtPig@mail.gmail.com>
 References: <DB23C91B06C303459B24BC3208AF424A20F820DE@MBX114.d.ethz.ch>
 	<CAJTo0LbmE1u1rfe8prA-Mv8bhyOkf2sKesEVQV42DqnLvc-8Lw@mail.gmail.com>
 	<DB23C91B06C303459B24BC3208AF424A20F8216B@MBX114.d.ethz.ch>
@@ -58,10 +65,10 @@ References: <DB23C91B06C303459B24BC3208AF424A20F820DE@MBX114.d.ethz.ch>
 	<DB23C91B06C303459B24BC3208AF424A20F821DF@MBX114.d.ethz.ch>
 	<CAF3SDA7JQ8hNVipjsYzgp2AOcesAiph66aNXmdVKWT+9HDxHqw@mail.gmail.com>
 	<DB23C91B06C303459B24BC3208AF424A20F82247@MBX114.d.ethz.ch>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 14 Sep 2016 15:50:12 +0100
-Message-ID: <CAJTo0LaM90asKkN0cEzAF+ksLxbD09iEHuovHjiDydZOTdtPig@mail.gmail.com>
-To: "Anicic Damir (PSI)" <damir.anicic@psi.ch>
+	<CAJTo0LaM90asKkN0cEzAF+ksLxbD09iEHuovHjiDydZOTdtPig@mail.gmail.com>
+From: "Daniel." <danielhilst@gmail.com>
+Date: Wed, 14 Sep 2016 15:22:08 -0300
+Message-ID: <CAF3SDA4uAvpFugiL8_+sCC=01O2VX4Aa3gsC3-oY1YZe2bN4NQ@mail.gmail.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Fetcher failure
 X-BeenThere: yocto@yoctoproject.org
@@ -75,49 +82,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 14 Sep 2016 14:50:38 -0000
-Content-Type: multipart/alternative; boundary=001a1140292adf72e2053c78d95e
-
---001a1140292adf72e2053c78d95e
+X-List-Received-Date: Wed, 14 Sep 2016 18:22:11 -0000
 Content-Type: text/plain; charset=UTF-8
 
-On 14 September 2016 at 15:48, Anicic Damir (PSI) <damir.anicic@psi.ch>
-wrote:
+You're welcome :)
 
-> it turns out that something HAS changed in my system/libraries (but not
-> Python itself),
-> influencing python urllib2 to fail, although wget, chrome, firefox, ...
-> worked
+2016-09-14 11:50 GMT-03:00 Burton, Ross <ross.burton@intel.com>:
 >
-> Fortunately we have another python version installed, and with that one it
-> works again.
+> On 14 September 2016 at 15:48, Anicic Damir (PSI) <damir.anicic@psi.ch>
+> wrote:
+>>
+>> it turns out that something HAS changed in my system/libraries (but not
+>> Python itself),
+>> influencing python urllib2 to fail, although wget, chrome, firefox, ...
+>> worked
+>>
+>> Fortunately we have another python version installed, and with that one it
+>> works again.
 >
+>
+> I wouldn't be surprised if you just got the Python 2.7 security fix which
+> means it verifies certificates by default, and your distro doesn't have
+> working certificates for Python.
+>
+> Ross
 
-I wouldn't be surprised if you just got the Python 2.7 security fix which
-means it verifies certificates by default, and your distro doesn't have
-working certificates for Python.
 
-Ross
 
---001a1140292adf72e2053c78d95e
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+-- 
+"Do or do not. There is no try"
+  Yoda Master
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 14 September 2016 at 15:48, Anicic Damir (PSI) <span dir=3D"ltr">&lt;<a =
-href=3D"mailto:damir.anicic@psi.ch" target=3D"_blank">damir.anicic@psi.ch</=
-a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0=
- 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div id=3D":35i" cla=
-ss=3D"a3s aXjCH m157292bd4a52c4e6">it turns out that something HAS changed =
-in my system/libraries (but not Python itself),<br>
-influencing python urllib2 to fail, although wget, chrome, firefox, ... wor=
-ked<br>
-<br>
-Fortunately we have another python version installed, and with that one it =
-works again.<br></div></blockquote></div><br>I wouldn&#39;t be surprised if=
- you just got the Python 2.7 security fix which means it verifies certifica=
-tes by default, and your distro doesn&#39;t have working certificates for P=
-ython.</div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra"=
->Ross</div></div>
-
---001a1140292adf72e2053c78d95e--
