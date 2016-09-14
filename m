@@ -1,14 +1,17 @@
-Return-Path: <danielhilst@gmail.com>
+Return-Path: <armccurdy@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B3BCBE0074B; Tue, 13 Sep 2016 15:43:11 -0700 (PDT)
+	id BEB0CE007B7; Tue, 13 Sep 2016 18:10:04 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_LOW,
+	RCVD_IN_SORBS_SPAM autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (danielhilst[at]gmail.com)
+	mail provider *      (armccurdy[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [74.125.82.47 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -16,50 +19,48 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.161.180 listed in list.dnswl.org]
-Received: from mail-yw0-f180.google.com (mail-yw0-f180.google.com
-	[209.85.161.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5DF9CE006D2
-	for <yocto@yoctoproject.org>; Tue, 13 Sep 2016 15:43:07 -0700 (PDT)
-Received: by mail-yw0-f180.google.com with SMTP id i129so46228061ywb.0
-	for <yocto@yoctoproject.org>; Tue, 13 Sep 2016 15:43:07 -0700 (PDT)
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.82.47 listed in dnsbl.sorbs.net]
+Received: from mail-wm0-f47.google.com (mail-wm0-f47.google.com [74.125.82.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D05EEE006D8
+	for <yocto@yoctoproject.org>; Tue, 13 Sep 2016 18:10:01 -0700 (PDT)
+Received: by mail-wm0-f47.google.com with SMTP id b187so22198014wme.1
+	for <yocto@yoctoproject.org>; Tue, 13 Sep 2016 18:10:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=+rAXlk6oZPOyEnFDSrY0EtCw4Fku7owwWjNYiZtRd1o=;
-	b=qewxA6W7fKTdY+9DcrDPtBzfkVWIG+HfkZtcPKrjoZ7n3sO3JLDD8m+G3yxsQa++LJ
-	PJ8ZoUh0ocqKcEV+AM7abaiXC5Ua003npcNIuoxHRZ+gRf6M3r32KhXYVhkE3Q1NYQHA
-	+WFd6Jdgl3Cg/JWCHWUzPL2mioR5hhb8f5y5nx0SKg6w2aNPh/ayG8bJoBnK8W1bolV3
-	BNNRM9qK+9+ui4gre6/lqWyV+uix8Hj/KglR9obbOulE8VRTQWS2/HbZt0dbfBvXxVTr
-	hZb+GCOSrPdXW8wUzDPUXk4BdTBZL71n1pMXDN8LF07hcFjWTjkvA6jejXarqcx88wmr
-	qkEw==
+	:cc; bh=wkMUa9a6vxLtAlvpOsYqzM6julgvVm3TipWm/5xr9sY=;
+	b=sR60v3d/J7Ad3Hl3YvWQjAWhv+m6hy9dCmLHbD2To8ZE3WtORq3xKZdD7V3POmr8uI
+	0Su9JCWnrjV8f2HSEbb6Ja0c8vw/IdXQ4yCQpSKaXTSdIgc6UYLCkxIq9iQEYxiMy4Aw
+	otwfC/TLqoXIy1Vr8d0k+7jNZVfsSSrSyMfG7rHjd/14FtIZRc48DJZrsEwQlsRCsO/Y
+	ONcS5Y7vdWahN+1C9JTY1Omt7ucUpdMc7DIdGHgYJT8DuIN9/f3vlejH8sd2UcG+0LZD
+	UKIfpCFgSuQQJGa4szbUV9kEypzhHGtWTk+vqXW+F2UmnhalLlX3uh/R5YAaO60IfQob
+	heDA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=+rAXlk6oZPOyEnFDSrY0EtCw4Fku7owwWjNYiZtRd1o=;
-	b=hW/4XaVrv+x+hkV59ZateERSjGaAyLQ1PogC0JPzX9nQlhj2JHABL6HSxEZqYdOe15
-	QMBP//hnf72cvqhdYFlgBhJQ4gk5eYJzDEYH7ZUF/OsSwlBwgJLSnNteh5CwThkqCtco
-	tHeOpXqmuaBHcUmoXm8LPuoldMXvj1VeVp3nx1abfCyoQBkuy2a4hVgeF+kcdatKhq3M
-	xT4Ny4IqtP9w9bjLfjan3ZNTQ16kXYucPU14w3oX+vm3PSvMF6wY2sOlnuVr0LNkcU8C
-	o0e6kdf/Sgpf6CDsM6d2TQXyvv55Iloet3DkeNE8n0KDb8Cby1wVtAGaIhlkUMWvXnQ7
-	TlmA==
-X-Gm-Message-State: AE9vXwNZOGCzINXcZXSfC3PgDvBe1CAN5M8wuJjGyh4LzJCs4+Dqswx2cim2YkhySkaYcQUJQe1fGf5rFd1n7Q==
-X-Received: by 10.13.246.199 with SMTP id g190mr3295181ywf.124.1473806587001; 
-	Tue, 13 Sep 2016 15:43:07 -0700 (PDT)
+	bh=wkMUa9a6vxLtAlvpOsYqzM6julgvVm3TipWm/5xr9sY=;
+	b=iumgvnB+D4UQL0r2OSjqcTYTjad2fmaAjDRBJGuaqtMtLazUqiSbM8Xxvk4wsA2BuY
+	esqmrr4Y09eHoswQUeKQEgCkIvlYHbRziL8X7l+eVhGZDT8Oc6x04lTKcdfQrOjyylAm
+	c33apPxmPAgxdIiy0xuD+UiIXUDY4Yj5eBqkX6t1tyW36MA3bBqhJkIxXwKPFNGLwsaS
+	WTqf2hQrEXTQE8Raus+hjHyUpY6zPf93pLRUJJdWgHGjWf1Gfo4b+oQGjCvO5x7TuOWY
+	iKAFSJrsR82XXVZC0n7mQxNRXDgYUlSz5BU/aRdAjg/W9PYS2DbFBgKJUpCjAi45f3N9
+	bV9A==
+X-Gm-Message-State: AE9vXwP/2WkF6Lye+zbLlqdE7lu8cMem9TxPb9DnsqU12n6QddDdWXFQgBtjp2kXAgv7NAACSC59BscUQzaf3Q==
+X-Received: by 10.28.161.133 with SMTP id k127mr7301244wme.103.1473815399262; 
+	Tue, 13 Sep 2016 18:09:59 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.159.35.72 with HTTP; Tue, 13 Sep 2016 15:43:06 -0700 (PDT)
-In-Reply-To: <CALRMKQqa3W_7RudOO4RvT13UV+EZiiWRgDLtSw1GYS1+mF_MyA@mail.gmail.com>
-References: <CALRMKQqDgV5U_3=i_oQQ+2SzQTGhE3d1szfsomKH0rNp5++Uxg@mail.gmail.com>
-	<09ebab78-b480-edb6-7691-2d60ecb1ed91@reliableembeddedsystems.com>
-	<CALRMKQqa3W_7RudOO4RvT13UV+EZiiWRgDLtSw1GYS1+mF_MyA@mail.gmail.com>
-From: "Daniel." <danielhilst@gmail.com>
-Date: Tue, 13 Sep 2016 19:43:06 -0300
-Message-ID: <CAF3SDA5a_dq16Y1+CH+Z3V81M7UQyiRJG2VAZ=m5USAwM+h8iQ@mail.gmail.com>
-To: Ronald Oakes <ronaldo@brc2.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: Out-of-Tree Modules and __stack_chk_fail()
+Received: by 10.194.190.233 with HTTP; Tue, 13 Sep 2016 18:09:58 -0700 (PDT)
+In-Reply-To: <CAJTo0La9QzpZUN8-d-u1BO_BggZ380d67bqcf5JJOfS9Hxn+Qw@mail.gmail.com>
+References: <CANr77M1Oj+M6k3QqHKTNSS8YFtsgVm5N7qCh4oxSCGWbSNKLNg@mail.gmail.com>
+	<CAJTo0La9QzpZUN8-d-u1BO_BggZ380d67bqcf5JJOfS9Hxn+Qw@mail.gmail.com>
+From: Andre McCurdy <armccurdy@gmail.com>
+Date: Tue, 13 Sep 2016 18:09:58 -0700
+Message-ID: <CAJ86T=Xpf=Nh8fKK7dXQhT4KrrA1He5J01C65v_jV8V7SDTNYw@mail.gmail.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	Matthew Stanger <matthew_stanger@trimble.com>
+Subject: Re: Striping cross-compiled paths
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,68 +72,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 13 Sep 2016 22:43:11 -0000
+X-List-Received-Date: Wed, 14 Sep 2016 01:10:04 -0000
 Content-Type: text/plain; charset=UTF-8
 
-Ronald,
-
-Was the kernel compiled with -fstack-protector?
-
-Try running this on target:
-cat /proc/kallsyms | grep __stack_chk_fail
-Does it output the symbol address?
-
-Take a look here: http://lxr.free-electrons.com/source/kernel/panic.c#L558
-
-Best regards
-
-2016-09-13 19:14 GMT-03:00 Ronald Oakes <ronaldo@brc2.com>:
-> That resolved my problem.  (And while I was at it, I found that I had
-> failed to create a new .bbappend file to pull my custom kernel config
-> file in when I had to change to an older kernel version due to kernel
-> versions supported by the vendor - so I had none of my other kernel
-> configurations either).
+On Mon, Sep 12, 2016 at 12:16 PM, Burton, Ross <ross.burton@intel.com> wrote:
 >
-> Ron Oakes.
+> On 12 September 2016 at 19:22, Matthew Stanger <matthew_stanger@trimble.com>
+> wrote:
+>>
+>> I'm using Yocto 1.7.1 I'd like built programs to have the build path
+>> striped down. The goal is if I'm looking at some programs log after cross
+>> compiling I want this:
+>>
+>> src/program.c:388
+>>
+>> where I currently get this:
+>>
+>> /usr/local/jenkins/workspace/project-build-manual/Project/build-project/tmp/work/arm926ejste-poky-linux-gnuebi/program/2.5.992+gitAUTOINC+1c6d246619-r0/git/src/program.c:388
+>>
+>> Is it possible to configure Yocto to do this for me? If so where can I
+>> find info on how I would do this?
 >
-> On Tue, Sep 13, 2016 at 1:29 PM, robert.berger@gmane
-> <gmane@reliableembeddedsystems.com> wrote:
->> Hi,
->>
->> On 2016-09-13 21:55, Ronald Oakes wrote:
->>>
->>>
->>> Any ideas how to proceed?
->>
->>
->> 1) Can you try to use it from an in-tree kernel module? (modify the
->> attachment)
->>
->> 2) Can you grep in your kernel config for
->>
->> CONFIG_CC_STACKPROTECTOR and friends?
->>
->> Regards,
->>
->> Robert
->>
->>
->>
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->>
+> If those paths come from __FILE__ and so on, then currently no.  It would be
+> great if GCC could do this, but currently it can not.
+
+There are gcc patches such as this one floating around:
+
+  http://git.openembedded.org/openembedded-core-contrib/commit/?h=obi/master&id=a1e8d6cfb71367d745f2478c13a7250e41ca4f1b
+
+Or toolchain wrappers such as ccache can convert absolute paths before
+calling the compiler:
+
+  https://ccache.samba.org/manual.html#_compiling_in_different_directories
+
+
+> Ross
+>
 > --
 > _______________________________________________
 > yocto mailing list
 > yocto@yoctoproject.org
 > https://lists.yoctoproject.org/listinfo/yocto
-
-
-
--- 
-"Do or do not. There is no try"
-  Yoda Master
+>
 
