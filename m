@@ -1,36 +1,47 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <Lavanya.Nadikuda@us.fujitsu.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9F3A5E0080D; Thu, 15 Sep 2016 06:57:06 -0700 (PDT)
+	id 4CA9FE006EE; Wed, 14 Sep 2016 14:45:34 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-Received: from mail.analogue-micro.com (mail.analogue-micro.com
-	[217.144.149.242])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 53815E0034A
-	for <yocto@yoctoproject.org>; Thu, 15 Sep 2016 06:57:00 -0700 (PDT)
-Received: by mail.analogue-micro.com (Postfix, from userid 999)
-	id 4C5E068A019; Thu, 15 Sep 2016 14:57:00 +0100 (BST)
-Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
-	by mail.analogue-micro.com (Postfix) with ESMTP id BDEC468A019;
-	Thu, 15 Sep 2016 14:56:59 +0100 (BST)
-Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
-	by zeus.mlbassoc.com (Postfix) with ESMTP id 77EE5674034E;
-	Thu, 15 Sep 2016 15:56:59 +0200 (CEST)
-To: yocto@yoctoproject.org
-References: <1a502d33-73a4-be2e-a3dd-eca4649bc34e@mlbassoc.com>
-	<CAF3SDA5NiRr=Fh4bHKVpSfYPVUHmGry7eO6nsg+nLhfZSjY0vQ@mail.gmail.com>
-From: Gary Thomas <gary@mlbassoc.com>
-Message-ID: <f2b763a5-7e40-cbb2-84ee-01691cd6c009@mlbassoc.com>
-Date: Thu, 15 Sep 2016 15:56:59 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.2.0
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_50,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [168.127.0.56 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
+	*      [score: 0.4878]
+X-Greylist: delayed 63 seconds by postgrey-1.32 at yocto-www;
+	Wed, 14 Sep 2016 14:45:31 PDT
+Received: from fncnmp03.fnc.fujitsu.com (fncnmp03.fnc.fujitsu.com
+	[168.127.0.56])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E5B9CE00404
+	for <yocto@yoctoproject.org>; Wed, 14 Sep 2016 14:45:31 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.30,335,1470718800"; d="scan'208,217";a="81461821"
+Received: from rchexhcp2.fnc.net.local ([168.127.134.76])
+	by fncnmp01.fnc.fujitsu.com with ESMTP/TLS/AES256-SHA;
+	14 Sep 2016 16:44:21 -0500
+Received: from RCHEXMBP1.fnc.net.local ([169.254.2.174]) by
+	RCHEXHCP2.fnc.net.local ([168.127.134.76]) with mapi id 14.03.0301.000;
+	Wed, 14 Sep 2016 16:44:20 -0500
+From: "Nadikuda, Lavanya" <Lavanya.Nadikuda@us.fujitsu.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Re: [yocto] No /lib64 directory in yocto
+Thread-Index: AdIO0Qo+9fc2AkUwTJOGVfcUARNtEg==
+Date: Wed, 14 Sep 2016 21:44:19 +0000
+Message-ID: <803AC7A90CD4DF4880EDA6182185AD7026D491AD@RCHEXMBP1.fnc.net.local>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [168.127.136.253]
+x-tm-as-product-ver: SMEX-10.2.0.3176-8.000.1202-22578.002
+x-tm-as-result: No--47.899700-0.000000-31
+x-tm-as-user-approved-sender: Yes
+x-tm-as-user-blocked-sender: No
 MIME-Version: 1.0
-In-Reply-To: <CAF3SDA5NiRr=Fh4bHKVpSfYPVUHmGry7eO6nsg+nLhfZSjY0vQ@mail.gmail.com>
-Subject: Re: [meta-raspberrypi] WiFi
+X-Mailman-Approved-At: Thu, 15 Sep 2016 07:44:34 -0700
+Subject: Re: No /lib64 directory in yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,47 +53,88 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 15 Sep 2016 13:57:06 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 14 Sep 2016 21:45:34 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_803AC7A90CD4DF4880EDA6182185AD7026D491ADRCHEXMBP1fncnet_"
 
-On 2016-09-15 15:32, Daniel. wrote:
-> Garry, if you are facing problems posting and detailed description of
-> your problem and by detailed I mean "I do X expecting Y but got Z"
-> being Z errors, logs, outputs etc would help a lot people to help you.
+--_000_803AC7A90CD4DF4880EDA6182185AD7026D491ADRCHEXMBP1fncnet_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-A reasonable observation (although if you look through the records for
-the past ~10 years, you can see that I know how to pose relevant questions!)
-I'm sure that the answer will be obvious to anyone who has set up a RaspberryPi-3.
+Hi Kishore,
 
-Anyway, for completeness, when my Rpi-3 board boots, I get a ton of these messages from the kernel:
-[    8.737220] cfg80211: Calling CRDA to update world regulatory domain
+Could you please let me know what the resolution is for /lib64 directory no=
+t found in yocto.
 
-Also, whenever I try to do anything with the WiFi device, I get this error:
-   root@raspberrypi3:~# iw dev wlan0 scan
-   command failed: Network is down (-100)
+Thank You,
+Lavanya.
 
-Here are the modules loaded into the kernel:
-   root@raspberrypi3:~# lsmod
-     Not tainted
-   ipv6 343600 26 [permanent], Live 0x7f1f6000
-   joydev 9044 0 - Live 0x7f1f0000
-   evdev 10254 3 - Live 0x7f1e2000
-   brcmfmac 179873 0 - Live 0x7f16c000
-   brcmutil 5693 1 brcmfmac, Live 0x7f160000
-   cfg80211 416259 1 brcmfmac, Live 0x7f03a000
-   rfkill 16941 1 cfg80211, Live 0x7f026000
-   bcm2835_rng 1763 0 - Live 0x7f022000
-   bcm2835_gpiomem 2852 0 - Live 0x7f01e000
-   uio_pdrv_genirq 2944 0 - Live 0x7f012000
-   uio 8032 1 uio_pdrv_genirq, Live 0x7f000000
+--_000_803AC7A90CD4DF4880EDA6182185AD7026D491ADRCHEXMBP1fncnet_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Perhaps I'm missing some firmware or driver for this WiFi device?  Note: I had
-this working fine on my RaspberryPi-2 with an external [USB] dongle.
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:dt=3D"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" xmlns:m=3D"http://sc=
+hemas.microsoft.com/office/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-=
+html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi Kishore,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Could you please let me know what the resolution is =
+for /lib64 directory not found in yocto.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thank You,<o:p></o:p></p>
+<p class=3D"MsoNormal">Lavanya.<o:p></o:p></p>
+</div>
+</body>
+</html>
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
-
+--_000_803AC7A90CD4DF4880EDA6182185AD7026D491ADRCHEXMBP1fncnet_--
