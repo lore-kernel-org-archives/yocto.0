@@ -1,85 +1,37 @@
-Return-Path: <zhenhua.luo@nxp.com>
+Return-Path: <philippe.coval@osg.samsung.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 41DCAE00A21; Wed, 14 Sep 2016 06:48:54 -0700 (PDT)
+	id 557B5E00A48; Wed, 14 Sep 2016 07:15:16 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [104.47.2.59 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,RDNS_DYNAMIC
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from EUR01-DB5-obe.outbound.protection.outlook.com
-	(mail-db5eur01on0059.outbound.protection.outlook.com [104.47.2.59])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 55CEBE00A16
-	for <yocto@yoctoproject.org>; Wed, 14 Sep 2016 06:48:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1; 
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
-	bh=j+rrvuobAZjq5bVEbNz97gAufARpeg48snlIIr01hDg=;
-	b=bRWYNKHZ3VZyl7CZMta0lTBEi2JOlZK5wfYYUNKmLalAhvhGTeuSWD1+SNTvIL9uMvZPJNDldR8LEUFobqdCbaBeyawXfQAv6y26Z9UC9f3WSHwFztleMVFenGa2+hOiuS1k4VketWSDQLPnD9gyVhdwP0TDkfuNbPYEUAXcYPk=
-Received: from DB6PR0401MB2630.eurprd04.prod.outlook.com (10.169.225.139) by
-	DB6PR0401MB2630.eurprd04.prod.outlook.com (10.169.225.139) with
-	Microsoft SMTP Server (version=TLS1_0,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA_P384)
-	id 15.1.609.3; Wed, 14 Sep 2016 09:17:10 +0000
-Received: from DB6PR0401MB2630.eurprd04.prod.outlook.com ([10.169.225.139]) by
-	DB6PR0401MB2630.eurprd04.prod.outlook.com ([10.169.225.139]) with
-	mapi id 15.01.0609.018; Wed, 14 Sep 2016 09:17:10 +0000
-From: Zhenhua Luo <zhenhua.luo@nxp.com>
-To: Ambika <ambika@iwavesystems.com>
-Thread-Topic: [yocto] Adding mysql in bitbaking meta-toolchain-qt5
-Thread-Index: AQHSDmMpsvhS7RFpwk+PRfC+eRvbG6B4szxg
-Date: Wed, 14 Sep 2016 09:17:10 +0000
-Message-ID: <DB6PR0401MB2630C72F9E50F14644769F3EEEF10@DB6PR0401MB2630.eurprd04.prod.outlook.com>
-References: <4056CB01A9244322902DC79C31DCF14D@IWDTP166>
-In-Reply-To: <4056CB01A9244322902DC79C31DCF14D@IWDTP166>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=zhenhua.luo@nxp.com; 
-x-originating-ip: [199.59.226.141]
-x-ms-office365-filtering-correlation-id: c2098309-1b58-4902-aba2-08d3dc7fe85a
-x-microsoft-exchange-diagnostics: 1; DB6PR0401MB2630;
-	6:7OKZJWZ8tke8MweKoza4zjl2kl4m+/SctNhT/XrWwNJ/ugq2iDDnESIbeuIctRsZY5knCFe7ZMIxfMVySgWbVqdaNWIM7CfuH0Bj5SVGQuQuvKM614FQVmeLbod+UkxIoB1SY/yDQ4ufhVbDlS04/+8X8qqxu3IenbVUoGvCp8vFoLQ+HQvT3ylBuKSMIOXAR/SU2WQgLR6B2W1ipLkmx8FVQvpp32l69joqafnqgYz1Mtklnem+g8lOJO8bpefEeqh7S2IAlB6WjXj6o8n4KhQjXiDEsn/mtbS8TQ5eI7kJ52J9c2WFWMnNjMmJ9fEaFTrKMAp7gffg6j+DXSHDuA==;
-	5:CagOqsBVUk/kTDlZ4XSjuv6dAshNyxVhAnziPpWyauo/Ve6PFmzU+73+Ehxuz7XFpnlWCk3KEiQwGvVffxpO58EGhZz84HzCrqvpIRWELi3Oflsyeyqkz922822DfcgeLPJP6PsPHMMou2b1+4nUNw==;
-	24:0JYOJHHtKpVL1MjQdiaYrAfXi2vx7Hsse5PDyXEHIfAU2wsLPlHdC9ei1jxBnSqlyZOYeTKEja6Cu6ELv0lQ6I5CrRHzHS6CXG1kLN2IldE=;
-	7:t22fel4rz3Cs2KE0/BTygZnHwP22giNkyj+Zzj0odv8VSH5H7lHB4gUUmM+pTq1XPG5ETzuEM9tP6sysJ3m5MLf+l1bQ4RBiH0PUrNCzbD5NYsDq7Fsi4NaR5Yg/BRLC22KGSG7ou7+A2VZ2cZnj56b/Gx2BIRWLL7GHvDErlXD00tzDhCuXTM+GTCt91IuvunaLev2VHb/owxYwxordCKfEZ4NdLNMGWnP+PwX+n3TSvVN5DwkHNYC786w7yOmP
-x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:DB6PR0401MB2630;
-x-microsoft-antispam-prvs: <DB6PR0401MB2630D21B62163CC61BE024F4EEF10@DB6PR0401MB2630.eurprd04.prod.outlook.com>
-x-exchange-antispam-report-test: UriScan:(21748063052155);
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(6040176)(601004)(2401047)(5005006)(8121501046)(3002001)(10201501046)(6055026);
-	SRVR:DB6PR0401MB2630; BCL:0; PCL:0; RULEID:;
-	SRVR:DB6PR0401MB2630; 
-x-forefront-prvs: 006546F32A
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10009020)(6009001)(7916002)(199003)(377454003)(189002)(51874003)(19300405004)(106116001)(3660700001)(586003)(19580405001)(7736002)(86362001)(19580395003)(105586002)(189998001)(11100500001)(7846002)(6116002)(76576001)(102836003)(3846002)(106356001)(790700001)(110136003)(8936002)(66066001)(3280700002)(87936001)(16236675004)(230783001)(54356999)(97736004)(74316002)(2900100001)(5660300001)(15975445007)(8676002)(7696004)(50986999)(10400500002)(9686002)(77096005)(122556002)(2906002)(92566002)(76176999)(19625215002)(101416001)(81156014)(5002640100001)(4326007)(81166006)(68736007)(33656002)(2950100001);
-	DIR:OUT; SFP:1101; SCL:1; SRVR:DB6PR0401MB2630;
-	H:DB6PR0401MB2630.eurprd04.prod.outlook.com; FPR:; SPF:None;
-	PTR:InfoNoRecords; A:1; MX:1; LANG:en; 
-received-spf: None (protection.outlook.com: nxp.com does not designate
-	permitted sender hosts)
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
-MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Sep 2016 09:17:10.5804 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB6PR0401MB2630
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Adding mysql in bitbaking meta-toolchain-qt5
+	*  1.0 RDNS_DYNAMIC Delivered to internal network by host with
+	*      dynamic-looking rDNS
+Received: from s-opensource.com
+	(ec2-52-27-115-49.us-west-2.compute.amazonaws.com [52.27.115.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 484F2E00A1A
+	for <yocto@yoctoproject.org>; Wed, 14 Sep 2016 07:15:12 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by s-opensource.com (Postfix) with ESMTP id 3EB60A0E77;
+	Wed, 14 Sep 2016 14:09:43 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at osg.samsung.com
+Received: from s-opensource.com ([127.0.0.1])
+	by localhost (s-opensource.com [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 50E1suDWqtX0; Wed, 14 Sep 2016 14:09:40 +0000 (UTC)
+Received: from WSF-1127.8.8.8.8 (unknown [82.236.136.171])
+	by s-opensource.com (Postfix) with ESMTPSA id DF17DA0DFA;
+	Wed, 14 Sep 2016 14:09:38 +0000 (UTC)
+From: Philippe Coval <philippe.coval@osg.samsung.com>
+To: kishen.maloor@intel.com
+Date: Wed, 14 Sep 2016 16:09:19 +0200
+Message-Id: <1473862161-4121-1-git-send-email-philippe.coval@osg.samsung.com>
+X-Mailer: git-send-email 1.9.1
+Cc: iotivity-dev@lists.iotivity.org, yocto@yoctoproject.org,
+	Philippe Coval <philippe.coval@osg.samsung.com>
+Subject: [meta-oic][PATCH 1/3] iotivity-simple-client: Use regular LDFLAGS variable
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -91,175 +43,85 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 14 Sep 2016 13:48:54 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_DB6PR0401MB2630C72F9E50F14644769F3EEEF10DB6PR0401MB2630_"
+X-List-Received-Date: Wed, 14 Sep 2016 14:15:16 -0000
 
---_000_DB6PR0401MB2630C72F9E50F14644769F3EEEF10DB6PR0401MB2630_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+This has been tested with iotivity-1.1.1
+ but also applies to earlier versions.
 
-VGhlIHBhY2thZ2UgbmFtZSBpcyBtYXJpYWRiIGluc3RlYWQgb2YgbXlzcWwsIElmIHlvdSBuZWVk
-IHRoZSBteXNxbCBoZWFkZXJzLCB5b3Ugc2hvdWxkIGFkZCBsaWJteXNxbGNsaWVudC1kZXYuDQoN
-Ck1vcmUgZGV0YWlscyBvZiBtYXJpYWRiIHBhY2thZ2luZyBjYW4gYmUgZm91bmQgaW4gbWV0YS1v
-cGVuZW1iZWRkZWQvbWV0YS1vZS9yZWNpcGVzLXN1cHBvcnQvbXlzcWwvbWFyaWFkYi5pbmMuDQoN
-Cg0KQmVzdCBSZWdhcmRzLA0KDQpaaGVuaHVhDQoNCkZyb206IHlvY3RvLWJvdW5jZXNAeW9jdG9w
-cm9qZWN0Lm9yZyBbbWFpbHRvOnlvY3RvLWJvdW5jZXNAeW9jdG9wcm9qZWN0Lm9yZ10gT24gQmVo
-YWxmIE9mIEFtYmlrYQ0KU2VudDogV2VkbmVzZGF5LCBTZXB0ZW1iZXIgMTQsIDIwMTYgMzoyOSBQ
-TQ0KVG86IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcNClN1YmplY3Q6IFt5b2N0b10gQWRkaW5nIG15
-c3FsIGluIGJpdGJha2luZyBtZXRhLXRvb2xjaGFpbi1xdDUNCg0KSGVsbG8sDQoNCknigJltIGRv
-aW5nIGJpdGJha2Ugb2YgbWV0YS10b29sY2hhaW4tcXQ1LiBXaGVuIHRyeWluZyB0byB1c2UgbXlz
-cWwsIG5vdCBhYmxlIHRvIGZpbmQgaXQgaW4gaW5jbHVkZS8gZGlyZWN0b3J5Lg0KDQpteXNxbCBz
-b3VyY2VzIGlzIGxvY2F0ZWQgaW4gdGhlIGJlbG93IHBhdGggaW4gbXkgeW9jdG8gc2V0dXAsDQoN
-CnNvdXJjZXMvbWV0YS1vcGVuZW1iZWRkZWQvbWV0YS1vZS9yZWNpcGVzLXN1cHBvcnQvbXlzcWwN
-Cg0KVHJpZWQgdG8gaW5jbHVkZSBteXNxbCBieSBhZGRpbmcgdGhlIGJlbG93IHRvIGNvbmYvbG9j
-YWwuY29uZiB1bmRlciBidWlsZCBkaXJlY3RvcnkgYnV0IGNvdWxkIG5vdCBhYmxlIHRvIGxvY2F0
-ZSBteXNxbCB1bmRlciBpbmNsdWRlLy4NCihBbHNvIG5vdCBzdXJlIHdoZXRoZXIgSeKAmW0gZG9p
-bmcgaXQgcmlnaHQuKQ0KDQpJTUFHRV9JTlNUQUxMX2FwcGVuZCA9IOKAnW15c3Fs4oCdDQoNCkNh
-biBhbnlvbmUgcGxlYXNlIGxldCBtZSBrbm93IHRoZSBwcm9jZWR1cmUgdG8gaW5jbHVkZSBteXNx
-bCB0byB0aGUgbWV0YS10b29sY2hhaW4tcXQ1Lg0KDQpUaGFua3MgaW4gQWR2YW5jZS4NCg0KUmVn
-YXJkcywNCkFtYmlrYS4NCg0KDQoNCg==
+Without this, QA check is failing and this message is reported:
 
---_000_DB6PR0401MB2630C72F9E50F14644769F3EEEF10DB6PR0401MB2630_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+  do_package_qa: QA Issue: No GNU_HASH in the elf binary:
+  (...)
+  iotivity-simple-client/simpleclient' [ldflags]
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-5a6L5L2TOw0KCXBhbm9zZS0xOjIgMSA2IDAgMyAxIDEgMSAxIDE7fQ0KQGZvbnQtZmFjZQ0KCXtm
-b250LWZhbWlseToiQ2FtYnJpYSBNYXRoIjsNCglwYW5vc2UtMToyIDQgNSAzIDUgNCA2IDMgMiA0
-O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1IDUg
-MiAyIDIgNCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OiJcQOWui+S9kyI7DQoJ
-cGFub3NlLTE6MiAxIDYgMCAzIDEgMSAxIDEgMTt9DQovKiBTdHlsZSBEZWZpbml0aW9ucyAqLw0K
-cC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1zb05vcm1hbA0KCXttYXJnaW46MGluOw0K
-CW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNpemU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5
-OiJUaW1lcyBOZXcgUm9tYW4iLHNlcmlmO30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsNCgl7
-bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOiMwNTYzQzE7DQoJdGV4dC1kZWNvcmF0aW9u
-OnVuZGVybGluZTt9DQphOnZpc2l0ZWQsIHNwYW4uTXNvSHlwZXJsaW5rRm9sbG93ZWQNCgl7bXNv
-LXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOiM5NTRGNzI7DQoJdGV4dC1kZWNvcmF0aW9uOnVu
-ZGVybGluZTt9DQpzcGFuLkVtYWlsU3R5bGUxNw0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25hbC1y
-ZXBseTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjsNCgljb2xvcjojMUY0OTdE
-O30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHlsZS10eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQt
-c2l6ZToxMC4wcHQ7fQ0KQHBhZ2UgV29yZFNlY3Rpb24xDQoJe3NpemU6OC41aW4gMTEuMGluOw0K
-CW1hcmdpbjoxLjBpbiAxLjI1aW4gMS4waW4gMS4yNWluO30NCmRpdi5Xb3JkU2VjdGlvbjENCgl7
-cGFnZTpXb3JkU2VjdGlvbjE7fQ0KLS0+PC9zdHlsZT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4N
-CjxvOnNoYXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRtYXg9IjEwMjYiIC8+DQo8L3htbD48
-IVtlbmRpZl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlbGF5b3V0IHY6ZXh0
-PSJlZGl0Ij4NCjxvOmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRhPSIxIiAvPg0KPC9vOnNoYXBlbGF5
-b3V0PjwveG1sPjwhW2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJvZHkgbGFuZz0iRU4tVVMiIGxpbms9
-IiMwNTYzQzEiIHZsaW5rPSIjOTU0RjcyIj4NCjxkaXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8
-cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZh
-bWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+VGhlIHBh
-Y2thZ2UgbmFtZSBpcyBtYXJpYWRiIGluc3RlYWQgb2YgbXlzcWwsIElmIHlvdSBuZWVkIHRoZSBt
-eXNxbCBoZWFkZXJzLCB5b3Ugc2hvdWxkIGFkZCBsaWJteXNxbGNsaWVudC1kZXYuDQo8bzpwPjwv
-bzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1z
-aXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29s
-b3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
-cm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2Fs
-aWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPk1vcmUgZGV0YWlscyBvZiBtYXJp
-YWRiIHBhY2thZ2luZyBjYW4gYmUgZm91bmQgaW4gbWV0YS1vcGVuZW1iZWRkZWQvbWV0YS1vZS9y
-ZWNpcGVzLXN1cHBvcnQvbXlzcWwvbWFyaWFkYi5pbmMuDQo8bzpwPjwvbzpwPjwvc3Bhbj48L3A+
-DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250
-LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+PG86
-cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5
-bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5z
-LXNlcmlmO2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxkaXY+
-DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250
-LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+QmVz
-dCBSZWdhcmRzLA0KPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
-PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZx
-dW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwv
-cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2Zv
-bnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj5a
-aGVuaHVhPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJp
-JnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+
-PC9wPg0KPGRpdiBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLWxlZnQ6c29saWQgYmx1ZSAxLjVw
-dDtwYWRkaW5nOjBpbiAwaW4gMGluIDQuMHB0Ij4NCjxkaXY+DQo8ZGl2IHN0eWxlPSJib3JkZXI6
-bm9uZTtib3JkZXItdG9wOnNvbGlkICNFMUUxRTEgMS4wcHQ7cGFkZGluZzozLjBwdCAwaW4gMGlu
-IDBpbiI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEx
-LjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWYiPkZyb206PC9z
-cGFuPjwvYj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtD
-YWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWYiPiB5b2N0by1ib3VuY2VzQHlvY3RvcHJvamVjdC5vcmcg
-W21haWx0bzp5b2N0by1ib3VuY2VzQHlvY3RvcHJvamVjdC5vcmddDQo8Yj5PbiBCZWhhbGYgT2Yg
-PC9iPkFtYmlrYTxicj4NCjxiPlNlbnQ6PC9iPiBXZWRuZXNkYXksIFNlcHRlbWJlciAxNCwgMjAx
-NiAzOjI5IFBNPGJyPg0KPGI+VG86PC9iPiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnPGJyPg0KPGI+
-U3ViamVjdDo8L2I+IFt5b2N0b10gQWRkaW5nIG15c3FsIGluIGJpdGJha2luZyBtZXRhLXRvb2xj
-aGFpbi1xdDU8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8ZGl2Pg0KPGRpdj4NCjxkaXY+DQo8
-cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJy
-aSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOmJsYWNrIj5IZWxsbyw8bzpwPjwvbzpwPjwvc3Bhbj48
-L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9u
-dC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOmJsYWNrIj4mbmJz
-cDs8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9y
-bWFsIj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNl
-cmlmO2NvbG9yOmJsYWNrIj5J4oCZbSBkb2luZyBiaXRiYWtlIG9mIG1ldGEtdG9vbGNoYWluLXF0
-NS4gV2hlbiB0cnlpbmcgdG8gdXNlIG15c3FsLCBub3QgYWJsZSB0byBmaW5kIGl0IGluIGluY2x1
-ZGUvIGRpcmVjdG9yeS4NCjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxw
-IGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTomcXVvdDtDYWxpYnJp
-JnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6YmxhY2siPiZuYnNwOzxvOnA+PC9vOnA+PC9zcGFuPjwv
-cD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250
-LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6YmxhY2siPm15c3Fs
-IHNvdXJjZXMgaXMgbG9jYXRlZCBpbiB0aGUgYmVsb3cgcGF0aCBpbiBteSB5b2N0byBzZXR1cCw8
-bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-Ij48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlm
-O2NvbG9yOmJsYWNrIj4mbmJzcDs8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+
-DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6JnF1b3Q7Q2Fs
-aWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOmJsYWNrIj5zb3VyY2VzL21ldGEtb3BlbmVtYmVk
-ZGVkL21ldGEtb2UvcmVjaXBlcy1zdXBwb3J0L215c3FsPC9zcGFuPjxzcGFuIHN0eWxlPSJmb250
-LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0FyaWFsJnF1b3Q7LHNhbnMtc2VyaWY7Y29s
-b3I6IzFGNDk3RCI+Jm5ic3A7PC9zcGFuPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTomcXVvdDtD
-YWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6YmxhY2siPjxvOnA+PC9vOnA+PC9zcGFuPjwv
-cD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250
-LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6YmxhY2siPiZuYnNw
-OzxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3Jt
-YWwiPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2Vy
-aWY7Y29sb3I6YmxhY2siPlRyaWVkIHRvIGluY2x1ZGUgbXlzcWwgYnkgYWRkaW5nIHRoZSBiZWxv
-dyB0byBjb25mL2xvY2FsLmNvbmYgdW5kZXIgYnVpbGQgZGlyZWN0b3J5IGJ1dCBjb3VsZCBub3Qg
-YWJsZSB0byBsb2NhdGUgbXlzcWwgdW5kZXIgaW5jbHVkZS8uPG86cD48L286cD48L3NwYW4+PC9w
-Pg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQt
-ZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjpibGFjayI+KEFsc28g
-bm90IHN1cmUgd2hldGhlciBJ4oCZbSBkb2luZyBpdCByaWdodC4pPG86cD48L286cD48L3NwYW4+
-PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZv
-bnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjpibGFjayI+Jm5i
-c3A7PG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05v
-cm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7QXJp
-YWwmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj5JTUFHRV9JTlNUQUxMX2FwcGVuZCA9
-IOKAnW15c3Fs4oCdDQo8L3NwYW4+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90O0NhbGli
-cmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjpibGFjayI+PG86cD48L286cD48L3NwYW4+PC9wPg0K
-PC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtZmFt
-aWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjpibGFjayI+Jm5ic3A7PG86
-cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
-PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtj
-b2xvcjpibGFjayI+Q2FuIGFueW9uZSBwbGVhc2UgbGV0IG1lIGtub3cgdGhlIHByb2NlZHVyZSB0
-byBpbmNsdWRlIG15c3FsIHRvIHRoZSBtZXRhLXRvb2xjaGFpbi1xdDUuPG86cD48L286cD48L3Nw
-YW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9
-ImZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjpibGFjayI+
-Jm5ic3A7PG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1z
-b05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fu
-cy1zZXJpZjtjb2xvcjpibGFjayI+VGhhbmtzIGluIEFkdmFuY2UuPG86cD48L286cD48L3NwYW4+
-PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZv
-bnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjpibGFjayI+Jm5i
-c3A7PG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05v
-cm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1z
-ZXJpZjtjb2xvcjpibGFjayI+UmVnYXJkcyw8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4N
-CjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6JnF1
-b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOmJsYWNrIj5BbWJpa2EuPG86cD48L286
-cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4g
-c3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjpi
-bGFjayI+Jm5ic3A7PG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xh
-c3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVv
-dDssc2Fucy1zZXJpZjtjb2xvcjpibGFjayI+Jm5ic3A7PG86cD48L286cD48L3NwYW4+PC9wPg0K
-PC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtZmFt
-aWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjpibGFjayI+Jm5ic3A7PG86
-cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rp
-dj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
+Change-Id: Ib77c70331b1aaba193bc32bcd190f939d9456dc4
+Bug: https://jira.iotivity.org/browse/IOT-1111
+Cc: iotivity-dev@lists.iotivity.org
+Cc: yocto@yoctoproject.org
+Origin: https://github.com/tizenteam/meta-oic
+Signed-off-by: Philippe Coval <philippe.coval@osg.samsung.com>
+---
+ .../0001-build-Use-LDFLAGS-variable-from-env.patch | 35 ++++++++++++++++++++++
+ .../iotivity-simple-client_1.1.0.bb                |  3 +-
+ 2 files changed, 37 insertions(+), 1 deletion(-)
+ create mode 100644 recipes-apps/iotivity-simple-client/files/0001-build-Use-LDFLAGS-variable-from-env.patch
 
---_000_DB6PR0401MB2630C72F9E50F14644769F3EEEF10DB6PR0401MB2630_--
+diff --git a/recipes-apps/iotivity-simple-client/files/0001-build-Use-LDFLAGS-variable-from-env.patch b/recipes-apps/iotivity-simple-client/files/0001-build-Use-LDFLAGS-variable-from-env.patch
+new file mode 100644
+index 0000000..e121ddd
+--- /dev/null
++++ b/recipes-apps/iotivity-simple-client/files/0001-build-Use-LDFLAGS-variable-from-env.patch
+@@ -0,0 +1,35 @@
++From c513e8e44345d7fff2a38ef5ddb108d513a40ae7 Mon Sep 17 00:00:00 2001
++From: Philippe Coval <philippe.coval@osg.samsung.com>
++Date: Tue, 13 Sep 2016 17:14:03 +0200
++Subject: [PATCH] build: Use LDFLAGS variable from env
++
++Without this, QA check is failing and this message is reported:
++
++  do_package_qa: QA Issue: No GNU_HASH in the elf binary:
++  (...)
++  'iotivity-simple-client/simpleclient' [ldflags]
++
++Change-Id: Id22e5358f75b46861cf0dfb7b2af267dbe7d7014
++Bug: https://jira.iotivity.org/browse/IOT-1111
++Origin: https://github.com/TizenTeam/meta-oic
++Signed-off-by: Philippe Coval <philippe.coval@osg.samsung.com>
++---
++ Makefile | 2 +-
++ 1 file changed, 1 insertion(+), 1 deletion(-)
++
++diff --git a/Makefile b/Makefile
++index 9323169..2389f43 100644
++--- a/Makefile
+++++ b/Makefile
++@@ -12,7 +12,7 @@ endif
++ 	$(CXX) -std=c++0x -c -o $@ $< $(YOCTOCXXFLAGS)
++ 
++ simpleclient: simpleclient.o
++-	$(CXX) -o simpleclient simpleclient.o $(YOCTOLDFLAGS)
+++	$(CXX) -o $@ $^ $(LDFLAGS) $(YOCTOLDFLAGS)
++ 
++ clean:
++ 	rm -rf simpleclient *.o
++-- 
++1.9.1
++
+diff --git a/recipes-apps/iotivity-simple-client/iotivity-simple-client_1.1.0.bb b/recipes-apps/iotivity-simple-client/iotivity-simple-client_1.1.0.bb
+index a01f58e..caf02f8 100644
+--- a/recipes-apps/iotivity-simple-client/iotivity-simple-client_1.1.0.bb
++++ b/recipes-apps/iotivity-simple-client/iotivity-simple-client_1.1.0.bb
+@@ -7,7 +7,8 @@ LICENSE = "Apache-2.0"
+ LIC_FILES_CHKSUM = "file://simpleclient.cpp;beginline=1;endline=19;md5=fc5a615cf1dc3880967127bc853b3e0c"
+ 
+ SRC_URI = "file://iotivity-simple-client.tar.bz2 \
+-          "
++        file://0001-build-Use-LDFLAGS-variable-from-env.patch \
++        "
+ 
+ S = "${WORKDIR}/iotivity-simple-client"
+ 
+-- 
+1.9.1
+
+
