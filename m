@@ -1,58 +1,46 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <Lavanya.Nadikuda@us.fujitsu.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7DFAEE008E3; Thu, 15 Sep 2016 07:49:04 -0700 (PDT)
+	id 7598BE00951; Thu, 15 Sep 2016 07:51:46 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [168.127.0.56 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.214.54 listed in list.dnswl.org]
-Received: from mail-it0-f54.google.com (mail-it0-f54.google.com
-	[209.85.214.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 133BFE0080D
-	for <yocto@yoctoproject.org>; Thu, 15 Sep 2016 07:48:42 -0700 (PDT)
-Received: by mail-it0-f54.google.com with SMTP id n143so79337579ita.1
-	for <yocto@yoctoproject.org>; Thu, 15 Sep 2016 07:48:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=qalDSlVnqD9cVQRkhJUzXG3vqLWZ90Dloy7Ub0inzrk=;
-	b=cLtOQw9VNNHBymgiuo6mwh+U90/sa/DqH5CQkqG2mlPTuB82Fmw4g+C0n6+al8e8JX
-	X1fpA6qzv5xOlcah6bI+ijrwIHrZchEtL4sajNcF/wShTHEXa5D8jS0r2DS+tPuGACWT
-	r85ZH2Y/+b2L2Jx3hXMQKpiUZG5IHGaiXBpsEzFVV61mGBlb8qVYxQxZ7Fq5F3dobjPs
-	w676yZdaexKHwDjl56bctADTaFLRqUAAUqr8rmyerMKlKEU2vCWmO/tljOxwBsINDnx8
-	qnwIfnRXbpuTGxFUnIg4998pKah2JJhAiNr3zSn8LM2gBjSscnXBvJyII5NqcKEbeMoI
-	yLbA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=qalDSlVnqD9cVQRkhJUzXG3vqLWZ90Dloy7Ub0inzrk=;
-	b=YvZAtvVQBpmWV8gh7qBgcPzfahzkvvsjcuYTMImE+KhdpyR6huF2dPc33F4iO2bUwi
-	abAvqzAoDlQdODudogcHqktSi2DxyrlO4FouEwnejXnsGUdBz3JYxQcq4twONBwgvLYX
-	ijSNojC9r8r39qhdtw6g2JABn1ieb8megURjNu3AdpyKAyEO5abgrvj0PV/MbVuVY7T7
-	3ocohFqGT2w6u1UFFROm3qdo1NraavzyxnCQGwhnKkm2gvk6vsHS13T6Y/8UQIVpTy1E
-	jkyILBcJBBxS3B5z2fJyBmwSi0pT/Cq5Y5GhcVDWg34lDTXiaSZ/8mN71qDG2o2dQFmT
-	+d8w==
-X-Gm-Message-State: AE9vXwMYcvIkSENrsqMRPykOZo9L8C+MgkaFcY5eOwwydlJfqJbmVuTNSx+XXyL4uVsuWAO6+bqhOhylxFdbQhZO
-X-Received: by 10.107.165.80 with SMTP id o77mr17076996ioe.118.1473950921467; 
-	Thu, 15 Sep 2016 07:48:41 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.107.135.27 with HTTP; Thu, 15 Sep 2016 07:48:21 -0700 (PDT)
-In-Reply-To: <803AC7A90CD4DF4880EDA6182185AD7026D491AD@RCHEXMBP1.fnc.net.local>
+Received: from fncnmp03.fnc.fujitsu.com (fncnmp03.fnc.fujitsu.com
+	[168.127.0.56])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 69C3AE00563
+	for <yocto@yoctoproject.org>; Thu, 15 Sep 2016 07:51:20 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.30,339,1470718800"; d="scan'208,217";a="81495106"
+Received: from rchexhcp1.fnc.net.local ([168.127.134.75])
+	by fncnmp01.fnc.fujitsu.com with ESMTP/TLS/AES256-SHA;
+	15 Sep 2016 09:51:20 -0500
+Received: from RCHEXMBP1.fnc.net.local ([169.254.2.174]) by
+	RCHEXHCP1.fnc.net.local ([168.127.134.75]) with mapi id 14.03.0301.000;
+	Thu, 15 Sep 2016 09:51:19 -0500
+From: "Nadikuda, Lavanya" <Lavanya.Nadikuda@us.fujitsu.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+Thread-Topic: [yocto] No /lib64 directory in yocto
+Thread-Index: AQHSD2BHWFNyJex2rkaKVw5cZjCNqqB6ohTQ
+Date: Thu, 15 Sep 2016 14:51:19 +0000
+Message-ID: <803AC7A90CD4DF4880EDA6182185AD7026D49212@RCHEXMBP1.fnc.net.local>
 References: <803AC7A90CD4DF4880EDA6182185AD7026D491AD@RCHEXMBP1.fnc.net.local>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Thu, 15 Sep 2016 15:48:21 +0100
-Message-ID: <CAJTo0LZYbkM+7NghAvvYOC=ZPGZybkdsguzBDDj76vug_6LouQ@mail.gmail.com>
-To: "Nadikuda, Lavanya" <Lavanya.Nadikuda@us.fujitsu.com>
+	<CAJTo0LZYbkM+7NghAvvYOC=ZPGZybkdsguzBDDj76vug_6LouQ@mail.gmail.com>
+In-Reply-To: <CAJTo0LZYbkM+7NghAvvYOC=ZPGZybkdsguzBDDj76vug_6LouQ@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [168.127.136.253]
+x-tm-as-product-ver: SMEX-10.2.0.3176-8.000.1202-22580.000
+x-tm-as-result: No--61.499300-0.000000-31
+x-tm-as-user-approved-sender: Yes
+x-tm-as-user-blocked-sender: No
+MIME-Version: 1.0
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: No /lib64 directory in yocto
 X-BeenThere: yocto@yoctoproject.org
@@ -66,38 +54,116 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 15 Sep 2016 14:49:04 -0000
-Content-Type: multipart/alternative; boundary=001a1141f2a6174841053c8cf1de
+X-List-Received-Date: Thu, 15 Sep 2016 14:51:46 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_803AC7A90CD4DF4880EDA6182185AD7026D49212RCHEXMBP1fncnet_"
 
---001a1141f2a6174841053c8cf1de
-Content-Type: text/plain; charset=UTF-8
+--_000_803AC7A90CD4DF4880EDA6182185AD7026D49212RCHEXMBP1fncnet_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On 14 September 2016 at 22:44, Nadikuda, Lavanya <
-Lavanya.Nadikuda@us.fujitsu.com> wrote:
+SGkgQnVydG9uLA0KDQpUaGFuayB5b3UgZm9yIHlvdXIgcmVwbHkuDQpXaGF0IGlmIEkgd2FudCBi
+b3RoIHRoZSBkaXJlY3Rvcmllcy4NCg0KSSBhbSBsb29raW5nIGF0IHRoZSBmb2xsb3dpbmcgbGlu
+ayB0b286DQpodHRwOi8vbGlzdHMub3BlbmVtYmVkZGVkLm9yZy9waXBlcm1haWwvb3BlbmVtYmVk
+ZGVkLWNvcmUvMjAxMy1BdWd1c3QvMDgyMjQxLmh0bWwNCg0KTGF2DQoNCkZyb206IEJ1cnRvbiwg
+Um9zcyBbbWFpbHRvOnJvc3MuYnVydG9uQGludGVsLmNvbV0NClNlbnQ6IFRodXJzZGF5LCBTZXB0
+ZW1iZXIgMTUsIDIwMTYgOTo0OCBBTQ0KVG86IE5hZGlrdWRhLCBMYXZhbnlhIDxMYXZhbnlhLk5h
+ZGlrdWRhQHVzLmZ1aml0c3UuY29tPg0KQ2M6IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcNClN1Ympl
+Y3Q6IFJlOiBbeW9jdG9dIE5vIC9saWI2NCBkaXJlY3RvcnkgaW4geW9jdG8NCg0KDQpPbiAxNCBT
+ZXB0ZW1iZXIgMjAxNiBhdCAyMjo0NCwgTmFkaWt1ZGEsIExhdmFueWEgPExhdmFueWEuTmFkaWt1
+ZGFAdXMuZnVqaXRzdS5jb208bWFpbHRvOkxhdmFueWEuTmFkaWt1ZGFAdXMuZnVqaXRzdS5jb20+
+PiB3cm90ZToNCkNvdWxkIHlvdSBwbGVhc2UgbGV0IG1lIGtub3cgd2hhdCB0aGUgcmVzb2x1dGlv
+biBpcyBmb3IgL2xpYjY0IGRpcmVjdG9yeSBub3QgZm91bmQgaW4geW9jdG8uDQoNCklmIHlvdSdy
+ZSBib3RoZXJlZCBieSB0aGlzLCB5b3UgY2FuIGNoYW5nZSB5b3VyIGJhc2VfbGliZGlyIHRvIGJl
+IC9saWI2NCBpbnN0ZWFkIG9mIC9saWIuDQoNClJvc3MNCg==
 
-> Could you please let me know what the resolution is for /lib64 directory
-> not found in yocto.
->
->
-If you're bothered by this, you can change your base_libdir to be /lib64
-instead of /lib.
+--_000_803AC7A90CD4DF4880EDA6182185AD7026D49212RCHEXMBP1fncnet_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Ross
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6ZHQ9InV1aWQ6QzJGNDEwMTAtNjVC
+My0xMWQxLUEyOUYtMDBBQTAwQzE0ODgyIiB4bWxuczptPSJodHRwOi8vc2NoZW1hcy5taWNyb3Nv
+ZnQuY29tL29mZmljZS8yMDA0LzEyL29tbWwiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy9UUi9S
+RUMtaHRtbDQwIj4NCjxoZWFkPg0KPG1ldGEgaHR0cC1lcXVpdj0iQ29udGVudC1UeXBlIiBjb250
+ZW50PSJ0ZXh0L2h0bWw7IGNoYXJzZXQ9dXRmLTgiPg0KPG1ldGEgbmFtZT0iR2VuZXJhdG9yIiBj
+b250ZW50PSJNaWNyb3NvZnQgV29yZCAxNSAoZmlsdGVyZWQgbWVkaXVtKSI+DQo8c3R5bGU+PCEt
+LQ0KLyogRm9udCBEZWZpbml0aW9ucyAqLw0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseToiQ2Ft
+YnJpYSBNYXRoIjsNCglwYW5vc2UtMToyIDQgNSAzIDUgNCA2IDMgMiA0O30NCkBmb250LWZhY2UN
+Cgl7Zm9udC1mYW1pbHk6Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1IDUgMiAyIDIgNCAzIDIgNDt9
+DQovKiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2
+Lk1zb05vcm1hbA0KCXttYXJnaW46MGluOw0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250
+LXNpemU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5OiJUaW1lcyBOZXcgUm9tYW4iLHNlcmlmO30NCmE6
+bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9y
+OmJsdWU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQphOnZpc2l0ZWQsIHNwYW4uTXNv
+SHlwZXJsaW5rRm9sbG93ZWQNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOnB1cnBs
+ZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCnNwYW4uRW1haWxTdHlsZTE3DQoJe21z
+by1zdHlsZS10eXBlOnBlcnNvbmFsLXJlcGx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5z
+LXNlcmlmOw0KCWNvbG9yOiMxRjQ5N0Q7fQ0KLk1zb0NocERlZmF1bHQNCgl7bXNvLXN0eWxlLXR5
+cGU6ZXhwb3J0LW9ubHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7fQ0KQHBh
+Z2UgV29yZFNlY3Rpb24xDQoJe3NpemU6OC41aW4gMTEuMGluOw0KCW1hcmdpbjoxLjBpbiAxLjBp
+biAxLjBpbiAxLjBpbjt9DQpkaXYuV29yZFNlY3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rpb24xO30N
+Ci0tPjwvc3R5bGU+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWRlZmF1bHRzIHY6
+ZXh0PSJlZGl0IiBzcGlkbWF4PSIxMDI2IiAvPg0KPC94bWw+PCFbZW5kaWZdLS0+PCEtLVtpZiBn
+dGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWxheW91dCB2OmV4dD0iZWRpdCI+DQo8bzppZG1hcCB2
+OmV4dD0iZWRpdCIgZGF0YT0iMSIgLz4NCjwvbzpzaGFwZWxheW91dD48L3htbD48IVtlbmRpZl0t
+LT4NCjwvaGVhZD4NCjxib2R5IGxhbmc9IkVOLVVTIiBsaW5rPSJibHVlIiB2bGluaz0icHVycGxl
+Ij4NCjxkaXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3Bh
+biBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7
+LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+SGkgQnVydG9uLDxvOnA+PC9vOnA+PC9zcGFuPjwv
+cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2Zv
+bnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj48
+bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBz
+dHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNh
+bnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+VGhhbmsgeW91IGZvciB5b3VyIHJlcGx5LjxvOnA+PC9v
+OnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNp
+emU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xv
+cjojMUY0OTdEIj5XaGF0IGlmIEkgd2FudCBib3RoIHRoZSBkaXJlY3Rvcmllcy48bzpwPjwvbzpw
+Pjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXpl
+OjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6
+IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJy
+aSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPkkgYW0gbG9va2luZyBhdCB0aGUgZm9s
+bG93aW5nIGxpbmsgdG9vOjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGli
+cmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj48YSBocmVmPSJodHRwOi8vbGlzdHMu
+b3BlbmVtYmVkZGVkLm9yZy9waXBlcm1haWwvb3BlbmVtYmVkZGVkLWNvcmUvMjAxMy1BdWd1c3Qv
+MDgyMjQxLmh0bWwiPmh0dHA6Ly9saXN0cy5vcGVuZW1iZWRkZWQub3JnL3BpcGVybWFpbC9vcGVu
+ZW1iZWRkZWQtY29yZS8yMDEzLUF1Z3VzdC8wODIyNDEuaHRtbDwvYT48bzpwPjwvbzpwPjwvc3Bh
+bj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBw
+dDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3
+RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNw
+YW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90
+OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPkxhdjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFt
+aWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj48bzpwPiZu
+YnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj48c3BhbiBzdHls
+ZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMt
+c2VyaWYiPkZyb206PC9zcGFuPjwvYj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250
+LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWYiPiBCdXJ0b24sIFJvc3MgW21h
+aWx0bzpyb3NzLmJ1cnRvbkBpbnRlbC5jb21dDQo8YnI+DQo8Yj5TZW50OjwvYj4gVGh1cnNkYXks
+IFNlcHRlbWJlciAxNSwgMjAxNiA5OjQ4IEFNPGJyPg0KPGI+VG86PC9iPiBOYWRpa3VkYSwgTGF2
+YW55YSAmbHQ7TGF2YW55YS5OYWRpa3VkYUB1cy5mdWppdHN1LmNvbSZndDs8YnI+DQo8Yj5DYzo8
+L2I+IHlvY3RvQHlvY3RvcHJvamVjdC5vcmc8YnI+DQo8Yj5TdWJqZWN0OjwvYj4gUmU6IFt5b2N0
+b10gTm8gL2xpYjY0IGRpcmVjdG9yeSBpbiB5b2N0bzxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPGRpdj4NCjxkaXY+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxkaXY+DQo8cCBjbGFz
+cz0iTXNvTm9ybWFsIj5PbiAxNCBTZXB0ZW1iZXIgMjAxNiBhdCAyMjo0NCwgTmFkaWt1ZGEsIExh
+dmFueWEgJmx0OzxhIGhyZWY9Im1haWx0bzpMYXZhbnlhLk5hZGlrdWRhQHVzLmZ1aml0c3UuY29t
+IiB0YXJnZXQ9Il9ibGFuayI+TGF2YW55YS5OYWRpa3VkYUB1cy5mdWppdHN1LmNvbTwvYT4mZ3Q7
+IHdyb3RlOjxvOnA+PC9vOnA+PC9wPg0KPGJsb2NrcXVvdGUgc3R5bGU9ImJvcmRlcjpub25lO2Jv
+cmRlci1sZWZ0OnNvbGlkICNDQ0NDQ0MgMS4wcHQ7cGFkZGluZzowaW4gMGluIDBpbiA2LjBwdDtt
+YXJnaW4tbGVmdDo0LjhwdDttYXJnaW4tcmlnaHQ6MGluIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
+IHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0
+byI+Q291bGQgeW91IHBsZWFzZSBsZXQgbWUga25vdyB3aGF0IHRoZSByZXNvbHV0aW9uIGlzIGZv
+ciAvbGliNjQgZGlyZWN0b3J5IG5vdCBmb3VuZCBpbiB5b2N0by48bzpwPjwvbzpwPjwvcD4NCjwv
+YmxvY2txdW90ZT4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGJyPg0KSWYgeW91J3Jl
+IGJvdGhlcmVkIGJ5IHRoaXMsIHlvdSBjYW4gY2hhbmdlIHlvdXIgYmFzZV9saWJkaXIgdG8gYmUg
+L2xpYjY0IGluc3RlYWQgb2YgL2xpYi48bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCI+Um9zczxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8L2Rpdj4N
+CjwvZGl2Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
 
---001a1141f2a6174841053c8cf1de
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 14 September 2016 at 22:44, Nadikuda, Lavanya <span dir=3D"ltr">&lt;<a h=
-ref=3D"mailto:Lavanya.Nadikuda@us.fujitsu.com" target=3D"_blank">Lavanya.Na=
-dikuda@us.fujitsu.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_q=
-uote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1e=
-x"><p class=3D"MsoNormal">Could you please let me know what the resolution =
-is for /lib64 directory not found in yocto.<u></u><u></u></p>
-<p class=3D"MsoNormal"></p></blockquote></div><br>If you&#39;re bothered by=
- this, you can change your base_libdir to be /lib64 instead of /lib.</div><=
-div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Ross</div></=
-div>
-
---001a1141f2a6174841053c8cf1de--
+--_000_803AC7A90CD4DF4880EDA6182185AD7026D49212RCHEXMBP1fncnet_--
