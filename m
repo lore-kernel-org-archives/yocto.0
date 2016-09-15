@@ -1,62 +1,35 @@
-Return-Path: <danielhilst@gmail.com>
+Return-Path: <gary@mlbassoc.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4D156E0080D; Thu, 15 Sep 2016 06:32:11 -0700 (PDT)
+	id 9F3A5E0080D; Thu, 15 Sep 2016 06:57:06 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (danielhilst[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.49 listed in list.dnswl.org]
-Received: from mail-vk0-f49.google.com (mail-vk0-f49.google.com
-	[209.85.213.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1DD8DE0034A
-	for <yocto@yoctoproject.org>; Thu, 15 Sep 2016 06:32:05 -0700 (PDT)
-Received: by mail-vk0-f49.google.com with SMTP id h134so25878185vkd.2
-	for <yocto@yoctoproject.org>; Thu, 15 Sep 2016 06:32:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=zcw4YVNXRhys7rSkx5cHyf7unuwR0w4iqmt2kQnN9X8=;
-	b=eWs4rOWitTO1nLPFjsL0X2236KUUztue+lg7x1oILosXqOJ6ISB/10/eSs0YnYMVRt
-	IbaTJLY1/YpKCWFS+i14IfkxtvcaWFXMPU192gJodyHCMMNFZB4qxLUb2gO+xXSCTOfc
-	oRBbav6qQI/1ZzFWrirp2Y7kDaZMYbWpMzc2YZWMx9MT9wEWCDUzKs6MVFv7Dl4JEgS3
-	nkJYWKMDOLx4aBBmrExWtZ8REL+hi0w4qD7o2TihaKfc8xNXEb+qQ0jeBQu68Gq2B4q/
-	TKEoB539YaOp3lBfweQEWRFqhZW1ET3Y8WbB/HHn65JZWcKPVVAD1s1l7azunVxXCRfm
-	jDmQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=zcw4YVNXRhys7rSkx5cHyf7unuwR0w4iqmt2kQnN9X8=;
-	b=VK1WK3ESF0khRe5xvvs08KHb38CkMUxB5A2HbTTxp/TyHhG0jp+E15YEPU4g3mJkf7
-	7UuYZ8jP87d+qo/tqfsdmcgLqmbejVIQjMuXDqLkdOvLwndHj1oFKB4R5FfIVbk4DKXS
-	GGKZZ3p+iOOW8pFwgcT9a0AhPrD/KrXfuKfTqo6rrb2NxTuwWXtIcM+okVMerWKJh392
-	qVAZYdcB8y8GZ0MJXGOKN0dCzQ29LD4UNPddv0TY7Oz3Yq9uiVCB3noTQT/Z40EJiRA9
-	qKMsUev6ubJFSFUkXLgtU29TJ9/fCy7q8zJsosaVWHY7SyL990RSnFcWOIjhwIyZnWRd
-	+Xcw==
-X-Gm-Message-State: AE9vXwOWDalUIV+3m+1jrWo9zzOrmZHT+YLquG0POyAiEJbWp93kPWZTbT2H8vFiGzdtFyxoGLdJWzqDAaTlPA==
-X-Received: by 10.31.16.76 with SMTP id g73mr3300482vki.117.1473946322578;
-	Thu, 15 Sep 2016 06:32:02 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.159.35.72 with HTTP; Thu, 15 Sep 2016 06:32:02 -0700 (PDT)
-In-Reply-To: <1a502d33-73a4-be2e-a3dd-eca4649bc34e@mlbassoc.com>
+Received: from mail.analogue-micro.com (mail.analogue-micro.com
+	[217.144.149.242])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 53815E0034A
+	for <yocto@yoctoproject.org>; Thu, 15 Sep 2016 06:57:00 -0700 (PDT)
+Received: by mail.analogue-micro.com (Postfix, from userid 999)
+	id 4C5E068A019; Thu, 15 Sep 2016 14:57:00 +0100 (BST)
+Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
+	by mail.analogue-micro.com (Postfix) with ESMTP id BDEC468A019;
+	Thu, 15 Sep 2016 14:56:59 +0100 (BST)
+Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
+	by zeus.mlbassoc.com (Postfix) with ESMTP id 77EE5674034E;
+	Thu, 15 Sep 2016 15:56:59 +0200 (CEST)
+To: yocto@yoctoproject.org
 References: <1a502d33-73a4-be2e-a3dd-eca4649bc34e@mlbassoc.com>
-From: "Daniel." <danielhilst@gmail.com>
-Date: Thu, 15 Sep 2016 10:32:02 -0300
-Message-ID: <CAF3SDA5NiRr=Fh4bHKVpSfYPVUHmGry7eO6nsg+nLhfZSjY0vQ@mail.gmail.com>
-To: Gary Thomas <gary@mlbassoc.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+	<CAF3SDA5NiRr=Fh4bHKVpSfYPVUHmGry7eO6nsg+nLhfZSjY0vQ@mail.gmail.com>
+From: Gary Thomas <gary@mlbassoc.com>
+Message-ID: <f2b763a5-7e40-cbb2-84ee-01691cd6c009@mlbassoc.com>
+Date: Thu, 15 Sep 2016 15:56:59 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.2.0
+MIME-Version: 1.0
+In-Reply-To: <CAF3SDA5NiRr=Fh4bHKVpSfYPVUHmGry7eO6nsg+nLhfZSjY0vQ@mail.gmail.com>
 Subject: Re: [meta-raspberrypi] WiFi
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -69,30 +42,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 15 Sep 2016 13:32:11 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 15 Sep 2016 13:57:06 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Garry, if you are facing problems posting and detailed description of
-your problem and by detailed I mean "I do X expecting Y but got Z"
-being Z errors, logs, outputs etc would help a lot people to help you.
+On 2016-09-15 15:32, Daniel. wrote:
+> Garry, if you are facing problems posting and detailed description of
+> your problem and by detailed I mean "I do X expecting Y but got Z"
+> being Z errors, logs, outputs etc would help a lot people to help you.
 
-2016-09-15 10:07 GMT-03:00 Gary Thomas <gary@mlbassoc.com>:
-> Any hints on how to get the WiFi to go on the RaspberryPi-3?
->
-> --
-> ------------------------------------------------------------
-> Gary Thomas                 |  Consulting for the
-> MLB Associates              |    Embedded world
-> ------------------------------------------------------------
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+A reasonable observation (although if you look through the records for
+the past ~10 years, you can see that I know how to pose relevant questions!)
+I'm sure that the answer will be obvious to anyone who has set up a RaspberryPi-3.
 
+Anyway, for completeness, when my Rpi-3 board boots, I get a ton of these messages from the kernel:
+[    8.737220] cfg80211: Calling CRDA to update world regulatory domain
 
+Also, whenever I try to do anything with the WiFi device, I get this error:
+   root@raspberrypi3:~# iw dev wlan0 scan
+   command failed: Network is down (-100)
+
+Here are the modules loaded into the kernel:
+   root@raspberrypi3:~# lsmod
+     Not tainted
+   ipv6 343600 26 [permanent], Live 0x7f1f6000
+   joydev 9044 0 - Live 0x7f1f0000
+   evdev 10254 3 - Live 0x7f1e2000
+   brcmfmac 179873 0 - Live 0x7f16c000
+   brcmutil 5693 1 brcmfmac, Live 0x7f160000
+   cfg80211 416259 1 brcmfmac, Live 0x7f03a000
+   rfkill 16941 1 cfg80211, Live 0x7f026000
+   bcm2835_rng 1763 0 - Live 0x7f022000
+   bcm2835_gpiomem 2852 0 - Live 0x7f01e000
+   uio_pdrv_genirq 2944 0 - Live 0x7f012000
+   uio 8032 1 uio_pdrv_genirq, Live 0x7f000000
+
+Perhaps I'm missing some firmware or driver for this WiFi device?  Note: I had
+this working fine on my RaspberryPi-2 with an external [USB] dongle.
 
 -- 
-"Do or do not. There is no try"
-  Yoda Master
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
