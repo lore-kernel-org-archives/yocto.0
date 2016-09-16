@@ -1,63 +1,68 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <oliver.graute@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F3D01E00C55; Fri, 16 Sep 2016 01:03:26 -0700 (PDT)
+	id 8BE54E00C55; Fri, 16 Sep 2016 01:25:08 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_LOW,
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_LOW,
 	RCVD_IN_SORBS_SPAM autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (oliver.graute[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [74.125.82.48 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.82.48 listed in dnsbl.sorbs.net]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.223.180 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.223.180 listed in dnsbl.sorbs.net]
-Received: from mail-io0-f180.google.com (mail-io0-f180.google.com
-	[209.85.223.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AD429E00A21
-	for <yocto@yoctoproject.org>; Fri, 16 Sep 2016 01:03:22 -0700 (PDT)
-Received: by mail-io0-f180.google.com with SMTP id q92so17802388ioi.1
-	for <yocto@yoctoproject.org>; Fri, 16 Sep 2016 01:03:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=IZw8DrnN9yWiaD8Ja72+X0LsmTd+iGNBTaLRWRh+H7g=;
-	b=B8jksruIazH/0z5bmLwqTzuwp0bQdBl9TNPX/LIt6ZL+btfTmPkq13ZEfNrEdd0r55
-	aAbRc7kmGOZDZa3F2cWdANmIeVto8HBlZkBosx+LNgjRqpmmCUDnbZmfwMFTDH3kSWJe
-	8h0/4m0XY+gY9fyAOnj6w5nIijz/NNIzMb7SKICBa1sJ8J8qKHyEcc/GJCm649X6z9eM
-	n3J4EBRSW0IxGYBg8TTBMrWe5IUM8x+QeISiaFa2ikJc5h/dZ/9HaER0xD6ssJRmszqI
-	PGAehA/5YWkaOvxtWo5rQ2GD3ClhZ1qwQ9eEeCE7Ii8xBgGwVhadxMuBpl2KKpX8hALJ
-	W3fw==
+Received: from mail-wm0-f48.google.com (mail-wm0-f48.google.com [74.125.82.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4A684E00A21
+	for <yocto@yoctoproject.org>; Fri, 16 Sep 2016 01:25:04 -0700 (PDT)
+Received: by mail-wm0-f48.google.com with SMTP id b187so7897313wme.0
+	for <yocto@yoctoproject.org>; Fri, 16 Sep 2016 01:25:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=date:from:to:subject:message-id:mail-followup-to:mime-version
+	:content-disposition:user-agent;
+	bh=Vjp4njFiyEzW90RwuHxzUh/iNE1sBHMf2uDQbPXH5FY=;
+	b=JxZg9FSZWFEwDLLkdNpitbvwYHIIUtfjWbR4g9BcboK8otQtf7I8JtWGk/lWfYJ7QZ
+	mY2BD+4q5jpp0UN0tkuZNGigWlEjOpnaGPL/i+AqNQcXYcEITb2wrb+iUoDw8xkXi6hT
+	T7o+vwDOAmiFleemjotzMC3Ts+K1uFxngaNdtdpUNNxTpPpaYR4BFLjWr3DjK0DI4BS0
+	QXM1W4IUM5Aem9mjsGF7bcWjoI+HYwUGmakFvPxZEO4EVy30ByL+ldO5cYLgxiAxLZih
+	LBXNWxPCBM2TdOSkyvc7UYvJF3sKOIuDacfBptcfe+oyCUy91Xywu1XPoie+sEqmSS8w
+	3P3g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=IZw8DrnN9yWiaD8Ja72+X0LsmTd+iGNBTaLRWRh+H7g=;
-	b=FQx0zKBMFilAEXYTuaL9xyFpraBgbTvFihh2OF0B3BxBvHvGkU/CHcLd4n0/tWKpPr
-	t90GVJuHTiEjraIBTIiN1z4qmvrURD+YqPyRBTuYtNTAW01PSZGiDADLWixDfNEyGEu9
-	VSAG4jsFmSJxEh1vTzhwTkEZ8BrxVvPwGpW9c9YR1s5CCI1h46QzAHbY6+RXeRLFjDSP
-	kZ4qHTFVJRx11qVxwdojNL6jks0hhtuRn/yzBhqXbEChv07ZJ81Ov0hDJNBTwfKDFeWz
-	WVL580iAWn1jl0NsVE5PcSEyR2enrRwBpZeeWASjKe6rzPZM57CLG+Nx7LwFbfe7QYPg
-	kA1w==
-X-Gm-Message-State: AE9vXwO4f8+vhW7MvvH/wl5ZAH5AIC6tvNF7IEtjWXLZ8SIsPD6Qxmv/Ulomo1Nn/TWez1Spii/eF4B+9M+o/JSR
-X-Received: by 10.107.47.227 with SMTP id v96mr23778593iov.172.1474013001875; 
-	Fri, 16 Sep 2016 01:03:21 -0700 (PDT)
+	h=x-gm-message-state:date:from:to:subject:message-id:mail-followup-to
+	:mime-version:content-disposition:user-agent;
+	bh=Vjp4njFiyEzW90RwuHxzUh/iNE1sBHMf2uDQbPXH5FY=;
+	b=Mn/CeY9+J9zMmcBvQvJk9BDN3QFh8eiqHUt+JiHbxX8m8/vXV3Kq+95ajkUa2qIPvf
+	bm7LkoP6Nko6sxgUlOSFUEY3lhjdoWX0hfv4kr0iZMQpSilP/i9mDTTWRBzzfGCzWOt9
+	5jUbyijwqzxVSWZtCiWGt2lieh73Dx8KbWRe2B4qqlfihI9uXChqWXYYSdomxLU2wg3b
+	ihk9tKo5DTtaDYDN745ynyEoz6HSRDBC3LwbwWsRf2qaS5BQiY4QPoeySvNnn8b0JTYD
+	7JR0BYYxvhJNyOD0N23ztk2ZNZYjJi3Q1xNsSNiiLEy1wj5C8HG88d3o5ErkcbaUHDe9
+	vkUA==
+X-Gm-Message-State: AE9vXwN3JlLR8IoNtEM9XA7p3gBhk+0jOWLUuY9u+VNlbPKN4j91x/tciC7bpidbWEpVWw==
+X-Received: by 10.194.11.100 with SMTP id p4mr9881706wjb.125.1474014303762;
+	Fri, 16 Sep 2016 01:25:03 -0700 (PDT)
+Received: from localhost (x4e360bb9.dyn.telefonica.de. [78.54.11.185])
+	by smtp.gmail.com with ESMTPSA id
+	u64sm6186862wmd.20.2016.09.16.01.25.02 for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=AES128-SHA bits=128/128);
+	Fri, 16 Sep 2016 01:25:02 -0700 (PDT)
+Date: Fri, 16 Sep 2016 10:24:06 +0200
+From: Oliver Graute <oliver.graute@gmail.com>
+To: yocto@yoctoproject.org
+Message-ID: <20160916082406.GB27958@graute-opti>
+Mail-Followup-To: yocto@yoctoproject.org
 MIME-Version: 1.0
-Received: by 10.107.135.27 with HTTP; Fri, 16 Sep 2016 01:03:01 -0700 (PDT)
-In-Reply-To: <CAKS7W1q_uWwcoo69j6MYC0VNSxtY9fc9hQ7jEB7o+4Mq4qB7wQ@mail.gmail.com>
-References: <CAKS7W1q_uWwcoo69j6MYC0VNSxtY9fc9hQ7jEB7o+4Mq4qB7wQ@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Fri, 16 Sep 2016 09:03:01 +0100
-Message-ID: <CAJTo0Laa-kWmQDt2F57orXCQoazuxzV5pqLH+oae5u8wurB1xQ@mail.gmail.com>
-To: Martin Bachmann <bachmmar@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: How to compile and install a recipe natively
+User-Agent: Mutt/1.5.21 (2010-09-15)
+Subject: build ntp with openssl support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,40 +74,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 16 Sep 2016 08:03:27 -0000
-Content-Type: multipart/alternative; boundary=001a11c168fa5f248d053c9b6553
+X-List-Received-Date: Fri, 16 Sep 2016 08:25:08 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
---001a11c168fa5f248d053c9b6553
-Content-Type: text/plain; charset=UTF-8
+Hello,
 
-On 16 September 2016 at 06:49, Martin Bachmann <bachmmar@gmail.com> wrote:
+how can I build ntp with openssl support?
 
-> In my recipe I've added RDEPENDS += "opencv " and yocto installs the
-> libraries in the target rootfs. But now i'd like the libraries compiled
-> natively and installed to x86_x64-linux rootfs. This would allow me to
-> unittest my application on the host.
->
+I already created a ntp_%.bbappend file to extend the recipe ntp_4.2.8p4.bb.
 
-If you've added BBCLASSEXTEND=native then bitbake opencv-native will build
-the native form.
+FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+PACKAGECONFIG += "openssl"
 
-Ross
+is this sufficant to enable openssl?
 
---001a11c168fa5f248d053c9b6553
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+How can I determine if ntp supports sha1?
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 16 September 2016 at 06:49, Martin Bachmann <span dir=3D"ltr">&lt;<a hre=
-f=3D"mailto:bachmmar@gmail.com" target=3D"_blank">bachmmar@gmail.com</a>&gt=
-;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 =
-.8ex;border-left:1px #ccc solid;padding-left:1ex"><div>In my recipe I&#39;v=
-e added RDEPENDS=C2=A0+=3D &quot;opencv &quot; and yocto installs the libra=
-ries in the target rootfs. But now i&#39;d like the libraries compiled nati=
-vely and installed to x86_x64-linux rootfs. This would allow me to unittest=
- my application on the host.</div><div></div></blockquote></div><br>If you&=
-#39;ve added BBCLASSEXTEND=3Dnative then bitbake opencv-native will build t=
-he native form.</div><div class=3D"gmail_extra"><br></div><div class=3D"gma=
-il_extra">Ross</div></div>
+Best regards,
 
---001a11c168fa5f248d053c9b6553--
+Oliver
+
