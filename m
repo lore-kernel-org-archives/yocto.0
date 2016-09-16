@@ -1,83 +1,98 @@
-Return-Path: <tmatsuzawa@uievolution.com>
+Return-Path: <josiasinacio@hotmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BD528E00C1F; Thu, 15 Sep 2016 21:41:20 -0700 (PDT)
+	id B66DBE00C39; Thu, 15 Sep 2016 22:05:27 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [104.47.41.65 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (josiasinacio[at]hotmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [65.54.51.96 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 5550 seconds by postgrey-1.32 at yocto-www;
-	Thu, 15 Sep 2016 21:41:16 PDT
-Received: from NAM03-DM3-obe.outbound.protection.outlook.com
-	(mail-dm3nam03on0065.outbound.protection.outlook.com [104.47.41.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6B409E00C10
-	for <yocto@yoctoproject.org>; Thu, 15 Sep 2016 21:41:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=uievolution.onmicrosoft.com; s=selector1-uievolution-com;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
-	bh=dovIUH3tkNp3ZtqGa9H7MWITHWa+B/JBoEzKjl4KpeY=;
-	b=CG8299yJNiu166o49zvfS1Mxhai99Eydt5FVaKMAezxnvPNANwzaNhvrIZvS+uLJYj0o9VAUaX6SEDyqy2Xk/0EyBfbkSjgUL02jhFeMr50dMDp0hCVN7QREGCRYZLcRE1cIA6m8D6uFaHi45qVBaQ2pJ3Ak/JjARPe6zYEjE4g=
-Received: from CY1PR0101MB1594.prod.exchangelabs.com (10.163.139.13) by
-	CY1PR0101MB1594.prod.exchangelabs.com (10.163.139.13) with Microsoft
-	SMTP Server (version=TLS1_0,
+X-Greylist: delayed 65 seconds by postgrey-1.32 at yocto-www;
+	Thu, 15 Sep 2016 22:05:25 PDT
+Received: from SNT004-OMC4S45.hotmail.com (snt004-omc4s45.hotmail.com
+	[65.54.51.96])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9ABE5E00C31
+	for <yocto@yoctoproject.org>; Thu, 15 Sep 2016 22:05:25 -0700 (PDT)
+Received: from NAM03-CO1-obe.outbound.protection.outlook.com ([65.55.90.201])
+	by SNT004-OMC4S45.hotmail.com over TLS secured channel with
+	Microsoft SMTPSVC(7.5.7601.23008); Thu, 15 Sep 2016 22:04:20 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+	s=selector1; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
+	bh=TBs5xZ+bZX/hYfa8rB+dbh2O086CGoRqSXNafmpg/d8=;
+	b=bIBSoBcO75Q+02jwEcE+uhd0Z6zANneuZ7LtbQ5IDdB7HDQHNmUDVAseH7OFrSXNkarahe/F38BF/c5CiyKZ5BLo7XhtNe9C7fd0Af5wnT81pDjlo/hinKMXZHCk0dFs8mgmTQEuFIqAxBRvPd8NvdbWlArh0vg3fr2AOZh9D9l3ZSWSk+wJJ7orOkGv+hx6r4jG47kVNWzxUidVx/SOVlqVyhxMtnrcgMHHHlGn1bj96PCIuCP1UFNAMxAWFQbOfwSPGeUiVZFHu1C/eYhJWdcco+g0O9rWjH1qT8uolSQsFZI5DhU+RTb7rwr7FQbfneW4pVZ5UbaC5modFaIy4w==
+Received: from CO1NAM03FT035.eop-NAM03.prod.protection.outlook.com
+	(10.152.80.52) by CO1NAM03HT150.eop-NAM03.prod.protection.outlook.com
+	(10.152.81.6) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.629.5;
+	Fri, 16 Sep 2016 05:04:19 +0000
+Received: from MWHPR04MB0337.namprd04.prod.outlook.com (10.152.80.59) by
+	CO1NAM03FT035.mail.protection.outlook.com (10.152.80.179) with
+	Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA_P384) id
-	15.1.619.10; Fri, 16 Sep 2016 03:08:44 +0000
-Received: from CY1PR0101MB1594.prod.exchangelabs.com ([10.163.139.13]) by
-	CY1PR0101MB1594.prod.exchangelabs.com ([10.163.139.13]) with mapi id
-	15.01.0619.012; Fri, 16 Sep 2016 03:08:44 +0000
-From: Takashi Matsuzawa <tmatsuzawa@uievolution.com>
+	15.1.629.5 via Frontend Transport; Fri, 16 Sep 2016 05:04:18 +0000
+Received: from MWHPR04MB0337.namprd04.prod.outlook.com ([10.169.202.147]) by
+	MWHPR04MB0337.namprd04.prod.outlook.com ([10.169.202.147]) with mapi id
+	15.01.0619.012; Fri, 16 Sep 2016 05:04:18 +0000
+From: Josias Inacio da Silva Filho <josiasinacio@hotmail.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: BBMASK does not work
-Thread-Index: AQHSD8eFP1x6Px6sOkyNo58YrDHq/g==
-Date: Fri, 16 Sep 2016 03:08:43 +0000
-Message-ID: <CY1PR0101MB15943A023ACBF0AC7A142C3DD7F30@CY1PR0101MB1594.prod.exchangelabs.com>
-Accept-Language: en-US
+Thread-Topic: How to build an SDK toolchain for native x86_64
+Thread-Index: AQHSD9fHxZ0N7NL3UUuigYCS0md0GQ==
+Date: Fri, 16 Sep 2016 05:04:18 +0000
+Message-ID: <MWHPR04MB033786FC8518966C1FD3EC5BC1F30@MWHPR04MB0337.namprd04.prod.outlook.com>
+Accept-Language: pt-BR, en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=tmatsuzawa@uievolution.com; 
-x-originating-ip: [132.245.44.5]
-x-ms-office365-filtering-correlation-id: 13a5bf38-7af2-4e02-a507-08d3dddec4ae
-x-microsoft-exchange-diagnostics: 1; CY1PR0101MB1594;
-	6:PL8OJmj2XnhTnpfWa/ZDzzYDQg9lLI1ul4d3BFT6+WaXZAM2zwXkc3n71B7XOc/dnjBuw4LKgIYkVbpC86wg6jkoD/nkYWqKX30myqgVdAM8HmYnEuDD+vg7KZzkdb+fPUQNZ6j1n6mJQESyhyhNlLErRtjApVuK8fmHfvTKhiReu5gF8LQG7OSksSr6MZ1lW2v887ZwRNjrqBsUzCMvDpFtKBsUQTfHpJI6wy9Rm4HYTErpTtaEWTpC74yzRXAGMUNgFGBy1/rVA0g0QduQf26T6WljRNQxsBVYEAt74S8=;
-	5:/QnN2GrAo4jIcDWnZjGE8/bvoS1VjuzL8XLoebMbPJhpf0j5LmnPJV6A11WeARcw6yJn25LUwYPbU1sdtoXJCl6fxSAAumAr2T3H5Wd9UHIlKOWuvk9dD2HeZSW/JDycu9c1+ljGr3QdL8CHsH55mw==;
-	24:cUmBD/31Q8YPaGJDTZC7Yzms38h+/WpSDJpe8vATaloNoK8Lpzb4VPXET3WqFZ1+bWFvZxlWgbDzjoz1pDbkmgRlSZcDyNxIEr/2VDUc29k=;
-	7:n9VBSPk6ItHvYvkS/3CkzqpfoJckG8Hij2vgBCo35ZjVbysxEaHJhP4Kbd2Q9pLXLTl2Qxe7y9L6ZxEDp0CSPZpdy4aB7OPlZxMH1GyOEmq9Qx/h/FsFo+lh+oTrgya3gpKyAKZeDi8aXHoyFONfU4eBEr1P1No/hXWy7EW+9W1u4YeTGpj47fdGq7gWIR4ZX6QHxeU9MmeChHl4jDeSdElqhrpVNcTM1Lfj+JOth5/PoqX9BIEuwPekp2ppoYiO
-x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:CY1PR0101MB1594;
-x-microsoft-antispam-prvs: <CY1PR0101MB1594B3BA5E574F309C9161ACD7F30@CY1PR0101MB1594.prod.exchangelabs.com>
-x-exchange-antispam-report-test: UriScan:;
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(6040176)(2401047)(8121501046)(5005006)(10201501046)(3002001);
-	SRVR:CY1PR0101MB1594; BCL:0; PCL:0; RULEID:;
-	SRVR:CY1PR0101MB1594; 
+authentication-results: spf=softfail (sender IP is 10.152.80.59)
+	smtp.mailfrom=hotmail.com; yoctoproject.org;
+	dkim=none (message not signed)
+	header.d=none;yoctoproject.org; dmarc=fail action=none
+	header.from=hotmail.com;
+received-spf: SoftFail (protection.outlook.com: domain of transitioning
+	hotmail.com discourages use of 10.152.80.59 as permitted sender)
+x-incomingtopheadermarker: OriginalChecksum:381106D9855BA573CCB369B96E9FB2C51010AA1FF73F14EB220272860CF1D9DF;
+	UpperCasedChecksum:A80E1E9BD36BF6E00716123F95FE98E377E341B8ED956472AF5296857521E016;
+	SizeAsReceived:7034; Count:34
+x-ms-exchange-messagesentrepresentingtype: 1
+x-incomingheadercount: 34
+x-eopattributedmessage: 0
+x-microsoft-exchange-diagnostics: 1; CO1NAM03HT150;
+	6:Cv6+jP9JZ3zV98lPZPyZ6bCEDaPgy+M7Xle69z5ot/VJI6HBS3J5eC7//E2HqVeU39OyTPD/0R3FXBGWoBvwoljU6uBheJz88WZwHdLvHFcoRvoqYv/FnxhyLewr+I7fbl/yZChEzohjO5f7pjWIo4CU77GOtfx+oUlPo8XJxou45PNbDl5Sq1C49vwGmo9qxMd4sLhICK71B9L2t+/M4KG+/KVN+jgzP6gGAc5lqN9P5iDayGI7oSzj6ED8W4LsEebM+umOEuR2aIEoUHJh+RQ2QCUi6v94Hvcwdnj06D4=;
+	5:WIlSxgmPg2dLjJkNi6ZRd7uNfSHPXWFXPWMnhXYDvajRLxCKbPTRIhezG4eHtk6etr3a93+6eNX8YL+2f38XXUiNzh+vF6oGOs/wD4hO7iOQbOQVj6oSU9fAsuODnU1iYVscT5Rf940UDgTyoKjoRA==;
+	24:dx2T9l/6iP9fUaqQRFIGngLLe07rTuwm0brDSlGtOvjTLHV6R5z+WWECVA3Zj808BLIx59e7KqiwjXCubfV2jm21L0xAMu8sinp7zg1HIRM=;
+	7:94q3c7zoT8LxczE5QVqitlhUQw3UO9y90f51LyDclrZ2RCgAxPtUJxWTYPJohCdyWmqwG00ule8zg9mcs2ApMIz3MY5x382107OVu5LnjrF6oEDkOb0azXLjaHTNzMo8VRuHA42EOIgjnODj0hAEw72Z58UQK4bY1+LaKBvvmefrAORk6LpWEX01LsKw3WSqBySXJDRklJuEMn5ZBEcLhf4rRkEtrbCqHcTz+UlDk+gdGcBwldHClqy7WuCANG7era0ubzl6hnpA40l0u8dVHduSG6GWo/uF8JFp/opRXVnJBG9Za3WdB6FCIwskvv23
+x-forefront-antispam-report: EFV:NLI; SFV:NSPM; SFS:(10019020)(98900003);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:CO1NAM03HT150;
+	H:MWHPR04MB0337.namprd04.prod.outlook.com; FPR:; SPF:None;
+	LANG:en; 
+x-ms-office365-filtering-correlation-id: 9c07c81a-4dee-46fb-75d9-08d3ddeee8c9
+x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
+	RULEID:(1601124038)(1603103081)(1601125047); SRVR:CO1NAM03HT150;
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0; RULEID:(432015012)(82015046);
+	SRVR:CO1NAM03HT150; BCL:0; PCL:0; RULEID:; SRVR:CO1NAM03HT150; 
 x-forefront-prvs: 0067A8BA2A
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10009020)(6009001)(7916002)(199003)(189002)(10400500002)(33656002)(74316002)(101416001)(50986999)(54356999)(19627405001)(16236675004)(106116001)(2906002)(106356001)(105586002)(66066001)(3660700001)(19625215002)(3280700002)(7696004)(68736007)(450100001)(229853001)(8936002)(9686002)(586003)(2900100001)(3846002)(102836003)(2351001)(6116002)(5640700001)(3480700004)(77096005)(5002640100001)(189998001)(97736004)(107886002)(11100500001)(92566002)(8676002)(7736002)(87936001)(81156014)(81166006)(1730700003)(122556002)(7846002)(110136003)(5660300001)(2501003)(86362001);
-	DIR:OUT; SFP:1101; SCL:1; SRVR:CY1PR0101MB1594;
-	H:CY1PR0101MB1594.prod.exchangelabs.com; FPR:; SPF:None;
-	PTR:InfoNoRecords; A:1; MX:1; LANG:en; 
-received-spf: None (protection.outlook.com: uievolution.com does not designate
-	permitted sender hosts)
 spamdiagnosticoutput: 1:99
 spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-X-OriginatorOrg: uievolution.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Sep 2016 03:08:43.4833 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: e0a7ca1f-2458-4cd6-a7c7-d733c07495ab
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY1PR0101MB1594
-Subject: BBMASK does not work
+X-OriginatorOrg: hotmail.com
+X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Sep 2016 05:04:18.2446 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Internet
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1NAM03HT150
+X-OriginalArrivalTime: 16 Sep 2016 05:04:20.0082 (UTC)
+	FILETIME=[C858E520:01D20FD7]
+Subject: How to build an SDK toolchain for native x86_64
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -89,126 +104,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 16 Sep 2016 04:41:20 -0000
+X-List-Received-Date: Fri, 16 Sep 2016 05:05:27 -0000
 Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_CY1PR0101MB15943A023ACBF0AC7A142C3DD7F30CY1PR0101MB1594_"
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <0AE7C68968678D4F9BC117BDDBC37EAA@namprd04.prod.outlook.com>
+Content-Transfer-Encoding: base64
 
---_000_CY1PR0101MB15943A023ACBF0AC7A142C3DD7F30CY1PR0101MB1594_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+SGkgZm9sa3MsDQoNCkhlcmXigJlzIG15IGN1cnJlbnQgc2V0dXAgYW5kIGN1cnJlbnQgc2l0dWF0
+aW9uOg0KDQpIb3N0OiB4ODZfNjQNClRhcmdldDogYWFyY2g2NA0KDQpCdWlsZCBjb3JlLWltYWdl
+LWJhc2UgZm9yIGFhcmNoNjQgLSBPSw0KcG9wdWxhdGVfc2RrIGZvciBhYXJjaDY0IC0gT0sNCg0K
+TXkgYXBwbGljYXRpb24gYW5kIGl0IHVuaXQgdGVzdHMgYWxzbyBnZXRzIGNvbXBpbGVkIHRvIGFh
+cmNoNjQuDQoNCldoYXQgSSB3YW50ZWQgbm93IHdvdWxkIGJlIHNvbWV0aGluZyBsaWtlIHJ1biBw
+b3B1bGF0ZV9zZGsgZm9yIOKAnGNvcmUtaW1hZ2UtYmFzZS1uYXRpdmXigJ0uIFRoZSByZWFzb24g
+Zm9yIHRoYXQgaXMgYmVjYXVzZSBJIHdhbnQgdG8gY29tcGlsZSBhbmQgcnVuIG15IHVuaXQgdGVz
+dHMgdXNpbmcgbXkgaG9zdCBtYWNoaW5lIG9ubHkgKHg4Nl82NCkuIFRoaXMgbWFrZXMgYXBwbGlj
+YXRpb24gZGV2ZWxvcG1lbnQgbXVjaCBlYXNpZXIsIHNpbmNlIEkgZG9u4oCZdCBuZWVkIHRoZSB0
+YXJnZXQgbm9yIFFFTVUgdG8gcnVuIHRoZSB1bml0IHRlc3RzLiBBbmQgSSBzdGlsbCB3YW50IHRo
+ZSB0b29sY2hhaW4gdG8gYmUgZ2VuZXJhdGVkIGJ5IFlvY3RvIHNpbmNlIGl0IHNvbHZlcyBhbGwg
+cGFja2FnZSBkZXBlbmRlbmNpZXMgZm9yIG1lLg0KDQpXaGF0IEkgYXR0ZW1wdGVkOg0KDQoxKSBD
+cmVhdGUgYSBuZXcg4oCcY29yZS1pbWFnZS10b29sY2hhaW4tbmF0aXZl4oCdIHNpbWlsYXIgdG8g
+Y29yZS1pbWFnZS1iYXNlLCBidXQgdHdlYWtpbmcgdG8gYmUgYWJsZSB0byBidWlsZCBmb3IgbmF0
+aXZlLiBUaGF0IGRvZXMgbm90IHNlZW0gdG8gYmUgdGhlIHJpZ2h0IHdheSwgSSBzcGVudCBhIGxv
+dCBvZiB0aW1lIGRvaW5nIHRoaXMgYW5kIGdvdCBub3doZXJlIHNpbmNlIG1hbnkgb2YgdGhlIGlt
+YWdlJ3MgcmVjaXBlcyBkbyBub3Qgc3VwcG9ydCBidWlsZGluZyB3aXRoIG5hdGl2ZSBzdXBwb3J0
+Lg0KDQoyKSBDaGFuZ2UgbXkgbWFjaGluZSB0eXBlIHRvIGJlIHFlbXV4ODZfNjQsIHRoZW4gY2Fs
+bCDigJxiaXRiYWtlIGNvcmUtaW1hZ2UtYmFzZSAtYyBwb3B1bGF0ZV9zZGvigJ0uIFRoYXQgd291
+bGQgZ2VuZXJhdGUgYSB0b29sY2hhaW4gZm9yIHg4Ni02NCByaWdodD8gV2VsbCBpdCBkaWQsIGFu
+ZCBJIHdhcyBhYmxlIHRvIHVzZSB0aGlzIHRvb2xjaGFpbiB0byBjb21waWxlIG15IHVuaXQgdGVz
+dHMgZm9yIHg4Nl82NC4gQnV0IHRoZSBwcm9ibGVtIGlzIHRoYXQgdGhpcyBzdGlsbCBhc3N1bWVz
+IHRoYXQgSeKAmWxsIGJlIHJ1bm5pbmcgdGhvc2UgdW5pdCB0ZXN0cyBvbiB0aGUgdGFyZ2V0IG1h
+Y2hpbmUgKCBRRU1VIHg4Nl82NCksIHNvIGlmIEkgdHJ5IHRvIHJ1biBpdCBpbiBteSBob3N0IG1h
+Y2hpbmUsIGl0IGNvbXBsYWlucyBhYm91dCBzb21lIG1pc3NpbmcgZHluYW1pYyBsaWJyYXJpZXMg
+dGhhdCBhcmUgb25seSBmb3VuZCBpbiB0aGUgc3lzcm9vdCBvZiB0aGUgdGFyZ2V0IHFlbXV4ODZf
+NjQuDQoNCklzIHRoZXJlIGFueSBwcm9wZXIgc29sdXRpb24gZm9yIHRoaXMgY2FzZT8=
 
-Hello, Yocto.
-I am quite puzzled with this and spent a few hours today so far.
-In case you have any comment or suggestion, it would be a great help.
-
-I am trying to hide one of the xxxx.bbappend files from the tree, so that B=
-B won't complain "ERROR: No recipes available for:" error.
-
-I did add several forms of the lines for this in BBMASK variable, but someh=
-ow BB seems to find it and complain "ERROR: no recipes available for:".
-
-e.g.
-
-Fido based build tree.
-Want to hide AAAA_1.2.3.bbappend since there is no AAAA_1.2.3.bb recipe in =
-my tree.
-
-BBMASK =3D ".*/AAAA_%.bbappend"
-BBMASK =3D ".*/AAAA_1.2.3.bbappend"
-...
-
-I tried BBMASK_forcevariable, and "-e" option to make sure they are set in =
-BBMASK.
-
-I further tried to set ".*" to BBMASK (so that the error message will be ch=
-anged and I can see BBMASK is working), but the error message is still the =
-same.  It says there is no recipes for AAAA_1.2.3.bbappend.
-
-(But, if I manually rename AAAA_1.2.3.bbappend to, say, AAAA_1.2.3.bbappend=
-x, error message is gone.)
-
-Well, what I can do to debug and diagnose why this is happening.
-I believed BBMASK worked as expected, and I think the other build tree I ha=
-ve does not have this problem.
-
-Deleting state cache does not seem to change anything..
-
-
-
-
---_000_CY1PR0101MB15943A023ACBF0AC7A142C3DD7F30CY1PR0101MB1594_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
-</head>
-<body dir=3D"ltr">
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;back=
-ground-color:#FFFFFF;font-family:Calibri,Arial,Helvetica,sans-serif;">
-<p></p>
-<div>Hello, Yocto.</div>
-<div>I am quite puzzled with this and spent a few hours today so far.</div>
-<div>In case you have any comment or suggestion, it would be a great help.<=
-/div>
-<div><br>
-</div>
-<div>I am trying to hide one of the xxxx.bbappend files from the tree, so t=
-hat BB won't complain &quot;ERROR: No recipes available for:&quot; error.</=
-div>
-<div><br>
-</div>
-<div>I did add several forms of the lines for this in BBMASK variable, but =
-somehow BB seems to find it and complain &quot;ERROR: no recipes available =
-for:&quot;.</div>
-<div><br>
-</div>
-<div>e.g.</div>
-<div><br>
-</div>
-<div>Fido based build tree.</div>
-<div>Want to hide AAAA_1.2.3.bbappend since there is no AAAA_1.2.3.bb recip=
-e in my tree.</div>
-<div><br>
-</div>
-<div>BBMASK =3D &quot;.*/AAAA_%.bbappend&quot;</div>
-<div>BBMASK =3D &quot;.*/AAAA_1.2.3.bbappend&quot;</div>
-<div>...</div>
-<div><br>
-</div>
-<div>I tried BBMASK_forcevariable, and &quot;-e&quot; option to make sure t=
-hey are set in BBMASK.</div>
-<div><br>
-</div>
-<div>I further tried to set &quot;.*&quot; to BBMASK (so that the error mes=
-sage will be changed and I can see BBMASK is working), but the error messag=
-e is still the same. &nbsp;It says there is no recipes for AAAA_1.2.3.bbapp=
-end.</div>
-<div><br>
-</div>
-<div>(But, if I manually rename AAAA_1.2.3.bbappend to, say, AAAA_1.2.3.bba=
-ppendx, error message is gone.)</div>
-<div><br>
-</div>
-<div>Well, what I can do to debug and diagnose why this is happening.</div>
-<div>I believed BBMASK worked as expected, and I think the other build tree=
- I have does not have this problem.</div>
-<div><br>
-</div>
-<div>Deleting state cache does not seem to change anything..</div>
-<div><br>
-</div>
-<br>
-<p></p>
-<p><br>
-</p>
-</div>
-</body>
-</html>
-
---_000_CY1PR0101MB15943A023ACBF0AC7A142C3DD7F30CY1PR0101MB1594_--
