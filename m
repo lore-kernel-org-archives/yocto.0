@@ -1,6 +1,6 @@
 Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8BB61E00CB5; Fri, 16 Sep 2016 09:35:20 -0700 (PDT)
+	id EA7F9E00CA2; Fri, 16 Sep 2016 09:35:20 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -18,47 +18,47 @@ X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 Received: from mail-wm0-f65.google.com (mail-wm0-f65.google.com [74.125.82.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EC81EE00CAA
-	for <yocto@yoctoproject.org>; Fri, 16 Sep 2016 09:35:19 -0700 (PDT)
-Received: by mail-wm0-f65.google.com with SMTP id l132so3361948wmf.1
-	for <yocto@yoctoproject.org>; Fri, 16 Sep 2016 09:35:19 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 96359E00CB0
+	for <yocto@yoctoproject.org>; Fri, 16 Sep 2016 09:35:18 -0700 (PDT)
+Received: by mail-wm0-f65.google.com with SMTP id b184so4535983wma.3
+	for <yocto@yoctoproject.org>; Fri, 16 Sep 2016 09:35:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
 	h=from:to:cc:subject:date:message-id:in-reply-to:references;
-	bh=+CVuBE3/XPBmt1GKeaeGoUAqQpSyWz75GCOR5EA32jY=;
-	b=a8L+3RHgHj6R6AfYHXDgJuCsHIioaLC0cyo8a/CaasB/1dIAIMEIMaz+GOvQYZe2Hf
-	AScF/3J/nfRYqrvwjcI9qMdyo+z/9RKb00vfPSo4EOIE1TzngQBW0osMdrC8+vzVvEs4
-	/OU02rVTFlMHe3csmBkm4IVpvQlMFVAo7A0vvDy3iQpPo0KWhKxwGpkGrWcz9XjacFp0
-	yifO6Zs6e2JD67IC2RU8RTmLH/6+WaH9kiZqY0Uo61sGqXP9ncin5uh2dYWZC/Y1M9Bz
-	Pro3gLRBj6Nrok9Zv40g76F4bgOsBPw/sRuY5cz0IqU7XPFHYyzn4Zw42YF78TL9L9fL
-	ktLA==
+	bh=a9ovrsswd8+A+veZ7E1stBvYTaglalF6LmzJS9RyToo=;
+	b=1RLWAh7fD152dj8c931cdtgRpRCw/b3aJ1ZlYc8O+5Fpft7iaTJJ6rFub0uKoGBCMn
+	e24arF5KJbwdSioHeZmCUfUPYBx/Z1m8iQWDHxOYsEkFsWroJFXK0x/1lQJsT/os3qp7
+	fTcLdCokuRuYTl4k/bhC/D/3TN9g1P6NQjxzQDyNtVVitjew2eh8/3seXNCzo27jgsJP
+	cmEUtRw8gsMyN+309M6iX2Av98W3uAWLX0Qazc5QY0hbjIWP/ngRiwed/2Dsns9ttgPY
+	84bMEok9rRwD39huPO2DIuZxsOkoz58yNAn0D4gFkP6VO7SigZRYkBTeKamP2Y3Ru7/J
+	CZnA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
 	:references;
-	bh=+CVuBE3/XPBmt1GKeaeGoUAqQpSyWz75GCOR5EA32jY=;
-	b=MTg9gUYCA9/GUBiokNLxz36uwxsRbWgCYZp6Bucko+xxVq+KT1uKtwvTSCAuVJ2/SE
-	QI+qsAmWWakxpe+Hf1ig5aOUR+jDQSYS6WHNMMZtnSywjeSyX6areDbTrjZuKIY2YNGg
-	aZjLdVXo1R7otBMMG832eOjx8F34/gI1mJdI44l7sHTLttUEEVXmV609+kEtdnBZRk51
-	NqNhi5ZI5mhlST/Ht5SVkdF8gAOgbAn88DJ3/G82jiRkDpe72i5RN7NxTQMrd7pXvw1f
-	K3WDFVj48eOddQc2ZUs9H2u3hPjexn6elOF5uPwtEeRBCYgn1EAResKu5spokFSyZlYS
-	vDaA==
-X-Gm-Message-State: AE9vXwPjjnkyB1wkfSlTYabGs5FkqtAIitbJ4T/w9OTCIlWjcEv07f83i7dH050J7uiEEg==
-X-Received: by 10.194.11.100 with SMTP id p4mr1574219wjb.125.1474043718873;
-	Fri, 16 Sep 2016 09:35:18 -0700 (PDT)
+	bh=a9ovrsswd8+A+veZ7E1stBvYTaglalF6LmzJS9RyToo=;
+	b=H+L0zuWctqXaUd35ljZFRVjnVe2ZqYseQD2jMlQFKFLpZG36Tal7yLDzcdT/HSIX3X
+	1+afXAtpcL4JpeTqiu9kB4cA3nVZyFH76ZAbG/f55q/doQHeMiV0h5wkDkqCraGQqCsW
+	3sPxGZ6+/waKvieVbmkYNE20bXYfp0KBsxyGPBv1vqPWn1GiuarFMqbGJ5f6cbSHpNeu
+	yIlXwH+5jpPApzKn45t4jrrzP+cADPdfiS5xap7OBl53Dhg6urIHhAI2zweCZqWimRQh
+	CnVd+Bb6VQ8fosoTsVG1ansR5o6kBk4TL9nyoBE1XON5ubz865BIbCDWEjtdRBEnPKQr
+	qceA==
+X-Gm-Message-State: AE9vXwP2FKSWz5GJLC1ONfzZID3fsJk5/gpAEsa4bH4MqT8qLPoWluxEOpEKFpGLWBRZTg==
+X-Received: by 10.194.13.4 with SMTP id d4mr5962278wjc.218.1474043717491;
+	Fri, 16 Sep 2016 09:35:17 -0700 (PDT)
 Received: from resin.Hitronhub.home
 	(host86-158-8-21.range86-158.btcentralplus.com. [86.158.8.21])
-	by smtp.gmail.com with ESMTPSA id f8sm9122197wjh.45.2016.09.16.09.35.17
+	by smtp.gmail.com with ESMTPSA id f8sm9122197wjh.45.2016.09.16.09.35.16
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 16 Sep 2016 09:35:17 -0700 (PDT)
+	Fri, 16 Sep 2016 09:35:16 -0700 (PDT)
 From: Andrei Gherzan <andrei@gherzan.ro>
 To: yocto@yoctoproject.org
-Date: Fri, 16 Sep 2016 17:34:37 +0100
-Message-Id: <20160916163437.18455-3-andrei@gherzan.ro>
+Date: Fri, 16 Sep 2016 17:34:36 +0100
+Message-Id: <20160916163437.18455-2-andrei@gherzan.ro>
 X-Mailer: git-send-email 2.9.3
 In-Reply-To: <20160916163437.18455-1-andrei@gherzan.ro>
 References: <20160916163437.18455-1-andrei@gherzan.ro>
-Subject: [meta-raspberrypi][PATCH 3/3] wiringPi: Fix compilation of libraries
+Subject: [meta-raspberrypi][PATCH 2/3] wiringpi: Fix prepend space
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,43 +70,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 16 Sep 2016 16:35:20 -0000
+X-List-Received-Date: Fri, 16 Sep 2016 16:35:21 -0000
 
-Not using the yocto LDFLAGS will make some qa tests fail:
+Not having this correctly will get you into troubles like:
 
-ERROR: wiringpi-git-r0 do_package_qa: QA Issue: No GNU_HASH in the elf binary:
-'build-rpi-master/tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/wiringpi/git-r0/packages-split/wiringpi/usr/lib/libwiringPi.so.2.32'
-No GNU_HASH in the elf binary:
-'build-rpi-master/tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/wiringpi/git-r0/packages-split/wiringpi/usr/lib/libwiringPiDev.so.2.32'
-[ldflags]
+| gpio.c:40:23: fatal error: gertboard.h: No such file or directory
+|  #include <gertboard.h>
 
 Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
 ---
- .../wiringPi/files/0001-Add-initial-cross-compile-support.patch       | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ recipes-devtools/wiringPi/wiringpi_git.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/recipes-devtools/wiringPi/files/0001-Add-initial-cross-compile-support.patch b/recipes-devtools/wiringPi/files/0001-Add-initial-cross-compile-support.patch
-index ed47fab..603422c 100644
---- a/recipes-devtools/wiringPi/files/0001-Add-initial-cross-compile-support.patch
-+++ b/recipes-devtools/wiringPi/files/0001-Add-initial-cross-compile-support.patch
-@@ -51,7 +51,7 @@ index 0fb0033..cbea759 100644
-  $(DYNAMIC):	$(OBJ)
-  	$Q echo "[Link (Dynamic)]"
- -	$Q $(CC) -shared -Wl,-soname,libwiringPiDev.so$(WIRINGPI_SONAME_SUFFIX) -o libwiringPiDev.so.$(VERSION) -lpthread $(OBJ)
--+	$Q $(CC) -shared -Wl,-soname,$(BASE_NAME).so.$(DYN_VERS_MAJ) -o $(BASE_NAME).so -lpthread $(OBJ)
-++	$Q $(CC) -shared $(LDFLAGS) -Wl,-soname,$(BASE_NAME).so.$(DYN_VERS_MAJ) -o $(BASE_NAME).so -lpthread $(OBJ)
-  
-  .c.o:
-  	$Q echo [Compile] $<
-@@ -341,7 +341,7 @@ index 6bbcc5d..5355b74 100644
-  $(DYNAMIC):	$(OBJ)
-  	$Q echo "[Link (Dynamic)]"
- -	$Q $(CC) -shared -Wl,-soname,libwiringPi.so$(WIRINGPI_SONAME_SUFFIX) -o libwiringPi.so.$(VERSION) -lpthread $(OBJ)
--+	$Q $(CC) -shared -Wl,-soname,$(BASE_NAME).so.$(DYN_VERS_MAJ) -o $(BASE_NAME).so -lpthread $(OBJ)
-++	$Q $(CC) $(LDFLAGS) -shared -Wl,-soname,$(BASE_NAME).so.$(DYN_VERS_MAJ) -o $(BASE_NAME).so -lpthread $(OBJ)
-  
-  .c.o:
-  	$Q echo [Compile] $<
+diff --git a/recipes-devtools/wiringPi/wiringpi_git.bb b/recipes-devtools/wiringPi/wiringpi_git.bb
+index f2cacd3..c337b19 100644
+--- a/recipes-devtools/wiringPi/wiringpi_git.bb
++++ b/recipes-devtools/wiringPi/wiringpi_git.bb
+@@ -16,7 +16,7 @@ SRC_URI = "git://git.drogon.net/wiringPi \
+ 
+ COMPATIBLE_MACHINE = "raspberrypi"
+ 
+-CFLAGS_prepend = "-I${S}/wiringPi -I${S}/devLib"
++CFLAGS_prepend = "-I${S}/wiringPi -I${S}/devLib "
+ 
+ EXTRA_OEMAKE += "'INCLUDE_DIR=${D}${includedir}' 'LIB_DIR=${D}${libdir}'"
+ EXTRA_OEMAKE += "'DESTDIR=${D}/usr' 'PREFIX=""'"
 -- 
 2.9.3
 
