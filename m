@@ -1,50 +1,109 @@
-Return-Path: <jose.perez.carranza@intel.com>
+Return-Path: <jonathan.vervaeke@basalte.be>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E661FE00C22; Wed, 21 Sep 2016 07:17:10 -0700 (PDT)
+	id 43B0AE00756; Mon, 19 Sep 2016 15:30:48 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.20 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [104.47.2.113 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3755CE00C1C
-	for <yocto@yoctoproject.org>; Wed, 21 Sep 2016 07:17:07 -0700 (PDT)
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-	by orsmga101.jf.intel.com with ESMTP; 21 Sep 2016 07:17:05 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.30,373,1470726000"; 
-	d="scan'208,217";a="171424331"
-Received: from fmsmsx107.amr.corp.intel.com ([10.18.124.205])
-	by fmsmga004.fm.intel.com with ESMTP; 21 Sep 2016 07:17:04 -0700
-Received: from fmsmsx113.amr.corp.intel.com (10.18.116.7) by
-	fmsmsx107.amr.corp.intel.com (10.18.124.205) with Microsoft SMTP Server
-	(TLS) id 14.3.248.2; Wed, 21 Sep 2016 07:17:04 -0700
-Received: from fmsmsx101.amr.corp.intel.com ([169.254.1.89]) by
-	FMSMSX113.amr.corp.intel.com ([169.254.13.12]) with mapi id
-	14.03.0248.002; Wed, 21 Sep 2016 07:17:03 -0700
-From: "Perez Carranza, Jose" <jose.perez.carranza@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Jolley, Stephen K"
-	<stephen.k.jolley@intel.com>
-Thread-Topic: QA Test Report for Yocto Project  2.2 M3 rc1
-Thread-Index: AdIUEsi+Wm5h1yHiTF2BUzff4RFXKA==
-Date: Wed, 21 Sep 2016 14:17:02 +0000
-Message-ID: <0A5D9A624DF90343892F8F3FE7DE525A020242ED@fmsmsx101.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ctpclassification: CTP_IC
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiNzYzOTFkOGItNDk4MC00YjRhLWJmYTgtYzA5MmVlOTQzMGQwIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX0lDIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE1LjkuNi42IiwiVHJ1c3RlZExhYmVsSGFzaCI6IkJqSEMrTkErbVV2d2cyZDhGOVFMV0R5cHVKRzRCdmFxejliUnVhUXRMM009In0=
-x-originating-ip: [10.1.200.106]
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+X-Greylist: delayed 28642 seconds by postgrey-1.32 at yocto-www;
+	Mon, 19 Sep 2016 15:30:42 PDT
+Received: from EUR01-DB5-obe.outbound.protection.outlook.com
+	(mail-db5eur01on0113.outbound.protection.outlook.com [104.47.2.113])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F1FD5E00724
+	for <yocto@yoctoproject.org>; Mon, 19 Sep 2016 15:30:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=basalte.onmicrosoft.com; s=selector1-basalte-be;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
+	bh=RmD8oV1YKUVW+0LQyb/99ifiXFbr5O4GTCOjNzMEB7U=;
+	b=Yrms2mKMYc/R+sOHBb6TUNWsEBKPz30BKkpGNImpJiRA4PLrq9n9s+eOrux5WVtSiXIOtghkDnMrv0DBYa7qAe/Hgd3K8YmJSWRzCmDwO8/cCJNqiGaH7yM/SceisaR7gGdxP/Ri6yjXU4whOItM4eRl/dLY958eMnUyndsBTF8=
+Authentication-Results: spf=none (sender IP is )
+	smtp.mailfrom=jonathan.vervaeke@basalte.be; 
+Received: from [10.0.11.100] (213.119.96.58) by
+	HE1PR0401MB1708.eurprd04.prod.outlook.com (10.169.118.26) with
+	Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
+	15.1.639.2; Mon, 19 Sep 2016 10:01:40 +0000
+To: <yocto@yoctoproject.org>
+From: Jonathan Vervaeke <jonathan.vervaeke@basalte.be>
+Message-ID: <8cfd94f9-00a0-7c26-a7d9-8e84c53cf8b3@basalte.be>
+Date: Mon, 19 Sep 2016 12:01:37 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.2.0
 MIME-Version: 1.0
-Cc: "Lock, Joshua G" <joshua.g.lock@intel.com>, "Wold,
-	Saul" <saul.wold@intel.com>
-Subject: QA Test Report for Yocto Project 2.2 M3 rc1
+X-Originating-IP: [213.119.96.58]
+X-ClientProxiedBy: DB5PR0401CA0004.eurprd04.prod.outlook.com (10.164.176.142)
+	To HE1PR0401MB1708.eurprd04.prod.outlook.com (10.169.118.26)
+X-MS-Office365-Filtering-Correlation-Id: d838f532-7f14-495f-c2b8-08d3e073f3f5
+X-Microsoft-Exchange-Diagnostics: 1; HE1PR0401MB1708;
+	2:Xb11/CTdGjqhSStHvLveEFb0m57+pXLQGiSiaaefzddHxXAPpEqYc8i/S0Z5vjlnzG+yC8VPkJjUSOErDMrigtJaSoxwr8kzirZpSsYK8Mu0Ded+ByEGqK+Q+ek9CM3pEegPc+pZqd6OEPl/f6mdW2b559xiWoUq0r3nXNEWmXsMokCO9I9eI1D/U5pVyhaH;
+	3:A+iTtkVt/jtNY1JJqlhk5Zt28QWSA8+pfPQSvotpm4/wplrw4k1xM/rYcPrAVAr6IuvIsabyApDEa31zLfTodJ+FyZFpEa2zl+6YT9W4HibbJ8R5KGI0RfBmFqYe3YQt;
+	25:SN68kOh/TVoy+roOtZHZ/MYtE6IhFJN13W+auJbMpKkUx44JxO6xomADhH1fQH50Azr1hWSmGLS01+tP/VOZf6SeTXXEuxu/Mu4g0vVUryidWkrON8fuwY7hiyaVeYTHKfTMaxufAdqh42yvhSh4x9+IwC5KLfD45m397zJoXOr+Lel57HPMIs6S0l5AXardMQypdRn7cfOErTzMRLCDiRKASmu3dgzFCjTvlXo3S36MXugPKugF/kX1kzZ+NaPF289djxRBYvz4nks/mBY8G7Y0/ViQEXuJWDcwZCIuWYZVr1sDqROXHtqHuNpdIFL+OgapC53QXhY4cjwRI+EwXZDtQXBvuvsEq9zl9yYlEzRGd22+K6XTj49LEHul09oaxg5VsCfuQOABboGuAINHG7Kz/J1eipxRLBR2s55W9AI=
+X-Microsoft-Antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:HE1PR0401MB1708;
+X-Microsoft-Exchange-Diagnostics: 1; HE1PR0401MB1708;
+	31:5Q8+dU2SEf0rbLI3ktrzn+inttzonZMKiwkzwO5DZrT4FTKkI8A3L3NRTVkFY8AFNTBgNXFQ61qtoGtyvmxBhQbDBRTg802Uk3Z4PO/geIXXnaxmOPQYc9AHFoJDFFjRhchYncBNEbrwnW80VM1OHXCNOqc8fi+rnNH0gR2Y2dIxWXg3MTUw7JBoXCFnnJ+3F4rPKlFROu8+xx34PUchxRRS9CRDnwoQDqWxQlJkID4=;
+	4:OhbD+56yJuFAoO9z9G1+1BZ8KvuLEAH7zpkqXbIVj0itrB+j1sb0h8fT2by9TGCJd1Rlhy6ukdFjbK5hOKG52yYlbYiGS2w5+4gvvUc70OLaaZ42OHhhr2h+RJC+qu7/cQn/On+pzTrkj1yChBILufZE+ZkM+b5k/hcmw7xa10YxGYbn4tD+JOqq70MHrAEsQi39vYeNekSOFoeI5sDevIBZ25rHcE0dWBOIClmy63ahK5MwiP+RdTXXKg1UgOVRh3qk+1+wmGEbUChIw97pNntSBqVoDG6tt67SaHMjl8+tf5kwiTqH3Nc8Y8mDZTDQUhsdG4BqUyi9b11AjSPXpM/+ZCMdk7vQLYGcBlh499uU6lzARGlj8J8ieo2oT2TWwVf8Mqg3Qa/m7AYTxQRTx9dV5xuXNztIuQTjFRu27UM=
+X-Microsoft-Antispam-PRVS: <HE1PR0401MB1708E1DFF29E499413A479E295F40@HE1PR0401MB1708.eurprd04.prod.outlook.com>
+X-Exchange-Antispam-Report-Test: UriScan:;
+X-Exchange-Antispam-Report-CFA-Test: BCL:0; PCL:0;
+	RULEID:(6040176)(601004)(2401047)(8121501046)(5005006)(3002001)(10201501046)(6043046)(6042046);
+	SRVR:HE1PR0401MB1708; BCL:0; PCL:0; RULEID:;
+	SRVR:HE1PR0401MB1708; 
+X-Forefront-PRVS: 0070A8666B
+X-Forefront-Antispam-Report: SFV:NSPM;
+	SFS:(10019020)(4630300001)(6049001)(6009001)(7916002)(199003)(189002)(6116002)(3846002)(101416001)(450100001)(7116003)(7846002)(5660300001)(33646002)(586003)(77096005)(8676002)(270700001)(54356999)(50986999)(31696002)(81166006)(36756003)(81156014)(64126003)(2906002)(512874002)(110136003)(86362001)(2351001)(16236675004)(221733001)(84326002)(3480700004)(42186005)(31686004)(4001350100001)(83506001)(106356001)(92566002)(65826007)(7736002)(107886002)(229853001)(68736007)(65806001)(105586002)(66066001)(65956001)(97736004)(189998001)(74482002);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:HE1PR0401MB1708; H:[10.0.11.100];
+	FPR:; SPF:None; PTR:InfoNoRecords; A:1; MX:1; LANG:en; 
+Received-SPF: None (protection.outlook.com: basalte.be does not designate
+	permitted sender hosts)
+X-Microsoft-Exchange-Diagnostics: =?us-ascii?Q?1; HE1PR0401MB1708;
+	23:nt9ljbmtoD6u5LCmA31SEDzeD6mEbd5BaDPNJF5?=
+	=?us-ascii?Q?6csgHmhe/+CWs7UlqmsH0PQ9Rwe3GedmkwxJFz/yXQGimPid2m1TPw5ycidd?=
+	=?us-ascii?Q?4+EeE970p5eAcoYF/aBXAtHE0kixTPdH8oEYZvnPeqQLZxsHroH+ioQv6H0m?=
+	=?us-ascii?Q?qBFaZabvgZnbS8yhApfxtB/FcU0sMPEksCQ3bfz6pMKsVO8FISCB22VWuB+w?=
+	=?us-ascii?Q?9xW6dphm1jJdi8Apm4Dgq5ngSJ1RTHudydpUSEkn3tYjKDA9+qD1J2QLdDV7?=
+	=?us-ascii?Q?Gg93r6csoTIji6B7DdSvQPAefoSs3TZS3BRdTe73GTT9847272grxGr+ET0i?=
+	=?us-ascii?Q?v2HIiQCgOSKit0RsR8yWdxQdNVt7ceImzfYftymvzgmRAt61VrX1sMOBsm9l?=
+	=?us-ascii?Q?m3nC5Bjg1atguHIrhi/NZstvLe5RToI6nhdywpV+qt1Sr8ARXbkyJ8lXe3DO?=
+	=?us-ascii?Q?T8UCplnRBe+/ycxZsUWJHGV/Anw5YULUPN92LT+7INMd6bDsvcR9vVmxnDmC?=
+	=?us-ascii?Q?wkxkOPFjQSFzNG4gxfJv6UAinHnAr+Hld5iA+LNiAjHMD0Zes8lRvFwK355b?=
+	=?us-ascii?Q?XNK5HUFFGUvFaK4dAH0yVNVcwOGsRaFluVCRNfY2Us7SlzELB/jh1rHyFSOa?=
+	=?us-ascii?Q?6xJDLjjyDfNwXb0X3TfnDJmGqLkxxviw4y+9t+hR0/EOxhuyosWXrLsQwC/i?=
+	=?us-ascii?Q?vv9AlWgU3Al0qjltbKrUH6DpdzqFruCScaS54Cqd2dyYc2MUTBiXnqxshm+4?=
+	=?us-ascii?Q?s6sf8DRhec8mTqglCghtCiPqYtmfynp1efp+UG451Q6SuMo3YPiwgrzPUS47?=
+	=?us-ascii?Q?e+D9lGdVhKvL0q3hRD49KjZbAkxmXfCt5CJB6lMxdjTD6+TY4AMbBzHqu5bE?=
+	=?us-ascii?Q?oqel1KKe52xPp7K9lyXryBXD57mzwzTd4jfWYv7i669BRsVVY1agpuuEuULl?=
+	=?us-ascii?Q?u38alRv5Tw92rpq0fDtr66/44eKRphpgm/SjPr8hShZ5FzK4m2bvqTZxHOwC?=
+	=?us-ascii?Q?a6G1+JD5QZB4EECKo3AyPkmo9rZI9mOiIxmnZB6J+dWyubZZDRhJoS77ElV1?=
+	=?us-ascii?Q?F8bAvV62M8BVWLk6BD8WJFarqWs7udXw6NZ+bPGYD89mzAp5lhsIl8nLYV66?=
+	=?us-ascii?Q?oPz5SdAwXZgqmciwKs2z7v3IOxkNGHGWzAce0/clGELSQvYzl5A48UGxKByF?=
+	=?us-ascii?Q?JdKb+kE1Zc/sVoV+Qh9Pf7RuJ5KqECTx8oK9WaU5B3mxh+7Anl7wUWYDDzWK?=
+	=?us-ascii?Q?gFFuKI0AaLAiS2cHtr/ZGzw0ce8oFgumVThM0OyRosEaMVktwnBgWeFCq5pF?=
+	=?us-ascii?Q?OfQ=3D=3D?=
+X-Microsoft-Exchange-Diagnostics: 1; HE1PR0401MB1708;
+	6:Dkuicr5T3NHXb1d5egzuAVb1KBL8h3u7wyYu6Rs0mAZ5AICNiVmDvWiyDnEBne1fpMu9+UdhyW8kjdzG0bkhzf3U4I3FOyY5iKF9B3KNs1rESB5xr90zNqbqe2yenWM8w6sVmmtPJwnan/RpbXXo7rVGf5gnediBfw4f+vS7k1xdejeHBLjfDr1XqGGaSyZgf4myTcdEaebD+7tgsMw/oMwuTA+l3JrQXBMuj4OXOycsDdHtmkVAVdYQ96c0jVGS1Jk6JJo45qreaKrhH2cib/gTlp8GB8aFS1FMOskOhqaTdSPup4IE6iPksI5fXP6k;
+	5:Ux50wORicSW0C2rw7qWzuey+klAwhLxBaMdA6PZq4kiugOvZMzYBt0aiyhHcEehW3L9wTX/cDKlNh2GoFvKE3yuyiPkBXbeCTEoKfqCNzhGSquQ5vcBX5Q4BiOx3qSRpe4DWxFIdcenO3QZy9oBf3A==;
+	24:cVWmr2oTBU3OCX3P5KvqIcgf5q/egiuBDdAwIKaYD86FVEbMP0sxMlqjWYTrq+Heprph9uaU6ur/3kMJfCM6F02eNys0rxAZTokKRoYYxhU=;
+	7:dyZMpMjlmGs4XgBanEv3LbZqv/l53Ls/aDZ7adYSoAJUkRE9OI/CTx7YH8fCiQXh2rURmnptO7LciB7DDwjYFahtVuWxBJLl2Fv6NH4DcUgV7gvMjh4GQDliaPdRxVVBrB3O4Hiu9NhcnaiwPKYyv1bYel72q1Uz3bp/BvYwkmboA6fVzr24f5+eb1mHpkQ76D5RNgVFHjD9LhrGOIaEFOHuHfr5Ow7TYrAEtiIAtj9aJzsMy0sL/q4TQ2haPigYPyBSWkVerkBwt7h9yDlXOSmBSoYmg87rs3P5BlOzGPhoCfVXsM59EGT7MsaeP9Vt
+SpamDiagnosticOutput: 1:99
+SpamDiagnosticMetadata: NSPM
+X-OriginatorOrg: basalte.be
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Sep 2016 10:01:40.5580 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: HE1PR0401MB1708
+X-Mailman-Approved-At: Wed, 21 Sep 2016 07:54:27 -0700
+Subject: FrameBuffer support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,777 +115,446 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Sep 2016 14:17:11 -0000
-Content-Language: en-US
+X-List-Received-Date: Mon, 19 Sep 2016 22:30:48 -0000
 Content-Type: multipart/alternative;
-	boundary="_000_0A5D9A624DF90343892F8F3FE7DE525A020242EDfmsmsx101amrcor_"
+	boundary="------------E5EEC648A544F3EA5B630824"
 
---_000_0A5D9A624DF90343892F8F3FE7DE525A020242EDfmsmsx101amrcor_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+--------------E5EEC648A544F3EA5B630824
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi
+Hi,
 
-Here is the report for QA Cycle on 2.2 M3 rc1
+I'm trying to make framebuffers work on imx6(ul) using yocto.
 
-Full Report :  https://wiki.yoctoproject.org/wiki/WW38_-_2016-09-09_-_Full_=
-Test_Cycle_2.2_M3.rc1
+I suppose I need to make changes in the following:
 
-Summary
+1) Kernel modules
 
-There were 15 ne bugs found on this test cycle, 3 of them High that were tr=
-iaged on time and now all of them have the fixes under review. There were a=
- little increase on Performance times for kernel building the other measure=
-ments were stable  with exception of roofs that was not giving correct meas=
-urements due a bug on qemuboot.
+2) Device tree
 
-Bugs
+3) U-Boot bootargs
 
-           *New High and M+
-- 10274 - Missing build-appliance image for 2.2 M3 rc1 - High [1]
-- 10275 - Missing i686 toolchain sdk for 2.2 M3 rc1 - High [2]
-- 10285 - qemuboot.conf has the incorrect values for image_name and qb_defa=
-ult_kernel - High [3]
-- 10262 - SD card not being recognized when trying to install the image - M=
-edium+ [4]
-- 10272 - Wav and Ogg files are not able to play - Medium+ [5]
-- 10301 - Update yocto-bsp script for kernel 4.8 - Medium+ [6]
-- 10265 - nativesdk-qemu-helper: runqemu in sdk should check OECORE_NATIVE_=
-SYSROOT and OECORE_TARGET_SYSROOT - Medium+ [7]
-
-             Full List of bugs : https://wiki.yoctoproject.org/wiki/WW38_-_=
-2016-09-09_-_Full_Test_Cycle_2.2_M3.rc1#New_and_notable_issues_Found_during=
-_QA_Test_.26_Community
-
-          *Old New High and M+
-- 9285 - Failed to build gobject-introspection for qemumips64 on i686 hosts=
- - Medium+ [8]
-- 9287 - Failed to build nativesdk-glibc for qemumips and qemumips64 on Fed=
-ora 23 i686 - Medium+ [9]
-
-         *Old Medium Low
-            Full list of bugs: https://wiki.yoctoproject.org/wiki/WW38_-_20=
-16-09-09_-_Full_Test_Cycle_2.2_M3.rc1#Other_Bugs_found_during_QA_Test_.28NO=
-T_NEW.29
+I've build my kernel with the following modules
 
 
-Performance
+********************************************
+
+FB_TFT=y
+
+CONFIG_FB_TFT_ILI9325=m
+
+********************************************
 
 
--        core-image-sato rm-work was in the normal average times on Fedora =
-and Ubuntu machines
+I added the following to the device tree
 
--        Kernel has little increase on average times about 4% on Ubuntu and=
- 7% on Fedora [10]
+********************************************
 
--        core-image-sato rootfs was giving incorrect measurements due bug 1=
-0285
+/ {
+      itdb28 {
+         compatible = "ilitek,ili9325";
+         status = "okay";
 
--        Full list of charts [11]
-
-Links
-
-
-1-     https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D10274
-
-2-     https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D10275
-
-3-     https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D10285
-
-4-     https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D10262
-
-5-     https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D10272
-
-6-     https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D10301
-
-7-     https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D10265
-
-8-     https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D9285
-
-9-     https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D9287
-
-10-  https://wiki.yoctoproject.org/charts/perf_milestone_GDC/bitbake-virtua=
-l-kernel.html
-
-11-  https://wiki.yoctoproject.org/charts/perf_milestone_GDC/performance_te=
-st.html
-
-Regards,
-Jos=E9
+         rotate = <0>;
+         bgr;
+         buswidth = <8>;
+         reset-gpios = <&gpio3 23 0>;
+         dc-gpios = <&gpio3  5 0>;
+         cs-gpios = <&gpio3  1 0>;
+         wr-gpios = <&gpio3  0 0>;
+         db-gpios = <&gpio3  7 0>,
+                <&gpio3  8 0>,
+                <&gpio3  9 0>,
+                <&gpio3 10 0>,
+                <&gpio3 11 0>,
+                <&gpio3 15 0>,
+                <&gpio3 16 0>,
+                <&gpio3 17 0>;
+         /* LED pin drives backlight directly. Use transistor (50mA) */
+         /* led-gpios = <&gpio 4 1>; */
+         debug = <7>;
+     };
 
 
---_000_0A5D9A624DF90343892F8F3FE7DE525A020242EDfmsmsx101amrcor_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+     framebuffer {
+         compatible = "simple-framebuffer";
+         reg = <0x1d385000 (240 * 320 * 2)>;
+         width = <240>;
+         height = <320>;
+         stride = <(240 * 2)>;
+         format = "r5g6b5";
+     };
+};
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
-	{mso-style-priority:34;
-	margin-top:0in;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:.5in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
-/* List Definitions */
-@list l0
-	{mso-list-id:707068544;
-	mso-list-type:hybrid;
-	mso-list-template-ids:-271301000 631136908 67698713 67698715 67698703 6769=
-8713 67698715 67698703 67698713 67698715;}
-@list l0:level1
-	{mso-level-text:%1-;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:.75in;
-	text-indent:-.25in;}
-@list l0:level2
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:1.25in;
-	text-indent:-.25in;}
-@list l0:level3
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	margin-left:1.75in;
-	text-indent:-9.0pt;}
-@list l0:level4
-	{mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:2.25in;
-	text-indent:-.25in;}
-@list l0:level5
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:2.75in;
-	text-indent:-.25in;}
-@list l0:level6
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	margin-left:3.25in;
-	text-indent:-9.0pt;}
-@list l0:level7
-	{mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:3.75in;
-	text-indent:-.25in;}
-@list l0:level8
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:4.25in;
-	text-indent:-.25in;}
-@list l0:level9
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	margin-left:4.75in;
-	text-indent:-9.0pt;}
-@list l1
-	{mso-list-id:818882368;
-	mso-list-type:hybrid;
-	mso-list-template-ids:-391726622 1615645698 67698713 67698715 67698703 676=
-98713 67698715 67698703 67698713 67698715;}
-@list l1:level1
-	{mso-level-text:%1-;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l1:level2
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l1:level3
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	text-indent:-9.0pt;}
-@list l1:level4
-	{mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l1:level5
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l1:level6
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	text-indent:-9.0pt;}
-@list l1:level7
-	{mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l1:level8
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l1:level9
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	text-indent:-9.0pt;}
-@list l2
-	{mso-list-id:871458079;
-	mso-list-type:hybrid;
-	mso-list-template-ids:2067539796 -1765117336 67698691 67698693 67698689 67=
-698691 67698693 67698689 67698691 67698693;}
-@list l2:level1
-	{mso-level-start-at:0;
-	mso-level-number-format:bullet;
-	mso-level-text:-;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:1.25in;
-	text-indent:-.25in;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-font-family:Calibri;
-	mso-bidi-font-family:"Times New Roman";}
-@list l2:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:1.75in;
-	text-indent:-.25in;
-	font-family:"Courier New";}
-@list l2:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:2.25in;
-	text-indent:-.25in;
-	font-family:Wingdings;}
-@list l2:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:2.75in;
-	text-indent:-.25in;
-	font-family:Symbol;}
-@list l2:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:3.25in;
-	text-indent:-.25in;
-	font-family:"Courier New";}
-@list l2:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:3.75in;
-	text-indent:-.25in;
-	font-family:Wingdings;}
-@list l2:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:4.25in;
-	text-indent:-.25in;
-	font-family:Symbol;}
-@list l2:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:4.75in;
-	text-indent:-.25in;
-	font-family:"Courier New";}
-@list l2:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:5.25in;
-	text-indent:-.25in;
-	font-family:Wingdings;}
-@list l3
-	{mso-list-id:916524246;
-	mso-list-type:hybrid;
-	mso-list-template-ids:1187643870 926999650 67698691 67698693 67698689 6769=
-8691 67698693 67698689 67698691 67698693;}
-@list l3:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:27.6pt;
-	text-indent:-.25in;
-	font-family:Symbol;
-	mso-fareast-font-family:Calibri;
-	mso-bidi-font-family:"Times New Roman";}
-@list l3:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:63.6pt;
-	text-indent:-.25in;
-	font-family:"Courier New";}
-@list l3:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:99.6pt;
-	text-indent:-.25in;
-	font-family:Wingdings;}
-@list l3:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:135.6pt;
-	text-indent:-.25in;
-	font-family:Symbol;}
-@list l3:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:171.6pt;
-	text-indent:-.25in;
-	font-family:"Courier New";}
-@list l3:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:207.6pt;
-	text-indent:-.25in;
-	font-family:Wingdings;}
-@list l3:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:243.6pt;
-	text-indent:-.25in;
-	font-family:Symbol;}
-@list l3:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:279.6pt;
-	text-indent:-.25in;
-	font-family:"Courier New";}
-@list l3:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:315.6pt;
-	text-indent:-.25in;
-	font-family:Wingdings;}
-@list l4
-	{mso-list-id:1196893386;
-	mso-list-type:hybrid;
-	mso-list-template-ids:-1016669524 67698703 67698713 67698715 67698703 6769=
-8713 67698715 67698703 67698713 67698715;}
-@list l4:level1
-	{mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l4:level2
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l4:level3
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	text-indent:-9.0pt;}
-@list l4:level4
-	{mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l4:level5
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l4:level6
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	text-indent:-9.0pt;}
-@list l4:level7
-	{mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l4:level8
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l4:level9
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	text-indent:-9.0pt;}
-@list l5
-	{mso-list-id:1234851960;
-	mso-list-type:hybrid;
-	mso-list-template-ids:-375607138 1152661932 67698713 67698715 67698703 676=
-98713 67698715 67698703 67698713 67698715;}
-@list l5:level1
-	{mso-level-text:%1-;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l5:level2
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l5:level3
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	text-indent:-9.0pt;}
-@list l5:level4
-	{mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l5:level5
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l5:level6
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	text-indent:-9.0pt;}
-@list l5:level7
-	{mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l5:level8
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l5:level9
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	text-indent:-9.0pt;}
-@list l6
-	{mso-list-id:1407190865;
-	mso-list-type:hybrid;
-	mso-list-template-ids:-1006188898 -1542797602 67698713 67698715 67698703 6=
-7698713 67698715 67698703 67698713 67698715;}
-@list l6:level1
-	{mso-level-text:%1-;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l6:level2
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l6:level3
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	text-indent:-9.0pt;}
-@list l6:level4
-	{mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l6:level5
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l6:level6
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	text-indent:-9.0pt;}
-@list l6:level7
-	{mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l6:level8
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l6:level9
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	text-indent:-9.0pt;}
-ol
-	{margin-bottom:0in;}
-ul
-	{margin-bottom:0in;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi <o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Here is the report for QA Cycle on 2.2 M3 rc1 <o:p><=
-/o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Full Report : &nbsp;<a href=3D"https://wiki.yoctopro=
-ject.org/wiki/WW38_-_2016-09-09_-_Full_Test_Cycle_2.2_M3.rc1">https://wiki.=
-yoctoproject.org/wiki/WW38_-_2016-09-09_-_Full_Test_Cycle_2.2_M3.rc1</a>
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><b>Summary <o:p></o:p></b></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">There were 15 ne bugs fou=
-nd on this test cycle, 3 of them High that were triaged on time and now all=
- of them have the fixes under review. There were a little increase on Perfo=
-rmance times for kernel building the
- other measurements were stable &nbsp;with exception of roofs that was not =
-giving correct measurements due a bug on qemuboot. &nbsp;<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><b>Bugs <o:p></o:p></b></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><b>&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;*</b>New High and M&#43;<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"text-indent:.5in">- 10274 - Missing build-a=
-ppliance image for 2.2 M3 rc1 &#8211; High [1]<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"text-indent:.5in">- 10275 - Missing i686 to=
-olchain sdk for 2.2 M3 rc1 &#8211; High [2]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;
-<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"text-indent:.5in">- 10285 - qemuboot.conf h=
-as the incorrect values for image_name and qb_default_kernel &#8211; High [=
-3]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"text-indent:.5in">- 10262 - SD card not bei=
-ng recognized when trying to install the image - Medium&#43; [4]<o:p></o:p>=
-</p>
-<p class=3D"MsoNormal" style=3D"text-indent:.5in">- 10272 - Wav and Ogg fil=
-es are not able to play - Medium&#43; [5]<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"text-indent:.5in">- 10301 - Update yocto-bs=
-p script for kernel 4.8 - Medium&#43; [6]<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"text-indent:.5in">- 10265 - nativesdk-qemu-=
-helper: runqemu in sdk should check OECORE_NATIVE_SYSROOT and OECORE_TARGET=
-_SYSROOT - Medium&#43; [7]<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;Full List of bugs : <a href=3D"https://wiki.yoctoproje=
-ct.org/wiki/WW38_-_2016-09-09_-_Full_Test_Cycle_2.2_M3.rc1#New_and_notable_=
-issues_Found_during_QA_Test_.26_Community">
-https://wiki.yoctoproject.org/wiki/WW38_-_2016-09-09_-_Full_Test_Cycle_2.2_=
-M3.rc1#New_and_notable_issues_Found_during_QA_Test_.26_Community</a>
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;<b>*</b>Old<b> </b>New High and M&#43;<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"text-indent:.5in">- 9285 - Failed to build =
-gobject-introspection for qemumips64 on i686 hosts - Medium&#43; [8]<o:p></=
-o:p></p>
-<p class=3D"MsoNormal" style=3D"text-indent:.5in">- 9287 - Failed to build =
-nativesdk-glibc for qemumips and qemumips64 on Fedora 23 i686 - Medium&#43;=
- [9]<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"text-indent:.5in"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*Ol=
-d Medium Low<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;Full list of bugs: <a href=3D"https://wiki.yoctoproject.org/=
-wiki/WW38_-_2016-09-09_-_Full_Test_Cycle_2.2_M3.rc1#Other_Bugs_found_during=
-_QA_Test_.28NOT_NEW.29">
-https://wiki.yoctoproject.org/wiki/WW38_-_2016-09-09_-_Full_Test_Cycle_2.2_=
-M3.rc1#Other_Bugs_found_during_QA_Test_.28NOT_NEW.29</a>
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><b><o:p>&nbsp;</o:p></b></p>
-<p class=3D"MsoNormal"><b>Performance<o:p></o:p></b></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoListParagraph" style=3D"margin-left:1.25in;text-indent:-.25i=
-n;mso-list:l2 level1 lfo6">
-<![if !supportLists]><span style=3D"mso-list:Ignore">-<span style=3D"font:7=
-.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;
-</span></span><![endif]>core-image-sato rm-work was in the normal average t=
-imes on Fedora and Ubuntu machines
-<o:p></o:p></p>
-<p class=3D"MsoListParagraph" style=3D"margin-left:1.25in;text-indent:-.25i=
-n;mso-list:l2 level1 lfo6">
-<![if !supportLists]><span style=3D"mso-list:Ignore">-<span style=3D"font:7=
-.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;
-</span></span><![endif]>Kernel has little increase on average times about 4=
-% on Ubuntu and 7% on Fedora [10]<o:p></o:p></p>
-<p class=3D"MsoListParagraph" style=3D"margin-left:1.25in;text-indent:-.25i=
-n;mso-list:l2 level1 lfo6">
-<![if !supportLists]><span style=3D"mso-list:Ignore">-<span style=3D"font:7=
-.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;
-</span></span><![endif]>core-image-sato rootfs was giving incorrect measure=
-ments due bug 10285
-<o:p></o:p></p>
-<p class=3D"MsoListParagraph" style=3D"margin-left:1.25in;text-indent:-.25i=
-n;mso-list:l2 level1 lfo6">
-<![if !supportLists]><span style=3D"mso-list:Ignore">-<span style=3D"font:7=
-.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;
-</span></span><![endif]>Full list of charts [11]<o:p></o:p></p>
-<p class=3D"MsoNormal"><b><o:p>&nbsp;</o:p></b></p>
-<p class=3D"MsoNormal"><b>Links<o:p></o:p></b></p>
-<p class=3D"MsoNormal"><b><o:p>&nbsp;</o:p></b></p>
-<p class=3D"MsoListParagraph" style=3D"margin-left:.75in;text-indent:-.25in=
-;mso-list:l0 level1 lfo7">
-<![if !supportLists]><span style=3D"mso-list:Ignore">1-<span style=3D"font:=
-7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><![endif]><a href=3D"https://bugzilla.yoctoproject.org/show_b=
-ug.cgi?id=3D10274">https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D1027=
-4</a><o:p></o:p></p>
-<p class=3D"MsoListParagraph" style=3D"margin-left:.75in;text-indent:-.25in=
-;mso-list:l0 level1 lfo7">
-<![if !supportLists]><span style=3D"mso-list:Ignore">2-<span style=3D"font:=
-7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><![endif]><a href=3D"https://bugzilla.yoctoproject.org/show_b=
-ug.cgi?id=3D10275">https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D1027=
-5</a>
-<o:p></o:p></p>
-<p class=3D"MsoListParagraph" style=3D"margin-left:.75in;text-indent:-.25in=
-;mso-list:l0 level1 lfo7">
-<![if !supportLists]><span style=3D"mso-list:Ignore">3-<span style=3D"font:=
-7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><![endif]><a href=3D"https://bugzilla.yoctoproject.org/show_b=
-ug.cgi?id=3D10285">https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D1028=
-5</a><o:p></o:p></p>
-<p class=3D"MsoListParagraph" style=3D"margin-left:.75in;text-indent:-.25in=
-;mso-list:l0 level1 lfo7">
-<![if !supportLists]><span style=3D"mso-list:Ignore">4-<span style=3D"font:=
-7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><![endif]><a href=3D"https://bugzilla.yoctoproject.org/show_b=
-ug.cgi?id=3D10262">https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D1026=
-2</a><o:p></o:p></p>
-<p class=3D"MsoListParagraph" style=3D"margin-left:.75in;text-indent:-.25in=
-;mso-list:l0 level1 lfo7">
-<![if !supportLists]><span style=3D"mso-list:Ignore">5-<span style=3D"font:=
-7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><![endif]><a href=3D"https://bugzilla.yoctoproject.org/show_b=
-ug.cgi?id=3D10272">https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D1027=
-2</a><o:p></o:p></p>
-<p class=3D"MsoListParagraph" style=3D"margin-left:.75in;text-indent:-.25in=
-;mso-list:l0 level1 lfo7">
-<![if !supportLists]><span style=3D"mso-list:Ignore">6-<span style=3D"font:=
-7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><![endif]><a href=3D"https://bugzilla.yoctoproject.org/show_b=
-ug.cgi?id=3D10301">https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D1030=
-1</a> &nbsp;<o:p></o:p></p>
-<p class=3D"MsoListParagraph" style=3D"margin-left:.75in;text-indent:-.25in=
-;mso-list:l0 level1 lfo7">
-<![if !supportLists]><span style=3D"mso-list:Ignore">7-<span style=3D"font:=
-7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><![endif]><a href=3D"https://bugzilla.yoctoproject.org/show_b=
-ug.cgi?id=3D10265">https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D1026=
-5</a>
-<o:p></o:p></p>
-<p class=3D"MsoListParagraph" style=3D"margin-left:.75in;text-indent:-.25in=
-;mso-list:l0 level1 lfo7">
-<![if !supportLists]><span style=3D"mso-list:Ignore">8-<span style=3D"font:=
-7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><![endif]><a href=3D"https://bugzilla.yoctoproject.org/show_b=
-ug.cgi?id=3D9285">https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D9285<=
-/a><o:p></o:p></p>
-<p class=3D"MsoListParagraph" style=3D"margin-left:.75in;text-indent:-.25in=
-;mso-list:l0 level1 lfo7">
-<![if !supportLists]><span style=3D"mso-list:Ignore">9-<span style=3D"font:=
-7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><![endif]><a href=3D"https://bugzilla.yoctoproject.org/show_b=
-ug.cgi?id=3D9287">https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D9287<=
-/a><o:p></o:p></p>
-<p class=3D"MsoListParagraph" style=3D"margin-left:.75in;text-indent:-.25in=
-;mso-list:l0 level1 lfo7">
-<![if !supportLists]><span style=3D"mso-list:Ignore">10-<span style=3D"font=
-:7.0pt &quot;Times New Roman&quot;">&nbsp;
-</span></span><![endif]><a href=3D"https://wiki.yoctoproject.org/charts/per=
-f_milestone_GDC/bitbake-virtual-kernel.html">https://wiki.yoctoproject.org/=
-charts/perf_milestone_GDC/bitbake-virtual-kernel.html</a>
-<o:p></o:p></p>
-<p class=3D"MsoListParagraph" style=3D"margin-left:.75in;text-indent:-.25in=
-;mso-list:l0 level1 lfo7">
-<![if !supportLists]><span style=3D"mso-list:Ignore">11-<span style=3D"font=
-:7.0pt &quot;Times New Roman&quot;">&nbsp;
-</span></span><![endif]><a href=3D"https://wiki.yoctoproject.org/charts/per=
-f_milestone_GDC/performance_test.html">https://wiki.yoctoproject.org/charts=
-/perf_milestone_GDC/performance_test.html</a>
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Regards,<o:p></o:p></p>
-<p class=3D"MsoNormal"><b>Jos=E9</b><b><span style=3D"font-family:&quot;Ari=
-al&quot;,sans-serif"><o:p></o:p></span></b></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
+********************************************
+
+
+When I boot, I get the following error:
+
+********************************************
+
+Error opening /dev/fb0: No such file or directory
+
+********************************************
+
+
+Did I forget something or is there a decent manual available?
+
+Thanks!
+
+Jonathan.
+
+
+--------------E5EEC648A544F3EA5B630824
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <p>
+      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    </p>
+    <p style="margin: 0px; padding: 0px; border: 0px; font-weight:
+      normal; font-style: normal; font-size: 15px; font-family:
+      &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;Lucida
+      Grande&quot;, sans-serif; vertical-align: baseline; word-wrap:
+      break-word; color: rgb(81, 98, 111); font-variant-ligatures:
+      normal; font-variant-caps: normal; letter-spacing: normal;
+      orphans: 2; text-align: start; text-indent: 0px; text-transform:
+      none; white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
+      255);">Hi,</p>
+    <p style="margin: 0px; padding: 0px; border: 0px; font-weight:
+      normal; font-style: normal; font-size: 15px; font-family:
+      &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;Lucida
+      Grande&quot;, sans-serif; vertical-align: baseline; word-wrap:
+      break-word; color: rgb(81, 98, 111); font-variant-ligatures:
+      normal; font-variant-caps: normal; letter-spacing: normal;
+      orphans: 2; text-align: start; text-indent: 0px; text-transform:
+      none; white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
+      255); min-height: 8pt;"> </p>
+    <p style="margin: 0px; padding: 0px; border: 0px; font-weight:
+      normal; font-style: normal; font-size: 15px; font-family:
+      &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;Lucida
+      Grande&quot;, sans-serif; vertical-align: baseline; word-wrap:
+      break-word; color: rgb(81, 98, 111); font-variant-ligatures:
+      normal; font-variant-caps: normal; letter-spacing: normal;
+      orphans: 2; text-align: start; text-indent: 0px; text-transform:
+      none; white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
+      255);">I'm trying to make framebuffers work on imx6(ul) using
+      yocto.<br>
+    </p>
+    <p style="margin: 0px; padding: 0px; border: 0px; font-weight:
+      normal; font-style: normal; font-size: 15px; font-family:
+      &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;Lucida
+      Grande&quot;, sans-serif; vertical-align: baseline; word-wrap:
+      break-word; color: rgb(81, 98, 111); font-variant-ligatures:
+      normal; font-variant-caps: normal; letter-spacing: normal;
+      orphans: 2; text-align: start; text-indent: 0px; text-transform:
+      none; white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
+      255); min-height: 8pt;"> </p>
+    <p style="margin: 0px; padding: 0px; border: 0px; font-weight:
+      normal; font-style: normal; font-size: 15px; font-family:
+      &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;Lucida
+      Grande&quot;, sans-serif; vertical-align: baseline; word-wrap:
+      break-word; color: rgb(81, 98, 111); font-variant-ligatures:
+      normal; font-variant-caps: normal; letter-spacing: normal;
+      orphans: 2; text-align: start; text-indent: 0px; text-transform:
+      none; white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
+      255);">I suppose I need to make changes in the following:</p>
+    <p style="margin: 0px; padding: 0px; border: 0px; font-weight:
+      normal; font-style: normal; font-size: 15px; font-family:
+      &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;Lucida
+      Grande&quot;, sans-serif; vertical-align: baseline; word-wrap:
+      break-word; color: rgb(81, 98, 111); font-variant-ligatures:
+      normal; font-variant-caps: normal; letter-spacing: normal;
+      orphans: 2; text-align: start; text-indent: 0px; text-transform:
+      none; white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
+      255);">1) Kernel modules</p>
+    <p style="margin: 0px; padding: 0px; border: 0px; font-weight:
+      normal; font-style: normal; font-size: 15px; font-family:
+      &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;Lucida
+      Grande&quot;, sans-serif; vertical-align: baseline; word-wrap:
+      break-word; color: rgb(81, 98, 111); font-variant-ligatures:
+      normal; font-variant-caps: normal; letter-spacing: normal;
+      orphans: 2; text-align: start; text-indent: 0px; text-transform:
+      none; white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
+      255);">2) Device tree</p>
+    <p style="margin: 0px; padding: 0px; border: 0px; font-weight:
+      normal; font-style: normal; font-size: 15px; font-family:
+      &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;Lucida
+      Grande&quot;, sans-serif; vertical-align: baseline; word-wrap:
+      break-word; color: rgb(81, 98, 111); font-variant-ligatures:
+      normal; font-variant-caps: normal; letter-spacing: normal;
+      orphans: 2; text-align: start; text-indent: 0px; text-transform:
+      none; white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
+      255);">3) U-Boot bootargs</p>
+    <p style="margin: 0px; padding: 0px; border: 0px; font-weight:
+      normal; font-style: normal; font-size: 15px; font-family:
+      &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;Lucida
+      Grande&quot;, sans-serif; vertical-align: baseline; word-wrap:
+      break-word; color: rgb(81, 98, 111); font-variant-ligatures:
+      normal; font-variant-caps: normal; letter-spacing: normal;
+      orphans: 2; text-align: start; text-indent: 0px; text-transform:
+      none; white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
+      255); min-height: 8pt;"> </p>
+    <p style="margin: 0px; padding: 0px; border: 0px; font-weight:
+      normal; font-style: normal; font-size: 15px; font-family:
+      &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;Lucida
+      Grande&quot;, sans-serif; vertical-align: baseline; word-wrap:
+      break-word; color: rgb(81, 98, 111); font-variant-ligatures:
+      normal; font-variant-caps: normal; letter-spacing: normal;
+      orphans: 2; text-align: start; text-indent: 0px; text-transform:
+      none; white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
+      255);">I've build my kernel with the following modules</p>
+    <p style="margin: 0px; padding: 0px; border: 0px; font-weight:
+      normal; font-style: normal; font-size: 15px; font-family:
+      &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;Lucida
+      Grande&quot;, sans-serif; vertical-align: baseline; word-wrap:
+      break-word; color: rgb(81, 98, 111); font-variant-ligatures:
+      normal; font-variant-caps: normal; letter-spacing: normal;
+      orphans: 2; text-align: start; text-indent: 0px; text-transform:
+      none; white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
+      255);"><br>
+    </p>
+    <p style="margin: 0px; padding: 0px; border: 0px; font-weight:
+      normal; font-style: normal; font-size: 15px; font-family:
+      &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;Lucida
+      Grande&quot;, sans-serif; vertical-align: baseline; word-wrap:
+      break-word; color: rgb(81, 98, 111); font-variant-ligatures:
+      normal; font-variant-caps: normal; letter-spacing: normal;
+      orphans: 2; text-align: start; text-indent: 0px; text-transform:
+      none; white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
+      255);">********************************************</p>
+    <p style="margin: 0px; padding: 0px; border: 0px; font-weight:
+      normal; font-style: normal; font-size: 15px; font-family:
+      &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;Lucida
+      Grande&quot;, sans-serif; vertical-align: baseline; word-wrap:
+      break-word; color: rgb(81, 98, 111); font-variant-ligatures:
+      normal; font-variant-caps: normal; letter-spacing: normal;
+      orphans: 2; text-align: start; text-indent: 0px; text-transform:
+      none; white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
+      255);">FB_TFT=y</p>
+    <p style="margin: 0px; padding: 0px; border: 0px; font-weight:
+      normal; font-style: normal; font-size: 15px; font-family:
+      &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;Lucida
+      Grande&quot;, sans-serif; vertical-align: baseline; word-wrap:
+      break-word; color: rgb(81, 98, 111); font-variant-ligatures:
+      normal; font-variant-caps: normal; letter-spacing: normal;
+      orphans: 2; text-align: start; text-indent: 0px; text-transform:
+      none; white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
+      255);">CONFIG_FB_TFT_ILI9325=m</p>
+    <p style="margin: 0px; padding: 0px; border: 0px; font-weight:
+      normal; font-style: normal; font-size: 15px; font-family:
+      &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;Lucida
+      Grande&quot;, sans-serif; vertical-align: baseline; word-wrap:
+      break-word; color: rgb(81, 98, 111); font-variant-ligatures:
+      normal; font-variant-caps: normal; letter-spacing: normal;
+      orphans: 2; text-align: start; text-indent: 0px; text-transform:
+      none; white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
+      255);">********************************************</p>
+    <br>
+    <p style="margin: 0px; padding: 0px; border: 0px; font-weight:
+      normal; font-style: normal; font-size: 15px; font-family:
+      &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;Lucida
+      Grande&quot;, sans-serif; vertical-align: baseline; word-wrap:
+      break-word; color: rgb(81, 98, 111); font-variant-ligatures:
+      normal; font-variant-caps: normal; letter-spacing: normal;
+      orphans: 2; text-align: start; text-indent: 0px; text-transform:
+      none; white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
+      255);">I added the following to the device tree</p>
+    <p style="margin: 0px; padding: 0px; border: 0px; font-weight:
+      normal; font-style: normal; font-size: 15px; font-family:
+      &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;Lucida
+      Grande&quot;, sans-serif; vertical-align: baseline; word-wrap:
+      break-word; color: rgb(81, 98, 111); font-variant-ligatures:
+      normal; font-variant-caps: normal; letter-spacing: normal;
+      orphans: 2; text-align: start; text-indent: 0px; text-transform:
+      none; white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
+      255); min-height: 8pt;"> </p>
+    <p style="margin: 0px; padding: 0px; border: 0px; font-weight:
+      normal; font-style: normal; font-size: 15px; font-family:
+      &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;Lucida
+      Grande&quot;, sans-serif; vertical-align: baseline; word-wrap:
+      break-word; color: rgb(81, 98, 111); font-variant-ligatures:
+      normal; font-variant-caps: normal; letter-spacing: normal;
+      orphans: 2; text-align: start; text-indent: 0px; text-transform:
+      none; white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
+      255); min-height: 8pt;">********************************************</p>
+    <p style="margin: 0px; padding: 0px; border: 0px; font-weight:
+      normal; font-style: normal; font-size: 15px; font-family:
+      &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;Lucida
+      Grande&quot;, sans-serif; vertical-align: baseline; word-wrap:
+      break-word; color: rgb(81, 98, 111); font-variant-ligatures:
+      normal; font-variant-caps: normal; letter-spacing: normal;
+      orphans: 2; text-align: start; text-indent: 0px; text-transform:
+      none; white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
+      255); min-height: 8pt;">/ {<br>
+           itdb28 {<br>
+              compatible = "ilitek,ili9325";<br>
+              status = "okay";<br>
+      <br>
+              rotate = &lt;0&gt;;<br>
+              bgr;<br>
+              buswidth = &lt;8&gt;;<br>
+              reset-gpios = &lt;&amp;gpio3 23 0&gt;;<br>
+              dc-gpios = &lt;&amp;gpio3  5 0&gt;;<br>
+              cs-gpios = &lt;&amp;gpio3  1 0&gt;;<br>
+              wr-gpios = &lt;&amp;gpio3  0 0&gt;;<br>
+              db-gpios = &lt;&amp;gpio3  7 0&gt;,<br>
+                     &lt;&amp;gpio3  8 0&gt;,<br>
+                     &lt;&amp;gpio3  9 0&gt;,<br>
+                     &lt;&amp;gpio3 10 0&gt;,<br>
+                     &lt;&amp;gpio3 11 0&gt;,<br>
+                     &lt;&amp;gpio3 15 0&gt;,<br>
+                     &lt;&amp;gpio3 16 0&gt;,<br>
+                     &lt;&amp;gpio3 17 0&gt;;<br>
+              /* LED pin drives backlight directly. Use transistor
+      (50mA) */<br>
+              /* led-gpios = &lt;&amp;gpio 4 1&gt;; */<br>
+              debug = &lt;7&gt;;<br>
+          };<br>
+      <br>
+      <br>
+          framebuffer {<br>
+              compatible = "simple-framebuffer";<br>
+              reg = &lt;0x1d385000 (240 * 320 * 2)&gt;;<br>
+              width = &lt;240&gt;;<br>
+              height = &lt;320&gt;;<br>
+              stride = &lt;(240 * 2)&gt;;<br>
+              format = "r5g6b5";<br>
+          };<br>
+      };</p>
+    <p style="margin: 0px; padding: 0px; border: 0px; font-weight:
+      normal; font-style: normal; font-size: 15px; font-family:
+      &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;Lucida
+      Grande&quot;, sans-serif; vertical-align: baseline; word-wrap:
+      break-word; color: rgb(81, 98, 111); font-variant-ligatures:
+      normal; font-variant-caps: normal; letter-spacing: normal;
+      orphans: 2; text-align: start; text-indent: 0px; text-transform:
+      none; white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
+      255); min-height: 8pt;">********************************************</p>
+    <p style="margin: 0px; padding: 0px; border: 0px; font-weight:
+      normal; font-style: normal; font-size: 15px; font-family:
+      &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;Lucida
+      Grande&quot;, sans-serif; vertical-align: baseline; word-wrap:
+      break-word; color: rgb(81, 98, 111); font-variant-ligatures:
+      normal; font-variant-caps: normal; letter-spacing: normal;
+      orphans: 2; text-align: start; text-indent: 0px; text-transform:
+      none; white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
+      255); min-height: 8pt;"><br>
+    </p>
+    <p style="margin: 0px; padding: 0px; border: 0px; font-weight:
+      normal; font-style: normal; font-size: 15px; font-family:
+      &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;Lucida
+      Grande&quot;, sans-serif; vertical-align: baseline; word-wrap:
+      break-word; color: rgb(81, 98, 111); font-variant-ligatures:
+      normal; font-variant-caps: normal; letter-spacing: normal;
+      orphans: 2; text-align: start; text-indent: 0px; text-transform:
+      none; white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
+      255);">When I boot, I get the following error:</p>
+    <p style="margin: 0px; padding: 0px; border: 0px; font-weight:
+      normal; font-style: normal; font-size: 15px; font-family:
+      &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;Lucida
+      Grande&quot;, sans-serif; vertical-align: baseline; word-wrap:
+      break-word; color: rgb(81, 98, 111); font-variant-ligatures:
+      normal; font-variant-caps: normal; letter-spacing: normal;
+      orphans: 2; text-align: start; text-indent: 0px; text-transform:
+      none; white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
+      255); min-height: 8pt;"> </p>
+    <p style="margin: 0px; padding: 0px; border: 0px; font-weight:
+      normal; font-style: normal; font-size: 15px; font-family:
+      &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;Lucida
+      Grande&quot;, sans-serif; vertical-align: baseline; word-wrap:
+      break-word; color: rgb(81, 98, 111); font-variant-ligatures:
+      normal; font-variant-caps: normal; letter-spacing: normal;
+      orphans: 2; text-align: start; text-indent: 0px; text-transform:
+      none; white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
+      255); min-height: 8pt;">********************************************</p>
+    <p style="margin: 0px; padding: 0px; border: 0px; font-weight:
+      normal; font-style: normal; font-size: 15px; font-family:
+      &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;Lucida
+      Grande&quot;, sans-serif; vertical-align: baseline; word-wrap:
+      break-word; color: rgb(81, 98, 111); font-variant-ligatures:
+      normal; font-variant-caps: normal; letter-spacing: normal;
+      orphans: 2; text-align: start; text-indent: 0px; text-transform:
+      none; white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
+      255); min-height: 8pt;">Error opening /dev/fb0: No such file or
+      directory</p>
+    <p style="margin: 0px; padding: 0px; border: 0px; font-weight:
+      normal; font-style: normal; font-size: 15px; font-family:
+      &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;Lucida
+      Grande&quot;, sans-serif; vertical-align: baseline; word-wrap:
+      break-word; color: rgb(81, 98, 111); font-variant-ligatures:
+      normal; font-variant-caps: normal; letter-spacing: normal;
+      orphans: 2; text-align: start; text-indent: 0px; text-transform:
+      none; white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
+      255); min-height: 8pt;">********************************************</p>
+    <br>
+    <p style="margin: 0px; padding: 0px; border: 0px; font-weight:
+      normal; font-style: normal; font-size: 15px; font-family:
+      &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;Lucida
+      Grande&quot;, sans-serif; vertical-align: baseline; word-wrap:
+      break-word; color: rgb(81, 98, 111); font-variant-ligatures:
+      normal; font-variant-caps: normal; letter-spacing: normal;
+      orphans: 2; text-align: start; text-indent: 0px; text-transform:
+      none; white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
+      255); min-height: 8pt;">Did I forget something or is there a
+      decent manual available?<br>
+    </p>
+    <p style="margin: 0px; padding: 0px; border: 0px; font-weight:
+      normal; font-style: normal; font-size: 15px; font-family:
+      &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;Lucida
+      Grande&quot;, sans-serif; vertical-align: baseline; word-wrap:
+      break-word; color: rgb(81, 98, 111); font-variant-ligatures:
+      normal; font-variant-caps: normal; letter-spacing: normal;
+      orphans: 2; text-align: start; text-indent: 0px; text-transform:
+      none; white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
+      255);">Thanks!</p>
+    <p style="margin: 0px; padding: 0px; border: 0px; font-weight:
+      normal; font-style: normal; font-size: 15px; font-family:
+      &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;Lucida
+      Grande&quot;, sans-serif; vertical-align: baseline; word-wrap:
+      break-word; color: rgb(81, 98, 111); font-variant-ligatures:
+      normal; font-variant-caps: normal; letter-spacing: normal;
+      orphans: 2; text-align: start; text-indent: 0px; text-transform:
+      none; white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
+      255);">Jonathan.<br>
+    </p>
+  </body>
 </html>
 
---_000_0A5D9A624DF90343892F8F3FE7DE525A020242EDfmsmsx101amrcor_--
+--------------E5EEC648A544F3EA5B630824--
