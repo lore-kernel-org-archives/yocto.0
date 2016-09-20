@@ -1,35 +1,54 @@
-Return-Path: <joshua.g.lock@linux.intel.com>
+Return-Path: <Adrian.Dudau@enea.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 16AF9E00404; Mon, 19 Sep 2016 09:01:13 -0700 (PDT)
+	id 0CFCEE00B95; Tue, 20 Sep 2016 07:25:06 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [185.38.180.33 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D4B27E002AC
-	for <yocto@yoctoproject.org>; Mon, 19 Sep 2016 09:01:09 -0700 (PDT)
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-	by fmsmga102.fm.intel.com with ESMTP; 19 Sep 2016 09:01:09 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.30,362,1470726000"; d="scan'208";a="10886098"
-Received: from jlock-mobl1.ger.corp.intel.com ([10.252.23.129])
-	by fmsmga005.fm.intel.com with ESMTP; 19 Sep 2016 09:01:06 -0700
-Message-ID: <1474300865.2929.17.camel@linux.intel.com>
-From: Joshua Lock <joshua.g.lock@linux.intel.com>
-To: =?ISO-8859-1?Q?An=EDbal_Lim=F3n?= <anibal.limon@linux.intel.com>, 
-	yocto@yoctoproject.org
-Date: Mon, 19 Sep 2016 17:01:05 +0100
-In-Reply-To: <1474221917-26367-1-git-send-email-anibal.limon@linux.intel.com>
-References: <1474221917-26367-1-git-send-email-anibal.limon@linux.intel.com>
-X-Mailer: Evolution 3.20.5 (3.20.5-1.fc24) 
-Mime-Version: 1.0
-Subject: Re: [PATCH][yocto-autobuilder] nigthly-qa-*, nigthly-rpm*: Move RunSanityTests before SendErrorReport
+Received: from smtp-out10.electric.net (smtp-out10.electric.net
+	[185.38.180.33])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 229CFE00B5F
+	for <yocto@yoctoproject.org>; Tue, 20 Sep 2016 07:25:02 -0700 (PDT)
+Received: from 1bmLxg-00059e-UY by out10a.electric.net with emc1-ok (Exim 4.87)
+	(envelope-from <Adrian.Dudau@enea.com>) id 1bmLxg-0005AZ-V7
+	for yocto@yoctoproject.org; Tue, 20 Sep 2016 07:23:52 -0700
+Received: by emcmailer; Tue, 20 Sep 2016 07:23:52 -0700
+Received: from [192.36.1.72] (helo=mx-3.enea.com)
+	by out10a.electric.net with esmtps (TLSv1:AES128-SHA:128) (Exim 4.87)
+	(envelope-from <Adrian.Dudau@enea.com>) id 1bmLxg-00059e-UY
+	for yocto@yoctoproject.org; Tue, 20 Sep 2016 07:23:52 -0700
+Received: from sestofb11.enea.se (172.21.3.152) by smtp.enea.com
+	(172.21.1.208) with Microsoft SMTP Server id 14.3.294.0;
+	Tue, 20 Sep 2016 16:23:52 +0200
+Received: by sestofb11.enea.se (Postfix, from userid 4451)	id 270D0441598;
+	Tue, 20 Sep 2016 16:23:52 +0200 (CEST)
+From: Adrian Dudau <adrian.dudau@enea.com>
+To: <yocto@yoctoproject.org>
+Date: Tue, 20 Sep 2016 16:23:51 +0200
+Message-ID: <1474381432-28259-3-git-send-email-adrian.dudau@enea.com>
+X-Mailer: git-send-email 1.9.1
+In-Reply-To: <1474381432-28259-1-git-send-email-adrian.dudau@enea.com>
+References: <1474381432-28259-1-git-send-email-adrian.dudau@enea.com>
+MIME-Version: 1.0
+Received-SPF: None (SESTOEX08.enea.se: adrian.dudau@enea.com does not
+	designate permitted sender hosts)
+X-Outbound-IP: 192.36.1.72
+X-Env-From: Adrian.Dudau@enea.com
+X-Proto: esmtps
+X-Revdns: mx-3.enea.com
+X-HELO: mx-3.enea.com
+X-TLS: TLSv1:AES128-SHA:128
+X-Authenticated_ID: 
+X-PolicySMART: 6551647
+X-Virus-Status: Scanned by VirusSMART (c)
+X-Virus-Status: Scanned by VirusSMART (s)
+Subject: [meta-cgl][PATCHv2 2/3] Add an initramfs image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,173 +60,72 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 Sep 2016 16:01:13 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Tue, 20 Sep 2016 14:25:06 -0000
+Content-Type: text/plain
 
-On Sun, 2016-09-18 at 13:05 -0500, Aníbal Limón wrote:
-> If RunSanityTests executes after SendErrorReport and fails, the error
-> report was not send to the errors.yp.org server.
+This is needed to enable multipath support for the rootfs.
+The ext3 support is needed to load the image onto the disk.
 
-Pushed, thanks.
+CGL requirements AVL.7.1.*
 
-Joshua
+Signed-off-by: Adrian Dudau <adrian.dudau@enea.com>
+---
+ meta-cgl-common/conf/distro/poky-cgl.conf          |  1 +
+ meta-cgl-common/images/core-image-cgl-initramfs.bb | 20 ++++++++++++++++++++
+ meta-cgl-common/images/core-image-cgl.bb           |  2 ++
+ 3 files changed, 23 insertions(+)
+ create mode 100644 meta-cgl-common/images/core-image-cgl-initramfs.bb
 
-> Signed-off-by: Aníbal Limón <anibal.limon@linux.intel.com>
-> ---
->  buildset-config.controller/nightly-qa-extras.conf       | 4 ++--
->  buildset-config.controller/nightly-qa-logrotate.conf    | 6 ++----
->  buildset-config.controller/nightly-qa-pam.conf          | 5 ++---
->  buildset-config.controller/nightly-qa-skeleton.conf     | 5 ++---
->  buildset-config.controller/nightly-qa-systemd.conf      | 4 ++--
->  buildset-config.controller/nightly-qa-targetbuilds.conf | 6 +++---
->  buildset-config.controller/nightly-rpm-non-rpm.conf     | 4 ++--
->  buildset-config.controller/nightly-rpm.conf             | 4 ++--
->  8 files changed, 17 insertions(+), 21 deletions(-)
-> 
-> diff --git a/buildset-config.controller/nightly-qa-extras.conf
-> b/buildset-config.controller/nightly-qa-extras.conf
-> index 2ec7b50..f796bb1 100644
-> --- a/buildset-config.controller/nightly-qa-extras.conf
-> +++ b/buildset-config.controller/nightly-qa-extras.conf
-> @@ -18,6 +18,6 @@ steps: [{'SetDest':{}},
->                              'distro': 'poky', 'buildhistory' :
-> False,
->                              'atextappend' : '\nROOT_HOME =
-> "/root"\n'}},
->          {'BuildImages': {'images': 'core-image-minimal'}},
-> +        {'RunSanityTests': {'images': 'core-image-minimal'}},
->          {'DownloadErrorReports': {}},
-> -        {'SendErrorReport': {}},
-> -        {'RunSanityTests': {'images': 'core-image-minimal'}}]
-> +        {'SendErrorReport': {}}]
-> diff --git a/buildset-config.controller/nightly-qa-logrotate.conf
-> b/buildset-config.controller/nightly-qa-logrotate.conf
-> index 41dd135..1545509 100644
-> --- a/buildset-config.controller/nightly-qa-logrotate.conf
-> +++ b/buildset-config.controller/nightly-qa-logrotate.conf
-> @@ -13,8 +13,6 @@ steps: [{'SetDest':{}},
->                              'atextappend' : '\nIMAGE_INSTALL_append
-> = " logrotate"\n'}},
->          {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
->          {'BuildImages': {'images': 'core-image-sato'}},
-> +        {'RunSanityTests': {'images': 'core-image-sato',
-> 'suitesappend' : 'logrotate'}},
->          {'DownloadErrorReports': {}},
-> -        {'SendErrorReport': {}},
-> -        {'RunSanityTests': {'images': 'core-image-sato',
-> 'suitesappend' : 'logrotate'}}]
-> -
-> -
-> +        {'SendErrorReport': {}}]
-> diff --git a/buildset-config.controller/nightly-qa-pam.conf
-> b/buildset-config.controller/nightly-qa-pam.conf
-> index 5cec2c8..3fdb76f 100644
-> --- a/buildset-config.controller/nightly-qa-pam.conf
-> +++ b/buildset-config.controller/nightly-qa-pam.conf
-> @@ -13,7 +13,6 @@ steps: [{'SetDest':{}},
->                              'atextappend' :
-> '\nDISTRO_FEATURES_append = " pam"\n'}},
->          {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
->          {'BuildImages': {'images': 'core-image-sato'}},
-> +        {'RunSanityTests': {'images': 'core-image-sato',
-> 'suitesappend' : 'pam'}},
->          {'SendErrorReport': {}},
-> -        {'DownloadErrorReports': {}},
-> -        {'RunSanityTests': {'images': 'core-image-sato',
-> 'suitesappend' : 'pam'}}]
-> -
-> +        {'DownloadErrorReports': {}}]
-> diff --git a/buildset-config.controller/nightly-qa-skeleton.conf
-> b/buildset-config.controller/nightly-qa-skeleton.conf
-> index c29ca7b..9ac4c5e 100644
-> --- a/buildset-config.controller/nightly-qa-skeleton.conf
-> +++ b/buildset-config.controller/nightly-qa-skeleton.conf
-> @@ -13,7 +13,6 @@ steps: [{'SetDest':{}},
->                              'atextappend' : '\nIMAGE_INSTALL_append
-> = " service hello-mod"\n'}},
->          {'CreateBBLayersConf': {'buildprovider' : 'yocto',
-> 'layerdirs': ['meta-skeleton']}},
->          {'BuildImages': {'images': 'core-image-sato'}},
-> +        {'RunSanityTests': {'images': 'core-image-sato',
-> 'suitesappend' : 'skeletoninit'}},
->          {'DownloadErrorReports': {}},
-> -        {'SendErrorReport': {}},
-> -        {'RunSanityTests': {'images': 'core-image-sato',
-> 'suitesappend' : 'skeletoninit'}}]
-> -
-> +        {'SendErrorReport': {}}]
-> diff --git a/buildset-config.controller/nightly-qa-systemd.conf
-> b/buildset-config.controller/nightly-qa-systemd.conf
-> index 662caa6..bb6da0b 100644
-> --- a/buildset-config.controller/nightly-qa-systemd.conf
-> +++ b/buildset-config.controller/nightly-qa-systemd.conf
-> @@ -27,6 +27,6 @@ steps: [{'SetDest':{}},
->                              'buildhistory' : False, 'distro':
-> 'poky',
->                              'initmgr' : 'systemd'}},
->          {'BuildImages': {'images': 'core-image-sato'}},
-> +        {'RunSanityTests': {'images': 'core-image-sato',
-> 'suitesappend' : 'systemd'}},
->          {'DownloadErrorReports': {}},
-> -        {'SendErrorReport': {}},
-> -        {'RunSanityTests': {'images': 'core-image-sato',
-> 'suitesappend' : 'systemd'}}]
-> +        {'SendErrorReport': {}}]
-> diff --git a/buildset-config.controller/nightly-qa-targetbuilds.conf
-> b/buildset-config.controller/nightly-qa-targetbuilds.conf
-> index e31af26..c36f518 100644
-> --- a/buildset-config.controller/nightly-qa-targetbuilds.conf
-> +++ b/buildset-config.controller/nightly-qa-targetbuilds.conf
-> @@ -27,7 +27,7 @@ steps: [{'SetDest':{}},
->          {'CreateAutoConf': {'machine': 'qemuppc', 'SDKMACHINE' :
-> 'x86_64',
->                              'buildhistory' : False, 'distro':
-> 'poky'}},
->          {'BuildImages': {'images': 'core-image-sato-sdk'}},
-> -        {'DownloadErrorReports': {}},
-> -        {'SendErrorReport': {}},
->          {'RunSanityTests': {'images': 'core-image-sato-sdk',
-> -                            'suites' : 'ping ssh buildsudoku
-> buildcvs buildiptables'}}]
-> +                            'suites' : 'ping ssh buildsudoku
-> buildcvs buildiptables'}},
-> +        {'DownloadErrorReports': {}},
-> +        {'SendErrorReport': {}}]
-> diff --git a/buildset-config.controller/nightly-rpm-non-rpm.conf
-> b/buildset-config.controller/nightly-rpm-non-rpm.conf
-> index 5290d6d..4ac743a 100644
-> --- a/buildset-config.controller/nightly-rpm-non-rpm.conf
-> +++ b/buildset-config.controller/nightly-rpm-non-rpm.conf
-> @@ -13,6 +13,6 @@ steps: [{'SetDest':{}},
->                              'packages': 'rpm'}},
->          {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
->          {'BuildImages': {'images' : 'core-image-sato core-image-
-> sato-dev core-image-sato-sdk core-image-minimal core-image-minimal-
-> dev'}},
-> +        {'RunSanityTests': {'images' : 'core-image-minimal core-
-> image-sato core-image-sato-sdk'}},
->          {'DownloadErrorReports': {}},
-> -        {'SendErrorReport': {}},
-> -        {'RunSanityTests': {'images' : 'core-image-minimal core-
-> image-sato core-image-sato-sdk'}}]
-> +        {'SendErrorReport': {}}]
-> diff --git a/buildset-config.controller/nightly-rpm.conf b/buildset-
-> config.controller/nightly-rpm.conf
-> index 2ea2d6e..646127f 100644
-> --- a/buildset-config.controller/nightly-rpm.conf
-> +++ b/buildset-config.controller/nightly-rpm.conf
-> @@ -13,6 +13,6 @@ steps: [{'SetDest':{}},
->                              'packages': 'rpm'}},
->          {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
->          {'BuildImages': {'images' : 'core-image-sato core-image-
-> sato-dev core-image-sato-sdk core-image-minimal core-image-minimal-
-> dev'}},
-> +        {'RunSanityTests': {'images' : 'core-image-minimal core-
-> image-sato core-image-sato-sdk'}},
->          {'DownloadErrorReports': {}},
-> -        {'SendErrorReport': {}},
-> -        {'RunSanityTests': {'images' : 'core-image-minimal core-
-> image-sato core-image-sato-sdk'}}]
-> +        {'SendErrorReport': {}}]
+diff --git a/meta-cgl-common/conf/distro/poky-cgl.conf b/meta-cgl-common/conf/distro/poky-cgl.conf
+index 8a76f70..90cc82b 100644
+--- a/meta-cgl-common/conf/distro/poky-cgl.conf
++++ b/meta-cgl-common/conf/distro/poky-cgl.conf
+@@ -3,4 +3,5 @@ require conf/distro/poky-selinux.conf
+ 
+ DISTRO = "poky-cgl"
+ 
++IMAGE_CLASSES += "image_types_uboot"
+ PREFERRED_PROVIDER_virtual/refpolicy="refpolicy-targeted"
+diff --git a/meta-cgl-common/images/core-image-cgl-initramfs.bb b/meta-cgl-common/images/core-image-cgl-initramfs.bb
+new file mode 100644
+index 0000000..0777b7c
+--- /dev/null
++++ b/meta-cgl-common/images/core-image-cgl-initramfs.bb
+@@ -0,0 +1,20 @@
++require core-image-cgl.bb
++
++# Recipe is based on core-image-minimal.bb
++DESCRIPTION = "Initramfs used to mount multipath device as root file system"
++
++PACKAGE_INSTALL = "initramfs-cgl-boot busybox base-passwd udev ${ROOTFS_BOOTSTRAP_INSTALL}"
++
++# Do not pollute the initrd image with rootfs features
++IMAGE_FEATURES = ""
++
++export IMAGE_BASENAME = "core-image-cgl-initramfs"
++IMAGE_LINGUAS = ""
++
++LICENSE = "MIT"
++
++IMAGE_FSTYPES = "cpio.gz.u-boot"
++
++IMAGE_ROOTFS_SIZE = "8192"
++
++BAD_RECOMMENDATIONS += "busybox-syslog"
+diff --git a/meta-cgl-common/images/core-image-cgl.bb b/meta-cgl-common/images/core-image-cgl.bb
+index d12391b..5975601 100644
+--- a/meta-cgl-common/images/core-image-cgl.bb
++++ b/meta-cgl-common/images/core-image-cgl.bb
+@@ -21,6 +21,8 @@ IMAGE_INSTALL += "\
+     kernel-modules \
+     "
+ 
++IMAGE_FSTYPES += " ext3.gz"
++
+ # kexec-tools doesn't work on Mips
+ KEXECTOOLS_mips ?= ""
+ KEXECTOOLS_mipsel ?= ""
+-- 
+1.9.1
+
 
