@@ -1,67 +1,63 @@
-Return-Path: <schnitzeltony@googlemail.com>
+Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AA8CAE00B47; Wed, 21 Sep 2016 01:32:58 -0700 (PDT)
+	id 695BEE00C2E; Wed, 21 Sep 2016 03:39:46 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (schnitzeltony[at]googlemail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.161.195 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [74.125.82.68 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-yw0-f195.google.com (mail-yw0-f195.google.com
-	[209.85.161.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7E068E008D3
-	for <yocto@yoctoproject.org>; Wed, 21 Sep 2016 01:32:55 -0700 (PDT)
-Received: by mail-yw0-f195.google.com with SMTP id v2so2161532ywg.3
-	for <yocto@yoctoproject.org>; Wed, 21 Sep 2016 01:32:55 -0700 (PDT)
+Received: from mail-wm0-f68.google.com (mail-wm0-f68.google.com [74.125.82.68])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0CDFDE00A48
+	for <yocto@yoctoproject.org>; Wed, 21 Sep 2016 03:39:41 -0700 (PDT)
+Received: by mail-wm0-f68.google.com with SMTP id l132so7802491wmf.1
+	for <yocto@yoctoproject.org>; Wed, 21 Sep 2016 03:39:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=googlemail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=f8No3j3VMPHIO235Mr8i7xdsCVYzQ8P9JoU1a7k+Q+o=;
-	b=yB1TJdIVFc80egGBsmCcqJ4s2ojZ7wmTgy7fiC34cjOT/7rY/unqM1GhQ1dlIFdjVQ
-	nwxGiehaqmgkIVZsaTgYh3N8GzQMattn/wOlcmko9RlfJ1CV7JB/s5Xd2duujD8XBvft
-	l+QG7yYhw65u6RqhbBqG703vqgFN47HZTtdHztegkY1F0aYCq078o39pdy6h0r+4Airn
-	VzaV8OBA56kZtcZrTghmtfk7PEgIlm0vaQRQ7wzzUYdzOvXdR0WoLPAO4nmihZFnzCmH
-	cCF+f++Yq9ZpmF2QFroj9ID/7791bD2ANRX/yS71Feu0F55KN2o3OJbdhDYDbsEP163/
-	ICSA==
+	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
+	h=date:from:to:subject:message-id:references:mime-version
+	:content-disposition:in-reply-to:user-agent;
+	bh=kYMpbE6uNcec1E3Hl/X1w9FDbdduycBbBmAnHcVQ0+U=;
+	b=sezwfeLKAHnuEjomq6HXZoEMXTLzAgOOcw62pYCLQyNdNTFevmf5nmg0q0ggcx7vrU
+	XTuE5norpAsf7B1uQlCITzSFFB7PlVl1wCItxO/7yGDetW/ICRcOWcGfC1+XpI9CXafu
+	eR6GyC81jGulZR3D1YNP8hX0gCbTCo70mdGw9YljU4PRpyOrU5A9LGq/8Y8EYKErGmr4
+	YkeWlvuGcm3tDljsxpH8I1IRp7G/quy3dLzJU4glsLZeAEoJcxEbEnFPtJzgcB1NJT4d
+	Mc/Tbrd9urLd89lz1xiXSjQtv4ra0man2G//jF1O3NqgiBZIZ2yR1WwXfNuOg7vSSbyg
+	Mvhg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=f8No3j3VMPHIO235Mr8i7xdsCVYzQ8P9JoU1a7k+Q+o=;
-	b=RUfni5MIAvqDDApOCxS+uCatGCtvnyS21Gq5FFXxoGiKYAKtKYMiv+2BV5ROEvGwQO
-	68u2YP3Oop56LlHstnDiQNGlNHdM//ar2aEOPU3qsWiXjws09R1lRZgWb6T1/XmPCNhm
-	X0hIS6UNRxKwAoPE2QwX16HKv452ZFofkNXeeXqe6gWkEi5SYi7w+lAhITssNSO8uPNk
-	Xtn7ZXwNjzh9EW9PZpiBrk+PIYI/rVDFiidhlCQvH2xhL3Vgg/X0OZj5rqNAXjT4931x
-	vnUA0tIVe17DmJ0M/b+TgBX3txzlTpF4Hc0bIvlSnQahYQumAw22SrYyeHmhQkcmBB7M
-	7iQA==
-X-Gm-Message-State: AE9vXwM53FTu7byrE3A/Oy+EEIN3JpXxjMAs1F8W1iSe+yn7vbFhqPzZMjI3Qz2PYEhzj7ljRrGOeGbYtYjB1g==
-X-Received: by 10.129.75.7 with SMTP id y7mr16307570ywa.152.1474446774713;
-	Wed, 21 Sep 2016 01:32:54 -0700 (PDT)
+	h=x-gm-message-state:date:from:to:subject:message-id:references
+	:mime-version:content-disposition:in-reply-to:user-agent;
+	bh=kYMpbE6uNcec1E3Hl/X1w9FDbdduycBbBmAnHcVQ0+U=;
+	b=HH8Lm65kfIFKLibz1lLbrdItPWu8b56cAmInBnIdqwcC5hkSmhQAgPEx5ySY0brFYD
+	baKNhW1BQPYQSvWx//JtNHUzXjZg2A1mR/4Sq5JP6y4m3iChSq4ctFn3poMjBCjfCxv8
+	BywLdrF9u+TXpNLQ5lqI86JL3HewoNf7pA6Uhy6yOIUkE4iytPoSts8u3daPXRjP8aLm
+	tBKNj8XtTXp0FXMHvfPvgrEIrPmFxBP2oBArolYvLQUtdNFRtMJ6HwqdyC9IBLblbli7
+	6SywusdE9331euqnG8k7+2Twnl3aRUsG8TLa1VuHUfCAY5mv13Vns5ZjQ3nt9NgCXRZP
+	CGiA==
+X-Gm-Message-State: AE9vXwM3XdLTwbLimulb9O52Sby7wg9vlskWDcWEmwkaC6I8STOsKc/at6xvKB8GB+XOcg==
+X-Received: by 10.28.166.196 with SMTP id p187mr2396837wme.121.1474454379768; 
+	Wed, 21 Sep 2016 03:39:39 -0700 (PDT)
+Received: from resin (host86-179-71-51.range86-179.btcentralplus.com.
+	[86.179.71.51]) by smtp.gmail.com with ESMTPSA id
+	f15sm31875091wmf.8.2016.09.21.03.39.38 for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Wed, 21 Sep 2016 03:39:38 -0700 (PDT)
+Date: Wed, 21 Sep 2016 11:39:33 +0100
+From: Andrei Gherzan <andrei@gherzan.ro>
+To: yocto@yoctoproject.org
+Message-ID: <20160921103933.GA2403@resin>
+References: <20160916165436.13766-1-andrei@gherzan.ro>
 MIME-Version: 1.0
-Received: by 10.176.65.130 with HTTP; Wed, 21 Sep 2016 01:32:54 -0700 (PDT)
-In-Reply-To: <31a906ff-24af-7ec6-26a6-a10519317428@mlbassoc.com>
-References: <1474442792-27579-1-git-send-email-gary@mlbassoc.com>
-	<CALbNGRTDF3YdM5P+kt2xDo+9RwiiE4GzfKMRbwC_VKN7tYk=OA@mail.gmail.com>
-	<31a906ff-24af-7ec6-26a6-a10519317428@mlbassoc.com>
-From: =?UTF-8?Q?Andreas_M=C3=BCller?= <schnitzeltony@googlemail.com>
-Date: Wed, 21 Sep 2016 10:32:54 +0200
-Message-ID: <CALbNGRQEcHQmwie4UQC+0DQXzHpZ_ecSh8sA_jbvdiprTuqCzA@mail.gmail.com>
-To: Gary Thomas <gary@mlbassoc.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi][PATCH] sdcard_image-rpi.bbclass: Fix sdimg generation
+In-Reply-To: <20160916165436.13766-1-andrei@gherzan.ro>
+User-Agent: Mutt/1.7.0 (2016-08-17)
+Subject: Re: [meta-raspberrypi][PATCH 1/1] bcm2835: Compile examples correct LDFLAGS to avoid HASH errors
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,64 +69,80 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Sep 2016 08:32:58 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 21 Sep 2016 10:39:46 -0000
+X-Groupsio-MsgNum: 32017
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="mP3DRpeJDSE+ciuQ"
+Content-Disposition: inline
 
-On Wed, Sep 21, 2016 at 9:58 AM, Gary Thomas <gary@mlbassoc.com> wrote:
-> On 2016-09-21 09:54, Andreas M=C3=BCller wrote:
->>
->> On Wed, Sep 21, 2016 at 9:26 AM, Gary Thomas <gary@mlbassoc.com> wrote:
->>>
->>> Track changes in OE-core variable names - needed to be able to
->>> build an rpi-sdimg image file.
->>>
->>> Signed-off-by: Gary Thomas <gary@mlbassoc.com>
->>> ---
->>>  classes/sdcard_image-rpi.bbclass | 4 ++--
->>>  1 file changed, 2 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/classes/sdcard_image-rpi.bbclass
->>> b/classes/sdcard_image-rpi.bbclass
->>> index 388398b..ad245f3 100644
->>> --- a/classes/sdcard_image-rpi.bbclass
->>> +++ b/classes/sdcard_image-rpi.bbclass
->>> @@ -47,7 +47,7 @@ IMAGE_ROOTFS_ALIGNMENT =3D "4096"
->>>
->>>  # Use an uncompressed ext3 by default as rootfs
->>>  SDIMG_ROOTFS_TYPE ?=3D "ext3"
->>> -SDIMG_ROOTFS =3D
->>> "${DEPLOY_DIR_IMAGE}/${IMAGE_NAME}.rootfs.${SDIMG_ROOTFS_TYPE}"
->>> +SDIMG_ROOTFS =3D
->>> "${IMGDEPLOYDIR}/${IMAGE_NAME}.rootfs.${SDIMG_ROOTFS_TYPE}"
->>>
->>>  IMAGE_DEPENDS_rpi-sdimg =3D " \
->>>                         parted-native \
->>> @@ -59,7 +59,7 @@ IMAGE_DEPENDS_rpi-sdimg =3D " \
->>>                         "
->>>
->>>  # SD card image name
->>> -SDIMG =3D "${DEPLOY_DIR_IMAGE}/${IMAGE_NAME}.rootfs.rpi-sdimg"
->>> +SDIMG =3D "${IMGDEPLOYDIR}/${IMAGE_NAME}.rootfs.rpi-sdimg"
->>>
->>>  # Compression method to apply to SDIMG after it has been created.
->>> Supported
->>>  # compression formats are "gzip", "bzip2" or "xz". The original
->>> .rpi-sdimg file
->>> --
->>> 2.7.4
->>>
->> Isn't that the same as [1]?
->>
->> [1]
->> https://lists.yoctoproject.org/pipermail/yocto/2016-September/031961.htm=
-l
->
->
-> Yes, it looks like it is, but that one is still not in master :-(
-> so I thought I'd give it a nudge!
->
-Yes - there are many things missing in master e.g VC4...
+--mP3DRpeJDSE+ciuQ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Andreas
+On Fri, Sep 16, 2016 at 05:54:36PM +0100, Andrei Gherzan wrote:
+> ERROR: bcm2835-1.50-r0 do_package_qa: QA Issue: No GNU_HASH in the elf binary:
+> 'build-rpi-master/tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/bcm2835/1.50-r0/packages-split/bcm2835-tests/usr/lib/bcm2835/spi'
+> No GNU_HASH in the elf binary:
+> 'build-rpi-master/tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/bcm2835/1.50-r0/packages-split/bcm2835-tests/usr/lib/bcm2835/event'
+> No GNU_HASH in the elf binary:
+> 'build-rpi-master/tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/bcm2835/1.50-r0/packages-split/bcm2835-tests/usr/lib/bcm2835/gpio'
+> No GNU_HASH in the elf binary:
+> 'build-rpi-master/tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/bcm2835/1.50-r0/packages-split/bcm2835-tests/usr/lib/bcm2835/i2c'
+> No GNU_HASH in the elf binary:
+> 'build-rpi-master/tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/bcm2835/1.50-r0/packages-split/bcm2835-tests/usr/lib/bcm2835/blink'
+> No GNU_HASH in the elf binary:
+> 'build-rpi-master/tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/bcm2835/1.50-r0/packages-split/bcm2835-tests/usr/lib/bcm2835/spin'
+> No GNU_HASH in the elf binary:
+> 'build-rpi-master/tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/bcm2835/1.50-r0/packages-split/bcm2835-tests/usr/lib/bcm2835/input'
+> No GNU_HASH in the elf binary:
+> 'build-rpi-master/tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/bcm2835/1.50-r0/packages-split/bcm2835-tests/usr/lib/bcm2835/pwm'
+> [ldflags]
+>
+> Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
+> ---
+>  recipes-devtools/bcm2835/bcm2835_1.50.bb | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/recipes-devtools/bcm2835/bcm2835_1.50.bb b/recipes-devtools/bcm2835/bcm2835_1.50.bb
+> index 634dac8..9cf6f48 100644
+> --- a/recipes-devtools/bcm2835/bcm2835_1.50.bb
+> +++ b/recipes-devtools/bcm2835/bcm2835_1.50.bb
+> @@ -21,7 +21,7 @@ do_compile_append() {
+>      # Now compiling the examples provided by the package
+>      mkdir -p ${B}/examples
+>      for file in `ls ${S}/examples`; do
+> -        ${CC} ${S}/examples/${file}/${file}.c -o ${B}/examples/${file} -Bstatic -L${B}/src -lbcm2835 -I${S}/src
+> +        ${CC} ${LDFLAGS} ${S}/examples/${file}/${file}.c -o ${B}/examples/${file} -Bstatic -L${B}/src -lbcm2835 -I${S}/src
+>      done
+>  }
+>
+> --
+> 2.9.3
+>
 
+Merged to master.
+
+--
+Andrei Gherzan
+
+--mP3DRpeJDSE+ciuQ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIcBAEBCAAGBQJX4mNlAAoJEHO76Gt+erfPd8wP/1FX27St1/VF2WeFinbdTN+s
+rKiEw7a5qmsumMso3Og0drqJHH/yIJ3NK/GHo4SnBkAJ64PBvUTckpSCBZcVycsS
+GTShEY4kHhU2nW6lRwzzAgzXTasFWdLaz+krHI69jDuX/QMV4CTFgRqXmzW+nZzK
+PAsot+3UlraXW1aAOESnVq5DXES8dA1XhydsmTbihSfSBJMUXEyu/KzKXc7VJfAI
+s4V7QAW+KWHIk0PxPg4HJX2J/VZzopbory4pwcoaWvFTgf/xgJ6n6wANo9pPuzhf
+CyOpU2h8D6NJSxhtDDdioRO4QSQ6baOXI4bxV7pwvEsaFVGneFrJ8/dXhT4MvHQQ
+t2kMXQBenR/Pt/3qCWJfYWlaZEEhJj4oFK9rjUBryoL28hqwvWGS7fujcaYt7Prm
+k+Ns0hmA8VCyx8xLlQ4VQUYE0qgOHdxDLwACy/QObEzIYI/eZ9VF5kBERc1IWOdo
+GTKsBaRH/ixj7dCIGQVsrf8bqRbz1/fAMQ9m/fWQLA7h20z1YDdPoOWzwX7YHThE
+dED+eBWLS+IBNo82w5/+OzfClrNIaM/lOCvmAxLyYwfafXD2aSav8Cvz19RHdBWI
+zo1Ivq3VkJE6nhyunvNsYNJDL00PcWcFmcrGLkrQ4ipglVQugCc2sAOTMauC6eL0
+D1znJoSYVTSXO+ExPK87
+=IBqH
+-----END PGP SIGNATURE-----
+
+--mP3DRpeJDSE+ciuQ--
