@@ -1,54 +1,68 @@
-Return-Path: <juro.bystricky@intel.com>
+Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C1162E00444; Wed, 21 Sep 2016 09:14:08 -0700 (PDT)
+	id 39E5DE00509; Wed, 21 Sep 2016 09:42:06 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [74.125.82.67 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.82.67 listed in dnsbl.sorbs.net]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EA791E00404
-	for <yocto@yoctoproject.org>; Wed, 21 Sep 2016 09:14:06 -0700 (PDT)
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-	by fmsmga105.fm.intel.com with ESMTP; 21 Sep 2016 09:14:06 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.30,374,1470726000"; d="scan'208";a="11701832"
-Received: from orsmsx103.amr.corp.intel.com ([10.22.225.130])
-	by fmsmga006.fm.intel.com with ESMTP; 21 Sep 2016 09:14:06 -0700
-Received: from orsmsx114.amr.corp.intel.com (10.22.240.10) by
-	ORSMSX103.amr.corp.intel.com (10.22.225.130) with Microsoft SMTP Server
-	(TLS) id 14.3.248.2; Wed, 21 Sep 2016 09:14:05 -0700
-Received: from orsmsx112.amr.corp.intel.com ([169.254.3.16]) by
-	ORSMSX114.amr.corp.intel.com ([169.254.8.240]) with mapi id
-	14.03.0248.002; Wed, 21 Sep 2016 09:14:05 -0700
-From: "Bystricky, Juro" <juro.bystricky@intel.com>
-To: Zhenhua Luo <zhenhua.luo@nxp.com>, Trevor Woerner <twoerner@gmail.com>,
-	Khem Raj <raj.khem@gmail.com>
-Thread-Topic: [yocto] Cortex-M4 build support
-Thread-Index: AdIKb7GAmo83mHHiRt+SgpS1CJ5BJQAcqi8AAIL6SwAAE6+TAAA4mBoAAAW6IIAAZEhRgADv/yAAACa4AkA=
-Date: Wed, 21 Sep 2016 16:14:04 +0000
-Message-ID: <6E51916E4A1F32428260031F4C7CD2B611894C3A@ORSMSX112.amr.corp.intel.com>
-References: <DB6PR0401MB26303ED7C7F9D20C58F0A218EEFA0@DB6PR0401MB2630.eurprd04.prod.outlook.com>
-	<1da73c18-5295-5524-4b80-05269193b9d8@windriver.com>
-	<DB6PR0401MB26304EA907417D20A2333B56EEFF0@DB6PR0401MB2630.eurprd04.prod.outlook.com>
-	<8f11dcb6-91bc-c5c9-f79c-32e0fb684011@windriver.com>
-	<140dc7c6-d500-11a2-026f-54bdc5a7dc0c@reliableembeddedsystems.com>
-	<88AA93DF-A9F2-4C96-A2BD-8B8C781F6172@gmail.com>
-	<20160915200713.GA19012@openSUSE-i7.site>
-	<DB6PR0401MB2630746035CC5851C1B64BE6EEF70@DB6PR0401MB2630.eurprd04.prod.outlook.com>
-In-Reply-To: <DB6PR0401MB2630746035CC5851C1B64BE6EEF70@DB6PR0401MB2630.eurprd04.prod.outlook.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wm0-f67.google.com (mail-wm0-f67.google.com [74.125.82.67])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2761FE00404
+	for <yocto@yoctoproject.org>; Wed, 21 Sep 2016 09:42:03 -0700 (PDT)
+Received: by mail-wm0-f67.google.com with SMTP id l132so9566847wmf.1
+	for <yocto@yoctoproject.org>; Wed, 21 Sep 2016 09:42:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-disposition:in-reply-to:user-agent;
+	bh=RALmmpIz7TwfOCXn5FEvJlrjM0vMvP7kav323XmEI2k=;
+	b=ShhDzX+egi/gnKF5V9KVw9SUYDaSNURKVwVBjpzPHG4PX2r+TSW9Viovz/PhNaUO/S
+	BztasL7A9yozQmyvXoLep16w5uTZNEEpgg3JG8ZyxwLXN4vHU1HMIZWKdNAbz6kpkZpC
+	+NBg7UiQW7uIAnSYxuM23CYwOIbt0oxx8QYVSEAzFMyCxJHtWz8x//srBrAiLP2w611F
+	7FxKtRQV5dUHj+ThsF9p3zGqwhVT4kV1abT4ObZ2f/dVNJjUFUq/i0ECcBa+PbTFXqi3
+	kgXU8QaGJ1SSOVf4IOnyvojytWaM7v5v6Ipa4Qa8VRPMREvVArpVmnCLvdEUxfpcqDZn
+	FYRw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	:mime-version:content-disposition:in-reply-to:user-agent;
+	bh=RALmmpIz7TwfOCXn5FEvJlrjM0vMvP7kav323XmEI2k=;
+	b=P3sB9qgZFjv4VpJ4bUVUmYRrCIF/gXD2I6Lk6u0Yq7mE5gDH+331cUUA19TI2PdsvJ
+	7gVbcukD3ITyVuT5ZYeIsnkOLlbob9yMWl2qLx0RHQKyeSSjnLAgvu72V60/F9G4H6gt
+	bpM+UeSvf3sfnEnGDhsk3y9YRvtGJa3tGsjNsGOsRbbX9hwg5ExqnmLGLDXWdOveTZEb
+	z+CQnVJpqN/zxH3l3ZSiFL2aETNiE6X/mb1H3qUns5nAvb2lqrlyjkXgkBYHF96LVDFi
+	pgrK9hNUNZkx2InTizUi6E4vLy44OfTjPQ6qjRJBmkUEvkB7F2HXiiO4aUcNO7us7Asz
+	kSBQ==
+X-Gm-Message-State: AE9vXwOLjsWuIQFGniOvPB158xB2DABFonbztn+pFdwe97pKF71UmflFXexX2qAppatcWQ==
+X-Received: by 10.28.174.81 with SMTP id x78mr3905944wme.109.1474476122695;
+	Wed, 21 Sep 2016 09:42:02 -0700 (PDT)
+Received: from resin (host86-179-71-51.range86-179.btcentralplus.com.
+	[86.179.71.51]) by smtp.gmail.com with ESMTPSA id
+	bk7sm34459571wjc.36.2016.09.21.09.42.01
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Wed, 21 Sep 2016 09:42:01 -0700 (PDT)
+Date: Wed, 21 Sep 2016 17:41:59 +0100
+From: Andrei Gherzan <andrei@gherzan.ro>
+To: Khem Raj <raj.khem@gmail.com>
+Message-ID: <20160921164159.GC32726@resin>
+References: <20160812010608.31182-1-raj.khem@gmail.com>
+	<20160812010608.31182-17-raj.khem@gmail.com>
 MIME-Version: 1.0
-Cc: "robert.berger@gmane" <gmane@reliableembeddedsystems.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"yocto-EtnWKYl6rD/WsZ/bQMPhNw@public.gmane.org"
-	<public-yocto-EtnWKYl6rD/WsZ/bQMPhNw@plane.gmane.org>
-Subject: Re: Cortex-M4 build support
+In-Reply-To: <20160812010608.31182-17-raj.khem@gmail.com>
+User-Agent: Mutt/1.7.0 (2016-08-17)
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-raspberrypi][PATCH 17/23] linux-raspberrypi_4.4: upgrade to 4.4.16
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -60,86 +74,73 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Sep 2016 16:14:08 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Wed, 21 Sep 2016 16:42:06 -0000
+X-Groupsio-MsgNum: 32026
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="hYooF8G/hrfVAmum"
+Content-Disposition: inline
+
+--hYooF8G/hrfVAmum
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-You can also have a look at the Zephyr project https://www.zephyrproject.or=
-g/
-Zephyr Project is a small, scalable real-time operating system for use on r=
-esource-constrained systems supporting multiple architectures.
-It does come with Cortex m0,m1,m2,m3,m4 baremetal Yocto based toolchain.
-https://gerrit.zephyrproject.org/r/p/meta-zephyr-sdk.git
-
-> -----Original Message-----
-> From: yocto-bounces@yoctoproject.org [mailto:yocto-
-> bounces@yoctoproject.org] On Behalf Of Zhenhua Luo
-> Sent: Tuesday, September 20, 2016 7:39 AM
-> To: Trevor Woerner <twoerner@gmail.com>; Khem Raj <raj.khem@gmail.com>
-> Cc: robert.berger@gmane <gmane@reliableembeddedsystems.com>;
-> yocto@yoctoproject.org; yocto-EtnWKYl6rD/WsZ/bQMPhNw@public.gmane.org
-> <public-yocto-EtnWKYl6rD/WsZ/bQMPhNw@plane.gmane.org>
-> Subject: Re: [yocto] Cortex-M4 build support
->=20
-> Thank you so much for your suggestion, Trevor.
->=20
->=20
-> Best Regards,
->=20
-> Zhenhua
->=20
-> > -----Original Message-----
-> > From: yocto-bounces@yoctoproject.org [mailto:yocto-
-> > bounces@yoctoproject.org] On Behalf Of Trevor Woerner
-> > Sent: Friday, September 16, 2016 4:07 AM
-> > To: Khem Raj <raj.khem@gmail.com>
-> > Cc: robert.berger@gmane <gmane@reliableembeddedsystems.com>;
-> > yocto@yoctoproject.org; yocto-
-> > EtnWKYl6rD/WsZ/bQMPhNw@public.gmane.org <public-yocto-
-> > EtnWKYl6rD/WsZ/bQMPhNw@plane.gmane.org>
-> > Subject: Re: [yocto] Cortex-M4 build support
-> >
-> > On Tue 2016-09-13 @ 01:15:49 PM, Khem Raj wrote:
-> > >
-> > > > On Sep 13, 2016, at 10:31 AM, robert.berger@gmane
-> > <gmane@reliableembeddedsystems.com> wrote:
-> > > >
-> > > > Hi,
-> > > >
-> > > > Shouldn't it be possible to build a bare-metal Cortex-M4 compiler
-> with the YP
-> > and build a small RTOS like FreeRTOS with this compiler?
-> > > >
-> > >
-> > > yes it should be possible. you can also look into meta-ti where I
-> > > think they try to have their DSP toolchain build some code using OE
-> > > recipe model
-> >
-> > Perhaps other things to consider (I'm not entirely sure if these apply,
-> but maybe
-> > worth investigating?)
-> >
-> > The ROS project has a meta layer:
-> > https://layers.openembedded.org/layerindex/branch/master/layer/meta-ros=
-/
-> >
-> > If your CortexM board has enough RAM (e.g. http://www.emcraft.com/) you
-> > can run (a version of) Linux (uClinux) right on your CortexM target:
-> > https://github.com/EmcraftSystems/linux-emcraft
-> >
-> > The Emcraft website appears to provide Linux support for NXP-based
-> CortexM
-> > boards too: http://www.emcraft.com/products/456
-> > http://www.emcraft.com/products/88
-> > --
-> > _______________________________________________
-> > yocto mailing list
-> > yocto@yoctoproject.org
-> > https://lists.yoctoproject.org/listinfo/yocto
+On Thu, Aug 11, 2016 at 06:06:02PM -0700, Khem Raj wrote:
+> Signed-off-by: Khem Raj <raj.khem@gmail.com>
+> ---
+>  recipes-kernel/linux/linux-raspberrypi_4.4.bb | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>
+> diff --git a/recipes-kernel/linux/linux-raspberrypi_4.4.bb b/recipes-kern=
+el/linux/linux-raspberrypi_4.4.bb
+> index 8fe5330..9a49dc1 100644
+> --- a/recipes-kernel/linux/linux-raspberrypi_4.4.bb
+> +++ b/recipes-kernel/linux/linux-raspberrypi_4.4.bb
+> @@ -1,8 +1,8 @@
+>  FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}-${PV}:"
+>
+> -LINUX_VERSION ?=3D "4.4.13"
+> +LINUX_VERSION ?=3D "4.4.16"
+>
+> -SRCREV =3D "680be5e27a9593cf26079c6e5744a04cc2809d13"
+> +SRCREV =3D "cff67c7e03f4333149f2a8f6eafd3bc44475114a"
+>  SRC_URI =3D "git://github.com/raspberrypi/linux.git;protocol=3Dgit;branc=
+h=3Drpi-4.4.y \
+>             file://0001-fix-dtbo-rules.patch \
+>             file://0002-vc4-ioctl-rendering-allow.patch \
+> --
+> 2.9.2
+>
 > --
 > _______________________________________________
 > yocto mailing list
 > yocto@yoctoproject.org
 > https://lists.yoctoproject.org/listinfo/yocto
 
+Merged paches 17-24 form this set. All the rest where already in master
+=66rom previous merged. Thanks.
+
+--
+Andrei Gherzan
+
+--hYooF8G/hrfVAmum
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIcBAEBCAAGBQJX4rhXAAoJEHO76Gt+erfP2AcQAI7cPfIyQeNHY7Z+9O/Z7DxM
+USP9VXbuQH928O4p3LJJWeASAiQwEBX/Lf5vonNhfBtD2/iefYw4r05pn5SDPMZ8
+qcrMwgXZPeRbiM8Sbh9Z3oHm2ey4/WPs87cj8HHdWOZjsv+OrlNB9ryKi+PCaNij
+c1od6//YJhEGSMtwAEYh2EJHdPPKYAAa1cxEbac59SBU83AF9xPa+h5D3lyUqyGa
+UXMZnv3j1P5TC23j5gjbs2jc+nf7QCc4NhdHVLmcuDga+5W5O7L5xB0ba/0bPcRE
+MkxXhklr0JY2lUBsmdiwVeRa+naYNK4OORKSaEJrA/+ApHvKGwVD3Xd+x/IIpY6y
+ihM5U++RxDmcHHlW9pAzQN8ILicrVUWOg6sSkFj7YLAOwHw7QZ2kflJWH250xNGD
+qybXhr4Nn+OFV0KevpSUzkdrh6FSJuypN+gVk+YUHy7L0rxlx3wcDfF4xkGhd57/
+5tKNRUJEmPdZ6wyh0u4pSkRkHtomyPDJXeWos0gt5jc6SHZ6Cysd/L5nhWVLQG2W
+GlIFpXljHSZT7/mTjd8qUWSD2fnZ8dGu4rR2REMT3HVsRohpuczacP58QFGcFVeT
+Upxfi0H6mWfWHvcWo7b6BNseujxeELYi0Ys6+pc30PD336wOx+Kr1J1sozH3roO8
+1xouWZNrwQm9yoqc7Htz
+=g3bo
+-----END PGP SIGNATURE-----
+
+--hYooF8G/hrfVAmum--
