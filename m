@@ -1,32 +1,29 @@
 Return-Path: <edwin.plauchu.camacho@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E6F55E00C97; Wed, 21 Sep 2016 17:47:04 -0700 (PDT)
+	id 83A76E00566; Wed, 21 Sep 2016 17:48:25 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.20 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BF9B5E00529
-	for <yocto@yoctoproject.org>; Wed, 21 Sep 2016 17:47:00 -0700 (PDT)
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-	by orsmga101.jf.intel.com with ESMTP; 21 Sep 2016 17:47:01 -0700
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 17043E00566
+	for <yocto@yoctoproject.org>; Wed, 21 Sep 2016 17:48:11 -0700 (PDT)
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+	by orsmga104.jf.intel.com with ESMTP; 21 Sep 2016 17:48:11 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.30,376,1470726000"; d="scan'208";a="11921608"
+X-IronPort-AV: E=Sophos;i="5.30,376,1470726000"; d="scan'208";a="171734613"
 Received: from pianodaemon-contraption.zpn.intel.com ([10.219.128.75])
-	by fmsmga005.fm.intel.com with ESMTP; 21 Sep 2016 17:46:59 -0700
+	by fmsmga004.fm.intel.com with ESMTP; 21 Sep 2016 17:48:10 -0700
 From: Edwin Plauchu <edwin.plauchu.camacho@linux.intel.com>
 To: yocto@yoctoproject.org
-Date: Wed, 21 Sep 2016 19:48:12 -0500
-Message-Id: <20160922004812.10630-1-edwin.plauchu.camacho@linux.intel.com>
+Date: Wed, 21 Sep 2016 19:49:25 -0500
+Message-Id: <20160922004925.10681-1-edwin.plauchu.camacho@linux.intel.com>
 X-Mailer: git-send-email 2.9.3
 Cc: Edwin Plauchu <edwin.plauchu.camacho@intel.com>
-Subject: [ptest-runner][PATCH V4] Added error coverage to support when launching child process fails.
+Subject: [ptest-runner][PATCH V5] Added error coverage to support when launching child process fails.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,7 +35,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 22 Sep 2016 00:47:05 -0000
+X-List-Received-Date: Thu, 22 Sep 2016 00:48:25 -0000
 
 From: Edwin Plauchu <edwin.plauchu.camacho@intel.com>
 
@@ -47,7 +44,7 @@ ptest are not launched.
 
 [YOCTO #9752]
 
-Signed-off-by: Edwin Plauchu <edwin.plauchu.camacho@intel.com>
+Signed-off-by: Edwin Plauchu <edwin.plauchu.camacho@linux.intel.com>
 ---
  tests/data/fail/ptest/run-ptest |   0
  tests/utils.c                   | 149 +++++++++++++++++++++++++++++++---------
