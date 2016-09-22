@@ -1,6 +1,6 @@
 Return-Path: <schnitzeltony@googlemail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 39F8EE00D0A; Wed, 21 Sep 2016 22:48:11 -0700 (PDT)
+	id 3A9A3E00CFC; Wed, 21 Sep 2016 22:48:11 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -22,49 +22,49 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	no *      trust
 	*      [74.125.82.68 listed in list.dnswl.org]
 Received: from mail-wm0-f68.google.com (mail-wm0-f68.google.com [74.125.82.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1A69DE00BE7
-	for <yocto@yoctoproject.org>; Wed, 21 Sep 2016 22:48:06 -0700 (PDT)
-Received: by mail-wm0-f68.google.com with SMTP id w84so12084891wmg.0
-	for <yocto@yoctoproject.org>; Wed, 21 Sep 2016 22:48:06 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D60A9E00CE1
+	for <yocto@yoctoproject.org>; Wed, 21 Sep 2016 22:48:08 -0700 (PDT)
+Received: by mail-wm0-f68.google.com with SMTP id w84so12084990wmg.0
+	for <yocto@yoctoproject.org>; Wed, 21 Sep 2016 22:48:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=googlemail.com; s=20120113;
 	h=from:to:subject:date:message-id:in-reply-to:references:mime-version
 	:content-transfer-encoding;
-	bh=2Ui0b5VQku08/hg75d3yZM3bq8FeGLrYwMIgpAabw4M=;
-	b=rpbyAfeFLa4zF9uRFlqgUOOWIekDYJr7ben07vFuKLciHHa08ls/aQpkYK3vgOwM1l
-	/xjsq8+LG08pyDKWr84cdmirPajRNloXNNwX2mmXEd+BZn/aUlvkYWOJGdmLGciVBErj
-	UHAulatuni+N6YCnNByOuVzM30vmgm1vsyivW5OoUEdssmMOS1QbqtFI2ULp5LkTNark
-	hLNr733fMsPUoWYkgoLtu8JEJWAlSk7upyNqsZC4iJjQ4/OTivXIJ+xa6Jw8OlEpTv4h
-	BjcGBwjIU76MW2F8rr0HFa+O+XMkwLoRwcmv4kFMC/AeSC6YnVqc2n48G8QOpyT/wia4
-	lewQ==
+	bh=uWSi/Rsrofi6qLu4MqsioUF39d9Jq+IBZqfSsUfxplk=;
+	b=Rb9GVZiMPrB5HuDIqZe1nwaCjlw0xTb/xmz/aXOfyPjI+ynnNaWmurvxH1NDgVPl+s
+	eTna+ALICRPTIkrerZpHOq3/1d5/OOs7Xa+OqvRxRNJ3niEBXCC5tYGKJxDs28RA7gbX
+	QMN4hz5h6+VqlT/3khckn5Qwj6/ulegh7wTWaoPhRoaCsS730fkVp2q9F2CbThpqufhc
+	IRYz+pbxmF6MMfUgCBom0RQjSqXkiFoQlBfZX7EFLMvc/yUt8BS/Zb3fA1YjT5LhU5CI
+	+/P4uk7Tbyfb5XJ4Y1rygVDcnHLUhbskM4POtzKGKIYpLqCSGviS/7yABjBNoKqp+BPI
+	BM6g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
 	:references:mime-version:content-transfer-encoding;
-	bh=2Ui0b5VQku08/hg75d3yZM3bq8FeGLrYwMIgpAabw4M=;
-	b=OYaplUBP3GJ0J7vENXFGRBJDllIggE/T87TzgmKHRfv4X8A6VfbbHh/NNz12vljIAF
-	+nCzGSBSQujXSbt2mHEtQgtI7JTrgnibWsksfFt+a4o4rc9d0Yr1wCWo8SMy+0NuOYve
-	2cGYY9V8TU2ai/qOGpLkt5CP5IMtRpt3AkkQiNk8/3cwiUPVbGXlslxR5Tmha9buUdvA
-	Yw74EnWuFL+W0lQG3giKRJgxP2ouQfjjlbTor2X0dkXSGNVjaBfFfPykSDtR5vOcyJai
-	TNflfgHWFiPzj0iA9/0rzRcJgkzP39Pw41tcizkgKosDNI7nJzBBghQRoKWQzjdF3Hr/
-	0x7Q==
-X-Gm-Message-State: AE9vXwPjBSjRr+cEINKji1P0R6kY79gllKyVE0/ggwZqvZaQbJWcR3lrNzv4EzOzIHqBUQ==
-X-Received: by 10.28.91.12 with SMTP id p12mr583159wmb.34.1474523285703;
-	Wed, 21 Sep 2016 22:48:05 -0700 (PDT)
+	bh=uWSi/Rsrofi6qLu4MqsioUF39d9Jq+IBZqfSsUfxplk=;
+	b=LVcpB2j9NX/7cHhXjPNPXVnEZ1rDfIFzGRdfInt1p0nHX41p2LotfuuozPvKLqTEJ9
+	I9OHTolKwnMC11wUuXSYp/XJ/ATLHwimZyVXyyfH1CgtC2wA4QWtMYKr7QtLZwXwk84h
+	oTnTdqRKHsfvEs1Z+DQK1uLcl3q/zkeB0brg7pTThWzeJoROD1XaGo14nCNPDoGLSl6W
+	7r8gujkbWBCgVmrN3SmKnQeQVA3bKj5DkR8I7v+5uhJP6gmpuV2Nnp9jyGMOK2pJSx3r
+	XX/6WhY/yjXBI01cvqgPErBk/h3kBib3wmIbukkJlqa9SW3mzsfrm7aqA5+rvxyewLV5
+	eKcQ==
+X-Gm-Message-State: AE9vXwMz6q1Bw/qr+YOAJ3/3yqc2kpJgdubXEQGQ3MUQNeK8lLHmwst6AorAIMNGCFHlyw==
+X-Received: by 10.28.203.196 with SMTP id b187mr6003718wmg.120.1474523287819; 
+	Wed, 21 Sep 2016 22:48:07 -0700 (PDT)
 Received: from localhost.localdomain (p4FDF0CCA.dip0.t-ipconnect.de.
 	[79.223.12.202]) by smtp.googlemail.com with ESMTPSA id
-	n131sm35913003wmd.3.2016.09.21.22.48.04 for <yocto@yoctoproject.org>
+	n131sm35913003wmd.3.2016.09.21.22.48.07 for <yocto@yoctoproject.org>
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 21 Sep 2016 22:48:05 -0700 (PDT)
+	Wed, 21 Sep 2016 22:48:07 -0700 (PDT)
 From: =?UTF-8?q?Andreas=20M=C3=BCller?= <schnitzeltony@googlemail.com>
 To: yocto@yoctoproject.org
-Date: Thu, 22 Sep 2016 07:47:50 +0200
-Message-Id: <1474523274-3883-3-git-send-email-schnitzeltony@googlemail.com>
+Date: Thu, 22 Sep 2016 07:47:53 +0200
+Message-Id: <1474523274-3883-6-git-send-email-schnitzeltony@googlemail.com>
 X-Mailer: git-send-email 2.5.5
 In-Reply-To: <1474523274-3883-1-git-send-email-schnitzeltony@googlemail.com>
 References: <1474523274-3883-1-git-send-email-schnitzeltony@googlemail.com>
 MIME-Version: 1.0
-Subject: [meta-raspberrypi][PATCH 2/6] xorg align for vc4
+Subject: [meta-raspberrypi][PATCH 5/6] eglinfo-x11: align to VC4
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -82,25 +82,17 @@ Content-Transfer-Encoding: 8bit
 
 Signed-off-by: Andreas Müller <schnitzeltony@googlemail.com>
 ---
- recipes-graphics/xorg-xserver/xserver-xorg_%.bbappend | 9 +++++++++
- 1 file changed, 9 insertions(+)
- create mode 100644 recipes-graphics/xorg-xserver/xserver-xorg_%.bbappend
+ recipes-graphics/eglinfo/eglinfo-x11_%.bbappend | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/recipes-graphics/xorg-xserver/xserver-xorg_%.bbappend b/recipes-graphics/xorg-xserver/xserver-xorg_%.bbappend
-new file mode 100644
-index 0000000..a5a6af3
---- /dev/null
-+++ b/recipes-graphics/xorg-xserver/xserver-xorg_%.bbappend
-@@ -0,0 +1,9 @@
-+OPENGL_PKGCFG = "${@bb.utils.contains('MACHINE_FEATURES', 'vc4graphics', 'dri3 xshmfence glamor', '', d)}"
-+
-+# slightly modified to oe-core's default: add ${OPENGL_PKGCFG}
-+PACKAGECONFIG_rpi ?= " \
-+    dri2 udev ${XORG_CRYPTO} \
-+    ${@bb.utils.contains('DISTRO_FEATURES', 'opengl', 'dri glx ${OPENGL_PKGCFG}', '', d)} \
-+    ${@bb.utils.contains("DISTRO_FEATURES", "wayland", "xwayland", "", d)} \
-+    ${@bb.utils.contains("DISTRO_FEATURES", "systemd", "systemd", "", d)} \
-+"
+diff --git a/recipes-graphics/eglinfo/eglinfo-x11_%.bbappend b/recipes-graphics/eglinfo/eglinfo-x11_%.bbappend
+index fd32abc..2d720ba 100644
+--- a/recipes-graphics/eglinfo/eglinfo-x11_%.bbappend
++++ b/recipes-graphics/eglinfo/eglinfo-x11_%.bbappend
+@@ -1,2 +1,2 @@
+-EGLINFO_DEVICE_rpi  = "raspberrypi"
++EGLINFO_DEVICE_rpi  = "${@bb.utils.contains('MACHINE_FEATURES', 'vc4graphics', 'generic', 'raspberrypi', d)}"
+ ASNEEDED = ""
 -- 
 2.5.5
 
