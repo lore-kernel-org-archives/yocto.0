@@ -1,6 +1,6 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <schnitzeltony@googlemail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 03D1BE00B9C; Wed, 21 Sep 2016 21:33:27 -0700 (PDT)
+	id 2EA96E00CFC; Wed, 21 Sep 2016 22:48:09 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,12 +8,9 @@ X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (akuster808[at]gmail.com)
+	mail provider *      (schnitzeltony[at]googlemail.com)
 	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.220.68 listed in dnsbl.sorbs.net]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.220.68 listed in list.dnswl.org]
+	*      [74.125.82.65 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -21,55 +18,51 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pa0-f68.google.com (mail-pa0-f68.google.com
-	[209.85.220.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A5264E00444
-	for <yocto@yoctoproject.org>; Wed, 21 Sep 2016 21:33:24 -0700 (PDT)
-Received: by mail-pa0-f68.google.com with SMTP id hi10so3107024pac.2
-	for <yocto@yoctoproject.org>; Wed, 21 Sep 2016 21:33:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=subject:to:references:from:message-id:date:user-agent:mime-version
-	:in-reply-to:content-transfer-encoding;
-	bh=BiOpll6dgc152NUSFT1/YaoImjJfHMuMcCIGjVV4MNM=;
-	b=QeyXKwboWX90QqRE5QvifeWfx53A7sWZy7CVNqG7FYExhrLkEJY7y/QviNDFZg0hp1
-	KRTPrtr3QTE0inILkbjqXUbfzD+8ehgkxe7dp5nC5ezJslycKAGq9KiXDb6buCXaVCB7
-	jPFWp/IZB0EzWwihynZFSIehyYjF6HlTOUuTWj7fRIEl9OGXAup0WdL/9PX3zui5/j6d
-	SJTJ9vDJK7HzE4v82qsgrcZoWkN3ZjS7ZAqBRHN76O0jR3eklpBR3DEl5iLndnDA0epw
-	cZ2JAZWVfT9OvARqXaVSfQ6VYt9YWi5VQmPyeU3yENiH53arF3D5TrMHjqWjVa+ylJKI
-	FGUQ==
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.82.65 listed in list.dnswl.org]
+Received: from mail-wm0-f65.google.com (mail-wm0-f65.google.com [74.125.82.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C9095E00571
+	for <yocto@yoctoproject.org>; Wed, 21 Sep 2016 22:48:05 -0700 (PDT)
+Received: by mail-wm0-f65.google.com with SMTP id w84so12084827wmg.0
+	for <yocto@yoctoproject.org>; Wed, 21 Sep 2016 22:48:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=googlemail.com; s=20120113;
+	h=from:to:subject:date:message-id:mime-version
+	:content-transfer-encoding;
+	bh=rqgbtuKTWSypnydSEILF1TmhRr3ueAx2tmYOpNHpFQE=;
+	b=tzAssXUZtJHcvNkZNDR7e6NURhrNfrj3kjAf087wo/ZVmsVfhQrr+nM5o6NFBhBrOS
+	4gHRlOS+GOb7gY11CAd+kfKPxdA/AXnrKhBlpYv2WalbgkFN565DcNOfy8u9R1UvT+3F
+	0dx2FYIr7eI3i6vEDz2rRJKzDaRdS8QGWArOzreauP7RuSNA6Kh4Ud4SOvtAgWmBsuoS
+	04WqqfFGEQ4vA4QtvDHYO+ZD+DbJcBfupitca1t+BGxAzH7LUJLkw+hzGKdwo/G2WRTz
+	LWtWg5bJSKkoRszyOLd8bJe6jXzLrJz8T03QRZ0JNFD1idJlygo35prdFzAhnT+ioT9F
+	4TpQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:subject:to:references:from:message-id:date
-	:user-agent:mime-version:in-reply-to:content-transfer-encoding;
-	bh=BiOpll6dgc152NUSFT1/YaoImjJfHMuMcCIGjVV4MNM=;
-	b=CWbjCKWC61YTr8ElhCt/R+ZjG14ayM1lpcC+5eEdAkYl3svRnWuFTf2AlOi4Ya4H2K
-	cwVFhwZ9z18Mt1BgKgwht0BByZS6hDMpGCb1fNEU+udjewNVIdcmLw67s52Z9jy+pr1C
-	VAh2pv04ulw7glBZrrLZqtd9FGr6alr+egYVEHSakhBcGtn4GLf2YNh+viKqKGXhH32m
-	2c4XmMHPkRj9pDJUA6usOuxSehOf6cCdZddpJWx7GjmfUA1AQdmNoJbz5NzRHPTdQAHC
-	PUEYX3TZXawqdlJkwvkd3pOBha4tti+A0f7imWl754usX137BkW+ZmyBminlOCU8CNL2
-	A63g==
-X-Gm-Message-State: AE9vXwO/OF6ufwEN7n+q2RdB0FRnzH76/TSYrQBN046IWuUgZm8mWu3p3OX2JZq1rFJFag==
-X-Received: by 10.66.77.170 with SMTP id t10mr34268526paw.105.1474518804044;
-	Wed, 21 Sep 2016 21:33:24 -0700 (PDT)
-Received: from ?IPv6:2601:202:4001:9ea0:c1fa:d80c:b211:8746?
-	([2601:202:4001:9ea0:c1fa:d80c:b211:8746])
-	by smtp.gmail.com with ESMTPSA id
-	f124sm1285990pfg.7.2016.09.21.21.33.22
+	h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+	:content-transfer-encoding;
+	bh=rqgbtuKTWSypnydSEILF1TmhRr3ueAx2tmYOpNHpFQE=;
+	b=K6LNJKiZO8inMLdCL9quHLSBB/TY/RIPqO0qHy4seyFSv1NKgl3BMRiak9/l/REue+
+	Ag3/bqWNCow90wKSQm+GZfryEffwAZE1ueIe8v8FaP0uHAYSGDQS0EIuLdFASx8azhHE
+	2Q3OoYXOZ01YznPhtzr7JgAhSquNoLgW5te/dT4hc1C3M4OTrT3cQEkuMXrnsZLyI+Dk
+	knVTXLpTfviUF7Zke5S6gp4mYu5G3s3BDtqamQBZzR0KQ99+aBHscpJh4w17ey8h9x0C
+	3xlqcJySlXjIoLPyPx6cC0pXEkdWxL96EMMxKbRpk/UDDpUbn4sBY5cfjCN9nwXTsNWU
+	frXQ==
+X-Gm-Message-State: AE9vXwP0YhyuRyYQFWKZt62u21ND/C+CzNvA/qQws/r/dnBJHGoivgZU+ucTk1TGkrNjuQ==
+X-Received: by 10.194.200.198 with SMTP id ju6mr195059wjc.184.1474523284216;
+	Wed, 21 Sep 2016 22:48:04 -0700 (PDT)
+Received: from localhost.localdomain (p4FDF0CCA.dip0.t-ipconnect.de.
+	[79.223.12.202]) by smtp.googlemail.com with ESMTPSA id
+	n131sm35913003wmd.3.2016.09.21.22.48.03 for <yocto@yoctoproject.org>
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 21 Sep 2016 21:33:23 -0700 (PDT)
-To: "Wang, Xin" <wangxin2015.fnst@cn.fujitsu.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-References: <cea0cc0b-eedb-cff9-db4e-f839be442c98@gmail.com>
-	<1474270394-13238-1-git-send-email-wangxin2015.fnst@cn.fujitsu.com>
-	<C43D7C6FFC265C429F44FEB1C68F1B25633E17CF@G08CNEXMBPEKD03.g08.fujitsu.local>
-From: akuster808 <akuster808@gmail.com>
-Message-ID: <e23f77eb-1be0-80ca-8fba-e1ecb43ec73f@gmail.com>
-Date: Wed, 21 Sep 2016 21:33:13 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.2.0
+	Wed, 21 Sep 2016 22:48:03 -0700 (PDT)
+From: =?UTF-8?q?Andreas=20M=C3=BCller?= <schnitzeltony@googlemail.com>
+To: yocto@yoctoproject.org
+Date: Thu, 22 Sep 2016 07:47:48 +0200
+Message-Id: <1474523274-3883-1-git-send-email-schnitzeltony@googlemail.com>
+X-Mailer: git-send-email 2.5.5
 MIME-Version: 1.0
-In-Reply-To: <C43D7C6FFC265C429F44FEB1C68F1B25633E17CF@G08CNEXMBPEKD03.g08.fujitsu.local>
-Subject: Re: [meta-security][PATCH v2] samhain: 4.1.4 -> 4.1.5
+Subject: [meta-raspberrypi][PATCH 0/6] Kernel update + VC4-enhancements
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -81,76 +74,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 22 Sep 2016 04:33:27 -0000
-Content-Type: text/plain; charset=gbk; format=flowed
+X-List-Received-Date: Thu, 22 Sep 2016 05:48:09 -0000
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-merged.
+Patches I am using for a while. If my images don't break for other
+issues I am able to run X11 and weston accelerated in one image. Had
+never a machine before able to do that.
 
-thanks,
+Andreas MÃ¼ller (6):
+  mesa: align for vc4
+  xorg align for vc4
+  vc4: why no framebuffer device?
+  linux-raspberrypi: update to 4.4.21
+  eglinfo-x11: align to VC4
+  rpi-base.inc: build vc4-fkms-v3d.dtbo
 
-Armin
+ conf/machine/include/rpi-base.inc                  |  1 +
+ recipes-graphics/eglinfo/eglinfo-x11_%.bbappend    |  2 +-
+ recipes-graphics/mesa/mesa_%.bbappend              |  1 +
+ .../xorg-xserver/xserver-xorg_%.bbappend           |  9 +++++++
+ .../0002-vc4-ioctl-rendering-allow.patch           | 29 ----------------------
+ recipes-kernel/linux/linux-raspberrypi_4.4.bb      |  5 ++--
+ recipes-kernel/linux/linux-rpi.inc                 |  2 +-
+ 7 files changed, 15 insertions(+), 34 deletions(-)
+ create mode 100644 recipes-graphics/xorg-xserver/xserver-xorg_%.bbappend
+ delete mode 100644 recipes-kernel/linux/linux-raspberrypi-4.4/0002-vc4-ioctl-rendering-allow.patch
 
-On 09/21/2016 06:52 PM, Wang, Xin wrote:
-> ping
->
-> -----Original Message-----
-> From: Wang, Xin/Íõ öÎ
-> Sent: Monday, September 19, 2016 3:33 PM
-> To: yocto@yoctoproject.org
-> Cc: Wang, Xin/Íõ öÎ
-> Subject: [yocto][meta-security][PATCH v2] samhain: 4.1.4 -> 4.1.5
->
-> 1) Upgrade samhain from 4.1.4 to 4.1.5.
-> 2) Add TARGET_CC_ARCH.Fix error.
->      ERROR: samhain-server-4.1.5-r0 do_package_qa: QA Issue: No GNU_HASH in the elf binary: '/yocto/work001/fnst/wangx/poky/build/tmp/work/i586-poky-linux/samhain-server/4.1.5-r0/packages-split/samhain-server/usr/sbin/yule_setpwd'
->      No GNU_HASH in the elf binary: '/yocto/work001/fnst/wangx/poky/build/tmp/work/i586-poky-linux/samhain-server/4.1.5-r0/packages-split/samhain-server/usr/sbin/yulectl' [ldflags]
->
-> Signed-off-by: Wang Xin <wangxin2015.fnst@cn.fujitsu.com>
-> ---
->   .../samhain/{samhain-client_4.1.4.bb => samhain-client_4.1.5.bb}      | 0
->   .../samhain/{samhain-server_4.1.4.bb => samhain-server_4.1.5.bb}      | 2 ++
->   recipes-security/samhain/samhain.inc                                  | 4 ++--
->   3 files changed, 4 insertions(+), 2 deletions(-)  rename recipes-security/samhain/{samhain-client_4.1.4.bb => samhain-client_4.1.5.bb} (100%)  rename recipes-security/samhain/{samhain-server_4.1.4.bb => samhain-server_4.1.5.bb} (97%)
->
-> diff --git a/recipes-security/samhain/samhain-client_4.1.4.bb b/recipes-security/samhain/samhain-client_4.1.5.bb
-> similarity index 100%
-> rename from recipes-security/samhain/samhain-client_4.1.4.bb
-> rename to recipes-security/samhain/samhain-client_4.1.5.bb
-> diff --git a/recipes-security/samhain/samhain-server_4.1.4.bb b/recipes-security/samhain/samhain-server_4.1.5.bb
-> similarity index 97%
-> rename from recipes-security/samhain/samhain-server_4.1.4.bb
-> rename to recipes-security/samhain/samhain-server_4.1.5.bb
-> index df78f63..0d76b9a 100644
-> --- a/recipes-security/samhain/samhain-server_4.1.4.bb
-> +++ b/recipes-security/samhain/samhain-server_4.1.5.bb
-> @@ -21,6 +21,8 @@ PACKAGECONFIG[acl] = " --enable-posix-acl , --disable-posix-acl"
->   
->   SRC_URI += "file://samhain-server-volatiles"
->   
-> +TARGET_CC_ARCH += "${LDFLAGS}"
-> +
->   EXTRA_OECONF += " \
->       --with-config-file=REQ_FROM_SERVER/etc/samhainrc \
->       --with-data-file=REQ_FROM_SERVER/var/lib/samhain/samhain_file \ diff --git a/recipes-security/samhain/samhain.inc b/recipes-security/samhain/samhain.inc
-> index 907f431..5bf2ee7 100644
-> --- a/recipes-security/samhain/samhain.inc
-> +++ b/recipes-security/samhain/samhain.inc
-> @@ -9,8 +9,8 @@ SRC_URI = "http://la-samhna.de/archive/samhain_signed-${PV}.tar.gz \
->   	   file://${INITSCRIPT_NAME}.default \
->   	  "
->   
-> -SRC_URI[md5sum] = "1ab697b7000d0a272d9ade05bb1bc6e0"
-> -SRC_URI[sha256sum] = "32ee7477af11d9f2f64f30b9cb316c351897c1c994c7b98b0ef17fc0ca5e1d1a"
-> +SRC_URI[md5sum] = "bdb6d2653d706f3180e37ef3d95c824d"
-> +SRC_URI[sha256sum] = "4ff4c38765c942abbaac2577df4c8c4940482a1bffc4a719f181c4fca6f173a7"
->   
->   S = "${WORKDIR}/samhain-${PV}"
->   
-> --
-> 2.7.4
->
->
->
+-- 
+2.5.5
 
 
