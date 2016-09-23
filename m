@@ -1,39 +1,34 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <Wenzong.Fan@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 586F8E00A7B; Thu, 22 Sep 2016 20:05:35 -0700 (PDT)
+	id 76AB3E00CF2; Thu, 22 Sep 2016 23:48:05 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [134.134.136.24 listed in list.dnswl.org]
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 12F8CE00997
-	for <yocto@yoctoproject.org>; Thu, 22 Sep 2016 20:05:31 -0700 (PDT)
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-	by orsmga102.jf.intel.com with ESMTP; 22 Sep 2016 20:05:31 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.30,380,1470726000"; d="scan'208";a="172220231"
-Received: from yleow-mobl1.gar.corp.intel.com (HELO
-	peggleto-mobl.ger.corp.intel.com) ([10.255.155.25])
-	by fmsmga004.fm.intel.com with ESMTP; 22 Sep 2016 20:05:28 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: "Anicic Damir (PSI)" <damir.anicic@psi.ch>
-Date: Fri, 23 Sep 2016 15:05:25 +1200
-Message-ID: <4685459.V3jZSWUhVj@peggleto-mobl.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.14.10 (Linux/4.7.3-100.fc23.x86_64; KDE/4.14.20; x86_64; ;
-	)
-In-Reply-To: <CAMKF1srZOGKa0K_20Sx8VkmzzodzTND7g94z5tjPE7kxr676dw@mail.gmail.com>
-References: <DB23C91B06C303459B24BC3208AF424A20F90FF3@MBX214.d.ethz.ch>
-	<CAMKF1srZOGKa0K_20Sx8VkmzzodzTND7g94z5tjPE7kxr676dw@mail.gmail.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5270AE009C8
+	for <yocto@yoctoproject.org>; Thu, 22 Sep 2016 23:48:00 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id u8N6lxSI014976
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Thu, 22 Sep 2016 23:48:00 -0700 (PDT)
+Received: from pek-lpggp1.wrs.com (128.224.153.74) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.40) with Microsoft SMTP Server id 14.3.294.0;
+	Thu, 22 Sep 2016 23:47:59 -0700
+From: <wenzong.fan@windriver.com>
+To: <yocto@yoctoproject.org>
+Date: Fri, 23 Sep 2016 02:47:57 -0400
+Message-ID: <1474613277-37436-1-git-send-email-wenzong.fan@windriver.com>
+X-Mailer: git-send-email 2.8.1
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: Enable/disable service startup
+Subject: [meta-security][PATCH] paxctl: allow build of paxctl-native
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,57 +40,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 23 Sep 2016 03:05:35 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Fri, 23 Sep 2016 06:48:05 -0000
+Content-Type: text/plain
 
-On Thu, 22 Sep 2016 18:39:03 Khem Raj wrote:
-> On Thu, Sep 22, 2016 at 1:47 AM, Anicic Damir (PSI) <damir.anicic@psi.ch>
-> wrote:
-> > I am building Yocto 2.1 for PowerPC-64
-> > 
-> > I have bind and dhcpcd packages built in.
-> > 
-> > named service (from bind) gets started - but I do not want it started
-> 
-> You may be able to do it via a image post processing function.
+From: Joe Slater <jslater@windriver.com>
 
-That will be solved by not installing it, see below.
+paxctl-native is needed to build paxtest.
 
-> > dhcpcd service does not get started - but I would like to have it started
-> 
-> hmm that may be a bug you need to see why it does not start
+Do not use the install target in Makefile for paxctl-native, it will
+fail with error:
 
-If you mean the dhcpcd recipe in meta-networking, it looks like that recipe 
-doesn't have anything to enable it to start on boot (i.e. it does not inherit 
-update-rc.d or systemd). If that's what you want you will need to do that 
-either in the original recipe or use a bbappend.
+  install: cannot change ownership of '.../sbin/paxctl': \
+  Operation not permitted
 
-Note that in some configurations (including our default) the dhcp client is 
-started on demand by the networking scripts and thus doesn't need to be 
-started as a service, but by default we are using dhclient for that and not 
-dhcpcd.
+Signed-off-by: Joe Slater <jslater@windriver.com>
+Signed-off-by: Wenzong Fan <wenzong.fan@windriver.com>
+---
+ recipes-security/paxctl/paxctl_0.9.bb | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
 
-> > I would also prefer not to remove bind, because I need dig (dig, host,
-> > nslookup)
-> 
-> you have to change the code, doing finer packaging for bind where the daemon
-> gets packaged into package of its own and rest of the binaries e.g. dig etc
-> go into
-> another output package e.g. bind-extra or somesuch. then you just
-> include bind-extas
-> in your image.
-
-The bind-utils package is already split out and packages dig and host, so I 
-would suggest installing that rather than the main bind package. nslookup 
-isn't being packaged at all, I suspect we are relying on the busybox stub 
-version for that at least by default.
-
-Cheers,
-Paul
-
+diff --git a/recipes-security/paxctl/paxctl_0.9.bb b/recipes-security/paxctl/paxctl_0.9.bb
+index d69219f..fb87f10 100644
+--- a/recipes-security/paxctl/paxctl_0.9.bb
++++ b/recipes-security/paxctl/paxctl_0.9.bb
+@@ -18,3 +18,18 @@ EXTRA_OEMAKE = "CC='${CC}' DESTDIR='${D}'"
+ do_install() {
+ 	oe_runmake install
+ }
++
++# The install target in the Makefile will fail for paxctl-native with error:
++#   install -D --owner 0 --group 0 --mode a=rx paxctl .../sbin/paxctl
++#   install: cannot change ownership of '.../sbin/paxctl': \
++#   Operation not permitted
++# Drop '--owner 0 --group 0' to fix the issue.
++do_install_class-native() {
++	local PROG=paxctl
++	install -d ${D}${base_sbindir}
++	install -d ${D}${mandir}/man1
++	install --mode a=rx $PROG ${D}${base_sbindir}/$PROG
++	install --mode a=r $PROG.1 ${D}${mandir}/man1/$PROG.1
++}
++
++BBCLASSEXTEND = "native"
 -- 
+2.8.1
 
-Paul Eggleton
-Intel Open Source Technology Centre
 
