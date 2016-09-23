@@ -1,17 +1,17 @@
-Return-Path: <mont3z.claro5@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 125B5E009A5; Thu, 22 Sep 2016 12:55:59 -0700 (PDT)
+	id 390D5E00D0F; Thu, 22 Sep 2016 18:39:37 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (mont3z.claro5[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.213.195 listed in list.dnswl.org]
+	mail provider *      (raj.khem[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.217.170 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,49 +19,45 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-yb0-f195.google.com (mail-yb0-f195.google.com
-	[209.85.213.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 15ACDE00791
-	for <yocto@yoctoproject.org>; Thu, 22 Sep 2016 12:55:57 -0700 (PDT)
-Received: by mail-yb0-f195.google.com with SMTP id p81so3002760ybb.2
-	for <yocto@yoctoproject.org>; Thu, 22 Sep 2016 12:55:57 -0700 (PDT)
+Received: from mail-ua0-f170.google.com (mail-ua0-f170.google.com
+	[209.85.217.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9601FE007C2
+	for <yocto@yoctoproject.org>; Thu, 22 Sep 2016 18:39:34 -0700 (PDT)
+Received: by mail-ua0-f170.google.com with SMTP id u68so19931122uau.0
+	for <yocto@yoctoproject.org>; Thu, 22 Sep 2016 18:39:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=UF67Nfvoent+Qdwfw9gX0UGppy2WEYp084KS3WebStY=;
-	b=HAbfvLjGl+DLqw9AeYb2TRU4zNvJLVRix0ai/Oj14tZa8Rsp3ZIzbZZIn0dZH8ot41
-	bcmJW0Z6ym9KW+2Lvs8Bsr8PyEb2+yeThjztzpxtoyTUFyfAVd66o6Pjgg+7G7K981N+
-	kHwtr9/e2UBdP2kotL+tma0HdFV7zpZ+WJSWaE3LJBoDgR3RYSFhBcpRxSzD3yEzpV0+
-	wq3TJXQx9yLPwWxf9Dhyq6dfTqdBKTmSCvs8tOra65dqGI1XSAm6PeSZPiM94P4BPrqm
-	BvZzO+fq4Nkzntlv9o+N9AsXWZO8cQ8mdt9/iO7Gxwow1O4MZS2VwBxVWVdLkAnDnApU
-	QLKw==
+	:cc; bh=vGKlxt5B6IDCU99WueFqf/9OFZBQOxHMXzy0JkTmvo4=;
+	b=yAsTkykP6fDl2bHwuFrwHZ32YKB46uHyceYhRF+G5XqRWSMRcDBue3e0XTnGHEjUtI
+	nxfvOh2+faheeGtHyfcDMBrgxowjZMjBkcsUClXNtLXZDy9nb18eTpwA7mhaBk4yEmS1
+	FYr0g2knCQxhDmj1stBHizY4FKPOJTkdhbOx5NiGIm0ZWoQ0p8xm7WU8eFX2fb3wJC7L
+	vfL5vNK+Yhj1BHCN8sHKRowluvo1a0rJZEYwx7k5aSJOMLhr9F7P/k656XMqkaoDxpn9
+	yi/ioQnPFXY8wtAkyYEEo72twUS9ybCbduQK3xw7uzvBcpOvXuKeS1FiFbskPA0bNVSB
+	KiLg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=UF67Nfvoent+Qdwfw9gX0UGppy2WEYp084KS3WebStY=;
-	b=LxasZS5kHc8NGZlJ50wP+N6HnLHK1s/6Icsqk63KQ2rGjzlJ5yZDsEFt0Z7UEvWlhQ
-	Nn75JK1tYT1jgB5Dk2HQ9IeUgZWt5xUq7oBiGVJFLmbOcz49/ge2CN8UwXDJ/hId6E0i
-	lWjh0A9ARDwvoxY9PAZZv8Kkc3P4KuSMNbt4U3x0WJvsQdTCSaUK/Lliy1AlFi81Oapq
-	j+xFZe2VAyA03ahAka8/+sRv1J3boN6m7fn6VUFOnfiES54hEzGbzz38emn9xM4a2rBw
-	3/PVJmL/jUf4zJkJKTvncBhAY2yMtWTXS/8ycGr86pJ9nbYjCLEHtjUEODXLuRojEsUj
-	lI7Q==
-X-Gm-Message-State: AE9vXwNhVe+pMUKwGnDfGTgHpPi8spCPznmrEpuIjNMAi9onDSIUnoLH4C0nngKjFzqwGcX49cBwMfB1Q16N3w==
-X-Received: by 10.37.196.197 with SMTP id u188mr2956246ybf.19.1474574156815;
-	Thu, 22 Sep 2016 12:55:56 -0700 (PDT)
+	bh=vGKlxt5B6IDCU99WueFqf/9OFZBQOxHMXzy0JkTmvo4=;
+	b=Euxc4wzmCaVphdEJm3r4IAiUT9nWMxNAUnKZBbfi+/6BtReXazVKuHGRmmsrW/X4Yb
+	GWTN2sYkrjsnDdxOYoYb3EUCM8GQNfWCnyhtVgGwxDvyYPYeZ6BKTheVDJg9zba79RA6
+	IqOKkYOy8QHLS2dDADzLW+Wjtv8OXxmcLv+9KiJpcxIqYU8hZQvCZeFyQRF6F3gNpjk3
+	LXjx5//NcHpEzYfM3BQfQQD1zk6mGL+3HPJjFxP5NBgnLPdLU/KPl6io7hgZJpcaUUgO
+	NqG24P2eFt+ve7MlczoNwMaRJ12yLqVUYTvLvZ0/2TIiAvpgErBJdLsuu93CfDAom2Ua
+	oYVQ==
+X-Gm-Message-State: AA6/9RnB+fUy9+4AW/llUVkeFXL9ENJa4hvPlHCuazcoXHp89T4BE1/p05R93QQvHsc41KJz+tevd4jlEOsqwQ==
+X-Received: by 10.176.4.43 with SMTP id 40mr1958429uav.160.1474594774423; Thu,
+	22 Sep 2016 18:39:34 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.13.213.203 with HTTP; Thu, 22 Sep 2016 12:55:55 -0700 (PDT)
-In-Reply-To: <CAMKF1sro2dOqgBVR+mXU0VmcWBQP0XPt6fEJW4=4+MRAAarFSQ@mail.gmail.com>
-References: <CAJ70iBSwzQnYW67Wb79Zga2hqZYRmgXstEqAao3N9BYgEf8z_Q@mail.gmail.com>
-	<CAMKF1sqg30KEW2U+bCOcYaekrgkz9SxM1vRjydtp_xhxfONXuA@mail.gmail.com>
-	<20160922152917.GP4814@bill-the-cat>
-	<CAMKF1sro2dOqgBVR+mXU0VmcWBQP0XPt6fEJW4=4+MRAAarFSQ@mail.gmail.com>
-From: Mont3z Claros <mont3z.claro5@gmail.com>
-Date: Thu, 22 Sep 2016 12:55:55 -0700
-Message-ID: <CAJ70iBRZBNotf8BagoiWB3U55CDj9tbuPgjiL3vjjY6o-4f9ng@mail.gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
-Cc: Tom Rini <trini@konsulko.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Meta layer for pine64
+Received: by 10.176.80.33 with HTTP; Thu, 22 Sep 2016 18:39:03 -0700 (PDT)
+In-Reply-To: <DB23C91B06C303459B24BC3208AF424A20F90FF3@MBX214.d.ethz.ch>
+References: <DB23C91B06C303459B24BC3208AF424A20F90FF3@MBX214.d.ethz.ch>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Thu, 22 Sep 2016 18:39:03 -0700
+Message-ID: <CAMKF1srZOGKa0K_20Sx8VkmzzodzTND7g94z5tjPE7kxr676dw@mail.gmail.com>
+To: "Anicic Damir (PSI)" <damir.anicic@psi.ch>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Enable/disable service startup
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,53 +69,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 22 Sep 2016 19:55:59 -0000
+X-List-Received-Date: Fri, 23 Sep 2016 01:39:37 -0000
 Content-Type: text/plain; charset=UTF-8
 
-On Thu, Sep 22, 2016 at 10:21 AM, Khem Raj <raj.khem@gmail.com> wrote:
-> On Thu, Sep 22, 2016 at 8:29 AM, Tom Rini <trini@konsulko.com> wrote:
->> On Wed, Sep 21, 2016 at 11:39:48AM -0700, Khem Raj wrote:
->>> On Fri, Sep 16, 2016 at 2:01 PM, Mont3z Claros <mont3z.claro5@gmail.com> wrote:
->>> > Hi all,
->>> >
->>> > I just finished a first beta version of a meta layer for SBC pine64.
->>> > You can find it in  https://github.com/mont3z/meta-pine64
->>> >
->>> > I'd appreciate if anyone has any comments on possible improvements. A
->>> > major problem I had was the necessity of two toolchains: one for
->>> > compiling u-boot (32 bits) and another for compiling all other
->>> > components (64 bis). At the moment I have a very ugly hack to do it.
->>> > The 32 bit toolchain is an external toolchain and I set PATH
->>> > environmental variable in u-boot recipe.
->>>
->>> I think it would be desirable to have single toolchain, u-boot is a
->>> stand alone app
->>> in general, if your compiler can do multilib builds for 32bit then it
->>> would be possible
->>> to build it. May be you should work with the toolchain team for pine64 to see if
->>> that can be done. It will simplify using this layer.
->>
->> Actually, pine64 has a 64bit U-Boot, I think maybe the layer just needs
->> to be updated to use mainline (or v2016.09.01) U-Boot.
->>
->>> Other option I would suggest to build u-boot externally for your SoC, we do
->>> not necessarily need a bootloader for building final images anyway.
->>
->> Well, you do if you want a bootable image to be made :)  iirc all of the
->> models are SD card only, no eMMC so assuming firmware "elsewhere" is a
->> bad idea.
+On Thu, Sep 22, 2016 at 1:47 AM, Anicic Damir (PSI) <damir.anicic@psi.ch> wrote:
 >
-> You can always write a recipe to package a prebuilt u-boot.
+> Hi,
 >
+> I am building Yocto 2.1 for PowerPC-64
+>
+> I have bind and dhcpcd packages built in.
+>
+> named service (from bind) gets started - but I do not want it started
 
-Hi all,
+You may be able to do it via a image post processing function.
 
-unfortunately the pine64 mainlilne u-boot is not compatible with the
-kernel I'm compiling.
-To package a prebuilt u-boot could be one solution. At the moment I'm
-investigating the possibility
-of patching u-boot to compile it with multilib.
+> dhcpcd service does not get started - but I would like to have it started
 
-Thx,
-Montez
+hmm that may be a bug you need to see why it does not start
+
+>
+> I would also prefer not to remove bind, because I need dig (dig, host,
+> nslookup)
+
+you have to change the code, doing finer packaging for bind where the daemon
+gets packaged into package of its own and rest of the binaries e.g.
+dig etc go into
+another output package e.g. bind-extra or somesuch. then you just
+include bind-extas
+in your image.
+
+>
+> How to get services enabled/disabled ?
+>
+> Also I do not want to change original recipes.
+>
+> Kind regards,
+> Damir
+>
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
