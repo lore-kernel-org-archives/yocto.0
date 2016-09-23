@@ -1,46 +1,33 @@
-Return-Path: <stephen.k.jolley@intel.com>
+Return-Path: <lsorense@csclub.uwaterloo.ca>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8D91BE00944; Fri, 23 Sep 2016 08:21:23 -0700 (PDT)
+	id 33890E00CBC; Fri, 23 Sep 2016 09:17:04 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0860DE0074B
-	for <yocto@yoctoproject.org>; Fri, 23 Sep 2016 08:21:21 -0700 (PDT)
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-	by orsmga104.jf.intel.com with ESMTP; 23 Sep 2016 08:21:20 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.30,382,1470726000"; 
-	d="scan'208,217";a="764879562"
-Received: from fmsmsx103.amr.corp.intel.com ([10.18.124.201])
-	by FMSMGA003.fm.intel.com with ESMTP; 23 Sep 2016 08:21:21 -0700
-Received: from fmsmsx113.amr.corp.intel.com (10.18.116.7) by
-	FMSMSX103.amr.corp.intel.com (10.18.124.201) with Microsoft SMTP Server
-	(TLS) id 14.3.248.2; Fri, 23 Sep 2016 08:21:20 -0700
-Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.12]) by
-	FMSMSX113.amr.corp.intel.com ([169.254.13.12]) with mapi id
-	14.03.0248.002; Fri, 23 Sep 2016 08:21:20 -0700
-From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"openembedded-core@lists.openembedded.org"
-	<openembedded-core@lists.openembedded.org>
-Thread-Topic: Yocto Project Status WW39
-Thread-Index: AdIVq2I1e4Ud2tZGQR+thcdwrueoQQ==
-Date: Fri, 23 Sep 2016 15:21:19 +0000
-Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155E5727C9BF@fmsmsx111.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.1.200.106]
-x-ctpclassification: CTP_IC
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiYzQzMjc2NDItMjRlZS00MThiLTkxNmEtN2YxZTE3YzM5MWZhIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX0lDIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE1LjkuNi42IiwiVHJ1c3RlZExhYmVsSGFzaCI6InhXTEpjUGtod29GUGVsclFVV2U2M0VZZTloMXRYZmU3R28wazA5d3d0VTQ9In0=
+Received: from caffeine.csclub.uwaterloo.ca (caffeine.csclub.uwaterloo.ca
+	[129.97.134.17])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DEDD8E0074B
+	for <yocto@yoctoproject.org>; Fri, 23 Sep 2016 09:16:59 -0700 (PDT)
+Received: by caffeine.csclub.uwaterloo.ca (Postfix, from userid 20367)
+	id BDD18C025D; Fri, 23 Sep 2016 12:16:58 -0400 (EDT)
+Date: Fri, 23 Sep 2016 12:16:58 -0400
+To: yocto@yoctoproject.org
+Message-ID: <20160923161658.GD14313@csclub.uwaterloo.ca>
+References: <20160916082406.GB27958@graute-opti>
+	<CAJ86T=WaKHQFXfSuvAm4wQUfa=xr_CBmK8-ZovaystYGM=9ukA@mail.gmail.com>
+	<20160919115820.GC27958@graute-opti>
+	<20160922071643.GE27958@graute-opti>
+	<CAMKF1sqRxXEY-z2Jz5=SADE9hxai1_TnDUUMbS+9tcc1Ok5uKg@mail.gmail.com>
+	<20160923121920.GA13394@graute-opti>
 MIME-Version: 1.0
-Subject: Yocto Project Status WW39
+In-Reply-To: <20160923121920.GA13394@graute-opti>
+User-Agent: Mutt/1.5.23 (2014-03-12)
+From: lsorense@csclub.uwaterloo.ca (Lennart Sorensen)
+Subject: Re: build ntp with openssl support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,654 +39,131 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 23 Sep 2016 15:21:23 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155E5727C9BFfmsmsx111amrcor_"
+X-List-Received-Date: Fri, 23 Sep 2016 16:17:04 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E5727C9BFfmsmsx111amrcor_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+On Fri, Sep 23, 2016 at 02:19:20PM +0200, Oliver Graute wrote:
+> On 22/09/16, Khem Raj wrote:
+> > On Thu, Sep 22, 2016 at 12:16 AM, Oliver Graute <oliver.graute@gmail.com> wrote:
+> > > On 19/09/16, Oliver Graute wrote:
+> > >> On 16/09/16, Andre McCurdy wrote:
+> > >> > On Fri, Sep 16, 2016 at 1:24 AM, Oliver Graute <oliver.graute@gmail.com> wrote:
+> > >> > > Hello,
+> > >> > >
+> > >> > > how can I build ntp with openssl support?
+> > >> > >
+> > >> > > I already created a ntp_%.bbappend file to extend the recipe ntp_4.2.8p4.bb.
+> > >> > >
+> > >> > > FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+> > >> >
+> > >> > You don't really need this line unless you are adding a file to
+> > >> > SRC_URI or replacing a file already in SRC_URI with your own version.
+> > >> >
+> > >> > > PACKAGECONFIG += "openssl"
+> > >> >
+> > >> > This will enable openssl, but it will also disable all the default
+> > >> > PACKAGECONFIG options (cap, debug and refclocks) which is probably not
+> > >> > what you want. Try this instead:
+> > >> >
+> > >> >   PACKAGECONFIG_append = " openssl"
+> > >> >
+> > >> > Note the space between " and openssl. It's required.
+> > >>
+> > >> ok now I see the right configure script options during the configuration
+> > >> of the ntp build.
+> > >>
+> > >> --with-openssl-libdir=/home/graute/5411_IBIS/yocto/build-imx6ulevk-nand/tmp/sysroots/imx6ulevk/usr/lib
+> > >> --with-openssl-incdir=/home/graute/5411_IBIS/yocto/build-imx6ulevk-nand/tmp/sysroots/imx6ulevk/usr/include
+> > >> --with-crypto
+> > >>
+> > >> But ntp is still build without openssl support. The configure scripts
+> > >> can't find the relevant openssl stuff.
+> > >>
+> > >> configure:34762: checking for openssl library directory
+> > >> configure:34802: result: no
+> > >> configure:34807: WARNING: libcrypto and libssl not found in any of /home/graute/5411_IBIS/yocto/build-imx6ulevk-nand/tmp/sysroots/imx6ulevk/usr/lib
+> > >> configure:34811: checking for openssl include directory
+> > >> configure:34833: result: /home/graute/5411_IBIS/yocto/build-imx6ulevk-nand/tmp/sysroots/imx6ulevk/usr/include
+> > >> configure:34877: checking if we will use crypto
+> > >> configure:34879: result: no
+> > >> configure:35109: checking if we want to use OpenSSL's crypto random (if available)
+> > >> configure:35119: result: yes
+> > >>
+> > >> some clue whats wrong here?
+> > >
+> > > in my sysroots/imx6ulevk/usr/lib I have
+> > >
+> > > ls -la libssl*
+> > >
+> > > libssl3.so
+> > > libssl.a
+> > > libssl.so -> libssl.so.1.0.0
+> > > libssl.so.1.0.0
+> > >
+> > > ls -la libcrypt*
+> > >
+> > > libcrypt.a
+> > > libcrypt_pic.a
+> > > libcrypt_pic.map
+> > > libcrypt.so -> ../../lib/libcrypt.so.1
+> > >
+> > >
+> > > but no libcrypto.so. I guess thats the reason why my ntp configure
+> > > script is complaining.
+> > >
+> > > Some ideas how to get libcrypto.so in my /usr/lib folder in the yocto
+> > > sysroot?
+> > >
+> > 
+> > It seems your openssl is not being compiled correctly. Can you go into
+> > builddir or openssl
+> > and see if libcrypto.so.1.0.0 is built ? if not then you have to do
+> > some digging why its not
+> > configuring to build libcrypto
+> 
+> libcrypto is build by openssl
+> 
+> openssl/1.0.2d-r0/openssl-1.0.2d$ ls -la  libcrypt*
+> libcrypto.a
+> libcrypto.pc
+> libcrypto.so -> libcrypto.so.1.0.0
+> libcrypto.so.1.0.0
+> 
+> but in my sysroot libcrypto is located in lib NOT in usr/lib
+> 
+> the ntp recipe in meta-openembedded/meta-networking/recipes-support/ntp/ntp_4.2.8p4.bb
+> defines:
+> 
+>  --with-openssl-libdir=${STAGING_LIBDIR}
+> 
+> I assume I need ${STAGING_BASELIBDIR} here instead. But currently I fail
+> with overwriting this in my bbappend file.
+> 
+> If I use EXTRA_OECONF to overwrite it in my bbappend I see two --with-openssl-libdir
+> statements while configuring. The first with /lib the second one with /usr/lib. 
+> 
+> EXTRA_OECONF  += "\
+> 		--with-openssl \
+> 		--with-openssl-libdir=${STAGING_BASELIBDIR} \
+> 		--with-openssl-incdir=${STAGING_INCDIR} \
+> 		--with-crypto \
+> "
 
-Current Dev Position: YP 2.2 M4
+I have a .bbappend file containing:
 
-Next Deadline: YP 2.2 M4 which will be Oct. 3rd (5:00pm GMT)
+# This is wrong in the upstream .bb file and doesn't work so override it
+PACKAGECONFIG[openssl] = "--with-crypto, \
+                          --without-crypto, \
+                          openssl"
+PACKAGECONFIG_append = " openssl"
 
+By NOT specifying the directories, it uses pkg-config, which of course
+returns both directories correctly.  The ntp configure script can't
+imagine that the openssl libraries are in two different directories at
+the same time and hence fails to find them even though it searches both
+of them, but only trying one at a time.
 
-SWAT team rotation: Maxin -> Joshua
+-- 
+Len Sorensen
 
-https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team
-
-
-Key Status/Updates:
-
-*        The M3rc1 QA report is out and likely to be released. There were a=
- number of bugs, particularly in and around the recent runqemu changes but =
-we plan to address these and pretest them before the first M4 rc build.
-
-*        We're making good progress with bug fixing and there are some good=
- fixes and tweaks going into master. There are also some problems we're see=
-ing with build artefacts, particularly with buildtools and uninative which =
-are preventing a new uninative release (after the patchelf upgrade).
-
-*        Our final release is also dependent on the 4.8 kernel release.
-
-*        We have merged various krogoth patches (thanks Armin!). The test b=
-uilds still did show some issues, particularly as the autobuilder has incre=
-ased test coverage but I think we've worked through several of them.
-
-*        The defect tracking metric did rise slightly this week from bugs f=
-rom the M3 QA process.
-
-
-Key YP 2.2 Dates:
-
-*        YP 2.2 M4 cut off would be: 10/3/16
-
-*        YP 2.2 M4 release would be: 10/28/16
-
-
-Tracking Metrics:
-
-            WDD 2557 (last week 2531)
-
-(https://wiki.yoctoproject.org/charts/combo.html)
-
-
-Key Status Links for YP:
-
-https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.2_Status
-
-https://wiki.yoctoproject.org/wiki/Yocto_2.2_Schedule
-
-https://wiki.yoctoproject.org/wiki/Yocto_2.2_Features
-
-[If anyone has suggestions for other information you'd like to see on this =
-weekly status update, let us know!]
-
-Thanks,
-
-Stephen K. Jolley
-Yocto Project Program Manager
-INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-*   Work Telephone:        (503) 712-0534
-*    Cell:               (208) 244-4460
-* Email:                            stephen.k.jolley@intel.com
-
-
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E5727C9BFfmsmsx111amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:"Comic Sans MS";
-	panose-1:3 15 7 2 3 3 2 2 2 4;}
-@font-face
-	{font-family:"MS Sans Serif";
-	panose-1:0 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:Consolas;
-	panose-1:2 11 6 9 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-p
-	{mso-style-priority:99;
-	mso-margin-top-alt:auto;
-	margin-right:0in;
-	mso-margin-bottom-alt:auto;
-	margin-left:0in;
-	font-size:12.0pt;
-	font-family:"Times New Roman",serif;}
-span.EmailStyle18
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-span.apple-tab-span
-	{mso-style-name:apple-tab-span;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
-/* List Definitions */
-@list l0
-	{mso-list-id:486745868;
-	mso-list-template-ids:1511665722;}
-@list l0:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l0:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Courier New";
-	mso-bidi-font-family:"Times New Roman";}
-@list l0:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1
-	{mso-list-id:805857287;
-	mso-list-template-ids:598539924;}
-@list l1:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l1:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Courier New";
-	mso-bidi-font-family:"Times New Roman";}
-@list l1:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l2
-	{mso-list-id:959648859;
-	mso-list-template-ids:1473020110;}
-@list l2:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l2:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Courier New";
-	mso-bidi-font-family:"Times New Roman";}
-@list l2:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l2:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l2:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l2:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l2:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l2:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l2:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l3
-	{mso-list-id:1170562710;
-	mso-list-template-ids:-1064301810;}
-@list l3:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l3:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Courier New";
-	mso-bidi-font-family:"Times New Roman";}
-@list l3:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l3:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l3:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l3:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l3:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l3:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l3:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-ol
-	{margin-bottom:0in;}
-ul
-	{margin-bottom:0in;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Current Dev Positi=
-on: YP 2.2 M4</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Next Deadline: YP =
-2.2 M4 which will be Oct. 3rd (5:00pm GMT)</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">SWAT team rotation=
-: Maxin -&gt; Joshua</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
-project.org/wiki/Yocto_Build_Failure_Swat_Team"><span style=3D"font-size:11=
-.0pt;font-family:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki=
-/Yocto_Build_Failure_Swat_Team</span></a><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Key Status/Updates=
-:</span><o:p></o:p></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l3 level1 lfo=
-5;vertical-align:baseline">
-<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
-or:black"><span style=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt=
- &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
-&quot;Arial&quot;,sans-serif;color:black">The M3rc1 QA report is out and li=
-kely to be released. There were a number of bugs, particularly in and aroun=
-d the recent runqemu changes but we plan to
- address these and pretest them before the first M4 rc build.<o:p></o:p></s=
-pan></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l3 level1 lfo=
-5;vertical-align:baseline">
-<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
-or:black"><span style=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt=
- &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
-&quot;Arial&quot;,sans-serif;color:black">We&#8217;re making good progress =
-with bug fixing and there are some good fixes and tweaks going into master.=
- There are also some problems we&#8217;re seeing with build
- artefacts, particularly with buildtools and uninative which are preventing=
- a new uninative release (after the patchelf upgrade).<o:p></o:p></span></p=
->
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l3 level1 lfo=
-5;vertical-align:baseline">
-<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
-or:black"><span style=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt=
- &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
-&quot;Arial&quot;,sans-serif;color:black">Our final release is also depende=
-nt on the 4.8 kernel release.<o:p></o:p></span></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l3 level1 lfo=
-5;vertical-align:baseline">
-<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
-or:black"><span style=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt=
- &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
-&quot;Arial&quot;,sans-serif;color:black">We have merged various krogoth pa=
-tches (thanks Armin!). The test builds still did show some issues, particul=
-arly as the autobuilder has increased test coverage
- but I think we&#8217;ve worked through several of them.<o:p></o:p></span><=
-/p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l3 level1 lfo=
-5;vertical-align:baseline">
-<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
-or:black"><span style=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt=
- &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
-&quot;Arial&quot;,sans-serif;color:black">The defect tracking metric did ri=
-se slightly this week from bugs from the M3 QA process.<o:p></o:p></span></=
-p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
-mes New Roman&quot;,serif"><o:p>&nbsp;</o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Key YP 2.2 Dates:<=
-/span><o:p></o:p></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l1 level1 lfo=
-6;vertical-align:baseline">
-<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
-or:black"><span style=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt=
- &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
-&quot;Arial&quot;,sans-serif;color:black">YP 2.2 M4 cut off would be: 10/3/=
-16<o:p></o:p></span></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l1 level1 lfo=
-6;vertical-align:baseline">
-<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
-or:black"><span style=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt=
- &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
-&quot;Arial&quot;,sans-serif;color:black">YP 2.2 M4 release would be: 10/28=
-/16<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
-mes New Roman&quot;,serif"><o:p>&nbsp;</o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Tracking Metrics:<=
-/span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span class=3D"apple-tab-span=
-"><span style=3D"font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;=
-color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;
-</span></span><span style=3D"font-size:11.0pt;font-family:&quot;Arial&quot;=
-,sans-serif;color:black">WDD 2557 (last week 2531)</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt;text-indent:.5in"><span style=
-=3D"font-size:11.0pt;font-family:Consolas;color:black">(</span><a href=3D"h=
-ttps://wiki.yoctoproject.org/charts/combo.html"><span style=3D"font-size:11=
-.0pt;font-family:&quot;Arial&quot;,sans-serif;color:#1155CC">https://wiki.y=
-octoproject.org/charts/combo.html</span></a><span style=3D"font-size:11.0pt=
-;font-family:Consolas;color:black">)</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Key Status Links f=
-or YP:</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
-project.org/wiki/Yocto_Project_v2.2_Status"><span style=3D"font-size:11.0pt=
-;font-family:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yoc=
-to_Project_v2.2_Status</span></a><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
-project.org/wiki/Yocto_2.2_Schedule"><span style=3D"font-size:11.0pt;font-f=
-amily:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_2.2_=
-Schedule</span></a><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
-project.org/wiki/Yocto_2.2_Features"><span style=3D"font-size:11.0pt;font-f=
-amily:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_2.2_=
-Features</span></a><o:p></o:p></p>
-<p class=3D"MsoNormal"><br>
-<span style=3D"font-family:&quot;Arial&quot;,sans-serif;color:black">[If an=
-yone has suggestions for other information you&#8217;d like to see on this =
-weekly status update, let us know!]<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,sans-se=
-rif;color:black"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,sans-se=
-rif;color:black">Thanks,</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
-ot;,serif;color:purple">Stephen K. Jolley</span></i></b><b><i><span style=
-=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,sans-serif;color:purple=
-"><o:p></o:p></span></i></b></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
-Courier New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></spa=
-n></b></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
-or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-<o:p></o:p></span></b></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Wingdings;color:black">(<=
-/span><span style=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">
-</span><span style=3D"font-size:8.0pt;font-family:&quot;MS Sans Serif&quot;=
-;color:teal">&nbsp;&nbsp;</span><b><span style=3D"font-size:8.0pt;font-fami=
-ly:&quot;Comic Sans MS&quot;;color:teal">Work Telephone</span></b><span sty=
-le=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-">(503) 712-0534<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
-ans Serif&quot;;color:teal">&nbsp;&nbsp;&nbsp;
-</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
-ot;;color:teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&=
-quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-">(208) 244-4460<span style=3D"color:black"><o:p></o:p></span></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-">* </span>
-<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
-MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
-.0pt;font-family:&quot;MS Sans Serif&quot;;color:teal">:</span><span lang=
-=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;">&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;
-<u><span style=3D"color:blue">stephen.k.jolley@intel.com</span></u></span><=
-span lang=3D"FR" style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,sa=
-ns-serif"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
-
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E5727C9BFfmsmsx111amrcor_--
