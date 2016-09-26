@@ -1,26 +1,76 @@
-Return-Path: <recipe-report@yoctoproject.org>
+Return-Path: <oliver.graute@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9B4C8E00D64; Sun, 25 Sep 2016 21:36:58 -0700 (PDT)
+	id 968E3E00D64; Mon, 26 Sep 2016 00:15:36 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (oliver.graute[at]gmail.com)
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.82.65 listed in dnsbl.sorbs.net]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from packages.yoctoproject.org (unknown [198.145.29.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 85687E00B8D
-	for <yocto@yoctoproject.org>; Sun, 25 Sep 2016 21:36:55 -0700 (PDT)
-Received: from packages.yoctoproject.org (localhost [IPv6:::1])
-	by packages.yoctoproject.org (Postfix) with ESMTP id 70CF187E7294
-	for <yocto@yoctoproject.org>; Mon, 26 Sep 2016 00:36:53 -0400 (EDT)
-MIME-Version: 1.0
-From: recipe-report@yoctoproject.org
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.82.65 listed in list.dnswl.org]
+Received: from mail-wm0-f65.google.com (mail-wm0-f65.google.com [74.125.82.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2CB2FE00C17
+	for <yocto@yoctoproject.org>; Mon, 26 Sep 2016 00:15:31 -0700 (PDT)
+Received: by mail-wm0-f65.google.com with SMTP id w84so12592883wmg.0
+	for <yocto@yoctoproject.org>; Mon, 26 Sep 2016 00:15:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=date:from:to:subject:message-id:mail-followup-to:references
+	:mime-version:content-disposition:in-reply-to:user-agent;
+	bh=cmTq0ZOlww53R2UuxElbEvMWCabrxcJsfVzpJ8uSx7A=;
+	b=dBJ7yfA1bcqnYQz795gez+p1IAh9pHGx2XzC+GxiBOGXThBz4YJsCJD0gvZ1TPdqLv
+	shNCNOQxUEvtM5COoorjLkqBxezgabl1ErmtwCmu5gH3X181vCwbKT1NmQz0dCv+aOj9
+	zqsqWDkeBQy3hNwV8MkBVHmTssxscjj7jkBKrWT0XlU16VnS7KzJcyLMMTKBrEtLjr+v
+	zILrVYR4Yff+PFhTLzcFCOTTpalW/arU0Uox79jkChB/EC4ZPSTu2bfDAucG/o5iw7ss
+	p/nOCJC/GHWlJDkxksJHZZD7oJf/HlcN33AwkQs0+JeicwZTkQO57ZJnzmVqXA5MFZLJ
+	tC1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:date:from:to:subject:message-id:mail-followup-to
+	:references:mime-version:content-disposition:in-reply-to:user-agent;
+	bh=cmTq0ZOlww53R2UuxElbEvMWCabrxcJsfVzpJ8uSx7A=;
+	b=ZNjTqsoeoick+r9DFJF7i3A8wZ/1CPSoJ5XdU2spwngukW/DjtKzI1UdH7hUlO6BgP
+	R0RXHGRzYuKgeAr+KFeOHTQ0H4WLHOMadA13qu9oOK5PthphbLFT+UKmRoecA7BuDFOJ
+	w1HOsN3sVy+Dr253bSAKpEsnY0iVs7zloM4HE5p5dqDd6nW8ZBLUQMW7VxRP2EjeC11F
+	Uq6Z2PH/n8ePSFUw+jUD/DsdvVCaKX4hJDiWM8xR1s2hchusu3XBf9D5niyA00ImDiY6
+	3HIk1247N+38CrmWOFRSdS7ultOUDkVeGLd4J9wWv8hn5XgNZ1eYCDd4iLG5x+zp4xCn
+	8Pcg==
+X-Gm-Message-State: AA6/9RkZWXGFAOcbK9QMPI8EFEkgBN0M+v7vQk9z8q4Onx0E8x6EKdMH3pXlbiHJ7EeFRw==
+X-Received: by 10.28.54.196 with SMTP id y65mr12054840wmh.73.1474874129956;
+	Mon, 26 Sep 2016 00:15:29 -0700 (PDT)
+Received: from localhost (x55b1e120.dyn.telefonica.de. [85.177.225.32])
+	by smtp.gmail.com with ESMTPSA id
+	z12sm9614593wmz.11.2016.09.26.00.15.28 for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=AES128-SHA bits=128/128);
+	Mon, 26 Sep 2016 00:15:29 -0700 (PDT)
+Date: Mon, 26 Sep 2016 09:14:56 +0200
+From: Oliver Graute <oliver.graute@gmail.com>
 To: yocto@yoctoproject.org
-Date: Mon, 26 Sep 2016 04:36:53 -0000
-Message-ID: <20160926043653.23132.72238@packages.yoctoproject.org>
-Subject: [Recipe reporting system] Upgradable recipe name list
+Message-ID: <20160926071456.GB13394@graute-opti>
+Mail-Followup-To: yocto@yoctoproject.org
+References: <20160916082406.GB27958@graute-opti>
+	<CAJ86T=WaKHQFXfSuvAm4wQUfa=xr_CBmK8-ZovaystYGM=9ukA@mail.gmail.com>
+	<20160919115820.GC27958@graute-opti>
+	<20160922071643.GE27958@graute-opti>
+	<CAMKF1sqRxXEY-z2Jz5=SADE9hxai1_TnDUUMbS+9tcc1Ok5uKg@mail.gmail.com>
+	<20160923121920.GA13394@graute-opti>
+	<20160923161658.GD14313@csclub.uwaterloo.ca>
+MIME-Version: 1.0
+In-Reply-To: <20160923161658.GD14313@csclub.uwaterloo.ca>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+Subject: Re: build ntp with openssl support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,158 +82,135 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 26 Sep 2016 04:36:58 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 26 Sep 2016 07:15:36 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-This mail was sent out by Recipe reporting system.
+On 23/09/16, Lennart Sorensen wrote:
+> On Fri, Sep 23, 2016 at 02:19:20PM +0200, Oliver Graute wrote:
+> > On 22/09/16, Khem Raj wrote:
+> > > On Thu, Sep 22, 2016 at 12:16 AM, Oliver Graute <oliver.graute@gmail.com> wrote:
+> > > > On 19/09/16, Oliver Graute wrote:
+> > > >> On 16/09/16, Andre McCurdy wrote:
+> > > >> > On Fri, Sep 16, 2016 at 1:24 AM, Oliver Graute <oliver.graute@gmail.com> wrote:
+> > > >> > > Hello,
+> > > >> > >
+> > > >> > > how can I build ntp with openssl support?
+> > > >> > >
+> > > >> > > I already created a ntp_%.bbappend file to extend the recipe ntp_4.2.8p4.bb.
+> > > >> > >
+> > > >> > > FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+> > > >> >
+> > > >> > You don't really need this line unless you are adding a file to
+> > > >> > SRC_URI or replacing a file already in SRC_URI with your own version.
+> > > >> >
+> > > >> > > PACKAGECONFIG += "openssl"
+> > > >> >
+> > > >> > This will enable openssl, but it will also disable all the default
+> > > >> > PACKAGECONFIG options (cap, debug and refclocks) which is probably not
+> > > >> > what you want. Try this instead:
+> > > >> >
+> > > >> >   PACKAGECONFIG_append = " openssl"
+> > > >> >
+> > > >> > Note the space between " and openssl. It's required.
+> > > >>
+> > > >> ok now I see the right configure script options during the configuration
+> > > >> of the ntp build.
+> > > >>
+> > > >> --with-openssl-libdir=/home/graute/5411_IBIS/yocto/build-imx6ulevk-nand/tmp/sysroots/imx6ulevk/usr/lib
+> > > >> --with-openssl-incdir=/home/graute/5411_IBIS/yocto/build-imx6ulevk-nand/tmp/sysroots/imx6ulevk/usr/include
+> > > >> --with-crypto
+> > > >>
+> > > >> But ntp is still build without openssl support. The configure scripts
+> > > >> can't find the relevant openssl stuff.
+> > > >>
+> > > >> configure:34762: checking for openssl library directory
+> > > >> configure:34802: result: no
+> > > >> configure:34807: WARNING: libcrypto and libssl not found in any of /home/graute/5411_IBIS/yocto/build-imx6ulevk-nand/tmp/sysroots/imx6ulevk/usr/lib
+> > > >> configure:34811: checking for openssl include directory
+> > > >> configure:34833: result: /home/graute/5411_IBIS/yocto/build-imx6ulevk-nand/tmp/sysroots/imx6ulevk/usr/include
+> > > >> configure:34877: checking if we will use crypto
+> > > >> configure:34879: result: no
+> > > >> configure:35109: checking if we want to use OpenSSL's crypto random (if available)
+> > > >> configure:35119: result: yes
+> > > >>
+> > > >> some clue whats wrong here?
+> > > >
+> > > > in my sysroots/imx6ulevk/usr/lib I have
+> > > >
+> > > > ls -la libssl*
+> > > >
+> > > > libssl3.so
+> > > > libssl.a
+> > > > libssl.so -> libssl.so.1.0.0
+> > > > libssl.so.1.0.0
+> > > >
+> > > > ls -la libcrypt*
+> > > >
+> > > > libcrypt.a
+> > > > libcrypt_pic.a
+> > > > libcrypt_pic.map
+> > > > libcrypt.so -> ../../lib/libcrypt.so.1
+> > > >
+> > > >
+> > > > but no libcrypto.so. I guess thats the reason why my ntp configure
+> > > > script is complaining.
+> > > >
+> > > > Some ideas how to get libcrypto.so in my /usr/lib folder in the yocto
+> > > > sysroot?
+> > > >
+> > > 
+> > > It seems your openssl is not being compiled correctly. Can you go into
+> > > builddir or openssl
+> > > and see if libcrypto.so.1.0.0 is built ? if not then you have to do
+> > > some digging why its not
+> > > configuring to build libcrypto
+> > 
+> > libcrypto is build by openssl
+> > 
+> > openssl/1.0.2d-r0/openssl-1.0.2d$ ls -la  libcrypt*
+> > libcrypto.a
+> > libcrypto.pc
+> > libcrypto.so -> libcrypto.so.1.0.0
+> > libcrypto.so.1.0.0
+> > 
+> > but in my sysroot libcrypto is located in lib NOT in usr/lib
+> > 
+> > the ntp recipe in meta-openembedded/meta-networking/recipes-support/ntp/ntp_4.2.8p4.bb
+> > defines:
+> > 
+> >  --with-openssl-libdir=${STAGING_LIBDIR}
+> > 
+> > I assume I need ${STAGING_BASELIBDIR} here instead. But currently I fail
+> > with overwriting this in my bbappend file.
+> > 
+> > If I use EXTRA_OECONF to overwrite it in my bbappend I see two --with-openssl-libdir
+> > statements while configuring. The first with /lib the second one with /usr/lib. 
+> > 
+> > EXTRA_OECONF  += "\
+> > 		--with-openssl \
+> > 		--with-openssl-libdir=${STAGING_BASELIBDIR} \
+> > 		--with-openssl-incdir=${STAGING_INCDIR} \
+> > 		--with-crypto \
+> > "
+> 
+> I have a .bbappend file containing:
+> 
+> # This is wrong in the upstream .bb file and doesn't work so override it
+> PACKAGECONFIG[openssl] = "--with-crypto, \
+>                           --without-crypto, \
+>                           openssl"
+> PACKAGECONFIG_append = " openssl"
+> 
+> By NOT specifying the directories, it uses pkg-config, which of course
+> returns both directories correctly.  The ntp configure script can't
+> imagine that the openssl libraries are in two different directories at
+> the same time and hence fails to find them even though it searches both
+> of them, but only trying one at a time.
 
-This message list those recipes which need to be upgraded. If maintainers
-believe some of them needn't to upgrade at this time, they can fill
-RECIPE_NO_UPDATE_REASON in respective recipe file to ignore this remainder
-until newer upstream version was detected.
+Thank you this is working for me.
 
-Example:
-RECIPE_NO_UPDATE_REASON = "Version 2.0 is unstable"
+Best Regards,
 
-You can check the detail information at:
-
-http://recipes.yoctoproject.org/
-
-Package               Version        Upstream version      Maintainer           NoUpgradeReason
---------------------  -------------  --------------------  -------------------  ------------------------------
-texinfo               6.0            6.3                   Alejandro Hernandez
-python-git            2.0.7          2.0.8                 Alejandro Hernandez
-python3-pygobject     3.20.1         3.22.0                Alejandro Hernandez
-nfs-utils             1.3.3          1.3.4                 Alejandro Hernandez
-perl                  5.22.1         5.24.1                Alejandro Hernandez
-python3-git           2.0.7          2.0.8                 Alejandro Hernandez
-python-pexpect        4.2.0          4.2.1                 Alejandro Hernandez
-swig                  3.0.8          3.0.10                Alejandro Hernandez
-python3-setuptools    22.0.5         27.3.0                Alejandro Hernandez
-python-setuptools     22.0.5         27.3.0                Alejandro Hernandez
-python3-numpy         1.11.0         1.11.1                Alejandro Hernandez
-perl-native           5.22.1         5.24.1                Alejandro Hernandez
-liberation-fonts      1.04           2.00.1                Alexander Kanavin    2.x depends on fontforge pa...
-gobject-introspec...  1.48.0         1.50.0                Alexander Kanavin
-webkitgtk             2.12.5         2.14.0                Alexander Kanavin
-openssl               1.0.2i         1.1.0a                Alexander Kanavin
-gnome-desktop3        3.20.2         3.22.0                Alexander Kanavin
-gnutls                3.5.3          3.5.4                 Alexander Kanavin
-vala                  0.32.1         0.34.0                Alexander Kanavin
-nss                   3.25           3.26                  Alexander Kanavin
-dtc                   1.4.1+gitX     1.4.2+gitAUTOINC+...  Alexander Kanavin
-kexec-tools           2.0.12         2.0.13                Alexander Kanavin
-btrfs-tools           4.7.1          4.7.3                 Alexander Kanavin
-epiphany              3.20.3         3.22.0                Alexander Kanavin
-sysprof               3.20.0+gitX    3.22.0+gitAUTOINC...  Alexander Kanavin
-cmake-native          3.6.1          3.6.2                 Alexander Kanavin
-mpg123                1.23.6         1.23.7                Alexander Kanavin
-cmake                 3.6.1          3.6.2                 Alexander Kanavin
-mkelfimage            4.0+gitX       4.4+gitAUTOINC+58...  Alexander Kanavin    mkelfimage has been removed...
-libksba               1.3.4          1.3.5                 Alexander Kanavin
-ptest-runner          2.0+gitX       2.0.1+gitAUTOINC+...  Aníbal Limón
-apt                   1.2.12         1.3                   Aníbal Limón
-apt-native            1.2.12         1.3                   Aníbal Limón
-dpkg                  1.18.7         1.18.10               Aníbal Limón
-pinentry              0.9.2          0.9.7                 Armin Kuster
-linux-libc-headers    4.8-rc4        8                     Bruce Ashfield
-guilt-native          0.35+gitX      0.36+gitAUTOINC+2...  Bruce Ashfield
-cups                  2.1.4          2.2.0                 Chen Qi
-curl                  7.50.1         7.50.3                Chen Qi
-systemd-boot          230+gitX       231+gitAUTOINC+38...  Chen Qi
-dbus-glib             0.106          0.108                 Chen Qi
-diffutils             3.4            3.5                   Chen Qi
-gawk                  4.1.3          4.1.4                 Chen Qi
-systemd               230+gitX       231+gitAUTOINC+38...  Chen Qi
-util-linux            2.28.1         2.28.2                Chen Qi
-sudo                  1.8.17p1       1.8.18                Chen Qi
-sysstat               11.4.0         11.5.1                Chen Qi
-systemd-bootchart     230+gitX       231+gitAUTOINC+9e...  Chen Qi
-build-appliance-i...  15.0.0         15.0.1                Cristian Iorga
-docbook-sgml-dtd-...  3.1            3.1">3.1/<            Dengke Du
-sgmlspl-native        1.1+gitX       1.03+gitAUTOINC+f...  Dengke Du
-linuxdoc-tools-na...  0.9.69         0.9.72                Dengke Du
-chkconfig             1.3.58         1.8                   Dengke Du            Version 1.5 requires selinux
-ltp                   20160126       20160920              Dengke Du
-u-boot-fw-utils       v2016.03+gitX  v2016.09.01+gitAU...  Denys Dmytriyenko
-u-boot-mkimage        v2016.03+gitX  v2016.09.01+gitAU...  Denys Dmytriyenko
-u-boot                v2016.03+gitX  v2016.09.01+gitAU...  Denys Dmytriyenko
-elfutils              0.166          0.167                 Hongxu Jia
-gpgme                 1.6.0          1.7.0                 Hongxu Jia
-bash                  4.3.30         4.4                   Hongxu Jia
-ghostscript           9.19           9.20rc1               Hongxu Jia
-readline              6.3            7.0                   Hongxu Jia
-ncurses               6.0+20160625   6.0+20160917          Hongxu Jia
-gnupg                 2.1.14         2.1.15                Hongxu Jia
-pango                 1.40.1         1.40.3                Jussi Kukkonen
-atk                   2.20.0         2.22.0                Jussi Kukkonen
-libinput              1.4.1          1.5.0                 Jussi Kukkonen
-wayland               1.11.0         1.12.0                Jussi Kukkonen
-weston                1.11.0         1.12.0                Jussi Kukkonen
-gtk-icon-utils-na...  3.20.9         3.22.0                Jussi Kukkonen
-at-spi2-atk           2.20.1         2.22.0                Jussi Kukkonen
-at-spi2-core          2.20.2         2.22.0                Jussi Kukkonen
-libevdev              1.5.2          1.5.4                 Jussi Kukkonen
-glib-2.0              2.48.2         2.50.0                Jussi Kukkonen
-glib-networking       2.48.2         2.50.0                Jussi Kukkonen
-libsoup-2.4           2.54.1         2.56.0                Jussi Kukkonen
-shared-mime-info      1.6            1.7                   Jussi Kukkonen
-mesa                  12.0.1         12.0.3                Jussi Kukkonen
-vte                   0.44.2         0.46.0                Jussi Kukkonen
-xproto                7.0.29         7.0.31                Jussi Kukkonen
-xserver-xorg          1.18.4         1.18.99.901           Jussi Kukkonen
-clutter-gst-3.0       3.0.18         3.0.20                Jussi Kukkonen
-adwaita-icon-theme    3.20           3.22.0                Jussi Kukkonen
-gdk-pixbuf            2.34.0         2.36.0                Jussi Kukkonen
-libxfont              1.5.1          1.5.2                 Jussi Kukkonen
-gtk+3                 3.20.9         3.22.0                Jussi Kukkonen
-gtk+                  2.24.30        2.24.31               Jussi Kukkonen
-clutter-gtk-1.0       1.8.0          1.8.2                 Jussi Kukkonen
-cogl-1.0              1.22.0         1.22.2                Jussi Kukkonen
-gsettings-desktop...  3.20.0         3.22.0                Jussi Kukkonen
-freetype              2.6.5          2.7                   Jussi Kukkonen
-mesa-gl               12.0.1         12.0.3                Jussi Kukkonen
-xf86-input-synaptics  1.8.3          1.8.99.1              Jussi Kukkonen
-xf86-input-libinput   0.19.0         0.19.1                Jussi Kukkonen
-prelink               1.0+gitX       20151030.+gitAUTO...  Mark Hatle
-db                    6.0.30         6.2.23                Mark Hatle           latest db does not work wit...
-rpm                   5.4.16         5.4.17                Mark Hatle
-libpfm4               4.6.0          4.7.0                 Matthew McClintock
-acpid                 2.0.27         2.0.28                Maxin B. John
-libpcap               1.7.4          1.8.0                 Maxin B. John
-ifupdown              0.8.2          0.8.13                Maxin B. John
-serf                  1.3.8          1.3.9                 Maxin B. John
-sqlite3               3.14.1         3.14.2                Maxin B. John
-libpng                1.6.24         1.6.25                Maxin B. John
-harfbuzz              1.3.0          1.3.1                 Maxin B. John
-orc                   0.4.25         0.4.26                Maxin B. John
-libjpeg-turbo         1.5.0          1.5.1                 Maxin B. John
-gdb-cross-canadia...  7.11           7.11.1                No maintainer
-gdb-cross-i586        7.11           7.11.1                No maintainer
-gdb                   7.11           7.11.1                Richard Purdie
-autogen-native        5.18.10        5.18.12               Robert Yang
-e2fsprogs             1.43           1.43.3                Robert Yang
-git                   2.9.3          2.10.0                Robert Yang
-base-passwd           3.5.29         3.5.40                Ross Burton          Version 3.5.38 requires cde...
-lsbinitscripts        9.68           9.69                  Ross Burton
-
-Upgradable count: 110
-Upgradable total count: 115
-
-The based commit is:
-
-commit ae5073c4abd8935c01d14d3e6395124f815bd10b
-Author: Zubair Lutfullah Kakakhel <Zubair.Kakakhel@imgtec.com>
-Date:   Fri Sep 23 15:28:08 2016 +0100
-
-    arch-mips: Add mips64-o32 tunes
-    
-    Add mips64 + o32 rootfs abi tune configurations
-    
-    Signed-off-by: Zubair Lutfullah Kakakhel <Zubair.Kakakhel@imgtec.com>
-    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
-
-Any problem, please contact Anibal Limon <anibal.limon@intel.com> 
-
+Oliver
 
