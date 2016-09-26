@@ -1,16 +1,17 @@
-Return-Path: <oliver.graute@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 968E3E00D64; Mon, 26 Sep 2016 00:15:36 -0700 (PDT)
+	id E6B60E00D64; Mon, 26 Sep 2016 00:29:33 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (oliver.graute[at]gmail.com)
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.82.65 listed in dnsbl.sorbs.net]
+	mail provider *      (raj.khem[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.213.52 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -18,59 +19,45 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.65 listed in list.dnswl.org]
-Received: from mail-wm0-f65.google.com (mail-wm0-f65.google.com [74.125.82.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2CB2FE00C17
-	for <yocto@yoctoproject.org>; Mon, 26 Sep 2016 00:15:31 -0700 (PDT)
-Received: by mail-wm0-f65.google.com with SMTP id w84so12592883wmg.0
-	for <yocto@yoctoproject.org>; Mon, 26 Sep 2016 00:15:31 -0700 (PDT)
+Received: from mail-vk0-f52.google.com (mail-vk0-f52.google.com
+	[209.85.213.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A872DE00C17
+	for <yocto@yoctoproject.org>; Mon, 26 Sep 2016 00:29:29 -0700 (PDT)
+Received: by mail-vk0-f52.google.com with SMTP id z126so42913105vkd.0
+	for <yocto@yoctoproject.org>; Mon, 26 Sep 2016 00:29:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=date:from:to:subject:message-id:mail-followup-to:references
-	:mime-version:content-disposition:in-reply-to:user-agent;
-	bh=cmTq0ZOlww53R2UuxElbEvMWCabrxcJsfVzpJ8uSx7A=;
-	b=dBJ7yfA1bcqnYQz795gez+p1IAh9pHGx2XzC+GxiBOGXThBz4YJsCJD0gvZ1TPdqLv
-	shNCNOQxUEvtM5COoorjLkqBxezgabl1ErmtwCmu5gH3X181vCwbKT1NmQz0dCv+aOj9
-	zqsqWDkeBQy3hNwV8MkBVHmTssxscjj7jkBKrWT0XlU16VnS7KzJcyLMMTKBrEtLjr+v
-	zILrVYR4Yff+PFhTLzcFCOTTpalW/arU0Uox79jkChB/EC4ZPSTu2bfDAucG/o5iw7ss
-	p/nOCJC/GHWlJDkxksJHZZD7oJf/HlcN33AwkQs0+JeicwZTkQO57ZJnzmVqXA5MFZLJ
-	tC1Q==
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=yh43tWn1bNiSie5cYqCdjrxMQbfvnIuDReuemBe7cPM=;
+	b=OMmlEFPeHTpBLK1XlH9Bkk8Rg0ugYXl23bCwQhC9Rc2OMf6XkTzVxdOo6P+18yQf0m
+	tRT5Sk3O+ZUNpAz7beEUFjyWz4EktQLH5mI5w01qk9Ws3Nk/zvkfJI3Uj6+DEeQPjooE
+	1JWD6tmWjyo45ioanIZh0RrVuG+1yt7uK6Hz3deNvsRkqk0Tvud6QGnqso/IppEiw8DE
+	6629erqZS5Ys7rigU1UQ6Y2A3ul1wtC5YHZVag9PbLsl7U3vF17yjKhZA597JM8GXrWP
+	EICVdXBp+ZTlnyjU/LXTLgCs0YRIsgvptJ0oPgw1y5RLXWS1goy7AEi+JHWYpKEFgiTV
+	Oi7A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:date:from:to:subject:message-id:mail-followup-to
-	:references:mime-version:content-disposition:in-reply-to:user-agent;
-	bh=cmTq0ZOlww53R2UuxElbEvMWCabrxcJsfVzpJ8uSx7A=;
-	b=ZNjTqsoeoick+r9DFJF7i3A8wZ/1CPSoJ5XdU2spwngukW/DjtKzI1UdH7hUlO6BgP
-	R0RXHGRzYuKgeAr+KFeOHTQ0H4WLHOMadA13qu9oOK5PthphbLFT+UKmRoecA7BuDFOJ
-	w1HOsN3sVy+Dr253bSAKpEsnY0iVs7zloM4HE5p5dqDd6nW8ZBLUQMW7VxRP2EjeC11F
-	Uq6Z2PH/n8ePSFUw+jUD/DsdvVCaKX4hJDiWM8xR1s2hchusu3XBf9D5niyA00ImDiY6
-	3HIk1247N+38CrmWOFRSdS7ultOUDkVeGLd4J9wWv8hn5XgNZ1eYCDd4iLG5x+zp4xCn
-	8Pcg==
-X-Gm-Message-State: AA6/9RkZWXGFAOcbK9QMPI8EFEkgBN0M+v7vQk9z8q4Onx0E8x6EKdMH3pXlbiHJ7EeFRw==
-X-Received: by 10.28.54.196 with SMTP id y65mr12054840wmh.73.1474874129956;
-	Mon, 26 Sep 2016 00:15:29 -0700 (PDT)
-Received: from localhost (x55b1e120.dyn.telefonica.de. [85.177.225.32])
-	by smtp.gmail.com with ESMTPSA id
-	z12sm9614593wmz.11.2016.09.26.00.15.28 for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=AES128-SHA bits=128/128);
-	Mon, 26 Sep 2016 00:15:29 -0700 (PDT)
-Date: Mon, 26 Sep 2016 09:14:56 +0200
-From: Oliver Graute <oliver.graute@gmail.com>
-To: yocto@yoctoproject.org
-Message-ID: <20160926071456.GB13394@graute-opti>
-Mail-Followup-To: yocto@yoctoproject.org
-References: <20160916082406.GB27958@graute-opti>
-	<CAJ86T=WaKHQFXfSuvAm4wQUfa=xr_CBmK8-ZovaystYGM=9ukA@mail.gmail.com>
-	<20160919115820.GC27958@graute-opti>
-	<20160922071643.GE27958@graute-opti>
-	<CAMKF1sqRxXEY-z2Jz5=SADE9hxai1_TnDUUMbS+9tcc1Ok5uKg@mail.gmail.com>
-	<20160923121920.GA13394@graute-opti>
-	<20160923161658.GD14313@csclub.uwaterloo.ca>
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=yh43tWn1bNiSie5cYqCdjrxMQbfvnIuDReuemBe7cPM=;
+	b=E59xO8OqXWjqIC+YWMtiyynzIGwNgB+Lh31wbGe5kHofk/t/Bv2Iv1ofUk6qhEKWGu
+	qv5HHSJavQhx2p2Pi40+R6PqEamTYRKLO+p0DVrtgagZaZn7F4brcvfL0jhgt55yQPcS
+	GI/iwTgeMjH82YxMlu6w8oAnlrPJYJ3Y78YC9oBvT17t+8jqB8xm3/bty6/A13W9svMB
+	P5j1Udx9HS7gz4KyOGxIzbAr3RY6Od0rOEwuCVbNb5L1g00x54+AFC/mRDJzqoXx2wxi
+	twe5X/6TJLDaBBYfQoA1XmFXnNp/SGXo3E4tjBaGvXngQVNNq19+tw4oCInrwpDIArm+
+	2koQ==
+X-Gm-Message-State: AA6/9Rlw1Zsi8epHasZ5ZKHzCyebGKCySi/LWrbSlbO4NWvoaWAXxXwt7CTUaUPhY/3ewEwVD8ssH5pFqIVj9w==
+X-Received: by 10.31.244.9 with SMTP id s9mr7366842vkh.31.1474874968428; Mon,
+	26 Sep 2016 00:29:28 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20160923161658.GD14313@csclub.uwaterloo.ca>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-Subject: Re: build ntp with openssl support
+Received: by 10.176.80.33 with HTTP; Mon, 26 Sep 2016 00:28:56 -0700 (PDT)
+In-Reply-To: <HE1PR01MB18834F369C7B2C7149C9A56592CA0@HE1PR01MB1883.eurprd01.prod.exchangelabs.com>
+References: <HE1PR01MB18834F369C7B2C7149C9A56592CA0@HE1PR01MB1883.eurprd01.prod.exchangelabs.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Mon, 26 Sep 2016 00:28:56 -0700
+Message-ID: <CAMKF1sqQnvxFeXkTVuPFgGFH1ai+N=fznG4EaZ8OwpMjdMuqjw@mail.gmail.com>
+To: Karim ATIKI <karim_atiki@hotmail.com>
+Cc: yocto <yocto@yoctoproject.org>
+Subject: Re: [meta-toraxdex] unrecoverable build error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -82,135 +69,71 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 26 Sep 2016 07:15:36 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Mon, 26 Sep 2016 07:29:34 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On 23/09/16, Lennart Sorensen wrote:
-> On Fri, Sep 23, 2016 at 02:19:20PM +0200, Oliver Graute wrote:
-> > On 22/09/16, Khem Raj wrote:
-> > > On Thu, Sep 22, 2016 at 12:16 AM, Oliver Graute <oliver.graute@gmail.com> wrote:
-> > > > On 19/09/16, Oliver Graute wrote:
-> > > >> On 16/09/16, Andre McCurdy wrote:
-> > > >> > On Fri, Sep 16, 2016 at 1:24 AM, Oliver Graute <oliver.graute@gmail.com> wrote:
-> > > >> > > Hello,
-> > > >> > >
-> > > >> > > how can I build ntp with openssl support?
-> > > >> > >
-> > > >> > > I already created a ntp_%.bbappend file to extend the recipe ntp_4.2.8p4.bb.
-> > > >> > >
-> > > >> > > FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
-> > > >> >
-> > > >> > You don't really need this line unless you are adding a file to
-> > > >> > SRC_URI or replacing a file already in SRC_URI with your own version.
-> > > >> >
-> > > >> > > PACKAGECONFIG += "openssl"
-> > > >> >
-> > > >> > This will enable openssl, but it will also disable all the default
-> > > >> > PACKAGECONFIG options (cap, debug and refclocks) which is probably not
-> > > >> > what you want. Try this instead:
-> > > >> >
-> > > >> >   PACKAGECONFIG_append = " openssl"
-> > > >> >
-> > > >> > Note the space between " and openssl. It's required.
-> > > >>
-> > > >> ok now I see the right configure script options during the configuration
-> > > >> of the ntp build.
-> > > >>
-> > > >> --with-openssl-libdir=/home/graute/5411_IBIS/yocto/build-imx6ulevk-nand/tmp/sysroots/imx6ulevk/usr/lib
-> > > >> --with-openssl-incdir=/home/graute/5411_IBIS/yocto/build-imx6ulevk-nand/tmp/sysroots/imx6ulevk/usr/include
-> > > >> --with-crypto
-> > > >>
-> > > >> But ntp is still build without openssl support. The configure scripts
-> > > >> can't find the relevant openssl stuff.
-> > > >>
-> > > >> configure:34762: checking for openssl library directory
-> > > >> configure:34802: result: no
-> > > >> configure:34807: WARNING: libcrypto and libssl not found in any of /home/graute/5411_IBIS/yocto/build-imx6ulevk-nand/tmp/sysroots/imx6ulevk/usr/lib
-> > > >> configure:34811: checking for openssl include directory
-> > > >> configure:34833: result: /home/graute/5411_IBIS/yocto/build-imx6ulevk-nand/tmp/sysroots/imx6ulevk/usr/include
-> > > >> configure:34877: checking if we will use crypto
-> > > >> configure:34879: result: no
-> > > >> configure:35109: checking if we want to use OpenSSL's crypto random (if available)
-> > > >> configure:35119: result: yes
-> > > >>
-> > > >> some clue whats wrong here?
-> > > >
-> > > > in my sysroots/imx6ulevk/usr/lib I have
-> > > >
-> > > > ls -la libssl*
-> > > >
-> > > > libssl3.so
-> > > > libssl.a
-> > > > libssl.so -> libssl.so.1.0.0
-> > > > libssl.so.1.0.0
-> > > >
-> > > > ls -la libcrypt*
-> > > >
-> > > > libcrypt.a
-> > > > libcrypt_pic.a
-> > > > libcrypt_pic.map
-> > > > libcrypt.so -> ../../lib/libcrypt.so.1
-> > > >
-> > > >
-> > > > but no libcrypto.so. I guess thats the reason why my ntp configure
-> > > > script is complaining.
-> > > >
-> > > > Some ideas how to get libcrypto.so in my /usr/lib folder in the yocto
-> > > > sysroot?
-> > > >
-> > > 
-> > > It seems your openssl is not being compiled correctly. Can you go into
-> > > builddir or openssl
-> > > and see if libcrypto.so.1.0.0 is built ? if not then you have to do
-> > > some digging why its not
-> > > configuring to build libcrypto
-> > 
-> > libcrypto is build by openssl
-> > 
-> > openssl/1.0.2d-r0/openssl-1.0.2d$ ls -la  libcrypt*
-> > libcrypto.a
-> > libcrypto.pc
-> > libcrypto.so -> libcrypto.so.1.0.0
-> > libcrypto.so.1.0.0
-> > 
-> > but in my sysroot libcrypto is located in lib NOT in usr/lib
-> > 
-> > the ntp recipe in meta-openembedded/meta-networking/recipes-support/ntp/ntp_4.2.8p4.bb
-> > defines:
-> > 
-> >  --with-openssl-libdir=${STAGING_LIBDIR}
-> > 
-> > I assume I need ${STAGING_BASELIBDIR} here instead. But currently I fail
-> > with overwriting this in my bbappend file.
-> > 
-> > If I use EXTRA_OECONF to overwrite it in my bbappend I see two --with-openssl-libdir
-> > statements while configuring. The first with /lib the second one with /usr/lib. 
-> > 
-> > EXTRA_OECONF  += "\
-> > 		--with-openssl \
-> > 		--with-openssl-libdir=${STAGING_BASELIBDIR} \
-> > 		--with-openssl-incdir=${STAGING_INCDIR} \
-> > 		--with-crypto \
-> > "
-> 
-> I have a .bbappend file containing:
-> 
-> # This is wrong in the upstream .bb file and doesn't work so override it
-> PACKAGECONFIG[openssl] = "--with-crypto, \
->                           --without-crypto, \
->                           openssl"
-> PACKAGECONFIG_append = " openssl"
-> 
-> By NOT specifying the directories, it uses pkg-config, which of course
-> returns both directories correctly.  The ntp configure script can't
-> imagine that the openssl libraries are in two different directories at
-> the same time and hence fails to find them even though it searches both
-> of them, but only trying one at a time.
+On Sat, Sep 24, 2016 at 11:10 PM, Karim ATIKI <karim_atiki@hotmail.com> wrote:
+> hi,
+>
+>
+> During a core-image-x11  build   (yocto krogoth, meta-toradex) , I got the
+> following error I never encountered with Yocto:
+>
+>
+> ERROR: xf86-input-evdev-2_2.10.1-r0 do_populate_sysroot: The recipe
+> xf86-input-evdev is trying to install files into a shared area when those
+> files already exist. Those files and their manifest location are:
+>
+> /home/kai/yocto/colibri-t20-kts/tmp/sysroots/colibri-t20/usr/share/X11/xorg.conf.d/10-evdev.conf
+>  Matched in manifest-colibri-t20-xserver-xorg.populate_sysroot
+> Please verify which recipe should provide the above files.
+> The build has stopped as continuing in this scenario WILL break things, if
+> not now, possibly in the future (we've seen builds fail several months
+> later). If the system knew how to recover from this automatically it would
+> however there are several different scenarios which can result in this and
+> we don't know which one this is. It may be you have switched providers of
+> something like virtual/kernel (e.g. from linux-yocto to linux-yocto-dev), in
+> that case you need to execute the clean task for both recipes and it will
+> resolve this error. It may be you changed DISTRO_FEATURES from systemd to
+> udev or vice versa. Cleaning those recipes should again resolve this error
+> however switching DISTRO_FEATURES on an existing build directory is not
+> supported, you should really clean out tmp and rebuild (reusing sstate
+> should be safe). It could be the overlapping files detected are harmless in
+> which case adding them to SSTATE_DUPWHITELIST may be the correct solution.
+> It could also be your build is including two different conflicting versions
+> of things (e.g. bluez 4 and bluez 5 and the correct solution for that would
+> be to resolve the conflict. If in doubt, please ask on the mailing list,
+> sharing the error and filelist above.
+> ERROR: xf86-input-evdev-2_2.10.1-r0 do_populate_sysroot: If the above
+> message is too much, the simpler version is you're advised to wipe out tmp
+> and rebuild (reusing sstate is fine). That will likely fix things in most
+> (but not all) cases.
+> ERROR: xf86-input-evdev-2_2.10.1-r0 do_populate_sysroot: Function failed:
+> sstate_task_postfunc
+> ERROR: Logfile of failure stored in:
+> /home/kai/yocto/colibri-t20-kts/tmp/work/armv7ahf-vfp-poky-linux-gnueabi/xf86-input-evdev/2_2.10.1-r0/temp/log.do_populate_sysroot.639
+> ERROR: Task 2181
+> (/home/kai/yocto/poky-toradex/meta/recipes-graphics/xorg-driver/xf86-input-evdev_2.10.1.bb,
+> do_populate_sysroot) failed with exit code '1'
+>
+>
+> I cant' get rid of this error. I have deleted the tmp and
+> sstate-cache...nothing. it always occurs again.
+>
+>
+> Any idea?
 
-Thank you this is working for me.
+do you have x11 in DISTRO_FEATURES
 
-Best Regards,
-
-Oliver
+>
+>
+> Z.
+>
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
