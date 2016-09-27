@@ -1,45 +1,33 @@
-Return-Path: <damir.anicic@psi.ch>
+Return-Path: <mariano.lopez@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 17C4FE00C5B; Tue, 27 Sep 2016 07:04:42 -0700 (PDT)
+	id ED85FE00404; Tue, 27 Sep 2016 07:33:23 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	http://www.dnswl.org/, high *      trust
-	*      [82.130.99.26 listed in list.dnswl.org]
+	*      [134.134.136.20 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from edge20.ethz.ch (edge20.ethz.ch [82.130.99.26])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 623ACE00C45
-	for <yocto@yoctoproject.org>; Tue, 27 Sep 2016 07:04:37 -0700 (PDT)
-Received: from CAS10.d.ethz.ch (172.31.38.210) by edge20.ethz.ch
-	(82.130.99.26) with Microsoft SMTP Server (TLS) id 14.3.319.2;
-	Tue, 27 Sep 2016 16:04:32 +0200
-Received: from MBX214.d.ethz.ch ([fe80::5c68:3688:18d4:cbf7]) by
-	CAS10.d.ethz.ch ([fe80::cce:fc66:7b56:a06a%10]) with mapi id
-	14.03.0319.002; Tue, 27 Sep 2016 16:04:36 +0200
-From: "Anicic Damir (PSI)" <damir.anicic@psi.ch>
-To: Zhenhua Luo <zhenhua.luo@nxp.com>, Chris Z. <winotu.email@gmail.com>
-Thread-Topic: [yocto] fetcher failure
-Thread-Index: AdIX7cTViZAReqQYSJeJl3PiSMwDqgApPimS///8CoCAACJACP//4iqAgABpKME=
-Date: Tue, 27 Sep 2016 14:04:35 +0000
-Message-ID: <DB23C91B06C303459B24BC3208AF424A20FA7F24@MBX214.d.ethz.ch>
-References: <DB23C91B06C303459B24BC3208AF424A20FA7C19@MBX214.d.ethz.ch>
-	<DB23C91B06C303459B24BC3208AF424A20FA7E3F@MBX214.d.ethz.ch>,
-	<CAEjjReJMjr=dVvxhUtYB0y_SwGQvOYEEe0MTNLqufmozC=iJLA@mail.gmail.com>
-	<DB23C91B06C303459B24BC3208AF424A20FA7E8A@MBX214.d.ethz.ch>,
-	<DB6PR0401MB2630C54A0D4A35595E2A8307EECC0@DB6PR0401MB2630.eurprd04.prod.outlook.com>
-In-Reply-To: <DB6PR0401MB2630C54A0D4A35595E2A8307EECC0@DB6PR0401MB2630.eurprd04.prod.outlook.com>
-Accept-Language: en-US, de-DE, de-CH
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [129.129.145.249]
-MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: fetcher failure
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 05F0AE002AC
+	for <yocto@yoctoproject.org>; Tue, 27 Sep 2016 07:33:21 -0700 (PDT)
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+	by orsmga101.jf.intel.com with ESMTP; 27 Sep 2016 07:33:21 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.30,405,1470726000"; d="scan'208";a="173715895"
+Received: from mlopezva-mobl2.zpn.intel.com (HELO localhost.localdomain)
+	([10.219.5.40])
+	by fmsmga004.fm.intel.com with ESMTP; 27 Sep 2016 07:33:21 -0700
+From: mariano.lopez@linux.intel.com
+To: yocto@yoctoproject.org
+Date: Tue, 27 Sep 2016 09:34:22 -0500
+Message-Id: <1474986862-6910-1-git-send-email-mariano.lopez@linux.intel.com>
+X-Mailer: git-send-email 1.9.1
+Cc: joshua.g.lock@intel.com
+Subject: [yocto-autobuilder][PATCH] PublishArtifacts.py: Make PublishArtifacts step to fail when cp fails
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,220 +39,211 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 27 Sep 2016 14:04:42 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_DB23C91B06C303459B24BC3208AF424A20FA7F24MBX214dethzch_"
+X-List-Received-Date: Tue, 27 Sep 2016 14:33:24 -0000
 
---_000_DB23C91B06C303459B24BC3208AF424A20FA7F24MBX214dethzch_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+From: Mariano Lopez <mariano.lopez@linux.intel.com>
 
-If I replace
+When publishing the artifacts, sometimes the cp commands fails
+because it can't find the origin files, but the step in te autobuilder
+is green, like there were no errors at all. This will catch these
+errors, and will mark the build step as failed when cp fails.
+
+[YOCTO #10319]
+
+Signed-off-by: Mariano Lopez <mariano.lopez@linux.intel.com>
+---
+ .../autobuilder/buildsteps/PublishArtifacts.py     | 54 +++++++++++-----------
+ 1 file changed, 28 insertions(+), 26 deletions(-)
+
+diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/PublishArtifacts.py b/lib/python2.7/site-packages/autobuilder/buildsteps/PublishArtifacts.py
+index e738521..633600c 100644
+--- a/lib/python2.7/site-packages/autobuilder/buildsteps/PublishArtifacts.py
++++ b/lib/python2.7/site-packages/autobuilder/buildsteps/PublishArtifacts.py
+@@ -34,6 +34,7 @@ class PublishArtifacts(ShellCommand):
+         ShellCommand.__init__(self, **kwargs)
+ 
+     def start(self):
++        pipeline = "|| export PA_FAIL=1"
+         layerversion_yoctobsp=1
+         DEST=self.getProperty("DEST")
+         buildername=self.getProperty("buildername")
+@@ -80,12 +81,12 @@ class PublishArtifacts(ShellCommand):
+                     command=command+"mkdir -p " + os.path.join(DEST, ADT_INST_PUBLISH_DIR) + ";"
+                     command=command+"cp -R --no-dereference --preserve=links " + \
+                                     os.path.join(self.tmpdir, "deploy/sdk/") + \
+-                                    "*adt* " + os.path.join(DEST, ADT_INST_PUBLISH_DIR) + ";"
++                                    "*adt* " + os.path.join(DEST, ADT_INST_PUBLISH_DIR) + pipeline + ";"
+                 elif artifact == "adt-installer-QA":
+                     command=command+"mkdir -p " + os.path.join(DEST, ADTQA_INST_PUBLISH_DIR) + ";"
+                     command=command+"cp -R --no-dereference --preserve=links " + \
+                                     os.path.join(self.tmpdir, "deploy/sdk/") + \
+-                                    "*adt* " + os.path.join(DEST, ADTQA_INST_PUBLISH_DIR)+ ";"
++                                    "*adt* " + os.path.join(DEST, ADTQA_INST_PUBLISH_DIR) + pipeline + ";"
+                 elif artifact == "adtrepo-dev":
+                     adt_dev_dest= os.environ.get("ADTREPO_DEV_PATH") + "/" + distroversion + "-" + got_revision_poky + '-' + self.getProperty("branch_poky")
+                     command=command+"mkdir -p " + adt_dev_dest + "/adt-ipk;"
+@@ -105,39 +106,39 @@ class PublishArtifacts(ShellCommand):
+                     command=command+"cp --no-dereference --preserve=links " + \
+                                      os.path.join(deploy_dir, "org.*.zip") + \
+                                      " " + os.path.join(deploy_dir, "org.*.md5sum") + \
+-                                     " " + DEST + "/eclipse-plugin/"+ artifact_base +";"
++                                     " " + DEST + "/eclipse-plugin/"+ artifact_base + pipeline + ";"
+                 elif artifact == "build-appliance":
+                     command=command+"mkdir -p " + DEST + "/" + BA_PUBLISH_DIR + ";"
+                     if self.layerversion_core is not None and int(self.layerversion_core) > 2:
+                         command=command+"cp -R --no-dereference --preserve=links " + \
+                                         os.path.join(self.tmpdir, "deploy/images/qemux86-64/*.zip") + \
+-                                        " " + DEST + "/" + BA_PUBLISH_DIR + ";"
++                                        " " + DEST + "/" + BA_PUBLISH_DIR + pipeline + ";"
+                     else:
+                         command=command+"cp -R --no-dereference --preserve=links " + \
+                                         os.path.join(self.tmpdir, "deploy/images/*.zip") + \
+-                                        " " + DEST + "/" + BA_PUBLISH_DIR + ";"
++                                        " " + DEST + "/" + BA_PUBLISH_DIR + pipeline + ";"
+                 elif artifact == "buildtools-tarball":
+                     artifact_name, deploy_image_dir = self.getDeployNames(artifact, buildername)
+                     command=command+self.generateMD5cmd(artifact, deploy_image_dir)
+                     command=command+"mkdir -p " + DEST + "/buildtools;"
+                     command=command+"cp -R --no-dereference --preserve=links " + \
+                                     os.path.join(deploy_image_dir, "*buildtools*") + \
+-                                    " " + DEST + "/buildtools;"
++                                    " " + DEST + "/buildtools" + pipeline + ";"
+                 elif artifact == "rpm":
+                     command=command+"mkdir -p " + os.path.join(DEST, RPM_PUBLISH_DIR) + ";"
+                     command=command+"cp -R --no-dereference --preserve=links " + \
+                                     os.path.join(self.tmpdir, "deploy/rpm/* ") + \
+-                                    os.path.join(DEST, RPM_PUBLISH_DIR) + ";"
++                                    os.path.join(DEST, RPM_PUBLISH_DIR) + pipeline + ";"
+                 elif artifact == "deb":
+                     command=command+"mkdir -p " + os.path.join(DEST, DEB_PUBLISH_DIR) + ";"
+                     command=command+"cp -R --no-dereference --preserve=links " + \
+                                     os.path.join(self.tmpdir, "deploy/deb/* ") + \
+-                                    os.path.join(DEST, DEB_PUBLISH_DIR) + ";"
++                                    os.path.join(DEST, DEB_PUBLISH_DIR) + pipeline + ";"
+                 elif artifact == "ipk":
+                     command=command+"mkdir -p " + os.path.join(DEST, IPK_PUBLISH_DIR) + ";"
+                     command=command+"cp -R --no-dereference --preserve=links " + \
+                                     os.path.join(self.tmpdir, "deploy/ipk/* ") + \
+-                                    os.path.join(DEST, IPK_PUBLISH_DIR) + ";"
++                                    os.path.join(DEST, IPK_PUBLISH_DIR) + pipeline + ";"
+                 elif artifact == "sstate":
+                     if str(os.environ.get("PUBLISH_SSTATE")) == "True":
+                         sstate_dir = os.environ.get("SSTATE_DIR")
+@@ -145,7 +146,7 @@ class PublishArtifacts(ShellCommand):
+                         if sstate_dir is not None and pub_dir is not None:
+                             command=command+"mkdir -p " + pub_dir + ";"
+                             command=command+"cp -R --no-dereference --preserve=links " + \
+-                                     sstate_dir + "/* " + pub_dir + ";"
++                                     sstate_dir + "/* " + pub_dir + pipeline + ";"
+                         else:
+                             command=command+"echo 'Skipping copy of sstate, directories not configured.';"
+                     else:
+@@ -156,31 +157,31 @@ class PublishArtifacts(ShellCommand):
+                     command=command+"mkdir -p " + os.path.join(DEST, X86TC_PUBLISH_DIR) + ";"
+                     command=command+"cp -R --no-dereference --preserve=links " + \
+                                     os.path.join(deploy_image_dir, "poky-*i686-core-image*.sh ") + \
+-                                    os.path.join(DEST, X86TC_PUBLISH_DIR) + ";"
++                                    os.path.join(DEST, X86TC_PUBLISH_DIR) + pipeline + ";"
+                     command=command+"mkdir -p " + os.path.join(DEST, X8664TC_PUBLISH_DIR) + ";"
+                     command=command+"cp -R --no-dereference --preserve=links " + \
+                                     os.path.join(deploy_image_dir, "poky-*x86_64-core-image*.sh ") + \
+-                                    os.path.join(DEST, X8664TC_PUBLISH_DIR) + ";"
++                                    os.path.join(DEST, X8664TC_PUBLISH_DIR) + pipeline + ";"
+                 elif artifact == "uninative":
+                     artifact_name, deploy_image_dir = self.getDeployNames(artifact, buildername)
+                     command=command+self.generateMD5cmd(artifact, deploy_image_dir)
+                     command=command+"mkdir -p " + os.path.join(DEST, X86TC_PUBLISH_DIR) + ";"
+                     command=command+"cp -R --no-dereference --preserve=links " + \
+                                     os.path.join(deploy_image_dir, "i686-nativesdk-libc* ") + \
+-                                    os.path.join(DEST, X86TC_PUBLISH_DIR) + ";"
++                                    os.path.join(DEST, X86TC_PUBLISH_DIR) + pipeline + ";"
+                     command=command+"mkdir -p " + os.path.join(DEST, X8664TC_PUBLISH_DIR) + ";"
+                     command=command+"cp -R --no-dereference --preserve=links " + \
+                                     os.path.join(deploy_image_dir, "x86_64-nativesdk-libc* ") + \
+-                                    os.path.join(DEST, X8664TC_PUBLISH_DIR) + ";"
++                                    os.path.join(DEST, X8664TC_PUBLISH_DIR) + pipeline + ";"
+                 elif artifact == "oe-toolchain":
+                     command=command+"mkdir -p " + os.path.join(DEST, X86TC_PUBLISH_DIR) + ";"
+                     command=command+"cp -R --no-dereference --preserve=links " + \
+                                     os.path.join(self.tmpdir, "deploy/sdk/oecore-i686* ") + \
+-                                    os.path.join(DEST, X86TC_PUBLISH_DIR) + ";"
++                                    os.path.join(DEST, X86TC_PUBLISH_DIR) + pipeline + ";"
+                     command=command+"mkdir -p " + os.path.join(DEST, X8664TC_PUBLISH_DIR) + ";"
+                     command=command+"cp -R --no-dereference --preserve=links " + \
+                                     os.path.join(self.tmpdir, "deploy/sdk/oecore-x86_64* ") + \
+-                                    os.path.join(DEST, X8664TC_PUBLISH_DIR) + ";"
++                                    os.path.join(DEST, X8664TC_PUBLISH_DIR) + pipeline + ";"
+                 elif "qemu" in artifact:
+                     artifact_name, deploy_image_dir = self.getDeployNames(artifact, buildername)
+                     command += self.generateMD5cmd(artifact, deploy_image_dir)
+@@ -190,35 +191,35 @@ class PublishArtifacts(ShellCommand):
+                         command=command+"cp --no-dereference --preserve=links " + \
+                                     deploy_image_dir + "/*\.direct " + \
+                                     deploy_image_dir + "/*\.direct.md5sum " + \
+-                                    DEST + "/" + QEMU_PUBLISH_DIR + "/" + artifact_name + ";"
++                                    DEST + "/" + QEMU_PUBLISH_DIR + "/" + artifact_name + pipeline + ";"
+                     else:
+                         command=command+"cp -R --no-dereference --preserve=links " + \
+                                     deploy_image_dir + \
+-                                    "/*" + artifact + "* " + DEST + "/" + QEMU_PUBLISH_DIR + "/" + artifact_name + ";"
++                                    "/*" + artifact + "* " + DEST + "/" + QEMU_PUBLISH_DIR + "/" + artifact_name + pipeline + ";"
+                 elif "mpc8315e" in artifact:
+                     artifact_name, deploy_image_dir = self.getDeployNames(artifact, buildername)
+                     command += self.generateMD5cmd(artifact, deploy_image_dir)
+                     command=command+"mkdir -p " + DEST + "/" + MACHINE_PUBLISH_DIR + "/" + artifact_name + ";"
+                     command=command+"cp -R --no-dereference --preserve=links " + \
+                                     deploy_image_dir + \
+-                                    "/*mpc8315* " + DEST + "/" + MACHINE_PUBLISH_DIR + "/" + artifact_name + ";"
++                                    "/*mpc8315* " + DEST + "/" + MACHINE_PUBLISH_DIR + "/" + artifact_name + pipeline + ";"
+                 elif artifact == "tiny":
+                     command=command+"mkdir -p " + DEST + "/" + QEMU_PUBLISH_DIR + "/qemu-tiny;"
+                     command += self.generateMD5cmd(artifact, QEMU_PUBLISH_DIR + "/qemu-tiny")
+                     if self.layerversion_core is not None and int(self.layerversion_core) > 2:
+                         command=command+"cp -R --no-dereference --preserve=links " + \
+                                         os.path.join(self.tmpdir, "deploy/images/qemux86/* ") + \
+-                                        " " + DEST + "/" + QEMU_PUBLISH_DIR + "/qemu-tiny;"
++                                        " " + DEST + "/" + QEMU_PUBLISH_DIR + "/qemu-tiny" + pipeline + ";"
+                     else:
+                         command=command+"cp -R --no-dereference --preserve=links " + \
+                                         os.path.join(self.tmpdir, "deploy/images/*") + \
+-                                        DEST + "/" + QEMU_PUBLISH_DIR + "/qemu-tiny;"
++                                        DEST + "/" + QEMU_PUBLISH_DIR + "/qemu-tiny" +  pipeline + ";"
+                 elif artifact == "conf":
+                     artifact_name, deploy_image_dir = self.getDeployNames(artifact, buildername)
+                     command=command+"mkdir -p " + DEST + "/"+ MACHINE_PUBLISH_DIR + "/" + artifact_name + "/conf;"
+                     command=command+"cp -R --no-dereference " + \
+                                      os.path.join(self.basedir, "conf/") + \
+-                                     "/* " + DEST + "/" + MACHINE_PUBLISH_DIR + "/" + artifact_name + "/conf;"
++                                     "/* " + DEST + "/" + MACHINE_PUBLISH_DIR + "/" + artifact_name + "/conf" +  pipeline + ";"
+                 elif artifact == "md5sums":
+                     command = command + "echo 'MD5sums are generated and deployed from the image or toolchain artifact';"
+                 elif artifact == "None":
+@@ -238,19 +239,20 @@ class PublishArtifacts(ShellCommand):
+                             command=command+"cp --no-dereference --preserve=links " + \
+                                     deploy_image_dir + "/*\.direct " + \
+                                     deploy_image_dir + "/*\.direct.md5sum " + \
+-                                    DEST + "/" + MACHINE_PUBLISH_DIR + "/" + artifact_name + ";"
++                                    DEST + "/" + MACHINE_PUBLISH_DIR + "/" + artifact_name + pipeline + ";"
+                         else:
+                             command=command+"mkdir -p " + DEST + "/"+ MACHINE_PUBLISH_DIR +"/" + artifact_name + ";"
+                             if "beagle" in artifact:
+                                 command=command+"cp -R --no-dereference --preserve=links " + \
+                                              deploy_image_dir + \
+-                                             "/*Image* " + DEST + "/" + MACHINE_PUBLISH_DIR +"/" + artifact_name + ";"
++                                             "/*Image* " + DEST + "/" + MACHINE_PUBLISH_DIR +"/" + artifact_name + pipeline + ";"
+                                 command=command+"cp -R --no-dereference --preserve=links " + \
+                                              deploy_image_dir + \
+-                                             "/u-boot* " + DEST + "/" + MACHINE_PUBLISH_DIR +"/" + artifact_name + ";"
++                                             "/u-boot* " + DEST + "/" + MACHINE_PUBLISH_DIR +"/" + artifact_name + pipeline + ";"
+                             command=command+"cp -R --no-dereference --preserve=links " + \
+                                          deploy_image_dir + \
+-                                         "/*"+artifact+"* " + DEST + "/" + MACHINE_PUBLISH_DIR +"/" + artifact_name + ";"
++                                         "/*"+artifact+"* " + DEST + "/" + MACHINE_PUBLISH_DIR +"/" + artifact_name + pipeline + ";"
++            command=command+'if [ "$PA_FAIL" = "1" ]; then exit 1; fi;'
+             self.command = command
+         else:
+             self.command = "echo 'Skipping Step.'"
+-- 
+1.9.1
 
 
--SRC_URI =3D "git://git.freescale.com/ppc/sdk/linux.git;branch=3Dsdk-v2.0.x=
- \
-
-with
-
-+SRC_URI =3D "git://git.freescale.com/ppc/sdk/linux.git;nobranch=3D1 \
-
-
-then it works, at least on Ubuntu 16.04 build host
-(on ScientificLinx 6.4 fetch does not work, but I simply copied fetched fol=
-der from Ubuntu)
-
-
-
-
-________________________________
-From: Zhenhua Luo [zhenhua.luo@nxp.com]
-Sent: Tuesday, September 27, 2016 11:44
-To: Anicic Damir (PSI); Chris Z.
-Cc: yocto@yoctoproject.org
-Subject: RE: [yocto] fetcher failure
-
-I have submitted a patch for the fetch issue, can you please give a try? Yo=
-u can use master-next branch of meta-fsl-ppc for the validation.
-
-
-Best Regards,
-
-Zhenhua
-
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Anicic Damir (PSI)
-Sent: Tuesday, September 27, 2016 5:34 PM
-To: Chris Z. <winotu.email@gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: [yocto] fetcher failure
-
-Why should I check,
-the meta-fsl-ppc/recipes-kernel/linux/linux-qoriq_4.1.bb has
-
-SRC_URI =3D "git://git.freescale.com/ppc/sdk/linux.git;branch=3Dsdk-v2.0.x =
-\
-SRCREV =3D "bd51baffc04ecc73f933aee1c3a37c8b44b889a7"
-
-If that is wrong freescale should correct it.
-
-And besides, the downloaded file gets deleted.
-
-But, OK, I'll try.
-
---_000_DB23C91B06C303459B24BC3208AF424A20FA7F24MBX214dethzch_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html dir=3D"ltr">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style>=0A=
-<!--=0A=
-@font-face=0A=
-	{font-family:SimSun}=0A=
-@font-face=0A=
-	{font-family:"Cambria Math"}=0A=
-@font-face=0A=
-	{font-family:Calibri}=0A=
-@font-face=0A=
-	{font-family:SimSun}=0A=
-@font-face=0A=
-	{font-family:Tahoma}=0A=
-p.MsoNormal, li.MsoNormal, div.MsoNormal=0A=
-	{margin:0in;=0A=
-	margin-bottom:.0001pt;=0A=
-	font-size:12.0pt;=0A=
-	font-family:"Times New Roman",serif}=0A=
-a:link, span.MsoHyperlink=0A=
-	{color:#0563C1;=0A=
-	text-decoration:underline}=0A=
-a:visited, span.MsoHyperlinkFollowed=0A=
-	{color:#954F72;=0A=
-	text-decoration:underline}=0A=
-p=0A=
-	{margin:0in;=0A=
-	margin-bottom:.0001pt;=0A=
-	font-size:12.0pt;=0A=
-	font-family:"Times New Roman",serif}=0A=
-span.EmailStyle18=0A=
-	{font-family:"Calibri",sans-serif;=0A=
-	color:#1F497D}=0A=
-span.EmailStyle19=0A=
-	{font-family:"Calibri",sans-serif;=0A=
-	color:windowtext}=0A=
-.MsoChpDefault=0A=
-	{font-size:10.0pt}=0A=
-@page WordSection1=0A=
-	{margin:1.0in 1.25in 1.0in 1.25in}=0A=
--->=0A=
-</style><style id=3D"owaParaStyle" type=3D"text/css">P {margin-top:0;margin=
--bottom:0;}</style>
-</head>
-<body ocsi=3D"0" fpstyle=3D"1" lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#95=
-4F72">
-<div style=3D"direction: ltr;font-family: Tahoma;color: #000000;font-size: =
-10pt;"><span lang=3D"en-US"><font color=3D"black" size=3D"2" face=3D"Tahoma=
-"><span style=3D"font-size:10pt;" dir=3D"ltr">If I replace<br>
-<br>
-</span></font></span><br>
-<span lang=3D"en-US"><font color=3D"black" size=3D"2" face=3D"Tahoma"><span=
- style=3D"font-size:10pt;" dir=3D"ltr"><span lang=3D"en-US"><font color=3D"=
-black" size=3D"2" face=3D"Tahoma"><span style=3D"font-size:10pt;" dir=3D"lt=
-r">-SRC_URI =3D &quot;git://git.freescale.com/ppc/sdk/linux.git;branch=3Dsd=
-k-v2.0.x
- \<br>
-<br>
-with<br>
-<br>
-&#43;SRC_URI =3D &quot;git://git.freescale.com/ppc/sdk/linux.git;nobranch=
-=3D1 \<br>
-</span></font></span><br>
-<br>
-then it works, at least on Ubuntu 16.04 build host<br>
-(on ScientificLinx 6.4 fetch does not work, but I simply copied fetched fol=
-der from Ubuntu)<br>
-<br>
-<br>
-<br>
-<br>
-</span></font></span>
-<div style=3D"font-family: Times New Roman; color: #000000; font-size: 16px=
-">
-<hr tabindex=3D"-1">
-<div style=3D"direction: ltr;" id=3D"divRpF291376"><font color=3D"#000000" =
-size=3D"2" face=3D"Tahoma"><b>From:</b> Zhenhua Luo [zhenhua.luo@nxp.com]<b=
-r>
-<b>Sent:</b> Tuesday, September 27, 2016 11:44<br>
-<b>To:</b> Anicic Damir (PSI); Chris Z.<br>
-<b>Cc:</b> yocto@yoctoproject.org<br>
-<b>Subject:</b> RE: [yocto] fetcher failure<br>
-</font><br>
-</div>
-<div></div>
-<div>
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt; font-family:&quot;C=
-alibri&quot;,sans-serif; color:#1F497D">I have submitted a patch for the fe=
-tch issue, can you please give a try? You can use master-next branch of met=
-a-fsl-ppc for the validation.
-</span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt; font-family:&quot;C=
-alibri&quot;,sans-serif; color:#1F497D">&nbsp;</span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt; font-family:&quot;C=
-alibri&quot;,sans-serif; color:#1F497D">&nbsp;</span></p>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt; font-family:&quot;C=
-alibri&quot;,sans-serif; color:#1F497D">Best Regards,
-</span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt; font-family:&quot;C=
-alibri&quot;,sans-serif; color:#1F497D">&nbsp;</span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt; font-family:&quot;C=
-alibri&quot;,sans-serif; color:#1F497D">Zhenhua</span></p>
-</div>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt; font-family:&quot;C=
-alibri&quot;,sans-serif; color:#1F497D">&nbsp;</span></p>
-<div style=3D"border:none; border-left:solid blue 1.5pt; padding:0in 0in 0i=
-n 4.0pt">
-<div>
-<div style=3D"border:none; border-top:solid #E1E1E1 1.0pt; padding:3.0pt 0i=
-n 0in 0in">
-<p class=3D"MsoNormal"><b><span style=3D"font-size:11.0pt; font-family:&quo=
-t;Calibri&quot;,sans-serif">From:</span></b><span style=3D"font-size:11.0pt=
-; font-family:&quot;Calibri&quot;,sans-serif"> yocto-bounces@yoctoproject.o=
-rg [mailto:yocto-bounces@yoctoproject.org]
-<b>On Behalf Of </b>Anicic Damir (PSI)<br>
-<b>Sent:</b> Tuesday, September 27, 2016 5:34 PM<br>
-<b>To:</b> Chris Z. &lt;winotu.email@gmail.com&gt;<br>
-<b>Cc:</b> yocto@yoctoproject.org<br>
-<b>Subject:</b> Re: [yocto] fetcher failure</span></p>
-</div>
-</div>
-<p class=3D"MsoNormal">&nbsp;</p>
-<div>
-<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><span style=3D"font-s=
-ize:10.0pt; font-family:&quot;Tahoma&quot;,sans-serif; color:black">Why sho=
-uld I check,<br>
-the meta-fsl-ppc/recipes-kernel/linux/linux-qoriq_4.1.bb has<br>
-<br>
-SRC_URI =3D &quot;git://git.freescale.com/ppc/sdk/linux.git;branch=3Dsdk-v2=
-.0.x \<br>
-SRCREV =3D &quot;bd51baffc04ecc73f933aee1c3a37c8b44b889a7&quot;<br>
-<br>
-If that is wrong freescale should correct it.<br>
-<br>
-And besides, the downloaded file gets deleted.<br>
-<br>
-But, OK, I'll try.</span></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</body>
-</html>
-
---_000_DB23C91B06C303459B24BC3208AF424A20FA7F24MBX214dethzch_--
