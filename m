@@ -1,40 +1,34 @@
-Return-Path: <mark.hatle@windriver.com>
+Return-Path: <joshua.g.lock@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 52080E007D3; Tue, 27 Sep 2016 13:53:28 -0700 (PDT)
+	id 7C643E0090A; Tue, 27 Sep 2016 15:11:24 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.65 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BBA58E0074C
-	for <yocto@yoctoproject.org>; Tue, 27 Sep 2016 13:53:26 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id u8RKrOh7025118
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Tue, 27 Sep 2016 13:53:24 -0700 (PDT)
-Received: from soho-mhatle-m.local (172.25.36.226) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.294.0;
-	Tue, 27 Sep 2016 13:53:24 -0700
-To: "Liam R. Howlett" <Liam.Howlett@windriver.com>, <yocto@yoctoproject.org>
-References: <1474914338-26310-1-git-send-email-Liam.Howlett@WindRiver.com>
-	<1474914338-26310-9-git-send-email-Liam.Howlett@WindRiver.com>
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-Message-ID: <f445d5e3-d065-821e-9452-21580de6517a@windriver.com>
-Date: Tue, 27 Sep 2016 15:53:23 -0500
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:45.0)
-	Gecko/20100101 Thunderbird/45.3.0
-MIME-Version: 1.0
-In-Reply-To: <1474914338-26310-9-git-send-email-Liam.Howlett@WindRiver.com>
-Cc: paul.eggleton@linux.intel.com
-Subject: Re: [layerindex-web][PATCH 08/10] layerindex: Add collection and version to layerbranch
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0A1E9E0086E
+	for <yocto@yoctoproject.org>; Tue, 27 Sep 2016 15:11:21 -0700 (PDT)
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+	by orsmga103.jf.intel.com with ESMTP; 27 Sep 2016 15:11:21 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.30,407,1470726000"; d="scan'208";a="173877721"
+Received: from jlock-mobl1.ger.corp.intel.com ([10.252.27.5])
+	by fmsmga004.fm.intel.com with ESMTP; 27 Sep 2016 15:11:19 -0700
+Message-ID: <1475014277.3072.16.camel@linux.intel.com>
+From: Joshua Lock <joshua.g.lock@linux.intel.com>
+To: mariano.lopez@linux.intel.com, yocto@yoctoproject.org
+Date: Tue, 27 Sep 2016 23:11:17 +0100
+In-Reply-To: <1474986862-6910-1-git-send-email-mariano.lopez@linux.intel.com>
+References: <1474986862-6910-1-git-send-email-mariano.lopez@linux.intel.com>
+X-Mailer: Evolution 3.20.5 (3.20.5-1.fc24) 
+Mime-Version: 1.0
+Subject: Re: [yocto-autobuilder][PATCH] PublishArtifacts.py: Make PublishArtifacts step to fail when cp fails
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,186 +40,363 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 27 Sep 2016 20:53:28 -0000
-Content-Type: text/plain; charset="windows-1252"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 27 Sep 2016 22:11:24 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-On 9/26/16 1:25 PM, Liam R. Howlett wrote:
-> Collection and version will be pulled from the layer.conf if it exists
-> and dependencies will be resolved by first checking for layers with the
-> dependency name and then checking for collections.  It is necessary to
-> shutdown tinfoil to avoid bitbake complaining about multiple instances.
+On Tue, 2016-09-27 at 09:34 -0500, mariano.lopez@linux.intel.com wrote:
+> From: Mariano Lopez <mariano.lopez@linux.intel.com>
+> 
+> When publishing the artifacts, sometimes the cp commands fails
+> because it can't find the origin files, but the step in te
+> autobuilder
+> is green, like there were no errors at all. This will catch these
+> errors, and will mark the build step as failed when cp fails.
 
-I think I found a bug in this patch.  The collection/version apparently needs to
-be 'unique' in the layerbranch.
+Merged and pushed, thanks!
 
-So if you have two layerbranch entries, associated with different branches (say
-master and krogoth) you will get an error that they both have the same
-collection name.
+Joshua
 
-(This happened when I tried to use the admin interface to set the values.)
-
-I will look into a solution for this problem.
-
---Mark
-
-> Signed-off-by: Liam R. Howlett <Liam.Howlett@WindRiver.com>
+> 
+> [YOCTO #10319]
+> 
+> Signed-off-by: Mariano Lopez <mariano.lopez@linux.intel.com>
 > ---
->  layerindex/models.py             |  2 ++
->  layerindex/tools/import_layer.py |  3 ---
->  layerindex/update.py             |  1 +
->  layerindex/update_layer.py       | 25 +++++++++++++++++++------
->  layerindex/utils.py              | 16 ++++++++++++++--
->  5 files changed, 36 insertions(+), 11 deletions(-)
+>  .../autobuilder/buildsteps/PublishArtifacts.py     | 54 +++++++++++-
+> ----------
+>  1 file changed, 28 insertions(+), 26 deletions(-)
 > 
-> diff --git a/layerindex/models.py b/layerindex/models.py
-> index 2db8818..dcccb1f 100644
-> --- a/layerindex/models.py
-> +++ b/layerindex/models.py
-> @@ -130,6 +130,8 @@ class LayerItem(models.Model):
->  class LayerBranch(models.Model):
->      layer = models.ForeignKey(LayerItem)
->      branch = models.ForeignKey(Branch)
-> +    collection = models.CharField('Layer Collection', max_length=40, unique=True, null=True, help_text='Name of the layer that could be used in the list of dependencies - must be unique and can only contain letters, numbers and dashes')
-> +    version = models.CharField('Layer Version', max_length=10, null=True, help_text='The layer version for this particular branch.')
->      vcs_subdir = models.CharField('Repository subdirectory', max_length=40, blank=True, help_text='Subdirectory within the repository where the layer is located, if not in the root (usually only used if the repository contains more than one layer)')
->      vcs_last_fetch = models.DateTimeField('Last successful fetch', blank=True, null=True)
->      vcs_last_rev = models.CharField('Last revision fetched', max_length=80, blank=True)
-> diff --git a/layerindex/tools/import_layer.py b/layerindex/tools/import_layer.py
-> index 0a13d21..21dd802 100755
-> --- a/layerindex/tools/import_layer.py
-> +++ b/layerindex/tools/import_layer.py
-> @@ -383,9 +383,6 @@ def main():
->                          layerdep.layerbranch = layerbranch
->                          layerdep.dependency = core_layer
->                          layerdep.save()
-> -                    layerconfparser = LayerConfParse(logger=logger)
-> -                    config_data = layerconfparser.parse_layer(layerdir)
-> -                    layerconfparser.shutdown()
->                      utils.add_dependencies(layerbranch, config_data, logger=logger)
->  
->  
-> diff --git a/layerindex/update.py b/layerindex/update.py
-> index ecd2380..e15caf6 100755
-> --- a/layerindex/update.py
-> +++ b/layerindex/update.py
-> @@ -213,6 +213,7 @@ def main():
->                  layerbranch = layer.get_layerbranch(branch)
->                  if layerbranch.vcs_subdir:
->                      repodir = os.path.join(repodir, layerbranch.vcs_subdir)
-> +
->                  config_data = layerconfparser.parse_layer(repodir)
->                  utils.add_dependencies(layerbranch, config_data, logger=logger)
->  
-> diff --git a/layerindex/update_layer.py b/layerindex/update_layer.py
-> index a937000..22c0dab 100644
-> --- a/layerindex/update_layer.py
-> +++ b/layerindex/update_layer.py
-> @@ -196,16 +196,18 @@ def main():
->      except recipeparse.RecipeParseError as e:
->          logger.error(str(e))
->          sys.exit(1)
-> +    config_data = bb.data.createCopy(tinfoil.config_data)
-> +    tinfoil.shutdown()
->  
->      # Clear the default value of SUMMARY so that we can use DESCRIPTION instead if it hasn't been set
-> -    tinfoil.config_data.setVar('SUMMARY', '')
-> +    config_data.setVar('SUMMARY', '')
->      # Clear the default value of DESCRIPTION so that we can see where it's not set
-> -    tinfoil.config_data.setVar('DESCRIPTION', '')
-> +    config_data.setVar('DESCRIPTION', '')
->      # Clear the default value of HOMEPAGE ('unknown')
-> -    tinfoil.config_data.setVar('HOMEPAGE', '')
-> +    config_data.setVar('HOMEPAGE', '')
->      # Set a blank value for LICENSE so that it doesn't cause the parser to die (e.g. with meta-ti -
->      # why won't they just fix that?!)
-> -    tinfoil.config_data.setVar('LICENSE', '')
-> +    config_data.setVar('LICENSE', '')
->  
->      try:
->          with transaction.atomic():
-> @@ -244,7 +246,7 @@ def main():
->                  layerbranch = LayerBranch()
->                  layerbranch.layer = layer
->                  layerbranch.branch = branch
-> -                layerbranch_source = layer.get_layerbranch('master')
-> +
->                  if not layerbranch_source:
->                      layerbranch_source = layer.get_layerbranch(None)
->                  if layerbranch_source:
-> @@ -262,6 +264,9 @@ def main():
->                          dep.layerbranch = layerbranch
->                          dep.save()
->  
-> +            layerbranch_source = layer.get_layerbranch('master')
-> +
-> +
->              if layerbranch.vcs_subdir and not options.nocheckout:
->                  # Find latest commit in subdirectory
->                  # A bit odd to do it this way but apparently there's no other way in the GitPython API
-> @@ -280,6 +285,14 @@ def main():
->  
->              layerdir = os.path.join(repodir, layerbranch.vcs_subdir)
->              layerdir_start = os.path.normpath(layerdir) + os.sep
-> +
-> +            from layerconfparse import LayerConfParse
-> +            layerconfparser = LayerConfParse(logger=logger)
-> +            layer_config_data = layerconfparser.parse_layer(layerdir)
-> +            layerconfparser.shutdown()
-> +            utils.set_layerbranch_collection_version(layerbranch, layer_config_data, logger=logger)
-> +            layerbranch.save()
-> +
->              layerrecipes = Recipe.objects.filter(layerbranch=layerbranch)
->              layermachines = Machine.objects.filter(layerbranch=layerbranch)
->              layerdistributions = Distribution.objects.filter(layerbranch=layerbranch)
-> @@ -305,7 +318,7 @@ def main():
->                  logger.info("Collecting data for layer %s on branch %s" % (layer.name, branchdesc))
->  
->                  try:
-> -                    config_data_copy = recipeparse.setup_layer(tinfoil.config_data, fetchdir, layerdir, layer, layerbranch)
-> +                    config_data_copy = recipeparse.setup_layer(config_data, fetchdir, layerdir, layer, layerbranch)
->                  except recipeparse.RecipeParseError as e:
->                      logger.error(str(e))
->                      sys.exit(1)
-> diff --git a/layerindex/utils.py b/layerindex/utils.py
-> index f82f8c7..2b49d64 100644
-> --- a/layerindex/utils.py
-> +++ b/layerindex/utils.py
-> @@ -30,8 +30,10 @@ def get_layer(layername):
->  def get_dependency_layer(depname, version_str=None, logger=None):
->      from layerindex.models import LayerItem, LayerBranch
->  
-> -    # Get any LayerBranch with a layer that has a name that matches the depname
-> -    res = list(LayerBranch.objects.filter(layer__name=depname))
-> +    # Get any LayerBranch with a layer that has a name that matches depmod, or
-> +    # a LayerBranch that has the collection name depmod.
-> +    res = list(LayerBranch.objects.filter(layer__name=depname)) + \
-> +          list(LayerBranch.objects.filter(collection=depname))
->  
->      # Nothing found, return.
->      if len(res) == 0:
-> @@ -104,11 +106,21 @@ def _add_dependency(var, name, layerbranch, config_data, logger=None):
->  
->          if logger:
->              logger.debug('Adding %s %s to %s' % (name, dep_layer.name, layer_name))
-> +
->          layerdep = LayerDependency()
->          layerdep.layerbranch = layerbranch
->          layerdep.dependency = dep_layer
->          layerdep.save()
->  
-> +def set_layerbranch_collection_version(layerbranch, config_data, logger=None):
-> +
-> +            layerbranch.collection = config_data.getVar('BBFILE_COLLECTIONS', True)
-> +            ver_str = "LAYERVERSION_"
-> +            if layerbranch.collection:
-> +                layerbranch.collection = layerbranch.collection.strip()
-> +                ver_str += layerbranch.collection
-> +                layerbranch.version = config_data.getVar(ver_str, True)
-> +
->  def setup_tinfoil(bitbakepath, enable_tracking):
->      sys.path.insert(0, bitbakepath + '/lib')
->      import bb.tinfoil
+> diff --git a/lib/python2.7/site-
+> packages/autobuilder/buildsteps/PublishArtifacts.py
+> b/lib/python2.7/site-
+> packages/autobuilder/buildsteps/PublishArtifacts.py
+> index e738521..633600c 100644
+> --- a/lib/python2.7/site-
+> packages/autobuilder/buildsteps/PublishArtifacts.py
+> +++ b/lib/python2.7/site-
+> packages/autobuilder/buildsteps/PublishArtifacts.py
+> @@ -34,6 +34,7 @@ class PublishArtifacts(ShellCommand):
+>          ShellCommand.__init__(self, **kwargs)
+>  
+>      def start(self):
+> +        pipeline = "|| export PA_FAIL=1"
+>          layerversion_yoctobsp=1
+>          DEST=self.getProperty("DEST")
+>          buildername=self.getProperty("buildername")
+> @@ -80,12 +81,12 @@ class PublishArtifacts(ShellCommand):
+>                      command=command+"mkdir -p " + os.path.join(DEST,
+> ADT_INST_PUBLISH_DIR) + ";"
+>                      command=command+"cp -R --no-dereference --
+> preserve=links " + \
+>                                      os.path.join(self.tmpdir,
+> "deploy/sdk/") + \
+> -                                    "*adt* " + os.path.join(DEST,
+> ADT_INST_PUBLISH_DIR) + ";"
+> +                                    "*adt* " + os.path.join(DEST,
+> ADT_INST_PUBLISH_DIR) + pipeline + ";"
+>                  elif artifact == "adt-installer-QA":
+>                      command=command+"mkdir -p " + os.path.join(DEST,
+> ADTQA_INST_PUBLISH_DIR) + ";"
+>                      command=command+"cp -R --no-dereference --
+> preserve=links " + \
+>                                      os.path.join(self.tmpdir,
+> "deploy/sdk/") + \
+> -                                    "*adt* " + os.path.join(DEST,
+> ADTQA_INST_PUBLISH_DIR)+ ";"
+> +                                    "*adt* " + os.path.join(DEST,
+> ADTQA_INST_PUBLISH_DIR) + pipeline + ";"
+>                  elif artifact == "adtrepo-dev":
+>                      adt_dev_dest= os.environ.get("ADTREPO_DEV_PATH")
+> + "/" + distroversion + "-" + got_revision_poky + '-' +
+> self.getProperty("branch_poky")
+>                      command=command+"mkdir -p " + adt_dev_dest +
+> "/adt-ipk;"
+> @@ -105,39 +106,39 @@ class PublishArtifacts(ShellCommand):
+>                      command=command+"cp --no-dereference --
+> preserve=links " + \
+>                                       os.path.join(deploy_dir,
+> "org.*.zip") + \
+>                                       " " + os.path.join(deploy_dir,
+> "org.*.md5sum") + \
+> -                                     " " + DEST + "/eclipse-
+> plugin/"+ artifact_base +";"
+> +                                     " " + DEST + "/eclipse-
+> plugin/"+ artifact_base + pipeline + ";"
+>                  elif artifact == "build-appliance":
+>                      command=command+"mkdir -p " + DEST + "/" +
+> BA_PUBLISH_DIR + ";"
+>                      if self.layerversion_core is not None and
+> int(self.layerversion_core) > 2:
+>                          command=command+"cp -R --no-dereference --
+> preserve=links " + \
+>                                          os.path.join(self.tmpdir,
+> "deploy/images/qemux86-64/*.zip") + \
+> -                                        " " + DEST + "/" +
+> BA_PUBLISH_DIR + ";"
+> +                                        " " + DEST + "/" +
+> BA_PUBLISH_DIR + pipeline + ";"
+>                      else:
+>                          command=command+"cp -R --no-dereference --
+> preserve=links " + \
+>                                          os.path.join(self.tmpdir,
+> "deploy/images/*.zip") + \
+> -                                        " " + DEST + "/" +
+> BA_PUBLISH_DIR + ";"
+> +                                        " " + DEST + "/" +
+> BA_PUBLISH_DIR + pipeline + ";"
+>                  elif artifact == "buildtools-tarball":
+>                      artifact_name, deploy_image_dir =
+> self.getDeployNames(artifact, buildername)
+>                      command=command+self.generateMD5cmd(artifact,
+> deploy_image_dir)
+>                      command=command+"mkdir -p " + DEST +
+> "/buildtools;"
+>                      command=command+"cp -R --no-dereference --
+> preserve=links " + \
+>                                      os.path.join(deploy_image_dir,
+> "*buildtools*") + \
+> -                                    " " + DEST + "/buildtools;"
+> +                                    " " + DEST + "/buildtools" +
+> pipeline + ";"
+>                  elif artifact == "rpm":
+>                      command=command+"mkdir -p " + os.path.join(DEST,
+> RPM_PUBLISH_DIR) + ";"
+>                      command=command+"cp -R --no-dereference --
+> preserve=links " + \
+>                                      os.path.join(self.tmpdir,
+> "deploy/rpm/* ") + \
+> -                                    os.path.join(DEST,
+> RPM_PUBLISH_DIR) + ";"
+> +                                    os.path.join(DEST,
+> RPM_PUBLISH_DIR) + pipeline + ";"
+>                  elif artifact == "deb":
+>                      command=command+"mkdir -p " + os.path.join(DEST,
+> DEB_PUBLISH_DIR) + ";"
+>                      command=command+"cp -R --no-dereference --
+> preserve=links " + \
+>                                      os.path.join(self.tmpdir,
+> "deploy/deb/* ") + \
+> -                                    os.path.join(DEST,
+> DEB_PUBLISH_DIR) + ";"
+> +                                    os.path.join(DEST,
+> DEB_PUBLISH_DIR) + pipeline + ";"
+>                  elif artifact == "ipk":
+>                      command=command+"mkdir -p " + os.path.join(DEST,
+> IPK_PUBLISH_DIR) + ";"
+>                      command=command+"cp -R --no-dereference --
+> preserve=links " + \
+>                                      os.path.join(self.tmpdir,
+> "deploy/ipk/* ") + \
+> -                                    os.path.join(DEST,
+> IPK_PUBLISH_DIR) + ";"
+> +                                    os.path.join(DEST,
+> IPK_PUBLISH_DIR) + pipeline + ";"
+>                  elif artifact == "sstate":
+>                      if str(os.environ.get("PUBLISH_SSTATE")) ==
+> "True":
+>                          sstate_dir = os.environ.get("SSTATE_DIR")
+> @@ -145,7 +146,7 @@ class PublishArtifacts(ShellCommand):
+>                          if sstate_dir is not None and pub_dir is not
+> None:
+>                              command=command+"mkdir -p " + pub_dir +
+> ";"
+>                              command=command+"cp -R --no-dereference
+> --preserve=links " + \
+> -                                     sstate_dir + "/* " + pub_dir +
+> ";"
+> +                                     sstate_dir + "/* " + pub_dir +
+> pipeline + ";"
+>                          else:
+>                              command=command+"echo 'Skipping copy of
+> sstate, directories not configured.';"
+>                      else:
+> @@ -156,31 +157,31 @@ class PublishArtifacts(ShellCommand):
+>                      command=command+"mkdir -p " + os.path.join(DEST,
+> X86TC_PUBLISH_DIR) + ";"
+>                      command=command+"cp -R --no-dereference --
+> preserve=links " + \
+>                                      os.path.join(deploy_image_dir,
+> "poky-*i686-core-image*.sh ") + \
+> -                                    os.path.join(DEST,
+> X86TC_PUBLISH_DIR) + ";"
+> +                                    os.path.join(DEST,
+> X86TC_PUBLISH_DIR) + pipeline + ";"
+>                      command=command+"mkdir -p " + os.path.join(DEST,
+> X8664TC_PUBLISH_DIR) + ";"
+>                      command=command+"cp -R --no-dereference --
+> preserve=links " + \
+>                                      os.path.join(deploy_image_dir,
+> "poky-*x86_64-core-image*.sh ") + \
+> -                                    os.path.join(DEST,
+> X8664TC_PUBLISH_DIR) + ";"
+> +                                    os.path.join(DEST,
+> X8664TC_PUBLISH_DIR) + pipeline + ";"
+>                  elif artifact == "uninative":
+>                      artifact_name, deploy_image_dir =
+> self.getDeployNames(artifact, buildername)
+>                      command=command+self.generateMD5cmd(artifact,
+> deploy_image_dir)
+>                      command=command+"mkdir -p " + os.path.join(DEST,
+> X86TC_PUBLISH_DIR) + ";"
+>                      command=command+"cp -R --no-dereference --
+> preserve=links " + \
+>                                      os.path.join(deploy_image_dir,
+> "i686-nativesdk-libc* ") + \
+> -                                    os.path.join(DEST,
+> X86TC_PUBLISH_DIR) + ";"
+> +                                    os.path.join(DEST,
+> X86TC_PUBLISH_DIR) + pipeline + ";"
+>                      command=command+"mkdir -p " + os.path.join(DEST,
+> X8664TC_PUBLISH_DIR) + ";"
+>                      command=command+"cp -R --no-dereference --
+> preserve=links " + \
+>                                      os.path.join(deploy_image_dir,
+> "x86_64-nativesdk-libc* ") + \
+> -                                    os.path.join(DEST,
+> X8664TC_PUBLISH_DIR) + ";"
+> +                                    os.path.join(DEST,
+> X8664TC_PUBLISH_DIR) + pipeline + ";"
+>                  elif artifact == "oe-toolchain":
+>                      command=command+"mkdir -p " + os.path.join(DEST,
+> X86TC_PUBLISH_DIR) + ";"
+>                      command=command+"cp -R --no-dereference --
+> preserve=links " + \
+>                                      os.path.join(self.tmpdir,
+> "deploy/sdk/oecore-i686* ") + \
+> -                                    os.path.join(DEST,
+> X86TC_PUBLISH_DIR) + ";"
+> +                                    os.path.join(DEST,
+> X86TC_PUBLISH_DIR) + pipeline + ";"
+>                      command=command+"mkdir -p " + os.path.join(DEST,
+> X8664TC_PUBLISH_DIR) + ";"
+>                      command=command+"cp -R --no-dereference --
+> preserve=links " + \
+>                                      os.path.join(self.tmpdir,
+> "deploy/sdk/oecore-x86_64* ") + \
+> -                                    os.path.join(DEST,
+> X8664TC_PUBLISH_DIR) + ";"
+> +                                    os.path.join(DEST,
+> X8664TC_PUBLISH_DIR) + pipeline + ";"
+>                  elif "qemu" in artifact:
+>                      artifact_name, deploy_image_dir =
+> self.getDeployNames(artifact, buildername)
+>                      command += self.generateMD5cmd(artifact,
+> deploy_image_dir)
+> @@ -190,35 +191,35 @@ class PublishArtifacts(ShellCommand):
+>                          command=command+"cp --no-dereference --
+> preserve=links " + \
+>                                      deploy_image_dir + "/*\.direct "
+> + \
+>                                      deploy_image_dir +
+> "/*\.direct.md5sum " + \
+> -                                    DEST + "/" + QEMU_PUBLISH_DIR +
+> "/" + artifact_name + ";"
+> +                                    DEST + "/" + QEMU_PUBLISH_DIR +
+> "/" + artifact_name + pipeline + ";"
+>                      else:
+>                          command=command+"cp -R --no-dereference --
+> preserve=links " + \
+>                                      deploy_image_dir + \
+> -                                    "/*" + artifact + "* " + DEST +
+> "/" + QEMU_PUBLISH_DIR + "/" + artifact_name + ";"
+> +                                    "/*" + artifact + "* " + DEST +
+> "/" + QEMU_PUBLISH_DIR + "/" + artifact_name + pipeline + ";"
+>                  elif "mpc8315e" in artifact:
+>                      artifact_name, deploy_image_dir =
+> self.getDeployNames(artifact, buildername)
+>                      command += self.generateMD5cmd(artifact,
+> deploy_image_dir)
+>                      command=command+"mkdir -p " + DEST + "/" +
+> MACHINE_PUBLISH_DIR + "/" + artifact_name + ";"
+>                      command=command+"cp -R --no-dereference --
+> preserve=links " + \
+>                                      deploy_image_dir + \
+> -                                    "/*mpc8315* " + DEST + "/" +
+> MACHINE_PUBLISH_DIR + "/" + artifact_name + ";"
+> +                                    "/*mpc8315* " + DEST + "/" +
+> MACHINE_PUBLISH_DIR + "/" + artifact_name + pipeline + ";"
+>                  elif artifact == "tiny":
+>                      command=command+"mkdir -p " + DEST + "/" +
+> QEMU_PUBLISH_DIR + "/qemu-tiny;"
+>                      command += self.generateMD5cmd(artifact,
+> QEMU_PUBLISH_DIR + "/qemu-tiny")
+>                      if self.layerversion_core is not None and
+> int(self.layerversion_core) > 2:
+>                          command=command+"cp -R --no-dereference --
+> preserve=links " + \
+>                                          os.path.join(self.tmpdir,
+> "deploy/images/qemux86/* ") + \
+> -                                        " " + DEST + "/" +
+> QEMU_PUBLISH_DIR + "/qemu-tiny;"
+> +                                        " " + DEST + "/" +
+> QEMU_PUBLISH_DIR + "/qemu-tiny" + pipeline + ";"
+>                      else:
+>                          command=command+"cp -R --no-dereference --
+> preserve=links " + \
+>                                          os.path.join(self.tmpdir,
+> "deploy/images/*") + \
+> -                                        DEST + "/" +
+> QEMU_PUBLISH_DIR + "/qemu-tiny;"
+> +                                        DEST + "/" +
+> QEMU_PUBLISH_DIR + "/qemu-tiny" +  pipeline + ";"
+>                  elif artifact == "conf":
+>                      artifact_name, deploy_image_dir =
+> self.getDeployNames(artifact, buildername)
+>                      command=command+"mkdir -p " + DEST + "/"+
+> MACHINE_PUBLISH_DIR + "/" + artifact_name + "/conf;"
+>                      command=command+"cp -R --no-dereference " + \
+>                                       os.path.join(self.basedir,
+> "conf/") + \
+> -                                     "/* " + DEST + "/" +
+> MACHINE_PUBLISH_DIR + "/" + artifact_name + "/conf;"
+> +                                     "/* " + DEST + "/" +
+> MACHINE_PUBLISH_DIR + "/" + artifact_name + "/conf" +  pipeline + ";"
+>                  elif artifact == "md5sums":
+>                      command = command + "echo 'MD5sums are generated
+> and deployed from the image or toolchain artifact';"
+>                  elif artifact == "None":
+> @@ -238,19 +239,20 @@ class PublishArtifacts(ShellCommand):
+>                              command=command+"cp --no-dereference --
+> preserve=links " + \
+>                                      deploy_image_dir + "/*\.direct "
+> + \
+>                                      deploy_image_dir +
+> "/*\.direct.md5sum " + \
+> -                                    DEST + "/" + MACHINE_PUBLISH_DIR
+> + "/" + artifact_name + ";"
+> +                                    DEST + "/" + MACHINE_PUBLISH_DIR
+> + "/" + artifact_name + pipeline + ";"
+>                          else:
+>                              command=command+"mkdir -p " + DEST +
+> "/"+ MACHINE_PUBLISH_DIR +"/" + artifact_name + ";"
+>                              if "beagle" in artifact:
+>                                  command=command+"cp -R --no-
+> dereference --preserve=links " + \
+>                                               deploy_image_dir + \
+> -                                             "/*Image* " + DEST +
+> "/" + MACHINE_PUBLISH_DIR +"/" + artifact_name + ";"
+> +                                             "/*Image* " + DEST +
+> "/" + MACHINE_PUBLISH_DIR +"/" + artifact_name + pipeline + ";"
+>                                  command=command+"cp -R --no-
+> dereference --preserve=links " + \
+>                                               deploy_image_dir + \
+> -                                             "/u-boot* " + DEST +
+> "/" + MACHINE_PUBLISH_DIR +"/" + artifact_name + ";"
+> +                                             "/u-boot* " + DEST +
+> "/" + MACHINE_PUBLISH_DIR +"/" + artifact_name + pipeline + ";"
+>                              command=command+"cp -R --no-dereference
+> --preserve=links " + \
+>                                           deploy_image_dir + \
+> -                                         "/*"+artifact+"* " + DEST +
+> "/" + MACHINE_PUBLISH_DIR +"/" + artifact_name + ";"
+> +                                         "/*"+artifact+"* " + DEST +
+> "/" + MACHINE_PUBLISH_DIR +"/" + artifact_name + pipeline + ";"
+> +            command=command+'if [ "$PA_FAIL" = "1" ]; then exit 1;
+> fi;'
+>              self.command = command
+>          else:
+>              self.command = "echo 'Skipping Step.'"
+> -- 
+> 1.9.1
 > 
-
 
