@@ -1,38 +1,39 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7DC7EE00CFC; Wed, 28 Sep 2016 08:15:28 -0700 (PDT)
+	id 4E351E00DA8; Wed, 28 Sep 2016 13:07:28 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from dan.rpsys.net (5751f4a1.skybroadband.com [87.81.244.161])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6638DE00B52
-	for <yocto@yoctoproject.org>; Wed, 28 Sep 2016 08:15:26 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by dan.rpsys.net (8.14.4/8.14.4/Debian-4.1ubuntu1) with ESMTP id
-	u8SFFLaP002783; Wed, 28 Sep 2016 16:15:21 +0100
-Received: from dan.rpsys.net ([127.0.0.1])
-	by localhost (dan.rpsys.net [127.0.0.1]) (amavisd-new, port 10024)
-	with LMTP id Jft9IEPo0uNE; Wed, 28 Sep 2016 16:15:21 +0100 (BST)
-Received: from hex ([192.168.3.34]) (authenticated bits=0)
-	by dan.rpsys.net (8.14.4/8.14.4/Debian-4.1ubuntu1) with ESMTP id
-	u8SFFJOi002780
-	(version=TLSv1/SSLv3 cipher=AES128-GCM-SHA256 bits=128 verify=NOT);
-	Wed, 28 Sep 2016 16:15:20 +0100
-Message-ID: <1475075719.30475.73.camel@linuxfoundation.org>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Ioan-Adrian Ratiu <adi@adirat.com>, Juro Bystricky
-	<juro.bystricky@intel.com>, yocto@yoctoproject.org
-Date: Wed, 28 Sep 2016 16:15:19 +0100
-In-Reply-To: <87r3845dbm.fsf@adirat.com>
-References: <1471716241-7010-1-git-send-email-juro.bystricky@intel.com>
-	<87r3845dbm.fsf@adirat.com>
-X-Mailer: Evolution 3.18.5.2-0ubuntu3 
-Mime-Version: 1.0
-Subject: Re: [meta-mingw][PATCH 0/7] Updates for krogoth/master
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [192.55.52.88 listed in list.dnswl.org]
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D3A8DE00D99
+	for <yocto@yoctoproject.org>; Wed, 28 Sep 2016 13:07:26 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by fmsmga101.fm.intel.com with ESMTP; 28 Sep 2016 13:07:26 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.30,411,1470726000"; d="scan'208";a="1057919739"
+Received: from kong20x-mobl5.gar.corp.intel.com (HELO
+	peggleto-mobl.ger.corp.intel.com) ([10.255.185.230])
+	by orsmga002.jf.intel.com with ESMTP; 28 Sep 2016 13:07:25 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Thu, 29 Sep 2016 09:07:21 +1300
+Message-ID: <2034792.MztxIxJcpe@peggleto-mobl.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.14.10 (Linux/4.7.4-100.fc23.x86_64; KDE/4.14.20; x86_64; ;
+	)
+In-Reply-To: <1474661403062.36694@seescan.com>
+References: <HE1PR01MB188363A66CEC33154BFAAA9492C90@HE1PR01MB1883.eurprd01.prod.exchangelabs.com>
+	<HE1PR01MB1883F7F4A2DB619936A62D5492C80@HE1PR01MB1883.eurprd01.prod.exchangelabs.com>
+	<1474661403062.36694@seescan.com>
+MIME-Version: 1.0
+Subject: Re: How to add my own c++ project into a Yocto distro
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,50 +45,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 28 Sep 2016 15:15:28 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Wed, 28 Sep 2016 20:07:28 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On Wed, 2016-09-28 at 17:06 +0300, Ioan-Adrian Ratiu wrote:
-> On Sat, 20 Aug 2016, Juro Bystricky <juro.bystricky@intel.com> wrote:
-> > 
-> > Krogoth recipes fail to cross-compile for Windows using meta-mingw
-> > layer.
-> > In particular, the following should/used to work (jethro with meta-
-> > mingw layer):
-> > 
-> > SDKMACHINE="i686-mingw32"
-> > MACHINE="qemux86"
-> > TCLIBC="baremetal"
-> > bitbake gcc-cross-canadian-i586
-> > 
-> > SDKMACHINE="i686-mingw32"
-> > MACHINE="qemux86"
-> > bitbake meta-toolchain
-> > 
-> > This patchset updates meta-mingw layer so the above work for
-> > krogoth as well.
-> > There is no "krogoth" branch for meta-mingw, these patches should
-> > go there once the
-> > branch exists.
-> > FWIW, I tested these patches with the current poky master as well,
-> > and succeed in cross-compiling
-> > of the most common recipes (for both SDKMACHINE=i686-mingw32 and
-> > SDKMACHINE=x86_64-mingw32)
-> > such as:
-> >     bitbake gcc-cross-canadian-i586
-> >     bitbake gdb-cross-canadian-i586
-> >     bitbake meta-toolchain
-> >     bitbake core-image-minimal -c populate_sdk
-> > 
-> > [YOCTO#10143]
-> Ping? Any info when this series will be integrated?
+On Fri, 23 Sep 2016 20:10:17 Fred Ollinger wrote:
+> Here's how to write a recipe:
+> 
+> 
+> http://www.yoctoproject.org/docs/1.6/dev-manual/dev-manual.html#new-recipe-w
+> riting-a-new-recipe
 
-I'd tried multiple times to untangle which set of patches this needed
-to be applied on top of (several of Mark Hatle's). I think I've finally
-figured it out and have pushed things.
+That's the 1.6 version - you may want the "current" link so that you're
+always looking the most recent stable version of the manual:
+
+  http://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#new-recipe-writing-a-new-recipe
 
 Cheers,
+Paul
 
-Richard
+-- 
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
