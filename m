@@ -1,51 +1,29 @@
-Return-Path: <romil1@gmx.de>
+Return-Path: <S.Jaritz@esa-grimma.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 406C3E00C6E; Wed, 28 Sep 2016 03:07:10 -0700 (PDT)
+	id C1E62E00CCC; Wed, 28 Sep 2016 06:40:29 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=BAYES_40,FREEMAIL_FROM,
-	HTML_MESSAGE, MIME_HTML_ONLY,
-	RCVD_IN_DNSWL_LOW autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (romil1[at]gmx.de)
-	* -0.0 BAYES_40 BODY: Bayes spam probability is 20 to 40%
-	*      [score: 0.2365]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.7 MIME_HTML_ONLY BODY: Message only has text/html MIME parts
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [212.227.15.19 listed in list.dnswl.org]
-X-Greylist: delayed 305 seconds by postgrey-1.32 at yocto-www;
-	Wed, 28 Sep 2016 03:07:08 PDT
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A9C3AE00C45
-	for <yocto@yoctoproject.org>; Wed, 28 Sep 2016 03:07:07 -0700 (PDT)
-Received: from [93.129.82.104] by 3capp-gmx-bs26.server.lan (via HTTP); Wed,
-	28 Sep 2016 12:02:02 +0200
+Received: from gse01.esa-grimma.de (gse01.esa-grimma.de [185.141.66.29])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4A338E00815
+	for <yocto@yoctoproject.org>; Wed, 28 Sep 2016 06:40:25 -0700 (PDT)
 MIME-Version: 1.0
-Message-ID: <trinity-02d343ba-ad0c-42e7-a7ed-aacfddc85929-1475056922373@3capp-gmx-bs26>
-From: romil1@gmx.de
 To: yocto@yoctoproject.org
-Date: Wed, 28 Sep 2016 12:02:02 +0200
-Importance: normal
-Sensitivity: Normal
-X-Priority: 3
-X-Provags-ID: V03:K0:lJP1S/iPFQz7q+PDDsoyaiFwKUi8RbrApGGZXKjzMgg
-	dDVco/10slMhtV6yHLaV7DhlvPhihEA70GfMxOf+v99PiBsCCZ
-	jveOX7O0fBXBBzu+daC5juzp76PqMM+cQx6X8mkm/oybebVsaZ
-	1lMke49Gv0Ya+BadROAKA8CLkuufQnaI4WIZE1u7rHEg9W029p
-	h/Mmnu5O26I4D/B3aQpRK2W42YCoHFSqj1Mm1GyVOOro4iT0BK
-	FQqwqBDn6XDxLGP7wsI9k35fwcwc8wR5S/T2e0E3EjEMKzQrn7 DURSTc=
-X-UI-Out-Filterresults: notjunk:1;V01:K0:OD6A36WWcXA=:b5WXcZ9QSxVgEnpa3qxhEr
-	mQllworlGtMNRIbYRgIQl4b7hioQZKDoQqfTXLuB1tGn3EClgtJOQpOtkMBGz1zqgHGxLoYru
-	zHTM/UnYG6SA5F8+EfhYcihMxBui0M3yKCghYVQl5ez1LV1jyJMEgXZSPVppWq57CWiUmwPix
-	3k0/gvQhljt0cxjgvnb/6t37m3VInPEHf3BhsQNmqyLzJlNUMaFLi+LbbQHBluv3edzaOCJvb
-	KM2Zm5EkJ3a7TXO37/i4uIw0LmBs2IiDOCUGc4G/SS1Jj/ElBjX/IXuVt/gEcw2cUqASJh2re
-	RuHqFJvm6o8PXvvmAl4G8YWGkvYJsS8Y1JD7aJQJ6KZp6OrrxWyiIiESJnuVspjfzC5TNe+ju
-	qBpyjtR6JdnZTZhUZKc1e6fHQscp+n02PlZxD3HZZlZDmPMhvVWNi+DSR5QvQLi9hjaW7CphW
-	nrW0oTH2rQ==
-Subject: [meta-raspberry] No spi, i2c when booting with uboot (RPI 3)
+X-KeepSent: 54BA18D9:07777704-C125803C:0049D432;
+ type=4; name=$KeepSent
+X-Mailer: IBM Notes Release 9.0 March 08, 2013
+Message-ID: <OF54BA18D9.07777704-ONC125803C.0049D432-C125803C.004B1BCC@esa-grimma.de>
+From: S.Jaritz@esa-grimma.de
+Date: Wed, 28 Sep 2016 15:40:23 +0200
+X-MIMETrack: Serialize by Router on GSE01/Server/ESA-Grimma/DE(Release
+	9.0.1FP3 HF42|February 03, 2015) at 28.09.2016 15:40:26,
+	Serialize complete at 28.09.2016 15:40:26
+Subject: What is the common way to extend an package without bbappend?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -57,40 +35,154 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 28 Sep 2016 10:07:10 -0000
-Content-Type: text/html; charset=UTF-8
+X-List-Received-Date: Wed, 28 Sep 2016 13:40:29 -0000
+Content-Type: multipart/alternative;
+	boundary="=_alternative 004B1BCAC125803C_="
 
-<html><head></head><body><div style="font-family: Verdana;font-size: 12.0px;"><div>Hello,</div>
+--=_alternative 004B1BCAC125803C_=
+Content-Type: text/plain; charset="ISO-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-<div>&nbsp;</div>
+Hej
 
-<div>when Im booting my rpi3 (B Rev 1.2) without u-boot&nbsp;erverything works fine. I can see spi and i2c in dmesg.</div>
+I want to install apache2 + a website. For that I need to copy my website=20
+to the std. dir defined in the apache config file. In my thinking my=20
+website uses the apache service to be aviable and therefore is an own=20
+package (myweb.bb). This package contains the dependency to the "apache2"=20
+recipe.
 
-<div>&nbsp;</div>
+When populate=5Fsysroot is called in myweb.bb finishes with the error:
 
-<div>But when I boot with u-boot (KERNEL_IMAGETYPE = &quot;uImage&quot;), spi and i2c seem to be disabled.</div>
+myweb-1.0-r0 do=5Fpopulate=5Fsysroot: The recipe myweb is trying to install=
+=20
+files into a shared area when those files already exist. Those files and=20
+their manifest location are:
+=20
+/home/user/myTC/poky/build/tmp/sysroots/sama5d3xek/usr/share/apache2/htdocs=
+/index.html
 
-<div>I dont see anything with spi or i2c in dmesg.</div>
+because the index.html needs to be overwritten.
 
-<div>&nbsp;</div>
+Is there a easy way to overwrite or tell bitbake to uses my index.html?
 
-<div>In both cases I use the same cmdline and device-tree (bcm2710-rpi-3-b.dtb).</div>
+regards!
 
-<div>&nbsp;</div>
+Stefan Jaritz
 
-<div>I noticed something strange in the boot messages:</div>
+------------------------------------------------------------
+ESA Elektroschaltanlagen Grimma GmbH
+Broner Ring 30
+04668 Grimma
+Telefon: +49 3437 9211 176
+Telefax: +49 3437 9211 26
+E-Mail: s.jaritz@esa-grimma.de
+Internet: www.esa-grimma.de
 
-<div>When bootings with u-boot i can see-&gt;&nbsp;Machine model: Raspberry Pi 3 Model B</div>
 
-<div>Without u-boot it is-&gt;&nbsp;Machine model: Raspberry Pi 3 Model B Rev 1.2</div>
+Gesch=E4ftsf=FChrer:
+Dipl.-Ing. J=F6rg Gaitzsch
+J=F6rg Reinker
 
-<div>&nbsp;</div>
+Sitz der Gesellschaft: Grimma
+Ust.-ID: DE 141784437
+Amtsgericht: Leipzig, HRB 5159
+Steuernummer: 238/108/00755
 
-<div>Why is there a difference when Im using the same device-tree? Could this be the reason why spi and i2c is disabled?</div>
 
-<div>&nbsp;</div>
+Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte=20
+Informationen.=20
+Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=FCmlich=20
+erhalten=20
+haben, informieren Sie bitte sofort den Absender und l=F6schen Sie diese=20
+Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe dieser=20
+Mail=20
+ist nicht gestattet.
 
-<div>Thx for helping,</div>
+This e-mail may contain confidential and/or privileged information. If you =
 
-<div>Romil</div></div></body></html>
+are=20
+not the intended recipient (or have received this e-mail in error) please=20
+notify the sender immediately and destroy this e-mail. Any unauthorized=20
+copying, disclosure or distribution of the material in this e-mail is=20
+strictly=20
+forbidden.
 
+--=_alternative 004B1BCAC125803C_=
+Content-Type: text/html; charset="ISO-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<font size=3D2 face=3D"sans-serif">Hej</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">I want to install apache2 + a websit=
+e.
+For that I need to copy my website to the std. dir defined in the apache
+config file. In my thinking my website uses the apache service to be aviable
+and therefore is an own package (myweb.bb). This package contains the depen=
+dency
+to the &quot;apache2&quot; recipe.</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">When populate=5Fsysroot is called in=
+ myweb.bb
+finishes with the error:</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">myweb-1.0-r0 do=5Fpopulate=5Fsysroot=
+: The
+recipe myweb is trying to install files into a shared area when those files
+already exist. Those files and their manifest location are:</font>
+<br><font size=3D2 face=3D"sans-serif">&nbsp; &nbsp;/home/user/myTC/poky/bu=
+ild/tmp/sysroots/sama5d3xek/usr/share/apache2/htdocs/index.html</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">because the index.html needs to be o=
+verwritten.</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">Is there a easy way to overwrite or
+tell bitbake to uses my index.html?</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">regards!<br>
+<br>
+Stefan Jaritz<br>
+<br>
+------------------------------------------------------------<br>
+ESA Elektroschaltanlagen Grimma GmbH<br>
+Broner Ring 30<br>
+04668 Grimma<br>
+Telefon: +49 3437 9211 176<br>
+Telefax: +49 3437 9211 26<br>
+E-Mail: s.jaritz@esa-grimma.de<br>
+Internet: </font><a href=3D"www.esa-grimma.de"><font size=3D2 face=3D"sans-=
+serif">www.esa-grimma.de</font></a><font size=3D2 face=3D"sans-serif"><br>
+<br>
+<br>
+Gesch=E4ftsf=FChrer:<br>
+Dipl.-Ing. J=F6rg Gaitzsch<br>
+J=F6rg Reinker<br>
+<br>
+Sitz der Gesellschaft: Grimma<br>
+Ust.-ID: DE 141784437<br>
+Amtsgericht: Leipzig, HRB 5159<br>
+Steuernummer: 238/108/00755<br>
+<br>
+<br>
+Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte Informa=
+tionen.
+<br>
+Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=FCmlich
+erhalten <br>
+haben, informieren Sie bitte sofort den Absender und l=F6schen Sie diese
+<br>
+Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe dieser
+Mail <br>
+ist nicht gestattet.<br>
+<br>
+This e-mail may contain confidential and/or privileged information. If
+you are <br>
+not the intended recipient (or have received this e-mail in error) please
+<br>
+notify the sender immediately and destroy this e-mail. Any unauthorized
+<br>
+copying, disclosure or distribution of the material in this e-mail is stric=
+tly
+<br>
+forbidden.</font>
+
+--=_alternative 004B1BCAC125803C_=--
