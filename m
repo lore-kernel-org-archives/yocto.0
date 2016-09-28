@@ -1,34 +1,51 @@
-Return-Path: <joshua.g.lock@linux.intel.com>
+Return-Path: <romil1@gmx.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7C643E0090A; Tue, 27 Sep 2016 15:11:24 -0700 (PDT)
+	id 406C3E00C6E; Wed, 28 Sep 2016 03:07:10 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.65 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0A1E9E0086E
-	for <yocto@yoctoproject.org>; Tue, 27 Sep 2016 15:11:21 -0700 (PDT)
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-	by orsmga103.jf.intel.com with ESMTP; 27 Sep 2016 15:11:21 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.30,407,1470726000"; d="scan'208";a="173877721"
-Received: from jlock-mobl1.ger.corp.intel.com ([10.252.27.5])
-	by fmsmga004.fm.intel.com with ESMTP; 27 Sep 2016 15:11:19 -0700
-Message-ID: <1475014277.3072.16.camel@linux.intel.com>
-From: Joshua Lock <joshua.g.lock@linux.intel.com>
-To: mariano.lopez@linux.intel.com, yocto@yoctoproject.org
-Date: Tue, 27 Sep 2016 23:11:17 +0100
-In-Reply-To: <1474986862-6910-1-git-send-email-mariano.lopez@linux.intel.com>
-References: <1474986862-6910-1-git-send-email-mariano.lopez@linux.intel.com>
-X-Mailer: Evolution 3.20.5 (3.20.5-1.fc24) 
-Mime-Version: 1.0
-Subject: Re: [yocto-autobuilder][PATCH] PublishArtifacts.py: Make PublishArtifacts step to fail when cp fails
+X-Spam-Status: No, score=0.0 required=5.0 tests=BAYES_40,FREEMAIL_FROM,
+	HTML_MESSAGE, MIME_HTML_ONLY,
+	RCVD_IN_DNSWL_LOW autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (romil1[at]gmx.de)
+	* -0.0 BAYES_40 BODY: Bayes spam probability is 20 to 40%
+	*      [score: 0.2365]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.7 MIME_HTML_ONLY BODY: Message only has text/html MIME parts
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [212.227.15.19 listed in list.dnswl.org]
+X-Greylist: delayed 305 seconds by postgrey-1.32 at yocto-www;
+	Wed, 28 Sep 2016 03:07:08 PDT
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A9C3AE00C45
+	for <yocto@yoctoproject.org>; Wed, 28 Sep 2016 03:07:07 -0700 (PDT)
+Received: from [93.129.82.104] by 3capp-gmx-bs26.server.lan (via HTTP); Wed,
+	28 Sep 2016 12:02:02 +0200
+MIME-Version: 1.0
+Message-ID: <trinity-02d343ba-ad0c-42e7-a7ed-aacfddc85929-1475056922373@3capp-gmx-bs26>
+From: romil1@gmx.de
+To: yocto@yoctoproject.org
+Date: Wed, 28 Sep 2016 12:02:02 +0200
+Importance: normal
+Sensitivity: Normal
+X-Priority: 3
+X-Provags-ID: V03:K0:lJP1S/iPFQz7q+PDDsoyaiFwKUi8RbrApGGZXKjzMgg
+	dDVco/10slMhtV6yHLaV7DhlvPhihEA70GfMxOf+v99PiBsCCZ
+	jveOX7O0fBXBBzu+daC5juzp76PqMM+cQx6X8mkm/oybebVsaZ
+	1lMke49Gv0Ya+BadROAKA8CLkuufQnaI4WIZE1u7rHEg9W029p
+	h/Mmnu5O26I4D/B3aQpRK2W42YCoHFSqj1Mm1GyVOOro4iT0BK
+	FQqwqBDn6XDxLGP7wsI9k35fwcwc8wR5S/T2e0E3EjEMKzQrn7 DURSTc=
+X-UI-Out-Filterresults: notjunk:1;V01:K0:OD6A36WWcXA=:b5WXcZ9QSxVgEnpa3qxhEr
+	mQllworlGtMNRIbYRgIQl4b7hioQZKDoQqfTXLuB1tGn3EClgtJOQpOtkMBGz1zqgHGxLoYru
+	zHTM/UnYG6SA5F8+EfhYcihMxBui0M3yKCghYVQl5ez1LV1jyJMEgXZSPVppWq57CWiUmwPix
+	3k0/gvQhljt0cxjgvnb/6t37m3VInPEHf3BhsQNmqyLzJlNUMaFLi+LbbQHBluv3edzaOCJvb
+	KM2Zm5EkJ3a7TXO37/i4uIw0LmBs2IiDOCUGc4G/SS1Jj/ElBjX/IXuVt/gEcw2cUqASJh2re
+	RuHqFJvm6o8PXvvmAl4G8YWGkvYJsS8Y1JD7aJQJ6KZp6OrrxWyiIiESJnuVspjfzC5TNe+ju
+	qBpyjtR6JdnZTZhUZKc1e6fHQscp+n02PlZxD3HZZlZDmPMhvVWNi+DSR5QvQLi9hjaW7CphW
+	nrW0oTH2rQ==
+Subject: [meta-raspberry] No spi, i2c when booting with uboot (RPI 3)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,363 +57,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 27 Sep 2016 22:11:24 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Wed, 28 Sep 2016 10:07:10 -0000
+Content-Type: text/html; charset=UTF-8
 
-On Tue, 2016-09-27 at 09:34 -0500, mariano.lopez@linux.intel.com wrote:
-> From: Mariano Lopez <mariano.lopez@linux.intel.com>
-> 
-> When publishing the artifacts, sometimes the cp commands fails
-> because it can't find the origin files, but the step in te
-> autobuilder
-> is green, like there were no errors at all. This will catch these
-> errors, and will mark the build step as failed when cp fails.
+<html><head></head><body><div style="font-family: Verdana;font-size: 12.0px;"><div>Hello,</div>
 
-Merged and pushed, thanks!
+<div>&nbsp;</div>
 
-Joshua
+<div>when Im booting my rpi3 (B Rev 1.2) without u-boot&nbsp;erverything works fine. I can see spi and i2c in dmesg.</div>
 
-> 
-> [YOCTO #10319]
-> 
-> Signed-off-by: Mariano Lopez <mariano.lopez@linux.intel.com>
-> ---
->  .../autobuilder/buildsteps/PublishArtifacts.py     | 54 +++++++++++-
-> ----------
->  1 file changed, 28 insertions(+), 26 deletions(-)
-> 
-> diff --git a/lib/python2.7/site-
-> packages/autobuilder/buildsteps/PublishArtifacts.py
-> b/lib/python2.7/site-
-> packages/autobuilder/buildsteps/PublishArtifacts.py
-> index e738521..633600c 100644
-> --- a/lib/python2.7/site-
-> packages/autobuilder/buildsteps/PublishArtifacts.py
-> +++ b/lib/python2.7/site-
-> packages/autobuilder/buildsteps/PublishArtifacts.py
-> @@ -34,6 +34,7 @@ class PublishArtifacts(ShellCommand):
->          ShellCommand.__init__(self, **kwargs)
->  
->      def start(self):
-> +        pipeline = "|| export PA_FAIL=1"
->          layerversion_yoctobsp=1
->          DEST=self.getProperty("DEST")
->          buildername=self.getProperty("buildername")
-> @@ -80,12 +81,12 @@ class PublishArtifacts(ShellCommand):
->                      command=command+"mkdir -p " + os.path.join(DEST,
-> ADT_INST_PUBLISH_DIR) + ";"
->                      command=command+"cp -R --no-dereference --
-> preserve=links " + \
->                                      os.path.join(self.tmpdir,
-> "deploy/sdk/") + \
-> -                                    "*adt* " + os.path.join(DEST,
-> ADT_INST_PUBLISH_DIR) + ";"
-> +                                    "*adt* " + os.path.join(DEST,
-> ADT_INST_PUBLISH_DIR) + pipeline + ";"
->                  elif artifact == "adt-installer-QA":
->                      command=command+"mkdir -p " + os.path.join(DEST,
-> ADTQA_INST_PUBLISH_DIR) + ";"
->                      command=command+"cp -R --no-dereference --
-> preserve=links " + \
->                                      os.path.join(self.tmpdir,
-> "deploy/sdk/") + \
-> -                                    "*adt* " + os.path.join(DEST,
-> ADTQA_INST_PUBLISH_DIR)+ ";"
-> +                                    "*adt* " + os.path.join(DEST,
-> ADTQA_INST_PUBLISH_DIR) + pipeline + ";"
->                  elif artifact == "adtrepo-dev":
->                      adt_dev_dest= os.environ.get("ADTREPO_DEV_PATH")
-> + "/" + distroversion + "-" + got_revision_poky + '-' +
-> self.getProperty("branch_poky")
->                      command=command+"mkdir -p " + adt_dev_dest +
-> "/adt-ipk;"
-> @@ -105,39 +106,39 @@ class PublishArtifacts(ShellCommand):
->                      command=command+"cp --no-dereference --
-> preserve=links " + \
->                                       os.path.join(deploy_dir,
-> "org.*.zip") + \
->                                       " " + os.path.join(deploy_dir,
-> "org.*.md5sum") + \
-> -                                     " " + DEST + "/eclipse-
-> plugin/"+ artifact_base +";"
-> +                                     " " + DEST + "/eclipse-
-> plugin/"+ artifact_base + pipeline + ";"
->                  elif artifact == "build-appliance":
->                      command=command+"mkdir -p " + DEST + "/" +
-> BA_PUBLISH_DIR + ";"
->                      if self.layerversion_core is not None and
-> int(self.layerversion_core) > 2:
->                          command=command+"cp -R --no-dereference --
-> preserve=links " + \
->                                          os.path.join(self.tmpdir,
-> "deploy/images/qemux86-64/*.zip") + \
-> -                                        " " + DEST + "/" +
-> BA_PUBLISH_DIR + ";"
-> +                                        " " + DEST + "/" +
-> BA_PUBLISH_DIR + pipeline + ";"
->                      else:
->                          command=command+"cp -R --no-dereference --
-> preserve=links " + \
->                                          os.path.join(self.tmpdir,
-> "deploy/images/*.zip") + \
-> -                                        " " + DEST + "/" +
-> BA_PUBLISH_DIR + ";"
-> +                                        " " + DEST + "/" +
-> BA_PUBLISH_DIR + pipeline + ";"
->                  elif artifact == "buildtools-tarball":
->                      artifact_name, deploy_image_dir =
-> self.getDeployNames(artifact, buildername)
->                      command=command+self.generateMD5cmd(artifact,
-> deploy_image_dir)
->                      command=command+"mkdir -p " + DEST +
-> "/buildtools;"
->                      command=command+"cp -R --no-dereference --
-> preserve=links " + \
->                                      os.path.join(deploy_image_dir,
-> "*buildtools*") + \
-> -                                    " " + DEST + "/buildtools;"
-> +                                    " " + DEST + "/buildtools" +
-> pipeline + ";"
->                  elif artifact == "rpm":
->                      command=command+"mkdir -p " + os.path.join(DEST,
-> RPM_PUBLISH_DIR) + ";"
->                      command=command+"cp -R --no-dereference --
-> preserve=links " + \
->                                      os.path.join(self.tmpdir,
-> "deploy/rpm/* ") + \
-> -                                    os.path.join(DEST,
-> RPM_PUBLISH_DIR) + ";"
-> +                                    os.path.join(DEST,
-> RPM_PUBLISH_DIR) + pipeline + ";"
->                  elif artifact == "deb":
->                      command=command+"mkdir -p " + os.path.join(DEST,
-> DEB_PUBLISH_DIR) + ";"
->                      command=command+"cp -R --no-dereference --
-> preserve=links " + \
->                                      os.path.join(self.tmpdir,
-> "deploy/deb/* ") + \
-> -                                    os.path.join(DEST,
-> DEB_PUBLISH_DIR) + ";"
-> +                                    os.path.join(DEST,
-> DEB_PUBLISH_DIR) + pipeline + ";"
->                  elif artifact == "ipk":
->                      command=command+"mkdir -p " + os.path.join(DEST,
-> IPK_PUBLISH_DIR) + ";"
->                      command=command+"cp -R --no-dereference --
-> preserve=links " + \
->                                      os.path.join(self.tmpdir,
-> "deploy/ipk/* ") + \
-> -                                    os.path.join(DEST,
-> IPK_PUBLISH_DIR) + ";"
-> +                                    os.path.join(DEST,
-> IPK_PUBLISH_DIR) + pipeline + ";"
->                  elif artifact == "sstate":
->                      if str(os.environ.get("PUBLISH_SSTATE")) ==
-> "True":
->                          sstate_dir = os.environ.get("SSTATE_DIR")
-> @@ -145,7 +146,7 @@ class PublishArtifacts(ShellCommand):
->                          if sstate_dir is not None and pub_dir is not
-> None:
->                              command=command+"mkdir -p " + pub_dir +
-> ";"
->                              command=command+"cp -R --no-dereference
-> --preserve=links " + \
-> -                                     sstate_dir + "/* " + pub_dir +
-> ";"
-> +                                     sstate_dir + "/* " + pub_dir +
-> pipeline + ";"
->                          else:
->                              command=command+"echo 'Skipping copy of
-> sstate, directories not configured.';"
->                      else:
-> @@ -156,31 +157,31 @@ class PublishArtifacts(ShellCommand):
->                      command=command+"mkdir -p " + os.path.join(DEST,
-> X86TC_PUBLISH_DIR) + ";"
->                      command=command+"cp -R --no-dereference --
-> preserve=links " + \
->                                      os.path.join(deploy_image_dir,
-> "poky-*i686-core-image*.sh ") + \
-> -                                    os.path.join(DEST,
-> X86TC_PUBLISH_DIR) + ";"
-> +                                    os.path.join(DEST,
-> X86TC_PUBLISH_DIR) + pipeline + ";"
->                      command=command+"mkdir -p " + os.path.join(DEST,
-> X8664TC_PUBLISH_DIR) + ";"
->                      command=command+"cp -R --no-dereference --
-> preserve=links " + \
->                                      os.path.join(deploy_image_dir,
-> "poky-*x86_64-core-image*.sh ") + \
-> -                                    os.path.join(DEST,
-> X8664TC_PUBLISH_DIR) + ";"
-> +                                    os.path.join(DEST,
-> X8664TC_PUBLISH_DIR) + pipeline + ";"
->                  elif artifact == "uninative":
->                      artifact_name, deploy_image_dir =
-> self.getDeployNames(artifact, buildername)
->                      command=command+self.generateMD5cmd(artifact,
-> deploy_image_dir)
->                      command=command+"mkdir -p " + os.path.join(DEST,
-> X86TC_PUBLISH_DIR) + ";"
->                      command=command+"cp -R --no-dereference --
-> preserve=links " + \
->                                      os.path.join(deploy_image_dir,
-> "i686-nativesdk-libc* ") + \
-> -                                    os.path.join(DEST,
-> X86TC_PUBLISH_DIR) + ";"
-> +                                    os.path.join(DEST,
-> X86TC_PUBLISH_DIR) + pipeline + ";"
->                      command=command+"mkdir -p " + os.path.join(DEST,
-> X8664TC_PUBLISH_DIR) + ";"
->                      command=command+"cp -R --no-dereference --
-> preserve=links " + \
->                                      os.path.join(deploy_image_dir,
-> "x86_64-nativesdk-libc* ") + \
-> -                                    os.path.join(DEST,
-> X8664TC_PUBLISH_DIR) + ";"
-> +                                    os.path.join(DEST,
-> X8664TC_PUBLISH_DIR) + pipeline + ";"
->                  elif artifact == "oe-toolchain":
->                      command=command+"mkdir -p " + os.path.join(DEST,
-> X86TC_PUBLISH_DIR) + ";"
->                      command=command+"cp -R --no-dereference --
-> preserve=links " + \
->                                      os.path.join(self.tmpdir,
-> "deploy/sdk/oecore-i686* ") + \
-> -                                    os.path.join(DEST,
-> X86TC_PUBLISH_DIR) + ";"
-> +                                    os.path.join(DEST,
-> X86TC_PUBLISH_DIR) + pipeline + ";"
->                      command=command+"mkdir -p " + os.path.join(DEST,
-> X8664TC_PUBLISH_DIR) + ";"
->                      command=command+"cp -R --no-dereference --
-> preserve=links " + \
->                                      os.path.join(self.tmpdir,
-> "deploy/sdk/oecore-x86_64* ") + \
-> -                                    os.path.join(DEST,
-> X8664TC_PUBLISH_DIR) + ";"
-> +                                    os.path.join(DEST,
-> X8664TC_PUBLISH_DIR) + pipeline + ";"
->                  elif "qemu" in artifact:
->                      artifact_name, deploy_image_dir =
-> self.getDeployNames(artifact, buildername)
->                      command += self.generateMD5cmd(artifact,
-> deploy_image_dir)
-> @@ -190,35 +191,35 @@ class PublishArtifacts(ShellCommand):
->                          command=command+"cp --no-dereference --
-> preserve=links " + \
->                                      deploy_image_dir + "/*\.direct "
-> + \
->                                      deploy_image_dir +
-> "/*\.direct.md5sum " + \
-> -                                    DEST + "/" + QEMU_PUBLISH_DIR +
-> "/" + artifact_name + ";"
-> +                                    DEST + "/" + QEMU_PUBLISH_DIR +
-> "/" + artifact_name + pipeline + ";"
->                      else:
->                          command=command+"cp -R --no-dereference --
-> preserve=links " + \
->                                      deploy_image_dir + \
-> -                                    "/*" + artifact + "* " + DEST +
-> "/" + QEMU_PUBLISH_DIR + "/" + artifact_name + ";"
-> +                                    "/*" + artifact + "* " + DEST +
-> "/" + QEMU_PUBLISH_DIR + "/" + artifact_name + pipeline + ";"
->                  elif "mpc8315e" in artifact:
->                      artifact_name, deploy_image_dir =
-> self.getDeployNames(artifact, buildername)
->                      command += self.generateMD5cmd(artifact,
-> deploy_image_dir)
->                      command=command+"mkdir -p " + DEST + "/" +
-> MACHINE_PUBLISH_DIR + "/" + artifact_name + ";"
->                      command=command+"cp -R --no-dereference --
-> preserve=links " + \
->                                      deploy_image_dir + \
-> -                                    "/*mpc8315* " + DEST + "/" +
-> MACHINE_PUBLISH_DIR + "/" + artifact_name + ";"
-> +                                    "/*mpc8315* " + DEST + "/" +
-> MACHINE_PUBLISH_DIR + "/" + artifact_name + pipeline + ";"
->                  elif artifact == "tiny":
->                      command=command+"mkdir -p " + DEST + "/" +
-> QEMU_PUBLISH_DIR + "/qemu-tiny;"
->                      command += self.generateMD5cmd(artifact,
-> QEMU_PUBLISH_DIR + "/qemu-tiny")
->                      if self.layerversion_core is not None and
-> int(self.layerversion_core) > 2:
->                          command=command+"cp -R --no-dereference --
-> preserve=links " + \
->                                          os.path.join(self.tmpdir,
-> "deploy/images/qemux86/* ") + \
-> -                                        " " + DEST + "/" +
-> QEMU_PUBLISH_DIR + "/qemu-tiny;"
-> +                                        " " + DEST + "/" +
-> QEMU_PUBLISH_DIR + "/qemu-tiny" + pipeline + ";"
->                      else:
->                          command=command+"cp -R --no-dereference --
-> preserve=links " + \
->                                          os.path.join(self.tmpdir,
-> "deploy/images/*") + \
-> -                                        DEST + "/" +
-> QEMU_PUBLISH_DIR + "/qemu-tiny;"
-> +                                        DEST + "/" +
-> QEMU_PUBLISH_DIR + "/qemu-tiny" +  pipeline + ";"
->                  elif artifact == "conf":
->                      artifact_name, deploy_image_dir =
-> self.getDeployNames(artifact, buildername)
->                      command=command+"mkdir -p " + DEST + "/"+
-> MACHINE_PUBLISH_DIR + "/" + artifact_name + "/conf;"
->                      command=command+"cp -R --no-dereference " + \
->                                       os.path.join(self.basedir,
-> "conf/") + \
-> -                                     "/* " + DEST + "/" +
-> MACHINE_PUBLISH_DIR + "/" + artifact_name + "/conf;"
-> +                                     "/* " + DEST + "/" +
-> MACHINE_PUBLISH_DIR + "/" + artifact_name + "/conf" +  pipeline + ";"
->                  elif artifact == "md5sums":
->                      command = command + "echo 'MD5sums are generated
-> and deployed from the image or toolchain artifact';"
->                  elif artifact == "None":
-> @@ -238,19 +239,20 @@ class PublishArtifacts(ShellCommand):
->                              command=command+"cp --no-dereference --
-> preserve=links " + \
->                                      deploy_image_dir + "/*\.direct "
-> + \
->                                      deploy_image_dir +
-> "/*\.direct.md5sum " + \
-> -                                    DEST + "/" + MACHINE_PUBLISH_DIR
-> + "/" + artifact_name + ";"
-> +                                    DEST + "/" + MACHINE_PUBLISH_DIR
-> + "/" + artifact_name + pipeline + ";"
->                          else:
->                              command=command+"mkdir -p " + DEST +
-> "/"+ MACHINE_PUBLISH_DIR +"/" + artifact_name + ";"
->                              if "beagle" in artifact:
->                                  command=command+"cp -R --no-
-> dereference --preserve=links " + \
->                                               deploy_image_dir + \
-> -                                             "/*Image* " + DEST +
-> "/" + MACHINE_PUBLISH_DIR +"/" + artifact_name + ";"
-> +                                             "/*Image* " + DEST +
-> "/" + MACHINE_PUBLISH_DIR +"/" + artifact_name + pipeline + ";"
->                                  command=command+"cp -R --no-
-> dereference --preserve=links " + \
->                                               deploy_image_dir + \
-> -                                             "/u-boot* " + DEST +
-> "/" + MACHINE_PUBLISH_DIR +"/" + artifact_name + ";"
-> +                                             "/u-boot* " + DEST +
-> "/" + MACHINE_PUBLISH_DIR +"/" + artifact_name + pipeline + ";"
->                              command=command+"cp -R --no-dereference
-> --preserve=links " + \
->                                           deploy_image_dir + \
-> -                                         "/*"+artifact+"* " + DEST +
-> "/" + MACHINE_PUBLISH_DIR +"/" + artifact_name + ";"
-> +                                         "/*"+artifact+"* " + DEST +
-> "/" + MACHINE_PUBLISH_DIR +"/" + artifact_name + pipeline + ";"
-> +            command=command+'if [ "$PA_FAIL" = "1" ]; then exit 1;
-> fi;'
->              self.command = command
->          else:
->              self.command = "echo 'Skipping Step.'"
-> -- 
-> 1.9.1
-> 
+<div>&nbsp;</div>
+
+<div>But when I boot with u-boot (KERNEL_IMAGETYPE = &quot;uImage&quot;), spi and i2c seem to be disabled.</div>
+
+<div>I dont see anything with spi or i2c in dmesg.</div>
+
+<div>&nbsp;</div>
+
+<div>In both cases I use the same cmdline and device-tree (bcm2710-rpi-3-b.dtb).</div>
+
+<div>&nbsp;</div>
+
+<div>I noticed something strange in the boot messages:</div>
+
+<div>When bootings with u-boot i can see-&gt;&nbsp;Machine model: Raspberry Pi 3 Model B</div>
+
+<div>Without u-boot it is-&gt;&nbsp;Machine model: Raspberry Pi 3 Model B Rev 1.2</div>
+
+<div>&nbsp;</div>
+
+<div>Why is there a difference when Im using the same device-tree? Could this be the reason why spi and i2c is disabled?</div>
+
+<div>&nbsp;</div>
+
+<div>Thx for helping,</div>
+
+<div>Romil</div></div></body></html>
 
