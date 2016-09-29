@@ -1,31 +1,34 @@
-Return-Path: <Jackie.Huang@windriver.com>
+Return-Path: <sveinse@seldal.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9595AE00CAC; Wed, 28 Sep 2016 22:56:43 -0700 (PDT)
+	id 7D777E00CAC; Thu, 29 Sep 2016 01:28:23 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 625A9E00C9D
-	for <yocto@yoctoproject.org>; Wed, 28 Sep 2016 22:56:39 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id u8T5udBw015529
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=OK)
-	for <yocto@yoctoproject.org>; Wed, 28 Sep 2016 22:56:39 -0700
-Received: from pek-hostel-deb01.wrs.com (128.224.153.151) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server id
-	14.3.294.0; Wed, 28 Sep 2016 22:56:38 -0700
-From: <jackie.huang@windriver.com>
-To: <yocto@yoctoproject.org>
-Date: Thu, 29 Sep 2016 13:38:56 +0800
-Message-ID: <20160929053856.24032-1-jackie.huang@windriver.com>
-X-Mailer: git-send-email 2.8.3
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [194.63.252.55 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0019]
+X-Greylist: delayed 255 seconds by postgrey-1.32 at yocto-www;
+	Thu, 29 Sep 2016 01:28:17 PDT
+Received: from smtp.domeneshop.no (smtp.domeneshop.no [194.63.252.55])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3A2A9E0097C
+	for <yocto@yoctoproject.org>; Thu, 29 Sep 2016 01:28:17 -0700 (PDT)
+Received: from 156.92-221-160.customer.lyse.net ([92.221.160.156]:39584
+	helo=[10.5.5.120]) by smtp.domeneshop.no with esmtpsa
+	(TLS1.2:DHE_RSA_AES_128_CBC_SHA1:128) (Exim 4.80)
+	(envelope-from <sveinse@seldal.com>) id 1bpWdM-0001wL-UB
+	for yocto@yoctoproject.org; Thu, 29 Sep 2016 10:24:00 +0200
+To: yocto@yoctoproject.org
+From: Svein Seldal <sveinse@seldal.com>
+Message-ID: <c7f9192f-3477-b0fb-a6ca-8d12d3368c47@seldal.com>
+Date: Thu, 29 Sep 2016 10:23:59 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.3.0
 MIME-Version: 1.0
-Subject: [meta-security][PATCH] scapy: upgrade to 2.3.2
+Subject: Force nostamp from recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,66 +40,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 29 Sep 2016 05:56:43 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 29 Sep 2016 08:28:23 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Jackie Huang <jackie.huang@windriver.com>
+Hi
 
-* update the SRC_URI since it's been moved
-  from bitbucket to github.
+I have a recipe using externalsrc, and with the version of poky I'm 
+running, it nostamps do_compile.
 
-* add ptest support
+Can I force other nostamp tasks from my recipe? E.g. do_configure?
 
-Signed-off-by: Jackie Huang <jackie.huang@windriver.com>
----
- recipes-security/scapy/scapy/run-ptest                    |  4 ++++
- recipes-security/scapy/{scapy_2.3.1.bb => scapy_2.3.2.bb} | 15 +++++++++++----
- 2 files changed, 15 insertions(+), 4 deletions(-)
- create mode 100755 recipes-security/scapy/scapy/run-ptest
- rename recipes-security/scapy/{scapy_2.3.1.bb => scapy_2.3.2.bb} (71%)
+I'm building this recipe for one MACHINE and then rerun the compilation 
+for another MACHINE. The recipe is setup to build for tune, which is 
+equal. The latter run fails linking because it's referring to the first 
+machine's sysroot, not the second. This would have been fixed if the 
+second run would call the do_configure task.
 
-diff --git a/recipes-security/scapy/scapy/run-ptest b/recipes-security/scapy/scapy/run-ptest
-new file mode 100755
-index 0000000..91b29f9
---- /dev/null
-+++ b/recipes-security/scapy/scapy/run-ptest
-@@ -0,0 +1,4 @@
-+#!/bin/sh
-+UTscapy -t regression.uts -f text -l -C \
-+    -o @PTEST_PATH@/scapy_ptest_$(date +%Y%m%d-%H%M%S).log \
-+    2>&1 | sed -e 's/^passed None/PASS:/' -e 's/^failed None/FAIL:/'
-diff --git a/recipes-security/scapy/scapy_2.3.1.bb b/recipes-security/scapy/scapy_2.3.2.bb
-similarity index 71%
-rename from recipes-security/scapy/scapy_2.3.1.bb
-rename to recipes-security/scapy/scapy_2.3.2.bb
-index d8c731b..0a42ad9 100644
---- a/recipes-security/scapy/scapy_2.3.1.bb
-+++ b/recipes-security/scapy/scapy_2.3.2.bb
-@@ -5,12 +5,19 @@ LICENSE = "GPLv2"
- 
- LIC_FILES_CHKSUM = "file://bin/scapy;beginline=9;endline=13;md5=1d5249872cc54cd4ca3d3879262d0c69"
- 
--SRC_URI = "https://bitbucket.org/secdev/${PN}/downloads/${BP}.zip"
-+SRC_URI = "https://github.com/secdev/${BPN}/archive/v${PV}.tar.gz;downloadfilename=${BP}.tar.gz \
-+           file://run-ptest \
-+"
- 
--SRC_URI[md5sum] = "a30d828e59801d1d092219b349f1da9e"
--SRC_URI[sha256sum] = "8972c02e39a826a10c02c2bdd5025f7251dce9589c57befd9bb55c65f02e4934"
-+SRC_URI[md5sum] = "00f11df3d6b46fe6ac306efd757486f9"
-+SRC_URI[sha256sum] = "1b8a86d687feb8ed01114c0c016b428674cbfec04e3eb6f5249a018c427c4f6a"
- 
--inherit setuptools
-+inherit setuptools ptest
-+
-+do_install_ptest() {
-+    install -m 0644 ${S}/test/regression.uts ${D}${PTEST_PATH}
-+    sed -i 's,@PTEST_PATH@,${PTEST_PATH},' ${D}${PTEST_PATH}/run-ptest
-+}
- 
- RDEPENDS_${PN} = "tcpdump python-subprocess python-compression python-netclient  \
-                   python-netserver python-pydoc python-pkgutil python-shell \
--- 
-2.8.3
 
+Best regards,
+Svein
 
