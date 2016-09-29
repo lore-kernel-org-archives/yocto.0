@@ -1,63 +1,72 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7D5EFE00D44; Thu, 29 Sep 2016 07:52:21 -0700 (PDT)
+	id 05BEDE00404; Thu, 29 Sep 2016 08:50:40 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_LOW,
-	RCVD_IN_SORBS_SPAM autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.214.45 listed in dnsbl.sorbs.net]
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (akuster808[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.220.66 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.214.45 listed in list.dnswl.org]
-Received: from mail-it0-f45.google.com (mail-it0-f45.google.com
-	[209.85.214.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DA326E00C72
-	for <yocto@yoctoproject.org>; Thu, 29 Sep 2016 07:52:20 -0700 (PDT)
-Received: by mail-it0-f45.google.com with SMTP id j69so86938151itb.0
-	for <yocto@yoctoproject.org>; Thu, 29 Sep 2016 07:52:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=fhWyzh+/jQZbXUicMYDBTueCX7Q/gKxaNNFhPcG5WnI=;
-	b=B7i/JnNVe8byKZCscs0TqaQyB7AI6ARA/AUu45dfeB9Yip6oBjWcK7JqgS9ZPfCdMy
-	HvB/TcntbYKfLnXDvcKfH7qTDiI2YNqBh1QCsecC1/sB5VAYcW9ogG9RsoL2x7lypoLR
-	V5017xtCnFe+egJVdnfM/xtOWdEXozMChZCHdZhS951zxOHw1cUYGZ8W+bj2+SOoHiG2
-	7llAt/fzsW8GLJPuPPXpGqFR14OxH6WqhijpuTK3H1xFU8wzblXEgA5tLEyzSHU7KY1u
-	19xJn7v8qYhwFGyj7CCzoGtN05YJeNO7HUDDNVXC6WsncWHi3ONGf6XhTqsgVYcZX3LV
-	4yrA==
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.220.66 listed in dnsbl.sorbs.net]
+Received: from mail-pa0-f66.google.com (mail-pa0-f66.google.com
+	[209.85.220.66])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DC5B6E002AC
+	for <yocto@yoctoproject.org>; Thu, 29 Sep 2016 08:50:36 -0700 (PDT)
+Received: by mail-pa0-f66.google.com with SMTP id cd13so1771445pac.3
+	for <yocto@yoctoproject.org>; Thu, 29 Sep 2016 08:50:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=subject:to:references:from:message-id:date:user-agent:mime-version
+	:in-reply-to:content-transfer-encoding;
+	bh=VHHE+7Y0/NhMYv+eLdeDE0cFGxdLqfcHImnWPShTMHo=;
+	b=qpZ37neeONk6N2Z4LyNBL4OXO9XvkU8lYnLg4UhAtYm6svNI4KptSU6BEVpVwuecHE
+	/p+7RbkHVTxBMjD7UIOOgZeiSyLRALOWksfEhEEsVLtA3PI2/rnqEzy0MH1tRRRPhdK8
+	c4xve+7hYtwtCTpg9LSmUiY2nDG42/X6WOjnqsiUJWuuhYFW0PQHD15GAI725xkG8e6e
+	lkcY17ea7UOjkw7TAGR6lJFhhTUgn6mb41uWjgksYh9+rSpbXndrhucAR5CIgHGN8wey
+	IB/D42OFnq7hQCRdNMR/MhoPVDNqw+ChVdjvixYL20wdbFxTX5bLgqMB18Zx1FRTuyJb
+	XHbw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=fhWyzh+/jQZbXUicMYDBTueCX7Q/gKxaNNFhPcG5WnI=;
-	b=mzaWuveSVNGewwe7uZPjQCFIsxN//jK+VABPyG58GbVaTo7yHIouprrvSDDjaGVaOW
-	1qVGRSHabBVQCbC0zOE+u+WOWdBckbCUq0A2OCGXhPQpn2Vb6+GgZDK7cJN2aWAkxU92
-	0yuqtcdB9ena96+xJQj//VGdz922kYerGyuCXwA55CSkyCqcpjRMPp+p/wsm3h5/CDVp
-	GbsX53T7SfK7MafTUD2FCd7p3e0xRg6PGZaFzJXo8DvMA3GFDEp1pj2WyEpsm5DfXXh2
-	eM3BqK4y8UmqPALvtwrhEFBhynwgO6DXXXgc/fIHJmM4RDTzY5DNY94pTF3q9i7iT7d2
-	y9aw==
-X-Gm-Message-State: AA6/9RlLlSBeqg1kNIZZwEqhQrG3x3sE2zE4efwzISTFcC2BqkWXWdSUf9fztOsdQXXwH/CV8qounbWkVZpGSX3V
-X-Received: by 10.36.144.68 with SMTP id x65mr2954980itd.70.1475160739750;
-	Thu, 29 Sep 2016 07:52:19 -0700 (PDT)
+	h=x-gm-message-state:subject:to:references:from:message-id:date
+	:user-agent:mime-version:in-reply-to:content-transfer-encoding;
+	bh=VHHE+7Y0/NhMYv+eLdeDE0cFGxdLqfcHImnWPShTMHo=;
+	b=mDusoKKqTZLFPoXp/er4pDf8EqMhGqCVwACB4/LRZTspxyIY2BlFGLoPQH8yPoW4AA
+	svwG2JnNn4vdwjaBxe7E9mNsy2Zd/zRnFSXZm1wUQPpVClPQFNiGm5DzJhLpiOvNOpMd
+	DHaOmmx1Vs+dGVeZEtJo2zZfQu4r83Dx+VGcsnxWg9J/xJSQuywLR22syaeSi6w+M0EZ
+	xPZZgGLps5UiGfQGzVPneoor0mfLhoNYbMJfaFFUGezqVtWKahWoCxy/OfRh+hWyWN3h
+	f4b5pF6EVYTU7cbx1Y8UpzrhdkyacN13CPJMvv9J+kBKXhZUXu4syOnqxvALImN2BuVh
+	zo0w==
+X-Gm-Message-State: AA6/9RkACVenzveMkSMfhAaRq+P76XvwofpQyH7Cn5vGE9CuXP6vNxuNH0G6LqE48FCuYA==
+X-Received: by 10.67.3.102 with SMTP id bv6mr3571171pad.61.1475164236142;
+	Thu, 29 Sep 2016 08:50:36 -0700 (PDT)
+Received: from ?IPv6:2601:202:4001:9ea0:8d18:8d09:2d56:eaa1?
+	([2601:202:4001:9ea0:8d18:8d09:2d56:eaa1])
+	by smtp.gmail.com with ESMTPSA id
+	wa9sm21314102pac.35.2016.09.29.08.50.35
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Thu, 29 Sep 2016 08:50:35 -0700 (PDT)
+To: jackie.huang@windriver.com, yocto@yoctoproject.org
+References: <20160929053856.24032-1-jackie.huang@windriver.com>
+From: akuster808 <akuster808@gmail.com>
+Message-ID: <49e896ad-d664-2ed3-7e45-0f1a45fa6e2a@gmail.com>
+Date: Thu, 29 Sep 2016 08:50:26 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.3.0
 MIME-Version: 1.0
-Received: by 10.107.155.66 with HTTP; Thu, 29 Sep 2016 07:51:59 -0700 (PDT)
-In-Reply-To: <HE1PR01MB1883AED0E22901685B47CA5A92CE0@HE1PR01MB1883.eurprd01.prod.exchangelabs.com>
-References: <HE1PR01MB1883AED0E22901685B47CA5A92CE0@HE1PR01MB1883.eurprd01.prod.exchangelabs.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Thu, 29 Sep 2016 15:51:59 +0100
-Message-ID: <CAJTo0LYJErFxjBRtQKmxxVwnbXP5Ck90F7VWS=Pox6dq2qr=Uw@mail.gmail.com>
-To: Karim ATIKI <karim_atiki@hotmail.com>
-Cc: yocto <yocto@yoctoproject.org>
-Subject: Re: missing glxext.h header file in core-image-x11 // toolchain SDK
+In-Reply-To: <20160929053856.24032-1-jackie.huang@windriver.com>
+Subject: Re: [meta-security][PATCH] scapy: upgrade to 2.3.2
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,41 +78,72 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 29 Sep 2016 14:52:21 -0000
-Content-Type: multipart/alternative; boundary=94eb2c07e806e13b12053da69fb1
+X-List-Received-Date: Thu, 29 Sep 2016 15:50:40 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
---94eb2c07e806e13b12053da69fb1
-Content-Type: text/plain; charset=UTF-8
 
-On 29 September 2016 at 15:46, Karim ATIKI <karim_atiki@hotmail.com> wrote:
 
-> I have generated a core-image-x11 image for a Toradex Colibri T20 board.
-> I aim to compile and execute our application that normally runs under X11
-> + OpenGL.
+On 09/28/2016 10:38 PM, jackie.huang@windriver.com wrote:
+> From: Jackie Huang <jackie.huang@windriver.com>
 >
+> * update the SRC_URI since it's been moved
+>    from bitbucket to github.
+>
+> * add ptest support
 
-What sort of GPU does this board have, and what GL drivers are you using?
-Mesa ships a glxext.h but the choice of GL stack is generally BSP-specific
-so this is entirely down to what your BSP's GL stack is doing.
+Merged.
 
-Ross
+thanks,
+Armin
+> Signed-off-by: Jackie Huang <jackie.huang@windriver.com>
+> ---
+>   recipes-security/scapy/scapy/run-ptest                    |  4 ++++
+>   recipes-security/scapy/{scapy_2.3.1.bb => scapy_2.3.2.bb} | 15 +++++++++++----
+>   2 files changed, 15 insertions(+), 4 deletions(-)
+>   create mode 100755 recipes-security/scapy/scapy/run-ptest
+>   rename recipes-security/scapy/{scapy_2.3.1.bb => scapy_2.3.2.bb} (71%)
+>
+> diff --git a/recipes-security/scapy/scapy/run-ptest b/recipes-security/scapy/scapy/run-ptest
+> new file mode 100755
+> index 0000000..91b29f9
+> --- /dev/null
+> +++ b/recipes-security/scapy/scapy/run-ptest
+> @@ -0,0 +1,4 @@
+> +#!/bin/sh
+> +UTscapy -t regression.uts -f text -l -C \
+> +    -o @PTEST_PATH@/scapy_ptest_$(date +%Y%m%d-%H%M%S).log \
+> +    2>&1 | sed -e 's/^passed None/PASS:/' -e 's/^failed None/FAIL:/'
+> diff --git a/recipes-security/scapy/scapy_2.3.1.bb b/recipes-security/scapy/scapy_2.3.2.bb
+> similarity index 71%
+> rename from recipes-security/scapy/scapy_2.3.1.bb
+> rename to recipes-security/scapy/scapy_2.3.2.bb
+> index d8c731b..0a42ad9 100644
+> --- a/recipes-security/scapy/scapy_2.3.1.bb
+> +++ b/recipes-security/scapy/scapy_2.3.2.bb
+> @@ -5,12 +5,19 @@ LICENSE = "GPLv2"
+>   
+>   LIC_FILES_CHKSUM = "file://bin/scapy;beginline=9;endline=13;md5=1d5249872cc54cd4ca3d3879262d0c69"
+>   
+> -SRC_URI = "https://bitbucket.org/secdev/${PN}/downloads/${BP}.zip"
+> +SRC_URI = "https://github.com/secdev/${BPN}/archive/v${PV}.tar.gz;downloadfilename=${BP}.tar.gz \
+> +           file://run-ptest \
+> +"
+>   
+> -SRC_URI[md5sum] = "a30d828e59801d1d092219b349f1da9e"
+> -SRC_URI[sha256sum] = "8972c02e39a826a10c02c2bdd5025f7251dce9589c57befd9bb55c65f02e4934"
+> +SRC_URI[md5sum] = "00f11df3d6b46fe6ac306efd757486f9"
+> +SRC_URI[sha256sum] = "1b8a86d687feb8ed01114c0c016b428674cbfec04e3eb6f5249a018c427c4f6a"
+>   
+> -inherit setuptools
+> +inherit setuptools ptest
+> +
+> +do_install_ptest() {
+> +    install -m 0644 ${S}/test/regression.uts ${D}${PTEST_PATH}
+> +    sed -i 's,@PTEST_PATH@,${PTEST_PATH},' ${D}${PTEST_PATH}/run-ptest
+> +}
+>   
+>   RDEPENDS_${PN} = "tcpdump python-subprocess python-compression python-netclient  \
+>                     python-netserver python-pydoc python-pkgutil python-shell \
 
---94eb2c07e806e13b12053da69fb1
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 29 September 2016 at 15:46, Karim ATIKI <span dir=3D"ltr">&lt;<a href=3D=
-"mailto:karim_atiki@hotmail.com" target=3D"_blank">karim_atiki@hotmail.com<=
-/a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:=
-0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div>I have generat=
-ed a core-image-x11 image for a Toradex Colibri T20 board.</div>
-<div>I aim to compile and execute our application that normally runs under =
-X11 + OpenGL.</div>
-<div></div></blockquote></div><br>What sort of GPU does this board have, an=
-d what GL drivers are you using?=C2=A0 Mesa ships a glxext.h but the choice=
- of GL stack is generally BSP-specific so this is entirely down to what you=
-r BSP&#39;s GL stack is doing.</div><div class=3D"gmail_extra"><br></div><d=
-iv class=3D"gmail_extra">Ross</div></div>
-
---94eb2c07e806e13b12053da69fb1--
