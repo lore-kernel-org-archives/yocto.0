@@ -1,94 +1,59 @@
-Return-Path: <karim_atiki@hotmail.com>
+Return-Path: <Adrian.Dudau@enea.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 25255E00CAC; Thu, 29 Sep 2016 02:10:56 -0700 (PDT)
+	id 10AA8E00CAC; Thu, 29 Sep 2016 02:20:08 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (karim_atiki[at]hotmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [65.55.90.206 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [185.38.181.38 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from SNT004-OMC4S3.hotmail.com (snt004-omc4s3.hotmail.com
-	[65.55.90.206])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7EED7E0097C
-	for <yocto@yoctoproject.org>; Thu, 29 Sep 2016 02:10:54 -0700 (PDT)
-Received: from EUR02-VE1-obe.outbound.protection.outlook.com ([65.55.90.201])
-	by SNT004-OMC4S3.hotmail.com over TLS secured channel with
-	Microsoft SMTPSVC(7.5.7601.23008); Thu, 29 Sep 2016 02:10:53 -0700
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
-	s=selector1; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
-	bh=h6rz6VS7ITMsSOGD5Qi9mxkfr7+o5KO4IRWgBFMiImY=;
-	b=m1IHxRmvRZvn8MvO6tYSbijEkZ89dgNheCFXLzeKG23JK+/9Vk7ShH4z0mG20RBre/5rbpMjSgI861O/eSmFOIhhsOeb1UitJWXulLBGGRNeFT4Jb/uzdoPsAzbpyEDyNH4twV94YiwR9HayPY4BWmcfCYH46cU9v8UG2n16RuteWq63WgngUQfvWLIEfyarLxM1kdkvUGmicWoqM6fNhdrvPj/h9UdWqNsyNH6B2lB7ZCAEquodj7sWknXA2qezPffGrVosVQPlf7WQz2G5VjMnm3ZOPVlme35o1Xip4qZ4vugYf3cMGdPPYOSMxbs3AFnmZAOeNB4i9E3j6VO3Sg==
-Received: from AM5EUR02FT047.eop-EUR02.prod.protection.outlook.com
-	(10.152.8.55) by AM5EUR02HT032.eop-EUR02.prod.protection.outlook.com
-	(10.152.9.99) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.629.5;
-	Thu, 29 Sep 2016 09:10:51 +0000
-Received: from HE1PR01MB1883.eurprd01.prod.exchangelabs.com (10.152.8.57) by
-	AM5EUR02FT047.mail.protection.outlook.com (10.152.9.197) with Microsoft
-	SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
-	15.1.629.5 via Frontend Transport; Thu, 29 Sep 2016 09:10:51 +0000
-Received: from HE1PR01MB1883.eurprd01.prod.exchangelabs.com ([10.165.228.143])
-	by HE1PR01MB1883.eurprd01.prod.exchangelabs.com ([10.165.228.143])
-	with mapi id 15.01.0649.016; Thu, 29 Sep 2016 09:10:51 +0000
-From: Karim ATIKI <karim_atiki@hotmail.com>
-To: yocto <yocto@yoctoproject.org>
-Thread-Topic: [yocto] build a toolchain compiler with ARM hard-float support
-Thread-Index: AQHSGjDjbLR/i0pJWUWt+c/FlKrZ4Q==
-Date: Thu, 29 Sep 2016 09:10:51 +0000
-Message-ID: <HE1PR01MB18837CF7986BCE6EEFE81B6492CE0@HE1PR01MB1883.eurprd01.prod.exchangelabs.com>
-Accept-Language: fr-FR, en-US
+X-Greylist: delayed 1234 seconds by postgrey-1.32 at yocto-www;
+	Thu, 29 Sep 2016 02:20:04 PDT
+Received: from smtp-out11.electric.net (smtp-out11.electric.net
+	[185.38.181.38])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B467BE0097C
+	for <yocto@yoctoproject.org>; Thu, 29 Sep 2016 02:20:04 -0700 (PDT)
+Received: from 1bpXBg-0002oY-T4 by out11c.electric.net with emc1-ok (Exim 4.87)
+	(envelope-from <Adrian.Dudau@enea.com>)
+	id 1bpXBg-0002pJ-Uv; Thu, 29 Sep 2016 01:59:28 -0700
+Received: by emcmailer; Thu, 29 Sep 2016 01:59:28 -0700
+Received: from [192.36.1.72] (helo=mx-3.enea.com)
+	by out11c.electric.net with esmtps (TLSv1:AES128-SHA:128) (Exim 4.87)
+	(envelope-from <Adrian.Dudau@enea.com>)
+	id 1bpXBg-0002oY-T4; Thu, 29 Sep 2016 01:59:28 -0700
+Received: from SESTOEX04.enea.se ([fe80::bc2d:9299:d6b2:d0b7]) by
+	SESTOEX08.enea.se ([fe80::1c3:4003:dc47:23c0%11]) with mapi id
+	14.03.0294.000; Thu, 29 Sep 2016 10:59:27 +0200
+From: Adrian Dudau <Adrian.Dudau@enea.com>
+To: "wangxin2015.fnst@cn.fujitsu.com" <wangxin2015.fnst@cn.fujitsu.com>
+Thread-Topic: [yocto] [meta-cgl][PATCH] resource-agents: 3.9.6 -> 3.9.7
+Thread-Index: AQHSBAjfk4vAHqyycUmLu8S0WRhusaCEvFYAgAt5pAA=
+Date: Thu, 29 Sep 2016 08:59:26 +0000
+Message-ID: <1475139570.9137.2.camel@sestows129.enea.se>
+References: <1472703837-1344-1-git-send-email-wangxin2015.fnst@cn.fujitsu.com>
+	<C43D7C6FFC265C429F44FEB1C68F1B25633E1799@G08CNEXMBPEKD03.g08.fujitsu.local>
+In-Reply-To: <C43D7C6FFC265C429F44FEB1C68F1B25633E1799@G08CNEXMBPEKD03.g08.fujitsu.local>
+Accept-Language: en-US, sv-SE
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-authentication-results: spf=softfail (sender IP is 10.152.8.57)
-	smtp.mailfrom=hotmail.com; yoctoproject.org;
-	dkim=none (message not signed)
-	header.d=none;yoctoproject.org; dmarc=fail action=none
-	header.from=hotmail.com;
-received-spf: SoftFail (protection.outlook.com: domain of transitioning
-	hotmail.com discourages use of 10.152.8.57 as permitted sender)
-x-ms-exchange-messagesentrepresentingtype: 1
-x-tmn: [9VUohkKR10iu/vq3h1pDsi+O94t6ibwD]
-x-eopattributedmessage: 0
-x-microsoft-exchange-diagnostics: 1; AM5EUR02HT032;
-	6:Gx2UnCLHy6Gg8DDTTaufvA2P7fiFnPsndYrowkhEiJjtc/nyCpLQRpKW6nPV0TsvU3Z04Wpncnzv/1NAsarK25qFQM2Oj3u+lIIRIhLvDiQT86YnmSW3ytgFLZjotJI0DTM803R/0Nb9N5WU/DoT71LpH9xe3+JG7OslB1WrnB4pUxAUlm4v4r4qRkallahHHFkL47Q/WZTyIgP6Yq8+mZPjaw6+760RfFQKmL6kR4ubjxvSsWBzClDmezs1G5iSJSqglycb65mHYF89iY6nRQbk21AIqu4V/77dr5N+juY=;
-	5:nZOjRYgkLht1dzYp14yUd7Ublt3Ao9W5LCzDniOYfrBaC54uN6aXMo6NkSG2MPJHB7K6vnvdnfQQ+eqRm+ZuyJg4SWaZZrfHAz+wMvLDyOiyyIbLk4WZdnjoHIvKs9fgtMg4wzIw7C9P8zemMg30gw==;
-	24:EGeq2iZOKr2Hks0x2qc/9eSYNLMEV8EJ7c96RkYUuCz44PtWQCwWxNdKeTxiN3TP2ofd4kuwbG/KXghAEn2s+teXsVSfL8lIq+w1/D6Hl5s=;
-	7:FuhiO2bnbitTesGm0hwr2MnUZOjoXuGEbcV6AcWknFs/8Uxi5FWaceCLl9OeBo1+zV+1M07K3t8wbRlKo+qTcp3G0taABBcMlbTfgqeGCjGacp4lFkXob2qFJj8zTG29zHCgtOL98YSQHd6VgFXwU2MgEWgqmq/d7vwAuXG8AazlRyymR4qxXpNORS31jvq8oEbowfwVgNuXr0iDuA5gViNsSA8x+Yd6tTJI/KpSd2KUxrYctMWTP2Y7A02cbrpDfVZrLhDIebavKj6LdCs0odlAU20YvS8g4KPwoHehmZsPxPpBepCYUTmIlD/K7K7h
-x-forefront-antispam-report: EFV:NLI; SFV:NSPM; SFS:(10019020)(98900003);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:AM5EUR02HT032;
-	H:HE1PR01MB1883.eurprd01.prod.exchangelabs.com; FPR:; SPF:None;
-	LANG:en; 
-x-ms-office365-filtering-correlation-id: c3d5fe19-563e-4bb3-cd45-08d3e848827c
-x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
-	RULEID:(1601124038)(1603103081)(1601125047); SRVR:AM5EUR02HT032;
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0; RULEID:(432015012)(82015046);
-	SRVR:AM5EUR02HT032; BCL:0; PCL:0; RULEID:; SRVR:AM5EUR02HT032; 
-x-forefront-prvs: 00808B16F3
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
+x-originating-ip: [172.16.140.45]
 MIME-Version: 1.0
-X-OriginatorOrg: hotmail.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Sep 2016 09:10:51.2907 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Internet
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM5EUR02HT032
-X-OriginalArrivalTime: 29 Sep 2016 09:10:53.0788 (UTC)
-	FILETIME=[617409C0:01D21A31]
-Subject: build a toolchain compiler with ARM hard-float support
+X-Outbound-IP: 192.36.1.72
+X-Env-From: Adrian.Dudau@enea.com
+X-Proto: esmtps
+X-Revdns: mx-3.enea.com
+X-HELO: mx-3.enea.com
+X-TLS: TLSv1:AES128-SHA:128
+X-Authenticated_ID: 
+X-PolicySMART: 6551647
+X-Virus-Status: Scanned by VirusSMART (c)
+X-Virus-Status: Scanned by VirusSMART (s)
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-cgl][PATCH] resource-agents: 3.9.6 -> 3.9.7
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -100,92 +65,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 29 Sep 2016 09:10:56 -0000
-Content-Language: fr-FR
-Content-Type: multipart/alternative;
-	boundary="_000_HE1PR01MB18837CF7986BCE6EEFE81B6492CE0HE1PR01MB1883eurp_"
+X-List-Received-Date: Thu, 29 Sep 2016 09:20:08 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <166EE456B887BD49865F0B441F0F12D8@local>
+Content-Transfer-Encoding: base64
 
---_000_HE1PR01MB18837CF7986BCE6EEFE81B6492CE0HE1PR01MB1883eurp_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+T24gdG9yLCAyMDE2LTA5LTIyIGF0IDAxOjQ1ICswMDAwLCBXYW5nLCBYaW4gd3JvdGU6DQo+IHBp
+bmcNCj4gDQo+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+IEZyb206IFdhbmcsIFhpbi/n
+josg6ZGrIA0KPiBTZW50OiBUaHVyc2RheSwgU2VwdGVtYmVyIDAxLCAyMDE2IDEyOjI0IFBNDQo+
+IFRvOiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQo+IENjOiBXYW5nLCBYaW4v546LIOmRqw0KPiBT
+dWJqZWN0OiBbeW9jdG9dW21ldGEtY2dsXVtQQVRDSF0gcmVzb3VyY2UtYWdlbnRzOiAzLjkuNiAt
+PiAzLjkuNw0KPiANCj4gVXBncmFkZSByZXNvdXJjZS1hZ2VudHMgZnJvbSAzLjkuNiB0byAzLjku
+Ny4NCj4gDQo+IFNpZ25lZC1vZmYtYnk6IFdhbmcgWGluIDx3YW5neGluMjAxNS5mbnN0QGNuLmZ1
+aml0c3UuY29tPg0KPiAtLS0NCj4gIC4uLi97cmVzb3VyY2UtYWdlbnRzXzMuOS42LmJiID0+IHJl
+c291cmNlLWFnZW50c18zLjkuNy5iYn0gICAgICAgICAgICB8IDQgKystLQ0KPiAgMSBmaWxlIGNo
+YW5nZWQsIDIgaW5zZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMoLSkgIHJlbmFtZSBtZXRhLWNnbC1j
+b21tb24vcmVjaXBlcy1jZ2wvY2x1c3Rlci1yZXNvdXJjZS1hZ2VudHMve3Jlc291cmNlLWFnZW50
+c18zLjkuNi5iYiA9PiByZXNvdXJjZS1hZ2VudHNfMy45LjcuYmJ9ICg5NSUpDQo+IA0KPiBkaWZm
+IC0tZ2l0IGEvbWV0YS1jZ2wtY29tbW9uL3JlY2lwZXMtY2dsL2NsdXN0ZXItcmVzb3VyY2UtYWdl
+bnRzL3Jlc291cmNlLWFnZW50c18zLjkuNi5iYiBiL21ldGEtY2dsLWNvbW1vbi9yZWNpcGVzLWNn
+bC9jbHVzdGVyLXJlc291cmNlLWFnZW50cy9yZXNvdXJjZS1hZ2VudHNfMy45LjcuYmINCj4gc2lt
+aWxhcml0eSBpbmRleCA5NSUNCj4gcmVuYW1lIGZyb20gbWV0YS1jZ2wtY29tbW9uL3JlY2lwZXMt
+Y2dsL2NsdXN0ZXItcmVzb3VyY2UtYWdlbnRzL3Jlc291cmNlLWFnZW50c18zLjkuNi5iYg0KPiBy
+ZW5hbWUgdG8gbWV0YS1jZ2wtY29tbW9uL3JlY2lwZXMtY2dsL2NsdXN0ZXItcmVzb3VyY2UtYWdl
+bnRzL3Jlc291cmNlLWFnZW50c18zLjkuNy5iYg0KPiBpbmRleCAxOGVmMWU4Li5hMGQ0ZTFmIDEw
+MDY0NA0KPiAtLS0gYS9tZXRhLWNnbC1jb21tb24vcmVjaXBlcy1jZ2wvY2x1c3Rlci1yZXNvdXJj
+ZS1hZ2VudHMvcmVzb3VyY2UtYWdlbnRzXzMuOS42LmJiDQo+ICsrKyBiL21ldGEtY2dsLWNvbW1v
+bi9yZWNpcGVzLWNnbC9jbHVzdGVyLXJlc291cmNlLWFnZW50cy9yZXNvdXJjZS1hZ2VudA0KPiAr
+Kysgc18zLjkuNy5iYg0KPiBAQCAtMjAsOCArMjAsOCBAQCBTUkNfVVJJID0gImh0dHBzOi8vY29k
+ZWxvYWQuZ2l0aHViLmNvbS9DbHVzdGVyTGFicy9yZXNvdXJjZS1hZ2VudHMvdGFyLmd6L3Yke1BW
+fQ0KPiAgICAgICAgICAgICBmaWxlOi8vMDMtZml4LWhlYWRlci1kZWZzLWxvb2t1cC5wYXRjaCBc
+DQo+ICAgICAgICAgICAgIg0KPiAgDQo+IC1TUkNfVVJJW21kNXN1bV0gPSAiNjg3M2Q1YTIxN2Fl
+ZTMwMjYxOTNmYjg1YmZhMThhNGEiDQo+IC1TUkNfVVJJW3NoYTI1NnN1bV0gPSAiMzk3MjJjZGVl
+NjhmZjk2ZDA2Nzg4ZjA1ZjMyNWJkMjFlYzJmYzU5YzU5ZDg0N2U1ZTRiMjNjNmRmMjNiZjY3OCIN
+Cj4gK1NSQ19VUklbbWQ1c3VtXSA9ICJjNTkwOTZiMWJhY2M3MDRlOGE1YTI4NWYxNTcyOTEwOSIN
+Cj4gK1NSQ19VUklbc2hhMjU2c3VtXSA9ICJlNWJkNjI2NThmYmMyMzZhY2I4M2I3MDlmNjRiMmNk
+OWZhZTUyYWE0YTQyMGE0NGZlZDVlYjY2N2U5MjhiMTUyIg0KPiAgDQo+ICBMSUNfRklMRVNfQ0hL
+U1VNID0gImZpbGU6Ly9DT1BZSU5HO21kNT03NTE0MTkyNjBhYTk1NDQ5OWY3YWJhYWJhYTg4MmJi
+ZSBcDQo+ICAgICAgICAgICAgICAgICAgICAgIGZpbGU6Ly9DT1BZSU5HLkxHUEw7bWQ1PTRmYmQ2
+NTM4MGNkZDI1NTk1MTA3OTAwOGIzNjQ1MTZjIFwNCj4gLS0NCj4gMi43LjQNCj4gDQo+IA0KPiAN
+Cg0KSGkgV2FuZw0KDQpUaGlzIHBhdGNoIGhhcyBhbHJlYWR5IGJlZW4gbWVyZ2VkIHRvIG1hc3Rl
+cg0KKGh0dHA6Ly9naXQueW9jdG9wcm9qZWN0Lm9yZy9jZ2l0L2NnaXQuY2dpL21ldGEtY2dsL2Nv
+bW1pdC8/aWQ9N2IwY2Q4NzZlYjIxNTMzNWE5ZmE2YmZkZmQwZjBjZmQxNGZiZjJiOSkgYXMgd2Vs
+bCBhcyB0aGUgb3RoZXIgdHdvLg0KDQpDaGVlcnMsDQotLUFkcmlhbg0KDQoNCg0K
 
-Hi,
-
-
-I'm using Poky Jethro to build on Toradex Colibri-T20 (armv7).
-
-
-I want to build my own SDK Installer to have  a toolchain and a sysroot.
-
-
-Currently, I realied that the toolchain installer files do not provide an a=
-rm-poky-linux-gnuabi compiler with hard-float support.
-
-For example, while compiling my project:
-
-
-/opt/poky/2.0.1/sysroots/armv7a-vfp-neon-poky-linux-gnueabi/usr/include/gnu=
-/stubs.h:10:29: fatal error: gnu/stubs-hard.h: No such file or directory
-
-
-Therefore:
-
-
- How to be sure that the compiler generated by "bitbake -c populate_sdk" wi=
-ll support hard-float ? Is there a configuration file ?
-
-
-Karim
-
-
---_000_HE1PR01MB18837CF7986BCE6EEFE81B6492CE0HE1PR01MB1883eurp_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
-</head>
-<body dir=3D"ltr">
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
--family:Calibri,Arial,Helvetica,sans-serif;">
-<p>Hi,</p>
-<p><br>
-</p>
-<p>I'm using Poky Jethro to build on Toradex Colibri-T20 (armv7).</p>
-<p><br>
-</p>
-<p>I want to build my own SDK Installer to have &nbsp;a toolchain and a sys=
-root.</p>
-<p><br>
-</p>
-<p>Currently, I realied that the toolchain installer files do not provide a=
-n arm-poky-linux-gnuabi compiler with hard-float support.</p>
-<p>For example, while compiling my project:</p>
-<p><span><br>
-</span></p>
-<p><span><i>/opt/poky/2.0.1/sysroots/armv7a-vfp-neon-poky-linux-gnueabi/usr=
-/include/gnu/stubs.h:10:29: fatal error: gnu/stubs-hard.h: No such file or =
-directory</i></span><br>
-</p>
-<p><span><i><br>
-</i></span></p>
-<p><span>Therefore:</span></p>
-<p><span><br>
-</span></p>
-<p><span>&nbsp;How to be sure that the compiler generated by &quot;bitbake =
--c populate_sdk&quot; will support hard-float ? Is there a configuration fi=
-le ?</span></p>
-<p><span><br>
-</span></p>
-<p><span>Karim</span></p>
-<p><span><br>
-</span></p>
-</div>
-</body>
-</html>
-
---_000_HE1PR01MB18837CF7986BCE6EEFE81B6492CE0HE1PR01MB1883eurp_--
