@@ -1,38 +1,41 @@
-Return-Path: <anibal.limon@linux.intel.com>
+Return-Path: <rpjday@crashcourse.ca>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7D7B4E00DC3; Fri, 30 Sep 2016 09:19:12 -0700 (PDT)
+	id 67A84E00D81; Fri, 30 Sep 2016 10:13:41 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-0.7 required=5.0 tests=BAYES_20,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.20 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 777CFE00DA8
-	for <yocto@yoctoproject.org>; Fri, 30 Sep 2016 09:19:02 -0700 (PDT)
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-	by orsmga101.jf.intel.com with ESMTP; 30 Sep 2016 09:19:01 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.31,273,1473145200"; 
-	d="asc'?scan'208";a="885491746"
-Received: from alimonb-mobl1.zpn.intel.com (HELO [10.219.5.35]) ([10.219.5.35])
-	by orsmga003.jf.intel.com with ESMTP; 30 Sep 2016 09:19:00 -0700
-To: Monserrat Sedeno <monserratx.sedeno.bustos@intel.com>,
-	yocto@yoctoproject.org, "Lock, Joshua G" <joshua.g.lock@intel.com>,
-	"Perez Carranza, Jose" <jose.perez.carranza@intel.com>
-References: <1475185458-16324-1-git-send-email-monserratx.sedeno.bustos@intel.com>
-From: =?UTF-8?B?QW7DrWJhbCBMaW3Ds24=?= <anibal.limon@linux.intel.com>
-Message-ID: <57EE90A7.5070706@linux.intel.com>
-Date: Fri, 30 Sep 2016 11:19:51 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.3.0
+X-Spam-HAM-Report: * -0.0 BAYES_20 BODY: Bayes spam probability is 5 to 20%
+	*      [score: 0.1411]
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [208.80.204.84 listed in list.dnswl.org]
+X-Greylist: delayed 213 seconds by postgrey-1.32 at yocto-www;
+	Fri, 30 Sep 2016 10:13:38 PDT
+Received: from smtp484.redcondor.net (smtp484.redcondor.net [208.80.204.84])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 41ED0E00D57
+	for <yocto@yoctoproject.org>; Fri, 30 Sep 2016 10:13:38 -0700 (PDT)
+Received: from astoria.ccjclearline.com ([64.235.106.9])
+	by smtp484.redcondor.net ({c48374e7-08df-40d9-a0de-96cc9883a037})
+	via TCP (outbound) with ESMTPS id 20160930171003759_0484
+	for <yocto@yoctoproject.org>; Fri, 30 Sep 2016 17:10:03 +0000
+X-RC-FROM: <rpjday@crashcourse.ca>
+X-RC-RCPT: <yocto@yoctoproject.org>
+Received: from [216.191.234.70] (port=43352 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1bq1Lz-0006br-Qo
+	for yocto@yoctoproject.org; Fri, 30 Sep 2016 13:12:07 -0400
+Date: Fri, 30 Sep 2016 13:09:24 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@localhost.localdomain
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.LFD.2.20.1609301306490.13893@localhost.localdomain>
+User-Agent: Alpine 2.20 (LFD 67 2015-01-07)
 MIME-Version: 1.0
-In-Reply-To: <1475185458-16324-1-git-send-email-monserratx.sedeno.bustos@intel.com>
-Subject: Re: [PATCH] Build sets to test new OS distribution in autobuilder
+X-MAG-OUTBOUND: ccj.redcondor.net@64.235.106.9/32
+Subject: what is the proper way to select a persistent /var/log directory?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,123 +47,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 30 Sep 2016 16:19:12 -0000
-X-Groupsio-MsgNum: 32140
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature";
-	boundary="epqPeHfMgEXSwuD9Q1wn8f9TmqblufEoA"
-
---epqPeHfMgEXSwuD9Q1wn8f9TmqblufEoA
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: quoted-printable
-
-Hi Monse,
-
-Could you write an explanation about what is the purpose of this buildset=
-?,
-
-Also since the patch is for autobuilder you need to add
-[yocto-autobuilder] in the subject and cc Joshua Lock.
-
-Cheers,
-	alimon
+X-List-Received-Date: Fri, 30 Sep 2016 17:13:41 -0000
+Content-Type: text/plain; charset=US-ASCII
 
 
-On 09/29/2016 04:44 PM, Monserrat Sedeno wrote:
-> Signed-off-by: Monserrat Sedeno <monserratx.sedeno.bustos@intel.com>
-> ---
->  nightly-qa-distro.conf | 45 +++++++++++++++++++++---------------------=
----
->  1 file changed, 21 insertions(+), 24 deletions(-)
->=20
-> diff --git a/nightly-qa-distro.conf b/nightly-qa-distro.conf
-> index 2d2c828..8529345 100644
-> --- a/nightly-qa-distro.conf
-> +++ b/nightly-qa-distro.conf
-> @@ -7,9 +7,6 @@ repos: [{'poky':
->          {'meta-qt4':
->              {'repourl':'git://git.yoctoproject.org/meta-qt4',
->               'branch':'master'}},
-> -        {'meta-qt4':
-> -            {'repourl':'git://git.yoctoproject.org/meta-qt4',
-> -             'branch':'master'}},
->          {'meta-qt3':
->              {'repourl':'git://git.yoctoproject.org/meta-qt3',
->               'branch':'master'}}]
-> @@ -20,28 +17,28 @@ props: [{'fp_date':{'prop_type':'StringParameter',
->  steps: [{'SetDest':{}},
->          {'CheckOutLayers': {}},
->          {'RunPreamble': {}},
-> -        {'TriggerBuilds': {'schedulerName': 'main-build',=20
-> +        {'TriggerBuilds': {'schedulerName': 'dist-build',=20
->  		           'waitForFinish': 'True',
->                             'schedulerNames': {
-> -			   'nightly-oe-selftest': {},
-> -			   'nightly-rpm': {}
-> -		           'nightly-deb':{}
-> -                           'nightly-ipk':{}
-> -                           'nightly-world': {},=20
-> -			   'buildtools': {},
-> -                           'nightly-arm': {},=20
-> -                           'nightly-mips': {},
-> -                           'nightly-wic':{},
-> -                           'nightly-multilib': {},=20
-> -                           'nightly-x86-64': {},=20
-> -                           'nightly-x86-64-lsb': {},
-> -                           'nightly-x86': {},
-> -                           'poky-tiny': {},=20
-> -                           'nightly-qa-systemd': {},
-> -                           'nightly-qa-extras': {},=20
-> -                           'nightly-qa-targetbuilds': {},
-> -                           'nightly-qa-logrotate': {},=20
-> -                           'nightly-qa-pam': {},
-> -                           'nightly-qa-skeleton': {}},
-> +			   	'nightly-oe-selftest': {},
-> +			   	'nightly-rpm': {},
-> +		           	'nightly-deb': {},
-> +                           	'nightly-ipk': {},
-> +                          	'nightly-world': {},=20
-> +			   	'buildtools': {},
-> +                           	'nightly-arm': {},=20
-> +                           	'nightly-mips': {},
-> +                           	'nightly-wic':{},
-> +                           	'nightly-multilib': {},=20
-> +                           	'nightly-x86-64': {},=20
-> +                           	'nightly-x86-64-lsb': {},
-> +                           	'nightly-x86': {},
-> +                           	'poky-tiny': {},=20
-> +                           	'nightly-qa-systemd': {},
-> +                           	'nightly-qa-extras': {},=20
-> +                           	'nightly-qa-targetbuilds': {},
-> +                           	'nightly-qa-logrotate': {},=20
-> +                           	'nightly-qa-pam': {},
-> +                           	'nightly-qa-skeleton': {}},
->                             'schedulerNames_nowait': {}}},]
-> =20
->=20
+  just used the google to dig into that, found a number of references
+to an alleged VOLATILE_LOG_DIR variable, but it seems to have not been
+implemented, so should i assume this is done via the fs-perms.txt
+file? or how *is* it done?
+
+rday
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
 
---epqPeHfMgEXSwuD9Q1wn8f9TmqblufEoA
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2
-
-iQIcBAEBAgAGBQJX7pCpAAoJEGJqcE9h3glgAj8P/RhdIdx3OGcNdcIRxUmNcI4m
-mGsVgtj/qJuXTcBMWw7EvWTzpK//6Qhu2rwbm48xppiTZ5AupRV6uVgEe6h4fYax
-bK6SfApQn7CGEx5I4FWGlO0ufyvpjbT1xbNJFHOzML0Xfp3W0OxJWaaaTT8Vq03+
-Iw7i7nmgT9tLQ/fSWsM7Tb7tm55eLMesBlQhGuoXuP7u6+/KoBGn5/FZVJXTRChe
-QnhGPR6WssUhgY43o0AROOaDzlXaBIe0+6aCl2QNMqRKYEzz/h6LgSQskGLFjkkD
-JxVh9Z1reEvWx7XzPt9YBTarFiIGZFqaRjw1MKp4IGb1s9MhzhGE8yNd6Ce5bOkx
-yX688KfNgM7nLK69w16zjMmTLGeim5OivZX7SL34wmXffVEVEn7WLPdCbPZjfslj
-q3/3FZiDrLJbwQsmH9HveHg2xYwJy7n+yczVoZbXwUqwzJz085ga03v9RirFgnz0
-PFa9O1/8+gKwsp6iSx8nRGAcnV3bIBSWUelW4lN+SaoRVXsZ3zzSyz0k8UUhnbjK
-/BRRyZNwkfNoupKp8g4Pwe2Jh1l2W+zOe/wbld1w91eefH+UZJ5YyNhheBA5xWyD
-giMGnnwDqFfKYlGkQWKlgALujrKPNYzTF7dt+JsDQObxAvCKbb6nHpKr0ZWBKFvz
-UEBqbrrVij7CxdBiRVL7
-=8HJV
------END PGP SIGNATURE-----
-
---epqPeHfMgEXSwuD9Q1wn8f9TmqblufEoA--
