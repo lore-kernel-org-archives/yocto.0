@@ -1,67 +1,60 @@
-Return-Path: <challinan@gmail.com>
+Return-Path: <dev@codyps.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C65D8E00DBA; Fri, 30 Sep 2016 11:02:53 -0700 (PDT)
+	id 60DDCE00D99; Fri, 30 Sep 2016 11:37:08 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (challinan[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.215.65 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.214.65 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.214.65 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-lf0-f65.google.com (mail-lf0-f65.google.com
-	[209.85.215.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 707B3E00DA3
-	for <yocto@yoctoproject.org>; Fri, 30 Sep 2016 11:02:15 -0700 (PDT)
-Received: by mail-lf0-f65.google.com with SMTP id l131so6334611lfl.0
-	for <yocto@yoctoproject.org>; Fri, 30 Sep 2016 11:02:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=DN4XqjNAcwc+QuSObBEYeJMkB7R5EJ4oEZ+PS/nTI3I=;
-	b=ZIoRu1gIdWSZdw9MMG9U9HL+vDQVySm2Th7xEuc0aqivwj4RS/n24pqXWItGIyJSl3
-	OjoJz2mHPwgSM0hr3xkqDjoNShQiZaXwpuXiQxo7B+jal37u8RbXcZTkaTJEDqNSH/3+
-	q28q/sBUTH69fMpwjr1T6EGoVZZxzIuABwFpNogE4iekF1EwNfe56By51dgY1/CZnyJH
-	mGzU8ndMvVtU4MoWUdhVXh5dPIKuIy8/cZyMIZSrwlAjp3o7S04m42PGUmohJjoPPCAr
-	8WbpGb4VAxXN0AiCs0ZcLHfGgXyAaKQPldBO3jsOlt66IcwCzlC/LlpZW/v/rMEkdTId
-	dgbA==
+Received: from mail-it0-f65.google.com (mail-it0-f65.google.com
+	[209.85.214.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9A07AE00C8E
+	for <yocto@yoctoproject.org>; Fri, 30 Sep 2016 11:37:04 -0700 (PDT)
+Received: by mail-it0-f65.google.com with SMTP id j69so3381788itb.1
+	for <yocto@yoctoproject.org>; Fri, 30 Sep 2016 11:37:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codyps.com; s=google;
+	h=from:to:cc:subject:date:message-id;
+	bh=DKsBIvQViW2NS3rPhnzkLyHaShPOtkyOF3vIyilUCNA=;
+	b=EoNRv5q7rJVPRWExDEaw3tGLgryeTqw9i8BuTZ4lPrI4fR46LJD9nQiE5RbJe/voYy
+	oj+ZbQ15DGgBEjPEulCGfG5QhJLD5akZ4Lv42P90T7UiKat4LLTsp6Y7JoEUOCJc2v5u
+	2Px+AfKZdCXyypxasObEEGAiDtp/9L22SMHmk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=DN4XqjNAcwc+QuSObBEYeJMkB7R5EJ4oEZ+PS/nTI3I=;
-	b=hCmMBLmM3dShGLfoI0Q+qA2+hRwVWJ12YjVdV/N/QhDqq0ymPXGE3vnteW8+0MYcod
-	1QFmTzVv/I0HnCKOwTcEfWFo8RC6ZUSwiJpSVYefcCngBzrolWWGK5gcrMIcjOsR4071
-	ttb9nA7MMA0fn9QMj0KyMWk0/mTAlroWhNoFxMeU0aEQHGerL/tPOGoW8KH1skHAafMd
-	i/tTANmn4ugkXG0DurDFY1JH0XmX5368J8uAga+UaS4F8FtnI7pU5Bh2lYnY15kPQnUG
-	IspC+wJ6OdEpUhUYxDXQwWbRX4Z8WEUa8eKvBZxhfXWpz26K72/IfSKODI3ljpnd1G3G
-	D56Q==
-X-Gm-Message-State: AA6/9RncnVpCXgfUD2VzCNBdKCSumUNEN1sjkZ0uprHfU98VaDgMLW++29OE4MVjuEPRMs3X8tSAv7qBY8Q+rQ==
-X-Received: by 10.46.69.131 with SMTP id s125mr3627127lja.29.1475258534061;
-	Fri, 30 Sep 2016 11:02:14 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.114.28.138 with HTTP; Fri, 30 Sep 2016 11:02:13 -0700 (PDT)
-In-Reply-To: <CADi-vsxKc4x9j+GU-V=aMuODVk8D3KLpSMpUP=92jguOhKXkNQ@mail.gmail.com>
-References: <CADi-vswLkJhV+OZDmuBykid=zvT39y0pjshFhushpzmCMfb4ZQ@mail.gmail.com>
-	<CAME0jBTC4=5v5JRYUVZ97xPUf1Wu7WV6AzCQ7z-uAj1rikQu6A@mail.gmail.com>
-	<CADi-vszcy8OK4T2U2h+UPGzXM63VJ9bK5e7cqfDEjMnd5NG4ww@mail.gmail.com>
-	<CADi-vsxKc4x9j+GU-V=aMuODVk8D3KLpSMpUP=92jguOhKXkNQ@mail.gmail.com>
-From: Chris Hallinan <challinan@gmail.com>
-Date: Fri, 30 Sep 2016 14:02:13 -0400
-Message-ID: <CAME0jBRjC8TG2AZQ==6LpUsJ3MeBAkOzZEGTJzcupaQvrdjhiw@mail.gmail.com>
-To: Maxwell Bottiger <sleepylight@jive-turkey.net>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: new system booting directly to halt
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=DKsBIvQViW2NS3rPhnzkLyHaShPOtkyOF3vIyilUCNA=;
+	b=fCmgXaDiwPmJSW9v3dcHPNGipVfz8F7/oTg3DrjjuwycJ/5aXcz4chivxLcXkHBRhQ
+	amCxF4cZZbu+AbXnP+sJ1Efy4OlwxaWxyvuOd35bvd1h7ycGQJouJvp8ToGhDcruFBXc
+	tVm9B3W1JijHup6JYV4UP/W+M+V/MifAOQjegxLgQ5H7HztzcWtRbTd4TxFZrwb9sFyI
+	kfSendIicwx2gXw+n9kJ7p9w1o+QZp69BWxGpIPQIesFyeTnsCyKowWdMU5A+Vd7aemq
+	dFM1ZCydah4M4EfzupaeQdbc6RebdyOmL3U43Gt6eGGXmtTk6K7QDgla3ALavF8fCXXC
+	6h5A==
+X-Gm-Message-State: AA6/9Rmx213LEzx9hPT9yk2t/bhtUqqsNA5cMUhybIajlax+Ej3og6WNbEv+TgMfReTSYQ==
+X-Received: by 10.107.41.81 with SMTP id p78mr10252663iop.78.1475260624372;
+	Fri, 30 Sep 2016 11:37:04 -0700 (PDT)
+Received: from localhost (static-96-237-165-28.bstnma.fios.verizon.net.
+	[96.237.165.28]) by smtp.gmail.com with ESMTPSA id
+	p127sm3938076iod.16.2016.09.30.11.37.03
+	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+	Fri, 30 Sep 2016 11:37:03 -0700 (PDT)
+From: Cody P Schafer <dev@codyps.com>
+To: yocto@yoctoproject.org
+Date: Fri, 30 Sep 2016 14:36:56 -0400
+Message-Id: <20160930183656.3600-1-dev@codyps.com>
+X-Mailer: git-send-email 2.10.0
+Subject: [meta-qt4][PATCH] nativesdk-qt4-tools: ensure --disable-static is not passed
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,529 +66,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 30 Sep 2016 18:02:53 -0000
-Content-Type: multipart/alternative; boundary=001a114b182edfecb8053dbd6495
+X-List-Received-Date: Fri, 30 Sep 2016 18:37:08 -0000
 
---001a114b182edfecb8053dbd6495
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+This recipe presumes it can build the qt4-tools as static, and does not
+install any of it's built libraries. If we don't remove
+`--disable-static`, it attempts to use non-existent shared libraries
+(many of them aren't even built), resulting in either link failures at
+build time or (occasionally) at populate_sdk time due to the lack of a
+provider for the shared libraries.
 
-Ah progress!  ;)  Good find.
+Signed-off-by: Cody P Schafer <dev@codyps.com>
+---
+ recipes-qt4/qt4/nativesdk-qt4-tools.inc | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-On Fri, Sep 30, 2016 at 1:30 PM, Maxwell Bottiger <
-sleepylight@jive-turkey.net> wrote:
-
-> Got it.  I needed to turn switch on CONFIG_DEVTMPFS=3Dy, and
-> CONFIG_DEVTMPFS_MOUNT=3Dy in the kernel.  Now dev is populated and everyt=
-hing
-> else came along with it.
->
-> Thanks!
->
-> -Max
->
-> On Fri, Sep 30, 2016 at 12:16 PM, Maxwell Bottiger <
-> sleepylight@jive-turkey.net> wrote:
->
->> Chris,
->>
->> Thanks for the suggestions.  The system is based on SystemV and uses the
->> old school init scripts.
->>
->> I rebuilt my kernel with init=3D/bin/sh and I can get into the system no=
-w!
->> The thing is, I don't see anything in /proc, and only /dev/null exists i=
-n
->> the /dev directory.  I don't know if the lack of meta filesystems is due=
- to
->> me skipping an actual init, or if I've buggered up something in my kerne=
-l
->> configuration.
->>
->> This continues to be the world's most secure box, but I feel like I'm
->> making progress on that.
->>
->> -Max
->>
->> On Thu, Sep 29, 2016 at 4:40 PM, Chris Hallinan <challinan@gmail.com>
->> wrote:
->>
->>> You could sell this as a very secure box ;)
->>>
->>> Kidding aside, it didn't "zip" through runlevel 5, in fact, you don't
->>> know what runlevel it is actually in.  11 seconds after your file syste=
-m is
->>> mounted, a reboot is issued.  From your trace, nothing running in users=
-pace
->>> displayed any messages to the console.  You didn't mention what type of
->>> init system you are using, systemd or sysV.  It almost looks like a con=
-sole
->>> problem.  But...i don't know why a reboot would be issued.  That's not
->>> normal behavior if you simply have a min-configured console.  Maybe ini=
-t
->>> will do that under certain circumstances, I am not sure.
->>>
->>> Just for FYI, notice that your serial port is instantiating on ttyS0. (=
-I
->>> do see that agrees with your kernel command line so at least that much =
-is
->>> correct.)
->>>
->>> First thing I would try is to see if I can get anything on userspace.
->>> Try using init=3D on your kernel command line to just spawn a shell.
->>>  (init=3D/bin/sh)
->>>
->>> Do you have a way to examine the flash after a reboot to see if a syslo=
-g
->>> was populated on the file system and examine its contents?  ie JTAG?
->>>
->>> Make sure your root file system is sane, ie mount it on a development
->>> box and make sure it's contents make sense to you.  ie for sysV /sbin/i=
-nit
->>> should point to init, and it should contain a /etc/inittab and that sho=
-uld
->>> have sane contents, etc. For systemd, /sbin/init should point (possibly
->>> through /etc/alternatives) to a systemd executable.  You get the idea.
->>>
->>> Good luck,
->>>
->>> Chris
->>>
->>>
->>> On Thu, Sep 29, 2016 at 3:18 PM, Maxwell Bottiger <
->>> sleepylight@jive-turkey.net> wrote:
->>>
->>>> I've been working on setting up a poky distro on an older intel XScale
->>>> system, and I finally got a working kernel and root filesystem.  Howev=
-er,
->>>> when I boot the box it zips through runlevel 5, then halts.  It seems =
-to me
->>>> like maybe init isn't kicking off getty or some sort of interactive lo=
-gin.
->>>> Has anyone else run into this problem?  I'll post the boot output belo=
-w.
->>>>
->>>> -Max
->>>>
->>>> Bootloader Initialization Successful.
->>>> Copyright (c) 2010 InHand Electronics (www.inhand.com)
->>>>  FT4: Fingertip4              v.0A211004 (Oct 21 2010, 10:04:57)
->>>>  IBL: InHandBoot_4.9 BETA     v.0A211004 (Oct 21 2010, 10:04:19)
->>>>
->>>> CPLD Version:      5.10
->>>> DRAM Size:         128 MBytes
->>>> SRAM Size:         240 KBytes
->>>> IBC Start Page:    /nor/512
->>>>
->>>> Platform Post-Init
->>>> ac97
->>>>
->>>> Autorun '/cf/autoexec.brc'
->>>> '/cf/autoexec.brc' not found
->>>>
->>>> Autorun '/sd/autoexec.brc'
->>>> '/sd/autoexec.brc' not found
->>>>
->>>> Autorun '/nor/config.brc'
->>>> >> bootlin
->>>> Starting Linux
->>>> Copying image (2689792 bytes) to RAM: 0xa0008000
->>>>
->>>> Copying file /nor/zImage to /ram/os
->>>>   Source File:          2689792 bytes
->>>>   Destination Space:    4194304 bytes
->>>>
->>>> Copying 2689792 bytes
->>>>  pct remaining  time
->>>>  --- --------- -----
->>>> 100%        0   0:00
->>>> Copied 2689792B (3MB)
->>>> Setting up Kernel tags at: 0xa0000100
->>>> Kernel tags used 36 bytes
->>>> Disabling MMU
->>>> Jumping to Linux kernel @ 0xa0008000
->>>> Uncompressing Linux... done, booting the kernel.
->>>> [    0.000000] Booting Linux on physical CPU 0x0
->>>> [    0.000000] Linux version 3.14.4 (max@tsunami.pacs.agpea.army.mil)
->>>> (gcc version 4.9.2 (GCC) ) #1 PREEMPT Wed Sep 28 16:29:41 EDT 2016
->>>> [    0.000000] CPU: XScale-PXA270 [69054118] revision 8 (ARMv5TE),
->>>> cr=3D0000397f
->>>> [    0.000000] CPU: VIVT data cache, VIVT instruction cache
->>>> [    0.000000] Machine: InHand Fingertip4 Development Platform (aka FT=
-4)
->>>> [    0.000000] Memory policy: Data cache writeback
->>>> [    0.000000] BUG: mapping for 0x00000000 at 0xff000000 out of vmallo=
-c
->>>> space
->>>> [    0.000000] Run Mode clock: 208.00MHz (*16)
->>>> [    0.000000] Turbo Mode clock: 520.00MHz (*2.5, active)
->>>> [    0.000000] Memory clock: 208.00MHz (/2)
->>>> [    0.000000] System bus clock: 208.00MHz
->>>> [    0.000000] Built 1 zonelists in Zone order, mobility grouping on.
->>>> Total pages: 16256
->>>> [    0.000000] Kernel command line: console=3DttyS0,115200
->>>> root=3D/dev/mtdblock0 rw rootfstype=3Djffs2 mem=3D64M
->>>> earlyprintk=3Dserial,ttyS0,115200
->>>> [    0.000000] PID hash table entries: 256 (order: -2, 1024 bytes)
->>>> [    0.000000] Dentry cache hash table entries: 8192 (order: 3, 32768
->>>> bytes)
->>>> [    0.000000] Inode-cache hash table entries: 4096 (order: 2, 16384
->>>> bytes)
->>>> [    0.000000] Memory: 59616K/65536K available (3732K kernel code, 184=
-K
->>>> rwdata, 1132K rodata, 139K init, 94K bss, 5920K reserved)
->>>> [    0.000000] Virtual kernel memory layout:
->>>> [    0.000000]     vector  : 0xffff0000 - 0xffff1000   (   4 kB)
->>>> [    0.000000]     fixmap  : 0xfff00000 - 0xfffe0000   ( 896 kB)
->>>> [    0.000000]     vmalloc : 0xc4800000 - 0xff000000   ( 936 MB)
->>>> [    0.000000]     lowmem  : 0xc0000000 - 0xc4000000   (  64 MB)
->>>> [    0.000000]     modules : 0xbf000000 - 0xc0000000   (  16 MB)
->>>> [    0.000000]       .text : 0xc0008000 - 0xc04c83fc   (4865 kB)
->>>> [    0.000000]       .init : 0xc04c9000 - 0xc04ebcd4   ( 140 kB)
->>>> [    0.000000]       .data : 0xc04ec000 - 0xc051a180   ( 185 kB)
->>>> [    0.000000]        .bss : 0xc051a18c - 0xc0531b90   (  95 kB)
->>>> [    0.000000] Preemptible hierarchical RCU implementation.
->>>> [    0.000000] NR_IRQS:16 nr_irqs:304 304
->>>> [    0.000046] sched_clock: 32 bits at 3250kHz, resolution 307ns, wrap=
-s
->>>> every 1321528397516ns
->>>> [    0.000691] Console: colour dummy device 80x30
->>>> [    0.000769] Calibrating delay loop... 518.55 BogoMIPS (lpj=3D259276=
-8)
->>>> [    0.060347] pid_max: default: 32768 minimum: 301
->>>> [    0.060594] Security Framework initialized
->>>> [    0.060741] Mount-cache hash table entries: 1024 (order: 0, 4096
->>>> bytes)
->>>> [    0.060774] Mountpoint-cache hash table entries: 1024 (order: 0,
->>>> 4096 bytes)
->>>> [    0.062150] CPU: Testing write buffer coherency: ok
->>>> [    0.063287] Setting up static identity map for 0xa038e6d8 -
->>>> 0xa038e744
->>>> [    0.069844] NET: Registered protocol family 16
->>>> [    0.071694] DMA: preallocated 256 KiB pool for atomic coherent
->>>> allocations
->>>> [    0.095946] Configure Fingertip4...
->>>> [    0.188992] bio: create slab <bio-0> at 0
->>>> [    0.197249] usbcore: registered new interface driver usbfs
->>>> [    0.198138] usbcore: registered new interface driver hub
->>>> [    0.199246] usbcore: registered new device driver usb
->>>> [    0.210323] cfg80211: Calling CRDA to update world regulatory domai=
-n
->>>> [    0.211077] Switched to clocksource oscr0
->>>> [    0.282781] NET: Registered protocol family 2
->>>> [    0.284302] TCP established hash table entries: 1024 (order: 0, 409=
-6
->>>> bytes)
->>>> [    0.284382] TCP bind hash table entries: 1024 (order: 0, 4096 bytes=
-)
->>>> [    0.284426] TCP: Hash tables configured (established 1024 bind 1024=
-)
->>>> [    0.284648] TCP: reno registered
->>>> [    0.284673] UDP hash table entries: 256 (order: 0, 4096 bytes)
->>>> [    0.284717] UDP-Lite hash table entries: 256 (order: 0, 4096 bytes)
->>>> [    0.285236] NET: Registered protocol family 1
->>>> [    0.286343] RPC: Registered named UNIX socket transport module.
->>>> [    0.286402] RPC: Registered udp transport module.
->>>> [    0.286416] RPC: Registered tcp transport module.
->>>> [    0.286431] RPC: Registered tcp NFSv4.1 backchannel transport modul=
-e.
->>>> [    0.292910] futex hash table entries: 256 (order: -1, 3072 bytes)
->>>> [    0.295619] NFS: Registering the id_resolver key type
->>>> [    0.295843] Key type id_resolver registered
->>>> [    0.295859] Key type id_legacy registered
->>>> [    0.295901] Installing knfsd (copyright (C) 1996 okir@monad.swb.de)=
-.
->>>> [    0.296346] jffs2: version 2.2. (NAND) =C2=A9 2001-2006 Red Hat, In=
-c.
->>>> [    0.297841] msgmni has been set to 116
->>>> [    0.300940] io scheduler noop registered
->>>> [    0.300991] io scheduler deadline registered
->>>> [    0.301491] io scheduler cfq registered (default)
->>>> [    0.754840] pxa2xx-uart.0: ttyS0 at MMIO 0x40100000 (irq =3D 22,
->>>> base_baud =3D 928562) is a UART1
->>>> [    1.153128] console [ttyS0] enabled
->>>> [    1.157921] pxa2xx-uart.1: ttyS1 at MMIO 0x40200000 (irq =3D 21,
->>>> base_baud =3D 928562) is a UART2
->>>> [    1.168016] pxa2xx-uart.2: ttyS2 at MMIO 0x40700000 (irq =3D 20,
->>>> base_baud =3D 928562) is a UART3
->>>> [    1.197503] brd: module loaded
->>>> [    1.221064] loop: module loaded
->>>> [    1.225694] nbd: registered device at major 43
->>>> [    1.271030] Uniform Multi-Platform E-IDE driver
->>>> [    1.277643] ide-gd driver 1.18
->>>> [    1.286435] physmap platform flash device: 04000000 at 00000000
->>>> [    1.293684] physmap-flash.0: Found 1 x16 devices at 0x0 in 16-bit
->>>> bank. Manufacturer ID 0x000089 Chip ID 0x00891c
->>>> [    1.304429] physmap-flash.0: Found 1 x16 devices at 0x2000000 in
->>>> 16-bit bank
->>>> [    1.311720] Intel/Sharp Extended Query Table at 0x010A
->>>> [    1.316876] Intel/Sharp Extended Query Table at 0x010A
->>>> [    1.322184] Intel/Sharp Extended Query Table at 0x010A
->>>> [    1.327328] Intel/Sharp Extended Query Table at 0x010A
->>>> [    1.332518] Intel/Sharp Extended Query Table at 0x010A
->>>> [    1.337660] Using buffer write method
->>>> [    1.341323] Using auto-unlock on power-up/resume
->>>> [    1.345909] cfi_cmdset_0001: Erase suspend on write enabled
->>>> [    1.353683] Creating 1 MTD partitions on "physmap-flash.0":
->>>> [    1.359284] 0x000000900000-0x000004000000 : "Filesystem"
->>>> [    1.371691] Using configured DiskOnChip probe address 0x4000000
->>>> [    1.380537] mousedev: PS/2 mouse device common for all mice
->>>> [    1.386463] i2c /dev entries driver
->>>> [    1.393931] TCP: cubic registered
->>>> [    1.397286] NET: Registered protocol family 17
->>>> [    1.402235] NET: Registered protocol family 15
->>>> [    1.406830] lib80211: common routines for IEEE802.11 drivers
->>>> [    1.413102] Key type dns_resolver registered
->>>> [    1.417577] XScale iWMMXt coprocessor detected.
->>>> [    3.259509] VFS: Mounted root (jffs2 filesystem) on device 31:0.
->>>> [    3.266333] Freeing unused kernel memory: 136K (c04c9000 - c04eb000=
-)
->>>> [   14.484953] reboot: System halted
->>>>
->>>>
->>>> --
->>>> _______________________________________________
->>>> yocto mailing list
->>>> yocto@yoctoproject.org
->>>> https://lists.yoctoproject.org/listinfo/yocto
->>>>
->>>>
->>>
->>>
->>> --
->>> Life is like Linux - it never stands still.
->>>
->>>
->>
->
+diff --git a/recipes-qt4/qt4/nativesdk-qt4-tools.inc b/recipes-qt4/qt4/nativesdk-qt4-tools.inc
+index 54bf2a1..44faf83 100644
+--- a/recipes-qt4/qt4/nativesdk-qt4-tools.inc
++++ b/recipes-qt4/qt4/nativesdk-qt4-tools.inc
+@@ -8,6 +8,10 @@ FILESEXTRAPATHS =. "${FILE_DIRNAME}/qt4-${PV}:"
+ 
+ inherit nativesdk qmake2
+ 
++# This recipe builds the tools as static executables (using static libraries),
++# so we need to avoid disabling them.
++DISABLE_STATIC = ""
++
+ SRC_URI = "http://download.qt-project.org/official_releases/qt/4.8/${PV}/qt-everywhere-opensource-src-${PV}.tar.gz \
+            file://0001-qlibraryinfo-allow-to-set-qt.conf-from-the-outside-u.patch \
+            file://0004-configure-qmake-is-already-built-in-qt4-tools-native.patch \
+-- 
+2.10.0
 
 
---=20
-Life is like Linux - it never stands still.
-
---001a114b182edfecb8053dbd6495
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Ah progress! =C2=A0;) =C2=A0Good find.</div><div class=3D"=
-gmail_extra"><br><div class=3D"gmail_quote">On Fri, Sep 30, 2016 at 1:30 PM=
-, Maxwell Bottiger <span dir=3D"ltr">&lt;<a href=3D"mailto:sleepylight@jive=
--turkey.net" target=3D"_blank">sleepylight@jive-turkey.net</a>&gt;</span> w=
-rote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;borde=
-r-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr"><div>Got it.=C2=A0=
- I needed to turn switch on CONFIG_DEVTMPFS=3Dy, and CONFIG_DEVTMPFS_MOUNT=
-=3Dy in the kernel.=C2=A0 Now dev is populated and everything else came alo=
-ng with it.<br><br></div><div>Thanks!<br><br></div>-Max<br></div><div class=
-=3D"HOEnZb"><div class=3D"h5"><div class=3D"gmail_extra"><br><div class=3D"=
-gmail_quote">On Fri, Sep 30, 2016 at 12:16 PM, Maxwell Bottiger <span dir=
-=3D"ltr">&lt;<a href=3D"mailto:sleepylight@jive-turkey.net" target=3D"_blan=
-k">sleepylight@jive-turkey.net</a>&gt;</span> wrote:<br><blockquote class=
-=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padd=
-ing-left:1ex"><div dir=3D"ltr"><div><div><div>Chris,<br><br></div>Thanks fo=
-r the suggestions.=C2=A0 The system is based on SystemV and uses the old sc=
-hool init scripts.<br><br>I rebuilt my kernel with init=3D/bin/sh and I can=
- get into the system now!=C2=A0 The thing is, I don&#39;t see anything in /=
-proc, and only /dev/null exists in the /dev directory.=C2=A0 I don&#39;t kn=
-ow if the lack of meta filesystems is due to me skipping an actual init, or=
- if I&#39;ve buggered up something in my kernel configuration.<br><br></div=
->This continues to be the world&#39;s most secure box, but I feel like I&#3=
-9;m making progress on that.<br><br></div>-Max<br></div><div class=3D"m_-66=
-79063854246619676HOEnZb"><div class=3D"m_-6679063854246619676h5"><div class=
-=3D"gmail_extra"><br><div class=3D"gmail_quote">On Thu, Sep 29, 2016 at 4:4=
-0 PM, Chris Hallinan <span dir=3D"ltr">&lt;<a href=3D"mailto:challinan@gmai=
-l.com" target=3D"_blank">challinan@gmail.com</a>&gt;</span> wrote:<br><bloc=
-kquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #cc=
-c solid;padding-left:1ex"><div dir=3D"ltr">You could sell this as a very se=
-cure box ;)<div><br></div><div>Kidding aside, it didn&#39;t &quot;zip&quot;=
- through runlevel 5, in fact, you don&#39;t know what runlevel it is actual=
-ly in. =C2=A011 seconds after your file system is mounted, a reboot is issu=
-ed.=C2=A0 From your trace, nothing running in userspace displayed any messa=
-ges to the console.=C2=A0 You didn&#39;t mention what type of init system y=
-ou are using, systemd or sysV.=C2=A0 It almost looks like a console problem=
-.=C2=A0 But...i don&#39;t know why a reboot would be issued.=C2=A0 That&#39=
-;s not normal behavior if you simply have a min-configured console.=C2=A0 M=
-aybe init will do that under certain circumstances, I am not sure.</div><di=
-v><br></div><div>Just for FYI, notice that your serial port is instantiatin=
-g on ttyS0. (I do see that agrees with your kernel command line so at least=
- that much is correct.)</div><div><br></div><div>First thing I would try is=
- to see if I can get anything on userspace.=C2=A0 Try using init=3D on your=
- kernel command line to just spawn a shell. =C2=A0(init=3D/bin/sh)</div><di=
-v><br></div><div>Do you have a way to examine the flash after a reboot to s=
-ee if a syslog was populated on the file system and examine its contents? =
-=C2=A0ie JTAG?</div><div><br></div><div>Make sure your root file system is =
-sane, ie mount it on a development box and make sure it&#39;s contents make=
- sense to you. =C2=A0ie for sysV /sbin/init should point to init, and it sh=
-ould contain a /etc/inittab and that should have sane contents, etc. For sy=
-stemd, /sbin/init should point (possibly through /etc/alternatives) to a sy=
-stemd executable.=C2=A0 You get the idea.</div><div><br></div><div>Good luc=
-k,</div><div><br></div><div>Chris</div><div><br></div></div><div class=3D"g=
-mail_extra"><br><div class=3D"gmail_quote"><div><div>On Thu, Sep 29, 2016 a=
-t 3:18 PM, Maxwell Bottiger <span dir=3D"ltr">&lt;<a href=3D"mailto:sleepyl=
-ight@jive-turkey.net" target=3D"_blank">sleepylight@jive-turkey.net</a>&gt;=
-</span> wrote:<br></div></div><blockquote class=3D"gmail_quote" style=3D"ma=
-rgin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div><div><div=
- dir=3D"ltr"><div>I&#39;ve been working on setting up a poky distro on an o=
-lder intel XScale system, and I finally got a working kernel and root files=
-ystem.=C2=A0 However, when I boot the box it zips through runlevel 5, then =
-halts.=C2=A0 It seems to me like maybe init isn&#39;t kicking off getty or =
-some sort of interactive login.=C2=A0 Has anyone else run into this problem=
-?=C2=A0 I&#39;ll post the boot output below.<br><br></div>-Max<br><br>Bootl=
-oader Initialization Successful.<br>Copyright (c) 2010 InHand Electronics (=
-<a href=3D"http://www.inhand.com" target=3D"_blank">www.inhand.com</a>)<br>=
-=C2=A0FT4: Fingertip4=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 v.0A211004 (Oct 21 2010, 10:04:57)<br>=C2=A0IBL: I=
-nHandBoot_4.9 BETA=C2=A0=C2=A0=C2=A0=C2=A0 v.0A211004 (Oct 21 2010, 10:04:1=
-9)<br><br>CPLD Version:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 5.10<br>DRAM Size:=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 128 MBytes<br>SRAM Size:=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 240 KBytes<br>IBC Start Page:=
-=C2=A0=C2=A0=C2=A0 /nor/512<br><br>Platform Post-Init<br>ac97<br><br>Autoru=
-n &#39;/cf/autoexec.brc&#39;<br>&#39;/cf/autoexec.brc&#39; not found<br><br=
->Autorun &#39;/sd/autoexec.brc&#39;<br>&#39;/sd/autoexec.brc&#39; not found=
-<br><br>Autorun &#39;/nor/config.brc&#39;<br>&gt;&gt; bootlin<br>Starting L=
-inux<br>Copying image (2689792 bytes) to RAM: 0xa0008000<br><br>Copying fil=
-e /nor/zImage to /ram/os<br>=C2=A0 Source File:=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 2689792 bytes<br>=C2=A0 Destination Space:=C2=
-=A0=C2=A0=C2=A0 4194304 bytes<br><br>Copying 2689792 bytes<br>=C2=A0pct rem=
-aining=C2=A0 time<br>=C2=A0--- --------- -----<br>100%=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 0=C2=A0=C2=A0 0:00=C2=A0 <br>Copied 2689792B (3MB)<br=
->Setting up Kernel tags at: 0xa0000100<br>Kernel tags used 36 bytes<br>Disa=
-bling MMU<br>Jumping to Linux kernel @ 0xa0008000<br>Uncompressing Linux...=
- done, booting the kernel.<br>[=C2=A0=C2=A0=C2=A0 0.000000] Booting Linux o=
-n physical CPU 0x0<br>[=C2=A0=C2=A0=C2=A0 0.000000] Linux version 3.14.4 (<=
-a href=3D"mailto:max@tsunami.pacs.agpea.army.mil" target=3D"_blank">max@tsu=
-nami.pacs.agpea.army.m<wbr>il</a>) (gcc version 4.9.2 (GCC) ) #1 PREEMPT We=
-d Sep 28 16:29:41 EDT 2016<br>[=C2=A0=C2=A0=C2=A0 0.000000] CPU: XScale-PXA=
-270 [69054118] revision 8 (ARMv5TE), cr=3D0000397f<br>[=C2=A0=C2=A0=C2=A0 0=
-.000000] CPU: VIVT data cache, VIVT instruction cache<br>[=C2=A0=C2=A0=C2=
-=A0 0.000000] Machine: InHand Fingertip4 Development Platform (aka FT4)<br>=
-[=C2=A0=C2=A0=C2=A0 0.000000] Memory policy: Data cache writeback<br>[=C2=
-=A0=C2=A0=C2=A0 0.000000] BUG: mapping for 0x00000000 at 0xff000000 out of =
-vmalloc space<br>[=C2=A0=C2=A0=C2=A0 0.000000] Run Mode clock: 208.00MHz (*=
-16)<br>[=C2=A0=C2=A0=C2=A0 0.000000] Turbo Mode clock: 520.00MHz (*2.5, act=
-ive)<br>[=C2=A0=C2=A0=C2=A0 0.000000] Memory clock: 208.00MHz (/2)<br>[=C2=
-=A0=C2=A0=C2=A0 0.000000] System bus clock: 208.00MHz <br>[=C2=A0=C2=A0=C2=
-=A0 0.000000] Built 1 zonelists in Zone order, mobility grouping on.=C2=A0 =
-Total pages: 16256<br>[=C2=A0=C2=A0=C2=A0 0.000000] Kernel command line: co=
-nsole=3DttyS0,115200 root=3D/dev/mtdblock0 rw rootfstype=3Djffs2 mem=3D64M =
-earlyprintk=3Dserial,ttyS0,11520<wbr>0<br>[=C2=A0=C2=A0=C2=A0 0.000000] PID=
- hash table entries: 256 (order: -2, 1024 bytes)<br>[=C2=A0=C2=A0=C2=A0 0.0=
-00000] Dentry cache hash table entries: 8192 (order: 3, 32768 bytes)<br>[=
-=C2=A0=C2=A0=C2=A0 0.000000] Inode-cache hash table entries: 4096 (order: 2=
-, 16384 bytes)<br>[=C2=A0=C2=A0=C2=A0 0.000000] Memory: 59616K/65536K avail=
-able (3732K kernel code, 184K rwdata, 1132K rodata, 139K init, 94K bss, 592=
-0K reserved)<br>[=C2=A0=C2=A0=C2=A0 0.000000] Virtual kernel memory layout:=
-<br>[=C2=A0=C2=A0=C2=A0 0.000000]=C2=A0=C2=A0=C2=A0=C2=A0 vector=C2=A0 : 0x=
-ffff0000 - 0xffff1000=C2=A0=C2=A0 (=C2=A0=C2=A0 4 kB)<br>[=C2=A0=C2=A0=C2=
-=A0 0.000000]=C2=A0=C2=A0=C2=A0=C2=A0 fixmap=C2=A0 : 0xfff00000 - 0xfffe000=
-0=C2=A0=C2=A0 ( 896 kB)<br>[=C2=A0=C2=A0=C2=A0 0.000000]=C2=A0=C2=A0=C2=A0=
-=C2=A0 vmalloc : 0xc4800000 - 0xff000000=C2=A0=C2=A0 ( 936 MB)<br>[=C2=A0=
-=C2=A0=C2=A0 0.000000]=C2=A0=C2=A0=C2=A0=C2=A0 lowmem=C2=A0 : 0xc0000000 - =
-0xc4000000=C2=A0=C2=A0 (=C2=A0 64 MB)<br>[=C2=A0=C2=A0=C2=A0 0.000000]=C2=
-=A0=C2=A0=C2=A0=C2=A0 modules : 0xbf000000 - 0xc0000000=C2=A0=C2=A0 (=C2=A0=
- 16 MB)<br>[=C2=A0=C2=A0=C2=A0 0.000000]=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 .text : 0xc0008000 - 0xc04c83fc=C2=A0=C2=A0 (4865 kB)<br>[=C2=A0=C2=A0=
-=C2=A0 0.000000]=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .init : 0xc04c9000 - 0=
-xc04ebcd4=C2=A0=C2=A0 ( 140 kB)<br>[=C2=A0=C2=A0=C2=A0 0.000000]=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 .data : 0xc04ec000 - 0xc051a180=C2=A0=C2=A0 ( 1=
-85 kB)<br>[=C2=A0=C2=A0=C2=A0 0.000000]=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 .bss : 0xc051a18c - 0xc0531b90=C2=A0=C2=A0 (=C2=A0 95 kB)<br>[=C2=A0=
-=C2=A0=C2=A0 0.000000] Preemptible hierarchical RCU implementation.<br>[=C2=
-=A0=C2=A0=C2=A0 0.000000] NR_IRQS:16 nr_irqs:304 304<br>[=C2=A0=C2=A0=C2=A0=
- 0.000046] sched_clock: 32 bits at 3250kHz, resolution 307ns, wraps every 1=
-321528397516ns<br>[=C2=A0=C2=A0=C2=A0 0.000691] Console: colour dummy devic=
-e 80x30<br>[=C2=A0=C2=A0=C2=A0 0.000769] Calibrating delay loop... 518.55 B=
-ogoMIPS (lpj=3D2592768)<br>[=C2=A0=C2=A0=C2=A0 0.060347] pid_max: default: =
-32768 minimum: 301<br>[=C2=A0=C2=A0=C2=A0 0.060594] Security Framework init=
-ialized<br>[=C2=A0=C2=A0=C2=A0 0.060741] Mount-cache hash table entries: 10=
-24 (order: 0, 4096 bytes)<br>[=C2=A0=C2=A0=C2=A0 0.060774] Mountpoint-cache=
- hash table entries: 1024 (order: 0, 4096 bytes)<br>[=C2=A0=C2=A0=C2=A0 0.0=
-62150] CPU: Testing write buffer coherency: ok<br>[=C2=A0=C2=A0=C2=A0 0.063=
-287] Setting up static identity map for 0xa038e6d8 - 0xa038e744<br>[=C2=A0=
-=C2=A0=C2=A0 0.069844] NET: Registered protocol family 16<br>[=C2=A0=C2=A0=
-=C2=A0 0.071694] DMA: preallocated 256 KiB pool for atomic coherent allocat=
-ions<br>[=C2=A0=C2=A0=C2=A0 0.095946] Configure Fingertip4...<br>[=C2=A0=C2=
-=A0=C2=A0 0.188992] bio: create slab &lt;bio-0&gt; at 0<br>[=C2=A0=C2=A0=C2=
-=A0 0.197249] usbcore: registered new interface driver usbfs<br>[=C2=A0=C2=
-=A0=C2=A0 0.198138] usbcore: registered new interface driver hub<br>[=C2=A0=
-=C2=A0=C2=A0 0.199246] usbcore: registered new device driver usb<br>[=C2=A0=
-=C2=A0=C2=A0 0.210323] cfg80211: Calling CRDA to update world regulatory do=
-main<br>[=C2=A0=C2=A0=C2=A0 0.211077] Switched to clocksource oscr0<br>[=C2=
-=A0=C2=A0=C2=A0 0.282781] NET: Registered protocol family 2<br>[=C2=A0=C2=
-=A0=C2=A0 0.284302] TCP established hash table entries: 1024 (order: 0, 409=
-6 bytes)<br>[=C2=A0=C2=A0=C2=A0 0.284382] TCP bind hash table entries: 1024=
- (order: 0, 4096 bytes)<br>[=C2=A0=C2=A0=C2=A0 0.284426] TCP: Hash tables c=
-onfigured (established 1024 bind 1024)<br>[=C2=A0=C2=A0=C2=A0 0.284648] TCP=
-: reno registered<br>[=C2=A0=C2=A0=C2=A0 0.284673] UDP hash table entries: =
-256 (order: 0, 4096 bytes)<br>[=C2=A0=C2=A0=C2=A0 0.284717] UDP-Lite hash t=
-able entries: 256 (order: 0, 4096 bytes)<br>[=C2=A0=C2=A0=C2=A0 0.285236] N=
-ET: Registered protocol family 1<br>[=C2=A0=C2=A0=C2=A0 0.286343] RPC: Regi=
-stered named UNIX socket transport module.<br>[=C2=A0=C2=A0=C2=A0 0.286402]=
- RPC: Registered udp transport module.<br>[=C2=A0=C2=A0=C2=A0 0.286416] RPC=
-: Registered tcp transport module.<br>[=C2=A0=C2=A0=C2=A0 0.286431] RPC: Re=
-gistered tcp NFSv4.1 backchannel transport module.<br>[=C2=A0=C2=A0=C2=A0 0=
-.292910] futex hash table entries: 256 (order: -1, 3072 bytes)<br>[=C2=A0=
-=C2=A0=C2=A0 0.295619] NFS: Registering the id_resolver key type<br>[=C2=A0=
-=C2=A0=C2=A0 0.295843] Key type id_resolver registered<br>[=C2=A0=C2=A0=C2=
-=A0 0.295859] Key type id_legacy registered<br>[=C2=A0=C2=A0=C2=A0 0.295901=
-] Installing knfsd (copyright (C) 1996 <a href=3D"mailto:okir@monad.swb.de"=
- target=3D"_blank">okir@monad.swb.de</a>).<br>[=C2=A0=C2=A0=C2=A0 0.296346]=
- jffs2: version 2.2. (NAND) =C2=A9 2001-2006 Red Hat, Inc.<br>[=C2=A0=C2=A0=
-=C2=A0 0.297841] msgmni has been set to 116<br>[=C2=A0=C2=A0=C2=A0 0.300940=
-] io scheduler noop registered<br>[=C2=A0=C2=A0=C2=A0 0.300991] io schedule=
-r deadline registered<br>[=C2=A0=C2=A0=C2=A0 0.301491] io scheduler cfq reg=
-istered (default)<br>[=C2=A0=C2=A0=C2=A0 0.754840] pxa2xx-uart.0: ttyS0 at =
-MMIO 0x40100000 (irq =3D 22, base_baud =3D 928562) is a UART1<br>[=C2=A0=C2=
-=A0=C2=A0 1.153128] console [ttyS0] enabled<br>[=C2=A0=C2=A0=C2=A0 1.157921=
-] pxa2xx-uart.1: ttyS1 at MMIO 0x40200000 (irq =3D 21, base_baud =3D 928562=
-) is a UART2<br>[=C2=A0=C2=A0=C2=A0 1.168016] pxa2xx-uart.2: ttyS2 at MMIO =
-0x40700000 (irq =3D 20, base_baud =3D 928562) is a UART3<br>[=C2=A0=C2=A0=
-=C2=A0 1.197503] brd: module loaded<br>[=C2=A0=C2=A0=C2=A0 1.221064] loop: =
-module loaded<br>[=C2=A0=C2=A0=C2=A0 1.225694] nbd: registered device at ma=
-jor 43<br>[=C2=A0=C2=A0=C2=A0 1.271030] Uniform Multi-Platform E-IDE driver=
-<br>[=C2=A0=C2=A0=C2=A0 1.277643] ide-gd driver 1.18<br>[=C2=A0=C2=A0=C2=A0=
- 1.286435] physmap platform flash device: 04000000 at 00000000<br>[=C2=A0=
-=C2=A0=C2=A0 1.293684] physmap-flash.0: Found 1 x16 devices at 0x0 in 16-bi=
-t bank. Manufacturer ID 0x000089 Chip ID 0x00891c<br>[=C2=A0=C2=A0=C2=A0 1.=
-304429] physmap-flash.0: Found 1 x16 devices at 0x2000000 in 16-bit bank<br=
->[=C2=A0=C2=A0=C2=A0 1.311720] Intel/Sharp Extended Query Table at 0x010A<b=
-r>[=C2=A0=C2=A0=C2=A0 1.316876] Intel/Sharp Extended Query Table at 0x010A<=
-br>[=C2=A0=C2=A0=C2=A0 1.322184] Intel/Sharp Extended Query Table at 0x010A=
-<br>[=C2=A0=C2=A0=C2=A0 1.327328] Intel/Sharp Extended Query Table at 0x010=
-A<br>[=C2=A0=C2=A0=C2=A0 1.332518] Intel/Sharp Extended Query Table at 0x01=
-0A<br>[=C2=A0=C2=A0=C2=A0 1.337660] Using buffer write method<br>[=C2=A0=C2=
-=A0=C2=A0 1.341323] Using auto-unlock on power-up/resume<br>[=C2=A0=C2=A0=
-=C2=A0 1.345909] cfi_cmdset_0001: Erase suspend on write enabled<br>[=C2=A0=
-=C2=A0=C2=A0 1.353683] Creating 1 MTD partitions on &quot;physmap-flash.0&q=
-uot;:<br>[=C2=A0=C2=A0=C2=A0 1.359284] 0x000000900000-0x000004000000 : &quo=
-t;Filesystem&quot;<br>[=C2=A0=C2=A0=C2=A0 1.371691] Using configured DiskOn=
-Chip probe address 0x4000000<br>[=C2=A0=C2=A0=C2=A0 1.380537] mousedev: PS/=
-2 mouse device common for all mice<br>[=C2=A0=C2=A0=C2=A0 1.386463] i2c /de=
-v entries driver<br>[=C2=A0=C2=A0=C2=A0 1.393931] TCP: cubic registered<br>=
-[=C2=A0=C2=A0=C2=A0 1.397286] NET: Registered protocol family 17<br>[=C2=A0=
-=C2=A0=C2=A0 1.402235] NET: Registered protocol family 15<br>[=C2=A0=C2=A0=
-=C2=A0 1.406830] lib80211: common routines for IEEE802.11 drivers<br>[=C2=
-=A0=C2=A0=C2=A0 1.413102] Key type dns_resolver registered<br>[=C2=A0=C2=A0=
-=C2=A0 1.417577] XScale iWMMXt coprocessor detected.<br>[=C2=A0=C2=A0=C2=A0=
- 3.259509] VFS: Mounted root (jffs2 filesystem) on device 31:0.<br>[=C2=A0=
-=C2=A0=C2=A0 3.266333] Freeing unused kernel memory: 136K (c04c9000 - c04eb=
-000)<br>[=C2=A0=C2=A0 14.484953] reboot: System halted<br><br></div>
-<br></div></div><span><font color=3D"#888888">--<br>
-______________________________<wbr>_________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.org<wbr>/listinfo/yocto</a><=
-br>
-<br></font></span></blockquote></div><span><font color=3D"#888888"><br><br =
-clear=3D"all"><div><br></div>-- <br><div data-smartmail=3D"gmail_signature"=
->Life is like Linux - it never stands still.<br><br></div>
-</font></span></div>
-</blockquote></div><br></div>
-</div></div></blockquote></div><br></div>
-</div></div></blockquote></div><br><br clear=3D"all"><div><br></div>-- <br>=
-<div class=3D"gmail_signature" data-smartmail=3D"gmail_signature">Life is l=
-ike Linux - it never stands still.<br><br></div>
-</div>
-
---001a114b182edfecb8053dbd6495--
