@@ -1,19 +1,17 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 70354E008F3; Sun,  2 Oct 2016 16:18:45 -0700 (PDT)
+	id D454BE00924; Sun,  2 Oct 2016 16:32:06 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM, URIBL_RED autolearn=no version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (raj.khem[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.220.68 listed in list.dnswl.org]
-	*  0.0 URIBL_RED Contains an URL listed in the URIBL redlist
-	*      [URIs: codesourcery.com]
+	*      [209.85.192.194 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -21,54 +19,52 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.220.68 listed in dnsbl.sorbs.net]
-Received: from mail-pa0-f68.google.com (mail-pa0-f68.google.com
-	[209.85.220.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2484BE00874
-	for <yocto@yoctoproject.org>; Sun,  2 Oct 2016 16:18:42 -0700 (PDT)
-Received: by mail-pa0-f68.google.com with SMTP id cd13so5764147pac.3
-	for <yocto@yoctoproject.org>; Sun, 02 Oct 2016 16:18:42 -0700 (PDT)
+Received: from mail-pf0-f194.google.com (mail-pf0-f194.google.com
+	[209.85.192.194])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8E67AE0089B
+	for <yocto@yoctoproject.org>; Sun,  2 Oct 2016 16:32:04 -0700 (PDT)
+Received: by mail-pf0-f194.google.com with SMTP id 190so2025916pfv.1
+	for <yocto@yoctoproject.org>; Sun, 02 Oct 2016 16:32:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=subject:mime-version:from:in-reply-to:date:cc:message-id:references
-	:to; bh=uziC0N7RI8Bal7xJeLd9uMZpRaprkN4CHXlzjJZX2jQ=;
-	b=haaSw7VBRGCqyw6QINqxLYX955zHeB+igptUkjq8sk2eNs+t4V8A2gkKfiMiL0tE9U
-	cjXDvOldIdzpwbvncmMzVwnWToOKu+F4vGHaRCSG7KDz1tSqaPCZ500UyCAJyFfvrBxx
-	7dHGd1O0QteAxKO4kV8bCAYtaGcxykDKLmnPmxbvgtfUpLws2Jv+NQQ1Tthg0/w6ESp9
-	hprH0be2fTi/xk8r6bsiBzMC01QTxGEVcOeAxnpST9huzNUXi7Vd6UDf/SrDteqZtou2
-	s6IyGvyURA6PktLUlebFk5XhICWId5S5kNd7y1KSC0H863dXwsMaP3AGy33CEFjLP9ho
-	dY6w==
+	:to; bh=C5JDPhS1rTl4PnHDbkdWk2cD90K02rXESh2ciyhPBhg=;
+	b=c5dUw+iOwQF/qOHDbtHi+2KSadFINxbIdpDZvWg7DTDl78K/iKz2ZukWxl3V1O5Z5l
+	3AcplhLgMoeR7W5r5RrWyjTJJUsR2vWZaFkiL8bfaBAk9Gn/0wccaaDnrkGZJAMKEmDa
+	9zmGwDuLRpuB3++61jT+zclbBbQKQvzymi9HWUkXMjUder4LqXwfHppccGur+DvCZoNU
+	Zh85Y4116Y/muPxqcawuekFA1P6TIMmHriGGf/ZPSe6LKG0pz4OEEbXRw9wz+9q6E5jS
+	UvoRNHCwFeK3XcrgYvoIVdPsFIgYK22wPWjfXv0NN+jimbEVJYuUB/WQHYPl3VS13xDT
+	/qEQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:subject:mime-version:from:in-reply-to:date:cc
 	:message-id:references:to;
-	bh=uziC0N7RI8Bal7xJeLd9uMZpRaprkN4CHXlzjJZX2jQ=;
-	b=WEZvnpqypdbVGTSnkIbf+kbeOfnJeC5HuDVyk80QJbkL0tEGzMZ+/rxtF1T1UatKhI
-	mUN5u19TsRU7hlGeMlgJ6GZJMEAYkN/k1DubuGM6hX+2F9tfHQMfXdk7NeAYf5RGgS/6
-	8EDr9mXbPkWqItuQoaMwpSw2qxdd5/wA3b2F6m2gUMz7UVy4HOrzkvGwU6I3VkchUL4Z
-	3G1ITzKOZ/FR3m6jazWTejIL9/jHeI4HJLXNYtP8QtezfArJLdrDjHsBAcrzZWG0+oMF
-	e+6sTw/UtPNyD2schdktMSrDzGKvCI0UGz7rgRjWltEbBbU4c1TftBk89iNEpOtJMVcx
-	/m7g==
-X-Gm-Message-State: AA6/9RmXkGHiZszoYHGiHWhXp7LmRelwIYQ+OnEO1ozmybW4l9WlfaQpHqT6a7GXE+TJZw==
-X-Received: by 10.66.49.197 with SMTP id w5mr32392119pan.73.1475450322480;
-	Sun, 02 Oct 2016 16:18:42 -0700 (PDT)
+	bh=C5JDPhS1rTl4PnHDbkdWk2cD90K02rXESh2ciyhPBhg=;
+	b=LcJEzxqnaCWv44duOpZqRB1YCYokqjubtmo3wNXtmLBCBc5LrgI1b//7ogkM8icyY/
+	hJgcSiaV7PycJkHBx736JPic52uum7woBzRrl1DD5Z9q9ocS70qxAVI7wOYr3MxgUfJI
+	OYxw8Fp8+9dCpI9xV8ajtYV+nWkMq8Em9RvLUGUXGb7MXMc2ceuv6oduPel45Y0ESXXj
+	nc3U8vzceqayalThLAxTVdo5ATyFctfNdTCfufo4jiyEnzsgroSK+MRDGRfrsiAx8XfX
+	6wCtJfVh07HTJsHeKy/R8q4iY/vIFghso8G83Pu1S0O4xfJsP4ueDVaRLjvhFHTyBFMY
+	nJxQ==
+X-Gm-Message-State: AA6/9Rnf4X7N2QFKMUFb7npjfAXT0oY5aSDHfEHlarKF1ulSfPNN9v0KpNROCR6vfptulA==
+X-Received: by 10.98.157.80 with SMTP id i77mr16385062pfd.11.1475451123863;
+	Sun, 02 Oct 2016 16:32:03 -0700 (PDT)
 Received: from ?IPv6:2601:646:8882:b8c:4b8:204d:45de:e844?
 	([2601:646:8882:b8c:4b8:204d:45de:e844])
 	by smtp.gmail.com with ESMTPSA id
-	z66sm34310167pfd.11.2016.10.02.16.18.41
+	x66sm42234530pfb.86.2016.10.02.16.32.02
 	(version=TLS1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Sun, 02 Oct 2016 16:18:41 -0700 (PDT)
+	Sun, 02 Oct 2016 16:32:03 -0700 (PDT)
 Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
 X-Pgp-Agent: GPGMail
 From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <alpine.DEB.2.20.1609142321590.14953@digraph.polyomino.org.uk>
-Date: Sun, 2 Oct 2016 16:18:40 -0700
-Message-Id: <73509D8A-9707-46A9-8C2D-F7BB69131961@gmail.com>
-References: <alpine.DEB.2.20.1609142321590.14953@digraph.polyomino.org.uk>
-To: Joseph Myers <joseph@codesourcery.com>
+In-Reply-To: <MWHPR04MB033786FC8518966C1FD3EC5BC1F30@MWHPR04MB0337.namprd04.prod.outlook.com>
+Date: Sun, 2 Oct 2016 16:31:58 -0700
+Message-Id: <D9E3CF59-0D15-418D-947F-D70510BAA768@gmail.com>
+References: <MWHPR04MB033786FC8518966C1FD3EC5BC1F30@MWHPR04MB0337.namprd04.prod.outlook.com>
+To: Josias Inacio da Silva Filho <josiasinacio@hotmail.com>
 X-Mailer: Apple Mail (2.3124)
-Cc: yocto@yoctoproject.org
-Subject: Re: [prelink-cross] Support x32 libx32 directory
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: How to build an SDK toolchain for native x86_64
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -80,78 +76,75 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 02 Oct 2016 23:18:45 -0000
-X-Groupsio-MsgNum: 32158
+X-List-Received-Date: Sun, 02 Oct 2016 23:32:06 -0000
+X-Groupsio-MsgNum: 32159
 Content-Type: multipart/signed;
-	boundary="Apple-Mail=_57FF1F68-909F-4144-8578-554A4E96BF7F";
+	boundary="Apple-Mail=_A08662B0-A98C-4A78-95CE-028835490D1E";
 	protocol="application/pgp-signature"; micalg=pgp-sha1
 
---Apple-Mail=_57FF1F68-909F-4144-8578-554A4E96BF7F
+--Apple-Mail=_A08662B0-A98C-4A78-95CE-028835490D1E
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain;
-	charset=us-ascii
+	charset=utf-8
 
-Mark
 
-have we integrated this patch ?
+> On Sep 15, 2016, at 10:04 PM, Josias Inacio da Silva Filho =
+<josiasinacio@hotmail.com> wrote:
+>=20
+> Hi folks,
+>=20
+> Here=E2=80=99s my current setup and current situation:
+>=20
+> Host: x86_64
+> Target: aarch64
+>=20
+> Build core-image-base for aarch64 - OK
+> populate_sdk for aarch64 - OK
+>=20
+> My application and it unit tests also gets compiled to aarch64.
+>=20
+> What I wanted now would be something like run populate_sdk for =
+=E2=80=9Ccore-image-base-native=E2=80=9D. The reason for that is because =
+I want to compile and run my unit tests using my host machine only =
+(x86_64). This makes application development much easier, since I =
+don=E2=80=99t need the target nor QEMU to run the unit tests. And I =
+still want the toolchain to be generated by Yocto since it solves all =
+package dependencies for me.
+>=20
+> What I attempted:
+>=20
+> 1) Create a new =E2=80=9Ccore-image-toolchain-native=E2=80=9D similar =
+to core-image-base, but tweaking to be able to build for native. That =
+does not seem to be the right way, I spent a lot of time doing this and =
+got nowhere since many of the image's recipes do not support building =
+with native support.
+>=20
+> 2) Change my machine type to be qemux86_64, then call =E2=80=9Cbitbake =
+core-image-base -c populate_sdk=E2=80=9D. That would generate a =
+toolchain for x86-64 right? Well it did, and I was able to use this =
+toolchain to compile my unit tests for x86_64. But the problem is that =
+this still assumes that I=E2=80=99ll be running those unit tests on the =
+target machine ( QEMU x86_64), so if I try to run it in my host machine, =
+it complains about some missing dynamic libraries that are only found in =
+the sysroot of the target qemux86_64.
+>=20
+> Is there any proper solution for this case?
 
-> On Sep 14, 2016, at 4:23 PM, Joseph Myers <joseph@codesourcery.com> =
-wrote:
->=20
-> Cross-prelink's prelink-rtld is missing suport for the /libx32
-> directory used with the x86_64 x32 ABI.  This patch adds such support.
->=20
-> 2016-09-14  Joseph Myers  <joseph@codesourcery.com>
->=20
-> 	* src/rtld/rtld.c (load_ld_so_conf): Add argument use_x32.
-> 	(main): Update call to load_ld_so_conf.
->=20
-> diff --git a/src/rtld/rtld.c b/src/rtld/rtld.c
-> index 8d7d760..2d72083 100644
-> --- a/src/rtld/rtld.c
-> +++ b/src/rtld/rtld.c
-> @@ -409,7 +409,7 @@ free_path (struct search_path *path)
-> }
->=20
-> void
-> -load_ld_so_conf (int use_64bit, int use_mipsn32)
-> +load_ld_so_conf (int use_64bit, int use_mipsn32, int use_x32)
-> {
->   int fd;
->   FILE *conf;
-> @@ -435,6 +435,14 @@ load_ld_so_conf (int use_64bit, int use_mipsn32)
->       add_dir (&ld_dirs, "/usr/lib32/tls", strlen ("/usr/lib32/tls"));
->       add_dir (&ld_dirs, "/usr/lib32", strlen ("/usr/lib32"));
->     }
-> +  else if (use_x32)
-> +    {
-> +      dst_LIB =3D "libx32";
-> +      add_dir (&ld_dirs, "/libx32/tls", strlen ("/libx32/tls"));
-> +      add_dir (&ld_dirs, "/libx32", strlen ("/libx32"));
-> +      add_dir (&ld_dirs, "/usr/libx32/tls", strlen =
-("/usr/libx32/tls"));
-> +      add_dir (&ld_dirs, "/usr/libx32", strlen ("/usr/libx32"));
-> +    }
->   else
->     {
->       dst_LIB =3D "lib";
-> @@ -1195,7 +1203,8 @@ main(int argc, char **argv)
-> 	}
->=20
->       load_ld_so_conf (gelf_getclass (dso->elf) =3D=3D ELFCLASS64,
-> -		( dso->ehdr.e_machine =3D=3D EM_MIPS) && ( =
-dso->ehdr.e_flags & EF_MIPS_ABI2 ) );
-> +		( dso->ehdr.e_machine =3D=3D EM_MIPS) && ( =
-dso->ehdr.e_flags & EF_MIPS_ABI2 ),
-> +		dso->ehdr.e_machine =3D=3D EM_X86_64 && gelf_getclass =
-(dso->elf) =3D=3D ELFCLASS32);
->=20
->       if (multiple)
-> 	printf ("%s:\n", argv[remaining]);
->=20
-> --
-> Joseph S. Myers
-> joseph@codesourcery.com
+This is not a usecase which SDK is meant for, the SDK is generally meant =
+for doing cross development as you have also
+seen above, and why the native case it not covered is also due to fact =
+you explained above where you see some missing
+libraries. Can this be fixed, sure it can, but its a new feature that =
+would require additional considerations if we
+have to provide SDK host and cross SDK, this may have usecases but its =
+not so common.
+
+Ideally, you should use the gcc toolchain as installed on your SDK host =
+( one from ubuntu/debian/fedora whatever distro you use )
+and use that for native verification.
+
+You are welcome to file an enhancement request in bugzilla for SDK =
+support for SDK host.
 > --
 > _______________________________________________
 > yocto mailing list
@@ -159,7 +152,7 @@ dso->ehdr.e_flags & EF_MIPS_ABI2 ),
 > https://lists.yoctoproject.org/listinfo/yocto
 
 
---Apple-Mail=_57FF1F68-909F-4144-8578-554A4E96BF7F
+--Apple-Mail=_A08662B0-A98C-4A78-95CE-028835490D1E
 Content-Transfer-Encoding: 7bit
 Content-Disposition: attachment;
 	filename=signature.asc
@@ -170,9 +163,9 @@ Content-Description: Message signed with OpenPGP using GPGMail
 -----BEGIN PGP SIGNATURE-----
 Comment: GPGTools - https://gpgtools.org
 
-iEYEARECAAYFAlfxldAACgkQuwUzVZGdMxTGXwCePUCEmZ5Dsg3PkYeZgL6N7umW
-rxAAn0i02X3t6xEOZiElrsOIU47VTpWO
-=X0m6
+iEYEARECAAYFAlfxmPIACgkQuwUzVZGdMxQiuQCePkBgvLCvZAALikfW9jRqWD9t
+aO8AnRNXZ/mvDELoHNJuQMiern0ozvRp
+=Wl8N
 -----END PGP SIGNATURE-----
 
---Apple-Mail=_57FF1F68-909F-4144-8578-554A4E96BF7F--
+--Apple-Mail=_A08662B0-A98C-4A78-95CE-028835490D1E--
