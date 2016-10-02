@@ -1,16 +1,20 @@
-Return-Path: <nicolas.adell@actia.fr>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 248D0E00C39; Sun,  2 Oct 2016 08:59:31 -0700 (PDT)
+	id 4FB4BE008F3; Sun,  2 Oct 2016 16:07:13 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [104.47.1.89 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE, 
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.220.43 listed in dnsbl.sorbs.net]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.220.43 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -19,66 +23,52 @@ X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 1116 seconds by postgrey-1.32 at yocto-www;
-	Sun, 02 Oct 2016 08:59:25 PDT
-Received: from EUR01-VE1-obe.outbound.protection.outlook.com
-	(mail-ve1eur01on0089.outbound.protection.outlook.com [104.47.1.89])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 60701E00519
-	for <yocto@yoctoproject.org>; Sun,  2 Oct 2016 08:59:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=actia.fr; s=selector1; 
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
-	bh=4Q2brdwJnzIc7hjAXFygwJ5C39L59IauMzYDuYuAuvY=;
-	b=WYBH0t/PPdu3G+4WEj+E77ek992xGm3Nj9/y+WKDnvNrV3j7Asn9fhzzp31/FYtsWZBX2aRbtISRQtV5vdrP8JZAgLvWgUf9qzKBjZoNCqNZ1HK0FdnbQJj6a46KERX5L1EUKjEmzhaHSvOq7pPQvdtg6NEneH4Zj0G0M5f3u0s=
-Received: from VI1PR01MB1887.eurprd01.prod.exchangelabs.com (10.166.40.143) by
-	VI1PR01MB1886.eurprd01.prod.exchangelabs.com (10.166.40.142) with
-	Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.649.16;
-	Sun, 2 Oct 2016 15:26:02 +0000
-Received: from VI1PR01MB1887.eurprd01.prod.exchangelabs.com ([10.166.40.143])
-	by VI1PR01MB1887.eurprd01.prod.exchangelabs.com ([10.166.40.143])
-	with mapi id 15.01.0649.021; Sun, 2 Oct 2016 15:26:02 +0000
-From: Nicolas ADELL <nicolas.adell@actia.fr>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto] [meta-raspberrypi] failed to copy the final
-	***rootfs.rpi-sdimg image file
-Thread-Index: AQHSHL+z0G0El6t3skG11et+8WLEdw==
-Date: Sun, 2 Oct 2016 15:26:02 +0000
-Message-ID: <VI1PR01MB18870583363ED6E3EA9E25A685C30@VI1PR01MB1887.eurprd01.prod.exchangelabs.com>
-Accept-Language: fr-FR, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=nicolas.adell@actia.fr; 
-x-originating-ip: [25.166.38.4]
-x-ms-office365-filtering-correlation-id: 2869ff9a-9051-425b-bd61-08d3ead86b91
-x-microsoft-exchange-diagnostics: 1; VI1PR01MB1886;
-	6:qoM6NNc4RawCVFl71j9F4ti4+6zULcwdj7eXU2Q+BBOVo56FE2i06mlYUjlWiWhfVH02npQw0yRlcJ/4uYqJad3YnPlgr9UTrq/B7pmSUjDHGYUUmkT7h2BR0Ouw2FmpGaiJDasHM1UYtJk7Ya9cjuD3ePcu3wpwG8nLtqiLgiZ+BNFIyCMGfNH7lZqt1IVz9rRsnnhsQCreqB+/cjfvGeQ6534vHyDfcxPEhP+xfB9WAqXdspRxOHHfi7Z1uf0aaHU5ZriX5vaa9cquQQUNCja9iIDWz0RtIBoIyuIsnhfaHDxM1Z2jPQ2zunwSEMEq;
-	5:6O3gkwKa5kmDKfeoDMBp/mcFYXhFuNvIlwkzb/khjdSvdkL3bKMoIkc4nM/zaBL5RytZl69Oj8OIA48zG+kA9ysQZbdWRQgLwXz5b5ojErJdlhbpeyVhX4qxZlELQoIGVsO+6wtz8Q6D0iKdS3Sc41H/9b8Zaf1pgtez4+igOnY=;
-	24:3xpKJluCNI/7kX8014EgXRlVwyqTLjJUw5yhzL6FxqRGkJZTWer1XXiw5nhP8/PdxH3kRKB+NPba+Om2D8dLAeF29mYlau02N01v5Ao/lbs=;
-	7:NXvXuH2/gZYrUaImIfMzyYB2/B7oJGAUdxZYNt7uhJVreVW47otmCQQ7J4U4zEWB3ibs0dmkpC2bp+nVFhSCMh0c54WNKPpmmu4vKE5fe7t9e4TSqDYkPIdk9cnmximwt56DlrG49eGD2EXvM6R+z2rGZMD45BGTO0LBe5tjd2rHuV1X2u1by//97ujs16oESH0k7kVLwJIs3zlSorz5/Cos5OoewwkQiKB9VPT4yr/1CXGEZp/j+WkvJQYtpnY1BDKuCiwq9zX7Uq9GiI7m7Xj+P5AexNfEtE2guaEZ/bWmpqx3Tz15Udti95ecVXwRtSTXOeeizGSgJx9Y84oAKA==
-x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:VI1PR01MB1886;
-x-microsoft-antispam-prvs: <VI1PR01MB18864867ECB3D13058956AA485C30@VI1PR01MB1886.eurprd01.prod.exchangelabs.com>
-x-exchange-antispam-report-test: UriScan:;
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(6040176)(601004)(2401047)(8121501046)(5005006)(10201501046)(3002001);
-	SRVR:VI1PR01MB1886; BCL:0; PCL:0; RULEID:; SRVR:VI1PR01MB1886; 
-x-forefront-prvs: 0083A7F08A
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10009020)(6009001)(7916002)(199003)(189002)(586003)(19627405001)(106116001)(106356001)(7736002)(7846002)(86362001)(8936002)(8676002)(1730700003)(81156014)(81166006)(19580405001)(19580395003)(2501003)(3660700001)(87936001)(105586002)(66066001)(189998001)(2351001)(5640700001)(2906002)(92566002)(33656002)(19625215002)(101416001)(11100500001)(16236675004)(54356999)(74482002)(5660300001)(6116002)(102836003)(3846002)(7696004)(110136003)(3280700002)(450100001)(107886002)(68736007)(50986999)(122556002)(97736004)(74316002)(10400500002)(5002640100001)(9686002)(77096005)(2900100001)(6916009);
-	DIR:OUT; SFP:1101; SCL:1; SRVR:VI1PR01MB1886;
-	H:VI1PR01MB1887.eurprd01.prod.exchangelabs.com; FPR:; SPF:None;
-	PTR:InfoNoRecords; A:1; MX:1; LANG:en; 
-received-spf: None (protection.outlook.com: actia.fr does not designate
-	permitted sender hosts)
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
-MIME-Version: 1.0
-X-OriginatorOrg: actia.fr
-X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Oct 2016 15:26:02.4527 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 86314f06-03e8-4460-82f3-a44f992a19c7
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR01MB1886
-Subject: Re: [meta-raspberrypi] failed to copy the final ***rootfs.rpi-sdimg image file
+Received: from mail-pa0-f43.google.com (mail-pa0-f43.google.com
+	[209.85.220.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2CA6EE00874
+	for <yocto@yoctoproject.org>; Sun,  2 Oct 2016 16:07:09 -0700 (PDT)
+Received: by mail-pa0-f43.google.com with SMTP id cd13so51672392pac.0
+	for <yocto@yoctoproject.org>; Sun, 02 Oct 2016 16:07:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=subject:mime-version:from:in-reply-to:date:cc:message-id:references
+	:to; bh=qKCKaHjXDJbVv31WbXkL9Ktv8jF24pH67YXvhlnfzXQ=;
+	b=B3K79mkovL4GmKS86scDQST+Ucv6IJYViK2ur/dD4DAYp/PMNKtPr/46VAGHOZeETY
+	JrB97qael2AnNbR+eacLrwiEOJ5zqjyn8HlCc5SAYXS08M3I02Gh0409ugwdSCNy5kvL
+	H2Q49qhsX8zALhjMDkpjR3B47XrJd+YnD9Pki02iK1BEahabaOjGJPyTnZ9FuiliiL+I
+	mpbeMw1PLkPKHqrsblZde0If3lcGKPHZ7ZxpNMNkiDM50JfywkE6+6pnTopsUXpb+hdR
+	D2kANefIIX0XJJLQyTSx35K2wrctTGj9kjuIHcgB7SOLqrYOncJEpFvyfFNch03cv6Jn
+	JMPQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:subject:mime-version:from:in-reply-to:date:cc
+	:message-id:references:to;
+	bh=qKCKaHjXDJbVv31WbXkL9Ktv8jF24pH67YXvhlnfzXQ=;
+	b=JAqy7UFXFePykxuFmHgoifHZEmJ4e6lSHbNGjIjneYLmZZkpK8zZbBYl4OPrBECKeM
+	lDs/qrQKvuOyP27iYfmzrjiBs8BT9lLRCF4bEXhVX5oqVWmvTIKQC4N5dCYPWTyuDy+5
+	QYauGZzm9zo0k/F2WFCuJE7DZ7FsvMY4loHnklEO9p3utB+TQnWPA9sZwEl6pRHwC268
+	kIED9JynCfSbJdcIs8+Gym98U8G2/NjIMqgdZAtHek0o9isKD15nLOerL9KRF+hj6aNB
+	Ze46rOwBHb24M3y5EVAW4M1aaHCYSXUV2pyF2lCZNIE6o3dY7odmrSqV/jEo/QDtPyr0
+	OCJA==
+X-Gm-Message-State: AA6/9Rmu5oP/bU14McBdaoQ2oM48GBzMtt/ys5jtradvMvMuoXlnlsW5mDYZj8Upj8sPrw==
+X-Received: by 10.67.10.14 with SMTP id dw14mr32647355pad.165.1475449628878;
+	Sun, 02 Oct 2016 16:07:08 -0700 (PDT)
+Received: from ?IPv6:2601:646:8882:b8c:4b8:204d:45de:e844?
+	([2601:646:8882:b8c:4b8:204d:45de:e844])
+	by smtp.gmail.com with ESMTPSA id
+	w63sm42205271pfk.43.2016.10.02.16.07.07
+	(version=TLS1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Sun, 02 Oct 2016 16:07:08 -0700 (PDT)
+Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
+X-Pgp-Agent: GPGMail
+From: Khem Raj <raj.khem@gmail.com>
+In-Reply-To: <5c1591659f7bb76cdb3a1887b0cc42df@iwavesystems.com>
+Date: Sun, 2 Oct 2016 16:06:58 -0700
+Message-Id: <5212690D-56EB-4D19-A9DB-B03B42C5A928@gmail.com>
+References: <5c1591659f7bb76cdb3a1887b0cc42df@iwavesystems.com>
+To: ambika@iwavesystems.com
+X-Mailer: Apple Mail (2.3124)
+Cc: yocto@yoctoproject.org
+Subject: Re: Adding mysql in bitbaking meta-toolchain-qt5
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -90,64 +80,151 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 02 Oct 2016 15:59:31 -0000
-Content-Language: fr-FR
+X-List-Received-Date: Sun, 02 Oct 2016 23:07:13 -0000
+X-Groupsio-MsgNum: 32157
+Content-Type: multipart/signed;
+	boundary="Apple-Mail=_B5A490A4-D8DF-4E42-A6F4-4E92DB4E2545";
+	protocol="application/pgp-signature"; micalg=pgp-sha1
+
+--Apple-Mail=_B5A490A4-D8DF-4E42-A6F4-4E92DB4E2545
 Content-Type: multipart/alternative;
-	boundary="_000_VI1PR01MB18870583363ED6E3EA9E25A685C30VI1PR01MB1887eurp_"
+	boundary="Apple-Mail=_3F80565F-8E7F-4726-9E0E-CC7A118DA126"
 
---_000_VI1PR01MB18870583363ED6E3EA9E25A685C30VI1PR01MB1887eurp_
-Content-Type: text/plain; charset="iso-8859-1"
+--Apple-Mail=_3F80565F-8E7F-4726-9E0E-CC7A118DA126
 Content-Transfer-Encoding: quoted-printable
-
-Hi Karim and Gary,
-
-I have had the same problem this afternoon by trying to build the rpi-base-=
-image for my raspberrypi board, with poky Krogoth.
-
-The oe-core repo (openembedded-core branch krogoth) has been fetched, but I=
- still get the error while building the image.
-
-However, I didn't find the commit 6d969bacc718e21a5246d4da9bf9639dcae29b02.
-Could you give any other informations ?
+Content-Type: text/plain;
+	charset=utf-8
 
 
+> On Sep 14, 2016, at 12:54 AM, ambika@iwavesystems.com wrote:
+>=20
+>=20
+> Hello,
+>=20
+> I=E2=80=99m doing bitbake of meta-toolchain-qt5. When trying to use =
+mysql, not able to find it in include/ directory.
+>=20
+> mysql sources is located in the below path in my yocto setup,
+>=20
+> sources/meta-openembedded/meta-oe/recipes-support/mysql
+>=20
+> Tried to include mysql by adding the below to conf/local.conf under =
+build directory but could not able to locate mysql under include/.
+> (Also not sure whether I=E2=80=99m doing it right.)
+>=20
+> IMAGE_INSTALL_append =3D =E2=80=9Dmysql=E2=80=9D
 
---_000_VI1PR01MB18870583363ED6E3EA9E25A685C30VI1PR01MB1887eurp_
-Content-Type: text/html; charset="iso-8859-1"
+if you are not using populate_sdk task to generate SDK then this wont be =
+sufficient you have to append it to
+TOOLCHAIN_TARGET_TASK
+
+>=20
+> Can anyone please let me know the procedure to include mysql to the =
+meta-toolchain-qt5.
+>=20
+> Thanks in Advance.
+>=20
+> Regards,
+> Ambika.
+>=20
+>=20
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
+
+--Apple-Mail=_3F80565F-8E7F-4726-9E0E-CC7A118DA126
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=utf-8
 
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
-</head>
-<body dir=3D"ltr">
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;back=
-ground-color:#FFFFFF;font-family:Calibri,Arial,Helvetica,sans-serif;">
-<p><span title=3D"yocto@yoctoproject.org" tabindex=3D"0" class=3D"_pe_m1 ms=
--font-size-xxl ms-fwt-r ms-font-color-neutralPrimary _pe_01 bidi allowTextS=
-election"></span>Hi Karim and Gary,
-<br>
-</p>
-<div><br>
-I have had the same problem this afternoon by trying to build the rpi-base-=
-image for my raspberrypi board, with poky Krogoth.<br>
-<br>
-The oe-core repo (openembedded-core branch krogoth) has been fetched, but I=
- still get the error while building the image.<br>
-<br>
-However, I didn't find the commit 6d969bacc718e21a5246d4da9bf9639dcae29b02.=
- <br>
-Could you give any other informations ?<br>
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
+charset=3Dutf-8"></head><body style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
+class=3D""><br class=3D""><div><blockquote type=3D"cite" class=3D""><div =
+class=3D"">On Sep 14, 2016, at 12:54 AM, <a =
+href=3D"mailto:ambika@iwavesystems.com" =
+class=3D"">ambika@iwavesystems.com</a> wrote:</div><br =
+class=3D"Apple-interchange-newline"><div class=3D""><meta =
+http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8" =
+class=3D""><div style=3D"font-size: 10pt; font-family: =
+Verdana,Geneva,sans-serif" class=3D""><div class=3D"">&nbsp;<br =
+class=3D"webkit-block-placeholder"></div>
+<div dir=3D"ltr" class=3D"">
+<div style=3D"font-size: 12pt; font-family: Calibri;" class=3D"">
+<div class=3D"">Hello,</div>
+<div class=3D"">&nbsp;</div>
+<div class=3D"">I=E2=80=99m doing bitbake of meta-toolchain-qt5. When =
+trying to use mysql, not able to find it in include/ directory.</div>
+<div class=3D"">&nbsp;</div>
+<div class=3D"">mysql sources is located in the below path in my yocto =
+setup,</div>
+<div class=3D"">&nbsp;</div>
+<div class=3D""><span style=3D"font-family: Arial;" class=3D""><span =
+style=3D"color: #1f497d;" class=3D""><span class=3D""><span =
+style=3D"font-family: Calibri;" class=3D""><span style=3D"" =
+class=3D"">sources/meta-openembedded/meta-oe/recipes-support/mysql</span><=
+/span></span></span></span><span style=3D"font-family: Arial;" =
+class=3D""><span style=3D"color: #1f497d;" class=3D""><span =
+style=3D"font-size: 10pt;" class=3D"">&nbsp;</span></span></span></div>
+<div class=3D"">&nbsp;</div>
+<div class=3D"">Tried to include mysql by adding the below to =
+conf/local.conf under build directory but could not able to locate mysql =
+under include/.</div>
+<div class=3D"">(Also not sure whether I=E2=80=99m doing it =
+right.)</div>
+<div class=3D"">&nbsp;</div>
+<div class=3D""><span style=3D"font-family: Arial;" class=3D""><span =
+style=3D"color: #1f497d;" class=3D"">IMAGE_INSTALL_append =3D =
+</span></span><span style=3D"font-family: Arial;" class=3D""><span =
+style=3D"font-size: 10pt; color: #1f497d;" class=3D"">=E2=80=9Dmysql=E2=80=
+=9D </span></span></div></div></div></div></div></blockquote><div><br =
+class=3D""></div><div>if you are not using populate_sdk task to generate =
+SDK then this wont be sufficient you have to append it =
+to</div><div>TOOLCHAIN_TARGET_TASK</div><br class=3D""><blockquote =
+type=3D"cite" class=3D""><div class=3D""><div style=3D"font-size: 10pt; =
+font-family: Verdana,Geneva,sans-serif" class=3D""><div dir=3D"ltr" =
+class=3D""><div style=3D"font-size: 12pt; font-family: Calibri;" =
+class=3D"">
+<div class=3D""><span style=3D"color: #1f497d; font-family: Arial; =
+font-size: small;" class=3D""></span>&nbsp;</div>
+<div class=3D""><span style=3D"" class=3D"">Can anyone please let me =
+know the procedure to include mysql to the =
+meta-toolchain-qt5.</span></div>
+<div class=3D"">&nbsp;</div>
+<div class=3D"">Thanks in Advance.</div>
+<div class=3D"">&nbsp;</div>
+<div class=3D"">Regards,</div>
+<div class=3D"">Ambika.</div>
 </div>
-<p><br>
-</p>
-<p><br>
-</p>
+</div><div class=3D"">&nbsp;<br class=3D"webkit-block-placeholder"></div>
+<div class=3D"">&nbsp;</div>
 </div>
-</body>
-</html>
+-- <br class=3D"">_______________________________________________<br =
+class=3D"">yocto mailing list<br class=3D""><a =
+href=3D"mailto:yocto@yoctoproject.org" =
+class=3D"">yocto@yoctoproject.org</a><br =
+class=3D"">https://lists.yoctoproject.org/listinfo/yocto<br =
+class=3D""></div></blockquote></div><br class=3D""></body></html>=
 
---_000_VI1PR01MB18870583363ED6E3EA9E25A685C30VI1PR01MB1887eurp_--
+--Apple-Mail=_3F80565F-8E7F-4726-9E0E-CC7A118DA126--
+
+--Apple-Mail=_B5A490A4-D8DF-4E42-A6F4-4E92DB4E2545
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+	filename=signature.asc
+Content-Type: application/pgp-signature;
+	name=signature.asc
+Content-Description: Message signed with OpenPGP using GPGMail
+
+-----BEGIN PGP SIGNATURE-----
+Comment: GPGTools - https://gpgtools.org
+
+iEYEARECAAYFAlfxkxsACgkQuwUzVZGdMxSD4ACghNRRUq9icB0VIrYBZfAnVT32
+C8oAn2K9QZDvDSRHRmTTCPF0CJczSg4a
+=CVTg
+-----END PGP SIGNATURE-----
+
+--Apple-Mail=_B5A490A4-D8DF-4E42-A6F4-4E92DB4E2545--
