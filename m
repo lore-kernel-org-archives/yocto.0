@@ -1,6 +1,6 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D454BE00924; Sun,  2 Oct 2016 16:32:06 -0700 (PDT)
+	id 6009FE00945; Sun,  2 Oct 2016 16:51:07 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -11,7 +11,7 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (raj.khem[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.192.194 listed in list.dnswl.org]
+	*      [209.85.220.65 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,52 +19,52 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pf0-f194.google.com (mail-pf0-f194.google.com
-	[209.85.192.194])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8E67AE0089B
-	for <yocto@yoctoproject.org>; Sun,  2 Oct 2016 16:32:04 -0700 (PDT)
-Received: by mail-pf0-f194.google.com with SMTP id 190so2025916pfv.1
-	for <yocto@yoctoproject.org>; Sun, 02 Oct 2016 16:32:04 -0700 (PDT)
+Received: from mail-pa0-f65.google.com (mail-pa0-f65.google.com
+	[209.85.220.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 02EA9E0089B
+	for <yocto@yoctoproject.org>; Sun,  2 Oct 2016 16:51:03 -0700 (PDT)
+Received: by mail-pa0-f65.google.com with SMTP id t6so4042915pae.2
+	for <yocto@yoctoproject.org>; Sun, 02 Oct 2016 16:51:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=subject:mime-version:from:in-reply-to:date:cc:message-id:references
-	:to; bh=C5JDPhS1rTl4PnHDbkdWk2cD90K02rXESh2ciyhPBhg=;
-	b=c5dUw+iOwQF/qOHDbtHi+2KSadFINxbIdpDZvWg7DTDl78K/iKz2ZukWxl3V1O5Z5l
-	3AcplhLgMoeR7W5r5RrWyjTJJUsR2vWZaFkiL8bfaBAk9Gn/0wccaaDnrkGZJAMKEmDa
-	9zmGwDuLRpuB3++61jT+zclbBbQKQvzymi9HWUkXMjUder4LqXwfHppccGur+DvCZoNU
-	Zh85Y4116Y/muPxqcawuekFA1P6TIMmHriGGf/ZPSe6LKG0pz4OEEbXRw9wz+9q6E5jS
-	UvoRNHCwFeK3XcrgYvoIVdPsFIgYK22wPWjfXv0NN+jimbEVJYuUB/WQHYPl3VS13xDT
-	/qEQ==
+	:to; bh=Kbdhy85DWlNZ/zSyx5M7ZQweH69HsXuTHQpbRtwOeP4=;
+	b=H7seV+yTcBnybzHgYxPAxhalE3/K+4Mp8bOlqJwU0cG/UNWyV/qktborVuu8+b35S0
+	fuEK+a0v/VX9YzumK4HhCdazDa/H4g4966HK11fpaOCev69F5bgPRwCiDfG2wcNBiMw1
+	TSVLiDQJrk0pkkoVMI8SFrg7h763PGjgGggs1BHTSXpGKc+q1BP+1hfMFmSKS6xuZh6l
+	GUV8BIW4qGXaL8OBwUEdXZQ8zgIvejiA3aor4Q+VNxjE6t/jRp2HWEObnb4HWL3tlb0G
+	ZRQ4hR+ZRZGNCamtLkHIpKXe6kdnRN4b66irEvr1TroxD6bo/TdN17URfo2qXxsiute7
+	Y3MQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:subject:mime-version:from:in-reply-to:date:cc
 	:message-id:references:to;
-	bh=C5JDPhS1rTl4PnHDbkdWk2cD90K02rXESh2ciyhPBhg=;
-	b=LcJEzxqnaCWv44duOpZqRB1YCYokqjubtmo3wNXtmLBCBc5LrgI1b//7ogkM8icyY/
-	hJgcSiaV7PycJkHBx736JPic52uum7woBzRrl1DD5Z9q9ocS70qxAVI7wOYr3MxgUfJI
-	OYxw8Fp8+9dCpI9xV8ajtYV+nWkMq8Em9RvLUGUXGb7MXMc2ceuv6oduPel45Y0ESXXj
-	nc3U8vzceqayalThLAxTVdo5ATyFctfNdTCfufo4jiyEnzsgroSK+MRDGRfrsiAx8XfX
-	6wCtJfVh07HTJsHeKy/R8q4iY/vIFghso8G83Pu1S0O4xfJsP4ueDVaRLjvhFHTyBFMY
-	nJxQ==
-X-Gm-Message-State: AA6/9Rnf4X7N2QFKMUFb7npjfAXT0oY5aSDHfEHlarKF1ulSfPNN9v0KpNROCR6vfptulA==
-X-Received: by 10.98.157.80 with SMTP id i77mr16385062pfd.11.1475451123863;
-	Sun, 02 Oct 2016 16:32:03 -0700 (PDT)
+	bh=Kbdhy85DWlNZ/zSyx5M7ZQweH69HsXuTHQpbRtwOeP4=;
+	b=QNgLKB+g24CPpXwRB2sRBRwCbwny6H1C6l7p/FylTFkdOskP8bFQxLsuuvx4HMH0sX
+	xNXjNJ5uHXIU6kn0L7HubOFHPssXY8rg099kJTk2hA/2WOnQbf8uODj7BqdSY2vQbQtY
+	61mn8ILGiUCFn/IiPvdaNu1JM29NaH/2ekt4W3fN4i3niU284tbUYw6S8smU3hM8cvZ4
+	RpnV7mNpRog8CrcLYM4ODct+1/kQNJuaPHUw5Hu1tlYb5c/mscPSdtZIap/StCi5QQhZ
+	sN/fFIhXKlwBUhxEvvfcV9WMB2SS3x16mwTnRXPZXEHPGo92uGkTRzVPCXsmXBwYRq0Y
+	VPKQ==
+X-Gm-Message-State: AA6/9RnOAAZW/YDDJfX38alFJJjw1pOpAotBuYcxXRZ+eYvdamVzUr7ABvKXpeM9jq+ZAw==
+X-Received: by 10.66.13.34 with SMTP id e2mr32398816pac.103.1475452263618;
+	Sun, 02 Oct 2016 16:51:03 -0700 (PDT)
 Received: from ?IPv6:2601:646:8882:b8c:4b8:204d:45de:e844?
 	([2601:646:8882:b8c:4b8:204d:45de:e844])
 	by smtp.gmail.com with ESMTPSA id
-	x66sm42234530pfb.86.2016.10.02.16.32.02
+	t16sm42277097pfj.76.2016.10.02.16.51.02
 	(version=TLS1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Sun, 02 Oct 2016 16:32:03 -0700 (PDT)
+	Sun, 02 Oct 2016 16:51:03 -0700 (PDT)
 Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
 X-Pgp-Agent: GPGMail
 From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <MWHPR04MB033786FC8518966C1FD3EC5BC1F30@MWHPR04MB0337.namprd04.prod.outlook.com>
-Date: Sun, 2 Oct 2016 16:31:58 -0700
-Message-Id: <D9E3CF59-0D15-418D-947F-D70510BAA768@gmail.com>
-References: <MWHPR04MB033786FC8518966C1FD3EC5BC1F30@MWHPR04MB0337.namprd04.prod.outlook.com>
-To: Josias Inacio da Silva Filho <josiasinacio@hotmail.com>
+In-Reply-To: <20161002143422.GA24664@openSUSE-i7.site>
+Date: Sun, 2 Oct 2016 16:51:01 -0700
+Message-Id: <DC4D7174-E554-4A40-A0BC-B20623C83300@gmail.com>
+References: <20161002143422.GA24664@openSUSE-i7.site>
+To: Trevor Woerner <twoerner@gmail.com>
 X-Mailer: Apple Mail (2.3124)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: How to build an SDK toolchain for native x86_64
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-raspberrypi] taskhash mismatch
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,75 +76,83 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 02 Oct 2016 23:32:06 -0000
-X-Groupsio-MsgNum: 32159
+X-List-Received-Date: Sun, 02 Oct 2016 23:51:07 -0000
+X-Groupsio-MsgNum: 32160
 Content-Type: multipart/signed;
-	boundary="Apple-Mail=_A08662B0-A98C-4A78-95CE-028835490D1E";
+	boundary="Apple-Mail=_5CA8CBCE-E841-4289-80E6-20BE44A5FF0B";
 	protocol="application/pgp-signature"; micalg=pgp-sha1
 
---Apple-Mail=_A08662B0-A98C-4A78-95CE-028835490D1E
+--Apple-Mail=_5CA8CBCE-E841-4289-80E6-20BE44A5FF0B
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain;
-	charset=utf-8
+	charset=us-ascii
 
 
-> On Sep 15, 2016, at 10:04 PM, Josias Inacio da Silva Filho =
-<josiasinacio@hotmail.com> wrote:
+> On Oct 2, 2016, at 7:34 AM, Trevor Woerner <twoerner@gmail.com> wrote:
 >=20
-> Hi folks,
+> Hi,
 >=20
-> Here=E2=80=99s my current setup and current situation:
+> For the last week or so my raspberry pi builds have been failing with:
 >=20
-> Host: x86_64
-> Target: aarch64
+> ERROR: core-image-minimal-1.0-r0 do_image_rpi_sdimg: Taskhash mismatch =
+2920e557ac3a011d5679a52590cb664d versus a47bfc12fdfa29c58fe72cf8e0a28e91 =
+for =
+/z/raspi2/poky/meta/recipes-core/images/core-image-minimal.bb.do_image_rpi=
+_sdimg
+> ERROR: Taskhash mismatch 2920e557ac3a011d5679a52590cb664d versus =
+a47bfc12fdfa29c58fe72cf8e0a28e91 for =
+/z/raspi2/poky/meta/recipes-core/images/core-image-minimal.bb.do_image_rpi=
+_sdimg
 >=20
-> Build core-image-base for aarch64 - OK
-> populate_sdk for aarch64 - OK
+> This is with both poky and oe+bitbake, master branches all around, and =
+fully
+> up-to-date. Before sending this email I pulled yet again and re-tested =
+just to
+> confirm.
 >=20
-> My application and it unit tests also gets compiled to aarch64.
->=20
-> What I wanted now would be something like run populate_sdk for =
-=E2=80=9Ccore-image-base-native=E2=80=9D. The reason for that is because =
-I want to compile and run my unit tests using my host machine only =
-(x86_64). This makes application development much easier, since I =
-don=E2=80=99t need the target nor QEMU to run the unit tests. And I =
-still want the toolchain to be generated by Yocto since it solves all =
-package dependencies for me.
->=20
-> What I attempted:
->=20
-> 1) Create a new =E2=80=9Ccore-image-toolchain-native=E2=80=9D similar =
-to core-image-base, but tweaking to be able to build for native. That =
-does not seem to be the right way, I spent a lot of time doing this and =
-got nowhere since many of the image's recipes do not support building =
-with native support.
->=20
-> 2) Change my machine type to be qemux86_64, then call =E2=80=9Cbitbake =
-core-image-base -c populate_sdk=E2=80=9D. That would generate a =
-toolchain for x86-64 right? Well it did, and I was able to use this =
-toolchain to compile my unit tests for x86_64. But the problem is that =
-this still assumes that I=E2=80=99ll be running those unit tests on the =
-target machine ( QEMU x86_64), so if I try to run it in my host machine, =
-it complains about some missing dynamic libraries that are only found in =
-the sysroot of the target qemux86_64.
->=20
-> Is there any proper solution for this case?
 
-This is not a usecase which SDK is meant for, the SDK is generally meant =
-for doing cross development as you have also
-seen above, and why the native case it not covered is also due to fact =
-you explained above where you see some missing
-libraries. Can this be fixed, sure it can, but its a new feature that =
-would require additional considerations if we
-have to provide SDK host and cross SDK, this may have usecases but its =
-not so common.
+is it due to use of DATE and TIME issue ? I think there was such a patch =
+proposed to meta-rpi see
+=
+http://git.yoctoproject.org/cgit/cgit.cgi/meta-raspberrypi/commit/?id=3D4c=
+02c7ce07121c2f5367204445f93199d828bb10
 
-Ideally, you should use the gcc toolchain as installed on your SDK host =
-( one from ubuntu/debian/fedora whatever distro you use )
-and use that for native verification.
-
-You are welcome to file an enhancement request in bugzilla for SDK =
-support for SDK host.
+> Poky:
+>=20
+> 	Build Configuration:
+> 	BB_VERSION        =3D "1.31.1"
+> 	BUILD_SYS         =3D "x86_64-linux"
+> 	NATIVELSBSTRING   =3D "SUSELINUX-42.1"
+> 	TARGET_SYS        =3D "arm-poky-linux-gnueabi"
+> 	MACHINE           =3D "raspberrypi"
+> 	DISTRO            =3D "poky"
+> 	DISTRO_VERSION    =3D "2.1+snapshot-20161002"
+> 	TUNE_FEATURES     =3D "arm armv6  vfp arm1176jzfs =
+callconvention-hard"
+> 	TARGET_FPU        =3D "hard"
+> 	meta
+> 	meta-poky         =3D =
+"master:3a73fe0efcb7aeefcca7011bba887caad03d4d03"
+> 	meta-raspberrypi  =3D =
+"master:4817e2c087097c02755d6309304878e42cf61d3c"
+>=20
+> OE + bitbake:
+>=20
+> 	Build Configuration:
+> 	BB_VERSION        =3D "1.31.1"
+> 	BUILD_SYS         =3D "x86_64-linux"
+> 	NATIVELSBSTRING   =3D "SUSELINUX-42.1"
+> 	TARGET_SYS        =3D "arm-oe-linux-gnueabi"
+> 	MACHINE           =3D "raspberrypi"
+> 	DISTRO            =3D "nodistro"
+> 	DISTRO_VERSION    =3D "nodistro.0"
+> 	TUNE_FEATURES     =3D "arm armv6  vfp arm1176jzfs =
+callconvention-hard"
+> 	TARGET_FPU        =3D "hard"
+> 	meta              =3D =
+"master:21cc2a3f63ea260dbf6b50e2fd4dd50cacdd9935"
+> 	meta-raspberrypi  =3D =
+"master:4817e2c087097c02755d6309304878e42cf61d3c"
 > --
 > _______________________________________________
 > yocto mailing list
@@ -152,7 +160,7 @@ support for SDK host.
 > https://lists.yoctoproject.org/listinfo/yocto
 
 
---Apple-Mail=_A08662B0-A98C-4A78-95CE-028835490D1E
+--Apple-Mail=_5CA8CBCE-E841-4289-80E6-20BE44A5FF0B
 Content-Transfer-Encoding: 7bit
 Content-Disposition: attachment;
 	filename=signature.asc
@@ -163,9 +171,9 @@ Content-Description: Message signed with OpenPGP using GPGMail
 -----BEGIN PGP SIGNATURE-----
 Comment: GPGTools - https://gpgtools.org
 
-iEYEARECAAYFAlfxmPIACgkQuwUzVZGdMxQiuQCePkBgvLCvZAALikfW9jRqWD9t
-aO8AnRNXZ/mvDELoHNJuQMiern0ozvRp
-=Wl8N
+iEYEARECAAYFAlfxnWYACgkQuwUzVZGdMxSJXgCfVhiv3qc1aw4Y5PdxMuigRPbH
+duIAni5PVD7nrvDWgkujHsFAv09RukSG
+=xMit
 -----END PGP SIGNATURE-----
 
---Apple-Mail=_A08662B0-A98C-4A78-95CE-028835490D1E--
+--Apple-Mail=_5CA8CBCE-E841-4289-80E6-20BE44A5FF0B--
