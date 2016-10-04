@@ -1,19 +1,17 @@
 Return-Path: <twoerner@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3B8DFE00A85; Tue,  4 Oct 2016 07:05:24 -0700 (PDT)
+	id E48B5E00ACE; Tue,  4 Oct 2016 07:18:46 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (twoerner[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.220.195 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.220.195 listed in dnsbl.sorbs.net]
+	*      [209.85.223.194 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -21,46 +19,57 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qk0-f195.google.com (mail-qk0-f195.google.com
-	[209.85.220.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 201B5E00A7D
-	for <yocto@yoctoproject.org>; Tue,  4 Oct 2016 07:05:20 -0700 (PDT)
-Received: by mail-qk0-f195.google.com with SMTP id n66so12199716qkf.0
-	for <yocto@yoctoproject.org>; Tue, 04 Oct 2016 07:05:20 -0700 (PDT)
+Received: from mail-io0-f194.google.com (mail-io0-f194.google.com
+	[209.85.223.194])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6D612E00A86
+	for <yocto@yoctoproject.org>; Tue,  4 Oct 2016 07:18:44 -0700 (PDT)
+Received: by mail-io0-f194.google.com with SMTP id r145so8750076ior.0
+	for <yocto@yoctoproject.org>; Tue, 04 Oct 2016 07:18:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=ykYrKcfKnbJIB1mqTFMxXgwpafX8L/Mj+0jw5biZ3go=;
-	b=FSe4bWkaLhd99hHViiq7AwdXGu2oSpX+lBHy8AVXNKYXSJzpJyJZgLB0eyC9b40hQf
-	M4AJfwJcVwt/CkBMCTXr9fcX5/Vqag4wj068wEXm0UJmPQEHAB2YeWce1bb8JT4dO8Mu
-	Hs0tHXolt19WRkG21Puh0imSAHtKbVAh/xV5DeafHxw2cGynGeXm40LFTBUmMjMzjdMi
-	JyyOQvugFNAQgBmDKa/lSwrVHVJw2t1aLh+1tGxUlPbIdezkv24aW8ijOI0iwpELN4S6
-	xejVxIV5YCizgAbpfbsLUmHM0Pgot4bI6vJxXrnoHnnOrpB08tPktrXgqk7GwKUn2ony
-	SeLg==
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-disposition:in-reply-to:user-agent;
+	bh=ReqIgu8pvPc60c2B10/9t6ytBtkDpr9yv5hDt/7XCT0=;
+	b=umxo03d28pLZDcRQYbXCSdsPddawe9vFTgYj2TTbOvOg4AHwHC3utSc6xCtVPSH2lz
+	2QZ32UflksTuYlJ/ch5QTHd0YWtCnJkyViCUNlsUV/UQGiuVBmMqII3C0RM6z+PQXBe7
+	6KFh3PosAUQlEf/1ZzGi1qbz63r0Op81U55eSZCpF4+ExisX64wuqQw8nTBqSntchgUT
+	6rZt4e91Xj9D/2R+MTS7kmidPhnWz297Tr1ELQrAzhRSiqTAzVNm+hVakjK+Tb1mgijH
+	2+YtUorvkO8++FXprBqEMdHUkjciHxiEdbCo+AXXTW+FxjGG6PnruxxqIoWZHMuvCD2I
+	6unw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=ykYrKcfKnbJIB1mqTFMxXgwpafX8L/Mj+0jw5biZ3go=;
-	b=AzVqX0GNCMUtoH7l0WfWCjU1xOT1At278C99ZSIs9TzvLwlYrN9Z4aJZQLXOAbj9Ud
-	0uCh3MNrIhCib5Kzml4PGShGs379mZTWXM+hDYS6g7pN+glH1WmLuZkER7WoZHyNSemn
-	bwO+w5hz+BA7q3jXjFOJW5vRZk6s9ly6eWr9Xrwb3RFpDSQUSFn8CYHzANo7E4lJYV2n
-	JKYNBz3mJJa8OozWQRIBNt1rgrXtqAnAOK3Ef5cyeZ4fsbl+QuX9FAsq7bI4v+Ad/pYQ
-	ewDO6E50dtEID416Q+Fb2djQblUzxhTRmWFHDQyVoXCuU9B/2G0c5dJHOUZheYoStayU
-	neSg==
-X-Gm-Message-State: AA6/9RmFK83GxGgWDH8OD+3BmeLRK8El1yUuyG6voi11G7fAgvMOSI45kVkBtLbidpA6rq7DtHsmxtgWZ6T+Gg==
-X-Received: by 10.55.20.78 with SMTP id e75mr3630856qkh.267.1475589920122;
-	Tue, 04 Oct 2016 07:05:20 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.237.32.33 with HTTP; Tue, 4 Oct 2016 07:05:19 -0700 (PDT)
-In-Reply-To: <20160916172859.GA27043@resin>
-References: <20160913020611.9265-1-net147@gmail.com>
-	<20160916172859.GA27043@resin>
+	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	:mime-version:content-disposition:in-reply-to:user-agent;
+	bh=ReqIgu8pvPc60c2B10/9t6ytBtkDpr9yv5hDt/7XCT0=;
+	b=PDDSqyGrlkyT9BAge7MzP/FHEdhOdHsxEJUT+zDVolM0MEeX4KoXK2E1DZGGN1Q2ih
+	R9AUPWS9rBraHRCD51a5CUBt5K8eiQC1eAH2boxjYNuVUm5mvPepKe0mS3qCcOStHrzA
+	KiaxszRdxt3V4kKkB5cNRdbYNc16ugaDtjlVUOuEAN6tbYbV1IDQuqZoCRL2r1HOiFv2
+	CWG+0P3wLAZgOoMuw5eaNQpjtyGk2mcTgIpje/RV1QIgnjclHbrsKEfDkdX+2/6L4Zcn
+	GVq/sN5FDLZ2RdTJvvVFcfygWGylk7Ax6oJauEvMRPCpJ+M3v98RHC+E+YrubDDM70cu
+	xOQA==
+X-Gm-Message-State: AA6/9RkVbq4ObOy6J/iuHJO5B2W6H9JlzapC1eb7SO+wpn1Iqv74xJWaL7PrpJTdodwa7A==
+X-Received: by 10.107.11.158 with SMTP id 30mr4619902iol.210.1475590723615;
+	Tue, 04 Oct 2016 07:18:43 -0700 (PDT)
+Received: from openSUSE-i7.site ([108.161.115.167])
+	by smtp.gmail.com with ESMTPSA id
+	m184sm1679841itb.20.2016.10.04.07.18.42
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Tue, 04 Oct 2016 07:18:42 -0700 (PDT)
+Date: Tue, 4 Oct 2016 10:18:40 -0400
 From: Trevor Woerner <twoerner@gmail.com>
-Date: Tue, 4 Oct 2016 10:05:19 -0400
-Message-ID: <CAHUNapRt_6puKt9Pfj1Km-RHxJgqJ94XfYjKZUDkDHMRrDhCAQ@mail.gmail.com>
-To: Andrei Gherzan <andrei@gherzan.ro>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi][PATCH] sdcard_image-rpi.bbclass: remove redundant IMAGEDATESTAMP
+To: Khem Raj <raj.khem@gmail.com>
+Message-ID: <20161004141840.GA15259@openSUSE-i7.site>
+References: <20161002143422.GA24664@openSUSE-i7.site>
+	<DC4D7174-E554-4A40-A0BC-B20623C83300@gmail.com>
+	<HE1PR01MB18837565069037BC361486E792C20@HE1PR01MB1883.eurprd01.prod.exchangelabs.com>
+	<HE1PR01MB188308CD0299E2BC792EF3C692C20@HE1PR01MB1883.eurprd01.prod.exchangelabs.com>
+	<20161003184826.GA30939@openSUSE-i7.site>
+	<CAHUNapR6wknC-T2BjivbKPnAywiEbpoE0pzfXp6xuPX34siP9A@mail.gmail.com>
+	<CAMKF1srfOo=CJqKTEbXnheCk3fhDCBtAb5BMjm3EkR3Q-ZBuxA@mail.gmail.com>
+MIME-Version: 1.0
+In-Reply-To: <CAMKF1srfOo=CJqKTEbXnheCk3fhDCBtAb5BMjm3EkR3Q-ZBuxA@mail.gmail.com>
+User-Agent: Mutt/1.6.0 (2016-04-01)
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-raspberrypi] taskhash mismatch
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,63 +81,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Oct 2016 14:05:24 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Tue, 04 Oct 2016 14:18:47 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 
-Unfortunately it doesn't fix the taskhash problem. It still happens on
-every build I perform:
+> On Oct 3, 2016 1:39 PM, "Trevor Woerner" <twoerner@gmail.com> wrote:
+> > Odd... even with this patch I'm still seeing sporadic failures :-(
 
-core-image-minimal-1.0-r0 do_image_rpi_sdimg: Taskhash mismatch
-536a3bcf4ac29225841c369636b533ff versus
-8fadff5d0ef51aa648ed359d5dd7f944
+On Mon 2016-10-03 @ 02:35:22 PM, Khem Raj wrote:
+> I guess you need to look at sognatures and see why its changing.
 
-In fact, every time I run a build I get the exact same two hashes.
+Actually, it's not that sporadic, simply doing:
 
-On Fri, Sep 16, 2016 at 1:28 PM, Andrei Gherzan <andrei@gherzan.ro> wrote:
-> On Tue, Sep 13, 2016 at 12:06:11PM +1000, Jonathan Liu wrote:
->> The IMAGE_NAME variable already contains the date and time so it is
->> redundant to also include the date again with IMAGEDATESTAMP
->> when writing to image-version-info in the boot partition.
->>
->> Signed-off-by: Jonathan Liu <net147@gmail.com>
->> ---
->>  classes/sdcard_image-rpi.bbclass | 8 ++------
->>  1 file changed, 2 insertions(+), 6 deletions(-)
->>
->> diff --git a/classes/sdcard_image-rpi.bbclass b/classes/sdcard_image-rpi.bbclass
->> index 57cefea..388398b 100644
->> --- a/classes/sdcard_image-rpi.bbclass
->> +++ b/classes/sdcard_image-rpi.bbclass
->> @@ -71,10 +71,6 @@ SDIMG = "${DEPLOY_DIR_IMAGE}/${IMAGE_NAME}.rootfs.rpi-sdimg"
->>  # Additional files and/or directories to be copied into the vfat partition from the IMAGE_ROOTFS.
->>  FATPAYLOAD ?= ""
->>
->> -IMAGEDATESTAMP = "${@time.strftime('%Y.%m.%d',time.gmtime())}"
->> -IMAGE_CMD_rpi-sdimg[vardepsexclude] += "IMAGEDATESTAMP"
->> -IMAGE_CMD_rpi-sdimg[vardepsexclude] += "DATETIME"
->> -
->>  IMAGE_CMD_rpi-sdimg () {
->>
->>       # Align partitions
->> @@ -143,8 +139,8 @@ IMAGE_CMD_rpi-sdimg () {
->>       fi
->>
->>       # Add stamp file
->> -     echo "${IMAGE_NAME}-${IMAGEDATESTAMP}" > ${WORKDIR}/image-version-info
->> -     mcopy -i ${WORKDIR}/boot.img -v ${WORKDIR}//image-version-info ::
->> +     echo "${IMAGE_NAME}" > ${WORKDIR}/image-version-info
->> +     mcopy -i ${WORKDIR}/boot.img -v ${WORKDIR}/image-version-info ::
->>
->
-> I like this. Merged to master.
->
-> --
-> Andrei Gherzan
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+	$ bitbake -c clean core-image-minimal
+	$ bitbake core-image-minimal
+
+shows the taskhash mismatch error repeatedly:
+
+	core-image-minimal-1.0-r0 do_image_rpi_sdimg: Taskhash mismatch 536a3bcf4ac29225841c369636b533ff versus 8fadff5d0ef51aa648ed359d5dd7f944
+
+Or I could just perform clean builds in succession.
+
+The reported hashes are always the same: from 536a3bc... to 8fadff5... This
+mismatch happens _during_ the build, not between two subsequent builds.
+
+I'm not sure how to compare hashes, every subsequent build produces the same
+two hashes. The build always ends with:
+
+	tmp-glibc/stamps/raspberrypi2-oe-linux-gnueabi/core-image-minimal/1.0-r0.do_image_rpi_sdimg.8fadff5d0ef51aa648ed359d5dd7f944
+	tmp-glibc/stamps/raspberrypi2-oe-linux-gnueabi/core-image-minimal/1.0-r0.do_image_rpi_sdimg.sigdata.8fadff5d0ef51aa648ed359d5dd7f944
+
+so a "bitbake-diffsigs -t ..." will always be blank.
 
