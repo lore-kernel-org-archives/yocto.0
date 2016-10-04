@@ -1,47 +1,74 @@
-Return-Path: <stephen.k.jolley@intel.com>
+Return-Path: <dinhn@cisco.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 58289E00AF2; Tue,  4 Oct 2016 08:07:18 -0700 (PDT)
+	id C75FFE00444; Tue,  4 Oct 2016 09:09:07 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.24 listed in list.dnswl.org]
+X-Spam-Status: No, score=-14.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE, RCVD_IN_DNSWL_HI,
+	USER_IN_DEF_DKIM_WL autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -7.5 USER_IN_DEF_DKIM_WL From: address is in the default
+	DKIM white-list
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1EB9EE00A86
-	for <yocto@yoctoproject.org>; Tue,  4 Oct 2016 08:07:14 -0700 (PDT)
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-	by orsmga102.jf.intel.com with ESMTP; 04 Oct 2016 08:07:13 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.31,295,1473145200"; d="scan'208,217";a="16144938"
-Received: from fmsmsx105.amr.corp.intel.com ([10.18.124.203])
-	by orsmga005.jf.intel.com with ESMTP; 04 Oct 2016 08:07:12 -0700
-Received: from fmsmsx122.amr.corp.intel.com (10.18.125.37) by
-	FMSMSX105.amr.corp.intel.com (10.18.124.203) with Microsoft SMTP Server
-	(TLS) id 14.3.248.2; Tue, 4 Oct 2016 08:07:13 -0700
-Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.12]) by
-	fmsmsx122.amr.corp.intel.com ([169.254.5.129]) with mapi id
-	14.03.0248.002; Tue, 4 Oct 2016 08:07:13 -0700
-From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [173.37.142.93 listed in list.dnswl.org]
+X-Greylist: delayed 63 seconds by postgrey-1.32 at yocto-www;
+	Tue, 04 Oct 2016 09:09:04 PDT
+Received: from alln-iport-6.cisco.com (alln-iport-6.cisco.com [173.37.142.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 68C91E0034A
+	for <yocto@yoctoproject.org>; Tue,  4 Oct 2016 09:09:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+	d=cisco.com; i=@cisco.com; l=3636; q=dns/txt; s=iport;
+	t=1475597344; x=1476806944;
+	h=from:to:cc:subject:date:message-id:mime-version;
+	bh=nKNHUi1903g7gKOOxyoyQp7fUkhQhHOHNBbr41tb+Mc=;
+	b=SAHcSeQwubs/Rks8Wo0G/ugM29ZPhHfabcatF74qnfaLFG7vto/eHqOT
+	3GE89sRnqOj+T63YpcVM/B+fc4jmLSRdkFnFzDR1Rv8ceOG5F21Dg7BsN
+	A/12iKSNF+1sEyvqooV3qWsLyIUYtmKF5wsEWQTlN+5JczShWU6Vx9V9b Q=;
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A0AcAgCD0/NX/4kNJK1dHAEBBAEBCgEBg?=
+	=?us-ascii?q?wc2AQEBAQEegVqNK6YRgwOCD4IHhh4egUw4FAECAQEBAQEBAV4cC4RjBAEjVhI?=
+	=?us-ascii?q?BDD4CBDAnBA6ISgiyGIx6AQEBAQEBAQEBAQEBAQEBAQEBAQEBHIY8gX2Jazgrg?=
+	=?us-ascii?q?i8FjjaLQwGPc49ykG0BHjZMgxuBOIdLgQABAQE?=
+X-IronPort-AV: E=Sophos;i="5.31,444,1473120000"; 
+	d="scan'208,217";a="331648460"
+Received: from alln-core-4.cisco.com ([173.36.13.137])
+	by alln-iport-6.cisco.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
+	04 Oct 2016 16:08:00 +0000
+Received: from XCH-RTP-001.cisco.com (xch-rtp-001.cisco.com [64.101.220.141])
+	by alln-core-4.cisco.com (8.14.5/8.14.5) with ESMTP id u94G80UJ022181
+	(version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=FAIL)
+	for <yocto@yoctoproject.org>; Tue, 4 Oct 2016 16:08:00 GMT
+Received: from xch-rtp-002.cisco.com (64.101.220.142) by XCH-RTP-001.cisco.com
+	(64.101.220.141) with Microsoft SMTP Server (TLS) id 15.0.1210.3;
+	Tue, 4 Oct 2016 12:07:59 -0400
+Received: from xch-rtp-002.cisco.com ([64.101.220.142]) by
+	XCH-RTP-002.cisco.com ([64.101.220.142]) with mapi id 15.00.1210.000;
+	Tue, 4 Oct 2016 12:07:59 -0400
+From: "Dinh Nguyen (dinhn)" <dinhn@cisco.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Minutes: Yocto Project Technical Team Meeting - Tuesday, Oct.
-	4, 2016 8:00 AM US Pacific Time
-Thread-Index: AdIeT6gpE9xh3O3NRhSDesotGE34Yw==
-Date: Tue, 4 Oct 2016 15:07:12 +0000
-Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155E57288E15@fmsmsx111.amr.corp.intel.com>
+Thread-Topic: Question: xxxx listed in PACKAGES multiple times, this leads to
+	packaging errors
+Thread-Index: AQHSHll65OzpqDQ8KUqWgZf+kZeSrw==
+Date: Tue, 4 Oct 2016 16:07:59 +0000
+Message-ID: <D6696459-1F17-4F52-8D0A-4ED8C3FC35EE@cisco.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.1.200.107]
-x-ctpclassification: CTP_IC
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiZmZkMzlhNzItMGJmNS00Y2E2LTk5NzAtNTRiY2Y0ZDk5MDhlIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX0lDIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE1LjkuNi42IiwiVHJ1c3RlZExhYmVsSGFzaCI6IndBY2FYblBvVFdZVElSOFlNRFBPamdVeWhCYjV1RjB3QTR5V0RXXC9KdjNrPSJ9
+user-agent: Microsoft-MacOutlook/f.15.1.160411
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.24.125.102]
 MIME-Version: 1.0
-Subject: Minutes: Yocto Project Technical Team Meeting - Tuesday, Oct. 4, 2016 8:00 AM US Pacific Time
+Subject: Question: xxxx listed in PACKAGES multiple times, this leads to packaging errors
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,259 +80,63 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Oct 2016 15:07:18 -0000
+X-List-Received-Date: Tue, 04 Oct 2016 16:09:07 -0000
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155E57288E15fmsmsx111amrcor_"
+	boundary="_000_D66964591F174F528D0A4ED8C3FC35EEciscocom_"
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E57288E15fmsmsx111amrcor_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+--_000_D66964591F174F528D0A4ED8C3FC35EEciscocom_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Attendees: Armin, Stephen, Joshua, Jussi,
+SGkgZm9sa3MsDQoNCj4+PiBFUlJPUjogUUEgSXNzdWU6IGMtbWxpYiBpcyBsaXN0ZWQgaW4gUEFD
+S0FHRVMgbXVsdGlwbGUgdGltZXMsIHRoaXMgbGVhZHMgdG8gcGFja2FnaW5nIGVycm9ycy4gW3Bh
+Y2thZ2VzLWxpc3RdDQo+Pj4gU3VtbWFyeTogVGhlcmUgd2FzIDEgRVJST1IgbWVzc2FnZSBzaG93
+biwgcmV0dXJuaW5nIGEgbm9uLXplcm8gZXhpdCBjb2RlLg0KDQpJIGdvdCB0aGUgYWJvdmUgRVJS
+T1IgYmVjYXVzZSAgbXkgYy1tbGliXzEuMC1yMF9jb3JlMi02NC5pcGsgYW5kIG90aGVyIHBhY2th
+Z2VzIHdlcmUgbGlzdGVkIGluIGRpZmZlcmVudCBwbGFjZXMgYXMgc2hvd24gYmVsb3c6DQoNCmRp
+bmhuQHJzLWJsZHNydjovbWVkaWEvcmFnaHVyYW0vZGF0YS9kaW5obi9pb3hEZXYvaW94c2RrJCBm
+aW5kIC4gLW5hbWUgYy1tbGliXzEuMC1yMF9jb3JlMi02NC5pcGsNCg0KLi95cC90bXAvZGVwbG95
+L2lway9jb3JlMi02NC9jLW1saWJfMS4wLXIwX2NvcmUyLTY0Lmlwaw0KLi95cC90bXAvd29yay9j
+b3JlMi02NC1wb2t5LWxpbnV4L2MtbWxpYi8xLjAtcjAvZGVwbG95LWlwa3MvY29yZTItNjQvYy1t
+bGliXzEuMC1yMF9jb3JlMi02NC5pcGsNCg0KSXMgdGhpcyBhbiBlcnJvcj8NCg0KTWFueSB0aGFu
+a3MsDQogIOKAlEQNCg==
 
+--_000_D66964591F174F528D0A4ED8C3FC35EEciscocom_
+Content-Type: text/html; charset="utf-8"
+Content-ID: <875D52FE8B9C7348AD3667F35FECCD72@emea.cisco.com>
+Content-Transfer-Encoding: base64
 
+PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
+dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjwvaGVhZD4NCjxib2R5IHN0eWxlPSJ3b3JkLXdy
+YXA6IGJyZWFrLXdvcmQ7IC13ZWJraXQtbmJzcC1tb2RlOiBzcGFjZTsgLXdlYmtpdC1saW5lLWJy
+ZWFrOiBhZnRlci13aGl0ZS1zcGFjZTsgZm9udC1zaXplOiAxNHB4OyBmb250LWZhbWlseTogQ2Fs
+aWJyaSwgc2Fucy1zZXJpZjsiPg0KPGRpdiBzdHlsZT0iY29sb3I6IHJnYigwLCAwLCAwKTsiPkhp
+IGZvbGtzLDwvZGl2Pg0KPGRpdiBzdHlsZT0iY29sb3I6IHJnYigwLCAwLCAwKTsiPjxicj4NCjwv
+ZGl2Pg0KPGRpdj4mZ3Q7Jmd0OyZndDsgRVJST1I6IFFBIElzc3VlOiA8Zm9udCBjb2xvcj0iI2Zm
+MDAwMCI+Yy1tbGliIGlzIGxpc3RlZCBpbiBQQUNLQUdFUyBtdWx0aXBsZSB0aW1lcywgdGhpcyBs
+ZWFkcyB0byBwYWNrYWdpbmcgZXJyb3JzLjwvZm9udD4gW3BhY2thZ2VzLWxpc3RdPC9kaXY+DQo8
+ZGl2Pg0KPGRpdiBzdHlsZT0iY29sb3I6IHJnYigwLCAwLCAwKTsiPiZndDsmZ3Q7Jmd0OyBTdW1t
+YXJ5OiBUaGVyZSB3YXMgMSBFUlJPUiBtZXNzYWdlIHNob3duLCByZXR1cm5pbmcgYSBub24temVy
+byBleGl0IGNvZGUuPC9kaXY+DQo8ZGl2IHN0eWxlPSJjb2xvcjogcmdiKDAsIDAsIDApOyI+PGJy
+Pg0KPC9kaXY+DQo8ZGl2PkkgZ290IHRoZSBhYm92ZSBFUlJPUiBiZWNhdXNlICZuYnNwO215IDxm
+b250IGNvbG9yPSIjZmYwMDAwIj5jLW1saWJfMS4wLXIwX2NvcmUyLTY0LmlwazwvZm9udD4gYW5k
+IG90aGVyIHBhY2thZ2VzIHdlcmUgbGlzdGVkIGluIGRpZmZlcmVudCBwbGFjZXMgYXMgc2hvd24g
+YmVsb3c6PC9kaXY+DQo8ZGl2IHN0eWxlPSJjb2xvcjogcmdiKDAsIDAsIDApOyI+PGJyPg0KPC9k
+aXY+DQo8ZGl2IHN0eWxlPSJjb2xvcjogcmdiKDAsIDAsIDApOyI+ZGluaG5AcnMtYmxkc3J2Oi9t
+ZWRpYS9yYWdodXJhbS9kYXRhL2RpbmhuL2lveERldi9pb3hzZGskIGZpbmQgLiAtbmFtZSBjLW1s
+aWJfMS4wLXIwX2NvcmUyLTY0LmlwazwvZGl2Pg0KPGRpdiBzdHlsZT0iY29sb3I6IHJnYigwLCAw
+LCAwKTsiPjxicj4NCjwvZGl2Pg0KPGRpdiBzdHlsZT0iY29sb3I6IHJnYigwLCAwLCAwKTsiPi4v
+eXAvdG1wL2RlcGxveS9pcGsvY29yZTItNjQvYy1tbGliXzEuMC1yMF9jb3JlMi02NC5pcGsgJm5i
+c3A7Jm5ic3A7PC9kaXY+DQo8ZGl2IHN0eWxlPSJjb2xvcjogcmdiKDAsIDAsIDApOyI+Li95cC90
+bXAvd29yay9jb3JlMi02NC1wb2t5LWxpbnV4L2MtbWxpYi8xLjAtcjAvZGVwbG95LWlwa3MvY29y
+ZTItNjQvYy1tbGliXzEuMC1yMF9jb3JlMi02NC5pcGs8L2Rpdj4NCjwvZGl2Pg0KPGRpdiBzdHls
+ZT0iY29sb3I6IHJnYigwLCAwLCAwKTsiPjxicj4NCjwvZGl2Pg0KPGRpdiBzdHlsZT0iY29sb3I6
+IHJnYigwLCAwLCAwKTsiPklzIHRoaXMgYW4gZXJyb3I/Jm5ic3A7PC9kaXY+DQo8ZGl2IHN0eWxl
+PSJjb2xvcjogcmdiKDAsIDAsIDApOyI+PGJyPg0KPC9kaXY+DQo8ZGl2IHN0eWxlPSJjb2xvcjog
+cmdiKDAsIDAsIDApOyI+TWFueSB0aGFua3MsPC9kaXY+DQo8ZGl2IHN0eWxlPSJjb2xvcjogcmdi
+KDAsIDAsIDApOyI+Jm5ic3A7IOKAlEQmbmJzcDs8L2Rpdj4NCjxkaXYgc3R5bGU9ImNvbG9yOiBy
+Z2IoMCwgMCwgMCk7Ij4NCjxkaXYgaWQ9Ik1BQ19PVVRMT09LX1NJR05BVFVSRSI+PC9kaXY+DQo8
+L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
 
-Agenda:
-
-
-
-* Opens collection - 5 min (Stephen)
-
-
-
-* Yocto Project status - 5 min (Stephen/team)
-
-YP 2.2 M3 was released a published.
-
-YP 2.2 M4 rc1 should be built soon.  We have a hand full of issues blocking=
- the build but they should resolve soon.
-
-YP 2.1.2 and YP 2.0.3 should be built and released after YP 2.2 releases (t=
-arget Oct. 28th).
-
-
-
-https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.2_Status
-
-https://wiki.yoctoproject.org/wiki/Yocto_2.2_Schedule
-
-https://wiki.yoctoproject.org/wiki/Yocto_2.2_Features
-
-* Opens - 10 min
-
-None
-
-
-
-* Team Sharing - 10 min
-
-None
-
-
-Thanks,
-
-Stephen K. Jolley
-Yocto Project Program Manager
-INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-*   Work Telephone:        (503) 712-0534
-*    Cell:               (208) 244-4460
-* Email:                            stephen.k.jolley@intel.com
-
-
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E57288E15fmsmsx111amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Consolas;
-	panose-1:2 11 6 9 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:"MS Sans Serif";}
-@font-face
-	{font-family:"Comic Sans MS";
-	panose-1:3 15 7 2 3 3 2 2 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
-	{mso-style-priority:99;
-	mso-style-link:"Plain Text Char";
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:10.5pt;
-	font-family:Consolas;
-	mso-fareast-language:EN-US;}
-p
-	{mso-style-priority:99;
-	mso-margin-top-alt:auto;
-	margin-right:0in;
-	mso-margin-bottom-alt:auto;
-	margin-left:0in;
-	font-size:12.0pt;
-	font-family:"Times New Roman",serif;
-	mso-fareast-language:ZH-CN;}
-span.PlainTextChar
-	{mso-style-name:"Plain Text Char";
-	mso-style-priority:99;
-	mso-style-link:"Plain Text";
-	font-family:Consolas;}
-span.EmailStyle20
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">Attendees: Armin, Stephen, Joshua, Jussi, &nbsp;<o=
-:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><o:p>&nbsp;</o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">Agenda:<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">&nbsp;<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* Opens collection - 5 min (Stephen)<o:p></o:p></s=
-pan></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><o:p>&nbsp;</o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* Yocto Project status - 5 min (Stephen/team)<o:p>=
-</o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">YP 2.2 M3 was released a published.
-<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">YP 2.2 M4 rc1 should be built soon.&nbsp; We have =
-a hand full of issues blocking the build but they should resolve soon.<o:p>=
-</o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">YP 2.1.2 and YP 2.0.3 should be built and released=
- after YP 2.2 releases (target Oct. 28<sup>th</sup>).<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><o:p>&nbsp;</o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
-o_Project_v2.2_Status">https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.=
-2_Status</a><o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
-o_2.2_Schedule">https://wiki.yoctoproject.org/wiki/Yocto_2.2_Schedule</a><o=
-:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
-o_2.2_Features">https://wiki.yoctoproject.org/wiki/Yocto_2.2_Features</a>
-<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* Opens - 10 min
-<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">None<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><o:p>&nbsp;</o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* Team Sharing - 10 min<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">None<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
-ot;,serif;color:purple">Stephen K. Jolley</span></i></b><b><i><span style=
-=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,sans-serif;color:purple=
-"><o:p></o:p></span></i></b></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
-Courier New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></spa=
-n></b></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
-or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-<o:p></o:p></span></b></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Wingdings;color:black">(<=
-/span><span style=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">
-</span><span style=3D"font-size:8.0pt;font-family:&quot;MS Sans Serif&quot;=
-;color:teal">&nbsp;&nbsp;</span><b><span style=3D"font-size:8.0pt;font-fami=
-ly:&quot;Comic Sans MS&quot;;color:teal">Work Telephone</span></b><span sty=
-le=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-">(503) 712-0534<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
-ans Serif&quot;;color:teal">&nbsp;&nbsp;&nbsp;
-</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
-ot;;color:teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&=
-quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-">(208) 244-4460<span style=3D"color:black"><o:p></o:p></span></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-">* </span>
-<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
-MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
-.0pt;font-family:&quot;MS Sans Serif&quot;;color:teal">:</span><span lang=
-=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;">&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;
-<u><span style=3D"color:blue">stephen.k.jolley@intel.com</span></u></span><=
-span lang=3D"FR" style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,sa=
-ns-serif"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
-
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E57288E15fmsmsx111amrcor_--
+--_000_D66964591F174F528D0A4ED8C3FC35EEciscocom_--
