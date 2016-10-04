@@ -1,14 +1,14 @@
-Return-Path: <dinhn@cisco.com>
+Return-Path: <pedropozzobon@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C75FFE00444; Tue,  4 Oct 2016 09:09:07 -0700 (PDT)
+	id AD6E1E004F1; Tue,  4 Oct 2016 10:02:01 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-14.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE, RCVD_IN_DNSWL_HI,
-	USER_IN_DEF_DKIM_WL autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -7.5 USER_IN_DEF_DKIM_WL From: address is in the default
-	DKIM white-list
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (pedropozzobon[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -17,58 +17,44 @@ X-Spam-HAM-Report: * -7.5 USER_IN_DEF_DKIM_WL From: address is in the default
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [173.37.142.93 listed in list.dnswl.org]
-X-Greylist: delayed 63 seconds by postgrey-1.32 at yocto-www;
-	Tue, 04 Oct 2016 09:09:04 PDT
-Received: from alln-iport-6.cisco.com (alln-iport-6.cisco.com [173.37.142.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 68C91E0034A
-	for <yocto@yoctoproject.org>; Tue,  4 Oct 2016 09:09:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-	d=cisco.com; i=@cisco.com; l=3636; q=dns/txt; s=iport;
-	t=1475597344; x=1476806944;
-	h=from:to:cc:subject:date:message-id:mime-version;
-	bh=nKNHUi1903g7gKOOxyoyQp7fUkhQhHOHNBbr41tb+Mc=;
-	b=SAHcSeQwubs/Rks8Wo0G/ugM29ZPhHfabcatF74qnfaLFG7vto/eHqOT
-	3GE89sRnqOj+T63YpcVM/B+fc4jmLSRdkFnFzDR1Rv8ceOG5F21Dg7BsN
-	A/12iKSNF+1sEyvqooV3qWsLyIUYtmKF5wsEWQTlN+5JczShWU6Vx9V9b Q=;
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: =?us-ascii?q?A0AcAgCD0/NX/4kNJK1dHAEBBAEBCgEBg?=
-	=?us-ascii?q?wc2AQEBAQEegVqNK6YRgwOCD4IHhh4egUw4FAECAQEBAQEBAV4cC4RjBAEjVhI?=
-	=?us-ascii?q?BDD4CBDAnBA6ISgiyGIx6AQEBAQEBAQEBAQEBAQEBAQEBAQEBHIY8gX2Jazgrg?=
-	=?us-ascii?q?i8FjjaLQwGPc49ykG0BHjZMgxuBOIdLgQABAQE?=
-X-IronPort-AV: E=Sophos;i="5.31,444,1473120000"; 
-	d="scan'208,217";a="331648460"
-Received: from alln-core-4.cisco.com ([173.36.13.137])
-	by alln-iport-6.cisco.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
-	04 Oct 2016 16:08:00 +0000
-Received: from XCH-RTP-001.cisco.com (xch-rtp-001.cisco.com [64.101.220.141])
-	by alln-core-4.cisco.com (8.14.5/8.14.5) with ESMTP id u94G80UJ022181
-	(version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=FAIL)
-	for <yocto@yoctoproject.org>; Tue, 4 Oct 2016 16:08:00 GMT
-Received: from xch-rtp-002.cisco.com (64.101.220.142) by XCH-RTP-001.cisco.com
-	(64.101.220.141) with Microsoft SMTP Server (TLS) id 15.0.1210.3;
-	Tue, 4 Oct 2016 12:07:59 -0400
-Received: from xch-rtp-002.cisco.com ([64.101.220.142]) by
-	XCH-RTP-002.cisco.com ([64.101.220.142]) with mapi id 15.00.1210.000;
-	Tue, 4 Oct 2016 12:07:59 -0400
-From: "Dinh Nguyen (dinhn)" <dinhn@cisco.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Question: xxxx listed in PACKAGES multiple times, this leads to
-	packaging errors
-Thread-Index: AQHSHll65OzpqDQ8KUqWgZf+kZeSrw==
-Date: Tue, 4 Oct 2016 16:07:59 +0000
-Message-ID: <D6696459-1F17-4F52-8D0A-4ED8C3FC35EE@cisco.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Microsoft-MacOutlook/f.15.1.160411
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.24.125.102]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.213.43 listed in list.dnswl.org]
+Received: from mail-vk0-f43.google.com (mail-vk0-f43.google.com
+	[209.85.213.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 71EB2E00444
+	for <yocto@yoctoproject.org>; Tue,  4 Oct 2016 10:01:58 -0700 (PDT)
+Received: by mail-vk0-f43.google.com with SMTP id z126so196539267vkd.0
+	for <yocto@yoctoproject.org>; Tue, 04 Oct 2016 10:01:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=TAFK8ufROLzpemmpDM2edoWKTWeQByncpWaDG9ql/0o=;
+	b=QA1NNFWaQogfRFEld5JQN7VAbJnIdKA0mECyFdeqt2SsXQ1UN4/CsF0ohQgL+4YlJR
+	RFl3hJtqIkYah11dBF/Rxk3SYqnDAE7NXQnnARTEpZ2Ty81nk1BfZHZACIw5Ubv/3WM5
+	RPHSKNUsdfXXEkc0heqta+2WIp7d3lGNWDHj2RBL4P43ykzXGOt6IbZ1SeE8AcECxwKv
+	5Nek73Lw1J5TdjtzY3WKRypfhsKF/ONvfwy//Xt7TH0T/fli4jTsioy+DTiJcu90UE/7
+	FZlVfKZyBYGiueuY0oKL3xpKy7Fj/YYKSpf3OAHT9BP7jYXCDaFVPv3vpX/ooAu4dCPq
+	BNmw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=TAFK8ufROLzpemmpDM2edoWKTWeQByncpWaDG9ql/0o=;
+	b=C6hxxdXChMZ8YUBHYR8L6k9dywNakmpK5pY4dvvvgtmnwgPgZjedw5kDe47wTk2zi6
+	crY7/BNQF+AHRpSJH4FeGR2vD3CS5TWf0jRD2vgxaoCWI/TZUn5z7Azv3jVMetTaFu/C
+	eEBYyGjLYQCe4PLQ1mtq5FoQAIG0cfuX4jEj75V/wEd3igcUDvfnjckn2SOfbqMQxBrY
+	gDrRkT6xV9D/bUvVJNR20+d17yCD4Rq4uAfmITpDK7bNJUFNQ7ERGYzgDBXKhxMIot6N
+	ZyhGlMj2isCTakGFnuO2SaMqYsd2P2tjkGdB4OzLLQt5zE9lfuXZTotgYh54FdEBL46s
+	QiIA==
+X-Gm-Message-State: AA6/9RkNUN3gTjaN4RlbVLNCfs9YGgf3zcpU+qXYvykzKVOIyzGkiuzLk5nGIsHExdy73AkjHv4FNCkO+rB6rg==
+X-Received: by 10.31.80.2 with SMTP id e2mr3060357vkb.9.1475600517289; Tue, 04
+	Oct 2016 10:01:57 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Question: xxxx listed in PACKAGES multiple times, this leads to packaging errors
+Received: by 10.103.44.140 with HTTP; Tue, 4 Oct 2016 10:01:56 -0700 (PDT)
+From: Pedro Pozzobon <pedropozzobon@gmail.com>
+Date: Tue, 4 Oct 2016 14:01:56 -0300
+Message-ID: <CAMT4F752Mpa30adCiLtQYP2XFALo-Y0i8WAYHZqaO4Fq30jK=Q@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Small problem on systemd unit files provided by nfs-utils recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -80,63 +66,138 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Oct 2016 16:09:07 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_D66964591F174F528D0A4ED8C3FC35EEciscocom_"
+X-List-Received-Date: Tue, 04 Oct 2016 17:02:01 -0000
+Content-Type: multipart/alternative; boundary=001a114e346aa9ddc9053e0d04a5
 
---_000_D66964591F174F528D0A4ED8C3FC35EEciscocom_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--001a114e346aa9ddc9053e0d04a5
+Content-Type: text/plain; charset=UTF-8
 
-SGkgZm9sa3MsDQoNCj4+PiBFUlJPUjogUUEgSXNzdWU6IGMtbWxpYiBpcyBsaXN0ZWQgaW4gUEFD
-S0FHRVMgbXVsdGlwbGUgdGltZXMsIHRoaXMgbGVhZHMgdG8gcGFja2FnaW5nIGVycm9ycy4gW3Bh
-Y2thZ2VzLWxpc3RdDQo+Pj4gU3VtbWFyeTogVGhlcmUgd2FzIDEgRVJST1IgbWVzc2FnZSBzaG93
-biwgcmV0dXJuaW5nIGEgbm9uLXplcm8gZXhpdCBjb2RlLg0KDQpJIGdvdCB0aGUgYWJvdmUgRVJS
-T1IgYmVjYXVzZSAgbXkgYy1tbGliXzEuMC1yMF9jb3JlMi02NC5pcGsgYW5kIG90aGVyIHBhY2th
-Z2VzIHdlcmUgbGlzdGVkIGluIGRpZmZlcmVudCBwbGFjZXMgYXMgc2hvd24gYmVsb3c6DQoNCmRp
-bmhuQHJzLWJsZHNydjovbWVkaWEvcmFnaHVyYW0vZGF0YS9kaW5obi9pb3hEZXYvaW94c2RrJCBm
-aW5kIC4gLW5hbWUgYy1tbGliXzEuMC1yMF9jb3JlMi02NC5pcGsNCg0KLi95cC90bXAvZGVwbG95
-L2lway9jb3JlMi02NC9jLW1saWJfMS4wLXIwX2NvcmUyLTY0Lmlwaw0KLi95cC90bXAvd29yay9j
-b3JlMi02NC1wb2t5LWxpbnV4L2MtbWxpYi8xLjAtcjAvZGVwbG95LWlwa3MvY29yZTItNjQvYy1t
-bGliXzEuMC1yMF9jb3JlMi02NC5pcGsNCg0KSXMgdGhpcyBhbiBlcnJvcj8NCg0KTWFueSB0aGFu
-a3MsDQogIOKAlEQNCg==
+Hello,
 
---_000_D66964591F174F528D0A4ED8C3FC35EEciscocom_
-Content-Type: text/html; charset="utf-8"
-Content-ID: <875D52FE8B9C7348AD3667F35FECCD72@emea.cisco.com>
-Content-Transfer-Encoding: base64
+While I was trying to use the NFS server provided by the nfs-utils.bb
+recipe I've noticed an unexpected behavior when
+trying to start the systemd service using 'systemctl start
+nfs-server.service': when I first call this
+command nfs-server fails to load and I need to call it a second time to
+make it work properly.
 
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjwvaGVhZD4NCjxib2R5IHN0eWxlPSJ3b3JkLXdy
-YXA6IGJyZWFrLXdvcmQ7IC13ZWJraXQtbmJzcC1tb2RlOiBzcGFjZTsgLXdlYmtpdC1saW5lLWJy
-ZWFrOiBhZnRlci13aGl0ZS1zcGFjZTsgZm9udC1zaXplOiAxNHB4OyBmb250LWZhbWlseTogQ2Fs
-aWJyaSwgc2Fucy1zZXJpZjsiPg0KPGRpdiBzdHlsZT0iY29sb3I6IHJnYigwLCAwLCAwKTsiPkhp
-IGZvbGtzLDwvZGl2Pg0KPGRpdiBzdHlsZT0iY29sb3I6IHJnYigwLCAwLCAwKTsiPjxicj4NCjwv
-ZGl2Pg0KPGRpdj4mZ3Q7Jmd0OyZndDsgRVJST1I6IFFBIElzc3VlOiA8Zm9udCBjb2xvcj0iI2Zm
-MDAwMCI+Yy1tbGliIGlzIGxpc3RlZCBpbiBQQUNLQUdFUyBtdWx0aXBsZSB0aW1lcywgdGhpcyBs
-ZWFkcyB0byBwYWNrYWdpbmcgZXJyb3JzLjwvZm9udD4gW3BhY2thZ2VzLWxpc3RdPC9kaXY+DQo8
-ZGl2Pg0KPGRpdiBzdHlsZT0iY29sb3I6IHJnYigwLCAwLCAwKTsiPiZndDsmZ3Q7Jmd0OyBTdW1t
-YXJ5OiBUaGVyZSB3YXMgMSBFUlJPUiBtZXNzYWdlIHNob3duLCByZXR1cm5pbmcgYSBub24temVy
-byBleGl0IGNvZGUuPC9kaXY+DQo8ZGl2IHN0eWxlPSJjb2xvcjogcmdiKDAsIDAsIDApOyI+PGJy
-Pg0KPC9kaXY+DQo8ZGl2PkkgZ290IHRoZSBhYm92ZSBFUlJPUiBiZWNhdXNlICZuYnNwO215IDxm
-b250IGNvbG9yPSIjZmYwMDAwIj5jLW1saWJfMS4wLXIwX2NvcmUyLTY0LmlwazwvZm9udD4gYW5k
-IG90aGVyIHBhY2thZ2VzIHdlcmUgbGlzdGVkIGluIGRpZmZlcmVudCBwbGFjZXMgYXMgc2hvd24g
-YmVsb3c6PC9kaXY+DQo8ZGl2IHN0eWxlPSJjb2xvcjogcmdiKDAsIDAsIDApOyI+PGJyPg0KPC9k
-aXY+DQo8ZGl2IHN0eWxlPSJjb2xvcjogcmdiKDAsIDAsIDApOyI+ZGluaG5AcnMtYmxkc3J2Oi9t
-ZWRpYS9yYWdodXJhbS9kYXRhL2RpbmhuL2lveERldi9pb3hzZGskIGZpbmQgLiAtbmFtZSBjLW1s
-aWJfMS4wLXIwX2NvcmUyLTY0LmlwazwvZGl2Pg0KPGRpdiBzdHlsZT0iY29sb3I6IHJnYigwLCAw
-LCAwKTsiPjxicj4NCjwvZGl2Pg0KPGRpdiBzdHlsZT0iY29sb3I6IHJnYigwLCAwLCAwKTsiPi4v
-eXAvdG1wL2RlcGxveS9pcGsvY29yZTItNjQvYy1tbGliXzEuMC1yMF9jb3JlMi02NC5pcGsgJm5i
-c3A7Jm5ic3A7PC9kaXY+DQo8ZGl2IHN0eWxlPSJjb2xvcjogcmdiKDAsIDAsIDApOyI+Li95cC90
-bXAvd29yay9jb3JlMi02NC1wb2t5LWxpbnV4L2MtbWxpYi8xLjAtcjAvZGVwbG95LWlwa3MvY29y
-ZTItNjQvYy1tbGliXzEuMC1yMF9jb3JlMi02NC5pcGs8L2Rpdj4NCjwvZGl2Pg0KPGRpdiBzdHls
-ZT0iY29sb3I6IHJnYigwLCAwLCAwKTsiPjxicj4NCjwvZGl2Pg0KPGRpdiBzdHlsZT0iY29sb3I6
-IHJnYigwLCAwLCAwKTsiPklzIHRoaXMgYW4gZXJyb3I/Jm5ic3A7PC9kaXY+DQo8ZGl2IHN0eWxl
-PSJjb2xvcjogcmdiKDAsIDAsIDApOyI+PGJyPg0KPC9kaXY+DQo8ZGl2IHN0eWxlPSJjb2xvcjog
-cmdiKDAsIDAsIDApOyI+TWFueSB0aGFua3MsPC9kaXY+DQo8ZGl2IHN0eWxlPSJjb2xvcjogcmdi
-KDAsIDAsIDApOyI+Jm5ic3A7IOKAlEQmbmJzcDs8L2Rpdj4NCjxkaXYgc3R5bGU9ImNvbG9yOiBy
-Z2IoMCwgMCwgMCk7Ij4NCjxkaXYgaWQ9Ik1BQ19PVVRMT09LX1NJR05BVFVSRSI+PC9kaXY+DQo8
-L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
+After noticing this, I tried to compare these .service files with the ones
+provide by other distros and tried to make some changes on it but I
+wasn't successful.
 
---_000_D66964591F174F528D0A4ED8C3FC35EEciscocom_--
+I know this is not a big problem, but making two calls for 'systemctl
+start' seems not to be the ideal behavior and I'd like to fix this. Does
+anyone know
+how to make it work properly? I'm currently using the recipe provided by
+Krogoth 2.1.1.
+
+Some information:
+
+After a reboot and using 'systemctl start nfs-server.service', I get the
+following messages using 'journalctl -e':
+
+Oct 04 16:53:09 novoom systemd[1]: Starting RPC Bind Service...
+Oct 04 16:53:10 novoom rpcbind[804]: cannot create socket for udp6
+Oct 04 16:53:10 novoom rpcbind[804]: cannot create socket for tcp6
+Oct 04 16:53:10 novoom systemd[1]: Started RPC Bind Service.
+Oct 04 16:53:10 novoom systemd[1]: Starting NFS Server...
+Oct 04 16:53:10 novoom rpc.nfsd[814]: rpc.nfsd: address family AF_INET6 not
+supported by protocol TCP
+Oct 04 16:53:10 novoom rpc.nfsd[814]: rpc.nfsd: unable to set any sockets
+for nfsd
+Oct 04 16:53:10 novoom systemd[1]: nfs-server.service: Main process exited,
+code=exited, status=1/FAILURE
+Oct 04 16:53:10 novoom systemd[1]: Failed to start NFS Server.
+Oct 04 16:53:10 novoom systemd[1]: Dependency failed for NFS Mount Daemon.
+Oct 04 16:53:10 novoom systemd[1]: nfs-mountd.service: Job
+nfs-mountd.service/start failed with result 'dependency'.
+Oct 04 16:53:10 novoom systemd[1]: nfs-server.service: Unit entered failed
+state.
+Oct 04 16:53:10 novoom systemd[1]: nfs-server.service: Failed with result
+'exit-code'.
+Oct 04 16:53:10 novoom root[826]: root()=[   69  systemctl start
+nfs-server.service]
+
+After the second time:
+
+Oct 04 16:55:40 novoom systemd[1]: Starting NFS Server...
+Oct 04 16:55:40 novoom kernel: NFSD: Using /var/lib/nfs/v4recovery as the
+NFSv4 state recovery directory
+Oct 04 16:55:40 novoom kernel: NFSD: starting 90-second grace period (net
+c193d200)
+Oct 04 16:55:40 novoom systemd[1]: Started NFS Server.
+Oct 04 16:55:40 novoom systemd[1]: Started NFS Mount Daemon.
+Oct 04 16:55:40 novoom root[1974]: root()=[   74  systemctl start
+nfs-server.service]
+Oct 04 16:55:40 novoom rpc.mountd[1970]: rpc.mountd: svc_tli_create: could
+not open connection for udp6
+Oct 04 16:55:40 novoom rpc.mountd[1970]: rpc.mountd: svc_tli_create: could
+not open connection for tcp6
+Oct 04 16:55:40 novoom rpc.mountd[1970]: rpc.mountd: svc_tli_create: could
+not open connection for udp6
+Oct 04 16:55:40 novoom rpc.mountd[1970]: rpc.mountd: svc_tli_create: could
+not open connection for tcp6
+Oct 04 16:55:40 novoom rpc.mountd[1970]: rpc.mountd: svc_tli_create: could
+not open connection for udp6
+Oct 04 16:55:40 novoom rpc.mountd[1970]: rpc.mountd: svc_tli_create: could
+not open connection for tcp6
+Oct 04 16:55:40 novoom rpc.mountd[1970]: Version 1.3.3 starting
+Oct 04 16:55:40 novoom rpc.mountd[1970]: rpc.mountd: Version 1.3.3 starting
+
+Cheers,
+Pedro
+
+--001a114e346aa9ddc9053e0d04a5
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hello,<br><br>While I was trying to use the NFS server pro=
+vided by the <a href=3D"http://nfs-utils.bb">nfs-utils.bb</a> recipe I&#39;=
+ve noticed an unexpected behavior when<br>trying to start the systemd servi=
+ce using &#39;systemctl start nfs-server.service&#39;: when I first call th=
+is<br>command nfs-server fails to load and I need to call it a second time =
+to make it work properly.<br><br>After noticing this, I tried to compare th=
+ese .service files with the ones provide by other distros and tried to make=
+ some changes on it but I<br>wasn&#39;t successful.<br><br>I know this is n=
+ot a big problem, but making two calls for &#39;systemctl start&#39; seems =
+not to be the ideal behavior and I&#39;d like to fix this. Does anyone know=
+<br>how to make it work properly? I&#39;m currently using the recipe provid=
+ed by Krogoth 2.1.1.<br><br>Some information:<br><br>After a reboot and usi=
+ng &#39;systemctl start nfs-server.service&#39;, I get the following messag=
+es using &#39;journalctl -e&#39;:<br><br>Oct 04 16:53:09 novoom systemd[1]:=
+ Starting RPC Bind Service...<br>Oct 04 16:53:10 novoom rpcbind[804]: canno=
+t create socket for udp6<br>Oct 04 16:53:10 novoom rpcbind[804]: cannot cre=
+ate socket for tcp6<br>Oct 04 16:53:10 novoom systemd[1]: Started RPC Bind =
+Service.<br>Oct 04 16:53:10 novoom systemd[1]: Starting NFS Server...<br>Oc=
+t 04 16:53:10 novoom rpc.nfsd[814]: rpc.nfsd: address family AF_INET6 not s=
+upported by protocol TCP<br>Oct 04 16:53:10 novoom rpc.nfsd[814]: rpc.nfsd:=
+ unable to set any sockets for nfsd<br>Oct 04 16:53:10 novoom systemd[1]: n=
+fs-server.service: Main process exited, code=3Dexited, status=3D1/FAILURE<b=
+r>Oct 04 16:53:10 novoom systemd[1]: Failed to start NFS Server.<br>Oct 04 =
+16:53:10 novoom systemd[1]: Dependency failed for NFS Mount Daemon.<br>Oct =
+04 16:53:10 novoom systemd[1]: nfs-mountd.service: Job nfs-mountd.service/s=
+tart failed with result &#39;dependency&#39;.<br>Oct 04 16:53:10 novoom sys=
+temd[1]: nfs-server.service: Unit entered failed state.<br>Oct 04 16:53:10 =
+novoom systemd[1]: nfs-server.service: Failed with result &#39;exit-code&#3=
+9;.<br>Oct 04 16:53:10 novoom root[826]: root()=3D[=C2=A0=C2=A0 69=C2=A0 sy=
+stemctl start nfs-server.service]<br><br>After the second time:<br><br>Oct =
+04 16:55:40 novoom systemd[1]: Starting NFS Server...<br>Oct 04 16:55:40 no=
+voom kernel: NFSD: Using /var/lib/nfs/v4recovery as the NFSv4 state recover=
+y directory<br>Oct 04 16:55:40 novoom kernel: NFSD: starting 90-second grac=
+e period (net c193d200)<br>Oct 04 16:55:40 novoom systemd[1]: Started NFS S=
+erver.<br>Oct 04 16:55:40 novoom systemd[1]: Started NFS Mount Daemon.<br>O=
+ct 04 16:55:40 novoom root[1974]: root()=3D[=C2=A0=C2=A0 74=C2=A0 systemctl=
+ start nfs-server.service]<br>Oct 04 16:55:40 novoom rpc.mountd[1970]: rpc.=
+mountd: svc_tli_create: could not open connection for udp6<br>Oct 04 16:55:=
+40 novoom rpc.mountd[1970]: rpc.mountd: svc_tli_create: could not open conn=
+ection for tcp6<br>Oct 04 16:55:40 novoom rpc.mountd[1970]: rpc.mountd: svc=
+_tli_create: could not open connection for udp6<br>Oct 04 16:55:40 novoom r=
+pc.mountd[1970]: rpc.mountd: svc_tli_create: could not open connection for =
+tcp6<br>Oct 04 16:55:40 novoom rpc.mountd[1970]: rpc.mountd: svc_tli_create=
+: could not open connection for udp6<br>Oct 04 16:55:40 novoom rpc.mountd[1=
+970]: rpc.mountd: svc_tli_create: could not open connection for tcp6<br>Oct=
+ 04 16:55:40 novoom rpc.mountd[1970]: Version 1.3.3 starting<br>Oct 04 16:5=
+5:40 novoom rpc.mountd[1970]: rpc.mountd: Version 1.3.3 starting<br><br>Che=
+ers,<br>Pedro<br></div>
+
+--001a114e346aa9ddc9053e0d04a5--
