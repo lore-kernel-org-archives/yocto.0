@@ -1,37 +1,72 @@
-Return-Path: <anibal.limon@linux.intel.com>
+Return-Path: <twoerner@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7B0ECE0044F; Wed,  5 Oct 2016 07:59:01 -0700 (PDT)
+	id 81CCBE00724; Wed,  5 Oct 2016 08:00:53 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,BODY_URI_ONLY
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (twoerner[at]gmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 1.0 BODY_URI_ONLY Message body is only a URI in one line of text or
-	for *      an image
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 327E5E0034A
-	for <yocto@yoctoproject.org>; Wed,  5 Oct 2016 07:58:59 -0700 (PDT)
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-	by fmsmga105.fm.intel.com with ESMTP; 05 Oct 2016 07:58:57 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.31,449,1473145200"; 
-	d="asc'?scan'208";a="16933881"
-Received: from alimonb-mobl1.zpn.intel.com (HELO [10.219.5.33]) ([10.219.5.33])
-	by orsmga004.jf.intel.com with ESMTP; 05 Oct 2016 07:58:57 -0700
-To: Monserrat Sedeno <monserratx.sedeno.bustos@intel.com>,
-	yocto@yoctoproject.org
-References: <1475267391-19357-1-git-send-email-monserratx.sedeno.bustos@intel.com>
-From: =?UTF-8?B?QW7DrWJhbCBMaW3Ds24=?= <anibal.limon@linux.intel.com>
-Message-ID: <57F5156A.6050900@linux.intel.com>
-Date: Wed, 5 Oct 2016 09:59:54 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.3.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.214.45 listed in list.dnswl.org]
+Received: from mail-it0-f45.google.com (mail-it0-f45.google.com
+	[209.85.214.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4CB33E00724
+	for <yocto@yoctoproject.org>; Wed,  5 Oct 2016 08:00:48 -0700 (PDT)
+Received: by mail-it0-f45.google.com with SMTP id o19so178279009ito.1
+	for <yocto@yoctoproject.org>; Wed, 05 Oct 2016 08:00:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-disposition:in-reply-to:user-agent;
+	bh=sPZLkHyoBx8x/4CfqKRjGXV6U+DJZI40b/SEYryJYeg=;
+	b=rYn9tkcZZZkDEE4lDtJmJDbGwsI7vYmNDL8gAYtTiAlDXXbnxkDFSOnbzUVHe1ltib
+	+LIsptIh5Czzl4qweAcwlInALxg4Wiv0KbZ5QyVVPhsgd6Gr6GNRtV1eATRNvUh5pIEe
+	Ku+XlBffi1wIWXqqE+jLS+cV1RiB9CJfbhr3hCsaPWTB/gwJBy1GRQzUXRRPurWTrkap
+	P9cwV84Qi0jY90oorM5vl/3S6KRkojbkjq3s8iZaqEgboZ6k3g3rhgaLk9DOpXEdpgEQ
+	U/7rugKc4E1Kp9/6VoaYO8NlsCmoEiRfLIgdIg2e1tlL1QtDg5SP07F1j/JNM838dL1E
+	XwfA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	:mime-version:content-disposition:in-reply-to:user-agent;
+	bh=sPZLkHyoBx8x/4CfqKRjGXV6U+DJZI40b/SEYryJYeg=;
+	b=B0twbXPqYqHQCxGAYFp81Tnl/Qm5Erx5CEUiiZKFJKPdOXm99YdLjJiUYocrsACoiR
+	3uGZz1VJrBOZNu5kr0gh2xUmUDGuNsabnDSMGawD/SWQpJ+Y9rQpiW2OfoS6pAsTine8
+	lKlsBckVzQJj+kEITKb8tOgAAk3BACQLOKfqRKmPDYyMqbw1JPEgm0M3StlGDDgLdus7
+	ct0SvBJflFzheLC7NQbnXz27a8WU/SgDjd40/JQMuAAB61q03VtSjxEjiK50pGmwlDdi
+	HYcBHWx1q1Gekb7Wx1Z9eRqY4so5RZAFCHL9FpCe40YFu69FxlOAUTJ/Rf8KILRw5b7X
+	Pggw==
+X-Gm-Message-State: AA6/9Rmr0xWCz2zPefYBq8/14zQn56ayC9V13ZzmbGt1pSLvh7ZgxxS0L9N7gZTS5yjmYQ==
+X-Received: by 10.107.176.197 with SMTP id z188mr9945226ioe.133.1475679648157; 
+	Wed, 05 Oct 2016 08:00:48 -0700 (PDT)
+Received: from openSUSE-i7.site (107-179-141-56.cpe.teksavvy.com.
+	[107.179.141.56]) by smtp.gmail.com with ESMTPSA id
+	w143sm8394746itc.7.2016.10.05.08.00.46
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Wed, 05 Oct 2016 08:00:46 -0700 (PDT)
+Date: Wed, 5 Oct 2016 11:00:44 -0400
+From: Trevor Woerner <twoerner@gmail.com>
+To: Jonathan Liu <net147@gmail.com>
+Message-ID: <20161005150044.GA18711@openSUSE-i7.site>
+References: <20160913020611.9265-1-net147@gmail.com>
+	<20160916172859.GA27043@resin>
+	<CAHUNapRt_6puKt9Pfj1Km-RHxJgqJ94XfYjKZUDkDHMRrDhCAQ@mail.gmail.com>
+	<CANwerB1SA6=J2D+NKazpAScs5kymU4WJoADtc6ios=ywgwkk5Q@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <1475267391-19357-1-git-send-email-monserratx.sedeno.bustos@intel.com>
-Cc: joshua.g.lock@intel.com
-Subject: Re: [[yocto-autobuilder][PATCHv2]] Build sets to test new OS distribution in autobuilder
+In-Reply-To: <CANwerB1SA6=J2D+NKazpAScs5kymU4WJoADtc6ios=ywgwkk5Q@mail.gmail.com>
+User-Agent: Mutt/1.6.0 (2016-04-01)
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi][PATCH] sdcard_image-rpi.bbclass: remove redundant IMAGEDATESTAMP
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,87 +78,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Oct 2016 14:59:01 -0000
-X-Groupsio-MsgNum: 32209
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature";
-	boundary="h4iPx35n3wesOr4ieOQVmEMggHSoAMr7u"
+X-List-Received-Date: Wed, 05 Oct 2016 15:00:53 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 
---h4iPx35n3wesOr4ieOQVmEMggHSoAMr7u
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: quoted-printable
+On Wed 2016-10-05 @ 11:01:15 AM, Jonathan Liu wrote:
+> See if the following helps:
+> bitbake -c cleanall core-image-minimal && bitbake core-image-minimal
 
+Odd. I had started this email to say that this wasn't working (since this is
+exactly what I had tried a couple times over the last several days) and I find
+I can't reproduce the issue.
 
+I was able to reproduce the issue a couple times earlier today, but to write
+this email I updates all repositories. There was no change (since yesterday)
+to meta-raspberrypi but openembedded-core had updates, and some of those
+updates required an update to bitbake. Now everything seems to work.
 
-On 09/30/2016 03:29 PM, Monserrat Sedeno wrote:
-> As part of the process to set new OS distribution as supported on Yocto=
-c Project
-> a new patch was created with the list of build sets that should be exec=
-uted.
->=20
-> Detailed information:
-> https://wiki.yoctoproject.org/wiki/Distro_Testing_Plan#Execute_Build_Se=
-ts
->=20
-> Fixes [YOCTO #9905]
->=20
-> Note:In order to add a new distro as supported all the build sets shoul=
-d be PASS
->=20
-> Signed-off-by: Monserrat Sedeno <monserratx.sedeno.bustos@intel.com>
-Acked-by: An=EDbal Lim=F3n <anibal.limon@linux.intel.com>
-> ---
->  buildset-config.autobuilder-qa/nightly-qa-distro.conf | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->=20
-> diff --git a/buildset-config.autobuilder-qa/nightly-qa-distro.conf b/bu=
-ildset-config.autobuilder-qa/nightly-qa-distro.conf
-> index 0fcdbef..6c02a91 100644
-> --- a/buildset-config.autobuilder-qa/nightly-qa-distro.conf
-> +++ b/buildset-config.autobuilder-qa/nightly-qa-distro.conf
-> @@ -25,7 +25,6 @@ steps: [{'SetDest':{}},
->  		           	'nightly-deb': {},
->                             	'nightly-ipk': {},
->                            	'nightly-world': {},=20
-> -			   	'buildtools': {},
->                             	'nightly-arm': {},=20
->                             	'nightly-mips': {},
->                             	'nightly-wic':{},
-> @@ -37,8 +36,9 @@ steps: [{'SetDest':{}},
->                             	'nightly-qa-systemd': {},
->                             	'nightly-qa-extras': {},=20
->                             	'nightly-qa-targetbuilds': {},
-> -				'nightly-qa-skeleton': {}},
-> +				'nightly-qa-skeleton': {},
->                             	'nightly-qa-logrotate': {},=20
->                             	'nightly-qa-pam': {},
-> +				'buildtools': {}},
->                             'schedulerNames_nowait': {}}},]
-> =20
->=20
+I'll keep an eye on it ;-)
 
+Thanks and best regards,
+	Trevor
 
---h4iPx35n3wesOr4ieOQVmEMggHSoAMr7u
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2
-
-iQIcBAEBAgAGBQJX9RVtAAoJEGJqcE9h3glgrcUP/0+F59aCZxOdow8g1DSBG5n8
-8EOqtOIFTPYCOKNtZFF68pckSt6dUDW5MSjzRL4Gudoab83pB1Wr9I+HB4QG1SwM
-oFGuSzawVW4jYKm77h7bF3wFQJkGgOiKv5ELVfeRCwZkZGDVny+8HH7atVw+cNKg
-RsWHBtk8oe+JpGqn3jKzB17GizheS96A1mJzFD9HoOtwGKgX0CkJBoCEvbmrV/yX
-/AtYtAau2cw/F62qfTMapRxtkY6jYqXy0gSw8RlMRIsOC5Kfs9TDGLgcAoZrLSKz
-4WvCLMgGlb7xEN3iGYnp99IeEfp7xndOikl/XBrW+DY+DeufgDZBU5uhz9coLp3o
-ohLLkkr1/EfGWaTz4ffLz/DKip60tAh4BHzt5DQPUrstpA03+mDUwwU4DYzynza9
-URz3Qo8X965OKF3lmOJzrAGdFYUO6HZtbUBIrj3oXTu5dAEvMxL/mo/95kEWN+MT
-92bzWpCABs8/6p65Zivy5dhDoqT3lpX+vO+XWFmU54X9igEsPOP4GXAoTgFGto6F
-naBcrnYXhZoGctm7JNexa60kRFRr0aPcmc49oR5aVNZzf4A+377Ouca8AUbkuk9G
-mZF1PmGrlfwBnjWhjQ6oFNLlzCPYmL853POavNlxkzIwXYy7RmV/jYm5xVzop6PN
-l9S10kcSVZDvvmzlnOM/
-=S8hA
------END PGP SIGNATURE-----
-
---h4iPx35n3wesOr4ieOQVmEMggHSoAMr7u--
