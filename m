@@ -1,37 +1,43 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <adrian.ratiu@ni.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 82AACE00A85; Tue,  4 Oct 2016 23:55:16 -0700 (PDT)
+	id 757C1E00C1C; Wed,  5 Oct 2016 06:49:35 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [130.164.80.23 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3A615E00A30
-	for <yocto@yoctoproject.org>; Tue,  4 Oct 2016 23:55:13 -0700 (PDT)
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-	by fmsmga105.fm.intel.com with ESMTP; 04 Oct 2016 23:55:13 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.31,447,1473145200"; d="scan'208";a="886867962"
-Received: from hle6-mobl.ccr.corp.intel.com (HELO
-	peggleto-mobl.ger.corp.intel.com) ([10.255.185.42])
-	by orsmga003.jf.intel.com with ESMTP; 04 Oct 2016 23:55:11 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: "Dinh Nguyen (dinhn)" <dinhn@cisco.com>
-Date: Wed, 05 Oct 2016 19:55:09 +1300
-Message-ID: <1722958.a5vgrEO2cN@peggleto-mobl.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.14.10 (Linux/4.7.5-100.fc23.x86_64; KDE/4.14.20; x86_64; ;
-	)
-In-Reply-To: <4EBFFDF8-32F2-48C0-A456-DB9A9A4D3841@cisco.com>
-References: <D6696459-1F17-4F52-8D0A-4ED8C3FC35EE@cisco.com>
-	<15215572.tG9QIyjkit@peggleto-mobl.ger.corp.intel.com>
-	<4EBFFDF8-32F2-48C0-A456-DB9A9A4D3841@cisco.com>
-MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Question: xxxx listed in PACKAGES multiple times, this leads to packaging errors
+X-Greylist: delayed 2956 seconds by postgrey-1.32 at yocto-www;
+	Wed, 05 Oct 2016 06:49:32 PDT
+Received: from ni.com (skprod2.natinst.com [130.164.80.23])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 100FAE00BFF
+	for <yocto@yoctoproject.org>; Wed,  5 Oct 2016 06:49:32 -0700 (PDT)
+Received: from us-aus-mgwout2.amer.corp.natinst.com (nb-snip2-1338.natinst.com
+	[130.164.19.135])
+	by us-aus-skprod2.natinst.com (8.15.0.59/8.15.0.59) with ESMTP id
+	u95CxwQH012076; Wed, 5 Oct 2016 07:59:58 -0500
+Received: from adi-pc-linux.natinst.com ([130.164.14.198])
+	by us-aus-mgwout2.amer.corp.natinst.com (Lotus Domino Release 8.5.3FP6
+	HF1218) with ESMTP id 2016100507595798-618167 ;
+	Wed, 5 Oct 2016 07:59:57 -0500 
+From: Ioan-Adrian Ratiu <adrian.ratiu@ni.com>
+To: yocto@yoctoproject.org
+Date: Wed, 5 Oct 2016 15:58:28 +0300
+Message-Id: <20161005125828.25322-1-adrian.ratiu@ni.com>
+X-Mailer: git-send-email 2.10.0
+X-MIMETrack: Itemize by SMTP Server on US-AUS-MGWOut2/AUS/H/NIC(Release
+	8.5.3FP6 HF1218|December 12, 2014) at 10/05/2016 07:59:58 AM,
+	Serialize by Router on US-AUS-MGWOut2/AUS/H/NIC(Release 8.5.3FP6
+	HF1218|December 12, 2014) at 10/05/2016 07:59:58 AM,
+	Serialize complete at 10/05/2016 07:59:58 AM
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10432:, ,
+	definitions=2016-10-05_05:, , signatures=0
+Subject: [meta-selinux][PATCH] libpcre_%.bbappend: add missing symlink libpcre.so.1
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,112 +49,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Oct 2016 06:55:16 -0000
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+X-List-Received-Date: Wed, 05 Oct 2016 13:49:35 -0000
 
-On Wed, 05 Oct 2016 05:12:27 Dinh Nguyen wrote:
-> Thanks much Paul.
->=20
-> >>>> PACKAGES =3D "${PN}" should work
->=20
-> It solved the early error =E2=80=9C c-mlib listed in PACKAGES multipl=
-e times, this
-> leads to packaging errors=E2=80=9D =E2=80=94 Thanks again.
->=20
->=20
-> But running into other issue. Below is my do_install
->=20
-> do_install () {
-> =09oe_runmake all
-> =09install -d ${D}${libdir}
-> =09install -d ${D}${bindir}
-> =09install -m 0644 ${S}/target/libmlib.so ${D}${libdir}
-> =09install -m 0644 ${S}/target/datamodel_cache ${D}${bindir}
-> =09install -m 0644 ${S}/target/invoke ${D}${bindir}
-> =09install -m 0644 ${S}/target/invoke_b ${D}${bindir}
-> =09install -m 0644 ${S}/target/protocol_infra ${D}${bindir}
-> =09install -m 0644 ${S}/target/publisher ${D}${bindir}
-> =09install -m 0644 ${S}/target/rpc-register ${D}${bindir}
-> =09install -m 0644 ${S}/target/service ${D}${bindir}
-> =09install -m 0644 ${S}/target/subscriber ${D}${bindir}
-> }
->=20
-> PACKAGES =3D "${PN}"
-> FILES_${PN} =3D "/usr/bin/datamodel_cache \
-> =09=09/usr/bin/invoke \
-> =09=09/usr/bin/invoke_b \
-> =09=09/usr/lib/libmlib.so \
-> =09=09/usr/bin/protocol_infra \
-> =09=09/usr/bin/publisher \
-> =09=09/usr/bin/rpc-register \
-> =09=09/usr/bin/service \
-> =09=09/usr/bin/subscriber"
->=20
->=20
->=20
-> And under ${S}/target, it has the libmlib.so and other binaries built=
-,
-> And I intended to copy the .so to ${D}${libdir} and binarires to
-> ${D}${bindir}. I am able to build the c-mlib package as shown below:
-=20
-> dinhn@rs-bldsrv:/media/raghuram/data/dinhn/ioxDevLatest/ioxsdk/yp$ fi=
-nd
-> tmp/deploy | grep c-mlib
-> tmp/deploy/ipk/core2-64/c-mlib_1.1-r0_core2-64.ipk
->=20
->=20
-> The problem is that, after "bitbake c-mlib=E2=80=9D, it moved all sou=
-rces under ${S}
-> to /usr/src/debug etc..=20
-> I googled but unable to find the root cause.
-> Would you and other can help to identify the issue?=20
-> NOTE: Executing RunQueue Tasks
-> ERROR: QA Issue: c-mlib: Files/directories were installed but not shi=
-pped
->   /usr/src
->   /usr/lib/.debug
->   /usr/lib/.debug/libmlib.so
->   /usr/src/debug
->   /usr/src/debug/c-mlib
->   /usr/src/debug/c-mlib/1.1-r0
->   /usr/src/debug/c-mlib/1.1-r0/git
->   /usr/src/debug/c-mlib/1.1-r0/git/src
->   /usr/src/debug/c-mlib/1.1-r0/git/include
->   /usr/src/debug/c-mlib/1.1-r0/git/deps
->   /usr/src/debug/c-mlib/1.1-r0/git/src/mlib_api.c
->   /usr/src/debug/c-mlib/1.1-r0/git/src/mlib_metrics.c
->   /usr/src/debug/c-mlib/1.1-r0/git/src/mlib_util.c
->   /usr/src/debug/c-mlib/1.1-r0/git/src/mlib_local_metrics.c
->   /usr/src/debug/c-mlib/1.1-r0/git/src/dslink_bindings
->   /usr/src/debug/c-mlib/1.1-r0/git/src/utils
->   /usr/src/debug/c-mlib/1.1-r0/git/src/service_sdk
->   /usr/src/debug/c-mlib/1.1-r0/git/src/dslink_bindings/mlib_service_c=
-ache.c
-> /usr/src/debug/c-mlib/1.1-r0/git/src/dslink_bindings/mlib_wrapper.c
-> /usr/src/debug/c-mlib/1.1-r0/git/src/dslink_bindings/mlib_dsa.c
-> /usr/src/debug/c-mlib/1.1-r0/git/src/dslink_bindings/include
-> =E2=80=A6.
+This bbappend moves sysroot lib libpcre.so.x.x.x from /usr/lib to /lib
+and symlinks /usr/lib/libpcre.so to ../../lib/libpcre.so.x.x.x, but this
+causes certain recipes dependent on libpcre (like pango) to fail because
+they also expect libpcre.so.1 to exist which this recipe omits to create.
 
-This is what I suspected would happen - these files would normally be p=
-art of=20
-the ${PN}-dbg package, but since you've removed that from PACKAGES, the=
-y are=20
-ending up unpackaged and that is not allowed.
+(the reason why the lib is moved in the first place is to avoid a QA issue
+because there's a risk for /usr to be on another partition)
 
-Like the other responder I would suggest you not set PACKAGES - instead=
- you=20
-just need to take steps so that the .so file doesn't end up in the ${PN=
-}-dev=20
-package. You could do something like this:
+Signed-off-by: Ioan-Adrian Ratiu <adrian.ratiu@ni.com>
+---
+ recipes-support/libpcre/libpcre_%.bbappend | 1 +
+ 1 file changed, 1 insertion(+)
 
-FILES_${PN}-dev =3D "${includedir}"
+diff --git a/recipes-support/libpcre/libpcre_%.bbappend b/recipes-support/libpcre/libpcre_%.bbappend
+index 9131f8d..ad18d61 100644
+--- a/recipes-support/libpcre/libpcre_%.bbappend
++++ b/recipes-support/libpcre/libpcre_%.bbappend
+@@ -7,6 +7,7 @@ do_install_append () {
+ 		mv -f ${D}${libdir}/libpcre.so.* ${D}${base_libdir}/
+ 		relpath=${@os.path.relpath("${base_libdir}", "${libdir}")}
+ 		ln -sf ${relpath}/${realsofile} ${D}${libdir}/libpcre.so
++		ln -sf ${relpath}/${realsofile} ${D}${libdir}/libpcre.so.1
+ 	fi
+ }
+ 
+-- 
+2.10.0
 
-Cheers,
-Paul
-
---=20
-
-Paul Eggleton
-Intel Open Source Technology Centre
 
