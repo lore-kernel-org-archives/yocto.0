@@ -1,14 +1,17 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <dinhn@cisco.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 26940E00953; Wed,  5 Oct 2016 08:56:35 -0700 (PDT)
+	id 22561E006E9; Wed,  5 Oct 2016 09:06:34 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
+X-Spam-Status: No, score=-14.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_HI,
+	USER_IN_DEF_DKIM_WL autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -7.5 USER_IN_DEF_DKIM_WL From: address is in the default
+	DKIM white-list
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [173.37.142.89 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -16,50 +19,60 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.213.65 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.213.65 listed in dnsbl.sorbs.net]
-Received: from mail-vk0-f65.google.com (mail-vk0-f65.google.com
-	[209.85.213.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CF02AE0043B
-	for <yocto@yoctoproject.org>; Wed,  5 Oct 2016 08:56:31 -0700 (PDT)
-Received: by mail-vk0-f65.google.com with SMTP id 2so4181404vkb.1
-	for <yocto@yoctoproject.org>; Wed, 05 Oct 2016 08:56:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=F2EfW25vTxa0peRZThnvg3NEAqtF3/7WoedhVjCqmXM=;
-	b=oM5YQDLMTUuVW4nAMyCsLI58FkWaJ5X62FElHDM+vN93j4aKxegyjy+FCLLN015ykW
-	jWZ/0GzD/PT7/YY9tzQ+9RkECLStfg7xx0fk5wpaki/bB8z0XC7dDrUx/vk0ahPmLm/f
-	ttAdKEKxpSvcS8d4pD68OOaOu15LO3e07Ru7TBaGTdTKnbmsfzy6UjNUIBY/axRnyMui
-	3zR26lkSZZtomXHoaCbTrZ6eqw6xEqpb6UK3TJgRjvzTNNf1a2IfTbXp9duxAzQnIIxu
-	/wRIt1xYxcZcHLa70CfVwPDQqwFdNQEtHOgxUdQjdVN+YEW4xXxrePZfVzSNG1iVx0g4
-	sh3g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=F2EfW25vTxa0peRZThnvg3NEAqtF3/7WoedhVjCqmXM=;
-	b=hO1srS7DXCqvReFjZRw9rZEz+Yufb4Ius8l72J9LR+W9HQ9gtTOsI1O9ufxU4/l+eC
-	i5Cx7tlrEtILj++0uItIVCfpPUthnF9LdFPvfjYuT71534CAw98YnleAh+tAuztEMY+6
-	T8ibpKvA6/CzrkiwW2UkKuUzLYfOIQfiqxOlxn812uGUv7rWi4vP0yiCvUpJbrTSSkqn
-	c+oDHhe00vX8jHJIsFBCT6LFS9AfL+YPC1w0ApnFfGjEaIIbWCjacpYIOUc+EHPflvjD
-	HDGYzYMb3NC/lZFOVzTV9xOibI0EpYvaShnzSWpeyd9juB0pQ7h85egO+uYVMp+39PUS
-	isdg==
-X-Gm-Message-State: AA6/9Rllu3CQizhows/CH/vfooyX36mt2VNHeWAqh6pZNCwhvHOIpuO/eqJRsZI3i9Mqw8DHZK9xWjneIDUDeA==
-X-Received: by 10.31.180.132 with SMTP id d126mr3496899vkf.139.1475682990779; 
-	Wed, 05 Oct 2016 08:56:30 -0700 (PDT)
+Received: from alln-iport-2.cisco.com (alln-iport-2.cisco.com [173.37.142.89])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9D50BE00547
+	for <yocto@yoctoproject.org>; Wed,  5 Oct 2016 09:06:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+	d=cisco.com; i=@cisco.com; l=10218; q=dns/txt;
+	s=iport; t=1475683590; x=1476893190;
+	h=from:to:cc:subject:date:message-id:references:
+	in-reply-to:content-id:content-transfer-encoding: mime-version;
+	bh=CSH8qTGvGhFYTIiMWtS8jK9Nsl8Ek63XMo2flM27VrI=;
+	b=FlfhE6VmavTWnf6YKr7FeEHjzT6mOHwlQZ1GFq8+my+f86mg/uR/Wn5T
+	rU7pd5ieRELWeQe5rCsSglCDAYXQcJIeiYiyoqsoTMFzbgEbIIAQi71IH
+	NRvA3x6+mzK9igdMGHq1mg8N1PbuDM7i9xXvCNhEIiUqoaZkijqtpKJci E=;
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A0B0AQDZI/VX/5FdJa1SChoBAQEBAgEBA?=
+	=?us-ascii?q?QEIAQEBAYM9AQEBAQEeV3wHjSuWfpIbgg+CCR6GAgIcgVY4FAECAQEBAQEBAV4?=
+	=?us-ascii?q?nhGIBAQQjEUUQAgEGAhgCAiYCAgIwFRACBA4FiE6PWZ0xjGABAQEBAQEBAQEBA?=
+	=?us-ascii?q?QEBAQEBAQEBH4EHhTWBfQiBS4EFhBkGCgIBGxeCbSuCLwWON4tDAYYmiVCBbk6?=
+	=?us-ascii?q?EGIkfjHODfQEeNkuCaxwZgTlyAYc1gQABAQE?=
+X-IronPort-AV: E=Sophos;i="5.31,449,1473120000"; d="scan'208";a="330590807"
+Received: from rcdn-core-9.cisco.com ([173.37.93.145])
+	by alln-iport-2.cisco.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	05 Oct 2016 16:06:27 +0000
+Received: from XCH-RTP-001.cisco.com (xch-rtp-001.cisco.com [64.101.220.141])
+	by rcdn-core-9.cisco.com (8.14.5/8.14.5) with ESMTP id u95G6Qbw003647
+	(version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=FAIL);
+	Wed, 5 Oct 2016 16:06:26 GMT
+Received: from xch-rtp-002.cisco.com (64.101.220.142) by XCH-RTP-001.cisco.com
+	(64.101.220.141) with Microsoft SMTP Server (TLS) id 15.0.1210.3;
+	Wed, 5 Oct 2016 12:06:26 -0400
+Received: from xch-rtp-002.cisco.com ([64.101.220.142]) by
+	XCH-RTP-002.cisco.com ([64.101.220.142]) with mapi id 15.00.1210.000;
+	Wed, 5 Oct 2016 12:06:26 -0400
+From: "Dinh Nguyen (dinhn)" <dinhn@cisco.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Thread-Topic: [yocto] Question: xxxx listed in PACKAGES multiple times, this
+	leads to packaging errors
+Thread-Index: AQHSHll65OzpqDQ8KUqWgZf+kZeSr6CY76UA//+R1QCAAHifgIAAJRiAgACR/ICAACS/AA==
+Date: Wed, 5 Oct 2016 16:06:25 +0000
+Message-ID: <894BCA8B-9CE0-4B9E-9538-ED1B710627E8@cisco.com>
+References: <D6696459-1F17-4F52-8D0A-4ED8C3FC35EE@cisco.com>
+	<15215572.tG9QIyjkit@peggleto-mobl.ger.corp.intel.com>
+	<4EBFFDF8-32F2-48C0-A456-DB9A9A4D3841@cisco.com>
+	<1722958.a5vgrEO2cN@peggleto-mobl.ger.corp.intel.com>
+In-Reply-To: <1722958.a5vgrEO2cN@peggleto-mobl.ger.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Microsoft-MacOutlook/f.15.1.160411
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.24.33.250]
 MIME-Version: 1.0
-Received: by 10.176.86.206 with HTTP; Wed, 5 Oct 2016 08:56:00 -0700 (PDT)
-In-Reply-To: <39b967af-15c1-dd18-4490-92594aadf6fe@rogue-research.com>
-References: <39b967af-15c1-dd18-4490-92594aadf6fe@rogue-research.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Wed, 5 Oct 2016 08:56:00 -0700
-Message-ID: <CAMKF1spJNdbFs4FL_cJ_+rDHkHwSywouiwZYXuTbZaEadn-_ZQ@mail.gmail.com>
-To: Nicolas Bigaouette <nbigaouette@rogue-research.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Splitting a recipe into two for two kind of compilation
+Subject: Re: Question: xxxx listed in PACKAGES multiple times, this leads to packaging errors
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,102 +84,141 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Oct 2016 15:56:35 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 05 Oct 2016 16:06:34 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <5EF1B483C211774AB7553FD7D1841825@emea.cisco.com>
+Content-Transfer-Encoding: base64
 
-On Wed, Oct 5, 2016 at 7:20 AM, Nicolas Bigaouette
-<nbigaouette@rogue-research.com> wrote:
-> Hi all!
->
-> I have an issue when trying to build two different images using conflicting
-> packages.
->
-> I need to package an application of mine (built using cmake) for our Yocto
-> deployment. The recipe is already written and works well, except that I now
-> need to build two different versions of that code.
->
-> The code gets compiled to two different binaries (using `#ifdef`) depending
-> on the cmake variable.
->
-> Right now I can select which code path is compiled by adding either
-> `EXTRA_OECMAKE += " -DCMAKE_BUILD_TYPE=Debug"` or EXTRA_OECMAKE += "
-> -DCMAKE_BUILD_TYPE=Release" to my recipe.
->
-> I believe I need a second recipe for a second package. I thus moved
-> everything that is common to an `.inc` file and created two new recipes that
-> `require` that new include file. The two new recipes have a suffix to
-> identify which code path was compiled in (`mypackage-release` and
-> `mypackage-debug`). I also added an `RCONFLICTS_${PN}` line to both recipes
-> to indicate conflict with the one another.
->
-> I can now build both packages using bitbake, but I cannot build two images
-> (say `myimage-release` and `myimage-debug`) that will include only one of
-> the package. I want `myimage-release` to include `mypackage-release` and
-> `myimage-debug` should include `mypackage-debug` but I get conflicts between
-> the two packages in the sysroot. Here's the log:
->
->> ERROR: The recipe mypackage-release is trying to install files into a
->> shared area when those files already exist. Those files and their manifest
->> location are:
->> /cache/tmp/sysroots/intel-corei7-64/lib/systemd/system/mypackage.service
->>  Matched in manifest-intel-corei7-64-mypackage-debug.populate_sysroot
->> Please verify which recipe should provide the above files.
->> The build has stopped as continuing in this scenario WILL break things, if
->> not now, possibly in the future (we've seen builds fail several months
->> later). If the system knew how to recover from this automatically it would
->> however there are several different scenarios which can result in this and
->> we don't know which one this is. It may be you have switched providers of
->> something like virtual/kernel (e.g. from linux-yocto to linux-yocto-dev), in
->> that case you need to execute the clean task for both recipes and it will
->> resolve this error. It may be you changed DISTRO_FEATURES from systemd to
->> udev or vice versa. Cleaning those recipes should again resolve this error
->> however switching DISTRO_FEATURES on an existing build directory is not
->> supported, you should really clean out tmp and rebuild (reusing sstate
->> should be safe). It could be the overlapping files detected are harmless in
->> which case adding them to SSTATE_DUPWHITELIST may be the correct solution.
->> It could also be your build is including two different conflicting versions
->> of things (e.g. bluez 4 and bluez 5 and the correct solution for that would
->> be to resolve the conflict. If in doubt, please ask on the mailing list,
->> sharing the error and filelist above.
->> ERROR: If the above message is too much, the simpler version is you're
->> advised to wipe out tmp and rebuild (reusing sstate is fine). That will
->> likely fix things in most (but not all) cases.
->> ERROR: Function failed: sstate_task_postfunc
->> ERROR: Logfile of failure stored in:
->> /cache/tmp/work/corei7-64-poky-linux/mypackage-release/1.4.99+gitAUTOINC+b34a28e86d+master-r0/temp/log.do_populate_sysroot.14559
->> NOTE: recipe mypackage-release-1.4.99+gitAUTOINC+b34a28e86d+master-r0:
->> task do_populate_sysroot: Failed
->> ERROR: Task 810
->> (/builds/yocto/poky/../meta-proj/recipes-proj/mypackage/mypackage-release_git.bb,
->> do_populate_sysroot) failed with exit code '1'
->
->
->
-> Am I approaching the problem the right way? Is doing what I do the proper
-> way to achieve what I want?
->
-
-There are couple of ways you can look at it. There is global flag DEBUG_BUILD
-to generate debuggable images. So you could utilize that flag in a single recipe
-to control enabling/disabling debugging features of your app. This
-will give better debugability to devs as well since you will have
-other packages with debug friendly information.
-
-Taking the approach you have described would work too, you have to ensure
-that two recipes i.e. debug and release dont provide same PACKAGES
-otherwise they end up with conflicts.
-
-The issue you are seeing is because of a file which is being installed
-into sysroot by both packages. so may be adding it to
-SSTATE_DUPWHITELIST would be fine here. just add it to
-SSTATE_DUPWHITELIST in recipe.
-
-> NOTE: I build the image using `bitbake myimage-release myimage-debug`.
->
-> Thank you!
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+TWFueSB0aGFua3MgUGF1bC4gWW91ciBoZWxwIGlzIGdyZWF0bHkgYXBwcmVjaWF0ZWQuDQoNCjEu
+ID4+PiBMaWtlIHRoZSBvdGhlciByZXNwb25kZXIgSSB3b3VsZCBzdWdnZXN0IHlvdSBub3Qgc2V0
+IFBBQ0tBR0VTDQoNClllcywgSSBkaWQgbm90IHNldCB0aGUgUEFDS0FHRVMsIHNvIC1kZXYsIC1k
+YmcgYW5kIG1haW4gcGFja2FnZXMgd2VyZSBidWlsdCBhcyBzaG93biBiZWxvdzoNCg0KZGluaG5A
+cnMtYmxkc3J2Oi9tZWRpYS9yYWdodXJhbS9kYXRhL2RpbmhuL2lveERldkxhdGVzdC9pb3hzZGsv
+eXAkIGZpbmQgdG1wL2RlcGxveSB8IGdyZXAgYy1tbGlidG1wL2RlcGxveS9pcGsvY29yZTItNjQv
+Yy1tbGliLWRiZ18xLjEtcjBfY29yZTItNjQuaXBrDQp0bXAvZGVwbG95L2lway9jb3JlMi02NC9j
+LW1saWItZGV2XzEuMS1yMF9jb3JlMi02NC5pcGsNCnRtcC9kZXBsb3kvaXBrL2NvcmUyLTY0L2Mt
+bWxpYl8xLjEtcjBfY29yZTItNjQuaXBrDQp0bXAvZGVwbG95L2xpY2Vuc2VzL2MtbWxpYg0KDQoy
+LiA+Pj4gRklMRVNfJHtQTn0tZGV2ID0gIiR7aW5jbHVkZWRpcn3igJ0NCg0KSSBhZGRlZCB0aGF0
+IHRvIC5iYiBhcyB5b3Ugc3VnZ2VzdGVkIHNvIC5zbyBmaWxlIGRvZXNuJ3QgZW5kIHVwIGluIHRo
+ZSAke1BOfS1kZXYNClBhY2thZ2Ug4oCUIE5vIGxvbmdlciBzZWUgdGhlIGVycm9yIG1lbnRpb25l
+ZCBpbiBwcmV2aW91cyBtYWlsLiBUaHgNCg0KMy4gPj4+IFRoaXMgaXMgd2hhdCBJIHN1c3BlY3Rl
+ZCB3b3VsZCBoYXBwZW4gLSB0aGVzZSBmaWxlcyB3b3VsZCBub3JtYWxseSBiZSBwYXJ0IG9mDQp0
+aGUgJHtQTn0tZGJnIHBhY2thZ2UsIGJ1dCBzaW5jZSB5b3UndmUgcmVtb3ZlZCB0aGF0IGZyb20g
+UEFDS0FHRVMsIHRoZXkgYXJlIA0KZW5kaW5nIHVwIHVucGFja2FnZWQgYW5kIHRoYXQgaXMgbm90
+IGFsbG93ZWQuDQoNCkRpZCB5b3UgbWVhbiB0aGUgImluc3RhbGwgLW0gMDY0NCB4eHggeXl54oCd
+IHRvIHJlbW92ZSB0aG9zZSBmaWxlcyBmcm9tIHRoZSBQQUNLQUdFUz8gSG93IGRvIEkgY29weSAu
+c28gYW5kIGJpbmFyaWVzIGZyb20gbXkgdGFyZ2V0IHRvIHRoZSBsaWJkaXIgb3IgYmluZGlyPw0K
+DQpBZnRlciBjaGFuZ2luZyB0aGUgLmJiIHRvIHJlbW92ZSB0aGUgUEFDS0FHRVMgc2V0dGluZyBh
+bmQgRklMRVNfJHtQTn0tZGV2ID0gIiR7aW5jbHVkZWRpcn3igJ0NCkZvciB0aGUgdmVyeSBmaXJz
+dCB0aW1lLCBwYWNrYWdlcyB3ZXJlIGJ1aWx0IGZpbmQsIGltYWdlIHdlcmUgY3JlYXRlZCB1bmRl
+ciBpbWFnZSBkaXJlY3RvcnkgYW5kIGMtbWxpYiBzb3VyY2UgaXMgc3RpbGwgaW4gdGhlIHlwIHdv
+cmtzcGFjZSBhcyBzaG93biBiZWxvdzoNCg0KQS5QYWNrYWdlcyB3ZXJlIGJ1aWx0DQpkaW5obkBy
+cy1ibGRzcnY6L21lZGlhL3JhZ2h1cmFtL2RhdGEvZGluaG4vaW94RGV2TGF0ZXN0L2lveHNkay95
+cCQgZmluZCB0bXAvZGVwbG95IHwgZ3JlcCBjLW1saWINCnRtcC9kZXBsb3kvaXBrL2NvcmUyLTY0
+L2MtbWxpYi1kYmdfMS4xLXIwX2NvcmUyLTY0Lmlwaw0KdG1wL2RlcGxveS9pcGsvY29yZTItNjQv
+Yy1tbGliLWRldl8xLjEtcjBfY29yZTItNjQuaXBrDQp0bXAvZGVwbG95L2lway9jb3JlMi02NC9j
+LW1saWJfMS4xLXIwX2NvcmUyLTY0Lmlwaw0KdG1wL2RlcGxveS9saWNlbnNlcy9jLW1saWINCg0K
+Qi4gU291cmNlIGZpbGVzIGFuZCB0aGUgYy1tbGliIGdpdCBkaXJlY3Rvcnkgc3RpbGwgaGF2ZSBh
+bGwgdGhlIHNvdXJjZXMgKGUuZyBqdXN0IGdyZXAgdGhlIG1saWJfYXBpLmMpIA0KZGluaG5AcnMt
+Ymxkc3J2Oi9tZWRpYS9yYWdodXJhbS9kYXRhL2RpbmhuL2lveERldkxhdGVzdC9pb3hzZGsveXAk
+IGZpbmQgLiAtbmFtZSAibWxpYl9hcGkuYyINCi4vdG1wL3dvcmsvY29yZTItNjQtcG9reS1saW51
+eC9jLW1saWIvMS4xLXIwL2dpdC9zcmMvbWxpYl9hcGkuYw0KLi90bXAvd29yay9jb3JlMi02NC1w
+b2t5LWxpbnV4L2MtbWxpYi8xLjEtcjAvcGFja2FnZXMtc3BsaXQvYy1tbGliLWRiZy91c3Ivc3Jj
+L2RlYnVnL2MtbWxpYi8xLjEtcjAvZ2l0L3NyYy9tbGliX2FwaS5jDQouL3RtcC93b3JrL2NvcmUy
+LTY0LXBva3ktbGludXgvYy1tbGliLzEuMS1yMC9wYWNrYWdlL3Vzci9zcmMvZGVidWcvYy1tbGli
+LzEuMS1yMC9naXQvc3JjL21saWJfYXBpLmMNCmRpbmhuQHJzLWJsZHNydjovbWVkaWEvcmFnaHVy
+YW0vZGF0YS9kaW5obi9pb3hEZXZMYXRlc3QvaW94c2RrL3lwJCANCg0KQy4gSW1hZ2Ugd2FzIGJ1
+aWx0IGFzIHdlbGwgaW5jbHVkaW5nIGJpbmFyaWVzIGFuZCBsaWJtbGliLnNvDQpkaW5obkBycy1i
+bGRzcnY6L21lZGlhL3JhZ2h1cmFtL2RhdGEvZGluaG4vaW94RGV2TGF0ZXN0L2lveHNkay95cC90
+bXAvd29yay9jb3JlMi02NC1wb2t5LWxpbnV4L2MtbWxpYi8xLjEtcjAvaW1hZ2UvdXNyL2JpbiQg
+bHMgLWx0cg0KdG90YWwgMTQyNA0KLXJ3LXItLXItLSAxIGRpbmhuIGRpbmhuIDE3MTcwMSBPY3Qg
+IDUgMDE6MTcgZGF0YW1vZGVsX2NhY2hlDQotcnctci0tci0tIDEgZGluaG4gZGluaG4gMTg3NDM0
+IE9jdCAgNSAwMToxNyBpbnZva2UNCi1ydy1yLS1yLS0gMSBkaW5obiBkaW5obiAxODQ5NjEgT2N0
+ICA1IDAxOjE3IGludm9rZV9iDQotcnctci0tci0tIDEgZGluaG4gZGluaG4gMTcxNzAxIE9jdCAg
+NSAwMToxNyBwcm90b2NvbF9pbmZyYQ0KLXJ3LXItLXItLSAxIGRpbmhuIGRpbmhuIDE5MTM2MiBP
+Y3QgIDUgMDE6MTcgcHVibGlzaGVyDQotcnctci0tci0tIDEgZGluaG4gZGluaG4gMTg3MDg0IE9j
+dCAgNSAwMToxNyBycGMtcmVnaXN0ZXINCi1ydy1yLS1yLS0gMSBkaW5obiBkaW5obiAxNzk2NDgg
+T2N0ICA1IDAxOjE3IHNlcnZpY2UNCi1ydy1yLS1yLS0gMSBkaW5obiBkaW5obiAxNzQ1MTggT2N0
+ICA1IDAxOjE3IHN1YnNjcmliZXINCg0KZGluaG5AcnMtYmxkc3J2Oi9tZWRpYS9yYWdodXJhbS9k
+YXRhL2RpbmhuL2lveERldkxhdGVzdC9pb3hzZGsveXAvdG1wL3dvcmsvY29yZTItNjQtcG9reS1s
+aW51eC9jLW1saWIvMS4xLXIwL2ltYWdlL3Vzci9iaW4kIGNkIC4uL2xpYg0KZGluaG5AcnMtYmxk
+c3J2Oi9tZWRpYS9yYWdodXJhbS9kYXRhL2RpbmhuL2lveERldkxhdGVzdC9pb3hzZGsveXAvdG1w
+L3dvcmsvY29yZTItNjQtcG9reS1saW51eC9jLW1saWIvMS4xLXIwL2ltYWdlL3Vzci9saWIkIGxz
+IC1sdHINCnRvdGFsIDg1Ng0KLXJ3LXItLXItLSAzIGRpbmhuIGRpbmhuIDg3MjY1NyBPY3QgIDUg
+MDE6MTcgbGlibWxpYi5zbw0KDQpTbyBpdCBpcyBhbGwgZ29vZCBmb3IgdGhlIGZpcnN0IHRpbWUs
+IGJ1dCB0aGVyZWFmdGVyIHRoYXQsIGlmIEkgZG8gY2xlYW4g4oCcYml0YmFrZSAtYyBjbGVhbiBj
+LW1saWLigJ0gYW5kIOKAnGJpdGJha2UgYy1tbGli4oCdIGFnYWluLg0KQWxsIHBhY2thZ2VzIHdl
+cmUgYnVpbGQgc3VjY2Vzc2Z1bCwgYnV0IGFsbCBkYXRhIHVuZGVyIGMtbWxpYiBnb3Qgd2FzIGdv
+bmUuIE5vdGhpbmcgdGhlcmUgaW5jbHVkaW5nIC5jL2ggZmlsZXMsIGltYWdlIGRpcmVjdG9yeSBl
+dGMuLi4NCg0KZGluaG5AcnMtYmxkc3J2Oi9tZWRpYS9yYWdodXJhbS9kYXRhL2RpbmhuL2lveERl
+dkxhdGVzdC9pb3hzZGsveXAvdG1wL3dvcmsvY29yZTItNjQtcG9reS1saW51eC9jLW1saWIvMS4x
+LXIwL2dpdCQgbHMgLWx0cg0KdG90YWwgMA0KZGluaG5AcnMtYmxkc3J2Oi9tZWRpYS9yYWdodXJh
+bS9kYXRhL2RpbmhuL2lveERldkxhdGVzdC9pb3hzZGsveXAvdG1wL3dvcmsvY29yZTItNjQtcG9r
+eS1saW51eC9jLW1saWIvMS4xLXIwL2dpdCQgDQoNClBsZWFzZSBnaXZlIG1lIGFuIGlkZWEgd2h5
+IGhvdyB0byBzb2x2ZSB0aGlzPyBTb3JyeSBmb3IgYSBsb25nIGVtYWlsIDstKSkNCg0KQmVzdCwN
+CiAg4oCURGluaCANCg0KDQoNCg0KDQpPbiAxMC80LzE2LCAxMTo1NSBQTSwgIlBhdWwgRWdnbGV0
+b24iIDxwYXVsLmVnZ2xldG9uQGxpbnV4LmludGVsLmNvbT4gd3JvdGU6DQoNCj5PbiBXZWQsIDA1
+IE9jdCAyMDE2IDA1OjEyOjI3IERpbmggTmd1eWVuIHdyb3RlOg0KPj4gVGhhbmtzIG11Y2ggUGF1
+bC4NCj4+IA0KPj4gPj4+PiBQQUNLQUdFUyA9ICIke1BOfSIgc2hvdWxkIHdvcmsNCj4+IA0KPj4g
+SXQgc29sdmVkIHRoZSBlYXJseSBlcnJvciDigJwgYy1tbGliIGxpc3RlZCBpbiBQQUNLQUdFUyBt
+dWx0aXBsZSB0aW1lcywgdGhpcw0KPj4gbGVhZHMgdG8gcGFja2FnaW5nIGVycm9yc+KAnSDigJQg
+VGhhbmtzIGFnYWluLg0KPj4gDQo+PiANCj4+IEJ1dCBydW5uaW5nIGludG8gb3RoZXIgaXNzdWUu
+IEJlbG93IGlzIG15IGRvX2luc3RhbGwNCj4+IA0KPj4gZG9faW5zdGFsbCAoKSB7DQo+PiAJb2Vf
+cnVubWFrZSBhbGwNCj4+IAlpbnN0YWxsIC1kICR7RH0ke2xpYmRpcn0NCj4+IAlpbnN0YWxsIC1k
+ICR7RH0ke2JpbmRpcn0NCj4+IAlpbnN0YWxsIC1tIDA2NDQgJHtTfS90YXJnZXQvbGlibWxpYi5z
+byAke0R9JHtsaWJkaXJ9DQo+PiAJaW5zdGFsbCAtbSAwNjQ0ICR7U30vdGFyZ2V0L2RhdGFtb2Rl
+bF9jYWNoZSAke0R9JHtiaW5kaXJ9DQo+PiAJaW5zdGFsbCAtbSAwNjQ0ICR7U30vdGFyZ2V0L2lu
+dm9rZSAke0R9JHtiaW5kaXJ9DQo+PiAJaW5zdGFsbCAtbSAwNjQ0ICR7U30vdGFyZ2V0L2ludm9r
+ZV9iICR7RH0ke2JpbmRpcn0NCj4+IAlpbnN0YWxsIC1tIDA2NDQgJHtTfS90YXJnZXQvcHJvdG9j
+b2xfaW5mcmEgJHtEfSR7YmluZGlyfQ0KPj4gCWluc3RhbGwgLW0gMDY0NCAke1N9L3RhcmdldC9w
+dWJsaXNoZXIgJHtEfSR7YmluZGlyfQ0KPj4gCWluc3RhbGwgLW0gMDY0NCAke1N9L3RhcmdldC9y
+cGMtcmVnaXN0ZXIgJHtEfSR7YmluZGlyfQ0KPj4gCWluc3RhbGwgLW0gMDY0NCAke1N9L3Rhcmdl
+dC9zZXJ2aWNlICR7RH0ke2JpbmRpcn0NCj4+IAlpbnN0YWxsIC1tIDA2NDQgJHtTfS90YXJnZXQv
+c3Vic2NyaWJlciAke0R9JHtiaW5kaXJ9DQo+PiB9DQo+PiANCj4+IFBBQ0tBR0VTID0gIiR7UE59
+Ig0KPj4gRklMRVNfJHtQTn0gPSAiL3Vzci9iaW4vZGF0YW1vZGVsX2NhY2hlIFwNCj4+IAkJL3Vz
+ci9iaW4vaW52b2tlIFwNCj4+IAkJL3Vzci9iaW4vaW52b2tlX2IgXA0KPj4gCQkvdXNyL2xpYi9s
+aWJtbGliLnNvIFwNCj4+IAkJL3Vzci9iaW4vcHJvdG9jb2xfaW5mcmEgXA0KPj4gCQkvdXNyL2Jp
+bi9wdWJsaXNoZXIgXA0KPj4gCQkvdXNyL2Jpbi9ycGMtcmVnaXN0ZXIgXA0KPj4gCQkvdXNyL2Jp
+bi9zZXJ2aWNlIFwNCj4+IAkJL3Vzci9iaW4vc3Vic2NyaWJlciINCj4+IA0KPj4gDQo+PiANCj4+
+IEFuZCB1bmRlciAke1N9L3RhcmdldCwgaXQgaGFzIHRoZSBsaWJtbGliLnNvIGFuZCBvdGhlciBi
+aW5hcmllcyBidWlsdCwNCj4+IEFuZCBJIGludGVuZGVkIHRvIGNvcHkgdGhlIC5zbyB0byAke0R9
+JHtsaWJkaXJ9IGFuZCBiaW5hcmlyZXMgdG8NCj4+ICR7RH0ke2JpbmRpcn0uIEkgYW0gYWJsZSB0
+byBidWlsZCB0aGUgYy1tbGliIHBhY2thZ2UgYXMgc2hvd24gYmVsb3c6DQo+IA0KPj4gZGluaG5A
+cnMtYmxkc3J2Oi9tZWRpYS9yYWdodXJhbS9kYXRhL2RpbmhuL2lveERldkxhdGVzdC9pb3hzZGsv
+eXAkIGZpbmQNCj4+IHRtcC9kZXBsb3kgfCBncmVwIGMtbWxpYg0KPj4gdG1wL2RlcGxveS9pcGsv
+Y29yZTItNjQvYy1tbGliXzEuMS1yMF9jb3JlMi02NC5pcGsNCj4+IA0KPj4gDQo+PiBUaGUgcHJv
+YmxlbSBpcyB0aGF0LCBhZnRlciAiYml0YmFrZSBjLW1saWLigJ0sIGl0IG1vdmVkIGFsbCBzb3Vy
+Y2VzIHVuZGVyICR7U30NCj4+IHRvIC91c3Ivc3JjL2RlYnVnIGV0Yy4uIA0KPj4gSSBnb29nbGVk
+IGJ1dCB1bmFibGUgdG8gZmluZCB0aGUgcm9vdCBjYXVzZS4NCj4+IFdvdWxkIHlvdSBhbmQgb3Ro
+ZXIgY2FuIGhlbHAgdG8gaWRlbnRpZnkgdGhlIGlzc3VlPyANCj4+IE5PVEU6IEV4ZWN1dGluZyBS
+dW5RdWV1ZSBUYXNrcw0KPj4gRVJST1I6IFFBIElzc3VlOiBjLW1saWI6IEZpbGVzL2RpcmVjdG9y
+aWVzIHdlcmUgaW5zdGFsbGVkIGJ1dCBub3Qgc2hpcHBlZA0KPj4gICAvdXNyL3NyYw0KPj4gICAv
+dXNyL2xpYi8uZGVidWcNCj4+ICAgL3Vzci9saWIvLmRlYnVnL2xpYm1saWIuc28NCj4+ICAgL3Vz
+ci9zcmMvZGVidWcNCj4+ICAgL3Vzci9zcmMvZGVidWcvYy1tbGliDQo+PiAgIC91c3Ivc3JjL2Rl
+YnVnL2MtbWxpYi8xLjEtcjANCj4+ICAgL3Vzci9zcmMvZGVidWcvYy1tbGliLzEuMS1yMC9naXQN
+Cj4+ICAgL3Vzci9zcmMvZGVidWcvYy1tbGliLzEuMS1yMC9naXQvc3JjDQo+PiAgIC91c3Ivc3Jj
+L2RlYnVnL2MtbWxpYi8xLjEtcjAvZ2l0L2luY2x1ZGUNCj4+ICAgL3Vzci9zcmMvZGVidWcvYy1t
+bGliLzEuMS1yMC9naXQvZGVwcw0KPj4gICAvdXNyL3NyYy9kZWJ1Zy9jLW1saWIvMS4xLXIwL2dp
+dC9zcmMvbWxpYl9hcGkuYw0KPj4gICAvdXNyL3NyYy9kZWJ1Zy9jLW1saWIvMS4xLXIwL2dpdC9z
+cmMvbWxpYl9tZXRyaWNzLmMNCj4+ICAgL3Vzci9zcmMvZGVidWcvYy1tbGliLzEuMS1yMC9naXQv
+c3JjL21saWJfdXRpbC5jDQo+PiAgIC91c3Ivc3JjL2RlYnVnL2MtbWxpYi8xLjEtcjAvZ2l0L3Ny
+Yy9tbGliX2xvY2FsX21ldHJpY3MuYw0KPj4gICAvdXNyL3NyYy9kZWJ1Zy9jLW1saWIvMS4xLXIw
+L2dpdC9zcmMvZHNsaW5rX2JpbmRpbmdzDQo+PiAgIC91c3Ivc3JjL2RlYnVnL2MtbWxpYi8xLjEt
+cjAvZ2l0L3NyYy91dGlscw0KPj4gICAvdXNyL3NyYy9kZWJ1Zy9jLW1saWIvMS4xLXIwL2dpdC9z
+cmMvc2VydmljZV9zZGsNCj4+ICAgL3Vzci9zcmMvZGVidWcvYy1tbGliLzEuMS1yMC9naXQvc3Jj
+L2RzbGlua19iaW5kaW5ncy9tbGliX3NlcnZpY2VfY2FjaGUuYw0KPj4gL3Vzci9zcmMvZGVidWcv
+Yy1tbGliLzEuMS1yMC9naXQvc3JjL2RzbGlua19iaW5kaW5ncy9tbGliX3dyYXBwZXIuYw0KPj4g
+L3Vzci9zcmMvZGVidWcvYy1tbGliLzEuMS1yMC9naXQvc3JjL2RzbGlua19iaW5kaW5ncy9tbGli
+X2RzYS5jDQo+PiAvdXNyL3NyYy9kZWJ1Zy9jLW1saWIvMS4xLXIwL2dpdC9zcmMvZHNsaW5rX2Jp
+bmRpbmdzL2luY2x1ZGUNCj4+IOKApi4NCj4NCj5UaGlzIGlzIHdoYXQgSSBzdXNwZWN0ZWQgd291
+bGQgaGFwcGVuIC0gdGhlc2UgZmlsZXMgd291bGQgbm9ybWFsbHkgYmUgcGFydCBvZiANCj50aGUg
+JHtQTn0tZGJnIHBhY2thZ2UsIGJ1dCBzaW5jZSB5b3UndmUgcmVtb3ZlZCB0aGF0IGZyb20gUEFD
+S0FHRVMsIHRoZXkgYXJlIA0KPmVuZGluZyB1cCB1bnBhY2thZ2VkIGFuZCB0aGF0IGlzIG5vdCBh
+bGxvd2VkLg0KPg0KPkxpa2UgdGhlIG90aGVyIHJlc3BvbmRlciBJIHdvdWxkIHN1Z2dlc3QgeW91
+IG5vdCBzZXQgUEFDS0FHRVMgLSBpbnN0ZWFkIHlvdSANCj5qdXN0IG5lZWQgdG8gdGFrZSBzdGVw
+cyBzbyB0aGF0IHRoZSAuc28gZmlsZSBkb2Vzbid0IGVuZCB1cCBpbiB0aGUgJHtQTn0tZGV2IA0K
+PnBhY2thZ2UuIFlvdSBjb3VsZCBkbyBzb21ldGhpbmcgbGlrZSB0aGlzOg0KPg0KPkZJTEVTXyR7
+UE59LWRldiA9ICIke2luY2x1ZGVkaXJ9Ig0KPg0KPkNoZWVycywNCj5QYXVsDQo+DQo+LS0gDQo+
+DQo+UGF1bCBFZ2dsZXRvbg0KPkludGVsIE9wZW4gU291cmNlIFRlY2hub2xvZ3kgQ2VudHJlDQo=
 
