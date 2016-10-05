@@ -1,69 +1,66 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <vijayakumarmb@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1CFDDE00A85; Wed,  5 Oct 2016 09:53:19 -0700 (PDT)
+	id 85B84E00B52; Wed,  5 Oct 2016 10:38:05 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE, 
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
+	mail provider *      (vijayakumarmb[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.213.54 listed in list.dnswl.org]
+	*      [209.85.217.172 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-vk0-f54.google.com (mail-vk0-f54.google.com
-	[209.85.213.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3BB37E00803
-	for <yocto@yoctoproject.org>; Wed,  5 Oct 2016 09:53:15 -0700 (PDT)
-Received: by mail-vk0-f54.google.com with SMTP id b186so91430518vkb.1
-	for <yocto@yoctoproject.org>; Wed, 05 Oct 2016 09:53:15 -0700 (PDT)
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.217.172 listed in dnsbl.sorbs.net]
+Received: from mail-ua0-f172.google.com (mail-ua0-f172.google.com
+	[209.85.217.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 224ADE00A7B
+	for <yocto@yoctoproject.org>; Wed,  5 Oct 2016 10:38:00 -0700 (PDT)
+Received: by mail-ua0-f172.google.com with SMTP id r64so53670190uar.3
+	for <yocto@yoctoproject.org>; Wed, 05 Oct 2016 10:38:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=OML2yXBGyUwoW0UMEHacBJJvad3ZHmGJGkFRspBrX4E=;
-	b=GT6TuLpOdnhrp7QYAsdq0ypHqO3QmCEQcr5lTjvsDtv2OPx9AfMUMSDq6xAXABooo1
-	JEnSmbuEiqEUX8sS26JgWKv/l5bIRRvQXAYcdjm12GXw+wZ4hrkSXGn+1aPS2RH7/oGs
-	tJzKDGT0D02w3mXnKFdlUnRvEzXXI4+jP7JjWk8mdTkshpS5fb8OOM9zqvngTfoeqHJR
-	ciJ6QH7XnUeZo2rnpOvTaG3ZKlNmZ0P6SS2TsbkAskgIv5W3kvg1UKoyi3+GcR8o73HU
-	PGPGFVuHpwnHe9SXdrVQRPruWVAISzmNl+zeRh6NNXtuzXA9bqSKI4RNwWO80aUzxA54
-	oKzA==
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to; 
+	bh=/umjEl8Hy2v/RZNMn8FFHNAoKp28ECvAkuCYXG3Q+90=;
+	b=FBdo+Ns4tSDERv4mFtPTVWrbTdhmV5Fk0TYTxH7IWNziCN5kvuBM9vKof3waLrJMKT
+	lZUqL0M8KfhbOMZMMxPQSPM7eVbfClhQjBrbcVpe64lYHq0vkzq4PRJxopLp+ZV4mgKz
+	GqgEsHUPflcPZYNxNFfI1Jr/Rcmiv4td8e/6CbScB2Ij0NzVZloIf5cYWLTW6SMpRdlY
+	e5pD5O/gBEoAs2xB/kvmL9/dmNbZHCEgaRAMcIa2y2oyQZ9JS17aTHhQocg/MgdObMmW
+	hKfMESG5nbbrYHSh//BbW7w0qt4AyDUBlLCgSdPWn8YVBizD+e6vC+X+9upVMiSVY/ft
+	IEvw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=OML2yXBGyUwoW0UMEHacBJJvad3ZHmGJGkFRspBrX4E=;
-	b=FAkbtDhDHCBnrYERpDT8opJbBsUYY2sxoOCF8Jyc10EAfHwlVdL7D2gWbp6+u5OTTS
-	dROpu5qpyby8sDVnudjzFu6ytNC9bdtBTpaC//7fLqrFtA+OoHbV84ZV+bs+W3Xcs6qd
-	4R2do9L5aN9qGXnfmJP3Tr1KcIAPumtFo4W3LPrvNQNFXJ0w5diKGpDWHlAxB9TFbFOT
-	KrdoUDB6gVxTaR52dVO5OpNagjrPbstoITT6YM4LDp7MarNcyAklSUTKq48kOsPO0bK9
-	Mk3g0OaXn22wKrLk6XHTnZN+3u5D461lmTFNiuLRb8pgTkx7Hddy7WBYuI6xBeo8vDEU
-	BlwQ==
-X-Gm-Message-State: AA6/9Rm6mKm4hLEKVtcA0HWLn4mNVzuT5FtavTTZORRPeg5SR2VBJZInigxD4G8V82u0TU3Gp/gXr6Zi1Rhp1w==
-X-Received: by 10.31.15.207 with SMTP id 198mr6549587vkp.93.1475686394654;
-	Wed, 05 Oct 2016 09:53:14 -0700 (PDT)
+	:message-id:subject:to;
+	bh=/umjEl8Hy2v/RZNMn8FFHNAoKp28ECvAkuCYXG3Q+90=;
+	b=faJd1BuPe2VKeFEphbRuwK9WjN9+HWQyfJC8ZugszeXfXPKHQ9uNZt/wqOagzAmMWr
+	/DT4akBlFzYcq9VBBNSMlIssvkDfGEMbpeyieDiuNij2YkbHrla8mxgcXclFAhU1xJA5
+	SEvYoK3yF8kcS069DwLE+/5nuKX+PKCnxytULRAjbYnBLzzGnHyrZdZckMkM9lpW7KkZ
+	hL9UCA5wgSt/SZYs8439J8TTv+L0apdBopQ4XOy/m52Ezm4R9u3z1VbFHd+aQdcv9Cbi
+	pWl/5f9xFcnoANgaJHqYGmLheAe3+6pgJShweC/ddDdQYs+o5EWKwfrz/4VpcIcdEe28
+	tOLg==
+X-Gm-Message-State: AA6/9RlDKK/76RVfiP+vmLUTyHZI/vGMBlhWm3o5Lpdry80UixXnunK/ZipIUmJiA9trbKcZETk5i02sTX7EMQ==
+X-Received: by 10.176.16.72 with SMTP id g8mr6719877uab.48.1475689079705; Wed,
+	05 Oct 2016 10:37:59 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.176.86.206 with HTTP; Wed, 5 Oct 2016 09:52:44 -0700 (PDT)
-In-Reply-To: <894BCA8B-9CE0-4B9E-9538-ED1B710627E8@cisco.com>
-References: <D6696459-1F17-4F52-8D0A-4ED8C3FC35EE@cisco.com>
-	<15215572.tG9QIyjkit@peggleto-mobl.ger.corp.intel.com>
-	<4EBFFDF8-32F2-48C0-A456-DB9A9A4D3841@cisco.com>
-	<1722958.a5vgrEO2cN@peggleto-mobl.ger.corp.intel.com>
-	<894BCA8B-9CE0-4B9E-9538-ED1B710627E8@cisco.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Wed, 5 Oct 2016 09:52:44 -0700
-Message-ID: <CAMKF1sp-08VEVyhSEtpYGX+Lek3m9QUp+ZAw81fNshWYh2=oCw@mail.gmail.com>
-To: "Dinh Nguyen (dinhn)" <dinhn@cisco.com>
-Cc: Paul Eggleton <paul.eggleton@linux.intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Question: xxxx listed in PACKAGES multiple times, this leads to packaging errors
+Received: by 10.103.67.70 with HTTP; Wed, 5 Oct 2016 10:37:39 -0700 (PDT)
+In-Reply-To: <CAJ58UNnr5UFpU9SMHY3-2Oy6hgFBCa+uyQQCzi2S3nyx9nJ=Wg@mail.gmail.com>
+References: <CAJ58UNnr5UFpU9SMHY3-2Oy6hgFBCa+uyQQCzi2S3nyx9nJ=Wg@mail.gmail.com>
+From: Vijayakumar Badiger <vijayakumarmb@gmail.com>
+Date: Wed, 5 Oct 2016 10:37:39 -0700
+Message-ID: <CAJ58UN=HBMCge3+1te-CpZPm8P=z+TgG4yekFvbqfTu8muFu0g@mail.gmail.com>
+To: yoctoproject <yocto@yoctoproject.org>
+Subject: Re: Need inputs on integrating YP-Core Krogoth to Brilliant Blow-fish AGL release.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,223 +72,70 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Oct 2016 16:53:19 -0000
+X-List-Received-Date: Wed, 05 Oct 2016 17:38:05 -0000
+Content-Type: multipart/alternative; boundary=f403045e21c8651456053e21a332
+
+--f403045e21c8651456053e21a332
 Content-Type: text/plain; charset=UTF-8
+
+Hello All,
+
+Can anyone help me out on this issue. Thanks.
+
+Cheers,
+Vijay
+
+
+On Mon, Oct 3, 2016 at 6:19 PM, Vijayakumar Badiger <vijayakumarmb@gmail.com
+> wrote:
+
+> Hello All,
+>
+> I am trying to integrate the YP Core - Krogoth 2.1.1 to the AGL Blowfish
+> release. I am getting the below error when I try to build the image.
+> Can you pls let me know how to fix this issue.
+>
+> I see that in the earlier YP release the IMAGE_CMD was actually referenced
+> in the poky/meta/lib/oe/image.py. Now I don't see this file in that
+> location.
+> Please let me know if any one has faced this issue. Thanks.
+>
+> /poky/meta-qti-internal/recipes/images/qt5-image.bb: No IMAGE_CMD defined
+> for IMAGE_FSTYPES entry 'fastboot' - possibly invalid type name or missing
+> support class:  --:--:--
+> ERROR: Failed to parse recipe: /local/mnt/workspace/Oct-3/
+> poky/meta-qti-internal/recipes/images/qt5-image.bb
+>
+>
+> Cheers,
+> Vijay
+>
+
+--f403045e21c8651456053e21a332
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Oct 5, 2016 at 9:06 AM, Dinh Nguyen (dinhn) <dinhn@cisco.com> wrote=
-:
-> Many thanks Paul. Your help is greatly appreciated.
->
-> 1. >>> Like the other responder I would suggest you not set PACKAGES
->
-> Yes, I did not set the PACKAGES, so -dev, -dbg and main packages were bui=
-lt as shown below:
->
-> dinhn@rs-bldsrv:/media/raghuram/data/dinhn/ioxDevLatest/ioxsdk/yp$ find t=
-mp/deploy | grep c-mlibtmp/deploy/ipk/core2-64/c-mlib-dbg_1.1-r0_core2-64.i=
-pk
-> tmp/deploy/ipk/core2-64/c-mlib-dev_1.1-r0_core2-64.ipk
-> tmp/deploy/ipk/core2-64/c-mlib_1.1-r0_core2-64.ipk
-> tmp/deploy/licenses/c-mlib
->
-> 2. >>> FILES_${PN}-dev =3D "${includedir}=E2=80=9D
->
-> I added that to .bb as you suggested so .so file doesn't end up in the ${=
-PN}-dev
-> Package =E2=80=94 No longer see the error mentioned in previous mail. Thx
->
-> 3. >>> This is what I suspected would happen - these files would normally=
- be part of
-> the ${PN}-dbg package, but since you've removed that from PACKAGES, they =
-are
-> ending up unpackaged and that is not allowed.
->
-> Did you mean the "install -m 0644 xxx yyy=E2=80=9D to remove those files =
-from the PACKAGES? How do I copy .so and binaries from my target to the lib=
-dir or bindir?
->
-> After changing the .bb to remove the PACKAGES setting and FILES_${PN}-dev=
- =3D "${includedir}=E2=80=9D
-> For the very first time, packages were built find, image were created und=
-er image directory and c-mlib source is still in the yp workspace as shown =
-below:
->
-> A.Packages were built
-> dinhn@rs-bldsrv:/media/raghuram/data/dinhn/ioxDevLatest/ioxsdk/yp$ find t=
-mp/deploy | grep c-mlib
-> tmp/deploy/ipk/core2-64/c-mlib-dbg_1.1-r0_core2-64.ipk
-> tmp/deploy/ipk/core2-64/c-mlib-dev_1.1-r0_core2-64.ipk
-> tmp/deploy/ipk/core2-64/c-mlib_1.1-r0_core2-64.ipk
-> tmp/deploy/licenses/c-mlib
->
-> B. Source files and the c-mlib git directory still have all the sources (=
-e.g just grep the mlib_api.c)
-> dinhn@rs-bldsrv:/media/raghuram/data/dinhn/ioxDevLatest/ioxsdk/yp$ find .=
- -name "mlib_api.c"
-> ./tmp/work/core2-64-poky-linux/c-mlib/1.1-r0/git/src/mlib_api.c
-> ./tmp/work/core2-64-poky-linux/c-mlib/1.1-r0/packages-split/c-mlib-dbg/us=
-r/src/debug/c-mlib/1.1-r0/git/src/mlib_api.c
-> ./tmp/work/core2-64-poky-linux/c-mlib/1.1-r0/package/usr/src/debug/c-mlib=
-/1.1-r0/git/src/mlib_api.c
-> dinhn@rs-bldsrv:/media/raghuram/data/dinhn/ioxDevLatest/ioxsdk/yp$
->
-> C. Image was built as well including binaries and libmlib.so
-> dinhn@rs-bldsrv:/media/raghuram/data/dinhn/ioxDevLatest/ioxsdk/yp/tmp/wor=
-k/core2-64-poky-linux/c-mlib/1.1-r0/image/usr/bin$ ls -ltr
-> total 1424
-> -rw-r--r-- 1 dinhn dinhn 171701 Oct  5 01:17 datamodel_cache
-> -rw-r--r-- 1 dinhn dinhn 187434 Oct  5 01:17 invoke
-> -rw-r--r-- 1 dinhn dinhn 184961 Oct  5 01:17 invoke_b
-> -rw-r--r-- 1 dinhn dinhn 171701 Oct  5 01:17 protocol_infra
-> -rw-r--r-- 1 dinhn dinhn 191362 Oct  5 01:17 publisher
-> -rw-r--r-- 1 dinhn dinhn 187084 Oct  5 01:17 rpc-register
-> -rw-r--r-- 1 dinhn dinhn 179648 Oct  5 01:17 service
-> -rw-r--r-- 1 dinhn dinhn 174518 Oct  5 01:17 subscriber
->
-> dinhn@rs-bldsrv:/media/raghuram/data/dinhn/ioxDevLatest/ioxsdk/yp/tmp/wor=
-k/core2-64-poky-linux/c-mlib/1.1-r0/image/usr/bin$ cd ../lib
-> dinhn@rs-bldsrv:/media/raghuram/data/dinhn/ioxDevLatest/ioxsdk/yp/tmp/wor=
-k/core2-64-poky-linux/c-mlib/1.1-r0/image/usr/lib$ ls -ltr
-> total 856
-> -rw-r--r-- 3 dinhn dinhn 872657 Oct  5 01:17 libmlib.so
->
-> So it is all good for the first time, but thereafter that, if I do clean =
-=E2=80=9Cbitbake -c clean c-mlib=E2=80=9D and =E2=80=9Cbitbake c-mlib=E2=80=
-=9D again.
-> All packages were build successful, but all data under c-mlib got was gon=
-e. Nothing there including .c/h files, image directory etc...
->
-> dinhn@rs-bldsrv:/media/raghuram/data/dinhn/ioxDevLatest/ioxsdk/yp/tmp/wor=
-k/core2-64-poky-linux/c-mlib/1.1-r0/git$ ls -ltr
-> total 0
-> dinhn@rs-bldsrv:/media/raghuram/data/dinhn/ioxDevLatest/ioxsdk/yp/tmp/wor=
-k/core2-64-poky-linux/c-mlib/1.1-r0/git$
->
-> Please give me an idea why how to solve this? Sorry for a long email ;-))
+<div dir=3D"ltr">Hello All,<div><br></div><div>Can anyone help me out on th=
+is issue. Thanks.</div><div><br></div><div>Cheers,</div><div>Vijay</div><di=
+v><br></div></div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote"=
+>On Mon, Oct 3, 2016 at 6:19 PM, Vijayakumar Badiger <span dir=3D"ltr">&lt;=
+<a href=3D"mailto:vijayakumarmb@gmail.com" target=3D"_blank">vijayakumarmb@=
+gmail.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=
+=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=
+=3D"ltr"><div>Hello All,</div><div><br></div><div>I am trying to integrate =
+the YP Core - Krogoth 2.1.1 to the AGL Blowfish release. I am getting the b=
+elow error when I try to build the image.</div><div>Can you pls let me know=
+ how to fix this issue.=C2=A0</div><div><br></div><div>I see that in the ea=
+rlier YP release the IMAGE_CMD was actually referenced in the poky/meta/lib=
+/oe/image.py. Now I don&#39;t see this file in that location.</div><div>Ple=
+ase let me know if any one has faced this issue. Thanks.</div><div><br></di=
+v><div>/poky/meta-qti-internal/<wbr>recipes/images/<a href=3D"http://qt5-im=
+age.bb" target=3D"_blank">qt5-image.bb</a>: No IMAGE_CMD defined for IMAGE_=
+FSTYPES entry &#39;fastboot&#39; - possibly invalid type name or missing su=
+pport class: =C2=A0--:--:--</div><div>ERROR: Failed to parse recipe: /local=
+/mnt/workspace/Oct-3/<wbr>poky/meta-qti-internal/<wbr>recipes/images/<a hre=
+f=3D"http://qt5-image.bb" target=3D"_blank">qt5-image.bb</a></div><div><br>=
+</div><div><br></div><div>Cheers,</div><div>Vijay</div></div>
+</blockquote></div><br></div>
 
-I guess its getting renamed as per debian package renaming rules. Just add
-
-ALLOW_EMPTY_${PN} =3D "1"
-
-and see if you get the ipk
-
->
-> Best,
->   =E2=80=94Dinh
->
->
->
->
->
-> On 10/4/16, 11:55 PM, "Paul Eggleton" <paul.eggleton@linux.intel.com> wro=
-te:
->
->>On Wed, 05 Oct 2016 05:12:27 Dinh Nguyen wrote:
->>> Thanks much Paul.
->>>
->>> >>>> PACKAGES =3D "${PN}" should work
->>>
->>> It solved the early error =E2=80=9C c-mlib listed in PACKAGES multiple =
-times, this
->>> leads to packaging errors=E2=80=9D =E2=80=94 Thanks again.
->>>
->>>
->>> But running into other issue. Below is my do_install
->>>
->>> do_install () {
->>>      oe_runmake all
->>>      install -d ${D}${libdir}
->>>      install -d ${D}${bindir}
->>>      install -m 0644 ${S}/target/libmlib.so ${D}${libdir}
->>>      install -m 0644 ${S}/target/datamodel_cache ${D}${bindir}
->>>      install -m 0644 ${S}/target/invoke ${D}${bindir}
->>>      install -m 0644 ${S}/target/invoke_b ${D}${bindir}
->>>      install -m 0644 ${S}/target/protocol_infra ${D}${bindir}
->>>      install -m 0644 ${S}/target/publisher ${D}${bindir}
->>>      install -m 0644 ${S}/target/rpc-register ${D}${bindir}
->>>      install -m 0644 ${S}/target/service ${D}${bindir}
->>>      install -m 0644 ${S}/target/subscriber ${D}${bindir}
->>> }
->>>
->>> PACKAGES =3D "${PN}"
->>> FILES_${PN} =3D "/usr/bin/datamodel_cache \
->>>              /usr/bin/invoke \
->>>              /usr/bin/invoke_b \
->>>              /usr/lib/libmlib.so \
->>>              /usr/bin/protocol_infra \
->>>              /usr/bin/publisher \
->>>              /usr/bin/rpc-register \
->>>              /usr/bin/service \
->>>              /usr/bin/subscriber"
->>>
->>>
->>>
->>> And under ${S}/target, it has the libmlib.so and other binaries built,
->>> And I intended to copy the .so to ${D}${libdir} and binarires to
->>> ${D}${bindir}. I am able to build the c-mlib package as shown below:
->>
->>> dinhn@rs-bldsrv:/media/raghuram/data/dinhn/ioxDevLatest/ioxsdk/yp$ find
->>> tmp/deploy | grep c-mlib
->>> tmp/deploy/ipk/core2-64/c-mlib_1.1-r0_core2-64.ipk
->>>
->>>
->>> The problem is that, after "bitbake c-mlib=E2=80=9D, it moved all sourc=
-es under ${S}
->>> to /usr/src/debug etc..
->>> I googled but unable to find the root cause.
->>> Would you and other can help to identify the issue?
->>> NOTE: Executing RunQueue Tasks
->>> ERROR: QA Issue: c-mlib: Files/directories were installed but not shipp=
-ed
->>>   /usr/src
->>>   /usr/lib/.debug
->>>   /usr/lib/.debug/libmlib.so
->>>   /usr/src/debug
->>>   /usr/src/debug/c-mlib
->>>   /usr/src/debug/c-mlib/1.1-r0
->>>   /usr/src/debug/c-mlib/1.1-r0/git
->>>   /usr/src/debug/c-mlib/1.1-r0/git/src
->>>   /usr/src/debug/c-mlib/1.1-r0/git/include
->>>   /usr/src/debug/c-mlib/1.1-r0/git/deps
->>>   /usr/src/debug/c-mlib/1.1-r0/git/src/mlib_api.c
->>>   /usr/src/debug/c-mlib/1.1-r0/git/src/mlib_metrics.c
->>>   /usr/src/debug/c-mlib/1.1-r0/git/src/mlib_util.c
->>>   /usr/src/debug/c-mlib/1.1-r0/git/src/mlib_local_metrics.c
->>>   /usr/src/debug/c-mlib/1.1-r0/git/src/dslink_bindings
->>>   /usr/src/debug/c-mlib/1.1-r0/git/src/utils
->>>   /usr/src/debug/c-mlib/1.1-r0/git/src/service_sdk
->>>   /usr/src/debug/c-mlib/1.1-r0/git/src/dslink_bindings/mlib_service_cac=
-he.c
->>> /usr/src/debug/c-mlib/1.1-r0/git/src/dslink_bindings/mlib_wrapper.c
->>> /usr/src/debug/c-mlib/1.1-r0/git/src/dslink_bindings/mlib_dsa.c
->>> /usr/src/debug/c-mlib/1.1-r0/git/src/dslink_bindings/include
->>> =E2=80=A6.
->>
->>This is what I suspected would happen - these files would normally be par=
-t of
->>the ${PN}-dbg package, but since you've removed that from PACKAGES, they =
-are
->>ending up unpackaged and that is not allowed.
->>
->>Like the other responder I would suggest you not set PACKAGES - instead y=
-ou
->>just need to take steps so that the .so file doesn't end up in the ${PN}-=
-dev
->>package. You could do something like this:
->>
->>FILES_${PN}-dev =3D "${includedir}"
->>
->>Cheers,
->>Paul
->>
->>--
->>
->>Paul Eggleton
->>Intel Open Source Technology Centre
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
+--f403045e21c8651456053e21a332--
