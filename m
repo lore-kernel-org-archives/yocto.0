@@ -1,35 +1,62 @@
-Return-Path: <anibal.limon@linux.intel.com>
+Return-Path: <randy.mort@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AB701E00C5D; Wed,  5 Oct 2016 14:06:14 -0700 (PDT)
+	id 31BE0E00C93; Wed,  5 Oct 2016 15:50:10 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE, 
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (randy.mort[at]gmail.com)
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.82.53 listed in dnsbl.sorbs.net]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.82.53 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 71D87E00855
-	for <yocto@yoctoproject.org>; Wed,  5 Oct 2016 14:06:10 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga105.jf.intel.com with ESMTP; 05 Oct 2016 14:06:10 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.31,302,1473145200"; 
-	d="asc'?scan'208";a="1060969223"
-Received: from alimonb-mobl1.zpn.intel.com (HELO [10.219.5.33]) ([10.219.5.33])
-	by orsmga002.jf.intel.com with ESMTP; 05 Oct 2016 14:06:10 -0700
-To: Monserrat Sedeno <monserratx.sedeno.bustos@intel.com>,
-	yocto@yoctoproject.org
-References: <1475700859-14414-1-git-send-email-monserratx.sedeno.bustos@intel.com>
-From: =?UTF-8?B?QW7DrWJhbCBMaW3Ds24=?= <anibal.limon@linux.intel.com>
-Message-ID: <57F56B7B.4040703@linux.intel.com>
-Date: Wed, 5 Oct 2016 16:07:07 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.3.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wm0-f53.google.com (mail-wm0-f53.google.com [74.125.82.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D262DE00855
+	for <yocto@yoctoproject.org>; Wed,  5 Oct 2016 15:50:04 -0700 (PDT)
+Received: by mail-wm0-f53.google.com with SMTP id k125so294517771wma.1
+	for <yocto@yoctoproject.org>; Wed, 05 Oct 2016 15:50:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=myRm0waurEQLdPQECn4A9ZyWBl4QUSwSI/zpyx9c14w=;
+	b=0BYCvdYfZ+EGe+ks2Gvs0y67vswQBXISZL5llLZtjyoOvWPtp2iz6fZKl2rWkUptHm
+	pXawUCVIthesX8ytXCPi1V9Zv57TrP98xZg99gixF/Un+Sr3+2kD7H1WUZmTtz0jLWUw
+	Jig0o3zTehEBDIZZLfRqLIqJQNi4ajF30xNSOL7vdJMD2GKkqsA5NJYdAe7TSS+QJs9g
+	Y+tdggOm+u/2vVGmD00khHYfq4T96bo1sNl0oQx9O8wNmgg0A8NPm/s+1MTGHengDdP8
+	uhuZEuP5hYxEL/xH/QrCWbIElhX2MvKgfieBZgis0Cz2PoIFJ56eeCaIjEla9WJQ5O+f
+	UKBg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=myRm0waurEQLdPQECn4A9ZyWBl4QUSwSI/zpyx9c14w=;
+	b=LP4e5eJ94Zedp67Oz8ClLL19wBHpVnB7UNprz5A64zi0E6TQNVm9htN1deWIyqCk97
+	yhiv/fwtcIaCU+w+NgSJFk4miTRrpxNuB+ZrPH1ZOgaCmNQq4jX6WyUcMEFn7LO9ImMd
+	p9kWBGwaCkabcW4TVtHiph+dgKo1NJgfdEWL5JyKjpSBGJBbNGk78hrNRDhD4QM0PYqR
+	aDvJoKS1XKdPHjC74IErAkgp8nMlVErKA4ZVm6Q4C6026F2EjTTqaKbIyS+CK0Z0mgzw
+	tj1xVYRqIVwStYiFeL4MfAjVdyVFSbOzNzMx2vWOtT0DVr2ImrQ9Zkwy48QlMi9LqitK
+	8tkw==
+X-Gm-Message-State: AA6/9RkKANA68oLlNmL5DrREPgu5J8NJ8e7I8LR8TLoAXUqx3IWZqurH6+29SDIa3SVU95bye3zrfy4qShwqrw==
+X-Received: by 10.194.107.137 with SMTP id hc9mr10843905wjb.158.1475707803220; 
+	Wed, 05 Oct 2016 15:50:03 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <1475700859-14414-1-git-send-email-monserratx.sedeno.bustos@intel.com>
-Cc: joshua.g.lock@intel.com
-Subject: Re: [[yocto-autobuilder][PATCHv3]] Build sets to test new OS distribution in autobuilder
+Received: by 10.80.138.66 with HTTP; Wed, 5 Oct 2016 15:50:02 -0700 (PDT)
+From: Randy Mortensen <randy.mort@gmail.com>
+Date: Wed, 5 Oct 2016 16:50:02 -0600
+Message-ID: <CAN+d=aScNFOQBaGXSCG+UGqpZ_hWzcAynrAAncgyXoW46ej6Mg@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: openjdk build fails due to checksum mismatches from icedtea-native
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,118 +68,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Oct 2016 21:06:14 -0000
-X-Groupsio-MsgNum: 32230
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature";
-	boundary="tM4ivtgLqrRskgKwGHbJwe0W6GXiOwrKf"
+X-List-Received-Date: Wed, 05 Oct 2016 22:50:10 -0000
+Content-Type: multipart/alternative; boundary=e89a8f235a716740ff053e25ff0a
 
---tM4ivtgLqrRskgKwGHbJwe0W6GXiOwrKf
-Content-Type: text/plain; charset=windows-1252
+--e89a8f235a716740ff053e25ff0a
+Content-Type: text/plain; charset=UTF-8
+
+Using Jethro release and attempting to build either openjdk-7 or 8 fails
+when fetching icedtea7-native/2.1.3-r1.0 due to checksum mismatches (on all
+the SRC_URI entries).
+openjdk-7 did successfully build about a month ago.
+
+Is there a workaround, fix or other suggestions?
+Thanks
+
+--e89a8f235a716740ff053e25ff0a
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr"><span style=3D"color:rgb(0,0,0);font-family:helvetica;font=
+-size:12px">Using Jethro release and attempting to build either openjdk-7 o=
+r 8 fails when fetching icedtea7-native/2.1.3-r1.0 due to checksum mismatch=
+es (on all the SRC_URI entries).=C2=A0</span><br style=3D"color:rgb(0,0,0);=
+font-family:helvetica;font-size:12px"><span style=3D"color:rgb(0,0,0);font-=
+family:helvetica;font-size:12px">openjdk-7 did successfully build about a m=
+onth ago.</span><br style=3D"color:rgb(0,0,0);font-family:helvetica;font-si=
+ze:12px"><br style=3D"color:rgb(0,0,0);font-family:helvetica;font-size:12px=
+"><span style=3D"color:rgb(0,0,0);font-family:helvetica;font-size:12px">Is =
+there a workaround, fix or other suggestions?</span><br style=3D"color:rgb(=
+0,0,0);font-family:helvetica;font-size:12px"><span style=3D"color:rgb(0,0,0=
+);font-family:helvetica;font-size:12px">Thanks</span><br></div>
 
-
-On 10/05/2016 03:54 PM, Monserrat Sedeno wrote:
-> As part of the process to set new OS distribution as supported on Yocto=
-c Project
-> a new patch was created with the list of build sets that should be exec=
-uted.
->=20
-> Detailed information:
-> https://wiki.yoctoproject.org/wiki/Distro_Testing_Plan#Execute_Build_Se=
-ts
->=20
-> Fixes [YOCTO #9905]
->=20
-> Note:In order to add a new distro as supported all the build sets shoul=
-d be PASS
->=20
-> Signed-off-by: Monserrat Sedeno <monserratx.sedeno.bustos@intel.com>
-Acked-by: An=EDbal Lim=F3n <anibal.limon@linux.intel.com>
-> ---
->  .../nightly-qa-distro.conf                         | 44 ++++++++++++++=
-++++++++
->  1 file changed, 44 insertions(+)
->  create mode 100644 buildset-config.autobuilder-qa/nightly-qa-distro.co=
-nf
->=20
-> diff --git a/buildset-config.autobuilder-qa/nightly-qa-distro.conf b/bu=
-ildset-config.autobuilder-qa/nightly-qa-distro.conf
-> new file mode 100644
-> index 0000000..6c02a91
-> --- /dev/null
-> +++ b/buildset-config.autobuilder-qa/nightly-qa-distro.conf
-> @@ -0,0 +1,44 @@
-> +[nightly-qa-distro]
-> +builders: 'example-worker'
-> +repos: [{'poky':
-> +            {'repourl':'git://git.yoctoproject.org/poky',
-> +             'layerversion':{'core':'meta', 'yoctobsp':'meta-yocto-bsp=
-', 'yocto':'meta-yocto', 'poky':'meta-poky'},
-> +             'branch':'master'}},
-> +        {'meta-qt4':
-> +            {'repourl':'git://git.yoctoproject.org/meta-qt4',
-> +             'branch':'master'}},
-> +        {'meta-qt3':
-> +            {'repourl':'git://git.yoctoproject.org/meta-qt3',
-> +             'branch':'master'}}]
-> +props: [{'fp_date':{'prop_type':'StringParameter',
-> +                       'size': 20,
-> +                       'name': 'fp_date',
-> +                       'label':'Full Pass date:'}}]
-> +steps: [{'SetDest':{}},
-> +        {'CheckOutLayers': {}},
-> +        {'RunPreamble': {}},
-> +        {'TriggerBuilds': {'schedulerName': 'dist-build',=20
-> +		           'waitForFinish': 'True',
-> +                           'schedulerNames': {
-> +			   	'nightly-oe-selftest': {},
-> +			   	'nightly-rpm': {},
-> +		           	'nightly-deb': {},
-> +                           	'nightly-ipk': {},
-> +                          	'nightly-world': {},=20
-> +                           	'nightly-arm': {},=20
-> +                           	'nightly-mips': {},
-> +                           	'nightly-wic':{},
-> +                           	'nightly-multilib': {},=20
-> +                           	'nightly-x86-64': {},=20
-> +                           	'nightly-x86-64-lsb': {},
-> +                           	'nightly-x86': {},
-> +                           	'poky-tiny': {},=20
-> +                           	'nightly-qa-systemd': {},
-> +                           	'nightly-qa-extras': {},=20
-> +                           	'nightly-qa-targetbuilds': {},
-> +				'nightly-qa-skeleton': {},
-> +                           	'nightly-qa-logrotate': {},=20
-> +                           	'nightly-qa-pam': {},
-> +				'buildtools': {}},
-> +                           'schedulerNames_nowait': {}}},]
-> +
->=20
-
-
---tM4ivtgLqrRskgKwGHbJwe0W6GXiOwrKf
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2
-
-iQIcBAEBAgAGBQJX9Wt9AAoJEGJqcE9h3glg2c0P/jvmpY0SdFFAxWNUPTYVPior
-fa5sa45S6PBAYAT0lj93v5Xr9JkgngPOY9uaqTIbAZJNw79WaxWcFgBZ9DU6OO9r
-Jatu4NeH2j4vS1bkUTs1f/LJWJdRog3IC519IoG+W/XvNbu79teAascn16cWp5Bs
-0u5ha3IsiusD3K/DjazWPs+yTKwWbj/L70evhd5dRW1xF/ueQp3qy9ShD0Q+grPf
-M1LmbcGqHwQ+/uRG/FpqPdkzro5iPR7ULvJlH2dI8Y1xBH8ID4R+etm0prOsk8TT
-YfzxkpL/FH/SleFlQgpwuIAA/wBp/s8TRzMXcivY+LYDdK2YJRoWdeXKhLK8S+65
-bcsM2HccueKjjlR+WR2a7hSKPoTjNcybJPmHWdtMWkCW/zTqPnNxs8LaAvQFmAm3
-Eyp2EGgfJE3AtbWnuDMCH5ul49tSeV7tuWupeLJsTXY92HiTwlpcY9KuxV+dQx7L
-ZZE+o/al+Q2qfkPBNmxXS3m83rT/OMzIWKvxpq2pLQRrYmt+vkCfxBGRsKW4NyUJ
-J/vQ6T5X5xkdBDr40qfXIuXjpEbllID85TgCv42CYZQ8R0CINWB9Jc8mQMu/J4F6
-bNC+/w57gmmr6a1xKzDJKlFbJKPkjRBYfaKvOX+dq9wCixfQLq6VlIFsx3F2o1M1
-JysNFkfLOkpc0/+XbQeh
-=LsLi
------END PGP SIGNATURE-----
-
---tM4ivtgLqrRskgKwGHbJwe0W6GXiOwrKf--
+--e89a8f235a716740ff053e25ff0a--
