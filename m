@@ -1,47 +1,66 @@
-Return-Path: <mark.junghanns@spectra.de>
+Return-Path: <schnitzeltony@googlemail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A89F6E006E3; Thu,  6 Oct 2016 06:51:28 -0700 (PDT)
+	id 7725EE009CA; Thu,  6 Oct 2016 08:55:09 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=BAYES_40,HTML_MESSAGE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 BAYES_40 BODY: Bayes spam probability is 20 to 40%
-	*      [score: 0.2807]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 502 seconds by postgrey-1.32 at yocto-www;
-	Thu, 06 Oct 2016 06:51:26 PDT
-Received: from mail.spectra.de (mail.spectra.de [195.85.237.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 06C92E00404
-	for <yocto@yoctoproject.org>; Thu,  6 Oct 2016 06:51:26 -0700 (PDT)
-X-SPECTRA-MailScanner-EFA-Watermark: 1476366174.29957@EGoF40np0jtArF5YnBx8nw
-X-SPECTRA-MailScanner-EFA-From: mark.junghanns@spectra.de
-X-SPECTRA-MailScanner-EFA: Found to be clean
-X-SPECTRA-MailScanner-EFA-ID: 42ED5A0339.A6943
-X-SPECTRA-MailScanner-EFA-Information: Please contact it-team@spectra.de for
-	more information
-Received: from AresMail.spectra.netz (unknown [172.16.10.11])
-	(using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mail.spectra.de (Postfix) with ESMTPS id 42ED5A0339
-	for <yocto@yoctoproject.org>; Thu,  6 Oct 2016 15:42:54 +0200 (CEST)
-Received: from ARESMAIL.spectra.netz ([::1]) by AresMail.spectra.netz ([::1])
-	with mapi id 14.03.0123.003; Thu, 6 Oct 2016 15:42:54 +0200
-From: Mark Junghanns <mark.junghanns@spectra.de>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto] PSPLASH behavior during shutdown
-Thread-Index: AdIf13+HaMGVI9F/Qcm69UBplAmz3g==
-Date: Thu, 6 Oct 2016 13:42:53 +0000
-Message-ID: <EEF480D2AA622D48BD0D761FB54F5B1BD0F5EB@AresMail.spectra.netz>
-Accept-Language: de-DE, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.16.100.146]
-x-esetresult: clean, is OK
-x-esetid: 37303A29125E4C676C7D66
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (schnitzeltony[at]googlemail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.217.195 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.217.195 listed in dnsbl.sorbs.net]
+Received: from mail-ua0-f195.google.com (mail-ua0-f195.google.com
+	[209.85.217.195])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AF4EFE00547
+	for <yocto@yoctoproject.org>; Thu,  6 Oct 2016 08:55:06 -0700 (PDT)
+Received: by mail-ua0-f195.google.com with SMTP id 10so877337ual.1
+	for <yocto@yoctoproject.org>; Thu, 06 Oct 2016 08:55:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=googlemail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=1WldZ+4PcOMfS4N9xfZXBFqkGMcwO/iJdak87xK5yT4=;
+	b=hl4I6ADhheTZjPugfUSAW8U3FGIWuOluNUOgkT2YoJF8UXIQGhZRsGKLEmECfVu8BM
+	t8DpPyo8LI5+M6FvTrx2+k4csteFyHpn0Qh4AmOX+wQNKpW5GlovpRJwbv0W928o00F7
+	3cNUiK68lKCrN/sdQLWQyASsD/LL79kSqBLQJMZXgSfGGT9jDl4ST9/UEKc7im+6bx0Q
+	vRylt6qSZeO2n8Zx0YifFX4MQqSRGV+OzJVyA9oTG6GOXVspiUh5WKw4FeQCzOIJ3nLs
+	/FQChyGwspTnZhN7xIcNtMqFi4/GEQQxCDbuvXGcKGb0a+bkmcOhKN6U0q+cWsFDWcXA
+	FjjA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=1WldZ+4PcOMfS4N9xfZXBFqkGMcwO/iJdak87xK5yT4=;
+	b=j/q5XIvFoMkGlHlG9MeHjBrCO4+qk8lbK+cStEheypgCHTwdQpe3bwUcmqGGrYOskB
+	NQ/p6L7/B+sL172qrUY7CghJCdTgL4CJ9teP4lviSMVxuc5p3WtsQAL0XRZKobnPq/fV
+	FuTFwLwR6f3YXjJx9tbnpHirAfKsXgsm05sWbo+DA6p2Q1wSxKB30+aZvLkGs+nlsJS1
+	eHeLBNIOIE7jx8HQ1edFvEKE373bhMwXU5Iz37GevtpYjpg54IDOjScOS7rBUAsbbKQL
+	oE4fAvYwBGLFCudlgqMkdFC2IGRvNt0I5zAL7fm5inbJPemXA3NfUSCDppvSJVXN7o5H
+	a7Zg==
+X-Gm-Message-State: AA6/9RnfJdtAjt4tURt8jZQ4UXdCPK3h2qQ2Cd+kyEqBD4xDSb88KqtJfVloNbERCpaU8MisjuRVmpQ610IktA==
+X-Received: by 10.176.6.74 with SMTP id f68mr11450180uaf.67.1475769305478;
+	Thu, 06 Oct 2016 08:55:05 -0700 (PDT)
 MIME-Version: 1.0
-X-Mailman-Approved-At: Thu, 06 Oct 2016 08:03:17 -0700
-Subject: PSPLASH behavior during shutdown
+Received: by 10.176.65.130 with HTTP; Thu, 6 Oct 2016 08:55:05 -0700 (PDT)
+In-Reply-To: <20161006122041.5048-1-net147@gmail.com>
+References: <20161006122041.5048-1-net147@gmail.com>
+From: =?UTF-8?Q?Andreas_M=C3=BCller?= <schnitzeltony@googlemail.com>
+Date: Thu, 6 Oct 2016 17:55:05 +0200
+Message-ID: <CALbNGRRLJNtQXoQWqL-WmYZ7_QCsRw4yBXkJL3LK-jmMACkfkA@mail.gmail.com>
+To: Jonathan Liu <net147@gmail.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi][PATCH] sdcard_image-rpi.bbclass: Remove redundant RPI_KERNEL_VERSION
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,97 +72,86 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Oct 2016 13:51:28 -0000
-Content-Language: de-DE
-Content-Type: multipart/alternative;
-	boundary="_000_EEF480D2AA622D48BD0D761FB54F5B1BD0F5EBAresMailspectrane_"
+X-List-Received-Date: Thu, 06 Oct 2016 15:55:09 -0000
+Content-Type: text/plain; charset=UTF-8
 
---_000_EEF480D2AA622D48BD0D761FB54F5B1BD0F5EBAresMailspectrane_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-Hi there,
-I have a question concerning Psplash's behavior during shutdown. My image i=
-s using xfce4 and I'm using psplash to display a logo during startup. This =
-is working as expected. My problem starts when I'm shutting down the sessio=
-n. The X-server stops and the console becomes visible (displaying the usual=
- stuff that is shown during shutting down), until the splash screen appears=
- - which is not very reliable either. Could somebody give me a hint on wher=
-e to start solving this?
-
-Many thanks in advance,
-Mark
-
---_000_EEF480D2AA622D48BD0D761FB54F5B1BD0F5EBAresMailspectrane_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+On Thu, Oct 6, 2016 at 2:20 PM, Jonathan Liu <net147@gmail.com> wrote:
+> The value of the RPI_KERNEL_VERSION can change between None and the
+> kernel version which can result in taskhash mismatch errors while
+> building images.
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.E-MailFormatvorlage17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;
-	font-family:"Calibri","sans-serif";
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:70.85pt 70.85pt 2.0cm 70.85pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"DE" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Hi there,<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">I have a question concerning Ps=
-plash&#8217;s behavior during shutdown. My image is using xfce4 and I&#8217=
-;m using psplash to display a logo during startup. This is working as expec=
-ted. My problem starts when I&#8217;m shutting down the
- session. The X-server stops and the console becomes visible (displaying th=
-e usual stuff that is shown during shutting down), until the splash screen =
-appears &#8211; which is not very reliable either. Could somebody give me a=
- hint on where to start solving this?<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Many thanks in advance,<o:p></o=
-:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Mark<o:p></o:p></span></p>
-</div>
-</body>
-</html>
+> The taskhash mismatch errors can be reproduced using:
+> bitbake -c cleansstate virtual/kernel core-image-minimal && bitbake core-image-minimal
+>
+> The get_dts() and split_overlays() functions are modified so that the
+> kernel version argument is optional. If the version is not supplied to
+> these functions, they will fallback to the Python equivalent of the
+> expression used for RPI_KERNEL_VERSION.
+>
+> Signed-off-by: Jonathan Liu <net147@gmail.com>
+> ---
+>  classes/linux-raspberrypi-base.bbclass | 4 ++--
+>  classes/sdcard_image-rpi.bbclass       | 8 +++-----
+>  2 files changed, 5 insertions(+), 7 deletions(-)
+>
+> diff --git a/classes/linux-raspberrypi-base.bbclass b/classes/linux-raspberrypi-base.bbclass
+> index 930fc44..3a6e33d 100644
+> --- a/classes/linux-raspberrypi-base.bbclass
+> +++ b/classes/linux-raspberrypi-base.bbclass
+> @@ -1,6 +1,6 @@
+>  inherit linux-kernel-base
+>
+> -def get_dts(d, ver):
+> +def get_dts(d, ver=None):
+>      import re
+>
+>      staging_dir = d.getVar("STAGING_KERNEL_BUILDDIR", True)
+> @@ -32,7 +32,7 @@ def get_dts(d, ver):
+>      return dts
+>
+>
+> -def split_overlays(d, ver, out):
+> +def split_overlays(d, out, ver=None):
+>      dts = get_dts(d, ver)
+>      if out:
+>          overlays = oe.utils.str_filter_out('\S+\-overlay\.dtb$', dts, d)
+> diff --git a/classes/sdcard_image-rpi.bbclass b/classes/sdcard_image-rpi.bbclass
+> index 2f0daee..0487ef1 100644
+> --- a/classes/sdcard_image-rpi.bbclass
+> +++ b/classes/sdcard_image-rpi.bbclass
+> @@ -71,8 +71,6 @@ SDIMG = "${IMGDEPLOYDIR}/${IMAGE_NAME}.rootfs.rpi-sdimg"
+>  # Additional files and/or directories to be copied into the vfat partition from the IMAGE_ROOTFS.
+>  FATPAYLOAD ?= ""
+>
+> -RPI_KERNEL_VERSION := "${@get_kernelversion_file('${STAGING_KERNEL_BUILDDIR}')}"
+> -
+>  IMAGE_CMD_rpi-sdimg () {
+>
+>         # Align partitions
+> @@ -83,7 +81,7 @@ IMAGE_CMD_rpi-sdimg () {
+>         echo "Creating filesystem with Boot partition ${BOOT_SPACE_ALIGNED} KiB and RootFS $ROOTFS_SIZE KiB"
+>
+>         # Check if we are building with device tree support
+> -       DTS="${@get_dts(d, '${RPI_KERNEL_VERSION}')}"
+> +       DTS="${@get_dts(d)}"
+>
+>         # Initialize sdcard image file
+>         dd if=/dev/zero of=${SDIMG} bs=1024 count=0 seek=${SDIMG_SIZE}
+> @@ -104,8 +102,8 @@ IMAGE_CMD_rpi-sdimg () {
+>         mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/bcm2835-bootfiles/* ::/
+>         if test -n "${DTS}"; then
+>                 # Device Tree Overlays are assumed to be suffixed by '-overlay.dtb' (4.1.x) or by '.dtbo' (4.4.9+) string and will be put in a dedicated folder
+> -               DT_OVERLAYS="${@split_overlays(d, '${RPI_KERNEL_VERSION}', 0)}"
+> -               DT_ROOT="${@split_overlays(d, '${RPI_KERNEL_VERSION}', 1)}"
+> +               DT_OVERLAYS="${@split_overlays(d, 0)}"
+> +               DT_ROOT="${@split_overlays(d, 1)}"
+>
+>                 # Copy board device trees to root folder
+>                 for DTB in ${DT_ROOT}; do
+> --
+> 2.10.0
+>
+Yes this makes sense - thanks.
 
---_000_EEF480D2AA622D48BD0D761FB54F5B1BD0F5EBAresMailspectrane_--
+Andreas
+
