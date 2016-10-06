@@ -1,63 +1,65 @@
-Return-Path: <dominig.arfoll@fridu.net>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DDBE9E00A48; Thu,  6 Oct 2016 11:14:43 -0700 (PDT)
+	id CA675E0050B; Thu,  6 Oct 2016 11:19:20 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [74.125.82.65 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.82.65 listed in dnsbl.sorbs.net]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.217.194 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (raj.khem[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f65.google.com (mail-wm0-f65.google.com [74.125.82.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 62EE8E0050B
-	for <yocto@yoctoproject.org>; Thu,  6 Oct 2016 11:14:41 -0700 (PDT)
-Received: by mail-wm0-f65.google.com with SMTP id 123so4654846wmb.3
-	for <yocto@yoctoproject.org>; Thu, 06 Oct 2016 11:14:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fridu.net; s=google;
-	h=to:from:subject:message-id:date:user-agent:mime-version
-	:content-transfer-encoding;
-	bh=gGkDxYXL1ZeV0y2qdBdbH+JTGrsHIRIQD6io5w1EQyc=;
-	b=CztXKoz61VIAdGd5079QAIytiXL0XXpPy5gY2rm34+/2KSrCxkLo1gwm7K/JFgBr3V
-	ZZJidgI4VAT93if6QSzMCxSYWqQqPj4l78eO3x/84qz0EsHGHRp9K48jRoE7lsZuqHnS
-	w/yQwBs8ArzrkQ99Sxij/+aEthcAXq+KXGiwY=
+Received: from mail-ua0-f194.google.com (mail-ua0-f194.google.com
+	[209.85.217.194])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 049ABE0050B
+	for <yocto@yoctoproject.org>; Thu,  6 Oct 2016 11:19:20 -0700 (PDT)
+Received: by mail-ua0-f194.google.com with SMTP id 10so1013316ual.1
+	for <yocto@yoctoproject.org>; Thu, 06 Oct 2016 11:19:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=AOMExtpUNLZBSzG1kGAFmwv9RSyabMoy9zf3qqB/ggk=;
+	b=YeTVQTLj08kzHYvfZpT1nDGR6nZnuPvxvMxCzx3UPt+zuMzzdL2/16k3WWCxkQTB5Z
+	XrErZhvJgS+jXhY+hLKOMIFGq64QkT1S/ORNHjuL2cOHq75chmSzNwUYs9pXD1phkqHG
+	T9+1HNVwpZUlDGC4MQiJvQhpKcpTCWIWscJC6QM1ETnRc7YPz0EJFvRtD7OJin9y4H3A
+	usw6SbCuY9q4JzJxp3PoEAFkZ17sfE/slmHTBDYFkx1h0Uor3XFUiY80XWtfPzxbX4qD
+	ed5SpTVsMCdAYlcPoSkWZU1+RfIzSb1sHJXX7ANoAOfJEWakN1MQ2k16hSNpC6bGRX8c
+	DL0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:to:from:subject:message-id:date:user-agent
-	:mime-version:content-transfer-encoding;
-	bh=gGkDxYXL1ZeV0y2qdBdbH+JTGrsHIRIQD6io5w1EQyc=;
-	b=JCROOYyTwFwWkMs3W5gZ+fzn4Fs7GaPOBpu/h4z4CxzbWdYncWaTdYl9NtGDObDSMZ
-	TC/Cx38uHMsEXpQr2gQDDNEzOFlUKzC+D1DeF7loWMVRPLHhgSPYZAemJMKWUH1lUp/J
-	rbuJ+KcpfClqzkbP++DOtA/+UnDsZ/jr6dYGK4iD59pKCiial8k062q26n8P2UGQCEdo
-	ebqcCZbAscPylrXU0+zagS45s7Dn7NqnuhCF9T4mQQKJwDTdyRO7tqKN7ZQWZsOx5FfX
-	dxJLK9QcFrH4KgjNndZQpufoiHgxUNhnUBw2ySo302G8FuGPqKzIyvRkTdr0ZFOpSSaG
-	h82w==
-X-Gm-Message-State: AA6/9Rnb1Kw2CiaW6Gno0sO4LNIczG2xYJv4g8p6Mw3h+95CzICU1jTjoPxBHCa0RX187g==
-X-Received: by 10.194.235.165 with SMTP id un5mr13398408wjc.200.1475777680962; 
-	Thu, 06 Oct 2016 11:14:40 -0700 (PDT)
-Received: from [10.10.61.21] (ARennes-650-1-188-142.w2-14.abo.wanadoo.fr.
-	[2.14.91.142]) by smtp.gmail.com with ESMTPSA id
-	x133sm16311722wme.8.2016.10.06.11.14.39 for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Thu, 06 Oct 2016 11:14:39 -0700 (PDT)
-To: yocto@yoctoproject.org
-From: "Dominig ar Foll (Intel Open Source)" <dominig.arfoll@fridu.net>
-Message-ID: <098d3839-cbc0-d22b-67c0-48f15179e453@fridu.net>
-Date: Thu, 6 Oct 2016 20:14:39 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.3.0
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=AOMExtpUNLZBSzG1kGAFmwv9RSyabMoy9zf3qqB/ggk=;
+	b=hOYeBQpwuEbPI1vQPPQ2CMY+QG8JnmWMa67ZvHkApcSPD1MRNGJhweuXqRjc2xb6Xg
+	MZRFLN3F8m2P1fHv+dFq9UFu5h8Sjod5vF0U4YmHUO/z4o3GBaiVY6g2B8pdBnl1J+zt
+	xoC3KCTLSJe2bNJ4Gcd8EVygmKwkJA8vMFZFqJKJ3mswLNV4LXj/4jxz28UtkA6UnyKR
+	jPywqxho5CAOjeqRGICHiRG4pTVuafPb6O1RCQ0W4S2Ibi/d0bkiyWLBgiHg0L5vC4vu
+	QtDCwIPMN3Mm8M1kfKZpkf1ld0Wpo9Rdu7SOY76w8ez8lbP7aeDwi3x17BIa7I8+OVZB
+	XTMA==
+X-Gm-Message-State: AA6/9Rlx2q3ZCAvKYGTP6NEMsyuXcwB676cxZxQz0EwxlvVW04a9HPjhZnumwV15FQb+fl2IR1c4+ROpIT6+Rg==
+X-Received: by 10.176.64.229 with SMTP id i92mr11806738uad.32.1475777959610;
+	Thu, 06 Oct 2016 11:19:19 -0700 (PDT)
 MIME-Version: 1.0
-Subject: which meta-intel woudl build a kernel 4.8
+Received: by 10.176.86.206 with HTTP; Thu, 6 Oct 2016 11:19:18 -0700 (PDT)
+Received: by 10.176.86.206 with HTTP; Thu, 6 Oct 2016 11:19:18 -0700 (PDT)
+In-Reply-To: <098d3839-cbc0-d22b-67c0-48f15179e453@fridu.net>
+References: <098d3839-cbc0-d22b-67c0-48f15179e453@fridu.net>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Thu, 6 Oct 2016 11:19:18 -0700
+Message-ID: <CAMKF1soaF3FowAOv7hRPiU+H3u_4SjYRtUhz0w+cZ89WSxhU7w@mail.gmail.com>
+To: "Dominig ar Foll (Intel Open Source)" <dominig.arfoll@fridu.net>
+Cc: yocto@yoctoproject.org
+Subject: Re: which meta-intel woudl build a kernel 4.8
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,32 +71,95 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Oct 2016 18:14:43 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 06 Oct 2016 18:19:20 -0000
+Content-Type: multipart/alternative; boundary=94eb2c12298a0ccff0053e3655e1
 
-Hello,
+--94eb2c12298a0ccff0053e3655e1
+Content-Type: text/plain; charset=UTF-8
 
-I was happily under 'jethro' until now but I need to build a kernel 4.8
-fir Intel HW to get access to some new features.
+Use poky or oe-core master with master of meta-intel is best shot
 
-I can see that the 'master' branch bump to 4.8 but unfortunately come
-with the following errors :
+On Oct 6, 2016 11:16 AM, "Dominig ar Foll (Intel Open Source)" <
+dominig.arfoll@fridu.net> wrote:
 
-ERROR: No recipes available for:
- 
-/home/dominig/AGL/meta-intel/common/recipes-kernel/linux/linux-yocto-tiny_4.8.bbappend
- 
-/home/dominig/AGL/meta-intel/common/recipes-kernel/linux/linux-yocto_4.8.bbappend
+> Hello,
+>
+> I was happily under 'jethro' until now but I need to build a kernel 4.8
+> fir Intel HW to get access to some new features.
+>
+> I can see that the 'master' branch bump to 4.8 but unfortunately come
+> with the following errors :
+>
+> ERROR: No recipes available for:
+>
+> /home/dominig/AGL/meta-intel/common/recipes-kernel/linux/
+> linux-yocto-tiny_4.8.bbappend
+>
+> /home/dominig/AGL/meta-intel/common/recipes-kernel/linux/
+> linux-yocto_4.8.bbappend
+>
+> Would someone have an idea how I could get a 4.8 working meta-intel ?
+>
+> Thanks in advance
+>
+> --
+>
+> Dominig ar Foll
+> Senior Software Architect
+> Intel Open Source Technology Centre
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
-Would someone have an idea how I could get a 4.8 working meta-intel ?
+--94eb2c12298a0ccff0053e3655e1
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Thanks in advance
+<p dir=3D"ltr">Use poky or oe-core master with master of meta-intel is best=
+ shot</p>
+<div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On Oct 6, 2016 11=
+:16 AM, &quot;Dominig ar Foll (Intel Open Source)&quot; &lt;<a href=3D"mail=
+to:dominig.arfoll@fridu.net">dominig.arfoll@fridu.net</a>&gt; wrote:<br typ=
+e=3D"attribution"><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .=
+8ex;border-left:1px #ccc solid;padding-left:1ex">Hello,<br>
+<br>
+I was happily under &#39;jethro&#39; until now but I need to build a kernel=
+ 4.8<br>
+fir Intel HW to get access to some new features.<br>
+<br>
+I can see that the &#39;master&#39; branch bump to 4.8 but unfortunately co=
+me<br>
+with the following errors :<br>
+<br>
+ERROR: No recipes available for:<br>
+<br>
+/home/dominig/AGL/meta-intel/<wbr>common/recipes-kernel/linux/<wbr>linux-yo=
+cto-tiny_4.8.bbappend<br>
+<br>
+/home/dominig/AGL/meta-intel/<wbr>common/recipes-kernel/linux/<wbr>linux-yo=
+cto_4.8.bbappend<br>
+<br>
+Would someone have an idea how I could get a 4.8 working meta-intel ?<br>
+<br>
+Thanks in advance<br>
+<br>
+--<br>
+<br>
+Dominig ar Foll<br>
+Senior Software Architect<br>
+Intel Open Source Technology Centre<br>
+<br>
+--<br>
+______________________________<wbr>_________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto</a><=
+br>
+</blockquote></div></div>
 
--- 
-
-Dominig ar Foll
-Senior Software Architect
-Intel Open Source Technology Centre
-
-
+--94eb2c12298a0ccff0053e3655e1--
