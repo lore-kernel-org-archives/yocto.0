@@ -1,63 +1,41 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <geoffroy.vancutsem@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DEF88E00BF8; Thu,  6 Oct 2016 21:39:55 -0700 (PDT)
+	id 008C6E00B66; Thu,  6 Oct 2016 23:19:46 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.192.196 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (raj.khem[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pf0-f196.google.com (mail-pf0-f196.google.com
-	[209.85.192.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3A816E00AAB
-	for <yocto@yoctoproject.org>; Thu,  6 Oct 2016 21:39:53 -0700 (PDT)
-Received: by mail-pf0-f196.google.com with SMTP id 190so2200388pfv.1
-	for <yocto@yoctoproject.org>; Thu, 06 Oct 2016 21:39:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id;
-	bh=BnpHwABinT6tIN8PNBLqyfFYkUm4bbjipvn0C4v/51E=;
-	b=WPQp/0ep8a9orllgQKA7E+3+niqgHO4G2k8xfqdBIDKyZbo4jIYi0zboV25gvGqQSp
-	JY3o/71CFzVl/74pNhPbSIP3qWilB8qu8fCezKXIEYbd3/XRDNZusHMq32sVXtOYYRZ1
-	bZfpSqgHcy4xc0iTR864NytFBh9JQQAW1vsIfp8ib+/Tv2kNQvINBNqXOyYJQ7es33Ao
-	SPSB3igTZGkjNVcLeHvqNHCfEDxsRGNUDmYgzFiOPo3wbMYJ+Ud11zkdOQiM8LjEw2Ap
-	qSuaWfYtj10zYo8VfKaDnbcqOibpmkwIDq2SPKJOnr2wUPIyJ14iOxAOUebA/XUNr4TA
-	v1zw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=BnpHwABinT6tIN8PNBLqyfFYkUm4bbjipvn0C4v/51E=;
-	b=FTbD9/eoW7SAZG2VA5new9WumTtoKkyFXsTu1cdh1gvpEJH87EVBsnMdazuQ5j/HZ9
-	8xzK9KmQK5tWRSUVgjb39zte/s+FwEZtBwv7km+JEs8Hhe/Cs6OxZkW6EX/A8GO0ie+M
-	IDa6sOXq1bptHTo1LNfluPos5yCa+TrpzlIAYtwbMd9S1wOwQY6d+HE0e/n7IamfUCXW
-	2cSWKKOyFtw4KZAFxsAAaX3tYEIoNKEUafpRaBKcd/PPR3HyU46ThleaZrx4HSyi0eys
-	3n4O81teOx3nvqvSdB12K/FMChzMJcpDyOccCH2Ep88NBmuQ6hPaWZNmNfRdW19VCO0g
-	LeDA==
-X-Gm-Message-State: AA6/9RkibnhtHAgnNQKHiV0uEhPUrxDYJjU7BGuB7vcDiSbYFXkeh6B6vCV3GXUZKpMnoA==
-X-Received: by 10.98.5.133 with SMTP id 127mr24311725pff.40.1475815193455;
-	Thu, 06 Oct 2016 21:39:53 -0700 (PDT)
-Received: from localhost.localdomain (c-76-102-32-192.hsd1.ca.comcast.net.
-	[76.102.32.192]) by smtp.gmail.com with ESMTPSA id
-	y126sm9592354pfy.41.2016.10.06.21.39.52
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Thu, 06 Oct 2016 21:39:52 -0700 (PDT)
-From: Khem Raj <raj.khem@gmail.com>
-To: yocto@yoctoproject.org
-Date: Thu,  6 Oct 2016 21:39:46 -0700
-Message-Id: <20161007043946.10158-1-raj.khem@gmail.com>
-X-Mailer: git-send-email 2.10.0
-Subject: [meta-raspberrypi][PATCH] linux-raspberrypi: Add recipes and patches for 4.8 release
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [134.134.136.20 listed in list.dnswl.org]
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6FB94E00B3D
+	for <yocto@yoctoproject.org>; Thu,  6 Oct 2016 23:19:43 -0700 (PDT)
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+	by orsmga101.jf.intel.com with ESMTP; 06 Oct 2016 23:19:43 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.31,308,1473145200"; d="scan'208,217";a="17590968"
+Received: from irsmsx108.ger.corp.intel.com ([163.33.3.3])
+	by orsmga004.jf.intel.com with ESMTP; 06 Oct 2016 23:19:42 -0700
+Received: from irsmsx104.ger.corp.intel.com ([169.254.5.19]) by
+	IRSMSX108.ger.corp.intel.com ([169.254.11.164]) with mapi id
+	14.03.0248.002; Fri, 7 Oct 2016 07:19:41 +0100
+From: "VanCutsem, Geoffroy" <geoffroy.vancutsem@intel.com>
+To: "Dominig ar Foll (Intel Open Source)" <dominig.arfoll@fridu.net>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto] which meta-intel woudl build a kernel 4.8
+Thread-Index: AdIgYsmWkuuLliV7Y02zzmyK9f/AfA==
+Date: Fri, 7 Oct 2016 06:19:40 +0000
+Message-ID: <y98llhptn4q6pk8n829kwvu8.1475820983637@email.android.com>
+Accept-Language: en-GB, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+MIME-Version: 1.0
+Subject: Re: which meta-intel woudl build a kernel 4.8
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,126 +47,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 07 Oct 2016 04:39:55 -0000
+X-List-Received-Date: Fri, 07 Oct 2016 06:19:47 -0000
+Content-Language: en-GB
+Content-Type: multipart/alternative;
+	boundary="_000_y98llhptn4q6pk8n829kwvu81475820983637emailandroidcom_"
 
-Signed-off-by: Khem Raj <raj.khem@gmail.com>
----
- .../0001-fix-dtbo-rules.patch                      | 44 ++++++++++++++++++++++
- ...835-camera-fix-compilation-warning-werror.patch | 35 +++++++++++++++++
- recipes-kernel/linux/linux-raspberrypi_4.8.bb      | 10 +++++
- 3 files changed, 89 insertions(+)
- create mode 100644 recipes-kernel/linux/linux-raspberrypi-4.8/0001-fix-dtbo-rules.patch
- create mode 100644 recipes-kernel/linux/linux-raspberrypi-4.8/0001-media-bcm2835-camera-fix-compilation-warning-werror.patch
- create mode 100644 recipes-kernel/linux/linux-raspberrypi_4.8.bb
+--_000_y98llhptn4q6pk8n829kwvu81475820983637emailandroidcom_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-diff --git a/recipes-kernel/linux/linux-raspberrypi-4.8/0001-fix-dtbo-rules.patch b/recipes-kernel/linux/linux-raspberrypi-4.8/0001-fix-dtbo-rules.patch
-new file mode 100644
-index 0000000..5113e23
---- /dev/null
-+++ b/recipes-kernel/linux/linux-raspberrypi-4.8/0001-fix-dtbo-rules.patch
-@@ -0,0 +1,44 @@
-+From 13c8784da3dbd977f64cec740eba775b6fab11c2 Mon Sep 17 00:00:00 2001
-+From: Herve Jourdain <herve.jourdain@neuf.fr>
-+Date: Fri, 20 May 2016 16:02:23 +0800
-+Subject: [yocto][meta-raspberrypi][PATCH v4 4/5] linux-raspberrypi_4.4.inc:
-+ support for .dtbo files for dtb overlays
-+
-+Upstream-Status: Pending
-+
-+Kernel 4.4.6+ on RaspberryPi support .dtbo files for overlays, instead of .dtb.
-+Patch the kernel, which has faulty rules to generate .dtbo the way yocto does
-+
-+Signed-off-by: Herve Jourdain <herve.jourdain@neuf.fr>
-+---
-+ .../0001-fix-dtbo-rules.patch                      | 27 ++++++++++++++++++++++
-+ 1 file changed, 27 insertions(+)
-+ create mode 100644 recipes-kernel/linux/linux-raspberrypi-4.4/0001-fix-dtbo-rules.patch
-+
-+diff --git a/arch/arm/Makefile b/arch/arm/Makefile
-+index a2e7cf7..673c1cb 100644
-+--- a/arch/arm/Makefile
-++++ b/arch/arm/Makefile
-+@@ -333,6 +333,8 @@ $(INSTALL_TARGETS):
-+ 
-+ %.dtb: | scripts
-+ 	$(Q)$(MAKE) $(build)=$(boot)/dts MACHINE=$(MACHINE) $(boot)/dts/$@
-++%.dtbo: | scripts
-++	$(Q)$(MAKE) $(build)=$(boot)/dts MACHINE=$(MACHINE) $(boot)/dts/$@
-+ 
-+ PHONY += dtbs dtbs_install
-+ 
-+diff --git a/scripts/Makefile.lib b/scripts/Makefile.lib
-+index 3079c4f..6cc3766 100644
-+--- a/scripts/Makefile.lib
-++++ b/scripts/Makefile.lib
-+@@ -293,7 +293,8 @@ $(obj)/%.dtb: $(src)/%.dts FORCE
-+ 	$(call if_changed_dep,dtc)
-+ 
-+ quiet_cmd_dtco = DTCO    $@
-+-cmd_dtco = $(CPP) $(dtc_cpp_flags) -x assembler-with-cpp -o $(dtc-tmp) $< ; \
-++cmd_dtco = mkdir -p $(dir ${dtc-tmp}) ; \
-++	$(CPP) $(dtc_cpp_flags) -x assembler-with-cpp -o $(dtc-tmp) $< ; \
-+ 	$(objtree)/scripts/dtc/dtc -@ -H epapr -O dtb -o $@ -b 0 \
-+ 		-i $(dir $<) $(DTC_FLAGS) \
-+ 		-d $(depfile).dtc.tmp $(dtc-tmp) ; \
-diff --git a/recipes-kernel/linux/linux-raspberrypi-4.8/0001-media-bcm2835-camera-fix-compilation-warning-werror.patch b/recipes-kernel/linux/linux-raspberrypi-4.8/0001-media-bcm2835-camera-fix-compilation-warning-werror.patch
-new file mode 100644
-index 0000000..ea9778f
---- /dev/null
-+++ b/recipes-kernel/linux/linux-raspberrypi-4.8/0001-media-bcm2835-camera-fix-compilation-warning-werror.patch
-@@ -0,0 +1,35 @@
-+From a8151cbe5d92d7487b7994522cbc83fed04ae1f9 Mon Sep 17 00:00:00 2001
-+From: Khem Raj <raj.khem@gmail.com>
-+Date: Thu, 6 Oct 2016 19:42:55 -0700
-+Subject: [PATCH] [media]: bcm2835-camera: fix compilation warning/werror
-+
-+| /a/builder/mnt/build/tmp-glibc/work-shared/raspberrypi3/kernel-source/drivers/media/platform/bcm2835/bcm2835-camera.c:656:17: error: initialization from incompatible pointer type [-Werror=incompatible-pointer-types
-+]
-+|   .queue_setup = queue_setup,
-+|                  ^~~~~~~~~~~
-+| /a/builder/mnt/build/tmp-glibc/work-shared/raspberrypi3/kernel-source/drivers/media/platform/bcm2835/bcm28
-+35-camera.c:656:17: note: (near initialization for 'bm2835_mmal_video_qops.queue_setup')
-+
-+use struct device* instead of void*
-+
-+Signed-off-by: Khem Raj <raj.khem@gmail.com>
-+---
-+ drivers/media/platform/bcm2835/bcm2835-camera.c | 2 +-
-+ 1 file changed, 1 insertion(+), 1 deletion(-)
-+
-+diff --git a/drivers/media/platform/bcm2835/bcm2835-camera.c b/drivers/media/platform/bcm2835/bcm2835-camera.c
-+index 70f4db2..cb5bab6 100644
-+--- a/drivers/media/platform/bcm2835/bcm2835-camera.c
-++++ b/drivers/media/platform/bcm2835/bcm2835-camera.c
-+@@ -244,7 +244,7 @@ static struct mmal_fmt *get_format(struct v4l2_format *f)
-+ 
-+ static int queue_setup(struct vb2_queue *vq,
-+ 		       unsigned int *nbuffers, unsigned int *nplanes,
-+-		       unsigned int sizes[], void *alloc_ctxs[])
-++		       unsigned int sizes[], struct device *alloc_ctxs[])
-+ {
-+ 	struct bm2835_mmal_dev *dev = vb2_get_drv_priv(vq);
-+ 	unsigned long size;
-+-- 
-+2.10.0
-+
-diff --git a/recipes-kernel/linux/linux-raspberrypi_4.8.bb b/recipes-kernel/linux/linux-raspberrypi_4.8.bb
-new file mode 100644
-index 0000000..92a69ad
---- /dev/null
-+++ b/recipes-kernel/linux/linux-raspberrypi_4.8.bb
-@@ -0,0 +1,10 @@
-+FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
-+
-+LINUX_VERSION ?= "4.8.0"
-+
-+SRCREV = "2fb843e0e50b2330e76acea03ff63a5b2b1e411f"
-+SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-4.8.y \
-+           file://0001-fix-dtbo-rules.patch \
-+           file://0001-media-bcm2835-camera-fix-compilation-warning-werror.patch \
-+"
-+require linux-raspberrypi.inc
--- 
-2.10.0
+DQotLS0tLS0tLSBPcmlnaW5hbCBtZXNzYWdlIC0tLS0tLS0tDQpGcm9tOiAiRG9taW5pZyBhciBG
+b2xsIChJbnRlbCBPcGVuIFNvdXJjZSkiIDxkb21pbmlnLmFyZm9sbEBmcmlkdS5uZXQ+DQpEYXRl
+OiAwNi8xMC8yMDE2IDIwOjE2IChHTVQrMDE6MDApDQpUbzogeW9jdG9AeW9jdG9wcm9qZWN0Lm9y
+Zw0KU3ViamVjdDogW3lvY3RvXSB3aGljaCBtZXRhLWludGVsIHdvdWRsIGJ1aWxkIGEga2VybmVs
+IDQuOA0KDQpIZWxsbywNCg0KSSB3YXMgaGFwcGlseSB1bmRlciAnamV0aHJvJyB1bnRpbCBub3cg
+YnV0IEkgbmVlZCB0byBidWlsZCBhIGtlcm5lbCA0LjgNCmZpciBJbnRlbCBIVyB0byBnZXQgYWNj
+ZXNzIHRvIHNvbWUgbmV3IGZlYXR1cmVzLg0KDQpJIGNhbiBzZWUgdGhhdCB0aGUgJ21hc3Rlcicg
+YnJhbmNoIGJ1bXAgdG8gNC44IGJ1dCB1bmZvcnR1bmF0ZWx5IGNvbWUNCndpdGggdGhlIGZvbGxv
+d2luZyBlcnJvcnMgOg0KDQpFUlJPUjogTm8gcmVjaXBlcyBhdmFpbGFibGUgZm9yOg0KDQovaG9t
+ZS9kb21pbmlnL0FHTC9tZXRhLWludGVsL2NvbW1vbi9yZWNpcGVzLWtlcm5lbC9saW51eC9saW51
+eC15b2N0by10aW55XzQuOC5iYmFwcGVuZA0KDQovaG9tZS9kb21pbmlnL0FHTC9tZXRhLWludGVs
+L2NvbW1vbi9yZWNpcGVzLWtlcm5lbC9saW51eC9saW51eC15b2N0b180LjguYmJhcHBlbmQNCg0K
+V291bGQgc29tZW9uZSBoYXZlIGFuIGlkZWEgaG93IEkgY291bGQgZ2V0IGEgNC44IHdvcmtpbmcg
+bWV0YS1pbnRlbCA/DQoNCltHZW9mZnJveV0gSSBkb24ndCBrbm93IGhvdyB0aGUgb3ZlcmFsbCBB
+R0wgcmVwbyBpcyBjb25zdHJ1Y3RlZCBidXQgaXQgc291bmRzIGxpa2UgeW91IHdvdWxkIG5lZWQg
+dG8gdXBkYXRlIHlvdXIgb3BlbmVtYmVkZGVkLWNvcmUgYXMgd2VsbCB0byBtYXN0ZXIgdG8gaGF2
+ZSB0aGUgYmFzZSByZWNpcGVzIGZvciA0LjggKGluIG1ldGEvcmVjaXBlcy1rZXJuZWwvbGludXgp
+DQoNCkdlb2Zmcm95DQoNCg==
 
+--_000_y98llhptn4q6pk8n829kwvu81475820983637emailandroidcom_
+Content-Type: text/html; charset="utf-8"
+Content-ID: <AB274B424895F14BADCFAC2A9C41EB1B@intel.com>
+Content-Transfer-Encoding: base64
 
+PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
+dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjwvaGVhZD4NCjxib2R5Pg0KPGRpdj48YnI+DQo8
+L2Rpdj4NCjxkaXYgc3R5bGU9ImZvbnQtc2l6ZToxMDAlO2NvbG9yOiMwMDAwMDAiPjwhLS0gb3Jp
+Z2luYWxNZXNzYWdlIC0tPg0KPGRpdj4tLS0tLS0tLSBPcmlnaW5hbCBtZXNzYWdlIC0tLS0tLS0t
+PC9kaXY+DQo8ZGl2PkZyb206ICZxdW90O0RvbWluaWcgYXIgRm9sbCAoSW50ZWwgT3BlbiBTb3Vy
+Y2UpJnF1b3Q7ICZsdDtkb21pbmlnLmFyZm9sbEBmcmlkdS5uZXQmZ3Q7IDwvZGl2Pg0KPGRpdj5E
+YXRlOiAwNi8xMC8yMDE2IDIwOjE2IChHTVQmIzQzOzAxOjAwKSA8L2Rpdj4NCjxkaXY+VG86IHlv
+Y3RvQHlvY3RvcHJvamVjdC5vcmcgPC9kaXY+DQo8ZGl2PlN1YmplY3Q6IFt5b2N0b10gd2hpY2gg
+bWV0YS1pbnRlbCB3b3VkbCBidWlsZCBhIGtlcm5lbCA0LjggPC9kaXY+DQo8ZGl2Pjxicj4NCjwv
+ZGl2Pg0KPC9kaXY+DQo8Zm9udCBzaXplPSIyIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwcHQ7
+Ij4NCjxkaXYgY2xhc3M9IlBsYWluVGV4dCI+SGVsbG8sPGJyPg0KPGJyPg0KSSB3YXMgaGFwcGls
+eSB1bmRlciAnamV0aHJvJyB1bnRpbCBub3cgYnV0IEkgbmVlZCB0byBidWlsZCBhIGtlcm5lbCA0
+Ljg8YnI+DQpmaXIgSW50ZWwgSFcgdG8gZ2V0IGFjY2VzcyB0byBzb21lIG5ldyBmZWF0dXJlcy48
+YnI+DQo8YnI+DQpJIGNhbiBzZWUgdGhhdCB0aGUgJ21hc3RlcicgYnJhbmNoIGJ1bXAgdG8gNC44
+IGJ1dCB1bmZvcnR1bmF0ZWx5IGNvbWU8YnI+DQp3aXRoIHRoZSBmb2xsb3dpbmcgZXJyb3JzIDo8
+YnI+DQo8YnI+DQpFUlJPUjogTm8gcmVjaXBlcyBhdmFpbGFibGUgZm9yOjxicj4NCiZuYnNwOzxi
+cj4NCi9ob21lL2RvbWluaWcvQUdML21ldGEtaW50ZWwvY29tbW9uL3JlY2lwZXMta2VybmVsL2xp
+bnV4L2xpbnV4LXlvY3RvLXRpbnlfNC44LmJiYXBwZW5kPGJyPg0KJm5ic3A7PGJyPg0KL2hvbWUv
+ZG9taW5pZy9BR0wvbWV0YS1pbnRlbC9jb21tb24vcmVjaXBlcy1rZXJuZWwvbGludXgvbGludXgt
+eW9jdG9fNC44LmJiYXBwZW5kPGJyPg0KPGJyPg0KV291bGQgc29tZW9uZSBoYXZlIGFuIGlkZWEg
+aG93IEkgY291bGQgZ2V0IGEgNC44IHdvcmtpbmcgbWV0YS1pbnRlbCA/PGJyPg0KPGJyPg0KW0dl
+b2Zmcm95XSBJIGRvbid0IGtub3cgaG93IHRoZSBvdmVyYWxsIEFHTCByZXBvIGlzIGNvbnN0cnVj
+dGVkIGJ1dCBpdCBzb3VuZHMgbGlrZSB5b3Ugd291bGQgbmVlZCB0byB1cGRhdGUgeW91ciBvcGVu
+ZW1iZWRkZWQtY29yZSBhcyB3ZWxsIHRvIG1hc3RlciB0byBoYXZlIHRoZSBiYXNlIHJlY2lwZXMg
+Zm9yIDQuOCAoaW4gbWV0YS9yZWNpcGVzLWtlcm5lbC9saW51eCk8L2Rpdj4NCjxkaXYgY2xhc3M9
+IlBsYWluVGV4dCI+PGJyPg0KPC9kaXY+DQo8ZGl2IGNsYXNzPSJQbGFpblRleHQiPkdlb2Zmcm95
+PGJyPg0KPGJyPg0KPC9kaXY+DQo8L3NwYW4+PC9mb250Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
+
+--_000_y98llhptn4q6pk8n829kwvu81475820983637emailandroidcom_--
