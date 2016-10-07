@@ -1,6 +1,6 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BCB3CE00BF9; Thu,  6 Oct 2016 19:09:17 -0700 (PDT)
+	id 9E46CE00AAB; Thu,  6 Oct 2016 19:35:23 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -11,9 +11,7 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (raj.khem[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.192.193 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.192.193 listed in dnsbl.sorbs.net]
+	*      [209.85.192.181 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -21,48 +19,59 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pf0-f193.google.com (mail-pf0-f193.google.com
-	[209.85.192.193])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4DAF6E00B58
-	for <yocto@yoctoproject.org>; Thu,  6 Oct 2016 19:09:17 -0700 (PDT)
-Received: by mail-pf0-f193.google.com with SMTP id t25so1994849pfg.2
-	for <yocto@yoctoproject.org>; Thu, 06 Oct 2016 19:09:17 -0700 (PDT)
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.192.181 listed in dnsbl.sorbs.net]
+Received: from mail-pf0-f181.google.com (mail-pf0-f181.google.com
+	[209.85.192.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3819BE00A85
+	for <yocto@yoctoproject.org>; Thu,  6 Oct 2016 19:35:22 -0700 (PDT)
+Received: by mail-pf0-f181.google.com with SMTP id e6so17358627pfk.1
+	for <yocto@yoctoproject.org>; Thu, 06 Oct 2016 19:35:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id:in-reply-to:references;
-	bh=uIbXkSQRVR9aaX1jRYobjQhDQp/8jsSIaBZSw/9+AII=;
-	b=0cDI6XDqEE9sq6yDyfmxXYVuyAHGZzGJWuXtLmmI9DCA0gzypPMsSNnNgFxmMvF0on
-	e1Yye2ADL+z+bms5cUTf17fddij1CYNtO0brsADBploP5qd800TNpiwk8TyydMsMIuRk
-	/8BIKlXdkFrVv5ANQ4Hwxg+eA2+Df5XwNOzhOFqRBTQnPDeOKd5vrAjDWJa5t2qjZzly
-	X5+amDEiRkkC2DNga5CmxfFNWAZbq7O/CBOXhceoCbqCzW55jbrU3Q3ogrIKPhgJ5ota
-	z0aClH6Mu0vu9mzAN3F56N3Ef7x9Nb+vvvqr7q8mCFWr8oCRpQIrHDCMvyxtSUX9/l13
-	TjSQ==
+	h=subject:mime-version:from:in-reply-to:date:cc:message-id:references
+	:to; bh=zeEQ3eisu4scb+rI1nQwHICgFVQ5+gjFnVaVCAhuuEw=;
+	b=B59vIJ2D4cUF+W4Bn2s3rp3liLvuvs5KkQu8Ult5pKrgQaT92/+5P9jiLJswbxyXzD
+	fe3NFj0eU1S5ngXodBGs2qtiF9ap80xofPjmlzvG5ViZOSEEJ6ZlBjAxDe5jRyrkyUtE
+	oAn85Z9G/rY19Yp6GA5ioawC/6kcBuePRr8hSxL04iOdZVHx6U0QztoxoAr+FwNg1rCY
+	Dj/cuttIaMY4DnzUwudi2gd8WntvDwnpsk/6cIy0N8MdpYH1mlR3dDbgN7py/kjU5cow
+	yI9+SmNo5vqd7ouGwiaf4DYeYEy0wAHxxz680Lz/yJlx+E9RsYDFBC4JfEy91qOkLQfj
+	Reow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-	:references;
-	bh=uIbXkSQRVR9aaX1jRYobjQhDQp/8jsSIaBZSw/9+AII=;
-	b=ino82Y5s/0+XWPT3Bp6Yw8hTumPHq/i4iAPuWSwS/XO62UWL8c7ioS15EhfSqRLAuX
-	C2fgnww6K+YOL/FuNrjZgCe5M9+QuxNUIyuj2koSOfnndFKyUzFBg6Ow0ZkoygXEY8Z0
-	/iL6EJm9Ex1+Ym2qZRGAoZhfk3O1auR94hAWR6JteseS9+j5R5NSZ47jDRiG36E5SFxo
-	sBLzTkUebJf8xlNJWDrP214I15knXhWZ0OhJK2fZn1TSSoXUknN5m3udXdX3EwGE4P+w
-	OWQ+2ZaSyBEbsv5HxGFhfczY94bQ7SKokLjokEwL+Qhol63SuL+06SYNjh4NMUKWrbKC
-	Gyhw==
-X-Gm-Message-State: AA6/9RlR+njY9FsfJFadd7y1zFKOfcRPwsCjahoXOYB+f4jeTPq17IabBjd0FFg8tja84A==
-X-Received: by 10.98.33.214 with SMTP id o83mr13689632pfj.149.1475806156637;
-	Thu, 06 Oct 2016 19:09:16 -0700 (PDT)
-Received: from localhost.localdomain (c-76-102-32-192.hsd1.ca.comcast.net.
-	[76.102.32.192]) by smtp.gmail.com with ESMTPSA id
-	wd7sm25932607pab.2.2016.10.06.19.09.15
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Thu, 06 Oct 2016 19:09:16 -0700 (PDT)
+	h=x-gm-message-state:subject:mime-version:from:in-reply-to:date:cc
+	:message-id:references:to;
+	bh=zeEQ3eisu4scb+rI1nQwHICgFVQ5+gjFnVaVCAhuuEw=;
+	b=ax/58kjuBMswqppV2mTWEvZpXIKSRSSKirCN65aJiIbKcxuCmYq2IOlB9xfG9Sk3aT
+	NIt9s1/P9gz+How+GQWoUhe59BCQY0UPStdbadY1V6WLFj3IPB/wbJZmZSlc0/Wl/dBB
+	x1Ffr4WDhf0Npv36jIP+TGAzXG1gBMtszdLpKMaoDMrI1s1uQkm4FZULNIp+YQJOxXUB
+	RVdaZ0k7NoRNPkUkC1Fvd0ZegQ7dLom3D2E7pa5ULwJuEphhilMUBtT/x5xzuCRzLyf1
+	QDKAVclhSEf2/q7ccixxYpEUTSe5+KGKKkb45QTnvC/PgHNZY3YCJG90mbJxKxusRhId
+	ZxLg==
+X-Gm-Message-State: AA6/9Rk0zKbU3yobI0CqEUtwHD83yn4x5UCCIbcXpHK+QBe0EStsoywHyzPFcdiOXF3yuA==
+X-Received: by 10.98.32.209 with SMTP id m78mr24105178pfj.45.1475807721665;
+	Thu, 06 Oct 2016 19:35:21 -0700 (PDT)
+Received: from ?IPv6:2601:646:8882:b8c:cd9d:6261:adca:4b85?
+	([2601:646:8882:b8c:cd9d:6261:adca:4b85])
+	by smtp.gmail.com with ESMTPSA id
+	y126sm8986464pfy.41.2016.10.06.19.35.20
+	(version=TLS1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Thu, 06 Oct 2016 19:35:21 -0700 (PDT)
+Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
+X-Pgp-Agent: GPGMail
 From: Khem Raj <raj.khem@gmail.com>
-To: yocto@yoctoproject.org
-Date: Thu,  6 Oct 2016 19:09:06 -0700
-Message-Id: <20161007020906.32228-4-raj.khem@gmail.com>
-X-Mailer: git-send-email 2.10.0
-In-Reply-To: <20161007020906.32228-1-raj.khem@gmail.com>
-References: <20161007020906.32228-1-raj.khem@gmail.com>
-Subject: [meta-raspberrypi][PATCH 4/4] sdcard_image-rpi.bbclass: Remove redundant RPI_KERNEL_VERSION
+In-Reply-To: <A7265EA8-CB91-4D1B-987B-6FE4EBE52417@gmail.com>
+Date: Thu, 6 Oct 2016 19:35:14 -0700
+Message-Id: <FB4B6E4F-AA20-4156-958E-EB1C80F3726D@gmail.com>
+References: <CAN+d=aScNFOQBaGXSCG+UGqpZ_hWzcAynrAAncgyXoW46ej6Mg@mail.gmail.com>
+	<2E6C63C1-C4D3-4646-ADD4-62EBF047EA0F@sierrawireless.com>
+	<A9CEB2A8-6D91-4DAA-9380-998669775326@stratagemsystems.com>
+	<0DC30BE5-2A1D-43BE-BC15-DB8132E026B2@gmail.com>
+	<C0308C46-B222-46A6-BF18-90D853C7B627@sierrawireless.com>
+	<A7265EA8-CB91-4D1B-987B-6FE4EBE52417@gmail.com>
+To: Randy Mortensen <randy.mort@gmail.com>
+X-Mailer: Apple Mail (2.3124)
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: openjdk build fails due to checksum mismatches from icedtea-native
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,84 +83,109 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 07 Oct 2016 02:09:17 -0000
+X-List-Received-Date: Fri, 07 Oct 2016 02:35:23 -0000
+X-Groupsio-MsgNum: 32260
+Content-Type: multipart/signed;
+	boundary="Apple-Mail=_A29C1004-5472-43E4-BA07-E340E082D630";
+	protocol="application/pgp-signature"; micalg=pgp-sha1
 
-From: Jonathan Liu <net147@gmail.com>
-
-The value of the RPI_KERNEL_VERSION can change between None and the
-kernel version which can result in taskhash mismatch errors while
-building images.
-
-The taskhash mismatch errors can be reproduced using:
-bitbake -c cleansstate virtual/kernel core-image-minimal && bitbake core-image-minimal
-
-The get_dts() and split_overlays() functions are modified so that the
-kernel version argument is optional. If the version is not supplied to
-these functions, they will fallback to the Python equivalent of the
-expression used for RPI_KERNEL_VERSION.
-
-Signed-off-by: Jonathan Liu <net147@gmail.com>
-Signed-off-by: Khem Raj <raj.khem@gmail.com>
----
- classes/linux-raspberrypi-base.bbclass | 4 ++--
- classes/sdcard_image-rpi.bbclass       | 8 +++-----
- 2 files changed, 5 insertions(+), 7 deletions(-)
-
-diff --git a/classes/linux-raspberrypi-base.bbclass b/classes/linux-raspberrypi-base.bbclass
-index 930fc44..3a6e33d 100644
---- a/classes/linux-raspberrypi-base.bbclass
-+++ b/classes/linux-raspberrypi-base.bbclass
-@@ -1,6 +1,6 @@
- inherit linux-kernel-base
- 
--def get_dts(d, ver):
-+def get_dts(d, ver=None):
-     import re
- 
-     staging_dir = d.getVar("STAGING_KERNEL_BUILDDIR", True)
-@@ -32,7 +32,7 @@ def get_dts(d, ver):
-     return dts
- 
- 
--def split_overlays(d, ver, out):
-+def split_overlays(d, out, ver=None):
-     dts = get_dts(d, ver)
-     if out:
-         overlays = oe.utils.str_filter_out('\S+\-overlay\.dtb$', dts, d)
-diff --git a/classes/sdcard_image-rpi.bbclass b/classes/sdcard_image-rpi.bbclass
-index 2f0daee..0487ef1 100644
---- a/classes/sdcard_image-rpi.bbclass
-+++ b/classes/sdcard_image-rpi.bbclass
-@@ -71,8 +71,6 @@ SDIMG = "${IMGDEPLOYDIR}/${IMAGE_NAME}.rootfs.rpi-sdimg"
- # Additional files and/or directories to be copied into the vfat partition from the IMAGE_ROOTFS.
- FATPAYLOAD ?= ""
- 
--RPI_KERNEL_VERSION := "${@get_kernelversion_file('${STAGING_KERNEL_BUILDDIR}')}"
--
- IMAGE_CMD_rpi-sdimg () {
- 
- 	# Align partitions
-@@ -83,7 +81,7 @@ IMAGE_CMD_rpi-sdimg () {
- 	echo "Creating filesystem with Boot partition ${BOOT_SPACE_ALIGNED} KiB and RootFS $ROOTFS_SIZE KiB"
- 
- 	# Check if we are building with device tree support
--	DTS="${@get_dts(d, '${RPI_KERNEL_VERSION}')}"
-+	DTS="${@get_dts(d)}"
- 
- 	# Initialize sdcard image file
- 	dd if=/dev/zero of=${SDIMG} bs=1024 count=0 seek=${SDIMG_SIZE}
-@@ -104,8 +102,8 @@ IMAGE_CMD_rpi-sdimg () {
- 	mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/bcm2835-bootfiles/* ::/
- 	if test -n "${DTS}"; then
- 		# Device Tree Overlays are assumed to be suffixed by '-overlay.dtb' (4.1.x) or by '.dtbo' (4.4.9+) string and will be put in a dedicated folder
--		DT_OVERLAYS="${@split_overlays(d, '${RPI_KERNEL_VERSION}', 0)}"
--		DT_ROOT="${@split_overlays(d, '${RPI_KERNEL_VERSION}', 1)}"
-+		DT_OVERLAYS="${@split_overlays(d, 0)}"
-+		DT_ROOT="${@split_overlays(d, 1)}"
- 
- 		# Copy board device trees to root folder
- 		for DTB in ${DT_ROOT}; do
--- 
-2.10.0
+--Apple-Mail=_A29C1004-5472-43E4-BA07-E340E082D630
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=utf-8
 
 
+> On Oct 6, 2016, at 7:07 PM, Randy Mortensen <randy.mort@gmail.com> =
+wrote:
+>=20
+>=20
+>> On Oct 5, 2016, at 7:14 PM, Darcy Watkins =
+<dwatkins@sierrawireless.com> wrote:
+>>=20
+>>=20
+>>=20
+>>> On Oct 5, 2016, at 4:52 PM, Khem Raj <raj.khem@gmail.com> wrote:
+>>>> On Oct 5, 2016, at 4:45 PM, Randy Mortensen =
+<randym@stratagemsystems.com> wrote:
+>>>>> On Oct 5, 2016, at 5:04 PM, Darcy Watkins =
+<dwatkins@sierrawireless.com> wrote:
+>>>>>=20
+>>>>> =46rom what I gleaned from recent discussions of fetcher errors, =
+this is somehow connected with rollout of Python related security fixes =
+to various Linux distributions and/or some ...-native recipes.
+>>>>>=20
+>>>>> It was a bunch of tar balls that are named as mercurial hashes =
+from within iced tea rather than the yocto fetch. I worked around it by =
+grabbing the tarballs from a different checkout since I didn't have time =
+to dig into it.
+>>>>>=20
+>>>>> It affected a fresh checkout I was building from scratch.
+>>>>>=20
+>>>> Thanks for the response. This also happened to me when trying to =
+build from scratch.
+>>>> For my clarification, did you already have the tar balls downloaded =
+or were you able to download them from a previous (icedtea) commit =
+somehow?
+>>=20
+>> I had the tar balls in a different build that I had around for some =
+time.  The reason I never cached these ones in a shared location on our =
+server was I felt that tar balls with small hashes as filenames was too =
+prone to collisions, especially without a package name as a prefix.  I =
+don't know if that is a convention of iced tea, or how the fetcher =
+handles mercurial.
+>>=20
+>>> Can you check if the tarballs have been rebuilt upstream ? if so we =
+should try to find out what changed.
+>>> It could also be an oversight that a recipe update forgot or updated =
+the checksums wrongly. but we should try to root cause it
+>>=20
+>> I agree here.  We should root cause it.
+>>=20
+>>=20
+> I=E2=80=99m not sure how this is all supposed to work, but I managed =
+to get past the fetch failures by changing the md5sum and sha256sum =
+checksums in icedtea7-native_2.1.3.bb.
+> I used the the checksums helpfully suggested by bitbake when it =
+reported the errors.
+>=20
+> I compared one of the problematic tar balls with a =E2=80=9Cgood=E2=80=9D=
+ one from a previous download and the only change I could identify was 3 =
+extra lines added to a hidden file .hgtag  (which I presume maps a tag =
+to a commit). Not sure why requesting the same hg commit results in a =
+different tarball output.
+>=20
+
+could it be that its generating the tarballs from mercurial directly and =
+thats flawed somehow ?
+
+
+> Now however iced tea fails to configure due to checksum errors. The =
+configure task seems to re-download each tarball and check the sha256sum =
+which is failing.
+>=20
+> I=E2=80=99m not sure where to go from here to try and resolve so any =
+more help is welcome.
+
+
+
+>=20
+>=20
+
+
+--Apple-Mail=_A29C1004-5472-43E4-BA07-E340E082D630
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+	filename=signature.asc
+Content-Type: application/pgp-signature;
+	name=signature.asc
+Content-Description: Message signed with OpenPGP using GPGMail
+
+-----BEGIN PGP SIGNATURE-----
+Comment: GPGTools - https://gpgtools.org
+
+iEYEARECAAYFAlf3CecACgkQuwUzVZGdMxSTBwCeOZrrTS14KKGGa0ZKJmjA9E/e
+NZ4Ani+SSr1SXCOu6fjvkgmT0Hfl/XXh
+=qBs8
+-----END PGP SIGNATURE-----
+
+--Apple-Mail=_A29C1004-5472-43E4-BA07-E340E082D630--
