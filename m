@@ -1,39 +1,34 @@
-Return-Path: <mark.hatle@windriver.com>
+Return-Path: <anibal.limon@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0D5B5E00C45; Fri,  7 Oct 2016 11:20:57 -0700 (PDT)
+	id AE904E00C4B; Fri,  7 Oct 2016 13:49:42 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4C8DEE00C29
-	for <yocto@yoctoproject.org>; Fri,  7 Oct 2016 11:20:53 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id u97IKqSI021960
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 7 Oct 2016 11:20:52 -0700 (PDT)
-Received: from soho-mhatle-m.local (172.25.36.226) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.294.0;
-	Fri, 7 Oct 2016 11:20:51 -0700
-To: "Liam R. Howlett" <Liam.Howlett@windriver.com>, <yocto@yoctoproject.org>
-References: <1475855841-30009-1-git-send-email-Liam.Howlett@WindRiver.com>
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-Message-ID: <16da8ce7-7355-fe97-7abe-20cd3a64e2c7@windriver.com>
-Date: Fri, 7 Oct 2016 13:20:50 -0500
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:45.0)
-	Gecko/20100101 Thunderbird/45.4.0
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [134.134.136.24 listed in list.dnswl.org]
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7E97AE00C45
+	for <yocto@yoctoproject.org>; Fri,  7 Oct 2016 13:49:38 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 07 Oct 2016 13:49:38 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.31,456,1473145200"; d="scan'208";a="1061943298"
+Received: from alimonb-mobl1.zpn.intel.com ([10.219.5.33])
+	by orsmga002.jf.intel.com with ESMTP; 07 Oct 2016 13:49:37 -0700
+From: =?UTF-8?q?An=C3=ADbal=20Lim=C3=B3n?= <anibal.limon@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Fri,  7 Oct 2016 15:50:38 -0500
+Message-Id: <1475873438-24691-1-git-send-email-anibal.limon@linux.intel.com>
+X-Mailer: git-send-email 2.1.4
 MIME-Version: 1.0
-In-Reply-To: <1475855841-30009-1-git-send-email-Liam.Howlett@WindRiver.com>
-Cc: paul.eggleton@linux.intel.com
-Subject: Re: [layerindex-web][PATCH v2 00/12] Add Distro, dependency and recommends detection, and import_project
+Cc: joshua.g.lock@intel.com,
+	Monserrat Sedeno <monserratx.sedeno.bustos@intel.com>
+Subject: [[yocto-autobuilder][PATCHv4]] ] Build sets to test new OS distribution in autobuilder
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,75 +40,91 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 07 Oct 2016 18:20:57 -0000
-Content-Type: text/plain; charset="windows-1252"
+X-List-Received-Date: Fri, 07 Oct 2016 20:49:42 -0000
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-FYI, I have made sure these are re-based on top of paule/django18 and pushed to:
+From: Monserrat Sedeno <monserratx.sedeno.bustos@intel.com>
 
-git://git.yoctoproject.org/layerindex-web mhatle/django18
+As part of the process to set new OS distribution as supported on Yoctoc Project
+a new patch was created with the list of build sets that should be executed.
 
-BTW for me upgrading from paule/django18 to this version.  I only had to run
-'manage.py syncdb'.
+Detailed information:
+https://wiki.yoctoproject.org/wiki/Distro_Testing_Plan#Execute_Build_Sets
 
-This created the new database and added the missing field for the recommend.
+Fixes [YOCTO #9905]
 
-I then ran update.py --forcereload and everything showed up as expected.
+Note:In order to add a new distro as supported all the build sets should be PASS
 
---Mark
+Signed-off-by: Monserrat Sedeno <monserratx.sedeno.bustos@intel.com>
+Signed-off-by: Aníbal Limón <anibal.limon@linux.intel.com>
+---
+ .../nightly-qa-distro.conf                         | 55 ++++++++++++++++++++++
+ 1 file changed, 55 insertions(+)
+ create mode 100644 buildset-config.autobuilder-qa/nightly-qa-distro.conf
 
-On 10/7/16 10:57 AM, Liam R. Howlett wrote:
-> This set of patches adds a number of features to the layerindex code:
->  -  Adds the ability to set the actual-branch to import_layer.
->  -  Adds distro to the database and web interface.
->  -  Adds collection & version information to layerbranch.
->  -  Uses layer name and collection name to determine dependencies and
->     recommends.
->  -  Adds import_project to simplify pulling all layers and openembedded-core
->     into a layer index.
-> 
-> Liam R. Howlett (11):
->   import_layer: Add --actual-branch option
->   layerindex/tools/import_layer.py: Sanitize layer name.
->   layerindex/tools/import_layer.py: Avoid failing if there is any layer
->     to     add.
->   layerindex/utils: Update runcmd to decode binary strings to strings.
->   layerindex: Add distro to web interface and model.
->   layerindex/tools/import_project: Add import_project
->   layerindex/recipeparse.py: refactor setup_tinfoil,    
->     checkout_layer_branch, parse_layer_conf to utils.py
->   layerindex: Detect dependencies from layer.conf files
->   layerindex: Add collection and version to layerbranch
->   layerindexer: Add layer recommends support
->   recipeparse: remove unnecessary else statement.
-> 
-> Mark Hatle (1):
->   layerindex/update_layer.py: Preserve the recipedependency files
-> 
->  layerindex/admin.py                |  11 +++
->  layerindex/bulkchange.py           |   4 +-
->  layerindex/layerconfparse.py       |  50 +++++++++++
->  layerindex/models.py               |  23 +++++
->  layerindex/recipeparse.py          |  53 +++--------
->  layerindex/restviews.py            |  10 ++-
->  layerindex/tools/import_classic.py |   2 +
->  layerindex/tools/import_layer.py   |  47 +++++++++-
->  layerindex/tools/import_project.py | 180 +++++++++++++++++++++++++++++++++++++
->  layerindex/update.py               |  42 ++++++++-
->  layerindex/update_layer.py         |  87 ++++++++++++++++--
->  layerindex/urls.py                 |   3 +
->  layerindex/urls_branch.py          |   6 +-
->  layerindex/utils.py                | 159 +++++++++++++++++++++++++++++++-
->  layerindex/views.py                |  29 +++++-
->  templates/layerindex/detail.html   |  55 +++++++++---
->  templates/layerindex/distros.html  |  76 ++++++++++++++++
->  templates/layerindex/layers.html   |   1 +
->  templates/layerindex/machines.html |   1 +
->  templates/layerindex/recipes.html  |   1 +
->  20 files changed, 767 insertions(+), 73 deletions(-)
->  create mode 100644 layerindex/layerconfparse.py
->  create mode 100755 layerindex/tools/import_project.py
->  create mode 100644 templates/layerindex/distros.html
-> 
+diff --git a/buildset-config.autobuilder-qa/nightly-qa-distro.conf b/buildset-config.autobuilder-qa/nightly-qa-distro.conf
+new file mode 100644
+index 0000000..def4118
+--- /dev/null
++++ b/buildset-config.autobuilder-qa/nightly-qa-distro.conf
+@@ -0,0 +1,55 @@
++[nightly-qa-distro]
++builders: 'example-worker'
++repos: [{'poky':
++            {'repourl':'git://git.yoctoproject.org/poky',
++             'layerversion':{'core':'meta', 'yoctobsp':'meta-yocto-bsp', 'yocto':'meta-yocto', 'poky':'meta-poky'},
++             'branch':'master'}},
++        {'oecore':
++            {'repourl':'git://git.openembedded.org/openembedded-core',
++             'layerversion':'core',
++             'checkout':False,
++             'branch':'master'}},
++        {'bitbake':
++            {'repourl':'git://git.openembedded.org/bitbake',
++             'checkout':False,
++             'branch':'master'}},
++        {'eclipse-poky-neon':
++            {'repourl':'git://git.yoctoproject.org/eclipse-poky',
++             'checkout':False,
++             'branch':'neon-master'}},
++        {'meta-qt4':
++            {'repourl':'git://git.yoctoproject.org/meta-qt4',
++             'branch':'master'}},
++        {'meta-qt3':
++            {'repourl':'git://git.yoctoproject.org/meta-qt3',
++             'branch':'master'}}]
++props: [{'fp_date':{'prop_type':'StringParameter',
++                       'size': 20,
++                       'name': 'fp_date',
++                       'label':'Full Pass date:'}}]
++steps: [{'SetDest':{}},
++        {'CheckOutLayers': {}},
++        {'RunPreamble': {}},
++        {'TriggerBuilds': {'schedulerName': 'dist-build', 
++             'waitForFinish': 'True',
++             'schedulerNames': {
++                 'nightly-oe-selftest': {},
++                 'nightly-oecore': {},
++                 'nightly-deb': {},
++                 'nightly-ipk': {},
++                 'nightly-world': {}, 
++                 'nightly-arm': {}, 
++                 'nightly-multilib': {}, 
++                 'nightly-x86-64-lsb': {},
++                 'nightly-x86': {},
++                 'nightly-x32': {},
++                 'poky-tiny': {}, 
++                 'nightly-qa-systemd': {},
++                 'nightly-qa-extras': {}, 
++                 'nightly-qa-targetbuilds': {},
++                 'nightly-qa-skeleton': {},
++                 'nightly-qa-logrotate': {}, 
++                 'nightly-qa-pam': {},
++                 'buildtools': {}},
++                 'eclipse-plugin-neon': {},
++             'schedulerNames_nowait': {}}},]
+-- 
+2.1.4
 
 
