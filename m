@@ -1,6 +1,6 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9E46CE00AAB; Thu,  6 Oct 2016 19:35:23 -0700 (PDT)
+	id 2F0C3E00B45; Thu,  6 Oct 2016 21:32:25 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,9 +9,8 @@ X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (raj.khem[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.192.181 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.220.65 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,59 +18,55 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.192.181 listed in dnsbl.sorbs.net]
-Received: from mail-pf0-f181.google.com (mail-pf0-f181.google.com
-	[209.85.192.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3819BE00A85
-	for <yocto@yoctoproject.org>; Thu,  6 Oct 2016 19:35:22 -0700 (PDT)
-Received: by mail-pf0-f181.google.com with SMTP id e6so17358627pfk.1
-	for <yocto@yoctoproject.org>; Thu, 06 Oct 2016 19:35:22 -0700 (PDT)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.220.65 listed in list.dnswl.org]
+Received: from mail-pa0-f65.google.com (mail-pa0-f65.google.com
+	[209.85.220.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A87C5E00AAB
+	for <yocto@yoctoproject.org>; Thu,  6 Oct 2016 21:32:23 -0700 (PDT)
+Received: by mail-pa0-f65.google.com with SMTP id qn10so2089649pac.2
+	for <yocto@yoctoproject.org>; Thu, 06 Oct 2016 21:32:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=subject:mime-version:from:in-reply-to:date:cc:message-id:references
-	:to; bh=zeEQ3eisu4scb+rI1nQwHICgFVQ5+gjFnVaVCAhuuEw=;
-	b=B59vIJ2D4cUF+W4Bn2s3rp3liLvuvs5KkQu8Ult5pKrgQaT92/+5P9jiLJswbxyXzD
-	fe3NFj0eU1S5ngXodBGs2qtiF9ap80xofPjmlzvG5ViZOSEEJ6ZlBjAxDe5jRyrkyUtE
-	oAn85Z9G/rY19Yp6GA5ioawC/6kcBuePRr8hSxL04iOdZVHx6U0QztoxoAr+FwNg1rCY
-	Dj/cuttIaMY4DnzUwudi2gd8WntvDwnpsk/6cIy0N8MdpYH1mlR3dDbgN7py/kjU5cow
-	yI9+SmNo5vqd7ouGwiaf4DYeYEy0wAHxxz680Lz/yJlx+E9RsYDFBC4JfEy91qOkLQfj
-	Reow==
+	:to; bh=tnPCl27gqkVltFLinX43lozBqN9A8KnYKQ3FB0jjw0I=;
+	b=ejUcK/aIpOttBPoi2OQ48Xvdy70xpq7lzWfUEAdI7YmriXF7Cbwx4xA5cWjWEscA3U
+	WcIloj+iD9iJqU9+BBSQLepTDlqxPxUo+F5TwqUQ5WZrhLIUiRlrJJVj5oNjl7iQs7wp
+	npFkGowk5uYSmPpbI0pYNOTuSrnmkC8tZf0tfLVjIrRvGz2fPXQgZvEmpbaMN//eW0xw
+	BjeEHSJV76ynVjC1ZEMBU8EOSOopEfa8SMWOMSL8Qx15LDHWBWVufGI3DVkoJSpQF9fW
+	Gy0OBU8Rl0C4MN7/ovV3Vx1LbKDc4bY2ihhPMyCqsNnk/GZEGM9mb+bo9UHjH8TXFgAx
+	MB0Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:subject:mime-version:from:in-reply-to:date:cc
 	:message-id:references:to;
-	bh=zeEQ3eisu4scb+rI1nQwHICgFVQ5+gjFnVaVCAhuuEw=;
-	b=ax/58kjuBMswqppV2mTWEvZpXIKSRSSKirCN65aJiIbKcxuCmYq2IOlB9xfG9Sk3aT
-	NIt9s1/P9gz+How+GQWoUhe59BCQY0UPStdbadY1V6WLFj3IPB/wbJZmZSlc0/Wl/dBB
-	x1Ffr4WDhf0Npv36jIP+TGAzXG1gBMtszdLpKMaoDMrI1s1uQkm4FZULNIp+YQJOxXUB
-	RVdaZ0k7NoRNPkUkC1Fvd0ZegQ7dLom3D2E7pa5ULwJuEphhilMUBtT/x5xzuCRzLyf1
-	QDKAVclhSEf2/q7ccixxYpEUTSe5+KGKKkb45QTnvC/PgHNZY3YCJG90mbJxKxusRhId
-	ZxLg==
-X-Gm-Message-State: AA6/9Rk0zKbU3yobI0CqEUtwHD83yn4x5UCCIbcXpHK+QBe0EStsoywHyzPFcdiOXF3yuA==
-X-Received: by 10.98.32.209 with SMTP id m78mr24105178pfj.45.1475807721665;
-	Thu, 06 Oct 2016 19:35:21 -0700 (PDT)
+	bh=tnPCl27gqkVltFLinX43lozBqN9A8KnYKQ3FB0jjw0I=;
+	b=C/WWXWQ4iaQdf5x2VvXZofE87Ij+fTWko0URDMLhiojbiWN86VxvznxWOYXwRmsqBW
+	RHbhwiwewztKOpkVir1kCoPfYIRqxejk/SILpIHenD4bwocCPPnnI/hhPX8uuhd4JdLL
+	1as4Id7Cbh/yJZaceyRuwVNOqWyY8U+2KF+jt2Uiq3M+HDGgV89MAyXS/ofikmCnIzTX
+	t2F0Yugx4KsLihxcmi/T5BaG4Lb5ruHocB4qvagkZidamYU2HmzYavRdbKDy2g8P2APO
+	QSbxpsH7hQFIKpNOXtTB0pMQVC68o5FuHEUBZuM9hvYBfWHtbpR1drgXwygYyPAUYB0B
+	bALg==
+X-Gm-Message-State: AA6/9RmMS9+FMpwLXuas3B8NzbzCpeS4GLSeqLhghi6douHkhjej+4Q1VbT9zvTj6lZwCA==
+X-Received: by 10.66.48.170 with SMTP id m10mr27641315pan.43.1475814742962;
+	Thu, 06 Oct 2016 21:32:22 -0700 (PDT)
 Received: from ?IPv6:2601:646:8882:b8c:cd9d:6261:adca:4b85?
 	([2601:646:8882:b8c:cd9d:6261:adca:4b85])
-	by smtp.gmail.com with ESMTPSA id
-	y126sm8986464pfy.41.2016.10.06.19.35.20
+	by smtp.gmail.com with ESMTPSA id 28sm9522977pft.76.2016.10.06.21.32.21
 	(version=TLS1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Thu, 06 Oct 2016 19:35:21 -0700 (PDT)
+	Thu, 06 Oct 2016 21:32:21 -0700 (PDT)
 Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
 X-Pgp-Agent: GPGMail
 From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <A7265EA8-CB91-4D1B-987B-6FE4EBE52417@gmail.com>
-Date: Thu, 6 Oct 2016 19:35:14 -0700
-Message-Id: <FB4B6E4F-AA20-4156-958E-EB1C80F3726D@gmail.com>
-References: <CAN+d=aScNFOQBaGXSCG+UGqpZ_hWzcAynrAAncgyXoW46ej6Mg@mail.gmail.com>
-	<2E6C63C1-C4D3-4646-ADD4-62EBF047EA0F@sierrawireless.com>
-	<A9CEB2A8-6D91-4DAA-9380-998669775326@stratagemsystems.com>
-	<0DC30BE5-2A1D-43BE-BC15-DB8132E026B2@gmail.com>
-	<C0308C46-B222-46A6-BF18-90D853C7B627@sierrawireless.com>
-	<A7265EA8-CB91-4D1B-987B-6FE4EBE52417@gmail.com>
-To: Randy Mortensen <randy.mort@gmail.com>
+In-Reply-To: <CABatt_wz7Xrtfd-diTYc+0q9rXcSNJXVK3f5LgmvNN5DMw0FCw@mail.gmail.com>
+Date: Thu, 6 Oct 2016 21:32:16 -0700
+Message-Id: <CBF86C33-C5DF-43AD-BC09-7A1D5BD5AD52@gmail.com>
+References: <CABatt_xfx-PXerUpGwk0Ru+wEvLfEgSfY4J9=+qqUg4XjvmFwQ@mail.gmail.com>
+	<CABatt_wz7Xrtfd-diTYc+0q9rXcSNJXVK3f5LgmvNN5DMw0FCw@mail.gmail.com>
+To: Martin Townsend <mtownsend1973@gmail.com>
 X-Mailer: Apple Mail (2.3124)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: openjdk build fails due to checksum mismatches from icedtea-native
+Cc: yocto@yoctoproject.org
+Subject: Re: SDK Problems for SuperH 4
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -83,96 +78,188 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 07 Oct 2016 02:35:23 -0000
-X-Groupsio-MsgNum: 32260
+X-List-Received-Date: Fri, 07 Oct 2016 04:32:25 -0000
+X-Groupsio-MsgNum: 32261
 Content-Type: multipart/signed;
-	boundary="Apple-Mail=_A29C1004-5472-43E4-BA07-E340E082D630";
+	boundary="Apple-Mail=_E089E695-A27D-43FF-A9B3-DDDD196D2048";
 	protocol="application/pgp-signature"; micalg=pgp-sha1
 
---Apple-Mail=_A29C1004-5472-43E4-BA07-E340E082D630
+--Apple-Mail=_E089E695-A27D-43FF-A9B3-DDDD196D2048
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain;
-	charset=utf-8
+	charset=us-ascii
 
 
-> On Oct 6, 2016, at 7:07 PM, Randy Mortensen <randy.mort@gmail.com> =
+> On Oct 6, 2016, at 12:09 PM, Martin Townsend <mtownsend1973@gmail.com> =
 wrote:
 >=20
+> On Thu, Oct 6, 2016 at 7:57 PM, Martin Townsend =
+<mtownsend1973@gmail.com> wrote:
+>> Hi,
+>>=20
+>> We have a poky sato distributions successfully built and running for
+>> our SuperH 4 processor board.  The problem is the SDK that is built
+>> when using -cpopulate_sdk doesn't.
+>>=20
+>> The simple Makefile:
+>> hellomake: HelloWorld.c
+>> $(CC) -o HelloWorld HelloWorld.c
 >=20
->> On Oct 5, 2016, at 7:14 PM, Darcy Watkins =
-<dwatkins@sierrawireless.com> wrote:
->>=20
->>=20
->>=20
->>> On Oct 5, 2016, at 4:52 PM, Khem Raj <raj.khem@gmail.com> wrote:
->>>> On Oct 5, 2016, at 4:45 PM, Randy Mortensen =
-<randym@stratagemsystems.com> wrote:
->>>>> On Oct 5, 2016, at 5:04 PM, Darcy Watkins =
-<dwatkins@sierrawireless.com> wrote:
->>>>>=20
->>>>> =46rom what I gleaned from recent discussions of fetcher errors, =
-this is somehow connected with rollout of Python related security fixes =
-to various Linux distributions and/or some ...-native recipes.
->>>>>=20
->>>>> It was a bunch of tar balls that are named as mercurial hashes =
-from within iced tea rather than the yocto fetch. I worked around it by =
-grabbing the tarballs from a different checkout since I didn't have time =
-to dig into it.
->>>>>=20
->>>>> It affected a fresh checkout I was building from scratch.
->>>>>=20
->>>> Thanks for the response. This also happened to me when trying to =
-build from scratch.
->>>> For my clarification, did you already have the tar balls downloaded =
-or were you able to download them from a previous (icedtea) commit =
-somehow?
->>=20
->> I had the tar balls in a different build that I had around for some =
-time.  The reason I never cached these ones in a shared location on our =
-server was I felt that tar balls with small hashes as filenames was too =
-prone to collisions, especially without a package name as a prefix.  I =
-don't know if that is a convention of iced tea, or how the fetcher =
-handles mercurial.
->>=20
->>> Can you check if the tarballs have been rebuilt upstream ? if so we =
-should try to find out what changed.
->>> It could also be an oversight that a recipe update forgot or updated =
-the checksums wrongly. but we should try to root cause it
->>=20
->> I agree here.  We should root cause it.
->>=20
->>=20
-> I=E2=80=99m not sure how this is all supposed to work, but I managed =
-to get past the fetch failures by changing the md5sum and sha256sum =
-checksums in icedtea7-native_2.1.3.bb.
-> I used the the checksums helpfully suggested by bitbake when it =
-reported the errors.
+> Hit send before I had chance to finish :)
 >=20
-> I compared one of the problematic tar balls with a =E2=80=9Cgood=E2=80=9D=
- one from a previous download and the only change I could identify was 3 =
-extra lines added to a hidden file .hgtag  (which I presume maps a tag =
-to a commit). Not sure why requesting the same hg commit results in a =
-different tarball output.
+> ignore the missing tab but when trying to compile (after sourcing the
+> SDK environment) I get
+> sh4-poky-linux-gcc  -ml -m4
+> --sysroot=3D/opt/sdk/vms/2.0.2/sysroots/sh4-poky-linux -o HelloWorld
+> HelloWorld.o
+> =
+/opt/sdk/vms/2.0.2/sysroots/x86_64-pokysdk-linux/usr/libexec/sh4-poky-linu=
+x/gcc/sh4-poky-linux/4.9.3/real-ld:
+> cannot find crt1.o: No such file or directory
+> =
+/opt/sdk/vms/2.0.2/sysroots/x86_64-pokysdk-linux/usr/libexec/sh4-poky-linu=
+x/gcc/sh4-poky-linux/4.9.3/real-ld:
+> cannot find crti.o: No such file or directory
+> =
+/opt/sdk/vms/2.0.2/sysroots/x86_64-pokysdk-linux/usr/libexec/sh4-poky-linu=
+x/gcc/sh4-poky-linux/4.9.3/real-ld:
+> cannot find crtbegin.o: No such file or directory
+> =
+/opt/sdk/vms/2.0.2/sysroots/x86_64-pokysdk-linux/usr/libexec/sh4-poky-linu=
+x/gcc/sh4-poky-linux/4.9.3/real-ld:
+> cannot find -lgcc
+> =
+/opt/sdk/vms/2.0.2/sysroots/x86_64-pokysdk-linux/usr/libexec/sh4-poky-linu=
+x/gcc/sh4-poky-linux/4.9.3/real-ld:
+> cannot find -lgcc_s
+> =
+/opt/sdk/vms/2.0.2/sysroots/x86_64-pokysdk-linux/usr/libexec/sh4-poky-linu=
+x/gcc/sh4-poky-linux/4.9.3/real-ld:
+> cannot find -lc
+> =
+/opt/sdk/vms/2.0.2/sysroots/x86_64-pokysdk-linux/usr/libexec/sh4-poky-linu=
+x/gcc/sh4-poky-linux/4.9.3/real-ld:
+> cannot find -lgcc
+> =
+/opt/sdk/vms/2.0.2/sysroots/x86_64-pokysdk-linux/usr/libexec/sh4-poky-linu=
+x/gcc/sh4-poky-linux/4.9.3/real-ld:
+> cannot find -lgcc_s
+> =
+/opt/sdk/vms/2.0.2/sysroots/x86_64-pokysdk-linux/usr/libexec/sh4-poky-linu=
+x/gcc/sh4-poky-linux/4.9.3/real-ld:
+> cannot find crtend.o: No such file or directory
+> =
+/opt/sdk/vms/2.0.2/sysroots/x86_64-pokysdk-linux/usr/libexec/sh4-poky-linu=
+x/gcc/sh4-poky-linux/4.9.3/real-ld:
+> cannot find crtn.o: No such file or directory
+>=20
+> So I tried the compiler and sysroot from the build
+> =
+CC=3D/ws/vms/vms-rsc-yocto-build/build_vms/tmp/sysroots/x86_64-linux/usr/b=
+in/sh4-poky-linux/sh4-poky-linux-gcc
+> SYSROOT=3D/ws/vms/vms-rsc-yocto-build/build_vms/tmp/sysroots/sh7760
+>=20
+> hellomake: HelloWorld.c
+> $(CC) --sysroot=3D$(SYSROOT) -o HelloWorld HelloWorld.c
+>=20
+> and it compiles fine.
+>=20
+> So I ran $CC -print-search-dirs
+> install: =
+/opt/sdk/vms/2.0.2/sysroots/x86_64-pokysdk-linux/usr/lib/sh4-poky-linux/gc=
+c/sh4-poky-linux/4.9.3/
+> programs: =
+=3D/opt/sdk/vms/2.0.2/sysroots/x86_64-pokysdk-linux/usr/libexec/sh4-poky-l=
+inux/gcc/sh4-poky-linux/4.9.3/:/opt/sdk/vms/2.0.2/sysroots/x86_64-pokysdk-=
+linux/usr/libexec/sh4-poky-linux/gcc/sh4-poky-linux/4.9.3/:/opt/sdk/vms/2.=
+0.2/sysroots/x86_64-pokysdk-linux/usr/libexec/sh4-poky-linux/gcc/sh4-poky-=
+linux/:/opt/sdk/vms/2.0.2/sysroots/x86_64-pokysdk-linux/usr/lib/sh4-poky-l=
+inux/gcc/sh4-poky-linux/4.9.3/:/opt/sdk/vms/2.0.2/sysroots/x86_64-pokysdk-=
+linux/usr/lib/sh4-poky-linux/gcc/sh4-poky-linux/:/opt/sdk/vms/2.0.2/sysroo=
+ts/x86_64-pokysdk-linux/usr/lib/sh4-poky-linux/gcc/sh4-poky-linux/4.9.3/..=
+/../../../../sh4-poky-linux/bin/sh4-poky-linux/4.9.3/:/opt/sdk/vms/2.0.2/s=
+ysroots/x86_64-pokysdk-linux/usr/lib/sh4-poky-linux/gcc/sh4-poky-linux/4.9=
+.3/../../../../../sh4-poky-linux/bin/
+> libraries: =
+=3D/opt/sdk/vms/2.0.2/sysroots/x86_64-pokysdk-linux/usr/lib/sh4-poky-linux=
+/gcc/sh4-poky-linux/4.9.3/:/opt/sdk/vms/2.0.2/sysroots/x86_64-pokysdk-linu=
+x/usr/lib/sh4-poky-linux/gcc/sh4-poky-linux/4.9.3/../../../../../sh4-poky-=
+linux/lib/sh4-poky-linux/4.9.3/:/opt/sdk/vms/2.0.2/sysroots/x86_64-pokysdk=
+-linux/usr/lib/sh4-poky-linux/gcc/sh4-poky-linux/4.9.3/../../../../../sh4-=
+poky-linux/lib/:/opt/sdk/vms/2.0.2/sysroots/sh4-poky-linux/m4/lib/sh4-poky=
+-linux/4.9.3/:/opt/sdk/vms/2.0.2/sysroots/sh4-poky-linux/m4/lib/:/opt/sdk/=
+vms/2.0.2/sysroots/sh4-poky-linux/m4/usr/lib/sh4-poky-linux/4.9.3/:/opt/sd=
+k/vms/2.0.2/sysroots/sh4-poky-linux/m4/usr/lib/
+>=20
+> Then I checked that these files exist:
+> =
+martin@martin-ubuntu-pconcepts:/opt/sdk/vms/2.0.2/sysroots/sh4-poky-linux$=
+
+> find $SDKTARGETSYSROOT -name "crt*"
+> /opt/sdk/vms/2.0.2/sysroots/sh4-poky-linux/usr/lib/crtn.o
+> /opt/sdk/vms/2.0.2/sysroots/sh4-poky-linux/usr/lib/crti.o
+> /opt/sdk/vms/2.0.2/sysroots/sh4-poky-linux/usr/lib/crt1.o
+> =
+/opt/sdk/vms/2.0.2/sysroots/sh4-poky-linux/usr/lib/sh4-poky-linux/4.9.3/cr=
+tendS.o
+> =
+/opt/sdk/vms/2.0.2/sysroots/sh4-poky-linux/usr/lib/sh4-poky-linux/4.9.3/cr=
+tend.o
+> =
+/opt/sdk/vms/2.0.2/sysroots/sh4-poky-linux/usr/lib/sh4-poky-linux/4.9.3/cr=
+tbeginT.o
+> =
+/opt/sdk/vms/2.0.2/sysroots/sh4-poky-linux/usr/lib/sh4-poky-linux/4.9.3/cr=
+tbeginS.o
+> =
+/opt/sdk/vms/2.0.2/sysroots/sh4-poky-linux/usr/lib/sh4-poky-linux/4.9.3/cr=
+tbegin.o
+>=20
+> Putting the library search directories on a separate line
+> =
+martin@martin-ubuntu-pconcepts:/opt/sdk/vms/2.0.2/sysroots/sh4-poky-linux$=
+
+> $CC -print-search-dirs | grep "^libraries:" | tr ':' '\n'
+> libraries
+> =
+=3D/opt/sdk/vms/2.0.2/sysroots/x86_64-pokysdk-linux/usr/lib/sh4-poky-linux=
+/gcc/sh4-poky-linux/4.9.3/
+> =
+/opt/sdk/vms/2.0.2/sysroots/x86_64-pokysdk-linux/usr/lib/sh4-poky-linux/gc=
+c/sh4-poky-linux/4.9.3/../../../../../sh4-poky-linux/lib/sh4-poky-linux/4.=
+9.3/
+> =
+/opt/sdk/vms/2.0.2/sysroots/x86_64-pokysdk-linux/usr/lib/sh4-poky-linux/gc=
+c/sh4-poky-linux/4.9.3/../../../../../sh4-poky-linux/lib/
+> =
+/opt/sdk/vms/2.0.2/sysroots/sh4-poky-linux/m4/lib/sh4-poky-linux/4.9.3/
+> /opt/sdk/vms/2.0.2/sysroots/sh4-poky-linux/m4/lib/
+> =
+/opt/sdk/vms/2.0.2/sysroots/sh4-poky-linux/m4/usr/lib/sh4-poky-linux/4.9.3=
+/
+> /opt/sdk/vms/2.0.2/sysroots/sh4-poky-linux/m4/usr/lib/
+>=20
+> So it looks like there is a spurious m4 is the library path.  Anyone
+> know why this has happened and how I can fix it before I wade into the
+> populate_sdk task.
 >=20
 
-could it be that its generating the tarballs from mercurial directly and =
-thats flawed somehow ?
+Can you pass --disable-multilib to gcc cross canadian configure options =
+?
 
-
-> Now however iced tea fails to configure due to checksum errors. The =
-configure task seems to re-download each tarball and check the sha256sum =
-which is failing.
+> We are using the Jethro branch and we have fixed the GCC version to
+> 4.9.3 because this version works for SH4.
 >=20
-> I=E2=80=99m not sure where to go from here to try and resolve so any =
-more help is welcome.
+> Many Thanks,
+> Martin.
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
 
-
->=20
->=20
-
-
---Apple-Mail=_A29C1004-5472-43E4-BA07-E340E082D630
+--Apple-Mail=_E089E695-A27D-43FF-A9B3-DDDD196D2048
 Content-Transfer-Encoding: 7bit
 Content-Disposition: attachment;
 	filename=signature.asc
@@ -183,9 +270,9 @@ Content-Description: Message signed with OpenPGP using GPGMail
 -----BEGIN PGP SIGNATURE-----
 Comment: GPGTools - https://gpgtools.org
 
-iEYEARECAAYFAlf3CecACgkQuwUzVZGdMxSTBwCeOZrrTS14KKGGa0ZKJmjA9E/e
-NZ4Ani+SSr1SXCOu6fjvkgmT0Hfl/XXh
-=qBs8
+iEYEARECAAYFAlf3JVQACgkQuwUzVZGdMxSkvgCeJZjjb+yloQlpBkX3K2Xfio11
+HhIAnj/dUPGGHJB6s8xTTEVX2yHl68cV
+=dS4B
 -----END PGP SIGNATURE-----
 
---Apple-Mail=_A29C1004-5472-43E4-BA07-E340E082D630--
+--Apple-Mail=_E089E695-A27D-43FF-A9B3-DDDD196D2048--
