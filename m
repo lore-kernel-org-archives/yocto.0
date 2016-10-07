@@ -1,79 +1,39 @@
-Return-Path: <gmane@reliableembeddedsystems.com>
+Return-Path: <mark.hatle@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BD613E00C29; Fri,  7 Oct 2016 10:58:58 -0700 (PDT)
+	id 0D5B5E00C45; Fri,  7 Oct 2016 11:20:57 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_05,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.5 BAYES_05 BODY: Bayes spam probability is 1 to 5%
-	*      [score: 0.0135]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [108.163.243.187 listed in list.dnswl.org]
-X-Greylist: delayed 6389 seconds by postgrey-1.32 at yocto-www;
-	Fri, 07 Oct 2016 10:58:54 PDT
-Received: from delivery.mailspamprotection.com
-	(delivery.mailspamprotection.com [108.163.243.187])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 91233E00C20
-	for <yocto@yoctoproject.org>; Fri,  7 Oct 2016 10:58:54 -0700 (PDT)
-Received: from ns1.siteground282.com ([184.154.233.8] helo=siteground282.com)
-	by se7.mailspamprotection.com with esmtps
-	(TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.86)
-	(envelope-from <gmane@reliableembeddedsystems.com>)
-	id 1bsXJc-0005Q3-Mo
-	for yocto@yoctoproject.org; Fri, 07 Oct 2016 10:44:05 -0500
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=reliableembeddedsystems.com; s=dkim;
-	h=Message-ID:Subject:To:From:Date:
-	Content-Transfer-Encoding:Content-Type:MIME-Version;
-	bh=EtalLDk3l0G2kJOGMkkEeJ+kWBjJ/0CrYykHDdAbwhA=;
-	b=E+xVCWmbSQiyF+SKdK/fYklQ2L
-	eREGX5YIbiEff5m0wmRlJbEkWu4C8g4+A9OIGlkKJQL1r1BKAvhWU84VhWwhPujIEq+yqX0OusDET
-	H1hOHd8BHYrFzRTmUywX0rYA7dRUoUQUC1nn/6G5auaxpToIy61d3udcYrF45+y1xzi8=; 
-Received: from [127.0.0.1] (port=43982 helo=secure282.sgcpanel.com)
-	by siteground282.com with esmtpa (Exim 4.86_2)
-	(envelope-from <gmane@reliableembeddedsystems.com>)
-	id 1bsXJc-0007Qp-Bu
-	for yocto@yoctoproject.org; Fri, 07 Oct 2016 10:44:04 -0500
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4C8DEE00C29
+	for <yocto@yoctoproject.org>; Fri,  7 Oct 2016 11:20:53 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id u97IKqSI021960
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Fri, 7 Oct 2016 11:20:52 -0700 (PDT)
+Received: from soho-mhatle-m.local (172.25.36.226) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.294.0;
+	Fri, 7 Oct 2016 11:20:51 -0700
+To: "Liam R. Howlett" <Liam.Howlett@windriver.com>, <yocto@yoctoproject.org>
+References: <1475855841-30009-1-git-send-email-Liam.Howlett@WindRiver.com>
+From: Mark Hatle <mark.hatle@windriver.com>
+Organization: Wind River Systems
+Message-ID: <16da8ce7-7355-fe97-7abe-20cd3a64e2c7@windriver.com>
+Date: Fri, 7 Oct 2016 13:20:50 -0500
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:45.0)
+	Gecko/20100101 Thunderbird/45.4.0
 MIME-Version: 1.0
-Date: Fri, 07 Oct 2016 10:44:04 -0500
-From: gmane@reliableembeddedsystems.com
-To: yocto@yoctoproject.org
-Message-ID: <e31067aeb8accb65a84da105dad48944@reliableembeddedsystems.com>
-X-Sender: gmane@reliableembeddedsystems.com
-User-Agent: Roundcube Webmail/1.1.4
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - siteground282.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - reliableembeddedsystems.com
-X-Filter-ID: s0sct1PQhAABKnZB5plbIWEcM0d9a2K3OcfFeaASvaIT05e+4t99MpEggFbXzbnhttgCKkcBtGCa
-	+yWmGXl+/0OdHUzGyIWSzveO/M+HlaVWShQ0+uJXiDSCp280tJFsbX/3TQnYbqlNHxpi9XBHG8Jz
-	8WfReHqUOdh1n/PPcFwX6JG8lzqVscQusn/Xjs+jm5oIu1UrWwlFi9wM+yqzklz1pRXWhjh9fdbl
-	44I0Df1bDJmuEytGOjhN7+VkHzjLSbBIxrv0tc9XqsVkeAX6S7iXkMXDFHgBzeWjk6Zbtb6ZULs/
-	x/wiY4bOQVH/H0QQPBfyCUQPGRfAuQJyQcUhQ4/Ia6YN5m0MsQWfYUYaa1Lo0EEGTh9WNZgruaGG
-	pyvdI7qaN8yfURviR8OTeMmKUqzo7AcUqNzrkO1kQ1IW8ac6xxrycw2ScA+2hbCxTNV1lHIbmw+x
-	cBDSXBmIVsiBPGIW1l+d5u2ITozWClL6/rEu//nzk76lak4ojODbJHHE/Dw6ORF2hyiPywks80fx
-	SU3VhpzTalbJG9pSL0Hyv/WnnxF0rh7QmTz7opAw1zOCx6AoM/sstGqwASJuN0ZI7cesr1PnPryu
-	VKjB4aKIPn7I0WkU2DaIvSyZINaqxL7/6J1fhOzjF0b4LXcjJZ5lou43BWDx6OWATCrmAjDU/Vlk
-	DSi+R1QeWHGeD/ozkhX48xvhmpkqK6lzdXhhHwmzyvpmzdQjXE961MSkPADU05Y=
-X-Report-Abuse-To: spam@quarantine1.mailspamprotection.com
-X-Originating-IP: 184.154.233.8
-X-SpamExperts-Domain: siteground282.com
-X-SpamExperts-Username: 184.154.233.8
-Authentication-Results: mailspamprotection.com;
-	auth=pass smtp.auth=184.154.233.8@siteground282.com
-X-SpamExperts-Outgoing-Class: unsure
-X-SpamExperts-Outgoing-Evidence: Combined (0.37)
-X-Recommended-Action: accept
-Subject: Y-AB PublishArtifacts toolchain wrong dir
+In-Reply-To: <1475855841-30009-1-git-send-email-Liam.Howlett@WindRiver.com>
+Cc: paul.eggleton@linux.intel.com
+Subject: Re: [layerindex-web][PATCH v2 00/12] Add Distro, dependency and recommends detection, and import_project
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -85,26 +45,75 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 07 Oct 2016 17:58:58 -0000
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 07 Oct 2016 18:20:57 -0000
+Content-Type: text/plain; charset="windows-1252"
+Content-Transfer-Encoding: 8bit
 
-Hi,
+FYI, I have made sure these are re-based on top of paule/django18 and pushed to:
 
-I use the latest and greatest yocto autobuilder: 
-f9b4e02730a5e712ee9085e2480f9a3b8b00f56d
+git://git.yoctoproject.org/layerindex-web mhatle/django18
 
-It looks like Publishing Artifacts tries to find the toolchain instead 
-of build/build/tmp/deploy/sdk (where it is built) here 
-build/build/tmp/deploy/images/toolchain-x86_64
+BTW for me upgrading from paule/django18 to this version.  I only had to run
+'manage.py syncdb'.
 
-This patch [1] fixes the problem for me.
+This created the new database and added the missing field for the recommend.
 
-Regards,
+I then ran update.py --forcereload and everything showed up as expected.
 
-Robert
+--Mark
 
-https://github.com/RobertBerger/autobuilder-patches/blob/master/before-install/0004-PublichArtifacts-searches-toolchain-in-wrong-place.patch
+On 10/7/16 10:57 AM, Liam R. Howlett wrote:
+> This set of patches adds a number of features to the layerindex code:
+>  -  Adds the ability to set the actual-branch to import_layer.
+>  -  Adds distro to the database and web interface.
+>  -  Adds collection & version information to layerbranch.
+>  -  Uses layer name and collection name to determine dependencies and
+>     recommends.
+>  -  Adds import_project to simplify pulling all layers and openembedded-core
+>     into a layer index.
+> 
+> Liam R. Howlett (11):
+>   import_layer: Add --actual-branch option
+>   layerindex/tools/import_layer.py: Sanitize layer name.
+>   layerindex/tools/import_layer.py: Avoid failing if there is any layer
+>     to     add.
+>   layerindex/utils: Update runcmd to decode binary strings to strings.
+>   layerindex: Add distro to web interface and model.
+>   layerindex/tools/import_project: Add import_project
+>   layerindex/recipeparse.py: refactor setup_tinfoil,    
+>     checkout_layer_branch, parse_layer_conf to utils.py
+>   layerindex: Detect dependencies from layer.conf files
+>   layerindex: Add collection and version to layerbranch
+>   layerindexer: Add layer recommends support
+>   recipeparse: remove unnecessary else statement.
+> 
+> Mark Hatle (1):
+>   layerindex/update_layer.py: Preserve the recipedependency files
+> 
+>  layerindex/admin.py                |  11 +++
+>  layerindex/bulkchange.py           |   4 +-
+>  layerindex/layerconfparse.py       |  50 +++++++++++
+>  layerindex/models.py               |  23 +++++
+>  layerindex/recipeparse.py          |  53 +++--------
+>  layerindex/restviews.py            |  10 ++-
+>  layerindex/tools/import_classic.py |   2 +
+>  layerindex/tools/import_layer.py   |  47 +++++++++-
+>  layerindex/tools/import_project.py | 180 +++++++++++++++++++++++++++++++++++++
+>  layerindex/update.py               |  42 ++++++++-
+>  layerindex/update_layer.py         |  87 ++++++++++++++++--
+>  layerindex/urls.py                 |   3 +
+>  layerindex/urls_branch.py          |   6 +-
+>  layerindex/utils.py                | 159 +++++++++++++++++++++++++++++++-
+>  layerindex/views.py                |  29 +++++-
+>  templates/layerindex/detail.html   |  55 +++++++++---
+>  templates/layerindex/distros.html  |  76 ++++++++++++++++
+>  templates/layerindex/layers.html   |   1 +
+>  templates/layerindex/machines.html |   1 +
+>  templates/layerindex/recipes.html  |   1 +
+>  20 files changed, 767 insertions(+), 73 deletions(-)
+>  create mode 100644 layerindex/layerconfparse.py
+>  create mode 100755 layerindex/tools/import_project.py
+>  create mode 100644 templates/layerindex/distros.html
+> 
 
 
