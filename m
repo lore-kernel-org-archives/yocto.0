@@ -1,41 +1,66 @@
-Return-Path: <geoffroy.vancutsem@intel.com>
+Return-Path: <mtownsend1973@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 008C6E00B66; Thu,  6 Oct 2016 23:19:46 -0700 (PDT)
+	id 2F7DFE00BEB; Fri,  7 Oct 2016 00:46:33 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (mtownsend1973[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.215.65 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [134.134.136.20 listed in list.dnswl.org]
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6FB94E00B3D
-	for <yocto@yoctoproject.org>; Thu,  6 Oct 2016 23:19:43 -0700 (PDT)
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-	by orsmga101.jf.intel.com with ESMTP; 06 Oct 2016 23:19:43 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.31,308,1473145200"; d="scan'208,217";a="17590968"
-Received: from irsmsx108.ger.corp.intel.com ([163.33.3.3])
-	by orsmga004.jf.intel.com with ESMTP; 06 Oct 2016 23:19:42 -0700
-Received: from irsmsx104.ger.corp.intel.com ([169.254.5.19]) by
-	IRSMSX108.ger.corp.intel.com ([169.254.11.164]) with mapi id
-	14.03.0248.002; Fri, 7 Oct 2016 07:19:41 +0100
-From: "VanCutsem, Geoffroy" <geoffroy.vancutsem@intel.com>
-To: "Dominig ar Foll (Intel Open Source)" <dominig.arfoll@fridu.net>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto] which meta-intel woudl build a kernel 4.8
-Thread-Index: AdIgYsmWkuuLliV7Y02zzmyK9f/AfA==
-Date: Fri, 7 Oct 2016 06:19:40 +0000
-Message-ID: <y98llhptn4q6pk8n829kwvu8.1475820983637@email.android.com>
-Accept-Language: en-GB, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-lf0-f65.google.com (mail-lf0-f65.google.com
+	[209.85.215.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 90A65E00A64
+	for <yocto@yoctoproject.org>; Fri,  7 Oct 2016 00:46:25 -0700 (PDT)
+Received: by mail-lf0-f65.google.com with SMTP id l131so2232267lfl.0
+	for <yocto@yoctoproject.org>; Fri, 07 Oct 2016 00:46:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-transfer-encoding;
+	bh=zQ3jt5G3XyIXB72TfJaf9Ju++yU0/UZArgbRZ5bGZRs=;
+	b=OX7y/JP90rplcTaT5myOJY6MZ9jMXeqBmsm65tCHyIKQixmdsNrfVdn0dcVSMxv/s8
+	gdT4KPJGb4///8JIWzP+WN1W6C+wjaRLk5KJ9ldP0bJq/yGO3ZFTZ57/hXXKfiLC+vi5
+	3B3ZfjDe0mFGFPBQ3apqVMMUNwojZ925YGTnvJmAdYcm1ny4uy+NkBwc2C5Z8FM0pqbx
+	6BJ85+Mu7JP30uu0biLUJHP1WVDd66tdJfTnjrXp/yRAI0w/lvC+VVQVaxIR3HAzLG/8
+	FIwFiwGYzqvChaH2fTyS3Vl2/XxW6j5JfQ//jxF/LSGq1nDNaftGZ0cq9g6ncwRMq1Af
+	z3Rw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=zQ3jt5G3XyIXB72TfJaf9Ju++yU0/UZArgbRZ5bGZRs=;
+	b=K0Ueox0n9QT2nObQ6pjt0lNsNfKq4YhJyDVmvOt7ZFePDEJKzfPuzBngolP5w7AKH3
+	JtzqTrOK19PkT5asFj6aCBDjsMQ/l+25L7jyrCpG75virSaa2t66BWT0pK+q5dr/6Vit
+	oqN1NXOUcuY1VrO7eJYXu8UAagA3gYJDWOjztMx6JmgWF3YYhvqd1NqlSc/z3geo2XBm
+	HeDaVwsJZSRNzm3v3QY/2sOSb1bZMUHoH0u3tz2A4vdXDwmPfSGLrf2IUJ3kJgEAlLtO
+	GqJwAtsTgce+UhUhHVCYAAmHtRPHE0NZxPN2HRnRRzs/WAN8DUJ4DGIIOd1EFuWh+egu
+	A4wA==
+X-Gm-Message-State: AA6/9Rm3p8jiTnfKsk5Lf2Dgld6hB31BIiaQLw/VG0yy97/BBGuLIvIKmNvsh+XKKbBzEkpU4jMDxvNIscJdSA==
+X-Received: by 10.25.89.70 with SMTP id n67mr8362489lfb.163.1475826384091;
+	Fri, 07 Oct 2016 00:46:24 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Re: which meta-intel woudl build a kernel 4.8
+Received: by 10.25.1.18 with HTTP; Fri, 7 Oct 2016 00:46:23 -0700 (PDT)
+In-Reply-To: <CBF86C33-C5DF-43AD-BC09-7A1D5BD5AD52@gmail.com>
+References: <CABatt_xfx-PXerUpGwk0Ru+wEvLfEgSfY4J9=+qqUg4XjvmFwQ@mail.gmail.com>
+	<CABatt_wz7Xrtfd-diTYc+0q9rXcSNJXVK3f5LgmvNN5DMw0FCw@mail.gmail.com>
+	<CBF86C33-C5DF-43AD-BC09-7A1D5BD5AD52@gmail.com>
+From: Martin Townsend <mtownsend1973@gmail.com>
+Date: Fri, 7 Oct 2016 08:46:23 +0100
+Message-ID: <CABatt_w8ZWSftBqwpfNLHGxNCdWDfocoR0Ao-0n=jWwECh8QgQ@mail.gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: SDK Problems for SuperH 4
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,65 +72,165 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 07 Oct 2016 06:19:47 -0000
-Content-Language: en-GB
-Content-Type: multipart/alternative;
-	boundary="_000_y98llhptn4q6pk8n829kwvu81475820983637emailandroidcom_"
+X-List-Received-Date: Fri, 07 Oct 2016 07:46:33 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
---_000_y98llhptn4q6pk8n829kwvu81475820983637emailandroidcom_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+On Fri, Oct 7, 2016 at 5:32 AM, Khem Raj <raj.khem@gmail.com> wrote:
+>
+>> On Oct 6, 2016, at 12:09 PM, Martin Townsend <mtownsend1973@gmail.com> w=
+rote:
+>>
+>> On Thu, Oct 6, 2016 at 7:57 PM, Martin Townsend <mtownsend1973@gmail.com=
+> wrote:
+>>> Hi,
+>>>
+>>> We have a poky sato distributions successfully built and running for
+>>> our SuperH 4 processor board.  The problem is the SDK that is built
+>>> when using -cpopulate_sdk doesn't.
+>>>
+>>> The simple Makefile:
+>>> hellomake: HelloWorld.c
+>>> $(CC) -o HelloWorld HelloWorld.c
+>>
+>> Hit send before I had chance to finish :)
+>>
+>> ignore the missing tab but when trying to compile (after sourcing the
+>> SDK environment) I get
+>> sh4-poky-linux-gcc  -ml -m4
+>> --sysroot=3D/opt/sdk/vms/2.0.2/sysroots/sh4-poky-linux -o HelloWorld
+>> HelloWorld.o
+>> /opt/sdk/vms/2.0.2/sysroots/x86_64-pokysdk-linux/usr/libexec/sh4-poky-li=
+nux/gcc/sh4-poky-linux/4.9.3/real-ld:
+>> cannot find crt1.o: No such file or directory
+>> /opt/sdk/vms/2.0.2/sysroots/x86_64-pokysdk-linux/usr/libexec/sh4-poky-li=
+nux/gcc/sh4-poky-linux/4.9.3/real-ld:
+>> cannot find crti.o: No such file or directory
+>> /opt/sdk/vms/2.0.2/sysroots/x86_64-pokysdk-linux/usr/libexec/sh4-poky-li=
+nux/gcc/sh4-poky-linux/4.9.3/real-ld:
+>> cannot find crtbegin.o: No such file or directory
+>> /opt/sdk/vms/2.0.2/sysroots/x86_64-pokysdk-linux/usr/libexec/sh4-poky-li=
+nux/gcc/sh4-poky-linux/4.9.3/real-ld:
+>> cannot find -lgcc
+>> /opt/sdk/vms/2.0.2/sysroots/x86_64-pokysdk-linux/usr/libexec/sh4-poky-li=
+nux/gcc/sh4-poky-linux/4.9.3/real-ld:
+>> cannot find -lgcc_s
+>> /opt/sdk/vms/2.0.2/sysroots/x86_64-pokysdk-linux/usr/libexec/sh4-poky-li=
+nux/gcc/sh4-poky-linux/4.9.3/real-ld:
+>> cannot find -lc
+>> /opt/sdk/vms/2.0.2/sysroots/x86_64-pokysdk-linux/usr/libexec/sh4-poky-li=
+nux/gcc/sh4-poky-linux/4.9.3/real-ld:
+>> cannot find -lgcc
+>> /opt/sdk/vms/2.0.2/sysroots/x86_64-pokysdk-linux/usr/libexec/sh4-poky-li=
+nux/gcc/sh4-poky-linux/4.9.3/real-ld:
+>> cannot find -lgcc_s
+>> /opt/sdk/vms/2.0.2/sysroots/x86_64-pokysdk-linux/usr/libexec/sh4-poky-li=
+nux/gcc/sh4-poky-linux/4.9.3/real-ld:
+>> cannot find crtend.o: No such file or directory
+>> /opt/sdk/vms/2.0.2/sysroots/x86_64-pokysdk-linux/usr/libexec/sh4-poky-li=
+nux/gcc/sh4-poky-linux/4.9.3/real-ld:
+>> cannot find crtn.o: No such file or directory
+>>
+>> So I tried the compiler and sysroot from the build
+>> CC=3D/ws/vms/vms-rsc-yocto-build/build_vms/tmp/sysroots/x86_64-linux/usr=
+/bin/sh4-poky-linux/sh4-poky-linux-gcc
+>> SYSROOT=3D/ws/vms/vms-rsc-yocto-build/build_vms/tmp/sysroots/sh7760
+>>
+>> hellomake: HelloWorld.c
+>> $(CC) --sysroot=3D$(SYSROOT) -o HelloWorld HelloWorld.c
+>>
+>> and it compiles fine.
+>>
+>> So I ran $CC -print-search-dirs
+>> install: /opt/sdk/vms/2.0.2/sysroots/x86_64-pokysdk-linux/usr/lib/sh4-po=
+ky-linux/gcc/sh4-poky-linux/4.9.3/
+>> programs: =3D/opt/sdk/vms/2.0.2/sysroots/x86_64-pokysdk-linux/usr/libexe=
+c/sh4-poky-linux/gcc/sh4-poky-linux/4.9.3/:/opt/sdk/vms/2.0.2/sysroots/x86_=
+64-pokysdk-linux/usr/libexec/sh4-poky-linux/gcc/sh4-poky-linux/4.9.3/:/opt/=
+sdk/vms/2.0.2/sysroots/x86_64-pokysdk-linux/usr/libexec/sh4-poky-linux/gcc/=
+sh4-poky-linux/:/opt/sdk/vms/2.0.2/sysroots/x86_64-pokysdk-linux/usr/lib/sh=
+4-poky-linux/gcc/sh4-poky-linux/4.9.3/:/opt/sdk/vms/2.0.2/sysroots/x86_64-p=
+okysdk-linux/usr/lib/sh4-poky-linux/gcc/sh4-poky-linux/:/opt/sdk/vms/2.0.2/=
+sysroots/x86_64-pokysdk-linux/usr/lib/sh4-poky-linux/gcc/sh4-poky-linux/4.9=
+.3/../../../../../sh4-poky-linux/bin/sh4-poky-linux/4.9.3/:/opt/sdk/vms/2.0=
+.2/sysroots/x86_64-pokysdk-linux/usr/lib/sh4-poky-linux/gcc/sh4-poky-linux/=
+4.9.3/../../../../../sh4-poky-linux/bin/
+>> libraries: =3D/opt/sdk/vms/2.0.2/sysroots/x86_64-pokysdk-linux/usr/lib/s=
+h4-poky-linux/gcc/sh4-poky-linux/4.9.3/:/opt/sdk/vms/2.0.2/sysroots/x86_64-=
+pokysdk-linux/usr/lib/sh4-poky-linux/gcc/sh4-poky-linux/4.9.3/../../../../.=
+./sh4-poky-linux/lib/sh4-poky-linux/4.9.3/:/opt/sdk/vms/2.0.2/sysroots/x86_=
+64-pokysdk-linux/usr/lib/sh4-poky-linux/gcc/sh4-poky-linux/4.9.3/../../../.=
+./../sh4-poky-linux/lib/:/opt/sdk/vms/2.0.2/sysroots/sh4-poky-linux/m4/lib/=
+sh4-poky-linux/4.9.3/:/opt/sdk/vms/2.0.2/sysroots/sh4-poky-linux/m4/lib/:/o=
+pt/sdk/vms/2.0.2/sysroots/sh4-poky-linux/m4/usr/lib/sh4-poky-linux/4.9.3/:/=
+opt/sdk/vms/2.0.2/sysroots/sh4-poky-linux/m4/usr/lib/
+>>
+>> Then I checked that these files exist:
+>> martin@martin-ubuntu-pconcepts:/opt/sdk/vms/2.0.2/sysroots/sh4-poky-linu=
+x$
+>> find $SDKTARGETSYSROOT -name "crt*"
+>> /opt/sdk/vms/2.0.2/sysroots/sh4-poky-linux/usr/lib/crtn.o
+>> /opt/sdk/vms/2.0.2/sysroots/sh4-poky-linux/usr/lib/crti.o
+>> /opt/sdk/vms/2.0.2/sysroots/sh4-poky-linux/usr/lib/crt1.o
+>> /opt/sdk/vms/2.0.2/sysroots/sh4-poky-linux/usr/lib/sh4-poky-linux/4.9.3/=
+crtendS.o
+>> /opt/sdk/vms/2.0.2/sysroots/sh4-poky-linux/usr/lib/sh4-poky-linux/4.9.3/=
+crtend.o
+>> /opt/sdk/vms/2.0.2/sysroots/sh4-poky-linux/usr/lib/sh4-poky-linux/4.9.3/=
+crtbeginT.o
+>> /opt/sdk/vms/2.0.2/sysroots/sh4-poky-linux/usr/lib/sh4-poky-linux/4.9.3/=
+crtbeginS.o
+>> /opt/sdk/vms/2.0.2/sysroots/sh4-poky-linux/usr/lib/sh4-poky-linux/4.9.3/=
+crtbegin.o
+>>
+>> Putting the library search directories on a separate line
+>> martin@martin-ubuntu-pconcepts:/opt/sdk/vms/2.0.2/sysroots/sh4-poky-linu=
+x$
+>> $CC -print-search-dirs | grep "^libraries:" | tr ':' '\n'
+>> libraries
+>> =3D/opt/sdk/vms/2.0.2/sysroots/x86_64-pokysdk-linux/usr/lib/sh4-poky-lin=
+ux/gcc/sh4-poky-linux/4.9.3/
+>> /opt/sdk/vms/2.0.2/sysroots/x86_64-pokysdk-linux/usr/lib/sh4-poky-linux/=
+gcc/sh4-poky-linux/4.9.3/../../../../../sh4-poky-linux/lib/sh4-poky-linux/4=
+.9.3/
+>> /opt/sdk/vms/2.0.2/sysroots/x86_64-pokysdk-linux/usr/lib/sh4-poky-linux/=
+gcc/sh4-poky-linux/4.9.3/../../../../../sh4-poky-linux/lib/
+>> /opt/sdk/vms/2.0.2/sysroots/sh4-poky-linux/m4/lib/sh4-poky-linux/4.9.3/
+>> /opt/sdk/vms/2.0.2/sysroots/sh4-poky-linux/m4/lib/
+>> /opt/sdk/vms/2.0.2/sysroots/sh4-poky-linux/m4/usr/lib/sh4-poky-linux/4.9=
+.3/
+>> /opt/sdk/vms/2.0.2/sysroots/sh4-poky-linux/m4/usr/lib/
+>>
+>> So it looks like there is a spurious m4 is the library path.  Anyone
+>> know why this has happened and how I can fix it before I wade into the
+>> populate_sdk task.
+>>
+>
+> Can you pass --disable-multilib to gcc cross canadian configure options ?
+>
+>> We are using the Jethro branch and we have fixed the GCC version to
+>> 4.9.3 because this version works for SH4.
+>>
+>> Many Thanks,
+>> Martin.
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>
 
-DQotLS0tLS0tLSBPcmlnaW5hbCBtZXNzYWdlIC0tLS0tLS0tDQpGcm9tOiAiRG9taW5pZyBhciBG
-b2xsIChJbnRlbCBPcGVuIFNvdXJjZSkiIDxkb21pbmlnLmFyZm9sbEBmcmlkdS5uZXQ+DQpEYXRl
-OiAwNi8xMC8yMDE2IDIwOjE2IChHTVQrMDE6MDApDQpUbzogeW9jdG9AeW9jdG9wcm9qZWN0Lm9y
-Zw0KU3ViamVjdDogW3lvY3RvXSB3aGljaCBtZXRhLWludGVsIHdvdWRsIGJ1aWxkIGEga2VybmVs
-IDQuOA0KDQpIZWxsbywNCg0KSSB3YXMgaGFwcGlseSB1bmRlciAnamV0aHJvJyB1bnRpbCBub3cg
-YnV0IEkgbmVlZCB0byBidWlsZCBhIGtlcm5lbCA0LjgNCmZpciBJbnRlbCBIVyB0byBnZXQgYWNj
-ZXNzIHRvIHNvbWUgbmV3IGZlYXR1cmVzLg0KDQpJIGNhbiBzZWUgdGhhdCB0aGUgJ21hc3Rlcicg
-YnJhbmNoIGJ1bXAgdG8gNC44IGJ1dCB1bmZvcnR1bmF0ZWx5IGNvbWUNCndpdGggdGhlIGZvbGxv
-d2luZyBlcnJvcnMgOg0KDQpFUlJPUjogTm8gcmVjaXBlcyBhdmFpbGFibGUgZm9yOg0KDQovaG9t
-ZS9kb21pbmlnL0FHTC9tZXRhLWludGVsL2NvbW1vbi9yZWNpcGVzLWtlcm5lbC9saW51eC9saW51
-eC15b2N0by10aW55XzQuOC5iYmFwcGVuZA0KDQovaG9tZS9kb21pbmlnL0FHTC9tZXRhLWludGVs
-L2NvbW1vbi9yZWNpcGVzLWtlcm5lbC9saW51eC9saW51eC15b2N0b180LjguYmJhcHBlbmQNCg0K
-V291bGQgc29tZW9uZSBoYXZlIGFuIGlkZWEgaG93IEkgY291bGQgZ2V0IGEgNC44IHdvcmtpbmcg
-bWV0YS1pbnRlbCA/DQoNCltHZW9mZnJveV0gSSBkb24ndCBrbm93IGhvdyB0aGUgb3ZlcmFsbCBB
-R0wgcmVwbyBpcyBjb25zdHJ1Y3RlZCBidXQgaXQgc291bmRzIGxpa2UgeW91IHdvdWxkIG5lZWQg
-dG8gdXBkYXRlIHlvdXIgb3BlbmVtYmVkZGVkLWNvcmUgYXMgd2VsbCB0byBtYXN0ZXIgdG8gaGF2
-ZSB0aGUgYmFzZSByZWNpcGVzIGZvciA0LjggKGluIG1ldGEvcmVjaXBlcy1rZXJuZWwvbGludXgp
-DQoNCkdlb2Zmcm95DQoNCg==
+Thanks for the swift reply Khem.  I commented out the line from
+gcc-cross-candian.inc
+#GCCMULTILIB =3D "--enable-multilib"
 
---_000_y98llhptn4q6pk8n829kwvu81475820983637emailandroidcom_
-Content-Type: text/html; charset="utf-8"
-Content-ID: <AB274B424895F14BADCFAC2A9C41EB1B@intel.com>
-Content-Transfer-Encoding: base64
+and tried
+ --disable-multilib
+in the EXTRA_OECONF
 
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjwvaGVhZD4NCjxib2R5Pg0KPGRpdj48YnI+DQo8
-L2Rpdj4NCjxkaXYgc3R5bGU9ImZvbnQtc2l6ZToxMDAlO2NvbG9yOiMwMDAwMDAiPjwhLS0gb3Jp
-Z2luYWxNZXNzYWdlIC0tPg0KPGRpdj4tLS0tLS0tLSBPcmlnaW5hbCBtZXNzYWdlIC0tLS0tLS0t
-PC9kaXY+DQo8ZGl2PkZyb206ICZxdW90O0RvbWluaWcgYXIgRm9sbCAoSW50ZWwgT3BlbiBTb3Vy
-Y2UpJnF1b3Q7ICZsdDtkb21pbmlnLmFyZm9sbEBmcmlkdS5uZXQmZ3Q7IDwvZGl2Pg0KPGRpdj5E
-YXRlOiAwNi8xMC8yMDE2IDIwOjE2IChHTVQmIzQzOzAxOjAwKSA8L2Rpdj4NCjxkaXY+VG86IHlv
-Y3RvQHlvY3RvcHJvamVjdC5vcmcgPC9kaXY+DQo8ZGl2PlN1YmplY3Q6IFt5b2N0b10gd2hpY2gg
-bWV0YS1pbnRlbCB3b3VkbCBidWlsZCBhIGtlcm5lbCA0LjggPC9kaXY+DQo8ZGl2Pjxicj4NCjwv
-ZGl2Pg0KPC9kaXY+DQo8Zm9udCBzaXplPSIyIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwcHQ7
-Ij4NCjxkaXYgY2xhc3M9IlBsYWluVGV4dCI+SGVsbG8sPGJyPg0KPGJyPg0KSSB3YXMgaGFwcGls
-eSB1bmRlciAnamV0aHJvJyB1bnRpbCBub3cgYnV0IEkgbmVlZCB0byBidWlsZCBhIGtlcm5lbCA0
-Ljg8YnI+DQpmaXIgSW50ZWwgSFcgdG8gZ2V0IGFjY2VzcyB0byBzb21lIG5ldyBmZWF0dXJlcy48
-YnI+DQo8YnI+DQpJIGNhbiBzZWUgdGhhdCB0aGUgJ21hc3RlcicgYnJhbmNoIGJ1bXAgdG8gNC44
-IGJ1dCB1bmZvcnR1bmF0ZWx5IGNvbWU8YnI+DQp3aXRoIHRoZSBmb2xsb3dpbmcgZXJyb3JzIDo8
-YnI+DQo8YnI+DQpFUlJPUjogTm8gcmVjaXBlcyBhdmFpbGFibGUgZm9yOjxicj4NCiZuYnNwOzxi
-cj4NCi9ob21lL2RvbWluaWcvQUdML21ldGEtaW50ZWwvY29tbW9uL3JlY2lwZXMta2VybmVsL2xp
-bnV4L2xpbnV4LXlvY3RvLXRpbnlfNC44LmJiYXBwZW5kPGJyPg0KJm5ic3A7PGJyPg0KL2hvbWUv
-ZG9taW5pZy9BR0wvbWV0YS1pbnRlbC9jb21tb24vcmVjaXBlcy1rZXJuZWwvbGludXgvbGludXgt
-eW9jdG9fNC44LmJiYXBwZW5kPGJyPg0KPGJyPg0KV291bGQgc29tZW9uZSBoYXZlIGFuIGlkZWEg
-aG93IEkgY291bGQgZ2V0IGEgNC44IHdvcmtpbmcgbWV0YS1pbnRlbCA/PGJyPg0KPGJyPg0KW0dl
-b2Zmcm95XSBJIGRvbid0IGtub3cgaG93IHRoZSBvdmVyYWxsIEFHTCByZXBvIGlzIGNvbnN0cnVj
-dGVkIGJ1dCBpdCBzb3VuZHMgbGlrZSB5b3Ugd291bGQgbmVlZCB0byB1cGRhdGUgeW91ciBvcGVu
-ZW1iZWRkZWQtY29yZSBhcyB3ZWxsIHRvIG1hc3RlciB0byBoYXZlIHRoZSBiYXNlIHJlY2lwZXMg
-Zm9yIDQuOCAoaW4gbWV0YS9yZWNpcGVzLWtlcm5lbC9saW51eCk8L2Rpdj4NCjxkaXYgY2xhc3M9
-IlBsYWluVGV4dCI+PGJyPg0KPC9kaXY+DQo8ZGl2IGNsYXNzPSJQbGFpblRleHQiPkdlb2Zmcm95
-PGJyPg0KPGJyPg0KPC9kaXY+DQo8L3NwYW4+PC9mb250Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
+but I still get the same error when linking.  Let me know if there is
+anything else I could try as I'm stumped.  Is there a workaround just
+so I can get the developers up and running?
 
---_000_y98llhptn4q6pk8n829kwvu81475820983637emailandroidcom_--
+Cheers, Martin.
+
