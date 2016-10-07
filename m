@@ -1,6 +1,6 @@
 Return-Path: <Liam.Howlett@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4A805E00C62; Fri,  7 Oct 2016 08:57:33 -0700 (PDT)
+	id 01702E00C69; Fri,  7 Oct 2016 08:57:34 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,26 +12,26 @@ X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D465DE00C2D
-	for <yocto@yoctoproject.org>; Fri,  7 Oct 2016 08:57:29 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D47E5E00C60
+	for <yocto@yoctoproject.org>; Fri,  7 Oct 2016 08:57:32 -0700 (PDT)
 Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
 	[147.11.189.40])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id u97FvTnU018854
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id u97FvWrU018875
 	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 7 Oct 2016 08:57:29 -0700 (PDT)
+	Fri, 7 Oct 2016 08:57:32 -0700 (PDT)
 Received: from yow-lhowlett-d0.wrs.com (128.224.56.217) by
 	ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server id
-	14.3.294.0; Fri, 7 Oct 2016 08:57:28 -0700
+	14.3.294.0; Fri, 7 Oct 2016 08:57:31 -0700
 From: "Liam R. Howlett" <Liam.Howlett@windriver.com>
 To: <yocto@yoctoproject.org>
-Date: Fri, 7 Oct 2016 11:57:14 -0400
-Message-ID: <1475855841-30009-6-git-send-email-Liam.Howlett@WindRiver.com>
+Date: Fri, 7 Oct 2016 11:57:17 -0400
+Message-ID: <1475855841-30009-9-git-send-email-Liam.Howlett@WindRiver.com>
 X-Mailer: git-send-email 2.1.4
 In-Reply-To: <1475855841-30009-1-git-send-email-Liam.Howlett@WindRiver.com>
 References: <1475855841-30009-1-git-send-email-Liam.Howlett@WindRiver.com>
 MIME-Version: 1.0
 Cc: paul.eggleton@linux.intel.com
-Subject: [layerindex-web][PATCH v2 05/12] layerindex: Add distro to web interface and model.
+Subject: [layerindex-web][PATCH v2 08/12] layerindex: Detect dependencies from layer.conf files
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,521 +43,349 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 07 Oct 2016 15:57:33 -0000
+X-List-Received-Date: Fri, 07 Oct 2016 15:57:35 -0000
 Content-Type: text/plain
 
-Add the distros to the index.  This looks a lot like the machines
-and allows users to search for a particular distro.
+Read dependencies from layer.conf and try to create the LayerDependency
+entry by looking up the correct database object.  Dependencies are found
+by layer name only - no collection support.  layer.conf parsing is
+handled by the bitbake code.
+
+Once all layers are added, the dependencies have to be rechecked in case
+the layers are not added in order.
 
 Signed-off-by: Liam R. Howlett <Liam.Howlett@WindRiver.com>
 ---
- layerindex/admin.py                | 11 ++++++
- layerindex/models.py               | 14 +++++++
- layerindex/recipeparse.py          |  5 +++
- layerindex/restviews.py            | 10 ++++-
- layerindex/tools/import_classic.py |  2 +
- layerindex/update_layer.py         | 46 ++++++++++++++++++++++-
- layerindex/urls.py                 |  3 ++
- layerindex/urls_branch.py          |  6 ++-
- layerindex/views.py                | 29 ++++++++++++++-
- templates/layerindex/detail.html   | 23 ++++++++++++
- templates/layerindex/distros.html  | 76 ++++++++++++++++++++++++++++++++++++++
- templates/layerindex/layers.html   |  1 +
- templates/layerindex/machines.html |  1 +
- templates/layerindex/recipes.html  |  1 +
- 14 files changed, 224 insertions(+), 4 deletions(-)
- create mode 100644 templates/layerindex/distros.html
+ layerindex/layerconfparse.py     | 50 ++++++++++++++++++++++++
+ layerindex/tools/import_layer.py | 11 ++++++
+ layerindex/update.py             | 41 +++++++++++++++++++-
+ layerindex/update_layer.py       | 20 ++++++----
+ layerindex/utils.py              | 82 ++++++++++++++++++++++++++++++++++++++++
+ 5 files changed, 196 insertions(+), 8 deletions(-)
+ create mode 100644 layerindex/layerconfparse.py
 
-diff --git a/layerindex/admin.py b/layerindex/admin.py
-index accb954..7339ce1 100644
---- a/layerindex/admin.py
-+++ b/layerindex/admin.py
-@@ -75,6 +75,16 @@ class MachineAdmin(admin.ModelAdmin):
-     def has_delete_permission(self, request, obj=None):
-         return False
- 
-+class DistroAdmin(admin.ModelAdmin):
-+    search_fields = ['name']
-+    list_filter = ['layerbranch__layer__name', 'layerbranch__branch__name']
-+    readonly_fields = Distro._meta.get_all_field_names()
-+    def has_add_permission(self, request, obj=None):
-+        return False
-+    def has_delete_permission(self, request, obj=None):
-+        return False
+diff --git a/layerindex/layerconfparse.py b/layerindex/layerconfparse.py
+new file mode 100644
+index 0000000..3a453bd
+--- /dev/null
++++ b/layerindex/layerconfparse.py
+@@ -0,0 +1,50 @@
++# Utility functions for parsing layer.conf using bitbake within layerindex-web
++#
++# Copyright (C) 2016 Wind River Systems
++# Author: Liam R. Howlett <liam.howlett@windriver.com>
++#
++# Licensed under the MIT license, see COPYING.MIT for details
++#
++
++import sys
++import os
++import os.path
++import utils
++import tempfile
++import re
++
++class LayerConfParse:
++    def __init__(self, enable_tracking=False, logger=None, bitbakepath=None, tinfoil=None):
++        import settings
++        self.logger = logger
++
++        if not bitbakepath:
++            fetchdir = settings.LAYER_FETCH_DIR
++            bitbakepath = os.path.join(fetchdir, 'bitbake')
++        self.bbpath = bitbakepath
++
++        # Set up BBPATH.
++        os.environ['BBPATH'] = str("%s" % self.bbpath)
++        self.tinfoil = tinfoil
++
++        if not self.tinfoil:
++            self.tinfoil = utils.setup_tinfoil(self.bbpath, enable_tracking)
++
++        self.config_data_copy = bb.data.createCopy(self.tinfoil.config_data)
++
++    def parse_layer(self, layerbranch, layerdir):
++
++        utils.checkout_layer_branch(layerbranch, layerdir, self.logger)
 +
 +
- class BBAppendAdmin(admin.ModelAdmin):
-     search_fields = ['filename']
-     list_filter = ['layerbranch__layer__name', 'layerbranch__branch__name']
-@@ -111,6 +121,7 @@ admin.site.register(LayerNote, LayerNoteAdmin)
- admin.site.register(Recipe, RecipeAdmin)
- admin.site.register(RecipeFileDependency)
- admin.site.register(Machine, MachineAdmin)
-+admin.site.register(Distro, DistroAdmin)
- admin.site.register(BBAppend, BBAppendAdmin)
- admin.site.register(BBClass, BBClassAdmin)
- admin.site.register(RecipeChangeset, RecipeChangesetAdmin)
-diff --git a/layerindex/models.py b/layerindex/models.py
-index 3fd16d4..2343ba7 100644
---- a/layerindex/models.py
-+++ b/layerindex/models.py
-@@ -361,6 +361,20 @@ class Machine(models.Model):
-     def __str__(self):
-         return '%s (%s)' % (self.name, self.layerbranch.layer.name)
- 
-+class Distro(models.Model):
-+    layerbranch = models.ForeignKey(LayerBranch)
-+    name = models.CharField(max_length=255)
-+    description = models.CharField(max_length=255)
++        # This is not a valid layer, parsing will cause exception.
++        if not utils.is_layer_valid(layerdir):
++            return None
 +
-+    updated = models.DateTimeField(auto_now=True)
++        utils.parse_layer_conf(layerdir, self.config_data_copy, logger=self.logger)
++        return self.config_data_copy
 +
-+    def vcs_web_url(self):
-+        url = self.layerbranch.file_url(os.path.join('conf/distro/%s.conf' % self.name))
-+        return url or ''
++    def shutdown(self):
++        self.tinfoil.shutdown()
 +
-+    def __str__(self):
-+        return '%s (%s)' % (self.name, self.layerbranch.layer.name)
++
+diff --git a/layerindex/tools/import_layer.py b/layerindex/tools/import_layer.py
+index 184c5cc..1daaeb2 100755
+--- a/layerindex/tools/import_layer.py
++++ b/layerindex/tools/import_layer.py
+@@ -19,6 +19,7 @@ import glob
+ import utils
+ import logging
+ import subprocess
++from layerconfparse import LayerConfParse
+ 
+ class DryRunRollbackException(Exception):
+     pass
+@@ -367,11 +368,21 @@ def main():
+                 if layer.name != settings.CORE_LAYER_NAME:
+                     if not core_layer:
+                         core_layer = utils.get_layer(settings.CORE_LAYER_NAME)
++
+                     if core_layer:
++                        logger.debug('Adding dep %s to %s' % (core_layer.name, layer.name))
+                         layerdep = LayerDependency()
+                         layerdep.layerbranch = layerbranch
+                         layerdep.dependency = core_layer
+                         layerdep.save()
++                    try:
++                        layerconfparser = LayerConfParse(logger=logger)
++                        config_data = layerconfparser.parse_layer(layerbranch, layerdir)
++                    finally:
++                        layerconfparser.shutdown()
++                    if config_data:
++                        utils.add_dependencies(layerbranch, config_data, logger=logger)
 +
  
- class BBAppend(models.Model):
-     layerbranch = models.ForeignKey(LayerBranch)
-diff --git a/layerindex/recipeparse.py b/layerindex/recipeparse.py
-index 7f995ec..a9cecfc 100644
---- a/layerindex/recipeparse.py
-+++ b/layerindex/recipeparse.py
-@@ -152,6 +152,7 @@ def get_var_files(fn, varlist, d):
-     return varfiles
+                 # Get some extra meta-information
+                 readme_files = glob.glob(os.path.join(layerdir, 'README*'))
+diff --git a/layerindex/update.py b/layerindex/update.py
+index 423eb53..8684d36 100755
+--- a/layerindex/update.py
++++ b/layerindex/update.py
+@@ -16,6 +16,7 @@ import subprocess
+ import signal
+ from distutils.version import LooseVersion
+ import utils
++from layerconfparse import LayerConfParse
  
- machine_conf_re = re.compile(r'conf/machine/([^/.]*).conf$')
-+distro_conf_re = re.compile(r'conf/distro/([^/.]*).conf$')
- bbclass_re = re.compile(r'classes/([^/.]*).bbclass$')
- def detect_file_type(path, subdir_start):
-     typename = None
-@@ -171,6 +172,10 @@ def detect_file_type(path, subdir_start):
-             if res:
-                 typename = 'bbclass'
-                 return (typename, None, res.group(1))
-+            res = distro_conf_re.match(subpath)
-+            if res:
-+                typename = 'distro'
-+                return (typename, None, res.group(1))
- 
-     if typename == 'recipe' or typename == 'bbappend':
-         if subdir_start:
-diff --git a/layerindex/restviews.py b/layerindex/restviews.py
-index b33d3d1..57f1552 100644
---- a/layerindex/restviews.py
-+++ b/layerindex/restviews.py
-@@ -1,4 +1,4 @@
--from layerindex.models import Branch, LayerItem, LayerNote, LayerBranch, LayerDependency, Recipe, Machine
-+from layerindex.models import Branch, LayerItem, LayerNote, LayerBranch, LayerDependency, Recipe, Machine, Distro
- from rest_framework import viewsets, serializers
- from layerindex.querysethelper import params_to_queryset, get_search_tuple
- 
-@@ -56,3 +56,11 @@ class MachineSerializer(serializers.ModelSerializer):
- class MachineViewSet(ParametricSearchableModelViewSet):
-     queryset = Machine.objects.all()
-     serializer_class = MachineSerializer
-+
-+class DistroSerializer(serializers.ModelSerializer):
-+    class Meta:
-+        model = Distro
-+
-+class DistroViewSet(ParametricSearchableModelViewSet):
-+    queryset = Distro.objects.all()
-+    serializer_class = DistroSerializer
-diff --git a/layerindex/tools/import_classic.py b/layerindex/tools/import_classic.py
-index 45ccaa9..80c49af 100755
---- a/layerindex/tools/import_classic.py
-+++ b/layerindex/tools/import_classic.py
-@@ -160,6 +160,7 @@ def main():
-         layerdir_start = os.path.normpath(oeclassicpath) + os.sep
-         layerrecipes = Recipe.objects.filter(layerbranch=layerbranch)
-         layermachines = Machine.objects.filter(layerbranch=layerbranch)
-+        layerdistros = Distro.objects.filter(layerbranch=layerbranch)
-         layerappends = BBAppend.objects.filter(layerbranch=layerbranch)
-         layerclasses = BBClass.objects.filter(layerbranch=layerbranch)
- 
-@@ -172,6 +173,7 @@ def main():
- 
-         layerrecipes.delete()
-         layermachines.delete()
-+        layerdistros.delete()
-         layerappends.delete()
-         layerclasses.delete()
-         for root, dirs, files in os.walk(oeclassicpath):
-diff --git a/layerindex/update_layer.py b/layerindex/update_layer.py
-index 13b508f..3f50547 100644
---- a/layerindex/update_layer.py
-+++ b/layerindex/update_layer.py
-@@ -115,6 +115,19 @@ def update_machine_conf_file(path, machine):
-                 break
-     machine.description = desc
- 
-+def update_distro_conf_file(path, distro):
-+    logger.debug('Updating distro %s' % path)
-+    desc = ""
-+    with open(path, 'r') as f:
-+        for line in f:
-+            if line.startswith('#@NAME:'):
-+                desc = line[7:].strip()
-+            if line.startswith('#@DESCRIPTION:'):
-+                desc = line[14:].strip()
-+                desc = re.sub(r'Distribtuion configuration for( running)*( an)*( the)*', '', desc)
-+                break
-+    distro.description = desc
-+
- def main():
-     if LooseVersion(git.__version__) < '0.3.1':
-         logger.error("Version of GitPython is too old, please install GitPython (python-git) 0.3.1 or later in order to use this script")
-@@ -161,7 +174,7 @@ def main():
+ import warnings
+ warnings.filterwarnings("ignore", category=DeprecationWarning)
+@@ -92,7 +93,7 @@ def main():
  
      utils.setup_django()
      import settings
--    from layerindex.models import LayerItem, LayerBranch, Recipe, RecipeFileDependency, Machine, BBAppend, BBClass
-+    from layerindex.models import LayerItem, LayerBranch, Recipe, RecipeFileDependency, Machine, Distro, BBAppend, BBClass
-     from django.db import transaction
+-    from layerindex.models import Branch, LayerItem
++    from layerindex.models import Branch, LayerItem, LayerDependency
  
      logger.setLevel(options.loglevel)
-@@ -269,6 +282,7 @@ def main():
+ 
+@@ -169,6 +170,7 @@ def main():
+         # We now do this by calling out to a separate script; doing otherwise turned out to be
+         # unreliable due to leaking memory (we're using bitbake internals in a manner in which
+         # they never get used during normal operation).
++        last_rev = {}
+         for branch in branches:
+             for layer in layerquery:
+                 if layer.vcs_url in failedrepos:
+@@ -178,6 +180,10 @@ def main():
+                 repodir = os.path.join(fetchdir, urldir)
+ 
+                 branchobj = utils.get_branch(branch)
++                layerbranch = layer.get_layerbranch(branch)
++                if layerbranch:
++                    last_rev[layerbranch] = layerbranch.vcs_last_rev
++
+                 if branchobj.update_environment:
+                     cmdprefix = branchobj.update_environment.get_command()
+                 else:
+@@ -201,6 +207,39 @@ def main():
+                     # Interrupted by user, break out of loop
+                     break
+ 
++        # Since update_layer may not be called in the correct order to have the
++        # dependencies created before trying to link them, we now have to loop
++        # back through all the branches and layers and try to link in the
++        # dependencies that may have been missed.  Note that creating the
++        # dependencies is a best-effort and continues if they are not found.
++        for branch in branches:
++            try:
++                layerconfparser = LayerConfParse(logger=logger, bitbakepath=bitbakepath)
++                for layer in layerquery:
++
++                    layerbranch = layer.get_layerbranch(branch)
++                    # Skip layers that did not change.
++                    if layerbranch and last_rev[layerbranch] == layerbranch.vcs_last_rev:
++                        continue
++
++                    urldir = layer.get_fetch_dir()
++                    repodir = os.path.join(fetchdir, urldir)
++
++                    layerbranch = layer.get_layerbranch(branch)
++                    if not layerbranch:
++                        continue
++
++                    config_data = layerconfparser.parse_layer(layerbranch, repodir)
++                    if not config_data:
++                        logger.debug("Layer %s does not appear to have branch %s" % (layer.name, branch))
++                        continue
++
++                    utils.add_dependencies(layerbranch, config_data, logger=logger)
++            finally:
++                layerconfparser.shutdown()
++
++
++
+     finally:
+         utils.unlock_file(lockfile)
+ 
+diff --git a/layerindex/update_layer.py b/layerindex/update_layer.py
+index 3f50547..addeb4c 100644
+--- a/layerindex/update_layer.py
++++ b/layerindex/update_layer.py
+@@ -196,7 +196,6 @@ def main():
+     except recipeparse.RecipeParseError as e:
+         logger.error(str(e))
+         sys.exit(1)
+-
+     # Clear the default value of SUMMARY so that we can use DESCRIPTION instead if it hasn't been set
+     tinfoil.config_data.setVar('SUMMARY', '')
+     # Clear the default value of DESCRIPTION so that we can see where it's not set
+@@ -244,7 +243,7 @@ def main():
+                 layerbranch = LayerBranch()
+                 layerbranch.layer = layer
+                 layerbranch.branch = branch
+-                layerbranch_source = layer.get_layerbranch('master')
++                layerbranch_source = layer.get_layerbranch(branch)
+                 if not layerbranch_source:
+                     layerbranch_source = layer.get_layerbranch(None)
+                 if layerbranch_source:
+@@ -256,11 +255,6 @@ def main():
+                         maintainer.id = None
+                         maintainer.layerbranch = layerbranch
+                         maintainer.save()
+-                    for dep in layerbranch_source.dependencies_set.all():
+-                        dep.pk = None
+-                        dep.id = None
+-                        dep.layerbranch = layerbranch
+-                        dep.save()
+ 
+             if layerbranch.vcs_subdir and not options.nocheckout:
+                 # Find latest commit in subdirectory
+@@ -280,6 +274,17 @@ def main():
+ 
+             layerdir = os.path.join(repodir, layerbranch.vcs_subdir)
              layerdir_start = os.path.normpath(layerdir) + os.sep
++
++            from layerconfparse import LayerConfParse
++            layerconfparser = LayerConfParse(logger=logger, tinfoil=tinfoil)
++            layer_config_data = layerconfparser.parse_layer(layerbranch, layerdir)
++            if not layer_config_data:
++                logger.info("Skipping update of layer %s for branch %s - conf/layer.conf may have parse issues" % (layer.name, branchdesc))
++                layerconfparser.shutdown()
++                sys.exit(1)
++            utils.add_dependencies(layerbranch, layer_config_data, logger=logger)
++            layerbranch.save()
++
              layerrecipes = Recipe.objects.filter(layerbranch=layerbranch)
              layermachines = Machine.objects.filter(layerbranch=layerbranch)
-+            layerdistros = Distro.objects.filter(layerbranch=layerbranch)
-             layerappends = BBAppend.objects.filter(layerbranch=layerbranch)
-             layerclasses = BBClass.objects.filter(layerbranch=layerbranch)
-             if layerbranch.vcs_last_rev != topcommit.hexsha or options.reload:
-@@ -384,6 +398,15 @@ def main():
-                                 else:
-                                     logger.warn("Renamed machine %s could not be found" % oldpath)
-                                     other_adds.append(diffitem)
-+                            elif oldtypename == 'distro':
-+                                results = layerdistros.filter(name=oldfilename)
-+                                if len(results):
-+                                    logger.debug("Rename distro %s to %s" % (results[0], newfilename))
-+                                    results[0].name = newfilename
-+                                    results[0].save()
-+                                else:
-+                                    logger.warn("Renamed distro %s could not be found" % oldpath)
-+                                    other_adds.append(diffitem)
-                             elif oldtypename == 'bbclass':
-                                 results = layerclasses.filter(name=oldfilename)
-                                 if len(results):
-@@ -422,6 +445,8 @@ def main():
-                                 layerappends.filter(filepath=filepath).filter(filename=filename).delete()
-                             elif typename == 'machine':
-                                 layermachines.filter(name=filename).delete()
-+                            elif typename == 'distro':
-+                                layerdistros.filter(name=filename).delete()
-                             elif typename == 'bbclass':
-                                 layerclasses.filter(name=filename).delete()
+             layerdistros = Distro.objects.filter(layerbranch=layerbranch)
+@@ -655,6 +660,7 @@ def main():
+         import traceback
+         traceback.print_exc()
  
-@@ -452,6 +477,12 @@ def main():
-                                 machine.name = filename
-                                 update_machine_conf_file(os.path.join(repodir, path), machine)
-                                 machine.save()
-+                            elif typename == 'distro':
-+                                distro = Distro()
-+                                distro.layerbranch = layerbranch
-+                                distro.name = filename
-+                                update_distro_conf_file(os.path.join(repodir, path), distro)
-+                                distro.save()
-                             elif typename == 'bbclass':
-                                 bbclass = BBClass()
-                                 bbclass.layerbranch = layerbranch
-@@ -483,6 +514,12 @@ def main():
-                                     machine = results[0]
-                                     update_machine_conf_file(os.path.join(repodir, path), machine)
-                                     machine.save()
-+                            elif typename == 'distro':
-+                                results = layerdistros.filter(name=filename)
-+                                if results:
-+                                    distro = results[0]
-+                                    update_distro_conf_file(os.path.join(repodir, path), distro)
-+                                    distro.save()
++    tinfoil.shutdown()
+     shutil.rmtree(tempdir)
+     sys.exit(0)
  
-                             deps = RecipeFileDependency.objects.filter(layerbranch=layerbranch).filter(path=path)
-                             for dep in deps:
-@@ -523,6 +560,7 @@ def main():
-                             layerrecipe_fns.append(fullpath)
+diff --git a/layerindex/utils.py b/layerindex/utils.py
+index b634ce6..018478e 100644
+--- a/layerindex/utils.py
++++ b/layerindex/utils.py
+@@ -27,6 +27,88 @@ def get_layer(layername):
+         return res[0]
+     return None
  
-                     layermachines.delete()
-+                    layerdistros.delete()
-                     layerappends.delete()
-                     layerclasses.delete()
-                     for root, dirs, files in os.walk(layerdir):
-@@ -550,6 +588,12 @@ def main():
-                                 machine.name = filename
-                                 update_machine_conf_file(fullpath, machine)
-                                 machine.save()
-+                            elif typename == 'distro':
-+                                distro = Distro()
-+                                distro.layerbranch = layerbranch
-+                                distro.name = filename
-+                                update_distro_conf_file(fullpath, distro)
-+                                distro.save()
-                             elif typename == 'bbclass':
-                                 bbclass = BBClass()
-                                 bbclass.layerbranch = layerbranch
-diff --git a/layerindex/urls.py b/layerindex/urls.py
-index cbd29ad..e37db24 100644
---- a/layerindex/urls.py
-+++ b/layerindex/urls.py
-@@ -21,6 +21,7 @@ router.register(r'layerBranches', restviews.LayerBranchViewSet)
- router.register(r'layerDependencies', restviews.LayerDependencyViewSet)
- router.register(r'recipes', restviews.RecipeViewSet)
- router.register(r'machines', restviews.MachineViewSet)
-+router.register(r'distros', restviews.DistroViewSet)
- 
- urlpatterns = patterns('',
-     url(r'^$',
-@@ -37,6 +38,8 @@ urlpatterns = patterns('',
-         RedirectView.as_view(url=reverse_lazy('recipe_search', args=('master',)), permanent=False)),
-     url(r'^machines/$',
-         RedirectView.as_view(url=reverse_lazy('machine_search', args=('master',)), permanent=False)),
-+    url(r'^distros/$',
-+        RedirectView.as_view(url=reverse_lazy('distro_search', args=('master',)), permanent=False)),
-  
-     url(r'^submit/$', edit_layer_view, {'template_name': 'layerindex/submitlayer.html'}, name="submit_layer"),
-     url(r'^submit/thanks$',
-diff --git a/layerindex/urls_branch.py b/layerindex/urls_branch.py
-index 3313290..dbfb8a1 100644
---- a/layerindex/urls_branch.py
-+++ b/layerindex/urls_branch.py
-@@ -7,7 +7,7 @@
- from django.conf.urls import *
- from django.views.defaults import page_not_found
- from django.core.urlresolvers import reverse_lazy
--from layerindex.views import LayerListView, RecipeSearchView, MachineSearchView, PlainTextListView, LayerDetailView, edit_layer_view, delete_layer_view, edit_layernote_view, delete_layernote_view, RedirectParamsView, DuplicatesView
-+from layerindex.views import LayerListView, RecipeSearchView, MachineSearchView, DistroSearchView, PlainTextListView, LayerDetailView, edit_layer_view, delete_layer_view, edit_layernote_view, delete_layernote_view, RedirectParamsView, DuplicatesView
- 
- urlpatterns = patterns('',
-     url(r'^$', 
-@@ -28,6 +28,10 @@ urlpatterns = patterns('',
-         MachineSearchView.as_view(
-             template_name='layerindex/machines.html'),
-             name='machine_search'),
-+    url(r'^distros/$',
-+        DistroSearchView.as_view(
-+            template_name='layerindex/distros.html'),
-+            name='distro_search'),
-     url(r'^edit/(?P<slug>[-\w]+)/$', edit_layer_view, {'template_name': 'layerindex/editlayer.html'}, name="edit_layer"),
-     url(r'^duplicates/$',
-         DuplicatesView.as_view(
-diff --git a/layerindex/views.py b/layerindex/views.py
-index 3f9525d..06045ae 100644
---- a/layerindex/views.py
-+++ b/layerindex/views.py
-@@ -10,7 +10,7 @@ from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidde
- from django.core.urlresolvers import reverse, reverse_lazy, resolve
- from django.core.exceptions import PermissionDenied
- from django.template import RequestContext
--from layerindex.models import Branch, LayerItem, LayerMaintainer, LayerBranch, LayerDependency, LayerNote, Recipe, Machine, BBClass, BBAppend, RecipeChange, RecipeChangeset, ClassicRecipe
-+from layerindex.models import Branch, LayerItem, LayerMaintainer, LayerBranch, LayerDependency, LayerNote, Recipe, Machine, Distro, BBClass, BBAppend, RecipeChange, RecipeChangeset, ClassicRecipe
- from datetime import datetime
- from itertools import chain
- from django.views.generic import TemplateView, DetailView, ListView
-@@ -326,6 +326,7 @@ class LayerDetailView(DetailView):
-         if layerbranch:
-             context['layerbranch'] = layerbranch
-             context['machines'] = layerbranch.machine_set.order_by('name')
-+            context['distros'] = layerbranch.distro_set.order_by('name')
-             context['appends'] = layerbranch.bbappend_set.order_by('filename')
-             context['classes'] = layerbranch.bbclass_set.order_by('name')
-         context['url_branch'] = self.kwargs['branch']
-@@ -596,6 +597,32 @@ class MachineSearchView(ListView):
-         return context
- 
- 
-+class DistroSearchView(ListView):
-+    context_object_name = 'distro_list'
-+    paginate_by = 50
++def get_dependency_layer(depname, version_str=None, logger=None):
++    from layerindex.models import LayerItem, LayerBranch
 +
-+    def get_queryset(self):
-+        _check_url_branch(self.kwargs)
-+        query_string = self.request.GET.get('q', '')
-+        init_qs = Distro.objects.filter(layerbranch__branch__name=self.kwargs['branch'])
-+        if query_string.strip():
-+            entry_query = simplesearch.get_query(query_string, ['name', 'description'])
-+            return init_qs.filter(entry_query).order_by('name', 'layerbranch__layer')
++    # Get any LayerBranch with a layer that has a name that matches the depname
++    res = list(LayerBranch.objects.filter(layer__name=depname))
 +
-+        if 'q' in self.request.GET:
-+            return init_qs.order_by('name', 'layerbranch__layer')
++    # Nothing found, return.
++    if not res:
++        return None
 +
-+        # Be consistent with RecipeSearchView
-+        return Distro.objects.none()
++    # If there is no version constraint, return the first one found.
++    if not version_str:
++        return res[0].layer
 +
-+    def get_context_data(self, **kwargs):
-+        context = super(DistroSearchView, self).get_context_data(**kwargs)
-+        context['search_keyword'] = self.request.GET.get('q', '')
-+        context['url_branch'] = self.kwargs['branch']
-+        context['this_url_name'] = resolve(self.request.path_info).url_name
-+        return context
++    (operator, dep_version) = version_str.split()
++    for layerbranch in res:
++        layer_ver = layerbranch.version
 +
++        # If there is no version in the found layer, then don't use this layer.
++        if not layer_ver:
++            continue
 +
- class PlainTextListView(ListView):
-     def render_to_response(self, context):
-         "Returns a plain text response rendering of the template"
-diff --git a/templates/layerindex/detail.html b/templates/layerindex/detail.html
-index d0d11c0..4bd7ecf 100644
---- a/templates/layerindex/detail.html
-+++ b/templates/layerindex/detail.html
-@@ -168,6 +168,9 @@
-             {% if classes.count > 0 %}
-                 <li><a href="#classes" data-toggle="tab">Classes</a></li>
-             {% endif %}
-+            {% if distros.count > 0 %}
-+                <li><a href="#distros" data-toggle="tab">Distros</a></li>
-+            {% endif %}
-         </ul>
- 
-         <div class="tab-content">
-@@ -265,6 +268,26 @@
-                     </table>
-                 </div>
-             {% endif %}
-+            {% if distros.count > 0 %}
-+                <div class="tab-pane" id="distros">
-+                    <div class="navbar">
-+                        <div class="navbar-inner">
-+                                <a class="brand pull-left">{{ layeritem.name }} distros</a>
-+                        </div>
-+                    </div>
++        try:
++            success = bb.utils.vercmp_string_op(layer_ver, version_str, operator)
++        except bb.utils.VersionStringException as vse:
++            raise vse
 +
-+                    <table class="table table-bordered">
-+                        <tbody>
-+                            {% for distro in distros %}
-+                                <tr>
-+                                    <td><a href="{{ distro.vcs_web_url }}">{{ distro.name }}</a></td>
-+                                    <td>{{ distro.description }}</td>
-+                                </tr>
-+                            {% endfor %}
-+                        </tbody>
-+                    </table>
-+                </div>
-+            {% endif %}
-         </div>
-  
- 
-diff --git a/templates/layerindex/distros.html b/templates/layerindex/distros.html
-new file mode 100644
-index 0000000..7085584
---- /dev/null
-+++ b/templates/layerindex/distros.html
-@@ -0,0 +1,76 @@
-+{% extends "base_toplevel.html" %}
-+{% load i18n %}
++        if success:
++            return layerbranch.layer
 +
-+{% comment %}
++    return None
 +
-+  layerindex-web - distro index page template
++def add_dependencies(layerbranch, config_data, logger=None):
++    _add_dependency("LAYERDEPENDS", 'dependency', layerbranch, config_data, logger)
 +
-+  Copyright (C) 2013 Intel Corporation
-+  Copyright (C) 2016 Wind River Systems
-+  Licensed under the MIT license, see COPYING.MIT for details
++def _add_dependency(var, name, layerbranch, config_data, logger=None):
++    from layerindex.models import LayerBranch, LayerDependency
 +
-+{% endcomment %}
++    layer_name = layerbranch.layer.name
++    var_name = layer_name
 +
++    dep_list = config_data.getVar("%s_%s" % (var, var_name), True)
 +
-+<!--
-+{% block title_append %} - distros{% endblock %}
-+-->
++    if not dep_list:
++        return
 +
-+{% block navs %}
-+{% autoescape on %}
-+                            <li><a href="{% url 'layer_list' url_branch %}">Layers</a></li>
-+                            <li><a href="{% url 'recipe_search' url_branch %}">Recipes</a></li>
-+                            <li><a href="{% url 'machine_search' url_branch %}">Machines</a></li>
-+                            <li class="active"><a href="{% url 'distro_search' url_branch %}">Distros</a></li>
-+{% endautoescape %}
-+{% endblock %}
++    try:
++        dep_dict = bb.utils.explode_dep_versions2(dep_list)
++    except bb.utils.VersionStringException as vse:
++        logger.debug('Error parsing %s_%s for %s\n%s' % (var, var_name, layer_name, str(vse)))
++        return
 +
++    for dep, ver_list in list(dep_dict.items()):
++        ver_str = None
++        if ver_list:
++            ver_str = ver_list[0]
 +
-+{% block content_inner %}
-+{% autoescape on %}
++        try:
++            dep_layer = get_dependency_layer(dep, ver_str, logger)
++        except bb.utils.VersionStringException as vse:
++            if logger:
++                logger.error('Error getting %s %s for %s\n%s' %(name, dep. layer_name, str(vse)))
++            continue
 +
++        if not dep_layer:
++            if logger:
++                logger.error('Cannot resolve %s %s (version %s) for %s' % (name, dep, ver_str, layer_name))
++                continue
 +
-+                <div class="row-fluid">
-+                    <div class="input-append">
-+                        <form id="filter-form" action="{% url 'distro_search' url_branch %}" method="get">
-+                            <input type="text" class="input-xxlarge" id="appendedInputButtons" placeholder="Search distros" name="q" value="{{ search_keyword }}" />
-+                            <button class="btn" type="submit">search</button>
-+                        </form>
-+                    </div>
-+                </div>
++        # Skip existing entries.
++        existing = list(LayerDependency.objects.filter(layerbranch=layerbranch).filter(dependency=dep_layer))
++        if existing:
++            logger.debug('Skipping %s - already a dependency for %s' % (dep, layer_name))
++            continue
 +
-+{% if distro_list %}
-+                <table class="table table-striped table-bordered distrostable">
-+                    <thead>
-+                        <tr>
-+                            <th>Distro name</th>
-+                            <th class="span9">Description</th>
-+                            <th>Layer</th>
-+                        </tr>
-+                    </thead>
++        if logger:
++            logger.debug('Adding %s %s to %s' % (name, dep_layer.name, layer_name))
++        layerdep = LayerDependency()
++        layerdep.layerbranch = layerbranch
++        layerdep.dependency = dep_layer
++        layerdep.save()
 +
-+                    <tbody>
-+                        {% for distro in distro_list %}
-+                            <tr>
-+                                <td><a href="{{ distro.vcs_web_url }}">{{ distro.name }}</a></td>
-+                                <td>{{ distro.description }}</td>
-+                                <td><a href="{% url 'layer_item' url_branch distro.layerbranch.layer.name %}">{{ distro.layerbranch.layer.name }}</a></td>
-+                            </tr>
-+                        {% endfor %}
-+                    </tbody>
-+                </table>
-+
-+    {% if is_paginated %}
-+        {% load pagination %}
-+        {% pagination page_obj %}
-+    {% endif %}
-+{% else %}
-+    {% if search_keyword %}
-+    <p>No matching distros in database.</p>
-+    {% endif %}
-+{% endif %}
-+
-+
-+{% endautoescape %}
-+
-+{% endblock %}
-diff --git a/templates/layerindex/layers.html b/templates/layerindex/layers.html
-index cfc4ebd..b11ff2f 100644
---- a/templates/layerindex/layers.html
-+++ b/templates/layerindex/layers.html
-@@ -21,6 +21,7 @@
-                             <li class="active"><a href="{% url 'layer_list' url_branch %}">Layers</a></li>
-                             <li><a href="{% url 'recipe_search' url_branch %}">Recipes</a></li>
-                             <li><a href="{% url 'machine_search' url_branch %}">Machines</a></li>
-+                            <li><a href="{% url 'distro_search' url_branch %}">Distros</a></li>
- {% endautoescape %}
- {% endblock %}
- 
-diff --git a/templates/layerindex/machines.html b/templates/layerindex/machines.html
-index e31433c..2a9f947 100644
---- a/templates/layerindex/machines.html
-+++ b/templates/layerindex/machines.html
-@@ -20,6 +20,7 @@
-                             <li><a href="{% url 'layer_list' url_branch %}">Layers</a></li>
-                             <li><a href="{% url 'recipe_search' url_branch %}">Recipes</a></li>
-                             <li class="active"><a href="{% url 'machine_search' url_branch %}">Machines</a></li>
-+                            <li><a href="{% url 'distro_search' url_branch %}">Distros</a></li>
- {% endautoescape %}
- {% endblock %}
- 
-diff --git a/templates/layerindex/recipes.html b/templates/layerindex/recipes.html
-index 74f3bb4..60a2667 100644
---- a/templates/layerindex/recipes.html
-+++ b/templates/layerindex/recipes.html
-@@ -20,6 +20,7 @@
-                             <li><a href="{% url 'layer_list' url_branch %}">Layers</a></li>
-                             <li class="active"><a href="{% url 'recipe_search' url_branch %}">Recipes</a></li>
-                             <li><a href="{% url 'machine_search' url_branch %}">Machines</a></li>
-+                            <li><a href="{% url 'distro_search' url_branch %}">Distros</a></li>
- {% endautoescape %}
- {% endblock %}
- 
+ def setup_tinfoil(bitbakepath, enable_tracking):
+     sys.path.insert(0, bitbakepath + '/lib')
+     import bb.tinfoil
 -- 
 1.9.1
 
