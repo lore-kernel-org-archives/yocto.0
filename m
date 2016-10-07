@@ -1,37 +1,64 @@
-Return-Path: <Liam.Howlett@windriver.com>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7A7DDE00C66; Fri,  7 Oct 2016 08:57:39 -0700 (PDT)
+	id CA8FEE00C19; Fri,  7 Oct 2016 09:23:09 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (akuster808[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 955A1E00C60
-	for <yocto@yoctoproject.org>; Fri,  7 Oct 2016 08:57:36 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id u97FvaLO016474
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 7 Oct 2016 08:57:36 -0700 (PDT)
-Received: from yow-lhowlett-d0.wrs.com (128.224.56.217) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server id
-	14.3.294.0; Fri, 7 Oct 2016 08:57:35 -0700
-From: "Liam R. Howlett" <Liam.Howlett@windriver.com>
-To: <yocto@yoctoproject.org>
-Date: Fri, 7 Oct 2016 11:57:21 -0400
-Message-ID: <1475855841-30009-13-git-send-email-Liam.Howlett@WindRiver.com>
-X-Mailer: git-send-email 2.1.4
-In-Reply-To: <1475855841-30009-1-git-send-email-Liam.Howlett@WindRiver.com>
-References: <1475855841-30009-1-git-send-email-Liam.Howlett@WindRiver.com>
-MIME-Version: 1.0
-Cc: paul.eggleton@linux.intel.com
-Subject: [layerindex-web][PATCH v2 12/12] layerindex/update_layer.py: Preserve the recipedependency files
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.192.195 listed in list.dnswl.org]
+Received: from mail-pf0-f195.google.com (mail-pf0-f195.google.com
+	[209.85.192.195])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8AD24E0080A
+	for <yocto@yoctoproject.org>; Fri,  7 Oct 2016 09:23:06 -0700 (PDT)
+Received: by mail-pf0-f195.google.com with SMTP id i85so3083595pfa.0
+	for <yocto@yoctoproject.org>; Fri, 07 Oct 2016 09:23:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:cc:subject:date:message-id;
+	bh=yH3abLbJeHOrniBOJUrBO80ljyhLOj1QRQFzb1TGeXU=;
+	b=ogJcfGnQKZh3Wj6ezRruLLRBwDjbHSlDkAcHX3ojYcH3tNfLdO5kM7wOKpjfumQvGX
+	fLRi+15ByM6+wln1R00F00JgYFvMZI9hjvlKXPVgC7vBHEXI5AII0cj9VyfRvGXTt08H
+	lie6ZKiPUPuNVS4RsmxaLpEGn8hNpjadAy+qNNqAEwXVKv122xLO6tCyRYfX2THcEKs+
+	0OFUI4VrJN6Kl9X56+T2wd1UcqBAFW3E+fsRj3QPpdh6coiFoO4L5cQ7z1hK9AGEaLJe
+	Aa6ZdR+6PjiQssK2oS535nJ9nYvJ99u/EL2p+RfqTt4qkVA4qV2Dsp7bPmppDoqrEdMe
+	5Snw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=yH3abLbJeHOrniBOJUrBO80ljyhLOj1QRQFzb1TGeXU=;
+	b=W3fKNrh7TQGjblwjf/Vxn0ZPYuL2Ynh0F9hvO/CBYg3r4u3+nywXy1u2R1YzgDoTLk
+	lBnLaUzB4xHulxt7rO8OMj2oyw/3+9fMG+RYbhMggsqnMo1jimHmGAz0TWQmotvuZgd+
+	e1wdjK/gEF4XPtQAO5jz/c8KjE+pXsRnv2pXRk8PF1jbDKejYh7IOvfjwsrS5dZnekrh
+	UnxMiTeucaCxebYUQFOOyU44004r/6WJD2xPhy/VD6NzkBgctn7zN+HxJO8rWpqGi2ln
+	fQge3IBcEHcFdeO1A6qvnKsxX/odpvi+wREQwKFg1c7hz8ccJUXZkEdEEHdndnZPiOg/
+	GZUQ==
+X-Gm-Message-State: AA6/9RnmE6Qh7dYHEM39rXX1rloKYZgOpWcO9PQrMJE/oe5Yg17VlGRSoK8lo14YuAwO3A==
+X-Received: by 10.98.105.130 with SMTP id e124mr17511833pfc.27.1475857386081; 
+	Fri, 07 Oct 2016 09:23:06 -0700 (PDT)
+Received: from Pahoa2.hsd1.ca.comcast.net
+	([2601:202:4001:9ea0:e83c:6ab5:5501:7010])
+	by smtp.gmail.com with ESMTPSA id
+	i8sm32190074paw.25.2016.10.07.09.23.05
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Fri, 07 Oct 2016 09:23:05 -0700 (PDT)
+From: Armin Kuster <akuster808@gmail.com>
+To: yocto@yoctoproject.org
+Date: Fri,  7 Oct 2016 09:23:03 -0700
+Message-Id: <1475857383-3308-1-git-send-email-akuster808@gmail.com>
+X-Mailer: git-send-email 2.3.5
+Subject: [meta-security][PATCH] sleuthkit: fix No GNU_HASH in the elf binary
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,57 +70,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 07 Oct 2016 15:57:39 -0000
-Content-Type: text/plain
+X-List-Received-Date: Fri, 07 Oct 2016 16:23:09 -0000
 
-From: Mark Hatle <mark.hatle@windriver.com>
+From: Armin Kuster <akuster@mvista.com>
 
-In order to keep primary keys from constantly changing, preverse the
-exist keys as much as possible.
-
-Signed-off-by: Mark Hatle <mark.hatle@windriver.com>
-Signed-off-by: Liam R. Howlett <Liam.Howlett@WindRiver.com>
+Signed-off-by: Armin Kuster <akuster@mvista.com>
 ---
- layerindex/update_layer.py | 19 ++++++++++++++++++-
- 1 file changed, 18 insertions(+), 1 deletion(-)
+ recipes-forensic/sleuth/sleuthkit_4.1.3.bb | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/layerindex/update_layer.py b/layerindex/update_layer.py
-index 27d4ebe..ec40806 100644
---- a/layerindex/update_layer.py
-+++ b/layerindex/update_layer.py
-@@ -88,13 +88,30 @@ def update_recipe_file(tinfoil, data, path, recipe, layerdir_start, repodir):
-             if depstr.startswith(layerdir_start) and not depstr.endswith('/conf/layer.conf'):
-                 filedeps.append(os.path.relpath(depstr, repodir))
-         from layerindex.models import RecipeFileDependency
--        RecipeFileDependency.objects.filter(recipe=recipe).delete()
+diff --git a/recipes-forensic/sleuth/sleuthkit_4.1.3.bb b/recipes-forensic/sleuth/sleuthkit_4.1.3.bb
+index 4b82616..4d40586 100644
+--- a/recipes-forensic/sleuth/sleuthkit_4.1.3.bb
++++ b/recipes-forensic/sleuth/sleuthkit_4.1.3.bb
+@@ -26,3 +26,5 @@ EXTRA_OECONF += "--enable-static=no --disable-java LIBS='-L${STAGING_LIBDIR}' LD
+ FILES_${PN} += " ${datadir}/tsk"
+ 
+ RDEPENDS_${PN} += " perl"
 +
-+        recipedeps_delete = []
-+
-+        recipedeps = RecipeFileDependency.objects.filter(recipe=recipe)
-+
-+        for values in recipedeps.values('path'):
-+            if 'path' in values:
-+                recipedeps_delete.append(values['path'])
-+
-         for filedep in filedeps:
-+            if filedep in recipedeps_delete:
-+                recipedeps_delete.remove(filedep)
-+                continue
-+            # New item, add it...
-             recipedep = RecipeFileDependency()
-             recipedep.layerbranch = recipe.layerbranch
-             recipedep.recipe = recipe
-             recipedep.path = filedep
-             recipedep.save()
-+
-+        for filedep in recipedeps_delete:
-+            logger.debug('%s: removing %s' % (recipe.layerbranch, filedep))
-+            recipedeps.filter(path=filedep).delete()
-+
-     except KeyboardInterrupt:
-         raise
-     except BaseException as e:
++INSANE_SKIP_${PN} = "ldflags"
 -- 
-1.9.1
+2.3.5
 
 
