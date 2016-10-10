@@ -1,37 +1,41 @@
-Return-Path: <alfonso.ros-dos-santos@evosoft.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CA80FE00932; Mon, 10 Oct 2016 03:26:07 -0700 (PDT)
+	id E560EE00932; Mon, 10 Oct 2016 03:37:40 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.8 required=5.0 tests=BAYES_00, LOCALPART_IN_SUBJECT
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 1.1 LOCALPART_IN_SUBJECT Local part of To: address
-	appears in Subject
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.65 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0012]
-X-Greylist: delayed 177 seconds by postgrey-1.32 at yocto-www;
-	Mon, 10 Oct 2016 03:26:05 PDT
-Received: from DENBGMASH1SRV.evosoft.com (DENBGMASH1SRV.evosoft.com
-	[193.158.17.58])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B3295E00777
-	for <yocto@yoctoproject.org>; Mon, 10 Oct 2016 03:26:05 -0700 (PDT)
-X-TM-IMSS-Message-ID: <914f8b3a00047fa3@evosoft.com>
-Received: from EVO01682.evosoft.com ([139.22.164.248]) by evosoft.com
-	([193.158.17.58]) with ESMTP (TREND IMSS SMTP Service 7.5) id
-	914f8b3a00047fa3 ; Mon, 10 Oct 2016 12:23:06 +0200
-Received: from [139.25.8.168] (139.25.8.168) by evo01682.evosoft.com
-	(139.22.164.248) with Microsoft SMTP Server (TLS) id 14.3.301.0;
-	Mon, 10 Oct 2016 12:23:06 +0200
-To: <yocto@yoctoproject.org>
-From: alfonso <alfonso.ros-dos-santos@evosoft.com>
-Message-ID: <d47350d4-c126-48ae-7286-2a602ad8c9d2@evosoft.com>
-Date: Mon, 10 Oct 2016 12:23:07 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.3.0
+	*      [score: 0.0000]
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AF892E00777
+	for <yocto@yoctoproject.org>; Mon, 10 Oct 2016 03:37:36 -0700 (PDT)
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+	by orsmga103.jf.intel.com with ESMTP; 10 Oct 2016 03:37:35 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.31,324,1473145200"; d="scan'208";a="18437240"
+Received: from klee32-mobl1.gar.corp.intel.com (HELO
+	peggleto-mobl.ger.corp.intel.com) ([10.255.184.241])
+	by orsmga004.jf.intel.com with ESMTP; 10 Oct 2016 03:37:32 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: "Hatle, Mark" <mark.hatle@windriver.com>
+Date: Mon, 10 Oct 2016 23:37:31 +1300
+Message-ID: <1973495.KDbYGoBku8@peggleto-mobl.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.14.10 (Linux/4.7.5-100.fc23.x86_64; KDE/4.14.20; x86_64; ;
+	)
+In-Reply-To: <22009FF1-52AB-447C-9193-C60FFEC966E6@windriver.com>
+References: <1475855841-30009-1-git-send-email-Liam.Howlett@WindRiver.com>
+	<2819650.EJqT4j8vUA@peggleto-mobl.ger.corp.intel.com>
+	<22009FF1-52AB-447C-9193-C60FFEC966E6@windriver.com>
 MIME-Version: 1.0
-X-Originating-IP: [139.25.8.168]
-Subject: yocto - linaro's lava integration
+Cc: "Howlett, Liam" <Liam.Howlett@windriver.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [layerindex-web][PATCH v2 00/12] Add Distro, dependency and recommends detection, and import_project
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,31 +47,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 10 Oct 2016 10:26:07 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 10 Oct 2016 10:37:41 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Hello everyone,
+On Mon, 10 Oct 2016 04:48:41 Hatle, Mark wrote:
+> > On Oct 10, 2016, at 2:54 AM, Paul Eggleton <paul.eggleton@linux.intel.com>
+> > wrote:
+> >> On Fri, 07 Oct 2016 13:20:50 Mark Hatle wrote:
+> >> FYI, I have made sure these are re-based on top of paule/django18 and
+> >> pushed to:
+> >> 
+> >> git://git.yoctoproject.org/layerindex-web mhatle/django18
+> >> 
+> >> BTW for me upgrading from paule/django18 to this version.  I only had to
+> >> run 'manage.py syncdb'.
+> >> 
+> >> This created the new database and added the missing field for the
+> >> recommend.> 
+> > I'm not sure how that worked there but it doesn't work here. If I take a
+> > database that works on paule/django18, run syncdb then open the admin
+> > interface and click on "Layer branches" I get:
+>
+> We found a severe lack of instructions for creating migrations.  There were
+> instructions for adding and deleting full DBs but not changing them.  We
+> will need pointers or help to resolve this.
+>
+> >  no such column: layerindex_layerbranch.collection
+> 
+> I never got that, but I'm also running SQLite.  May be the difference.
 
-I'm trying to integrate the testing of the resulting yocto images using 
-Linaro's LAVA project.
+I'm using sqlite here also.
+ 
+> > I'm afraid we really do need to create migrations whenever we change the
+> > models.
+> 
+> Based on your prior comments we failed to find ANY reasonable examples, docs
+> or instructions on doing this.  So we are stuck without help.
 
-For now I am only using qemux86 images.
+I'm happy to help directly if needed, but did you come across this already?
 
-Now, I am quite a newbie in both projects and maybe in general on the 
-subject of images so I might be asking the wrong questions.
+  https://docs.djangoproject.com/en/1.8/topics/migrations/
 
-So far, to test a qemu image using LAVA it is required a .img file. That 
-would be the simplest configuration. On the other hand, my yocto project 
-produces a .bin kernel file + .ext4 filesystem file. I don't seem to 
-find a proper configuration in LAVA for .bin + .ext4 file testing. I 
-presume there is a way to configure yocto to produce a .img file out of 
-these two guys but I don't seem to find how.
+Cheers,
+Paul
 
-Would anyone have a recommendation?
+-- 
 
-Thanks in advance for your help :)
-
-Best,
-Alfonso
+Paul Eggleton
+Intel Open Source Technology Centre
 
