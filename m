@@ -1,6 +1,6 @@
 Return-Path: <idealsim@laposte.net>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 23ACCE00B7A; Tue, 11 Oct 2016 12:59:41 -0700 (PDT)
+	id 8797BE00B7A; Tue, 11 Oct 2016 13:30:20 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -11,7 +11,7 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (idealsim[at]laposte.net)
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [194.117.213.101 listed in list.dnswl.org]
+	*      [178.22.154.198 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -20,58 +20,60 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from smtp.laposte.net (smtpoutz26.laposte.net [194.117.213.101])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 685D3E00A61
-	for <yocto@yoctoproject.org>; Tue, 11 Oct 2016 12:59:39 -0700 (PDT)
+X-Greylist: delayed 1357 seconds by postgrey-1.32 at yocto-www;
+	Tue, 11 Oct 2016 13:30:16 PDT
+Received: from smtp.laposte.net (smtpoutz298.laposte.net [178.22.154.198])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1A464E00A1A
+	for <yocto@yoctoproject.org>; Tue, 11 Oct 2016 13:30:16 -0700 (PDT)
 Received: from smtp.laposte.net (localhost [127.0.0.1])
-	by lpn-prd-vrout014 (Postfix) with ESMTP id 99D8E121323
-	for <yocto@yoctoproject.org>; Tue, 11 Oct 2016 21:59:37 +0200 (CEST)
+	by lpn-prd-vrout010 (Postfix) with ESMTP id 5B09B45B279
+	for <yocto@yoctoproject.org>; Tue, 11 Oct 2016 22:07:37 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=laposte.net; s=mail0;
-	t=1476215977; bh=iO/zH6KAzfzA+kZ+uiu83K8KrNvJrBAZuITd707nZ7A=;
+	t=1476216457; bh=CwlHRMBFAoMeOESz1v5agDCzZkBfO/ajGaVi5DZURJo=;
 	h=To:From:Subject:Date;
-	b=fSYeOkBM/MyH1tHfheabfO1WoqpbQCnu5cz7JLX1H0WI5ptJ0pD5Qt4scY8S2huXn
-	kbIpX2TQ0pDTmxiM5o2g6FZFIChn0S41VqTOkOSoF8VLfVhFSisiM/0+/kyCq+lyuD
-	EbrczvK1c+rh+SH3qXaa841+O69J8kGAUu1xgiysnSuL2F/xiv2mJOvcs1x3LbJ89S
-	FqKDfeVT3FtQ9afmqfu3CwYa8QGjxd/tAb43Mdm7DdfLt6sYrOhVFZzMRgBLmzALiS
-	xvDkLCUd/T0/vVvJFM4Wx8+F7zZnY8oDcPKEuket8g3VgZuw3V/trlKV/X7rF4R/X7
-	BUyQ/+UsZQ1HA==
+	b=c1JXErIZxR51aOZzzvHNppZVwOk/5Dj+KSSlTUi873AhR32pnzy8l+C4Xpgjm93hm
+	U/897xdWVdnwzbjd+Hkqm4V/lLkcL/NojEG2VrVY+yN4g8+7bhex8tC7TKzVzUKy2Y
+	IVHk715W5iKCoKfG5CoO/r5P2jvbkkgxsuKpUlbIbuukhTc20JAv2ZDk9Ng8did8Is
+	QropuGL04GfgSC/Gr6p3olQ4qbuxqc7X0Kgp5mAVKaM+o+t4MY0YG1hz13uo47fo1h
+	+MrVf9HWX+kEtHb8V5rCaU3mfXsNFcQWmnqQYMWpsINURVkXopyb0FBhJw+JX1z/jr
+	9wDkONlDrQHdQ==
 Received: from smtp.laposte.net (localhost [127.0.0.1])
-	by lpn-prd-vrout014 (Postfix) with ESMTP id 8D1EF12137F
-	for <yocto@yoctoproject.org>; Tue, 11 Oct 2016 21:59:37 +0200 (CEST)
-Received: from lpn-prd-vrin001 (lpn-prd-vrin001.prosodie [10.128.63.2])
-	by lpn-prd-vrout014 (Postfix) with ESMTP id 88D93121323
-	for <yocto@yoctoproject.org>; Tue, 11 Oct 2016 21:59:37 +0200 (CEST)
-Received: from lpn-prd-vrin001 (localhost [127.0.0.1])
-	by lpn-prd-vrin001 (Postfix) with ESMTP id 75026366D1E
-	for <yocto@yoctoproject.org>; Tue, 11 Oct 2016 21:59:37 +0200 (CEST)
+	by lpn-prd-vrout010 (Postfix) with ESMTP id 4B55145B2C4
+	for <yocto@yoctoproject.org>; Tue, 11 Oct 2016 22:07:37 +0200 (CEST)
+Received: from lpn-prd-vrin004 (lpn-prd-vrin004.laposte [10.128.63.5])
+	by lpn-prd-vrout010 (Postfix) with ESMTP id 45E4E45B279
+	for <yocto@yoctoproject.org>; Tue, 11 Oct 2016 22:07:37 +0200 (CEST)
+Received: from lpn-prd-vrin004 (localhost [127.0.0.1])
+	by lpn-prd-vrin004 (Postfix) with ESMTP id 361B971027D
+	for <yocto@yoctoproject.org>; Tue, 11 Oct 2016 22:07:37 +0200 (CEST)
 Received: from [192.168.1.45] (ARennes-654-1-178-136.w92-135.abo.wanadoo.fr
 	[92.135.1.136])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by lpn-prd-vrin001 (Postfix) with ESMTPSA id 4390D366D19
-	for <yocto@yoctoproject.org>; Tue, 11 Oct 2016 21:59:37 +0200 (CEST)
+	by lpn-prd-vrin004 (Postfix) with ESMTPSA id 0B845710266
+	for <yocto@yoctoproject.org>; Tue, 11 Oct 2016 22:07:36 +0200 (CEST)
 To: Yocto list discussion <yocto@yoctoproject.org>
 From: idealsim <idealsim@laposte.net>
-Message-ID: <392440e3-86b4-090a-47bd-7edda9f190d9@laposte.net>
-Date: Tue, 11 Oct 2016 21:59:36 +0200
+Message-ID: <a7473d31-3363-37fa-32af-cd69cc950fbb@laposte.net>
+Date: Tue, 11 Oct 2016 22:07:36 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
 	Thunderbird/45.2.0
 MIME-Version: 1.0
 X-VR-SrcIP: 92.135.1.136
 X-VR-FullState: 0
 X-VR-Score: -100
-X-VR-Cause-1: gggruggvucftvghtrhhoucdtuddrfeelvddrfeelgddugeeiucetufdoteggodetrfdotffvucfrrhho
+X-VR-Cause-1: gggruggvucftvghtrhhoucdtuddrfeelvddrfeelgddugeekucetufdoteggodetrfdotffvucfrrhho
 X-VR-Cause-2: fhhilhgvmecunfetrffquffvgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhht
 X-VR-Cause-3: shculddquddttddmnecujfgurhepvffhuffkffgfgggtsegrtderredtfeejnecuhfhrohhmpehiuggv
-X-VR-Cause-4: rghlshhimhcuoehiuggvrghlshhimheslhgrphhoshhtvgdrnhgvtheqnecuffhomhgrihhnpehgihht
-X-VR-Cause-5: hhhusgdrtghomhenucfkphepledvrddufeehrddurddufeeinecurfgrrhgrmhepmhhouggvpehsmhht
-X-VR-Cause-6: phhouhhtpdhhvghloheplgduledvrdduieekrddurdeghegnpdhinhgvthepledvrddufeehrddurddu
-X-VR-Cause-7: feeipdhmrghilhhfrhhomhepihguvggrlhhsihhmsehlrghpohhsthgvrdhnvghtpdhrtghpthhtohep
-X-VR-Cause-8: hihotghtoheshihotghtohhprhhojhgvtghtrdhorhhg
+X-VR-Cause-4: rghlshhimhcuoehiuggvrghlshhimheslhgrphhoshhtvgdrnhgvtheqnecuffhomhgrihhnpeguvghj
+X-VR-Cause-5: rghvuhdqfhhonhhtshdrohhrghdpghhithhhuhgsrdgtohhmnecukfhppeelvddrudefhedruddrudef
+X-VR-Cause-6: ieenucfrrghrrghmpehmohguvgepshhmthhpohhuthdphhgvlhhopegludelvddrudeikedruddrgeeh
+X-VR-Cause-7: ngdpihhnvghtpeelvddrudefhedruddrudefiedpmhgrihhlfhhrohhmpehiuggvrghlshhimheslhgr
+X-VR-Cause-8: phhoshhtvgdrnhgvthdprhgtphhtthhopeihohgtthhoseihohgtthhophhrohhjvggtthdrohhrgh
 X-VR-AvState: No
 X-VR-State: 0
 X-VR-State: 0
-Subject: problem with developer sdk
+Subject: add dejavu-fonts to image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -83,55 +85,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Oct 2016 19:59:41 -0000
+X-List-Received-Date: Tue, 11 Oct 2016 20:30:20 -0000
 Content-Type: multipart/alternative;
-	boundary="------------C45D2F1260B1C38A8117A64F"
+	boundary="------------24732C2BD708974A9610C349"
 
---------------C45D2F1260B1C38A8117A64F
+--------------24732C2BD708974A9610C349
 Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-Hi, i have rebuild an image of yocto krogoth with qt 5.6.2 (lasted 
-release). The problem is now i have a problem with developer sdk. The 
-problem is when i use it with a host machine (after install the script 
-and configure qt creator), i obtain this error when i want to deploy an 
-app :
+Hi, i have build an image for an imx6 card (secoA62) based on this good 
+layer https://github.com/graugans/meta-udoo (krogoth branch). All work 
+fine but since the last version of qt 5.7, qtbase-font is not provided 
+and now i have this error when i deploy an app :
 
-/|/usr/bin/ld: cannot find -lQt5Widgets
-|/
+/QFontDatabase: Cannot find font directory /usr/lib/fonts.//
+//Note that Qt no longer ships fonts. Deploy some (from 
+//http://dejavu-fonts.org//for example) or switch to fontconfig./
 
-/|/usr/bin/ld: cannot find -lQt5Gui
-|/
+Apparently we need to provide fonts with yocto now. Can you advise me 
+how i can add ttf-dejavu to the image. I have tried to add it to my 
+local.conf like this :
 
-/|/usr/bin/ld: cannot find -lQt5SerialPort
-|/
+IMAGE_INSTALL_append = "\
 
-/|/usr/bin/ld: cannot find -lQt5Core
-|/
+             ttf-dejavu \
 
-/|/usr/bin/ld: cannot find -lGLESv2
-|/
+"
 
-/|collect2: error: ld returned 1 exit status make: *** [terminal] Error 1|/
+but i have an error during the build of the image rootfs !
 
-That is strange is that when i use an old sdk (qt5.6.1), it works !
+Can you help please ?
 
-That i see on qtcreator/tools/options/qtversions and details about the 
-kit (see this post for more details : 
-https://github.com/graugans/meta-udoo/issues/20) is that mkspec for 
-qt5.6.2 is different than for the qt5.6.1 kit :
+Mickaël LE STEPHAN
 
-qt5.6.2 : mkspec = linux-g++
 
-qt5.6.1: mkspec=linux-oe-g++
-
-If someone can help, it would be very useful !
-
-regards,
-
---------------C45D2F1260B1C38A8117A64F
+--------------24732C2BD708974A9610C349
 Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
 <html>
   <head>
@@ -139,35 +129,27 @@ Content-Transfer-Encoding: 7bit
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
   </head>
   <body bgcolor="#FFFFFF" text="#000000">
-    <p>Hi, i have rebuild an image of yocto krogoth with qt 5.6.2
-      (lasted release). The problem is now i have a problem with
-      developer sdk. The problem is when i use it with a host machine
-      (after install the script and configure qt creator), i obtain this
-      error when i want to deploy an app :</p>
-    <p><i><code>/usr/bin/ld: cannot find -lQt5Widgets <br>
-        </code></i></p>
-    <p><i><code>/usr/bin/ld: cannot find -lQt5Gui <br>
-        </code></i></p>
-    <p><i><code>/usr/bin/ld: cannot find -lQt5SerialPort <br>
-        </code></i></p>
-    <p><i><code>/usr/bin/ld: cannot find -lQt5Core <br>
-        </code></i></p>
-    <p><i><code>/usr/bin/ld: cannot find -lGLESv2 <br>
-        </code></i></p>
-    <p><i><code>collect2: error: ld returned 1 exit status make: ***
-          [terminal] Error 1</code></i></p>
-    <p>That is strange is that when i use an old sdk (qt5.6.1), it works
-      !</p>
-    <p>That i see on qtcreator/tools/options/qtversions and details
-      about the kit (see this post for more details : <a
-        class="moz-txt-link-freetext"
-        href="https://github.com/graugans/meta-udoo/issues/20">https://github.com/graugans/meta-udoo/issues/20</a>)
-      is that mkspec for qt5.6.2 is different than for the qt5.6.1 kit :</p>
-    <p>qt5.6.2 : mkspec = linux-g++</p>
-    <p>qt5.6.1: mkspec=linux-oe-g++</p>
-    <p>If someone can help, it would be very useful !</p>
-    regards,
+    <p>Hi, i have build an image for an imx6 card (secoA62) based on
+      this good layer <a class="moz-txt-link-freetext" href="https://github.com/graugans/meta-udoo">https://github.com/graugans/meta-udoo</a> (krogoth
+      branch). All work fine but since the last version of qt 5.7,
+      qtbase-font is not provided and now i have this error when i
+      deploy an app :</p>
+    <p><i>QFontDatabase: Cannot find font directory /usr/lib/fonts.</i><i><br>
+      </i><i>
+        Note that Qt no longer ships fonts. Deploy some (from </i><i><a
+          href="http://dejavu-fonts.org">http://dejavu-fonts.org</a></i><i>
+        for example) or switch to fontconfig.</i></p>
+    <p>Apparently we need to provide fonts with yocto now. Can you
+      advise me how i can add ttf-dejavu to the image. I have tried to
+      add it to my local.conf like this :</p>
+    <p>IMAGE_INSTALL_append = "\</p>
+    <p>            ttf-dejavu \</p>
+    <p>"</p>
+    <p>but i have an error during the build of the image rootfs !</p>
+    <p>Can you help please ?</p>
+    <p>Mickaël LE STEPHAN<br>
+    </p>
   </body>
 </html>
 
---------------C45D2F1260B1C38A8117A64F--
+--------------24732C2BD708974A9610C349--
