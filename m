@@ -1,42 +1,78 @@
-Return-Path: <mark.hatle@windriver.com>
+Return-Path: <gmane@reliableembeddedsystems.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5B3C5E00D34; Tue, 11 Oct 2016 01:16:49 -0700 (PDT)
+	id 79BD0E00D26; Tue, 11 Oct 2016 01:42:27 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1E2EEE00D26
-	for <yocto@yoctoproject.org>; Tue, 11 Oct 2016 01:16:45 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id u9B8GihA019536
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Tue, 11 Oct 2016 01:16:44 -0700 (PDT)
-Received: from soho-mhatle-m.local (147.11.116.158) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.294.0;
-	Tue, 11 Oct 2016 01:16:43 -0700
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-References: <1475855841-30009-1-git-send-email-Liam.Howlett@WindRiver.com>
-	<23f23361-56e8-9ce7-b423-4812e8347b53@windriver.com>
-	<1713204.tuaSYvq94G@peggleto-mobl.ger.corp.intel.com>
-	<2846923.HDuc4EgLrO@peggleto-mobl.ger.corp.intel.com>
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-Message-ID: <68e8c0c7-6e8b-56b8-dd4c-5f8f79d1c7c3@windriver.com>
-Date: Tue, 11 Oct 2016 10:16:41 +0200
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:45.0)
-	Gecko/20100101 Thunderbird/45.4.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [96.127.176.252 listed in list.dnswl.org]
+Received: from delivery.mailspamprotection.com
+	(delivery.mailspamprotection.com [96.127.176.252])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3DA8AE00CF5
+	for <yocto@yoctoproject.org>; Tue, 11 Oct 2016 01:42:23 -0700 (PDT)
+Received: from ns1.siteground282.com ([184.154.233.8] helo=siteground282.com)
+	by se3.mailspamprotection.com with esmtps
+	(TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.86)
+	(envelope-from <gmane@reliableembeddedsystems.com>)
+	id 1btsdf-0000VK-66
+	for yocto@yoctoproject.org; Tue, 11 Oct 2016 03:42:20 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=reliableembeddedsystems.com; s=dkim;
+	h=Message-ID:Subject:To:From:Date:
+	Content-Transfer-Encoding:Content-Type:MIME-Version;
+	bh=UVmaimDwOQcTDCR4koMgsxOuUzX/88IhUUal3n4hAD4=;
+	b=oS/J5kmavsBy2nmnxITfhxWwj1
+	qEX8UEgGaSAroH08PG24PsOvipaBBxIVj5q05eXGQRN2+/ytV90aq+laFgJIj3ni93hF8g8lmxb0J
+	9KuhTGpO9Igrn+9PuBR45FF3XY09nALhhxEh6GauFA7LXLHABmoJtaw8EmiaKulsRhFQ=; 
+Received: from [127.0.0.1] (port=34282 helo=secure282.sgcpanel.com)
+	by siteground282.com with esmtpa (Exim 4.86_2)
+	(envelope-from <gmane@reliableembeddedsystems.com>)
+	id 1btsdb-000798-TM
+	for yocto@yoctoproject.org; Tue, 11 Oct 2016 03:42:15 -0500
 MIME-Version: 1.0
-In-Reply-To: <2846923.HDuc4EgLrO@peggleto-mobl.ger.corp.intel.com>
-Cc: yocto@yoctoproject.org, "Howlett, Liam" <Liam.Howlett@windriver.com>
-Subject: Re: [layerindex-web][PATCH v2 00/12] Add Distro, dependency and recommends detection, and import_project
+Date: Tue, 11 Oct 2016 11:42:15 +0300
+From: gmane@reliableembeddedsystems.com
+To: yocto@yoctoproject.org
+Message-ID: <97f92f451012b39869a89eaeffbdf1a7@reliableembeddedsystems.com>
+X-Sender: gmane@reliableembeddedsystems.com
+User-Agent: Roundcube Webmail/1.1.4
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - siteground282.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - reliableembeddedsystems.com
+X-Filter-ID: s0sct1PQhAABKnZB5plbIWEcM0d9a2K3OcfFeaASvaIT05e+4t99MpEggFbXzbnhttgCKkcBtGCa
+	+yWmGXl+/0OdHUzGyIWSzveO/M+HlaVWShQ0+uJXiDSCp280tJFsbX/3TQnYbqlNHxpi9XBHG8Jz
+	8WfReHqUOdh1n/PPcFy3zqUM1f1PZP2+vCB7hhhdkaot+Nz7su9AcFG4U42fEFz1pRXWhjh9fdbl
+	44I0Df1bDJmuEytGOjhN7+VkHzjLSbBIxrv0tc9XqsVkeAX6S7iXkMXDFHgBzeWjk6Zbtb6ZULs/
+	x/wiY4bOQVH/H0QQPBfyCUQPGRfAuQJyQcUhQ4/Ia6YN5m0MsQWfYUYaa1Lo0EEGTh9WNZgruaGG
+	pyvdI7qaN8yfURviR8OTeMmKUqzo7AcUqNzrkO1kQ1IW8ac6xxrycw2ScA+2hbCxTNV1lHIbmw+x
+	cBDSXBmIVsiBPGIW1l+d5u2ITozWClL6/rEu//nzk76lak4ojODbJHHE/Dw6ORF2hyiPywks80fx
+	SU3VhpzTalbJG9pSL0Hyv/WnnxF0rh7QmTz7opAw1zOCx6AoM/sstGqwASJuN0ZI7b8iwtW8U0pO
+	aiKgha0BgqbI0WkU2DaIvSyZINaqxL7/6J1fhOzjF0b4LXcjJZ5lohuhT13Bj8VNLHfZatRVqMdk
+	DSi+R1QeWHGeD/ozkhX48xvhmpkqK6lzdXhhHwmzyvpmzdQjXE961MSkPADU05Y=
+X-Report-Abuse-To: spam@quarantine1.mailspamprotection.com
+X-Originating-IP: 184.154.233.8
+X-SpamExperts-Domain: siteground282.com
+X-SpamExperts-Username: 184.154.233.8
+Authentication-Results: mailspamprotection.com;
+	auth=pass smtp.auth=184.154.233.8@siteground282.com
+X-SpamExperts-Outgoing-Class: ham
+X-SpamExperts-Outgoing-Evidence: Combined (0.27)
+X-Recommended-Action: accept
+Subject: Y-AB automatic updates?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,191 +84,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Oct 2016 08:16:49 -0000
-Content-Type: text/plain; charset="windows-1252"
+X-List-Received-Date: Tue, 11 Oct 2016 08:42:27 -0000
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 10/10/16 10:24 PM, Paul Eggleton wrote:
-> On Tue, 11 Oct 2016 09:19:15 Paul Eggleton wrote:
->> On Mon, 10 Oct 2016 12:47:11 Mark Hatle wrote:
->>> On 10/10/16 12:37 PM, Paul Eggleton wrote:
->>>> On Mon, 10 Oct 2016 04:48:41 Hatle, Mark wrote:
->>>>>> On Oct 10, 2016, at 2:54 AM, Paul Eggleton
->>>>>> <paul.eggleton@linux.intel.com>
->>>>>>
->>>>>> wrote:
->>>>>>> On Fri, 07 Oct 2016 13:20:50 Mark Hatle wrote:
->>>>>>> FYI, I have made sure these are re-based on top of paule/django18 and
->>>>>>> pushed to:
->>>>>>>
->>>>>>> git://git.yoctoproject.org/layerindex-web mhatle/django18
->>>>>>>
->>>>>>> BTW for me upgrading from paule/django18 to this version.  I only had
->>>>>>> to
->>>>>>> run 'manage.py syncdb'.
->>>>>>>
->>>>>>> This created the new database and added the missing field for the
->>>>>>> recommend.>
->>>>>>
->>>>>> I'm not sure how that worked there but it doesn't work here. If I take
->>>>>> a
->>>>>> database that works on paule/django18, run syncdb then open the admin
->>>>>
->>>>>> interface and click on "Layer branches" I get:
->>>>> We found a severe lack of instructions for creating migrations.  There
->>>>> were
->>>>> instructions for adding and deleting full DBs but not changing them. 
->>>>> We
->>>>> will need pointers or help to resolve this.
->>>>>
->>>>>>  no such column: layerindex_layerbranch.collection
->>>>>
->>>>> I never got that, but I'm also running SQLite.  May be the difference.
->>>>
->>>> I'm using sqlite here also.
->>>>
->>>>>> I'm afraid we really do need to create migrations whenever we change
->>>>>> the
->>>>>> models.
->>>>>
->>>>> Based on your prior comments we failed to find ANY reasonable examples,
->>>>> docs or instructions on doing this.  So we are stuck without help.
->>>>
->>>> I'm happy to help directly if needed, but did you come across this
->>>> already?
->>>>
->>>>   https://docs.djangoproject.com/en/1.8/topics/migrations/
->>>
->>> Unfortunately that is the exactly document I was looking at and could not
->>> figure it out.
->>>
->>> I can the various commands, makemigrations and related.. and the system
->>> simply told me "no migrations necessary".. and didn't generate any.
->>>
->>> So we were never able to figure out what a migration should look like or
->>> how to generate it.
->>>
->>> If you (or someone else) can help us figure out how to create a migration,
->>> I suspect after the first one  ---  future ones will be much easier to
->>> generate.
->>
->> OK, so here's a step-by-step procedure - I suspect you'll need to stash and
->> unstash your config changes along the way as well:
->>
->> 1) Ensure you are using a database created at the place you want to start,
->> i.e. in this case paule/django18.
->>
->> 2) Determine which commits make changes to the models. This is one easy way:
->>
->> $ git log -p paule/django18..mhatle/django18 layerindex/models.py
->>
->> 3) We don't have an initial migration, so we need to create that first in a
->> single commit before all of the others, so to do that we'll direct the
->> rebase to edit the top commit on paule/django18 but instead of modifying
->> that we insert a commit after it. We also want to edit each commit found in
->> step 1 that made changes so we can add the migrations to them.
->>
->> $ git checkout mhatle/django18
->> $ git rebase -i paule/django18^
->> (now set the command to "e" on the oldest commit, in this case 6f8201fe, and
->> do the same for all the commits you found in step 1, then save & quit the
->> editor)
->>
->> 4) Create the initial migration:
->>
->> $ python3 manage.py makemigrations layerindex
->> Migrations for 'layerindex':
->>   0001_initial.py:
->>     - Create model BBAppend
->>     - Create model BBClass
->>     - Create model Branch
->>     - Create model LayerBranch
->>     - Create model LayerDependency
->>     - Create model LayerItem
->>     - Create model LayerMaintainer
->>     - Create model LayerNote
->>     - Create model Machine
->>     - Create model PythonEnvironment
->>     - Create model Recipe
->>     - Create model RecipeChange
->>     - Create model RecipeChangeset
->>     - Create model RecipeFileDependency
->>     - Create model ClassicRecipe
->>     - Add field recipe to recipefiledependency
->>     - Add field changeset to recipechange
->>     - Add field recipe to recipechange
->>     - Add field layerbranch to recipe
->>     - Add field dependency to layerdependency
->>     - Add field layerbranch to layerdependency
->>     - Add field layer to layerbranch
->>     - Add field update_environment to branch
->>     - Add field layerbranch to bbclass
->>     - Add field layerbranch to bbappend
->>     - Add field cover_layerbranch to classicrecipe
->>
->> 5) Apply the migrations to the database - this time we make it "fake"
->> because the tables already exist:
->>
->> $ python manage.py migrate layerindex --fake-initial
->>
->> 6) Create the initial migrations commit. (We won't need to do this ever
->> again)
->>
->> $ git add layerindex/migrations/
->> $ git commit
->>
->> 7) Continue the rebase:
->>
->> $ git rebase --continue
->>
->> 8) Create the migration for the changes in this commit:
->>
->> $ python manage.py makemigrations layerindex
->> Migrations for 'layerindex':
->>   0002_distro.py:
->>     - Create model Distro
->>
->> 9) Apply the migrations (*not* fake this time):
->>
->> $ python manage.py migrate layerindex
->>
->> 10) Amend the migrations to the current commit:
->>
->> $ git add layerindex/migrations/
->> $ git commit --amend
->>
->> 11) Continue the rebase:
->>
->> $ git rebase --continue
->>
->> 12) Repeat steps 8-11 until the rebase finishes.
->>
->> That should do it. It gets more complicated if you rename columns, or
->> introduce columns that need initial data beyond a simple default, split
->> models etc. but in this case when you're simply adding or removing columns
->> it will take care of creating the migrations for you as long as you know
->> the steps (and I admit it's a bit awkward if you've never done it before -
->> I have the advantage of having done this already, not exactly with Django's
->> migrations but with South and that was pretty similar).
-> 
-> Heh, I knew I would muck something up - where you see "python" in the above, 
-> read "python3". (In my virtualenv-based setup it doesn't make any difference, 
-> but that may not be true for yours.)
+Hi,
 
-No problem.  The steps above did work for me.  Migrations have now been added to
-the mhatle/django18 branch.
+With a latest and greatest Yocto Autobuilder I noticed stuff like this 
+when I restart it:
 
-I think what we were missing was the setup of the initial migration, step #4
-above.  Without doing that you get messages like no migrations necessary and
-such -- very confusing.
+---
+...
+  Updating PRSERV
+remote: Counting objects: 20, done.
+remote: Compressing objects: 100% (20/20), done.
+remote: Total 20 (delta 17), reused 0 (delta 0)
+Unpacking objects: 100% (20/20), done.
+ From git://git.openembedded.org/bitbake
+    35927a9..d9713ed  master     -> origin/master
+    35927a9..d9713ed  1.32       -> origin/1.32
+  + 21defce...09dd499 master-next -> origin/master-next  (forced update)
+Updating 35927a9..d9713ed
+Fast-forward
+  bin/bitbake         |  2 +-
+  lib/bb/__init__.py  |  2 +-
+  lib/bb/ui/depexp.py | 24 ++++++++++++++++++++++++
+  3 files changed, 26 insertions(+), 2 deletions(-)
 
-Thanks for the help, let me know if there is anything else that needs to be
-adjusted.
+---
 
---Mark
+This pumps e.g. the bitbake version:
 
-> Cheers,
-> Paul
-> 
+Author: Richard Purdie <richard.purdie@linuxfoundation.org>
+Date:   Tue Oct 11 08:46:35 2016 +0100
 
+     bitbake: Update version to 1.32.0
+
+---
+
+Is this really intentionally and what's the purpose?
+
+Say you have a build server for your production software and PRSERV is 
+being (randomly) updated.
+Due to a bug before or after the update the build output might be 
+different.
+So you can't reproduce your images any more.
+
+Some people (including myself) really would like to have reproduce able 
+builds.
+
+Is there a "non hacky" way to turn these updates off?
+
+Regards,
+
+Robert
 
