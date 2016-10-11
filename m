@@ -1,78 +1,63 @@
-Return-Path: <gmane@reliableembeddedsystems.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 79BD0E00D26; Tue, 11 Oct 2016 01:42:27 -0700 (PDT)
+	id 85EEFE00D34; Tue, 11 Oct 2016 02:31:34 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.223.181 listed in dnsbl.sorbs.net]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.223.181 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [96.127.176.252 listed in list.dnswl.org]
-Received: from delivery.mailspamprotection.com
-	(delivery.mailspamprotection.com [96.127.176.252])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3DA8AE00CF5
-	for <yocto@yoctoproject.org>; Tue, 11 Oct 2016 01:42:23 -0700 (PDT)
-Received: from ns1.siteground282.com ([184.154.233.8] helo=siteground282.com)
-	by se3.mailspamprotection.com with esmtps
-	(TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.86)
-	(envelope-from <gmane@reliableembeddedsystems.com>)
-	id 1btsdf-0000VK-66
-	for yocto@yoctoproject.org; Tue, 11 Oct 2016 03:42:20 -0500
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=reliableembeddedsystems.com; s=dkim;
-	h=Message-ID:Subject:To:From:Date:
-	Content-Transfer-Encoding:Content-Type:MIME-Version;
-	bh=UVmaimDwOQcTDCR4koMgsxOuUzX/88IhUUal3n4hAD4=;
-	b=oS/J5kmavsBy2nmnxITfhxWwj1
-	qEX8UEgGaSAroH08PG24PsOvipaBBxIVj5q05eXGQRN2+/ytV90aq+laFgJIj3ni93hF8g8lmxb0J
-	9KuhTGpO9Igrn+9PuBR45FF3XY09nALhhxEh6GauFA7LXLHABmoJtaw8EmiaKulsRhFQ=; 
-Received: from [127.0.0.1] (port=34282 helo=secure282.sgcpanel.com)
-	by siteground282.com with esmtpa (Exim 4.86_2)
-	(envelope-from <gmane@reliableembeddedsystems.com>)
-	id 1btsdb-000798-TM
-	for yocto@yoctoproject.org; Tue, 11 Oct 2016 03:42:15 -0500
+Received: from mail-io0-f181.google.com (mail-io0-f181.google.com
+	[209.85.223.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6F889E00CF5
+	for <yocto@yoctoproject.org>; Tue, 11 Oct 2016 02:31:30 -0700 (PDT)
+Received: by mail-io0-f181.google.com with SMTP id r30so18904808ioi.1
+	for <yocto@yoctoproject.org>; Tue, 11 Oct 2016 02:31:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=zIX8TPrajRncm+llug3/t2/oj2h5M2qJTp+2448BUKA=;
+	b=JVwTOuR2tFBeGj66aP13K7ogG9c4gsZ1p9WGpyIfEk+0L1dp1CKQnlHfwQKCONxJL8
+	V/lrfJqxvb7PBh+6/FUb1I5KR9BjWVAAVqoMSb0stRgphGqIDNrxMQsWM+e2HCr33ruG
+	1AS1parxk48E/4sErPiS+WPzlM8sK+P+orvu836bPSiRalKGf3blE48kKQMo/7JKWZlh
+	sEL+gA6fUJg+Trv4/AbYIeaSCUPTLC5tJLPL+wydyZjNkYcwRC8mNMAIfju+DCLy28vE
+	z1vLzSxSGmr9q0r9u4yREmEOSnqnl5Exw/1nXEhh1UVdbpWAuXwNU8b3P6UadJhSQaZI
+	fDzA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=zIX8TPrajRncm+llug3/t2/oj2h5M2qJTp+2448BUKA=;
+	b=LJ91Mfy1Z8QOCmczUmylyymNjhH8U0oNpslX1Phj2IuUfqT5BnSLojS5k4MPTnp18+
+	MF8X24STaAPpVhSrB0EAMcm4O3+Dx2/u6cwnrQX4prAIlfM24pUG2v/ueenzzVhD7Umd
+	Gxdp6Bxi4gFK0jE3bu+460hlCQJNVTiBbAVHOjxein0Uf5OhZS/vx0Q50z8coyTFDKqH
+	nelz0DVniZImEjrjfRf8DkhP/iO8Hwb6Z7/sclRLoclcJwpoVUo7TaaSqTjmuiiXqy8N
+	rh4stPW9AiWAQprm2nKEmeSsqp73L/7jHs4BRAcECwr+tUnd1jy9/7XMjuRXlAUDD9lH
+	Mpow==
+X-Gm-Message-State: AA6/9RnnA8KGhAB/kDphKeCitJE8VX54KDVQvRzjCUlTAjfaYuevh2R77SoL+sX3NIMURIN3wnvWAZ4ijg1ibmvm
+X-Received: by 10.107.138.15 with SMTP id m15mr4712507iod.127.1476178289586;
+	Tue, 11 Oct 2016 02:31:29 -0700 (PDT)
 MIME-Version: 1.0
-Date: Tue, 11 Oct 2016 11:42:15 +0300
-From: gmane@reliableembeddedsystems.com
-To: yocto@yoctoproject.org
-Message-ID: <97f92f451012b39869a89eaeffbdf1a7@reliableembeddedsystems.com>
-X-Sender: gmane@reliableembeddedsystems.com
-User-Agent: Roundcube Webmail/1.1.4
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - siteground282.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - reliableembeddedsystems.com
-X-Filter-ID: s0sct1PQhAABKnZB5plbIWEcM0d9a2K3OcfFeaASvaIT05e+4t99MpEggFbXzbnhttgCKkcBtGCa
-	+yWmGXl+/0OdHUzGyIWSzveO/M+HlaVWShQ0+uJXiDSCp280tJFsbX/3TQnYbqlNHxpi9XBHG8Jz
-	8WfReHqUOdh1n/PPcFy3zqUM1f1PZP2+vCB7hhhdkaot+Nz7su9AcFG4U42fEFz1pRXWhjh9fdbl
-	44I0Df1bDJmuEytGOjhN7+VkHzjLSbBIxrv0tc9XqsVkeAX6S7iXkMXDFHgBzeWjk6Zbtb6ZULs/
-	x/wiY4bOQVH/H0QQPBfyCUQPGRfAuQJyQcUhQ4/Ia6YN5m0MsQWfYUYaa1Lo0EEGTh9WNZgruaGG
-	pyvdI7qaN8yfURviR8OTeMmKUqzo7AcUqNzrkO1kQ1IW8ac6xxrycw2ScA+2hbCxTNV1lHIbmw+x
-	cBDSXBmIVsiBPGIW1l+d5u2ITozWClL6/rEu//nzk76lak4ojODbJHHE/Dw6ORF2hyiPywks80fx
-	SU3VhpzTalbJG9pSL0Hyv/WnnxF0rh7QmTz7opAw1zOCx6AoM/sstGqwASJuN0ZI7b8iwtW8U0pO
-	aiKgha0BgqbI0WkU2DaIvSyZINaqxL7/6J1fhOzjF0b4LXcjJZ5lohuhT13Bj8VNLHfZatRVqMdk
-	DSi+R1QeWHGeD/ozkhX48xvhmpkqK6lzdXhhHwmzyvpmzdQjXE961MSkPADU05Y=
-X-Report-Abuse-To: spam@quarantine1.mailspamprotection.com
-X-Originating-IP: 184.154.233.8
-X-SpamExperts-Domain: siteground282.com
-X-SpamExperts-Username: 184.154.233.8
-Authentication-Results: mailspamprotection.com;
-	auth=pass smtp.auth=184.154.233.8@siteground282.com
-X-SpamExperts-Outgoing-Class: ham
-X-SpamExperts-Outgoing-Evidence: Combined (0.27)
-X-Recommended-Action: accept
-Subject: Y-AB automatic updates?
+Received: by 10.107.155.66 with HTTP; Tue, 11 Oct 2016 02:31:09 -0700 (PDT)
+In-Reply-To: <0FEED60D-5F00-48D2-A68B-C1BC46DB78E4@cisco.com>
+References: <0FEED60D-5F00-48D2-A68B-C1BC46DB78E4@cisco.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Tue, 11 Oct 2016 10:31:09 +0100
+Message-ID: <CAJTo0LadEdzQ3Uya_XUu0ZDxiZX_0fO4LYaP5GSDYwzS_pLVbg@mail.gmail.com>
+To: "Dinh Nguyen (dinhn)" <dinhn@cisco.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Cross platform compiling/build issue: "Yocto - QA Issue: Architecture did not match (20 to 62) "
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -84,59 +69,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Oct 2016 08:42:27 -0000
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 11 Oct 2016 09:31:34 -0000
+Content-Type: multipart/alternative; boundary=001a113feb3c937fa2053e938ab6
 
-Hi,
+--001a113feb3c937fa2053e938ab6
+Content-Type: text/plain; charset=UTF-8
 
-With a latest and greatest Yocto Autobuilder I noticed stuff like this 
-when I restart it:
+On 11 October 2016 at 06:18, Dinh Nguyen (dinhn) <dinhn@cisco.com> wrote:
 
----
-...
-  Updating PRSERV
-remote: Counting objects: 20, done.
-remote: Compressing objects: 100% (20/20), done.
-remote: Total 20 (delta 17), reused 0 (delta 0)
-Unpacking objects: 100% (20/20), done.
- From git://git.openembedded.org/bitbake
-    35927a9..d9713ed  master     -> origin/master
-    35927a9..d9713ed  1.32       -> origin/1.32
-  + 21defce...09dd499 master-next -> origin/master-next  (forced update)
-Updating 35927a9..d9713ed
-Fast-forward
-  bin/bitbake         |  2 +-
-  lib/bb/__init__.py  |  2 +-
-  lib/bb/ui/depexp.py | 24 ++++++++++++++++++++++++
-  3 files changed, 26 insertions(+), 2 deletions(-)
+> ERROR: QA Issue: Architecture did not match (20 to 62) on
+> /work/ppce500v2-poky-linux-gnuspe/c-mlib/1.1-r0/packages-split/c-mlib/usr/bin/xxx
+>  [arch]
+>
 
----
+You can look up the architectures at
+https://en.wikipedia.org/wiki/Executable_and_Linkable_Format to discover
+that indeed it has detected that your binary is compiled as x86-64 (62 or
+0x3E) but target executes should be PPC (20 or 0x14).
 
-This pumps e.g. the bitbake version:
+This is usually caused by your recipe build using 'gcc' directly and not
+using the cross-compiler, so you'll need to look at the makefiles and see
+if you can tell it to use a different compiler.
 
-Author: Richard Purdie <richard.purdie@linuxfoundation.org>
-Date:   Tue Oct 11 08:46:35 2016 +0100
+Ross
 
-     bitbake: Update version to 1.32.0
+--001a113feb3c937fa2053e938ab6
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
----
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 11 October 2016 at 06:18, Dinh Nguyen (dinhn) <span dir=3D"ltr">&lt;<a h=
+ref=3D"mailto:dinhn@cisco.com" target=3D"_blank">dinhn@cisco.com</a>&gt;</s=
+pan> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0p=
+x 0.8ex;border-left-width:1px;border-left-color:rgb(204,204,204);border-lef=
+t-style:solid;padding-left:1ex"><div>ERROR:=C2=A0<font color=3D"#ff0000">QA=
+ Issue: Architecture did not match</font>=C2=A0(20 to 62) on /work/ppce500v=
+2-poky-linux-<wbr>gnuspe/c-mlib/1.1-r0/packages-<wbr>split/c-mlib/usr/bin/x=
+xx =C2=A0[arch]</div>
+<div>
+<div></div></div></blockquote></div><br>You can look up the architectures a=
+t <a href=3D"https://en.wikipedia.org/wiki/Executable_and_Linkable_Format">=
+https://en.wikipedia.org/wiki/Executable_and_Linkable_Format</a> to discove=
+r that indeed it has detected that your binary is compiled as x86-64 (62 or=
+ 0x3E) but target executes should be PPC (20 or 0x14).</div><div class=3D"g=
+mail_extra"><br></div><div class=3D"gmail_extra">This is usually caused by =
+your recipe build using &#39;gcc&#39; directly and not using the cross-comp=
+iler, so you&#39;ll need to look at the makefiles and see if you can tell i=
+t to use a different compiler.</div><div class=3D"gmail_extra"><br></div><d=
+iv class=3D"gmail_extra">Ross</div></div>
 
-Is this really intentionally and what's the purpose?
-
-Say you have a build server for your production software and PRSERV is 
-being (randomly) updated.
-Due to a bug before or after the update the build output might be 
-different.
-So you can't reproduce your images any more.
-
-Some people (including myself) really would like to have reproduce able 
-builds.
-
-Is there a "non hacky" way to turn these updates off?
-
-Regards,
-
-Robert
-
+--001a113feb3c937fa2053e938ab6--
