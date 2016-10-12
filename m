@@ -1,58 +1,72 @@
-Return-Path: <pidge@toganlabs.com>
+Return-Path: <patrick.ohly@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D6236E00A07; Wed, 12 Oct 2016 04:07:52 -0700 (PDT)
+	id 3A6C2E00B58; Wed, 12 Oct 2016 04:08:37 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.223.182 listed in dnsbl.sorbs.net]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.223.182 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from cadetblue.maple.relay.mailchannels.net
-	(cadetblue.maple.relay.mailchannels.net [23.83.214.28])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3F697E00839
-	for <yocto@yoctoproject.org>; Wed, 12 Oct 2016 04:07:48 -0700 (PDT)
-X-Sender-Id: hostpapa|x-authuser|pidge@toganlabs.com
-Received: from relay.mailchannels.net (localhost [127.0.0.1])
-	by relay.mailchannels.net (Postfix) with ESMTP id CA66DE1E67;
-	Wed, 12 Oct 2016 10:51:34 +0000 (UTC)
-Received: from hp181.hostpapa.com (ip-10-229-10-199.us-west-2.compute.internal
-	[10.229.10.199])
-	by relay.mailchannels.net (Postfix) with ESMTPA id BABBCE0E6A;
-	Wed, 12 Oct 2016 10:51:31 +0000 (UTC)
-X-Sender-Id: hostpapa|x-authuser|pidge@toganlabs.com
-Received: from hp181.hostpapa.com (hp181.hostpapa.com [10.104.207.55])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384)
-	by 0.0.0.0:2500 (trex/5.7.8); Wed, 12 Oct 2016 10:51:34 +0000
-X-MC-Relay: Neutral
-X-MailChannels-SenderId: hostpapa|x-authuser|pidge@toganlabs.com
-X-MailChannels-Auth-Id: hostpapa
-X-MC-Loop-Signature: 1476269494364:2731505145
-X-MC-Ingress-Time: 1476269494364
-Received: from [88.128.80.147] (port=18467 helo=[10.53.156.167])
-	by hp181.hostpapa.com with esmtpsa
-	(TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.87)
-	(envelope-from <pidge@toganlabs.com>)
-	id 1buH8E-004DDE-Vk; Wed, 12 Oct 2016 12:51:31 +0200
-Message-ID: <1476269488.7502.5.camel@toganlabs.com>
-From: Beth 'pidge' Flanagan <pidge@toganlabs.com>
-To: =?ISO-8859-1?Q?An=EDbal_Lim=F3n?= <anibal.limon@linux.intel.com>, 
-	yocto@yoctoproject.org
-Date: Wed, 12 Oct 2016 12:51:28 +0200
-In-Reply-To: <1476111284-908-1-git-send-email-anibal.limon@linux.intel.com>
-References: <1476111284-908-1-git-send-email-anibal.limon@linux.intel.com>
-Organization: toganlabs.com
-X-Mailer: Evolution 3.18.5.2-0ubuntu3 
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-io0-f182.google.com (mail-io0-f182.google.com
+	[209.85.223.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8B07AE009D8
+	for <yocto@yoctoproject.org>; Wed, 12 Oct 2016 04:08:33 -0700 (PDT)
+Received: by mail-io0-f182.google.com with SMTP id i202so46548716ioi.2
+	for <yocto@yoctoproject.org>; Wed, 12 Oct 2016 04:08:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=message-id:subject:from:to:cc:date:in-reply-to:references
+	:organization:mime-version:content-transfer-encoding;
+	bh=PSnhI9LLJlcQxP5N1vOTtDyBM1VeVlNClZAAO7p6jsQ=;
+	b=AD/U2B605KYRsR8sARkdPe13UwOswX8pleLgLZr3UOPwo5/tJOfB32OQOpgYAuq8/k
+	CDUpJBlHgbY8beNzbTOW3hAaDAMIZIKzxoQxolq94n7aoqMnn7EyTmw852bStk28ja7N
+	evfrAhKD7x9sMIxH7LhKUj/aPHeqvyXMApBbCXq8BbERSpYUF6FDRsyzfrZnwPnDdbWs
+	cEQ7i6y3B9sSI/MjXPmd2NJG4/X+QBK8+IAe5bD+jws5Bnu6w+gzkLZgHmkQo/3osV+z
+	jjNnVc4aI0JPKCeg8Yd9HacMZclPnWdzllu6E6l8Sc4oW2E4w20h762pjriOTdPLcA8J
+	miwQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+	:references:organization:mime-version:content-transfer-encoding;
+	bh=PSnhI9LLJlcQxP5N1vOTtDyBM1VeVlNClZAAO7p6jsQ=;
+	b=VvmoZ5uGVuCMaoeITEyYyPoL6Ke4xKza4ZkQiJgS4rc2T7SbTrWuRVGpiw0yZOXBnw
+	OFcvuGDo42PuzqyWDbzgW1E+TJzKDRVFrs+X1b/BLAY4zI2T/7FxhjW85TYNU8F0wBdB
+	KGLdwLyvheBP8XM55LHJznYTnHUhv1K8UjabqxLJMlQXXb4s3CcAGfRXS4xrukQj+bU4
+	bGlnQGpbv63GGkjk6yimRw4UxMNiqDMnu/TiBSVKyR6G+3umbh6LUAcgwFgffOw108R/
+	wOEq/Afdr7i0t3FSQ/iDQANCLCSseMoHuFfB3jdClgfB/jF+5CEFFDG/of1j01TvaYmg
+	Vacg==
+X-Gm-Message-State: AA6/9Rl4YBr8LBfxUaWGzG9vsDih9w/1SIiCbwkESSO1e3WicCQGWKFcz1DMiwtinDQilOas
+X-Received: by 10.107.171.194 with SMTP id u185mr789813ioe.102.1476270512648; 
+	Wed, 12 Oct 2016 04:08:32 -0700 (PDT)
+Received: from pohly-mobl1 (p5DE8F005.dip0.t-ipconnect.de. [93.232.240.5])
+	by smtp.gmail.com with ESMTPSA id
+	u184sm3400836ith.4.2016.10.12.04.08.30
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Wed, 12 Oct 2016 04:08:31 -0700 (PDT)
+Message-ID: <1476270509.2992.65.camel@intel.com>
+From: Patrick Ohly <patrick.ohly@intel.com>
+To: Mircea Gliga <mircea.gliga@vitheia.com>
+Date: Wed, 12 Oct 2016 13:08:29 +0200
+In-Reply-To: <eadb5311-bebc-97fa-1bdd-e85465a6e19e@vitheia.com>
+References: <eadb5311-bebc-97fa-1bdd-e85465a6e19e@vitheia.com>
+Organization: Intel GmbH, Dornacher Strasse 1, D-85622 Feldkirchen/Munich
+X-Mailer: Evolution 3.12.9-1+b1 
 Mime-Version: 1.0
-X-OutGoing-Spam-Status: No, score=-1.0
-X-AuthUser: pidge@toganlabs.com
-Cc: joshua.g.lock@intel.com,
-	Monserrat Sedeno <monserratx.sedeno.bustos@intel.com>
-Subject: Re: [[PATCHv5][yocto-autobuilder]] buildset.controller: Add build set to test new OS distribution in autobuilder
+Cc: yocto@yoctoproject.org
+Subject: Re: machine specific task
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: pidge@toganlabs.com
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -61,161 +75,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Oct 2016 11:07:52 -0000
+X-List-Received-Date: Wed, 12 Oct 2016 11:08:37 -0000
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
 
-On Mon, 2016-10-10 at 09:54 -0500, An=C3=ADbal Lim=C3=B3n wrote:
-> From: Monserrat Sedeno <monserratx.sedeno.bustos@intel.com>
->=20
-> As part of the process to set new OS distribution as supported on
-> Yoctoc Project
-> a new patch was created with the list of build sets that should be
-> executed.
->=20
-> Detailed information:
-> https://wiki.yoctoproject.org/wiki/Distro_Testing_Plan#Execute_Build_
-> Sets
->=20
-> Fixes [YOCTO #9905]
->=20
+On Wed, 2016-10-12 at 12:58 +0300, Mircea Gliga wrote:
+> According to the docs here 
+> http://www.yoctoproject.org/docs/2.1.1/mega-manual/mega-manual.html#structure-your-layers 
+> one can specify variables that are machine specific, eg 
+> KERNEL_DEVICETREE_qemuarm = "versatile-pb.dtb". I can't find a reference 
+> on how to create a task specific only for a certain machine.
+> Is there some mechanism to add and execute a custom task just for a 
+> specific machine, using *addtask* ?
+> 
+> As an alternative, I could check the machine name right in the beginning 
+> of the do_mycustomtask function, and execute code accordingly, something 
+> like (pseudo-code):
+> 
+> do_mycustomtask {
+>      if {MACHINE} != 'myMachineName'
+>          return;
+>      # code executing for all other machines
+>      [...]
+> }
+> addtask mycustomtask after do_configure before do_compile
 
-Is this something that should be on the production servers? If so, I'll
-pull it later.
+It is possible to add the task conditionally in an anonymous Python
+method:
 
-If not, please re-read my prior email. If this is going to be on it's
-own ab with a specific purpose then it should exist in it's own
-directory and have full access to all the buildsets it needs.
+python () {
+    if '${MACHINE}' == 'myMachineName':
+        bb.build.addtask('do_mycustomtask', 'do_compile', 'do_configure', d)
+}
 
-Which means symlinks to those buildsets in buildset.controller.
+I personally find that nicer than the if check in the function itself,
+because the tasks will only show up in build logs when it actually does
+something.
 
-If it's the former, I'll pull tonight. If it's the latter, please
-resubmit this patch.
+-- 
+Best Regards, Patrick Ohly
 
--b
+The content of this message is my personal opinion only and although
+I am an employee of Intel, the statements I make here in no way
+represent Intel's position on the issue, nor am I authorized to speak
+on behalf of Intel on this matter.
 
 
-> Note:In order to add a new distro as supported all the build sets
-> should be PASS
->=20
-> Signed-off-by: Monserrat Sedeno <monserratx.sedeno.bustos@intel.com>
-> Signed-off-by: An=C3=ADbal Lim=C3=B3n <anibal.limon@linux.intel.com>
-> ---
-> =C2=A0buildset-config.controller/nightly-qa-distro.conf | 55
-> +++++++++++++++++++++++
-> =C2=A01 file changed, 55 insertions(+)
-> =C2=A0create mode 100644 buildset-config.controller/nightly-qa-distro.c=
-onf
->=20
-> diff --git a/buildset-config.controller/nightly-qa-distro.conf
-> b/buildset-config.controller/nightly-qa-distro.conf
-> new file mode 100644
-> index 0000000..def4118
-> --- /dev/null
-> +++ b/buildset-config.controller/nightly-qa-distro.conf
-> @@ -0,0 +1,55 @@
-> +[nightly-qa-distro]
-> +builders: 'example-worker'
-> +repos: [{'poky':
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-{'repourl':'git://git.yoctoproject.org/poky',
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0'layerversion':{'core':'meta', 'yoctobsp':'meta-yocto-
-> bsp', 'yocto':'meta-yocto', 'poky':'meta-poky'},
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0'branch':'master'}},
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0{'oecore':
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-{'repourl':'git://git.openembedded.org/openembedded-
-> core',
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0'layerversion':'core',
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0'checkout':False,
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0'branch':'master'}},
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0{'bitbake':
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-{'repourl':'git://git.openembedded.org/bitbake',
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0'checkout':False,
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0'branch':'master'}},
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0{'eclipse-poky-neon':
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-{'repourl':'git://git.yoctoproject.org/eclipse-poky',
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0'checkout':False,
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0'branch':'neon-master'}},
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0{'meta-qt4':
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-{'repourl':'git://git.yoctoproject.org/meta-qt4',
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0'branch':'master'}},
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0{'meta-qt3':
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-{'repourl':'git://git.yoctoproject.org/meta-qt3',
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0'branch':'master'}}]
-> +props: [{'fp_date':{'prop_type':'StringParameter',
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0'size':=
- 20,
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0'name':=
- 'fp_date',
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0'label'=
-:'Full Pass date:'}}]
-> +steps: [{'SetDest':{}},
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0{'CheckOutLayers': {}}=
-,
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0{'RunPreamble': {}},
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0{'TriggerBuilds': {'sc=
-hedulerName': 'dist-build',=C2=A0
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0'waitForFinish': 'True',
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0'schedulerNames': {
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0'nightly-oe-selftest': {},
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0'nightly-oecore': {},
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0'nightly-deb': {},
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0'nightly-ipk': {},
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0'nightly-world': {},=C2=A0
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0'nightly-arm': {},=C2=A0
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0'nightly-multilib': {},=C2=A0
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0'nightly-x86-64-lsb': {},
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0'nightly-x86': {},
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0'nightly-x32': {},
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0'poky-tiny': {},=C2=A0
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0'nightly-qa-systemd': {},
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0'nightly-qa-extras': {},=C2=A0
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0'nightly-qa-targetbuilds': {},
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0'nightly-qa-skeleton': {},
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0'nightly-qa-logrotate': {},=C2=A0
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0'nightly-qa-pam': {},
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0'buildtools': {}},
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0'eclipse-plugin-neon': {},
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0'schedulerNames_nowait': {}}},]
+
 
