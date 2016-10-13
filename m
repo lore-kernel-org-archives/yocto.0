@@ -1,71 +1,34 @@
-Return-Path: <idealsim@laposte.net>
+Return-Path: <michel.dhooge@free.fr>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4BC0DE00DF2; Thu, 13 Oct 2016 07:07:57 -0700 (PDT)
+	id 9D019E00E19; Thu, 13 Oct 2016 07:56:40 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,FREEMAIL_FROM,
+	HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (idealsim[at]laposte.net)
+	mail provider *      (michel.dhooge[at]free.fr)
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [178.22.154.200 listed in list.dnswl.org]
+	*      [212.27.42.1 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from smtp.laposte.net (smtpoutz300.laposte.net [178.22.154.200])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DC9A8E00C18
-	for <yocto@yoctoproject.org>; Thu, 13 Oct 2016 07:07:50 -0700 (PDT)
-Received: from smtp.laposte.net (localhost [127.0.0.1])
-	by lpn-prd-vrout012 (Postfix) with ESMTP id 456818CD83
-	for <yocto@yoctoproject.org>; Thu, 13 Oct 2016 16:07:49 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=laposte.net; s=mail0;
-	t=1476367669; bh=/7TGVhvfnFpjvaOUEUBBlkjc0QQMwVQh8C1uzsNfWXA=;
-	h=To:Subject:References:Date:From:In-Reply-To;
-	b=BqI5wCRj0GiZISD2hlp445ZUUjkrbHGg4UOQ/IEOFsJUPGkjTEQ0vRa/j7pZjnJKo
-	wunV+MzKtfgbRDdj/bLW/pkvp2PzC12szxbxdUZrR6Y9nipeKA6EVNM/rIAUOzr3Qc
-	mGX4gQR1Rgi8THoL0PMzp0Suctn56zL8CMG7tKIoUoK0WSnA1H1+q7eokatpQBimXa
-	BYzOtMKu3ORLC+Lvc5o/g4pRj+IX5EZfvIWScxsR6ECXuuIumxmP2b7WVYeI1+R+rq
-	kan1Q19FbpPQiC8kMrmg1TGs2emop7d5SbFiBQjDjGPzzoe36FDMWlOlRV3xilQsLr
-	9BNmiTgULFmGQ==
-Received: from lpn-prd-vrin001 (lpn-prd-vrin001.laposte [10.128.63.2])
-	by lpn-prd-vrout012 (Postfix) with ESMTP id 40D598CCDA
-	for <yocto@yoctoproject.org>; Thu, 13 Oct 2016 16:07:49 +0200 (CEST)
-Received: from lpn-prd-vrin001 (localhost [127.0.0.1])
-	by lpn-prd-vrin001 (Postfix) with ESMTP id 25756366CCC
-	for <yocto@yoctoproject.org>; Thu, 13 Oct 2016 16:07:49 +0200 (CEST)
-Received: from pc-mls.ecafaros.local (unknown [212.234.36.135])
-	by lpn-prd-vrin001 (Postfix) with ESMTPA id D070B366CAF;
-	Thu, 13 Oct 2016 16:07:48 +0200 (CEST)
-To: "Yocto list discussion" <yocto@yoctoproject.org>, "Michel D'HOOGE"
-	<michel.dhooge@free.fr>
-References: <1646208426.125108529.1476353244671.JavaMail.root@spooler3-g27.priv.proxad.net>
-Date: Thu, 13 Oct 2016 16:07:48 +0200
+Received: from smtp1-g21.free.fr (smtp1-g21.free.fr [212.27.42.1])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2E6DCE00BF4
+	for <yocto@yoctoproject.org>; Thu, 13 Oct 2016 07:56:36 -0700 (PDT)
+Received: from spooler3-g27.priv.proxad.net (unknown [172.20.243.239])
+	by smtp1-g21.free.fr (Postfix) with ESMTP id CECF8B004D5;
+	Thu, 13 Oct 2016 16:56:34 +0200 (CEST)
+Date: Thu, 13 Oct 2016 16:56:34 +0200 (CEST)
+From: Michel D'HOOGE <michel.dhooge@free.fr>
+To: Yocto list discussion <yocto@yoctoproject.org>
+Message-ID: <547858470.126510775.1476370594532.JavaMail.root@spooler3-g27.priv.proxad.net>
+In-Reply-To: <op.yo9yvamsmnlnty@pc-mls.ecafaros.local>
 MIME-Version: 1.0
-From: idealsim <idealsim@laposte.net>
-Message-ID: <op.yo9yvamsmnlnty@pc-mls.ecafaros.local>
-In-Reply-To: <1646208426.125108529.1476353244671.JavaMail.root@spooler3-g27.priv.proxad.net>
-User-Agent: Opera Mail/1.0 (Win32)
-X-VR-SrcIP: 212.234.36.135
-X-VR-FullState: 0
-X-VR-Score: -100
-X-VR-Cause-1: gggruggvucftvghtrhhoucdtuddrfeelvddrgeeggdejgecutefuodetggdotefrodftvfcurfhrohhf
-X-VR-Cause-2: ihhlvgemucfntefrqffuvffgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhs
-X-VR-Cause-3: ucdlqddutddtmdenucfjughrpegtvffufhffggfhkfgjfgesrgdtreertderleenucfhrhhomhepihgu
-X-VR-Cause-4: vggrlhhsihhmuceoihguvggrlhhsihhmsehlrghpohhsthgvrdhnvghtqeenucffohhmrghinhepohhp
-X-VR-Cause-5: vghrrgdrtghomhenucfkphepvdduvddrvdefgedrfeeirddufeehnecurfgrrhgrmhepmhhouggvpehs
-X-VR-Cause-6: mhhtphhouhhtpdhhvghlohepphgtqdhmlhhsrdgvtggrfhgrrhhoshdrlhhotggrlhdpihhnvghtpedv
-X-VR-Cause-7: uddvrddvfeegrdefiedrudefhedpmhgrihhlfhhrohhmpehiuggvrghlshhimheslhgrphhoshhtvgdr
-X-VR-Cause-8: nhgvthdprhgtphhtthhopehmihgthhgvlhdrughhohhoghgvsehfrhgvvgdrfhhr
-X-VR-AvState: No
-X-VR-State: 0
+X-Originating-IP: [82.233.24.66]
+X-Mailer: Zimbra 7.2.0-GA2598 (ZimbraWebClient - GC53 (Linux)/7.2.0-GA2598)
+X-Authenticated-User: michel.dhooge@free.fr
 Subject: Re: add dejavu-fonts to image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -78,104 +41,240 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 13 Oct 2016 14:07:57 -0000
-Content-Type: multipart/alternative; boundary=----------AQcANRgsjHkgJKGxWHWrcR
+X-List-Received-Date: Thu, 13 Oct 2016 14:56:40 -0000
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_126510774_1215150571.1476370594531"
 
-------------AQcANRgsjHkgJKGxWHWrcR
-Content-Type: text/plain; charset=iso-8859-15; format=flowed; delsp=yes
-Content-Transfer-Encoding: Quoted-Printable
-
-Hello, thanks a lot the build work now !
-But i have another issue, i would like to install the font in  =
-
-/usr/lib/fonts, this is not the case for the moment (it 's for Qt5.7 use=
-).  =
-
-How i can said to yocto to install font (.ttf) on this folder please ?
-
-regards
-
-Micka=EBl
-
-Le Thu, 13 Oct 2016 12:07:24 +0200, Michel D'HOOGE <michel.dhooge@free.f=
-r>  =
-
-a =E9crit:
-
-> Hello,
->
-> In fact, the ttf-dejavu recipe doesn't provide a package with the same=
-  =
-
-> name. If you look at the PACKAGES variable, you'll find that it  =
-
-> >provides ${PN}-sans, ${PN}-sans-mono, ${PN}-sans-condensed, ${PN}-ser=
-if  =
-
-> , ${PN}-serif-condensed & ${PN}-mathtexgyre.
->
->> So you have to explicitly choose the packages you want.
->
->> Michel
+------=_Part_126510774_1215150571.1476370594531
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
 
 
--- =
 
-Utilisant le logiciel de courrier d'Opera : http://www.opera.com/mail/
+Hello, thanks a lot the build work now !=20
 
-------------AQcANRgsjHkgJKGxWHWrcR
-Content-Type: multipart/related; boundary=----------AQcANRgsjHkgJK4btlyl4m
+I'm very proud: this is the 1st time I can help someone on Yocto! This mean=
+s a lot to me ;-)=20
 
-------------AQcANRgsjHkgJK4btlyl4m
-Content-Type: text/html; charset=iso-8859-15
-Content-ID: <op.1476367668671.8f329e665d6a71a3@172.22.9.5>
-Content-Transfer-Encoding: Quoted-Printable
 
-<!DOCTYPE html><html><head><style type=3D"text/css">p { margin: 0; }</st=
-yle>
-<style type=3D"text/css">body { font-family:'Times New Roman'; font-size=
-:13px}</style>
-</head>
-<body><div>Hello, thanks a lot the build work now !</div><div>But i have=
- another issue, i would like to install the font in /usr/lib/fonts, this=
- is not the case for the moment (it 's for Qt5.7 use). How i can said to=
- yocto to install font (.ttf) on this folder please ?</div><div><br></di=
-v><div>regards</div><div><br></div><div>Micka=EBl</div><div><br></div><d=
-iv>Le Thu, 13 Oct 2016 12:07:24 +0200, Michel D'HOOGE &lt;michel.dhooge@=
-free.fr&gt; a =E9crit:<br></div><br><blockquote style=3D"margin: 0 0 0.8=
-0ex; border-left: #0000FF 2px solid; padding-left: 1ex"><div style=3D"fo=
-nt-family: times new roman,new york,times,serif; font-size: 12pt; color:=
- #000000"><font face=3D"times new roman, new york, times, serif"><span s=
-tyle=3D"font-size: 12pt;">Hello,</span></font><div style=3D"color: rgb(0=
-, 0, 0); font-family: &quot;times new roman&quot;, &quot;new york&quot;,=
- times, serif; font-size: 12pt;"><br></div><div><font face=3D"times new =
-roman, new york, times, serif"><span style=3D"font-size: 12pt;">In fact,=
- the ttf-dejavu recipe doesn't provide a package with the same name. If =
-you look at the PACKAGES variable, you'll find that it provides&nbsp;</s=
-pan><span style=3D"font-size: 16px;">${PN}-sans,&nbsp;</span></font><spa=
-n style=3D"font-size: 16px; font-family: &quot;times new roman&quot;, &q=
-uot;new york&quot;, times, serif;">${PN}-sans-mono,&nbsp;</span><span st=
-yle=3D"font-size: 16px; font-family: &quot;times new roman&quot;, &quot;=
-new york&quot;, times, serif;">${PN}-sans-condensed,&nbsp;</span><span s=
-tyle=3D"font-size: 16px; font-family: &quot;times new roman&quot;, &quot=
-;new york&quot;, times, serif;">${PN}-serif ,&nbsp;</span><span style=3D=
-"font-size: 16px; font-family: &quot;times new roman&quot;, &quot;new yo=
-rk&quot;, times, serif;">${PN}-serif-condensed &amp;&nbsp;</span><span s=
-tyle=3D"font-size: 16px; font-family: &quot;times new roman&quot;, &quot=
-;new york&quot;, times, serif;">${PN}-mathtexgyre.</span></div><div><fon=
-t face=3D"times new roman, new york, times, serif"><span style=3D"font-s=
-ize: 16px;"><br></span></font></div><div><font face=3D"times new roman, =
-new york, times, serif"><span style=3D"font-size: 16px;">So you have to&=
-nbsp;explicitly&nbsp;choose the packages you want.</span></font></div><d=
-iv><font face=3D"times new roman, new york, times, serif"><span style=3D=
-"font-size: 16px;"><br></span></font></div><div><font face=3D"times new =
-roman, new york, times, serif"><span style=3D"font-size: 16px;">Michel</=
-span></font><br></div></div></blockquote><br><br><br><div id=3D"M2Signat=
-ure"><div>-- </div><div>Utilisant le logiciel de courrier d'Opera : <a h=
-ref=3D"http://www.opera.com/mail/">http://www.opera.com/mail/</a></div><=
-/div></body></html>
+<blockquote>
 
-------------AQcANRgsjHkgJK4btlyl4m--
 
-------------AQcANRgsjHkgJKGxWHWrcR--
+But i have another issue, i would like to install the font in /usr/lib/font=
+s, this is not the case for the moment (it 's for Qt5.7 use). How i can sai=
+d to yocto to install font (.ttf) on this folder please ?=20
+</blockquote>
+I also need to use Qt5.7, but since I'm currently on other tasks, you disco=
+ver the troubles a couple of hours before me. So let's try to debug this to=
+gether=E2=80=A6=20
+<blockquote>
+
+
+</blockquote>
+
+
+
+1/ File ttf-dejavu_2.37.bb includes (requires) `ttf.inc` that is in the sam=
+e folder.=20
+2/ File ttf.inc has the following method:=20
+
+do_install() {=20
+install -d ${D}${datadir}/fonts/truetype/=20
+find ./ -name '*.tt[cf]' -exec install -m 0644 {} ${D}${datadir}/fonts/true=
+type/ \;=20
+}=20
+
+
+which is in turn appended by dejavu with:=20
+
+do_install_append () {=20
+install -d ${D}${sysconfdir}/fonts/conf.d/=20
+install -m 0644 ${WORKDIR}/30-dejavu-aliases.conf ${D}${sysconfdir}/fonts/c=
+onf.d/=20
+}=20
+
+
+3/ The log of the install task of the recipe is /tmp/work/all-poky-linux/tt=
+f-dejavu/2.37-r7/temp/run.do_install=20
+We have:=20
+
+export datadir=3D"/usr/share"=20
+
+export sysconfdir=3D"/etc"=20
+
+
+
+I compared to my Debian system: the files are stored in the same folders. S=
+o it seems this is qt that doesn't search in the "correct" place.=20
+
+
+4/ After some grepping in meta-qt5, I have:=20
+
+
+
+classes/qmake5_paths.bbclass=20
+OE_QMAKE_PATH_LIBS =3D "${libdir}"=20
+
+
+
+classes/qmake5_paths.bbclass=20
+OE_QMAKE_PATH_QT_FONTS =3D "${OE_QMAKE_PATH_LIBS}/fonts"=20
+
+
+5/ But I don't know what is the best solution now. We could change the OE_Q=
+MAKE_PATH_QT_FONTS variable. But this implies to recompile many pieces, I b=
+elieve.=20
+
+
+So I opt for changing the do_install function. The quick & dirty solution i=
+s to create a ttf-dejavu_2.37.bbappend file that totally redefine the do_in=
+stall method.=20
+
+
+
+
+do_install() {=20
+install -d ${D}${datadir}/fonts/truetype/=20
+find ./ -name '*.tt[cf]' -exec install -m 0644 {} ${D}${ libdir }/fonts/tru=
+etype/ \;=20
+
+install -d ${D}${sysconfdir}/fonts/conf.d/=20
+install -m 0644 ${WORKDIR}/30-dejavu-aliases.conf ${D}${sysconfdir}/fonts/c=
+onf.d/=20
+}=20
+
+
+
+
+I can't test it right now, but I hope this helps you.=20
+
+
+Michel=20
+
+
+
+
+
+
+
+
+------=_Part_126510774_1215150571.1476370594531
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><style type=3D'text/css'>p { margin: 0; }</style></head><body><=
+div style=3D'font-family: times new roman,new york,times,serif; font-size: =
+12pt; color: #000000'><blockquote style=3D"color: rgb(0, 0, 0); font-family=
+: Helvetica, Arial, sans-serif; font-size: 12pt; border-left: 2px solid rgb=
+(16, 16, 255); margin-left: 5px; padding-left: 5px; font-weight: normal; fo=
+nt-style: normal; text-decoration: none;"><div id=3D"DWT282">Hello, thanks =
+a lot the build work now !</div></blockquote><span style=3D"font-family: He=
+lvetica, Arial, sans-serif; font-size: 12pt;">I'm very proud: this is the 1=
+st time I can help someone on Yocto! This means a lot to me ;-)</span><div>=
+<font face=3D"Helvetica, Arial, sans-serif"><span style=3D"font-size: 16px;=
+"><br></span></font><blockquote style=3D"color: rgb(0, 0, 0); font-family: =
+Helvetica, Arial, sans-serif; font-size: 12pt; border-left: 2px solid rgb(1=
+6, 16, 255); margin-left: 5px; padding-left: 5px; font-weight: normal; font=
+-style: normal; text-decoration: none;"><div></div><div id=3D"DWT265"><span=
+ style=3D"font-size: 12pt;">But i have another issue, i would like to insta=
+ll the font in /usr/lib/fonts, this is not the case for the moment (it 's f=
+or Qt5.7 use). How i can said to yocto to install font (.ttf) on this folde=
+r please ?</span></div></blockquote><span style=3D"font-family: Helvetica, =
+Arial, sans-serif; font-size: 12pt;">I also need to use Qt5.7, but since I'=
+m currently on other tasks, you discover the troubles a couple of hours bef=
+ore me. So let's try to debug this together=E2=80=A6</span><blockquote styl=
+e=3D"color: rgb(0, 0, 0); font-family: Helvetica, Arial, sans-serif; font-s=
+ize: 12pt; border-left: 2px solid rgb(16, 16, 255); margin-left: 5px; paddi=
+ng-left: 5px; font-weight: normal; font-style: normal; text-decoration: non=
+e;"><div></div></blockquote><style>p { margin: 0; }</style><style>body { fo=
+nt-family:'Times New Roman'; font-size:13px}</style></div><div><span style=
+=3D"font-family: Helvetica, Arial, sans-serif; font-size: 12pt;"><br></span=
+></div><div><span style=3D"font-family: Helvetica, Arial, sans-serif; font-=
+size: 12pt;"><b>1/</b> File&nbsp;</span><span style=3D"font-size: 16px; fon=
+t-family: Helvetica, Arial, sans-serif;">ttf-dejavu_2.37.bb includes (requi=
+res) `ttf.inc` that is in the same folder.</span></div><div><span style=3D"=
+font-size: 16px; font-family: Helvetica, Arial, sans-serif;"><b>2/</b> File=
+ ttf.inc has the following method:</span></div><div><div><span style=3D"fon=
+t-size: 16px;"><font face=3D"courier new, courier, monaco, monospace, sans-=
+serif">do_install() {</font></span></div><div><span style=3D"font-size: 16p=
+x;"><font face=3D"courier new, courier, monaco, monospace, sans-serif">&nbs=
+p; &nbsp; install -d ${D}${datadir}/fonts/truetype/</font></span></div><div=
+><span style=3D"font-size: 16px;"><font face=3D"courier new, courier, monac=
+o, monospace, sans-serif">&nbsp; &nbsp; find ./ -name '*.tt[cf]' -exec inst=
+all -m 0644 {} ${D}${datadir}/fonts/truetype/ \;</font></span></div><div><s=
+pan style=3D"font-size: 16px;"><font face=3D"courier new, courier, monaco, =
+monospace, sans-serif">}</font></span></div></div><div><font face=3D"Helvet=
+ica, Arial, sans-serif"><span style=3D"font-size: 16px;"><br></span></font>=
+</div><div><font face=3D"Helvetica, Arial, sans-serif"><span style=3D"font-=
+size: 16px;">which is in turn appended by dejavu with:</span></font></div><=
+div><div><span style=3D"font-size: 16px;"><font face=3D"courier new, courie=
+r, monaco, monospace, sans-serif">do_install_append () {</font></span></div=
+><div><span style=3D"font-size: 16px;"><font face=3D"courier new, courier, =
+monaco, monospace, sans-serif">&nbsp; &nbsp; install -d ${D}${sysconfdir}/f=
+onts/conf.d/</font></span></div><div><span style=3D"font-size: 16px;"><font=
+ face=3D"courier new, courier, monaco, monospace, sans-serif">&nbsp; &nbsp;=
+ install -m 0644 ${WORKDIR}/30-dejavu-aliases.conf ${D}${sysconfdir}/fonts/=
+conf.d/</font></span></div><div><span style=3D"font-size: 16px;"><font face=
+=3D"courier new, courier, monaco, monospace, sans-serif">}</font></span></d=
+iv><div style=3D"font-family: Helvetica, Arial, sans-serif; font-size: 16px=
+;"><b><br></b></div></div><div style=3D"font-family: Helvetica, Arial, sans=
+-serif; font-size: 16px;"><b>3/ </b>The log of the install task of the reci=
+pe is&nbsp;/tmp/work/all-poky-linux/ttf-dejavu/2.37-r7/temp/run.do_install<=
+/div><div style=3D"font-family: Helvetica, Arial, sans-serif; font-size: 16=
+px;">We have:</div><div><div style=3D"font-size: 16px;"><font face=3D"couri=
+er new, courier, monaco, monospace, sans-serif">export datadir=3D"/usr/shar=
+e"</font></div><div><div><span style=3D"font-size: 16px;"><font face=3D"cou=
+rier new, courier, monaco, monospace, sans-serif">export sysconfdir=3D"/etc=
+"</font></span></div></div><div style=3D"font-family: Helvetica, Arial, san=
+s-serif; font-size: 16px;"><div><br></div></div><div style=3D"font-family: =
+Helvetica, Arial, sans-serif; font-size: 16px;">I compared to my Debian sys=
+tem: the files are stored in the same folders. So it seems this is qt that =
+doesn't search in the "correct" place.</div><div style=3D"font-family: Helv=
+etica, Arial, sans-serif; font-size: 16px;"><br></div><div style=3D"font-fa=
+mily: Helvetica, Arial, sans-serif; font-size: 16px;"><b>4/</b> After some =
+grepping in meta-qt5, I have:</div><div style=3D"font-family: Helvetica, Ar=
+ial, sans-serif; font-size: 16px;"><br></div><div style=3D"font-family: Hel=
+vetica, Arial, sans-serif; font-size: 16px;"><div>classes/qmake5_paths.bbcl=
+ass</div><div>OE_QMAKE_PATH_LIBS =3D "${libdir}"</div><div><br></div></div>=
+<div style=3D"font-family: Helvetica, Arial, sans-serif; font-size: 16px;">=
+<div>classes/qmake5_paths.bbclass</div><div>OE_QMAKE_PATH_QT_FONTS =3D "${O=
+E_QMAKE_PATH_LIBS}/fonts"</div><div><br></div></div><div style=3D"font-fami=
+ly: Helvetica, Arial, sans-serif; font-size: 16px;"><b>5/</b> But I don't k=
+now what is the best solution now. We could change the&nbsp;OE_QMAKE_PATH_Q=
+T_FONTS variable. But this implies to recompile many pieces, I believe.</di=
+v><div style=3D"font-family: Helvetica, Arial, sans-serif; font-size: 16px;=
+"><br></div><div style=3D"font-family: Helvetica, Arial, sans-serif; font-s=
+ize: 16px;">So I opt for changing the do_install function. The quick &amp; =
+dirty solution is to create a&nbsp;ttf-dejavu_2.37.bbappend file that total=
+ly redefine the do_install method.</div><div style=3D"font-family: Helvetic=
+a, Arial, sans-serif; font-size: 16px;"><br></div><div style=3D"font-family=
+: Helvetica, Arial, sans-serif; font-size: 16px;"><div><div><font face=3D"c=
+ourier new, courier, monaco, monospace, sans-serif">do_install() {</font></=
+div><div><font face=3D"courier new, courier, monaco, monospace, sans-serif"=
+>&nbsp; &nbsp; install -d ${D}${datadir}/fonts/truetype/</font></div><div><=
+font face=3D"courier new, courier, monaco, monospace, sans-serif">&nbsp; &n=
+bsp; find ./ -name '*.tt[cf]' -exec install -m 0644 {} ${D}${<b>libdir</b>}=
+/fonts/truetype/ \;</font></div></div><div><div style=3D"font-family: &quot=
+;times new roman&quot;, &quot;new york&quot;, times, serif;"><font face=3D"=
+courier new, courier, monaco, monospace, sans-serif">&nbsp; &nbsp; install =
+-d ${D}${sysconfdir}/fonts/conf.d/</font></div><div style=3D"font-family: &=
+quot;times new roman&quot;, &quot;new york&quot;, times, serif;"><font face=
+=3D"courier new, courier, monaco, monospace, sans-serif">&nbsp; &nbsp; inst=
+all -m 0644 ${WORKDIR}/30-dejavu-aliases.conf ${D}${sysconfdir}/fonts/conf.=
+d/</font></div><div style=3D"font-family: &quot;times new roman&quot;, &quo=
+t;new york&quot;, times, serif;"><font face=3D"courier new, courier, monaco=
+, monospace, sans-serif">}</font></div></div><div><font face=3D"courier new=
+, courier, monaco, monospace, sans-serif"><br></font></div></div><div style=
+=3D"font-family: Helvetica, Arial, sans-serif; font-size: 16px;"><br></div>=
+<div style=3D"font-family: Helvetica, Arial, sans-serif; font-size: 16px;">=
+I can't test it right now, but I hope this helps you.</div><div style=3D"fo=
+nt-family: Helvetica, Arial, sans-serif; font-size: 16px;"><br></div><div s=
+tyle=3D"font-family: Helvetica, Arial, sans-serif; font-size: 16px;">Michel=
+</div><div style=3D"font-family: Helvetica, Arial, sans-serif; font-size: 1=
+6px;"><br></div><div style=3D"font-family: Helvetica, Arial, sans-serif; fo=
+nt-size: 16px;"><br></div><div style=3D"font-family: Helvetica, Arial, sans=
+-serif; font-size: 16px;"><br></div><div style=3D"font-family: Helvetica, A=
+rial, sans-serif; font-size: 16px;"><br></div></div></div></body></html>
+
+------=_Part_126510774_1215150571.1476370594531--
