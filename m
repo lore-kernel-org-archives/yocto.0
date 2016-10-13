@@ -1,60 +1,43 @@
-Return-Path: <schnitzeltony@googlemail.com>
+Return-Path: <joshua.g.lock@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7D8C6E00E71; Thu, 13 Oct 2016 10:21:03 -0700 (PDT)
+	id A3243E00CCD; Thu, 13 Oct 2016 14:29:40 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (schnitzeltony[at]googlemail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.213.44 listed in list.dnswl.org]
-Received: from mail-vk0-f44.google.com (mail-vk0-f44.google.com
-	[209.85.213.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3FDA7E00E57
-	for <yocto@yoctoproject.org>; Thu, 13 Oct 2016 10:20:57 -0700 (PDT)
-Received: by mail-vk0-f44.google.com with SMTP id q126so33624752vkd.2
-	for <yocto@yoctoproject.org>; Thu, 13 Oct 2016 10:20:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=googlemail.com; s=20120113;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=3ZQ23QDlHP8wXtpnafcy8mQ/oEVIPiZqWWQQU4AmEKs=;
-	b=k7eMA+KxTP91Ga/JBokB27M6PQcmxNBLdfljAOE6S0yZ8fNbIMRkzYsU90X7Jd3cvv
-	3PU2vsy3fFvasd+G8dxQD782XTbXDXLE2THDSjD/7tFc4M0OhUs8s8H5cR+2ZZam/Odh
-	QBtNfIuxqlIUIkjmCz/MsQSpbGY9y6kRaOx4rHXLJJgg8C28UWJUdfJ+d3ZCOR2myIJp
-	5ULn1PkKbaS0zkk0kCsj60KKX1spDcTJCKO0HtRAawsLIh6Lx8Szo92Id7alZ9lnVhrs
-	IBanhtj0iItvTHhTBBYnGO3ee0clyJwINf8auIfHGnnjGpZBzEJqOUN6gj71yxcIhUj8
-	t0Mg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=3ZQ23QDlHP8wXtpnafcy8mQ/oEVIPiZqWWQQU4AmEKs=;
-	b=VXiWRFg6IEr35NgykNdDjpT8Eoa8v59rTZKQv5mVQuRhbAioFlExT1tRoX5UkxWsth
-	O5xQVnQqx1Doo1TjEleMyIbEJV1E+nK6TRre9aeAtEfDSro4sa6Jb/wMRHxpIduEwfhw
-	KtvRSBvSV5rJBu/M809NXIJ+OaSup6K4r5Qc6jhnzWhy0jXuTihh9jC1AbdtE1iy1h7Y
-	Pwa8hPQpl/8lwhvlrWvcu97+fNhvYOQxDYKKLTuUWukWfj5Jghnrxaze9m8nnbbgu4Pn
-	5i6FP49mKbwL4kWBcMRxWKBVc8bsMc8pN9xuFrPNEhDKmCwBg1MNpEaci6LYltTTm4tz
-	/RGg==
-X-Gm-Message-State: AA6/9RlkDQlu6/ISM4AjtEjqOmpC2lATYwt/mhKEc0J86FF1BagBw8ISyScFS6Uc+GVJ+/BT7xGuDxl8lAyg1Q==
-X-Received: by 10.31.206.198 with SMTP id e189mr4637582vkg.51.1476379256868;
-	Thu, 13 Oct 2016 10:20:56 -0700 (PDT)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1C7C6E00CC7
+	for <yocto@yoctoproject.org>; Thu, 13 Oct 2016 14:29:38 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by fmsmga105.fm.intel.com with ESMTP; 13 Oct 2016 14:29:37 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.31,489,1473145200"; d="scan'208";a="1064511903"
+Received: from irsmsx103.ger.corp.intel.com ([163.33.3.157])
+	by orsmga002.jf.intel.com with ESMTP; 13 Oct 2016 14:29:36 -0700
+Received: from irsmsx110.ger.corp.intel.com ([169.254.15.155]) by
+	IRSMSX103.ger.corp.intel.com ([169.254.3.91]) with mapi id
+	14.03.0248.002; Thu, 13 Oct 2016 22:29:36 +0100
+From: "Lock, Joshua G" <joshua.g.lock@intel.com>
+To: "gmane@reliableembeddedsystems.com" <gmane@reliableembeddedsystems.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto] [yocto-autobuilder][PATCH] PublishArtifacts.py: deal
+	only with built toolchains, cp also md5 and manifests
+Thread-Index: AQHSIsHmqACyYVYZS0uV3eZnG0pr36Cm23+A
+Date: Thu, 13 Oct 2016 21:29:35 +0000
+Message-ID: <1476394173.3034.13.camel@intel.com>
+References: <35ab47fa82f7707f84e445919ddbbef5@reliableembeddedsystems.com>
+In-Reply-To: <35ab47fa82f7707f84e445919ddbbef5@reliableembeddedsystems.com>
+Accept-Language: en-GB, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.252.27.1]
 MIME-Version: 1.0
-Received: by 10.176.65.130 with HTTP; Thu, 13 Oct 2016 10:20:56 -0700 (PDT)
-From: =?UTF-8?Q?Andreas_M=C3=BCller?= <schnitzeltony@googlemail.com>
-Date: Thu, 13 Oct 2016 19:20:56 +0200
-Message-ID: <CALbNGRRHQJGxcNCLNN+q4YGeV=VwfPbtO_XrcoMj-ngQkjSiqw@mail.gmail.com>
-To: Yocto Project <yocto@yoctoproject.org>
-Subject: Big endian ARM machine with NEON wanted
+Cc: "robert.berger@reliableembeddedsystems.com"
+	<robert.berger@reliableembeddedsystems.com>
+Subject: Re: [yocto-autobuilder][PATCH] PublishArtifacts.py: deal only with built toolchains, cp also md5 and manifests
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,15 +49,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 13 Oct 2016 17:21:03 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 13 Oct 2016 21:29:40 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <FAD0F91E7538B644A2DA99F7E3E74A77@intel.com>
+Content-Transfer-Encoding: base64
 
-Hi,
+Q2FuIHlvdSBoZWxwIG1lIHVuZGVyc3RhbmQgd2h5IHlvdSBuZWVkZWQgdG8gY3JlYXRlIHRoaXMg
+cGF0Y2g/DQoNCldlJ3ZlIHJ1biBpbnRvIHNvbWUgaXNzdWVzIHJlY2VudGx5IHdoZXJlIHRvb2xj
+aGFpbnMgd2UgZXhwZWN0ZWQgdG8gYmUNCmJ1aWx0IHdlcmVuJ3QgYW5kIHRoZSBQdWJsaXNoQXJ0
+aWZhY3RzIGJ1aWxkc3RlcCBmYWlsaW5nIGJlY2F1c2UNCnRoZXkncmUgbWlzc2luZyBpcyB1c2Vm
+dWwuIFdpdGggdGhpcyBjaGFuZ2Ugd2UnbGwgbm8gbG9uZ2VyIGdldCB0aGF0LA0KcmlnaHQ/DQoN
+ClRoYW5rcywNCg0KSm9zaHVhCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQpJbnRlbCBDb3Jwb3JhdGlvbiAoVUspIExp
+bWl0ZWQKUmVnaXN0ZXJlZCBOby4gMTEzNDk0NSAoRW5nbGFuZCkKUmVnaXN0ZXJlZCBPZmZpY2U6
+IFBpcGVycyBXYXksIFN3aW5kb24gU04zIDFSSgpWQVQgTm86IDg2MCAyMTczIDQ3CgpUaGlzIGUt
+bWFpbCBhbmQgYW55IGF0dGFjaG1lbnRzIG1heSBjb250YWluIGNvbmZpZGVudGlhbCBtYXRlcmlh
+bCBmb3IKdGhlIHNvbGUgdXNlIG9mIHRoZSBpbnRlbmRlZCByZWNpcGllbnQocykuIEFueSByZXZp
+ZXcgb3IgZGlzdHJpYnV0aW9uCmJ5IG90aGVycyBpcyBzdHJpY3RseSBwcm9oaWJpdGVkLiBJZiB5
+b3UgYXJlIG5vdCB0aGUgaW50ZW5kZWQKcmVjaXBpZW50LCBwbGVhc2UgY29udGFjdCB0aGUgc2Vu
+ZGVyIGFuZCBkZWxldGUgYWxsIGNvcGllcy4K
 
-Does anybody know a big endian and common machine supporting NEON? I
-would need one for testing my port of portaudio.
-
-Thanks in advance
-
-Andreas
 
