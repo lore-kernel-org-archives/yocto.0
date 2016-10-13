@@ -1,38 +1,60 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <balazovic.peter@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A6EB3E00DE6; Wed, 12 Oct 2016 20:26:47 -0700 (PDT)
+	id D9404E00DF0; Wed, 12 Oct 2016 23:13:23 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (balazovic.peter[at]gmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2EC7BE00D57
-	for <yocto@yoctoproject.org>; Wed, 12 Oct 2016 20:26:41 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by orsmga104.jf.intel.com with ESMTP; 12 Oct 2016 20:26:40 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.31,338,1473145200"; d="scan'208";a="1053113623"
-Received: from ychiu-mobl5.gar.corp.intel.com (HELO
-	peggleto-mobl.ger.corp.intel.com) ([10.255.183.245])
-	by fmsmga001.fm.intel.com with ESMTP; 12 Oct 2016 20:26:37 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: "Sandeep G.R" <grsandeep85@gmail.com>,
-	Vijayakumar Badiger <vijayakumarmb@gmail.com>
-Date: Thu, 13 Oct 2016 16:26:35 +1300
-Message-ID: <2772514.3CcNj0Ii5Y@peggleto-mobl.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.14.10 (Linux/4.7.6-100.fc23.x86_64; KDE/4.14.20; x86_64; ;
-	)
-In-Reply-To: <CAKP9-ShAzdB+mCDsbDnTz_jDuT_qAmND=WPay7oLH-t+5YcrMQ@mail.gmail.com>
-References: <CAJ58UN=tw2n70748xW9zoSh1tge-c5MWGUwpRr7pkR_jfh8BXg@mail.gmail.com>
-	<CAJ58UN=B-P0VeEb_WPO7Z+ViEOspvBdzt==A7tTNnEE0T69y6g@mail.gmail.com>
-	<CAKP9-ShAzdB+mCDsbDnTz_jDuT_qAmND=WPay7oLH-t+5YcrMQ@mail.gmail.com>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.215.49 listed in list.dnswl.org]
+Received: from mail-lf0-f49.google.com (mail-lf0-f49.google.com
+	[209.85.215.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 579BCE00D57
+	for <yocto@yoctoproject.org>; Wed, 12 Oct 2016 23:13:19 -0700 (PDT)
+Received: by mail-lf0-f49.google.com with SMTP id x79so121599906lff.0
+	for <yocto@yoctoproject.org>; Wed, 12 Oct 2016 23:13:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=ohQqjlpMN85ceQV4noaHZiuwaJUMTk6drVuLoTDiq+E=;
+	b=nAs9KHmBh017Ij9XCRjib1hNpK7RjxWrh4MuzeVBYIg1WfAKOFb5YGbjcNf8e+iJJN
+	wWDpoxC/OZV1vxFzat66cWRaKSJ3hxviPO1zX2i9MAiVutCS8ELvocr5YbkqRKJhLbef
+	EcQOtXa3W9qlxDDxff070avxwPODSAIkQ/irhCszXksPNC+Zgpzzg4rOQ5nCYgjaKtLK
+	3rZZ49IE8wweu3seZcRbQ7D9AxaXSqjsmqlPqofMHA9W4JWaJ+rsAMtZZkBMn8f5b5RA
+	5wsf+oqazK5sEaIRF6M7i7oKbk6ftxkXmMIF/7Phd6p4w/OpG46VIGR1XIQxpwfwQqf9
+	eDVg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=ohQqjlpMN85ceQV4noaHZiuwaJUMTk6drVuLoTDiq+E=;
+	b=DzJKSNt/d8Iq7f4L5vzZ7xXTDh7i9LfnQ3BegIdQAmmT2XO7iKd21ec1lvudVUg6rS
+	sM+ov6L9J4bcMveJskwNSFJqFcXD30p96yB7U5Y71myYSYDSBw5+tGU7VFfB42vu0IgK
+	3HKLRkXfCB5/ON/ye1nQ8/XsvFE2kGpRsLdP/zcn6iW8ET1/4OZKRyngAFzXhVOb3kHr
+	01WB64Bm2HcNxocBZFp3cwVsyoyVW/eJlxAhTAqOkZmSqQc2QaBs9DRsuAMISClZvBZB
+	zeCKcLGCuPwUa1gvncrzglUQscz06MEGgvn8QiMR7UIoQwdJr9g/yGgt/GMKFWN94+Lf
+	JTYw==
+X-Gm-Message-State: AA6/9Rk2NOEZtl8x0zqgGoLi+30JVmV7b97kahkgK4kpqFAf1R19Hjk3mXsc0jb2yVQnlvxtcj5FgMMkM0QKlA==
+X-Received: by 10.28.203.202 with SMTP id b193mr824062wmg.0.1476339198191;
+	Wed, 12 Oct 2016 23:13:18 -0700 (PDT)
 MIME-Version: 1.0
-Cc: yoctoproject <yocto@yoctoproject.org>
-Subject: Re: Clarification regarding GCC tool version supported on - Krogoth 2.1.1
+Received: by 10.194.104.164 with HTTP; Wed, 12 Oct 2016 23:13:17 -0700 (PDT)
+From: Peter Balazovic <balazovic.peter@gmail.com>
+Date: Thu, 13 Oct 2016 08:13:17 +0200
+Message-ID: <CAFq4t4gDKfnjPJi_sDTa_Dyd_HcfDafrKnJKggmQpqG0orPD0w@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Re: Resizing root flash partition/filesystem on first boot
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,78 +66,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 13 Oct 2016 03:26:47 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Thu, 13 Oct 2016 06:13:23 -0000
+Content-Type: multipart/alternative; boundary=94eb2c13151279ecae053eb90190
 
-This is more likely to work:
+--94eb2c13151279ecae053eb90190
+Content-Type: text/plain; charset=UTF-8
 
-  bitbake-layers show-recipes gcc
+Hello Jason,
 
-Cheers,
-Paul
+I'm interested in your code + BitBake recipe to be able to *automatically
+resize on first boot*.
 
-On Wed, 12 Oct 2016 21:19:59 Sandeep G.R wrote:
-> Hi Vijay,
-> 
-> You can run *"bitbake-layers show-recipes | grep gcc-source"* to know more
-> on supported toolchain versions.
-> 
-> On Wed, Oct 12, 2016 at 11:55 AM, Vijayakumar Badiger <
-> 
-> vijayakumarmb@gmail.com> wrote:
-> > Thanks Paul, appreciate your reply.
-> > 
-> > Cheers,
-> > Vijay
-> > 
-> > 
-> > On Mon, Oct 10, 2016 at 6:24 PM, Paul Eggleton <
-> > 
-> > paul.eggleton@linux.intel.com> wrote:
-> >> Hi Vijay,
-> >> 
-> >> On Mon, 10 Oct 2016 17:44:13 Vijayakumar Badiger wrote:
-> >> > Please can some one tell me the tool chain versions supported on the
-> >> 
-> >> latest
-> >> 
-> >> > YPCore-Krogoth.
-> >> > I know the it uses default GCC5.3, just wanted to know if older tool
-> >> 
-> >> chain
-> >> 
-> >> > like 4.9XX is supported or not.
-> >> > 
-> >> > I don't see the feature list like the one listed below for Krogoth
-> >> 
-> >> 2.1.1.
-> >> 
-> >> > which clearly states the tool chain versions supported.
-> >> > 
-> >> > https://www.yoctoproject.org/downloads/core/jethro20
-> >> 
-> >> gcc 4.9 is included in the krogoth branch, and being an earlier default
-> >> version it should work - however it's fair to say it does not receive the
-> >> same
-> >> level of testing that 5.3 does given that 5.3 is the default.
-> >> 
-> >> Cheers,
-> >> Paul
-> >> 
-> >> --
-> >> 
-> >> Paul Eggleton
-> >> Intel Open Source Technology Centre
-> > 
-> > --
-> > _______________________________________________
-> > yocto mailing list
-> > yocto@yoctoproject.org
-> > https://lists.yoctoproject.org/listinfo/yocto
+Thank you.
+Peter
 
--- 
+--94eb2c13151279ecae053eb90190
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Paul Eggleton
-Intel Open Source Technology Centre
+<div dir=3D"ltr">Hello Jason,<div><br></div><div>I&#39;m interested in your=
+ code<span style=3D"color:rgb(0,0,0);white-space:pre-wrap"> + BitBake recip=
+e to be able to </span><i style=3D"color:rgb(0,0,0);white-space:pre-wrap">a=
+utomatically resize on first boot</i><span style=3D"color:rgb(0,0,0);white-=
+space:pre-wrap">.</span></div><div><span style=3D"color:rgb(0,0,0);white-sp=
+ace:pre-wrap"><br></span></div><div><span style=3D"color:rgb(0,0,0);white-s=
+pace:pre-wrap">Thank you.</span></div><div><span style=3D"color:rgb(0,0,0);=
+white-space:pre-wrap">Peter</span></div></div>
 
+--94eb2c13151279ecae053eb90190--
