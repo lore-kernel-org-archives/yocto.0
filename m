@@ -1,23 +1,24 @@
-Return-Path: <pokybuild@centos7.osl.yoctoproject.org>
+Return-Path: <pokybuild@yoctoproject.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6C578E00E88; Thu, 13 Oct 2016 08:36:04 -0700 (PDT)
+	id 6EF6BE00E6E; Thu, 13 Oct 2016 08:36:04 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=ham version=3.3.1
+	autolearn=unavailable version=3.3.1
 X-Spam-HAM-Report: * -1.0 ALL_TRUSTED Passed through trusted hosts only via
 	SMTP * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from centos7.osl.yoctoproject.org (ab01 [10.0.10.101])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BC34AE00E6F
-	for <yocto@yoctoproject.org>; Thu, 13 Oct 2016 08:36:01 -0700 (PDT)
-Received: by centos7.osl.yoctoproject.org (Postfix, from userid 1006)
-	id 8A696D056; Thu, 13 Oct 2016 15:36:01 +0000 (GMT)
+Received: from debian8.osl.yoctoproject.org (debian8.osl.yoctoproject.org
+	[10.0.10.113])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 99E55E00E6E;
+	Thu, 13 Oct 2016 08:36:01 -0700 (PDT)
+Received: by debian8.osl.yoctoproject.org (Postfix, from userid 1006)
+	id 875AB380238; Thu, 13 Oct 2016 15:36:01 +0000 (UTC)
 To: yocto@yoctoproject.org
-Message-Id: <20161013153601.8A696D056@centos7.osl.yoctoproject.org>
-Date: Thu, 13 Oct 2016 15:36:01 +0000 (GMT)
-From: pokybuild@centos7.osl.yoctoproject.org (Poky Build User)
+Message-Id: <20161013153601.875AB380238@debian8.osl.yoctoproject.org>
+Date: Thu, 13 Oct 2016 15:36:01 +0000 (UTC)
+From: pokybuild@yoctoproject.org (Poky Build User)
 Cc: otavio@ossystems.com.br, joshua.g.lock@intel.com
 Subject: Release Candidate Build for yocto-2.2.rc1.rc1 now available.
 X-BeenThere: yocto@yoctoproject.org
