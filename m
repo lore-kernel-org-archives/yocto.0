@@ -1,42 +1,36 @@
-Return-Path: <joshua.g.lock@intel.com>
+Return-Path: <joshua.g.lock@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A3243E00CCD; Thu, 13 Oct 2016 14:29:40 -0700 (PDT)
+	id 927DDE00E87; Thu, 13 Oct 2016 14:40:22 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.65 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1C7C6E00CC7
-	for <yocto@yoctoproject.org>; Thu, 13 Oct 2016 14:29:38 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by fmsmga105.fm.intel.com with ESMTP; 13 Oct 2016 14:29:37 -0700
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4778EE00E5E
+	for <yocto@yoctoproject.org>; Thu, 13 Oct 2016 14:40:19 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by orsmga103.jf.intel.com with ESMTP; 13 Oct 2016 14:40:18 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.31,489,1473145200"; d="scan'208";a="1064511903"
-Received: from irsmsx103.ger.corp.intel.com ([163.33.3.157])
-	by orsmga002.jf.intel.com with ESMTP; 13 Oct 2016 14:29:36 -0700
-Received: from irsmsx110.ger.corp.intel.com ([169.254.15.155]) by
-	IRSMSX103.ger.corp.intel.com ([169.254.3.91]) with mapi id
-	14.03.0248.002; Thu, 13 Oct 2016 22:29:36 +0100
-From: "Lock, Joshua G" <joshua.g.lock@intel.com>
-To: "gmane@reliableembeddedsystems.com" <gmane@reliableembeddedsystems.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto] [yocto-autobuilder][PATCH] PublishArtifacts.py: deal
-	only with built toolchains, cp also md5 and manifests
-Thread-Index: AQHSIsHmqACyYVYZS0uV3eZnG0pr36Cm23+A
-Date: Thu, 13 Oct 2016 21:29:35 +0000
-Message-ID: <1476394173.3034.13.camel@intel.com>
+X-IronPort-AV: E=Sophos;i="5.31,489,1473145200"; d="scan'208";a="1053522872"
+Received: from jlock-mobl1.ger.corp.intel.com ([10.252.27.1])
+	by fmsmga001.fm.intel.com with ESMTP; 13 Oct 2016 14:40:15 -0700
+Message-ID: <1476394814.3034.20.camel@linux.intel.com>
+From: Joshua Lock <joshua.g.lock@linux.intel.com>
+To: pidge@toganlabs.com, gmane@reliableembeddedsystems.com, 
+	yocto@yoctoproject.org
+Date: Thu, 13 Oct 2016 22:40:14 +0100
+In-Reply-To: <1476286173.7502.14.camel@toganlabs.com>
 References: <35ab47fa82f7707f84e445919ddbbef5@reliableembeddedsystems.com>
-In-Reply-To: <35ab47fa82f7707f84e445919ddbbef5@reliableembeddedsystems.com>
-Accept-Language: en-GB, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.252.27.1]
-MIME-Version: 1.0
-Cc: "robert.berger@reliableembeddedsystems.com"
-	<robert.berger@reliableembeddedsystems.com>
+	<1476286173.7502.14.camel@toganlabs.com>
+X-Mailer: Evolution 3.20.5 (3.20.5-1.fc24) 
+Mime-Version: 1.0
+Cc: robert.berger@reliableembeddedsystems.com
 Subject: Re: [yocto-autobuilder][PATCH] PublishArtifacts.py: deal only with built toolchains, cp also md5 and manifests
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -49,25 +43,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 13 Oct 2016 21:29:40 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <FAD0F91E7538B644A2DA99F7E3E74A77@intel.com>
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Thu, 13 Oct 2016 21:40:22 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Q2FuIHlvdSBoZWxwIG1lIHVuZGVyc3RhbmQgd2h5IHlvdSBuZWVkZWQgdG8gY3JlYXRlIHRoaXMg
-cGF0Y2g/DQoNCldlJ3ZlIHJ1biBpbnRvIHNvbWUgaXNzdWVzIHJlY2VudGx5IHdoZXJlIHRvb2xj
-aGFpbnMgd2UgZXhwZWN0ZWQgdG8gYmUNCmJ1aWx0IHdlcmVuJ3QgYW5kIHRoZSBQdWJsaXNoQXJ0
-aWZhY3RzIGJ1aWxkc3RlcCBmYWlsaW5nIGJlY2F1c2UNCnRoZXkncmUgbWlzc2luZyBpcyB1c2Vm
-dWwuIFdpdGggdGhpcyBjaGFuZ2Ugd2UnbGwgbm8gbG9uZ2VyIGdldCB0aGF0LA0KcmlnaHQ/DQoN
-ClRoYW5rcywNCg0KSm9zaHVhCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQpJbnRlbCBDb3Jwb3JhdGlvbiAoVUspIExp
-bWl0ZWQKUmVnaXN0ZXJlZCBOby4gMTEzNDk0NSAoRW5nbGFuZCkKUmVnaXN0ZXJlZCBPZmZpY2U6
-IFBpcGVycyBXYXksIFN3aW5kb24gU04zIDFSSgpWQVQgTm86IDg2MCAyMTczIDQ3CgpUaGlzIGUt
-bWFpbCBhbmQgYW55IGF0dGFjaG1lbnRzIG1heSBjb250YWluIGNvbmZpZGVudGlhbCBtYXRlcmlh
-bCBmb3IKdGhlIHNvbGUgdXNlIG9mIHRoZSBpbnRlbmRlZCByZWNpcGllbnQocykuIEFueSByZXZp
-ZXcgb3IgZGlzdHJpYnV0aW9uCmJ5IG90aGVycyBpcyBzdHJpY3RseSBwcm9oaWJpdGVkLiBJZiB5
-b3UgYXJlIG5vdCB0aGUgaW50ZW5kZWQKcmVjaXBpZW50LCBwbGVhc2UgY29udGFjdCB0aGUgc2Vu
-ZGVyIGFuZCBkZWxldGUgYWxsIGNvcGllcy4K
+On Wed, 2016-10-12 at 17:29 +0200, Beth 'pidge' Flanagan wrote:
+> On Mon, 2016-10-10 at 01:44 -0500, gmane@reliableembeddedsystems.com
+> wrote:
+> > 
+> > 
+> 
+> 
+> A few notes (not picking on this patch but it does point out some
+> design failures and I want to at least get this on folks radar).
+> 
+> I've been unhappy with how DeployArtifacts work for sometime.
+> 
+> Long ago, when I wrote DeployArtifacts, it was "get it working, we'll
+> refactor later" and that refactor never happened. So I'm up for
+> ideas.
+> 
+> I would like a deploy infrastructure that:
+> 
+> a. Is distro/image name/etc agnostic (aka, poky and image names and
+> paths hardcoded. ick.).
+> b. Is perhaps config file driven.
+> c. Had much less of the cruft that exists withing DeployArtifacts.
+> 
+> So. Thoughts on this? I'd be willing to hear suggestions on how to do
+> this before I go and spend some time ripping this apart post release?
 
+It's quite useful to have a list of expected output of the build so
+that this step can fail if a component which should be published is
+missing.
+
+I'd been planning to take a look at rewriting this build step after the
+release and my initial thoughts were towards something config file
+driven.
+
+Thanks,
+
+Joshua
 
