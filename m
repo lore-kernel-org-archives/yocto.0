@@ -1,63 +1,36 @@
-Return-Path: <nicolas.dechesne@linaro.org>
+Return-Path: <alfonso.ros-dos-santos@evosoft.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9B726E00DF0; Thu, 13 Oct 2016 00:37:14 -0700 (PDT)
+	id EF870E00DF0; Thu, 13 Oct 2016 00:59:38 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE, RCVD_IN_DNSWL_LOW,
-	RCVD_IN_SORBS_SPAM autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.220.174 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.220.174 listed in dnsbl.sorbs.net]
-Received: from mail-qk0-f174.google.com (mail-qk0-f174.google.com
-	[209.85.220.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5236EE00C81
-	for <yocto@yoctoproject.org>; Thu, 13 Oct 2016 00:37:09 -0700 (PDT)
-Received: by mail-qk0-f174.google.com with SMTP id o68so117700746qkf.3
-	for <yocto@yoctoproject.org>; Thu, 13 Oct 2016 00:37:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=ZJYqjpwVskqvdJAtbIVb7tdPS9lXwvOxcyDbxbpngJk=;
-	b=b7dxbUUl+gKzT9FDzU0OlJAeGRGKbvA8Y0lVO6yVa+WkeYuJG2m9NK5h1UDrw5hNIv
-	jNh5daTbbk6+peVyxlin6SY2O1tEihSYWhg0QH1qx5ztRs4jLP/xlUOotVpnF9URkvVW
-	DEMnJbaqi0QVvDpK7JxLXsPnMHsYNQ0Ib490Q=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=ZJYqjpwVskqvdJAtbIVb7tdPS9lXwvOxcyDbxbpngJk=;
-	b=edbUI7E7CU/eIPyUTyyFnR0Ac8W1dVdipiilkQ62XRMzK8J1gbpU/nfKWYXZC5/fpZ
-	GcH5OPX6sERqs5i9hyHmAUNXxn9TYCFlW8Gpp/4P/6q69Lv9Gt1qW0MuJ+ydQFI/ZVbb
-	r7LbuAO54w/syk31Zp2sl87IQyoZ02m5S9Si6xIOWi0G5uy6l1xLfdOwWivMa9+HD4WV
-	U8hiqZhRu2GYgqaLBLp4Iq16pdb4qxP5wKl1kdW/WhFA5KDAOYvF36A2m0whFwNy6CW6
-	aIpjGfRb/sysj8czpNCaRt36GVbYVAmNyuCy+HrQGVHsr6Q2G4QNwKdJCNiUvCn7Mm9Z
-	5fow==
-X-Gm-Message-State: AA6/9Rk1AUoiSLQCH4RMDw0y1xg+MtMy/T+yTvZ+Jt0p3EkcApeo992rsYtnUprIX5+hKjk4h0FKrlnoxBmR6jFF
-X-Received: by 10.55.154.11 with SMTP id c11mr4593188qke.25.1476344228771;
-	Thu, 13 Oct 2016 00:37:08 -0700 (PDT)
+Received: from DENBGMASH1SRV.evosoft.com (DENBGMASH1SRV.evosoft.com
+	[193.158.17.58])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2713FE00C81
+	for <yocto@yoctoproject.org>; Thu, 13 Oct 2016 00:59:34 -0700 (PDT)
+X-TM-IMSS-Message-ID: <a03efb5800003c12@evosoft.com>
+Received: from EVO01682.evosoft.com ([139.22.164.248]) by evosoft.com
+	([193.158.17.58]) with ESMTP (TREND IMSS SMTP Service 7.5) id
+	a03efb5800003c12 ; Thu, 13 Oct 2016 09:59:32 +0200
+Received: from [139.25.9.155] (139.25.9.155) by evo01682.evosoft.com
+	(139.22.164.248) with Microsoft SMTP Server (TLS) id 14.3.301.0;
+	Thu, 13 Oct 2016 09:59:32 +0200
+To: <mark.asselstine@windriver.com>, <yocto@yoctoproject.org>
+References: <d47350d4-c126-48ae-7286-2a602ad8c9d2@evosoft.com>
+	<1742113.CE0FQBtZUY@super-penguin>
+From: alfonso <alfonso.ros-dos-santos@evosoft.com>
+Message-ID: <e32ebab7-3e61-53c7-6912-3534dbe9657c@evosoft.com>
+Date: Thu, 13 Oct 2016 09:59:28 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.3.0
 MIME-Version: 1.0
-Received: by 10.140.104.42 with HTTP; Thu, 13 Oct 2016 00:36:48 -0700 (PDT)
-In-Reply-To: <CAFq4t4iKCo+VpXK_-J15fOE4fGNh8=NxYVvbJLm-9HSzkkU+gQ@mail.gmail.com>
-References: <CAFq4t4i5B5Sk-Bms0zVWr4sU5fgz4zM5pUs-YO8wcCzV5umxog@mail.gmail.com>
-	<CAP71WjwLvSQFLF9DfF7YUj1ZXN5Y9GaPM8-ivsZz5+P_ZJXqPw@mail.gmail.com>
-	<CAFq4t4iKCo+VpXK_-J15fOE4fGNh8=NxYVvbJLm-9HSzkkU+gQ@mail.gmail.com>
-From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Date: Thu, 13 Oct 2016 09:36:48 +0200
-Message-ID: <CAP71Wjx=4PRkhOjGZ03ng1pOOV2HyfZj8Z1DncpNVL1XzWW=9w@mail.gmail.com>
-To: Peter Balazovic <balazovic.peter@gmail.com>
-Cc: Yocto list discussion <yocto@yoctoproject.org>
-Subject: Re: resize2fs
+In-Reply-To: <1742113.CE0FQBtZUY@super-penguin>
+X-Originating-IP: [139.25.9.155]
+Subject: Re: yocto - linaro's lava integration
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,53 +42,126 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 13 Oct 2016 07:37:14 -0000
-Content-Type: multipart/alternative; boundary=94eb2c054186528f13053eba2d2c
+X-List-Received-Date: Thu, 13 Oct 2016 07:59:39 -0000
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 7bit
 
---94eb2c054186528f13053eba2d2c
-Content-Type: text/plain; charset=UTF-8
+Hi Mark,
 
-On Thu, Oct 13, 2016 at 9:03 AM, Peter Balazovic <balazovic.peter@gmail.com>
-wrote:
+thanks a lot for replying to my message. On the last few days I managed 
+to find the missing key of the puzzle on some lava slides on the 
+internet. In fact you can boot and test an image having the kernel and 
+fs separately.
 
-> > First, you need an extra space when you use _append operator.
-> I got within my local.conf and building for big size SD card.
+here is the job description:
+
+device_type: qemu
+job_name: qemu-x86-test
+
+timeouts:
+   job:
+     minutes: 6
+   action:
+     minutes: 2
+priority: medium
+visibility: public
+
+context:
+   arch: i386
+
+actions:
+- deploy:
+     timeout:
+       minutes: 3
+     to: tmpfs
+     images:
+         kernel:
+           image_arg: -kernel {kernel} -append "console=ttyS0 
+root=/dev/vda rw"
+           url: file:///opt/image/kernel.bin
+         rootfs:
+           image_arg: -drive format=raw,file={rootfs},if=virtio
+           url: file:///opt/image/fs.ext4
+     os: debian
+     root_partition: 1
+
+- boot:
+     method: qemu
+     timeout:
+       minutes: 2
+     media: tmpfs
+     prompts:
+     - "root@debian:"
+     auto_login:
+       login_prompt: "login:"
+       username: root
+
+it is as you say, quite intuitive but i had some trouble finding the 
+proper description of this job definition. Now I am focus on how to set 
+up the integration process, how to submit the job after the building 
+process have been triggered in the git repo and so on.
+
+Its actually easy once you find the pieces of information that you need.
+
+Thanks again and let's see how it goes :P
+
+Best,
+
+Alfonso
+
+On 12.10.2016 17:03, Mark Asselstine wrote:
+> On Monday, October 10, 2016 12:23:07 PM EDT alfonso wrote:
+>> Hello everyone,
+>>
+>> I'm trying to integrate the testing of the resulting yocto images using
+>> Linaro's LAVA project.
+>>
+>> For now I am only using qemux86 images.
+>>
+>> Now, I am quite a newbie in both projects and maybe in general on the
+>> subject of images so I might be asking the wrong questions.
+>>
+>> So far, to test a qemu image using LAVA it is required a .img file. That
+>> would be the simplest configuration. On the other hand, my yocto project
+>> produces a .bin kernel file + .ext4 filesystem file. I don't seem to
+>> find a proper configuration in LAVA for .bin + .ext4 file testing. I
+>> presume there is a way to configure yocto to produce a .img file out of
+>> these two guys but I don't seem to find how.
+>>
+>> Would anyone have a recommendation?
+> We have been using LAVA to test our Yocto based product for about 1 1/2years
+> now using the produced .ext[34] and bzImage produced from a typical Yocto
+> build. We have been using LAVA 1 however and I am only now starting to move to
+> the latest LAVA 2. We have also been using hardware targets and not qemu but
+> that is overall inconsequential.
 >
-> IMAGE_ROOTFS_EXTRA_SPACE = "25165824"
+> Since our move to LAVA 2 is in progress I can't currently give you a step by
+> step guide to accomplishing this. Let me look quickly today to see if the
+> existing definition of the qemu device type will allow for specifying a disk
+> image and kernel. If not then it either needs to be added or a new device type
+> created with allows it. On the bright side the LAVA folks have done a good job
+> about the layout of their code so jumping in to do this may seem to be a big
+> hurdle but once you jump in you will find most things where you would expect
+> them to be.
+>
+> Alternatively you could use either a chroot or VM to update the .ext4 image
+> with a kernel and grub.
+>
+> Anyways, sorry for sparse information. Again if you give me some time I can
+> provide you with more details. But definitely go ahead and dig in, you will
+> find that what you want to do is possible.
+>
+> Mark Asselstine
+>
+>
+>
+>
+>
+>
+>> Thanks in advance for your help :)
+>>
+>> Best,
+>> Alfonso
 >
 
-that's not what I meant, you need a leasding space char in the variable like
 
-IMAGE_INSTALL_append = " e2fsprogs-resize2fs"
-
-
-> > So you need to include e2fsprogs-resize2fs
->
-> that's what I'm looking for - where to include ...
->
-
-local.conf would work.
-
---94eb2c054186528f13053eba2d2c
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On Thu, Oct 13, 2016 at 9:03 AM, Peter Balazovic <span dir=3D"ltr">&lt;<a h=
-ref=3D"mailto:balazovic.peter@gmail.com" target=3D"_blank">balazovic.peter@=
-gmail.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=
-=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><span cl=
-ass=3D""><div><p dir=3D"ltr">&gt; First, you need an extra space when you u=
-se _append operator.</p></div></span><div>I got within my local.conf and bu=
-ilding for big size SD card.</div><div><br></div><div>IMAGE_ROOTFS_EXTRA_SP=
-ACE =3D &quot;25165824&quot;<br></div></blockquote><div><br></div><div>that=
-&#39;s not what I meant, you need a leasding space char in the variable lik=
-e<br><br></div><div>IMAGE_INSTALL_append =3D &quot; e2fsprogs-resize2fs&quo=
-t;<br><br></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8e=
-x;border-left:1px #ccc solid;padding-left:1ex"><div></div><span class=3D"">=
-<div><br></div><div>&gt; So you need to include e2fsprogs-resize2fs<br></di=
-v><div><br></div></span><div>that&#39;s what I&#39;m looking for - where to=
- include ...</div></blockquote></div><br></div><div class=3D"gmail_extra">l=
-ocal.conf would work. <br></div><div class=3D"gmail_extra"><br></div></div>
-
---94eb2c054186528f13053eba2d2c--
