@@ -1,6 +1,6 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0D0A9E00E17; Thu, 13 Oct 2016 01:15:56 -0700 (PDT)
+	id 24D4BE00E14; Thu, 13 Oct 2016 01:15:57 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -21,43 +21,46 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*      [209.85.192.193 listed in list.dnswl.org]
 Received: from mail-pf0-f193.google.com (mail-pf0-f193.google.com
 	[209.85.192.193])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 48690E00DF1
-	for <yocto@yoctoproject.org>; Thu, 13 Oct 2016 01:15:40 -0700 (PDT)
-Received: by mail-pf0-f193.google.com with SMTP id i85so1139178pfa.0
-	for <yocto@yoctoproject.org>; Thu, 13 Oct 2016 01:15:40 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4872BE00E05
+	for <yocto@yoctoproject.org>; Thu, 13 Oct 2016 01:15:41 -0700 (PDT)
+Received: by mail-pf0-f193.google.com with SMTP id s8so4546798pfj.2
+	for <yocto@yoctoproject.org>; Thu, 13 Oct 2016 01:15:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id;
-	bh=pnR2KWSxEUlyKs7KfXM0Mn7aHRYS0DuOE3YsBTR0d3k=;
-	b=oNbrBH1zZ8OuljaZbr/s/woFwZHSI+4XL5zlEWKyAWhf9c8iMcjHXofR+3OAylmuCA
-	SoaN/evQwCpmQEXKymxKscdVMOQG3EYethx4+k+LOZ7IF7PYgzThh8y36fmiP4ayKgUR
-	2UlzQhzSZtQCSMtlvBfhiMM6fyzZS/jtshPhqo8Z/w+dBCpqi9Yla9qj/Hh+B8uGb2IQ
-	gD8XOlbrEMFOPL1LcICuL8ZsyeTeYtLps5jkRfJ1JCLpUEZinRDXee80xMv5yDxMN0np
-	Vfc2yPFPIXtFOB3fSjwu1ycWMhXKrjOOo3wTqPZrlALKSix5wrl+NtBLdSgfPI8+bFbH
-	9Mqw==
+	h=from:to:cc:subject:date:message-id:in-reply-to:references;
+	bh=sFvMn6zxGj1f9cS91aYQj9OrWO8SUmO9bFWOVI5VmHY=;
+	b=NvXbf5PDJ97oGwxgeE03+MtPiJEqixxnilDxmcjYRAkLfCS/OirRxUGiuRQzXzguj7
+	U2j6ZxGERdJKm+0W8kfFYLL6LbAeaN8w7BOVSLyHXMF4T/pcllXdSD8McZ/LB8d+ZRTP
+	1Sn4x1dVTIlPVHiqTICaqsC9u+ubE6r4dXrvStknSdyPWOp3f86WVoqCC8TWRi05NV8f
+	27MqKIIW43TD5OiqntVxRW8dbr2FshYI6AvwM6C0VDl0wDjh1mB2VG0Rxndeqk1EikXB
+	D/gI8ZzSWwcAa2X6B/oPfdWsCH8qzb5982jmT8/1qMrvyDgfe6piShorKHgDu+DK9kBj
+	PcJw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=pnR2KWSxEUlyKs7KfXM0Mn7aHRYS0DuOE3YsBTR0d3k=;
-	b=CgchPBszancNybKo8fTSe+ABWKxIK+2ZF7PLD+xUaOsS1UUZknfT/35n1janZXI7zJ
-	6mn7ZVPGXnb1s+bX5CslJHA1ezyWicggSv++gegoF2kKrFEB2XeUtNJx8JSS2dZTLbWc
-	0aBegoIrufIhPUDh9q5EXtXJJiiAW3oET5BZ9lNtx8RGeoPoZZMOxxlEUaTCY/3zVVoA
-	VFMjmYqfjkQWfWrylLUGFik32j6S1g5R2HS3i4X/JURQwRJ1I38l5Avwy3UMIekvQzMV
-	S17Z/cP2mviaDqO+fKczXxd7f2SplZPsQvRFpC3sTzUDZsfRbkZp/SCal5nq7ChiXwei
-	PdxA==
-X-Gm-Message-State: AA6/9Rn91PXY4Yao24MmAo4BMy9bNcwP3nHUhh0rLNjak/jbqV46ar4Q3QtNZ5sA+o8irg==
-X-Received: by 10.98.19.208 with SMTP id 77mr8343382pft.102.1476346540402;
-	Thu, 13 Oct 2016 01:15:40 -0700 (PDT)
+	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+	:references;
+	bh=sFvMn6zxGj1f9cS91aYQj9OrWO8SUmO9bFWOVI5VmHY=;
+	b=XCjMTd2yUTAH9gR6g6heFNkC6htkQkkNWsM8jQlQasGTzJ2tJHJZoS7Ri9imzJqOuu
+	L/nm/arnUzt3QlxTONFCfPeA8NDFP/AZ78oZk52lAFl0O90NHY7pF3LsraCMGycPJKNw
+	ml6ppM35aDz4lGDp0r9/Ibr03T9lM9J/mHyhhTzfOWCqCa2lDCKXZVw882vLnhbavtU0
+	Z5CxYtd1/Z1aEx7v320oCCiIojEC8ZWvIqal2CA+aRCUJcgXp8pdu0isCewV8xDXnf+r
+	eeQ9Ksa1izxb2nMfVArYa8RJexuHPf7YDF+bRCDt4+6KZ6rd9IZNSPVLlPyluLvTQakp
+	vnJQ==
+X-Gm-Message-State: AA6/9RmjII6my7/XP2kEMOO1Lu5sqixEIQ7hC26x2p0vQhsNDEqNbK50TGNhDg7TOrycUg==
+X-Received: by 10.98.102.221 with SMTP id s90mr8180645pfj.146.1476346541241;
+	Thu, 13 Oct 2016 01:15:41 -0700 (PDT)
 Received: from localhost.localdomain (c-76-102-32-192.hsd1.ca.comcast.net.
 	[76.102.32.192]) by smtp.gmail.com with ESMTPSA id
-	t128sm4179701pfd.65.2016.10.13.01.15.38
+	t128sm4179701pfd.65.2016.10.13.01.15.40
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Thu, 13 Oct 2016 01:15:39 -0700 (PDT)
+	Thu, 13 Oct 2016 01:15:40 -0700 (PDT)
 From: Khem Raj <raj.khem@gmail.com>
 To: yocto@yoctoproject.org
-Date: Thu, 13 Oct 2016 01:15:31 -0700
-Message-Id: <20161013081532.22457-1-raj.khem@gmail.com>
+Date: Thu, 13 Oct 2016 01:15:32 -0700
+Message-Id: <20161013081532.22457-2-raj.khem@gmail.com>
 X-Mailer: git-send-email 2.10.0
-Subject: [meta-raspberrypi][PATCH V2 1/2] linux-raspberrypi: Add recipe for 4.8 release
+In-Reply-To: <20161013081532.22457-1-raj.khem@gmail.com>
+References: <20161013081532.22457-1-raj.khem@gmail.com>
+Subject: [meta-raspberrypi][PATCH 2/2] linux-raspberrypi_4.7.bb: Update to 4.7.7
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,28 +72,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 13 Oct 2016 08:15:56 -0000
+X-List-Received-Date: Thu, 13 Oct 2016 08:15:57 -0000
 
 Signed-off-by: Khem Raj <raj.khem@gmail.com>
 ---
- recipes-kernel/linux/linux-raspberrypi_4.8.bb | 8 ++++++++
- 1 file changed, 8 insertions(+)
- create mode 100644 recipes-kernel/linux/linux-raspberrypi_4.8.bb
+ recipes-kernel/linux/linux-raspberrypi_4.7.bb | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/recipes-kernel/linux/linux-raspberrypi_4.8.bb b/recipes-kernel/linux/linux-raspberrypi_4.8.bb
-new file mode 100644
-index 0000000..02623f4
---- /dev/null
-+++ b/recipes-kernel/linux/linux-raspberrypi_4.8.bb
-@@ -0,0 +1,8 @@
-+FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
-+
-+LINUX_VERSION ?= "4.8.1"
-+
-+SRCREV = "5b7970b19bbb2ea1620591bfb6517848696ed0b9"
-+SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-4.8.y \
-+"
-+require linux-raspberrypi.inc
+diff --git a/recipes-kernel/linux/linux-raspberrypi_4.7.bb b/recipes-kernel/linux/linux-raspberrypi_4.7.bb
+index 44ac961..0315f8f 100644
+--- a/recipes-kernel/linux/linux-raspberrypi_4.7.bb
++++ b/recipes-kernel/linux/linux-raspberrypi_4.7.bb
+@@ -1,8 +1,8 @@
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
+ 
+-LINUX_VERSION ?= "4.7.0"
++LINUX_VERSION ?= "4.7.7"
+ 
+-SRCREV = "d38b45a21294eaf01aa7568aaeb161d7553477e9"
++SRCREV = "a45a35c08598b23f9fd82e49c83b46c7d536244f"
+ SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-4.7.y \
+            file://0001-fix-dtbo-rules.patch \
+ "
 -- 
 2.10.0
 
