@@ -1,41 +1,67 @@
-Return-Path: <Liezhi.Yang@windriver.com>
+Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5C58FE00E73; Fri, 14 Oct 2016 02:16:37 -0700 (PDT)
+	id 9D296E00E73; Fri, 14 Oct 2016 02:25:38 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.215.43 listed in dnsbl.sorbs.net]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.215.43 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F1BBDE00CCD
-	for <yocto@yoctoproject.org>; Fri, 14 Oct 2016 02:16:34 -0700 (PDT)
-Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
-	[147.11.189.41])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id u9E9GVvU028743
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 14 Oct 2016 02:16:32 -0700 (PDT)
-Received: from [128.224.162.240] (128.224.162.240) by ALA-HCB.corp.ad.wrs.com
-	(147.11.189.41) with Microsoft SMTP Server id 14.3.294.0;
-	Fri, 14 Oct 2016 02:16:31 -0700
-To: "Lock, Joshua G" <joshua.g.lock@intel.com>, "EGGLETON, PAUL"
-	<paul.eggleton@intel.com>, "srifenbark@gmail.com" <srifenbark@gmail.com>
-References: <1707604.JiaMnXxcz2@peggleto-mobl.ger.corp.intel.com>
-	<2371a296-57bd-affa-0b1f-1304ce81e0dc@windriver.com>
-	<1476434156.3083.2.camel@intel.com>
-From: Robert Yang <liezhi.yang@windriver.com>
-Message-ID: <e78a5a30-b839-ffb4-8282-41896cdb1b77@windriver.com>
-Date: Fri, 14 Oct 2016 17:16:29 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.2.0
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-lf0-f43.google.com (mail-lf0-f43.google.com
+	[209.85.215.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 63D7FE00CCD
+	for <yocto@yoctoproject.org>; Fri, 14 Oct 2016 02:25:36 -0700 (PDT)
+Received: by mail-lf0-f43.google.com with SMTP id x79so191055782lff.0
+	for <yocto@yoctoproject.org>; Fri, 14 Oct 2016 02:25:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-disposition:in-reply-to:user-agent;
+	bh=PdT82csWKaMzdM+FwBAxpYS0SqB+GwCP5CRZXIO8yFs=;
+	b=a5CdOEkE5f8Gh3BpbNnNaXTP1rxo+WhFJpM0GYPv2yFMD9JgGB5zokkHt1sLZU17lM
+	7DVRgPvcsysPbsTC+9GwKybf1wigUyFQ/Mc9LKbwK4jhsaGQWLn22Qfz+C0hNDfYvohe
+	RPBZKAuuPJehuquzH1r7MGZn3Lhd7ggVwwUHhw44xF9T9pJRXhlpjQ3781M6yi5pBG0R
+	3ZeHt+nwoslJ5C6KzB11l1PrzbdDZpum4gYT5dSv/eB/ehwyYpYCKIqVIpthtXMQZd/b
+	mQagaAnNn5b2hjpCjHIHLngZaCwDA00pzkPxz9EmNIq5Vfe5/+qyFxHZRbn5ltBgliE/
+	/PPg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	:mime-version:content-disposition:in-reply-to:user-agent;
+	bh=PdT82csWKaMzdM+FwBAxpYS0SqB+GwCP5CRZXIO8yFs=;
+	b=iLSzCdV6/YR2PU2XDNI0ZtqwfxoarV+aomMTlezMNeTNogMZal+MD70a5Lb8A0GcAX
+	nLUyPtXkdnpht95Qr/MYkqrbgmAVuK4mDmlclZXvf7LRXw7rzwFwtWmH/cOCZivJQp8z
+	FsAvIK8RjSSmVzmNNLfbOKzG9EqpKyYXV5uS65dcHBj+LdGnL1O40q/S6oE49wertIZr
+	y/MVqVAU1BhofzflQoMuGnCfS7TKppHvCY0AXJKo6ENTBlYDNycaUTEgKkOSo/oXC2Ml
+	uqV4iVX0zyTJdDIKiOATmLIkv5gGFJrCK51K9101Z7NPzJo1iQV0i2SBV8utGysV+kqK
+	Sy1w==
+X-Gm-Message-State: AA6/9RnTaSpnT1a57f+0i3QkWuRXsVjMuDVDq/1N4lC8EuKHw3suxtWCFkpE/uspNgcyww==
+X-Received: by 10.28.93.134 with SMTP id r128mr982816wmb.13.1476437135876;
+	Fri, 14 Oct 2016 02:25:35 -0700 (PDT)
+Received: from resin ([88.128.80.31]) by smtp.gmail.com with ESMTPSA id
+	i10sm16227639wjw.1.2016.10.14.02.25.04
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Fri, 14 Oct 2016 02:25:04 -0700 (PDT)
+Date: Fri, 14 Oct 2016 10:25:01 +0100
+From: Andrei Gherzan <andrei@gherzan.ro>
+To: Trevor Woerner <twoerner@gmail.com>
+Message-ID: <20161014092501.GD28288@resin>
+References: <20161002143422.GA24664@openSUSE-i7.site>
 MIME-Version: 1.0
-In-Reply-To: <1476434156.3083.2.camel@intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Migration info - runqemu
+In-Reply-To: <20161002143422.GA24664@openSUSE-i7.site>
+User-Agent: Mutt/1.7.1 (2016-10-04)
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-raspberrypi] taskhash mismatch
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,112 +73,88 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 14 Oct 2016 09:16:37 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 14 Oct 2016 09:25:38 -0000
+X-Groupsio-MsgNum: 32399
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="FFoLq8A0u+X9iRU8"
+Content-Disposition: inline
 
+--FFoLq8A0u+X9iRU8
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-
-On 10/14/2016 04:35 PM, Lock, Joshua G wrote:
-> On Fri, 2016-10-14 at 10:12 +0800, Robert Yang wrote:
->> Hi Paul and Scott,
->>
->> Here it is, and please feel free to comment, most of them are from
->> qemuboot.bbclass:
->>
->> The new runqemu is a python script, it requires a
->> <image-name>-<machine>.qemuboot.conf to boot the bsp, the
->> qemuboot.conf
->> is generated by qemuboot.bbclass during build rootfs, qemu boot
->> arguments can be set in bsp's conf file, and qemuboot.bbclass will
->> save
->> them to qemuboot.conf.
+On Sun, Oct 02, 2016 at 10:34:22AM -0400, Trevor Woerner wrote:
+> Hi,
 >
-> Can we also document when qemuboot.conf required and what benefits it
-> brings? Previous usage patterns should also be supported, right?
-
-Yes, the benefit is that the machine knowledge are not hardcoded into
-runqemu any more, the bsp can define its own arguments to make it can be
-boot by runqemu. And previous usage patterns also be supported.
-
-// Robert
-
+> For the last week or so my raspberry pi builds have been failing with:
 >
-> Thanks,
+> ERROR: core-image-minimal-1.0-r0 do_image_rpi_sdimg: Taskhash mismatch 2920e557ac3a011d5679a52590cb664d versus a47bfc12fdfa29c58fe72cf8e0a28e91 for /z/raspi2/poky/meta/recipes-core/images/core-image-minimal.bb.do_image_rpi_sdimg
+> ERROR: Taskhash mismatch 2920e557ac3a011d5679a52590cb664d versus a47bfc12fdfa29c58fe72cf8e0a28e91 for /z/raspi2/poky/meta/recipes-core/images/core-image-minimal.bb.do_image_rpi_sdimg
 >
-> Joshua
+> This is with both poky and oe+bitbake, master branches all around, and fully
+> up-to-date. Before sending this email I pulled yet again and re-tested just to
+> confirm.
 >
->>
->> Note, "QB" means Qemu Boot, the following vars can be set in conf
->> files, such as <bsp.conf> to make it can be boot by runqemu:
->>
->> QB_SYSTEM_NAME: qemu name, e.g., "qemu-system-i386"
->> QB_OPT_APPEND: options to append to qemu, e.g., "-show-cursor"
->> QB_DEFAULT_KERNEL: default kernel to boot, e.g., "bzImage"
->> QB_DEFAULT_FSTYPE: default FSTYPE to boot, e.g., "ext4"
->> QB_MEM: memory, e.g., "-m 512"
->> QB_MACHINE: qemu machine, e.g., "-machine virt"
->> QB_CPU: qemu cpu, e.g., "-cpu qemu32"
->> QB_CPU_KVM: the similar to QB_CPU, but used when kvm, e.g., '-cpu
->> kvm64',
->>              set it when support kvm.
->> QB_KERNEL_CMDLINE_APPEND: options to append to kernel's -append
->>                            option, e.g., "console=ttyS0 console=tty"
->> QB_DTB: qemu dtb name
->> QB_AUDIO_DRV: qemu audio driver, e.g., "alsa", set it when support
->> audio
->> QB_AUDIO_OPT: qemu audio option, e.g., "-soundhw ac97,es1370", used
->>                when QB_AUDIO_DRV is set.
->> QB_KERNEL_ROOT: kernel's root, e.g., /dev/vda
->> QB_TAP_OPT: netowrk option for 'tap' mode, e.g.,
->>              "-netdev tap,id=net0,ifname=@TAP@,script=no,downscript=n
->> o -device
->> virtio-net-device,netdev=net0"
->>               Note, runqemu will replace "@TAP@" with the one which
->> is used,
->> such as tap0, tap1 ...
->> QB_SLIRP_OPT: network option for SLIRP mode, e.g.,
->>              "-netdev user,id=net0 -device virtio-net-
->> device,netdev=net0"
->> QB_ROOTFS_OPT: used as rootfs, e.g.,
->>                "-drive id=disk0,file=@ROOTFS@,if=none,format=raw
->> -device
->> virtio-blk-device,drive=disk0"
->>               Note, runqemu will replace "@ROOTFS@" with the one
->> which is used,
->> such as core-image-minimal-qemuarm64.ext4.
->> QB_SERIAL_OPT: serial port, e.g., "-serial mon:stdio"
->> QB_TCPSERIAL_OPT: tcp serial port option, e.g.,
->>                    " -device virtio-serial-device -chardev
->> socket,id=virtcon,port=@PORT@,host=127.0.0.1 -device
->> virtconsole,chardev=virtcon"
->>                    Note, runqemu will replace "@PORT@" with the port
->> number
->> which is used.
->>
->> Usage:
->> IMAGE_CLASSES += "qemuboot"
->> See "runqemu help" for more info
->>
->> // Robert
->>
->> On 10/14/2016 09:48 AM, Paul Eggleton wrote:
->>>
->>> Hi folks,
->>>
->>> We need some info for the migration section of the 2.2 manual about
->>> what the
->>> user needs to do to adapt to the new python-based runqemu. Robert /
->>> Joshua,
->>> can one of you please write something short that explains what
->>> users need to
->>> do (i.e. changes to the metadata for BSPs, or any other changes in
->>> operation)?
->>> It doesn't need to be polished, Scott Rifenbark will take care of
->>> that. Just
->>> replying to this email with Scott on CC should be sufficient.
->>>
->>> Thanks,
->>> Paul
->>>
+> Poky:
+>
+> 	Build Configuration:
+> 	BB_VERSION        = "1.31.1"
+> 	BUILD_SYS         = "x86_64-linux"
+> 	NATIVELSBSTRING   = "SUSELINUX-42.1"
+> 	TARGET_SYS        = "arm-poky-linux-gnueabi"
+> 	MACHINE           = "raspberrypi"
+> 	DISTRO            = "poky"
+> 	DISTRO_VERSION    = "2.1+snapshot-20161002"
+> 	TUNE_FEATURES     = "arm armv6  vfp arm1176jzfs callconvention-hard"
+> 	TARGET_FPU        = "hard"
+> 	meta
+> 	meta-poky         = "master:3a73fe0efcb7aeefcca7011bba887caad03d4d03"
+> 	meta-raspberrypi  = "master:4817e2c087097c02755d6309304878e42cf61d3c"
+>
+> OE + bitbake:
+>
+> 	Build Configuration:
+> 	BB_VERSION        = "1.31.1"
+> 	BUILD_SYS         = "x86_64-linux"
+> 	NATIVELSBSTRING   = "SUSELINUX-42.1"
+> 	TARGET_SYS        = "arm-oe-linux-gnueabi"
+> 	MACHINE           = "raspberrypi"
+> 	DISTRO            = "nodistro"
+> 	DISTRO_VERSION    = "nodistro.0"
+> 	TUNE_FEATURES     = "arm armv6  vfp arm1176jzfs callconvention-hard"
+> 	TARGET_FPU        = "hard"
+> 	meta              = "master:21cc2a3f63ea260dbf6b50e2fd4dd50cacdd9935"
+> 	meta-raspberrypi  = "master:4817e2c087097c02755d6309304878e42cf61d3c"
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
+I know I'm kinda late to the party but just wanted to say that this was
+fixed in master. Cheers!
+
+--
+Andrei Gherzan
+
+--FFoLq8A0u+X9iRU8
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIcBAEBCAAGBQJYAKRqAAoJEHO76Gt+erfPa10P/3wBSKoeNBm8NQlLaJ8TbWot
+TlfTKH4hRo1UorHi2ojQbeSBABbFVGsyDLnYpZyTXlLIuA0/4CXQ/WyCJzpxxToz
+0xnynmXaDxVc+edK3pOeYxHEb/e4snSTiiDkRytw3EGRgpX9dVNzUgQWCIE5pVwp
+5BTBKwkHpVBDMLAqe9ChHN+/2EAeZwTKBrae2TX4ksxYdWZhxm7ZLf7zsxLdPSvl
+T1LcFQfeTJteYM7i0wcnvk23GC9r1nRVLtiPMWLP22z2aDsC+ojl05TF4s0Vppt8
+ERhDQXMxT3K3C7IPOyFlVYsKrHfe+TJO4CqiALXB5Koz+Ni/O1ocgj6kgsglLxXJ
+uAhpqGOdqnTbT0oW1FpbNQ2XSJ75Wa1s8PxuMHMAK8jimCYWgVbZKRZSig9JYVOk
+tmtCUPInqDl2PJY4+H+NNG4vp7UfbVc6ENYhT8nUUO5zfm3vaYBV5VGdcv041xJ5
+Y3FsyTZjKpzryUBuC9hCuKUsWE/fXn9WdNmzn7AoAJ173E+U0OKOaoULaTMFwQ67
+z2bOdQxiLS/NCtdR2TC+dusKagHInltWgrqlSnW+fYMcLPMlfur2e4mCCewQGB0W
+RJukqnrtPGwvZIGX+hkz10Eel8QbHbMZPrgVGICmdao4JcQkrqo1ttfstwptMQdv
+2h/Ai7szumgrRhrS+Iw8
+=wb9N
+-----END PGP SIGNATURE-----
+
+--FFoLq8A0u+X9iRU8--
