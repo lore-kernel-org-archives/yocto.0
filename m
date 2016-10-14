@@ -1,85 +1,67 @@
-Return-Path: <gmane@reliableembeddedsystems.com>
+Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 15739E00E73; Fri, 14 Oct 2016 03:32:49 -0700 (PDT)
+	id 25045E00E96; Fri, 14 Oct 2016 05:40:03 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.220.193 listed in dnsbl.sorbs.net]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [184.154.58.228 listed in list.dnswl.org]
-X-Greylist: delayed 3553 seconds by postgrey-1.32 at yocto-www;
-	Fri, 14 Oct 2016 03:32:45 PDT
-Received: from delivery.mailspamprotection.com
-	(delivery.mailspamprotection.com [184.154.58.228])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D7652E00CCD
-	for <yocto@yoctoproject.org>; Fri, 14 Oct 2016 03:32:45 -0700 (PDT)
-Received: from ns1.siteground282.com ([184.154.233.8] helo=siteground282.com)
-	by se10.mailspamprotection.com with esmtps
-	(TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.86)
-	(envelope-from <gmane@reliableembeddedsystems.com>)
-	id 1buyrq-0005Pl-OK
-	for yocto@yoctoproject.org; Fri, 14 Oct 2016 04:33:31 -0500
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=reliableembeddedsystems.com; s=dkim;
-	h=Message-ID:References:In-Reply-To:
-	Subject:Cc:To:From:Date:Content-Transfer-Encoding:Content-Type:MIME-Version;
-	bh=cEVWt6v/n/nd1VE7lwWb1NpIvZizZc4lzc1l3Kcd6fw=;
-	b=f2nO8UtdS/CJovoeT6SoOJrHt
-	UO8js9gauSosomsO8dxW2XrUzhdipoL5hGa4wo/Xclao0w176ymWjxo68QOu9E1l2Dq2LMONk4A4f
-	EumoAh0v9U+f3Egf+IYrV0cf++lNV7bZgTnfsC9vfkdN9BhXfGqDYLXgAwy9r1Zu0JJp4=; 
-Received: from [127.0.0.1] (port=35312 helo=secure282.sgcpanel.com)
-	by siteground282.com with esmtpa (Exim 4.86_2)
-	(envelope-from <gmane@reliableembeddedsystems.com>)
-	id 1buyrp-0001MJ-F0; Fri, 14 Oct 2016 04:33:29 -0500
+	*      [209.85.220.193 listed in list.dnswl.org]
+Received: from mail-qk0-f193.google.com (mail-qk0-f193.google.com
+	[209.85.220.193])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C876EE00E53
+	for <yocto@yoctoproject.org>; Fri, 14 Oct 2016 05:40:00 -0700 (PDT)
+Received: by mail-qk0-f193.google.com with SMTP id n189so8488557qke.1
+	for <yocto@yoctoproject.org>; Fri, 14 Oct 2016 05:40:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-disposition:in-reply-to:user-agent;
+	bh=l23X2kcxXarDo2FC1E3VGn+xnyw/FQ1kX/tH6FlDW/w=;
+	b=ZD654L7FTvTAU82KNjZUuNeahe2wknq2GM0vgXT/x2w0wxQndwfr4xSvLvtJMXeK2h
+	MLVEW7SJdKf8DktSAB6lxaPcqWKmu+xyePDH9+zrannDRrQhKwwIvs7wMuNBBbnUVhgj
+	6O8uKf3ysW5mLexD/Pp6s/hEemrE4UyveE3fQskG3ZYOHXP4UwIv4VCtTObhhI03xMlH
+	4lwlAy4JIWeQkwX25/BaK+32LZcRWuB/SZDgomynH62HQmktP67KaX13HiCAq/8hYlgf
+	wYXg6wGwXpFmWZArbm4sMVPagh16B5eEKL0S0jB0O7m+MYtFreN4o/OPTahPaQvt+Kd0
+	QC6w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	:mime-version:content-disposition:in-reply-to:user-agent;
+	bh=l23X2kcxXarDo2FC1E3VGn+xnyw/FQ1kX/tH6FlDW/w=;
+	b=K+gPiDTDOnFktGmTmMEJECMimWQ6bsiNhq21aLBEU9/j0HxkWKQQwyQ3PpCNvAoXr+
+	CdI8QeU21qKXDD2v5hfklsQYWU4uPagi+I1zvrTzYrKJ146ttRaQ66ILazu6JSe664Ci
+	uSvFKtLmLmVQ6rdkgp7OqMZqBjsVPPEIrTIf2H96w98s7gdjzSXsQi1BtILcNI/kO6Ki
+	Q8bF5KsCM0D64DLDVA+cKyjHB+dg7IZ7BcHXMQz2nC9O8sTJn21gTjVUnOPILl2r3qs/
+	TzSWegiDB9Vzme09IfIhnWnFBI6zBM95FR3A5L9lGT9yubHdI/FJQOmSbIU3BGUhMm0A
+	1YrA==
+X-Gm-Message-State: AA6/9RkNAKiK3WNOxv12Cw28Nmt/XseYeOq9V/B2fAgffh7casT8ecFVwsA7yOHMIr7uHA==
+X-Received: by 10.194.78.42 with SMTP id y10mr1880066wjw.104.1476448799725;
+	Fri, 14 Oct 2016 05:39:59 -0700 (PDT)
+Received: from resin ([88.128.80.33]) by smtp.gmail.com with ESMTPSA id
+	bl3sm31581286wjc.26.2016.10.14.05.39.57
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Fri, 14 Oct 2016 05:39:58 -0700 (PDT)
+Date: Fri, 14 Oct 2016 13:39:50 +0100
+From: Andrei Gherzan <andrei@gherzan.ro>
+To: Samuli Piippo <samuli.piippo@qt.io>
+Message-ID: <20161014123950.GA29587@resin>
+References: <1475574694-25319-1-git-send-email-samuli.piippo@qt.io>
 MIME-Version: 1.0
-Date: Fri, 14 Oct 2016 04:33:29 -0500
-From: gmane@reliableembeddedsystems.com
-To: Joshua Lock <joshua.g.lock@linux.intel.com>
-In-Reply-To: <1476437255.7662.1.camel@linux.intel.com>
-References: <35ab47fa82f7707f84e445919ddbbef5@reliableembeddedsystems.com>
-	<1476394173.3034.13.camel@intel.com>
-	<e3a14ab26616aab0dc71e7f8360a5af1@reliableembeddedsystems.com>
-	<1476437255.7662.1.camel@linux.intel.com>
-Message-ID: <ce19b1f43eaf8f09c2aea56dfdfb194e@reliableembeddedsystems.com>
-X-Sender: gmane@reliableembeddedsystems.com
-User-Agent: Roundcube Webmail/1.1.4
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - siteground282.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - reliableembeddedsystems.com
-X-Filter-ID: s0sct1PQhAABKnZB5plbIWEcM0d9a2K3OcfFeaASvaIT05e+4t99MpEggFbXzbnhttgCKkcBtGCa
-	+yWmGXl+/0OdHUzGyIWSzveO/M+HlaVWShQ0+uJXiDSCp280tJFsbX/3TQnYbqlNHxpi9XBHG8Jz
-	8WfReHqUOdh1n/PPcFzPrTWUZW4Hy4IeOh2rVk0FFWNxK0WZwIaGWKuoisLM5Fz1pRXWhjh9fdbl
-	44I0Df1bDJmuEytGOjhN7+VkHzjLSbBIxrv0tc9XqsVkeAX6S7iXkMXDFHgBzeWjk6Zbtb6ZULs/
-	x/wiY4bOQVH/H0QQPBfyCUQPGRfAuQJyQcUhQ4/Ia6YN5m0MsQWfYUYaa1Lo0EEGTh9WNZgruaGG
-	pyvdI7qaN8yfURviR8OTeMmKUqzo7AcUqNzrkO1kQ1IW8ac6xxrycw2ScA+2hbCxTNV1lHIbmw+x
-	cBDSXBmIVsiBPGIW1l+d5u2ITozWClL6/rEu//nzk76lak4ojODbJHHE/Dw6ORF2hyiPywks80fx
-	SU3VhpzTalbJG9pSL0Hyv/WnnxF0rh7QmTz7opAw1zOChLHHE9xOD3HLtj72QQ7kSxhlvQgLtgdW
-	oDpnCQASakL21rVoYghgZ72n8IglF2KyASJFC/49WOPBr5nlEUI4xJJI6kVHbf6/1xp7bVe8bc0j
-	1ipddsQaiG3fcemzEozYR9ZdiCmQnA0PXLI5Uu5bBSjbnjOATIPA7m6DQrsV2XQ=
-X-Report-Abuse-To: spam@quarantine1.mailspamprotection.com
-X-Originating-IP: 184.154.233.8
-X-SpamExperts-Domain: siteground282.com
-X-SpamExperts-Username: 184.154.233.8
-Authentication-Results: mailspamprotection.com;
-	auth=pass smtp.auth=184.154.233.8@siteground282.com
-X-SpamExperts-Outgoing-Class: ham
-X-SpamExperts-Outgoing-Evidence: Combined (0.19)
-X-Recommended-Action: accept
-Cc: yocto@yoctoproject.org, robert.berger@reliableembeddedsystems.com
-Subject: Re: [yocto-autobuilder][PATCH] PublishArtifacts.py: deal only with built toolchains, cp also md5 and manifests
+In-Reply-To: <1475574694-25319-1-git-send-email-samuli.piippo@qt.io>
+User-Agent: Mutt/1.7.1 (2016-10-04)
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-raspberrypi][PATCH] bluez5: correctly append brcm43438 service
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -91,30 +73,66 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 14 Oct 2016 10:32:49 -0000
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 14 Oct 2016 12:40:03 -0000
+X-Groupsio-MsgNum: 32403
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="lrZ03NoBR/3+SXJZ"
+Content-Disposition: inline
 
-Hi,
+--lrZ03NoBR/3+SXJZ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On 2016-10-14 04:27, Joshua Lock wrote:
-> 
-> This is a reasonable goal, but something I'd rather see addressed in
-> the proposed PublishArtifacts rewrite. As we're trying to release morty
-> right now I'd like to avoid changes to the AB behaviour until after the
-> release.
+On Tue, Oct 04, 2016 at 12:51:34PM +0300, Samuli Piippo wrote:
+> Cannot use += operator together with machine override.
+>
+> Signed-off-by: Samuli Piippo <samuli.piippo@qt.io>
+> ---
+>  recipes-connectivity/bluez5/bluez5_%.bbappend | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/recipes-connectivity/bluez5/bluez5_%.bbappend b/recipes-connectivity/bluez5/bluez5_%.bbappend
+> index 89798a4..956d776 100644
+> --- a/recipes-connectivity/bluez5/bluez5_%.bbappend
+> +++ b/recipes-connectivity/bluez5/bluez5_%.bbappend
+> @@ -23,4 +23,4 @@ FILES_${PN}_append_raspberrypi3 = " \
+>      /lib/firmware/brcm/BCM43430A1.hcd \
+>      "
+>
+> -SYSTEMD_SERVICE_${PN}_raspberrypi3 += "brcm43438.service"
+> +SYSTEMD_SERVICE_${PN}_append_raspberrypi3 = " brcm43438.service"
+> --
+> 1.9.1
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-I'm absolutely happy with this and eagerly waiting for morty.
-Please keep me updated so, as my time permits, I can test the new Y-AB 
-version.
+Megred to master. Thanks, Samuli.
 
-> 
-> Regards,
-> 
-> Joshua
+--
+Andrei Gherzan
 
-Regards,
+--lrZ03NoBR/3+SXJZ
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Robert
+-----BEGIN PGP SIGNATURE-----
 
+iQIcBAEBCAAGBQJYANIWAAoJEHO76Gt+erfPukEP/3c/LwwnzeRdQThkxD29g9bq
+SHruBeg+F9t0ByiHEQoXHQ84zdad7m1NwtQsa65RRLvLmJfjk5vGq2Ea+ds8oKqZ
+VxYHWlq3FeyK/Z1M2Yu3P++OVxzJMnK4eVD92J+Up1u7MUkvzqFE1J0mENUVnoNF
+zJ0zSimcWZDQqmpTddEOPiXhXSEmeJAgVg6VqDcHi+Ve7lpNCfhSRJpBCCD8eziH
+ycsyd5u6uZO4tcSBoxEF2yBVSSnbc9oChNMe2N5wrrwy9mAReeowaPw+a7+oeV7m
+fvewe5bbHUstKug6CETylBEcf+oORiDqlrQIcpfkFQjD7Rb1rcb3YJi6kZbVxynI
+Erih2RHzVsIoL6qu9ymooQmKFo1aKnYF8BavFpHbqvotksuCuJ2HP0FrZO3bKztV
+SQDZrSYjPVwDZ+6tNURAZ8+64gku817H4vbcg+37fDfUcu+y/rr1XQUWMdTps7QD
+8x+tjo1RDno6RXO9V/7FUkVCK2Fgn/ufF1uzjhVbj8zNMUOPTvr86uK83SphOaFk
+wTF+Oc1Zgi4wvuo4uaG2I3dDLoheUqaaj6ApM+Sl1vnZX5sqjVUvzbz8+n4lWVMF
+jMlsMwc5LabwKxhn6MG+5jUWNt12MxkMbsZ72Laj/+HlMsoUNXL0hGV/z0LrYXj0
+zQXMg/Wj+bQG+liK0Agc
+=ALN2
+-----END PGP SIGNATURE-----
+
+--lrZ03NoBR/3+SXJZ--
