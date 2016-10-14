@@ -1,35 +1,67 @@
-Return-Path: <michel.dhooge@free.fr>
+Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 52643E00E73; Thu, 13 Oct 2016 23:47:17 -0700 (PDT)
+	id 78DC2E00E53; Fri, 14 Oct 2016 00:16:54 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,FREEMAIL_FROM,
-	HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (michel.dhooge[at]free.fr)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [212.27.42.3 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.215.66 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from smtp3-g21.free.fr (smtp3-g21.free.fr [212.27.42.3])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C48A5E00CCA
-	for <yocto@yoctoproject.org>; Thu, 13 Oct 2016 23:47:14 -0700 (PDT)
-Received: from spooler3-g27.priv.proxad.net (unknown [172.20.243.239])
-	by smtp3-g21.free.fr (Postfix) with ESMTP id A233913F86A;
-	Fri, 14 Oct 2016 08:47:13 +0200 (CEST)
-Date: Fri, 14 Oct 2016 08:47:13 +0200 (CEST)
-From: Michel D'HOOGE <michel.dhooge@free.fr>
-To: Yocto list discussion <yocto@yoctoproject.org>
-Message-ID: <540845058.129423194.1476427633581.JavaMail.root@spooler3-g27.priv.proxad.net>
-In-Reply-To: <DB5PR01MB1880E760BA38D35D70B26DFB92DC0@DB5PR01MB1880.eurprd01.prod.exchangelabs.com>
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.215.66 listed in dnsbl.sorbs.net]
+Received: from mail-lf0-f66.google.com (mail-lf0-f66.google.com
+	[209.85.215.66])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 39FC9E00CCA
+	for <yocto@yoctoproject.org>; Fri, 14 Oct 2016 00:16:49 -0700 (PDT)
+Received: by mail-lf0-f66.google.com with SMTP id x23so10826130lfi.1
+	for <yocto@yoctoproject.org>; Fri, 14 Oct 2016 00:16:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-disposition:in-reply-to:user-agent;
+	bh=1EsWeXod0k3eTJEbeXZGHoSU56wwJ4I60IwHRsIgNbY=;
+	b=U4Pign50iBF33OoU4Qsn73qltj/hQqmqpfr0/V/yqbuajC8onp0GcLdMBrH+jzgGqP
+	erE8giiVpJgmYsKUPdLS/r01YbcWKyPLqBQmCdad+q6er95GT2/Cd0cnlxJzPtYPZPuS
+	2oii7S3+IHBBsa3IgGfTQ5rKvWbpFNu2UZ2JN1l1ewBeJNo7sbe0f8oShDkN+TePJQLJ
+	7F30gE6iQpXimR7RWvkasMS3xUnvOAk+GatNrQd2sb5jOa8iC3CbaBHVijlE19Y5YHCR
+	cP6z/UVgQTxjbIiwfVVa1BKJXTYPJN8i92IqGO+NFbGCbX0IhyvTs7z87c2nEkeSc31h
+	ndNA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	:mime-version:content-disposition:in-reply-to:user-agent;
+	bh=1EsWeXod0k3eTJEbeXZGHoSU56wwJ4I60IwHRsIgNbY=;
+	b=NWSLy/zmYI1/wkZnIfKxpjWUCtyximZc3zUrYLH8RVxuxxtIfaxkMXleqCGhc4Lh8V
+	mdmt+TTDbY22bUgX+sOXrUC4icSZWKxQuV5aJ9NzhG32vIkoyuyggs54yBDZoEWo9Eyn
+	oAyZdw3j29B7OS1VxVBZ6smyo8OJylI8naOQ6CUtjpwPkJ9FNBueiibUlkKH2IgeYJLs
+	gBJRRIYj6GZ1HTZXZOvTg8zv3LLabNGeAxyWZvJn2Xcp4ztJo+dyBrSQOFRoAbdCtfLr
+	AkRRYJiHs8YYzMAuc/BgtLpVM+z+vp+kp6KvRPKQGcV9tU440B1dNcTAh9zJl7kcBWNy
+	c64w==
+X-Gm-Message-State: AA6/9RnNQPJ6NGmX8uco9elpaKZh7n17WzCiSCogi5JDZHACzlARx6TvyDkI+07Yg/5Gcw==
+X-Received: by 10.194.127.5 with SMTP id nc5mr1044135wjb.16.1476429407725;
+	Fri, 14 Oct 2016 00:16:47 -0700 (PDT)
+Received: from resin ([88.128.80.31]) by smtp.gmail.com with ESMTPSA id
+	qa7sm29373016wjc.39.2016.10.14.00.16.46
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Fri, 14 Oct 2016 00:16:47 -0700 (PDT)
+Date: Fri, 14 Oct 2016 08:16:38 +0100
+From: Andrei Gherzan <andrei@gherzan.ro>
+To: Khem Raj <raj.khem@gmail.com>
+Message-ID: <20161014071638.GA28288@resin>
+References: <20161007020906.32228-1-raj.khem@gmail.com>
 MIME-Version: 1.0
-X-Originating-IP: [89.225.253.195]
-X-Mailer: Zimbra 7.2.0-GA2598 (ZimbraWebClient - GC53 (Linux)/7.2.0-GA2598)
-X-Authenticated-User: michel.dhooge@free.fr
-Subject: Re: Merging a custom SDK with meta-toolchain-qt5
+In-Reply-To: <20161007020906.32228-1-raj.khem@gmail.com>
+User-Agent: Mutt/1.7.1 (2016-10-04)
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-raspberrypi][PATCH 1/4] linux-raspberrypi_4.4: Upgrade to 4.4.23
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,210 +73,110 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 14 Oct 2016 06:47:17 -0000
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_129423193_361215842.1476427633580"
+X-List-Received-Date: Fri, 14 Oct 2016 07:16:54 -0000
+X-Groupsio-MsgNum: 32391
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="YiEDa0DAkWCtVeE4"
+Content-Disposition: inline
 
-------=_Part_129423193_361215842.1476427633580
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+--YiEDa0DAkWCtVeE4
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Hi Karim,=20
+On Thu, Oct 06, 2016 at 07:09:03PM -0700, Khem Raj wrote:
+> Drop upstreamed patch
+>
+> Signed-off-by: Khem Raj <raj.khem@gmail.com>
+> ---
+>  .../0002-vc4-ioctl-rendering-allow.patch           | 29 ----------------------
+>  recipes-kernel/linux/linux-raspberrypi_4.4.bb      |  5 ++--
+>  2 files changed, 2 insertions(+), 32 deletions(-)
+>  delete mode 100644 recipes-kernel/linux/linux-raspberrypi-4.4/0002-vc4-ioctl-rendering-allow.patch
+>
+> diff --git a/recipes-kernel/linux/linux-raspberrypi-4.4/0002-vc4-ioctl-rendering-allow.patch b/recipes-kernel/linux/linux-raspberrypi-4.4/0002-vc4-ioctl-rendering-allow.patch
+> deleted file mode 100644
+> index 59d0ed7..0000000
+> --- a/recipes-kernel/linux/linux-raspberrypi-4.4/0002-vc4-ioctl-rendering-allow.patch
+> +++ /dev/null
+> @@ -1,29 +0,0 @@
+> -This patch has been accepted upstream in kernel 4.7-rc3
+> -But it has not yet been backported to 4.4...
+> -Upstream-Status: Accepted [http://www.gossamer-threads.com/lists/linux/kernel/2459302]
+> -Signed-off-by: Herve Jourdain <herve.jourdain@neuf.fr>
+> ----
+> -
+> -diff --git a/drivers/gpu/drm/vc4/vc4_drv.c b/drivers/gpu/drm/vc4/vc4_drv.c
+> -index a5b68c1..14b5ec1 100644
+> ---- a/drivers/gpu/drm/vc4/vc4_drv.c
+> -+++ b/drivers/gpu/drm/vc4/vc4_drv.c
+> -@@ -75,12 +75,12 @@ static const struct file_operations vc4_drm_fops = {
+> - };
+> -
+> - static const struct drm_ioctl_desc vc4_drm_ioctls[] = {
+> --	DRM_IOCTL_DEF_DRV(VC4_SUBMIT_CL, vc4_submit_cl_ioctl, 0),
+> --	DRM_IOCTL_DEF_DRV(VC4_WAIT_SEQNO, vc4_wait_seqno_ioctl, 0),
+> --	DRM_IOCTL_DEF_DRV(VC4_WAIT_BO, vc4_wait_bo_ioctl, 0),
+> --	DRM_IOCTL_DEF_DRV(VC4_CREATE_BO, vc4_create_bo_ioctl, 0),
+> --	DRM_IOCTL_DEF_DRV(VC4_MMAP_BO, vc4_mmap_bo_ioctl, 0),
+> --	DRM_IOCTL_DEF_DRV(VC4_CREATE_SHADER_BO, vc4_create_shader_bo_ioctl, 0),
+> -+	DRM_IOCTL_DEF_DRV(VC4_SUBMIT_CL, vc4_submit_cl_ioctl, 0|DRM_RENDER_ALLOW),
+> -+	DRM_IOCTL_DEF_DRV(VC4_WAIT_SEQNO, vc4_wait_seqno_ioctl, 0|DRM_RENDER_ALLOW),
+> -+	DRM_IOCTL_DEF_DRV(VC4_WAIT_BO, vc4_wait_bo_ioctl, 0|DRM_RENDER_ALLOW),
+> -+	DRM_IOCTL_DEF_DRV(VC4_CREATE_BO, vc4_create_bo_ioctl, 0|DRM_RENDER_ALLOW),
+> -+	DRM_IOCTL_DEF_DRV(VC4_MMAP_BO, vc4_mmap_bo_ioctl, 0|DRM_RENDER_ALLOW),
+> -+	DRM_IOCTL_DEF_DRV(VC4_CREATE_SHADER_BO, vc4_create_shader_bo_ioctl, 0|DRM_RENDER_ALLOW),
+> - 	DRM_IOCTL_DEF_DRV(VC4_GET_HANG_STATE, vc4_get_hang_state_ioctl,
+> - 			  DRM_ROOT_ONLY),
+> - };
+> diff --git a/recipes-kernel/linux/linux-raspberrypi_4.4.bb b/recipes-kernel/linux/linux-raspberrypi_4.4.bb
+> index 9a49dc1..4b15f88 100644
+> --- a/recipes-kernel/linux/linux-raspberrypi_4.4.bb
+> +++ b/recipes-kernel/linux/linux-raspberrypi_4.4.bb
+> @@ -1,10 +1,9 @@
+>  FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
+>
+> -LINUX_VERSION ?= "4.4.16"
+> +LINUX_VERSION ?= "4.4.23"
+>
+> -SRCREV = "cff67c7e03f4333149f2a8f6eafd3bc44475114a"
+> +SRCREV = "c2a1d975537fcac01da80ce34f10bc491620a64e"
+>  SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-4.4.y \
+>             file://0001-fix-dtbo-rules.patch \
+> -           file://0002-vc4-ioctl-rendering-allow.patch \
+>  "
+>  require linux-raspberrypi.inc
+> --
+> 2.10.0
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-I understand your problem but unfortunately I still have a limited understa=
-nding of the intrication of the whole metadata system=E2=80=A6=20
+Merged to master the entire patch set. Thanks.
 
-The good news is that the meta-toolchain-qt5 recipe is quite empty. So I th=
-ink your best option is to patch the populate_sdk task to include what is a=
-dded by the qt5 layer. Once you have something working, you can then think =
-on how to make it more permanent.=20
+--
+Andrei Gherzan
 
-grep & find will be your best friends --- at least, they are for me ;-)=20
+--YiEDa0DAkWCtVeE4
+Content-Type: application/pgp-signature; name="signature.asc"
 
-M.=20
+-----BEGIN PGP SIGNATURE-----
 
------ Mail original -----
+iQIcBAEBCAAGBQJYAIZWAAoJEHO76Gt+erfP2MYP/Aua7mabLw2OC4ZaYvVX146v
+sGy8Sj7KNoJfPbxNarDNuZZ7HioMGHNpSpJoZgGtL2/AFdsIkfqr8YyKHx5Hj0pa
+LN0niPnGz+3rA94yuRnCPPdU0I+3ClzPQZwAdVgf769IIwQIwG7Bp2go2iaewXCp
+8GfjJfnlHGHTto4g43Y19ReAKY5WCHbjIFh8Ci3mYmhatAzU1CV2u81mN+q2jT8Y
+zCGcnSatgxEc6NunnGCUEdQamzfSiZPVqr7KDenEXZLzcwm8wirMOiR0BoVlw+fK
+Sl2qDy/GYsL3jBYX1w4LBid3/zlATgjkncIfbeggvrZWFoOgJUDQnjTTUm2AGFkz
+WKn+PIlV8JA1ndMovbHBC4kHLVT5uZ5MTCnSatbz/hMsUndF/E4igqNL2FG7Wcz3
+2lJehryHx4Y41FHOqbmZXCyK8m8vvIY29Xu6MID3k6GCKp+Idlbs3M4JcN/MkSRb
+O6k9xpBoeCuad/UfE8KyF3oNf/O8sQk9h0APiPsnjA9wBFeX2dn2NGyNhVfYXwfs
+zO/c7RGfWPbqEf2s04/ThK8d2WAB+JluVB0CItCFVM+QY7CtuwXW/CQiUAOTJVu8
+tLgxZSqIx13s6hHuJQ50jziNRCbzBxhEqBhlr38Vn0ORYu4c7fyO/jdpN7mjeZyx
+QPwCZfWqeTDNYQfWLObr
+=OndU
+-----END PGP SIGNATURE-----
 
-> De: "Karim ATIKI" <karim_atiki@hotmail.com>
-> =C3=80: "Michel D'HOOGE" <michel.dhooge@free.fr>
-> Envoy=C3=A9: Jeudi 13 Octobre 2016 17:46:59
-> Objet: RE: [yocto] Merging a custom SDK with meta-toolchain-qt5
-
-> Hi Michel,
-
-> Indeed, with my first image, I've generated the sdk as follow:
-
-> $ bitbake -c populate_sdk my-image-name
-
-> In the "my-image-name.bb" I've added features :
-
-> IMAGE_INSTALL_append =3D " foo gtk+3 libstdc++ "
-> SDKIMAGE_FEATURES_append =3D " libstdc++-dev "
-
-> So the resulting sdk contained all the necessary headers I needed,
-> including libgtk+.so and its respective header files.
-
-> I've created a new image, my-qtimage.bb" based on "my-image-name.bb".
-> I've included all Qt5 stuff with IMAGE_INSTALL_append =3D " qtbase qt3d
-> ... "
-> The image is generated fine. Good.
-
-> Then, to generate the SDK instead of doing that:
-> $ bitbake -c populate_sdk my-qtimage
-
-> I've prefered using the dedicated recipe of meta-qt5:
-> $ bitbake meta-toolchainqt5
-
-> But of course it did not include my features above.
-> I just wonder what would be the best solution to achieve it correctly
-> ?
-
-> Writing a meta-toolchainqt5.bbapend ?
-
-> Karim
-
-> De : Michel D'HOOGE <michel.dhooge@free.fr>
-> Envoy=C3=A9 : jeudi 13 octobre 2016 17:11
-> =C3=80 : yocto
-> Cc : Karim ATIKI
-> Objet : Re: [yocto] Merging a custom SDK with meta-toolchain-qt5
-
-> Hi,
-
-> > Is there a way to customize the meta-toolchain-qt5 so that it
-> > installs the features declared in the SDKIMAGE_FEATURES above ?
-
-> How did you generate the Qt5 toolchain? Because according to the
-> reference manual:
-> The SDKIMAGE_FEATURES is e quivalent to IMAGE_FEATURES. However, this
-> variable applies to the SDK generated from an image using the
-> following command:
-> $ bitbake -c populate_sdk imagename
-
-> There is a populate_sdk_qt5 class in meta-qt5. But I don't know how
-> to merge this with the previous command :-/
-
-> Michel
-
-------=_Part_129423193_361215842.1476427633580
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-<html><head><style type=3D'text/css'>p { margin: 0; }</style></head><body><=
-div style=3D'font-family: times new roman,new york,times,serif; font-size: =
-12pt; color: #000000'>Hi Karim,<div><br></div><div>I understand your proble=
-m but unfortunately I still have a limited understanding of the intrication=
- of the whole metadata system=E2=80=A6</div><div><br></div><div>The good ne=
-ws is that the <span style=3D"font-size: 12pt;">meta-toolchain-qt5 recipe i=
-s quite empty. So I think your best option is to patch the populate_sdk tas=
-k to include what is added by the qt5 layer. Once you have something workin=
-g, you can then think on how to make it more permanent.</span></div><div><b=
-r></div><div>grep &amp; find will be your best friends --- at least, they a=
-re for me ;-)<br><br>M.</div><div><br><hr id=3D"zwchr"><blockquote style=3D=
-"border-left:2px solid rgb(16, 16, 255);margin-left:5px;padding-left:5px;co=
-lor:#000;font-weight:normal;font-style:normal;text-decoration:none;font-fam=
-ily:Helvetica,Arial,sans-serif;font-size:12pt;"><b>De: </b>"Karim ATIKI" &l=
-t;karim_atiki@hotmail.com&gt;<br><b>=C3=80: </b>"Michel D'HOOGE" &lt;michel=
-.dhooge@free.fr&gt;<br><b>Envoy=C3=A9: </b>Jeudi 13 Octobre 2016 17:46:59<b=
-r><b>Objet: </b>RE: [yocto] &nbsp;Merging a custom SDK with meta-toolchain-=
-qt5<br><br>
-
-
-<style style=3D"display:none;"><!-- P {margin-top:0;margin-bottom:0;} --></=
-style>
-
-
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
--family:Calibri,Arial,Helvetica,sans-serif;">
-<p>Hi Michel,</p>
-<p><br>
-</p>
-<p>Indeed, with my first image, I've generated the sdk as follow:</p>
-<p><br>
-</p>
-<p>$ bitbake -c populate_sdk my-image-name</p>
-<p><br>
-</p>
-<p>In the "my-image-name.bb" I've added features :</p>
-<p><br>
-</p>
-<p>IMAGE_INSTALL_append =3D " foo&nbsp;gtk+3 libstdc++ "</p>
-<p>SDKIMAGE_FEATURES_append =3D "&nbsp;libstdc++-dev "</p>
-<p><br>
-</p>
-<p>So the resulting sdk contained all the necessary headers I needed, inclu=
-ding libgtk+.so and its respective header files.</p>
-<p><br>
-</p>
-<p>I've created a new image, my-qtimage.bb"&nbsp;&nbsp;based on "my-image-n=
-ame.bb".</p>
-<p>I've included all Qt5 stuff with IMAGE_INSTALL_append =3D " qtbase qt3d =
-... "</p>
-<p>The image is generated fine. Good.</p>
-<p><br>
-</p>
-<p><br>
-</p>
-<p>Then, to generate the SDK&nbsp;instead of doing that:</p>
-<p>$ bitbake -c populate_sdk my-qtimage&nbsp;</p>
-<p><br>
-</p>
-<p>I've prefered using the dedicated recipe of meta-qt5:</p>
-<p><span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot=
-;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot=
-;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size:=
- 16px;">$ bitbake meta-toolchainqt5</span><br>
-</p>
-<div><br>
-</div>
-But of course it did not include my features above.
-<div>I just wonder what would be the best solution to achieve it correctly =
-?</div>
-<div><br>
-</div>
-<div>Writing a meta-toolchainqt5.bbapend ?</div>
-<div><br>
-</div>
-<div>Karim</div>
-<div><br>
-<div style=3D"color: rgb(0, 0, 0);">
-<div>
-<hr style=3D"display:inline-block; width:98%">
-<div id=3D"x_divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" =
-color=3D"#000000" style=3D"font-size:11pt"><b>De :</b> Michel D'HOOGE &lt;m=
-ichel.dhooge@free.fr&gt;<br>
-<b>Envoy=C3=A9 :</b> jeudi 13 octobre 2016 17:11<br>
-<b>=C3=80 :</b> yocto<br>
-<b>Cc&nbsp;:</b> Karim ATIKI<br>
-<b>Objet :</b> Re: [yocto] Merging a custom SDK with meta-toolchain-qt5</fo=
-nt>
-<div>&nbsp;</div>
-</div>
-</div>
-<font size=3D"2"><span style=3D"font-size:10pt;">
-<div class=3D"PlainText">Hi, <br>
-<br>
-&gt; Is there a way to customize the meta-toolchain-qt5 so that it<br>
-&gt; installs the features declared in the SDKIMAGE_FEATURES above ?<br>
-<br>
-How did you generate the Qt5 toolchain? Because according to the reference =
-manual:
-<br>
-The SDKIMAGE_FEATURES is e quivalent to IMAGE_FEATURES. However, this varia=
-ble applies to the SDK generated from an image using the following command:
-<br>
-$ bitbake -c populate_sdk imagename<br>
-<br>
-There is a populate_sdk_qt5 class in meta-qt5. But I don't know how to merg=
-e this with the previous command :-/<br>
-<br>
-Michel<br>
-</div>
-</span></font></div>
-</div>
-</div>
-
-
-</blockquote><br></div></div></body></html>
-
-------=_Part_129423193_361215842.1476427633580--
+--YiEDa0DAkWCtVeE4--
