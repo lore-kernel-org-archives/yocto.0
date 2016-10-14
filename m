@@ -1,6 +1,6 @@
 Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 78DC2E00E53; Fri, 14 Oct 2016 00:16:54 -0700 (PDT)
+	id D241EE00E53; Fri, 14 Oct 2016 00:43:01 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,58 +10,58 @@ X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
 	*      [209.85.215.66 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.215.66 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.215.66 listed in dnsbl.sorbs.net]
 Received: from mail-lf0-f66.google.com (mail-lf0-f66.google.com
 	[209.85.215.66])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 39FC9E00CCA
-	for <yocto@yoctoproject.org>; Fri, 14 Oct 2016 00:16:49 -0700 (PDT)
-Received: by mail-lf0-f66.google.com with SMTP id x23so10826130lfi.1
-	for <yocto@yoctoproject.org>; Fri, 14 Oct 2016 00:16:48 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 31F4AE00CCA
+	for <yocto@yoctoproject.org>; Fri, 14 Oct 2016 00:42:58 -0700 (PDT)
+Received: by mail-lf0-f66.google.com with SMTP id b75so16535233lfg.3
+	for <yocto@yoctoproject.org>; Fri, 14 Oct 2016 00:42:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
 	h=date:from:to:cc:subject:message-id:references:mime-version
 	:content-disposition:in-reply-to:user-agent;
-	bh=1EsWeXod0k3eTJEbeXZGHoSU56wwJ4I60IwHRsIgNbY=;
-	b=U4Pign50iBF33OoU4Qsn73qltj/hQqmqpfr0/V/yqbuajC8onp0GcLdMBrH+jzgGqP
-	erE8giiVpJgmYsKUPdLS/r01YbcWKyPLqBQmCdad+q6er95GT2/Cd0cnlxJzPtYPZPuS
-	2oii7S3+IHBBsa3IgGfTQ5rKvWbpFNu2UZ2JN1l1ewBeJNo7sbe0f8oShDkN+TePJQLJ
-	7F30gE6iQpXimR7RWvkasMS3xUnvOAk+GatNrQd2sb5jOa8iC3CbaBHVijlE19Y5YHCR
-	cP6z/UVgQTxjbIiwfVVa1BKJXTYPJN8i92IqGO+NFbGCbX0IhyvTs7z87c2nEkeSc31h
-	ndNA==
+	bh=kmpM6NtVZBiNoAgGiDfzyAutsiUiJxTp7JbcWaC0NoI=;
+	b=SDbgL3Dzs1r/0k+Soevk7ejn3LgqrW/pw6sUO7w/ntHJ/2nwnhR6E0yHyyBqQGgyx8
+	Tw73P4a7wi9NtaQbX8K1G428sYmRV9Lx/JeSTkDgqfcH5ye0OPisywUn1qQXPU8PZT5h
+	qZyx7iW9sWuKhWdyINFIMYCI3cFiu9mO1ueJG8gTYl4UjaTEwJEm7Gey5Zfvj78694Wg
+	8MhOFRBACpQKMzxkBdyvND9fYjG+FuB5TtvH1cvYgEfF1C1S5YKBjVFHXU0AAWfrNm2m
+	vkUuqZpqZJCdWnJZPl8LtWA8MZc3MbY1ngiCu/cg8neAq5uW/mhm8RkK1+SnZXwaBkxx
+	037g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
 	:mime-version:content-disposition:in-reply-to:user-agent;
-	bh=1EsWeXod0k3eTJEbeXZGHoSU56wwJ4I60IwHRsIgNbY=;
-	b=NWSLy/zmYI1/wkZnIfKxpjWUCtyximZc3zUrYLH8RVxuxxtIfaxkMXleqCGhc4Lh8V
-	mdmt+TTDbY22bUgX+sOXrUC4icSZWKxQuV5aJ9NzhG32vIkoyuyggs54yBDZoEWo9Eyn
-	oAyZdw3j29B7OS1VxVBZ6smyo8OJylI8naOQ6CUtjpwPkJ9FNBueiibUlkKH2IgeYJLs
-	gBJRRIYj6GZ1HTZXZOvTg8zv3LLabNGeAxyWZvJn2Xcp4ztJo+dyBrSQOFRoAbdCtfLr
-	AkRRYJiHs8YYzMAuc/BgtLpVM+z+vp+kp6KvRPKQGcV9tU440B1dNcTAh9zJl7kcBWNy
-	c64w==
-X-Gm-Message-State: AA6/9RnNQPJ6NGmX8uco9elpaKZh7n17WzCiSCogi5JDZHACzlARx6TvyDkI+07Yg/5Gcw==
-X-Received: by 10.194.127.5 with SMTP id nc5mr1044135wjb.16.1476429407725;
-	Fri, 14 Oct 2016 00:16:47 -0700 (PDT)
+	bh=kmpM6NtVZBiNoAgGiDfzyAutsiUiJxTp7JbcWaC0NoI=;
+	b=bu6wl+u1oLq9CllQRj7IXH7I37cuO317uv1PFN6D8HmwSobKGT3ZHhxZH02KSnY6rx
+	JvVbNoe+QZdFzxrzcX/Y1fxGIVFH3fzrdrh4oyXPMD1w+cUcI7SmjDSVBcPOptO+TL+c
+	yMA3aEzqDU8kdpD/dgSIi5wqXRwDkmrPZ6xApGIMHleDHl6M67lgvTvgj8Fsa1O1uyjg
+	hZSBsDrS0b9+yHJ0fixyEgbuSl4BjTcu2GmfFBaWDLTGZk+IiDzxESjqkJxdkkjLnns2
+	bRBMizkpi/NGLbAVj/Gq/mWGyfH6AZ5TsGOnRH4nSfiCyk1y9zLGXn/NoL1NDzua2I7B
+	k0Kw==
+X-Gm-Message-State: AA6/9RnE9r4dtXvrOrX/TQMO1F5E/oU7sPFwiiN+kFvo41x50MIIjap8W3c67AbiB+j5tA==
+X-Received: by 10.194.246.169 with SMTP id xx9mr1070050wjc.76.1476430977305;
+	Fri, 14 Oct 2016 00:42:57 -0700 (PDT)
 Received: from resin ([88.128.80.31]) by smtp.gmail.com with ESMTPSA id
-	qa7sm29373016wjc.39.2016.10.14.00.16.46
+	af4sm20101302wjc.17.2016.10.14.00.42.56
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 14 Oct 2016 00:16:47 -0700 (PDT)
-Date: Fri, 14 Oct 2016 08:16:38 +0100
+	Fri, 14 Oct 2016 00:42:56 -0700 (PDT)
+Date: Fri, 14 Oct 2016 08:42:50 +0100
 From: Andrei Gherzan <andrei@gherzan.ro>
 To: Khem Raj <raj.khem@gmail.com>
-Message-ID: <20161014071638.GA28288@resin>
-References: <20161007020906.32228-1-raj.khem@gmail.com>
+Message-ID: <20161014074250.GB28288@resin>
+References: <20161013081532.22457-1-raj.khem@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20161007020906.32228-1-raj.khem@gmail.com>
+In-Reply-To: <20161013081532.22457-1-raj.khem@gmail.com>
 User-Agent: Mutt/1.7.1 (2016-10-04)
 Cc: yocto@yoctoproject.org
-Subject: Re: [meta-raspberrypi][PATCH 1/4] linux-raspberrypi_4.4: Upgrade to 4.4.23
+Subject: Re: [meta-raspberrypi][PATCH V2 1/2] linux-raspberrypi: Add recipe for 4.8 release
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,78 +73,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 14 Oct 2016 07:16:54 -0000
-X-Groupsio-MsgNum: 32391
+X-List-Received-Date: Fri, 14 Oct 2016 07:43:01 -0000
+X-Groupsio-MsgNum: 32392
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="YiEDa0DAkWCtVeE4"
+	protocol="application/pgp-signature"; boundary="tjCHc7DPkfUGtrlw"
 Content-Disposition: inline
 
---YiEDa0DAkWCtVeE4
+--tjCHc7DPkfUGtrlw
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
-On Thu, Oct 06, 2016 at 07:09:03PM -0700, Khem Raj wrote:
-> Drop upstreamed patch
->
+On Thu, Oct 13, 2016 at 01:15:31AM -0700, Khem Raj wrote:
 > Signed-off-by: Khem Raj <raj.khem@gmail.com>
 > ---
->  .../0002-vc4-ioctl-rendering-allow.patch           | 29 ----------------------
->  recipes-kernel/linux/linux-raspberrypi_4.4.bb      |  5 ++--
->  2 files changed, 2 insertions(+), 32 deletions(-)
->  delete mode 100644 recipes-kernel/linux/linux-raspberrypi-4.4/0002-vc4-ioctl-rendering-allow.patch
+>  recipes-kernel/linux/linux-raspberrypi_4.8.bb | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+>  create mode 100644 recipes-kernel/linux/linux-raspberrypi_4.8.bb
 >
-> diff --git a/recipes-kernel/linux/linux-raspberrypi-4.4/0002-vc4-ioctl-rendering-allow.patch b/recipes-kernel/linux/linux-raspberrypi-4.4/0002-vc4-ioctl-rendering-allow.patch
-> deleted file mode 100644
-> index 59d0ed7..0000000
-> --- a/recipes-kernel/linux/linux-raspberrypi-4.4/0002-vc4-ioctl-rendering-allow.patch
-> +++ /dev/null
-> @@ -1,29 +0,0 @@
-> -This patch has been accepted upstream in kernel 4.7-rc3
-> -But it has not yet been backported to 4.4...
-> -Upstream-Status: Accepted [http://www.gossamer-threads.com/lists/linux/kernel/2459302]
-> -Signed-off-by: Herve Jourdain <herve.jourdain@neuf.fr>
-> ----
-> -
-> -diff --git a/drivers/gpu/drm/vc4/vc4_drv.c b/drivers/gpu/drm/vc4/vc4_drv.c
-> -index a5b68c1..14b5ec1 100644
-> ---- a/drivers/gpu/drm/vc4/vc4_drv.c
-> -+++ b/drivers/gpu/drm/vc4/vc4_drv.c
-> -@@ -75,12 +75,12 @@ static const struct file_operations vc4_drm_fops = {
-> - };
-> -
-> - static const struct drm_ioctl_desc vc4_drm_ioctls[] = {
-> --	DRM_IOCTL_DEF_DRV(VC4_SUBMIT_CL, vc4_submit_cl_ioctl, 0),
-> --	DRM_IOCTL_DEF_DRV(VC4_WAIT_SEQNO, vc4_wait_seqno_ioctl, 0),
-> --	DRM_IOCTL_DEF_DRV(VC4_WAIT_BO, vc4_wait_bo_ioctl, 0),
-> --	DRM_IOCTL_DEF_DRV(VC4_CREATE_BO, vc4_create_bo_ioctl, 0),
-> --	DRM_IOCTL_DEF_DRV(VC4_MMAP_BO, vc4_mmap_bo_ioctl, 0),
-> --	DRM_IOCTL_DEF_DRV(VC4_CREATE_SHADER_BO, vc4_create_shader_bo_ioctl, 0),
-> -+	DRM_IOCTL_DEF_DRV(VC4_SUBMIT_CL, vc4_submit_cl_ioctl, 0|DRM_RENDER_ALLOW),
-> -+	DRM_IOCTL_DEF_DRV(VC4_WAIT_SEQNO, vc4_wait_seqno_ioctl, 0|DRM_RENDER_ALLOW),
-> -+	DRM_IOCTL_DEF_DRV(VC4_WAIT_BO, vc4_wait_bo_ioctl, 0|DRM_RENDER_ALLOW),
-> -+	DRM_IOCTL_DEF_DRV(VC4_CREATE_BO, vc4_create_bo_ioctl, 0|DRM_RENDER_ALLOW),
-> -+	DRM_IOCTL_DEF_DRV(VC4_MMAP_BO, vc4_mmap_bo_ioctl, 0|DRM_RENDER_ALLOW),
-> -+	DRM_IOCTL_DEF_DRV(VC4_CREATE_SHADER_BO, vc4_create_shader_bo_ioctl, 0|DRM_RENDER_ALLOW),
-> - 	DRM_IOCTL_DEF_DRV(VC4_GET_HANG_STATE, vc4_get_hang_state_ioctl,
-> - 			  DRM_ROOT_ONLY),
-> - };
-> diff --git a/recipes-kernel/linux/linux-raspberrypi_4.4.bb b/recipes-kernel/linux/linux-raspberrypi_4.4.bb
-> index 9a49dc1..4b15f88 100644
-> --- a/recipes-kernel/linux/linux-raspberrypi_4.4.bb
-> +++ b/recipes-kernel/linux/linux-raspberrypi_4.4.bb
-> @@ -1,10 +1,9 @@
->  FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
->
-> -LINUX_VERSION ?= "4.4.16"
-> +LINUX_VERSION ?= "4.4.23"
->
-> -SRCREV = "cff67c7e03f4333149f2a8f6eafd3bc44475114a"
-> +SRCREV = "c2a1d975537fcac01da80ce34f10bc491620a64e"
->  SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-4.4.y \
->             file://0001-fix-dtbo-rules.patch \
-> -           file://0002-vc4-ioctl-rendering-allow.patch \
->  "
->  require linux-raspberrypi.inc
+> diff --git a/recipes-kernel/linux/linux-raspberrypi_4.8.bb b/recipes-kernel/linux/linux-raspberrypi_4.8.bb
+> new file mode 100644
+> index 0000000..02623f4
+> --- /dev/null
+> +++ b/recipes-kernel/linux/linux-raspberrypi_4.8.bb
+> @@ -0,0 +1,8 @@
+> +FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
+> +
+> +LINUX_VERSION ?= "4.8.1"
+> +
+> +SRCREV = "5b7970b19bbb2ea1620591bfb6517848696ed0b9"
+> +SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-4.8.y \
+> +"
+> +require linux-raspberrypi.inc
 > --
 > 2.10.0
 >
@@ -154,29 +113,29 @@ On Thu, Oct 06, 2016 at 07:09:03PM -0700, Khem Raj wrote:
 > yocto@yoctoproject.org
 > https://lists.yoctoproject.org/listinfo/yocto
 
-Merged to master the entire patch set. Thanks.
+Compiled both 4.7.X and 4.8.X and it's a go. Merged to master. Thanks.
 
 --
 Andrei Gherzan
 
---YiEDa0DAkWCtVeE4
+--tjCHc7DPkfUGtrlw
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIcBAEBCAAGBQJYAIZWAAoJEHO76Gt+erfP2MYP/Aua7mabLw2OC4ZaYvVX146v
-sGy8Sj7KNoJfPbxNarDNuZZ7HioMGHNpSpJoZgGtL2/AFdsIkfqr8YyKHx5Hj0pa
-LN0niPnGz+3rA94yuRnCPPdU0I+3ClzPQZwAdVgf769IIwQIwG7Bp2go2iaewXCp
-8GfjJfnlHGHTto4g43Y19ReAKY5WCHbjIFh8Ci3mYmhatAzU1CV2u81mN+q2jT8Y
-zCGcnSatgxEc6NunnGCUEdQamzfSiZPVqr7KDenEXZLzcwm8wirMOiR0BoVlw+fK
-Sl2qDy/GYsL3jBYX1w4LBid3/zlATgjkncIfbeggvrZWFoOgJUDQnjTTUm2AGFkz
-WKn+PIlV8JA1ndMovbHBC4kHLVT5uZ5MTCnSatbz/hMsUndF/E4igqNL2FG7Wcz3
-2lJehryHx4Y41FHOqbmZXCyK8m8vvIY29Xu6MID3k6GCKp+Idlbs3M4JcN/MkSRb
-O6k9xpBoeCuad/UfE8KyF3oNf/O8sQk9h0APiPsnjA9wBFeX2dn2NGyNhVfYXwfs
-zO/c7RGfWPbqEf2s04/ThK8d2WAB+JluVB0CItCFVM+QY7CtuwXW/CQiUAOTJVu8
-tLgxZSqIx13s6hHuJQ50jziNRCbzBxhEqBhlr38Vn0ORYu4c7fyO/jdpN7mjeZyx
-QPwCZfWqeTDNYQfWLObr
-=OndU
+iQIcBAEBCAAGBQJYAIx6AAoJEHO76Gt+erfPfdQP/0MOerDZ2Z1ZlMz2wVb2qkBw
+4n8xOSJtDqQviYR3Kzj7gS+RBkF6HVzVH6b80HEhJS/NhMmG1FJQIUG2XncjPmyc
+thOxRvXIFMI1NXprPNljYfI44CxoFMJDdxMJqzZ6Kst9ewNAh5UNqyksVtYqZ70d
+W2pWuQDXbJNT/nV2BuGfWXSFwQB6r1ttUwJoItlGOF5Q90JFp1aAZVp3zcf2ATnh
+3V/xut29Crpfb5eZJsu8USrhr7VoTpwARzGmoDxzGMUOFZJKr0x/b4ID9xsrjA9B
+E5DXNABFhlXai7UoANVtQPx0zdfW75busW5ecZqYDiSVJMTAbWrE0rOCPQvRGPay
+gQkRMYBVyUWFevaKeUDEpW0rfTjcTx9dVhQRNhkIbTWjiLVFBHIoMuqI9CxZcBtq
+xFbKmAwPFb6X1shhYvrw89/vZ1cQ6p+oNnxnp2x5cNj75jBJrNOJG5Eb43PDvHRs
+aS897IENnpcFLQ4rmEsIzUW5V6kRWV7LVmUBjI73OBEfjj3ZzxOWBKNUXgZwAFDF
+dDK7AmhEAEz6xX6YISuIPTfJ5qnaj0PeJNuefcZ3LqYrlkSYcDbUPWozlGrEucNo
+UrfSbXDHd6tk1dNvbF4gZM14Y0sHnrPK+Yn3BShPpWgpaxa4iPUXtvvu058KTnqG
+RxVOaNQOvJm0cz/d+aFV
+=rj1b
 -----END PGP SIGNATURE-----
 
---YiEDa0DAkWCtVeE4--
+--tjCHc7DPkfUGtrlw--
