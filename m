@@ -1,69 +1,48 @@
-Return-Path: <andrei@gherzan.ro>
+Return-Path: <contact@jgueytat.fr>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BA8A5E00E96; Fri, 14 Oct 2016 05:56:56 -0700 (PDT)
+	id 53883E0080D; Fri, 14 Oct 2016 06:42:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, RCVD_IN_DNSWL_LOW,
-	RCVD_IN_SORBS_SPAM autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,MISSING_MID,
+	RCVD_IN_DNSWL_LOW,RCVD_IN_SORBS_SPAM autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [209.85.220.179 listed in list.dnswl.org]
+	*      [217.70.178.86 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.220.179 listed in dnsbl.sorbs.net]
-Received: from mail-qk0-f179.google.com (mail-qk0-f179.google.com
-	[209.85.220.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 36081E00E53
-	for <yocto@yoctoproject.org>; Fri, 14 Oct 2016 05:56:53 -0700 (PDT)
-Received: by mail-qk0-f179.google.com with SMTP id o68so193044170qkf.3
-	for <yocto@yoctoproject.org>; Fri, 14 Oct 2016 05:56:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-disposition:in-reply-to:user-agent;
-	bh=kqXo1oMET7GR/VyRkEMpJt3/pRa8WhQtcb4CrfsDJk0=;
-	b=TiDXyIfLNKP6ai/R9Jh+/sh/JsQUVMambs311V5mVNUuH+FfGQefvapzIVQhbtKdy4
-	H+ZxmePA4A76ry3wFOyYXr6xnpPbfXR7rc+gf01AFfqoIQHbwa2Xf4v0vt0PTM7ERcga
-	fJBthdcaa3bFflR41+VOfEbX611xuZJ/5iIl6Tls8rNjqiILrW5X5q3m8ytSzMDnZ5Kn
-	SnTsjAJ3dt2bIJq11FDpyhIWza6b+o2Qcttk1xBpjfQQBfHV+Hn39aI6KC7QO/sQO2g0
-	RcW67JEGAPbhSHeXl9oGk8BtKm3XiKpCpJXvZVBWsXjxUkRG8UbpxcdpoeSdFDikOlz+
-	vW9A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-	:mime-version:content-disposition:in-reply-to:user-agent;
-	bh=kqXo1oMET7GR/VyRkEMpJt3/pRa8WhQtcb4CrfsDJk0=;
-	b=aMCvtLupLjAHdvWZIojAi8UpPNkCa+MHiLdYvfseieMDHuFRYOha9BOKYDLuiH0giq
-	WsBdx6vRrS+AFQVHMXKalzWvzcBzIt4CeFL7Ce/CayBiThytuq3exUX6129tOAKK2E9y
-	TqNyp6v/k6aGWGcjd11V3SPcmNpSv+ZHptG8kkvMI13Pl3caaZ8BcDI17SkQXDvt1szU
-	SvijkZqdF6icCSAHqyH/NFsYprZ7JXV99SwsHa2VsDX+es1ku4zd3/OfmCAWvE/umSIg
-	7DLNSd6ssy/42lR+BZSHOfkVN0Y6Pg4zHmbDHaFpc+oQuiqDQIyC2dTIJq1AYYrygunU
-	idUw==
-X-Gm-Message-State: AA6/9RmO1/jyoz9W8fBcfAUTsTS/KvVN5tdO0Epf9WECdErWHyd9q8SqN0gOoSyJ2L0/6g==
-X-Received: by 10.194.253.163 with SMTP id ab3mr1866068wjd.204.1476449813155; 
-	Fri, 14 Oct 2016 05:56:53 -0700 (PDT)
-Received: from resin ([88.128.80.33]) by smtp.gmail.com with ESMTPSA id
-	a2sm31795424wjn.10.2016.10.14.05.56.51
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 14 Oct 2016 05:56:51 -0700 (PDT)
-Date: Fri, 14 Oct 2016 13:56:48 +0100
-From: Andrei Gherzan <andrei@gherzan.ro>
-To: Trevor Woerner <twoerner@gmail.com>
-Message-ID: <20161014125648.GC29587@resin>
-References: <20161002143422.GA24664@openSUSE-i7.site>
-	<20161014092501.GD28288@resin>
-	<CAHUNapT83B1d65YQCp0pHrr=8cnaE+vvNOkwNnvWV51NJ4HB1Q@mail.gmail.com>
+	*      [217.70.183.194 listed in dnsbl.sorbs.net]
+	*  0.5 MISSING_MID Missing Message-Id: header
+X-Greylist: delayed 1946 seconds by postgrey-1.32 at yocto-www;
+	Fri, 14 Oct 2016 06:42:27 PDT
+Received: from slow1-d.mail.gandi.net (slow1-d.mail.gandi.net [217.70.178.86])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DBCDBE0073D
+	for <yocto@yoctoproject.org>; Fri, 14 Oct 2016 06:42:27 -0700 (PDT)
+Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net
+	[217.70.183.194])
+	by slow1-d.mail.gandi.net (Postfix) with ESMTP id B2D38535550
+	for <yocto@yoctoproject.org>; Fri, 14 Oct 2016 14:53:44 +0200 (CEST)
+Received: from mfilter24-d.gandi.net (mfilter24-d.gandi.net [217.70.178.152])
+	by relay2-d.mail.gandi.net (Postfix) with ESMTP id D9CCDC5A6A;
+	Fri, 14 Oct 2016 14:53:42 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at mfilter24-d.gandi.net
+Received: from relay2-d.mail.gandi.net ([IPv6:::ffff:217.70.183.194])
+	by mfilter24-d.gandi.net (mfilter24-d.gandi.net [::ffff:10.0.15.180])
+	(amavisd-new, port 10024)
+	with ESMTP id 57JOF8LEFVu7; Fri, 14 Oct 2016 14:53:40 +0200 (CEST)
+X-Originating-IP: 77.154.204.147
+Received: from [10.23.112.141] (147.204.154.77.rev.sfr.net [77.154.204.147])
+	(Authenticated sender: contact@jgueytat.fr)
+	by relay2-d.mail.gandi.net (Postfix) with ESMTPSA id 9C52BC5A77;
+	Fri, 14 Oct 2016 14:53:39 +0200 (CEST)
+Date: Fri, 14 Oct 2016 14:53:38 +0200
+From: Julien Gueytat <contact@jgueytat.fr>
+To: Andrei Gherzan <andrei@gherzan.ro>
 MIME-Version: 1.0
-In-Reply-To: <CAHUNapT83B1d65YQCp0pHrr=8cnaE+vvNOkwNnvWV51NJ4HB1Q@mail.gmail.com>
-User-Agent: Mutt/1.7.1 (2016-10-04)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi] taskhash mismatch
+Message-Id: <20161014134232.53883E0080D@yocto-www.yoctoproject.org>
+Cc: yocto <yocto@yoctoproject.org>
+Subject: Re: failed to copy the final ***rootfs.rpi-sdimg image file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,48 +54,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 14 Oct 2016 12:56:56 -0000
-X-Groupsio-MsgNum: 32406
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="yLVHuoLXiP9kZBkt"
-Content-Disposition: inline
+X-List-Received-Date: Fri, 14 Oct 2016 13:42:32 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: base64
 
---yLVHuoLXiP9kZBkt
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+R3JlYXQhIFRoYW5rcyEKClNlbnQgZnJvbSBteSBXSUtPIFJBSU5CT1cgTElURSA0R0xlIDE0IG9j
+dC4gMjAxNiAxNDo0MSwgQW5kcmVpIEdoZXJ6YW4gPGFuZHJlaUBnaGVyemFuLnJvPiBhIMOpY3Jp
+dCA6Cj4KPiBPbiBTYXQsIE9jdCAwMSwgMjAxNiBhdCAwMTo1ODo0OVBNICswMDAwLCBLYXJpbSBB
+VElLSSB3cm90ZTogCj4gPiBoaSwgCj4gPiAKPiA+IAo+ID4gSSdtIGJ1aWxkaW5nIGEgY3VzdG9t
+IGNvcmUtaW1hZ2UteDExIGZvciBteSByYXNwYmVycnlwaTMgYm9hcmQsIHdpdGggcG9reSBrcm9n
+b3RoLiAKPiA+IAo+ID4gSW4gdGhlIHZlcnkgbGFzdCBzdGVwczogCj4gPiAKPiA+IAo+ID4gRVJS
+T1I6IGNvcmUtaW1hZ2UteDExLTEuMC1yMCBkb19pbWFnZV9ycGlfc2RpbWc6IEZ1bmN0aW9uIGZh
+aWxlZDogZG9faW1hZ2VfcnBpX3NkaW1nIChsb2cgZmlsZSBpcyBsb2NhdGVkIGF0IC9ob21lL2th
+aS95b2N0by9idWlsZC1ycGkzL3RtcC93b3JrL3Jhc3BiZXJyeXBpMy1wb2t5LWxpbnV4LWdudWVh
+YmkvY29yZS1pbWFnZS14MTEvMS4wLXIwL3RlbXAvbG9nLmRvX2ltYWdlX3JwaV9zZGltZy4xNjEx
+MCkgCj4gPiAKPiA+IEVSUk9SOiBMb2dmaWxlIG9mIGZhaWx1cmUgc3RvcmVkIGluOiAvaG9tZS9r
+YWkveW9jdG8vYnVpbGQtcnBpMy90bXAvd29yay9yYXNwYmVycnlwaTMtcG9reS1saW51eC1nbnVl
+YWJpL2NvcmUtaW1hZ2UteDExLzEuMC1yMC90ZW1wL2xvZy5kb19pbWFnZV9ycGlfc2RpbWcuMTYx
+MTAgCj4gPiAKPiA+IExvZyBkYXRhIGZvbGxvd3M6IAo+ID4gfCBERUJVRzogRXhlY3V0aW5nIHB5
+dGhvbiBmdW5jdGlvbiBzZXRfaW1hZ2Vfc2l6ZSAKPiA+IHwgREVCVUc6IFB5dGhvbiBmdW5jdGlv
+biBzZXRfaW1hZ2Vfc2l6ZSBmaW5pc2hlZCAKPiA+IHwgREVCVUc6IEV4ZWN1dGluZyBzaGVsbCBm
+dW5jdGlvbiBkb19pbWFnZV9ycGlfc2RpbWcgCj4gPiB8IENyZWF0aW5nIGZpbGVzeXN0ZW0gd2l0
+aCBCb290IHBhcnRpdGlvbiA0MDk2MCBLaUIgYW5kIFJvb3RGUyA0MzAwODAgS2lCIAo+ID4gCj4g
+PiB8IGRkOiBmYWlsZWQgdG8gb3BlbiAnL2NvcmUtaW1hZ2UteDExLXJhc3BiZXJyeXBpMy0yMDE2
+MTAwMTE5NDcyOC5yb290ZnMucnBpLXNkaW1nJzogUGVybWlzc2lvbiBkZW5pZWQgCj4gPiAKPiA+
+IHwgV0FSTklORzogZXhpdCBjb2RlIDEgZnJvbSBhIHNoZWxsIGNvbW1hbmQuIAo+ID4gfCBFUlJP
+UjogRnVuY3Rpb24gZmFpbGVkOiBkb19pbWFnZV9ycGlfc2RpbWcgKGxvZyBmaWxlIGlzIGxvY2F0
+ZWQgYXQgL2hvbWUva2FpL3lvY3RvL2J1aWxkLXJwaTMvdG1wL3dvcmsvcmFzcGJlcnJ5cGkzLXBv
+a3ktbGludXgtZ251ZWFiaS9jb3JlLWltYWdlLXgxMS8xLjAtcjAvdGVtcC9sb2cuZG9faW1hZ2Vf
+cnBpX3NkaW1nLjE2MTEwKSAKPiA+IEVSUk9SOiBUYXNrIDE2ICgvaG9tZS9rYWkveW9jdG8vcG9r
+eS1rcm9nb3RoL21ldGEvcmVjaXBlcy1ncmFwaGljcy9pbWFnZXMvY29yZS1pbWFnZS14MTEuYmIs
+IGRvX2ltYWdlX3JwaV9zZGltZykgZmFpbGVkIHdpdGggZXhpdCBjb2RlICcxJyAKPiA+IE5PVEU6
+IFRhc2tzIFN1bW1hcnk6IEF0dGVtcHRlZCA0NzcxIHRhc2tzIG9mIHdoaWNoIDQ3NzAgZGlkbid0
+IG5lZWQgdG8gYmUgcmVydW4gYW5kIDEgZmFpbGVkLiAKPiA+IE5vIGN1cnJlbnRseSBydW5uaW5n
+IHRhc2tzICg0MzY3IG9mIDQ3NzMpIAo+ID4gCj4gPiAKPiA+IAo+ID4gSXQgbG9va3MgbGlrZSBp
+dCB0cmllcyB0byBjcmVhdGUgdGhlIGltYWdlIGluIHRoZSBwYXRoOsKgwqDCoMKgIC9jb3JlLWlt
+YWdlLXgxMS1yYXNwYmVycnlwaTMtMjAxNjEwMDExOTQ3Mjgucm9vdGZzLnJwaS1zZGltZyc6IFBl
+cm1pc3Npb24gZGVuaWVkIAo+ID4gCj4gPiAKPiA+IEkgbG9va2VkIGludG8gdGhlIGJiY2xhc3Ms
+IGFuZCBhdCBmaXJzdCBnbGFuY2UgSSdkIHNheSB0aGF0IHRoZSByZXNwZWN0aXZlIHBhdGggaXMg
+IiR7SU1HREVQTE9ZRElSfS8ke0lNQUdFX05BTUV9LnJvb3Rmcy5ycGktc2RpbWciIAo+ID4gCj4g
+PiAKPiA+IFNvICR7SU1HREVQTE9ZRElSfSBzZWVtcyB0byBiZSBlbXB0eS4gCj4gPiAKPiA+IAo+
+ID4gSSBoYXZlbid0IGZvdW5kIGFueSByZWZlcmVuY2UgdG8gSU1HREVQTE9ZRElSIGVsc2V3aGVy
+ZS4gCj4gPiAKPiA+IAo+ID4gV2VpcmQuIAo+ID4gCj4gPiAKPiA+IEthcmltIAo+ID4gCj4gPiAK
+Pgo+ID4gLS0gCj4gPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fXyAKPiA+IHlvY3RvIG1haWxpbmcgbGlzdCAKPiA+IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcg
+Cj4gPiBodHRwczovL2xpc3RzLnlvY3RvcHJvamVjdC5vcmcvbGlzdGluZm8veW9jdG8gCj4KPiBU
+aGlzIHNob3VsZCBiZSBmaXhlZCBub3cgYnkgdXNpbmcga3JvZ290aCBtZXRhLXJwaSBicmFuY2gg
+d2l0aCB0aGUgcG9reSAKPiBrcm9nb3RoIGJyYW5jaC4gT3RoZXJ3aXNlIGp1c3QgdXNlIGJvdGgg
+bWFzdGVycyBhbmQgaXQgc2hvdWxkIHdvcmsgYXMgCj4gd2VsbC4gCj4KPiAtLSAKPiBBbmRyZWkg
+R2hlcnphbgo+Cj4gLS0gCj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX18gCj4geW9jdG8gbWFpbGluZyBsaXN0IAo+IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcg
+Cj4gaHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL2xpc3RpbmZvL3lvY3RvIAo=
 
-On Fri, Oct 14, 2016 at 08:50:05AM -0400, Trevor Woerner wrote:
-> On Fri, Oct 14, 2016 at 5:25 AM, Andrei Gherzan <andrei@gherzan.ro> wrote:
-> > I know I'm kinda late to the party but just wanted to say that this was
-> > fixed in master. Cheers!
->
-> Excellent. I just tried 3 builds in a row and they all succeeded!
->
-> Thanks for the update.
 
-Great to hear this. Enjoy!
-
---
-Andrei Gherzan
-
---yLVHuoLXiP9kZBkt
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIcBAEBCAAGBQJYANYQAAoJEHO76Gt+erfPJW8P/R5i8DySStanuOvjWlF1eCDw
-nTDD7/E0Pt7JTlD+T6Cyscr/HsqylPcIibG/j1zScpjj885eXu+cvGKKS2ZlbKOk
-2U7if1V34rdnJcVcRRFSXVhlTlPNh9fRyUmXMdM1BaHjr8S3NhL1UWKSD1HWOmXH
-IQ79RO6r/d1I4PCScyetuOfkbn3RWRe/dEKKKnvEqxlOmrzFrKZJRkHh770J3x/E
-uO/cb1fDK5KJeT43TsUHa2oWod91vtC/42BBUWegZIGh0WEYEpo1kwe7irqoke90
-aBde7IUamD+5N8AMYvVCKfG10K1bcaOcbCU5L9eTPdp3jp12hQbXwsxHKl09BdFi
-4HYkQe7aqOe4u8ZEufWbbM+KzIUDkyFHrSfa2Mx0LhaB+D1ejiE09P6n7GZ6ZETg
-OPWmD/NS0B95GlOu5FbysmZE55roVICKT0naA5bW6O5Tw0VRFT8ksQPkFfQMWHdb
-4itbI8x+KzEOsgB5d3CGgu7FuO+z0IYXh8v4PaYa/OJl5R8ctzm8rTip2LT14pTZ
-bdr7NkQrC/G1il1sam3d/plQTGCxKJsSZjRyC/OPo7zF2ZINviU2ksPpDLfeLBtw
-5gjasjhyn0PPrV+mIQCudE8FU0GBNFh+xqQsxN6O3adfwbE1dJml4PrsaDBpNlxW
-sR/S8b7usyZram+NB6mI
-=pibD
------END PGP SIGNATURE-----
-
---yLVHuoLXiP9kZBkt--
