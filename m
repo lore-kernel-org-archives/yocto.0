@@ -1,65 +1,39 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <f_l_k@t-online.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 29E83E00C2A; Sat, 15 Oct 2016 20:24:41 -0700 (PDT)
+	id C2D6DE00C1F; Sun, 16 Oct 2016 01:31:46 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [194.25.134.81 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.217.169 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.217.169 listed in dnsbl.sorbs.net]
-Received: from mail-ua0-f169.google.com (mail-ua0-f169.google.com
-	[209.85.217.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 25D1CE00C1D
-	for <yocto@yoctoproject.org>; Sat, 15 Oct 2016 20:24:37 -0700 (PDT)
-Received: by mail-ua0-f169.google.com with SMTP id m26so9646136uaa.1
-	for <yocto@yoctoproject.org>; Sat, 15 Oct 2016 20:24:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=escGjP2Gv4fRZlvBgp8WjE9woV+vWsUyEtVFgH1ko1c=;
-	b=f9NYQYKK/ggLbL3UrIgm6w37+09qkkyfqD7jUNzIQnTJZEVLy5H7ypXmjbhlpsutuX
-	XTAfF3nY+9XS8q+QigRybnxdx1GTj2V6dcmKixvzUhh1eW3ZQsM+BFkiGGWXJsCaSZBu
-	WzNnO12/XCv1Bo6AzieSIfN48dYD2w36l6GItoRh/FcJW6BN3xrG2Hr+HQyA2xCmI6S6
-	4aFUUA+zvRHxaC0+aRVKxjxq5wGCWmUK3gpZ5FbXNpNIEr13ppcFeZB+gmgmoJGU4AsG
-	CkRIyXZkWp0gs0Y+kjXYFXao883/Rr9V5Tzac3sYsGJlRB4RTI2YaEeXEbCJZox9rOTK
-	CLgg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=escGjP2Gv4fRZlvBgp8WjE9woV+vWsUyEtVFgH1ko1c=;
-	b=C/WYZNPXA4Tb/J3lHnP9QXl//TSTZF5UOIVGlUvPYvxI/TVMczzprZJJOkyDEgw1ft
-	E5rVlxLbEeG9wEKCNEuO1/CNUbwedAZTzk1hWYVW+PUoqRNpWKg4IFPGnw774HJDjBJV
-	oTYuYCvkWMCbpiWI4GckB07FgK8R8Ij6oW4CL3GGqbE1kREMJvEsWaxb8Uu05CBwkTmk
-	PW/63e2m9KKCVmAcrGmG857trRA+9+0DmVKlKw7l5fu7mrKz5U5RFz1722y0ru97Oz5i
-	GK4DHX7tXhShBwbTZN/vzMBkqPo1Z3SuEi69yExjhn28w1QhqrU0yIIhXDQ+QEZJjLTa
-	PpRg==
-X-Gm-Message-State: AA6/9RmTvNUXVT92uDQWfhyHKbGopyZKGJjIrro9o//WpH6pOEjSmURtvD95ljNboaFAOCIVOZ0xbrFceFh9uQ==
-X-Received: by 10.159.34.225 with SMTP id 88mr2611456uan.6.1476588277084; Sat,
-	15 Oct 2016 20:24:37 -0700 (PDT)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+X-Greylist: delayed 385 seconds by postgrey-1.32 at yocto-www;
+	Sun, 16 Oct 2016 01:31:41 PDT
+Received: from mailout03.t-online.de (mailout03.t-online.de [194.25.134.81])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3D7A3E0049A
+	for <yocto@yoctoproject.org>; Sun, 16 Oct 2016 01:31:41 -0700 (PDT)
+Received: from fwd33.aul.t-online.de (fwd33.aul.t-online.de [172.20.27.144])
+	by mailout03.t-online.de (Postfix) with SMTP id 24172422075A
+	for <yocto@yoctoproject.org>; Sun, 16 Oct 2016 10:25:15 +0200 (CEST)
+Received: from [192.168.2.105]
+	(TcXVMYZSghWu5qNAHHmIoLGPTjIuwbpQEYJUHBtUhAxCc4oLkQeRVnnBPp4gIP5Qvz@[79.199.47.227])
+	by fwd33.t-online.de with (TLSv1.2:ECDHE-RSA-AES256-SHA encrypted)
+	esmtp id 1bvgkq-2o6yxM0; Sun, 16 Oct 2016 10:25:12 +0200
+From: Markus Volk <f_l_k@t-online.de>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Message-ID: <f390bb91-935c-77d0-55a3-c144c74a647f@t-online.de>
+Date: Sun, 16 Oct 2016 10:25:12 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.3.0
 MIME-Version: 1.0
-Received: by 10.176.86.206 with HTTP; Sat, 15 Oct 2016 20:24:06 -0700 (PDT)
-In-Reply-To: <354bb7fd02a644249f3422a333f3f0ec@XCH-RTP-003.cisco.com>
-References: <354bb7fd02a644249f3422a333f3f0ec@XCH-RTP-003.cisco.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Sat, 15 Oct 2016 20:24:06 -0700
-Message-ID: <CAMKF1sr7R6CiCrKRcmAj6O0UK-vpZs2enWpzNRYc7qXskKprhw@mail.gmail.com>
-To: "Harshal Govind (hgovind)" <hgovind@cisco.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: building uclibc based image for arm
+X-ID: TcXVMYZSghWu5qNAHHmIoLGPTjIuwbpQEYJUHBtUhAxCc4oLkQeRVnnBPp4gIP5Qvz
+X-TOI-MSGID: efa55e94-ee8e-49a0-9a30-f38cc7277c57
+Subject: Problems getting build appliance to work
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,96 +45,194 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 16 Oct 2016 03:24:41 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Sun, 16 Oct 2016 08:31:46 -0000
+Content-Type: multipart/alternative;
+	boundary="------------359896153C805DCC80786336"
 
-On Wed, Oct 12, 2016 at 6:08 PM, Harshal Govind (hgovind)
-<hgovind@cisco.com> wrote:
-> Hi,
->
->
->
->
->
-> I am trying build uclibc based image. But getting following error.
->
-> Note:
->
-> -          I am using yocto-1.7.2
->
-> -          Set TCLIBC ?= "uclibc" in distro/defaultsetup.conf
->
-> -          Building for arm
->
->
->
-> # bitbake core-image-minimal
->
->
->
-> NOTE: Preparing runqueue
->
-> NOTE: Executing SetScene Tasks
->
-> NOTE: Executing RunQueue Tasks
->
-> ERROR: Function failed: do_install (log file is located at
-> /home/hgovind/projects/temp/test-sdk/ap-sdk/yp_ap/tmp/work/armv7a-vfp-neon-poky-linux-uclibceabi/glibc-locale/2.20-r0/temp/log.do_install.29445)
->
-> ERROR: Logfile of failure stored in:
-> /home/hgovind/projects/temp/test-sdk/ap-sdk/yp_ap/tmp/work/armv7a-vfp-neon-poky-linux-uclibceabi/glibc-locale/2.20-r0/temp/log.do_install.29445
->
-> Log data follows:
->
-> | DEBUG: Executing shell function do_install
->
-> | ls: cannot access
-> /home/hgovind/projects/temp/test-sdk/ap-sdk/yp_ap/tmp/sysroots/ap3k-lxc/usr/include/glibc-locale-internal-armv7a-vfp-neon-poky-linux-uclibceabi//usr/bin:
-> No such file or directory
->
-> | ls: cannot access
-> /home/hgovind/projects/temp/test-sdk/ap-sdk/yp_ap/tmp/sysroots/ap3k-lxc/usr/include/glibc-locale-internal-armv7a-vfp-neon-poky-linux-uclibceabi//usr/lib/locale:
-> No such file or directory
->
-> | cp: cannot stat
-> '/home/hgovind/projects/temp/test-sdk/ap-sdk/yp_ap/tmp/sysroots/ap3k-lxc/usr/include/glibc-locale-internal-armv7a-vfp-neon-poky-linux-uclibceabi/SUPPORTED':
-> No such file or directory
->
-> | WARNING: exit code 1 from a shell command.
->
-> | ERROR: Function failed: do_install (log file is located at
-> /home/hgovind/projects/temp/test-sdk/ap-sdk/yp_ap/tmp/work/armv7a-vfp-neon-poky-linux-uclibceabi/glibc-locale/2.20-r0/temp/log.do_install.29445)
->
-> ERROR: Task 1094
-> (/home/hgovind/projects/temp/test-sdk/ap-sdk/sys/yocto-1.7/poky-dizzy-12.0.2/meta/recipes-core/glibc/glibc-locale_2.20.bb,
-> do_install) failed with exit code '1'
->
-> NOTE: Tasks Summary: Attempted 780 tasks of which 703 didn't need to be
-> rerun and 1 failed.
->
-> Waiting for 0 running tasks to finish:
->
->
->
-> Summary: 1 task failed:
->
->
-> /home/hgovind/projects/temp/test-sdk/ap-sdk/sys/yocto-1.7/poky-dizzy-12.0.2/meta/recipes-core/glibc/glibc-locale_2.20.bb,
-> do_install
->
-> Summary: There was 1 ERROR message shown, returning a non-zero exit code.
->
->
->
->
->
-> Could you please let me know if I am following correct steps to create
-> uclibc based image?
->
+--------------359896153C805DCC80786336
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-when using uclibc, it should not pull any glibc components for
-targets. but its happening for your case
-so figure out how this is getting into dependencies. May be you are
-including it explicitly or its coming
-via indirect deps. you can use bitbake -g to generate dep info and inspect it
 
+Hi,
+
+i have created an image for genericx86 from the krogoth branch and would 
+like to integrate a build appliance. I used build-appliance-image.bb as 
+a template.
+
+However, there is still something missing. When I run bitbake, i’m 
+getting a loop.
+
+
+After aborting by [strg + c] I get this output and also have the same 
+behavior when cloning poky and my meta layer in the running image, 
+instead of building it into
+
+
+builder ~ $ cd poky/git/
+
+builder ~/poky/git $ . ./oe-init-build-env
+
+
+### Shell environment set up for builds. ###
+
+
+You can now run 'bitbake <target>'
+
+
+Common targets are:
+core-image-minimal
+core-image-sato
+meta-toolchain
+meta-ide-support
+
+You can also run generated qemu images with a command like 'runqemu qemux86'
+
+builder ~/poky/git/build $ bitbake -e
+^CError in atexit._run_exitfuncs:
+Traceback (most recent call last):
+File "/usr/lib/python3.5/multiprocessing/popen_fork.py", line 29, in poll
+pid, sts = os.waitpid(self.pid, flag)
+KeyboardInterrupt
+
+WARNING: Timeout while attempting to communicate with bitbake server
+WARNING: Timeout while attempting to communicate with bitbake server
+WARNING: Timeout while attempting to communicate with bitbake server
+WARNING: Timeout while attempting to communicate with bitbake server
+
+ERROR: Gave up; Too many tries: timeout while attempting to communicate 
+with bitbake server
+ERROR: Could not connect to server None:
+
+
+I have no idea what i am missing here.
+
+Who can give me a tip?
+
+
+--------------359896153C805DCC80786336
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <p>
+      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    </p>
+    <p>
+      <title></title>
+      <meta name="generator" content="LibreOffice 5.1.4.2 (Linux)">
+      <style type="text/css">
+		@page { margin: 2cm }
+		p { margin-bottom: 0.25cm; line-height: 120% }</style>
+      <p style="margin-bottom: 0cm; line-height: 100%"><br>
+      </p>
+      <p style="margin-bottom: 0cm; line-height: 100%">Hi,<br>
+      </p>
+      <p style="margin-bottom: 0cm; line-height: 100%">i have
+        created an image for genericx86 from the krogoth branch and
+        would
+        like to integrate a build appliance. I used
+        build-appliance-image.bb
+        as a template.<br>
+      </p>
+      <p style="margin-bottom: 0cm; line-height: 100%" lang="en-US">
+        However, there is still something missing. When I
+        run bitbake, i’m getting a loop.</p>
+      <p style="margin-bottom: 0cm; line-height: 100%" lang="en-US"><br>
+      </p>
+      <p style="margin-bottom: 0cm; line-height: 100%" lang="en-US">After
+        aborting by [strg + c] I get this output and also have the same
+        behavior when cloning poky and my meta layer in the running
+        image,
+        instead of building it into</p>
+      <p style="margin-bottom: 0cm; line-height: 100%" lang="en-US"><br>
+      </p>
+    </p>
+    <font face="FreeMono">builder ~ $ cd
+      poky/git/</font><br>
+    <font face="FreeMono">
+    </font><br>
+    <font face="FreeMono">builder ~/poky/git $ . ./oe-init-build-env</font><br>
+    <font face="FreeMono">
+    </font><br>
+    <font face="FreeMono">
+    </font><br>
+    <font face="FreeMono">### Shell
+      environment set up for builds. ###</font><br>
+    <font face="FreeMono">
+    </font><br>
+    <br>
+    <font face="FreeMono">You can now run
+      'bitbake &lt;target&gt;'</font><br>
+    <font face="FreeMono">
+    </font><br>
+    <br>
+    <font face="FreeMono">Common targets are:</font><br>
+    <font face="FreeMono">
+    </font><font face="FreeMono">core-image-minimal</font><br>
+    <font face="FreeMono">
+    </font><font face="FreeMono">core-image-sato</font><br>
+    <font face="FreeMono">
+    </font><font face="FreeMono">meta-toolchain</font><br>
+    <font face="FreeMono">
+    </font><font face="FreeMono">meta-ide-support</font><br>
+    <font face="FreeMono">
+    </font><br>
+    <font face="FreeMono">You can also run
+      generated qemu images with a command like 'runqemu qemux86'</font><br>
+    <font face="FreeMono">
+    </font><br>
+    <font face="FreeMono">builder
+      ~/poky/git/build $ bitbake -e</font><br>
+    <font face="FreeMono">
+    </font><font face="FreeMono">^CError in
+      atexit._run_exitfuncs:</font><br>
+    <font face="FreeMono">
+    </font><font face="FreeMono">Traceback (most
+      recent call last):</font><br>
+    <font face="FreeMono">
+    </font><font face="FreeMono">File
+      "/usr/lib/python3.5/multiprocessing/popen_fork.py", line
+      29, in poll</font><br>
+    <font face="FreeMono">
+    </font><font face="FreeMono">pid, sts =
+      os.waitpid(self.pid, flag)</font><br>
+    <font face="FreeMono">
+    </font><font face="FreeMono">KeyboardInterrupt</font><br>
+    <font face="FreeMono">
+    </font><br>
+    <font face="FreeMono">WARNING: Timeout
+      while attempting to communicate with bitbake server</font><br>
+    <font face="FreeMono">
+    </font><font face="FreeMono">WARNING: Timeout
+      while attempting to communicate with bitbake server</font><br>
+    <font face="FreeMono">
+    </font><font face="FreeMono">WARNING: Timeout
+      while attempting to communicate with bitbake server</font><br>
+    <font face="FreeMono">
+    </font><font face="FreeMono">WARNING: Timeout
+      while attempting to communicate with bitbake server</font><br>
+    <font face="FreeMono">
+    </font><br>
+    <font face="FreeMono">ERROR: Gave up; Too
+      many tries: timeout while attempting to communicate with bitbake
+      server</font><br>
+    <font face="FreeMono">
+    </font><font face="FreeMono">ERROR: Could not
+      connect to server None: </font><br>
+    <p style="margin-bottom: 0cm; line-height: 100%" lang="en-US"><br>
+    </p>
+    <p style="margin-bottom: 0cm; line-height: 100%" lang="en-US">I have
+      no idea what i am missing here. </p>
+    <p style="margin-bottom: 0cm; line-height: 100%" lang="en-US">Who
+      can
+      give me a tip?</p>
+  </body>
+</html>
+
+--------------359896153C805DCC80786336--
