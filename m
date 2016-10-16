@@ -1,14 +1,14 @@
-Return-Path: <net147@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B308AE00C19; Sat, 15 Oct 2016 19:28:21 -0700 (PDT)
+	id 29E83E00C2A; Sat, 15 Oct 2016 20:24:41 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (net147[at]gmail.com)
+	mail provider *      (raj.khem[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -16,49 +16,50 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.192.196 listed in list.dnswl.org]
-Received: from mail-pf0-f196.google.com (mail-pf0-f196.google.com
-	[209.85.192.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5B648E00C10
-	for <yocto@yoctoproject.org>; Sat, 15 Oct 2016 19:28:17 -0700 (PDT)
-Received: by mail-pf0-f196.google.com with SMTP id 128so10125589pfz.1
-	for <yocto@yoctoproject.org>; Sat, 15 Oct 2016 19:28:17 -0700 (PDT)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.217.169 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.217.169 listed in dnsbl.sorbs.net]
+Received: from mail-ua0-f169.google.com (mail-ua0-f169.google.com
+	[209.85.217.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 25D1CE00C1D
+	for <yocto@yoctoproject.org>; Sat, 15 Oct 2016 20:24:37 -0700 (PDT)
+Received: by mail-ua0-f169.google.com with SMTP id m26so9646136uaa.1
+	for <yocto@yoctoproject.org>; Sat, 15 Oct 2016 20:24:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id;
-	bh=G/ibocDNWI6P0Mb9TZ60+lSbcK2BZ0Co2FEqSAuX2U8=;
-	b=oRfi6sswlPCXyVKLABmq4TT5d/atlchHQxII76nL6HO4LTXer8PWty4OQJDFRLxluU
-	0ohnkUDn081BHAcK/uLkux+Wx7xgbUXszN5O3I0zw/2tBSL5AWrjUKinFg6fYD4+RLLV
-	hZ57G0axP5prUvHsMUp/yjeyvU8/mLOL0EBHUlUvoMeSXSzIgX5FZFgmtjuuJXH+bB4L
-	jkuQJcV3ec0k473kVG7oXhOQIED8OkCgFl6Of2Dz7mf+xx95ZEs+d94AadjRp23nQJto
-	yOceaolejGuIz3bIwbSfXt+gjVr+N1kLTj2bRtFsLfq0QeQ/T0xtqglqqdvsyXZlJmAa
-	7M0A==
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=escGjP2Gv4fRZlvBgp8WjE9woV+vWsUyEtVFgH1ko1c=;
+	b=f9NYQYKK/ggLbL3UrIgm6w37+09qkkyfqD7jUNzIQnTJZEVLy5H7ypXmjbhlpsutuX
+	XTAfF3nY+9XS8q+QigRybnxdx1GTj2V6dcmKixvzUhh1eW3ZQsM+BFkiGGWXJsCaSZBu
+	WzNnO12/XCv1Bo6AzieSIfN48dYD2w36l6GItoRh/FcJW6BN3xrG2Hr+HQyA2xCmI6S6
+	4aFUUA+zvRHxaC0+aRVKxjxq5wGCWmUK3gpZ5FbXNpNIEr13ppcFeZB+gmgmoJGU4AsG
+	CkRIyXZkWp0gs0Y+kjXYFXao883/Rr9V5Tzac3sYsGJlRB4RTI2YaEeXEbCJZox9rOTK
+	CLgg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=G/ibocDNWI6P0Mb9TZ60+lSbcK2BZ0Co2FEqSAuX2U8=;
-	b=gl+ZpO+wmIIgWOoVDvV26jk6mMLkVuQmyZWna1rSHaAzEmM9yFWNkVJcRKoxNTpMJm
-	lj2YsjD33RXevMpm2koq7ClxO01QSlsS2jBlpoU3+ysZXXgU3hEAMwlMRXcBzZj+JF8Y
-	fMEGJTJee+llkfwAdpqLhrnHrwBg2//G27Uj2UCiOiDwm454VgPRD+RuZo1Dfqqh+wXk
-	x3fJNcIFlSqE03XBw4vPZ8L9mjpEvkzZb118tsN9yOUAoIQq3XTkAkiQyI+rKDGjbus/
-	6YmCYg73bTdVjPX+2L9kl3GFYVnJrOZOEZWgOBQ3ZRl5Ohi94jZxLK50kvZmCDh6BYFB
-	LdQQ==
-X-Gm-Message-State: AA6/9RnCde78wFuj6aOkohLYrfD28aEvaY8rn52zqXkyuNvNHHAXHjvFmQ/Dm/Pce6wOHw==
-X-Received: by 10.99.144.74 with SMTP id a71mr23931841pge.101.1476584897262;
-	Sat, 15 Oct 2016 19:28:17 -0700 (PDT)
-Received: from 60-242-179-244.static.tpgi.com.au
-	(60-242-179-244.static.tpgi.com.au. [60.242.179.244])
-	by smtp.gmail.com with ESMTPSA id
-	tj8sm37831927pab.16.2016.10.15.19.28.15
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sat, 15 Oct 2016 19:28:16 -0700 (PDT)
-From: Jonathan Liu <net147@gmail.com>
-To: yocto@yoctoproject.org
-Date: Sun, 16 Oct 2016 13:27:39 +1100
-Message-Id: <20161016022739.26984-1-net147@gmail.com>
-X-Mailer: git-send-email 2.10.0
-Subject: [meta-raspberrypi][PATCH] linux-firmware: Fix "No generic license file exists" warning
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=escGjP2Gv4fRZlvBgp8WjE9woV+vWsUyEtVFgH1ko1c=;
+	b=C/WYZNPXA4Tb/J3lHnP9QXl//TSTZF5UOIVGlUvPYvxI/TVMczzprZJJOkyDEgw1ft
+	E5rVlxLbEeG9wEKCNEuO1/CNUbwedAZTzk1hWYVW+PUoqRNpWKg4IFPGnw774HJDjBJV
+	oTYuYCvkWMCbpiWI4GckB07FgK8R8Ij6oW4CL3GGqbE1kREMJvEsWaxb8Uu05CBwkTmk
+	PW/63e2m9KKCVmAcrGmG857trRA+9+0DmVKlKw7l5fu7mrKz5U5RFz1722y0ru97Oz5i
+	GK4DHX7tXhShBwbTZN/vzMBkqPo1Z3SuEi69yExjhn28w1QhqrU0yIIhXDQ+QEZJjLTa
+	PpRg==
+X-Gm-Message-State: AA6/9RmTvNUXVT92uDQWfhyHKbGopyZKGJjIrro9o//WpH6pOEjSmURtvD95ljNboaFAOCIVOZ0xbrFceFh9uQ==
+X-Received: by 10.159.34.225 with SMTP id 88mr2611456uan.6.1476588277084; Sat,
+	15 Oct 2016 20:24:37 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.176.86.206 with HTTP; Sat, 15 Oct 2016 20:24:06 -0700 (PDT)
+In-Reply-To: <354bb7fd02a644249f3422a333f3f0ec@XCH-RTP-003.cisco.com>
+References: <354bb7fd02a644249f3422a333f3f0ec@XCH-RTP-003.cisco.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Sat, 15 Oct 2016 20:24:06 -0700
+Message-ID: <CAMKF1sr7R6CiCrKRcmAj6O0UK-vpZs2enWpzNRYc7qXskKprhw@mail.gmail.com>
+To: "Harshal Govind (hgovind)" <hgovind@cisco.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: building uclibc based image for arm
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,34 +71,96 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 16 Oct 2016 02:28:21 -0000
+X-List-Received-Date: Sun, 16 Oct 2016 03:24:41 -0000
+Content-Type: text/plain; charset=UTF-8
 
-The NO_GENERIC_LICENSE map value for Firmware-broadcom_brcm80211 needs
-to have the full path to LICENSE.broadcom_brcm80211 from the URL
-instead of just the filename.
+On Wed, Oct 12, 2016 at 6:08 PM, Harshal Govind (hgovind)
+<hgovind@cisco.com> wrote:
+> Hi,
+>
+>
+>
+>
+>
+> I am trying build uclibc based image. But getting following error.
+>
+> Note:
+>
+> -          I am using yocto-1.7.2
+>
+> -          Set TCLIBC ?= "uclibc" in distro/defaultsetup.conf
+>
+> -          Building for arm
+>
+>
+>
+> # bitbake core-image-minimal
+>
+>
+>
+> NOTE: Preparing runqueue
+>
+> NOTE: Executing SetScene Tasks
+>
+> NOTE: Executing RunQueue Tasks
+>
+> ERROR: Function failed: do_install (log file is located at
+> /home/hgovind/projects/temp/test-sdk/ap-sdk/yp_ap/tmp/work/armv7a-vfp-neon-poky-linux-uclibceabi/glibc-locale/2.20-r0/temp/log.do_install.29445)
+>
+> ERROR: Logfile of failure stored in:
+> /home/hgovind/projects/temp/test-sdk/ap-sdk/yp_ap/tmp/work/armv7a-vfp-neon-poky-linux-uclibceabi/glibc-locale/2.20-r0/temp/log.do_install.29445
+>
+> Log data follows:
+>
+> | DEBUG: Executing shell function do_install
+>
+> | ls: cannot access
+> /home/hgovind/projects/temp/test-sdk/ap-sdk/yp_ap/tmp/sysroots/ap3k-lxc/usr/include/glibc-locale-internal-armv7a-vfp-neon-poky-linux-uclibceabi//usr/bin:
+> No such file or directory
+>
+> | ls: cannot access
+> /home/hgovind/projects/temp/test-sdk/ap-sdk/yp_ap/tmp/sysroots/ap3k-lxc/usr/include/glibc-locale-internal-armv7a-vfp-neon-poky-linux-uclibceabi//usr/lib/locale:
+> No such file or directory
+>
+> | cp: cannot stat
+> '/home/hgovind/projects/temp/test-sdk/ap-sdk/yp_ap/tmp/sysroots/ap3k-lxc/usr/include/glibc-locale-internal-armv7a-vfp-neon-poky-linux-uclibceabi/SUPPORTED':
+> No such file or directory
+>
+> | WARNING: exit code 1 from a shell command.
+>
+> | ERROR: Function failed: do_install (log file is located at
+> /home/hgovind/projects/temp/test-sdk/ap-sdk/yp_ap/tmp/work/armv7a-vfp-neon-poky-linux-uclibceabi/glibc-locale/2.20-r0/temp/log.do_install.29445)
+>
+> ERROR: Task 1094
+> (/home/hgovind/projects/temp/test-sdk/ap-sdk/sys/yocto-1.7/poky-dizzy-12.0.2/meta/recipes-core/glibc/glibc-locale_2.20.bb,
+> do_install) failed with exit code '1'
+>
+> NOTE: Tasks Summary: Attempted 780 tasks of which 703 didn't need to be
+> rerun and 1 failed.
+>
+> Waiting for 0 running tasks to finish:
+>
+>
+>
+> Summary: 1 task failed:
+>
+>
+> /home/hgovind/projects/temp/test-sdk/ap-sdk/sys/yocto-1.7/poky-dizzy-12.0.2/meta/recipes-core/glibc/glibc-locale_2.20.bb,
+> do_install
+>
+> Summary: There was 1 ERROR message shown, returning a non-zero exit code.
+>
+>
+>
+>
+>
+> Could you please let me know if I am following correct steps to create
+> uclibc based image?
+>
 
-Fixes the following warning building the linux-firmware recipe:
-WARNING: linux-firmware-1_0.0+gitAUTOINC+42ad5367dd-r0 do_populate_lic: linux-firmware: No generic license file exists for: Firmware-broadcom_brcm80211 in any provider
-
-Signed-off-by: Jonathan Liu <net147@gmail.com>
----
- recipes-kernel/linux-firmware/linux-firmware_git.bbappend | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/recipes-kernel/linux-firmware/linux-firmware_git.bbappend b/recipes-kernel/linux-firmware/linux-firmware_git.bbappend
-index 20ef05f..b4408cb 100644
---- a/recipes-kernel/linux-firmware/linux-firmware_git.bbappend
-+++ b/recipes-kernel/linux-firmware/linux-firmware_git.bbappend
-@@ -4,7 +4,7 @@ LICENSE_append = " & Firmware-broadcom_brcm80211"
- 
- LIC_FILES_CHKSUM_append = " file://${WORKDIR}/LICENSE.broadcom_brcm80211;md5=8cba1397cda6386db37210439a0da3eb"
- 
--NO_GENERIC_LICENSE[Firmware-broadcom_brcm80211] = "LICENSE.broadcom_brcm80211"
-+NO_GENERIC_LICENSE[Firmware-broadcom_brcm80211] = "${WORKDIR}/LICENSE.broadcom_brcm80211"
- 
- SRC_URI_append = " \
-     file://brcmfmac43430-sdio.bin \
--- 
-2.10.0
-
+when using uclibc, it should not pull any glibc components for
+targets. but its happening for your case
+so figure out how this is getting into dependencies. May be you are
+including it explicitly or its coming
+via indirect deps. you can use bitbake -g to generate dep info and inspect it
 
