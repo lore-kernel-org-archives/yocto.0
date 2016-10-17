@@ -1,42 +1,73 @@
-Return-Path: <leimaohui@cn.fujitsu.com>
+Return-Path: <idealsim@laposte.net>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 098ABE00CE9; Sun, 16 Oct 2016 23:49:07 -0700 (PDT)
+	id 9A574E00CE1; Mon, 17 Oct 2016 00:51:27 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (idealsim[at]laposte.net)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from heian.cn.fujitsu.com (unknown [59.151.112.132])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 90E14E00CE0
-	for <yocto@yoctoproject.org>; Sun, 16 Oct 2016 23:49:02 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.22,518,1449504000"; d="scan'208";a="12000493"
-Received: from unknown (HELO cn.fujitsu.com) ([10.167.33.5])
-	by heian.cn.fujitsu.com with ESMTP; 17 Oct 2016 14:49:00 +0800
-Received: from G08CNEXCHPEKD02.g08.fujitsu.local (unknown [10.167.33.83])
-	by cn.fujitsu.com (Postfix) with ESMTP id D37A741B5F46
-	for <yocto@yoctoproject.org>; Mon, 17 Oct 2016 14:48:58 +0800 (CST)
-Received: from G08CNEXMBPEKD01.g08.fujitsu.local ([10.167.33.81]) by
-	G08CNEXCHPEKD02.g08.fujitsu.local ([10.167.33.83]) with mapi id
-	14.03.0279.002; Mon, 17 Oct 2016 14:49:02 +0800
-From: "Lei, Maohui" <leimaohui@cn.fujitsu.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto] Why didn't deploy source archive by license from
-	yocto-1.6
-Thread-Index: AdIoQn3XgbQDMk8PTOmzYDY7U50gag==
-Date: Mon, 17 Oct 2016 06:49:01 +0000
-Message-ID: <1B56A49860EB2D45ADE3731B15C959FDFE57A805@G08CNEXMBPEKD01.g08.fujitsu.local>
-Accept-Language: zh-CN, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.167.226.93]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [178.22.154.200 listed in list.dnswl.org]
+Received: from smtp.laposte.net (smtpoutz300.laposte.net [178.22.154.200])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 27EBAE00C8E
+	for <yocto@yoctoproject.org>; Mon, 17 Oct 2016 00:51:23 -0700 (PDT)
+Received: from smtp.laposte.net (localhost [127.0.0.1])
+	by lpn-prd-vrout012 (Postfix) with ESMTP id 1A8B18CB52
+	for <yocto@yoctoproject.org>; Mon, 17 Oct 2016 09:51:22 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=laposte.net; s=mail0;
+	t=1476690682; bh=v0uwCObfbkZWe0kJpCggIrMvN6PRREMpaYhzTF2rdj0=;
+	h=To:Subject:References:Date:From:In-Reply-To;
+	b=bh4wfLZpFaqugyZKnOoatYygAK+cERa+shPYGbd9WnwhnRe0XmdSo02NpRXwbpLlZ
+	id6TevFSOXcfuhsYIthoaq5JfXKRE2DCcJyfKuPxNuQZfYY/QHLFn2i7xgPKar+h0G
+	ExJ0xCzVX7dvLNFkn+ka7jkljM6Cex3ab+eWUr6TEkjmxpJB+Ug8729dmgSQHrI2xI
+	IZw1UQzQfAUsPfZ4nlAGfw9iGVVdhFCf5ZEJhn642P5/8flM1xmWCDCOyx09RqIPrD
+	xvVDrcb0nZ6hvD2QN/sWt1Gw99OUjE2A63JYJXmtAhlZFaRyWakR9X3aK/xaWMdlVs
+	dZtKb43SE/1pw==
+Received: from lpn-prd-vrin003 (lpn-prd-vrin003.prosodie [10.128.63.4])
+	by lpn-prd-vrout012 (Postfix) with ESMTP id 15AB68CAE0
+	for <yocto@yoctoproject.org>; Mon, 17 Oct 2016 09:51:22 +0200 (CEST)
+Received: from lpn-prd-vrin003 (localhost [127.0.0.1])
+	by lpn-prd-vrin003 (Postfix) with ESMTP id 03E2D48E2B7
+	for <yocto@yoctoproject.org>; Mon, 17 Oct 2016 09:51:22 +0200 (CEST)
+Received: from pc-mls.ecafaros.local (unknown [212.234.36.135])
+	by lpn-prd-vrin003 (Postfix) with ESMTPA id BEB4A48E2AC;
+	Mon, 17 Oct 2016 09:51:21 +0200 (CEST)
+To: "Michel D'HOOGE" <michel.dhooge@free.fr>, "Yocto list discussion"
+	<yocto@yoctoproject.org>, idealsim <idealsim@laposte.net>
+References: <704582196.126855085.1476375158471.JavaMail.root@spooler3-g27.priv.proxad.net>
+	<9cad3e7a-e4ea-76eb-2190-461f19aaa364@laposte.net>
+Date: Mon, 17 Oct 2016 09:51:21 +0200
 MIME-Version: 1.0
-X-yoursite-MailScanner-ID: D37A741B5F46.ACFB8
-X-yoursite-MailScanner: Found to be clean
-X-yoursite-MailScanner-From: leimaohui@cn.fujitsu.com
-Subject: Why didn't deploy source archive by license from yocto-1.6
+From: idealsim <idealsim@laposte.net>
+Message-ID: <op.ypgv3vyemnlnty@pc-mls.ecafaros.local>
+In-Reply-To: <9cad3e7a-e4ea-76eb-2190-461f19aaa364@laposte.net>
+User-Agent: Opera Mail/1.0 (Win32)
+X-VR-SrcIP: 212.234.36.135
+X-VR-FullState: 0
+X-VR-Score: -100
+X-VR-Cause-1: gggruggvucftvghtrhhoucdtuddrfeelvddrhedugdduvdelucetufdoteggodetrfdotffvucfrrhho
+X-VR-Cause-2: fhhilhgvmecunfetrffquffvgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhht
+X-VR-Cause-3: shculddquddttddmnecujfgurheptgfvufhfffgggffhkfgjfgesthfsredttderleenucfhrhhomhep
+X-VR-Cause-4: ihguvggrlhhsihhmuceoihguvggrlhhsihhmsehlrghpohhsthgvrdhnvghtqeenucffohhmrghinhep
+X-VR-Cause-5: ohhpvghrrgdrtghomhdpghhithhhuhgsrdgtohhmnecukfhppedvuddvrddvfeegrdefiedrudefheen
+X-VR-Cause-6: ucfrrghrrghmpehmohguvgepshhmthhpohhuthdphhgvlhhopehptgdqmhhlshdrvggtrghfrghrohhs
+X-VR-Cause-7: rdhlohgtrghlpdhinhgvthepvdduvddrvdefgedrfeeirddufeehpdhmrghilhhfrhhomhepihguvggr
+X-VR-Cause-8: lhhsihhmsehlrghpohhsthgvrdhnvghtpdhrtghpthhtohepihguvggrlhhsihhmsehlrghpohhsthgv
+X-VR-Cause-9: rdhnvght
+X-VR-AvState: No
+X-VR-State: 0
+Subject: Re: <DKIM> Re: add dejavu-fonts to image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,17 +79,68 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 17 Oct 2016 06:49:07 -0000
-Content-Language: zh-CN
-Content-Type: text/plain; charset="shift_jis"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Mon, 17 Oct 2016 07:51:27 -0000
+Content-Type: text/plain; charset=iso-8859-15; format=flowed; delsp=yes
+Content-Transfer-Encoding: Quoted-Printable
 
-SGksDQoNCkkgZm91bmQgdGhhdCBiZWZvcmUgeW9jdG8tMS42LCBzb3VyY2Ug
-YXJjaGl2ZXMgd2VyZSBkZXBsb3llZCBieSBsaWNlbnNlLiANCg0KVGhlIGZv
-bGxvd2luZyBjb21taXQgY2hhbmdlZCB0aGUgZGlyZWN0b3J5IGZvciBkZXBs
-b3lpbmcgc291cmNlIGFyY2hpdmVzOg0KY2JjZjViMjE5ODU4YjU4YzQ0Mjll
-ZTg3NDQ0ZWFhY2M1YTdjZmEzZQ0KDQpCdXQgZnJvbSBjb21taXQgbG9nLCB0
-aGVyZSBpcyBubyBleHBsYWluaW5nIGFib3V0IHRoaXMgY2hhbmdlLg0KDQpB
-cmUgdGhlcmUgc29tZW9uZSB3aG8gY2FuIHRlbGwgbWUgd2h5Lg0KDQpCZXN0
-IHJlZ2FyZHMNCkxlaQ0KCgo=
+Hi Michel, your solution work fine thanks a lot for that !
+
+Le Fri, 14 Oct 2016 10:08:37 +0200, idealsim <idealsim@laposte.net> a  =
+
+=E9crit:
+
+> Ok, i will test this week end and let you know !
+>
+> Otherwise, if you build qt5.7 perhaps you can have the same issue like=
+  =
+
+> me with sdk, see here for more details :
+>
+> https://github.com/graugans/meta-udoo/issues/20
+>
+> regards
+>
+>
+> Le 13/10/2016 =E0 18:12, Michel D'HOOGE a =E9crit :
+>> After solving all the QA issues, this bbappend creates RPM packages  =
+
+>> with fonts in the expected folder. I didn't try to generate an image =
+ =
+
+>> but I'm quite confident about the result.
+>> Michel
+>>
+>>
+>> do_install() {
+>>      install -d ${D}${libdir}/fonts/
+>>      find ./ -name '*.tt[cf]' -exec install -m 0644 {}  =
+
+>> ${D}${libdir}/fonts/ \;
+>>      install -d ${D}${sysconfdir}/fonts/conf.d/
+>>      install -m 0644 ${WORKDIR}/30-dejavu-aliases.conf  =
+
+>> ${D}${sysconfdir}/fonts/conf.d/
+>> }
+>>
+>> FILES_${PN}-sans            =3D "${libdir}/fonts/DejaVuSans.ttf  =
+
+>> ${libdir}/fonts/DejaVuSans-*.ttf"
+>> FILES_${PN}-sans-mono       =3D "${libdir}/fonts/DejaVuSansMono*.ttf"=
+
+>> FILES_${PN}-sans-condensed  =3D "${libdir}/fonts/DejaVuSansCondensed*=
+.ttf"
+>> FILES_${PN}-serif           =3D "${libdir}/fonts/DejaVuSerif.ttf  =
+
+>> ${libdir}/fonts/DejaVuSerif-*.ttf"
+>> FILES_${PN}-serif-condensed =3D  =
+
+>> "${libdir}/fonts/DejaVuSerifCondensed*.ttf"
+>> FILES_${PN}-mathtexgyre     =3D "${libdir}/fonts/DejaVuMathTeXGyre.tt=
+f"
+>
+
+
+-- =
+
+Utilisant le logiciel de courrier d'Opera : http://www.opera.com/mail/
 
