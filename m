@@ -1,75 +1,56 @@
-Return-Path: <idealsim@laposte.net>
+Return-Path: <colin.helliwell@ln-systems.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1B2F6E00DF7; Mon, 17 Oct 2016 01:09:17 -0700 (PDT)
+	id 537D3E00AF2; Mon, 17 Oct 2016 05:27:59 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (idealsim[at]laposte.net)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [178.22.154.199 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from smtpoutz2.laposte.net (smtpoutz299.laposte.net [178.22.154.199])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 14325E00CE1
-	for <yocto@yoctoproject.org>; Mon, 17 Oct 2016 01:09:13 -0700 (PDT)
-Received: from smtpoutz2.laposte.net (localhost [127.0.0.1])
-	by lpn-prd-vrout011 (Postfix) with ESMTP id 112ED52B2EF
-	for <yocto@yoctoproject.org>; Mon, 17 Oct 2016 10:09:12 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=laposte.net; s=mail0;
-	t=1476691752; bh=WcvgSXW+r8pFkeikH5Ax8Jr7ObX9WrTmhLGYZP3Ey3c=;
-	h=Subject:To:Date:From;
-	b=NFY3b0XvjmbF/mDWwivOINBLMhuwV9r2gVUgYlbiQR+PO/5nR7Maek/fhr2dlm6Cp
-	HV/FE/cKXzdZ2nwvpQdZu/QvRPDnVgE/rjifQX3W5PRMcYIDbndVaAQMIHc/kZDWR0
-	/JnfiOKmNwdAV3nmkWUi7KW8t6VVlaP6xqZ5LckDdsqGtdm2iWVO+T+JQwJGD5NeF8
-	Irc2kXvnJSl06Ok+2tFzGtS5+MiEL565IN14QmZ9qe/BHGXOczN9GZzdk/ix22Rrcx
-	oOgvxJI6bdfp/L3XGchxP1jqsxGPgI8Hfh4mN5NOsk7+FxKVa/Au2c82r8S/oUR12p
-	iF0JriRq906Dw==
-Received: from smtpoutz2.laposte.net (localhost [127.0.0.1])
-	by lpn-prd-vrout011 (Postfix) with ESMTP id 027C252B2F1
-	for <yocto@yoctoproject.org>; Mon, 17 Oct 2016 10:09:12 +0200 (CEST)
-Received: from lpn-prd-vrin004 (lpn-prd-vrin004.prosodie [10.128.63.5])
-	by lpn-prd-vrout011 (Postfix) with ESMTP id F1E0F52B2EF
-	for <yocto@yoctoproject.org>; Mon, 17 Oct 2016 10:09:11 +0200 (CEST)
-Received: from lpn-prd-vrin004 (localhost [127.0.0.1])
-	by lpn-prd-vrin004 (Postfix) with ESMTP id E2234710158
-	for <yocto@yoctoproject.org>; Mon, 17 Oct 2016 10:09:11 +0200 (CEST)
-Received: from pc-mls.ecafaros.local (unknown [212.234.36.135])
-	by lpn-prd-vrin004 (Postfix) with ESMTPA id D71DC710241
-	for <yocto@yoctoproject.org>; Mon, 17 Oct 2016 10:09:10 +0200 (CEST)
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Mon, 17 Oct 2016 10:09:10 +0200
+X-Spam-Level: *
+X-Spam-Status: No, score=1.3 required=5.0 tests=BAYES_50,HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE,RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [212.227.126.135 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
+	*      [score: 0.5000]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [212.227.126.135 listed in dnsbl.sorbs.net]
+X-Greylist: delayed 309 seconds by postgrey-1.32 at yocto-www;
+	Mon, 17 Oct 2016 05:27:55 PDT
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.135])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E7746E00CE0
+	for <yocto@yoctoproject.org>; Mon, 17 Oct 2016 05:27:55 -0700 (PDT)
+Received: from LNSYSCH3 ([81.130.69.98]) by mrelayeu.kundenserver.de
+	(mreue004) with ESMTPSA (Nemesis) id 0MSmkD-1cLeiG0kmD-00RqR9 for
+	<yocto@yoctoproject.org>; Mon, 17 Oct 2016 14:22:45 +0200
+From: <colin.helliwell@ln-systems.com>
+To: <yocto@yoctoproject.org>
+Date: Mon, 17 Oct 2016 13:22:44 +0100
+Organization: LN Systems Limited
+Message-ID: <071401d22871$2a4535c0$7ecfa140$@ln-systems.com>
 MIME-Version: 1.0
-From: idealsim <idealsim@laposte.net>
-Message-ID: <op.ypgwxkybmnlnty@pc-mls.ecafaros.local>
-User-Agent: Opera Mail/1.0 (Win32)
-X-VR-SrcIP: 212.234.36.135
-X-VR-FullState: 0
-X-VR-Score: 0
-X-VR-Cause-1: gggruggvucftvghtrhhoucdtuddrfeelvddrhedugddufedvucetufdoteggodetrfdotffvucfrrhho
-X-VR-Cause-2: fhhilhgvmecunfetrffquffvgfenuceurghilhhouhhtmecuhedttdenucenucfjughrpegtuffvffgg
-X-VR-Cause-3: gffhkfgfsehtsffotddtreelnecuhfhrohhmpehiuggvrghlshhimhcuoehiuggvrghlshhimheslhgr
-X-VR-Cause-4: phhoshhtvgdrnhgvtheqnecuffhomhgrihhnpehophgvrhgrrdgtohhmnecukfhppedvuddvrddvfeeg
-X-VR-Cause-5: rdefiedrudefheenucfrrghrrghmpehmohguvgepshhmthhpohhuthdphhgvlhhopehptgdqmhhlshdr
-X-VR-Cause-6: vggtrghfrghrohhsrdhlohgtrghlpdhinhgvthepvdduvddrvdefgedrfeeirddufeehpdhmrghilhhf
-X-VR-Cause-7: rhhomhepihguvggrlhhsihhmsehlrghpohhsthgvrdhnvghtpdhrtghpthhtohephihotghtoheshiho
-X-VR-Cause-8: tghtohhprhhojhgvtghtrdhorhhg
-X-VR-AvState: No
-X-VR-State: 0
-X-VR-State: 0
-Subject: [yocto/meta-qt5] broken qt5 sdk
+X-Mailer: Microsoft Outlook 15.0
+Thread-Index: AdIocMbw6VkpsoRIT/SqGVMwLCBGzA==
+X-Provags-ID: V03:K0:jg1NP6aFamosM/J39gcd8260yRDVE7nJBCbo6T4mNB0E9Y+EgTC
+	jkiMg0C6OsJhUT5/RiNAsKsqbd3x/MlJ9asQHMhoU7NKynX81f1dJJV3mH4AVwA9DRAny65
+	ROnmb1nM7BPZBUIQerQpN+/xLXY5GLBrZsFIT6iKwZOmEhAN9xH8WRFzx667XGTz+xzWyoE
+	+Di0iGvpVQsnyV5w96q4A==
+X-UI-Out-Filterresults: notjunk:1;V01:K0:Mq8bo6XolOA=:TgPLXhMMNVnK+QZj8s4nj+
+	wFPp9wV9Oqf7yTrQQyJi2We1nGQFkI1IYcDbY57tBF77ciK4flmTdTWtAVn1CyWdy7+h4MRpE
+	9TgX+EXvBghUVxFlEfLZWbzPJmDbHnIDjRXjtXTIULhW9t/4sqdFzGPDKCe1sRovzKrVOPXsK
+	8rIs81BEYu/Qnm/v/2cxFYK8K5GKFHBMrUTd56njbl7rXmt/behtpxATwOsQGAOOejj83ZKz1
+	rzXn+b+JhSHksG1j8sa+B7Fg/eojZl5FgghYGzVBiVpKZ+BOIYBv3pQM7nVk1fJ4b7pRf8Thr
+	CJWcJDUnIxaeQFVz6DNAfv8WYVpcjirLQ9Rr5+OV2BypLm4kOlMncfY3xcBKbfXrgWMj6Ld9R
+	/pPEMNkwcAUF2MeLG0VJLuYABIZEx/wEWHoFNs0V3vzB/AdMBbSqgsQxnq7B0DZ/gELfiWPwf
+	Ca2aXkpSL7utv7Y4aMq427QqyZIJLO9nxRJOdwceOzJS256uwpAlwJ1xxf45PbK6syIMS35s1
+	aZ4A1wUc0CbSlQPkSSm50p5LFowDs86cvCgzCXL742vdWea4alRNiJxpW0JWKxfZX8hsmxKVk
+	IC+0dbHUBQANZ7lSvq8roM1NKcrdsJZ9VsWwBW5oDw3SmvOV/j8zMRuwJ9rTK5IuU+6ojPPNL
+	D+x00tkZh4r7B5X7+7ULWYQwotQiEljFHw75ukD+waW4sTd1BmOkegPtocXPAc086WhMJWA5q
+	/mqTYQBgj2Y7g1hf
+Subject: Adding a file into the kernel source
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: colin.helliwell@ln-systems.com
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -78,106 +59,82 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 17 Oct 2016 08:09:17 -0000
-Content-Type: text/plain; charset=iso-8859-15; format=flowed; delsp=yes
-Content-Transfer-Encoding: Quoted-Printable
+X-List-Received-Date: Mon, 17 Oct 2016 12:27:59 -0000
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_0715_01D22879.8C0A12F0"
+Content-Language: en-gb
 
-Hi, since one week now i have a problem with my generated sdk. When i
-deploy sdk and configure qtCreator i have this error when i try do deplo=
-y
-an app :
+------=_NextPart_000_0715_01D22879.8C0A12F0
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-/usr/bin/ld: skipping incompatible
-/opt/poky/secoA62/sysroots/cortexa9hf-neon-poky-linux-gnueabi/usr/lib/li=
-bQt5Charts.so
-when searching for -lQt5Charts
-/usr/bin/ld: skipping incompatible
-/home/mls/yocto-seco/secoA62q/tmp/sysroots/secosbca62/usr/lib/libQt5Char=
-ts.so
-when searching for -lQt5Charts
-/usr/bin/ld: cannot find -lQt5Charts
-/usr/bin/ld: skipping incompatible
-/opt/poky/secoA62/sysroots/cortexa9hf-neon-poky-linux-gnueabi/usr/lib/li=
-bQt5Widgets.so
-when searching for -lQt5Widgets
-/usr/bin/ld: skipping incompatible
-/home/mls/yocto-seco/secoA62q/tmp/sysroots/secosbca62/usr/lib/libQt5Widg=
-ets.so
-when searching for -lQt5Widgets
-/usr/bin/ld: cannot find -lQt5Widgets
-/usr/bin/ld: skipping incompatible
-/opt/poky/secoA62/sysroots/cortexa9hf-neon-poky-linux-gnueabi/usr/lib/li=
-bQt5Gui.so
-when searching for -lQt5Gui
-/usr/bin/ld: skipping incompatible
-/home/mls/yocto-seco/secoA62q/tmp/sysroots/secosbca62/usr/lib/libQt5Gui.=
-so
-when searching for -lQt5Gui
-/usr/bin/ld: cannot find -lQt5Gui
-/usr/bin/ld: skipping incompatible
-/opt/poky/secoA62/sysroots/cortexa9hf-neon-poky-linux-gnueabi/usr/lib/li=
-bQt5Core.so
-when searching for -lQt5Core
-/usr/bin/ld: skipping incompatible
-/home/mls/yocto-seco/secoA62q/tmp/sysroots/secosbca62/usr/lib/libQt5Core=
-.so
-when searching for -lQt5Core
-/usr/bin/ld: cannot find -lQt5Core
-/usr/bin/ld: skipping incompatible
-/opt/poky/secoA62/sysroots/cortexa9hf-neon-poky-linux-gnueabi/usr/lib/li=
-bGLESv2.so
-when searching for -lGLESv2
-/usr/bin/ld: skipping incompatible
-/home/mls/yocto-seco/secoA62q/tmp/sysroots/secosbca62/usr/lib/libGLESv2.=
-so
-when searching for -lGLESv2
-/usr/bin/ld: cannot find -lGLESv2
-/usr/bin/ld: skipping incompatible
-/opt/poky/secoA62/sysroots/cortexa9hf-neon-poky-linux-gnueabi/usr/lib/li=
-bpthread.so
-when searching for -lpthread
-/usr/bin/ld: skipping incompatible
-/home/mls/yocto-seco/secoA62q/tmp/sysroots/secosbca62/usr/lib/libpthread=
-.so
-when searching for -lpthread
-/usr/bin/ld: skipping incompatible
-/home/mls/yocto-seco/secoA62q/tmp/sysroots/secosbca62/usr/lib/libpthread=
-.a
-when searching for -lpthread
-collect2: error: ld returned 1 exit status
-make: *** [barchart] Error 1
-09:57:17: Le processus "/usr/bin/make" s'est termin=E9 avec le code 2.
+I want to add a new file (a device tree source) into my kernel build. Is
+there a way to get the recipe to specifically copy an existing file in , or
+does it have to be created using a patch?
 
-For information we are on krogoth branch for oe/poky ... and master in
-meta-qt5 (for qt5.7). We have no warning or error during the build.
-
-I also see that qmake -query (the qmake give by the sdk in
-/x86_64-pokysdk-linux/usr/bin/qt5/bin) give this :
-
-QT_EXTERNAL_HOST_BINS:
-QMAKE_SPEC:linux-g++
-QMAKE_XSPEC:linux-g++
-QMAKE_VERSION:3.0
-QT_VERSION:5.7.0
-
-and before for a working sdk, i have this for qmake -query :
-
-QT_EXTERNAL_HOST_BINS:
-QMAKE_SPEC:/home/mls/yoctoUdoo/neoBuild/tmp/sysroots/x86_64-linux/usr/li=
-b/qt5/mkspecs/linux-oe-g++
-QMAKE_XSPEC:linux-oe-g++
-QMAKE_VERSION:3.0
-QT_VERSION:5.6.1
-
-I think a problem with QMAKE_SPEC, but i don't know how to resolve this =
-!
-
-If someone can help please !
-
-Micka=EBl
+ 
 
 
--- =
+------=_NextPart_000_0715_01D22879.8C0A12F0
+Content-Type: text/html;
+	charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Utilisant le logiciel de courrier d'Opera : http://www.opera.com/mail/
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><META =
+HTTP-EQUIV=3D"Content-Type" CONTENT=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-GB =
+link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
+class=3DMsoNormal>I want to add a new file (a device tree source) into =
+my kernel build. Is there a way to get the recipe to specifically copy =
+an existing file in , or does it have to be created using a =
+patch?<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
 
+------=_NextPart_000_0715_01D22879.8C0A12F0--
