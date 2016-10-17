@@ -1,6 +1,6 @@
 Return-Path: <idealsim@laposte.net>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9A574E00CE1; Mon, 17 Oct 2016 00:51:27 -0700 (PDT)
+	id 1B2F6E00DF7; Mon, 17 Oct 2016 01:09:17 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,6 +9,9 @@ X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (idealsim[at]laposte.net)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [178.22.154.199 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -16,58 +19,54 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [178.22.154.200 listed in list.dnswl.org]
-Received: from smtp.laposte.net (smtpoutz300.laposte.net [178.22.154.200])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 27EBAE00C8E
-	for <yocto@yoctoproject.org>; Mon, 17 Oct 2016 00:51:23 -0700 (PDT)
-Received: from smtp.laposte.net (localhost [127.0.0.1])
-	by lpn-prd-vrout012 (Postfix) with ESMTP id 1A8B18CB52
-	for <yocto@yoctoproject.org>; Mon, 17 Oct 2016 09:51:22 +0200 (CEST)
+Received: from smtpoutz2.laposte.net (smtpoutz299.laposte.net [178.22.154.199])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 14325E00CE1
+	for <yocto@yoctoproject.org>; Mon, 17 Oct 2016 01:09:13 -0700 (PDT)
+Received: from smtpoutz2.laposte.net (localhost [127.0.0.1])
+	by lpn-prd-vrout011 (Postfix) with ESMTP id 112ED52B2EF
+	for <yocto@yoctoproject.org>; Mon, 17 Oct 2016 10:09:12 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=laposte.net; s=mail0;
-	t=1476690682; bh=v0uwCObfbkZWe0kJpCggIrMvN6PRREMpaYhzTF2rdj0=;
-	h=To:Subject:References:Date:From:In-Reply-To;
-	b=bh4wfLZpFaqugyZKnOoatYygAK+cERa+shPYGbd9WnwhnRe0XmdSo02NpRXwbpLlZ
-	id6TevFSOXcfuhsYIthoaq5JfXKRE2DCcJyfKuPxNuQZfYY/QHLFn2i7xgPKar+h0G
-	ExJ0xCzVX7dvLNFkn+ka7jkljM6Cex3ab+eWUr6TEkjmxpJB+Ug8729dmgSQHrI2xI
-	IZw1UQzQfAUsPfZ4nlAGfw9iGVVdhFCf5ZEJhn642P5/8flM1xmWCDCOyx09RqIPrD
-	xvVDrcb0nZ6hvD2QN/sWt1Gw99OUjE2A63JYJXmtAhlZFaRyWakR9X3aK/xaWMdlVs
-	dZtKb43SE/1pw==
-Received: from lpn-prd-vrin003 (lpn-prd-vrin003.prosodie [10.128.63.4])
-	by lpn-prd-vrout012 (Postfix) with ESMTP id 15AB68CAE0
-	for <yocto@yoctoproject.org>; Mon, 17 Oct 2016 09:51:22 +0200 (CEST)
-Received: from lpn-prd-vrin003 (localhost [127.0.0.1])
-	by lpn-prd-vrin003 (Postfix) with ESMTP id 03E2D48E2B7
-	for <yocto@yoctoproject.org>; Mon, 17 Oct 2016 09:51:22 +0200 (CEST)
+	t=1476691752; bh=WcvgSXW+r8pFkeikH5Ax8Jr7ObX9WrTmhLGYZP3Ey3c=;
+	h=Subject:To:Date:From;
+	b=NFY3b0XvjmbF/mDWwivOINBLMhuwV9r2gVUgYlbiQR+PO/5nR7Maek/fhr2dlm6Cp
+	HV/FE/cKXzdZ2nwvpQdZu/QvRPDnVgE/rjifQX3W5PRMcYIDbndVaAQMIHc/kZDWR0
+	/JnfiOKmNwdAV3nmkWUi7KW8t6VVlaP6xqZ5LckDdsqGtdm2iWVO+T+JQwJGD5NeF8
+	Irc2kXvnJSl06Ok+2tFzGtS5+MiEL565IN14QmZ9qe/BHGXOczN9GZzdk/ix22Rrcx
+	oOgvxJI6bdfp/L3XGchxP1jqsxGPgI8Hfh4mN5NOsk7+FxKVa/Au2c82r8S/oUR12p
+	iF0JriRq906Dw==
+Received: from smtpoutz2.laposte.net (localhost [127.0.0.1])
+	by lpn-prd-vrout011 (Postfix) with ESMTP id 027C252B2F1
+	for <yocto@yoctoproject.org>; Mon, 17 Oct 2016 10:09:12 +0200 (CEST)
+Received: from lpn-prd-vrin004 (lpn-prd-vrin004.prosodie [10.128.63.5])
+	by lpn-prd-vrout011 (Postfix) with ESMTP id F1E0F52B2EF
+	for <yocto@yoctoproject.org>; Mon, 17 Oct 2016 10:09:11 +0200 (CEST)
+Received: from lpn-prd-vrin004 (localhost [127.0.0.1])
+	by lpn-prd-vrin004 (Postfix) with ESMTP id E2234710158
+	for <yocto@yoctoproject.org>; Mon, 17 Oct 2016 10:09:11 +0200 (CEST)
 Received: from pc-mls.ecafaros.local (unknown [212.234.36.135])
-	by lpn-prd-vrin003 (Postfix) with ESMTPA id BEB4A48E2AC;
-	Mon, 17 Oct 2016 09:51:21 +0200 (CEST)
-To: "Michel D'HOOGE" <michel.dhooge@free.fr>, "Yocto list discussion"
-	<yocto@yoctoproject.org>, idealsim <idealsim@laposte.net>
-References: <704582196.126855085.1476375158471.JavaMail.root@spooler3-g27.priv.proxad.net>
-	<9cad3e7a-e4ea-76eb-2190-461f19aaa364@laposte.net>
-Date: Mon, 17 Oct 2016 09:51:21 +0200
+	by lpn-prd-vrin004 (Postfix) with ESMTPA id D71DC710241
+	for <yocto@yoctoproject.org>; Mon, 17 Oct 2016 10:09:10 +0200 (CEST)
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Mon, 17 Oct 2016 10:09:10 +0200
 MIME-Version: 1.0
 From: idealsim <idealsim@laposte.net>
-Message-ID: <op.ypgv3vyemnlnty@pc-mls.ecafaros.local>
-In-Reply-To: <9cad3e7a-e4ea-76eb-2190-461f19aaa364@laposte.net>
+Message-ID: <op.ypgwxkybmnlnty@pc-mls.ecafaros.local>
 User-Agent: Opera Mail/1.0 (Win32)
 X-VR-SrcIP: 212.234.36.135
 X-VR-FullState: 0
-X-VR-Score: -100
-X-VR-Cause-1: gggruggvucftvghtrhhoucdtuddrfeelvddrhedugdduvdelucetufdoteggodetrfdotffvucfrrhho
-X-VR-Cause-2: fhhilhgvmecunfetrffquffvgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhht
-X-VR-Cause-3: shculddquddttddmnecujfgurheptgfvufhfffgggffhkfgjfgesthfsredttderleenucfhrhhomhep
-X-VR-Cause-4: ihguvggrlhhsihhmuceoihguvggrlhhsihhmsehlrghpohhsthgvrdhnvghtqeenucffohhmrghinhep
-X-VR-Cause-5: ohhpvghrrgdrtghomhdpghhithhhuhgsrdgtohhmnecukfhppedvuddvrddvfeegrdefiedrudefheen
-X-VR-Cause-6: ucfrrghrrghmpehmohguvgepshhmthhpohhuthdphhgvlhhopehptgdqmhhlshdrvggtrghfrghrohhs
-X-VR-Cause-7: rdhlohgtrghlpdhinhgvthepvdduvddrvdefgedrfeeirddufeehpdhmrghilhhfrhhomhepihguvggr
-X-VR-Cause-8: lhhsihhmsehlrghpohhsthgvrdhnvghtpdhrtghpthhtohepihguvggrlhhsihhmsehlrghpohhsthgv
-X-VR-Cause-9: rdhnvght
+X-VR-Score: 0
+X-VR-Cause-1: gggruggvucftvghtrhhoucdtuddrfeelvddrhedugddufedvucetufdoteggodetrfdotffvucfrrhho
+X-VR-Cause-2: fhhilhgvmecunfetrffquffvgfenuceurghilhhouhhtmecuhedttdenucenucfjughrpegtuffvffgg
+X-VR-Cause-3: gffhkfgfsehtsffotddtreelnecuhfhrohhmpehiuggvrghlshhimhcuoehiuggvrghlshhimheslhgr
+X-VR-Cause-4: phhoshhtvgdrnhgvtheqnecuffhomhgrihhnpehophgvrhgrrdgtohhmnecukfhppedvuddvrddvfeeg
+X-VR-Cause-5: rdefiedrudefheenucfrrghrrghmpehmohguvgepshhmthhpohhuthdphhgvlhhopehptgdqmhhlshdr
+X-VR-Cause-6: vggtrghfrghrohhsrdhlohgtrghlpdhinhgvthepvdduvddrvdefgedrfeeirddufeehpdhmrghilhhf
+X-VR-Cause-7: rhhomhepihguvggrlhhsihhmsehlrghpohhsthgvrdhnvghtpdhrtghpthhtohephihotghtoheshiho
+X-VR-Cause-8: tghtohhprhhojhgvtghtrdhorhhg
 X-VR-AvState: No
 X-VR-State: 0
-Subject: Re: <DKIM> Re: add dejavu-fonts to image
+X-VR-State: 0
+Subject: [yocto/meta-qt5] broken qt5 sdk
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -79,65 +78,103 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 17 Oct 2016 07:51:27 -0000
+X-List-Received-Date: Mon, 17 Oct 2016 08:09:17 -0000
 Content-Type: text/plain; charset=iso-8859-15; format=flowed; delsp=yes
 Content-Transfer-Encoding: Quoted-Printable
 
-Hi Michel, your solution work fine thanks a lot for that !
+Hi, since one week now i have a problem with my generated sdk. When i
+deploy sdk and configure qtCreator i have this error when i try do deplo=
+y
+an app :
 
-Le Fri, 14 Oct 2016 10:08:37 +0200, idealsim <idealsim@laposte.net> a  =
+/usr/bin/ld: skipping incompatible
+/opt/poky/secoA62/sysroots/cortexa9hf-neon-poky-linux-gnueabi/usr/lib/li=
+bQt5Charts.so
+when searching for -lQt5Charts
+/usr/bin/ld: skipping incompatible
+/home/mls/yocto-seco/secoA62q/tmp/sysroots/secosbca62/usr/lib/libQt5Char=
+ts.so
+when searching for -lQt5Charts
+/usr/bin/ld: cannot find -lQt5Charts
+/usr/bin/ld: skipping incompatible
+/opt/poky/secoA62/sysroots/cortexa9hf-neon-poky-linux-gnueabi/usr/lib/li=
+bQt5Widgets.so
+when searching for -lQt5Widgets
+/usr/bin/ld: skipping incompatible
+/home/mls/yocto-seco/secoA62q/tmp/sysroots/secosbca62/usr/lib/libQt5Widg=
+ets.so
+when searching for -lQt5Widgets
+/usr/bin/ld: cannot find -lQt5Widgets
+/usr/bin/ld: skipping incompatible
+/opt/poky/secoA62/sysroots/cortexa9hf-neon-poky-linux-gnueabi/usr/lib/li=
+bQt5Gui.so
+when searching for -lQt5Gui
+/usr/bin/ld: skipping incompatible
+/home/mls/yocto-seco/secoA62q/tmp/sysroots/secosbca62/usr/lib/libQt5Gui.=
+so
+when searching for -lQt5Gui
+/usr/bin/ld: cannot find -lQt5Gui
+/usr/bin/ld: skipping incompatible
+/opt/poky/secoA62/sysroots/cortexa9hf-neon-poky-linux-gnueabi/usr/lib/li=
+bQt5Core.so
+when searching for -lQt5Core
+/usr/bin/ld: skipping incompatible
+/home/mls/yocto-seco/secoA62q/tmp/sysroots/secosbca62/usr/lib/libQt5Core=
+.so
+when searching for -lQt5Core
+/usr/bin/ld: cannot find -lQt5Core
+/usr/bin/ld: skipping incompatible
+/opt/poky/secoA62/sysroots/cortexa9hf-neon-poky-linux-gnueabi/usr/lib/li=
+bGLESv2.so
+when searching for -lGLESv2
+/usr/bin/ld: skipping incompatible
+/home/mls/yocto-seco/secoA62q/tmp/sysroots/secosbca62/usr/lib/libGLESv2.=
+so
+when searching for -lGLESv2
+/usr/bin/ld: cannot find -lGLESv2
+/usr/bin/ld: skipping incompatible
+/opt/poky/secoA62/sysroots/cortexa9hf-neon-poky-linux-gnueabi/usr/lib/li=
+bpthread.so
+when searching for -lpthread
+/usr/bin/ld: skipping incompatible
+/home/mls/yocto-seco/secoA62q/tmp/sysroots/secosbca62/usr/lib/libpthread=
+.so
+when searching for -lpthread
+/usr/bin/ld: skipping incompatible
+/home/mls/yocto-seco/secoA62q/tmp/sysroots/secosbca62/usr/lib/libpthread=
+.a
+when searching for -lpthread
+collect2: error: ld returned 1 exit status
+make: *** [barchart] Error 1
+09:57:17: Le processus "/usr/bin/make" s'est termin=E9 avec le code 2.
 
-=E9crit:
+For information we are on krogoth branch for oe/poky ... and master in
+meta-qt5 (for qt5.7). We have no warning or error during the build.
 
-> Ok, i will test this week end and let you know !
->
-> Otherwise, if you build qt5.7 perhaps you can have the same issue like=
-  =
+I also see that qmake -query (the qmake give by the sdk in
+/x86_64-pokysdk-linux/usr/bin/qt5/bin) give this :
 
-> me with sdk, see here for more details :
->
-> https://github.com/graugans/meta-udoo/issues/20
->
-> regards
->
->
-> Le 13/10/2016 =E0 18:12, Michel D'HOOGE a =E9crit :
->> After solving all the QA issues, this bbappend creates RPM packages  =
+QT_EXTERNAL_HOST_BINS:
+QMAKE_SPEC:linux-g++
+QMAKE_XSPEC:linux-g++
+QMAKE_VERSION:3.0
+QT_VERSION:5.7.0
 
->> with fonts in the expected folder. I didn't try to generate an image =
- =
+and before for a working sdk, i have this for qmake -query :
 
->> but I'm quite confident about the result.
->> Michel
->>
->>
->> do_install() {
->>      install -d ${D}${libdir}/fonts/
->>      find ./ -name '*.tt[cf]' -exec install -m 0644 {}  =
+QT_EXTERNAL_HOST_BINS:
+QMAKE_SPEC:/home/mls/yoctoUdoo/neoBuild/tmp/sysroots/x86_64-linux/usr/li=
+b/qt5/mkspecs/linux-oe-g++
+QMAKE_XSPEC:linux-oe-g++
+QMAKE_VERSION:3.0
+QT_VERSION:5.6.1
 
->> ${D}${libdir}/fonts/ \;
->>      install -d ${D}${sysconfdir}/fonts/conf.d/
->>      install -m 0644 ${WORKDIR}/30-dejavu-aliases.conf  =
+I think a problem with QMAKE_SPEC, but i don't know how to resolve this =
+!
 
->> ${D}${sysconfdir}/fonts/conf.d/
->> }
->>
->> FILES_${PN}-sans            =3D "${libdir}/fonts/DejaVuSans.ttf  =
+If someone can help please !
 
->> ${libdir}/fonts/DejaVuSans-*.ttf"
->> FILES_${PN}-sans-mono       =3D "${libdir}/fonts/DejaVuSansMono*.ttf"=
-
->> FILES_${PN}-sans-condensed  =3D "${libdir}/fonts/DejaVuSansCondensed*=
-.ttf"
->> FILES_${PN}-serif           =3D "${libdir}/fonts/DejaVuSerif.ttf  =
-
->> ${libdir}/fonts/DejaVuSerif-*.ttf"
->> FILES_${PN}-serif-condensed =3D  =
-
->> "${libdir}/fonts/DejaVuSerifCondensed*.ttf"
->> FILES_${PN}-mathtexgyre     =3D "${libdir}/fonts/DejaVuMathTeXGyre.tt=
-f"
->
+Micka=EBl
 
 
 -- =
