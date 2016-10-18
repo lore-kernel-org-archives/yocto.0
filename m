@@ -1,19 +1,17 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 12CE5E00A7D; Mon, 17 Oct 2016 16:01:48 -0700 (PDT)
+	id 3FD00E00AD2; Mon, 17 Oct 2016 17:02:35 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
+	mail provider *      (akuster808[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.213.48 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.213.48 listed in dnsbl.sorbs.net]
+	*      [209.85.192.195 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -21,45 +19,50 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-vk0-f48.google.com (mail-vk0-f48.google.com
-	[209.85.213.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C85F4E00A21
-	for <yocto@yoctoproject.org>; Mon, 17 Oct 2016 16:01:46 -0700 (PDT)
-Received: by mail-vk0-f48.google.com with SMTP id q126so143096578vkd.2
-	for <yocto@yoctoproject.org>; Mon, 17 Oct 2016 16:01:46 -0700 (PDT)
+Received: from mail-pf0-f195.google.com (mail-pf0-f195.google.com
+	[209.85.192.195])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E5185E00A7D
+	for <yocto@yoctoproject.org>; Mon, 17 Oct 2016 17:02:33 -0700 (PDT)
+Received: by mail-pf0-f195.google.com with SMTP id i85so10241355pfa.0
+	for <yocto@yoctoproject.org>; Mon, 17 Oct 2016 17:02:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=rawfCgVAgritvO2yo5tPELVJRzKGSf1Ioam8/1N041M=;
-	b=pBHURgy8vjv9yebpe0VISCa7sWrZONvtOJFkKOFvF0uxP2LLktlqiWf08+Sc/jLoxN
-	1eZ85B9NhQgEmFvBpbNwKfx1txCwed1+UfvkEiK3Szqwfw4er+7ZcROy3sHc5+f9XZeu
-	lI6TifJ/6Vwm6V5s9MrolQSmp05DR+QmCc+7JhDvyfm6Y/eExMlv6/7kNz0DkSzU9kNZ
-	PCX6CgL8DCCQjEDZmc51P5CRYWfGdlXgERPpEsde0f5g3jrRFYnB9WrMGY8mdyhbquPH
-	QCdC8hFB+AwfoEQY74dhCzGKZwORZhCI2qokDl7vwo7E3yml7KTkULNyWde8oXYP4cUG
-	CDbw==
+	h=from:to:subject:date:message-id:in-reply-to:references;
+	bh=KrcWpHSbug0E8kaXXQ+m1e5TAvz6hMgKuBrBqGNDd98=;
+	b=rbMzPlFFbuNrHHZOxV9DYBZjFx1AveEZTyUEcoKF7Y2SzaYIygcjXaFu1m5Se/Qq9y
+	HXuOWv7YsXSETB/hNCxTNS68rjiV8QniMeWXF2UrSU7LnBlDf/J9t1BU2lfm7LVT0HiU
+	K4DRmpGnRnhJ2g1guduRH5gpklJZFlec7bPMyrLJvrzNasfr3hsBwYeWBNwulGb0LS2F
+	WEg6XSRtMW0dfVAJ8RILnxdOrFYh0K+YJjpx56D9PpN6+wfQog9paMQW7Pmn1KwCpdal
+	mkW3Zcjf6cHuAUiXittXOnlYIiSTGBMkVVICMXhrAKze/OXnS8zj+KpOB1XHuU3JKuce
+	IWpQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=rawfCgVAgritvO2yo5tPELVJRzKGSf1Ioam8/1N041M=;
-	b=e+SR5uMNzGgdzXtxWUN0QKiqj+ivlGTlXQhr8PdK3Kkr4qhTlkrB4wJaW08vZyyd4m
-	Ftb97SUdVKPD6jVw4D0yEvmWvJySCzuQIIiW3AY5OzTa9cegN7XF2xg3Ptt/oWpafSXa
-	VmXUCm9MPUTjqZh730/CRj7NnkjJ2/x4I27ocIN0x02rKRVSP0Ye5Izn/G9gIP7/Lp9y
-	QnEhY4wWlf/ei5qLhCqigpSTI8dwlR0knzO787FIxddBtPNaxBcFpA0rNc2Ecs461Qkq
-	tMddCf0Jn2u8SVAi8akqSms+oEnnrfg2UPtFUD/zBfMMIKOeBvtHx08Sy+hpjRLtxp1G
-	wfEw==
-X-Gm-Message-State: AA6/9RlW7Zo4hXIGUcl9VEgC+Ci27W8OFmrwrjWqp8kc+kEid2JQ30Asep/VnVAH9HwRT46vSsNhO+tuY36+BA==
-X-Received: by 10.31.244.14 with SMTP id s14mr20212527vkh.31.1476745305773;
-	Mon, 17 Oct 2016 16:01:45 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.176.86.206 with HTTP; Mon, 17 Oct 2016 16:01:15 -0700 (PDT)
-In-Reply-To: <3230301C09DEF9499B442BBE162C5E48ABE85854@sestoex09.enea.se>
-References: <3230301C09DEF9499B442BBE162C5E48ABE85854@sestoex09.enea.se>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Mon, 17 Oct 2016 16:01:15 -0700
-Message-ID: <CAMKF1sp_qLfdeFvHzi+VD-6tFbX-f372uiRmKjeXRG3w1WVwkQ@mail.gmail.com>
-To: Sona Sarmadi <sona.sarmadi@enea.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: General policies for CVE fixes
+	h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
+	:references;
+	bh=KrcWpHSbug0E8kaXXQ+m1e5TAvz6hMgKuBrBqGNDd98=;
+	b=AzezrlRcwIfGQZu0/1WxRkp+NVghO9a15LmlrsnsUZVR+SsiykKOELBeH2+FGJRRfU
+	NGP7R2o2/h86T7njQvrH0Ee+d695Nyo37bsoBxg5Rjh+cjuXYMP0/aYFrrOzStvDNpiu
+	j7qMr8ixoDmqvZB8CZt4Rq2pi7kKFzRCIfrAxzbDni5kJ09oZQzvIGUHJhFNtG/qTJce
+	ON9gNUWZ0XX8sp9T1a4fqU3ZcPWMbO23X3jW+pw1uFgszc8ghbssc9nXLmiInaPAnDFj
+	rLtU+eV6WR+3H6V6CcyqQJOiYZhDxHElOGqZl49mqLeweQwA+6uPIEsm1FKhjHffIr+j
+	90Qw==
+X-Gm-Message-State: AA6/9RmfWVxaOo7fq5WkW0p1kMM9bRzazfBy1f0+r71skrzkXDYIOgu+wgsKhZj8ZPqYCQ==
+X-Received: by 10.99.116.79 with SMTP id e15mr136817pgn.166.1476748952850;
+	Mon, 17 Oct 2016 17:02:32 -0700 (PDT)
+Received: from akuster-ThinkPad-X240.mvista.com
+	([2601:202:4001:9ea0:5ef:e28f:5dce:e040])
+	by smtp.gmail.com with ESMTPSA id
+	s6sm50597160pfg.46.2016.10.17.17.02.32
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Mon, 17 Oct 2016 17:02:32 -0700 (PDT)
+From: Armin Kuster <akuster808@gmail.com>
+To: yocto@yoctoproject.org,
+	akuster808@gmail.com
+Date: Mon, 17 Oct 2016 17:02:15 -0700
+Message-Id: <1476748950-21342-2-git-send-email-akuster808@gmail.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1476748950-21342-1-git-send-email-akuster808@gmail.com>
+References: <1476748950-21342-1-git-send-email-akuster808@gmail.com>
+Subject: [meta-security][PATCH 02/17] tpm-tools: add native support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,50 +74,63 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 17 Oct 2016 23:01:48 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Tue, 18 Oct 2016 00:02:35 -0000
 
-On Mon, Oct 17, 2016 at 12:11 PM, Sona Sarmadi <sona.sarmadi@enea.com> wrote:
-> Hi all,
->
-> From https://wiki.yoctoproject.org/wiki/Stable_branch_maintenance:
->
-> General policies:
->
-> Fixes must go into master first unless they are applicable only to the
-> stable branch; if back-porting to an older stable branch, the fix should
-> first be applied to the newer stable branches before being back-ported to
-> the older branch
->
-> Does anyone know the reason for the policy above i.e. why fixes have to go
-> to master first?
->
-> 1)      It makes more sense at least for users  to get CVE fixes as soon as
-> possible in the maintenance branches.
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ recipes-tpm/tpm-tools/tpm-tools_1.3.8.bb     |  3 +++
+ recipes-tpm/tpm2.0-tools/tpm2.0-tools_git.bb | 23 +++++++++++++++++++++++
+ 2 files changed, 26 insertions(+)
+ create mode 100644 recipes-tpm/tpm2.0-tools/tpm2.0-tools_git.bb
 
-this is to ensure, that we do not regress next time when we release next version
-from master. So its important to ensure that the fix has been applied to master
-sometimes you can assert that the fix has gone into new version of a package
-that is due to be uprevved in master and will be done soonish. Such information
-is helpful when making security patches for release branches.
+diff --git a/recipes-tpm/tpm-tools/tpm-tools_1.3.8.bb b/recipes-tpm/tpm-tools/tpm-tools_1.3.8.bb
+index 5645976..99ea8ee 100644
+--- a/recipes-tpm/tpm-tools/tpm-tools_1.3.8.bb
++++ b/recipes-tpm/tpm-tools/tpm-tools_1.3.8.bb
+@@ -9,6 +9,7 @@ SECTION = "tpm"
+ LICENSE = "CPL-1.0"
+ LIC_FILES_CHKSUM = "file://LICENSE;md5=059e8cd6165cb4c31e351f2b69388fd9"
+ DEPENDS = "libtspi openssl"
++DEPENDS_class-native = "trousers-native"
+ 
+ SRC_URI += " \
+     http://downloads.sourceforge.net/project/trousers/${BPN}/${PV}/${BP}.tar.gz \
+@@ -20,3 +21,5 @@ SRC_URI[md5sum] = "85a978c4e03fefd4b73cbeadde7c4d0b"
+ SRC_URI[sha256sum] = "66eb4ff095542403db6b4bd4b574e8a5c08084fe4e9e5aa9a829ee84e20bea83"
+ 
+ inherit autotools gettext
++
++BBCLASSEXTEND = "native"
+diff --git a/recipes-tpm/tpm2.0-tools/tpm2.0-tools_git.bb b/recipes-tpm/tpm2.0-tools/tpm2.0-tools_git.bb
+new file mode 100644
+index 0000000..be49dd9
+--- /dev/null
++++ b/recipes-tpm/tpm2.0-tools/tpm2.0-tools_git.bb
+@@ -0,0 +1,23 @@
++SUMMARY = "Tools for TPM2."
++DESCRIPTION = "tpm2.0-tools"
++LICENSE = "BSD"
++LIC_FILES_CHKSUM = "file://LICENSE;md5=91b7c548d73ea16537799e8060cea819"
++SECTION = "tpm"
++
++DEPENDS = "tpm2.0-tss openssl curl"
++
++SRCREV = "c924cc8ca752e5af6a829f893c6be4b185d56e99"
++
++SRC_URI = "git://github.com/01org/tpm2.0-tools.git;protocol=git;branch=master;name=tpm2.0-tools;destsuffix=tpm2.0-tools"
++
++S = "${WORKDIR}/tpm2.0-tools"
++
++PV = "1.0+git${SRCPV}"
++
++inherit autotools-brokensep pkgconfig
++
++do_configure () {
++	cd ${S}
++	./bootstrap  --force
++	./configure ${CONFIGUREOPTS} ${EXTRA_OECONF}
++}
+-- 
+2.7.4
 
-Actually there was a suggestion at OEDEM on informing CVE ml that we have
-as the CVE fixes get applied to metadata. Thats a good suggestion to have
-implemented.
-
->
-> 2)      Normally the versions are different in master and maintenance
-> branches so different patches are required.
->
-> Thanks
->
-> //Sona
->
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
 
