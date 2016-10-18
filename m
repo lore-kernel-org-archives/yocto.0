@@ -1,15 +1,15 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 66335E00C18; Mon, 17 Oct 2016 18:31:54 -0700 (PDT)
+	id D3309E00D40; Mon, 17 Oct 2016 18:32:27 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,FREEMAIL_REPLY,HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.192.195 listed in list.dnswl.org]
+	RCVD_IN_DNSWL_LOW autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.192.196 listed in list.dnswl.org]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
 	provider *      (raj.khem[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
@@ -21,55 +21,55 @@ X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  1.0 FREEMAIL_REPLY From and body contain different freemails
-Received: from mail-pf0-f195.google.com (mail-pf0-f195.google.com
-	[209.85.192.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 46413E00A7D
-	for <yocto@yoctoproject.org>; Mon, 17 Oct 2016 18:31:48 -0700 (PDT)
-Received: by mail-pf0-f195.google.com with SMTP id s8so13764563pfj.2
-	for <yocto@yoctoproject.org>; Mon, 17 Oct 2016 18:31:48 -0700 (PDT)
+Received: from mail-pf0-f196.google.com (mail-pf0-f196.google.com
+	[209.85.192.196])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E928DE00D0E
+	for <yocto@yoctoproject.org>; Mon, 17 Oct 2016 18:32:18 -0700 (PDT)
+Received: by mail-pf0-f196.google.com with SMTP id 128so13793854pfz.1
+	for <yocto@yoctoproject.org>; Mon, 17 Oct 2016 18:32:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=subject:mime-version:from:in-reply-to:date:cc:message-id:references
-	:to; bh=18H8Dh3nX0+iVxdQQBP/gdEp9TuP+ui40mikHvVc/dE=;
-	b=iZH0IyEfvxt7yIHpVUvsq77V4PvTYOaG96J2LQBwvtV4nVToY4oDAfmLApnjhVUBjF
-	Bu/JmzQRlqM99yyQmvpvFvXA+PbWo1YYZowxY8tphZAOQPR6KJTt5vULFZPT4PitDlGV
-	D5PpXkQfdezERRTKmL0ZmorJw2GypZIK4A7bqYj5EYPRsjRqGDsyMa5lhLIG0Sv29pcR
-	IyMsqwxdtTYwRrO/2aoe9fpJpD8So1W0/uPIwnl80z2Bcg//g3PGHSMOxdHMlqD5dfku
-	+W86TgLXx0s1ibFq9/j9cBXvMF5OcHwNadAR7A1a6ItmD5scbyXfLg+5NlVG8mr8YMCR
-	a28g==
+	:to; bh=GGNPX17LTgWXX0i/0h6weYkpeWueddRMfJq+MZEGYwc=;
+	b=Jdvssn0fKeBiACr51xnPd5ZpmPnDYRwUstslHd0Xr21Ke/ALewTK0TgpMWJZaoFVAr
+	sayzB9I4f+TKdvYPd9bXfTzSv5MeCyMl/TrZ7rVIaYXjFKYRZwW9AJkADhh0agMsEX14
+	OuisoNwIW4XuucBZLqfZaqFxjIvCoCkC1BhQCXa8N0V+dELtJXWZI7i17yWWeq+euv1I
+	RaiKQeuPrd1Zw8q8BTKjIeWhmgJjmmKKUj+w05htI0izHTu0KARIQCf9h+Ugss1PXSSX
+	R7mxyqAXbq2zdUsk+TdZUobTuSM34x7sB4pnMEE6sYCa1ANznuch+wSlJczqCYFVj/p4
+	bugw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:subject:mime-version:from:in-reply-to:date:cc
 	:message-id:references:to;
-	bh=18H8Dh3nX0+iVxdQQBP/gdEp9TuP+ui40mikHvVc/dE=;
-	b=jOXoIKTbHej/JtPObkDPP44bT9OJ+g+bRMdcXs/hAA0JzrU1nHlo0+1vZ0rKStVGR5
-	JLdIZZ1kW1tyQkjbIfGbvFuAla3RDB2E5UwsZf3SnxKq8esLosWvtjDsovMnuuiHKNK5
-	suQ7W6zYhxFpI7qMO6i7ymvKn6H6BVLBDY396VGfvVSLWBFyFRNVCraRAIeQSEPj2c3r
-	Cfitypo4OE5JV62rEFg3JfDdTxt0g27gAr/ZlzkBn2ngGW2vx2vjbSaWJMUcUrOI8ZOH
-	okMVMthopwBk+U8Q+bSPk1ABWhGAfoNGxr/2S74xmceUpmy+5Z+dVhIYopwbMt6gK0Sg
-	VTfw==
-X-Gm-Message-State: AA6/9Rkmf60E2wfkAqfCC7znqcqShnBAmt3mTCyTKdwsliJaW4nYRrYKhrKNNiNMd3c0Cg==
-X-Received: by 10.98.139.193 with SMTP id e62mr594597pfl.84.1476754308681;
-	Mon, 17 Oct 2016 18:31:48 -0700 (PDT)
+	bh=GGNPX17LTgWXX0i/0h6weYkpeWueddRMfJq+MZEGYwc=;
+	b=O2RkXVXQrPjWZEw7mEVcu6YMCr8x682uwecyV96H3ZAtTQh7PZqbGjCN0UP0csdSnX
+	qMddwquFof8WjeQPbXx+/DrDyzSWzarmc/yfmHLy5agEIHROODlvjgrZr0px1B6IX5QR
+	jnGqG+WSFMaO+FvCmeG0Q0C6DNuh8xYQz+lQdE1mSK/BdQ9t59fk4Y4z3W1CvyfJrjGB
+	zh9qtH21AvfR/CvHrta5Yvl5XAB+9Klv4gLzQUL0+T3npZEYQwux0Tlq6/isEYmbjE75
+	GryflinQsNiSpAGL2xSZliRxmEXGJg7n6j7bWskUo4HV/hgW+tgK09jE8OMQaR843zHJ
+	GivA==
+X-Gm-Message-State: AA6/9Rkn2dcVk8d7NYMKs49N8FudUAlg7hzIB87CATKEIGjaZo/v3DQzQOhyvbKQXLEdUA==
+X-Received: by 10.99.132.195 with SMTP id k186mr451765pgd.119.1476754338350;
+	Mon, 17 Oct 2016 18:32:18 -0700 (PDT)
 Received: from ?IPv6:2601:646:8882:b8c:ec00:906:f8cb:31c1?
 	([2601:646:8882:b8c:ec00:906:f8cb:31c1])
 	by smtp.gmail.com with ESMTPSA id
-	w18sm21343145pfg.60.2016.10.17.18.31.47
+	w18sm21343145pfg.60.2016.10.17.18.32.17
 	(version=TLS1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Mon, 17 Oct 2016 18:31:47 -0700 (PDT)
+	Mon, 17 Oct 2016 18:32:17 -0700 (PDT)
 Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
 X-Pgp-Agent: GPGMail
 From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <a03ea6fc-d9e2-a4cc-aa0f-e66bbdfaead7@gmail.com>
-Date: Mon, 17 Oct 2016 18:31:41 -0700
-Message-Id: <FD5BFAE8-53CB-49D6-82BA-0D68A147266B@gmail.com>
+In-Reply-To: <98085902-b4ca-f333-c008-026226851f18@gmail.com>
+Date: Mon, 17 Oct 2016 18:32:17 -0700
+Message-Id: <3521F37E-952E-4DD5-A805-4F6C4AD86F46@gmail.com>
 References: <1476748950-21342-1-git-send-email-akuster808@gmail.com>
-	<1476748950-21342-5-git-send-email-akuster808@gmail.com>
-	<3068B16C-E69A-4A25-A210-688E4248AA9A@gmail.com>
-	<a03ea6fc-d9e2-a4cc-aa0f-e66bbdfaead7@gmail.com>
+	<1476748950-21342-2-git-send-email-akuster808@gmail.com>
+	<50477F55-24E5-48C3-B584-15BB8265234B@gmail.com>
+	<98085902-b4ca-f333-c008-026226851f18@gmail.com>
 To: akuster808 <akuster808@gmail.com>
 X-Mailer: Apple Mail (2.3124)
 Cc: yocto@yoctoproject.org
-Subject: Re: [meta-security][PATCH 05/17] tpm2simulator: add package
+Subject: Re: [meta-security][PATCH 02/17] tpm-tools: add native support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -81,94 +81,110 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 18 Oct 2016 01:31:54 -0000
-X-Groupsio-MsgNum: 32486
+X-List-Received-Date: Tue, 18 Oct 2016 01:32:27 -0000
+X-Groupsio-MsgNum: 32487
 Content-Type: multipart/signed;
-	boundary="Apple-Mail=_30D3E725-7523-4EDE-81A0-4B9D3DF3E6FE";
+	boundary="Apple-Mail=_6838298C-5A47-4AE6-A4E6-0F54F227445E";
 	protocol="application/pgp-signature"; micalg=pgp-sha1
 
---Apple-Mail=_30D3E725-7523-4EDE-81A0-4B9D3DF3E6FE
+--Apple-Mail=_6838298C-5A47-4AE6-A4E6-0F54F227445E
 Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_65F9EE75-7695-4DCF-92B4-8C5D97A9F4AD"
+	boundary="Apple-Mail=_CDED1FDA-775B-4D3F-9984-6EAD5E0E3A12"
 
---Apple-Mail=_65F9EE75-7695-4DCF-92B4-8C5D97A9F4AD
+--Apple-Mail=_CDED1FDA-775B-4D3F-9984-6EAD5E0E3A12
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain;
 	charset=windows-1252
 
 
-> On Oct 17, 2016, at 6:21 PM, akuster808 <akuster808@gmail.com> wrote:
+> On Oct 17, 2016, at 6:29 PM, akuster808 <akuster808@gmail.com> wrote:
 >=20
 >=20
 >=20
-> On 10/17/2016 05:13 PM, Khem Raj wrote:
+> On 10/17/2016 05:10 PM, Khem Raj wrote:
 >>> On Oct 17, 2016, at 5:02 PM, Armin Kuster <akuster808@gmail.com> =
 <mailto:akuster808@gmail.com> wrote:
 >>>=20
 >>> Signed-off-by: Armin Kuster <akuster808@gmail.com> =
 <mailto:akuster808@gmail.com>
 >>> ---
->>> .../tpm2simulator/tpm2simulator-native_116.bb      | 25 =
-++++++++++++++++++++++
->>> 1 file changed, 25 insertions(+)
->>> create mode 100644 =
-recipes-tpm/tpm2simulator/tpm2simulator-native_116.bb
+>>> recipes-tpm/tpm-tools/tpm-tools_1.3.8.bb     |  3 +++
+>>> recipes-tpm/tpm2.0-tools/tpm2.0-tools_git.bb | 23 =
++++++++++++++++++++++++
+>>> 2 files changed, 26 insertions(+)
+>>> create mode 100644 recipes-tpm/tpm2.0-tools/tpm2.0-tools_git.bb
 >>>=20
->>> diff --git a/recipes-tpm/tpm2simulator/tpm2simulator-native_116.bb =
-b/recipes-tpm/tpm2simulator/tpm2simulator-native_116.bb
+>>> diff --git a/recipes-tpm/tpm-tools/tpm-tools_1.3.8.bb =
+b/recipes-tpm/tpm-tools/tpm-tools_1.3.8.bb
+>>> index 5645976..99ea8ee 100644
+>>> --- a/recipes-tpm/tpm-tools/tpm-tools_1.3.8.bb
+>>> +++ b/recipes-tpm/tpm-tools/tpm-tools_1.3.8.bb
+>>> @@ -9,6 +9,7 @@ SECTION =3D "tpm"
+>>> LICENSE =3D "CPL-1.0"
+>>> LIC_FILES_CHKSUM =3D =
+"file://LICENSE;md5=3D059e8cd6165cb4c31e351f2b69388fd9" =
+<file://LICENSE;md5=3D059e8cd6165cb4c31e351f2b69388fd9>
+>>> DEPENDS =3D "libtspi openssl"
+>>> +DEPENDS_class-native =3D "trousers-native"
+>>>=20
+>>> SRC_URI +=3D " \
+>>>     http://downloads.sourceforge.net/project/trousers/$ =
+<http://downloads.sourceforge.net/project/trousers/$>{BPN}/${PV}/${BP}.tar=
+.gz \
+>>> @@ -20,3 +21,5 @@ SRC_URI[md5sum] =3D =
+"85a978c4e03fefd4b73cbeadde7c4d0b"
+>>> SRC_URI[sha256sum] =3D =
+"66eb4ff095542403db6b4bd4b574e8a5c08084fe4e9e5aa9a829ee84e20bea83"
+>>>=20
+>>> inherit autotools gettext
+>>> +
+>>> +BBCLASSEXTEND =3D "native"
+>>> diff --git a/recipes-tpm/tpm2.0-tools/tpm2.0-tools_git.bb =
+b/recipes-tpm/tpm2.0-tools/tpm2.0-tools_git.bb
 >>> new file mode 100644
->>> index 0000000..33eaf99
+>>> index 0000000..be49dd9
 >>> --- /dev/null
->>> +++ b/recipes-tpm/tpm2simulator/tpm2simulator-native_116.bb
->>> @@ -0,0 +1,25 @@
->>> +SUMMARY =3D "TPM 2.0 Simulator Extraction Script"
->>> +LICENSE =3D "BSD-2-Clause"
+>>> +++ b/recipes-tpm/tpm2.0-tools/tpm2.0-tools_git.bb
+>>> @@ -0,0 +1,23 @@
+>>> +SUMMARY =3D "Tools for TPM2."
+>>> +DESCRIPTION =3D "tpm2.0-tools"
+>>> +LICENSE =3D "BSD"
 >>> +LIC_FILES_CHKSUM =3D =
-"file://../LICENSE;md5=3D1415f7be284540b81d9d28c67c1a6b8b" =
-<file://../LICENSE;md5=3D1415f7be284540b81d9d28c67c1a6b8b>
+"file://LICENSE;md5=3D91b7c548d73ea16537799e8060cea819" =
+<file://LICENSE;md5=3D91b7c548d73ea16537799e8060cea819>
+>>> +SECTION =3D "tpm"
 >>> +
->>> +DEPENDS +=3D "python"
+>>> +DEPENDS =3D "tpm2.0-tss openssl curl"
 >>> +
->>> +SRCREV =3D "93dc4412432013ed7bcabd42007754c68f6e362e"
->>> +SRC_URI =3D "git://github.com/stwagnr/tpm2simulator.git"
+>>> +SRCREV =3D "c924cc8ca752e5af6a829f893c6be4b185d56e99"
 >>> +
->>> +S =3D "${WORKDIR}/git/cmake"
+>>> +SRC_URI =3D =
+"git://github.com/01org/tpm2.0-tools.git;protocol=3Dgit;branch=3Dmaster;na=
+me=3Dtpm2.0-tools;destsuffix=3Dtpm2.0-tools"
 >>> +
->>> +PV =3D "116+git${SRCPV}"
+>>> +S =3D "${WORKDIR}/tpm2.0-tools"
 >>> +
->>> +inherit native lib_package cmake
->>> +
->>> +EXTRA_OECMAKE =3D " \
->>> +	-DCMAKE_BUILD_TYPE=3DDebug \
->>> +	-DSPEC_VERSION=3D116 \
->>> +"
->>> +
->>> +do_configure_prepend () {
->>> +	sed -i 's/^SET =3D False/SET =3D True/' =
-${WORKDIR}/git/scripts/settings.py
->> use S instead of WORKDIR
-> S =3D "${WORKDIR}/git/cmake"
+>>> +PV =3D "1.0+git${SRCPV}=94
+>> it seems to be 2.0 isn=92t it ?
+> tpm2.0 refers to the TPM standard version 2, not the sources version. =
+There are no versions on the git sources that I could decode. I will =
+drop it all together and use SRCPV.
 >=20
-> that file does not reside there.
 
-I think it will break devtool and externalsrc builds.
 
->=20
-> the build process does a relative ref outside the "cmake" dir to run =
-the scripts.
->=20
-> unless you mean I should do " ${S}/../scripts/settings.py" ?
+I see ok thanks
+
+> thanks,
+> Armin
 >>=20
+>>> +
+>>> +inherit autotools-brokensep pkgconfig
+>>> +
+>>> +do_configure () {
+>>> +	cd ${S}
+>>> +	./bootstrap  --force
+>>> +	./configure ${CONFIGUREOPTS} ${EXTRA_OECONF}
 >>> +}
->>> +
->>> +BBCLASSEXTEND =3D =93native"
->> it is not needed.
-> k
->=20
-> thanks for the review.
->=20
-> - armin
->>=20
 >>> --
 >>> 2.7.4
 >>>=20
@@ -183,7 +199,7 @@ the scripts.
 >=20
 
 
---Apple-Mail=_65F9EE75-7695-4DCF-92B4-8C5D97A9F4AD
+--Apple-Mail=_CDED1FDA-775B-4D3F-9984-6EAD5E0E3A12
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/html;
 	charset=windows-1252
@@ -192,7 +208,7 @@ Content-Type: text/html;
 charset=3Dwindows-1252"></head><body style=3D"word-wrap: break-word; =
 -webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
 class=3D""><br class=3D""><div><blockquote type=3D"cite" class=3D""><div =
-class=3D"">On Oct 17, 2016, at 6:21 PM, akuster808 &lt;<a =
+class=3D"">On Oct 17, 2016, at 6:29 PM, akuster808 &lt;<a =
 href=3D"mailto:akuster808@gmail.com" =
 class=3D"">akuster808@gmail.com</a>&gt; wrote:</div><br =
 class=3D"Apple-interchange-newline"><div class=3D"">
@@ -204,11 +220,11 @@ http-equiv=3D"Content-Type" class=3D"">
 class=3D"">
     </p>
     <br class=3D"">
-    <div class=3D"moz-cite-prefix">On 10/17/2016 05:13 PM, Khem Raj =
+    <div class=3D"moz-cite-prefix">On 10/17/2016 05:10 PM, Khem Raj =
 wrote:<br class=3D"">
     </div>
     <blockquote =
-cite=3D"mid:3068B16C-E69A-4A25-A210-688E4248AA9A@gmail.com" type=3D"cite" =
+cite=3D"mid:50477F55-24E5-48C3-B584-15BB8265234B@gmail.com" type=3D"cite" =
 class=3D"">
       <pre wrap=3D"" class=3D""></pre>
       <blockquote type=3D"cite" class=3D"">
@@ -220,86 +236,92 @@ wrote:
 Signed-off-by: Armin Kuster <a class=3D"moz-txt-link-rfc2396E" =
 href=3D"mailto:akuster808@gmail.com">&lt;akuster808@gmail.com&gt;</a>
 ---
-.../tpm2simulator/tpm2simulator-native_116.bb      | 25 =
-++++++++++++++++++++++
-1 file changed, 25 insertions(+)
-create mode 100644 recipes-tpm/tpm2simulator/tpm2simulator-native_116.bb
+recipes-tpm/tpm-tools/tpm-tools_1.3.8.bb     |  3 +++
+recipes-tpm/tpm2.0-tools/tpm2.0-tools_git.bb | 23 =
++++++++++++++++++++++++
+2 files changed, 26 insertions(+)
+create mode 100644 recipes-tpm/tpm2.0-tools/tpm2.0-tools_git.bb
 
-diff --git a/recipes-tpm/tpm2simulator/tpm2simulator-native_116.bb =
-b/recipes-tpm/tpm2simulator/tpm2simulator-native_116.bb
+diff --git a/recipes-tpm/tpm-tools/tpm-tools_1.3.8.bb =
+b/recipes-tpm/tpm-tools/tpm-tools_1.3.8.bb
+index 5645976..99ea8ee 100644
+--- a/recipes-tpm/tpm-tools/tpm-tools_1.3.8.bb
++++ b/recipes-tpm/tpm-tools/tpm-tools_1.3.8.bb
+@@ -9,6 +9,7 @@ SECTION =3D "tpm"
+LICENSE =3D "CPL-1.0"
+LIC_FILES_CHKSUM =3D <a class=3D"moz-txt-link-rfc2396E" =
+href=3D"file://LICENSE;md5=3D059e8cd6165cb4c31e351f2b69388fd9">"file://LIC=
+ENSE;md5=3D059e8cd6165cb4c31e351f2b69388fd9"</a>
+DEPENDS =3D "libtspi openssl"
++DEPENDS_class-native =3D "trousers-native"
+
+SRC_URI +=3D " \
+    <a class=3D"moz-txt-link-freetext" =
+href=3D"http://downloads.sourceforge.net/project/trousers/$">http://downlo=
+ads.sourceforge.net/project/trousers/$</a>{BPN}/${PV}/${BP}.tar.gz \
+@@ -20,3 +21,5 @@ SRC_URI[md5sum] =3D "85a978c4e03fefd4b73cbeadde7c4d0b"
+SRC_URI[sha256sum] =3D =
+"66eb4ff095542403db6b4bd4b574e8a5c08084fe4e9e5aa9a829ee84e20bea83"
+
+inherit autotools gettext
++
++BBCLASSEXTEND =3D "native"
+diff --git a/recipes-tpm/tpm2.0-tools/tpm2.0-tools_git.bb =
+b/recipes-tpm/tpm2.0-tools/tpm2.0-tools_git.bb
 new file mode 100644
-index 0000000..33eaf99
+index 0000000..be49dd9
 --- /dev/null
-+++ b/recipes-tpm/tpm2simulator/tpm2simulator-native_116.bb
-@@ -0,0 +1,25 @@
-+SUMMARY =3D "TPM 2.0 Simulator Extraction Script"
-+LICENSE =3D "BSD-2-Clause"
++++ b/recipes-tpm/tpm2.0-tools/tpm2.0-tools_git.bb
+@@ -0,0 +1,23 @@
++SUMMARY =3D "Tools for TPM2."
++DESCRIPTION =3D "tpm2.0-tools"
++LICENSE =3D "BSD"
 +LIC_FILES_CHKSUM =3D <a class=3D"moz-txt-link-rfc2396E" =
-href=3D"file://../LICENSE;md5=3D1415f7be284540b81d9d28c67c1a6b8b">"file://=
-../LICENSE;md5=3D1415f7be284540b81d9d28c67c1a6b8b"</a>
+href=3D"file://LICENSE;md5=3D91b7c548d73ea16537799e8060cea819">"file://LIC=
+ENSE;md5=3D91b7c548d73ea16537799e8060cea819"</a>
++SECTION =3D "tpm"
 +
-+DEPENDS +=3D "python"
++DEPENDS =3D "tpm2.0-tss openssl curl"
 +
-+SRCREV =3D "93dc4412432013ed7bcabd42007754c68f6e362e"
-+SRC_URI =3D "<a href=3D"git://github.com/stwagnr/tpm2simulator.git" =
-class=3D"">git://github.com/stwagnr/tpm2simulator.git</a>"
++SRCREV =3D "c924cc8ca752e5af6a829f893c6be4b185d56e99"
 +
-+S =3D "${WORKDIR}/git/cmake"
++SRC_URI =3D "<a =
+href=3D"git://github.com/01org/tpm2.0-tools.git;protocol=3Dgit;branch=3Dma=
+ster;name=3Dtpm2.0-tools;destsuffix=3Dtpm2.0-tools" =
+class=3D"">git://github.com/01org/tpm2.0-tools.git;protocol=3Dgit;branch=3D=
+master;name=3Dtpm2.0-tools;destsuffix=3Dtpm2.0-tools</a>"
 +
-+PV =3D "116+git${SRCPV}"
++S =3D "${WORKDIR}/tpm2.0-tools"
 +
-+inherit native lib_package cmake
-+
-+EXTRA_OECMAKE =3D " \
-+	-DCMAKE_BUILD_TYPE=3DDebug \
-+	-DSPEC_VERSION=3D116 \
-+"
-+
-+do_configure_prepend () {
-+	sed -i 's/^SET =3D False/SET =3D True/' =
-${WORKDIR}/git/scripts/settings.py
++PV =3D "1.0+git${SRCPV}=94
 </pre>
       </blockquote>
-      <pre wrap=3D"" class=3D"">use S instead of WORKDIR</pre>
+      <pre wrap=3D"" class=3D"">it seems to be 2.0 isn=92t it ?</pre>
     </blockquote>
-    S =3D "${WORKDIR}/git/cmake"<br class=3D"">
-    <br class=3D"">
-    that file does not reside there.<br =
-class=3D""></div></div></blockquote><div><br class=3D""></div><div>I =
-think it will break devtool and externalsrc builds.</div><br =
+    tpm2.0 refers to the TPM standard version 2, not the sources
+    version. There are no versions on the git sources that I could
+    decode. I will drop it all together and use SRCPV.<br class=3D"">
+    <br class=3D""></div></div></blockquote><div><br =
+class=3D""></div><div><br class=3D""></div>I see ok thanks</div><div><br =
 class=3D""><blockquote type=3D"cite" class=3D""><div class=3D""><div =
 bgcolor=3D"#FFFFFF" text=3D"#000000" class=3D"">
-    <br class=3D"">
-    the build process does a relative ref outside the "cmake" dir to run
-    the scripts.<br class=3D"">
-    <br class=3D"">
-    unless you mean I should do " ${S}/../scripts/settings.py" ?<br =
-class=3D"">
+    thanks,<br class=3D"">
+    Armin<br class=3D"">
     <blockquote =
-cite=3D"mid:3068B16C-E69A-4A25-A210-688E4248AA9A@gmail.com" type=3D"cite" =
+cite=3D"mid:50477F55-24E5-48C3-B584-15BB8265234B@gmail.com" type=3D"cite" =
 class=3D"">
       <pre wrap=3D"" class=3D"">
 </pre>
       <blockquote type=3D"cite" class=3D"">
-        <pre wrap=3D"" class=3D"">+}
+        <pre wrap=3D"" class=3D"">+
++inherit autotools-brokensep pkgconfig
 +
-+BBCLASSEXTEND =3D =93native"
-</pre>
-      </blockquote>
-      <pre wrap=3D"" class=3D"">it is not needed.</pre>
-    </blockquote>
-    k<br class=3D"">
-    <br class=3D"">
-    thanks for the review.<br class=3D"">
-    <br class=3D"">
-    - armin<br class=3D"">
-    <blockquote =
-cite=3D"mid:3068B16C-E69A-4A25-A210-688E4248AA9A@gmail.com" type=3D"cite" =
-class=3D"">
-      <pre wrap=3D"" class=3D"">
-</pre>
-      <blockquote type=3D"cite" class=3D"">
-        <pre wrap=3D"" class=3D"">--
++do_configure () {
++	cd ${S}
++	./bootstrap  --force
++	./configure ${CONFIGUREOPTS} ${EXTRA_OECONF}
++}
+--
 2.7.4
 
 --
@@ -322,9 +344,9 @@ project.org/listinfo/yocto</a>
 
 </div></blockquote></div><br class=3D""></body></html>=
 
---Apple-Mail=_65F9EE75-7695-4DCF-92B4-8C5D97A9F4AD--
+--Apple-Mail=_CDED1FDA-775B-4D3F-9984-6EAD5E0E3A12--
 
---Apple-Mail=_30D3E725-7523-4EDE-81A0-4B9D3DF3E6FE
+--Apple-Mail=_6838298C-5A47-4AE6-A4E6-0F54F227445E
 Content-Transfer-Encoding: 7bit
 Content-Disposition: attachment;
 	filename=signature.asc
@@ -335,9 +357,9 @@ Content-Description: Message signed with OpenPGP using GPGMail
 -----BEGIN PGP SIGNATURE-----
 Comment: GPGTools - https://gpgtools.org
 
-iEYEARECAAYFAlgFe4IACgkQuwUzVZGdMxQRxgCfa2ToMxbFQ6LfrJ7u507CnMCU
-4UYAnjRVBOLlLoMUFSC8p3LtKgeKzH51
-=4pfO
+iEYEARECAAYFAlgFe6EACgkQuwUzVZGdMxQYjQCeKKKjfDAw1OR+Nmj2LrNcZcBB
+uCMAniajA9GyKQRiDd9gzyEeqctLxAc5
+=ASou
 -----END PGP SIGNATURE-----
 
---Apple-Mail=_30D3E725-7523-4EDE-81A0-4B9D3DF3E6FE--
+--Apple-Mail=_6838298C-5A47-4AE6-A4E6-0F54F227445E--
