@@ -1,17 +1,17 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 39863E00C6A; Mon, 17 Oct 2016 17:02:53 -0700 (PDT)
+	id 852CBE00CEC; Mon, 17 Oct 2016 17:10:34 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (akuster808[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.220.67 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.192.195 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (raj.khem[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,50 +19,53 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pa0-f67.google.com (mail-pa0-f67.google.com
-	[209.85.220.67])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E1BC8E00C1D
-	for <yocto@yoctoproject.org>; Mon, 17 Oct 2016 17:02:49 -0700 (PDT)
-Received: by mail-pa0-f67.google.com with SMTP id fn2so8805993pad.1
-	for <yocto@yoctoproject.org>; Mon, 17 Oct 2016 17:02:49 -0700 (PDT)
+Received: from mail-pf0-f195.google.com (mail-pf0-f195.google.com
+	[209.85.192.195])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8F9C5E00B66
+	for <yocto@yoctoproject.org>; Mon, 17 Oct 2016 17:10:23 -0700 (PDT)
+Received: by mail-pf0-f195.google.com with SMTP id 128so13680189pfz.1
+	for <yocto@yoctoproject.org>; Mon, 17 Oct 2016 17:10:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:subject:date:message-id:in-reply-to:references;
-	bh=u+z04ABA0fdAC/xqUiDP/sDO7Rkfq/gbRZsD6b4V/3A=;
-	b=DxJ9DIWLMXWJUUcKRltzkJkVHYqEpdwpZLG0CiVZGMJ/IiJKE29RI1At/k9lttr0ko
-	vqusKUpWcirOJvvqnpzLrAC+KYgaL4zPf+Jy3g9S0Pfo1ZD++1QZWtkrUq5NoQQWaPR0
-	niO1vcql3aCTPezI9gHQBeMgZ8k11T5HhcRz9oGOqPI/AizMwgum9fn2YaiCB3FHEKDo
-	fgyUGIfh5l9wTnn6ATY5sbmKlRW098yeIQu8B7dD6h7YWXD+PmtmNTnshw9sMy6ee0aZ
-	0OzMKS5sW5RRBGpEik03EOxGRMClNLEVrXUIPMn4+P4KB0hePxBc0wuPDEjClXe8spOC
-	Wq2A==
+	h=subject:mime-version:from:in-reply-to:date:cc:message-id:references
+	:to; bh=ArrKf/z/2MX+w32/gA4n9cm212VgvFFtLKxiynM5qAM=;
+	b=IFxFGl2RrHKUd3yaXjjPU/XBNWFCDlCyLKLJJiYHq3mpf/JJ+7ToaG4vIQhuUYcUq4
+	QlPZNPmEJyrqdfyvuOPHiKmq5DjR9FVmUcr+mQwBuniXnYTgRI6E0KWeplFEGYdxtC6W
+	ho4GrLkgC8q1oKqHJ28lZR7fg9jF2rnAuMb6xr2JT1/OqWd9BKiotNS8wumdOSlN48uz
+	d+miJS9lPD155lu7klqyHaXsWMnNl4J55jMhFG4/TXwWiJxeg/102XF9rI7nWrgxMQ0C
+	GVH+EQoQVUvcviFzeZe0oUl3fC5T4O3/xvHKAWrEu8TLhCi+bw/wHKcVzSZvfWo3rRa4
+	4cew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-	:references;
-	bh=u+z04ABA0fdAC/xqUiDP/sDO7Rkfq/gbRZsD6b4V/3A=;
-	b=I52KySspwKqHKmBRZCjRqF9QD4+njdA+ewm4k+nEaOQ16x6Xh7tbPpo4PduqHO58uE
-	QaA/YzkQ879k1br76vLm5i6Oux+fjQCwPBvAMw+C6T3KWg0cd8ixk6hSi7mKmezklLHb
-	nSdci30ZLH5eM87i91Sm69JcbEmInfENvsL2aRZrTktHCvKme/fQFPUvlusuYbWroPRi
-	tpd9ya45kBe4zxrTpZG9n9DQ4XOYFu7aLr7ez+tE6OX3sqdSC16RKARstdM0xgnBzLXw
-	RoYGDOA56BIc3m0hCWa6HlUGL4LRRLKaOXoGD2i1ohedo4fIM/UErqnQ6URNZuxMUtGg
-	p76A==
-X-Gm-Message-State: AA6/9RkVfpE5istdOYPIwMx3b3icUL+mX+SYTyNR165vHEkh0Z2URrPzLGUvV0bTfVc5mA==
-X-Received: by 10.66.72.225 with SMTP id g1mr147695pav.166.1476748968851;
-	Mon, 17 Oct 2016 17:02:48 -0700 (PDT)
-Received: from akuster-ThinkPad-X240.mvista.com
-	([2601:202:4001:9ea0:5ef:e28f:5dce:e040])
+	h=x-gm-message-state:subject:mime-version:from:in-reply-to:date:cc
+	:message-id:references:to;
+	bh=ArrKf/z/2MX+w32/gA4n9cm212VgvFFtLKxiynM5qAM=;
+	b=I/aq6LeZrHgvSYUnvZyjWrs0D4U6rMM4NLLbgAem/VtlOOdGuxr2Ba6AfjbjHAj9Uj
+	BcLd/Z5SNyT2D0pfZuiHbz9sqXrqb/ezyvgaakpyjn9UD23JZHw14Nmk6xl7tbAetMIy
+	KBWJkq7DEFT71vcWKcudC9XkyOxMrOO7GXcy+avbEbWmeQZ7UwsJeXNKzsf/TYsGMkbr
+	O6udynmGpF9bmi7EmGi6nYPk/hIGPPqt7Ua6MTWMlGgS2LZS2LQyG01nsNV2Z6gvwB9/
+	EPrkiuSRBZ196y6my6kQuEbE2abhP0ielvWDUxhCvXsupAC/4UADphJP60hMM51TYKhp
+	MmNg==
+X-Gm-Message-State: AA6/9RkcZooYxV8p+0cNgw3Qerdb7UDipx/IZov2Q+sclyFh82VL/1tgx1SM5aj12pBoAQ==
+X-Received: by 10.98.211.147 with SMTP id z19mr163425pfk.149.1476749423044;
+	Mon, 17 Oct 2016 17:10:23 -0700 (PDT)
+Received: from ?IPv6:2601:646:8882:b8c:ec00:906:f8cb:31c1?
+	([2601:646:8882:b8c:ec00:906:f8cb:31c1])
 	by smtp.gmail.com with ESMTPSA id
-	s6sm50597160pfg.46.2016.10.17.17.02.47
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Mon, 17 Oct 2016 17:02:48 -0700 (PDT)
-From: Armin Kuster <akuster808@gmail.com>
-To: yocto@yoctoproject.org,
-	akuster808@gmail.com
-Date: Mon, 17 Oct 2016 17:02:28 -0700
-Message-Id: <1476748950-21342-15-git-send-email-akuster808@gmail.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1476748950-21342-1-git-send-email-akuster808@gmail.com>
+	n2sm50357397pfa.75.2016.10.17.17.10.22
+	(version=TLS1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Mon, 17 Oct 2016 17:10:22 -0700 (PDT)
+Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
+X-Pgp-Agent: GPGMail
+From: Khem Raj <raj.khem@gmail.com>
+In-Reply-To: <1476748950-21342-2-git-send-email-akuster808@gmail.com>
+Date: Mon, 17 Oct 2016 17:10:16 -0700
+Message-Id: <50477F55-24E5-48C3-B584-15BB8265234B@gmail.com>
 References: <1476748950-21342-1-git-send-email-akuster808@gmail.com>
-Subject: [meta-security][PATCH 15/17] samhain: recipe cleanup
+	<1476748950-21342-2-git-send-email-akuster808@gmail.com>
+To: Armin Kuster <akuster808@gmail.com>
+X-Mailer: Apple Mail (2.3124)
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-security][PATCH 02/17] tpm-tools: add native support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,156 +77,113 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 18 Oct 2016 00:02:53 -0000
+X-List-Received-Date: Tue, 18 Oct 2016 00:10:34 -0000
+X-Groupsio-MsgNum: 32477
+Content-Type: multipart/signed;
+	boundary="Apple-Mail=_46757AD2-430A-4870-85CA-175C7737B15F";
+	protocol="application/pgp-signature"; micalg=pgp-sha1
 
-add a few distro feature checks.
-
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- recipes-security/samhain/samhain-client_4.1.5.bb |  7 ----
- recipes-security/samhain/samhain-server_4.1.5.bb | 16 ++++----
- recipes-security/samhain/samhain.inc             | 52 ++++++++++++++----------
- 3 files changed, 38 insertions(+), 37 deletions(-)
-
-diff --git a/recipes-security/samhain/samhain-client_4.1.5.bb b/recipes-security/samhain/samhain-client_4.1.5.bb
-index bb47449..4b04326 100644
---- a/recipes-security/samhain/samhain-client_4.1.5.bb
-+++ b/recipes-security/samhain/samhain-client_4.1.5.bb
-@@ -12,11 +12,4 @@ EXTRA_OECONF += " \
-         --with-pid-file=/var/samhain/samhain.pid \
-         "
- 
--
--INSANE_SKIP_${PN} = "already-stripped"
--
--FILES_${PN} += "\
--    /run \
--    "
--
- RDEPENDS_${PN} = "acl zlib attr bash"
-diff --git a/recipes-security/samhain/samhain-server_4.1.5.bb b/recipes-security/samhain/samhain-server_4.1.5.bb
-index 0d76b9a..35f8775 100644
---- a/recipes-security/samhain/samhain-server_4.1.5.bb
-+++ b/recipes-security/samhain/samhain-server_4.1.5.bb
-@@ -3,13 +3,17 @@ INITSCRIPT_PARAMS = "defaults 14 86"
- 
- require samhain.inc
- 
--DEPENDS = "gmp"
-+DEPENDS = "gmp samhain-server-native"
- 
- EXTRA_OECONF += "--enable-network=${SAMHAIN_MODE} "
- 
- # supports mysql|postgresql|oracle|odbc but postgresql is the only one available
- 
--PACKAGECONFG ??= "postgresql"
-+PACKAGECONFIG ??= "postgresql"
-+PACKAGECONFIG += "${@bb.utils.contains('DISTRO_FEATURES', 'ipv6', 'ipv6', '', d)}"
-+PACKAGECONFIG += "${@bb.utils.contains('DISTRO_FEATURES', 'selinux', 'selinux', '', d)}"
-+PACKAGECONFIG += "${@bb.utils.contains('DISTRO_FEATURES', 'acl', 'acl', '', d)}"
-+
- PACKAGECONFIG[postgres]  = "--with-database=postgresql --enable-xml-log, "", postgresql"
- PACKAGECONFIG[suidcheck]  = "--enable-suidcheck","" , "
- PACKAGECONFIG[logwatch]  = "--enable-login-watch,"" , "
-@@ -38,17 +42,13 @@ do_install_append() {
-         init/samhain.startLSB ${D}/var/lib/samhain
- }
- 
--INSANE_SKIP_${PN} = "already-stripped"
--
- PACKAGES = "${PN} ${PN}-doc ${PN}-dbg"
- 
--FILES_${PN} += " \
--    ${sbindir}/* \
--    /run \
--    "
-+FILES_${PN} += "${sbindir}/*"
- 
- FILES_${PN}-dbg += " \
-     ${sbindir}/.debug/* \
-     "
- 
- RDEPENDS_${PN} += "gmp bash perl"
-+BBCLASSEXTEND = "native"
-diff --git a/recipes-security/samhain/samhain.inc b/recipes-security/samhain/samhain.inc
-index 5bf2ee7..7987886 100644
---- a/recipes-security/samhain/samhain.inc
-+++ b/recipes-security/samhain/samhain.inc
-@@ -46,37 +46,39 @@ do_configure_prepend_aarch64() {
- # use the prefix --oldincludedir=/usr/include which is not
- # recognized by Samhain's configure script and would invariably
- # throw back the error "unrecognized option: --oldincludedir=/usr/include"
--do_configure () {
--    cat << EOF > ./config-site.${BP}
-+do_configure_prepend () {
-+    cat << EOF > ${S}/config-site.${BP}
- ssp_cv_lib=no
- sh_cv_va_copy=yes
- EOF
-+    export CONFIG_SITE=${S}/config-site.${BP}
-+}
- 
--    export CONFIG_SITE=./config-site.${BP}
-+do_configure () {
- 	./configure \
--	    --build=${BUILD_SYS} \
--	    --host=${HOST_SYS} \
--	    --target=${TARGET_SYS} \
--	    --prefix=${prefix} \
--	    --exec_prefix=${exec_prefix} \
--	    --bindir=${bindir} \
--	    --sbindir=${sbindir} \
--	    --libexecdir=${libexecdir} \
--	    --datadir=${datadir} \
--	    --sysconfdir=${sysconfdir} \
--	    --sharedstatedir=${sharedstatedir} \
--	    --localstatedir=${localstatedir} \
--	    --libdir=${libdir} \
--	    --includedir=${includedir} \
--	    --infodir=${infodir} \
--	    --mandir=${mandir} \
--	    ${EXTRA_OECONF}
-+	--build=${BUILD_SYS} \
-+	--host=${HOST_SYS} \
-+	--target=${TARGET_SYS} \
-+	--prefix=${prefix} \
-+	--exec_prefix=${exec_prefix} \
-+	--bindir=${bindir} \
-+	--sbindir=${sbindir} \
-+	--libexecdir=${libexecdir} \
-+	--datadir=${datadir} \
-+	--sysconfdir=${sysconfdir} \
-+	--sharedstatedir=${sharedstatedir} \
-+	--localstatedir=${localstatedir} \
-+	--libdir=${libdir} \
-+	--includedir=${includedir} \
-+	--infodir=${infodir} \
-+	--mandir=${mandir} \
-+	${EXTRA_OECONF}
- }
- 
- # Install the init script, it's default file, and the extraneous
- # documentation.
- do_install_append () {
--    cd ${S}
-+	cd ${S}
- 	oe_runmake install DESTDIR='${D}' INSTALL=install-boot
- 	install -d ${D}${sysconfdir}/init.d
- 	install -m 755 ${WORKDIR}/${INITSCRIPT_NAME}.init \
-@@ -89,5 +91,11 @@ do_install_append () {
- 	install -d ${D}${docdir}/${PN}
- 	cp -r docs/* ${D}${docdir}/${PN}
- 	cp -r scripts ${D}${docdir}/${PN}
--    install -d -m 755 ${D}/var/samhain
-+	install -d -m 755 ${D}/var/samhain
- }
-+
-+FILES_${PN} += "\
-+    /run \
-+    "
-+
-+INSANE_SKIP_${PN} = "already-stripped"
--- 
-2.7.4
+--Apple-Mail=_46757AD2-430A-4870-85CA-175C7737B15F
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=utf-8
 
 
+> On Oct 17, 2016, at 5:02 PM, Armin Kuster <akuster808@gmail.com> =
+wrote:
+>=20
+> Signed-off-by: Armin Kuster <akuster808@gmail.com>
+> ---
+> recipes-tpm/tpm-tools/tpm-tools_1.3.8.bb     |  3 +++
+> recipes-tpm/tpm2.0-tools/tpm2.0-tools_git.bb | 23 =
++++++++++++++++++++++++
+> 2 files changed, 26 insertions(+)
+> create mode 100644 recipes-tpm/tpm2.0-tools/tpm2.0-tools_git.bb
+>=20
+> diff --git a/recipes-tpm/tpm-tools/tpm-tools_1.3.8.bb =
+b/recipes-tpm/tpm-tools/tpm-tools_1.3.8.bb
+> index 5645976..99ea8ee 100644
+> --- a/recipes-tpm/tpm-tools/tpm-tools_1.3.8.bb
+> +++ b/recipes-tpm/tpm-tools/tpm-tools_1.3.8.bb
+> @@ -9,6 +9,7 @@ SECTION =3D "tpm"
+> LICENSE =3D "CPL-1.0"
+> LIC_FILES_CHKSUM =3D =
+"file://LICENSE;md5=3D059e8cd6165cb4c31e351f2b69388fd9"
+> DEPENDS =3D "libtspi openssl"
+> +DEPENDS_class-native =3D "trousers-native"
+>=20
+> SRC_URI +=3D " \
+>     =
+http://downloads.sourceforge.net/project/trousers/${BPN}/${PV}/${BP}.tar.g=
+z \
+> @@ -20,3 +21,5 @@ SRC_URI[md5sum] =3D =
+"85a978c4e03fefd4b73cbeadde7c4d0b"
+> SRC_URI[sha256sum] =3D =
+"66eb4ff095542403db6b4bd4b574e8a5c08084fe4e9e5aa9a829ee84e20bea83"
+>=20
+> inherit autotools gettext
+> +
+> +BBCLASSEXTEND =3D "native"
+> diff --git a/recipes-tpm/tpm2.0-tools/tpm2.0-tools_git.bb =
+b/recipes-tpm/tpm2.0-tools/tpm2.0-tools_git.bb
+> new file mode 100644
+> index 0000000..be49dd9
+> --- /dev/null
+> +++ b/recipes-tpm/tpm2.0-tools/tpm2.0-tools_git.bb
+> @@ -0,0 +1,23 @@
+> +SUMMARY =3D "Tools for TPM2."
+> +DESCRIPTION =3D "tpm2.0-tools"
+> +LICENSE =3D "BSD"
+> +LIC_FILES_CHKSUM =3D =
+"file://LICENSE;md5=3D91b7c548d73ea16537799e8060cea819"
+> +SECTION =3D "tpm"
+> +
+> +DEPENDS =3D "tpm2.0-tss openssl curl"
+> +
+> +SRCREV =3D "c924cc8ca752e5af6a829f893c6be4b185d56e99"
+> +
+> +SRC_URI =3D =
+"git://github.com/01org/tpm2.0-tools.git;protocol=3Dgit;branch=3Dmaster;na=
+me=3Dtpm2.0-tools;destsuffix=3Dtpm2.0-tools"
+> +
+> +S =3D "${WORKDIR}/tpm2.0-tools"
+> +
+> +PV =3D "1.0+git${SRCPV}=E2=80=9D
+
+it seems to be 2.0 isn=E2=80=99t it ?
+
+> +
+> +inherit autotools-brokensep pkgconfig
+> +
+> +do_configure () {
+> +	cd ${S}
+> +	./bootstrap  --force
+> +	./configure ${CONFIGUREOPTS} ${EXTRA_OECONF}
+> +}
+> --
+> 2.7.4
+>=20
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
+
+--Apple-Mail=_46757AD2-430A-4870-85CA-175C7737B15F
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+	filename=signature.asc
+Content-Type: application/pgp-signature;
+	name=signature.asc
+Content-Description: Message signed with OpenPGP using GPGMail
+
+-----BEGIN PGP SIGNATURE-----
+Comment: GPGTools - https://gpgtools.org
+
+iEYEARECAAYFAlgFaG0ACgkQuwUzVZGdMxSBUwCfTZ5sQC6EytT+bX4Q4p5lYcnU
+/EoAnj1AF9zVncd44TqSzCuZcWjnCcEn
+=4Xdi
+-----END PGP SIGNATURE-----
+
+--Apple-Mail=_46757AD2-430A-4870-85CA-175C7737B15F--
