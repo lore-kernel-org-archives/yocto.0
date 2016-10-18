@@ -1,34 +1,40 @@
-Return-Path: <michel.dhooge@free.fr>
+Return-Path: <pascal.bach@siemens.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 42060E00D0C; Tue, 18 Oct 2016 05:41:19 -0700 (PDT)
+	id 6FF67E00D33; Tue, 18 Oct 2016 07:04:31 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (michel.dhooge[at]free.fr)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [212.27.42.2 listed in list.dnswl.org]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.35.17.2 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from smtp2-g21.free.fr (smtp2-g21.free.fr [212.27.42.2])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EF8EEE00D01
-	for <yocto@yoctoproject.org>; Tue, 18 Oct 2016 05:41:13 -0700 (PDT)
-Received: from spooler3-g27.priv.proxad.net (unknown [172.20.243.239])
-	by smtp2-g21.free.fr (Postfix) with ESMTP id B50DF2000D2
-	for <yocto@yoctoproject.org>; Tue, 18 Oct 2016 14:41:12 +0200 (CEST)
-Date: Tue, 18 Oct 2016 14:41:12 +0200 (CEST)
-From: Michel D'HOOGE <michel.dhooge@free.fr>
-To: Yocto list discussion <yocto@yoctoproject.org>
-Message-ID: <1132601620.150136748.1476794472685.JavaMail.root@spooler3-g27.priv.proxad.net>
-In-Reply-To: <CAHiDW_F+xxV35z+MMVHwb2Qvp_4+w69a41d9dtEgBT2atE-Psw@mail.gmail.com>
+X-Greylist: delayed 574 seconds by postgrey-1.32 at yocto-www;
+	Tue, 18 Oct 2016 07:04:27 PDT
+Received: from thoth.sbs.de (thoth.sbs.de [192.35.17.2])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EB739E00B34
+	for <yocto@yoctoproject.org>; Tue, 18 Oct 2016 07:04:26 -0700 (PDT)
+Received: from mail2.sbs.de (mail2.sbs.de [192.129.41.66])
+	by thoth.sbs.de (8.15.2/8.15.2) with ESMTPS id u9IDsqnO030175
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK)
+	for <yocto@yoctoproject.org>; Tue, 18 Oct 2016 15:54:52 +0200
+Received: from [139.16.78.254] (MD1FZU9C.ww002.siemens.net [139.16.78.254])
+	by mail2.sbs.de (8.15.2/8.15.2) with ESMTPS id u9IDsq35006958
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO)
+	for <yocto@yoctoproject.org>; Tue, 18 Oct 2016 15:54:52 +0200
+To: yocto@yoctoproject.org
+References: <F38A866CD026F746A3BF0928A84397BE3E7D843C@AZ-FFEXMB01.global.avaya.com>
+	<20161018121653.ygnkvl3yhbt4hvn5@ad.chargestorm.se>
+From: Pascal Bach <pascal.bach@siemens.com>
+Message-ID: <e89faa16-e912-f60e-bf12-e96db2e1e79e@siemens.com>
+Date: Tue, 18 Oct 2016 15:54:51 +0200
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:45.0) Gecko/20100101
+	Thunderbird/45.4.0
 MIME-Version: 1.0
-X-Originating-IP: [89.225.253.195]
-X-Mailer: Zimbra 7.2.0-GA2598 (ZimbraWebClient - GC53 (Linux)/7.2.0-GA2598)
-X-Authenticated-User: michel.dhooge@free.fr
-Subject: Re: Using debian packages management
+In-Reply-To: <20161018121653.ygnkvl3yhbt4hvn5@ad.chargestorm.se>
+Subject: Re: Set ${WORKDIR}/build to ${S}
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,62 +46,16 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 18 Oct 2016 12:41:19 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-Thanks Jussi, it solved my issue (more explanation below).
+X-List-Received-Date: Tue, 18 Oct 2016 14:04:31 -0000
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: 7bit
 
 
-> From: "Jussi Kukkonen" <jussi.kukkonen@intel.com>
+there a way to tell do_configure to use ${S} and not ${WORKDIR}/build.
 
-> I suspect this is related to meta-oe taking over some X
-> initialization when you add it to bblayers -- this maybe exposes a
-> bug in the deb packaging implementation. In any case I can say that
-> a deb-based core-image-sato builds fine without meta-oe.
+> Sure set
+> B = "${S}"
+Instead of setting this I suggest using "inherit autotools-brokensep" this clearly indicates that out of tree builds are broken
 
-You were right...
-With the bitbake-layers utility, I checked the "appends" but not
-the "overlayed" (BTW, -overlaid- would be better!?). And meta-oe
-provides a version 2.0 of xserver-nodm-init, which triggers some
-problems with debian.
-
-
-> Note that you may have to wipe TMPDIR after bblayers changes if
-> you're testing this.
-
-I didn't have to. I simply set PREFERRED_VERSION_xserver-nodm-init
-to "1.0" and I got my image!
-
-But this raises another comment: I added the whole meta-oe layer
-for a single recipe (ttf-dejavu). And I inherited unwanted side
-effects.
-
-So what is the best practice?
-- to copy/paste the recipe into a dedicated layer?
-- to modify the conf/layer.conf of meta-oe to include a single folder?
-
-
-
-> I have a bug on improving the X initialization mess in oe-core vs
-> meta-oe ( https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D5546 )
-> but please file one on the debian packaging issue if it does not
-> exist yet.
-
-I just read your bug report=E2=80=A6 and this problem is quite old.
-Before it gets corrected in 2.3, it could be helpful to put a note
-in the different Yocto manuals, to draw attention of newcomers to
-this rather frequent problem.
-
-
-
-@Khem Raj: I realized my answer was maybe a bit harsh and I want
-to apologize.  This was just an amused comment that every time I
-try something described in the manuals, this fails miserably. And
-every time, I have the feeling that my config is close to the
-default one. But the goal of Yocto is highly ambitious and it
-implies knowledge in many Linux fields!
-
-
-Michel
+Pascal
 
