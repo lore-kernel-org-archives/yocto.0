@@ -1,74 +1,34 @@
-Return-Path: <anders@chargestorm.se>
+Return-Path: <michel.dhooge@free.fr>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 332F9E00D0C; Tue, 18 Oct 2016 05:17:03 -0700 (PDT)
+	id 42060E00D0C; Tue, 18 Oct 2016 05:41:19 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.215.45 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.215.45 listed in dnsbl.sorbs.net]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (michel.dhooge[at]free.fr)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [212.27.42.2 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-lf0-f45.google.com (mail-lf0-f45.google.com
-	[209.85.215.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B5934E00D01
-	for <yocto@yoctoproject.org>; Tue, 18 Oct 2016 05:16:58 -0700 (PDT)
-Received: by mail-lf0-f45.google.com with SMTP id x79so352999601lff.0
-	for <yocto@yoctoproject.org>; Tue, 18 Oct 2016 05:16:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=chargestorm-se.20150623.gappssmtp.com; s=20150623;
-	h=date:from:to:subject:message-id:mail-followup-to:references
-	:mime-version:content-disposition:in-reply-to:organization
-	:user-agent; bh=Nn+I8UHJK5+0+kqycCbsvrgnKDjobP5RXtsn38T4jTg=;
-	b=tcrfgS/lWSAOYGz+Qiy70F0U9jb5TVeg7vtPIz+xLvAFDgGM53RXrsyzjTB9Nn7Qny
-	MYGdjnna/xXBFfYnnJh7SeyGjdfHWMwKLprIEegyXlsrlGDcIyM8nOCY1Yk1Qv2ibcQk
-	HE8g3yn8U58yU0UM6hzW9xibAVi8PCBMjkeRGmhjc5Og667uiceJrONzXHTRiV4o3VEu
-	7chxj72doSunB95C78TR/Ipj2SXZYXx5tM/Zu6Sjc6o+g6YlUkxkEA5JHdEeNul0LgXG
-	rBPftHgdrr2r23ojZWGMYHo8zYNtWRwTtH/DC2gVoUV5TJpZPEse7DjgpCmyH1o+5Px3
-	OxWw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:date:from:to:subject:message-id:mail-followup-to
-	:references:mime-version:content-disposition:in-reply-to
-	:organization:user-agent;
-	bh=Nn+I8UHJK5+0+kqycCbsvrgnKDjobP5RXtsn38T4jTg=;
-	b=mgeYjgMAh+PGPIoF0ANWa8XmRxzAbfBUcJD1599b/40tFEZweI3/+Q8w4MBpO8YWo2
-	9D++EeM/ljxJVO0EHNlm+YQixfpLEvR8nvvhz67ld6+VDPHxRPKdImoBbYp0bG876LDp
-	q25fXana/TeWc0S9HlQcQ7GGkH+vtojwtpQbU0LJGIR8AuS6Sd2Y26ia8jrPebsFl07T
-	XyyIP1OqzyDGl4dI2vm8Pw+ZqjgvxUfIV0h4HO9Gz7FQ9riZVuXq8gNibiOFGrqVCWqn
-	LtfvgMpI+DzF+fFns0JBeT0VKQjWBprV+7eVtqfSgC5arRaj5pgvX6RowbOGfBNpjruU
-	rOew==
-X-Gm-Message-State: AA6/9RnLg+7LOI7mOFUSsxeIA7nemg3l8cIuzlML3hNC0Wypl1maoLh+MAQdxs5faoOckg==
-X-Received: by 10.25.169.146 with SMTP id s140mr197716lfe.24.1476793016315;
-	Tue, 18 Oct 2016 05:16:56 -0700 (PDT)
-Received: from ad.chargestorm.se (213-64-218-49-no126.business.telia.com.
-	[213.64.218.49]) by smtp.gmail.com with ESMTPSA id
-	u14sm5184266lja.46.2016.10.18.05.16.55 for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-	Tue, 18 Oct 2016 05:16:55 -0700 (PDT)
-Date: Tue, 18 Oct 2016 14:16:53 +0200
-From: Anders Darander <anders@chargestorm.se>
-To: yocto@yoctoproject.org
-Message-ID: <20161018121653.ygnkvl3yhbt4hvn5@ad.chargestorm.se>
-Mail-Followup-To: yocto@yoctoproject.org
-References: <F38A866CD026F746A3BF0928A84397BE3E7D843C@AZ-FFEXMB01.global.avaya.com>
+Received: from smtp2-g21.free.fr (smtp2-g21.free.fr [212.27.42.2])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EF8EEE00D01
+	for <yocto@yoctoproject.org>; Tue, 18 Oct 2016 05:41:13 -0700 (PDT)
+Received: from spooler3-g27.priv.proxad.net (unknown [172.20.243.239])
+	by smtp2-g21.free.fr (Postfix) with ESMTP id B50DF2000D2
+	for <yocto@yoctoproject.org>; Tue, 18 Oct 2016 14:41:12 +0200 (CEST)
+Date: Tue, 18 Oct 2016 14:41:12 +0200 (CEST)
+From: Michel D'HOOGE <michel.dhooge@free.fr>
+To: Yocto list discussion <yocto@yoctoproject.org>
+Message-ID: <1132601620.150136748.1476794472685.JavaMail.root@spooler3-g27.priv.proxad.net>
+In-Reply-To: <CAHiDW_F+xxV35z+MMVHwb2Qvp_4+w69a41d9dtEgBT2atE-Psw@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <F38A866CD026F746A3BF0928A84397BE3E7D843C@AZ-FFEXMB01.global.avaya.com>
-X-Accept-Language: sv, en, de
-X-GPG-Fingerprint: 5AF0 B2E9 78FE 9D75 D110  6F8F 3E31 84D7 920E 938C
-X-GPG-Key-Id: 0x920E938C
-X-GPG-Keyserver: hkp://keys.gnupg.net
-Organization: ChargeStorm AB
-User-Agent: NeoMutt/20161014 (1.7.1)
-Subject: Re: Set ${WORKDIR}/build to ${S}
+X-Originating-IP: [89.225.253.195]
+X-Mailer: Zimbra 7.2.0-GA2598 (ZimbraWebClient - GC53 (Linux)/7.2.0-GA2598)
+X-Authenticated-User: michel.dhooge@free.fr
+Subject: Re: Using debian packages management
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -80,36 +40,62 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 18 Oct 2016 12:17:03 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Tue, 18 Oct 2016 12:41:19 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-* Bipnesh, Abhinav (Abhinav) <abhinavbipnesh@avaya.com> [161018 14:06]:
+Thanks Jussi, it solved my issue (more explanation below).
 
-> I am trying to write a recipe for one of the library. It uses a
-> somewhat modified autotools for building the complete code base. The
-> issue I am facing here is that when do_configure run it put the
-> generated files in build directory. Below is the layout
 
-> S = "${WORKDIR}/xerces-c-src_2_8_0/src/xercesc"
+> From: "Jussi Kukkonen" <jussi.kukkonen@intel.com>
 
-Have you looked at:
-http://cgit.openembedded.org/cgit.cgi/meta-openembedded/tree/meta-oe/recipes-devtools/xerces-c/xerces-c_3.1.4.bb?h=master
+> I suspect this is related to meta-oe taking over some X
+> initialization when you add it to bblayers -- this maybe exposes a
+> bug in the deb packaging implementation. In any case I can say that
+> a deb-based core-image-sato builds fine without meta-oe.
 
-> Now as the do_configure will put data in ${WORKDIR}/build. But I want that the generated data should be in ${S}.
+You were right...
+With the bitbake-layers utility, I checked the "appends" but not
+the "overlayed" (BTW, -overlaid- would be better!?). And meta-oe
+provides a version 2.0 of xserver-nodm-init, which triggers some
+problems with debian.
 
-> Is there a way to tell do_configure to use ${S} and not ${WORKDIR}/build.
 
-Sure set
-B = "${S}"
+> Note that you may have to wipe TMPDIR after bblayers changes if
+> you're testing this.
 
-Though, I'd rather suggest trying to get the library to build
-out-of-tree. If you can get that going, it'll be better in the long run.
+I didn't have to. I simply set PREFERRED_VERSION_xserver-nodm-init
+to "1.0" and I got my image!
 
-Cheers,
-Anders
+But this raises another comment: I added the whole meta-oe layer
+for a single recipe (ttf-dejavu). And I inherited unwanted side
+effects.
 
--- 
-Anders Darander, Senior System Architect
-ChargeStorm AB / eStorm AB
+So what is the best practice?
+- to copy/paste the recipe into a dedicated layer?
+- to modify the conf/layer.conf of meta-oe to include a single folder?
+
+
+
+> I have a bug on improving the X initialization mess in oe-core vs
+> meta-oe ( https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D5546 )
+> but please file one on the debian packaging issue if it does not
+> exist yet.
+
+I just read your bug report=E2=80=A6 and this problem is quite old.
+Before it gets corrected in 2.3, it could be helpful to put a note
+in the different Yocto manuals, to draw attention of newcomers to
+this rather frequent problem.
+
+
+
+@Khem Raj: I realized my answer was maybe a bit harsh and I want
+to apologize.  This was just an amused comment that every time I
+try something described in the manuals, this fails miserably. And
+every time, I have the feeling that my config is close to the
+default one. But the goal of Yocto is highly ambitious and it
+implies knowledge in many Linux fields!
+
+
+Michel
 
