@@ -1,17 +1,17 @@
 Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8EB45E00AD2; Mon, 17 Oct 2016 17:02:35 -0700 (PDT)
+	id 78F11E00BEA; Mon, 17 Oct 2016 17:02:37 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.192.195 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (akuster808[at]gmail.com)
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (akuster808[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.196 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,47 +19,50 @@ X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pf0-f195.google.com (mail-pf0-f195.google.com
-	[209.85.192.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E3D33E00A30
-	for <yocto@yoctoproject.org>; Mon, 17 Oct 2016 17:02:32 -0700 (PDT)
-Received: by mail-pf0-f195.google.com with SMTP id s8so13640799pfj.2
-	for <yocto@yoctoproject.org>; Mon, 17 Oct 2016 17:02:32 -0700 (PDT)
+Received: from mail-pf0-f196.google.com (mail-pf0-f196.google.com
+	[209.85.192.196])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0334FE00B66
+	for <yocto@yoctoproject.org>; Mon, 17 Oct 2016 17:02:36 -0700 (PDT)
+Received: by mail-pf0-f196.google.com with SMTP id 128so13669568pfz.1
+	for <yocto@yoctoproject.org>; Mon, 17 Oct 2016 17:02:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:subject:date:message-id;
-	bh=R67sraZfOcbVOnuBmIx8iI+eF+oo3bgIaBBh++4HmGA=;
-	b=klgvai2nqm7QnUsSwxVI5aFrmv7hqrUOCMXvRhNsfTvHfHtsXH4oFG+fnYbVFJ4tit
-	dOILJi4tQPeqLeG+h6XPboSSIRq2oeNFVhehGfd+1sbdl0kLZOQe0DA8t4E2+RUEP2Y/
-	iRmpnDTqwDwt9BRvharw9Pe8HZq/YYzT65J2c0xt+rTLtE11Pmj5GRbbYF88Otwm32z3
-	0IuaNcCm1tmtAbuhWrTGrjXeoV+71U47nTLGHBDq+8RsiOKF11C/BZkW6t8zZl7r3TwQ
-	Tt8jm16qBGQD9nUhCtlbPzeBLUn/x6riQQ2VxeB3dGiKklkhdpo+0kG/3aZx2pLkVV8b
-	1UXQ==
+	h=from:to:subject:date:message-id:in-reply-to:references;
+	bh=Cfxn+cfVCad+red1AoYetP00b+DPyThsfIPAsn0rN7w=;
+	b=zuX10J/aW64SaNK6gUHOoVItwHS/WGLlEGyNQhKx5YJegvsEvVucaGoSmE7nwyYEgn
+	6GuknpDHzuxSdXwwAFy/WT/+iAx8bAkXl27LfQzZRG/Uy8XvvoJU+69+S099PeJM2UCO
+	Cp8pAYDRihfWDQsSo60unPCsHsL1fj8YhRvlGyPzQgGbdjBcnf8nPg5SWEUrQUluJgDB
+	yz63GVc9/yaniRkc0wO8Vmi8rHKJkKXLc2iCbQneDADz9Imd8Xjhgv03vNift9B0YJF1
+	JBkqqNuqhEjkG8gm7UWeZU3aDrNibezU46riqpqrkzEZuUfYCQA7M5V/1HzgCPFjiAL2
+	Kpog==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:to:subject:date:message-id;
-	bh=R67sraZfOcbVOnuBmIx8iI+eF+oo3bgIaBBh++4HmGA=;
-	b=IggYa/32bJEi+03/Nz67LNRn/buC4yX7UkZaImKYj0O1eElhKuHOcLoyMl+1tD3PcD
-	GXcKCCdtrT+5rwMNQT/3zixakhA7qNfGUvk+oGDAC04UpUfTQSigYjMKai4CKVOIN0NU
-	qBiqsoF7/iaAwCU/d0uodsL2QblAwbL/AdCOdseWf82e+2gVn1jBhZD1LffYi/3dOsTU
-	rC4BgClxb+fD4EeoSIQ1fGNjUQGB/1YL1WeQsCWuWJFEhJYbIuH9wH/uDBEuSZCpqoH4
-	LxGSddiq5ZkAptBKT4zQzVGfEVTc51pzJnSHNWZFFWvvX9FrseQowhiEIbX7IIGuHEAA
-	6GWg==
-X-Gm-Message-State: AA6/9RmRVNZ269ieQ7hSn5DuU0iHXwr8NZIN7kQvYCFE6QBRLtRlszGP5p6yfQ1EspWETg==
-X-Received: by 10.99.116.24 with SMTP id p24mr100207pgc.167.1476748952000;
-	Mon, 17 Oct 2016 17:02:32 -0700 (PDT)
+	h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
+	:references;
+	bh=Cfxn+cfVCad+red1AoYetP00b+DPyThsfIPAsn0rN7w=;
+	b=V7DPUUY2ppVxN30zauiFUiqcPZqFssG78+IF3Lkue3t9GMYrO/i1e0kNyTHTOUyvxf
+	Doh5yqwf9buHmtNE+LVc/MBY0C6wagvrXGczTw6tFXlGt88rULjx6jI9FsWbQqEzDdWp
+	8daYhNOb5d33GD9kPXLSLlKuMp2dTbB5M7iSKjw6fHhfnBNsepoUqwH9d88GxfS5GMRW
+	LoU+IiFg4A/GWo52BvXB9N/vrV8Yo2hwhlH2ctfM2HCDQKeWtuG6aqg6lK9DhWrUiaQ5
+	N60RL2e6l0alBv50/g3KXTbrq7GgAWD+azqUYzF/f8EeOv0hpB6sqsLzVMeWVUpQI2CR
+	LRzg==
+X-Gm-Message-State: AA6/9RlDnP0jQ1qPaZ9SvfMqZ+XJUzaX2VP0IUT0LrjoO+eamEx5kDMpdYv8otD360OMpg==
+X-Received: by 10.99.54.196 with SMTP id d187mr167622pga.34.1476748956364;
+	Mon, 17 Oct 2016 17:02:36 -0700 (PDT)
 Received: from akuster-ThinkPad-X240.mvista.com
 	([2601:202:4001:9ea0:5ef:e28f:5dce:e040])
 	by smtp.gmail.com with ESMTPSA id
-	s6sm50597160pfg.46.2016.10.17.17.02.31
+	s6sm50597160pfg.46.2016.10.17.17.02.35
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Mon, 17 Oct 2016 17:02:31 -0700 (PDT)
+	Mon, 17 Oct 2016 17:02:35 -0700 (PDT)
 From: Armin Kuster <akuster808@gmail.com>
 To: yocto@yoctoproject.org,
 	akuster808@gmail.com
-Date: Mon, 17 Oct 2016 17:02:14 -0700
-Message-Id: <1476748950-21342-1-git-send-email-akuster808@gmail.com>
+Date: Mon, 17 Oct 2016 17:02:18 -0700
+Message-Id: <1476748950-21342-5-git-send-email-akuster808@gmail.com>
 X-Mailer: git-send-email 2.7.4
-Subject: [meta-security][PATCH 01/17] tpm2.0-tss: Add new package
+In-Reply-To: <1476748950-21342-1-git-send-email-akuster808@gmail.com>
+References: <1476748950-21342-1-git-send-email-akuster808@gmail.com>
+Subject: [meta-security][PATCH 05/17] tpm2simulator: add package
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,426 +74,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 18 Oct 2016 00:02:35 -0000
+X-List-Received-Date: Tue, 18 Oct 2016 00:02:37 -0000
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- recipes-tpm/tpm2.0-tss/tpm2.0-tss/ax_pthread.m4 | 332 ++++++++++++++++++++++++
- recipes-tpm/tpm2.0-tss/tpm2.0-tss_git.bb        |  66 +++++
- 2 files changed, 398 insertions(+)
- create mode 100644 recipes-tpm/tpm2.0-tss/tpm2.0-tss/ax_pthread.m4
- create mode 100644 recipes-tpm/tpm2.0-tss/tpm2.0-tss_git.bb
+ .../tpm2simulator/tpm2simulator-native_116.bb      | 25 ++++++++++++++++++++++
+ 1 file changed, 25 insertions(+)
+ create mode 100644 recipes-tpm/tpm2simulator/tpm2simulator-native_116.bb
 
-diff --git a/recipes-tpm/tpm2.0-tss/tpm2.0-tss/ax_pthread.m4 b/recipes-tpm/tpm2.0-tss/tpm2.0-tss/ax_pthread.m4
+diff --git a/recipes-tpm/tpm2simulator/tpm2simulator-native_116.bb b/recipes-tpm/tpm2simulator/tpm2simulator-native_116.bb
 new file mode 100644
-index 0000000..d383ad5
+index 0000000..33eaf99
 --- /dev/null
-+++ b/recipes-tpm/tpm2.0-tss/tpm2.0-tss/ax_pthread.m4
-@@ -0,0 +1,332 @@
-+# ===========================================================================
-+#        http://www.gnu.org/software/autoconf-archive/ax_pthread.html
-+# ===========================================================================
-+#
-+# SYNOPSIS
-+#
-+#   AX_PTHREAD([ACTION-IF-FOUND[, ACTION-IF-NOT-FOUND]])
-+#
-+# DESCRIPTION
-+#
-+#   This macro figures out how to build C programs using POSIX threads. It
-+#   sets the PTHREAD_LIBS output variable to the threads library and linker
-+#   flags, and the PTHREAD_CFLAGS output variable to any special C compiler
-+#   flags that are needed. (The user can also force certain compiler
-+#   flags/libs to be tested by setting these environment variables.)
-+#
-+#   Also sets PTHREAD_CC to any special C compiler that is needed for
-+#   multi-threaded programs (defaults to the value of CC otherwise). (This
-+#   is necessary on AIX to use the special cc_r compiler alias.)
-+#
-+#   NOTE: You are assumed to not only compile your program with these flags,
-+#   but also link it with them as well. e.g. you should link with
-+#   $PTHREAD_CC $CFLAGS $PTHREAD_CFLAGS $LDFLAGS ... $PTHREAD_LIBS $LIBS
-+#
-+#   If you are only building threads programs, you may wish to use these
-+#   variables in your default LIBS, CFLAGS, and CC:
-+#
-+#     LIBS="$PTHREAD_LIBS $LIBS"
-+#     CFLAGS="$CFLAGS $PTHREAD_CFLAGS"
-+#     CC="$PTHREAD_CC"
-+#
-+#   In addition, if the PTHREAD_CREATE_JOINABLE thread-attribute constant
-+#   has a nonstandard name, defines PTHREAD_CREATE_JOINABLE to that name
-+#   (e.g. PTHREAD_CREATE_UNDETACHED on AIX).
-+#
-+#   Also HAVE_PTHREAD_PRIO_INHERIT is defined if pthread is found and the
-+#   PTHREAD_PRIO_INHERIT symbol is defined when compiling with
-+#   PTHREAD_CFLAGS.
-+#
-+#   ACTION-IF-FOUND is a list of shell commands to run if a threads library
-+#   is found, and ACTION-IF-NOT-FOUND is a list of commands to run it if it
-+#   is not found. If ACTION-IF-FOUND is not specified, the default action
-+#   will define HAVE_PTHREAD.
-+#
-+#   Please let the authors know if this macro fails on any platform, or if
-+#   you have any other suggestions or comments. This macro was based on work
-+#   by SGJ on autoconf scripts for FFTW (http://www.fftw.org/) (with help
-+#   from M. Frigo), as well as ac_pthread and hb_pthread macros posted by
-+#   Alejandro Forero Cuervo to the autoconf macro repository. We are also
-+#   grateful for the helpful feedback of numerous users.
-+#
-+#   Updated for Autoconf 2.68 by Daniel Richard G.
-+#
-+# LICENSE
-+#
-+#   Copyright (c) 2008 Steven G. Johnson <stevenj@alum.mit.edu>
-+#   Copyright (c) 2011 Daniel Richard G. <skunk@iSKUNK.ORG>
-+#
-+#   This program is free software: you can redistribute it and/or modify it
-+#   under the terms of the GNU General Public License as published by the
-+#   Free Software Foundation, either version 3 of the License, or (at your
-+#   option) any later version.
-+#
-+#   This program is distributed in the hope that it will be useful, but
-+#   WITHOUT ANY WARRANTY; without even the implied warranty of
-+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
-+#   Public License for more details.
-+#
-+#   You should have received a copy of the GNU General Public License along
-+#   with this program. If not, see <http://www.gnu.org/licenses/>.
-+#
-+#   As a special exception, the respective Autoconf Macro's copyright owner
-+#   gives unlimited permission to copy, distribute and modify the configure
-+#   scripts that are the output of Autoconf when processing the Macro. You
-+#   need not follow the terms of the GNU General Public License when using
-+#   or distributing such scripts, even though portions of the text of the
-+#   Macro appear in them. The GNU General Public License (GPL) does govern
-+#   all other use of the material that constitutes the Autoconf Macro.
-+#
-+#   This special exception to the GPL applies to versions of the Autoconf
-+#   Macro released by the Autoconf Archive. When you make and distribute a
-+#   modified version of the Autoconf Macro, you may extend this special
-+#   exception to the GPL to apply to your modified version as well.
-+
-+#serial 21
-+
-+AU_ALIAS([ACX_PTHREAD], [AX_PTHREAD])
-+AC_DEFUN([AX_PTHREAD], [
-+AC_REQUIRE([AC_CANONICAL_HOST])
-+AC_LANG_PUSH([C])
-+ax_pthread_ok=no
-+
-+# We used to check for pthread.h first, but this fails if pthread.h
-+# requires special compiler flags (e.g. on True64 or Sequent).
-+# It gets checked for in the link test anyway.
-+
-+# First of all, check if the user has set any of the PTHREAD_LIBS,
-+# etcetera environment variables, and if threads linking works using
-+# them:
-+if test x"$PTHREAD_LIBS$PTHREAD_CFLAGS" != x; then
-+        save_CFLAGS="$CFLAGS"
-+        CFLAGS="$CFLAGS $PTHREAD_CFLAGS"
-+        save_LIBS="$LIBS"
-+        LIBS="$PTHREAD_LIBS $LIBS"
-+        AC_MSG_CHECKING([for pthread_join in LIBS=$PTHREAD_LIBS with CFLAGS=$PTHREAD_CFLAGS])
-+        AC_TRY_LINK_FUNC([pthread_join], [ax_pthread_ok=yes])
-+        AC_MSG_RESULT([$ax_pthread_ok])
-+        if test x"$ax_pthread_ok" = xno; then
-+                PTHREAD_LIBS=""
-+                PTHREAD_CFLAGS=""
-+        fi
-+        LIBS="$save_LIBS"
-+        CFLAGS="$save_CFLAGS"
-+fi
-+
-+# We must check for the threads library under a number of different
-+# names; the ordering is very important because some systems
-+# (e.g. DEC) have both -lpthread and -lpthreads, where one of the
-+# libraries is broken (non-POSIX).
-+
-+# Create a list of thread flags to try.  Items starting with a "-" are
-+# C compiler flags, and other items are library names, except for "none"
-+# which indicates that we try without any flags at all, and "pthread-config"
-+# which is a program returning the flags for the Pth emulation library.
-+
-+ax_pthread_flags="pthreads none -Kthread -kthread lthread -pthread -pthreads -mthreads pthread --thread-safe -mt pthread-config"
-+
-+# The ordering *is* (sometimes) important.  Some notes on the
-+# individual items follow:
-+
-+# pthreads: AIX (must check this before -lpthread)
-+# none: in case threads are in libc; should be tried before -Kthread and
-+#       other compiler flags to prevent continual compiler warnings
-+# -Kthread: Sequent (threads in libc, but -Kthread needed for pthread.h)
-+# -kthread: FreeBSD kernel threads (preferred to -pthread since SMP-able)
-+# lthread: LinuxThreads port on FreeBSD (also preferred to -pthread)
-+# -pthread: Linux/gcc (kernel threads), BSD/gcc (userland threads)
-+# -pthreads: Solaris/gcc
-+# -mthreads: Mingw32/gcc, Lynx/gcc
-+# -mt: Sun Workshop C (may only link SunOS threads [-lthread], but it
-+#      doesn't hurt to check since this sometimes defines pthreads too;
-+#      also defines -D_REENTRANT)
-+#      ... -mt is also the pthreads flag for HP/aCC
-+# pthread: Linux, etcetera
-+# --thread-safe: KAI C++
-+# pthread-config: use pthread-config program (for GNU Pth library)
-+
-+case ${host_os} in
-+        solaris*)
-+
-+        # On Solaris (at least, for some versions), libc contains stubbed
-+        # (non-functional) versions of the pthreads routines, so link-based
-+        # tests will erroneously succeed.  (We need to link with -pthreads/-mt/
-+        # -lpthread.)  (The stubs are missing pthread_cleanup_push, or rather
-+        # a function called by this macro, so we could check for that, but
-+        # who knows whether they'll stub that too in a future libc.)  So,
-+        # we'll just look for -pthreads and -lpthread first:
-+
-+        ax_pthread_flags="-pthreads pthread -mt -pthread $ax_pthread_flags"
-+        ;;
-+
-+        darwin*)
-+        ax_pthread_flags="-pthread $ax_pthread_flags"
-+        ;;
-+esac
-+
-+# Clang doesn't consider unrecognized options an error unless we specify
-+# -Werror. We throw in some extra Clang-specific options to ensure that
-+# this doesn't happen for GCC, which also accepts -Werror.
-+
-+AC_MSG_CHECKING([if compiler needs -Werror to reject unknown flags])
-+save_CFLAGS="$CFLAGS"
-+ax_pthread_extra_flags="-Werror"
-+CFLAGS="$CFLAGS $ax_pthread_extra_flags -Wunknown-warning-option -Wsizeof-array-argument"
-+AC_COMPILE_IFELSE([AC_LANG_PROGRAM([int foo(void);],[foo()])],
-+                  [AC_MSG_RESULT([yes])],
-+                  [ax_pthread_extra_flags=
-+                   AC_MSG_RESULT([no])])
-+CFLAGS="$save_CFLAGS"
-+
-+if test x"$ax_pthread_ok" = xno; then
-+for flag in $ax_pthread_flags; do
-+
-+        case $flag in
-+                none)
-+                AC_MSG_CHECKING([whether pthreads work without any flags])
-+                ;;
-+
-+                -*)
-+                AC_MSG_CHECKING([whether pthreads work with $flag])
-+                PTHREAD_CFLAGS="$flag"
-+                ;;
-+
-+                pthread-config)
-+                AC_CHECK_PROG([ax_pthread_config], [pthread-config], [yes], [no])
-+                if test x"$ax_pthread_config" = xno; then continue; fi
-+                PTHREAD_CFLAGS="`pthread-config --cflags`"
-+                PTHREAD_LIBS="`pthread-config --ldflags` `pthread-config --libs`"
-+                ;;
-+
-+                *)
-+                AC_MSG_CHECKING([for the pthreads library -l$flag])
-+                PTHREAD_LIBS="-l$flag"
-+                ;;
-+        esac
-+
-+        save_LIBS="$LIBS"
-+        save_CFLAGS="$CFLAGS"
-+        LIBS="$PTHREAD_LIBS $LIBS"
-+        CFLAGS="$CFLAGS $PTHREAD_CFLAGS $ax_pthread_extra_flags"
-+
-+        # Check for various functions.  We must include pthread.h,
-+        # since some functions may be macros.  (On the Sequent, we
-+        # need a special flag -Kthread to make this header compile.)
-+        # We check for pthread_join because it is in -lpthread on IRIX
-+        # while pthread_create is in libc.  We check for pthread_attr_init
-+        # due to DEC craziness with -lpthreads.  We check for
-+        # pthread_cleanup_push because it is one of the few pthread
-+        # functions on Solaris that doesn't have a non-functional libc stub.
-+        # We try pthread_create on general principles.
-+        AC_LINK_IFELSE([AC_LANG_PROGRAM([#include <pthread.h>
-+                        static void routine(void *a) { a = 0; }
-+                        static void *start_routine(void *a) { return a; }],
-+                       [pthread_t th; pthread_attr_t attr;
-+                        pthread_create(&th, 0, start_routine, 0);
-+                        pthread_join(th, 0);
-+                        pthread_attr_init(&attr);
-+                        pthread_cleanup_push(routine, 0);
-+                        pthread_cleanup_pop(0) /* ; */])],
-+                [ax_pthread_ok=yes],
-+                [])
-+
-+        LIBS="$save_LIBS"
-+        CFLAGS="$save_CFLAGS"
-+
-+        AC_MSG_RESULT([$ax_pthread_ok])
-+        if test "x$ax_pthread_ok" = xyes; then
-+                break;
-+        fi
-+
-+        PTHREAD_LIBS=""
-+        PTHREAD_CFLAGS=""
-+done
-+fi
-+
-+# Various other checks:
-+if test "x$ax_pthread_ok" = xyes; then
-+        save_LIBS="$LIBS"
-+        LIBS="$PTHREAD_LIBS $LIBS"
-+        save_CFLAGS="$CFLAGS"
-+        CFLAGS="$CFLAGS $PTHREAD_CFLAGS"
-+
-+        # Detect AIX lossage: JOINABLE attribute is called UNDETACHED.
-+        AC_MSG_CHECKING([for joinable pthread attribute])
-+        attr_name=unknown
-+        for attr in PTHREAD_CREATE_JOINABLE PTHREAD_CREATE_UNDETACHED; do
-+            AC_LINK_IFELSE([AC_LANG_PROGRAM([#include <pthread.h>],
-+                           [int attr = $attr; return attr /* ; */])],
-+                [attr_name=$attr; break],
-+                [])
-+        done
-+        AC_MSG_RESULT([$attr_name])
-+        if test "$attr_name" != PTHREAD_CREATE_JOINABLE; then
-+            AC_DEFINE_UNQUOTED([PTHREAD_CREATE_JOINABLE], [$attr_name],
-+                               [Define to necessary symbol if this constant
-+                                uses a non-standard name on your system.])
-+        fi
-+
-+        AC_MSG_CHECKING([if more special flags are required for pthreads])
-+        flag=no
-+        case ${host_os} in
-+            aix* | freebsd* | darwin*) flag="-D_THREAD_SAFE";;
-+            osf* | hpux*) flag="-D_REENTRANT";;
-+            solaris*)
-+            if test "$GCC" = "yes"; then
-+                flag="-D_REENTRANT"
-+            else
-+                # TODO: What about Clang on Solaris?
-+                flag="-mt -D_REENTRANT"
-+            fi
-+            ;;
-+        esac
-+        AC_MSG_RESULT([$flag])
-+        if test "x$flag" != xno; then
-+            PTHREAD_CFLAGS="$flag $PTHREAD_CFLAGS"
-+        fi
-+
-+        AC_CACHE_CHECK([for PTHREAD_PRIO_INHERIT],
-+            [ax_cv_PTHREAD_PRIO_INHERIT], [
-+                AC_LINK_IFELSE([AC_LANG_PROGRAM([[#include <pthread.h>]],
-+                                                [[int i = PTHREAD_PRIO_INHERIT;]])],
-+                    [ax_cv_PTHREAD_PRIO_INHERIT=yes],
-+                    [ax_cv_PTHREAD_PRIO_INHERIT=no])
-+            ])
-+        AS_IF([test "x$ax_cv_PTHREAD_PRIO_INHERIT" = "xyes"],
-+            [AC_DEFINE([HAVE_PTHREAD_PRIO_INHERIT], [1], [Have PTHREAD_PRIO_INHERIT.])])
-+
-+        LIBS="$save_LIBS"
-+        CFLAGS="$save_CFLAGS"
-+
-+        # More AIX lossage: compile with *_r variant
-+        if test "x$GCC" != xyes; then
-+            case $host_os in
-+                aix*)
-+                AS_CASE(["x/$CC"],
-+                  [x*/c89|x*/c89_128|x*/c99|x*/c99_128|x*/cc|x*/cc128|x*/xlc|x*/xlc_v6|x*/xlc128|x*/xlc128_v6],
-+                  [#handle absolute path differently from PATH based program lookup
-+                   AS_CASE(["x$CC"],
-+                     [x/*],
-+                     [AS_IF([AS_EXECUTABLE_P([${CC}_r])],[PTHREAD_CC="${CC}_r"])],
-+                     [AC_CHECK_PROGS([PTHREAD_CC],[${CC}_r],[$CC])])])
-+                ;;
-+            esac
-+        fi
-+fi
-+
-+test -n "$PTHREAD_CC" || PTHREAD_CC="$CC"
-+
-+AC_SUBST([PTHREAD_LIBS])
-+AC_SUBST([PTHREAD_CFLAGS])
-+AC_SUBST([PTHREAD_CC])
-+
-+# Finally, execute ACTION-IF-FOUND/ACTION-IF-NOT-FOUND:
-+if test x"$ax_pthread_ok" = xyes; then
-+        ifelse([$1],,[AC_DEFINE([HAVE_PTHREAD],[1],[Define if you have POSIX threads libraries and header files.])],[$1])
-+        :
-+else
-+        ax_pthread_ok=no
-+        $2
-+fi
-+AC_LANG_POP
-+])dnl AX_PTHREAD
-diff --git a/recipes-tpm/tpm2.0-tss/tpm2.0-tss_git.bb b/recipes-tpm/tpm2.0-tss/tpm2.0-tss_git.bb
-new file mode 100644
-index 0000000..c4b5c8c
---- /dev/null
-+++ b/recipes-tpm/tpm2.0-tss/tpm2.0-tss_git.bb
-@@ -0,0 +1,66 @@
-+SUMMARY = "Software stack for TPM2."
-+DESCRIPTION = "tpm2.0-tss like woah."
++++ b/recipes-tpm/tpm2simulator/tpm2simulator-native_116.bb
+@@ -0,0 +1,25 @@
++SUMMARY = "TPM 2.0 Simulator Extraction Script"
 +LICENSE = "BSD-2-Clause"
-+LIC_FILES_CHKSUM = "file://LICENSE;md5=17067aa50a585593d421b16cffd805a9"
-+SECTION = "tpm"
++LIC_FILES_CHKSUM = "file://../LICENSE;md5=1415f7be284540b81d9d28c67c1a6b8b"
 +
-+SRCREV = "8e25d0cbb287d30c93b2b77e99bc761dc67e31a9"
-+SRC_URI = " \
-+    git://github.com/01org/TPM2.0-TSS.git;protocol=git;branch=master;name=TPM2.0-TSS;destsuffix=TPM2.0-TSS \
-+    file://ax_pthread.m4"
++DEPENDS += "python"
 +
-+inherit autotools pkgconfig
++SRCREV = "93dc4412432013ed7bcabd42007754c68f6e362e"
++SRC_URI = "git://github.com/stwagnr/tpm2simulator.git"
 +
-+S = "${WORKDIR}/${@d.getVar('BPN',d).upper()}"
++S = "${WORKDIR}/git/cmake"
++
++PV = "116+git${SRCPV}"
++
++inherit native lib_package cmake
++
++EXTRA_OECMAKE = " \
++	-DCMAKE_BUILD_TYPE=Debug \
++	-DSPEC_VERSION=116 \
++"
 +
 +do_configure_prepend () {
-+	mkdir -p ${S}/m4
-+	cp ${WORKDIR}/ax_pthread.m4 ${S}/m4
-+	# execute the bootstrap script
-+	currentdir=$(pwd)
-+	cd ${S}
-+	./bootstrap --force
-+	cd $currentdir
++	sed -i 's/^SET = False/SET = True/' ${WORKDIR}/git/scripts/settings.py 
 +}
 +
-+PROVIDES = "${PACKAGES}"
-+PACKAGES = " \
-+    ${PN}-dbg \
-+    libtss2 \
-+    libtss2-dev \
-+    libtss2-staticdev \
-+    libtctidevice \
-+    libtctidevice-dev \
-+    libtctidevice-staticdev \
-+    libtctisocket \
-+    libtctisocket-dev \
-+    libtctisocket-staticdev \
-+    resourcemgr \
-+"
-+
-+FILES_libtss2 = "${libdir}/libsapi.so.0.0.0"
-+FILES_libtss2-dev = " \
-+    ${includedir}/sapi \
-+    ${includedir}/tcti/common.h \
-+    ${libdir}/libsapi.so* \
-+    ${libdir}/pkgconfig/sapi.pc \
-+"
-+FILES_libtss2-staticdev = " \
-+    ${libdir}/libsapi.a \
-+    ${libdir}/libsapi.la \
-+"
-+FILES_libtctidevice = "${libdir}/libtcti-device.so.0.0.0"
-+FILES_libtctidevice-dev = " \
-+    ${includedir}/tcti/tcti_device.h \
-+    ${libdir}/libtcti-device.so* \
-+    ${libdir}/pkgconfig/tcti-device.pc \
-+"
-+FILES_libtctidevice-staticdev = "${libdir}/libtcti-device.*a"
-+FILES_libtctisocket = "${libdir}/libtcti-socket.so.0.0.0"
-+FILES_libtctisocket-dev = " \
-+    ${includedir}/tcti/tcti_socket.h \
-+    ${libdir}/libtcti-socket.so* \
-+    ${libdir}/pkgconfig/tcti-socket.pc \
-+"
-+FILES_libtctisocket-staticdev = "${libdir}/libtcti-socket.*a"
-+FILES_resourcemgr = "${sbindir}/resourcemgr"
++BBCLASSEXTEND = "native"
 -- 
 2.7.4
 
