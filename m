@@ -1,17 +1,17 @@
 Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5DC30E00C02; Mon, 17 Oct 2016 17:02:40 -0700 (PDT)
+	id 4A973E00C54; Mon, 17 Oct 2016 17:02:44 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.220.66 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (akuster808[at]gmail.com)
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	TVD_SPACE_RATIO autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (akuster808[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.220.68 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,50 +19,51 @@ X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pa0-f66.google.com (mail-pa0-f66.google.com
-	[209.85.220.66])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 11EBBE00BEA
-	for <yocto@yoctoproject.org>; Mon, 17 Oct 2016 17:02:39 -0700 (PDT)
-Received: by mail-pa0-f66.google.com with SMTP id fn2so8805874pad.1
-	for <yocto@yoctoproject.org>; Mon, 17 Oct 2016 17:02:39 -0700 (PDT)
+	*  0.0 TVD_SPACE_RATIO TVD_SPACE_RATIO
+Received: from mail-pa0-f68.google.com (mail-pa0-f68.google.com
+	[209.85.220.68])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AB8DBE00C38
+	for <yocto@yoctoproject.org>; Mon, 17 Oct 2016 17:02:43 -0700 (PDT)
+Received: by mail-pa0-f68.google.com with SMTP id qn10so9701262pac.2
+	for <yocto@yoctoproject.org>; Mon, 17 Oct 2016 17:02:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=from:to:subject:date:message-id:in-reply-to:references;
-	bh=BmIj01BQr5rUkGCI31cAthPzGfNOwR3xeQNT0kfhZE4=;
-	b=chLck1mEHgd+AqrZclN5gJytlct8TSxKIvv7Uaqwmec/H1gRxKk87hk+IUiT9pZDP3
-	FipzvxfxVYQHswOvfj+uOl2c5ze0V51c+RCQQk2n5/nyfGR6IlZVw44UVyZ0H5d7pNf5
-	b9tH+h3bO7f+S8BZTMQPNKVcHY7Cn7X67uSIzL9I3jMw2m42IyrSpcL6j0xZzzBJtePk
-	1Tn1nSBh5VDbL5msh5Rrg5Q8518XJfYS4K1ieIRZ63uVtsXAns7TlSLxCxKtkdJ/ZCRP
-	oFOlVTLvtOhdqi2LcDCp1AHuG9eOUteLf0MEBS1Wjz9Lb0UT3pTKFos4f3uOkkoV6BFK
-	PBuw==
+	bh=NefMohOtk7zrqDH0hIfhbR3HfavOGSS4bpOgRxhLhzg=;
+	b=oCIE+V8Ls9QH2fUWcoq4s11OI6kOR/5M5ax9bIO83Lr+ttwLhpDJ0TzNNYGEIc5uLJ
+	bre+26frPk/DI6h4bTkRclzC/4Zenbi3Pe3ZA+9zuWNb9Q5C3YSN0PytMQUR1CjSB3+K
+	1kneXt61dTQZ5VSwNnZP/L6fghXcztBJJEMLqqe0poSf6frjuhzDlcyjJmSpQw3dRJ0u
+	zD5+lRHh2qxBQ517uy3fLxbrnTgDeWXWzEaqVS6WU1JGKOAJb359PCG2RVcqmmJdEECX
+	TwVn+VXhlm7OaUTIy7tD7fYw68Yp9arhdRiFm+gIWaskyvLADdwd9clfDeRxD1dx7roy
+	8kyA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
 	:references;
-	bh=BmIj01BQr5rUkGCI31cAthPzGfNOwR3xeQNT0kfhZE4=;
-	b=HUk0F82PYSbQz3090dBQjCeBmMB73dpNM5LDWxQ/tW2w1nBEvJW5v7DAwPwZLjSedP
-	5CKD4JtmOi7RpbUOqYDoj1Rw2GKm3+5RUhHYZYzNj0pgfCKaEgfQGdcR/CLsoLDYEgzj
-	dOFVkCbSopnTwXPfqSEVsmDP251xBUddxB85fkSMnXY+eemv/c6Q0aw5gtrbwLoNW25i
-	ESAb6w8GXYKCxsyzdaV3RqSv8UuIgsLoabzplcmQAY7EvUQw7fFyp4C1E/QA8LRcmB28
-	WSTbvnL3VqHq0IPHilP/iS+cnteMV18uiRHTeIC1FHu5JkyKaKYD/ZsLwwshUYGK+Fv1
-	is6w==
-X-Gm-Message-State: AA6/9RlY6S+jUM5tMS/k2gKLOX/YY/s3gkuAxqW6zrI3OhOnZZ8lHuykS1utGMp/xRsKsw==
-X-Received: by 10.66.84.132 with SMTP id z4mr153121pay.108.1476748958913;
-	Mon, 17 Oct 2016 17:02:38 -0700 (PDT)
+	bh=NefMohOtk7zrqDH0hIfhbR3HfavOGSS4bpOgRxhLhzg=;
+	b=VzsWF5sB6c+szsOexWKO+xTO2BaKyvIkk4JvyCdmuetFOcq51JCf5KZ0d2Y3GQjGCz
+	3i930WVXI0wJayLsIxGvtEiHtU+YVaQZqh2dohPPMZ7rptSpBeCP75iWnj0ETRlzpM7R
+	2N8KOmxnEQ8esOGc1DWqfLfgs9/BE1Ozp9u6tOEiqLxDDWmbf5fzqti1XiH1ReKKiWtY
+	98GIHhajysm8XjHuPSalJPF9J5hn3gleZ9b0EjP/T9Yme/iVYhmcW8LDAkEb/IGoobSF
+	HF3DjJH+29CSKEOUFzGsXlfNyfp/rVdaQRycl0avZzZK96G2F+sKytzcy5Fen/q3CPgu
+	4ayw==
+X-Gm-Message-State: AA6/9RmMIKDSWvV5PVprsoIiMnPs99lnzTm/23H8JnmHvktX4pOmom2T34ijOqjDjdLodQ==
+X-Received: by 10.66.185.233 with SMTP id ff9mr174229pac.10.1476748963078;
+	Mon, 17 Oct 2016 17:02:43 -0700 (PDT)
 Received: from akuster-ThinkPad-X240.mvista.com
 	([2601:202:4001:9ea0:5ef:e28f:5dce:e040])
 	by smtp.gmail.com with ESMTPSA id
-	s6sm50597160pfg.46.2016.10.17.17.02.37
+	s6sm50597160pfg.46.2016.10.17.17.02.42
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Mon, 17 Oct 2016 17:02:38 -0700 (PDT)
+	Mon, 17 Oct 2016 17:02:42 -0700 (PDT)
 From: Armin Kuster <akuster808@gmail.com>
 To: yocto@yoctoproject.org,
 	akuster808@gmail.com
-Date: Mon, 17 Oct 2016 17:02:20 -0700
-Message-Id: <1476748950-21342-7-git-send-email-akuster808@gmail.com>
+Date: Mon, 17 Oct 2016 17:02:24 -0700
+Message-Id: <1476748950-21342-11-git-send-email-akuster808@gmail.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1476748950-21342-1-git-send-email-akuster808@gmail.com>
 References: <1476748950-21342-1-git-send-email-akuster808@gmail.com>
-Subject: [meta-security][PATCH 07/17] image: at image to help test builds
+Subject: [meta-security][PATCH 11/17] linux-yocto-4.8: add tpm fragments
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,41 +75,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 18 Oct 2016 00:02:40 -0000
+X-List-Received-Date: Tue, 18 Oct 2016 00:02:44 -0000
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- recipes-security/images/security-build-image.bb | 21 +++++++++++++++++++++
- 1 file changed, 21 insertions(+)
- create mode 100644 recipes-security/images/security-build-image.bb
+ recipes-kernel/linux/linux-yocto-4.8/tpm.cfg  | 9 +++++++++
+ recipes-kernel/linux/linux-yocto-4.8/tpm.scc  | 4 ++++
+ recipes-kernel/linux/linux-yocto_4.8.bbappend | 7 +++++++
+ 3 files changed, 20 insertions(+)
+ create mode 100644 recipes-kernel/linux/linux-yocto-4.8/tpm.cfg
+ create mode 100644 recipes-kernel/linux/linux-yocto-4.8/tpm.scc
+ create mode 100644 recipes-kernel/linux/linux-yocto_4.8.bbappend
 
-diff --git a/recipes-security/images/security-build-image.bb b/recipes-security/images/security-build-image.bb
+diff --git a/recipes-kernel/linux/linux-yocto-4.8/tpm.cfg b/recipes-kernel/linux/linux-yocto-4.8/tpm.cfg
 new file mode 100644
-index 0000000..6745338
+index 0000000..fe1bb3f
 --- /dev/null
-+++ b/recipes-security/images/security-build-image.bb
-@@ -0,0 +1,21 @@
-+DESCRIPTION = "A small image for building meta-security packages"
++++ b/recipes-kernel/linux/linux-yocto-4.8/tpm.cfg
+@@ -0,0 +1,9 @@
++CONFIG_HW_RANDOM_TPM=y
++CONFIG_TCG_TPM=y
++CONFIG_TCG_TIS_CORE=y
++CONFIG_TCG_TIS=y
++CONFIG_TCG_CRB=y
++CONFIG_TCG_VTPM_PROXY=y
++CONFIG_DEVPORT=y
++CONFIG_FUSE_FS=y
++CONFIG_CUSE=y
+diff --git a/recipes-kernel/linux/linux-yocto-4.8/tpm.scc b/recipes-kernel/linux/linux-yocto-4.8/tpm.scc
+new file mode 100644
+index 0000000..7c7ec2d
+--- /dev/null
++++ b/recipes-kernel/linux/linux-yocto-4.8/tpm.scc
+@@ -0,0 +1,4 @@
++define KFEATURE_DESCRIPTION "TPM Kernel Support"
++define KFEATURE_COMPATIBILITY arch
 +
-+IMAGE_FEATURES += "ssh-server-openssh"
++kconf non-hardware tpm.cfg
+diff --git a/recipes-kernel/linux/linux-yocto_4.8.bbappend b/recipes-kernel/linux/linux-yocto_4.8.bbappend
+new file mode 100644
+index 0000000..0e6960e
+--- /dev/null
++++ b/recipes-kernel/linux/linux-yocto_4.8.bbappend
+@@ -0,0 +1,7 @@
++FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-4.8:"
 +
-+IMAGE_INSTALL = "\
-+    packagegroup-base \
-+    packagegroup-core-boot \
-+    packagegroup-core-security \
-+    os-release \
-+    ${@bb.utils.contains("DISTRO_FEATURES", "x11", "packagegroup-xfce-base", "", d)} \
-+    ${ROOTFS_PKGMANAGE_BOOTSTRAP} ${CORE_IMAGE_EXTRA_INSTALL}"
-+
-+IMAGE_LINGUAS ?= " "
-+
-+LICENSE = "MIT"
-+
-+inherit core-image
-+
-+export IMAGE_BASENAME = "security-build-image"
-+
-+IMAGE_ROOTFS_EXTRA_SPACE = "5242880"
++# TPM kernel support
++SRC_URI += "\
++        ${@bb.utils.contains('DISTRO_FEATURES', 'tpm', ' file://tpm.cfg', '', d)} \
++        ${@bb.utils.contains('DISTRO_FEATURES', 'tpm', ' file://tpm.scc', '', d)} \
++"
 -- 
 2.7.4
 
