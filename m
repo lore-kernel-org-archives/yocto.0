@@ -1,55 +1,74 @@
-Return-Path: <abhinavbipnesh@avaya.com>
+Return-Path: <anders@chargestorm.se>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0AD88E00D0C; Tue, 18 Oct 2016 05:04:49 -0700 (PDT)
+	id 332F9E00D0C; Tue, 18 Oct 2016 05:17:03 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [198.152.13.100 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.215.45 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.215.45 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 62 seconds by postgrey-1.32 at yocto-www;
-	Tue, 18 Oct 2016 05:04:45 PDT
-Received: from co300216-co-outbound.net.avaya.com
-	(co300216-co-outbound.net.avaya.com [198.152.13.100])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B4C49E00D01
-	for <yocto@yoctoproject.org>; Tue, 18 Oct 2016 05:04:45 -0700 (PDT)
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2H/AwBcDgZY/yYyC4dcHgYMgwchFAEBA?=
-	=?us-ascii?q?QEBHVeBAwG2W4IPggiFFoEMAoF9OBQBAgEBAQEBAQEDWxwLhGUDEhteARUVViY?=
-	=?us-ascii?q?BBBsaiDABpgeFF5c+DAElhj6JHYJKC1mCLwWaBgGaA4V1kHseNhuDNB2BU4hIA?=
-	=?us-ascii?q?X8BAQE?=
-X-IPAS-Result: =?us-ascii?q?A2H/AwBcDgZY/yYyC4dcHgYMgwchFAEBAQEBHVeBAwG2W4I?=
-	=?us-ascii?q?PggiFFoEMAoF9OBQBAgEBAQEBAQEDWxwLhGUDEhteARUVViYBBBsaiDABpgeFF?=
-	=?us-ascii?q?5c+DAElhj6JHYJKC1mCLwWaBgGaA4V1kHseNhuDNB2BU4hIAX8BAQE?=
-X-IronPort-AV: E=Sophos;i="5.31,361,1473134400"; 
-	d="scan'208,217";a="199150901"
-Received: from unknown (HELO p-us1-erheast-smtpauth.us1.avaya.com)
-	([135.11.50.38]) by co300216-co-outbound.net.avaya.com with ESMTP;
-	18 Oct 2016 08:03:34 -0400
-X-OutboundMail_SMTP: 1
-Received: from unknown (HELO AZ-FFEXHC03.global.avaya.com) ([135.64.58.13])
-	by p-us1-erheast-out.us1.avaya.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
-	18 Oct 2016 08:03:33 -0400
-Received: from AZ-FFEXMB01.global.avaya.com ([fe80::39ee:75fe:e67a:cf4a]) by
-	AZ-FFEXHC03.global.avaya.com ([135.64.58.13]) with mapi id
-	14.03.0319.002; Tue, 18 Oct 2016 08:03:32 -0400
-From: "Bipnesh, Abhinav (Abhinav)" <abhinavbipnesh@avaya.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Set ${WORKDIR}/build to ${S}
-Thread-Index: AdIpN5xhYeFkrV+fQsuYmpcmcYcSdQ==
-Date: Tue, 18 Oct 2016 12:03:31 +0000
-Message-ID: <F38A866CD026F746A3BF0928A84397BE3E7D843C@AZ-FFEXMB01.global.avaya.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [135.64.58.47]
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-lf0-f45.google.com (mail-lf0-f45.google.com
+	[209.85.215.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B5934E00D01
+	for <yocto@yoctoproject.org>; Tue, 18 Oct 2016 05:16:58 -0700 (PDT)
+Received: by mail-lf0-f45.google.com with SMTP id x79so352999601lff.0
+	for <yocto@yoctoproject.org>; Tue, 18 Oct 2016 05:16:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=chargestorm-se.20150623.gappssmtp.com; s=20150623;
+	h=date:from:to:subject:message-id:mail-followup-to:references
+	:mime-version:content-disposition:in-reply-to:organization
+	:user-agent; bh=Nn+I8UHJK5+0+kqycCbsvrgnKDjobP5RXtsn38T4jTg=;
+	b=tcrfgS/lWSAOYGz+Qiy70F0U9jb5TVeg7vtPIz+xLvAFDgGM53RXrsyzjTB9Nn7Qny
+	MYGdjnna/xXBFfYnnJh7SeyGjdfHWMwKLprIEegyXlsrlGDcIyM8nOCY1Yk1Qv2ibcQk
+	HE8g3yn8U58yU0UM6hzW9xibAVi8PCBMjkeRGmhjc5Og667uiceJrONzXHTRiV4o3VEu
+	7chxj72doSunB95C78TR/Ipj2SXZYXx5tM/Zu6Sjc6o+g6YlUkxkEA5JHdEeNul0LgXG
+	rBPftHgdrr2r23ojZWGMYHo8zYNtWRwTtH/DC2gVoUV5TJpZPEse7DjgpCmyH1o+5Px3
+	OxWw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:date:from:to:subject:message-id:mail-followup-to
+	:references:mime-version:content-disposition:in-reply-to
+	:organization:user-agent;
+	bh=Nn+I8UHJK5+0+kqycCbsvrgnKDjobP5RXtsn38T4jTg=;
+	b=mgeYjgMAh+PGPIoF0ANWa8XmRxzAbfBUcJD1599b/40tFEZweI3/+Q8w4MBpO8YWo2
+	9D++EeM/ljxJVO0EHNlm+YQixfpLEvR8nvvhz67ld6+VDPHxRPKdImoBbYp0bG876LDp
+	q25fXana/TeWc0S9HlQcQ7GGkH+vtojwtpQbU0LJGIR8AuS6Sd2Y26ia8jrPebsFl07T
+	XyyIP1OqzyDGl4dI2vm8Pw+ZqjgvxUfIV0h4HO9Gz7FQ9riZVuXq8gNibiOFGrqVCWqn
+	LtfvgMpI+DzF+fFns0JBeT0VKQjWBprV+7eVtqfSgC5arRaj5pgvX6RowbOGfBNpjruU
+	rOew==
+X-Gm-Message-State: AA6/9RnLg+7LOI7mOFUSsxeIA7nemg3l8cIuzlML3hNC0Wypl1maoLh+MAQdxs5faoOckg==
+X-Received: by 10.25.169.146 with SMTP id s140mr197716lfe.24.1476793016315;
+	Tue, 18 Oct 2016 05:16:56 -0700 (PDT)
+Received: from ad.chargestorm.se (213-64-218-49-no126.business.telia.com.
+	[213.64.218.49]) by smtp.gmail.com with ESMTPSA id
+	u14sm5184266lja.46.2016.10.18.05.16.55 for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+	Tue, 18 Oct 2016 05:16:55 -0700 (PDT)
+Date: Tue, 18 Oct 2016 14:16:53 +0200
+From: Anders Darander <anders@chargestorm.se>
+To: yocto@yoctoproject.org
+Message-ID: <20161018121653.ygnkvl3yhbt4hvn5@ad.chargestorm.se>
+Mail-Followup-To: yocto@yoctoproject.org
+References: <F38A866CD026F746A3BF0928A84397BE3E7D843C@AZ-FFEXMB01.global.avaya.com>
 MIME-Version: 1.0
-Subject: Set ${WORKDIR}/build to ${S}
+In-Reply-To: <F38A866CD026F746A3BF0928A84397BE3E7D843C@AZ-FFEXMB01.global.avaya.com>
+X-Accept-Language: sv, en, de
+X-GPG-Fingerprint: 5AF0 B2E9 78FE 9D75 D110  6F8F 3E31 84D7 920E 938C
+X-GPG-Key-Id: 0x920E938C
+X-GPG-Keyserver: hkp://keys.gnupg.net
+Organization: ChargeStorm AB
+User-Agent: NeoMutt/20161014 (1.7.1)
+Subject: Re: Set ${WORKDIR}/build to ${S}
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -61,165 +80,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 18 Oct 2016 12:04:49 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_F38A866CD026F746A3BF0928A84397BE3E7D843CAZFFEXMB01globa_"
+X-List-Received-Date: Tue, 18 Oct 2016 12:17:03 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
---_000_F38A866CD026F746A3BF0928A84397BE3E7D843CAZFFEXMB01globa_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+* Bipnesh, Abhinav (Abhinav) <abhinavbipnesh@avaya.com> [161018 14:06]:
 
-Hi,
+> I am trying to write a recipe for one of the library. It uses a
+> somewhat modified autotools for building the complete code base. The
+> issue I am facing here is that when do_configure run it put the
+> generated files in build directory. Below is the layout
 
-I am trying to write a recipe for one of the library. It uses a somewhat mo=
-dified autotools for building the complete code base. The issue I am facing=
- here is that when do_configure run it put the generated files in build dir=
-ectory. Below is the layout
+> S = "${WORKDIR}/xerces-c-src_2_8_0/src/xercesc"
 
-S =3D "${WORKDIR}/xerces-c-src_2_8_0/src/xercesc"
-do_configure() {
+Have you looked at:
+http://cgit.openembedded.org/cgit.cgi/meta-openembedded/tree/meta-oe/recipes-devtools/xerces-c/xerces-c_3.1.4.bb?h=master
 
-     export TRANSCODER=3D"NATIVE"
-     export MESSAGELOADER=3D"INMEM"
-     export NETACCESSOR=3D"Socket"
-     export THREADS=3D"pthread"
-     export LIBTYPE=3D"shared"
-     export BITSTOBUILD=3D"32"
-     export CXXFLAGS=3D" -O2 -pipe -feliminate-unused-debug-types -w -O2 -D=
-NDEBUG -DPROJ_XMLPARSER -DPROJ_XMLUTIL -DPROJ_PARSERS -DPROJ_SAX4C -DPROJ_S=
-AX2 -DPROJ_DOM -     DPROJ_DEPRECATED_DOM -DPROJ_VALIDATORS -DXML_USE_NATIV=
-E_TRANSCODER -DXML_USE_INMEM_MESSAGELOADER -DXML_USE_PTHREADS -DXML_USE_NET=
-ACCESSOR_SOCKET "
-     export CFLAGS=3D" -O2 -pipe -feliminate-unused-debug-types -w -O2 -DND=
-EBUG -DPROJ_XMLPARSER -DPROJ_XMLUTIL -DPROJ_PARSERS -DPROJ_SAX4C -DPROJ_SAX=
-2 -DPROJ_DOM -       DPROJ_DEPRECATED_DOM -DPROJ_VALIDATORS -DXML_USE_NATIV=
-E_TRANSCODER -DXML_USE_INMEM_MESSAGELOADER -DXML_USE_PTHREADS -DXML_USE_NET=
-ACCESSOR_SOCKET "
-     export LDFLAGS=3D"-Wl,-O1 -Wl,--hash-style=3Dgnu -Wl,--as-needed "
-     export LIBS=3D" -lpthread "
-     sh ${S}/configure --prefix=3D${D}${prefix} --build=3D${BUILD_SYS} --ho=
-st=3D${HOST_SYS} --target=3D${TARGET_SYS}
-}
+> Now as the do_configure will put data in ${WORKDIR}/build. But I want that the generated data should be in ${S}.
 
-Now as the do_configure will put data in ${WORKDIR}/build. But I want that =
-the generated data should be in ${S}.
+> Is there a way to tell do_configure to use ${S} and not ${WORKDIR}/build.
 
-Is there a way to tell do_configure to use ${S} and not ${WORKDIR}/build.
+Sure set
+B = "${S}"
 
-Thanks,
-Abhinav
+Though, I'd rather suggest trying to get the library to build
+out-of-tree. If you can get that going, it'll be better in the long run.
 
---_000_F38A866CD026F746A3BF0928A84397BE3E7D843CAZFFEXMB01globa_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Cheers,
+Anders
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I am trying to write a recipe for one of the library=
-. It uses a somewhat modified autotools for building the complete code base=
-. The issue I am facing here is that when do_configure run it put the gener=
-ated files in build directory. Below
- is the layout<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">S =3D &quot;${WORKDIR}/xerces-c-src_2_8_0/src/xerces=
-c&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal">do_configure() {<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; <o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;export TRANSCODER=3D&q=
-uot;NATIVE&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; export MESSAGELOADER=3D&quo=
-t;INMEM&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; export NETACCESSOR=3D&quot;=
-Socket&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; export THREADS=3D&quot;pthr=
-ead&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; export LIBTYPE=3D&quot;shar=
-ed&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; export BITSTOBUILD=3D&quot;=
-32&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; export CXXFLAGS=3D&quot; -O=
-2 -pipe -feliminate-unused-debug-types -w -O2 -DNDEBUG -DPROJ_XMLPARSER -DP=
-ROJ_XMLUTIL -DPROJ_PARSERS -DPROJ_SAX4C -DPROJ_SAX2 -DPROJ_DOM -&nbsp;&nbsp=
-;&nbsp;&nbsp; DPROJ_DEPRECATED_DOM -DPROJ_VALIDATORS -DXML_USE_NATIVE_TRANS=
-CODER
- -DXML_USE_INMEM_MESSAGELOADER -DXML_USE_PTHREADS -DXML_USE_NETACCESSOR_SOC=
-KET &quot;<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; export CFLAGS=3D&quot; -O2 =
--pipe -feliminate-unused-debug-types -w -O2 -DNDEBUG -DPROJ_XMLPARSER -DPRO=
-J_XMLUTIL -DPROJ_PARSERS -DPROJ_SAX4C -DPROJ_SAX2 -DPROJ_DOM -&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp; DPROJ_DEPRECATED_DOM -DPROJ_VALIDATORS -DXML_USE_NA=
-TIVE_TRANSCODER
- -DXML_USE_INMEM_MESSAGELOADER -DXML_USE_PTHREADS -DXML_USE_NETACCESSOR_SOC=
-KET &quot;<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; export LDFLAGS=3D&quot;-Wl,=
--O1 -Wl,--hash-style=3Dgnu -Wl,--as-needed &quot;<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; export LIBS=3D&quot; -lpthr=
-ead &quot;<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; sh ${S}/configure --prefix=
-=3D${D}${prefix} --build=3D${BUILD_SYS} --host=3D${HOST_SYS} --target=3D${T=
-ARGET_SYS}<o:p></o:p></p>
-<p class=3D"MsoNormal">} <o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Now as the do_configure will put data in ${WORKDIR}/=
-build. But I want that the generated data should be in ${S}.
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Is there a way to tell do_configure to use ${S} and =
-not ${WORKDIR}/build.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal">Abhinav<o:p></o:p></p>
-</div>
-</body>
-</html>
+-- 
+Anders Darander, Senior System Architect
+ChargeStorm AB / eStorm AB
 
---_000_F38A866CD026F746A3BF0928A84397BE3E7D843CAZFFEXMB01globa_--
