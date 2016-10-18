@@ -1,13 +1,16 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 04167E00C31; Mon, 17 Oct 2016 17:14:31 -0700 (PDT)
+	id DB6E7E00CC9; Mon, 17 Oct 2016 17:17:52 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.220.65 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
 	*      [209.85.220.65 listed in dnsbl.sorbs.net]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
 	provider *      (raj.khem[at]gmail.com)
@@ -18,55 +21,53 @@ X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.220.65 listed in list.dnswl.org]
 Received: from mail-pa0-f65.google.com (mail-pa0-f65.google.com
 	[209.85.220.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 792DDE00AD2
-	for <yocto@yoctoproject.org>; Mon, 17 Oct 2016 17:14:20 -0700 (PDT)
-Received: by mail-pa0-f65.google.com with SMTP id hh10so9727892pac.0
-	for <yocto@yoctoproject.org>; Mon, 17 Oct 2016 17:14:20 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D67BCE00ACE
+	for <yocto@yoctoproject.org>; Mon, 17 Oct 2016 17:17:40 -0700 (PDT)
+Received: by mail-pa0-f65.google.com with SMTP id qn10so9712474pac.2
+	for <yocto@yoctoproject.org>; Mon, 17 Oct 2016 17:17:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=subject:mime-version:from:in-reply-to:date:cc:message-id:references
-	:to; bh=t+FQRc1oFHDeW9VmqL8R0mfv84CtIIKr38dJxCgDNJs=;
-	b=c71FabiO3NT9jWNk/cIfnqTVVOj+PDzVEnv65HX9XrJiVI3oLELBqmpUGbtVi+4cOt
-	UG+yR6hEITvxQpX2soWDmKQ6FdZSH/g69JHdz3Vhtet8n0p3xVRhIPLc34diR4nEzq29
-	d/nI6tvLV5r0qs9H3HAxrRsJ2P3E1NjKCvBJnOO5ZgR5WSvsoA1SZZQXbKmwVrt5Pg+8
-	nvHXvi2IahIDfwGzkFpi37VtaGqPoFtBSgpDmuDJp7ZdJBZ/WFPF1zOuGUb1VTfDoxav
-	I7nH1Mi1Pw8CirD2jwuTWnhEF1qJMVJ1Rcvb9ZFRMfw4VHvYduuXfGkbeBD/aXRG7LZo
-	Eo1Q==
+	:to; bh=iGCrNo2Ax9voisVAJTEcShPaZcpSa1SAyhsuQH4OZgo=;
+	b=jxi1ET0xEdu5jafR0SlIIIE4FhxGWRxGq851MdM7C5kCGSrKi+M9zANeVcpEqBcauh
+	4DqnaYTLnmmfLw//RC0qYYSlGBlKs+Vm95LOCB+bPm30UvXwB1mSHMo9boSzBr02X0tL
+	sMteREJcFr64w7wOON9ILO3LIk+YPO9Ipcor5UCRVKd/+Pg8XbnUNOwRX8FIu3Dx1QL0
+	aMaKRuvi2RsxGd4OHN1wzJOwxNeQXxnsMQms70OkuYZJXGwjphcu7g8TTc0Rr6Rdcdlq
+	oIInErEiTB1Ym8k5tE98rZ6fJiJCiMJjHh8Un9rKEpUMAcsyO24pxQceo2V/GsBhs+At
+	u7Cg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:subject:mime-version:from:in-reply-to:date:cc
 	:message-id:references:to;
-	bh=t+FQRc1oFHDeW9VmqL8R0mfv84CtIIKr38dJxCgDNJs=;
-	b=HxxExX4OHiMMup3gMMoKtepViLzbDOMaFW7oddWirYpTQ6J0rDTz4D5DmD4E5iNiDn
-	lEUybND7l/ZwMnCHDA7QHfRG4ePg8DEWdg1tdoVT7oR6lTymo8XR5vzUKQnbwk2cqL+7
-	w/CFkKlU2CbNc9oBLPAVUPAheUrJ17yxfDa6v1tjKwWsJsBCjJSKOAnwkGbNs0gO+9e4
-	cmUsUslqdDWEbBEcfDwAblxJA4pHU+ZL6DRKuoWPNm4QgO4fq5kDmL2GCGv72+Ma8hi9
-	rjDNfExNfWpn4FuQN+7cne+41lBtRWIX6sQ321wmKU95yTHJDVloDKDLc0rEb+HQI9jH
-	ZweA==
-X-Gm-Message-State: AA6/9RljOVwwoHs+zpBJpFgClDE9u5g+DUv9w9qkS2W4sU3RsQUTd3/ZDGEfBKUUegc4nw==
-X-Received: by 10.66.221.97 with SMTP id qd1mr198040pac.120.1476749660077;
-	Mon, 17 Oct 2016 17:14:20 -0700 (PDT)
+	bh=iGCrNo2Ax9voisVAJTEcShPaZcpSa1SAyhsuQH4OZgo=;
+	b=aFpoGyT77n4EpmiTbFvtcWS3jfYsegc6XKqgkKl+xWM1KrzyLVbXO0kBsbuRXCb9kD
+	Yw8BkGoEko76aycYjv/gPyBAUbw6rjH8n9WPcHd6rSKMl6lC5Le7e98J/ajRzlJW+xUV
+	SQ8rMmGDgbDncKNNIB++PZoxJlx2QyBuy0JEYXpz1OPo6oVPdvkCHNgYl/ZwgO6eQg4U
+	PljVWlZdPZ7ZjAf4PmcBioLoo9LqK+d2Oi0if+To73+YZEihL8L/HjT1JxFPItz1R8H1
+	66ecTi0MPxplTG2k+q2UGRHQw9rkEY2+kH6mPL2YDiXEBcOD7bUQj1rtXj+dnPh1JZeT
+	Hi/A==
+X-Gm-Message-State: AA6/9Rmemzwt2szgpAePBEDu6Uqm3GqUkngEmy+gtAo6LQGvm98nJ4eugGP0jVVbxSJPgg==
+X-Received: by 10.66.88.231 with SMTP id bj7mr183539pab.91.1476749860616;
+	Mon, 17 Oct 2016 17:17:40 -0700 (PDT)
 Received: from ?IPv6:2601:646:8882:b8c:ec00:906:f8cb:31c1?
 	([2601:646:8882:b8c:ec00:906:f8cb:31c1])
-	by smtp.gmail.com with ESMTPSA id x1sm21326366pax.7.2016.10.17.17.14.19
+	by smtp.gmail.com with ESMTPSA id
+	oo10sm47418182pac.12.2016.10.17.17.17.39
 	(version=TLS1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Mon, 17 Oct 2016 17:14:19 -0700 (PDT)
+	Mon, 17 Oct 2016 17:17:39 -0700 (PDT)
 Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
 X-Pgp-Agent: GPGMail
 From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <1476748950-21342-3-git-send-email-akuster808@gmail.com>
-Date: Mon, 17 Oct 2016 17:14:18 -0700
-Message-Id: <60C92BAB-696D-4AEB-82EC-10D0E1D7A788@gmail.com>
+In-Reply-To: <1476748950-21342-4-git-send-email-akuster808@gmail.com>
+Date: Mon, 17 Oct 2016 17:17:39 -0700
+Message-Id: <018CC106-A0C9-4953-B42D-497BB4586975@gmail.com>
 References: <1476748950-21342-1-git-send-email-akuster808@gmail.com>
-	<1476748950-21342-3-git-send-email-akuster808@gmail.com>
+	<1476748950-21342-4-git-send-email-akuster808@gmail.com>
 To: Armin Kuster <akuster808@gmail.com>
 X-Mailer: Apple Mail (2.3124)
 Cc: yocto@yoctoproject.org
-Subject: Re: [meta-security][PATCH 03/17] libtpm: add new package
+Subject: Re: [meta-security][PATCH 04/17] swtpm: add new package
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -78,13 +79,13 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 18 Oct 2016 00:14:31 -0000
-X-Groupsio-MsgNum: 32479
+X-List-Received-Date: Tue, 18 Oct 2016 00:17:52 -0000
+X-Groupsio-MsgNum: 32480
 Content-Type: multipart/signed;
-	boundary="Apple-Mail=_B38472C1-251C-461B-A1FA-45403D53C861";
+	boundary="Apple-Mail=_2A0D8A99-EE67-4B61-989C-73B868091C7D";
 	protocol="application/pgp-signature"; micalg=pgp-sha1
 
---Apple-Mail=_B38472C1-251C-461B-A1FA-45403D53C861
+--Apple-Mail=_2A0D8A99-EE67-4B61-989C-73B868091C7D
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain;
 	charset=utf-8
@@ -95,36 +96,126 @@ wrote:
 >=20
 > Signed-off-by: Armin Kuster <akuster808@gmail.com>
 > ---
-> recipes-tpm/libtpm/libtpm_1.0.bb | 13 +++++++++++++
-> 1 file changed, 13 insertions(+)
-> create mode 100644 recipes-tpm/libtpm/libtpm_1.0.bb
+> recipes-tpm/swtpm/files/fix_lib_search_path.patch | 41 =
++++++++++++++++++++++++
+> recipes-tpm/swtpm/swtpm_1.0.bb                    | 38 =
++++++++++++++++++++++
+> 2 files changed, 79 insertions(+)
+> create mode 100644 recipes-tpm/swtpm/files/fix_lib_search_path.patch
+> create mode 100644 recipes-tpm/swtpm/swtpm_1.0.bb
 >=20
-> diff --git a/recipes-tpm/libtpm/libtpm_1.0.bb =
-b/recipes-tpm/libtpm/libtpm_1.0.bb
+> diff --git a/recipes-tpm/swtpm/files/fix_lib_search_path.patch =
+b/recipes-tpm/swtpm/files/fix_lib_search_path.patch
 > new file mode 100644
-> index 0000000..61c1d7c
+> index 0000000..015f418
 > --- /dev/null
-> +++ b/recipes-tpm/libtpm/libtpm_1.0.bb
-> @@ -0,0 +1,13 @@
-> +SUMMARY =3D "LIBPM - Software TPM Library"
+> +++ b/recipes-tpm/swtpm/files/fix_lib_search_path.patch
+> @@ -0,0 +1,41 @@
+> +
+> +Upstream-Status: Inappropriate [OE config]
+> +
+> +Signed-off-by: Armin Kuster <akuster808@gmail.com>
+> +
+> +Index: configure.ac
+> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> +--- a/configure.ac
+> ++++ b/configure.ac
+> +@@ -349,21 +349,17 @@ CFLAGS=3D"$CFLAGS -Wformat -Wformat-securi
+> + dnl We have to make sure libtpms is using the same crypto library
+> + dnl to avoid problems
+> + AC_MSG_CHECKING([the crypto library libtpms is using])
+> +-dirs=3D$($CC $CFLAGS -Xlinker --verbose 2>/dev/null | \
+> +-       sed -n '/SEARCH_DIR/p' | \
+> +-       sed 's/SEARCH_DIR("=3D\?\(@<:@^"@:>@\+\)"); */\1\n/g')
+> +-for dir in $dirs; do
+> +-  if test -r $dir/libtpms.so; then
+> +-    if test -n "`ldd $dir/libtpms.so | grep libcrypto.so`"; then
+> +-      libtpms_cryptolib=3D"openssl"
+> +-      break
+> +-    fi
+> +-    if test -n "`ldd $dir/libtpms.so | grep libnss3.so`"; then
+> +-      libtpms_cryptolib=3D"freebl"
+> +-      break
+> +-    fi
+> ++dir=3D"$SEARCH_DIR"
+> ++if test -r $dir/libtpms.so; then
+> ++  if test -n "`ldd $dir/libtpms.so | grep libcrypto.so`"; then
+> ++    libtpms_cryptolib=3D"openssl"
+> ++    break
+> +   fi
+> +-done
+> ++  if test -n "`ldd $dir/libtpms.so | grep libnss3.so`"; then
+> ++    libtpms_cryptolib=3D"freebl"
+> ++    break
+> ++  fi
+> ++fi
+> +
+> + if test -z "$libtpms_cryptolib"; then
+> +   AC_MSG_ERROR([Could not determine libtpms crypto library.])
+> diff --git a/recipes-tpm/swtpm/swtpm_1.0.bb =
+b/recipes-tpm/swtpm/swtpm_1.0.bb
+> new file mode 100644
+> index 0000000..ae16e51
+> --- /dev/null
+> +++ b/recipes-tpm/swtpm/swtpm_1.0.bb
+> @@ -0,0 +1,38 @@
+> +SUMMARY =3D "SWTPM - Software TPM Emulator"
 > +LICENSE =3D "BSD-3-Clause"
 > +LIC_FILES_CHKSUM =3D =
-"file://LICENSE;md5=3D97e5eea8d700d76b3ddfd35c4c96485f"
-> +SRCREV =3D "e5dc628043e981c9f8d7711ddfe5812c8f4e38cc"
-> +SRC_URI =3D "git://github.com/stefanberger/libtpms.git"
+"file://LICENSE;md5=3Dfe8092c832b71ef20dfe4c6d3decb3a8"
+> +SECTION =3D =E2=80=9Ctpm"
+
+this should be =E2=80=98apps=E2=80=99 perhaps.
+
 > +
-> +S =3D "${WORKDIR}/git=E2=80=9D
-
-
-how about PV expressed in form of SRCPV
-
+> +DEPENDS =3D "libtasn1 fuse expect socat glib-2.0 libtpm-native"
+> +
+> +SRCREV =3D "2cd10cee2f74c84bda22081514b6b2cb566fa42d"
+> +SRC_URI =3D "git://github.com/stefanberger/swtpm.git \
+> +	   file://fix_lib_search_path.patch"
+> +
+> +S =3D "${WORKDIR}/git"
+> +
 > +inherit autotools-brokensep pkgconfig
+> +PARALLEL_MAKE =3D ""
+> +
+> +TSS_USER=3D"tss"
+> +TSS_GROUP=3D"tss"
 > +
 > +PACKAGECONFIG ?=3D "openssl"
+> +PACKAGECONFIG +=3D "${@bb.utils.contains('DISTRO_FEATURES', =
+'selinux', 'selinux', '', d)}"
 > +PACKAGECONFIG[openssl] =3D "--with-openssl, --without-openssl, =
 openssl"
+> +PACKAGECONFIG[gnutls] =3D "--with-gnutls, --without-gnutls, gnutls"
+> +PACKAGECONFIG[selinux] =3D "--with-selinux, --without-selinux, =
+linselinux"
 > +
-> +BBCLASSEXTEND =3D "native"
+> +CACHED_CONFIGUREVARS =3D "ac_cv_path_EXPECT=3D${STAGING_LIBDIR} \
+> +ac_cv_path_SOCAT=3D${STAGING_LIBDIR} =E2=80=9C
+
+STAGING_LIBDIR seems dubious here. Can you check if it needs it during =
+build then it should
+point to native versions.if it needs during runtime then it should be =
+${libdir}
+
+> +
+> +EXTRA_OECONF +=3D "--with-tss-user=3D${TSS_USER} =
+--with-tss-group=3D${TSS_GROUP}"
+> +
+> +export SEARCH_DIR =3D "${STAGING_LIBDIR_NATIVE}"
+> +
+> +USERADD_PACKAGES =3D "${PN}"
+> +GROUPADD_PARAM_${PN} =3D "--system ${TSS_USER}"
+> +USERADD_PARAM_${PN} =3D "--system -g ${TSS_GROUP} --home-dir  \
+> +    --no-create-home  --shell /bin/false ${BPN}"
+> +
+> +RDEPENDS_${PN} =3D "libtpm expect socat bash=E2=80=9D
+
+This probably should be +=3D
+
 > --
 > 2.7.4
 >=20
@@ -135,7 +226,7 @@ openssl"
 > https://lists.yoctoproject.org/listinfo/yocto
 
 
---Apple-Mail=_B38472C1-251C-461B-A1FA-45403D53C861
+--Apple-Mail=_2A0D8A99-EE67-4B61-989C-73B868091C7D
 Content-Transfer-Encoding: 7bit
 Content-Disposition: attachment;
 	filename=signature.asc
@@ -146,9 +237,9 @@ Content-Description: Message signed with OpenPGP using GPGMail
 -----BEGIN PGP SIGNATURE-----
 Comment: GPGTools - https://gpgtools.org
 
-iEYEARECAAYFAlgFaVsACgkQuwUzVZGdMxT44wCfcu0YF97J6xRd3zs6jEJZrwwO
-pecAoIcBy3BlRRPx5XC4MVcuhAMTt3gv
-=31Tj
+iEYEARECAAYFAlgFaiMACgkQuwUzVZGdMxSgfgCbBfVEOjndxvNkcN9wzonpwLUo
+2+oAn1v/prncb5HAvqh7wL5JzVn44eAF
+=nyga
 -----END PGP SIGNATURE-----
 
---Apple-Mail=_B38472C1-251C-461B-A1FA-45403D53C861--
+--Apple-Mail=_2A0D8A99-EE67-4B61-989C-73B868091C7D--
