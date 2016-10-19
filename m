@@ -1,32 +1,60 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <pervivek@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0E74FE00DAF; Tue, 18 Oct 2016 20:57:32 -0700 (PDT)
+	id CCF4AE00E70; Wed, 19 Oct 2016 00:19:38 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [192.55.52.120 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (pervivek[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AA5E3E00DAA
-	for <yocto@yoctoproject.org>; Tue, 18 Oct 2016 20:57:25 -0700 (PDT)
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-	by fmsmga104.fm.intel.com with ESMTP; 18 Oct 2016 20:57:25 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.31,364,1473145200"; d="scan'208";a="181294648"
-Received: from yuan-mobl3.gar.corp.intel.com (HELO
-	peggleto-mobl.ger.corp.intel.com) ([10.255.158.98])
-	by fmsmga004.fm.intel.com with ESMTP; 18 Oct 2016 20:57:23 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: yocto@yoctoproject.org
-Date: Wed, 19 Oct 2016 16:56:34 +1300
-Message-Id: <1476849395-1580-1-git-send-email-paul.eggleton@linux.intel.com>
-X-Mailer: git-send-email 2.5.5
-Subject: [layerindex-web][PATCH 1/2] views: ensure we only show results once in recipe search
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.213.43 listed in list.dnswl.org]
+Received: from mail-vk0-f43.google.com (mail-vk0-f43.google.com
+	[209.85.213.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8B4F5E00E6E
+	for <yocto@yoctoproject.org>; Wed, 19 Oct 2016 00:19:32 -0700 (PDT)
+Received: by mail-vk0-f43.google.com with SMTP id q126so19284223vkd.2
+	for <yocto@yoctoproject.org>; Wed, 19 Oct 2016 00:19:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=hLocff5S3PCrjNQ1Ok/klErg779g+O6DCBAxSf+T3g4=;
+	b=mSiRM8N34MXD6OxBDY6UUmIdVC6tS+Dz1MhM2GDZggC7smmuLDw2PSef7iWuGKkPOF
+	zB5uOtthfHrbGy1J+eYtPqB0FgaEJ6znFoqLsIKA+ffuiT2aPxCEl7aG8tkbvXPGIqYr
+	kuT9RrDqGfzw7yn5hTMdj25hC9CAfWGphBSSsv/ESfJbBW5CtMERvzbpd90ULZVH4ltW
+	m/TN7qVvpxSLQakL26UHni7rMZoFftstLlSmuLsEuYbJPnu+FIPFTZHLFzoSjEv+C6Bk
+	I7hrlwbnyHuGcZuHPw128VFguj94H+/w2JsGOZlEd/ST5Ou4eXRtP9pV+r3cpFUz1qju
+	HTAg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=hLocff5S3PCrjNQ1Ok/klErg779g+O6DCBAxSf+T3g4=;
+	b=fHK4qcUr6kYJoTLM9cywbX05sJn2q45qv8tclkGYtVZY8at+aRSrUiqJVi2XxobTFS
+	4wUcwJR44qQ59qx8FvO4xDbWj50QofH6syojiVFRg/tPzSpp5i33dskh3GVwS7UMne2E
+	wGAvtwI8Wf/Gs3gjIJdQx64I5JoEd991/VzfeRLAW2vepacrhGFFk4JNX/DzzHNzrZup
+	N6F8tYAaGmwwkYDdFzRHU1loK97ROvJ6hxrnMFGUXrwFZtySScC5VCzG7th7Wai1D9T9
+	v5SsWAl8WSO9ZakvBfSfdroorgPeUmFNBzSM8axxKSJyTf7E780oVNMd7yrDN+i3XbKE
+	6nHA==
+X-Gm-Message-State: AA6/9RnFqkK/pp0uE05RVQXAiTB43gtZ37RC88NtCIxNWNDpDfJdGXogYYPkaz3l/WFMZGpbp0M0rFofimtq/Q==
+X-Received: by 10.31.171.75 with SMTP id u72mr4258669vke.22.1476861571817;
+	Wed, 19 Oct 2016 00:19:31 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.31.107.203 with HTTP; Wed, 19 Oct 2016 00:19:31 -0700 (PDT)
+From: Vivek Per <pervivek@gmail.com>
+Date: Wed, 19 Oct 2016 12:49:31 +0530
+Message-ID: <CALLyC8TfRL68sWhdn1Z7tmOKxpagFfaW4YnQ9FteEKCX_rdCgg@mail.gmail.com>
+To: Yocto <yocto@yoctoproject.org>
+Subject: libtomcrypt libtomfastmath recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,93 +66,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 Oct 2016 03:57:32 -0000
+X-List-Received-Date: Wed, 19 Oct 2016 07:19:38 -0000
+Content-Type: multipart/alternative; boundary=001a1143fdba5f0a11053f32a1ed
 
-Usage of itertools.chain() that was introduced in
-3155206e54413f72df3b3b41280eafd332a58ba4 in order to prioritise matches
-in the recipe name resulted in recipes showing up twice in the results
-if they matched in both the name and the recipe name. Use a custom
-chaining function that skips duplicate results in order to fix this.
+--001a1143fdba5f0a11053f32a1ed
+Content-Type: text/plain; charset=UTF-8
 
-Fixes [YOCTO #10177].
+Hi,
 
-Signed-off-by: Paul Eggleton <paul.eggleton@linux.intel.com>
----
- layerindex/utils.py | 10 ++++++++++
- layerindex/views.py |  9 ++++-----
- 2 files changed, 14 insertions(+), 5 deletions(-)
+I am trying to build tomfastmath and tomcrypt shared libraries using yocto,
+I couldn't get recipes for libtomcrypt and tomfastmath in web. So started
+to write one but i am failing to write correct recipe every time.
 
-diff --git a/layerindex/utils.py b/layerindex/utils.py
-index 484d3fe..e3be631 100644
---- a/layerindex/utils.py
-+++ b/layerindex/utils.py
-@@ -237,3 +237,13 @@ def lock_file(fn):
- 
- def unlock_file(lock):
-     fcntl.flock(lock, fcntl.LOCK_UN)
-+
-+def chain_unique(*iterables):
-+    """Chain unique objects in a list of querysets, preserving order"""
-+    seen = set()
-+    for element in iterables:
-+        for item in element:
-+            k = item.id
-+            if k not in seen:
-+                seen.add(k)
-+                yield item
-diff --git a/layerindex/views.py b/layerindex/views.py
-index 06045ae..3e78c58 100644
---- a/layerindex/views.py
-+++ b/layerindex/views.py
-@@ -12,7 +12,6 @@ from django.core.exceptions import PermissionDenied
- from django.template import RequestContext
- from layerindex.models import Branch, LayerItem, LayerMaintainer, LayerBranch, LayerDependency, LayerNote, Recipe, Machine, Distro, BBClass, BBAppend, RecipeChange, RecipeChangeset, ClassicRecipe
- from datetime import datetime
--from itertools import chain
- from django.views.generic import TemplateView, DetailView, ListView
- from django.views.generic.edit import CreateView, DeleteView, UpdateView
- from django.views.generic.base import RedirectView
-@@ -27,6 +26,7 @@ from django.utils.decorators import method_decorator
- from django.contrib.auth.decorators import login_required
- from django.contrib import messages
- from reversion.models import Revision
-+from . import utils
- from . import simplesearch
- import settings
- from django.dispatch import receiver
-@@ -213,12 +213,11 @@ def bulk_change_edit_view(request, template_name, pk):
- def bulk_change_patch_view(request, pk):
-     import os
-     import os.path
--    from layerindex.utils import runcmd
-     changeset = get_object_or_404(RecipeChangeset, pk=pk)
-     # FIXME this couples the web server and machine running the update script together,
-     # but given that it's a separate script the way is open to decouple them in future
-     try:
--        ret = runcmd('%s bulkchange.py %d %s' % (sys.executable, int(pk), settings.TEMP_BASE_DIR), os.path.dirname(__file__))
-+        ret = utils.runcmd('%s bulkchange.py %d %s' % (sys.executable, int(pk), settings.TEMP_BASE_DIR), os.path.dirname(__file__))
-         if ret:
-             fn = ret.splitlines()[-1].decode('utf-8')
-             if os.path.exists(fn):
-@@ -387,7 +386,7 @@ class RecipeSearchView(ListView):
-             qs2 = init_qs.filter(entry_query).order_by(*order_by)
-             qs2 = recipes_preferred_count(qs2)
- 
--            qs = list(chain(qs1, qs2))
-+            qs = list(utils.chain_unique(qs1, qs2))
-         else:
-             if 'q' in self.request.GET:
-                 qs = init_qs.order_by('pn', 'layerbranch__layer')
-@@ -739,7 +738,7 @@ class ClassicRecipeSearchView(RecipeSearchView):
-             entry_query = simplesearch.get_query(query_string, ['summary', 'description'])
-             qs2 = init_qs.filter(entry_query).order_by(*order_by)
- 
--            qs = list(chain(qs1, qs2))
-+            qs = list(utils.chain_unique(qs1, qs2))
-         else:
-             if 'q' in self.request.GET:
-                 qs = init_qs.order_by('pn', 'layerbranch__layer')
--- 
-2.5.5
+the skeleton   i used is both the recipes
+
+S = "${WORKDIR}/git"
+inherit autotools
+EXTRA_OEMAKE = " 'CFLAGS=${CFLAGS} "-I${S}/src/headers" -DTFM_ARM '
+ 'CC=${CC}' 'RANLIB=${RANLIB}' 'AR=${AR}' 'LD={LD}'   'BUILDDIR=${S}'
+'D=${DEST_DIR}' "
+do_compile() {
+make -f ${S}/makefile  libtfm.a DESTDIR=${D} SBINDIR=${sbindir}
+MANDIR=${mandir}
+}
+
+Can any one help  please help me in creating tomcrypt and tomfastmath
+recipes. or any point our if recipes already exist.
 
 
+Thanks and Regards,
+      Vivek
+
+--001a1143fdba5f0a11053f32a1ed
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi,<div><br></div><div>I am trying to build tomfastmath an=
+d tomcrypt shared libraries using yocto, I couldn&#39;t get recipes for lib=
+tomcrypt and tomfastmath in web. So started to write one but i am failing t=
+o write correct recipe every time.</div><div><br></div><div>the skeleton =
+=C2=A0 i used is both the recipes=C2=A0</div><div><br></div><div><div>S =3D=
+ &quot;${WORKDIR}/git&quot;</div><div>inherit autotools</div></div><div>EXT=
+RA_OEMAKE =3D &quot; &#39;CFLAGS=3D${CFLAGS} &quot;-I${S}/src/headers&quot;=
+ -DTFM_ARM &#39; =C2=A0&#39;CC=3D${CC}&#39; &#39;RANLIB=3D${RANLIB}&#39; &#=
+39;AR=3D${AR}&#39; &#39;LD=3D{LD}&#39; =C2=A0 &#39;BUILDDIR=3D${S}&#39; &#3=
+9;D=3D${DEST_DIR}&#39; &quot;<br></div><div>do_compile() {<br></div><div>ma=
+ke -f ${S}/makefile =C2=A0libtfm.a DESTDIR=3D${D} SBINDIR=3D${sbindir} MAND=
+IR=3D${mandir}<br></div><div>}</div><div><br></div><div>Can any one help =
+=C2=A0please help me in creating tomcrypt and tomfastmath recipes. or any p=
+oint our if recipes already exist.</div><div><br></div><div><br></div><div>=
+Thanks and Regards,</div><div>=C2=A0 =C2=A0 =C2=A0 Vivek =C2=A0</div><div><=
+br></div><div>=C2=A0</div></div>
+
+--001a1143fdba5f0a11053f32a1ed--
