@@ -1,41 +1,51 @@
-Return-Path: <f_l_k@t-online.de>
+Return-Path: <joshua.g.lock@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 72B55E00DBD; Wed, 19 Oct 2016 02:12:19 -0700 (PDT)
+	id 0A54FE00DC8; Wed, 19 Oct 2016 02:32:53 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE,RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [194.25.134.84 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [194.25.134.84 listed in dnsbl.sorbs.net]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.20 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mailout09.t-online.de (mailout09.t-online.de [194.25.134.84])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0E88BE00D73
-	for <yocto@yoctoproject.org>; Wed, 19 Oct 2016 02:12:14 -0700 (PDT)
-Received: from fwd11.aul.t-online.de (fwd11.aul.t-online.de [172.20.27.152])
-	by mailout09.t-online.de (Postfix) with SMTP id 3307F427E18B;
-	Wed, 19 Oct 2016 11:12:12 +0200 (CEST)
-Received: from [192.168.2.105]
-	(TiVtO6ZBQhkCE5VLpb8Abmls7e+55+2o4LP1fjfM0oCFN0LSK4fEEDUke2il4oDZeW@[79.199.47.227])
-	by fwd11.t-online.de with (TLSv1.2:ECDHE-RSA-AES256-SHA encrypted)
-	esmtp id 1bwmuu-1HePKK0; Wed, 19 Oct 2016 11:12:08 +0200
-To: Vivek Per <pervivek@gmail.com>, Yocto <yocto@yoctoproject.org>
-References: <CALLyC8TfRL68sWhdn1Z7tmOKxpagFfaW4YnQ9FteEKCX_rdCgg@mail.gmail.com>
-From: Markus Volk <f_l_k@t-online.de>
-Message-ID: <3331a156-1af4-14eb-86ef-5afb4d1e8404@t-online.de>
-Date: Wed, 19 Oct 2016 11:12:08 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.3.0
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BE493E00DC2
+	for <yocto@yoctoproject.org>; Wed, 19 Oct 2016 02:32:48 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 19 Oct 2016 02:32:47 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.31,513,1473145200"; 
+	d="scan'208,217";a="1046858191"
+Received: from irsmsx103.ger.corp.intel.com ([163.33.3.157])
+	by orsmga001.jf.intel.com with ESMTP; 19 Oct 2016 02:32:46 -0700
+Received: from irsmsx110.ger.corp.intel.com ([169.254.15.155]) by
+	IRSMSX103.ger.corp.intel.com ([169.254.3.91]) with mapi id
+	14.03.0248.002; Wed, 19 Oct 2016 10:31:10 +0100
+From: "Lock, Joshua G" <joshua.g.lock@intel.com>
+To: "Yang, Liezhi (Wind River)" <liezhi.yang@windriver.com>,
+	"srifenbark@gmail.com" <srifenbark@gmail.com>
+Thread-Topic: [yocto] Migration info - runqemu
+Thread-Index: AQHSJb0Mt89mDHId5U6yJo2OlnxeEaCnJIsAgABrLQCAAAtVgIAAd6WAgAdoF4A=
+Date: Wed, 19 Oct 2016 09:31:09 +0000
+Message-ID: <1476869465.18335.5.camel@intel.com>
+References: <1707604.JiaMnXxcz2@peggleto-mobl.ger.corp.intel.com>
+	<2371a296-57bd-affa-0b1f-1304ce81e0dc@windriver.com>
+	<1476434156.3083.2.camel@intel.com>
+	<e78a5a30-b839-ffb4-8282-41896cdb1b77@windriver.com>
+	<CAFNP8Ou9P=v+ohhXMr0gC2Kb4kwiuk2DuTrhJDHgxVLFLZvqOg@mail.gmail.com>
+In-Reply-To: <CAFNP8Ou9P=v+ohhXMr0gC2Kb4kwiuk2DuTrhJDHgxVLFLZvqOg@mail.gmail.com>
+Accept-Language: en-GB, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.252.8.49]
 MIME-Version: 1.0
-In-Reply-To: <CALLyC8TfRL68sWhdn1Z7tmOKxpagFfaW4YnQ9FteEKCX_rdCgg@mail.gmail.com>
-X-ID: TiVtO6ZBQhkCE5VLpb8Abmls7e+55+2o4LP1fjfM0oCFN0LSK4fEEDUke2il4oDZeW
-X-TOI-MSGID: 5c5d35ec-20c0-4a8a-8d4d-a8b23c10fc94
-Subject: Re: libtomcrypt libtomfastmath recipe
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Eggleton,
+	Paul" <paul.eggleton@intel.com>
+Subject: Re: Migration info - runqemu
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,167 +57,246 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 Oct 2016 09:12:19 -0000
+X-List-Received-Date: Wed, 19 Oct 2016 09:32:53 -0000
+Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="------------8E1251FE95F3840FA6976038"
+	boundary="_000_1476869465183355camelintelcom_"
 
---------------8E1251FE95F3840FA6976038
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+--_000_1476869465183355camelintelcom_
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
 
-tomcrypt builds like this for me:
+SGkgU2NvdHQsDQoNCk15IG9ubHkgcmVhbCBjb25jZXJuIGlzIHdoZXJlIHdlIHNheSAiVGhlIHNj
+cmlwdCByZXF1aXJlcyBhIGNvbmZpZ3VyYXRpb24gZmlsZeKApiIuDQoNClRoZSBjb25maWd1cmF0
+aW9uIGZpbGUgaXNuJ3QgY29tcHVsc29yeS4gUHJldmlvdXMgdXNhZ2UgbW9kZWxzIGFyZSBzdXBw
+b3J0ZWQsIGFzIG5vdGVkIGJlbG93Lg0KDQpUaGUgY29uZmlndXJhdGlvbiBmaWxlIGVuYWJsZXMg
+ZmluZS1ncmFpbmVkIHR1bmluZyBvZiBvcHRpb25zIHBhc3NlZCB0byBxZW11IHdpdGhvdXQgdGhl
+IHJ1bnFlbXUgc2NyaXB0IGhhcmQtY29kaW5nIGFueSBrbm93bGVkZ2UgYWJvdXQgZGlmZmVyZW50
+IG1hY2hpbmVzLCB1c2luZyBpdCBpcyBjb252ZW5pZW50IChlc3BlY2lhbGx5IHdoZW4gdHJ5aW5n
+IHRvIHVzZSBRRU1VIHdpdGggbWFjaGluZXMgb3RoZXIgdGhhbiB0aGUgcWVtdSogbWFjaGluZXMg
+aW4gT0UtQ29yZSkgYnV0IG5vdCBtYW5kYXRvcnkuDQoNClJvYmVydCwgd291bGQgeW91IGFncmVl
+PyBDb3VsZCB5b3UgcmV2aWV3IHRoZSBkb2NzIGNoYW5nZXMgU2NvdHQgaGFzIG1hZGU/DQoNClRo
+YW5rcywNCg0KSm9zaHVhDQoNCk9uIEZyaSwgMjAxNi0xMC0xNCBhdCAwOToyNCAtMDcwMCwgU2Nv
+dHQgUmlmZW5iYXJrIHdyb3RlOg0KRXZlcnlvbmUsDQoNCkkgdXBkYXRlZCB0aGUgc2VjdGlvbiBh
+Ym91dCBydW5xZW11IGJlaW5nIHBvcnRlZCB0byBQeXRob24uICBJIGRvbid0IHVuZGVyc3RhbmQg
+YSBsb3Qgb2YgaXQgc28gSSBkaWQgbXkgYmVzdCB0byBjbGVhbiB1cCB0aGUgYmFzaWMgdGV4dHMg
+YW5kIGNoYW5nZXMgeW91IHNlbnQuICBMb29rIGl0IG92ZXIgaGVyZSBodHRwOi8vd3d3LnlvY3Rv
+cHJvamVjdC5vcmcvZG9jcy8yLjIvcmVmLW1hbnVhbC9yZWYtbWFudWFsLmh0bWwjbWlncmF0aW9u
+LTIuMi1ydW5xZW11LXBvcnRlZC10by1weXRob24gYW5kIHByb3ZpZGUgbWUgd2l0aCBmaXhlcy4g
+IFRoaW5ncyBhcmUgZ2V0dGluZyBkb3duIHRvIHRoZSB3aXJlIHNvIGlmIHlvdSB3YW50IGNoYW5n
+ZXMgaW4gdGhlIFJDIGdldCB0aGVtIHRvIG1lIGFzIHF1aWNrIGFzIHBvc3NpYmxlLg0KDQpUaGFu
+a3MsDQpTY290dA0KDQpPbiBGcmksIE9jdCAxNCwgMjAxNiBhdCAyOjE2IEFNLCBSb2JlcnQgWWFu
+ZyA8bGllemhpLnlhbmdAd2luZHJpdmVyLmNvbTxtYWlsdG86bGllemhpLnlhbmdAd2luZHJpdmVy
+LmNvbT4+IHdyb3RlOg0KDQoNCk9uIDEwLzE0LzIwMTYgMDQ6MzUgUE0sIExvY2ssIEpvc2h1YSBH
+IHdyb3RlOg0KT24gRnJpLCAyMDE2LTEwLTE0IGF0IDEwOjEyICswODAwLCBSb2JlcnQgWWFuZyB3
+cm90ZToNCkhpIFBhdWwgYW5kIFNjb3R0LA0KDQpIZXJlIGl0IGlzLCBhbmQgcGxlYXNlIGZlZWwg
+ZnJlZSB0byBjb21tZW50LCBtb3N0IG9mIHRoZW0gYXJlIGZyb20NCnFlbXVib290LmJiY2xhc3M6
+DQoNClRoZSBuZXcgcnVucWVtdSBpcyBhIHB5dGhvbiBzY3JpcHQsIGl0IHJlcXVpcmVzIGENCjxp
+bWFnZS1uYW1lPi08bWFjaGluZT4ucWVtdWJvb3QuY29uZiB0byBib290IHRoZSBic3AsIHRoZQ0K
+cWVtdWJvb3QuY29uZg0KaXMgZ2VuZXJhdGVkIGJ5IHFlbXVib290LmJiY2xhc3MgZHVyaW5nIGJ1
+aWxkIHJvb3RmcywgcWVtdSBib290DQphcmd1bWVudHMgY2FuIGJlIHNldCBpbiBic3AncyBjb25m
+IGZpbGUsIGFuZCBxZW11Ym9vdC5iYmNsYXNzIHdpbGwNCnNhdmUNCnRoZW0gdG8gcWVtdWJvb3Qu
+Y29uZi4NCg0KDQpDYW4gd2UgYWxzbyBkb2N1bWVudCB3aGVuIHFlbXVib290LmNvbmYgcmVxdWly
+ZWQgYW5kIHdoYXQgYmVuZWZpdHMgaXQNCmJyaW5ncz8gUHJldmlvdXMgdXNhZ2UgcGF0dGVybnMg
+c2hvdWxkIGFsc28gYmUgc3VwcG9ydGVkLCByaWdodD8NCg0KDQpZZXMsIHRoZSBiZW5lZml0IGlz
+IHRoYXQgdGhlIG1hY2hpbmUga25vd2xlZGdlIGFyZSBub3QgaGFyZGNvZGVkIGludG8NCnJ1bnFl
+bXUgYW55IG1vcmUsIHRoZSBic3AgY2FuIGRlZmluZSBpdHMgb3duIGFyZ3VtZW50cyB0byBtYWtl
+IGl0IGNhbiBiZQ0KYm9vdCBieSBydW5xZW11LiBBbmQgcHJldmlvdXMgdXNhZ2UgcGF0dGVybnMg
+YWxzbyBiZSBzdXBwb3J0ZWQuDQoNCi8vIFJvYmVydA0KDQoNCg0KVGhhbmtzLA0KDQpKb3NodWEN
+Cg0KDQpOb3RlLCAiUUIiIG1lYW5zIFFlbXUgQm9vdCwgdGhlIGZvbGxvd2luZyB2YXJzIGNhbiBi
+ZSBzZXQgaW4gY29uZg0KZmlsZXMsIHN1Y2ggYXMgPGJzcC5jb25mPiB0byBtYWtlIGl0IGNhbiBi
+ZSBib290IGJ5IHJ1bnFlbXU6DQoNClFCX1NZU1RFTV9OQU1FOiBxZW11IG5hbWUsIGUuZy4sICJx
+ZW11LXN5c3RlbS1pMzg2Ig0KUUJfT1BUX0FQUEVORDogb3B0aW9ucyB0byBhcHBlbmQgdG8gcWVt
+dSwgZS5nLiwgIi1zaG93LWN1cnNvciINClFCX0RFRkFVTFRfS0VSTkVMOiBkZWZhdWx0IGtlcm5l
+bCB0byBib290LCBlLmcuLCAiYnpJbWFnZSINClFCX0RFRkFVTFRfRlNUWVBFOiBkZWZhdWx0IEZT
+VFlQRSB0byBib290LCBlLmcuLCAiZXh0NCINClFCX01FTTogbWVtb3J5LCBlLmcuLCAiLW0gNTEy
+Ig0KUUJfTUFDSElORTogcWVtdSBtYWNoaW5lLCBlLmcuLCAiLW1hY2hpbmUgdmlydCINClFCX0NQ
+VTogcWVtdSBjcHUsIGUuZy4sICItY3B1IHFlbXUzMiINClFCX0NQVV9LVk06IHRoZSBzaW1pbGFy
+IHRvIFFCX0NQVSwgYnV0IHVzZWQgd2hlbiBrdm0sIGUuZy4sICctY3B1DQprdm02NCcsDQogICAg
+ICAgICAgICAgc2V0IGl0IHdoZW4gc3VwcG9ydCBrdm0uDQpRQl9LRVJORUxfQ01ETElORV9BUFBF
+TkQ6IG9wdGlvbnMgdG8gYXBwZW5kIHRvIGtlcm5lbCdzIC1hcHBlbmQNCiAgICAgICAgICAgICAg
+ICAgICAgICAgICAgIG9wdGlvbiwgZS5nLiwgImNvbnNvbGU9dHR5UzAgY29uc29sZT10dHkiDQpR
+Ql9EVEI6IHFlbXUgZHRiIG5hbWUNClFCX0FVRElPX0RSVjogcWVtdSBhdWRpbyBkcml2ZXIsIGUu
+Zy4sICJhbHNhIiwgc2V0IGl0IHdoZW4gc3VwcG9ydA0KYXVkaW8NClFCX0FVRElPX09QVDogcWVt
+dSBhdWRpbyBvcHRpb24sIGUuZy4sICItc291bmRodyBhYzk3LGVzMTM3MCIsIHVzZWQNCiAgICAg
+ICAgICAgICAgIHdoZW4gUUJfQVVESU9fRFJWIGlzIHNldC4NClFCX0tFUk5FTF9ST09UOiBrZXJu
+ZWwncyByb290LCBlLmcuLCAvZGV2L3ZkYQ0KUUJfVEFQX09QVDogbmV0b3dyayBvcHRpb24gZm9y
+ICd0YXAnIG1vZGUsIGUuZy4sDQogICAgICAgICAgICAgIi1uZXRkZXYgdGFwLGlkPW5ldDAsaWZu
+YW1lPUBUQVBALHNjcmlwdD1ubyxkb3duc2NyaXB0PW4NCm8gLWRldmljZQ0KdmlydGlvLW5ldC1k
+ZXZpY2UsbmV0ZGV2PW5ldDAiDQogICAgICAgICAgICAgIE5vdGUsIHJ1bnFlbXUgd2lsbCByZXBs
+YWNlICJAVEFQQCIgd2l0aCB0aGUgb25lIHdoaWNoDQppcyB1c2VkLA0Kc3VjaCBhcyB0YXAwLCB0
+YXAxIC4uLg0KUUJfU0xJUlBfT1BUOiBuZXR3b3JrIG9wdGlvbiBmb3IgU0xJUlAgbW9kZSwgZS5n
+LiwNCiAgICAgICAgICAgICAiLW5ldGRldiB1c2VyLGlkPW5ldDAgLWRldmljZSB2aXJ0aW8tbmV0
+LQ0KZGV2aWNlLG5ldGRldj1uZXQwIg0KUUJfUk9PVEZTX09QVDogdXNlZCBhcyByb290ZnMsIGUu
+Zy4sDQogICAgICAgICAgICAgICAiLWRyaXZlIGlkPWRpc2swLGZpbGU9QFJPT1RGU0AsaWY9bm9u
+ZSxmb3JtYXQ9cmF3DQotZGV2aWNlDQp2aXJ0aW8tYmxrLWRldmljZSxkcml2ZT1kaXNrMCINCiAg
+ICAgICAgICAgICAgTm90ZSwgcnVucWVtdSB3aWxsIHJlcGxhY2UgIkBST09URlNAIiB3aXRoIHRo
+ZSBvbmUNCndoaWNoIGlzIHVzZWQsDQpzdWNoIGFzIGNvcmUtaW1hZ2UtbWluaW1hbC1xZW11YXJt
+NjQuZXh0NC4NClFCX1NFUklBTF9PUFQ6IHNlcmlhbCBwb3J0LCBlLmcuLCAiLXNlcmlhbCBtb246
+c3RkaW8iDQpRQl9UQ1BTRVJJQUxfT1BUOiB0Y3Agc2VyaWFsIHBvcnQgb3B0aW9uLCBlLmcuLA0K
+ICAgICAgICAgICAgICAgICAgICIgLWRldmljZSB2aXJ0aW8tc2VyaWFsLWRldmljZSAtY2hhcmRl
+dg0Kc29ja2V0LGlkPXZpcnRjb24scG9ydD1AUE9SVEAsaG9zdD0xMjcuMC4wLjEgLWRldmljZQ0K
+dmlydGNvbnNvbGUsY2hhcmRldj12aXJ0Y29uIg0KICAgICAgICAgICAgICAgICAgIE5vdGUsIHJ1
+bnFlbXUgd2lsbCByZXBsYWNlICJAUE9SVEAiIHdpdGggdGhlIHBvcnQNCm51bWJlcg0Kd2hpY2gg
+aXMgdXNlZC4NCg0KVXNhZ2U6DQpJTUFHRV9DTEFTU0VTICs9ICJxZW11Ym9vdCINClNlZSAicnVu
+cWVtdSBoZWxwIiBmb3IgbW9yZSBpbmZvDQoNCi8vIFJvYmVydA0KDQpPbiAxMC8xNC8yMDE2IDA5
+OjQ4IEFNLCBQYXVsIEVnZ2xldG9uIHdyb3RlOg0KDQpIaSBmb2xrcywNCg0KV2UgbmVlZCBzb21l
+IGluZm8gZm9yIHRoZSBtaWdyYXRpb24gc2VjdGlvbiBvZiB0aGUgMi4yIG1hbnVhbCBhYm91dA0K
+d2hhdCB0aGUNCnVzZXIgbmVlZHMgdG8gZG8gdG8gYWRhcHQgdG8gdGhlIG5ldyBweXRob24tYmFz
+ZWQgcnVucWVtdS4gUm9iZXJ0IC8NCkpvc2h1YSwNCmNhbiBvbmUgb2YgeW91IHBsZWFzZSB3cml0
+ZSBzb21ldGhpbmcgc2hvcnQgdGhhdCBleHBsYWlucyB3aGF0DQp1c2VycyBuZWVkIHRvDQpkbyAo
+aS5lLiBjaGFuZ2VzIHRvIHRoZSBtZXRhZGF0YSBmb3IgQlNQcywgb3IgYW55IG90aGVyIGNoYW5n
+ZXMgaW4NCm9wZXJhdGlvbik/DQpJdCBkb2Vzbid0IG5lZWQgdG8gYmUgcG9saXNoZWQsIFNjb3R0
+IFJpZmVuYmFyayB3aWxsIHRha2UgY2FyZSBvZg0KdGhhdC4gSnVzdA0KcmVwbHlpbmcgdG8gdGhp
+cyBlbWFpbCB3aXRoIFNjb3R0IG9uIENDIHNob3VsZCBiZSBzdWZmaWNpZW50Lg0KDQpUaGFua3Ms
+DQpQYXVsDQoNCg0KDQoNCg0KDQotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KSW50ZWwgQ29ycG9yYXRpb24gKFVLKSBM
+aW1pdGVkClJlZ2lzdGVyZWQgTm8uIDExMzQ5NDUgKEVuZ2xhbmQpClJlZ2lzdGVyZWQgT2ZmaWNl
+OiBQaXBlcnMgV2F5LCBTd2luZG9uIFNOMyAxUkoKVkFUIE5vOiA4NjAgMjE3MyA0NwoKVGhpcyBl
+LW1haWwgYW5kIGFueSBhdHRhY2htZW50cyBtYXkgY29udGFpbiBjb25maWRlbnRpYWwgbWF0ZXJp
+YWwgZm9yCnRoZSBzb2xlIHVzZSBvZiB0aGUgaW50ZW5kZWQgcmVjaXBpZW50KHMpLiBBbnkgcmV2
+aWV3IG9yIGRpc3RyaWJ1dGlvbgpieSBvdGhlcnMgaXMgc3RyaWN0bHkgcHJvaGliaXRlZC4gSWYg
+eW91IGFyZSBub3QgdGhlIGludGVuZGVkCnJlY2lwaWVudCwgcGxlYXNlIGNvbnRhY3QgdGhlIHNl
+bmRlciBhbmQgZGVsZXRlIGFsbCBjb3BpZXMuCg==
 
+--_000_1476869465183355camelintelcom_
+Content-Type: text/html; charset="utf-8"
+Content-ID: <57ECECB5963801488A418852E168DC2A@intel.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
 
-DESCRIPTION = "tomcrypt"
-HOMEPAGE = " http://www.libtom.net"
-LICENSE = "DWTFYW"
-LIC_FILES_CHKSUM = 
-"file://${S}/LICENSE;md5=71baacc459522324ef3e2b9e052e8180"
+PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
+dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjwvaGVhZD4NCjxib2R5Pg0KPGRpdj5IaSBTY290
+dCw8L2Rpdj4NCjxkaXY+PGJyPg0KPC9kaXY+DQo8ZGl2Pk15IG9ubHkgcmVhbCBjb25jZXJuIGlz
+IHdoZXJlIHdlIHNheSAmcXVvdDtUaGUgc2NyaXB0IHJlcXVpcmVzIGEgY29uZmlndXJhdGlvbiBm
+aWxl4oCmJnF1b3Q7LjwvZGl2Pg0KPGRpdj48YnI+DQo8L2Rpdj4NCjxkaXY+VGhlIGNvbmZpZ3Vy
+YXRpb24gZmlsZSBpc24ndCBjb21wdWxzb3J5LiBQcmV2aW91cyB1c2FnZSBtb2RlbHMgYXJlIHN1
+cHBvcnRlZCwgYXMgbm90ZWQgYmVsb3cuPC9kaXY+DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPGRpdj5U
+aGUgY29uZmlndXJhdGlvbiBmaWxlIGVuYWJsZXMgZmluZS1ncmFpbmVkIHR1bmluZyBvZiBvcHRp
+b25zIHBhc3NlZCB0byBxZW11IHdpdGhvdXQgdGhlIHJ1bnFlbXUgc2NyaXB0IGhhcmQtY29kaW5n
+IGFueSBrbm93bGVkZ2UgYWJvdXQgZGlmZmVyZW50IG1hY2hpbmVzLCB1c2luZyBpdCBpcyBjb252
+ZW5pZW50IChlc3BlY2lhbGx5IHdoZW4gdHJ5aW5nIHRvIHVzZSBRRU1VIHdpdGggbWFjaGluZXMg
+b3RoZXIgdGhhbiB0aGUgcWVtdSogbWFjaGluZXMNCiBpbiBPRS1Db3JlKSBidXQgbm90IG1hbmRh
+dG9yeS48L2Rpdj4NCjxkaXY+PGJyPg0KPC9kaXY+DQo8ZGl2PlJvYmVydCwgd291bGQgeW91IGFn
+cmVlPyBDb3VsZCB5b3UgcmV2aWV3IHRoZSBkb2NzIGNoYW5nZXMgU2NvdHQgaGFzIG1hZGU/PC9k
+aXY+DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPGRpdj5UaGFua3MsPC9kaXY+DQo8ZGl2Pjxicj4NCjwv
+ZGl2Pg0KPGRpdj5Kb3NodWE8L2Rpdj4NCjxkaXY+PGJyPg0KPC9kaXY+DQo8ZGl2Pk9uIEZyaSwg
+MjAxNi0xMC0xNCBhdCAwOToyNCAtMDcwMCwgU2NvdHQgUmlmZW5iYXJrIHdyb3RlOjwvZGl2Pg0K
+PGJsb2NrcXVvdGUgdHlwZT0iY2l0ZSI+DQo8ZGl2IGRpcj0ibHRyIj4NCjxkaXY+DQo8ZGl2Pg0K
+PGRpdj5FdmVyeW9uZSwgPGJyPg0KPGJyPg0KPC9kaXY+DQpJIHVwZGF0ZWQgdGhlIHNlY3Rpb24g
+YWJvdXQgcnVucWVtdSBiZWluZyBwb3J0ZWQgdG8gUHl0aG9uLiZuYnNwOyBJIGRvbid0IHVuZGVy
+c3RhbmQgYSBsb3Qgb2YgaXQgc28gSSBkaWQgbXkgYmVzdCB0byBjbGVhbiB1cCB0aGUgYmFzaWMg
+dGV4dHMgYW5kIGNoYW5nZXMgeW91IHNlbnQuJm5ic3A7IExvb2sgaXQgb3ZlciBoZXJlDQo8YSBo
+cmVmPSJodHRwOi8vd3d3LnlvY3RvcHJvamVjdC5vcmcvZG9jcy8yLjIvcmVmLW1hbnVhbC9yZWYt
+bWFudWFsLmh0bWwjbWlncmF0aW9uLTIuMi1ydW5xZW11LXBvcnRlZC10by1weXRob24iPg0KaHR0
+cDovL3d3dy55b2N0b3Byb2plY3Qub3JnL2RvY3MvMi4yL3JlZi1tYW51YWwvcmVmLW1hbnVhbC5o
+dG1sI21pZ3JhdGlvbi0yLjItcnVucWVtdS1wb3J0ZWQtdG8tcHl0aG9uPC9hPiBhbmQgcHJvdmlk
+ZSBtZSB3aXRoIGZpeGVzLiZuYnNwOyBUaGluZ3MgYXJlIGdldHRpbmcgZG93biB0byB0aGUgd2ly
+ZSBzbyBpZiB5b3Ugd2FudCBjaGFuZ2VzIGluIHRoZSBSQyBnZXQgdGhlbSB0byBtZSBhcyBxdWlj
+ayBhcyBwb3NzaWJsZS4NCjxicj4NCjxicj4NCjwvZGl2Pg0KVGhhbmtzLCA8YnI+DQo8L2Rpdj4N
+ClNjb3R0PGJyPg0KPC9kaXY+DQo8ZGl2IGNsYXNzPSJnbWFpbF9leHRyYSI+PGJyPg0KPGRpdiBj
+bGFzcz0iZ21haWxfcXVvdGUiPk9uIEZyaSwgT2N0IDE0LCAyMDE2IGF0IDI6MTYgQU0sIFJvYmVy
+dCBZYW5nIDxzcGFuIGRpcj0ibHRyIj4NCiZsdDs8YSBocmVmPSJtYWlsdG86bGllemhpLnlhbmdA
+d2luZHJpdmVyLmNvbSIgdGFyZ2V0PSJfYmxhbmsiPmxpZXpoaS55YW5nQHdpbmRyaXZlci5jb208
+L2E+Jmd0Ozwvc3Bhbj4gd3JvdGU6PGJyPg0KPGJsb2NrcXVvdGUgdHlwZT0iY2l0ZSI+PHNwYW4g
+Y2xhc3M9IiI+PGJyPg0KPGJyPg0KT24gMTAvMTQvMjAxNiAwNDozNSBQTSwgTG9jaywgSm9zaHVh
+IEcgd3JvdGU6PGJyPg0KPGJsb2NrcXVvdGUgdHlwZT0iY2l0ZSI+T24gRnJpLCAyMDE2LTEwLTE0
+IGF0IDEwOjEyICYjNDM7MDgwMCwgUm9iZXJ0IFlhbmcgd3JvdGU6PGJyPg0KPGJsb2NrcXVvdGUg
+dHlwZT0iY2l0ZSI+SGkgUGF1bCBhbmQgU2NvdHQsPGJyPg0KPGJyPg0KSGVyZSBpdCBpcywgYW5k
+IHBsZWFzZSBmZWVsIGZyZWUgdG8gY29tbWVudCwgbW9zdCBvZiB0aGVtIGFyZSBmcm9tPGJyPg0K
+cWVtdWJvb3QuYmJjbGFzczo8YnI+DQo8YnI+DQpUaGUgbmV3IHJ1bnFlbXUgaXMgYSBweXRob24g
+c2NyaXB0LCBpdCByZXF1aXJlcyBhPGJyPg0KJmx0O2ltYWdlLW5hbWUmZ3Q7LSZsdDttYWNoaW5l
+Jmd0Oy5xZW11Ym9vPHdicj50LmNvbmYgdG8gYm9vdCB0aGUgYnNwLCB0aGU8YnI+DQpxZW11Ym9v
+dC5jb25mPGJyPg0KaXMgZ2VuZXJhdGVkIGJ5IHFlbXVib290LmJiY2xhc3MgZHVyaW5nIGJ1aWxk
+IHJvb3RmcywgcWVtdSBib290PGJyPg0KYXJndW1lbnRzIGNhbiBiZSBzZXQgaW4gYnNwJ3MgY29u
+ZiBmaWxlLCBhbmQgcWVtdWJvb3QuYmJjbGFzcyB3aWxsPGJyPg0Kc2F2ZTxicj4NCnRoZW0gdG8g
+cWVtdWJvb3QuY29uZi48YnI+DQo8YnI+DQo8L2Jsb2NrcXVvdGU+DQo8YnI+DQpDYW4gd2UgYWxz
+byBkb2N1bWVudCB3aGVuIHFlbXVib290LmNvbmYgcmVxdWlyZWQgYW5kIHdoYXQgYmVuZWZpdHMg
+aXQ8YnI+DQpicmluZ3M/IFByZXZpb3VzIHVzYWdlIHBhdHRlcm5zIHNob3VsZCBhbHNvIGJlIHN1
+cHBvcnRlZCwgcmlnaHQ/PGJyPg0KPGJyPg0KPC9ibG9ja3F1b3RlPg0KPGJyPg0KPC9zcGFuPlll
+cywgdGhlIGJlbmVmaXQgaXMgdGhhdCB0aGUgbWFjaGluZSBrbm93bGVkZ2UgYXJlIG5vdCBoYXJk
+Y29kZWQgaW50bzxicj4NCnJ1bnFlbXUgYW55IG1vcmUsIHRoZSBic3AgY2FuIGRlZmluZSBpdHMg
+b3duIGFyZ3VtZW50cyB0byBtYWtlIGl0IGNhbiBiZTxicj4NCmJvb3QgYnkgcnVucWVtdS4gQW5k
+IHByZXZpb3VzIHVzYWdlIHBhdHRlcm5zIGFsc28gYmUgc3VwcG9ydGVkLjxzcGFuIGNsYXNzPSJI
+T0VuWmIiPjxmb250IGNvbG9yPSIjODg4ODg4Ij48YnI+DQo8YnI+DQovLyBSb2JlcnQ8L2ZvbnQ+
+PC9zcGFuPg0KPGRpdiBjbGFzcz0iSE9FblpiIj4NCjxkaXYgY2xhc3M9Img1Ij48YnI+DQo8YnI+
+DQo8YmxvY2txdW90ZSB0eXBlPSJjaXRlIj48YnI+DQpUaGFua3MsPGJyPg0KPGJyPg0KSm9zaHVh
+PGJyPg0KPGJyPg0KPGJsb2NrcXVvdGUgdHlwZT0iY2l0ZSI+PGJyPg0KTm90ZSwgJnF1b3Q7UUIm
+cXVvdDsgbWVhbnMgUWVtdSBCb290LCB0aGUgZm9sbG93aW5nIHZhcnMgY2FuIGJlIHNldCBpbiBj
+b25mPGJyPg0KZmlsZXMsIHN1Y2ggYXMgJmx0O2JzcC5jb25mJmd0OyB0byBtYWtlIGl0IGNhbiBi
+ZSBib290IGJ5IHJ1bnFlbXU6PGJyPg0KPGJyPg0KUUJfU1lTVEVNX05BTUU6IHFlbXUgbmFtZSwg
+ZS5nLiwgJnF1b3Q7cWVtdS1zeXN0ZW0taTM4NiZxdW90Ozxicj4NClFCX09QVF9BUFBFTkQ6IG9w
+dGlvbnMgdG8gYXBwZW5kIHRvIHFlbXUsIGUuZy4sICZxdW90Oy1zaG93LWN1cnNvciZxdW90Ozxi
+cj4NClFCX0RFRkFVTFRfS0VSTkVMOiBkZWZhdWx0IGtlcm5lbCB0byBib290LCBlLmcuLCAmcXVv
+dDtiekltYWdlJnF1b3Q7PGJyPg0KUUJfREVGQVVMVF9GU1RZUEU6IGRlZmF1bHQgRlNUWVBFIHRv
+IGJvb3QsIGUuZy4sICZxdW90O2V4dDQmcXVvdDs8YnI+DQpRQl9NRU06IG1lbW9yeSwgZS5nLiwg
+JnF1b3Q7LW0gNTEyJnF1b3Q7PGJyPg0KUUJfTUFDSElORTogcWVtdSBtYWNoaW5lLCBlLmcuLCAm
+cXVvdDstbWFjaGluZSB2aXJ0JnF1b3Q7PGJyPg0KUUJfQ1BVOiBxZW11IGNwdSwgZS5nLiwgJnF1
+b3Q7LWNwdSBxZW11MzImcXVvdDs8YnI+DQpRQl9DUFVfS1ZNOiB0aGUgc2ltaWxhciB0byBRQl9D
+UFUsIGJ1dCB1c2VkIHdoZW4ga3ZtLCBlLmcuLCAnLWNwdTxicj4NCmt2bTY0Jyw8YnI+DQombmJz
+cDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDtzZXQgaXQgd2hlbiBz
+dXBwb3J0IGt2bS48YnI+DQpRQl9LRVJORUxfQ01ETElORV9BUFBFTkQ6IG9wdGlvbnMgdG8gYXBw
+ZW5kIHRvIGtlcm5lbCdzIC1hcHBlbmQ8YnI+DQombmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsg
+Jm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAm
+bmJzcDsgJm5ic3A7b3B0aW9uLCBlLmcuLCAmcXVvdDtjb25zb2xlPXR0eVMwIGNvbnNvbGU9dHR5
+JnF1b3Q7PGJyPg0KUUJfRFRCOiBxZW11IGR0YiBuYW1lPGJyPg0KUUJfQVVESU9fRFJWOiBxZW11
+IGF1ZGlvIGRyaXZlciwgZS5nLiwgJnF1b3Q7YWxzYSZxdW90Oywgc2V0IGl0IHdoZW4gc3VwcG9y
+dDxicj4NCmF1ZGlvPGJyPg0KUUJfQVVESU9fT1BUOiBxZW11IGF1ZGlvIG9wdGlvbiwgZS5nLiwg
+JnF1b3Q7LXNvdW5kaHcgYWM5NyxlczEzNzAmcXVvdDssIHVzZWQ8YnI+DQombmJzcDsgJm5ic3A7
+ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7d2hlbiBRQl9BVURJT19E
+UlYgaXMgc2V0Ljxicj4NClFCX0tFUk5FTF9ST09UOiBrZXJuZWwncyByb290LCBlLmcuLCAvZGV2
+L3ZkYTxicj4NClFCX1RBUF9PUFQ6IG5ldG93cmsgb3B0aW9uIGZvciAndGFwJyBtb2RlLCBlLmcu
+LDxicj4NCiZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyZx
+dW90Oy1uZXRkZXYgdGFwLGlkPW5ldDAsaWZuYW1lPUBUQVBALHNjcmlwPHdicj50PW5vLGRvd25z
+Y3JpcHQ9bjxicj4NCm8gLWRldmljZTxicj4NCnZpcnRpby1uZXQtZGV2aWNlLG5ldGRldj1uZXQw
+JnF1b3Q7PGJyPg0KJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5i
+c3A7IE5vdGUsIHJ1bnFlbXUgd2lsbCByZXBsYWNlICZxdW90O0BUQVBAJnF1b3Q7IHdpdGggdGhl
+IG9uZSB3aGljaDxicj4NCmlzIHVzZWQsPGJyPg0Kc3VjaCBhcyB0YXAwLCB0YXAxIC4uLjxicj4N
+ClFCX1NMSVJQX09QVDogbmV0d29yayBvcHRpb24gZm9yIFNMSVJQIG1vZGUsIGUuZy4sPGJyPg0K
+Jm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7JnF1b3Q7LW5l
+dGRldiB1c2VyLGlkPW5ldDAgLWRldmljZSB2aXJ0aW8tbmV0LTxicj4NCmRldmljZSxuZXRkZXY9
+bmV0MCZxdW90Ozxicj4NClFCX1JPT1RGU19PUFQ6IHVzZWQgYXMgcm9vdGZzLCBlLmcuLDxicj4N
+CiZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsm
+cXVvdDstZHJpdmUgaWQ9ZGlzazAsZmlsZT1AUk9PVEZTQCxpZj1ub25lPHdicj4sZm9ybWF0PXJh
+dzxicj4NCi1kZXZpY2U8YnI+DQp2aXJ0aW8tYmxrLWRldmljZSxkcml2ZT1kaXNrMCZxdW90Ozxi
+cj4NCiZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyBOb3Rl
+LCBydW5xZW11IHdpbGwgcmVwbGFjZSAmcXVvdDtAUk9PVEZTQCZxdW90OyB3aXRoIHRoZSBvbmU8
+YnI+DQp3aGljaCBpcyB1c2VkLDxicj4NCnN1Y2ggYXMgY29yZS1pbWFnZS1taW5pbWFsLXFlbXVh
+cm02NC5lPHdicj54dDQuPGJyPg0KUUJfU0VSSUFMX09QVDogc2VyaWFsIHBvcnQsIGUuZy4sICZx
+dW90Oy1zZXJpYWwgbW9uOnN0ZGlvJnF1b3Q7PGJyPg0KUUJfVENQU0VSSUFMX09QVDogdGNwIHNl
+cmlhbCBwb3J0IG9wdGlvbiwgZS5nLiw8YnI+DQombmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsg
+Jm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsmcXVvdDsgLWRldmljZSB2
+aXJ0aW8tc2VyaWFsLWRldmljZSAtY2hhcmRldjxicj4NCnNvY2tldCxpZD12aXJ0Y29uLHBvcnQ9
+QFBPUlRALDx3YnI+aG9zdD0xMjcuMC4wLjEgLWRldmljZTxicj4NCnZpcnRjb25zb2xlLGNoYXJk
+ZXY9dmlydGNvbiZxdW90Ozxicj4NCiZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsg
+Jm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwO05vdGUsIHJ1bnFlbXUgd2lsbCByZXBs
+YWNlICZxdW90O0BQT1JUQCZxdW90OyB3aXRoIHRoZSBwb3J0PGJyPg0KbnVtYmVyPGJyPg0Kd2hp
+Y2ggaXMgdXNlZC48YnI+DQo8YnI+DQpVc2FnZTo8YnI+DQpJTUFHRV9DTEFTU0VTICYjNDM7PSAm
+cXVvdDtxZW11Ym9vdCZxdW90Ozxicj4NClNlZSAmcXVvdDtydW5xZW11IGhlbHAmcXVvdDsgZm9y
+IG1vcmUgaW5mbzxicj4NCjxicj4NCi8vIFJvYmVydDxicj4NCjxicj4NCk9uIDEwLzE0LzIwMTYg
+MDk6NDggQU0sIFBhdWwgRWdnbGV0b24gd3JvdGU6PGJyPg0KPGJsb2NrcXVvdGUgdHlwZT0iY2l0
+ZSI+PGJyPg0KSGkgZm9sa3MsPGJyPg0KPGJyPg0KV2UgbmVlZCBzb21lIGluZm8gZm9yIHRoZSBt
+aWdyYXRpb24gc2VjdGlvbiBvZiB0aGUgMi4yIG1hbnVhbCBhYm91dDxicj4NCndoYXQgdGhlPGJy
+Pg0KdXNlciBuZWVkcyB0byBkbyB0byBhZGFwdCB0byB0aGUgbmV3IHB5dGhvbi1iYXNlZCBydW5x
+ZW11LiBSb2JlcnQgLzxicj4NCkpvc2h1YSw8YnI+DQpjYW4gb25lIG9mIHlvdSBwbGVhc2Ugd3Jp
+dGUgc29tZXRoaW5nIHNob3J0IHRoYXQgZXhwbGFpbnMgd2hhdDxicj4NCnVzZXJzIG5lZWQgdG88
+YnI+DQpkbyAoaS5lLiBjaGFuZ2VzIHRvIHRoZSBtZXRhZGF0YSBmb3IgQlNQcywgb3IgYW55IG90
+aGVyIGNoYW5nZXMgaW48YnI+DQpvcGVyYXRpb24pPzxicj4NCkl0IGRvZXNuJ3QgbmVlZCB0byBi
+ZSBwb2xpc2hlZCwgU2NvdHQgUmlmZW5iYXJrIHdpbGwgdGFrZSBjYXJlIG9mPGJyPg0KdGhhdC4g
+SnVzdDxicj4NCnJlcGx5aW5nIHRvIHRoaXMgZW1haWwgd2l0aCBTY290dCBvbiBDQyBzaG91bGQg
+YmUgc3VmZmljaWVudC48YnI+DQo8YnI+DQpUaGFua3MsPGJyPg0KUGF1bDxicj4NCjxicj4NCjxi
+cj4NCjwvYmxvY2txdW90ZT4NCjxicj4NCjwvYmxvY2txdW90ZT4NCjxicj4NCjwvYmxvY2txdW90
+ZT4NCjwvZGl2Pg0KPC9kaXY+DQo8YnI+DQo8L2Jsb2NrcXVvdGU+DQo8L2Rpdj4NCjxicj4NCjwv
+ZGl2Pg0KPC9ibG9ja3F1b3RlPg0KPHA+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tPGJyPgpJbnRlbCBDb3Jwb3JhdGlv
+biAoVUspIExpbWl0ZWQ8YnI+ClJlZ2lzdGVyZWQgTm8uIDExMzQ5NDUgKEVuZ2xhbmQpPGJyPgpS
+ZWdpc3RlcmVkIE9mZmljZTogUGlwZXJzIFdheSwgU3dpbmRvbiBTTjMgMVJKPGJyPgpWQVQgTm86
+IDg2MCAyMTczIDQ3PC9wPgoKPHA+VGhpcyBlLW1haWwgYW5kIGFueSBhdHRhY2htZW50cyBtYXkg
+Y29udGFpbiBjb25maWRlbnRpYWwgbWF0ZXJpYWwgZm9yPGJyPgp0aGUgc29sZSB1c2Ugb2YgdGhl
+IGludGVuZGVkIHJlY2lwaWVudChzKS4gQW55IHJldmlldyBvciBkaXN0cmlidXRpb248YnI+CmJ5
+IG90aGVycyBpcyBzdHJpY3RseSBwcm9oaWJpdGVkLiBJZiB5b3UgYXJlIG5vdCB0aGUgaW50ZW5k
+ZWQ8YnI+CnJlY2lwaWVudCwgcGxlYXNlIGNvbnRhY3QgdGhlIHNlbmRlciBhbmQgZGVsZXRlIGFs
+bCBjb3BpZXMuPC9wPjwvYm9keT4NCjwvaHRtbD4NCg==
 
-SRC_URI = "git://github.com/libtom/libtomcrypt.git;branch=develop \
-"
-
-SRCREV = "${AUTOREV}"
-PV = "${SRCPV}"
-PR = "1"
-
-S = "${WORKDIR}/git"
-
-inherit autotools-brokensep
-
-SRC_URI[md5sum] = "d2f152e4dc83ee4cdb1b4f1a4866fe7f"
-SRC_URI[sha256sum] = 
-"d0ff89397f9a5fd1d13b1cbc419d5d426e14473135515d72bfcb58e5babf5032"
-
-
-note, that tomcrypt wants latex installed for creating doc. You proably 
-want to edit the makefile or define NODOC
-
-
-Am 19.10.2016 um 09:19 schrieb Vivek Per:
-> Hi,
->
-> I am trying to build tomfastmath and tomcrypt shared libraries using 
-> yocto, I couldn't get recipes for libtomcrypt and tomfastmath in web. 
-> So started to write one but i am failing to write correct recipe every 
-> time.
->
-> the skeleton   i used is both the recipes
->
-> S = "${WORKDIR}/git"
-> inherit autotools
-> EXTRA_OEMAKE = " 'CFLAGS=${CFLAGS} "-I${S}/src/headers" -DTFM_ARM ' 
->  'CC=${CC}' 'RANLIB=${RANLIB}' 'AR=${AR}' 'LD={LD}'   'BUILDDIR=${S}' 
-> 'D=${DEST_DIR}' "
-> do_compile() {
-> make -f ${S}/makefile  libtfm.a DESTDIR=${D} SBINDIR=${sbindir} 
-> MANDIR=${mandir}
-> }
->
-> Can any one help  please help me in creating tomcrypt and tomfastmath 
-> recipes. or any point our if recipes already exist.
->
->
-> Thanks and Regards,
->       Vivek
->
->
->
-
-
---------------8E1251FE95F3840FA6976038
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=windows-1252"
-      http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <p>tomcrypt builds like this for me:</p>
-    <p><br>
-    </p>
-    <p>DESCRIPTION = "tomcrypt"<br>
-      HOMEPAGE = <a class="moz-txt-link-rfc2396E" href="http://www.libtom.net">" http://www.libtom.net"</a><br>
-      LICENSE = "DWTFYW"<br>
-      LIC_FILES_CHKSUM =
-      <a class="moz-txt-link-rfc2396E" href="file://${S}/LICENSE;md5=71baacc459522324ef3e2b9e052e8180">"file://${S}/LICENSE;md5=71baacc459522324ef3e2b9e052e8180"</a><br>
-      <br>
-      SRC_URI = "git://github.com/libtom/libtomcrypt.git;branch=develop
-      \<br>
-      "<br>
-      <br>
-      SRCREV = "${AUTOREV}"<br>
-      PV = "${SRCPV}"<br>
-      PR = "1"<br>
-      <br>
-      S = "${WORKDIR}/git"<br>
-      <br>
-      inherit autotools-brokensep<br>
-      <br>
-      SRC_URI[md5sum] = "d2f152e4dc83ee4cdb1b4f1a4866fe7f"<br>
-      SRC_URI[sha256sum] =
-      "d0ff89397f9a5fd1d13b1cbc419d5d426e14473135515d72bfcb58e5babf5032"</p>
-    <p><br>
-    </p>
-    <p>note, that tomcrypt wants latex installed for creating doc. You
-      proably want to edit the makefile or define NODOC<br>
-    </p>
-    <br>
-    <div class="moz-cite-prefix">Am 19.10.2016 um 09:19 schrieb Vivek
-      Per:<br>
-    </div>
-    <blockquote
-cite="mid:CALLyC8TfRL68sWhdn1Z7tmOKxpagFfaW4YnQ9FteEKCX_rdCgg@mail.gmail.com"
-      type="cite">
-      <div dir="ltr">Hi,
-        <div><br>
-        </div>
-        <div>I am trying to build tomfastmath and tomcrypt shared
-          libraries using yocto, I couldn't get recipes for libtomcrypt
-          and tomfastmath in web. So started to write one but i am
-          failing to write correct recipe every time.</div>
-        <div><br>
-        </div>
-        <div>the skeleton   i used is both the recipes </div>
-        <div><br>
-        </div>
-        <div>
-          <div>S = "${WORKDIR}/git"</div>
-          <div>inherit autotools</div>
-        </div>
-        <div>EXTRA_OEMAKE = " 'CFLAGS=${CFLAGS} "-I${S}/src/headers"
-          -DTFM_ARM '  'CC=${CC}' 'RANLIB=${RANLIB}' 'AR=${AR}'
-          'LD={LD}'   'BUILDDIR=${S}' 'D=${DEST_DIR}' "<br>
-        </div>
-        <div>do_compile() {<br>
-        </div>
-        <div>make -f ${S}/makefile  libtfm.a DESTDIR=${D}
-          SBINDIR=${sbindir} MANDIR=${mandir}<br>
-        </div>
-        <div>}</div>
-        <div><br>
-        </div>
-        <div>Can any one help  please help me in creating tomcrypt and
-          tomfastmath recipes. or any point our if recipes already
-          exist.</div>
-        <div><br>
-        </div>
-        <div><br>
-        </div>
-        <div>Thanks and Regards,</div>
-        <div>      Vivek  </div>
-        <div><br>
-        </div>
-        <div> </div>
-      </div>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <br>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------8E1251FE95F3840FA6976038--
+--_000_1476869465183355camelintelcom_--
