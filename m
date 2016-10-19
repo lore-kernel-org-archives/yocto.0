@@ -1,60 +1,39 @@
-Return-Path: <pervivek@gmail.com>
+Return-Path: <f_l_k@t-online.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CCF4AE00E70; Wed, 19 Oct 2016 00:19:38 -0700 (PDT)
+	id 72E7CE00DB1; Wed, 19 Oct 2016 01:09:02 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (pervivek[at]gmail.com)
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE,RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [194.25.134.17 listed in dnsbl.sorbs.net]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [194.25.134.17 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.213.43 listed in list.dnswl.org]
-Received: from mail-vk0-f43.google.com (mail-vk0-f43.google.com
-	[209.85.213.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8B4F5E00E6E
-	for <yocto@yoctoproject.org>; Wed, 19 Oct 2016 00:19:32 -0700 (PDT)
-Received: by mail-vk0-f43.google.com with SMTP id q126so19284223vkd.2
-	for <yocto@yoctoproject.org>; Wed, 19 Oct 2016 00:19:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=hLocff5S3PCrjNQ1Ok/klErg779g+O6DCBAxSf+T3g4=;
-	b=mSiRM8N34MXD6OxBDY6UUmIdVC6tS+Dz1MhM2GDZggC7smmuLDw2PSef7iWuGKkPOF
-	zB5uOtthfHrbGy1J+eYtPqB0FgaEJ6znFoqLsIKA+ffuiT2aPxCEl7aG8tkbvXPGIqYr
-	kuT9RrDqGfzw7yn5hTMdj25hC9CAfWGphBSSsv/ESfJbBW5CtMERvzbpd90ULZVH4ltW
-	m/TN7qVvpxSLQakL26UHni7rMZoFftstLlSmuLsEuYbJPnu+FIPFTZHLFzoSjEv+C6Bk
-	I7hrlwbnyHuGcZuHPw128VFguj94H+/w2JsGOZlEd/ST5Ou4eXRtP9pV+r3cpFUz1qju
-	HTAg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=hLocff5S3PCrjNQ1Ok/klErg779g+O6DCBAxSf+T3g4=;
-	b=fHK4qcUr6kYJoTLM9cywbX05sJn2q45qv8tclkGYtVZY8at+aRSrUiqJVi2XxobTFS
-	4wUcwJR44qQ59qx8FvO4xDbWj50QofH6syojiVFRg/tPzSpp5i33dskh3GVwS7UMne2E
-	wGAvtwI8Wf/Gs3gjIJdQx64I5JoEd991/VzfeRLAW2vepacrhGFFk4JNX/DzzHNzrZup
-	N6F8tYAaGmwwkYDdFzRHU1loK97ROvJ6hxrnMFGUXrwFZtySScC5VCzG7th7Wai1D9T9
-	v5SsWAl8WSO9ZakvBfSfdroorgPeUmFNBzSM8axxKSJyTf7E780oVNMd7yrDN+i3XbKE
-	6nHA==
-X-Gm-Message-State: AA6/9RnFqkK/pp0uE05RVQXAiTB43gtZ37RC88NtCIxNWNDpDfJdGXogYYPkaz3l/WFMZGpbp0M0rFofimtq/Q==
-X-Received: by 10.31.171.75 with SMTP id u72mr4258669vke.22.1476861571817;
-	Wed, 19 Oct 2016 00:19:31 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.31.107.203 with HTTP; Wed, 19 Oct 2016 00:19:31 -0700 (PDT)
-From: Vivek Per <pervivek@gmail.com>
-Date: Wed, 19 Oct 2016 12:49:31 +0530
-Message-ID: <CALLyC8TfRL68sWhdn1Z7tmOKxpagFfaW4YnQ9FteEKCX_rdCgg@mail.gmail.com>
+Received: from mailout02.t-online.de (mailout02.t-online.de [194.25.134.17])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DB22AE00D73
+	for <yocto@yoctoproject.org>; Wed, 19 Oct 2016 01:08:58 -0700 (PDT)
+Received: from fwd17.aul.t-online.de (fwd17.aul.t-online.de [172.20.27.64])
+	by mailout02.t-online.de (Postfix) with SMTP id 629F141A02F8
+	for <yocto@yoctoproject.org>; Wed, 19 Oct 2016 10:08:54 +0200 (CEST)
+Received: from [192.168.2.105]
+	(JJBbRuZGQhr2xmzm3wLu8PvcNXhcK2W6Lmozwu6A0ZQBZAewAaU7aiUAjCSCDLDQHo@[79.199.47.227])
+	by fwd17.t-online.de with (TLSv1.2:ECDHE-RSA-AES256-SHA encrypted)
+	esmtp id 1bwlvh-2Pzu2y0; Wed, 19 Oct 2016 10:08:53 +0200
 To: Yocto <yocto@yoctoproject.org>
-Subject: libtomcrypt libtomfastmath recipe
+From: Markus Volk <f_l_k@t-online.de>
+Message-ID: <a8cb4338-a230-de50-70af-329f69a0950b@t-online.de>
+Date: Wed, 19 Oct 2016 10:08:52 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.3.0
+MIME-Version: 1.0
+X-ID: JJBbRuZGQhr2xmzm3wLu8PvcNXhcK2W6Lmozwu6A0ZQBZAewAaU7aiUAjCSCDLDQHo
+X-TOI-MSGID: a02d695b-61c0-484a-9079-4bf79ab40867
+Subject: Problems with image creation
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,56 +45,126 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 Oct 2016 07:19:38 -0000
-Content-Type: multipart/alternative; boundary=001a1143fdba5f0a11053f32a1ed
+X-List-Received-Date: Wed, 19 Oct 2016 08:09:02 -0000
+Content-Type: multipart/alternative;
+	boundary="------------C877CB6B95CA9A302ACA32E7"
 
---001a1143fdba5f0a11053f32a1ed
-Content-Type: text/plain; charset=UTF-8
+--------------C877CB6B95CA9A302ACA32E7
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
 Hi,
 
-I am trying to build tomfastmath and tomcrypt shared libraries using yocto,
-I couldn't get recipes for libtomcrypt and tomfastmath in web. So started
-to write one but i am failing to write correct recipe every time.
+I am building an image for development in the morty branch. It is quite 
+large and therefore I only create iso images with the variable NOHDD = 
+"1". At task do_image_wic the following is applied:
 
-the skeleton   i used is both the recipes
+| Error: exec_cmd: cp 
+/home/flk/yocto-pc/poky/build-pc/tmp/work/genericx86-poky-linux/neutrino-image/1.0-r0/neutrino-image-1.0/hddimg/EFI/BOOT/* 
+/home/flk/yocto-pc/poky/build-pc/tmp/work/genericx86-poky-linux/neutrino-image/1.0-r0/deploy-neutrino-image-image-complete/neutrino-image-genericx86-20161018191251/build/hdd/boot/EFI/BOOT 
+returned '1' instead of 0
 
-S = "${WORKDIR}/git"
-inherit autotools
-EXTRA_OEMAKE = " 'CFLAGS=${CFLAGS} "-I${S}/src/headers" -DTFM_ARM '
- 'CC=${CC}' 'RANLIB=${RANLIB}' 'AR=${AR}' 'LD={LD}'   'BUILDDIR=${S}'
-'D=${DEST_DIR}' "
-do_compile() {
-make -f ${S}/makefile  libtfm.a DESTDIR=${D} SBINDIR=${sbindir}
-MANDIR=${mandir}
+
+It should be ok if this is "1" , respectively the command shouldn`t be 
+called at all
+
+I can avoid the error quick and dirty like this:
+
+
+# workaround: NOHDD varibale isn`t respected in do_wic_image
+
+IMAGE_PREPROCESS_COMMAND += "do_fix_image_gen;"
+
+do_fix_image_gen() {
+
+mkdir -p ${S}/hddimg/EFI/BOOT/
+
+touch ${S}/hddimg/EFI/BOOT/bla
+
 }
 
-Can any one help  please help me in creating tomcrypt and tomfastmath
-recipes. or any point our if recipes already exist.
+
+Regards,
+
+Markus
 
 
-Thanks and Regards,
-      Vivek
+--------------C877CB6B95CA9A302ACA32E7
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
 
---001a1143fdba5f0a11053f32a1ed
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+<html>
+  <head>
 
-<div dir=3D"ltr">Hi,<div><br></div><div>I am trying to build tomfastmath an=
-d tomcrypt shared libraries using yocto, I couldn&#39;t get recipes for lib=
-tomcrypt and tomfastmath in web. So started to write one but i am failing t=
-o write correct recipe every time.</div><div><br></div><div>the skeleton =
-=C2=A0 i used is both the recipes=C2=A0</div><div><br></div><div><div>S =3D=
- &quot;${WORKDIR}/git&quot;</div><div>inherit autotools</div></div><div>EXT=
-RA_OEMAKE =3D &quot; &#39;CFLAGS=3D${CFLAGS} &quot;-I${S}/src/headers&quot;=
- -DTFM_ARM &#39; =C2=A0&#39;CC=3D${CC}&#39; &#39;RANLIB=3D${RANLIB}&#39; &#=
-39;AR=3D${AR}&#39; &#39;LD=3D{LD}&#39; =C2=A0 &#39;BUILDDIR=3D${S}&#39; &#3=
-9;D=3D${DEST_DIR}&#39; &quot;<br></div><div>do_compile() {<br></div><div>ma=
-ke -f ${S}/makefile =C2=A0libtfm.a DESTDIR=3D${D} SBINDIR=3D${sbindir} MAND=
-IR=3D${mandir}<br></div><div>}</div><div><br></div><div>Can any one help =
-=C2=A0please help me in creating tomcrypt and tomfastmath recipes. or any p=
-oint our if recipes already exist.</div><div><br></div><div><br></div><div>=
-Thanks and Regards,</div><div>=C2=A0 =C2=A0 =C2=A0 Vivek =C2=A0</div><div><=
-br></div><div>=C2=A0</div></div>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <p>
+      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    </p>
+    <p>
+      <title></title>
+      <meta name="generator" content="LibreOffice 5.1.4.2 (Linux)">
+      <style type="text/css">
+		@page { margin: 2cm }
+		p { margin-bottom: 0.25cm; line-height: 120% }
+	</style>
+      <p style="margin-bottom: 0cm; line-height: 100%" lang="en-US"><font
+          face="Helvetica, Arial, sans-serif">Hi,</font></p>
+      <font face="Helvetica, Arial, sans-serif">
+      </font>
+      <p style="margin-bottom: 0cm; line-height: 100%" lang="en-US"><font
+          face="Helvetica, Arial, sans-serif">I am building an image for
+          development in the morty branch. It is
+          quite large and therefore I only create iso images with the
+          variable
+          NOHDD = "1". At task do_image_wic the following is applied:
+        </font></p>
+      <p style="margin-bottom: 0cm; line-height: 100%"><font face="STIX">|
+          Error: exec_cmd:
+          cp
+/home/flk/yocto-pc/poky/build-pc/tmp/work/genericx86-poky-linux/neutrino-image/1.0-r0/neutrino-image-1.0/hddimg/EFI/BOOT/*
+/home/flk/yocto-pc/poky/build-pc/tmp/work/genericx86-poky-linux/neutrino-image/1.0-r0/deploy-neutrino-image-image-complete/neutrino-image-genericx86-20161018191251/build/hdd/boot/EFI/BOOT
+          returned '1' instead of 0</font></p>
+      <p style="margin-bottom: 0cm; line-height: 100%"><br>
+      </p>
+      <font face="Helvetica, Arial, sans-serif">It
+        should be ok if this is "1" , respectively the command
+        shouldn`t be called at all</font></p>
+    <p><font face="Helvetica, Arial, sans-serif">I can avoid the error
+        quick and
+        dirty like this: </font><br>
+    </p>
+    <p><font face="STIX"><br>
+      </font></p>
+    <p><font face="STIX"># workaround: NOHDD
+        varibale isn`t respected in do_wic_image
+      </font>
+      <p style="margin-bottom: 0cm; line-height: 100%"><font face="STIX">IMAGE_PREPROCESS_COMMAND
+          += "do_fix_image_gen;"</font></p>
+      <font face="STIX">
+      </font>
+      <p style="margin-bottom: 0cm; line-height: 100%"><font face="STIX">do_fix_image_gen()
+          {</font></p>
+      <font face="STIX">
+      </font>
+      <p style="margin-bottom: 0cm; line-height: 100%"><font face="STIX">mkdir
+          -p ${S}/hddimg/EFI/BOOT/</font></p>
+      <font face="STIX">
+      </font>
+      <p style="margin-bottom: 0cm; line-height: 100%"><font face="STIX">touch
+          ${S}/hddimg/EFI/BOOT/bla</font></p>
+      <font face="Liberation Sans">
+      </font>
+      <p style="margin-bottom: 0cm; line-height: 100%"><font face="STIX">}</font></p>
+      <font face="Helvetica, Arial, sans-serif"><br>
+      </font></p>
+    <p><font face="Helvetica, Arial, sans-serif">Regards,<br>
+      </font></p>
+    <p><font face="Helvetica, Arial, sans-serif">Markus
+      </font>
+    </p>
+  </body>
+</html>
 
---001a1143fdba5f0a11053f32a1ed--
+--------------C877CB6B95CA9A302ACA32E7--
