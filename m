@@ -1,35 +1,37 @@
-Return-Path: <paul.eggleton@intel.com>
+Return-Path: <Bruce.Ashfield@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 63E0FE0089B; Wed, 19 Oct 2016 19:56:41 -0700 (PDT)
+	id 90BB6E00955; Wed, 19 Oct 2016 20:55:04 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DD69DE0080D
-	for <yocto@yoctoproject.org>; Wed, 19 Oct 2016 19:56:40 -0700 (PDT)
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-	by orsmga104.jf.intel.com with ESMTP; 19 Oct 2016 19:56:40 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.31,516,1473145200"; d="scan'208";a="21911212"
-Received: from jkursms-mobl1.gar.corp.intel.com (HELO
-	peggleto-mobl.ger.corp.intel.com) ([10.255.184.45])
-	by orsmga004.jf.intel.com with ESMTP; 19 Oct 2016 19:56:37 -0700
-From: Paul Eggleton <paul.eggleton@intel.com>
-To: Khem Raj <raj.khem@gmail.com>
-Date: Thu, 20 Oct 2016 15:56:31 +1300
-Message-ID: <10330907.99LmuhynIv@peggleto-mobl.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.14.10 (Linux/4.7.7-100.fc23.x86_64; KDE/4.14.20; x86_64; ;
-	)
-In-Reply-To: <CAMKF1sqAZY9FHeco3M_U0EDZ+4RXw121yH7hOQrW5zZcBz3+4Q@mail.gmail.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E8590E008D3
+	for <yocto@yoctoproject.org>; Wed, 19 Oct 2016 20:55:03 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id u9K3t1Zu005906
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Wed, 19 Oct 2016 20:55:01 -0700 (PDT)
+Received: from server.local (128.224.23.33) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.40) with Microsoft SMTP Server id 14.3.294.0;
+	Wed, 19 Oct 2016 20:55:00 -0700
+To: Paul Eggleton <paul.eggleton@intel.com>, "Graydon, Tracy"
+	<tracy.graydon@intel.com>, <yocto@yoctoproject.org>
 References: <1669674.XxUMWkXXym@peggleto-mobl.ger.corp.intel.com>
-	<CAMKF1sqAZY9FHeco3M_U0EDZ+4RXw121yH7hOQrW5zZcBz3+4Q@mail.gmail.com>
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+Message-ID: <47ed04f5-61b9-cdf6-bda6-b724d6a67591@windriver.com>
+Date: Wed, 19 Oct 2016 23:54:59 -0400
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:45.0)
+	Gecko/20100101 Thunderbird/45.4.0
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+In-Reply-To: <1669674.XxUMWkXXym@peggleto-mobl.ger.corp.intel.com>
 Subject: Re: 2.2 release note material
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -42,35 +44,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Oct 2016 02:56:41 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Thu, 20 Oct 2016 03:55:04 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wed, 19 Oct 2016 19:51:43 you wrote:
-> On Wed, Oct 19, 2016 at 7:25 PM, Paul Eggleton <paul.eggleton@intel.com>
-> wrote:
-> > I've been gathering material for the 2.2 release notes, here is what I
-> > have at the moment. Things missing:
-> > 
-> > * Any new features/enhancements for the kernel tools - Bruce, is there
-> > anything worth noting?
-> 
-> it does not cover the deprecated/removed packages. Eg uclibc has been
-> removed from oe-core
-> gcc 4.x is also out.
+On 2016-10-19 10:25 PM, Paul Eggleton wrote:
+> Hi all,
+>
+> I've been gathering material for the 2.2 release notes, here is what I have at
+> the moment. Things missing:
+>
+> * Any new features/enhancements for the kernel tools - Bruce, is there
+> anything worth noting?
 
-I guess we tend to cover those in the migration guide (which is linked from 
-there). We should cover them briefly here as well though.
+It is probably worth mentioning a few things on that front, I'll provide
+some raw bullets points here .. and they can be wordsmithed as needed:
 
-> musl can build world for all primary architectures. ppc64 is now supported.
+  - kernel tools were streamlined, with patching/configuration overhead
+    reduced or eliminated in most cases.
+  - kernel configuration audit was improved and runs as a standalone tool
+  - kernel configuration audit provides symbol resolution and dependency
+    information to allow troubleshooting of missing/incorrect/invalid 
+symbols
+  - kernel tools use upstream utilities directly, without local patches or
+    wrappers.
 
-I wasn't aware that was a milestone we had just achieved for this release - 
-impressive. We should definitely list that.
+Bruce
 
-Thanks,
-Paul
+>
+> * Known issues that are worth calling out
+>
+> Note that I haven't included all of the bugfixes in this release since we
+> haven't been recently and there are a lot of them. I do have a list of them if
+> we want to include them but not only is it very long, it's not guaranteed to
+> be devoid of fixes for regressions within the release and I also haven't
+> tweaked any of the items to be more understandable out of context as I have
+> with the features/enhancements.
+>
+> Let me know if I've missed or misrepresented anything.
+>
+> Cheers,
+> Paul
+>
 
--- 
-Paul Eggleton
-Intel Open Source Technology Centre
 
