@@ -1,72 +1,72 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D8E6DE00848; Thu, 20 Oct 2016 10:40:50 -0700 (PDT)
+	id 37487E008D3; Thu, 20 Oct 2016 10:44:01 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.214.67 listed in dnsbl.sorbs.net]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.214.67 listed in list.dnswl.org]
+	mail provider *      (akuster808[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-it0-f67.google.com (mail-it0-f67.google.com
-	[209.85.214.67])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 587AEE00756
-	for <yocto@yoctoproject.org>; Thu, 20 Oct 2016 10:40:48 -0700 (PDT)
-Received: by mail-it0-f67.google.com with SMTP id 139so7129302itm.2
-	for <yocto@yoctoproject.org>; Thu, 20 Oct 2016 10:40:48 -0700 (PDT)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.192.195 listed in list.dnswl.org]
+Received: from mail-pf0-f195.google.com (mail-pf0-f195.google.com
+	[209.85.192.195])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DC941E0081E
+	for <yocto@yoctoproject.org>; Thu, 20 Oct 2016 10:43:58 -0700 (PDT)
+Received: by mail-pf0-f195.google.com with SMTP id 128so6170993pfz.1
+	for <yocto@yoctoproject.org>; Thu, 20 Oct 2016 10:43:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=subject:mime-version:from:in-reply-to:date:cc:message-id:references
-	:to; bh=4aezzKAjz+tcF3yn+DJapE1Jv5pGcpjMemA+n1vmDgA=;
-	b=XGGKUqSI8Zc6Hnf56Z9wCvtxQRBlmBwP0eDcmb1M8iNTcboNvMCeicyhrQdfdEU7TH
-	Z17X93tGKzPal0voxZoxQiFzzlawANoNXNfuZbGXXYRJVgZkYGIbD6j6v7ce+zHPP95d
-	PI4+td10XJLL7pQbM14f+7bW1qrOdyvgcsgJ86FuCGCMoCbCqjjYXhHzSpRuCpORVxFe
-	SHTzT8gfKcwrvHpOvHjLx1ztucwXRFUXbLl8vz0AwYHV1eypDtiTgnmTVOo7iuBPcDz8
-	TKnZy78nT8yhCKKsjh9E2Pzhkf9CoPGkUtnrMZgpZ7GOouti5EIW41gIaDw9WEaZcz4p
-	k3Yg==
+	h=subject:to:references:cc:from:message-id:date:user-agent
+	:mime-version:in-reply-to;
+	bh=78ycKjq7OwAHf0N9H6lvG0M5IYL1B8qQXMgry6mRw8E=;
+	b=06Z+lPIKC9xbxVzV+kVRSNEPPw8j7GUoRbvqYXYv+3tm3EuJ5nK0d5Mw7R9gYZUH5Y
+	V/fFv8nv6tyQfqefmDOzI1YNOljjB6lmRNNLZx50DplLcK+l+waic4h1ei3b/GceuRVA
+	z08N61O4DAFuY51gJLykaEl8OCb/sTHJoRcDtxS4dH+os17fbpMz6IRG1zMmk4mFZKQj
+	xOCBUeFs1ADcIx/GW8zpv00xASONSTFRRC1rzH875SFbOxw0e98pYvD4i6CQ8qdvAkOj
+	2xNND/Cei0rNhEnA4wPl0XFEvKVNDIXPz+TPQEt/vRGS/xQ2aL51smOoXLWaNTMr3JLQ
+	2Xiw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:subject:mime-version:from:in-reply-to:date:cc
-	:message-id:references:to;
-	bh=4aezzKAjz+tcF3yn+DJapE1Jv5pGcpjMemA+n1vmDgA=;
-	b=kXJVfMqw5gVS3Ia/Qg3cNFuKzsfd0ae2x7jpqipbyGH7s2oJ/PSG9dXPiEisrivh5+
-	a+6A7vFo1P94n46Y5y109GxJRCG/GCxTivlyB82xi+jRdLbvRXJLVFwNErCaexbhJ3kI
-	kw9VYWwwxm7nRGgiwN+lkGK0EhGgnj49dDhIGy4PSFJPxhp16rzRvKBDWD8m8x6v40fZ
-	veBKcI53aaSYJkPJa7W2GLCYLJVSejPm2jmrSP6sQEmKFqBGdSHWyVh7TGsxkjyXEk+t
-	dBH0Vm4EQYsOxM8MtG3UVFZ3C5tTVPhlkkU8brUSQY68LyMZbVIdmM03v4OPA97ptv/0
-	Ilhg==
-X-Gm-Message-State: AA6/9Rmi8r/yskzY2YN5Rd9N9h+9jKM91oyYyiIwoUgdqtN2mx62YRBHw05rempiIFyeDA==
-X-Received: by 10.36.26.3 with SMTP id 3mr2266784iti.46.1476985248009;
-	Thu, 20 Oct 2016 10:40:48 -0700 (PDT)
-Received: from [192.168.0.130] (c-76-102-32-192.hsd1.ca.comcast.net.
-	[76.102.32.192]) by smtp.gmail.com with ESMTPSA id
-	r200sm492729itc.13.2016.10.20.10.40.46
-	(version=TLS1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Thu, 20 Oct 2016 10:40:47 -0700 (PDT)
-Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
-X-Pgp-Agent: GPGMail
-From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <1476984900-22569-2-git-send-email-juro.bystricky@intel.com>
-Date: Thu, 20 Oct 2016 10:40:42 -0700
-Message-Id: <5F47B618-9962-40C0-BE64-57FBD301B5EB@gmail.com>
-References: <1476984900-22569-1-git-send-email-juro.bystricky@intel.com>
-	<1476984900-22569-2-git-send-email-juro.bystricky@intel.com>
-To: Juro Bystricky <juro.bystricky@intel.com>
-X-Mailer: Apple Mail (2.3124)
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-mingw][PATCH 1/1] binutils-cross-canadian: Fix LTO failure
+	h=x-gm-message-state:subject:to:references:cc:from:message-id:date
+	:user-agent:mime-version:in-reply-to;
+	bh=78ycKjq7OwAHf0N9H6lvG0M5IYL1B8qQXMgry6mRw8E=;
+	b=mAJI5pgAsOWzsrpDzQ9sL3OzTnIvhq+RxKWnTNTKfHU3eTr5oJQR5z9IM8/bzR+iAC
+	P0QK1Z9/+B69AGfNOdqiQJczdH4FzrpZcuNU2GrnldA84EjwL2KRT2NT8kj3KQ3+Pg/y
+	krTFitLDCcmEph0YHcrOPs/4uD+09sPyQJ2PzLd4tQ5jT0Q4nvDy9mywHeo7aoXa0SqX
+	qEXc/SYI0xPVDbSC3cm6Ok+h+YtsiLHC7e/etFNR9WSpWgzwtY+kRkE2oetilwvbGZRa
+	62InbNol0baqQIzvqWML2Wv/mcL+pM84nWaIFrBCK5lGpDm/08j00T5oUJKMNypRmow1
+	YxwA==
+X-Gm-Message-State: AA6/9RmRIDvTwwMA2ALyRgKmUthTv5jhR8ey0lNvHCdIZaKsEpDw4A36fIcvc5okDGt/2w==
+X-Received: by 10.98.57.140 with SMTP id u12mr3365059pfj.127.1476985438053;
+	Thu, 20 Oct 2016 10:43:58 -0700 (PDT)
+Received: from ?IPv6:2601:202:4001:9ea0:bc9a:54ac:66f2:66ed?
+	([2601:202:4001:9ea0:bc9a:54ac:66f2:66ed])
+	by smtp.gmail.com with ESMTPSA id
+	d79sm30803431pfj.68.2016.10.20.10.43.57
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Thu, 20 Oct 2016 10:43:57 -0700 (PDT)
+To: Yile Ku <stiffstone@gmail.com>, yocto@yoctoproject.org
+References: <CAAGP=A-A-ffYuEEZFE6w4jGdqp19ZCQKCb_NMK6b8JwsD4jAJQ@mail.gmail.com>
+From: akuster808 <akuster808@gmail.com>
+Message-ID: <0d3fb7d9-a290-4582-db64-64a0e28a5900@gmail.com>
+Date: Thu, 20 Oct 2016 10:43:48 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.3.0
+MIME-Version: 1.0
+In-Reply-To: <CAAGP=A-A-ffYuEEZFE6w4jGdqp19ZCQKCb_NMK6b8JwsD4jAJQ@mail.gmail.com>
+Cc: tomas.novotny@tbs-biometrics.com
+Subject: Re: ODROID-C2 and meta-odroid
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -78,78 +78,106 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Oct 2016 17:40:50 -0000
-X-Groupsio-MsgNum: 32541
-Content-Type: multipart/signed;
-	boundary="Apple-Mail=_8C98BDE3-6389-432B-A170-92B96FA7CA1B";
-	protocol="application/pgp-signature"; micalg=pgp-sha1
+X-List-Received-Date: Thu, 20 Oct 2016 17:44:01 -0000
+Content-Type: multipart/alternative;
+	boundary="------------419DA5CB594C04821A22E6B4"
 
---Apple-Mail=_8C98BDE3-6389-432B-A170-92B96FA7CA1B
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=utf-8
-
-
-> On Oct 20, 2016, at 10:35 AM, Juro Bystricky =
-<juro.bystricky@intel.com> wrote:
->=20
-> GCC was failing with a message similar to:
->=20
-> =
-e:/windri~1/lx8.sdk/qemux8~1.800/sysroots/i686-w~1/usr/bin/i586-w~3/../../=
-libexec/i586-wrs-linux/gcc/i586-wrs-linux/5.2.0/real-ld.exe: =
-unrecognized option '-plugin'
->=20
-> The issue was that by default plugin support was disabled in binutils. =
- By
-> enabling the plugin support, the LTO support should also now work =
-properly.
->=20
-> Signed-off-by: Mark Hatle <mark.hatle@windriver.com>
-> Signed-off-by: Juro Bystricky <juro.bystricky@intel.com>
-> ---
-> recipes-devtools/binutils/binutils-cross-canadian_2.2%.bbappend | 2 +-
-> 1 file changed, 1 insertion(+), 1 deletion(-)
->=20
-> diff --git =
-a/recipes-devtools/binutils/binutils-cross-canadian_2.2%.bbappend =
-b/recipes-devtools/binutils/binutils-cross-canadian_2.2%.bbappend
-> index 026c932..5845fe0 100644
-> --- a/recipes-devtools/binutils/binutils-cross-canadian_2.2%.bbappend
-> +++ b/recipes-devtools/binutils/binutils-cross-canadian_2.2%.bbappend
-> @@ -1,4 +1,4 @@
-> -EXTRA_OECONF_append_sdkmingw32 =3D " --disable-plugins --disable-nls"
-> +EXTRA_OECONF_append_sdkmingw32 =3D " --disable-nls=E2=80=9D
-
-This looks ok to me.
-
-> LDFLAGS_append_sdkmingw32 =3D " -Wl,-static"
->=20
-> DEPENDS_remove_sdkmingw32 =3D "nativesdk-gettext"
-> --
-> 2.7.4
->=20
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
-
---Apple-Mail=_8C98BDE3-6389-432B-A170-92B96FA7CA1B
+--------------419DA5CB594C04821A22E6B4
+Content-Type: text/plain; charset=windows-1252; format=flowed
 Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment;
-	filename=signature.asc
-Content-Type: application/pgp-signature;
-	name=signature.asc
-Content-Description: Message signed with OpenPGP using GPGMail
 
------BEGIN PGP SIGNATURE-----
-Comment: GPGTools - https://gpgtools.org
 
-iEYEARECAAYFAlgJAZ0ACgkQuwUzVZGdMxS6jACdHSBLaThPFGd16Go/JWeuX6lA
-if8AnA1d0tDBIW/Br1+Wykna96WByeba
-=WIeJ
------END PGP SIGNATURE-----
 
---Apple-Mail=_8C98BDE3-6389-432B-A170-92B96FA7CA1B--
+On 10/20/2016 09:25 AM, Yile Ku wrote:
+> I am having some issues getting the odroid c2 board to boot with 
+> images built with meta-odroid and yocto 2.2.
+
+The C2 integration to support 2.2 is not complete. Krogoth branch should 
+work as it uses the hardkernels u-boot and 3.18 kernel. Neither will 
+build with the 6.0 Gcc.
+
+I have the latest u-boot (2016.06) booting on the C2 and everything 
+compiling. Just have not figured out the magic to get a 4.8 kernel to boot.
+
+> Is there someone I can correspond with regarding these issues?
+You did not explain with the issue is.
+
+- Armin
+
+>
+> Thanks,
+> Yile
+>
+>
+
+
+--------------419DA5CB594C04821A22E6B4
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <p><br>
+    </p>
+    <br>
+    <div class="moz-cite-prefix">On 10/20/2016 09:25 AM, Yile Ku wrote:<br>
+    </div>
+    <blockquote
+cite="mid:CAAGP=A-A-ffYuEEZFE6w4jGdqp19ZCQKCb_NMK6b8JwsD4jAJQ@mail.gmail.com"
+      type="cite">
+      <div dir="ltr">
+        <div>
+          <div>I am having some issues getting the odroid c2 board to
+            boot with images built with meta-odroid and yocto 2.2. <br>
+          </div>
+        </div>
+      </div>
+    </blockquote>
+    <br>
+    The C2 integration to support 2.2 is not complete. Krogoth branch
+    should work as it uses the hardkernels u-boot and 3.18 kernel.
+    Neither will build with the 6.0 Gcc.<br>
+    <br>
+    I have the latest u-boot (2016.06) booting on the C2 and everything
+    compiling. Just have not figured out the magic to get a 4.8 kernel
+    to boot.<br>
+    <br>
+    <blockquote
+cite="mid:CAAGP=A-A-ffYuEEZFE6w4jGdqp19ZCQKCb_NMK6b8JwsD4jAJQ@mail.gmail.com"
+      type="cite">
+      <div dir="ltr">
+        <div>
+          <div>Is there someone I can correspond with regarding these
+            issues?<br>
+          </div>
+        </div>
+      </div>
+    </blockquote>
+    You did not explain with the issue is.<br>
+    <br>
+    - Armin<br>
+    <br>
+    <blockquote
+cite="mid:CAAGP=A-A-ffYuEEZFE6w4jGdqp19ZCQKCb_NMK6b8JwsD4jAJQ@mail.gmail.com"
+      type="cite">
+      <div dir="ltr">
+        <div>
+          <div><br>
+          </div>
+          Thanks,<br>
+        </div>
+        Yile<br>
+      </div>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <br>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------419DA5CB594C04821A22E6B4--
