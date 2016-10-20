@@ -1,45 +1,69 @@
-Return-Path: <sebastian.rohde@tu-dortmund.de>
+Return-Path: <pervivek@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 28D07E009BB; Thu, 20 Oct 2016 02:11:11 -0700 (PDT)
+	id F2211E009E7; Thu, 20 Oct 2016 04:40:50 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [129.217.128.51 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE, 
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (pervivek[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.213.49 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0010]
+	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 7591 seconds by postgrey-1.32 at yocto-www;
-	Thu, 20 Oct 2016 02:11:06 PDT
-Received: from unimail.uni-dortmund.de (mx1.hrz.uni-dortmund.de
-	[129.217.128.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9B920E00955
-	for <yocto@yoctoproject.org>; Thu, 20 Oct 2016 02:11:06 -0700 (PDT)
-Received: from ex2010cas2.tu-dortmund.de (ex2010cas2.tu-dortmund.de
-	[129.217.131.98])
-	by unimail.uni-dortmund.de (8.16.0.19/8.16.0.19) with ESMTPS id
-	u9K74X9H028869
-	(version=TLSv1.2 cipher=AES128-SHA256 bits=128 verify=NOT)
-	for <yocto@yoctoproject.org>; Thu, 20 Oct 2016 09:04:33 +0200 (CEST)
-Received: from EX2010MBX1.tu-dortmund.de ([fe80::8c91:9758:7488:1737]) by
-	ex2010cas2.tu-dortmund.de ([2002:81d9:8362::81d9:8362]) with mapi id
-	14.03.0319.002; Thu, 20 Oct 2016 09:04:33 +0200
-From: "sebastian.rohde@tu-dortmund.de" <sebastian.rohde@tu-dortmund.de>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: meta-odroid status for XU4
-Thread-Index: AdIqn9MmCZxwb5QcSDqfIH8P7AD6+A==
-Date: Thu, 20 Oct 2016 07:04:32 +0000
-Message-ID: <829E1DFECFCA904FBE9BB9228564C2B3016B7575A1@ex2010mbx1.tu-dortmund.de>
-Accept-Language: de-DE, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [129.217.131.107]
-x-pmwin-version: 3.1.3.0, Antivirus-Engine: 3.64.3, Antivirus-Data: 5.32
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.213.49 listed in dnsbl.sorbs.net]
+Received: from mail-vk0-f49.google.com (mail-vk0-f49.google.com
+	[209.85.213.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 15D1CE0097C
+	for <yocto@yoctoproject.org>; Thu, 20 Oct 2016 04:40:48 -0700 (PDT)
+Received: by mail-vk0-f49.google.com with SMTP id q126so67654585vkd.2
+	for <yocto@yoctoproject.org>; Thu, 20 Oct 2016 04:40:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=f5nIBG4DZTgHJ6ylRowbepIlc9eKMY/14O50lNBy5uA=;
+	b=uHrqDE0PEN3oGoxo7Te/KGtEELhYIJN2vWXLVXlK15vlLe8KxxBaqBS/lubKOr75MM
+	h2fUSBzber9yLYTJmyKPjJIG9Ys7Tma0QEnOvApWxxsPpV8LbyaiQ2yM/bk+8sjDpAKb
+	GFsj1TT0LJjA+Wpy/+rtD0huiaFCBT1/q4qLLQGpJ0RqBRcJqZQSXRHXI7AxWjmJh2Z4
+	VQaNlKpmEtVcNJelT/Arf4xbi8q0t0zmOqZ8rHRqog6bX/gYLzWlWlq5agZL7SzKhxaf
+	4/VYYo/jYl3GPmVY80gtRMUPH6rgS1WZh0oF6R6oznNKSs6rrgMQ8mxOAvn4tfi8lMu5
+	h08A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=f5nIBG4DZTgHJ6ylRowbepIlc9eKMY/14O50lNBy5uA=;
+	b=F9f7sOFb9qCgxTWqPZ+dSka7f9IJoWvyEiW5iuxThxFnrmjURBP9HFi+WtdUIDkA1d
+	Ulug0Dxn9BYqkjVofCrgNSko7fnlZyhp5K783Rh08iXVX+nm7jIwu/tERBTB151THa4U
+	Dg1a7XVv0S4OQz/KKY18dR5tY6Ce/x60HDCv+hdJLDQyHbjwP97XUiIXTbsATx83Q+6t
+	hXnD9G0jlOj9jhkmL7Gl9tAVCJOsMVERM2zottv5a5A29aQGk3oM5jwUkEIuAy0OJVIR
+	iMdDUM1z9XR6DbneJZ5hQxT5ZlPO5gHAIs5mDltdw0aFaKT7wZWVwjTEUlnLinb3HunP
+	fi4w==
+X-Gm-Message-State: AA6/9RnzjnkvrI6dZX1NbBul4/Yg8muQ0QOHtSanpIqOX/CWl9UQCozPdYQj7KN209Trr5BQjbxbfFP2AKWvFg==
+X-Received: by 10.31.194.20 with SMTP id s20mr197936vkf.101.1476963647483;
+	Thu, 20 Oct 2016 04:40:47 -0700 (PDT)
 MIME-Version: 1.0
-Subject: meta-odroid status for XU4
+Received: by 10.31.107.203 with HTTP; Thu, 20 Oct 2016 04:40:47 -0700 (PDT)
+In-Reply-To: <CAJTo0LZUvD6MrLLtf4_7uAX9UCutnOAUJeg3aBGubCd4JysTqw@mail.gmail.com>
+References: <CALLyC8TfRL68sWhdn1Z7tmOKxpagFfaW4YnQ9FteEKCX_rdCgg@mail.gmail.com>
+	<3331a156-1af4-14eb-86ef-5afb4d1e8404@t-online.de>
+	<CAJTo0LZUvD6MrLLtf4_7uAX9UCutnOAUJeg3aBGubCd4JysTqw@mail.gmail.com>
+From: Vivek Per <pervivek@gmail.com>
+Date: Thu, 20 Oct 2016 17:10:47 +0530
+Message-ID: <CALLyC8S3vnuxpQpBcPW-SbBtcsKAC+b91Fiw+DnP99x4t7J47g@mail.gmail.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+Cc: Yocto <yocto@yoctoproject.org>
+Subject: Re: libtomcrypt libtomfastmath recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,197 +75,128 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Oct 2016 09:11:11 -0000
-Content-Language: de-DE
-Content-Type: multipart/alternative;
-	boundary="_000_829E1DFECFCA904FBE9BB9228564C2B3016B7575A1ex2010mbx1tud_"
+X-List-Received-Date: Thu, 20 Oct 2016 11:40:51 -0000
+Content-Type: multipart/alternative; boundary=001a114393548df381053f4a656b
 
---_000_829E1DFECFCA904FBE9BB9228564C2B3016B7575A1ex2010mbx1tud_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--001a114393548df381053f4a656b
+Content-Type: text/plain; charset=UTF-8
 
-SGksDQoNCkkgYW0gaW50ZXJlc3RlZCBpbiB0aGUgY3VycmVudCBzdGF0dXMgb2YgbWV0YS1vZHJv
-aWQuIEkgYW0gdGFyZ2V0aW5nIHRoZSBYVTQgcGxhdGZvcm0gYW5kIEkgYW0gaW50ZXJlc3RlZCB3
-aGV0aGVyIGl0IGlzIHN1cHBvc2VkIHRvIHdvcmsgb3V0IG9mIHRoZSBib3ggd2l0aCB0aGUgamV0
-aHJvIGJyYW5jaC4NCkkgbm90aWNlZCB0aGF0IHRoZXJlIGFyZSBpbmNvbXBhdGliaWxpdGllcyBv
-ZiBtZXRhLW9kcm9pZC9tYXN0ZXIgKGZyb20gaHR0cHM6Ly9naXRodWIuY29tL2FrdXN0ZXIvbWV0
-YS1vZHJvaWQpIHdpdGggb3Blbi1lbWJlZGRlZCBqZXRocm8sIGluIHBhcnRpY3VsYXIgY29uY2Vy
-bmluZyB1Ym9vdC1zaWduLmJiY2xhc3MgcmVjaXBlcywgd2hpY2ggaXMgb2J2aW91c2x5IGZpbmUg
-YXMgdGhlcmUgaXMgYSBqZXRocm8gYnJhbmNoIGF2YWlsYWJsZS4NCg0KSG93ZXZlciwgbWV0YS1v
-ZHJvaWQvamV0aHJvIG9uIHRoZSBvdGhlciBoYW5keSBzZWVtcyB0byBiZSBtaXNzaW5nIHNvbWUg
-cGF0Y2hlcyBmb3IgeHU0IChzdGlsbCB1bnRlc3RlZCwgbm8gSFcgYXZhaWxhYmxlIHlldCksIGUu
-Zy4gaHR0cHM6Ly9naXRodWIuY29tL2FrdXN0ZXIvbWV0YS1vZHJvaWQvY29tbWl0Lzg2N2E4NDRh
-ZDJjNzA2MDczMWM5NmFlZWY3NzE2MGFiNjVmNmFhMzMgLg0KDQpDb25zZXF1ZW50bHksIEkgYW0g
-c3RydWdnbGluZyB3aGVuIGl0IGNvbWVzIHRvIHRoZSByZXF1aXJlbWVudHMgZm9yIGEgc3VjY2Vz
-c2Z1bCBYVTQgYnVpbGQgYW5kIGRlcGxveW1lbnQ6DQoNCi0gICAgICAgICAgSXMgbWV0YS1vZHJv
-aWQgc3VwcG9zZWQgdG8gd29yayBvdXQgb2YgdGhlIGJveCBpbiBhIGpldGhybyBzZXR1cD8NCm9y
-DQoNCi0gICAgICAgICAgSXMgaXQgc3VwcG9zZWQgdG8gaGF2ZSBpc3N1ZXMgdGhhdCBzaG91bGQg
-YmUgZWFzaWx5IHNvbHZlZCAoZS5nLiB0aHJvdWdoIGJhY2twb3J0aW5nIHNpbmdsZSBwYXRjaGVz
-KT8NCm9yDQoNCi0gICAgICAgICAgRG8gSSBjdXJyZW50bHkgbmVlZCB0aGUgbWFzdGVyIGJyYW5j
-aCAoZm9yIGFsbCBteSBsYXllcnMsIGluY2x1ZGluZyBzb21lIGN1c3RvbSBsYXllcnMsIGhlbmNl
-IHN1Ym9wdGltYWwgYnV0IHBvc3NpYmxlKSBpbiBvcmRlciBvIGZ1bGx5IHN1cHBvcnQgWFU0Pw0K
-DQpIZWxwIGlzIHZlcnkgbXVjaCBhcHByZWNpYXRlZCENCg0KQ2hlZXJzLA0KU2ViYXN0aWFuDQoN
-CldpY2h0aWdlciBIaW53ZWlzOiBEaWUgSW5mb3JtYXRpb24gaW4gZGllc2VyIEUtTWFpbCBpc3Qg
-dmVydHJhdWxpY2guIFNpZSBpc3QgYXVzc2NobGllw59saWNoIGbDvHIgZGVuIEFkcmVzc2F0ZW4g
-YmVzdGltbXQuIFNvbGx0ZW4gU2llIG5pY2h0IGRlciBmw7xyIGRpZXNlIEUtTWFpbCBiZXN0aW1t
-dGUgQWRyZXNzYXQgc2VpbiwgdW50ZXJyaWNodGVuIFNpZSBiaXR0ZSBkZW4gQWJzZW5kZXIgdW5k
-IHZlcm5pY2h0ZW4gU2llIGRpZXNlIE1haWwuIFZpZWxlbiBEYW5rLg0KVW5iZXNjaGFkZXQgZGVy
-IEtvcnJlc3BvbmRlbnogcGVyIEUtTWFpbCwgc2luZCB1bnNlcmUgRXJrbMOkcnVuZ2VuIGF1c3Nj
-aGxpZcOfbGljaCBmaW5hbCByZWNodHN2ZXJiaW5kbGljaCwgd2VubiBzaWUgaW4gaGVya8O2bW1s
-aWNoZXIgU2NocmlmdGZvcm0gKG1pdCBlaWdlbmjDpG5kaWdlciBVbnRlcnNjaHJpZnQpIG9kZXIg
-ZHVyY2ggw5xiZXJtaXR0bHVuZyBlaW5lcyBzb2xjaGVuIFNjaHJpZnRzdMO8Y2tzIHBlciBUZWxl
-ZmF4IGVyZm9sZ2VuLg0KDQpJbXBvcnRhbnQgbm90ZTogVGhlIGluZm9ybWF0aW9uIGluY2x1ZGVk
-IGluIHRoaXMgZS1tYWlsIGlzIGNvbmZpZGVudGlhbC4gSXQgaXMgc29sZWx5IGludGVuZGVkIGZv
-ciB0aGUgcmVjaXBpZW50LiBJZiB5b3UgYXJlIG5vdCB0aGUgaW50ZW5kZWQgcmVjaXBpZW50IG9m
-IHRoaXMgZS1tYWlsIHBsZWFzZSBjb250YWN0IHRoZSBzZW5kZXIgYW5kIGRlbGV0ZSB0aGlzIG1l
-c3NhZ2UuIFRoYW5rIHlvdS4gV2l0aG91dCBwcmVqdWRpY2Ugb2YgZS1tYWlsIGNvcnJlc3BvbmRl
-bmNlLCBvdXIgc3RhdGVtZW50cyBhcmUgb25seSBsZWdhbGx5IGJpbmRpbmcgd2hlbiB0aGV5IGFy
-ZSBtYWRlIGluIHRoZSBjb252ZW50aW9uYWwgd3JpdHRlbiBmb3JtICh3aXRoIHBlcnNvbmFsIHNp
-Z25hdHVyZSkgb3Igd2hlbiBzdWNoIGRvY3VtZW50cyBhcmUgc2VudCBieSBmYXguDQo=
+Hi All,
 
---_000_829E1DFECFCA904FBE9BB9228564C2B3016B7575A1ex2010mbx1tud_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+Thank you very much this recipe worked for me.
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-V2luZ2RpbmdzOw0KCXBhbm9zZS0xOjUgMCAwIDAgMCAwIDAgMCAwIDA7fQ0KQGZvbnQtZmFjZQ0K
-CXtmb250LWZhbWlseToiQ2FtYnJpYSBNYXRoIjsNCglwYW5vc2UtMToyIDQgNSAzIDUgNCA2IDMg
-MiA0O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1
-IDUgMiAyIDIgNCAzIDIgNDt9DQovKiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3JtYWws
-IGxpLk1zb05vcm1hbCwgZGl2Lk1zb05vcm1hbA0KCXttYXJnaW46MGNtOw0KCW1hcmdpbi1ib3R0
-b206LjAwMDFwdDsNCglmb250LXNpemU6MTEuMHB0Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixz
-YW5zLXNlcmlmOw0KCW1zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTO30NCmE6bGluaywgc3Bhbi5N
-c29IeXBlcmxpbmsNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOiMwNTYzQzE7DQoJ
-dGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQphOnZpc2l0ZWQsIHNwYW4uTXNvSHlwZXJsaW5r
-Rm9sbG93ZWQNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOiM5NTRGNzI7DQoJdGV4
-dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQpwLk1zb0xpc3RQYXJhZ3JhcGgsIGxpLk1zb0xpc3RQ
-YXJhZ3JhcGgsIGRpdi5Nc29MaXN0UGFyYWdyYXBoDQoJe21zby1zdHlsZS1wcmlvcml0eTozNDsN
-CgltYXJnaW4tdG9wOjBjbTsNCgltYXJnaW4tcmlnaHQ6MGNtOw0KCW1hcmdpbi1ib3R0b206MGNt
-Ow0KCW1hcmdpbi1sZWZ0OjM2LjBwdDsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJZm9udC1z
-aXplOjExLjBwdDsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjsNCgltc28tZmFy
-ZWFzdC1sYW5ndWFnZTpFTi1VUzt9DQpzcGFuLkUtTWFpbEZvcm1hdHZvcmxhZ2UxNw0KCXttc28t
-c3R5bGUtdHlwZTpwZXJzb25hbC1jb21wb3NlOw0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5z
-LXNlcmlmOw0KCWNvbG9yOndpbmRvd3RleHQ7fQ0KLk1zb0NocERlZmF1bHQNCgl7bXNvLXN0eWxl
-LXR5cGU6ZXhwb3J0LW9ubHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7DQoJ
-bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVM7fQ0KQHBhZ2UgV29yZFNlY3Rpb24xDQoJe3NpemU6
-NjEyLjBwdCA3OTIuMHB0Ow0KCW1hcmdpbjo3MC44NXB0IDcwLjg1cHQgMi4wY20gNzAuODVwdDt9
-DQpkaXYuV29yZFNlY3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rpb24xO30NCi8qIExpc3QgRGVmaW5p
-dGlvbnMgKi8NCkBsaXN0IGwwDQoJe21zby1saXN0LWlkOjE5NjIxNTA0OTc7DQoJbXNvLWxpc3Qt
-dHlwZTpoeWJyaWQ7DQoJbXNvLWxpc3QtdGVtcGxhdGUtaWRzOjU3OTM0NzU4OCA5MjIyMjkxNTYg
-Njc1Njc2MTkgNjc1Njc2MjEgNjc1Njc2MTcgNjc1Njc2MTkgNjc1Njc2MjEgNjc1Njc2MTcgNjc1
-Njc2MTkgNjc1Njc2MjE7fQ0KQGxpc3QgbDA6bGV2ZWwxDQoJe21zby1sZXZlbC1zdGFydC1hdDoy
-Ow0KCW1zby1sZXZlbC1udW1iZXItZm9ybWF0OmJ1bGxldDsNCgltc28tbGV2ZWwtdGV4dDotOw0K
-CW1zby1sZXZlbC10YWItc3RvcDpub25lOw0KCW1zby1sZXZlbC1udW1iZXItcG9zaXRpb246bGVm
-dDsNCgl0ZXh0LWluZGVudDotMTguMHB0Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNl
-cmlmOw0KCW1zby1mYXJlYXN0LWZvbnQtZmFtaWx5OkNhbGlicmk7DQoJbXNvLWJpZGktZm9udC1m
-YW1pbHk6IlRpbWVzIE5ldyBSb21hbiI7fQ0KQGxpc3QgbDA6bGV2ZWwyDQoJe21zby1sZXZlbC1u
-dW1iZXItZm9ybWF0OmJ1bGxldDsNCgltc28tbGV2ZWwtdGV4dDpvOw0KCW1zby1sZXZlbC10YWIt
-c3RvcDpub25lOw0KCW1zby1sZXZlbC1udW1iZXItcG9zaXRpb246bGVmdDsNCgl0ZXh0LWluZGVu
-dDotMTguMHB0Ow0KCWZvbnQtZmFtaWx5OiJDb3VyaWVyIE5ldyI7fQ0KQGxpc3QgbDA6bGV2ZWwz
-DQoJe21zby1sZXZlbC1udW1iZXItZm9ybWF0OmJ1bGxldDsNCgltc28tbGV2ZWwtdGV4dDpcRjBB
-NzsNCgltc28tbGV2ZWwtdGFiLXN0b3A6bm9uZTsNCgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9u
-OmxlZnQ7DQoJdGV4dC1pbmRlbnQ6LTE4LjBwdDsNCglmb250LWZhbWlseTpXaW5nZGluZ3M7fQ0K
-QGxpc3QgbDA6bGV2ZWw0DQoJe21zby1sZXZlbC1udW1iZXItZm9ybWF0OmJ1bGxldDsNCgltc28t
-bGV2ZWwtdGV4dDpcRjBCNzsNCgltc28tbGV2ZWwtdGFiLXN0b3A6bm9uZTsNCgltc28tbGV2ZWwt
-bnVtYmVyLXBvc2l0aW9uOmxlZnQ7DQoJdGV4dC1pbmRlbnQ6LTE4LjBwdDsNCglmb250LWZhbWls
-eTpTeW1ib2w7fQ0KQGxpc3QgbDA6bGV2ZWw1DQoJe21zby1sZXZlbC1udW1iZXItZm9ybWF0OmJ1
-bGxldDsNCgltc28tbGV2ZWwtdGV4dDpvOw0KCW1zby1sZXZlbC10YWItc3RvcDpub25lOw0KCW1z
-by1sZXZlbC1udW1iZXItcG9zaXRpb246bGVmdDsNCgl0ZXh0LWluZGVudDotMTguMHB0Ow0KCWZv
-bnQtZmFtaWx5OiJDb3VyaWVyIE5ldyI7fQ0KQGxpc3QgbDA6bGV2ZWw2DQoJe21zby1sZXZlbC1u
-dW1iZXItZm9ybWF0OmJ1bGxldDsNCgltc28tbGV2ZWwtdGV4dDpcRjBBNzsNCgltc28tbGV2ZWwt
-dGFiLXN0b3A6bm9uZTsNCgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9uOmxlZnQ7DQoJdGV4dC1p
-bmRlbnQ6LTE4LjBwdDsNCglmb250LWZhbWlseTpXaW5nZGluZ3M7fQ0KQGxpc3QgbDA6bGV2ZWw3
-DQoJe21zby1sZXZlbC1udW1iZXItZm9ybWF0OmJ1bGxldDsNCgltc28tbGV2ZWwtdGV4dDpcRjBC
-NzsNCgltc28tbGV2ZWwtdGFiLXN0b3A6bm9uZTsNCgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9u
-OmxlZnQ7DQoJdGV4dC1pbmRlbnQ6LTE4LjBwdDsNCglmb250LWZhbWlseTpTeW1ib2w7fQ0KQGxp
-c3QgbDA6bGV2ZWw4DQoJe21zby1sZXZlbC1udW1iZXItZm9ybWF0OmJ1bGxldDsNCgltc28tbGV2
-ZWwtdGV4dDpvOw0KCW1zby1sZXZlbC10YWItc3RvcDpub25lOw0KCW1zby1sZXZlbC1udW1iZXIt
-cG9zaXRpb246bGVmdDsNCgl0ZXh0LWluZGVudDotMTguMHB0Ow0KCWZvbnQtZmFtaWx5OiJDb3Vy
-aWVyIE5ldyI7fQ0KQGxpc3QgbDA6bGV2ZWw5DQoJe21zby1sZXZlbC1udW1iZXItZm9ybWF0OmJ1
-bGxldDsNCgltc28tbGV2ZWwtdGV4dDpcRjBBNzsNCgltc28tbGV2ZWwtdGFiLXN0b3A6bm9uZTsN
-Cgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9uOmxlZnQ7DQoJdGV4dC1pbmRlbnQ6LTE4LjBwdDsN
-Cglmb250LWZhbWlseTpXaW5nZGluZ3M7fQ0Kb2wNCgl7bWFyZ2luLWJvdHRvbTowY207fQ0KdWwN
-Cgl7bWFyZ2luLWJvdHRvbTowY207fQ0KLS0+PC9zdHlsZT48IS0tW2lmIGd0ZSBtc28gOV0+PHht
-bD4NCjxvOnNoYXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRtYXg9IjEwMjYiIC8+DQo8L3ht
-bD48IVtlbmRpZl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlbGF5b3V0IHY6
-ZXh0PSJlZGl0Ij4NCjxvOmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRhPSIxIiAvPg0KPC9vOnNoYXBl
-bGF5b3V0PjwveG1sPjwhW2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJvZHkgbGFuZz0iREUiIGxpbms9
-IiMwNTYzQzEiIHZsaW5rPSIjOTU0RjcyIj4NCjxkaXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8
-cCBjbGFzcz0iTXNvTm9ybWFsIj5IaSw8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
-YWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SSBhbSBpbnRl
-cmVzdGVkIGluIHRoZSBjdXJyZW50IHN0YXR1cyBvZiBtZXRhLW9kcm9pZC4gSSBhbSB0YXJnZXRp
-bmcgdGhlIFhVNCBwbGF0Zm9ybSBhbmQgSSBhbSBpbnRlcmVzdGVkIHdoZXRoZXIgaXQgaXMgc3Vw
-cG9zZWQgdG8gd29yayBvdXQgb2YgdGhlIGJveCB3aXRoIHRoZSBqZXRocm8gYnJhbmNoLg0KPG86
-cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5JIG5vdGljZWQgdGhhdCB0aGVyZSBh
-cmUgaW5jb21wYXRpYmlsaXRpZXMgb2YgbWV0YS1vZHJvaWQvbWFzdGVyIChmcm9tDQo8YSBocmVm
-PSJodHRwczovL2dpdGh1Yi5jb20vYWt1c3Rlci9tZXRhLW9kcm9pZCI+aHR0cHM6Ly9naXRodWIu
-Y29tL2FrdXN0ZXIvbWV0YS1vZHJvaWQ8L2E+KSB3aXRoIG9wZW4tZW1iZWRkZWQgamV0aHJvLCBp
-biBwYXJ0aWN1bGFyIGNvbmNlcm5pbmcgdWJvb3Qtc2lnbi5iYmNsYXNzIHJlY2lwZXMsIHdoaWNo
-IGlzIG9idmlvdXNseSBmaW5lIGFzIHRoZXJlIGlzIGEgamV0aHJvIGJyYW5jaCBhdmFpbGFibGUu
-DQo8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+
-PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SG93ZXZlciwgbWV0YS1vZHJvaWQvamV0aHJvIG9u
-IHRoZSBvdGhlciBoYW5keSBzZWVtcyB0byBiZSBtaXNzaW5nIHNvbWUgcGF0Y2hlcyBmb3IgeHU0
-IChzdGlsbCB1bnRlc3RlZCwgbm8gSFcgYXZhaWxhYmxlIHlldCksIGUuZy4NCjxhIGhyZWY9Imh0
-dHBzOi8vZ2l0aHViLmNvbS9ha3VzdGVyL21ldGEtb2Ryb2lkL2NvbW1pdC84NjdhODQ0YWQyYzcw
-NjA3MzFjOTZhZWVmNzcxNjBhYjY1ZjZhYTMzIj4NCmh0dHBzOi8vZ2l0aHViLmNvbS9ha3VzdGVy
-L21ldGEtb2Ryb2lkL2NvbW1pdC84NjdhODQ0YWQyYzcwNjA3MzFjOTZhZWVmNzcxNjBhYjY1ZjZh
-YTMzPC9hPiAuPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNw
-OzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkNvbnNlcXVlbnRseSwgSSBhbSBzdHJ1
-Z2dsaW5nIHdoZW4gaXQgY29tZXMgdG8gdGhlIHJlcXVpcmVtZW50cyBmb3IgYSBzdWNjZXNzZnVs
-IFhVNCBidWlsZCBhbmQgZGVwbG95bWVudDo8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29M
-aXN0UGFyYWdyYXBoIiBzdHlsZT0idGV4dC1pbmRlbnQ6LTE4LjBwdDttc28tbGlzdDpsMCBsZXZl
-bDEgbGZvMSI+PCFbaWYgIXN1cHBvcnRMaXN0c10+PHNwYW4gc3R5bGU9Im1zby1saXN0Oklnbm9y
-ZSI+LTxzcGFuIHN0eWxlPSJmb250OjcuMHB0ICZxdW90O1RpbWVzIE5ldyBSb21hbiZxdW90OyI+
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7DQo8
-L3NwYW4+PC9zcGFuPjwhW2VuZGlmXT5JcyBtZXRhLW9kcm9pZCBzdXBwb3NlZCB0byB3b3JrIG91
-dCBvZiB0aGUgYm94IGluIGEgamV0aHJvIHNldHVwPzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCIgc3R5bGU9Im1hcmdpbi1sZWZ0OjE4LjBwdCI+b3I8bzpwPjwvbzpwPjwvcD4N
-CjxwIGNsYXNzPSJNc29MaXN0UGFyYWdyYXBoIiBzdHlsZT0idGV4dC1pbmRlbnQ6LTE4LjBwdDtt
-c28tbGlzdDpsMCBsZXZlbDEgbGZvMSI+PCFbaWYgIXN1cHBvcnRMaXN0c10+PHNwYW4gc3R5bGU9
-Im1zby1saXN0Oklnbm9yZSI+LTxzcGFuIHN0eWxlPSJmb250OjcuMHB0ICZxdW90O1RpbWVzIE5l
-dyBSb21hbiZxdW90OyI+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7DQo8L3NwYW4+PC9zcGFuPjwhW2VuZGlmXT5JcyBpdCBzdXBwb3NlZCB0byBo
-YXZlIGlzc3VlcyB0aGF0IHNob3VsZCBiZSBlYXNpbHkgc29sdmVkIChlLmcuIHRocm91Z2ggYmFj
-a3BvcnRpbmcgc2luZ2xlIHBhdGNoZXMpPzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
-cm1hbCIgc3R5bGU9Im1hcmdpbi1sZWZ0OjE4LjBwdCI+b3I8bzpwPjwvbzpwPjwvcD4NCjxwIGNs
-YXNzPSJNc29MaXN0UGFyYWdyYXBoIiBzdHlsZT0idGV4dC1pbmRlbnQ6LTE4LjBwdDttc28tbGlz
-dDpsMCBsZXZlbDEgbGZvMSI+PCFbaWYgIXN1cHBvcnRMaXN0c10+PHNwYW4gc3R5bGU9Im1zby1s
-aXN0Oklnbm9yZSI+LTxzcGFuIHN0eWxlPSJmb250OjcuMHB0ICZxdW90O1RpbWVzIE5ldyBSb21h
-biZxdW90OyI+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7DQo8L3NwYW4+PC9zcGFuPjwhW2VuZGlmXT5EbyBJIGN1cnJlbnRseSBuZWVkIHRoZSBt
-YXN0ZXIgYnJhbmNoIChmb3IgYWxsIG15IGxheWVycywgaW5jbHVkaW5nIHNvbWUgY3VzdG9tIGxh
-eWVycywgaGVuY2Ugc3Vib3B0aW1hbCBidXQgcG9zc2libGUpIGluIG9yZGVyIG8gZnVsbHkgc3Vw
-cG9ydCBYVTQ/PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNw
-OzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkhlbHAgaXMgdmVyeSBtdWNoIGFwcHJl
-Y2lhdGVkITxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8
-L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5DaGVlcnMsPG86cD48L286cD48L3A+DQo8
-cCBjbGFzcz0iTXNvTm9ybWFsIj5TZWJhc3RpYW48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJN
-c29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8Zm9udCBmYWNlPSJBcmlh
-bCI+PGZvbnQgc2l6ZT0iMiI+PGVtPldpY2h0aWdlciBIaW53ZWlzOiBEaWUgSW5mb3JtYXRpb24g
-aW4gZGllc2VyIEUtTWFpbCBpc3QgdmVydHJhdWxpY2guIFNpZSBpc3QgYXVzc2NobGllw59saWNo
-IGbDvHIgZGVuIEFkcmVzc2F0ZW4gYmVzdGltbXQuIFNvbGx0ZW4gU2llIG5pY2h0IGRlciBmw7xy
-IGRpZXNlIEUtTWFpbCBiZXN0aW1tdGUgQWRyZXNzYXQgc2VpbiwgdW50ZXJyaWNodGVuIFNpZSBi
-aXR0ZSBkZW4gQWJzZW5kZXINCiB1bmQgdmVybmljaHRlbiBTaWUgZGllc2UgTWFpbC4gVmllbGVu
-IERhbmsuIDxicj4NClVuYmVzY2hhZGV0IGRlciBLb3JyZXNwb25kZW56IHBlciBFLU1haWwsIHNp
-bmQgdW5zZXJlIEVya2zDpHJ1bmdlbiBhdXNzY2hsaWXDn2xpY2ggZmluYWwgcmVjaHRzdmVyYmlu
-ZGxpY2gsIHdlbm4gc2llIGluIGhlcmvDtm1tbGljaGVyIFNjaHJpZnRmb3JtIChtaXQgZWlnZW5o
-w6RuZGlnZXIgVW50ZXJzY2hyaWZ0KSBvZGVyIGR1cmNoIMOcYmVybWl0dGx1bmcgZWluZXMgc29s
-Y2hlbiBTY2hyaWZ0c3TDvGNrcyBwZXIgVGVsZWZheCBlcmZvbGdlbi4NCjxicj4NCjxicj4NCklt
-cG9ydGFudCBub3RlOiBUaGUgaW5mb3JtYXRpb24gaW5jbHVkZWQgaW4gdGhpcyBlLW1haWwgaXMg
-Y29uZmlkZW50aWFsLiBJdCBpcyBzb2xlbHkgaW50ZW5kZWQgZm9yIHRoZSByZWNpcGllbnQuIElm
-IHlvdSBhcmUgbm90IHRoZSBpbnRlbmRlZCByZWNpcGllbnQgb2YgdGhpcyBlLW1haWwgcGxlYXNl
-IGNvbnRhY3QgdGhlIHNlbmRlciBhbmQgZGVsZXRlIHRoaXMgbWVzc2FnZS4gVGhhbmsgeW91LiBX
-aXRob3V0IHByZWp1ZGljZSBvZiBlLW1haWwNCiBjb3JyZXNwb25kZW5jZSwgb3VyIHN0YXRlbWVu
-dHMgYXJlIG9ubHkgbGVnYWxseSBiaW5kaW5nIHdoZW4gdGhleSBhcmUgbWFkZSBpbiB0aGUgY29u
-dmVudGlvbmFsIHdyaXR0ZW4gZm9ybSAod2l0aCBwZXJzb25hbCBzaWduYXR1cmUpIG9yIHdoZW4g
-c3VjaCBkb2N1bWVudHMgYXJlIHNlbnQgYnkgZmF4Lg0KPC9lbT48L2ZvbnQ+PC9mb250Pg0KPC9i
-b2R5Pg0KPC9odG1sPg0K
+Thanks and Regards,
 
---_000_829E1DFECFCA904FBE9BB9228564C2B3016B7575A1ex2010mbx1tud_--
+
+On Thu, Oct 20, 2016 at 3:40 AM, Burton, Ross <ross.burton@intel.com> wrote:
+
+> Please considering posting these recipe into meta-oe or similar, tomcrypt
+> etc comes up every few months.  And posting a recipe to the list implies
+> you want review, right? :)
+>
+> On 19 October 2016 at 10:12, Markus Volk <f_l_k@t-online.de> wrote:
+>
+>> DESCRIPTION = "tomcrypt"
+>> HOMEPAGE = " http://www.libtom.net" <http://www.libtom.net>
+>> LICENSE = "DWTFYW"
+>>
+> Second worst license known to man.  :(
+>
+>> LIC_FILES_CHKSUM = "file://${S}/LICENSE;md5=71baa
+>> cc459522324ef3e2b9e052e8180"
+>>
+> These URLs are relative to ${S} so just file://LICENSE works.
+>
+>> SRC_URI = "git://github.com/libtom/libtomcrypt.git;branch=develop \
+>> "
+>>
+>> SRCREV = "${AUTOREV}"
+>>
+> In general it's recommended to use a fixed SHA and then override SRVREV if
+> you need to for testing/CI/whatever.
+>
+>> PV = "${SRCPV}"
+>> PR = "1"
+>>
+> No need for PR in general.
+>
+>> S = "${WORKDIR}/git"
+>>
+>> inherit autotools-brokensep
+>>
+> Boo.  Is upstream fixable or is it beyond help?
+>
+>> SRC_URI[md5sum] = "d2f152e4dc83ee4cdb1b4f1a4866fe7f"
+>> SRC_URI[sha256sum] = "d0ff89397f9a5fd1d13b1cbc419d5
+>> d426e14473135515d72bfcb58e5babf5032"
+>>
+>> No need for SRC_URI if you're using git fetcher.
+>
+> Ross
+>
+
+--001a114393548df381053f4a656b
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi All,<div><br></div><div>Thank you very much this recipe=
+ worked for me.</div><div><br></div><div>Thanks and Regards,</div><div><br>=
+</div></div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On Th=
+u, Oct 20, 2016 at 3:40 AM, Burton, Ross <span dir=3D"ltr">&lt;<a href=3D"m=
+ailto:ross.burton@intel.com" target=3D"_blank">ross.burton@intel.com</a>&gt=
+;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 =
+.8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr"><div cla=
+ss=3D"gmail_extra">Please considering posting these recipe into meta-oe or =
+similar, tomcrypt etc comes up every few months.=C2=A0 And posting a recipe=
+ to the list implies you want review, right? :)</div><div class=3D"gmail_ex=
+tra"><br><div class=3D"gmail_quote"><span class=3D"">On 19 October 2016 at =
+10:12, Markus Volk <span dir=3D"ltr">&lt;<a href=3D"mailto:f_l_k@t-online.d=
+e" target=3D"_blank">f_l_k@t-online.de</a>&gt;</span> wrote:<br><blockquote=
+ class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc soli=
+d;padding-left:1ex"><p>DESCRIPTION =3D &quot;tomcrypt&quot;<br>
+      HOMEPAGE =3D <a class=3D"m_-4744676446017759702m_2560613953701911755m=
+oz-txt-link-rfc2396E" href=3D"http://www.libtom.net" target=3D"_blank">&quo=
+t; http://www.libtom.net&quot;</a><br>
+      LICENSE =3D &quot;DWTFYW&quot;<br></p></blockquote></span><div>Second=
+ worst license known to man. =C2=A0:(<br></div><span class=3D""><blockquote=
+ class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc soli=
+d;padding-left:1ex"><p>
+      LIC_FILES_CHKSUM =3D
+      <a class=3D"m_-4744676446017759702m_2560613953701911755moz-txt-link-r=
+fc2396E">&quot;file://${S}/LICENSE;md5=3D71baa<wbr>cc459522324ef3e2b9e052e8=
+180&quot;</a></p></blockquote></span><div>These URLs are relative to ${S} s=
+o just file://LICENSE works.=C2=A0</div><span class=3D""><blockquote class=
+=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padd=
+ing-left:1ex"><p>SRC_URI =3D &quot;git://<a href=3D"http://github.com/libto=
+m/libtomcrypt.git;branch=3Ddevelop" target=3D"_blank">github.com/libtom/lib=
+to<wbr>mcrypt.git;branch=3Ddevelop</a>
+      \<br>
+      &quot;<br>
+      <br>
+      SRCREV =3D &quot;${AUTOREV}&quot;<br></p></blockquote></span><div>In =
+general it&#39;s recommended to use a fixed SHA and then override SRVREV if=
+ you need to for testing/CI/whatever.</div><span class=3D""><blockquote cla=
+ss=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;pa=
+dding-left:1ex"><p>
+      PV =3D &quot;${SRCPV}&quot;<br>
+      PR =3D &quot;1&quot;</p></blockquote></span><div>No need for PR in ge=
+neral.=C2=A0</div><span class=3D""><blockquote class=3D"gmail_quote" style=
+=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><p><span=
+>S =3D &quot;${WORKDIR}/git&quot;<br>
+      <br></span>
+      inherit autotools-brokensep<br></p></blockquote></span><div>Boo.=C2=
+=A0 Is upstream fixable or is it beyond help?=C2=A0</div><span class=3D""><=
+blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px=
+ #ccc solid;padding-left:1ex"><p>
+      SRC_URI[md5sum] =3D &quot;d2f152e4dc83ee4cdb1b4f1a4866f<wbr>e7f&quot;=
+<br>
+      SRC_URI[sha256sum] =3D
+      &quot;d0ff89397f9a5fd1d13b1cbc419d5<wbr>d426e14473135515d72bfcb58e5ba=
+b<wbr>f5032&quot;</p>
+    <p></p></blockquote></span></div>No need for SRC_URI if you&#39;re usin=
+g git fetcher.</div><span class=3D"HOEnZb"><font color=3D"#888888"><div cla=
+ss=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Ross</div></font></=
+span></div>
+</blockquote></div><br></div>
+
+--001a114393548df381053f4a656b--
