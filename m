@@ -1,17 +1,20 @@
-Return-Path: <dinhn@cisco.com>
+Return-Path: <davis.roman84@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D3837E00BCE; Thu, 20 Oct 2016 11:41:04 -0700 (PDT)
+	id 94971E00D6A; Thu, 20 Oct 2016 12:04:11 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-14.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE, RCVD_IN_DNSWL_HI,
-	USER_IN_DEF_DKIM_WL autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [173.37.86.78 listed in list.dnswl.org]
-	* -7.5 USER_IN_DEF_DKIM_WL From: address is in the default DKIM
-	white-list
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE, 
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (davis.roman84[at]gmail.com)
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.214.66 listed in dnsbl.sorbs.net]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.214.66 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -20,55 +23,46 @@ X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from rcdn-iport-7.cisco.com (rcdn-iport-7.cisco.com [173.37.86.78])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 193CBE00AAB
-	for <yocto@yoctoproject.org>; Thu, 20 Oct 2016 11:41:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-	d=cisco.com; i=@cisco.com; l=12252; q=dns/txt;
-	s=iport; t=1476988863; x=1478198463;
-	h=from:to:cc:subject:date:message-id:mime-version;
-	bh=PaBM1HZwCf1rdJk+HkufAWu5ynUShQB2oyvVQQxJC1Q=;
-	b=iVByrtcimirU4twnYNcolZ7QitH+lQtIFWS+/DbaXnMRYEg+YhOaG5JK
-	6lKU/wIZSu3TsXl5S/M2A6TZQBoYGvJi1eSO3RZPefjZneCadtdLrd64j
-	nSYw6SL49GgMw/36gRUVsnfq/0jpbfpOO/Zp9gGjYODbuQraZDV3GE8dA w=;
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: =?us-ascii?q?A0DJAQB9DglY/5RdJa1cGgEBAQECAQEBA?=
-	=?us-ascii?q?QgBAQEBgwg2AQEBAQEdV30HjS2mJIMGgg+CCB+GAhyBYT8UAQIBAQEBAQEBYh0?=
-	=?us-ascii?q?LhGkjKAEtEgFKAgQwJwQOiFe2YIVPAYcqAQEBAQEBAQEBAQEBAQEBAQEBAQEBH?=
-	=?us-ascii?q?IY9gX0IhAwBg0iCRiyCLwWIOYdIig0BhimJY4FuhGmJJEmQNQEeNliDFoFicgG?=
-	=?us-ascii?q?IGIEAAQEB?=
-X-IronPort-AV: E=Sophos;i="5.31,372,1473120000"; 
-	d="scan'208,217";a="160189672"
-Received: from rcdn-core-12.cisco.com ([173.37.93.148])
-	by rcdn-iport-7.cisco.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	20 Oct 2016 18:41:01 +0000
-Received: from XCH-RTP-017.cisco.com (xch-rtp-017.cisco.com [64.101.220.157])
-	by rcdn-core-12.cisco.com (8.14.5/8.14.5) with ESMTP id
-	u9KIf1og010696
-	(version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=FAIL);
-	Thu, 20 Oct 2016 18:41:01 GMT
-Received: from xch-rtp-002.cisco.com (64.101.220.142) by XCH-RTP-017.cisco.com
-	(64.101.220.157) with Microsoft SMTP Server (TLS) id 15.0.1210.3;
-	Thu, 20 Oct 2016 14:41:00 -0400
-Received: from xch-rtp-002.cisco.com ([64.101.220.142]) by
-	XCH-RTP-002.cisco.com ([64.101.220.142]) with mapi id 15.00.1210.000;
-	Thu, 20 Oct 2016 14:41:00 -0400
-From: "Dinh Nguyen (dinhn)" <dinhn@cisco.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: ppc-fixplt.patch - ERROR: Function failed patch_do_path()
-Thread-Index: AQHSKwGADWuUpN1GVEa/ds+KUu9OWw==
-Date: Thu, 20 Oct 2016 18:41:00 +0000
-Message-ID: <C69CC27A-49C3-4FBF-8584-D78C113DB666@cisco.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Microsoft-MacOutlook/f.15.1.160411
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.41.56.30]
+Received: from mail-it0-f66.google.com (mail-it0-f66.google.com
+	[209.85.214.66])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DB1FEE00BCE
+	for <yocto@yoctoproject.org>; Thu, 20 Oct 2016 12:04:09 -0700 (PDT)
+Received: by mail-it0-f66.google.com with SMTP id k64so7530029itb.0
+	for <yocto@yoctoproject.org>; Thu, 20 Oct 2016 12:04:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=alV0dhHHI+E5fuUmc6hSmfyb6kVM7o8yXyYH6O0be1M=;
+	b=B0bQlnp2J5Q0Df6QRGScwbt4E9m8pHGoYGMneu5C9Pne//UA4rDWQ8CjzyvU4iCGZV
+	NMJ905LnZSecYLVvj9vvA2tVolR7ks0VZdQqmZ6HbUYMHWtSNzSr8JELX5bI3WcJaNzN
+	szdxA6xvQD9JtCbqlpgZAv0xCxMVFqhbNt9UTHjYLeKj1JqGrYKpGecyyHeCEug7wAac
+	Fq4gSPbSHJ9xA3+SGdwuAITl9Xn0mtEGAyq6j0ZrMBh4ExrPcrC+UmNqOAHUG3jlclKs
+	2gsZenT2gvZ2RlYcHB5NwfnFkugcHuFPobA+yCDbdUN58551Cc7m9g1yRnT3lW2sQzl4
+	fXEQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=alV0dhHHI+E5fuUmc6hSmfyb6kVM7o8yXyYH6O0be1M=;
+	b=Vtw8TxqXBPHJAoWnq0g83/z7a2MFmTo28RgOTqtKEghgc8uLMSIaKl/tJGrLV5veKw
+	qKUAjSulEAbdwVal/Gi5nTyItYf5r+V5p45OH+D7l9durYyfDImNsDeOjp6pYKdp1BXF
+	Qtd89ExT8Iu3RdcRP459LxvFp7SUtQlNWeclKSryZbDNitnjzfAtNf41zcBtKgJNyPHa
+	1Urnvjd2kBLHA6HPErR+qRFwfTfK3xr9B/7SyZqgOgtr+8hdyLpWCnaUNSyN6EYryzAG
+	pSRFnaTwLUWxVdFaXIk4I+u0UYq62ocyfYUEp1gniWMFpJdmAGdccMTbJX/lDKzDCmG9
+	XQuw==
+X-Gm-Message-State: AA6/9RnFMio4XMqTMIJBX2sq2Yq0sjzFf7W3cyixk8j80Nf3ApRm8HWDo+8VRLt43NbV7tNP2mmKcAllOKRTuw==
+X-Received: by 10.36.205.130 with SMTP id l124mr2581923itg.121.1476990248955; 
+	Thu, 20 Oct 2016 12:04:08 -0700 (PDT)
 MIME-Version: 1.0
-Cc: "Srinivas Yedla \(sryedla\)" <sryedla@cisco.com>
-Subject: ppc-fixplt.patch - ERROR: Function failed patch_do_path()
+Received: by 10.64.54.36 with HTTP; Thu, 20 Oct 2016 12:04:08 -0700 (PDT)
+In-Reply-To: <E901E1FD-CF6F-42DD-8DD8-4EBA9279E721@gmail.com>
+References: <CACfi_Z1THW3LYcqZbnsXWCKw3tyRPW00cSXOrsdzTRapixL_BQ@mail.gmail.com>
+	<E901E1FD-CF6F-42DD-8DD8-4EBA9279E721@gmail.com>
+From: Davis Roman <davis.roman84@gmail.com>
+Date: Thu, 20 Oct 2016 15:04:08 -0400
+Message-ID: <CACfi_Z0W-D7fz7f50YipdjBp4Cyr9sWKJK8hcznnqFufau_1VQ@mail.gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: Deciding between yocto kernels and soc vendor kernels
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -80,173 +74,121 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Oct 2016 18:41:04 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_C69CC27A49C34FBF8584D78C113DB666ciscocom_"
+X-List-Received-Date: Thu, 20 Oct 2016 19:04:11 -0000
+Content-Type: multipart/alternative; boundary=94eb2c07ce24203391053f5097fa
 
---_000_C69CC27A49C34FBF8584D78C113DB666ciscocom_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--94eb2c07ce24203391053f5097fa
+Content-Type: text/plain; charset=UTF-8
 
-SGkgWW9jdG8gR3VydXMsDQoNCkkgYW0gdHJ5aW5nIHRvIGJ1aWxkIHRoZSBsdWFqaXRfMi4wLjMu
-YmIgcmVjaXBlIG9uIG91ciBZb2N0by0xLjcgYmFzZS4NCkl0IGZhaWxlZCB0byBwYXRoIHRoZSBw
-cGMtZml4cGx0LnBhdGNoLiBIZXJzIGlzIG15IGJ1aWxkIGNvbmZpZ3VyYXRpb24uDQoNClBsZWFz
-ZSBnaXZlIG1lIGFueSBpZGVhIHdoeSBJIGdvdCBIVU5UICMgZmFpbGVkIHRoYXQgZW5kaW5nIHVw
-IGNhdXNpbmcgcHBjLWZpeHBsdC5wYXRjaCBlcnJvcj8NCg0KQnVpbGQgQ29uZmlndXJhdGlvbjoN
-CkJCX1ZFUlNJT04gICAgICAgID0gIjEuMjQuMCINCkJVSUxEX1NZUyAgICAgICAgID0gIng4Nl82
-NC1saW51eCINCk5BVElWRUxTQlNUUklORyAgID0gIlVidW50dS0xNC4wNCINClRBUkdFVF9TWVMg
-ICAgICAgID0gInBvd2VycGMtcG9reS1saW51eC1nbnVzcGUiDQpNQUNISU5FICAgICAgICAgICA9
-ICJpc3I4MDAtbHhjIg0KRElTVFJPICAgICAgICAgICAgPSAicG9reSINCkRJU1RST19WRVJTSU9O
-ICAgID0gIjEuNy4yIg0KVFVORV9GRUFUVVJFUyAgICAgPSAibTMyIHNwZSBwcGNlNTAwdjIiDQpU
-QVJHRVRfRlBVICAgICAgICA9ICJwcGMtZWZkIg0KbWV0YS1jaXNjby1pb3gtYmFzZQ0KbWV0YS1m
-c2wtcHBjLWRpenp5LTEyLjAuMiA9ICI8dW5rbm93bj46PHVua25vd24+Ig0KbWV0YS1lZmwNCm1l
-dGEtZmlsZXN5c3RlbXMNCm1ldGEteGZjZQ0KbWV0YS1ydWJ5DQptZXRhLXdlYnNlcnZlcg0KbWV0
-YS1zeXN0ZW1kDQptZXRhLXB5dGhvbg0KbWV0YS1wZXJsDQptZXRhLW5ldHdvcmtpbmcNCm1ldGEt
-bXVsdGltZWRpYQ0KbWV0YS1pbml0cmFtZnMNCm1ldGEtZ25vbWUNCm1ldGEtb2UgICAgICAgICAg
-ID0gImRpenp5OjcwYmVlY2IyNzE2YmNhMWI5ZGZiYzdkNmEyNjQyMzNlMWYwNWU4MmIiDQptZXRh
-LWNpc2NvLWlzcjgwMA0KbWV0YS1mc2wtcHBjLWRpenp5LTEyLjAuMg0KbWV0YQ0KbWV0YS15b2N0
-bw0KbWV0YS15b2N0by1ic3AgICAgPSAiPHVua25vd24+Ojx1bmtub3duPiINCg0KTk9URTogUHJl
-cGFyaW5nIHJ1bnF1ZXVlDQpOT1RFOiBFeGVjdXRpbmcgU2V0U2NlbmUgVGFza3MNCk5PVEU6IEV4
-ZWN1dGluZyBSdW5RdWV1ZSBUYXNrcw0KRVJST1I6IENvbW1hbmQgRXJyb3I6IGV4aXQgc3RhdHVz
-OiAxICBPdXRwdXQ6DQpBcHBseWluZyBwYXRjaCBwcGMtZml4cGx0LnBhdGNoDQpwYXRjaGluZyBm
-aWxlIHNyYy9ob3N0L2J1aWxkdm0uYw0KSHVuayAjMSBGQUlMRUQgYXQgMTA3Lg0KMSBvdXQgb2Yg
-MSBodW5rIEZBSUxFRCAtLSByZWplY3RzIGluIGZpbGUgc3JjL2hvc3QvYnVpbGR2bS5jDQpwYXRj
-aGluZyBmaWxlIHNyYy92bV9wcGNzcGUuZGFzYw0KSHVuayAjMSBGQUlMRUQgYXQgMTM5MC4NCkh1
-bmsgIzIgRkFJTEVEIGF0IDE0MDUuDQpIdW5rICMzIEZBSUxFRCBhdCAxNDM3Lg0KSHVuayAjNCBG
-QUlMRUQgYXQgMTQ3MS4NCkh1bmsgIzUgRkFJTEVEIGF0IDE0ODQuDQpIdW5rICM2IEZBSUxFRCBh
-dCAxNTAzLg0KSHVuayAjNyBGQUlMRUQgYXQgMjM5OS4NCjcgb3V0IG9mIDcgaHVua3MgRkFJTEVE
-IC0tIHJlamVjdHMgaW4gZmlsZSBzcmMvdm1fcHBjc3BlLmRhc2MNClBhdGNoIHBwYy1maXhwbHQu
-cGF0Y2ggZG9lcyBub3QgYXBwbHkgKGVuZm9yY2Ugd2l0aCAtZikNCkVSUk9SOiBGdW5jdGlvbiBm
-YWlsZWQ6IHBhdGNoX2RvX3BhdGNoDQpFUlJPUjogTG9nZmlsZSBvZiBmYWlsdXJlIHN0b3JlZCBp
-bjogL21lZGlhL3JhZ2h1cmFtL2RhdGEvZGluaG4vaW94RGV2TGF0ZXN0L2lveHNkay95cF9wcGMv
-dG1wL3dvcmsvcHBjZTUwMHYyLXBva3ktbGludXgtZ251c3BlL2x1YWppdC8yLjAuMy1yMC90ZW1w
-L2xvZy5kb19wYXRjaC4zMjU4Mw0KRVJST1I6IFRhc2sgMSAoL21lZGlhL3JhZ2h1cmFtL2RhdGEv
-ZGluaG4vaW94RGV2TGF0ZXN0L2lveHNkay9zeXMveW9jdG8tMS43L2lzcjgwMC9tZXRhLW9wZW5l
-bWJlZGRlZC9tZXRhLW9lL3JlY2lwZXMtZGV2dG9vbHMvbHVhaml0L2x1YWppdF8yLjAuMy5iYiwg
-ZG9fcGF0Y2gpIGZhaWxlZCB3aXRoIGV4aXQgY29kZSAnMScNCk5PVEU6IFRhc2tzIFN1bW1hcnk6
-IEF0dGVtcHRlZCAzNjkgdGFza3Mgb2Ygd2hpY2ggMzY2IGRpZG4ndCBuZWVkIHRvIGJlIHJlcnVu
-IGFuZCAxIGZhaWxlZC4NCk5vIGN1cnJlbnRseSBydW5uaW5nIHRhc2tzICgzNjkgb2YgMzc5KQ0K
-DQpTdW1tYXJ5OiAxIHRhc2sgZmFpbGVkOg0KICAvbWVkaWEvcmFnaHVyYW0vZGF0YS9kaW5obi9p
-b3hEZXZMYXRlc3QvaW94c2RrL3N5cy95b2N0by0xLjcvaXNyODAwL21ldGEtb3BlbmVtYmVkZGVk
-L21ldGEtb2UvcmVjaXBlcy1kZXZ0b29scy9sdWFqaXQvbHVhaml0XzIuMC4zLmJiLCBkb19wYXRj
-aA0KU3VtbWFyeTogVGhlcmUgd2VyZSAyIEVSUk9SIG1lc3NhZ2VzIHNob3duLCByZXR1cm5pbmcg
-YSBub24temVybyBleGl0IGNvZGUuDQoNCg0K
+Hi Khem,
 
---_000_C69CC27A49C34FBF8584D78C113DB666ciscocom_
-Content-Type: text/html; charset="utf-8"
-Content-ID: <2B0508B689C0884EAFA01D6292843CB8@emea.cisco.com>
-Content-Transfer-Encoding: base64
+That makes sense.
 
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjwvaGVhZD4NCjxib2R5IHN0eWxlPSJ3b3JkLXdy
-YXA6IGJyZWFrLXdvcmQ7IC13ZWJraXQtbmJzcC1tb2RlOiBzcGFjZTsgLXdlYmtpdC1saW5lLWJy
-ZWFrOiBhZnRlci13aGl0ZS1zcGFjZTsgZm9udC1zaXplOiAxNHB4OyBmb250LWZhbWlseTogQ2Fs
-aWJyaSwgc2Fucy1zZXJpZjsiPg0KPGRpdiBzdHlsZT0iY29sb3I6IHJnYigwLCAwLCAwKTsiPkhp
-IFlvY3RvIEd1cnVzLDwvZGl2Pg0KPGRpdiBzdHlsZT0iY29sb3I6IHJnYigwLCAwLCAwKTsiPjxi
-cj4NCjwvZGl2Pg0KPGRpdiBzdHlsZT0iY29sb3I6IHJnYigwLCAwLCAwKTsiPkkgYW0gdHJ5aW5n
-IHRvIGJ1aWxkIHRoZSBsdWFqaXRfMi4wLjMuYmIgcmVjaXBlIG9uIG91ciBZb2N0by0xLjcgYmFz
-ZS4mbmJzcDs8L2Rpdj4NCjxkaXYgc3R5bGU9ImNvbG9yOiByZ2IoMCwgMCwgMCk7Ij5JdCBmYWls
-ZWQgdG8gcGF0aCB0aGUgcHBjLWZpeHBsdC5wYXRjaC4gSGVycyBpcyBteSBidWlsZCBjb25maWd1
-cmF0aW9uLiZuYnNwOzwvZGl2Pg0KPGRpdiBzdHlsZT0iY29sb3I6IHJnYigwLCAwLCAwKTsiPjxi
-cj4NCjwvZGl2Pg0KPGRpdiBzdHlsZT0iY29sb3I6IHJnYigwLCAwLCAwKTsiPlBsZWFzZSBnaXZl
-IG1lIGFueSBpZGVhIHdoeSBJIGdvdCBIVU5UICMgZmFpbGVkIHRoYXQgZW5kaW5nIHVwIGNhdXNp
-bmcgcHBjLWZpeHBsdC5wYXRjaCBlcnJvcj88L2Rpdj4NCjxkaXYgc3R5bGU9ImNvbG9yOiByZ2Io
-MCwgMCwgMCk7Ij48YnI+DQo8L2Rpdj4NCjxkaXY+DQo8ZGl2IHN0eWxlPSJjb2xvcjogcmdiKDAs
-IDAsIDApOyI+QnVpbGQgQ29uZmlndXJhdGlvbjo8L2Rpdj4NCjxkaXYgc3R5bGU9ImNvbG9yOiBy
-Z2IoMCwgMCwgMCk7Ij5CQl9WRVJTSU9OICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOz0gJnF1
-b3Q7MS4yNC4wJnF1b3Q7PC9kaXY+DQo8ZGl2IHN0eWxlPSJjb2xvcjogcmdiKDAsIDAsIDApOyI+
-QlVJTERfU1lTICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyA9ICZxdW90O3g4Nl82NC1saW51
-eCZxdW90OzwvZGl2Pg0KPGRpdiBzdHlsZT0iY29sb3I6IHJnYigwLCAwLCAwKTsiPk5BVElWRUxT
-QlNUUklORyAmbmJzcDsgPSAmcXVvdDtVYnVudHUtMTQuMDQmcXVvdDs8L2Rpdj4NCjxkaXYgc3R5
-bGU9ImNvbG9yOiByZ2IoMCwgMCwgMCk7Ij5UQVJHRVRfU1lTICZuYnNwOyAmbmJzcDsgJm5ic3A7
-ICZuYnNwOz0gJnF1b3Q7cG93ZXJwYy1wb2t5LWxpbnV4LWdudXNwZSZxdW90OzwvZGl2Pg0KPGRp
-diBzdHlsZT0iY29sb3I6IHJnYigwLCAwLCAwKTsiPk1BQ0hJTkUgJm5ic3A7ICZuYnNwOyAmbmJz
-cDsgJm5ic3A7ICZuYnNwOyA9ICZxdW90O2lzcjgwMC1seGMmcXVvdDs8L2Rpdj4NCjxkaXYgc3R5
-bGU9ImNvbG9yOiByZ2IoMCwgMCwgMCk7Ij5ESVNUUk8gJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5i
-c3A7ICZuYnNwOyAmbmJzcDs9ICZxdW90O3Bva3kmcXVvdDs8L2Rpdj4NCjxkaXY+PGZvbnQgY29s
-b3I9IiNmZjAwMDAiPkRJU1RST19WRVJTSU9OICZuYnNwOyAmbmJzcDs9ICZxdW90OzEuNy4yPC9m
-b250PiZxdW90OzwvZGl2Pg0KPGRpdiBzdHlsZT0iY29sb3I6IHJnYigwLCAwLCAwKTsiPlRVTkVf
-RkVBVFVSRVMgJm5ic3A7ICZuYnNwOyA9ICZxdW90O20zMiBzcGUgcHBjZTUwMHYyJnF1b3Q7PC9k
-aXY+DQo8ZGl2IHN0eWxlPSJjb2xvcjogcmdiKDAsIDAsIDApOyI+VEFSR0VUX0ZQVSAmbmJzcDsg
-Jm5ic3A7ICZuYnNwOyAmbmJzcDs9ICZxdW90O3BwYy1lZmQmcXVvdDs8L2Rpdj4NCjxkaXYgc3R5
-bGU9ImNvbG9yOiByZ2IoMCwgMCwgMCk7Ij5tZXRhLWNpc2NvLWlveC1iYXNlJm5ic3A7PC9kaXY+
-DQo8ZGl2IHN0eWxlPSJjb2xvcjogcmdiKDAsIDAsIDApOyI+bWV0YS1mc2wtcHBjLWRpenp5LTEy
-LjAuMiA9ICZxdW90OyZsdDt1bmtub3duJmd0OzombHQ7dW5rbm93biZndDsmcXVvdDs8L2Rpdj4N
-CjxkaXYgc3R5bGU9ImNvbG9yOiByZ2IoMCwgMCwgMCk7Ij5tZXRhLWVmbCAmbmJzcDsgJm5ic3A7
-ICZuYnNwOyAmbmJzcDsgJm5ic3A7PC9kaXY+DQo8ZGl2IHN0eWxlPSJjb2xvcjogcmdiKDAsIDAs
-IDApOyI+bWV0YS1maWxlc3lzdGVtcyAmbmJzcDs8L2Rpdj4NCjxkaXYgc3R5bGU9ImNvbG9yOiBy
-Z2IoMCwgMCwgMCk7Ij5tZXRhLXhmY2UgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7Jm5ic3A7
-PC9kaXY+DQo8ZGl2IHN0eWxlPSJjb2xvcjogcmdiKDAsIDAsIDApOyI+bWV0YS1ydWJ5ICZuYnNw
-OyAmbmJzcDsgJm5ic3A7ICZuYnNwOyZuYnNwOzwvZGl2Pg0KPGRpdiBzdHlsZT0iY29sb3I6IHJn
-YigwLCAwLCAwKTsiPm1ldGEtd2Vic2VydmVyICZuYnNwOyAmbmJzcDs8L2Rpdj4NCjxkaXYgc3R5
-bGU9ImNvbG9yOiByZ2IoMCwgMCwgMCk7Ij5tZXRhLXN5c3RlbWQgJm5ic3A7ICZuYnNwOyAmbmJz
-cDs8L2Rpdj4NCjxkaXYgc3R5bGU9ImNvbG9yOiByZ2IoMCwgMCwgMCk7Ij5tZXRhLXB5dGhvbiAm
-bmJzcDsgJm5ic3A7ICZuYnNwOyZuYnNwOzwvZGl2Pg0KPGRpdiBzdHlsZT0iY29sb3I6IHJnYigw
-LCAwLCAwKTsiPm1ldGEtcGVybCAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsmbmJzcDs8L2Rp
-dj4NCjxkaXYgc3R5bGU9ImNvbG9yOiByZ2IoMCwgMCwgMCk7Ij5tZXRhLW5ldHdvcmtpbmcgJm5i
-c3A7Jm5ic3A7PC9kaXY+DQo8ZGl2IHN0eWxlPSJjb2xvcjogcmdiKDAsIDAsIDApOyI+bWV0YS1t
-dWx0aW1lZGlhICZuYnNwOyZuYnNwOzwvZGl2Pg0KPGRpdiBzdHlsZT0iY29sb3I6IHJnYigwLCAw
-LCAwKTsiPm1ldGEtaW5pdHJhbWZzICZuYnNwOyAmbmJzcDs8L2Rpdj4NCjxkaXYgc3R5bGU9ImNv
-bG9yOiByZ2IoMCwgMCwgMCk7Ij5tZXRhLWdub21lICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNw
-OzwvZGl2Pg0KPGRpdiBzdHlsZT0iY29sb3I6IHJnYigwLCAwLCAwKTsiPm1ldGEtb2UgJm5ic3A7
-ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyA9ICZxdW90O2Rpenp5OjcwYmVlY2IyNzE2YmNh
-MWI5ZGZiYzdkNmEyNjQyMzNlMWYwNWU4MmImcXVvdDs8L2Rpdj4NCjxkaXYgc3R5bGU9ImNvbG9y
-OiByZ2IoMCwgMCwgMCk7Ij5tZXRhLWNpc2NvLWlzcjgwMCZuYnNwOzwvZGl2Pg0KPGRpdiBzdHls
-ZT0iY29sb3I6IHJnYigwLCAwLCAwKTsiPm1ldGEtZnNsLXBwYy1kaXp6eS0xMi4wLjImbmJzcDs8
-L2Rpdj4NCjxkaXYgc3R5bGU9ImNvbG9yOiByZ2IoMCwgMCwgMCk7Ij5tZXRhICZuYnNwOyAmbmJz
-cDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOzwvZGl2Pg0KPGRpdiBzdHlsZT0i
-Y29sb3I6IHJnYigwLCAwLCAwKTsiPm1ldGEteW9jdG8gJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5i
-c3A7PC9kaXY+DQo8ZGl2IHN0eWxlPSJjb2xvcjogcmdiKDAsIDAsIDApOyI+bWV0YS15b2N0by1i
-c3AgJm5ic3A7ICZuYnNwOz0gJnF1b3Q7Jmx0O3Vua25vd24mZ3Q7OiZsdDt1bmtub3duJmd0OyZx
-dW90OzwvZGl2Pg0KPGRpdiBzdHlsZT0iY29sb3I6IHJnYigwLCAwLCAwKTsiPjxicj4NCjwvZGl2
-Pg0KPGRpdiBzdHlsZT0iY29sb3I6IHJnYigwLCAwLCAwKTsiPk5PVEU6IFByZXBhcmluZyBydW5x
-dWV1ZTwvZGl2Pg0KPGRpdiBzdHlsZT0iY29sb3I6IHJnYigwLCAwLCAwKTsiPk5PVEU6IEV4ZWN1
-dGluZyBTZXRTY2VuZSBUYXNrczwvZGl2Pg0KPGRpdiBzdHlsZT0iY29sb3I6IHJnYigwLCAwLCAw
-KTsiPk5PVEU6IEV4ZWN1dGluZyBSdW5RdWV1ZSBUYXNrczwvZGl2Pg0KPGRpdiBzdHlsZT0iY29s
-b3I6IHJnYigwLCAwLCAwKTsiPkVSUk9SOiBDb21tYW5kIEVycm9yOiBleGl0IHN0YXR1czogMSAm
-bmJzcDtPdXRwdXQ6PC9kaXY+DQo8ZGl2IHN0eWxlPSJjb2xvcjogcmdiKDAsIDAsIDApOyI+QXBw
-bHlpbmcgcGF0Y2ggcHBjLWZpeHBsdC5wYXRjaDwvZGl2Pg0KPGRpdj48Zm9udCBjb2xvcj0iI2Zm
-MDAwMCI+cGF0Y2hpbmcgZmlsZSBzcmMvaG9zdC9idWlsZHZtLmM8L2ZvbnQ+PC9kaXY+DQo8ZGl2
-Pjxmb250IGNvbG9yPSIjZmYwMDAwIj5IdW5rICMxIEZBSUxFRCBhdCAxMDcuPC9mb250PjwvZGl2
-Pg0KPGRpdiBzdHlsZT0iY29sb3I6IHJnYigwLCAwLCAwKTsiPjEgb3V0IG9mIDEgaHVuayBGQUlM
-RUQgLS0gcmVqZWN0cyBpbiBmaWxlIHNyYy9ob3N0L2J1aWxkdm0uYzwvZGl2Pg0KPGRpdiBzdHls
-ZT0iY29sb3I6IHJnYigwLCAwLCAwKTsiPnBhdGNoaW5nIGZpbGUgc3JjL3ZtX3BwY3NwZS5kYXNj
-PC9kaXY+DQo8ZGl2IHN0eWxlPSJjb2xvcjogcmdiKDAsIDAsIDApOyI+SHVuayAjMSBGQUlMRUQg
-YXQgMTM5MC48L2Rpdj4NCjxkaXYgc3R5bGU9ImNvbG9yOiByZ2IoMCwgMCwgMCk7Ij5IdW5rICMy
-IEZBSUxFRCBhdCAxNDA1LjwvZGl2Pg0KPGRpdiBzdHlsZT0iY29sb3I6IHJnYigwLCAwLCAwKTsi
-Pkh1bmsgIzMgRkFJTEVEIGF0IDE0MzcuPC9kaXY+DQo8ZGl2IHN0eWxlPSJjb2xvcjogcmdiKDAs
-IDAsIDApOyI+SHVuayAjNCBGQUlMRUQgYXQgMTQ3MS48L2Rpdj4NCjxkaXYgc3R5bGU9ImNvbG9y
-OiByZ2IoMCwgMCwgMCk7Ij5IdW5rICM1IEZBSUxFRCBhdCAxNDg0LjwvZGl2Pg0KPGRpdiBzdHls
-ZT0iY29sb3I6IHJnYigwLCAwLCAwKTsiPkh1bmsgIzYgRkFJTEVEIGF0IDE1MDMuPC9kaXY+DQo8
-ZGl2IHN0eWxlPSJjb2xvcjogcmdiKDAsIDAsIDApOyI+SHVuayAjNyBGQUlMRUQgYXQgMjM5OS48
-L2Rpdj4NCjxkaXY+PGZvbnQgY29sb3I9IiNmZjAwMDAiPjcgb3V0IG9mIDcgaHVua3MgRkFJTEVE
-IC0tIHJlamVjdHMgaW4gZmlsZSBzcmMvdm1fcHBjc3BlLmRhc2M8L2ZvbnQ+PC9kaXY+DQo8ZGl2
-Pjxmb250IGNvbG9yPSIjZmYwMDAwIj5QYXRjaCBwcGMtZml4cGx0LnBhdGNoIGRvZXMgbm90IGFw
-cGx5IChlbmZvcmNlIHdpdGggLWYpPC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBjb2xvcj0iI2Zm
-MDAwMCI+RVJST1I6IEZ1bmN0aW9uIGZhaWxlZDogcGF0Y2hfZG9fcGF0Y2g8L2ZvbnQ+PC9kaXY+
-DQo8ZGl2IHN0eWxlPSJjb2xvcjogcmdiKDAsIDAsIDApOyI+RVJST1I6IExvZ2ZpbGUgb2YgZmFp
-bHVyZSBzdG9yZWQgaW46IC9tZWRpYS9yYWdodXJhbS9kYXRhL2RpbmhuL2lveERldkxhdGVzdC9p
-b3hzZGsveXBfcHBjL3RtcC93b3JrL3BwY2U1MDB2Mi1wb2t5LWxpbnV4LWdudXNwZS9sdWFqaXQv
-Mi4wLjMtcjAvdGVtcC9sb2cuZG9fcGF0Y2guMzI1ODM8L2Rpdj4NCjxkaXYgc3R5bGU9ImNvbG9y
-OiByZ2IoMCwgMCwgMCk7Ij5FUlJPUjogVGFzayAxICgvbWVkaWEvcmFnaHVyYW0vZGF0YS9kaW5o
-bi9pb3hEZXZMYXRlc3QvaW94c2RrL3N5cy95b2N0by0xLjcvaXNyODAwL21ldGEtb3BlbmVtYmVk
-ZGVkL21ldGEtb2UvcmVjaXBlcy1kZXZ0b29scy9sdWFqaXQvbHVhaml0XzIuMC4zLmJiLCBkb19w
-YXRjaCkgZmFpbGVkIHdpdGggZXhpdCBjb2RlICcxJzwvZGl2Pg0KPGRpdiBzdHlsZT0iY29sb3I6
-IHJnYigwLCAwLCAwKTsiPk5PVEU6IFRhc2tzIFN1bW1hcnk6IEF0dGVtcHRlZCAzNjkgdGFza3Mg
-b2Ygd2hpY2ggMzY2IGRpZG4ndCBuZWVkIHRvIGJlIHJlcnVuIGFuZCAxIGZhaWxlZC48L2Rpdj4N
-CjxkaXYgc3R5bGU9ImNvbG9yOiByZ2IoMCwgMCwgMCk7Ij5ObyBjdXJyZW50bHkgcnVubmluZyB0
-YXNrcyAoMzY5IG9mIDM3OSk8L2Rpdj4NCjxkaXYgc3R5bGU9ImNvbG9yOiByZ2IoMCwgMCwgMCk7
-Ij48YnI+DQo8L2Rpdj4NCjxkaXYgc3R5bGU9ImNvbG9yOiByZ2IoMCwgMCwgMCk7Ij5TdW1tYXJ5
-OiAxIHRhc2sgZmFpbGVkOjwvZGl2Pg0KPGRpdiBzdHlsZT0iY29sb3I6IHJnYigwLCAwLCAwKTsi
-PiZuYnNwOyAvbWVkaWEvcmFnaHVyYW0vZGF0YS9kaW5obi9pb3hEZXZMYXRlc3QvaW94c2RrL3N5
-cy95b2N0by0xLjcvaXNyODAwL21ldGEtb3BlbmVtYmVkZGVkL21ldGEtb2UvcmVjaXBlcy1kZXZ0
-b29scy9sdWFqaXQvbHVhaml0XzIuMC4zLmJiLCBkb19wYXRjaDwvZGl2Pg0KPGRpdiBzdHlsZT0i
-Y29sb3I6IHJnYigwLCAwLCAwKTsiPlN1bW1hcnk6IFRoZXJlIHdlcmUgMiBFUlJPUiBtZXNzYWdl
-cyBzaG93biwgcmV0dXJuaW5nIGEgbm9uLXplcm8gZXhpdCBjb2RlLjwvZGl2Pg0KPC9kaXY+DQo8
-ZGl2IHN0eWxlPSJjb2xvcjogcmdiKDAsIDAsIDApOyI+PGJyPg0KPC9kaXY+DQo8ZGl2IHN0eWxl
-PSJjb2xvcjogcmdiKDAsIDAsIDApOyI+DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPC9kaXY+DQo8ZGl2
-IHN0eWxlPSJjb2xvcjogcmdiKDAsIDAsIDApOyI+DQo8ZGl2IGlkPSJNQUNfT1VUTE9PS19TSUdO
-QVRVUkUiPjwvZGl2Pg0KPC9kaXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
+Thank you for replying!
 
---_000_C69CC27A49C34FBF8584D78C113DB666ciscocom_--
+-Davis
+
+On Thu, Oct 20, 2016 at 1:46 PM, Khem Raj <raj.khem@gmail.com> wrote:
+
+>
+> On Oct 20, 2016, at 10:32 AM, Davis Roman <davis.roman84@gmail.com> wrote:
+>
+> Hello Yocto Community,
+>
+> As I understand it, the Yocto project team cherry-picks certain kernel
+> versions from kernel.org to be dedicated as Yocto Project Linux Kernels
+> that have support for the officially supported arm target boards.
+>
+> However, if I'm using a silicon vendor, such as nxp, for a custom i.mx6
+> board then I'll need to stick with nxp's kernel but the problem that I see
+> here is that they may not support that version of kernel for too long.
+>
+> Are there any best practices or advice when it comes to how to avoid
+> getting locked into an evil vendor kernel ?
+>
+>
+> You can try to check if needed support for the given SOC is upstreamed.
+> Sometimes, vendor kernel have additional stuff but the base support is
+> upstream, if you are lucky
+> and dont need the things which are on top of such base port then you can
+> try switching to kernel.org kernel and unshackles yourself.
+>
+> Secondly, you can work with vendor to upstream the needed bits at
+> priority, may be helping out with testing or whatever you can.
+>
+> if vendor kernels are having too much stuff that is essential to support
+> the basic stuff on chip then you are at the vendors behest for support,
+> there may be
+> some OSVs that can help may be or some other consultancies.
+>
+>
+> Thank you,
+>
+> Davis
+>
+>
+>
+>
+>
+>
+>
+>
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
+>
+
+--94eb2c07ce24203391053f5097fa
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi Khem,<div><br></div><div>That makes sense.</div><div><b=
+r></div><div>Thank you for replying!</div><div><br></div><div>-Davis</div><=
+/div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On Thu, Oct =
+20, 2016 at 1:46 PM, Khem Raj <span dir=3D"ltr">&lt;<a href=3D"mailto:raj.k=
+hem@gmail.com" target=3D"_blank">raj.khem@gmail.com</a>&gt;</span> wrote:<b=
+r><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:=
+1px #ccc solid;padding-left:1ex"><div style=3D"word-wrap:break-word"><br><d=
+iv><span class=3D""><blockquote type=3D"cite"><div>On Oct 20, 2016, at 10:3=
+2 AM, Davis Roman &lt;<a href=3D"mailto:davis.roman84@gmail.com" target=3D"=
+_blank">davis.roman84@gmail.com</a>&gt; wrote:</div><br class=3D"m_64392881=
+63440403234Apple-interchange-newline"><div><div dir=3D"ltr">Hello Yocto Com=
+munity,<div><br></div><div>As I understand it, the Yocto project team cherr=
+y-picks certain kernel versions from <a href=3D"http://kernel.org/" target=
+=3D"_blank">kernel.org</a> to be dedicated as Yocto Project Linux Kernels t=
+hat have support for the officially supported arm target boards.</div><div>=
+<br></div><div>However, if I&#39;m using a silicon vendor, such as nxp, for=
+ a custom i.mx6 board then I&#39;ll need to stick with nxp&#39;s kernel but=
+ the problem that I see here is that they may not support that version of k=
+ernel for too long.</div><div><br></div><div>Are there any best practices o=
+r advice when it comes to how to avoid getting locked into an evil vendor k=
+ernel ?</div></div></div></blockquote><div><br></div></span><div>You can tr=
+y to check if needed support for the given SOC is upstreamed. Sometimes, ve=
+ndor kernel have additional stuff but the base support is upstream, if you =
+are lucky</div><div>and dont need the things which are on top of such base =
+port then you can try switching to <a href=3D"http://kernel.org" target=3D"=
+_blank">kernel.org</a> kernel and unshackles yourself.</div><div><br></div>=
+<div>Secondly, you can work with vendor to upstream the needed bits at prio=
+rity, may be helping out with testing or whatever you can.</div><div><br></=
+div><div>if vendor kernels are having too much stuff that is essential to s=
+upport the basic stuff on chip then you are at the vendors behest for suppo=
+rt, there may be</div><div>some OSVs that can help may be or some other con=
+sultancies.=C2=A0</div><br><blockquote type=3D"cite"><div><div dir=3D"ltr">=
+<div><br></div><div>Thank you,</div><div><br></div><div>Davis</div><div><br=
+></div><div><br></div><div><br></div><div><br></div><div><br></div><div><br=
+></div><div><br></div><div><br></div><span class=3D"HOEnZb"><font color=3D"=
+#888888"><div><br></div></font></span></div><span class=3D"HOEnZb"><font co=
+lor=3D"#888888">
+-- <br>______________________________<wbr>_________________<br>yocto mailin=
+g list<br><a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto=
+@yoctoproject.org</a><br><a href=3D"https://lists.yoctoproject.org/listinfo=
+/yocto" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yoct=
+o</a><br></font></span></div></blockquote></div><br></div></blockquote></di=
+v><br></div>
+
+--94eb2c07ce24203391053f5097fa--
