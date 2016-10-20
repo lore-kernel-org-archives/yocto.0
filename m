@@ -1,18 +1,17 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <dinhn@cisco.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 71B15E00944; Thu, 20 Oct 2016 10:46:13 -0700 (PDT)
+	id D3837E00BCE; Thu, 20 Oct 2016 11:41:04 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW, 
-	RCVD_IN_SORBS_SPAM autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.214.49 listed in list.dnswl.org]
+X-Spam-Status: No, score=-14.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE, RCVD_IN_DNSWL_HI,
+	USER_IN_DEF_DKIM_WL autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [173.37.86.78 listed in list.dnswl.org]
+	* -7.5 USER_IN_DEF_DKIM_WL From: address is in the default DKIM
+	white-list
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -21,53 +20,55 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.214.49 listed in dnsbl.sorbs.net]
-Received: from mail-it0-f49.google.com (mail-it0-f49.google.com
-	[209.85.214.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D4E45E00848
-	for <yocto@yoctoproject.org>; Thu, 20 Oct 2016 10:46:11 -0700 (PDT)
-Received: by mail-it0-f49.google.com with SMTP id 4so185688560itv.0
-	for <yocto@yoctoproject.org>; Thu, 20 Oct 2016 10:46:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=subject:mime-version:from:in-reply-to:date:cc:message-id:references
-	:to; bh=sXKku6Gw2ce3bflNLoHZ+UFKEtp1OxWWz5Mobcirw1o=;
-	b=HvuegocHgRZsY/QAswDpShPV2ozxBlNhNwP/EUHb+HNWlVbh69CZ24aJbfNG4716fM
-	B9Z61n5c8DTvba8XHwtCL0K8FTRwJNqlVge4ommKvlHsu+KNYlEkw5layQmmJRWn1eA1
-	/ARinec8kh+53HdqaYu28wmP5YYqKLfS0z8XZemrQwCJmPiBw1g+4raT0w+lKvRF+KMI
-	Gypa0ejNMjHj7BB0HukXsv3vK0b9NZbqHBfXHP9IHFIiq5Uvb0Sm9F+E5yjZD3vlBXV5
-	2dVNWR8iDT2dkohPL4kkm4ms0gjfI9qFIsr0FkuiX8J4L6FBxcP6MBm99/Tuj1UStFci
-	tlYA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:subject:mime-version:from:in-reply-to:date:cc
-	:message-id:references:to;
-	bh=sXKku6Gw2ce3bflNLoHZ+UFKEtp1OxWWz5Mobcirw1o=;
-	b=aeEl3+AkkjflW729mbnx9+IbNy9m2SfImSQSsae+FWeKAwObpK+U/QsnbnEzAFCzAZ
-	jYyKQtSg0Mk+BR9PVL7giBZzfYJw6621g6+dLRz6YgwGzwSXOkdSPVH/W6pntqY5aApl
-	797cHmmMnqzEqbd7vA3lrujvE7niD8QTDUCJgZO+GzaywvA6W9IY/Wr36vrcBjYe3g+T
-	Du9kMvgRy9l2cPdhzFGNkb6IeIEvYitHp8ggZsVCkvGAr0oB9hfiIEhRkbRfphxHi0fI
-	+HxCH/qgfJPl4EL/0rStcNt0Vi7qAf0PCO/VuKXGsidHSw52tv3TlRKd9XY2rYrzAkMO
-	wHFA==
-X-Gm-Message-State: AA6/9RnTUa72O2XzEmm3csmpz52tw2G6MEPW34CkURODlpEiNflNOmfP9gERLGolVtvReA==
-X-Received: by 10.36.80.66 with SMTP id m63mr9951394itb.56.1476985569775;
-	Thu, 20 Oct 2016 10:46:09 -0700 (PDT)
-Received: from [192.168.0.130] (c-76-102-32-192.hsd1.ca.comcast.net.
-	[76.102.32.192])
-	by smtp.gmail.com with ESMTPSA id e12sm508399ioe.14.2016.10.20.10.46.08
-	(version=TLS1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Thu, 20 Oct 2016 10:46:09 -0700 (PDT)
-Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
-X-Pgp-Agent: GPGMail
-From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <CACfi_Z1THW3LYcqZbnsXWCKw3tyRPW00cSXOrsdzTRapixL_BQ@mail.gmail.com>
-Date: Thu, 20 Oct 2016 10:46:02 -0700
-Message-Id: <E901E1FD-CF6F-42DD-8DD8-4EBA9279E721@gmail.com>
-References: <CACfi_Z1THW3LYcqZbnsXWCKw3tyRPW00cSXOrsdzTRapixL_BQ@mail.gmail.com>
-To: Davis Roman <davis.roman84@gmail.com>
-X-Mailer: Apple Mail (2.3124)
-Cc: yocto@yoctoproject.org
-Subject: Re: Deciding between yocto kernels and soc vendor kernels
+Received: from rcdn-iport-7.cisco.com (rcdn-iport-7.cisco.com [173.37.86.78])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 193CBE00AAB
+	for <yocto@yoctoproject.org>; Thu, 20 Oct 2016 11:41:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+	d=cisco.com; i=@cisco.com; l=12252; q=dns/txt;
+	s=iport; t=1476988863; x=1478198463;
+	h=from:to:cc:subject:date:message-id:mime-version;
+	bh=PaBM1HZwCf1rdJk+HkufAWu5ynUShQB2oyvVQQxJC1Q=;
+	b=iVByrtcimirU4twnYNcolZ7QitH+lQtIFWS+/DbaXnMRYEg+YhOaG5JK
+	6lKU/wIZSu3TsXl5S/M2A6TZQBoYGvJi1eSO3RZPefjZneCadtdLrd64j
+	nSYw6SL49GgMw/36gRUVsnfq/0jpbfpOO/Zp9gGjYODbuQraZDV3GE8dA w=;
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A0DJAQB9DglY/5RdJa1cGgEBAQECAQEBA?=
+	=?us-ascii?q?QgBAQEBgwg2AQEBAQEdV30HjS2mJIMGgg+CCB+GAhyBYT8UAQIBAQEBAQEBYh0?=
+	=?us-ascii?q?LhGkjKAEtEgFKAgQwJwQOiFe2YIVPAYcqAQEBAQEBAQEBAQEBAQEBAQEBAQEBH?=
+	=?us-ascii?q?IY9gX0IhAwBg0iCRiyCLwWIOYdIig0BhimJY4FuhGmJJEmQNQEeNliDFoFicgG?=
+	=?us-ascii?q?IGIEAAQEB?=
+X-IronPort-AV: E=Sophos;i="5.31,372,1473120000"; 
+	d="scan'208,217";a="160189672"
+Received: from rcdn-core-12.cisco.com ([173.37.93.148])
+	by rcdn-iport-7.cisco.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	20 Oct 2016 18:41:01 +0000
+Received: from XCH-RTP-017.cisco.com (xch-rtp-017.cisco.com [64.101.220.157])
+	by rcdn-core-12.cisco.com (8.14.5/8.14.5) with ESMTP id
+	u9KIf1og010696
+	(version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=FAIL);
+	Thu, 20 Oct 2016 18:41:01 GMT
+Received: from xch-rtp-002.cisco.com (64.101.220.142) by XCH-RTP-017.cisco.com
+	(64.101.220.157) with Microsoft SMTP Server (TLS) id 15.0.1210.3;
+	Thu, 20 Oct 2016 14:41:00 -0400
+Received: from xch-rtp-002.cisco.com ([64.101.220.142]) by
+	XCH-RTP-002.cisco.com ([64.101.220.142]) with mapi id 15.00.1210.000;
+	Thu, 20 Oct 2016 14:41:00 -0400
+From: "Dinh Nguyen (dinhn)" <dinhn@cisco.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: ppc-fixplt.patch - ERROR: Function failed patch_do_path()
+Thread-Index: AQHSKwGADWuUpN1GVEa/ds+KUu9OWw==
+Date: Thu, 20 Oct 2016 18:41:00 +0000
+Message-ID: <C69CC27A-49C3-4FBF-8584-D78C113DB666@cisco.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Microsoft-MacOutlook/f.15.1.160411
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.41.56.30]
+MIME-Version: 1.0
+Cc: "Srinivas Yedla \(sryedla\)" <sryedla@cisco.com>
+Subject: ppc-fixplt.patch - ERROR: Function failed patch_do_path()
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -79,144 +80,173 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Oct 2016 17:46:13 -0000
-X-Groupsio-MsgNum: 32543
-Content-Type: multipart/signed;
-	boundary="Apple-Mail=_AD92D277-B8CA-44EA-BA5D-0C6AF14F490B";
-	protocol="application/pgp-signature"; micalg=pgp-sha1
-
---Apple-Mail=_AD92D277-B8CA-44EA-BA5D-0C6AF14F490B
+X-List-Received-Date: Thu, 20 Oct 2016 18:41:04 -0000
+Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_34D56296-7BB2-44DF-A3D3-2E07A1DFA515"
+	boundary="_000_C69CC27A49C34FBF8584D78C113DB666ciscocom_"
 
---Apple-Mail=_34D56296-7BB2-44DF-A3D3-2E07A1DFA515
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=us-ascii
+--_000_C69CC27A49C34FBF8584D78C113DB666ciscocom_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
+SGkgWW9jdG8gR3VydXMsDQoNCkkgYW0gdHJ5aW5nIHRvIGJ1aWxkIHRoZSBsdWFqaXRfMi4wLjMu
+YmIgcmVjaXBlIG9uIG91ciBZb2N0by0xLjcgYmFzZS4NCkl0IGZhaWxlZCB0byBwYXRoIHRoZSBw
+cGMtZml4cGx0LnBhdGNoLiBIZXJzIGlzIG15IGJ1aWxkIGNvbmZpZ3VyYXRpb24uDQoNClBsZWFz
+ZSBnaXZlIG1lIGFueSBpZGVhIHdoeSBJIGdvdCBIVU5UICMgZmFpbGVkIHRoYXQgZW5kaW5nIHVw
+IGNhdXNpbmcgcHBjLWZpeHBsdC5wYXRjaCBlcnJvcj8NCg0KQnVpbGQgQ29uZmlndXJhdGlvbjoN
+CkJCX1ZFUlNJT04gICAgICAgID0gIjEuMjQuMCINCkJVSUxEX1NZUyAgICAgICAgID0gIng4Nl82
+NC1saW51eCINCk5BVElWRUxTQlNUUklORyAgID0gIlVidW50dS0xNC4wNCINClRBUkdFVF9TWVMg
+ICAgICAgID0gInBvd2VycGMtcG9reS1saW51eC1nbnVzcGUiDQpNQUNISU5FICAgICAgICAgICA9
+ICJpc3I4MDAtbHhjIg0KRElTVFJPICAgICAgICAgICAgPSAicG9reSINCkRJU1RST19WRVJTSU9O
+ICAgID0gIjEuNy4yIg0KVFVORV9GRUFUVVJFUyAgICAgPSAibTMyIHNwZSBwcGNlNTAwdjIiDQpU
+QVJHRVRfRlBVICAgICAgICA9ICJwcGMtZWZkIg0KbWV0YS1jaXNjby1pb3gtYmFzZQ0KbWV0YS1m
+c2wtcHBjLWRpenp5LTEyLjAuMiA9ICI8dW5rbm93bj46PHVua25vd24+Ig0KbWV0YS1lZmwNCm1l
+dGEtZmlsZXN5c3RlbXMNCm1ldGEteGZjZQ0KbWV0YS1ydWJ5DQptZXRhLXdlYnNlcnZlcg0KbWV0
+YS1zeXN0ZW1kDQptZXRhLXB5dGhvbg0KbWV0YS1wZXJsDQptZXRhLW5ldHdvcmtpbmcNCm1ldGEt
+bXVsdGltZWRpYQ0KbWV0YS1pbml0cmFtZnMNCm1ldGEtZ25vbWUNCm1ldGEtb2UgICAgICAgICAg
+ID0gImRpenp5OjcwYmVlY2IyNzE2YmNhMWI5ZGZiYzdkNmEyNjQyMzNlMWYwNWU4MmIiDQptZXRh
+LWNpc2NvLWlzcjgwMA0KbWV0YS1mc2wtcHBjLWRpenp5LTEyLjAuMg0KbWV0YQ0KbWV0YS15b2N0
+bw0KbWV0YS15b2N0by1ic3AgICAgPSAiPHVua25vd24+Ojx1bmtub3duPiINCg0KTk9URTogUHJl
+cGFyaW5nIHJ1bnF1ZXVlDQpOT1RFOiBFeGVjdXRpbmcgU2V0U2NlbmUgVGFza3MNCk5PVEU6IEV4
+ZWN1dGluZyBSdW5RdWV1ZSBUYXNrcw0KRVJST1I6IENvbW1hbmQgRXJyb3I6IGV4aXQgc3RhdHVz
+OiAxICBPdXRwdXQ6DQpBcHBseWluZyBwYXRjaCBwcGMtZml4cGx0LnBhdGNoDQpwYXRjaGluZyBm
+aWxlIHNyYy9ob3N0L2J1aWxkdm0uYw0KSHVuayAjMSBGQUlMRUQgYXQgMTA3Lg0KMSBvdXQgb2Yg
+MSBodW5rIEZBSUxFRCAtLSByZWplY3RzIGluIGZpbGUgc3JjL2hvc3QvYnVpbGR2bS5jDQpwYXRj
+aGluZyBmaWxlIHNyYy92bV9wcGNzcGUuZGFzYw0KSHVuayAjMSBGQUlMRUQgYXQgMTM5MC4NCkh1
+bmsgIzIgRkFJTEVEIGF0IDE0MDUuDQpIdW5rICMzIEZBSUxFRCBhdCAxNDM3Lg0KSHVuayAjNCBG
+QUlMRUQgYXQgMTQ3MS4NCkh1bmsgIzUgRkFJTEVEIGF0IDE0ODQuDQpIdW5rICM2IEZBSUxFRCBh
+dCAxNTAzLg0KSHVuayAjNyBGQUlMRUQgYXQgMjM5OS4NCjcgb3V0IG9mIDcgaHVua3MgRkFJTEVE
+IC0tIHJlamVjdHMgaW4gZmlsZSBzcmMvdm1fcHBjc3BlLmRhc2MNClBhdGNoIHBwYy1maXhwbHQu
+cGF0Y2ggZG9lcyBub3QgYXBwbHkgKGVuZm9yY2Ugd2l0aCAtZikNCkVSUk9SOiBGdW5jdGlvbiBm
+YWlsZWQ6IHBhdGNoX2RvX3BhdGNoDQpFUlJPUjogTG9nZmlsZSBvZiBmYWlsdXJlIHN0b3JlZCBp
+bjogL21lZGlhL3JhZ2h1cmFtL2RhdGEvZGluaG4vaW94RGV2TGF0ZXN0L2lveHNkay95cF9wcGMv
+dG1wL3dvcmsvcHBjZTUwMHYyLXBva3ktbGludXgtZ251c3BlL2x1YWppdC8yLjAuMy1yMC90ZW1w
+L2xvZy5kb19wYXRjaC4zMjU4Mw0KRVJST1I6IFRhc2sgMSAoL21lZGlhL3JhZ2h1cmFtL2RhdGEv
+ZGluaG4vaW94RGV2TGF0ZXN0L2lveHNkay9zeXMveW9jdG8tMS43L2lzcjgwMC9tZXRhLW9wZW5l
+bWJlZGRlZC9tZXRhLW9lL3JlY2lwZXMtZGV2dG9vbHMvbHVhaml0L2x1YWppdF8yLjAuMy5iYiwg
+ZG9fcGF0Y2gpIGZhaWxlZCB3aXRoIGV4aXQgY29kZSAnMScNCk5PVEU6IFRhc2tzIFN1bW1hcnk6
+IEF0dGVtcHRlZCAzNjkgdGFza3Mgb2Ygd2hpY2ggMzY2IGRpZG4ndCBuZWVkIHRvIGJlIHJlcnVu
+IGFuZCAxIGZhaWxlZC4NCk5vIGN1cnJlbnRseSBydW5uaW5nIHRhc2tzICgzNjkgb2YgMzc5KQ0K
+DQpTdW1tYXJ5OiAxIHRhc2sgZmFpbGVkOg0KICAvbWVkaWEvcmFnaHVyYW0vZGF0YS9kaW5obi9p
+b3hEZXZMYXRlc3QvaW94c2RrL3N5cy95b2N0by0xLjcvaXNyODAwL21ldGEtb3BlbmVtYmVkZGVk
+L21ldGEtb2UvcmVjaXBlcy1kZXZ0b29scy9sdWFqaXQvbHVhaml0XzIuMC4zLmJiLCBkb19wYXRj
+aA0KU3VtbWFyeTogVGhlcmUgd2VyZSAyIEVSUk9SIG1lc3NhZ2VzIHNob3duLCByZXR1cm5pbmcg
+YSBub24temVybyBleGl0IGNvZGUuDQoNCg0K
 
-> On Oct 20, 2016, at 10:32 AM, Davis Roman <davis.roman84@gmail.com> =
-wrote:
->=20
-> Hello Yocto Community,
->=20
-> As I understand it, the Yocto project team cherry-picks certain kernel =
-versions from kernel.org <http://kernel.org/> to be dedicated as Yocto =
-Project Linux Kernels that have support for the officially supported arm =
-target boards.
->=20
-> However, if I'm using a silicon vendor, such as nxp, for a custom =
-i.mx6 board then I'll need to stick with nxp's kernel but the problem =
-that I see here is that they may not support that version of kernel for =
-too long.
->=20
-> Are there any best practices or advice when it comes to how to avoid =
-getting locked into an evil vendor kernel ?
+--_000_C69CC27A49C34FBF8584D78C113DB666ciscocom_
+Content-Type: text/html; charset="utf-8"
+Content-ID: <2B0508B689C0884EAFA01D6292843CB8@emea.cisco.com>
+Content-Transfer-Encoding: base64
 
-You can try to check if needed support for the given SOC is upstreamed. =
-Sometimes, vendor kernel have additional stuff but the base support is =
-upstream, if you are lucky
-and dont need the things which are on top of such base port then you can =
-try switching to kernel.org kernel and unshackles yourself.
+PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
+dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjwvaGVhZD4NCjxib2R5IHN0eWxlPSJ3b3JkLXdy
+YXA6IGJyZWFrLXdvcmQ7IC13ZWJraXQtbmJzcC1tb2RlOiBzcGFjZTsgLXdlYmtpdC1saW5lLWJy
+ZWFrOiBhZnRlci13aGl0ZS1zcGFjZTsgZm9udC1zaXplOiAxNHB4OyBmb250LWZhbWlseTogQ2Fs
+aWJyaSwgc2Fucy1zZXJpZjsiPg0KPGRpdiBzdHlsZT0iY29sb3I6IHJnYigwLCAwLCAwKTsiPkhp
+IFlvY3RvIEd1cnVzLDwvZGl2Pg0KPGRpdiBzdHlsZT0iY29sb3I6IHJnYigwLCAwLCAwKTsiPjxi
+cj4NCjwvZGl2Pg0KPGRpdiBzdHlsZT0iY29sb3I6IHJnYigwLCAwLCAwKTsiPkkgYW0gdHJ5aW5n
+IHRvIGJ1aWxkIHRoZSBsdWFqaXRfMi4wLjMuYmIgcmVjaXBlIG9uIG91ciBZb2N0by0xLjcgYmFz
+ZS4mbmJzcDs8L2Rpdj4NCjxkaXYgc3R5bGU9ImNvbG9yOiByZ2IoMCwgMCwgMCk7Ij5JdCBmYWls
+ZWQgdG8gcGF0aCB0aGUgcHBjLWZpeHBsdC5wYXRjaC4gSGVycyBpcyBteSBidWlsZCBjb25maWd1
+cmF0aW9uLiZuYnNwOzwvZGl2Pg0KPGRpdiBzdHlsZT0iY29sb3I6IHJnYigwLCAwLCAwKTsiPjxi
+cj4NCjwvZGl2Pg0KPGRpdiBzdHlsZT0iY29sb3I6IHJnYigwLCAwLCAwKTsiPlBsZWFzZSBnaXZl
+IG1lIGFueSBpZGVhIHdoeSBJIGdvdCBIVU5UICMgZmFpbGVkIHRoYXQgZW5kaW5nIHVwIGNhdXNp
+bmcgcHBjLWZpeHBsdC5wYXRjaCBlcnJvcj88L2Rpdj4NCjxkaXYgc3R5bGU9ImNvbG9yOiByZ2Io
+MCwgMCwgMCk7Ij48YnI+DQo8L2Rpdj4NCjxkaXY+DQo8ZGl2IHN0eWxlPSJjb2xvcjogcmdiKDAs
+IDAsIDApOyI+QnVpbGQgQ29uZmlndXJhdGlvbjo8L2Rpdj4NCjxkaXYgc3R5bGU9ImNvbG9yOiBy
+Z2IoMCwgMCwgMCk7Ij5CQl9WRVJTSU9OICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOz0gJnF1
+b3Q7MS4yNC4wJnF1b3Q7PC9kaXY+DQo8ZGl2IHN0eWxlPSJjb2xvcjogcmdiKDAsIDAsIDApOyI+
+QlVJTERfU1lTICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyA9ICZxdW90O3g4Nl82NC1saW51
+eCZxdW90OzwvZGl2Pg0KPGRpdiBzdHlsZT0iY29sb3I6IHJnYigwLCAwLCAwKTsiPk5BVElWRUxT
+QlNUUklORyAmbmJzcDsgPSAmcXVvdDtVYnVudHUtMTQuMDQmcXVvdDs8L2Rpdj4NCjxkaXYgc3R5
+bGU9ImNvbG9yOiByZ2IoMCwgMCwgMCk7Ij5UQVJHRVRfU1lTICZuYnNwOyAmbmJzcDsgJm5ic3A7
+ICZuYnNwOz0gJnF1b3Q7cG93ZXJwYy1wb2t5LWxpbnV4LWdudXNwZSZxdW90OzwvZGl2Pg0KPGRp
+diBzdHlsZT0iY29sb3I6IHJnYigwLCAwLCAwKTsiPk1BQ0hJTkUgJm5ic3A7ICZuYnNwOyAmbmJz
+cDsgJm5ic3A7ICZuYnNwOyA9ICZxdW90O2lzcjgwMC1seGMmcXVvdDs8L2Rpdj4NCjxkaXYgc3R5
+bGU9ImNvbG9yOiByZ2IoMCwgMCwgMCk7Ij5ESVNUUk8gJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5i
+c3A7ICZuYnNwOyAmbmJzcDs9ICZxdW90O3Bva3kmcXVvdDs8L2Rpdj4NCjxkaXY+PGZvbnQgY29s
+b3I9IiNmZjAwMDAiPkRJU1RST19WRVJTSU9OICZuYnNwOyAmbmJzcDs9ICZxdW90OzEuNy4yPC9m
+b250PiZxdW90OzwvZGl2Pg0KPGRpdiBzdHlsZT0iY29sb3I6IHJnYigwLCAwLCAwKTsiPlRVTkVf
+RkVBVFVSRVMgJm5ic3A7ICZuYnNwOyA9ICZxdW90O20zMiBzcGUgcHBjZTUwMHYyJnF1b3Q7PC9k
+aXY+DQo8ZGl2IHN0eWxlPSJjb2xvcjogcmdiKDAsIDAsIDApOyI+VEFSR0VUX0ZQVSAmbmJzcDsg
+Jm5ic3A7ICZuYnNwOyAmbmJzcDs9ICZxdW90O3BwYy1lZmQmcXVvdDs8L2Rpdj4NCjxkaXYgc3R5
+bGU9ImNvbG9yOiByZ2IoMCwgMCwgMCk7Ij5tZXRhLWNpc2NvLWlveC1iYXNlJm5ic3A7PC9kaXY+
+DQo8ZGl2IHN0eWxlPSJjb2xvcjogcmdiKDAsIDAsIDApOyI+bWV0YS1mc2wtcHBjLWRpenp5LTEy
+LjAuMiA9ICZxdW90OyZsdDt1bmtub3duJmd0OzombHQ7dW5rbm93biZndDsmcXVvdDs8L2Rpdj4N
+CjxkaXYgc3R5bGU9ImNvbG9yOiByZ2IoMCwgMCwgMCk7Ij5tZXRhLWVmbCAmbmJzcDsgJm5ic3A7
+ICZuYnNwOyAmbmJzcDsgJm5ic3A7PC9kaXY+DQo8ZGl2IHN0eWxlPSJjb2xvcjogcmdiKDAsIDAs
+IDApOyI+bWV0YS1maWxlc3lzdGVtcyAmbmJzcDs8L2Rpdj4NCjxkaXYgc3R5bGU9ImNvbG9yOiBy
+Z2IoMCwgMCwgMCk7Ij5tZXRhLXhmY2UgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7Jm5ic3A7
+PC9kaXY+DQo8ZGl2IHN0eWxlPSJjb2xvcjogcmdiKDAsIDAsIDApOyI+bWV0YS1ydWJ5ICZuYnNw
+OyAmbmJzcDsgJm5ic3A7ICZuYnNwOyZuYnNwOzwvZGl2Pg0KPGRpdiBzdHlsZT0iY29sb3I6IHJn
+YigwLCAwLCAwKTsiPm1ldGEtd2Vic2VydmVyICZuYnNwOyAmbmJzcDs8L2Rpdj4NCjxkaXYgc3R5
+bGU9ImNvbG9yOiByZ2IoMCwgMCwgMCk7Ij5tZXRhLXN5c3RlbWQgJm5ic3A7ICZuYnNwOyAmbmJz
+cDs8L2Rpdj4NCjxkaXYgc3R5bGU9ImNvbG9yOiByZ2IoMCwgMCwgMCk7Ij5tZXRhLXB5dGhvbiAm
+bmJzcDsgJm5ic3A7ICZuYnNwOyZuYnNwOzwvZGl2Pg0KPGRpdiBzdHlsZT0iY29sb3I6IHJnYigw
+LCAwLCAwKTsiPm1ldGEtcGVybCAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsmbmJzcDs8L2Rp
+dj4NCjxkaXYgc3R5bGU9ImNvbG9yOiByZ2IoMCwgMCwgMCk7Ij5tZXRhLW5ldHdvcmtpbmcgJm5i
+c3A7Jm5ic3A7PC9kaXY+DQo8ZGl2IHN0eWxlPSJjb2xvcjogcmdiKDAsIDAsIDApOyI+bWV0YS1t
+dWx0aW1lZGlhICZuYnNwOyZuYnNwOzwvZGl2Pg0KPGRpdiBzdHlsZT0iY29sb3I6IHJnYigwLCAw
+LCAwKTsiPm1ldGEtaW5pdHJhbWZzICZuYnNwOyAmbmJzcDs8L2Rpdj4NCjxkaXYgc3R5bGU9ImNv
+bG9yOiByZ2IoMCwgMCwgMCk7Ij5tZXRhLWdub21lICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNw
+OzwvZGl2Pg0KPGRpdiBzdHlsZT0iY29sb3I6IHJnYigwLCAwLCAwKTsiPm1ldGEtb2UgJm5ic3A7
+ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyA9ICZxdW90O2Rpenp5OjcwYmVlY2IyNzE2YmNh
+MWI5ZGZiYzdkNmEyNjQyMzNlMWYwNWU4MmImcXVvdDs8L2Rpdj4NCjxkaXYgc3R5bGU9ImNvbG9y
+OiByZ2IoMCwgMCwgMCk7Ij5tZXRhLWNpc2NvLWlzcjgwMCZuYnNwOzwvZGl2Pg0KPGRpdiBzdHls
+ZT0iY29sb3I6IHJnYigwLCAwLCAwKTsiPm1ldGEtZnNsLXBwYy1kaXp6eS0xMi4wLjImbmJzcDs8
+L2Rpdj4NCjxkaXYgc3R5bGU9ImNvbG9yOiByZ2IoMCwgMCwgMCk7Ij5tZXRhICZuYnNwOyAmbmJz
+cDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOzwvZGl2Pg0KPGRpdiBzdHlsZT0i
+Y29sb3I6IHJnYigwLCAwLCAwKTsiPm1ldGEteW9jdG8gJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5i
+c3A7PC9kaXY+DQo8ZGl2IHN0eWxlPSJjb2xvcjogcmdiKDAsIDAsIDApOyI+bWV0YS15b2N0by1i
+c3AgJm5ic3A7ICZuYnNwOz0gJnF1b3Q7Jmx0O3Vua25vd24mZ3Q7OiZsdDt1bmtub3duJmd0OyZx
+dW90OzwvZGl2Pg0KPGRpdiBzdHlsZT0iY29sb3I6IHJnYigwLCAwLCAwKTsiPjxicj4NCjwvZGl2
+Pg0KPGRpdiBzdHlsZT0iY29sb3I6IHJnYigwLCAwLCAwKTsiPk5PVEU6IFByZXBhcmluZyBydW5x
+dWV1ZTwvZGl2Pg0KPGRpdiBzdHlsZT0iY29sb3I6IHJnYigwLCAwLCAwKTsiPk5PVEU6IEV4ZWN1
+dGluZyBTZXRTY2VuZSBUYXNrczwvZGl2Pg0KPGRpdiBzdHlsZT0iY29sb3I6IHJnYigwLCAwLCAw
+KTsiPk5PVEU6IEV4ZWN1dGluZyBSdW5RdWV1ZSBUYXNrczwvZGl2Pg0KPGRpdiBzdHlsZT0iY29s
+b3I6IHJnYigwLCAwLCAwKTsiPkVSUk9SOiBDb21tYW5kIEVycm9yOiBleGl0IHN0YXR1czogMSAm
+bmJzcDtPdXRwdXQ6PC9kaXY+DQo8ZGl2IHN0eWxlPSJjb2xvcjogcmdiKDAsIDAsIDApOyI+QXBw
+bHlpbmcgcGF0Y2ggcHBjLWZpeHBsdC5wYXRjaDwvZGl2Pg0KPGRpdj48Zm9udCBjb2xvcj0iI2Zm
+MDAwMCI+cGF0Y2hpbmcgZmlsZSBzcmMvaG9zdC9idWlsZHZtLmM8L2ZvbnQ+PC9kaXY+DQo8ZGl2
+Pjxmb250IGNvbG9yPSIjZmYwMDAwIj5IdW5rICMxIEZBSUxFRCBhdCAxMDcuPC9mb250PjwvZGl2
+Pg0KPGRpdiBzdHlsZT0iY29sb3I6IHJnYigwLCAwLCAwKTsiPjEgb3V0IG9mIDEgaHVuayBGQUlM
+RUQgLS0gcmVqZWN0cyBpbiBmaWxlIHNyYy9ob3N0L2J1aWxkdm0uYzwvZGl2Pg0KPGRpdiBzdHls
+ZT0iY29sb3I6IHJnYigwLCAwLCAwKTsiPnBhdGNoaW5nIGZpbGUgc3JjL3ZtX3BwY3NwZS5kYXNj
+PC9kaXY+DQo8ZGl2IHN0eWxlPSJjb2xvcjogcmdiKDAsIDAsIDApOyI+SHVuayAjMSBGQUlMRUQg
+YXQgMTM5MC48L2Rpdj4NCjxkaXYgc3R5bGU9ImNvbG9yOiByZ2IoMCwgMCwgMCk7Ij5IdW5rICMy
+IEZBSUxFRCBhdCAxNDA1LjwvZGl2Pg0KPGRpdiBzdHlsZT0iY29sb3I6IHJnYigwLCAwLCAwKTsi
+Pkh1bmsgIzMgRkFJTEVEIGF0IDE0MzcuPC9kaXY+DQo8ZGl2IHN0eWxlPSJjb2xvcjogcmdiKDAs
+IDAsIDApOyI+SHVuayAjNCBGQUlMRUQgYXQgMTQ3MS48L2Rpdj4NCjxkaXYgc3R5bGU9ImNvbG9y
+OiByZ2IoMCwgMCwgMCk7Ij5IdW5rICM1IEZBSUxFRCBhdCAxNDg0LjwvZGl2Pg0KPGRpdiBzdHls
+ZT0iY29sb3I6IHJnYigwLCAwLCAwKTsiPkh1bmsgIzYgRkFJTEVEIGF0IDE1MDMuPC9kaXY+DQo8
+ZGl2IHN0eWxlPSJjb2xvcjogcmdiKDAsIDAsIDApOyI+SHVuayAjNyBGQUlMRUQgYXQgMjM5OS48
+L2Rpdj4NCjxkaXY+PGZvbnQgY29sb3I9IiNmZjAwMDAiPjcgb3V0IG9mIDcgaHVua3MgRkFJTEVE
+IC0tIHJlamVjdHMgaW4gZmlsZSBzcmMvdm1fcHBjc3BlLmRhc2M8L2ZvbnQ+PC9kaXY+DQo8ZGl2
+Pjxmb250IGNvbG9yPSIjZmYwMDAwIj5QYXRjaCBwcGMtZml4cGx0LnBhdGNoIGRvZXMgbm90IGFw
+cGx5IChlbmZvcmNlIHdpdGggLWYpPC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBjb2xvcj0iI2Zm
+MDAwMCI+RVJST1I6IEZ1bmN0aW9uIGZhaWxlZDogcGF0Y2hfZG9fcGF0Y2g8L2ZvbnQ+PC9kaXY+
+DQo8ZGl2IHN0eWxlPSJjb2xvcjogcmdiKDAsIDAsIDApOyI+RVJST1I6IExvZ2ZpbGUgb2YgZmFp
+bHVyZSBzdG9yZWQgaW46IC9tZWRpYS9yYWdodXJhbS9kYXRhL2RpbmhuL2lveERldkxhdGVzdC9p
+b3hzZGsveXBfcHBjL3RtcC93b3JrL3BwY2U1MDB2Mi1wb2t5LWxpbnV4LWdudXNwZS9sdWFqaXQv
+Mi4wLjMtcjAvdGVtcC9sb2cuZG9fcGF0Y2guMzI1ODM8L2Rpdj4NCjxkaXYgc3R5bGU9ImNvbG9y
+OiByZ2IoMCwgMCwgMCk7Ij5FUlJPUjogVGFzayAxICgvbWVkaWEvcmFnaHVyYW0vZGF0YS9kaW5o
+bi9pb3hEZXZMYXRlc3QvaW94c2RrL3N5cy95b2N0by0xLjcvaXNyODAwL21ldGEtb3BlbmVtYmVk
+ZGVkL21ldGEtb2UvcmVjaXBlcy1kZXZ0b29scy9sdWFqaXQvbHVhaml0XzIuMC4zLmJiLCBkb19w
+YXRjaCkgZmFpbGVkIHdpdGggZXhpdCBjb2RlICcxJzwvZGl2Pg0KPGRpdiBzdHlsZT0iY29sb3I6
+IHJnYigwLCAwLCAwKTsiPk5PVEU6IFRhc2tzIFN1bW1hcnk6IEF0dGVtcHRlZCAzNjkgdGFza3Mg
+b2Ygd2hpY2ggMzY2IGRpZG4ndCBuZWVkIHRvIGJlIHJlcnVuIGFuZCAxIGZhaWxlZC48L2Rpdj4N
+CjxkaXYgc3R5bGU9ImNvbG9yOiByZ2IoMCwgMCwgMCk7Ij5ObyBjdXJyZW50bHkgcnVubmluZyB0
+YXNrcyAoMzY5IG9mIDM3OSk8L2Rpdj4NCjxkaXYgc3R5bGU9ImNvbG9yOiByZ2IoMCwgMCwgMCk7
+Ij48YnI+DQo8L2Rpdj4NCjxkaXYgc3R5bGU9ImNvbG9yOiByZ2IoMCwgMCwgMCk7Ij5TdW1tYXJ5
+OiAxIHRhc2sgZmFpbGVkOjwvZGl2Pg0KPGRpdiBzdHlsZT0iY29sb3I6IHJnYigwLCAwLCAwKTsi
+PiZuYnNwOyAvbWVkaWEvcmFnaHVyYW0vZGF0YS9kaW5obi9pb3hEZXZMYXRlc3QvaW94c2RrL3N5
+cy95b2N0by0xLjcvaXNyODAwL21ldGEtb3BlbmVtYmVkZGVkL21ldGEtb2UvcmVjaXBlcy1kZXZ0
+b29scy9sdWFqaXQvbHVhaml0XzIuMC4zLmJiLCBkb19wYXRjaDwvZGl2Pg0KPGRpdiBzdHlsZT0i
+Y29sb3I6IHJnYigwLCAwLCAwKTsiPlN1bW1hcnk6IFRoZXJlIHdlcmUgMiBFUlJPUiBtZXNzYWdl
+cyBzaG93biwgcmV0dXJuaW5nIGEgbm9uLXplcm8gZXhpdCBjb2RlLjwvZGl2Pg0KPC9kaXY+DQo8
+ZGl2IHN0eWxlPSJjb2xvcjogcmdiKDAsIDAsIDApOyI+PGJyPg0KPC9kaXY+DQo8ZGl2IHN0eWxl
+PSJjb2xvcjogcmdiKDAsIDAsIDApOyI+DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPC9kaXY+DQo8ZGl2
+IHN0eWxlPSJjb2xvcjogcmdiKDAsIDAsIDApOyI+DQo8ZGl2IGlkPSJNQUNfT1VUTE9PS19TSUdO
+QVRVUkUiPjwvZGl2Pg0KPC9kaXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
 
-Secondly, you can work with vendor to upstream the needed bits at =
-priority, may be helping out with testing or whatever you can.
-
-if vendor kernels are having too much stuff that is essential to support =
-the basic stuff on chip then you are at the vendors behest for support, =
-there may be
-some OSVs that can help may be or some other consultancies.
-
->=20
-> Thank you,
->=20
-> Davis
->=20
->=20
->=20
->=20
->=20
->=20
->=20
->=20
->=20
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
-
---Apple-Mail=_34D56296-7BB2-44DF-A3D3-2E07A1DFA515
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=us-ascii
-
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
-charset=3Dus-ascii"></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
-class=3D""><br class=3D""><div><blockquote type=3D"cite" class=3D""><div =
-class=3D"">On Oct 20, 2016, at 10:32 AM, Davis Roman &lt;<a =
-href=3D"mailto:davis.roman84@gmail.com" =
-class=3D"">davis.roman84@gmail.com</a>&gt; wrote:</div><br =
-class=3D"Apple-interchange-newline"><div class=3D""><div dir=3D"ltr" =
-class=3D"">Hello Yocto Community,<div class=3D""><br class=3D""></div><div=
- class=3D"">As I understand it, the Yocto project team cherry-picks =
-certain kernel versions from <a href=3D"http://kernel.org/" =
-class=3D"">kernel.org</a> to be dedicated as Yocto Project Linux Kernels =
-that have support for the officially supported arm target =
-boards.</div><div class=3D""><br class=3D""></div><div class=3D"">However,=
- if I'm using a silicon vendor, such as nxp, for a custom i.mx6 board =
-then I'll need to stick with nxp's kernel but the problem that I see =
-here is that they may not support that version of kernel for too =
-long.</div><div class=3D""><br class=3D""></div><div class=3D"">Are =
-there any best practices or advice when it comes to how to avoid getting =
-locked into an evil vendor kernel =
-?</div></div></div></blockquote><div><br class=3D""></div><div>You can =
-try to check if needed support for the given SOC is upstreamed. =
-Sometimes, vendor kernel have additional stuff but the base support is =
-upstream, if you are lucky</div><div>and dont need the things which are =
-on top of such base port then you can try switching to <a =
-href=3D"http://kernel.org" class=3D"">kernel.org</a> kernel and =
-unshackles yourself.</div><div><br class=3D""></div><div>Secondly, you =
-can work with vendor to upstream the needed bits at priority, may be =
-helping out with testing or whatever you can.</div><div><br =
-class=3D""></div><div>if vendor kernels are having too much stuff that =
-is essential to support the basic stuff on chip then you are at the =
-vendors behest for support, there may be</div><div>some OSVs that can =
-help may be or some other consultancies.&nbsp;</div><br =
-class=3D""><blockquote type=3D"cite" class=3D""><div class=3D""><div =
-dir=3D"ltr" class=3D""><div class=3D""><br class=3D""></div><div =
-class=3D"">Thank you,</div><div class=3D""><br class=3D""></div><div =
-class=3D"">Davis</div><div class=3D""><br class=3D""></div><div =
-class=3D""><br class=3D""></div><div class=3D""><br class=3D""></div><div =
-class=3D""><br class=3D""></div><div class=3D""><br class=3D""></div><div =
-class=3D""><br class=3D""></div><div class=3D""><br class=3D""></div><div =
-class=3D""><br class=3D""></div><div class=3D""><br =
-class=3D""></div></div>
--- <br class=3D"">_______________________________________________<br =
-class=3D"">yocto mailing list<br class=3D""><a =
-href=3D"mailto:yocto@yoctoproject.org" =
-class=3D"">yocto@yoctoproject.org</a><br =
-class=3D"">https://lists.yoctoproject.org/listinfo/yocto<br =
-class=3D""></div></blockquote></div><br class=3D""></body></html>=
-
---Apple-Mail=_34D56296-7BB2-44DF-A3D3-2E07A1DFA515--
-
---Apple-Mail=_AD92D277-B8CA-44EA-BA5D-0C6AF14F490B
-Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment;
-	filename=signature.asc
-Content-Type: application/pgp-signature;
-	name=signature.asc
-Content-Description: Message signed with OpenPGP using GPGMail
-
------BEGIN PGP SIGNATURE-----
-Comment: GPGTools - https://gpgtools.org
-
-iEYEARECAAYFAlgJAt4ACgkQuwUzVZGdMxT4+gCfbQAV6TimpX64OXdwj7fS0XM3
-8ssAoIpOF1VP/K5LvXV2RKgaLBawaSQt
-=5RoQ
------END PGP SIGNATURE-----
-
---Apple-Mail=_AD92D277-B8CA-44EA-BA5D-0C6AF14F490B--
+--_000_C69CC27A49C34FBF8584D78C113DB666ciscocom_--
