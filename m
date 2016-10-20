@@ -1,64 +1,72 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DD48EE00D9C; Thu, 20 Oct 2016 13:18:49 -0700 (PDT)
+	id 8D576E00C20; Thu, 20 Oct 2016 14:36:26 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_LOW,
-	RCVD_IN_SORBS_SPAM autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (akuster808[at]gmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.220.174 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.220.174 listed in dnsbl.sorbs.net]
-Received: from mail-qk0-f174.google.com (mail-qk0-f174.google.com
-	[209.85.220.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A0F3AE00D72
-	for <yocto@yoctoproject.org>; Thu, 20 Oct 2016 13:18:46 -0700 (PDT)
-Received: by mail-qk0-f174.google.com with SMTP id z190so116355014qkc.2
-	for <yocto@yoctoproject.org>; Thu, 20 Oct 2016 13:18:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=aJ0yggM37IQb2gZltmXxT/OuPQrGR77XeFjgBDWUtjk=;
-	b=GZMgLaxR0PuNOOb2/qttXQi5QsEDm/k6/We+9INoKfelMap9aIbo/SRRjwdT+mn69E
-	mcUQ2XHri0XrHprR7ANS3X6iXlnosLDf9PHkyeDc5iFx0lC6/DJ5dLT3oQysBXDl+dmI
-	t2KpUaPKav3EfB5pqjFlpBY6mB2cGw3/Vf+c8nHrqc7N2vNpMbnQm1AL/I7XLisKQmMm
-	8QKUQUeioYqj4FXQqipdSc4WPC8YK++LCckhbHg9Gcc67Cb3BUA5nu9DjmVsiwxzuKal
-	s2KOD5RX/oHR3jJQRAHfcl+aRbTKnvFGeM85YcXFQK7t0EIta6nbBIvXQVVukm1xiUVO
-	jJCg==
+	*      [209.85.192.196 listed in list.dnswl.org]
+Received: from mail-pf0-f196.google.com (mail-pf0-f196.google.com
+	[209.85.192.196])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 302F1E00BB0
+	for <yocto@yoctoproject.org>; Thu, 20 Oct 2016 14:36:23 -0700 (PDT)
+Received: by mail-pf0-f196.google.com with SMTP id r16so6564237pfg.3
+	for <yocto@yoctoproject.org>; Thu, 20 Oct 2016 14:36:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=subject:to:references:cc:from:message-id:date:user-agent
+	:mime-version:in-reply-to:content-transfer-encoding;
+	bh=1IDk/tANpLbg+1JYIfOTqd7HQdGs84smMtAMHpMH1Qw=;
+	b=vLCzcV8GCFDE9qQvvwRIf71IySRhNEw3hVAcsCiuWLE10EHehEUbG9gs8tgdv/AZYY
+	nKoA9pV7Lk4l9h9JB8y5ZHG56vdAnKziOS7SL25Ybny2YWwXJ2kdevGDODa5iWgVy2mK
+	Vzf7SlAQtErk9s4lSzyRkdIlxyYazSTcx95lyRoEsLnDtZftNeZQWgK4zuiGQWR4VoyT
+	1tDGNxP2JIY6m+IcnGmheJmfSnas79r3yk8MgKgi6CIqdAa2QDfvqk2vlZptp2mGYuY3
+	Yf409vipNsnuQQL/K15rcj+uVG0GacdW2CLEnB3MJePN0Eg9WL7Es9HOl8nfgTTLrMGp
+	FRmA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=aJ0yggM37IQb2gZltmXxT/OuPQrGR77XeFjgBDWUtjk=;
-	b=D4uH0Gn/tLqUHQV6j9sTbi5FIdkRE+Q3LS9NoS6jaziXTiH5kPSYlWgHZdadHNmzb0
-	Q+drjmWYkf3KTypJddXVxKuiM9QuE4ZGuTnf7YO8Xope2Zy/Ku1WGDfodHDkmAvi420L
-	5+eh4ZNZhqGBObq4eVdI1ZC8Z+3bFQ/dqM4DycX4OYPoy0o38QkT94e1AFoVQqyNUYB7
-	m5HTubIxuMGwrYeu6NmknyVCkftJZQeXswP8aafrzzwiQnJHzhW1VqgsNEo0LKYYdTeQ
-	seUsOobvQ9vhUHrsXCDplSfxfxd+MayT2Duvd2QEqCzCqUk/c9cEFzUgfhIV1ssjNyM1
-	EqPg==
-X-Gm-Message-State: ABUngvdp6/C4FUuWXOaYBrk/NFSk4/CgzLN43UO1KmpYJbz+A35wXcZ7i9hfYR4Bwvs78AZvUAXDhDS6/vCuGobz
-X-Received: by 10.55.32.195 with SMTP id g186mr2143779qkg.77.1476994725658;
-	Thu, 20 Oct 2016 13:18:45 -0700 (PDT)
+	h=x-gm-message-state:subject:to:references:cc:from:message-id:date
+	:user-agent:mime-version:in-reply-to:content-transfer-encoding;
+	bh=1IDk/tANpLbg+1JYIfOTqd7HQdGs84smMtAMHpMH1Qw=;
+	b=hnqY60aGN8jjeJ9nnGa0N0CTBE/DrylH8d4+9ttaBgk5RMxNzIOlzK2ZstnUT81/OM
+	0jH+nC3y2L6Th6RpehB+ALz4OQR5gjrYQPnwmDewj4B/2HNusnOxUB2HNbh+7j94Eg8c
+	Ied9xvgWCp0nu1vXY6MmIOIIzTnOKxWyJORs6Q9b3E4z2rzAtKYHdWUwoBnogvWf9eiO
+	qq1vIdcGEw8OIPQhI+Vp4GVQgZ8mX7Sy/uDwqrXRPf/OwykxxAgckKECz9iVCVMQOaIb
+	KSYXgBVTLyAt4EsENBnTlBxtNqcCQ5nGMJ1K2ctM1hoNzARaQz1ZcYpfm+D1SkN/cYD/
+	7IbA==
+X-Gm-Message-State: AA6/9RlXAupz9JkXFA/oXLjYQoLR1iFSgOTEvNr2WT//evEgp9ND6Trepc/5jVFb70cvgw==
+X-Received: by 10.98.192.24 with SMTP id x24mr4896879pff.118.1476999383030;
+	Thu, 20 Oct 2016 14:36:23 -0700 (PDT)
+Received: from Akusters-laptop.local ([2601:202:4001:9ea0:7898:8e8:3ca1:2ab8])
+	by smtp.googlemail.com with ESMTPSA id
+	a88sm73888565pfe.21.2016.10.20.14.36.22
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Thu, 20 Oct 2016 14:36:22 -0700 (PDT)
+To: Paul Eggleton <paul.eggleton@intel.com>, akuster808 <akuster808@gmail.com>
+References: <1669674.XxUMWkXXym@peggleto-mobl.ger.corp.intel.com>
+	<d6402792-2a48-60f4-bf27-c9758128eabb@gmail.com>
+	<2598431.tXBTFlZuD7@peggleto-mobl.ger.corp.intel.com>
+From: akuster808 <akuster808@gmail.com>
+Message-ID: <b2feb884-8d4f-00c3-f6d0-45b9ea2af1f2@gmail.com>
+Date: Thu, 20 Oct 2016 14:36:21 -0700
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:45.0)
+	Gecko/20100101 Thunderbird/45.3.0
 MIME-Version: 1.0
-Received: by 10.140.85.208 with HTTP; Thu, 20 Oct 2016 13:18:25 -0700 (PDT)
-In-Reply-To: <C69CC27A-49C3-4FBF-8584-D78C113DB666@cisco.com>
-References: <C69CC27A-49C3-4FBF-8584-D78C113DB666@cisco.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Thu, 20 Oct 2016 21:18:25 +0100
-Message-ID: <CAJTo0La9OrGx2r7OmU2F2kivF+rizB8mL5rJsX4LWWft7R=99Q@mail.gmail.com>
-To: "Dinh Nguyen (dinhn)" <dinhn@cisco.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"Srinivas Yedla \(sryedla\)" <sryedla@cisco.com>
-Subject: Re: ppc-fixplt.patch - ERROR: Function failed patch_do_path()
+In-Reply-To: <2598431.tXBTFlZuD7@peggleto-mobl.ger.corp.intel.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: 2.2 release note material
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,43 +78,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Oct 2016 20:18:49 -0000
-Content-Type: multipart/alternative; boundary=001a11470c3af5749d053f51a155
+X-List-Received-Date: Thu, 20 Oct 2016 21:36:26 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
 
---001a11470c3af5749d053f51a155
-Content-Type: text/plain; charset=UTF-8
+On 10/20/16 12:32 PM, Paul Eggleton wrote:
+> Hi Armin,
+> 
+> On Thu, 20 Oct 2016 08:26:37 akuster808 wrote:
+>> Regarding the CVE list. I see some info is based on what was in the
+>> commit messages for package updates. I suspect the list would be bigger
+>> because of general package updates. Should the release notes make note
+>> of that?
+>>   Should the community in general provide more info in the commits to
+>> help with release notes if that is a source used for that process?
+> 
+> We really should include that - unfortunately I didn't have time to track down 
+> all of those, assembling this list took several days of grinding through the 
+> commits as it was. 
 
-On 20 October 2016 at 19:41, Dinh Nguyen (dinhn) <dinhn@cisco.com> wrote:
+This is why I bring it up. We tend to take the easy route when
+submitting changes not understanding the work it may cause someone else
+down stream. I appreciate your effort in this task.
 
-> I am trying to build the luajit_2.0.3.bb recipe on our Yocto-1.7 base.
-> It failed to path the ppc-fixplt.patch. Hers is my build configuration.
->
 
-Looking back in history it's possible that both your BSP and meta-oe are
-both attempting to apply the same patch, so check that your BSP layer
-(meta-fsl-ppc-*) isn't bbappending it at the same time as meta-oe also
-shipping the same patch.
+I did check upstream for some of the upgrades where a CVE
+> patch was removed just to verify that fix was indeed included in the upgrade, 
+> and for those I collected any others that were listed as having been fixed, 
+> but I wasn't really systematic about that.
+> 
+> Do you know if there's any central resource we can use to find out which 
+> versions of upstream software included which CVE fixes, 
 
-Ross
+There are but I am not sure how complete they are. Its not uncommon for
+the NVD to have "reserved" listed for something that has been out for a
+while. Let me look into it.
 
---001a11470c3af5749d053f51a155
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+or is it perhaps time
+> we started gathering links to the changelogs for each recipe? (Maybe we should 
+> do the latter anyway.)
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 20 October 2016 at 19:41, Dinh Nguyen (dinhn) <span dir=3D"ltr">&lt;<a h=
-ref=3D"mailto:dinhn@cisco.com" target=3D"_blank">dinhn@cisco.com</a>&gt;</s=
-pan> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex=
-;border-left:1px #ccc solid;padding-left:1ex"><div style=3D"color:rgb(0,0,0=
-)">I am trying to build the <a href=3D"http://luajit_2.0.3.bb" target=3D"_b=
-lank">luajit_2.0.3.bb</a> recipe on our Yocto-1.7 base.=C2=A0</div>
-<div style=3D"color:rgb(0,0,0)">It failed to path the ppc-fixplt.patch. Her=
-s is my build configuration.=C2=A0</div>
-<div style=3D"color:rgb(0,0,0)"></div></blockquote></div><br>Looking back i=
-n history it&#39;s possible that both your BSP and meta-oe are both attempt=
-ing to apply the same patch, so check that your BSP layer (meta-fsl-ppc-*) =
-isn&#39;t bbappending it at the same time as meta-oe also shipping the same=
- patch.</div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra=
-">Ross</div></div>
+Some packages use a common link for all changes.
 
---001a11470c3af5749d053f51a155--
+I think people just need to be aware we use the commit messages to help
+with release notes. I am not proposing using a keyword in the commit
+messages that we can suck in with a tool to help create the release
+notes. That would just be silly.
+
+- armin
+> 
+> Cheers,
+> Paul
+> 
+
