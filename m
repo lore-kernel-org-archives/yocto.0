@@ -1,66 +1,36 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <paul.eggleton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D5140E00D6A; Wed, 19 Oct 2016 19:53:45 -0700 (PDT)
+	id 63E0FE0089B; Wed, 19 Oct 2016 19:56:41 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.213.53 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.213.53 listed in dnsbl.sorbs.net]
-Received: from mail-vk0-f53.google.com (mail-vk0-f53.google.com
-	[209.85.213.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3530CE0089B
-	for <yocto@yoctoproject.org>; Wed, 19 Oct 2016 19:53:42 -0700 (PDT)
-Received: by mail-vk0-f53.google.com with SMTP id b186so53754466vkb.1
-	for <yocto@yoctoproject.org>; Wed, 19 Oct 2016 19:53:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=dloMRjCWG6v0vY/FpnXD3OlA6laWhAl4zxfYxAgZ0mk=;
-	b=Iaan7A5KmJuCs3hLx4I/b+eLmoeie39QY+bD4YvLU2KWc7TRlvnT3TsANU/OeV/POH
-	4OjQyFBLLIkTuVKQMJUFtUkuf37NYjjfvh2+94fbCLpxmiWqAU82LTPbQf0BvHNpOXzH
-	vgXtxTyQSJ6RSPIpUoYiyp306Yakxz1MwE6hODKgZQuNkBashYSczKQN3Vqxy4g86sbr
-	s3WdRM22GqMtaVd7tNFQga0pMhBaui6t73k8L/BS3mEmmgj9pOjboO4OaezgGnpe+pjt
-	pnhCZj2f6LXlNBCF4Gb4n8LBbzqwzL7dszmPMTcwMyYx3wPsswxxpBA3up5d/8y2eR39
-	KRnQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=dloMRjCWG6v0vY/FpnXD3OlA6laWhAl4zxfYxAgZ0mk=;
-	b=Xp0d9moo7PGSrGCmi6M5rFI+MxwQON0Y0QNgfy/wj069LNveJtaSFojqhGK/M9Uq26
-	KNz1OjFWT9itFLHByZxNxm/FjoupdsOrIeiMtJ3WwF8NmPzxHTpJsG71J3ujXCdy5Sbk
-	gVE82cU/KslLxui2LqI8PATcqbb8txI3o/hz9Q7GFMawLqZ0FFQh5CYy3wQSa6HqK8WL
-	2C0POmg+6Bb437dG0MGaPtwyh0zNigQsuEnvEvJrpbAclay28VsdLYtobHq8bZBL774K
-	RECIjNPUqzXdL9Zq3mdVNRI/VYajMu7QFIQttWv0zMzaF9BH0++aZmQxxnXA/TkzkaUU
-	6Q2A==
-X-Gm-Message-State: AA6/9RnN5WfhQtsnvsHGg+AjkA1CS6e6P35aC+ObWJf0f9seH628QO37RV74Ffq5lSXbfgh4DobgmAhxBfNq4w==
-X-Received: by 10.31.108.70 with SMTP id h67mr8886667vkc.163.1476932020847;
-	Wed, 19 Oct 2016 19:53:40 -0700 (PDT)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DD69DE0080D
+	for <yocto@yoctoproject.org>; Wed, 19 Oct 2016 19:56:40 -0700 (PDT)
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+	by orsmga104.jf.intel.com with ESMTP; 19 Oct 2016 19:56:40 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.31,516,1473145200"; d="scan'208";a="21911212"
+Received: from jkursms-mobl1.gar.corp.intel.com (HELO
+	peggleto-mobl.ger.corp.intel.com) ([10.255.184.45])
+	by orsmga004.jf.intel.com with ESMTP; 19 Oct 2016 19:56:37 -0700
+From: Paul Eggleton <paul.eggleton@intel.com>
+To: Khem Raj <raj.khem@gmail.com>
+Date: Thu, 20 Oct 2016 15:56:31 +1300
+Message-ID: <10330907.99LmuhynIv@peggleto-mobl.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.14.10 (Linux/4.7.7-100.fc23.x86_64; KDE/4.14.20; x86_64; ;
+	)
+In-Reply-To: <CAMKF1sqAZY9FHeco3M_U0EDZ+4RXw121yH7hOQrW5zZcBz3+4Q@mail.gmail.com>
+References: <1669674.XxUMWkXXym@peggleto-mobl.ger.corp.intel.com>
+	<CAMKF1sqAZY9FHeco3M_U0EDZ+4RXw121yH7hOQrW5zZcBz3+4Q@mail.gmail.com>
 MIME-Version: 1.0
-Received: by 10.176.86.206 with HTTP; Wed, 19 Oct 2016 19:53:10 -0700 (PDT)
-In-Reply-To: <845509FD-6E43-42F8-9F9F-8B1BF8F9F264@cisco.com>
-References: <845509FD-6E43-42F8-9F9F-8B1BF8F9F264@cisco.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Wed, 19 Oct 2016 19:53:10 -0700
-Message-ID: <CAMKF1sp7iJAnpmb7kaQXxBssb3x48A5EAYq7QzCzAhT7_8mEeA@mail.gmail.com>
-To: "Dinh Nguyen (dinhn)" <dinhn@cisco.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Recipe for Turbo.lua ?
+Subject: Re: 2.2 release note material
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,31 +42,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Oct 2016 02:53:45 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 20 Oct 2016 02:56:41 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On Wed, Oct 19, 2016 at 6:56 PM, Dinh Nguyen (dinhn) <dinhn@cisco.com> wrot=
-e:
->
-> Hi Yocto Gurus,
->
-> I am trying to use the Turbo Lua as a framework for building Lua JIT.
-> https://github.com/kernelsauce/turbo.git
->
-> Is there any existing recipe for =E2=80=9Cturbo lua=E2=80=9D ?
+On Wed, 19 Oct 2016 19:51:43 you wrote:
+> On Wed, Oct 19, 2016 at 7:25 PM, Paul Eggleton <paul.eggleton@intel.com>
+> wrote:
+> > I've been gathering material for the 2.2 release notes, here is what I
+> > have at the moment. Things missing:
+> > 
+> > * Any new features/enhancements for the kernel tools - Bruce, is there
+> > anything worth noting?
+> 
+> it does not cover the deprecated/removed packages. Eg uclibc has been
+> removed from oe-core
+> gcc 4.x is also out.
 
-I checked at layers.openembedded.org and it seems there is no recipe for th=
-is.
+I guess we tend to cover those in the migration guide (which is linked from 
+there). We should cover them briefly here as well though.
 
->
-> Many thanks in advance,
->   =E2=80=94Dinh
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+> musl can build world for all primary architectures. ppc64 is now supported.
+
+I wasn't aware that was a milestone we had just achieved for this release - 
+impressive. We should definitely list that.
+
+Thanks,
+Paul
+
+-- 
+Paul Eggleton
+Intel Open Source Technology Centre
 
