@@ -1,14 +1,14 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <piotr.lewicki@elfin.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 87EC7E00DF2; Thu, 20 Oct 2016 22:10:07 -0700 (PDT)
+	id 3BD7EE00DF4; Fri, 21 Oct 2016 03:08:38 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.215.48 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -16,51 +16,50 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.192.195 listed in list.dnswl.org]
-Received: from mail-pf0-f195.google.com (mail-pf0-f195.google.com
-	[209.85.192.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 38F02E00DF1
-	for <yocto@yoctoproject.org>; Thu, 20 Oct 2016 22:10:04 -0700 (PDT)
-Received: by mail-pf0-f195.google.com with SMTP id s8so7499765pfj.2
-	for <yocto@yoctoproject.org>; Thu, 20 Oct 2016 22:10:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id:in-reply-to:references;
-	bh=S260AwsxUmIyXDkbzv37ZYkAvyaIYDFzOL7If4LlTtw=;
-	b=XiPIoR6OoDz3CLnwxIani++naOYKk/HBjx64lk0DyK5/18sfXVGJQ0QSKsH8CycMOg
-	TVhLg3/VBwANRepgOg8+pmkUZ8OpHGSegNrZQMt3MUmtqzDGWFQDwSm2EhBmjJRoix3D
-	VwEPilQWUmz5ZamUvGX42QvDXaCCDzSpuQyPmKfTvNR4Ki9feHvxPxwRWyh63jitOeWF
-	BRWAjYBb3sWGgi2tjMjwz5FsrJihSmi/3do5PsxocrUF9R6iOCVCHurKFxAfTysOWwKs
-	FWr/CsidWwpmdfjTqI7ReRIFJVu3BV2AYcHQ2WAiS72G2ovPDWqSuerrAWv7/1OqgZ6Z
-	dTJQ==
+Received: from mail-lf0-f48.google.com (mail-lf0-f48.google.com
+	[209.85.215.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B0CE9E00DEA
+	for <yocto@yoctoproject.org>; Fri, 21 Oct 2016 03:08:33 -0700 (PDT)
+Received: by mail-lf0-f48.google.com with SMTP id b75so134903100lfg.3
+	for <yocto@yoctoproject.org>; Fri, 21 Oct 2016 03:08:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=elfin.de; s=google;
+	h=to:from:subject:message-id:date:user-agent:mime-version
+	:content-transfer-encoding;
+	bh=f5SW0nzewae21APrjOVoJG/W1E2fVUKCDQe6qM3TxcY=;
+	b=QlGPhXeR6xAae+0DxMj5MzsjIxfS7vgzzsNSnDZzukoAftefObIRBK52M8n+T1ig//
+	ZTwT4jaIDWFFCIGAt8kByV3ePcXcUoyEE5lGlYt5AqYC8aEp7P0r94zAiJHjl5YrgyVE
+	wjPdZf56I3zUdWHcSzoVfcGY9EqS5voBkpWzcSLFE5VrSvkYIjQ9iHeTmjtL7es5ZzAD
+	AOdVL8EDGNR4VaiXPj0aDE7VZEoNHlxcdu6li4L272IDn4UISH+yRL8qVgpcGfKTHTbT
+	HLifGzQgM80GJQKk2QhoaNf10k6I95bY6zLH74gNWk+vt+Mu9WsJ4S6ZJwN1dD9XGbYY
+	nK9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-	:references;
-	bh=S260AwsxUmIyXDkbzv37ZYkAvyaIYDFzOL7If4LlTtw=;
-	b=L+/9XAUcnSJrYlMMls9v1kvEBJtSrqVlPv6btnJAPH12aIQncPn3NJIRA6y5YUKI1L
-	g5mrymdujihfhkM+huUBM8ivRkM8Tcnv/AaNIu8BxlYXSG2soAKcxDisVVqWp6TRifbr
-	zTAQ8PYfcYk7RnFpyz5Uh3l8XL+kSxNMENQlT/MKea8TvDoztEv+ZQ0cCbiIagpEwXDM
-	ClXGGU0gzNIz1D8LxY8L08jbYk+/Zmh9LhGwBe0m/kQxEVrqZzk1oJHvjrbAEjEkzyqx
-	Jsln4NQsIU8v1g3cQaDNgxIl8XCZuh5l8/BYck1AWdKW7FEi3NymP8xoGLu5NR+1lshe
-	pGVw==
-X-Gm-Message-State: AA6/9RnGO4g1loML76zU/Tq8ncdZGYv40T5HMEAHTu43ZaXtUG/QPkN8FnGgjzsxjqnm7A==
-X-Received: by 10.98.17.26 with SMTP id z26mr8120006pfi.44.1477026604261;
-	Thu, 20 Oct 2016 22:10:04 -0700 (PDT)
-Received: from localhost.localdomain (c-76-102-32-192.hsd1.ca.comcast.net.
-	[76.102.32.192]) by smtp.gmail.com with ESMTPSA id
-	m62sm1113803pfi.10.2016.10.20.22.10.03
+	h=x-gm-message-state:to:from:subject:message-id:date:user-agent
+	:mime-version:content-transfer-encoding;
+	bh=f5SW0nzewae21APrjOVoJG/W1E2fVUKCDQe6qM3TxcY=;
+	b=mIOqBiUMOqqgC7kJn2hCpvcCY1UjlqKVOjglk5C6U1vNugmaphszTu3VFPbS+mLKlF
+	axAcQP/TywjYCp8E8VWESJvUY9bifSmUPQMd7a066gGp3wbOFatRaBuq4k+zl5wO6wYv
+	vG1lQxZRQF+7nVOdsz6+H57cKCQ/gAXpsUFrNrpybiELajGm3cDhvnwlkVb167BOYTNY
+	mibjQykOcfKB60rsOrTNvRuB9uGy0TThT/bxFMbI78L/R8me+WGYjkgedblxNxY4z9Ua
+	VXbS1BfZ5Aztwg79/UeMBX1A16t3HU/bVRKxMjKo2zYCdcdCXJ9Q6KSLN1KMwydowF9h
+	g0+g==
+X-Gm-Message-State: AA6/9RnSTIwvACmenzs9y34jui+LxgAbS7HXL7dqKppPUPVO7oAYEhzSDGv/aC6v1cCgGw==
+X-Received: by 10.28.140.136 with SMTP id o130mr6447258wmd.4.1477044511441;
+	Fri, 21 Oct 2016 03:08:31 -0700 (PDT)
+Received: from [192.168.2.176] (b2b-94-79-174-114.unitymedia.biz.
+	[94.79.174.114])
+	by smtp.gmail.com with ESMTPSA id a7sm2046690wjj.22.2016.10.21.03.08.30
+	for <yocto@yoctoproject.org>
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Thu, 20 Oct 2016 22:10:03 -0700 (PDT)
-From: Khem Raj <raj.khem@gmail.com>
+	Fri, 21 Oct 2016 03:08:31 -0700 (PDT)
 To: yocto@yoctoproject.org
-Date: Thu, 20 Oct 2016 22:09:57 -0700
-Message-Id: <20161021050957.26429-2-raj.khem@gmail.com>
-X-Mailer: git-send-email 2.10.0
-In-Reply-To: <20161021050957.26429-1-raj.khem@gmail.com>
-References: <20161021050957.26429-1-raj.khem@gmail.com>
-Subject: [meta-raspberrypi][PATCH 2/2] linux-raspberrypi_4.8.bb: Update to 4.8.2
+From: Piotr Lewicki <piotr.lewicki@elfin.de>
+Message-ID: <1246ee4f-398f-63d5-fc48-f7911c4cbd92@elfin.de>
+Date: Fri, 21 Oct 2016 12:08:30 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.3.0
+MIME-Version: 1.0
+Subject: [meta-raspberrypi][question] how to setup alsa on rpi3?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,29 +71,69 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 21 Oct 2016 05:10:07 -0000
+X-List-Received-Date: Fri, 21 Oct 2016 10:08:38 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Khem Raj <raj.khem@gmail.com>
----
- recipes-kernel/linux/linux-raspberrypi_4.8.bb | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Hi,
 
-diff --git a/recipes-kernel/linux/linux-raspberrypi_4.8.bb b/recipes-kernel/linux/linux-raspberrypi_4.8.bb
-index 02623f4..7934747 100644
---- a/recipes-kernel/linux/linux-raspberrypi_4.8.bb
-+++ b/recipes-kernel/linux/linux-raspberrypi_4.8.bb
-@@ -1,8 +1,8 @@
- FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
- 
--LINUX_VERSION ?= "4.8.1"
-+LINUX_VERSION ?= "4.8.2"
- 
--SRCREV = "5b7970b19bbb2ea1620591bfb6517848696ed0b9"
-+SRCREV = "0105b0ea92b1614ac00329a530da940053e64a4a"
- SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-4.8.y \
- "
- require linux-raspberrypi.inc
--- 
-2.10.0
+I want to use aplay to play a sound on raspberry pi 3, but for some 
+reason it does not work for me.
+
+I have built a new "rpi-test-image" with only one difference from 
+original- I added "alsa-utils" to the image.
+
+My steps:
+
+1. I ssh'd to the board with the built image,
+
+2. downloaded wav sample ("wget 
+http://freewavesamples.com/files/Korg-Triton-Harmonica-C5.wav"),
+
+3. enabled the sound kernel module ("modprobe snd-bcm2835"),
+
+4. tried to play it with "aplay" tool.
+
+
+It did not work and I got an error:
+
+root@raspberrypi3:~# aplay ./Korg-Triton-Harmonica-C5.wav
+ALSA lib ../../alsa-lib-1.1.2/src/confmisc.c:767:(parse_card) cannot 
+find card '0'
+ALSA lib ../../alsa-lib-1.1.2/src/conf.c:4371:(_snd_config_evaluate) 
+function snd_func_card_driver returned error: No such file or directory
+ALSA lib ../../alsa-lib-1.1.2/src/confmisc.c:392:(snd_func_concat) error 
+evaluating strings
+ALSA lib ../../alsa-lib-1.1.2/src/conf.c:4371:(_snd_config_evaluate) 
+function snd_func_concat returned error: No such file or directory
+ALSA lib ../../alsa-lib-1.1.2/src/confmisc.c:1246:(snd_func_refer) error 
+evaluating name
+ALSA lib ../../alsa-lib-1.1.2/src/conf.c:4371:(_snd_config_evaluate) 
+function snd_func_refer returned error: No such file or directory
+ALSA lib ../../alsa-lib-1.1.2/src/conf.c:4850:(snd_config_expand) 
+Evaluate error: No such file or directory
+ALSA lib 
+../../../alsa-lib-1.1.2/src/pcm/pcm.c:2450:(snd_pcm_open_noupdate) 
+Unknown PCM default
+aplay: main:786: audio open error: No such file or directory
+
+
+Playing the same wav file with omxplayer ("omxplayer -o local 
+./Korg-Triton-Harmonica-C5.wav") works fine.
+
+
+Do you know how can I set up alsa to make it work on rpi3 board?
+
+Does anybody have it working?
+
+I don't know whether I should start with the alsa configuration or some 
+missing packages, or the problem lays in the sound driver.
+
+Any help appreciated,
+
+
+Thanks,
+
+Piotr Lewicki
 
 
