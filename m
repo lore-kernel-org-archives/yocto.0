@@ -1,17 +1,17 @@
 Return-Path: <karim_atiki@hotmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 74C6AE00546; Sat, 22 Oct 2016 09:19:52 -0700 (PDT)
+	id BECE1E00546; Sat, 22 Oct 2016 09:21:58 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (karim_atiki[at]hotmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [65.54.61.77 listed in list.dnswl.org]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [65.55.34.139 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -20,75 +20,76 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from SNT004-OMC1S40.hotmail.com (snt004-omc1s40.hotmail.com
-	[65.54.61.77])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0A6C6E0049D
-	for <yocto@yoctoproject.org>; Sat, 22 Oct 2016 09:19:48 -0700 (PDT)
-Received: from EUR01-VE1-obe.outbound.protection.outlook.com ([65.55.90.7]) by
-	SNT004-OMC1S40.hotmail.com over TLS secured channel with
-	Microsoft SMTPSVC(7.5.7601.23008); Sat, 22 Oct 2016 09:19:45 -0700
+Received: from COL004-OMC3S1.hotmail.com (col004-omc3s1.hotmail.com
+	[65.55.34.139])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DEAC3E0049D
+	for <yocto@yoctoproject.org>; Sat, 22 Oct 2016 09:21:56 -0700 (PDT)
+Received: from EUR01-HE1-obe.outbound.protection.outlook.com ([65.55.34.136])
+	by COL004-OMC3S1.hotmail.com over TLS secured channel with
+	Microsoft SMTPSVC(7.5.7601.23008); Sat, 22 Oct 2016 09:21:56 -0700
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
 	s=selector1; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
-	bh=0SqlfXpH0ahKGSp8+Ji4F1noAEFXVjfRMRvluKcvD7s=;
-	b=Zoabx2fph171JMTiQSB76w+llcTXygM1tu7nyozV+534EdbkMtabu0ytSHCX6rHohtGPm/Vx2BqbV4MYJoCy8Rb3zPKryc7fHTBxwPTzahX4Jr2Q2x/PfOJ7ulC/zR988ZWQ8pSP8RNMrPxUqGqzqFCGygFKQvGM5n6KVIV/giU4O7q0TucvCgTGvzOWSgSQZgQ0FjsQAFRy9zv+1h1/S4nIs1vbuEkVr4CvNSL1snuf10KdRtW7k/li0r5J7hrB4uSkJKI+GspyXY73S3qyqSOcjFQisfC6xAOTQa5mBWVYpVrW6GJhjkewHzTWkzYt8PInNyHVqdkoqpmHp7Otkw==
+	bh=0Nlig7kJybDyUDhJynvW2eOUkWpimUN5n9y6thJCO04=;
+	b=EuXzYFVYvtyFhnadIMkP+PNJ/M3t7x0ajtgAUlgrVUj2CB8rCgL+F1F4eUXgTKor8Sc/VTru2AsflKgVKBt2NOFYUR3JWa3GtMfJZUt7nJsQxwb5WEsPCBNvMATAbFUMMsTArIS1lCy1DSXIYA1hkVFk0e4Tm66PiJyaCeglTAl4y5kf+UbCqU55H0aAhjsAArh9hC+XLHnAPvd7J+ipFZr4m1fUhVuqHW8sKXA5CLlNRXClyRlAnohOnpAz1s11onoXCVoPO6U+P/vZc/cLNcMJoZ45XWc2eFsQU62xMrN5sI7K7kKnA/+oXYwvVYXF/4QXrxREhQfoRgFLb/62VA==
 Received: from DB5EUR01FT046.eop-EUR01.prod.protection.outlook.com
-	(10.152.4.52) by DB5EUR01HT231.eop-EUR01.prod.protection.outlook.com
-	(10.152.4.192) with Microsoft SMTP Server (version=TLS1_2,
+	(10.152.4.57) by DB5EUR01HT253.eop-EUR01.prod.protection.outlook.com
+	(10.152.5.34) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.669.7;
-	Sat, 22 Oct 2016 16:19:43 +0000
+	Sat, 22 Oct 2016 16:21:40 +0000
 Received: from HE1PR01MB1883.eurprd01.prod.exchangelabs.com (10.152.4.51) by
 	DB5EUR01FT046.mail.protection.outlook.com (10.152.5.231) with Microsoft
 	SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
-	15.1.669.7 via Frontend Transport; Sat, 22 Oct 2016 16:19:43 +0000
+	15.1.669.7 via Frontend Transport; Sat, 22 Oct 2016 16:21:40 +0000
 Received: from HE1PR01MB1883.eurprd01.prod.exchangelabs.com ([10.165.228.143])
 	by HE1PR01MB1883.eurprd01.prod.exchangelabs.com ([10.165.228.143])
-	with mapi id 15.01.0669.021; Sat, 22 Oct 2016 16:19:42 +0000
+	with mapi id 15.01.0669.021; Sat, 22 Oct 2016 16:21:39 +0000
 From: Karim ATIKI <karim_atiki@hotmail.com>
-To: Khem Raj <raj.khem@gmail.com>
+To: Paul Barker <paul@paulbarker.me.uk>
 Thread-Topic: [yocto] [raspberrypi3][meta-qt5] Failed to build
 	meta-toolchain-qt5
-Thread-Index: AQHSLF9yRZyzpaMIaUqAHJgUBbdCu6C0lPiBgAAQ2YCAAAFsLA==
-Date: Sat, 22 Oct 2016 16:19:42 +0000
-Message-ID: <HE1PR01MB18830215696B2C95CA18945F92D70@HE1PR01MB1883.eurprd01.prod.exchangelabs.com>
+Thread-Index: AQHSLF9yRZyzpaMIaUqAHJgUBbdCu6C0lPiBgAADhACAAA8SAQ==
+Date: Sat, 22 Oct 2016 16:21:39 +0000
+Message-ID: <HE1PR01MB1883F449B33898FC6A3C826D92D70@HE1PR01MB1883.eurprd01.prod.exchangelabs.com>
 References: <DB5PR01MB188022E6CBBDB28E6758242592D70@DB5PR01MB1880.eurprd01.prod.exchangelabs.com>
 	<HE1PR01MB1883059387B8E06758D4889092D70@HE1PR01MB1883.eurprd01.prod.exchangelabs.com>,
-	<682A676C-7174-476C-B845-13329DC857F9@gmail.com>
-In-Reply-To: <682A676C-7174-476C-B845-13329DC857F9@gmail.com>
+	<20161022162610.28a9d1ed@nuc.betafive.co.uk>
+In-Reply-To: <20161022162610.28a9d1ed@nuc.betafive.co.uk>
 Accept-Language: fr-FR, en-US
-X-MS-Has-Attach: 
+X-MS-Has-Attach: yes
 X-MS-TNEF-Correlator: 
 authentication-results: yoctoproject.org; dkim=none (message not signed)
 	header.d=none;yoctoproject.org; dmarc=none action=none
 	header.from=hotmail.com;
 x-ms-exchange-messagesentrepresentingtype: 1
-x-tmn: [bCGvbo/iT8baLDlmkyiN/JFFxbH5mqJW]
+x-tmn: [e0xZ1/5HA+ccKAj8/riyFqPL4cizhQIk]
 x-eopattributedmessage: 0
-x-microsoft-exchange-diagnostics: 1; DB5EUR01HT231;
-	6:t1Gdc90pv4qUMHYhmhwgkUKyxj5L5thdYttzt2SugKBr0+OHhdcZhyKRdoZJjHgHhACLwhvalK9v29B+ndyaPx6UJqH3VMcvcjfCxvG05OpGEGa+4KbKxUTkVj4Ep3vyij3mXEo/yrT0JrOtrH3LsCfPHKpxKiAs5Y8Tfzztmuwuqay+vzrlrRlC+gzca9CFwk8QcZ+0SNl9PZdqze8e3OdJtd2PGFam6A5Ul9cS55H8RT8txmNWsospuWfX0wJeEiQtK6kyNHAWEAxfQ7YKpL97UYU8Rx+BmnE9DeJ4QAYmN4FYBsWAuxoXHHvqPtCb;
-	5:BiQ2/CO8nuJjadQxYJxXwGmahb/LuheRuWldjXm8EDCbfw5xqJ2uuOkiS0PfNtWTUT3HdTmp2Wo5+ADrltJuvpMG7QnEl5NSLJOcME9qkXrH9qgNqnBRklz2+rxRux3xc0sRO76YEhrsWZtWJZw2VA==;
-	24:9qsKlYShghrn289rvMYoQMBN0KGlJrgLBHwnoWFP8blEpzuQEkaN63C5PjCL4szlvq57JQC56r7aNk+46uQ71YstfxLTTTxZdK3wpNS5o14=;
-	7:fe8/cTWqsfpQVe6VIGaVcmkvxbAcI0DUchRHhB0/cQ9i8ecUtq3/eZfg0i9PDk/NoBbtEk+FLBGcBTc7wGAa6XHv1w01pZEtz2leba5/zemsdRVBHT7r5imTYgVmDr42bCAJO6GMeLAWXiqtSYOTQlKB5LNyHoI4jLSr8ZpQET3rbde/fo/TmEi1hIuQIuU7z42vyzmjqvgv3l0SSZQQjZF8iBp2PlrHsxJqpLMlCQ6Lo5XADI2YPk4NZ5TrMLDdqhXANOiMzwyQU5eguRrGCrYTORG902mdN83sVbdq0uuni9jQ2SerXlrgY5Oew19nD0oQKaoG+yeTOfwZn6hXihQ9Vay7o+653Q1E+X8v5Dk=
+x-microsoft-exchange-diagnostics: 1; DB5EUR01HT253;
+	6:bZ7LG0aippG+OixvxaDgp7bq4xioKRhTA3QRIq4Hu2YzOqsuF1221Z0yjNOqgcBiy3njr8ByIQvwZq0h7KP+q8bTvcfeLggbE3zjnoF7r0bCSoJ0AipJqKG4rchzfos4llXu0IhugjaZyM+HFqz0J1356uVfRqYx8VOJzSqaqWabtoo5Yx1E4/cDz+B4ZTroxqOxKm9Bz58CSCFBRTvgDPLSOUNG0VK6dU8Et7Aeb/rWSqpl+ADWZdHazGeBsmvQ/wzh7xBd2fSw7XsD7pf3OmV5PXKP8N1DT1CwU5eGRuFVC9XnjM9qWxnbLzrkNDII;
+	5:4//xJzm6zXefGnPgQTjUgkGSQgI90ZIvh+jgEaqai/31LEyAWxQS6ZsZtAPd4Qh2+6GQ+DLzTGejY0NvnfEn1y7AvMZveJPDJ9zvgAzkgDsRU9/mX3yApno0T6UKuVTbg24LUJwFIOzTBXOVtelbLQ==;
+	24:45t629k01F+aStlKSRKyvp0M33nQv5LdWaEdlQp8Y0HlOnhHNl5/jC0g9y013DmEOioXflo5XqnaQvNsm3cm9Tgc/WBStJfs0eH11Jv5DwE=;
+	7:ir+gRhFkN2cc8LtITVzncbTDa3DTcbAIEgT+QxTpDlx7oW3+b4Uqa8/i50lEb+OvzP+H9VQ/eZBknuln1LYZ+yXIY1PhYw6ZnaloGZAFG36+8MyTuVzIRw762r8R2G3o3IdwONP2gM4s1SHnvE1LsCUsXEpyPE9Av5MJTXcw5VvociFBKtr2xQm0AKrvhphdtdJN8qrmSZ7m9+kzieOOE8Kf9nXEcQVghNXB6xoxg92ahjaDBx+Pkl93eP2JqfZ09m5LFAdDNWXxUXgOvq+ucouwPwOomSi4v1RmnkURGRb3bObEOihryV6duaXN2BMBv6hXwb4gov8bQg7SU97P00lq+40bRq9+qbTDvLrtuV8=
 x-forefront-antispam-report: EFV:NLI; SFV:NSPM; SFS:(10019020)(98900003);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:DB5EUR01HT231;
+	DIR:OUT; SFP:1102; SCL:1; SRVR:DB5EUR01HT253;
 	H:HE1PR01MB1883.eurprd01.prod.exchangelabs.com; FPR:; SPF:None;
 	LANG:en; 
-x-ms-office365-filtering-correlation-id: 90a1c0b8-d939-4c27-412a-08d3fa973b08
+x-ms-office365-filtering-correlation-id: 996c44f8-3557-4081-b28b-08d3fa9780e0
 x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
-	RULEID:(1601124038)(1603103081)(1601125047); SRVR:DB5EUR01HT231;
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0; RULEID:(432015012)(82015046);
-	SRVR:DB5EUR01HT231; BCL:0; PCL:0; RULEID:; SRVR:DB5EUR01HT231; 
+	RULEID:(1601124038)(1603103081)(1601125047); SRVR:DB5EUR01HT253;
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(432015012)(102415321)(82015046); SRVR:DB5EUR01HT253;
+	BCL:0; PCL:0; RULEID:; SRVR:DB5EUR01HT253; 
 x-forefront-prvs: 01039C93E4
 spamdiagnosticoutput: 1:99
 spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
 X-OriginatorOrg: hotmail.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Oct 2016 16:19:42.4402 (UTC)
+X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Oct 2016 16:21:39.7245 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Internet
 X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB5EUR01HT231
-X-OriginalArrivalTime: 22 Oct 2016 16:19:45.0917 (UTC)
-	FILETIME=[1A7F92D0:01D22C80]
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB5EUR01HT253
+X-OriginalArrivalTime: 22 Oct 2016 16:21:56.0000 (UTC)
+	FILETIME=[6808AA00:01D22C80]
 Cc: yocto <yocto@yoctoproject.org>
 Subject: Re: [raspberrypi3][meta-qt5] Failed to build meta-toolchain-qt5
 X-BeenThere: yocto@yoctoproject.org
@@ -102,170 +103,71 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 22 Oct 2016 16:19:52 -0000
+X-List-Received-Date: Sat, 22 Oct 2016 16:21:58 -0000
+X-Groupsio-MsgNum: 32573
 Content-Language: fr-FR
-Content-Type: multipart/alternative;
-	boundary="_000_HE1PR01MB18830215696B2C95CA18945F92D70HE1PR01MB1883eurp_"
+Content-Type: multipart/mixed;
+	boundary="_004_HE1PR01MB1883F449B33898FC6A3C826D92D70HE1PR01MB1883eurp_"
 
---_000_HE1PR01MB18830215696B2C95CA18945F92D70HE1PR01MB1883eurp_
+--_004_HE1PR01MB1883F449B33898FC6A3C826D92D70HE1PR01MB1883eurp_
+Content-Type: multipart/alternative;
+	boundary="_000_HE1PR01MB1883F449B33898FC6A3C826D92D70HE1PR01MB1883eurp_"
+
+--_000_HE1PR01MB1883F449B33898FC6A3C826D92D70HE1PR01MB1883eurp_
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-Khem,
+Hi Paul,
 
 
-I found the follwoing pc files, and bcm_host is found.
-
-
-
-kai@odyssey:~/yocto/build-magnolia/tmp/work$ find . -name *.pc | grep userl=
-and
-./raspberrypi3-poky-linux-gnueabi/userland/git-r5/image/usr/lib/pkgconfig/b=
-rcmvg.pc
-./raspberrypi3-poky-linux-gnueabi/userland/git-r5/image/usr/lib/pkgconfig/g=
-lesv2.pc
-./raspberrypi3-poky-linux-gnueabi/userland/git-r5/image/usr/lib/pkgconfig/e=
-gl.pc
-./raspberrypi3-poky-linux-gnueabi/userland/git-r5/image/usr/lib/pkgconfig/b=
-cm_host.pc
-./raspberrypi3-poky-linux-gnueabi/userland/git-r5/image/usr/lib/pkgconfig/v=
-g.pc
-./raspberrypi3-poky-linux-gnueabi/userland/git-r5/image/usr/lib/pkgconfig/b=
-rcmegl.pc
-./raspberrypi3-poky-linux-gnueabi/userland/git-r5/image/usr/lib/pkgconfig/b=
-rcmglesv2.pc
-./raspberrypi3-poky-linux-gnueabi/userland/git-r5/packages-split/userland-d=
-ev/usr/lib/pkgconfig/brcmvg.pc
-./raspberrypi3-poky-linux-gnueabi/userland/git-r5/packages-split/userland-d=
-ev/usr/lib/pkgconfig/glesv2.pc
-./raspberrypi3-poky-linux-gnueabi/userland/git-r5/packages-split/userland-d=
-ev/usr/lib/pkgconfig/egl.pc
-./raspberrypi3-poky-linux-gnueabi/userland/git-r5/packages-split/userland-d=
-ev/usr/lib/pkgconfig/bcm_host.pc
-./raspberrypi3-poky-linux-gnueabi/userland/git-r5/packages-split/userland-d=
-ev/usr/lib/pkgconfig/vg.pc
-./raspberrypi3-poky-linux-gnueabi/userland/git-r5/packages-split/userland-d=
-ev/usr/lib/pkgconfig/brcmegl.pc
-./raspberrypi3-poky-linux-gnueabi/userland/git-r5/packages-split/userland-d=
-ev/usr/lib/pkgconfig/brcmglesv2.pc
-./raspberrypi3-poky-linux-gnueabi/userland/git-r5/sysroot-destdir/usr/lib/p=
-kgconfig/brcmvg.pc
-./raspberrypi3-poky-linux-gnueabi/userland/git-r5/sysroot-destdir/usr/lib/p=
-kgconfig/glesv2.pc
-./raspberrypi3-poky-linux-gnueabi/userland/git-r5/sysroot-destdir/usr/lib/p=
-kgconfig/egl.pc
-./raspberrypi3-poky-linux-gnueabi/userland/git-r5/sysroot-destdir/usr/lib/p=
-kgconfig/bcm_host.pc
-./raspberrypi3-poky-linux-gnueabi/userland/git-r5/sysroot-destdir/usr/lib/p=
-kgconfig/vg.pc
-./raspberrypi3-poky-linux-gnueabi/userland/git-r5/sysroot-destdir/usr/lib/p=
-kgconfig/brcmegl.pc
-./raspberrypi3-poky-linux-gnueabi/userland/git-r5/sysroot-destdir/usr/lib/p=
-kgconfig/brcmglesv2.pc
-./raspberrypi3-poky-linux-gnueabi/userland/git-r5/git/.pc
-./raspberrypi3-poky-linux-gnueabi/userland/git-r5/package/usr/lib/pkgconfig=
-/brcmvg.pc
-./raspberrypi3-poky-linux-gnueabi/userland/git-r5/package/usr/lib/pkgconfig=
-/glesv2.pc
-./raspberrypi3-poky-linux-gnueabi/userland/git-r5/package/usr/lib/pkgconfig=
-/egl.pc
-./raspberrypi3-poky-linux-gnueabi/userland/git-r5/package/usr/lib/pkgconfig=
-/bcm_host.pc
-./raspberrypi3-poky-linux-gnueabi/userland/git-r5/package/usr/lib/pkgconfig=
-/vg.pc
-./raspberrypi3-poky-linux-gnueabi/userland/git-r5/package/usr/lib/pkgconfig=
-/brcmegl.pc
-./raspberrypi3-poky-linux-gnueabi/userland/git-r5/package/usr/lib/pkgconfig=
-/brcmglesv2.pc
-./raspberrypi3-poky-linux-gnueabi/userland/git-r5/build/brcmvg.pc
-./raspberrypi3-poky-linux-gnueabi/userland/git-r5/build/glesv2.pc
-./raspberrypi3-poky-linux-gnueabi/userland/git-r5/build/egl.pc
-./raspberrypi3-poky-linux-gnueabi/userland/git-r5/build/bcm_host.pc
-./raspberrypi3-poky-linux-gnueabi/userland/git-r5/build/vg.pc
-./raspberrypi3-poky-linux-gnueabi/userland/git-r5/build/brcmegl.pc
-./raspberrypi3-poky-linux-gnueabi/userland/git-r5/build/brcmglesv2.pc
-
+the compile log file is attached with this mail.
 
 
 
 ________________________________
-De : Khem Raj <raj.khem@gmail.com>
-Envoy=E9 : samedi 22 octobre 2016 18:13
+De : Paul Barker <paul@paulbarker.me.uk>
+Envoy=E9 : samedi 22 octobre 2016 17:26
 =C0 : Karim ATIKI
 Cc : yocto
 Objet : Re: [yocto] [raspberrypi3][meta-qt5] Failed to build meta-toolchain=
 -qt5
 
+On Sat, 22 Oct 2016 15:16:18 +0000
+Karim ATIKI <karim_atiki@hotmail.com> wrote:
 
-On Oct 22, 2016, at 8:16 AM, Karim ATIKI <karim_atiki@hotmail.com<mailto:ka=
-rim_atiki@hotmail.com>> wrote:
+> Actually, it looks like the issue comes from gstreamer1.0-plugins-bad
+> recipe.
+>
+>
+> This function, graphics_get_display_size, comes from libbcm_host
+> which seems to be present in sysroot.
+>
+>
+> In log.doconfigure i found:
+>
+>
+> checking for bcm_host_init in -lbcm_host... yes
+> checking bcm_host.h usability... yes
+> checking bcm_host.h presence... yes
+> checking for bcm_host.h... yes
+>
+> So it seems that it found the necessary library.
+>
+>
+> However, in the logfile of the compile error, there is no
+> "-lbcm_host" dependency at all.
+>
+>
+> Any idea to solve it ?
+>
 
-Actually, it looks like the issue comes from gstreamer1.0-plugins-bad recip=
-e.
+Could you post more of the compile log? It would be good to see the
+full set of arguments being used for compiling/linking.
 
-This function, graphics_get_display_size, comes from libbcm_host which seem=
-s to be present in sysroot.
+Thanks,
+Paul
 
-In log.doconfigure i found:
-
-
-checking for bcm_host_init in -lbcm_host... yes
-checking bcm_host.h usability... yes
-checking bcm_host.h presence... yes
-checking for bcm_host.h... yes
-
-So it seems that it found the necessary library.
-
-However, in the logfile of the compile error, there is no "-lbcm_host" depe=
-ndency at all.
-
-Any idea to solve it ?
-
-Look at the packageconfig files from userland package and see if its export=
-ing the right libraries in .pc files.
-
-
-Karim
-
-
-
-________________________________
-De : yocto-bounces@yoctoproject.org<mailto:yocto-bounces@yoctoproject.org> =
-<yocto-bounces@yoctoproject.org<mailto:yocto-bounces@yoctoproject.org>> de =
-la part de Karim ATIKI <karim_atiki@hotmail.com<mailto:karim_atiki@hotmail.=
-com>>
-Envoy=E9 : samedi 22 octobre 2016 14:26
-=C0 : yocto
-Objet : [yocto] [raspberrypi3][meta-qt5] Failed to build meta-toolchain-qt5
-
-Hi all,
-
-Tryng to build the meta-toolchain-qt5, I've a failure while bulidng gst-plu=
-gins-bad.
-
-The underlying error seems to be:
-
-| ./.libs/libgstgl-1.0.so: undefined reference to `graphics_get_display_siz=
-e
-
-This function seems to come from bcm_host library.
-Isn't it related to  RaspberryPi graphic libs ?
-
-Should I add a specific dependency ?
-
-Weird.
-
-Karim
-
-
---
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org<mailto:yocto@yoctoproject.org>
-https://lists.yoctoproject.org/listinfo/yocto
-
-
---_000_HE1PR01MB18830215696B2C95CA18945F92D70HE1PR01MB1883eurp_
+--_000_HE1PR01MB1883F449B33898FC6A3C826D92D70HE1PR01MB1883eurp_
 Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
@@ -279,279 +181,459 @@ n-bottom:0;} --></style>
 <body dir=3D"ltr">
 <div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
 -family:Calibri,Arial,Helvetica,sans-serif;">
-<p>Khem,</p>
+<p>Hi Paul,</p>
 <p><br>
 </p>
-<p>I found the follwoing pc files, and bcm_host is found.</p>
+<p>the compile log file is attached with this mail.</p>
 <p><br>
 </p>
-<p><br>
-</p>
-<p></p>
-<div>kai@odyssey:~/yocto/build-magnolia/tmp/work$ find . -name *.pc | grep =
-userland</div>
-<div>./raspberrypi3-poky-linux-gnueabi/userland/git-r5/image/usr/lib/pkgcon=
-fig/brcmvg.pc</div>
-<div>./raspberrypi3-poky-linux-gnueabi/userland/git-r5/image/usr/lib/pkgcon=
-fig/glesv2.pc</div>
-<div>./raspberrypi3-poky-linux-gnueabi/userland/git-r5/image/usr/lib/pkgcon=
-fig/egl.pc</div>
-<div>./raspberrypi3-poky-linux-gnueabi/userland/git-r5/image/usr/lib/pkgcon=
-fig/bcm_host.pc</div>
-<div>./raspberrypi3-poky-linux-gnueabi/userland/git-r5/image/usr/lib/pkgcon=
-fig/vg.pc</div>
-<div>./raspberrypi3-poky-linux-gnueabi/userland/git-r5/image/usr/lib/pkgcon=
-fig/brcmegl.pc</div>
-<div>./raspberrypi3-poky-linux-gnueabi/userland/git-r5/image/usr/lib/pkgcon=
-fig/brcmglesv2.pc</div>
-<div>./raspberrypi3-poky-linux-gnueabi/userland/git-r5/packages-split/userl=
-and-dev/usr/lib/pkgconfig/brcmvg.pc</div>
-<div>./raspberrypi3-poky-linux-gnueabi/userland/git-r5/packages-split/userl=
-and-dev/usr/lib/pkgconfig/glesv2.pc</div>
-<div>./raspberrypi3-poky-linux-gnueabi/userland/git-r5/packages-split/userl=
-and-dev/usr/lib/pkgconfig/egl.pc</div>
-<div>./raspberrypi3-poky-linux-gnueabi/userland/git-r5/packages-split/userl=
-and-dev/usr/lib/pkgconfig/bcm_host.pc</div>
-<div>./raspberrypi3-poky-linux-gnueabi/userland/git-r5/packages-split/userl=
-and-dev/usr/lib/pkgconfig/vg.pc</div>
-<div>./raspberrypi3-poky-linux-gnueabi/userland/git-r5/packages-split/userl=
-and-dev/usr/lib/pkgconfig/brcmegl.pc</div>
-<div>./raspberrypi3-poky-linux-gnueabi/userland/git-r5/packages-split/userl=
-and-dev/usr/lib/pkgconfig/brcmglesv2.pc</div>
-<div>./raspberrypi3-poky-linux-gnueabi/userland/git-r5/sysroot-destdir/usr/=
-lib/pkgconfig/brcmvg.pc</div>
-<div>./raspberrypi3-poky-linux-gnueabi/userland/git-r5/sysroot-destdir/usr/=
-lib/pkgconfig/glesv2.pc</div>
-<div>./raspberrypi3-poky-linux-gnueabi/userland/git-r5/sysroot-destdir/usr/=
-lib/pkgconfig/egl.pc</div>
-<div>./raspberrypi3-poky-linux-gnueabi/userland/git-r5/sysroot-destdir/usr/=
-lib/pkgconfig/bcm_host.pc</div>
-<div>./raspberrypi3-poky-linux-gnueabi/userland/git-r5/sysroot-destdir/usr/=
-lib/pkgconfig/vg.pc</div>
-<div>./raspberrypi3-poky-linux-gnueabi/userland/git-r5/sysroot-destdir/usr/=
-lib/pkgconfig/brcmegl.pc</div>
-<div>./raspberrypi3-poky-linux-gnueabi/userland/git-r5/sysroot-destdir/usr/=
-lib/pkgconfig/brcmglesv2.pc</div>
-<div>./raspberrypi3-poky-linux-gnueabi/userland/git-r5/git/.pc</div>
-<div>./raspberrypi3-poky-linux-gnueabi/userland/git-r5/package/usr/lib/pkgc=
-onfig/brcmvg.pc</div>
-<div>./raspberrypi3-poky-linux-gnueabi/userland/git-r5/package/usr/lib/pkgc=
-onfig/glesv2.pc</div>
-<div>./raspberrypi3-poky-linux-gnueabi/userland/git-r5/package/usr/lib/pkgc=
-onfig/egl.pc</div>
-<div>./raspberrypi3-poky-linux-gnueabi/userland/git-r5/package/usr/lib/pkgc=
-onfig/bcm_host.pc</div>
-<div>./raspberrypi3-poky-linux-gnueabi/userland/git-r5/package/usr/lib/pkgc=
-onfig/vg.pc</div>
-<div>./raspberrypi3-poky-linux-gnueabi/userland/git-r5/package/usr/lib/pkgc=
-onfig/brcmegl.pc</div>
-<div>./raspberrypi3-poky-linux-gnueabi/userland/git-r5/package/usr/lib/pkgc=
-onfig/brcmglesv2.pc</div>
-<div>./raspberrypi3-poky-linux-gnueabi/userland/git-r5/build/brcmvg.pc</div=
->
-<div>./raspberrypi3-poky-linux-gnueabi/userland/git-r5/build/glesv2.pc</div=
->
-<div>./raspberrypi3-poky-linux-gnueabi/userland/git-r5/build/egl.pc</div>
-<div>./raspberrypi3-poky-linux-gnueabi/userland/git-r5/build/bcm_host.pc</d=
-iv>
-<div>./raspberrypi3-poky-linux-gnueabi/userland/git-r5/build/vg.pc</div>
-<div>./raspberrypi3-poky-linux-gnueabi/userland/git-r5/build/brcmegl.pc</di=
-v>
-<div>./raspberrypi3-poky-linux-gnueabi/userland/git-r5/build/brcmglesv2.pc<=
-/div>
-<div><br>
-</div>
-<br>
-<p></p>
 <br>
 <br>
 <div style=3D"color: rgb(0, 0, 0);">
-<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" co=
-lor=3D"#000000" style=3D"font-size:11pt"><b>De :</b> Khem Raj &lt;raj.khem@=
-gmail.com&gt;<br>
-<b>Envoy=E9 :</b> samedi 22 octobre 2016 18:13<br>
+<div>
+<hr style=3D"display:inline-block; width:98%" tabindex=3D"-1">
+<div id=3D"x_divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" =
+color=3D"#000000" style=3D"font-size:11pt"><b>De :</b> Paul Barker &lt;paul=
+@paulbarker.me.uk&gt;<br>
+<b>Envoy=E9 :</b> samedi 22 octobre 2016 17:26<br>
 <b>=C0 :</b> Karim ATIKI<br>
 <b>Cc&nbsp;:</b> yocto<br>
 <b>Objet :</b> Re: [yocto] [raspberrypi3][meta-qt5] Failed to build meta-to=
 olchain-qt5</font>
 <div>&nbsp;</div>
 </div>
-<div><br class=3D"">
-<div>
-<blockquote type=3D"cite" class=3D"">
-<div class=3D"">On Oct 22, 2016, at 8:16 AM, Karim ATIKI &lt;<a href=3D"mai=
-lto:karim_atiki@hotmail.com" class=3D"">karim_atiki@hotmail.com</a>&gt; wro=
-te:</div>
-<br class=3D"Apple-interchange-newline">
-<div class=3D"">
-<div id=3D"divtagdefaultwrapper" class=3D"" style=3D"font-style:normal; fon=
-t-weight:normal; letter-spacing:normal; orphans:auto; text-align:start; tex=
-t-indent:0px; text-transform:none; white-space:normal; widows:auto; word-sp=
-acing:0px; font-size:12pt; font-family:Calibri,Arial,Helvetica,sans-serif">
-<div class=3D"" style=3D"margin-top:0px; margin-bottom:0px">Actually, it lo=
-oks like the issue comes from gstreamer1.0-plugins-bad recipe.</div>
-<div class=3D"" style=3D"margin-top:0px; margin-bottom:0px"><br class=3D"">
 </div>
-<div class=3D"" style=3D"margin-top:0px; margin-bottom:0px">This function, =
-graphics_get_display_size, comes from libbcm_host which seems to be present=
- in sysroot.</div>
-<div class=3D"" style=3D"margin-top:0px; margin-bottom:0px"><br class=3D"">
+<font size=3D"2"><span style=3D"font-size:10pt;">
+<div class=3D"PlainText">On Sat, 22 Oct 2016 15:16:18 &#43;0000<br>
+Karim ATIKI &lt;karim_atiki@hotmail.com&gt; wrote:<br>
+<br>
+&gt; Actually, it looks like the issue comes from gstreamer1.0-plugins-bad<=
+br>
+&gt; recipe.<br>
+&gt; <br>
+&gt; <br>
+&gt; This function, graphics_get_display_size, comes from libbcm_host<br>
+&gt; which seems to be present in sysroot.<br>
+&gt; <br>
+&gt; <br>
+&gt; In log.doconfigure i found:<br>
+&gt; <br>
+&gt; <br>
+&gt; checking for bcm_host_init in -lbcm_host... yes<br>
+&gt; checking bcm_host.h usability... yes<br>
+&gt; checking bcm_host.h presence... yes<br>
+&gt; checking for bcm_host.h... yes<br>
+&gt; <br>
+&gt; So it seems that it found the necessary library.<br>
+&gt; <br>
+&gt; <br>
+&gt; However, in the logfile of the compile error, there is no<br>
+&gt; &quot;-lbcm_host&quot; dependency at all.<br>
+&gt; <br>
+&gt; <br>
+&gt; Any idea to solve it ?<br>
+&gt; <br>
+<br>
+Could you post more of the compile log? It would be good to see the<br>
+full set of arguments being used for compiling/linking.<br>
+<br>
+Thanks,<br>
+Paul<br>
 </div>
-<div class=3D"" style=3D"margin-top:0px; margin-bottom:0px">In log.doconfig=
-ure i found:</div>
-<div class=3D"" style=3D"margin-top:0px; margin-bottom:0px"><br class=3D"">
-</div>
-<p class=3D"" style=3D"margin-top:0px; margin-bottom:0px"></p>
-<div class=3D"">checking for bcm_host_init in -lbcm_host... yes</div>
-<div class=3D"">checking bcm_host.h usability... yes</div>
-<div class=3D"">checking bcm_host.h presence... yes</div>
-<div class=3D"">checking for bcm_host.h... yes</div>
-<div class=3D""><br class=3D"">
-</div>
-So it seems that it found the necessary library.
-<p class=3D"" style=3D"margin-top:0px; margin-bottom:0px"></p>
-<div class=3D"" style=3D"margin-top:0px; margin-bottom:0px"><br class=3D"">
-</div>
-<div class=3D"" style=3D"margin-top:0px; margin-bottom:0px">However, in the=
- logfile of the compile error, there is no &quot;-lbcm_host&quot; dependenc=
-y at all.</div>
-<div class=3D"" style=3D"margin-top:0px; margin-bottom:0px"><br class=3D"">
-</div>
-<div class=3D"" style=3D"margin-top:0px; margin-bottom:0px">Any idea to sol=
-ve it ?</div>
-</div>
-</div>
-</blockquote>
-<div><br class=3D"">
-</div>
-<div>Look at the packageconfig files from userland package and see if its e=
-xporting the right libraries in .pc files.</div>
-<br class=3D"">
-<blockquote type=3D"cite" class=3D"">
-<div class=3D"">
-<div id=3D"divtagdefaultwrapper" class=3D"" style=3D"font-style:normal; fon=
-t-weight:normal; letter-spacing:normal; orphans:auto; text-align:start; tex=
-t-indent:0px; text-transform:none; white-space:normal; widows:auto; word-sp=
-acing:0px; font-size:12pt; font-family:Calibri,Arial,Helvetica,sans-serif">
-<div class=3D"" style=3D"margin-top:0px; margin-bottom:0px"><br class=3D"">
-</div>
-<div class=3D"" style=3D"margin-top:0px; margin-bottom:0px">Karim</div>
-<div class=3D"" style=3D"margin-top:0px; margin-bottom:0px"><br class=3D"">
-</div>
-<br class=3D"">
-<br class=3D"">
-<div class=3D"" style=3D"">
-<hr tabindex=3D"-1" class=3D"" style=3D"display:inline-block; width:1054.46=
-875px">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr" class=3D""><font face=3D"Calibri, san=
-s-serif" class=3D"" style=3D"font-size:11pt"><b class=3D"">De :</b><span cl=
-ass=3D"Apple-converted-space">&nbsp;</span><a href=3D"mailto:yocto-bounces@=
-yoctoproject.org" class=3D"">yocto-bounces@yoctoproject.org</a>
- &lt;<a href=3D"mailto:yocto-bounces@yoctoproject.org" class=3D"">yocto-bou=
-nces@yoctoproject.org</a>&gt; de la part de Karim ATIKI &lt;<a href=3D"mail=
-to:karim_atiki@hotmail.com" class=3D"">karim_atiki@hotmail.com</a>&gt;<br c=
-lass=3D"">
-<b class=3D"">Envoy=E9 :</b><span class=3D"Apple-converted-space">&nbsp;</s=
-pan>samedi 22 octobre 2016 14:26<br class=3D"">
-<b class=3D"">=C0 :</b><span class=3D"Apple-converted-space">&nbsp;</span>y=
-octo<br class=3D"">
-<b class=3D"">Objet :</b><span class=3D"Apple-converted-space">&nbsp;</span=
->[yocto] [raspberrypi3][meta-qt5] Failed to build meta-toolchain-qt5</font>
-<div class=3D"">&nbsp;</div>
-</div>
-<div class=3D"">
-<div id=3D"divtagdefaultwrapper" class=3D"" style=3D"font-size:12pt; font-f=
-amily:Calibri,Arial,Helvetica,sans-serif">
-<div class=3D"" style=3D"margin-top:0px; margin-bottom:0px">Hi all,</div>
-<div class=3D"" style=3D"margin-top:0px; margin-bottom:0px"><br class=3D"">
-</div>
-<div class=3D"" style=3D"margin-top:0px; margin-bottom:0px">Tryng to build =
-the meta-toolchain-qt5, I've a failure while bulidng gst-plugins-bad.</div>
-<div class=3D"" style=3D"margin-top:0px; margin-bottom:0px"><br class=3D"">
-</div>
-<div class=3D"" style=3D"margin-top:0px; margin-bottom:0px">The underlying =
-error seems to be:</div>
-<div class=3D"" style=3D"margin-top:0px; margin-bottom:0px"><br class=3D"">
-</div>
-<div class=3D"" style=3D"margin-top:0px; margin-bottom:0px"><i class=3D""><=
-b class=3D""></b></i><span class=3D""><b class=3D""><i class=3D"">| ./.libs=
-/libgstgl-1.0.so: undefined reference to `graphics_get_display_size</i></b>=
-</span><br class=3D"">
-</div>
-<div class=3D"" style=3D"margin-top:0px; margin-bottom:0px"><span class=3D"=
-"><b class=3D""><i class=3D""><br class=3D"">
-</i></b></span></div>
-<div class=3D"" style=3D"margin-top:0px; margin-bottom:0px"><span class=3D"=
-">This function seems to come from bcm_host library.</span></div>
-<div class=3D"" style=3D"margin-top:0px; margin-bottom:0px"><span class=3D"=
-">Isn't it related to&nbsp; RaspberryPi graphic libs ?</span></div>
-<div class=3D"" style=3D"margin-top:0px; margin-bottom:0px"><br class=3D"">
-</div>
-<div class=3D"" style=3D"margin-top:0px; margin-bottom:0px">Should I add a =
-specific dependency ?</div>
-<div class=3D"" style=3D"margin-top:0px; margin-bottom:0px"><br class=3D"">
-</div>
-<div class=3D"" style=3D"margin-top:0px; margin-bottom:0px">Weird.</div>
-<div class=3D"" style=3D"margin-top:0px; margin-bottom:0px"><br class=3D"">
-</div>
-<div class=3D"" style=3D"margin-top:0px; margin-bottom:0px">Karim</div>
-<div class=3D"" style=3D"margin-top:0px; margin-bottom:0px"><span class=3D"=
-"><b class=3D""><i class=3D""><br class=3D"">
-</i></b></span></div>
-<div class=3D"" style=3D"margin-top:0px; margin-bottom:0px"><span class=3D"=
-"><b class=3D""><i class=3D""><br class=3D"">
-</i></b></span></div>
-</div>
-</div>
-</div>
-</div>
-<span class=3D"" style=3D"font-family:Times-Roman; font-size:14px; font-sty=
-le:normal; font-weight:normal; letter-spacing:normal; orphans:auto; text-al=
-ign:start; text-indent:0px; text-transform:none; white-space:normal; widows=
-:auto; word-spacing:0px; float:none; display:inline!important">--<span clas=
-s=3D"Apple-converted-space">&nbsp;</span></span><br class=3D"" style=3D"fon=
-t-family:Times-Roman; font-size:14px; font-style:normal; font-weight:normal=
-; letter-spacing:normal; orphans:auto; text-align:start; text-indent:0px; t=
-ext-transform:none; white-space:normal; widows:auto; word-spacing:0px">
-<span class=3D"" style=3D"font-family:Times-Roman; font-size:14px; font-sty=
-le:normal; font-weight:normal; letter-spacing:normal; orphans:auto; text-al=
-ign:start; text-indent:0px; text-transform:none; white-space:normal; widows=
-:auto; word-spacing:0px; float:none; display:inline!important">____________=
-___________________________________</span><br class=3D"" style=3D"font-fami=
-ly:Times-Roman; font-size:14px; font-style:normal; font-weight:normal; lett=
-er-spacing:normal; orphans:auto; text-align:start; text-indent:0px; text-tr=
-ansform:none; white-space:normal; widows:auto; word-spacing:0px">
-<span class=3D"" style=3D"font-family:Times-Roman; font-size:14px; font-sty=
-le:normal; font-weight:normal; letter-spacing:normal; orphans:auto; text-al=
-ign:start; text-indent:0px; text-transform:none; white-space:normal; widows=
-:auto; word-spacing:0px; float:none; display:inline!important">yocto
- mailing list</span><br class=3D"" style=3D"font-family:Times-Roman; font-s=
-ize:14px; font-style:normal; font-weight:normal; letter-spacing:normal; orp=
-hans:auto; text-align:start; text-indent:0px; text-transform:none; white-sp=
-ace:normal; widows:auto; word-spacing:0px">
-<span class=3D"" style=3D"font-family:Times-Roman; font-size:14px; font-sty=
-le:normal; font-weight:normal; letter-spacing:normal; orphans:auto; text-al=
-ign:start; text-indent:0px; text-transform:none; white-space:normal; widows=
-:auto; word-spacing:0px; float:none; display:inline!important"><a href=3D"m=
-ailto:yocto@yoctoproject.org" class=3D"">yocto@yoctoproject.org</a></span><=
-br class=3D"" style=3D"font-family:Times-Roman; font-size:14px; font-style:=
-normal; font-weight:normal; letter-spacing:normal; orphans:auto; text-align=
-:start; text-indent:0px; text-transform:none; white-space:normal; widows:au=
-to; word-spacing:0px">
-<span class=3D"" style=3D"font-family:Times-Roman; font-size:14px; font-sty=
-le:normal; font-weight:normal; letter-spacing:normal; orphans:auto; text-al=
-ign:start; text-indent:0px; text-transform:none; white-space:normal; widows=
-:auto; word-spacing:0px; float:none; display:inline!important"><a href=3D"h=
-ttps://lists.yoctoproject.org/listinfo/yocto" class=3D"">https://lists.yoct=
-oproject.org/listinfo/yocto</a></span></div>
-</blockquote>
-</div>
-<br class=3D"">
-</div>
-</div>
+</span></font></div>
 </div>
 </body>
 </html>
 
---_000_HE1PR01MB18830215696B2C95CA18945F92D70HE1PR01MB1883eurp_--
+--_000_HE1PR01MB1883F449B33898FC6A3C826D92D70HE1PR01MB1883eurp_--
+
+--_004_HE1PR01MB1883F449B33898FC6A3C826D92D70HE1PR01MB1883eurp_
+Content-Type: application/octet-stream; name="log.do_compile.2574"
+Content-Description: log.do_compile.2574
+Content-Disposition: attachment; filename="log.do_compile.2574"; size=21622;
+	creation-date="Sat, 22 Oct 2016 16:21:36 GMT";
+	modification-date="Sat, 22 Oct 2016 16:21:36 GMT"
+Content-Transfer-Encoding: base64
+
+REVCVUc6IFNJVEUgZmlsZXMgWydlbmRpYW4tbGl0dGxlJywgJ2JpdC0zMicsICdhcm0tY29tbW9u
+JywgJ2FybS0zMicsICdjb21tb24tbGludXgnLCAnY29tbW9uLWdsaWJjJywgJ2FybS1saW51eCcs
+ICdhcm0tbGludXgtZ251ZWFiaScsICdjb21tb24nXQpERUJVRzogRXhlY3V0aW5nIHNoZWxsIGZ1
+bmN0aW9uIGRvX2NvbXBpbGUKTk9URTogbWFrZSAtaiA4Cm1ha2UgIGFsbC1yZWN1cnNpdmUKbWFr
+ZVsxXTogRW50ZXJpbmcgZGlyZWN0b3J5ICcvaG9tZS9rYWkveW9jdG8vYnVpbGQtbWFnbm9saWEv
+dG1wL3dvcmsvY29ydGV4YTdoZi1uZW9uLXZmcHY0LXBva3ktbGludXgtZ251ZWFiaS9nc3RyZWFt
+ZXIxLjAtcGx1Z2lucy1iYWQvMS44LjMtcjAvYnVpbGQnCk1ha2luZyBhbGwgaW4gZ3N0LWxpYnMK
+bWFrZVsyXTogRW50ZXJpbmcgZGlyZWN0b3J5ICcvaG9tZS9rYWkveW9jdG8vYnVpbGQtbWFnbm9s
+aWEvdG1wL3dvcmsvY29ydGV4YTdoZi1uZW9uLXZmcHY0LXBva3ktbGludXgtZ251ZWFiaS9nc3Ry
+ZWFtZXIxLjAtcGx1Z2lucy1iYWQvMS44LjMtcjAvYnVpbGQvZ3N0LWxpYnMnCk1ha2luZyBhbGwg
+aW4gZ3N0Cm1ha2VbM106IEVudGVyaW5nIGRpcmVjdG9yeSAnL2hvbWUva2FpL3lvY3RvL2J1aWxk
+LW1hZ25vbGlhL3RtcC93b3JrL2NvcnRleGE3aGYtbmVvbi12ZnB2NC1wb2t5LWxpbnV4LWdudWVh
+YmkvZ3N0cmVhbWVyMS4wLXBsdWdpbnMtYmFkLzEuOC4zLXIwL2J1aWxkL2dzdC1saWJzL2dzdCcK
+bWFrZSAtQyBpbnRlcmZhY2VzCm1ha2UgLUMgYmFzZWNhbWVyYWJpbnNyYwptYWtlIC1DIGNvZGVj
+cGFyc2VycwptYWtlIC1DIGluc2VydGJpbgptYWtlIC1DIHVyaWRvd25sb2FkZXIKbWFrZSAtQyBt
+cGVndHMKbWFrZSAtQyBiYXNlCm1ha2UgLUMgcGxheWVyCm1ha2VbNF06IEVudGVyaW5nIGRpcmVj
+dG9yeSAnL2hvbWUva2FpL3lvY3RvL2J1aWxkLW1hZ25vbGlhL3RtcC93b3JrL2NvcnRleGE3aGYt
+bmVvbi12ZnB2NC1wb2t5LWxpbnV4LWdudWVhYmkvZ3N0cmVhbWVyMS4wLXBsdWdpbnMtYmFkLzEu
+OC4zLXIwL2J1aWxkL2dzdC1saWJzL2dzdC9iYXNlY2FtZXJhYmluc3JjJwptYWtlWzRdOiBOb3Ro
+aW5nIHRvIGJlIGRvbmUgZm9yICdhbGwnLgptYWtlWzRdOiBMZWF2aW5nIGRpcmVjdG9yeSAnL2hv
+bWUva2FpL3lvY3RvL2J1aWxkLW1hZ25vbGlhL3RtcC93b3JrL2NvcnRleGE3aGYtbmVvbi12ZnB2
+NC1wb2t5LWxpbnV4LWdudWVhYmkvZ3N0cmVhbWVyMS4wLXBsdWdpbnMtYmFkLzEuOC4zLXIwL2J1
+aWxkL2dzdC1saWJzL2dzdC9iYXNlY2FtZXJhYmluc3JjJwptYWtlWzRdOiBFbnRlcmluZyBkaXJl
+Y3RvcnkgJy9ob21lL2thaS95b2N0by9idWlsZC1tYWdub2xpYS90bXAvd29yay9jb3J0ZXhhN2hm
+LW5lb24tdmZwdjQtcG9reS1saW51eC1nbnVlYWJpL2dzdHJlYW1lcjEuMC1wbHVnaW5zLWJhZC8x
+LjguMy1yMC9idWlsZC9nc3QtbGlicy9nc3QvaW50ZXJmYWNlcycKbWFrZSAgYWxsLWFtCm1ha2Ug
+LUMgZ2wKbWFrZVs0XTogRW50ZXJpbmcgZGlyZWN0b3J5ICcvaG9tZS9rYWkveW9jdG8vYnVpbGQt
+bWFnbm9saWEvdG1wL3dvcmsvY29ydGV4YTdoZi1uZW9uLXZmcHY0LXBva3ktbGludXgtZ251ZWFi
+aS9nc3RyZWFtZXIxLjAtcGx1Z2lucy1iYWQvMS44LjMtcjAvYnVpbGQvZ3N0LWxpYnMvZ3N0L2lu
+c2VydGJpbicKbWFrZVs0XTogTm90aGluZyB0byBiZSBkb25lIGZvciAnYWxsJy4KbWFrZVs0XTog
+TGVhdmluZyBkaXJlY3RvcnkgJy9ob21lL2thaS95b2N0by9idWlsZC1tYWdub2xpYS90bXAvd29y
+ay9jb3J0ZXhhN2hmLW5lb24tdmZwdjQtcG9reS1saW51eC1nbnVlYWJpL2dzdHJlYW1lcjEuMC1w
+bHVnaW5zLWJhZC8xLjguMy1yMC9idWlsZC9nc3QtbGlicy9nc3QvaW5zZXJ0YmluJwptYWtlWzRd
+OiBFbnRlcmluZyBkaXJlY3RvcnkgJy9ob21lL2thaS95b2N0by9idWlsZC1tYWdub2xpYS90bXAv
+d29yay9jb3J0ZXhhN2hmLW5lb24tdmZwdjQtcG9reS1saW51eC1nbnVlYWJpL2dzdHJlYW1lcjEu
+MC1wbHVnaW5zLWJhZC8xLjguMy1yMC9idWlsZC9nc3QtbGlicy9nc3QvdXJpZG93bmxvYWRlcicK
+bWFrZVs0XTogTm90aGluZyB0byBiZSBkb25lIGZvciAnYWxsJy4KbWFrZVs0XTogTGVhdmluZyBk
+aXJlY3RvcnkgJy9ob21lL2thaS95b2N0by9idWlsZC1tYWdub2xpYS90bXAvd29yay9jb3J0ZXhh
+N2hmLW5lb24tdmZwdjQtcG9reS1saW51eC1nbnVlYWJpL2dzdHJlYW1lcjEuMC1wbHVnaW5zLWJh
+ZC8xLjguMy1yMC9idWlsZC9nc3QtbGlicy9nc3QvdXJpZG93bmxvYWRlcicKbWFrZVs0XTogRW50
+ZXJpbmcgZGlyZWN0b3J5ICcvaG9tZS9rYWkveW9jdG8vYnVpbGQtbWFnbm9saWEvdG1wL3dvcmsv
+Y29ydGV4YTdoZi1uZW9uLXZmcHY0LXBva3ktbGludXgtZ251ZWFiaS9nc3RyZWFtZXIxLjAtcGx1
+Z2lucy1iYWQvMS44LjMtcjAvYnVpbGQvZ3N0LWxpYnMvZ3N0L2Jhc2UnCm1ha2VbNF06IE5vdGhp
+bmcgdG8gYmUgZG9uZSBmb3IgJ2FsbCcuCm1ha2VbNF06IExlYXZpbmcgZGlyZWN0b3J5ICcvaG9t
+ZS9rYWkveW9jdG8vYnVpbGQtbWFnbm9saWEvdG1wL3dvcmsvY29ydGV4YTdoZi1uZW9uLXZmcHY0
+LXBva3ktbGludXgtZ251ZWFiaS9nc3RyZWFtZXIxLjAtcGx1Z2lucy1iYWQvMS44LjMtcjAvYnVp
+bGQvZ3N0LWxpYnMvZ3N0L2Jhc2UnCm1ha2VbNF06IEVudGVyaW5nIGRpcmVjdG9yeSAnL2hvbWUv
+a2FpL3lvY3RvL2J1aWxkLW1hZ25vbGlhL3RtcC93b3JrL2NvcnRleGE3aGYtbmVvbi12ZnB2NC1w
+b2t5LWxpbnV4LWdudWVhYmkvZ3N0cmVhbWVyMS4wLXBsdWdpbnMtYmFkLzEuOC4zLXIwL2J1aWxk
+L2dzdC1saWJzL2dzdC9tcGVndHMnCm1ha2UgIGFsbC1hbQptYWtlWzRdOiBFbnRlcmluZyBkaXJl
+Y3RvcnkgJy9ob21lL2thaS95b2N0by9idWlsZC1tYWdub2xpYS90bXAvd29yay9jb3J0ZXhhN2hm
+LW5lb24tdmZwdjQtcG9reS1saW51eC1nbnVlYWJpL2dzdHJlYW1lcjEuMC1wbHVnaW5zLWJhZC8x
+LjguMy1yMC9idWlsZC9nc3QtbGlicy9nc3QvY29kZWNwYXJzZXJzJwptYWtlWzRdOiBOb3RoaW5n
+IHRvIGJlIGRvbmUgZm9yICdhbGwnLgptYWtlWzRdOiBMZWF2aW5nIGRpcmVjdG9yeSAnL2hvbWUv
+a2FpL3lvY3RvL2J1aWxkLW1hZ25vbGlhL3RtcC93b3JrL2NvcnRleGE3aGYtbmVvbi12ZnB2NC1w
+b2t5LWxpbnV4LWdudWVhYmkvZ3N0cmVhbWVyMS4wLXBsdWdpbnMtYmFkLzEuOC4zLXIwL2J1aWxk
+L2dzdC1saWJzL2dzdC9jb2RlY3BhcnNlcnMnCm1ha2VbNF06IEVudGVyaW5nIGRpcmVjdG9yeSAn
+L2hvbWUva2FpL3lvY3RvL2J1aWxkLW1hZ25vbGlhL3RtcC93b3JrL2NvcnRleGE3aGYtbmVvbi12
+ZnB2NC1wb2t5LWxpbnV4LWdudWVhYmkvZ3N0cmVhbWVyMS4wLXBsdWdpbnMtYmFkLzEuOC4zLXIw
+L2J1aWxkL2dzdC1saWJzL2dzdC9wbGF5ZXInCm1ha2VbNF06IE5vdGhpbmcgdG8gYmUgZG9uZSBm
+b3IgJ2FsbCcuCm1ha2VbNF06IExlYXZpbmcgZGlyZWN0b3J5ICcvaG9tZS9rYWkveW9jdG8vYnVp
+bGQtbWFnbm9saWEvdG1wL3dvcmsvY29ydGV4YTdoZi1uZW9uLXZmcHY0LXBva3ktbGludXgtZ251
+ZWFiaS9nc3RyZWFtZXIxLjAtcGx1Z2lucy1iYWQvMS44LjMtcjAvYnVpbGQvZ3N0LWxpYnMvZ3N0
+L3BsYXllcicKbWFrZVs1XTogRW50ZXJpbmcgZGlyZWN0b3J5ICcvaG9tZS9rYWkveW9jdG8vYnVp
+bGQtbWFnbm9saWEvdG1wL3dvcmsvY29ydGV4YTdoZi1uZW9uLXZmcHY0LXBva3ktbGludXgtZ251
+ZWFiaS9nc3RyZWFtZXIxLjAtcGx1Z2lucy1iYWQvMS44LjMtcjAvYnVpbGQvZ3N0LWxpYnMvZ3N0
+L2ludGVyZmFjZXMnCm1ha2VbNV06IE5vdGhpbmcgdG8gYmUgZG9uZSBmb3IgJ2FsbC1hbScuCm1h
+a2VbNV06IExlYXZpbmcgZGlyZWN0b3J5ICcvaG9tZS9rYWkveW9jdG8vYnVpbGQtbWFnbm9saWEv
+dG1wL3dvcmsvY29ydGV4YTdoZi1uZW9uLXZmcHY0LXBva3ktbGludXgtZ251ZWFiaS9nc3RyZWFt
+ZXIxLjAtcGx1Z2lucy1iYWQvMS44LjMtcjAvYnVpbGQvZ3N0LWxpYnMvZ3N0L2ludGVyZmFjZXMn
+Cm1ha2VbNF06IExlYXZpbmcgZGlyZWN0b3J5ICcvaG9tZS9rYWkveW9jdG8vYnVpbGQtbWFnbm9s
+aWEvdG1wL3dvcmsvY29ydGV4YTdoZi1uZW9uLXZmcHY0LXBva3ktbGludXgtZ251ZWFiaS9nc3Ry
+ZWFtZXIxLjAtcGx1Z2lucy1iYWQvMS44LjMtcjAvYnVpbGQvZ3N0LWxpYnMvZ3N0L2ludGVyZmFj
+ZXMnCm1ha2VbNF06IEVudGVyaW5nIGRpcmVjdG9yeSAnL2hvbWUva2FpL3lvY3RvL2J1aWxkLW1h
+Z25vbGlhL3RtcC93b3JrL2NvcnRleGE3aGYtbmVvbi12ZnB2NC1wb2t5LWxpbnV4LWdudWVhYmkv
+Z3N0cmVhbWVyMS4wLXBsdWdpbnMtYmFkLzEuOC4zLXIwL2J1aWxkL2dzdC1saWJzL2dzdC9nbCcK
+bWFrZVs1XTogRW50ZXJpbmcgZGlyZWN0b3J5ICcvaG9tZS9rYWkveW9jdG8vYnVpbGQtbWFnbm9s
+aWEvdG1wL3dvcmsvY29ydGV4YTdoZi1uZW9uLXZmcHY0LXBva3ktbGludXgtZ251ZWFiaS9nc3Ry
+ZWFtZXIxLjAtcGx1Z2lucy1iYWQvMS44LjMtcjAvYnVpbGQvZ3N0LWxpYnMvZ3N0L21wZWd0cycK
+bWFrZVs1XTogTm90aGluZyB0byBiZSBkb25lIGZvciAnYWxsLWFtJy4KbWFrZVs1XTogTGVhdmlu
+ZyBkaXJlY3RvcnkgJy9ob21lL2thaS95b2N0by9idWlsZC1tYWdub2xpYS90bXAvd29yay9jb3J0
+ZXhhN2hmLW5lb24tdmZwdjQtcG9reS1saW51eC1nbnVlYWJpL2dzdHJlYW1lcjEuMC1wbHVnaW5z
+LWJhZC8xLjguMy1yMC9idWlsZC9nc3QtbGlicy9nc3QvbXBlZ3RzJwptYWtlWzRdOiBMZWF2aW5n
+IGRpcmVjdG9yeSAnL2hvbWUva2FpL3lvY3RvL2J1aWxkLW1hZ25vbGlhL3RtcC93b3JrL2NvcnRl
+eGE3aGYtbmVvbi12ZnB2NC1wb2t5LWxpbnV4LWdudWVhYmkvZ3N0cmVhbWVyMS4wLXBsdWdpbnMt
+YmFkLzEuOC4zLXIwL2J1aWxkL2dzdC1saWJzL2dzdC9tcGVndHMnCk1ha2luZyBhbGwgaW4gZ2xw
+cm90b3R5cGVzCm1ha2VbNV06IEVudGVyaW5nIGRpcmVjdG9yeSAnL2hvbWUva2FpL3lvY3RvL2J1
+aWxkLW1hZ25vbGlhL3RtcC93b3JrL2NvcnRleGE3aGYtbmVvbi12ZnB2NC1wb2t5LWxpbnV4LWdu
+dWVhYmkvZ3N0cmVhbWVyMS4wLXBsdWdpbnMtYmFkLzEuOC4zLXIwL2J1aWxkL2dzdC1saWJzL2dz
+dC9nbC9nbHByb3RvdHlwZXMnCm1ha2VbNV06IE5vdGhpbmcgdG8gYmUgZG9uZSBmb3IgJ2FsbCcu
+Cm1ha2VbNV06IExlYXZpbmcgZGlyZWN0b3J5ICcvaG9tZS9rYWkveW9jdG8vYnVpbGQtbWFnbm9s
+aWEvdG1wL3dvcmsvY29ydGV4YTdoZi1uZW9uLXZmcHY0LXBva3ktbGludXgtZ251ZWFiaS9nc3Ry
+ZWFtZXIxLjAtcGx1Z2lucy1iYWQvMS44LjMtcjAvYnVpbGQvZ3N0LWxpYnMvZ3N0L2dsL2dscHJv
+dG90eXBlcycKTWFraW5nIGFsbCBpbiBkaXNwbWFueAptYWtlWzVdOiBFbnRlcmluZyBkaXJlY3Rv
+cnkgJy9ob21lL2thaS95b2N0by9idWlsZC1tYWdub2xpYS90bXAvd29yay9jb3J0ZXhhN2hmLW5l
+b24tdmZwdjQtcG9reS1saW51eC1nbnVlYWJpL2dzdHJlYW1lcjEuMC1wbHVnaW5zLWJhZC8xLjgu
+My1yMC9idWlsZC9nc3QtbGlicy9nc3QvZ2wvZGlzcG1hbngnCm1ha2VbNV06IE5vdGhpbmcgdG8g
+YmUgZG9uZSBmb3IgJ2FsbCcuCm1ha2VbNV06IExlYXZpbmcgZGlyZWN0b3J5ICcvaG9tZS9rYWkv
+eW9jdG8vYnVpbGQtbWFnbm9saWEvdG1wL3dvcmsvY29ydGV4YTdoZi1uZW9uLXZmcHY0LXBva3kt
+bGludXgtZ251ZWFiaS9nc3RyZWFtZXIxLjAtcGx1Z2lucy1iYWQvMS44LjMtcjAvYnVpbGQvZ3N0
+LWxpYnMvZ3N0L2dsL2Rpc3BtYW54JwpNYWtpbmcgYWxsIGluIGVnbAptYWtlWzVdOiBFbnRlcmlu
+ZyBkaXJlY3RvcnkgJy9ob21lL2thaS95b2N0by9idWlsZC1tYWdub2xpYS90bXAvd29yay9jb3J0
+ZXhhN2hmLW5lb24tdmZwdjQtcG9reS1saW51eC1nbnVlYWJpL2dzdHJlYW1lcjEuMC1wbHVnaW5z
+LWJhZC8xLjguMy1yMC9idWlsZC9nc3QtbGlicy9nc3QvZ2wvZWdsJwptYWtlWzVdOiBOb3RoaW5n
+IHRvIGJlIGRvbmUgZm9yICdhbGwnLgptYWtlWzVdOiBMZWF2aW5nIGRpcmVjdG9yeSAnL2hvbWUv
+a2FpL3lvY3RvL2J1aWxkLW1hZ25vbGlhL3RtcC93b3JrL2NvcnRleGE3aGYtbmVvbi12ZnB2NC1w
+b2t5LWxpbnV4LWdudWVhYmkvZ3N0cmVhbWVyMS4wLXBsdWdpbnMtYmFkLzEuOC4zLXIwL2J1aWxk
+L2dzdC1saWJzL2dzdC9nbC9lZ2wnCm1ha2VbNV06IEVudGVyaW5nIGRpcmVjdG9yeSAnL2hvbWUv
+a2FpL3lvY3RvL2J1aWxkLW1hZ25vbGlhL3RtcC93b3JrL2NvcnRleGE3aGYtbmVvbi12ZnB2NC1w
+b2t5LWxpbnV4LWdudWVhYmkvZ3N0cmVhbWVyMS4wLXBsdWdpbnMtYmFkLzEuOC4zLXIwL2J1aWxk
+L2dzdC1saWJzL2dzdC9nbCcKUEtHX0NPTkZJR19QQVRIPSIuLi8uLi8uLi9wa2djb25maWc6L2hv
+bWUva2FpL3lvY3RvL2J1aWxkLW1hZ25vbGlhL3RtcC9zeXNyb290cy9yYXNwYmVycnlwaTMvdXNy
+L2xpYi9wa2djb25maWc6L2hvbWUva2FpL3lvY3RvL2J1aWxkLW1hZ25vbGlhL3RtcC9zeXNyb290
+cy9yYXNwYmVycnlwaTMvdXNyL3NoYXJlL3BrZ2NvbmZpZyIgR0lfU0NBTk5FUl9ESVNBQkxFX0NB
+Q0hFPXllc1wKCUdTVF9QTFVHSU5fU1lTVEVNX1BBVEhfMV8wPSIiIEdTVF9QTFVHSU5fUEFUSF8x
+XzA9IiIgR1NUX1JFR0lTVFJZX1VQREFURT1ubyBcCglDUFBGTEFHUz0iLUkvaG9tZS9rYWkveW9j
+dG8vYnVpbGQtbWFnbm9saWEvdG1wL3N5c3Jvb3RzL3Jhc3BiZXJyeXBpMy91c3IvaW5jbHVkZS9p
+bnRlcmZhY2UvdmNvcy9wdGhyZWFkcyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+IC1JL2hvbWUva2FpL3lvY3RvL2J1aWxkLW1hZ25vbGlhL3RtcC9zeXNyb290cy9yYXNwYmVycnlw
+aTMvdXNyL2luY2x1ZGUvaW50ZXJmYWNlL3ZtY3NfaG9zdC9saW51eCIgQ0ZMQUdTPSItTzIgLXBp
+cGUgLWcgLWZlbGltaW5hdGUtdW51c2VkLWRlYnVnLXR5cGVzIC1mZGVidWctcHJlZml4LW1hcD0v
+aG9tZS9rYWkveW9jdG8vYnVpbGQtbWFnbm9saWEvdG1wL3dvcmsvY29ydGV4YTdoZi1uZW9uLXZm
+cHY0LXBva3ktbGludXgtZ251ZWFiaS9nc3RyZWFtZXIxLjAtcGx1Z2lucy1iYWQvMS44LjMtcjA9
+L3Vzci9zcmMvZGVidWcvZ3N0cmVhbWVyMS4wLXBsdWdpbnMtYmFkLzEuOC4zLXIwIC1mZGVidWct
+cHJlZml4LW1hcD0vaG9tZS9rYWkveW9jdG8vYnVpbGQtbWFnbm9saWEvdG1wL3N5c3Jvb3RzL3g4
+Nl82NC1saW51eD0gLWZkZWJ1Zy1wcmVmaXgtbWFwPS9ob21lL2thaS95b2N0by9idWlsZC1tYWdu
+b2xpYS90bXAvc3lzcm9vdHMvcmFzcGJlcnJ5cGkzPSAiIExERkxBR1M9Ii1XbCwtTzEgLVdsLC0t
+aGFzaC1zdHlsZT1nbnUgLVdsLC0tYXMtbmVlZGVkIiBDQz0iYXJtLXBva3ktbGludXgtZ251ZWFi
+aS1nY2MgIC1tYXJjaD1hcm12N3ZlIC1tYXJtIC1tZnB1PW5lb24tdmZwdjQgIC1tZmxvYXQtYWJp
+PWhhcmQgLW1jcHU9Y29ydGV4LWE3IC0tc3lzcm9vdD0vaG9tZS9rYWkveW9jdG8vYnVpbGQtbWFn
+bm9saWEvdG1wL3N5c3Jvb3RzL3Jhc3BiZXJyeXBpMyIgUEtHX0NPTkZJRz0iL2hvbWUva2FpL3lv
+Y3RvL2J1aWxkLW1hZ25vbGlhL3RtcC9zeXNyb290cy94ODZfNjQtbGludXgvdXNyL2Jpbi9wa2ct
+Y29uZmlnIiBETExUT09MPSJmYWxzZSIgXAoJL2hvbWUva2FpL3lvY3RvL2J1aWxkLW1hZ25vbGlh
+L3RtcC9zeXNyb290cy9yYXNwYmVycnlwaTMvdXNyL2Jpbi9nLWlyLXNjYW5uZXItd3JhcHBlciAt
+diAtLW5hbWVzcGFjZSBHc3RHTCBcCgktLW5zdmVyc2lvbj0xLjAgXAoJLS1pZGVudGlmaWVyLXBy
+ZWZpeD1Hc3QgXAoJLS1zeW1ib2wtcHJlZml4PWdzdCBcCgktLXdhcm4tYWxsIFwKCS0tYy1pbmNs
+dWRlICJnc3QvZ2wvZ2wuaCIgXAoJLUkuLi8uLi8uLi8uLi9nc3QtcGx1Z2lucy1iYWQtMS44LjMv
+Z3N0LWxpYnMgXAoJLUkuLi8uLi8uLi9nc3QtbGlicyBcCgktcHRocmVhZCAtSS9ob21lL2thaS95
+b2N0by9idWlsZC1tYWdub2xpYS90bXAvc3lzcm9vdHMvcmFzcGJlcnJ5cGkzL3Vzci9pbmNsdWRl
+L2dzdHJlYW1lci0xLjAgLUkvaG9tZS9rYWkveW9jdG8vYnVpbGQtbWFnbm9saWEvdG1wL3N5c3Jv
+b3RzL3Jhc3BiZXJyeXBpMy91c3IvbGliL2dzdHJlYW1lci0xLjAvaW5jbHVkZSAtSS9ob21lL2th
+aS95b2N0by9idWlsZC1tYWdub2xpYS90bXAvc3lzcm9vdHMvcmFzcGJlcnJ5cGkzL3Vzci9pbmNs
+dWRlL2dsaWItMi4wIC1JL2hvbWUva2FpL3lvY3RvL2J1aWxkLW1hZ25vbGlhL3RtcC9zeXNyb290
+cy9yYXNwYmVycnlwaTMvdXNyL2xpYi9nbGliLTIuMC9pbmNsdWRlIFwKCSBcCgktLWFkZC1pbmNs
+dWRlLXBhdGg9YFBLR19DT05GSUdfUEFUSD0iLi4vLi4vLi4vcGtnY29uZmlnOi9ob21lL2thaS95
+b2N0by9idWlsZC1tYWdub2xpYS90bXAvc3lzcm9vdHMvcmFzcGJlcnJ5cGkzL3Vzci9saWIvcGtn
+Y29uZmlnOi9ob21lL2thaS95b2N0by9idWlsZC1tYWdub2xpYS90bXAvc3lzcm9vdHMvcmFzcGJl
+cnJ5cGkzL3Vzci9zaGFyZS9wa2djb25maWciIC9ob21lL2thaS95b2N0by9idWlsZC1tYWdub2xp
+YS90bXAvc3lzcm9vdHMveDg2XzY0LWxpbnV4L3Vzci9iaW4vcGtnLWNvbmZpZyAtLXZhcmlhYmxl
+PWdpcmRpciBnc3RyZWFtZXItMS4wYCBcCgktLWFkZC1pbmNsdWRlLXBhdGg9YFBLR19DT05GSUdf
+UEFUSD0iLi4vLi4vLi4vcGtnY29uZmlnOi9ob21lL2thaS95b2N0by9idWlsZC1tYWdub2xpYS90
+bXAvc3lzcm9vdHMvcmFzcGJlcnJ5cGkzL3Vzci9saWIvcGtnY29uZmlnOi9ob21lL2thaS95b2N0
+by9idWlsZC1tYWdub2xpYS90bXAvc3lzcm9vdHMvcmFzcGJlcnJ5cGkzL3Vzci9zaGFyZS9wa2dj
+b25maWciIC9ob21lL2thaS95b2N0by9idWlsZC1tYWdub2xpYS90bXAvc3lzcm9vdHMveDg2XzY0
+LWxpbnV4L3Vzci9iaW4vcGtnLWNvbmZpZyAtLXZhcmlhYmxlPWdpcmRpciBnc3RyZWFtZXItYmFz
+ZS0xLjBgIFwKCS0tbGlicmFyeT1saWJnc3RnbC0xLjAubGEgXAoJLS1pbmNsdWRlPUdzdC0xLjAg
+XAoJLS1pbmNsdWRlPUdzdEJhc2UtMS4wIFwKCS0tbGlidG9vbD0iLi4vLi4vLi4vYXJtLXBva3kt
+bGludXgtZ251ZWFiaS1saWJ0b29sIiBcCgktLXBrZyBnc3RyZWFtZXItMS4wIFwKCS0tcGtnIGdz
+dHJlYW1lci1iYXNlLTEuMCBcCgktLXBrZyBnc3RyZWFtZXItdmlkZW8tMS4wIFwKCS0tcGtnLWV4
+cG9ydCBnc3RyZWFtZXItZ2wtMS4wIFwKCS0tYWRkLWluaXQtc2VjdGlvbj0iZXh0ZXJuIHZvaWQg
+Z3N0X2luaXQoZ2ludCosZ2NoYXIqKik7IGdzdF9pbml0KE5VTEwsTlVMTCk7IiBcCgktREdTVF9V
+U0VfVU5TVEFCTEVfQVBJIFwKCS0tb3V0cHV0IEdzdEdMLTEuMC5naXIgXAoJLi4vLi4vLi4vLi4v
+Z3N0LXBsdWdpbnMtYmFkLTEuOC4zL2dzdC1saWJzL2dzdC9nbC9nc3RnbHdpbmRvdy5oIC4uLy4u
+Ly4uLy4uL2dzdC1wbHVnaW5zLWJhZC0xLjguMy9nc3QtbGlicy9nc3QvZ2wvZ3N0Z2xkaXNwbGF5
+LmggLi4vLi4vLi4vLi4vZ3N0LXBsdWdpbnMtYmFkLTEuOC4zL2dzdC1saWJzL2dzdC9nbC9nc3Rn
+bGNvbnRleHQuaCAuLi8uLi8uLi8uLi9nc3QtcGx1Z2lucy1iYWQtMS44LjMvZ3N0LWxpYnMvZ3N0
+L2dsL2dzdGdsZGVidWcuaCAuLi8uLi8uLi8uLi9nc3QtcGx1Z2lucy1iYWQtMS44LjMvZ3N0LWxp
+YnMvZ3N0L2dsL2dzdGdsYmFzZW1lbW9yeS5oIC4uLy4uLy4uLy4uL2dzdC1wbHVnaW5zLWJhZC0x
+LjguMy9nc3QtbGlicy9nc3QvZ2wvZ3N0Z2xidWZmZXIuaCAuLi8uLi8uLi8uLi9nc3QtcGx1Z2lu
+cy1iYWQtMS44LjMvZ3N0LWxpYnMvZ3N0L2dsL2dzdGdsbWVtb3J5LmggLi4vLi4vLi4vLi4vZ3N0
+LXBsdWdpbnMtYmFkLTEuOC4zL2dzdC1saWJzL2dzdC9nbC9nc3RnbG1lbW9yeXBiby5oIC4uLy4u
+Ly4uLy4uL2dzdC1wbHVnaW5zLWJhZC0xLjguMy9nc3QtbGlicy9nc3QvZ2wvZ3N0Z2xidWZmZXJw
+b29sLmggLi4vLi4vLi4vLi4vZ3N0LXBsdWdpbnMtYmFkLTEuOC4zL2dzdC1saWJzL2dzdC9nbC9n
+c3RnbGZpbHRlci5oIC4uLy4uLy4uLy4uL2dzdC1wbHVnaW5zLWJhZC0xLjguMy9nc3QtbGlicy9n
+c3QvZ2wvZ3N0Z2xmb3JtYXQuaCAuLi8uLi8uLi8uLi9nc3QtcGx1Z2lucy1iYWQtMS44LjMvZ3N0
+LWxpYnMvZ3N0L2dsL2dzdGdsYmFzZWZpbHRlci5oIC4uLy4uLy4uLy4uL2dzdC1wbHVnaW5zLWJh
+ZC0xLjguMy9nc3QtbGlicy9nc3QvZ2wvZ3N0Z2xzaGFkZXIuaCAuLi8uLi8uLi8uLi9nc3QtcGx1
+Z2lucy1iYWQtMS44LjMvZ3N0LWxpYnMvZ3N0L2dsL2dzdGdsc2hhZGVyc3RyaW5ncy5oIC4uLy4u
+Ly4uLy4uL2dzdC1wbHVnaW5zLWJhZC0xLjguMy9nc3QtbGlicy9nc3QvZ2wvZ3N0Z2xzbC5oIC4u
+Ly4uLy4uLy4uL2dzdC1wbHVnaW5zLWJhZC0xLjguMy9nc3QtbGlicy9nc3QvZ2wvZ3N0Z2xzbHN0
+YWdlLmggLi4vLi4vLi4vLi4vZ3N0LXBsdWdpbnMtYmFkLTEuOC4zL2dzdC1saWJzL2dzdC9nbC9n
+c3RnbGNvbG9yY29udmVydC5oIC4uLy4uLy4uLy4uL2dzdC1wbHVnaW5zLWJhZC0xLjguMy9nc3Qt
+bGlicy9nc3QvZ2wvZ3N0Z2x1cGxvYWQuaCAuLi8uLi8uLi8uLi9nc3QtcGx1Z2lucy1iYWQtMS44
+LjMvZ3N0LWxpYnMvZ3N0L2dsL2dzdGdsYXBpLmggLi4vLi4vLi4vLi4vZ3N0LXBsdWdpbnMtYmFk
+LTEuOC4zL2dzdC1saWJzL2dzdC9nbC9nc3RnbGZlYXR1cmUuaCAuLi8uLi8uLi8uLi9nc3QtcGx1
+Z2lucy1iYWQtMS44LjMvZ3N0LWxpYnMvZ3N0L2dsL2dzdGdsdXRpbHMuaCAuLi8uLi8uLi8uLi9n
+c3QtcGx1Z2lucy1iYWQtMS44LjMvZ3N0LWxpYnMvZ3N0L2dsL2dzdGdsZnJhbWVidWZmZXIuaCAu
+Li8uLi8uLi8uLi9nc3QtcGx1Z2lucy1iYWQtMS44LjMvZ3N0LWxpYnMvZ3N0L2dsL2dzdGdsc3lu
+Y21ldGEuaCAuLi8uLi8uLi8uLi9nc3QtcGx1Z2lucy1iYWQtMS44LjMvZ3N0LWxpYnMvZ3N0L2ds
+L2dzdGdsdmlld2NvbnZlcnQuaCAuLi8uLi8uLi8uLi9nc3QtcGx1Z2lucy1iYWQtMS44LjMvZ3N0
+LWxpYnMvZ3N0L2dsL2dzdGdsb3ZlcmxheWNvbXBvc2l0b3IuaCAuLi8uLi8uLi8uLi9nc3QtcGx1
+Z2lucy1iYWQtMS44LjMvZ3N0LWxpYnMvZ3N0L2dsL2dzdGdscXVlcnkuaCAuLi8uLi8uLi8uLi9n
+c3QtcGx1Z2lucy1iYWQtMS44LjMvZ3N0LWxpYnMvZ3N0L2dsL2dzdGdsY29udHJvbGJpbmRpbmdw
+cm94eS5oIC4uLy4uLy4uLy4uL2dzdC1wbHVnaW5zLWJhZC0xLjguMy9nc3QtbGlicy9nc3QvZ2wv
+Z3N0Z2xfZndkLmggLi4vLi4vLi4vLi4vZ3N0LXBsdWdpbnMtYmFkLTEuOC4zL2dzdC1saWJzL2dz
+dC9nbC9nc3RnbF9lbnVtcy5oIC4uLy4uLy4uLy4uL2dzdC1wbHVnaW5zLWJhZC0xLjguMy9nc3Qt
+bGlicy9nc3QvZ2wvZ2wuaCBcCgkuLi8uLi8uLi8uLi9nc3QtcGx1Z2lucy1iYWQtMS44LjMvZ3N0
+LWxpYnMvZ3N0L2dsL2dzdGdsZGlzcGxheS5jIC4uLy4uLy4uLy4uL2dzdC1wbHVnaW5zLWJhZC0x
+LjguMy9nc3QtbGlicy9nc3QvZ2wvZ3N0Z2xjb250ZXh0LmMgLi4vLi4vLi4vLi4vZ3N0LXBsdWdp
+bnMtYmFkLTEuOC4zL2dzdC1saWJzL2dzdC9nbC9nc3RnbGRlYnVnLmMgLi4vLi4vLi4vLi4vZ3N0
+LXBsdWdpbnMtYmFkLTEuOC4zL2dzdC1saWJzL2dzdC9nbC9nc3RnbGJhc2VtZW1vcnkuYyAuLi8u
+Li8uLi8uLi9nc3QtcGx1Z2lucy1iYWQtMS44LjMvZ3N0LWxpYnMvZ3N0L2dsL2dzdGdsYnVmZmVy
+LmMgLi4vLi4vLi4vLi4vZ3N0LXBsdWdpbnMtYmFkLTEuOC4zL2dzdC1saWJzL2dzdC9nbC9nc3Rn
+bG1lbW9yeS5jIC4uLy4uLy4uLy4uL2dzdC1wbHVnaW5zLWJhZC0xLjguMy9nc3QtbGlicy9nc3Qv
+Z2wvZ3N0Z2xtZW1vcnlwYm8uYyAuLi8uLi8uLi8uLi9nc3QtcGx1Z2lucy1iYWQtMS44LjMvZ3N0
+LWxpYnMvZ3N0L2dsL2dzdGdsYnVmZmVycG9vbC5jIC4uLy4uLy4uLy4uL2dzdC1wbHVnaW5zLWJh
+ZC0xLjguMy9nc3QtbGlicy9nc3QvZ2wvZ3N0Z2xmaWx0ZXIuYyAuLi8uLi8uLi8uLi9nc3QtcGx1
+Z2lucy1iYWQtMS44LjMvZ3N0LWxpYnMvZ3N0L2dsL2dzdGdsZm9ybWF0LmMgLi4vLi4vLi4vLi4v
+Z3N0LXBsdWdpbnMtYmFkLTEuOC4zL2dzdC1saWJzL2dzdC9nbC9nc3RnbGJhc2VmaWx0ZXIuYyAu
+Li8uLi8uLi8uLi9nc3QtcGx1Z2lucy1iYWQtMS44LjMvZ3N0LWxpYnMvZ3N0L2dsL2dzdGdsc2hh
+ZGVyLmMgLi4vLi4vLi4vLi4vZ3N0LXBsdWdpbnMtYmFkLTEuOC4zL2dzdC1saWJzL2dzdC9nbC9n
+c3RnbHNoYWRlcnN0cmluZ3MuYyAuLi8uLi8uLi8uLi9nc3QtcGx1Z2lucy1iYWQtMS44LjMvZ3N0
+LWxpYnMvZ3N0L2dsL2dzdGdsc2wuYyAuLi8uLi8uLi8uLi9nc3QtcGx1Z2lucy1iYWQtMS44LjMv
+Z3N0LWxpYnMvZ3N0L2dsL2dzdGdsc2xzdGFnZS5jIC4uLy4uLy4uLy4uL2dzdC1wbHVnaW5zLWJh
+ZC0xLjguMy9nc3QtbGlicy9nc3QvZ2wvZ3N0Z2xjb2xvcmNvbnZlcnQuYyAuLi8uLi8uLi8uLi9n
+c3QtcGx1Z2lucy1iYWQtMS44LjMvZ3N0LWxpYnMvZ3N0L2dsL2dzdGdsdXBsb2FkLmMgLi4vLi4v
+Li4vLi4vZ3N0LXBsdWdpbnMtYmFkLTEuOC4zL2dzdC1saWJzL2dzdC9nbC9nc3RnbHdpbmRvdy5j
+IC4uLy4uLy4uLy4uL2dzdC1wbHVnaW5zLWJhZC0xLjguMy9nc3QtbGlicy9nc3QvZ2wvZ3N0Z2xh
+cGkuYyAuLi8uLi8uLi8uLi9nc3QtcGx1Z2lucy1iYWQtMS44LjMvZ3N0LWxpYnMvZ3N0L2dsL2dz
+dGdsZmVhdHVyZS5jIC4uLy4uLy4uLy4uL2dzdC1wbHVnaW5zLWJhZC0xLjguMy9nc3QtbGlicy9n
+c3QvZ2wvZ3N0Z2x1dGlscy5jIC4uLy4uLy4uLy4uL2dzdC1wbHVnaW5zLWJhZC0xLjguMy9nc3Qt
+bGlicy9nc3QvZ2wvZ3N0Z2xmcmFtZWJ1ZmZlci5jIC4uLy4uLy4uLy4uL2dzdC1wbHVnaW5zLWJh
+ZC0xLjguMy9nc3QtbGlicy9nc3QvZ2wvZ3N0Z2xzeW5jbWV0YS5jIC4uLy4uLy4uLy4uL2dzdC1w
+bHVnaW5zLWJhZC0xLjguMy9nc3QtbGlicy9nc3QvZ2wvZ3N0Z2x2aWV3Y29udmVydC5jIC4uLy4u
+Ly4uLy4uL2dzdC1wbHVnaW5zLWJhZC0xLjguMy9nc3QtbGlicy9nc3QvZ2wvZ3N0Z2xvdmVybGF5
+Y29tcG9zaXRvci5jIC4uLy4uLy4uLy4uL2dzdC1wbHVnaW5zLWJhZC0xLjguMy9nc3QtbGlicy9n
+c3QvZ2wvZ3N0Z2xxdWVyeS5jIC4uLy4uLy4uLy4uL2dzdC1wbHVnaW5zLWJhZC0xLjguMy9nc3Qt
+bGlicy9nc3QvZ2wvZ3N0Z2xjb250cm9sYmluZGluZ3Byb3h5LmMKZy1pci1zY2FubmVyOiBsaW5r
+OiAuLi8uLi8uLi9hcm0tcG9reS1saW51eC1nbnVlYWJpLWxpYnRvb2wgLS1tb2RlPWxpbmsgLS10
+YWc9Q0MgYXJtLXBva3ktbGludXgtZ251ZWFiaS1nY2MgLW1hcmNoPWFybXY3dmUgLW1hcm0gLW1m
+cHU9bmVvbi12ZnB2NCAtbWZsb2F0LWFiaT1oYXJkIC1tY3B1PWNvcnRleC1hNyAtLXN5c3Jvb3Q9
+L2hvbWUva2FpL3lvY3RvL2J1aWxkLW1hZ25vbGlhL3RtcC9zeXNyb290cy9yYXNwYmVycnlwaTMg
+LW8gL2hvbWUva2FpL3lvY3RvL2J1aWxkLW1hZ25vbGlhL3RtcC93b3JrL2NvcnRleGE3aGYtbmVv
+bi12ZnB2NC1wb2t5LWxpbnV4LWdudWVhYmkvZ3N0cmVhbWVyMS4wLXBsdWdpbnMtYmFkLzEuOC4z
+LXIwL2J1aWxkL2dzdC1saWJzL2dzdC9nbC90bXAtaW50cm9zcGVjdGl6MXRxNTRtL0dzdEdMLTEu
+MCAtZXhwb3J0LWR5bmFtaWMgLUkvaG9tZS9rYWkveW9jdG8vYnVpbGQtbWFnbm9saWEvdG1wL3N5
+c3Jvb3RzL3Jhc3BiZXJyeXBpMy91c3IvaW5jbHVkZS9pbnRlcmZhY2UvdmNvcy9wdGhyZWFkcyAt
+SS9ob21lL2thaS95b2N0by9idWlsZC1tYWdub2xpYS90bXAvc3lzcm9vdHMvcmFzcGJlcnJ5cGkz
+L3Vzci9pbmNsdWRlL2ludGVyZmFjZS92bWNzX2hvc3QvbGludXggLU8yIC1waXBlIC1nIC1mZWxp
+bWluYXRlLXVudXNlZC1kZWJ1Zy10eXBlcyAtZmRlYnVnLXByZWZpeC1tYXA9L2hvbWUva2FpL3lv
+Y3RvL2J1aWxkLW1hZ25vbGlhL3RtcC93b3JrL2NvcnRleGE3aGYtbmVvbi12ZnB2NC1wb2t5LWxp
+bnV4LWdudWVhYmkvZ3N0cmVhbWVyMS4wLXBsdWdpbnMtYmFkLzEuOC4zLXIwPS91c3Ivc3JjL2Rl
+YnVnL2dzdHJlYW1lcjEuMC1wbHVnaW5zLWJhZC8xLjguMy1yMCAtZmRlYnVnLXByZWZpeC1tYXA9
+L2hvbWUva2FpL3lvY3RvL2J1aWxkLW1hZ25vbGlhL3RtcC9zeXNyb290cy94ODZfNjQtbGludXg9
+IC1mZGVidWctcHJlZml4LW1hcD0vaG9tZS9rYWkveW9jdG8vYnVpbGQtbWFnbm9saWEvdG1wL3N5
+c3Jvb3RzL3Jhc3BiZXJyeXBpMz0gLVdsLC1PMSAtV2wsLS1oYXNoLXN0eWxlPWdudSAtV2wsLS1h
+cy1uZWVkZWQgdG1wLWludHJvc3BlY3RpejF0cTU0bS9ob21lL2thaS95b2N0by9idWlsZC1tYWdu
+b2xpYS90bXAvd29yay9jb3J0ZXhhN2hmLW5lb24tdmZwdjQtcG9reS1saW51eC1nbnVlYWJpL2dz
+dHJlYW1lcjEuMC1wbHVnaW5zLWJhZC8xLjguMy1yMC9idWlsZC9nc3QtbGlicy9nc3QvZ2wvdG1w
+LWludHJvc3BlY3RpejF0cTU0bS9Hc3RHTC0xLjAubyAtTC4gbGliZ3N0Z2wtMS4wLmxhIC1sZ2lv
+LTIuMCAtV2wsLS1leHBvcnQtZHluYW1pYyAtbGdtb2R1bGUtMi4wIC1wdGhyZWFkIC1sZ3N0dmlk
+ZW8tMS4wIC1sZ3N0YmFzZS0xLjAgLWxnc3RyZWFtZXItMS4wIC1sZ29iamVjdC0yLjAgLWxnbGli
+LTIuMAphcm0tcG9reS1saW51eC1nbnVlYWJpLWxpYnRvb2w6IGxpbms6IGFybS1wb2t5LWxpbnV4
+LWdudWVhYmktZ2NjIC1tYXJjaD1hcm12N3ZlIC1tYXJtIC1tZnB1PW5lb24tdmZwdjQgLW1mbG9h
+dC1hYmk9aGFyZCAtbWNwdT1jb3J0ZXgtYTcgLS1zeXNyb290PS9ob21lL2thaS95b2N0by9idWls
+ZC1tYWdub2xpYS90bXAvc3lzcm9vdHMvcmFzcGJlcnJ5cGkzIC1vIC9ob21lL2thaS95b2N0by9i
+dWlsZC1tYWdub2xpYS90bXAvd29yay9jb3J0ZXhhN2hmLW5lb24tdmZwdjQtcG9reS1saW51eC1n
+bnVlYWJpL2dzdHJlYW1lcjEuMC1wbHVnaW5zLWJhZC8xLjguMy1yMC9idWlsZC9nc3QtbGlicy9n
+c3QvZ2wvdG1wLWludHJvc3BlY3RpejF0cTU0bS8ubGlicy9Hc3RHTC0xLjAgLUkvaG9tZS9rYWkv
+eW9jdG8vYnVpbGQtbWFnbm9saWEvdG1wL3N5c3Jvb3RzL3Jhc3BiZXJyeXBpMy91c3IvaW5jbHVk
+ZS9pbnRlcmZhY2UvdmNvcy9wdGhyZWFkcyAtSS9ob21lL2thaS95b2N0by9idWlsZC1tYWdub2xp
+YS90bXAvc3lzcm9vdHMvcmFzcGJlcnJ5cGkzL3Vzci9pbmNsdWRlL2ludGVyZmFjZS92bWNzX2hv
+c3QvbGludXggLU8yIC1waXBlIC1nIC1mZWxpbWluYXRlLXVudXNlZC1kZWJ1Zy10eXBlcyAtZmRl
+YnVnLXByZWZpeC1tYXA9L2hvbWUva2FpL3lvY3RvL2J1aWxkLW1hZ25vbGlhL3RtcC93b3JrL2Nv
+cnRleGE3aGYtbmVvbi12ZnB2NC1wb2t5LWxpbnV4LWdudWVhYmkvZ3N0cmVhbWVyMS4wLXBsdWdp
+bnMtYmFkLzEuOC4zLXIwPS91c3Ivc3JjL2RlYnVnL2dzdHJlYW1lcjEuMC1wbHVnaW5zLWJhZC8x
+LjguMy1yMCAtZmRlYnVnLXByZWZpeC1tYXA9L2hvbWUva2FpL3lvY3RvL2J1aWxkLW1hZ25vbGlh
+L3RtcC9zeXNyb290cy94ODZfNjQtbGludXg9IC1mZGVidWctcHJlZml4LW1hcD0vaG9tZS9rYWkv
+eW9jdG8vYnVpbGQtbWFnbm9saWEvdG1wL3N5c3Jvb3RzL3Jhc3BiZXJyeXBpMz0gLVdsLC1PMSAt
+V2wsLS1oYXNoLXN0eWxlPWdudSAtV2wsLS1hcy1uZWVkZWQgdG1wLWludHJvc3BlY3RpejF0cTU0
+bS9ob21lL2thaS95b2N0by9idWlsZC1tYWdub2xpYS90bXAvd29yay9jb3J0ZXhhN2hmLW5lb24t
+dmZwdjQtcG9reS1saW51eC1nbnVlYWJpL2dzdHJlYW1lcjEuMC1wbHVnaW5zLWJhZC8xLjguMy1y
+MC9idWlsZC9nc3QtbGlicy9nc3QvZ2wvdG1wLWludHJvc3BlY3RpejF0cTU0bS9Hc3RHTC0xLjAu
+byAtV2wsLS1leHBvcnQtZHluYW1pYyAtcHRocmVhZCAtV2wsLS1leHBvcnQtZHluYW1pYyAgLUwu
+IC4vLmxpYnMvbGliZ3N0Z2wtMS4wLnNvIC1sR0xFU3YyIC9ob21lL2thaS95b2N0by9idWlsZC1t
+YWdub2xpYS90bXAvc3lzcm9vdHMvcmFzcGJlcnJ5cGkzL3Vzci9saWIvbGliZ3N0YWxsb2NhdG9y
+cy0xLjAuc28gL2hvbWUva2FpL3lvY3RvL2J1aWxkLW1hZ25vbGlhL3RtcC9zeXNyb290cy9yYXNw
+YmVycnlwaTMvdXNyL2xpYi9saWJnaW8tMi4wLnNvIC1seiAtbHJlc29sdiAvaG9tZS9rYWkveW9j
+dG8vYnVpbGQtbWFnbm9saWEvdG1wL3N5c3Jvb3RzL3Jhc3BiZXJyeXBpMy91c3IvbGliL2xpYmdz
+dHZpZGVvLTEuMC5zbyAvaG9tZS9rYWkveW9jdG8vYnVpbGQtbWFnbm9saWEvdG1wL3N5c3Jvb3Rz
+L3Jhc3BiZXJyeXBpMy91c3IvbGliL2xpYm9yYy0wLjQuc28gL2hvbWUva2FpL3lvY3RvL2J1aWxk
+LW1hZ25vbGlhL3RtcC9zeXNyb290cy9yYXNwYmVycnlwaTMvdXNyL2xpYi9saWJnc3RiYXNlLTEu
+MC5zbyAvaG9tZS9rYWkveW9jdG8vYnVpbGQtbWFnbm9saWEvdG1wL3N5c3Jvb3RzL3Jhc3BiZXJy
+eXBpMy91c3IvbGliL2xpYmdzdHJlYW1lci0xLjAuc28gL2hvbWUva2FpL3lvY3RvL2J1aWxkLW1h
+Z25vbGlhL3RtcC9zeXNyb290cy9yYXNwYmVycnlwaTMvdXNyL2xpYi9saWJnbW9kdWxlLTIuMC5z
+byAtbG0gLWxydCAtbGRsIC9ob21lL2thaS95b2N0by9idWlsZC1tYWdub2xpYS90bXAvc3lzcm9v
+dHMvcmFzcGJlcnJ5cGkzL3Vzci9saWIvbGliZ29iamVjdC0yLjAuc28gL2hvbWUva2FpL3lvY3Rv
+L2J1aWxkLW1hZ25vbGlhL3RtcC9zeXNyb290cy9yYXNwYmVycnlwaTMvdXNyL2xpYi9saWJmZmku
+c28gL2hvbWUva2FpL3lvY3RvL2J1aWxkLW1hZ25vbGlhL3RtcC9zeXNyb290cy9yYXNwYmVycnlw
+aTMvdXNyL2xpYi9saWJnbGliLTIuMC5zbyAvaG9tZS9rYWkveW9jdG8vYnVpbGQtbWFnbm9saWEv
+dG1wL3N5c3Jvb3RzL3Jhc3BiZXJyeXBpMy91c3IvbGliL2xpYnBjcmUuc28gLWxwdGhyZWFkIC1w
+dGhyZWFkCi4vLmxpYnMvbGliZ3N0Z2wtMS4wLnNvOiB1bmRlZmluZWQgcmVmZXJlbmNlIHRvIGBn
+cmFwaGljc19nZXRfZGlzcGxheV9zaXplJwpjb2xsZWN0MjogZXJyb3I6IGxkIHJldHVybmVkIDEg
+ZXhpdCBzdGF0dXMKZ3N0LXBsdWdpbnMtYmFkLTEuOC4zL2dzdC1saWJzL2dzdC9nbC9nc3RnbG1l
+bW9yeXBiby5jOjgzMjogV2FybmluZzogR3N0R0w6IG11bHRpcGxlIGNvbW1lbnQgYmxvY2tzIGRv
+Y3VtZW50aW5nICdnc3RfZ2xfbWVtb3J5X3Bib19kb3dubG9hZF90cmFuc2ZlcjonIGlkZW50aWZp
+ZXIgKGFscmVhZHkgc2VlbiBhdCBnc3RnbG1lbW9yeXBiby5jOjc5OCkuCmdzdC1wbHVnaW5zLWJh
+ZC0xLjguMy9nc3QtbGlicy9nc3QvZ2wvZ3N0Z2xmb3JtYXQuYzozNTA6IFdhcm5pbmc6IEdzdEdM
+OiBtdWx0aXBsZSBjb21tZW50IGJsb2NrcyBkb2N1bWVudGluZyAnZ3N0X2dsX3RleHR1cmVfdGFy
+Z2V0X3RvX3N0cmluZzonIGlkZW50aWZpZXIgKGFscmVhZHkgc2VlbiBhdCBnc3RnbGZvcm1hdC5j
+OjMyOSkuCmdzdC1wbHVnaW5zLWJhZC0xLjguMy9nc3QtbGlicy9nc3QvZ2wvZ3N0Z2x3aW5kb3cu
+Yzo3MDY6IFdhcm5pbmc6IEdzdEdMOiAiZGVzdHJveSIgYW5ub3RhdGlvbiBuZWVkcyBvbmUgb3B0
+aW9uLCBub25lIGdpdmVuCmdzdC1wbHVnaW5zLWJhZC0xLjguMy9nc3QtbGlicy9nc3QvZ2wvZ3N0
+Z2x3aW5kb3cuYzo3MzI6IFdhcm5pbmc6IEdzdEdMOiAiZGVzdHJveSIgYW5ub3RhdGlvbiBuZWVk
+cyBvbmUgb3B0aW9uLCBub25lIGdpdmVuCmdzdC1wbHVnaW5zLWJhZC0xLjguMy9nc3QtbGlicy9n
+c3QvZ2wvZ3N0Z2x3aW5kb3cuYzo3NjE6IFdhcm5pbmc6IEdzdEdMOiAiZGVzdHJveSIgYW5ub3Rh
+dGlvbiBuZWVkcyBvbmUgb3B0aW9uLCBub25lIGdpdmVuCmdzdC1wbHVnaW5zLWJhZC0xLjguMy9n
+c3QtbGlicy9nc3QvZ2wvZ3N0Z2x3aW5kb3cuYzo3OTA6IFdhcm5pbmc6IEdzdEdMOiAiZGVzdHJv
+eSIgYW5ub3RhdGlvbiBuZWVkcyBvbmUgb3B0aW9uLCBub25lIGdpdmVuCmdzdC1wbHVnaW5zLWJh
+ZC0xLjguMy9nc3QtbGlicy9nc3QvZ2wvZ3N0Z2x1dGlscy5oOjUxOiBXYXJuaW5nOiBHc3RHTDog
+c3ltYm9sPSdDRENCJzogVW5rbm93biBuYW1lc3BhY2UgZm9yIGlkZW50aWZpZXIgJ0NEQ0InCmdz
+dC1wbHVnaW5zLWJhZC0xLjguMy9nc3QtbGlicy9nc3QvZ2wvZ3N0Z2x1dGlscy5oOjYxOiBXYXJu
+aW5nOiBHc3RHTDogc3ltYm9sPSdHTENCJzogbWlzc2luZyBwYXJhbWV0ZXIgbmFtZTsgdW5kb2N1
+bWVudGFibGUKZ3N0LXBsdWdpbnMtYmFkLTEuOC4zL2dzdC1saWJzL2dzdC9nbC9nc3RnbHV0aWxz
+Lmg6NjE6IFdhcm5pbmc6IEdzdEdMOiBzeW1ib2w9J0dMQ0InOiBtaXNzaW5nIHBhcmFtZXRlciBu
+YW1lOyB1bmRvY3VtZW50YWJsZQpnc3QtcGx1Z2lucy1iYWQtMS44LjMvZ3N0LWxpYnMvZ3N0L2ds
+L2dzdGdsdXRpbHMuaDo2MTogV2FybmluZzogR3N0R0w6IHN5bWJvbD0nR0xDQic6IG1pc3Npbmcg
+cGFyYW1ldGVyIG5hbWU7IHVuZG9jdW1lbnRhYmxlCmdzdC1wbHVnaW5zLWJhZC0xLjguMy9nc3Qt
+bGlicy9nc3QvZ2wvZ3N0Z2x1dGlscy5oOjYxOiBXYXJuaW5nOiBHc3RHTDogc3ltYm9sPSdHTENC
+JzogU2tpcHBpbmcgZm9yZWlnbiBpZGVudGlmaWVyICdHTENCJyBmcm9tIG5hbWVzcGFjZSBHTW9k
+dWxlCmdzdC1wbHVnaW5zLWJhZC0xLjguMy9nc3QtbGlicy9nc3QvZ2wvZ3N0Z2x1dGlscy5oOjY4
+OiBXYXJuaW5nOiBHc3RHTDogc3ltYm9sPSdHTENCX1YyJzogVW5rbm93biBuYW1lc3BhY2UgZm9y
+IHN5bWJvbCAnR0xDQl9WMicKZ3N0LXBsdWdpbnMtYmFkLTEuOC4zL2dzdC1saWJzL2dzdC9nbC9n
+c3RnbGFwaS5oOjM2OiBXYXJuaW5nOiBHc3RHTDogc3ltYm9sPSdHTF9HTEVYVF9QUk9UT1RZUEVT
+JzogVW5rbm93biBuYW1lc3BhY2UgZm9yIHN5bWJvbCAnR0xfR0xFWFRfUFJPVE9UWVBFUycKbGlu
+a2luZyBvZiB0ZW1wb3JhcnkgYmluYXJ5IGZhaWxlZDogQ29tbWFuZCAnWycuLi8uLi8uLi9hcm0t
+cG9reS1saW51eC1nbnVlYWJpLWxpYnRvb2wnLCAnLS1tb2RlPWxpbmsnLCAnLS10YWc9Q0MnLCAn
+YXJtLXBva3ktbGludXgtZ251ZWFiaS1nY2MnLCAnLW1hcmNoPWFybXY3dmUnLCAnLW1hcm0nLCAn
+LW1mcHU9bmVvbi12ZnB2NCcsICctbWZsb2F0LWFiaT1oYXJkJywgJy1tY3B1PWNvcnRleC1hNycs
+ICctLXN5c3Jvb3Q9L2hvbWUva2FpL3lvY3RvL2J1aWxkLW1hZ25vbGlhL3RtcC9zeXNyb290cy9y
+YXNwYmVycnlwaTMnLCAnLW8nLCAnL2hvbWUva2FpL3lvY3RvL2J1aWxkLW1hZ25vbGlhL3RtcC93
+b3JrL2NvcnRleGE3aGYtbmVvbi12ZnB2NC1wb2t5LWxpbnV4LWdudWVhYmkvZ3N0cmVhbWVyMS4w
+LXBsdWdpbnMtYmFkLzEuOC4zLXIwL2J1aWxkL2dzdC1saWJzL2dzdC9nbC90bXAtaW50cm9zcGVj
+dGl6MXRxNTRtL0dzdEdMLTEuMCcsICctZXhwb3J0LWR5bmFtaWMnLCAnLUkvaG9tZS9rYWkveW9j
+dG8vYnVpbGQtbWFnbm9saWEvdG1wL3N5c3Jvb3RzL3Jhc3BiZXJyeXBpMy91c3IvaW5jbHVkZS9p
+bnRlcmZhY2UvdmNvcy9wdGhyZWFkcycsICctSS9ob21lL2thaS95b2N0by9idWlsZC1tYWdub2xp
+YS90bXAvc3lzcm9vdHMvcmFzcGJlcnJ5cGkzL3Vzci9pbmNsdWRlL2ludGVyZmFjZS92bWNzX2hv
+c3QvbGludXgnLCAnLU8yJywgJy1waXBlJywgJy1nJywgJy1mZWxpbWluYXRlLXVudXNlZC1kZWJ1
+Zy10eXBlcycsICctZmRlYnVnLXByZWZpeC1tYXA9L2hvbWUva2FpL3lvY3RvL2J1aWxkLW1hZ25v
+bGlhL3RtcC93b3JrL2NvcnRleGE3aGYtbmVvbi12ZnB2NC1wb2t5LWxpbnV4LWdudWVhYmkvZ3N0
+cmVhbWVyMS4wLXBsdWdpbnMtYmFkLzEuOC4zLXIwPS91c3Ivc3JjL2RlYnVnL2dzdHJlYW1lcjEu
+MC1wbHVnaW5zLWJhZC8xLjguMy1yMCcsICctZmRlYnVnLXByZWZpeC1tYXA9L2hvbWUva2FpL3lv
+Y3RvL2J1aWxkLW1hZ25vbGlhL3RtcC9zeXNyb290cy94ODZfNjQtbGludXg9JywgJy1mZGVidWct
+cHJlZml4LW1hcD0vaG9tZS9rYWkveW9jdG8vYnVpbGQtbWFnbm9saWEvdG1wL3N5c3Jvb3RzL3Jh
+c3BiZXJyeXBpMz0nLCAnLVdsLC1PMScsICctV2wsLS1oYXNoLXN0eWxlPWdudScsICctV2wsLS1h
+cy1uZWVkZWQnLCAndG1wLWludHJvc3BlY3RpejF0cTU0bS9ob21lL2thaS95b2N0by9idWlsZC1t
+YWdub2xpYS90bXAvd29yay9jb3J0ZXhhN2hmLW5lb24tdmZwdjQtcG9reS1saW51eC1nbnVlYWJp
+L2dzdHJlYW1lcjEuMC1wbHVnaW5zLWJhZC8xLjguMy1yMC9idWlsZC9nc3QtbGlicy9nc3QvZ2wv
+dG1wLWludHJvc3BlY3RpejF0cTU0bS9Hc3RHTC0xLjAubycsICctTC4nLCAnbGliZ3N0Z2wtMS4w
+LmxhJywgJy1sZ2lvLTIuMCcsICctV2wsLS1leHBvcnQtZHluYW1pYycsICctbGdtb2R1bGUtMi4w
+JywgJy1wdGhyZWFkJywgJy1sZ3N0dmlkZW8tMS4wJywgJy1sZ3N0YmFzZS0xLjAnLCAnLWxnc3Ry
+ZWFtZXItMS4wJywgJy1sZ29iamVjdC0yLjAnLCAnLWxnbGliLTIuMCddJyByZXR1cm5lZCBub24t
+emVybyBleGl0IHN0YXR1cyAxCk1ha2VmaWxlOjE2NjU6IHJlY2lwZSBmb3IgdGFyZ2V0ICdHc3RH
+TC0xLjAuZ2lyJyBmYWlsZWQKbWFrZVs1XTogKioqIFtHc3RHTC0xLjAuZ2lyXSBFcnJvciAxCm1h
+a2VbNV06IExlYXZpbmcgZGlyZWN0b3J5ICcvaG9tZS9rYWkveW9jdG8vYnVpbGQtbWFnbm9saWEv
+dG1wL3dvcmsvY29ydGV4YTdoZi1uZW9uLXZmcHY0LXBva3ktbGludXgtZ251ZWFiaS9nc3RyZWFt
+ZXIxLjAtcGx1Z2lucy1iYWQvMS44LjMtcjAvYnVpbGQvZ3N0LWxpYnMvZ3N0L2dsJwpNYWtlZmls
+ZToxMzc0OiByZWNpcGUgZm9yIHRhcmdldCAnYWxsLXJlY3Vyc2l2ZScgZmFpbGVkCm1ha2VbNF06
+ICoqKiBbYWxsLXJlY3Vyc2l2ZV0gRXJyb3IgMQptYWtlWzRdOiBMZWF2aW5nIGRpcmVjdG9yeSAn
+L2hvbWUva2FpL3lvY3RvL2J1aWxkLW1hZ25vbGlhL3RtcC93b3JrL2NvcnRleGE3aGYtbmVvbi12
+ZnB2NC1wb2t5LWxpbnV4LWdudWVhYmkvZ3N0cmVhbWVyMS4wLXBsdWdpbnMtYmFkLzEuOC4zLXIw
+L2J1aWxkL2dzdC1saWJzL2dzdC9nbCcKTWFrZWZpbGU6MTA2MzogcmVjaXBlIGZvciB0YXJnZXQg
+J2dsJyBmYWlsZWQKbWFrZVszXTogKioqIFtnbF0gRXJyb3IgMgptYWtlWzNdOiBMZWF2aW5nIGRp
+cmVjdG9yeSAnL2hvbWUva2FpL3lvY3RvL2J1aWxkLW1hZ25vbGlhL3RtcC93b3JrL2NvcnRleGE3
+aGYtbmVvbi12ZnB2NC1wb2t5LWxpbnV4LWdudWVhYmkvZ3N0cmVhbWVyMS4wLXBsdWdpbnMtYmFk
+LzEuOC4zLXIwL2J1aWxkL2dzdC1saWJzL2dzdCcKTWFrZWZpbGU6NzcyOiByZWNpcGUgZm9yIHRh
+cmdldCAnYWxsLXJlY3Vyc2l2ZScgZmFpbGVkCm1ha2VbMl06ICoqKiBbYWxsLXJlY3Vyc2l2ZV0g
+RXJyb3IgMQptYWtlWzJdOiBMZWF2aW5nIGRpcmVjdG9yeSAnL2hvbWUva2FpL3lvY3RvL2J1aWxk
+LW1hZ25vbGlhL3RtcC93b3JrL2NvcnRleGE3aGYtbmVvbi12ZnB2NC1wb2t5LWxpbnV4LWdudWVh
+YmkvZ3N0cmVhbWVyMS4wLXBsdWdpbnMtYmFkLzEuOC4zLXIwL2J1aWxkL2dzdC1saWJzJwpNYWtl
+ZmlsZTo5NDg6IHJlY2lwZSBmb3IgdGFyZ2V0ICdhbGwtcmVjdXJzaXZlJyBmYWlsZWQKbWFrZVsx
+XTogKioqIFthbGwtcmVjdXJzaXZlXSBFcnJvciAxCm1ha2VbMV06IExlYXZpbmcgZGlyZWN0b3J5
+ICcvaG9tZS9rYWkveW9jdG8vYnVpbGQtbWFnbm9saWEvdG1wL3dvcmsvY29ydGV4YTdoZi1uZW9u
+LXZmcHY0LXBva3ktbGludXgtZ251ZWFiaS9nc3RyZWFtZXIxLjAtcGx1Z2lucy1iYWQvMS44LjMt
+cjAvYnVpbGQnCkVSUk9SOiBvZV9ydW5tYWtlIGZhaWxlZApNYWtlZmlsZTo4Nzc6IHJlY2lwZSBm
+b3IgdGFyZ2V0ICdhbGwnIGZhaWxlZAptYWtlOiAqKiogW2FsbF0gRXJyb3IgMgpFUlJPUjogRnVu
+Y3Rpb24gZmFpbGVkOiBkb19jb21waWxlIChsb2cgZmlsZSBpcyBsb2NhdGVkIGF0IC9ob21lL2th
+aS95b2N0by9idWlsZC1tYWdub2xpYS90bXAvd29yay9jb3J0ZXhhN2hmLW5lb24tdmZwdjQtcG9r
+eS1saW51eC1nbnVlYWJpL2dzdHJlYW1lcjEuMC1wbHVnaW5zLWJhZC8xLjguMy1yMC90ZW1wL2xv
+Zy5kb19jb21waWxlLjI1NzQpCg==
+
+--_004_HE1PR01MB1883F449B33898FC6A3C826D92D70HE1PR01MB1883eurp_--
