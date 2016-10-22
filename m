@@ -1,20 +1,17 @@
-Return-Path: <davis.roman84@gmail.com>
+Return-Path: <karim_atiki@hotmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DE758E009A5; Fri, 21 Oct 2016 15:30:17 -0700 (PDT)
+	id 639BDE00C9D; Sat, 22 Oct 2016 05:26:08 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW, 
-	RCVD_IN_SORBS_SPAM autolearn=ham version=3.3.1
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (davis.roman84[at]gmail.com)
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.214.44 listed in dnsbl.sorbs.net]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.214.44 listed in list.dnswl.org]
+	mail provider *      (karim_atiki[at]hotmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [65.54.190.157 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -23,41 +20,71 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-it0-f44.google.com (mail-it0-f44.google.com
-	[209.85.214.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 51231E0081E
-	for <yocto@yoctoproject.org>; Fri, 21 Oct 2016 15:30:15 -0700 (PDT)
-Received: by mail-it0-f44.google.com with SMTP id m138so13183916itm.0
-	for <yocto@yoctoproject.org>; Fri, 21 Oct 2016 15:30:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=jTxI9J0Q97q2TRY3CiwNHhR7TINbvt97jqVooiK6jYE=;
-	b=piqLpZX5lTan4TEF8WZjuIE53/4eeugvQGtBYpWV51c511aZ00g2H1XxfGkww/aFEh
-	Glu0htO4YqY7FGDxQLoYAkr5uWjo5b6ky3Dlw70XtuOl32mviL9yH6AXhAS+wIOwmC7e
-	X4YpcnTiv7exSU+4J2qOO4woJ6/lMGsfqHamZgYrv5Wp/gmVvFjY9EmqyMnZFcgU8Z91
-	KSBZxZlYVe1bTX83A1nGvVSHQAXBZXBU8YNOnbfzP/EJXYbcuNKrhSctrUyNKiZsfvOF
-	3YWsm4vs6ujeJTsOy42eC0Tk3iSxXLLaQkPlLX3YgNaHOvZIhFveXiJd7Bs4Yky+2hNR
-	2sIQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=jTxI9J0Q97q2TRY3CiwNHhR7TINbvt97jqVooiK6jYE=;
-	b=DLmb3IbHEf0JjoW5d5REvUhRB7xIB1vtglhuIqC+P27VChmUP968oQzyaXmKUpathG
-	fv8+J0t9QNtYhfPEt3wEls9kJnWsbXj/6eT/qFYJPRlzd4wQLIur+PkOgNRm+PIojtP3
-	6ECLk6PSpOce8CqRXCfTcRaY4m7NEK0mYaKw1VXb2uzCZJlph2Kyetj9ZwUxahNx/GNM
-	9EgQ+4FxvspskQpTKnhfS5aw78TTN9y7P+aXkBGB3Vt9os2L1AUCd0zS3O99/yoKQmbt
-	Ee1bG5GZcZh8qCr5uCgYNBreoo1KjXOEYT6mS7Cq0H0g3lAxs/q055LjMKAsgo7aie13
-	L8OA==
-X-Gm-Message-State: ABUngvcx24TJrPAdrsbeKA2NVut5x5p2GndkQakwd9W6Qz2CCNee2+GoBoyMbTJFTib9hUeWmdVJ79PFSeLLAA==
-X-Received: by 10.36.2.1 with SMTP id 1mr745821itu.47.1477089013777; Fri, 21
-	Oct 2016 15:30:13 -0700 (PDT)
+Received: from BAY004-OMC3S19.hotmail.com (bay004-omc3s19.hotmail.com
+	[65.54.190.157])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2E461E00C86
+	for <yocto@yoctoproject.org>; Sat, 22 Oct 2016 05:26:04 -0700 (PDT)
+Received: from EUR02-VE1-obe.outbound.protection.outlook.com ([65.54.190.188])
+	by BAY004-OMC3S19.hotmail.com over TLS secured channel with
+	Microsoft SMTPSVC(7.5.7601.23008); Sat, 22 Oct 2016 05:26:03 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+	s=selector1; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
+	bh=CwLU4bof1iN4uWVe+1ZFmFY4oMaElWVpK+4JEbyBD+Q=;
+	b=lOFYytbjaBoevHEXkvwih/+70fpz2pBXLeqjIX/5voo41VJXVmMz/GMJpZC+zsnYr5AzUV4SVmugGQodRcwwtryQyuB5VlmxZzUatJSZOs3CnXQ77ZKS57tSx0y1B4NZ27tvmicLdV4FVD+5uOcI8Ct6MdEkI5RPGqh86x1kgsHNOWG8I3f+GQfLHcMQajwj/J8Mm6gg3Z0svs80cYaNCNjdYww/TRwwtuRbqq/VVQzUUUa2CGK63d137OMcvx76GvWZbDj4Smq1SpmOY24e0kmV3UzEEjzd7rBVUIVWzXt9brnAaTwfYpHwu7UnbYWGcmtaZmoyp+mKui2HUSu4aw==
+Received: from VE1EUR02FT043.eop-EUR02.prod.protection.outlook.com
+	(10.152.12.55) by VE1EUR02HT209.eop-EUR02.prod.protection.outlook.com
+	(10.152.13.210) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.669.7;
+	Sat, 22 Oct 2016 12:26:01 +0000
+Received: from DB5PR01MB1880.eurprd01.prod.exchangelabs.com (10.152.12.56) by
+	VE1EUR02FT043.mail.protection.outlook.com (10.152.13.89) with
+	Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
+	15.1.669.7 via Frontend Transport; Sat, 22 Oct 2016 12:26:01 +0000
+Received: from DB5PR01MB1880.eurprd01.prod.exchangelabs.com ([10.166.169.16])
+	by DB5PR01MB1880.eurprd01.prod.exchangelabs.com ([10.166.169.16])
+	with mapi id 15.01.0669.018; Sat, 22 Oct 2016 12:26:00 +0000
+From: Karim ATIKI <karim_atiki@hotmail.com>
+To: yocto <yocto@yoctoproject.org>
+Thread-Topic: [raspberrypi3][meta-qt5] Failed to build meta-toolchain-qt5
+Thread-Index: AQHSLF9yRZyzpaMIaUqAHJgUBbdCuw==
+Date: Sat, 22 Oct 2016 12:26:00 +0000
+Message-ID: <DB5PR01MB188022E6CBBDB28E6758242592D70@DB5PR01MB1880.eurprd01.prod.exchangelabs.com>
+Accept-Language: fr-FR, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: yoctoproject.org; dkim=none (message not signed)
+	header.d=none;yoctoproject.org; dmarc=none action=none
+	header.from=hotmail.com;
+x-ms-exchange-messagesentrepresentingtype: 1
+x-tmn: [VviBT8EJMC+ZJmHS7FtcE38DP89957Wg]
+x-eopattributedmessage: 0
+x-microsoft-exchange-diagnostics: 1; VE1EUR02HT209;
+	6:rLz6iYwMvcZneHukKC/nz0qxISurQ6QkWezhSi96LT2Ou4EskExj2ES0pMfC0KsxiPQ7RH3VMf/OfntKhmNwqNZTYs1U2BpaZRECtRDbBwuJWyJ0c5td3Mh/rOQBckVd51OSmtbFruYSZkh6gq5N5Esuyr39ripbOzQufIbspSFxr6jfIUFWxWjqdE7H7FTKkIoDal3zOEyC2/q36u/qzLZvl3Y1Lt44Cngm8PM04DrxRVoj4R1bBJBYNqkCT7nisSLjk5RINw3tatqmh+j9NNryakof6hH3vvdN+YRKk09Cio1+vFO1wdYWqsbTfIAq;
+	5:d8F5Smwvjn16DrhisSyhLytijF0c5RJzkSC5fHXH3by7/Hby4hvaiINnGPYS0pQbf09zQDx1dvI//CkbCtozE8edOZcapyxdPIOavyZOAh+y9jgBCIMQk6+GJzmJk+Q86irJOUeAmqm2c/8xKlUywc7mXuGE3zNbTq530UUw4MU=;
+	24:zqg0W9DNOggRk2mMhjPjvtPlC3ifFsijb2q4r111/TVS2hQUOsAerjIoNr/J5R+jiEwJFM1tRWNd2v4Xzt1nkYiBNSEt2SNU32y5wedzigE=;
+	7:mggmk0uihTL1Nkv1dVcWZCuE+VekGkcxV0FKgmuob+0Vzamm2k8trlLl2ahGsRq++2QIy3QIPDxFl4y4YviujEKUcH+4q7NCp5Ay3nSPz/OOZ5PBfHSy1rmbh5OCBtS48OHsn4jW2WSm3R5e2gCGdUw5mz8N6WIscDmflnavttqH/J/YmGcNrGRzJwMZ6qGSk+syjulBg2/0nx4Q+1Ywn8nRiB6HRxyMQRy2II+SU+hKtqwEasL9ZW3F+TDI5cncgE8tgJrGx06+unQz5kaujKRh5kw6HzGjsKg+60dmKKVuToHSnbiyJ4yNRAOe5ZVPGFMFqF6LjNipx6Lxi4aXsRS+GqWRcCrC8t/nzOHixCs=
+x-forefront-antispam-report: EFV:NLI; SFV:NSPM; SFS:(10019020)(98900003);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:VE1EUR02HT209;
+	H:DB5PR01MB1880.eurprd01.prod.exchangelabs.com; FPR:; SPF:None;
+	LANG:en; 
+x-ms-office365-filtering-correlation-id: cd071add-0ceb-47fb-bb34-08d3fa76954e
+x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
+	RULEID:(1601124038)(1603103081)(1601125047); SRVR:VE1EUR02HT209;
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0; RULEID:(432015012)(82015046);
+	SRVR:VE1EUR02HT209; BCL:0; PCL:0; RULEID:; SRVR:VE1EUR02HT209; 
+x-forefront-prvs: 01039C93E4
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-Received: by 10.64.54.36 with HTTP; Fri, 21 Oct 2016 15:30:13 -0700 (PDT)
-From: Davis Roman <davis.roman84@gmail.com>
-Date: Fri, 21 Oct 2016 18:30:13 -0400
-Message-ID: <CACfi_Z0W3pBTf-ByqQdeov=_+w5ePTQn4a3R0ou5MGgmTU3mRA@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: if user space application compiles with a static library, does it need to be included in the yocto build ?
+X-OriginatorOrg: hotmail.com
+X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Oct 2016 12:26:00.5600 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Internet
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1EUR02HT209
+X-OriginalArrivalTime: 22 Oct 2016 12:26:03.0573 (UTC)
+	FILETIME=[7487AE50:01D22C5F]
+Subject: [raspberrypi3][meta-qt5] Failed to build meta-toolchain-qt5
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,42 +96,90 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 21 Oct 2016 22:30:17 -0000
-Content-Type: multipart/alternative; boundary=001a1143d5caf7cacd053f67958d
+X-List-Received-Date: Sat, 22 Oct 2016 12:26:08 -0000
+Content-Language: fr-FR
+Content-Type: multipart/alternative;
+	boundary="_000_DB5PR01MB188022E6CBBDB28E6758242592D70DB5PR01MB1880eurp_"
 
---001a1143d5caf7cacd053f67958d
-Content-Type: text/plain; charset=UTF-8
-
-Hello Yocto Community,
-
-As much as I like to advocate for code reuse and minimizing code bloat,
-there is one instance where our user space application will be compiled
-with a statically linked library.
-
-We don't do any development on our target boards themselves so I'm starting
-to think that I don't need to include this library at all in my yocto build
-( either in the toolchain or rootfs )
-
-Is this a correct assumption ?
-
-Any advice would be greatly appreciated.
-
-Thank you,
-
-Davis
-
---001a1143d5caf7cacd053f67958d
-Content-Type: text/html; charset=UTF-8
+--_000_DB5PR01MB188022E6CBBDB28E6758242592D70DB5PR01MB1880eurp_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hello Yocto Community,<div><br></div><div><div>As much as =
-I like to advocate for code reuse and minimizing code bloat, there is one i=
-nstance where our user space application will be compiled with a statically=
- linked library.<br></div><div><br></div><div>We don&#39;t do any developme=
-nt on our target boards themselves so I&#39;m starting to think that I don&=
-#39;t need to include this library at all in my yocto build ( either in the=
- toolchain or rootfs )</div><div><br></div><div>Is this a correct assumptio=
-n ?=C2=A0</div><div><br></div><div>Any advice would be greatly appreciated.=
-</div><div><br></div><div>Thank you,</div><div><br>Davis</div></div></div>
+Hi all,
 
---001a1143d5caf7cacd053f67958d--
+
+Tryng to build the meta-toolchain-qt5, I've a failure while bulidng gst-plu=
+gins-bad.
+
+
+The underlying error seems to be:
+
+
+| ./.libs/libgstgl-1.0.so: undefined reference to `graphics_get_display_siz=
+e
+
+
+This function seems to come from bcm_host library.
+
+Isn't it related to  RaspberryPi graphic libs ?
+
+
+Should I add a specific dependency ?
+
+
+Weird.
+
+
+Karim
+
+
+
+--_000_DB5PR01MB188022E6CBBDB28E6758242592D70DB5PR01MB1880eurp_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+</head>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Arial,Helvetica,sans-serif;">
+<p>Hi all,</p>
+<p><br>
+</p>
+<p>Tryng to build the meta-toolchain-qt5, I've a failure while bulidng gst-=
+plugins-bad.</p>
+<p><br>
+</p>
+<p>The underlying error seems to be:</p>
+<p><br>
+</p>
+<p><i><b></b></i><span><b><i>| ./.libs/libgstgl-1.0.so: undefined reference=
+ to `graphics_get_display_size</i></b></span><br>
+</p>
+<p><span><b><i><br>
+</i></b></span></p>
+<p><span>This function seems to come from bcm_host library.</span></p>
+<p><span>Isn't it related to&nbsp; RaspberryPi graphic libs ?</span></p>
+<p><br>
+</p>
+<p>Should I add a specific dependency ?</p>
+<p><br>
+</p>
+<p>Weird.</p>
+<p><br>
+</p>
+<p>Karim</p>
+<p><span><b><i><br>
+</i></b></span></p>
+<p><span><b><i><br>
+</i></b></span></p>
+</div>
+</body>
+</html>
+
+--_000_DB5PR01MB188022E6CBBDB28E6758242592D70DB5PR01MB1880eurp_--
