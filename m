@@ -1,66 +1,39 @@
-Return-Path: <max.oss.09@gmail.com>
+Return-Path: <rpjday@crashcourse.ca>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A2430E00BCE; Sun, 23 Oct 2016 06:08:11 -0700 (PDT)
+	id 9EC22E00A61; Sun, 23 Oct 2016 07:01:58 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [74.125.82.65 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (max.oss.09[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.82.65 listed in dnsbl.sorbs.net]
-Received: from mail-wm0-f65.google.com (mail-wm0-f65.google.com [74.125.82.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7196EE009BB
-	for <yocto@yoctoproject.org>; Sun, 23 Oct 2016 06:08:03 -0700 (PDT)
-Received: by mail-wm0-f65.google.com with SMTP id d199so5787552wmd.1
-	for <yocto@yoctoproject.org>; Sun, 23 Oct 2016 06:08:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id;
-	bh=i9h8n734KSrwPRW0bxnxqW21UFjNTezceiRWAbUBtXQ=;
-	b=R4kY8xPM1BaPx+kaY/Qcf9EhBoCdpDYLyG4lOfRCglB6qHM6s7WU501IBLRXj3KxEg
-	PVjMhYhIUSi3jGtckyYJUDM9g7JCmOIcfAbhUBm9QP0pc6peVMmIDUBwuLT/rjEP7KxC
-	APKpo6kg6aJcPnp9b6RLwkzixfu0Bi0KOydfNfO/jsXTSEtHYwnfR4UL/kb8tHk+z54P
-	WLrwJzAL0ssEHdgs4XEgERViuzbwI4925rRJ2G/OrY9ktpz50spyDBOZSd3CUga3/x8j
-	qc+tVo62zFZqXGAO9CGrjRQkjhXSa4dYOBUI6TIjhAvnPvqz7+FuA8Ka2U8Ot24EG31D
-	PL1g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=i9h8n734KSrwPRW0bxnxqW21UFjNTezceiRWAbUBtXQ=;
-	b=YN5nzkCnZLO2NkGIQpO820H6IlDMNlDUbn4IMoDv6JdRgwJyzc3/4dD1mGxKSYgBEY
-	MT5FnV9wuOhelrefnDUsvk2RuXyeKgUnR9Kkl55Y1DziK5XBKdtENK351l+92iKaNnTr
-	wdKMILZjEdB2g3Wf9ZRM90u5iewYmxy0ZwdteB0kk2TwCFg1bDMTAQoxjX0d1im7SCL9
-	6MTy/9R+RcNb17Pj0P2VZONHp/EwE4r/yyJGjzh5SOK713t8MzsW3fB91SJZkGuKbedu
-	MwWjrzuYtnqlyFOlTSfT1chGMADplNTfrMCOXlNbB9+gd0kKHf7oV7utq83n1odJEJ4X
-	MGFg==
-X-Gm-Message-State: AA6/9RnE+wdBji4ySLUNllgGqxu/Av79JxSf5d1Eo14rE6O0IyHnbeXwdzaIG5kbbYYj7g==
-X-Received: by 10.28.15.17 with SMTP id 17mr18615435wmp.55.1477228082872;
-	Sun, 23 Oct 2016 06:08:02 -0700 (PDT)
-Received: from linuxdev.toradex.int ([46.140.72.82])
-	by smtp.gmail.com with ESMTPSA id
-	pe5sm13780680wjb.15.2016.10.23.06.08.02
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sun, 23 Oct 2016 06:08:02 -0700 (PDT)
-From: Max Krummenacher <max.oss.09@gmail.com>
-X-Google-Original-From: Max Krummenacher <max.krummenacher@toradex.com>
-To: yocto@yoctoproject.org
-Date: Sun, 23 Oct 2016 15:07:08 +0200
-Message-Id: <1477228028-13816-1-git-send-email-max.krummenacher@toradex.com>
-X-Mailer: git-send-email 2.5.5
-Cc: Max Krummenacher <max.krummenacher@toradex.com>
-Subject: [meta-qt4][PATCH] packagegroup-core-qt4e.bb: mv tslib from rdepends to rrecommends
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [208.80.206.85 listed in list.dnswl.org]
+Received: from smtp685.redcondor.net (smtp685.redcondor.net [208.80.206.85])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4433EE00997
+	for <yocto@yoctoproject.org>; Sun, 23 Oct 2016 07:01:54 -0700 (PDT)
+Received: from astoria.ccjclearline.com ([64.235.106.9])
+	by smtp685.redcondor.net ({20c8e40f-6b6c-4c9e-abff-1640ea7bf404})
+	via TCP (outbound) with ESMTPS id 20161023140143019_0685
+	for <yocto@yoctoproject.org>; Sun, 23 Oct 2016 07:01:43 -0700
+X-RC-FROM: <rpjday@crashcourse.ca>
+X-RC-RCPT: <yocto@yoctoproject.org>
+Received: from [174.118.92.171] (port=43530 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1byJLE-0003Gt-Up
+	for yocto@yoctoproject.org; Sun, 23 Oct 2016 10:01:37 -0400
+Date: Sun, 23 Oct 2016 10:00:39 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@localhost.localdomain
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.LFD.2.20.1610230954280.1388@localhost.localdomain>
+User-Agent: Alpine 2.20 (LFD 67 2015-01-07)
+MIME-Version: 1.0
+X-MAG-OUTBOUND: ccj.redcondor.net@64.235.106.9/32
+Subject: potentially confusing intro to what is in an SDK (SDK manual)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,45 +45,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 23 Oct 2016 13:08:11 -0000
+X-List-Received-Date: Sun, 23 Oct 2016 14:01:58 -0000
+Content-Type: text/plain; charset=US-ASCII
 
-Commit c4671873af5ab6c7d15ca397538f154c11c3486e made the build of tslib a
-PACKAGECONFIG. By default tslib components are not built.
 
-Thus a build for a machine with  "MACHINE_FEATURES" "touchscreen"
-fails for missing tslib components.
+  more of the pedantic nitpickery you've all come to expect from me,
+but in section 1.1 of SDK Manual (v. 2.2):
 
-Signed-off-by: Max Krummenacher <max.krummenacher@toradex.com>
----
-Alternatively or additionally one could change the default PACKAGECONFIG
-in qt4-embedded.inc conditionally on MACHINE_FEATURES. If that is prefered
-I could create a patch.
+"All SDKs consist of the following:
 
-Max
+    Cross-Development Toolchain: This toolchain contains a compiler,
+    debugger, and various miscellaneous tools.
 
- recipes-qt4/packagegroups/packagegroup-core-qt4e.bb | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+    Libraries, Headers, and Symbols: The libraries, headers, and
+    symbols are specific to the image (i.e. they match the image).
 
-diff --git a/recipes-qt4/packagegroups/packagegroup-core-qt4e.bb b/recipes-qt4/packagegroups/packagegroup-core-qt4e.bb
-index 588e99b..86646e9 100644
---- a/recipes-qt4/packagegroups/packagegroup-core-qt4e.bb
-+++ b/recipes-qt4/packagegroups/packagegroup-core-qt4e.bb
-@@ -37,7 +37,6 @@ RDEPENDS_${PN} = " \
- 	qt4-embedded-plugin-imageformat-tiff \
- 	qt4-embedded-plugin-script-dbus \
- 	qt4-embedded-plugin-sqldriver-sqlite \
--	${TOUCH} \
-         qt4-embedded-demos \
-         qt4-embedded-examples \
-         qt-demo-init \
-@@ -47,5 +46,6 @@ RDEPENDS_${PN} = " \
- RRECOMMENDS_${PN} = " \
- 	libqt-embeddedxmlpatterns4 \
- 	qt4-embedded-plugin-phonon-backend-gstreamer \
-+	${TOUCH} \
- "
- 
+    Environment Setup Script: This *.sh file, once run, sets up the
+    cross-development environment by defining variables and preparing
+    for SDK use. "
+
+hang on ... that last reference to an ".sh" file is potentially
+misleading. the generated SDK itself is bundled into the installation
+script (say,
+poky-glibc-x86_64-core-image-minimal-ppce300c3-toolchain-2.2.sh), and
+when that's run, what is installed contains, at the top level, the
+setup script "environment-setup-ppce300c3-poky-linux" -- there is no
+.sh script installed in the SDK installation directory.
+
+  it might be common to create the symlink for convenience:
+
+    environment-setup-ppce300c3-poky-linux -> env.sh
+
+or something like that, but AFAICT, there is no ".sh" setup script in
+the SDK installation directory.
+
+  is it possible the author was conflating the installation .sh file,
+and the environment setup file?
+
+rday
+
 -- 
-2.5.5
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
 
