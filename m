@@ -1,29 +1,65 @@
-Return-Path: <todor.minchev@linux.intel.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4786DE0077E; Mon, 24 Oct 2016 15:19:23 -0700 (PDT)
+	id D4F75E00AD2; Mon, 24 Oct 2016 16:07:30 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 04665E0071C
-	for <yocto@yoctoproject.org>; Mon, 24 Oct 2016 15:19:21 -0700 (PDT)
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-	by fmsmga105.fm.intel.com with ESMTP; 24 Oct 2016 15:19:21 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.31,543,1473145200"; d="scan'208";a="893498222"
-Received: from unknown (HELO localhost.localdomain) ([10.7.197.100])
-	by orsmga003.jf.intel.com with ESMTP; 24 Oct 2016 15:19:21 -0700
-From: Todor Minchev <todor.minchev@linux.intel.com>
-To: yocto@yoctoproject.org
-Date: Mon, 24 Oct 2016 15:19:18 -0700
-Message-Id: <20161024221918.39994-1-todor.minchev@linux.intel.com>
-X-Mailer: git-send-email 2.10.1
-Cc: Todor Minchev <todor.minchev@linux.intel.com>
-Subject: [PATCH 1/1] runqemu: add user mode (SLIRP) support to x86 QEMU targets
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.217.193 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.217.193 listed in dnsbl.sorbs.net]
+Received: from mail-ua0-f193.google.com (mail-ua0-f193.google.com
+	[209.85.217.193])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 413C9E00815
+	for <yocto@yoctoproject.org>; Mon, 24 Oct 2016 16:07:28 -0700 (PDT)
+Received: by mail-ua0-f193.google.com with SMTP id 6so1659742uat.1
+	for <yocto@yoctoproject.org>; Mon, 24 Oct 2016 16:07:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=9g8OAq+NT/QaW+1MDS9FiCMwvtnrdBN/HZKcXM/eaos=;
+	b=kKABi/9e2EjHHp9DjEWEParbdiJqjksj/CmgT0DV8QXu3FjIdvEnhc7CTB+J3JW6kR
+	2lGRq0yugGJYygWow7QyDhStSorBcqPEBMA5SXklgMmSbDXKA42gS4Sa7bTt63+jFzf8
+	a+avwPipQGpuS4KwpGtcxk5JDoZQW3zwu9CsZjEKsABU5KLP52aBkOzATvyZNyyc/IUD
+	r5tW9j0DXlvGpFX+qeNDEFgwNePq85Lp8sZL8FKPBtEEyYq4wHdMsUtWgxyNEtPWO6qU
+	DPIo2Uby/kujmMClMabvBjcgiOfHgouUuc9kehPFjdmQDtgZTiKf704tdaC/F7ztzm/V
+	Qsxg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=9g8OAq+NT/QaW+1MDS9FiCMwvtnrdBN/HZKcXM/eaos=;
+	b=e1JckuvCjA+s1q/SsCGatAZahwvV1yu+yIk6EyX/IOxMGrFstnHcG0BM9EtqE/6FCd
+	8qWlrPCPJu37SKxarLHpui45RnENzGqgi+rHD75k5LHebKUY1Y97NrAAP0L5xpKRaKnD
+	iV+9xGO/kmm87cYMCizO/Vo40UF2tK4QiOfHUnKVAJ3/nIBscWtQIQyUrhQsdZpob9Yk
+	cKtD2yKFdhTgA9n7UoMmJIxQqxfNyoZqZWkF900Z7IJ+P6dVw1zj8NcEYgYsqyqfvRPa
+	CkTQ3lymb8raVQzW7DemcPBAfK+j1S8BHwmexzktMuqJJEqb+3V9v2D+oIgWfRDhENlJ
+	motw==
+X-Gm-Message-State: ABUngvcJH+ZJwzxTycwQa3Dtep7Pq0wkttBPxWtVBXzXn9UfKHmLXluYLEM0hjTwYTPwYceSUqxstheXB4THqA==
+X-Received: by 10.159.38.230 with SMTP id 93mr10246318uay.138.1477350447841;
+	Mon, 24 Oct 2016 16:07:27 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.176.86.206 with HTTP; Mon, 24 Oct 2016 16:06:57 -0700 (PDT)
+In-Reply-To: <20161024092819.18559-1-thomas.perrot@tupi.fr>
+References: <20161024092819.18559-1-thomas.perrot@tupi.fr>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Mon, 24 Oct 2016 16:06:57 -0700
+Message-ID: <CAMKF1srR4fx7JBwMAPW95TZL=NjG71pjNap=YJU5HG_s+52UEw@mail.gmail.com>
+To: Thomas Perrot <thomas.perrot@tupi.fr>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-measured][PATCH] Fix tpm2.0-tss package issue: libraries are not ship into the right packages
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,46 +71,64 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 24 Oct 2016 22:19:23 -0000
+X-List-Received-Date: Mon, 24 Oct 2016 23:07:30 -0000
+Content-Type: text/plain; charset=UTF-8
 
-Using 'slirp' as a command line option to runqemu will start QEMU
-with user mode networking instead of creating tun/tap devices.
-SLIRP does not require root access. By default port 2222 on the
-host will be mapped to port 22 in the guest. The default port
-mapping can be overwritten with the QB_SLIRP_OPT variable e.g.
+2016-10-24 2:28 GMT-07:00 Thomas Perrot <thomas.perrot@tupi.fr>:
+> Signed-off-by: Thomas Perrot <thomas.perrot@tupi.fr>
+> ---
+>  recipes-tpm/tpm2.0-tss/tpm2.0-tss_git.bb | 12 ++++++------
+>  1 file changed, 6 insertions(+), 6 deletions(-)
+>
+> diff --git a/recipes-tpm/tpm2.0-tss/tpm2.0-tss_git.bb b/recipes-tpm/tpm2.0-tss/tpm2.0-tss_git.bb
+> index 453523e..175d36b 100644
+> --- a/recipes-tpm/tpm2.0-tss/tpm2.0-tss_git.bb
+> +++ b/recipes-tpm/tpm2.0-tss/tpm2.0-tss_git.bb
+> @@ -40,28 +40,28 @@ PACKAGES = " \
+>      resourcemgr \
+>  "
+>
+> -FILES_libtss2 = "${libdir}/libsapi.so.0.0.0"
+> +FILES_libtss2 = "${libdir}/libsapi.so.0.0.0 ${libdir}/libsapi.so.0"
+>  FILES_libtss2-dev = " \
+>      ${includedir}/sapi \
+>      ${includedir}/tcti/common.h \
+> -    ${libdir}/libsapi.so* \
+> +    ${libdir}/libsapi.so \
+>      ${libdir}/pkgconfig/sapi.pc \
+>  "
+>  FILES_libtss2-staticdev = " \
+>      ${libdir}/libsapi.a \
+>      ${libdir}/libsapi.la \
+>  "
+> -FILES_libtctidevice = "${libdir}/libtcti-device.so.0.0.0"
+> +FILES_libtctidevice = "${libdir}/libtcti-device.so.0.0.0 ${libdir}/libtcti-device.so.0"
+>  FILES_libtctidevice-dev = " \
+>      ${includedir}/tcti/tcti_device.h \
+> -    ${libdir}/libtcti-device.so* \
+> +    ${libdir}/libtcti-device.so \
+>      ${libdir}/pkgconfig/tcti-device.pc \
+>  "
+>  FILES_libtctidevice-staticdev = "${libdir}/libtcti-device.*a"
+> -FILES_libtctisocket = "${libdir}/libtcti-socket.so.0.0.0"
+> +FILES_libtctisocket = "${libdir}/libtcti-socket.so.0.0.0 ${libdir}/libtcti-socket.so.0"
+>  FILES_libtctisocket-dev = " \
+>      ${includedir}/tcti/tcti_socket.h \
+> -    ${libdir}/libtcti-socket.so* \
+> +    ${libdir}/libtcti-socket.so \
+>      ${libdir}/pkgconfig/tcti-socket.pc \
+>  "
 
-QB_SLIRP_OPT = "-net nic,model=e1000 -net user,hostfwd=tcp::2222-:22"
+usually its preferable to have a single -dev package, I think you should
+go in that direction and consolidate these into one
 
-Signed-off-by: Todor Minchev <todor.minchev@linux.intel.com>
----
- meta/conf/machine/include/qemuboot-x86.inc | 1 +
- scripts/runqemu                            | 3 ++-
- 2 files changed, 3 insertions(+), 1 deletion(-)
-
-diff --git a/meta/conf/machine/include/qemuboot-x86.inc b/meta/conf/machine/include/qemuboot-x86.inc
-index 06ac983..0870294 100644
---- a/meta/conf/machine/include/qemuboot-x86.inc
-+++ b/meta/conf/machine/include/qemuboot-x86.inc
-@@ -13,3 +13,4 @@ QB_AUDIO_OPT = "-soundhw ac97,es1370"
- QB_KERNEL_CMDLINE_APPEND = "vga=0 uvesafb.mode_option=640x480-32 oprofile.timer=1 uvesafb.task_timeout=-1"
- # Add the 'virtio-rng-pci' device otherwise the guest may run out of entropy
- QB_OPT_APPEND = "-vga vmware -show-cursor -usb -usbdevice tablet -device virtio-rng-pci"
-+QB_SLIRP_OPT = "-net nic,model=e1000 -net user,hostfwd=tcp::2222-:22"
-diff --git a/scripts/runqemu b/scripts/runqemu
-index dbe17ab..6952f32 100755
---- a/scripts/runqemu
-+++ b/scripts/runqemu
-@@ -542,7 +542,8 @@ class BaseConfig(object):
-     def check_and_set(self):
-         """Check configs sanity and set when needed"""
-         self.validate_paths()
--        check_tun()
-+        if not self.slirp_enabled:
-+            check_tun()
-         # Check audio
-         if self.audio_enabled:
-             if not self.get('QB_AUDIO_DRV'):
--- 
-2.10.1
-
+>  FILES_libtctisocket-staticdev = "${libdir}/libtcti-socket.*a"
+> --
+> 2.9.3
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
