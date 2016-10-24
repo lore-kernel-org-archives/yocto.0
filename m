@@ -1,56 +1,64 @@
-Return-Path: <abhinavbipnesh@avaya.com>
+Return-Path: <leon.anavi@konsulko.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B43E7E00CCA; Mon, 24 Oct 2016 01:32:35 -0700 (PDT)
+	id 193CBE00CCA; Mon, 24 Oct 2016 01:57:57 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [135.11.29.13 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 63 seconds by postgrey-1.32 at yocto-www;
-	Mon, 24 Oct 2016 01:32:33 PDT
-Received: from p-us1-iereast-outbound.us1.avaya.com
-	(p-us1-iereast-outbound.us1.avaya.com [135.11.29.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4A2C0E00C93
-	for <yocto@yoctoproject.org>; Mon, 24 Oct 2016 01:32:33 -0700 (PDT)
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2FRBQBoxg1Y/yYyC4dcHgYMgnQhFQEBA?=
-	=?us-ascii?q?QEBHViBBAG4Z4IHhiECgXE/FAECAQEBAQEBAQNfHQtCDgGEFQMSG14BDAkVViY?=
-	=?us-ascii?q?BBBsaiDABpRyFGJdaDAEkhj6EVIRJgy6CLwWUN4VdAYkwBYhLiBsMhW2RBx42I?=
-	=?us-ascii?q?oU+hT+CdAF/AQEB?=
-X-IPAS-Result: =?us-ascii?q?A2FRBQBoxg1Y/yYyC4dcHgYMgnQhFQEBAQEBHViBBAG4Z4I?=
-	=?us-ascii?q?HhiECgXE/FAECAQEBAQEBAQNfHQtCDgGEFQMSG14BDAkVViYBBBsaiDABpRyFG?=
-	=?us-ascii?q?JdaDAEkhj6EVIRJgy6CLwWUN4VdAYkwBYhLiBsMhW2RBx42IoU+hT+CdAF/AQE?=
-	=?us-ascii?q?B?=
-X-IronPort-AV: E=Sophos;i="5.31,541,1473134400"; 
-	d="scan'208,217";a="213126217"
-Received: from unknown (HELO p-us1-erheast-smtpauth.us1.avaya.com)
-	([135.11.50.38]) by p-us1-iereast-outbound.us1.avaya.com with ESMTP;
-	24 Oct 2016 04:31:13 -0400
-X-OutboundMail_SMTP: 1
-Received: from unknown (HELO AZ-FFEXHC04.global.avaya.com) ([135.64.58.14])
-	by p-us1-erheast-out.us1.avaya.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
-	24 Oct 2016 04:31:12 -0400
-Received: from AZ-FFEXMB01.global.avaya.com ([fe80::39ee:75fe:e67a:cf4a]) by
-	AZ-FFEXHC04.global.avaya.com ([135.64.58.14]) with mapi id
-	14.03.0319.002; Mon, 24 Oct 2016 10:31:11 +0200
-From: "Bipnesh, Abhinav (Abhinav)" <abhinavbipnesh@avaya.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Relocatable RPM package using recipe
-Thread-Index: AdIt0Gy5mfNfxgBFRWK2jN39LZP5Iw==
-Date: Mon, 24 Oct 2016 08:31:11 +0000
-Message-ID: <F38A866CD026F746A3BF0928A84397BE3E7DC2FF@AZ-FFEXMB01.global.avaya.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [135.64.58.45]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.82.42 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.82.42 listed in dnsbl.sorbs.net]
+Received: from mail-wm0-f42.google.com (mail-wm0-f42.google.com [74.125.82.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B0BA3E00C93
+	for <yocto@yoctoproject.org>; Mon, 24 Oct 2016 01:57:53 -0700 (PDT)
+Received: by mail-wm0-f42.google.com with SMTP id b80so91467716wme.1
+	for <yocto@yoctoproject.org>; Mon, 24 Oct 2016 01:57:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=konsulko.com; s=google;
+	h=to:cc:from:subject:message-id:date:user-agent:mime-version
+	:content-transfer-encoding;
+	bh=Jc8bywU8AH99pp67AJ5kCzhf2VyQchqwmGkWcq5tKEU=;
+	b=iHDGwCa07jCM1rgreYRPKRBGzPIcExeWGaRMIgWSmElJ2+JZHijfVI5c/pGmGUY8ne
+	0QHjDABVxFfB5YtVSXocEWlNDMtaKz30aZfH41WybgW+1eARLLpXxI6kSegXndxykq/S
+	2kU+P5zbqr0Ace3+WhtzAk3O7utVFkjKj2CtY=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:to:cc:from:subject:message-id:date:user-agent
+	:mime-version:content-transfer-encoding;
+	bh=Jc8bywU8AH99pp67AJ5kCzhf2VyQchqwmGkWcq5tKEU=;
+	b=ehtvuhLnittdQZQQvpUQcfRGTeHD3NdMar0kSky6Lvt6vO0VByCKVczwn0Gghr/CUc
+	Qhr0s9KB4f+EeJrcdmJoLd7xVvDjPm4VDdsjl3rIJoCmvvWtw8YNTBDeJX22VrPNAsPp
+	BAogJniwDdps5ptjxggVpwq5nUU6IarZnqEIr5bTxx74jh4uvfmpmkXc8L7sAdfT0Llk
+	NSFVXGfJN9pvAnWXiYbfQFe9/FHrXcBRUoq4DyDKxsukEWLJCgeNRLAfmaK+RCFJnjje
+	xBXmWfvhL+xNb/SjWMvNg9zlx70vNC9PRrtB8MB1c3tV3iGaATdET+kZZI7uEqlIox2y
+	PJLw==
+X-Gm-Message-State: ABUngvcF81ySy+RSVl8rfXUM1P3hksML3t+Ld9DtNE5mKw9yHMxGHYamoDhP3ScRGPUQGA==
+X-Received: by 10.194.80.99 with SMTP id q3mr13657447wjx.13.1477299472189;
+	Mon, 24 Oct 2016 01:57:52 -0700 (PDT)
+Received: from [192.168.4.91] ([5.53.209.92])
+	by smtp.googlemail.com with ESMTPSA id
+	h10sm18093934wje.48.2016.10.24.01.57.51
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Mon, 24 Oct 2016 01:57:51 -0700 (PDT)
+To: Andrei Gherzan <andrei@resin.io>
+From: Leon Anavi <leon.anavi@konsulko.com>
+Message-ID: <faf2e645-8a30-5ad3-df46-31ebe0f365a8@konsulko.com>
+Date: Mon, 24 Oct 2016 11:57:50 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.3.0
 MIME-Version: 1.0
-Subject: Relocatable RPM package using recipe
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: [meta-raspberrypi] Branch Krogoth
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -62,108 +70,22 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 24 Oct 2016 08:32:35 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_F38A866CD026F746A3BF0928A84397BE3E7DC2FFAZFFEXMB01globa_"
+X-List-Received-Date: Mon, 24 Oct 2016 08:57:57 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
---_000_F38A866CD026F746A3BF0928A84397BE3E7DC2FFAZFFEXMB01globa_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Hi Andrei,
 
-Hi,
+It was pleasure meeting you during Embedded Linux Conference Europe. 
+Thank you for creating branch krogoth at meta-raspberrypi. Last week I 
+have updated and tested Automotive Grade Linux (AGL) and now its ports 
+for Raspberry Pi 2 and 3 use this branch.
 
-I am looking for a way to define PREFIX variable for the RPM spec file (gen=
-erated through recipe). I want to make the package Relocatable as the SD ca=
-rd is mounted on a path which is read-only due to which the installation fa=
-ils. Below is the example
+Thanks, Leon
 
-SD Card mount point - /tempfs/system
+-- 
+Leon Anavi
+Software Engineer
+konsulko.com
 
-Now tempfs is read-only point but /system is read/write path. The package n=
-eed to be installed at /tempfs/system/<package dir>. Now I want that the pa=
-ckage generated by recipe can be relocatable so that I can set the relative=
- paths in recipe and during the installation I can install properly at any =
-location using -prefix option of rpm install command.
-How I can achieve the same.
 
-Thanks & Regards,
-Abhinav
-
---_000_F38A866CD026F746A3BF0928A84397BE3E7DC2FFAZFFEXMB01globa_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I am looking for a way to define PREFIX variable for=
- the RPM spec file (generated through recipe). I want to make the package R=
-elocatable as the SD card is mounted on a path which is read-only due to wh=
-ich the installation fails. Below
- is the example<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">SD Card mount point - /tempfs/system<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Now tempfs is read-only point but /system is read/wr=
-ite path. The package need to be installed at /tempfs/system/&lt;package di=
-r&gt;. Now I want that the package generated by recipe can be relocatable s=
-o that I can set the relative paths in recipe
- and during the installation I can install properly at any location using &=
-#8211;prefix option of rpm install command.<o:p></o:p></p>
-<p class=3D"MsoNormal">How I can achieve the same.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks &amp; Regards,<o:p></o:p></p>
-<p class=3D"MsoNormal">Abhinav<o:p></o:p></p>
-</div>
-</body>
-</html>
-
---_000_F38A866CD026F746A3BF0928A84397BE3E7DC2FFAZFFEXMB01globa_--
