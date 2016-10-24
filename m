@@ -1,69 +1,71 @@
-Return-Path: <vomegaz@gmail.com>
+Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 20E0FE00CCD; Mon, 24 Oct 2016 02:44:43 -0700 (PDT)
+	id CD315E00791; Mon, 24 Oct 2016 04:41:31 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.82.65 listed in dnsbl.sorbs.net]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.65 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [74.125.82.49 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.82.49 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f65.google.com (mail-wm0-f65.google.com [74.125.82.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B220BE00CC7
-	for <yocto@yoctoproject.org>; Mon, 24 Oct 2016 02:44:38 -0700 (PDT)
-Received: by mail-wm0-f65.google.com with SMTP id f193so8938790wmg.3
-	for <yocto@yoctoproject.org>; Mon, 24 Oct 2016 02:44:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:reply-to:sender:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=pNYpZkzcSpVLzP7KtxqTiKzlPoJxJHRuRCx2R3JxUM8=;
-	b=JhodCryvdVioBx5q8RcufM8VpaI4atEszMvlkWcH2irFWzDn6QrYZVeTyJUcZq1muA
-	Z/ImdnQYP4gezkyKmRoWeUNfG6oRQfF3EIMs4D9eyCql/OjKOVj0rPZ23UDauKvm/6tg
-	ohfCQIbSxbBPYzAwzaVqOIWkcyz2pOLH6E3lCwEI6BFDTrSmCtp+SN//HdiqfHzOuZT8
-	z+26a+2pK+7CsiYcZjQx1oAoBv6ybFSNhBCX7IvANvTcOE41H0ywz3RPNe8yEVuJFdIH
-	xZ+7gm2Fc08YW7nCPLZ6UciV7sGfoezw4UgOTtJRjjFg0wKqqtBgD9T4PbVjTe3NSxR8
-	Ie+w==
+Received: from mail-wm0-f49.google.com (mail-wm0-f49.google.com [74.125.82.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 34356E00510
+	for <yocto@yoctoproject.org>; Mon, 24 Oct 2016 04:41:28 -0700 (PDT)
+Received: by mail-wm0-f49.google.com with SMTP id c78so99437545wme.0
+	for <yocto@yoctoproject.org>; Mon, 24 Oct 2016 04:41:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-disposition:in-reply-to:user-agent;
+	bh=OpWDO6AAhjQcHhsxUYgaLtCR0E8IPzLwJ23TYyX5WtA=;
+	b=KV1X49KPEgyihuowsqPoSXAlmqy5ybHqwxDnjYD4Vd4zUMw5HC9Al1AetYk4b8tQSH
+	HvZiL3d6DZ0AvdoRYKCxUDjER3l3vxqOii90jQX82aVsH04CLqy7aipPLrL7HTNLn0q2
+	3GZnB0gAly/Y2NJqD4d816oQX19RR5qoLwdmjWGGrF5N70hUg8PtRW2qr+HMHPKnMKp5
+	WocKXyW5vry7RaSFMTizXvocWYwhN6+QGWRbxrj8eNyWHFZKOuO4C0oADodzQuA8Cn/d
+	Nh2AEIqWPclQ1rkhYxb68crHdxYVWE5qgkup6u9wiNnU5Ju2jHJrUYrKh1iFkt7ceEwt
+	0zzQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:reply-to:sender:in-reply-to
-	:references:from:date:message-id:subject:to:cc;
-	bh=pNYpZkzcSpVLzP7KtxqTiKzlPoJxJHRuRCx2R3JxUM8=;
-	b=gQQbXpUqzxbPxLJZbVFmd8PqvIvoHnoNetFOJ3j+hgixeVMWPWN4v68ZmT2Lmm2mZ0
-	3HudUSFGP1k4adPlkAvnEkU+z2CqsmTbNFI0WYoEkAo0WObqW2Y4aJrJ1xvKFwHnimT/
-	7pgdXktd1KHhV1SYMZBIW3jw0up3i2hbDml+KnNpbvZtBigR7NzMQqR894Cz5n62ZOxX
-	j9OeMyGy2vUOjkZ6NCDMtHd408SRqR85wR5wUUhib3gUfzBem5EuvP83jh3LcMqY3Uzt
-	206ipbtOtJnBYhFgfLx+SXmWdm5eukex4ClImmN5joFUkL3ej2xmtfDp+Pqa+Tf3+6HE
-	JKXA==
-X-Gm-Message-State: ABUngvdi0s2zJJsjhzxo7UxUeUkl5oq5WHrp6ETiRaLgzagMSMoryxSDAjDt/79Wk267d97g3iOP3tNFZ44/8g==
-X-Received: by 10.194.119.2 with SMTP id kq2mr10354064wjb.217.1477302277355;
-	Mon, 24 Oct 2016 02:44:37 -0700 (PDT)
+	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	:mime-version:content-disposition:in-reply-to:user-agent;
+	bh=OpWDO6AAhjQcHhsxUYgaLtCR0E8IPzLwJ23TYyX5WtA=;
+	b=hAz4pnysWeGMK5IZBpvDYD/4zgqmrafRFgPs24DFclFhXsOr2Ve/bm0H1oWEgZl9Ej
+	nVvmZMomdrpzgmCDQbed6uLUqMHniojpOhTUVM2I/cUPrwi5zu9tLBQJS2HaQ5uH+61q
+	ncYdWTd6IpGwmjN8l+bQUF6Bfxi9oKlxYvZmR51goiWEobNQZtz25M8nUOTW2L86XxqJ
+	UpFSBtJjox9AU13bzeWr7O3mlictYh6YFa0+iFIs1Ca5tnwobhadj0oO5zpiDvEwi8yN
+	0sQZCDFfzXiBrE0n3sa5y42L79gOJpimIZDXZz4AGmzvDzIVfiLGdZWWdb9qmJxUzBmJ
+	uFJw==
+X-Gm-Message-State: AA6/9RnWdf6sLzddQ8Go69YA34z4B9k+iPRBeS5JvaZBVsSw5yhHKvK/jTOvL9j1Fej43A==
+X-Received: by 10.28.167.214 with SMTP id q205mr14400734wme.21.1477309287852; 
+	Mon, 24 Oct 2016 04:41:27 -0700 (PDT)
+Received: from carbonA (cpc96912-walt25-2-0-cust904.13-2.cable.virginm.net.
+	[82.24.143.137])
+	by smtp.gmail.com with ESMTPSA id y3sm18862656wjg.3.2016.10.24.04.41.26
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Mon, 24 Oct 2016 04:41:26 -0700 (PDT)
+Date: Mon, 24 Oct 2016 12:41:18 +0100
+From: Andrei Gherzan <andrei@gherzan.ro>
+To: Leon Anavi <leon.anavi@konsulko.com>
+Message-ID: <20161024114103.GA20840@carbonA>
+References: <faf2e645-8a30-5ad3-df46-31ebe0f365a8@konsulko.com>
 MIME-Version: 1.0
-Sender: vomegaz@gmail.com
-Received: by 10.28.134.143 with HTTP; Mon, 24 Oct 2016 02:43:56 -0700 (PDT)
-In-Reply-To: <1476748950-21342-13-git-send-email-akuster808@gmail.com>
-References: <1476748950-21342-1-git-send-email-akuster808@gmail.com>
-	<1476748950-21342-13-git-send-email-akuster808@gmail.com>
-From: Thomas PERROT <thomas.perrot@tupi.fr>
-Date: Mon, 24 Oct 2016 11:43:56 +0200
-X-Google-Sender-Auth: Or06WFkm1FeBxZWenxBufqJBtmg
-Message-ID: <CAGXeWg=pNYyuqQoOmZw27N6sypeQxVQgCJFD+TBLanL0zSh+yQ@mail.gmail.com>
-To: Armin Kuster <akuster808@gmail.com>
-Cc: "linux-yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-security][PATCH 13/17] package-group: fix tpm package list
+In-Reply-To: <faf2e645-8a30-5ad3-df46-31ebe0f365a8@konsulko.com>
+User-Agent: Mutt/1.7.1 (2016-10-04)
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	Andrei Gherzan <andrei@resin.io>
+Subject: Re: [meta-raspberrypi] Branch Krogoth
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: thomas.perrot@tupi.fr
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -72,128 +74,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 24 Oct 2016 09:44:43 -0000
-Content-Type: multipart/alternative; boundary=089e012299ce77bf3e053f993dde
+X-List-Received-Date: Mon, 24 Oct 2016 11:41:31 -0000
+X-Groupsio-MsgNum: 32598
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="hOcCNbCCxyk/YU74"
+Content-Disposition: inline
 
---089e012299ce77bf3e053f993dde
-Content-Type: text/plain; charset=UTF-8
+--hOcCNbCCxyk/YU74
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Hello,
-
-Would it not be more interesting to do two packages, one for the TPMV1.2
-support and a second for the TPMV2.0 support?
-
-Best regards,
-Thomas P.
-
-
-
-
-On Tue, Oct 18, 2016 at 2:02 AM, Armin Kuster <akuster808@gmail.com> wrote:
-
-> Signed-off-by: Armin Kuster <akuster808@gmail.com>
-> ---
->  recipes-security/packagegroup/packagegroup-core-security.bb | 7 +++++--
->  1 file changed, 5 insertions(+), 2 deletions(-)
+On Mon, Oct 24, 2016 at 11:57:50AM +0300, Leon Anavi wrote:
+> Hi Andrei,
 >
-> diff --git a/recipes-security/packagegroup/packagegroup-core-security.bb
-> b/recipes-security/packagegroup/packagegroup-core-security.bb
-> index 8639acd..ae856c7 100644
-> --- a/recipes-security/packagegroup/packagegroup-core-security.bb
-> +++ b/recipes-security/packagegroup/packagegroup-core-security.bb
-> @@ -63,8 +63,11 @@ RDEPENDS_packagegroup-security-tpm = " \
->      tpm-tools \
->      trousers \
->      tpm2.0-tools \
-> -    tpm2.0-tss \
-> +    libtss2 \
-> +    resourcemgr \
-> +    libtctidevice \
-> +    libtctisocket \
-> +    resourcemgr \
->      libtpm \
->      swtpm \
-> -    tpm2simulator-native \
->      "
+> It was pleasure meeting you during Embedded Linux Conference Europe. Thank
+> you for creating branch krogoth at meta-raspberrypi. Last week I have
+> updated and tested Automotive Grade Linux (AGL) and now its ports for
+> Raspberry Pi 2 and 3 use this branch.
+>
+> Thanks, Leon
+>
 > --
-> 2.7.4
+> Leon Anavi
+> Software Engineer
+> konsulko.com
 >
 > --
 > _______________________________________________
 > yocto mailing list
 > yocto@yoctoproject.org
 > https://lists.yoctoproject.org/listinfo/yocto
->
 
---089e012299ce77bf3e053f993dde
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+That sounds great. Thanks for the update.
 
-<div dir=3D"ltr"><div><div>Hello,<br><br><span tabindex=3D"-1" id=3D"gmail-=
-result_box" class=3D"gmail-" lang=3D"en"><span><span class=3D"gmail-short_t=
-ext" id=3D"gmail-result_box" tabindex=3D"-1" lang=3D"en"><span>Would it</sp=
-an> <span>not be</span> <span>more interesting</span></span></span><span></=
-span> <span>to do two</span> <span>packages</span><span>, one for the</span=
-> <span>TPMV1.2</span> <span>support</span> <span>and a second for</span> <=
-span>the</span> <span>TPMV2.0</span> <span>support?<br><br></span></span></=
-div><span tabindex=3D"-1" id=3D"gmail-result_box" class=3D"gmail-" lang=3D"=
-en"><span>Best regards,<br></span></span></div><span tabindex=3D"-1" id=3D"=
-gmail-result_box" class=3D"gmail-" lang=3D"en"><span>Thomas P.<br></span></=
-span><div class=3D"gmail_extra"><br clear=3D"all"><div><div class=3D"gmail_=
-signature"><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><di=
-v><div dir=3D"ltr"><div><div dir=3D"ltr"><div><table style=3D"color:rgb(88,=
-88,90);font-family:verdana,arial;font-size:10px"><tbody><tr><td valign=3D"t=
-op"><br></td><td style=3D"padding-left:10px;border-left:1px solid rgb(0,153=
-,153)" valign=3D"top"><br></td></tr></tbody></table></div></div></div></div=
-></div></div></div></div></div></div></div></div>
-<br><div class=3D"gmail_quote">On Tue, Oct 18, 2016 at 2:02 AM, Armin Kuste=
-r <span dir=3D"ltr">&lt;<a target=3D"_blank" href=3D"mailto:akuster808@gmai=
-l.com">akuster808@gmail.com</a>&gt;</span> wrote:<br><blockquote style=3D"m=
-argin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left=
-:1ex" class=3D"gmail_quote">Signed-off-by: Armin Kuster &lt;<a href=3D"mail=
-to:akuster808@gmail.com">akuster808@gmail.com</a>&gt;<br>
----<br>
-=C2=A0recipes-security/packagegroup/<a target=3D"_blank" rel=3D"noreferrer"=
- href=3D"http://packagegroup-core-security.bb"><wbr>packagegroup-core-secur=
-ity.bb</a> | 7 +++++--<br>
-=C2=A01 file changed, 5 insertions(+), 2 deletions(-)<br>
-<br>
-diff --git a/recipes-security/<wbr>packagegroup/<a target=3D"_blank" rel=3D=
-"noreferrer" href=3D"http://packagegroup-core-security.bb">packagegroup-<wb=
-r>core-security.bb</a> b/recipes-security/<wbr>packagegroup/<a target=3D"_b=
-lank" rel=3D"noreferrer" href=3D"http://packagegroup-core-security.bb">pack=
-agegroup-<wbr>core-security.bb</a><br>
-index 8639acd..ae856c7 100644<br>
---- a/recipes-security/<wbr>packagegroup/<a target=3D"_blank" rel=3D"norefe=
-rrer" href=3D"http://packagegroup-core-security.bb">packagegroup-<wbr>core-=
-security.bb</a><br>
-+++ b/recipes-security/<wbr>packagegroup/<a target=3D"_blank" rel=3D"norefe=
-rrer" href=3D"http://packagegroup-core-security.bb">packagegroup-<wbr>core-=
-security.bb</a><br>
-@@ -63,8 +63,11 @@ RDEPENDS_packagegroup-<wbr>security-tpm =3D &quot; \<br>
-=C2=A0 =C2=A0 =C2=A0tpm-tools \<br>
-=C2=A0 =C2=A0 =C2=A0trousers \<br>
-=C2=A0 =C2=A0 =C2=A0tpm2.0-tools \<br>
--=C2=A0 =C2=A0 tpm2.0-tss \<br>
-+=C2=A0 =C2=A0 libtss2 \<br>
-+=C2=A0 =C2=A0 resourcemgr \<br>
-+=C2=A0 =C2=A0 libtctidevice \<br>
-+=C2=A0 =C2=A0 libtctisocket \<br>
-+=C2=A0 =C2=A0 resourcemgr \<br>
-=C2=A0 =C2=A0 =C2=A0libtpm \<br>
-=C2=A0 =C2=A0 =C2=A0swtpm \<br>
--=C2=A0 =C2=A0 tpm2simulator-native \<br>
-=C2=A0 =C2=A0 =C2=A0&quot;<br>
-<span class=3D"gmail-HOEnZb"><font color=3D"#888888">--<br>
-2.7.4<br>
-<br>
---<br>
-______________________________<wbr>_________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a target=3D"_blank" rel=3D"noreferrer" href=3D"https://lists.yoctoproject.=
-org/listinfo/yocto">https://lists.yoctoproject.<wbr>org/listinfo/yocto</a><=
-br>
-</font></span></blockquote></div><br></div></div>
+--
+Andrei Gherzan
 
---089e012299ce77bf3e053f993dde--
+--hOcCNbCCxyk/YU74
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIcBAEBCAAGBQJYDfNeAAoJEHO76Gt+erfPBtcQAKdUaj1Z5nFVluF1/8cmBSc4
+Mbk1AjukjUuZOpKs1qzPmmZKRu0eUqzC+fLHEodxUVMAHuWU6HlzYLUk2jqbe+Iz
+smcNlXyzlIqoq/+0c7Z4MDGHBFu3qmKf40xVuxM8sykCqCk9ApcbPJn8RAq6QNEE
+ZmIuOsWD+OoBK6Tc9BJsSlgk8Yc+WXe26Vi6fVK9JMya9ElPF0rBN3dnF0IZ1XnB
+tM+qvyUmp3kdsL+agUiNeAQpPTC508b1BDuAwmyq5KC4CM09FBDmQpnZLOJHxIIc
+r4OctVQgIaL3a9mcpW07C9vsM20/GxHw+y5c9YWVVLOADRIFT4eRZUABZ2n8Zos7
+lFTuXTyFuVFpXmbmxAjHc5734wtSYbuz2K/TBQ9k11jMGo1w0uiyFJ6BK6EhVjTf
+UsxIk5bSs3LmIYs17BH/ELOEg/RO+qneQYGQ6Dspkl/ibw/KecAgRKari9tnRUmh
+EB0wmJSiNpHe8r/13kOq0IF7mxhSgAd5z/9n8pn0vjt/DhQh0QDZEFqagP73ChQ4
+zhQ3JDNzfP+ZQmnSDTPyB+DBDfG9QvT5fEUnsvPpn8p1ClXRbF2pYdxUiiP2Lgfj
+NakuAIKWjCZi1kTa4rmai3NlauBbnvcmEZG4w2nbxiTTVWPN/+d266eEXJQSgqeO
+NSPMrKoIZWnQPAaeD4Zm
+=GOvf
+-----END PGP SIGNATURE-----
+
+--hOcCNbCCxyk/YU74--
