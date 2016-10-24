@@ -1,26 +1,48 @@
-Return-Path: <recipe-report@yoctoproject.org>
+Return-Path: <michael.blaettler@siemens.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 548D4E00CCA; Sun, 23 Oct 2016 21:31:22 -0700 (PDT)
+	id C4DDFE00CCA; Mon, 24 Oct 2016 00:26:43 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.35.17.28 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from packages.yoctoproject.org (unknown [198.145.29.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 41913E00CB5
-	for <yocto@yoctoproject.org>; Sun, 23 Oct 2016 21:31:18 -0700 (PDT)
-Received: from packages.yoctoproject.org (localhost [IPv6:::1])
-	by packages.yoctoproject.org (Postfix) with ESMTP id E3F9980B9CF4
-	for <yocto@yoctoproject.org>; Mon, 24 Oct 2016 00:31:16 -0400 (EDT)
+X-Greylist: delayed 392 seconds by postgrey-1.32 at yocto-www;
+	Mon, 24 Oct 2016 00:26:39 PDT
+Received: from goliath.siemens.de (goliath.siemens.de [192.35.17.28])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4A239E00C93
+	for <yocto@yoctoproject.org>; Mon, 24 Oct 2016 00:26:39 -0700 (PDT)
+Received: from mail1.sbs.de (mail1.sbs.de [192.129.41.35])
+	by goliath.siemens.de (8.15.2/8.15.2) with ESMTPS id u9O7K5Jm030212
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK)
+	for <yocto@yoctoproject.org>; Mon, 24 Oct 2016 09:20:05 +0200
+Received: from DEFTHW99ERJMSX.ww902.siemens.net
+	(defthw99erjmsx.ww902.siemens.net [139.22.70.135])
+	by mail1.sbs.de (8.15.2/8.15.2) with ESMTPS id u9O7K5Yv000758
+	(version=TLSv1 cipher=AES256-SHA bits=256 verify=OK)
+	for <yocto@yoctoproject.org>; Mon, 24 Oct 2016 09:20:05 +0200
+Received: from DEFTHW99ERBMSX.ww902.siemens.net (139.22.70.76) by
+	DEFTHW99ERJMSX.ww902.siemens.net (139.22.70.135) with Microsoft SMTP
+	Server (TLS) id 14.3.319.2; Mon, 24 Oct 2016 09:20:05 +0200
+Received: from DEFTHW99EH2MSX.ww902.siemens.net ([169.254.12.168]) by
+	DEFTHW99ERBMSX.ww902.siemens.net ([139.22.70.76]) with mapi id
+	14.03.0319.002; Mon, 24 Oct 2016 09:20:04 +0200
+From: "Blaettler, Michael" <michael.blaettler@siemens.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto] curl-native and ca-bundle
+Thread-Index: AdItxwnfsYkHQ+WoQHu6lS08RYgrkQ==
+Date: Mon, 24 Oct 2016 07:20:03 +0000
+Message-ID: <347AAC56F29ACA4EA31B39C2109A6FE702F1298D@DEFTHW99EH2MSX.ww902.siemens.net>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [139.22.70.22]
 MIME-Version: 1.0
-From: recipe-report@yoctoproject.org
-To: yocto@yoctoproject.org
-Date: Mon, 24 Oct 2016 04:31:16 -0000
-Message-ID: <20161024043116.21250.55727@packages.yoctoproject.org>
-Subject: [Recipe reporting system] Upgradable recipe name list
+Subject: curl-native and ca-bundle
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,211 +54,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 24 Oct 2016 04:31:22 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 24 Oct 2016 07:26:43 -0000
+Content-Language: de-DE
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-This mail was sent out by Recipe reporting system.
+Hi all
 
-This message list those recipes which need to be upgraded. If maintainers
-believe some of them needn't to upgrade at this time, they can fill
-RECIPE_NO_UPDATE_REASON in respective recipe file to ignore this remainder
-until newer upstream version was detected.
+We just had an issue in regard to curl-native.
+By default curl is configured with the "--with-ca-bundle=3D${sysconfdir}/ss=
+l/certs/ca-certificates.crt" flag.
+In case curl-native is builded the ${sysconfdir} of the current project is =
+compiled into the binary. Due to sstate caching the binary will be reused i=
+n other projects, but the ca-bundle is still loaded from the first project.=
+ As soon as the first project (where the initial build took place) is delet=
+ed, curl-native won't be able to fetch from HTTPS sources, because the ca-p=
+ath is invalid.
 
-Example:
-RECIPE_NO_UPDATE_REASON = "Version 2.0 is unstable"
+As a quick solution I removed the "--with-ca-bundle" configure option in na=
+tive builds and curl is now loading the default certificate chain of the bu=
+ild host.
 
-You can check the detail information at:
+Does anybody found simmilar issues in other recipes?
+How do you handle them?
+Is there a common approach?
 
-http://recipes.yoctoproject.org/
+Kind regards
 
-Package               Version        Upstream version      Maintainer          NoUpgradeReason
---------------------  -------------  --------------------  ------------------  ------------------------------
-liberation-fonts      1.04           2.00.1                Alexander Kanavin   2.x depends on fontforge pa...
-gobject-introspec...  1.48.0         1.50.0                Alexander Kanavin
-boost                 1.61.0         1.62.0                Alexander Kanavin
-openssl               1.0.2j         1.1.0b                Alexander Kanavin
-bjam-native           1.61.0         1.62.0                Alexander Kanavin
-vala                  0.32.1         0.34.2                Alexander Kanavin
-valgrind              3.11.0         3.12.0                Alexander Kanavin
-gnome-desktop3        3.20.2         3.22.1                Alexander Kanavin
-nspr                  4.12           4.13.1                Alexander Kanavin
-nss                   3.25           3.27.1                Alexander Kanavin
-webkitgtk             2.12.5         2.14.1                Alexander Kanavin
-lighttpd              1.4.41         1.4.42                Alexander Kanavin
-epiphany              3.20.3         3.22.1                Alexander Kanavin
-ffmpeg                3.1.3          3.1.5                 Alexander Kanavin
-dtc                   1.4.1+gitX     1.4.2+gitAUTOINC+...  Alexander Kanavin
-kexec-tools           2.0.12         2.0.13                Alexander Kanavin
-btrfs-tools           4.7.1          4.8.1                 Alexander Kanavin
-gnutls                3.5.3          3.5.5                 Alexander Kanavin
-cmake                 3.6.1          3.6.2                 Alexander Kanavin
-sysprof               3.20.0+gitX    3.22.1+gitAUTOINC...  Alexander Kanavin
-cmake-native          3.6.1          3.6.2                 Alexander Kanavin
-mpg123                1.23.6         1.23.8                Alexander Kanavin
-mkelfimage            4.0+gitX       4.5+gitAUTOINC+0b...  Alexander Kanavin   mkelfimage has been removed...
-libksba               1.3.4          1.3.5                 Alexander Kanavin
-icu                   57.1           58.1                  Alexander Kanavin
-perl                  5.22.1         5.24.1                Aníbal Limón
-apt                   1.2.12         1.3.1                 Aníbal Limón
-apt-native            1.2.12         1.3.1                 Aníbal Limón
-dpkg                  1.18.7         1.18.10               Aníbal Limón
-perl-native           5.22.1         5.24.1                Aníbal Limón
-pinentry              0.9.2          0.9.7                 Armin Kuster
-nettle                3.2            3.3                   Armin Kuster
-linux-yocto-rt        4.8+gitX       4.8.3+gitAUTOINC+...  Bruce Ashfield
-linux-yocto-tiny      4.8+gitX       4.8.3+gitAUTOINC+...  Bruce Ashfield
-linux-libc-headers    4.8            4.8.4                 Bruce Ashfield
-linux-yocto           4.8+gitX       4.8.3+gitAUTOINC+...  Bruce Ashfield
-guilt-native          0.35+gitX      0.36+gitAUTOINC+2...  Bruce Ashfield
-pciutils              3.5.1          3.5.2                 Chen Qi
-curl                  7.50.1         7.50.3                Chen Qi
-busybox               1.25.0+gitX    1.25.1+gitAUTOINC...  Chen Qi
-dbus-glib             0.106          0.108                 Chen Qi
-dbus-test             1.10.10        1.10.12               Chen Qi
-dbus                  1.10.10        1.10.12               Chen Qi
-cups                  2.1.4          2.2.1                 Chen Qi
-gawk                  4.1.3          4.1.4                 Chen Qi
-systemd               230+gitX       231+gitAUTOINC+38...  Chen Qi
-systemd-boot          230+gitX       231+gitAUTOINC+38...  Chen Qi
-util-linux            2.28.1         2.28.2                Chen Qi
-sudo                  1.8.17p1       1.8.18p1              Chen Qi
-sysstat               11.4.0         11.5.1                Chen Qi
-systemd-bootchart     230+gitX       231+gitAUTOINC+9e...  Chen Qi
-flex                  2.6.0          2.6.1                 Chen Qi
-grep                  2.25           2.26                  Chen Qi
-diffutils             3.4            3.5                   Chen Qi
-build-appliance-i...  15.0.0         15.0.1                Cristian Iorga
-docbook-sgml-dtd-...  3.1            3.1">3.1/<            Dengke Du
-sgmlspl-native        1.1+gitX       1.03+gitAUTOINC+f...  Dengke Du
-chkconfig             1.3.58         1.8                   Dengke Du           Version 1.5 requires selinux
-ltp                   20160126       20160920              Dengke Du
-linuxdoc-tools-na...  0.9.69         0.9.72                Dengke Du
-u-boot-fw-utils       v2016.03+gitX  v2016.09.01+gitAU...  Denys Dmytriyenko
-u-boot-mkimage        v2016.03+gitX  v2016.09.01+gitAU...  Denys Dmytriyenko
-u-boot                v2016.03+gitX  v2016.09.01+gitAU...  Denys Dmytriyenko
-python3-pygobject     3.20.1         3.22.0                Edwin Plauchu
-python3-git           2.0.7          2.1.0                 Edwin Plauchu
-swig                  3.0.8          3.0.10                Edwin Plauchu
-python3-setuptools    22.0.5         28.6.1                Edwin Plauchu
-python3-numpy         1.11.0         1.11.2                Edwin Plauchu
-dhcp                  4.3.4          4.3.5                 Hongxu Jia
-elfutils              0.166          0.167                 Hongxu Jia
-gpgme                 1.6.0          1.7.1                 Hongxu Jia
-bash                  4.3.30         4.4                   Hongxu Jia
-ghostscript           9.19           9.20rc1               Hongxu Jia
-ncurses               6.0+20160625   6.0+20160917          Hongxu Jia
-readline              6.3            7.0                   Hongxu Jia
-man-pages             4.07           4.08                  Hongxu Jia
-gnupg                 2.1.14         2.1.15                Hongxu Jia
-python-git            2.0.7          2.1.0                 Jose Lamego
-python-numpy          1.11.1         1.11.2                Jose Lamego
-python-pexpect        4.2.0          4.2.1                 Jose Lamego
-python-setuptools     22.0.5         28.6.1                Jose Lamego
-pango                 1.40.1         1.40.3                Jussi Kukkonen
-atk                   2.20.0         2.22.0                Jussi Kukkonen
-libinput              1.4.1          1.5.0                 Jussi Kukkonen
-wayland               1.11.0         1.12.0                Jussi Kukkonen
-weston                1.11.0         1.12.0                Jussi Kukkonen
-gtk-icon-utils-na...  3.20.9         3.22.1                Jussi Kukkonen
-xf86-video-intel      2.99.917+gitX  20040721+gitAUTOI...  Jussi Kukkonen
-libsoup-2.4           2.54.1         2.56.0                Jussi Kukkonen
-xf86-input-evdev      2.10.3         2.10.4                Jussi Kukkonen
-at-spi2-atk           2.20.1         2.22.0                Jussi Kukkonen
-xf86-input-synaptics  1.8.3          1.8.99.2              Jussi Kukkonen
-libx11-diet           1.6.3          1.6.4                 Jussi Kukkonen
-libx11                1.6.3          1.6.4                 Jussi Kukkonen
-libevdev              1.5.2          1.5.4                 Jussi Kukkonen
-glib-2.0              2.48.2         2.50.1                Jussi Kukkonen
-libxfont              1.5.1          1.5.2                 Jussi Kukkonen
-libxi                 1.7.6          1.7.7                 Jussi Kukkonen
-libxrandr             1.5.0          1.5.1                 Jussi Kukkonen
-libxv                 1.0.10         1.0.11                Jussi Kukkonen
-libxvmc               1.0.9          1.0.10                Jussi Kukkonen
-libxrender            0.9.9          0.9.10                Jussi Kukkonen
-xkeyboard-config      2.18           2.19                  Jussi Kukkonen
-mesa                  12.0.1         12.0.3                Jussi Kukkonen
-vte                   0.44.2         0.46.0                Jussi Kukkonen
-at-spi2-core          2.20.2         2.22.0                Jussi Kukkonen
-xproto                7.0.29         7.0.31                Jussi Kukkonen
-xserver-xorg          1.18.4         1.18.99.901           Jussi Kukkonen
-clutter-gst-3.0       3.0.18         3.0.20                Jussi Kukkonen
-shared-mime-info      1.6            1.7                   Jussi Kukkonen
-libxtst               1.2.2          1.2.3                 Jussi Kukkonen
-gdk-pixbuf            2.34.0         2.36.0                Jussi Kukkonen
-adwaita-icon-theme    3.20           3.22.0                Jussi Kukkonen
-mesa-gl               12.0.1         12.0.3                Jussi Kukkonen
-glib-networking       2.48.2         2.50.0                Jussi Kukkonen
-gtk+3                 3.20.9         3.22.1                Jussi Kukkonen
-gtk+                  2.24.30        2.24.31               Jussi Kukkonen
-gnome-themes-stan...  3.20.2         3.22.2                Jussi Kukkonen
-libnotify             0.7.6          0.7.7                 Jussi Kukkonen
-clutter-gtk-1.0       1.8.0          1.8.2                 Jussi Kukkonen
-cogl-1.0              1.22.0         1.22.2                Jussi Kukkonen
-libdrm                2.4.70         2.4.71                Jussi Kukkonen
-gsettings-desktop...  3.20.0         3.22.0                Jussi Kukkonen
-libxfixes             5.0.2          5.0.3                 Jussi Kukkonen
-freetype              2.6.5          2.7                   Jussi Kukkonen
-xf86-input-libinput   0.19.0         0.22.0                Jussi Kukkonen
-texinfo               6.0            6.3                   Leonardo Sandoval
-ruby                  2.2.5          2.3.1                 Leonardo Sandoval
-nfs-utils             1.3.3          1.3.4                 Mariano Lopez
-prelink               1.0+gitX       20151030.+gitAUTO...  Mark Hatle
-db                    6.0.35         6.2.23                Mark Hatle          latest db does not work wit...
-rpm                   5.4.16         5.4.17                Mark Hatle
-libpfm4               4.6.0          4.7.0                 Matthew McClintock
-acpid                 2.0.27         2.0.28                Maxin B. John
-bluez5                5.41           5.42                  Maxin B. John
-iproute2              4.7.0          4.8.0                 Maxin B. John
-libpcap               1.7.4          1.8.0                 Maxin B. John
-wpa-supplicant        2.5            2.6                   Maxin B. John
-neon                  0.30.1         0.30.2                Maxin B. John
-ethtool               4.6            4.8                   Maxin B. John
-iw                    4.7            4.9                   Maxin B. John
-sqlite3               3.14.1         3.15.0                Maxin B. John
-ifupdown              0.8.2          0.8.16                Maxin B. John
-serf                  1.3.8          1.3.9                 Maxin B. John
-taglib                1.9.1          1.11.1                Maxin B. John
-libpng                1.6.24         1.6.26                Maxin B. John
-harfbuzz              1.3.0          1.3.2                 Maxin B. John
-libjpeg-turbo         1.5.0          1.5.1                 Maxin B. John
-mc                    4.8.17         4.8.18                Maxin B. John
-orc                   0.4.25         0.4.26                Maxin B. John
-gdb-cross-canadia...  7.11           7.12                  No maintainer
-gdb-cross-i586        7.11           7.12                  No maintainer
-lttng-tools           2.8.1+gitX     2.8.2+gitAUTOINC+...  Richard Purdie
-gdb                   7.11           7.12                  Richard Purdie
-mpfr                  3.1.4          3.1.5                 Richard Purdie
-lttng-modules         2.8.0+gitX     2.8.3+gitAUTOINC+...  Richard Purdie
-git                   2.9.3          2.10.1                Robert Yang
-autogen-native        5.18.10        5.18.12               Robert Yang
-strace                4.13           4.14                  Robert Yang
-hdparm                9.48           9.50                  Robert Yang
-tzcode-native         2016g          2016h                 Robert Yang
-e2fsprogs             1.43           1.43.3                Robert Yang
-tzdata                2016g          2016h                 Robert Yang
-guile                 2.0.12         2.0.13                Robert Yang
-libsdl2               2.0.4          2.0.5                 Robert Yang
-lsbinitscripts        9.68           9.69                  Ross Burton
-libsamplerate0        0.1.8          0.1.9                 Tanu Kaskinen
-
-Upgradable count: 163
-Upgradable total count: 167
-
-The based commit is:
-
-commit 6e96deb024e4c41d911f590ff2b92b402f672661
-Author: Joshua Lock <joshua.g.lock@intel.com>
-Date:   Wed Oct 12 21:46:42 2016 +0100
-
-    local.conf.sample.extended: remove RM_OLD_IMAGE
-    
-    RM_OLD_IMAGE has been removed so don't include this variable in
-    sample local.conf
-    
-    Signed-off-by: Joshua Lock <joshua.g.lock@intel.com>
-    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
-
-Any problem, please contact Anibal Limon <anibal.limon@intel.com> 
-
+Michael
 
