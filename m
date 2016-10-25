@@ -1,51 +1,67 @@
-Return-Path: <jose.perez.carranza@intel.com>
+Return-Path: <avery.brian@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9A729E006D8; Tue, 25 Oct 2016 10:48:12 -0700 (PDT)
+	id AC0F3E00720; Tue, 25 Oct 2016 10:50:08 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (avery.brian[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.217.193 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0E654E0050B
-	for <yocto@yoctoproject.org>; Tue, 25 Oct 2016 10:48:08 -0700 (PDT)
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-	by fmsmga102.fm.intel.com with ESMTP; 25 Oct 2016 10:48:08 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.31,546,1473145200"; d="scan'208,217";a="23594880"
-Received: from fmsmsx106.amr.corp.intel.com ([10.18.124.204])
-	by orsmga005.jf.intel.com with ESMTP; 25 Oct 2016 10:48:08 -0700
-Received: from FMSMSX109.amr.corp.intel.com (10.18.116.9) by
-	FMSMSX106.amr.corp.intel.com (10.18.124.204) with Microsoft SMTP Server
-	(TLS) id 14.3.248.2; Tue, 25 Oct 2016 10:48:07 -0700
-Received: from fmsmsx101.amr.corp.intel.com ([169.254.1.28]) by
-	FMSMSX109.amr.corp.intel.com ([169.254.15.235]) with mapi id
-	14.03.0248.002; Tue, 25 Oct 2016 10:48:06 -0700
-From: "Perez Carranza, Jose" <jose.perez.carranza@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Jolley, Stephen K"
-	<stephen.k.jolley@intel.com>
-Thread-Topic: QA Test Report for Yocto Project  2.2 rc4
-Thread-Index: AdIuvnyTEDllfOzeTa6sshRCE4z/vQ==
-Date: Tue, 25 Oct 2016 17:48:06 +0000
-Message-ID: <0A5D9A624DF90343892F8F3FE7DE525A02045A61@fmsmsx101.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ctpclassification: CTP_IC
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiMWJjNmM3MDQtODE3ZC00MDZhLWJlN2MtMDZiNjk0ZmY4MjZlIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX0lDIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE1LjkuNi42IiwiVHJ1c3RlZExhYmVsSGFzaCI6IllVODNXWW44T1dyZWVWQW1idDgrajQ2YzVKUEtYVFdyRFNsVlNOVGh5ZGc9In0=
-x-originating-ip: [10.1.200.108]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-ua0-f193.google.com (mail-ua0-f193.google.com
+	[209.85.217.193])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B844EE00529
+	for <yocto@yoctoproject.org>; Tue, 25 Oct 2016 10:49:29 -0700 (PDT)
+Received: by mail-ua0-f193.google.com with SMTP id 12so786772uas.3
+	for <yocto@yoctoproject.org>; Tue, 25 Oct 2016 10:49:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=tBYjHv8Uye3CyM48ZmzR71NVUU5xmB0+DJEFYy5N0pQ=;
+	b=aHGlHcyX8VmGzV6EVhBMn7n/ZooLV8A6zKDqETPKjZ7uYYAIWAaSAeBjuAtTV2Mo12
+	FG0ANrw9H5rtxnq5rP/4IZuaX0QULuMK0N+q3CuqkCkqVDLawq+xZn6LBtFVt7+BiGY+
+	r35QblXF5mtVlPsgehBVDCQrOzFJgtCRdlBAmnLVW8SYvZPggSR8rOuXQEG9F4mjnojH
+	xtr++zwt7JchtfFFFj2eyaBM3lBPO0paADT47mo3p5oC3taG9rNAm7JjTMl7X706aSVH
+	eIOOazWuR+xaNBH7IypdDVAM2InZ89BFtIJsmjHVlh2Q1/sMXvxV651bZcX1Z23DSl9R
+	Sg6w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=tBYjHv8Uye3CyM48ZmzR71NVUU5xmB0+DJEFYy5N0pQ=;
+	b=gQsdbNGm4899IG6pZV3N9azLWB+oTmcypvikhmForbPZ9D4kJmLprPUA4fEcsNvWYn
+	s9Mr/fCxe1AYPwSsR9C+oVlIr+LSZKgWtJjN55+IUTUiX4n7OvyO50qbICqjVwIhLL2L
+	SXgGczeXDdeSLuXDLqTEPc3inZNgXaqUlAhfLFaSnsvzYE34D1Bfm0QaOQEdb/PrBwqt
+	R6biAggXpoXwVAExmoCF0FGhWOJZvpWoh3mfkTSwkTZDLYqZ4iE+ItEPh0bWNiI4FkPk
+	fwxwYDxKzXbs91BsXx9iVVaksVTekwYmxsZ1nnSz+LbyjCqsx/bkIqqUymYGEoxgjzaL
+	tuqA==
+X-Gm-Message-State: ABUngvdn4VmMtVkPvGqNVTn5RGwMgXuFktlalk2gY5vv1/Y6kgOuM/c+/i1/Bo+ayYtiKxq178HMcq35kBR/jQ==
+X-Received: by 10.159.41.131 with SMTP id s3mr15751552uas.178.1477417768872;
+	Tue, 25 Oct 2016 10:49:28 -0700 (PDT)
 MIME-Version: 1.0
-Cc: "Avery, Brian" <brian.avery@intel.com>, "Lock,
-	Joshua G" <joshua.g.lock@intel.com>, "Cobbley,
-	David A" <david.a.cobbley@intel.com>, "Eggleton,
-	Paul" <paul.eggleton@intel.com>, "Wold, Saul" <saul.wold@intel.com>
-Subject: QA Test Report for Yocto Project 2.2 rc4
+Received: by 10.31.67.194 with HTTP; Tue, 25 Oct 2016 10:49:28 -0700 (PDT)
+In-Reply-To: <96de1646-d152-49fa-7e6c-0fe0dd0a3acf@windriver.com>
+References: <20161024221918.39994-1-todor.minchev@linux.intel.com>
+	<9fca01e8-19ef-edc2-3a6d-6e5920fdc77c@windriver.com>
+	<1477352804.49237.34.camel@linux.intel.com>
+	<96de1646-d152-49fa-7e6c-0fe0dd0a3acf@windriver.com>
+From: Brian Avery <avery.brian@gmail.com>
+Date: Tue, 25 Oct 2016 10:49:28 -0700
+Message-ID: <CAKV_0eg9RvC0fnbrK5quPzsuGhhmtvu23CSgD3Ujn=8kZvEHZg@mail.gmail.com>
+To: Mark Hatle <mark.hatle@windriver.com>
+Cc: yocto@yoctoproject.org, Todor Minchev <todor.minchev@linux.intel.com>
+Subject: Re: [PATCH 1/1] runqemu: add user mode (SLIRP) support to x86 QEMU targets
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -57,710 +73,283 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 25 Oct 2016 17:48:12 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_0A5D9A624DF90343892F8F3FE7DE525A02045A61fmsmsx101amrcor_"
+X-List-Received-Date: Tue, 25 Oct 2016 17:50:08 -0000
+Content-Type: multipart/alternative; boundary=94eb2c08046a4c7252053fb42111
 
---_000_0A5D9A624DF90343892F8F3FE7DE525A02045A61fmsmsx101amrcor_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+--94eb2c08046a4c7252053fb42111
+Content-Type: text/plain; charset=UTF-8
 
-Hi
+Hi,
 
-Here is the report for QA Cycle on 2.2 rc4
+This doesn't default to slirp, it just allows it as an option.
 
-Full Report :  https://wiki.yoctoproject.org/wiki/WW43_-_2016-10-18_-_Full_=
-Test_Cycle_2.2_rc4
+In particular, on CROPS containers on Windows 10 and Mac OSX  the
+hypervisor is *not* a linux kernel. This means that the only way we can run
+qemu in the container for testing/debugging is to run it in slirp mode
+.since there is no tun/tap device or driver.
 
-Summary
+So, given that we
+1) are not defaulting to slirp and are merely enabling it
+2) need slirp mode to be able to run in a CROPS container setting
 
-There were found 10 new bugs, 3 of them are already triaged as M+ 1 as Medi=
-um and the rest are not yet triaged, no one of these bugs was a blocker for=
- QA cycle hence all components were fully executed, there are 12 bugs for p=
-Test that were out of the focus in past milestones due some issues on repor=
-ts, all of them are medium. New scripts of performance is giving correct da=
-ta and this time the charts has a comparison between old and new script res=
-ults , in general all the measurements on performance are stable. All high =
-and M+ bugs found on previous QA cycle (M3 rc1) were verified, none of them=
- is present on current release.
+I think this makes sense.
 
-Bugs
-
-           *New bugs found
-               10455 - [Test Case 1059] Parselogs is failing on MM32 giving=
- error: blk_update_request: I/O error, dev loop0 [1]
-10456 - X can not launch on qemumips64 [2]
-10481 - [Test Case 1059] Parselogs is failing on genericx86 (32 and 64 bits=
-) WIC giving error: GPT: Use GNU Parted to correct GPT errors. [3]
-10490 - Error on oeqa.runtime.rpm.RpmInstallRemoveTest when running testima=
-ge [4]
-10494 - [Test Case 1059] Parselogs is failing on genericx86-64-WIC on NUC g=
-iving error: Failed to load DMC firmware [5]
-10434 - runqemu can not launch qemu image in Build Appliance [6]
-10447 - eSDK: runqemu fails unless unless DEPLOY_DIR_IMAGE is set [7]
-10477 - yocto-bsp: tool should output a conf file to be consume by the qemu=
- runner [8]
-10463 - [Test Case 910] "Recipe file" column isn't sortable [9]
-10492 - [Test Case 1398] Build log cannot be downloaded [10]
-
-Full List of bugs :  https://wiki.yoctoproject.org/wiki/WW43_-_2016-10-18_-=
-_Full_Test_Cycle_2.2_rc4#New_and_notable_issues_Found_during_QA_Test_.26_Co=
-mmunity
-
-          *Old New High and M+
-
--        NA
-
-         *Old Medium Low
-            Full list of bugs: https://wiki.yoctoproject.org/wiki/WW43_-_20=
-16-10-18_-_Full_Test_Cycle_2.2_rc4#Other_Bugs_found_during_QA_Test_.28NOT_N=
-EW.29
-
-          *pTest bugs
-- These bugs were out of the focus due a issues with automatic report on pr=
-evious milestones, there is a new table showing the failures and all the bu=
-gs were commented with the results for this milestone.
-- Full log of the execution is now loaded to the wiki along with the result=
-s [11]
-
-             Full list of bugs: https://wiki.yoctoproject.org/wiki/WW43_-_2=
-016-10-18_-_Full_Test_Cycle_2.2_rc4#pTest_open_bugs
+-Brian
+an intel employee
 
 
-Performance
+On Mon, Oct 24, 2016 at 5:16 PM, Mark Hatle <mark.hatle@windriver.com>
+wrote:
 
--        New script is now running on the machines and is giving correct a =
-precise data.
-
--        After resolution of bug 10285 correct measurement were retrieved f=
-or "core-image-sato -c rootfs" , numbers reported by logs before the failur=
-e were added to this measurement to have a better readably on the chart and=
- a note was added to the wiki page.
-
--        This time the charts contains the measurement for old and new scri=
-pt in same milestone to have a comparison, the times a pretty similar hence=
- new script will be fully enabled on machines for upcoming measurements.
-
--        In all the measurements  there is shown a slight improvement on ti=
-mes in new script mostly due there is a more precise collection of times
-
--        Full list of charts [12]
-
-Links
-
-1 - https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D10455
-2 - https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D10456
-3 - https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D10481
-4 - https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D10490
-5 - https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D10494
-6 - https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D10434
-7 - https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D10447
-8 - https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D10477
-9 - https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D10463
-10 - https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D10492
-11 - https://wiki.yoctoproject.org/wiki/WW43_-_2016-10-18_-_Full_Test_Cycle=
-_2.2_rc4#pTest_results_for_genericx86-64_on_NUC
-12 - https://wiki.yoctoproject.org/wiki/WW43_-_2016-10-18_-_Full_Test_Cycle=
-_2.2_rc4#Build_Performance_Test
-
-Regards,
-Jos=E9
-
-
---_000_0A5D9A624DF90343892F8F3FE7DE525A02045A61fmsmsx101amrcor_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:m=3D"http://schema=
-s.microsoft.com/office/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-html=
-40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
-	{mso-style-priority:34;
-	margin-top:0in;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:.5in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
-/* List Definitions */
-@list l0
-	{mso-list-id:871458079;
-	mso-list-type:hybrid;
-	mso-list-template-ids:2067539796 -1765117336 67698691 67698693 67698689 67=
-698691 67698693 67698689 67698691 67698693;}
-@list l0:level1
-	{mso-level-start-at:0;
-	mso-level-number-format:bullet;
-	mso-level-text:-;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:1.25in;
-	text-indent:-.25in;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-font-family:Calibri;
-	mso-bidi-font-family:"Times New Roman";}
-@list l0:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:1.75in;
-	text-indent:-.25in;
-	font-family:"Courier New";}
-@list l0:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:2.25in;
-	text-indent:-.25in;
-	font-family:Wingdings;}
-@list l0:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:2.75in;
-	text-indent:-.25in;
-	font-family:Symbol;}
-@list l0:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:3.25in;
-	text-indent:-.25in;
-	font-family:"Courier New";}
-@list l0:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:3.75in;
-	text-indent:-.25in;
-	font-family:Wingdings;}
-@list l0:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:4.25in;
-	text-indent:-.25in;
-	font-family:Symbol;}
-@list l0:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:4.75in;
-	text-indent:-.25in;
-	font-family:"Courier New";}
-@list l0:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:5.25in;
-	text-indent:-.25in;
-	font-family:Wingdings;}
-@list l1
-	{mso-list-id:909270237;
-	mso-list-type:hybrid;
-	mso-list-template-ids:-946289856 85603164 67698691 67698693 67698689 67698=
-691 67698693 67698689 67698691 67698693;}
-@list l1:level1
-	{mso-level-start-at:2016;
-	mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:56.4pt;
-	text-indent:-.25in;
-	font-family:Symbol;
-	mso-fareast-font-family:Calibri;
-	mso-bidi-font-family:"Times New Roman";}
-@list l1:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:92.4pt;
-	text-indent:-.25in;
-	font-family:"Courier New";}
-@list l1:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:128.4pt;
-	text-indent:-.25in;
-	font-family:Wingdings;}
-@list l1:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:164.4pt;
-	text-indent:-.25in;
-	font-family:Symbol;}
-@list l1:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:200.4pt;
-	text-indent:-.25in;
-	font-family:"Courier New";}
-@list l1:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:236.4pt;
-	text-indent:-.25in;
-	font-family:Wingdings;}
-@list l1:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:272.4pt;
-	text-indent:-.25in;
-	font-family:Symbol;}
-@list l1:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:308.4pt;
-	text-indent:-.25in;
-	font-family:"Courier New";}
-@list l1:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:344.4pt;
-	text-indent:-.25in;
-	font-family:Wingdings;}
-@list l2
-	{mso-list-id:1280450867;
-	mso-list-type:hybrid;
-	mso-list-template-ids:606876142 1082427874 67698691 67698693 67698689 6769=
-8691 67698693 67698689 67698691 67698693;}
-@list l2:level1
-	{mso-level-start-at:2016;
-	mso-level-number-format:bullet;
-	mso-level-text:-;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:.75in;
-	text-indent:-.25in;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-font-family:Calibri;
-	mso-bidi-font-family:"Times New Roman";}
-@list l2:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:1.25in;
-	text-indent:-.25in;
-	font-family:"Courier New";}
-@list l2:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:1.75in;
-	text-indent:-.25in;
-	font-family:Wingdings;}
-@list l2:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:2.25in;
-	text-indent:-.25in;
-	font-family:Symbol;}
-@list l2:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:2.75in;
-	text-indent:-.25in;
-	font-family:"Courier New";}
-@list l2:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:3.25in;
-	text-indent:-.25in;
-	font-family:Wingdings;}
-@list l2:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:3.75in;
-	text-indent:-.25in;
-	font-family:Symbol;}
-@list l2:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:4.25in;
-	text-indent:-.25in;
-	font-family:"Courier New";}
-@list l2:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:4.75in;
-	text-indent:-.25in;
-	font-family:Wingdings;}
-@list l3
-	{mso-list-id:1493060958;
-	mso-list-type:hybrid;
-	mso-list-template-ids:861409524 -1176626892 67698691 67698693 67698689 676=
-98691 67698693 67698689 67698691 67698693;}
-@list l3:level1
-	{mso-level-start-at:2016;
-	mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:.55in;
-	text-indent:-.25in;
-	font-family:Symbol;
-	mso-fareast-font-family:Calibri;
-	mso-bidi-font-family:"Times New Roman";}
-@list l3:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:1.05in;
-	text-indent:-.25in;
-	font-family:"Courier New";}
-@list l3:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:1.55in;
-	text-indent:-.25in;
-	font-family:Wingdings;}
-@list l3:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:2.05in;
-	text-indent:-.25in;
-	font-family:Symbol;}
-@list l3:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:2.55in;
-	text-indent:-.25in;
-	font-family:"Courier New";}
-@list l3:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:3.05in;
-	text-indent:-.25in;
-	font-family:Wingdings;}
-@list l3:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:3.55in;
-	text-indent:-.25in;
-	font-family:Symbol;}
-@list l3:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:4.05in;
-	text-indent:-.25in;
-	font-family:"Courier New";}
-@list l3:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:4.55in;
-	text-indent:-.25in;
-	font-family:Wingdings;}
-ol
-	{margin-bottom:0in;}
-ul
-	{margin-bottom:0in;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi <o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Here is the report for QA Cycle on 2.2 rc4 <o:p></o:=
-p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Full Report : &nbsp;<a href=3D"https://wiki.yoctopro=
-ject.org/wiki/WW43_-_2016-10-18_-_Full_Test_Cycle_2.2_rc4">https://wiki.yoc=
-toproject.org/wiki/WW43_-_2016-10-18_-_Full_Test_Cycle_2.2_rc4</a> &nbsp;<o=
-:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><b>Summary <o:p></o:p></b></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">There were found 10 new b=
-ugs, 3 of them are already triaged as M&#43; 1 as Medium and the rest are n=
-ot yet triaged, no one of these bugs was a blocker for QA cycle hence all c=
-omponents were fully executed, there are
- 12 bugs for pTest that were out of the focus in past milestones due some i=
-ssues on reports, all of them are medium. New scripts of performance is giv=
-ing correct data and this time the charts has a comparison between old and =
-new script results , in general
- all the measurements on performance are stable. All high and M&#43; bugs f=
-ound on previous QA cycle (M3 rc1) were verified, none of them is present o=
-n current release.
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><b>Bugs <o:p></o:p></b></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><b>&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;*</b>New bugs found <o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10455 - [Test Case 1059] Parselogs is fail=
-ing on MM32 giving error: blk_update_request: I/O error, dev loop0 [1]<o:p>=
-</o:p></p>
-<p class=3D"MsoNormal" style=3D"text-indent:.5in">10456 - X can not launch =
-on qemumips64 [2]<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"text-indent:.5in">10481 - [Test Case 1059] =
-Parselogs is failing on genericx86 (32 and 64 bits) WIC giving error: GPT: =
-Use GNU Parted to correct GPT errors. [3]<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"text-indent:.5in">10490 - Error on oeqa.run=
-time.rpm.RpmInstallRemoveTest when running testimage [4]<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"text-indent:.5in">10494 - [Test Case 1059] =
-Parselogs is failing on genericx86-64-WIC on NUC giving error: Failed to lo=
-ad DMC firmware [5]<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"text-indent:.5in">10434 - runqemu can not l=
-aunch qemu image in Build Appliance [6]<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"text-indent:.5in">10447 - eSDK: runqemu fai=
-ls unless unless DEPLOY_DIR_IMAGE is set [7]<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"text-indent:.5in">10477 - yocto-bsp: tool s=
-hould output a conf file to be consume by the qemu runner [8]<o:p></o:p></p=
+> On 10/24/16 6:46 PM, Todor Minchev wrote:
+> > On Mon, 2016-10-24 at 18:15 -0500, Mark Hatle wrote:
+> >> On 10/24/16 5:19 PM, Todor Minchev wrote:
+> >>> Using 'slirp' as a command line option to runqemu will start QEMU
+> >>> with user mode networking instead of creating tun/tap devices.
+> >>> SLIRP does not require root access. By default port 2222 on the
+> >>> host will be mapped to port 22 in the guest. The default port
+> >>> mapping can be overwritten with the QB_SLIRP_OPT variable e.g.
+> >>>
+> >>> QB_SLIRP_OPT = "-net nic,model=e1000 -net user,hostfwd=tcp::2222-:22"
+> >>
+> >> In the past patches like this have been rejected for performance and
+> other
+> >> reasons.
+> >
+> > Performance is not ideal with SLIRP, but should be sufficient for basic
+> > ssh access to the guest. Could you please elaborate on the other reasons
+> > why having this is a bad idea?
 >
-<p class=3D"MsoNormal" style=3D"text-indent:.5in">10463 - [Test Case 910] &=
-quot;Recipe file&quot; column isn't sortable [9]<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"text-indent:.5in">10492 - [Test Case 1398] =
-Build log cannot be downloaded [10]<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"text-indent:.5in">Full List of bugs : &nbsp=
-;<a href=3D"https://wiki.yoctoproject.org/wiki/WW43_-_2016-10-18_-_Full_Tes=
-t_Cycle_2.2_rc4#New_and_notable_issues_Found_during_QA_Test_.26_Community">=
-https://wiki.yoctoproject.org/wiki/WW43_-_2016-10-18_-_Full_Test_Cycle_2.2_=
-rc4#New_and_notable_issues_Found_during_QA_Test_.26_Community</a>
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;<b>*</b>Old<b> </b>New High and M&#43;<o:p></o:p></p>
-<p class=3D"MsoListParagraph" style=3D"margin-left:.75in;text-indent:-.25in=
-;mso-list:l2 level1 lfo3">
-<![if !supportLists]><span style=3D"mso-list:Ignore">-<span style=3D"font:7=
-.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;
-</span></span><![endif]>NA <o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"text-indent:.5in"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*Ol=
-d Medium Low<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;Full list of bugs: <a href=3D"https://wiki.yoctoproject.org/=
-wiki/WW43_-_2016-10-18_-_Full_Test_Cycle_2.2_rc4#Other_Bugs_found_during_QA=
-_Test_.28NOT_NEW.29">
-https://wiki.yoctoproject.org/wiki/WW43_-_2016-10-18_-_Full_Test_Cycle_2.2_=
-rc4#Other_Bugs_found_during_QA_Test_.28NOT_NEW.29</a> &nbsp;<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p; *pTest bugs <o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">- These bugs were out of =
-the focus due a issues with automatic report on previous milestones, there =
-is a new table showing the failures and all the bugs were commented with th=
-e results for this milestone.<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">- Full log of the executi=
-on is now loaded to the wiki along with the results [11]<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; Full list of bugs: <a href=3D"https://wiki.yoctoproject.org=
-/wiki/WW43_-_2016-10-18_-_Full_Test_Cycle_2.2_rc4#pTest_open_bugs">
-https://wiki.yoctoproject.org/wiki/WW43_-_2016-10-18_-_Full_Test_Cycle_2.2_=
-rc4#pTest_open_bugs</a>
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><b><o:p>&nbsp;</o:p></b></p>
-<p class=3D"MsoNormal"><b>Performance<o:p></o:p></b></p>
-<p class=3D"MsoListParagraph" style=3D"margin-left:1.25in;text-indent:-.25i=
-n;mso-list:l0 level1 lfo1">
-<![if !supportLists]><span style=3D"mso-list:Ignore">-<span style=3D"font:7=
-.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;
-</span></span><![endif]>New script is now running on the machines and is gi=
-ving correct a precise data.<o:p></o:p></p>
-<p class=3D"MsoListParagraph" style=3D"margin-left:1.25in;text-indent:-.25i=
-n;mso-list:l0 level1 lfo1">
-<![if !supportLists]><span style=3D"mso-list:Ignore">-<span style=3D"font:7=
-.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;
-</span></span><![endif]>After resolution of bug 10285 correct measurement w=
-ere retrieved for &#8220;core-image-sato &#8211;c rootfs&#8221; , numbers r=
-eported by logs before the failure were added to this measurement to have a=
- better readably on the chart and a note was added
- to the wiki page.<o:p></o:p></p>
-<p class=3D"MsoListParagraph" style=3D"margin-left:1.25in;text-indent:-.25i=
-n;mso-list:l0 level1 lfo1">
-<![if !supportLists]><span style=3D"mso-list:Ignore">-<span style=3D"font:7=
-.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;
-</span></span><![endif]>This time the charts contains the measurement for o=
-ld and new script in same milestone to have a comparison, the times a prett=
-y similar hence new script will be fully enabled on machines for upcoming m=
-easurements.<o:p></o:p></p>
-<p class=3D"MsoListParagraph" style=3D"margin-left:1.25in;text-indent:-.25i=
-n;mso-list:l0 level1 lfo1">
-<![if !supportLists]><span style=3D"mso-list:Ignore">-<span style=3D"font:7=
-.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;
-</span></span><![endif]>In all the measurements &nbsp;there is shown a slig=
-ht improvement on times in new script mostly due there is a more precise co=
-llection of times<o:p></o:p></p>
-<p class=3D"MsoListParagraph" style=3D"margin-left:1.25in;text-indent:-.25i=
-n;mso-list:l0 level1 lfo1">
-<![if !supportLists]><span style=3D"mso-list:Ignore">-<span style=3D"font:7=
-.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;
-</span></span><![endif]>Full list of charts [12]<o:p></o:p></p>
-<p class=3D"MsoNormal"><b><o:p>&nbsp;</o:p></b></p>
-<p class=3D"MsoNormal"><b>Links<o:p></o:p></b></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">1 - <a href=3D"https://bugzilla.yoctoproject.org/sho=
-w_bug.cgi?id=3D10455">
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D10455</a> <o:p></o:p></=
-p>
-<p class=3D"MsoNormal">2 - <a href=3D"https://bugzilla.yoctoproject.org/sho=
-w_bug.cgi?id=3D10456">
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D10456</a> <o:p></o:p></=
-p>
-<p class=3D"MsoNormal">3 - <a href=3D"https://bugzilla.yoctoproject.org/sho=
-w_bug.cgi?id=3D10481">
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D10481</a> <o:p></o:p></=
-p>
-<p class=3D"MsoNormal">4 - <a href=3D"https://bugzilla.yoctoproject.org/sho=
-w_bug.cgi?id=3D10490">
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D10490</a> <o:p></o:p></=
-p>
-<p class=3D"MsoNormal">5 - <a href=3D"https://bugzilla.yoctoproject.org/sho=
-w_bug.cgi?id=3D10494">
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D10494</a> <o:p></o:p></=
-p>
-<p class=3D"MsoNormal">6 - <a href=3D"https://bugzilla.yoctoproject.org/sho=
-w_bug.cgi?id=3D10434">
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D10434</a> <o:p></o:p></=
-p>
-<p class=3D"MsoNormal">7 - <a href=3D"https://bugzilla.yoctoproject.org/sho=
-w_bug.cgi?id=3D10447">
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D10447</a> <o:p></o:p></=
-p>
-<p class=3D"MsoNormal">8 - <a href=3D"https://bugzilla.yoctoproject.org/sho=
-w_bug.cgi?id=3D10477">
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D10477</a> <o:p></o:p></=
-p>
-<p class=3D"MsoNormal">9 - <a href=3D"https://bugzilla.yoctoproject.org/sho=
-w_bug.cgi?id=3D10463">
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D10463</a> <o:p></o:p></=
-p>
-<p class=3D"MsoNormal">10 - <a href=3D"https://bugzilla.yoctoproject.org/sh=
-ow_bug.cgi?id=3D10492">
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D10492</a> <o:p></o:p></=
-p>
-<p class=3D"MsoNormal">11 - <a href=3D"https://wiki.yoctoproject.org/wiki/W=
-W43_-_2016-10-18_-_Full_Test_Cycle_2.2_rc4#pTest_results_for_genericx86-64_=
-on_NUC">
-https://wiki.yoctoproject.org/wiki/WW43_-_2016-10-18_-_Full_Test_Cycle_2.2_=
-rc4#pTest_results_for_genericx86-64_on_NUC</a>
-<o:p></o:p></p>
-<p class=3D"MsoNormal">12 - <a href=3D"https://wiki.yoctoproject.org/wiki/W=
-W43_-_2016-10-18_-_Full_Test_Cycle_2.2_rc4#Build_Performance_Test">
-https://wiki.yoctoproject.org/wiki/WW43_-_2016-10-18_-_Full_Test_Cycle_2.2_=
-rc4#Build_Performance_Test</a>
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Regards,<o:p></o:p></p>
-<p class=3D"MsoNormal"><b>Jos=E9</b><b><span style=3D"font-family:&quot;Ari=
-al&quot;,sans-serif"><o:p></o:p></span></b></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
+> You'd have to go back in the archives.  Performance was the main reason I
+> remember being discussed at the time.
+>
+> I don't remember the others, and as I said, I'm not a fan of requiring
+> root, but
+> the community decided sudo approach was better as long as there was a way
+> to
+> avoid it.
+>
+> Changing the default will likely require email to the oe-core list and/or
+> oe-architecture list...
+>
+> >> While I don't particularly like requiring sudo access for runqemu,
+> >> adding the 'slirp' option will allow someone w/o root/sudo to be able
+> to run it.
+> >
+> > The goal was to be able to run a QEMU image and provide basic networking
+> > without requiring root access. Is there any reason why running runqemu
+> > w/o root/sudo access should be discouraged?
+>
+> As long as you can pass in slirp (and it's not the default) then I believe
+> your
+> requirement and the community direction is preserved.
+>
+> >> Otherwise, if there is something you can do to make slirp work better
+> (when
+> >> enabled), that is more likely to be accepted.
+> >
+> > Similar SLIRP support has been already accepted for qemuarm64 with
+> > commit 9b0a94cb
+>
+> Support for slirp is good, it's defaulting to slirp that has been rejected
+> in
+> the past by the community.
+>
+> > --Todor
+> >
+> > Intel Open Source Technology Center
+> >
+> >> --Mark
+> >>
+> >>> Signed-off-by: Todor Minchev <todor.minchev@linux.intel.com>
+> >>> ---
+> >>>  meta/conf/machine/include/qemuboot-x86.inc | 1 +
+> >>>  scripts/runqemu                            | 3 ++-
+> >>>  2 files changed, 3 insertions(+), 1 deletion(-)
+> >>>
+> >>> diff --git a/meta/conf/machine/include/qemuboot-x86.inc
+> b/meta/conf/machine/include/qemuboot-x86.inc
+> >>> index 06ac983..0870294 100644
+> >>> --- a/meta/conf/machine/include/qemuboot-x86.inc
+> >>> +++ b/meta/conf/machine/include/qemuboot-x86.inc
+> >>> @@ -13,3 +13,4 @@ QB_AUDIO_OPT = "-soundhw ac97,es1370"
+> >>>  QB_KERNEL_CMDLINE_APPEND = "vga=0 uvesafb.mode_option=640x480-32
+> oprofile.timer=1 uvesafb.task_timeout=-1"
+> >>>  # Add the 'virtio-rng-pci' device otherwise the guest may run out of
+> entropy
+> >>>  QB_OPT_APPEND = "-vga vmware -show-cursor -usb -usbdevice tablet
+> -device virtio-rng-pci"
+> >>> +QB_SLIRP_OPT = "-net nic,model=e1000 -net user,hostfwd=tcp::2222-:22"
+> >>> diff --git a/scripts/runqemu b/scripts/runqemu
+> >>> index dbe17ab..6952f32 100755
+> >>> --- a/scripts/runqemu
+> >>> +++ b/scripts/runqemu
+> >>> @@ -542,7 +542,8 @@ class BaseConfig(object):
+> >>>      def check_and_set(self):
+> >>>          """Check configs sanity and set when needed"""
+> >>>          self.validate_paths()
+> >>> -        check_tun()
+> >>> +        if not self.slirp_enabled:
+> >>> +            check_tun()
+> >>>          # Check audio
+> >>>          if self.audio_enabled:
+> >>>              if not self.get('QB_AUDIO_DRV'):
+> >>>
+> >>
+> >
+> >
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
---_000_0A5D9A624DF90343892F8F3FE7DE525A02045A61fmsmsx101amrcor_--
+--94eb2c08046a4c7252053fb42111
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi,=C2=A0<div><br></div><div>This doesn&#39;t default to s=
+lirp, it just allows it as an option.</div><div><br></div><div>In particula=
+r, on CROPS containers on Windows 10 and Mac OSX =C2=A0the hypervisor is *n=
+ot* a linux kernel. This means that the only way we can run qemu in the con=
+tainer for testing/debugging is to run it in slirp mode .since there is no =
+tun/tap device or driver.</div><div><br></div><div>So, given that we=C2=A0<=
+/div><div>1) are not defaulting to slirp and are merely enabling it</div><d=
+iv>2) need slirp mode to be able to run in a CROPS container setting</div><=
+div><br></div><div>I think this makes sense.</div><div><br></div><div>-Bria=
+n</div><div>an intel employee</div><div>=C2=A0</div></div><div class=3D"gma=
+il_extra"><br><div class=3D"gmail_quote">On Mon, Oct 24, 2016 at 5:16 PM, M=
+ark Hatle <span dir=3D"ltr">&lt;<a href=3D"mailto:mark.hatle@windriver.com"=
+ target=3D"_blank">mark.hatle@windriver.com</a>&gt;</span> wrote:<br><block=
+quote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc=
+ solid;padding-left:1ex"><span class=3D"">On 10/24/16 6:46 PM, Todor Minche=
+v wrote:<br>
+&gt; On Mon, 2016-10-24 at 18:15 -0500, Mark Hatle wrote:<br>
+&gt;&gt; On 10/24/16 5:19 PM, Todor Minchev wrote:<br>
+&gt;&gt;&gt; Using &#39;slirp&#39; as a command line option to runqemu will=
+ start QEMU<br>
+&gt;&gt;&gt; with user mode networking instead of creating tun/tap devices.=
+<br>
+&gt;&gt;&gt; SLIRP does not require root access. By default port 2222 on th=
+e<br>
+&gt;&gt;&gt; host will be mapped to port 22 in the guest. The default port<=
+br>
+&gt;&gt;&gt; mapping can be overwritten with the QB_SLIRP_OPT variable e.g.=
+<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; QB_SLIRP_OPT =3D &quot;-net nic,model=3De1000 -net user,hostfw=
+d=3Dtcp::2222-:22&quot;<br>
+&gt;&gt;<br>
+&gt;&gt; In the past patches like this have been rejected for performance a=
+nd other<br>
+&gt;&gt; reasons.<br>
+&gt;<br>
+&gt; Performance is not ideal with SLIRP, but should be sufficient for basi=
+c<br>
+&gt; ssh access to the guest. Could you please elaborate on the other reaso=
+ns<br>
+&gt; why having this is a bad idea?<br>
+<br>
+</span>You&#39;d have to go back in the archives.=C2=A0 Performance was the=
+ main reason I<br>
+remember being discussed at the time.<br>
+<br>
+I don&#39;t remember the others, and as I said, I&#39;m not a fan of requir=
+ing root, but<br>
+the community decided sudo approach was better as long as there was a way t=
+o<br>
+avoid it.<br>
+<br>
+Changing the default will likely require email to the oe-core list and/or<b=
+r>
+oe-architecture list...<br>
+<span class=3D""><br>
+&gt;&gt; While I don&#39;t particularly like requiring sudo access for runq=
+emu,<br>
+&gt;&gt; adding the &#39;slirp&#39; option will allow someone w/o root/sudo=
+ to be able to run it.<br>
+&gt;<br>
+&gt; The goal was to be able to run a QEMU image and provide basic networki=
+ng<br>
+&gt; without requiring root access. Is there any reason why running runqemu=
+<br>
+&gt; w/o root/sudo access should be discouraged?<br>
+<br>
+</span>As long as you can pass in slirp (and it&#39;s not the default) then=
+ I believe your<br>
+requirement and the community direction is preserved.<br>
+<span class=3D""><br>
+&gt;&gt; Otherwise, if there is something you can do to make slirp work bet=
+ter (when<br>
+&gt;&gt; enabled), that is more likely to be accepted.<br>
+&gt;<br>
+&gt; Similar SLIRP support has been already accepted for qemuarm64 with<br>
+&gt; commit 9b0a94cb<br>
+<br>
+</span>Support for slirp is good, it&#39;s defaulting to slirp that has bee=
+n rejected in<br>
+the past by the community.<br>
+<div class=3D"HOEnZb"><div class=3D"h5"><br>
+&gt; --Todor<br>
+&gt;<br>
+&gt; Intel Open Source Technology Center<br>
+&gt;<br>
+&gt;&gt; --Mark<br>
+&gt;&gt;<br>
+&gt;&gt;&gt; Signed-off-by: Todor Minchev &lt;<a href=3D"mailto:todor.minch=
+ev@linux.intel.com">todor.minchev@linux.intel.com</a><wbr>&gt;<br>
+&gt;&gt;&gt; ---<br>
+&gt;&gt;&gt;=C2=A0 meta/conf/machine/include/<wbr>qemuboot-x86.inc | 1 +<br=
+>
+&gt;&gt;&gt;=C2=A0 scripts/runqemu=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 | 3 ++-<br>
+&gt;&gt;&gt;=C2=A0 2 files changed, 3 insertions(+), 1 deletion(-)<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; diff --git a/meta/conf/machine/include/<wbr>qemuboot-x86.inc b=
+/meta/conf/machine/include/<wbr>qemuboot-x86.inc<br>
+&gt;&gt;&gt; index 06ac983..0870294 100644<br>
+&gt;&gt;&gt; --- a/meta/conf/machine/include/<wbr>qemuboot-x86.inc<br>
+&gt;&gt;&gt; +++ b/meta/conf/machine/include/<wbr>qemuboot-x86.inc<br>
+&gt;&gt;&gt; @@ -13,3 +13,4 @@ QB_AUDIO_OPT =3D &quot;-soundhw ac97,es1370&=
+quot;<br>
+&gt;&gt;&gt;=C2=A0 QB_KERNEL_CMDLINE_APPEND =3D &quot;vga=3D0 uvesafb.mode_=
+option=3D640x480-32 oprofile.timer=3D1 uvesafb.task_timeout=3D-1&quot;<br>
+&gt;&gt;&gt;=C2=A0 # Add the &#39;virtio-rng-pci&#39; device otherwise the =
+guest may run out of entropy<br>
+&gt;&gt;&gt;=C2=A0 QB_OPT_APPEND =3D &quot;-vga vmware -show-cursor -usb -u=
+sbdevice tablet -device virtio-rng-pci&quot;<br>
+&gt;&gt;&gt; +QB_SLIRP_OPT =3D &quot;-net nic,model=3De1000 -net user,hostf=
+wd=3Dtcp::2222-:22&quot;<br>
+&gt;&gt;&gt; diff --git a/scripts/runqemu b/scripts/runqemu<br>
+&gt;&gt;&gt; index dbe17ab..6952f32 100755<br>
+&gt;&gt;&gt; --- a/scripts/runqemu<br>
+&gt;&gt;&gt; +++ b/scripts/runqemu<br>
+&gt;&gt;&gt; @@ -542,7 +542,8 @@ class BaseConfig(object):<br>
+&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0 def check_and_set(self):<br>
+&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;&quot;&quot;Check conf=
+igs sanity and set when needed&quot;&quot;&quot;<br>
+&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.validate_paths()<br>
+&gt;&gt;&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 check_tun()<br>
+&gt;&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 if not self.slirp_enabled:<br>
+&gt;&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 check_tun()<br>
+&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 # Check audio<br>
+&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 if self.audio_enabled:<br>
+&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 if not self.ge=
+t(&#39;QB_AUDIO_DRV&#39;):<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;<br>
+&gt;<br>
+&gt;<br>
+<br>
+--<br>
+______________________________<wbr>_________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto</a><=
+br>
+</div></div></blockquote></div><br></div>
+
+--94eb2c08046a4c7252053fb42111--
