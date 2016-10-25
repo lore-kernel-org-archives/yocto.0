@@ -1,38 +1,62 @@
-Return-Path: <mark.hatle@windriver.com>
+Return-Path: <jopoulin@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 240ACE00B93; Mon, 24 Oct 2016 17:16:47 -0700 (PDT)
+	id 219B2E00951; Mon, 24 Oct 2016 21:29:50 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE, 
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (jopoulin[at]gmail.com)
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.82.52 listed in dnsbl.sorbs.net]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D8939E007D3
-	for <yocto@yoctoproject.org>; Mon, 24 Oct 2016 17:16:43 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id u9P0Gfh6007707
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=OK);
-	Mon, 24 Oct 2016 17:16:42 -0700
-Received: from soho-mhatle-m.local (172.25.36.226) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.294.0;
-	Mon, 24 Oct 2016 17:16:40 -0700
-To: Todor Minchev <todor.minchev@linux.intel.com>
-References: <20161024221918.39994-1-todor.minchev@linux.intel.com>
-	<9fca01e8-19ef-edc2-3a6d-6e5920fdc77c@windriver.com>
-	<1477352804.49237.34.camel@linux.intel.com>
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-Message-ID: <96de1646-d152-49fa-7e6c-0fe0dd0a3acf@windriver.com>
-Date: Mon, 24 Oct 2016 19:16:40 -0500
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:45.0)
-	Gecko/20100101 Thunderbird/45.4.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.82.52 listed in list.dnswl.org]
+Received: from mail-wm0-f52.google.com (mail-wm0-f52.google.com [74.125.82.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 36E85E00912
+	for <yocto@yoctoproject.org>; Mon, 24 Oct 2016 21:29:48 -0700 (PDT)
+Received: by mail-wm0-f52.google.com with SMTP id c78so139036358wme.0
+	for <yocto@yoctoproject.org>; Mon, 24 Oct 2016 21:29:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=YClED/USLphNJO8kqNXtdQ2D7TKP4rjJyR6iJzfBcV0=;
+	b=AS+kquJhSB5cbRjMPF25QGciPm0Ph9AVCGoWr5ZjiJLUtkDt023ArepMJb0HSUCJG2
+	80tw7JVRE4qWAMczhxvfR+BwiXtEi8CdZkx//Xz+cMQhFBop72sTNArmvTgVEEvHiQen
+	CCsxBv6mkmbulPa6/fJ0sc+c0TAsMX0QPzAavHuSvjjoALUziNTVAqW0boLtfc16+0ec
+	6ptzdXhI7FYI6gV+/3NswsUlMLPEYSP7G0/CUc3D92NAUgaBQCXuIUvKAvRq1RIPOx8G
+	7wSgnDH9WU7afTzocErzbM3JAlTd1NL/sJDn3q8AUqxHY5gE5VZtjWo9vkj+spvZfX8X
+	eUvw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=YClED/USLphNJO8kqNXtdQ2D7TKP4rjJyR6iJzfBcV0=;
+	b=ml1BDLPXgaIiJxbTG0X5cuBYqGPrkOTyCGPuXtvkuskNxKCLLpWtVzOArJa6Sl+eF0
+	deqs1rnjkXSB4pbTkBXTFbxcKY+A/Mnwv5HXCRK1TaV0l2Ktx4/3tbogBQ3ENyOELQn4
+	tqjSVX4Ao0I7T068sXNOrc3sFVQh84DgqJwbHhtkDy4CIs1fCsZbJNs0W4UFyOuVWFgo
+	irBlapHDAMzHEguhf5AD64RxFHAWopHHzJN/Mh7YxWupz2KGB1s+SxxPWqSNQ2g5ijzY
+	ruwcjEHfx3fT5aiSR0GTn15N2vXFPHPxNdM6n0SOiymPUNF4JAWOS/YgbHJrFRrDGNBc
+	kjVw==
+X-Gm-Message-State: ABUngvdA7qCRmvuqvKhb/c7mt/ILFzunuPinhz+ZiEaNHTb560f3E9yrnxXStoCUhN0CSErR75JVjC/GFmHLXQ==
+X-Received: by 10.28.68.8 with SMTP id r8mr901497wma.28.1477369787646; Mon, 24
+	Oct 2016 21:29:47 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <1477352804.49237.34.camel@linux.intel.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 1/1] runqemu: add user mode (SLIRP) support to x86 QEMU targets
+Received: by 10.80.182.20 with HTTP; Mon, 24 Oct 2016 21:29:47 -0700 (PDT)
+From: Jonathan Poulin <jopoulin@gmail.com>
+Date: Tue, 25 Oct 2016 00:29:47 -0400
+Message-ID: <CAGMz-a6-5hKCJ2E1f2Z2jtawWH6n8kguUC2iqWcgBbGKEb-czA@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: New bitbake task dependency
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,95 +68,61 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 25 Oct 2016 00:16:47 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 25 Oct 2016 04:29:50 -0000
+Content-Type: multipart/alternative; boundary=001a1148f5d0650729053fa8f519
 
-On 10/24/16 6:46 PM, Todor Minchev wrote:
-> On Mon, 2016-10-24 at 18:15 -0500, Mark Hatle wrote:
->> On 10/24/16 5:19 PM, Todor Minchev wrote:
->>> Using 'slirp' as a command line option to runqemu will start QEMU
->>> with user mode networking instead of creating tun/tap devices.
->>> SLIRP does not require root access. By default port 2222 on the
->>> host will be mapped to port 22 in the guest. The default port
->>> mapping can be overwritten with the QB_SLIRP_OPT variable e.g.
->>>
->>> QB_SLIRP_OPT = "-net nic,model=e1000 -net user,hostfwd=tcp::2222-:22"
->>
->> In the past patches like this have been rejected for performance and other
->> reasons.  
-> 
-> Performance is not ideal with SLIRP, but should be sufficient for basic
-> ssh access to the guest. Could you please elaborate on the other reasons
-> why having this is a bad idea?
+--001a1148f5d0650729053fa8f519
+Content-Type: text/plain; charset=UTF-8
 
-You'd have to go back in the archives.  Performance was the main reason I
-remember being discussed at the time.
+Hello,
 
-I don't remember the others, and as I said, I'm not a fan of requiring root, but
-the community decided sudo approach was better as long as there was a way to
-avoid it.
-
-Changing the default will likely require email to the oe-core list and/or
-oe-architecture list...
-
->> While I don't particularly like requiring sudo access for runqemu,
->> adding the 'slirp' option will allow someone w/o root/sudo to be able to run it.
-> 
-> The goal was to be able to run a QEMU image and provide basic networking
-> without requiring root access. Is there any reason why running runqemu
-> w/o root/sudo access should be discouraged?   
-
-As long as you can pass in slirp (and it's not the default) then I believe your
-requirement and the community direction is preserved.
-
->> Otherwise, if there is something you can do to make slirp work better (when
->> enabled), that is more likely to be accepted.
-> 
-> Similar SLIRP support has been already accepted for qemuarm64 with
-> commit 9b0a94cb
-
-Support for slirp is good, it's defaulting to slirp that has been rejected in
-the past by the community.
-
-> --Todor
-> 
-> Intel Open Source Technology Center
-> 
->> --Mark
->>
->>> Signed-off-by: Todor Minchev <todor.minchev@linux.intel.com>
->>> ---
->>>  meta/conf/machine/include/qemuboot-x86.inc | 1 +
->>>  scripts/runqemu                            | 3 ++-
->>>  2 files changed, 3 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/meta/conf/machine/include/qemuboot-x86.inc b/meta/conf/machine/include/qemuboot-x86.inc
->>> index 06ac983..0870294 100644
->>> --- a/meta/conf/machine/include/qemuboot-x86.inc
->>> +++ b/meta/conf/machine/include/qemuboot-x86.inc
->>> @@ -13,3 +13,4 @@ QB_AUDIO_OPT = "-soundhw ac97,es1370"
->>>  QB_KERNEL_CMDLINE_APPEND = "vga=0 uvesafb.mode_option=640x480-32 oprofile.timer=1 uvesafb.task_timeout=-1"
->>>  # Add the 'virtio-rng-pci' device otherwise the guest may run out of entropy
->>>  QB_OPT_APPEND = "-vga vmware -show-cursor -usb -usbdevice tablet -device virtio-rng-pci"
->>> +QB_SLIRP_OPT = "-net nic,model=e1000 -net user,hostfwd=tcp::2222-:22"
->>> diff --git a/scripts/runqemu b/scripts/runqemu
->>> index dbe17ab..6952f32 100755
->>> --- a/scripts/runqemu
->>> +++ b/scripts/runqemu
->>> @@ -542,7 +542,8 @@ class BaseConfig(object):
->>>      def check_and_set(self):
->>>          """Check configs sanity and set when needed"""
->>>          self.validate_paths()
->>> -        check_tun()
->>> +        if not self.slirp_enabled:
->>> +            check_tun()
->>>          # Check audio
->>>          if self.audio_enabled:
->>>              if not self.get('QB_AUDIO_DRV'):
->>>
->>
-> 
-> 
+I add a new task in my image recipe that inherit of core-image like below :
 
 
+***************************
+
+do_uimage() {
+    cat ${DEPLOY_DIR_IMAGE}/zImage-imx6d-axion.dtb >>
+${DEPLOY_DIR_IMAGE}/zImage-initramfs-${MACHINE}.bin
+    mkimage -A arm -O linux -T kernel -C none -a 0x12000000 -e 0x12000000
+-n "Linux Kernel" -d ${DEPLOY_DIR_IMAGE}/zImage-initramfs-${MACHINE}.bin
+${DEPLOY_DIR_IMAGE}/uImage
+    md5sum ${DEPLOY_DIR_IMAGE}/uImage | cut -d' ' -f1 >
+${DEPLOY_DIR_IMAGE}/uMD5
+}
+
+addtask do_uimage after do_deploy before do_build
+
+***************************
+
+The task is run the first time I call  "bitbake prod-image" but for the
+subsequent call the task uimage isn't called. I have to call "bitbake -c
+uimage prod-image" to run it.
+
+How can I make this new task run each time the task do_deploy need to be
+run?
+
+thanks for your help
+Jonathan
+
+--001a1148f5d0650729053fa8f519
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><div><div><div><div>Hello,<br><br></div>I add a new t=
+ask in my image recipe that inherit of core-image like below :<br><br><br>*=
+**************************<br><br>do_uimage() {<br>=C2=A0=C2=A0=C2=A0 cat $=
+{DEPLOY_DIR_IMAGE}/zImage-imx6d-axion.dtb &gt;&gt; ${DEPLOY_DIR_IMAGE}/zIma=
+ge-initramfs-${MACHINE}.bin<br>=C2=A0=C2=A0=C2=A0 mkimage -A arm -O linux -=
+T kernel -C none -a 0x12000000 -e 0x12000000 -n &quot;Linux Kernel&quot; -d=
+ ${DEPLOY_DIR_IMAGE}/zImage-initramfs-${MACHINE}.bin ${DEPLOY_DIR_IMAGE}/uI=
+mage<br>=C2=A0=C2=A0=C2=A0 md5sum ${DEPLOY_DIR_IMAGE}/uImage | cut -d&#39; =
+&#39; -f1 &gt; ${DEPLOY_DIR_IMAGE}/uMD5<br>}<br><br>addtask do_uimage after=
+ do_deploy before do_build<br><br>***************************<br><br></div>=
+The task is run the first time I call=C2=A0 &quot;bitbake prod-image&quot; =
+but for the subsequent call the task uimage isn&#39;t called. I have to cal=
+l &quot;bitbake -c uimage prod-image&quot; to run it.<br><br></div>How can =
+I make this new task run each time the task do_deploy need to be run?<br><b=
+r></div>thanks for your help<br></div>Jonathan <br></div>
+
+--001a1148f5d0650729053fa8f519--
