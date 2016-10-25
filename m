@@ -1,62 +1,53 @@
-Return-Path: <jopoulin@gmail.com>
+Return-Path: <michael.blaettler@siemens.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 219B2E00951; Mon, 24 Oct 2016 21:29:50 -0700 (PDT)
+	id 6AAF5E00971; Mon, 24 Oct 2016 22:57:52 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE, 
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (jopoulin[at]gmail.com)
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.82.52 listed in dnsbl.sorbs.net]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [194.138.37.39 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.52 listed in list.dnswl.org]
-Received: from mail-wm0-f52.google.com (mail-wm0-f52.google.com [74.125.82.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 36E85E00912
-	for <yocto@yoctoproject.org>; Mon, 24 Oct 2016 21:29:48 -0700 (PDT)
-Received: by mail-wm0-f52.google.com with SMTP id c78so139036358wme.0
-	for <yocto@yoctoproject.org>; Mon, 24 Oct 2016 21:29:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=YClED/USLphNJO8kqNXtdQ2D7TKP4rjJyR6iJzfBcV0=;
-	b=AS+kquJhSB5cbRjMPF25QGciPm0Ph9AVCGoWr5ZjiJLUtkDt023ArepMJb0HSUCJG2
-	80tw7JVRE4qWAMczhxvfR+BwiXtEi8CdZkx//Xz+cMQhFBop72sTNArmvTgVEEvHiQen
-	CCsxBv6mkmbulPa6/fJ0sc+c0TAsMX0QPzAavHuSvjjoALUziNTVAqW0boLtfc16+0ec
-	6ptzdXhI7FYI6gV+/3NswsUlMLPEYSP7G0/CUc3D92NAUgaBQCXuIUvKAvRq1RIPOx8G
-	7wSgnDH9WU7afTzocErzbM3JAlTd1NL/sJDn3q8AUqxHY5gE5VZtjWo9vkj+spvZfX8X
-	eUvw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=YClED/USLphNJO8kqNXtdQ2D7TKP4rjJyR6iJzfBcV0=;
-	b=ml1BDLPXgaIiJxbTG0X5cuBYqGPrkOTyCGPuXtvkuskNxKCLLpWtVzOArJa6Sl+eF0
-	deqs1rnjkXSB4pbTkBXTFbxcKY+A/Mnwv5HXCRK1TaV0l2Ktx4/3tbogBQ3ENyOELQn4
-	tqjSVX4Ao0I7T068sXNOrc3sFVQh84DgqJwbHhtkDy4CIs1fCsZbJNs0W4UFyOuVWFgo
-	irBlapHDAMzHEguhf5AD64RxFHAWopHHzJN/Mh7YxWupz2KGB1s+SxxPWqSNQ2g5ijzY
-	ruwcjEHfx3fT5aiSR0GTn15N2vXFPHPxNdM6n0SOiymPUNF4JAWOS/YgbHJrFRrDGNBc
-	kjVw==
-X-Gm-Message-State: ABUngvdA7qCRmvuqvKhb/c7mt/ILFzunuPinhz+ZiEaNHTb560f3E9yrnxXStoCUhN0CSErR75JVjC/GFmHLXQ==
-X-Received: by 10.28.68.8 with SMTP id r8mr901497wma.28.1477369787646; Mon, 24
-	Oct 2016 21:29:47 -0700 (PDT)
+X-Greylist: delayed 469 seconds by postgrey-1.32 at yocto-www;
+	Mon, 24 Oct 2016 22:57:48 PDT
+Received: from lizzard.sbs.de (lizzard.sbs.de [194.138.37.39])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 11EC7E00912
+	for <yocto@yoctoproject.org>; Mon, 24 Oct 2016 22:57:48 -0700 (PDT)
+Received: from mail1.sbs.de (mail1.sbs.de [192.129.41.35])
+	by lizzard.sbs.de (8.15.2/8.15.2) with ESMTPS id u9P5ngWp009378
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK); 
+	Tue, 25 Oct 2016 07:49:42 +0200
+Received: from DEFTHW99ERLMSX.ww902.siemens.net
+	(defthw99erlmsx.ww902.siemens.net [139.22.70.136])
+	by mail1.sbs.de (8.15.2/8.15.2) with ESMTPS id u9P5nfi0023842
+	(version=TLSv1 cipher=AES256-SHA bits=256 verify=OK);
+	Tue, 25 Oct 2016 07:49:42 +0200
+Received: from DENBGAT9ER3MSX.ww902.siemens.net (139.22.70.84) by
+	DEFTHW99ERLMSX.ww902.siemens.net (139.22.70.136) with Microsoft SMTP
+	Server (TLS) id 14.3.319.2; Tue, 25 Oct 2016 07:49:41 +0200
+Received: from DEFTHW99EH2MSX.ww902.siemens.net ([169.254.12.168]) by
+	DENBGAT9ER3MSX.ww902.siemens.net ([139.22.70.84]) with mapi id
+	14.03.0319.002; Tue, 25 Oct 2016 07:49:40 +0200
+From: "Blaettler, Michael" <michael.blaettler@siemens.com>
+To: Patrick Ohly <patrick.ohly@intel.com>
+Thread-Topic: [yocto]  curl-native and ca-bundle
+Thread-Index: AQHSLfl2wlSh0lO52kuwkEVMfEpEhqC4qfnQ
+Date: Tue, 25 Oct 2016 05:49:39 +0000
+Message-ID: <347AAC56F29ACA4EA31B39C2109A6FE702F12C61@DEFTHW99EH2MSX.ww902.siemens.net>
+References: <347AAC56F29ACA4EA31B39C2109A6FE702F1298D@DEFTHW99EH2MSX.ww902.siemens.net>
+	<1477314859.21499.20.camel@intel.com>
+In-Reply-To: <1477314859.21499.20.camel@intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [139.22.70.22]
 MIME-Version: 1.0
-Received: by 10.80.182.20 with HTTP; Mon, 24 Oct 2016 21:29:47 -0700 (PDT)
-From: Jonathan Poulin <jopoulin@gmail.com>
-Date: Tue, 25 Oct 2016 00:29:47 -0400
-Message-ID: <CAGMz-a6-5hKCJ2E1f2Z2jtawWH6n8kguUC2iqWcgBbGKEb-czA@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: New bitbake task dependency
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	=?utf-8?B?QW5kcsOpIERyYXN6aWs=?= <git@andred.net>
+Subject: Re: curl-native and ca-bundle
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,61 +59,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 25 Oct 2016 04:29:50 -0000
-Content-Type: multipart/alternative; boundary=001a1148f5d0650729053fa8f519
+X-List-Received-Date: Tue, 25 Oct 2016 05:57:52 -0000
+Content-Language: de-DE
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
---001a1148f5d0650729053fa8f519
-Content-Type: text/plain; charset=UTF-8
+SGkgUGF0cmljaw0KDQpXaGF0IGRvIHlvdSB0aGluayBvZiByZW1vdmluZyB0aGUgLS13aXRoLWNh
+LWJ1bmRsZSBhcyBhIHNvbHV0aW9uIGZvciBjdXJsLW5hdGl2ZT8gT24gbXkgbWFjaGluZSBpdCB3
+b3JrcyB3aXRob3V0IHByb2JsZW1zLg0KTWlnaHQgdGhpcyBiZSBhbiBhY2NlcHRhYmxlIHNvbHV0
+aW9uIGZvciB1cHN0cmVhbT8NCg0KS2luZCByZWdhcmRzDQoNCk1pY2hhZWwNCg0KLS0tLS1VcnNw
+csO8bmdsaWNoZSBOYWNocmljaHQtLS0tLQ0KVm9uOiBQYXRyaWNrIE9obHkgW21haWx0bzpwYXRy
+aWNrLm9obHlAaW50ZWwuY29tXSANCkdlc2VuZGV0OiBNb250YWcsIDI0LiBPa3RvYmVyIDIwMTYg
+MTU6MTQNCkFuOiBCbGFldHRsZXIsIE1pY2hhZWwgKEJUIENQUyBSJkQgWkcgRlcgSVRXKQ0KQ2M6
+IHlvY3RvQHlvY3RvcHJvamVjdC5vcmc7IElzbW8gUHV1c3RpbmVuOyBBbmRyw6kgRHJhc3ppaw0K
+QmV0cmVmZjogUmU6IFt5b2N0b10gY3VybC1uYXRpdmUgYW5kIGNhLWJ1bmRsZQ0KDQpPbiBNb24s
+IDIwMTYtMTAtMjQgYXQgMDc6MjAgKzAwMDAsIEJsYWV0dGxlciwgTWljaGFlbCB3cm90ZToNCj4g
+SGkgYWxsDQo+IA0KPiBXZSBqdXN0IGhhZCBhbiBpc3N1ZSBpbiByZWdhcmQgdG8gY3VybC1uYXRp
+dmUuDQo+IEJ5IGRlZmF1bHQgY3VybCBpcyBjb25maWd1cmVkIHdpdGggdGhlICItLXdpdGgtY2Et
+YnVuZGxlPSR7c3lzY29uZmRpcn0vc3NsL2NlcnRzL2NhLWNlcnRpZmljYXRlcy5jcnQiIGZsYWcu
+DQo+IEluIGNhc2UgY3VybC1uYXRpdmUgaXMgYnVpbGRlZCB0aGUgJHtzeXNjb25mZGlyfSBvZiB0
+aGUgY3VycmVudCBwcm9qZWN0IGlzIGNvbXBpbGVkIGludG8gdGhlIGJpbmFyeS4gRHVlIHRvIHNz
+dGF0ZSBjYWNoaW5nIHRoZSBiaW5hcnkgd2lsbCBiZSByZXVzZWQgaW4gb3RoZXIgcHJvamVjdHMs
+IGJ1dCB0aGUgY2EtYnVuZGxlIGlzIHN0aWxsIGxvYWRlZCBmcm9tIHRoZSBmaXJzdCBwcm9qZWN0
+LiBBcyBzb29uIGFzIHRoZSBmaXJzdCBwcm9qZWN0ICh3aGVyZSB0aGUgaW5pdGlhbCBidWlsZCB0
+b29rIHBsYWNlKSBpcyBkZWxldGVkLCBjdXJsLW5hdGl2ZSB3b24ndCBiZSBhYmxlIHRvIGZldGNo
+IGZyb20gSFRUUFMgc291cmNlcywgYmVjYXVzZSB0aGUgY2EtcGF0aCBpcyBpbnZhbGlkLg0KPiAN
+Cj4gQXMgYSBxdWljayBzb2x1dGlvbiBJIHJlbW92ZWQgdGhlICItLXdpdGgtY2EtYnVuZGxlIiBj
+b25maWd1cmUgb3B0aW9uIGluIG5hdGl2ZSBidWlsZHMgYW5kIGN1cmwgaXMgbm93IGxvYWRpbmcg
+dGhlIGRlZmF1bHQgY2VydGlmaWNhdGUgY2hhaW4gb2YgdGhlIGJ1aWxkIGhvc3QuDQo+IA0KPiBE
+b2VzIGFueWJvZHkgZm91bmQgc2ltbWlsYXIgaXNzdWVzIGluIG90aGVyIHJlY2lwZXM/DQoNClll
+cywgd2UgcmFuIGludG8gdGhlIHNhbWUgaXNzdWUgd2l0aCBhIENWRSBjaGVjayB0b29sLCB3aGlj
+aCBhbHNvIHVzZXMgbGliY3VybC4NCg0KPiBIb3cgZG8geW91IGhhbmRsZSB0aGVtPw0KDQpXZSBo
+YWQgdG8gcGF0Y2ggdGhlIHRvb2wgc28gdGhhdCBpdCBjYW4gb3ZlcnJpZGUgdGhlIENBIGNlcnQg
+cGF0aCBhbmQgdGhlbiBleHBsaWNpdGx5IG92ZXJyaWRlIHRoZSBidWlsdGluIHBhdGggYXQgcnVu
+dGltZSwgc2VlOg0KaHR0cHM6Ly9naXRodWIuY29tLzAxb3JnL21ldGEtc2VjdXJpdHktaXNhZncv
+Y29tbWl0L2Q4NDRmMzcwZDU4NDdkYTA4ZmVmODNiOTE2ZTYyMWViZjZiNWZhMzcNCg0KU29tZSBj
+b2xsZWFndWVzIHJlY2VudGx5IG5vdGljZWQgdGhhdCB0aGUgdmVyc2lvbiBvZiBjdmUtY2hlY2st
+dG9vbCBpbiBPRS1jb3JlIGxhY2tzIHRoYXQgcGF0Y2guIEknbSBub3Qgc3VyZSB3aGV0aGVyIHRo
+YXQgd2FzIHJlcG9ydGVkLCB0aG91Z2guIEFuZHLDqSwgSXNtbz8NCg0KPiBJcyB0aGVyZSBhIGNv
+bW1vbiBhcHByb2FjaD8NCg0KTm8sIG5vdCByZWFsbHkuIFBhdGNoaW5nIGJpbmFyaWVzIHdhcyBt
+ZW50aW9uZWQsIGJ1dCBpdCB3YXNuJ3QgY2xlYXIgaG93IHRvIGRvIHRoYXQgaW4gcHJhY3RpY2Uu
+DQoNCi0tDQpCZXN0IFJlZ2FyZHMsIFBhdHJpY2sgT2hseQ0KDQpUaGUgY29udGVudCBvZiB0aGlz
+IG1lc3NhZ2UgaXMgbXkgcGVyc29uYWwgb3BpbmlvbiBvbmx5IGFuZCBhbHRob3VnaCBJIGFtIGFu
+IGVtcGxveWVlIG9mIEludGVsLCB0aGUgc3RhdGVtZW50cyBJIG1ha2UgaGVyZSBpbiBubyB3YXkg
+cmVwcmVzZW50IEludGVsJ3MgcG9zaXRpb24gb24gdGhlIGlzc3VlLCBub3IgYW0gSSBhdXRob3Jp
+emVkIHRvIHNwZWFrIG9uIGJlaGFsZiBvZiBJbnRlbCBvbiB0aGlzIG1hdHRlci4NCg0KDQoNCg==
 
-Hello,
-
-I add a new task in my image recipe that inherit of core-image like below :
-
-
-***************************
-
-do_uimage() {
-    cat ${DEPLOY_DIR_IMAGE}/zImage-imx6d-axion.dtb >>
-${DEPLOY_DIR_IMAGE}/zImage-initramfs-${MACHINE}.bin
-    mkimage -A arm -O linux -T kernel -C none -a 0x12000000 -e 0x12000000
--n "Linux Kernel" -d ${DEPLOY_DIR_IMAGE}/zImage-initramfs-${MACHINE}.bin
-${DEPLOY_DIR_IMAGE}/uImage
-    md5sum ${DEPLOY_DIR_IMAGE}/uImage | cut -d' ' -f1 >
-${DEPLOY_DIR_IMAGE}/uMD5
-}
-
-addtask do_uimage after do_deploy before do_build
-
-***************************
-
-The task is run the first time I call  "bitbake prod-image" but for the
-subsequent call the task uimage isn't called. I have to call "bitbake -c
-uimage prod-image" to run it.
-
-How can I make this new task run each time the task do_deploy need to be
-run?
-
-thanks for your help
-Jonathan
-
---001a1148f5d0650729053fa8f519
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div><div><div><div><div>Hello,<br><br></div>I add a new t=
-ask in my image recipe that inherit of core-image like below :<br><br><br>*=
-**************************<br><br>do_uimage() {<br>=C2=A0=C2=A0=C2=A0 cat $=
-{DEPLOY_DIR_IMAGE}/zImage-imx6d-axion.dtb &gt;&gt; ${DEPLOY_DIR_IMAGE}/zIma=
-ge-initramfs-${MACHINE}.bin<br>=C2=A0=C2=A0=C2=A0 mkimage -A arm -O linux -=
-T kernel -C none -a 0x12000000 -e 0x12000000 -n &quot;Linux Kernel&quot; -d=
- ${DEPLOY_DIR_IMAGE}/zImage-initramfs-${MACHINE}.bin ${DEPLOY_DIR_IMAGE}/uI=
-mage<br>=C2=A0=C2=A0=C2=A0 md5sum ${DEPLOY_DIR_IMAGE}/uImage | cut -d&#39; =
-&#39; -f1 &gt; ${DEPLOY_DIR_IMAGE}/uMD5<br>}<br><br>addtask do_uimage after=
- do_deploy before do_build<br><br>***************************<br><br></div>=
-The task is run the first time I call=C2=A0 &quot;bitbake prod-image&quot; =
-but for the subsequent call the task uimage isn&#39;t called. I have to cal=
-l &quot;bitbake -c uimage prod-image&quot; to run it.<br><br></div>How can =
-I make this new task run each time the task do_deploy need to be run?<br><b=
-r></div>thanks for your help<br></div>Jonathan <br></div>
-
---001a1148f5d0650729053fa8f519--
