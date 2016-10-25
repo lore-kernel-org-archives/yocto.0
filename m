@@ -1,39 +1,40 @@
-Return-Path: <nikola.popovic@rt-rk.com>
+Return-Path: <lboscariol@decelettronica.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A957FE009B1; Tue, 25 Oct 2016 06:12:03 -0700 (PDT)
+	id C16C8E0050B; Tue, 25 Oct 2016 08:38:42 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.0 required=5.0 tests=BAYES_40,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [89.216.37.149 listed in list.dnswl.org]
-	* -0.0 BAYES_40 BODY: Bayes spam probability is 20 to 40%
-	*      [score: 0.3845]
-X-Greylist: delayed 560 seconds by postgrey-1.32 at yocto-www;
-	Tue, 25 Oct 2016 06:12:00 PDT
-Received: from mail.rt-rk.com (mx2.rt-rk.com [89.216.37.149])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5FABDE00874
-	for <yocto@yoctoproject.org>; Tue, 25 Oct 2016 06:12:00 -0700 (PDT)
+X-Spam-Status: No, score=0.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	TO_NO_BRKTS_PCNT autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  2.5 TO_NO_BRKTS_PCNT To: lacks brackets + percentage
+X-Greylist: delayed 311 seconds by postgrey-1.32 at yocto-www;
+	Tue, 25 Oct 2016 08:38:38 PDT
+Received: from link.decelettronica.com (link.decelettronica.com [80.86.147.3])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 312A5E004F1
+	for <yocto@yoctoproject.org>; Tue, 25 Oct 2016 08:38:38 -0700 (PDT)
 Received: from localhost (localhost [127.0.0.1])
-	by mail.rt-rk.com (Postfix) with ESMTP id 5E3111A4156
-	for <yocto@yoctoproject.org>; Tue, 25 Oct 2016 15:02:37 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at rt-rk.com
-Received: from [192.168.240.46] (rtrkn180-lin.domain.local [192.168.240.46])
-	by mail.rt-rk.com (Postfix) with ESMTPSA id 4AFF41A4155
-	for <yocto@yoctoproject.org>; Tue, 25 Oct 2016 15:02:37 +0200 (CEST)
+	by link.decelettronica.com (Postfix) with ESMTP id D3AFB341C3F
+	for <yocto@yoctoproject.org>; Tue, 25 Oct 2016 17:33:25 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at decelettronica.com
+Received: from link.decelettronica.com ([127.0.0.1])
+	by localhost (link.decelettronica.com [127.0.0.1]) (amavisd-new,
+	port 10024) with ESMTP id E5PQeDI0V968 for <yocto@yoctoproject.org>;
+	Tue, 25 Oct 2016 17:33:21 +0200 (CEST)
+Received: from [192.168.203.171] (unknown [192.168.203.171])
+	by link.decelettronica.com (Postfix) with ESMTP id 900AF341C28
+	for <yocto@yoctoproject.org>; Tue, 25 Oct 2016 17:33:21 +0200 (CEST)
 To: yocto@yoctoproject.org
-References: <CADzUK1LHq12OB=gigH37empg5cr6amjozt_fPS2FQ5+v4ub9YA@mail.gmail.com>
-From: Nikola Popovic <nikola.popovic@rt-rk.com>
-Message-ID: <4149546b-649a-8af6-73d6-373de9186233@rt-rk.com>
-Date: Tue, 25 Oct 2016 15:02:38 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.2.0
+From: Luca Boscariol DEC <lboscariol@decelettronica.com>
+Organization: DEC Elettronica S.r.l.
+Message-ID: <92e3cde4-8269-d41f-1244-be8fd43d0f2e@decelettronica.com>
+Date: Tue, 25 Oct 2016 17:33:22 +0200
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:45.0) Gecko/20100101
+	Thunderbird/45.4.0
 MIME-Version: 1.0
-In-Reply-To: <CADzUK1LHq12OB=gigH37empg5cr6amjozt_fPS2FQ5+v4ub9YA@mail.gmail.com>
-X-Mailman-Approved-At: Tue, 25 Oct 2016 07:21:06 -0700
-Subject: Re: How to change the startup application
+Subject: YoctoProject: problem bitbake core-image-minimal
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,28 +46,420 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 25 Oct 2016 13:12:03 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 25 Oct 2016 15:38:42 -0000
+Content-Type: multipart/alternative;
+	boundary="------------559F54B10A313269172E85D9"
 
-Greetings.
+--------------559F54B10A313269172E85D9
+Content-Type: text/plain; charset=iso-8859-15; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Is there any possibility to make recipe which start and run application 
-inside weston terminal when Yocto starts.
+Hello,
 
-Tnx !
+I'm using SUSE Linux Enterprise Desktop 12. I follow Yocto 
+documentation. I start the buid with following command:
+
+ >>bitbake core-image-minimal
+
+Output is the following with error:
+
+Loading cache: 100% |#############################
+
+##########################################################################################################################################################################################################################################################| 
+ETA:  00:00:00
+Loaded 1302 entries from dependency cache.
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION        = "1.30.0"
+BUILD_SYS         = "x86_64-linux"
+NATIVELSBSTRING   = "universal"
+TARGET_SYS        = "arm-poky-linux-gnueabi"
+MACHINE           = "qemuarm"
+DISTRO            = "poky"
+DISTRO_VERSION    = "2.1.1"
+TUNE_FEATURES     = "arm armv5 thumb dsp"
+TARGET_FPU        = "soft"
+meta
+meta-poky
+meta-yocto-bsp    = "<unknown>:<unknown>"
+
+NOTE: Preparing RunQueue
+NOTE: Executing SetScene Tasks
+NOTE: Executing RunQueue Tasks
+ERROR: quilt-native-0.64-r0 do_populate_sysroot: Error executing a 
+python function in exec_python_func() autogenerated:
+
+The stack trace of python calls that resulted in this exception/failure was:
+File: 'exec_python_func() autogenerated', lineno: 2, function: <module>
+      0001:
+  *** 0002:relocatable_binaries_preprocess(d)
+      0003:
+File: '/opt/yocto/poky-krogoth-15.0.1/meta/classes/relocatable.bbclass', 
+lineno: 6, function: relocatable_binaries_preprocess
+      0002:
+      0003:SYSROOT_PREPROCESS_FUNCS += "relocatable_binaries_preprocess"
+      0004:
+      0005:python relocatable_binaries_preprocess() {
+  *** 0006:    rpath_replace(d.expand('${SYSROOT_DESTDIR}'), d)
+      0007:}
+File: '/opt/yocto/poky-krogoth-15.0.1/meta/classes/chrpath.bbclass', 
+lineno: 116, function: rpath_replace
+      0112:
+      0113:    for bindir in bindirs:
+      0114:        #bb.note ("Processing directory " + bindir)
+      0115:        directory = path + "/" + bindir
+  *** 0116:        process_dir (path, directory, d)
+      0117:
+File: '/opt/yocto/poky-krogoth-15.0.1/meta/classes/chrpath.bbclass', 
+lineno: 105, function: process_dir
+      0101:                perms = None
+      0102:            else:
+      0103:                # Temporarily make the file writeable so we 
+can chrpath it
+      0104:                os.chmod(fpath, perms|stat.S_IRWXU)
+  *** 0105:            process_file(cmd, fpath, rootdir, baseprefix, 
+tmpdir, d)
+      0106:
+      0107:            if perms:
+      0108:                os.chmod(fpath, perms)
+      0109:
+File: '/opt/yocto/poky-krogoth-15.0.1/meta/classes/chrpath.bbclass', 
+lineno: 7, function: process_file_linux
+      0003:
+      0004:def process_file_linux(cmd, fpath, rootdir, baseprefix, 
+tmpdir, d):
+      0005:    import subprocess as sub
+      0006:
+  *** 0007:    p = sub.Popen([cmd, '-l', 
+fpath],stdout=sub.PIPE,stderr=sub.PIPE)
+      0008:    err, out = p.communicate()
+      0009:    # If returned successfully, process stderr for results
+      0010:    if p.returncode != 0:
+      0011:        return
+File: '/usr/lib64/python2.7/subprocess.py', lineno: 710, function: __init__
+      0706:        cwd, env, universal_newlines,
+   0707:        startupinfo, creationflags, shell, to_close,
+      0708:        p2cread, p2cwrite,
+      0709:        c2pread, c2pwrite,
+  *** 0710:        errread, errwrite)
+      0711:        except Exception:
+      0712:            # Preserve original exception in case os.close 
+raises.
+      0713:            exc_type, exc_value, exc_trace = sys.exc_info()
+      0714:
+File: '/usr/lib64/python2.7/subprocess.py', lineno: 1327, function: 
+_execute_child
+      1323:                except OSError as e:
+      1324:                    if e.errno != errno.ECHILD:
+      1325:                        raise
+      1326:                child_exception = pickle.loads(data)
+  *** 1327:                raise child_exception
+      1328:
+      1329:
+      1330:        def _handle_exitstatus(self, sts, 
+_WIFSIGNALED=os.WIFSIGNALED,
+      1331:                _WTERMSIG=os.WTERMSIG, _WIFEXITED=os.WIFEXITED,
+Exception: OSError: [Errno 2] No such file or directory
+
+ERROR: quilt-native-0.64-r0 do_populate_sysroot: Function failed: 
+relocatable_binaries_preprocess
+ERROR: Logfile of failure stored in: 
+/opt/yocto/poky-krogoth-15.0.1/qemuarm/tmp/work/x86_64-linux/quilt-native/0.64-r0/temp/log.do
+ERROR: Task 23 
+(/opt/yocto/poky-krogoth-15.0.1/meta/recipes-devtools/quilt/quilt-native_0.64.bb 
+<http://quilt-native_0.64.bb>, do_populate_sysroot) failed with
+NOTE: Tasks Summary: Attempted 20 tasks of which 15 didn't need to be 
+rerun and 1 failed.
+Waiting for 0 running tasks to finish:
+
+Summary: 1 task failed:
+   
+/opt/yocto/poky-krogoth-15.0.1/meta/recipes-devtools/quilt/quilt-native_0.64.bb 
+<http://quilt-native_0.64.bb>, do_populate_sysroot
+Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
 
 
--- 
-Nikola Popovic
-Software Engineer
-Tel: +381 21 4801 1304
-E-mail : nikola.popovic@rt-rk.com
+Does anyone know what might be causing this error?
 
-RT-RK LLC
-Narodnog fronta 23a
-21000 Novi Sad
-Serbia
-www.rt-rk.com
+Regards,
 
+Luca
 
+-----------------------------------------------------------
+*Luca BOSCARIOL*
+email: lboscariol@decelettronica.com<mailto:lboscariol@decelettronica.com>
+-----------------------------------------------------------
+DEC ELETTRONICA S.r.l.
+Via dell'Artigianato 12/1 - 31040 Fossalta Maggiore di Chiarano (TV) Italy
+Tel: +39 0422 806097 - 806159 - Fax:+39 0422 806128 - URL: 
+www.decelettronica.com<http://www.decelettronica.com/>- email: 
+info@decelettronica.com<mailto:info@decelettronica.com>
+-----------------------------------------------------------------------------------------
+Le informazioni contenute in questo messaggio di posta elettronica e/o 
+nei file allegati sono da considerarsi strettamente riservate. Il loro 
+utilizzo è consentito esclusivamente al destinatario del messaggio, per 
+le finalità indicate nel messaggio stesso. Qualora riceveste questo 
+messaggio senza esserne il destinatario, Vi preghiamo cortesemente di 
+darcene notizia via e-mail e di procedere alla distruzione del messaggio 
+stesso, cancellandolo dal Vostro sistema.
+Vi ricordiamo che costituisce comportamento contrario ai principi 
+dettati dal Dlgs. 196/2003 il trattenere il messaggio stesso, 
+divulgarlo, anche in parte, distribuirlo ad altri soggetti, copiarlo od 
+utilizzarlo per finalità diverse.
+-----------------------------------------------------------------------------------------
+
+--------------559F54B10A313269172E85D9
+Content-Type: text/html; charset=iso-8859-15
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=iso-8859-15">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <p>Hello,</p>
+    <p>I'm using SUSE Linux Enterprise Desktop 12. I follow Yocto
+      documentation. I start the buid with following command:<br>
+    </p>
+    <p>&gt;&gt;bitbake core-image-minimal</p>
+    <p>Output is the following with error:<br>
+    </p>
+    <p>Loading cache: 100% |#############################</p>
+    <div tabindex="1" style="direction: ltr; min-height: 380px;"
+      role="textbox" g_editable="true" id=":13r" class="Am Al editable
+      LW-avf" hidefocus="true" aria-label="Corpo del messaggio"
+      contenteditable="true"><wbr>##############################<wbr>##############################<wbr>##############################<wbr>##############################<wbr>##############################<wbr>##############################<wbr>##############################<wbr>##############################<wbr>##########|
+      ETA:  00:00:00<br>
+      Loaded 1302 entries from dependency cache.<br>
+      NOTE: Resolving any missing task queue dependencies<br>
+      <br>
+      Build Configuration:<br>
+      BB_VERSION        = "1.30.0"<br>
+      BUILD_SYS         = "x86_64-linux"<br>
+      NATIVELSBSTRING   = "universal"<br>
+      TARGET_SYS        = "arm-poky-linux-gnueabi"<br>
+      MACHINE           = "qemuarm"<br>
+      DISTRO            = "poky"<br>
+      DISTRO_VERSION    = "2.1.1"<br>
+      TUNE_FEATURES     = "arm armv5 thumb dsp"<br>
+      TARGET_FPU        = "soft"<br>
+      meta              <br>
+      meta-poky         <br>
+      meta-yocto-bsp    = "&lt;unknown&gt;:&lt;unknown&gt;"<br>
+      <br>
+      NOTE: Preparing RunQueue<br>
+      NOTE: Executing SetScene Tasks<br>
+      NOTE: Executing RunQueue Tasks<br>
+      ERROR: quilt-native-0.64-r0 do_populate_sysroot: Error executing a
+      python function in exec_python_func() autogenerated:<br>
+      <br>
+      The stack trace of python calls that resulted in this
+      exception/failure was:<br>
+      File: 'exec_python_func() autogenerated', lineno: 2, function:
+      &lt;module&gt;<br>
+           0001:<br>
+       *** 0002:relocatable_binaries_<wbr>preprocess(d)<br>
+           0003:<br>
+      File: '/opt/yocto/poky-krogoth-15.0.<wbr>1/meta/classes/relocatable.<wbr>bbclass',
+      lineno: 6, function: relocatable_binaries_<wbr>preprocess<br>
+           0002:<br>
+           0003:SYSROOT_PREPROCESS_FUNCS += "relocatable_binaries_<wbr>preprocess"<br>
+           0004:<br>
+           0005:python relocatable_binaries_<wbr>preprocess() {<br>
+       *** 0006:    rpath_replace(d.expand('${<wbr>SYSROOT_DESTDIR}'),
+      d)<br>
+           0007:}<br>
+      File: '/opt/yocto/poky-krogoth-15.0.<wbr>1/meta/classes/chrpath.<wbr>bbclass',
+      lineno: 116, function: rpath_replace<br>
+           0112:<br>
+           0113:    for bindir in bindirs:<br>
+           0114:        #bb.note ("Processing directory " + bindir)<br>
+           0115:        directory = path + "/" + bindir<br>
+       *** 0116:        process_dir (path, directory, d)<br>
+           0117:<br>
+      File: '/opt/yocto/poky-krogoth-15.0.<wbr>1/meta/classes/chrpath.<wbr>bbclass',
+      lineno: 105, function: process_dir<br>
+           0101:                perms = None<br>
+           0102:            else:<br>
+           0103:                # Temporarily make the file writeable so
+      we can chrpath it<br>
+           0104:                os.chmod(fpath, perms|stat.S_IRWXU)<br>
+       *** 0105:            process_file(cmd, fpath, rootdir,
+      baseprefix, tmpdir, d)<br>
+           0106:<br>
+           0107:            if perms:<br>
+           0108:                os.chmod(fpath, perms)<br>
+           0109:<br>
+      File: '/opt/yocto/poky-krogoth-15.0.<wbr>1/meta/classes/chrpath.<wbr>bbclass',
+      lineno: 7, function: process_file_linux<br>
+           0003:<br>
+           0004:def process_file_linux(cmd, fpath, rootdir, baseprefix,
+      tmpdir, d):<br>
+           0005:    import subprocess as sub<br>
+           0006:<br>
+       *** 0007:    p = sub.Popen([cmd, '-l',
+      fpath],stdout=sub.PIPE,stderr=<wbr>sub.PIPE)<br>
+           0008:    err, out = p.communicate()<br>
+           0009:    # If returned successfully, process stderr for
+      results<br>
+           0010:    if p.returncode != 0:<br>
+           0011:        return<br>
+      File: '/usr/lib64/python2.7/<wbr>subprocess.py', lineno: 710,
+      function: __init__<br>
+           0706:                         <wbr>       cwd, env,
+      universal_newlines,<br>
+        0707:                         <wbr>       startupinfo,
+      creationflags, shell, to_close,<br>
+           0708:                         <wbr>       p2cread, p2cwrite,<br>
+           0709:                         <wbr>       c2pread, c2pwrite,<br>
+       *** 0710:                         <wbr>       errread, errwrite)<br>
+           0711:        except Exception:<br>
+           0712:            # Preserve original exception in case
+      os.close raises.<br>
+           0713:            exc_type, exc_value, exc_trace =
+      sys.exc_info()<br>
+           0714:<br>
+      File: '/usr/lib64/python2.7/<wbr>subprocess.py', lineno: 1327,
+      function: _execute_child<br>
+           1323:                except OSError as e:<br>
+           1324:                    if e.errno != errno.ECHILD:<br>
+           1325:                        raise<br>
+           1326:                child_exception = pickle.loads(data)<br>
+       *** 1327:                raise child_exception<br>
+           1328:<br>
+           1329:<br>
+           1330:        def _handle_exitstatus(self, sts,
+      _WIFSIGNALED=os.WIFSIGNALED,<br>
+           1331:                _WTERMSIG=os.WTERMSIG,
+      _WIFEXITED=os.WIFEXITED,<br>
+      Exception: OSError: [Errno 2] No such file or directory<br>
+      <br>
+      ERROR: quilt-native-0.64-r0 do_populate_sysroot: Function failed:
+      relocatable_binaries_<wbr>preprocess<br>
+      ERROR: Logfile of failure stored in: /opt/yocto/poky-krogoth-15.0.<wbr>1/qemuarm/tmp/work/x86_64-<wbr>linux/quilt-native/0.64-r0/<wbr>temp/log.do<br>
+      ERROR: Task 23 (/opt/yocto/poky-krogoth-15.0.<wbr>1/meta/recipes-devtools/quilt/<a
+        href="http://quilt-native_0.64.bb" target="_blank"
+data-saferedirecturl="https://www.google.com/url?hl=it&amp;q=http://quilt-native_0.64.bb&amp;source=gmail&amp;ust=1477495422598000&amp;usg=AFQjCNHv6_JtOn3Zv8d99BHirvCIuAJxBg"><wbr>quilt-native_0.64.bb</a>,
+      do_populate_sysroot) failed with <br>
+      NOTE: Tasks Summary: Attempted 20 tasks of which 15 didn't need to
+      be rerun and 1 failed.<br>
+      Waiting for 0 running tasks to finish:<br>
+      <br>
+      Summary: 1 task failed:<br>
+        /opt/yocto/poky-krogoth-15.0.<wbr>1/meta/recipes-devtools/quilt/<a
+        href="http://quilt-native_0.64.bb" target="_blank"
+data-saferedirecturl="https://www.google.com/url?hl=it&amp;q=http://quilt-native_0.64.bb&amp;source=gmail&amp;ust=1477495422598000&amp;usg=AFQjCNHv6_JtOn3Zv8d99BHirvCIuAJxBg"><wbr>quilt-native_0.64.bb</a>,
+      do_populate_sysroot<br>
+      Summary: There were 2 ERROR messages shown, returning a non-zero
+      exit code.<br>
+      <br>
+      <br>
+      Does anyone know what might be causing this error?<br>
+      <br>
+      Regards,<br>
+      <br>
+      Luca<br>
+    </div>
+    <br>
+    <div class="moz-signature">
+      <div class="WordSection1">
+        <a name="_MailAutoSig"><span
+            style="font-family:&quot;Arial&quot;,sans-serif;
+            mso-fareast-font-family:&quot;Times New
+            Roman&quot;;mso-fareast-theme-font:minor-fareast;
+            color:navy;mso-fareast-language:IT;mso-no-proof:yes">-----------------------------------------------------------<br>
+          </span>
+          <span
+style="font-family:&quot;Arial&quot;,sans-serif;mso-fareast-font-family:&quot;Times
+            New Roman&quot;;
+mso-fareast-theme-font:minor-fareast;color:navy;mso-fareast-language:IT;
+            mso-no-proof:yes">
+            <b>Luca BOSCARIOL</b></span><br>
+          <span style="font-family:&quot;Arial&quot;,sans-serif;
+            mso-fareast-font-family:&quot;Times New
+            Roman&quot;;mso-fareast-theme-font:minor-fareast;
+            color:navy;mso-fareast-language:IT;mso-no-proof:yes">email:
+          </span></a><a href="mailto:lboscariol@decelettronica.com"><span
+            style="mso-bookmark:_MailAutoSig"><span
+              style="font-family:&quot;Arial&quot;,sans-serif;
+              mso-fareast-font-family:&quot;Times New
+              Roman&quot;;mso-fareast-theme-font:minor-fareast;
+              color:blue;mso-fareast-language:IT;mso-no-proof:yes">lboscariol@decelettronica.com</span></span><span
+            style="mso-bookmark:_MailAutoSig"></span></a><span
+          style="mso-bookmark:_MailAutoSig"><span
+style="font-family:&quot;Arial&quot;,sans-serif;mso-fareast-font-family:&quot;Times
+            New Roman&quot;;
+mso-fareast-theme-font:minor-fareast;color:navy;mso-fareast-language:IT;
+            mso-no-proof:yes"><br>
+            -----------------------------------------------------------<br>
+            DEC ELETTRONICA S.r.l.<br>
+            Via dell'Artigianato 12/1 - 31040 Fossalta Maggiore di
+            Chiarano (TV) Italy<br>
+            Tel: +39 0422 806097 - 806159 - Fax:+39 0422 806128 - URL: </span></span><a
+          href="http://www.decelettronica.com/"
+          title="http://www.decelettronica.com"><span
+            style="mso-bookmark:_MailAutoSig"><span
+              style="font-family:&quot;Arial&quot;,sans-serif;
+              mso-fareast-font-family:&quot;Times New
+              Roman&quot;;mso-fareast-theme-font:minor-fareast;
+              color:blue;mso-fareast-language:IT;mso-no-proof:yes">www.decelettronica.com</span></span><span
+            style="mso-bookmark:_MailAutoSig"></span></a><span
+          style="mso-bookmark:_MailAutoSig"><span
+style="font-family:&quot;Arial&quot;,sans-serif;mso-fareast-font-family:&quot;Times
+            New Roman&quot;;
+mso-fareast-theme-font:minor-fareast;color:navy;mso-fareast-language:IT;
+            mso-no-proof:yes"> - email: </span></span><a
+          href="mailto:info@decelettronica.com"
+          title="mailto:info@decelettronica.com"><span
+            style="mso-bookmark:_MailAutoSig"><span
+              style="font-family:&quot;Arial&quot;,sans-serif;
+              mso-fareast-font-family:&quot;Times New
+              Roman&quot;;mso-fareast-theme-font:minor-fareast;
+              color:blue;mso-fareast-language:IT;mso-no-proof:yes">info@decelettronica.com</span></span><span
+            style="mso-bookmark:_MailAutoSig"></span></a><span
+          style="mso-bookmark:_MailAutoSig"><span
+            style="font-size:12.0pt;font-family:&quot;Times New
+            Roman&quot;,serif;mso-fareast-font-family:
+            &quot;Times New
+            Roman&quot;;mso-fareast-theme-font:minor-fareast;mso-bidi-font-family:
+            &quot;Times New
+Roman&quot;;mso-bidi-theme-font:minor-bidi;color:navy;mso-fareast-language:IT;mso-no-proof:yes"><o:p></o:p></span></span>
+        <span style="mso-bookmark:_MailAutoSig"><span
+style="font-size:7.5pt;font-family:&quot;Tahoma&quot;,sans-serif;mso-fareast-font-family:&quot;Times
+            New
+Roman&quot;;mso-fareast-theme-font:minor-fareast;color:navy;mso-fareast-language:IT;mso-no-proof:yes"><br>
+-----------------------------------------------------------------------------------------<br>
+            Le informazioni contenute in questo messaggio di posta
+            elettronica e/o nei file
+            allegati sono da considerarsi strettamente riservate. Il
+            loro utilizzo è
+            consentito esclusivamente al destinatario del messaggio, per
+            le finalità
+            indicate nel messaggio stesso. Qualora riceveste questo
+            messaggio senza esserne
+            il destinatario, Vi preghiamo cortesemente di darcene
+            notizia via e-mail e di
+            procedere alla distruzione del messaggio stesso,
+            cancellandolo dal Vostro
+            sistema.<br>
+            Vi ricordiamo che costituisce comportamento contrario ai
+            principi dettati dal
+            Dlgs. 196/2003 il trattenere il messaggio stesso,
+            divulgarlo, anche in parte,
+            distribuirlo ad altri soggetti, copiarlo od utilizzarlo per
+            finalità diverse.<br>
+-----------------------------------------------------------------------------------------</span></span><span
+          style="mso-bookmark:_MailAutoSig"><span
+            style="mso-ascii-font-family:Calibri;
+            mso-fareast-font-family:&quot;Times New
+            Roman&quot;;mso-fareast-theme-font:minor-fareast;
+mso-hansi-font-family:Calibri;mso-fareast-language:IT;mso-no-proof:yes"><o:p></o:p></span></span>
+        <span style="mso-bookmark:_MailAutoSig"></span>
+      </div>
+    </div>
+  </body>
+</html>
+
+--------------559F54B10A313269172E85D9--
