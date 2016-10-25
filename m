@@ -1,34 +1,36 @@
-Return-Path: <todor.minchev@linux.intel.com>
+Return-Path: <mark.hatle@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6EE71E00B63; Mon, 24 Oct 2016 16:46:46 -0700 (PDT)
+	id 240ACE00B93; Mon, 24 Oct 2016 17:16:47 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [192.55.52.120 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CD490E00AD2
-	for <yocto@yoctoproject.org>; Mon, 24 Oct 2016 16:46:45 -0700 (PDT)
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-	by fmsmga104.fm.intel.com with ESMTP; 24 Oct 2016 16:46:45 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.31,543,1473145200"; d="scan'208";a="893524387"
-Received: from unknown (HELO speedy) ([10.7.197.100])
-	by orsmga003.jf.intel.com with ESMTP; 24 Oct 2016 16:46:45 -0700
-Message-ID: <1477352804.49237.34.camel@linux.intel.com>
-From: Todor Minchev <todor.minchev@linux.intel.com>
-To: Mark Hatle <mark.hatle@windriver.com>
-Date: Mon, 24 Oct 2016 16:46:44 -0700
-In-Reply-To: <9fca01e8-19ef-edc2-3a6d-6e5920fdc77c@windriver.com>
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D8939E007D3
+	for <yocto@yoctoproject.org>; Mon, 24 Oct 2016 17:16:43 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id u9P0Gfh6007707
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=OK);
+	Mon, 24 Oct 2016 17:16:42 -0700
+Received: from soho-mhatle-m.local (172.25.36.226) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.294.0;
+	Mon, 24 Oct 2016 17:16:40 -0700
+To: Todor Minchev <todor.minchev@linux.intel.com>
 References: <20161024221918.39994-1-todor.minchev@linux.intel.com>
 	<9fca01e8-19ef-edc2-3a6d-6e5920fdc77c@windriver.com>
-X-Mailer: Evolution 3.12.9-1+b1 
-Mime-Version: 1.0
+	<1477352804.49237.34.camel@linux.intel.com>
+From: Mark Hatle <mark.hatle@windriver.com>
+Organization: Wind River Systems
+Message-ID: <96de1646-d152-49fa-7e6c-0fe0dd0a3acf@windriver.com>
+Date: Mon, 24 Oct 2016 19:16:40 -0500
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:45.0)
+	Gecko/20100101 Thunderbird/45.4.0
+MIME-Version: 1.0
+In-Reply-To: <1477352804.49237.34.camel@linux.intel.com>
 Cc: yocto@yoctoproject.org
 Subject: Re: [PATCH 1/1] runqemu: add user mode (SLIRP) support to x86 QEMU targets
 X-BeenThere: yocto@yoctoproject.org
@@ -42,77 +44,95 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 24 Oct 2016 23:46:46 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Tue, 25 Oct 2016 00:16:47 -0000
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 
-On Mon, 2016-10-24 at 18:15 -0500, Mark Hatle wrote:
-> On 10/24/16 5:19 PM, Todor Minchev wrote:
-> > Using 'slirp' as a command line option to runqemu will start QEMU
-> > with user mode networking instead of creating tun/tap devices.
-> > SLIRP does not require root access. By default port 2222 on the
-> > host will be mapped to port 22 in the guest. The default port
-> > mapping can be overwritten with the QB_SLIRP_OPT variable e.g.
-> > 
-> > QB_SLIRP_OPT = "-net nic,model=e1000 -net user,hostfwd=tcp::2222-:22"
+On 10/24/16 6:46 PM, Todor Minchev wrote:
+> On Mon, 2016-10-24 at 18:15 -0500, Mark Hatle wrote:
+>> On 10/24/16 5:19 PM, Todor Minchev wrote:
+>>> Using 'slirp' as a command line option to runqemu will start QEMU
+>>> with user mode networking instead of creating tun/tap devices.
+>>> SLIRP does not require root access. By default port 2222 on the
+>>> host will be mapped to port 22 in the guest. The default port
+>>> mapping can be overwritten with the QB_SLIRP_OPT variable e.g.
+>>>
+>>> QB_SLIRP_OPT = "-net nic,model=e1000 -net user,hostfwd=tcp::2222-:22"
+>>
+>> In the past patches like this have been rejected for performance and other
+>> reasons.  
 > 
-> In the past patches like this have been rejected for performance and other
-> reasons.  
+> Performance is not ideal with SLIRP, but should be sufficient for basic
+> ssh access to the guest. Could you please elaborate on the other reasons
+> why having this is a bad idea?
 
-Performance is not ideal with SLIRP, but should be sufficient for basic
-ssh access to the guest. Could you please elaborate on the other reasons
-why having this is a bad idea?
+You'd have to go back in the archives.  Performance was the main reason I
+remember being discussed at the time.
 
-> While I don't particularly like requiring sudo access for runqemu,
-> adding the 'slirp' option will allow someone w/o root/sudo to be able to run it.
+I don't remember the others, and as I said, I'm not a fan of requiring root, but
+the community decided sudo approach was better as long as there was a way to
+avoid it.
 
-The goal was to be able to run a QEMU image and provide basic networking
-without requiring root access. Is there any reason why running runqemu
-w/o root/sudo access should be discouraged?   
+Changing the default will likely require email to the oe-core list and/or
+oe-architecture list...
 
-> Otherwise, if there is something you can do to make slirp work better (when
-> enabled), that is more likely to be accepted.
-
-Similar SLIRP support has been already accepted for qemuarm64 with
-commit 9b0a94cb
-
---Todor
-
-Intel Open Source Technology Center
-
-> --Mark
+>> While I don't particularly like requiring sudo access for runqemu,
+>> adding the 'slirp' option will allow someone w/o root/sudo to be able to run it.
 > 
-> > Signed-off-by: Todor Minchev <todor.minchev@linux.intel.com>
-> > ---
-> >  meta/conf/machine/include/qemuboot-x86.inc | 1 +
-> >  scripts/runqemu                            | 3 ++-
-> >  2 files changed, 3 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/meta/conf/machine/include/qemuboot-x86.inc b/meta/conf/machine/include/qemuboot-x86.inc
-> > index 06ac983..0870294 100644
-> > --- a/meta/conf/machine/include/qemuboot-x86.inc
-> > +++ b/meta/conf/machine/include/qemuboot-x86.inc
-> > @@ -13,3 +13,4 @@ QB_AUDIO_OPT = "-soundhw ac97,es1370"
-> >  QB_KERNEL_CMDLINE_APPEND = "vga=0 uvesafb.mode_option=640x480-32 oprofile.timer=1 uvesafb.task_timeout=-1"
-> >  # Add the 'virtio-rng-pci' device otherwise the guest may run out of entropy
-> >  QB_OPT_APPEND = "-vga vmware -show-cursor -usb -usbdevice tablet -device virtio-rng-pci"
-> > +QB_SLIRP_OPT = "-net nic,model=e1000 -net user,hostfwd=tcp::2222-:22"
-> > diff --git a/scripts/runqemu b/scripts/runqemu
-> > index dbe17ab..6952f32 100755
-> > --- a/scripts/runqemu
-> > +++ b/scripts/runqemu
-> > @@ -542,7 +542,8 @@ class BaseConfig(object):
-> >      def check_and_set(self):
-> >          """Check configs sanity and set when needed"""
-> >          self.validate_paths()
-> > -        check_tun()
-> > +        if not self.slirp_enabled:
-> > +            check_tun()
-> >          # Check audio
-> >          if self.audio_enabled:
-> >              if not self.get('QB_AUDIO_DRV'):
-> > 
-> 
+> The goal was to be able to run a QEMU image and provide basic networking
+> without requiring root access. Is there any reason why running runqemu
+> w/o root/sudo access should be discouraged?   
 
+As long as you can pass in slirp (and it's not the default) then I believe your
+requirement and the community direction is preserved.
+
+>> Otherwise, if there is something you can do to make slirp work better (when
+>> enabled), that is more likely to be accepted.
+> 
+> Similar SLIRP support has been already accepted for qemuarm64 with
+> commit 9b0a94cb
+
+Support for slirp is good, it's defaulting to slirp that has been rejected in
+the past by the community.
+
+> --Todor
+> 
+> Intel Open Source Technology Center
+> 
+>> --Mark
+>>
+>>> Signed-off-by: Todor Minchev <todor.minchev@linux.intel.com>
+>>> ---
+>>>  meta/conf/machine/include/qemuboot-x86.inc | 1 +
+>>>  scripts/runqemu                            | 3 ++-
+>>>  2 files changed, 3 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/meta/conf/machine/include/qemuboot-x86.inc b/meta/conf/machine/include/qemuboot-x86.inc
+>>> index 06ac983..0870294 100644
+>>> --- a/meta/conf/machine/include/qemuboot-x86.inc
+>>> +++ b/meta/conf/machine/include/qemuboot-x86.inc
+>>> @@ -13,3 +13,4 @@ QB_AUDIO_OPT = "-soundhw ac97,es1370"
+>>>  QB_KERNEL_CMDLINE_APPEND = "vga=0 uvesafb.mode_option=640x480-32 oprofile.timer=1 uvesafb.task_timeout=-1"
+>>>  # Add the 'virtio-rng-pci' device otherwise the guest may run out of entropy
+>>>  QB_OPT_APPEND = "-vga vmware -show-cursor -usb -usbdevice tablet -device virtio-rng-pci"
+>>> +QB_SLIRP_OPT = "-net nic,model=e1000 -net user,hostfwd=tcp::2222-:22"
+>>> diff --git a/scripts/runqemu b/scripts/runqemu
+>>> index dbe17ab..6952f32 100755
+>>> --- a/scripts/runqemu
+>>> +++ b/scripts/runqemu
+>>> @@ -542,7 +542,8 @@ class BaseConfig(object):
+>>>      def check_and_set(self):
+>>>          """Check configs sanity and set when needed"""
+>>>          self.validate_paths()
+>>> -        check_tun()
+>>> +        if not self.slirp_enabled:
+>>> +            check_tun()
+>>>          # Check audio
+>>>          if self.audio_enabled:
+>>>              if not self.get('QB_AUDIO_DRV'):
+>>>
+>>
+> 
+> 
 
 
