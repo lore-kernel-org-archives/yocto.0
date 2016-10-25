@@ -1,71 +1,52 @@
-Return-Path: <patrick.ohly@intel.com>
+Return-Path: <abhinavbipnesh@avaya.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 740A9E00953; Tue, 25 Oct 2016 02:32:22 -0700 (PDT)
+	id 9A66EE009B1; Tue, 25 Oct 2016 04:24:34 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [198.152.13.100 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.218.49 listed in dnsbl.sorbs.net]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.218.49 listed in list.dnswl.org]
-Received: from mail-oi0-f49.google.com (mail-oi0-f49.google.com
-	[209.85.218.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5A2DDE00912
-	for <yocto@yoctoproject.org>; Tue, 25 Oct 2016 02:32:18 -0700 (PDT)
-Received: by mail-oi0-f49.google.com with SMTP id y2so88128595oie.0
-	for <yocto@yoctoproject.org>; Tue, 25 Oct 2016 02:32:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=message-id:subject:from:to:cc:date:in-reply-to:references
-	:organization:mime-version:content-transfer-encoding;
-	bh=XZSaJ5VDqYOiqmLkR1fnCMcDj3rfxVej3CaKyFExzVg=;
-	b=I5R4fNUcDFqiZ7YYl4AUYW+NNRjRn5jO2nflQ1JMLTBK4Tv4QYddG2JWeGnNyNqsGS
-	SKKt9GVHYvdyaR1k380uaeGrYtgrnqWhjedAEbMDydBJHPauf8fVF71vLhmP7S0TK+zC
-	+EHU/jIn4ncN7idpVH2/wZDAIQ43kaQbBNs7Ej84bcV0aY9QL6P+l0boMKWXTx4tRhx9
-	ttDWLv1WuVmRMj3woslSyb02khTLb6MrDnPDX1n5Mucbn3rIEAnKnh87JqrmHSjIZG03
-	gszuOQVvA7y8EJpA7EFa0qSC6Ktca3KNBVVDcIJgd70e0AD8LBkHw9/oryOT+qjbGRTt
-	EB0Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-	:references:organization:mime-version:content-transfer-encoding;
-	bh=XZSaJ5VDqYOiqmLkR1fnCMcDj3rfxVej3CaKyFExzVg=;
-	b=gsYBhFonPOEQ023oY7old7wITeEtne8jDeDvRNoZFZDsekSAwWlKZZk67XOucnY/qv
-	lNZK+uJvAzyCk6RCPHpVXB4X4MfOQ1AUSoaT9Lf3vA43yNZ4fRV7FQRmRySqbY5e42th
-	ZjpXBZds3e21++0SCNLzp8ZGWEKiz8z73F0zwenZqmxBX0wbKvI2Ae2IrFydTnjJ+ObQ
-	jZUbRSoTNV3JMwTrwsPUakakLeUNRB/4ECsrfxzHnkt5kSzPFOTc15SF66PYyxwhZh9k
-	NKCC94zCWgt7yKevSk6icgpvwhfPZGcerFNepj7EdhhkC5echDvWYbalid8kcC4/lZLu
-	jrOg==
-X-Gm-Message-State: ABUngvdyA0Xs72MwCPyqTk+fKaTC6TVlkoIEWIKNmK128DxKDv1MxFyuSAgAeqPcs70YQrnz
-X-Received: by 10.107.178.137 with SMTP id b131mr17683327iof.175.1477387937382;
-	Tue, 25 Oct 2016 02:32:17 -0700 (PDT)
-Received: from pohly-mobl1 (p5DE8EF09.dip0.t-ipconnect.de. [93.232.239.9])
-	by smtp.gmail.com with ESMTPSA id
-	v197sm1002048ita.0.2016.10.25.02.32.15
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 25 Oct 2016 02:32:16 -0700 (PDT)
-Message-ID: <1477387933.21499.74.camel@intel.com>
-From: Patrick Ohly <patrick.ohly@intel.com>
-To: "Blaettler, Michael" <michael.blaettler@siemens.com>
-Date: Tue, 25 Oct 2016 11:32:13 +0200
-In-Reply-To: <347AAC56F29ACA4EA31B39C2109A6FE702F12C61@DEFTHW99EH2MSX.ww902.siemens.net>
-References: <347AAC56F29ACA4EA31B39C2109A6FE702F1298D@DEFTHW99EH2MSX.ww902.siemens.net>
-	<1477314859.21499.20.camel@intel.com>
-	<347AAC56F29ACA4EA31B39C2109A6FE702F12C61@DEFTHW99EH2MSX.ww902.siemens.net>
-Organization: Intel GmbH, Dornacher Strasse 1, D-85622 Feldkirchen/Munich
-X-Mailer: Evolution 3.12.9-1+b1 
-Mime-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: curl-native and ca-bundle
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from co300216-co-outbound.net.avaya.com
+	(co300216-co-outbound.net.avaya.com [198.152.13.100])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 51AF2E00912
+	for <yocto@yoctoproject.org>; Tue, 25 Oct 2016 04:24:30 -0700 (PDT)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2ExAgAxQA9Y/yYyC4dcHgYMgnQhGwEBA?=
+	=?us-ascii?q?QEBHViBBAG4aoIHhiECgXo/FAECAQEBAQEBAQNfHQuEZgMSG14BFRVWJgEEGxq?=
+	=?us-ascii?q?IMQGkdIUYl1MMASSGPoRUhEmDLoIvBZoWAYE6mGWFepEJHjaFYIgDAX8BAQE?=
+X-IPAS-Result: =?us-ascii?q?A2ExAgAxQA9Y/yYyC4dcHgYMgnQhGwEBAQEBHViBBAG4aoI?=
+	=?us-ascii?q?HhiECgXo/FAECAQEBAQEBAQNfHQuEZgMSG14BFRVWJgEEGxqIMQGkdIUYl1MMA?=
+	=?us-ascii?q?SSGPoRUhEmDLoIvBZoWAYE6mGWFepEJHjaFYIgDAX8BAQE?=
+X-IronPort-AV: E=Sophos;i="5.31,545,1473134400"; 
+	d="scan'208,217";a="200152429"
+Received: from unknown (HELO p-us1-erheast-smtpauth.us1.avaya.com)
+	([135.11.50.38]) by co300216-co-outbound.net.avaya.com with ESMTP;
+	25 Oct 2016 07:24:27 -0400
+X-OutboundMail_SMTP: 1
+Received: from unknown (HELO AZ-FFEXHC01.global.avaya.com) ([135.64.58.11])
+	by p-us1-erheast-out.us1.avaya.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
+	25 Oct 2016 07:24:27 -0400
+Received: from AZ-FFEXMB01.global.avaya.com ([fe80::39ee:75fe:e67a:cf4a]) by
+	AZ-FFEXHC01.global.avaya.com ([135.64.58.11]) with mapi id
+	14.03.0319.002; Tue, 25 Oct 2016 13:24:26 +0200
+From: "Bipnesh, Abhinav (Abhinav)" <abhinavbipnesh@avaya.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Requires section of RPM Spec
+Thread-Index: AdIuslIBudgP1/mpTm+w9PvJafxQxQ==
+Date: Tue, 25 Oct 2016 11:24:25 +0000
+Message-ID: <F38A866CD026F746A3BF0928A84397BE3E7DC7A0@AZ-FFEXMB01.global.avaya.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [135.64.58.48]
+MIME-Version: 1.0
+Subject: Requires section of RPM Spec
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -77,32 +58,126 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 25 Oct 2016 09:32:22 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 25 Oct 2016 11:24:34 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_F38A866CD026F746A3BF0928A84397BE3E7DC7A0AZFFEXMB01globa_"
 
-On Tue, 2016-10-25 at 05:49 +0000, Blaettler, Michael wrote:
-> Hi Patrick
-> 
-> What do you think of removing the --with-ca-bundle as a solution for
-> curl-native? On my machine it works without problems.
+--_000_F38A866CD026F746A3BF0928A84397BE3E7DC7A0AZFFEXMB01globa_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-What path does it use then? Something that configure determines based on
-the current machine (sorry, I'm lazy^Wbusy right now and haven't
-checked)?
+Hi All,
 
-I suspect that this won't work when moving the resulting lib through
-sstate from one Linux distro to another if the location of the bundle
-file is different on those two distros.
+Is there a way we can avoid pre-populating the Requires section of the gene=
+rated RPM Spec from a recipe?
+I have not set any RDEPENDS or other such section but still the section get=
+ populated. Below is an example
 
--- 
-Best Regards, Patrick Ohly
+Requires: libcrypto.so.1.0.0(OPENSSL_1.0.2d)
+Requires: libdl.so.2
+Requires: libuuid1 >=3D 2.26.2
+Requires(pre): libgcc1 >=3D 4.9.2
+Requires(pre): libssl1.0.0 >=3D 1.0.2h
+Requires(pre): libgcc_s.so.1(GCC_3.0)
+Requires(pre): libc.so.6(GLIBC_2.1)
+Requires(pre): /usr/bin/perl
+Requires(pre): libboost_system.so.1.58.0
+Requires(pre): libstdc++.so.6(GLIBCXX_3.4.20)
+Requires(pre): libc.so.6(GLIBC_2.3)
 
-The content of this message is my personal opinion only and although
-I am an employee of Intel, the statements I make here in no way
-represent Intel's position on the issue, nor am I authorized to speak
-on behalf of Intel on this matter.
+We just want to avoid populating the sections.
 
+Any pointers in this direction will be great help.
 
+Thanks,
+Abhinav
 
+--_000_F38A866CD026F746A3BF0928A84397BE3E7DC7A0AZFFEXMB01globa_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi All,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Is there a way we can avoid pre-populating the Requi=
+res section of the generated RPM Spec from a recipe?<o:p></o:p></p>
+<p class=3D"MsoNormal">I have not set any RDEPENDS or other such section bu=
+t still the section get populated. Below is an example<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Requires: libcrypto.so.1.0.0(OPENSSL_1.0.2d)<o:p></o=
+:p></p>
+<p class=3D"MsoNormal">Requires: libdl.so.2<o:p></o:p></p>
+<p class=3D"MsoNormal">Requires: libuuid1 &gt;=3D 2.26.2<o:p></o:p></p>
+<p class=3D"MsoNormal">Requires(pre): libgcc1 &gt;=3D 4.9.2<o:p></o:p></p>
+<p class=3D"MsoNormal">Requires(pre): libssl1.0.0 &gt;=3D 1.0.2h<o:p></o:p>=
+</p>
+<p class=3D"MsoNormal">Requires(pre): libgcc_s.so.1(GCC_3.0)<o:p></o:p></p>
+<p class=3D"MsoNormal">Requires(pre): libc.so.6(GLIBC_2.1)<o:p></o:p></p>
+<p class=3D"MsoNormal">Requires(pre): /usr/bin/perl<o:p></o:p></p>
+<p class=3D"MsoNormal">Requires(pre): libboost_system.so.1.58.0<o:p></o:p><=
+/p>
+<p class=3D"MsoNormal">Requires(pre): libstdc&#43;&#43;.so.6(GLIBCXX_3.4.20=
+)<o:p></o:p></p>
+<p class=3D"MsoNormal">Requires(pre): libc.so.6(GLIBC_2.3)<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">We just want to avoid populating the sections.<o:p><=
+/o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Any pointers in this direction will be great help.<o=
+:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal">Abhinav<o:p></o:p></p>
+</div>
+</body>
+</html>
+
+--_000_F38A866CD026F746A3BF0928A84397BE3E7DC7A0AZFFEXMB01globa_--
