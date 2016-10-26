@@ -1,65 +1,33 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <M.Gielen@celestia-sts.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 389E3E00D54; Wed, 26 Oct 2016 08:00:44 -0700 (PDT)
+	id 24298E00D44; Wed, 26 Oct 2016 08:36:55 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (akuster808[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.192.178 listed in list.dnswl.org]
-Received: from mail-pf0-f178.google.com (mail-pf0-f178.google.com
-	[209.85.192.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 00C41E00D49
-	for <yocto@yoctoproject.org>; Wed, 26 Oct 2016 08:00:40 -0700 (PDT)
-Received: by mail-pf0-f178.google.com with SMTP id n85so24674713pfi.1
-	for <yocto@yoctoproject.org>; Wed, 26 Oct 2016 08:00:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:subject:date:message-id;
-	bh=V4TVxevK7MfiNU9zgjd5nPpW0GpYGwCjAIJ8Bhj7CRw=;
-	b=09t/DDs7upq35sij+Y76jyQmJ7h4zPJexGNV6yup3jxbqZl9+40uJPTIpauLOb+3pC
-	104cNulB0SJjgdOyjx45O1iyeqiK5UQsQgC5sXBKPDQuaUQn8g5AULUqtNMU5vmSR5+Y
-	XVoq72/b1LLWPiDflFYQJAMVuVkPlLIyO/0NO9lyfs/HzeSfmVlqWrx3/Bs5bhgni1Zn
-	BBTRSG4xNSW2OrAiYBYJn/2MbCReCNPLEdQW84Xu66uypDTgmgPUcl9E9/DaKLXkhFRw
-	k2k042M0MR5sT0GjpYsj7bkCPZv1gPmW6AH9FmFohXo8VdSisI0lCbNyBUH+gDoL1UnC
-	xquw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:to:subject:date:message-id;
-	bh=V4TVxevK7MfiNU9zgjd5nPpW0GpYGwCjAIJ8Bhj7CRw=;
-	b=ca6B3kuJKi2AZjVYhTzVw0bR50Dex0jE2WE97D5UgNHZC4rEhGrTLAyKJd9pkyt3T4
-	TigXe2JVhv/f7HTAIdt+JbudOE5fiOCg1vO6pnBTCjvDtriE0K3VZo7o5moD6FgyFWGr
-	5a7LiQP9hDZu4Nt2WPFHp2NvOmApMCGflJBzvU87XSccJfZksb/Ohp2LYJbN2B8F0agF
-	bJ72kYHIsRzONsGHSH2izxJhkkLLrVyDUOu3CAG7xWkSgIOOd2b6sX+qwnq5sM/2cUi7
-	1D7H+RoT6aBdN3f/PEkVx5koJIPVjJaA9ONJVIc69dhH/O+0er88AxTp6TThIs8t+mUy
-	P5SQ==
-X-Gm-Message-State: ABUngvdFFrkflPcpAacp0pF+3CX9/ZhCJZXNph+2An6vDl4N+ju98OgPf5Med8pPdjX2jA==
-X-Received: by 10.99.159.17 with SMTP id g17mr4145763pge.149.1477494039810;
-	Wed, 26 Oct 2016 08:00:39 -0700 (PDT)
-Received: from akuster-ThinkPad-X240.hsd1.ca.comcast.net
-	([2601:202:4001:9ea0:c57:6cb7:8938:cc04])
-	by smtp.gmail.com with ESMTPSA id
-	y189sm4977506pfy.34.2016.10.26.08.00.38
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Wed, 26 Oct 2016 08:00:39 -0700 (PDT)
-From: Armin Kuster <akuster808@gmail.com>
-To: akuster808@gmail.com,
-	yocto@yoctoproject.org
-Date: Wed, 26 Oct 2016 08:00:37 -0700
-Message-Id: <1477494038-2895-1-git-send-email-akuster808@gmail.com>
-X-Mailer: git-send-email 2.7.4
-Subject: [meta-security][PATCH 1/2] smack: Add new package
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+X-Greylist: delayed 63 seconds by postgrey-1.32 at yocto-www;
+	Wed, 26 Oct 2016 08:36:53 PDT
+Received: from MAIL.SSBV.COM (mail.ssbv.com [87.213.108.114])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E74FDE00D3F
+	for <yocto@yoctoproject.org>; Wed, 26 Oct 2016 08:36:53 -0700 (PDT)
+Received: from SSBV0001.SSBV.NOORDWIJK ([fe80::f514:d7a0:5fd7:60e3]) by
+	SSBV0001.SSBV.NOORDWIJK ([fe80::f514:d7a0:5fd7:60e3%11]) with mapi;
+	Wed, 26 Oct 2016 17:35:49 +0200
+From: "Marcel Gielen [Celestia-STS]" <M.Gielen@celestia-sts.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: How to proceed with kernel-fitimage and INITRAMFS_IMAGE
+Thread-Index: AdIvncuijzOkrrCHSauQe/7v+xHhgA==
+Date: Wed, 26 Oct 2016 15:35:47 +0000
+Message-ID: <66FF3836D9E3F84186A25972B1DABA540288EC489B@SSBV0001.SSBV.NOORDWIJK>
+Accept-Language: en-US, en-GB
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+MIME-Version: 1.0
+Subject: How to proceed with kernel-fitimage and INITRAMFS_IMAGE
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,100 +39,116 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 26 Oct 2016 15:00:44 -0000
+X-List-Received-Date: Wed, 26 Oct 2016 15:36:55 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_66FF3836D9E3F84186A25972B1DABA540288EC489BSSBV0001SSBVN_"
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- recipes-security/smack/files/run-ptest             |  3 ++
- .../smack/files/smack_generator_make_fixup.patch   | 18 ++++++++++
- recipes-security/smack/smack_1.3.0.bb              | 42 ++++++++++++++++++++++
- 3 files changed, 63 insertions(+)
- create mode 100644 recipes-security/smack/files/run-ptest
- create mode 100644 recipes-security/smack/files/smack_generator_make_fixup.patch
- create mode 100644 recipes-security/smack/smack_1.3.0.bb
+--_000_66FF3836D9E3F84186A25972B1DABA540288EC489BSSBV0001SSBVN_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/recipes-security/smack/files/run-ptest b/recipes-security/smack/files/run-ptest
-new file mode 100644
-index 0000000..049a9b4
---- /dev/null
-+++ b/recipes-security/smack/files/run-ptest
-@@ -0,0 +1,3 @@
-+#!/bin/sh
-+./tests/make_policies.bash ./tests/generator
-+./tests/make_policies.bash ./tests/generator labels
-diff --git a/recipes-security/smack/files/smack_generator_make_fixup.patch b/recipes-security/smack/files/smack_generator_make_fixup.patch
-new file mode 100644
-index 0000000..8bafc5e
---- /dev/null
-+++ b/recipes-security/smack/files/smack_generator_make_fixup.patch
-@@ -0,0 +1,18 @@
-+Upstream-Status: Pending
-+
-+Signed-off-by: Armin Kuster <akuster808@gmail.com>
-+
-+
-+Index: git/tests/Makefile
-+===================================================================
-+--- git.orig/tests/Makefile
-++++ git/tests/Makefile
-+@@ -4,7 +4,7 @@ clean:
-+ 	rm -rf ./out ./generator
-+ 
-+ generator: generator.c
-+-	gcc -Wall -O3 generator.c -o ./generator
-++	${CC}  generator.c -o ./generator
-+ 
-+ policies: ./generator ./make_policies.bash
-+ 	./make_policies.bash ./generator
-diff --git a/recipes-security/smack/smack_1.3.0.bb b/recipes-security/smack/smack_1.3.0.bb
-new file mode 100644
-index 0000000..46d305e
---- /dev/null
-+++ b/recipes-security/smack/smack_1.3.0.bb
-@@ -0,0 +1,42 @@
-+DESCRIPTION = "Selection of tools for developers working with Smack"
-+HOMEPAGE = "https://github.com/smack-team/smack"
-+SECTION = "Security/Access Control"
-+LICENSE = "LGPL-2.1"
-+
-+LIC_FILES_CHKSUM = "file://COPYING;md5=4fbd65380cdd255951079008b364516c"
-+
-+SRCREV = "478f68d182c5070f510482194d3e097b11c21907"
-+SRC_URI = " \
-+	git://github.com/smack-team/smack.git;branch=v1.3.x \
-+	file://smack_generator_make_fixup.patch \
-+	file://run-ptest"
-+
-+PV = "1.3.0+git${SRCPV}"
-+
-+inherit autotools pkgconfig systemd ptest
-+
-+S = "${WORKDIR}/git"
-+
-+PACKAGECONFIG ??= ""
-+PACKAGECONG += "${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'systemd', '', d)}"
-+
-+PACKAGECONFIG[systemd] = "--with-systemdsystemunitdir=DIR"
-+PACKAGECONFIG[systemd] = "--with-systemdsystemunitdir=${systemd_system_unitdir}, --without-systemdsystemunitdir, systemd"
-+
-+do_compile_append () {
-+	oe_runmake -C ${S}/tests generator
-+}
-+
-+do_install_ptest () {
-+	install -d ${D}${PTEST_PATH}/tests
-+	install ${S}/tests/generator ${D}/${PTEST_PATH}/tests
-+	install ${S}/tests/generate-rules.sh ${D}${PTEST_PATH}/tests
-+	install ${S}/tests/make_policies.bash ${D}${PTEST_PATH}/tests
-+}
-+
-+FILES_${PN}-ptest += "generator"
-+
-+RDEPENDS_${PN} += "coreutils"
-+RDEPENDS_${PN}-ptest += "make bash bc"
-+
-+BBCLASSEXTEND = "native"
--- 
-2.7.4
+I am using poky Krogoth and try to generate a fitImage including an initram=
+fs.
+Whatever I try I end up with circular dependendies.
+
+My image recipe is based on core-image
+
+In my local conf I have the following:
+
+KERNEL_CLASSES +=3D "kernel-fitimage"
+INITRAMFS_IMAGE =3D "image-recovery"
+INITRAMFS_IMAGE_BUNDLE =3D "1"
+
+And in my image recipe I tried:
+
+EXTRA_IMAGEDEPENDS =3D ""
+RDEPENDS_kernel-base =3D ""
+
+But still end up with circular dependencies.
+
+What is the correct configuration to be able to build a fitimage with an in=
+itramfs included ?
+
+And what shall be the bitbake command... the kernel or the image name ?
+
+Any suggestions ?
 
 
+
+
+--_000_66FF3836D9E3F84186A25972B1DABA540288EC489BSSBV0001SSBVN_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40"><head><meta http-equiv=3DContent-Type content=
+=3D"text/html; charset=3Dus-ascii"><meta name=3DGenerator content=3D"Micros=
+oft Word 15 (filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-GB link=3D"#0563C1=
+" vlink=3D"#954F72"><div class=3DWordSection1><p class=3DMsoNormal>I am usi=
+ng poky Krogoth and try to generate a fitImage including an initramfs. <br>=
+Whatever I try I end up with circular dependendies. <br><br>My image recipe=
+ is based on core-image<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p=
+></p><p class=3DMsoNormal>In my local conf I have the following:<o:p></o:p>=
+</p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>KERNEL_C=
+LASSES +=3D &quot;kernel-fitimage&quot;<o:p></o:p></p><p class=3DMsoNormal>=
+INITRAMFS_IMAGE =3D &quot;image-recovery&quot;<o:p></o:p></p><p class=3DMso=
+Normal>INITRAMFS_IMAGE_BUNDLE =3D &quot;1&quot;<o:p></o:p></p><p class=3DMs=
+oNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>And in my image recipe I =
+tried:<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DM=
+soNormal>EXTRA_IMAGEDEPENDS =3D &quot;&quot;<o:p></o:p></p><p class=3DMsoNo=
+rmal>RDEPENDS_kernel-base =3D &quot;&quot;<o:p></o:p></p><p class=3DMsoNorm=
+al><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>But still end up with circular=
+ dependencies. <o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal>What is the correct configuration to be able to build a f=
+itimage with an initramfs included ?<o:p></o:p></p><p class=3DMsoNormal><o:=
+p>&nbsp;</o:p></p><p class=3DMsoNormal>And what shall be the bitbake comman=
+d&#8230; the kernel or the image name ?<o:p></o:p></p><p class=3DMsoNormal>=
+<o:p>&nbsp;</o:p></p><p class=3DMsoNormal>Any suggestions ?<o:p></o:p></p><=
+p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal><o:p>&nbsp;</=
+o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>=
+
+--_000_66FF3836D9E3F84186A25972B1DABA540288EC489BSSBV0001SSBVN_--
