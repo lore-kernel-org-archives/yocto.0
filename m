@@ -1,63 +1,58 @@
-Return-Path: <xmoseby@yahoo.se>
+Return-Path: <sona.sarmadi@enea.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 90AD7E00C7A; Thu, 27 Oct 2016 02:06:53 -0700 (PDT)
+	id 2A63DE00C97; Thu, 27 Oct 2016 04:03:23 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (xmoseby[at]yahoo.se)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [212.82.96.242 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [185.38.180.37 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from nm19-vm9.bullet.mail.ir2.yahoo.com
-	(nm19-vm9.bullet.mail.ir2.yahoo.com [212.82.96.242])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BFCB7E00C0B
-	for <yocto@yoctoproject.org>; Thu, 27 Oct 2016 02:06:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.se; s=s2048;
-	t=1477559208; bh=fSHRLTyBNSjQFCAMKk1ZfPZ1mY7HqlabtHMCNPLPIOQ=;
-	h=Date:From:Reply-To:To:Subject:References:From:Subject;
-	b=oAjnhTa7mNz9+VMLRmt3/2WUYD2m8/CxbGLUC+Vuqdvd5OCzGEI6iAuu7HjpOyfpmvEcNFgCnmsiVJj4dhLXZ9ifiMY6SBIj+pcqzLURIDRgvg8LTNXqHTSQcvO59H3yVjPKVobYujGkdKwsxBCAjrOKX5QMC9tIvMwNwto8gH8NOFJ/ZyZrZd+XxR4vkYt46sdZ0Qvvs5UNNqXLhdwxFwzE3KOII2MAgl/+At/9ke3tsw4HfgmxhUfiUHQfBwD40qP2EfXndPw4fE90VeNDW1WArF1AGqcwrwfz7GoaV8NN1Lifh8DlZae2wnu1XhhRt4aWz1rpPW5pMSRNXKlGfg==
-Received: from [212.82.98.58] by nm19.bullet.mail.ir2.yahoo.com with NNFMP;
-	27 Oct 2016 09:06:48 -0000
-Received: from [212.82.98.95] by tm11.bullet.mail.ir2.yahoo.com with NNFMP;
-	27 Oct 2016 09:06:48 -0000
-Received: from [127.0.0.1] by omp1032.mail.ir2.yahoo.com with NNFMP;
-	27 Oct 2016 09:06:47 -0000
-X-Yahoo-Newman-Property: ymail-3
-X-Yahoo-Newman-Id: 998725.77021.bm@omp1032.mail.ir2.yahoo.com
-X-YMail-OSG: OEPkClQVM1nQb.lrmqxh6W5UJ3Ufqzwlco8o3nSjwYslSsmGvNtEfA1o8X7iFzi
-	sKe1aye8qea6T4mpWmyyAuh6K2duxOQTuY2_I.AYWSxPFQIrOUxYCIKjHFTgtLoVeX2w1P1T_RS8
-	vX5QL0_kWolhFW9qLDUtTtLmwWEa1bjVmfWlOdxHRgsrKSwuDqFH.dXAxkU1rSLMMJbBnvXvqUWp
-	k1Z3xPEQRXh07y3a8WLPwIJENRlx_0jLBEcxm1tI4L4Ya3BkIDkTj3CnU_QRvwyD2L_fNH52LxUA
-	XOYwOMsewrDqZWks1U1IHcz2W6X351y6bfAXxL4Sb9CS2WLkT8NyYPOzM.uKHvQU1Y.YbE59_T7r
-	WmIpe0Owq4tg2OSIKIbYUavDEkd31J_HbrKLWH0CkoL.OLuDUfaiCPPn66zHyyTwPYYQfbmtPm88
-	PbnQhKWnP1amQf.J8fZC7qrSVNTmVuUybvN7quVwuyghc740XNco44MvNyBPHTQBQKr0eg2lFD84
-	qZH8qPq9IaVj9YSDs0d8a
-Received: from jws700032.mail.ir2.yahoo.com by
-	sendmailws101b.mail.ir2.yahoo.com;
-	Thu, 27 Oct 2016 09:06:47 +0000; 1477559207.357
-Date: Thu, 27 Oct 2016 09:06:46 +0000 (UTC)
-From: tony moseby <xmoseby@yahoo.se>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Message-ID: <77256883.3916544.1477559206746@mail.yahoo.com>
+Received: from smtp-out10.electric.net (smtp-out10.electric.net
+	[185.38.180.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C5CF4E00C7A
+	for <yocto@yoctoproject.org>; Thu, 27 Oct 2016 04:03:17 -0700 (PDT)
+Received: from 1bziSp-0002fa-TU by out10c.electric.net with emc1-ok (Exim 4.87)
+	(envelope-from <sona.sarmadi@enea.com>)
+	id 1bziSp-0002hb-UO; Thu, 27 Oct 2016 04:03:15 -0700
+Received: by emcmailer; Thu, 27 Oct 2016 04:03:15 -0700
+Received: from [192.36.1.72] (helo=mx-3.enea.com)
+	by out10c.electric.net with esmtps (TLSv1:AES128-SHA:128) (Exim 4.87)
+	(envelope-from <sona.sarmadi@enea.com>)
+	id 1bziSp-0002fa-TU; Thu, 27 Oct 2016 04:03:15 -0700
+Received: from SESTOEX04.enea.se ([fe80::bc2d:9299:d6b2:d0b7]) by
+	SESTOEX08.enea.se ([fe80::1c3:4003:dc47:23c0%11]) with mapi id
+	14.03.0294.000; Thu, 27 Oct 2016 13:03:14 +0200
+From: Sona Sarmadi <sona.sarmadi@enea.com>
+To: Scott Rifenbark <srifenbark@gmail.com>, "mariano.lopez@intel.com"
+	<mariano.lopez@intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: cve-checker tool
+Thread-Index: AdIwLntiYxJel4UHQ6ebcs09cROndQAEuizQ
+Date: Thu, 27 Oct 2016 11:03:14 +0000
+Message-ID: <3230301C09DEF9499B442BBE162C5E48ABEA948F@SESTOEX04.enea.se>
+Accept-Language: sv-SE, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.16.142.231]
 MIME-Version: 1.0
-References: <77256883.3916544.1477559206746.ref@mail.yahoo.com>
-Subject: can not compile
+X-Outbound-IP: 192.36.1.72
+X-Env-From: sona.sarmadi@enea.com
+X-Proto: esmtps
+X-Revdns: mx-3.enea.com
+X-HELO: mx-3.enea.com
+X-TLS: TLSv1:AES128-SHA:128
+X-Authenticated_ID: 
+X-PolicySMART: 6551647
+X-Virus-Status: Scanned by VirusSMART (c)
+X-Virus-Status: Scanned by VirusSMART (s)
+Subject: Re: cve-checker tool
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: tony moseby <xmoseby@yahoo.se>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -66,196 +61,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 27 Oct 2016 09:06:53 -0000
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_3916543_147948607.1477559206742"
-
-------=_Part_3916543_147948607.1477559206742
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 27 Oct 2016 11:03:23 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hello,
-I am new with yocto and have a problem when using eclipse plugin,the proble=
-m is=C2=A0that I can not compile(msg received is "compiler can not create e=
-xecutables"). I have looked through the logfile generated by eclipse and th=
-ere are some obvious errors, where some files are missing in yocto.Can some=
-one guide me on what have I missed to do, I did follow the instruction to 1=
-00%(I think).Thanks for your helpK
 
----------------------------------------------------------------------------=
---------------------------compilation terminated.
-configure:3269: $? =3D 1
-configure:3258: arm-fsl-linux-gnueabi-gcc=C2=A0 -march=3Darmv7-a -mthumb-in=
-terwork -mfloat-abi=3Dhard -mfpu=3Dneon -mtune=3Dcortex-a7 --sysroot=3D/opt=
-/fsl-networking/sysroots/cortexa7hf-vfp-neon-fsl-linux-gnueabi -qversion >&=
-5
-arm-fsl-linux-gnueabi-gcc: error: unrecognized command line option '-qversi=
-on'
-arm-fsl-linux-gnueabi-gcc: fatal error: no input files
-compilation terminated.
-configure:3269: $? =3D 1
-configure:3289: checking whether the C compiler works
-configure:3311: arm-fsl-linux-gnueabi-gcc=C2=A0 -march=3Darmv7-a -mthumb-in=
-terwork -mfloat-abi=3Dhard -mfpu=3Dneon -mtune=3Dcortex-a7 --sysroot=3D/opt=
-/fsl-networking/sysroots/cortexa7hf-vfp-neon-fsl-linux-gnueabi=C2=A0 -g -O0=
-=C2=A0 --sysroot=3D/opt/fsl-networking=C2=A0 --sysroot=3D/opt/fsl-networkin=
-g=C2=A0 --sysroot=3D/opt/fsl-networking conftest.c=C2=A0 >&5
-/opt/fsl-networking/sysroots/i686-fslsdk-linux/usr/bin/arm-fsl-linux-gnueab=
-i/../../libexec/arm-fsl-linux-gnueabi/gcc/arm-fsl-linux-gnueabi/4.8.3/ld: c=
-annot find crt1.o: No such file or directory
-/opt/fsl-networking/sysroots/i686-fslsdk-linux/usr/bin/arm-fsl-linux-gnueab=
-i/../../libexec/arm-fsl-linux-gnueabi/gcc/arm-fsl-linux-gnueabi/4.8.3/ld: c=
-annot find crti.o: No such file or directory
-/opt/fsl-networking/sysroots/i686-fslsdk-linux/usr/bin/arm-fsl-linux-gnueab=
-i/../../libexec/arm-fsl-linux-gnueabi/gcc/arm-fsl-linux-gnueabi/4.8.3/ld: c=
-annot find crtbegin.o: No such file or directory
-/opt/fsl-networking/sysroots/i686-fslsdk-linux/usr/bin/arm-fsl-linux-gnueab=
-i/../../libexec/arm-fsl-linux-gnueabi/gcc/arm-fsl-linux-gnueabi/4.8.3/ld: c=
-annot find -lgcc
-/opt/fsl-networking/sysroots/i686-fslsdk-linux/usr/bin/arm-fsl-linux-gnueab=
-i/../../libexec/arm-fsl-linux-gnueabi/gcc/arm-fsl-linux-gnueabi/4.8.3/ld: c=
-annot find -lgcc_s
-/opt/fsl-networking/sysroots/i686-fslsdk-linux/usr/bin/arm-fsl-linux-gnueab=
-i/../../libexec/arm-fsl-linux-gnueabi/gcc/arm-fsl-linux-gnueabi/4.8.3/ld: c=
-annot find -lc
-/opt/fsl-networking/sysroots/i686-fslsdk-linux/usr/bin/arm-fsl-linux-gnueab=
-i/../../libexec/arm-fsl-linux-gnueabi/gcc/arm-fsl-linux-gnueabi/4.8.3/ld: c=
-annot find -lgcc
-/opt/fsl-networking/sysroots/i686-fslsdk-linux/usr/bin/arm-fsl-linux-gnueab=
-i/../../libexec/arm-fsl-linux-gnueabi/gcc/arm-fsl-linux-gnueabi/4.8.3/ld: c=
-annot find -lgcc_s
-/opt/fsl-networking/sysroots/i686-fslsdk-linux/usr/bin/arm-fsl-linux-gnueab=
-i/../../libexec/arm-fsl-linux-gnueabi/gcc/arm-fsl-linux-gnueabi/4.8.3/ld: c=
-annot find crtend.o: No such file or directory
-/opt/fsl-networking/sysroots/i686-fslsdk-linux/usr/bin/arm-fsl-linux-gnueab=
-i/../../libexec/arm-fsl-linux-gnueabi/gcc/arm-fsl-linux-gnueabi/4.8.3/ld: c=
-annot find crtn.o: No such file or directory
-collect2: error: ld returned 1 exit status
-configure:3315: $? =3D 1
-configure:3353: result: no
-configure: failed program was:
-| /* confdefs.h */
-| #define PACKAGE_NAME "pink"
-| #define PACKAGE_TARNAME "pink"
-| #define PACKAGE_VERSION "0.1.0"
-| #define PACKAGE_STRING "pink 0.1.0"
-| #define PACKAGE_BUGREPORT ""
-| #define PACKAGE_URL ""
-| #define PACKAGE "pink"
-| #define VERSION "0.1.0"
-| /* end confdefs.h.=C2=A0 */
-|=C2=A0
-| int
-| main ()
-| {
-|=C2=A0
-|=C2=A0=C2=A0 ;
-|=C2=A0=C2=A0 return 0;
-| }
-configure:3358: error: in `/home/guia/workspace/pink':
-configure:3360: error: C compiler cannot create executables
-See `config.log' for more details
 
-------=_Part_3916543_147948607.1477559206742
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+> -----Original Message-----
+> From: Sona Sarmadi
+> Sent: den 27 oktober 2016 10:57
+> To: Scott Rifenbark <srifenbark@gmail.com>; 'mariano.lopez@intel.com'
+> <mariano.lopez@intel.com>; yocto@yoctoproject.org
+> Subject: cve-checker tool
+>=20
+> Hi guys,
+>=20
+> I have some questions regarding cve-check tool. I don't find anything
+> about this tool in Yocto
+> 2.2 release, dose documentation mention this tool and how to use it?
+>=20
+> Is this tool planned to be integrated with daily build so the Yocto proje=
+ct
+> can detect Not addressed CVEs automatically?
+>=20
+> Mariano:
+> Does this tool look at CVE tag inside the recipe as well or only checks t=
+he
+> package version?
+>=20
+> Can this tool be used together with "meta-security-isafw" and get a fancy
+> report?
 
-<html><head></head><body><div style=3D"color:#000; background-color:#fff; f=
-ont-family:HelveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, =
-sans-serif;font-size:16px"><div id=3D"yui_3_16_0_ym19_1_1477558529174_19167=
-">Hello,</div><div id=3D"yui_3_16_0_ym19_1_1477558529174_19167"><br></div><=
-div id=3D"yui_3_16_0_ym19_1_1477558529174_19167">I am new with yocto and ha=
-ve a problem when using eclipse plugin,the problem is&nbsp;</div><div id=3D=
-"yui_3_16_0_ym19_1_1477558529174_19167" dir=3D"ltr">that I can not compile(=
-msg received is "compiler can not create executables"). I have looked throu=
-gh the logfile generated by eclipse and there are some obvious errors, wher=
-e some files are missing in yocto.Can someone guide me on what have I misse=
-d to do, I did follow the instruction to 100%(I think).</div><div id=3D"yui=
-_3_16_0_ym19_1_1477558529174_19167" dir=3D"ltr">Thanks for your help</div><=
-div id=3D"yui_3_16_0_ym19_1_1477558529174_19167" dir=3D"ltr">K</div><div id=
-=3D"yui_3_16_0_ym19_1_1477558529174_19167" dir=3D"ltr"><br></div><div id=3D=
-"yui_3_16_0_ym19_1_1477558529174_19167" dir=3D"ltr"><br></div><div style=3D=
-"margin-top: 0px; margin-bottom: 0px; border: 0px; font-size: 15px; font-fa=
-mily: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;Lucida Grande&quo=
-t;, sans-serif; vertical-align: baseline; color: rgb(81, 98, 111);" id=3D"y=
-ui_3_16_0_ym19_1_1477558529174_19336">-------------------------------------=
-----------------------------------------------------------------</div><div =
-style=3D"margin-top: 0px; margin-bottom: 0px; border: 0px; font-size: 15px;=
- font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;Lucida Gr=
-ande&quot;, sans-serif; vertical-align: baseline; color: rgb(81, 98, 111);"=
- dir=3D"ltr" id=3D"yui_3_16_0_ym19_1_1477558529174_19337">compilation termi=
-nated.<br id=3D"yui_3_16_0_ym19_1_1477558529174_19338">configure:3269: $? =
-=3D 1<br id=3D"yui_3_16_0_ym19_1_1477558529174_19339">configure:3258: arm-f=
-sl-linux-gnueabi-gcc&nbsp; -march=3Darmv7-a -mthumb-interwork -mfloat-abi=
-=3Dhard -mfpu=3Dneon -mtune=3Dcortex-a7 --sysroot=3D/opt/fsl-networking/sys=
-roots/cortexa7hf-vfp-neon-fsl-linux-gnueabi -qversion &gt;&amp;5<br id=3D"y=
-ui_3_16_0_ym19_1_1477558529174_19340">arm-fsl-linux-gnueabi-gcc: error: unr=
-ecognized command line option '-qversion'<br id=3D"yui_3_16_0_ym19_1_147755=
-8529174_19341">arm-fsl-linux-gnueabi-gcc: fatal error: no input files<br id=
-=3D"yui_3_16_0_ym19_1_1477558529174_19342">compilation terminated.<br id=3D=
-"yui_3_16_0_ym19_1_1477558529174_19343">configure:3269: $? =3D 1<br id=3D"y=
-ui_3_16_0_ym19_1_1477558529174_19344">configure:3289: checking whether the =
-C compiler works<br id=3D"yui_3_16_0_ym19_1_1477558529174_19345">configure:=
-3311: arm-fsl-linux-gnueabi-gcc&nbsp; -march=3Darmv7-a -mthumb-interwork -m=
-float-abi=3Dhard -mfpu=3Dneon -mtune=3Dcortex-a7 --sysroot=3D/opt/fsl-netwo=
-rking/sysroots/cortexa7hf-vfp-neon-fsl-linux-gnueabi&nbsp; -g -O0&nbsp; --s=
-ysroot=3D/opt/fsl-networking&nbsp; --sysroot=3D/opt/fsl-networking&nbsp; --=
-sysroot=3D/opt/fsl-networking conftest.c&nbsp; &gt;&amp;5<br id=3D"yui_3_16=
-_0_ym19_1_1477558529174_19346">/opt/fsl-networking/sysroots/i686-fslsdk-lin=
-ux/usr/bin/arm-fsl-linux-gnueabi/../../libexec/arm-fsl-linux-gnueabi/gcc/ar=
-m-fsl-linux-gnueabi/4.8.3/ld: cannot find crt1.o: No such file or directory=
-<br id=3D"yui_3_16_0_ym19_1_1477558529174_19347">/opt/fsl-networking/sysroo=
-ts/i686-fslsdk-linux/usr/bin/arm-fsl-linux-gnueabi/../../libexec/arm-fsl-li=
-nux-gnueabi/gcc/arm-fsl-linux-gnueabi/4.8.3/ld: cannot find crti.o: No such=
- file or directory<br id=3D"yui_3_16_0_ym19_1_1477558529174_19348">/opt/fsl=
--networking/sysroots/i686-fslsdk-linux/usr/bin/arm-fsl-linux-gnueabi/../../=
-libexec/arm-fsl-linux-gnueabi/gcc/arm-fsl-linux-gnueabi/4.8.3/ld: cannot fi=
-nd crtbegin.o: No such file or directory<br id=3D"yui_3_16_0_ym19_1_1477558=
-529174_19349">/opt/fsl-networking/sysroots/i686-fslsdk-linux/usr/bin/arm-fs=
-l-linux-gnueabi/../../libexec/arm-fsl-linux-gnueabi/gcc/arm-fsl-linux-gnuea=
-bi/4.8.3/ld: cannot find -lgcc<br id=3D"yui_3_16_0_ym19_1_1477558529174_193=
-50">/opt/fsl-networking/sysroots/i686-fslsdk-linux/usr/bin/arm-fsl-linux-gn=
-ueabi/../../libexec/arm-fsl-linux-gnueabi/gcc/arm-fsl-linux-gnueabi/4.8.3/l=
-d: cannot find -lgcc_s<br id=3D"yui_3_16_0_ym19_1_1477558529174_19351">/opt=
-/fsl-networking/sysroots/i686-fslsdk-linux/usr/bin/arm-fsl-linux-gnueabi/..=
-/../libexec/arm-fsl-linux-gnueabi/gcc/arm-fsl-linux-gnueabi/4.8.3/ld: canno=
-t find -lc<br id=3D"yui_3_16_0_ym19_1_1477558529174_19352">/opt/fsl-network=
-ing/sysroots/i686-fslsdk-linux/usr/bin/arm-fsl-linux-gnueabi/../../libexec/=
-arm-fsl-linux-gnueabi/gcc/arm-fsl-linux-gnueabi/4.8.3/ld: cannot find -lgcc=
-<br id=3D"yui_3_16_0_ym19_1_1477558529174_19353">/opt/fsl-networking/sysroo=
-ts/i686-fslsdk-linux/usr/bin/arm-fsl-linux-gnueabi/../../libexec/arm-fsl-li=
-nux-gnueabi/gcc/arm-fsl-linux-gnueabi/4.8.3/ld: cannot find -lgcc_s<br id=
-=3D"yui_3_16_0_ym19_1_1477558529174_19354">/opt/fsl-networking/sysroots/i68=
-6-fslsdk-linux/usr/bin/arm-fsl-linux-gnueabi/../../libexec/arm-fsl-linux-gn=
-ueabi/gcc/arm-fsl-linux-gnueabi/4.8.3/ld: cannot find crtend.o: No such fil=
-e or directory<br id=3D"yui_3_16_0_ym19_1_1477558529174_19355">/opt/fsl-net=
-working/sysroots/i686-fslsdk-linux/usr/bin/arm-fsl-linux-gnueabi/../../libe=
-xec/arm-fsl-linux-gnueabi/gcc/arm-fsl-linux-gnueabi/4.8.3/ld: cannot find c=
-rtn.o: No such file or directory<br id=3D"yui_3_16_0_ym19_1_1477558529174_1=
-9356">collect2: error: ld returned 1 exit status<br id=3D"yui_3_16_0_ym19_1=
-_1477558529174_19357">configure:3315: $? =3D 1<br id=3D"yui_3_16_0_ym19_1_1=
-477558529174_19358">configure:3353: result: no<br id=3D"yui_3_16_0_ym19_1_1=
-477558529174_19359">configure: failed program was:<br id=3D"yui_3_16_0_ym19=
-_1_1477558529174_19360">| /* confdefs.h */<br id=3D"yui_3_16_0_ym19_1_14775=
-58529174_19361">| #define PACKAGE_NAME "pink"<br id=3D"yui_3_16_0_ym19_1_14=
-77558529174_19362">| #define PACKAGE_TARNAME "pink"<br id=3D"yui_3_16_0_ym1=
-9_1_1477558529174_19363">| #define PACKAGE_VERSION "0.1.0"<br id=3D"yui_3_1=
-6_0_ym19_1_1477558529174_19364">| #define PACKAGE_STRING "pink 0.1.0"<br id=
-=3D"yui_3_16_0_ym19_1_1477558529174_19365">| #define PACKAGE_BUGREPORT ""<b=
-r id=3D"yui_3_16_0_ym19_1_1477558529174_19366">| #define PACKAGE_URL ""<br =
-id=3D"yui_3_16_0_ym19_1_1477558529174_19367">| #define PACKAGE "pink"<br id=
-=3D"yui_3_16_0_ym19_1_1477558529174_19368">| #define VERSION "0.1.0"<br id=
-=3D"yui_3_16_0_ym19_1_1477558529174_19369">| /* end confdefs.h.&nbsp; */<br=
- id=3D"yui_3_16_0_ym19_1_1477558529174_19370">|&nbsp;<br id=3D"yui_3_16_0_y=
-m19_1_1477558529174_19371">| int<br id=3D"yui_3_16_0_ym19_1_1477558529174_1=
-9372">| main ()<br id=3D"yui_3_16_0_ym19_1_1477558529174_19373">| {<br id=
-=3D"yui_3_16_0_ym19_1_1477558529174_19374">|&nbsp;<br id=3D"yui_3_16_0_ym19=
-_1_1477558529174_19375">|&nbsp;&nbsp; ;<br id=3D"yui_3_16_0_ym19_1_14775585=
-29174_19376">|&nbsp;&nbsp; return 0;<br id=3D"yui_3_16_0_ym19_1_14775585291=
-74_19377">| }<br id=3D"yui_3_16_0_ym19_1_1477558529174_19378">configure:335=
-8: error: in `/home/guia/workspace/pink':<br id=3D"yui_3_16_0_ym19_1_147755=
-8529174_19379">configure:3360: error: C compiler cannot create executables<=
-br id=3D"yui_3_16_0_ym19_1_1477558529174_19380">See `config.log' for more d=
-etails</div></div></body></html>
+There are some useful info in the cve-check.bbclass:       =20
 
-------=_Part_3916543_147948607.1477559206742--
+#In order to use this class just inherit the class in the
+# local.conf file and it will add the cve_check task for
+# every recipe. The task can be used per recipe, per image,
+# or using the special cases "world" and "universe". The
+# cve_check task will print a warning for every unpatched
+# CVE found and generate a file in the recipe WORKDIR/cve
+# directory. If an image is build it will generate a report
+# in DEPLOY_DIR_IMAGE for all the packages used.
+
+I see following logs are generated:
+./unzip/1_6.0-r5/cve/cve.log
+./gnutls/3.5.3-r0/cve/cve.log
+./glibc/2.24-r0/cve/cve.log
+./glibc-initial/2.24-r0/cve/cve.log
+./foomatic-filters/4.0.17-r1/cve/cve.log
+./bzip2/1.0.6-r5/cve/cve.log
+./libxml2/2.9.4-r0/cve/cve.log
+./perl/5.22.1-r0/cve/cve.log
+./expat/2.2.0-r0/cve/cve.log
+./flex/2.6.0-r0/cve/cve.log
+
+//Sona
+
