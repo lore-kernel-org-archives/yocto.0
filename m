@@ -1,99 +1,50 @@
-Return-Path: <karim_atiki@hotmail.com>
+Return-Path: <me@herrie.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EC86BE00E04; Thu, 27 Oct 2016 22:56:15 -0700 (PDT)
+	id 5E2AFE00E02; Fri, 28 Oct 2016 00:35:21 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (karim_atiki[at]hotmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [65.55.34.82 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from COL004-OMC2S8.hotmail.com (col004-omc2s8.hotmail.com
-	[65.55.34.82])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B0E86E00DF8
-	for <yocto@yoctoproject.org>; Thu, 27 Oct 2016 22:56:11 -0700 (PDT)
-Received: from EUR02-HE1-obe.outbound.protection.outlook.com ([65.55.34.73])
-	by COL004-OMC2S8.hotmail.com over TLS secured channel with
-	Microsoft SMTPSVC(7.5.7601.23008); Thu, 27 Oct 2016 22:56:11 -0700
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
-	s=selector1; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
-	bh=M+2diEVM79ypsDM5gfecXOCGiWbVxk4U1g2wngVFKLc=;
-	b=tSzHPgw9BMc0pJE6KAyE8OR9QDaifbkIFamP/JXFL+O4E7nWHJFiGcbGh5fpqmJn0wwkRcPizlDmeM5WVAN8fI8Oq7zwlhb/Q/wPjETQ3zdscl6nO07RnNgh5r3pfa0X0AdUGlCemFX1sHdoM3hNXAjigj08BfRFW0fcNikxm4hRDR54W0SFL4G4vFnPhRrVtYnym4SDkaTgSuDnqrdWtBisijtY2e8Yr4kG2FQSJCMe3icwenM1F0MW+fNXl9kirnuylZL53HwEhyX+dy1E/EAiSSZcBTRG49iXNDF2UG74Ynn7k38CQHcfXKMK+adpU7eT4PuPBf2sV0iNuDv8xg==
-Received: from HE1EUR02FT014.eop-EUR02.prod.protection.outlook.com
-	(10.152.10.60) by HE1EUR02HT240.eop-EUR02.prod.protection.outlook.com
-	(10.152.10.240) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.679.5;
-	Fri, 28 Oct 2016 05:56:08 +0000
-Received: from HE1PR01MB1883.eurprd01.prod.exchangelabs.com (10.152.10.59) by
-	HE1EUR02FT014.mail.protection.outlook.com (10.152.10.118) with
-	Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
-	15.1.679.5 via Frontend Transport; Fri, 28 Oct 2016 05:56:08 +0000
-Received: from HE1PR01MB1883.eurprd01.prod.exchangelabs.com ([10.165.228.143])
-	by HE1PR01MB1883.eurprd01.prod.exchangelabs.com ([10.165.228.143])
-	with mapi id 15.01.0693.009; Fri, 28 Oct 2016 05:56:07 +0000
-From: Karim ATIKI <karim_atiki@hotmail.com>
-To: Paul Barker <paul@paulbarker.me.uk>
-Thread-Topic: [yocto] [meta-raspberrypi3] Failed to build
-	gstreamer1.0-plugins-bad with minimal configuration
-Thread-Index: AQHSMJBg9ydpOCl7TkG+Rozu7cOdiaC8zkCAgACPo/Q=
-Date: Fri, 28 Oct 2016 05:56:07 +0000
-Message-ID: <DB5PR01MB188012CEF43ADE751770A39D92AD0@DB5PR01MB1880.eurprd01.prod.exchangelabs.com>
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [149.210.149.73 listed in list.dnswl.org]
+X-Greylist: delayed 368 seconds by postgrey-1.32 at yocto-www;
+	Fri, 28 Oct 2016 00:35:13 PDT
+Received: from outbound2.mail.transip.nl (outbound2.mail.transip.nl
+	[149.210.149.73])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EE596E00DBA
+	for <yocto@yoctoproject.org>; Fri, 28 Oct 2016 00:35:13 -0700 (PDT)
+Received: from submission6.mail.transip.nl (submission6.mail.transip.nl
+	[149.210.149.10])
+	by outbound2.mail.transip.nl (Postfix) with ESMTP id 3t4wNw0354zZGp8;
+	Fri, 28 Oct 2016 09:29:04 +0200 (CEST)
+Received: from webmail.frontend (web0.mail.transip.nl [149.210.149.95])
+	by submission6.mail.transip.nl (Postfix) with ESMTPA id
+	3t4wNs1ywCz12LWR; Fri, 28 Oct 2016 09:28:57 +0200 (CEST)
+MIME-Version: 1.0
+Date: Fri, 28 Oct 2016 09:28:57 +0200
+From: Herman van Hazendonk <me@herrie.org>
+To: Karim ATIKI <karim_atiki@hotmail.com>
+Mail-Reply-To: yoctoproject.org@herrie.org
+In-Reply-To: <DB5PR01MB188012CEF43ADE751770A39D92AD0@DB5PR01MB1880.eurprd01.prod.exchangelabs.com>
 References: <HE1PR01MB1883A54CB9FBC20C3EC9225692AB0@HE1PR01MB1883.eurprd01.prod.exchangelabs.com>
 	<20161027212610.33d285b0@nuc.betafive.co.uk>,
 	<20161027221841.69b62716@nuc.betafive.co.uk>
-In-Reply-To: <20161027221841.69b62716@nuc.betafive.co.uk>
-Accept-Language: fr-FR, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: yoctoproject.org; dkim=none (message not signed)
-	header.d=none;yoctoproject.org; dmarc=none action=none
-	header.from=hotmail.com;
-x-ms-exchange-messagesentrepresentingtype: 1
-x-tmn: [u5oUqXenj5fQ/Lk9iCByO5JW8cZxBur6]
-x-eopattributedmessage: 0
-x-microsoft-exchange-diagnostics: 1; HE1EUR02HT240;
-	6:RhhfXpAkn22kHg1mvz0Edz2Y0ZD4zT+DD0dhcgYSprCP2ENYxAuyOWRhD0U5gxBEQqoltLSIZIfq2ECY2AhUD3Fl0fp4nB587d2kY09mFo2Ie8Eh0mdY3cbn0uz59wP7MG7IbEI9Ymi2UrLykuF1v2UdmQ6HvWhFw6wl0tY1e5EZudflp4ODi3WQCSsUsKjR5KneZTXFJzwWIWVwSrlykf/IkEhpOzG72scY6rlnNRho4gdMx2/exeXRaKwPCBfrp9D6fWpGNcJophRJcdVk3p+g0g2F8KlRKJaxwbqjhp7Q0YAf5tee6B6mdOwBJWLV;
-	5:VcDNz43s1v6HkEFAVfnNWsPUvRAIvMca5tDTOEOZ54psiC0zCLl8EVh2an7rRO0szr/4Iu8f6hwSodhVm8kLVIEgrx4ncgj8dsb9Z7tqtP6rQoJDaP/8j5JKBlKCPWV4b+bF6s8CYy3DjWH/W1l+feL7yVTgFQHxXcW9jEPr3sM=;
-	24:n7DBbEHvNJWaxC7QB6eqBcagcT4Sn56Atj5aMUkHaPtd2Q5uCotjK3BrFBlM/4sVfQR69VB5Ote6KvYiqPoByL3rghfn60aQdcESZUUxe+w=;
-	7:FjyR4DNeWCodJr8hxCS2LSL7kJOAPidfQd/g4MGQ6ShuuWGxeIkAHqwErsWbUPyDWDPCGS3iClS6rdZL7pt5unXVonEmT55LZyMdWmCp2HrmHGjHc3EIjt4NFg1vVPvIUN5oJN2h2g6VeOc2H1TUexcHZ+WdquB7htGsmPsyBdvGGW7e82NXv3gUNlQqaFYZUoBgCOCkEoLHg5RKHOkT76oa+1VRj5k5qCLe80ZWOYfImNLds7DOrGU6EmUN7Ql1RuCs4G6k332i9g5Hpn1i3RGFiev45xMKhuch7X+IY8Njzywexb3QBlHyXKEEkFeschHpILUP4axvyV12I2vdzGgZmGth2BM/CCPXa/X7UMI=
-x-forefront-antispam-report: EFV:NLI; SFV:NSPM; SFS:(10019020)(98900003);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:HE1EUR02HT240;
-	H:HE1PR01MB1883.eurprd01.prod.exchangelabs.com; FPR:; SPF:None;
-	LANG:en; 
-x-ms-office365-filtering-correlation-id: e51f63e5-8299-4f8e-8e79-08d3fef71c71
-x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
-	RULEID:(1601124038)(1603103081)(1601125047); SRVR:HE1EUR02HT240;
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0; RULEID:(432015012)(82015046);
-	SRVR:HE1EUR02HT240; BCL:0; PCL:0; RULEID:; SRVR:HE1EUR02HT240; 
-x-forefront-prvs: 0109D382B0
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
-MIME-Version: 1.0
-X-OriginatorOrg: hotmail.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Oct 2016 05:56:07.1869 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Internet
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: HE1EUR02HT240
-X-OriginalArrivalTime: 28 Oct 2016 05:56:11.0234 (UTC)
-	FILETIME=[FC168420:01D230DF]
+	<DB5PR01MB188012CEF43ADE751770A39D92AD0@DB5PR01MB1880.eurprd01.prod.exchangelabs.com>
+Message-ID: <5ad9653ec6fe57bfd53f9a5413bc359d@herrie.org>
+X-Sender: me@herrie.org
+User-Agent: Webmail
+X-Scanned-By: ClueGetter at submission6.mail.transip.nl
+X-Report-Abuse-To: abuse@transip.nl
 Cc: yocto <yocto@yoctoproject.org>
 Subject: Re: [meta-raspberrypi3] Failed to build gstreamer1.0-plugins-bad with minimal configuration
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: yoctoproject.org@herrie.org
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -102,117 +53,325 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 28 Oct 2016 05:56:16 -0000
-Content-Language: fr-FR
-Content-Type: multipart/alternative;
-	boundary="_000_DB5PR01MB188012CEF43ADE751770A39D92AD0DB5PR01MB1880eurp_"
+X-List-Received-Date: Fri, 28 Oct 2016 07:35:21 -0000
+X-Groupsio-MsgNum: 32667
+Content-Type: multipart/mixed;
+ boundary="=_d0b114da2b3708e14b1cbe99c5715c30"
 
---_000_DB5PR01MB188012CEF43ADE751770A39D92AD0DB5PR01MB1880eurp_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+--=_d0b114da2b3708e14b1cbe99c5715c30
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
 
-Hi Paul,
+Hi Paul/Karim/Khem,
 
+We're using a similar configuration and also facing issues with the 
+gstreamer1.0-plugins-bad recipe. Though our seems slightly different 
+(see attached). We did have it working before, but things stopped 
+working after we moved from Fido through Jethro to Krogoth.
 
-Thanks a lot for your feedback and analysis.
+What we're using is: meta-qt5/krogoth, meta-openembedded/krogoth, 
+openembedded-core/krogoth and some of our own layers 
+meta-webos-ports/krogoth and meta-rpi-luneos/krogoth.
 
-I think it sohuld compile without X11 and Wayland as it's a very common con=
-figuration
+Not sure it has the same root cause, but I find it interesting it's 
+failing at the same recipe, so I hope my log might be able to help 
+resolve this for both of us.
 
-for RaspberryPi being used with Qt5.x applications.
-
-
-Do you think it's bug related to Gstreamer1.0 configuration ?
-
-
-
-Karim
-
-
-
-________________________________
-De : Paul Barker <paul@paulbarker.me.uk>
-Envoy=E9 : jeudi 27 octobre 2016 23:18
-=C0 : Karim ATIKI
-Cc : yocto
-Objet : Re: [yocto] [meta-raspberrypi3] Failed to build gstreamer1.0-plugin=
-s-bad with minimal configuration
+Herman
 
 
-gstreamer1.0-plugins-bad compiles if x11, wayland and opengl are all
-missing from DISTRO_FEATURES. It fails if x11 and wayland are missing
-but opengl is included.
+On 2016-10-28 07:56, Karim ATIKI wrote:
+> Hi Paul,
+> 
+> Thanks a lot for your feedback and analysis.
+> 
+> I think it sohuld compile without X11 and Wayland as it's a very
+> common configuration
+> 
+> for RaspberryPi being used with Qt5.x applications.
+> 
+> Do you think it's bug related to Gstreamer1.0 configuration ?
+> 
+> Karim
+> 
+> -------------------------
+> 
+> DE : Paul Barker <paul@paulbarker.me.uk>
+> ENVOYÉ : jeudi 27 octobre 2016 23:18
+> À : Karim ATIKI
+> CC : yocto
+> OBJET : Re: [yocto] [meta-raspberrypi3] Failed to build
+> gstreamer1.0-plugins-bad with minimal configuration
+> 
+> gstreamer1.0-plugins-bad compiles if x11, wayland and opengl are all
+> missing from DISTRO_FEATURES. It fails if x11 and wayland are missing
+> but opengl is included.
+> 
+> Should it compile if x11 and wayland are removed from DISTRO_FEATURES
+> but opengl is included? I don't do much on the graphics side so I
+> don't
+> know if this makes sense as a configuration.
+> 
+> Thanks,
+> Paul
 
-Should it compile if x11 and wayland are removed from DISTRO_FEATURES
-but opengl is included? I don't do much on the graphics side so I don't
-know if this makes sense as a configuration.
+--=_d0b114da2b3708e14b1cbe99c5715c30
+Content-Transfer-Encoding: base64
+Content-Type: application/zip;
+ name=log.do_compile.zip
+Content-Disposition: attachment;
+ filename=log.do_compile.zip;
+ size=14146
 
-Thanks,
-Paul
+UEsDBBQAAAAIAHpLXEnUBl1vmDYAAD1zBQASAAAAbG9nLmRvX2NvbXBpbGUudHh07B1rc9pI8vOm
+Kv9hirtajMtCzmOze86Rw7E527WO7TJ4U9ngVYQ0CK2FpJMEtjeb/349esBICPGQcIzprSyGmZ6e
+nmf3dPf0HDbeXx3tkeZJq0G6ukFd8rlMTVWXTcHQPc+g5R1S7uie8Ool+yY7fUGx+n3LjH4F6UEa
+FDEHd9xvzdA7SgQ5yhz9EDRzQOWOPi5Rvn7+LCSpcUeVgaebGnF71DBId2Aqnm6ZRLUkALaB2OfP
+zs5bjT3Sl28oEf4kr58/878S2TAEB4o7rj6kQeLnF9eA0/Sow1CqOmR7lnNPymLP6lOxRx1Hp+Lp
+wKTnTfHGsTTL64m3tGO5gm05nit6fTtoj3hrOTeiAon0Tv651xVMCk0ddu3hayEoEGucqLmeQ+U+
+dV5UdwXbGGi66QodWRVfVN9UXwnOrtgZ6IZafv7sg3zDiAPqiW4SKAeYOm5I/8tHTr8Y0ZvWkLAN
+r9alDexLOZxNwgHRGc1dWaHuOK0ju1RhKAG/6TrKOEexVKrYsuNSx+VxwG8PYMO+eL1OfSGOqIde
+qVbF4B9byCk1sFKeZRmECIIna7WDA8K+9qFbauHKJdOKaooCsH3ZUXo1gBn+PKT+zz58du1Bbdw2
+BtY1LNkToFytJzsqJCgAEvSEIP8Mdbr3rmNZXm3xTg1LuqIju3YHCt7b+ksiHB7v/9aQDs7P/nty
+JB0T4aTK/q+Ko3+s17hOFfxOndKXXFHWQycFUSkOXAcqUYyBSsXR1BWHiuWKtteDwVddMsd/Kyeo
+r7hSz4Ie8efAQh3JA4/TwtatiPLRwgFadguuA7Lj+KNaV9UWgBNerqYZIepxCw6Pmi3pqtmQrs6a
+rf33pw1p/+KEsHSpdXzZ2D9sSh/2zw73W+eXn/zUw5OmD3awDwUPjhsHvzZj6fvNZuOyRYSPjMMI
+H2G7NWRHZtKBIHdhegmuJ3u0T00PcoeGDJ+25U88QXZ0rwe/+7rrws4rcGVdLtl2LM/y7m3KEh2q
+DkxVNj0fmqXcAhYKtbDNm/3uWk5f9gSXyRy6dw8plqFC/r1BoUxXN3VfdBE+sm8AZnS5usJ+ElTd
+YbhkVXWoy76ZltAfGJ6uwO7GflLXo6pA76AdZrSChXPYlWzdhm7WiNClht7XTWi8MDAHLkCrtDPQ
+hLAl3eCX7QBJd7Ct2rXvz21q/sRxHUX0iZtdoJhmjObw3S9vpDevA6prBePm10cNxkohgkUABNo4
+YgIStFMyZIFPqxoW+eLBcAM9pBzLUcrk778JVXoWKS/Ld8TylzjOtRRJkgIYSia5JZNkl6KAggLK
+5gooOFooTqI4ieLkOoiTSc7NSZWjZIGag/6EaJnIziFfJmkIxMwk/rWUNXmVHsqZueVMvjtRxixY
+xkRhBoUZFGb8tXs4tH+RTKi/BvNH4ncdKcoJgNQ7CbrF8SSAYJt0GngCZlSwAxt9mOZIXd0wppWe
+AERpa02lrdjgjiWtvk21oa5SK8iaELWS+TlkLZ6CQM6aQL6WgtbY0lp+/szfLfs3TG50Sfv5M0Ho
+9hgLK/0j2j7bJbsHm5HmyHbv3hcw/cVS7bVLbbNtpsOx3FKID/YywNc2xW3CStNot+s6Vh9K1ZlP
+hAmNqLdLZFsMSw0DKo5aUFfbrLOCkg8kadSTGAVka2jpaqVtfm2bhLAdV1fI0DLgr0GJ5up/wafk
+737ULyDpqiSNAGpk9y0rqHfJliZZpkIltjlKlPUO2fpxetFKhfhVjipVoDUeOaozWuu/ycaAkiH7
+dD9fQzVfSww0bFXQF8HW+ZXUf9s/vWqc7X9o1HdYT4x/tkt+go/G1JUb1jffdqK+8WTdGGPZ3SFn
+V6enwSf5FpD27W3w1+/AiX4AsjSpzn7UJYdqOmzsjhS2ZgvqbUB3nwVDshO2pRIi5PvKoPKQZvbV
+zkTVAR6fSod6A8fMGCQABUC/1Quu3fEcF2Ozkrwj6bMZlvKMg8YeCY8VeyTzYDHfueJJGdYf9kSB
+Kmk8F6xSJY3HgjzHApS310beBnF7afN23LhNgM6LkwNYDf6nRap+kXnM8FamDNo1YZ4SSWIr9eL4
+vHV+dLl/cfxJapxdfZBany4aTelYkkAKDUSIOSA5ifXffsVW50+Q16u9dyzvSHrfODo5kw4bB6fN
+trmcCNs2U4RYkiHDvh03gJHPqJXqjPDm8fllq0620spuVSqsoui/gNBAMjyCVh9GbQDczNu4S8Tt
+md0Tyd+rlrZ6KG3ldhZAoQuFLvQDwNFCERlFZBSRH42IPGGhT7HPZ4rL87sZWChF5TKFowSFVm5k
+1ciqs1g1mrdRlvhuskTMAp1mf84UJOa0oFv8jW65H5q0f1pfkzZ6DuYTl8adiX6DcYlqCotFVRX6
+DaJIhZcgNsEtj7PnRDIFlxR3x+Mzcvjhcdal8pcYTtR/LNiBG6T9QF6NvBpZNRoqULmwmNNGtk5h
+Bvu38PSN8SHQLwQZOPqFoGoE5S1UjWySamQexw0gYqjT27ieJA1gdTEiRjWg9gR9cFHWQu6Nshaq
+tlC1hULWhvjgjuSf3F64ESbUeqHPCdqxkNmjYgUVK8jzH9rnhLtWHNOqTInzUrwfSjyKDEoCaP9C
+nQwyftTJoJiGYhqKaWj/imVBelxMm8gt3PKVQI9mL3QaRmULcnG0rKBlBS0rU/QYOZyAOTQYoARd
+TFCdgawV1RkoCKEghILQE3cxSSgalvUviaPJ6VwCgDdra09C4QC158hvUHv+ZLXn9I6BCu59v2MZ
+ruBQjd6RP6T/tLdYALj230euBx8w59uV6jYRYPwHZhAoHva0IXVcNsN1s2uRN7uv9nb34BPmhbEj
+nL8I/go92e0F864GIxAmyi6MElWpmvJWPttrqmyFOLYMCyNaxfM+qS8YiV3R0IIA+8HmYoz2mQ1m
+a6hlRm6H3A65HXK778XteHV1Jr+bHe5qQZX4IiySzKE+Z4xwbyonNPtkkad4YEH9TVzWUbBYKSm7
+4h/V7c8/kOv21uf99weHRyeXzdbHa/77drvCANj/2wAl7Qu/y8Jf19GXXeFfDOSfYvsFab+Ef6Jd
+Dusoi0SSgFDJ8CxRHaW6Ioy9KPq/YbbAn4Gp/4+8S2+HP3owr+buKdF/vMihNhEarI0lmH/+9GOz
+z598MPdKpJRZW4m8mwHRKs1NUX/I/CBmoZsBMH91vmNF6SvRDKsjG3ulzJ6FRTc3YqLIXvYghUPM
+et0V21tVmBgwL96KQMNMIlAHglIhGkhwtFCGRxkeZXiU4SctKNmC/Pyv6hhLxnNZ0K4THQRk22aU
+z38qEIwQ1xLF5gGcX+ALREnDUkCOJNtvybe380hy82JfV4HNhYqoGjf+LXgIK5qfBfWOB7/qwuQ7
+LbiWlVAN8vsAGNDLkGYDBtmAQ6FgqMZK6hsvCVbfCmrodvUVYY4W8IrQ24pDgzGIRNRH7JQXkeiL
+FtpiDIZwxVmWa7F3d/3vaXuaa1V3A8CIu7mKo9uen5a5FSZdAibxVoE7Vnfn3jK3FDVUE5TIjz8S
+NhhdUpqG3IcxQKJzSSmbgFIGkspKqCuAtkUoI3OTZsg8aXDOngY0tTSQdfHrUeQwerHfOq6VRqd2
++0ZTLLOra3tFr+DVYPZ53Rh3iZCjE6l5sH921rjkjkBw/qndU7f9/NkP/vvTp1fsje3mp2ar8cHv
+AumFtFsrlQiXm0y+bBydNFuXn6SrCzhmNWqmxR6q/qHI1viqQUGHs5cimyawylsHpDO2UIdEENgu
+4NqyQgnIuCf+uL7XTZ8IyHTD1V9jslWQxs5WdiiG16BMmHwrO6bATn3BTyU6PJFSxgvrvVIAvog2
+KFEgni7AGW10bGMCc+3LE56WBR2uRrMEUAsBbpgYQziQyx3GTXQHDsAkJmp9we5+sO6ODkVRnwNm
+R3bua+lbcQgUDgpboMJ47XKp70OsY6SMd3DDNYPLhCtXgEbEp0ZqeideG2t5cOTmYGItic0vXzOj
+MEVNje0mEkvZOrs6Pd1hH5W3IS3p2qwAkTXw7IEX2+P8DoPe9iEW9JOctp+RApEpxRvKZtj9lr0P
+szYGNp7+hzCxpdTHLFOzYPKZ2VIRzgQpzNSWxJ3L2JZEtoi5LRchcyiBcuF/smqg1W0xqD5C9RGq
+jx6r+ohftwspkFK20YybuatQIqWh5/Uhs4goZSKqrIjGgigsSqGUxDxFpZQGloGhwr3bfErl4fo9
+2+yT/3qtySfCARk4umrdmrBnqdThWrU+j2nHWoDvaee+3R/rTwxnWPD9f/SjQj8q9KNCP6r1jZsX
+4w+cT0jXkTU2cSfi5Y0ycoTKi1UaxMkbo8WwPfkYO8bsQZ6NwWGQZWNwmM0MDhNnrjHWmhkUZqYk
+gC8N4WkcOTtydjyN42kcGfyDnsZj6RNH8nhusefyBO7CfZ3mvxqV44nEJYPfrY3DVLJJD+I1Na1S
+5mk0F2A+/6npWOckE/VMqGdCaRSlUdQzoZ4JxdAC9EyxhCWVTXEcVlHezqlCQC6X51SMi/g9pyIo
+2vk5fyVP1gP6kR88VuAFO473sD4+1ONgE4zmh/AtR09w9AR/bJ7gK3UJT25Li/mFT+Mws54cWIWH
++NQ6eB/nucgpzUZZWSXJhRPMyEXjXT5NiAIdodiy41LHRdsdaktQW4K2u1XY7g6H9i+SCfXXmAae
+33WkKCcAUu8k6BbHkwCCbdJp4AmYUcEObPRhmiN1dcOYVnoCELU6a2pcjA3u+OzZe/nmdZA6YVjk
+snJYFfl6A6MijxfNMLmED7TCoFyBVhgUK7KsMChQoEDx3cxEMe6f4P2ZJqLZ4opVzJ34VJXJlIvx
+U2Fn4aqs4x3zZGu4m+Z9m2qeu5ZXzAPSoS0+/+nfMCOPH5hQELo9JhSU/hExpDYLZBbAc2Fueu1S
+22ybaVBhADQGQtIhVBpoUi0nFUiQPVcRstAI6rCTDeAqHp2NIk5IKewA4GfQAW1T3CaswTTieF3H
+6kPhOmzYlCmQ64B2WwxLDYNuO2pB97TNOiso+UCSRj2JdRrZGlq6WmmbX9smIYzr6goZWgb8NSjR
+XP0v+JSCWO1+AUlXJWkEUCO7b1lBvUu2NMkyFepHl5Mom3Rk68fpRSsV4lc5qlSB1njkqM5orf8m
+GwNKhuzT/XwN1XwtMdCwVUFfBKfyr6T+2/7pVeNs/0OjvsN6YvyzXfITfDSmrtywvvm2E/WNJ+vG
+GMvuDmHR8IJP8i0g7dvb4K/fgRP9AGRpUp39qEsO1XRg7o4UtmYL6m1Ad58FQ7ITtqUSIuT7yoBd
+h2b21c5E1QEen0qHegPHzBgkAAVAv9ULsohgYYiTi4jkRMRP8eVxJZZkDkRs2RWBJ77AcxIU66R3
+JG3DUzL3yi57Y4FIEpPdP1w0jlpNqXF29UFqfbpoNKVjSYLtJ5g02UDcLvVvv7rAjFntvWN5R9L7
+BgvNe9g4OG22zeX2q7aZsmORjA3r7Zh2RjmjVqozwpvH55etOtlKK7tVqbCKov8CQoNt4AhafRi1
+AXBTU4U9TdzO6plon11qmHFVPdpV1QulKQKHU0HuczGU1lCWQuNiPv1e0JFoVkT1H6r/0KyIVwJH
+y3zTrXYBY+AUYHFpLmmyi+fmsNoFiAJ7XQIpPoiKDAkZEjIkZEgbw5Aez8ubsRtC2c9uzhPbbsF7
+96t///JxnvPHj5+wemFDcizXBvr7t93f35+KEw+2KHvkxCTdgemLDKTcl3WzvPd0WvfTLz/vvdoj
+7Dkt2Aj3iN63DV3RPcLtysTqcj0QvYhTJp+FjxG4EOXzu/n182dMdZ/ygo6f8Qd6TC2pUUFfKZRN
+0VcKRVO8sb6ZrkjTLGLZfkgzFDDW82f8s52cTHBuB/Mz9hYnATmXdCg1QVKAFAXmlgp83aUw4wRd
+hdWld3XqRNCyqRIhFLvDtGqywsDFaW6VDK+GGWln1lNMsMiTkCdHxyv13pT7uvLUBRXcY9dmj13k
+iJ4615/EeY9FS6iSKS+5wuldt5hoFnZIci0b3PV/TpheSpFQePi9mSqSpcK2rE3gvBjdDxI1L7VG
+Fq5mNlS+eHlTUM5DXVFReCax5wrBM4lukfg7k6WLDr6Ts4YnG3lnZXvO6gPQrEvQHAxpgyFtNu9x
+09iOsFgYm9S9OjNo3SoC2KRXwF9Emk1IaQayysooLZDOop47ncQ95V5XOmAmlrW80RVrCnedizG5
+tbzMxQhH9+PcxjLWjeh8HFdTod0LfbI2zSdrilERNbZr6TsMLWIbO3doljXNoZrMriUlPYe5rBxu
+w6y+wGmYx5dbb4l2qBXouX2hOcUahdYn3MvQ+vSYrE+phqVwCaXn+harqhgs8TTL1WqUUaEpLNBH
+/cV0gtS1jCHGBkdF6hoqUqMlhh63SykRnrgggfoB9IvdnBiCqBjYNHdZ/yifOMhnespmqhvw9XCM
+EYLXXpC9o/ofr2QjO3+QGCFcDLKksn8CoNBIITxePDvjbVVk28i28VSOt1Xx+F1M2NWlLqxy5eEs
+fvHrUcSxLvZbx7XSiDT7RlMss6tre0XvCqvB7N83GOP2Q+X+UGQFzFLn37gN5RRHuHVk26aOX5MQ
+LV5Yu7UFh3hkkUvBNJn05QmPWUFreDRegFoIcBNBGMKOL3eY3Vh3oCNJjMl+wY5+gI5mesFxb5MJ
+GzcUYNvYRDrjXUAF6g5Rd4iHEDyEoO4QdYd4Flmt7jD5fEFSdZjML0hzOIEWFYeoOESejTwbFYeo
+OETFYSEvES2oN0wWRxcePIYjS0eWjsdwPIYjZ3+IY/i0V35imUUewLk3fvD0jadvZNXIqvH0jafv
+jeXRuU/fS8aYj5W1NvjBPeQLeITDIEx413L5Zmz4e3nhpczsl/JmBYpa4P26ggPUZ1K2PoHmw2Y8
+SIj5RF0sCntWfr6w8hPIMrMLCyXP480VRJ5HtEj4eL5c0YHjl8b9ZEPGz9wFHiL6z3oEf8d4Qo83
+ntCmBmYPl+9iIdkTu+CUYBOrCMOeRM1HDM+qvDQVQWUFdOWkqqgQ6zzWKcHVkyBTSq5lQHXWAi6O
+umasZRR1zYA2fJBvGLHsAK6b0JLxgTls009r1iaRb0OZa8QZUMba4FmkQ4lqmZR0LYeUoenlKge3
+NrNwsq3xwVR11+7L5t26DmREPx/pH52QUo2W82mpuT6Nl0d/pLtFOzQBP0pG5fUjVV7jsOCw4LCg
+qQe99XLLaxvqracZUiQ+hfpIzbjVTdW6HadTzZjw20uHmubAt7AoFzjyTakEnffzOvsp0BGKLTsu
+ddCFH/0CUShAoWA1/h9D+xfJhPprzNLL7zpSlBMAqXcSdIvjSQDBNuk08ATMqGAHNvowzZG6umFM
+Kz0BiFLLmkotscEdm1KHyosgcUJcGefkuGPA1xoIKBxavGaQX2P3sMLHmirjUJBApQ8OCw4LXsdB
+qRuv4zyR6ziLK8imq8cy7+fMq++zUJ7NpUnDy7OoJENujdw68yU61I6hOLEScWJRZVZclZUpQMxU
+vWFsLYythTIHyhxomENvHeTsq46tJXuuMj24Viy3qOhacaSoJ8DwWsitkVujhgD1+RvMpnOF14pz
+1AXja8UKW9zhewNjbOF1J7Tl47DgsOCwoAIFFSgomRUQwm6pUHWaIUTeFCxU3eJ3rfKHn4O5qziD
+mOzIUyUv5xWSQZfs7JEvgzIBKVLv6tQhumZaLBgWrDaFki+HZaK7xOtRAn0rwwIjWy6F9KtyJXdj
+HdlkUaimNraYADE8yikBYpIgU0pW1jQ0R9SIibAcVDPWNSIH9UPGYDCOglz7oTsxDgfG4cATEA4L
+DgsOCx5M8WC6kJS2uXE4QHIaHb6YoG3I91NCb/C5uUNuAJLAsJ/Ai4b9XFIv3mXFu6woOOGw4LCg
+7wuKs+j7sjm+LwtJnpNyZ6b7S4aYbKESF5W4qMRFNo7SFQ4LDgsqcVGJi7Lvd1XiKhbMzjtvihKX
+zy1SiRvDi3ex8S423u5CZo/MHpk9MvvV3sUOEgRqDvr+aE3w/AmAgm5kT+JF2y3abtF2i/qSpzQs
+OCw4LGi7RdstirSPynYbUzctYrvlC2K0YYwihHom5MbIjZEbbzg3TtXnLBYSaKI87xq10SGBkIOg
+pQJZCFoqnjwjyRn0ZEgdl81w3exa5M3uq73dPfhcMhhKyI6gj1ksFMGxZVgV0RLONqZwgW0z4VTq
+Ko5ue5aTASqow44wP+TsuieC7y5gGBIMyOjILg02eCOx4Rua1fkTEAf7phHtc/MDojM0OkOjMzTK
+UWiuwGHBYcFTB5468NTxHZ2h4ZvelzWYsX3LuZ/wjEpkF+cOnUSMdiZ0jELHKJSdcFhwWHBY0BSL
+pliUZVfiGJUUPOf3jEqUtHIHxzb7ZB578egJmXmAOTX6DPik1n0e8DlJievfFzaKw9nyb+IySwWs
+ckrKrvhHdfvzD+S6vfV5//3B4dHJZbP18Zr/vt2uMAD2/zZASfvC77Lw13X0ZVf4FwP5p9h+Qdov
+4Z9ol8M6yiKRJBgRyfAsUR2lumJ1m4ii/xvmJfwZmPr/yLuUtvgGFHpnzz0fxI5uippDbSI0WANL
+f0j/8Y0/zPbjm34q/2fvapvbNKL153jG/2GH6cS2poCct6byVTpu4lF866Ye22luGzkEISTRIKCA
+5LhN//vd5R0JIRBIsZwnE9sSu3t24bB7nn3O2V2hwRFucVUceZGXfMUVbst4yqZ6ubLyUotX5E0a
+uX/JUDd7st7iFj/KqWoXlkoU2c1RSaBN9owdsbsv0HeAvgJHIq29nur9u9JNhd4SaRyR/45qE72t
+/h2HVqT208NqkRHgWxzm6kaLft2h91JwTMKf1VzHmtrsg5Ww1euoY2z2JxRBPgqei077i04Hdl7v
+62upL3b/rumOBgNtTZLDSceaxFuKrfo6CKeYd5i1C5vozRCG5SItkl5UluSYBn3Lvc9ztsExhaaf
+K4zx8Ics79piezKLWGckCs+aj4Umzh6EQxw0FdQCtYA9hEMcDnGQiF/p7EG2pDJ17GDO0RJFdi5b
+zlKWOrJwP+eMvRlgmTxkLwd5couKH9TfqEpNKtMgUqxFC04inMmRXY625vyXThgscH589brNRZjU
++jSk78FAG7bqthfrkewxQrFsjpDOqXT58vjNm5OLhH2hxqV9qzrd3Z0HrN+dn73tnL6RLv+4vDr5
+1XsE0qHUbHMcSaTOXr446ZxeXl38Ib09pzbspG2YhMmr82488pbXqGFTZMOgZuzGli2LzcSmhOfZ
+BM+xZEUldAD51VOq1wKa4gQTuzaDLP41rU/toncoZzDKtWdL+eNTmMqGpnFucnD9RrYN3rPI0+CK
+Eto2wsULloM/wojzc5VZkzVTIH2dp5YzMqZsXUH74z1+n2syedHrRUXzvmz6Rk0pTJJ7zLhoNoUl
+JAVNP+Jxb+xxT2lvNZMPnYq2Zfu2nTGCh/3bVwnr1Xzc6wN7klDJEssT9E6eNjSt/szrUTvj1ADt
+JDLFrU29QZob8tltNkxI7Mr+m7dnZ9+zXwdHQUuyZxG+IHPiWhM3Hv68J0Ifppe82mZqcz6CEVlZ
+UJq0ryIo6SmoIsdRXLUOQXOekao3V4Oo0L6QOrWv1PiMlPqekVLTu6TU9XIr6zqsnM0+5MLHfxTe
+a6Z46MVWnXbO7q2+g86ZtMVnnIep8/m39WRz/xTwrTzBfA+bfFfdVykV6I7lnTVsvARmHg4TqAVq
+gR8LfqwFfiw4srZ3ZWcccBjNwhafU15ln/u5w8mxhnMlTPstrdxcZZc32F/AIqgFasGaTYBVrNm8
+H2s2i8HLNLhctk4zC/iaAXH8ZJs4b5pHtd2eZgS0N+Ffkhv5VpeNfuJ2tocHD9oOMrzyxCF4kmDE
+McUAloVawLyCeQWmvRvMa2CaQxQafE0zr+HFCqRrIELc+xgJA6xCjAFiDGC7AamgFqgFSBdIF0h3
+gzEGQQB3GummUmqJMYiEIcZgVaoQgQZgAYGNoBZ4tOHRBibavEc75O6Cv0s82gsIRZzHjhhLQB9A
+H6gFaoFagEiBSIFIK8dYRuRamRjLsJBZzQF9f3YWBvCChYda4I+DPw6W/k5vXhueL6AZA5M8az5u
+NVv094qb2gbEVLjtHW+z3QdJ2ImXRsfx+sxoqCfOzWDfovFFD2tSdM3rkKxkvNXd7s7dXP0Q7M3F
+KqUDh206Fr251/977P7+Tkxvkae0yKlBBhPD27yL7I1lzdhr3Yf7evr8h9bjFmF7ktJxqkW0saVr
+iuaSxKBJzEHi3sOtB/fIe/5dmJ0P05OD7fXuDh28srYq9BI+7O4k92oNN9kqjFiTKDUCr9tJq5pk
+y9+kaNjr3xryWFPuO60Lg7wtBrmU6cx80bd8jGfnjAkkax9caqY107fg3nOY7cJ64lyuxMQrbdx5
+PXGqWWHMgMj4ql40hT4IxZJtR7UdxMjX7HRbwFeDewD38K2dm/Nqaj2XDFq/d8BBctSRwhQ/U/+z
+RB+L7Uo0Bxuks7LP5IkK9uhAH1yzpYGm64tKz2UEFNvSWOWUctNHsT7xL8/FLSfTKkQuJ2v2Y5hT
+ghHFUwl/IJ4H0AKBC0AWeYELwBTAFF8tsiJl/meNf26URQHIYoLYwJJ/LPkHukAsC9QCtYDmQ4gR
+IO8Gl/wzR1xvMhhksGepxFoW/iflVT6fzRiTQovs6Lv6hTgszIl2BJXsOeIHofH+Abnu7r8//vnl
+q87pxeXVu+vk50b3gGVgPw2aSzrm/5T5f67DD03+R5blO7F7SLqP6H/R2gvq2BOJJNEWSrpriv3o
+qiMKDSKK3nd2dOcXMjG0v8mLrBvwnK3qZ6vwA/IPMbZVi/An7A65D9JPXugYixzzAscOhAZHuJy6
+OPIiN/2KK9ya8ZS9P/nCcpOLV+W9jdy/ZKibPVlvcTnPc6raoGmx2BKLLQHIoRaoBWqBzwKLLTE/
+qrrYMjmhKbPeMlHOLAx3iSK7eROGcJqjEs4Ru/tCo3tAZyhHIsXFVYFx0AAfcOumQtE2aRyR/47q
+k72tHgyHVqT208ovOi/lz2oe3EnN8thPeqmO4JjrqCQZIby+Kli3W28N/gi5zjriCGtWA6/39bVU
+Ewdhr+lGBgNtTZJDgLMm8ZZiq2sSbdoK3xSe+Iq12bK4OIZ+TO4w8RA1M/rA0M+w3FqKpNuRJTmm
+QTuT93netjhmuAohXAHpKLZmud61HIM0a5hnZQrPmo+FZmGzta/0AzKLIw8fEqaPAeGyRXs5dAoz
+HcLlVc4tFHCwhnZVbFWJNmGl3abW83iKn11vh/V1mG1hfd3dWF+XuXou6DzZqd6aPEH0e/bc2rz1
+wJFgsZ8PR/5hkER1TH26pfg/Aa7WIP2ezi7GIRDFNOMrTTMSc4DgQ3EQSAqiQF1OokBBELOzLCh5
+sI0Hs+IgU4TfIvwWjjL4L6EWqAXhtwi/BeHxFcJvx+qYguSM0NsgoZaw21AWIiARAYkISGAiqAVq
+gVoQAYkISEDUqhGQIbYsE/0YlMHWB+Bewb3CRAM5QS1QC7hXcK8AtpvkXv0FOBaFlxn8ayKxFg42
+KQ88LHhY8LDAR3dRLVAL1AIeFjws4Op28bBJfFmGi02UM3d3zn/phKDt/PjqdZuLmmJ9GiqmMdCG
+rbpHgfVI9pZlx7I50t3deVBnBd6mW+w0ugCq2/yNLVuWans18WFnpX21XVKl/rqODDHzlz7eY4XV
+1GEjZVHRvC+b8PyUDu9yjy060mz6IEnKon7Eg97Agw6Xy/hPm6TXSNHcbOBKX2QmitYPtxGOArvD
+E3Gc1wGiHEQ5wVFgmBlt+Ciw0aNnTxecBJZIqvUgsKRc4BKEsyCcBbgDBDTUArUApSOcBSh4g+Es
+dEbjZiDfKKGWMJZQFkJYcOYtODRYZ3jtceYtYMP9P/M2yXOtcuRtorwJ7IDwV4S/gk+BWqAWqAVA
+GuGvwKlVw19DXqpM6GtQBtsQwG8Lvy1MNJAT1AK1wG8Lvy2A7Ua3IZAddaHvNpFYi/82KQ88LHhY
+8LDAR1AL1AK1gIcFDwu4elvDgfircLGJcuBjwceCj4WpBoKCWqAW8LHgYwFwN8nHOiO5n8nFBgm1
+8LChLGBd7GWDdTiw7rDu2MsGy3Gwl02EQ6iaF2xlE6fUupNNQiwcw3AMwzEMogZqgVqgFjiG4RgG
+cq3qGA4JrzJO4aAMFoxjsxmQXDDBMMHYbAYY4RvYbCZBRa2y10xcHKFkcK8BeQB5wL0G9xoACNxr
+KYxgy8ZQDXSc5WRLpdftaksLB8EBggMwAzADBAcIDuCLb4LgSAOAFWmOlBCQHSA7gEKAQkB2gOwA
+GAHZESAF/+vE1XQnzXIkE+qjN1JSwWuA1wCiAKIArwFeA1DinvMaKctfmtBIlgaTgR2AsAMQcAWW
+ykAtUAt4PewABLC7+R2ApvT1lHu66qRps8wcNe4JlBAK+gzr8LEOH3AJaoFaoBZwyViHD/Razzr8
+BMgsvyA/LgyiFiFncBDDqIOaQsgZ/MQIOQuwgiHrGfFm0dX6gs1ikaDKEGkGIAEgAXYAkWZAEPc8
+0iw2+6XDzKKioC5AXQBxAHGAugB1AeAB6iLAB32m3tFkMEhzF/Hl+siLhEywF2AvgCWAJcBegL0A
+iLjn7EXC7pemL+Ky4C/AXwBzAHOAvwB/AegB/iIACFTHGaEX0dX62ItYJMgLkBcAEgASIC9AXgBB
+3HPyIjb7pbmLqCioC1AXQBxAHKAuQF0AeIC6iFeY/mWpQ//q3J4riaT6SIwZuWAywGQAVwBXgMkA
+kwFAcc+ZjBnbX5rOSJcHp4Eti+8c4gC2wK5iUAvUAoYPUBxbFt/rLYsVUzdtxTSmqu3OcWczybVs
+VpyWCOYMOxVjp2KgJKgFaoFaQCNjp2KA1qo7FacRZpltilMlwcwi2gxe4cLmHOYcXBSizeAc/gai
+zcaWOpxqfZVW6cpzpFk6tdaYsxnRIM8QdgaAAYABvgBhZ0AW9z/sbMb8rxJ5lhYBigPBZwg+A8KA
+owhqgVpA+CH4DLB3k8FnffPGoKivP8ehJZJqCTqLpVVDvDTjp62FuyCEYIBggOBxgoG8YwZS/cyy
+8s7tuGfqDm+rQ/Uz+SD91N1n+u5+6Tgu/UU7ZfdAaBCevqATw3u/VTroTulrwLqgZgxM8qz5uNVs
+0d/0xdW/53879P/yI9kZ+R2jTTUQXJQdqiW1r/azHV5sPBRYL7YtmXbecKQp6BqLd2PIzT969OxJ
+waxT5bBgTtaIJ8Ub8LRoA6znxXPasjFUgy6Zn9//Gm2+Wex01IIHkRTb77PE1hrl/KK8Tq/2ZEf1
+bbc+Y8v1odn7S1Vc3yTqoQkrk3FM4ATFCgKsIADVBbVALVALIgKwggATq6orCGK6sMzqgagU3Opw
+q8OtDjMN9AS1QC3wasCtDnC7Sbf6xFrgVJ9Y9bnUQ1nAusC6wLqw3gBVUAvUAqwLrAusu3Gsm7kQ
+O5VYI+YtvPiaRYu2FkJbY0xKrdgKNwwvUigRVlMofxxbU3gV2ZOS7XlaJn8calM0eyreZnmhZNDN
+8txR5E2pg/ZLHGxXdtP4FZb60SHvC3FYsBcdT1Wy54gfhMb7B+S6u//++OeXrzqnF5dX766Tnxvd
+A5aB/TRoLumY/1Pm/7kOPzT5H1mW78TuIek+ov9Fay+oY08kkkRfdEl3TbEfXXVEoUFE0ftOuz79
+MzG0v8mLhbfjxaCpny0E+SDIB0E+mIxALVAL1IIgHwT5YG5YNchnYpUP8QnKmIUnf2JPM8ShrVqE
+P2Gwm/sg/eSt6mCLOrw1HQdCgyPcMgDMkRfLM11xhds1nrJZcgGJBZoGcA5wDnAOFAi1QC1QC8A5
+wDnAeT3gvMA+d4vdQcVBuucV4v4lQ93syXqLYW0hD/ROVbuwbKLI7lJ6O2TmVcI5YndfaHQPxO7h
+kUhbUmdT/PvUTYXeJGkckf+Oaq5gW6O4HFqR2k+/Z/DNwTe3Qd9c3WDErz5cey84JuHPaq5jTW32
+bWHY6nXUMTb7EwpQHgXPRbcpXNL7+lrqijcuWNPdDAbamiSHeHZN4i3FVv3nH81e9DG5wyRQ1EwG
+QIfldlhJhqSyJMc06FvufV5geB1TaPp5wx1eHMXWLNe7tsxkz6KkTOnCs+ZjoVnYuu8r/YAM5MjD
+h4RpZUC4HPleNp2if4dwS5vB5Ys6WFcza2tkmSaSMm3U5WQbBUHMyZcng7ZvLH9S3z+5bpEzVZ7S
+KRihUy86Opn2Ldn7+vMisTfR9P7iLbD3sNQASw2w1ADcGyhRqAVqwVIDLDUAY73BpQY3mtE3bzKW
+GQQJtSwxCGUhqAJBFQiqACaCWqAWqAVBFQiqAEStGlQRYssyARVBGWxpCO4V3CtMNJAT1AK1gHsF
+9wpgu0nuVba0DOKVXa2FdfUEgXIF5QrKFVAIaoFaoBZQrqBcgUyrUq4esCzDt7ICZhCp+3SbInXZ
+khbX2dvGIOOo6aC4QXGD4gYkAlKFWqAWUNyguDGR2BjFPVBld2KrGTR3mFIL1R0JA90Nuht0N2AR
+1AK1QC2gu0F3A6VWpbsjcFmG8g4LIcYYBCwIWBhpYCeoBWoBAQsCFtB2kwSsv9/nPP3qX6+FfA1E
+AegC6ALownRvDlFBLVALgC6ALoAugK4+sOkt9yaDgWpnwN1kai2gNyUQUQeIOkDUASAS1AK1QC2I
+OkDUARBr1aiDgFUtE3MQnO0ENAo0CjQK2AO1QC1QC9Ao0CjQaFU0mqI7y2DSZEHEwiJEACECMNbA
+UFAL1IIQAYQIAOJuMkTAuTUU72z6+fiAKKmW4IBYGhAvEC8QL2w4oBXUArUA8QLxAvFuEPFONfVG
+MY2parsZoDeZWgvuTQlEGALCEBCGAIgEtUAtUAvCEBCGAMRaNQwhBTDLhCEkCyJAFsgUyBQQCGqB
+WqAWIFMgUyDTysg0dvmXgaVRKYTGIlAAgQIw00BPUAvUgkABBAoA3G4yUMCcqrYu3zIcaTqaa2bt
+oTWfp5aggQyxIGhB0IKgBWiCWqAWqAUELQhaYNiqBG0GzCzD1M4Xr0jZ0oyf0th1i/haMIsw+1AL
+1AI0BmYRzCKYRao7lpV3bsc9U3d4Wx2qn8kH6afuPr1rqful47j0F33puwdCg/D0BZgY3vuj0kGN
+QiuHveKaMTDJs+bjVrNFf9MXQ/+e/+3Q/8uPZGfkv3htqoHgouxQLal9tZ8kNtkoI7C+YVsy7RJh
+/80mPvuaY1Fcx+jOzHTFpL3rs7swvSc74fZWi7KM1bFpL67BL21RmLgwy0DTXdXObcOSLM5I7i9N
+ntIxRO7pqpPzNHTTTiwoy36k5o1BEWl/YYaJVSDZC4tYlOVGM2gtC5NlS1uYFh7Mqy87MK3IKRNL
+t5kosiqvOCHP60M6d5joqm/hIlSgx1ZPnzHm+tDs/aUqbpiayjjV+qoZ5nNc9h7xh6WlFMvYOTu5
+nNIRXT/pnNHfPWXs0bv0IyOWvT8j7W+JzXHYP9Yvx7LxOZqN8eEV1rUJUYd6nES/sKsF3AZs1tVa
+OO0yxiRvDhiOFbkTxXDAyM2UGDVy8wVDR26exPiRmy8YIZa2q0g+f7wokiceU3IzpwaW3JzR6JK/
+FbZVNI/XU3PzBYNNbh424hQ7D7zABt6F91MsFlpWeF1ESf4j2UvTJeO+KnsddSaVdVeZfCEOs9sU
+PKpkzxE/CI33D8h1d//98c8vX3VOLy6v3l0nPze6BywD+2nQXNIx/6fM/3MdfmjyP7Is34ndQ9J9
+RP+L1l5Qx55IJIn2cUl3TbEfXXVECkVE0ftOwQv9MzG0v8mLmcfgwQmKbwqPLmJPM8ShrVqEP2E3
+x1Ec5MEghoI8EEQxEEe47Go48mJR0hVXuA3jKfPbLpSzKKV4BZ7Tl/uX0DejJ+stLvux0ZemsESi
+yO6CRx9ojD1LR+zuC1TPVM1HIq21erX+neimQm+DNI7If0e1iN1Wao8O23RamKZGYRRhFGEUCxpF
+f2Z6MzIpTGe9XJuqleykL88wZ0QS/qxmgovULC+4kWiSITjmOqqgXYRvCk/WJD0xLVpfDfEMal11
+xNNGVgOvU2uj22zy1dfXUl88C1zTHQ0G2pokh3PWNYm3FFv1dRBP38vMje9uSFt0P/MfGJU7LEno
+hYWTzkKWxzEN2lu8zyl05phC088R8omOYmuW613LRnPzPt9IkvCs+VhoFoZ7+0o/wNQcefiQMJUM
+CDcn1UvU6ZTHIdyCKrmsYgf1NmSlZpRpBFneCl1OtkIQxLnU+fy0Bee/dMKoyfPjq9dtLnIuW5+G
+1GgPtGGr7l67Hske0I5lc6RzKl2+PH7z5uQi4Sd6+fqkfas63d2dB2zmeH72tnP6Rrr84/Lq5Ffv
+CUiHUrPNcSSROnv54qRzenl18Yf09vzV8dVJ2zAJk1fnzXhTXl6zaZ+TDYPashtbtizWw+hElGcd
+1rFkRSV0Btw582qnV52go7YZdehfY54nK/BRtGnm4PKNbBs884n5X5XQtUS4MMRDF0acn1omNmGm
+QPo6nK530enKVBO8BnK/H/kYmaun/fEejw41OQKj3kpF875swvPhhLQ91Oy+ZpPUy/MRj3tjjzuc
+a4TPnEq2Zfu2PWMKg9RAG2yg5NkoMnf150BcLI2Z6YSelhj0YEjlaevT70Tm9V66tnRiNA2MUwOv
+cSKTf4Op980LK1BYlEGbDfYSu7L/5u3Z2ffs18FR0MTsUAxfkDlxrYnr2x7vAdLH7iWtGEoYcB+j
+VUMRQ8psZQEhnbaygATVtrKMgIZbuXyColtZRkDLVXoOVWXMUnoVBa1ePkUXriwlohJXlpCgECvK
+WL08ox5XLhzSkqNqZ/eO6jhsbVR5Q4pRHZutjeoLu15ZlDS4WfGNYCNMhfE+HK+VquO1UsN4rVQc
+r5Uaxmul4nit1DBeKxWHWaWu8V6pZbxWKo/XSsWxVqlhvFdINUilVBnvlarjfeWz2msY7+vYgKiG
+8b7WZTblRXkPVDQt1aDDfsASUYO6u7PCeNc6fNo8bJF3sm1oxrDlTwNaRDOmsq71CefasuHQR88R
+2TBM14uYJqbF/rQIR+cO3O7OCm9y64dHT+Zr5foqneyYt6nKGOPtENNQg2q/Jwb7MtSmqrFi3U+b
+X6/uH378anU/bz7fdN0B1ms9zXjH/HDo9t7LVy9/3muRt8Yng47WJKZDB6ZN6LzYcLWBptrEz7hS
+9c9yqu+cedUHYfnEktl4Q22o15AjMqEPT5mwRQXMoKH2+mu//KRZFque6lvVhkZK514eMrDNceLF
+6PzqOWxXa9Dz/AZJvz9a+DL6+UiUb3dnFVqidfj4x8VtYCwOHdaD3NJQdSXLNhUpWB8i3WjuSKKA
+22WLT9aju7k5e+tRToN/Pz47fSX9fnzx5vjXE+nl6+OLy6UPMKvM7k7ZGWxuszpnUufs5P+upPOL
+365+u/rj/ORyabOyyuzu/M/EL/SiNV9boKb2GzY8Lh/BxubEUSWVjqJuvYI/qbeR2K+/tkfsTTS9
+P6c5VqFmUGPjWKriGr//rWsdMeYdlRY5NchgYnh8Jn1Ysmbstbb5fp4+/6H1uEVuQt1qY0vXFM39
+//au7rdNGIi/I/E/3BtbtdBBw9rxNk3dNKlrpLz0IcqQAy5FM7gCJ1r7188ffBhGq0Rlbal4ScjZ
+Ofsu9tm/850DWvoZ0GtN5sqHa8FqdlVVn1Xletra2jQAoM/nKwt+mYZ+4qh1YnErm2qfJsINKmCD
+cca7xikhYjjijAqMecVmoFW1URYJBnLalDS726A67N47CVxP/K7zwcd5exGFkQ7ZOlMtuuOmJgnf
++q1JUw7lWHIoDwqO6h3kI11EKMwu7H+TN0mcUHHwX8renbYPZsI9PavtyWlkk+0ecqTIMDLdgk8W
+e7LYk8V+WYvda5PLSdNfKq28fdwbbntYCPR/CMou1xrVlXsRG48LSnZTRsSUETFlRLxARkT5YBoP
+GAwfOB/KIXhziwg38DjHWYiBUbB2YVDlVgXb24gvoEHBUM6sYVhiIi/hCXKc0h22hu3ndpMmLBDn
+eQMxLuMXgpDQAg+sARRFA3MMb1AW4wAxliebLcPFwFoQp4qcZUgJ4RPSrXkQ8WW2zQUXB/CfhIG4
+bWlbmIbY7gsPNL0GhlM+wFF+B5skE2/XKCE48uErTVPhNLJW1r4eIesDWJpTSH1UfiHx/Ai8EMVt
+hFFRUvXQxhklrQU1FK2FNiRpaMAhmVLxOtLtjuh6ZzMjSc8JQ56lwTYSkU0u1M8n8Ih8iOXro6hE
+1XgLwGQwSfqxyfDs9R9ZsVcIpX7sgJSGXuMUQXpTUEXKeGGLt46LSZBqL1Ojip6ZrvuaJKGclmWh
+tqGvKdUOuSYo4TRSsx8sCeUmy1pbzTqUcZ3d45zqyxE4pvET/RZxcNh3vNNPPq8fJrfqyIxvcmLM
+wGoFu1vlKmUaKf/iylv7cHR0BKtWpTWci4UQHK3WBUY7sfBFCW+C0fzu9VpxS9eKe+b1agURMsvF
+XYZFssMdrcwrrbQqdbUyH7FWPs77x0pMOqo4qVQRk0p+Vysai/y68Kfe4SPC3WtEuCPRiK6Nz+78
+YG04e2nDed3a0JVw5p08pIS26I3c2my4+rK8/HH53VemOeSbeHBUFA+C4gYTAqFCBLZpnC+Xi6UP
+FAf5NhMca/Zlybfy+LtGExENqv90fEdoDKLDkBQgrilifGFA7DV48QUYOubds5vu2q43907em4Zp
+/AVQSwECHwAUAAAACAB6S1xJ1AZdb5g2AAA9cwUAEgAkAAAAAAAAACAAAAAAAAAAbG9nLmRvX2Nv
+bXBpbGUudHh0CgAgAAAAAAABABgAULfhy+ww0gFQt+HL7DDSAensx8vsMNIBUEsFBgAAAAABAAEA
+ZAAAAMg2AAAAAA==
 
---_000_DB5PR01MB188012CEF43ADE751770A39D92AD0DB5PR01MB1880eurp_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
-</head>
-<body dir=3D"ltr">
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
--family:Calibri,Arial,Helvetica,sans-serif;">
-<p>Hi Paul,</p>
-<p><br>
-</p>
-<p>Thanks a lot for your feedback and analysis.</p>
-<p>I think it sohuld compile without X11 and Wayland as it's a very common =
-configuration</p>
-<p>for RaspberryPi being used with Qt5.x applications.</p>
-<p><br>
-</p>
-<p>Do you think it's bug related to Gstreamer1.0 configuration ?</p>
-<p><br>
-</p>
-<p><br>
-</p>
-<p>Karim</p>
-<p><br>
-</p>
-<br>
-<br>
-<div style=3D"color: rgb(0, 0, 0);">
-<div>
-<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
-<div id=3D"x_divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" =
-color=3D"#000000" style=3D"font-size:11pt"><b>De :</b> Paul Barker &lt;paul=
-@paulbarker.me.uk&gt;<br>
-<b>Envoy=E9 :</b> jeudi 27 octobre 2016 23:18<br>
-<b>=C0 :</b> Karim ATIKI<br>
-<b>Cc&nbsp;:</b> yocto<br>
-<b>Objet :</b> Re: [yocto] [meta-raspberrypi3] Failed to build gstreamer1.0=
--plugins-bad with minimal configuration</font>
-<div>&nbsp;</div>
-</div>
-</div>
-<font size=3D"2"><span style=3D"font-size:10pt;">
-<div class=3D"PlainText"><br>
-gstreamer1.0-plugins-bad compiles if x11, wayland and opengl are all<br>
-missing from DISTRO_FEATURES. It fails if x11 and wayland are missing<br>
-but opengl is included.<br>
-<br>
-Should it compile if x11 and wayland are removed from DISTRO_FEATURES<br>
-but opengl is included? I don't do much on the graphics side so I don't<br>
-know if this makes sense as a configuration.<br>
-<br>
-Thanks,<br>
-Paul<br>
-</div>
-</span></font></div>
-</div>
-</body>
-</html>
-
---_000_DB5PR01MB188012CEF43ADE751770A39D92AD0DB5PR01MB1880eurp_--
+--=_d0b114da2b3708e14b1cbe99c5715c30--
