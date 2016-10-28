@@ -1,72 +1,72 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 09101E00DCF; Thu, 27 Oct 2016 19:34:09 -0700 (PDT)
+	id 1D6D3E00DD0; Thu, 27 Oct 2016 19:36:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (raj.khem[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.192.172 listed in list.dnswl.org]
+	*      [209.85.192.178 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pf0-f172.google.com (mail-pf0-f172.google.com
-	[209.85.192.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2CD67E00DC6
-	for <yocto@yoctoproject.org>; Thu, 27 Oct 2016 19:34:06 -0700 (PDT)
-Received: by mail-pf0-f172.google.com with SMTP id e6so28171006pfk.3
-	for <yocto@yoctoproject.org>; Thu, 27 Oct 2016 19:34:06 -0700 (PDT)
+Received: from mail-pf0-f178.google.com (mail-pf0-f178.google.com
+	[209.85.192.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A999CE00DC8
+	for <yocto@yoctoproject.org>; Thu, 27 Oct 2016 19:36:30 -0700 (PDT)
+Received: by mail-pf0-f178.google.com with SMTP id s8so28266703pfj.2
+	for <yocto@yoctoproject.org>; Thu, 27 Oct 2016 19:36:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=subject:mime-version:from:in-reply-to:date:cc:message-id:references
-	:to; bh=cDaF6R/nr6owC21jTdHLTBfUKlcqIRRGj1XSu2hIXDo=;
-	b=iDX8uptPTn+2jWYuMCekgYMMW8bGyUnk79WwpPEZs3CMkdIcsjWA6MpGu0h2M19foo
-	V7Ith6a1FztRx4ua1VLqr5rLNGMhXVt6KyLYU38kTiV/6bdU7rKl6CuFed5zsosAT15m
-	czYlaL/UmdtaBixK7dmZj1bj9dZvM47VfwNJIFcLPw0QhbmwXVjCORrXPghKLEeM4vi5
-	5oBx8jpaIv5Y8UXMEr/YETRPnHshHxbIsBh/8xKamv+SZCV20nt+oy7JERiKWe8C5xpH
-	oB5gRczv/bw/tdmiIet1/1h7c9qDeFDEvIrNLWRamCs2fiHYbj8JM3Lwy9rQDWzHMned
-	JJyA==
+	:to; bh=SPCCABymEFsHrvQx7oPgtvmEOHLkcmBHBtOTbVw3vuk=;
+	b=XxthoRi9fDB28VRJf5Xso09gPuNwASoR2iJAb6ACAI/kd+Q6GlHIUCtK6VHXm5lunK
+	x9YvhdCZ5dZlYjwHklQdlwqdMyryfhBSemFJ4MgG1l/RVUbgOp7yhHAY4cjPn7RMc1D9
+	i+B59mcAj9mUwJRvgXz+Inf6HCO5Y+WSvSvobIcVeBsBqNrWg+erjxijtvxBhxJEm3bB
+	b9b7Ai9N7cL2E6zjg3uaOssOe5ryysaZnxk7jf8b+a7RNDaeqHSEqDVOuB4MDBn1RNfC
+	TAMVgTCQWFsLJHPogfnYfOH9793HHRvhr9rB/GNAHyEMCKCEqGTW4U8sFN+0q4QBkW4e
+	dzdw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:subject:mime-version:from:in-reply-to:date:cc
 	:message-id:references:to;
-	bh=cDaF6R/nr6owC21jTdHLTBfUKlcqIRRGj1XSu2hIXDo=;
-	b=FCG91vPImPuWqC6JbtumyckwQfnWtj7NpwKwcEtKCU8ppIqUVEPnyiEnXBgFfto9S3
-	eAgY5y3Lu0D82ZS9hI89qTntuj/NkvWhrDtzruwrEudLUCUkKQZggHQGTTfJHkgTBpZf
-	y+CazrWvR8k74zuDpNFSicK6TTnUQElu0154hNZ0H2WJa8p6TaQNLLFujKY755yVuFPH
-	4zzj24alDRKpAXeIm3UMr6QXAIKWOpktL9+y8tl95UU3MXBcwwWW0q9bgbP8Xjm11Dkc
-	5N/NstBj1SqiCVpWFVkZizoOY6hI+QWVRWvkwk2Vd+aQfwCGWcMaGzR2MLvI1oVs/IYJ
-	Tfvg==
-X-Gm-Message-State: ABUngvdm2Ov9lKYydSinbI9h/KoqSC0IPphYUePxYwfk0gUgluhqcokG5eJIsr1jvNerQw==
-X-Received: by 10.98.43.136 with SMTP id r130mr20189404pfr.171.1477622046375; 
-	Thu, 27 Oct 2016 19:34:06 -0700 (PDT)
+	bh=SPCCABymEFsHrvQx7oPgtvmEOHLkcmBHBtOTbVw3vuk=;
+	b=YqcuxYVb2NCPJDPBzOB7r7WQO76Mko2hKR59e0b7RHHorao18sCiakB89I5ydU1ulx
+	4R8tx1znxCJhXwYC0vfflzJzrtlcoz6qxI5sNItKC7QhviCdRvmnxqYh60vM+f/eM5M8
+	XJ/EHxGuJrPkyNF6wzEsQrmTL7vmMxMF2FEzfkakM4EM7TXmN8kXh6dexEtYAQiaVGFZ
+	HPku8jgqHm7n3Z472AZHb6gj7j0XI4Sp86Xd99jj0C4jKKsQurUUDvPJo4XjuXkqLBHH
+	kF6JAg16ianjg6rv5IoyyLVq6+M/GdlYlTXI03iOokrsFRIQxjQVWMkzXtT5ZkfaWvMZ
+	oC9w==
+X-Gm-Message-State: ABUngveliSpT0SsrpxVFEW6Z14OHilM0Ww/sg4YwyNds366EUjXDjHmRikkWfq/dtp2sMA==
+X-Received: by 10.98.5.195 with SMTP id 186mr20233240pff.117.1477622189813;
+	Thu, 27 Oct 2016 19:36:29 -0700 (PDT)
 Received: from ?IPv6:2601:646:8882:b8c:98cf:ea9b:f72:6b74?
 	([2601:646:8882:b8c:98cf:ea9b:f72:6b74])
 	by smtp.gmail.com with ESMTPSA id
-	w15sm14580358paj.33.2016.10.27.19.34.05
+	z87sm14561784pfk.67.2016.10.27.19.36.28
 	(version=TLS1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Thu, 27 Oct 2016 19:34:05 -0700 (PDT)
+	Thu, 27 Oct 2016 19:36:29 -0700 (PDT)
 Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
 X-Pgp-Agent: GPGMail
 From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <3230301C09DEF9499B442BBE162C5E48ABEA948F@SESTOEX04.enea.se>
-Date: Thu, 27 Oct 2016 19:34:04 -0700
-Message-Id: <D98FD381-BC63-421E-AD53-8A808C02CCDF@gmail.com>
-References: <3230301C09DEF9499B442BBE162C5E48ABEA948F@SESTOEX04.enea.se>
-To: Sona Sarmadi <sona.sarmadi@enea.com>
+In-Reply-To: <a9ccf644-5373-cf83-e955-d26b2ae28740@google.com>
+Date: Thu, 27 Oct 2016 19:36:28 -0700
+Message-Id: <BDFD6FC6-3513-4C7E-8421-3F3392E52752@gmail.com>
+References: <a9ccf644-5373-cf83-e955-d26b2ae28740@google.com>
+To: Rick Altherr <raltherr@google.com>,
+ Armin Kuster <akuster808@gmail.com>
 X-Mailer: Apple Mail (2.3124)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Scott Rifenbark <srifenbark@gmail.com>,
-	"mariano.lopez@intel.com" <mariano.lopez@intel.com>
-Subject: Re: cve-checker tool
+Cc: yocto@yoctoproject.org
+Subject: Re: How to proceed with kernel-fitimage and INITRAMFS_IMAGE
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -78,85 +78,70 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 28 Oct 2016 02:34:09 -0000
-X-Groupsio-MsgNum: 32659
+X-List-Received-Date: Fri, 28 Oct 2016 02:36:32 -0000
+X-Groupsio-MsgNum: 32660
 Content-Type: multipart/signed;
-	boundary="Apple-Mail=_60030250-3AFC-4613-8F06-7856FD95ECB5";
+	boundary="Apple-Mail=_B6E9FD52-B914-459C-BEA6-536615496361";
 	protocol="application/pgp-signature"; micalg=pgp-sha1
 
---Apple-Mail=_60030250-3AFC-4613-8F06-7856FD95ECB5
+--Apple-Mail=_B6E9FD52-B914-459C-BEA6-536615496361
+Content-Type: multipart/alternative;
+	boundary="Apple-Mail=_169A1B87-40F2-4626-A5F9-6D72D20F3313"
+
+--Apple-Mail=_169A1B87-40F2-4626-A5F9-6D72D20F3313
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain;
-	charset=utf-8
+	charset=us-ascii
 
 
-> On Oct 27, 2016, at 4:03 AM, Sona Sarmadi <sona.sarmadi@enea.com> =
+> On Oct 27, 2016, at 10:34 AM, Rick Altherr <raltherr@google.com> =
 wrote:
 >=20
+> Krogoth (2.1.1) doesn't include the changes required to build a =
+fitImage with an initramfs.  Specifically, it lacks =
+ec755d2524fcbd9dfded23a576f25c990d405a6c =
+<http://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/?id=3Dec755d2524fcb=
+d9dfded23a576f25c990d405a6c> which is only submitted to master.  =46rom =
+https://www.mail-archive.com/yocto@yoctoproject.org/msg31779.html =
+<https://www.mail-archive.com/yocto@yoctoproject.org/msg31779.html>, it =
+looks like those changes will show up in the upcoming 2.2.
+>=20
+> I've been testing those changes in OpenBMC =
+<https://github.com/openbmc/openbmc> (Krogoth-based) and can =
+successfully generate a fitImage with an initramfs.  Currently, =
+kernel-fitimage.bbclass only stores an uncompressed initramfs which is =
+problematic for the SoC I'm working on.  In short, even once 2.2 is =
+released, fitImage w/ initramfs may not quite work for you yet.
 >=20
 >=20
->> -----Original Message-----
->> From: Sona Sarmadi
->> Sent: den 27 oktober 2016 10:57
->> To: Scott Rifenbark <srifenbark@gmail.com>; 'mariano.lopez@intel.com'
->> <mariano.lopez@intel.com>; yocto@yoctoproject.org
->> Subject: cve-checker tool
->>=20
->> Hi guys,
->>=20
->> I have some questions regarding cve-check tool. I don't find anything
->> about this tool in Yocto
->> 2.2 release, dose documentation mention this tool and how to use it?
->>=20
->> Is this tool planned to be integrated with daily build so the Yocto =
-project
->> can detect Not addressed CVEs automatically?
->>=20
->> Mariano:
->> Does this tool look at CVE tag inside the recipe as well or only =
-checks the
->> package version?
->>=20
->> Can this tool be used together with "meta-security-isafw" and get a =
-fancy
->> report?
->=20
-> There are some useful info in the cve-check.bbclass:
->=20
-> #In order to use this class just inherit the class in the
-> # local.conf file and it will add the cve_check task for
-> # every recipe. The task can be used per recipe, per image,
-> # or using the special cases "world" and "universe". The
-> # cve_check task will print a warning for every unpatched
-> # CVE found and generate a file in the recipe WORKDIR/cve
-> # directory. If an image is build it will generate a report
-> # in DEPLOY_DIR_IMAGE for all the packages used.
->=20
-> I see following logs are generated:
-> ./unzip/1_6.0-r5/cve/cve.log
-> ./gnutls/3.5.3-r0/cve/cve.log
-> ./glibc/2.24-r0/cve/cve.log
-> ./glibc-initial/2.24-r0/cve/cve.log
-> ./foomatic-filters/4.0.17-r1/cve/cve.log
-> ./bzip2/1.0.6-r5/cve/cve.log
-> ./libxml2/2.9.4-r0/cve/cve.log
-> ./perl/5.22.1-r0/cve/cve.log
-> ./expat/2.2.0-r0/cve/cve.log
-> ./flex/2.6.0-r0/cve/cve.log
 
-perhaps you can add this info to "How Do I=E2=80=9D
-section in wiki here https://wiki.yoctoproject.org/wiki/How_do_I
-
->=20
-> //Sona
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+CC'ing krogoth maintainer for back port consideration
 
 
---Apple-Mail=_60030250-3AFC-4613-8F06-7856FD95ECB5
+
+--Apple-Mail=_169A1B87-40F2-4626-A5F9-6D72D20F3313
+Content-Transfer-Encoding: 7bit
+Content-Type: text/html;
+	charset=us-ascii
+
+<html><head><meta http-equiv="Content-Type" content="text/html charset=us-ascii"></head><body style="word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" class=""><div class=""><br class=""></div><div><blockquote type="cite" class=""><div class="">On Oct 27, 2016, at 10:34 AM, Rick Altherr &lt;<a href="mailto:raltherr@google.com" class="">raltherr@google.com</a>&gt; wrote:</div><br class="Apple-interchange-newline"><div class="">
+  
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" class="">
+  
+  <div bgcolor="#FFFFFF" text="#000000" class=""><p class="">Krogoth (2.1.1) doesn't include the changes required to build a
+      fitImage with an initramfs.&nbsp; Specifically, it lacks <a href="http://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/?id=ec755d2524fcbd9dfded23a576f25c990d405a6c" class="">ec755d2524fcbd9dfded23a576f25c990d405a6c</a>
+      which is only submitted to master.&nbsp; From <a href="https://www.mail-archive.com/yocto@yoctoproject.org/msg31779.html" class="">https://www.mail-archive.com/yocto@yoctoproject.org/msg31779.html</a>,
+      it looks like those changes will show up in the upcoming 2.2.</p><p class="">I've been testing those changes in <a href="https://github.com/openbmc/openbmc" class="">OpenBMC</a>
+      (Krogoth-based) and can successfully generate a fitImage with an
+      initramfs.&nbsp; Currently, kernel-fitimage.bbclass only stores an
+      uncompressed initramfs which is problematic for the SoC I'm
+      working on.&nbsp; In short, even once 2.2 is released, fitImage w/
+      initramfs may not quite work for you yet.</p><div class=""><br class=""></div></div></div></blockquote><div><br class=""></div><div>CC'ing krogoth maintainer for back port consideration</div><div class=""><br class=""></div></div><br class=""></body></html>
+
+--Apple-Mail=_169A1B87-40F2-4626-A5F9-6D72D20F3313--
+
+--Apple-Mail=_B6E9FD52-B914-459C-BEA6-536615496361
 Content-Transfer-Encoding: 7bit
 Content-Disposition: attachment;
 	filename=signature.asc
@@ -167,9 +152,9 @@ Content-Description: Message signed with OpenPGP using GPGMail
 -----BEGIN PGP SIGNATURE-----
 Comment: GPGTools - https://gpgtools.org
 
-iEYEARECAAYFAlgSuRwACgkQuwUzVZGdMxRaFgCgieQmlnNCCNuKUHIq7e3U1zGJ
-M3UAnj9w75ce0Td/iPA07AscIQRp5xZ6
-=FR4q
+iEYEARECAAYFAlgSuawACgkQuwUzVZGdMxQarwCgg3KXrPXufqqeSsXGUZPwfOTt
+D2cAnRhnvfrW7rCK3kXSV/Q8IN76k3hK
+=E4Ic
 -----END PGP SIGNATURE-----
 
---Apple-Mail=_60030250-3AFC-4613-8F06-7856FD95ECB5--
+--Apple-Mail=_B6E9FD52-B914-459C-BEA6-536615496361--
