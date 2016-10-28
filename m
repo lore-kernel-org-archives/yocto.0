@@ -1,59 +1,71 @@
-Return-Path: <sona.sarmadi@enea.com>
+Return-Path: <patrick.ohly@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A7F90E00E02; Fri, 28 Oct 2016 02:03:12 -0700 (PDT)
+	id 12E55E00E06; Fri, 28 Oct 2016 04:20:35 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [185.38.181.46 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from smtp-out11.electric.net (smtp-out11.electric.net
-	[185.38.181.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 59E43E00DBA
-	for <yocto@yoctoproject.org>; Fri, 28 Oct 2016 02:03:07 -0700 (PDT)
-Received: from 1c0344-0008Sv-T3 by out11d.electric.net with emc1-ok (Exim 4.87)
-	(envelope-from <sona.sarmadi@enea.com>)
-	id 1c0344-0008VJ-UJ; Fri, 28 Oct 2016 02:03:04 -0700
-Received: by emcmailer; Fri, 28 Oct 2016 02:03:04 -0700
-Received: from [192.36.1.72] (helo=mx-3.enea.com)
-	by out11d.electric.net with esmtps (TLSv1:AES128-SHA:128) (Exim 4.87)
-	(envelope-from <sona.sarmadi@enea.com>)
-	id 1c0344-0008Sv-T3; Fri, 28 Oct 2016 02:03:03 -0700
-Received: from SESTOEX04.enea.se ([fe80::bc2d:9299:d6b2:d0b7]) by
-	SESTOEX03.enea.se ([fe80::6ce7:7b51:1edf:e245%17]) with mapi id
-	14.03.0294.000; Fri, 28 Oct 2016 11:03:03 +0200
-From: Sona Sarmadi <sona.sarmadi@enea.com>
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.218.45 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.218.45 listed in dnsbl.sorbs.net]
+Received: from mail-oi0-f45.google.com (mail-oi0-f45.google.com
+	[209.85.218.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D8F01E00E02
+	for <yocto@yoctoproject.org>; Fri, 28 Oct 2016 04:20:31 -0700 (PDT)
+Received: by mail-oi0-f45.google.com with SMTP id p136so62284725oic.1
+	for <yocto@yoctoproject.org>; Fri, 28 Oct 2016 04:20:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=message-id:subject:from:to:cc:date:in-reply-to:references
+	:organization:mime-version:content-transfer-encoding;
+	bh=Z87ucgbTD9p2M7cYRqHTBF8Wf+ptoTXuIBL73PLZyyE=;
+	b=fAWNjJ5zk5kp1VZ4TNwOd7rzXC7V2bwRIarSZtS3gt3J20L7SOVyAifxJijiquARuu
+	+mnW80tJSUwOTujpW1dcuRpA9AYGojfT4MTWW/0Fm0Jz+zBrQzgqZ32+b8yxCnmdHsYp
+	KB2p9RcXFcWeMdgGzF+1ELw9pxIyTGEiF20PsNcBs7fppYjxbSLQS5syCj+aFr7u5mN2
+	xDTiFtAjFb5NNq0KSw32LGOjL83WCyinC6UHCkkZIpU6akxCt/yBxlcdJEMOy1HJAQfw
+	/2ogWapBaYWrRlPHibHqiB1Owh4uI8TUEPU7lyO+KQla4Fb1VNTo4bnitgoauqd8/3tu
+	PSQQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+	:references:organization:mime-version:content-transfer-encoding;
+	bh=Z87ucgbTD9p2M7cYRqHTBF8Wf+ptoTXuIBL73PLZyyE=;
+	b=kA0pgIKwBGVe6/2Jxjj0OCPanqmoCU5aokzHhP7fDk5CFVJVdHEh8u/PXK1kd165Yo
+	tb09czWJoPbgJf67pNh8aKRzT7Vum00jHHYK6wEKU/0dBxdoYlOOttGgeLQx9cKIfS3R
+	G0GtlWkCqMTd9xvVyzMS9LlN1uGqbXwmBHZHBZVyes48FfUpFB7gYtQdylb50lcNZfJk
+	qD++EekXUtXpCNS6oP5CkMOH61VKyTqz32q5mmWs8VHHMTIlj//bkmeX4NBSvori/szD
+	kO7al71FtOE5wAiFzKYXc6WkKECEagVQIO5w6IVmIeCJ1tFBmAlvpYJ5dyEqZbaA/+ZX
+	DfqA==
+X-Gm-Message-State: ABUngveCXk00YMp6MzqXWvgsUrv4BZ8v76RPuAyyS020VzSz7H+2rabs7NoIxzbMkeXbas4a
+X-Received: by 10.36.44.14 with SMTP id i14mr1291879iti.105.1477653630795;
+	Fri, 28 Oct 2016 04:20:30 -0700 (PDT)
+Received: from pohly-mobl1 (p5DE8F6C0.dip0.t-ipconnect.de. [93.232.246.192])
+	by smtp.gmail.com with ESMTPSA id e33sm1299497itd.4.2016.10.28.04.20.28
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Fri, 28 Oct 2016 04:20:29 -0700 (PDT)
+Message-ID: <1477653625.13356.24.camel@intel.com>
+From: Patrick Ohly <patrick.ohly@intel.com>
 To: Khem Raj <raj.khem@gmail.com>
-Thread-Topic: [yocto] cve-checker tool
-Thread-Index: AdIwLntiYxJel4UHQ6ebcs09cROndQAEuizQABxmBQAAEb2KUA==
-Date: Fri, 28 Oct 2016 09:03:03 +0000
-Message-ID: <3230301C09DEF9499B442BBE162C5E48ABEA9D6C@SESTOEX04.enea.se>
-References: <3230301C09DEF9499B442BBE162C5E48ABEA948F@SESTOEX04.enea.se>
-	<D98FD381-BC63-421E-AD53-8A808C02CCDF@gmail.com>
-In-Reply-To: <D98FD381-BC63-421E-AD53-8A808C02CCDF@gmail.com>
-Accept-Language: sv-SE, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.16.142.231]
-MIME-Version: 1.0
-X-Outbound-IP: 192.36.1.72
-X-Env-From: sona.sarmadi@enea.com
-X-Proto: esmtps
-X-Revdns: mx-3.enea.com
-X-HELO: mx-3.enea.com
-X-TLS: TLSv1:AES128-SHA:128
-X-Authenticated_ID: 
-X-PolicySMART: 6551647
-X-Virus-Status: Scanned by VirusSMART (c)
-X-Virus-Status: Scanned by VirusSMART (s)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Scott Rifenbark <srifenbark@gmail.com>,
-	"mariano.lopez@intel.com" <mariano.lopez@intel.com>
-Subject: Re: cve-checker tool
+Date: Fri, 28 Oct 2016 13:20:25 +0200
+In-Reply-To: <92CF3B90-4DED-4513-BDD0-9BB116E476B8@gmail.com>
+References: <1477494038-2895-1-git-send-email-akuster808@gmail.com>
+	<1477494038-2895-2-git-send-email-akuster808@gmail.com>
+	<1477552947.2887.63.camel@intel.com>
+	<92CF3B90-4DED-4513-BDD0-9BB116E476B8@gmail.com>
+Organization: Intel GmbH, Dornacher Strasse 1, D-85622 Feldkirchen/Munich
+X-Mailer: Evolution 3.12.9-1+b1 
+Mime-Version: 1.0
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-security][PATCH 2/2] smack kernel: add smack kernel config fragments
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -65,16 +77,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 28 Oct 2016 09:03:12 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Fri, 28 Oct 2016 11:20:35 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-PiA+IC4vYnppcDIvMS4wLjYtcjUvY3ZlL2N2ZS5sb2cNCj4gPiAuL2xpYnhtbDIvMi45LjQtcjAv
-Y3ZlL2N2ZS5sb2cNCj4gPiAuL3BlcmwvNS4yMi4xLXIwL2N2ZS9jdmUubG9nDQo+ID4gLi9leHBh
-dC8yLjIuMC1yMC9jdmUvY3ZlLmxvZw0KPiA+IC4vZmxleC8yLjYuMC1yMC9jdmUvY3ZlLmxvZw0K
-PiANCj4gcGVyaGFwcyB5b3UgY2FuIGFkZCB0aGlzIGluZm8gdG8gIkhvdyBEbyBJ4oCdDQo+IHNl
-Y3Rpb24gaW4gd2lraSBoZXJlIGh0dHBzOi8vd2lraS55b2N0b3Byb2plY3Qub3JnL3dpa2kvSG93
-X2RvX0kNCg0KR29vZCBpZGVhLCB0aGFua3MgZm9yIHRoZSBoaW50LiBJIGRpZCBpdCwgcGxlYXNl
-IGZlZWwgZnJlZSB0byBpbXByb3ZlIGl0IDopDQoNCg==
+On Thu, 2016-10-27 at 19:32 -0700, Khem Raj wrote:
+> > On Oct 27, 2016, at 12:22 AM, Patrick Ohly <patrick.ohly@intel.com> wrote:
+> > Can you say a bit more about your plans regarding Smack support in
+> > meta-security? A recipe for the userspace tool and the kernel config is
+> > a start, but for a fully functional Smack-enabled image, the rootfs also
+> > needs to be set up a bit differently.
+> 
+> FWIW meta-security seems to be right place for smack related infra.
+
+I don't disagree :-) But it would be good to know more about the rest of
+the infrastructure before adding (or reviewing) bits and pieces that by
+themselves don't do much.
+
+-- 
+Best Regards, Patrick Ohly
+
+The content of this message is my personal opinion only and although
+I am an employee of Intel, the statements I make here in no way
+represent Intel's position on the issue, nor am I authorized to speak
+on behalf of Intel on this matter.
+
+
+
 
