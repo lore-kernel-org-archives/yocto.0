@@ -1,17 +1,17 @@
-Return-Path: <dinhn@cisco.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 17A6AE00E0C; Thu, 27 Oct 2016 21:49:05 -0700 (PDT)
+	id 5554AE00DFF; Thu, 27 Oct 2016 22:00:51 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-14.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE, RCVD_IN_DNSWL_HI,
-	USER_IN_DEF_DKIM_WL autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [173.37.86.77 listed in list.dnswl.org]
-	* -7.5 USER_IN_DEF_DKIM_WL From: address is in the default DKIM
-	white-list
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.192.181 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -20,56 +20,52 @@ X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from rcdn-iport-6.cisco.com (rcdn-iport-6.cisco.com [173.37.86.77])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 90024E00E0A
-	for <yocto@yoctoproject.org>; Thu, 27 Oct 2016 21:48:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-	d=cisco.com; i=@cisco.com; l=8766; q=dns/txt; s=iport;
-	t=1477630141; x=1478839741;
-	h=from:to:cc:subject:date:message-id:references:
-	in-reply-to:mime-version;
-	bh=LEA/6rU9gW/SEdIZP7jRnpBNxfFaQGW7YzjZdp458f0=;
-	b=MqI3gxrvuJSVaczlJ2AoHbBUVRVfhR6oiQzpt4bDVfHY7x9zNPaSunMN
-	uMoSV/pi1it20gV4XPnKqt7tY1ckkf+NZePJzJgpw3nvLGmR/TFJ3B2lO
-	Xk+KZtzg8B6tWh+x4DozE3U36Lx4TFLqL6Thn/VkOw7VLqkqVnmSRmLdW 8=;
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: =?us-ascii?q?A0CLAQBp2BJY/5xdJa1dGgEBAQECAQEBA?=
-	=?us-ascii?q?QgBAQEBgnM3AQEBAQEdWH0HhCSJC5Z9h16HS4UWggcdAQqFewIagWY/FAECAQE?=
-	=?us-ascii?q?BAQEBAWIohGIBAQEEAQEBIEsLEAIBCBEDAQIoAwICAh8GAQoUCQgCBA4FiDoDF?=
-	=?us-ascii?q?w6xOoh8DYNvAQEBAQEBAQEBAQEBAQEBAQEBAQEBHIY9gX0IglCCR4IgHoJGLII?=
-	=?us-ascii?q?vBZlhNQGGLIVaeIMkgjyNSIhxhBqEAAEeNl+FCXKHEYEJAQEB?=
-X-IronPort-AV: E=Sophos;i="5.31,407,1473120000"; 
-	d="scan'208,217";a="164697813"
-Received: from rcdn-core-5.cisco.com ([173.37.93.156])
-	by rcdn-iport-6.cisco.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	28 Oct 2016 04:48:58 +0000
-Received: from XCH-RTP-004.cisco.com (xch-rtp-004.cisco.com [64.101.220.144])
-	by rcdn-core-5.cisco.com (8.14.5/8.14.5) with ESMTP id u9S4mwZj011828
-	(version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=FAIL);
-	Fri, 28 Oct 2016 04:48:58 GMT
-Received: from xch-rtp-002.cisco.com (64.101.220.142) by XCH-RTP-004.cisco.com
-	(64.101.220.144) with Microsoft SMTP Server (TLS) id 15.0.1210.3;
-	Fri, 28 Oct 2016 00:48:57 -0400
-Received: from xch-rtp-002.cisco.com ([64.101.220.142]) by
-	XCH-RTP-002.cisco.com ([64.101.220.142]) with mapi id 15.00.1210.000;
-	Fri, 28 Oct 2016 00:48:57 -0400
-From: "Dinh Nguyen (dinhn)" <dinhn@cisco.com>
-To: Khem Raj <raj.khem@gmail.com>
-Thread-Topic: [yocto] qlibc lib for Yocto Dizzy question
-Thread-Index: AQHSMMogOysuOqk8TkeqdD+oRCIiMKC9gSsA//+YcYA=
-Date: Fri, 28 Oct 2016 04:48:57 +0000
-Message-ID: <FCBF0B79-821F-4829-8664-A9BBC6A5804F@cisco.com>
+Received: from mail-pf0-f181.google.com (mail-pf0-f181.google.com
+	[209.85.192.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1BAE1E00DF8
+	for <yocto@yoctoproject.org>; Thu, 27 Oct 2016 22:00:47 -0700 (PDT)
+Received: by mail-pf0-f181.google.com with SMTP id e6so30448915pfk.3
+	for <yocto@yoctoproject.org>; Thu, 27 Oct 2016 22:00:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=subject:mime-version:from:in-reply-to:date:cc:message-id:references
+	:to; bh=ntuHJyUTcWAJYsvmTi46s4VaX+VRV/WGba07sPjK9c4=;
+	b=0RN4Usu48PtPXv1hQqjsQu0DUtBw2kDHfvRtTgaDbEg18JoNr1c4ePgIvt3lAvI7C9
+	iniGibQKgLhtgHhVxEMvZvDvUtB+Uu09Yebm1PH2yZys03uB854Bm6wYuMSbZWm59JJ7
+	tQ5VCJYdeoRp2pAsxVUlK4w7pfxuTtJYbR/3k4epHvPpE4thsdKD6VuLVGdk4d8cH5D7
+	D821dbN+STdxMx/EbrLQNGj1S9jZ7p7c5yRhwHmZkZoqFe+yKjqHoLNbCVyFOcSi9LRe
+	Lg/Df6TR7Gcr+/Xd1mRPNnITPRwCxub2kOjd1uHyaJWq02W+BppVIKADjoxt60qvdU3g
+	EpIQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:subject:mime-version:from:in-reply-to:date:cc
+	:message-id:references:to;
+	bh=ntuHJyUTcWAJYsvmTi46s4VaX+VRV/WGba07sPjK9c4=;
+	b=IhcRT1NX9KwFOGXM++z9cb/UsibeAmIJkD3FGarY6rKmmIrRrGcOigOfOf6halAzH9
+	LL8Ut6SYrAmpMVJHKjzPMkZhU2Z9lOpgDyHezW1TiXWLYCgCx9QSl28Ts96O8SsKrxQn
+	rF5WjNvEgdGWbfmXMzpbTkL+3rNCxXBi/mly2uq+zAxoR8y1U1CNh+HU2cTE8x5eUJ+a
+	/uSduRHvlGTgYGoxgGBJZAYGPdk8Udq9/FjFL+hir1uPJxsTQV6dpqqOU5KEBHhSch+T
+	vFet6ZO2/c88WJ/DEL5SSnHAi7sLG856GDbZ0pQFgHVB3tB6YjR0Ta/FQmIM5WwAX/He
+	SEWA==
+X-Gm-Message-State: ABUngvcYHfsTTflbKGkooGKGj8PyBS3DDbj/IiDnXlRPWtYshqV1bMlrSq8nNi37NdeA2A==
+X-Received: by 10.98.59.153 with SMTP id w25mr21259061pfj.112.1477630847383;
+	Thu, 27 Oct 2016 22:00:47 -0700 (PDT)
+Received: from ?IPv6:2601:646:8882:b8c:f559:242f:d781:af84?
+	([2601:646:8882:b8c:f559:242f:d781:af84])
+	by smtp.gmail.com with ESMTPSA id
+	z11sm15231074pfd.49.2016.10.27.22.00.46
+	(version=TLS1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Thu, 27 Oct 2016 22:00:46 -0700 (PDT)
+Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
+X-Pgp-Agent: GPGMail
+From: Khem Raj <raj.khem@gmail.com>
+In-Reply-To: <FCBF0B79-821F-4829-8664-A9BBC6A5804F@cisco.com>
+Date: Thu, 27 Oct 2016 22:00:41 -0700
+Message-Id: <C6FDCFC6-8B8F-44A8-9B09-C4BECC01E9CD@gmail.com>
 References: <108EEEE7-FA01-47F4-BFC9-F03C15F37184@cisco.com>
 	<102BA059-A58C-4917-8697-70387D6D0540@gmail.com>
-In-Reply-To: <102BA059-A58C-4917-8697-70387D6D0540@gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Microsoft-MacOutlook/f.15.1.160411
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.24.68.239]
-MIME-Version: 1.0
+	<FCBF0B79-821F-4829-8664-A9BBC6A5804F@cisco.com>
+To: "Dinh Nguyen (dinhn)" <dinhn@cisco.com>
+X-Mailer: Apple Mail (2.3124)
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: qlibc lib for Yocto Dizzy question
 X-BeenThere: yocto@yoctoproject.org
@@ -83,128 +79,254 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 28 Oct 2016 04:49:05 -0000
-Content-Language: en-US
+X-List-Received-Date: Fri, 28 Oct 2016 05:00:51 -0000
+X-Groupsio-MsgNum: 32665
+Content-Type: multipart/signed;
+	boundary="Apple-Mail=_4532F81E-011F-44E0-82A7-48A1CB90E21C";
+	protocol="application/pgp-signature"; micalg=pgp-sha1
+
+--Apple-Mail=_4532F81E-011F-44E0-82A7-48A1CB90E21C
 Content-Type: multipart/alternative;
-	boundary="_000_FCBF0B79821F48298664A9BBC6A5804Fciscocom_"
+	boundary="Apple-Mail=_27457345-F201-42D0-8363-AA8B13E4B9E6"
 
---_000_FCBF0B79821F48298664A9BBC6A5804Fciscocom_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--Apple-Mail=_27457345-F201-42D0-8363-AA8B13E4B9E6
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=utf-8
 
-VGhhbmtzIG11Y2ggZm9yIHByb21wdCByZXNwb25zZSBLaGVtLg0KDQpZZXMsICBxTGliYyBpcyBh
-IHNpbXBsZSBsaWJyYXJ5DQpodHRwczovL2dpdGh1Yi5jb20vd29sa3lraW0vcWxpYmMuZ2l0DQoN
-ClRoYW5rcywNCiAg4oCURGluaA0KDQpGcm9tOiBLaGVtIFJhaiA8cmFqLmtoZW1AZ21haWwuY29t
-PG1haWx0bzpyYWoua2hlbUBnbWFpbC5jb20+Pg0KRGF0ZTogVGh1cnNkYXksIE9jdG9iZXIgMjcs
-IDIwMTYgYXQgOTowMCBQTQ0KVG86IGRpbmhuIDxkaW5obkBjaXNjby5jb208bWFpbHRvOmRpbmhu
-QGNpc2NvLmNvbT4+DQpDYzogInlvY3RvQHlvY3RvcHJvamVjdC5vcmc8bWFpbHRvOnlvY3RvQHlv
-Y3RvcHJvamVjdC5vcmc+IiA8eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZzxtYWlsdG86eW9jdG9AeW9j
-dG9wcm9qZWN0Lm9yZz4+DQpTdWJqZWN0OiBSZTogW3lvY3RvXSBxbGliYyBsaWIgZm9yIFlvY3Rv
-IERpenp5IHF1ZXN0aW9uDQoNCg0KT24gT2N0IDI3LCAyMDE2LCBhdCA4OjE5IFBNLCBEaW5oIE5n
-dXllbiAoZGluaG4pIDxkaW5obkBjaXNjby5jb208bWFpbHRvOmRpbmhuQGNpc2NvLmNvbT4+IHdy
-b3RlOg0KDQoNCkhpIFlvY3RvIGd1cnVzLA0KDQpJIGFtIHRyeWluZyB0byBhZGQgdGhlIHFsaWJj
-IGxpYiB0byBvdXIgWW9jdG8gMS43LjIgdmVyc2lvbi4NCkFibGUgdG8gY29tcGlsZSBhbmQgYnVp
-bGQgSVBLIHBhY2thZ2VzIHdpdGggb3V0IGFueSBpc3N1ZSBhcyBzaG93biBiZWxvdzoNCg0KZGlu
-aG5AcnMtYmxkc3J2Oi9tZWRpYS9yYWdodXJhbS9kYXRhL2RpbmhuL2lveERldkxhdGVzdC9pb3hz
-ZGsveXBfcHBjJCBmaW5kIHRtcC9kZXBsb3kgfCBncmVwIHFsaWJjDQp0bXAvZGVwbG95L2lway9w
-cGNlNTAwdjIvcWxpYmMtZGJnXzEuMC1yMF9wcGNlNTAwdjIuaXBrDQp0bXAvZGVwbG95L2lway9w
-cGNlNTAwdjIvcWxpYmMtZGV2XzEuMC1yMF9wcGNlNTAwdjIuaXBrDQp0bXAvZGVwbG95L2xpY2Vu
-c2VzL3FsaWJjDQp0bXAvZGVwbG95L2xpY2Vuc2VzL3FsaWJjL2dlbmVyaWNfQlNELTItQ2xhdXNl
-DQp0bXAvZGVwbG95L2xpY2Vuc2VzL3FsaWJjL0xJQ0VOU0UNCg0KSG93ZXZlciwgaXQgaXMgbm90
-IGluY2x1ZGVkIGluIHRoZSByb290ZnMubWFuaWZlc3QgZm9yIGJ1aWxkaW5nIGEgTFhDIGNvbnRh
-aW5lci4NCkkgd29uZGVyIHdoZXRoZXIgSSBhbSBtaXNzaW5nIGluIG15IHJlY2lwZSBxbGliYy5i
-YiBvciBob3cgdG8gc29sdmUgdGhpcyBpc3N1ZT8NCg0KaXQgc2VlbXMgdGhhdCBtYWluIHBhY2th
-Z2UgaXMgZW1wdHkuIElzIGl0IGp1c3QgYnVpbGRpbmcgYSBzdGF0aWMgKCAuYSApIGxpYnJhcnkg
-Pw0KDQoNCk1hbnkgdGhhbmtzLA0KICDigJREaW5oDQoNCg0KLS0NCl9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQp5b2N0byBtYWlsaW5nIGxpc3QNCnlvY3Rv
-QHlvY3RvcHJvamVjdC5vcmc8bWFpbHRvOnlvY3RvQHlvY3RvcHJvamVjdC5vcmc+DQpodHRwczov
-L2xpc3RzLnlvY3RvcHJvamVjdC5vcmcvbGlzdGluZm8veW9jdG8NCg0K
+if its just a static library and you want to include it in image you =
+might have to add ${PN}-dev in your IMAGE_INSTALL
 
---_000_FCBF0B79821F48298664A9BBC6A5804Fciscocom_
-Content-Type: text/html; charset="utf-8"
-Content-ID: <EF3EB4489A34B746A4938080031DA63A@emea.cisco.com>
-Content-Transfer-Encoding: base64
+> On Oct 27, 2016, at 9:48 PM, Dinh Nguyen (dinhn) <dinhn@cisco.com> =
+wrote:
+>=20
+> Thanks much for prompt response Khem.
+>=20
+> Yes,  qLibc is a simple library
+> https://github.com/wolkykim/qlibc.git =
+<https://github.com/wolkykim/qlibc.git>
+>=20
+> Thanks,
+>   =E2=80=94Dinh
+>=20
+> From: Khem Raj <raj.khem@gmail.com <mailto:raj.khem@gmail.com>>
+> Date: Thursday, October 27, 2016 at 9:00 PM
+> To: dinhn <dinhn@cisco.com <mailto:dinhn@cisco.com>>
+> Cc: "yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>" =
+<yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>>
+> Subject: Re: [yocto] qlibc lib for Yocto Dizzy question
+>=20
+>=20
+>> On Oct 27, 2016, at 8:19 PM, Dinh Nguyen (dinhn) <dinhn@cisco.com =
+<mailto:dinhn@cisco.com>> wrote:
+>>=20
+>>=20
+>> Hi Yocto gurus,
+>>=20
+>> I am trying to add the qlibc lib to our Yocto 1.7.2 version.
+>> Able to compile and build IPK packages with out any issue as shown =
+below:
+>>=20
+>> =
+dinhn@rs-bldsrv:/media/raghuram/data/dinhn/ioxDevLatest/ioxsdk/yp_ppc$ =
+find tmp/deploy | grep qlibc
+>> tmp/deploy/ipk/ppce500v2/qlibc-dbg_1.0-r0_ppce500v2.ipk
+>> tmp/deploy/ipk/ppce500v2/qlibc-dev_1.0-r0_ppce500v2.ipk
+>> tmp/deploy/licenses/qlibc
+>> tmp/deploy/licenses/qlibc/generic_BSD-2-Clause
+>> tmp/deploy/licenses/qlibc/LICENSE
+>>=20
+>> However, it is not included in the rootfs.manifest for building a LXC =
+container.
+>> I wonder whether I am missing in my recipe qlibc.bb or how to solve =
+this issue?
+>=20
+> it seems that main package is empty. Is it just building a static ( .a =
+) library ?
+>=20
+>>=20
+>> Many thanks,
+>>   =E2=80=94Dinh
+>>=20
+>>=20
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
+>> https://lists.yoctoproject.org/listinfo/yocto =
+<https://lists.yoctoproject.org/listinfo/yocto>
+>=20
 
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjwvaGVhZD4NCjxib2R5IHN0eWxlPSJ3b3JkLXdy
-YXA6IGJyZWFrLXdvcmQ7IC13ZWJraXQtbmJzcC1tb2RlOiBzcGFjZTsgLXdlYmtpdC1saW5lLWJy
-ZWFrOiBhZnRlci13aGl0ZS1zcGFjZTsgY29sb3I6IHJnYigwLCAwLCAwKTsgZm9udC1mYW1pbHk6
-IENhbGlicmksIHNhbnMtc2VyaWY7Ij4NCjxkaXY+DQo8ZGl2PlRoYW5rcyBtdWNoIGZvciBwcm9t
-cHQgcmVzcG9uc2UgS2hlbS4mbmJzcDs8L2Rpdj4NCjxkaXY+PGJyPg0KPC9kaXY+DQo8ZGl2Plll
-cywgJm5ic3A7PHNwYW4gc3R5bGU9ImNvbG9yOiByZ2IoMTAyLCAxMDIsIDEwMik7IGZvbnQtZmFt
-aWx5OiAtYXBwbGUtc3lzdGVtLCBCbGlua01hY1N5c3RlbUZvbnQsICdTZWdvZSBVSScsIEhlbHZl
-dGljYSwgQXJpYWwsIHNhbnMtc2VyaWYsICdBcHBsZSBDb2xvciBFbW9qaScsICdTZWdvZSBVSSBF
-bW9qaScsICdTZWdvZSBVSSBTeW1ib2wnOyBvcnBoYW5zOiAyOyB3aWRvd3M6IDI7IGJhY2tncm91
-bmQtY29sb3I6IHJnYigyNTUsIDI1NSwgMjU1KTsiPnFMaWJjDQogaXMgYSBzaW1wbGUgbGlicmFy
-eTwvc3Bhbj48L2Rpdj4NCjxkaXY+PGEgaHJlZj0iaHR0cHM6Ly9naXRodWIuY29tL3dvbGt5a2lt
-L3FsaWJjLmdpdCI+aHR0cHM6Ly9naXRodWIuY29tL3dvbGt5a2ltL3FsaWJjLmdpdDwvYT48L2Rp
-dj4NCjxkaXY+PGJyPg0KPC9kaXY+DQo8ZGl2PlRoYW5rcyw8L2Rpdj4NCjxkaXY+Jm5ic3A7IOKA
-lERpbmg8L2Rpdj4NCjxkaXYgc3R5bGU9ImZvbnQtc2l6ZTogMTRweDsiPg0KPGRpdiBpZD0iTUFD
-X09VVExPT0tfU0lHTkFUVVJFIj48L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8ZGl2IHN0eWxlPSJm
-b250LXNpemU6IDE0cHg7Ij48YnI+DQo8L2Rpdj4NCjxzcGFuIGlkPSJPTEtfU1JDX0JPRFlfU0VD
-VElPTiIgc3R5bGU9ImZvbnQtc2l6ZTogMTRweDsiPg0KPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6
-Q2FsaWJyaTsgZm9udC1zaXplOjEycHQ7IHRleHQtYWxpZ246bGVmdDsgY29sb3I6YmxhY2s7IEJP
-UkRFUi1CT1RUT006IG1lZGl1bSBub25lOyBCT1JERVItTEVGVDogbWVkaXVtIG5vbmU7IFBBRERJ
-TkctQk9UVE9NOiAwaW47IFBBRERJTkctTEVGVDogMGluOyBQQURESU5HLVJJR0hUOiAwaW47IEJP
-UkRFUi1UT1A6ICNiNWM0ZGYgMXB0IHNvbGlkOyBCT1JERVItUklHSFQ6IG1lZGl1bSBub25lOyBQ
-QURESU5HLVRPUDogM3B0Ij4NCjxzcGFuIHN0eWxlPSJmb250LXdlaWdodDpib2xkIj5Gcm9tOiA8
-L3NwYW4+S2hlbSBSYWogJmx0OzxhIGhyZWY9Im1haWx0bzpyYWoua2hlbUBnbWFpbC5jb20iPnJh
-ai5raGVtQGdtYWlsLmNvbTwvYT4mZ3Q7PGJyPg0KPHNwYW4gc3R5bGU9ImZvbnQtd2VpZ2h0OmJv
-bGQiPkRhdGU6IDwvc3Bhbj5UaHVyc2RheSwgT2N0b2JlciAyNywgMjAxNiBhdCA5OjAwIFBNPGJy
-Pg0KPHNwYW4gc3R5bGU9ImZvbnQtd2VpZ2h0OmJvbGQiPlRvOiA8L3NwYW4+ZGluaG4gJmx0Ozxh
-IGhyZWY9Im1haWx0bzpkaW5obkBjaXNjby5jb20iPmRpbmhuQGNpc2NvLmNvbTwvYT4mZ3Q7PGJy
-Pg0KPHNwYW4gc3R5bGU9ImZvbnQtd2VpZ2h0OmJvbGQiPkNjOiA8L3NwYW4+JnF1b3Q7PGEgaHJl
-Zj0ibWFpbHRvOnlvY3RvQHlvY3RvcHJvamVjdC5vcmciPnlvY3RvQHlvY3RvcHJvamVjdC5vcmc8
-L2E+JnF1b3Q7ICZsdDs8YSBocmVmPSJtYWlsdG86eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZyI+eW9j
-dG9AeW9jdG9wcm9qZWN0Lm9yZzwvYT4mZ3Q7PGJyPg0KPHNwYW4gc3R5bGU9ImZvbnQtd2VpZ2h0
-OmJvbGQiPlN1YmplY3Q6IDwvc3Bhbj5SZTogW3lvY3RvXSBxbGliYyBsaWIgZm9yIFlvY3RvIERp
-enp5IHF1ZXN0aW9uPGJyPg0KPC9kaXY+DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPHNwYW4gc3R5bGU9
-Im1zby1ib29rbWFyazpfTWFpbE9yaWdpbmFsQm9keSI+DQo8ZGl2Pg0KPGRpdiBzdHlsZT0id29y
-ZC13cmFwOiBicmVhay13b3JkOyAtd2Via2l0LW5ic3AtbW9kZTogc3BhY2U7IC13ZWJraXQtbGlu
-ZS1icmVhazogYWZ0ZXItd2hpdGUtc3BhY2U7IiBjbGFzcz0iIj4NCjxiciBjbGFzcz0iIj4NCjxk
-aXY+DQo8YmxvY2txdW90ZSB0eXBlPSJjaXRlIiBjbGFzcz0iIj4NCjxkaXYgY2xhc3M9IiI+T24g
-T2N0IDI3LCAyMDE2LCBhdCA4OjE5IFBNLCBEaW5oIE5ndXllbiAoZGluaG4pICZsdDs8YSBocmVm
-PSJtYWlsdG86ZGluaG5AY2lzY28uY29tIiBjbGFzcz0iIj5kaW5obkBjaXNjby5jb208L2E+Jmd0
-OyB3cm90ZTo8L2Rpdj4NCjxiciBjbGFzcz0iQXBwbGUtaW50ZXJjaGFuZ2UtbmV3bGluZSI+DQo8
-ZGl2IGNsYXNzPSIiPg0KPGRpdiBzdHlsZT0id29yZC13cmFwOiBicmVhay13b3JkOyAtd2Via2l0
-LW5ic3AtbW9kZTogc3BhY2U7IC13ZWJraXQtbGluZS1icmVhazogYWZ0ZXItd2hpdGUtc3BhY2U7
-IGZvbnQtc2l6ZTogMTRweDsgZm9udC1mYW1pbHk6IENhbGlicmksIHNhbnMtc2VyaWY7IiBjbGFz
-cz0iIj4NCjxkaXYgY2xhc3M9IiI+PGJyIGNsYXNzPSIiPg0KPC9kaXY+DQo8ZGl2IGNsYXNzPSIi
-PkhpIFlvY3RvIGd1cnVzLDwvZGl2Pg0KPGRpdiBjbGFzcz0iIj48YnIgY2xhc3M9IiI+DQo8L2Rp
-dj4NCjxkaXYgY2xhc3M9IiI+SSBhbSB0cnlpbmcgdG8gYWRkIHRoZSBxbGliYyBsaWIgdG8gb3Vy
-IFlvY3RvIDEuNy4yIHZlcnNpb24uPC9kaXY+DQo8ZGl2IGNsYXNzPSIiPkFibGUgdG8gY29tcGls
-ZSBhbmQgYnVpbGQgSVBLIHBhY2thZ2VzIHdpdGggb3V0IGFueSBpc3N1ZSBhcyBzaG93biBiZWxv
-dzo8L2Rpdj4NCjxkaXYgY2xhc3M9IiI+PGJyIGNsYXNzPSIiPg0KPC9kaXY+DQo8ZGl2IGNsYXNz
-PSIiPg0KPGRpdiBjbGFzcz0iIj5kaW5obkBycy1ibGRzcnY6L21lZGlhL3JhZ2h1cmFtL2RhdGEv
-ZGluaG4vaW94RGV2TGF0ZXN0L2lveHNkay95cF9wcGMkIGZpbmQgdG1wL2RlcGxveSB8IGdyZXAg
-cWxpYmM8L2Rpdj4NCjxkaXYgY2xhc3M9IiI+dG1wL2RlcGxveS9pcGsvcHBjZTUwMHYyL3FsaWJj
-LWRiZ18xLjAtcjBfcHBjZTUwMHYyLmlwazwvZGl2Pg0KPGRpdiBjbGFzcz0iIj50bXAvZGVwbG95
-L2lway9wcGNlNTAwdjIvcWxpYmMtZGV2XzEuMC1yMF9wcGNlNTAwdjIuaXBrPC9kaXY+DQo8ZGl2
-IGNsYXNzPSIiPnRtcC9kZXBsb3kvbGljZW5zZXMvcWxpYmM8L2Rpdj4NCjxkaXYgY2xhc3M9IiI+
-dG1wL2RlcGxveS9saWNlbnNlcy9xbGliYy9nZW5lcmljX0JTRC0yLUNsYXVzZTwvZGl2Pg0KPGRp
-diBjbGFzcz0iIj50bXAvZGVwbG95L2xpY2Vuc2VzL3FsaWJjL0xJQ0VOU0U8L2Rpdj4NCjwvZGl2
-Pg0KPGRpdiBjbGFzcz0iIj48YnIgY2xhc3M9IiI+DQo8L2Rpdj4NCjxkaXYgY2xhc3M9IiI+SG93
-ZXZlciwgaXQgaXMgbm90IGluY2x1ZGVkIGluIHRoZSZuYnNwO3Jvb3Rmcy5tYW5pZmVzdCBmb3Ig
-YnVpbGRpbmcgYSBMWEMgY29udGFpbmVyLiAmbmJzcDs8L2Rpdj4NCjxkaXYgY2xhc3M9IiI+SSB3
-b25kZXIgd2hldGhlciBJIGFtIG1pc3NpbmcgaW4gbXkgcmVjaXBlIHFsaWJjLmJiIG9yIGhvdyB0
-byBzb2x2ZSB0aGlzIGlzc3VlPzwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvYmxvY2txdW90ZT4N
-CjxkaXY+PGJyIGNsYXNzPSIiPg0KPC9kaXY+DQo8ZGl2Pml0IHNlZW1zIHRoYXQgbWFpbiBwYWNr
-YWdlIGlzIGVtcHR5LiBJcyBpdCBqdXN0IGJ1aWxkaW5nIGEgc3RhdGljICggLmEgKSBsaWJyYXJ5
-ID88L2Rpdj4NCjxiciBjbGFzcz0iIj4NCjxibG9ja3F1b3RlIHR5cGU9ImNpdGUiIGNsYXNzPSIi
-Pg0KPGRpdiBjbGFzcz0iIj4NCjxkaXYgc3R5bGU9IndvcmQtd3JhcDogYnJlYWstd29yZDsgLXdl
-YmtpdC1uYnNwLW1vZGU6IHNwYWNlOyAtd2Via2l0LWxpbmUtYnJlYWs6IGFmdGVyLXdoaXRlLXNw
-YWNlOyBmb250LXNpemU6IDE0cHg7IGZvbnQtZmFtaWx5OiBDYWxpYnJpLCBzYW5zLXNlcmlmOyIg
-Y2xhc3M9IiI+DQo8ZGl2IGNsYXNzPSIiPjxiciBjbGFzcz0iIj4NCjwvZGl2Pg0KPGRpdiBjbGFz
-cz0iIj5NYW55IHRoYW5rcyw8L2Rpdj4NCjxkaXYgY2xhc3M9IiI+Jm5ic3A7IOKAlERpbmg8L2Rp
-dj4NCjxkaXYgY2xhc3M9IiI+PGJyIGNsYXNzPSIiPg0KPC9kaXY+DQo8ZGl2IGNsYXNzPSIiPjxi
-ciBjbGFzcz0iIj4NCjwvZGl2Pg0KPGRpdiBjbGFzcz0iIj4NCjxkaXYgaWQ9IiIgY2xhc3M9IiI+
-PC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KLS0gPGJyIGNsYXNzPSIiPg0KX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX188YnIgY2xhc3M9IiI+DQp5b2N0byBtYWls
-aW5nIGxpc3Q8YnIgY2xhc3M9IiI+DQo8YSBocmVmPSJtYWlsdG86eW9jdG9AeW9jdG9wcm9qZWN0
-Lm9yZyIgY2xhc3M9IiI+eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZzwvYT48YnIgY2xhc3M9IiI+DQo8
-YSBocmVmPSJodHRwczovL2xpc3RzLnlvY3RvcHJvamVjdC5vcmcvbGlzdGluZm8veW9jdG8iPmh0
-dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9saXN0aW5mby95b2N0bzwvYT48YnIgY2xhc3M9
-IiI+DQo8L2Rpdj4NCjwvYmxvY2txdW90ZT4NCjwvZGl2Pg0KPGJyIGNsYXNzPSIiPg0KPC9kaXY+
-DQo8L2Rpdj4NCjwvc3Bhbj48L3NwYW4+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
 
---_000_FCBF0B79821F48298664A9BBC6A5804Fciscocom_--
+--Apple-Mail=_27457345-F201-42D0-8363-AA8B13E4B9E6
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=utf-8
+
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
+charset=3Dutf-8"></head><body style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
+class=3D"">if its just a static library and you want to include it in =
+image you might have to add ${PN}-dev in your IMAGE_INSTALL<div =
+class=3D""><br class=3D""><div><blockquote type=3D"cite" class=3D""><div =
+class=3D"">On Oct 27, 2016, at 9:48 PM, Dinh Nguyen (dinhn) &lt;<a =
+href=3D"mailto:dinhn@cisco.com" class=3D"">dinhn@cisco.com</a>&gt; =
+wrote:</div><br class=3D"Apple-interchange-newline"><div class=3D"">
+
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8" =
+class=3D"">
+
+<div style=3D"word-wrap: break-word; -webkit-nbsp-mode: space; =
+-webkit-line-break: after-white-space; font-family: Calibri, =
+sans-serif;" class=3D"">
+<div class=3D"">
+<div class=3D"">Thanks much for prompt response Khem.&nbsp;</div>
+<div class=3D""><br class=3D"">
+</div>
+<div class=3D"">Yes, &nbsp;<span style=3D"color: rgb(102, 102, 102); =
+font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, =
+Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI =
+Symbol'; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);" =
+class=3D"">qLibc
+ is a simple library</span></div>
+<div class=3D""><a href=3D"https://github.com/wolkykim/qlibc.git" =
+class=3D"">https://github.com/wolkykim/qlibc.git</a></div>
+<div class=3D""><br class=3D"">
+</div>
+<div class=3D"">Thanks,</div>
+<div class=3D"">&nbsp; =E2=80=94Dinh</div>
+<div style=3D"font-size: 14px;" class=3D"">
+<div id=3D"MAC_OUTLOOK_SIGNATURE" class=3D""></div>
+</div>
+</div>
+<div style=3D"font-size: 14px;" class=3D""><br class=3D"">
+</div>
+<span id=3D"OLK_SRC_BODY_SECTION" style=3D"font-size: 14px;" class=3D"">
+<div style=3D"font-family: Calibri; font-size: 12pt; text-align: left; =
+border-width: 1pt medium medium; border-style: solid none none; padding: =
+3pt 0in 0in; border-top-color: rgb(181, 196, 223);" class=3D"">
+<span style=3D"font-weight:bold" class=3D"">From: </span>Khem Raj &lt;<a =
+href=3D"mailto:raj.khem@gmail.com" =
+class=3D"">raj.khem@gmail.com</a>&gt;<br class=3D"">
+<span style=3D"font-weight:bold" class=3D"">Date: </span>Thursday, =
+October 27, 2016 at 9:00 PM<br class=3D"">
+<span style=3D"font-weight:bold" class=3D"">To: </span>dinhn &lt;<a =
+href=3D"mailto:dinhn@cisco.com" class=3D"">dinhn@cisco.com</a>&gt;<br =
+class=3D"">
+<span style=3D"font-weight:bold" class=3D"">Cc: </span>"<a =
+href=3D"mailto:yocto@yoctoproject.org" =
+class=3D"">yocto@yoctoproject.org</a>" &lt;<a =
+href=3D"mailto:yocto@yoctoproject.org" =
+class=3D"">yocto@yoctoproject.org</a>&gt;<br class=3D"">
+<span style=3D"font-weight:bold" class=3D"">Subject: </span>Re: [yocto] =
+qlibc lib for Yocto Dizzy question<br class=3D"">
+</div>
+<div class=3D""><br class=3D"">
+</div>
+<span style=3D"mso-bookmark:_MailOriginalBody" class=3D"">
+<div class=3D"">
+<div style=3D"word-wrap: break-word; -webkit-nbsp-mode: space; =
+-webkit-line-break: after-white-space;" class=3D"">
+<br class=3D"">
+<div class=3D"">
+<blockquote type=3D"cite" class=3D"">
+<div class=3D"">On Oct 27, 2016, at 8:19 PM, Dinh Nguyen (dinhn) &lt;<a =
+href=3D"mailto:dinhn@cisco.com" class=3D"">dinhn@cisco.com</a>&gt; =
+wrote:</div>
+<br class=3D"Apple-interchange-newline">
+<div class=3D"">
+<div style=3D"word-wrap: break-word; -webkit-nbsp-mode: space; =
+-webkit-line-break: after-white-space; font-size: 14px; font-family: =
+Calibri, sans-serif;" class=3D"">
+<div class=3D""><br class=3D"">
+</div>
+<div class=3D"">Hi Yocto gurus,</div>
+<div class=3D""><br class=3D"">
+</div>
+<div class=3D"">I am trying to add the qlibc lib to our Yocto 1.7.2 =
+version.</div>
+<div class=3D"">Able to compile and build IPK packages with out any =
+issue as shown below:</div>
+<div class=3D""><br class=3D"">
+</div>
+<div class=3D"">
+<div =
+class=3D"">dinhn@rs-bldsrv:/media/raghuram/data/dinhn/ioxDevLatest/ioxsdk/=
+yp_ppc$ find tmp/deploy | grep qlibc</div>
+<div =
+class=3D"">tmp/deploy/ipk/ppce500v2/qlibc-dbg_1.0-r0_ppce500v2.ipk</div>
+<div =
+class=3D"">tmp/deploy/ipk/ppce500v2/qlibc-dev_1.0-r0_ppce500v2.ipk</div>
+<div class=3D"">tmp/deploy/licenses/qlibc</div>
+<div class=3D"">tmp/deploy/licenses/qlibc/generic_BSD-2-Clause</div>
+<div class=3D"">tmp/deploy/licenses/qlibc/LICENSE</div>
+</div>
+<div class=3D""><br class=3D"">
+</div>
+<div class=3D"">However, it is not included in the&nbsp;rootfs.manifest =
+for building a LXC container. &nbsp;</div>
+<div class=3D"">I wonder whether I am missing in my recipe qlibc.bb or =
+how to solve this issue?</div>
+</div>
+</div>
+</blockquote>
+<div class=3D""><br class=3D"">
+</div>
+<div class=3D"">it seems that main package is empty. Is it just building =
+a static ( .a ) library ?</div>
+<br class=3D"">
+<blockquote type=3D"cite" class=3D"">
+<div class=3D"">
+<div style=3D"word-wrap: break-word; -webkit-nbsp-mode: space; =
+-webkit-line-break: after-white-space; font-size: 14px; font-family: =
+Calibri, sans-serif;" class=3D"">
+<div class=3D""><br class=3D"">
+</div>
+<div class=3D"">Many thanks,</div>
+<div class=3D"">&nbsp; =E2=80=94Dinh</div>
+<div class=3D""><br class=3D"">
+</div>
+<div class=3D""><br class=3D"">
+</div>
+<div class=3D"">
+<div id=3D"" class=3D""></div>
+</div>
+</div>
+-- <br class=3D"">
+_______________________________________________<br class=3D"">
+yocto mailing list<br class=3D"">
+<a href=3D"mailto:yocto@yoctoproject.org" =
+class=3D"">yocto@yoctoproject.org</a><br class=3D"">
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" =
+class=3D"">https://lists.yoctoproject.org/listinfo/yocto</a><br =
+class=3D"">
+</div>
+</blockquote>
+</div>
+<br class=3D"">
+</div>
+</div>
+</span></span>
+</div>
+
+</div></blockquote></div><br class=3D""></div></body></html>=
+
+--Apple-Mail=_27457345-F201-42D0-8363-AA8B13E4B9E6--
+
+--Apple-Mail=_4532F81E-011F-44E0-82A7-48A1CB90E21C
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+	filename=signature.asc
+Content-Type: application/pgp-signature;
+	name=signature.asc
+Content-Description: Message signed with OpenPGP using GPGMail
+
+-----BEGIN PGP SIGNATURE-----
+Comment: GPGTools - https://gpgtools.org
+
+iEYEARECAAYFAlgS230ACgkQuwUzVZGdMxTbGgCfYjWznOO4iHTmDAeXaI760de+
+zPoAn0RgnMkLvuKTIJHq780R825/Y1n4
+=mU8E
+-----END PGP SIGNATURE-----
+
+--Apple-Mail=_4532F81E-011F-44E0-82A7-48A1CB90E21C--
