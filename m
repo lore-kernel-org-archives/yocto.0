@@ -1,67 +1,71 @@
-Return-Path: <andrei@gherzan.ro>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 920CAE00747; Mon, 31 Oct 2016 09:32:22 -0700 (PDT)
+	id D5881E00747; Mon, 31 Oct 2016 09:37:18 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [74.125.82.65 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.82.65 listed in dnsbl.sorbs.net]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.192.181 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f65.google.com (mail-wm0-f65.google.com [74.125.82.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2ED1DE006C7
-	for <yocto@yoctoproject.org>; Mon, 31 Oct 2016 09:32:17 -0700 (PDT)
-Received: by mail-wm0-f65.google.com with SMTP id 68so12411128wmz.2
-	for <yocto@yoctoproject.org>; Mon, 31 Oct 2016 09:32:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-disposition:in-reply-to:user-agent;
-	bh=NprDlZOsaCPkBA8t+z31sl88Ys7Cmj0Et7Ggs7+fZ8o=;
-	b=Z2MsHOE5SuMI81BGoUEC214057bvGjh3H98DA2KCHSHiPNtThIg3TL5x1MVkamx7/K
-	+UUZWwoIizF1sLqTRk9oexXaNBPpJeS9kagO3bfp35u+71mV5ecs/ovGwNzpO+SYH7CU
-	O9ePc2MxgznGDx5+U3xufRR0BMt4u8D0olyv9vevy40ZDFJO6Y8v/bFWaLsY8cSsEhNm
-	2UChb26zUzQ8hbhrcPJLc7PGiaT2SLYfQWaZs7eGVFzSYro15ADms7EYXL4T+Uw1BoBv
-	h/uOEyF7AurJaeiLwdND12HKR7rJ0cige1LxeJl+zLOeIG0BGgGddyKegWsULoR9LlnD
-	MuSQ==
+Received: from mail-pf0-f181.google.com (mail-pf0-f181.google.com
+	[209.85.192.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A49F1E006C7
+	for <yocto@yoctoproject.org>; Mon, 31 Oct 2016 09:37:15 -0700 (PDT)
+Received: by mail-pf0-f181.google.com with SMTP id s8so78803044pfj.2
+	for <yocto@yoctoproject.org>; Mon, 31 Oct 2016 09:37:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=subject:mime-version:from:in-reply-to:date:cc:message-id:references
+	:to; bh=cbqwNRXbogTUmKytAHP1FivDFFX0OewNaXavDtAtz1M=;
+	b=f/b8rFBiMlH/0nt3Pq9LxuDijvkGFVIOfHq+kawZN9tjTjWH+9r6WPhHDIl5LHu1ep
+	YBd56Mpxz86oicyJKK+AAYvY0Sm+Gh4rwTJp6/1wySJEMyvy7Gvh/Z4q0HT/Lr1zHILO
+	hqnq6zGl56QQjVbEGHzboXhrmuJkC9JUAGN0WMzFyNBbBt0iy+C+2DaoogobmWKsoVsz
+	kJMTLYi7PjedCJr5OMVeOLGHN2f7573ARAXAFo1rXMVEtlXYa78kHWLEHwJp8xh8QuAn
+	Pl/0jTfUtLPzPo0njd5vCUq1YCeyQqanl4xGYq5tWzicEKIbNyZK7XFdNTzdkVm9XbCE
+	+Nfg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-	:mime-version:content-disposition:in-reply-to:user-agent;
-	bh=NprDlZOsaCPkBA8t+z31sl88Ys7Cmj0Et7Ggs7+fZ8o=;
-	b=f7VBrOxlADqXnPlxtLzBnCquCYBPhDDJqW6Z0n5xlVzqnL1zpbXirWNneQ4lWqAm+8
-	LUe5zCoxoBNKXOvdiRj4e/Z9G0iifdCIfbcOOAT1PODZarGLitsVJdrMl/vkkldJlNWJ
-	QEVyyjVEXfMmUyzgJqCt4S+TybxKd+laCLPTWtV2Eh/koGrm4KeCHMiE4ogA9+OVS2aT
-	QGsWGxgjaSTQPoQ4CHcxJP5/kvvkwoHUFtH+qxAiALQky8jpEtdkd5KhJS2ePvR+du+s
-	79NRmYiwQRj1skPoibu7YgMi61ZpGpVuz9yj7lzXvYIsaLMe8XQb0X3n9fQdpdjE46cX
-	sGSA==
-X-Gm-Message-State: ABUngvcB0I0tScBhPZ6MEYxivVB+eXOGT5Ooy+c5+IDrld7U6lwkg2qmjY8Qy0GAqAdeoQ==
-X-Received: by 10.28.46.15 with SMTP id u15mr12052566wmu.61.1477931537055;
-	Mon, 31 Oct 2016 09:32:17 -0700 (PDT)
-Received: from carbonA (host86-163-63-150.range86-163.btcentralplus.com.
-	[86.163.63.150]) by smtp.gmail.com with ESMTPSA id
-	l19sm25654988wmg.5.2016.10.31.09.32.16
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Mon, 31 Oct 2016 09:32:16 -0700 (PDT)
-Date: Mon, 31 Oct 2016 16:32:14 +0000
-From: Andrei Gherzan <andrei@gherzan.ro>
-To: Jonathan Liu <net147@gmail.com>
-Message-ID: <20161031163214.GC3276@carbonA>
-References: <20161016220857.30299-1-net147@gmail.com>
-MIME-Version: 1.0
-In-Reply-To: <20161016220857.30299-1-net147@gmail.com>
-User-Agent: Mutt/1.7.1 (2016-10-04)
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-raspberrypi][PATCH] linux-firmware: Correct the LICENSE for brcm43430-license
+	h=x-gm-message-state:subject:mime-version:from:in-reply-to:date:cc
+	:message-id:references:to;
+	bh=cbqwNRXbogTUmKytAHP1FivDFFX0OewNaXavDtAtz1M=;
+	b=dOWsZY6Xs9hNkzSG10ITPJ4+6kJ3GiShN81eZP3tgZurk88GPXVQeyzjuWs1NWxJ8A
+	lRxVqWRAvtFl2suKiRYGMcMKnhg+bYwElaQmoFEvEYAkqHV+V2Sa0yLsiOZWF6yWgR80
+	nF8Gyu763IENIC+lCYtRBUkkXo/4hmbBlgOfzrDwR/32lwmrFIbG8R417t8brXpSBv7j
+	+D57okd1paMq3Gk1rxaMNeXj4hXG7YSxLpt/nZUlIl9hx5ocdw4dUkE1zGryMVX6f3dh
+	m/e8lWGhXpFsq5DVxUJwtY+4IJsbFiBljPj21hUh2Mh5thb+KOEi9rznDdShCIMdU8te
+	W4zQ==
+X-Gm-Message-State: ABUngvfgqq+6fUpm+NneL1HotsW6DsTNASp/USZF/+O5tZ3WSBbukKOcLYL4d4uq/7pS6w==
+X-Received: by 10.99.100.132 with SMTP id y126mr42344160pgb.177.1477931834573; 
+	Mon, 31 Oct 2016 09:37:14 -0700 (PDT)
+Received: from ?IPv6:2601:646:8882:b8c:793b:10a4:267d:c6fc?
+	([2601:646:8882:b8c:793b:10a4:267d:c6fc])
+	by smtp.gmail.com with ESMTPSA id
+	p62sm36707156pfb.42.2016.10.31.09.37.13
+	(version=TLS1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Mon, 31 Oct 2016 09:37:13 -0700 (PDT)
+Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
+X-Pgp-Agent: GPGMail
+From: Khem Raj <raj.khem@gmail.com>
+In-Reply-To: <30C2D590D16A5C46ADFE6521910377987FF672EC@AZ-US1EXMB02.global.avaya.com>
+Date: Mon, 31 Oct 2016 09:37:07 -0700
+Message-Id: <66B0CBC6-1852-482E-94EE-6E216B1105ED@gmail.com>
+References: <30C2D590D16A5C46ADFE6521910377987FF672EC@AZ-US1EXMB02.global.avaya.com>
+To: "Vuille, Martin (Martin)" <vmartin@avaya.com>
+X-Mailer: Apple Mail (2.3124)
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Yocto 2.2 minimum kernel requirement
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,71 +77,202 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 31 Oct 2016 16:32:22 -0000
-X-Groupsio-MsgNum: 32696
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="XWOWbaMNXpFDWE00"
-Content-Disposition: inline
+X-List-Received-Date: Mon, 31 Oct 2016 16:37:18 -0000
+X-Groupsio-MsgNum: 32697
+Content-Type: multipart/signed;
+	boundary="Apple-Mail=_CF24C9D0-473B-4834-B0A7-3D4569FC2576";
+	protocol="application/pgp-signature"; micalg=pgp-sha1
 
---XWOWbaMNXpFDWE00
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+--Apple-Mail=_CF24C9D0-473B-4834-B0A7-3D4569FC2576
+Content-Type: multipart/alternative;
+	boundary="Apple-Mail=_54650B8B-4B47-44DA-BE4B-431E17C3ED93"
 
-On Mon, Oct 17, 2016 at 09:08:57AM +1100, Jonathan Liu wrote:
-> The license for brcm43430-license should be the license it contains
-> instead of all the licenses of the linux-firmware packages.
->
-> [YOCTO #10251]
->
-> Signed-off-by: Jonathan Liu <net147@gmail.com>
-> ---
->  recipes-kernel/linux-firmware/linux-firmware_git.bbappend | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/recipes-kernel/linux-firmware/linux-firmware_git.bbappend b/recipes-kernel/linux-firmware/linux-firmware_git.bbappend
-> index b4408cb..bcfadde 100644
-> --- a/recipes-kernel/linux-firmware/linux-firmware_git.bbappend
-> +++ b/recipes-kernel/linux-firmware/linux-firmware_git.bbappend
-> @@ -20,6 +20,7 @@ do_install_append() {
->  PACKAGES =+ "${PN}-brcm43430 ${PN}-brcm43430-license"
->
->  LICENSE_${PN}-brcm43430 = "Firmware-broadcom_brcm80211"
-> +LICENSE_${PN}-brcm43430-license = "Firmware-broadcom_brcm80211"
->  FILES_${PN}-brcm43430-license = "/lib/firmware/LICENSE.broadcom_brcm80211"
->  FILES_${PN}-brcm43430 = " \
->      /lib/firmware/brcm/brcmfmac43430-sdio.bin \
-> --
-> 2.10.0
->
+--Apple-Mail=_54650B8B-4B47-44DA-BE4B-431E17C3ED93
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=utf-8
+
+
+> On Oct 31, 2016, at 7:37 AM, Vuille, Martin (Martin) =
+<vmartin@avaya.com> wrote:
+>=20
+> We are looking at upgrading from Yocto 1.8 to 2.2.
+>=20
+> Yocto 2.2 has a minimum kernel requirement of 3.2.0.
+>=20
+> This isn=E2=80=99t an issue for our target (ARMv5, Linux 4.4) but may =
+be
+> an issue for our automated build machines (x86, Linux 2.6.32=E2=80=94Cen=
+tOS 6.)
+>=20
+> However, there is a note that says
+> =E2=80=9CFor x86 and x86_64, you can reset OLDEST_KERNEL =
+<http://www.yoctoproject.org/docs/2.2/mega-manual/mega-manual.html#var-OLD=
+EST_KERNEL> to anything down to 2.6.32 if desired.=E2=80=9D
+>=20
+> Is it possible to configure things such that we can keep supporting =
+the old
+> kernel for the SDK while we support a more up-to-date kernel for the =
+target?
+
+I think that should be the default. We do not set it for x86/nativesdk =
+case. File a ticket if thats not
+the case.
+
+>=20
+> MV
 > --
 > _______________________________________________
 > yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+> yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
+> https://lists.yoctoproject.org/listinfo/yocto =
+<https://lists.yoctoproject.org/listinfo/yocto>
 
-This was merged to master. Thank you.
+--Apple-Mail=_54650B8B-4B47-44DA-BE4B-431E17C3ED93
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=utf-8
 
---
-Andrei Gherzan
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
+charset=3Dutf-8"></head><body style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
+class=3D""><br class=3D""><div><blockquote type=3D"cite" class=3D""><div =
+class=3D"">On Oct 31, 2016, at 7:37 AM, Vuille, Martin (Martin) &lt;<a =
+href=3D"mailto:vmartin@avaya.com" class=3D"">vmartin@avaya.com</a>&gt; =
+wrote:</div><br class=3D"Apple-interchange-newline"><div class=3D""><div =
+class=3D"WordSection1" style=3D"page: WordSection1; font-family: =
+Times-Roman; font-size: 14px; font-style: normal; font-variant-caps: =
+normal; font-weight: normal; letter-spacing: normal; orphans: auto; =
+text-align: start; text-indent: 0px; text-transform: none; white-space: =
+normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: =
+0px;"><div style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; =
+font-family: Calibri, sans-serif;" class=3D""><span lang=3D"EN-US" =
+class=3D"">We are looking at upgrading from Yocto 1.8 to 2.2.<o:p =
+class=3D""></o:p></span></div><div style=3D"margin: 0in 0in 0.0001pt; =
+font-size: 11pt; font-family: Calibri, sans-serif;" class=3D""><span =
+lang=3D"EN-US" class=3D""><o:p class=3D"">&nbsp;</o:p></span></div><div =
+style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: =
+Calibri, sans-serif;" class=3D""><span lang=3D"EN-US" class=3D"">Yocto =
+2.2 has a minimum kernel requirement of 3.2.0.<o:p =
+class=3D""></o:p></span></div><div style=3D"margin: 0in 0in 0.0001pt; =
+font-size: 11pt; font-family: Calibri, sans-serif;" class=3D""><span =
+lang=3D"EN-US" class=3D""><o:p class=3D"">&nbsp;</o:p></span></div><div =
+style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: =
+Calibri, sans-serif;" class=3D""><span lang=3D"EN-US" class=3D"">This =
+isn=E2=80=99t an issue for our target (ARMv5, Linux 4.4) but may be<o:p =
+class=3D""></o:p></span></div><div style=3D"margin: 0in 0in 0.0001pt; =
+font-size: 11pt; font-family: Calibri, sans-serif;" class=3D""><span =
+lang=3D"EN-US" class=3D"">an issue for our automated build machines =
+(x86, Linux 2.6.32=E2=80=94CentOS 6.)<o:p =
+class=3D""></o:p></span></div><div style=3D"margin: 0in 0in 0.0001pt; =
+font-size: 11pt; font-family: Calibri, sans-serif;" class=3D""><span =
+lang=3D"EN-US" class=3D""><o:p class=3D"">&nbsp;</o:p></span></div><div =
+style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: =
+Calibri, sans-serif;" class=3D""><span lang=3D"EN-US" class=3D"">However, =
+there is a note that says<o:p class=3D""></o:p></span></div><div =
+style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: =
+Calibri, sans-serif;" class=3D""><span lang=3D"EN-US" =
+class=3D"">=E2=80=9C</span>For x86 and x86_64, you can reset<span =
+class=3D"Apple-converted-space">&nbsp;</span><a =
+href=3D"http://www.yoctoproject.org/docs/2.2/mega-manual/mega-manual.html#=
+var-OLDEST_KERNEL" title=3D"OLDEST_KERNEL" style=3D"color: purple; =
+text-decoration: underline;" class=3D""><code style=3D"font-family: =
+'Courier New';" class=3D""><span style=3D"font-size: 10pt; color: blue;" =
+class=3D"">OLDEST_KERNEL</span></code></a><span =
+class=3D"Apple-converted-space">&nbsp;</span>to anything down to 2.6.32 =
+if desired.=E2=80=9D<o:p class=3D""></o:p></div><div style=3D"margin: =
+0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri, sans-serif;" =
+class=3D""><o:p class=3D"">&nbsp;</o:p></div><div style=3D"margin: 0in =
+0in 0.0001pt; font-size: 11pt; font-family: Calibri, sans-serif;" =
+class=3D"">Is it possible to configure things such that we can keep =
+supporting the old<o:p class=3D""></o:p></div><div style=3D"margin: 0in =
+0in 0.0001pt; font-size: 11pt; font-family: Calibri, sans-serif;" =
+class=3D"">kernel for the SDK while we support a more up-to-date kernel =
+for the target?</div></div></div></blockquote><div><br =
+class=3D""></div><div>I think that should be the default. We do not set =
+it for x86/nativesdk case. File a ticket if thats not</div><div>the =
+case.</div><br class=3D""><blockquote type=3D"cite" class=3D""><div =
+class=3D""><div class=3D"WordSection1" style=3D"page: WordSection1; =
+font-family: Times-Roman; font-size: 14px; font-style: normal; =
+font-variant-caps: normal; font-weight: normal; letter-spacing: normal; =
+orphans: auto; text-align: start; text-indent: 0px; text-transform: =
+none; white-space: normal; widows: auto; word-spacing: 0px; =
+-webkit-text-stroke-width: 0px;"><div style=3D"margin: 0in 0in 0.0001pt; =
+font-size: 11pt; font-family: Calibri, sans-serif;" class=3D""><o:p =
+class=3D""></o:p></div><div style=3D"margin: 0in 0in 0.0001pt; =
+font-size: 11pt; font-family: Calibri, sans-serif;" class=3D""><o:p =
+class=3D"">&nbsp;</o:p></div><div style=3D"margin: 0in 0in 0.0001pt; =
+font-size: 11pt; font-family: Calibri, sans-serif;" class=3D"">MV<o:p =
+class=3D""></o:p></div></div><span style=3D"font-family: Times-Roman; =
+font-size: 14px; font-style: normal; font-variant-caps: normal; =
+font-weight: normal; letter-spacing: normal; orphans: auto; text-align: =
+start; text-indent: 0px; text-transform: none; white-space: normal; =
+widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; float: =
+none; display: inline !important;" class=3D"">--<span =
+class=3D"Apple-converted-space">&nbsp;</span></span><br =
+style=3D"font-family: Times-Roman; font-size: 14px; font-style: normal; =
+font-variant-caps: normal; font-weight: normal; letter-spacing: normal; =
+orphans: auto; text-align: start; text-indent: 0px; text-transform: =
+none; white-space: normal; widows: auto; word-spacing: 0px; =
+-webkit-text-stroke-width: 0px;" class=3D""><span style=3D"font-family: =
+Times-Roman; font-size: 14px; font-style: normal; font-variant-caps: =
+normal; font-weight: normal; letter-spacing: normal; orphans: auto; =
+text-align: start; text-indent: 0px; text-transform: none; white-space: =
+normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
+float: none; display: inline !important;" =
+class=3D"">_______________________________________________</span><br =
+style=3D"font-family: Times-Roman; font-size: 14px; font-style: normal; =
+font-variant-caps: normal; font-weight: normal; letter-spacing: normal; =
+orphans: auto; text-align: start; text-indent: 0px; text-transform: =
+none; white-space: normal; widows: auto; word-spacing: 0px; =
+-webkit-text-stroke-width: 0px;" class=3D""><span style=3D"font-family: =
+Times-Roman; font-size: 14px; font-style: normal; font-variant-caps: =
+normal; font-weight: normal; letter-spacing: normal; orphans: auto; =
+text-align: start; text-indent: 0px; text-transform: none; white-space: =
+normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
+float: none; display: inline !important;" class=3D"">yocto mailing =
+list</span><br style=3D"font-family: Times-Roman; font-size: 14px; =
+font-style: normal; font-variant-caps: normal; font-weight: normal; =
+letter-spacing: normal; orphans: auto; text-align: start; text-indent: =
+0px; text-transform: none; white-space: normal; widows: auto; =
+word-spacing: 0px; -webkit-text-stroke-width: 0px;" class=3D""><a =
+href=3D"mailto:yocto@yoctoproject.org" style=3D"color: purple; =
+text-decoration: underline; font-family: Times-Roman; font-size: 14px; =
+font-style: normal; font-variant-caps: normal; font-weight: normal; =
+letter-spacing: normal; orphans: auto; text-align: start; text-indent: =
+0px; text-transform: none; white-space: normal; widows: auto; =
+word-spacing: 0px; -webkit-text-stroke-width: 0px;" =
+class=3D"">yocto@yoctoproject.org</a><br style=3D"font-family: =
+Times-Roman; font-size: 14px; font-style: normal; font-variant-caps: =
+normal; font-weight: normal; letter-spacing: normal; orphans: auto; =
+text-align: start; text-indent: 0px; text-transform: none; white-space: =
+normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: =
+0px;" class=3D""><a href=3D"https://lists.yoctoproject.org/listinfo/yocto"=
+ style=3D"color: purple; text-decoration: underline; font-family: =
+Times-Roman; font-size: 14px; font-style: normal; font-variant-caps: =
+normal; font-weight: normal; letter-spacing: normal; orphans: auto; =
+text-align: start; text-indent: 0px; text-transform: none; white-space: =
+normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: =
+0px;" =
+class=3D"">https://lists.yoctoproject.org/listinfo/yocto</a></div></blockq=
+uote></div><br class=3D""></body></html>=
 
---XWOWbaMNXpFDWE00
-Content-Type: application/pgp-signature; name="signature.asc"
+--Apple-Mail=_54650B8B-4B47-44DA-BE4B-431E17C3ED93--
+
+--Apple-Mail=_CF24C9D0-473B-4834-B0A7-3D4569FC2576
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+	filename=signature.asc
+Content-Type: application/pgp-signature;
+	name=signature.asc
+Content-Description: Message signed with OpenPGP using GPGMail
 
 -----BEGIN PGP SIGNATURE-----
+Comment: GPGTools - https://gpgtools.org
 
-iQIcBAEBCAAGBQJYF3IOAAoJEHO76Gt+erfPvrcQAJb2ta+AI5trfRlyOnc60ukO
-P/U8j8FvOSk1AYnXoNLDq44PjuAdBJEyC+SBud0tFaHlPK+kjr3uJSwejOT0DebK
-E7Li/jFjNw/gyEc3rZ0aiAEUDgkYapQSSnskp63zsx/Grsml7zx0V/rFkFuC7aZN
-X4lJNkbp18nvSzWzruxvtgGv/ALLj39Y29P1+a3k20Sj14SR3Pdvn/nro47R2pp3
-M9tgXHLEvs+nXl8CnEcEkuXbQ6fJn3cByb2BOB6RV+h+ITPDpbYqGbhACWZv3RbG
-+M/7MZM4CQEyA1WVbvWxzcmUGCh42CBMbnpXyGvupHrj+BkbIxQJlJpLc88lLF+Y
-hmOQbNsj0vi8F/KR9x9Jb/HwduE8lCsg7+ue7wdDqyXuFABOONREtTm4QiHyvHLJ
-C5vclxXCXmAvlLE4RvFeJ6eKw0FgSzeWUG+/zom8t0aptd6TP38PVnXaCl4/vZ+q
-4nYq95u9bO/HDLsFwpZzijIRJN7KQCpc7AUP2nEXTL9PFrmJSfyrX/nwc4PK/Pt3
-yyG+m5NS06Uf91QbihhRjNudmlmFuP+8ipHg3SdZB2+nY3jG8ApjMM7A7xWZB2L6
-YquT6hebgKwPXi2ZauGRfnUK/BHgikMm7ni8+zwMreHsgW148Et81nkR8OmpnVI+
-xHtfL8sco/h+iE5D5W8b
-=S5Zl
+iEYEARECAAYFAlgXczcACgkQuwUzVZGdMxSMSACcCtaBjNxfkLvE25qoblcQ2CcN
+A7cAnj3BMgGfwpt3hulBRI2YtdhbxkX/
+=atSH
 -----END PGP SIGNATURE-----
 
---XWOWbaMNXpFDWE00--
+--Apple-Mail=_CF24C9D0-473B-4834-B0A7-3D4569FC2576--
