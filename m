@@ -1,60 +1,68 @@
-Return-Path: <adrian.ratiu@ni.com>
+Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A50C8E00D18; Mon, 31 Oct 2016 07:08:36 -0700 (PDT)
+	id 66653E00E0D; Mon, 31 Oct 2016 07:10:21 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [130.164.80.24 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.82.65 listed in dnsbl.sorbs.net]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.82.65 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from ni.com (skprod3.natinst.com [130.164.80.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 52E53E009D8
-	for <yocto@yoctoproject.org>; Mon, 31 Oct 2016 07:08:34 -0700 (PDT)
-Received: from us-aus-exch2.ni.corp.natinst.com
-	(us-aus-exch2.ni.corp.natinst.com [130.164.68.12])
-	by us-aus-skprod3.natinst.com (8.15.0.59/8.15.0.59) with ESMTPS id
-	u9VE8Uu3019596
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
-	Mon, 31 Oct 2016 09:08:30 -0500
-Received: from us-aus-exch3.ni.corp.natinst.com (130.164.68.13) by
-	us-aus-exch2.ni.corp.natinst.com (130.164.68.12) with Microsoft SMTP
-	Server (TLS) id 15.0.1156.6; Mon, 31 Oct 2016 09:08:30 -0500
-Received: from us-aus-exhub1.ni.corp.natinst.com (130.164.68.41) by
-	us-aus-exch3.ni.corp.natinst.com (130.164.68.13) with Microsoft SMTP
-	Server (TLS) id 15.0.1156.6; Mon, 31 Oct 2016 09:08:29 -0500
-Received: from us-aus-mgwout1.amer.corp.natinst.com (130.164.49.7) by
-	us-aus-exhub1.ni.corp.natinst.com (130.164.68.41) with Microsoft SMTP
-	Server
-	id 15.0.1156.6 via Frontend Transport; Mon, 31 Oct 2016 09:08:29 -0500
-Received: from adi-pc-linux.emea.corp.natinst.com ([130.164.14.198])
-	by us-aus-mgwout1.amer.corp.natinst.com (Lotus Domino Release 8.5.3FP6
-	HF1218) with ESMTP id 2016103109082068-115262 ;
-	Mon, 31 Oct 2016 09:08:20 -0500 
-From: Ioan-Adrian Ratiu <adrian.ratiu@ni.com>
-To: <joe_macdonald@mentor.com>, <mark.hatle@windriver.com>
-Date: Mon, 31 Oct 2016 16:06:53 +0200
-Message-ID: <20161031140653.14408-1-adrian.ratiu@ni.com>
-X-Mailer: git-send-email 2.10.2
-X-MIMETrack: Itemize by SMTP Server on US-AUS-MGWOut1/AUS/H/NIC(Release
-	8.5.3FP6 HF1218|December 12, 2014) at 10/31/2016 09:08:20 AM,
-	Serialize by Router on US-AUS-MGWOut1/AUS/H/NIC(Release 8.5.3FP6
-	HF1218|December 12, 2014) at 10/31/2016 09:08:20 AM,
-	Serialize complete at 10/31/2016 09:08:20 AM
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wm0-f65.google.com (mail-wm0-f65.google.com [74.125.82.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C348AE00D1C
+	for <yocto@yoctoproject.org>; Mon, 31 Oct 2016 07:10:19 -0700 (PDT)
+Received: by mail-wm0-f65.google.com with SMTP id c17so18608131wmc.3
+	for <yocto@yoctoproject.org>; Mon, 31 Oct 2016 07:10:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-disposition:in-reply-to:user-agent;
+	bh=AjFYQKE9gRUj0yTySd+oxs7PRIotPrIJQtY3aIODw14=;
+	b=Dr3WGKFtLWNdEwtvsVX87vYrTF3mlvjDwJuazz8hb/cnsbVLcJgbMoighfNvA4VENK
+	sHeEgZgiegN7ExwekwX/5Ck+yY8c33frhIoWiZAN2ldJZRQ3zoX4UjP13CmJf/9vSDdQ
+	gMw+iibAcZqsBTU6UYaqWrhU1/1RBB3ZunPc2vsVBj+RmK8KL296Weym9buq/EIskQ77
+	KrPB0xRXXv86EfmU9QtdXrW1DlehlJk2LCsKyIpZ4WpIDMNf38xtR4NuIl06i0cByVKD
+	gDba/qVzsQ5hwaS2flaitr1k0bT0CCiWcbaM/LyZwqWVsHAeL8rp8wtyLvtOcX/EefKN
+	mfvg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	:mime-version:content-disposition:in-reply-to:user-agent;
+	bh=AjFYQKE9gRUj0yTySd+oxs7PRIotPrIJQtY3aIODw14=;
+	b=P3kcDtvx+eY1Pm5Cgnay6z/knlM7ifuBHWuxAK9n+t73o6RJ1WrpPI15QxXes1lKUo
+	h+3e9IuuPGR4palX8mxPkCZdtBnCr1Fb2PDEOvub+R9FbHry5EY1xBL17eYbuGFHn6tP
+	KNWQmQ7l1zxP+iqyboUQquZLdPEwUmQAHukEU4cSViHQd7g6jpTVcKMP0z/Zd1D2nOHI
+	fdOKe4vS9ArG2LiToOfU2awLtBRFvsAQgSgUsVUEB/8otjzmqi9LLNdYuCHmPPjBO+Sm
+	IQxu0gjf4mZ8kLdl4FTBOfz3zwj1vqXna8IzEToyeIZuuAbpDorJlY5y81Gb8qP2YHT5
+	W1mQ==
+X-Gm-Message-State: ABUngvfBPDrDhFZgVx5vUtPnL3T+rYdXZKQtiLKA/46TXwIYQ/9rLBCVQOvRvy633amulg==
+X-Received: by 10.28.48.203 with SMTP id w194mr12016431wmw.115.1477923017907; 
+	Mon, 31 Oct 2016 07:10:17 -0700 (PDT)
+Received: from carbonA (host86-163-63-150.range86-163.btcentralplus.com.
+	[86.163.63.150]) by smtp.gmail.com with ESMTPSA id
+	gk6sm30160359wjc.21.2016.10.31.07.10.17
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Mon, 31 Oct 2016 07:10:17 -0700 (PDT)
+Date: Mon, 31 Oct 2016 14:10:11 +0000
+From: Andrei Gherzan <andrei@gherzan.ro>
+To: Andreas =?iso-8859-1?Q?M=FCller?= <schnitzeltony@googlemail.com>
+Message-ID: <20161031141011.GA9939@carbonA>
+References: <1474523274-3883-1-git-send-email-schnitzeltony@googlemail.com>
+	<1474523274-3883-7-git-send-email-schnitzeltony@googlemail.com>
 MIME-Version: 1.0
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10432:, ,
-	definitions=2016-10-31_05:, , signatures=0
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0
-	suspectscore=0
-	malwarescore=0 phishscore=0 adultscore=0 bulkscore=0 classifier=spam
-	adjust=0 reason=mlx scancount=1 engine=8.0.1-1609300000
-	definitions=main-1610310257
+In-Reply-To: <1474523274-3883-7-git-send-email-schnitzeltony@googlemail.com>
+User-Agent: Mutt/1.7.1 (2016-10-04)
 Cc: yocto@yoctoproject.org
-Subject: [meta-selinux][PATCH RESEND] libpcre_%.bbappend: add missing symlink libpcre.so.1
+Subject: Re: [meta-raspberrypi][PATCH 6/6] rpi-base.inc: build vc4-fkms-v3d.dtbo
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,35 +74,76 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 31 Oct 2016 14:08:36 -0000
-Content-Type: text/plain
+X-List-Received-Date: Mon, 31 Oct 2016 14:10:21 -0000
+X-Groupsio-MsgNum: 32685
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="envbJBWh7q8WU6mo"
+Content-Disposition: inline
 
-This bbappend moves sysroot lib libpcre.so.x.x.x from /usr/lib to /lib
-and symlinks /usr/lib/libpcre.so to ../../lib/libpcre.so.x.x.x, but this
-causes certain recipes dependent on libpcre (like pango) to fail because
-they also expect libpcre.so.1 to exist which this recipe omits to create.
+--envbJBWh7q8WU6mo
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-(the reason why the lib is moved in the first place is to avoid a QA issue
-because there's a risk for /usr to be on another partition)
+On Thu, Sep 22, 2016 at 07:47:54AM +0200, Andreas M=FCller wrote:
+> For those who want to run closed source driver with mesa. See further det=
+ails
+> at [1]
+>
+> [1] http://anholt.livejournal.com/47717.html
+>
+> Signed-off-by: Andreas M=FCller <schnitzeltony@googlemail.com>
+> ---
+>  conf/machine/include/rpi-base.inc | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/conf/machine/include/rpi-base.inc b/conf/machine/include/rpi=
+-base.inc
+> index 69774f4..737e842 100644
+> --- a/conf/machine/include/rpi-base.inc
+> +++ b/conf/machine/include/rpi-base.inc
+> @@ -38,6 +38,7 @@ KERNEL_DEVICETREE ?=3D " \
+>      overlays/w1-gpio-pullup.dtbo \
+>      overlays/pi3-miniuart-bt.dtbo \
+>      overlays/vc4-kms-v3d.dtbo \
+> +    overlays/vc4-fkms-v3d.dtbo
 
-Signed-off-by: Ioan-Adrian Ratiu <adrian.ratiu@ni.com>
----
- recipes-support/libpcre/libpcre_%.bbappend | 1 +
- 1 file changed, 1 insertion(+)
+There is a problem with this change. It seems like this dtb overlay is
+not availble in kernel version above 4.4. Don't know exactly why.
 
-diff --git a/recipes-support/libpcre/libpcre_%.bbappend b/recipes-support/libpcre/libpcre_%.bbappend
-index 9131f8d..ad18d61 100644
---- a/recipes-support/libpcre/libpcre_%.bbappend
-+++ b/recipes-support/libpcre/libpcre_%.bbappend
-@@ -7,6 +7,7 @@ do_install_append () {
- 		mv -f ${D}${libdir}/libpcre.so.* ${D}${base_libdir}/
- 		relpath=${@os.path.relpath("${base_libdir}", "${libdir}")}
- 		ln -sf ${relpath}/${realsofile} ${D}${libdir}/libpcre.so
-+		ln -sf ${relpath}/${realsofile} ${D}${libdir}/libpcre.so.1
- 	fi
- }
- 
--- 
-2.10.2
+>      "
+>  KERNEL_IMAGETYPE ?=3D "Image"
+>
+> --
+> 2.5.5
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
+--
+Andrei Gherzan
 
+--envbJBWh7q8WU6mo
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIcBAEBCAAGBQJYF1DAAAoJEHO76Gt+erfPPSoQAI+G4H+pryUHRDWM3K3IlElJ
+McD4JlLDYHleqhEly8E7XeGbPntuRF4u0jxaCHpZeu7dOdcffOHtt/ZaQ/phAy0V
+SlO5Nc++eXZuLb8S5ua5KEUeWiUDkY54rFWwL1F2GBpRJG3dIxnOLoWQY5iKo0Ut
+H1x2jqcHQTmijr0EnO9NPtn6wHHoc8lqowbxVyGxq+rxspfDhRjQyKLYDmhHFMM9
+RXoj2hAV0AuzOK8qa95AiZY5PxED63OOTWy2Hm2eM/hPShU7Ttm6LeQatRcJVAop
+hmLIBez33Pzms61NI00pA3wMTmxP6smnUKWTTA0w5Oi6CLMwpeiw1yhZpafykvMa
+crim7sYw6ZZUHuMZm9abGeSdvHKna1GEN0K8i3IE3AsJwLADP0HPBo3NZ0EFhwHk
+hbyzmimoVOc0L+FEkh/StwulWcCQzCWUM/ZujKxF54TteSUD6QPhoditDvpvT7jT
++HJzWo64zhMCEtNQSIIWuz0exbjNPvt6B9kCvakIZH2KXKLw3hpnpVckJPEm/pM+
+pvZ36KuQTtoETvB9UcM+1widC3tcwgkNdWYVgBheLe3HtvPskNoaQ4CC6O0Yt2hs
+hbodHdTvNfCb2KCWzWzkwaD2wan2YBSON+rQG0nd08qEGjQSTEjEuovTtj/5IRr9
++F5P0c/CshTL42Mj4FBM
+=w7uS
+-----END PGP SIGNATURE-----
+
+--envbJBWh7q8WU6mo--
