@@ -1,6 +1,6 @@
 Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3333AE00997; Mon, 31 Oct 2016 11:23:55 -0700 (PDT)
+	id A1382E00BF4; Mon, 31 Oct 2016 11:26:29 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -21,45 +21,45 @@ X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 Received: from mail-pf0-f196.google.com (mail-pf0-f196.google.com
 	[209.85.192.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6A911E0095D
-	for <yocto@yoctoproject.org>; Mon, 31 Oct 2016 11:23:53 -0700 (PDT)
-Received: by mail-pf0-f196.google.com with SMTP id y68so3489314pfb.1
-	for <yocto@yoctoproject.org>; Mon, 31 Oct 2016 11:23:53 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8AD1CE009DA
+	for <yocto@yoctoproject.org>; Mon, 31 Oct 2016 11:26:15 -0700 (PDT)
+Received: by mail-pf0-f196.google.com with SMTP id n85so9348978pfi.3
+	for <yocto@yoctoproject.org>; Mon, 31 Oct 2016 11:26:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=from:to:subject:date:message-id;
-	bh=NAOWEpYlZPIcAf8QZFUL2Dsx4KXbnrrIM9xcRgMfbsY=;
-	b=UJvM6TzIIluM0RQe4hw3O5m7tVuw0iMY0bVfV1/BXcVeoMTc8sVByqPoonFx6VAc4Z
-	ZtVPC4DUHKNhp1ORjeaZL3RRyQz5dVmqtFQlyjlnurnriKPyJqskUDnWQf/3rM+9BIhF
-	9czj8MiHsJUsqsqLlfaV6bEWLclTYPuD+GgKLUmTUQ/xenoLETicpElsFkw4u86/g5WM
-	dEblEX5ijrAo3qk0mmVVv2qL4Ut9/PkjZAJH2goJ/RpVVid9FgZ8z1eVqWGQKxOIZseI
-	GnKLbVJCXGWszNIOSYqge0IT5EUSpXWMXtZbSBe+zit6LVJ8jHSOgH9gzvl2RGgBwBhK
-	BKdw==
+	bh=DWWgXD+H23LzPhOYHNmxwjyQVMwM4V9CjK2wjDFG5yU=;
+	b=ndzCEYP0fbBgP5qZCZXf2+NIGP7ch7OXbKN250czX/OaSg+7Ioftu4cGHvRk6dW581
+	08mHCY47As4SxBvXdwLbtX7FANlxd3bNwBRCJSwQ1hH4QsnL/hzaTaocfTDZhKJsdJZI
+	UxPBA5PWUwMnSfJPmSuXm7nc1nBv5pWR+a3mPO/8h0IBdegYFm2DJ0py0BFEauym7vVh
+	bUTaQoxsHlbWGZDQF4qVeC0JOOY6pBQzSily82eIuueJDy1DeS1dcn7afa9QK5YLGYfI
+	2IEymmGb730O6CbP+A9hziSs9B2c638IOByseVLwZ6c1+/SsMyKtPOTKQNbWaznHbgvK
+	tFvA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:from:to:subject:date:message-id;
-	bh=NAOWEpYlZPIcAf8QZFUL2Dsx4KXbnrrIM9xcRgMfbsY=;
-	b=Ut+jTOhh5k0kAoa7HPcckcCNgUiHwy/pKI77MdIeW2Bq+WOEF1c5CHiAmlDsZb/+mk
-	j/5TCOX/IRWFTeQAR09PCrjCuxtTvJPcSG6IJOP3I3BYejvWUjzuXk4h3cTNFVfSa/P/
-	QrINt8lctV097HnPkVuXI57cHV46iKPrVL7MdxPutp5I+7lL62jCMW2Rp/l5MuCC3WYh
-	yFPHjkwQfzIcGzEJNhAod1Hj27M4vtIXTU3mXMCl88nB3iPDoB3Pj1oN5zlkm9an50Jf
-	4WWYCWR1/3a+cFx3TF6St76kGYpqhvuKxKitSoPsVYS4qzxqqEZNWd4V05sM2jgsZR3M
-	7OJw==
-X-Gm-Message-State: ABUngvcyZQ2h1CyHfd9Z+hx8y0avDE28cmrkClU3ecVQYfcd6h8CzFyqdvhKaSYTk8LWLg==
-X-Received: by 10.99.9.129 with SMTP id 123mr42611547pgj.84.1477938233426;
-	Mon, 31 Oct 2016 11:23:53 -0700 (PDT)
+	bh=DWWgXD+H23LzPhOYHNmxwjyQVMwM4V9CjK2wjDFG5yU=;
+	b=hSXgF4gKh7+itIyp5Q5NGAgiew/VKGnMJeRKC2ctt/7Dqm8UkdV46U8U02kfcTVMKG
+	D+MxIC1XyThS4vh8CnurUszqxZoAKwpTvoaI24Fbmm/WIYOVIZmk7XYgEQ+UyZRu1RtZ
+	ud1sdn2MTPMRYcsJQcOfeljRAebrncV9r354eHf5UxOSGOqXfu+zL06kS3/tLIjlmuHE
+	JOZ2bLO/QaAwdG6oabCedekD9bpzeqGYM2RSgOne83e6wv1Vsa6rCaci15ONygtYyZf8
+	4hEUdyp01We64h0y4baP1PYRuXhckMlIz5G0zpdAAOF/zcypSOThoS8zvk54xb1BwEMd
+	sRgA==
+X-Gm-Message-State: ABUngvc6LVZhqMDP0B89fMOmGrVgZfS+KC8VdFcrzu9ltXxCkbB3tjEXdv4FxESxx4rvQw==
+X-Received: by 10.99.246.17 with SMTP id m17mr11924553pgh.134.1477938374784;
+	Mon, 31 Oct 2016 11:26:14 -0700 (PDT)
 Received: from akuster-ThinkPad-X240.hsd1.ca.comcast.net
 	([2601:202:4001:9ea0:a515:1856:7377:d74f])
 	by smtp.gmail.com with ESMTPSA id
-	s64sm37059308pfk.81.2016.10.31.11.23.52
+	qy2sm37183770pab.27.2016.10.31.11.26.14
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Mon, 31 Oct 2016 11:23:53 -0700 (PDT)
+	Mon, 31 Oct 2016 11:26:14 -0700 (PDT)
 From: Armin Kuster <akuster808@gmail.com>
 To: akuster808@gmail.com,
 	yocto@yoctoproject.org
-Date: Mon, 31 Oct 2016 11:23:52 -0700
-Message-Id: <1477938232-9813-1-git-send-email-akuster808@gmail.com>
+Date: Mon, 31 Oct 2016 11:26:12 -0700
+Message-Id: <1477938373-9937-1-git-send-email-akuster808@gmail.com>
 X-Mailer: git-send-email 2.7.4
-Subject: [meta-security][PATCH] nmap: Upgrade package to 7.31
+Subject: [meta-security][WIP]PATCH 1/2] yocto-kernel: add apparmor fragments
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,57 +71,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 31 Oct 2016 18:23:55 -0000
-
-LIC_FILES_CHKSUM change do to yr going from 2015 to 2016 in file.
-Added "no update" config option.
+X-List-Received-Date: Mon, 31 Oct 2016 18:26:29 -0000
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- recipes-security/nmap/{nmap_7.12.bb => nmap_7.31.bb} | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
- rename recipes-security/nmap/{nmap_7.12.bb => nmap_7.31.bb} (88%)
+ recipes-kernel/linux/linux-yocto-4.8/apparmor.cfg | 13 +++++++++++++
+ recipes-kernel/linux/linux-yocto_4.8.bbappend     |  1 +
+ 2 files changed, 14 insertions(+)
+ create mode 100644 recipes-kernel/linux/linux-yocto-4.8/apparmor.cfg
 
-diff --git a/recipes-security/nmap/nmap_7.12.bb b/recipes-security/nmap/nmap_7.31.bb
-similarity index 88%
-rename from recipes-security/nmap/nmap_7.12.bb
-rename to recipes-security/nmap/nmap_7.31.bb
-index dadff3d..c50b240 100644
---- a/recipes-security/nmap/nmap_7.12.bb
-+++ b/recipes-security/nmap/nmap_7.31.bb
-@@ -3,12 +3,12 @@ DESCRIPTION = "Nmap ("Network Mapper") is a free and open source (license) utili
- SECTION = "security"
- LICENSE = "GPL-2.0"
+diff --git a/recipes-kernel/linux/linux-yocto-4.8/apparmor.cfg b/recipes-kernel/linux/linux-yocto-4.8/apparmor.cfg
+new file mode 100644
+index 0000000..1dc4168
+--- /dev/null
++++ b/recipes-kernel/linux/linux-yocto-4.8/apparmor.cfg
+@@ -0,0 +1,13 @@
++CONFIG_AUDIT=y
++CONFIG_AUDITSYSCALL=y
++CONFIG_AUDIT_WATCH=y
++CONFIG_AUDIT_TREE=y
++# CONFIG_NETFILTER_XT_TARGET_AUDIT is not set
++CONFIG_SECURITY_PATH=y
++# CONFIG_SECURITY_SELINUX is not set
++CONFIG_SECURITY_APPARMOR=y
++CONFIG_SECURITY_APPARMOR_BOOTPARAM_VALUE=1
++CONFIG_SECURITY_APPARMOR_HASH=y
++CONFIG_SECURITY_APPARMOR_HASH_DEFAULT=y
++CONFIG_INTEGRITY_AUDIT=y
++# CONFIG_DEFAULT_SECURITY_APPARMOR is not set
+diff --git a/recipes-kernel/linux/linux-yocto_4.8.bbappend b/recipes-kernel/linux/linux-yocto_4.8.bbappend
+index 048e8fd..78d5101 100644
+--- a/recipes-kernel/linux/linux-yocto_4.8.bbappend
++++ b/recipes-kernel/linux/linux-yocto_4.8.bbappend
+@@ -4,6 +4,7 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-4.8:"
+ SRC_URI += "\
+         ${@bb.utils.contains('DISTRO_FEATURES', 'tpm', ' file://tpm.cfg', '', d)} \
+         ${@bb.utils.contains('DISTRO_FEATURES', 'tpm', ' file://tpm.scc', '', d)} \
++        ${@bb.utils.contains('DISTRO_FEATURES', 'apparmor', ' file://apparmor.cfg', '', d)} \
+ "
  
--LIC_FILES_CHKSUM = "file://COPYING;beginline=7;endline=12;md5=51f7052ac85aaf1a2127f7803de1261e"
-+LIC_FILES_CHKSUM = "file://COPYING;beginline=7;endline=12;md5=bce7593e567a4b12f60c6a04f9b8c1e5"
- 
- SRC_URI = "http://nmap.org/dist/${BP}.tar.bz2"
- 
--SRC_URI[md5sum] = "0764f4dabe7cccda3c49fc3990b62a8a"
--SRC_URI[sha256sum] = "63df082a87c95a189865d37304357405160fc6333addcf5b84204c95e0539b04"
-+SRC_URI[md5sum] = "f2f6660142a777862342a58cc54258ea"
-+SRC_URI[sha256sum] = "cb9f4e03c0771c709cd47dc8fc6ac3421eadbdd313f0aae52276829290583842"
- 
- inherit autotools-brokensep pkgconfig python-dir distro_features_check
- 
-@@ -16,14 +16,14 @@ PACKAGECONFIG ?= "ncat nping ndiff pcap"
- PACKAGECONFIG += " ${@bb.utils.contains('IMAGE_FEATURES', 'x11-base', 'zenmap', '', d)}"
- 
- PACKAGECONFIG[pcap] = "--with-pcap=linux, --without-pcap, libpcap, libpcap"
-+PACKAGECONFIG[pcre] = "--with-libpcre=${STAGING_LIBDIR}/.., --with-libpcre=included, libpre"
- PACKAGECONFIG[ssl] = "--with-openssl=${STAGING_LIBDIR}/.., --without-openssl, openssl, openssl"
- 
- #disable/enable packages
- PACKAGECONFIG[nping] = ",--without-nping,"
- PACKAGECONFIG[ncat] = ",--without-ncat,"
- PACKAGECONFIG[ndiff] = ",--without-ndiff,"
--
--PACKAGECONFIG[pcre] = "--with-libpcre=${STAGING_LIBDIR}/.., --with-libpcre=included, libpre"
-+PACKAGECONFIG[update] = ",--without-nmap-update,"
- 
- #Add gui
- PACKAGECONFIG[zenmap] = "--with-zenmap, --without-zenmap, gtk+ python-core python-codecs python-io python-logging python-unittest python-xml python-netclient python-doctest python-subprocess python-pygtk, python-core python-codecs python-io python-logging python-netclient python-xml python-unittest python-doctest python-subprocess  python-pygtk gtk+"
+ SRC_URI += "\
 -- 
 2.7.4
 
