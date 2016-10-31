@@ -1,6 +1,6 @@
 Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E5141E00B04; Mon, 31 Oct 2016 09:59:08 -0700 (PDT)
+	id C9A8CE00C1F; Mon, 31 Oct 2016 09:59:42 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -18,50 +18,50 @@ X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 Received: from mail-wm0-f68.google.com (mail-wm0-f68.google.com [74.125.82.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6DD59E0098A
-	for <yocto@yoctoproject.org>; Mon, 31 Oct 2016 09:58:57 -0700 (PDT)
-Received: by mail-wm0-f68.google.com with SMTP id 68so12512686wmz.2
-	for <yocto@yoctoproject.org>; Mon, 31 Oct 2016 09:58:57 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 69B0AE00B04
+	for <yocto@yoctoproject.org>; Mon, 31 Oct 2016 09:59:33 -0700 (PDT)
+Received: by mail-wm0-f68.google.com with SMTP id 68so12514643wmz.2
+	for <yocto@yoctoproject.org>; Mon, 31 Oct 2016 09:59:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
 	h=date:from:to:cc:subject:message-id:references:mime-version
 	:content-disposition:in-reply-to:user-agent;
-	bh=Fwdt4jfVnDRQQ6U6OCKMh9vht47wkCbJA1PXpGJWhV8=;
-	b=hUeT3vXKEppmKF/jIKkyuRowd3FFvSXY+fRQohR5XY0DNTVqhAKjgx15Vb3mgVN4hF
-	nEGp+fFolHXfc6I0dBx8Dr3xr1PwiSDZb+RAHPAL2DsnheI4bmL7jgn5K93ZFg5DGihB
-	3BN06BvWx/1WbJnMRIVCrLW8fONPgoraJCNRVUUARWFhIRVSICx6ZmQnYlg6lBlzURMu
-	uDWVX384ZpVFSGgpdFyjU/bPqbJTxorg/s3hwkOWs0sOBitrnbSwrPhmcOkZv1unLq9A
-	qouW+23i1p9hWVISf0gSp2j/YWf6y9SI6ND6VVZSZF7MtMezy+Iw2AFX6HLH1eN1Hd9r
-	socA==
+	bh=fVzw3m8UrS0uhxQc4BPcbssCIblVDYzWouraqvAtnOY=;
+	b=RVQcTHHcw5KoZUcqWoaJwcftm0RoUyOn7h7hzNPbjCnfuwUK895HX09PKlxF+IEhbC
+	76LX8ls1qH+Jbom0kyy97GlV2Cgj/WW4NaKhpHfb9Mv36WxRTTOLb7njKsgo0m/oq3uN
+	yC23vaFF0MOGKZ8fFSVIZrdCXXgpZwNFMpXauWIdnKBq3Xypn0N45IJvOEsdI05r8mAQ
+	Svd4hwoOb05NRWITRy5EPIeYd/pSz7MhYuPkfqJbigSTLTfSsMg9tfldaFMIWCW6PFvK
+	9CtTmpZOq+ZYqCvx8OUyC5d04ginqTqxc2so+pnrYIvVpziq6wSJCveL11cSRjZVB6TT
+	d5Hw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
 	:mime-version:content-disposition:in-reply-to:user-agent;
-	bh=Fwdt4jfVnDRQQ6U6OCKMh9vht47wkCbJA1PXpGJWhV8=;
-	b=i3k+y7tpgZbQM9/VMD37vxpVAoVjf7eAjzVAC7iF5CarkF59RDx+hVG1s0YwbBlpNp
-	lun9r0oEaJjpu/PdjpgHYkrRASRdgEVl/ni2o8drBL+mCXFmfovvT9RjY+QDP2w60did
-	e4oeR3OvQunE9FwipW0iJWlEwQheVbI2cT8gkNjTvggcIgGh25l/H45mbbYrPaKibWhp
-	wFdJdBnZDObuEtzi+Sh1RU96MXn+3zRUbHWfN/UbICXv39FMGSIvWCKtTdS3l8lbDA8X
-	f9Y3+xLx/n7LNipZuV1TJvneOeXT8ZC32TkrpmDWZCcG/31naAmJ0h8+KekoJC9pshXC
-	65tQ==
-X-Gm-Message-State: ABUngve3nU5gjhV69wvJdHmMXoj6VJjNXKKqPGK3fi+h+2TdPGbaasmG9i9OqqezJDQWJQ==
-X-Received: by 10.28.26.87 with SMTP id a84mr5849003wma.93.1477933136656;
-	Mon, 31 Oct 2016 09:58:56 -0700 (PDT)
+	bh=fVzw3m8UrS0uhxQc4BPcbssCIblVDYzWouraqvAtnOY=;
+	b=SyYN9rZBrpigCzI6w3cXD1o65tiNlmva5SuskJ/N3IaNR9FkXj/8jlDFUPVNq4Agx7
+	zMwik45tPOEVENkJWeFjgtEjovmKTTzztux1lWFXhaWGg+VTdv+rzXWe0bE2PVhsTQoD
+	eyub1HOupCcF6Cy7+8OF1mr5ZM/l5+fEG05kj+q6f1Bp8m31zyvlqGkmbDZ91hanyvaQ
+	jQGyhb/zXabTc8lGimh8xCOH5V2FEkFjWFFvYTFDMErAzPG28kB62G9XKhAu9iBrc8/Q
+	agzRKLWHaMKK7KaP/YonFJqw36ilBu4Mn/EwcdaSCkh3jFHTgPdSkJs+pJ6I1zRQ0yIq
+	GUnw==
+X-Gm-Message-State: ABUngveghj0eoVm85S1gb8q0Tbe9ET8b+aHpcG328pOFPBFpx4pCtLuIhMT5eNoJwpIjoA==
+X-Received: by 10.194.123.197 with SMTP id mc5mr22315487wjb.231.1477933172706; 
+	Mon, 31 Oct 2016 09:59:32 -0700 (PDT)
 Received: from carbonA (host86-163-63-150.range86-163.btcentralplus.com.
 	[86.163.63.150]) by smtp.gmail.com with ESMTPSA id
-	r4sm25776253wmb.19.2016.10.31.09.58.56
+	l19sm25772139wmg.5.2016.10.31.09.59.32
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Mon, 31 Oct 2016 09:58:56 -0700 (PDT)
-Date: Mon, 31 Oct 2016 16:58:54 +0000
+	Mon, 31 Oct 2016 09:59:32 -0700 (PDT)
+Date: Mon, 31 Oct 2016 16:59:30 +0000
 From: Andrei Gherzan <andrei@gherzan.ro>
-To: Khem Raj <raj.khem@gmail.com>
-Message-ID: <20161031165854.GF3276@carbonA>
-References: <20161021050957.26429-1-raj.khem@gmail.com>
+To: Jonathan Liu <net147@gmail.com>
+Message-ID: <20161031165930.GG3276@carbonA>
+References: <20161016022739.26984-1-net147@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20161021050957.26429-1-raj.khem@gmail.com>
+In-Reply-To: <20161016022739.26984-1-net147@gmail.com>
 User-Agent: Mutt/1.7.1 (2016-10-04)
 Cc: yocto@yoctoproject.org
-Subject: Re: [meta-raspberrypi][PATCH 1/2] firmware: Update to latest
+Subject: Re: [meta-raspberrypi][PATCH] linux-firmware: Fix "No generic license file exists" warning
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,36 +73,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 31 Oct 2016 16:59:09 -0000
-X-Groupsio-MsgNum: 32710
+X-List-Received-Date: Mon, 31 Oct 2016 16:59:42 -0000
+X-Groupsio-MsgNum: 32711
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="JcvBIhDvR6w3jUPA"
+	protocol="application/pgp-signature"; boundary="pE2VAHO2njSJCslu"
 Content-Disposition: inline
 
---JcvBIhDvR6w3jUPA
+--pE2VAHO2njSJCslu
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
-On Thu, Oct 20, 2016 at 10:09:56PM -0700, Khem Raj wrote:
-> Fixes issues with display not starting with weston
+On Sun, Oct 16, 2016 at 01:27:39PM +1100, Jonathan Liu wrote:
+> The NO_GENERIC_LICENSE map value for Firmware-broadcom_brcm80211 needs
+> to have the full path to LICENSE.broadcom_brcm80211 from the URL
+> instead of just the filename.
 >
-> Signed-off-by: Khem Raj <raj.khem@gmail.com>
+> Fixes the following warning building the linux-firmware recipe:
+> WARNING: linux-firmware-1_0.0+gitAUTOINC+42ad5367dd-r0 do_populate_lic: linux-firmware: No generic license file exists for: Firmware-broadcom_brcm80211 in any provider
+>
+> Signed-off-by: Jonathan Liu <net147@gmail.com>
 > ---
->  recipes-bsp/common/firmware.inc | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+>  recipes-kernel/linux-firmware/linux-firmware_git.bbappend | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 >
-> diff --git a/recipes-bsp/common/firmware.inc b/recipes-bsp/common/firmware.inc
-> index 29f9c01..6ce89a5 100644
-> --- a/recipes-bsp/common/firmware.inc
-> +++ b/recipes-bsp/common/firmware.inc
-> @@ -1,5 +1,5 @@
-> -RPIFW_SRCREV ?= "ec63df146f454e8cab7080380f9138246d877013"
-> -RPIFW_DATE ?= "20161005"
-> +RPIFW_SRCREV ?= "ec5a517ed6051974a5a09f7b7811d21c443a7c74"
-> +RPIFW_DATE ?= "20161020"
->  RPIFW_SRC_URI ?= "git://github.com/raspberrypi/firmware.git;protocol=git;branch=master"
->  RPIFW_S ?= "${WORKDIR}/git"
+> diff --git a/recipes-kernel/linux-firmware/linux-firmware_git.bbappend b/recipes-kernel/linux-firmware/linux-firmware_git.bbappend
+> index 20ef05f..b4408cb 100644
+> --- a/recipes-kernel/linux-firmware/linux-firmware_git.bbappend
+> +++ b/recipes-kernel/linux-firmware/linux-firmware_git.bbappend
+> @@ -4,7 +4,7 @@ LICENSE_append = " & Firmware-broadcom_brcm80211"
 >
+>  LIC_FILES_CHKSUM_append = " file://${WORKDIR}/LICENSE.broadcom_brcm80211;md5=8cba1397cda6386db37210439a0da3eb"
+>
+> -NO_GENERIC_LICENSE[Firmware-broadcom_brcm80211] = "LICENSE.broadcom_brcm80211"
+> +NO_GENERIC_LICENSE[Firmware-broadcom_brcm80211] = "${WORKDIR}/LICENSE.broadcom_brcm80211"
+>
+>  SRC_URI_append = " \
+>      file://brcmfmac43430-sdio.bin \
 > --
 > 2.10.0
 >
@@ -112,29 +118,29 @@ On Thu, Oct 20, 2016 at 10:09:56PM -0700, Khem Raj wrote:
 > yocto@yoctoproject.org
 > https://lists.yoctoproject.org/listinfo/yocto
 
-Merged both to master. Thanks.
+Merged to master. Thanks.
 
 --
 Andrei Gherzan
 
---JcvBIhDvR6w3jUPA
+--pE2VAHO2njSJCslu
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIcBAEBCAAGBQJYF3hOAAoJEHO76Gt+erfPLPYP/i2Bk4WV3Wa7dP+1cTjg5DUv
-VkECOEIJX1QapmZVAAlCV3NLHnDgbFzKoNIs8KUVrbKLvzDhUvfdeukszQj++1Im
-iYb8apkOizzqQpmocZK3uwxuNuEmbV4JxQ4H6jNYoF4dTvuCz01EiD6N+WEjPxJ/
-E9t7TLfJ060yoV77f3IdFgQ4UINxT7UXPwqsWOa+P+NDN2VBT+uA6Jn1bFk645iO
-GguNPfAXObXsN6u/MQHSpBbQK/YI5T2raOMn0cYWG6yNIshMM93J+e91TfN/pn22
-PICmlAAYfXLEWtdSBPNHnW8aV/z+unSzZSHwF0vvjL8Md7QhgYPG7RaHjMKiTiJn
-2zlHFD2BvKz0O6a7ej+rv6jplWJgWlfuwb9LhvTQdyewG1vd7cNi/0R3pXPspD5Z
-WhatcQJq/MnyjePzYu7zAbf9f/hCQPQQNAqplW8tNiyCa81ZTeTfz+xr5Jrnfgml
-1WARrsUyULljDNYmbB0p8zl/ioWBf+9PVnOC1L8ofAPoLk4VhQYLecgPWyZ/MA/+
-GzFYKXBImRIMjvNUGQkmftMSef+jZKg+V054fiOpCmpeTYLADLtTAslSeeXpbzqQ
-NdkzsRFum68i8ARVA8jWJeoSReoO7S4F7H75NNFVWxoSik8E73mngpNTK4+gmmay
-SdOLrrQAscnEa2E+7d7Y
-=bWFQ
+iQIcBAEBCAAGBQJYF3hyAAoJEHO76Gt+erfPDa4QALxaCNLvjKdC4SXL7xIHPpSa
+bJlHLffOscwxfc6eDynK2MHywoc7v/G8dIl8nm5K/+34kanmUi85rBbTfhkwGEiB
+7FtWhEo3bol7BUp7IAeUHeiEFM1t+nB9iK3txou9Q6ub/ZWIrgh1AkKpqg+uGVCm
+zPYkOHHy59sYsJfCVr2sRcYAQqrG8aWSuRTIozouA9+Jvo4yN+JRy4uPLSrCjERO
+mu5Gw3bHZ4o/ADGZ2x26kAbUf9kXcqs+yQSTkcRhdx0SFn2DLfou7AhoGivIFkZS
+con2Ohc0VsLdOC6J5f8DqRl/gxBNoJ7Gcz7vCKYINVY0jDWGQMs4U0ABprXJJWIn
+dVTer5rQzC7tzJUlZsH1lN2E8dsZlXwQgrNcN9Wh/LsFVvrpNu4YIgJ08q52vflp
+WhsMmCx3AIIvnuwt/5g3RgBPjZFvI0FxyDcZ8O+cDawVbYkd23hY83zKiZ8KvdMK
+u7kIRWhniu1JvSTIs4kwLlw+JxZiMkTs9HE48/OenhsIzh0yB2b8fMrJVBnnV3pT
+cJ2xhcvSL5sW789Ln9DTiy3X6lk0bxB3zHmxDB/4wvULgvWjfp0+4u4FD1oHPN58
+aWMpn3kxr642orV5HFvSRo1hFU7ayklpy6kpHKk47xQvNuF9VNtlusVDjtAafBlD
+xHPgHIiGwDSZ1OLfhIVH
+=+V1l
 -----END PGP SIGNATURE-----
 
---JcvBIhDvR6w3jUPA--
+--pE2VAHO2njSJCslu--
