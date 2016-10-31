@@ -1,33 +1,60 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <adrian.ratiu@ni.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 67556E00D0A; Mon, 31 Oct 2016 05:19:27 -0700 (PDT)
+	id A50C8E00D18; Mon, 31 Oct 2016 07:08:36 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [130.164.80.24 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.analogue-micro.com (mail.analogue-micro.com
-	[217.144.149.242])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2333EE00CF0
-	for <yocto@yoctoproject.org>; Mon, 31 Oct 2016 05:19:23 -0700 (PDT)
-Received: by mail.analogue-micro.com (Postfix, from userid 999)
-	id 8DA3968A01C; Mon, 31 Oct 2016 12:19:20 +0000 (GMT)
-Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
-	by mail.analogue-micro.com (Postfix) with ESMTP id 193E768A019;
-	Mon, 31 Oct 2016 12:19:20 +0000 (GMT)
-Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
-	by zeus.mlbassoc.com (Postfix) with ESMTP id 4C2796740215;
-	Mon, 31 Oct 2016 13:19:19 +0100 (CET)
-From: Gary Thomas <gary@mlbassoc.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Message-ID: <f13af171-a99e-cfb4-176b-4c1a5d459c44@mlbassoc.com>
-Date: Mon, 31 Oct 2016 13:19:18 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.4.0
+Received: from ni.com (skprod3.natinst.com [130.164.80.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 52E53E009D8
+	for <yocto@yoctoproject.org>; Mon, 31 Oct 2016 07:08:34 -0700 (PDT)
+Received: from us-aus-exch2.ni.corp.natinst.com
+	(us-aus-exch2.ni.corp.natinst.com [130.164.68.12])
+	by us-aus-skprod3.natinst.com (8.15.0.59/8.15.0.59) with ESMTPS id
+	u9VE8Uu3019596
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
+	Mon, 31 Oct 2016 09:08:30 -0500
+Received: from us-aus-exch3.ni.corp.natinst.com (130.164.68.13) by
+	us-aus-exch2.ni.corp.natinst.com (130.164.68.12) with Microsoft SMTP
+	Server (TLS) id 15.0.1156.6; Mon, 31 Oct 2016 09:08:30 -0500
+Received: from us-aus-exhub1.ni.corp.natinst.com (130.164.68.41) by
+	us-aus-exch3.ni.corp.natinst.com (130.164.68.13) with Microsoft SMTP
+	Server (TLS) id 15.0.1156.6; Mon, 31 Oct 2016 09:08:29 -0500
+Received: from us-aus-mgwout1.amer.corp.natinst.com (130.164.49.7) by
+	us-aus-exhub1.ni.corp.natinst.com (130.164.68.41) with Microsoft SMTP
+	Server
+	id 15.0.1156.6 via Frontend Transport; Mon, 31 Oct 2016 09:08:29 -0500
+Received: from adi-pc-linux.emea.corp.natinst.com ([130.164.14.198])
+	by us-aus-mgwout1.amer.corp.natinst.com (Lotus Domino Release 8.5.3FP6
+	HF1218) with ESMTP id 2016103109082068-115262 ;
+	Mon, 31 Oct 2016 09:08:20 -0500 
+From: Ioan-Adrian Ratiu <adrian.ratiu@ni.com>
+To: <joe_macdonald@mentor.com>, <mark.hatle@windriver.com>
+Date: Mon, 31 Oct 2016 16:06:53 +0200
+Message-ID: <20161031140653.14408-1-adrian.ratiu@ni.com>
+X-Mailer: git-send-email 2.10.2
+X-MIMETrack: Itemize by SMTP Server on US-AUS-MGWOut1/AUS/H/NIC(Release
+	8.5.3FP6 HF1218|December 12, 2014) at 10/31/2016 09:08:20 AM,
+	Serialize by Router on US-AUS-MGWOut1/AUS/H/NIC(Release 8.5.3FP6
+	HF1218|December 12, 2014) at 10/31/2016 09:08:20 AM,
+	Serialize complete at 10/31/2016 09:08:20 AM
 MIME-Version: 1.0
-Subject: esdk without using Poky?
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10432:, ,
+	definitions=2016-10-31_05:, , signatures=0
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0
+	suspectscore=0
+	malwarescore=0 phishscore=0 adultscore=0 bulkscore=0 classifier=spam
+	adjust=0 reason=mlx scancount=1 engine=8.0.1-1609300000
+	definitions=main-1610310257
+Cc: yocto@yoctoproject.org
+Subject: [meta-selinux][PATCH RESEND] libpcre_%.bbappend: add missing symlink libpcre.so.1
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,47 +66,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 31 Oct 2016 12:19:27 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 31 Oct 2016 14:08:36 -0000
+Content-Type: text/plain
 
-I'm trying to build an extensible SDK (eSDK) for my target and running into
-a few problems.
+This bbappend moves sysroot lib libpcre.so.x.x.x from /usr/lib to /lib
+and symlinks /usr/lib/libpcre.so to ../../lib/libpcre.so.x.x.x, but this
+causes certain recipes dependent on libpcre (like pango) to fail because
+they also expect libpcre.so.1 to exist which this recipe omits to create.
 
-   gthomas@zeus:~$ /work/tmp/mlb-glibc-x86_64-arm-toolchain-ext-2.2+snapshot.sh
-   MLB @SDK_TITLE@ Associates Embedded (Poky/Yocto Powered) Extensible SDK installer version 2.2+snapshot
-   ======================================================================================================
-   Enter target directory for SDK (default: ~/mlb_sdk):
-   You are about to install the SDK to "/home/gthomas/mlb_sdk". Proceed[Y/n]? y
-   Extracting SDK.........................................done
-   Setting it up...
-   Extracting buildtools...
-   Preparing build system...
-   Error: 'meta-poky/conf' must be a directory containing local.conf & bblayers.conf
+(the reason why the lib is moved in the first place is to avoid a QA issue
+because there's a risk for /usr to be on another partition)
 
-The first thing I notice is the banner which should read:
-   MLB & Associates Embedded (Poky/Yocto Powered) Extensible SDK installer version 2.2+snapshot
-   ============================================================================================
+Signed-off-by: Ioan-Adrian Ratiu <adrian.ratiu@ni.com>
+---
+ recipes-support/libpcre/libpcre_%.bbappend | 1 +
+ 1 file changed, 1 insertion(+)
 
-The second is that I use my own distribution (not poky).  How can I
-build an eSDK using my distribution?
-
-Once I ran into this error, I tried rebuilding using the [old] SDK.
-I noticed that it seemed to rebuild [most] everything all over again.
-Is there no shared state / reusable components between the eSDK and SDK?
-
-Finally, since I had to install SDK and not eSDK, I'm missing some tools
-I was hoping to have.  I want to build PRU programs for the BeagleBoneBlack
-and I'm using meta-ti to import those tools and programs.  I was expecting
-the PRU tools which come from ti-cgt-pru-native to be included with my
-eSDK/SDK, but they don't seem to be, at least not in the SDK.  How can I
-get these tools available so I can use the SDK to develop PRU code for the BBB?
-
-Thanks
-
+diff --git a/recipes-support/libpcre/libpcre_%.bbappend b/recipes-support/libpcre/libpcre_%.bbappend
+index 9131f8d..ad18d61 100644
+--- a/recipes-support/libpcre/libpcre_%.bbappend
++++ b/recipes-support/libpcre/libpcre_%.bbappend
+@@ -7,6 +7,7 @@ do_install_append () {
+ 		mv -f ${D}${libdir}/libpcre.so.* ${D}${base_libdir}/
+ 		relpath=${@os.path.relpath("${base_libdir}", "${libdir}")}
+ 		ln -sf ${relpath}/${realsofile} ${D}${libdir}/libpcre.so
++		ln -sf ${relpath}/${realsofile} ${D}${libdir}/libpcre.so.1
+ 	fi
+ }
+ 
 -- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+2.10.2
+
 
