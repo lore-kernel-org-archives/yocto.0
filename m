@@ -1,66 +1,37 @@
-Return-Path: <net147@gmail.com>
+Return-Path: <nbigaouette@rogue-research.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DA80EE00CC9; Tue,  1 Nov 2016 06:49:15 -0700 (PDT)
+	id 4CDF4E0049A; Tue,  1 Nov 2016 08:14:56 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.192.194 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.192.194 listed in dnsbl.sorbs.net]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (net147[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pf0-f194.google.com (mail-pf0-f194.google.com
-	[209.85.192.194])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8CC92E00C97
-	for <yocto@yoctoproject.org>; Tue,  1 Nov 2016 06:49:13 -0700 (PDT)
-Received: by mail-pf0-f194.google.com with SMTP id i88so417537pfk.2
-	for <yocto@yoctoproject.org>; Tue, 01 Nov 2016 06:49:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id;
-	bh=ToQP5YlJCEqHfXl27RnojsgSHwMA6exwV2vo1yZLG8E=;
-	b=th/2cTX5/K+pf7pgYIQ15281Xy0LTOMvkGZBInQDw62SbUPEhZEGeDyLLdCsxgAJaW
-	ABmBIF51X2mMoRl8CJQ3Ih4y1f7mTxDiyPPFRMZttCtrH2hcNvUetBGDMIeluOR7106s
-	FGOxyqNdMtrbltF3mGgdNwByXmTkxuhIIuBPD7wvq/lJEo5jzgHkWh3ZdSCkY985a7qF
-	7ndC2HxwMqiPoIx7IsWqchNyXxJrtp/l8Ny9abJTwiXL37/PJ56VGLLiN5qhjg/umh9/
-	oJ4srb3SUU70F+0QZ0DQvCrTlHXBty37dQ0Lnh8J+PKPuv0N12Bs7PlbYieC8OYfc0mQ
-	sUag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=ToQP5YlJCEqHfXl27RnojsgSHwMA6exwV2vo1yZLG8E=;
-	b=MEXXFwoxze8BXLM/eOBAMu/zeUCiRLqlkeVJS/NZ1EcpZipyHfF44TMn8o/2gLD73G
-	b2CIfjpDP32stoAQaZDdzUeChlCVAhYRgwRi/0laumkRB+7+J5U977TASGO8nXUd1wD5
-	UlRZVzfGifvw8PDT328sY1SV/ua0wZ28KBnZAGjKmJkEmlJR9nDboJJ3x2Zo7NciFgj/
-	teDiVQ71ZIF2AvGo8s3ZscsZB+B8HBK2b5p8Zn0RwOA6Cl/G31+iV9LA1hltrhGXsBWg
-	+hlIFuPlGTnA+welnKMOdU5btHHMkf68YX79jcDQOjMO0SPhZsw4L9aT5Kam979VG0Yl
-	RcKg==
-X-Gm-Message-State: ABUngvd+CqLfLGYoitwkk4Qfp8PFYmhbpmlO/USwX+ECO6kRhOQx1y0EZlFoJBOmgohGEg==
-X-Received: by 10.99.242.5 with SMTP id v5mr49615198pgh.137.1478008153255;
-	Tue, 01 Nov 2016 06:49:13 -0700 (PDT)
-Received: from 60-242-179-244.static.tpgi.com.au
-	(60-242-179-244.static.tpgi.com.au. [60.242.179.244])
-	by smtp.gmail.com with ESMTPSA id
-	g78sm42505817pfe.19.2016.11.01.06.49.12
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 01 Nov 2016 06:49:12 -0700 (PDT)
-From: Jonathan Liu <net147@gmail.com>
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [68.67.54.10 listed in list.dnswl.org]
+Received: from mail.rogue-research.com (mail.rogue-research.com [68.67.54.10])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5E7A2E00444
+	for <yocto@yoctoproject.org>; Tue,  1 Nov 2016 08:14:52 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by mail.rogue-research.com (Postfix) with ESMTP id 26C841812C51
+	for <yocto@yoctoproject.org>; Tue,  1 Nov 2016 11:14:52 -0400 (EDT)
+Received: from mail.rogue-research.com ([127.0.0.1])
+	by localhost (kingu.rogue-research.com [127.0.0.1]) (amavisd-new,
+	port 10024) with ESMTP id Jwgxe9+G0RJn for <yocto@yoctoproject.org>;
+	Tue,  1 Nov 2016 11:14:48 -0400 (EDT)
+Received: from [10.29.19.226] (unknown [10.29.19.226])
+	by mail.rogue-research.com (Postfix) with ESMTPSA id C5F511812C43
+	for <yocto@yoctoproject.org>; Tue,  1 Nov 2016 11:14:48 -0400 (EDT)
 To: yocto@yoctoproject.org
-Date: Wed,  2 Nov 2016 00:49:11 +1100
-Message-Id: <20161101134911.11547-1-net147@gmail.com>
-X-Mailer: git-send-email 2.10.1
-Subject: [meta-raspberrypi][PATCH] u-boot: Simplify boot script
+From: Nicolas Bigaouette <nbigaouette@rogue-research.com>
+Message-ID: <c62407c3-6850-ab3e-9116-b2cfe2ae53ce@rogue-research.com>
+Date: Tue, 1 Nov 2016 11:14:48 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.4.0
+MIME-Version: 1.0
+Subject: Question about wic partition creation
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,106 +43,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 Nov 2016 13:49:15 -0000
+X-List-Received-Date: Tue, 01 Nov 2016 15:14:56 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-device_tree_address=0x100 is set in config.txt so the firmware will
-load a patched device tree blob to 0x100 before passing control to
-U-Boot. The U-Boot script will then read the command line arguments
-generated by the firmware from the device tree and boot the kernel
-with the command line arguments and the loaded device tree.
+We are using Yocto (jethro and krogoth) to build an image for a device.
 
-This allows things like MAC address, board revision and serial number
-to be correctly configured and options in config.txt to be used.
+I organized the compilation process into multiple stages for easier 
+integration with our tooling. The last stage is a call to `wic` to 
+create a drive image that we can then `dd` to a real drive to get a 
+workable system.
 
-Signed-off-by: Jonathan Liu <net147@gmail.com>
----
- recipes-bsp/bootfiles/rpi-config_git.bb                | 5 +++++
- recipes-bsp/rpi-u-boot-scr/files/boot.cmd              | 3 +++
- recipes-bsp/rpi-u-boot-scr/files/raspberrypi/boot.cmd  | 6 ------
- recipes-bsp/rpi-u-boot-scr/files/raspberrypi0/boot.cmd | 6 ------
- recipes-bsp/rpi-u-boot-scr/files/raspberrypi2/boot.cmd | 6 ------
- recipes-bsp/rpi-u-boot-scr/files/raspberrypi3/boot.cmd | 6 ------
- 6 files changed, 8 insertions(+), 24 deletions(-)
- create mode 100644 recipes-bsp/rpi-u-boot-scr/files/boot.cmd
- delete mode 100644 recipes-bsp/rpi-u-boot-scr/files/raspberrypi/boot.cmd
- delete mode 100644 recipes-bsp/rpi-u-boot-scr/files/raspberrypi0/boot.cmd
- delete mode 100644 recipes-bsp/rpi-u-boot-scr/files/raspberrypi2/boot.cmd
- delete mode 100644 recipes-bsp/rpi-u-boot-scr/files/raspberrypi3/boot.cmd
+I am faced with a problem where I would like the top-level directory of 
+one of the partition created by wic to have a different owner than root.
 
-diff --git a/recipes-bsp/bootfiles/rpi-config_git.bb b/recipes-bsp/bootfiles/rpi-config_git.bb
-index f610718..2f4d25c 100644
---- a/recipes-bsp/bootfiles/rpi-config_git.bb
-+++ b/recipes-bsp/bootfiles/rpi-config_git.bb
-@@ -76,6 +76,11 @@ do_deploy() {
-         echo "dispmanx_offline=1" >>${DEPLOYDIR}/bcm2835-bootfiles/config.txt
-     fi
- 
-+    # U-Boot Device Tree support
-+    if [ "${KERNEL_IMAGETYPE}" = "uImage" ]; then
-+        sed -i '/#device_tree_address/ c\device_tree_address=0x100' ${DEPLOYDIR}/bcm2835-bootfiles/config.txt
-+    fi
-+
-     # SPI bus support
-     if [ -n "${ENABLE_SPI_BUS}" ] || [ "${PITFT}" = "1" ]; then
-         echo "# Enable SPI bus" >>${DEPLOYDIR}/bcm2835-bootfiles/config.txt
-diff --git a/recipes-bsp/rpi-u-boot-scr/files/boot.cmd b/recipes-bsp/rpi-u-boot-scr/files/boot.cmd
-new file mode 100644
-index 0000000..3f7e3b6
---- /dev/null
-+++ b/recipes-bsp/rpi-u-boot-scr/files/boot.cmd
-@@ -0,0 +1,3 @@
-+fdt addr ${fdt_addr_r} && fdt get value bootargs /chosen bootargs
-+fatload mmc 0:1 ${kernel_addr_r} uImage
-+bootm ${kernel_addr_r} - ${fdt_addr_r}
-diff --git a/recipes-bsp/rpi-u-boot-scr/files/raspberrypi/boot.cmd b/recipes-bsp/rpi-u-boot-scr/files/raspberrypi/boot.cmd
-deleted file mode 100644
-index c86c758..0000000
---- a/recipes-bsp/rpi-u-boot-scr/files/raspberrypi/boot.cmd
-+++ /dev/null
-@@ -1,6 +0,0 @@
--setenv fdtfile bcm2708-rpi-b.dtb
--setenv bootargs 'earlyprintk console=tty0 console=ttyAMA0 root=/dev/mmcblk0p2 rootfstype=ext4 rootwait noinitrd'
--mmc dev 0
--fatload mmc 0:1 ${kernel_addr_r} uImage
--fatload mmc 0:1 ${fdt_addr_r} ${fdtfile}
--bootm ${kernel_addr_r} - ${fdt_addr_r}
-diff --git a/recipes-bsp/rpi-u-boot-scr/files/raspberrypi0/boot.cmd b/recipes-bsp/rpi-u-boot-scr/files/raspberrypi0/boot.cmd
-deleted file mode 100644
-index c86c758..0000000
---- a/recipes-bsp/rpi-u-boot-scr/files/raspberrypi0/boot.cmd
-+++ /dev/null
-@@ -1,6 +0,0 @@
--setenv fdtfile bcm2708-rpi-b.dtb
--setenv bootargs 'earlyprintk console=tty0 console=ttyAMA0 root=/dev/mmcblk0p2 rootfstype=ext4 rootwait noinitrd'
--mmc dev 0
--fatload mmc 0:1 ${kernel_addr_r} uImage
--fatload mmc 0:1 ${fdt_addr_r} ${fdtfile}
--bootm ${kernel_addr_r} - ${fdt_addr_r}
-diff --git a/recipes-bsp/rpi-u-boot-scr/files/raspberrypi2/boot.cmd b/recipes-bsp/rpi-u-boot-scr/files/raspberrypi2/boot.cmd
-deleted file mode 100644
-index aa4ea64..0000000
---- a/recipes-bsp/rpi-u-boot-scr/files/raspberrypi2/boot.cmd
-+++ /dev/null
-@@ -1,6 +0,0 @@
--setenv fdtfile bcm2709-rpi-2-b.dtb
--setenv bootargs 'earlyprintk console=tty0 console=ttyAMA0 root=/dev/mmcblk0p2 rootfstype=ext4 rootwait noinitrd'
--mmc dev 0
--fatload mmc 0:1 ${kernel_addr_r} uImage
--fatload mmc 0:1 ${fdt_addr_r} ${fdtfile}
--bootm ${kernel_addr_r} - ${fdt_addr_r}
-diff --git a/recipes-bsp/rpi-u-boot-scr/files/raspberrypi3/boot.cmd b/recipes-bsp/rpi-u-boot-scr/files/raspberrypi3/boot.cmd
-deleted file mode 100644
-index 2950856..0000000
---- a/recipes-bsp/rpi-u-boot-scr/files/raspberrypi3/boot.cmd
-+++ /dev/null
-@@ -1,6 +0,0 @@
--setenv fdtfile bcm2710-rpi-3-b.dtb
--setenv bootargs 'earlyprintk console=tty0 console=ttyAMA0 root=/dev/mmcblk0p2 rootfstype=ext4 rootwait noinitrd'
--mmc dev 0
--fatload mmc 0:1 ${kernel_addr_r} uImage
--fatload mmc 0:1 ${fdt_addr_r} ${fdtfile}
--bootm ${kernel_addr_r} - ${fdt_addr_r}
--- 
-2.10.1
+I am able to tell wic the partition information (size, filesystem, etc.) 
+but I can't find a way to tell wic to change permissions of 
+files/directories inside the partition...
 
+As an example I have an entry like the following at the end of my `.wks`:
+ > part /opt/mnt        --label extra  --fstype=ext4 --align 1024 
+--ondisk sda --size=2040
+which will add an extra partition after all others on the final image. 
+An entry in `/etc/fstab` will be added so that the partition will be 
+mounted to `/opt/mnt`.
+
+Note that the partition should be empty: I'm not populating it with any 
+files or directories.
+
+But after booting the system, the directory `/opt/mnt` will have the 
+permissions of the top-level directory of the created partition, and by 
+default those are `0755` and owned by `root:root`.
+
+So my question is: How can I change this so that it's owned by a 
+specific uid and gid (`1000:1000`)?
+
+I am investigating plugins for now (for example by having a 
+`meta-mylayer/scripts/lib/wic/plugins/source/fsimage-mypartition.py`) 
+but I still can't see how I can change the owner of the directory. 
+Should I provide a rootfs-like directory which is empty but owned by the 
+proper uid and gid?
+
+Note that letting users be able to mount the partition (by adding 
+`users` to `/etc/fstab`) is not what I want; it would _not_ change the 
+permissions/owner of the top-level directory of the partition.
+
+Thank you very much!
+
+Regards,
+
+Nicolas
 
