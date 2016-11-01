@@ -1,36 +1,65 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <kergoth@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DC42BE00CC7; Tue,  1 Nov 2016 05:37:02 -0700 (PDT)
+	id 805ABE00CC9; Tue,  1 Nov 2016 06:38:15 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.218.51 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.analogue-micro.com (mail.analogue-micro.com
-	[217.144.149.242])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 28D21E00CB6
-	for <yocto@yoctoproject.org>; Tue,  1 Nov 2016 05:37:00 -0700 (PDT)
-Received: by mail.analogue-micro.com (Postfix, from userid 999)
-	id 4A7B368A019; Tue,  1 Nov 2016 12:36:58 +0000 (GMT)
-Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
-	by mail.analogue-micro.com (Postfix) with ESMTP id 9239E68A019;
-	Tue,  1 Nov 2016 12:36:57 +0000 (GMT)
-Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
-	by zeus.mlbassoc.com (Postfix) with ESMTP id 2550C6740334;
-	Tue,  1 Nov 2016 13:36:57 +0100 (CET)
-To: yocto@yoctoproject.org
-References: <f13af171-a99e-cfb4-176b-4c1a5d459c44@mlbassoc.com>
-	<2883891.WbHxuNiGSe@peggleto-mobl.ger.corp.intel.com>
-From: Gary Thomas <gary@mlbassoc.com>
-Message-ID: <ac86ff71-d5ea-7dde-2a43-f68a6fb95d7f@mlbassoc.com>
-Date: Tue, 1 Nov 2016 13:36:57 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.4.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.218.51 listed in dnsbl.sorbs.net]
+Received: from mail-oi0-f51.google.com (mail-oi0-f51.google.com
+	[209.85.218.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 47542E00CC4
+	for <yocto@yoctoproject.org>; Tue,  1 Nov 2016 06:38:11 -0700 (PDT)
+Received: by mail-oi0-f51.google.com with SMTP id 128so100163263oih.0
+	for <yocto@yoctoproject.org>; Tue, 01 Nov 2016 06:38:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:sender:in-reply-to:references:from:date:message-id
+	:subject:to:cc;
+	bh=ck/DFbMXjT6NhssbE1N/egtxsdCqQUF5XDuCUri1pko=;
+	b=y5hGUWfR4NC2Zb7E6hBMlAcUf3JoKxOMU3SXjuatsOr7hi9ao53QNkxMixqbziac5t
+	yeukK5LLRuzAXdFSS3gQ5VFeIoq+azMLpTfoy6I37fNMN6wfb7uJp7fPMyKTE1GzJUWP
+	V0PuhvChDuBpeFdm+yqjjag6dWWHuxuhfcEXnD20Y5u2zDlZnUAjpjfSpmzi572jJQ/M
+	1btymNYShKjvHk5sobvFn5E0ncISlB+EKY2W5t55G/NLh908Q4Gwwv6ejvJGL1LIiAdl
+	cXJjAatm81oocNySH6tmL2kfBbA9aj44h2rXR1iMyvoIBfJxbeJ9GBipBv8OGyAn2bF7
+	u93g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:sender:in-reply-to:references:from
+	:date:message-id:subject:to:cc;
+	bh=ck/DFbMXjT6NhssbE1N/egtxsdCqQUF5XDuCUri1pko=;
+	b=ZNwO5k2LV3Pmnsx3+qek6y1m1JUxvcTX0Nq+cPd/oiu/Z7J94kraH97hpv8QnZLHi4
+	RfHaK8GyaYw42MCvuCQpZisT1ixvCHAAhXlNyVzmLmmO5cZoU3mD56Ewv7Dw1eKKJ+/9
+	KVLngwTVubI6xVszUbK//kB58W9DwRobcVGWWEeTGk/CWXgbCokxzrCrVtbHlFUKLTSI
+	kecctt3eCFUvpu3Ybf1HS9Qww+jGTB5KiWQRARaqQS9SLykJ9lNuM2lcZhk/mQ2J3T4n
+	JhryldFCuTbubEvYegOyF84OWRDoNt5faTNfsy0PHWx/oJ4Wu10F9LkMWpgHyOiR/Xsf
+	unDA==
+X-Gm-Message-State: ABUngvdvh7Ka8plmyRHUonFsLKOFfSMsdHyjBB7fHc/MSaySaLD/V3lHRp3RiRERKE6wnLLNt8r4BncaaGNcuw==
+X-Received: by 10.202.194.68 with SMTP id s65mr32752551oif.98.1478007491418;
+	Tue, 01 Nov 2016 06:38:11 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <2883891.WbHxuNiGSe@peggleto-mobl.ger.corp.intel.com>
-Subject: Re: esdk without using Poky?
+Sender: kergoth@gmail.com
+Received: by 10.157.13.194 with HTTP; Tue, 1 Nov 2016 06:37:50 -0700 (PDT)
+In-Reply-To: <alpine.LFD.2.20.1611010455040.19781@ca624034.mitel.com>
+References: <alpine.LFD.2.20.1611010455040.19781@ca624034.mitel.com>
+From: Christopher Larson <clarson@kergoth.com>
+Date: Tue, 1 Nov 2016 06:37:50 -0700
+X-Google-Sender-Auth: QVdzb_L3TkGGIe6obsqfS4lbaSY
+Message-ID: <CABcZANkhAGHrMTfJ7GeYxUTvJWiFf74Y7eyHe60LvK_A5HeJ+w@mail.gmail.com>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: why do some openstack layer.conf files add classes to BBFILES?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,104 +71,72 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 Nov 2016 12:37:02 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 01 Nov 2016 13:38:15 -0000
+Content-Type: multipart/alternative; boundary=001a113dca6c806b8305403d6f68
 
-On 2016-10-31 23:06, Paul Eggleton wrote:
-> Hi Gary,
->
-> On Mon, 31 Oct 2016 13:19:18 Gary Thomas wrote:
->> I'm trying to build an extensible SDK (eSDK) for my target and running into
->> a few problems.
->>
->>    gthomas@zeus:~$
->> /work/tmp/mlb-glibc-x86_64-arm-toolchain-ext-2.2+snapshot.sh MLB
->> @SDK_TITLE@ Associates Embedded (Poky/Yocto Powered) Extensible SDK
->> installer version 2.2+snapshot
->> ===========================================================================
->> Enter target directory for SDK (default:
->> ~/mlb_sdk):
->>    You are about to install the SDK to "/home/gthomas/mlb_sdk".
->> Proceed[Y/n]? y Extracting SDK.........................................done
->>    Setting it up...
->>    Extracting buildtools...
->>    Preparing build system...
->>    Error: 'meta-poky/conf' must be a directory containing local.conf &
->> bblayers.conf
->>
->> The first thing I notice is the banner which should read:
->>    MLB & Associates Embedded (Poky/Yocto Powered) Extensible SDK installer
->> version 2.2+snapshot
->> ===========================================================================
->
-> Ah, I see what's going wrong here - we're doing a sed replacement and the
-> ampersand is being interpreted as an "insert matched string" directive - my
-> fault. I'll insert some escaping.
->
->> The second is that I use my own distribution (not poky).  How can I
->> build an eSDK using my distribution?
->
-> FYI the eSDK will use whatever you set in DISTRO - you have your own
-> distribution, but I assume you are still referencing poky - perhaps as an
-> include from your distro configuration? At least meta-poky must be in your
-> bblayers.conf, otherwise I don't think you'd be getting this error.
->
-> Regardless of that, there is a bug here somewhere. What do you have under
-> layers/ in the generated SDK? Are you setting TEMPLATECONF anywhere?
+--001a113dca6c806b8305403d6f68
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-I don't have meta-poky, nor any mention of poky, in any of my layers.
-I'm still relying on the poky GIT tree, but that's for historical reasons
-(started long before the OE-core split).
+On Tue, Nov 1, 2016 at 1:57 AM, Robert P. J. Day <rpjday@crashcourse.ca>
+wrote:
 
-Perhaps you could try a build with a different distro (other than poky)
-and see what happens?  Or if you can recommend something I could try, I'm
-more than happy to give it a go.
-
+>   just noticed the following property for a bunch of the openstack
+> layers at:
 >
->> Once I ran into this error, I tried rebuilding using the [old] SDK.
->> I noticed that it seemed to rebuild [most] everything all over again.
->> Is there no shared state / reusable components between the eSDK and SDK?
+> http://git.yoctoproject.org/cgit/cgit.cgi/meta-cloud-services/tree/
 >
-> The extensible SDK and standard SDK are quite different - the host part of the
-> extensible SDK is built out of -native rather than nativesdk- components
-> (aside from buildtools-tarball, that is) so there are lots of things that need
-> to be built if you subsequently build the standard SDK and you haven't done so
-> already. It shouldn't be "almost everything", but I appreciate it's often hard
-> to tell.
-
-Fair enough and as you say, it's hard to tell what's rustling under the covers :-)
-
+> some of the layer.conf files contain the line:
 >
->> Finally, since I had to install SDK and not eSDK, I'm missing some tools
->> I was hoping to have.  I want to build PRU programs for the BeagleBoneBlack
->> and I'm using meta-ti to import those tools and programs.  I was expecting
->> the PRU tools which come from ti-cgt-pru-native to be included with my
->> eSDK/SDK, but they don't seem to be, at least not in the SDK.  How can I
->> get these tools available so I can use the SDK to develop PRU code for the
->> BBB?
+> BBFILES +=3D "${LAYERDIR}/recipes*/*/*.bb ${LAYERDIR}/recipes*/*/*.bbappe=
+nd
+> ${LAYERDIR}/classes/*.bbclass"
 >
-> Not sure exactly, but for the standard SDK I would assume you'd need to append
-> nativesdk-<something> to TOOLCHAIN_HOST_TASK so that those tools get included.
-> Aside from the BSP setting that variable (which probably isn't a good idea)
-> there isn't currently a means of host tools automatically getting pulled into
-> the SDK based on the target, though it has been discussed [1].
-
-OK, once I get past the 'meta-poky' issue, I can see what I need to do using
-this nativesdk-XXX packaging.
-
->
-> Cheers,
-> Paul
->
-> [1] https://bugzilla.yoctoproject.org/show_bug.cgi?id=5429
+> why is the classes/ directory being appended to BBFILES? i thought the
+> purpose of BBPATH was to contain locations of .conf and .bbclass
+> files. i'm puzzled by the above.
 >
 
-Thanks for your help
+You=E2=80=99re right to be puzzled, as that addition is pointless and will =
+do
+nothing useful.
+--=20
+Christopher Larson
+clarson at kergoth dot com
+Founder - BitBake, OpenEmbedded, OpenZaurus
+Maintainer - Tslib
+Senior Software Engineer, Mentor Graphics
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+--001a113dca6c806b8305403d6f68
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On Tue, Nov 1, 2016 at 1:57 AM, Robert P. J. Day <span dir=3D"ltr">&lt;<a h=
+ref=3D"mailto:rpjday@crashcourse.ca" target=3D"_blank">rpjday@crashcourse.c=
+a</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margi=
+n:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div id=3D":5jn" =
+class=3D"a3s aXjCH m1581f1d8c5ac84c1">=C2=A0 just noticed the following pro=
+perty for a bunch of the openstack<br>
+layers at:<br>
+<br>
+<a href=3D"http://git.yoctoproject.org/cgit/cgit.cgi/meta-cloud-services/tr=
+ee/" rel=3D"noreferrer" target=3D"_blank">http://git.yoctoproject.org/<wbr>=
+cgit/cgit.cgi/meta-cloud-<wbr>services/tree/</a><br>
+<br>
+some of the layer.conf files contain the line:<br>
+<br>
+BBFILES +=3D &quot;${LAYERDIR}/recipes*/*/*.bb ${LAYERDIR}/recipes*/*/*.<wb=
+r>bbappend ${LAYERDIR}/classes/*.bbclass&quot;<br>
+<br>
+why is the classes/ directory being appended to BBFILES? i thought the<br>
+purpose of BBPATH was to contain locations of .conf and .bbclass<br>
+files. i&#39;m puzzled by the above.</div></blockquote></div><br>You=E2=80=
+=99re right to be puzzled, as that addition is pointless and will do nothin=
+g useful.<br>-- <br><div class=3D"gmail_signature" data-smartmail=3D"gmail_=
+signature">Christopher Larson<br>clarson at kergoth dot com<br>Founder - Bi=
+tBake, OpenEmbedded, OpenZaurus<br>Maintainer - Tslib<br>Senior Software En=
+gineer, Mentor Graphics</div>
+</div></div>
+
+--001a113dca6c806b8305403d6f68--
