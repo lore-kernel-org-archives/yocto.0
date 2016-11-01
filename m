@@ -1,47 +1,39 @@
-Return-Path: <urs.ritzmann@kistler.com>
+Return-Path: <abuse@basmevissen.nl>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 75B79E0049A; Tue,  1 Nov 2016 09:56:19 -0700 (PDT)
+	id 7FAE8E0049A; Tue,  1 Nov 2016 10:05:33 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [91.223.79.44 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 63 seconds by postgrey-1.32 at yocto-www;
-	Tue, 01 Nov 2016 09:56:15 PDT
-Received: from mx1.kistler.com (mx1.kistler.com [91.223.79.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ED2EAE00444
-	for <yocto@yoctoproject.org>; Tue,  1 Nov 2016 09:56:15 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.31,580,1473112800"; d="scan'208";a="26057069"
-Received: from unknown (HELO kihagsepp01.int.kistler.com) ([192.168.52.67])
-	by mx1.kistler.com with ESMTP/TLS/AES256-GCM-SHA384;
-	01 Nov 2016 17:55:11 +0100
-Received: from mx1.kistler.com (unknown [192.168.52.57])
-	by kihagsepp01.int.kistler.com (Postfix) with ESMTPS
-	for <yocto@yoctoproject.org>; Tue,  1 Nov 2016 17:55:11 +0100 (CET)
-X-IronPort-AV: E=Sophos;i="5.31,580,1473112800"; d="scan'208";a="26057068"
-Received: from kihagwinex01.int.kistler.com ([192.168.100.23])
-	by mx1.kistler.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
-	01 Nov 2016 17:55:10 +0100
-Received: from kihagwinex02.int.kistler.com ([fe80::10cf:df86:bb65:2502]) by
-	kihagwinex01.int.kistler.com ([fe80::d70:7df0:c903:4e43%15]) with mapi
-	id 14.03.0266.001; Tue, 1 Nov 2016 17:55:11 +0100
-From: Urs Ritzmann <Urs.Ritzmann@kistler.com>
-To: "'yocto@yoctoproject.org'" <yocto@yoctoproject.org>
-Thread-Topic: archiver.bbclass raising exception
-Thread-Index: AdI0XBDZr+5A1KIdSOWlbmq8z4TPvg==
-Date: Tue, 1 Nov 2016 16:55:09 +0000
-Message-ID: <605809E873A01843AEE64B750CCA21AF20F4B777@kihagwinex02.int.kistler.com>
-Accept-Language: de-DE, de-CH, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [192.168.100.116]
+Received: from hosting.emcodev.net (hosting.emcodev.net [178.18.92.162])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 96ABCE00444
+	for <yocto@yoctoproject.org>; Tue,  1 Nov 2016 10:05:31 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by hosting.emcodev.net (Postfix) with ESMTP id B20EC12AD51
+	for <yocto@yoctoproject.org>; Tue,  1 Nov 2016 18:05:30 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at hosting.emcodev.net
+Received: from hosting.emcodev.net ([127.0.0.1])
+	by localhost (hosting.emcodev.net [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id nJXaYyzaedbm for <yocto@yoctoproject.org>;
+	Tue,  1 Nov 2016 18:05:11 +0100 (CET)
+Received: from whisper.local (541CD0EC.cm-5-5d.dynamic.ziggo.nl
+	[84.28.208.236]) (Authenticated sender: bas@emcodev.nl)
+	by hosting.emcodev.net (Postfix) with ESMTPSA id 8284512AA59
+	for <yocto@yoctoproject.org>; Tue,  1 Nov 2016 18:05:11 +0100 (CET)
+From: Bas Mevissen <abuse@basmevissen.nl>
+To: yocto@yoctoproject.org
+References: <30C2D590D16A5C46ADFE6521910377987FF67BEA@AZ-US1EXMB02.global.avaya.com>
+	<CAJTo0LaVygRC3Z5eVtgGVkCU0mgYv7SGx07+1_om0GKkf6fHvw@mail.gmail.com>
+Message-ID: <21973d42-dc69-ee7b-031d-ac5544823c8f@basmevissen.nl>
+Date: Tue, 1 Nov 2016 18:05:11 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.4.0
 MIME-Version: 1.0
-Subject: archiver.bbclass raising exception
+In-Reply-To: <CAJTo0LaVygRC3Z5eVtgGVkCU0mgYv7SGx07+1_om0GKkf6fHvw@mail.gmail.com>
+Subject: Re: Yocto 2.2 Morty supported Linux Distros
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,84 +45,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 Nov 2016 16:56:19 -0000
-Content-Language: de-DE
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 01 Nov 2016 17:05:33 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi
+On 01/11/16 16:27, Burton, Ross wrote:
+>
+> That's a mistake, I consider the whitelist assignment in poky.conf to be
+> canonical and that includes 16.04.
+>
 
-I switched from yocto 2.0.1 to yocto 2.1.1 and use the archiver class with =
-the following settings:
-INHERIT +=3D "archiver"
-ARCHIVER_MODE[src] =3D "original"
-ARCHIVER_MODE[recipe] =3D "1"
+What are the criteria to call a distro supported?
 
-I'm getting this exception:
+> Scott, can you update the list
+> at http://www.yoctoproject.org/docs/2.2/ref-manual/ref-manual.html#detailed-supported-distros
+> so that it reflects the list in the code:
+>
+> SANITY_TESTED_DISTROS ?= " \
+>             poky-1.8 \n \
+>             poky-2.0 \n \
+>             poky-2.1 \n \
+>             poky-2.2 \n \
+>             Ubuntu-14.04 \n \
+>             Ubuntu-14.10 \n \
+>             Ubuntu-15.04 \n \
+>             Ubuntu-15.10 \n \
+>             Ubuntu-16.04 \n \
+>             Fedora-22 \n \
+>             Fedora-23 \n \
+>             Fedora-24 \n \
 
-ERROR: dbus-c++-native-0.9.0-r8 do_ar_recipe: Error executing a python func=
-tion in exec_python_func() autogenerated:
+Fedora 25 should be released in two weeks time 
+(https://fedoraproject.org/wiki/Releases/25/Schedule). Can it then still 
+be added as a Morty supported distro version?
 
-The stack trace of python calls that resulted in this exception/failure was=
-:
-File: 'exec_python_func() autogenerated', lineno: 2, function: <module>
-     0001:
- *** 0002:do_ar_recipe(d)
-     0003:
-File: '/home/riu/projects/skybase-build/next/yocto/poky-krogoth-15.0.1/meta=
-/classes/archiver.bbclass', lineno: 323, function: do_ar_recipe
-     0319:    pn =3D d.getVar('PN', True)
-     0320:    bbappend_files =3D d.getVar('BBINCLUDED', True).split()
-     0321:    # If recipe name is aa, we need to match files like aa.bbappe=
-nd and aa_1.1.bbappend
-     0322:    # Files like aa1.bbappend or aa1_1.1.bbappend must be exclude=
-d.
- *** 0323:    bbappend_re =3D re.compile( r".*/%s_[^/]*\.bbappend$" %pn)
-     0324:    bbappend_re1 =3D re.compile( r".*/%s\.bbappend$" %pn)
-     0325:    for file in bbappend_files:
-     0326:        if bbappend_re.match(file) or bbappend_re1.match(file):
-     0327:            shutil.copy(file, outdir)
-.......
-Exception: error: multiple repeat
+>             CentOSLinux-7.* \n \
 
+I see in Poky current master when running bitbake:
 
-Looks like the recipe archiver function (do_ar_recipe) has its problems wit=
-h .bbappend files containing special characters like '+' or '-'. I think th=
-is is a bug because these should be valid characters for recipe names, righ=
-t? Or do I miss something? I fixed my setup by just escaping the package na=
-me before it is used in the regular expression, like so:
+WARNING: Host distribution "CentOS-7.2.1511" has not been validated with 
+this version of the build system; you may possibly experience unexpected 
+failures. It is recommended that you use a tested distribution.
 
-From 1d3a75d21025012d86c67e8ff5b8b2880a99141c Mon Sep 17 00:00:00 2001
-From: Urs Ritzmann <urs.ritzmann@kistler.com>
-Date: Tue, 25 Oct 2016 17:18:39 +0200
-Subject: [PATCH] archiver: fix do_ar_recipe for recipe names including rege=
-x
- characters
+It runs fine, but it seems to fail the distro test.
 
----
- meta/classes/archiver.bbclass | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Cheers,
 
-diff --git a/meta/classes/archiver.bbclass b/meta/classes/archiver.bbclass
-index 2f3b278..94741bf 100644
---- a/meta/classes/archiver.bbclass
-+++ b/meta/classes/archiver.bbclass
-@@ -315,7 +315,7 @@ python do_ar_recipe () {
-     bb.utils.mkdirhier(outdir)
-     shutil.copy(bbfile, outdir)
-=20
--    pn =3D d.getVar('PN', True)
-+    pn =3D re.escape(d.getVar('PN', True))
-     bbappend_files =3D d.getVar('BBINCLUDED', True).split()
-     # If recipe name is aa, we need to match files like aa.bbappend and aa=
-_1.1.bbappend
-     # Files like aa1.bbappend or aa1_1.1.bbappend must be excluded.
---=20
-1.9.1
+-- 
+Bas.
 
-The archiver code relevant for this issue is introduced in yocto-2.1 and se=
-ems to be unchanged in master and master-next branches of poky.
-
-Thanks and
-BR Urs
+-- 
+Bas.
 
