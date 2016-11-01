@@ -1,39 +1,44 @@
-Return-Path: <rpjday@crashcourse.ca>
+Return-Path: <abuse@basmevissen.nl>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DC474E00CB6; Tue,  1 Nov 2016 01:59:10 -0700 (PDT)
+	id EBB7BE00CC4; Tue,  1 Nov 2016 03:36:45 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [208.80.204.86 listed in list.dnswl.org]
-Received: from smtp486.redcondor.net (smtp486.redcondor.net [208.80.204.86])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2EC67E00C71
-	for <yocto@yoctoproject.org>; Tue,  1 Nov 2016 01:59:09 -0700 (PDT)
-Received: from astoria.ccjclearline.com ([64.235.106.9])
-	by smtp486.redcondor.net ({6695537a-536a-45f9-a249-877c85428649})
-	via TCP (outbound) with ESMTPS id 20161101085907337_0486
-	for <yocto@yoctoproject.org>; Tue, 01 Nov 2016 08:59:07 +0000
-X-RC-FROM: <rpjday@crashcourse.ca>
-X-RC-RCPT: <yocto@yoctoproject.org>
-Received: from [216.191.234.70] (port=23820 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1c1UuL-0001Es-AC
-	for yocto@yoctoproject.org; Tue, 01 Nov 2016 04:59:01 -0400
-Date: Tue, 1 Nov 2016 04:57:59 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@ca624034.mitel.com
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.LFD.2.20.1611010455040.19781@ca624034.mitel.com>
-User-Agent: Alpine 2.20 (LFD 67 2015-01-07)
+	*      [score: 0.0001]
+X-Greylist: delayed 352 seconds by postgrey-1.32 at yocto-www;
+	Tue, 01 Nov 2016 03:36:43 PDT
+Received: from hosting.emcodev.net (hosting.emcodev.net [178.18.92.162])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 981D3E00C9B
+	for <yocto@yoctoproject.org>; Tue,  1 Nov 2016 03:36:43 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by hosting.emcodev.net (Postfix) with ESMTP id 2B79F12ADA2
+	for <yocto@yoctoproject.org>; Tue,  1 Nov 2016 11:30:50 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at hosting.emcodev.net
+Received: from hosting.emcodev.net ([127.0.0.1])
+	by localhost (hosting.emcodev.net [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id f-mVYwdoiIn0 for <yocto@yoctoproject.org>;
+	Tue,  1 Nov 2016 11:30:31 +0100 (CET)
+Received: from whisper.local (541CD0EC.cm-5-5d.dynamic.ziggo.nl
+	[84.28.208.236]) (Authenticated sender: bas@emcodev.nl)
+	by hosting.emcodev.net (Postfix) with ESMTPSA id 5532B12AD66
+	for <yocto@yoctoproject.org>; Tue,  1 Nov 2016 11:30:31 +0100 (CET)
+To: yocto@yoctoproject.org
+References: <061E8AE63BCA5A41B92BC90F19C8225237AE71B6@CHN-SV-EXMX05.mchp-main.com>
+	<4177938.GHPXVAbNun@peggleto-mobl.ger.corp.intel.com>
+	<061E8AE63BCA5A41B92BC90F19C8225237AE71F2@CHN-SV-EXMX05.mchp-main.com>
+	<16244336.UgYXzEjrtG@peggleto-mobl.ger.corp.intel.com>
+	<061E8AE63BCA5A41B92BC90F19C8225237AE722C@CHN-SV-EXMX05.mchp-main.com>
+From: Bas Mevissen <abuse@basmevissen.nl>
+Message-ID: <7e657315-c5e4-bd73-5083-5bdb31bfd96f@basmevissen.nl>
+Date: Tue, 1 Nov 2016 11:30:30 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.4.0
 MIME-Version: 1.0
-X-MAG-OUTBOUND: ccj.redcondor.net@64.235.106.9/32
-Subject: why do some openstack layer.conf files add classes to BBFILES?
+In-Reply-To: <061E8AE63BCA5A41B92BC90F19C8225237AE722C@CHN-SV-EXMX05.mchp-main.com>
+Subject: Re: how to copy a tar file to Root file system
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,33 +50,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 Nov 2016 08:59:10 -0000
-Content-Type: text/plain; charset=US-ASCII
+X-List-Received-Date: Tue, 01 Nov 2016 10:36:46 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
+
+On 01/11/16 05:03, Swapna.Gurumani@microchip.com wrote:
+> With the attached recipe I get the following error:
+
+ From the recipe:
+
+> inherit pkgconfig
+
+Why do you inherit pkgconfig and aren't you inheriting bin_package?
 
 
-  just noticed the following property for a bunch of the openstack
-layers at:
+Regards,
 
-http://git.yoctoproject.org/cgit/cgit.cgi/meta-cloud-services/tree/
-
-some of the layer.conf files contain the line:
-
-BBFILES += "${LAYERDIR}/recipes*/*/*.bb ${LAYERDIR}/recipes*/*/*.bbappend ${LAYERDIR}/classes/*.bbclass"
-
-why is the classes/ directory being appended to BBFILES? i thought the
-purpose of BBPATH was to contain locations of .conf and .bbclass
-files. i'm puzzled by the above.
-
-rday
-
+Bas.
 -- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
-
+Bas.
 
