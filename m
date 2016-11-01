@@ -1,62 +1,58 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <vmartin@avaya.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6C297E0045D; Tue,  1 Nov 2016 08:27:56 -0700 (PDT)
+	id 53960E0049D; Tue,  1 Nov 2016 08:31:02 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_LOW,
-	RCVD_IN_SORBS_SPAM autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [135.11.29.13 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.174 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.220.174 listed in dnsbl.sorbs.net]
-Received: from mail-qk0-f174.google.com (mail-qk0-f174.google.com
-	[209.85.220.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D0897E0034A
-	for <yocto@yoctoproject.org>; Tue,  1 Nov 2016 08:27:53 -0700 (PDT)
-Received: by mail-qk0-f174.google.com with SMTP id z190so201868855qkc.2
-	for <yocto@yoctoproject.org>; Tue, 01 Nov 2016 08:27:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=RRdU07m19STxvDHfojVQjvSHOEyR1e1u/Vsb2Irkl4Y=;
-	b=1DkFFGewF1WdQZowsQNNAj7xvAOPUe/ebzn4pPJYi4TL5bUlAoJSl9doUWmH7hQobe
-	2faFnv1VKUaqd1QxG7QhUmkPaQuvExvau9Igv4evjBiq02dk33EbAQww/Emo2WjL22wO
-	3gDjJKtWRpwdw16D3M/T84UKWXYz+elcQ1bTlUUvSobsvD+8tWklldmJf2JQCoDC7HXz
-	4vj3C1m4ypTnUWkcEVdkXro0TGZfiNqcFysR6/D8yzdTeegdt4nLwPil1CVizaL7Cl7W
-	rL7evFTfczLan1UrGqvhPVE9CZ8qgx5t/LWzefzywMlxAlC1PZaTDARrrehR1lxz9b2E
-	rCvQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=RRdU07m19STxvDHfojVQjvSHOEyR1e1u/Vsb2Irkl4Y=;
-	b=VnNuo/IOhVyyPjEOLR4hRyEImBVmqm4WCR66/5d6jmx2Eusz6K43CbgSeh2tcZmfv4
-	rcAALsphLaq6Wc0G9Lb/czxsKlDnc8kL0F22F+5tVMXmAaiKc3q2DK2P4NmPIsZy14oH
-	tYsUQ8boWYfhAmzux+OutZgaw7iHvnAjb1idgY2XLxnAOtvIgb+6xKD8XwBoyvHOmm63
-	gmSoL71tcJjE3aUzYPki5Vqb3OIQEtaQOoNZv23hmhpyd20XraMrgqLL6qcG2clzycA4
-	Ujxl1/UI73pJB5mOVi1UWsHc5ucRwGmAPre2FfWFoCqoJjnQ4AaxiB3ORo5PlSWTMuSJ
-	cvfw==
-X-Gm-Message-State: ABUngvdkhphJ1UjHXL0JBy9l+xU5vyBvBFlkozW77iqw2qUwkj0TUmmXRklfyNFnBPtwCglD+OCXC87NBFbh4q3Z
-X-Received: by 10.55.215.6 with SMTP id m6mr28762008qki.244.1478014072745;
-	Tue, 01 Nov 2016 08:27:52 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.140.85.208 with HTTP; Tue, 1 Nov 2016 08:27:32 -0700 (PDT)
-In-Reply-To: <30C2D590D16A5C46ADFE6521910377987FF67BEA@AZ-US1EXMB02.global.avaya.com>
+Received: from p-us1-iereast-outbound.us1.avaya.com
+	(p-us1-iereast-outbound.us1.avaya.com [135.11.29.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9C2FBE00444
+	for <yocto@yoctoproject.org>; Tue,  1 Nov 2016 08:31:00 -0700 (PDT)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2EZAgCRtBhY/yYyC4ddGgEBAQECAQEBA?=
+	=?us-ascii?q?QgBAQEBgnMhFgEBAQEBH1h8BwGNLpcBlEWCB4YiAhqBcz8UAQIBAQEBAQEBA18?=
+	=?us-ascii?q?ohGEBAQEBAxIRCkwQAgEIDQQEAQELHQMCAgIwFAkIAQEEDgUIGogyAZ9AilmMb?=
+	=?us-ascii?q?QEBAQEBAQEBAQEBAQEBAQEBAQEBARyGPYRVhEkVH4JOLYIvBZoaAZo+hXyNE4Q?=
+	=?us-ascii?q?EHjZghRNyhlABgQsBAQE?=
+X-IPAS-Result: =?us-ascii?q?A2EZAgCRtBhY/yYyC4ddGgEBAQECAQEBAQgBAQEBgnMhFgE?=
+	=?us-ascii?q?BAQEBH1h8BwGNLpcBlEWCB4YiAhqBcz8UAQIBAQEBAQEBA18ohGEBAQEBAxIRC?=
+	=?us-ascii?q?kwQAgEIDQQEAQELHQMCAgIwFAkIAQEEDgUIGogyAZ9AilmMbQEBAQEBAQEBAQE?=
+	=?us-ascii?q?BAQEBAQEBAQEBARyGPYRVhEkVH4JOLYIvBZoaAZo+hXyNE4QEHjZghRNyhlABg?=
+	=?us-ascii?q?QsBAQE?=
+X-IronPort-AV: E=Sophos;i="5.31,580,1473134400"; 
+	d="scan'208,217";a="214370032"
+Received: from unknown (HELO p-us1-erheast-smtpauth.us1.avaya.com)
+	([135.11.50.38]) by p-us1-iereast-outbound.us1.avaya.com with ESMTP;
+	01 Nov 2016 11:30:59 -0400
+X-OutboundMail_SMTP: 1
+Received: from unknown (HELO AZ-US1EXHC01.global.avaya.com) ([135.11.85.12])
+	by p-us1-erheast-out.us1.avaya.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
+	01 Nov 2016 11:30:35 -0400
+Received: from AZ-US1EXMB02.global.avaya.com ([fe80::c01d:740:c927:8888]) by
+	AZ-US1EXHC01.global.avaya.com ([135.11.85.12]) with mapi id
+	14.03.0319.002; Tue, 1 Nov 2016 11:30:34 -0400
+From: "Vuille, Martin (Martin)" <vmartin@avaya.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+Thread-Topic: [yocto] Yocto 2.2 Morty supported Linux Distros
+Thread-Index: AdI0UsdSor/FjekUSFCTTIyoE942BwAIzZoAAAhKcHA=
+Date: Tue, 1 Nov 2016 15:30:33 +0000
+Message-ID: <30C2D590D16A5C46ADFE6521910377987FF67C98@AZ-US1EXMB02.global.avaya.com>
 References: <30C2D590D16A5C46ADFE6521910377987FF67BEA@AZ-US1EXMB02.global.avaya.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Tue, 1 Nov 2016 15:27:32 +0000
-Message-ID: <CAJTo0LaVygRC3Z5eVtgGVkCU0mgYv7SGx07+1_om0GKkf6fHvw@mail.gmail.com>
-To: "Vuille, Martin (Martin)" <vmartin@avaya.com>, "Rifenbark,
-	Scott M" <srifenbark@gmail.com>
+	<CAJTo0LaVygRC3Z5eVtgGVkCU0mgYv7SGx07+1_om0GKkf6fHvw@mail.gmail.com>
+In-Reply-To: <CAJTo0LaVygRC3Z5eVtgGVkCU0mgYv7SGx07+1_om0GKkf6fHvw@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [135.11.85.49]
+MIME-Version: 1.0
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Yocto 2.2 Morty supported Linux Distros
 X-BeenThere: yocto@yoctoproject.org
@@ -70,91 +66,94 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 Nov 2016 15:27:56 -0000
-Content-Type: multipart/alternative; boundary=001a1149dcbcc7c73705403ef7f4
+X-List-Received-Date: Tue, 01 Nov 2016 15:31:02 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_30C2D590D16A5C46ADFE6521910377987FF67C98AZUS1EXMB02glob_"
 
---001a1149dcbcc7c73705403ef7f4
-Content-Type: text/plain; charset=UTF-8
+--_000_30C2D590D16A5C46ADFE6521910377987FF67C98AZUS1EXMB02glob_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On 1 November 2016 at 15:19, Vuille, Martin (Martin) <vmartin@avaya.com>
-wrote:
+VGhhbmsgeW91IGZvciB0aGUgcXVpY2sgYW5zd2VyDQpNVg0KDQpGcm9tOiBCdXJ0b24sIFJvc3Mg
+W21haWx0bzpyb3NzLmJ1cnRvbkBpbnRlbC5jb21dDQpTZW50OiBOb3ZlbWJlciAwMSwgMjAxNiAx
+MToyOA0KVG86IFZ1aWxsZSwgTWFydGluIChNYXJ0aW4pOyBSaWZlbmJhcmssIFNjb3R0IE0NCkNj
+OiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQpTdWJqZWN0OiBSZTogW3lvY3RvXSBZb2N0byAyLjIg
+TW9ydHkgc3VwcG9ydGVkIExpbnV4IERpc3Ryb3MNCg0KDQpPbiAxIE5vdmVtYmVyIDIwMTYgYXQg
+MTU6MTksIFZ1aWxsZSwgTWFydGluIChNYXJ0aW4pIDx2bWFydGluQGF2YXlhLmNvbTxtYWlsdG86
+dm1hcnRpbkBhdmF5YS5jb20+PiB3cm90ZToNCklzIHRoYXQgY29ycmVjdC9pbnRlbnRpb25hbCwg
+b3IgYSBkb2N1bWVudGF0aW9uIG92ZXJzaWdodD8NClVidW50dSAxNi4wNCBpcyBtZW50aW9uZWQg
+ZWxzZXdoZXJlIGluIHRoZSBkb2NzLg0KDQpUaGF0J3MgYSBtaXN0YWtlLCBJIGNvbnNpZGVyIHRo
+ZSB3aGl0ZWxpc3QgYXNzaWdubWVudCBpbiBwb2t5LmNvbmYgdG8gYmUgY2Fub25pY2FsIGFuZCB0
+aGF0IGluY2x1ZGVzIDE2LjA0Lg0KDQo=
 
-> Is that correct/intentional, or a documentation oversight?
->
-> Ubuntu 16.04 is mentioned elsewhere in the docs.
->
->
-That's a mistake, I consider the whitelist assignment in poky.conf to be
-canonical and that includes 16.04.
+--_000_30C2D590D16A5C46ADFE6521910377987FF67C98AZUS1EXMB02glob_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Scott, can you update the list at
-http://www.yoctoproject.org/docs/2.2/ref-manual/ref-manual.html#detailed-supported-distros
-so that it reflects the list in the code:
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTQgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1IDUgMiAyIDIgNCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJ
+e2ZvbnQtZmFtaWx5OlRhaG9tYTsNCglwYW5vc2UtMToyIDExIDYgNCAzIDUgNCA0IDIgNDt9DQov
+KiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1z
+b05vcm1hbA0KCXttYXJnaW46MGluOw0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNp
+emU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5OiJUaW1lcyBOZXcgUm9tYW4iLCJzZXJpZiI7fQ0KYTps
+aW5rLCBzcGFuLk1zb0h5cGVybGluaw0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6
+Ymx1ZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCmE6dmlzaXRlZCwgc3Bhbi5Nc29I
+eXBlcmxpbmtGb2xsb3dlZA0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6cHVycGxl
+Ow0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0Kc3Bhbi5FbWFpbFN0eWxlMTcNCgl7bXNv
+LXN0eWxlLXR5cGU6cGVyc29uYWwtcmVwbHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLCJzYW5z
+LXNlcmlmIjsNCgljb2xvcjojMUY0OTdEO30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHlsZS10
+eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIiwic2Fucy1zZXJpZiI7DQoJ
+bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVM7fQ0KQHBhZ2UgV29yZFNlY3Rpb24xDQoJe3NpemU6
+OC41aW4gMTEuMGluOw0KCW1hcmdpbjoxLjBpbiAxLjBpbiAxLjBpbiAxLjBpbjt9DQpkaXYuV29y
+ZFNlY3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rpb24xO30NCi0tPjwvc3R5bGU+PCEtLVtpZiBndGUg
+bXNvIDldPjx4bWw+DQo8bzpzaGFwZWRlZmF1bHRzIHY6ZXh0PSJlZGl0IiBzcGlkbWF4PSIxMDI2
+IiAvPg0KPC94bWw+PCFbZW5kaWZdLS0+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFw
+ZWxheW91dCB2OmV4dD0iZWRpdCI+DQo8bzppZG1hcCB2OmV4dD0iZWRpdCIgZGF0YT0iMSIgLz4N
+CjwvbzpzaGFwZWxheW91dD48L3htbD48IVtlbmRpZl0tLT4NCjwvaGVhZD4NCjxib2R5IGxhbmc9
+IkVOLUNBIiBsaW5rPSJibHVlIiB2bGluaz0icHVycGxlIj4NCjxkaXYgY2xhc3M9IldvcmRTZWN0
+aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBw
+dDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7
+Y29sb3I6IzFGNDk3RCI+VGhhbmsgeW91IGZvciB0aGUgcXVpY2sgYW5zd2VyPG86cD48L286cD48
+L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTox
+MS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1
+b3Q7O2NvbG9yOiMxRjQ5N0QiPk1WPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1z
+b05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7
+Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPjxvOnA+
+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxkaXYgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci1s
+ZWZ0OnNvbGlkIGJsdWUgMS41cHQ7cGFkZGluZzowaW4gMGluIDBpbiA0LjBwdCI+DQo8ZGl2Pg0K
+PGRpdiBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLXRvcDpzb2xpZCAjQjVDNERGIDEuMHB0O3Bh
+ZGRpbmc6My4wcHQgMGluIDBpbiAwaW4iPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGI+PHNwYW4g
+bGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O1Rh
+aG9tYSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ij5Gcm9tOjwvc3Bhbj48L2I+PHNwYW4g
+bGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O1Rh
+aG9tYSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ij4gQnVydG9uLCBSb3NzIFttYWlsdG86
+cm9zcy5idXJ0b25AaW50ZWwuY29tXQ0KPGJyPg0KPGI+U2VudDo8L2I+IE5vdmVtYmVyIDAxLCAy
+MDE2IDExOjI4PGJyPg0KPGI+VG86PC9iPiBWdWlsbGUsIE1hcnRpbiAoTWFydGluKTsgUmlmZW5i
+YXJrLCBTY290dCBNPGJyPg0KPGI+Q2M6PC9iPiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnPGJyPg0K
+PGI+U3ViamVjdDo8L2I+IFJlOiBbeW9jdG9dIFlvY3RvIDIuMiBNb3J0eSBzdXBwb3J0ZWQgTGlu
+dXggRGlzdHJvczxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8cCBjbGFz
+cz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxkaXY+DQo8ZGl2Pg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1z
+b05vcm1hbCI+T24gMSBOb3ZlbWJlciAyMDE2IGF0IDE1OjE5LCBWdWlsbGUsIE1hcnRpbiAoTWFy
+dGluKSAmbHQ7PGEgaHJlZj0ibWFpbHRvOnZtYXJ0aW5AYXZheWEuY29tIiB0YXJnZXQ9Il9ibGFu
+ayI+dm1hcnRpbkBhdmF5YS5jb208L2E+Jmd0OyB3cm90ZTo8bzpwPjwvbzpwPjwvcD4NCjxwIGNs
+YXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2lu
+LWJvdHRvbS1hbHQ6YXV0byI+SXMgdGhhdCBjb3JyZWN0L2ludGVudGlvbmFsLCBvciBhIGRvY3Vt
+ZW50YXRpb24gb3ZlcnNpZ2h0PzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIg
+c3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRv
+Ij5VYnVudHUgMTYuMDQgaXMgbWVudGlvbmVkIGVsc2V3aGVyZSBpbiB0aGUgZG9jcy48bzpwPjwv
+bzpwPjwvcD4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGJyPg0KVGhhdCdzIGEgbWlz
+dGFrZSwgSSBjb25zaWRlciB0aGUgd2hpdGVsaXN0IGFzc2lnbm1lbnQgaW4gcG9reS5jb25mIHRv
+IGJlIGNhbm9uaWNhbCBhbmQgdGhhdCBpbmNsdWRlcyAxNi4wNC48bzpwPjwvbzpwPjwvcD4NCjwv
+ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0K
+PC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
 
-SANITY_TESTED_DISTROS ?= " \
-            poky-1.8 \n \
-            poky-2.0 \n \
-            poky-2.1 \n \
-            poky-2.2 \n \
-            Ubuntu-14.04 \n \
-            Ubuntu-14.10 \n \
-            Ubuntu-15.04 \n \
-            Ubuntu-15.10 \n \
-            Ubuntu-16.04 \n \
-            Fedora-22 \n \
-            Fedora-23 \n \
-            Fedora-24 \n \
-            CentOSLinux-7.* \n \
-            Debian-8.* \n \
-            openSUSE-13.2 \n \
-            SUSELINUX-42.1 \n \
-            "
-
-Ross
-
---001a1149dcbcc7c73705403ef7f4
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 1 November 2016 at 15:19, Vuille, Martin (Martin) <span dir=3D"ltr">&lt;=
-<a href=3D"mailto:vmartin@avaya.com" target=3D"_blank">vmartin@avaya.com</a=
->&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0p=
-x 0px 0px 0.8ex;border-left-width:1px;border-left-color:rgb(204,204,204);bo=
-rder-left-style:solid;padding-left:1ex"><p class=3D"MsoNormal">Is that corr=
-ect/intentional, or a documentation oversight?<u></u><u></u></p>
-<p class=3D"MsoNormal">Ubuntu 16.04 is mentioned elsewhere in the docs.<u><=
-/u><u></u></p>
-<p class=3D"MsoNormal"></p></blockquote></div><br>That&#39;s a mistake, I c=
-onsider the whitelist assignment in poky.conf to be canonical and that incl=
-udes 16.04.</div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_e=
-xtra">Scott, can you update the list at=C2=A0<a href=3D"http://www.yoctopro=
-ject.org/docs/2.2/ref-manual/ref-manual.html#detailed-supported-distros">ht=
-tp://www.yoctoproject.org/docs/2.2/ref-manual/ref-manual.html#detailed-supp=
-orted-distros</a> so that it reflects the list in the code:</div><div class=
-=3D"gmail_extra"><br></div><div class=3D"gmail_extra"><div class=3D"gmail_e=
-xtra">SANITY_TESTED_DISTROS ?=3D &quot; \</div><div class=3D"gmail_extra">=
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 poky-1.8 \n \</div><div class=3D"=
-gmail_extra">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 poky-2.0 \n \</div><=
-div class=3D"gmail_extra">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 poky-2.=
-1 \n \</div><div class=3D"gmail_extra">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 poky-2.2 \n \</div><div class=3D"gmail_extra">=C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 Ubuntu-14.04 \n \</div><div class=3D"gmail_extra">=C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 Ubuntu-14.10 \n \</div><div class=3D=
-"gmail_extra">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 Ubuntu-15.04 \n \</=
-div><div class=3D"gmail_extra">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 Ub=
-untu-15.10 \n \</div><div class=3D"gmail_extra">=C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 Ubuntu-16.04 \n \</div><div class=3D"gmail_extra">=C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 Fedora-22 \n \</div><div class=3D"gmail_ext=
-ra">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 Fedora-23 \n \</div><div clas=
-s=3D"gmail_extra">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 Fedora-24 \n \<=
-/div><div class=3D"gmail_extra">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 C=
-entOSLinux-7.* \n \</div><div class=3D"gmail_extra">=C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 Debian-8.* \n \</div><div class=3D"gmail_extra">=C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 openSUSE-13.2 \n \</div><div class=3D"g=
-mail_extra">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 SUSELINUX-42.1 \n \</=
-div><div class=3D"gmail_extra">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &q=
-uot;</div><div class=3D"gmail_extra"><br></div></div><div class=3D"gmail_ex=
-tra">Ross</div></div>
-
---001a1149dcbcc7c73705403ef7f4--
+--_000_30C2D590D16A5C46ADFE6521910377987FF67C98AZUS1EXMB02glob_--
