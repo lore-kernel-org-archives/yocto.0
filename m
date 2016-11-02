@@ -1,29 +1,58 @@
-Return-Path: <andrew.stuart@supercoders.com.au>
+Return-Path: <aveselinov@generationrfid.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BF2C4E0071C; Wed,  2 Nov 2016 04:08:27 -0700 (PDT)
+	id 3F187E00BB0; Wed,  2 Nov 2016 07:40:20 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0071]
-X-Greylist: delayed 336 seconds by postgrey-1.32 at yocto-www;
-	Wed, 02 Nov 2016 04:08:26 PDT
-Received: from mail.supercoders.com.au (mail.supercoders.com.au [54.215.13.78])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 70098E006E9
-	for <yocto@yoctoproject.org>; Wed,  2 Nov 2016 04:08:26 -0700 (PDT)
-Received: from [192.168.1.100] (unknown [101.167.6.11])
-	by mail.supercoders.com.au (Postfix) with ESMTPS id 31704637DD
-	for <yocto@yoctoproject.org>; Wed,  2 Nov 2016 11:02:49 +0000 (UTC)
-From: Andrew Stuart <andrew.stuart@supercoders.com.au>
-Message-Id: <356DF612-5CB8-4D89-92D8-0F7EDD7AF609@supercoders.com.au>
-Date: Wed, 2 Nov 2016 22:02:47 +1100
+X-Spam-Status: No, score=-0.5 required=5.0 tests=BAYES_05,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [192.185.50.73 listed in list.dnswl.org]
+	* -0.5 BAYES_05 BODY: Bayes spam probability is 1 to 5%
+	*      [score: 0.0125]
+X-Greylist: delayed 1311 seconds by postgrey-1.32 at yocto-www;
+	Wed, 02 Nov 2016 07:40:17 PDT
+Received: from gateway24.websitewelcome.com (gateway24.websitewelcome.com
+	[192.185.50.73])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D3BC1E009FA
+	for <yocto@yoctoproject.org>; Wed,  2 Nov 2016 07:40:17 -0700 (PDT)
+Received: from cm7.websitewelcome.com (cm7.websitewelcome.com [108.167.139.20])
+	by gateway24.websitewelcome.com (Postfix) with ESMTP id 23DD0AEB4341F
+	for <yocto@yoctoproject.org>; Wed,  2 Nov 2016 09:18:26 -0500 (CDT)
+Received: from gator4093.hostgator.com ([192.185.4.105])
+	by cm7.websitewelcome.com with 
+	id 32JQ1u01N2Fx1Vc012JRZg; Wed, 02 Nov 2016 09:18:26 -0500
+Received: from [146.66.253.137] (port=42628 helo=[192.168.61.179])
+	by gator4093.hostgator.com with esmtpsa
+	(TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.87)
+	(envelope-from <aveselinov@generationrfid.com>) id 1c1wMy-000Iui-NL
+	for yocto@yoctoproject.org; Wed, 02 Nov 2016 09:18:24 -0500
 To: yocto@yoctoproject.org
-Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
-X-Mailer: Apple Mail (2.3124)
+From: Anatoli Veselinov <aveselinov@generationrfid.com>
+Message-ID: <d5b63ec2-ce46-74ef-41fd-d000fea28af5@generationrfid.com>
+Date: Wed, 2 Nov 2016 15:18:23 +0100
+User-Agent: Mozilla/5.0 (X11; Linux i686; rv:45.0) Gecko/20100101
+	Thunderbird/45.4.0
+MIME-Version: 1.0
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - gator4093.hostgator.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - generationrfid.com
+X-BWhitelist: no
+X-Source-IP: 146.66.253.137
+X-Exim-ID: 1c1wMy-000Iui-NL
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Source-Sender: ([192.168.61.179]) [146.66.253.137]:42628
+X-Source-Auth: aveselinov@generationrfid.com
+X-Email-Count: 1
+X-Source-Cap: amxvcGV6O2psb3BlejtnYXRvcjQwOTMuaG9zdGdhdG9yLmNvbQ==
 X-Mailman-Approved-At: Thu, 03 Nov 2016 07:49:45 -0700
-Subject: Guide to how to build a minimal system
+Subject: How do I remove/disable QtWebKit from building?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,37 +64,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 02 Nov 2016 11:08:27 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 02 Nov 2016 14:40:20 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-I want to build a minimal Nginx system that does nothing else but serve =
-static files. Preferably with nothing else installed at all apart from =
-network configuration via /etc/network/interfaces. Perhaps also =
-optionally with ssh.
+I have been searching about this but didn't found anything. I don't know 
+if what I'm asking is possible so let me explain.
 
-Ideally I would be able to provide the HTML files that make up the =
-website via an initramfs file.
+My goal is to create a custom image for a target that it can run Qt 
+applications.
+I have the image ready, I also generated the Qt sdk (with populate_sdk) 
+and I already can cross-compile. Ok.
 
-I=E2=80=99d like this to run on x86-64 on KVM.
+My question is, for future builds, how do I disable or remove some Qt 
+modules that I don't need?
 
-I=E2=80=99m looking for a guide that shows me the key steps to implement =
-something minimal like this.  Does such a guide exist?
+I did:
 
-I=E2=80=99ve watched several hours of Youtube videos on Yocto, I=E2=80=99v=
-e read various getting started guides and spent several hours installing =
-and building.
+PACKAGECONFIG_remove_pn-qttools = "qtwebkit"
+PACKAGECONFIG_remove_pn-qtquick1 = "qtwebkit"
 
-Quite how to configure something down to minimal still is not clear.
-
-Can someone guide me please as to where to find such docs?
-
-One additional specific question - I can see that there is a web servers =
-layer, but how to only get the one webserver that I want (nginx) as =
-opposed to getting them all?
-
-thanks
-
-Andrew
-
+but that doesn't disable qtwebkit to be built, I saw qtwebkit do_compile 
+task running and it takes a lot of time.
 
