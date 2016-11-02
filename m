@@ -1,38 +1,29 @@
-Return-Path: <abuse@basmevissen.nl>
+Return-Path: <andrew.stuart@supercoders.com.au>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1CF4BE00C59; Thu,  3 Nov 2016 07:31:27 -0700 (PDT)
+	id BF2C4E0071C; Wed,  2 Nov 2016 04:08:27 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
 	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-Received: from hosting.emcodev.net (hosting.emcodev.net [178.18.92.162])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EF607E00C45
-	for <yocto@yoctoproject.org>; Thu,  3 Nov 2016 07:31:22 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by hosting.emcodev.net (Postfix) with ESMTP id E7C2512AEC8
-	for <yocto@yoctoproject.org>; Thu,  3 Nov 2016 15:31:21 +0100 (CET)
-X-Virus-Scanned: Debian amavisd-new at hosting.emcodev.net
-Received: from hosting.emcodev.net ([127.0.0.1])
-	by localhost (hosting.emcodev.net [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id o7L6PgLc7hyG for <yocto@yoctoproject.org>;
-	Thu,  3 Nov 2016 15:31:03 +0100 (CET)
-Received: from whisper.local (541CD0EC.cm-5-5d.dynamic.ziggo.nl
-	[84.28.208.236]) (Authenticated sender: bas@emcodev.nl)
-	by hosting.emcodev.net (Postfix) with ESMTPSA id DB26012AE90
-	for <yocto@yoctoproject.org>; Thu,  3 Nov 2016 15:31:03 +0100 (CET)
+	*      [score: 0.0071]
+X-Greylist: delayed 336 seconds by postgrey-1.32 at yocto-www;
+	Wed, 02 Nov 2016 04:08:26 PDT
+Received: from mail.supercoders.com.au (mail.supercoders.com.au [54.215.13.78])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 70098E006E9
+	for <yocto@yoctoproject.org>; Wed,  2 Nov 2016 04:08:26 -0700 (PDT)
+Received: from [192.168.1.100] (unknown [101.167.6.11])
+	by mail.supercoders.com.au (Postfix) with ESMTPS id 31704637DD
+	for <yocto@yoctoproject.org>; Wed,  2 Nov 2016 11:02:49 +0000 (UTC)
+From: Andrew Stuart <andrew.stuart@supercoders.com.au>
+Message-Id: <356DF612-5CB8-4D89-92D8-0F7EDD7AF609@supercoders.com.au>
+Date: Wed, 2 Nov 2016 22:02:47 +1100
 To: yocto@yoctoproject.org
-References: <d3a15e96-ecd8-50c5-65e2-c13937d101ee@mlbassoc.com>
-From: Bas Mevissen <abuse@basmevissen.nl>
-Message-ID: <729c1b8b-4ca2-cce8-c614-aed6f107fc9b@basmevissen.nl>
-Date: Thu, 3 Nov 2016 15:31:03 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.4.0
-MIME-Version: 1.0
-In-Reply-To: <d3a15e96-ecd8-50c5-65e2-c13937d101ee@mlbassoc.com>
-Subject: Re: Shallow git clones?
+Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
+X-Mailer: Apple Mail (2.3124)
+X-Mailman-Approved-At: Thu, 03 Nov 2016 07:49:45 -0700
+Subject: Guide to how to build a minimal system
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,27 +35,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 03 Nov 2016 14:31:27 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 02 Nov 2016 11:08:27 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-On 03/11/16 14:06, Gary Thomas wrote:
-> I recall seeing some discussion in the past about using shallow
-> GIT clones when importing repositories?  Is this ever going to
-> happen?
->
-> The reason I ask is that I routinely save the GIT tarballs and
-> some of them are obscenely obese :-(  The worst of the bunch
-> is the device firmware for the RaspberryPi (as of today):
->   -rw-rw-r-- 1 gthomas gthomas 6321877646 Nov  3 12:13
-> git2_github.com.raspberrypi.firmware.git.tar.gz
->
+I want to build a minimal Nginx system that does nothing else but serve =
+static files. Preferably with nothing else installed at all apart from =
+network configuration via /etc/network/interfaces. Perhaps also =
+optionally with ssh.
 
-On the OE-Core mailing list, there is currently a case of downloading 
-600MB for gdb alone... I think this concern applies to Yocto and 
-OpenEmbedded as a whole.
+Ideally I would be able to provide the HTML files that make up the =
+website via an initramfs file.
 
-Cheers,
+I=E2=80=99d like this to run on x86-64 on KVM.
 
-Bas.
+I=E2=80=99m looking for a guide that shows me the key steps to implement =
+something minimal like this.  Does such a guide exist?
+
+I=E2=80=99ve watched several hours of Youtube videos on Yocto, I=E2=80=99v=
+e read various getting started guides and spent several hours installing =
+and building.
+
+Quite how to configure something down to minimal still is not clear.
+
+Can someone guide me please as to where to find such docs?
+
+One additional specific question - I can see that there is a web servers =
+layer, but how to only get the one webserver that I want (nginx) as =
+opposed to getting them all?
+
+thanks
+
+Andrew
+
 
