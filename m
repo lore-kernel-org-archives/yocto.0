@@ -1,38 +1,33 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <mircea.gliga@vitheia.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 01D0FE0074B; Tue,  1 Nov 2016 23:25:28 -0700 (PDT)
+	id C8B2DE007A2; Tue,  1 Nov 2016 23:32:54 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.analogue-micro.com (mail.analogue-micro.com
-	[217.144.149.242])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7E2A4E0070F
-	for <yocto@yoctoproject.org>; Tue,  1 Nov 2016 23:25:22 -0700 (PDT)
-Received: by mail.analogue-micro.com (Postfix, from userid 999)
-	id 23D1568A01A; Wed,  2 Nov 2016 06:25:22 +0000 (GMT)
-Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
-	by mail.analogue-micro.com (Postfix) with ESMTP id 47EB468A019;
-	Wed,  2 Nov 2016 06:25:15 +0000 (GMT)
-Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
-	by zeus.mlbassoc.com (Postfix) with ESMTP id 549096740215;
-	Wed,  2 Nov 2016 07:25:14 +0100 (CET)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from zeus.integrasoft.ro (zeus.integrasoft.ro [193.231.162.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9AAA4E0070F
+	for <yocto@yoctoproject.org>; Tue,  1 Nov 2016 23:32:51 -0700 (PDT)
+Received: from [193.231.162.34] (echelon.integrasoft.ro [193.231.162.34])
+	(authenticated bits=0)
+	by zeus.integrasoft.ro (8.13.8/8.13.8) with ESMTP id uA26WmNr013782
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES128-SHA bits=128 verify=NO)
+	for <yocto@yoctoproject.org>; Wed, 2 Nov 2016 08:32:48 +0200
 To: yocto@yoctoproject.org
-References: <f13af171-a99e-cfb4-176b-4c1a5d459c44@mlbassoc.com>
-	<1861981.ABIzZx3oLe@peggleto-mobl.ger.corp.intel.com>
-	<11df0b01-8b63-9bbb-aeb2-84d8e97dfaff@mlbassoc.com>
-	<3716500.351XhGvxqH@peggleto-mobl.ger.corp.intel.com>
-From: Gary Thomas <gary@mlbassoc.com>
-Message-ID: <fca382f4-53b0-55e2-e635-e78e93363a46@mlbassoc.com>
-Date: Wed, 2 Nov 2016 07:25:13 +0100
+References: <1199472296.497716.1477658207727.ref@mail.yahoo.com>
+	<1199472296.497716.1477658207727@mail.yahoo.com>
+From: Mircea Gliga <mircea.gliga@vitheia.com>
+Message-ID: <07543f7a-7365-17b4-c4d0-c741e60fdfd1@vitheia.com>
+Date: Wed, 2 Nov 2016 08:32:46 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.4.0
+	Icedove/45.4.0
 MIME-Version: 1.0
-In-Reply-To: <3716500.351XhGvxqH@peggleto-mobl.ger.corp.intel.com>
-Subject: Re: esdk without using Poky?
+In-Reply-To: <1199472296.497716.1477658207727@mail.yahoo.com>
+Subject: Re: Tcl SIGCHLD lost process error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,128 +39,159 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 02 Nov 2016 06:25:28 -0000
+X-List-Received-Date: Wed, 02 Nov 2016 06:32:54 -0000
+Content-Type: multipart/alternative;
+	boundary="------------7FC510FB3987E546894BE4EB"
+
+--------------7FC510FB3987E546894BE4EB
 Content-Type: text/plain; charset=windows-1252; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 2016-11-02 03:25, Paul Eggleton wrote:
-> On Wed, 02 Nov 2016 03:02:11 Gary Thomas wrote:
->> On 2016-11-02 02:44, Paul Eggleton wrote:
->>> On Wed, 02 Nov 2016 02:37:57 Gary Thomas wrote:
->>>> On 2016-11-01 21:33, Paul Eggleton wrote:
->>>>> On Tue, 01 Nov 2016 13:36:57 Gary Thomas wrote:
->>>>>> On 2016-10-31 23:06, Paul Eggleton wrote:
->>>>>>> FYI the eSDK will use whatever you set in DISTRO - you have your own
->>>>>>> distribution, but I assume you are still referencing poky - perhaps as
->>>>>>> an
->>>>>>> include from your distro configuration? At least meta-poky must be in
->>>>>>> your
->>>>>>> bblayers.conf, otherwise I don't think you'd be getting this error.
->>>>>>>
->>>>>>> Regardless of that, there is a bug here somewhere. What do you have
->>>>>>> under
->>>>>>> layers/ in the generated SDK? Are you setting TEMPLATECONF anywhere?
->>>>>>
->>>>>> I don't have meta-poky, nor any mention of poky, in any of my layers.
->>>>>> I'm still relying on the poky GIT tree, but that's for historical
->>>>>> reasons
->>>>>> (started long before the OE-core split).
->>>>>
->>>>> I think that's where the problem lies. You may not realise it, but the
->>>>> TEMPLATECONF environment variable is being set simply by using the poky
->>>>> repository, since there is a .templateconf directory at its root that
->>>>> sets
->>>>> it to "meta-poky/conf" if it isn't already set. This isn't a problem
->>>>> during normal operation since meta-poky/conf exists there - you'll just
->>>>> be using poky's template local.conf and bblayers.conf rather than any
->>>>> other. When you generate the eSDK though, meta-poky won't be copied into
->>>>> the eSDK because that layer is not in your bblayers.conf and thus you
->>>>> get
->>>>> the error.
->>>>>
->>>>> I will have to try and figure a way around this. In the mean time you
->>>>> should be able to change the saved value in
->>>>> <builddir>/conf/templateconf.cfg to "meta/conf" to work around the
->>>>> issue,
->>>>> but it'll come back if you create a new build directory unless you set
->>>>> TEMPLATECONF in the external environment before running
->>>>> oe-init-build-env.
->>>>
->>>> I'm still confused.  There is no mention of meta-poky, or of the $DISTRO
->>>>
->>>> 'poky' anywhere in my <builddir>/conf:
->>>>    gthomas@europa:p8701_2016-10-22$ cat conf/templateconf.cfg
->>>>    meta-rainier-am335x-p8701/conf
->>>>    gthomas@europa:p8701_2016-10-22$ grep -i poky conf/*
->>>>    conf/bblayers.conf:  /local/poky-cutting-edge/meta \
->>>>    conf/bblayers.conf:  /local/poky-cutting-edge/meta-oe \
->>>>    conf/bblayers.conf:  /local/poky-cutting-edge/meta-amltd \
->>>>    conf/bblayers.conf:
->>>>    /local/poky-cutting-edge/meta-rainier-am335x-p8701 \
->>>>
->>>> conf/bblayers.conf:  /local/poky-cutting-edge/meta-ti \
->>>>
->>>>    conf/bblayers.conf:  /local/poky-cutting-edge/meta-webserver \
->>>
->>> It turns out I was mistaken. The templateconf.cfg in your build directory
->>> has no bearing on what the value ends up being in the eSDK because that
->>> file isn't copied over - instead it is created from scratch. I am working
->>> on a proper fix now.
->>
->> Thanks.  I tried overriding this on the machine where I want to
->> install the eSDK (not the same as where I built it) like this:
->>    gthomas@zeus:~$ TEMPLATECONF=meta-rainier-am335x-p8701/conf
->> /work/tmp/amltd-glibc-x86_64-arm-toolchain-ext-2.2+snapshot.sh
->>
->> Sadly, it still failed the same way.
+Does anyone has this issue also ?
+Any input ?
+
+Thanks
+
+On 28/10/16 15:36, Valentina Skorpion wrote:
+>        Hello everyone,
 >
-> Right, that's because the environment is filtered by the SDK installer, so
-> that won't make it through into the environment used during installation.
+>      I have been using yocto jethro in order to build my custom Linux 
+> distribution for several devices ( qemuarm , sama5d4, etc) . I have 
+> used the linux-yocto 4.1.5 kernel version and latest version packages. 
+> After upgrading to yocto krogoth I have used a newer version of linux 
+> kernel ( version 4.7.2 ) and newer version packages. I had some tcl 
+> scripts which worked fine before but now  the following error has been 
+> triggered:
+>     error waiting for process to exit : child process lost is sigchld 
+> ignored or trapped? )
+>
+>      This error is being triggered when tcl *exec *function is 
+> executed. Even simpler commands such as "exec ls" triggers the same 
+> error (the command is not executed).
+>
+>      I have tried to reproduce the error on yocto krogoth with older 
+> versions of linux kernel. On linux-yocto 4.4 the same error appeared.  
+> On linux-yocto 4.1.5 with some outdated packages (with older version, 
+> only Tcl had the same version in all test cases) the exec function 
+> runned fine (as I have mentioned before). To reproduce the error in 
+> this case, SIGCHLD had to be trapped outside tclsh (with trap command 
+> : trap "" CHLD), but even then, the command inside exec was executed 
+> and only after that the mentioned error was triggered (similar to this 
+> issue: 
+> http://www.rkeene.org/projects/tcl/tcl.fossil/info/2982713fffffffff ).
+>
+>      It seemed at a package (on which depends Tcl) traps or ignores 
+> the SIGCHLD.  After some research, a similar issue has been reported ( 
+> https://sourceware.org/bugzilla/show_bug.cgi?id=19861 ). In a newer 
+> glibc version, fork functionality could not use IFUNC resolver so it 
+> would trigger in tcl the SIGCHLD error. A patch has been applied to 
+> glib pt-fork.c ( 
+> https://sourceware.org/git/gitweb.cgi?p=glibc.git;a=blobdiff;f=nptl/pt-fork.c;h=db9b61d9aa172c7886b6ed3decb355a3aa4c9036;hp=b65d6b4eddc0c17a39825a9cd30d0dc3fb5b141f;hb=f06f3f05b48c72e2c9b0fa78671f94fd22d67da8;hpb=7838d298d895f65247fb6b498db03a4336fc0506 
+> ) in order to fix the issue and now works fine.
+>
+>
+>      Has somebody encountered this issue too? Has anyone used this 
+> patch to fix the problem or used another fix? Thanks!
+>
+>
+>
+>
+>
+>
 
-I've tested your patches for this (from the OE-core mailing list)
-and I can now build and use the eSDK for my board :-)
 
-I do have a couple observations/questions:
+--------------7FC510FB3987E546894BE4EB
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: 8bit
 
-* I added my missing tool with this line in my local.conf
-      TOOLCHAIN_HOST_TASK_append = " nativesdk-ti-cgt-pru"
-   Why did this cause many of the nativesdk tools to have to be rebuilt?
-      NOTE: Tasks Summary: Attempted 2423 tasks of which 2043 didn't need to be rerun and all succeeded.
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="Content-Type">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    Does anyone has this issue also ?<br>
+    Any input ?<br>
+    <br>
+    Thanks<br>
+    <br>
+    <div class="moz-cite-prefix">On 28/10/16 15:36, Valentina Skorpion
+      wrote:<br>
+    </div>
+    <blockquote
+      cite="mid:1199472296.497716.1477658207727@mail.yahoo.com"
+      type="cite">
+      <div style="color:#000; background-color:#fff;
+        font-family:HelveticaNeue, Helvetica Neue, Helvetica, Arial,
+        Lucida Grande, sans-serif;font-size:16px">
+        <div id="yui_3_16_0_ym19_1_1477658121094_4342" dir="ltr">       
+                 Hello everyone,<br
+            id="yui_3_16_0_ym19_1_1477658121094_4453">
+          <br id="yui_3_16_0_ym19_1_1477658121094_4454">
+               I have been using yocto jethro in order to build my
+          custom Linux distribution for several devices ( qemuarm ,
+          sama5d4, etc) . I have used the linux-yocto 4.1.5 kernel
+          version and latest version packages. After upgrading to yocto
+          krogoth I have used a newer version of linux kernel ( version
+          4.7.2 ) and newer version packages. I had some tcl scripts
+          which worked fine before but now  the following error has been
+          triggered: <br id="yui_3_16_0_ym19_1_1477658121094_4455">
+              error waiting for process to exit : child process lost is
+          sigchld ignored or trapped? )<br
+            id="yui_3_16_0_ym19_1_1477658121094_4456">
+          <br id="yui_3_16_0_ym19_1_1477658121094_4457">
+               This error is being triggered when tcl <b
+            id="yui_3_16_0_ym19_1_1477658121094_4458"><big
+              id="yui_3_16_0_ym19_1_1477658121094_4459">exec </big></b><big
+            id="yui_3_16_0_ym19_1_1477658121094_4460"><small
+              id="yui_3_16_0_ym19_1_1477658121094_4461">funct</small></big>ion
+          is executed. Even simpler commands such as "exec ls" triggers
+          the same error (the command is not executed).<br
+            id="yui_3_16_0_ym19_1_1477658121094_4462">
+          <br id="yui_3_16_0_ym19_1_1477658121094_4463">
+               I have tried to reproduce the error on yocto krogoth with
+          older versions of linux kernel. On linux-yocto 4.4 the same
+          error appeared.  On linux-yocto 4.1.5 with some outdated
+          packages (with older version, only Tcl had the same version in
+          all test cases) the exec function runned fine (as I have
+          mentioned before). To reproduce the error in this case,
+          SIGCHLD had to be trapped outside tclsh (with trap command :
+          trap "" CHLD), but even then, the command inside exec was
+          executed and only after that the mentioned error was triggered
+          (similar to this issue:
+          <a class="moz-txt-link-freetext" href="http://www.rkeene.org/projects/tcl/tcl.fossil/info/2982713fffffffff">http://www.rkeene.org/projects/tcl/tcl.fossil/info/2982713fffffffff</a>
+          ). <br id="yui_3_16_0_ym19_1_1477658121094_4464">
+          <br id="yui_3_16_0_ym19_1_1477658121094_4465">
+               It seemed at a package (on which depends Tcl) traps or
+          ignores the SIGCHLD.  After some research, a similar issue has
+          been reported (
+          <a class="moz-txt-link-freetext" href="https://sourceware.org/bugzilla/show_bug.cgi?id=19861">https://sourceware.org/bugzilla/show_bug.cgi?id=19861</a> ). In a
+          newer glibc version, fork functionality could not use IFUNC
+          resolver so it would trigger in tcl the SIGCHLD error. A patch
+          has been applied to glib pt-fork.c (
+<a class="moz-txt-link-freetext" href="https://sourceware.org/git/gitweb.cgi?p=glibc.git;a=blobdiff;f=nptl/pt-fork.c;h=db9b61d9aa172c7886b6ed3decb355a3aa4c9036;hp=b65d6b4eddc0c17a39825a9cd30d0dc3fb5b141f;hb=f06f3f05b48c72e2c9b0fa78671f94fd22d67da8;hpb=7838d298d895f65247fb6b498db03a4336fc0506">https://sourceware.org/git/gitweb.cgi?p=glibc.git;a=blobdiff;f=nptl/pt-fork.c;h=db9b61d9aa172c7886b6ed3decb355a3aa4c9036;hp=b65d6b4eddc0c17a39825a9cd30d0dc3fb5b141f;hb=f06f3f05b48c72e2c9b0fa78671f94fd22d67da8;hpb=7838d298d895f65247fb6b498db03a4336fc0506</a>
+          ) in order to fix the issue and now works fine.<br
+            id="yui_3_16_0_ym19_1_1477658121094_4466">
+          <br id="yui_3_16_0_ym19_1_1477658121094_4467">
+          <br id="yui_3_16_0_ym19_1_1477658121094_4468">
+               Has somebody encountered this issue too? Has anyone used
+          this patch to fix the problem or used another fix? Thanks!<br
+            id="yui_3_16_0_ym19_1_1477658121094_4469">
+          <span style="color: rgb(51, 51, 51); font-family: Arial,
+            sans-serif; font-size: 14px; line-height: 20px;"
+            id="yui_3_16_0_ym19_1_1477658121094_4470"></span><br
+            id="yui_3_16_0_ym19_1_1477658121094_4471">
+                    <br id="yui_3_16_0_ym19_1_1477658121094_4472">
+          <br id="yui_3_16_0_ym19_1_1477658121094_4473">
+              <br id="yui_3_16_0_ym19_1_1477658121094_4474">
+        </div>
+      </div>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <br>
+    </blockquote>
+    <br>
+  </body>
+</html>
 
-* When I built 'nativesdk-ti-cgt-pru', I got a number of scary looking errors - here are a few:
-     ERROR: nativesdk-ti-cgt-pru-2.1.1-r0 do_configure: Taskhash mismatch eb0229a8c364c4c399fc2e84f4dfaf91 versus 
-b5d16aa43836f3832200af39aba5b796 for 
-virtual:nativesdk:/local/poky-cutting-edge/meta-ti/recipes-ti/devtools/ti-cgt-pru_2.1.1.bb.do_configure
-     ERROR: Taskhash mismatch eb0229a8c364c4c399fc2e84f4dfaf91 versus b5d16aa43836f3832200af39aba5b796 for 
-virtual:nativesdk:/local/poky-cutting-edge/meta-ti/recipes-ti/devtools/ti-cgt-pru_2.1.1.bb.do_configure
-     ERROR: nativesdk-ti-cgt-pru-2.1.1-r0 do_compile: Taskhash mismatch bc0d6bb3a62f58875962d4ccf1b60dd9 versus 
-9e207a5a6aa53512135b5ea3a0610bf3 for 
-virtual:nativesdk:/local/poky-cutting-edge/meta-ti/recipes-ti/devtools/ti-cgt-pru_2.1.1.bb.do_compile
-
-* When I installed the eSDK on a machine other than where I
-   built it, I also got a lot (865) of messages like these:
-
-WARNING: The quilt-native:do_configure sig is computed to be 315b89079a159e1d4e43d3199c487bdb, but the sig is locked to 
-a9909bdcc4c81106eb42c21bb0d760fc in SIGGEN_LOCKEDSIGS_t-x86-64
-The quilt-native:do_compile sig is computed to be be128011cc1f47157898f513dc4e9bbb, but the sig is locked to 
-fa83446de41fe9e7c2c49c2745438a8d in SIGGEN_LOCKEDSIGS_t-x86-64
-The quilt-native:do_install sig is computed to be 85c8be820a93b84901dd7528eb61840e, but the sig is locked to 
-6caa366055ef06147ef64cbe7d83c608 in SIGGEN_LOCKEDSIGS_t-x86-64
-The quilt-native:do_populate_sysroot sig is computed to be 5b0f52254aa8548fa406b806dae000cb, but the sig is locked to 
-d3cf7e526716d0286ce596c44c6b9936 in SIGGEN_LOCKEDSIGS_t-x86-64
-The glibc:do_patch sig is computed to be 373272e62465460928320aa7643f9916, but the sig is locked to 
-712620a3943887e11d9730013d1e07f0 in SIGGEN_LOCKEDSIGS_t-armv7ahf-neon
-
-All that said, it is now working for me, time to learn to use it!
-Thanks for your help.  Feel free to add my Acked-by or Signed-off-by
-to your patches if you wish.
-
-Acked-by: Gary Thomas <gary@mlbassoc.com>
-Signed-off-by: Gary Thomas <gary@mlbassoc.com>
-
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
-
+--------------7FC510FB3987E546894BE4EB--
