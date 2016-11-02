@@ -1,80 +1,39 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <gary@mlbassoc.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4B291E0071C; Tue,  1 Nov 2016 16:35:49 -0700 (PDT)
+	id 42214E0074B; Tue,  1 Nov 2016 18:38:06 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,FREEMAIL_REPLY,HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE,RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.192.193 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (raj.khem[at]gmail.com)
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.192.193 listed in dnsbl.sorbs.net]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  1.0 FREEMAIL_REPLY From and body contain different freemails
-Received: from mail-pf0-f193.google.com (mail-pf0-f193.google.com
-	[209.85.192.193])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0E172E006E9
-	for <yocto@yoctoproject.org>; Tue,  1 Nov 2016 16:35:46 -0700 (PDT)
-Received: by mail-pf0-f193.google.com with SMTP id a136so9461920pfa.0
-	for <yocto@yoctoproject.org>; Tue, 01 Nov 2016 16:35:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=subject:mime-version:from:in-reply-to:date:cc:message-id:references
-	:to; bh=QB5/mViZspfKdf3I8Ye7/4CZF74nYeI0s5oFPp91BAQ=;
-	b=iaItKQcBLzqjBD6M2sljHZ3lSVI/BXXDX2FuSGnk5sh27Ck5jek5LQXEUAG1pITsc5
-	9xDG4vskkmrw4NXLMYsFv3J63TrmGU7BTAyovtDe6/SCZ+Ym95PxImGXoIII8WP8orjp
-	Sd1z88qmur/xMrBQqjGL9oh+ZtqP1m5TTjul2f04K/l23XUuRTJEtOfX0fyTChSFGUii
-	KMZfQOm4Ux/rY8ag8hvrv+hhIoHaRh4VAFm9gR4ZJtsMsASdXIzqcH2qGnEsvETZ6IN4
-	nkV4gbGlvNR8nHY+1b24ig053ZzlpLnHur79pvxXihovsarVOGJOKM4gm5ig2fCg7QZg
-	ea7w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:subject:mime-version:from:in-reply-to:date:cc
-	:message-id:references:to;
-	bh=QB5/mViZspfKdf3I8Ye7/4CZF74nYeI0s5oFPp91BAQ=;
-	b=MVU+UFb948v7JGiJxRVEQ/aPKagourKZXQrpysKCWYpCCJCL335bqscp/CccWvizWX
-	oq9BRkzhYXwSVqdQKcD+rfuAa/0X2h2QCYeVgTn64LU3nuie/K5oHSdJFOZwN0HOEuRi
-	OxSAhbAsayI2ynqCodUzYJcBGzQ1rrkG76Or/QXSgFaXegMWmCsIe3FQzTPSkBXiF1ld
-	FtdwkF2NTKex/GBUGrnXQPoqb1xU/Iwdf78/2rotWuBFYpUFpR4azQQ9lx80cOIi/f5+
-	RNe2/V3DucvJg+6try5YRAowdR0TI+3gd0MlKX3uukxfXzoieW0acfvNfRFL0c2/UtR6
-	J5wg==
-X-Gm-Message-State: ABUngveTRkNmgBBBsUG5zNg/R/TwaBvEKnypRayRxG5SzVJicjtCgnPXahgRPyAmDRS28A==
-X-Received: by 10.98.88.5 with SMTP id m5mr1115328pfb.9.1478043346298;
-	Tue, 01 Nov 2016 16:35:46 -0700 (PDT)
-Received: from ?IPv6:2601:646:8882:b8c:18f5:b6d7:3c24:7ad1?
-	([2601:646:8882:b8c:18f5:b6d7:3c24:7ad1])
-	by smtp.gmail.com with ESMTPSA id
-	rx1sm20919460pab.32.2016.11.01.16.35.45
-	(version=TLS1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Tue, 01 Nov 2016 16:35:45 -0700 (PDT)
-Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
-X-Pgp-Agent: GPGMail
-From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <CAJTo0LaPzszzTCuTaPC-KC+bNnFobKsMwAaq6e9bYpHOvHS02Q@mail.gmail.com>
-Date: Tue, 1 Nov 2016 16:35:41 -0700
-Message-Id: <43D47051-BE64-4A56-B81C-55199BB744FB@gmail.com>
-References: <30C2D590D16A5C46ADFE6521910377987FF67BEA@AZ-US1EXMB02.global.avaya.com>
-	<CAJTo0LaVygRC3Z5eVtgGVkCU0mgYv7SGx07+1_om0GKkf6fHvw@mail.gmail.com>
-	<21973d42-dc69-ee7b-031d-ac5544823c8f@basmevissen.nl>
-	<CAJTo0Lat2oz3dpRXC6tSve3drTMB+=93mfR=0-UjxYtfgqLrxw@mail.gmail.com>
-	<307cf616-d7a0-be5b-1aa9-4b12f3c9abb0@basmevissen.nl>
-	<CAF3SDA50-YUatuxZiq3DGP3nH2-Eq9YY-jqBVJ6yJb4yAdxh0A@mail.gmail.com>
-	<CAJTo0LaPzszzTCuTaPC-KC+bNnFobKsMwAaq6e9bYpHOvHS02Q@mail.gmail.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-X-Mailer: Apple Mail (2.3124)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Yocto 2.2 Morty supported Linux Distros
+Received: from mail.analogue-micro.com (mail.analogue-micro.com
+	[217.144.149.242])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CC68BE0070F
+	for <yocto@yoctoproject.org>; Tue,  1 Nov 2016 18:38:01 -0700 (PDT)
+Received: by mail.analogue-micro.com (Postfix, from userid 999)
+	id 75CAA68A01C; Wed,  2 Nov 2016 01:38:00 +0000 (GMT)
+Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
+	by mail.analogue-micro.com (Postfix) with ESMTP id AD76868A019;
+	Wed,  2 Nov 2016 01:37:57 +0000 (GMT)
+Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
+	by zeus.mlbassoc.com (Postfix) with ESMTP id 3F8EA674025C;
+	Wed,  2 Nov 2016 02:37:57 +0100 (CET)
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+References: <f13af171-a99e-cfb4-176b-4c1a5d459c44@mlbassoc.com>
+	<2883891.WbHxuNiGSe@peggleto-mobl.ger.corp.intel.com>
+	<ac86ff71-d5ea-7dde-2a43-f68a6fb95d7f@mlbassoc.com>
+	<8906607.HU35dOrijf@peggleto-mobl.ger.corp.intel.com>
+From: Gary Thomas <gary@mlbassoc.com>
+Message-ID: <af40b507-f25b-a45e-4b80-2d90801c25b4@mlbassoc.com>
+Date: Wed, 2 Nov 2016 02:37:57 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.4.0
+MIME-Version: 1.0
+In-Reply-To: <8906607.HU35dOrijf@peggleto-mobl.ger.corp.intel.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: esdk without using Poky?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -86,125 +45,69 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 Nov 2016 23:35:49 -0000
-X-Groupsio-MsgNum: 32762
-Content-Type: multipart/signed;
-	boundary="Apple-Mail=_E36E960C-B5D4-4DC1-8CB1-24BD6AD4BDC6";
-	protocol="application/pgp-signature"; micalg=pgp-sha1
-
---Apple-Mail=_E36E960C-B5D4-4DC1-8CB1-24BD6AD4BDC6
-Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_210332B6-2D79-40F5-BD73-AEA0E1B05D45"
-
---Apple-Mail=_210332B6-2D79-40F5-BD73-AEA0E1B05D45
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=us-ascii
-
-
-> On Nov 1, 2016, at 4:22 PM, Burton, Ross <ross.burton@intel.com> =
-wrote:
->=20
->=20
-> On 1 November 2016 at 22:20, Daniel. <danielhilst@gmail.com =
-<mailto:danielhilst@gmail.com>> wrote:
-> Just as a note, I've been using archlinux for about a year and have =
-never faced "distro related problems", except when the gcc6 comes out. =
-Anyway I'm using daisy in my work. I think that making old releases =
-supported by X distro doesn't make any sense...
->=20
-> The supported list of distros is just the list of distros that are =
-known to work, and if something breaks then we'll notice and fix it.  If =
-you want to use arch and face the periodic problems such as new =
-toolchain meaning you can't build gcc-cross, then go for it.
-
-Another option perhaps is to use a debian stable container with docker =
-(https://hub.docker.com/r/cbrake/oe-build/ =
-<https://hub.docker.com/r/cbrake/oe-build/>)
-and you can use your favorite distro for stuff you usually do and at =
-same time let OE/YP build on  a known/supported distro e.g.
-Its a bit of mind shift but I am happily using it, while my distro stays =
-bleeding edge arch.
-
-e.g. see
-
-http://bec-systems.com/site/1281/using-docker-for-oeyocto-builds =
-<http://bec-systems.com/site/1281/using-docker-for-oeyocto-builds>
->=20
-> Ross
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
-
---Apple-Mail=_210332B6-2D79-40F5-BD73-AEA0E1B05D45
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=us-ascii
-
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
-charset=3Dus-ascii"></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
-class=3D""><br class=3D""><div><blockquote type=3D"cite" class=3D""><div =
-class=3D"">On Nov 1, 2016, at 4:22 PM, Burton, Ross &lt;<a =
-href=3D"mailto:ross.burton@intel.com" =
-class=3D"">ross.burton@intel.com</a>&gt; wrote:</div><br =
-class=3D"Apple-interchange-newline"><div class=3D""><div dir=3D"ltr" =
-class=3D""><div class=3D"gmail_extra"><br class=3D""><div =
-class=3D"gmail_quote">On 1 November 2016 at 22:20, Daniel. <span =
-dir=3D"ltr" class=3D"">&lt;<a href=3D"mailto:danielhilst@gmail.com" =
-target=3D"_blank" class=3D"">danielhilst@gmail.com</a>&gt;</span> =
-wrote:<br class=3D""><blockquote class=3D"gmail_quote" style=3D"margin:0 =
-0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div class=3D"">Just=
- as a note, I've been using archlinux for about a year and have never =
-faced "distro related problems", except when the gcc6 comes out. Anyway =
-I'm using daisy in my work. I think that making old releases supported =
-by X distro doesn't make any sense...<br =
-class=3D""></div></blockquote></div><br class=3D""></div><div =
-class=3D"gmail_extra">The supported list of distros is just the list of =
-distros that are known to work, and if something breaks then we'll =
-notice and fix it.&nbsp; If you want to use arch and face the periodic =
-problems such as new toolchain meaning you can't build gcc-cross, then =
-go for it.&nbsp;</div></div></div></blockquote><div><br =
-class=3D""></div><div>Another option perhaps is to use a debian stable =
-container with docker (<a =
-href=3D"https://hub.docker.com/r/cbrake/oe-build/" =
-class=3D"">https://hub.docker.com/r/cbrake/oe-build/</a>)</div><div>and =
-you can use your favorite distro for stuff you usually do and at same =
-time let OE/YP build on &nbsp;a known/supported distro =
-e.g.</div><div>Its a bit of mind shift but I am happily using it, while =
-my distro stays bleeding edge arch.</div><div><br =
-class=3D""></div><div>e.g. see</div><div><br class=3D""></div><div><a =
-href=3D"http://bec-systems.com/site/1281/using-docker-for-oeyocto-builds" =
-class=3D"">http://bec-systems.com/site/1281/using-docker-for-oeyocto-build=
-s</a></div><br class=3D""><blockquote type=3D"cite" class=3D""><div =
-class=3D""><div dir=3D"ltr" class=3D""><div class=3D"gmail_extra"><br =
-class=3D""></div><div class=3D"gmail_extra">Ross</div></div>
--- <br class=3D"">_______________________________________________<br =
-class=3D"">yocto mailing list<br class=3D""><a =
-href=3D"mailto:yocto@yoctoproject.org" =
-class=3D"">yocto@yoctoproject.org</a><br =
-class=3D"">https://lists.yoctoproject.org/listinfo/yocto<br =
-class=3D""></div></blockquote></div><br class=3D""></body></html>=
-
---Apple-Mail=_210332B6-2D79-40F5-BD73-AEA0E1B05D45--
-
---Apple-Mail=_E36E960C-B5D4-4DC1-8CB1-24BD6AD4BDC6
+X-List-Received-Date: Wed, 02 Nov 2016 01:38:06 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
 Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment;
-	filename=signature.asc
-Content-Type: application/pgp-signature;
-	name=signature.asc
-Content-Description: Message signed with OpenPGP using GPGMail
 
------BEGIN PGP SIGNATURE-----
-Comment: GPGTools - https://gpgtools.org
+On 2016-11-01 21:33, Paul Eggleton wrote:
+> On Tue, 01 Nov 2016 13:36:57 Gary Thomas wrote:
+>> On 2016-10-31 23:06, Paul Eggleton wrote:
+>>> FYI the eSDK will use whatever you set in DISTRO - you have your own
+>>> distribution, but I assume you are still referencing poky - perhaps as an
+>>> include from your distro configuration? At least meta-poky must be in your
+>>> bblayers.conf, otherwise I don't think you'd be getting this error.
+>>>
+>>> Regardless of that, there is a bug here somewhere. What do you have under
+>>> layers/ in the generated SDK? Are you setting TEMPLATECONF anywhere?
+>>
+>> I don't have meta-poky, nor any mention of poky, in any of my layers.
+>> I'm still relying on the poky GIT tree, but that's for historical reasons
+>> (started long before the OE-core split).
+>
+> I think that's where the problem lies. You may not realise it, but the
+> TEMPLATECONF environment variable is being set simply by using the poky
+> repository, since there is a .templateconf directory at its root that sets it
+> to "meta-poky/conf" if it isn't already set. This isn't a problem during
+> normal operation since meta-poky/conf exists there - you'll just be using
+> poky's template local.conf and bblayers.conf rather than any other. When you
+> generate the eSDK though, meta-poky won't be copied into the eSDK because that
+> layer is not in your bblayers.conf and thus you get the error.
+>
+> I will have to try and figure a way around this. In the mean time you should
+> be able to change the saved value in <builddir>/conf/templateconf.cfg to
+> "meta/conf" to work around the issue, but it'll come back if you create a new
+> build directory unless you set TEMPLATECONF in the external environment before
+> running oe-init-build-env.
 
-iEYEARECAAYFAlgZJtEACgkQuwUzVZGdMxSymwCgiRfIxoYuuHQ69/ZkqYXoK4rY
-BYwAn0ZRv/3LOtA5kpfI9xh/2Bxg1BEh
-=UH0r
------END PGP SIGNATURE-----
+I'm still confused.  There is no mention of meta-poky, or of the $DISTRO 'poky'
+anywhere in my <builddir>/conf:
+   gthomas@europa:p8701_2016-10-22$ cat conf/templateconf.cfg
+   meta-rainier-am335x-p8701/conf
+   gthomas@europa:p8701_2016-10-22$ grep -i poky conf/*
+   conf/bblayers.conf:  /local/poky-cutting-edge/meta \
+   conf/bblayers.conf:  /local/poky-cutting-edge/meta-oe \
+   conf/bblayers.conf:  /local/poky-cutting-edge/meta-amltd \
+   conf/bblayers.conf:  /local/poky-cutting-edge/meta-rainier-am335x-p8701 \
+   conf/bblayers.conf:  /local/poky-cutting-edge/meta-ti \
+   conf/bblayers.conf:  /local/poky-cutting-edge/meta-webserver \
 
---Apple-Mail=_E36E960C-B5D4-4DC1-8CB1-24BD6AD4BDC6--
+
+>
+> You're right in your implication that I hadn't tested this - I had tested
+> alternative distros with the oe-core repo but not with the poky repo, so I
+> hadn't encountered this issue. I've filed a bug [1] to track the issue.
+>
+> Cheers,
+> Paul
+>
+> [1] https://bugzilla.yoctoproject.org/show_bug.cgi?id=10568
+>
+
+Thanks
+
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
+
