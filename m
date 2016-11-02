@@ -1,29 +1,75 @@
-Return-Path: <S.Jaritz@esa-grimma.de>
+Return-Path: <ionelbadisor@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 51F7AE0071C; Wed,  2 Nov 2016 04:00:07 -0700 (PDT)
+	id 3D09DE0071C; Wed,  2 Nov 2016 04:04:00 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (ionelbadisor[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.82.65 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.82.65 listed in dnsbl.sorbs.net]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from gse01.esa-grimma.de (gse01.esa-grimma.de [185.141.66.29])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8FB06E006E9
-	for <yocto@yoctoproject.org>; Wed,  2 Nov 2016 04:00:02 -0700 (PDT)
-To: yocto@yoctoproject.org
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wm0-f65.google.com (mail-wm0-f65.google.com [74.125.82.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 71B9DE006E9
+	for <yocto@yoctoproject.org>; Wed,  2 Nov 2016 04:03:59 -0700 (PDT)
+Received: by mail-wm0-f65.google.com with SMTP id c17so2430027wmc.3
+	for <yocto@yoctoproject.org>; Wed, 02 Nov 2016 04:03:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:subject:to:references:cc:message-id:date:user-agent
+	:mime-version:in-reply-to:content-transfer-encoding;
+	bh=LEtNEHDCvtgoeBzKSdiqWyfRGwaV0k1UfB37PEr14ak=;
+	b=P+ilaozlZELkgIhdDRFVQD3Ucq+M9jbBVNHHZJyb8PuOGtNiAgvLiJeaMPTkw5H/LY
+	5wTI8Uq3xPrAOGvVon2t0APJqNo5yspMjymXCiCDrts4ctGQ49hl+MEeW3k7AuCaXQqZ
+	Y9akqOtq1lYn1gcj7lsFWn/fNymyRzPOGE9iXw3sJhkexfBFb5h/cYCpDdeYyMgON4vv
+	wNKKgEwGVIetkH+6jbMCLBg0hIrfrxrZlbMs3pziiQJDDX8IR7ft3SNa5O5dTdVD2dcO
+	Xvv9JGEpM0OcyK7qW/7o8BwDDL9gotYhY9rw2EB3tDcjUGT0DFbUjHy08vAgaUXEX3fx
+	r/+Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:from:subject:to:references:cc:message-id:date
+	:user-agent:mime-version:in-reply-to:content-transfer-encoding;
+	bh=LEtNEHDCvtgoeBzKSdiqWyfRGwaV0k1UfB37PEr14ak=;
+	b=LQfE+uWHtZuzZn2YC4f88kKp2JHIaZeMYjIEpadoHOM6a+AkOpvisXrVO5WE3dPPqK
+	Hv6H/at36WrcW8c5wlaW0SvjqFL0Jrd82ADWphqGUQBBqcf5H0ptj/wRrCjRuic+UixS
+	cLn9YFx0rKfE6tPKDlrYCoFbWw2aAnG6FNkL29MYPlPDZdwiGm4JV0lXTRjEujsGuR6h
+	6wu74qESZLO/1+gAneZiCTJOluM/CBxqg5FD8rqQraGua6Yd9K1QaPfQ9kyU/Sw/Al/I
+	M2183iZv3Rur/YTwKyGq3eygWzTNJC85XwcHZBYj3DpvKCnzfiEJVdmbOZa7ZFYYpmBh
+	BYkg==
+X-Gm-Message-State: ABUngvfscpAgSzKEmZVFRf7xri4RVmVUQFjdYSBGAvu32RN9qL1C54LWtjjRBbG8c/+tJQ==
+X-Received: by 10.194.116.104 with SMTP id jv8mr2375804wjb.12.1478084637998;
+	Wed, 02 Nov 2016 04:03:57 -0700 (PDT)
+Received: from [172.168.1.70] ([217.10.196.2])
+	by smtp.googlemail.com with ESMTPSA id
+	e2sm2069478wjw.14.2016.11.02.04.03.56
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Wed, 02 Nov 2016 04:03:57 -0700 (PDT)
+From: Ionel Badisor <ionelbadisor@gmail.com>
+X-Google-Original-From: Ionel Badisor <ionel.badisor@gmail.com>
+To: Karim ATIKI <karim_atiki@hotmail.com>, Paul Barker <paul@paulbarker.me.uk>
+References: <DB5PR01MB188022E6CBBDB28E6758242592D70@DB5PR01MB1880.eurprd01.prod.exchangelabs.com>
+	<HE1PR01MB1883059387B8E06758D4889092D70@HE1PR01MB1883.eurprd01.prod.exchangelabs.com>
+	<20161022162610.28a9d1ed@nuc.betafive.co.uk>
+	<HE1PR01MB1883F449B33898FC6A3C826D92D70@HE1PR01MB1883.eurprd01.prod.exchangelabs.com>
+Message-ID: <c9233842-ae6d-1dd2-a90d-f0d60b4fdb24@gmail.com>
+Date: Wed, 2 Nov 2016 13:03:31 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.4.0
 MIME-Version: 1.0
-X-KeepSent: 7A9E9AB2:7016D687-C125805F:003A9ACA;
- type=4; name=$KeepSent
-X-Mailer: IBM Notes Release 9.0 March 08, 2013
-Message-ID: <OF7A9E9AB2.7016D687-ONC125805F.003A9ACA-C125805F.003C6CCA@esa-grimma.de>
-From: S.Jaritz@esa-grimma.de
-Date: Wed, 2 Nov 2016 11:59:59 +0100
-X-MIMETrack: Serialize by Router on GSE01/Server/ESA-Grimma/DE(Release
-	9.0.1FP3 HF42|February 03, 2015) at 02.11.2016 12:00:03,
-	Serialize complete at 02.11.2016 12:00:03
-Subject: How to create an user bsp based on a other meta bsp layer?
+In-Reply-To: <HE1PR01MB1883F449B33898FC6A3C826D92D70@HE1PR01MB1883.eurprd01.prod.exchangelabs.com>
+Cc: yocto <yocto@yoctoproject.org>
+Subject: Re: [raspberrypi3][meta-qt5] Failed to build meta-toolchain-qt5
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,169 +81,69 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 02 Nov 2016 11:00:07 -0000
-Content-Type: multipart/alternative;
-	boundary="=_alternative 003C6CC9C125805F_="
+X-List-Received-Date: Wed, 02 Nov 2016 11:04:00 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 8bit
 
---=_alternative 003C6CC9C125805F_=
-Content-Type: text/plain; charset="ISO-8859-1"
-Content-Transfer-Encoding: quoted-printable
+On 10/22/2016 07:21 PM, Karim ATIKI wrote:
+> Hi Paul,
+>
+>
+> the compile log file is attached with this mail.
+>
+>
+>
+>
+> ------------------------------------------------------------------------
+> *De :* Paul Barker <paul@paulbarker.me.uk>
+> *Envoyé :* samedi 22 octobre 2016 17:26
+> *À :* Karim ATIKI
+> *Cc :* yocto
+> *Objet :* Re: [yocto] [raspberrypi3][meta-qt5] Failed to build
+> meta-toolchain-qt5
+>
+> On Sat, 22 Oct 2016 15:16:18 +0000
+> Karim ATIKI <karim_atiki@hotmail.com> wrote:
+>
+>> Actually, it looks like the issue comes from gstreamer1.0-plugins-bad
+>> recipe.
+>>
+>>
+>> This function, graphics_get_display_size, comes from libbcm_host
+>> which seems to be present in sysroot.
+>>
+>>
+>> In log.doconfigure i found:
+>>
+>>
+>> checking for bcm_host_init in -lbcm_host... yes
+>> checking bcm_host.h usability... yes
+>> checking bcm_host.h presence... yes
+>> checking for bcm_host.h... yes
+>>
+>> So it seems that it found the necessary library.
+>>
+>>
+>> However, in the logfile of the compile error, there is no
+>> "-lbcm_host" dependency at all.
+>>
+>>
+>> Any idea to solve it ?
+>>
+>
+> Could you post more of the compile log? It would be good to see the
+> full set of arguments being used for compiling/linking.
+>
+> Thanks,
+> Paul
+>
+>
 
-Hej
-
-I want to create an own meta-bsp package for my custom mainboard based on=20
-an ATMEL SAMA5D35 SoC. For that I checked the documentation=20
-http://www.yoctoproject.org/docs/2.2/bsp-guide/bsp-guide.html#using-the-yoc=
-to-projects-bsp-tools
-.
-
-For me it is not clear how to create a bsp package based on the meta-atmel =
-
-package. My goal is:
-
-1.) use the SAMA5D35 SoC -> MACHINE ??=3D "sama5d3xek"
-2.) append the device tree by adding: "mySAMA.dts" and "mySAMAmb.dtsi"=20
-(they use the dts files like #include "sama5d3.dtsi" from meta-atmel)
-3.) adding my own defconfig for the kernel build
-4.) change the configuration "at91bootstrap" which comes with the=20
-meta-atmel
-5.) add some own SW packages
-
-I created a working meta-mySAMA layer. It has grown over the time into=20
-some kind of meta-bsp. Think it would be nice to round everthing up by=20
-creating an own meta-bsp - to make it beautiful.
-
-Is there a tutorial for that? Or can someone explan the steps form using=20
-"yocto-bsp create mySAMA xxxx"?
-
-Regads!
-
-Stefan
-
-------------------------------------------------------------
-ESA Elektroschaltanlagen Grimma GmbH
-Broner Ring 30
-04668 Grimma
-Telefon: +49 3437 9211 176
-Telefax: +49 3437 9211 26
-E-Mail: s.jaritz@esa-grimma.de
-Internet: www.esa-grimma.de
+I stumble upon this issue before. My solution was to add
+LDFLAGS += " -lbcm_host"
+In a bbappend to gstreamer1.0-plugins-bad_%.bbappend in my layer
 
 
-Gesch=E4ftsf=FChrer:
-Dipl.-Ing. J=F6rg Gaitzsch
-J=F6rg Reinker
-
-Sitz der Gesellschaft: Grimma
-Ust.-ID: DE 141784437
-Amtsgericht: Leipzig, HRB 5159
-Steuernummer: 238/108/00755
 
 
-Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte=20
-Informationen.=20
-Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=FCmlich=20
-erhalten=20
-haben, informieren Sie bitte sofort den Absender und l=F6schen Sie diese=20
-Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe dieser=20
-Mail=20
-ist nicht gestattet.
 
-This e-mail may contain confidential and/or privileged information. If you =
-
-are=20
-not the intended recipient (or have received this e-mail in error) please=20
-notify the sender immediately and destroy this e-mail. Any unauthorized=20
-copying, disclosure or distribution of the material in this e-mail is=20
-strictly=20
-forbidden.
-
---=_alternative 003C6CC9C125805F_=
-Content-Type: text/html; charset="ISO-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<font size=3D2 face=3D"sans-serif">Hej</font>
-<br>
-<br><font size=3D2 face=3D"sans-serif">I want to create an own meta-bsp pac=
-kage
-for my custom mainboard based on an ATMEL SAMA5D35 SoC. For that I checked
-the documentation </font><a href=3D"http://www.yoctoproject.org/docs/2.2/bs=
-p-guide/bsp-guide.html#using-the-yocto-projects-bsp-tools"><font size=3D2 c=
-olor=3Dblue face=3D"sans-serif">http://www.yoctoproject.org/docs/2.2/bsp-gu=
-ide/bsp-guide.html#using-the-yocto-projects-bsp-tools</font></a><font size=
-=3D2 face=3D"sans-serif">.</font>
-<br>
-<br><font size=3D2 face=3D"sans-serif">For me it is not clear how to create
-a bsp package based on the meta-atmel package. My goal is:</font>
-<br>
-<br><font size=3D2 face=3D"sans-serif">1.) use the SAMA5D35 SoC -&gt; MACHI=
-NE
-??=3D &quot;sama5d3xek&quot;</font>
-<br><font size=3D2 face=3D"sans-serif">2.) append the device tree by adding:
-&quot;mySAMA.dts&quot; and &quot;mySAMAmb.dtsi&quot; (they use the dts
-files like #include &quot;sama5d3.dtsi&quot; from meta-atmel)</font>
-<br><font size=3D2 face=3D"sans-serif">3.) adding my own defconfig for the
-kernel build</font>
-<br><font size=3D2 face=3D"sans-serif">4.) change the configuration &quot;a=
-t91bootstrap&quot;
-which comes with the meta-atmel</font>
-<br><font size=3D2 face=3D"sans-serif">5.) add some own SW packages</font>
-<br>
-<br><font size=3D2 face=3D"sans-serif">I created a working meta-mySAMA laye=
-r.
-It has grown over the time into some kind of meta-bsp. Think it would be
-nice to round everthing up by creating an own meta-bsp - to make it beautif=
-ul.</font>
-<br>
-<br><font size=3D2 face=3D"sans-serif">Is there a tutorial for that? Or can
-someone explan the steps form using &quot;yocto-bsp create mySAMA xxxx&quot=
-;?</font>
-<br>
-<br><font size=3D2 face=3D"sans-serif">Regads!<br>
-<br>
-Stefan<br>
-<br>
-------------------------------------------------------------<br>
-ESA Elektroschaltanlagen Grimma GmbH<br>
-Broner Ring 30<br>
-04668 Grimma<br>
-Telefon: +49 3437 9211 176<br>
-Telefax: +49 3437 9211 26<br>
-E-Mail: s.jaritz@esa-grimma.de<br>
-Internet: </font><a href=3D"www.esa-grimma.de"><font size=3D2 face=3D"sans-=
-serif">www.esa-grimma.de</font></a><font size=3D2 face=3D"sans-serif"><br>
-<br>
-<br>
-Gesch=E4ftsf=FChrer:<br>
-Dipl.-Ing. J=F6rg Gaitzsch<br>
-J=F6rg Reinker<br>
-<br>
-Sitz der Gesellschaft: Grimma<br>
-Ust.-ID: DE 141784437<br>
-Amtsgericht: Leipzig, HRB 5159<br>
-Steuernummer: 238/108/00755<br>
-<br>
-<br>
-Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte Informa=
-tionen.
-<br>
-Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=FCmlich
-erhalten <br>
-haben, informieren Sie bitte sofort den Absender und l=F6schen Sie diese
-<br>
-Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe dieser
-Mail <br>
-ist nicht gestattet.<br>
-<br>
-This e-mail may contain confidential and/or privileged information. If
-you are <br>
-not the intended recipient (or have received this e-mail in error) please
-<br>
-notify the sender immediately and destroy this e-mail. Any unauthorized
-<br>
-copying, disclosure or distribution of the material in this e-mail is stric=
-tly
-<br>
-forbidden.</font>
-
---=_alternative 003C6CC9C125805F_=--
