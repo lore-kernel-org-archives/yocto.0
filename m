@@ -1,80 +1,84 @@
-Return-Path: <idealsim@laposte.net>
+Return-Path: <Thomas.Thorne@net2edge.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9583BE00C1A; Thu,  3 Nov 2016 06:17:29 -0700 (PDT)
+	id 770CEE00C92; Thu,  3 Nov 2016 07:29:29 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (idealsim[at]laposte.net)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [194.117.213.103 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [104.47.2.135 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from smtp.laposte.net (smtpoutz28.laposte.net [194.117.213.103])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C63DCE00C09
-	for <yocto@yoctoproject.org>; Thu,  3 Nov 2016 06:17:25 -0700 (PDT)
-Received: from smtp.laposte.net (localhost [127.0.0.1])
-	by lpn-prd-vrout016 (Postfix) with ESMTP id 3C4C211427D
-	for <yocto@yoctoproject.org>; Thu,  3 Nov 2016 14:17:24 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=laposte.net; s=mail0;
-	t=1478179044; bh=Ise1qtLXHrgpSL3DmpyAYZxb7tl1dYbnlnpX8e94zYY=;
-	h=To:Cc:Subject:References:Date:From:In-Reply-To;
-	b=Jwa7CaAqkcLC4037UYaliwsiWv0qXDhXGpMk5s3PgjBF+GEP7F03OcbHX+b1Ayznb
-	Yex2cSgeOkvcNeWnVr8reC1bKZqv7VuMB11/6JsgXUFgCh0P5m/c2CqM07FhYdSzrG
-	4OOBSYERxHbRFdLoKHX4HFTTGQPZrVJDnDfD/dshVnG3QoWMBPzURl5Hq3XpPcqET8
-	0pZXK9bATXQygIQiUm+wgGc8t0hhQuC18fZOJswFjOizyCEozS9ahUn+I3pCvzZJEe
-	H3XuNKCysivCy1b7aWOZwmrGKCLa9lzgFSo7I8hEATjzZG96KA8px9T+jPRqEQi1jL
-	zRV+Csi+sVmkw==
-Received: from smtp.laposte.net (localhost [127.0.0.1])
-	by lpn-prd-vrout016 (Postfix) with ESMTP id 30587115494
-	for <yocto@yoctoproject.org>; Thu,  3 Nov 2016 14:17:24 +0100 (CET)
-Received: from lpn-prd-vrin001 (lpn-prd-vrin001.prosodie [10.128.63.2])
-	by lpn-prd-vrout016 (Postfix) with ESMTP id 23F7511427D
-	for <yocto@yoctoproject.org>; Thu,  3 Nov 2016 14:17:24 +0100 (CET)
-Received: from lpn-prd-vrin001 (localhost [127.0.0.1])
-	by lpn-prd-vrin001 (Postfix) with ESMTP id 0CDA8366D45
-	for <yocto@yoctoproject.org>; Thu,  3 Nov 2016 14:17:24 +0100 (CET)
-Received: from pc-mls.ecafaros.local (unknown [212.234.36.135])
-	by lpn-prd-vrin001 (Postfix) with ESMTPA id BFD92366CCD;
-	Thu,  3 Nov 2016 14:17:23 +0100 (CET)
-To: "Burton, Ross" <ross.burton@intel.com>
-References: <op.yqcpvhydmnlnty@pc-mls.ecafaros.local>
-	<a8763b48-7566-4974-895b-f9137e4d3e38@mlbassoc.com>
-	<op.yqcrihyomnlnty@pc-mls.ecafaros.local>
-	<CAJTo0LaF1+2GDymRDs0ccs1e5s+e8uSapMgWYU78RRYbCBe3bw@mail.gmail.com>
-Date: Thu, 03 Nov 2016 14:17:23 +0100
+Received: from EUR01-DB5-obe.outbound.protection.outlook.com
+	(mail-db5eur01on0135.outbound.protection.outlook.com [104.47.2.135])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DB8D5E00C43
+	for <yocto@yoctoproject.org>; Thu,  3 Nov 2016 07:29:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=transitionnetworks.onmicrosoft.com; s=selector1-net2edge-com;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
+	bh=OL7HS9dfC0zb5/xgZp1MdAfVCuOii14b4bOOalpo9tE=;
+	b=N/e0SPhYRovwWwg1GnxavzMoW8pMfUfSzrrbM4wRj1morGzAhbKekg15ts+E/nTWy7N9bBlxwdIrIJChJ37RuUqZBGv6f5Ns+YxiCcjzfhF+EbzB4Tp5cWP0aMRxFWsoD46dvX08qaz9fFk4YXv2hkiC4CANxjD1MzM45qAq/Gk=
+Received: from DB6PR0701MB1879.eurprd07.prod.outlook.com (10.168.10.151) by
+	DB6PR0701MB1878.eurprd07.prod.outlook.com (10.168.10.150) with
+	Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
+	15.1.707.1; Thu, 3 Nov 2016 11:57:42 +0000
+Received: from DB6PR0701MB1879.eurprd07.prod.outlook.com ([10.168.10.151]) by
+	DB6PR0701MB1879.eurprd07.prod.outlook.com ([10.168.10.151]) with
+	mapi id 15.01.0707.004; Thu, 3 Nov 2016 11:57:42 +0000
+From: Thomas Thorne <Thomas.Thorne@net2edge.com>
+To: Gary Thomas <gary@mlbassoc.com>
+Thread-Topic: [yocto] How do I used Yocto to build an sdcard image for my
+	Raspberry Pi 3 Model B?
+Thread-Index: AQHSNQqEfdxswGkrfkuACWfeyICKLaDGv9EAgAA5AyCAAB/wAIAAArGQ
+Date: Thu, 3 Nov 2016 11:57:42 +0000
+Message-ID: <DB6PR0701MB1879B53C0A23029012B0505FD3A30@DB6PR0701MB1879.eurprd07.prod.outlook.com>
+References: <150d439e-c90f-9252-ab12-6ba0ac99668c@Net2Edge.com>
+	<7EEDF13B-E1D4-46F1-99B9-1419B69F3DD1@gmail.com>
+	<DB6PR0701MB1879F74E3194F73877BCB7E0D3A30@DB6PR0701MB1879.eurprd07.prod.outlook.com>
+	<391b493a-2f09-163b-a411-c56715997d0f@mlbassoc.com>
+In-Reply-To: <391b493a-2f09-163b-a411-c56715997d0f@mlbassoc.com>
+Accept-Language: en-GB, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+	smtp.mailfrom=Thomas.Thorne@net2edge.com; 
+x-originating-ip: [81.128.174.58]
+x-ms-office365-filtering-correlation-id: 2ca4fe1d-a745-458f-31a6-08d403e09e3a
+x-microsoft-exchange-diagnostics: 1; DB6PR0701MB1878;
+	7:B0hOsHIcm6Y3UZZSo/FVWjT8StfKNVaL4+h7X4M2+BJJIh9uMTlz73plvVTf0xifc4PnDBonnJFGfjK9BZ50CHDOv+5G26O6AHbkHZxWguedena5jndmzGe+9uwx5MiaSe6ee31M21nrdb8ZKYXulXJC4QBZZ1Zy2fwCgOUa0XLyWbDYubTqW0SnHNWRKr98bsierfjrr3qQUQ2GgCqd8sCrkJ30hOonEa97A7n8zEJqX1jpeIdhSZN8mDi12ZP5zrEmHVjEeb6mfMH9/za8iM8QIbHTHgk2pYR8uwqbgCZK9Qli/uXhGcdoL4u4SZ4jpytZ+UgZyBASK1/1XXmrM98Y8ydc7dD5TsCPj8UHS1k=
+x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:DB6PR0701MB1878;
+x-microsoft-antispam-prvs: <DB6PR0701MB18782F8EC01C48B364C04068D3A30@DB6PR0701MB1878.eurprd07.prod.outlook.com>
+x-exchange-antispam-report-test: UriScan:(166708455590820);
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(6040176)(601004)(2401047)(8121501046)(5005006)(10201501046)(3002001)(6042046)(6043046);
+	SRVR:DB6PR0701MB1878; BCL:0; PCL:0; RULEID:;
+	SRVR:DB6PR0701MB1878; 
+x-forefront-prvs: 011579F31F
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10019020)(6009001)(7916002)(40764003)(199003)(189002)(3660700001)(10400500002)(66066001)(86362001)(11100500001)(586003)(6116002)(106356001)(189998001)(4326007)(3846002)(15975445007)(8936002)(33656002)(345774005)(3280700002)(81156014)(87936001)(2900100001)(81166006)(76576001)(54356999)(50986999)(76176999)(2906002)(9686002)(97736004)(5660300001)(68736007)(101416001)(7846002)(7696004)(8676002)(110136003)(122556002)(19580395003)(19580405001)(102836003)(305945005)(2950100002)(74316002)(5002640100001)(93886004)(105586002)(106116001)(92566002)(77096005)(1720100001)(6916009)(7736002);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:DB6PR0701MB1878;
+	H:DB6PR0701MB1879.eurprd07.prod.outlook.com; FPR:; SPF:None;
+	PTR:InfoNoRecords; A:1; MX:1; LANG:en; 
+received-spf: None (protection.outlook.com: net2edge.com does not designate
+	permitted sender hosts)
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-From: idealsim <idealsim@laposte.net>
-Message-ID: <op.yqcsi9gbmnlnty@pc-mls.ecafaros.local>
-In-Reply-To: <CAJTo0LaF1+2GDymRDs0ccs1e5s+e8uSapMgWYU78RRYbCBe3bw@mail.gmail.com>
-User-Agent: Opera Mail/1.0 (Win32)
-X-VR-SrcIP: 212.234.36.135
-X-VR-FullState: 0
-X-VR-Score: -100
-X-VR-Cause-1: gggruggvucftvghtrhhoucdtuddrfeelvddrkeejgdefgecutefuodetggdotefrodftvfcurfhrohhf
-X-VR-Cause-2: ihhlvgemucfntefrqffuvffgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhs
-X-VR-Cause-3: ucdlqddutddtmdenucfjughrpegtvffufhffggfhkfgjfgesrgdtreertderleenucfhrhhomhepihgu
-X-VR-Cause-4: vggrlhhsihhmuceoihguvggrlhhsihhmsehlrghpohhsthgvrdhnvghtqeenucffohhmrghinhepohhp
-X-VR-Cause-5: vghrrgdrtghomhdpghhithhhuhgsrdgtohhmnecukfhppedvuddvrddvfeegrdefiedrudefheenucfr
-X-VR-Cause-6: rghrrghmpehmohguvgepshhmthhpohhuthdphhgvlhhopehptgdqmhhlshdrvggtrghfrghrohhsrdhl
-X-VR-Cause-7: ohgtrghlpdhinhgvthepvdduvddrvdefgedrfeeirddufeehpdhmrghilhhfrhhomhepihguvggrlhhs
-X-VR-Cause-8: ihhmsehlrghpohhsthgvrdhnvghtpdhrtghpthhtohepghgrrhihsehmlhgsrghsshhotgdrtghomh
-X-VR-AvState: No
-X-VR-State: 0
-X-VR-State: 0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Gary Thomas <gary@mlbassoc.com>
-Subject: Re: How to add libudev.h
+X-OriginatorOrg: net2edge.com
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Nov 2016 11:57:42.7053 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 851184e8-8658-4a6a-973d-aa012bcc8794
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB6PR0701MB1878
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: How do I used Yocto to build an sdcard image for my Raspberry Pi 3 Model B?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -86,96 +90,88 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 03 Nov 2016 13:17:29 -0000
-Content-Type: multipart/alternative; boundary=----------MZ6XXlhXdfGBChYQkpmv3D
+X-List-Received-Date: Thu, 03 Nov 2016 14:29:30 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-------------MZ6XXlhXdfGBChYQkpmv3D
-Content-Type: text/plain; charset=iso-8859-15; format=flowed; delsp=yes
-Content-Transfer-Encoding: Quoted-Printable
+May have solved the issue.  Thank you for your help. =20
 
-Ok, i will try to add dev-pkgs to my recipe here  =
+> What do you get from this?
+>    % bitbake rpi-test-image -e | grep ^IMAGE_FSTYPES
 
-https://github.com/modjo756/meta-udoo-modjo/blob/krogoth-modjo/qt5-layer=
-/recipes-qt/images/udoo-image-qt5.bb  =
+I get:
+thomasthorne@thorne-ul-dt:~/work/rpi-layer/build$ bitbake rpi-test-image -e=
+ | grep ^IMAGE_FSTYPES
+IMAGE_FSTYPES_DEBUGFS=3D"tar.xz ext3"
+IMAGE_FSTYPES=3D"tar.xz ext3"
 
-and add udev to my local.conf.
-I let you know if it's work...
-Mickael
+Presumably because I have in my local.conf:
+IMAGE_FSTYPES =3D "tar.xz ext3"
 
-Le Thu, 03 Nov 2016 14:03:04 +0100, Burton, Ross <ross.burton@intel.com>=
- a  =
+If I update that to be "tar.xz ext3 sdimg" I get error messages such as:
+$ bitbake rpi-test-image -e | grep ^IMAGE_FSTYPES
+ERROR: /home/thomasthorne/work/yocto-rpi/meta-raspberrypi/recipes-core/imag=
+es/rpi-test-image.bb: No IMAGE_CMD defined for IMAGE_FSTYPES entry 'sdimg' =
+- possibly invalid type name or missing support class
+ERROR: /home/thomasthorne/work/yocto-rpi/meta-raspberrypi/recipes-core/imag=
+es/rpi-hwup-image.bb: No IMAGE_CMD defined for IMAGE_FSTYPES entry 'sdimg' =
+- possibly invalid type name or missing support class
+ERROR: /home/thomasthorne/work/yocto-rpi/meta-raspberrypi/recipes-core/imag=
+es/rpi-basic-image.bb: No IMAGE_CMD defined for IMAGE_FSTYPES entry 'sdimg'=
+ - possibly invalid type name or missing support class
+ERROR: /home/thomasthorne/work/rpi-layer/meta-rpi/images/qt5-basic-image.bb=
+: No IMAGE_CMD defined for IMAGE_FSTYPES entry 'sdimg' - possibly invalid t=
+ype name or missing support class
+ERROR: /home/thomasthorne/work/rpi-layer/meta-rpi/images/console-image.bb: =
+No IMAGE_CMD defined for IMAGE_FSTYPES entry 'sdimg' - possibly invalid typ=
+e name or missing support class
+ERROR: Failed to parse recipe: /home/thomasthorne/work/yocto-rpi/meta-raspb=
+errypi/recipes-core/images/rpi-hwup-image.bb
+ERROR: /home/thomasthorne/work/rpi-layer/meta-rpi/images/audio-image.bb: No=
+ IMAGE_CMD defined for IMAGE_FSTYPES entry 'sdimg' - possibly invalid type =
+name or missing support class
+ERROR: /home/thomasthorne/work/rpi-layer/meta-rpi/images/qt5-image.bb: No I=
+MAGE_CMD defined for IMAGE_FSTYPES entry 'sdimg' - possibly invalid type na=
+me or missing support class
 
-=E9crit:
+> If it doesn't say (at least)
+>    IMAGE_FSTYPES=3D"tar.bz2 ext3 rpi-sdimg"
+> then try making those settings in your local.conf
 
->
-> On 3 November 2016 at 12:55, idealsim <idealsim@laposte.net> wrote:
->> Thanks for your answer.
->> It seems that i didn't have DEPENDS =3D "udev".
->> How i can add it ?
->>        - to my local.conf
->>        or
->>        - to myImage.bb
->> Regards,
->
-> If you want to do compiling inside the image, the easy way is to just =
- =
+That might help.  I seem to now get:
 
-> add dev-pkgs to IMAGE_FEATURES for the image recipe.  This gives you a=
-ll  =
+$ bitbake rpi-test-image -e | grep ^IMAGE_FSTYPES
+IMAGE_FSTYPES_DEBUGFS=3D"tar.xz ext3 rpi-sdimg"
+IMAGE_FSTYPES=3D"tar.xz ext3 rpi-sdimg"
 
-> of the >headers for everything installed, which will include the udev =
- =
+So the system is happy with the rpi-sdimg but not sdimg on its own. =20
 
-> headers assuming that your image has udev.
->
-> Ross
+Now when I perform `$ bitbake rpi-test-image` I get a few warnings about li=
+cense files and then the baking seems to fail with an error about "dd: fail=
+ed to open '/rpi-test-image-raspberrypi3-20161103111232.rootfs.rpi-sdimg': =
+Permission denied". That is documented as do_image_rpi_sdimg failed with oe=
+-core in krogoth branch https://github.com/agherzan/meta-raspberrypi/issues=
+/30 for the meta-raspberrypi layer.  That error is resolved on a krogoth sp=
+ecific branch for the meta-raspberrypi later.  Checking out that branch ins=
+tead of master allows the SD card image creation to succeed.  I can now see=
+ sdimg files:
+
+$ ls tmp/deploy/images/raspberrypi3/*.rpi-sdimg
+tmp/deploy/images/raspberrypi3/rpi-test-image-raspberrypi3-20161103113408.r=
+ootfs.rpi-sdimg
+tmp/deploy/images/raspberrypi3/rpi-test-image-raspberrypi3.rpi-sdimg
+
+Once again thank you for your assistance. =20
+
+If you use the Raspberry Pi StackExchange site, please add your suggestion =
+of including rpi-sdimg as an answer to http://raspberrypi.stackexchange.com=
+/questions/57155/how-do-i-used-yocto-to-build-an-sdcard-image-for-my-raspbe=
+rry-pi-3-model-b  If you do not use that site then I will add an answer wit=
+h an attribution to you & this list later today. =20
+
+Grateful Regards,=20
+
+Thomas A. F. Thorne  Software Engineer  Net2Edge
 
 
-
--- =
-
-Utilisant le logiciel de courrier d'Opera : http://www.opera.com/mail/
-
-------------MZ6XXlhXdfGBChYQkpmv3D
-Content-Type: multipart/related; boundary=----------MZ6XXlhXdfGBChV3FP48vR
-
-------------MZ6XXlhXdfGBChV3FP48vR
-Content-Type: text/html; charset=iso-8859-15
-Content-ID: <op.1478179043543.0dee19655d6a88e5@172.22.9.5>
-Content-Transfer-Encoding: Quoted-Printable
-
-<!DOCTYPE html><html><head>
-<style type=3D"text/css">body { font-family:'Times New Roman'; font-size=
-:13px}</style>
-</head>
-<body><div>Ok, i will try to add dev-pkgs to my recipe here https://gith=
-ub.com/modjo756/meta-udoo-modjo/blob/krogoth-modjo/qt5-layer/recipes-qt/=
-images/udoo-image-qt5.bb and add udev to my local.conf.</div><div>I let =
-you know if it's work...</div><div>Mickael</div><div><br></div><div>Le T=
-hu, 03 Nov 2016 14:03:04 +0100, Burton, Ross &lt;ross.burton@intel.com&g=
-t; a =E9crit:<br></div><br><blockquote style=3D"margin: 0 0 0.80ex; bord=
-er-left: #0000FF 2px solid; padding-left: 1ex"><div dir=3D"ltr"><div cla=
-ss=3D"gmail_extra"><br><div class=3D"gmail_quote">On 3 November 2016 at =
-12:55, idealsim <span dir=3D"ltr">&lt;<a href=3D"mailto:idealsim@laposte=
-.net" target=3D"_blank">idealsim@laposte.net</a>&gt;</span> wrote:<br><b=
-lockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1=
-px #ccc solid;padding-left:1ex"><div id=3D":124" class=3D"a3s aXjCH m158=
-2a430067dd664">Thanks for your answer.<br>
-It seems that i didn't have DEPENDS =3D "udev".<br>
-How i can add it ?<br>
-&nbsp; &nbsp; &nbsp; &nbsp; - to my local.conf<br>
-&nbsp; &nbsp; &nbsp; &nbsp; or<br>
-&nbsp; &nbsp; &nbsp; &nbsp; - to myImage.bb<br>
-Regards,<br></div></blockquote></div><br>If you want to do compiling ins=
-ide the image, the easy way is to just add dev-pkgs to IMAGE_FEATURES fo=
-r the image recipe.&nbsp; This gives you all of the headers for everythi=
-ng installed, which will include the udev headers assuming that your ima=
-ge has udev.</div><div class=3D"gmail_extra"><br></div><div class=3D"gma=
-il_extra">Ross</div></div>
-</blockquote><br><br><br><div id=3D"M2Signature"><div>-- </div><div>Util=
-isant le logiciel de courrier d'Opera : <a href=3D"http://www.opera.com/=
-mail/">http://www.opera.com/mail/</a></div></div></body></html>
-
-------------MZ6XXlhXdfGBChV3FP48vR--
-
-------------MZ6XXlhXdfGBChYQkpmv3D--
