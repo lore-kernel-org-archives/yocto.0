@@ -1,65 +1,64 @@
-Return-Path: <kergoth@gmail.com>
+Return-Path: <btv1==1155dc42c05==Fred.Ollinger@seescan.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DAD8DE00509; Thu,  3 Nov 2016 08:11:28 -0700 (PDT)
+	id 4E733E006E9; Thu,  3 Nov 2016 10:01:29 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.218.42 listed in dnsbl.sorbs.net]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.218.42 listed in list.dnswl.org]
-Received: from mail-oi0-f42.google.com (mail-oi0-f42.google.com
-	[209.85.218.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BE3B1E0034A
-	for <yocto@yoctoproject.org>; Thu,  3 Nov 2016 08:11:24 -0700 (PDT)
-Received: by mail-oi0-f42.google.com with SMTP id x4so91695125oix.2
-	for <yocto@yoctoproject.org>; Thu, 03 Nov 2016 08:11:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:from:date:message-id
-	:subject:to:cc;
-	bh=H72bz1lQX20kBOErddjaEhCbkSNTbSk1tjVLniCjCs4=;
-	b=Xh18KJvo8svkCSDoIbkSF4VFyh7l64mOezwyOOezYv+sZR9mUBeu7eb9s3sh7n6KEu
-	mQOuJpXrnLljAroyoGR+uClg970K+Io+x69CmxUYwG/VP5lgaJ4+XrClp03AhpuTOv4E
-	JMAQ0KPLuC4s4bD7JRxLct4Frn3S8yVgF6FfLX75Wb684u4MfuvXDeK02wk+jpS+aGao
-	Sa5pt/SwG6XuBrdF1GyrolxF+A256QmleapbYZFaI3wb46gIrDjJrx8Jf7mroSrk04L/
-	Kanh/m4y4Msqx3kjY4GVxhp9KNFtTV6R4Uaik1u00AFu9iiV1FfhusVuZaLLXSC8s6bD
-	wN0Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:sender:in-reply-to:references:from
-	:date:message-id:subject:to:cc;
-	bh=H72bz1lQX20kBOErddjaEhCbkSNTbSk1tjVLniCjCs4=;
-	b=QerN8Sfl6Xm9sfvyOGG1iZu7pfB4kkl6biKcQCzboMkvPKu2tMvfoYt8GK7loKGOQT
-	fkkysreht61qMFozoYaDvRURKmkSTNrb+6V8eosN7IAv7ZSOoGl0NBrzOvhDQGTSVoUx
-	cpETVXrkgCS8qGBtPyvLrdbNmo/iB/ijCJz8HP20U4POlbfSUTo0x7fs7fy4fkGANsN9
-	T3boLLUJfINphXq91z6JfKVuN7NY0IUkcck8r7Tj0xR/JR41iKdJdaCoX/mFAM69s6Xd
-	uTsiTC+h6c86MNzqMn6U2hmmsSqy1PrVdviwhu6BGaNxIJaowocwi4mozZ73IjcC/F4j
-	q0lg==
-X-Gm-Message-State: ABUngvfRBqXwYDy5xznUKgttbady68/XQbdqf6XUs3AyFcr4Ni2EcM/EBvgJhkqbHRg8CKLTyX6ixI3slrQRIw==
-X-Received: by 10.202.84.74 with SMTP id i71mr8658535oib.93.1478185883759;
-	Thu, 03 Nov 2016 08:11:23 -0700 (PDT)
+X-Greylist: delayed 737 seconds by postgrey-1.32 at yocto-www;
+	Thu, 03 Nov 2016 10:01:25 PDT
+Received: from mail.seescan.com (mail3.seescan.com [69.43.145.36])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1FE1AE00509
+	for <yocto@yoctoproject.org>; Thu,  3 Nov 2016 10:01:25 -0700 (PDT)
+X-ASG-Debug-ID: 1478191746-0b39aa35142c1ef0001-yzSStA
+Received: from WRIGHT.seescan.com ([192.168.11.30]) by mail.seescan.com with
+	ESMTP id EviJxypUJQwqj8Qc (version=TLSv1.2
+	cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NO);
+	Thu, 03 Nov 2016 09:49:06 -0700 (PDT)
+X-Barracuda-Envelope-From: Fred.Ollinger@seescan.com
+Received: from WRIGHT.seescan.com (192.168.11.30) by WRIGHT.seescan.com
+	(192.168.11.30) with Microsoft SMTP Server (TLS) id 15.0.1210.3;
+	Thu, 3 Nov 2016 09:49:06 -0700
+Received: from WRIGHT.seescan.com ([fe80::e4a9:8176:6f01:abfa]) by
+	WRIGHT.seescan.com ([fe80::e4a9:8176:6f01:abfa%12]) with mapi id
+	15.00.1210.000; Thu, 3 Nov 2016 09:49:06 -0700
+From: Fred Ollinger <Fred.Ollinger@seescan.com>
+To: mickael <m.le-stephan@laposte.net>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto]  How to add libudev.h
+X-ASG-Orig-Subj: Re: [yocto]  How to add libudev.h
+Thread-Index: AQHSNeIwovSBfWwztky5LMphSdCsUqDHdnUG
+Date: Thu, 3 Nov 2016 16:49:06 +0000
+Message-ID: <1478191723495.11453@seescan.com>
+References: <op.yqcop1yyk3hjrl@pc-mls.ecafaros.local>
+In-Reply-To: <op.yqcop1yyk3hjrl@pc-mls.ecafaros.local>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [50.59.178.108]
 MIME-Version: 1.0
-Sender: kergoth@gmail.com
-Received: by 10.157.13.194 with HTTP; Thu, 3 Nov 2016 08:11:03 -0700 (PDT)
-In-Reply-To: <d3a15e96-ecd8-50c5-65e2-c13937d101ee@mlbassoc.com>
-References: <d3a15e96-ecd8-50c5-65e2-c13937d101ee@mlbassoc.com>
-From: Christopher Larson <clarson@kergoth.com>
-Date: Thu, 3 Nov 2016 08:11:03 -0700
-X-Google-Sender-Auth: BkPwAoIC2qMhYfHjqCbEMXRycq8
-Message-ID: <CABcZANn4NJmHfRE97-7Gy1S3A-DF+ixSn4_b4TpXChZcutVj6w@mail.gmail.com>
-To: Gary Thomas <gary@mlbassoc.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Shallow git clones?
+X-Barracuda-Connect: UNKNOWN[192.168.11.30]
+X-Barracuda-Start-Time: 1478191746
+X-Barracuda-Encrypted: ECDHE-RSA-AES256-SHA384
+X-Barracuda-URL: https://barracuda.seescan.com:443/cgi-mod/mark.cgi
+X-Barracuda-Scan-Msg-Size: 1515
+X-Virus-Scanned: by bsmtpd at seescan.com
+X-Barracuda-BRTS-Status: 1
+X-Barracuda-Bayes: INNOCENT GLOBAL 0.0000 1.0000 -2.0210
+X-Barracuda-Spam-Score: -2.02
+X-Barracuda-Spam-Status: No,
+	SCORE=-2.02 using global scores of TAG_LEVEL=1000.0
+	QUARANTINE_LEVEL=1000.0 KILL_LEVEL=1000.0 tests=
+X-Barracuda-Spam-Report: Code version 3.2, rules version 3.2.3.34241
+	Rule breakdown below
+	pts rule name              description
+	---- ----------------------
+	--------------------------------------------------
+Subject: Re: How to add libudev.h
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,56 +70,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 03 Nov 2016 15:11:28 -0000
-Content-Type: multipart/alternative; boundary=001a113ad7bc837a58054066f8d8
-
---001a113ad7bc837a58054066f8d8
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 03 Nov 2016 17:01:29 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Nov 3, 2016 at 6:06 AM, Gary Thomas <gary@mlbassoc.com> wrote:
+I belive this goes in your .bb file:=0A=
+=0A=
+DEPENDS =3D "             \=0A=
+    udev         \=0A=
+"=0A=
+=0A=
+RDEPENDS_${PN} =3D "         \=0A=
+    udev         \=0A=
+"=0A=
+=0A=
+Also, you probably need the right flags for libudev.=0A=
+=0A=
+Here are docs on that:=0A=
+=0A=
+https://www.freedesktop.org/software/systemd/man/libudev.html=0A=
+=0A=
+Of course, you need to tailor your build system to use these and incorporat=
+e this into your project.=0A=
+=0A=
+I like automake so here's how to use pkgconfig with automake:=0A=
+=0A=
+https://autotools.io/pkgconfig/pkg_check_modules.html=0A=
+=0A=
+NOTE: systemd also provides libudev so if you have systemd, it's likely get=
+ting installed there and conflicts with udev, but I'm not sure, so you want=
+ to look into this as well. When I installed source for my debian jessie, I=
+ got systemd, and not udev sources. YMMV.=0A=
+=0A=
+Frederick=0A=
+=0A=
+________________________________________=0A=
+From: yocto-bounces@yoctoproject.org <yocto-bounces@yoctoproject.org> on be=
+half of mickael <m.le-stephan@laposte.net>=0A=
+Sent: Thursday, November 3, 2016 4:55 AM=0A=
+To: yocto@yoctoproject.org=0A=
+Subject: [yocto]  How to add libudev.h=0A=
+=0A=
+Hi all, i need to build a lib --> openZwave (on a imx6 card) libudev.h.=0A=
+I have this error during the build :=0A=
+/home/root/openzwave-1.4.164/cpp/hidapi/linux/hid.c:44:21: fatal error:=0A=
+libudev.h: No such file or directory=0A=
+I have tried to add udev to my local.conf but this not resolve the problem.=
+=0A=
+How i can add it to my build please ?=0A=
+--=0A=
+_______________________________________________=0A=
+yocto mailing list=0A=
+yocto@yoctoproject.org=0A=
+https://lists.yoctoproject.org/listinfo/yocto=0A=
 
-> I recall seeing some discussion in the past about using shallow
-> GIT clones when importing repositories?  Is this ever going to
-> happen?
->
-
-Mentor has a bitbake patch series to support construction of and fetching
-of shallow git tarballs. My goal is to get this merged for master, now that
-morty has been branched, but ran into a unit test failure, so I=E2=80=99m w=
-orking
-on that, and on adding some new unit tests for it, before re-submission.
-The current version is at https://github.com/kergoth/bitbake on the
-shallow-external branch, if you=E2=80=99re curious.
---=20
-Christopher Larson
-clarson at kergoth dot com
-Founder - BitBake, OpenEmbedded, OpenZaurus
-Maintainer - Tslib
-Senior Software Engineer, Mentor Graphics
-
---001a113ad7bc837a58054066f8d8
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">On Thu, Nov 3, 2016 at 6:06 AM, Gary Thomas <span dir=3D"l=
-tr">&lt;<a href=3D"mailto:gary@mlbassoc.com" target=3D"_blank">gary@mlbasso=
-c.com</a>&gt;</span> wrote:<br><div class=3D"gmail_extra"><div class=3D"gma=
-il_quote"><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;bord=
-er-left:1px #ccc solid;padding-left:1ex">I recall seeing some discussion in=
- the past about using shallow<br>
-GIT clones when importing repositories?=C2=A0 Is this ever going to<br>
-happen?<br></blockquote><div><br></div><div>Mentor has a bitbake patch seri=
-es to support construction of and fetching of shallow git tarballs. My goal=
- is to get this merged for master, now that morty has been branched, but ra=
-n into a unit test failure, so I=E2=80=99m working on that, and on adding s=
-ome new unit tests for it, before re-submission. The current version is at =
-<a href=3D"https://github.com/kergoth/bitbake">https://github.com/kergoth/b=
-itbake</a> on the shallow-external branch, if you=E2=80=99re curious.</div>=
-</div>-- <br><div class=3D"gmail_signature" data-smartmail=3D"gmail_signatu=
-re">Christopher Larson<br>clarson at kergoth dot com<br>Founder - BitBake, =
-OpenEmbedded, OpenZaurus<br>Maintainer - Tslib<br>Senior Software Engineer,=
- Mentor Graphics</div>
-</div></div>
-
---001a113ad7bc837a58054066f8d8--
