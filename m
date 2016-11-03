@@ -1,66 +1,33 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <gary@mlbassoc.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DB4D3E00C3E; Thu,  3 Nov 2016 06:03:28 -0700 (PDT)
+	id 33B85E00C17; Thu,  3 Nov 2016 06:06:51 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_LOW,
-	RCVD_IN_SORBS_SPAM autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.220.175 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.220.175 listed in dnsbl.sorbs.net]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qk0-f175.google.com (mail-qk0-f175.google.com
-	[209.85.220.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A954BE00BF8
-	for <yocto@yoctoproject.org>; Thu,  3 Nov 2016 06:03:24 -0700 (PDT)
-Received: by mail-qk0-f175.google.com with SMTP id x190so53829472qkb.0
-	for <yocto@yoctoproject.org>; Thu, 03 Nov 2016 06:03:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=3IcoynUqLkeTIdGkH/iEL0JdfHKlJSFLcOLgMeSumiU=;
-	b=MvpFGnVZBYp24/Pd6RbIFGVjuaQj5gaDy7Vf9+tSqJ5sC108ZBTqJbJU1kxlPyTDoX
-	wmiz6za8f8B3kb8rlVndepxx+SSkVfJVYS34pUXp02PDC44IYFn9eKrEwCdrerGgh5L9
-	r/IlPbm6+7WPo2Zd2XBlxgTeSX8f9oQ6VHSY9hkkyoEisuUnPosXeK2ggQ2ValkS/ROX
-	8N3vnI6ONOSi3gPpcU4ERIurKWDy0qBo85pEc/z4MklrY/agok0e3iKFAQUl/CyoE9Ty
-	YRXxjyqlhLiJjcf6sbZ5fVRSqXxdDdc3iC25FHyvIcQfcBlWFDBwJdzkPzRyF8iFLmfq
-	mlSA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=3IcoynUqLkeTIdGkH/iEL0JdfHKlJSFLcOLgMeSumiU=;
-	b=TzeRDqnxvi9QlJ7d/5YUoihhSX5Zu77IrynlyMsYfSKfXm6akps5TjzJeJuYHG4Lt7
-	7ndvVL9U2QvSpJxIkw1rglrZr7AWEMidSFstXdIGP5zcoYrywa/ZFNw2g/mwpMXO2GLk
-	W50n70V+sxV4U1DEl3UOmKb80GRZl5ngMdegqMZwXeViDzbRVzsyB+lLAQ8Wil/QKfVm
-	11pR3Hg2PMtI0LHSsdAHh2uttWJuVgCf86PVDIuNSTOsN5NRgYz82MAIzIh39vtukLvF
-	WbgML+ZvcRejH50Jq6erTFAP4cf5m/V9qM1GGh0RmdGHcWrV+1VqX/aEOIUdhY2fOR7R
-	0gLQ==
-X-Gm-Message-State: ABUngvfj59xnSr9EaYpTGEJLE0iutBvnonJcpORCKZ274P2X2WXMeIhLq+BPEXpb+i3F+K+tz5SMvrByHPRiZUwl
-X-Received: by 10.55.207.78 with SMTP id e75mr8948037qkj.36.1478178204509;
-	Thu, 03 Nov 2016 06:03:24 -0700 (PDT)
+Received: from mail.analogue-micro.com (mail.analogue-micro.com
+	[217.144.149.242])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 43A15E00BB0
+	for <yocto@yoctoproject.org>; Thu,  3 Nov 2016 06:06:48 -0700 (PDT)
+Received: by mail.analogue-micro.com (Postfix, from userid 999)
+	id 2699B68A01D; Thu,  3 Nov 2016 13:06:47 +0000 (GMT)
+Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
+	by mail.analogue-micro.com (Postfix) with ESMTP id 58C5668A019;
+	Thu,  3 Nov 2016 13:06:44 +0000 (GMT)
+Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
+	by zeus.mlbassoc.com (Postfix) with ESMTP id C4DA767402DF;
+	Thu,  3 Nov 2016 14:06:43 +0100 (CET)
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+From: Gary Thomas <gary@mlbassoc.com>
+Message-ID: <d3a15e96-ecd8-50c5-65e2-c13937d101ee@mlbassoc.com>
+Date: Thu, 3 Nov 2016 14:06:43 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.4.0
 MIME-Version: 1.0
-Received: by 10.140.85.208 with HTTP; Thu, 3 Nov 2016 06:03:04 -0700 (PDT)
-In-Reply-To: <op.yqcrihyomnlnty@pc-mls.ecafaros.local>
-References: <op.yqcpvhydmnlnty@pc-mls.ecafaros.local>
-	<a8763b48-7566-4974-895b-f9137e4d3e38@mlbassoc.com>
-	<op.yqcrihyomnlnty@pc-mls.ecafaros.local>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Thu, 3 Nov 2016 13:03:04 +0000
-Message-ID: <CAJTo0LaF1+2GDymRDs0ccs1e5s+e8uSapMgWYU78RRYbCBe3bw@mail.gmail.com>
-To: idealsim <idealsim@laposte.net>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Gary Thomas <gary@mlbassoc.com>
-Subject: Re: How to add libudev.h
+Subject: Shallow git clones?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,50 +39,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 03 Nov 2016 13:03:28 -0000
-Content-Type: multipart/alternative; boundary=001a1145b7b8cb810b0540652e16
+X-List-Received-Date: Thu, 03 Nov 2016 13:06:51 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
---001a1145b7b8cb810b0540652e16
-Content-Type: text/plain; charset=UTF-8
+I recall seeing some discussion in the past about using shallow
+GIT clones when importing repositories?  Is this ever going to
+happen?
 
-On 3 November 2016 at 12:55, idealsim <idealsim@laposte.net> wrote:
+The reason I ask is that I routinely save the GIT tarballs and
+some of them are obscenely obese :-(  The worst of the bunch
+is the device firmware for the RaspberryPi (as of today):
+   -rw-rw-r-- 1 gthomas gthomas 6321877646 Nov  3 12:13 git2_github.com.raspberrypi.firmware.git.tar.gz
 
-> Thanks for your answer.
-> It seems that i didn't have DEPENDS = "udev".
-> How i can add it ?
->         - to my local.conf
->         or
->         - to myImage.bb
-> Regards,
->
+This particular tar file increased by more than 300MB since
+the last time I downloaded it (only 2016-09-13!)  I routinely
+slosh these files across the oceans (sometimes using tin cans
+and strings it seems) and this can be very tedious.  Is there
+anything that can be done to make these files a bit more manageable?
 
-If you want to do compiling inside the image, the easy way is to just add
-dev-pkgs to IMAGE_FEATURES for the image recipe.  This gives you all of the
-headers for everything installed, which will include the udev headers
-assuming that your image has udev.
+Note: the RaspberryPi files are not the only offenders.  Take
+a look at the really big ones on my download mirror (~1GB or larger):
+   912558047 Jun  3  2015 git2_git.yoctoproject.org.linux-yocto-3.14.git.tar.gz
+   916869431 Sep 18 16:54 git2_git.yoctoproject.org.linux-yocto-4.4.git.tar.gz
+   917066415 Mar  8  2011 chrome-11.0.686.0.tar.bz2
+   929710560 Jun  5  2014 git2_git.yoctoproject.org.linux-yocto-3.10.git.tar.gz
+   975438005 May 14  2015 git2_git.yoctoproject.org.linux-yocto-3.19.git.tar.gz
+   997340641 Jan  4  2013 git2_dev.omapzoom.org.pub.scm.integration.kernel-ubuntu.git.tar.gz
+  1013093794 Jul 22  2011 chrome-14.0.825.0.tar.bz2
+  1097457194 Jul  9  2015 git2_github.com.Itseez.opencv.git.tar.gz
+  1101241868 Jul 15 15:44 git2_git.freescale.com.ppc.sdk.linux.git.tar.gz
+  1167801376 Oct 24  2013 git2_git.kernel.org.pub.scm.linux.kernel.git.stable.linux-stable.git.tar.gz
+  1192994858 Nov 24  2014 git2_github.com.Freescale.linux-mainline.git.tar.gz
+  1399737300 Mar 30  2010 git_git.kernel.org.pub.scm.linux.kernel.git.tmlind.linux-omap-2.6.git.tar.gz
+  1455878541 Feb 22  2016 git2_github.com.Freescale.linux-fslc.git.tar.gz
+  1637597724 Aug 11 09:45 git2_git.freescale.com.imx.linux-2.6-imx.git.tar.gz
+  1785320074 Aug 15  2012 git2_github.com.mirrors.gcc.git.tar.gz
+  1787717120 Oct 11 10:28 git2_git.ti.com.ti-linux-kernel.ti-linux-kernel.git.tar.gz
+  2070939344 Nov  3 12:11 git2_github.com.raspberrypi.linux.git.tar.gz
+  2478557202 Aug 10 11:47 git2_github.com.boundarydevices.linux-imx6.git.tar.gz
+  2525826872 Jul 12 16:42 git2_github.com.gcc-mirror.gcc.tar.gz
+  6321877646 Nov  3 12:13 git2_github.com.raspberrypi.firmware.git.tar.gz
 
-Ross
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
---001a1145b7b8cb810b0540652e16
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 3 November 2016 at 12:55, idealsim <span dir=3D"ltr">&lt;<a href=3D"mail=
-to:idealsim@laposte.net" target=3D"_blank">idealsim@laposte.net</a>&gt;</sp=
-an> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;=
-border-left:1px #ccc solid;padding-left:1ex"><div id=3D":124" class=3D"a3s =
-aXjCH m1582a430067dd664">Thanks for your answer.<br>
-It seems that i didn&#39;t have DEPENDS =3D &quot;udev&quot;.<br>
-How i can add it ?<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 - to my local.conf<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 or<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 - to myImage.bb<br>
-Regards,<br></div></blockquote></div><br>If you want to do compiling inside=
- the image, the easy way is to just add dev-pkgs to IMAGE_FEATURES for the =
-image recipe.=C2=A0 This gives you all of the headers for everything instal=
-led, which will include the udev headers assuming that your image has udev.=
-</div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Ross<=
-/div></div>
-
---001a1145b7b8cb810b0540652e16--
