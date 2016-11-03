@@ -1,65 +1,61 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <prvs=0115253e18=mike.looijmans@topicproducts.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D1AC4E00BF8; Wed,  2 Nov 2016 23:29:44 -0700 (PDT)
+	id 1F957E00BB0; Thu,  3 Nov 2016 02:57:40 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.192.195 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.192.195 listed in dnsbl.sorbs.net]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (raj.khem[at]gmail.com)
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [207.244.64.174 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pf0-f195.google.com (mail-pf0-f195.google.com
-	[209.85.192.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7D060E00B9E
-	for <yocto@yoctoproject.org>; Wed,  2 Nov 2016 23:29:44 -0700 (PDT)
-Received: by mail-pf0-f195.google.com with SMTP id y68so3883019pfb.1
-	for <yocto@yoctoproject.org>; Wed, 02 Nov 2016 23:29:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id;
-	bh=0cU818SWVNmsm+rk49sUsL+65IYxo/Bfy+W/t03Lyrs=;
-	b=eZN+km6I8Ozi5G3Moe5sa2SjKMgPMHwVrQ1mpInhlmlSqf3u0nmJ00laS46ikmf8Q8
-	wc3OrrfId8XmTfJs2QDfI2pfHuD5fLehdAMLEGpukoa1pwi9LzxpfU0vnY1qjZ00IjED
-	olA8ZypgQtg2lwMuXAZm4goOTi72HQw1tQ6ofMey+uS8KImMW6vKelwJck+d6ZEES9y1
-	fQ58//1rjxsku7+REH0HyeXf/0Nz85y44PvjigyjWj7P9kXWzub6I3uWrywmjx7pK+/b
-	53ZsiS5fY7ggzVePWzx49XNRd45okog8/L/hDQej20c4O4HGrQuMCqQ/k77ddixuYLgd
-	CenA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=0cU818SWVNmsm+rk49sUsL+65IYxo/Bfy+W/t03Lyrs=;
-	b=imnxAgiEp72OJkbTteF9qTqVxwme6NOIPMBo5KvQAt/y8oGKSx7luAOk2z0Zd8i5tT
-	BcZ6jj8z6nAcwkLVeOAw2t27uAjkgL6EtyZiGFJC9Ajx2ONgWq/2pWhQJMD8jCIk+CBZ
-	lgFJ9IsUJDGbXfZDhgJL3pFFqmeQMnjeFJeHxJUwzBwBlY8vSK5JPVu3TzG2BJ/Exw5v
-	zMCwyuZ0rzwDfxdYFRgX+iW4FvzVr4HaFJrWr1HoIU2bdeNuZSNsLs0nPHRdaH4OZIYn
-	myJJX43dr25GKvHi8w7caqIH3fentcXK/4O2r7Cr3gwabHtoCR1yvfDJycwyqiFdzPau
-	cuAg==
-X-Gm-Message-State: ABUngvdOLizRKdZbqEPBlWoH5r5/zgFL4S292AgNdnp4XPDMmG4Bgv7c9yfti1xsKqJrjg==
-X-Received: by 10.98.36.91 with SMTP id r88mr14112561pfj.10.1478154583862;
-	Wed, 02 Nov 2016 23:29:43 -0700 (PDT)
-Received: from localhost.localdomain (c-76-102-32-192.hsd1.ca.comcast.net.
-	[76.102.32.192]) by smtp.gmail.com with ESMTPSA id
-	m129sm9382028pfm.13.2016.11.02.23.29.43
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 02 Nov 2016 23:29:43 -0700 (PDT)
-From: Khem Raj <raj.khem@gmail.com>
-To: yocto@yoctoproject.org
-Date: Wed,  2 Nov 2016 23:29:37 -0700
-Message-Id: <20161103062937.23799-1-raj.khem@gmail.com>
-X-Mailer: git-send-email 2.10.2
-Subject: [meta-raspberrypi][PATCH] gstreamer1.0-plugins-bad_%.bbappend: Set PACKAGECONFIG_GL for RPi
+Received: from mx18-05.smtp.antispamcloud.com (mx18-05.smtp.antispamcloud.com
+	[207.244.64.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5DEADE00A64
+	for <yocto@yoctoproject.org>; Thu,  3 Nov 2016 02:57:35 -0700 (PDT)
+Received: from [37.74.225.130] (helo=TOP-EX01.TOPIC.LOCAL)
+	by mx18.antispamcloud.com with esmtps (TLSv1:ECDHE-RSA-AES128-SHA:128)
+	(Exim 4.86) (envelope-from <mike.looijmans@topicproducts.com>)
+	id 1c2Em1-0006vR-LE
+	for yocto@yoctoproject.org; Thu, 03 Nov 2016 10:57:34 +0100
+Received: from [192.168.80.121] (192.168.80.121) by webmail.topic.nl
+	(192.168.10.102) with Microsoft SMTP Server id 14.3.224.2;
+	Thu, 3 Nov 2016 10:57:27 +0100
+To: <yocto@yoctoproject.org>
+References: <CAEjjReLcovpDJoMi-AO8stp7CR5gEAe9K8xCCCUL6+v2=py6yQ@mail.gmail.com>
+	<CAJTo0LZN5N5r58kn52yTgL32X+PF6RX4=Kr5ntdNHBQ0HucgwA@mail.gmail.com>
+From: Mike Looijmans <mike.looijmans@topic.nl>
+Organization: TOPIC
+Message-ID: <357f4773-a71c-4bd3-6f8b-55c3a23ba05e@topic.nl>
+Date: Thu, 3 Nov 2016 10:57:27 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.3.0
+MIME-Version: 1.0
+In-Reply-To: <CAJTo0LZN5N5r58kn52yTgL32X+PF6RX4=Kr5ntdNHBQ0HucgwA@mail.gmail.com>
+X-Originating-IP: [192.168.80.121]
+X-EXCLAIMER-MD-CONFIG: 9833cda7-5b21-4d34-9a38-8d025ddc3664
+X-EXCLAIMER-MD-BIFURCATION-INSTANCE: 0
+X-Filter-ID: s0sct1PQhAABKnZB5plbIbbvfIHzQjPVmPLZeVYSu3xU9luQrU+8/8qthi+0Jd/W6KAUC/fjyuDn
+	NXFr4uarw8AABa0l71MJhTGCVSA9t5V02KbWfB+BvCLafvmmGbn9dUv6vb7lzwh4VvH3mLi3t6mx
+	j3Zz/WM/IwRyPjIHIwD0pxSDbhnEK8meQ/S+RxYokvbnEHV/NA/2OtjgrNnB/zwJWw42swm4bO6g
+	acpMpzKAsmN/Lb+FQ/HEaohPJy4sx1hqmEa9iilDbgon2SBEMwR1Cbr/gA0Hb9IMgtxSpQPVCZ1m
+	y7qTGj+pYSPpnV3taEKYvM7FMBxCYVZUBGGA2ntmL1IOux+wiS7a7xut+NpifFDKEuqo+y7SM5LK
+	mlqkSSzm7P5LFQTh7xAIEq/JANELms9PgUTO7N3X8VVCH5Tejl+klpcKS8WcpGJHUE5QmdySlZou
+	9qHIGOZDEEo7O6ELVSrXu1Q3s0Dk1D5TiiVga8sJFDUhvJ7BMUbUKCRIMiPLyoQzvILSDO18VtgB
+	XV1z/z4WnEoC8C13cWABWljMJUuewaNdgFhoy6E5hGQo6J1fhOzjF0b4LXcjJZ5lojEMqtzJ1njt
+	3WX6t7gEp256Mn2LvZcHnl+qWjt8ZNLnihyMiH+f+SmwfmZ/JPSGbtlbWpw95PUjgvuRiAeCIlI=
+X-Report-Abuse-To: spam@mx99.antispamcloud.com
+X-Originating-IP: 37.74.225.130
+X-SpamExperts-Domain: topic.nl
+X-SpamExperts-Username: 37.74.225.128/28
+Authentication-Results: antispamcloud.com;
+	auth=pass smtp.auth=37.74.225.128/28@topic.nl
+X-SpamExperts-Outgoing-Class: unsure
+X-SpamExperts-Outgoing-Evidence: Combined (0.15)
+X-Recommended-Action: accept
+Subject: Re: [sstate-cache] using sstate-cache in parallel builds
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,35 +67,67 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 03 Nov 2016 06:29:44 -0000
+X-List-Received-Date: Thu, 03 Nov 2016 09:57:40 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: quoted-printable
 
-Enable dispmanx support if using bcm driver
+=EF=BB=BFOn 02-11-16 15:17, Burton, Ross wrote:
+>
+> On 2 November 2016 at 13:36, Chris Z. <winotu.email@gmail.com
+> <mailto:winotu.email@gmail.com>> wrote:
+>
+>     Is it secure to use in parallel sstate-cache for building images for
+>     different target machines ?
+>
+> Short answer: yes.
+>
+> The hashes will be different so there's no risk of conflicting files for =
+the
+> target, so it's only native recipes that may conflict.  The worst case
+> situation here in two parallel builds is that they'll both build the same
+> recipe and put it into sstate, there isn't any risk of corruption.
 
-Signed-off-by: Khem Raj <raj.khem@gmail.com>
----
- .../gstreamer/gstreamer1.0-plugins-bad_%.bbappend          | 14 ++++++++++++--
- 1 file changed, 12 insertions(+), 2 deletions(-)
+Could I take this one step further:
 
-diff --git a/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_%.bbappend b/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_%.bbappend
-index ab0280e..1097e65 100644
---- a/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_%.bbappend
-+++ b/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_%.bbappend
-@@ -1,2 +1,12 @@
--EXTRA_OECONF_append_rpi = " CPPFLAGS='-I${STAGING_DIR_TARGET}/usr/include/interface/vcos/pthreads \
--                                   -I${STAGING_DIR_TARGET}/usr/include/interface/vmcs_host/linux'"
-+EXTRA_OECONF_append_rpi = " CPPFLAGS='-I${STAGING_INCDIR}/interface/vcos/pthreads \
-+                                   -I${STAGING_INCDIR}/interface/vmcs_host/linux'"
-+
-+# if using bcm driver then enable dispmanx, other
-+
-+PACKAGECONFIG[dispmanx] = "--enable-dispmanx,--disable-dispmanx,userland"
-+
-+PACKAGECONFIG_append_rpi = " "${@bb.utils.contains("MACHINE_FEATURES", "vc4graphics", "", "dispmanx", d)}"
-+
-+PACKAGECONFIG_GL_rpi = "egl gles2"
-+PACKAGECONFIG_append_rpi = " hls libmms faad dispmanx"
-+
--- 
-2.10.2
+Would it be safe to store the sstate-cache for a bunch of builds into a sin=
+gle=20
+directory, with builds running in parallel contributing to that?
+
+Each build would be using a different set of layers, different machines, an=
+d=20
+building different images, but there would be a lot of common things (usual=
+ly=20
+they all refer to the same OE branches).
+
+We use a build server to share out sstate-cache for various builds, but as=
+=20
+projects are getting added, it's getting more complicated with projects usi=
+ng=20
+the sstate-caches of other projects. It would make things quite simple if a=
+ll=20
+builds just pointed to the same sstate-cache directory, so they could share=
+=20
+whatever they want.
+
+Would that work? I'd think so, but never dared to actually make it so...
+
+
+Kind regards,
+
+Mike Looijmans
+System Expert
+
+TOPIC Products
+Materiaalweg 4, NL-5681 RJ Best
+Postbus 440, NL-5680 AK Best
+Telefoon: +31 (0) 499 33 69 79
+E-mail: mike.looijmans@topicproducts.com
+Website: www.topicproducts.com
+
+Please consider the environment before printing this e-mail
+
+
+
+
 
 
