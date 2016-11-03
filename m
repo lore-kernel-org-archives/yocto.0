@@ -1,38 +1,65 @@
-Return-Path: <joshua.g.lock@linux.intel.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2EF7EE00BB0; Thu,  3 Nov 2016 03:34:22 -0700 (PDT)
+	id 994CCE00BB0; Thu,  3 Nov 2016 03:44:38 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_LOW,
+	RCVD_IN_SORBS_SPAM autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.220.175 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 072D4E00A64
-	for <yocto@yoctoproject.org>; Thu,  3 Nov 2016 03:34:18 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by orsmga105.jf.intel.com with ESMTP; 03 Nov 2016 03:34:18 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.31,438,1473145200"; d="scan'208";a="1063335995"
-Received: from jlock-mobl1.ger.corp.intel.com ([10.252.11.22])
-	by fmsmga001.fm.intel.com with ESMTP; 03 Nov 2016 03:34:13 -0700
-Message-ID: <1478169252.31055.5.camel@linux.intel.com>
-From: Joshua Lock <joshua.g.lock@linux.intel.com>
-To: Bas Mevissen <abuse@basmevissen.nl>, "Burton, Ross" <ross.burton@intel.com>
-Date: Thu, 03 Nov 2016 10:34:12 +0000
-In-Reply-To: <1478122306.22552.59.camel@linux.intel.com>
-References: <30C2D590D16A5C46ADFE6521910377987FF67BEA@AZ-US1EXMB02.global.avaya.com>
-	<CAJTo0LaVygRC3Z5eVtgGVkCU0mgYv7SGx07+1_om0GKkf6fHvw@mail.gmail.com>
-	<21973d42-dc69-ee7b-031d-ac5544823c8f@basmevissen.nl>
-	<CAJTo0Lat2oz3dpRXC6tSve3drTMB+=93mfR=0-UjxYtfgqLrxw@mail.gmail.com>
-	<1478081125.22552.6.camel@linux.intel.com>
-	<0627d708-e6f4-df7e-5653-2e8ae1008d1b@basmevissen.nl>
-	<1478122306.22552.59.camel@linux.intel.com>
-X-Mailer: Evolution 3.20.5 (3.20.5-1.fc24) 
-Mime-Version: 1.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.220.175 listed in dnsbl.sorbs.net]
+Received: from mail-qk0-f175.google.com (mail-qk0-f175.google.com
+	[209.85.220.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6AAAFE00A64
+	for <yocto@yoctoproject.org>; Thu,  3 Nov 2016 03:44:35 -0700 (PDT)
+Received: by mail-qk0-f175.google.com with SMTP id q130so51212659qke.1
+	for <yocto@yoctoproject.org>; Thu, 03 Nov 2016 03:44:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=qOlF8VXBck43DtRTINu6xlSNFMca4RFwoqFgwfde350=;
+	b=eEHpsGD5/rEm/RinLPabzH9g6eUYirle94pkTEsIUj0kfTRQiC0xgS9oU/yv/PmXPS
+	khgZdG+cnnb3K55nLapAziwpXsKOyWrS9Ht7yaDsHHVZqZ3+cQ0IUJzB+GLMgNEJ1foI
+	JlvgogluvIgQY6q/F6f1qSH/eKJI5hT46UtGm9VhLjfgPdRVwjCfHkYv78k4LFtok5tk
+	bittK1eiJNJopUlePpBOkqPDKy1JzVhgMhlkE33719e3tduFIq2bASj4oh7SpiwbLLp4
+	VBZ+5tDKhWscYt28Cjzg0cN3XcMfVjO+TsbILcGpsreciJ6t6nNwdVTW3wPxH8bKkCga
+	zWTg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=qOlF8VXBck43DtRTINu6xlSNFMca4RFwoqFgwfde350=;
+	b=GohHcActa9LfM3YgBbJsV2S30JGm/Ms6fGmurrUMPsCJ6RSWESp/z9WXFULXLaqVbM
+	j/j4Uwnc00YgT5TpgymNtZzGZcvoBk0IsSKhmP3uXbGHkSQlrlp6pgMTiJfam3pMCUC0
+	M1NI1KvkbjWEkKNNBWMMDRt/NmLzmiCz+0c9a6okR+P8mLDzSCNpyMYMv+U1spgBxOQf
+	B8FWgUaOuAdmgfjTavxVuhYRrDb1+e2HH1Cl/FAf+dY4jywuTqovFBasTZvVBun5YDR6
+	Qq/4vwtO9+nlvFN1SmbfNn26S5MP3zqbDzzrurmYfn7ESGrZLRFBUengY/DXyTc37M/O
+	7tYA==
+X-Gm-Message-State: ABUngvevDNi48OdECtWc9iQlT0RljzijLe+DIt/PJKF+UAsouXQCI8OgWzYLrsnl0KBg/x1yj+GBgmil+ukNIcam
+X-Received: by 10.55.5.145 with SMTP id 139mr6984581qkf.77.1478169874535; Thu,
+	03 Nov 2016 03:44:34 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.140.85.208 with HTTP; Thu, 3 Nov 2016 03:44:14 -0700 (PDT)
+In-Reply-To: <357f4773-a71c-4bd3-6f8b-55c3a23ba05e@topic.nl>
+References: <CAEjjReLcovpDJoMi-AO8stp7CR5gEAe9K8xCCCUL6+v2=py6yQ@mail.gmail.com>
+	<CAJTo0LZN5N5r58kn52yTgL32X+PF6RX4=Kr5ntdNHBQ0HucgwA@mail.gmail.com>
+	<357f4773-a71c-4bd3-6f8b-55c3a23ba05e@topic.nl>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Thu, 3 Nov 2016 10:44:14 +0000
+Message-ID: <CAJTo0LYMciv0LRd-oxgaefRcGtSNi+z3mdq7qvNzywVA9x9D+Q@mail.gmail.com>
+To: Mike Looijmans <mike.looijmans@topic.nl>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Yocto 2.2 Morty supported Linux Distros
+Subject: Re: [sstate-cache] using sstate-cache in parallel builds
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,89 +71,75 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 03 Nov 2016 10:34:22 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Thu, 03 Nov 2016 10:44:38 -0000
+Content-Type: multipart/alternative; boundary=001a114c8f844a52a60540633e0e
 
-On Wed, 2016-11-02 at 21:31 +0000, Joshua Lock wrote:
-> On Wed, 2016-11-02 at 17:41 +0100, Bas Mevissen wrote:
-> > 
-> > On 02/11/16 11:05, Joshua Lock wrote:
-> > 
-> > > 
-> > > 
-> > > Can someone with a CentOS 7 box pastebin their /etc/lsb-release,
-> > > /etc/redhat-release and /etc/os-release?
-> > > 
-> > 
-> > /etc/lsb-release not available
-> > 
-> > 
-> > At launch (1406):
-> > 
-> > /etc/redhat-release (link to /etc/centos-release):
-> > CentOS Linux release 7.2.1406 (Core)
-> > 
-> > /etc/os-release:
-> > NAME="CentOS Linux"
-> > VERSION="7 (Core)"
-> > ID="centos"
-> > ID_LIKE="rhel fedora"
-> > VERSION_ID="7"
-> > PRETTY_NAME="CentOS Linux 7 (Core)"
-> > ANSI_COLOR="0;31"
-> > CPE_NAME="cpe:/o:centos:centos:7"
-> > HOME_URL="https://www.centos.org/"
-> > BUG_REPORT_URL="https://bugs.centos.org/"
-> > 
-> > 
-> > 
-> > Currently (1511):
-> > 
-> > /etc/redhat-release (link to /etc/centos-release):
-> > CentOS Linux release 7.2.1511 (Core)
-> > 
-> > /etc/os-release:
-> > NAME="CentOS Linux"
-> > VERSION="7 (Core)"
-> > ID="centos"
-> > ID_LIKE="rhel fedora"
-> > VERSION_ID="7"
-> > PRETTY_NAME="CentOS Linux 7 (Core)"
-> > ANSI_COLOR="0;31"
-> > CPE_NAME="cpe:/o:centos:centos:7"
-> > HOME_URL="https://www.centos.org/"
-> > BUG_REPORT_URL="https://bugs.centos.org/"
-> > 
-> > CENTOS_MANTISBT_PROJECT="CentOS-7"
-> > CENTOS_MANTISBT_PROJECT_VERSION="7"
-> > REDHAT_SUPPORT_PRODUCT="centos"
-> > REDHAT_SUPPORT_PRODUCT_VERSION="7"
-> > 
-> > So it seems to me that things have not changed in an unexpected
-> > way.
-> 
-> Thank you! Any chance you can share the output of `lsb_release -ir`
-> also?
+--001a114c8f844a52a60540633e0e
+Content-Type: text/plain; charset=UTF-8
 
-Not to worry, I used a CentOS container to test this myself:
+On 3 November 2016 at 09:57, Mike Looijmans <mike.looijmans@topic.nl> wrote:
 
-# lsb_release -ir
-Distributor ID: CentOS
-Release:        7.2.1511
+> Would it be safe to store the sstate-cache for a bunch of builds into a
+> single directory, with builds running in parallel contributing to that?
+>
+> Each build would be using a different set of layers, different machines,
+> and building different images, but there would be a lot of common things
+> (usually they all refer to the same OE branches).
+>
+> We use a build server to share out sstate-cache for various builds, but as
+> projects are getting added, it's getting more complicated with projects
+> using the sstate-caches of other projects. It would make things quite
+> simple if all builds just pointed to the same sstate-cache directory, so
+> they could share whatever they want.
+>
 
-The problem is that we check multiple sources for a distro's name,
-favouring the output of lsb_release -ir.
+Mine all share a single sstate cache, as that's pretty much the point.  If
+you're targetting different machines then there's a pretty good chance
+there's no overlap anyway.
 
-If you have lsb_release available your system is reported as CentOS,
-otherwise we fall back to reading os-release or redhat-release and get
-CentOSLinux.
+sstate fetch is basically "does a file with this recipe+sha exist", so as
+long as files are written atomically then there's no race conditions.
+ sstate write is done atomically to a temporary file which then then mv'd
+to the real filename, so the only race here is that two parallel bitbakes
+doing exactly the same build configuration (ie, same hash) can both not
+find anything in sstate, both rebuild, and both write to sstate.  As the
+write is atomic, worst case is more work done than required.
 
-I've filed a bug to track this issue:
+Ross
 
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=10591
+--001a114c8f844a52a60540633e0e
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Regards,
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 3 November 2016 at 09:57, Mike Looijmans <span dir=3D"ltr">&lt;<a href=
+=3D"mailto:mike.looijmans@topic.nl" target=3D"_blank">mike.looijmans@topic.=
+nl</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"marg=
+in:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div id=3D":1ka"=
+ class=3D"a3s aXjCH m15829a0fb0b71144">Would it be safe to store the sstate=
+-cache for a bunch of builds into a single directory, with builds running i=
+n parallel contributing to that?<br>
+<br>
+Each build would be using a different set of layers, different machines, an=
+d building different images, but there would be a lot of common things (usu=
+ally they all refer to the same OE branches).<br>
+<br>
+We use a build server to share out sstate-cache for various builds, but as =
+projects are getting added, it&#39;s getting more complicated with projects=
+ using the sstate-caches of other projects. It would make things quite simp=
+le if all builds just pointed to the same sstate-cache directory, so they c=
+ould share whatever they want.</div></blockquote></div><br>Mine all share a=
+ single sstate cache, as that&#39;s pretty much the point.=C2=A0 If you&#39=
+;re targetting different machines then there&#39;s a pretty good chance the=
+re&#39;s no overlap anyway.</div><div class=3D"gmail_extra"><br></div><div =
+class=3D"gmail_extra">sstate fetch is basically &quot;does a file with this=
+ recipe+sha exist&quot;, so as long as files are written atomically then th=
+ere&#39;s no race conditions. =C2=A0sstate write is done atomically to a te=
+mporary file which then then mv&#39;d to the real filename, so the only rac=
+e here is that two parallel bitbakes doing exactly the same build configura=
+tion (ie, same hash) can both not find anything in sstate, both rebuild, an=
+d both write to sstate.=C2=A0 As the write is atomic, worst case is more wo=
+rk done than required.</div><div class=3D"gmail_extra"><br></div><div class=
+=3D"gmail_extra">Ross</div></div>
 
-Joshua
-
+--001a114c8f844a52a60540633e0e--
