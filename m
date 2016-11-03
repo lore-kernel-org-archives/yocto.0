@@ -1,17 +1,16 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <armccurdy@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 225CAE0074B; Thu,  3 Nov 2016 12:20:02 -0700 (PDT)
+	id 156C3E006E9; Thu,  3 Nov 2016 12:55:51 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.192.173 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.82.67 listed in dnsbl.sorbs.net]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (armccurdy[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,52 +18,47 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pf0-f173.google.com (mail-pf0-f173.google.com
-	[209.85.192.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EA456E0050B
-	for <yocto@yoctoproject.org>; Thu,  3 Nov 2016 12:19:58 -0700 (PDT)
-Received: by mail-pf0-f173.google.com with SMTP id i88so36225017pfk.2
-	for <yocto@yoctoproject.org>; Thu, 03 Nov 2016 12:19:58 -0700 (PDT)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.82.67 listed in list.dnswl.org]
+Received: from mail-wm0-f67.google.com (mail-wm0-f67.google.com [74.125.82.67])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8CDD0E00509
+	for <yocto@yoctoproject.org>; Thu,  3 Nov 2016 12:55:49 -0700 (PDT)
+Received: by mail-wm0-f67.google.com with SMTP id 68so626966wmz.2
+	for <yocto@yoctoproject.org>; Thu, 03 Nov 2016 12:55:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=subject:mime-version:from:in-reply-to:date:cc:message-id:references
-	:to; bh=AKkkratGYoLB6VA8vsttyRoGdGX9vD8aj3zcI5AU9Ps=;
-	b=Y8+Mtn6kDb54XIWK30K1hfR2BNdW8KGu/8WX0VAvhfTWn0XYXevnUER3VjjWpd1H2P
-	L9I/1wlbg356hNvA78bTJ6eaMGen/EvGkPLyWOt5dlyKx+UKOhRQ1tvYyvIWGIT0JmjP
-	dwc89tTQDpHz1QGvk4EK8JC9ZlAWwIx2Wzh4lkmOOZfO6PZpS3KN7+zUpFkdORwks87Y
-	VaE1cQFyYeMNe3BUHZWlH9F9Vf9IErcS1cy7OZD0rXEne7hlFapsFHgWhRdIbLklgy1m
-	rJ68a0M+Digi5NhlYFASH2z3530KIbkn6WVdNUdmrlcLtsGeT95XNR1d0R/+h86P9sjb
-	HXiQ==
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=aXuTVLBG9hoM7cvMfUSyIPrTrpJjnf8uRTC73A5PiSI=;
+	b=LLiYEpOKPfbPBgEP51pwzWIHsgZfffyTd60CoCBrVaez6IfM2HHGQXEaSRET4+f2V1
+	vwM4qcqSheRys0eQqAV9xjr7O/ZZ40/3ZrQcM3EX3+lzQyGGaj7YxkLjbHffS8UzZr94
+	DiXB9Uo0SHpCrE8+yp3b5tIi3bt5W+uZz89DWyksiOysntpL9S3vNNS0drxtKAOSwWSG
+	R3pEKMFEKPLDsWb6GmV3qyp1wbzN1tpD2nnwc0f4OVoqOwzJ1ScRt/xnetryFUIgBaqC
+	MmjKfYzMbp78q8DT8mk/8kqjsE+PE5OL1+Oiw9tjTU5/1RyDFmOoQOVcVHd1nWLcqG5b
+	FNkQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:subject:mime-version:from:in-reply-to:date:cc
-	:message-id:references:to;
-	bh=AKkkratGYoLB6VA8vsttyRoGdGX9vD8aj3zcI5AU9Ps=;
-	b=Vi5MWbg1uwAw8/bTZRIJnCLop+x9AQPVYAvXFXolYl88jrP5VdBLEb8GYSJRfvf+fB
-	/1triEMJ8G1QBCZhLNbuDEcMv6or74RnlKjtu/YkH5kcN2a5+7cgATJKy0AWeRsAi7cs
-	4ScwGo98Hkxr38eJlqSswy6UJIF1xr+13elSqGg2RZ8NSMOb5mppT8leiIbf7PTaFN95
-	b0LsR7CzFL5xNj5qn1EzEKgTOOLz9WyKiShAzJGzCIoDEqmg0yXfDfgc7csj/Jq0PuxX
-	dAD0MLIbAGHaLstk30FF/gOteM9LjiC3p4edS18sHolR1FAncTaXP3UOU25lgVV2k/Z7
-	kOCg==
-X-Gm-Message-State: ABUngvchfkPbG16OcMt4BZ/CuQhnmAX5yy54KEoUsRBHpHqwEWgb5YXAxB2zZAdamJeNgQ==
-X-Received: by 10.99.56.22 with SMTP id f22mr16051468pga.72.1478200798100;
-	Thu, 03 Nov 2016 12:19:58 -0700 (PDT)
-Received: from ?IPv6:2601:646:8882:b8c:a08a:c533:b969:820?
-	([2601:646:8882:b8c:a08a:c533:b969:820])
-	by smtp.gmail.com with ESMTPSA id
-	r1sm14527218pfg.56.2016.11.03.12.19.56
-	(version=TLS1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Thu, 03 Nov 2016 12:19:57 -0700 (PDT)
-Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
-X-Pgp-Agent: GPGMail
-From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <d3a15e96-ecd8-50c5-65e2-c13937d101ee@mlbassoc.com>
-Date: Thu, 3 Nov 2016 12:19:56 -0700
-Message-Id: <49487B19-7092-405D-8B74-C8DE45676DF8@gmail.com>
-References: <d3a15e96-ecd8-50c5-65e2-c13937d101ee@mlbassoc.com>
-To: Gary Thomas <gary@mlbassoc.com>
-X-Mailer: Apple Mail (2.3124)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Shallow git clones?
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=aXuTVLBG9hoM7cvMfUSyIPrTrpJjnf8uRTC73A5PiSI=;
+	b=lC3yiJ0m2dp6G8W20Znkff9IHlbDexcQnMEC2A08SKClpWtbhS3wfCEWyImAWKdC6/
+	d0jK+TiNhtrMFU998BUFAq6HsgycP76aoPNuulvU/2IMYIs8ST/nPkp6oDJwzlGb9QKw
+	dgA6Q+3K0n6q7C7fbUFPRudsNfV49EGKYcVjemYWZXVIrF8VJix4k/SYnYKyOXKU2yrS
+	+WVjDo/kaIOSzCo5gg8Dg+EtXKN5v7fsCdwhKVYpphHtV5Hn44egII9gn6vMZEmgs3tk
+	KUEQAoHaUixOrOhAYLxv9zi9bPUpRwxG4PqXhTpLIYVYPCTUlkI/+pGC5QM1Q9EdDQLk
+	Gqtg==
+X-Gm-Message-State: ABUngveJOIsBGsq2rzpjXMNbiex5zEoy2LyGc/Tri1NxQO47Uqk02HUUHL+j2Bk+9BX0PAle/n+khF+T8o/UDw==
+X-Received: by 10.194.75.165 with SMTP id d5mr8612097wjw.190.1478202948484;
+	Thu, 03 Nov 2016 12:55:48 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.194.155.103 with HTTP; Thu, 3 Nov 2016 12:55:47 -0700 (PDT)
+In-Reply-To: <20161103062937.23799-1-raj.khem@gmail.com>
+References: <20161103062937.23799-1-raj.khem@gmail.com>
+From: Andre McCurdy <armccurdy@gmail.com>
+Date: Thu, 3 Nov 2016 12:55:47 -0700
+Message-ID: <CAJ86T=XR2tN-56mcRoXNCNnnxOJvOb32GbvsVkGp9g1t31Yfhw@mail.gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi][PATCH] gstreamer1.0-plugins-bad_%.bbappend: Set PACKAGECONFIG_GL for RPi
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,110 +70,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 03 Nov 2016 19:20:02 -0000
-X-Groupsio-MsgNum: 32827
-Content-Type: multipart/signed;
-	boundary="Apple-Mail=_972D97F6-7AD0-45FC-9214-DE61C6BCA415";
-	protocol="application/pgp-signature"; micalg=pgp-sha1
+X-List-Received-Date: Thu, 03 Nov 2016 19:55:51 -0000
+Content-Type: text/plain; charset=UTF-8
 
---Apple-Mail=_972D97F6-7AD0-45FC-9214-DE61C6BCA415
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=us-ascii
+On Wed, Nov 2, 2016 at 11:29 PM, Khem Raj <raj.khem@gmail.com> wrote:
+> Enable dispmanx support if using bcm driver
+>
+> Signed-off-by: Khem Raj <raj.khem@gmail.com>
+> ---
+>  .../gstreamer/gstreamer1.0-plugins-bad_%.bbappend          | 14 ++++++++++++--
+>  1 file changed, 12 insertions(+), 2 deletions(-)
+>
+> diff --git a/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_%.bbappend b/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_%.bbappend
+> index ab0280e..1097e65 100644
+> --- a/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_%.bbappend
+> +++ b/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_%.bbappend
+> @@ -1,2 +1,12 @@
+> -EXTRA_OECONF_append_rpi = " CPPFLAGS='-I${STAGING_DIR_TARGET}/usr/include/interface/vcos/pthreads \
+> -                                   -I${STAGING_DIR_TARGET}/usr/include/interface/vmcs_host/linux'"
+> +EXTRA_OECONF_append_rpi = " CPPFLAGS='-I${STAGING_INCDIR}/interface/vcos/pthreads \
+> +                                   -I${STAGING_INCDIR}/interface/vmcs_host/linux'"
+> +
+> +# if using bcm driver then enable dispmanx, other
 
+Comment seems to be truncated?
 
-> On Nov 3, 2016, at 6:06 AM, Gary Thomas <gary@mlbassoc.com> wrote:
->=20
-> I recall seeing some discussion in the past about using shallow
-> GIT clones when importing repositories?  Is this ever going to
-> happen?
->=20
-> The reason I ask is that I routinely save the GIT tarballs and
-> some of them are obscenely obese :-(  The worst of the bunch
-> is the device firmware for the RaspberryPi (as of today):
->  -rw-rw-r-- 1 gthomas gthomas 6321877646 Nov  3 12:13 =
-git2_github.com.raspberrypi.firmware.git.tar.gz
->=20
-> This particular tar file increased by more than 300MB since
-> the last time I downloaded it (only 2016-09-13!)  I routinely
-> slosh these files across the oceans (sometimes using tin cans
-> and strings it seems) and this can be very tedious.  Is there
-> anything that can be done to make these files a bit more manageable?
+> +
+> +PACKAGECONFIG[dispmanx] = "--enable-dispmanx,--disable-dispmanx,userland"
 
-while shallow clones is a comprehensive solution and we should probably =
-slot it for 2.3 release
-the above recipe should stop using git fetcher and convert to using =
-tarballs
-since this git repo hosts binaries, it will bloat with every time they =
-push
-stuff into it. Someone should teach these RPi folks to not abuse github.
+Typical style is to put PACKAGECONFIG[foo] lines after defining PACKAGECONFIG.
 
->=20
-> Note: the RaspberryPi files are not the only offenders.  Take
-> a look at the really big ones on my download mirror (~1GB or larger):
->  912558047 Jun  3  2015 =
-git2_git.yoctoproject.org.linux-yocto-3.14.git.tar.gz
->  916869431 Sep 18 16:54 =
-git2_git.yoctoproject.org.linux-yocto-4.4.git.tar.gz
->  917066415 Mar  8  2011 chrome-11.0.686.0.tar.bz2
->  929710560 Jun  5  2014 =
-git2_git.yoctoproject.org.linux-yocto-3.10.git.tar.gz
->  975438005 May 14  2015 =
-git2_git.yoctoproject.org.linux-yocto-3.19.git.tar.gz
->  997340641 Jan  4  2013 =
-git2_dev.omapzoom.org.pub.scm.integration.kernel-ubuntu.git.tar.gz
-> 1013093794 Jul 22  2011 chrome-14.0.825.0.tar.bz2
-> 1097457194 Jul  9  2015 git2_github.com.Itseez.opencv.git.tar.gz
-> 1101241868 Jul 15 15:44 =
-git2_git.freescale.com.ppc.sdk.linux.git.tar.gz
-> 1167801376 Oct 24  2013 =
-git2_git.kernel.org.pub.scm.linux.kernel.git.stable.linux-stable.git.tar.g=
-z
-> 1192994858 Nov 24  2014 =
-git2_github.com.Freescale.linux-mainline.git.tar.gz
-> 1399737300 Mar 30  2010 =
-git_git.kernel.org.pub.scm.linux.kernel.git.tmlind.linux-omap-2.6.git.tar.=
-gz
-> 1455878541 Feb 22  2016 =
-git2_github.com.Freescale.linux-fslc.git.tar.gz
-> 1637597724 Aug 11 09:45 =
-git2_git.freescale.com.imx.linux-2.6-imx.git.tar.gz
-> 1785320074 Aug 15  2012 git2_github.com.mirrors.gcc.git.tar.gz
-> 1787717120 Oct 11 10:28 =
-git2_git.ti.com.ti-linux-kernel.ti-linux-kernel.git.tar.gz
-> 2070939344 Nov  3 12:11 git2_github.com.raspberrypi.linux.git.tar.gz
-> 2478557202 Aug 10 11:47 =
-git2_github.com.boundarydevices.linux-imx6.git.tar.gz
-> 2525826872 Jul 12 16:42 git2_github.com.gcc-mirror.gcc.tar.gz
-> 6321877646 Nov  3 12:13 =
-git2_github.com.raspberrypi.firmware.git.tar.gz
->=20
+> +PACKAGECONFIG_append_rpi = " "${@bb.utils.contains("MACHINE_FEATURES", "vc4graphics", "", "dispmanx", d)}"
+
+Typo, extra "
+
+> +
+> +PACKAGECONFIG_GL_rpi = "egl gles2"
+> +PACKAGECONFIG_append_rpi = " hls libmms faad dispmanx"
+
+Appending dispmanx is conditional on MACHINE_FEATURES 3 lines above.
+It probably shouldn't be unconditional here.
+
+> +
 > --
-> ------------------------------------------------------------
-> Gary Thomas                 |  Consulting for the
-> MLB Associates              |    Embedded world
-> ------------------------------------------------------------
+> 2.10.2
+>
 > --
 > _______________________________________________
 > yocto mailing list
 > yocto@yoctoproject.org
 > https://lists.yoctoproject.org/listinfo/yocto
 
-
---Apple-Mail=_972D97F6-7AD0-45FC-9214-DE61C6BCA415
-Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment;
-	filename=signature.asc
-Content-Type: application/pgp-signature;
-	name=signature.asc
-Content-Description: Message signed with OpenPGP using GPGMail
-
------BEGIN PGP SIGNATURE-----
-Comment: GPGTools - https://gpgtools.org
-
-iEYEARECAAYFAlgbjdwACgkQuwUzVZGdMxRqAACcD/5UkyEHpLcBMCwEC5C1RC5Y
-aG0An0TG0EYBd75jTVliBXCz83OHadV/
-=V+zm
------END PGP SIGNATURE-----
-
---Apple-Mail=_972D97F6-7AD0-45FC-9214-DE61C6BCA415--
