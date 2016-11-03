@@ -1,65 +1,42 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <paul@paulbarker.me.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 65CE1E0074B; Thu,  3 Nov 2016 13:57:16 -0700 (PDT)
+	id 0745AE0074B; Thu,  3 Nov 2016 13:58:03 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.192.195 listed in dnsbl.sorbs.net]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.192.195 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [188.165.33.109 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pf0-f195.google.com (mail-pf0-f195.google.com
-	[209.85.192.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3013CE0050B
-	for <yocto@yoctoproject.org>; Thu,  3 Nov 2016 13:57:14 -0700 (PDT)
-Received: by mail-pf0-f195.google.com with SMTP id i88so5790474pfk.2
-	for <yocto@yoctoproject.org>; Thu, 03 Nov 2016 13:57:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id;
-	bh=KWUgr4XlZvql2tJDrAw90h/TX2LjF2K2ICFC2rV6G74=;
-	b=k4mXh/m8FPezmg5+jcGZ9RhArEv17ulmnmottwCLj70wfCKb8EUUAyaBo+cccVet5b
-	XcPHtdJYyNFLJ2aEpyMTzMha0ugK77f9d5wF+raE4GskE08a3F2VoQ5oqzTHQ/yux232
-	7T1QR//VYfvYti2/O8PQja3NG03+7Rf1Lfuhf6BBGZo2zhtTbl7RoJ9Y3WDX4JoerHc0
-	Ifhx9EZmNYrQJtpnre56uw08L3bwu7ciwBz0uod7Li3SCKI22Knd5PQj0YKJnPOH6UTr
-	hMpYNL6TusfwmeliZ/BCyJKf9hqXsChJ6FSbksZd+FKprIt+aThz83QrJX+9EGrebAyc
-	fCfQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=KWUgr4XlZvql2tJDrAw90h/TX2LjF2K2ICFC2rV6G74=;
-	b=kfQ4CD8Vb65g4KXhmY6q2idepVRcmmaIBxzEPM4HzSKm1IGVrwXRQFr98x/A8Og23R
-	/YNgaBO9TfOu8iy2/X/NsoRXq++25pN1k8Pjkw4d3egb+iKHPdITUReN85t5FoX/dmOK
-	tRBN54B3Ijks9CmdjNIbPNxhzl/dW2dWO/RbC8sCEAPushJuo6jNNsnSp/BzlF94NvOM
-	9ScvmEfE0D/6sUmW5wPloVKCAVNROaWtKFd4rjvGCDaMo7nMF4qonEf5tlwljzh4NYyY
-	0DGBnjrzm9scfXMagzAijnQDSa+TnKHS6uKTI5rA5XVKRWALQAbucqzWoqJ3riytWKHn
-	E9WQ==
-X-Gm-Message-State: ABUngvdQ+PArqMypFhjaXK0qV4+KgevAXxGcCk9SN5PKvAal1V7OgLMndgR0wR9oReXMRw==
-X-Received: by 10.99.218.21 with SMTP id c21mr16526482pgh.67.1478206634534;
-	Thu, 03 Nov 2016 13:57:14 -0700 (PDT)
-Received: from localhost.localdomain (c-76-102-32-192.hsd1.ca.comcast.net.
-	[76.102.32.192]) by smtp.gmail.com with ESMTPSA id
-	13sm14810404pfz.30.2016.11.03.13.57.13
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Thu, 03 Nov 2016 13:57:14 -0700 (PDT)
-From: Khem Raj <raj.khem@gmail.com>
-To: yocto@yoctoproject.org
-Date: Thu,  3 Nov 2016 13:57:09 -0700
-Message-Id: <20161103205709.32535-1-raj.khem@gmail.com>
-X-Mailer: git-send-email 2.10.2
-Subject: [meta-raspberrypi][PATCH V2] gstreamer1.0-plugins-bad_%.bbappend: Set PACKAGECONFIG_GL for RPi
+Received: from 10.mo4.mail-out.ovh.net (10.mo4.mail-out.ovh.net
+	[188.165.33.109])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1221AE0050B
+	for <yocto@yoctoproject.org>; Thu,  3 Nov 2016 13:57:55 -0700 (PDT)
+Received: from player759.ha.ovh.net (b9.ovh.net [213.186.33.59])
+	by mo4.mail-out.ovh.net (Postfix) with ESMTP id 26C041BC0F
+	for <yocto@yoctoproject.org>; Thu,  3 Nov 2016 21:57:52 +0100 (CET)
+Received: from nuc.betafive.co.uk
+	(cpc11-shep11-2-0-cust130.8-3.cable.virginm.net [86.27.96.131])
+	(Authenticated sender: paul@betafive.co.uk)
+	by player759.ha.ovh.net (Postfix) with ESMTPSA id C788264007B;
+	Thu,  3 Nov 2016 21:57:50 +0100 (CET)
+Date: Thu, 3 Nov 2016 20:57:49 +0000
+From: Paul Barker <paul@paulbarker.me.uk>
+To: Jonathan Liu <net147@gmail.com>
+Message-ID: <20161103205749.610ffebc@nuc.betafive.co.uk>
+In-Reply-To: <20161101134911.11547-1-net147@gmail.com>
+References: <20161101134911.11547-1-net147@gmail.com>
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+X-Ovh-Tracer-Id: 11875710743012084090
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: 0
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrfeelvddrkeejgdduvdekucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecufedttdenuc
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-raspberrypi][PATCH] u-boot: Simplify boot script
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,40 +48,99 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 03 Nov 2016 20:57:16 -0000
+X-List-Received-Date: Thu, 03 Nov 2016 20:58:03 -0000
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Enable dispmanx support if using bcm driver
+On Wed,  2 Nov 2016 00:49:11 +1100
+Jonathan Liu <net147@gmail.com> wrote:
 
-Signed-off-by: Khem Raj <raj.khem@gmail.com>
----
-Changes from V1->V2:
-- Remove spurious "
-- Rearrange code
-- Remove duplicate packageconfig for dispmanx
+> device_tree_address=0x100 is set in config.txt so the firmware will
+> load a patched device tree blob to 0x100 before passing control to
+> U-Boot. The U-Boot script will then read the command line arguments
+> generated by the firmware from the device tree and boot the kernel
+> with the command line arguments and the loaded device tree.
+> 
+> This allows things like MAC address, board revision and serial number
+> to be correctly configured and options in config.txt to be used.
+> 
+> Signed-off-by: Jonathan Liu <net147@gmail.com>
+> ---
+>  recipes-bsp/bootfiles/rpi-config_git.bb                | 5 +++++
+>  recipes-bsp/rpi-u-boot-scr/files/boot.cmd              | 3 +++
+>  recipes-bsp/rpi-u-boot-scr/files/raspberrypi/boot.cmd  | 6 ------
+>  recipes-bsp/rpi-u-boot-scr/files/raspberrypi0/boot.cmd | 6 ------
+>  recipes-bsp/rpi-u-boot-scr/files/raspberrypi2/boot.cmd | 6 ------
+>  recipes-bsp/rpi-u-boot-scr/files/raspberrypi3/boot.cmd | 6 ------
+>  6 files changed, 8 insertions(+), 24 deletions(-)
+>  create mode 100644 recipes-bsp/rpi-u-boot-scr/files/boot.cmd
+>  delete mode 100644 recipes-bsp/rpi-u-boot-scr/files/raspberrypi/boot.cmd
+>  delete mode 100644 recipes-bsp/rpi-u-boot-scr/files/raspberrypi0/boot.cmd
+>  delete mode 100644 recipes-bsp/rpi-u-boot-scr/files/raspberrypi2/boot.cmd
+>  delete mode 100644 recipes-bsp/rpi-u-boot-scr/files/raspberrypi3/boot.cmd
+> 
+> diff --git a/recipes-bsp/bootfiles/rpi-config_git.bb b/recipes-bsp/bootfiles/rpi-config_git.bb
+> index f610718..2f4d25c 100644
+> --- a/recipes-bsp/bootfiles/rpi-config_git.bb
+> +++ b/recipes-bsp/bootfiles/rpi-config_git.bb
+> @@ -76,6 +76,11 @@ do_deploy() {
+>          echo "dispmanx_offline=1" >>${DEPLOYDIR}/bcm2835-bootfiles/config.txt
+>      fi
+>  
+> +    # U-Boot Device Tree support
+> +    if [ "${KERNEL_IMAGETYPE}" = "uImage" ]; then
+> +        sed -i '/#device_tree_address/ c\device_tree_address=0x100' ${DEPLOYDIR}/bcm2835-bootfiles/config.txt
+> +    fi
+> +
+>      # SPI bus support
+>      if [ -n "${ENABLE_SPI_BUS}" ] || [ "${PITFT}" = "1" ]; then
+>          echo "# Enable SPI bus" >>${DEPLOYDIR}/bcm2835-bootfiles/config.txt
+> diff --git a/recipes-bsp/rpi-u-boot-scr/files/boot.cmd b/recipes-bsp/rpi-u-boot-scr/files/boot.cmd
+> new file mode 100644
+> index 0000000..3f7e3b6
+> --- /dev/null
+> +++ b/recipes-bsp/rpi-u-boot-scr/files/boot.cmd
+> @@ -0,0 +1,3 @@
+> +fdt addr ${fdt_addr_r} && fdt get value bootargs /chosen bootargs
+> +fatload mmc 0:1 ${kernel_addr_r} uImage
+> +bootm ${kernel_addr_r} - ${fdt_addr_r}
+>
+> <snip deleted files>
 
- .../gstreamer/gstreamer1.0-plugins-bad_%.bbappend          | 14 ++++++++++++--
- 1 file changed, 12 insertions(+), 2 deletions(-)
+This doesn't work for me.
 
-diff --git a/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_%.bbappend b/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_%.bbappend
-index ab0280e..7292f90 100644
---- a/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_%.bbappend
-+++ b/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_%.bbappend
-@@ -1,2 +1,12 @@
--EXTRA_OECONF_append_rpi = " CPPFLAGS='-I${STAGING_DIR_TARGET}/usr/include/interface/vcos/pthreads \
--                                   -I${STAGING_DIR_TARGET}/usr/include/interface/vmcs_host/linux'"
-+EXTRA_OECONF_append_rpi = " CPPFLAGS='-I${STAGING_INCDIR}/interface/vcos/pthreads \
-+                                   -I${STAGING_INCDIR}/interface/vmcs_host/linux'"
-+
-+# if using bcm driver enable dispmanx not when using VC4 driver
-+
-+PACKAGECONFIG_append_rpi = "${@bb.utils.contains('MACHINE_FEATURES', 'vc4graphics', '', ' dispmanx', d)}"
-+
-+PACKAGECONFIG_GL_rpi = "egl gles2"
-+
-+PACKAGECONFIG_append_rpi = " hls libmms faad"
-+
-+PACKAGECONFIG[dispmanx] = "--enable-dispmanx,--disable-dispmanx,userland"
--- 
-2.10.2
+On RaspberryPi B+ I get no kernel messages during the boot. I do get a
+login prompt though and the boot is successful.
 
+On RaspberryPi 3 I don't get anything after "Starting kernel ...".
+
+https://www.raspberrypi.org/documentation/configuration/device-tree.md
+says:
+
+    The base Device Trees are located alongside start.elf in the FAT
+    partition (/boot from Linux), named bcm2708-rpi-b.dtb,
+    bcm2708-rpi-b-plus.dtb, bcm2708-rpi-cm.dtb, and
+    bcm2709-rpi-2-b.dtb.
+
+In /boot I have:
+
+    bcm2708-rpi-b.dtb
+    bcm2708-rpi-b-plus.dtb
+    bcm2709-rpi-2-b.dtb
+    bcm2710-rpi-3-b.dtb
+
+So my guess is that the RaspberryPi 3 isn't loading the right device
+tree.
+
+Is this a problem with start.elf (which we need to report upstream) or
+a problem with our DTB file names?
+
+I'd also say we probably have a problem with bootargs as it doesn't
+print out kernel messages during boot.
+
+What's the benefit of using the device tree cobbled together by
+start.elf instead of loading the DTB file ourselves?
+
+Thanks,
+Paul Barker
 
