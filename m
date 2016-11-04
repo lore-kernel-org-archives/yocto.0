@@ -1,60 +1,64 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <net147@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A7A57E00B62; Fri,  4 Nov 2016 13:26:14 -0700 (PDT)
+	id 11483E009DF; Fri,  4 Nov 2016 14:56:37 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.220.170 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (net147[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.216.196 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qk0-f170.google.com (mail-qk0-f170.google.com
-	[209.85.220.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 13FF7E007C2
-	for <yocto@yoctoproject.org>; Fri,  4 Nov 2016 13:26:11 -0700 (PDT)
-Received: by mail-qk0-f170.google.com with SMTP id q130so112244754qke.1
-	for <yocto@yoctoproject.org>; Fri, 04 Nov 2016 13:26:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
+Received: from mail-qt0-f196.google.com (mail-qt0-f196.google.com
+	[209.85.216.196])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3673BE007C2
+	for <yocto@yoctoproject.org>; Fri,  4 Nov 2016 14:56:34 -0700 (PDT)
+Received: by mail-qt0-f196.google.com with SMTP id n6so3363492qtd.0
+	for <yocto@yoctoproject.org>; Fri, 04 Nov 2016 14:56:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=w0UsvN/gwj2dtO6EG0P7KCfZGCYKBIS0Svbz0Yv54pE=;
-	b=ktqmMrBUrHxJ7oAeN5R4TBYrNHFOJ1BKhsEHmZHGdzpBhEqF+hnk9eit7P/hO+RVw4
-	YiQR+f9HieyurP76ZRvW/90Wni4um75b9JMTpV3BaCqYGiP9MH3SfSGxAuIWWgKvcRdj
-	AdeYFW3E7Yo2q5d13kyuyGG9TU6XBF5H7P685luYB+KTfaZGtBiNzvplcdfDLB8s0xz6
-	O1KwCMAC2Iu7OwYI9a7i2M8+LvCOpbcxakG3M4vAhfsPEiFVfYyx3EACz6BOfMlQ5wYg
-	dsfPRiL9ANc3u8smMPw1mQt/7o3sZHPvw8yoFv28/Po4ZgxuL7Xz0HlqPEnIJI10gERG
-	2leQ==
+	:cc; bh=bj45qK9N+sfSzNGqKGdG+p1LaiN1q0RJTrE8I2qzZiU=;
+	b=nYHZP77kygUPFMucP85N+LK6ZYnl+iDJsMwGL1lESBDQHIZgqsCLfPM1bis1xlhgVB
+	gzpNVitgC/W1GGTsv9g6TNSMcLAOVMvrzwo9DbUeA2LA7oPNzLtejM8WK9NVNVKog1VK
+	KXm/hpJqK9YMeo9qUj4pSA7ci1/qyPX4wxFEAUQxpPvmzWsi9Fh/OD+4GDzFXyIpUGVq
+	i/hqFPoBM2qM8UdQTjGsnJxq60Q42B847i6iAi+nle/5XU4iGudv2blkbHJ+LJiGXU/R
+	tR8yyC6bXgRH+PDwwINwUasGi1vbNJ+uyf0OONxdO2Ti8MquymwUxSdGeHb0v2mRpmAG
+	uVeQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=w0UsvN/gwj2dtO6EG0P7KCfZGCYKBIS0Svbz0Yv54pE=;
-	b=eYnjpuFpYPJmafJOFz2o1gZQlhfL0tun9j7RbNcMpIQv5Rd7SiQ/KRfHqNSPwv/LVN
-	ZFvN7MpUyf4I6x8jwjWRbCB0zopyT1HUHt9EaJIRwJvqwS+Xo8CMHAaILBIQ4XA8Vqdk
-	VaspTbGChQA+61XU85aH9zFcuvMDFM98wfyPMceth+QqnjnI7d4Zb5sLDv+ZKV9eNbjY
-	Vq11h/rOeNnX1uzuWj2DbLYwTOVJ1fHhkRwXdoquOyZp/MmBrmlr0N6vYECFULokYOI8
-	lNWeKlUXhi/aUwJvDYntZ+iB2e7BHwXbtKzxjb+0w+nWsRI2FiFNWD430K7uamqJzaez
-	o41g==
-X-Gm-Message-State: ABUngvdIVAFbf6Apg2SbeudQaEEWug9g06CkpnYFDr3hnQF7fdcA4D2//ORhFxlRBqVUnbqxutkZaWVLiqdj3Lte
-X-Received: by 10.55.31.157 with SMTP id n29mr14600951qkh.221.1478291171204;
-	Fri, 04 Nov 2016 13:26:11 -0700 (PDT)
+	bh=bj45qK9N+sfSzNGqKGdG+p1LaiN1q0RJTrE8I2qzZiU=;
+	b=cjQIzSErVHuaTFS3dZapEEfMFNCZU+Al/VzQ+BQGpG+Qn9wx50RPNjTkLMQHZ7z/Eo
+	ryTZr1SREIiV2X6iE4PH/ksIyO0GItwK2oayMvxoG+qIb5/ig98GP/TDwP1bC2RDvTq5
+	bYmIufuwTE3L+DTdkLU2w3BHsIS0dIyxdHg6CH9QH02cl85MhZL6xPEcI44QWso7stOn
+	Y7EWxQjXxhviE9vO7lAl2lMja3myLz/qUUYGxUolgtbqBdkrKF2dAxglQbE8d1XYGfP0
+	Bar1h3uMStX6mes+QmHwGd7aBAFZ0HojVbg5kID5S932rstKmevBdCQ5svV1Z80VOgbz
+	CdIg==
+X-Gm-Message-State: ABUngvePgYYsTmNAVz6iiH4OOvtjIxGfgFZpwAhKGgnAd7PRQ/j8DEDeeJwUXlof3gqaRTKf79GOhnHtJLwTVw==
+X-Received: by 10.237.50.129 with SMTP id z1mr16075374qtd.158.1478296594118;
+	Fri, 04 Nov 2016 14:56:34 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.140.85.208 with HTTP; Fri, 4 Nov 2016 13:25:50 -0700 (PDT)
-In-Reply-To: <BE188BBB-0307-494A-9564-BCDF589A0550@fuzziesquirrel.com>
-References: <BE188BBB-0307-494A-9564-BCDF589A0550@fuzziesquirrel.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Fri, 4 Nov 2016 20:25:50 +0000
-Message-ID: <CAJTo0LafT=LwfCcRgcxjxQGHSkb=a6U_3+rDj97w_naOdMUXOw@mail.gmail.com>
-To: Brad Bishop <bradleyb@fuzziesquirrel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Help with out of (python) tree python modules in SDK
+Received: by 10.12.138.15 with HTTP; Fri, 4 Nov 2016 14:56:33 -0700 (PDT)
+In-Reply-To: <20161104191205.3de1f76b@nuc.betafive.co.uk>
+References: <20161104134734.28179-1-net147@gmail.com>
+	<20161104191205.3de1f76b@nuc.betafive.co.uk>
+From: Jonathan Liu <net147@gmail.com>
+Date: Sat, 5 Nov 2016 08:56:33 +1100
+Message-ID: <CANwerB1NQhjOxn=mFmH_XkQGeOaMj=N3kvKCgepzajoiuTaYuw@mail.gmail.com>
+To: Paul Barker <paul@paulbarker.me.uk>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi][PATCH v2] u-boot: Simplify boot script
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,59 +70,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 04 Nov 2016 20:26:14 -0000
-Content-Type: multipart/alternative; boundary=001a1147f22822818a05407f7c03
-
---001a1147f22822818a05407f7c03
+X-List-Received-Date: Fri, 04 Nov 2016 21:56:37 -0000
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
 
-On 4 November 2016 at 18:55, Brad Bishop <bradleyb@fuzziesquirrel.com>
-wrote:
+Hi Paul,
 
-> I am on Krogoth.  I have an autotools inheriting recipe.  The configure
-> script runs a python script (in repo), that imports an out-of-python-dist=
-ro
-> module.
+On 5 November 2016 at 06:12, Paul Barker <paul@paulbarker.me.uk> wrote:
+> On Sat,  5 Nov 2016 00:47:34 +1100
+> Jonathan Liu <net147@gmail.com> wrote:
 >
-> I can=E2=80=99t seem to wrap my head around the correct way to express th=
-is in
-> terms of dependencies, such that when I build with an SDK, I can import
-> this module.
+>> A patch is added to check if the firmware loaded a device tree blob
+>> into memory and set the fdt_addr_r variable if it is found. The U-Boot
+>> script will then read the command line arguments generated by the
+>> firmware from the device tree and boot the kernel with the command
+>> line arguments and the loaded device tree.
+>>
+>> This allows things like MAC address, board revision and serial number
+>> to be correctly configured and options in config.txt to be used.
+>>
+>> Signed-off-by: Jonathan Liu <net147@gmail.com>
+>> ---
+>> Changes in v2:
+>>  - Instead of setting device_tree_address to 0x100 in config.txt, patch
+>>    U-Boot to detect the device tree blob address if it was loaded.
+>>
 >
+> I've tested this on the HW I have access to but I'm still running into
+> problems.
+>
+> RaspberryPi B+: Fails with "Could not find a valid device tree"
+> message. I need to debug this further.
+>
+> RaspberryPi 3: Boots successfully. However "earlyprintk" is missing
+> from the bootargs so we miss kernel messages which may be useful for
+> debug.
 
-Put this in your image recipe that the SDK is generated from.
+You can do one of the following:
+- Add CMDLINE_append = " earlyprintk" to local.conf or distro conf
+- Modify cmdline.txt on the SD card boot partition and add earlyprintk
 
-TOOLCHAIN_HOST_TASK_append =3D " nativesdk-python-foomodule"
+I didn't want to make any assumptions.
 
-TOOLCHAIN_HOST_TASK is the variable that list everything to be installed in
-the SDK that is for the *host*, not the *target*.
+Regards,
+Jonathan
 
-Ross
-
---001a1147f22822818a05407f7c03
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 4 November 2016 at 18:55, Brad Bishop <span dir=3D"ltr">&lt;<a href=3D"m=
-ailto:bradleyb@fuzziesquirrel.com" target=3D"_blank">bradleyb@fuzziesquirre=
-l.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"m=
-argin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><span style=
-=3D"font-family:Menlo-Regular;font-size:11px">I am on Krogoth.=C2=A0 I have=
- an autotools inheriting recipe.=C2=A0 The configure script runs a python s=
-cript (in repo), that imports an out-of-python-distro module.</span><br sty=
-le=3D"font-family:Menlo-Regular;font-size:11px"><br style=3D"font-family:Me=
-nlo-Regular;font-size:11px"><span style=3D"font-family:Menlo-Regular;font-s=
-ize:11px">I can=E2=80=99t seem to wrap my head around the correct way to ex=
-press this in terms of dependencies, such that when I build with an SDK, I =
-can import this module.</span><br style=3D"font-family:Menlo-Regular;font-s=
-ize:11px"></blockquote></div><div class=3D"gmail_extra"><br></div>Put this =
-in your image recipe that the SDK is generated from.</div><div class=3D"gma=
-il_extra"><br>TOOLCHAIN_HOST_TASK_append =3D &quot; nativesdk-python-foomod=
-ule&quot;</div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_ext=
-ra">TOOLCHAIN_HOST_TASK is the variable that list everything to be installe=
-d in the SDK that is for the *host*, not the *target*.</div><div class=3D"g=
-mail_extra"><br></div><div class=3D"gmail_extra">Ross</div></div>
-
---001a1147f22822818a05407f7c03--
