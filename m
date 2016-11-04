@@ -1,77 +1,66 @@
-Return-Path: <idealsim@laposte.net>
+Return-Path: <net147@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7DDFDE00C45; Fri,  4 Nov 2016 06:32:56 -0700 (PDT)
+	id ED37CE00BB0; Fri,  4 Nov 2016 06:48:03 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_LOW,
+	RCVD_IN_SORBS_SPAM autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (idealsim[at]laposte.net)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [178.22.154.200 listed in list.dnswl.org]
+	mail provider *      (net147[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from smtp.laposte.net (smtpoutz300.laposte.net [178.22.154.200])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0D4DDE00ACE
-	for <yocto@yoctoproject.org>; Fri,  4 Nov 2016 06:32:51 -0700 (PDT)
-Received: from smtp.laposte.net (localhost [127.0.0.1])
-	by lpn-prd-vrout012 (Postfix) with ESMTP id 778E38D6F0
-	for <yocto@yoctoproject.org>; Fri,  4 Nov 2016 14:32:50 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=laposte.net; s=mail0;
-	t=1478266370; bh=dflQKvbJpUdPHu58cqMkF1ntaMae8QfXadGOGtwNJrQ=;
-	h=To:Cc:Subject:References:Date:From:In-Reply-To;
-	b=gXC4AVPtXwdLyles6L+avl7bvSKlctFcVneTJgJGq8sbtxVAWg+wDlcbJNGjTP9aq
-	sr7iJUgokBixvvpM4xYdxVwo3hZbleZTPmnSDMlA3XeSnJMXE1PApytYU3I68UX67s
-	1cOx8launYvc7+EppkwzRoQ8lPIRXp1Awnn1GACWC6DM6nZxrM2zbTfuNzqqygdlWf
-	F/6eczwRzYWxVn2BbveGHfPtA3I8wuUEFHRC0FkFjQ0t0qGmDY9LtNPi0xmOaRpjY3
-	kLnW3DUQ/aZwKGAvwIkqL21aKgkZiWAYbfJ0s2XfPbHMT+esYADuM4NPicymKrFyvJ
-	XD1Jtop0AXngw==
-Received: from lpn-prd-vrin001 (lpn-prd-vrin001.laposte [10.128.63.2])
-	by lpn-prd-vrout012 (Postfix) with ESMTP id 724BD8D6E8
-	for <yocto@yoctoproject.org>; Fri,  4 Nov 2016 14:32:50 +0100 (CET)
-Received: from lpn-prd-vrin001 (localhost [127.0.0.1])
-	by lpn-prd-vrin001 (Postfix) with ESMTP id 5DDA6366D6F
-	for <yocto@yoctoproject.org>; Fri,  4 Nov 2016 14:32:50 +0100 (CET)
-Received: from pc-mls.ecafaros.local (unknown [212.234.36.135])
-	by lpn-prd-vrin001 (Postfix) with ESMTPA id D3729366D18;
-	Fri,  4 Nov 2016 14:32:49 +0100 (CET)
-To: "Burton, Ross" <ross.burton@intel.com>, idealsim <idealsim@laposte.net>
-References: <op.yqcpvhydmnlnty@pc-mls.ecafaros.local>
-	<a8763b48-7566-4974-895b-f9137e4d3e38@mlbassoc.com>
-	<op.yqcrihyomnlnty@pc-mls.ecafaros.local>
-	<CAJTo0LaF1+2GDymRDs0ccs1e5s+e8uSapMgWYU78RRYbCBe3bw@mail.gmail.com>
-	<op.yqcsi9gbmnlnty@pc-mls.ecafaros.local>
-Date: Fri, 04 Nov 2016 14:32:49 +0100
-MIME-Version: 1.0
-From: idealsim <idealsim@laposte.net>
-Message-ID: <op.yqenwzv3mnlnty@pc-mls.ecafaros.local>
-In-Reply-To: <op.yqcsi9gbmnlnty@pc-mls.ecafaros.local>
-User-Agent: Opera Mail/1.0 (Win32)
-X-VR-SrcIP: 212.234.36.135
-X-VR-FullState: 0
-X-VR-Score: -100
-X-VR-Cause-1: gggruggvucftvghtrhhoucdtuddrfeelvddrkeelgdehhecutefuodetggdotefrodftvfcurfhrohhf
-X-VR-Cause-2: ihhlvgemucfntefrqffuvffgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhs
-X-VR-Cause-3: ucdlqddutddtmdenucfjughrpegtvffufhffggfhkfgjfgesrgdtreertderleenucfhrhhomhepihgu
-X-VR-Cause-4: vggrlhhsihhmuceoihguvggrlhhsihhmsehlrghpohhsthgvrdhnvghtqeenucffohhmrghinhepohhp
-X-VR-Cause-5: vghrrgdrtghomhdpghhithhhuhgsrdgtohhmnecukfhppedvuddvrddvfeegrdefiedrudefheenucfr
-X-VR-Cause-6: rghrrghmpehmohguvgepshhmthhpohhuthdphhgvlhhopehptgdqmhhlshdrvggtrghfrghrohhsrdhl
-X-VR-Cause-7: ohgtrghlpdhinhgvthepvdduvddrvdefgedrfeeirddufeehpdhmrghilhhfrhhomhepihguvggrlhhs
-X-VR-Cause-8: ihhmsehlrghpohhsthgvrdhnvghtpdhrtghpthhtohepghgrrhihsehmlhgsrghsshhotgdrtghomh
-X-VR-AvState: No
-X-VR-State: 0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Gary Thomas <gary@mlbassoc.com>
-Subject: Re: <DKIM> Re: How to add libudev.h
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.196 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.192.196 listed in dnsbl.sorbs.net]
+Received: from mail-pf0-f196.google.com (mail-pf0-f196.google.com
+	[209.85.192.196])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BF73FE00ACE
+	for <yocto@yoctoproject.org>; Fri,  4 Nov 2016 06:48:00 -0700 (PDT)
+Received: by mail-pf0-f196.google.com with SMTP id y68so8034752pfb.1
+	for <yocto@yoctoproject.org>; Fri, 04 Nov 2016 06:48:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:cc:subject:date:message-id;
+	bh=D/7njXr0EX8p5w010V3E9p0C11YP6w/XmX9M83FTunM=;
+	b=X3z2I7sNpkXX9tfxSjMxJCuQh068SACEYeck5nudXR48dAF25/xIIm2qtEns+LUxzp
+	U1397hgVhrEttwhG2CDwSQ2gM3h0AXSDVQ9TWiBPjsK4XKiCYRO3OZf4Z3V2EuuvSbJZ
+	mcGiMGCu1yGB7ulcfzJwsV3QCCGs8/yjdqiMA53QqEl9hkjN7CDkE3g8p4HO4UcK/a55
+	dOfLeVp0mFOE5QKBxOiA+D98GMcXra8+E/SY3pi0AGk94afblkOsoPbfFIBigHWxhj+6
+	Ku9P8eE+Cp6MWOmjtO58du2Df0yj/IVtXmB5TTgUjLA1C9vfebMPvE2IwSwfyIsFi/fL
+	JpeQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=D/7njXr0EX8p5w010V3E9p0C11YP6w/XmX9M83FTunM=;
+	b=faav4PYkxSrjADBh8w3GLufSQXciVG1e9/SvSNO3pp+hl0qGYoEDZvbuBSwDVSAnUH
+	zEretCyoMRZ0/pjzuxdC2W3lHnt7nvaaoD8eSZhWOk6gTBfZGSDbjFTe4B0oR2TxN9u+
+	04/RA3nGB7SjIl4bd7V90HUasL8FRJxqlmMY2UaFpHZjSHAS+sKi+ZkOlzex0cNpUjVW
+	w0XwJsBPZjQUKCwiSnbsCkYggnx2doyw6XQBG6sOgwIs4CCj7k5nDodmGEzA1Pwojlw6
+	K8E8XbXmNQfynD/q/Vx8/rfVI4bNW07ub22yMgO4IoaQ3kS2IGu4dohCCyIi9bfXZZHy
+	/p3Q==
+X-Gm-Message-State: ABUngvehpSQ2MhYRzeBOSPGpguOpRNYAIxk0TfkfhIVFKW5eOyndkPrV8x1gkKLQzvig6Q==
+X-Received: by 10.98.26.66 with SMTP id a63mr26914733pfa.50.1478267278983;
+	Fri, 04 Nov 2016 06:47:58 -0700 (PDT)
+Received: from 60-242-179-244.static.tpgi.com.au
+	(60-242-179-244.static.tpgi.com.au. [60.242.179.244])
+	by smtp.gmail.com with ESMTPSA id
+	f81sm20712173pfd.84.2016.11.04.06.47.55
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Fri, 04 Nov 2016 06:47:56 -0700 (PDT)
+From: Jonathan Liu <net147@gmail.com>
+To: yocto@yoctoproject.org
+Date: Sat,  5 Nov 2016 00:47:34 +1100
+Message-Id: <20161104134734.28179-1-net147@gmail.com>
+X-Mailer: git-send-email 2.10.1
+Subject: [meta-raspberrypi][PATCH v2] u-boot: Simplify boot script
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -83,122 +72,190 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 04 Nov 2016 13:32:56 -0000
-Content-Type: multipart/alternative; boundary=----------peXSI4wjSpNNpzpTEm1zM2
+X-List-Received-Date: Fri, 04 Nov 2016 13:48:04 -0000
 
-------------peXSI4wjSpNNpzpTEm1zM2
-Content-Type: text/plain; charset=iso-8859-15; format=flowed; delsp=yes
-Content-Transfer-Encoding: Quoted-Printable
+A patch is added to check if the firmware loaded a device tree blob
+into memory and set the fdt_addr_r variable if it is found. The U-Boot
+script will then read the command line arguments generated by the
+firmware from the device tree and boot the kernel with the command
+line arguments and the loaded device tree.
 
-Hi, it works fine ( dev-pkgs + DEPENDS).
+This allows things like MAC address, board revision and serial number
+to be correctly configured and options in config.txt to be used.
 
-thanks
+Signed-off-by: Jonathan Liu <net147@gmail.com>
+---
+Changes in v2:
+ - Instead of setting device_tree_address to 0x100 in config.txt, patch
+   U-Boot to detect the device tree blob address if it was loaded.
 
-Micka=EBl
+ recipes-bsp/rpi-u-boot-scr/files/boot.cmd          |  3 +
+ .../rpi-u-boot-scr/files/raspberrypi/boot.cmd      |  6 --
+ .../rpi-u-boot-scr/files/raspberrypi0/boot.cmd     |  6 --
+ .../rpi-u-boot-scr/files/raspberrypi2/boot.cmd     |  6 --
+ .../rpi-u-boot-scr/files/raspberrypi3/boot.cmd     |  6 --
+ recipes-bsp/u-boot/files/rpi-fdt-addr.patch        | 80 ++++++++++++++++++++++
+ recipes-bsp/u-boot/u-boot_%.bbappend               |  2 +
+ 7 files changed, 85 insertions(+), 24 deletions(-)
+ create mode 100644 recipes-bsp/rpi-u-boot-scr/files/boot.cmd
+ delete mode 100644 recipes-bsp/rpi-u-boot-scr/files/raspberrypi/boot.cmd
+ delete mode 100644 recipes-bsp/rpi-u-boot-scr/files/raspberrypi0/boot.cmd
+ delete mode 100644 recipes-bsp/rpi-u-boot-scr/files/raspberrypi2/boot.cmd
+ delete mode 100644 recipes-bsp/rpi-u-boot-scr/files/raspberrypi3/boot.cmd
+ create mode 100644 recipes-bsp/u-boot/files/rpi-fdt-addr.patch
 
-Le Thu, 03 Nov 2016 14:17:23 +0100, idealsim <idealsim@laposte.net> a  =
+diff --git a/recipes-bsp/rpi-u-boot-scr/files/boot.cmd b/recipes-bsp/rpi-u-boot-scr/files/boot.cmd
+new file mode 100644
+index 0000000..3f7e3b6
+--- /dev/null
++++ b/recipes-bsp/rpi-u-boot-scr/files/boot.cmd
+@@ -0,0 +1,3 @@
++fdt addr ${fdt_addr_r} && fdt get value bootargs /chosen bootargs
++fatload mmc 0:1 ${kernel_addr_r} uImage
++bootm ${kernel_addr_r} - ${fdt_addr_r}
+diff --git a/recipes-bsp/rpi-u-boot-scr/files/raspberrypi/boot.cmd b/recipes-bsp/rpi-u-boot-scr/files/raspberrypi/boot.cmd
+deleted file mode 100644
+index c86c758..0000000
+--- a/recipes-bsp/rpi-u-boot-scr/files/raspberrypi/boot.cmd
++++ /dev/null
+@@ -1,6 +0,0 @@
+-setenv fdtfile bcm2708-rpi-b.dtb
+-setenv bootargs 'earlyprintk console=tty0 console=ttyAMA0 root=/dev/mmcblk0p2 rootfstype=ext4 rootwait noinitrd'
+-mmc dev 0
+-fatload mmc 0:1 ${kernel_addr_r} uImage
+-fatload mmc 0:1 ${fdt_addr_r} ${fdtfile}
+-bootm ${kernel_addr_r} - ${fdt_addr_r}
+diff --git a/recipes-bsp/rpi-u-boot-scr/files/raspberrypi0/boot.cmd b/recipes-bsp/rpi-u-boot-scr/files/raspberrypi0/boot.cmd
+deleted file mode 100644
+index c86c758..0000000
+--- a/recipes-bsp/rpi-u-boot-scr/files/raspberrypi0/boot.cmd
++++ /dev/null
+@@ -1,6 +0,0 @@
+-setenv fdtfile bcm2708-rpi-b.dtb
+-setenv bootargs 'earlyprintk console=tty0 console=ttyAMA0 root=/dev/mmcblk0p2 rootfstype=ext4 rootwait noinitrd'
+-mmc dev 0
+-fatload mmc 0:1 ${kernel_addr_r} uImage
+-fatload mmc 0:1 ${fdt_addr_r} ${fdtfile}
+-bootm ${kernel_addr_r} - ${fdt_addr_r}
+diff --git a/recipes-bsp/rpi-u-boot-scr/files/raspberrypi2/boot.cmd b/recipes-bsp/rpi-u-boot-scr/files/raspberrypi2/boot.cmd
+deleted file mode 100644
+index aa4ea64..0000000
+--- a/recipes-bsp/rpi-u-boot-scr/files/raspberrypi2/boot.cmd
++++ /dev/null
+@@ -1,6 +0,0 @@
+-setenv fdtfile bcm2709-rpi-2-b.dtb
+-setenv bootargs 'earlyprintk console=tty0 console=ttyAMA0 root=/dev/mmcblk0p2 rootfstype=ext4 rootwait noinitrd'
+-mmc dev 0
+-fatload mmc 0:1 ${kernel_addr_r} uImage
+-fatload mmc 0:1 ${fdt_addr_r} ${fdtfile}
+-bootm ${kernel_addr_r} - ${fdt_addr_r}
+diff --git a/recipes-bsp/rpi-u-boot-scr/files/raspberrypi3/boot.cmd b/recipes-bsp/rpi-u-boot-scr/files/raspberrypi3/boot.cmd
+deleted file mode 100644
+index 2950856..0000000
+--- a/recipes-bsp/rpi-u-boot-scr/files/raspberrypi3/boot.cmd
++++ /dev/null
+@@ -1,6 +0,0 @@
+-setenv fdtfile bcm2710-rpi-3-b.dtb
+-setenv bootargs 'earlyprintk console=tty0 console=ttyAMA0 root=/dev/mmcblk0p2 rootfstype=ext4 rootwait noinitrd'
+-mmc dev 0
+-fatload mmc 0:1 ${kernel_addr_r} uImage
+-fatload mmc 0:1 ${fdt_addr_r} ${fdtfile}
+-bootm ${kernel_addr_r} - ${fdt_addr_r}
+diff --git a/recipes-bsp/u-boot/files/rpi-fdt-addr.patch b/recipes-bsp/u-boot/files/rpi-fdt-addr.patch
+new file mode 100644
+index 0000000..88eb4b5
+--- /dev/null
++++ b/recipes-bsp/u-boot/files/rpi-fdt-addr.patch
+@@ -0,0 +1,80 @@
++From 953abac0d32f0db5d45dbda963dd995c22a535d7 Mon Sep 17 00:00:00 2001
++From: Jonathan Liu <net147@gmail.com>
++Date: Sat, 5 Nov 2016 00:02:22 +1100
++Subject: [PATCH] rpi: Set fdt_addr_r to device tree address from firmware
++
++The Raspberry Pi firmware will load a patched device tree blob into
++memory if a trailer is added to the U-Boot binary indicating it is
++DT-capable using "mkknlimg --dtok" or if using firmware release 4.4
++or later and no trailer is present.
++
++In this case, U-Boot is executed as if it were the Linux kernel and
++the r2 register is set to the address of the patched device tree blob
++in memory. We can check if the blob is loaded by checking for the
++device tree magic constant 0xedfe0dd0 (little endian equivalent of
++the big endian 0xd00dfeed constant) at the address stored in r2.
++If the magic constant is present, the fdt_addr_r variable is set to
++r2 so that U-Boot scripts can access the patched device tree blob.
++
++Upstream-Status: Pending
++
++Signed-off-by: Jonathan Liu <net147@gmail.com>
++---
++ board/raspberrypi/rpi/rpi.c | 25 +++++++++++++++++++++++++
++ 1 file changed, 25 insertions(+)
++
++diff --git a/board/raspberrypi/rpi/rpi.c b/board/raspberrypi/rpi/rpi.c
++index 6245b36..75f8c6b 100644
++--- a/board/raspberrypi/rpi/rpi.c
+++++ b/board/raspberrypi/rpi/rpi.c
++@@ -23,8 +23,18 @@
++ #include <asm/armv8/mmu.h>
++ #endif
++ 
+++void save_boot_params_ret(void);
+++
++ DECLARE_GLOBAL_DATA_PTR;
++ 
+++static u32 dtb_address __attribute__ ((section(".data")));
+++
+++void save_boot_params(u32 r0, u32 r1, u32 r2, u32 r3)
+++{
+++	dtb_address = r2;
+++	save_boot_params_ret();
+++}
+++
++ static const struct bcm2835_gpio_platdata gpio_platdata = {
++ 	.base = BCM2835_GPIO_BASE,
++ };
++@@ -274,6 +284,20 @@ int dram_init(void)
++ 	return 0;
++ }
++ 
+++static void set_fdt_addr(void)
+++{
+++	u32 *dt_magic = dtb_address;
+++	char s[11];
+++
+++	if (!getenv("fdt_addr_r"))
+++		return;
+++
+++	if (*dt_magic == 0xedfe0dd0) {
+++		snprintf(s, sizeof(s), "0x%x", dtb_address);
+++		setenv("fdt_addr_r", s);
+++	}
+++}
+++
++ static void set_fdtfile(void)
++ {
++ 	const char *fdtfile;
++@@ -356,6 +380,7 @@ static void set_serial_number(void)
++ 
++ int misc_init_r(void)
++ {
+++	set_fdt_addr();
++ 	set_fdtfile();
++ 	set_usbethaddr();
++ #ifdef CONFIG_ENV_VARS_UBOOT_RUNTIME_CONFIG
++-- 
++2.10.1
++
+diff --git a/recipes-bsp/u-boot/u-boot_%.bbappend b/recipes-bsp/u-boot/u-boot_%.bbappend
+index 3781666..fbb29e9 100644
+--- a/recipes-bsp/u-boot/u-boot_%.bbappend
++++ b/recipes-bsp/u-boot/u-boot_%.bbappend
+@@ -1 +1,3 @@
++FILESEXTRAPATHS_prepend_rpi := "${THISDIR}/files:"
+ RDEPENDS_${PN}_append_rpi = " rpi-u-boot-scr"
++SRC_URI_append_rpi = " file://rpi-fdt-addr.patch"
+-- 
+2.10.1
 
-=E9crit:
 
-> Ok, i will try to add dev-pkgs to my recipe here  =
-
-> https://github.com/modjo756/meta-udoo-modjo/blob/krogoth-modjo/qt5-lay=
-er/recipes-qt/images/udoo->image-qt5.bb  =
-
-> and add udev to my local.conf.
-> I let you know if it's work...
-> Mickael
->
-> Le Thu, 03 Nov 2016 14:03:04 +0100, Burton, Ross <ross.burton@intel.co=
-m>  =
-
-> a =E9crit:
->
->>
->> On 3 November 2016 at 12:55, idealsim <idealsim@laposte.net> wrote:
->>> Thanks for your answer.
->>> It seems that i didn't have DEPENDS =3D "udev".
->>> How i can add it ?
->>>        - to my local.conf
->>>        or
->>>        - to myImage.bb
->>> Regards,
->>
->> If you want to do compiling inside the image, the easy way is to just=
-  =
-
->> add dev-pkgs to IMAGE_FEATURES for the image recipe.  This gives you =
- =
-
->> all of >>the headers for everything installed, which will include the=
-  =
-
->> udev headers assuming that your image has udev.
->>
->> Ross
->
->
->
-> --Utilisant le logiciel de courrier d'Opera : http://www.opera.com/mai=
-l/
-
-
-
--- =
-
-Utilisant le logiciel de courrier d'Opera : http://www.opera.com/mail/
-
-------------peXSI4wjSpNNpzpTEm1zM2
-Content-Type: multipart/related; boundary=----------peXSI4wjSpNNpzAvWtfsz8
-
-------------peXSI4wjSpNNpzAvWtfsz8
-Content-Type: text/html; charset=iso-8859-15
-Content-ID: <op.1478266369807.fc268c735d6a88bc@172.22.9.5>
-Content-Transfer-Encoding: Quoted-Printable
-
-<!DOCTYPE html><html><head>
-<style type=3D"text/css">body { font-family:'Times New Roman'; font-size=
-:13px}</style>
-
-<style type=3D"text/css">body { font-family:'Times New Roman'; font-size=
-:13px}</style>
-</head>
-<body><div>Hi, it works fine ( dev-pkgs + DEPENDS).</div><div><br></div>=
-<div>thanks</div><div><br></div><div>Micka=EBl&nbsp;</div><div><br></div=
-><div>Le Thu, 03 Nov 2016 14:17:23 +0100, idealsim &lt;idealsim@laposte.=
-net&gt; a =E9crit:<br></div><br><blockquote style=3D"margin: 0 0 0.80ex;=
- border-left: #0000FF 2px solid; padding-left: 1ex"><div>Ok, i will try =
-to add dev-pkgs to my recipe here https://github.com/modjo756/meta-udoo-=
-modjo/blob/krogoth-modjo/qt5-layer/recipes-qt/images/udoo-image-qt5.bb a=
-nd add udev to my local.conf.</div><div>I let you know if it's work...</=
-div><div>Mickael</div><div><br></div><div>Le Thu, 03 Nov 2016 14:03:04 +=
-0100, Burton, Ross &lt;ross.burton@intel.com&gt; a =E9crit:<br></div><br=
-><blockquote style=3D"margin: 0 0 0.80ex; border-left: #0000FF 2px solid=
-; padding-left: 1ex"><div dir=3D"ltr"><div class=3D"gmail_extra"><br><di=
-v class=3D"gmail_quote">On 3 November 2016 at 12:55, idealsim <span dir=3D=
-"ltr">&lt;<a href=3D"mailto:idealsim@laposte.net" target=3D"_blank">idea=
-lsim@laposte.net</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quo=
-te" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1=
-ex"><div id=3D":124" class=3D"a3s aXjCH m1582a430067dd664">Thanks for yo=
-ur answer.<br>
-It seems that i didn't have DEPENDS =3D "udev".<br>
-How i can add it ?<br>
-&nbsp; &nbsp; &nbsp; &nbsp; - to my local.conf<br>
-&nbsp; &nbsp; &nbsp; &nbsp; or<br>
-&nbsp; &nbsp; &nbsp; &nbsp; - to myImage.bb<br>
-Regards,<br></div></blockquote></div><br>If you want to do compiling ins=
-ide the image, the easy way is to just add dev-pkgs to IMAGE_FEATURES fo=
-r the image recipe.&nbsp; This gives you all of the headers for everythi=
-ng installed, which will include the udev headers assuming that your ima=
-ge has udev.</div><div class=3D"gmail_extra"><br></div><div class=3D"gma=
-il_extra">Ross</div></div>
-</blockquote><br><br><br><div id=3D"M2Signature"><div>-- </div><div>Util=
-isant le logiciel de courrier d'Opera : <a href=3D"http://www.opera.com/=
-mail/">http://www.opera.com/mail/</a></div></div></blockquote><br><br><b=
-r><div id=3D"M2Signature"><div>-- </div><div>Utilisant le logiciel de co=
-urrier d'Opera : <a href=3D"http://www.opera.com/mail/">http://www.opera=
-.com/mail/</a></div></div></body></html>
-
-------------peXSI4wjSpNNpzAvWtfsz8--
-
-------------peXSI4wjSpNNpzpTEm1zM2--
