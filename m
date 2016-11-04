@@ -1,68 +1,77 @@
-Return-Path: <net147@gmail.com>
+Return-Path: <idealsim@laposte.net>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B7759E00A90; Fri,  4 Nov 2016 05:14:03 -0700 (PDT)
+	id 7DDFDE00C45; Fri,  4 Nov 2016 06:32:56 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (net147[at]gmail.com)
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.220.195 listed in dnsbl.sorbs.net]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.220.195 listed in list.dnswl.org]
+	mail provider *      (idealsim[at]laposte.net)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [178.22.154.200 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qk0-f195.google.com (mail-qk0-f195.google.com
-	[209.85.220.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 93740E00A4D
-	for <yocto@yoctoproject.org>; Fri,  4 Nov 2016 05:13:56 -0700 (PDT)
-Received: by mail-qk0-f195.google.com with SMTP id o68so5670237qkf.1
-	for <yocto@yoctoproject.org>; Fri, 04 Nov 2016 05:13:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=ZQTIVGeLg3tZWE5hEskSpR3OW4SHU7sMmWGxlSccMww=;
-	b=Xq8gkPIorzlDLZtvOLHFWG1fgKUXcREleH49Z0YIBeG6Dm5PSJjm+Uj2dZvo3vv1+L
-	iAb07w6flOlKWI7SqIJKXLrmWok+0qpDXHPzxCQjkG4tt/qKcP+nPgwueoRsmdL4Cb+r
-	9AduMHsFMzIwdgwjhuqcZo6ihD7FXXZv61sWKm0llNauPQNCKrgV3Ej4s3R6LNNGECBv
-	AlJIh6aNfyS92SGYbD/FrBgzyeRK5L3nk9esMnqbx8sDTT9nbXktOytdGJadDwnLLYcx
-	ekWBYG0ueHr5HfI3roBKdo1GuPViB6FW/dQ9KaA0D5CxtLH7L9CH//HSvNpHizMRehpj
-	9ruw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=ZQTIVGeLg3tZWE5hEskSpR3OW4SHU7sMmWGxlSccMww=;
-	b=UU3X2RRBAk7wt/09Dtx5w3mwC+2pNXShxUUFnZ3KrsHfxAPQBbndCr/xS9NeF653qw
-	G1/dEdVWC1URHT6j9dKMjS7VzDxrNs7p/tSpNK/jU2m6LDcmR8xyzcCb3xLDRz1WtKlt
-	anRJ2vNwgM63S/XvAXTqGNCjJkMxaYhg9kj96zwqoZiC5gVv88eyEyeAc1E3IlJJqy0i
-	6B6Q8GpYmnRB1PLGcv2soDIml0/I/lJaOkhCydvbLINIl+aFZIn3A2xR/fSsjKvzs4pW
-	ilb0K9/PoLy//B/MWh4ZEL8zQLvXOUzHxZtcBNRkIOZUuMpznFpXyNrN9zaDToEes1Bn
-	PLMw==
-X-Gm-Message-State: ABUngveIdaa2aXIJ2T+QN/eZ9ErL3kr5s9X7oa8bRlsKeMM7icUujV/qNWYzXNirkLzgE3lYFLaXjXe+6dEiaA==
-X-Received: by 10.55.99.200 with SMTP id x191mr14637134qkb.62.1478261636128;
-	Fri, 04 Nov 2016 05:13:56 -0700 (PDT)
+Received: from smtp.laposte.net (smtpoutz300.laposte.net [178.22.154.200])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0D4DDE00ACE
+	for <yocto@yoctoproject.org>; Fri,  4 Nov 2016 06:32:51 -0700 (PDT)
+Received: from smtp.laposte.net (localhost [127.0.0.1])
+	by lpn-prd-vrout012 (Postfix) with ESMTP id 778E38D6F0
+	for <yocto@yoctoproject.org>; Fri,  4 Nov 2016 14:32:50 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=laposte.net; s=mail0;
+	t=1478266370; bh=dflQKvbJpUdPHu58cqMkF1ntaMae8QfXadGOGtwNJrQ=;
+	h=To:Cc:Subject:References:Date:From:In-Reply-To;
+	b=gXC4AVPtXwdLyles6L+avl7bvSKlctFcVneTJgJGq8sbtxVAWg+wDlcbJNGjTP9aq
+	sr7iJUgokBixvvpM4xYdxVwo3hZbleZTPmnSDMlA3XeSnJMXE1PApytYU3I68UX67s
+	1cOx8launYvc7+EppkwzRoQ8lPIRXp1Awnn1GACWC6DM6nZxrM2zbTfuNzqqygdlWf
+	F/6eczwRzYWxVn2BbveGHfPtA3I8wuUEFHRC0FkFjQ0t0qGmDY9LtNPi0xmOaRpjY3
+	kLnW3DUQ/aZwKGAvwIkqL21aKgkZiWAYbfJ0s2XfPbHMT+esYADuM4NPicymKrFyvJ
+	XD1Jtop0AXngw==
+Received: from lpn-prd-vrin001 (lpn-prd-vrin001.laposte [10.128.63.2])
+	by lpn-prd-vrout012 (Postfix) with ESMTP id 724BD8D6E8
+	for <yocto@yoctoproject.org>; Fri,  4 Nov 2016 14:32:50 +0100 (CET)
+Received: from lpn-prd-vrin001 (localhost [127.0.0.1])
+	by lpn-prd-vrin001 (Postfix) with ESMTP id 5DDA6366D6F
+	for <yocto@yoctoproject.org>; Fri,  4 Nov 2016 14:32:50 +0100 (CET)
+Received: from pc-mls.ecafaros.local (unknown [212.234.36.135])
+	by lpn-prd-vrin001 (Postfix) with ESMTPA id D3729366D18;
+	Fri,  4 Nov 2016 14:32:49 +0100 (CET)
+To: "Burton, Ross" <ross.burton@intel.com>, idealsim <idealsim@laposte.net>
+References: <op.yqcpvhydmnlnty@pc-mls.ecafaros.local>
+	<a8763b48-7566-4974-895b-f9137e4d3e38@mlbassoc.com>
+	<op.yqcrihyomnlnty@pc-mls.ecafaros.local>
+	<CAJTo0LaF1+2GDymRDs0ccs1e5s+e8uSapMgWYU78RRYbCBe3bw@mail.gmail.com>
+	<op.yqcsi9gbmnlnty@pc-mls.ecafaros.local>
+Date: Fri, 04 Nov 2016 14:32:49 +0100
 MIME-Version: 1.0
-Received: by 10.12.138.15 with HTTP; Fri, 4 Nov 2016 05:13:55 -0700 (PDT)
-In-Reply-To: <20161103221416.022ca860@nuc.betafive.co.uk>
-References: <20161101134911.11547-1-net147@gmail.com>
-	<20161103205749.610ffebc@nuc.betafive.co.uk>
-	<CANwerB2OFKovA6jWzC5oeRqvwkLEbFYiPWuPBQg8hpU__BNiQw@mail.gmail.com>
-	<20161103221416.022ca860@nuc.betafive.co.uk>
-From: Jonathan Liu <net147@gmail.com>
-Date: Fri, 4 Nov 2016 23:13:55 +1100
-Message-ID: <CANwerB1HWjzU=1cnmDnGtz8CtnLCF2uP-WHX0F+LyYh9DpRBWg@mail.gmail.com>
-To: Paul Barker <paul@paulbarker.me.uk>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi][PATCH] u-boot: Simplify boot script
+From: idealsim <idealsim@laposte.net>
+Message-ID: <op.yqenwzv3mnlnty@pc-mls.ecafaros.local>
+In-Reply-To: <op.yqcsi9gbmnlnty@pc-mls.ecafaros.local>
+User-Agent: Opera Mail/1.0 (Win32)
+X-VR-SrcIP: 212.234.36.135
+X-VR-FullState: 0
+X-VR-Score: -100
+X-VR-Cause-1: gggruggvucftvghtrhhoucdtuddrfeelvddrkeelgdehhecutefuodetggdotefrodftvfcurfhrohhf
+X-VR-Cause-2: ihhlvgemucfntefrqffuvffgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhs
+X-VR-Cause-3: ucdlqddutddtmdenucfjughrpegtvffufhffggfhkfgjfgesrgdtreertderleenucfhrhhomhepihgu
+X-VR-Cause-4: vggrlhhsihhmuceoihguvggrlhhsihhmsehlrghpohhsthgvrdhnvghtqeenucffohhmrghinhepohhp
+X-VR-Cause-5: vghrrgdrtghomhdpghhithhhuhgsrdgtohhmnecukfhppedvuddvrddvfeegrdefiedrudefheenucfr
+X-VR-Cause-6: rghrrghmpehmohguvgepshhmthhpohhuthdphhgvlhhopehptgdqmhhlshdrvggtrghfrghrohhsrdhl
+X-VR-Cause-7: ohgtrghlpdhinhgvthepvdduvddrvdefgedrfeeirddufeehpdhmrghilhhfrhhomhepihguvggrlhhs
+X-VR-Cause-8: ihhmsehlrghpohhsthgvrdhnvghtpdhrtghpthhtohepghgrrhihsehmlhgsrghsshhotgdrtghomh
+X-VR-AvState: No
+X-VR-State: 0
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	Gary Thomas <gary@mlbassoc.com>
+Subject: Re: <DKIM> Re: How to add libudev.h
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,214 +83,122 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 04 Nov 2016 12:14:03 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Fri, 04 Nov 2016 13:32:56 -0000
+Content-Type: multipart/alternative; boundary=----------peXSI4wjSpNNpzpTEm1zM2
 
-Hi Paul,
+------------peXSI4wjSpNNpzpTEm1zM2
+Content-Type: text/plain; charset=iso-8859-15; format=flowed; delsp=yes
+Content-Transfer-Encoding: Quoted-Printable
 
-On 4 November 2016 at 09:14, Paul Barker <paul@paulbarker.me.uk> wrote:
-> On Fri, 4 Nov 2016 08:55:05 +1100
-> Jonathan Liu <net147@gmail.com> wrote:
+Hi, it works fine ( dev-pkgs + DEPENDS).
+
+thanks
+
+Micka=EBl
+
+Le Thu, 03 Nov 2016 14:17:23 +0100, idealsim <idealsim@laposte.net> a  =
+
+=E9crit:
+
+> Ok, i will try to add dev-pkgs to my recipe here  =
+
+> https://github.com/modjo756/meta-udoo-modjo/blob/krogoth-modjo/qt5-lay=
+er/recipes-qt/images/udoo->image-qt5.bb  =
+
+> and add udev to my local.conf.
+> I let you know if it's work...
+> Mickael
 >
->> Hi Paul,
->>
->> On 4 November 2016 at 07:57, Paul Barker <paul@paulbarker.me.uk> wrote:
->> > On Wed,  2 Nov 2016 00:49:11 +1100
->> > Jonathan Liu <net147@gmail.com> wrote:
->> >
->> >> device_tree_address=0x100 is set in config.txt so the firmware will
->> >> load a patched device tree blob to 0x100 before passing control to
->> >> U-Boot. The U-Boot script will then read the command line arguments
->> >> generated by the firmware from the device tree and boot the kernel
->> >> with the command line arguments and the loaded device tree.
->> >>
->> >> This allows things like MAC address, board revision and serial number
->> >> to be correctly configured and options in config.txt to be used.
->> >>
->> >> Signed-off-by: Jonathan Liu <net147@gmail.com>
->> >> ---
->> >>  recipes-bsp/bootfiles/rpi-config_git.bb                | 5 +++++
->> >>  recipes-bsp/rpi-u-boot-scr/files/boot.cmd              | 3 +++
->> >>  recipes-bsp/rpi-u-boot-scr/files/raspberrypi/boot.cmd  | 6 ------
->> >>  recipes-bsp/rpi-u-boot-scr/files/raspberrypi0/boot.cmd | 6 ------
->> >>  recipes-bsp/rpi-u-boot-scr/files/raspberrypi2/boot.cmd | 6 ------
->> >>  recipes-bsp/rpi-u-boot-scr/files/raspberrypi3/boot.cmd | 6 ------
->> >>  6 files changed, 8 insertions(+), 24 deletions(-)
->> >>  create mode 100644 recipes-bsp/rpi-u-boot-scr/files/boot.cmd
->> >>  delete mode 100644 recipes-bsp/rpi-u-boot-scr/files/raspberrypi/boot.cmd
->> >>  delete mode 100644 recipes-bsp/rpi-u-boot-scr/files/raspberrypi0/boot.cmd
->> >>  delete mode 100644 recipes-bsp/rpi-u-boot-scr/files/raspberrypi2/boot.cmd
->> >>  delete mode 100644 recipes-bsp/rpi-u-boot-scr/files/raspberrypi3/boot.cmd
->> >>
->> >> diff --git a/recipes-bsp/bootfiles/rpi-config_git.bb b/recipes-bsp/bootfiles/rpi-config_git.bb
->> >> index f610718..2f4d25c 100644
->> >> --- a/recipes-bsp/bootfiles/rpi-config_git.bb
->> >> +++ b/recipes-bsp/bootfiles/rpi-config_git.bb
->> >> @@ -76,6 +76,11 @@ do_deploy() {
->> >>          echo "dispmanx_offline=1" >>${DEPLOYDIR}/bcm2835-bootfiles/config.txt
->> >>      fi
->> >>
->> >> +    # U-Boot Device Tree support
->> >> +    if [ "${KERNEL_IMAGETYPE}" = "uImage" ]; then
->> >> +        sed -i '/#device_tree_address/ c\device_tree_address=0x100' ${DEPLOYDIR}/bcm2835-bootfiles/config.txt
->> >> +    fi
->> >> +
->> >>      # SPI bus support
->> >>      if [ -n "${ENABLE_SPI_BUS}" ] || [ "${PITFT}" = "1" ]; then
->> >>          echo "# Enable SPI bus" >>${DEPLOYDIR}/bcm2835-bootfiles/config.txt
->> >> diff --git a/recipes-bsp/rpi-u-boot-scr/files/boot.cmd b/recipes-bsp/rpi-u-boot-scr/files/boot.cmd
->> >> new file mode 100644
->> >> index 0000000..3f7e3b6
->> >> --- /dev/null
->> >> +++ b/recipes-bsp/rpi-u-boot-scr/files/boot.cmd
->> >> @@ -0,0 +1,3 @@
->> >> +fdt addr ${fdt_addr_r} && fdt get value bootargs /chosen bootargs
->> >> +fatload mmc 0:1 ${kernel_addr_r} uImage
->> >> +bootm ${kernel_addr_r} - ${fdt_addr_r}
->> >>
->> >> <snip deleted files>
->> >
->> > This doesn't work for me.
->> >
->> > On RaspberryPi B+ I get no kernel messages during the boot. I do get a
->> > login prompt though and the boot is successful.
->> >
->> > On RaspberryPi 3 I don't get anything after "Starting kernel ...".
->> >
->> > https://www.raspberrypi.org/documentation/configuration/device-tree.md
->> > says:
->> >
->> >     The base Device Trees are located alongside start.elf in the FAT
->> >     partition (/boot from Linux), named bcm2708-rpi-b.dtb,
->> >     bcm2708-rpi-b-plus.dtb, bcm2708-rpi-cm.dtb, and
->> >     bcm2709-rpi-2-b.dtb.
->> >
->> > In /boot I have:
->> >
->> >     bcm2708-rpi-b.dtb
->> >     bcm2708-rpi-b-plus.dtb
->> >     bcm2709-rpi-2-b.dtb
->> >     bcm2710-rpi-3-b.dtb
->> >
->> > So my guess is that the RaspberryPi 3 isn't loading the right device
->> > tree.
->> >
->> > Is this a problem with start.elf (which we need to report upstream) or
->> > a problem with our DTB file names?
->> >
->> > I'd also say we probably have a problem with bootargs as it doesn't
->> > print out kernel messages during boot.
->> >
->> > What's the benefit of using the device tree cobbled together by
->> > start.elf instead of loading the DTB file ourselves?
->>
->> As I mentioned in the commit:
->> "This allows things like MAC address, board revision and serial number
->> to be correctly configured and options in config.txt to be used."
->>
->> So:
->> - MAC address of ethernet shown by ifconfig
->> - Output of cat /proc/cpuinfo
->>
->> Looks like the config.txt option disables the board model auto
->> detection so the device_tree= config.txt isn't automatically set
->> properly. Probably the U-Boot binary needs to modified by mkknlimg
->> --dtok instead of explicitly setting the device tree address in
->> config.txt. Will look into this later if I have time.
->>
+> Le Thu, 03 Nov 2016 14:03:04 +0100, Burton, Ross <ross.burton@intel.co=
+m>  =
+
+> a =E9crit:
 >
-> Ah ok, that makes sense.
+>>
+>> On 3 November 2016 at 12:55, idealsim <idealsim@laposte.net> wrote:
+>>> Thanks for your answer.
+>>> It seems that i didn't have DEPENDS =3D "udev".
+>>> How i can add it ?
+>>>        - to my local.conf
+>>>        or
+>>>        - to myImage.bb
+>>> Regards,
+>>
+>> If you want to do compiling inside the image, the easy way is to just=
+  =
+
+>> add dev-pkgs to IMAGE_FEATURES for the image recipe.  This gives you =
+ =
+
+>> all of >>the headers for everything installed, which will include the=
+  =
+
+>> udev headers assuming that your image has udev.
+>>
+>> Ross
 >
-> I'll have a look if there's any way to check which DTB file start.elf is
-> picking up.
 >
-> I thought mkknlimg wasn't required any more though
-> (https://github.com/raspberrypi/tools/issues/58). I'm probably just
-> hitting up against the not-well-documented bits of the RaspberryPi boot
-> process.
+>
+> --Utilisant le logiciel de courrier d'Opera : http://www.opera.com/mai=
+l/
 
-You're right. It seems the firmware from 4.4 release onward will
-enable device tree by default if there is no trailer present.
 
-Running "vcdbg log msg" shows:
-002761.625: Read command line from file 'cmdline.txt'
-dwc_otg.lpm_enable=0 console=serial0,115200 root=/dev/mmcblk0p2
-rootfstype=ext4 rootwait
-002785.056: Loading 'kernel7.img' to 0x8000 size 0x52690
-002788.710: No kernel trailer (run mkknlimg to fix) - assuming DT-capable
-002791.303: Loading 'bcm2709-rpi-2-b.dtb' to 0x5a690 size 0x3bfc
-002869.679: dtparam: pwr_led_gpio=35
-002879.048: dtparam: uart0_clkrate=48000000
-002969.703: dtparam: arm_freq=900000000
-003011.816: dtparam: core_freq=250000000
-003022.927: dtparam: cache_line_size=64
-003044.337: Device tree loaded to 0x2effbf00 (size 0x40f8)
-003047.568: gpioman: gpioman_get_pin_num: pin SDCARD_CONTROL_POWER not defined
-100942.791: vchiq_core: vchiq_init_state: slot_zero = 0xf6c80000, is_master = 1
-100947.180: hdmi: HDMI:hdmi_get_state is deprecated, use
-hdmi_get_display_state instead
-100952.267: TV service:host side not connected, dropping notification
-0x00000002, 0x00000002, 0x00000027
 
-I just copied downloaded
-https://github.com/raspberrypi/firmware/blob/master/hardfp/opt/vc/bin/vcdbg
-and https://github.com/raspberrypi/firmware/blob/master/hardfp/opt/vc/lib/libelftoolchain.so
-to my Raspberry Pi and ran "LD_LIBRARY_PATH=. ./vcdbg log msg".
+-- =
 
-Note the line "002788.710: No kernel trailer (run mkknlimg to fix) -
-assuming DT-capable".
-Sometime ago the firmware used to load the patched device tree blobs
-to 0x100 (which is the default value of fdt_addr_r in newer versions
-of U-Boot for Raspberry Pi). It seems to have changed though as can be
-seen by the line "003044.337: Device tree loaded to 0x2effbf00 (size
-0x40f8)".
+Utilisant le logiciel de courrier d'Opera : http://www.opera.com/mail/
 
-Something like this would fix it for Raspberry Pi 2:
+------------peXSI4wjSpNNpzpTEm1zM2
+Content-Type: multipart/related; boundary=----------peXSI4wjSpNNpzAvWtfsz8
 
-diff --git a/recipes-bsp/bootfiles/rpi-config_git.bb
-b/recipes-bsp/bootfiles/rpi-config_git.bb
-index 2f4d25c..f610718 100644
---- a/recipes-bsp/bootfiles/rpi-config_git.bb
-+++ b/recipes-bsp/bootfiles/rpi-config_git.bb
-@@ -76,11 +76,6 @@ do_deploy() {
-         echo "dispmanx_offline=1" >>${DEPLOYDIR}/bcm2835-bootfiles/config.txt
-     fi
+------------peXSI4wjSpNNpzAvWtfsz8
+Content-Type: text/html; charset=iso-8859-15
+Content-ID: <op.1478266369807.fc268c735d6a88bc@172.22.9.5>
+Content-Transfer-Encoding: Quoted-Printable
 
--    # U-Boot Device Tree support
--    if [ "${KERNEL_IMAGETYPE}" = "uImage" ]; then
--        sed -i '/#device_tree_address/ c\device_tree_address=0x100'
-${DEPLOYDIR}/bcm2835-bootfiles/config.txt
--    fi
--
-     # SPI bus support
-     if [ -n "${ENABLE_SPI_BUS}" ] || [ "${PITFT}" = "1" ]; then
-         echo "# Enable SPI bus" >>${DEPLOYDIR}/bcm2835-bootfiles/config.txt
-diff --git a/recipes-bsp/rpi-u-boot-scr/files/boot.cmd
-b/recipes-bsp/rpi-u-boot-scr/files/boot.cmd
-index 3f7e3b6..201272a 100644
---- a/recipes-bsp/rpi-u-boot-scr/files/boot.cmd
-+++ b/recipes-bsp/rpi-u-boot-scr/files/boot.cmd
-@@ -1,3 +1,4 @@
-+setenv fdt_addr_r 0x2effbf00
- fdt addr ${fdt_addr_r} && fdt get value bootargs /chosen bootargs
- fatload mmc 0:1 ${kernel_addr_r} uImage
- bootm ${kernel_addr_r} - ${fdt_addr_r}
+<!DOCTYPE html><html><head>
+<style type=3D"text/css">body { font-family:'Times New Roman'; font-size=
+:13px}</style>
 
-But the device tree address may change in the future and might be
-different for each Raspberry Pi model.
-I only have Raspberry Pi 2 for development.
+<style type=3D"text/css">body { font-family:'Times New Roman'; font-size=
+:13px}</style>
+</head>
+<body><div>Hi, it works fine ( dev-pkgs + DEPENDS).</div><div><br></div>=
+<div>thanks</div><div><br></div><div>Micka=EBl&nbsp;</div><div><br></div=
+><div>Le Thu, 03 Nov 2016 14:17:23 +0100, idealsim &lt;idealsim@laposte.=
+net&gt; a =E9crit:<br></div><br><blockquote style=3D"margin: 0 0 0.80ex;=
+ border-left: #0000FF 2px solid; padding-left: 1ex"><div>Ok, i will try =
+to add dev-pkgs to my recipe here https://github.com/modjo756/meta-udoo-=
+modjo/blob/krogoth-modjo/qt5-layer/recipes-qt/images/udoo-image-qt5.bb a=
+nd add udev to my local.conf.</div><div>I let you know if it's work...</=
+div><div>Mickael</div><div><br></div><div>Le Thu, 03 Nov 2016 14:03:04 +=
+0100, Burton, Ross &lt;ross.burton@intel.com&gt; a =E9crit:<br></div><br=
+><blockquote style=3D"margin: 0 0 0.80ex; border-left: #0000FF 2px solid=
+; padding-left: 1ex"><div dir=3D"ltr"><div class=3D"gmail_extra"><br><di=
+v class=3D"gmail_quote">On 3 November 2016 at 12:55, idealsim <span dir=3D=
+"ltr">&lt;<a href=3D"mailto:idealsim@laposte.net" target=3D"_blank">idea=
+lsim@laposte.net</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quo=
+te" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1=
+ex"><div id=3D":124" class=3D"a3s aXjCH m1582a430067dd664">Thanks for yo=
+ur answer.<br>
+It seems that i didn't have DEPENDS =3D "udev".<br>
+How i can add it ?<br>
+&nbsp; &nbsp; &nbsp; &nbsp; - to my local.conf<br>
+&nbsp; &nbsp; &nbsp; &nbsp; or<br>
+&nbsp; &nbsp; &nbsp; &nbsp; - to myImage.bb<br>
+Regards,<br></div></blockquote></div><br>If you want to do compiling ins=
+ide the image, the easy way is to just add dev-pkgs to IMAGE_FEATURES fo=
+r the image recipe.&nbsp; This gives you all of the headers for everythi=
+ng installed, which will include the udev headers assuming that your ima=
+ge has udev.</div><div class=3D"gmail_extra"><br></div><div class=3D"gma=
+il_extra">Ross</div></div>
+</blockquote><br><br><br><div id=3D"M2Signature"><div>-- </div><div>Util=
+isant le logiciel de courrier d'Opera : <a href=3D"http://www.opera.com/=
+mail/">http://www.opera.com/mail/</a></div></div></blockquote><br><br><b=
+r><div id=3D"M2Signature"><div>-- </div><div>Utilisant le logiciel de co=
+urrier d'Opera : <a href=3D"http://www.opera.com/mail/">http://www.opera=
+.com/mail/</a></div></div></body></html>
 
-Here are some ways to solve this:
-- Find out the memory address the blob is loaded to for each model and
-use the fdt addr command to try each one until it can parse it
-successfully. Likely to break in the future.
-- Modify U-Boot to save the device tree address from CPU register r2
-in the entry point, then the U-Boot script can try reading the device
-tree from that address.
-- Get upstream Raspberry Pi firmware to support auto-detection of
-board and loading of associated device tree, even when
-device_tree_address is set in config.txt
+------------peXSI4wjSpNNpzAvWtfsz8--
 
-Regards,
-Jonathan
-
+------------peXSI4wjSpNNpzpTEm1zM2--
