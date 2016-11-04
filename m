@@ -1,17 +1,17 @@
 Return-Path: <net147@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 11483E009DF; Fri,  4 Nov 2016 14:56:37 -0700 (PDT)
+	id 4BD0DE008E4; Fri,  4 Nov 2016 15:20:24 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (net147[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.216.196 listed in list.dnswl.org]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.220.195 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,43 +19,46 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qt0-f196.google.com (mail-qt0-f196.google.com
-	[209.85.216.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3673BE007C2
-	for <yocto@yoctoproject.org>; Fri,  4 Nov 2016 14:56:34 -0700 (PDT)
-Received: by mail-qt0-f196.google.com with SMTP id n6so3363492qtd.0
-	for <yocto@yoctoproject.org>; Fri, 04 Nov 2016 14:56:34 -0700 (PDT)
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.220.195 listed in dnsbl.sorbs.net]
+Received: from mail-qk0-f195.google.com (mail-qk0-f195.google.com
+	[209.85.220.195])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E656FE007C2
+	for <yocto@yoctoproject.org>; Fri,  4 Nov 2016 15:20:20 -0700 (PDT)
+Received: by mail-qk0-f195.google.com with SMTP id h201so6091126qke.3
+	for <yocto@yoctoproject.org>; Fri, 04 Nov 2016 15:20:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=bj45qK9N+sfSzNGqKGdG+p1LaiN1q0RJTrE8I2qzZiU=;
-	b=nYHZP77kygUPFMucP85N+LK6ZYnl+iDJsMwGL1lESBDQHIZgqsCLfPM1bis1xlhgVB
-	gzpNVitgC/W1GGTsv9g6TNSMcLAOVMvrzwo9DbUeA2LA7oPNzLtejM8WK9NVNVKog1VK
-	KXm/hpJqK9YMeo9qUj4pSA7ci1/qyPX4wxFEAUQxpPvmzWsi9Fh/OD+4GDzFXyIpUGVq
-	i/hqFPoBM2qM8UdQTjGsnJxq60Q42B847i6iAi+nle/5XU4iGudv2blkbHJ+LJiGXU/R
-	tR8yyC6bXgRH+PDwwINwUasGi1vbNJ+uyf0OONxdO2Ti8MquymwUxSdGeHb0v2mRpmAG
-	uVeQ==
+	:cc; bh=cB17jQpW3MbNXSUnv/EGRj/33LiHkLLc01gmAe7QHrE=;
+	b=AE86/Jt95H9E3GD9l6PeW+GYUj0SNnA2YyPFKMo0p5KrRzvTLDkMolVq8l6ZxbpbWZ
+	jxv5WmbWNGHwRNenIgDyrMwnZS06/U6ycG9tsIEWC7+hzzDt5mckjtNDZtlkoWWf8H3k
+	SnbtJSfTDex9s0dgJyp2IqEa8G2L4YQqiGmQ9tBCvQYxkpaa/CDcw7JbQvZTneDTqn/I
+	wVFC37ahJarexB+Q55vjI7iLaMlQ97zKwMeAX3vCwo27jlfs/2xpchBlAejGW2TLXw2j
+	3rzqspk2Vf+zPUg5u+Uo2qI0G8iBMuKuKGObSSC6jte1P9Oqe/jqVIbMh88sFTzodgVS
+	er0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=bj45qK9N+sfSzNGqKGdG+p1LaiN1q0RJTrE8I2qzZiU=;
-	b=cjQIzSErVHuaTFS3dZapEEfMFNCZU+Al/VzQ+BQGpG+Qn9wx50RPNjTkLMQHZ7z/Eo
-	ryTZr1SREIiV2X6iE4PH/ksIyO0GItwK2oayMvxoG+qIb5/ig98GP/TDwP1bC2RDvTq5
-	bYmIufuwTE3L+DTdkLU2w3BHsIS0dIyxdHg6CH9QH02cl85MhZL6xPEcI44QWso7stOn
-	Y7EWxQjXxhviE9vO7lAl2lMja3myLz/qUUYGxUolgtbqBdkrKF2dAxglQbE8d1XYGfP0
-	Bar1h3uMStX6mes+QmHwGd7aBAFZ0HojVbg5kID5S932rstKmevBdCQ5svV1Z80VOgbz
-	CdIg==
-X-Gm-Message-State: ABUngvePgYYsTmNAVz6iiH4OOvtjIxGfgFZpwAhKGgnAd7PRQ/j8DEDeeJwUXlof3gqaRTKf79GOhnHtJLwTVw==
-X-Received: by 10.237.50.129 with SMTP id z1mr16075374qtd.158.1478296594118;
-	Fri, 04 Nov 2016 14:56:34 -0700 (PDT)
+	bh=cB17jQpW3MbNXSUnv/EGRj/33LiHkLLc01gmAe7QHrE=;
+	b=J/LDYipt7JCQ6VP/UvQo8owO33Qb0zqTJV8jJ0EDNto/pLG9LsGEKW5w84jcYXS7g1
+	KxNGPHC+wCr9dmzPcna5qNYTW1u6Bt0h4JxKJ3Zp2dHy0q4P6cMZOQJRsBo3mcYkSyzb
+	wx3hTVbw4rPMame35qmphVyeMD+Wsjx7tdpqTXoM/9q0+lPP/jCYFqehZnBwbVnL1sJH
+	wfmLi6ociHWBIBuP7Azh/hEzT01flUDOvnFZJrwFFYSlw9OoK7LgklamrgE2oedFqB6i
+	P+W+41F+IYRNcOxoxnRNSvjCVB85eT9sOuDB87h2Lvq6VGAbfmoEKcmwOW4nTQ7dF7NF
+	CIjg==
+X-Gm-Message-State: ABUngvfcQLCwmR/eGMFkuidCd8wfVbQklfbcB7N1pIzUbMh5+fk3SbDLqnU1TBYRTx6ujyjXLq1+zTu531YoNw==
+X-Received: by 10.55.163.138 with SMTP id m132mr15063699qke.88.1478298019687; 
+	Fri, 04 Nov 2016 15:20:19 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.12.138.15 with HTTP; Fri, 4 Nov 2016 14:56:33 -0700 (PDT)
-In-Reply-To: <20161104191205.3de1f76b@nuc.betafive.co.uk>
+Received: by 10.12.138.15 with HTTP; Fri, 4 Nov 2016 15:20:19 -0700 (PDT)
+In-Reply-To: <CANwerB1NQhjOxn=mFmH_XkQGeOaMj=N3kvKCgepzajoiuTaYuw@mail.gmail.com>
 References: <20161104134734.28179-1-net147@gmail.com>
 	<20161104191205.3de1f76b@nuc.betafive.co.uk>
+	<CANwerB1NQhjOxn=mFmH_XkQGeOaMj=N3kvKCgepzajoiuTaYuw@mail.gmail.com>
 From: Jonathan Liu <net147@gmail.com>
-Date: Sat, 5 Nov 2016 08:56:33 +1100
-Message-ID: <CANwerB1NQhjOxn=mFmH_XkQGeOaMj=N3kvKCgepzajoiuTaYuw@mail.gmail.com>
+Date: Sat, 5 Nov 2016 09:20:19 +1100
+Message-ID: <CANwerB3H7yW8eXU7VzR8gJwUYFiP0V0ytjGjiDJNO1NpCUeWPA@mail.gmail.com>
 To: Paul Barker <paul@paulbarker.me.uk>
 Cc: Yocto Project <yocto@yoctoproject.org>
 Subject: Re: [meta-raspberrypi][PATCH v2] u-boot: Simplify boot script
@@ -70,47 +73,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 04 Nov 2016 21:56:37 -0000
+X-List-Received-Date: Fri, 04 Nov 2016 22:20:24 -0000
 Content-Type: text/plain; charset=UTF-8
 
-Hi Paul,
-
-On 5 November 2016 at 06:12, Paul Barker <paul@paulbarker.me.uk> wrote:
-> On Sat,  5 Nov 2016 00:47:34 +1100
-> Jonathan Liu <net147@gmail.com> wrote:
+On 5 November 2016 at 08:56, Jonathan Liu <net147@gmail.com> wrote:
+> Hi Paul,
 >
->> A patch is added to check if the firmware loaded a device tree blob
->> into memory and set the fdt_addr_r variable if it is found. The U-Boot
->> script will then read the command line arguments generated by the
->> firmware from the device tree and boot the kernel with the command
->> line arguments and the loaded device tree.
+> On 5 November 2016 at 06:12, Paul Barker <paul@paulbarker.me.uk> wrote:
+>> On Sat,  5 Nov 2016 00:47:34 +1100
+>> Jonathan Liu <net147@gmail.com> wrote:
 >>
->> This allows things like MAC address, board revision and serial number
->> to be correctly configured and options in config.txt to be used.
+>>> A patch is added to check if the firmware loaded a device tree blob
+>>> into memory and set the fdt_addr_r variable if it is found. The U-Boot
+>>> script will then read the command line arguments generated by the
+>>> firmware from the device tree and boot the kernel with the command
+>>> line arguments and the loaded device tree.
+>>>
+>>> This allows things like MAC address, board revision and serial number
+>>> to be correctly configured and options in config.txt to be used.
+>>>
+>>> Signed-off-by: Jonathan Liu <net147@gmail.com>
+>>> ---
+>>> Changes in v2:
+>>>  - Instead of setting device_tree_address to 0x100 in config.txt, patch
+>>>    U-Boot to detect the device tree blob address if it was loaded.
+>>>
 >>
->> Signed-off-by: Jonathan Liu <net147@gmail.com>
->> ---
->> Changes in v2:
->>  - Instead of setting device_tree_address to 0x100 in config.txt, patch
->>    U-Boot to detect the device tree blob address if it was loaded.
+>> I've tested this on the HW I have access to but I'm still running into
+>> problems.
 >>
->
-> I've tested this on the HW I have access to but I'm still running into
-> problems.
->
-> RaspberryPi B+: Fails with "Could not find a valid device tree"
-> message. I need to debug this further.
->
-> RaspberryPi 3: Boots successfully. However "earlyprintk" is missing
-> from the bootargs so we miss kernel messages which may be useful for
-> debug.
+>> RaspberryPi B+: Fails with "Could not find a valid device tree"
+>> message. I need to debug this further.
 
-You can do one of the following:
-- Add CMDLINE_append = " earlyprintk" to local.conf or distro conf
-- Modify cmdline.txt on the SD card boot partition and add earlyprintk
+To debug booting with device tree:
+1. Build image without U-Boot (alternatively you can manually type in
+the U-Boot script commands you had previously for Raspberry Pi 1 at
+the U-Boot prompt after interrupting auto-boot)
+2. Add dtdebug=on to config.txt
+3. Boot
+4. Copy vcdbg and libelftoolchain.so to Raspberry Pi 1 and run
+"LD_LIBRARY_PATH=. ./vcdbg log msg"
 
-I didn't want to make any assumptions.
-
-Regards,
-Jonathan
+>>
+>> RaspberryPi 3: Boots successfully. However "earlyprintk" is missing
+>> from the bootargs so we miss kernel messages which may be useful for
+>> debug.
+>
+> You can do one of the following:
+> - Add CMDLINE_append = " earlyprintk" to local.conf or distro conf
+> - Modify cmdline.txt on the SD card boot partition and add earlyprintk
+>
+> I didn't want to make any assumptions.
 
