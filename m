@@ -1,66 +1,72 @@
-Return-Path: <net147@gmail.com>
+Return-Path: <dinhn@cisco.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id ED37CE00BB0; Fri,  4 Nov 2016 06:48:03 -0700 (PDT)
+	id CB43EE00BB0; Fri,  4 Nov 2016 08:09:52 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_LOW,
-	RCVD_IN_SORBS_SPAM autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (net147[at]gmail.com)
+X-Spam-Status: No, score=-14.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_HI,SPF_HELO_PASS,
+	USER_IN_DEF_DKIM_WL autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* -7.5 USER_IN_DEF_DKIM_WL From: address is in the default DKIM
+	white-list
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.192.196 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.192.196 listed in dnsbl.sorbs.net]
-Received: from mail-pf0-f196.google.com (mail-pf0-f196.google.com
-	[209.85.192.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BF73FE00ACE
-	for <yocto@yoctoproject.org>; Fri,  4 Nov 2016 06:48:00 -0700 (PDT)
-Received: by mail-pf0-f196.google.com with SMTP id y68so8034752pfb.1
-	for <yocto@yoctoproject.org>; Fri, 04 Nov 2016 06:48:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id;
-	bh=D/7njXr0EX8p5w010V3E9p0C11YP6w/XmX9M83FTunM=;
-	b=X3z2I7sNpkXX9tfxSjMxJCuQh068SACEYeck5nudXR48dAF25/xIIm2qtEns+LUxzp
-	U1397hgVhrEttwhG2CDwSQ2gM3h0AXSDVQ9TWiBPjsK4XKiCYRO3OZf4Z3V2EuuvSbJZ
-	mcGiMGCu1yGB7ulcfzJwsV3QCCGs8/yjdqiMA53QqEl9hkjN7CDkE3g8p4HO4UcK/a55
-	dOfLeVp0mFOE5QKBxOiA+D98GMcXra8+E/SY3pi0AGk94afblkOsoPbfFIBigHWxhj+6
-	Ku9P8eE+Cp6MWOmjtO58du2Df0yj/IVtXmB5TTgUjLA1C9vfebMPvE2IwSwfyIsFi/fL
-	JpeQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=D/7njXr0EX8p5w010V3E9p0C11YP6w/XmX9M83FTunM=;
-	b=faav4PYkxSrjADBh8w3GLufSQXciVG1e9/SvSNO3pp+hl0qGYoEDZvbuBSwDVSAnUH
-	zEretCyoMRZ0/pjzuxdC2W3lHnt7nvaaoD8eSZhWOk6gTBfZGSDbjFTe4B0oR2TxN9u+
-	04/RA3nGB7SjIl4bd7V90HUasL8FRJxqlmMY2UaFpHZjSHAS+sKi+ZkOlzex0cNpUjVW
-	w0XwJsBPZjQUKCwiSnbsCkYggnx2doyw6XQBG6sOgwIs4CCj7k5nDodmGEzA1Pwojlw6
-	K8E8XbXmNQfynD/q/Vx8/rfVI4bNW07ub22yMgO4IoaQ3kS2IGu4dohCCyIi9bfXZZHy
-	/p3Q==
-X-Gm-Message-State: ABUngvehpSQ2MhYRzeBOSPGpguOpRNYAIxk0TfkfhIVFKW5eOyndkPrV8x1gkKLQzvig6Q==
-X-Received: by 10.98.26.66 with SMTP id a63mr26914733pfa.50.1478267278983;
-	Fri, 04 Nov 2016 06:47:58 -0700 (PDT)
-Received: from 60-242-179-244.static.tpgi.com.au
-	(60-242-179-244.static.tpgi.com.au. [60.242.179.244])
-	by smtp.gmail.com with ESMTPSA id
-	f81sm20712173pfd.84.2016.11.04.06.47.55
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 04 Nov 2016 06:47:56 -0700 (PDT)
-From: Jonathan Liu <net147@gmail.com>
-To: yocto@yoctoproject.org
-Date: Sat,  5 Nov 2016 00:47:34 +1100
-Message-Id: <20161104134734.28179-1-net147@gmail.com>
-X-Mailer: git-send-email 2.10.1
-Subject: [meta-raspberrypi][PATCH v2] u-boot: Simplify boot script
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [173.37.142.88 listed in list.dnswl.org]
+Received: from alln-iport-1.cisco.com (alln-iport-1.cisco.com [173.37.142.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7DFD4E00ACE
+	for <yocto@yoctoproject.org>; Fri,  4 Nov 2016 08:09:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+	d=cisco.com; i=@cisco.com; l=3284; q=dns/txt; s=iport;
+	t=1478272189; x=1479481789;
+	h=from:to:subject:date:message-id:mime-version;
+	bh=AyoYp6sBwvGXF8mKepxFfvFW+bXdgaS9J6kWeMNqFC4=;
+	b=Ba3PILG8Sk46fnhECcHdjPle22LYB4efDfT5hMY2dXWpXKISjaIPVhD+
+	91GrNi2YFngS+g/5gfyHqAH6x77bqABCScdOBQoj1KQKMv9uhjPvowwvC
+	wbTJP/+Mg+jOSZ1OsNP88ZXrG35TisPZYZSFsYm8H3A/zXjKK6XUOfd7o I=;
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A0DnBAA9pBxY/49dJa1dHAEBBAEBCgEBg?=
+	=?us-ascii?q?nM7AQEBAQEfWHwHs1+DCYIPgggghh+BfEATAQIBAQEBAQEBYh0LhGgjaAEMAT0?=
+	=?us-ascii?q?CBDAnBIhrn16Peo0DAQEBAQEBBAEBAQEBAQEBAQEBHIY/gX2KIy2CLwWaIwGGM?=
+	=?us-ascii?q?4MMBYZ7gW5OhCGJLZEkAR8BNWyFIXKGaIEMAQEB?=
+X-IronPort-AV: E=Sophos;i="5.31,443,1473120000"; 
+	d="scan'208,217";a="344321745"
+Received: from rcdn-core-7.cisco.com ([173.37.93.143])
+	by alln-iport-1.cisco.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	04 Nov 2016 15:09:47 +0000
+Received: from XCH-RTP-004.cisco.com (xch-rtp-004.cisco.com [64.101.220.144])
+	by rcdn-core-7.cisco.com (8.14.5/8.14.5) with ESMTP id uA4F9ljk008160
+	(version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=FAIL)
+	for <yocto@yoctoproject.org>; Fri, 4 Nov 2016 15:09:47 GMT
+Received: from xch-rtp-002.cisco.com (64.101.220.142) by XCH-RTP-004.cisco.com
+	(64.101.220.144) with Microsoft SMTP Server (TLS) id 15.0.1210.3;
+	Fri, 4 Nov 2016 11:09:46 -0400
+Received: from xch-rtp-002.cisco.com ([64.101.220.142]) by
+	XCH-RTP-002.cisco.com ([64.101.220.142]) with mapi id 15.00.1210.000;
+	Fri, 4 Nov 2016 11:09:46 -0400
+From: "Dinh Nguyen (dinhn)" <dinhn@cisco.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Yocto : QA issue: package qlibc-dbg contains bad RPATH 
+Thread-Index: AQHSNq16vmh4rdIsNEmUhoYDEGxJAg==
+Date: Fri, 4 Nov 2016 15:09:46 +0000
+Message-ID: <560994DC-02C8-4A2C-B489-646F9DBBF7EF@cisco.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Microsoft-MacOutlook/f.15.1.160411
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.24.102.175]
+MIME-Version: 1.0
+Subject: Yocto : QA issue: package qlibc-dbg contains bad RPATH
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,190 +78,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 04 Nov 2016 13:48:04 -0000
+X-List-Received-Date: Fri, 04 Nov 2016 15:09:52 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_560994DC02C84A2CB489646F9DBBF7EFciscocom_"
 
-A patch is added to check if the firmware loaded a device tree blob
-into memory and set the fdt_addr_r variable if it is found. The U-Boot
-script will then read the command line arguments generated by the
-firmware from the device tree and boot the kernel with the command
-line arguments and the loaded device tree.
+--_000_560994DC02C84A2CB489646F9DBBF7EFciscocom_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-This allows things like MAC address, board revision and serial number
-to be correctly configured and options in config.txt to be used.
+SGkgWW9jdG8gR3VydXMsDQoNCkVSUk9SOiBRQSBJc3N1ZTogcGFja2FnZSBxbGliYy1kYmcgY29u
+dGFpbnMgYmFkIFJQQVRIIC9tZWRpYS9yYWdodXJhbS9kYXRhL2RpbmhuL2lveERldkxhdGVzdC9p
+b3hzZGsveXBfcWxpYmMzMi90bXAvd29yay9wcGNlNTAwdjItcG9reS1saW51eC1nbnVzcGUvcWxp
+YmMvMS4wLXIwL2dpdC9saWIgaW4gZmlsZSAvbWVkaWEvcmFnaHVyYW0vZGF0YS9kaW5obi9pb3hE
+ZXZMYXRlc3QvaW94c2RrL3lwX3FsaWJjMzIvdG1wL3dvcmsvcHBjZTUwMHYyLXBva3ktbGludXgt
+Z251c3BlL3FsaWJjLzEuMC1yMC9wYWNrYWdlcy1zcGxpdC9xbGliYy1kYmcvdXNyL2xpYi9saWJx
+bGliY2V4dC5zbyBbcnBhdGhzXQ0KRVJST1I6IFFBIHJ1biBmb3VuZCBmYXRhbCBlcnJvcnMuIFBs
+ZWFzZSBjb25zaWRlciBmaXhpbmcgdGhlbS4NCg0KDQpJIGFtIGFibGUgdG8gY29tcGlsZSBhbmQg
+YnVpbGQgSVBLIHBhY2thZ2UgZm9yIHFsaWJjIHJlY2lwZS4gQnV0IGl0IHRoZSBhYm92ZSBRQSBp
+c3N1ZSwgd2hpY2ggaW5kaWNhdGUgcGFja2FnZSBxbGliYy1kYmcgaGFzIGEgYmFkIFJQQVRILg0K
+QW55IGlkZWEgaG93IHRvIHNvbHZlIHRoaXM/DQoNCk1hbnkgdGhhbmtzIGluIGFkdmFuY2UNCiAg
+4oCURGluaA0K
 
-Signed-off-by: Jonathan Liu <net147@gmail.com>
----
-Changes in v2:
- - Instead of setting device_tree_address to 0x100 in config.txt, patch
-   U-Boot to detect the device tree blob address if it was loaded.
+--_000_560994DC02C84A2CB489646F9DBBF7EFciscocom_
+Content-Type: text/html; charset="utf-8"
+Content-ID: <AD5A19E63AF67C45BA5B28CF6615B0D5@emea.cisco.com>
+Content-Transfer-Encoding: base64
 
- recipes-bsp/rpi-u-boot-scr/files/boot.cmd          |  3 +
- .../rpi-u-boot-scr/files/raspberrypi/boot.cmd      |  6 --
- .../rpi-u-boot-scr/files/raspberrypi0/boot.cmd     |  6 --
- .../rpi-u-boot-scr/files/raspberrypi2/boot.cmd     |  6 --
- .../rpi-u-boot-scr/files/raspberrypi3/boot.cmd     |  6 --
- recipes-bsp/u-boot/files/rpi-fdt-addr.patch        | 80 ++++++++++++++++++++++
- recipes-bsp/u-boot/u-boot_%.bbappend               |  2 +
- 7 files changed, 85 insertions(+), 24 deletions(-)
- create mode 100644 recipes-bsp/rpi-u-boot-scr/files/boot.cmd
- delete mode 100644 recipes-bsp/rpi-u-boot-scr/files/raspberrypi/boot.cmd
- delete mode 100644 recipes-bsp/rpi-u-boot-scr/files/raspberrypi0/boot.cmd
- delete mode 100644 recipes-bsp/rpi-u-boot-scr/files/raspberrypi2/boot.cmd
- delete mode 100644 recipes-bsp/rpi-u-boot-scr/files/raspberrypi3/boot.cmd
- create mode 100644 recipes-bsp/u-boot/files/rpi-fdt-addr.patch
+PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
+dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjwvaGVhZD4NCjxib2R5IHN0eWxlPSJ3b3JkLXdy
+YXA6IGJyZWFrLXdvcmQ7IC13ZWJraXQtbmJzcC1tb2RlOiBzcGFjZTsgLXdlYmtpdC1saW5lLWJy
+ZWFrOiBhZnRlci13aGl0ZS1zcGFjZTsgZm9udC1zaXplOiAxNHB4OyBmb250LWZhbWlseTogQ2Fs
+aWJyaSwgc2Fucy1zZXJpZjsiPg0KPGRpdiBzdHlsZT0iY29sb3I6IHJnYigwLCAwLCAwKTsiPkhp
+IFlvY3RvIEd1cnVzLDwvZGl2Pg0KPGRpdiBzdHlsZT0iY29sb3I6IHJnYigwLCAwLCAwKTsiPjxi
+cj4NCjwvZGl2Pg0KPGRpdj4NCjxkaXY+RVJST1I6IDxmb250IGNvbG9yPSIjZmYwMDAwIj5RQSBJ
+c3N1ZTogcGFja2FnZSBxbGliYy1kYmcgY29udGFpbnMgYmFkIFJQQVRIPC9mb250PiAvbWVkaWEv
+cmFnaHVyYW0vZGF0YS9kaW5obi9pb3hEZXZMYXRlc3QvaW94c2RrL3lwX3FsaWJjMzIvdG1wL3dv
+cmsvcHBjZTUwMHYyLXBva3ktbGludXgtZ251c3BlL3FsaWJjLzEuMC1yMC9naXQvbGliIGluIGZp
+bGUgL21lZGlhL3JhZ2h1cmFtL2RhdGEvZGluaG4vaW94RGV2TGF0ZXN0L2lveHNkay95cF9xbGli
+YzMyL3RtcC93b3JrL3BwY2U1MDB2Mi1wb2t5LWxpbnV4LWdudXNwZS9xbGliYy8xLjAtcjAvcGFj
+a2FnZXMtc3BsaXQvcWxpYmMtZGJnL3Vzci9saWIvbGlicWxpYmNleHQuc28NCiBbcnBhdGhzXTwv
+ZGl2Pg0KPGRpdiBzdHlsZT0iY29sb3I6IHJnYigwLCAwLCAwKTsiPkVSUk9SOiBRQSBydW4gZm91
+bmQgZmF0YWwgZXJyb3JzLiBQbGVhc2UgY29uc2lkZXIgZml4aW5nIHRoZW0uPC9kaXY+DQo8L2Rp
+dj4NCjxkaXYgc3R5bGU9ImNvbG9yOiByZ2IoMCwgMCwgMCk7Ij48YnI+DQo8L2Rpdj4NCjxkaXYg
+c3R5bGU9ImNvbG9yOiByZ2IoMCwgMCwgMCk7Ij48YnI+DQo8L2Rpdj4NCjxkaXYgc3R5bGU9ImNv
+bG9yOiByZ2IoMCwgMCwgMCk7Ij5JIGFtIGFibGUgdG8gY29tcGlsZSBhbmQgYnVpbGQgSVBLIHBh
+Y2thZ2UgZm9yIHFsaWJjIHJlY2lwZS4gQnV0IGl0IHRoZSBhYm92ZSBRQSBpc3N1ZSwgd2hpY2gg
+aW5kaWNhdGUgcGFja2FnZSBxbGliYy1kYmcgaGFzIGEgYmFkIFJQQVRILiZuYnNwOzwvZGl2Pg0K
+PGRpdiBzdHlsZT0iY29sb3I6IHJnYigwLCAwLCAwKTsiPkFueSBpZGVhIGhvdyB0byBzb2x2ZSB0
+aGlzPzwvZGl2Pg0KPGRpdiBzdHlsZT0iY29sb3I6IHJnYigwLCAwLCAwKTsiPjxicj4NCjwvZGl2
+Pg0KPGRpdiBzdHlsZT0iY29sb3I6IHJnYigwLCAwLCAwKTsiPk1hbnkgdGhhbmtzIGluIGFkdmFu
+Y2U8L2Rpdj4NCjxkaXYgc3R5bGU9ImNvbG9yOiByZ2IoMCwgMCwgMCk7Ij4mbmJzcDsg4oCURGlu
+aCZuYnNwOzwvZGl2Pg0KPGRpdiBzdHlsZT0iY29sb3I6IHJnYigwLCAwLCAwKTsiPg0KPGRpdiBp
+ZD0iTUFDX09VVExPT0tfU0lHTkFUVVJFIj48L2Rpdj4NCjwvZGl2Pg0KPC9ib2R5Pg0KPC9odG1s
+Pg0K
 
-diff --git a/recipes-bsp/rpi-u-boot-scr/files/boot.cmd b/recipes-bsp/rpi-u-boot-scr/files/boot.cmd
-new file mode 100644
-index 0000000..3f7e3b6
---- /dev/null
-+++ b/recipes-bsp/rpi-u-boot-scr/files/boot.cmd
-@@ -0,0 +1,3 @@
-+fdt addr ${fdt_addr_r} && fdt get value bootargs /chosen bootargs
-+fatload mmc 0:1 ${kernel_addr_r} uImage
-+bootm ${kernel_addr_r} - ${fdt_addr_r}
-diff --git a/recipes-bsp/rpi-u-boot-scr/files/raspberrypi/boot.cmd b/recipes-bsp/rpi-u-boot-scr/files/raspberrypi/boot.cmd
-deleted file mode 100644
-index c86c758..0000000
---- a/recipes-bsp/rpi-u-boot-scr/files/raspberrypi/boot.cmd
-+++ /dev/null
-@@ -1,6 +0,0 @@
--setenv fdtfile bcm2708-rpi-b.dtb
--setenv bootargs 'earlyprintk console=tty0 console=ttyAMA0 root=/dev/mmcblk0p2 rootfstype=ext4 rootwait noinitrd'
--mmc dev 0
--fatload mmc 0:1 ${kernel_addr_r} uImage
--fatload mmc 0:1 ${fdt_addr_r} ${fdtfile}
--bootm ${kernel_addr_r} - ${fdt_addr_r}
-diff --git a/recipes-bsp/rpi-u-boot-scr/files/raspberrypi0/boot.cmd b/recipes-bsp/rpi-u-boot-scr/files/raspberrypi0/boot.cmd
-deleted file mode 100644
-index c86c758..0000000
---- a/recipes-bsp/rpi-u-boot-scr/files/raspberrypi0/boot.cmd
-+++ /dev/null
-@@ -1,6 +0,0 @@
--setenv fdtfile bcm2708-rpi-b.dtb
--setenv bootargs 'earlyprintk console=tty0 console=ttyAMA0 root=/dev/mmcblk0p2 rootfstype=ext4 rootwait noinitrd'
--mmc dev 0
--fatload mmc 0:1 ${kernel_addr_r} uImage
--fatload mmc 0:1 ${fdt_addr_r} ${fdtfile}
--bootm ${kernel_addr_r} - ${fdt_addr_r}
-diff --git a/recipes-bsp/rpi-u-boot-scr/files/raspberrypi2/boot.cmd b/recipes-bsp/rpi-u-boot-scr/files/raspberrypi2/boot.cmd
-deleted file mode 100644
-index aa4ea64..0000000
---- a/recipes-bsp/rpi-u-boot-scr/files/raspberrypi2/boot.cmd
-+++ /dev/null
-@@ -1,6 +0,0 @@
--setenv fdtfile bcm2709-rpi-2-b.dtb
--setenv bootargs 'earlyprintk console=tty0 console=ttyAMA0 root=/dev/mmcblk0p2 rootfstype=ext4 rootwait noinitrd'
--mmc dev 0
--fatload mmc 0:1 ${kernel_addr_r} uImage
--fatload mmc 0:1 ${fdt_addr_r} ${fdtfile}
--bootm ${kernel_addr_r} - ${fdt_addr_r}
-diff --git a/recipes-bsp/rpi-u-boot-scr/files/raspberrypi3/boot.cmd b/recipes-bsp/rpi-u-boot-scr/files/raspberrypi3/boot.cmd
-deleted file mode 100644
-index 2950856..0000000
---- a/recipes-bsp/rpi-u-boot-scr/files/raspberrypi3/boot.cmd
-+++ /dev/null
-@@ -1,6 +0,0 @@
--setenv fdtfile bcm2710-rpi-3-b.dtb
--setenv bootargs 'earlyprintk console=tty0 console=ttyAMA0 root=/dev/mmcblk0p2 rootfstype=ext4 rootwait noinitrd'
--mmc dev 0
--fatload mmc 0:1 ${kernel_addr_r} uImage
--fatload mmc 0:1 ${fdt_addr_r} ${fdtfile}
--bootm ${kernel_addr_r} - ${fdt_addr_r}
-diff --git a/recipes-bsp/u-boot/files/rpi-fdt-addr.patch b/recipes-bsp/u-boot/files/rpi-fdt-addr.patch
-new file mode 100644
-index 0000000..88eb4b5
---- /dev/null
-+++ b/recipes-bsp/u-boot/files/rpi-fdt-addr.patch
-@@ -0,0 +1,80 @@
-+From 953abac0d32f0db5d45dbda963dd995c22a535d7 Mon Sep 17 00:00:00 2001
-+From: Jonathan Liu <net147@gmail.com>
-+Date: Sat, 5 Nov 2016 00:02:22 +1100
-+Subject: [PATCH] rpi: Set fdt_addr_r to device tree address from firmware
-+
-+The Raspberry Pi firmware will load a patched device tree blob into
-+memory if a trailer is added to the U-Boot binary indicating it is
-+DT-capable using "mkknlimg --dtok" or if using firmware release 4.4
-+or later and no trailer is present.
-+
-+In this case, U-Boot is executed as if it were the Linux kernel and
-+the r2 register is set to the address of the patched device tree blob
-+in memory. We can check if the blob is loaded by checking for the
-+device tree magic constant 0xedfe0dd0 (little endian equivalent of
-+the big endian 0xd00dfeed constant) at the address stored in r2.
-+If the magic constant is present, the fdt_addr_r variable is set to
-+r2 so that U-Boot scripts can access the patched device tree blob.
-+
-+Upstream-Status: Pending
-+
-+Signed-off-by: Jonathan Liu <net147@gmail.com>
-+---
-+ board/raspberrypi/rpi/rpi.c | 25 +++++++++++++++++++++++++
-+ 1 file changed, 25 insertions(+)
-+
-+diff --git a/board/raspberrypi/rpi/rpi.c b/board/raspberrypi/rpi/rpi.c
-+index 6245b36..75f8c6b 100644
-+--- a/board/raspberrypi/rpi/rpi.c
-++++ b/board/raspberrypi/rpi/rpi.c
-+@@ -23,8 +23,18 @@
-+ #include <asm/armv8/mmu.h>
-+ #endif
-+ 
-++void save_boot_params_ret(void);
-++
-+ DECLARE_GLOBAL_DATA_PTR;
-+ 
-++static u32 dtb_address __attribute__ ((section(".data")));
-++
-++void save_boot_params(u32 r0, u32 r1, u32 r2, u32 r3)
-++{
-++	dtb_address = r2;
-++	save_boot_params_ret();
-++}
-++
-+ static const struct bcm2835_gpio_platdata gpio_platdata = {
-+ 	.base = BCM2835_GPIO_BASE,
-+ };
-+@@ -274,6 +284,20 @@ int dram_init(void)
-+ 	return 0;
-+ }
-+ 
-++static void set_fdt_addr(void)
-++{
-++	u32 *dt_magic = dtb_address;
-++	char s[11];
-++
-++	if (!getenv("fdt_addr_r"))
-++		return;
-++
-++	if (*dt_magic == 0xedfe0dd0) {
-++		snprintf(s, sizeof(s), "0x%x", dtb_address);
-++		setenv("fdt_addr_r", s);
-++	}
-++}
-++
-+ static void set_fdtfile(void)
-+ {
-+ 	const char *fdtfile;
-+@@ -356,6 +380,7 @@ static void set_serial_number(void)
-+ 
-+ int misc_init_r(void)
-+ {
-++	set_fdt_addr();
-+ 	set_fdtfile();
-+ 	set_usbethaddr();
-+ #ifdef CONFIG_ENV_VARS_UBOOT_RUNTIME_CONFIG
-+-- 
-+2.10.1
-+
-diff --git a/recipes-bsp/u-boot/u-boot_%.bbappend b/recipes-bsp/u-boot/u-boot_%.bbappend
-index 3781666..fbb29e9 100644
---- a/recipes-bsp/u-boot/u-boot_%.bbappend
-+++ b/recipes-bsp/u-boot/u-boot_%.bbappend
-@@ -1 +1,3 @@
-+FILESEXTRAPATHS_prepend_rpi := "${THISDIR}/files:"
- RDEPENDS_${PN}_append_rpi = " rpi-u-boot-scr"
-+SRC_URI_append_rpi = " file://rpi-fdt-addr.patch"
--- 
-2.10.1
-
-
+--_000_560994DC02C84A2CB489646F9DBBF7EFciscocom_--
