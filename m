@@ -1,6 +1,6 @@
 Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B44C5E0097C; Sun,  6 Nov 2016 02:56:26 -0800 (PST)
+	id 2EDE8E009B1; Sun,  6 Nov 2016 02:57:18 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -16,47 +16,47 @@ X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 Received: from mail-wm0-f67.google.com (mail-wm0-f67.google.com [74.125.82.67])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3E88CE00951
-	for <yocto@yoctoproject.org>; Sun,  6 Nov 2016 02:56:22 -0800 (PST)
-Received: by mail-wm0-f67.google.com with SMTP id c17so11321194wmc.3
-	for <yocto@yoctoproject.org>; Sun, 06 Nov 2016 02:56:22 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 71A54E0095F
+	for <yocto@yoctoproject.org>; Sun,  6 Nov 2016 02:57:15 -0800 (PST)
+Received: by mail-wm0-f67.google.com with SMTP id p190so11374490wmp.1
+	for <yocto@yoctoproject.org>; Sun, 06 Nov 2016 02:57:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=X0OAibZ2nCaLubrBRDYUf3Bs87MAjRqV6uM6Iq69xOc=;
-	b=Zt4QQcCyaHa97u6UAgJDwE5cPcXfuEEw2qwyH5NnvTeM3JlISl7KHeoQnK+ush9BP2
-	UyerKLUbQfzfI4sQYXqNfoMdZ2BlcqTmHHQCto/GSL8i61NW4OAWDv520+k6e12hE7i0
-	pM0EFIOxqX4zqI4Pc1zM1s1r+9BUKZjz6QObOSBNTyjYW1gulYX/QZX6VusoPvv8GvSa
-	qqj9OJZC2BYbkLhlI2mEch9Z+mGtrQP5RR9+zBnz7tdfITs/maaW9B5Y0/hvE3oPLBFq
-	wv+sWoUM5lCl8RRGMxBd0ogz1U+g69qbgmejn/0uphs6cmfvc4jPISkMHxCmx22ip2uf
-	g9rA==
+	:cc; bh=3si/2Thby6pPttmb1LSY8wn4HS10P2Dv4p9vUiWhHCQ=;
+	b=k6FiJp5rMr8TdJqO7/WP9jXEtlBxm+xAmels72mMyHB/Xwyy4fTG5fF92/Y4Fo/ftB
+	+pv7YTbRqGf8Y8lr68gQMIOYMP0LY3AAaLW2vSmEI2KUx1On5CsfqifJb071GdAGcC5Y
+	7ZAUy8mkSAzN1Uz3+WW1sL2Ob+8OEfzX74zQEf6n+XFILeYKyQuf6vOQlY/Z+4vd8FOw
+	1GvX04KOEKYNqBngAyiwvEoFaoL+z5fsBqFTlm78xbYf+CRoT0qIvvh3tPQCwune8u4i
+	YdO726WBHjVheWfRjlgY//o7yS+ua5MSMUw7VOwMob1fTqZJUIGFgSe9Oj9HgaMMEIfO
+	NfRg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=X0OAibZ2nCaLubrBRDYUf3Bs87MAjRqV6uM6Iq69xOc=;
-	b=g11lz27+h2EEZcr7drvWNc6vknsRAdM1LUnv3o6ofInq+ZhfI4NyQd1xyMR8lm8GUg
-	FnDBwdabEJn/5uPQQyded+ts465G9Fpmg/9rjJ5bOEadRIHFfjTqjP1CGgtD5DoFWiSC
-	R8Pawedvfl7gQ7pqHFL38a4kEn1UkHZBmiridiLHFXqoABieyfazKryd3KumB2zY519E
-	tmwR2M2rEjmnT4JhnN3OL66son/N6waAnrSX/uVy1EuoyUJH+Z92FN7wtspaKnIgkHee
-	zKxohSzUdxTqK94o7qN5RMD8MEDC7TDo/xt++bagEohkKtzH23Fcs4R+vpRMsfG+AXD2
-	UYsQ==
-X-Gm-Message-State: ABUngvcXn9PxDbkH+prYYP5ursQazFfn2QGIdKcnK60Bf8NWfimZp5NHwBhTD6xoUOA0sm5kmSn4R28u6m+BZw==
-X-Received: by 10.28.211.71 with SMTP id k68mr4429484wmg.21.1478429781694;
-	Sun, 06 Nov 2016 02:56:21 -0800 (PST)
+	bh=3si/2Thby6pPttmb1LSY8wn4HS10P2Dv4p9vUiWhHCQ=;
+	b=UQIfjrkvAAOM5JKGLw1v+gBFYjde9OWaalyto6/Z2iXrkotqU4A6dDzJ+Y2x4kWauA
+	95AH4j9Gfgkv6+WFPREGDQXlAR/YALJv2jUrFGSUeLRoVZnQ8nQIZAqUA48dykURqVqb
+	jXIYJ7A/okcDD7+2zZCt6cxDdK4YWmEbcvVmOiGW0vwRI3p3GtdG7veD0L8+bOs92t65
+	UCCD5fwtm4ZQByQom4QH3eyGa2Ed9jrcDv0JBiwcA6WqXvSlNIg/sls4N+BNHEjUBWSP
+	b/hNOkmqplrmwd8jbGvbw3rNikrHCt/7y1opEVyQQNvxWCutCvp1pQD7/O/rMcViilI9
+	r7jA==
+X-Gm-Message-State: ABUngve2wV21Ah1ZL1vOgzzSJWiV0ri+5zEJTMMZNeQzdJ9z2sRPq0jEc21LcEG9CR91uGwuBYfAAssGQd+6KQ==
+X-Received: by 10.28.109.87 with SMTP id i84mr2191127wmc.100.1478429834204;
+	Sun, 06 Nov 2016 02:57:14 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.28.210.203 with HTTP; Sun, 6 Nov 2016 02:56:20 -0800 (PST)
+Received: by 10.28.210.203 with HTTP; Sun, 6 Nov 2016 02:57:13 -0800 (PST)
 X-Originating-IP: [62.74.6.152]
-Received: by 10.28.210.203 with HTTP; Sun, 6 Nov 2016 02:56:20 -0800 (PST)
-In-Reply-To: <20161106101407.5239767e@nuc.betafive.co.uk>
+Received: by 10.28.210.203 with HTTP; Sun, 6 Nov 2016 02:57:13 -0800 (PST)
+In-Reply-To: <20161106072515.3505-2-raj.khem@gmail.com>
 References: <20161106072515.3505-1-raj.khem@gmail.com>
-	<20161106101407.5239767e@nuc.betafive.co.uk>
+	<20161106072515.3505-2-raj.khem@gmail.com>
 From: Andrei Gherzan <andrei@gherzan.ro>
-Date: Sun, 6 Nov 2016 10:56:20 +0000
-Message-ID: <CAK18fxGhJbhXi9SN4TGSyAd4XC-+n_oGfUfmtn79t+uUBF914w@mail.gmail.com>
-To: Paul Barker <paul@paulbarker.me.uk>
+Date: Sun, 6 Nov 2016 10:57:13 +0000
+Message-ID: <CAK18fxEb5Ej7jVQPJoU1S_wusnmu_GBZMQ-KBWBAMPt3Mv_=zw@mail.gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
 Cc: yocto@yoctoproject.org
-Subject: Re: [meta-raspberrypi][PATCH 1/2] firmware: Use release tarballs
+Subject: Re: [meta-raspberrypi][PATCH 2/2] userland: Bump to latest and add ASNEEDED = ""
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,141 +68,217 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 06 Nov 2016 10:56:26 -0000
-Content-Type: multipart/alternative; boundary=001a11474d00f6af6905409fc1dd
+X-List-Received-Date: Sun, 06 Nov 2016 10:57:18 -0000
+Content-Type: multipart/alternative; boundary=001a1147dc9817ee1805409fc5b1
 
---001a11474d00f6af6905409fc1dd
+--001a1147dc9817ee1805409fc5b1
 Content-Type: text/plain; charset=UTF-8
 
-On 6 Nov 2016 12:53, "Paul Barker" <paul@paulbarker.me.uk> wrote:
+On 6 Nov 2016 09:34, "Khem Raj" <raj.khem@gmail.com> wrote:
 >
-> On Sun,  6 Nov 2016 00:25:14 -0700
-> Khem Raj <raj.khem@gmail.com> wrote:
+> ASNEEDED does not work with userland libraries as
+> noted in see
+> https://lists.yoctoproject.org/pipermail/yocto/2014-June/019933.html
 >
-> > This is a binary repo and its quite large in size
-> > we do not need the whole history of this repo since
-> > most of stuff needed is binaries, therefore switch
-> > to release tarballs
-> >
-> > Signed-off-by: Khem Raj <raj.khem@gmail.com>
-> > ---
-> >  recipes-bsp/common/firmware.inc | 12 +++++++-----
-> >  1 file changed, 7 insertions(+), 5 deletions(-)
-> >
-> > diff --git a/recipes-bsp/common/firmware.inc
-b/recipes-bsp/common/firmware.inc
-> > index ed0782f..8862f58 100644
-> > --- a/recipes-bsp/common/firmware.inc
-> > +++ b/recipes-bsp/common/firmware.inc
-> > @@ -1,8 +1,10 @@
-> > -RPIFW_SRCREV ?= "413fc664838e81caeabdc4118dc51e138d5d6c71"
-> > -RPIFW_DATE ?= "20161030"
-> > -RPIFW_SRC_URI ?= "git://
-github.com/raspberrypi/firmware.git;protocol=git;branch=master"
-> > -RPIFW_S ?= "${WORKDIR}/git"
-> > +RPIFW_DATE ?= "20161020"
-> > +RPIFW_SRC_URI ?= "
-https://github.com/raspberrypi/firmware/archive/1.${RPIFW_DATE}.tar.gz"
-> > +RPIFW_S ?= "${WORKDIR}/firmware-1.${RPIFW_DATE}"
-> >
-> >  SRC_URI = "${RPIFW_SRC_URI}"
-> > -SRCREV = "${RPIFW_SRCREV}"
-> > +SRC_URI[md5sum] = "d3c388c114af4c672dd3ee0ed8e984d3"
-> > +SRC_URI[sha256sum] =
-"1c7c49d58800aab2dd1b5ff59a1e297934f9ea6f47ebdf0a3f90632561dc690b"
-> > +
-> >  PV = "${RPIFW_DATE}"
-> > +
->
-> Khem,
->
-> This series doesn't apply to master for me. I'm a bit lost as to which
-> patches I need to apply as some of your previous series has been merged
-> to master but not all of it.
->
-> Could you point me at which patches I need to apply or at a branch
-> where this is staged if it's public?
+> Helps with running kodi using gles2
 
-It probably fails because of version updates. Here you go:
-https://github.com/kraj/meta-raspberrypi
+Some work on kodi. This is nice.
 
 >
-> Thanks,
-> Paul Barker
+> Signed-off-by: Khem Raj <raj.khem@gmail.com>
+> ---
+>  .../userland/0003-wayland-Add-Wayland-example.patch        | 14
++++++++-------
+>  recipes-graphics/userland/userland_git.bb                  |  4 +++-
+>  2 files changed, 10 insertions(+), 8 deletions(-)
+>
+> diff --git
+a/recipes-graphics/userland/userland/0003-wayland-Add-Wayland-example.patch
+b/recipes-graphics/userland/userland/0003-wayland-Add-Wayland-example.patch
+> index 49a7872..98f18c8 100644
+> ---
+a/recipes-graphics/userland/userland/0003-wayland-Add-Wayland-example.patch
+> +++
+b/recipes-graphics/userland/userland/0003-wayland-Add-Wayland-example.patch
+> @@ -1,4 +1,4 @@
+> -From 7f52662a4d1965988ee5ada28ce3525c38ebf164 Mon Sep 17 00:00:00 2001
+> +From 6ee44bd040bf8e8abf9c5a7be7f6ea4b82d5671a Mon Sep 17 00:00:00 2001
+>  From: Tomeu Vizoso <tomeu.vizoso@collabora.com>
+>  Date: Tue, 1 Oct 2013 13:19:20 +0200
+>  Subject: [PATCH 03/13] wayland: Add Wayland example
+> @@ -844,23 +844,23 @@ index 0000000..1a7bfc4
+>  +}
+>  +
+>  diff --git a/host_applications/linux/apps/hello_pi/rebuild.sh
+b/host_applications/linux/apps/hello_pi/rebuild.sh
+> -index fa4539e..37120ac 100755
+> +index 8225dd5..0be6ce7 100755
+>  --- a/host_applications/linux/apps/hello_pi/rebuild.sh
+>  +++ b/host_applications/linux/apps/hello_pi/rebuild.sh
+> -@@ -13,6 +13,7 @@ make -C hello_jpeg clean
+> - make -C hello_videocube clean
+> +@@ -14,6 +14,7 @@ make -C hello_videocube clean
+>   make -C hello_teapot clean
+>   make -C hello_fft clean
+> + make -C hello_mmal_encode clean
+>  +make -C hello_wayland clean
+>
+>   make -C libs/ilclient
+>   make -C libs/vgfont
+> -@@ -29,4 +30,4 @@ make -C hello_jpeg
+> - make -C hello_videocube
+> +@@ -31,4 +32,4 @@ make -C hello_videocube
+>   make -C hello_teapot
+>   make -C hello_fft
+> + make -C hello_mmal_encode
+>  -
+>  +make -C hello_wayland
+>  --
+> -2.10.0
+> +2.10.2
+>
+> diff --git a/recipes-graphics/userland/userland_git.bb
+b/recipes-graphics/userland/userland_git.bb
+> index 7558851..84d6854 100644
+> --- a/recipes-graphics/userland/userland_git.bb
+> +++ b/recipes-graphics/userland/userland_git.bb
+> @@ -16,7 +16,7 @@ COMPATIBLE_MACHINE = "raspberrypi"
+>
+>  SRCBRANCH = "master"
+>  SRCFORK = "raspberrypi"
+> -SRCREV = "2852d9ff5a9038021f1c22d95e8a9e3aad09893f"
+> +SRCREV = "100f8bb3e74e29d04fb99857183cc34aaa712e3f"
+>
+>  SRC_URI = "\
+>      git://
+github.com/${SRCFORK}/userland.git;protocol=git;branch=${SRCBRANCH} \
+> @@ -38,6 +38,8 @@ S = "${WORKDIR}/git"
+>
+>  inherit cmake pkgconfig
+>
+> +ASNEEDED = ""
+> +
+>  EXTRA_OECMAKE = "-DCMAKE_BUILD_TYPE=Release
+-DCMAKE_EXE_LINKER_FLAGS='-Wl,--no-as-needed' \
+>                   -DVMCS_INSTALL_PREFIX=${exec_prefix} \
+>  "
+> --
+> 2.10.2
+>
 > --
 > _______________________________________________
 > yocto mailing list
 > yocto@yoctoproject.org
 > https://lists.yoctoproject.org/listinfo/yocto
 
---001a11474d00f6af6905409fc1dd
+--001a1147dc9817ee1805409fc5b1
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
 <p dir=3D"ltr"></p>
-<p dir=3D"ltr">On 6 Nov 2016 12:53, &quot;Paul Barker&quot; &lt;<a href=3D"=
-mailto:paul@paulbarker.me.uk">paul@paulbarker.me.uk</a>&gt; wrote:<br>
+<p dir=3D"ltr">On 6 Nov 2016 09:34, &quot;Khem Raj&quot; &lt;<a href=3D"mai=
+lto:raj.khem@gmail.com">raj.khem@gmail.com</a>&gt; wrote:<br>
 &gt;<br>
-&gt; On Sun,=C2=A0 6 Nov 2016 00:25:14 -0700<br>
-&gt; Khem Raj &lt;<a href=3D"mailto:raj.khem@gmail.com">raj.khem@gmail.com<=
-/a>&gt; wrote:<br>
+&gt; ASNEEDED does not work with userland libraries as<br>
+&gt; noted in see<br>
+&gt; <a href=3D"https://lists.yoctoproject.org/pipermail/yocto/2014-June/01=
+9933.html">https://lists.yoctoproject.org/pipermail/yocto/2014-June/019933.=
+html</a><br>
 &gt;<br>
-&gt; &gt; This is a binary repo and its quite large in size<br>
-&gt; &gt; we do not need the whole history of this repo since<br>
-&gt; &gt; most of stuff needed is binaries, therefore switch<br>
-&gt; &gt; to release tarballs<br>
-&gt; &gt;<br>
-&gt; &gt; Signed-off-by: Khem Raj &lt;<a href=3D"mailto:raj.khem@gmail.com"=
->raj.khem@gmail.com</a>&gt;<br>
-&gt; &gt; ---<br>
-&gt; &gt;=C2=A0 recipes-bsp/common/firmware.inc | 12 +++++++-----<br>
-&gt; &gt;=C2=A0 1 file changed, 7 insertions(+), 5 deletions(-)<br>
-&gt; &gt;<br>
-&gt; &gt; diff --git a/recipes-bsp/common/firmware.inc b/recipes-bsp/common=
-/firmware.inc<br>
-&gt; &gt; index ed0782f..8862f58 100644<br>
-&gt; &gt; --- a/recipes-bsp/common/firmware.inc<br>
-&gt; &gt; +++ b/recipes-bsp/common/firmware.inc<br>
-&gt; &gt; @@ -1,8 +1,10 @@<br>
-&gt; &gt; -RPIFW_SRCREV ?=3D &quot;413fc664838e81caeabdc4118dc51e138d5d6c71=
-&quot;<br>
-&gt; &gt; -RPIFW_DATE ?=3D &quot;20161030&quot;<br>
-&gt; &gt; -RPIFW_SRC_URI ?=3D &quot;git://<a href=3D"http://github.com/rasp=
-berrypi/firmware.git;protocol=3Dgit;branch=3Dmaster">github.com/raspberrypi=
-/firmware.git;protocol=3Dgit;branch=3Dmaster</a>&quot;<br>
-&gt; &gt; -RPIFW_S ?=3D &quot;${WORKDIR}/git&quot;<br>
-&gt; &gt; +RPIFW_DATE ?=3D &quot;20161020&quot;<br>
-&gt; &gt; +RPIFW_SRC_URI ?=3D &quot;<a href=3D"https://github.com/raspberry=
-pi/firmware/archive/1.${RPIFW_DATE}.tar.gz">https://github.com/raspberrypi/=
-firmware/archive/1.${RPIFW_DATE}.tar.gz</a>&quot;<br>
-&gt; &gt; +RPIFW_S ?=3D &quot;${WORKDIR}/firmware-1.${RPIFW_DATE}&quot;<br>
-&gt; &gt;<br>
-&gt; &gt;=C2=A0 SRC_URI =3D &quot;${RPIFW_SRC_URI}&quot;<br>
-&gt; &gt; -SRCREV =3D &quot;${RPIFW_SRCREV}&quot;<br>
-&gt; &gt; +SRC_URI[md5sum] =3D &quot;d3c388c114af4c672dd3ee0ed8e984d3&quot;=
-<br>
-&gt; &gt; +SRC_URI[sha256sum] =3D &quot;1c7c49d58800aab2dd1b5ff59a1e297934f=
-9ea6f47ebdf0a3f90632561dc690b&quot;<br>
-&gt; &gt; +<br>
-&gt; &gt;=C2=A0 PV =3D &quot;${RPIFW_DATE}&quot;<br>
-&gt; &gt; +<br>
-&gt;<br>
-&gt; Khem,<br>
-&gt;<br>
-&gt; This series doesn&#39;t apply to master for me. I&#39;m a bit lost as =
-to which<br>
-&gt; patches I need to apply as some of your previous series has been merge=
-d<br>
-&gt; to master but not all of it.<br>
-&gt;<br>
-&gt; Could you point me at which patches I need to apply or at a branch<br>
-&gt; where this is staged if it&#39;s public?</p>
-<p dir=3D"ltr">It probably fails because of version updates. Here you go: <=
-a href=3D"https://github.com/kraj/meta-raspberrypi">https://github.com/kraj=
-/meta-raspberrypi</a></p>
+&gt; Helps with running kodi using gles2</p>
+<p dir=3D"ltr">Some work on kodi. This is nice.</p>
 <p dir=3D"ltr">&gt;<br>
-&gt; Thanks,<br>
-&gt; Paul Barker<br>
+&gt; Signed-off-by: Khem Raj &lt;<a href=3D"mailto:raj.khem@gmail.com">raj.=
+khem@gmail.com</a>&gt;<br>
+&gt; ---<br>
+&gt; =C2=A0.../userland/0003-wayland-Add-Wayland-example.patch=C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 | 14 +++++++-------<br>
+&gt; =C2=A0recipes-graphics/userland/<a href=3D"http://userland_git.bb">use=
+rland_git.bb</a>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 |=C2=A0 4 +++-<br>
+&gt; =C2=A02 files changed, 10 insertions(+), 8 deletions(-)<br>
+&gt;<br>
+&gt; diff --git a/recipes-graphics/userland/userland/0003-wayland-Add-Wayla=
+nd-example.patch b/recipes-graphics/userland/userland/0003-wayland-Add-Wayl=
+and-example.patch<br>
+&gt; index 49a7872..98f18c8 100644<br>
+&gt; --- a/recipes-graphics/userland/userland/0003-wayland-Add-Wayland-exam=
+ple.patch<br>
+&gt; +++ b/recipes-graphics/userland/userland/0003-wayland-Add-Wayland-exam=
+ple.patch<br>
+&gt; @@ -1,4 +1,4 @@<br>
+&gt; -From 7f52662a4d1965988ee5ada28ce3525c38ebf164 Mon Sep 17 00:00:00 200=
+1<br>
+&gt; +From 6ee44bd040bf8e8abf9c5a7be7f6ea4b82d5671a Mon Sep 17 00:00:00 200=
+1<br>
+&gt; =C2=A0From: Tomeu Vizoso &lt;<a href=3D"mailto:tomeu.vizoso@collabora.=
+com">tomeu.vizoso@collabora.com</a>&gt;<br>
+&gt; =C2=A0Date: Tue, 1 Oct 2013 13:19:20 +0200<br>
+&gt; =C2=A0Subject: [PATCH 03/13] wayland: Add Wayland example<br>
+&gt; @@ -844,23 +844,23 @@ index 0000000..1a7bfc4<br>
+&gt; =C2=A0+}<br>
+&gt; =C2=A0+<br>
+&gt; =C2=A0diff --git a/host_applications/linux/apps/hello_pi/rebuild.sh b/=
+host_applications/linux/apps/hello_pi/rebuild.sh<br>
+&gt; -index fa4539e..37120ac 100755<br>
+&gt; +index 8225dd5..0be6ce7 100755<br>
+&gt; =C2=A0--- a/host_applications/linux/apps/hello_pi/rebuild.sh<br>
+&gt; =C2=A0+++ b/host_applications/linux/apps/hello_pi/rebuild.sh<br>
+&gt; -@@ -13,6 +13,7 @@ make -C hello_jpeg clean<br>
+&gt; - make -C hello_videocube clean<br>
+&gt; +@@ -14,6 +14,7 @@ make -C hello_videocube clean<br>
+&gt; =C2=A0 make -C hello_teapot clean<br>
+&gt; =C2=A0 make -C hello_fft clean<br>
+&gt; + make -C hello_mmal_encode clean<br>
+&gt; =C2=A0+make -C hello_wayland clean<br>
+&gt;<br>
+&gt; =C2=A0 make -C libs/ilclient<br>
+&gt; =C2=A0 make -C libs/vgfont<br>
+&gt; -@@ -29,4 +30,4 @@ make -C hello_jpeg<br>
+&gt; - make -C hello_videocube<br>
+&gt; +@@ -31,4 +32,4 @@ make -C hello_videocube<br>
+&gt; =C2=A0 make -C hello_teapot<br>
+&gt; =C2=A0 make -C hello_fft<br>
+&gt; + make -C hello_mmal_encode<br>
+&gt; =C2=A0-<br>
+&gt; =C2=A0+make -C hello_wayland<br>
+&gt; =C2=A0--<br>
+&gt; -2.10.0<br>
+&gt; +2.10.2<br>
+&gt;<br>
+&gt; diff --git a/recipes-graphics/userland/<a href=3D"http://userland_git.=
+bb">userland_git.bb</a> b/recipes-graphics/userland/<a href=3D"http://userl=
+and_git.bb">userland_git.bb</a><br>
+&gt; index 7558851..84d6854 100644<br>
+&gt; --- a/recipes-graphics/userland/<a href=3D"http://userland_git.bb">use=
+rland_git.bb</a><br>
+&gt; +++ b/recipes-graphics/userland/<a href=3D"http://userland_git.bb">use=
+rland_git.bb</a><br>
+&gt; @@ -16,7 +16,7 @@ COMPATIBLE_MACHINE =3D &quot;raspberrypi&quot;<br>
+&gt;<br>
+&gt; =C2=A0SRCBRANCH =3D &quot;master&quot;<br>
+&gt; =C2=A0SRCFORK =3D &quot;raspberrypi&quot;<br>
+&gt; -SRCREV =3D &quot;2852d9ff5a9038021f1c22d95e8a9e3aad09893f&quot;<br>
+&gt; +SRCREV =3D &quot;100f8bb3e74e29d04fb99857183cc34aaa712e3f&quot;<br>
+&gt;<br>
+&gt; =C2=A0SRC_URI =3D &quot;\<br>
+&gt; =C2=A0 =C2=A0 =C2=A0git://<a href=3D"http://github.com/${SRCFORK}/user=
+land.git;protocol=3Dgit;branch=3D${SRCBRANCH}">github.com/${SRCFORK}/userla=
+nd.git;protocol=3Dgit;branch=3D${SRCBRANCH}</a> \<br>
+&gt; @@ -38,6 +38,8 @@ S =3D &quot;${WORKDIR}/git&quot;<br>
+&gt;<br>
+&gt; =C2=A0inherit cmake pkgconfig<br>
+&gt;<br>
+&gt; +ASNEEDED =3D &quot;&quot;<br>
+&gt; +<br>
+&gt; =C2=A0EXTRA_OECMAKE =3D &quot;-DCMAKE_BUILD_TYPE=3DRelease -DCMAKE_EXE=
+_LINKER_FLAGS=3D&#39;-Wl,--no-as-needed&#39; \<br>
+&gt; =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 -DVMCS_=
+INSTALL_PREFIX=3D${exec_prefix} \<br>
+&gt; =C2=A0&quot;<br>
+&gt; --<br>
+&gt; 2.10.2<br>
+&gt;<br>
 &gt; --<br>
 &gt; _______________________________________________<br>
 &gt; yocto mailing list<br>
@@ -211,4 +287,4 @@ r>
 &gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto">https://list=
 s.yoctoproject.org/listinfo/yocto</a><br></p>
 
---001a11474d00f6af6905409fc1dd--
+--001a1147dc9817ee1805409fc5b1--
