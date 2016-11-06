@@ -1,6 +1,6 @@
 Return-Path: <barry@grussling.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1814EE0097C; Sat,  5 Nov 2016 21:23:10 -0700 (PDT)
+	id 89ABBE00971; Sat,  5 Nov 2016 21:23:10 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -16,48 +16,48 @@ X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 Received: from mail-pf0-f193.google.com (mail-pf0-f193.google.com
 	[209.85.192.193])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A002DE006D2
-	for <yocto@yoctoproject.org>; Sat,  5 Nov 2016 21:23:07 -0700 (PDT)
-Received: by mail-pf0-f193.google.com with SMTP id 144so3980785pfv.0
-	for <yocto@yoctoproject.org>; Sat, 05 Nov 2016 21:23:07 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 45853E00953
+	for <yocto@yoctoproject.org>; Sat,  5 Nov 2016 21:23:08 -0700 (PDT)
+Received: by mail-pf0-f193.google.com with SMTP id 144so3980856pfv.0
+	for <yocto@yoctoproject.org>; Sat, 05 Nov 2016 21:23:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=grussling-com.20150623.gappssmtp.com; s=20150623;
 	h=from:to:cc:subject:date:message-id:in-reply-to:references;
-	bh=rhh68AZMrle4sYZFw97wxiMMG56FFbDcXCbUhz1ritE=;
-	b=U3E16hUYth82m5ENsaghGJlfPRQbIZ7lPMUMnJPvWangSiRMsdDoricqQxFBDNTzdx
-	es1jVw7argwKsOjo0uRrVw07dCReW/KJUgUcN/P+c/o7SopX7Xm1XFAb/aUHk45NgbtL
-	bJErEOBg7I+dGiez12jZhS9t9PjioJQAKi5KQMWHEm3Cl6SoRzJ5D+Q2IwGaauSKNxhS
-	B90z6Uch4LVHNadQSpTUroYHOOQRQYFja/R7xMG5aq2gdSGEQRbG4Do9PyHVAh7//ShY
-	nFDXr+PO2ISoO0mQnPvUxWSZpszoSiOk1o1ZEuFPRm4T+lzNOiXt8FNAVR09iWFx3oLW
-	MlIQ==
+	bh=rVctkj4F4dfPRgg6oBBeZ3PRJMQYeV8S1I2E71AdJC4=;
+	b=Lfi9r2smq7yH9UzBMn2jApqhB2W9zXygGYGmyPAqCWh7xPQw27WWsVQdCV8PONh77V
+	NTjGTRjW7XB0PyGgIJ6zQS9TwiEcdVGVqN4G3FC9PjjT05945Zx79uh+hS0VNyS6AVpL
+	1p0aToQeVgoCvf25fCH52e0S55zSQ1Smo49FFhNslDn6IZtiItZpFcgExtr6Bm+EHRRs
+	+CsnClOJ/dGX8fAaKl8NZBqW92pdEoJgYNYF2z997VF8wAZJUt8e1nGSzSqOMlfKOg0/
+	dP0N6FH4MMxE+47bVdXN0yuBoxqdESlrrqSJDWN/C/wtv8EVcKQTnDh0fi0ZBmNbDGBy
+	tIBQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
 	:references;
-	bh=rhh68AZMrle4sYZFw97wxiMMG56FFbDcXCbUhz1ritE=;
-	b=PBFzISGyr7Fh1SdsKpWxDq4MI+gEenBtA3pMSs32iTS3tOqpoSKrO+ItFRqFVD8rLK
-	HzoVRYParuOQTeU2X9iHxEWSOlYv9p2sHFxIzs4tlutjfuKmTr0Unk0LzpvO0D+XWfX1
-	WewEJS61gLr3G3h7X00MxkSHoC69K6UMkyOna1weH7vFvETKxMiDTcbQWvUdM/jqAWYq
-	+cP1nLjy4Qs2mfrhCbBHy04OnOD6aiEjxCP9Wvk3OY9BxhgIPPp7p0pdT1beBoCfsqgc
-	3h/s/hLGO40wa4LOULq5k9mLXNTuloGFigORp/oren4RI8rJaOkUMc19Bb2lDcgsrlfs
-	rmHQ==
-X-Gm-Message-State: ABUngvfJX6h5fZj67RHXhaXt7QauXcGC/IS1yUIT3VWE7DndG2xLxP57vKugI4vq1RigFA==
-X-Received: by 10.98.194.130 with SMTP id w2mr1758621pfk.143.1478406186783;
-	Sat, 05 Nov 2016 21:23:06 -0700 (PDT)
+	bh=rVctkj4F4dfPRgg6oBBeZ3PRJMQYeV8S1I2E71AdJC4=;
+	b=iU7iDJGikMtATzgfgjWf9F8VszH28rvcgtNbOuBrUhe0u/YXQyywfUE5gi0vHRZW1y
+	AA+X/ZGOf332l62ztVPoRDYvTgvioSkfT/WA870pWiac1bc/z+b8KxuqxZsY6ybg2OLx
+	/BJh2dIPMzccnhIdIzSIFdh5eV6ui9X7MF26/79f/Ve51Re9H48T41MmYzxn6z4wObic
+	w5YgUrhnst9r1ajHuuIPi4ue0dXYcVltYy5XItttOqLEo23Cbb4vSe0Vq/WgAQQ9YjWQ
+	iXmn7UnyYKucyHlUMqUbnXWPS5a4iQXAXoLnCdQAOV15P5Qj1uQY/IBxWZCXGfPHR9CB
+	4ZGA==
+X-Gm-Message-State: ABUngvdHecLoi4iHH+WAXMua+9U1LAfnhOLeKHBTPrfg/JvJYp6tKGBAgjD4IOPaYmg2wg==
+X-Received: by 10.99.113.90 with SMTP id b26mr1225600pgn.33.1478406188760;
+	Sat, 05 Nov 2016 21:23:08 -0700 (PDT)
 Received: from trixie.pullman (cpe-76-178-155-10.natnow.res.rr.com.
 	[76.178.155.10]) by smtp.gmail.com with ESMTPSA id
-	m69sm30556050pfg.39.2016.11.05.21.23.06
+	m69sm30556050pfg.39.2016.11.05.21.23.08
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sat, 05 Nov 2016 21:23:06 -0700 (PDT)
+	Sat, 05 Nov 2016 21:23:08 -0700 (PDT)
 From: Barry Grussling <barry@grussling.com>
 To: ajlennon@dynamicdevices.co.uk
-Date: Sat,  5 Nov 2016 21:22:58 -0700
-Message-Id: <20161106042304.3357-2-barry@grussling.com>
+Date: Sat,  5 Nov 2016 21:23:01 -0700
+Message-Id: <20161106042304.3357-5-barry@grussling.com>
 X-Mailer: git-send-email 2.10.2
 In-Reply-To: <20161106042304.3357-1-barry@grussling.com>
 References: <20161106042304.3357-1-barry@grussling.com>
 Cc: yocto@yoctoproject.org
-Subject: [meta-mono][PATCH 1/7] Add a base .gitignore
+Subject: [meta-mono][PATCH 4/7] Add the MIT license inc
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,27 +71,24 @@ List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Sun, 06 Nov 2016 04:23:10 -0000
 
-Setup a base .gitignore file
+With the change to MIT license in Mono, the license information
+is tracked in the LICENSE file.
 
 Signed-off-by: Barry Grussling <barry@grussling.com>
 ---
- .gitignore | 7 +++++++
- 1 file changed, 7 insertions(+)
- create mode 100644 .gitignore
+ recipes-mono/mono/mono-mit.inc | 3 +++
+ 1 file changed, 3 insertions(+)
+ create mode 100644 recipes-mono/mono/mono-mit.inc
 
-diff --git a/.gitignore b/.gitignore
+diff --git a/recipes-mono/mono/mono-mit.inc b/recipes-mono/mono/mono-mit.inc
 new file mode 100644
-index 0000000..c01df45
+index 0000000..dcadae7
 --- /dev/null
-+++ b/.gitignore
-@@ -0,0 +1,7 @@
-+*.pyc
-+*.pyo
-+/*.patch
-+*.swp
-+*.orig
-+*.rej
-+*~
++++ b/recipes-mono/mono/mono-mit.inc
+@@ -0,0 +1,3 @@
++LICENSE = "MIT"
++LIC_FILES_CHKSUM = "file://LICENSE;md5=0499d923dcb460addd12ee9b32ef4f5e"
++
 -- 
 2.10.2
 
