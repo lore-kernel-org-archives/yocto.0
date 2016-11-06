@@ -1,6 +1,6 @@
 Return-Path: <barry@grussling.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 92960E0095F; Sat,  5 Nov 2016 21:23:11 -0700 (PDT)
+	id D4869E009B1; Sat,  5 Nov 2016 21:23:11 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,56 +8,56 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [209.85.192.193 listed in list.dnswl.org]
+	*      [209.85.192.194 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pf0-f193.google.com (mail-pf0-f193.google.com
-	[209.85.192.193])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B927EE0095F
-	for <yocto@yoctoproject.org>; Sat,  5 Nov 2016 21:23:09 -0700 (PDT)
-Received: by mail-pf0-f193.google.com with SMTP id i88so12359436pfk.2
-	for <yocto@yoctoproject.org>; Sat, 05 Nov 2016 21:23:09 -0700 (PDT)
+Received: from mail-pf0-f194.google.com (mail-pf0-f194.google.com
+	[209.85.192.194])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2B1A2E00971
+	for <yocto@yoctoproject.org>; Sat,  5 Nov 2016 21:23:11 -0700 (PDT)
+Received: by mail-pf0-f194.google.com with SMTP id 144so3980922pfv.0
+	for <yocto@yoctoproject.org>; Sat, 05 Nov 2016 21:23:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=grussling-com.20150623.gappssmtp.com; s=20150623;
 	h=from:to:cc:subject:date:message-id:in-reply-to:references;
-	bh=7yL4vIP87PeUC0ke9oOxvJyRr5/ZRXIyHw6xWzFHd3I=;
-	b=m0WQzDNUk/OuwfLIBtN3yUpNlpz/YvFEPhun0vzChkqQS3jPQdji7c4tM8mpMwYbaB
-	R1XhIRPM6kQlo73wINhHhEhckv7T6Qtvy/ECLAijMYESXpRxeKRJy06I98Amau8W7rcK
-	5YQ9q0KMPeeQC3ueFcseCVEsn786C9AY4oII0qF5FqCtqIre5d4SUxaNzqGJl2n1gBfk
-	h+IY5/eP+ezjmKUmaciYs1cb6TEquMMjALduoV2XM+fTwH2cm7ar/B7lErjcAcBuvtZ7
-	ZsbZo8TOZwyS2yMoml4hzQyUZNwrKHwGFpCrzFUkPf/taej4Ztdh/0owjX2VlI07N5q1
-	aZTA==
+	bh=RheBUax7cczjpLqgD2eIvlkS40hKPMybmt4exlQC2Iw=;
+	b=PCVbgu0ADgXhDdRg2jmadbnfokZGjTr3OJBAHvtBw6EbVwZqHkAeSRyoigJER0uOVf
+	qlASDd46ZEI9oPZ3yPsOl/YIp1Gw4qgzcCUzH4fZbZp6rCNlAEeEeD3n97KcUtV5Epjz
+	C2OU1MPVKih+djivzYXvcMg1zr9ykWNAUxxMQIYEO51MmnVJFyp8uaJOghQ8JD/7A98B
+	HVUm4S6iWwkfcVfnvbRVPF4Ajt3/irsSWGb5xPQcBszXwoieB+aT6C+glSaj+cVOkorz
+	uJkPOQIKMY0WqhgngJ5kqij2X8kCFihbnja1KCb2RzMYx6W+3LU4LlY6Y9vnd0ljNuya
+	j4/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
 	:references;
-	bh=7yL4vIP87PeUC0ke9oOxvJyRr5/ZRXIyHw6xWzFHd3I=;
-	b=HibLZ9GF8AVhtDErcc4vSfGTGZa+c6+B/5U7lgAvT2571dhA7Zu2uj1U7mk4yl1kFp
-	0ZTw41GcdZPsMWvKfFHmFVDremjG3A2QxpLUDIlmS8aCa/fI5yRXoo2TwW8KQjY/gvFg
-	YHmyJ2Bj1CLxgrHSu43VgDdhnMJcyknkcvCOt//hDzNcqR1SgOjpgP6y51vjAO4e8AUD
-	kO5earVUOMT7a/8T2xo5krBpFOekd4P1iQc1wuuTIsrY1r8Gg2RTRbybPNv8Y7sgZhdT
-	NMQE9XP8DqmOjypejGPu1iH/Dn3dsKXi7r2+NFrGmffqOrCTWd/IuTAYKTXvgPmJ1Err
-	uWyg==
-X-Gm-Message-State: ABUngvfgPovMVEEr2qPXDpIAS6WfDxUg+x6pdu8+1dEV384Gs7WAACw1Brq5PgEEKmeVgQ==
-X-Received: by 10.99.94.196 with SMTP id s187mr1204201pgb.107.1478406189444;
-	Sat, 05 Nov 2016 21:23:09 -0700 (PDT)
+	bh=RheBUax7cczjpLqgD2eIvlkS40hKPMybmt4exlQC2Iw=;
+	b=PYoA6LvUYWguKojcvHxcJnIRJdntGh0nsZ81xPG3OEjdjlzVDPxTAxCNrYUQPIkA9X
+	5ROxNWsPYxmFW+/lZ3W+4lXa4x1Jc1NWKKVcfRydrB3E3/+9P/fDaste9RkzAyajDXit
+	CoXVrwR5L4FIJNfU7JNWFjUpaNgmeNJFa3RomhkCd+5cqXmktq0aiMa4qWtLIwSiwROx
+	m4Yb7TmjxxW0CM4BKDLDPw2P0XTse6+rj38q/DfgIgnLxj71N0gSfhb0JTR1tDagOjQ1
+	r5ECU+GtJSdl1uuQmCFvGNpdLavxyzfNNwhUdMcVpUMcpRyMHe2fzD1SW8MApFHOWM7P
+	Gr3A==
+X-Gm-Message-State: ABUngvfuv7MQdFh/juP9OB2Kcm12pilyxaAJZ/EmBanxN9pN00uF7abbWc2vu3E1TszVLA==
+X-Received: by 10.99.112.12 with SMTP id l12mr1262042pgc.14.1478406190912;
+	Sat, 05 Nov 2016 21:23:10 -0700 (PDT)
 Received: from trixie.pullman (cpe-76-178-155-10.natnow.res.rr.com.
 	[76.178.155.10]) by smtp.gmail.com with ESMTPSA id
-	m69sm30556050pfg.39.2016.11.05.21.23.08
+	m69sm30556050pfg.39.2016.11.05.21.23.10
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sat, 05 Nov 2016 21:23:09 -0700 (PDT)
+	Sat, 05 Nov 2016 21:23:10 -0700 (PDT)
 From: Barry Grussling <barry@grussling.com>
 To: ajlennon@dynamicdevices.co.uk
-Date: Sat,  5 Nov 2016 21:23:02 -0700
-Message-Id: <20161106042304.3357-6-barry@grussling.com>
+Date: Sat,  5 Nov 2016 21:23:04 -0700
+Message-Id: <20161106042304.3357-8-barry@grussling.com>
 X-Mailer: git-send-email 2.10.2
 In-Reply-To: <20161106042304.3357-1-barry@grussling.com>
 References: <20161106042304.3357-1-barry@grussling.com>
 Cc: yocto@yoctoproject.org
-Subject: [meta-mono][PATCH 5/7] mono: add support for mono 4.6.1.5
+Subject: [meta-mono][PATCH 7/7] Add ARM patch for fast-tls
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,145 +71,62 @@ List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Sun, 06 Nov 2016 04:23:11 -0000
 
-Upgrade the mono framework to 4.6.1.5.  Only real issue was
-problems with the .NETPortable directory:
-ERROR: mono-4.6.1.5-r0 do_package: QA Issue: mono: Files/directories were installed but not shipped in any package:
-  /usr/lib/mono/xbuild-frameworks/.NETPortable
-  /usr/lib/mono/xbuild-frameworks/.NETPortable/v5.0
-  /usr/lib/mono/xbuild-frameworks/.NETPortable/v5.0/RedistList
-  /usr/lib/mono/xbuild-frameworks/.NETPortable/v5.0/SupportedFrameworks
-  /usr/lib/mono/xbuild-frameworks/.NETPortable/v5.0/RedistList/FrameworkList.xml
-  /usr/lib/mono/xbuild-frameworks/.NETPortable/v5.0/SupportedFrameworks/.NET Framework 4.6.xml
-  /usr/lib/mono/xbuild-frameworks/.NETPortable/v5.0/SupportedFrameworks/ASP.NET Core 1.0.xml
-  /usr/lib/mono/xbuild-frameworks/.NETPortable/v5.0/SupportedFrameworks/Windows Universal 10.0.xml
-
-I fixed this by expanding the FILES directive for xbuild in the mono-4.xx.inc.
+Attempting to fix upstream bug from:
+https://bugzilla.xamarin.com/show_bug.cgi?id=44918
 
 Signed-off-by: Barry Grussling <barry@grussling.com>
 ---
- README.md                                          |  7 +++++-
- recipes-mono/mono/mono-4.6.1.5.inc                 |  2 ++
- .../mono/mono-4.6.1.5/dllmap-config.in.diff        | 29 ++++++++++++++++++++++
- recipes-mono/mono/mono-4.xx.inc                    |  2 +-
- recipes-mono/mono/mono-native_4.6.1.5.bb           |  4 +++
- recipes-mono/mono/mono_4.6.1.5.bb                  |  8 ++++++
- 6 files changed, 50 insertions(+), 2 deletions(-)
- create mode 100644 recipes-mono/mono/mono-4.6.1.5.inc
- create mode 100644 recipes-mono/mono/mono-4.6.1.5/dllmap-config.in.diff
- create mode 100644 recipes-mono/mono/mono-native_4.6.1.5.bb
- create mode 100644 recipes-mono/mono/mono_4.6.1.5.bb
+ .../ARM-Disable-fast-tls-on-embedded-mono.patch    | 30 ++++++++++++++++++++++
+ recipes-mono/mono/mono_4.6.1.5.bb                  |  3 +++
+ 2 files changed, 33 insertions(+)
+ create mode 100644 recipes-mono/mono/mono-4.6.1.5/ARM-Disable-fast-tls-on-embedded-mono.patch
 
-diff --git a/README.md b/README.md
-index 3333aad..2adac04 100644
---- a/README.md
-+++ b/README.md
-@@ -6,7 +6,7 @@ libraries to allow users to run .NET applications under linux built
- using OE. For more info about mono, see mono project's website. For
- more info on OpenEmbedded, see OE's website.
- 
--This README pertains to meta-mono layer support for Mono 3.12.1 - 4.4.x
-+This README pertains to meta-mono layer support for Mono 3.12.1 - 4.6.x
- 
- For Mono release notes please see:
- 
-@@ -19,6 +19,7 @@ For Mono release notes please see:
- * [Mono 4.2.0 Release Notes](http://www.mono-project.com/docs/about-mono/releases/4.2.0/)
- * [Mono 4.2.1 Release Notes](http://www.mono-project.com/docs/about-mono/releases/4.2.1/)
- * [Mono 4.4.0 Release Notes](http://www.mono-project.com/docs/about-mono/releases/4.4.0/)
-+* [Mono 4.6.1 Release Notes](http://www.mono-project.com/docs/about-mono/releases/4.6.1/)
- 
- NOTE: Mono TLS vulnerabilities. 3.12.1+ includes the fix in the release archive.
- 
-@@ -151,6 +152,10 @@ MIT/GPLv2 - following the lead of libgdiplus and mono
- 
- ## Current State - ARM vfp: Works
- 
-+4.6.1
+diff --git a/recipes-mono/mono/mono-4.6.1.5/ARM-Disable-fast-tls-on-embedded-mono.patch b/recipes-mono/mono/mono-4.6.1.5/ARM-Disable-fast-tls-on-embedded-mono.patch
+new file mode 100644
+index 0000000..416abad
+--- /dev/null
++++ b/recipes-mono/mono/mono-4.6.1.5/ARM-Disable-fast-tls-on-embedded-mono.patch
+@@ -0,0 +1,30 @@
++Temporary patch from https://github.com/BrzVlad/mono/commit/831e66655e7465023109333fca31d036c7b9a514
++for https://bugzilla.xamarin.com/show_bug.cgi?id=44918.  Should make it
++into upstream soon:
 +
-+* Has been tested on Cortex-A9
++From 831e66655e7465023109333fca31d036c7b9a514 Mon Sep 17 00:00:00 2001
++From: Vlad Brezae <brezaevlad@gmail.com>
++Date: Thu, 13 Oct 2016 00:18:46 +0300
++Subject: [PATCH] [arm] Disable fast tls on embedded mono with __thread
 +
- #### 27/04/2014
- 
- 4.0.1
-diff --git a/recipes-mono/mono/mono-4.6.1.5.inc b/recipes-mono/mono/mono-4.6.1.5.inc
-new file mode 100644
-index 0000000..cf960ff
---- /dev/null
-+++ b/recipes-mono/mono/mono-4.6.1.5.inc
-@@ -0,0 +1,2 @@
-+SRC_URI[md5sum] = "601a96baa96a2e7acde1fb7e622322c4"
-+SRC_URI[sha256sum] = "3871ee72bdfc2ea5d636ffff22cf49ae6bac7c4a4f3d687214dd8ac236bbf7c3"
-diff --git a/recipes-mono/mono/mono-4.6.1.5/dllmap-config.in.diff b/recipes-mono/mono/mono-4.6.1.5/dllmap-config.in.diff
-new file mode 100644
-index 0000000..52ca1a7
---- /dev/null
-+++ b/recipes-mono/mono/mono-4.6.1.5/dllmap-config.in.diff
-@@ -0,0 +1,29 @@
-+diff -Naur mono-4.6.1.orig/data/config.in mono-4.6.1/data/config.in
-+--- mono-4.6.1.orig/data/config.in	2016-10-11 05:53:43.000000000 -0700
-++++ mono-4.6.1/data/config.in	2016-11-04 10:15:32.018107576 -0700
-+@@ -10,12 +10,12 @@
-+ 	<dllmap dll="i:odbc32.dll" target="libiodbc.dylib" os="osx"/>
-+ 	<dllmap dll="oci" target="libclntsh@libsuffix@" os="!windows"/>
-+ 	<dllmap dll="db2cli" target="libdb2_36@libsuffix@" os="!windows"/>
-+-	<dllmap dll="MonoPosixHelper" target="$mono_libdir/libMonoPosixHelper@libsuffix@" os="!windows" />
-++	<dllmap dll="MonoPosixHelper" target="libMonoPosixHelper.so" os="!windows" />
-+ 	<dllmap dll="i:msvcrt" target="@LIBC@" os="!windows"/>
-+ 	<dllmap dll="i:msvcrt.dll" target="@LIBC@" os="!windows"/>
-+ 	<dllmap dll="sqlite" target="@SQLITE@" os="!windows"/>
-+ 	<dllmap dll="sqlite3" target="@SQLITE3@" os="!windows"/>
-+-	<dllmap dll="libX11" target="@X11@" os="!windows" />
-++	<dllmap dll="libX11" target="libX11.so.6" os="!windows" />
-+ 	<dllmap dll="libgdk-x11-2.0" target="@GDKX11@" os="!windows"/>
-+ 	<dllmap dll="libgtk-x11-2.0" target="@GTKX11@" os="!windows"/>
-+ 	<dllmap dll="libXinerama" target="@XINERAMA@" os="!windows" />
-+@@ -29,8 +29,8 @@
-+ 		<dllentry dll="__Internal" name="MoveMemory" target="mono_win32_compat_MoveMemory"/>
-+ 		<dllentry dll="__Internal" name="ZeroMemory" target="mono_win32_compat_ZeroMemory"/>
-+ 	</dllmap>
-+-	<dllmap dll="gdiplus" target="@libgdiplus_install_loc@" os="!windows"/>
-+-	<dllmap dll="gdiplus.dll" target="@libgdiplus_install_loc@"  os="!windows"/>
-++	<dllmap dll="gdiplus" target="libgdiplus.so.0" os="!windows"/>
-++	<dllmap dll="gdiplus.dll" target="libgdiplus.so.0"  os="!windows"/>
-+ 	<dllmap dll="gdi32" target="@libgdiplus_install_loc@" os="!windows"/>
-+ 	<dllmap dll="gdi32.dll" target="@libgdiplus_install_loc@" os="!windows"/>
-+ </configuration>
-diff --git a/recipes-mono/mono/mono-4.xx.inc b/recipes-mono/mono/mono-4.xx.inc
-index f1dc536..c1df4f0 100644
---- a/recipes-mono/mono/mono-4.xx.inc
-+++ b/recipes-mono/mono/mono-4.xx.inc
-@@ -81,7 +81,7 @@ FILES_${PN}-libs-compat-2.0 		= "${libdir}/mono/compat-2.0/*"
- FILES_${PN}-gac				= "${libdir}/mono/gac/*"
- FILES_${PN}-configuration-crypto 	= "${libdir}/mono/mono-configuration-crypto/*/*"
- FILES_${PN}-libs-monodoc 		= "${libdir}/mono/monodoc/*"
--FILES_${PN}-xbuild 			= "${libdir}/mono/xbuild/* ${libdir}/mono/xbuild-frameworks/* ${libdir}/mono/xbuild-frameworks/.NETFramework/*/*/*"
-+FILES_${PN}-xbuild 			= "${libdir}/mono/xbuild/* ${libdir}/mono/xbuild-frameworks/* ${libdir}/mono/xbuild-frameworks/.NETFramework/*/*/* ${libdir}/mono/xbuild-frameworks/.NETPortable/*/*/* ${libdir}/mono/xbuild-frameworks/.NETPortable/*/*/.NET*"
- FILES_${PN}-doc 			+= " ${datadir}/libgc-mono/*"
- FILES_${PN}-dbg 			+= " ${datadir}/mono-2.0/mono/cil/cil-opcodes.xml ${libdir}/mono/*/*.mdb ${libdir}/mono/gac/*/*/*.mdb"
- FILES_${PN}-staticdev 			+= " ${libdir}/*.a"
-diff --git a/recipes-mono/mono/mono-native_4.6.1.5.bb b/recipes-mono/mono/mono-native_4.6.1.5.bb
-new file mode 100644
-index 0000000..81bc5af
---- /dev/null
-+++ b/recipes-mono/mono/mono-native_4.6.1.5.bb
-@@ -0,0 +1,4 @@
-+require mono-4.xx.inc
-+require mono-mit.inc
-+require ${PN}-base.inc
-+require mono-${PV}.inc
++We don't have MONO_THREAD_VAR_OFFSET on embedded mono.
++---
++ mono/mini/mini-arm.c | 2 +-
++ 1 file changed, 1 insertion(+), 1 deletion(-)
++
++diff --git a/mono/mini/mini-arm.c b/mono/mini/mini-arm.c
++index 2eac369..86757ac 100644
++--- a/mono/mini/mini-arm.c
+++++ b/mono/mini/mini-arm.c
++@@ -31,7 +31,7 @@
++ #include "mini-gc.h"
++ #include "mono/arch/arm/arm-vfp-codegen.h"
++ 
++-#if (defined(HAVE_KW_THREAD) && defined(__linux__) && defined(__ARM_EABI__)) \
+++#if (defined(HAVE_KW_THREAD) && defined(__linux__) && defined(__ARM_EABI__) && !defined(__PIC__)) \
++ 	|| defined(TARGET_ANDROID) \
++ 	|| (defined(TARGET_IOS) && !defined(TARGET_WATCHOS))
++ #define HAVE_FAST_TLS
++-- 
++2.10.2
++
 diff --git a/recipes-mono/mono/mono_4.6.1.5.bb b/recipes-mono/mono/mono_4.6.1.5.bb
-new file mode 100644
-index 0000000..ae8a7eb
---- /dev/null
+index ae8a7eb..7abe82c 100644
+--- a/recipes-mono/mono/mono_4.6.1.5.bb
 +++ b/recipes-mono/mono/mono_4.6.1.5.bb
-@@ -0,0 +1,8 @@
-+require mono-4.xx.inc
-+require mono-mit.inc
-+require ${PN}-base.inc
-+require mono-${PV}.inc
-+
-+PACKAGES += "${PN}-profiler "
-+FILES_${PN}-profiler += " ${datadir}/mono-2.0/mono/profiler/*"
+@@ -6,3 +6,6 @@ require mono-${PV}.inc
+ PACKAGES += "${PN}-profiler "
+ FILES_${PN}-profiler += " ${datadir}/mono-2.0/mono/profiler/*"
+ 
++SRC_URI += "file://ARM-Disable-fast-tls-on-embedded-mono.patch \
++"
 +
 -- 
 2.10.2
