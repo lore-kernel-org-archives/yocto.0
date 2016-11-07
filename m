@@ -1,71 +1,60 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3CF7DE00C25; Sun,  6 Nov 2016 22:10:59 -0800 (PST)
+	id C35C0E00B45; Mon,  7 Nov 2016 01:09:43 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.192.173 listed in list.dnswl.org]
-Received: from mail-pf0-f173.google.com (mail-pf0-f173.google.com
-	[209.85.192.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0D0B4E006C7
-	for <yocto@yoctoproject.org>; Sun,  6 Nov 2016 22:10:55 -0800 (PST)
-Received: by mail-pf0-f173.google.com with SMTP id 189so86102808pfz.3
-	for <yocto@yoctoproject.org>; Sun, 06 Nov 2016 22:10:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=subject:to:references:from:organization:message-id:date:user-agent
-	:mime-version:in-reply-to;
-	bh=F6m7eDYo3C2tyRhzrGT1VhdAP3EJMRTJ9w4MOKmq9N0=;
-	b=kK6j5tyxmh4LO2geC8nnsq4f0WyaeEdKXj2G6BBJbZoK1vA+HtitUBpDy/ubUVDMxG
-	lpoWoK5yxJyITWU2nUtMSDDQM1f1KcC/nzTPxWmtG3TfXGKSg1T8cfEN2I66EFaiQ5oA
-	lAo/Iu/bBGZyVRk2mD3JqTmx9HHL/i4qKrTidne3aITqPhNZTnvsla4+k7oPcfNEZ3qp
-	pc0I6RZyc8kT7iYilbcmjBF7YLwmwn+z8HAYiTZaSYwtJwHj4hVgisWc29rFUiCSQmzA
-	e0n1nDHgLylluDQTpUQrDM4MA5IYJOLUNWXOGjj5M26BakVyOgj3LhHzMBClxxeX7gbl
-	S2GQ==
+	*      [209.85.216.171 listed in list.dnswl.org]
+Received: from mail-qt0-f171.google.com (mail-qt0-f171.google.com
+	[209.85.216.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 713D5E00571
+	for <yocto@yoctoproject.org>; Mon,  7 Nov 2016 01:09:39 -0800 (PST)
+Received: by mail-qt0-f171.google.com with SMTP id w33so83063366qtc.3
+	for <yocto@yoctoproject.org>; Mon, 07 Nov 2016 01:09:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=3OZsVWn6SRtZ0G9lvhfBNaxSRLiNSeLxaBUZ6whhvK4=;
+	b=VcqG5+rm3dKf+9f4z1GwpG8yAq+RlBZn7A2p6YA8F4LJlZGpixly5KeXUNCfxtwBLK
+	KWv3sQI1reURewaTqtDPa+wAIoZUBV6Q5lnBPQurIEUxQdEIl0oMtVzNRP+H6BXpsfoR
+	6+JLNlkFszhjxtjQjn+0+alD7Sw1Hw9DTd7uS/lYluy5hxw6F/+Ayiu8cuqGc6e4QYHn
+	0K6lYeLysm1+73tHvkX1KHSzzyjoOTnQaUMHoyHtaM6bcJaqWlsy6keyq4cn8r5TAueh
+	tXjPaaM+PPXUSgMEwNnDYUIo0fPAaIXT7BV8lv1RZ+BN+71og2xv1mA73r9XC4ZZ4ZEl
+	1J2A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:subject:to:references:from:organization
-	:message-id:date:user-agent:mime-version:in-reply-to;
-	bh=F6m7eDYo3C2tyRhzrGT1VhdAP3EJMRTJ9w4MOKmq9N0=;
-	b=LarcKhL09tdTYjtoHKFFvZ4uNi2YUq3PXWnWyavz3QAAsUXkawFWhwv/W3khFlAE7M
-	2U9taGSxY/zK23oSx4Ai5TK561qwLPZk5GA/gQccD7FwQ8cAt6StJWMaQp3lYlnIPFm4
-	s+oZAIt0QBNqGdRkA1vVsvTQ8D8vIXaH0spjNRkmskevZ/ZeWHTYXanLzOl2earmlAft
-	869d4YLjeDUNwDxF/6N7cwRo4ZrhlcbVSdWkbyBYaNaQhpgU06pZM47Zzuo/46EOylRu
-	0RL/r1CN6G3gCaXfe2ZwD4v1b9IBcXAVMGptOeItu6alYsFh7zQpUtYF6ET8ChfFGlt1
-	MLVg==
-X-Gm-Message-State: ABUngveQsJId8vo43mm+EgzjP/xqv/g/4xrqXrqgttN/QvrRuoGaMIcMI8VhMWyNCD+AVw==
-X-Received: by 10.98.14.197 with SMTP id 66mr10499012pfo.123.1478499055316;
-	Sun, 06 Nov 2016 22:10:55 -0800 (PST)
-Received: from CACSVMO-14452.local ([2601:646:8882:b8c:c539:1af8:77b0:6537])
-	by smtp.gmail.com with ESMTPSA id
-	n7sm36818405pfn.62.2016.11.06.22.10.54
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sun, 06 Nov 2016 22:10:54 -0800 (PST)
-To: "Bipnesh, Abhinav (Abhinav)" <abhinavbipnesh@avaya.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-References: <F38A866CD026F746A3BF0928A84397BE3E7E956A@AZ-FFEXMB01.global.avaya.com>
-From: Khem Raj <raj.khem@gmail.com>
-Organization: himvis.com
-Message-ID: <115636bc-cef6-5b05-7e3d-552c2f3f879f@gmail.com>
-Date: Sun, 6 Nov 2016 22:10:48 -0800
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:45.0)
-	Gecko/20100101 Thunderbird/45.4.0
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=3OZsVWn6SRtZ0G9lvhfBNaxSRLiNSeLxaBUZ6whhvK4=;
+	b=CDGoVzvtIj6YpNeZ/RmcdnXgxSDMXaYMAgPt2OdMGb+MFin59ImP+d1bFeiD6TemaK
+	ifi6XDdKyIVH++nk4fvuVZ7dXXGhf+LAwyCcMp/nyo866g50tUZWuL2v9/7xWIBo7YwU
+	zIVpljxxxkUCSS5qEhbXqpkUJL9FsYPZb2cACdX7EQngAM244NebboLzZ+sTsd8UhrOZ
+	MvgKtvesCwxu5eteyLkFxZuKL8bjqKU7wwXGEtj0yTKiUubDnyZ9zAgEmKbT6tpcTjLY
+	m/Sy9zKiVDRbmEnJEtSr+QolHPPGLy7qm9NcykW5GNyxo1W5ZM3J8Cm4kpdFFq8qc9OZ
+	FJ3Q==
+X-Gm-Message-State: ABUngvdjuhivP3AOlX6+lfOm03hEqsxgi9gKJ4GCvvnUUm75inve5lExKJuoqDphPxO2tIo/ILIO9HuXrZTGcXBa
+X-Received: by 10.200.40.101 with SMTP id 34mr5845292qtr.38.1478509779305;
+	Mon, 07 Nov 2016 01:09:39 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <F38A866CD026F746A3BF0928A84397BE3E7E956A@AZ-FFEXMB01.global.avaya.com>
-Subject: Re: How to build a recipe having two versions
+Received: by 10.140.85.136 with HTTP; Mon, 7 Nov 2016 01:09:18 -0800 (PST)
+In-Reply-To: <30C2D590D16A5C46ADFE6521910377987FF710E3@AZ-US1EXMB02.global.avaya.com>
+References: <30C2D590D16A5C46ADFE6521910377987FF710E3@AZ-US1EXMB02.global.avaya.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Mon, 7 Nov 2016 09:09:18 +0000
+Message-ID: <CAJTo0LYx6P5z8qxwv9LQwWRL=xMSseggaQsq4GwLJx+L2JjfhQ@mail.gmail.com>
+To: "Vuille, Martin (Martin)" <vmartin@avaya.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Yocto "Long Term Support"
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -77,89 +66,85 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 07 Nov 2016 06:10:59 -0000
-X-Groupsio-MsgNum: 32886
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature";
-	boundary="TGtuiQ4m98KkcQqepnosAcCbUxoESiFwQ"
+X-List-Received-Date: Mon, 07 Nov 2016 09:09:43 -0000
+Content-Type: multipart/alternative; boundary=001a1140451c31770c0540b26204
 
---TGtuiQ4m98KkcQqepnosAcCbUxoESiFwQ
-Content-Type: multipart/mixed; boundary="DUBfKcj9CDO3374421rTLiEAsLJI08rcO";
- protected-headers="v1"
-From: Khem Raj <raj.khem@gmail.com>
-To: "Bipnesh, Abhinav (Abhinav)" <abhinavbipnesh@avaya.com>,
- "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Message-ID: <115636bc-cef6-5b05-7e3d-552c2f3f879f@gmail.com>
-Subject: Re: [yocto] How to build a recipe having two versions
-References: <F38A866CD026F746A3BF0928A84397BE3E7E956A@AZ-FFEXMB01.global.avaya.com>
-In-Reply-To: <F38A866CD026F746A3BF0928A84397BE3E7E956A@AZ-FFEXMB01.global.avaya.com>
-
---DUBfKcj9CDO3374421rTLiEAsLJI08rcO
-Content-Type: text/plain; charset=utf-8
+--001a1140451c31770c0540b26204
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
+On 6 November 2016 at 15:33, Vuille, Martin (Martin) <vmartin@avaya.com>
+wrote:
 
+> Has there ever been any discussion of making select releases
+>
+> =E2=80=9CLong Term Support=E2=80=9D releases, i.e., committing to support=
+ them
+>
+> for a number of years?
+>
+>
+>
+> Presumably that would entail having the resources to commit
+>
+> a maintainer to that release for the LTS interval.
+>
 
-On 11/6/16 9:53 PM, Bipnesh, Abhinav (Abhinav) wrote:
-> Hi,
->=20
-> =20
->=20
-> I was looking into a way to build an recipe which has two version files=
-=2E For
-> the xerces-c we have two version of files. Below is the list of the sam=
-e
->=20
-> ./customlayer/xerces-c/xerces-c_2.8.0.bb
->=20
-> ./meta-openembedded/meta-oe/recipes-devtools/xerces-c/xerces-c_3.1.2.bb=
+Currently the Yocto Project commits to supporting the previous two releases
+with security fixes.  If you want a longer life-cycle than that then it is
+recommended to approach one of the many OSVs who support Yocto Project
+derived build systems, such as Wind River / Mentor Graphics / ENEA / more.
+These will have longer support cycles, at least one has the option of ten
+years for security and critical bug fixes.
 
->=20
-> =20
->=20
-> Now as the code we are using need to use xerces-c_2.8.0.bb and not the
-> xerces_3.1.2.bb files. So when we try to fire command as bitbake xerces=
--c it
-> always tries to build 3.1.2 and not 2.8.0 files. So is there a way we c=
-an
-> explicitly call the older version file for building instead of the new =
-version.
+Out of curiosity, how much effort is required (on average) to
+>
+> maintain a non-current release with at least CVEs and maybe
+>
+> critical bug fixes from upstream?
+>
 
-you can pin versions of packages e.g. using PREFERERRED_VERSION_xerces =3D=
+Just CVEs requires a part-time person.  Tracking all upstreams for
+non-security but critical bug fixes would be far more effort.
 
-"2.8.0" in local.conf also read the relevant section in manual
+Ross
 
-https://www.yoctoproject.org/docs/latest/bitbake-user-manual/bitbake-user=
--manual.html#var-PREFERRED_VERSION
+--001a1140451c31770c0540b26204
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
->=20
-> =20
->=20
-> Please let me know if you need more information.
->=20
-> =20
->=20
-> Thanks,
->=20
-> Abhinav
->=20
->=20
->=20
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 6 November 2016 at 15:33, Vuille, Martin (Martin) <span dir=3D"ltr">&lt;=
+<a href=3D"mailto:vmartin@avaya.com" target=3D"_blank">vmartin@avaya.com</a=
+>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 =
+0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><p class=3D"MsoNormal=
+"><span lang=3D"EN-US">Has there ever been any discussion of making select =
+releases<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">=E2=80=9CLong Term Support=E2=
+=80=9D releases, i.e., committing to support them<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">for a number of years?<u></u><u=
+></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Presumably that would entail ha=
+ving the resources to commit<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">a maintainer to that release fo=
+r the LTS interval.</span></p></blockquote><div><br></div><div>Currently th=
+e Yocto Project commits to supporting the previous two releases with securi=
+ty fixes.=C2=A0 If you want a longer life-cycle than that then it is recomm=
+ended to approach one of the many OSVs who support Yocto Project derived bu=
+ild systems, such as Wind River / Mentor Graphics / ENEA / more.=C2=A0 Thes=
+e will have longer support cycles, at least one has the option of ten years=
+ for security and critical bug fixes.</div><div><br></div><blockquote class=
+=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padd=
+ing-left:1ex">
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Out of curiosity, how much effo=
+rt is required (on average) to<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">maintain a non-current release =
+with at least CVEs and maybe<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">critical bug fixes from upstrea=
+m?</span></p></blockquote></div><br>Just CVEs requires a part-time person.=
+=C2=A0 Tracking all upstreams for non-security but critical bug fixes would=
+ be far more effort.</div><div class=3D"gmail_extra"><br></div><div class=
+=3D"gmail_extra">Ross</div></div>
 
-
---DUBfKcj9CDO3374421rTLiEAsLJI08rcO--
-
---TGtuiQ4m98KkcQqepnosAcCbUxoESiFwQ
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-Comment: GPGTools - https://gpgtools.org
-
-iEYEARECAAYFAlggGuwACgkQuwUzVZGdMxTdlwCfTuSQHIeuddzjaHd+1KTiMilZ
-3QsAoJFMzzEWpo9b+MmIx/CUJpb/odm1
-=6GxQ
------END PGP SIGNATURE-----
-
---TGtuiQ4m98KkcQqepnosAcCbUxoESiFwQ--
+--001a1140451c31770c0540b26204--
