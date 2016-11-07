@@ -1,58 +1,66 @@
-Return-Path: <vmartin@avaya.com>
+Return-Path: <winotu.email@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 09088E0049D; Mon,  7 Nov 2016 10:37:46 -0800 (PST)
+	id A79DEE004E5; Mon,  7 Nov 2016 11:31:07 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (winotu.email[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.213.54 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [198.152.13.100 listed in list.dnswl.org]
-Received: from co300216-co-outbound.net.avaya.com
-	(co300216-co-outbound.net.avaya.com [198.152.13.100])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5D9E0E0034A
-	for <yocto@yoctoproject.org>; Mon,  7 Nov 2016 10:37:42 -0800 (PST)
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2GNAQAAySBY/xUHmMZdGgEBAQECAQEBA?=
-	=?us-ascii?q?QgBAQEBgxQaAQEBAQEfgVQHAY0wlwKHaIxqggiGJAIagXE/FAECAQEBAQEBAQN?=
-	=?us-ascii?q?fKIRhAQEBAQIBEhERSgsCAQgNCAECAgIGHQMCAgIfERQBEAEBBAESCBqIHAMPC?=
-	=?us-ascii?q?AGnCIpigkA4AocSDYNkAQEBAQEBAQECAQEBAQEBAQEBAQEcgQmFNYRVgkeCAhW?=
-	=?us-ascii?q?CbS2CLwWZcjUBjQkBhRGINYYDiQiEIoQGHjd6hSpyhj4BgQsBAQE?=
-X-IPAS-Result: =?us-ascii?q?A2GNAQAAySBY/xUHmMZdGgEBAQECAQEBAQgBAQEBgxQaAQE?=
-	=?us-ascii?q?BAQEfgVQHAY0wlwKHaIxqggiGJAIagXE/FAECAQEBAQEBAQNfKIRhAQEBAQIBE?=
-	=?us-ascii?q?hERSgsCAQgNCAECAgIGHQMCAgIfERQBEAEBBAESCBqIHAMPCAGnCIpigkA4Aoc?=
-	=?us-ascii?q?SDYNkAQEBAQEBAQECAQEBAQEBAQEBAQEcgQmFNYRVgkeCAhWCbS2CLwWZcjUBj?=
-	=?us-ascii?q?QkBhRGINYYDiQiEIoQGHjd6hSpyhj4BgQsBAQE?=
-X-IronPort-AV: E=Sophos;i="5.31,606,1473134400"; d="scan'208";a="202061216"
-Received: from unknown (HELO co300216-co-erhwest-exch.avaya.com)
-	([198.152.7.21]) by co300216-co-outbound.net.avaya.com with ESMTP;
-	07 Nov 2016 13:37:41 -0500
-X-OutboundMail_SMTP: 1
-Received: from unknown (HELO AZ-US1EXHC01.global.avaya.com) ([135.11.85.12])
-	by co300216-co-erhwest-out.avaya.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
-	07 Nov 2016 13:37:41 -0500
-Received: from AZ-US1EXMB02.global.avaya.com ([fe80::c01d:740:c927:8888]) by
-	AZ-US1EXHC01.global.avaya.com ([135.11.85.12]) with mapi id
-	14.03.0319.002; Mon, 7 Nov 2016 13:37:41 -0500
-From: "Vuille, Martin (Martin)" <vmartin@avaya.com>
-To: Khem Raj <raj.khem@gmail.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] Supported "init" types
-Thread-Index: AdI5G6PTa6ZQsknERTmEogjEv+Je/QAK9iUAAAhr8zA=
-Date: Mon, 7 Nov 2016 18:37:40 +0000
-Message-ID: <30C2D590D16A5C46ADFE6521910377987FF7577C@AZ-US1EXMB02.global.avaya.com>
-References: <30C2D590D16A5C46ADFE6521910377987FF756FD@AZ-US1EXMB02.global.avaya.com>
-	<5b741b70-e261-626e-756d-bcf5468c9d54@gmail.com>
-In-Reply-To: <5b741b70-e261-626e-756d-bcf5468c9d54@gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [135.11.85.49]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-vk0-f54.google.com (mail-vk0-f54.google.com
+	[209.85.213.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4B4C3E00498
+	for <yocto@yoctoproject.org>; Mon,  7 Nov 2016 11:31:04 -0800 (PST)
+Received: by mail-vk0-f54.google.com with SMTP id w194so130055696vkw.2
+	for <yocto@yoctoproject.org>; Mon, 07 Nov 2016 11:31:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=zN41LtMxSwUU+M1AkpSWtwlpDiU8OhSTi7euCHTSYEE=;
+	b=syUha74JkRuFu8UUj6+KcjKptbJn0MGlEs9q9WoqVu23HwWlrmkYuzUpz7R+52yvRz
+	0IUYBUJbH1xFJRA3hCgRG/j9PPLK6TwZTng3wLyJgQ0S43aYQs/wkKVUBTFlq9+YvOMd
+	XpYJ23TzlDU77YhZ8YHq7Qr0GkMyOJB/T4E2KSCfcD18+GfC4xe7wgPdUGLSbJXl9tQf
+	Dz33u3JuUgmA/ABiQHDfWe6vK6eFo3Eidz2lWAzpm/uMQsblJJTM+Z9SIplN4FFwqhrA
+	q3p1jCQbRMl/uoL1wlOu62FFAcITjC8zbgTTe9iZY/4vlsUanqypgSXF/lZJJy89FWIZ
+	bT2w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=zN41LtMxSwUU+M1AkpSWtwlpDiU8OhSTi7euCHTSYEE=;
+	b=KxmkojSay1ynWqL8wxKWVyimDPIFJf/MlRiUgdYQz1M51jkhv57ms3tjG8x6QPxEMf
+	tmWtRsQarZtYCpx+a+3drZURvaZko/IMmpQ2MX3rFp5EmMculCUFn1O/8uMKEhHuVbh0
+	SclAEk7ighQrgyFB3NZNrv/PNPBF7CNM2oV+t21kzRBnak8j9j+RKM78j9/gT8Ysh231
+	BJnQ724CIK6iH4b5PbDkyq7hfxO6rru4z4dHlc+wQQmEO9OtS4HOk5fdK2GGDQGiPhLZ
+	CoIrQnXlUHBLObUJVW/bN043fzp0tIJvHRe1/hg5iEogLYu3Uz6fib2Rj5sGekrsXL4d
+	vd0Q==
+X-Gm-Message-State: ABUngveUOY99K5qDN8PVlKqQ9aHIWmb+FAxeQtopSKHOysdE/P431tKzjLpkLfNW/wp8BcjcefnMxvP/6upV1g==
+X-Received: by 10.31.120.9 with SMTP id t9mr5734288vkc.39.1478547064187; Mon,
+	07 Nov 2016 11:31:04 -0800 (PST)
 MIME-Version: 1.0
-Subject: Re: Supported "init" types
+Received: by 10.176.83.27 with HTTP; Mon, 7 Nov 2016 11:31:03 -0800 (PST)
+In-Reply-To: <CAGMdoFkRJbK=YXzm2GDxEd-oLh2hWh+OHNQ9RoOgvB6Dwm2DYA@mail.gmail.com>
+References: <f9a57cb411c94c0c8f191bad3d391b35@SI-MBX1022.de.bosch.com>
+	<56D865D5.2010702@windriver.com>
+	<CAGMdoFkRJbK=YXzm2GDxEd-oLh2hWh+OHNQ9RoOgvB6Dwm2DYA@mail.gmail.com>
+From: "Chris Z." <winotu.email@gmail.com>
+Date: Mon, 7 Nov 2016 20:31:03 +0100
+Message-ID: <CAEjjReLCNOKCq5dawyvbFyH=M5B1eot36SLuwCXMFJ1r_o-fUg@mail.gmail.com>
+To: Edward Wingate <edwingate8@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: How to handle meta-intel/openembedded repos with multiple developers
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -64,19 +72,103 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 07 Nov 2016 18:37:46 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Mon, 07 Nov 2016 19:31:07 -0000
+Content-Type: multipart/alternative; boundary=94eb2c14a1288b71bb0540bb101f
 
-PiBGcm9tOiBLaGVtIFJhaiBbbWFpbHRvOnJhai5raGVtQGdtYWlsLmNvbV0NCj4gU2VudDogTm92
-ZW1iZXIgMDcsIDIwMTYgMTI6MzcNCj4gDQo+IE9uIDExLzcvMTYgOToyNyBBTSwgVnVpbGxlLCBN
-YXJ0aW4gKE1hcnRpbikgd3JvdGU6DQo+ID4gSSBzZWUgdGhhdCDigJxzeXN2aW5pdOKAnSBhbmQg
-4oCcc3lzdGVtZOKAnSBzdHlsZSBpbml0IGlzIHN1cHBvcnRlZC4NCj4gPg0KPiA+DQo+ID4NCj4g
-PiBJcyB0aGVyZSBzdXBwb3J0IGZvciBCU0Qtc3R5bGUgaW5pdCwgb3Igc29tZSBvdGhlciBtaW5p
-bWFsIGluaXQ/DQo+ID4NCj4gPg0KPiANCj4gdGhlcmUgaXMgYnVzeWJveC9tZGV2IGluaXQgb3B0
-aW9uIGluIE9FLWNvcmUgaWYgeW91IGFyZSBsb29raW5nIGZvciBhIG1pbmltYWwNCj4gaW5pdCBh
-bmQgbm90IHNwZWNpZmlhbGx5IGZvciBCU0QgaW5pdC4NCj4gDQo+IGl0cyBkb2N1bWVudGVkIGlu
-IG1ldGEvY29uZi9sb2NhbC5jb25mLnNhbXBsZS5leHRlbmRlZA0KPiANCg0KVGhhbmtzISBKdXN0
-IHdoYXQgSSB3YXMgbG9va2luZyBmb3IuDQoNClJlZ2FyZHMsDQpNVg0K
+--94eb2c14a1288b71bb0540bb101f
+Content-Type: text/plain; charset=UTF-8
 
+Hi,
+
+How you store your project configuration ? How you prepare workspace
+(download each layer separately)?
+Basic stuff, SW release should be reproducible (in easy way). Store
+somewhere used hash of each piece or use tags. Non company assets should be
+already somehow tagged or you use HEAD or master/-next ?
+
+Br,
+Chris Z
+
+On Thu, Oct 27, 2016 at 8:22 AM, Edward Wingate <edwingate8@gmail.com>
+wrote:
+
+> On Thu, Mar 3, 2016 at 8:27 AM, Mark Hatle <mark.hatle@windriver.com>
+> wrote:
+> >  At some point during product development a lead/architect needs to make
+> the
+> > decision to 'freeze' development and at that point everything is
+> tagged/branched
+> > and only backports are used from them on.  (If the number of backports
+> gets too
+> > large, you MIGHT decide to selectively rebase.)
+>
+> I'm currently trying to figure out with how to control external layers
+> in my Yocto build and found this thread.  I'm a little unclear on how
+> to track a release to the version used on non-company layers.  Say I'm
+> using poky, meta-openembedded, meta-xilinx and then my own layer,
+> meta-me. When I freeze development and do a release, I can tag
+> meta-me, but because I also treat non-company assets as RO, I
+> shouldn't tag poky, meta-openembedded nor meta-xilinx (or should I? Is
+> this where I use git's lightweight tagging as opposed to annotated
+> tags?) When "everything is tagged/branched", does that somehow include
+> tagging the non-company assets?  Thanks for any help.
+>
+> Ed
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+
+--94eb2c14a1288b71bb0540bb101f
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><div>Hi,<br><br></div><div>How you store your project=
+ configuration ? How you prepare workspace (download each layer separately)=
+?<br></div><div>Basic stuff, SW release should be reproducible (in easy way=
+). Store somewhere used hash of each piece or use tags. Non company assets =
+should be already somehow tagged or you use HEAD or master/-next ?<br></div=
+><div><br></div>Br,<br></div>Chris Z<br></div><div class=3D"gmail_extra"><b=
+r><div class=3D"gmail_quote">On Thu, Oct 27, 2016 at 8:22 AM, Edward Wingat=
+e <span dir=3D"ltr">&lt;<a href=3D"mailto:edwingate8@gmail.com" target=3D"_=
+blank">edwingate8@gmail.com</a>&gt;</span> wrote:<br><blockquote class=3D"g=
+mail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-l=
+eft:1ex">On Thu, Mar 3, 2016 at 8:27 AM, Mark Hatle &lt;<a href=3D"mailto:m=
+ark.hatle@windriver.com">mark.hatle@windriver.com</a>&gt; wrote:<br>
+&gt;=C2=A0 At some point during product development a lead/architect needs =
+to make the<br>
+&gt; decision to &#39;freeze&#39; development and at that point everything =
+is tagged/branched<br>
+&gt; and only backports are used from them on.=C2=A0 (If the number of back=
+ports gets too<br>
+&gt; large, you MIGHT decide to selectively rebase.)<br>
+<br>
+I&#39;m currently trying to figure out with how to control external layers<=
+br>
+in my Yocto build and found this thread.=C2=A0 I&#39;m a little unclear on =
+how<br>
+to track a release to the version used on non-company layers.=C2=A0 Say I&#=
+39;m<br>
+using poky, meta-openembedded, meta-xilinx and then my own layer,<br>
+meta-me. When I freeze development and do a release, I can tag<br>
+meta-me, but because I also treat non-company assets as RO, I<br>
+shouldn&#39;t tag poky, meta-openembedded nor meta-xilinx (or should I? Is<=
+br>
+this where I use git&#39;s lightweight tagging as opposed to annotated<br>
+tags?) When &quot;everything is tagged/branched&quot;, does that somehow in=
+clude<br>
+tagging the non-company assets?=C2=A0 Thanks for any help.<br>
+<br>
+Ed<br>
+<span class=3D"HOEnZb"><font color=3D"#888888">--<br>
+______________________________<wbr>_________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto</a><=
+br>
+</font></span></blockquote></div><br></div>
+
+--94eb2c14a1288b71bb0540bb101f--
