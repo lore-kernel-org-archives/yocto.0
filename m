@@ -1,33 +1,26 @@
-Return-Path: <martin@spotwise.com>
+Return-Path: <recipe-report@yoctoproject.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 653E9E00AB4; Sun,  6 Nov 2016 18:14:03 -0800 (PST)
+	id 85ECDE009CD; Sun,  6 Nov 2016 21:39:57 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [74.201.84.163 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 903 seconds by postgrey-1.32 at yocto-www;
-	Sun, 06 Nov 2016 18:14:01 PST
-Received: from sender163-mail.zoho.com (sender163-mail.zoho.com
-	[74.201.84.163])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EEC1CE0083E
-	for <yocto@yoctoproject.org>; Sun,  6 Nov 2016 18:14:01 -0800 (PST)
-Received: from [10.1.1.92] (c-4ab0e055.17-2-64736c10.cust.bredbandsbolaget.se
-	[85.224.176.74]) by mx.zohomail.com
-	with SMTPS id 147848393659877.30802477441455;
-	Sun, 6 Nov 2016 17:58:56 -0800 (PST)
-From: Martin Bergek <martin@spotwise.com>
-Mime-Version: 1.0 (Mac OS X Mail 10.1 \(3251\))
-Message-Id: <B95D2958-D096-45F7-AE33-48A4F733F146@spotwise.com>
-Date: Mon, 7 Nov 2016 02:58:51 +0100
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from packages.yoctoproject.org (unknown [198.145.29.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 73C5CE0098A
+	for <yocto@yoctoproject.org>; Sun,  6 Nov 2016 21:39:53 -0800 (PST)
+Received: from packages.yoctoproject.org (localhost [IPv6:::1])
+	by packages.yoctoproject.org (Postfix) with ESMTP id 1890F80D3CD8
+	for <yocto@yoctoproject.org>; Mon,  7 Nov 2016 00:39:52 -0500 (EST)
+MIME-Version: 1.0
+From: recipe-report@yoctoproject.org
 To: yocto@yoctoproject.org
-X-Mailer: Apple Mail (2.3251)
-Subject: [meta-raspberrypi] Issues with dtbo/dtb and USB failure using pl2303
+Date: Mon, 07 Nov 2016 05:39:52 -0000
+Message-ID: <20161107053952.6838.78774@packages.yoctoproject.org>
+Subject: [Recipe reporting system] Upgradable recipe name list
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,154 +32,185 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 07 Nov 2016 02:14:03 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 07 Nov 2016 05:39:57 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-I am trying to build an image using the morty branches of poky and =
-meta-raspberrypi. However, I am only able to use kernel version 4.4 and =
-with that version I have a major issue with the USB stack using pl2303 =
-(USB to serial).
+This mail was sent out by Recipe reporting system.
 
-Previously I could do a workaround by running 4.1 but lately I am unable =
-to build an image using that kernel version (apparently due to dtb/dtbo =
-differences). I also can=E2=80=99t use 4.7 due to other errors.=20
+This message list those recipes which need to be upgraded. If maintainers
+believe some of them needn't to upgrade at this time, they can fill
+RECIPE_NO_UPDATE_REASON in respective recipe file to ignore this remainder
+until newer upstream version was detected.
 
-Please see log excerpts below. The only difference between these setups =
-is the value of PREFERRED_VERSION_linux-raspberrypi. I should add that I =
-get the same result when I use the master branches for poky and =
-meta-openembedded.
+Example:
+RECIPE_NO_UPDATE_REASON = "Version 2.0 is unstable"
 
-Ideally I would like to fix the kernel issue that causes the USB device =
-to stop working but being able to build an image using kernel 4.1 would =
-also help.
+You can check the detail information at:
 
-I appreciate any help. Thanks!
+http://recipes.yoctoproject.org/
 
-Regards,
-Martin Bergek
+Package               Version        Upstream version      Maintainer          NoUpgradeReason
+--------------------  -------------  --------------------  ------------------  ------------------------------
+liberation-fonts      1.04           2.00.1                Alexander Kanavin   2.x depends on fontforge pa...
+webkitgtk             2.14.1         2.14.2                Alexander Kanavin
+ca-certificates       20160104       20161102              Alexander Kanavin
+openssl               1.0.2j         1.1.0b                Alexander Kanavin
+gnutls                3.5.5          3.5.6                 Alexander Kanavin
+lighttpd              1.4.42         1.4.43                Alexander Kanavin
+icu                   57.1           58.1                  Alexander Kanavin
+kexec-tools           2.0.12         2.0.13                Alexander Kanavin
+gobject-introspec...  1.48.0         1.50.0                Alexander Kanavin
+cmake                 3.6.2          3.6.3                 Alexander Kanavin
+sysprof               3.20.0+gitX    3.22.2+gitAUTOINC...  Alexander Kanavin
+cmake-native          3.6.2          3.6.3                 Alexander Kanavin
+mkelfimage            4.0+gitX       4.5+gitAUTOINC+0b...  Alexander Kanavin   mkelfimage has been removed...
+perl                  5.22.1         5.24.1                Aníbal Limón
+apt                   1.2.12         1.3.1                 Aníbal Limón
+apt-native            1.2.12         1.3.1                 Aníbal Limón
+dpkg                  1.18.7         1.18.12               Aníbal Limón
+perl-native           5.22.1         5.24.1                Aníbal Limón
+pinentry              0.9.2          0.9.7                 Armin Kuster
+nettle                3.2            3.3                   Armin Kuster
+linux-libc-headers    4.8            4.8.6                 Bruce Ashfield
+systemd-bootchart     230+gitX       231+gitAUTOINC+9e...  Chen Qi
+pciutils              3.5.1          3.5.2                 Chen Qi
+curl                  7.50.1         7.51.0                Chen Qi
+busybox               1.25.0+gitX    1.25.1+gitAUTOINC...  Chen Qi
+systemd-boot          230+gitX       232+gitAUTOINC+a1...  Chen Qi
+dbus-glib             0.106          0.108                 Chen Qi
+dbus-test             1.10.10        1.10.12               Chen Qi
+dbus                  1.10.10        1.10.12               Chen Qi
+cups                  2.1.4          2.2.1                 Chen Qi
+gawk                  4.1.3          4.1.4                 Chen Qi
+systemd               230+gitX       232+gitAUTOINC+a1...  Chen Qi
+util-linux            2.28.1         2.28.2                Chen Qi
+sudo                  1.8.17p1       1.8.18p1              Chen Qi
+sysstat               11.4.0         11.5.2                Chen Qi
+flex                  2.6.0          2.6.2                 Chen Qi
+grep                  2.25           2.26                  Chen Qi
+diffutils             3.4            3.5                   Chen Qi
+build-appliance-i...  15.0.0         16.0.0                Cristian Iorga
+chkconfig             1.3.58         1.8                   Dengke Du           Version 1.5 requires selinux
+ltp                   20160126       20160920              Dengke Du
+u-boot-fw-utils       v2016.03+gitX  v2016.09.01+gitAU...  Denys Dmytriyenko
+u-boot-mkimage        v2016.03+gitX  v2016.09.01+gitAU...  Denys Dmytriyenko
+u-boot                v2016.03+gitX  v2016.09.01+gitAU...  Denys Dmytriyenko
+python3-pygobject     3.20.1         3.22.0                Edwin Plauchu
+python3-mako          1.0.4          1.0.5                 Edwin Plauchu
+python3-git           2.0.7          2.1.0                 Edwin Plauchu
+swig                  3.0.8          3.0.10                Edwin Plauchu
+python3-pip           8.1.2          9.0.1                 Edwin Plauchu
+python3-setuptools    22.0.5         28.8.0                Edwin Plauchu
+python3-numpy         1.11.0         1.11.2                Edwin Plauchu
+dhcp                  4.3.4          4.3.5                 Hongxu Jia
+createrepo            0.4.11         0.10.4                Hongxu Jia          Versions after 0.9.* use YU...
+elfutils              0.166          0.167                 Hongxu Jia
+gpgme                 1.6.0          1.7.1                 Hongxu Jia
+bash                  4.3.30         4.4                   Hongxu Jia
+ghostscript           9.19           9.20rc1               Hongxu Jia
+ncurses               6.0+20160625   6.0+20160917          Hongxu Jia
+readline              6.3            7.0                   Hongxu Jia
+man-pages             4.07           4.08                  Hongxu Jia
+pigz                  2.3.3          2.3.4                 Hongxu Jia
+gnupg                 2.1.14         2.1.15                Hongxu Jia
+python-git            2.0.7          2.1.0                 Jose Lamego
+python-numpy          1.11.1         1.11.2                Jose Lamego
+python-scons          2.5.0          2.5.1                 Jose Lamego
+python-pexpect        4.2.0          4.2.1                 Jose Lamego
+python-setuptools     22.0.5         28.8.0                Jose Lamego
+python-scons-native   2.5.0          2.5.1                 Jose Lamego
+python-mako           1.0.4          1.0.5                 Jose Lamego
+wayland               1.11.1         1.12.0                Jussi Kukkonen
+weston                1.11.1         1.12.0                Jussi Kukkonen
+gtk-icon-utils-na...  3.22.1         3.22.2                Jussi Kukkonen
+xf86-video-intel      2.99.917+gitX  20040721+gitAUTOI...  Jussi Kukkonen
+xf86-input-evdev      2.10.3         2.10.4                Jussi Kukkonen
+xf86-input-synaptics  1.8.3          1.8.99.2              Jussi Kukkonen
+libxi                 1.7.7          1.7.8                 Jussi Kukkonen
+xkeyboard-config      2.18           2.19                  Jussi Kukkonen
+mesa                  12.0.3         13.0.0                Jussi Kukkonen
+vte                   0.44.2         0.46.0                Jussi Kukkonen
+xserver-xorg          1.18.4         1.18.99.902           Jussi Kukkonen
+shared-mime-info      1.6            1.7                   Jussi Kukkonen
+mesa-gl               12.0.3         13.0.0                Jussi Kukkonen
+gtk+3                 3.22.1         3.22.2                Jussi Kukkonen
+libnotify             0.7.6          0.7.7                 Jussi Kukkonen
+cogl-1.0              1.22.0         1.22.2                Jussi Kukkonen
+gsettings-desktop...  3.20.0         3.22.0                Jussi Kukkonen
+menu-cache            1.0.1          1.0.2                 Jussi Kukkonen
+texinfo               6.0            6.3                   Leonardo Sandoval
+nfs-utils             1.3.3          1.3.4                 Mariano Lopez
+prelink               1.0+gitX       20151030.+gitAUTO...  Mark Hatle
+db                    6.0.35         6.2.23                Mark Hatle          latest db does not work wit...
+rpm                   5.4.16         5.4.17                Mark Hatle
+libpfm4               4.6.0          4.7.0                 Matthew McClintock
+gstreamer1.0-rtsp...  1.8.3          1.10.0                Maxin B. John
+gstreamer1.0-plug...  1.8.3          1.10.0                Maxin B. John
+bluez5                5.42           5.43                  Maxin B. John
+iproute2              4.7.0          4.8.0                 Maxin B. John
+libpcap               1.7.4          1.8.1                 Maxin B. John
+ofono                 1.18           1.19                  Maxin B. John
+gstreamer1.0-libav    1.8.3          1.10.0                Maxin B. John
+gstreamer1.0-plug...  1.8.3          1.10.0                Maxin B. John
+gstreamer1.0          1.8.3          1.10.0                Maxin B. John
+wpa-supplicant        2.5            2.6                   Maxin B. John
+iw                    4.7            4.9                   Maxin B. John
+sqlite3               3.14.1         3.15.1                Maxin B. John
+gstreamer1.0-plug...  1.8.3          1.10.0                Maxin B. John
+ifupdown              0.8.2          0.8.16                Maxin B. John
+serf                  1.3.8          1.3.9                 Maxin B. John
+taglib                1.11           1.11.1                Maxin B. John
+gstreamer1.0-omx      1.2.0          1.10.0                Maxin B. John
+harfbuzz              1.3.2          1.3.3                 Maxin B. John
+gstreamer1.0-plug...  1.8.3          1.10.0                Maxin B. John
+gdb-cross-i586        7.11.1         7.12                  No maintainer
+gdb-cross-canadia...  7.11.1         7.12                  No maintainer
+mpfr                  3.1.4          3.1.5                 Richard Purdie
+lttng-tools           2.8.1+gitX     2.8.2+gitAUTOINC+...  Richard Purdie
+gdb                   7.11.1         7.12                  Richard Purdie
+lttng-modules         2.8.0+gitX     2.8.3+gitAUTOINC+...  Richard Purdie
+strace                4.13           4.14                  Robert Yang
+hdparm                9.48           9.50                  Robert Yang
+less                  481            487                   Robert Yang
+tzcode-native         2016h          2016i                 Robert Yang
+slang                 2.3.0          2.3.1                 Robert Yang
+e2fsprogs             1.43           1.43.3                Robert Yang
+tzdata                2016h          2016i                 Robert Yang
+file                  5.28           5.29                  Robert Yang
+git                   2.9.3          2.10.2                Robert Yang
+guile                 2.0.12         2.0.13                Robert Yang
+mklibs-native         0.1.41         0.1.42                Robert Yang
+base-passwd           3.5.29         3.5.40                Ross Burton         Version 3.5.38 requires cde...
+lsbinitscripts        9.68           9.69                  Ross Burton
 
+Upgradable count: 125
+Upgradable total count: 131
 
+The based commit is:
 
-### Setup 1
+commit 58de12eaaac9c60bb8fc84a3a965ef86d2a39ae0
+Author: Ross Burton <ross.burton@intel.com>
+Date:   Thu Nov 3 17:57:08 2016 +0000
 
-- poky:  morty (6c9f6b5f70ab3ee194b2c2c6f3bd462c994848fa)
-- meta-openembedded: morty (7a491f384c277ee42ac895fec6fc2ef70f15df4d)
-- meta-raspberrypi: master (17a6933adfc7bdf4e7e18dcc9d59e35718620fd4)
-- Kernel: 4.1
+    distro_check: partial rewrite to make it work again
+    
+    This library suffered as part of the Python 2 to Python 3 migration and stopped
+    working entirely.
+    
+    Fix all the migration problems such as files being treated as strings but opened
+    in binary mode, insufficient use of with on files, and so on.
+    
+    Rewrite large amounts to be Pythonic instead of C-in-Python.
+    
+    Update OpenSuse and Fedora URLs.
+    
+    Fedora now splits the archive alphabetically so handle that.
+    
+    [ YOCTO #10562 ]
+    
+    Signed-off-by: Ross Burton <ross.burton@intel.com>
 
-Fails to build, exiting with "Image-hifiberry-amp.dtbo: No such file or =
-directory" (log.do_image_rpi_sdimg.21049)
-
-
-	Creating filesystem with Boot partition 40960 KiB and RootFS =
-290816 KiB
-	0+0 records in
-	0+0 records out
-	0 bytes copied, 0.000246618 s, 0.0 kB/s
-	Model:  (file)
-	Disk =
-/home/martin/Yocto/poky/warp/tmp/work/raspberrypi3-poky-linux-gnueabi/dmet=
--image/1.0-r0/deploy-dmet-image-image-complete/dmet-image-raspberrypi3-201=
-61106113649.rootfs.rpi-sdimg: 344MB
-	Sector size (logical/physical): 512B/512B
-	Partition Table: msdos
-	Disk Flags:=20
-=09
-	Number  Start   End     Size    Type     File system  Flags
-	 1      4194kB  46.1MB  41.9MB  primary               boot, lba
-	 2      46.1MB  344MB   298MB   primary
-=09
-	mkfs.fat: warning - lowercase labels might not work properly =
-with DOS or Windows
-	mkfs.fat 4.0 (2016-05-06)
-	Total number of sectors (81920) not a multiple of sectors per =
-track (63)!
-	Add mtools_skip_check=3D1 to your .mtoolsrc file to skip this =
-test
-	Total number of sectors (81920) not a multiple of sectors per =
-track (63)!
-	Add mtools_skip_check=3D1 to your .mtoolsrc file to skip this =
-test
-	Total number of sectors (81920) not a multiple of sectors per =
-track (63)!
-	Add mtools_skip_check=3D1 to your .mtoolsrc file to skip this =
-test
-	Total number of sectors (81920) not a multiple of sectors per =
-track (63)!
-	Add mtools_skip_check=3D1 to your .mtoolsrc file to skip this =
-test
-	Total number of sectors (81920) not a multiple of sectors per =
-track (63)!
-	Add mtools_skip_check=3D1 to your .mtoolsrc file to skip this =
-test
-	Total number of sectors (81920) not a multiple of sectors per =
-track (63)!
-	Add mtools_skip_check=3D1 to your .mtoolsrc file to skip this =
-test
-	Total number of sectors (81920) not a multiple of sectors per =
-track (63)!
-	Add mtools_skip_check=3D1 to your .mtoolsrc file to skip this =
-test
-	=
-/home/martin/Yocto/poky/warp/tmp/deploy/images/raspberrypi3/Image-hifiberr=
-y-amp.dtbo: No such file or directory
-	WARNING: exit code 1 from a shell command.
-	ERROR: Function failed: do_image_rpi_sdimg (log file is located =
-at =
-/home/martin/Yocto/poky/warp/tmp/work/raspberrypi3-poky-linux-gnueabi/dmet=
--image/1.0-r0/temp/log.do_image_rpi_sdimg.21049)
-
-
-
-### Setup 2
-
-- poky:  morty (6c9f6b5f70ab3ee194b2c2c6f3bd462c994848fa)
-- meta-openembedded: morty (7a491f384c277ee42ac895fec6fc2ef70f15df4d)
-- meta-raspberrypi: master (17a6933adfc7bdf4e7e18dcc9d59e35718620fd4)
-- Kernel: 4.4
-
-Builds successfully and results in a bootable image  - but PL2303 stops =
-working after a number of hours (se log file below). There are two =
-errors logged regarding the pl2303 device, the first one after about 40 =
-minutes the system recovers from but after the second the is no more =
-data coming from the USB device. This exact same thing worked on the 4.1 =
-kernel previously. However I can't build a bootable image using 4.1 any =
-longer due to dtbo/dtb differences (see error message above).
-
-
-	root@raspberrypi3:~# grep pl2303 /var/log/messages=20
-	Nov  6 10:52:06 raspberrypi3 user.info kernel: [    5.086827] =
-usbcore: registered new interface driver pl2303
-	Nov  6 10:52:06 raspberrypi3 user.info kernel: [    5.086951] =
-usbserial: USB Serial support registered for pl2303
-	Nov  6 10:52:06 raspberrypi3 user.info kernel: [    5.087084] =
-pl2303 1-1.4:1.0: pl2303 converter detected
-	Nov  6 10:52:06 raspberrypi3 user.info kernel: [    5.091224] =
-usb 1-1.4: pl2303 converter now attached to ttyUSB0
-	Nov  6 11:36:02 raspberrypi3 user.err kernel: [  392.698562] =
-pl2303 ttyUSB0: usb_serial_generic_read_bulk_callback - urb stopped: -32
-	Nov  6 13:14:04 raspberrypi3 user.err kernel: [ 6275.233811] =
-pl2303 ttyUSB0: usb_serial_generic_read_bulk_callback - urb stopped: -32
-
-
-
-### Setup 3
-
-- poky:  morty (6c9f6b5f70ab3ee194b2c2c6f3bd462c994848fa)
-- meta-openembedded: morty (7a491f384c277ee42ac895fec6fc2ef70f15df4d)
-- meta-raspberrypi: master (17a6933adfc7bdf4e7e18dcc9d59e35718620fd4)
-- Kernel: 4.7
-
-Fails to build with the following message:
-
-
-	ERROR: Fetcher failure: Unable to find revision =
-a45a35c08598b23f9fd82e49c83b46c7d536244f in branch rpi-4.7.y even from =
-upstream
-	ERROR: Fetcher failure for URL: =
-'git://github.com/raspberrypi/linux.git;protocol=3Dgit;branch=3Drpi-4.7.y'=
-. Unable to fetch URL from any source.
-
+Any problem, please contact Anibal Limon <anibal.limon@intel.com> 
 
 
