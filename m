@@ -1,57 +1,61 @@
 Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C35C0E00B45; Mon,  7 Nov 2016 01:09:43 -0800 (PST)
+	id C62D3E00B96; Mon,  7 Nov 2016 02:16:23 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_LOW,
+	RCVD_IN_SORBS_SPAM autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.220.179 listed in dnsbl.sorbs.net]
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.179 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.216.171 listed in list.dnswl.org]
-Received: from mail-qt0-f171.google.com (mail-qt0-f171.google.com
-	[209.85.216.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 713D5E00571
-	for <yocto@yoctoproject.org>; Mon,  7 Nov 2016 01:09:39 -0800 (PST)
-Received: by mail-qt0-f171.google.com with SMTP id w33so83063366qtc.3
-	for <yocto@yoctoproject.org>; Mon, 07 Nov 2016 01:09:39 -0800 (PST)
+Received: from mail-qk0-f179.google.com (mail-qk0-f179.google.com
+	[209.85.220.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 56416E00563
+	for <yocto@yoctoproject.org>; Mon,  7 Nov 2016 02:16:21 -0800 (PST)
+Received: by mail-qk0-f179.google.com with SMTP id x190so167915932qkb.0
+	for <yocto@yoctoproject.org>; Mon, 07 Nov 2016 02:16:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=intel-com.20150623.gappssmtp.com; s=20150623;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=3OZsVWn6SRtZ0G9lvhfBNaxSRLiNSeLxaBUZ6whhvK4=;
-	b=VcqG5+rm3dKf+9f4z1GwpG8yAq+RlBZn7A2p6YA8F4LJlZGpixly5KeXUNCfxtwBLK
-	KWv3sQI1reURewaTqtDPa+wAIoZUBV6Q5lnBPQurIEUxQdEIl0oMtVzNRP+H6BXpsfoR
-	6+JLNlkFszhjxtjQjn+0+alD7Sw1Hw9DTd7uS/lYluy5hxw6F/+Ayiu8cuqGc6e4QYHn
-	0K6lYeLysm1+73tHvkX1KHSzzyjoOTnQaUMHoyHtaM6bcJaqWlsy6keyq4cn8r5TAueh
-	tXjPaaM+PPXUSgMEwNnDYUIo0fPAaIXT7BV8lv1RZ+BN+71og2xv1mA73r9XC4ZZ4ZEl
-	1J2A==
+	:cc; bh=qZ7hc3HDGPcJX6j0ulCC+bIp15TGjOm21r6By8QabXQ=;
+	b=swRJZEZBp+FDZY9IhvfQT+N4U+tZ4RbVlg/b5PnpiJSGSpI20IoTx4NJpX5Jzi383A
+	q/MzHqP+QaRDvVdetWxxEY0FJoSa6KECOZhBG8i746GGeSJRe7oAxjsmOx958TGNSFLX
+	/zVdi5IwzwNAetobUOe++Dt57E8eyG526iK3Ca0pjyNSF+LeV4K7ZPlNLW+eGggB0gkM
+	JfzZ3bh6+tHg/V1brHJtjYl+uc/8FuZSVlNHoG4FWrvoXtUmGAHRuduwtsMlqJ92MfTH
+	g/TrIe/YhDF92qV33izQM4G19d4tj60QEtsR3R30CTAOJ3FsUkb/C+xPohQT3/DdjKMA
+	RVsA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=3OZsVWn6SRtZ0G9lvhfBNaxSRLiNSeLxaBUZ6whhvK4=;
-	b=CDGoVzvtIj6YpNeZ/RmcdnXgxSDMXaYMAgPt2OdMGb+MFin59ImP+d1bFeiD6TemaK
-	ifi6XDdKyIVH++nk4fvuVZ7dXXGhf+LAwyCcMp/nyo866g50tUZWuL2v9/7xWIBo7YwU
-	zIVpljxxxkUCSS5qEhbXqpkUJL9FsYPZb2cACdX7EQngAM244NebboLzZ+sTsd8UhrOZ
-	MvgKtvesCwxu5eteyLkFxZuKL8bjqKU7wwXGEtj0yTKiUubDnyZ9zAgEmKbT6tpcTjLY
-	m/Sy9zKiVDRbmEnJEtSr+QolHPPGLy7qm9NcykW5GNyxo1W5ZM3J8Cm4kpdFFq8qc9OZ
-	FJ3Q==
-X-Gm-Message-State: ABUngvdjuhivP3AOlX6+lfOm03hEqsxgi9gKJ4GCvvnUUm75inve5lExKJuoqDphPxO2tIo/ILIO9HuXrZTGcXBa
-X-Received: by 10.200.40.101 with SMTP id 34mr5845292qtr.38.1478509779305;
-	Mon, 07 Nov 2016 01:09:39 -0800 (PST)
+	bh=qZ7hc3HDGPcJX6j0ulCC+bIp15TGjOm21r6By8QabXQ=;
+	b=SB3eNeq/cF4O7OMVndZpZWjvfmKb3plHNKe5anki/QAV04dEWzjuqIu1D+QinzO7dx
+	wvqRtdhsVQm+UBMoJt5tPY3ooxKmXcXTkwSxornyVCJks1GbJR6vUeSdWLHQBTjrzmIf
+	BgRJW0MY7zYNsqU5vBVfGTD0iQJF5Fd9ENdn+0QSO+wrfSpr+D1jJ2aL9SP4m+Byc3g5
+	c0tFFrSiDPPS2yXlyGCNIdP495tBCucZx58WsDBCVJBb2/IIuEYdRQmb8w1WjO/EkcNG
+	Wu5HuPnQuN4zHCaU875lLTM22sZA3CrSlZ3peBFV8LChhYdfruBiyocblXLbJqSEhLld
+	tnOQ==
+X-Gm-Message-State: ABUngveKCE1Kp+cixFtP+5SsWNF4u9beWzPaexSfsy/gtTCMHx9eiAeCrMmx1cufjmpi459nnp4zGpLNTRu6ztOi
+X-Received: by 10.55.215.6 with SMTP id m6mr5466816qki.244.1478513780752; Mon,
+	07 Nov 2016 02:16:20 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.140.85.136 with HTTP; Mon, 7 Nov 2016 01:09:18 -0800 (PST)
-In-Reply-To: <30C2D590D16A5C46ADFE6521910377987FF710E3@AZ-US1EXMB02.global.avaya.com>
+Received: by 10.140.85.136 with HTTP; Mon, 7 Nov 2016 02:16:00 -0800 (PST)
+In-Reply-To: <CAJTo0LYx6P5z8qxwv9LQwWRL=xMSseggaQsq4GwLJx+L2JjfhQ@mail.gmail.com>
 References: <30C2D590D16A5C46ADFE6521910377987FF710E3@AZ-US1EXMB02.global.avaya.com>
+	<CAJTo0LYx6P5z8qxwv9LQwWRL=xMSseggaQsq4GwLJx+L2JjfhQ@mail.gmail.com>
 From: "Burton, Ross" <ross.burton@intel.com>
-Date: Mon, 7 Nov 2016 09:09:18 +0000
-Message-ID: <CAJTo0LYx6P5z8qxwv9LQwWRL=xMSseggaQsq4GwLJx+L2JjfhQ@mail.gmail.com>
+Date: Mon, 7 Nov 2016 10:16:00 +0000
+Message-ID: <CAJTo0LYp_m4yTnG2TMZsg-XXFJgVWTBMOOGTBEXMoAuY9fQdmQ@mail.gmail.com>
 To: "Vuille, Martin (Martin)" <vmartin@avaya.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Yocto "Long Term Support"
@@ -66,85 +70,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 07 Nov 2016 09:09:43 -0000
-Content-Type: multipart/alternative; boundary=001a1140451c31770c0540b26204
+X-List-Received-Date: Mon, 07 Nov 2016 10:16:23 -0000
+Content-Type: multipart/alternative; boundary=001a1149dcbcb29ad10540b35079
 
---001a1140451c31770c0540b26204
+--001a1149dcbcb29ad10540b35079
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
 
-On 6 November 2016 at 15:33, Vuille, Martin (Martin) <vmartin@avaya.com>
-wrote:
+On 7 November 2016 at 09:09, Burton, Ross <ross.burton@intel.com> wrote:
 
-> Has there ever been any discussion of making select releases
->
-> =E2=80=9CLong Term Support=E2=80=9D releases, i.e., committing to support=
- them
->
-> for a number of years?
->
->
->
-> Presumably that would entail having the resources to commit
->
-> a maintainer to that release for the LTS interval.
+> Currently the Yocto Project commits to supporting the previous two
+> releases with security fixes.  If you want a longer life-cycle than that
+> then it is recommended to approach one of the many OSVs who support Yocto
+> Project derived build systems, such as Wind River / Mentor Graphics / ENEA
+> / more.  These will have longer support cycles, at least one has the option
+> of ten years for security and critical bug fixes.
 >
 
-Currently the Yocto Project commits to supporting the previous two releases
-with security fixes.  If you want a longer life-cycle than that then it is
-recommended to approach one of the many OSVs who support Yocto Project
-derived build systems, such as Wind River / Mentor Graphics / ENEA / more.
-These will have longer support cycles, at least one has the option of ten
-years for security and critical bug fixes.
-
-Out of curiosity, how much effort is required (on average) to
->
-> maintain a non-current release with at least CVEs and maybe
->
-> critical bug fixes from upstream?
->
-
-Just CVEs requires a part-time person.  Tracking all upstreams for
-non-security but critical bug fixes would be far more effort.
+I should follow up by saying that
+https://www.yoctoproject.org/ecosystem/member-organizations is a list of
+everyone who is a member of the Yocto Project, and lists most of the OSVs
+that support YP.
 
 Ross
 
---001a1140451c31770c0540b26204
+--001a1149dcbcb29ad10540b35079
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
 <div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 6 November 2016 at 15:33, Vuille, Martin (Martin) <span dir=3D"ltr">&lt;=
-<a href=3D"mailto:vmartin@avaya.com" target=3D"_blank">vmartin@avaya.com</a=
->&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 =
-0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><p class=3D"MsoNormal=
-"><span lang=3D"EN-US">Has there ever been any discussion of making select =
-releases<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">=E2=80=9CLong Term Support=E2=
-=80=9D releases, i.e., committing to support them<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">for a number of years?<u></u><u=
-></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Presumably that would entail ha=
-ving the resources to commit<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">a maintainer to that release fo=
-r the LTS interval.</span></p></blockquote><div><br></div><div>Currently th=
-e Yocto Project commits to supporting the previous two releases with securi=
-ty fixes.=C2=A0 If you want a longer life-cycle than that then it is recomm=
-ended to approach one of the many OSVs who support Yocto Project derived bu=
-ild systems, such as Wind River / Mentor Graphics / ENEA / more.=C2=A0 Thes=
-e will have longer support cycles, at least one has the option of ten years=
- for security and critical bug fixes.</div><div><br></div><blockquote class=
-=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padd=
-ing-left:1ex">
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Out of curiosity, how much effo=
-rt is required (on average) to<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">maintain a non-current release =
-with at least CVEs and maybe<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">critical bug fixes from upstrea=
-m?</span></p></blockquote></div><br>Just CVEs requires a part-time person.=
-=C2=A0 Tracking all upstreams for non-security but critical bug fixes would=
- be far more effort.</div><div class=3D"gmail_extra"><br></div><div class=
-=3D"gmail_extra">Ross</div></div>
+On 7 November 2016 at 09:09, Burton, Ross <span dir=3D"ltr">&lt;<a href=3D"=
+mailto:ross.burton@intel.com" target=3D"_blank">ross.burton@intel.com</a>&g=
+t;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0px 0=
+px 0px 0.8ex;border-left-width:1px;border-left-color:rgb(204,204,204);borde=
+r-left-style:solid;padding-left:1ex"><div>Currently the Yocto Project commi=
+ts to supporting the previous two releases with security fixes.=C2=A0 If yo=
+u want a longer life-cycle than that then it is recommended to approach one=
+ of the many OSVs who support Yocto Project derived build systems, such as =
+Wind River / Mentor Graphics / ENEA / more.=C2=A0 These will have longer su=
+pport cycles, at least one has the option of ten years for security and cri=
+tical bug fixes.</div><span class=3D"gmail-"><div></div></span></blockquote=
+></div><br>I should follow up by saying that=C2=A0<a href=3D"https://www.yo=
+ctoproject.org/ecosystem/member-organizations">https://www.yoctoproject.org=
+/ecosystem/member-organizations</a> is a list of everyone who is a member o=
+f the Yocto Project, and lists most of the OSVs that support YP.</div><div =
+class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Ross</div></div>
 
---001a1140451c31770c0540b26204--
+--001a1149dcbcb29ad10540b35079--
