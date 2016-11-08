@@ -1,6 +1,6 @@
 Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B283AE009BF; Tue,  8 Nov 2016 03:37:02 -0800 (PST)
+	id DF976E009C9; Tue,  8 Nov 2016 03:38:55 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -18,49 +18,51 @@ X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 Received: from mail-wm0-f66.google.com (mail-wm0-f66.google.com [74.125.82.66])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 50C10E009FA
-	for <yocto@yoctoproject.org>; Tue,  8 Nov 2016 03:36:52 -0800 (PST)
-Received: by mail-wm0-f66.google.com with SMTP id c17so21917086wmc.3
-	for <yocto@yoctoproject.org>; Tue, 08 Nov 2016 03:36:52 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0AAD9E00571
+	for <yocto@yoctoproject.org>; Tue,  8 Nov 2016 03:38:54 -0800 (PST)
+Received: by mail-wm0-f66.google.com with SMTP id u144so21983285wmu.0
+	for <yocto@yoctoproject.org>; Tue, 08 Nov 2016 03:38:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
 	h=date:from:to:cc:subject:message-id:references:mime-version
 	:content-disposition:in-reply-to:user-agent;
-	bh=/dCFulOkx+5fDN3OuXS1p0a+/ewIMEYlXgdt8YYD5BI=;
-	b=P9p/HABMOKR6quQXXzgbvvYjto0EQatxHWTE8pfyd+wtUJEgN5bGDudao7ZxhZsx8y
-	7F04HW1LD/eZ9+LVGsI6g1tBmRayYrE5JC6jzA84rzZt/eY7s+P4e+VNwki+B7OGR+zi
-	DUwmUaqd/LgInn8fqaXlU+MGCBPaBnfMnxF3EHs2Sy2Sg0cl4Tc4TD+LIE6Ukf4PM8Zt
-	QCSAhNDVWK0bJxWd/qnEb6thAI/HollyJIZAnqTrqBGRfw2CTIYOxZJhwrUVuE/P4AI8
-	OoM4HV7vdQJcX5jceDXWXzi5uuL0Bu0uZrAfpUHysID5BJ7MZT4nm60nbDeJRABZgLyD
-	AA/g==
+	bh=bgUyVWiROriJmrA5kvW0rYkqUzcszMp3t34MJAitYnA=;
+	b=0+eiZsR69ndbb3Zr/9BbJ3PYSIXzpIoc/DLt+E4Wv80sB/MAWmXDnsbsFi5eIdLqdo
+	KWpybmAAZVeI0KIwiL2TSq13HWDMiB5vuSkNsqMe9sxqjcqPgSf7sgQ/Hs4PpJtfp5ks
+	NCHyF7ginvcHhj3vzufgw8qkyaiQyCt+J5FY/Mlz/ms8IP8wGsgCGZ5Z5V/bflHuJ5RB
+	Gc4t3fmUL3zW8BgHPoBkBJuB3ddJ0munhurWQxXivMeqFPhd0ibMY/5S1h0prVpWNHN1
+	K3cBEmjEotx/mHRWNeTp0CKLvtKR4p+30v/kHIaFA74v0UnTV64vnorrgjuJOXXW25II
+	nB4A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
 	:mime-version:content-disposition:in-reply-to:user-agent;
-	bh=/dCFulOkx+5fDN3OuXS1p0a+/ewIMEYlXgdt8YYD5BI=;
-	b=UW4NaYCt7CPOqMo59DJaNMc8MqCAdpW2HUA1YmLjrvBUbAVLgGC5iVuM7krQP3tZOx
-	NWtXe8Jq0rxEbZk+7xMsz7fqw4M/3FHyONlUHq2x6Wr6jtjN/hzGbqO6YCH56Heq3bvm
-	4r0qaqTAmujmqgoips1YPl9w7bBCAi0e4NKMi1vySNe1fTn48unOHqp+fW3LOtV5dHwi
-	V/JxjWr91qPlv7tOwU0i7f/VwFUjoRMTUH1NYYd0Kpb4UeoYbyKumm7sRJgYXhNRu4RA
-	56O5GfCvpEq6S1wkl5NqkPerdckSWSjI9FFixJHxCgBZXi8T+BcfRZbjSrotMuJz8fC7
-	QZ/g==
-X-Gm-Message-State: ABUngvc4lVfU1S1L5lLX/AXMA4PHYsM/jxQZdSPbEofjQ0LnkunlmG3lk0ifqyx+F3lDMQ==
-X-Received: by 10.28.69.130 with SMTP id l2mr13179346wmi.123.1478605011900;
-	Tue, 08 Nov 2016 03:36:51 -0800 (PST)
+	bh=bgUyVWiROriJmrA5kvW0rYkqUzcszMp3t34MJAitYnA=;
+	b=dIq2Fysr+zy2a6ePU896NE2WvqVeSH2qt7mGPCSF4k6ILXUdsDBGsvW6oF0IBl0on/
+	NF8Zwv4SX4PkrhyD71AcErHD45N4g/olb3vblm9mcIR8+IFXyVdDuBHqVIZOPRwMaBvD
+	/X8zLbQxLNeNUTv8W+UXedJkooQ7RuvuJjW7w6/PxduhCei1sqPRxV9ZCuYPQML83Iq7
+	A4PnUU3kdoKEd0hzaFzXFQwJNF0BtfIV3tmRPk71jxjglzkkWpHxyOxVU2g8PvVTuoD+
+	RCXvXihz+CABJyenBp72GGYuJG+BaWBgSWSBVaw+v3lo74VM+QeX4XcnGf9XGlKcQmL2
+	5AsA==
+X-Gm-Message-State: ABUngvf5hyLjlCihoptlmkJwMGe4Cu5+69c3XtTSKS2/61PLlKrGLqE0fw204o7Pe/JWNQ==
+X-Received: by 10.28.166.20 with SMTP id p20mr11534110wme.87.1478605133918;
+	Tue, 08 Nov 2016 03:38:53 -0800 (PST)
 Received: from carbonA (adsl-191.109.242.150.tellas.gr. [109.242.150.191])
-	by smtp.gmail.com with ESMTPSA id q7sm36547288wjh.9.2016.11.08.03.36.49
+	by smtp.gmail.com with ESMTPSA id f3sm534177wmf.10.2016.11.08.03.38.52
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 08 Nov 2016 03:36:51 -0800 (PST)
-Date: Tue, 8 Nov 2016 11:36:37 +0000
+	Tue, 08 Nov 2016 03:38:53 -0800 (PST)
+Date: Tue, 8 Nov 2016 11:38:38 +0000
 From: Andrei Gherzan <andrei@gherzan.ro>
-To: Khem Raj <raj.khem@gmail.com>
-Message-ID: <20161108113637.GB19379@carbonA>
-References: <20161103222609.4526-1-raj.khem@gmail.com>
+To: Gary Thomas <gary@mlbassoc.com>
+Message-ID: <20161108113838.GC19379@carbonA>
+References: <20161106072515.3505-1-raj.khem@gmail.com>
+	<CAK18fxEVW3NTsxOUbJQfM3XP6V7==G_V_dPG7P9-cjxVoWhpNg@mail.gmail.com>
+	<ebb5bf5e-6ac5-a97d-09b3-d292f1f72995@mlbassoc.com>
 MIME-Version: 1.0
-In-Reply-To: <20161103222609.4526-1-raj.khem@gmail.com>
+In-Reply-To: <ebb5bf5e-6ac5-a97d-09b3-d292f1f72995@mlbassoc.com>
 User-Agent: Mutt/1.7.1 (2016-10-04)
 Cc: yocto@yoctoproject.org
-Subject: Re: [meta-raspberrypi][PATCH] linux-firmware_git.bbappend: Delete
+Subject: Re: [meta-raspberrypi][PATCH 1/2] firmware: Use release tarballs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,46 +74,78 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 08 Nov 2016 11:37:02 -0000
-X-Groupsio-MsgNum: 32916
+X-List-Received-Date: Tue, 08 Nov 2016 11:38:55 -0000
+X-Groupsio-MsgNum: 32917
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="+pHx0qQiF2pBVqBT"
+	protocol="application/pgp-signature"; boundary="WplhKdTI2c8ulnbP"
 Content-Disposition: inline
 
---+pHx0qQiF2pBVqBT
+--WplhKdTI2c8ulnbP
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
-On Thu, Nov 03, 2016 at 03:26:09PM -0700, Khem Raj wrote:
-> OE-core already bumped the base rev on linux-firmware package
-> to include the upstreamed version of brcmfmac43430 firmware in
-> september via OE-Core commit a0bc732976670810505286ba43feee70e2c812ce
+On Tue, Nov 08, 2016 at 12:35:47PM +0100, Gary Thomas wrote:
+> On 2016-11-08 12:16, Andrei Gherzan wrote:
+> > On Sun, Nov 6, 2016 at 7:25 AM, Khem Raj <raj.khem@gmail.com> wrote:
+> > > This is a binary repo and its quite large in size
+> > > we do not need the whole history of this repo since
+> > > most of stuff needed is binaries, therefore switch
+> > > to release tarballs
+> > >
+> > > Signed-off-by: Khem Raj <raj.khem@gmail.com>
+> > > ---
+> > >  recipes-bsp/common/firmware.inc | 12 +++++++-----
+> > >  1 file changed, 7 insertions(+), 5 deletions(-)
+> > >
+> > > diff --git a/recipes-bsp/common/firmware.inc b/recipes-bsp/common/firmware.inc
+> > > index ed0782f..8862f58 100644
+> > > --- a/recipes-bsp/common/firmware.inc
+> > > +++ b/recipes-bsp/common/firmware.inc
+> > > @@ -1,8 +1,10 @@
+> > > -RPIFW_SRCREV ?= "413fc664838e81caeabdc4118dc51e138d5d6c71"
+> > > -RPIFW_DATE ?= "20161030"
+> > > -RPIFW_SRC_URI ?= "git://github.com/raspberrypi/firmware.git;protocol=git;branch=master"
+> > > -RPIFW_S ?= "${WORKDIR}/git"
+> > > +RPIFW_DATE ?= "20161020"
+> > > +RPIFW_SRC_URI ?= "https://github.com/raspberrypi/firmware/archive/1.${RPIFW_DATE}.tar.gz"
+> > > +RPIFW_S ?= "${WORKDIR}/firmware-1.${RPIFW_DATE}"
+> > >
+> > >  SRC_URI = "${RPIFW_SRC_URI}"
+> > > -SRCREV = "${RPIFW_SRCREV}"
+> > > +SRC_URI[md5sum] = "d3c388c114af4c672dd3ee0ed8e984d3"
+> > > +SRC_URI[sha256sum] = "1c7c49d58800aab2dd1b5ff59a1e297934f9ea6f47ebdf0a3f90632561dc690b"
+> > > +
+> > >  PV = "${RPIFW_DATE}"
+> >
+> > Merged to master. Thanks.
 >
-> Signed-off-by: Khem Raj <raj.khem@gmail.com>
+> Sadly, the firmware revision went backwards in this change.
+> Do you want a new patch to play catch-up?
+>
 
-Merged to master. Thanks.
+Good catch. I'll fix it. Thanks.
 
 --
 Andrei Gherzan
 
---+pHx0qQiF2pBVqBT
+--WplhKdTI2c8ulnbP
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIcBAEBCAAGBQJYIbjFAAoJEHO76Gt+erfPTNkP/ROlCv/mTs0xdWsoMPfz+sA/
-pQxJ5mDKMKoObDrh1xQpXLoox4EdqVt/qXuMdJCa2LSIyL8x/pui4QMA28cLC4Tf
-5xopPFWA7v4ANJjaeivHIK7EWCJbdCF3U8rJZSjtZjLiZXA0E6pyxrtfko3z886Y
-+K2dshQxqYk9VwZZd6b0Ah2c5ZTvrPangiQrceuCu3iI5hxxlMOP+fZn06Tx6+xN
-PHDvMOPGKvSTouq2uS9pz+XQKy2Y3TYM9U7ug81h5SfN2HTkU2Ec3/1cXsZg8s80
-830eTJlLbwHmqySuoQHqVRi7LsqZ6MVxMmqG8IiLw7lHPiIuIf8B33DugHxvhMuZ
-O5/S0rrhwIaK51s9+rX3+OCEynre0P5vVWOPo+4V4S2IoXsT5jkMSXHHUiqfQfph
-lUoCRl9xJjgjEQu4g/Rrr97LxwQSos5VKToGVYJQXsHRqkeywnNBhld6CE0X59kj
-LHDw+dK+8mJcBDN7MA1vX1hGfCo2dPT/ElUHCkXjt48JN3jqP4IsajuNZavvvUvL
-PImA19xW1SAnBbW+Ib7ldSwXvGazjGdgCo7VbTYapyao55dtSDjYSF1cdenWFvrJ
-qXrvyx+6bYOIq7HKUaPrJZzT6rJSENO700Gn8lwBFTfQTJ6EkHU/3KEIf2OIXt2P
-bEXWcs4fudH32/XkjWGj
-=qGv1
+iQIcBAEBCAAGBQJYIbk+AAoJEHO76Gt+erfP6h4P/2xzOl3p2Z5bstloqH1LBkgk
+BB9Fk5gun5NwTRkl45kmovz+Lu+EU2KyQl7I/yI2PlkIvbpYDnrPnwf+5o0EXB5r
+GCOtVtIMcat56+77OjUYxiBM7McZYYE3wLOijLwYPN7x1xp8S/AVjRgCOvSGyJ5i
+M3/7L9P/o9y1uVVR9EY9fPQzgNF8gEgmkjWWVC2Ew7YdgKczn2Ytrqp39X+RyXtj
+3fXIXDOZ2XL+ZAiBvX12AOQ2Jil138++ZmdOsgMLsF2GrYn58uo6sSelTdOPbVsI
+U3+mA9rEp/3NObgfjuNPn9tkcjk0YCa/ifSTPc8umVPrfhWDIZFS+RwOefW9iErs
+olky7CH9Q5fXeQAoaGQFwdc0wkLGvyZf4CVQgOH/M1wqfyeXozA1h0n+7Q1THL6z
+EdTEXkF6zkVXanWH1+/Awr17w4289wI8TntN69JbTE5WStuZU9TSjemoGUxwVdxu
+PHG30hBEbqNFsb43EAfscdXiCpxJOh1msCstPReIUUhlVx1jhflckPRYR5xYWY/2
+w53rs5JN8aJC9y+517PpGkjau/CWWCW7qIBc7Xsctir+TGeMvFmxWwrERNftLS4n
+Hx0xBQ2aNIej1kmN8RS6mFhgssun7GY54xMUhI6ls1PDWfiBuiAIjZHfosfrH+8W
+77WwjpuzCzSiFV3OyIpv
+=w79X
 -----END PGP SIGNATURE-----
 
---+pHx0qQiF2pBVqBT--
+--WplhKdTI2c8ulnbP--
