@@ -1,57 +1,67 @@
-Return-Path: <teemu.keskinarkaus@crosscontrol.com>
+Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8966CE009FA; Tue,  8 Nov 2016 03:06:01 -0800 (PST)
+	id E2B59E009BF; Tue,  8 Nov 2016 03:06:01 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [148.163.159.126 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [74.125.82.65 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.82.65 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mx0a-001ea001.pphosted.com (mx0b-001ea001.pphosted.com
-	[148.163.159.126])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A4244E007E8
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wm0-f65.google.com (mail-wm0-f65.google.com [74.125.82.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8725DE009C9
 	for <yocto@yoctoproject.org>; Tue,  8 Nov 2016 03:05:54 -0800 (PST)
-Received: from pps.filterd (m0088396.ppops.net [127.0.0.1])
-	by mx0b-001ea001.pphosted.com (8.16.0.17/8.16.0.17) with SMTP id
-	uA8B2Zcw020578; Tue, 8 Nov 2016 05:05:49 -0600
-Received: from ammail.actuant.com ([207.250.73.121])
-	by mx0b-001ea001.pphosted.com with ESMTP id 26hat92njp-1
-	(version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
-	Tue, 08 Nov 2016 05:05:49 -0600
-Received: from AMDTCEX14.actuant.pri ([169.254.6.193]) by
-	AMDTCEX13.actuant.pri ([169.254.5.198]) with mapi id 14.03.0301.000;
-	Tue, 8 Nov 2016 05:05:48 -0600
-From: "Keskinarkaus, Teemu" <teemu.keskinarkaus@crosscontrol.com>
-To: Khem Raj <raj.khem@gmail.com>, Paul Eggleton
-	<paul.eggleton@linux.intel.com>
-Thread-Topic: [yocto] UTF-89 support
-Thread-Index: AdI47OQA8U9YBjORT3iuPgKVfOownQAYSukAAAUHUIAAANNyAAASleKw
-Date: Tue, 8 Nov 2016 11:05:47 +0000
-Message-ID: <83DB4EC8FADD45428E3CC4E3664761FD4241853D@AMDTCEX14.actuant.pri>
-References: <83DB4EC8FADD45428E3CC4E3664761FD4241815C@AMDTCEX14.actuant.pri>
-	<b7805230-409c-96cf-1562-28bf6a8f81dd@gmail.com>
-	<1589087.fjKFOckh16@peggleto-mobl.ger.corp.intel.com>
-	<CAMKF1sq42NJztUn5D9pvHUw2FrOv=K54VYvS7Limgq2dO0TOzQ@mail.gmail.com>
-In-Reply-To: <CAMKF1sq42NJztUn5D9pvHUw2FrOv=K54VYvS7Limgq2dO0TOzQ@mail.gmail.com>
-Accept-Language: fi-FI, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.0.10.116]
+Received: by mail-wm0-f65.google.com with SMTP id p190so21837271wmp.1
+	for <yocto@yoctoproject.org>; Tue, 08 Nov 2016 03:05:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-disposition:in-reply-to:user-agent;
+	bh=AT6Vwle2QNpLCTcwSwqHecdeY29r755WAZNSm2tSNCE=;
+	b=tF5LvKMbg148Tdj5D0Io26g7ZuWPAfOtc+NCkb8xxtYwXi2RfTZW9bosa2pR5lI7a8
+	VAMFkucv7xVbhXsmJ8+CkyvTOWsDuHeFZzn4f6yFwAKT+cIOgpG3/4oS+/MLYy3SEMGJ
+	L6dBxPXsOAUxEYvgpAJIN0oLGhnqGJfjqWyF+hbjNsjpC+4tpoXNo03VQApWUGf8arkE
+	ReEuJ4vqsRfUFaCqYYwbkuEs4bACe8F/lg/yzR9CpR4FVyfs17CJDqjxvuVc54VxpKn0
+	EsHXXKLuHDLixoPyAN0ab5gtJRKmDiY1RbefCdYVVntjgLuIIr6mktUC65X/VHhjMPLD
+	ENIQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	:mime-version:content-disposition:in-reply-to:user-agent;
+	bh=AT6Vwle2QNpLCTcwSwqHecdeY29r755WAZNSm2tSNCE=;
+	b=hRhRw96LUHWEr7ZJmvHTUweTk58Qp5/fqt36vgs95wmfeNIJP4y6rjCJwemRSw1b/9
+	jCTBbhnq5aTj2PCXBoUalLFv3IPi1t1VCkClBAVsCZxYCITaYY3ju0S4NGwiTxFcDo8R
+	IqylRnn4SXZ7T1cOuAnUDJnISdZBasALH6Ecjy9TcikRkAQcaFg33hxjfzSKpLf3Bxsm
+	pf5TSGc9DC+E/dsgK31jIEyGe4qokLl5VJ4S+XnaCVAsiII2j7znRzjyDP6oTcdcSNzG
+	H22MbCo3/hm8y2lTUoqjb5AOmbBXRlfVXZD6Cyu9Hj3EpZ4osZkeq7plJVq3fCnyoIUx
+	5PPQ==
+X-Gm-Message-State: ABUngvcOpnsR7puTtgfohaAPGE8cX9HoA6yGoLOgIrnBZqX42E62C8bktc2TCXS9ksr83Q==
+X-Received: by 10.28.135.84 with SMTP id j81mr12449483wmd.127.1478603153156;
+	Tue, 08 Nov 2016 03:05:53 -0800 (PST)
+Received: from carbonA (adsl-191.109.242.150.tellas.gr. [109.242.150.191])
+	by smtp.gmail.com with ESMTPSA id 18sm18971238wmr.6.2016.11.08.03.05.51
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Tue, 08 Nov 2016 03:05:52 -0800 (PST)
+Date: Tue, 8 Nov 2016 11:05:39 +0000
+From: Andrei Gherzan <andrei@gherzan.ro>
+To: Khem Raj <raj.khem@gmail.com>
+Message-ID: <20161108110539.GE19465@carbonA>
+References: <20161031165208.16286-1-raj.khem@gmail.com>
+	<20161031165208.16286-3-raj.khem@gmail.com>
 MIME-Version: 1.0
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10432:, ,
-	definitions=2016-11-08_04:, , signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
-	priorityscore=1501
-	malwarescore=0 suspectscore=0 phishscore=0 bulkscore=0 spamscore=0
-	clxscore=1011 lowpriorityscore=0 impostorscore=0 adultscore=0
-	classifier=spam adjust=0 reason=mlx scancount=1 engine=8.0.1-1609300000
-	definitions=main-1611080204
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: UTF-89 support
+In-Reply-To: <20161031165208.16286-3-raj.khem@gmail.com>
+User-Agent: Mutt/1.7.1 (2016-10-04)
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-raspberrypi][PATCH 3/6] weston: Unify bbappends for weston into single file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -63,49 +73,86 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 08 Nov 2016 11:06:01 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Tue, 08 Nov 2016 11:06:02 -0000
+X-Groupsio-MsgNum: 32911
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="BZaMRJmqxGScZ8Mx"
+Content-Disposition: inline
 
-SGksDQoNCkkgdHJpZWQgdGhhdC4gSSBoYXZlIG5vdyB0aGVzZSBsaW5lcyBpbiB0aGUgbG9jYWwu
-Y29uZg0KDQpHTElCQ19HRU5FUkFURV9MT0NBTEVTID0gImVuX0dCIGVuX1VTIGVuX0dCLlVURi04
-IGVuX1VTLlVURi04Ig0KSU1BR0VfTElOR1VBUyA9ICJlbi1nYiBlbi11cyINCg0KSSBoYWQgdG8g
-YWRkIHRoZSAiZW4tdXMiIHRvIElNQUdFX0xJTkdVQVMgb3IgSSB3b3VsZCBvbmx5IGdldCBlbl9H
-QiBsb2NhbGUgYW5kIG5vdCBlbl9VUyBhdCBhbGwuIFN0aWxsIG1pc3NpbmcgdGhlIFVURi04IGxv
-Y2FsZXMgdGhvdWdoLg0KDQpUZWVtdSBLZXNraW5hcmthdXMNClNvZnR3YXJlIHN5c3RlbSBlbmdp
-bmVlcg0KQ3Jvc3NDb250cm9sDQptYWtpbmcgbWFjaGluZXMgc21hcnQsIHNhZmUgYW5kIHByb2R1
-Y3RpdmUNCg0KDQotLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KRnJvbTogS2hlbSBSYWogW21h
-aWx0bzpyYWoua2hlbUBnbWFpbC5jb21dDQpTZW50OiA3LiBtYXJyYXNrdXV0YSAyMDE2IDIyOjEy
-DQpUbzogUGF1bCBFZ2dsZXRvbg0KQ2M6IHlvY3RvQHlvY3RvcHJvamVjdC5vcmc7IEtlc2tpbmFy
-a2F1cywgVGVlbXUNClN1YmplY3Q6IFJlOiBbeW9jdG9dIFVURi04OSBzdXBwb3J0DQoNCk9uIE1v
-biwgTm92IDcsIDIwMTYgYXQgMTE6NDggQU0sIFBhdWwgRWdnbGV0b24gPHBhdWwuZWdnbGV0b25A
-bGludXguaW50ZWwuY29tPiB3cm90ZToNCj4gT24gTW9uLCAwNyBOb3YgMjAxNiAwOToyNDoxOCBL
-aGVtIFJhaiB3cm90ZToNCj4+IE9uIDExLzcvMTYgMzo0OCBBTSwgS2Vza2luYXJrYXVzLCBUZWVt
-dSB3cm90ZToNCj4+ID4gSGksDQo+PiA+DQo+PiA+DQo+PiA+DQo+PiA+IEkgdHJpZWQgZ29vZ2xp
-bmcgdGhpcyBhbmQgcmVhZGluZyB0aGUgbWFudWFsLCBidXQgSSBndWVzcyB0aGlzIGlzDQo+PiA+
-IHRvbyB0cml2aWFsIG9yIEnigJltIGRvaW5nIHNvbWV0aGluZyB3cm9uZy4NCj4+ID4NCj4+ID4N
-Cj4+ID4NCj4+ID4gSeKAmW0gdHJ5aW5nIHRvIGdldCBVVEYtOCBzdXBwb3J0IHRvIG15IGltYWdl
-LiBVVEYtOCBsb2NhbGUgbW9yZSBzcGVjaWZpYy4NCj4+ID4gSWYgSSBydW4gbG9jYWxlIOKAk2Eg
-Y29tbWFuZCBJIGdldCB0aGVzZSBsb2NhbGVzIGxpc3RlZDoNCj4+ID4NCj4+ID4gQw0KPj4gPg0K
-Pj4gPiBQT1NJWA0KPj4gPg0KPj4gPiBlbl9HQg0KPj4gPg0KPj4gPiBlbl9VUw0KPj4gPg0KPj4g
-Pg0KPj4gPg0KPj4gPiBJIGFkZGVkIHRoaXMgbGluZSB0byBteSBsb2NhbC5jb25mOg0KPj4gPg0K
-Pj4gPiBHTElCQ19HRU5FUkFURV9MT0NBTEVTID0gImVuX0dCLlVURi04IGVuX1VTLlVURi04IGVu
-X0dCIGVuX1VTIg0KPj4NCj4+IHlvdSBhbHNvIG5lZWQgdG8gc2V0IElNQUdFX0xJTkdVQVMgdG8g
-aW5jbHVkZSBpdCBpbnRvIGltYWdlIGUuZy4NCj4+DQo+PiBHTElCQ19HRU5FUkFURV9MT0NBTEVT
-ID0gImVuLWdiIg0KPg0KPiBJIGd1ZXNzIHlvdSBtZWFudCBJTUFHRV9MSU5HVUFTID0gImVuLWdi
-Ig0KDQp5ZXMgdGhhbmtzIGZvciBub3RpbmcNCg0KPg0KPiBDaGVlcnMsDQo+IFBhdWwNCj4NCj4g
-LS0NCj4NCj4gUGF1bCBFZ2dsZXRvbg0KPiBJbnRlbCBPcGVuIFNvdXJjZSBUZWNobm9sb2d5IENl
-bnRyZQ0KDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KDQpBY3R1YW50IENvcnBv
-cmF0aW9uIEVtYWlsIE5vdGljZQ0KDQpUaGlzIG1lc3NhZ2UgaXMgaW50ZW5kZWQgb25seSBmb3Ig
-dGhlIHVzZSBvZiB0aGUgQWRkcmVzc2VlIGFuZCBtYXkgY29udGFpbiBpbmZvcm1hdGlvbiB0aGF0
-IGlzIFBSSVZJTEVHRUQgYW5kL29yIENPTkZJREVOVElBTC4NClRoaXMgZW1haWwgaXMgaW50ZW5k
-ZWQgb25seSBmb3IgdGhlIHBlcnNvbmFsIGFuZCBjb25maWRlbnRpYWwgdXNlIG9mIHRoZSByZWNp
-cGllbnQocykgbmFtZWQgYWJvdmUuIElmIHRoZSByZWFkZXIgb2YgdGhpcyBlbWFpbCBpcyBub3Qg
-YW4gaW50ZW5kZWQgcmVjaXBpZW50LCB5b3UgaGF2ZSByZWNlaXZlZCB0aGlzIGVtYWlsIGluIGVy
-cm9yIGFuZCBhbnkgcmV2aWV3LCBkaXNzZW1pbmF0aW9uLCBkaXN0cmlidXRpb24gb3IgY29weWlu
-ZyBpcyBzdHJpY3RseSBwcm9oaWJpdGVkLg0KSWYgeW91IGhhdmUgcmVjZWl2ZWQgdGhpcyBlbWFp
-bCBpbiBlcnJvciwgcGxlYXNlIG5vdGlmeSB0aGUgc2VuZGVyIGltbWVkaWF0ZWx5IGJ5IHJldHVy
-biBtYWlsIGFuZCBwZXJtYW5lbnRseSBkZWxldGUgdGhlIGNvcHkgeW91IHJlY2VpdmVkLg0KDQpU
-aGFuayB5b3UuDQo=
+--BZaMRJmqxGScZ8Mx
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
+On Mon, Oct 31, 2016 at 09:52:05AM -0700, Khem Raj wrote:
+> Signed-off-by: Khem Raj <raj.khem@gmail.com>
+> ---
+>  recipes-graphics/wayland/weston_%.bbappend | 10 ++++++++++
+>  recipes-graphics/weston/weston_%.bbappend  |  8 --------
+>  2 files changed, 10 insertions(+), 8 deletions(-)
+>  delete mode 100644 recipes-graphics/weston/weston_%.bbappend
+>
+> diff --git a/recipes-graphics/wayland/weston_%.bbappend b/recipes-graphics/wayland/weston_%.bbappend
+> index 57b8079..f2cb7aa 100644
+> --- a/recipes-graphics/wayland/weston_%.bbappend
+> +++ b/recipes-graphics/wayland/weston_%.bbappend
+> @@ -1,2 +1,12 @@
+>  EXTRA_OECONF_append_rpi = "${@bb.utils.contains('MACHINE_FEATURES', 'vc4graphics', '', ' --enable-rpi-compositor WESTON_NATIVE_BACKEND=rpi-backend.so', d)}"
+>
+> +PACKAGECONFIG_remove_rpi = "${@bb.utils.contains('MACHINE_FEATURES', 'vc4graphics', 'fbdev', '', d)}"
+> +
+> +EXTRA_OECONF += "--disable-xwayland-test \
+> +                 --disable-simple-egl-clients \
+> +"
+> +
+> +EXTRA_OECONF += "${@bb.utils.contains('MACHINE_FEATURES', 'vc4graphics', '', '--enable-rpi-compositor', d)}"
+> +EXTRA_OECONF += "${@bb.utils.contains('MACHINE_FEATURES', 'vc4graphics', '', '--disable-resize-optimization', d)}"
+> +EXTRA_OECONF += "${@bb.utils.contains('MACHINE_FEATURES', 'vc4graphics', '', '--disable-setuid-install', d)}"
+> +EXTRA_OECONF += "${@bb.utils.contains('MACHINE_FEATURES', 'vc4graphics', '', 'WESTON_NATIVE_BACKEND=rpi-backend.so', d)}"
+> diff --git a/recipes-graphics/weston/weston_%.bbappend b/recipes-graphics/weston/weston_%.bbappend
+> deleted file mode 100644
+> index b964542..0000000
+> --- a/recipes-graphics/weston/weston_%.bbappend
+> +++ /dev/null
+> @@ -1,8 +0,0 @@
+> -PACKAGECONFIG_remove_rpi = "${@bb.utils.contains('MACHINE_FEATURES', 'vc4graphics', ' fbdev', '', d)}"
+> -EXTRA_OECONF += "--disable-xwayland-test \
+> -                 --disable-simple-egl-clients \
+> -"
+> -EXTRA_OECONF += "${@bb.utils.contains('MACHINE_FEATURES', 'vc4graphics', '', '--enable-rpi-compositor', d)}"
+> -EXTRA_OECONF += "${@bb.utils.contains('MACHINE_FEATURES', 'vc4graphics', '', '--disable-resize-optimization', d)}"
+> -EXTRA_OECONF += "${@bb.utils.contains('MACHINE_FEATURES', 'vc4graphics', '', '--disable-setuid-install', d)}"
+> -EXTRA_OECONF += "${@bb.utils.contains('MACHINE_FEATURES', 'vc4graphics', '', 'WESTON_NATIVE_BACKEND=rpi-backend.so', d)}"
+> --
+> 2.10.1
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
+Merged to master. Thanks.
+--
+Andrei Gherzan
+
+--BZaMRJmqxGScZ8Mx
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIcBAEBCAAGBQJYIbGDAAoJEHO76Gt+erfP3O0P/0hJvDLfuKa1xOkapnJvSt5b
+kHSwnz6y8gk/MWoMykqvfC6vWGmBFTyy7aN2HJ/Cd/E9vLrtMOlmb0iK84sKG5Oa
+RIsbU/jFsfLGUoy7fpqB3G59uj3VGFLgtZ/AnnCH2hvJKIArtLSLAyanki8O7k5+
+Yp8HFiNE1ODHV9cz75cpcv7fuo9PdDNSVxyDi6gKlN6+Hs1EOEbXxKNBWQZ0CAp0
+Lin9sETSSU8JCoOpcrmkGcI+0Eeahd31Ai64gArDQTdwumVHHSO5hTuhY+qPGDxE
+i3GeDE0+5rzJhhQL5rE6SQCBCUfNFS08TVSUZawHa5UJHm2AXPdCtNf+dgGZ2kTh
+CSfgjEU0TfwnwhSTL3js6qG9yU+8bTF38Y7/8HMbLCFG60gsIca3x/eAY86rYs9u
+TZ+Z6qcho1CQs7jIK4xwJ/I33R+5Yi3gGYzfWUyeqjHxzrYDWTo0nGZCXPRke6Zq
+Qo6dnDFsgI47S9m9Sz3cOpQTZZJR6EvaIVwipUPlmJ+SLUagaRuM0SoFF8/FaJxh
+xIqhj5QXlM5si+Ea3sEkFkY75ps20CKpWyz5MjPqPg+ZhOXcHiVC0Zb1qbLHcucc
+UV+W5RIWXpORwrHbMwlHZp5nIF+3o6qXmlTwX+aR4xqHzbgFb2GV7lrzDDSgwwgB
+i2kd3sfD7uw6Q6tBQnBw
+=B0Zc
+-----END PGP SIGNATURE-----
+
+--BZaMRJmqxGScZ8Mx--
