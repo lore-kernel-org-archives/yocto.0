@@ -1,12 +1,12 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 43963E007D3; Tue,  8 Nov 2016 06:47:19 -0800 (PST)
+	id 94C0EE0050B; Tue,  8 Nov 2016 08:44:45 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (raj.khem[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
@@ -16,52 +16,61 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.213.68 listed in list.dnswl.org]
-Received: from mail-vk0-f68.google.com (mail-vk0-f68.google.com
-	[209.85.213.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E1A52E0070F
-	for <yocto@yoctoproject.org>; Tue,  8 Nov 2016 06:47:16 -0800 (PST)
-Received: by mail-vk0-f68.google.com with SMTP id 5so5553605vkf.0
-	for <yocto@yoctoproject.org>; Tue, 08 Nov 2016 06:47:16 -0800 (PST)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.170 listed in list.dnswl.org]
+Received: from mail-pf0-f170.google.com (mail-pf0-f170.google.com
+	[209.85.192.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 57513E00498
+	for <yocto@yoctoproject.org>; Tue,  8 Nov 2016 08:44:42 -0800 (PST)
+Received: by mail-pf0-f170.google.com with SMTP id d2so110683028pfd.0
+	for <yocto@yoctoproject.org>; Tue, 08 Nov 2016 08:44:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=K433M0gSK1i2bUDWmfhpCfPkSTHxaWZWEi8gfLn0u5Y=;
-	b=FYvZpBkrpt98yXtF6/Tf423VKOFaKocMtGoubKvrfyFQH4T77yxEI4ZS4oF8UTA68k
-	6AnVLVC2y71ZSK3RkT9vPuNT7B9YVQzhA26uWviBRGfkOQtg/WPJjfG2lL9Xw1zPvejo
-	DjVyo1hdD2weMrrpbjHvGG3kAqEHJOdKWg1AqNJqYyqjq8a8CvOEhAKUanQSTOnANUPY
-	eeemm+FHDedFabXE0H3QgVedkAq3b9x0NeF+DVHsBP59szQNenanrI7zKtf6iONz8AKK
-	qyOyCC/dfY+63ZavDIX5uBZtMSNIkHTcCjAiazQvsI+29T8lZUFbZty4OYme9CARMqtp
-	8Qpw==
+	h=subject:to:references:cc:from:organization:message-id:date
+	:user-agent:mime-version:in-reply-to;
+	bh=QzHxTMgkeA3cJ0raFx1zI1ilto8yj8sGRZ0wShWDrMo=;
+	b=wR/4eH7Qa3q6hXmrz4fOFOaHa1c7boTDY1NcA8DmffhnhWy4AuedGdZMNadPA20nAF
+	s4i71mOC7DzzlZgu/L9ryJITWYlhZ+pkglfhblYJeoP7ZUbuYEcuhBfqILyeGP+CsDrG
+	7oj9a65Eu8WpFL02crgjMOcN8ys830Bv3FJr3N/8jtos5vMOF3BE5NFz4W2tIudozyOH
+	4BbEYRopCAnYxDp6Hrj8tScZKfZ4rk6jRDHEfPAd4zhWa9vSCkapieipu93GVWHUpz/W
+	FC3L+sj8Nj3Hvzmk2IEJWx2F0hZnzFn1oZHqPz58o6dcFuvX4P6s9AD958mVkj2n0/Gu
+	+kkw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=K433M0gSK1i2bUDWmfhpCfPkSTHxaWZWEi8gfLn0u5Y=;
-	b=Q0QWkRj4mfL7kI10ngurvStbqlbf8bv3TwCCKEq/FhpGfu5zBwdJxZ5LVycNdqwzmf
-	cVsRcU36UJOr9UJ8NOiwfX3Nsnb0OLVb5ibE7jGihbA9E20iDFb1Ax+vRd2FoYCMucfW
-	a73xC/M4Lm1zXQY6g9TO+omlhUta2RtmxOFEh1E8AHq+0mhQnvJpiYStqHAtRWwNluNM
-	8mxDHFgNqqKrEJXfNtubcXBFKU5UQWa2YBy5BjBDcUAU9XqqHbr76ISSJ+7Do6WL8XlA
-	fsIGIVWs44vV/3/rpU/8tXyEvp+RhN7ltsK8P0Gj+76HgUXGRMp5G9JRwwqJE8w/Eh7Z
-	KInQ==
-X-Gm-Message-State: ABUngvdMAsAss5uMkgBQPbLZ8ftDi+TJV1gUzMGehpsdy1QYFV4cktMP21HLX2Y3RjK+C8nC+G4QTyQXyqKucg==
-X-Received: by 10.31.244.9 with SMTP id s9mr8509037vkh.31.1478616435774; Tue,
-	08 Nov 2016 06:47:15 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.176.5.136 with HTTP; Tue, 8 Nov 2016 06:46:45 -0800 (PST)
-In-Reply-To: <20161108113838.GC19379@carbonA>
-References: <20161106072515.3505-1-raj.khem@gmail.com>
-	<CAK18fxEVW3NTsxOUbJQfM3XP6V7==G_V_dPG7P9-cjxVoWhpNg@mail.gmail.com>
-	<ebb5bf5e-6ac5-a97d-09b3-d292f1f72995@mlbassoc.com>
-	<20161108113838.GC19379@carbonA>
+	h=x-gm-message-state:subject:to:references:cc:from:organization
+	:message-id:date:user-agent:mime-version:in-reply-to;
+	bh=QzHxTMgkeA3cJ0raFx1zI1ilto8yj8sGRZ0wShWDrMo=;
+	b=OB0fOLQpxX3hu6OAbd8PP67vgqgJeNmX+q+3bA3xD4lMFDdRCm3UiQIQEYEJtUvIa6
+	E8+upKTD8sG3Q/x/cuIfzJ4ZDcZsgFSm+UoRmdwQVWJc+20JD5d4tCs+U/ngZNasEy0s
+	//NhSnBn5+F27/GlJzzSQ+NBSgsDIFRvq4saMK8aHBjo5Z1SrFxPiTywFeNu3KpbAZ3d
+	zEIG66C5t69sRssR6xOAdZRP88cOArYGF5JxyHtBQUFoP/mvoSEwRHvebp9nzrlkREvn
+	7Xowie8D/P66ujj05FT0J3RKajKyPpadijywACg8+EZWv/0kwTpXIn+M3R+dqtl+FGg9
+	/6eA==
+X-Gm-Message-State: ABUngve6ZdJMHY7714Plmr0QKv40CX6CKzFfDJTquwXIA85sQcqm1s/YY1njCwq+oHZUCg==
+X-Received: by 10.99.7.210 with SMTP id 201mr19870117pgh.51.1478623482245;
+	Tue, 08 Nov 2016 08:44:42 -0800 (PST)
+Received: from CACSVMO-14452.local ([2601:646:8882:b8c:8af:972a:9de4:9514])
+	by smtp.gmail.com with ESMTPSA id
+	g82sm49401877pfb.43.2016.11.08.08.44.41
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Tue, 08 Nov 2016 08:44:41 -0800 (PST)
+To: "Dinh Nguyen (dinhn)" <dinhn@cisco.com>,
+	"Burton, Ross" <ross.burton@intel.com>
+References: <3B7E27B6-76D5-460D-BE78-33E49D04BED0@cisco.com>
+	<CAJTo0LYtibhhgeSAC27yHzNL8hYu6HpBzKZDvB+k4nv26V+FKw@mail.gmail.com>
+	<9C7FDD6C-4BD2-449B-96A1-6540B53D23A8@cisco.com>
+	<CAJTo0LYXd=9bDWk_TB_ioZ96GY2gt31AxHR4w47sPdwPSo7VEA@mail.gmail.com>
+	<D01FE3D2-B0DF-413E-BED4-DD4CE1AE1E11@cisco.com>
 From: Khem Raj <raj.khem@gmail.com>
-Date: Tue, 8 Nov 2016 06:46:45 -0800
-Message-ID: <CAMKF1spR5-PpjfkfDadP_8FqrGHt0-T34k=RjwrwPg9y2Bd0Hg@mail.gmail.com>
-To: Andrei Gherzan <andrei@gherzan.ro>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Gary Thomas <gary@mlbassoc.com>
-Subject: Re: [meta-raspberrypi][PATCH 1/2] firmware: Use release tarballs
+Organization: himvis.com
+Message-ID: <92baf8a2-c148-1a1c-931b-ecd4d4fb39d0@gmail.com>
+Date: Tue, 8 Nov 2016 08:44:36 -0800
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:45.0)
+	Gecko/20100101 Thunderbird/45.4.0
+MIME-Version: 1.0
+In-Reply-To: <D01FE3D2-B0DF-413E-BED4-DD4CE1AE1E11@cisco.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: FW: cmake version 3.0.0 or greater
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,62 +82,101 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 08 Nov 2016 14:47:19 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Tue, 08 Nov 2016 16:44:45 -0000
+X-Groupsio-MsgNum: 32927
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature";
+	boundary="SDt6G1l4XotgvK6A1AIA04LdFE8757P3f"
 
-On Tue, Nov 8, 2016 at 3:38 AM, Andrei Gherzan <andrei@gherzan.ro> wrote:
-> On Tue, Nov 08, 2016 at 12:35:47PM +0100, Gary Thomas wrote:
->> On 2016-11-08 12:16, Andrei Gherzan wrote:
->> > On Sun, Nov 6, 2016 at 7:25 AM, Khem Raj <raj.khem@gmail.com> wrote:
->> > > This is a binary repo and its quite large in size
->> > > we do not need the whole history of this repo since
->> > > most of stuff needed is binaries, therefore switch
->> > > to release tarballs
->> > >
->> > > Signed-off-by: Khem Raj <raj.khem@gmail.com>
->> > > ---
->> > >  recipes-bsp/common/firmware.inc | 12 +++++++-----
->> > >  1 file changed, 7 insertions(+), 5 deletions(-)
->> > >
->> > > diff --git a/recipes-bsp/common/firmware.inc b/recipes-bsp/common/firmware.inc
->> > > index ed0782f..8862f58 100644
->> > > --- a/recipes-bsp/common/firmware.inc
->> > > +++ b/recipes-bsp/common/firmware.inc
->> > > @@ -1,8 +1,10 @@
->> > > -RPIFW_SRCREV ?= "413fc664838e81caeabdc4118dc51e138d5d6c71"
->> > > -RPIFW_DATE ?= "20161030"
->> > > -RPIFW_SRC_URI ?= "git://github.com/raspberrypi/firmware.git;protocol=git;branch=master"
->> > > -RPIFW_S ?= "${WORKDIR}/git"
->> > > +RPIFW_DATE ?= "20161020"
->> > > +RPIFW_SRC_URI ?= "https://github.com/raspberrypi/firmware/archive/1.${RPIFW_DATE}.tar.gz"
->> > > +RPIFW_S ?= "${WORKDIR}/firmware-1.${RPIFW_DATE}"
->> > >
->> > >  SRC_URI = "${RPIFW_SRC_URI}"
->> > > -SRCREV = "${RPIFW_SRCREV}"
->> > > +SRC_URI[md5sum] = "d3c388c114af4c672dd3ee0ed8e984d3"
->> > > +SRC_URI[sha256sum] = "1c7c49d58800aab2dd1b5ff59a1e297934f9ea6f47ebdf0a3f90632561dc690b"
->> > > +
->> > >  PV = "${RPIFW_DATE}"
->> >
->> > Merged to master. Thanks.
->>
->> Sadly, the firmware revision went backwards in this change.
->> Do you want a new patch to play catch-up?
->>
->
-> Good catch. I'll fix it. Thanks.
+--SDt6G1l4XotgvK6A1AIA04LdFE8757P3f
+Content-Type: multipart/mixed; boundary="UPCB0C5VjJHDv7KvWhXdwEHU7TSNDNmEn";
+ protected-headers="v1"
+From: Khem Raj <raj.khem@gmail.com>
+To: "Dinh Nguyen (dinhn)" <dinhn@cisco.com>,
+ "Burton, Ross" <ross.burton@intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Message-ID: <92baf8a2-c148-1a1c-931b-ecd4d4fb39d0@gmail.com>
+Subject: Re: [yocto] FW: cmake version 3.0.0 or greater
+References: <3B7E27B6-76D5-460D-BE78-33E49D04BED0@cisco.com>
+ <CAJTo0LYtibhhgeSAC27yHzNL8hYu6HpBzKZDvB+k4nv26V+FKw@mail.gmail.com>
+ <9C7FDD6C-4BD2-449B-96A1-6540B53D23A8@cisco.com>
+ <CAJTo0LYXd=9bDWk_TB_ioZ96GY2gt31AxHR4w47sPdwPSo7VEA@mail.gmail.com>
+ <D01FE3D2-B0DF-413E-BED4-DD4CE1AE1E11@cisco.com>
+In-Reply-To: <D01FE3D2-B0DF-413E-BED4-DD4CE1AE1E11@cisco.com>
 
-ah sorry about that.
-just hardcode PV = "20161030" for now. with next release we will get it right
-since its already past oct 30.
->
-> --
-> Andrei Gherzan
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+--UPCB0C5VjJHDv7KvWhXdwEHU7TSNDNmEn
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
+
+
+On 11/8/16 4:43 AM, Dinh Nguyen (dinhn) wrote:
+>=20
+>>> This tells me that you didn't upgrade cmake-native to 3.x.
+>=20
+> Right, and I am trying to upgrade to 3x version.  Would you please tell=
+ me
+> which cmake patch or recipe  that I can use to upgrade to 3.x version f=
+or Dizzy?
+>=20
+
+Keep in mind that it may result in more fallouts since all cmake based
+packages will now suddenly get the update to 3.x, there still might be mo=
+re
+integration that you will end up doing for this.
+
+> Thanks,
+>   =E2=80=94Dinh=20
+>=20
+> From: "Burton, Ross" <ross.burton@intel.com <mailto:ross.burton@intel.c=
+om>>
+> Date: Tuesday, November 8, 2016 at 4:34 AM
+> To: dinhn <dinhn@cisco.com <mailto:dinhn@cisco.com>>
+> Cc: "yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>"
+> <yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>>
+> Subject: Re: [yocto] FW: cmake version 3.0.0 or greater
+>=20
+>=20
+> On 8 November 2016 at 12:23, Dinh Nguyen (dinhn) <dinhn@cisco.com
+> <mailto:dinhn@cisco.com>> wrote:
+>=20
+>     Here is the error message when trying to build sdk-dslink-c within =
+Yocto
+>      Dizzy version.
+>=20
+>     | + echo
+>     /media/raghuram/data/dinhn/ioxDevLatest/ioxsdk/yp64/tmp/work/core2-=
+64-poky-linux/sdk-dslink-c/1.1-r0
+>     | +
+>     /media/raghuram/data/dinhn/ioxDevLatest/ioxsdk/yp64/tmp/work/core2-=
+64-poky-linux/sdk-dslink-c/1.1-r0/sdk-dslink-c-939fb15c97688276b1234a0e00=
+92e61fdbe65c03/tools/build.sh
+>     | CMake Error at CMakeLists.txt:1 (cmake_minimum_required):
+>     |   CMake 3.0.0 or higher is required.  You are running version 2.8=
+=2E12.2
+>     |=20
+>=20
+>=20
+> This tells me that you didn't upgrade cmake-native to 3.x.
+>=20
+> Ross
+>=20
+>=20
+
+
+--UPCB0C5VjJHDv7KvWhXdwEHU7TSNDNmEn--
+
+--SDt6G1l4XotgvK6A1AIA04LdFE8757P3f
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+Comment: GPGTools - https://gpgtools.org
+
+iEYEARECAAYFAlgiAPgACgkQuwUzVZGdMxQAYwCfXlSjGjGlwYgtL2kmRb7oiiRO
+QuoAmgO3uH8p4ndW1vMKg+47xVEhtRoZ
+=hN7v
+-----END PGP SIGNATURE-----
+
+--SDt6G1l4XotgvK6A1AIA04LdFE8757P3f--
