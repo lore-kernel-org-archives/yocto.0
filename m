@@ -1,82 +1,67 @@
-Return-Path: <dinhn@cisco.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 007F4E00724; Tue,  8 Nov 2016 06:09:21 -0800 (PST)
+	id 43963E007D3; Tue,  8 Nov 2016 06:47:19 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-14.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE, RCVD_IN_DNSWL_HI,
-	USER_IN_DEF_DKIM_WL autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -7.5 USER_IN_DEF_DKIM_WL From: address is in the default
-	DKIM white-list
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [173.37.142.95 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from alln-iport-8.cisco.com (alln-iport-8.cisco.com [173.37.142.95])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C6494E00571
-	for <yocto@yoctoproject.org>; Tue,  8 Nov 2016 06:09:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-	d=cisco.com; i=@cisco.com; l=7396; q=dns/txt; s=iport;
-	t=1478614160; x=1479823760;
-	h=from:to:cc:subject:date:message-id:references:
-	in-reply-to:mime-version;
-	bh=WTn02XV2Zjoryj4upBco57pxRLlwR1eFAa6GKKp1dbs=;
-	b=HCvI6nlopL0oXtOI+I18O/u9m06Oy+aBalSQ0WAlq10667mHuDrbJ4k0
-	H56paHmAy4svHWQ9CMKMOuzI5K4f9uIGjlMwYpvsN6LYMLlF5Gj4RyK25
-	J2ipg778kV1uusbhELnfuQUWTZoFbjfYWLF9QvaIOv91rvUmDcDbGaIoL w=;
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: =?us-ascii?q?A0BtAQD32yFY/4YNJK1dGgEBAQECAQEBA?=
-	=?us-ascii?q?QgBAQEBgnM8AQEBAQEfWH8HjTKXBo85hRqCCCmFewIagW4/FAECAQEBAQEBAWI?=
-	=?us-ascii?q?ohGEBAQEDASNWBQsCAQgRAwECKAMCAgIwFAgBCAIEDgWIVAgOsWSCQItKAQEBA?=
-	=?us-ascii?q?QEBAQEBAQEBAQEBAQEBAQEBHIY+gX2CWoRoHoJGglwFmi8BhjWKEgqBZIRyiTS?=
-	=?us-ascii?q?NMIQFAQ8PN3qDMRyBXXKGLoEMAQEB?=
-X-IronPort-AV: E=Sophos;i="5.31,462,1473120000"; 
-	d="scan'208,217";a="345718413"
-Received: from alln-core-12.cisco.com ([173.36.13.134])
-	by alln-iport-8.cisco.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
-	08 Nov 2016 14:09:19 +0000
-Received: from XCH-RTP-002.cisco.com (xch-rtp-002.cisco.com [64.101.220.142])
-	by alln-core-12.cisco.com (8.14.5/8.14.5) with ESMTP id
-	uA8E9Igd008757
-	(version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=FAIL);
-	Tue, 8 Nov 2016 14:09:18 GMT
-Received: from xch-rtp-002.cisco.com (64.101.220.142) by XCH-RTP-002.cisco.com
-	(64.101.220.142) with Microsoft SMTP Server (TLS) id 15.0.1210.3;
-	Tue, 8 Nov 2016 09:09:17 -0500
-Received: from xch-rtp-002.cisco.com ([64.101.220.142]) by
-	XCH-RTP-002.cisco.com ([64.101.220.142]) with mapi id 15.00.1210.000;
-	Tue, 8 Nov 2016 09:09:17 -0500
-From: "Dinh Nguyen (dinhn)" <dinhn@cisco.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Thread-Topic: [yocto] FW: cmake version 3.0.0 or greater
-Thread-Index: AQHSOacLotCC4u2UnUqqAQ2YxxYD1qDO0JSAgACI9wD//3y2AIAAhvyA//+Q94A=
-Date: Tue, 8 Nov 2016 14:09:17 +0000
-Message-ID: <E096AD43-2EE6-4F8E-823C-269448795819@cisco.com>
-References: <3B7E27B6-76D5-460D-BE78-33E49D04BED0@cisco.com>
-	<CAJTo0LYtibhhgeSAC27yHzNL8hYu6HpBzKZDvB+k4nv26V+FKw@mail.gmail.com>
-	<9C7FDD6C-4BD2-449B-96A1-6540B53D23A8@cisco.com>
-	<CAJTo0LYXd=9bDWk_TB_ioZ96GY2gt31AxHR4w47sPdwPSo7VEA@mail.gmail.com>
-	<D01FE3D2-B0DF-413E-BED4-DD4CE1AE1E11@cisco.com>
-	<CAJTo0LY5xqyow8J5WgeweohaWw82ug9Uh7pOXMHbHnLDKqXXNw@mail.gmail.com>
-In-Reply-To: <CAJTo0LY5xqyow8J5WgeweohaWw82ug9Uh7pOXMHbHnLDKqXXNw@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Microsoft-MacOutlook/f.15.1.160411
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.24.4.69]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.213.68 listed in list.dnswl.org]
+Received: from mail-vk0-f68.google.com (mail-vk0-f68.google.com
+	[209.85.213.68])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E1A52E0070F
+	for <yocto@yoctoproject.org>; Tue,  8 Nov 2016 06:47:16 -0800 (PST)
+Received: by mail-vk0-f68.google.com with SMTP id 5so5553605vkf.0
+	for <yocto@yoctoproject.org>; Tue, 08 Nov 2016 06:47:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=K433M0gSK1i2bUDWmfhpCfPkSTHxaWZWEi8gfLn0u5Y=;
+	b=FYvZpBkrpt98yXtF6/Tf423VKOFaKocMtGoubKvrfyFQH4T77yxEI4ZS4oF8UTA68k
+	6AnVLVC2y71ZSK3RkT9vPuNT7B9YVQzhA26uWviBRGfkOQtg/WPJjfG2lL9Xw1zPvejo
+	DjVyo1hdD2weMrrpbjHvGG3kAqEHJOdKWg1AqNJqYyqjq8a8CvOEhAKUanQSTOnANUPY
+	eeemm+FHDedFabXE0H3QgVedkAq3b9x0NeF+DVHsBP59szQNenanrI7zKtf6iONz8AKK
+	qyOyCC/dfY+63ZavDIX5uBZtMSNIkHTcCjAiazQvsI+29T8lZUFbZty4OYme9CARMqtp
+	8Qpw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=K433M0gSK1i2bUDWmfhpCfPkSTHxaWZWEi8gfLn0u5Y=;
+	b=Q0QWkRj4mfL7kI10ngurvStbqlbf8bv3TwCCKEq/FhpGfu5zBwdJxZ5LVycNdqwzmf
+	cVsRcU36UJOr9UJ8NOiwfX3Nsnb0OLVb5ibE7jGihbA9E20iDFb1Ax+vRd2FoYCMucfW
+	a73xC/M4Lm1zXQY6g9TO+omlhUta2RtmxOFEh1E8AHq+0mhQnvJpiYStqHAtRWwNluNM
+	8mxDHFgNqqKrEJXfNtubcXBFKU5UQWa2YBy5BjBDcUAU9XqqHbr76ISSJ+7Do6WL8XlA
+	fsIGIVWs44vV/3/rpU/8tXyEvp+RhN7ltsK8P0Gj+76HgUXGRMp5G9JRwwqJE8w/Eh7Z
+	KInQ==
+X-Gm-Message-State: ABUngvdMAsAss5uMkgBQPbLZ8ftDi+TJV1gUzMGehpsdy1QYFV4cktMP21HLX2Y3RjK+C8nC+G4QTyQXyqKucg==
+X-Received: by 10.31.244.9 with SMTP id s9mr8509037vkh.31.1478616435774; Tue,
+	08 Nov 2016 06:47:15 -0800 (PST)
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: FW: cmake version 3.0.0 or greater
+Received: by 10.176.5.136 with HTTP; Tue, 8 Nov 2016 06:46:45 -0800 (PST)
+In-Reply-To: <20161108113838.GC19379@carbonA>
+References: <20161106072515.3505-1-raj.khem@gmail.com>
+	<CAK18fxEVW3NTsxOUbJQfM3XP6V7==G_V_dPG7P9-cjxVoWhpNg@mail.gmail.com>
+	<ebb5bf5e-6ac5-a97d-09b3-d292f1f72995@mlbassoc.com>
+	<20161108113838.GC19379@carbonA>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Tue, 8 Nov 2016 06:46:45 -0800
+Message-ID: <CAMKF1spR5-PpjfkfDadP_8FqrGHt0-T34k=RjwrwPg9y2Bd0Hg@mail.gmail.com>
+To: Andrei Gherzan <andrei@gherzan.ro>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	Gary Thomas <gary@mlbassoc.com>
+Subject: Re: [meta-raspberrypi][PATCH 1/2] firmware: Use release tarballs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -88,111 +73,62 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 08 Nov 2016 14:09:22 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_E096AD432EE64F8E823C269448795819ciscocom_"
+X-List-Received-Date: Tue, 08 Nov 2016 14:47:19 -0000
+Content-Type: text/plain; charset=UTF-8
 
---_000_E096AD432EE64F8E823C269448795819ciscocom_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+On Tue, Nov 8, 2016 at 3:38 AM, Andrei Gherzan <andrei@gherzan.ro> wrote:
+> On Tue, Nov 08, 2016 at 12:35:47PM +0100, Gary Thomas wrote:
+>> On 2016-11-08 12:16, Andrei Gherzan wrote:
+>> > On Sun, Nov 6, 2016 at 7:25 AM, Khem Raj <raj.khem@gmail.com> wrote:
+>> > > This is a binary repo and its quite large in size
+>> > > we do not need the whole history of this repo since
+>> > > most of stuff needed is binaries, therefore switch
+>> > > to release tarballs
+>> > >
+>> > > Signed-off-by: Khem Raj <raj.khem@gmail.com>
+>> > > ---
+>> > >  recipes-bsp/common/firmware.inc | 12 +++++++-----
+>> > >  1 file changed, 7 insertions(+), 5 deletions(-)
+>> > >
+>> > > diff --git a/recipes-bsp/common/firmware.inc b/recipes-bsp/common/firmware.inc
+>> > > index ed0782f..8862f58 100644
+>> > > --- a/recipes-bsp/common/firmware.inc
+>> > > +++ b/recipes-bsp/common/firmware.inc
+>> > > @@ -1,8 +1,10 @@
+>> > > -RPIFW_SRCREV ?= "413fc664838e81caeabdc4118dc51e138d5d6c71"
+>> > > -RPIFW_DATE ?= "20161030"
+>> > > -RPIFW_SRC_URI ?= "git://github.com/raspberrypi/firmware.git;protocol=git;branch=master"
+>> > > -RPIFW_S ?= "${WORKDIR}/git"
+>> > > +RPIFW_DATE ?= "20161020"
+>> > > +RPIFW_SRC_URI ?= "https://github.com/raspberrypi/firmware/archive/1.${RPIFW_DATE}.tar.gz"
+>> > > +RPIFW_S ?= "${WORKDIR}/firmware-1.${RPIFW_DATE}"
+>> > >
+>> > >  SRC_URI = "${RPIFW_SRC_URI}"
+>> > > -SRCREV = "${RPIFW_SRCREV}"
+>> > > +SRC_URI[md5sum] = "d3c388c114af4c672dd3ee0ed8e984d3"
+>> > > +SRC_URI[sha256sum] = "1c7c49d58800aab2dd1b5ff59a1e297934f9ea6f47ebdf0a3f90632561dc690b"
+>> > > +
+>> > >  PV = "${RPIFW_DATE}"
+>> >
+>> > Merged to master. Thanks.
+>>
+>> Sadly, the firmware revision went backwards in this change.
+>> Do you want a new patch to play catch-up?
+>>
+>
+> Good catch. I'll fix it. Thanks.
 
-DQo+Pj4gSSBmb3VuZCAgZ2l0Oi8vZ2l0Lm9wZW5lbWJlZGRlZC5vcmcvb3BlbmVtYmVkZGVkLWNv
-cmU8aHR0cDovL2dpdC5vcGVuZW1iZWRkZWQub3JnL29wZW5lbWJlZGRlZC1jb3JlPiBoYXMgdmVy
-c2lvbiAgMy42LngNCj4+PiBTbyBJIHRyaWVkIHRvIHB1bGwgaXQgaW4uIEJ1dCB0aGlzIHZlcnNp
-b24gZ290IGEgdHJhY2UgYmFjayB3aGVuIGludGVncmF0ZWQgdG8gb3VyIFNESyBZb2N0byBEaXp6
-eS4NCg0KPlRha2UgdGhlIHJlY2lwZXMgZnJvbSBtYXN0ZXIsIGNvcHkgdGhlIGNoYW5nZXMgdG8g
-ZGl6enksIHRoZW4gZml4IGFueSBwcm9ibGVtcyBjYXVzZWQgYnkgdGFraW5nIHJlY2lwZXMgZnJv
-bSBub3cgYW5kIGFwcGx5aW5nIHRoZW0gdG8gYSB0d28geWVhciBvbGQgcmVsZWFzZS4NCg0KVGhh
-bmtzIFJvc3MsDQoNCkkgYW0gdHJ5aW5nIHRvIHRha2UgdGhlIGNtYWtlIHJlY2lwZSBmcm9tIHRo
-ZSBtYXN0ZXIgbm93LiBIb3BlIGl0IHdpbGwgd29yay4NCg0KSSB3YXMgaG9waW5nIHRvIHNlZSBp
-ZiB0aGVyZSBpcyBhbnkgIGV4aXN0aW5nIDMueCB2ZXJzaW9uIGZvciBEaXp6eS4gT0ssICBsZXQg
-c2VlIGhvdyBpdCBnb2VzIHdpdGggdGhlIGxhdGVzdCBmcm9tIHRoZSBtYXN0ZXIuDQoNCuKAlERp
-bmgNCg0KRnJvbTogIkJ1cnRvbiwgUm9zcyIgPHJvc3MuYnVydG9uQGludGVsLmNvbTxtYWlsdG86
-cm9zcy5idXJ0b25AaW50ZWwuY29tPj4NCkRhdGU6IFR1ZXNkYXksIE5vdmVtYmVyIDgsIDIwMTYg
-YXQgNDo0OCBBTQ0KVG86IGRpbmhuIDxkaW5obkBjaXNjby5jb208bWFpbHRvOmRpbmhuQGNpc2Nv
-LmNvbT4+DQpDYzogInlvY3RvQHlvY3RvcHJvamVjdC5vcmc8bWFpbHRvOnlvY3RvQHlvY3RvcHJv
-amVjdC5vcmc+IiA8eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZzxtYWlsdG86eW9jdG9AeW9jdG9wcm9q
-ZWN0Lm9yZz4+DQpTdWJqZWN0OiBSZTogW3lvY3RvXSBGVzogY21ha2UgdmVyc2lvbiAzLjAuMCBv
-ciBncmVhdGVyDQoNCg0KT24gOCBOb3ZlbWJlciAyMDE2IGF0IDEyOjQzLCBEaW5oIE5ndXllbiAo
-ZGluaG4pIDxkaW5obkBjaXNjby5jb208bWFpbHRvOmRpbmhuQGNpc2NvLmNvbT4+IHdyb3RlOg0K
-UmlnaHQsIGFuZCBJIGFtIHRyeWluZyB0byB1cGdyYWRlIHRvIDN4IHZlcnNpb24uICBXb3VsZCB5
-b3UgcGxlYXNlIHRlbGwgbWUgd2hpY2ggY21ha2UgcGF0Y2ggb3IgcmVjaXBlICB0aGF0IEkgY2Fu
-IHVzZSB0byB1cGdyYWRlIHRvIDMueCB2ZXJzaW9uIGZvciBEaXp6eT8NCg0KV2hhdCB5b3Ugc2Fp
-ZDoNCg0KPiBJIGZvdW5kICBnaXQ6Ly9naXQub3BlbmVtYmVkZGVkLm9yZy9vcGVuZW1iZWRkZWQt
-Y29yZTxodHRwOi8vZ2l0Lm9wZW5lbWJlZGRlZC5vcmcvb3BlbmVtYmVkZGVkLWNvcmU+IGhhcyB2
-ZXJzaW9uICAzLjYueA0KPiBTbyBJIHRyaWVkIHRvIHB1bGwgaXQgaW4uIEJ1dCB0aGlzIHZlcnNp
-b24gZ290IGEgdHJhY2UgYmFjayB3aGVuIGludGVncmF0ZWQgdG8gb3VyIFNESyBZb2N0byBEaXp6
-eS4NCg0KVGFrZSB0aGUgcmVjaXBlcyBmcm9tIG1hc3RlciwgY29weSB0aGUgY2hhbmdlcyB0byBk
-aXp6eSwgdGhlbiBmaXggYW55IHByb2JsZW1zIGNhdXNlZCBieSB0YWtpbmcgcmVjaXBlcyBmcm9t
-IG5vdyBhbmQgYXBwbHlpbmcgdGhlbSB0byBhIHR3byB5ZWFyIG9sZCByZWxlYXNlLg0KDQpSb3Nz
-DQo=
+ah sorry about that.
+just hardcode PV = "20161030" for now. with next release we will get it right
+since its already past oct 30.
+>
+> --
+> Andrei Gherzan
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
---_000_E096AD432EE64F8E823C269448795819ciscocom_
-Content-Type: text/html; charset="utf-8"
-Content-ID: <C70458418D56A9419BA79439A2DD3D51@emea.cisco.com>
-Content-Transfer-Encoding: base64
-
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjwvaGVhZD4NCjxib2R5IHN0eWxlPSJ3b3JkLXdy
-YXA6IGJyZWFrLXdvcmQ7IC13ZWJraXQtbmJzcC1tb2RlOiBzcGFjZTsgLXdlYmtpdC1saW5lLWJy
-ZWFrOiBhZnRlci13aGl0ZS1zcGFjZTsgY29sb3I6IHJnYigwLCAwLCAwKTsgZm9udC1zaXplOiAx
-NHB4OyBmb250LWZhbWlseTogQ2FsaWJyaSwgc2Fucy1zZXJpZjsiPg0KPGRpdj4NCjxkaXY+DQo8
-ZGl2Pjxicj4NCjwvZGl2Pg0KPGRpdj4mZ3Q7Jmd0OyZndDsgSSBmb3VuZCAmbmJzcDtnaXQ6Ly88
-YSBocmVmPSJodHRwOi8vZ2l0Lm9wZW5lbWJlZGRlZC5vcmcvb3BlbmVtYmVkZGVkLWNvcmUiPmdp
-dC5vcGVuZW1iZWRkZWQub3JnL29wZW5lbWJlZGRlZC1jb3JlPC9hPiZuYnNwO2hhcyB2ZXJzaW9u
-ICZuYnNwOzMuNi54Jm5ic3A7PGJyPg0KJmd0OyZndDsmZ3Q7IFNvIEkgdHJpZWQgdG8gcHVsbCBp
-dCBpbi4gQnV0IHRoaXMgdmVyc2lvbiBnb3QgYSB0cmFjZSBiYWNrIHdoZW4gaW50ZWdyYXRlZCB0
-byBvdXIgU0RLIFlvY3RvIERpenp5Ljxicj4NCjxicj4NCjxkaXY+Jmd0O1Rha2UgdGhlIHJlY2lw
-ZXMgZnJvbSBtYXN0ZXIsIGNvcHkgdGhlIGNoYW5nZXMgdG8gZGl6enksIHRoZW4gZml4IGFueSBw
-cm9ibGVtcyBjYXVzZWQgYnkgdGFraW5nIHJlY2lwZXMgZnJvbSBub3cgYW5kIGFwcGx5aW5nIHRo
-ZW0gdG8gYSB0d28geWVhciBvbGQgcmVsZWFzZS48L2Rpdj4NCjwvZGl2Pg0KPGRpdj48YnI+DQo8
-L2Rpdj4NCjxkaXY+VGhhbmtzIFJvc3MsPC9kaXY+DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPGRpdj5J
-IGFtIHRyeWluZyB0byB0YWtlIHRoZSBjbWFrZSByZWNpcGUgZnJvbSB0aGUgbWFzdGVyIG5vdy4g
-SG9wZSBpdCB3aWxsIHdvcmsuJm5ic3A7PC9kaXY+DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPGRpdj5J
-IHdhcyBob3BpbmcgdG8gc2VlIGlmIHRoZXJlIGlzIGFueSAmbmJzcDtleGlzdGluZyAzLnggdmVy
-c2lvbiBmb3IgRGl6enkuIE9LLCAmbmJzcDtsZXQgc2VlIGhvdyBpdCBnb2VzIHdpdGggdGhlIGxh
-dGVzdCBmcm9tIHRoZSBtYXN0ZXIuPC9kaXY+DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPGRpdj7igJRE
-aW5oPC9kaXY+DQo8ZGl2Pg0KPGRpdiBpZD0iTUFDX09VVExPT0tfU0lHTkFUVVJFIj48L2Rpdj4N
-CjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjxkaXY+PGJyPg0KPC9kaXY+DQo8c3BhbiBpZD0iT0xL
-X1NSQ19CT0RZX1NFQ1RJT04iPg0KPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6Q2FsaWJyaTsgZm9u
-dC1zaXplOjEycHQ7IHRleHQtYWxpZ246bGVmdDsgY29sb3I6YmxhY2s7IEJPUkRFUi1CT1RUT006
-IG1lZGl1bSBub25lOyBCT1JERVItTEVGVDogbWVkaXVtIG5vbmU7IFBBRERJTkctQk9UVE9NOiAw
-aW47IFBBRERJTkctTEVGVDogMGluOyBQQURESU5HLVJJR0hUOiAwaW47IEJPUkRFUi1UT1A6ICNi
-NWM0ZGYgMXB0IHNvbGlkOyBCT1JERVItUklHSFQ6IG1lZGl1bSBub25lOyBQQURESU5HLVRPUDog
-M3B0Ij4NCjxzcGFuIHN0eWxlPSJmb250LXdlaWdodDpib2xkIj5Gcm9tOiA8L3NwYW4+JnF1b3Q7
-QnVydG9uLCBSb3NzJnF1b3Q7ICZsdDs8YSBocmVmPSJtYWlsdG86cm9zcy5idXJ0b25AaW50ZWwu
-Y29tIj5yb3NzLmJ1cnRvbkBpbnRlbC5jb208L2E+Jmd0Ozxicj4NCjxzcGFuIHN0eWxlPSJmb250
-LXdlaWdodDpib2xkIj5EYXRlOiA8L3NwYW4+VHVlc2RheSwgTm92ZW1iZXIgOCwgMjAxNiBhdCA0
-OjQ4IEFNPGJyPg0KPHNwYW4gc3R5bGU9ImZvbnQtd2VpZ2h0OmJvbGQiPlRvOiA8L3NwYW4+ZGlu
-aG4gJmx0OzxhIGhyZWY9Im1haWx0bzpkaW5obkBjaXNjby5jb20iPmRpbmhuQGNpc2NvLmNvbTwv
-YT4mZ3Q7PGJyPg0KPHNwYW4gc3R5bGU9ImZvbnQtd2VpZ2h0OmJvbGQiPkNjOiA8L3NwYW4+JnF1
-b3Q7PGEgaHJlZj0ibWFpbHRvOnlvY3RvQHlvY3RvcHJvamVjdC5vcmciPnlvY3RvQHlvY3RvcHJv
-amVjdC5vcmc8L2E+JnF1b3Q7ICZsdDs8YSBocmVmPSJtYWlsdG86eW9jdG9AeW9jdG9wcm9qZWN0
-Lm9yZyI+eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZzwvYT4mZ3Q7PGJyPg0KPHNwYW4gc3R5bGU9ImZv
-bnQtd2VpZ2h0OmJvbGQiPlN1YmplY3Q6IDwvc3Bhbj5SZTogW3lvY3RvXSBGVzogY21ha2UgdmVy
-c2lvbiAzLjAuMCBvciBncmVhdGVyPGJyPg0KPC9kaXY+DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPHNw
-YW4gc3R5bGU9Im1zby1ib29rbWFyazpfTWFpbE9yaWdpbmFsQm9keSI+DQo8ZGl2Pg0KPGRpdj4N
-CjxkaXYgZGlyPSJsdHIiPg0KPGRpdiBjbGFzcz0iZ21haWxfZXh0cmEiPjxicj4NCjxkaXYgY2xh
-c3M9ImdtYWlsX3F1b3RlIj5PbiA4IE5vdmVtYmVyIDIwMTYgYXQgMTI6NDMsIERpbmggTmd1eWVu
-IChkaW5obikgPHNwYW4gZGlyPSJsdHIiPg0KJmx0OzxhIGhyZWY9Im1haWx0bzpkaW5obkBjaXNj
-by5jb20iIHRhcmdldD0iX2JsYW5rIj5kaW5obkBjaXNjby5jb208L2E+Jmd0Ozwvc3Bhbj4gd3Jv
-dGU6PGJyPg0KPGJsb2NrcXVvdGUgY2xhc3M9ImdtYWlsX3F1b3RlIiBzdHlsZT0ibWFyZ2luOjBw
-eCAwcHggMHB4IDAuOGV4O2JvcmRlci1sZWZ0LXdpZHRoOjFweDtib3JkZXItbGVmdC1jb2xvcjpy
-Z2IoMjA0LDIwNCwyMDQpO2JvcmRlci1sZWZ0LXN0eWxlOnNvbGlkO3BhZGRpbmctbGVmdDoxZXgi
-Pg0KPGRpdj5SaWdodCwgYW5kJm5ic3A7SSBhbSB0cnlpbmcgdG8gdXBncmFkZSB0byAzeCB2ZXJz
-aW9uLiZuYnNwOyBXb3VsZCB5b3UgcGxlYXNlIHRlbGwgbWUgd2hpY2ggY21ha2UgcGF0Y2ggb3Ig
-cmVjaXBlICZuYnNwO3RoYXQgSSBjYW4gdXNlIHRvIHVwZ3JhZGUgdG8gMy54IHZlcnNpb24gZm9y
-IERpenp5PzwvZGl2Pg0KPGRpdj48L2Rpdj4NCjwvYmxvY2txdW90ZT4NCjwvZGl2Pg0KPGJyPg0K
-V2hhdCB5b3Ugc2FpZDo8L2Rpdj4NCjxicj4NCiZndDsgSSBmb3VuZCAmbmJzcDtnaXQ6Ly88YSBo
-cmVmPSJodHRwOi8vZ2l0Lm9wZW5lbWJlZGRlZC5vcmcvb3BlbmVtYmVkZGVkLWNvcmUiPmdpdC5v
-cGVuZW1iZWRkZWQub3JnL29wZW5lbWJlZGRlZC1jb3JlPC9hPiBoYXMgdmVyc2lvbiAmbmJzcDsz
-LjYueA0KPGJyPg0KJmd0OyBTbyBJIHRyaWVkIHRvIHB1bGwgaXQgaW4uIEJ1dCB0aGlzIHZlcnNp
-b24gZ290IGEgdHJhY2UgYmFjayB3aGVuIGludGVncmF0ZWQgdG8gb3VyIFNESyBZb2N0byBEaXp6
-eS48YnI+DQo8YnI+DQo8ZGl2PlRha2UgdGhlIHJlY2lwZXMgZnJvbSBtYXN0ZXIsIGNvcHkgdGhl
-IGNoYW5nZXMgdG8gZGl6enksIHRoZW4gZml4IGFueSBwcm9ibGVtcyBjYXVzZWQgYnkgdGFraW5n
-IHJlY2lwZXMgZnJvbSBub3cgYW5kIGFwcGx5aW5nIHRoZW0gdG8gYSB0d28geWVhciBvbGQgcmVs
-ZWFzZS48L2Rpdj4NCjxkaXY+PGJyPg0KPC9kaXY+DQo8ZGl2PlJvc3M8L2Rpdj4NCjwvZGl2Pg0K
-PC9kaXY+DQo8L2Rpdj4NCjwvc3Bhbj48L3NwYW4+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
-
---_000_E096AD432EE64F8E823C269448795819ciscocom_--
