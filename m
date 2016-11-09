@@ -1,63 +1,63 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <prvs=01216f048e=mike.looijmans@topicproducts.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 77431E00997; Wed,  9 Nov 2016 05:19:13 -0800 (PST)
+	id 85FC9E00997; Wed,  9 Nov 2016 06:07:51 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_LOW,
-	RCVD_IN_SORBS_SPAM autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.220.172 listed in dnsbl.sorbs.net]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [207.244.64.174 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.172 listed in list.dnswl.org]
-Received: from mail-qk0-f172.google.com (mail-qk0-f172.google.com
-	[209.85.220.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 19CEDE0083E
-	for <yocto@yoctoproject.org>; Wed,  9 Nov 2016 05:19:07 -0800 (PST)
-Received: by mail-qk0-f172.google.com with SMTP id q130so255207952qke.1
-	for <yocto@yoctoproject.org>; Wed, 09 Nov 2016 05:19:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=vGdr6l4dnOG01REEwBLzTkcVRpT8dmwRT/+bkX4ESHU=;
-	b=IAolzk/9SDkK+zcZoWnP0jLYNY/buAb5u+T+Ac/st+HRF700sjXJfA/ccfAqQzWlPA
-	3bMQQXsf+L+lKUUrTGXJSfpTGkRklat6BxjmRtPz8jxq82gapkNdsGYx8wuVdIPI8RgE
-	OEyaOj+Y/tcc5FN7dckUJmf1MYSCQh5dizI94S3fy66DiKAKd2m/5PAScPkk2seq3+Om
-	XLN6h9fFhtsdX+fJdNDAtG0leeEjLeVCa5/3YLl9JKSPRX6xwwFOIP5JVvO8hFKOmWgo
-	ouxzyBZ1Ooi90aoBZm0+Ygas0NtdSblIfdM45MfrnA35JuhBdWVfy1eqWFk1KcXLygZv
-	Gfjw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=vGdr6l4dnOG01REEwBLzTkcVRpT8dmwRT/+bkX4ESHU=;
-	b=ieSPygNCr7fsR4pjnrHjYTlNO9KyKnkuoV1sjBi64MZU8RV5q3q78dfNxfPZWS8R71
-	arU0Z0IsJHVTy3+00k8ad+Y+vqJfgfzeWKbcQxLADeV8R5fMGurtQzoKnrfgCK4sWUxZ
-	lbAZU2A8blX+TCu+BcVNUq2tcKbiCQezml1qJQMZVNXL+xLkpuq0ltwWIj1Nkv0roita
-	5OEPcbmiPysMPIAjQsRGkCHzE5Tu2kX8vOdlLvkaKVCXuGlNfwDKRUq4TuBCujwqUC5a
-	8pAiG59buiNxTqcarCZBZ01wTJMsuoXOo2g0CW3EnTW51JO8LmW7F6df4/3nJOkjh9Fk
-	QSlg==
-X-Gm-Message-State: ABUngvf1wjxTrQmqgfjo+DurSRDRhyURyoes/7lUQUaV6+BIZZK+0TpFODm77seC0XRZeY3NgOqN9CoDWqu39WP7
-X-Received: by 10.55.31.157 with SMTP id n29mr17734520qkh.221.1478697546528;
-	Wed, 09 Nov 2016 05:19:06 -0800 (PST)
+Received: from mx18-05.smtp.antispamcloud.com (mx18-05.smtp.antispamcloud.com
+	[207.244.64.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C2BF4E0083E
+	for <yocto@yoctoproject.org>; Wed,  9 Nov 2016 06:07:48 -0800 (PST)
+Received: from [37.74.225.130] (helo=TOP-EX01.TOPIC.LOCAL)
+	by mx18.antispamcloud.com with esmtps (TLSv1:ECDHE-RSA-AES128-SHA:128)
+	(Exim 4.86) (envelope-from <mike.looijmans@topicproducts.com>)
+	id 1c4TXR-00033V-6V
+	for yocto@yoctoproject.org; Wed, 09 Nov 2016 15:07:46 +0100
+Received: from [192.168.80.121] (192.168.80.121) by webmail.topic.nl
+	(192.168.10.102) with Microsoft SMTP Server id 14.3.224.2;
+	Wed, 9 Nov 2016 15:07:38 +0100
+To: <yocto@yoctoproject.org>
+References: <f9a57cb411c94c0c8f191bad3d391b35@SI-MBX1022.de.bosch.com>
+	<56D865D5.2010702@windriver.com>
+	<CAGMdoFkRJbK=YXzm2GDxEd-oLh2hWh+OHNQ9RoOgvB6Dwm2DYA@mail.gmail.com>
+	<CAEjjReLCNOKCq5dawyvbFyH=M5B1eot36SLuwCXMFJ1r_o-fUg@mail.gmail.com>
+From: Mike Looijmans <mike.looijmans@topic.nl>
+Organization: TOPIC
+Message-ID: <4eb0e4b5-9e11-114a-66c4-77e5449aeb12@topic.nl>
+Date: Wed, 9 Nov 2016 15:07:38 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.3.0
 MIME-Version: 1.0
-Received: by 10.140.85.136 with HTTP; Wed, 9 Nov 2016 05:18:46 -0800 (PST)
-In-Reply-To: <30C2D590D16A5C46ADFE6521910377987FF75F11@AZ-US1EXMB02.global.avaya.com>
-References: <30C2D590D16A5C46ADFE6521910377987FF75F11@AZ-US1EXMB02.global.avaya.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 9 Nov 2016 13:18:46 +0000
-Message-ID: <CAJTo0Lbd-K4aJFd5RFqa+hgrgjBZLz=TCzEDoA3-Qg+CtSbtdw@mail.gmail.com>
-To: "Vuille, Martin (Martin)" <vmartin@avaya.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Postinsts question
+In-Reply-To: <CAEjjReLCNOKCq5dawyvbFyH=M5B1eot36SLuwCXMFJ1r_o-fUg@mail.gmail.com>
+X-Originating-IP: [192.168.80.121]
+X-EXCLAIMER-MD-CONFIG: 9833cda7-5b21-4d34-9a38-8d025ddc3664
+X-EXCLAIMER-MD-BIFURCATION-INSTANCE: 0
+X-Filter-ID: s0sct1PQhAABKnZB5plbIbbvfIHzQjPVmPLZeVYSu3xU9luQrU+8/8qthi+0Jd/W6KAUC/fjyuDn
+	NXFr4uarw8AABa0l71MJhTGCVSA9t5V02KbWfB+BvCLafvmmGbn9dUv6vb7lzwh4VvH3mLi3t6mx
+	j3Zz/WM/IwRyPjIHIwDfpzDHGjpAc4THPNcVEpsLYOyRdMEohLJe3aNLB9hxPTwJWw42swm4bO6g
+	acpMpzKAsmN/Lb+FQ/HEaohPJy4sx1hqmEa9iilDbgon2SBEMwR1Cbr/gA0Hb9IMgtxSpQPVCZ1m
+	y7qTGj+pYSPpnV3taEKYvM7FMBxCYVZUBGGA2ntmL1IOux+wiS7a7xut+NpifFDKEuqo+y7SM5LK
+	mlqkSSzm7P5LFQTh7xAIEq/JANELms9PgUTO7N3X8VVCH5Tejl+klpcKS8WcpGJHUE5QmdySlZou
+	9qHIGOZDEEo7O6ELVSrXu1Q3s0Dk1D5TiiVga8sJFDUhvJ7BMUbUKCRIMiPLyoQzvILSDO18VtgB
+	XV1z/z4WnEoC8C13cWABWljMJUuewaNdgFhoy6E5hGQo6J1fhOzjF0b4LXcjJZ5lojEMqtzJ1njt
+	3WX6t7gEp256Mn2LvZcHnl+qWjt8ZNLnihyMiH+f+SmwfmZ/JPSGbtlbWpw95PUjgvuRiAeCIlI=
+X-Report-Abuse-To: spam@mx99.antispamcloud.com
+X-Originating-IP: 37.74.225.130
+X-SpamExperts-Domain: topic.nl
+X-SpamExperts-Username: 37.74.225.128/28
+Authentication-Results: antispamcloud.com;
+	auth=pass smtp.auth=37.74.225.128/28@topic.nl
+X-SpamExperts-Outgoing-Class: unsure
+X-SpamExperts-Outgoing-Evidence: Combined (0.26)
+X-Recommended-Action: accept
+Subject: Re: How to handle meta-intel/openembedded repos with multiple developers
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,69 +69,90 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 09 Nov 2016 13:19:13 -0000
-Content-Type: multipart/alternative; boundary=001a1147f228fdd1450540de1950
-
---001a1147f228fdd1450540de1950
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 09 Nov 2016 14:07:51 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
-On 8 November 2016 at 23:23, Vuille, Martin (Martin) <vmartin@avaya.com>
-wrote:
+=EF=BB=BFGit submodules work fine for this.
 
-> We are running with our rootfs mounted read-only.
->
-> Consequently, any postinsts that get deferred to first boot fail.
->
->
->
-> Is there a way to fail the build for any postinsts that can=E2=80=99t
->
-> be performed during the build and have to be deferred?
->
->
-I was looking at some other selftests today and a test suggested that this
-already happens, and it's true.
+In general, for each project I create a top-level repo that has the OE repo=
+s=20
+as submodule. The project repo also contains the project-specific recipes.
 
-If you add 'read-only-rootfs' to IMAGE_FEATURES then delayed postists are
-fatal:
 
-ERROR: core-image-sato-base-1.0-r0 do_rootfs: The following packages could
-not be configured offline and rootfs is read-only: ['postinst-test-delayed'=
-]
-ERROR: core-image-sato-base-1.0-r0 do_rootfs: Function failed: do_rootfs
+On 07-11-16 20:31, Chris Z. wrote:
+> Hi,
+>
+> How you store your project configuration ? How you prepare workspace (dow=
+nload
+> each layer separately)?
+> Basic stuff, SW release should be reproducible (in easy way). Store somew=
+here
+> used hash of each piece or use tags. Non company assets should be already
+> somehow tagged or you use HEAD or master/-next ?
+>
+> Br,
+> Chris Z
+>
+> On Thu, Oct 27, 2016 at 8:22 AM, Edward Wingate <edwingate8@gmail.com
+> <mailto:edwingate8@gmail.com>> wrote:
+>
+>     On Thu, Mar 3, 2016 at 8:27 AM, Mark Hatle <mark.hatle@windriver.com
+>     <mailto:mark.hatle@windriver.com>> wrote:
+>     >  At some point during product development a lead/architect needs to=
+ make the
+>     > decision to 'freeze' development and at that point everything is
+>     tagged/branched
+>     > and only backports are used from them on.  (If the number of backpo=
+rts
+>     gets too
+>     > large, you MIGHT decide to selectively rebase.)
+>
+>     I'm currently trying to figure out with how to control external layer=
+s
+>     in my Yocto build and found this thread.  I'm a little unclear on how
+>     to track a release to the version used on non-company layers.  Say I'=
+m
+>     using poky, meta-openembedded, meta-xilinx and then my own layer,
+>     meta-me. When I freeze development and do a release, I can tag
+>     meta-me, but because I also treat non-company assets as RO, I
+>     shouldn't tag poky, meta-openembedded nor meta-xilinx (or should I? I=
+s
+>     this where I use git's lightweight tagging as opposed to annotated
+>     tags?) When "everything is tagged/branched", does that somehow includ=
+e
+>     tagging the non-company assets?  Thanks for any help.
+>
+>     Ed
+>     --
+>    =20
 
-Ross
+Kind regards,
 
---001a1147f228fdd1450540de1950
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Mike Looijmans
+System Expert
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 8 November 2016 at 23:23, Vuille, Martin (Martin) <span dir=3D"ltr">&lt;=
-<a href=3D"mailto:vmartin@avaya.com" target=3D"_blank">vmartin@avaya.com</a=
->&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0p=
-x 0px 0px 0.8ex;border-left-width:1px;border-left-color:rgb(204,204,204);bo=
-rder-left-style:solid;padding-left:1ex"><p class=3D"MsoNormal"><span lang=
-=3D"EN-US">We are running with our rootfs mounted <span class=3D"gmail-il">=
-read</span>-<span class=3D"gmail-il">only</span>.<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Consequently, any postinsts tha=
-t get deferred to first boot fail.<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Is there a way to fail the buil=
-d for any postinsts that can=E2=80=99t<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">be performed during the build a=
-nd have to be deferred?<u></u><u></u></span></p>
-<p class=3D"MsoNormal"></p></blockquote></div><br>I was looking at some oth=
-er selftests today and a test suggested that this already happens, and it&#=
-39;s true.</div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_ex=
-tra">If you add &#39;read-only-rootfs&#39; to IMAGE_FEATURES then delayed p=
-ostists are fatal:</div><div class=3D"gmail_extra"><br></div><div class=3D"=
-gmail_extra"><div class=3D"gmail_extra">ERROR: core-image-sato-base-1.0-r0 =
-do_rootfs: The following packages could not be configured offline and rootf=
-s is read-only: [&#39;postinst-test-delayed&#39;]</div><div class=3D"gmail_=
-extra">ERROR: core-image-sato-base-1.0-r0 do_rootfs: Function failed: do_ro=
-otfs</div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">R=
-oss</div></div></div>
+TOPIC Products
+Materiaalweg 4, NL-5681 RJ Best
+Postbus 440, NL-5680 AK Best
+Telefoon: +31 (0) 499 33 69 79
+E-mail: mike.looijmans@topicproducts.com
+Website: www.topicproducts.com
 
---001a1147f228fdd1450540de1950--
+Please consider the environment before printing this e-mail
+
+
+
+
+
+_______________________________________________
+>     yocto mailing list
+>     yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
+>     https://lists.yoctoproject.org/listinfo/yocto
+>     <https://lists.yoctoproject.org/listinfo/yocto>
+>
+>
+>
+>
+
+
