@@ -1,63 +1,60 @@
-Return-Path: <prvs=01216f048e=mike.looijmans@topicproducts.com>
+Return-Path: <vmartin@avaya.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 85FC9E00997; Wed,  9 Nov 2016 06:07:51 -0800 (PST)
+	id 5A5A1E00BB0; Wed,  9 Nov 2016 06:42:31 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [207.244.64.174 listed in list.dnswl.org]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [198.152.71.100 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mx18-05.smtp.antispamcloud.com (mx18-05.smtp.antispamcloud.com
-	[207.244.64.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C2BF4E0083E
-	for <yocto@yoctoproject.org>; Wed,  9 Nov 2016 06:07:48 -0800 (PST)
-Received: from [37.74.225.130] (helo=TOP-EX01.TOPIC.LOCAL)
-	by mx18.antispamcloud.com with esmtps (TLSv1:ECDHE-RSA-AES128-SHA:128)
-	(Exim 4.86) (envelope-from <mike.looijmans@topicproducts.com>)
-	id 1c4TXR-00033V-6V
-	for yocto@yoctoproject.org; Wed, 09 Nov 2016 15:07:46 +0100
-Received: from [192.168.80.121] (192.168.80.121) by webmail.topic.nl
-	(192.168.10.102) with Microsoft SMTP Server id 14.3.224.2;
-	Wed, 9 Nov 2016 15:07:38 +0100
-To: <yocto@yoctoproject.org>
-References: <f9a57cb411c94c0c8f191bad3d391b35@SI-MBX1022.de.bosch.com>
-	<56D865D5.2010702@windriver.com>
-	<CAGMdoFkRJbK=YXzm2GDxEd-oLh2hWh+OHNQ9RoOgvB6Dwm2DYA@mail.gmail.com>
-	<CAEjjReLCNOKCq5dawyvbFyH=M5B1eot36SLuwCXMFJ1r_o-fUg@mail.gmail.com>
-From: Mike Looijmans <mike.looijmans@topic.nl>
-Organization: TOPIC
-Message-ID: <4eb0e4b5-9e11-114a-66c4-77e5449aeb12@topic.nl>
-Date: Wed, 9 Nov 2016 15:07:38 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.3.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from de307622-de-outbound.net.avaya.com
+	(de307622-de-outbound.net.avaya.com [198.152.71.100])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BA7D3E00997
+	for <yocto@yoctoproject.org>; Wed,  9 Nov 2016 06:42:27 -0800 (PST)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2E2AgB8NSNY/yYyC4ddGgEBAQECAQEBA?=
+	=?us-ascii?q?QgBAQEBgnMhGwEBAQEBH1h/BwGNNZcKlFaCCIYkAhqBcD8UAQIBAQEBAQEBA18?=
+	=?us-ascii?q?ohGEBAQEBAxIRCkwQAgEIDQQEAQELHQMCAgIwFAkIAQEEAQ0FCBqIOgGmF4pjg?=
+	=?us-ascii?q?kA4AosKAQEBAQEBAQEBAQEBAQEBAQEBAQEBHIY+hFqEShUfgk4tgi8FiEeHUIQ?=
+	=?us-ascii?q?3hWMBkjyIJAyFfI04hAceN3yFL3KGWwGBCwEBAQ?=
+X-IPAS-Result: =?us-ascii?q?A2E2AgB8NSNY/yYyC4ddGgEBAQECAQEBAQgBAQEBgnMhGwE?=
+	=?us-ascii?q?BAQEBH1h/BwGNNZcKlFaCCIYkAhqBcD8UAQIBAQEBAQEBA18ohGEBAQEBAxIRC?=
+	=?us-ascii?q?kwQAgEIDQQEAQELHQMCAgIwFAkIAQEEAQ0FCBqIOgGmF4pjgkA4AosKAQEBAQE?=
+	=?us-ascii?q?BAQEBAQEBAQEBAQEBAQEBHIY+hFqEShUfgk4tgi8FiEeHUIQ3hWMBkjyIJAyFf?=
+	=?us-ascii?q?I04hAceN3yFL3KGWwGBCwEBAQ?=
+X-IronPort-AV: E=Sophos;i="5.31,614,1473134400"; 
+	d="scan'208,217";a="179236303"
+Received: from unknown (HELO p-us1-erheast-smtpauth.us1.avaya.com)
+	([135.11.50.38]) by de307622-de-outbound.net.avaya.com with ESMTP;
+	09 Nov 2016 09:42:17 -0500
+X-OutboundMail_SMTP: 1
+Received: from unknown (HELO AZ-US1EXHC02.global.avaya.com) ([135.11.85.13])
+	by p-us1-erheast-out.us1.avaya.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
+	09 Nov 2016 09:42:01 -0500
+Received: from AZ-US1EXMB02.global.avaya.com ([fe80::c01d:740:c927:8888]) by
+	AZ-US1EXHC02.global.avaya.com ([::1]) with mapi id 14.03.0319.002;
+	Wed, 9 Nov 2016 09:42:00 -0500
+From: "Vuille, Martin (Martin)" <vmartin@avaya.com>
+To: "Burton, Ross" <ross.burton@intel.com>, Khem Raj <raj.khem@gmail.com>
+Thread-Topic: [yocto] Postinsts question
+Thread-Index: AdI6FuvbahkIhJEzSnaHKEHzMKB9iwAnsnkAAAevc6A=
+Date: Wed, 9 Nov 2016 14:41:59 +0000
+Message-ID: <30C2D590D16A5C46ADFE6521910377987FF76213@AZ-US1EXMB02.global.avaya.com>
+References: <30C2D590D16A5C46ADFE6521910377987FF75F11@AZ-US1EXMB02.global.avaya.com>
+	<CAJTo0Lbd-K4aJFd5RFqa+hgrgjBZLz=TCzEDoA3-Qg+CtSbtdw@mail.gmail.com>
+In-Reply-To: <CAJTo0Lbd-K4aJFd5RFqa+hgrgjBZLz=TCzEDoA3-Qg+CtSbtdw@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [135.11.85.50]
 MIME-Version: 1.0
-In-Reply-To: <CAEjjReLCNOKCq5dawyvbFyH=M5B1eot36SLuwCXMFJ1r_o-fUg@mail.gmail.com>
-X-Originating-IP: [192.168.80.121]
-X-EXCLAIMER-MD-CONFIG: 9833cda7-5b21-4d34-9a38-8d025ddc3664
-X-EXCLAIMER-MD-BIFURCATION-INSTANCE: 0
-X-Filter-ID: s0sct1PQhAABKnZB5plbIbbvfIHzQjPVmPLZeVYSu3xU9luQrU+8/8qthi+0Jd/W6KAUC/fjyuDn
-	NXFr4uarw8AABa0l71MJhTGCVSA9t5V02KbWfB+BvCLafvmmGbn9dUv6vb7lzwh4VvH3mLi3t6mx
-	j3Zz/WM/IwRyPjIHIwDfpzDHGjpAc4THPNcVEpsLYOyRdMEohLJe3aNLB9hxPTwJWw42swm4bO6g
-	acpMpzKAsmN/Lb+FQ/HEaohPJy4sx1hqmEa9iilDbgon2SBEMwR1Cbr/gA0Hb9IMgtxSpQPVCZ1m
-	y7qTGj+pYSPpnV3taEKYvM7FMBxCYVZUBGGA2ntmL1IOux+wiS7a7xut+NpifFDKEuqo+y7SM5LK
-	mlqkSSzm7P5LFQTh7xAIEq/JANELms9PgUTO7N3X8VVCH5Tejl+klpcKS8WcpGJHUE5QmdySlZou
-	9qHIGOZDEEo7O6ELVSrXu1Q3s0Dk1D5TiiVga8sJFDUhvJ7BMUbUKCRIMiPLyoQzvILSDO18VtgB
-	XV1z/z4WnEoC8C13cWABWljMJUuewaNdgFhoy6E5hGQo6J1fhOzjF0b4LXcjJZ5lojEMqtzJ1njt
-	3WX6t7gEp256Mn2LvZcHnl+qWjt8ZNLnihyMiH+f+SmwfmZ/JPSGbtlbWpw95PUjgvuRiAeCIlI=
-X-Report-Abuse-To: spam@mx99.antispamcloud.com
-X-Originating-IP: 37.74.225.130
-X-SpamExperts-Domain: topic.nl
-X-SpamExperts-Username: 37.74.225.128/28
-Authentication-Results: antispamcloud.com;
-	auth=pass smtp.auth=37.74.225.128/28@topic.nl
-X-SpamExperts-Outgoing-Class: unsure
-X-SpamExperts-Outgoing-Evidence: Combined (0.26)
-X-Recommended-Action: accept
-Subject: Re: How to handle meta-intel/openembedded repos with multiple developers
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Postinsts question
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,90 +66,147 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 09 Nov 2016 14:07:51 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 09 Nov 2016 14:42:31 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_30C2D590D16A5C46ADFE6521910377987FF76213AZUS1EXMB02glob_"
 
-=EF=BB=BFGit submodules work fine for this.
+--_000_30C2D590D16A5C46ADFE6521910377987FF76213AZUS1EXMB02glob_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-In general, for each project I create a top-level repo that has the OE repo=
-s=20
-as submodule. The project repo also contains the project-specific recipes.
+VGhhbmtzIFJvc3MsIEtoZW0NCg0KSXQgbG9va3MgbGlrZSB3ZSBhcmVu4oCZdCBzZXR0aW5nIOKA
+mHJlYWQtb25seS1yb290ZnPigJkNCg0KT3VyIGltYWdlcyBhbmQgaW5pdCBhcmUgdmVyeSBjdXN0
+b21pemVkLCBzbyB3ZSBtaXNzZWQgdGhhdC4NCldpbGwgbG9vayBpbnRvIGl0Lg0KDQpSZWdhcmRz
+LA0KTVYNCg0KRnJvbTogQnVydG9uLCBSb3NzIFttYWlsdG86cm9zcy5idXJ0b25AaW50ZWwuY29t
+XQ0KU2VudDogTm92ZW1iZXIgMDksIDIwMTYgMDg6MTkNClRvOiBWdWlsbGUsIE1hcnRpbiAoTWFy
+dGluKQ0KQ2M6IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcNClN1YmplY3Q6IFJlOiBbeW9jdG9dIFBv
+c3RpbnN0cyBxdWVzdGlvbg0KDQoNCk9uIDggTm92ZW1iZXIgMjAxNiBhdCAyMzoyMywgVnVpbGxl
+LCBNYXJ0aW4gKE1hcnRpbikgPHZtYXJ0aW5AYXZheWEuY29tPG1haWx0bzp2bWFydGluQGF2YXlh
+LmNvbT4+IHdyb3RlOg0KV2UgYXJlIHJ1bm5pbmcgd2l0aCBvdXIgcm9vdGZzIG1vdW50ZWQgcmVh
+ZC1vbmx5Lg0KQ29uc2VxdWVudGx5LCBhbnkgcG9zdGluc3RzIHRoYXQgZ2V0IGRlZmVycmVkIHRv
+IGZpcnN0IGJvb3QgZmFpbC4NCg0KSXMgdGhlcmUgYSB3YXkgdG8gZmFpbCB0aGUgYnVpbGQgZm9y
+IGFueSBwb3N0aW5zdHMgdGhhdCBjYW7igJl0DQpiZSBwZXJmb3JtZWQgZHVyaW5nIHRoZSBidWls
+ZCBhbmQgaGF2ZSB0byBiZSBkZWZlcnJlZD8NCg0KSSB3YXMgbG9va2luZyBhdCBzb21lIG90aGVy
+IHNlbGZ0ZXN0cyB0b2RheSBhbmQgYSB0ZXN0IHN1Z2dlc3RlZCB0aGF0IHRoaXMgYWxyZWFkeSBo
+YXBwZW5zLCBhbmQgaXQncyB0cnVlLg0KDQpJZiB5b3UgYWRkICdyZWFkLW9ubHktcm9vdGZzJyB0
+byBJTUFHRV9GRUFUVVJFUyB0aGVuIGRlbGF5ZWQgcG9zdGlzdHMgYXJlIGZhdGFsOg0KDQpFUlJP
+UjogY29yZS1pbWFnZS1zYXRvLWJhc2UtMS4wLXIwIGRvX3Jvb3RmczogVGhlIGZvbGxvd2luZyBw
+YWNrYWdlcyBjb3VsZCBub3QgYmUgY29uZmlndXJlZCBvZmZsaW5lIGFuZCByb290ZnMgaXMgcmVh
+ZC1vbmx5OiBbJ3Bvc3RpbnN0LXRlc3QtZGVsYXllZCddDQpFUlJPUjogY29yZS1pbWFnZS1zYXRv
+LWJhc2UtMS4wLXIwIGRvX3Jvb3RmczogRnVuY3Rpb24gZmFpbGVkOiBkb19yb290ZnMNCg0KUm9z
+cw0K
 
+--_000_30C2D590D16A5C46ADFE6521910377987FF76213AZUS1EXMB02glob_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On 07-11-16 20:31, Chris Z. wrote:
-> Hi,
->
-> How you store your project configuration ? How you prepare workspace (dow=
-nload
-> each layer separately)?
-> Basic stuff, SW release should be reproducible (in easy way). Store somew=
-here
-> used hash of each piece or use tags. Non company assets should be already
-> somehow tagged or you use HEAD or master/-next ?
->
-> Br,
-> Chris Z
->
-> On Thu, Oct 27, 2016 at 8:22 AM, Edward Wingate <edwingate8@gmail.com
-> <mailto:edwingate8@gmail.com>> wrote:
->
->     On Thu, Mar 3, 2016 at 8:27 AM, Mark Hatle <mark.hatle@windriver.com
->     <mailto:mark.hatle@windriver.com>> wrote:
->     >  At some point during product development a lead/architect needs to=
- make the
->     > decision to 'freeze' development and at that point everything is
->     tagged/branched
->     > and only backports are used from them on.  (If the number of backpo=
-rts
->     gets too
->     > large, you MIGHT decide to selectively rebase.)
->
->     I'm currently trying to figure out with how to control external layer=
-s
->     in my Yocto build and found this thread.  I'm a little unclear on how
->     to track a release to the version used on non-company layers.  Say I'=
-m
->     using poky, meta-openembedded, meta-xilinx and then my own layer,
->     meta-me. When I freeze development and do a release, I can tag
->     meta-me, but because I also treat non-company assets as RO, I
->     shouldn't tag poky, meta-openembedded nor meta-xilinx (or should I? I=
-s
->     this where I use git's lightweight tagging as opposed to annotated
->     tags?) When "everything is tagged/branched", does that somehow includ=
-e
->     tagging the non-company assets?  Thanks for any help.
->
->     Ed
->     --
->    =20
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTQgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1IDUgMiAyIDIgNCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJ
+e2ZvbnQtZmFtaWx5OlRhaG9tYTsNCglwYW5vc2UtMToyIDExIDYgNCAzIDUgNCA0IDIgNDt9DQov
+KiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1z
+b05vcm1hbA0KCXttYXJnaW46MGluOw0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNp
+emU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5OiJUaW1lcyBOZXcgUm9tYW4iLCJzZXJpZiI7fQ0KYTps
+aW5rLCBzcGFuLk1zb0h5cGVybGluaw0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6
+Ymx1ZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCmE6dmlzaXRlZCwgc3Bhbi5Nc29I
+eXBlcmxpbmtGb2xsb3dlZA0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6cHVycGxl
+Ow0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0Kc3Bhbi5nbWFpbC1pbA0KCXttc28tc3R5
+bGUtbmFtZTpnbWFpbC1pbDt9DQpzcGFuLkVtYWlsU3R5bGUxOA0KCXttc28tc3R5bGUtdHlwZTpw
+ZXJzb25hbC1yZXBseTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsInNhbnMtc2VyaWYiOw0KCWNv
+bG9yOiMxRjQ5N0Q7fQ0KLk1zb0NocERlZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9u
+bHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLCJzYW5zLXNlcmlmIjsNCgltc28tZmFyZWFzdC1s
+YW5ndWFnZTpFTi1VUzt9DQpAcGFnZSBXb3JkU2VjdGlvbjENCgl7c2l6ZTo4LjVpbiAxMS4waW47
+DQoJbWFyZ2luOjEuMGluIDEuMGluIDEuMGluIDEuMGluO30NCmRpdi5Xb3JkU2VjdGlvbjENCgl7
+cGFnZTpXb3JkU2VjdGlvbjE7fQ0KLS0+PC9zdHlsZT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4N
+CjxvOnNoYXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRtYXg9IjEwMjYiIC8+DQo8L3htbD48
+IVtlbmRpZl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlbGF5b3V0IHY6ZXh0
+PSJlZGl0Ij4NCjxvOmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRhPSIxIiAvPg0KPC9vOnNoYXBlbGF5
+b3V0PjwveG1sPjwhW2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJvZHkgbGFuZz0iRU4tQ0EiIGxpbms9
+ImJsdWUiIHZsaW5rPSJwdXJwbGUiPg0KPGRpdiBjbGFzcz0iV29yZFNlY3Rpb24xIj4NCjxwIGNs
+YXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5
+OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdE
+Ij5UaGFua3MgUm9zcywgS2hlbTxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29O
+b3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0Nh
+bGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj48bzpwPiZu
+YnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0i
+Zm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3Nh
+bnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+SXQgbG9va3MgbGlrZSB3ZSBhcmVu4oCZdCBz
+ZXR0aW5nIOKAmHJlYWQtb25seS1yb290ZnPigJk8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWls
+eTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3
+RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNw
+YW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90
+OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPk91ciBpbWFnZXMgYW5kIGlu
+aXQgYXJlIHZlcnkgY3VzdG9taXplZCwgc28gd2UgbWlzc2VkIHRoYXQuPG86cD48L286cD48L3Nw
+YW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4w
+cHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7
+O2NvbG9yOiMxRjQ5N0QiPldpbGwgbG9vayBpbnRvIGl0LjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4N
+CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQt
+ZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjoj
+MUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJp
+JnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+UmVnYXJkcyw8bzpw
+PjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9u
+dC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMt
+c2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+TVY8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWls
+eTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3
+RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPGRpdiBzdHlsZT0iYm9yZGVyOm5vbmU7
+Ym9yZGVyLWxlZnQ6c29saWQgYmx1ZSAxLjVwdDtwYWRkaW5nOjBpbiAwaW4gMGluIDQuMHB0Ij4N
+CjxkaXY+DQo8ZGl2IHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItdG9wOnNvbGlkICNCNUM0REYg
+MS4wcHQ7cGFkZGluZzozLjBwdCAwaW4gMGluIDBpbiI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
+Yj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6
+JnF1b3Q7VGFob21hJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDsiPkZyb206PC9zcGFuPjwv
+Yj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6
+JnF1b3Q7VGFob21hJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDsiPiBCdXJ0b24sIFJvc3Mg
+W21haWx0bzpyb3NzLmJ1cnRvbkBpbnRlbC5jb21dDQo8YnI+DQo8Yj5TZW50OjwvYj4gTm92ZW1i
+ZXIgMDksIDIwMTYgMDg6MTk8YnI+DQo8Yj5Ubzo8L2I+IFZ1aWxsZSwgTWFydGluIChNYXJ0aW4p
+PGJyPg0KPGI+Q2M6PC9iPiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnPGJyPg0KPGI+U3ViamVjdDo8
+L2I+IFJlOiBbeW9jdG9dIFBvc3RpbnN0cyBxdWVzdGlvbjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4N
+CjwvZGl2Pg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwv
+cD4NCjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48
+L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+T24gOCBOb3ZlbWJlciAyMDE2IGF0IDIz
+OjIzLCBWdWlsbGUsIE1hcnRpbiAoTWFydGluKSAmbHQ7PGEgaHJlZj0ibWFpbHRvOnZtYXJ0aW5A
+YXZheWEuY29tIiB0YXJnZXQ9Il9ibGFuayI+dm1hcnRpbkBhdmF5YS5jb208L2E+Jmd0OyB3cm90
+ZTo8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2lu
+LXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+PHNwYW4gbGFuZz0iRU4t
+VVMiPldlIGFyZSBydW5uaW5nIHdpdGggb3VyIHJvb3RmcyBtb3VudGVkDQo8c3BhbiBjbGFzcz0i
+Z21haWwtaWwiPnJlYWQ8L3NwYW4+LTxzcGFuIGNsYXNzPSJnbWFpbC1pbCI+b25seTwvc3Bhbj4u
+PC9zcGFuPjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1t
+YXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj48c3BhbiBsYW5n
+PSJFTi1VUyI+Q29uc2VxdWVudGx5LCBhbnkgcG9zdGluc3RzIHRoYXQgZ2V0IGRlZmVycmVkIHRv
+IGZpcnN0IGJvb3QgZmFpbC48L3NwYW4+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0
+OmF1dG8iPjxzcGFuIGxhbmc9IkVOLVVTIj4mbmJzcDs8L3NwYW4+PG86cD48L286cD48L3A+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1h
+cmdpbi1ib3R0b20tYWx0OmF1dG8iPjxzcGFuIGxhbmc9IkVOLVVTIj5JcyB0aGVyZSBhIHdheSB0
+byBmYWlsIHRoZSBidWlsZCBmb3IgYW55IHBvc3RpbnN0cyB0aGF0IGNhbuKAmXQ8L3NwYW4+PG86
+cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3At
+YWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPjxzcGFuIGxhbmc9IkVOLVVTIj5i
+ZSBwZXJmb3JtZWQgZHVyaW5nIHRoZSBidWlsZCBhbmQgaGF2ZSB0byBiZSBkZWZlcnJlZD88L3Nw
+YW4+PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxicj4NCkkg
+d2FzIGxvb2tpbmcgYXQgc29tZSBvdGhlciBzZWxmdGVzdHMgdG9kYXkgYW5kIGEgdGVzdCBzdWdn
+ZXN0ZWQgdGhhdCB0aGlzIGFscmVhZHkgaGFwcGVucywgYW5kIGl0J3MgdHJ1ZS48bzpwPjwvbzpw
+PjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9v
+OnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SWYgeW91IGFkZCAn
+cmVhZC1vbmx5LXJvb3RmcycgdG8gSU1BR0VfRkVBVFVSRVMgdGhlbiBkZWxheWVkIHBvc3Rpc3Rz
+IGFyZSBmYXRhbDo8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29O
+b3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPGRpdj4NCjxwIGNs
+YXNzPSJNc29Ob3JtYWwiPkVSUk9SOiBjb3JlLWltYWdlLXNhdG8tYmFzZS0xLjAtcjAgZG9fcm9v
+dGZzOiBUaGUgZm9sbG93aW5nIHBhY2thZ2VzIGNvdWxkIG5vdCBiZSBjb25maWd1cmVkIG9mZmxp
+bmUgYW5kIHJvb3RmcyBpcyByZWFkLW9ubHk6IFsncG9zdGluc3QtdGVzdC1kZWxheWVkJ108bzpw
+PjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkVSUk9SOiBj
+b3JlLWltYWdlLXNhdG8tYmFzZS0xLjAtcjAgZG9fcm9vdGZzOiBGdW5jdGlvbiBmYWlsZWQ6IGRv
+X3Jvb3RmczxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj5Sb3NzPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4N
+CjwvZGl2Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
 
-Kind regards,
-
-Mike Looijmans
-System Expert
-
-TOPIC Products
-Materiaalweg 4, NL-5681 RJ Best
-Postbus 440, NL-5680 AK Best
-Telefoon: +31 (0) 499 33 69 79
-E-mail: mike.looijmans@topicproducts.com
-Website: www.topicproducts.com
-
-Please consider the environment before printing this e-mail
-
-
-
-
-
-_______________________________________________
->     yocto mailing list
->     yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
->     https://lists.yoctoproject.org/listinfo/yocto
->     <https://lists.yoctoproject.org/listinfo/yocto>
->
->
->
->
-
-
+--_000_30C2D590D16A5C46ADFE6521910377987FF76213AZUS1EXMB02glob_--
