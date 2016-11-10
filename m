@@ -1,46 +1,132 @@
-Return-Path: <christian.charreyre@ciose.fr>
+Return-Path: <Thomas.Thorne@net2edge.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E2DF1E00C17; Thu, 10 Nov 2016 02:43:14 -0800 (PST)
+	id 0422FE00C1A; Thu, 10 Nov 2016 05:26:29 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE, RCVD_IN_SORBS_SPAM,
-	T_FILL_THIS_FORM_SHORT autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [80.12.242.133 listed in dnsbl.sorbs.net]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [80.12.242.133 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [104.47.2.90 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.0 T_FILL_THIS_FORM_SHORT Fill in a short form with personal
-	*      information
-X-Greylist: delayed 453 seconds by postgrey-1.32 at yocto-www;
-	Thu, 10 Nov 2016 02:43:09 PST
-Received: from smtp.smtpout.orange.fr (smtp11.smtpout.orange.fr
-	[80.12.242.133])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1538EE00B62
-	for <yocto@yoctoproject.org>; Thu, 10 Nov 2016 02:43:09 -0800 (PST)
-Received: from [192.168.1.15] ([86.219.128.39]) by mwinf5d21 with ME
-	id 6AbX1u0060r8JwN03AbXmz; Thu, 10 Nov 2016 11:35:35 +0100
-X-ME-Helo: [192.168.1.15]
-X-ME-Auth: Y2hyaXN0aWFuLmNoYXJyZXlyZS5jaW9Ad2FuYWRvby5mcg==
-X-ME-Date: Thu, 10 Nov 2016 11:35:35 +0100
-X-ME-IP: 86.219.128.39
-To: yocto@yoctoproject.org
-From: Christian Charreyre <christian.charreyre@ciose.fr>
-Organization: =?UTF-8?Q?CIO_Syst=c3=a8mes_Embarqu=c3=a9s?=
-Message-ID: <c0ede6ec-ef2e-8a38-74db-c05fcb6afa00@ciose.fr>
-Date: Thu, 10 Nov 2016 11:35:30 +0100
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from EUR01-DB5-obe.outbound.protection.outlook.com
+	(mail-db5eur01on0090.outbound.protection.outlook.com [104.47.2.90])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A7ED3E00C17
+	for <yocto@yoctoproject.org>; Thu, 10 Nov 2016 05:26:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=transitionnetworks.onmicrosoft.com; s=selector1-net2edge-com;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
+	bh=cSlCQQr1Vc2YYBI0DtZaUlWdyJKELmY00p7DiBcnpOs=;
+	b=iQ1OzTp9WsnhrhBjn0R8eow7cYLz+mHoBa5vWEkKOmqWOCtlXruEE9dbsAWnYh2z6PfWgSQHoeT+m5oL14IJklczZJtSAadeuLXvTE/ytgDssdVCL98ATZXaSj2yAyOp1sOTzQrE5Os/eEkdtRjJ1BKDv0ZicGHMK/ur80EmxWg=
+Authentication-Results: spf=none (sender IP is )
+	smtp.mailfrom=Thomas.Thorne@net2edge.com; 
+Received: from [172.16.20.67] (81.128.174.58) by
+	DB6PR0701MB1878.eurprd07.prod.outlook.com (10.168.10.150) with
+	Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
+	15.1.721.4; Thu, 10 Nov 2016 13:10:30 +0000
+From: "Thomas A. F. Thorne MEng AUS MIET" <Thomas.Thorne@Net2Edge.com>
+Organization: Net2Edge Limited
+To: <yocto@yoctoproject.org>
+Message-ID: <89293735-d380-2b81-b328-d9c296c2f22f@Net2Edge.com>
+Date: Thu, 10 Nov 2016 13:10:25 +0000
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
 	Thunderbird/45.4.0
 MIME-Version: 1.0
-Subject: How do I correctly export uapi kernel headers to SDK ?
+X-Originating-IP: [81.128.174.58]
+X-ClientProxiedBy: DB6PR0301CA0056.eurprd03.prod.outlook.com (10.168.69.24) To
+	DB6PR0701MB1878.eurprd07.prod.outlook.com (10.168.10.150)
+X-Microsoft-Exchange-Diagnostics: 1; DB6PR0701MB1878;
+	2:mJqw+8JzIDOxTEwnG+n6p64neMKRXYS4+lt/apNZqzNUxLrlpvjI5EdbUgeh7y8VBBACzatixVNBAlV2fB7EjkRXWtNfC8txW8GCwyZGkjOm3Vr8Y0eu5YxdItVdGYSOIhDcBexbqHaC97jR+fhaza0JPwrdBoO+ryma5AP3OyY=;
+	3:cUVr3Upf8JXjVG4p06RhtLA0hSAwK51K/9y8hHlxlNikSXpEUrGhovQATLG/anAQ3xMyDF4P3QW4mef+IC4q6sExonB4G4qwGe0qMTaQyVwQXax3hFs6xnuhSFnITyUbccYeN2DgD+Tvrc4z/IHVEhM8v27o0oIxdG1DKDvAFEs=
+X-MS-Office365-Filtering-Correlation-Id: 36160220-7071-47c5-1e11-08d4096af2bb
+X-Microsoft-Antispam: UriScan:; BCL:0; PCL:0; RULEID:(22001);
+	SRVR:DB6PR0701MB1878; 
+X-Microsoft-Exchange-Diagnostics: =?us-ascii?Q?1; DB6PR0701MB1878;
+	25:SxuBeWrmUZq5Wk1vPNzPEFRJeR6Izz852xnvbV0?=
+	=?us-ascii?Q?weQKOXZekr5DQ2RbeAigpxog6nrv8jr3SQju2ZFbMQXIhVwLXCGM+nYOx5Fl?=
+	=?us-ascii?Q?y/XnWx9OltrX3F8omBFP6lcKvaNdC29K8CG6WgCdsjCD56Aj+QNMDhDwBCRz?=
+	=?us-ascii?Q?q0biQscw61fqxBLIZfWf+LTx6+kQ1zQtj2k19TJBxA37jSVld1ISIMlmsql3?=
+	=?us-ascii?Q?qmZbzDT0sF0ZDbN9IJoaXvwdX+/JImyCFuY+RFjHfMA73gu3lep4ac+M/Qj4?=
+	=?us-ascii?Q?goqHfHdT5P1TgyOGD8eHhntNjzDQWMO47rzRBnFFrvkNfMtGnvpp+7l9o2JB?=
+	=?us-ascii?Q?y7gzNtsRKwsh/rpL61v6r9R0Ndn7pPgq1LIQY1LrhAincrE8oykcgRe8YWsG?=
+	=?us-ascii?Q?gCZzz4gxovmJ8QRtspD2WRgFM3rmnAvUjwaJPlI5ykNZ7K6VyJNtiJqSjLl4?=
+	=?us-ascii?Q?J3E/CpqAAikNDc5UlR7XN21vEE3PyKsQe/viFiqYA/oRiDcO7v4pH5wci09n?=
+	=?us-ascii?Q?2haLDI+ExAjARbPxDw3wwqqDscRnfl4TiNck4m3cPMCy9DAwOPVJxRDdXU9j?=
+	=?us-ascii?Q?/xIMeBA/C8j84BOGfYjaS7sTC2G5DgsrW5BA8/2YcPhHyn6enF5BGAZX1jRv?=
+	=?us-ascii?Q?EHw8aGXH6AmmoHtyPLgT99Mhj7qnyH7FaRPiOAKY0zFQf3mMX3MYCyT1r/03?=
+	=?us-ascii?Q?yK9J9iTCx9Ua1u2elHagfKCNKqELw0fPnzBJo29iaeno0PV53+O4FCddnXMs?=
+	=?us-ascii?Q?GVT42hs7wKO6Nej3GmxLQVoDJQgbxI4V/wL+lhl3FnjfNC3a70BCBY2w19j2?=
+	=?us-ascii?Q?tGu2omF2KBu2+04Waq0S3JvrZCbNhe9T1CzFaS6VcqrUG03cy+aNwRLBZWbG?=
+	=?us-ascii?Q?nBOI1zDnh5MVtfeyPfKUB1LhF20eHcLF++ETt4WAuno+20TFbwXrfiEMdJVG?=
+	=?us-ascii?Q?3cZuG6NXdLmbqgJy1B6R+vHCP3ofEpv+R5t1ZHH/XLMTVS1VWxVSsR21nYIt?=
+	=?us-ascii?Q?fKCUQX12lybnkZlq7wsvrYrjfwEXhuoFIg5kzbpnG9W7ANw=3D=3D?=
+X-Microsoft-Exchange-Diagnostics: 1; DB6PR0701MB1878;
+	31:7UVSKWyHp7bGRL2MTE/auUa87dbFFDYq/GNcJ7wndYMJh8SzLNJH1hRo4UjTSz4bTdTJwS3z3GBhJvM7Z7e8jcBMuf6jLIlj+RIIU93PtPyiVDuDsugADZXZTII5JctVakeNXDB2IArJ2L9XORh/1nweEHrVHKoMaCg++FaDwUMiL4L7YcHnSMIYSByy6t2F4WWxS/4Jgc+0/i8bAk4dfCmwLv9wq0KkUhUZoIn8V0O/V2sZjwxwcCx2c6NuVQpC;
+	4:WJsUshhqGqUJLZi8XIalUGNjpmk/i9SQwtofN6Y0Y/cCmpUxCicVUdeDZuh4xcFBaAilqyMrL4NY59KwAgm5U8kDMh2PcQU32bLW8PJ+1EUuo1tqgBRzFlGM+nfovKv/Z8iHHwgOXkUMVeL9VEWzb3U2lLT/TrZY6GUOZvD09PNtCOjhKFaGL/BChobpHhjAi3omiXW862aFrUh8L75xu6/DKo/6PyHrpjYcdAyYXFt/bHhW736JiP7TTqbxss/0Mvbh7r+lQDgQLGnvRrjU/1kqGv8MGbZePhW9vrMmWAOBlm8+vDRxRBEJcaAfcOq95TLmz6n2EuKHm0TSTtdYOIR3kzjzr0qW0m05MkpyTmzRh38VW13IkmMg4Lz1/+BMyXrpJJ8c9AsyDQhQbRvguWMyKjuPoj6KUzFsuBjv9EsDU9fhdm7ueU2C5w5mVlej
+X-Microsoft-Antispam-PRVS: <DB6PR0701MB18784D089F2603AC4B3539E2D3B80@DB6PR0701MB1878.eurprd07.prod.outlook.com>
+X-Exchange-Antispam-Report-Test: UriScan:;
+X-Exchange-Antispam-Report-CFA-Test: BCL:0; PCL:0;
+	RULEID:(6040176)(601004)(2401047)(5005006)(8121501046)(3002001)(10201501046)(6043046)(6042046);
+	SRVR:DB6PR0701MB1878; BCL:0; PCL:0; RULEID:;
+	SRVR:DB6PR0701MB1878; 
+X-Forefront-PRVS: 01221E3973
+X-Forefront-Antispam-Report: SFV:NSPM;
+	SFS:(10019020)(4630300001)(6049001)(7916002)(252514010)(189002)(199003)(53806999)(50986999)(83506001)(43066003)(81156014)(81166006)(8676002)(106356001)(54356999)(105586002)(101416001)(36756003)(21480400002)(77096005)(5890100001)(31686004)(42186005)(5660300001)(65826007)(512874002)(84326002)(68736007)(66066001)(65956001)(4001350100001)(65806001)(450100001)(97736004)(110136003)(64126003)(189998001)(6916009)(6666003)(107886002)(86362001)(31696002)(7846002)(568964002)(2351001)(3450700001)(586003)(2906002)(7736002)(3846002)(33646002)(16601075003)(7906003)(6116002)(24704002);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:DB6PR0701MB1878; H:[172.16.20.67];
+	FPR:; SPF:None; PTR:InfoNoRecords; MX:1; A:1; LANG:en; 
+Received-SPF: None (protection.outlook.com: net2edge.com does not designate
+	permitted sender hosts)
+X-Microsoft-Exchange-Diagnostics: =?us-ascii?Q?1; DB6PR0701MB1878;
+	23:boxrGf0xoRbMPpdx1Ua2SwB+IcBdnv8o+CQieV/?=
+	=?us-ascii?Q?XcxItBYWs4nyjscwEIst7Qyoic4fDq6yy5hB5WAIpB36IZ7oD8zdmW8FxFpV?=
+	=?us-ascii?Q?ZhY+oPqcPJAJzHPOusZa3dix9d/X9SGEkEyHbaoCQo60qxbFNQiofv5syY3Y?=
+	=?us-ascii?Q?+t62pd2cqfQ692tYl3ed9wmzlQmIqEfpYmkJXTJs1Dttec6qnXXT+sw4d9Jy?=
+	=?us-ascii?Q?onZqciy+slBFVlvAAqaQXU6OZDPto00BNsR5DWhCAccr741W8BoVENyA+/h9?=
+	=?us-ascii?Q?fRkHoW7MhGF7M84Zrnc9IlVWIq2dNw4doLE4yVO8LO9J1iSBapHNbnRe1hbn?=
+	=?us-ascii?Q?l4csOkaBzkQ+wSMD8MM+pWjzrkt1KA4GwqjpAS01HU5GtgBMeT8UcNbnqMVf?=
+	=?us-ascii?Q?V+usexuDAUiaXu9gEjp5656x0hnv60tpOtwqMWvzeduM6jhkc6E+JKoxEocY?=
+	=?us-ascii?Q?dsqQxhpruuU9YWAIT3pehycvkvQ84OD2RvPa/X0TnOX3ItHLA9d6/YKyZAj2?=
+	=?us-ascii?Q?UU0JurPl8fDjIKjZvMyByg8LzZACF15QQMVbrwxIirTA5hKYHYAui1Qyr0+j?=
+	=?us-ascii?Q?h0UeapQXNJPwnHDWxQm8oAmuIY7LLad1oRnJv11PMli74XwqPSgUAKUlC0Ht?=
+	=?us-ascii?Q?38yW5THxRdgmxR3fzDy9QqCMvwuIfrWci3bLsRtuZ9gffTcz7XMtZqGFxx0H?=
+	=?us-ascii?Q?2ogvLXepxndPjnDVuIpokbP2pnPBzlQ0E80YGncIKP9qVr/O2u+Wxez47m79?=
+	=?us-ascii?Q?MHKe1v/TuNV7Jp2FvcTsRADeDvk0RrqD2FGcPdBfuijSVymOHVNS/uZ9vHfu?=
+	=?us-ascii?Q?bXLGFdoEkb9bZtITfbcq4ZDCIAS3qxG9CUWPpa/n/78FFbPp/ZjEi2tyUGha?=
+	=?us-ascii?Q?/qcb2HTFRORzPglNZDsw7XOSqIGhxoPWxgI8oiLdX0btvqZ35HhI5U01fmg8?=
+	=?us-ascii?Q?nuk5lW6TOr9dj5e12PX++baVNJqX7O/m4LEfvGEqTiheBV8licwPTamVEHuY?=
+	=?us-ascii?Q?dtj5H7EV3Nrfw+Td3HwI9RztufExCvb/Q5mD9VSsfJa8+o5Ti+65xgPE8cDE?=
+	=?us-ascii?Q?LDhWWsJVIldPf2ZvFDhRpLzOadVaJ28PZ5dCTgmuwVIBucMW52fzIrSn0nAe?=
+	=?us-ascii?Q?L6dWQS9fNfnjkz5+uXbrhwakPhlJzODyoxBJc55ow/1QgKqcdae8Cp6G5z2A?=
+	=?us-ascii?Q?e2g3p0xWEBd0L0XhlwofzR8hvbAWDqTWw45B9IZ13iLiJ5Tjm49FAIfZjW91?=
+	=?us-ascii?Q?UL4KwKU5SwyLtrcr6YN2yfWj+81ixRDyxur/scvAyczLlFktLocj86NsYoEn?=
+	=?us-ascii?Q?VaF5VGB72dTW/zDlYCpss/Nw/95KfCH2JYbrN8MUpgO1uUEB+xBJikan4KgM?=
+	=?us-ascii?Q?xVSW5OQ=3D=3D?=
+X-Microsoft-Exchange-Diagnostics: 1; DB6PR0701MB1878;
+	6:GnuRnnW0lhbfGrzW0N4kjQJtYrAPpk0cm38bbrTIABJ3kVemlXX+JjQdqaFgl5A2OmhxjNXOtCZXOPEsxU3gryQ5XVOc45BobmCJcn5KgFkefcqI5OSb0aIy9nJRJhSv+PzQ9X0UKskmGIvqsEQ9ng5IRze7zgr1b+nRb2Ml7diPl0WlqDaD8mWJoH5erpFujclbKE7sigGwoD5ZMN4n/fNjJTpwau522HO8Q2y51lRBA31wcZsZ40VaNpnlXHCgViOhvVz1E9WmR0biaaLTn1yiuzMc5a0LONbOdVwWlquCg2ptUlN1KCUFIyd2QvWFHwtniezJ+bsvX7WixW84nA==;
+	5:xBAKA39z26NRs/NqIdFGZ+x0oiHt5Vh7ueLpgPjAxEIrWI652/c1dLJEdBNCC3irm3cSJ18LumQb0e8m6D22V6yy2GsTv8TYgQSZweL/nTX/CEk8SzRPkVMRmmkbgDxg4FeORtv0yG3Yajrq8h8/rQ==;
+	24:WfWx32e0ERmEiR9HF+k+g/E+qAHPvy+YVQ8Uo7bVIVl0Yv+3OOqeeZmv1c05hVd3gLlLlfckvZnbwdfsHZUe7RKDzkKucBS/XtQrnn0zsy0=
+SpamDiagnosticOutput: 1:99
+SpamDiagnosticMetadata: NSPM
+X-Microsoft-Exchange-Diagnostics: 1; DB6PR0701MB1878;
+	7:g9H3TyItFii870UCwRdtMIqTCnr2Ab+mLoyYlRN+VBeLVphnpOA6HPgEtlzVsokBo09lBGjiEqd7KJxrlwyCo4Mqt3EIFkhKHliTyCLcUqaOju2QCC+Us3I4TaP2v3rGopZcAOr3cXVYGXpdH1I4V4GTPPWFLwoZG4SPTT+yeoSf6AC45G5K/nzBsSPrDOyClLP9QuysSD6lBuZ3zw5Q/q0ck1KdKJCRiqYaLD5s1kVIhiIdT7q7R2tngNwDB7ndxYQvbJNCwg/4C0g9K+36hLYZONcnDl1qDllLfeGMhciWDJ5CLpVaE2GChLIFxli+GH87FNkrGyLZDxTeJgTJ5mh8CybsuyX10DQhhraaekc=
+X-OriginatorOrg: net2edge.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Nov 2016 13:10:30.8944 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB6PR0701MB1878
+Subject: [meta-raspberrypi] Linux Kernel In Temporary Source Code Directory Is Not a git repository"
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: Thomas.Thorne@Net2Edge.com
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -49,370 +135,195 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 10 Nov 2016 10:43:15 -0000
-X-Groupsio-MsgNum: 32939
-Content-Type: multipart/mixed; boundary="------------ACC8F43914E1F01DD322CA07"
+X-List-Received-Date: Thu, 10 Nov 2016 13:26:29 -0000
+X-Groupsio-MsgNum: 32940
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature";
+	boundary="lpSidwRV5GGS8BLBLLwGUqWbrKcpsotbW"
 
---------------ACC8F43914E1F01DD322CA07
+--lpSidwRV5GGS8BLBLLwGUqWbrKcpsotbW
+Content-Type: multipart/mixed; boundary="PXERArwQtQdD6ngqDXr29k5g8WnfoeBCI"
+From: "Thomas A. F. Thorne MEng AUS MIET" <Thomas.Thorne@Net2Edge.com>
+Reply-To: Thomas.Thorne@Net2Edge.com
+To: yocto@yoctoproject.org
+Message-ID: <89293735-d380-2b81-b328-d9c296c2f22f@Net2Edge.com>
+Subject: [meta-raspberrypi] Linux Kernel In Temporary Source Code Directory Is
+ Not a git repository"
+
+--PXERArwQtQdD6ngqDXr29k5g8WnfoeBCI
 Content-Type: multipart/alternative;
- boundary="------------FCC84FADBB78AC2366B4E12D"
+ boundary="------------223518331B2520C3F9C9653A"
 
---------------FCC84FADBB78AC2366B4E12D
+--------------223518331B2520C3F9C9653A
 Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
 
-Hello all,
+I am having some trouble attempting to create Kernel patches as per the
+Yocto Project Development Manual, section 5.10.3. Creating the Patch:
+http://www.yoctoproject.org/docs/2.1.1/dev-manual/dev-manual.html#creatin=
+g-the-patch
 
-I'm using yocto krogoth and I'm developing a kernel driver for linux
-4.4. This kernel driver implements many ioctl so I've created a new
-header for them in include/uapi.
+When I get to the stage that says:
 
-Now I would like to make it available in the SDK generated by yocto, so
-that developer can use these definitions without duplicating the header
-userland (with risks that duplicated header don't stay synced).
+> Stage and commit your changes: These Git commands display the modified
+> file, stage it, and then commit the file:
+> $ git status
+I get the response:
 
-I've seen a solution through this thread
-https://lists.yoctoproject.org/pipermail/yocto/2014-April/019261.html,
-but I was wondering if in the new 2.1 version of krogoth things have
-evolved or if the correct way to do it is still to export in a new
-include location.
-
-Thanks for answers.
-
-Regards.
-
--- 
-Christian Charreyre
-GnuPG:4096R/8265F383
-Email : christian.charreyre@ciose.fr <mailto:christian.charreyre@ciose.fr>
-Site : www.ciose.fr <http://www.ciose.fr>
-Phone : 33(0)4 95 05 19 41
-Address : 11 Avenue Marigny 13014 Marseille
-<https://www.facebook.com/ciosystemb>
-<https://www.twitter.com/CIO_SysEmb>
-<https://plus.google.com/100220376990055787299/posts?prsrc=3>
-<https://www.linkedin.com/company/cio-informatique-industrielle>
-<http://www.ciose.fr/actualites?format=feed&type=rss>
+$ git status
+fatal: Not a git repository (or any of the parent directories): .git
 
 
---------------FCC84FADBB78AC2366B4E12D
-Content-Type: multipart/related;
- boundary="------------4FA0D8C0FB7D61E191DC6781"
+I have a rpi-layer (taken from ) which I have generated binaries for the
+RasperyPi 3 from.  I wanted to modify a couple of kernel modules to add
+support for a Quectel EC25 module.  I located the relevant module code
+and modified it in my temporary source code area:
+~/work/rpi-layer/build/tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/=
+linux-libc-headers/4.4-r0/linux-4.4/drivers/usb/serial
 
---------------4FA0D8C0FB7D61E191DC6781
+I guess there is something goofy about the way the raspberrypi layer
+works and this is actually a special kernel build which is not held in a
+git repository?  If that is the case, why can I a .gitignore file in the
+=2E.linux-libc-headers/4.4-r0/linux-4.4 directory?=20
+
+I could create a git patch by hand for the next stage but it would be
+much easier to modify a clone of the correct repository.=20
+
+Can anyone spot my obvious mistake?=20
+
+Regards,
+
+--=20
+Thomas A. F. Thorne MEng. AUS MIET
+*Software Engineer*
+
+*NET2EDGE*
+
+Tel: +44 3450 130 030 <tel:+443450130030>
+Email: Thomas.Thorne@Net2Edge.com <mailto:Thomas.Thorne@Net2Edge.com>
+Web: http://www.Net2Edge.com/ <http://www.Net2Edge.com>
+
+Net2Edge Limited is a company registered in England & Wales (Company No.
+2438435, VAT No. GB 537553821) Passfield Oak, Liphook, Hampshire, GU30
+7RL. This email transmission is confidential and intended solely for the
+person or organisation to whom it is addressed. If you are not the
+intended recipient, you must not copy, distribute or disseminate the
+information, or take any action in reliance of it. Any views expressed
+in this message are those of the individual sender, except where the
+sender specifically states them to be the views of any organisation or
+employer. If you have received this message in error, do not open any
+attachment but please notify the sender (above) and delete this message
+from your system. Please rely on your own virus check. Although all
+outbound mail is checked for viruses, no responsibility is taken by the
+sender for any damage rising out of any bug or virus infection.
+
+
+--------------223518331B2520C3F9C9653A
 Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
 
 <html>
   <head>
 
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta http-equiv=3D"content-type" content=3D"text/html; charset=3Dutf=
+-8">
   </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <p>Hello all,</p>
-    <p>I'm using yocto krogoth and I'm developing a kernel driver for
-      linux 4.4. This kernel driver implements many ioctl so I've
-      created a new header for them in include/uapi.</p>
-    <p>Now I would like to make it available in the SDK generated by
-      yocto, so that developer can use these definitions without
-      duplicating the header userland (with risks that duplicated header
-      don't stay synced).<br>
+  <body text=3D"#000000" bgcolor=3D"#FFFFFF">
+    <p>I am having some trouble attempting to create Kernel patches as
+      per the Yocto Project Development Manual, section 5.10.3. Creating
+      the Patch:
+<a class=3D"moz-txt-link-freetext" href=3D"http://www.yoctoproject.org/do=
+cs/2.1.1/dev-manual/dev-manual.html#creating-the-patch">http://www.yoctop=
+roject.org/docs/2.1.1/dev-manual/dev-manual.html#creating-the-patch</a></=
+p>
+    <p>When I get to the stage that says: <br>
     </p>
-    I've seen a solution through this thread
-    <a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/pipermail/yocto/2014-April/019261.html">https://lists.yoctoproject.org/pipermail/yocto/2014-April/019261.html</a>,
-    but I was wondering if in the new 2.1 version of krogoth things have
-    evolved or if the correct way to do it is still to export in a new
-    include location.<br>
+    <p>
+      <blockquote type=3D"cite">Stage and commit your changes: These Git
+        commands display the modified file, stage it, and then commit
+        the file: <br>
+        $ git status</blockquote>
+      I get the response:</p>
+    <p>$ git status<br>
+      fatal: Not a git repository (or any of the parent directories):
+      .git</p>
+    <p><br>
+    </p>
+    I have a rpi-layer (taken from ) which I have generated binaries for
+    the RasperyPi 3 from.=C2=A0 I wanted to modify a couple of kernel mod=
+ules
+    to add support for a Quectel EC25 module.=C2=A0 I located the relevan=
+t
+    module code and modified it in my temporary source code area:
+~/work/rpi-layer/build/tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/=
+linux-libc-headers/4.4-r0/linux-4.4/drivers/usb/serial<br>
     <br>
-    Thanks for answers.<br>
+    I guess there is something goofy about the way the raspberrypi layer
+    works and this is actually a special kernel build which is not held
+    in a git repository?=C2=A0 If that is the case, why can I a .gitignor=
+e
+    file in the ..linux-libc-headers/4.4-r0/linux-4.4 directory?=C2=A0 <b=
+r>
     <br>
-    Regards.<br>
+    I could create a git patch by hand for the next stage but it would
+    be much easier to modify a clone of the correct repository.=C2=A0 <br=
+>
     <br>
-    <div class="moz-signature">-- <br>
-      <table style="font-family:'carlito'; font-size: 14pt"
-        cellspacing="0">
-        <tbody>
-          <tr>
-            <td rowspan="9" width="170"><img
-                src="cid:part1.362420AE.72CB4EB6@ciose.fr"></td>
-          </tr>
-          <tr>
-            <th valign="top" align="left" height="15">Christian
-              Charreyre</th>
-          </tr>
-          <tr>
-            <td height="10">GnuPG:4096R/8265F383 </td>
-          </tr>
-          <tr>
-            <td>Email : <a moz-do-not-send="true"
-                href="mailto:christian.charreyre@ciose.fr">christian.charreyre@ciose.fr</a></td>
-          </tr>
-          <tr>
-            <td>Site : <a moz-do-not-send="true"
-                href="http://www.ciose.fr">www.ciose.fr</a></td>
-          </tr>
-          <tr>
-            <td>Phone : 33(0)4 95 05 19 41</td>
-          </tr>
-          <tr>
-            <td>Address : 11 Avenue Marigny 13014 Marseille</td>
-          </tr>
-          <tr>
-            <td valign="middle"> <a moz-do-not-send="true"
-                href="https://www.facebook.com/ciosystemb"
-                target="_blank"><img
-                  src="cid:part4.A430FF29.4A8DFDB7@ciose.fr"></a> <a
-                moz-do-not-send="true"
-                href="https://www.twitter.com/CIO_SysEmb"
-                target="_blank"><img
-                  src="cid:part6.21E61630.56BEF5E6@ciose.fr"></a> <a
-                moz-do-not-send="true"
-                href="https://plus.google.com/100220376990055787299/posts?prsrc=3"
-                target="_blank"><img
-                  src="cid:part8.7CD51DFD.496DB04A@ciose.fr"></a> <a
-                moz-do-not-send="true"
-                href="https://www.linkedin.com/company/cio-informatique-industrielle"
-                target="_blank"><img
-                  src="cid:part10.1AF65DAB.180EB798@ciose.fr"></a> <a
-                moz-do-not-send="true"
-                href="http://www.ciose.fr/actualites?format=feed&amp;type=rss"
-                target="_blank"><img
-                  src="cid:part12.5F517092.1326F538@ciose.fr"></a> </td>
-          </tr>
-        </tbody>
-      </table>
+    Can anyone spot my obvious mistake?=C2=A0 <br>
+    <br>
+    Regards, <br>
+    <br>
+    <div class=3D"moz-signature">-- <br>
+      Thomas A. F. Thorne MEng. AUS MIET<br>
+      <b>Software Engineer</b><br>
+      <br>
+      <b>NET2EDGE</b><br>
+      <br>
+      Tel: <a href=3D"tel:+443450130030">+44 3450 130 030</a><br>
+      Email: <a href=3D"mailto:Thomas.Thorne@Net2Edge.com">Thomas.Thorne@=
+Net2Edge.com</a><br>
+      Web: <a href=3D"http://www.Net2Edge.com">http://www.Net2Edge.com/</=
+a><br>
+      <br>
+      <p><small>Net2Edge Limited is a company registered in England
+          &amp; Wales (Company No. 2438435, VAT No. GB 537553821)
+          Passfield Oak, Liphook, Hampshire, GU30 7RL. This email
+          transmission is confidential and intended solely for the
+          person or organisation to whom it is addressed. If you are not
+          the intended recipient, you must not copy, distribute or
+          disseminate the information, or take any action in reliance of
+          it. Any views expressed in this message are those of the
+          individual sender, except where the sender specifically states
+          them to be the views of any organisation or employer. If you
+          have received this message in error, do not open any
+          attachment but please notify the sender (above) and delete
+          this message from your system. Please rely on your own virus
+          check. Although all outbound mail is checked for viruses, no
+          responsibility is taken by the sender for any damage rising
+          out of any bug or virus infection.</small></p>
     </div>
   </body>
 </html>
 
---------------4FA0D8C0FB7D61E191DC6781
-Content-Type: image/png;
- name="logoCIO-2016.png"
-Content-Transfer-Encoding: base64
-Content-ID: <part1.362420AE.72CB4EB6@ciose.fr>
-Content-Disposition: inline;
- filename="logoCIO-2016.png"
+--------------223518331B2520C3F9C9653A--
 
-iVBORw0KGgoAAAANSUhEUgAAAJwAAACcCAYAAACKuMJNAAAABmJLR0QA/wD/AP+gvaeTAAAACXBI
-WXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4AESDwQD69nUBQAAGeJJREFUeNrtXX1MVGe6/23TDINj
-mS/KtaDASLFIlk9h0XW1mop6WY2mIvG6tmvtXtoNa1erq7uJ62a5m1jbrba6ptZb7cda11BtNLUU
-hQZr6wcLIsgGUMRhUKi1wpzhOnKYbOL9A97Xc2bOmQ/m0KJ9fkmTOjPnPe95z+99vt7nefjR3bt3
-74JA+I7wEC0BgQhHIMIRCEQ4AhGOQCDCEYhwBCIcgUCEIxDhCAQiHIEIRyAQ4QhEOAIRjkAgwhGI
-cAQCEY4wivEwLcHoQdcdJ/7WUunz+Z/SFkOv0xHhCNriSt83OH69yefz30zOR9wDQjhSqQQiHIEI
-RyAQ4QhEOAKBCEcgwhGIcAQCEY7wgIFOGsKA6PHgH45zAIC5cWmIG2OmRSHCjRxqeq/isKMO3W4n
-DjvqkGYej/lx6cizTHxgzj5JpY4iXP2/m+h2OwEA3W4njl9vwtqaD7nUIxDhNEPXHScu993w+TzW
-YMbcuDRaICKctlDL7Egzjydbjgg3MupUCfPj0mlxiHDa47CjTlGd5lkm0uIQ4bS335iz4K1OyTsl
-wmmOE11NpE6JcKROiXCkTglEOFKnRLj7CGrB3sej/oMWhwinLUSPB03O64rq1PqwgRaICKctanqv
-Kn4+KWoc2W9EOO0hPayXYuIjMbQ4RDhf7/LdtlPouuMk+40IN/K2199aKrGzuRIvnHl3WKQTPR7F
-z9PM44lFRDg5/uE4x439bvdgwxg1Aqmh599uRYcBADkMRDi5KmVZuQzHrzfhz01HQiLdlb5vyGEg
-wgWnSpUM/SbndVWvMxSQw0CEk4UxlJIkAWBJQk5IZ59KHmqsgRItiXASVfrav8oVv5s3Pg1z49I0
-UYXkoRLhAEBVlcYazIMN/kJMA1cKiZCHSoTj0k3No/zdjwtCJps/54I8VCKcqnSbNz4NT45LCXm8
-nn+7yUMlwoUm3ZgqJRDhNMWJriZF6bYkIYfU3yjAqGz18MWNVl6GN/GRmKDVoOjxqJ53TnwkhtQf
-EU5OlpreqzyUwaTU6tT8oAlX03tVNV+NwhdEOBnZ/tx0RDVIGy4mRY2jangi3D0j/28tlZqQTe00
-YKSOn5TUN2EUOw1aks1frCxcderP2Qg164QI9z2qUa3IFkjihOud6nU6TIoap/idWoyOMMpUqpqB
-z7A6NR8TH4kJWzppWS8aazDLVLa/+RNGGeEqui6qnnX+7scFo66LpJodeKXvG3JIRjvh1FK8GdmG
-c/w00qCwyn1sw13p+0Y1XjZa+3NYHzb4ZId0u52qfeIIo4hwSi8p1mDG/Lh0zdWoVnaW2rwu990g
-T/V+8FKV7LeR8iTDKQ2UQmn8Jud18lTvB8Ldj3bS3Lg0Siu/3wg3kurHnyeplR2nJKm1Gp8INwIY
-6VCHtwTS0rDX63SKaeUVXRfJjrsfVaoWKlmJEFoa9kp94MiOu08JF65qUgvAalWDqmZnklq9Dwg3
-Uqpvfly66thaSLm4MWbMG5+mqFYJo5Rwasb95b4bYYcw1Dzdw446zdSeWniE7LhRSjg1Uhy/3qSJ
-WlWy41gTGy2g9Le0ut1OzdQ2EU5jqJECAF77Vzm+uNEalrRQUquM0F/caNVk/krjk1odxTacGim6
-3YMtGv7cdARf3Ggdlop9clxKQEKHiyUJOYpqVatTDSKcxsizTFQlBfvbo6/9q1y1TX0g/GZyvl9C
-h0sMJTu02+0c9nyJcCMMvU6nSgrpCwxH7f3uxwWq4w6nKaG3Hao0d6pzGKWEY6R4+6fPjdj5ZJ5l
-omIIg6m/cLxWpXQlUqujnHBS0qkRI1wpqmQrskTPcDJ1/WWnUBB4FBOOke43k/OxOnVQxWop8Z4c
-l4IlCTl8zFiDGUsScjTJKp74SIxsrrEGM7XwCoBRU3kfN8aM55JnYm5cGq70fSNr9RAu/ithKoDB
-4K+WKezs7DbNPB6TosaF1JZCbTwlSf8g9UT50d27d+/+EHaW6PGg599uzQtemL2mxbhqTsyD1BPl
-B0M4AtlwBCIcgUCEIxDhCITh4WFagtGL+oaL6HEKAID82TOJcISRhdlkQunWbQCAx22JsCXGk0ol
-jBxsifEomDcHt3p6cb7xwci1CyjhRI8H/Xf6IQguXLF3wNXXh94hMW8xmzAxIR5mkwkmkxFmkzHg
-DZ2CC4Lg8vn8sdjg/+YBG8MpCLjq6JTNxxgVBavZBLPJFNKYoxXFK1egpfUyWi+1PRCE8xv4tXd0
-ovLkKZytqcW1rm6I4oDi76KtFtgS4jF92k/w1JMz/BJvz3v7UfbxUdlnYw0GbN74MrIz0/1O1t7R
-ifONF3H67D/R1NyiOh82p5ysDOTlTkFOVkZQm0F6H6cgcLXGVJno8eDr7huKG4RtAunGk24M7w2g
-tvGkG5Ddi22sKRnp/DsA/HulzS4dn91X7Z7S69kzKs15RCVcfcNF7Hx7L9ra7QEHudXTi1s9vWhq
-bkHrpTb8omiJX3vDH1H8zefvBw8FJJp0ThVV1ai70IiCeXOwdPHCgKQTPR4c++wETp/9JwTX4Isx
-GY2YnDIJSxcvBADs2P0OBJcLy4uWyAz5j458grM1tZiWl4vilSv4fNk4AJBkS0TB3KeQnZnOf68E
-k9GIZ5YVovzE52i3d/DPP60YrMnYvHEdnIKAnW/vBQBMy8uVPZ9TcGHXnn382s0b18GWGI+6C404
-UHbY537SOXvfUzrnESOcvaMTpVu34VZPb0iDieIAKqqq0W7vwFtvvqbZzgiF/ErEYxL12eVFfuf0
-5elz2L33fYjiAJKTbACA2voGNDW3AACWLl4IweVCW7sdNbXnOeGcggvlx6twq6cX0/JyZfPV6yOQ
-ljoZdkcnX5ttW0rR0npZ9XmirRb0OAW02zvQ1m7nGsQb0uvzZ83khBMEF+ouNPq8P1dfn+J4FrMJ
-9o5O2ZwnxMXCKbj4pt2+pVQTp0WRcDt2vxMy2bwX4oMDZSheuSLsCToFF8pPfD4sskk3QtnHR5E/
-a6bfRaupPQ9RHMCzy4uwdPFCRI6JxAcHyvDBgTKcralF/qyZmJaXi7Z2O9rtHRA9Huh1Otg7HLjt
-dkOvj0BOZjrqGi7iWlc3oq0WbN9Sisdix+HL0+ewa88+tLXb8dGRT7D59+uGNreDv+g1JcV46skZ
-fD5MGhXMm4Nnlxfxz/U6HZwNgmyNnIIAG+JlG00NOVkZKClehcgxkfyzY5+dwLWubuj1EfjfHa/j
-sdhxaG5u5YLnw7LD2LRhrfaEq6w+hdr6Bp8fsp1aMG8OHrclAgCu2DtQfrxK8fflx6sCvuDg7CkH
-6i40BjUfpyCgruEilzbepPuw7DDWrylRlXLt9g5OGiYtli5eiPLjVbjW1Q2nICB/1kyUfXwUTsGF
-5uZWZA8RTBQHEG21IDU1hf87LXUyf/4Z06eipvY8Kqqq0dJ6+Z40Mpn4/Y1RUTK1KHteP5LZ+1mv
-SFSiGiLHRMrG7HUKXLKzOWdnpiMnKwMnvzqj+A7CJpzo8Sjq+GirBSXFq3yCj7bEeMyYPhV/fWMX
-KqqqZd/ddrtxvvFiWIQTPR7UNVz0WVC9PgJFTy/yUZE2xCM7Mx35s2aidOvrPlKxoqo6KPvyqqMT
-qakp0Ot0iBwTiRXLCoeeNwFmkxET4mJxraub/47ZYgXz5sjmI7hccAoumE1G6HU65OVOQUzMo8jR
-yB5iawFANme7oxPRVgtuu90h2ct6fQSudXXD3tHJ10jrOcvicM3NrbjW1e3zoxXLClUj3XqdDr8o
-WsJtHumLa73UFlahSv+dfkXDOi11MpYuXqi6622J8Vj9wvP8ZUjxocKGkhrPALD/4CF8efocf77C
-RQtQuGgBlz7Li5bw52tuboVTcEGvj0D+rME1siXEI9pqQVu7Hbv27IO9o3PQzpo9E8UrV2hmgDMP
-f0JcrCxswiToWEPwiZu2hHiMNRggigPYsfudEZuzjHBMFXhLN+aO+3Phk4bUmreKYq77cCAILsUN
-MDllUkCPMzszHRPiYn0+96ca8mfNRHKSDbd6erFrzz7seW+/j2pjNpBeH4GeXifKT3yO2243JsTF
-cqmQk5XBjfKKqmrs2P0O6huGH7htab2MyupTqKw+5TMfs8kIk9GIdnsH+u/0D5ohjk6YjOpx0Z5e
-J459dgKV1af4vGZMn4qcrAzuKJVufT2sOQdFuJbWy4rMNwV4uXqdDjExjyoa/CyeNTyHQfDZAHp9
-hKLH5k9ieds7alKXScZoq4V7t6WvvK74ktNSJ6OpuQV1FxohigOye5lNRmz+/TrMnzObv8Cdb+8d
-9gtsam7B1u07caDsMOwdDp/vrRYzn6NTcOG22w2rxex3vN1738fW7TtRfuJz/g5LilfxObe121G6
-dRsqq0+NDOFEj0cWM5I+jNSbUYPFbFLeTc7hE07tWqvKvYKdkz+pm52Zjs0bX0Zykg2iODC42xVI
-N33aTyCKA9y+ZOpUSrr1a0q4d8le4HBINyEuFrN+9lNMy8uF2eT7TGyzMwdrrMGgKAC8x5v1s58i
-L3eKbM6bNqzFmpJivjl37dmnqaR7SPoSlNSHv4mrGbBSxyEcuPr6wrreGBWlKjkDqeNtW0qRm50J
-vT4CtfUN+OjIJzLJOCUjnT9vcpKNR/+9JX/xyhX40x/Wc6m58+29iuscSFJv2rAWxStXKDo8bGNd
-dXTC7ujkmkkNSbZErF9Tgk0b1ira5oWLFsjmXLp1G7fpNFWpow29YUjH4UhOe0cn6hsucs9yS+km
-FD29CABwtqZWJhlNQ2qVEcL7mKu+4SKXDPmzZ6KkeBV3JD468ommzzN4nm1E66U2nK2phdlkDFoL
-+Jvz5o0vc9L5c7aGFRYJx9ZiO/7F538pI4nFbOIxsvsBH5YdRt2FRh4C0ut0WLp4Ic7W1KKt3e4T
-XGV2krc0+fyLL/FpRSVMRiP37qRxuLM1tZoExe+pQhNMRiPqLjTittvNN0IoYHMGgHffelMWh2On
-DZrH4cKBLTEetsR4mdq5HzM1bvX0wu7o5KcIkWMiYTIaQxqj1yngWlf3ULD4XhxuJGG1mPk58+SU
-ScMagyVoSONwMTGPQq+PCNs8GjGVqtfp+H/3G5gBXX68Cs3NrTw22dTcohjTU0NOZjqPaTGHw97R
-iZ5eJ7ehtEbKE8myyMJwNBSL2+3Y/c5QhMGFltbLEMUBxRDT9yrhHgTkZGUgNzsTtfUNeGnDJtl3
-8+fMhi0xIahxpEdCtfUNWFj0jMyx+kXRkpDmxc5z2fWvlv7Rxw6dKCHZ47ZEvyZSRVW17GRo/pzZ
-WL+mBAXz5qDs46M+cwaA1S88T4TTGmaTES+9+Ct8WHbYJ0WnpHiVLJAaOSYSMTGPIjnJpmigr19T
-gpQnkrldBNxLO/L2NJnE8x5HTRKy0Ehykg1JtkSYTEbuxAguF/eYva83RkX5nAhxtTnkUVvMJp/0
-rGeWFY5setIPGbbEeGzasFYWulCK2LMXpJbyJD0SY2MpjWNLjMf6NSU+Ni+L46mZLTbE+6SAbSnd
-dO97hXHzZ8/EjOlTFceThkQCzZkIN0LSLlibNdyx1MYINLb394H+HYojpzZnlg3NEhkeqDgcYXRB
-9HiwY/c72Pn2Xr/p8UQ4gibov9OPpuYWTMvLVTxZIcIRNEXdhUZMiItF/qyZww57kQ0nURcsvUfJ
-npF+7227SL+TZtJ6n5l6Z9l6g/1e6XdKGSv+IP2993jBPAu7xntdlhctgWloPbyP84J5TiLcEJqb
-W3mqjnfIYOnihfjoyCe4efNbAPCpYjr22QmeAJnyRDIKFy3gFVDeSHkiGVMy0n1CI6LHg1179snG
-kIJ9F2gsp+DCR0c+kaWaWS1m2Zylz+od7mHPEhPzKIpXrlBcl5ra84iJeZR76IeOHkPrpTYe2LZa
-zMjLnaKYGECEG0KPU0BFVTX0+ghZpqwtIR6C4OLnqYyEUsJ9WlHJv+vpdaJw0QL0OAWc/OoMr3UA
-BrNnTn51BhPiYrH6hedlY3zdfYP/nhFQKiVYFRYb61ZPL05+dQZpqZPx0ou/4seKpa+8zqvMxhoM
-PM283d7B73nV0cnvVVK8SrYOrZfaUFFVjdzsTACQ/ZbdGwBP1jx09Bj2HzzE58bux85evUmnGeEq
-q08p1kN4L+xoB3uB0qRTb49MKj2CSTXavPFl2BITYO9w4O8HD6G2vgF/P3hIti7nG+9lW/f0OvF1
-9w0fKajXR6CkeBVysjJQd6ERW7fvRFNzC68d+fL0OU62jWtXIycrA4Lgwto/bEZbux3lJz4P611s
-31Lqk4y7/+Ah3Ha7eaWbILh4PUn58SqfInTNnAZXXx+udXWjrd3O/7vW1R1WAub3BVaJblZpX8Fy
-zgbjUo6ApDObTDCbBjNHnllWCL0+Ak3NLbLrpDUJdken6tHUYBsLI/Jnz0TR04t4bYVTcPEyxwlx
-sZgxfSrMJiNsifG8CKin1xlyLp6/dfm6+wZu9fRirMHAK91sifFYPnR0Z3d0+mQok5caIlh+GHtx
-bENJ1U0g8imBHaUlJ9lw2+0OaqN6ZzQzG8pklGensERUweUadvwsGJOEYcb0qUhOsqFg3hyf8+eH
-Ai0EM5S/D1hCTCIMFtYwxmW2C9u5wWTYSsG6II01GHjq/mD0fpAIP5+fP5gi5AicYRtsgxvrCK3j
-Y7Hj+AYsP17Fs4L1Oh3efetNFK9c4aMhHvIWl2oBv0BghbRShFKmpgS1FPFQ1HwoUoZJgboLjahv
-uKiYVs3SgOoaLkL0eHDz5rcBQxTnGwczaQ8dPYZPKyox1mBASfEqLoVY4bK0Qu7mzW8V1d9Vx2BW
-8p739qPuQiP0+gikPJGs+ZmnEuwdDtm6sMIbloYfTHXaw9K4jlKiYXsQVdz+ak/D2V1q1151dAZl
-/KqlqPurQrvW1c1DEDlZGT7tDYxRUdDrI3Dz5rfov9OPnl4nkmyJXJ0pYf/BQ9xLZWSTem92RyfP
-1DWZjIi2WtBu74AwlLzJ11kckI0ligOYP2e2rD3ESII1R5Q2B5oxfSpcfX3Yvfd91NY3wO7oxIpl
-hT5hHUUbTqm0rK3dHlDv99/pVywxHDQuh084s8nkk/goigNB1zooFVFHWy1+pcFYgwG2hHjkZGUo
-FhBZzSaMNRg4IQSXK2ChkS0hnhcaK1VC3bz5rSxT15YQr2rcs7FEcYDn1n0X0o3dOycrAxaziZsD
-ep0OC/5zLl58/pdcve7e+z7+8ur2wITLy52imNlaedJ/baIguBRtDpPRGLCmNZBXpJRp2tJ6OWBF
-v72jU7EBDrPB/C3q5t+v41VSanacc6hBo1NwIScz3W8d6DPLCrH9lVK8+9abyM3O5JVQoscDp+Di
-0pHZrFaLecgxEXzCIs8sK8SW0k3cSfkuO2OydSlctEDmlLBULFYoJIoDOPnVGRw6esw/4XKyMhTt
-rrKPj6rqZtHjQeXJU4rdeoKpkPeHyDGRikmIdkcnvjx9TpV0TsGlWmVUMPepsBee2XE1tecD2oTS
-780mIw+L3Ha70dzcCnuHgyc7tl5qk/V1Y3aiN/Q6HXKyMjRppxEuWCq66PHIKr1EcQCnz/7TR1I/
-5K0CC+bN8SWVOIDSrduw57393GhkJXV/fWOXT0dLprrCbYDCGsB4hxyYWvrgQBmfD6sbqKw+hV17
-9vk01wGA3OxMpKaG/4fdpmSk47bbjboLjYO2bwibipFPFAfQ4xTQ4xR4b5J2ewfah6Smd4BZbeMM
-p52G1BnzNpf82aJKZNu1Zx9KX3md14CwQnK1OJzPSYO0LM77JZd9fFRmFzkFl2ofspysDE1OGFif
-Du/7sPmUH6+SSVG1OTF1pEVxD0vNudXTG3LBCvNI9foIWM0m3h0qOcmGzRvXcTW5e+/7sDs60X+n
-X3HOqakpiLZacK2rG1fsHbAlxnO17t1B4eqQucNMHGaHiuIAv5ZpK3atPxNBipNfnfFx5Pxt6oeU
-DH21zkOiOCA7SVAjG2vvpQWYGlIKrLJWC8HMqejpRZpINyZ5mW05OWVSUK0wmF1ZfrwKojgw6Jwk
-JvA457S8XF5qOSVjsBHPrZ5exV4ibA4F8+bwmJ3o8fCqM1bUzP6f1VVYLWaYTUakpqbwTVp+vIpL
-VNaUkNnzwbybtNTJXH2ycAnrPKVkTimepWZnDhY1s/ajoUbit28p1dRzYmJ6OG1ggcGqJH/tvaRo
-am7Bc7/+LZ+/yThYWOONJFsi2trtsJhNAcdd+4fNslAGAL4hmQqTSkqTJETF+r4pSv/MdHxwoAwt
-rZfRf6efR/jb2u3YsPl/ZIf3en0EV8N6nQ4/n5+PN3btQW19A5779W9l80tOsinWPkjXhbWLeOnF
-X+G/X1qH2voG2XOy33jPXfVoq3DRAmxcuxrJSbagajKjrRbMnzMb77715oj8AYvszHRsl/T7CCiF
-9BGItlrw7PIirF9TEtQGiLZauNPEjGFp9ZJUyqY8kYxoq0VWnhdttXBVxNSW9JqxBgNyszOx49W/
-IH/2TB5WibZaZB0KIsdEwmoxI9pq4acJSv3ebIkJSE6y8SMrvU7He6IwsqlJ+MJFC7CmpJhneLAY
-YW52JrZtKZVtIulzsHXhGyUxHq+W/pEfyUnHkQa3GQL+vVTnUINiu6NT0Yi1Wsy8Q2IwNlt9w0XU
-KXi8obRnZWPcvPmtopFrtZhV8878Ba/9JWB6VzGx33v/m/1GaTx/iZX+kjqV7h/oelbsctXRyTM6
-lLqGStvkKxXGBFqXYMcJmnBKBFS76ffllgd6qT90SJNB/fU4/i5AfxH6B4KRqjMlwhFGNSgfjkCE
-IxDhCAQiHIEIRyAQ4QhEOAIRjkAgwhGIcAQCEY5AhCMQiHAEIhyBCEcgEOEIRDgCIUT8P+nomal8
-Ru8FAAAAAElFTkSuQmCC
+--PXERArwQtQdD6ngqDXr29k5g8WnfoeBCI--
 
---------------4FA0D8C0FB7D61E191DC6781
-Content-Type: image/png;
- name="Facebook-2016.png"
-Content-Transfer-Encoding: base64
-Content-ID: <part4.A430FF29.4A8DFDB7@ciose.fr>
-Content-Disposition: inline;
- filename="Facebook-2016.png"
+--lpSidwRV5GGS8BLBLLwGUqWbrKcpsotbW
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
 
-iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAMAAADXqc3KAAAABGdBTUEAALGPC/xhBQAAAAFzUkdC
-AK7OHOkAAAAhUExURQAAADpDTDpDTDtERTxBTDlCSzpDTDpDTDpDTDpDTDpCTKU4r/AAAAALdFJO
-UwCrlwYQOrxQf8tj1yYyEQAAALJJREFUKM+FUlkWxCAIg7BYvf+Bpypol5k3figlYkIo0Z8ldrA7
-H/bIlwqTDqOWS1oZumJAVuzlVs2JcOZVR6ogbuTpzDwijJtS5/viosbxdt8NqYAqtxmjqw7pohDW
-oLWjU8+PVhslR68m8hm3ImdVAOIbMMbmGEC20zm2FZv8BgzyJfcCDLkUDV6A2WBaojXFRkFakxae
-ypHT45vtbdlOgu+DGpbDVE574c+p//gZ3usDrGgDDpi7m/EAAAAASUVORK5CYII=
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2
 
---------------4FA0D8C0FB7D61E191DC6781
-Content-Type: image/png;
- name="Twitter-2016.png"
-Content-Transfer-Encoding: base64
-Content-ID: <part6.21E61630.56BEF5E6@ciose.fr>
-Content-Disposition: inline;
- filename="Twitter-2016.png"
+iQEcBAEBCAAGBQJYJHHBAAoJEPXLKKkUazGAkJ4H/2kkHEF3BKvKcIVeKMwwvz5U
+sKGHG2oE/ay2Jwtjktow+7UKIfXiJOpWG8/sJ5LwMvVtDTgpiy1NWIT4oDMcPe/f
+iOmiXjwLWiBhRA6bLipDLXJh3AO3MbkyGBHZBPQCXjSngXFeYAZe/XXiOiD6Z/Zh
+ks+iWAArZEIEsMkecgAUdhuzXgLjRjjT/t4YiPeLjX7q66X5j+myx8CKvz8aJ3t3
+8KnFsTzC/VLh7y8QnD65XiaaIdeish5Lv4zq9Fe8va9pVWegquKDC7ijMIdUHBmr
+mv8SkuQYFTU5qEKM1dtJwK7ZWYBD14JP6N1W8hOTS36nPYdrWpcKBb0Tr0FPvm8=
+=WoEj
+-----END PGP SIGNATURE-----
 
-iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAMAAADXqc3KAAAABGdBTUEAALGPC/xhBQAAAAFzUkdC
-AK7OHOkAAAAzUExURQAAADpDTDxBSjpDTDpDTDpDTDlCSzhGRzlCTDpDTDpDSzpDTDpDTDlBSzpD
-TDlDTDpDTMTByMMAAAARdFJOUwBTEsevvjMIk0J+nWgkuIbv97cPWAAAANBJREFUKM+FUksWxCAI
-QwHBb3v/004V7bTOYtzIIxJCEODfiQcxUwpb2qEGAZCoGB9pySor9vqNpblXNS0ku403z1t3IWp9
-8OaEWiLUqw8PnaOgUA/ZHed5IdpVH0N6Li0AeYDUgZiulGlIqSpiL+1KfK9nU9Zmp0Eg7QYCVwNY
-FjDHQRPtDlhUyUQH7A2raR/Ngw63iCNIQSMccgF9f0NMxMVobcA54VV1O5Cn9bqZWJZ5Qi+kkDwW
-5e9FPZY27NPoRXxUjtsOQqLWfj/D7/kAU7MFdtp6mFkAAAAASUVORK5CYII=
-
---------------4FA0D8C0FB7D61E191DC6781
-Content-Type: image/png;
- name="Google-2016.png"
-Content-Transfer-Encoding: base64
-Content-ID: <part8.7CD51DFD.496DB04A@ciose.fr>
-Content-Disposition: inline;
- filename="Google-2016.png"
-
-iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAMAAADXqc3KAAAAYFBMVEUAAAA6R0k6Q0w6Q0w9QEo6
-Q0w6Q0w6Q0w6Q0w6Q0w6Qkw6Qks6Qkw9Qk46Q0w6Q0w6Qkw+Pks6Q0w6Qkw7RE06Q0w5REs5Q006
-Q0w6Q0s6Q0w6Q0w6QU46SUk6Qks5Qk3CixztAAAAIHRSTlMAB8GqFLiPnjqxlERJD5iDXgx+Z1VO
-MCvcyqVXIRF2c3pGGOAAAADnSURBVCjPhVBbEsIgDIQkQKFCtdU+rNX731IIj3H8aT5CsjvsLoiz
-kt1gAezQ/eEP0J1MtIbLD3wz2tf5cEE2XD1+b99tZUzGW+2m6Ov/JIF9JHgWQKXsLOQUZw8J6fjC
-5Dw9r9HvmTY9x5ajq2hIKAyuie7HCOUMQ1zfHyEPTCthbJBfrrfV8MmbYqLUu7yZiSb1CrCtr0oQ
-VnPaFiFm8AyzeYm7T5z5Xgi3pA6HEIu6pT8rWpR9Ly41QIS+fl4ZAisQVeurq+HszmfFUbbYJviW
-1LiGs4XuSUrqXTVqNY+oFI6LOKsvmwsILOoTkDsAAAAASUVORK5CYII=
-
---------------4FA0D8C0FB7D61E191DC6781
-Content-Type: image/png;
- name="Linkedin-2016.png"
-Content-Transfer-Encoding: base64
-Content-ID: <part10.1AF65DAB.180EB798@ciose.fr>
-Content-Disposition: inline;
- filename="Linkedin-2016.png"
-
-iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAMAAADXqc3KAAAABGdBTUEAALGPC/xhBQAAAAFzUkdC
-AK7OHOkAAAAqUExURQAAADpDTDhETTpCTDpDTDpDTDpDTDtDTDpDTDpDTDpDSzpDTDpESzpDTD4O
-36YAAAAOdFJOUwC8CjZIbqlfnH4ljBquFjxPewAAAL1JREFUKM+FkgkOhCAMRenestz/ugO4IGYS
-NZLC+xTab0ofD3IBgBb0WjcIwoEd+CnXwCuuXu4YN1UyvaI2EuMiUk5F9KGAL6J0JBpiyLBAnTGP
-DYn8eY7XMeQZgrM2b8f1TEaSqQFUISbkOc2+QOqgasFZO7YdCAcZz4pfoL8TzFTH4Tswu6+7A62r
-QAYRJ4nSQW6rJWyczbB/9Wze2Mi7ORL/2y7+MGqZUzV2awshYu3Wvl2naAAa+euvST8xpgSvr2vF
-KgAAAABJRU5ErkJggg==
-
---------------4FA0D8C0FB7D61E191DC6781
-Content-Type: image/png;
- name="Rss-2016.png"
-Content-Transfer-Encoding: base64
-Content-ID: <part12.5F517092.1326F538@ciose.fr>
-Content-Disposition: inline;
- filename="Rss-2016.png"
-
-iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAMAAADXqc3KAAAABGdBTUEAALGPC/xhBQAAAAFzUkdC
-AK7OHOkAAAAnUExURQAAADpCSjpDTDpDTDpCSzlDSzlDTDlDTDpCSzlDTDdDTTlCSzxDS7Y5yz8A
-AAANdFJOUwALq8BTP4Z3Z5kZLCLIFob+AAAArklEQVQoz4VSWxKEMAgzvPq8/3mXinW1urP9aBkT
-SAC37c+BGjFTast3YWsYcGG90skw43qJcWNtmWZEeq+b7XjT6iSYYOwyF0d1LyaRAAjRhKj6VfpZ
-orMc7rNfHAlZRx8USC9fQBJ7AyHohBOYDaitAJxq4ilnqRAHu/CwWdoUD7udxPbsLNPuoZeLP85R
-HawwbY+RtPchJnsfeyq/FrWsVgFUua92nB8/w/N8AMESA0nSYhLAAAAAAElFTkSuQmCC
-
---------------4FA0D8C0FB7D61E191DC6781--
-
---------------FCC84FADBB78AC2366B4E12D--
-
---------------ACC8F43914E1F01DD322CA07
-Content-Type: text/x-vcard; charset=utf-8;
- name="christian_charreyre.vcf"
-Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment;
- filename="christian_charreyre.vcf"
-
-begin:vcard
-fn:Christian  Charreyre
-n:Charreyre;Christian 
-org;quoted-printable:CIO Syst=C3=A8mes Embarqu=C3=A9s
-adr;dom:;;11 Avenue Marigny;Marseille;;13014
-email;internet:christian.charreyre@ciose.fr
-tel;work:04 95 05 19 41
-url:http://www.ciose.fr
-version:2.1
-end:vcard
-
-
---------------ACC8F43914E1F01DD322CA07--
+--lpSidwRV5GGS8BLBLLwGUqWbrKcpsotbW--
