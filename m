@@ -1,64 +1,43 @@
-Return-Path: <net147@gmail.com>
+Return-Path: <christian.charreyre@ciose.fr>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 52572E00874; Wed,  9 Nov 2016 17:57:08 -0800 (PST)
+	id E2DF1E00C17; Thu, 10 Nov 2016 02:43:14 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (net147[at]gmail.com)
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE, RCVD_IN_SORBS_SPAM,
+	T_FILL_THIS_FORM_SHORT autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [80.12.242.133 listed in dnsbl.sorbs.net]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.220.194 listed in list.dnswl.org]
+	*      [80.12.242.133 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qk0-f194.google.com (mail-qk0-f194.google.com
-	[209.85.220.194])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CA7A3E0071C
-	for <yocto@yoctoproject.org>; Wed,  9 Nov 2016 17:57:04 -0800 (PST)
-Received: by mail-qk0-f194.google.com with SMTP id h201so18787914qke.3
-	for <yocto@yoctoproject.org>; Wed, 09 Nov 2016 17:57:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=+ZxDntn05RmEB2vy4QW3ilGypQ5nic5Wrnck17qzNMI=;
-	b=pOHMqdyByVFTNRM0qW4NqCthGYb5+Ypd03/wN5Uj3t6GyQZbAOu5k/0vheh2DDYzs3
-	C3CPtWRw07VKXVcfFB8Fs7NIChR6fo6hpmw+QntVUs5jtiGXyArdcOgiR06LOJjAVvKO
-	yZkMRpIglgwO8NDTjKVQx/P5SL1zHaRUye6rDHdzIuEu9Tl0xX3PaAUqwWWM+oP9HpBS
-	DWN0ZOw01MDSdeU9uOVxvhVVxHDOXHcPkirOH8N7JEMd03rks3JsT9/AY8VVUGxiSf+Q
-	vO0aRVdyFrjCMNEzUg38kmAZ9f5A1guzPsMSNaBLCTSZE8A46GftUSq+zmFb5F0UwvBE
-	us9g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=+ZxDntn05RmEB2vy4QW3ilGypQ5nic5Wrnck17qzNMI=;
-	b=Jg+pZM16nMnCd7hHlurpuihBlYO9tBJcpBFwWstTjZV3C/6c9kPBJXqGK9b6YBeqsp
-	VnNsLpMDT0SizTnkfmRXDOnh2EhKzHIVMWFIUOMAZc5Oc4mFSsF8UwaJGT1NZ4Lulvs8
-	xuNZtLNYAwKHqfJWnwREzQqENPZZpsfMJolVuI/ZdRC1r3/9MGuALAbuflQ75UqXnK3S
-	16ZD479RbcsfgrR7uCMiFUIsVJDhkE0z3BD7VjqiKXx+H+qMjkjiJ3k6QoJUqUyTQorb
-	qZvRGEFjJeVD9PWkPgz5meYwg7c7NW/YCAThUUBCZPYmeMgt/7d6uvJl9khmvId2Ku+m
-	4uWw==
-X-Gm-Message-State: ABUngvdu9Puu2cVIh0wDCbdlAb4xq7I58Sk9YNQQnLmK1Ue2g4FLCoI49KjTJHLpk02VUBeG8DFI/YSkUOl5UA==
-X-Received: by 10.55.163.138 with SMTP id m132mr3054533qke.88.1478743023495;
-	Wed, 09 Nov 2016 17:57:03 -0800 (PST)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.0 T_FILL_THIS_FORM_SHORT Fill in a short form with personal
+	*      information
+X-Greylist: delayed 453 seconds by postgrey-1.32 at yocto-www;
+	Thu, 10 Nov 2016 02:43:09 PST
+Received: from smtp.smtpout.orange.fr (smtp11.smtpout.orange.fr
+	[80.12.242.133])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1538EE00B62
+	for <yocto@yoctoproject.org>; Thu, 10 Nov 2016 02:43:09 -0800 (PST)
+Received: from [192.168.1.15] ([86.219.128.39]) by mwinf5d21 with ME
+	id 6AbX1u0060r8JwN03AbXmz; Thu, 10 Nov 2016 11:35:35 +0100
+X-ME-Helo: [192.168.1.15]
+X-ME-Auth: Y2hyaXN0aWFuLmNoYXJyZXlyZS5jaW9Ad2FuYWRvby5mcg==
+X-ME-Date: Thu, 10 Nov 2016 11:35:35 +0100
+X-ME-IP: 86.219.128.39
+To: yocto@yoctoproject.org
+From: Christian Charreyre <christian.charreyre@ciose.fr>
+Organization: =?UTF-8?Q?CIO_Syst=c3=a8mes_Embarqu=c3=a9s?=
+Message-ID: <c0ede6ec-ef2e-8a38-74db-c05fcb6afa00@ciose.fr>
+Date: Thu, 10 Nov 2016 11:35:30 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.4.0
 MIME-Version: 1.0
-Received: by 10.12.138.15 with HTTP; Wed, 9 Nov 2016 17:57:02 -0800 (PST)
-In-Reply-To: <20161106115724.48b18c6c@nuc.betafive.co.uk>
-References: <20161105015007.17267-1-net147@gmail.com>
-	<20161106115724.48b18c6c@nuc.betafive.co.uk>
-From: Jonathan Liu <net147@gmail.com>
-Date: Thu, 10 Nov 2016 12:57:02 +1100
-Message-ID: <CANwerB3CbxJj3mf1VjNNgqCLTzN9464U7EQds9A65FhrhJsH_g@mail.gmail.com>
-To: Paul Barker <paul@paulbarker.me.uk>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi][PATCH v3] u-boot: Simplify boot script
+Subject: How do I correctly export uapi kernel headers to SDK ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,57 +49,370 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 10 Nov 2016 01:57:08 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 10 Nov 2016 10:43:15 -0000
+X-Groupsio-MsgNum: 32939
+Content-Type: multipart/mixed; boundary="------------ACC8F43914E1F01DD322CA07"
 
-Hi Paul,
+--------------ACC8F43914E1F01DD322CA07
+Content-Type: multipart/alternative;
+ boundary="------------FCC84FADBB78AC2366B4E12D"
 
-On 6 November 2016 at 22:57, Paul Barker <paul@paulbarker.me.uk> wrote:
-> On Sat,  5 Nov 2016 12:50:07 +1100
-> Jonathan Liu <net147@gmail.com> wrote:
->
->> A patch is added to check if the firmware loaded a device tree blob
->> into memory and set the fdt_addr_r variable if it is found. The U-Boot
->> script will then read the command line arguments generated by the
->> firmware from the device tree and boot the kernel with the command
->> line arguments and the loaded device tree.
->>
->> This allows things like MAC address, board revision and serial number
->> to be correctly configured and options in config.txt to be used.
->>
->> Signed-off-by: Jonathan Liu <net147@gmail.com>
->> ---
->> Changes in v3:
->>  - Removed incorrect check if fdt_addr_r is already set. The check
->>    condition was inverted and fdt_addr_r variable is always set to
->>    0x100 by default.
->> Changes in v2:
->>  - Instead of setting device_tree_address to 0x100 in config.txt, patch
->>    U-Boot to detect the device tree blob address if it was loaded.
->>
->
-> I'm still getting the same "Could not find a valid device tree" failure
-> on the model B+.
->
-> I've tried running vcdbg but got the following error from the kernel
->
->     vc_mem_mmap: length 4096 is too big
->
-> vcdbg itself then said:
->
->     debug_sym: AccessVideoCoreMemory: mmap failed: Invalid argument(22)
->     debug_sym: OpenVideoCoreMemoryFileWithOffset: ReadVideoCoreMemory @VC_SYMBOL_BASE_OFFSET (0x00002800) failed
->
->     Unable to open videocore memory access: -5
->
-> This was after adding "dtdebug=on" to config.txt
->
-> Not sure where to go next with this. I might need to go off on a Yak
-> shaving mission and find out why the mmap is failing.
+--------------FCC84FADBB78AC2366B4E12D
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
 
-A patch is being worked on upstream - https://patchwork.ozlabs.org/patch/692412/
-I think we will wait until it is accepted upstream and then backport it.
+Hello all,
 
-Regards,
-Jonathan
+I'm using yocto krogoth and I'm developing a kernel driver for linux
+4.4. This kernel driver implements many ioctl so I've created a new
+header for them in include/uapi.
 
+Now I would like to make it available in the SDK generated by yocto, so
+that developer can use these definitions without duplicating the header
+userland (with risks that duplicated header don't stay synced).
+
+I've seen a solution through this thread
+https://lists.yoctoproject.org/pipermail/yocto/2014-April/019261.html,
+but I was wondering if in the new 2.1 version of krogoth things have
+evolved or if the correct way to do it is still to export in a new
+include location.
+
+Thanks for answers.
+
+Regards.
+
+-- 
+Christian Charreyre
+GnuPG:4096R/8265F383
+Email : christian.charreyre@ciose.fr <mailto:christian.charreyre@ciose.fr>
+Site : www.ciose.fr <http://www.ciose.fr>
+Phone : 33(0)4 95 05 19 41
+Address : 11 Avenue Marigny 13014 Marseille
+<https://www.facebook.com/ciosystemb>
+<https://www.twitter.com/CIO_SysEmb>
+<https://plus.google.com/100220376990055787299/posts?prsrc=3>
+<https://www.linkedin.com/company/cio-informatique-industrielle>
+<http://www.ciose.fr/actualites?format=feed&type=rss>
+
+
+--------------FCC84FADBB78AC2366B4E12D
+Content-Type: multipart/related;
+ boundary="------------4FA0D8C0FB7D61E191DC6781"
+
+--------------4FA0D8C0FB7D61E191DC6781
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <p>Hello all,</p>
+    <p>I'm using yocto krogoth and I'm developing a kernel driver for
+      linux 4.4. This kernel driver implements many ioctl so I've
+      created a new header for them in include/uapi.</p>
+    <p>Now I would like to make it available in the SDK generated by
+      yocto, so that developer can use these definitions without
+      duplicating the header userland (with risks that duplicated header
+      don't stay synced).<br>
+    </p>
+    I've seen a solution through this thread
+    <a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/pipermail/yocto/2014-April/019261.html">https://lists.yoctoproject.org/pipermail/yocto/2014-April/019261.html</a>,
+    but I was wondering if in the new 2.1 version of krogoth things have
+    evolved or if the correct way to do it is still to export in a new
+    include location.<br>
+    <br>
+    Thanks for answers.<br>
+    <br>
+    Regards.<br>
+    <br>
+    <div class="moz-signature">-- <br>
+      <table style="font-family:'carlito'; font-size: 14pt"
+        cellspacing="0">
+        <tbody>
+          <tr>
+            <td rowspan="9" width="170"><img
+                src="cid:part1.362420AE.72CB4EB6@ciose.fr"></td>
+          </tr>
+          <tr>
+            <th valign="top" align="left" height="15">Christian
+              Charreyre</th>
+          </tr>
+          <tr>
+            <td height="10">GnuPG:4096R/8265F383 </td>
+          </tr>
+          <tr>
+            <td>Email : <a moz-do-not-send="true"
+                href="mailto:christian.charreyre@ciose.fr">christian.charreyre@ciose.fr</a></td>
+          </tr>
+          <tr>
+            <td>Site : <a moz-do-not-send="true"
+                href="http://www.ciose.fr">www.ciose.fr</a></td>
+          </tr>
+          <tr>
+            <td>Phone : 33(0)4 95 05 19 41</td>
+          </tr>
+          <tr>
+            <td>Address : 11 Avenue Marigny 13014 Marseille</td>
+          </tr>
+          <tr>
+            <td valign="middle"> <a moz-do-not-send="true"
+                href="https://www.facebook.com/ciosystemb"
+                target="_blank"><img
+                  src="cid:part4.A430FF29.4A8DFDB7@ciose.fr"></a> <a
+                moz-do-not-send="true"
+                href="https://www.twitter.com/CIO_SysEmb"
+                target="_blank"><img
+                  src="cid:part6.21E61630.56BEF5E6@ciose.fr"></a> <a
+                moz-do-not-send="true"
+                href="https://plus.google.com/100220376990055787299/posts?prsrc=3"
+                target="_blank"><img
+                  src="cid:part8.7CD51DFD.496DB04A@ciose.fr"></a> <a
+                moz-do-not-send="true"
+                href="https://www.linkedin.com/company/cio-informatique-industrielle"
+                target="_blank"><img
+                  src="cid:part10.1AF65DAB.180EB798@ciose.fr"></a> <a
+                moz-do-not-send="true"
+                href="http://www.ciose.fr/actualites?format=feed&amp;type=rss"
+                target="_blank"><img
+                  src="cid:part12.5F517092.1326F538@ciose.fr"></a> </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
+
+--------------4FA0D8C0FB7D61E191DC6781
+Content-Type: image/png;
+ name="logoCIO-2016.png"
+Content-Transfer-Encoding: base64
+Content-ID: <part1.362420AE.72CB4EB6@ciose.fr>
+Content-Disposition: inline;
+ filename="logoCIO-2016.png"
+
+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
+Ru8FAAAAAElFTkSuQmCC
+
+--------------4FA0D8C0FB7D61E191DC6781
+Content-Type: image/png;
+ name="Facebook-2016.png"
+Content-Transfer-Encoding: base64
+Content-ID: <part4.A430FF29.4A8DFDB7@ciose.fr>
+Content-Disposition: inline;
+ filename="Facebook-2016.png"
+
+iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAMAAADXqc3KAAAABGdBTUEAALGPC/xhBQAAAAFzUkdC
+AK7OHOkAAAAhUExURQAAADpDTDpDTDtERTxBTDlCSzpDTDpDTDpDTDpDTDpCTKU4r/AAAAALdFJO
+UwCrlwYQOrxQf8tj1yYyEQAAALJJREFUKM+FUlkWxCAIg7BYvf+Bpypol5k3figlYkIo0Z8ldrA7
+H/bIlwqTDqOWS1oZumJAVuzlVs2JcOZVR6ogbuTpzDwijJtS5/viosbxdt8NqYAqtxmjqw7pohDW
+oLWjU8+PVhslR68m8hm3ImdVAOIbMMbmGEC20zm2FZv8BgzyJfcCDLkUDV6A2WBaojXFRkFakxae
+ypHT45vtbdlOgu+DGpbDVE574c+p//gZ3usDrGgDDpi7m/EAAAAASUVORK5CYII=
+
+--------------4FA0D8C0FB7D61E191DC6781
+Content-Type: image/png;
+ name="Twitter-2016.png"
+Content-Transfer-Encoding: base64
+Content-ID: <part6.21E61630.56BEF5E6@ciose.fr>
+Content-Disposition: inline;
+ filename="Twitter-2016.png"
+
+iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAMAAADXqc3KAAAABGdBTUEAALGPC/xhBQAAAAFzUkdC
+AK7OHOkAAAAzUExURQAAADpDTDxBSjpDTDpDTDpDTDlCSzhGRzlCTDpDTDpDSzpDTDpDTDlBSzpD
+TDlDTDpDTMTByMMAAAARdFJOUwBTEsevvjMIk0J+nWgkuIbv97cPWAAAANBJREFUKM+FUksWxCAI
+QwHBb3v/004V7bTOYtzIIxJCEODfiQcxUwpb2qEGAZCoGB9pySor9vqNpblXNS0ku403z1t3IWp9
+8OaEWiLUqw8PnaOgUA/ZHed5IdpVH0N6Li0AeYDUgZiulGlIqSpiL+1KfK9nU9Zmp0Eg7QYCVwNY
+FjDHQRPtDlhUyUQH7A2raR/Ngw63iCNIQSMccgF9f0NMxMVobcA54VV1O5Cn9bqZWJZ5Qi+kkDwW
+5e9FPZY27NPoRXxUjtsOQqLWfj/D7/kAU7MFdtp6mFkAAAAASUVORK5CYII=
+
+--------------4FA0D8C0FB7D61E191DC6781
+Content-Type: image/png;
+ name="Google-2016.png"
+Content-Transfer-Encoding: base64
+Content-ID: <part8.7CD51DFD.496DB04A@ciose.fr>
+Content-Disposition: inline;
+ filename="Google-2016.png"
+
+iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAMAAADXqc3KAAAAYFBMVEUAAAA6R0k6Q0w6Q0w9QEo6
+Q0w6Q0w6Q0w6Q0w6Q0w6Qkw6Qks6Qkw9Qk46Q0w6Q0w6Qkw+Pks6Q0w6Qkw7RE06Q0w5REs5Q006
+Q0w6Q0s6Q0w6Q0w6QU46SUk6Qks5Qk3CixztAAAAIHRSTlMAB8GqFLiPnjqxlERJD5iDXgx+Z1VO
+MCvcyqVXIRF2c3pGGOAAAADnSURBVCjPhVBbEsIgDIQkQKFCtdU+rNX731IIj3H8aT5CsjvsLoiz
+kt1gAezQ/eEP0J1MtIbLD3wz2tf5cEE2XD1+b99tZUzGW+2m6Ov/JIF9JHgWQKXsLOQUZw8J6fjC
+5Dw9r9HvmTY9x5ajq2hIKAyuie7HCOUMQ1zfHyEPTCthbJBfrrfV8MmbYqLUu7yZiSb1CrCtr0oQ
+VnPaFiFm8AyzeYm7T5z5Xgi3pA6HEIu6pT8rWpR9Ly41QIS+fl4ZAisQVeurq+HszmfFUbbYJviW
+1LiGs4XuSUrqXTVqNY+oFI6LOKsvmwsILOoTkDsAAAAASUVORK5CYII=
+
+--------------4FA0D8C0FB7D61E191DC6781
+Content-Type: image/png;
+ name="Linkedin-2016.png"
+Content-Transfer-Encoding: base64
+Content-ID: <part10.1AF65DAB.180EB798@ciose.fr>
+Content-Disposition: inline;
+ filename="Linkedin-2016.png"
+
+iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAMAAADXqc3KAAAABGdBTUEAALGPC/xhBQAAAAFzUkdC
+AK7OHOkAAAAqUExURQAAADpDTDhETTpCTDpDTDpDTDpDTDtDTDpDTDpDTDpDSzpDTDpESzpDTD4O
+36YAAAAOdFJOUwC8CjZIbqlfnH4ljBquFjxPewAAAL1JREFUKM+FkgkOhCAMRenestz/ugO4IGYS
+NZLC+xTab0ofD3IBgBb0WjcIwoEd+CnXwCuuXu4YN1UyvaI2EuMiUk5F9KGAL6J0JBpiyLBAnTGP
+DYn8eY7XMeQZgrM2b8f1TEaSqQFUISbkOc2+QOqgasFZO7YdCAcZz4pfoL8TzFTH4Tswu6+7A62r
+QAYRJ4nSQW6rJWyczbB/9Wze2Mi7ORL/2y7+MGqZUzV2awshYu3Wvl2naAAa+euvST8xpgSvr2vF
+KgAAAABJRU5ErkJggg==
+
+--------------4FA0D8C0FB7D61E191DC6781
+Content-Type: image/png;
+ name="Rss-2016.png"
+Content-Transfer-Encoding: base64
+Content-ID: <part12.5F517092.1326F538@ciose.fr>
+Content-Disposition: inline;
+ filename="Rss-2016.png"
+
+iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAMAAADXqc3KAAAABGdBTUEAALGPC/xhBQAAAAFzUkdC
+AK7OHOkAAAAnUExURQAAADpCSjpDTDpDTDpCSzlDSzlDTDlDTDpCSzlDTDdDTTlCSzxDS7Y5yz8A
+AAANdFJOUwALq8BTP4Z3Z5kZLCLIFob+AAAArklEQVQoz4VSWxKEMAgzvPq8/3mXinW1urP9aBkT
+SAC37c+BGjFTast3YWsYcGG90skw43qJcWNtmWZEeq+b7XjT6iSYYOwyF0d1LyaRAAjRhKj6VfpZ
+orMc7rNfHAlZRx8USC9fQBJ7AyHohBOYDaitAJxq4ilnqRAHu/CwWdoUD7udxPbsLNPuoZeLP85R
+HawwbY+RtPchJnsfeyq/FrWsVgFUua92nB8/w/N8AMESA0nSYhLAAAAAAElFTkSuQmCC
+
+--------------4FA0D8C0FB7D61E191DC6781--
+
+--------------FCC84FADBB78AC2366B4E12D--
+
+--------------ACC8F43914E1F01DD322CA07
+Content-Type: text/x-vcard; charset=utf-8;
+ name="christian_charreyre.vcf"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+ filename="christian_charreyre.vcf"
+
+begin:vcard
+fn:Christian  Charreyre
+n:Charreyre;Christian 
+org;quoted-printable:CIO Syst=C3=A8mes Embarqu=C3=A9s
+adr;dom:;;11 Avenue Marigny;Marseille;;13014
+email;internet:christian.charreyre@ciose.fr
+tel;work:04 95 05 19 41
+url:http://www.ciose.fr
+version:2.1
+end:vcard
+
+
+--------------ACC8F43914E1F01DD322CA07--
