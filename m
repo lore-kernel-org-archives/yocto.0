@@ -1,71 +1,44 @@
-Return-Path: <andrei@gherzan.ro>
+Return-Path: <paul@paulbarker.me.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 93AB3E00AB4; Sat, 12 Nov 2016 04:24:00 -0800 (PST)
+	id B33D7E00AB4; Sat, 12 Nov 2016 04:51:57 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_WEB autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 2.6 RCVD_IN_SORBS_WEB RBL: SORBS: sender is an abusable
-	web server *      [46.198.0.251 listed in dnsbl.sorbs.net]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.68 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [188.165.39.161 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f68.google.com (mail-wm0-f68.google.com [74.125.82.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 60212E00A84
-	for <yocto@yoctoproject.org>; Sat, 12 Nov 2016 04:23:55 -0800 (PST)
-Received: by mail-wm0-f68.google.com with SMTP id g23so3039058wme.1
-	for <yocto@yoctoproject.org>; Sat, 12 Nov 2016 04:23:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-disposition:in-reply-to:user-agent;
-	bh=OdYvnoLYqbCMiR0GT/1S8JX7RGIbeLUmNh8m2fsW+SU=;
-	b=Fc9ZQrS/l7Ri+CHknhgJeTvQQO7RaayjfQxBFiJKaLcrUNkrE1n9S0bFC/G4WucZUy
-	MdDMs8XHlhWLBRb+ZJ+tRFFwEy5HgBHXEolaJzA9IDyvkvyheKRW4heGU1KL8ErrTSE/
-	oXMezBt3MIO5fLkBAGrS998KNun6d3spNnt4cTf1eN6pk6H6hFG72/r+UBugix6NtJHw
-	cR3ZQ6Foj8lDChVZw2bplJSCr2ftuvzMFopnWw6RBoBBMWP6HAtyoO3stK629RCI9+1a
-	GX3ALXzRsDtrHzpb42T0z/LFVvSycIXDU39sgZ1OmsNpXTSjqLTI43JVdfDPFJ+641FQ
-	X7/A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-	:mime-version:content-disposition:in-reply-to:user-agent;
-	bh=OdYvnoLYqbCMiR0GT/1S8JX7RGIbeLUmNh8m2fsW+SU=;
-	b=DqWN9pzG0yFWtgs4B+1wmJKT9GokiJhFYbWlIO+MeEV1KMZgL51irLIgHa7oFD7Z5r
-	E4lcBinHpWm0Ml7jUOjykGfljy8rqJX3dM2Mc8t6Ua3SgIFvnuBrbuS0qZyAEJrPNdUJ
-	mr6nhLnVEYALlW3R7bW/xyUEczN9eIZPMbZn6I9qLe01D17UHFNR8aPh8JMSzNzJkzMm
-	IJzKH5vDgZSoCnm13YxVygCSdPuhOsGns1tcjavW8bl4h6ogcqHoAfLy1cTJ4fZOka2v
-	b4Th+CNH1T8pPlpCItNWJg9urZ0qtniHSdyLWh+Q+8D/e+Qh6g5L39MC1jeNvV/YSfj8
-	ETlA==
-X-Gm-Message-State: ABUngvfJQzXa8tUgaHE/3vBtNGbAk/YBiHnGag+MD9mbevaRmkUwxOT5RB6botP96KMDkw==
-X-Received: by 10.194.82.163 with SMTP id j3mr1301695wjy.232.1478953434755;
-	Sat, 12 Nov 2016 04:23:54 -0800 (PST)
-Received: from carbonA.lan (46-198-0-251.adsl.cyta.gr. [46.198.0.251])
-	by smtp.gmail.com with ESMTPSA id y4sm16877975wjp.0.2016.11.12.04.23.52
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sat, 12 Nov 2016 04:23:53 -0800 (PST)
-Date: Sat, 12 Nov 2016 12:23:45 +0000
-From: Andrei Gherzan <andrei@gherzan.ro>
-To: Khem Raj <raj.khem@gmail.com>
-Message-ID: <20161112122345.GA14139@carbonA.lan>
-References: <20161106072515.3505-1-raj.khem@gmail.com>
-	<CAK18fxEVW3NTsxOUbJQfM3XP6V7==G_V_dPG7P9-cjxVoWhpNg@mail.gmail.com>
-	<ebb5bf5e-6ac5-a97d-09b3-d292f1f72995@mlbassoc.com>
-	<20161108113838.GC19379@carbonA>
-	<CAMKF1spR5-PpjfkfDadP_8FqrGHt0-T34k=RjwrwPg9y2Bd0Hg@mail.gmail.com>
+Received: from 15.mo6.mail-out.ovh.net (15.mo6.mail-out.ovh.net
+	[188.165.39.161])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DB4CAE00A84
+	for <yocto@yoctoproject.org>; Sat, 12 Nov 2016 04:51:54 -0800 (PST)
+Received: from player761.ha.ovh.net (b9.ovh.net [213.186.33.59])
+	by mo6.mail-out.ovh.net (Postfix) with ESMTP id 7E80C56AE9
+	for <yocto@yoctoproject.org>; Sat, 12 Nov 2016 13:42:08 +0100 (CET)
+Received: from nuc.betafive.co.uk
+	(cpc11-shep11-2-0-cust130.8-3.cable.virginm.net [86.27.96.131])
+	(Authenticated sender: paul@betafive.co.uk)
+	by player761.ha.ovh.net (Postfix) with ESMTPSA id 324C148006D;
+	Sat, 12 Nov 2016 13:42:06 +0100 (CET)
+Date: Sat, 12 Nov 2016 12:42:05 +0000
+From: Paul Barker <paul@paulbarker.me.uk>
+To: Jonathan Liu <net147@gmail.com>
+Message-ID: <20161112124205.5ce1eb99@nuc.betafive.co.uk>
+In-Reply-To: <CANwerB3CbxJj3mf1VjNNgqCLTzN9464U7EQds9A65FhrhJsH_g@mail.gmail.com>
+References: <20161105015007.17267-1-net147@gmail.com>
+	<20161106115724.48b18c6c@nuc.betafive.co.uk>
+	<CANwerB3CbxJj3mf1VjNNgqCLTzN9464U7EQds9A65FhrhJsH_g@mail.gmail.com>
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-In-Reply-To: <CAMKF1spR5-PpjfkfDadP_8FqrGHt0-T34k=RjwrwPg9y2Bd0Hg@mail.gmail.com>
-User-Agent: Mutt/1.7.1 (2016-10-04)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Gary Thomas <gary@mlbassoc.com>
-Subject: Re: [meta-raspberrypi][PATCH 1/2] firmware: Use release tarballs
+X-Ovh-Tracer-Id: 1017813518090537338
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrfeelfedrtdejgdegfecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi][PATCH v3] u-boot: Simplify boot script
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -77,87 +50,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 12 Nov 2016 12:24:00 -0000
-X-Groupsio-MsgNum: 32949
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="LZvS9be/3tNcYl/X"
-Content-Disposition: inline
+X-List-Received-Date: Sat, 12 Nov 2016 12:51:57 -0000
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
---LZvS9be/3tNcYl/X
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On Thu, 10 Nov 2016 12:57:02 +1100
+Jonathan Liu <net147@gmail.com> wrote:
 
-On Tue, Nov 08, 2016 at 06:46:45AM -0800, Khem Raj wrote:
-> On Tue, Nov 8, 2016 at 3:38 AM, Andrei Gherzan <andrei@gherzan.ro> wrote:
-> > On Tue, Nov 08, 2016 at 12:35:47PM +0100, Gary Thomas wrote:
-> >> On 2016-11-08 12:16, Andrei Gherzan wrote:
-> >> > On Sun, Nov 6, 2016 at 7:25 AM, Khem Raj <raj.khem@gmail.com> wrote:
-> >> > > This is a binary repo and its quite large in size
-> >> > > we do not need the whole history of this repo since
-> >> > > most of stuff needed is binaries, therefore switch
-> >> > > to release tarballs
-> >> > >
-> >> > > Signed-off-by: Khem Raj <raj.khem@gmail.com>
-> >> > > ---
-> >> > >  recipes-bsp/common/firmware.inc | 12 +++++++-----
-> >> > >  1 file changed, 7 insertions(+), 5 deletions(-)
-> >> > >
-> >> > > diff --git a/recipes-bsp/common/firmware.inc b/recipes-bsp/common/firmware.inc
-> >> > > index ed0782f..8862f58 100644
-> >> > > --- a/recipes-bsp/common/firmware.inc
-> >> > > +++ b/recipes-bsp/common/firmware.inc
-> >> > > @@ -1,8 +1,10 @@
-> >> > > -RPIFW_SRCREV ?= "413fc664838e81caeabdc4118dc51e138d5d6c71"
-> >> > > -RPIFW_DATE ?= "20161030"
-> >> > > -RPIFW_SRC_URI ?= "git://github.com/raspberrypi/firmware.git;protocol=git;branch=master"
-> >> > > -RPIFW_S ?= "${WORKDIR}/git"
-> >> > > +RPIFW_DATE ?= "20161020"
-> >> > > +RPIFW_SRC_URI ?= "https://github.com/raspberrypi/firmware/archive/1.${RPIFW_DATE}.tar.gz"
-> >> > > +RPIFW_S ?= "${WORKDIR}/firmware-1.${RPIFW_DATE}"
-> >> > >
-> >> > >  SRC_URI = "${RPIFW_SRC_URI}"
-> >> > > -SRCREV = "${RPIFW_SRCREV}"
-> >> > > +SRC_URI[md5sum] = "d3c388c114af4c672dd3ee0ed8e984d3"
-> >> > > +SRC_URI[sha256sum] = "1c7c49d58800aab2dd1b5ff59a1e297934f9ea6f47ebdf0a3f90632561dc690b"
-> >> > > +
-> >> > >  PV = "${RPIFW_DATE}"
-> >> >
-> >> > Merged to master. Thanks.
+> Hi Paul,
+> 
+> On 6 November 2016 at 22:57, Paul Barker <paul@paulbarker.me.uk> wrote:
+> > On Sat,  5 Nov 2016 12:50:07 +1100
+> > Jonathan Liu <net147@gmail.com> wrote:
+> >
+> >> A patch is added to check if the firmware loaded a device tree blob
+> >> into memory and set the fdt_addr_r variable if it is found. The U-Boot
+> >> script will then read the command line arguments generated by the
+> >> firmware from the device tree and boot the kernel with the command
+> >> line arguments and the loaded device tree.
 > >>
-> >> Sadly, the firmware revision went backwards in this change.
-> >> Do you want a new patch to play catch-up?
+> >> This allows things like MAC address, board revision and serial number
+> >> to be correctly configured and options in config.txt to be used.
+> >>
+> >> Signed-off-by: Jonathan Liu <net147@gmail.com>
+> >> ---
+> >> Changes in v3:
+> >>  - Removed incorrect check if fdt_addr_r is already set. The check
+> >>    condition was inverted and fdt_addr_r variable is always set to
+> >>    0x100 by default.
+> >> Changes in v2:
+> >>  - Instead of setting device_tree_address to 0x100 in config.txt, patch
+> >>    U-Boot to detect the device tree blob address if it was loaded.
 > >>
 > >
-> > Good catch. I'll fix it. Thanks.
->
-> ah sorry about that.
-> just hardcode PV = "20161030" for now. with next release we will get it right
-> since its already past oct 30.
+> > I'm still getting the same "Could not find a valid device tree" failure
+> > on the model B+.
+> >
+> > I've tried running vcdbg but got the following error from the kernel
+> >
+> >     vc_mem_mmap: length 4096 is too big
+> >
+> > vcdbg itself then said:
+> >
+> >     debug_sym: AccessVideoCoreMemory: mmap failed: Invalid argument(22)
+> >     debug_sym: OpenVideoCoreMemoryFileWithOffset: ReadVideoCoreMemory @VC_SYMBOL_BASE_OFFSET (0x00002800) failed
+> >
+> >     Unable to open videocore memory access: -5
+> >
+> > This was after adding "dtdebug=on" to config.txt
+> >
+> > Not sure where to go next with this. I might need to go off on a Yak
+> > shaving mission and find out why the mmap is failing.
+> 
+> A patch is being worked on upstream - https://patchwork.ozlabs.org/patch/692412/
+> I think we will wait until it is accepted upstream and then backport it.
+> 
 
-Actually the last archive is 1.20161020.
-https://github.com/raspberrypi/firmware/releases
+Ok that makes sense. I'm happy to test that out once it's ready for
+backport.
 
---
-Andrei Gherzan
+Thanks,
+Paul
 
---LZvS9be/3tNcYl/X
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIcBAEBCAAGBQJYJwnNAAoJEHO76Gt+erfPHzQP/Avr3XnpyseSbRTGkPjpxcwz
-1dhgc2CZRfq5aMHgAY9Ie6bb57uSn2aFwhIz5v5Zmc5kKN9R704KsgEtLY0NUtoV
-Nw3Jz5GODuS4y2+TJIAlO2AvMp3SRjXFpVD7O5gpXxZ1fCKgqH6sCJ6dIVOicQ2m
-u2kFNrbGBylBmPx7C9F2dcU7Ziep7IeoS/KtNMR5FPHoGZXZtlWor1tbL7fSlqRI
-Db0A30zeV+YYgMuHTbXSJE9zPYDmKljHEmmILlgvXpzYupAZ1sBLBbAA332T1Te4
-IWTS1IgK28EsXsAO8WClj5Yl0sELooqscxWnstMiZ9u6SkgpBpcMx3bzu8wpu6lT
-1Ek7dtT54dF1fhIHgSs5NkKmwuESekuXIUnCTDLtoxKuCUe/SK5IcB7LZDYsAsd2
-aAGQ5mH7ZA3P4UwtPhNPmHLz+/g+wF04ByOUq5a6EnAo3GC3RwM9G87xBf+aJKXi
-GWJ7f+sy2u4pjUMWSkC7Tj0zPU/Z3sFpiFZnviq7H1+S6KTcBLn/kEPmXPQXTq2J
-so4WVRauEBgelyyTjY5tuaHwd7oqqDcC352+PFsU2mvZWYoJOLZXp5l8lYRimnyg
-bYUV+g3rheNpjJ/wEDYDe3+iMO2Bap5ao6y+hSPT5KHEKQZI+pK/tRbkTKg4J2tD
-EwCz8rq08D8Vz1qrRjCI
-=Tn/S
------END PGP SIGNATURE-----
-
---LZvS9be/3tNcYl/X--
