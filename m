@@ -1,59 +1,74 @@
-Return-Path: <pidge@toganlabs.com>
+Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EAEEFE006EA; Fri, 11 Nov 2016 10:38:14 -0800 (PST)
+	id 93AB3E00AB4; Sat, 12 Nov 2016 04:24:00 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [23.83.214.29 listed in list.dnswl.org]
+X-Spam-Status: No, score=0.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_WEB autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 2.6 RCVD_IN_SORBS_WEB RBL: SORBS: sender is an abusable
+	web server *      [46.198.0.251 listed in dnsbl.sorbs.net]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.82.68 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from camel.maple.relay.mailchannels.net
-	(camel.maple.relay.mailchannels.net [23.83.214.29])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A00F1E0050B
-	for <yocto@yoctoproject.org>; Fri, 11 Nov 2016 10:38:09 -0800 (PST)
-X-Sender-Id: hostpapa|x-authuser|pidge@toganlabs.com
-Received: from relay.mailchannels.net (localhost [127.0.0.1])
-	by relay.mailchannels.net (Postfix) with ESMTP id 8ECD81213A9;
-	Fri, 11 Nov 2016 18:38:02 +0000 (UTC)
-Received: from hp181.hostpapa.com (ip-10-107-69-155.us-west-2.compute.internal
-	[10.107.69.155])
-	by relay.mailchannels.net (Postfix) with ESMTPA id A9C5D120D54;
-	Fri, 11 Nov 2016 18:38:01 +0000 (UTC)
-X-Sender-Id: hostpapa|x-authuser|pidge@toganlabs.com
-Received: from hp181.hostpapa.com (hp181.hostpapa.com [10.22.43.236])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384)
-	by 0.0.0.0:2500 (trex/5.7.8); Fri, 11 Nov 2016 18:38:02 +0000
-X-MC-Relay: Neutral
-X-MailChannels-SenderId: hostpapa|x-authuser|pidge@toganlabs.com
-X-MailChannels-Auth-Id: hostpapa
-X-MC-Loop-Signature: 1478889482141:217765624
-X-MC-Ingress-Time: 1478889482141
-Received: from [37.228.247.203] (port=27244 helo=[192.168.0.60])
-	by hp181.hostpapa.com with esmtpsa
-	(TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.87)
-	(envelope-from <pidge@toganlabs.com>)
-	id 1c5Gi4-002z5B-PA; Fri, 11 Nov 2016 19:38:01 +0100
-Message-ID: <1478889473.18810.3.camel@toganlabs.com>
-From: Beth 'pidge' Flanagan <pidge@toganlabs.com>
-To: Alain Achkar <alain.achkar@triacta.com>, joshua.g.lock@intel.com
-Date: Fri, 11 Nov 2016 18:37:53 +0000
-In-Reply-To: <CAGkf0HCnrCpufRV9U_pz7LYDkCvhK7of_1=0zgS425GeGYSUPQ@mail.gmail.com>
-References: <CAGkf0HCnrCpufRV9U_pz7LYDkCvhK7of_1=0zgS425GeGYSUPQ@mail.gmail.com>
-Organization: toganlabs.com
-X-Mailer: Evolution 3.18.5.2-0ubuntu3 
-Mime-Version: 1.0
-X-OutGoing-Spam-Status: No, score=-1.0
-X-AuthUser: pidge@toganlabs.com
-Cc: yocto@yoctoproject.org
-Subject: Re: Buildbot / Autobuilder / custom?
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wm0-f68.google.com (mail-wm0-f68.google.com [74.125.82.68])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 60212E00A84
+	for <yocto@yoctoproject.org>; Sat, 12 Nov 2016 04:23:55 -0800 (PST)
+Received: by mail-wm0-f68.google.com with SMTP id g23so3039058wme.1
+	for <yocto@yoctoproject.org>; Sat, 12 Nov 2016 04:23:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-disposition:in-reply-to:user-agent;
+	bh=OdYvnoLYqbCMiR0GT/1S8JX7RGIbeLUmNh8m2fsW+SU=;
+	b=Fc9ZQrS/l7Ri+CHknhgJeTvQQO7RaayjfQxBFiJKaLcrUNkrE1n9S0bFC/G4WucZUy
+	MdDMs8XHlhWLBRb+ZJ+tRFFwEy5HgBHXEolaJzA9IDyvkvyheKRW4heGU1KL8ErrTSE/
+	oXMezBt3MIO5fLkBAGrS998KNun6d3spNnt4cTf1eN6pk6H6hFG72/r+UBugix6NtJHw
+	cR3ZQ6Foj8lDChVZw2bplJSCr2ftuvzMFopnWw6RBoBBMWP6HAtyoO3stK629RCI9+1a
+	GX3ALXzRsDtrHzpb42T0z/LFVvSycIXDU39sgZ1OmsNpXTSjqLTI43JVdfDPFJ+641FQ
+	X7/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	:mime-version:content-disposition:in-reply-to:user-agent;
+	bh=OdYvnoLYqbCMiR0GT/1S8JX7RGIbeLUmNh8m2fsW+SU=;
+	b=DqWN9pzG0yFWtgs4B+1wmJKT9GokiJhFYbWlIO+MeEV1KMZgL51irLIgHa7oFD7Z5r
+	E4lcBinHpWm0Ml7jUOjykGfljy8rqJX3dM2Mc8t6Ua3SgIFvnuBrbuS0qZyAEJrPNdUJ
+	mr6nhLnVEYALlW3R7bW/xyUEczN9eIZPMbZn6I9qLe01D17UHFNR8aPh8JMSzNzJkzMm
+	IJzKH5vDgZSoCnm13YxVygCSdPuhOsGns1tcjavW8bl4h6ogcqHoAfLy1cTJ4fZOka2v
+	b4Th+CNH1T8pPlpCItNWJg9urZ0qtniHSdyLWh+Q+8D/e+Qh6g5L39MC1jeNvV/YSfj8
+	ETlA==
+X-Gm-Message-State: ABUngvfJQzXa8tUgaHE/3vBtNGbAk/YBiHnGag+MD9mbevaRmkUwxOT5RB6botP96KMDkw==
+X-Received: by 10.194.82.163 with SMTP id j3mr1301695wjy.232.1478953434755;
+	Sat, 12 Nov 2016 04:23:54 -0800 (PST)
+Received: from carbonA.lan (46-198-0-251.adsl.cyta.gr. [46.198.0.251])
+	by smtp.gmail.com with ESMTPSA id y4sm16877975wjp.0.2016.11.12.04.23.52
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Sat, 12 Nov 2016 04:23:53 -0800 (PST)
+Date: Sat, 12 Nov 2016 12:23:45 +0000
+From: Andrei Gherzan <andrei@gherzan.ro>
+To: Khem Raj <raj.khem@gmail.com>
+Message-ID: <20161112122345.GA14139@carbonA.lan>
+References: <20161106072515.3505-1-raj.khem@gmail.com>
+	<CAK18fxEVW3NTsxOUbJQfM3XP6V7==G_V_dPG7P9-cjxVoWhpNg@mail.gmail.com>
+	<ebb5bf5e-6ac5-a97d-09b3-d292f1f72995@mlbassoc.com>
+	<20161108113838.GC19379@carbonA>
+	<CAMKF1spR5-PpjfkfDadP_8FqrGHt0-T34k=RjwrwPg9y2Bd0Hg@mail.gmail.com>
+MIME-Version: 1.0
+In-Reply-To: <CAMKF1spR5-PpjfkfDadP_8FqrGHt0-T34k=RjwrwPg9y2Bd0Hg@mail.gmail.com>
+User-Agent: Mutt/1.7.1 (2016-10-04)
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	Gary Thomas <gary@mlbassoc.com>
+Subject: Re: [meta-raspberrypi][PATCH 1/2] firmware: Use release tarballs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: pidge@toganlabs.com
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -62,62 +77,87 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 11 Nov 2016 18:38:15 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Sat, 12 Nov 2016 12:24:00 -0000
+X-Groupsio-MsgNum: 32949
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="LZvS9be/3tNcYl/X"
+Content-Disposition: inline
 
-On Fri, 2016-11-11 at 12:35 -0500, Alain Achkar wrote:
-> Hello Joshua!
->=20
-> We are using Yocto to build for the Variscite DART-6UL SoM which is
-> based on Freescale/NXP i.MX6UL (http://variwiki.com/index.php?title=3DD
-> ART-6UL_Yocto_Jethro_R1_build).
->=20
-> Currently, developers run builds manually on their desktops. We are
-> considering using a continuous integration server. I found out that
-> The Yocto Project uses Autobuilder which in turn uses BuildBot. I
-> read most of the introductory documentation.
->=20
-> Would you recommend that we install only BuildBot and configure it to
-> build what we need?
->=20
-> OR
->=20
-> Would you recommend that we install Autobuilder (and BuildBot) and
-> configure it to build what we need?
+--LZvS9be/3tNcYl/X
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Actually, the yocto-autobuilder already contains buildbot so no need
-for both.
+On Tue, Nov 08, 2016 at 06:46:45AM -0800, Khem Raj wrote:
+> On Tue, Nov 8, 2016 at 3:38 AM, Andrei Gherzan <andrei@gherzan.ro> wrote:
+> > On Tue, Nov 08, 2016 at 12:35:47PM +0100, Gary Thomas wrote:
+> >> On 2016-11-08 12:16, Andrei Gherzan wrote:
+> >> > On Sun, Nov 6, 2016 at 7:25 AM, Khem Raj <raj.khem@gmail.com> wrote:
+> >> > > This is a binary repo and its quite large in size
+> >> > > we do not need the whole history of this repo since
+> >> > > most of stuff needed is binaries, therefore switch
+> >> > > to release tarballs
+> >> > >
+> >> > > Signed-off-by: Khem Raj <raj.khem@gmail.com>
+> >> > > ---
+> >> > >  recipes-bsp/common/firmware.inc | 12 +++++++-----
+> >> > >  1 file changed, 7 insertions(+), 5 deletions(-)
+> >> > >
+> >> > > diff --git a/recipes-bsp/common/firmware.inc b/recipes-bsp/common/firmware.inc
+> >> > > index ed0782f..8862f58 100644
+> >> > > --- a/recipes-bsp/common/firmware.inc
+> >> > > +++ b/recipes-bsp/common/firmware.inc
+> >> > > @@ -1,8 +1,10 @@
+> >> > > -RPIFW_SRCREV ?= "413fc664838e81caeabdc4118dc51e138d5d6c71"
+> >> > > -RPIFW_DATE ?= "20161030"
+> >> > > -RPIFW_SRC_URI ?= "git://github.com/raspberrypi/firmware.git;protocol=git;branch=master"
+> >> > > -RPIFW_S ?= "${WORKDIR}/git"
+> >> > > +RPIFW_DATE ?= "20161020"
+> >> > > +RPIFW_SRC_URI ?= "https://github.com/raspberrypi/firmware/archive/1.${RPIFW_DATE}.tar.gz"
+> >> > > +RPIFW_S ?= "${WORKDIR}/firmware-1.${RPIFW_DATE}"
+> >> > >
+> >> > >  SRC_URI = "${RPIFW_SRC_URI}"
+> >> > > -SRCREV = "${RPIFW_SRCREV}"
+> >> > > +SRC_URI[md5sum] = "d3c388c114af4c672dd3ee0ed8e984d3"
+> >> > > +SRC_URI[sha256sum] = "1c7c49d58800aab2dd1b5ff59a1e297934f9ea6f47ebdf0a3f90632561dc690b"
+> >> > > +
+> >> > >  PV = "${RPIFW_DATE}"
+> >> >
+> >> > Merged to master. Thanks.
+> >>
+> >> Sadly, the firmware revision went backwards in this change.
+> >> Do you want a new patch to play catch-up?
+> >>
+> >
+> > Good catch. I'll fix it. Thanks.
+>
+> ah sorry about that.
+> just hardcode PV = "20161030" for now. with next release we will get it right
+> since its already past oct 30.
 
-If you read:
+Actually the last archive is 1.20161020.
+https://github.com/raspberrypi/firmware/releases
 
-http://git.yoctoproject.org/cgit.cgi/yocto-autobuilder/tree/README-QUIC
-KSTART
+--
+Andrei Gherzan
 
-and probably some of the other READMEs and the documentation in the
-docs directory of the yocto-autobuilder directory, it should get you
-started in the right direction.
+--LZvS9be/3tNcYl/X
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Feel free to ask questions if you need help.
+-----BEGIN PGP SIGNATURE-----
 
--b
+iQIcBAEBCAAGBQJYJwnNAAoJEHO76Gt+erfPHzQP/Avr3XnpyseSbRTGkPjpxcwz
+1dhgc2CZRfq5aMHgAY9Ie6bb57uSn2aFwhIz5v5Zmc5kKN9R704KsgEtLY0NUtoV
+Nw3Jz5GODuS4y2+TJIAlO2AvMp3SRjXFpVD7O5gpXxZ1fCKgqH6sCJ6dIVOicQ2m
+u2kFNrbGBylBmPx7C9F2dcU7Ziep7IeoS/KtNMR5FPHoGZXZtlWor1tbL7fSlqRI
+Db0A30zeV+YYgMuHTbXSJE9zPYDmKljHEmmILlgvXpzYupAZ1sBLBbAA332T1Te4
+IWTS1IgK28EsXsAO8WClj5Yl0sELooqscxWnstMiZ9u6SkgpBpcMx3bzu8wpu6lT
+1Ek7dtT54dF1fhIHgSs5NkKmwuESekuXIUnCTDLtoxKuCUe/SK5IcB7LZDYsAsd2
+aAGQ5mH7ZA3P4UwtPhNPmHLz+/g+wF04ByOUq5a6EnAo3GC3RwM9G87xBf+aJKXi
+GWJ7f+sy2u4pjUMWSkC7Tj0zPU/Z3sFpiFZnviq7H1+S6KTcBLn/kEPmXPQXTq2J
+so4WVRauEBgelyyTjY5tuaHwd7oqqDcC352+PFsU2mvZWYoJOLZXp5l8lYRimnyg
+bYUV+g3rheNpjJ/wEDYDe3+iMO2Bap5ao6y+hSPT5KHEKQZI+pK/tRbkTKg4J2tD
+EwCz8rq08D8Vz1qrRjCI
+=Tn/S
+-----END PGP SIGNATURE-----
 
-Elizabeth 'pidge' Flanagan
-Founder/CTO Tog=C3=A1n Labs
-www.toganlabs.com
-
->=20
-> What is the faster path to get up and running?
->=20
-> Thanks!
-> Alain.
->=20
-> --=C2=A0
-> Alain Achkar, M.Eng. | Software Engineer
-> Triacta Power Solutions
-> (O)=C2=A0613.256.2868=C2=A0(C)=C2=A0613.406.6520
-> www.triacta.com=C2=A0=C2=A0
-
-
-
-
+--LZvS9be/3tNcYl/X--
