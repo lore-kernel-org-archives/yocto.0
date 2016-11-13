@@ -1,58 +1,41 @@
-Return-Path: <alain.achkar@triacta.com>
+Return-Path: <l.majewski@majess.pl>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 327F9E00498; Fri, 11 Nov 2016 09:36:26 -0800 (PST)
+	id 12E1DE00BC1; Sun, 13 Nov 2016 07:09:37 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.82.46 listed in dnsbl.sorbs.net]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.46 listed in list.dnswl.org]
-Received: from mail-wm0-f46.google.com (mail-wm0-f46.google.com [74.125.82.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4C4F9E00498
-	for <yocto@yoctoproject.org>; Fri, 11 Nov 2016 09:36:24 -0800 (PST)
-Received: by mail-wm0-f46.google.com with SMTP id u144so61812499wmu.1
-	for <yocto@yoctoproject.org>; Fri, 11 Nov 2016 09:36:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=triacta.com; s=google;
-	h=mime-version:from:date:message-id:subject:to:cc;
-	bh=1BxwNoTI/ylaXJae5xDjEhnogt+lJw2G1gStHEDsSo8=;
-	b=PKEX1fUZqz51CPSGtnfwSHjzO0nDg9s49AhKnWMTSIlFIMRCb84IS/WjKWylfJD6c5
-	eOG/S5xlrTyI5pxgNstB6KFN2UJgByxsjYsfwO3/BcbyzpEAAa15dKVP+t8/mzRSfzVK
-	onUWJYFytz/TUdNN2tYZ+fthA06QZtirucmI8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
-	bh=1BxwNoTI/ylaXJae5xDjEhnogt+lJw2G1gStHEDsSo8=;
-	b=U+kyIMHuR53F3A2D0J68aUa42SvZ8Nde1YBq7zxy+24Vi8gkMcvSGmi2I7FKfJOB3S
-	i5wl9DI3Lax2LttTkS0KkfoNe2PwLDA5ro5Ikgx4Vt+vHYoPJAoTu5PjTUfCZH/q3d2F
-	L6cciSOOL5Jf0w8aM+nYeJDnlUqMYBeT0Vlb/zj8RHou22G1dJ80H9CsJ3Jlz2FzxjcI
-	EyvxHFSRvi/Tr33ndKK/NxDrcGID04bEX6Tj1vSZa7Z3B2Lv49SiUgm0eaRw0Vs6janz
-	gW3j4RwgZDd9IyB0o89KiFx02o5Dziz6245zm7uj45eTt++u/UBvO4AYdEYdrvJOQk/c
-	/9LQ==
-X-Gm-Message-State: ABUngvcuOwHD+nLWP4k8IU8BCfXMOS+OCFmBzrbTFrmW4JzAmXsCtoq04uUyw90FjBL4Hrg5R10bnPps61DR7R7t
-X-Received: by 10.194.108.10 with SMTP id hg10mr12098743wjb.58.1478885783428; 
-	Fri, 11 Nov 2016 09:36:23 -0800 (PST)
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [46.105.36.149 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0006]
+X-Greylist: delayed 1064 seconds by postgrey-1.32 at yocto-www;
+	Sun, 13 Nov 2016 07:09:34 PST
+Received: from 4.mo179.mail-out.ovh.net (4.mo179.mail-out.ovh.net
+	[46.105.36.149])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A70E1E009F0
+	for <yocto@yoctoproject.org>; Sun, 13 Nov 2016 07:09:34 -0800 (PST)
+Received: from player729.ha.ovh.net (b9.ovh.net [213.186.33.59])
+	by mo179.mail-out.ovh.net (Postfix) with ESMTP id 8B780A360
+	for <yocto@yoctoproject.org>; Sun, 13 Nov 2016 15:51:49 +0100 (CET)
+Received: from jawa (unknown [109.241.15.61])
+	(Authenticated sender: l.majewski@majess.pl)
+	by player729.ha.ovh.net (Postfix) with ESMTPSA id 52E1D5E0071
+	for <yocto@yoctoproject.org>; Sun, 13 Nov 2016 15:51:49 +0100 (CET)
+Date: Sun, 13 Nov 2016 15:51:41 +0100
+From: Lukasz Majewski <l.majewski@majess.pl>
+To: yocto@yoctoproject.org
+Message-ID: <20161113155141.7c0ca5dc@jawa>
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Received: by 10.28.61.10 with HTTP; Fri, 11 Nov 2016 09:35:42 -0800 (PST)
-From: Alain Achkar <alain.achkar@triacta.com>
-Date: Fri, 11 Nov 2016 12:35:42 -0500
-Message-ID: <CAGkf0HCnrCpufRV9U_pz7LYDkCvhK7of_1=0zgS425GeGYSUPQ@mail.gmail.com>
-To: joshua.g.lock@intel.com
+X-Ovh-Tracer-Id: 9080664226200601257
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: 0
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrfeelfedrtdekgdejudcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemuceftddtnecu
 X-Mailman-Approved-At: Mon, 14 Nov 2016 08:26:32 -0800
-Cc: yocto@yoctoproject.org
-Subject: Buildbot / Autobuilder / custom?
+Subject: [sysvinit] Problem with disabling sysvinit service
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -64,80 +47,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 11 Nov 2016 17:36:26 -0000
-Content-Type: multipart/alternative; boundary=089e0102e362c90039054109ed26
+X-List-Received-Date: Sun, 13 Nov 2016 15:09:37 -0000
+X-Groupsio-MsgNum: 32966
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	boundary="Sig_/tyRuq3KZe+lpObQ.6=8+_EE";
+	protocol="application/pgp-signature"
 
---089e0102e362c90039054109ed26
+--Sig_/tyRuq3KZe+lpObQ.6=8+_EE
 Content-Type: text/plain; charset=UTF-8
-
-Hello Joshua!
-
-We are using Yocto to build for the Variscite DART-6UL SoM which is based
-on Freescale/NXP i.MX6UL (
-http://variwiki.com/index.php?title=DART-6UL_Yocto_Jethro_R1_build).
-
-Currently, developers run builds manually on their desktops. We are
-considering using a continuous integration server. I found out that The
-Yocto Project uses Autobuilder which in turn uses BuildBot. I read most of
-the introductory documentation.
-
-Would you recommend that we install only BuildBot and configure it to build
-what we need?
-
-OR
-
-Would you recommend that we install Autobuilder (and BuildBot) and
-configure it to build what we need?
-
-What is the faster path to get up and running?
-
-Thanks!
-Alain.
-
--- 
-
-Alain Achkar, M.Eng. | Software Engineer
-
-*Triacta Power Solutions*
-
-(O) 613.256.2868 (C) 613.406.6520
-
-*www.triacta.com  <http://www.triacta.com/>*
-
---089e0102e362c90039054109ed26
-Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hello Joshua!<div><br></div><div>We are using Yocto to bui=
-ld for the Variscite DART-6UL SoM which is based on Freescale/NXP i.MX6UL (=
-<a href=3D"http://variwiki.com/index.php?title=3DDART-6UL_Yocto_Jethro_R1_b=
-uild">http://variwiki.com/index.php?title=3DDART-6UL_Yocto_Jethro_R1_build<=
-/a>).</div><div><br></div><div>Currently, developers run builds manually on=
- their desktops. We are considering using a continuous integration server. =
-I found out that The Yocto Project uses Autobuilder which in turn uses Buil=
-dBot. I read most of the introductory documentation.</div><div><br></div><d=
-iv>Would you recommend that we install only BuildBot and configure it to bu=
-ild what we need?</div><div><br></div><div>OR</div><div><br></div><div>Woul=
-d you recommend that we install Autobuilder (and BuildBot) and configure it=
- to build what we need?</div><div><br></div><div>What is the faster path to=
- get up and running?</div><div><br></div><div>Thanks!</div><div>Alain.<br c=
-lear=3D"all"><div><br></div>-- <br><div class=3D"gmail_signature"><div dir=
-=3D"ltr"><p style=3D"color:rgb(136,136,136);font-size:12.8px"><span style=
-=3D"color:black;font-family:helvetica,sans-serif;font-size:8.5pt">Alain Ach=
-kar, M.Eng. | Software Engineer</span><br></p><p style=3D"color:rgb(136,136=
-,136);font-size:12.8px"><b><span style=3D"font-size:8.5pt;font-family:helve=
-tica,sans-serif;color:black">Triacta Power Solutions</span></b><span style=
-=3D"color:black"></span></p><p style=3D"color:rgb(136,136,136);font-size:12=
-.8px"><span style=3D"font-size:8.5pt;font-family:helvetica,sans-serif;color=
-:black">(O)=C2=A0<a href=3D"tel:613.256.2868" value=3D"+16132562868" style=
-=3D"color:rgb(17,85,204)" target=3D"_blank">613.256.2868</a>=C2=A0(C)=C2=A0=
-<a href=3D"tel:613.406.6520" value=3D"+16138782570" style=3D"color:rgb(17,8=
-5,204)" target=3D"_blank">613.406.6520</a></span></p><p style=3D"color:rgb(=
-136,136,136);font-size:12.8px"></p><p style=3D"color:rgb(136,136,136);font-=
-size:12.8px"><u><span style=3D"font-size:8.5pt;font-family:helvetica,sans-s=
-erif;color:rgb(71,135,255)"><a href=3D"http://www.triacta.com/" style=3D"co=
-lor:rgb(17,85,204)" target=3D"_blank">www.triacta.com=C2=A0</a></span></u><=
-span style=3D"color:rgb(31,73,125)">=C2=A0</span></p></div></div>
-</div></div>
+Dear All,
 
---089e0102e362c90039054109ed26--
+Maybe here I would find answer to question which puzzles me from some
+time.
+
+The problem:
+
+Disable syslog service on startup of sysvinit based board.
+(syslog is defined in e.g. /etc/rc5.d/S20syslog -> /etc/init.d/syslog)
+
+Syslog on my setup is provided by busybox.
+
+I was trying to find where 'update-rc.d ... syslog ...' is called in the
+poky (2.1.2) source tree but without any success.
+
+Then, I've discovered that it is appended to INITSCRIPT_NAME variable
+and further processed by update-rc.d.bbclass
+
+
+Is there any method/recipe which would allow just removing S20klogd
+symlink from /etc/rcX.d from the created rootfs?
+
+The goal is to have syslog installed (in this case built into busybox),
+but disabled at boot up time.
+
+Any help is more than welcome.
+
+Tanks in advance,
+=C5=81ukasz Majewski
+
+--Sig_/tyRuq3KZe+lpObQ.6=8+_EE
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2
+
+iEYEARECAAYFAlgofgQACgkQf9/hG2YwgjGFKwCgwwUl0sBnuGHmSfxSXDp4o3Wt
+occAn1a1GvwfIF1bS5U2/wGA6/YGeNWb
+=hn0L
+-----END PGP SIGNATURE-----
+
+--Sig_/tyRuq3KZe+lpObQ.6=8+_EE--
