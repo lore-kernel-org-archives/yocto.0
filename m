@@ -1,36 +1,67 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
+Return-Path: <bill.randle@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0EBB5E00C9D; Mon, 14 Nov 2016 06:36:10 -0800 (PST)
+	id E3839E00724; Mon, 14 Nov 2016 07:10:36 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (bill.randle[at]gmail.com)
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.82.68 listed in dnsbl.sorbs.net]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.82.68 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
-	*      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CFC21E00C98
-	for <yocto@yoctoproject.org>; Mon, 14 Nov 2016 06:36:06 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.15.2/8.15.1) with ESMTP id uAEEa1Tr025890;
-	Mon, 14 Nov 2016 06:36:02 -0800 (PST)
-Received: from [128.224.56.48] (128.224.56.48) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.294.0;
-	Mon, 14 Nov 2016 06:36:00 -0800
-To: <mert.ergun@mikro-tasarim.com.tr>, <yocto@yoctoproject.org>
-References: <8a556f5733a5ed58345b4d907f7b5cbb.squirrel@mail.mikro-tasarim.com.tr>
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-Message-ID: <3421be68-caba-3ee8-1f1d-f205c14dc7d8@windriver.com>
-Date: Mon, 14 Nov 2016 09:36:00 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.4.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wm0-f68.google.com (mail-wm0-f68.google.com [74.125.82.68])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 862F1E00724
+	for <yocto@yoctoproject.org>; Mon, 14 Nov 2016 07:10:29 -0800 (PST)
+Received: by mail-wm0-f68.google.com with SMTP id g23so16191138wme.1
+	for <yocto@yoctoproject.org>; Mon, 14 Nov 2016 07:10:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-transfer-encoding;
+	bh=wNcE2B0AGK1I4eCPemYT4L+xS5oaDk+wurmjquGYdkQ=;
+	b=04SMDqxkayTBbNP3VA+4gSurw/fDjMYkisPEiWG1E+VojGnKgC9kNnZjcshg/jyiCh
+	wcsXMqMp4htODW77IOsbGrTXzX+TDR48SXKkrk6LNZP8FU2wKlaOe17z6SYejcy8qPwt
+	PecZHtwcem0Q75Wh8BJy+RWb81k5dLGjN5VeuEY+GGTQBdWkm3ZeuxZbrNgr8gToupus
+	hhtqDOD7D2h8vezrqmN5KN9dVj5KdtMwOjQLkwWUc+r+Uh3L+W87OF+5eGJbFOUdF+8E
+	AyjG8TIbagf6jgJQvj3mvwvyY781Bgd7UpeAo93t7aSqxEr3OOaFlLUOdGzsSnpHTmTu
+	8nTQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=wNcE2B0AGK1I4eCPemYT4L+xS5oaDk+wurmjquGYdkQ=;
+	b=QhwZp1Sg64vm2S8O1Ne3ixgj9cuJ6eniAPs9ZoKTVViCsNfB/10RPlzBe4NV9dINw+
+	mTP/fNbaZeCYmIYX1NvY+LYfL7UHKp0sFIN7nL9J63Y6mbdFIuu1fv6Z405SKJtF5g1e
+	ART9hwIZGq8/s71bUI1oJHSnKQRrYj1EMByZmRQelCK3tx3gGVPfQSe/Hy/yYPc430dD
+	SSYSnAQrpTlmEVYtffMRiCF62+SiRdbxbQtBrABgF7BfgPNWeOclATYrFmtzJ4pswBG9
+	xVJm6eRiSWN0MH/rI40EknHSdib7mGHx+q6P1rhEXIyo3h3r3/jFOfaIyfNshERG91sn
+	mTow==
+X-Gm-Message-State: ABUngvdDmdVNvpvm2OJoIaOb/bQqFtbbrH4eFGn9FmGYJgB0Fik1nimJXv5R0Y+RPMe/me01QiB1VilamCGtZQ==
+X-Received: by 10.28.17.205 with SMTP id 196mr10611209wmr.78.1479136228753;
+	Mon, 14 Nov 2016 07:10:28 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <8a556f5733a5ed58345b4d907f7b5cbb.squirrel@mail.mikro-tasarim.com.tr>
-Subject: Re: Correct way to build patched kernel modules
+Received: by 10.28.157.142 with HTTP; Mon, 14 Nov 2016 07:10:28 -0800 (PST)
+In-Reply-To: <1478889473.18810.3.camel@toganlabs.com>
+References: <CAGkf0HCnrCpufRV9U_pz7LYDkCvhK7of_1=0zgS425GeGYSUPQ@mail.gmail.com>
+	<1478889473.18810.3.camel@toganlabs.com>
+From: Bill Randle <bill.randle@gmail.com>
+Date: Mon, 14 Nov 2016 07:10:28 -0800
+Message-ID: <CA+n--H8UjNN_PuMaTzDf7S92NqdQber7UW7DOapYvrhDivs1FQ@mail.gmail.com>
+To: pidge@toganlabs.com
+Cc: Alain Achkar <alain.achkar@triacta.com>, joshua.g.lock@intel.com,
+	yocto@yoctoproject.org
+Subject: Re: Buildbot / Autobuilder / custom?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,94 +73,77 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 14 Nov 2016 14:36:10 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 14 Nov 2016 15:10:37 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On 2016-11-14 10:01 AM, Mert Can Ergun wrote:
-> Hi!
->
-> I am currently using a kernel bbappend file to build my kernel and kernel
-> modules. My bbappend file looks like this:
->
-> linux-imx_%.bbappend
-> SUMMARY = "Patches applied to Freescale kernel"
-> DESCRIPTION = "blank"
->
-> FILESPATH_prepend := "${THISDIR}/patches:"
->
-> SRC_URI += " \
-> 	file://defconfig-mt \
-> 	**patches for kernel modules appear here**
-> "
->
-> do_configure_prepend() {
->             cp ${WORKDIR}/defconfig-mt ${WORKDIR}/defconfig
-> }
->
-> However, this approach doesn't feel right and I want to seperate kernel
-> and its modules from each other at build.
+Also, be sure to check the Yocto Project wiki pages:
+    https://wiki.yoctoproject.org/wiki/The_Yocto_Autobuilder
+in particular, the AB cluster setup and AB maintenance links. Even
+though the one link refers to setting up an entire cluster, I've used
+that procedure to setup a single autobuilder, as well.
 
-If the kernel modules that you are patching and building are in-tree,
-there's no problem with the architecture of what you have above. The
-build process for in-tree modules is integrated with the main kernel
-build.
+    -Bill
 
+On Fri, Nov 11, 2016 at 10:37 AM, Beth 'pidge' Flanagan
+<pidge@toganlabs.com> wrote:
+> On Fri, 2016-11-11 at 12:35 -0500, Alain Achkar wrote:
+>> Hello Joshua!
+>>
+>> We are using Yocto to build for the Variscite DART-6UL SoM which is
+>> based on Freescale/NXP i.MX6UL (http://variwiki.com/index.php?title=3DD
+>> ART-6UL_Yocto_Jethro_R1_build).
+>>
+>> Currently, developers run builds manually on their desktops. We are
+>> considering using a continuous integration server. I found out that
+>> The Yocto Project uses Autobuilder which in turn uses BuildBot. I
+>> read most of the introductory documentation.
+>>
+>> Would you recommend that we install only BuildBot and configure it to
+>> build what we need?
+>>
+>> OR
+>>
+>> Would you recommend that we install Autobuilder (and BuildBot) and
+>> configure it to build what we need?
 >
-> What I tried to do is remove patches from the bbappend file and keep
-> defconfig file intact. Create a new bb file and put patches inside there
-> instead. So new architecture looks like this:
+> Actually, the yocto-autobuilder already contains buildbot so no need
+> for both.
 >
-> linux-imx_%.bbappend
-> SUMMARY = "Patches applied to Freescale kernel"
-> DESCRIPTION = "MT6415CA"
+> If you read:
 >
-> FILESPATH_prepend := "${THISDIR}/patches:"
+> http://git.yoctoproject.org/cgit.cgi/yocto-autobuilder/tree/README-QUIC
+> KSTART
 >
-> SRC_URI += " \
-> 	file://defconfig-mt \
-> "
+> and probably some of the other READMEs and the documentation in the
+> docs directory of the yocto-autobuilder directory, it should get you
+> started in the right direction.
 >
-> do_configure_prepend() {
->             cp ${WORKDIR}/defconfig-mt ${WORKDIR}/defconfig
-> }
+> Feel free to ask questions if you need help.
 >
-> mt-module_0.1.bb
-> SUMMARY = "Patches applied to Freescale kernel"
-> DESCRIPTION = "blank"
-> LICENSE = "GPLv2"
+> -b
 >
-> inherit module
+> Elizabeth 'pidge' Flanagan
+> Founder/CTO Tog=C3=A1n Labs
+> www.toganlabs.com
 >
-> FILESPATH_prepend := "${THISDIR}/patches:"
+>>
+>> What is the faster path to get up and running?
+>>
+>> Thanks!
+>> Alain.
+>>
+>> --
+>> Alain Achkar, M.Eng. | Software Engineer
+>> Triacta Power Solutions
+>> (O) 613.256.2868 (C) 613.406.6520
+>> www.triacta.com
 >
-> SRC_URI += " \
-> 	**patches appear here**
-> "
 >
-> Now my kernel append module doesn't even apply defconfig changes and new
-> bb file doesn't do anything either. What's the right way to do this?
-
-If you are patching the kernel source with this recipe, it needs to
-match the name of your kernel recipe.
-
-Bruce
-
-
 >
-> -------------------------------
-> Mert Can Ergun
-> Yazilim Gelistirme Muhendisi
->
-> Mikro-Tasarim Ltd.
-> ODTU-Teknokent ODTU-MET Alani
-> A-1 Blok 4. Bolum Ofis 3/A
-> TR-06530 Ankara
-> T: +90 312 286 0103
-> F: +90 312 286 0104
-> U: www.mikro-tasarim.com.tr
-> E: mert.ergun@mikro-tasarim.com.tr
-> -------------------------------
->
-
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
