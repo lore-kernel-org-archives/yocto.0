@@ -1,28 +1,26 @@
-Return-Path: <andrew.stuart@supercoders.com.au>
+Return-Path: <auh@auh.yoctoproject.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E4F4AE00B47; Mon, 14 Nov 2016 00:58:09 -0800 (PST)
+	id 88967E00B47; Mon, 14 Nov 2016 01:39:45 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
+	autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.supercoders.com.au (mail.supercoders.com.au [54.215.13.78])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B26D2E00A1A
-	for <yocto@yoctoproject.org>; Mon, 14 Nov 2016 00:58:06 -0800 (PST)
-Received: from [192.168.1.126] (unknown [101.167.6.11])
-	by mail.supercoders.com.au (Postfix) with ESMTPS id 0F93760844
-	for <yocto@yoctoproject.org>; Mon, 14 Nov 2016 08:58:04 +0000 (UTC)
-Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
-From: Andrew Stuart <andrew.stuart@supercoders.com.au>
-In-Reply-To: <37AEBBBC-581C-47BB-B565-20822DDC9CA9@supercoders.com.au>
-Date: Mon, 14 Nov 2016 19:58:02 +1100
-Message-Id: <FBFCB952-EBD0-41AF-8475-43087229AA3F@supercoders.com.au>
-References: <37AEBBBC-581C-47BB-B565-20822DDC9CA9@supercoders.com.au>
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from auh.yoctoproject.org (unknown [198.145.29.2])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 60CF2E00A1A
+	for <yocto@yoctoproject.org>; Mon, 14 Nov 2016 01:39:41 -0800 (PST)
+Received: from auh.yoctoproject.org (localhost [127.0.0.1])
+	by auh.yoctoproject.org (Postfix) with ESMTP id 19CA16FE1E15
+	for <yocto@yoctoproject.org>; Mon, 14 Nov 2016 09:39:41 +0000 (UTC)
+MIME-Version: 1.0
+From: auh@auh.yoctoproject.org
 To: yocto@yoctoproject.org
-X-Mailer: Apple Mail (2.3124)
-Subject: Re: Errors when doing bitbake xen-guest-image-minimal
+Message-Id: <20161114093941.19CA16FE1E15@auh.yoctoproject.org>
+Date: Mon, 14 Nov 2016 09:39:41 +0000 (UTC)
+Subject: [AUH] Upgrade status: 2016-11-14
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,67 +32,182 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 14 Nov 2016 08:58:10 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 14 Nov 2016 09:39:45 -0000
+Content-Type: multipart/mixed; boundary="===============8393017479995232689=="
 
-Sorry for the noise, please disregard my question,  I hit the problem =
-with the large hammer of deleting my temp directory and I now seem to =
-have moved onto some new problem=E2=80=A6.
+--===============8393017479995232689==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
 
+QVVIIGZpbmlzaGVkIHVwZ3JhZGUgYmF0Y2ggdGhlIHJlc3VsdCBwYXRjaGVzL2xvZ3MgY2FuIGJl
+IGZvdW5kIGF0OgpodHRwczovL2xvZ3MueW9jdG9wcm9qZWN0Lm9yZy9hdWgvLzIwMTYxMTEyMTUw
+MDAzLnRhci5neiwgbmV4dCBhcmUgdGhlIHN0YXRpc3RpY3M6CgpSZWNpcGUgdXBncmFkZSBzdGF0
+aXN0aWNzOgoKICAgICogRmFpbGVkKGRvX2NvbmZpZ3VyZSk6IDkKICAgICAgICB3ZXN0b24sIDEu
+MTIuMCwgSnVzc2kgS3Vra29uZW4gPGp1c3NpLmt1a2tvbmVuQGludGVsLmNvbT4KICAgICAgICBn
+c3RyZWFtZXIxLjAtcGx1Z2lucy1nb29kLCAxLjEwLjAsIE1heGluIEIuIEpvaG4gPG1heGluLmpv
+aG5AaW50ZWwuY29tPgogICAgICAgIGdzdHJlYW1lcjEuMC1wbHVnaW5zLWJhZCwgMS4xMC4wLCBN
+YXhpbiBCLiBKb2huIDxtYXhpbi5qb2huQGludGVsLmNvbT4KICAgICAgICB2dGUsIDAuNDYuMSwg
+SnVzc2kgS3Vra29uZW4gPGp1c3NpLmt1a2tvbmVuQGludGVsLmNvbT4KICAgICAgICBwaW5lbnRy
+eSwgMC45LjcsIEFybWluIEt1c3RlciA8YWt1c3RlcjgwOEBnbWFpbC5jb20+CiAgICAgICAgeHNl
+cnZlci14b3JnLCAxLjE4Ljk5LjkwMiwgSnVzc2kgS3Vra29uZW4gPGp1c3NpLmt1a2tvbmVuQGlu
+dGVsLmNvbT4KICAgICAgICBnc3RyZWFtZXIxLjAtcnRzcC1zZXJ2ZXIsIDEuMTAuMCwgTWF4aW4g
+Qi4gSm9obiA8bWF4aW4uam9obkBpbnRlbC5jb20+CiAgICAgICAgbGlicGNhcCwgMS44LjEsIE1h
+eGluIEIuIEpvaG4gPG1heGluLmpvaG5AaW50ZWwuY29tPgogICAgICAgIGdzdHJlYW1lcjEuMC1w
+bHVnaW5zLWJhc2UsIDEuMTAuMCwgTWF4aW4gQi4gSm9obiA8bWF4aW4uam9obkBpbnRlbC5jb20+
+CiAgICAqIEZhaWxlZChkb19jb21waWxlKTogMTQKICAgICAgICBweXRob24tZ2l0LCAyLjEuMCwg
+Sm9zZSBMYW1lZ28gPGpvc2UuYS5sYW1lZ29AbGludXguaW50ZWwuY29tPgogICAgICAgIG1lc2Es
+IDEzLjAuMCwgSnVzc2kgS3Vra29uZW4gPGp1c3NpLmt1a2tvbmVuQGludGVsLmNvbT4KICAgICAg
+ICB0ZXhpbmZvLCA2LjMsIExlb25hcmRvIFNhbmRvdmFsIDxsZW9uYXJkby5zYW5kb3ZhbC5nb256
+YWxlekBsaW51eC5pbnRlbC5jb20+CiAgICAgICAgZ3BnbWUsIDEuNy4xLCBIb25neHUgSmlhIDxo
+b25neHUuamlhQHdpbmRyaXZlci5jb20+CiAgICAgICAgcXVpbHQsIDAuNjUsIFJvYmVydCBZYW5n
+IDxsaWV6aGkueWFuZ0B3aW5kcml2ZXIuY29tPgogICAgICAgIHdwYS1zdXBwbGljYW50LCAyLjYs
+IE1heGluIEIuIEpvaG4gPG1heGluLmpvaG5AaW50ZWwuY29tPgogICAgICAgIGNtYWtlLCAzLjcu
+MCwgQWxleGFuZGVyIEthbmF2aW4gPGFsZXhhbmRlci5rYW5hdmluQGludGVsLmNvbT4KICAgICAg
+ICBsZXNzLCA0ODcsIFJvYmVydCBZYW5nIDxsaWV6aGkueWFuZ0B3aW5kcml2ZXIuY29tPgogICAg
+ICAgIHB5dGhvbi1zZXR1cHRvb2xzLCAyOC44LjAsIEpvc2UgTGFtZWdvIDxqb3NlLmEubGFtZWdv
+QGxpbnV4LmludGVsLmNvbT4KICAgICAgICBpY3UsIDU4LjEsIEFsZXhhbmRlciBLYW5hdmluIDxh
+bGV4YW5kZXIua2FuYXZpbkBpbnRlbC5jb20+CiAgICAgICAga2V4ZWMtdG9vbHMsIDIuMC4xMywg
+QWxleGFuZGVyIEthbmF2aW4gPGFsZXhhbmRlci5rYW5hdmluQGludGVsLmNvbT4KICAgICAgICBj
+b2dsLTEuMCwgMS4yMi4yLCBKdXNzaSBLdWtrb25lbiA8anVzc2kua3Vra29uZW5AaW50ZWwuY29t
+PgogICAgICAgIGxpYnhrYmNvbW1vbiwgMC43LjAsIEp1c3NpIEt1a2tvbmVuIDxqdXNzaS5rdWtr
+b25lbkBpbnRlbC5jb20+CiAgICAgICAgcnVieSwgMi4zLjEsIExlb25hcmRvIFNhbmRvdmFsIDxs
+ZW9uYXJkby5zYW5kb3ZhbC5nb256YWxlekBsaW51eC5pbnRlbC5jb20+CiAgICAqIEZhaWxlZChk
+b19wYXRjaCk6IDQKICAgICAgICBiYXNoLCA0LjQsIEhvbmd4dSBKaWEgPGhvbmd4dS5qaWFAd2lu
+ZHJpdmVyLmNvbT4KICAgICAgICByZWFkbGluZSwgNy4wLCBIb25neHUgSmlhIDxob25neHUuamlh
+QHdpbmRyaXZlci5jb20+CiAgICAgICAgc3lzcHJvZiwgMy4yMi4yK2dpdEFVVE9JTkMrNDQxMmE1
+NjZiZSwgQWxleGFuZGVyIEthbmF2aW4gPGFsZXhhbmRlci5rYW5hdmluQGludGVsLmNvbT4KICAg
+ICAgICBvcGVuc3NsLCAxLjEuMGMsIEFsZXhhbmRlciBLYW5hdmluIDxhbGV4YW5kZXIua2FuYXZp
+bkBpbnRlbC5jb20+CiAgICAqIEZhaWxlZChkb19wYWNrYWdlKTogMQogICAgICAgIGhkcGFybSwg
+OS41MCwgUm9iZXJ0IFlhbmcgPGxpZXpoaS55YW5nQHdpbmRyaXZlci5jb20+CiAgICAqIEZhaWxl
+ZChkb19mZXRjaCk6IDQKICAgICAgICBweXRob24zLXNldHVwdG9vbHMsIDI4LjguMCwgRWR3aW4g
+UGxhdWNodSA8ZWR3aW4ucGxhdWNodS5jYW1hY2hvQGxpbnV4LmludGVsLmNvbT4KICAgICAgICBw
+eXRob24zLW1ha28sIDEuMC42LCBFZHdpbiBQbGF1Y2h1IDxlZHdpbi5wbGF1Y2h1LmNhbWFjaG9A
+bGludXguaW50ZWwuY29tPgogICAgICAgIGdpdCwgMi4xMC4yLCBSb2JlcnQgWWFuZyA8bGllemhp
+LnlhbmdAd2luZHJpdmVyLmNvbT4KICAgICAgICBweXRob24zLWdpdCwgMi4xLjAsIEVkd2luIFBs
+YXVjaHUgPGVkd2luLnBsYXVjaHUuY2FtYWNob0BsaW51eC5pbnRlbC5jb20+CiAgICAqIFN1Y2Nl
+ZWRlZDogNjAKICAgICAgICBzaGFyZWQtbWltZS1pbmZvLCAxLjcsIEp1c3NpIEt1a2tvbmVuIDxq
+dXNzaS5rdWtrb25lbkBpbnRlbC5jb20+CiAgICAgICAgZGJ1cy1nbGliLCAwLjEwOCwgQ2hlbiBR
+aSA8UWkuQ2hlbkB3aW5kcml2ZXIuY29tPgogICAgICAgIGx0dG5nLW1vZHVsZXMsIDIuOC4zK2dp
+dEFVVE9JTkMrMTE0ZTBlNGFmZSwgUmljaGFyZCBQdXJkaWUgPHJpY2hhcmQucHVyZGllQGxpbnV4
+Zm91bmRhdGlvbi5vcmc+CiAgICAgICAgZTJmc3Byb2dzLCAxLjQzLjMsIFJvYmVydCBZYW5nIDxs
+aWV6aGkueWFuZ0B3aW5kcml2ZXIuY29tPgogICAgICAgIGdkYiwgNy4xMiwgS2hlbSBSYWogPHJh
+ai5raGVtQGdtYWlsLmNvbT4KICAgICAgICBtZW51LWNhY2hlLCAxLjAuMiwgSnVzc2kgS3Vra29u
+ZW4gPGp1c3NpLmt1a2tvbmVuQGludGVsLmNvbT4KICAgICAgICBibHVlejUsIDUuNDMsIE1heGlu
+IEIuIEpvaG4gPG1heGluLmpvaG5AaW50ZWwuY29tPgogICAgICAgIGJ1c3lib3gsIDEuMjUuMSwg
+Q2hlbiBRaSA8UWkuQ2hlbkB3aW5kcml2ZXIuY29tPgogICAgICAgIHBheC11dGlscywgMS4xLjcs
+IEhvbmd4dSBKaWEgPGhvbmd4dS5qaWFAd2luZHJpdmVyLmNvbT4KICAgICAgICBsaWJpbnB1dCwg
+MS41LjEsIEp1c3NpIEt1a2tvbmVuIDxqdXNzaS5rdWtrb25lbkBpbnRlbC5jb20+CiAgICAgICAg
+eGY4Ni1pbnB1dC1ldmRldiwgMi4xMC40LCBKdXNzaSBLdWtrb25lbiA8anVzc2kua3Vra29uZW5A
+aW50ZWwuY29tPgogICAgICAgIGJ0cmZzLXRvb2xzLCA0LjguMywgQWxleGFuZGVyIEthbmF2aW4g
+PGFsZXhhbmRlci5rYW5hdmluQGludGVsLmNvbT4KICAgICAgICBtYW4tcGFnZXMsIDQuMDgsIEhv
+bmd4dSBKaWEgPGhvbmd4dS5qaWFAd2luZHJpdmVyLmNvbT4KICAgICAgICBsaWJzb2x2LCAwLjYu
+MjQsIE1heGluIEIuIEpvaG4gPG1heGluLmpvaG5AaW50ZWwuY29tPgogICAgICAgIHR6ZGF0YSwg
+MjAxNmksIFJvYmVydCBZYW5nIDxsaWV6aGkueWFuZ0B3aW5kcml2ZXIuY29tPgogICAgICAgIGRo
+Y3AsIDQuMy41LCBIb25neHUgSmlhIDxob25neHUuamlhQHdpbmRyaXZlci5jb20+CiAgICAgICAg
+eGtleWJvYXJkLWNvbmZpZywgMi4xOSwgSnVzc2kgS3Vra29uZW4gPGp1c3NpLmt1a2tvbmVuQGlu
+dGVsLmNvbT4KICAgICAgICBweXRob24tc2NvbnMsIDIuNS4xLCBKb3NlIExhbWVnbyA8am9zZS5h
+LmxhbWVnb0BsaW51eC5pbnRlbC5jb20+CiAgICAgICAgaXcsIDQuOSwgTWF4aW4gQi4gSm9obiA8
+bWF4aW4uam9obkBpbnRlbC5jb20+CiAgICAgICAgZWxmdXRpbHMsIDAuMTY3LCBIb25neHUgSmlh
+IDxob25neHUuamlhQHdpbmRyaXZlci5jb20+CiAgICAgICAgZ3JlcCwgMi4yNiwgQ2hlbiBRaSA8
+UWkuQ2hlbkB3aW5kcml2ZXIuY29tPgogICAgICAgIGxpYm5vdGlmeSwgMC43LjcsIEp1c3NpIEt1
+a2tvbmVuIDxqdXNzaS5rdWtrb25lbkBpbnRlbC5jb20+CiAgICAgICAgaWZ1cGRvd24sIDAuOC4x
+NiwgTWF4aW4gQi4gSm9obiA8bWF4aW4uam9obkBpbnRlbC5jb20+CiAgICAgICAgZGJ1cy10ZXN0
+LCAxLjEwLjEyLCBDaGVuIFFpIDxRaS5DaGVuQHdpbmRyaXZlci5jb20+CiAgICAgICAgZ3VpbGUs
+IDIuMC4xMywgUm9iZXJ0IFlhbmcgPGxpZXpoaS55YW5nQHdpbmRyaXZlci5jb20+CiAgICAgICAg
+c3VkbywgMS44LjE4cDEsIENoZW4gUWkgPFFpLkNoZW5Ad2luZHJpdmVyLmNvbT4KICAgICAgICBu
+ZXR0bGUsIDMuMywgQXJtaW4gS3VzdGVyIDxha3VzdGVyODA4QGdtYWlsLmNvbT4KICAgICAgICB3
+YXlsYW5kLCAxLjEyLjAsIEp1c3NpIEt1a2tvbmVuIDxqdXNzaS5rdWtrb25lbkBpbnRlbC5jb20+
+CiAgICAgICAgbmZzLXV0aWxzLCAxLjMuNCwgTWFyaWFubyBMb3BleiA8bWFyaWFuby5sb3BlekBs
+aW51eC5pbnRlbC5jb20+CiAgICAgICAgY3VybCwgNy41MS4wLCBDaGVuIFFpIDxRaS5DaGVuQHdp
+bmRyaXZlci5jb20+CiAgICAgICAgdGFnbGliLCAxLjExLjEsIE1heGluIEIuIEpvaG4gPG1heGlu
+LmpvaG5AaW50ZWwuY29tPgogICAgICAgIGhhcmZidXp6LCAxLjMuMywgTWF4aW4gQi4gSm9obiA8
+bWF4aW4uam9obkBpbnRlbC5jb20+CiAgICAgICAgZGlmZnV0aWxzLCAzLjUsIENoZW4gUWkgPFFp
+LkNoZW5Ad2luZHJpdmVyLmNvbT4KICAgICAgICBjYS1jZXJ0aWZpY2F0ZXMsIDIwMTYxMTAyLCBB
+bGV4YW5kZXIgS2FuYXZpbiA8YWxleGFuZGVyLmthbmF2aW5AaW50ZWwuY29tPgogICAgICAgIGd0
+ayszLCAzLjIyLjMsIEp1c3NpIEt1a2tvbmVuIDxqdXNzaS5rdWtrb25lbkBpbnRlbC5jb20+CiAg
+ICAgICAgZ2xpYi0yLjAsIDIuNTAuMiwgSnVzc2kgS3Vra29uZW4gPGp1c3NpLmt1a2tvbmVuQGlu
+dGVsLmNvbT4KICAgICAgICBvZm9ubywgMS4xOSwgTWF4aW4gQi4gSm9obiA8bWF4aW4uam9obkBp
+bnRlbC5jb20+CiAgICAgICAgZ2F3aywgNC4xLjQsIENoZW4gUWkgPFFpLkNoZW5Ad2luZHJpdmVy
+LmNvbT4KICAgICAgICBnc2V0dGluZ3MtZGVza3RvcC1zY2hlbWFzLCAzLjIyLjAsIEp1c3NpIEt1
+a2tvbmVuIDxqdXNzaS5rdWtrb25lbkBpbnRlbC5jb20+CiAgICAgICAgcGNpdXRpbHMsIDMuNS4y
+LCBDaGVuIFFpIDxRaS5DaGVuQHdpbmRyaXZlci5jb20+CiAgICAgICAgc3FsaXRlMywgMy4xNS4x
+LCBNYXhpbiBCLiBKb2huIDxtYXhpbi5qb2huQGludGVsLmNvbT4KICAgICAgICBkYnVzLCAxLjEw
+LjEyLCBDaGVuIFFpIDxRaS5DaGVuQHdpbmRyaXZlci5jb20+CiAgICAgICAgbGlieGksIDEuNy44
+LCBKdXNzaSBLdWtrb25lbiA8anVzc2kua3Vra29uZW5AaW50ZWwuY29tPgogICAgICAgIHN5c3N0
+YXQsIDExLjUuMiwgQ2hlbiBRaSA8UWkuQ2hlbkB3aW5kcml2ZXIuY29tPgogICAgICAgIHB5dGhv
+bjMtcHlnb2JqZWN0LCAzLjIyLjAsIEVkd2luIFBsYXVjaHUgPGVkd2luLnBsYXVjaHUuY2FtYWNo
+b0BsaW51eC5pbnRlbC5jb20+CiAgICAgICAgcHl0aG9uLXBleHBlY3QsIDQuMi4xLCBKb3NlIExh
+bWVnbyA8am9zZS5hLmxhbWVnb0BsaW51eC5pbnRlbC5jb20+CiAgICAgICAgc3dpZywgMy4wLjEw
+LCBFZHdpbiBQbGF1Y2h1IDxlZHdpbi5wbGF1Y2h1LmNhbWFjaG9AbGludXguaW50ZWwuY29tPgog
+ICAgICAgIGdudXBnLCAyLjEuMTUsIEhvbmd4dSBKaWEgPGhvbmd4dS5qaWFAd2luZHJpdmVyLmNv
+bT4KICAgICAgICBzbGFuZywgMi4zLjEsIFJvYmVydCBZYW5nIDxsaWV6aGkueWFuZ0B3aW5kcml2
+ZXIuY29tPgogICAgICAgIHN0cmFjZSwgNC4xNCwgUm9iZXJ0IFlhbmcgPGxpZXpoaS55YW5nQHdp
+bmRyaXZlci5jb20+CiAgICAgICAgcHl0aG9uMy1udW1weSwgMS4xMS4yLCBFZHdpbiBQbGF1Y2h1
+IDxlZHdpbi5wbGF1Y2h1LmNhbWFjaG9AbGludXguaW50ZWwuY29tPgogICAgICAgIGxpZ2h0dHBk
+LCAxLjQuNDMsIEFsZXhhbmRlciBLYW5hdmluIDxhbGV4YW5kZXIua2FuYXZpbkBpbnRlbC5jb20+
+CiAgICAgICAgbXBmciwgMy4xLjUsIEtoZW0gUmFqIDxyYWoua2hlbUBnbWFpbC5jb20+CiAgICAg
+ICAgaXByb3V0ZTIsIDQuOC4wLCBNYXhpbiBCLiBKb2huIDxtYXhpbi5qb2huQGludGVsLmNvbT4K
+ICAgICAgICB4Zjg2LWlucHV0LXN5bmFwdGljcywgMS44Ljk5LjIsIEp1c3NpIEt1a2tvbmVuIDxq
+dXNzaS5rdWtrb25lbkBpbnRlbC5jb20+CiAgICAgICAgZ3N0cmVhbWVyMS4wLCAxLjEwLjAsIE1h
+eGluIEIuIEpvaG4gPG1heGluLmpvaG5AaW50ZWwuY29tPgogICAgICAgIGx0cCwgMjAxNjA5MjAs
+IERlbmdrZSBEdSA8ZGVuZ2tlLmR1QHdpbmRyaXZlci5jb20+CiAgICAgICAgcHl0aG9uLW1ha28s
+IDEuMC42LCBKb3NlIExhbWVnbyA8am9zZS5hLmxhbWVnb0BsaW51eC5pbnRlbC5jb20+CiAgICAg
+ICAgcHl0aG9uMy1waXAsIDkuMC4xLCBFZHdpbiBQbGF1Y2h1IDxlZHdpbi5wbGF1Y2h1LmNhbWFj
+aG9AbGludXguaW50ZWwuY29tPgogICAgICAgIHB5dGhvbi1udW1weSwgMS4xMS4yLCBKb3NlIExh
+bWVnbyA8am9zZS5hLmxhbWVnb0BsaW51eC5pbnRlbC5jb20+CiAgICAqIEZhaWxlZChvdGhlciBl
+cnJvcnMpOiAxOQogICAgICAgIGZsZXgsIDIuNi4yLCBDaGVuIFFpIDxRaS5DaGVuQHdpbmRyaXZl
+ci5jb20+CiAgICAgICAgd2Via2l0Z3RrLCAyLjE0LjIsIEFsZXhhbmRlciBLYW5hdmluIDxhbGV4
+YW5kZXIua2FuYXZpbkBpbnRlbC5jb20+CiAgICAgICAgcGVybCwgNS4yNC4xLCBBbsOtYmFsIExp
+bcOzbiA8YW5pYmFsLmxpbW9uQGxpbnV4LmludGVsLmNvbT4KICAgICAgICBnb2JqZWN0LWludHJv
+c3BlY3Rpb24sIDEuNTAuMCwgQWxleGFuZGVyIEthbmF2aW4gPGFsZXhhbmRlci5rYW5hdmluQGlu
+dGVsLmNvbT4KICAgICAgICB1dGlsLWxpbnV4LCAyLjI5LCBDaGVuIFFpIDxRaS5DaGVuQHdpbmRy
+aXZlci5jb20+CiAgICAgICAgZ2hvc3RzY3JpcHQsIDkuMjByYzEsIEhvbmd4dSBKaWEgPGhvbmd4
+dS5qaWFAd2luZHJpdmVyLmNvbT4KICAgICAgICBmaWxlLCA1LjI5LCBSb2JlcnQgWWFuZyA8bGll
+emhpLnlhbmdAd2luZHJpdmVyLmNvbT4KICAgICAgICBycG0sIDUuNC4xNywgTWFyayBIYXRsZSA8
+bWFyay5oYXRsZUB3aW5kcml2ZXIuY29tPgogICAgICAgIHUtYm9vdC1ta2ltYWdlLCB2MjAxNi4w
+OS4wMStnaXRBVVRPSU5DK2YzMzYzYzA2MDQsIERlbnlzIERteXRyaXllbmtvIDxkZW5pc0BkZW5p
+eC5vcmc+CiAgICAgICAgcGlneiwgMi4zLjQsIEhvbmd4dSBKaWEgPGhvbmd4dS5qaWFAd2luZHJp
+dmVyLmNvbT4KICAgICAgICBjdXBzLCAyLjIuMSwgQ2hlbiBRaSA8UWkuQ2hlbkB3aW5kcml2ZXIu
+Y29tPgogICAgICAgIHhmODYtdmlkZW8taW50ZWwsIDIwMDQwNzIxK2dpdEFVVE9JTkMrYmVjNDdm
+OTM2OSwgSnVzc2kgS3Vra29uZW4gPGp1c3NpLmt1a2tvbmVuQGludGVsLmNvbT4KICAgICAgICBw
+cmVsaW5rLCAyMDE1MTAzMC4rZ2l0QVVUT0lOQys5Mjc5NzliYmQxLCBNYXJrIEhhdGxlIDxtYXJr
+LmhhdGxlQHdpbmRyaXZlci5jb20+CiAgICAgICAgZXBpcGhhbnksIDMuMjIuMiwgQWxleGFuZGVy
+IEthbmF2aW4gPGFsZXhhbmRlci5rYW5hdmluQGludGVsLmNvbT4KICAgICAgICBzZXJmLCAxLjMu
+OSwgTWF4aW4gQi4gSm9obiA8bWF4aW4uam9obkBpbnRlbC5jb20+CiAgICAgICAgc3lzdGVtZC1i
+b290LCAyMzIrZ2l0QVVUT0lOQythMWUyZWY3ZWM5LCBDaGVuIFFpIDxRaS5DaGVuQHdpbmRyaXZl
+ci5jb20+CiAgICAgICAgYXB0LCAxLjMuMSwgQW7DrWJhbCBMaW3Ds24gPGFuaWJhbC5saW1vbkBs
+aW51eC5pbnRlbC5jb20+CiAgICAgICAgbHNiaW5pdHNjcmlwdHMsIDkuNjksIFJvc3MgQnVydG9u
+IDxyb3NzLmJ1cnRvbkBpbnRlbC5jb20+CiAgICAgICAgbHR0bmctdG9vbHMsIDIuOC4yK2dpdEFV
+VE9JTkMrNDgyNjJmMTE3ZCwgUmljaGFyZCBQdXJkaWUgPHJpY2hhcmQucHVyZGllQGxpbnV4Zm91
+bmRhdGlvbi5vcmc+CgogICAgVE9UQUw6IGF0dGVtcHRlZD0xMTEgc3VjY2VlZGVkPTYwKDU0LjA1
+JSkgZmFpbGVkPTUxKDQ1Ljk1JSkKClJlY2lwZSB1cGdyYWRlIHN0YXRpc3RpY3MgcGVyIE1haW50
+YWluZXI6CgogICAgTWFyaWFubyBMb3BleiA8bWFyaWFuby5sb3BlejogYXR0ZW1wdGVkPTEgc3Vj
+Y2VlZGVkPTEoMTAwLjAwJSkgZmFpbGVkPTAoMC4wMCUpCiAgICBFZHdpbiBQbGF1Y2h1IDxlZHdp
+bi5wbGF1Y2h1LmNhbWFjaG86IGF0dGVtcHRlZD03IHN1Y2NlZWRlZD00KDU3LjE0JSkgZmFpbGVk
+PTMoNDIuODYlKQogICAgSG9uZ3h1IEppYSA8aG9uZ3h1LmppYTogYXR0ZW1wdGVkPTEwIHN1Y2Nl
+ZWRlZD01KDUwLjAwJSkgZmFpbGVkPTUoNTAuMDAlKQogICAgUmljaGFyZCBQdXJkaWUgPHJpY2hh
+cmQucHVyZGllOiBhdHRlbXB0ZWQ9MiBzdWNjZWVkZWQ9MSg1MC4wMCUpIGZhaWxlZD0xKDUwLjAw
+JSkKICAgIEFsZXhhbmRlciBLYW5hdmluIDxhbGV4YW5kZXIua2FuYXZpbjogYXR0ZW1wdGVkPTEx
+IHN1Y2NlZWRlZD0zKDI3LjI3JSkgZmFpbGVkPTgoNzIuNzMlKQogICAgTWF4aW4gQi4gSm9obiA8
+bWF4aW4uam9objogYXR0ZW1wdGVkPTE3IHN1Y2NlZWRlZD0xMCg1OC44MiUpIGZhaWxlZD03KDQx
+LjE4JSkKICAgIEFybWluIEt1c3RlciA8YWt1c3RlcjgwODogYXR0ZW1wdGVkPTIgc3VjY2VlZGVk
+PTEoNTAuMDAlKSBmYWlsZWQ9MSg1MC4wMCUpCiAgICBSb2JlcnQgWWFuZyA8bGllemhpLnlhbmc6
+IGF0dGVtcHRlZD0xMCBzdWNjZWVkZWQ9NSg1MC4wMCUpIGZhaWxlZD01KDUwLjAwJSkKICAgIEFu
+w61iYWwgTGltw7NuIDxhbmliYWwubGltb246IGF0dGVtcHRlZD0yIHN1Y2NlZWRlZD0wKDAuMDAl
+KSBmYWlsZWQ9MigxMDAuMDAlKQogICAgRGVueXMgRG15dHJpeWVua28gPGRlbmlzOiBhdHRlbXB0
+ZWQ9MSBzdWNjZWVkZWQ9MCgwLjAwJSkgZmFpbGVkPTEoMTAwLjAwJSkKICAgIEpvc2UgTGFtZWdv
+IDxqb3NlLmEubGFtZWdvOiBhdHRlbXB0ZWQ9NiBzdWNjZWVkZWQ9NCg2Ni42NyUpIGZhaWxlZD0y
+KDMzLjMzJSkKICAgIEtoZW0gUmFqIDxyYWoua2hlbTogYXR0ZW1wdGVkPTIgc3VjY2VlZGVkPTIo
+MTAwLjAwJSkgZmFpbGVkPTAoMC4wMCUpCiAgICBDaGVuIFFpIDxRaS5DaGVuOiBhdHRlbXB0ZWQ9
+MTUgc3VjY2VlZGVkPTExKDczLjMzJSkgZmFpbGVkPTQoMjYuNjclKQogICAgSnVzc2kgS3Vra29u
+ZW4gPGp1c3NpLmt1a2tvbmVuOiBhdHRlbXB0ZWQ9MTkgc3VjY2VlZGVkPTEyKDYzLjE2JSkgZmFp
+bGVkPTcoMzYuODQlKQogICAgRGVuZ2tlIER1IDxkZW5na2UuZHU6IGF0dGVtcHRlZD0xIHN1Y2Nl
+ZWRlZD0xKDEwMC4wMCUpIGZhaWxlZD0wKDAuMDAlKQogICAgTWFyayBIYXRsZSA8bWFyay5oYXRs
+ZTogYXR0ZW1wdGVkPTIgc3VjY2VlZGVkPTAoMC4wMCUpIGZhaWxlZD0yKDEwMC4wMCUpCiAgICBS
+b3NzIEJ1cnRvbiA8cm9zcy5idXJ0b246IGF0dGVtcHRlZD0xIHN1Y2NlZWRlZD0wKDAuMDAlKSBm
+YWlsZWQ9MSgxMDAuMDAlKQogICAgTGVvbmFyZG8gU2FuZG92YWwgPGxlb25hcmRvLnNhbmRvdmFs
+LmdvbnphbGV6OiBhdHRlbXB0ZWQ9MiBzdWNjZWVkZWQ9MCgwLjAwJSkgZmFpbGVkPTIoMTAwLjAw
+JSkK
 
-
-
-
-On 14 Nov 2016, at 7:15 PM, Andrew Stuart =
-<andrew.stuart@supercoders.com.au> wrote:
-
-I=E2=80=99m out of my depth here=E2=80=A6.
-
-Any suggestions as to what might be causing these errors?
-
-thanks!
-
-Initialising tasks: 100% =
-|#########################################################################=
-################################################################| Time: =
-0:00:03 NOTE: Executing SetScene Tasks NOTE: Executing RunQueue Tasks =
-ERROR: gcc-runtime-6.2.0-r0 do_compile: oe_runmake failed ERROR: =
-gcc-runtime-6.2.0-r0 do_compile: Function failed: do_compile (log file =
-is located at =
-/mnt/dude/yocto/poky/build/tmp/work/core2-64-poky-linux/gcc-runtime/6.2.0-=
-r0/temp/log.do_compile.11808) ERROR: Logfile of failure stored in: =
-/mnt/dude/yocto/poky/build/tmp/work/core2-64-poky-linux/gcc-runtime/6.2.0-=
-r0/temp/log.do_compile.11808 Log data follows: | DEBUG: SITE files =
-['endian-little', 'common-linux', 'common-glibc', 'bit-64', =
-'x86_64-linux', 'common'] | DEBUG: Executing shell function do_compile | =
-NOTE: make -j 4 =
-MULTIBUILDTOP=3D/mnt/dude/yocto/poky/build/tmp/work/core2-64-poky-linux/gc=
-c-runtime/6.2.0-r0/gcc-6.2.0/build.x86_64-poky-linux.x86_64-poky-linux/x86=
-_64-poky-linux/libgcc/ | # If this is the top-level multilib, build all =
-the other | # multilibs. | # Early copyback; see "all" above for the =
-rationale. The | =
-dest=3D/mnt/dude/yocto/poky/build/tmp/work/core2-64-poky-linux/gcc-runtime=
-/6.2.0-r0/gcc-6.2.0/build.x86_64-poky-linux.x86_64-poky-linux/x86_64-poky-=
-linux/libgcc/../.././gcc/include/tmp$$-unwind.h; \ | cp unwind.h $dest; =
-\ | chmod a+r $dest; \ | sh =
-../../../../../../../../work-shared/gcc-6.2.0-r0/gcc-6.2.0/libgcc/../move-=
-if-change $dest =
-/mnt/dude/yocto/poky/build/tmp/work/core2-64-poky-linux/gcc-runtime/6.2.0-=
-r0/gcc-6.2.0/build.x86_64-poky-linux.x86_64-poky-linux/x86_64-poky-linux/l=
-ibgcc/../.././gcc/include/unwind.h | # early copy is necessary so that =
-the gcc -B options find | # the right startup files when linking shared =
-libgcc. | /bin/bash =
-../../../../../../../../work-shared/gcc-6.2.0-r0/gcc-6.2.0/libgcc/../mkins=
-talldirs =
-/mnt/dude/yocto/poky/build/tmp/work/core2-64-poky-linux/gcc-runtime/6.2.0-=
-r0/gcc-6.
-
-
---=20
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
-
-
+--===============8393017479995232689==--
