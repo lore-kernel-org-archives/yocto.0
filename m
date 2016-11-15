@@ -1,43 +1,37 @@
-Return-Path: <l.majewski@majess.pl>
+Return-Path: <joshua.g.lock@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B272FE009BF; Tue, 15 Nov 2016 06:34:45 -0800 (PST)
+	id 5259BE00A64; Tue, 15 Nov 2016 08:23:17 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [46.105.40.108 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 4208 seconds by postgrey-1.32 at yocto-www;
-	Tue, 15 Nov 2016 06:34:43 PST
-Received: from 3.mo5.mail-out.ovh.net (3.mo5.mail-out.ovh.net [46.105.40.108])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AF3E3E009A5
-	for <yocto@yoctoproject.org>; Tue, 15 Nov 2016 06:34:43 -0800 (PST)
-Received: from player799.ha.ovh.net (b9.ovh.net [213.186.33.59])
-	by mo5.mail-out.ovh.net (Postfix) with ESMTP id E1CE143578
-	for <yocto@yoctoproject.org>; Tue, 15 Nov 2016 10:54:16 +0100 (CET)
-Received: from jawa (unknown [109.241.15.61])
-	(Authenticated sender: l.majewski@majess.pl)
-	by player799.ha.ovh.net (Postfix) with ESMTPSA id 604905200B8;
-	Tue, 15 Nov 2016 10:54:14 +0100 (CET)
-Date: Tue, 15 Nov 2016 10:54:05 +0100
-From: Lukasz Majewski <l.majewski@majess.pl>
-To: Jussi Kukkonen <jussi.kukkonen@intel.com>
-Message-ID: <20161115105405.4eea9271@jawa>
-In-Reply-To: <CAHiDW_E5G6Sbeb__Kza3XGTXDh=v2670FOXKvfXKLkR4Ld7gAg@mail.gmail.com>
-References: <20161113155141.7c0ca5dc@jawa>
-	<CAHiDW_E5G6Sbeb__Kza3XGTXDh=v2670FOXKvfXKLkR4Ld7gAg@mail.gmail.com>
-X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2643EE00A30
+	for <yocto@yoctoproject.org>; Tue, 15 Nov 2016 08:23:13 -0800 (PST)
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+	by orsmga104.jf.intel.com with ESMTP; 15 Nov 2016 08:23:12 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.31,495,1473145200"; d="scan'208";a="786724086"
+Received: from irsmsx105.ger.corp.intel.com ([163.33.3.28])
+	by FMSMGA003.fm.intel.com with ESMTP; 15 Nov 2016 08:23:11 -0800
+Received: from irsmsx110.ger.corp.intel.com ([169.254.15.38]) by
+	irsmsx105.ger.corp.intel.com ([169.254.7.177]) with mapi id
+	14.03.0248.002; Tue, 15 Nov 2016 16:23:10 +0000
+From: "Lock, Joshua G" <joshua.g.lock@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: SWAT Reboot
+Thread-Index: AQHSP1yOPyMLpmDXZkaEbOO33H5N6Q==
+Date: Tue, 15 Nov 2016 16:23:10 +0000
+Message-ID: <1479226988.2943.2.camel@intel.com>
+Accept-Language: en-GB, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.249.254.65]
 MIME-Version: 1.0
-X-Ovh-Tracer-Id: 15800879295484641931
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrfeelfedruddvgddtfecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [sysvinit] Problem with disabling sysvinit service
+Subject: SWAT Reboot
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,98 +43,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 15 Nov 2016 14:34:45 -0000
-X-Groupsio-MsgNum: 32981
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	boundary="Sig_/iTO8C+EtTiVu7ODg0BLir6q";
-	protocol="application/pgp-signature"
+X-List-Received-Date: Tue, 15 Nov 2016 16:23:17 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <6CD5263CC80EE84D85F4E223FEB5856C@intel.com>
+Content-Transfer-Encoding: base64
 
---Sig_/iTO8C+EtTiVu7ODg0BLir6q
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-Hi Jussi,
-
-> On 13 November 2016 at 16:51, Lukasz Majewski <l.majewski@majess.pl>
-> wrote:
->=20
-> > Dear All,
-> >
-> > Maybe here I would find answer to question which puzzles me from
-> > some time.
-> >
-> > The problem:
-> >
-> > Disable syslog service on startup of sysvinit based board.
-> > (syslog is defined in e.g. /etc/rc5.d/S20syslog
-> > -> /etc/init.d/syslog)
-> >
-> > Syslog on my setup is provided by busybox.
-> >
-> > I was trying to find where 'update-rc.d ... syslog ...' is called
-> > in the poky (2.1.2) source tree but without any success.
-> >
-> > Then, I've discovered that it is appended to INITSCRIPT_NAME
-> > variable and further processed by update-rc.d.bbclass
-> >
->=20
-> > Is there any method/recipe which would allow just removing S20klogd
-> > symlink from /etc/rcX.d from the created rootfs?
-> >
-> >
-> You should be able to modify (append) the busybox recipe to not
-> create the symlinks in the first place. I'm not 100% sure what the
-> correct line is but INITSCRIPT_PARAMS is the variable you want to
-> modify. Maybe something like this?
->=20
-> INITSCRIPT_PARAMS_${PN}-syslog =3D "start 80 . stop 20 0 1 6 ."
->=20
-> (that should be the default except with all start runlevels removed)
->=20
->  - Jussi
->=20
-
-Thanks for advice.=20
-
-I've also thought about extending image.bbclass
-to put function between do_rootfs and do_build.
-
-In this way I could run update-rc.d in it.
-
-Anyway, I will test your solution.
-
-Thanks and best regards,
-=C5=81ukasz Majewski
-
->=20
->=20
-> > The goal is to have syslog installed (in this case built into
-> > busybox), but disabled at boot up time.
-> >
-> > Any help is more than welcome.
-> >
-> > Tanks in advance,
-> > =C5=81ukasz Majewski
-> >
-> > --
-> > _______________________________________________
-> > yocto mailing list
-> > yocto@yoctoproject.org
-> > https://lists.yoctoproject.org/listinfo/yocto
-> >
-> >
+VGhlIHNob3J0IHZlcnNpb24gaXMgdGhhdCB0aGUgU1dBVCBwcm9jZXNzIGRvY3VtZW50IGhhcyBi
+ZWVuIHVwZGF0ZWQsDQppZiB5b3UncmUgYSBtZW1iZXIgb2YgdGhlIFNXQVQgdGVhbSBwbGVhc2Ug
+dGFrZSBhIGZldyBtb21lbnRzIHRvIHJlYWQNCnRoaXMgbWFpbCBhbmQgdXBkYXRlIHRoZSB3aWtp
+Lg0KDQoNCldlJ3JlIG1ha2luZyBhIGNvbmNlcnRlZCBlZmZvcnQgaW4gdGhlIDIuMyBjeWNsZSB0
+byBpbXByb3ZlIHRoZSBTV0FUDQpwcm9jZXNzIGFuZCBlbnN1cmUgdGhhdCBpdCdzIG9wZXJhdGlu
+ZyBlZmZlY3RpdmVseS4NCg0KVG8gdGhhdCBlbmQgSSd2ZSB1cGRhdGVkIHRoZSBTV0FUIHByb2Nl
+c3MgZG9jdW1lbnQgb24gdGhlIFlvY3RvIFByb2plY3QNCndpa2kgdG8gcmVmbGVjdCBjdXJyZW50
+IGV4cGVjdGF0aW9ucywgcGFydGljdWxhcmx5IGluIGxpZ2h0IG9mIHRoZQ0KYWRkaXRpb24gb2Yg
+dGhlIGJ1aWxkbG9nZ2VyIHRvb2wgZHVyaW5nIHRoZSBtb3J0eSBjeWNsZToNCg0KaHR0cHM6Ly93
+aWtpLnlvY3RvcHJvamVjdC5vcmcvd2lraS9pbmRleC5waHA/dGl0bGU9WW9jdG9fQnVpbGRfRmFp
+bHVyZV8NClN3YXRfVGVhbQ0KDQoNCkluIHJldmlld2luZyB0aGUgcHJvY2VzcyB3ZSd2ZSBhZGRl
+ZCBhbiBleHRyYSByb2xlLCBhcyBkZXNjcmliZWQgb24gdGhlDQp3aWtpLCBmb3Igc29tZW9uZSB0
+byBiZSBhIGZpcnN0IHBvaW50IG9mIGNvbnRhY3QgZm9yIHRoZSBTV0FUIHByb2Nlc3MNCmFuZCB0
+byBwcm92aWRlIGJhY2t1cCBjb3ZlciBmb3IgdGhlIGFjdGl2ZSBtZW1iZXIuIFRoaXMgc2hvdWxk
+IGhlbHANCnByb3ZpZGUgY29udGludWl0eSBmb3IgdGhlIHByb2Nlc3Mgd2hlbiBhY3RpdmUgbWVt
+YmVycyByb3RhdGUgYW5kIGhlbHANCnBlb3BsZSBleHRlcm5hbCB0byB0aGUgcHJvY2VzcyB3aXRo
+IGEgY29uc3RhbnQgcG9pbnQgb2YgY29udGFjdC4NCg0KQXMgVHJhY3kgR3JheWRvbiBpcyBhbHJl
+YWR5IGhlYXZpbHkgaW52b2x2ZWQgaW4gYnVpbGQgYW5kIHJlbGVhc2UNCnRocm91Z2ggaGVyIHJv
+bGUgYXMgWW9jdG8gUHJvamVjdCByZWxlYXNlIGVuZ2luZWVyIHdlJ3ZlIGFza2VkIGhlciB0bw0K
+aGVscCBvdXQgaGVyZS4NCg0KRHVyaW5nIHRoZSAyLjMgZGV2ZWxvcG1lbnQgY3ljbGUgd2Ugd2ls
+bCBiZSBmdXJ0aGVyIGltcHJvdmluZyB0aGUNCmJ1aWxkbG9nZ2VyIHRvb2wgdG8gYXV0b21hdGUg
+bW9yZSBvZiB0aGUgYm9pbGVycGxhdGUgYXNwZWN0cyBvZiB0aGUNClNXQVQgcHJvY2VzcywgbW9z
+dCBzaWduaWZpY2FudGx5IGEgY2hhbmdlIHRvIGF1dG9tYXRlIGluaXRpYWwgdXBkYXRpbmcNCm9m
+IHRoZSBCdWlsZExvZyBlbnRyeSBvbiBhIGJ1aWxkIGZhaWx1cmU6DQoNCmh0dHBzOi8vYnVnemls
+bGEueW9jdG9wcm9qZWN0Lm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTA0NjYNCg0KSXQgd291bGQgYmUg
+dXNlZnVsIGlmIFNXQVQgbWVtYmVycyBjb3VsZCB1cGRhdGUgdGhlaXIgdXNlciBwYWdlIG9uIHRo
+ZQ0Kd2lraSB0byBpbmNsdWRlIHRoZWlyIGNvbnRhY3QgZGV0YWlscyBhbmQgbGluayB0byBpdCBm
+cm9tIHRoZSBtZW1iZXJzDQpzZWN0aW9uIG9mIHRoZSBTV0FUIHByb2Nlc3MgcGFnZToNCg0KaHR0
+cHM6Ly93aWtpLnlvY3RvcHJvamVjdC5vcmcvd2lraS9Zb2N0b19CdWlsZF9GYWlsdXJlX1N3YXRf
+VGVhbSNNZW1iZXINCnMNCg0KRmVlbCBmcmVlIHRvIHJlYWNoIG91dCB0byBUcmFjeSBhbmQgbXlz
+ZWxmIHdpdGggYW55IHF1ZXN0aW9ucy4NCg0KRXhwZWN0IG1vcmUgdXBkYXRlcyBhcyB3ZSBwcm9j
+ZWVkIHdpdGggdGhlIFNXQVQgcmVib290IGFuZCB0b29sDQplbmhhbmNlbWVudHMuDQoNClJlZ2Fy
+ZHMsDQoNCkpvc2h1YQotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KSW50ZWwgQ29ycG9yYXRpb24gKFVLKSBMaW1pdGVk
+ClJlZ2lzdGVyZWQgTm8uIDExMzQ5NDUgKEVuZ2xhbmQpClJlZ2lzdGVyZWQgT2ZmaWNlOiBQaXBl
+cnMgV2F5LCBTd2luZG9uIFNOMyAxUkoKVkFUIE5vOiA4NjAgMjE3MyA0NwoKVGhpcyBlLW1haWwg
+YW5kIGFueSBhdHRhY2htZW50cyBtYXkgY29udGFpbiBjb25maWRlbnRpYWwgbWF0ZXJpYWwgZm9y
+CnRoZSBzb2xlIHVzZSBvZiB0aGUgaW50ZW5kZWQgcmVjaXBpZW50KHMpLiBBbnkgcmV2aWV3IG9y
+IGRpc3RyaWJ1dGlvbgpieSBvdGhlcnMgaXMgc3RyaWN0bHkgcHJvaGliaXRlZC4gSWYgeW91IGFy
+ZSBub3QgdGhlIGludGVuZGVkCnJlY2lwaWVudCwgcGxlYXNlIGNvbnRhY3QgdGhlIHNlbmRlciBh
+bmQgZGVsZXRlIGFsbCBjb3BpZXMuCg==
 
 
---Sig_/iTO8C+EtTiVu7ODg0BLir6q
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2
-
-iEYEARECAAYFAlgq20QACgkQf9/hG2YwgjGj9gCeKmgA0ALZx1i+VYG/M2sdeKXB
-l9cAnid5zP76eDuL8aud1+hvCj/ffHDW
-=YdUi
------END PGP SIGNATURE-----
-
---Sig_/iTO8C+EtTiVu7ODg0BLir6q--
