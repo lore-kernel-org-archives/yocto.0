@@ -1,35 +1,36 @@
-Return-Path: <michel.dhooge@free.fr>
+Return-Path: <gary@mlbassoc.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 47F87E00C1A; Wed, 16 Nov 2016 02:48:27 -0800 (PST)
+	id D1532E00C1A; Wed, 16 Nov 2016 02:57:09 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,FREEMAIL_FROM,
-	HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (michel.dhooge[at]free.fr)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [212.27.42.1 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from smtp1-g21.free.fr (smtp1-g21.free.fr [212.27.42.1])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C5C11E00BF8
-	for <yocto@yoctoproject.org>; Wed, 16 Nov 2016 02:48:23 -0800 (PST)
-Received: from spooler3-g27.priv.proxad.net (unknown [172.20.243.239])
-	by smtp1-g21.free.fr (Postfix) with ESMTP id D7934B00560
-	for <yocto@yoctoproject.org>; Wed, 16 Nov 2016 11:48:21 +0100 (CET)
-Date: Wed, 16 Nov 2016 11:48:21 +0100 (CET)
-From: Michel D'HOOGE <michel.dhooge@free.fr>
-To: Yocto list discussion <yocto@yoctoproject.org>
-Message-ID: <669555700.320493216.1479293301778.JavaMail.root@spooler3-g27.priv.proxad.net>
-In-Reply-To: <2014071075.320402419.1479292209445.JavaMail.root@spooler3-g27.priv.proxad.net>
+Received: from mail.analogue-micro.com (mail.analogue-micro.com
+	[217.144.149.242])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 98759E00BF8
+	for <yocto@yoctoproject.org>; Wed, 16 Nov 2016 02:57:07 -0800 (PST)
+Received: by mail.analogue-micro.com (Postfix, from userid 999)
+	id 9160168A01C; Wed, 16 Nov 2016 10:57:06 +0000 (GMT)
+Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
+	by mail.analogue-micro.com (Postfix) with ESMTP id E66EE68A019;
+	Wed, 16 Nov 2016 10:57:03 +0000 (GMT)
+Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
+	by zeus.mlbassoc.com (Postfix) with ESMTP id 763B26740253;
+	Wed, 16 Nov 2016 11:57:03 +0100 (CET)
+To: yocto@yoctoproject.org
+References: <9c7000d5-44f9-ab6c-6d87-c92531e6da0b@mlbassoc.com>
+	<6edb9a2e-4e99-d92e-5844-4c6ca7a5a30e@gmail.com>
+From: Gary Thomas <gary@mlbassoc.com>
+Message-ID: <1a28d005-48f9-8181-f006-741bf7be2c6f@mlbassoc.com>
+Date: Wed, 16 Nov 2016 11:57:03 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.4.0
 MIME-Version: 1.0
-X-Originating-IP: [46.218.68.98]
-X-Mailer: Zimbra 7.2.0-GA2598 (ZimbraWebClient - GC53 (Linux)/7.2.0-GA2598)
-X-Authenticated-User: michel.dhooge@free.fr
-Subject: populate_sdk_ext: Unable to locate package nativesdk-buildtools-perl-dummy
+In-Reply-To: <6edb9a2e-4e99-d92e-5844-4c6ca7a5a30e@gmail.com>
+Subject: Re: New error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,166 +42,90 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 16 Nov 2016 10:48:27 -0000
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_320493215_1043563307.1479293301777"
-
-------=_Part_320493215_1043563307.1479293301777
-Content-Type: text/plain; charset=utf-8
+X-List-Received-Date: Wed, 16 Nov 2016 10:57:09 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Hi, 
+On 2016-11-16 07:47, Khem Raj wrote:
+> Can you test out this patch for OE-Core
+>
+> https://github.com/kraj/openembedded-core/commit/b2d345d0217db0c2dda3b9b40824829116599568
+>
+
+Yes, this removes all the errors.
+
+Thanks
+
+> On 11/15/16 4:41 AM, Gary Thomas wrote:
+>> I just ran a new build for one of my PowerPC targets and I'm getting errors
+>> like these:
+>>
+>> ERROR: openssh-7.3p1-r0 do_package: runstrip:
+>> ''powerpc-amltd-linux-gnuspe-strip' --remove-section=.comment
+>> --remove-section=.note
+>> '/build/diskstation_2016-11-15/tmp/work/p1022ds-amltd-linux-gnuspe/openssh/7.3p1-r0/package/usr/bin/scp.openssh''
+>> strip command failed with 1 (b'powerpc-amltd-linux-gnuspe-strip:
+>> /build/diskstation_2016-11-15/tmp/work/p1022ds-amltd-linux-gnuspe/openssh/7.3p1-r0/package/usr/bin/strW48QK:
+>> Not enough room for program headers, try linking with
+>> -N\npowerpc-amltd-linux-gnuspe-strip:/build/diskstation_2016-11-15/tmp/work/p1022ds-amltd-linux-gnuspe/openssh/7.3p1-r0/package/usr/bin/strW48QK[.interp]:
+>> Bad value\n')
+>> ERROR: coreutils-8.25-r0 do_package: runstrip:
+>> ''powerpc-amltd-linux-gnuspe-strip' --remove-section=.comment
+>> --remove-section=.note --strip-unneeded
+>> '/build/diskstation_2016-11-15/tmp/work/ppce500v2-amltd-linux-gnuspe/coreutils/8.25-r0/package/usr/lib/coreutils/libstdbuf.so''
+>> strip command failed with 1 (b'powerpc-amltd-linux-gnuspe-strip:
+>> /build/diskstation_2016-11-15/tmp/work/ppce500v2-amltd-linux-gnuspe/coreutils/8.25-r0/package/usr/lib/coreutils/std1tFcO:
+>> Not enough room for program headers, try linking with
+>> -N\npowerpc-amltd-linux-gnuspe-strip:/build/diskstation_2016-11-15/tmp/work/ppce500v2-amltd-linux-gnuspe/coreutils/8.25-r0/package/usr/lib/coreutils/std1tFcO[.note.gnu.build-id]:
+>> Bad value\n')
+>> ERROR: eudev-3.2-r0 do_package: runstrip: ''powerpc-amltd-linux-gnuspe-strip'
+>> --remove-section=.comment --remove-section=.note --strip-unneeded
+>> '/build/diskstation_2016-11-15/tmp/work/ppce500v2-amltd-linux-gnuspe/eudev/3.2-r0/package/lib/libudev.so.1.6.3''
+>> strip command failed with 1 (b'powerpc-amltd-linux-gnuspe-strip:
+>> /build/diskstation_2016-11-15/tmp/work/ppce500v2-amltd-linux-gnuspe/eudev/3.2-r0/package/lib/stxt1rac:
+>> Not enough room for program headers, try linking with
+>> -N\npowerpc-amltd-linux-gnuspe-strip:/build/diskstation_2016-11-15/tmp/work/ppce500v2-amltd-linux-gnuspe/eudev/3.2-r0/package/lib/stxt1rac[.note.gnu.build-id]:
+>> Bad value\n')
+>>
+>> Actually, I got 438 of them :-(
+>>
+>> Build Configuration:
+>> BB_VERSION        = "1.32.0"
+>> BUILD_SYS         = "x86_64-linux"
+>> NATIVELSBSTRING   = "universal"
+>> TARGET_SYS        = "powerpc-amltd-linux-gnuspe"
+>> MACHINE           = "p1022ds"
+>> DISTRO            = "amltd"
+>> DISTRO_VERSION    = "2.2+snapshot-20161115"
+>> TUNE_FEATURES     = "m32 spe ppce500v2"
+>> TARGET_FPU        = "ppc-efd"
+>> meta              = "master:43e652f3d1fee5ce7fad67e6400315eab1b34270"
+>> meta-amltd        = "master:697b2bc1467a311233f1da362aa4c8a2cccf52bf"
+>> meta-diskstation  = "master:0839596be89af4da67fb7c5ab41337f1a382e5b5"
+>> meta-freescale    = "master:979d079732949c49f7a859e93278287eb95fa056"
+>>
+>>
+>> Questions:
+>> * What's the best way to fix them?  I assume it's just some
+>>   compiler/binutils option I need to adjust.  I tried comparing
+>>   this build against the stock qemuppc, but it got no such errors
+>>   and I don't see the difference (except for the CPU tuning of
+>>   e500v2 vs 7400).
+>> * If these are labeled 'ERROR', why do the packages continue
+>>   to be built?  Indeed, I ended up with a complete build image
+>>   (which I've not been able to test yet so I don't know if these
+>>   errors actually break things)
+>>
+>> Thanks for any pointers
+>>
+>
+>
+>
 
 
-I try to produce an extensible SDK for core-image-sato with the following configuration: 
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
-
-BB_VERSION = "1.32.0" 
-BUILD_SYS = "x86_64-linux" 
-NATIVELSBSTRING = "universal" 
-TARGET_SYS = "x86_64-poky-linux" 
-MACHINE = "vtc7200" 
-DISTRO = "poky-systemd" 
-DISTRO_VERSION = "2.2" 
-TUNE_FEATURES = "m64 corei7" 
-
-
-The machine is based on an intel-corei7, with some features removed. And the distro is poky-based, with only systemd (as detailed in the ref manual). And I get the following error: 
-
-
-ERROR : buildtools-tarball-1.0-r0 do_populate_sdk: Unable to install packages. Command '/mnt/Yocto/vedecom-x86/build/tmp/sysroots/x86_ 
-64-linux/usr/bin/apt-get install --force-yes --allow-unauthenticated nativesdk-locale-base-en-us nativesdk-git nativesdk-make native 
-sdk-ca-certificates nativesdk-tar nativesdk-python3-modules nativesdk-texinfo nativesdk-python3-git nativesdk-ncurses-terminfo-base n 
-ativesdk-chrpath nativesdk-python3-misc nativesdk-git-perltools nativesdk-buildtools-perl-dummy nativesdk-pigz nativesdk-wget natives 
-dk-python3-core' returned 100: 
-Reading package lists... 
-Building dependency tree... 
-Reading state information... 
-E: Unable to locate package nativesdk-buildtools-perl-dummy 
-
-
-
-
-The package exists and is in: 
-tmp/deploy/deb/buildtools-dummy-nativesdk/nativesdk-buildtools-perl-dummy_1.0-r2_allarch.deb 
-while the other listed packages are in tmp/deploy/deb/x86_64-nativesdk. 
-
-
-It seems this package is empty, so maybe I should simply remove it from poky/meta/recipes-core/meta/buildtools-tarball.bb. 
-
-
-Thanks for your help 
-Michel 
-
-------=_Part_320493215_1043563307.1479293301777
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-<html><head><style type=3D'text/css'>p { margin: 0; }</style></head><body><=
-div style=3D'font-family: times new roman,new york,times,serif; font-size: =
-12pt; color: #000000'><span style=3D"font-family: &quot;times new roman&quo=
-t;, &quot;new york&quot;, times, serif; color: rgb(0, 0, 0); font-size: 12p=
-t;">Hi,</span><div style=3D"font-family: &quot;times new roman&quot;, &quot=
-;new york&quot;, times, serif; color: rgb(0, 0, 0); font-size: 12pt;"><br><=
-/div><div style=3D"font-family: &quot;times new roman&quot;, &quot;new york=
-&quot;, times, serif; color: rgb(0, 0, 0); font-size: 12pt;">I try to produ=
-ce an extensible SDK for core-image-sato with the following configuration:<=
-/div><div style=3D"font-family: &quot;times new roman&quot;, &quot;new york=
-&quot;, times, serif; color: rgb(0, 0, 0); font-size: 12pt;"><br></div><div=
- style=3D"font-family: &quot;times new roman&quot;, &quot;new york&quot;, t=
-imes, serif; color: rgb(0, 0, 0);"><span style=3D"font-family: monospace;">=
-<font size=3D"1"><span style=3D"background-color: rgb(255, 255, 255);">BB_V=
-ERSION &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=3D "1.32.0"
-</span><br>BUILD_SYS &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=3D "x=
-86_64-linux"
-<br>NATIVELSBSTRING &nbsp;&nbsp;=3D "universal"
-<br>TARGET_SYS &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=3D "x86_64-poky-l=
-inux"
-<br>MACHINE &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=3D=
- "vtc7200"
-<br>DISTRO &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;=3D "poky-systemd"
-<br>DISTRO_VERSION &nbsp;&nbsp;&nbsp;=3D "2.2"
-<br>TUNE_FEATURES &nbsp;&nbsp;&nbsp;&nbsp;=3D "m64 corei7"<br></font>
-<br></span></div><div style=3D"font-family: &quot;times new roman&quot;, &q=
-uot;new york&quot;, times, serif; color: rgb(0, 0, 0); font-size: 12pt;">Th=
-e machine is based on an intel-corei7, with some features removed. And the =
-distro is poky-based, with only systemd (as detailed in the ref manual). An=
-d&nbsp;<span style=3D"font-size: 12pt;">I get the following error:</span></=
-div><div style=3D"font-family: &quot;times new roman&quot;, &quot;new york&=
-quot;, times, serif; color: rgb(0, 0, 0); font-size: 12pt;"><br></div><div =
-style=3D"font-family: &quot;times new roman&quot;, &quot;new york&quot;, ti=
-mes, serif;"><span style=3D"font-family: monospace;"><font size=3D"1"><span=
- style=3D"font-weight: bold; background-color: rgb(255, 255, 255);">ERROR</=
-span><span style=3D"background-color: rgb(255, 255, 255);">: </span><span s=
-tyle=3D"background-color: rgb(255, 255, 255);">buildtools-tarball-1.0-r0 do=
-_populate_sdk: Unable to install packages. Command '/mnt/Yocto/vedecom-x86/=
-build/tmp/sysroots/x86_</span><br>64-linux/usr/bin/apt-get &nbsp;install --=
-force-yes --allow-unauthenticated nativesdk-locale-base-en-us nativesdk-git=
- nativesdk-make native<br>sdk-ca-certificates nativesdk-tar nativesdk-pytho=
-n3-modules nativesdk-texinfo nativesdk-python3-git nativesdk-ncurses-termin=
-fo-base n<br>ativesdk-chrpath nativesdk-python3-misc nativesdk-git-perltool=
-s nativesdk-buildtools-perl-dummy nativesdk-pigz nativesdk-wget natives<br>=
-dk-python3-core' returned 100:<span style=3D"background-color: rgb(255, 255=
-, 255);">
-</span><br><span style=3D"background-color: rgb(255, 255, 255);">Reading pa=
-ckage lists... &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span=
- style=3D"background-color: rgb(255, 255, 255);">&nbsp;</span><br><span sty=
-le=3D"background-color: rgb(255, 255, 255);">Building dependency tree... &n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style=3D"background-color: rgb(255=
-, 255, 255);">&nbsp;</span><br><span style=3D"background-color: rgb(255, 25=
-5, 255);">Reading state information... &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span=
- style=3D"background-color: rgb(255, 255, 255);">&nbsp;</span><br><span sty=
-le=3D"background-color: rgb(255, 255, 255);">E: Unable to locate package na=
-tivesdk-buildtools-perl-dummy &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
-nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><br><=
-/font></span></div><div style=3D"font-family: &quot;times new roman&quot;, =
-&quot;new york&quot;, times, serif;"><font size=3D"1"></font></div><p style=
-=3D"font-family: &quot;times new roman&quot;, &quot;new york&quot;, times, =
-serif; color: rgb(0, 0, 0); font-size: 12pt;"><span style=3D"font-weight: n=
-ormal;"><br></span></p><p><span style=3D"color: rgb(0, 0, 0); font-family: =
-&quot;times new roman&quot;, &quot;new york&quot;, times, serif; font-size:=
- 12pt; font-weight: normal;">The package exists and is in:</span></p><p><fo=
-nt face=3D"times new roman, new york, times, serif"><span style=3D"font-siz=
-e: 16px;">tmp/deploy/deb/buildtools-dummy-nativesdk/nativesdk-buildtools-pe=
-rl-dummy_1.0-r2_allarch.deb</span></font></p><p><font face=3D"times new rom=
-an, new york, times, serif"><span style=3D"font-size: 16px;">while the othe=
-r listed packages are in&nbsp;tmp/deploy/deb/x86_64-nativesdk.</span></font=
-></p><p><font face=3D"times new roman, new york, times, serif"><span style=
-=3D"font-size: 16px;"><br></span></font></p><p><font face=3D"times new roma=
-n, new york, times, serif"><span style=3D"font-size: 16px;">It seems this p=
-ackage is empty, so maybe I should simply remove it from&nbsp;poky/meta/rec=
-ipes-core/meta/buildtools-tarball.bb.</span></font></p><p><font face=3D"tim=
-es new roman, new york, times, serif"><span style=3D"font-size: 16px;"><br>=
-</span></font></p><p><font face=3D"times new roman, new york, times, serif"=
-><span style=3D"font-size: 16px;">Thanks for your help</span></font></p><p>=
-<font face=3D"times new roman, new york, times, serif"><span style=3D"font-=
-size: 16px;">Michel</span></font></p></div></body></html>
-
-------=_Part_320493215_1043563307.1479293301777--
