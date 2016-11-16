@@ -1,35 +1,60 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
+Return-Path: <elazarl@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 425D3E00CE1; Thu, 17 Nov 2016 07:39:36 -0800 (PST)
+	id 44833E00C15; Wed, 16 Nov 2016 02:06:10 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (elazarl[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.216.178 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DC7D9E00CE5
-	for <yocto@yoctoproject.org>; Thu, 17 Nov 2016 07:39:33 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id uAHFdH5K003373
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=OK);
-	Thu, 17 Nov 2016 07:39:20 -0800
-Received: from [128.224.56.48] (128.224.56.48) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.294.0;
-	Thu, 17 Nov 2016 07:39:15 -0800
-To: Gary Thomas <gary@mlbassoc.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-References: <8f36100c-f3a2-ef0d-ccd5-a6d7b1fc3acb@mlbassoc.com>
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-Message-ID: <b6dab8d3-ef91-0720-305c-592c4c930383@windriver.com>
-Date: Thu, 17 Nov 2016 10:39:14 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.4.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-qt0-f178.google.com (mail-qt0-f178.google.com
+	[209.85.216.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 02060E0095F
+	for <yocto@yoctoproject.org>; Wed, 16 Nov 2016 02:06:02 -0800 (PST)
+Received: by mail-qt0-f178.google.com with SMTP id p16so94339482qta.0
+	for <yocto@yoctoproject.org>; Wed, 16 Nov 2016 02:06:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=HTEip46SMgGBq03baZclD742UbYhTDha+c3C6vxM9D0=;
+	b=OWoFlcVTUDWl3FsSG3E5bqGTMbKlgCFa18d+EnHmprje816RRYZdlDSbGg0FGmxN6z
+	PEK9CuDsmw/3IxclfTD6LTpy0nejOx0WenykbJ6IlrjoHZQeHqzL1+FOyj3J7ZLo1z8a
+	yEqo9hjH66mcdROqdz6o0bUDVO8fuJTLkaGqQwh5+PF8OAcX+gjWMz95GigjHVKAVZKd
+	pcquWIece0gSWuv6anf0zfacv4HZQs7KzhXA3NZ+b8r77q3Qm1zbPs2nOKCZldG77Nrp
+	9JE4haKEsH7QFpkkhoOs9h5fnn3Qy8zf7peEGe9WTmCRdBJGqHOwYHpAdOaf23yPrYii
+	un8A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=HTEip46SMgGBq03baZclD742UbYhTDha+c3C6vxM9D0=;
+	b=C333eTpjE/LrOtOFInfK1ecnea5tU/VRHcGt2UsxjKST9Ww5a1x6wRcYf/VmJyBomi
+	UIjEUJW2meTGU2Up8l2644ATOAn+lKtfdSHhaNXKm7LzptFZdiHrq4e7843XEeI+kPmX
+	QmxT/USLbc0ykK1zRUEXEd8tgUNyW2ZPxfM2RGyUq1DL7frItvdWDB0ErbDGz23oEGmE
+	OHZDYeDes0cOGajGpHT/m7hDN2791LleLZ8F666+b2bs9zdq682DNret5NTHIYduFpv2
+	R7K6KmnRNx5IMRHdZid6AsUIUNTUz59kB27k3yWTYQi6Ol+F1gFPjrfApAnvNKIZ93vH
+	Hwrg==
+X-Gm-Message-State: ABUngvfyogqf7OFwtmtrxPcqShuIF8K/jeotDpQ1SBkwOD3vg003l0najnQ0zpQ8t8Xj277gWMrLCHkMlfBglQ==
+X-Received: by 10.25.66.213 with SMTP id p204mr893170lfa.110.1479290761381;
+	Wed, 16 Nov 2016 02:06:01 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <8f36100c-f3a2-ef0d-ccd5-a6d7b1fc3acb@mlbassoc.com>
-Subject: Re: Warning on mips64
+From: Elazar Leibovich <elazarl@gmail.com>
+Date: Wed, 16 Nov 2016 10:05:49 +0000
+Message-ID: <CAHNTFm+FxmRv5OOf9geKdQ_hPfzcoi-chviAWDmy1jK_aDTHnQ@mail.gmail.com>
+To: yocto@yoctoproject.org
+X-Mailman-Approved-At: Thu, 17 Nov 2016 07:53:53 -0800
+Subject: undefined references to `__dso_handle'
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,58 +66,165 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 17 Nov 2016 15:39:36 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 16 Nov 2016 10:06:10 -0000
+Content-Type: multipart/alternative; boundary=94eb2c1a077a5a0ee20541683865
 
-On 2016-11-17 01:06 AM, Gary Thomas wrote:
-> I'm trying to build qemumips64 and get this warning:
-> =====================================================================================
->
-> WARNING: linux-yocto-4.8.6+gitAUTOINC+87e5fc8b7c_edcb167f91-r0
-> do_kernel_configcheck: [kernel config]: specified values did not make it
-> into the kernel's final configuration:
->
-> ---------- CONFIG_CPU_MIPSR2 -----------------
-> Config: CONFIG_CPU_MIPSR2
-> From:
-> /build/bbb_2016-10-11/tmp/work-shared/qemumips64/kernel-source/.kernel-meta/configs/standard/mti-malta64/bsp/mti-malta64/mti-malta64-common.cfg
->
-> Requested value:  # CONFIG_CPU_MIPSR2 is not set
-> Actual value:
->
-> Config 'CPU_MIPSR2' has the following conditionals:
->
-> Dependency values are:
-> =====================================================================================
->
-> Build Configuration:
-> BB_VERSION        = "1.32.0"
-> BUILD_SYS         = "x86_64-linux"
-> NATIVELSBSTRING   = "universal"
-> TARGET_SYS        = "mips64-poky-linux"
-> MACHINE           = "qemumips64"
-> DISTRO            = "poky"
-> DISTRO_VERSION    = "2.2"
-> TUNE_FEATURES     = "n64 bigendian fpu-hard"
-> TARGET_FPU        = ""
-> meta              = "master:9b1bd29ea99aa0dec51e603e4ac28e211af19765"
-> meta-poky         = "master:9b1bd29ea99aa0dec51e603e4ac28e211af19765"
-> =====================================================================================
->
->
-> What does it mean and is it important?
+--94eb2c1a077a5a0ee20541683865
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-You can ignore it. That option is no longer directly selectable, and
-I need to remove it from the meta-data, which will get rid of the
-warning.
+Hi,
 
-I'm doing that now!
+I followed the quickstart tutorial, branch morty, to create the most basic
+image on local QEMU, and I got compilation errors for __dso_handle missing.
+I'm using ubuntu 16.
+Here is an example output:
+++ -nostdlib++  -fPIC -DPIC -D_GLIBCXX_SHARED -shared -nostdlib
+/media/elazar/788854CC88548B10/poky/build/tmp/sysroots/raspberrypi3/usr/lib=
+/crti.o
+/media/elazar/788854CC88548B10/poky/build/tmp/sysroots/raspberrypi3/usr/lib=
+/arm-poky-linux-gnueabi/6.2.0/crtbeginS.o
+ .libs/compatibility.o .libs/compatibility-debug_list.o
+.libs/compatibility-debug_list-2.o .libs/compatibility-c++0x.o
+.libs/compatibility-atomic-c++0x.o .libs/compatibility-thread-c++0x.o
+.libs/compatibility-chrono.o .libs/compatibility-condvar.o
+ -Wl,--whole-archive ../libsupc++/.libs/libsupc++convenience.a
+../src/c++98/.libs/libc++98convenience.a
+../src/c++11/.libs/libc++11convenience.a -Wl,--no-whole-archive  -lm
+-L/media/elazar/788854CC88548B10/poky/build/tmp/sysroots/x86_64-linux/usr/l=
+ib/arm-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/6.2.0
+-L/media/elazar/788854CC88548B10/poky/build/tmp/sysroots/raspberrypi3/lib
+-L/media/elazar/788854CC88548B10/poky/build/tmp/sysroots/raspberrypi3/usr/l=
+ib/arm-poky-linux-gnueabi/6.2.0
+-L/media/elazar/788854CC88548B10/poky/build/tmp/sysroots/raspberrypi3/usr/l=
+ib
+-lc -lgcc_s
+/media/elazar/788854CC88548B10/poky/build/tmp/sysroots/raspberrypi3/usr/lib=
+/arm-poky-linux-gnueabi/6.2.0/crtendS.o
+/media/elazar/788854CC88548B10/poky/build/tmp/sysroots/raspberrypi3/usr/lib=
+/crtn.o
+ -march=3Darmv7ve -marm -mfpu=3Dneon-vfpv4 -mfloat-abi=3Dhard -mcpu=3Dcorte=
+x-a7
+-Wl,-O1 -Wl,-z -Wl,relro -Wl,--gc-sections -Wl,-O1 -Wl,--hash-style=3Dgnu
+-Wl,--as-needed -Wl,--version-script=3Dlibstdc++-symbols.ver   -Wl,-soname
+-Wl,libstdc++.so.6 -o .libs/libstdc++.so.6.0.22
+| .libs/compatibility-c++0x.o: In function
+`__static_initialization_and_destruction_0':
+|
+/usr/src/debug/gcc-runtime/6.2.0-r0/gcc-6.2.0/build.arm-poky-linux-gnueabi.=
+arm-poky-linux-gnueabi/arm-poky-linux-gnueabi/libstdc++-v3/src/../../../../=
+../../../../../work-shared/gcc-6.2.0-r0/gcc-6.2.0/libstdc++-v3/src/c++11/co=
+mpatibility-c++0x.cc:215:
+undefined reference to `__dso_handle'
+| ../src/c++11/.libs/libc++11convenience.a(system_error.o): In function
+`__static_initialization_and_destruction_0':
+|
+/usr/src/debug/gcc-runtime/6.2.0-r0/gcc-6.2.0/build.arm-poky-linux-gnueabi.=
+arm-poky-linux-gnueabi/arm-poky-linux-gnueabi/libstdc++-v3/src/c++11/../../=
+../../../../../../../../work-shared/gcc-6.2.0-r0/gcc-6.2.0/libstdc++-v3/src=
+/c++11/system_error.cc:71:
+undefined reference to `__dso_handle'
+| ../src/c++98/.libs/libc++98convenience.a(mt_allocator.o): In function
+`get_freelist':
+|
+/usr/src/debug/gcc-runtime/6.2.0-r0/gcc-6.2.0/build.arm-poky-linux-gnueabi.=
+arm-poky-linux-gnueabi/arm-poky-linux-gnueabi/libstdc++-v3/src/c++98/../../=
+../../../../../../../../work-shared/gcc-6.2.0-r0/gcc-6.2.0/libstdc++-v3/src=
+/c++98/mt_allocator.cc:64:
+undefined reference to `__dso_handle'
+| ../src/c++98/.libs/libc++98convenience.a(c++locale.o): In function
+`std::get_catalogs()':
+|
+/usr/src/debug/gcc-runtime/6.2.0-r0/gcc-6.2.0/build.arm-poky-linux-gnueabi.=
+arm-poky-linux-gnueabi/arm-poky-linux-gnueabi/libstdc++-v3/src/c++98/c++loc=
+ale.cc:251:
+undefined reference to `__dso_handle'
+| ../src/c++11/.libs/libc++11convenience.a(condition_variable.o): In
+function `key_init':
+|
+/usr/src/debug/gcc-runtime/6.2.0-r0/gcc-6.2.0/build.arm-poky-linux-gnueabi.=
+arm-poky-linux-gnueabi/arm-poky-linux-gnueabi/libstdc++-v3/src/c++11/../../=
+../../../../../../../../work-shared/gcc-6.2.0-r0/gcc-6.2.0/libstdc++-v3/src=
+/c++11/condition_variable.cc:133:
+undefined reference to `__dso_handle'
+|
+../src/c++11/.libs/libc++11convenience.a(future.o):/usr/src/debug/gcc-runti=
+me/6.2.0-r0/gcc-6.2.0/build.arm-poky-linux-gnueabi.arm-poky-linux-gnueabi/a=
+rm-poky-linux-gnueabi/libstdc++-v3/src/c++11/../../../../../../../../../../=
+work-shared/gcc-6.2.0-r0/gcc-6.2.0/libstdc++-v3/src/c++11/future.cc:64:
+more undefined references to `__dso_handle' follow
+| collect2: error: ld returned 1 exit status
 
-Cheers,
+I'll be happy for help, haven't found similar error when searching the web
 
-Bruce
+--94eb2c1a077a5a0ee20541683865
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
->
+<div dir=3D"ltr">Hi,<div><br></div><div>I followed the quickstart tutorial,=
+ branch morty, to create the most basic image on local QEMU, and I got comp=
+ilation errors for __dso_handle missing.</div><div>I&#39;m using ubuntu 16.=
+</div><div>Here is an example output:</div><div><div><font face=3D"monospac=
+e">++ -nostdlib++ =C2=A0-fPIC -DPIC -D_GLIBCXX_SHARED -shared -nostdlib /me=
+dia/elazar/788854CC88548B10/poky/build/tmp/sysroots/raspberrypi3/usr/lib/cr=
+ti.o /media/elazar/788854CC88548B10/poky/build/tmp/sysroots/raspberrypi3/us=
+r/lib/arm-poky-linux-gnueabi/6.2.0/crtbeginS.o =C2=A0.libs/compatibility.o =
+.libs/compatibility-debug_list.o .libs/compatibility-debug_list-2.o .libs/c=
+ompatibility-c++0x.o .libs/compatibility-atomic-c++0x.o .libs/compatibility=
+-thread-c++0x.o .libs/compatibility-chrono.o .libs/compatibility-condvar.o =
+=C2=A0-Wl,--whole-archive ../libsupc++/.libs/libsupc++convenience.a ../src/=
+c++98/.libs/libc++98convenience.a ../src/c++11/.libs/libc++11convenience.a =
+-Wl,--no-whole-archive =C2=A0-lm -L/media/elazar/788854CC88548B10/poky/buil=
+d/tmp/sysroots/x86_64-linux/usr/lib/arm-poky-linux-gnueabi/gcc/arm-poky-lin=
+ux-gnueabi/6.2.0 -L/media/elazar/788854CC88548B10/poky/build/tmp/sysroots/r=
+aspberrypi3/lib -L/media/elazar/788854CC88548B10/poky/build/tmp/sysroots/ra=
+spberrypi3/usr/lib/arm-poky-linux-gnueabi/6.2.0 -L/media/elazar/788854CC885=
+48B10/poky/build/tmp/sysroots/raspberrypi3/usr/lib -lc -lgcc_s /media/elaza=
+r/788854CC88548B10/poky/build/tmp/sysroots/raspberrypi3/usr/lib/arm-poky-li=
+nux-gnueabi/6.2.0/crtendS.o /media/elazar/788854CC88548B10/poky/build/tmp/s=
+ysroots/raspberrypi3/usr/lib/crtn.o =C2=A0-march=3Darmv7ve -marm -mfpu=3Dne=
+on-vfpv4 -mfloat-abi=3Dhard -mcpu=3Dcortex-a7 -Wl,-O1 -Wl,-z -Wl,relro -Wl,=
+--gc-sections -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl,--as-needed -Wl,--version-=
+script=3Dlibstdc++-symbols.ver =C2=A0 -Wl,-soname -Wl,libstdc++.so.6 -o .li=
+bs/libstdc++.so.6.0.22</font></div><div><font face=3D"monospace">| .libs/co=
+mpatibility-c++0x.o: In function `__static_initialization_and_destruction_0=
+&#39;:</font></div><div><font face=3D"monospace">| /usr/src/debug/gcc-runti=
+me/6.2.0-r0/gcc-6.2.0/build.arm-poky-linux-gnueabi.arm-poky-linux-gnueabi/a=
+rm-poky-linux-gnueabi/libstdc++-v3/src/../../../../../../../../../work-shar=
+ed/gcc-6.2.0-r0/gcc-6.2.0/libstdc++-v3/src/c++11/compatibility-c++0x.cc:215=
+: undefined reference to `__dso_handle&#39;</font></div><div><font face=3D"=
+monospace">| ../src/c++11/.libs/libc++11convenience.a(system_error.o): In f=
+unction `__static_initialization_and_destruction_0&#39;:</font></div><div><=
+font face=3D"monospace">| /usr/src/debug/gcc-runtime/6.2.0-r0/gcc-6.2.0/bui=
+ld.arm-poky-linux-gnueabi.arm-poky-linux-gnueabi/arm-poky-linux-gnueabi/lib=
+stdc++-v3/src/c++11/../../../../../../../../../../work-shared/gcc-6.2.0-r0/=
+gcc-6.2.0/libstdc++-v3/src/c++11/system_error.cc:71: undefined reference to=
+ `__dso_handle&#39;</font></div><div><font face=3D"monospace">| ../src/c++9=
+8/.libs/libc++98convenience.a(mt_allocator.o): In function `get_freelist&#3=
+9;:</font></div><div><font face=3D"monospace">| /usr/src/debug/gcc-runtime/=
+6.2.0-r0/gcc-6.2.0/build.arm-poky-linux-gnueabi.arm-poky-linux-gnueabi/arm-=
+poky-linux-gnueabi/libstdc++-v3/src/c++98/../../../../../../../../../../wor=
+k-shared/gcc-6.2.0-r0/gcc-6.2.0/libstdc++-v3/src/c++98/mt_allocator.cc:64: =
+undefined reference to `__dso_handle&#39;</font></div><div><font face=3D"mo=
+nospace">| ../src/c++98/.libs/libc++98convenience.a(c++locale.o): In functi=
+on `std::get_catalogs()&#39;:</font></div><div><font face=3D"monospace">| /=
+usr/src/debug/gcc-runtime/6.2.0-r0/gcc-6.2.0/build.arm-poky-linux-gnueabi.a=
+rm-poky-linux-gnueabi/arm-poky-linux-gnueabi/libstdc++-v3/src/c++98/c++loca=
+le.cc:251: undefined reference to `__dso_handle&#39;</font></div><div><font=
+ face=3D"monospace">| ../src/c++11/.libs/libc++11convenience.a(condition_va=
+riable.o): In function `key_init&#39;:</font></div><div><font face=3D"monos=
+pace">| /usr/src/debug/gcc-runtime/6.2.0-r0/gcc-6.2.0/build.arm-poky-linux-=
+gnueabi.arm-poky-linux-gnueabi/arm-poky-linux-gnueabi/libstdc++-v3/src/c++1=
+1/../../../../../../../../../../work-shared/gcc-6.2.0-r0/gcc-6.2.0/libstdc+=
++-v3/src/c++11/condition_variable.cc:133: undefined reference to `__dso_han=
+dle&#39;</font></div><div><font face=3D"monospace">| ../src/c++11/.libs/lib=
+c++11convenience.a(future.o):/usr/src/debug/gcc-runtime/6.2.0-r0/gcc-6.2.0/=
+build.arm-poky-linux-gnueabi.arm-poky-linux-gnueabi/arm-poky-linux-gnueabi/=
+libstdc++-v3/src/c++11/../../../../../../../../../../work-shared/gcc-6.2.0-=
+r0/gcc-6.2.0/libstdc++-v3/src/c++11/future.cc:64: more undefined references=
+ to `__dso_handle&#39; follow</font></div><div><font face=3D"monospace">| c=
+ollect2: error: ld returned 1 exit status</font></div></div><div><br></div>=
+<div>I&#39;ll be happy for help, haven&#39;t found similar error when searc=
+hing the web</div></div>
 
-
+--94eb2c1a077a5a0ee20541683865--
