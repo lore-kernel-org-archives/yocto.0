@@ -1,19 +1,17 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 22C00E00C1A; Tue, 15 Nov 2016 22:48:07 -0800 (PST)
+	id C9A31E00C1A; Tue, 15 Nov 2016 22:55:29 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.192.195 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.192.195 listed in dnsbl.sorbs.net]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.192.196 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (raj.khem[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -21,53 +19,52 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pf0-f195.google.com (mail-pf0-f195.google.com
-	[209.85.192.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 70D15E00BF8
-	for <yocto@yoctoproject.org>; Tue, 15 Nov 2016 22:48:03 -0800 (PST)
-Received: by mail-pf0-f195.google.com with SMTP id i88so9253450pfk.2
-	for <yocto@yoctoproject.org>; Tue, 15 Nov 2016 22:48:03 -0800 (PST)
+Received: from mail-pf0-f196.google.com (mail-pf0-f196.google.com
+	[209.85.192.196])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2B830E00BF8
+	for <yocto@yoctoproject.org>; Tue, 15 Nov 2016 22:55:26 -0800 (PST)
+Received: by mail-pf0-f196.google.com with SMTP id i88so9266077pfk.2
+	for <yocto@yoctoproject.org>; Tue, 15 Nov 2016 22:55:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=subject:to:references:from:organization:message-id:date:user-agent
 	:mime-version:in-reply-to;
-	bh=SjK+ZToLuYGB1MHuUnlWk2IJg6lIxaKR3nOMOxKG8/U=;
-	b=ikkvy44QMZjOquRVTe2gWPrbtpi1FnYlUIEgG4DqE7p5g6UM8nZC3f7XJmnFeUXD3W
-	0Vlq6M/eJLegzC4Lh1ISReAxfK+SRzI20wnpYLKMToLtat8aO5ht9nvQMwWe29ryEU+5
-	KT/TyixTOuo8Y3hMFEce7jmxYDDGXt7Kl1kA093x3udqYLKKo0DlUQkXUVUiokk8MfD1
-	pmaHwGmEeN52LOfhc2wocx2DImH8eIyOqQHfWjOpw5+wRpMCVuwxyB+9+QAAhF86DVxO
-	Vk932G6ZAe4WuLRDJiDd+6JRhaYfNvE6DxaHk7pz2R3ZJ/XXIaPkZiB0VqjjiYX9dYDx
-	jFVw==
+	bh=n2r3zrA98PxAAER1gJGWhGKP7AG1D0VfGURKk6xVZe0=;
+	b=oQg49jXYa3AcVRQ2QYQKV93jk4IAfTImoCw8GQ2r/LbsPFI0hBUXnrGDcRtq3StSTL
+	UjXlTdoBR6igdfdJzS/vSSwPpsBZQTkjT7SYvdmhK9MEYdNG6Sc39tkL5hkmuMHBmW2U
+	smA+hFoHNWY5aw+rJWyXDer3yCxbgs9cDMUCzcBb7UKdyne9lFL1gMblXT2TQLl2XY3A
+	mIw1f8BKu6YJbm0J19bkQCFOoGxGDYQi3ka2iVAjEpwsX4EJIgtfCDqGGmJRI5MPUy8A
+	fHmQkx7lQhdSYl5MA+1Y56KBAqZZSFBdayRfx/lXcR9ExmYJu4aGf8gMGrNWqyO/ZTj3
+	cfMQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:subject:to:references:from:organization
 	:message-id:date:user-agent:mime-version:in-reply-to;
-	bh=SjK+ZToLuYGB1MHuUnlWk2IJg6lIxaKR3nOMOxKG8/U=;
-	b=Kuc8rgA7+n7B4xRHTRwhDHut0NoJLNMjtykJNV5fsuROfKQLwpk6r9KsX6Hd1GCtz/
-	L/WAMSohaJoG17nm1HDauIBASqxtphdelrsLbcipTsNnCHnyPkndezY1yVdZNYjCwWG6
-	u6JslA1ZVeTGF1TkiC3fiDOneveZwCNfrvjDzBqWTQ8mf4L7JfFJPMRJlGqwdrCflM/D
-	CyDRSwAtHqdYHFyasnSNbY/PIJoOzKo2xzXU7AcJVMpN1r21oIWBwx6bbiUUCr9FEt6o
-	qeTCoaJSGqtqGaDDM581lJn3uB6o7339/49zwWJ5SbHCYZW60vD6GmcUXUvpmy4YLPlB
-	bh5A==
-X-Gm-Message-State: ABUngve4F8p04I3Bwtogi9pGMnvO/TwExXVutEBSWoFJZJsgkilRjKMHl7/x5OHapzT1lQ==
-X-Received: by 10.99.53.195 with SMTP id c186mr4908011pga.125.1479278883094;
-	Tue, 15 Nov 2016 22:48:03 -0800 (PST)
+	bh=n2r3zrA98PxAAER1gJGWhGKP7AG1D0VfGURKk6xVZe0=;
+	b=YLN5yIU4ns83BAdko4dN6VDsmiIzA0bdT7y9ISJR3bB6FZYszqbj4s0lEx9LB7+A2o
+	MBd0OUfotxuIzQEJA02svyVCxyabjCnQZYZPKNw1LF+5XjSqHfmpfHhTaBR6NbbdTYTA
+	yanXjzWOVjKMxDWUyyVdVtxi8Ymn0VPuiiJ02atatmFoabFJdXVKcgaF7rvJ+IClnW4U
+	oKAqbCX3+p+d5rF1kb9oUDBM3DuCqFpbJK2dRetAbEtozcy/69TevR6Ax5SlH+fOom/g
+	myC18TUoEGHk2U39V9b+vkXqNU9jaX/hM79O+pkVN4Ill8zXV7PWyFfCT3Ee6x8X7HtY
+	9kLw==
+X-Gm-Message-State: ABUngveen+uSmcwzzprk2I3jwg7e8fvpTjQ2bajhfUczSebCx2AYTeuuhNe3TXgEdJ7Ong==
+X-Received: by 10.98.11.198 with SMTP id 67mr2344712pfl.90.1479279326391;
+	Tue, 15 Nov 2016 22:55:26 -0800 (PST)
 Received: from CACSVMO-14452.local ([2601:646:8882:b8c:3c7d:de15:1971:ad3c])
 	by smtp.gmail.com with ESMTPSA id
-	65sm49449674pfn.12.2016.11.15.22.48.00
+	y134sm26093843pfg.81.2016.11.15.22.55.24
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 15 Nov 2016 22:48:01 -0800 (PST)
-To: Gary Thomas <gary@mlbassoc.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-References: <9c7000d5-44f9-ab6c-6d87-c92531e6da0b@mlbassoc.com>
+	Tue, 15 Nov 2016 22:55:25 -0800 (PST)
+To: Jianxun Zhang <jianxun.zhang@linux.intel.com>, yocto@yoctoproject.org
+References: <1479272179-145521-1-git-send-email-jianxun.zhang@linux.intel.com>
 From: Khem Raj <raj.khem@gmail.com>
 Organization: himvis.com
-Message-ID: <6edb9a2e-4e99-d92e-5844-4c6ca7a5a30e@gmail.com>
-Date: Tue, 15 Nov 2016 22:47:52 -0800
+Message-ID: <0310dff1-95ac-29d0-5dcf-acbe5d5ebe67@gmail.com>
+Date: Tue, 15 Nov 2016 22:55:17 -0800
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:50.0)
 	Gecko/20100101 Thunderbird/50.0
 MIME-Version: 1.0
-In-Reply-To: <9c7000d5-44f9-ab6c-6d87-c92531e6da0b@mlbassoc.com>
-Subject: Re: New error
+In-Reply-To: <1479272179-145521-1-git-send-email-jianxun.zhang@linux.intel.com>
+Subject: Re: [PATCH] rmc: Fix include path and type definitions
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -79,119 +76,134 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 16 Nov 2016 06:48:07 -0000
-X-Groupsio-MsgNum: 32990
+X-List-Received-Date: Wed, 16 Nov 2016 06:55:29 -0000
+X-Groupsio-MsgNum: 32991
 Content-Type: multipart/signed; micalg=pgp-sha1;
 	protocol="application/pgp-signature";
-	boundary="9BNDadVJq4nQ3K0jk6nj0Q0mkSVU9XvCh"
+	boundary="PRL6s0EXDoclIN2BQjWSUOVnfoRqsE7BV"
 
---9BNDadVJq4nQ3K0jk6nj0Q0mkSVU9XvCh
-Content-Type: multipart/mixed; boundary="MRQXuGTlfW8lejqSWMEbLMIhAMDp8I0K4";
+--PRL6s0EXDoclIN2BQjWSUOVnfoRqsE7BV
+Content-Type: multipart/mixed; boundary="lr6oV7doa53gqxMvuavdcbgKBEnhavhiL";
  protected-headers="v1"
 From: Khem Raj <raj.khem@gmail.com>
-To: Gary Thomas <gary@mlbassoc.com>,
- "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Message-ID: <6edb9a2e-4e99-d92e-5844-4c6ca7a5a30e@gmail.com>
-Subject: Re: [yocto] New error
-References: <9c7000d5-44f9-ab6c-6d87-c92531e6da0b@mlbassoc.com>
-In-Reply-To: <9c7000d5-44f9-ab6c-6d87-c92531e6da0b@mlbassoc.com>
+To: Jianxun Zhang <jianxun.zhang@linux.intel.com>, yocto@yoctoproject.org
+Message-ID: <0310dff1-95ac-29d0-5dcf-acbe5d5ebe67@gmail.com>
+Subject: Re: [yocto] [PATCH] rmc: Fix include path and type definitions
+References: <1479272179-145521-1-git-send-email-jianxun.zhang@linux.intel.com>
+In-Reply-To: <1479272179-145521-1-git-send-email-jianxun.zhang@linux.intel.com>
 
---MRQXuGTlfW8lejqSWMEbLMIhAMDp8I0K4
+--lr6oV7doa53gqxMvuavdcbgKBEnhavhiL
 Content-Type: text/plain; charset=windows-1252
 Content-Language: en-US
 Content-Transfer-Encoding: quoted-printable
 
-Can you test out this patch for OE-Core
-
-https://github.com/kraj/openembedded-core/commit/b2d345d0217db0c2dda3b9b4=
-0824829116599568
 
 
-On 11/15/16 4:41 AM, Gary Thomas wrote:
-> I just ran a new build for one of my PowerPC targets and I'm getting er=
-rors
-> like these:
+On 11/15/16 8:56 PM, Jianxun Zhang wrote:
+> Add detection of current path for -I option, also update
+> type definitions for EFI compiling.
 >=20
-> ERROR: openssh-7.3p1-r0 do_package: runstrip:
-> ''powerpc-amltd-linux-gnuspe-strip' --remove-section=3D.comment
-> --remove-section=3D.note
-> '/build/diskstation_2016-11-15/tmp/work/p1022ds-amltd-linux-gnuspe/open=
-ssh/7.3p1-r0/package/usr/bin/scp.openssh''
-> strip command failed with 1 (b'powerpc-amltd-linux-gnuspe-strip:
-> /build/diskstation_2016-11-15/tmp/work/p1022ds-amltd-linux-gnuspe/opens=
-sh/7.3p1-r0/package/usr/bin/strW48QK:
-> Not enough room for program headers, try linking with
-> -N\npowerpc-amltd-linux-gnuspe-strip:/build/diskstation_2016-11-15/tmp/=
-work/p1022ds-amltd-linux-gnuspe/openssh/7.3p1-r0/package/usr/bin/strW48QK=
-[.interp]:
-> Bad value\n')
-> ERROR: coreutils-8.25-r0 do_package: runstrip:
-> ''powerpc-amltd-linux-gnuspe-strip' --remove-section=3D.comment
-> --remove-section=3D.note --strip-unneeded
-> '/build/diskstation_2016-11-15/tmp/work/ppce500v2-amltd-linux-gnuspe/co=
-reutils/8.25-r0/package/usr/lib/coreutils/libstdbuf.so''
-> strip command failed with 1 (b'powerpc-amltd-linux-gnuspe-strip:
-> /build/diskstation_2016-11-15/tmp/work/ppce500v2-amltd-linux-gnuspe/cor=
-eutils/8.25-r0/package/usr/lib/coreutils/std1tFcO:
-> Not enough room for program headers, try linking with
-> -N\npowerpc-amltd-linux-gnuspe-strip:/build/diskstation_2016-11-15/tmp/=
-work/ppce500v2-amltd-linux-gnuspe/coreutils/8.25-r0/package/usr/lib/coreu=
-tils/std1tFcO[.note.gnu.build-id]:
-> Bad value\n')
-> ERROR: eudev-3.2-r0 do_package: runstrip: ''powerpc-amltd-linux-gnuspe-=
-strip'
-> --remove-section=3D.comment --remove-section=3D.note --strip-unneeded
-> '/build/diskstation_2016-11-15/tmp/work/ppce500v2-amltd-linux-gnuspe/eu=
-dev/3.2-r0/package/lib/libudev.so.1.6.3''
-> strip command failed with 1 (b'powerpc-amltd-linux-gnuspe-strip:
-> /build/diskstation_2016-11-15/tmp/work/ppce500v2-amltd-linux-gnuspe/eud=
-ev/3.2-r0/package/lib/stxt1rac:
-> Not enough room for program headers, try linking with
-> -N\npowerpc-amltd-linux-gnuspe-strip:/build/diskstation_2016-11-15/tmp/=
-work/ppce500v2-amltd-linux-gnuspe/eudev/3.2-r0/package/lib/stxt1rac[.note=
-=2Egnu.build-id]:
-> Bad value\n')
+> Signed-off-by: Jianxun Zhang <jianxun.zhang@linux.intel.com>
+> ---
+>  Makefile        | 4 +++-
+>  Makefile.efi    | 4 +++-
+>  inc/rmc_types.h | 9 ++++++---
+>  3 files changed, 12 insertions(+), 5 deletions(-)
 >=20
-> Actually, I got 438 of them :-(
+> diff --git a/Makefile b/Makefile
+> index f152829..6c68a51 100644
+> --- a/Makefile
+> +++ b/Makefile
+> @@ -1,5 +1,7 @@
+>  # Copyright (C) 2016 Jianxun Zhang <jianxun.zhang@intel.com>
+> =20
+> +TOPDIR =3D $(shell if [ -z "$$PWD" ]; then pwd; else echo "$$PWD"; fi)=
+
+> +
+>  RMC_TOOL_SRC :=3D $(wildcard src/*.c)
+>  RMC_TOOL_OBJ :=3D $(patsubst %.c,%.o,$(RMC_TOOL_SRC))
+> =20
+> @@ -17,7 +19,7 @@ RMC_INSTALL_BIN_PATH :=3D $(RMC_INSTALL_PREFIX)/bin/
+> =20
+>  ALL_OBJS :=3D $(RMC_TOOL_OBJ) $(RMCL_OBJ) $(RSMP_OBJ)
+> =20
+> -CFLAGS :=3D -Wall -O2 -Iinc $(RMC_CFLAGS)
+> +CFLAGS :=3D -Wall -O2 -I$(TOPDIR)/inc $(RMC_CFLAGS)
+> =20
+>  all: rmc librmcl librsmp
+> =20
+> diff --git a/Makefile.efi b/Makefile.efi
+> index 4c2aada..2af85cb 100644
+> --- a/Makefile.efi
+> +++ b/Makefile.efi
+> @@ -1,5 +1,7 @@
+>  # Copyright (C) 2016 Jianxun Zhang <jianxun.zhang@intel.com>
+> =20
+> +TOPDIR =3D $(shell if [ -z "$$PWD" ]; then pwd; else echo "$$PWD"; fi)=
+
+> +
+>  RMCL_SRC :=3D$(wildcard src/rmcl/*.c)
+>  RMCL_OBJ :=3D $(patsubst %.c,%.efi.o,$(RMCL_SRC))
+> =20
+> @@ -34,7 +36,7 @@ RMC_INSTALL_LIBS_PATH :=3D $(RMC_INSTALL_PREFIX)/lib/=
+
+>  SHARED_OBJS :=3D src/util/util.efi.o
+>  ALL_OBJS :=3D $(RMCL_OBJ) $(RSMP_OBJ) $(SHARED_OBJS)
+> =20
+> -CFLAGS :=3D -DRMC_EFI -Wall -O2 -Iinc -fpic -nostdinc -nostdlib  -fno-=
+builtin -std=3Dgnu90 \
+> +CFLAGS :=3D -DRMC_EFI -Wall -O2 -I$(TOPDIR)/inc -fpic -nostdinc -nostd=
+lib  -fno-builtin -std=3Dgnu90 \
+>  	   -I$(RMC_EFI_HEADER_PREFIX) -I$(RMC_EFI_HEADER_PREFIX)/$(RMC_EFI_AR=
+CH) $(RMC_CFLAGS)
+
+while this patch improves the situation. It would be better if the packag=
+e
+would respect the flags coming from environment and not ignore them as it=
+ is
+doing here and then synthesizing stuff. Are there other compile scenarios=
+
+where its compiled for non-linux targets as well ? when will
+RMC_EFI_HEADER_PREFIX not look into sysroot ?
+
+if this makefile was accomodating the environment then bitbake rightly se=
+ts up
+CFLAGS for cross compiling.
+
+> =20
+>  all: librmclefi librsmpefi
+> diff --git a/inc/rmc_types.h b/inc/rmc_types.h
+> index b6e4521..9154231 100644
+> --- a/inc/rmc_types.h
+> +++ b/inc/rmc_types.h
+> @@ -7,14 +7,17 @@
+>  #define INC_RMC_TYPES_H_
+> =20
+>  #ifndef RMC_EFI
+> +#include <sys/types.h>
+>  #include <stdint.h>
+>  #include <stddef.h>
+>  #include <string.h>
+>  #else
+>  #include <efi.h>
+> -/* Fixme: we define (s)size_t here for both 32 and 64 bit because gnu-=
+efi doesn't provide these */
+> -typedef uint64_t size_t;
+> -typedef uint64_t ssize_t;
+> +/* we specify -nostdinc in C flag and provide these in rmc
+> + * for EFI applications that don't want to use standard headers.
+> + */
+> +typedef unsigned long size_t;
+> +typedef long ssize_t;
+>  #endif
+> =20
+>  typedef uint8_t BYTE;
 >=20
-> Build Configuration:
-> BB_VERSION        =3D "1.32.0"
-> BUILD_SYS         =3D "x86_64-linux"
-> NATIVELSBSTRING   =3D "universal"
-> TARGET_SYS        =3D "powerpc-amltd-linux-gnuspe"
-> MACHINE           =3D "p1022ds"
-> DISTRO            =3D "amltd"
-> DISTRO_VERSION    =3D "2.2+snapshot-20161115"
-> TUNE_FEATURES     =3D "m32 spe ppce500v2"
-> TARGET_FPU        =3D "ppc-efd"
-> meta              =3D "master:43e652f3d1fee5ce7fad67e6400315eab1b34270"=
-
-> meta-amltd        =3D "master:697b2bc1467a311233f1da362aa4c8a2cccf52bf"=
-
-> meta-diskstation  =3D "master:0839596be89af4da67fb7c5ab41337f1a382e5b5"=
-
-> meta-freescale    =3D "master:979d079732949c49f7a859e93278287eb95fa056"=
-
->=20
->=20
-> Questions:
-> * What's the best way to fix them?  I assume it's just some
->   compiler/binutils option I need to adjust.  I tried comparing
->   this build against the stock qemuppc, but it got no such errors
->   and I don't see the difference (except for the CPU tuning of
->   e500v2 vs 7400).
-> * If these are labeled 'ERROR', why do the packages continue
->   to be built?  Indeed, I ended up with a complete build image
->   (which I've not been able to test yet so I don't know if these
->   errors actually break things)
->=20
-> Thanks for any pointers
->=20
 
 
---MRQXuGTlfW8lejqSWMEbLMIhAMDp8I0K4--
+--lr6oV7doa53gqxMvuavdcbgKBEnhavhiL--
 
---9BNDadVJq4nQ3K0jk6nj0Q0mkSVU9XvCh
+--PRL6s0EXDoclIN2BQjWSUOVnfoRqsE7BV
 Content-Type: application/pgp-signature; name="signature.asc"
 Content-Description: OpenPGP digital signature
 Content-Disposition: attachment; filename="signature.asc"
@@ -199,9 +211,9 @@ Content-Disposition: attachment; filename="signature.asc"
 -----BEGIN PGP SIGNATURE-----
 Comment: GPGTools - https://gpgtools.org
 
-iEYEARECAAYFAlgsAR4ACgkQuwUzVZGdMxRHWwCcDBGVcDpbFSljATJerzqiNTpe
-jEsAn0F3b3BTHOFYlEJGucsghiDaglok
-=sLQR
+iEYEARECAAYFAlgsAtoACgkQuwUzVZGdMxS6TQCfWQoRtvjIMnWSRakECYuYz0gN
+hiMAnRACcfqHf3XIpe7M3wFgxcut0bWd
+=FQ+7
 -----END PGP SIGNATURE-----
 
---9BNDadVJq4nQ3K0jk6nj0Q0mkSVU9XvCh--
+--PRL6s0EXDoclIN2BQjWSUOVnfoRqsE7BV--
