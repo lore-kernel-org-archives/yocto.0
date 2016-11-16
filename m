@@ -1,54 +1,37 @@
-Return-Path: <Adrian.Dudau@enea.com>
+Return-Path: <gary@mlbassoc.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 22E9BE00C17; Wed, 16 Nov 2016 08:00:15 -0800 (PST)
+	id 55B24E00C2E; Wed, 16 Nov 2016 08:39:37 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [185.38.180.41 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 133 seconds by postgrey-1.32 at yocto-www;
-	Wed, 16 Nov 2016 08:00:02 PST
-Received: from smtp-out10.electric.net (smtp-out10.electric.net
-	[185.38.180.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 13A9BE00CD0
-	for <yocto@yoctoproject.org>; Wed, 16 Nov 2016 08:00:02 -0800 (PST)
-Received: from 1c72aq-0004dW-UB by out10a.electric.net with emc1-ok (Exim 4.87)
-	(envelope-from <Adrian.Dudau@enea.com>) id 1c72aq-0004wH-Uv
-	for yocto@yoctoproject.org; Wed, 16 Nov 2016 07:57:48 -0800
-Received: by emcmailer; Wed, 16 Nov 2016 07:57:48 -0800
-Received: from [192.36.1.72] (helo=mx-3.enea.com)
-	by out10a.electric.net with esmtps (TLSv1:AES128-SHA:128) (Exim 4.87)
-	(envelope-from <Adrian.Dudau@enea.com>) id 1c72aq-0004dW-UB
-	for yocto@yoctoproject.org; Wed, 16 Nov 2016 07:57:48 -0800
-Received: from sestofb11.enea.se (172.21.3.152) by smtp.enea.com
-	(172.21.1.209) with Microsoft SMTP Server id 14.3.294.0;
-	Wed, 16 Nov 2016 16:57:37 +0100
-Received: by sestofb11.enea.se (Postfix, from userid 4451)	id 65D314422D8;
-	Wed, 16 Nov 2016 16:57:37 +0100 (CET)
-From: Adrian Dudau <adrian.dudau@enea.com>
-To: <yocto@yoctoproject.org>
-Date: Wed, 16 Nov 2016 16:57:37 +0100
-Message-ID: <1479311857-8775-1-git-send-email-adrian.dudau@enea.com>
-X-Mailer: git-send-email 1.9.1
+Received: from mail.analogue-micro.com (mail.analogue-micro.com
+	[217.144.149.242])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0AA7CE0083D
+	for <yocto@yoctoproject.org>; Wed, 16 Nov 2016 08:39:32 -0800 (PST)
+Received: by mail.analogue-micro.com (Postfix, from userid 999)
+	id 1128C68A01C; Wed, 16 Nov 2016 16:39:28 +0000 (GMT)
+Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
+	by mail.analogue-micro.com (Postfix) with ESMTP id C6D5768A019;
+	Wed, 16 Nov 2016 16:39:26 +0000 (GMT)
+Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
+	by zeus.mlbassoc.com (Postfix) with ESMTP id 731966740276;
+	Wed, 16 Nov 2016 17:39:26 +0100 (CET)
+To: yocto@yoctoproject.org
+References: <e433f791-614b-6f53-edc0-e8fe34c7341a@mlbassoc.com>
+	<CAHiDW_HZLEGiPG7nXOx5hPce4WTC+v0Mkhv6+TGB1=wsCO+rVg@mail.gmail.com>
+	<0583f5ed-b9d5-936b-5477-db944299c064@mlbassoc.com>
+From: Gary Thomas <gary@mlbassoc.com>
+Message-ID: <824b7e50-8433-bb71-4912-04fe032016b4@mlbassoc.com>
+Date: Wed, 16 Nov 2016 17:39:26 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.4.0
 MIME-Version: 1.0
-Received-SPF: None (SESTOEX03.enea.se: adrian.dudau@enea.com does not
-	designate permitted sender hosts)
-X-Outbound-IP: 192.36.1.72
-X-Env-From: Adrian.Dudau@enea.com
-X-Proto: esmtps
-X-Revdns: mx-3.enea.com
-X-HELO: mx-3.enea.com
-X-TLS: TLSv1:AES128-SHA:128
-X-Authenticated_ID: 
-X-PolicySMART: 6551647
-X-Virus-Status: Scanned by VirusSMART (c)
-X-Virus-Status: Scanned by VirusSMART (s)
-Subject: [meta-cgl][PATCH] core-iamge-cgl: Remove kernel-modules
+In-Reply-To: <0583f5ed-b9d5-936b-5477-db944299c064@mlbassoc.com>
+Subject: Re: Kernel too old?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -60,29 +43,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 16 Nov 2016 16:00:15 -0000
-Content-Type: text/plain
+X-List-Received-Date: Wed, 16 Nov 2016 16:39:37 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
-This is already included in packagegroup-cgl-kernel.
+On 2016-11-16 13:08, Gary Thomas wrote:
+> On 2016-11-16 12:55, Jussi Kukkonen wrote:
+>> On 16 November 2016 at 13:29, Gary Thomas <gary@mlbassoc.com <mailto:gary@mlbassoc.com>> wrote:
+>>
+>>     I'm trying to run some user code on a [closed] box that it's
+>>     difficult (maybe impossible) to update the kernel.  To date,
+>>     I've been able to create my own user environment using Yocto
+>>     and then just 'chroot XXX'.  That came to an end today with
+>>     the latest (version 2.2) like this:
+>>
+>>       DiskStation> chroot /volume1/MY.test/
+>>       FATAL: kernel too old
+>>       DiskStation> cat /proc/version
+>>       Linux version 2.6.32.12 (root@build5) (gcc version 4.3.2 (GCC) ) #3202 SMP Fri Mar 1 01:04:06 CST 2013
+>>
+>>     Where '/volume1/MY.test' is my Yocto-built root file system.
+>>
+>>     Is there any way around this if I can't update the running kernel?
+>>
+>>
+>> Modern glibc needs linux 3.2, see http://repo.or.cz/glibc.git/commit/5b4ecd3f95695ef593e4474b4ab5a117291ba5fc
+>> (apparently on x86* you could still get away with setting OLDEST_KERNEL to 2.6.32).
+>
+> Given that my code was running fine as recently as mid-summer with
+> a version of glibc that was called 2.24-r0, do you think I can get
+> away with this?  Can I just set that variable in local.conf?
+>
+> (I know it's only speculation...)
+>
+> Thanks
+>
 
-Signed-off-by: Adrian Dudau <adrian.dudau@enea.com>
----
- meta-cgl-common/images/core-image-cgl.bb | 1 -
- 1 file changed, 1 deletion(-)
+Sadly, I tried this, overriding this value in the glibc recipe
+... same results :-(
 
-diff --git a/meta-cgl-common/images/core-image-cgl.bb b/meta-cgl-common/images/core-image-cgl.bb
-index 5975601..7117493 100644
---- a/meta-cgl-common/images/core-image-cgl.bb
-+++ b/meta-cgl-common/images/core-image-cgl.bb
-@@ -18,7 +18,6 @@ IMAGE_INSTALL += "\
-     lttng-tools \
-     lttng-modules \
-     ${VALGRIND} \
--    kernel-modules \
-     "
- 
- IMAGE_FSTYPES += " ext3.gz"
 -- 
-1.9.1
-
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
