@@ -1,6 +1,6 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <jianxun.zhang@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CED43E00C20; Tue, 15 Nov 2016 19:19:01 -0800 (PST)
+	id C034AE00BF8; Tue, 15 Nov 2016 20:53:33 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,23 +12,20 @@ X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E9DDCE00B71
-	for <yocto@yoctoproject.org>; Tue, 15 Nov 2016 19:18:59 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by fmsmga104.fm.intel.com with ESMTP; 15 Nov 2016 19:18:59 -0800
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9A97EE00B71
+	for <yocto@yoctoproject.org>; Tue, 15 Nov 2016 20:53:26 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga104.fm.intel.com with ESMTP; 15 Nov 2016 20:53:21 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.31,497,1473145200"; d="scan'208";a="1059986013"
-Received: from nnasirin-mobl.gar.corp.intel.com (HELO
-	peggleto-mobl.ger.corp.intel.com.fritz.box) ([10.255.185.211])
-	by orsmga001.jf.intel.com with ESMTP; 15 Nov 2016 19:18:57 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="5.31,646,1473145200"; d="scan'208";a="1085842345"
+Received: from chang-s2600cp.jf.intel.com ([10.54.77.22])
+	by fmsmga002.fm.intel.com with ESMTP; 15 Nov 2016 20:53:21 -0800
+From: Jianxun Zhang <jianxun.zhang@linux.intel.com>
 To: yocto@yoctoproject.org
-Date: Wed, 16 Nov 2016 16:18:34 +1300
-Message-Id: <1479266314-8574-4-git-send-email-paul.eggleton@linux.intel.com>
-X-Mailer: git-send-email 2.5.5
-In-Reply-To: <1479266314-8574-1-git-send-email-paul.eggleton@linux.intel.com>
-References: <1479266314-8574-1-git-send-email-paul.eggleton@linux.intel.com>
-Subject: [layerindex-web][PATCH 4/4] views: support querying class inheritance
+Date: Tue, 15 Nov 2016 20:56:19 -0800
+Message-Id: <1479272179-145521-1-git-send-email-jianxun.zhang@linux.intel.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [PATCH] rmc: Fix include path and type definitions
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,55 +37,86 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 16 Nov 2016 03:19:01 -0000
+X-List-Received-Date: Wed, 16 Nov 2016 04:53:33 -0000
 
-It's a little crude and certainly not optimal performance-wise, but we
-can support querying for recipes that inherit a particular class without
-too much trouble. This allows you to add "inherits:cmake" to the query
-and have it return only recipes that inherit the cmake class. You can
-use more than one inherits: item to filter down to recipes that inherit
-all of the specified classes.
+Add detection of current path for -I option, also update
+type definitions for EFI compiling.
 
-Note: this does not otherwise change the behaviour of specifying
-multiple words - all of the words other than those that start with
-"inherits:" are treated as part of a single phrase that will be searched
-for - not separate keywords.
-
-Fixes [YOCTO #9879].
-
-Signed-off-by: Paul Eggleton <paul.eggleton@linux.intel.com>
+Signed-off-by: Jianxun Zhang <jianxun.zhang@linux.intel.com>
 ---
- layerindex/views.py | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+ Makefile        | 4 +++-
+ Makefile.efi    | 4 +++-
+ inc/rmc_types.h | 9 ++++++---
+ 3 files changed, 12 insertions(+), 5 deletions(-)
 
-diff --git a/layerindex/views.py b/layerindex/views.py
-index 0933bf0..ae0220b 100644
---- a/layerindex/views.py
-+++ b/layerindex/views.py
-@@ -376,6 +376,22 @@ class RecipeSearchView(ListView):
-         _check_url_branch(self.kwargs)
-         query_string = self.request.GET.get('q', '')
-         init_qs = Recipe.objects.filter(layerbranch__branch__name=self.kwargs['branch'])
-+
-+        # Support slightly crude search on inherits field
-+        query_items = query_string.split()
-+        inherits = []
-+        query_terms = []
-+        for item in query_items:
-+            if item.startswith('inherits:'):
-+                inherits.append(item.split(':')[1])
-+            else:
-+                query_terms.append(item)
-+        if inherits:
-+            # FIXME This is a bit ugly, perhaps we should consider having this as a one-many relationship instead
-+            for inherit in inherits:
-+                init_qs = init_qs.filter(Q(inherits=inherit) | Q(inherits__startswith=inherit + ' ') | Q(inherits__endswith=' ' + inherit) | Q(inherits__contains=' %s ' % inherit))
-+            query_string = ' '.join(query_terms)
-+
-         if query_string.strip():
-             order_by = ('pn', 'layerbranch__layer')
+diff --git a/Makefile b/Makefile
+index f152829..6c68a51 100644
+--- a/Makefile
++++ b/Makefile
+@@ -1,5 +1,7 @@
+ # Copyright (C) 2016 Jianxun Zhang <jianxun.zhang@intel.com>
  
++TOPDIR = $(shell if [ -z "$$PWD" ]; then pwd; else echo "$$PWD"; fi)
++
+ RMC_TOOL_SRC := $(wildcard src/*.c)
+ RMC_TOOL_OBJ := $(patsubst %.c,%.o,$(RMC_TOOL_SRC))
+ 
+@@ -17,7 +19,7 @@ RMC_INSTALL_BIN_PATH := $(RMC_INSTALL_PREFIX)/bin/
+ 
+ ALL_OBJS := $(RMC_TOOL_OBJ) $(RMCL_OBJ) $(RSMP_OBJ)
+ 
+-CFLAGS := -Wall -O2 -Iinc $(RMC_CFLAGS)
++CFLAGS := -Wall -O2 -I$(TOPDIR)/inc $(RMC_CFLAGS)
+ 
+ all: rmc librmcl librsmp
+ 
+diff --git a/Makefile.efi b/Makefile.efi
+index 4c2aada..2af85cb 100644
+--- a/Makefile.efi
++++ b/Makefile.efi
+@@ -1,5 +1,7 @@
+ # Copyright (C) 2016 Jianxun Zhang <jianxun.zhang@intel.com>
+ 
++TOPDIR = $(shell if [ -z "$$PWD" ]; then pwd; else echo "$$PWD"; fi)
++
+ RMCL_SRC :=$(wildcard src/rmcl/*.c)
+ RMCL_OBJ := $(patsubst %.c,%.efi.o,$(RMCL_SRC))
+ 
+@@ -34,7 +36,7 @@ RMC_INSTALL_LIBS_PATH := $(RMC_INSTALL_PREFIX)/lib/
+ SHARED_OBJS := src/util/util.efi.o
+ ALL_OBJS := $(RMCL_OBJ) $(RSMP_OBJ) $(SHARED_OBJS)
+ 
+-CFLAGS := -DRMC_EFI -Wall -O2 -Iinc -fpic -nostdinc -nostdlib  -fno-builtin -std=gnu90 \
++CFLAGS := -DRMC_EFI -Wall -O2 -I$(TOPDIR)/inc -fpic -nostdinc -nostdlib  -fno-builtin -std=gnu90 \
+ 	   -I$(RMC_EFI_HEADER_PREFIX) -I$(RMC_EFI_HEADER_PREFIX)/$(RMC_EFI_ARCH) $(RMC_CFLAGS)
+ 
+ all: librmclefi librsmpefi
+diff --git a/inc/rmc_types.h b/inc/rmc_types.h
+index b6e4521..9154231 100644
+--- a/inc/rmc_types.h
++++ b/inc/rmc_types.h
+@@ -7,14 +7,17 @@
+ #define INC_RMC_TYPES_H_
+ 
+ #ifndef RMC_EFI
++#include <sys/types.h>
+ #include <stdint.h>
+ #include <stddef.h>
+ #include <string.h>
+ #else
+ #include <efi.h>
+-/* Fixme: we define (s)size_t here for both 32 and 64 bit because gnu-efi doesn't provide these */
+-typedef uint64_t size_t;
+-typedef uint64_t ssize_t;
++/* we specify -nostdinc in C flag and provide these in rmc
++ * for EFI applications that don't want to use standard headers.
++ */
++typedef unsigned long size_t;
++typedef long ssize_t;
+ #endif
+ 
+ typedef uint8_t BYTE;
 -- 
-2.5.5
+2.7.4
 
 
