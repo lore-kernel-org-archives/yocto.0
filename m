@@ -1,21 +1,13 @@
-Return-Path: <elazarl@gmail.com>
+Return-Path: <develone@sbcglobal.net>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 502EEE007E8; Thu, 17 Nov 2016 09:28:06 -0800 (PST)
+	id D5DDDE00874; Thu, 17 Nov 2016 13:05:11 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE, 
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.82.66 listed in dnsbl.sorbs.net]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (elazarl[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.66 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -23,48 +15,52 @@ X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f66.google.com (mail-wm0-f66.google.com [74.125.82.66])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CB02EE004E5
-	for <yocto@yoctoproject.org>; Thu, 17 Nov 2016 09:27:58 -0800 (PST)
-Received: by mail-wm0-f66.google.com with SMTP id g23so23399783wme.1
-	for <yocto@yoctoproject.org>; Thu, 17 Nov 2016 09:27:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=ArivO7VHiHugLBMTyAtRVTDacaZPS1ePfW1ISpn4VXo=;
-	b=nbKEYrv6oC32RpLOQde3xYop5dfWPXs1lfRvafio2f9uxrIrD+1+EEFHH0I9g8RSAa
-	IDTtuU+LKQV4syRIIKsLWsi1QwP2wTOslx2vTtsVwq4h5HkRbEUTh8RuoLbZThkswJon
-	QGu8RNqwu0hWVXoA7zRZBBgsSdgXq49YC2R97gPre8Use611BOiHU4frkoGS7eHaIuxt
-	ECHn+aSo2y84pLuVTmtg6LAwakdfnj8pQrDtMXt8NFFlMuZ6Rjniur0K4Igc0Db2o0Uo
-	XbwoDJUvwwUB8oL6BSJAo/jBHXsRm3bMeyDHo+9a1femQEiZ6QXAP40WUtDH3nGT8j3V
-	VxBg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=ArivO7VHiHugLBMTyAtRVTDacaZPS1ePfW1ISpn4VXo=;
-	b=JECP+aSuKG46Ls47FMNI9UflNe1DNE3wc/m6HMBX7vayEfB7Fmo5pg8AJaY3u3iLwE
-	r0+Wcq66l7CWljSXQ/T8zxB77JxajADtNyZIXw8/N+6E/AgHqE/H9/yiPh4JMVlYTUSD
-	9Gr7oAQpdMWhthM4sDl/3pRYiEkyyWYVIvvdtKAzBCy2OSs0Di4fdeqOGiCFVaZwuZ1M
-	Iy1U0h6u5OzhRhFUonPM4RXA8jzi3t1tA8sC4GEL+UVhE6iHvDUYkRq8UxIevuDHSsGC
-	OFZw6lRR2H4fv92t7aVk4HuA68LQ2MuB0vafRMFuWANgvejkp4vaPIU30S2MLv3Oc66a
-	uk3g==
-X-Gm-Message-State: AKaTC03HHyqo23B+9zY0bn+xVyQWsu21QJS0HLxXm/uhJm9V8bjqNx/yFivp4b7bVR53Q3FZBHRDAyRyQr7D5Q==
-X-Received: by 10.46.33.169 with SMTP id h41mr2044564lji.52.1479403677468;
-	Thu, 17 Nov 2016 09:27:57 -0800 (PST)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [98.136.216.207 listed in list.dnswl.org]
+Received: from nm36-vm4.bullet.mail.gq1.yahoo.com
+	(nm36-vm4.bullet.mail.gq1.yahoo.com [98.136.216.207])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A90A3E0080D
+	for <yocto@yoctoproject.org>; Thu, 17 Nov 2016 13:05:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sbcglobal.net; s=s2048;
+	t=1479416706; bh=zAsy2HVW5ZgT1PTIRyGd/j6MwecyKizGtXgrrKr/C7s=;
+	h=Date:From:Reply-To:To:Subject:References:From:Subject;
+	b=gA4cCEHH4eD1aVpzQxoZBKRT9ieMsNrSQuZyQmueHfzOH43HYtci7gUUF/fKTMETcEzXSb4tZML1gmdEGWYINdBSiabbOKorq4nG0I1GtE/GBJ6VzUf+AmqZKn7ykfMgbRgU8LwtlO8PkUvqWtFaAsQkVuWTc4tciiLCbL1se2yuBPEgn9bNEn81kQBRVjOExo1q45WB5CVyPj4/oHc68SluOoDN0xvNXfNE2gU1qZIZx1AX4yG+8copYEkc2w7DnT+6Od86ZfJfSkm2lFg/nE8JgmkJ134VFNWYx5T619jgnpuVAr3sz/EWkfBMwtCTmIxcfegKRikfFjUNxVKbiQ==
+Received: from [127.0.0.1] by nm36.bullet.mail.gq1.yahoo.com with NNFMP;
+	17 Nov 2016 21:05:06 -0000
+Received: from [216.39.60.180] by nm36.bullet.mail.gq1.yahoo.com with NNFMP;
+	17 Nov 2016 21:02:13 -0000
+Received: from [98.139.214.32] by tm16.bullet.mail.gq1.yahoo.com with NNFMP;
+	17 Nov 2016 21:02:12 -0000
+Received: from [98.139.215.229] by tm15.bullet.mail.bf1.yahoo.com with NNFMP;
+	17 Nov 2016 21:02:12 -0000
+Received: from [127.0.0.1] by omp1069.mail.bf1.yahoo.com with NNFMP;
+	17 Nov 2016 21:02:12 -0000
+X-Yahoo-Newman-Property: ymail-4
+X-Yahoo-Newman-Id: 815519.73455.bm@omp1069.mail.bf1.yahoo.com
+X-YMail-OSG: l_rj5vUVM1lhnLQNm1oN4Iz84EKuNhKm_NHqffqnai2oGIF2LFIrxJgn6BgSHKi
+	D7aYhuwE0.CM_33nGCJxLs8oCmCVPT.PkJsJiShaaiQzWim9WXnzUgU4GArICqtTUrjneRTyEC_t
+	U.HAxJGnkW67Kbg_4YDnvgC2T5b6cfAkGlIdCrF6.Dr0wwBZfcyuAGHw61ppt8mYJCAhSXIyVutd
+	hZtNUm6CPJHvjq2vutCinPIIAunXR0h6pcprxNXn_KnXvruu8jxsV25jywxD0xHCNszBrHDIK8Gb
+	O9.hbWO00uPdndYSRXQtaSMPJ9RSFC2gEmhK4y_C0YALMcTNjalI1_FH3ofqHlwbFASwKMZOLiZj
+	wKjEe5K7.6OHNsarDNFnz6lTmj178ECjmVBROzx7N6u0HpbLTLPyFUyQwj.xhAJuvMYwPz_.0ssj
+	sIX8wl0k7f70YoxiH7tOxIwd3k5bUof5z0UUku0D9bHfb1.GpIO0hrcFKH6KA_xmi6RQaHFKXzum
+	5kS0Dlgoch9k408Q47LrSy.AqqBLW4vTr1nhf0buGZpDR56fUCeTNpylwKcsU74HAtHVzv8lBGOT
+	P81jTEQqMkw--
+Received: from jws400160.mail.bf2.yahoo.com by
+	sendmailws146.mail.bf1.yahoo.com;
+	Thu, 17 Nov 2016 21:02:12 +0000; 1479416532.404
+Date: Thu, 17 Nov 2016 21:01:33 +0000 (UTC)
+From: Edward Vidal <develone@sbcglobal.net>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Message-ID: <1211982120.2332029.1479416493434@mail.yahoo.com>
 MIME-Version: 1.0
-Received: by 10.114.174.74 with HTTP; Thu, 17 Nov 2016 09:27:56 -0800 (PST)
-In-Reply-To: <2e4225b6-42ed-26f4-d158-75c96214d98f@gmail.com>
-References: <CAHNTFm+FxmRv5OOf9geKdQ_hPfzcoi-chviAWDmy1jK_aDTHnQ@mail.gmail.com>
-	<2e4225b6-42ed-26f4-d158-75c96214d98f@gmail.com>
-From: Elazar Leibovich <elazarl@gmail.com>
-Date: Thu, 17 Nov 2016 19:27:56 +0200
-Message-ID: <CAHNTFmLF531v9bQaDpo0dXxCNftq9PO_Ovmwd8yUWSiR7wVSsg@mail.gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: undefined references to `__dso_handle'
+References: <1211982120.2332029.1479416493434.ref@mail.yahoo.com>
+Subject: raspberry pi gtkmm_3.0.bb
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: Edward Vidal <develone@sbcglobal.net>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -73,250 +69,78 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 17 Nov 2016 17:28:06 -0000
-Content-Type: multipart/alternative; boundary=001a1142bf72accbe705418282f7
+X-List-Received-Date: Thu, 17 Nov 2016 21:05:11 -0000
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_2332028_1079405294.1479416493434"
 
---001a1142bf72accbe705418282f7
+------=_Part_2332028_1079405294.1479416493434
 Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-As far as I  know, no customization, I didn't even switch GCC's version. I
-installed clang alongside gcc, but didn't change the default.
+Hello All,
+I working with software that needs gtkmm_3.0.
+Poky 2.2 provides gtkmm_2.24.3 in=20
+meta-oe/reipes-gnome/gtk+
+I used recipetool and created gtkmm_3.0.bb
+I modified some lines and was able to get the
+recipe to fetch, unpack, and configure.
+when it tries to compile I am getting errors.
 
-Can you refer me to what you have in mind that might be customized, and
-I'll check?
+Makefile:748: recipe for target 'all-recursive' failed
+make[1]: *** [all-recursive] Error 1
+make[1]: Leaving directory '/home/vidal/wkg/yocto/RaspberryPi2/poky/build/t=
+mp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/gtkmm/3.0-r0/build'
+Makefile:534: recipe for target 'all' failed
+make: *** [all] Error 2
+ERROR: Function failed: do_compile (log file is located at /home/vidal/wkg/=
+yocto/RaspberryPi2/poky/build/tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnu=
+eabi/gtkmm/3.0-r0/temp/log.do_compile.17760)
 
-On Thu, Nov 17, 2016 at 7:23 PM, Khem Raj <raj.khem@gmail.com> wrote:
+The recipe that I am trying to create is=20
+https://gist.github.com/develone/ffa79327ccd49e9aa9f5c07e4db9ad7d
 
->
->
-> On 11/16/16 2:05 AM, Elazar Leibovich wrote:
-> > Hi,
-> >
-> > I followed the quickstart tutorial, branch morty, to create the most
-> basic
-> > image on local QEMU, and I got compilation errors for __dso_handle
-> missing.
-> > I'm using ubuntu 16.
-> > Here is an example output:
-> > ++ -nostdlib++  -fPIC -DPIC -D_GLIBCXX_SHARED -shared -nostdlib
-> > /media/elazar/788854CC88548B10/poky/build/tmp/sysroots/raspberrypi3/usr/
-> lib/crti.o
-> > /media/elazar/788854CC88548B10/poky/build/tmp/sysroots/raspberrypi3/usr/
-> lib/arm-poky-linux-gnueabi/6.2.0/crtbeginS.o
-> >  .libs/compatibility.o .libs/compatibility-debug_list.o
-> > .libs/compatibility-debug_list-2.o .libs/compatibility-c++0x.o
-> > .libs/compatibility-atomic-c++0x.o .libs/compatibility-thread-c++0x.o
-> > .libs/compatibility-chrono.o .libs/compatibility-condvar.o
-> >  -Wl,--whole-archive ../libsupc++/.libs/libsupc++convenience.a
-> > ../src/c++98/.libs/libc++98convenience.a
-> > ../src/c++11/.libs/libc++11convenience.a -Wl,--no-whole-archive  -lm
-> > -L/media/elazar/788854CC88548B10/poky/build/
-> tmp/sysroots/x86_64-linux/usr/lib/arm-poky-linux-gnueabi/
-> gcc/arm-poky-linux-gnueabi/6.2.0
-> > -L/media/elazar/788854CC88548B10/poky/build/
-> tmp/sysroots/raspberrypi3/lib
-> > -L/media/elazar/788854CC88548B10/poky/build/
-> tmp/sysroots/raspberrypi3/usr/lib/arm-poky-linux-gnueabi/6.2.0
-> > -L/media/elazar/788854CC88548B10/poky/build/
-> tmp/sysroots/raspberrypi3/usr/lib
-> > -lc -lgcc_s
-> > /media/elazar/788854CC88548B10/poky/build/tmp/sysroots/raspberrypi3/usr/
-> lib/arm-poky-linux-gnueabi/6.2.0/crtendS.o
-> > /media/elazar/788854CC88548B10/poky/build/tmp/sysroots/raspberrypi3/usr/
-> lib/crtn.o
-> >  -march=armv7ve -marm -mfpu=neon-vfpv4 -mfloat-abi=hard -mcpu=cortex-a7
-> > -Wl,-O1 -Wl,-z -Wl,relro -Wl,--gc-sections -Wl,-O1 -Wl,--hash-style=gnu
-> > -Wl,--as-needed -Wl,--version-script=libstdc++-symbols.ver   -Wl,-soname
-> > -Wl,libstdc++.so.6 -o .libs/libstdc++.so.6.0.22
-> > | .libs/compatibility-c++0x.o: In function
-> > `__static_initialization_and_destruction_0':
-> > |
-> > /usr/src/debug/gcc-runtime/6.2.0-r0/gcc-6.2.0/build.arm-
-> poky-linux-gnueabi.arm-poky-linux-gnueabi/arm-poky-linux-
-> gnueabi/libstdc++-v3/src/../../../../../../../../../work-
-> shared/gcc-6.2.0-r0/gcc-6.2.0/libstdc++-v3/src/c++11/
-> compatibility-c++0x.cc:215:
-> > undefined reference to `__dso_handle'
-> > | ../src/c++11/.libs/libc++11convenience.a(system_error.o): In function
-> > `__static_initialization_and_destruction_0':
-> > |
-> > /usr/src/debug/gcc-runtime/6.2.0-r0/gcc-6.2.0/build.arm-
-> poky-linux-gnueabi.arm-poky-linux-gnueabi/arm-poky-linux-
-> gnueabi/libstdc++-v3/src/c++11/../../../../../../../../../
-> ../work-shared/gcc-6.2.0-r0/gcc-6.2.0/libstdc++-v3/src/c++
-> 11/system_error.cc:71:
-> > undefined reference to `__dso_handle'
-> > | ../src/c++98/.libs/libc++98convenience.a(mt_allocator.o): In function
-> > `get_freelist':
-> > |
-> > /usr/src/debug/gcc-runtime/6.2.0-r0/gcc-6.2.0/build.arm-
-> poky-linux-gnueabi.arm-poky-linux-gnueabi/arm-poky-linux-
-> gnueabi/libstdc++-v3/src/c++98/../../../../../../../../../
-> ../work-shared/gcc-6.2.0-r0/gcc-6.2.0/libstdc++-v3/src/c++
-> 98/mt_allocator.cc:64:
-> > undefined reference to `__dso_handle'
-> > | ../src/c++98/.libs/libc++98convenience.a(c++locale.o): In function
-> > `std::get_catalogs()':
-> > |
-> > /usr/src/debug/gcc-runtime/6.2.0-r0/gcc-6.2.0/build.arm-
-> poky-linux-gnueabi.arm-poky-linux-gnueabi/arm-poky-linux-
-> gnueabi/libstdc++-v3/src/c++98/c++locale.cc:251:
-> > undefined reference to `__dso_handle'
-> > | ../src/c++11/.libs/libc++11convenience.a(condition_variable.o): In
-> function
-> > `key_init':
-> > |
-> > /usr/src/debug/gcc-runtime/6.2.0-r0/gcc-6.2.0/build.arm-
-> poky-linux-gnueabi.arm-poky-linux-gnueabi/arm-poky-linux-
-> gnueabi/libstdc++-v3/src/c++11/../../../../../../../../../
-> ../work-shared/gcc-6.2.0-r0/gcc-6.2.0/libstdc++-v3/src/c++
-> 11/condition_variable.cc:133:
-> > undefined reference to `__dso_handle'
-> > |
-> > ../src/c++11/.libs/libc++11convenience.a(future.o):/
-> usr/src/debug/gcc-runtime/6.2.0-r0/gcc-6.2.0/build.arm-poky-
-> linux-gnueabi.arm-poky-linux-gnueabi/arm-poky-linux-
-> gnueabi/libstdc++-v3/src/c++11/../../../../../../../../../
-> ../work-shared/gcc-6.2.0-r0/gcc-6.2.0/libstdc++-v3/src/c++11/future.cc:64:
-> > more undefined references to `__dso_handle' follow
-> > | collect2: error: ld returned 1 exit status
-> >
-> > I'll be happy for help, haven't found similar error when searching the
-> web
->
-> is it pristine ubuntu 16.04 or do you have any customization, new packages
-> etc
-> installed on top
->
-> >
-> >
->
->
+Any an all help is appreciated.
 
---001a1142bf72accbe705418282f7
+Thanks in advance =C2=A0Edward Vidal Jr. e-mail develone@sbcglobal.net 915-=
+595-1613
+
+------=_Part_2332028_1079405294.1479416493434
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">As far as I =C2=A0know, no customization, I didn&#39;t eve=
-n switch GCC&#39;s version. I installed clang alongside gcc, but didn&#39;t=
- change the default.<div><br></div><div>Can you refer me to what you have i=
-n mind that might be customized, and I&#39;ll check?=C2=A0</div></div><div =
-class=3D"gmail_extra"><br><div class=3D"gmail_quote">On Thu, Nov 17, 2016 a=
-t 7:23 PM, Khem Raj <span dir=3D"ltr">&lt;<a href=3D"mailto:raj.khem@gmail.=
-com" target=3D"_blank">raj.khem@gmail.com</a>&gt;</span> wrote:<br><blockqu=
-ote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc s=
-olid;padding-left:1ex"><div class=3D"HOEnZb"><div class=3D"h5"><br>
-<br>
-On 11/16/16 2:05 AM, Elazar Leibovich wrote:<br>
-&gt; Hi,<br>
-&gt;<br>
-&gt; I followed the quickstart tutorial, branch morty, to create the most b=
-asic<br>
-&gt; image on local QEMU, and I got compilation errors for __dso_handle mis=
-sing.<br>
-&gt; I&#39;m using ubuntu 16.<br>
-&gt; Here is an example output:<br>
-&gt; ++ -nostdlib++=C2=A0 -fPIC -DPIC -D_GLIBCXX_SHARED -shared -nostdlib<b=
-r>
-&gt; /media/elazar/<wbr>788854CC88548B10/poky/build/<wbr>tmp/sysroots/raspb=
-errypi3/usr/<wbr>lib/crti.o<br>
-&gt; /media/elazar/<wbr>788854CC88548B10/poky/build/<wbr>tmp/sysroots/raspb=
-errypi3/usr/<wbr>lib/arm-poky-linux-gnueabi/6.<wbr>2.0/crtbeginS.o<br>
-&gt;=C2=A0 .libs/compatibility.o .libs/compatibility-debug_<wbr>list.o<br>
-&gt; .libs/compatibility-debug_<wbr>list-2.o .libs/compatibility-c++0x.o<br=
->
-&gt; .libs/compatibility-atomic-c++<wbr>0x.o .libs/compatibility-thread-c++=
-<wbr>0x.o<br>
-&gt; .libs/compatibility-chrono.o .libs/compatibility-condvar.o<br>
-&gt;=C2=A0 -Wl,--whole-archive ../libsupc++/.libs/libsupc++<wbr>convenience=
-.a<br>
-&gt; ../src/c++98/.libs/libc++<wbr>98convenience.a<br>
-&gt; ../src/c++11/.libs/libc++<wbr>11convenience.a -Wl,--no-whole-archive=
-=C2=A0 -lm<br>
-&gt; -L/media/elazar/<wbr>788854CC88548B10/poky/build/<wbr>tmp/sysroots/x86=
-_64-linux/usr/<wbr>lib/arm-poky-linux-gnueabi/<wbr>gcc/arm-poky-linux-gnuea=
-bi/6.<wbr>2.0<br>
-&gt; -L/media/elazar/<wbr>788854CC88548B10/poky/build/<wbr>tmp/sysroots/ras=
-pberrypi3/lib<br>
-&gt; -L/media/elazar/<wbr>788854CC88548B10/poky/build/<wbr>tmp/sysroots/ras=
-pberrypi3/usr/<wbr>lib/arm-poky-linux-gnueabi/6.<wbr>2.0<br>
-&gt; -L/media/elazar/<wbr>788854CC88548B10/poky/build/<wbr>tmp/sysroots/ras=
-pberrypi3/usr/<wbr>lib<br>
-&gt; -lc -lgcc_s<br>
-&gt; /media/elazar/<wbr>788854CC88548B10/poky/build/<wbr>tmp/sysroots/raspb=
-errypi3/usr/<wbr>lib/arm-poky-linux-gnueabi/6.<wbr>2.0/crtendS.o<br>
-&gt; /media/elazar/<wbr>788854CC88548B10/poky/build/<wbr>tmp/sysroots/raspb=
-errypi3/usr/<wbr>lib/crtn.o<br>
-&gt;=C2=A0 -march=3Darmv7ve -marm -mfpu=3Dneon-vfpv4 -mfloat-abi=3Dhard -mc=
-pu=3Dcortex-a7<br>
-&gt; -Wl,-O1 -Wl,-z -Wl,relro -Wl,--gc-sections -Wl,-O1 -Wl,--hash-style=3D=
-gnu<br>
-&gt; -Wl,--as-needed -Wl,--version-script=3Dlibstdc++<wbr>-symbols.ver=C2=
-=A0 =C2=A0-Wl,-soname<br>
-&gt; -Wl,libstdc++.so.6 -o .libs/libstdc++.so.6.0.22<br>
-&gt; | .libs/compatibility-c++0x.o: In function<br>
-&gt; `__static_initialization_and_<wbr>destruction_0&#39;:<br>
-&gt; |<br>
-&gt; /usr/src/debug/gcc-runtime/6.<wbr>2.0-r0/gcc-6.2.0/build.arm-<wbr>poky=
--linux-gnueabi.arm-poky-<wbr>linux-gnueabi/arm-poky-linux-<wbr>gnueabi/libs=
-tdc++-v3/src/../..<wbr>/../../../../../../../work-<wbr>shared/gcc-6.2.0-r0/=
-gcc-6.2.0/<wbr>libstdc++-v3/src/c++11/<wbr>compatibility-c++0x.cc:215:<br>
-&gt; undefined reference to `__dso_handle&#39;<br>
-&gt; | ../src/c++11/.libs/libc++<wbr>11convenience.a(system_error.<wbr>o): =
-In function<br>
-&gt; `__static_initialization_and_<wbr>destruction_0&#39;:<br>
-&gt; |<br>
-&gt; /usr/src/debug/gcc-runtime/6.<wbr>2.0-r0/gcc-6.2.0/build.arm-<wbr>poky=
--linux-gnueabi.arm-poky-<wbr>linux-gnueabi/arm-poky-linux-<wbr>gnueabi/libs=
-tdc++-v3/src/c++<wbr>11/../../../../../../../../../<wbr>../work-shared/gcc-=
-6.2.0-r0/<wbr>gcc-6.2.0/libstdc++-v3/src/c++<wbr>11/system_error.cc:71:<br>
-&gt; undefined reference to `__dso_handle&#39;<br>
-&gt; | ../src/c++98/.libs/libc++<wbr>98convenience.a(mt_allocator.<wbr>o): =
-In function<br>
-&gt; `get_freelist&#39;:<br>
-&gt; |<br>
-&gt; /usr/src/debug/gcc-runtime/6.<wbr>2.0-r0/gcc-6.2.0/build.arm-<wbr>poky=
--linux-gnueabi.arm-poky-<wbr>linux-gnueabi/arm-poky-linux-<wbr>gnueabi/libs=
-tdc++-v3/src/c++<wbr>98/../../../../../../../../../<wbr>../work-shared/gcc-=
-6.2.0-r0/<wbr>gcc-6.2.0/libstdc++-v3/src/c++<wbr>98/mt_allocator.cc:64:<br>
-&gt; undefined reference to `__dso_handle&#39;<br>
-&gt; | ../src/c++98/.libs/libc++<wbr>98convenience.a(c++locale.o): In funct=
-ion<br>
-&gt; `std::get_catalogs()&#39;:<br>
-&gt; |<br>
-&gt; /usr/src/debug/gcc-runtime/6.<wbr>2.0-r0/gcc-6.2.0/build.arm-<wbr>poky=
--linux-gnueabi.arm-poky-<wbr>linux-gnueabi/arm-poky-linux-<wbr>gnueabi/libs=
-tdc++-v3/src/c++<wbr>98/c++locale.cc:251:<br>
-&gt; undefined reference to `__dso_handle&#39;<br>
-&gt; | ../src/c++11/.libs/libc++<wbr>11convenience.a(condition_<wbr>variabl=
-e.o): In function<br>
-&gt; `key_init&#39;:<br>
-&gt; |<br>
-&gt; /usr/src/debug/gcc-runtime/6.<wbr>2.0-r0/gcc-6.2.0/build.arm-<wbr>poky=
--linux-gnueabi.arm-poky-<wbr>linux-gnueabi/arm-poky-linux-<wbr>gnueabi/libs=
-tdc++-v3/src/c++<wbr>11/../../../../../../../../../<wbr>../work-shared/gcc-=
-6.2.0-r0/<wbr>gcc-6.2.0/libstdc++-v3/src/c++<wbr>11/condition_variable.cc:1=
-33:<br>
-&gt; undefined reference to `__dso_handle&#39;<br>
-&gt; |<br>
-&gt; ../src/c++11/.libs/libc++<wbr>11convenience.a(future.o):/<wbr>usr/src/=
-debug/gcc-runtime/6.2.<wbr>0-r0/gcc-6.2.0/build.arm-poky-<wbr>linux-gnueabi=
-.arm-poky-linux-<wbr>gnueabi/arm-poky-linux-<wbr>gnueabi/libstdc++-v3/src/c=
-++<wbr>11/../../../../../../../../../<wbr>../work-shared/gcc-6.2.0-r0/<wbr>=
-gcc-6.2.0/libstdc++-v3/src/c++<wbr>11/future.cc:64:<br>
-&gt; more undefined references to `__dso_handle&#39; follow<br>
-&gt; | collect2: error: ld returned 1 exit status<br>
-&gt;<br>
-&gt; I&#39;ll be happy for help, haven&#39;t found similar error when searc=
-hing the web<br>
-<br>
-</div></div>is it pristine ubuntu 16.04 or do you have any customization, n=
-ew packages etc<br>
-installed on top<br>
-<br>
-&gt;<br>
-&gt;<br>
-<br>
-</blockquote></div><br></div>
+<html><head></head><body><div style=3D"color:#000; background-color:#fff; f=
+ont-family:HelveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, =
+sans-serif;font-size:16px"><div id=3D"yui_3_16_0_ym19_1_1479405533865_24530=
+" dir=3D"ltr"><span id=3D"yui_3_16_0_ym19_1_1479405533865_26126">Hello All,=
+<br id=3D"yui_3_16_0_ym19_1_1479405533865_26169">I working with software th=
+at needs gtkmm_3.0.<br id=3D"yui_3_16_0_ym19_1_1479405533865_26170">Poky 2.=
+2 provides gtkmm_2.24.3 in <br id=3D"yui_3_16_0_ym19_1_1479405533865_26171"=
+>meta-oe/reipes-gnome/gtk+<br id=3D"yui_3_16_0_ym19_1_1479405533865_26172">=
+I used recipetool and created gtkmm_3.0.bb<br id=3D"yui_3_16_0_ym19_1_14794=
+05533865_26173">I modified some lines and was able to get the<br id=3D"yui_=
+3_16_0_ym19_1_1479405533865_26174">recipe to fetch, unpack, and configure.<=
+br id=3D"yui_3_16_0_ym19_1_1479405533865_26175">when it tries to compile I =
+am getting errors.<br id=3D"yui_3_16_0_ym19_1_1479405533865_26176"><br id=
+=3D"yui_3_16_0_ym19_1_1479405533865_26177">Makefile:748: recipe for target =
+'all-recursive' failed<br id=3D"yui_3_16_0_ym19_1_1479405533865_26178">make=
+[1]: *** [all-recursive] Error 1<br id=3D"yui_3_16_0_ym19_1_1479405533865_2=
+6179">make[1]: Leaving directory '/home/vidal/wkg/yocto/RaspberryPi2/poky/b=
+uild/tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/gtkmm/3.0-r0/build'<=
+br id=3D"yui_3_16_0_ym19_1_1479405533865_26180">Makefile:534: recipe for ta=
+rget 'all' failed<br id=3D"yui_3_16_0_ym19_1_1479405533865_26181">make: ***=
+ [all] Error 2<br id=3D"yui_3_16_0_ym19_1_1479405533865_26182">ERROR: Funct=
+ion failed: do_compile (log file is located at /home/vidal/wkg/yocto/Raspbe=
+rryPi2/poky/build/tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/gtkmm/3=
+.0-r0/temp/log.do_compile.17760)<br id=3D"yui_3_16_0_ym19_1_1479405533865_2=
+6183"><br id=3D"yui_3_16_0_ym19_1_1479405533865_26184">The recipe that I am=
+ trying to create is <br id=3D"yui_3_16_0_ym19_1_1479405533865_26185">https=
+://gist.github.com/develone/ffa79327ccd49e9aa9f5c07e4db9ad7d<br id=3D"yui_3=
+_16_0_ym19_1_1479405533865_26186"><br id=3D"yui_3_16_0_ym19_1_1479405533865=
+_26187">Any an all help is appreciated.<br id=3D"yui_3_16_0_ym19_1_14794055=
+33865_26188"><br id=3D"yui_3_16_0_ym19_1_1479405533865_26189">Thanks in adv=
+ance </span></div><div id=3D"yui_3_16_0_ym19_1_1479405533865_26074">&nbsp;<=
+/div><div class=3D"signature" id=3D"yui_3_16_0_ym19_1_1479405533865_26114">=
+Edward Vidal Jr. e-mail develone@sbcglobal.net 915-595-1613</div></div></bo=
+dy></html>
 
---001a1142bf72accbe705418282f7--
+------=_Part_2332028_1079405294.1479416493434--
