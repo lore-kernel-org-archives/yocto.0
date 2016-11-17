@@ -1,39 +1,33 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <gary@mlbassoc.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 505A0E00C65; Wed, 16 Nov 2016 13:20:10 -0800 (PST)
+	id 2578FE00A0A; Wed, 16 Nov 2016 22:06:49 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [192.55.52.115 listed in list.dnswl.org]
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 00935E00C3E
-	for <yocto@yoctoproject.org>; Wed, 16 Nov 2016 13:20:08 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga103.fm.intel.com with ESMTP; 16 Nov 2016 13:20:08 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.31,649,1473145200"; d="scan'208";a="1086247744"
-Received: from llgoh-mobl.gar.corp.intel.com (HELO
-	peggleto-mobl.ger.corp.intel.com) ([10.255.159.102])
-	by fmsmga002.fm.intel.com with ESMTP; 16 Nov 2016 13:20:05 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Rich Persaud <persaur@gmail.com>
-Date: Thu, 17 Nov 2016 10:20:02 +1300
-Message-ID: <1768049.4Tuho7Cjuo@peggleto-mobl.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.14.10 (Linux/4.7.10-100.fc23.x86_64; KDE/4.14.20; x86_64; ;
-	)
-In-Reply-To: <DCCA29C3-5B08-4E33-AFAB-571134EFFAEF@gmail.com>
-References: <5818F173.7020204@intel.com>
-	<DCCA29C3-5B08-4E33-AFAB-571134EFFAEF@gmail.com>
+Received: from mail.analogue-micro.com (mail.analogue-micro.com
+	[217.144.149.242])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C2119E008CA
+	for <yocto@yoctoproject.org>; Wed, 16 Nov 2016 22:06:45 -0800 (PST)
+Received: by mail.analogue-micro.com (Postfix, from userid 999)
+	id 8186E68A01C; Thu, 17 Nov 2016 06:06:44 +0000 (GMT)
+Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
+	by mail.analogue-micro.com (Postfix) with ESMTP id 1B18968A019;
+	Thu, 17 Nov 2016 06:06:44 +0000 (GMT)
+Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
+	by zeus.mlbassoc.com (Postfix) with ESMTP id B0BF46740070;
+	Thu, 17 Nov 2016 07:06:43 +0100 (CET)
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+From: Gary Thomas <gary@mlbassoc.com>
+Message-ID: <8f36100c-f3a2-ef0d-ccd5-a6d7b1fc3acb@mlbassoc.com>
+Date: Thu, 17 Nov 2016 07:06:43 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.4.0
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: [yocto-announce] [ANNOUNCEMENT] Yocto Project 2.2 (morty 16.0.0) Released
+Subject: Warning on mips64
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,39 +39,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 16 Nov 2016 21:20:10 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Thu, 17 Nov 2016 06:06:49 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Tue, 15 Nov 2016 11:24:28 Rich Persaud wrote:
-> > On Nov 1, 2016, at 15:48, Tracy Graydon <tracy.graydon@intel.com> wrote:
-> > 
-> > Hello,
-> > 
-> > The latest release of the Yocto Project 2.2 (morty-16.0.0) is now
-> > available for download at:
-> > 
-> > http://downloads.yoctoproject.org/releases/yocto/yocto-2.2/poky-morty-16.0
-> > .0.tar.bz2
-> > http://mirrors.kernel.org/yocto/yocto/yocto-2.2/poky-morty-16.0.0.tar.bz2
-> > 
-> > A gpg signed version of these release notes is available at:
-> > 
-> > http://downloads.yoctoproject.org/releases/yocto/yocto-2.2/RELEASENOTES
-> 
-> It would be helpful if morty could be added to the stable branch page, with
-> clarification on whether jethro is being actively maintained:
-> 
->   https://wiki.yoctoproject.org/wiki/Stable_branch_maintenance
+I'm trying to build qemumips64 and get this warning:
+=====================================================================================
+WARNING: linux-yocto-4.8.6+gitAUTOINC+87e5fc8b7c_edcb167f91-r0 do_kernel_configcheck: [kernel config]: specified values 
+did not make it into the kernel's final configuration:
 
-Done. We should really make this an official part of our release process, 
-sorry about that.
+---------- CONFIG_CPU_MIPSR2 -----------------
+Config: CONFIG_CPU_MIPSR2
+From: 
+/build/bbb_2016-10-11/tmp/work-shared/qemumips64/kernel-source/.kernel-meta/configs/standard/mti-malta64/bsp/mti-malta64/mti-malta64-common.cfg
+Requested value:  # CONFIG_CPU_MIPSR2 is not set
+Actual value:
 
-Cheers,
-Paul
+Config 'CPU_MIPSR2' has the following conditionals:
+
+Dependency values are:
+=====================================================================================
+Build Configuration:
+BB_VERSION        = "1.32.0"
+BUILD_SYS         = "x86_64-linux"
+NATIVELSBSTRING   = "universal"
+TARGET_SYS        = "mips64-poky-linux"
+MACHINE           = "qemumips64"
+DISTRO            = "poky"
+DISTRO_VERSION    = "2.2"
+TUNE_FEATURES     = "n64 bigendian fpu-hard"
+TARGET_FPU        = ""
+meta              = "master:9b1bd29ea99aa0dec51e603e4ac28e211af19765"
+meta-poky         = "master:9b1bd29ea99aa0dec51e603e4ac28e211af19765"
+=====================================================================================
+
+What does it mean and is it important?
 
 -- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
