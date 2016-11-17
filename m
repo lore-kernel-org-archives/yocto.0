@@ -1,33 +1,41 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <herve.jourdain@neuf.fr>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2578FE00A0A; Wed, 16 Nov 2016 22:06:49 -0800 (PST)
+	id 6BB59E00CD2; Thu, 17 Nov 2016 05:23:18 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-Received: from mail.analogue-micro.com (mail.analogue-micro.com
-	[217.144.149.242])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C2119E008CA
-	for <yocto@yoctoproject.org>; Wed, 16 Nov 2016 22:06:45 -0800 (PST)
-Received: by mail.analogue-micro.com (Postfix, from userid 999)
-	id 8186E68A01C; Thu, 17 Nov 2016 06:06:44 +0000 (GMT)
-Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
-	by mail.analogue-micro.com (Postfix) with ESMTP id 1B18968A019;
-	Thu, 17 Nov 2016 06:06:44 +0000 (GMT)
-Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
-	by zeus.mlbassoc.com (Postfix) with ESMTP id B0BF46740070;
-	Thu, 17 Nov 2016 07:06:43 +0100 (CET)
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-From: Gary Thomas <gary@mlbassoc.com>
-Message-ID: <8f36100c-f3a2-ef0d-ccd5-a6d7b1fc3acb@mlbassoc.com>
-Date: Thu, 17 Nov 2016 07:06:43 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.4.0
+	*      [score: 0.0002]
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [93.17.128.163 listed in list.dnswl.org]
+X-Greylist: delayed 529 seconds by postgrey-1.32 at yocto-www;
+	Thu, 17 Nov 2016 05:23:14 PST
+Received: from smtp26.services.sfr.fr (smtp26.services.sfr.fr [93.17.128.163])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 194BCE00A48
+	for <yocto@yoctoproject.org>; Thu, 17 Nov 2016 05:23:14 -0800 (PST)
+Received: from localhost.localdomain (118-169-187-55.dynamic.hinet.net
+	[118.169.187.55])
+	by msfrf2603.sfr.fr (SMTP Server) with ESMTP id 9BB551C00100C;
+	Thu, 17 Nov 2016 14:14:22 +0100 (CET)
+Received: from localhost.localdomain (118-169-187-55.dynamic.hinet.net
+	[118.169.187.55])	(using TLSv1.2
+	with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))	(No client
+	certificate requested)	(Authenticated sender: herve.jourdain@neuf.fr)
+	by msfrf2603.sfr.fr (SMTP Server) with ESMTPSA;
+	Thu, 17 Nov 2016 14:14:19 +0100 (CET)
+Authentication-Results: sfr.fr; auth=pass (PLAIN)
+	smtp.auth=herve.jourdain@neuf.fr
+From: Herve Jourdain <herve.jourdain@neuf.fr>
+To: yocto@yoctoproject.org
+Date: Thu, 17 Nov 2016 21:13:52 +0800
+Message-Id: <1479388433-130851-1-git-send-email-herve.jourdain@neuf.fr>
+X-Mailer: git-send-email 2.7.4
+X-sfr-mailing: LEGIT
 MIME-Version: 1.0
-Subject: Warning on mips64
+Subject: [meta-raspberrypi][PATCH 0/1] linux-raspberrypi_4.7.bb: upgrade to latest good version
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,45 +47,20 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 17 Nov 2016 06:06:49 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 17 Nov 2016 13:23:18 -0000
 
-I'm trying to build qemumips64 and get this warning:
-=====================================================================================
-WARNING: linux-yocto-4.8.6+gitAUTOINC+87e5fc8b7c_edcb167f91-r0 do_kernel_configcheck: [kernel config]: specified values 
-did not make it into the kernel's final configuration:
+There seems to be a lot of rebasing these days on the raspberrypi linux repository for 4.7, with previously well-known revisions not existing anymore in the tree.
+Also, some files have mysteriously disappeared from the tree when they were available 2 months ago, and just re-appeared 3 weeks ago...
+This attempts to upgrade to the latest "good" version for 4.7, with all the files that should be there being present.
+It does compile, as of today - until when depends highly on what's going on in the raspberrypi tree.
 
----------- CONFIG_CPU_MIPSR2 -----------------
-Config: CONFIG_CPU_MIPSR2
-From: 
-/build/bbb_2016-10-11/tmp/work-shared/qemumips64/kernel-source/.kernel-meta/configs/standard/mti-malta64/bsp/mti-malta64/mti-malta64-common.cfg
-Requested value:  # CONFIG_CPU_MIPSR2 is not set
-Actual value:
+Herve Jourdain (1):
+  linux-raspberrypi_4.7.bb: upgrade to latest good version
 
-Config 'CPU_MIPSR2' has the following conditionals:
-
-Dependency values are:
-=====================================================================================
-Build Configuration:
-BB_VERSION        = "1.32.0"
-BUILD_SYS         = "x86_64-linux"
-NATIVELSBSTRING   = "universal"
-TARGET_SYS        = "mips64-poky-linux"
-MACHINE           = "qemumips64"
-DISTRO            = "poky"
-DISTRO_VERSION    = "2.2"
-TUNE_FEATURES     = "n64 bigendian fpu-hard"
-TARGET_FPU        = ""
-meta              = "master:9b1bd29ea99aa0dec51e603e4ac28e211af19765"
-meta-poky         = "master:9b1bd29ea99aa0dec51e603e4ac28e211af19765"
-=====================================================================================
-
-What does it mean and is it important?
+ recipes-kernel/linux/linux-raspberrypi_4.7.bb | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
 -- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+2.7.4
+
 
