@@ -1,67 +1,60 @@
-Return-Path: <twoerner@gmail.com>
+Return-Path: <giorgos.migdos@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 337B2E00924; Fri, 18 Nov 2016 13:31:00 -0800 (PST)
+	id E1451E00B6C; Sat, 19 Nov 2016 01:41:45 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_LOW,
-	RCVD_IN_SORBS_SPAM autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (twoerner[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.214.45 listed in list.dnswl.org]
+	mail provider *      (giorgos.migdos[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.214.45 listed in dnsbl.sorbs.net]
-Received: from mail-it0-f45.google.com (mail-it0-f45.google.com
-	[209.85.214.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CC674E0080D
-	for <yocto@yoctoproject.org>; Fri, 18 Nov 2016 13:30:58 -0800 (PST)
-Received: by mail-it0-f45.google.com with SMTP id l8so7936966iti.1
-	for <yocto@yoctoproject.org>; Fri, 18 Nov 2016 13:30:58 -0800 (PST)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.180 listed in list.dnswl.org]
+Received: from mail-qk0-f180.google.com (mail-qk0-f180.google.com
+	[209.85.220.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 45D36E00A7F
+	for <yocto@yoctoproject.org>; Sat, 19 Nov 2016 01:41:42 -0800 (PST)
+Received: by mail-qk0-f180.google.com with SMTP id n204so295773740qke.2
+	for <yocto@yoctoproject.org>; Sat, 19 Nov 2016 01:41:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=date:from:to:subject:message-id:mime-version:content-disposition
-	:user-agent; bh=ms4J8UyJe0FBXceDPU8attRAKkuH2pFskJyzL0fiSR8=;
-	b=zBsqTqYAoqjClUT5teZDEuiO5YgXXa36iZ3BW2D2XZfOzKKT64yxHK6Xx11f/MjKgS
-	Wat7D8NhpCkkn+yc96miTrfIjn8ERFcsrC3BCBTSYHG3tCQtueMvtYEldLIN2lnhAD30
-	7CpxS0EXIIzTFrFEdR7U64l5IxBtGdeMSqP8apS0LkTQNdhx4IJr6P9h8HR55lCmKx3G
-	p05WM8FE0z+sKMqZl/ABGzX63/5bUAIW/R+r70wkMGULmSnpvcOgOY8dN06m4ia3JbWX
-	sdTX8/S6Vqk1JWP5K+6BChsSBpV3zuok/UPfqZrJ4+0xUMB1BfuzVopqRLTSPGWVkfKF
-	tT3w==
+	h=mime-version:from:date:message-id:subject:to;
+	bh=MLSg2Jaj6LN7ssRmFj5qFOsmZzJ2gYRAJO7BqBJkrhw=;
+	b=zjxmuveYKHGm1HDYCf0BnwzayspY36e7N0HZmscr8PiQnqW7m7eTO3VPvvm56FOJHU
+	87NtMQ4bMiEITXq20BmGSd1v39sfu2POUdAN7dXWc02q71TzzUSf8fmWe5jZq/HkstKS
+	x2BPamq4kVBzZ0MORLsNqn+oqZj8ggd7GL9AOyrwU1jO3DfaxgUkGU8sq354iVgnz7Sm
+	csPIOnkhiOqWNu3m0ZgoGLK6W70Y9ixf/F4075G5Nj32VyHFOhZ5PHIQM8kCpb/41ej0
+	M2ekzKdr+7k3M5KBdPuh/lDGPJzBnBpvopYgFcKAgqq91zMqUF3iLcmB8R7qRgstL/kP
+	o23Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:date:from:to:subject:message-id:mime-version
-	:content-disposition:user-agent;
-	bh=ms4J8UyJe0FBXceDPU8attRAKkuH2pFskJyzL0fiSR8=;
-	b=bTDAIbvUy1VXnDPro8qQnKAs/JzgvA5I4HQAP+HZFBIbp7u0Uk+jY/vhxYktrbX4gt
-	hnnWIbyP3L4jFarKqoJUB+lo3OgLE70yJNscah0q37TKgxfErOPl/HAMbbj7IoAxhIYD
-	J7xnya1p+FbUGoaD+FmWUuTR2vbGHXoZ1wcVYMwDW6pNBASAf0lO44q0Qgt/v4zyx5yx
-	2nUxNaCxKm56ewEIr8+SBxn0oA3txGZ2npGLOkS32rWynNb6oxNblEv4Ilxh4JkUW83V
-	dCxfB1MAlRMW0t3TPgSOjcXVbhjgv0EbopZ7Z4zsozIVAAzdahLJIDh1ZrMUzdkb/he2
-	HtEg==
-X-Gm-Message-State: AKaTC004HS4lG+zms9JgX9FI68ivyQENtBU4OdFMeSY9S1Ffo7JuaSLjJt9NapTVWW6Wig==
-X-Received: by 10.36.211.72 with SMTP id n69mr477452itg.61.1479504658241;
-	Fri, 18 Nov 2016 13:30:58 -0800 (PST)
-Received: from openSUSE-i7.site (dsl-67-55-28-109.acanac.net. [67.55.28.109])
-	by smtp.gmail.com with ESMTPSA id
-	n199sm1600839itb.1.2016.11.18.13.30.54 for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 18 Nov 2016 13:30:56 -0800 (PST)
-Date: Fri, 18 Nov 2016 16:30:46 -0500
-From: Trevor Woerner <twoerner@gmail.com>
-To: yocto@yoctoproject.org
-Message-ID: <20161118213046.GB26177@openSUSE-i7.site>
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=MLSg2Jaj6LN7ssRmFj5qFOsmZzJ2gYRAJO7BqBJkrhw=;
+	b=JVpkFcAuTBgNz++YLC3f6U2vl8v3Pb0Oe7bJ3aBhMp6K9kHFjQd/vsmfvyfwoayrL1
+	AQkXNf45DBZJrkGyG1PKnnWPt5hErdcNYQQsQIo9vPNsskYFS3sDQGAuhGAeyLm7u0Pv
+	HKywdQ3ZTBKcPEiYR7DiNEbcTCZpAwvtmx5I89x/kSd6bbWw3wwl/mPH5bmrNXzHbQ5f
+	8L1NXgogeeGOgP9um25Ms5aD6ltbeNo9+9q3rdNY1qV1I5tmWLIEvJHhBhuA95UMndww
+	LF7xGN04M36ijRN3CaGBo0nNiJfajNEm853rlBXq3HY/EE6x8fUsdKhM5Bv4gDm++f7M
+	UugQ==
+X-Gm-Message-State: AKaTC01bIlSHAJJpGpJO1OtQ2jk83uZFWkLEQeytWw+3WV5PL9jLDCokjCxwyI3hNEq6u21Xs1weVmXj+WY1zA==
+X-Received: by 10.55.3.2 with SMTP id 2mr5309952qkd.65.1479548502227; Sat, 19
+	Nov 2016 01:41:42 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mutt/1.6.0 (2016-04-01)
-Subject: uninative workflow
+Received: by 10.200.57.225 with HTTP; Sat, 19 Nov 2016 01:41:41 -0800 (PST)
+From: George Migdos <giorgos.migdos@gmail.com>
+Date: Sat, 19 Nov 2016 11:41:41 +0200
+Message-ID: <CA+Z_yWLCumQDsuzCLeqzQk244J=6z5Ztxc9JCkfYpGHm09rBSg@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Building core-image-base for PPC64
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,38 +66,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 18 Nov 2016 21:31:00 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+X-List-Received-Date: Sat, 19 Nov 2016 09:41:46 -0000
+Content-Type: multipart/alternative; boundary=001a114c9cc4e73f700541a43ab4
 
-Hi,
+--001a114c9cc4e73f700541a43ab4
+Content-Type: text/plain; charset=UTF-8
 
-To be honest, I'm not entirely sure what the uninative stuff is (explanations
-or pointers to explanations appreciated!) but I'm trying to figure out how to
-work with it.
+Hello,
 
-Previously, generating an eSDK didn't require a uninative-tarball, but now,
-apparently, it does? Any idea why?
+I would like to build and run the core-image-base recipe for PPC64 using
+Toaster on Linux Mint 18 64-bit (4.4.0-21-generic).
 
-So now, in addition to building the uninative-tarball before being able to
-build an eSDK, it also appears that I have to edit my local.conf to tell the
-build that I'm using it, where to find it, and its md5sum. The weird thing is,
-I could do "bitbake uninative-tarball" all day long, and every invocation of
-that command will generate a tarball with a different md5sum even though the
-configuration for each build is exactly the same!
+When using the Morty release I do not seem to be able to find a compatible
+machine, whereas when using the current master HEAD (commit id:
+7c3a47ed8965c3a3eb90a9a4678d5caedbba6337
+<http://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/?id=7c3a47ed8965c3a3eb90a9a4678d5caedbba6337>)
+there seems to be a QEmu ppc64 compatible machine (and the related qemu
+layers) but the build fails during the parsing stage.
 
-This is getting hard to automate.
+Is it at all possible to build and run core-image-base for an emulated
+PPC64 system?
 
-In order to create an image and an eSDK I have to start with a local.conf that
-doesn't have uninative stuff in it and "bitbake uninative-tarball". Then I can
-build my image, then I have to enable the uninative stuff in local.conf,
-calculate, and insert the latest md5sum into local.conf, then I can generate
-my eSDK. This is getting tricky to automate in, say, a Jenkins job :-(
+Thank you for your time.
 
-Am I doing something wrong? It'd be great to go back to the days when the
-uninative-tarball wouldn't be required for the eSDK, but maybe that's not
-possible?
+--001a114c9cc4e73f700541a43ab4
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Best regards,
-	Trevor
+<div dir=3D"ltr"><div><div>Hello,<br></div><div><br></div>I would like to b=
+uild and run the core-image-base recipe for PPC64 using Toaster on Linux Mi=
+nt 18 64-bit (4.4.0-21-generic).<br></div><div><br>When using the Morty rel=
+ease I do not seem to be able to find a compatible machine, whereas when us=
+ing the current master HEAD (commit id: <a href=3D"http://git.yoctoproject.=
+org/cgit/cgit.cgi/poky/commit/?id=3D7c3a47ed8965c3a3eb90a9a4678d5caedbba633=
+7">7c3a47ed8965c3a3eb90a9a4678d5caedbba6337</a>) there seems to be a QEmu p=
+pc64 compatible machine (and the related qemu layers) but the build fails d=
+uring the parsing stage.<br><br></div><div>Is it at all possible to build a=
+nd run core-image-base for an emulated PPC64 system?<br><br></div><div>Than=
+k you for your time.<br><br></div></div>
 
+--001a114c9cc4e73f700541a43ab4--
