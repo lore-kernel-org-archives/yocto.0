@@ -1,6 +1,6 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D259DE00BF3; Sun, 20 Nov 2016 11:29:24 -0800 (PST)
+	id 34A82E00C9B; Sun, 20 Nov 2016 11:30:40 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,9 +9,11 @@ X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (raj.khem[at]gmail.com)
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.213.65 listed in dnsbl.sorbs.net]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.217.193 listed in list.dnswl.org]
+	*      [209.85.213.65 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,47 +21,48 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.217.193 listed in dnsbl.sorbs.net]
-Received: from mail-ua0-f193.google.com (mail-ua0-f193.google.com
-	[209.85.217.193])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B0792E00B45
-	for <yocto@yoctoproject.org>; Sun, 20 Nov 2016 11:29:19 -0800 (PST)
-Received: by mail-ua0-f193.google.com with SMTP id b35so23291875uaa.1
-	for <yocto@yoctoproject.org>; Sun, 20 Nov 2016 11:29:19 -0800 (PST)
+Received: from mail-vk0-f65.google.com (mail-vk0-f65.google.com
+	[209.85.213.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 90090E00BAF
+	for <yocto@yoctoproject.org>; Sun, 20 Nov 2016 11:30:39 -0800 (PST)
+Received: by mail-vk0-f65.google.com with SMTP id x186so22420994vkd.2
+	for <yocto@yoctoproject.org>; Sun, 20 Nov 2016 11:30:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=acYuDw6zozols10zxm5ejrxVHf3B1n5rpbB35H1N1MI=;
-	b=yLqviGr/YGF/KPhCG5vg73vTpZUgj7VIAiOS69wQgx5r4ojQLAPZ+8ReHAiPxOE6ti
-	pFF4BwlkZltbvcPt+bIbEHZYM+1Jy51VNknntaUsw4+vJIuRyks8ZIM3K/8/FI4Ykbox
-	0Gdnoa0oBqBkSsJB4KbCBdG3WohvegVznx3Z+j19BbZWYhdBhL07ywTqV0qBmQELlclN
-	oxrIR0cD3YTDr4TSA+Cd8fglQ2dW8m8PKUzOHlkG5hqXiF6FW/FvD/DIX+T+IMU96Afi
-	G81hT9DWWDxbBg/dSlcJDfxSYr9DbdSu+VQPfPNCBc0qSyqVJ4G9iKhSoIpTXL+A2bCk
-	NGbw==
+	:cc; bh=p9ORbFijulMVLiuk0Ay5Vh+nMGV4ZHajFdoaUpyRQ9E=;
+	b=pyThTW3DhP9qyJqyGKd8NIcG1BYqZ9RjesCTnks2k1UtlomaCZ4XyM1RqCgiTO9A3N
+	Z81+lnx/vSnXQglUfrmw6w/UVS2RRDdilKg6oc5zOkMob1z14jdXoP+TrjLZVi0xq//k
+	IARVYygtUvo5v4hHXv/0YfLxR+TlSLDctQI8bueelnyAxeLCiMLYTK+k9SNAEIiL0ncw
+	OcKbRXof2mVHk/+pEJwFnUUav/j3fANLysE7tSP2jXtUEmiFJ33Sakft1CDsjXXY+5vY
+	k5J+YXEDWRnbe6I8+YHuNFRNHg8qxEhnOgJvmJ8sQDfP0QGo2Ue/k7RdL/+SQJvSuvHf
+	fQOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=acYuDw6zozols10zxm5ejrxVHf3B1n5rpbB35H1N1MI=;
-	b=hFeZi2DtnYrexEMeDSgihXPkfwhogTCGrbLih74greSSRCdl+PnHKcUpcI6ncyI00J
-	M45muRQmwEhCVh0gZPkzFB2RUmoITlz5UdBjM4o7p114COXNzULLTOM2dZORrXQyH68i
-	W42u9KA1DktLfPuzLDWAfu2K3/c62mm7fZSCcgWuvSiz1yO4OBkrJd0fVlO6+rC6AZs9
-	Z95UlVw4bkEkVL1BuTwyZ9y73wrWnf8xgLrW0jf02mV2bEUGvnFx0Z58lTgJ2Ze87XF4
-	1RjMOlYWRWoN6+zQj9lomziT6QBs3HV7RWR7+s2Avf+mdMj1bCgHmcZlc6ERvMaQ7BX1
-	C3iQ==
-X-Gm-Message-State: AKaTC00z4dfiUqCPbbB/p3hQJIDGLF4i9jtUH5FKbcSQ7P+cDshsCQO1HScbRTMWwfR7vup/vf8jbvt+Y3qXgg==
-X-Received: by 10.176.0.180 with SMTP id 49mr5449681uaj.32.1479670159199; Sun,
-	20 Nov 2016 11:29:19 -0800 (PST)
+	bh=p9ORbFijulMVLiuk0Ay5Vh+nMGV4ZHajFdoaUpyRQ9E=;
+	b=Jn4O6HmQFZAohQHajqspXQZ05NGpuYGP5DUa3llMiD/cUgJhxv++Bm6bkIpSnNOb9m
+	WBDnxbD1e5Mi0ckF8EOZ4lp+3O0oGJrvRr0Vmyi4B0jsxacu4ZVHCw5K+6kWxwfgaE6h
+	lAj4NKYTAz6ne2DxqE66YfFXnDCBcKAKSZIODgYZYwrpRietsDlXBfW2UwhNifTWlEyS
+	11VXm0OBc+xHiBLaL4jtzd3OQvtOuirpfDbS7Gky7RnMZKw9ZBgcyca7Ko2QQMaFtwOS
+	Sga89bf6FtMbPfMgj97LvzuY50Td9kayap21MnlTuERmHwkFrErzAZVBnfszNYqp3hDi
+	mv+g==
+X-Gm-Message-State: AKaTC03DdlHVf4gEvlYh35K6vdwnzxBRNtO/QZEJoj94JoDLCizSYRoJU5EOjpDDVQfxOrsBEAA3TSVgVRJzQw==
+X-Received: by 10.31.108.144 with SMTP id j16mr3852990vki.93.1479670238525;
+	Sun, 20 Nov 2016 11:30:38 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.176.5.136 with HTTP; Sun, 20 Nov 2016 11:28:48 -0800 (PST)
-In-Reply-To: <002d01d24304$32aa08a0$97fe19e0$@neuf.fr>
-References: <002d01d24304$32aa08a0$97fe19e0$@neuf.fr>
+Received: by 10.176.5.136 with HTTP; Sun, 20 Nov 2016 11:30:08 -0800 (PST)
+In-Reply-To: <003b01d24326$8ae5cd20$a0b16760$@neuf.fr>
+References: <1479560619-33367-1-git-send-email-herve.jourdain@neuf.fr>
+	<1479560619-33367-2-git-send-email-herve.jourdain@neuf.fr>
+	<f7d407c8-aa02-4c75-fef0-3d6afeaf4a95@gmail.com>
+	<003b01d24326$8ae5cd20$a0b16760$@neuf.fr>
 From: Khem Raj <raj.khem@gmail.com>
-Date: Sun, 20 Nov 2016 11:28:48 -0800
-Message-ID: <CAMKF1sqt2cA5DbPDAwo2=SNUqPuPatavhtQYpOnecQ=i+wc45w@mail.gmail.com>
+Date: Sun, 20 Nov 2016 11:30:08 -0800
+Message-ID: <CAMKF1sqR6E=UnU2hOhoPBUBk8-tHhBJrG=LYFG4Eo9t=6W7uKA@mail.gmail.com>
 To: Herve Jourdain <herve.jourdain@neuf.fr>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [raspberrypi] raspi3 vs raspi2
+Subject: Re: [meta-raspberrypi][PATCH 1/1] Modify raspberrypi3.conf and add raspberrypi3-64.conf
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,76 +74,94 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 20 Nov 2016 19:29:24 -0000
+X-List-Received-Date: Sun, 20 Nov 2016 19:30:40 -0000
 Content-Type: text/plain; charset=UTF-8
 
-Herve
+Herve,
 
-On Sun, Nov 20, 2016 at 12:00 AM, Herve Jourdain <herve.jourdain@neuf.fr> wrote:
-> Hi Khem, Trevor,
+There is no need to create so many variants for a53 32 bit mode. We
+can keep using whatever we have
+its only 64bit that needs to be added as a new machine.
+
+On Sun, Nov 20, 2016 at 4:06 AM, Herve Jourdain <herve.jourdain@neuf.fr> wrote:
+> Hi Khem,
 >
-> I've submitted part of it yesterday, the rest should come out today
-> hopefully.
-> The 2 machine types - raspberrypi3 and raspberrypi3-64 - have been submitted
-> to yocto/meta-raspberrypi.
-> They will need tune-cortexa53.inc - I've sent a version to oe-core, but I
-> got it wrong again, so I will resend it hopefully again, along with a
-> modified version of arch-armv8.inc.
-
-I gave a whirl at building and looking closely at them. As it seems
-the OE core patch is
-not needed since for armv8 we want to keep it like x86 ( common )
-I have therefore made changes to your patches and staged them here.
-
-https://github.com/kraj/meta-raspberrypi/commits/kraj/master
-
-Which should work without any change in OE-Core, secondly I have
-further divided them
-and also fixed 4.8 to compile arm64.
-
->
-> I have some patches to support 64bits on Raspberrypi3 that should be pushed
-> -hopefully - today. They're on 4.7.10, though.
-
-I think it will be better to rebase them to 4.8 and eventually 4.9 if
-they are not too intrusive.
-
+> FYI, I am sending a slightly modified version (cortexa53hf-32 instead of
+> cortexa53-32 for raspberrypi3.conf).
+> They still depend on modifications in oe-core (heavier this time than
+> before), also posted to the list.
 >
 > Herve
 >
 > -----Original Message-----
-> From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org]
-> On Behalf Of Khem Raj
-> Sent: samedi 19 novembre 2016 18:30
-> To: Trevor Woerner <twoerner@gmail.com>
-> Cc: yocto@yoctoproject.org
-> Subject: ***SPAM*** Re: [yocto] [raspberrypi] raspi3 vs raspi2
+> From: Khem Raj [mailto:raj.khem@gmail.com]
+> Sent: samedi 19 novembre 2016 19:19
+> To: Herve Jourdain <herve.jourdain@neuf.fr>; yocto@yoctoproject.org
+> Subject: Re: [yocto] [meta-raspberrypi][PATCH 1/1] Modify raspberrypi3.conf
+> and add raspberrypi3-64.conf
 >
-> On Fri, Nov 18, 2016 at 1:20 PM, Trevor Woerner <twoerner@gmail.com> wrote:
->> Hi,
+> Nevermind, I managed to apply it, there are some CR changes I guess which
+> was freaking git
+>
+> On 11/19/16 5:03 AM, Herve Jourdain wrote:
+>> Signed-off-by: Herve Jourdain <herve.jourdain@neuf.fr>
+>> ---
+>>  conf/machine/raspberrypi3-64.conf | 19 +++++++++++++++++++
+>>  conf/machine/raspberrypi3.conf    |  8 ++++++--
+>>  2 files changed, 25 insertions(+), 2 deletions(-)  create mode 100644
+>> conf/machine/raspberrypi3-64.conf
 >>
->> I was wondering if there were any plans to create a
->> MACHINE=raspberrypi3 that treats the raspi3 like the CortexA53 that it
->> is instead of generating images that are backwards compatible with the
-> CortexA7 that is the raspi2?
->
-> Thats a good question. I know few folks who have done 64bit port of OE on
-> rpi3 so I would be interested in such patches where we add rpi3-64 machine
-> type.
-> do you have patches to submit ? Please do
->
+>> diff --git a/conf/machine/raspberrypi3-64.conf
+>> b/conf/machine/raspberrypi3-64.conf
+>> new file mode 100644
+>> index 0000000..a5ceddb
+>> --- /dev/null
+>> +++ b/conf/machine/raspberrypi3-64.conf
+>> @@ -0,0 +1,19 @@
+>> +#@TYPE: Machine
+>> +#@NAME: RaspberryPi 3 Development Board
+>> +#@DESCRIPTION: Machine configuration for the RaspberryPi 3 in 64 bits
+>> +mode
+>> +
+>> +DEFAULTTUNE ?= "cortexa53-64"
+>> +
+>> +MACHINEOVERRIDES = "raspberrypi3:raspberrypi:${MACHINE}"
+>> +
+>> +MACHINE_EXTRA_RRECOMMENDS += "linux-firmware-bcm43430"
+>> +
+>> +PREFERRED_VERSION_linux-raspberrypi_raspberrypi3-64 ?= "4.7.%"
+>> +
+>> +require conf/machine/include/tune-cortexa53.inc
+>> +include conf/machine/include/rpi-base.inc
+>> +
+>> +SERIAL_CONSOLE = "115200 ttyS0"
+>> +VC4_CMA_SIZE ?= "cma-256"
+>> +
+>> +UBOOT_MACHINE = "rpi_3_config"
+>> diff --git a/conf/machine/raspberrypi3.conf
+>> b/conf/machine/raspberrypi3.conf index 9820209..f142323 100644
+>> --- a/conf/machine/raspberrypi3.conf
+>> +++ b/conf/machine/raspberrypi3.conf
+>> @@ -2,12 +2,16 @@
+>>  #@NAME: RaspberryPi 3 Development Board
+>>  #@DESCRIPTION: Machine configuration for the RaspberryPi 3
 >>
->> Best regards,
->>         Trevor
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+>> -MACHINEOVERRIDES = "raspberrypi2:${MACHINE}"
+>> +DEFAULTTUNE ?= "cortexa53-32"
+>> +
+>> +MACHINEOVERRIDES = "raspberrypi2:raspberrypi:${MACHINE}"
+>>
+>>  MACHINE_EXTRA_RRECOMMENDS += "linux-firmware-bcm43430"
+>>
+>> -include conf/machine/raspberrypi2.conf
+>> +require conf/machine/include/tune-cortexa53.inc
+>> +include conf/machine/include/rpi-base.inc
+>>
+>>  SERIAL_CONSOLE = "115200 ttyS0"
+>>  VC4_CMA_SIZE ?= "cma-256"
+>>
+>> +UBOOT_MACHINE = "rpi_3_config"
+>>
+>
 >
 
