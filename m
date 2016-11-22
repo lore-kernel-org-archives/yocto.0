@@ -1,6 +1,6 @@
 Return-Path: <jianxun.zhang@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 17663E00CCD; Tue, 22 Nov 2016 11:32:47 -0800 (PST)
+	id 4FD23E00CCD; Tue, 22 Nov 2016 11:32:47 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,22 +12,22 @@ X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6CD5AE00CD0
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C0DC3E00CCC
 	for <yocto@yoctoproject.org>; Tue, 22 Nov 2016 11:32:42 -0800 (PST)
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
 	by fmsmga101.fm.intel.com with ESMTP; 22 Nov 2016 11:32:41 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.31,682,1473145200"; d="scan'208";a="34448016"
+X-IronPort-AV: E=Sophos;i="5.31,682,1473145200"; d="scan'208";a="34448018"
 Received: from chang-s2600cp.jf.intel.com ([10.54.77.22])
 	by orsmga005.jf.intel.com with ESMTP; 22 Nov 2016 11:32:41 -0800
 From: Jianxun Zhang <jianxun.zhang@linux.intel.com>
 To: yocto@yoctoproject.org
-Date: Tue, 22 Nov 2016 11:35:46 -0800
-Message-Id: <1479843349-195099-4-git-send-email-jianxun.zhang@linux.intel.com>
+Date: Tue, 22 Nov 2016 11:35:48 -0800
+Message-Id: <1479843349-195099-6-git-send-email-jianxun.zhang@linux.intel.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1479843349-195099-1-git-send-email-jianxun.zhang@linux.intel.com>
 References: <1479843349-195099-1-git-send-email-jianxun.zhang@linux.intel.com>
-Subject: [PATCH 3/6][rmc] use internal definitions for types in project
+Subject: [PATCH 5/6][rmc] remove kernel command line usage and blob type
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,860 +41,485 @@ List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Tue, 22 Nov 2016 19:32:47 -0000
 
-EFI Clients linked to rmc may or may not include standard header
-files, and these definitions could be different too.
-
-The existing macros like 'WORD' also bring ambiguity among
-processor architectures, so we replace them with the new internal
-data types.
-
-This change takes whatever defined for types in user space since
-we need standard header files anyway, but defines data types for
-EFI context.
-
-Everything inside rmc uses internal data types as consolidation.
+rmc works as a generic file-based solution now. There is no need
+to keep a special case for kernel command line type which was
+designed in early days.
 
 Signed-off-by: Jianxun Zhang <jianxun.zhang@linux.intel.com>
 ---
- inc/rmc_api.h         |  4 ++--
- inc/rmc_types.h       | 33 +++++++++++++++--------------
- inc/rmc_util.h        | 10 ++++-----
- inc/rmcl.h            | 34 +++++++++++++++---------------
- inc/rsmp.h            | 58 +++++++++++++++++++++++++--------------------------
- src/lib/api.c         | 44 +++++++++++++++++++-------------------
- src/lib/common/rmcl.c | 38 ++++++++++++++++-----------------
- src/lib/common/rsmp.c | 18 ++++++++--------
- src/lib/efi_api.c     | 16 ++++++++------
- src/lib/rmc_efi.h     | 43 +++++++++++++++++++-------------------
- src/rmc.c             | 20 +++++++++---------
- src/util/util.c       | 20 +++++++++---------
- 12 files changed, 172 insertions(+), 166 deletions(-)
+ inc/rmcl.h            |  27 ++++-----
+ src/lib/api.c         |   4 +-
+ src/lib/common/rmcl.c |  32 +++--------
+ src/lib/efi_api.c     |   2 +-
+ src/rmc.c             | 150 ++++++++++++--------------------------------------
+ 5 files changed, 59 insertions(+), 156 deletions(-)
 
-diff --git a/inc/rmc_api.h b/inc/rmc_api.h
-index 2d1e05b..a484389 100644
---- a/inc/rmc_api.h
-+++ b/inc/rmc_api.h
-@@ -96,7 +96,7 @@ extern void rmc_free_file(rmc_file_t *fp);
-  *
-  * return           : 0 for success, non-zeor for failures
-  */
--extern int read_file(const char *pathname, char **data, size_t* len);
-+extern int read_file(const char *pathname, char **data, rmc_size_t* len);
- 
- /*
-  * utility function to write data into file.
-@@ -107,7 +107,7 @@ extern int read_file(const char *pathname, char **data, size_t* len);
-  *
-  * return          : 0 when successfully write all data into file, non-zeor for failures
-  */
--int write_file(const char *pathname, void *data, size_t len, int append);
-+int write_file(const char *pathname, void *data, rmc_size_t len, int append);
- 
- #else
- /* 2 - API for UEFI context */
-diff --git a/inc/rmc_types.h b/inc/rmc_types.h
-index e960a7e..28bea84 100644
---- a/inc/rmc_types.h
-+++ b/inc/rmc_types.h
-@@ -11,6 +11,14 @@
- #include <stdint.h>
- #include <stddef.h>
- #include <string.h>
-+
-+typedef uint8_t rmc_uint8_t;
-+typedef uint16_t rmc_uint16_t;
-+typedef uint32_t rmc_uint32_t;
-+typedef uint64_t rmc_uint64_t;
-+typedef size_t rmc_size_t;
-+typedef ssize_t rmc_ssize_t;
-+
- #else
- /* we specify -nostdinc in C flag and provide these in rmc
-  * for EFI applications that don't want to use standard headers.
-@@ -19,29 +27,22 @@
- #ifndef NULL
- #define NULL 0
- #endif
--typedef unsigned int            uint32_t;
--typedef unsigned short int      uint16_t;
--typedef unsigned char           uint8_t;
-+typedef unsigned int            rmc_uint32_t;
-+typedef unsigned short int      rmc_uint16_t;
-+typedef unsigned char           rmc_uint8_t;
- #ifdef __x86_64__
--typedef unsigned long int       uint64_t;
-+typedef unsigned long int       rmc_uint64_t;
- #elif defined(__i386__)
- __extension__
--typedef unsigned long long int  uint64_t;
-+typedef unsigned long long int  rmc_uint64_t;
- #else
- #error "rmc only supports 32 and 64 bit x86 platforms"
- #endif
- #else
- #error "rmc needs gcc compiler"
--#endif
--
--typedef unsigned long size_t;
--typedef long ssize_t;
--#endif
--
--typedef uint8_t BYTE;
--typedef uint16_t WORD;
--typedef uint32_t DWORD;
--typedef uint64_t QWORD;
--
-+#endif /* __GNUC__ */
-+typedef unsigned long rmc_size_t;
-+typedef long rmc_ssize_t;
-+#endif /* RMC_EFI */
- 
- #endif /* INC_RMC_TYPES_H_ */
-diff --git a/inc/rmc_util.h b/inc/rmc_util.h
-index d1512e2..15a6102 100644
---- a/inc/rmc_util.h
-+++ b/inc/rmc_util.h
-@@ -7,16 +7,16 @@
- #define INC_RMC_UTIL_H_
- #include <rmc_types.h>
- 
--void *memset(void *s, BYTE c, size_t n);
-+void *memset(void *s, rmc_uint8_t c, rmc_size_t n);
- 
--char *strncpy(char *dest, const char *src, size_t n);
-+char *strncpy(char *dest, const char *src, rmc_size_t n);
- 
- char *strcpy(char *dest, const char *src);
- 
--size_t strlen(const char *s);
-+rmc_size_t strlen(const char *s);
- 
--void *memcpy(void *dest, const void *src, size_t n);
-+void *memcpy(void *dest, const void *src, rmc_size_t n);
- 
--int strncmp(const char *s1, const char *s2, size_t n);
-+int strncmp(const char *s1, const char *s2, rmc_size_t n);
- 
- #endif
 diff --git a/inc/rmcl.h b/inc/rmcl.h
-index 52b9964..4123819 100644
+index 4123819..5bbad42 100644
 --- a/inc/rmcl.h
 +++ b/inc/rmcl.h
-@@ -28,8 +28,8 @@
-  * preferred as long as possible.
-  */
- typedef struct rmc_finger {
--    BYTE type;
--    BYTE offset;
-+    rmc_uint8_t type;
-+    rmc_uint8_t offset;
-     char *name;
-     char *value;
- } rmc_finger_t;
-@@ -79,14 +79,14 @@ static __inline__ void initialize_fingerprint(rmc_fingerprint_t *fp) {
-  * RMC Database (packed). A RMC DB contains records
-  */
- typedef struct rmc_db_header {
--    BYTE signature[RMC_DB_SIG_LEN];
--    BYTE version;
--    QWORD length;
-+    rmc_uint8_t signature[RMC_DB_SIG_LEN];
-+    rmc_uint8_t version;
-+    rmc_uint64_t length;
- } __attribute__ ((__packed__)) rmc_db_header_t;
- 
- /* signature is the computation result of fingerprint and what's packed in record */
- typedef union rmc_signature {
--    BYTE raw[32];
-+    rmc_uint8_t raw[32];
- } __attribute__ ((__packed__)) rmc_signature_t;
- 
- /*
-@@ -94,17 +94,17 @@ typedef union rmc_signature {
-  */
- typedef struct rmc_record_header {
-     rmc_signature_t signature;     /* computation result from finger print */
--    QWORD length;
-+    rmc_uint64_t length;
- } __attribute__ ((__packed__)) rmc_record_header_t;
- 
- /*
+@@ -101,23 +101,20 @@ typedef struct rmc_record_header {
   * RMC Database Meta (packed)
   */
  typedef struct rmc_meta_header {
--    BYTE type;      /* type 0 command line; type 1 file blob*/
--    QWORD length;   /* covers cmdline_filename and blob blocks. */
-+    rmc_uint8_t type;      /* type 0 command line; type 1 file blob*/
-+    rmc_uint64_t length;   /* covers cmdline_filename and blob blocks. */
-     /* char *cmdline_filename : Invisible, null-terminated string packed in mem */
--    /* BYTE *blob : Invisible, binary packed in mem */
-+    /* rmc_uint8_t *blob : Invisible, binary packed in mem */
+-    rmc_uint8_t type;      /* type 0 command line; type 1 file blob*/
+-    rmc_uint64_t length;   /* covers cmdline_filename and blob blocks. */
+-    /* char *cmdline_filename : Invisible, null-terminated string packed in mem */
++    rmc_uint8_t type;      /* RMC_GENERIC_FILE or or any other types defined later */
++    rmc_uint64_t length;   /* length of blob's name and blob */
++    /* char *blob_name : Invisible, null-terminated string packed in mem */
+     /* rmc_uint8_t *blob : Invisible, binary packed in mem */
  } __attribute__ ((__packed__)) rmc_meta_header_t;
  
- /*
-@@ -114,11 +114,11 @@ typedef struct rmc_meta_header {
- #define RMC_POLICY_CMDLINE 0
- #define RMC_POLICY_BLOB 1
+-/*
+- * input of a rmc policy file. RMCL accepts command line
+- * and file blobs presented in this data type (sparse memory)
+- */
+-#define RMC_POLICY_CMDLINE 0
+-#define RMC_POLICY_BLOB 1
++/* We only have one type now but keep a type field internally for extensions in the future. */
++#define RMC_GENERIC_FILE 1
++
  typedef struct rmc_file {
--    BYTE type;              /* RMC_POLICY_CMDLINE or RMC_POLICY_BLOB*/
-+    rmc_uint8_t type;              /* RMC_POLICY_CMDLINE or RMC_POLICY_BLOB*/
-     char *cmdline_name;     /* file name of blob (type 1) or command line fragment (type 0) */
-     struct rmc_file *next;  /* next rmc file, or null as terminator for the last element */
--    size_t blob_len;         /* number of bytes of blob, excluding length of name */
--    BYTE *blob;             /* blob of policy file, treated as binary, UNNECESSARILY Null terminated */
-+    rmc_size_t blob_len;         /* number of bytes of blob, excluding length of name */
-+    rmc_uint8_t *blob;             /* blob of policy file, treated as binary, UNNECESSARILY Null terminated */
+-    rmc_uint8_t type;              /* RMC_POLICY_CMDLINE or RMC_POLICY_BLOB*/
+-    char *cmdline_name;     /* file name of blob (type 1) or command line fragment (type 0) */
+-    struct rmc_file *next;  /* next rmc file, or null as terminator for the last element */
+-    rmc_size_t blob_len;         /* number of bytes of blob, excluding length of name */
++    rmc_uint8_t type;              /* RMC_GENERIC_FILE or or any other types defined later */
++    char *blob_name;               /* name of blob for type RMC_GENERIC_FILE */
++    struct rmc_file *next;         /* next rmc file, or null as terminator for the last element */
++    rmc_size_t blob_len;           /* number of bytes of blob, excluding length of name */
+     rmc_uint8_t *blob;             /* blob of policy file, treated as binary, UNNECESSARILY Null terminated */
  } rmc_file_t;
  
- /*
-@@ -126,8 +126,8 @@ typedef struct rmc_file {
-  * Also as input when generating rmc db with records.
-  */
- typedef struct rmc_record_file {
--    BYTE *blob;              /* record raw data blob */
--    size_t length;
-+    rmc_uint8_t *blob;              /* record raw data blob */
-+    rmc_size_t length;
-     struct rmc_record_file *next;  /* next rmc record file, or null as terminator for the last element */
- } rmc_record_file_t;
- 
-@@ -150,7 +150,7 @@ extern int rmcl_generate_record(rmc_fingerprint_t *fingerprint, rmc_file_t *poli
-  * (out) len            : length of returned rmc db
-  * (ret) 0 for success, RMC error code for failures. content of rmc_db is NULL for failures.
-  */
--extern int rmcl_generate_db(rmc_record_file_t *record_files, BYTE **rmc_db, size_t *len);
-+extern int rmcl_generate_db(rmc_record_file_t *record_files, rmc_uint8_t **rmc_db, rmc_size_t *len);
+@@ -153,11 +150,11 @@ extern int rmcl_generate_record(rmc_fingerprint_t *fingerprint, rmc_file_t *poli
+ extern int rmcl_generate_db(rmc_record_file_t *record_files, rmc_uint8_t **rmc_db, rmc_size_t *len);
  
  /*
-  * Query a RMC database blob provided by caller, to get kernel command line fragment or a policy file blob.
-@@ -165,6 +165,6 @@ extern int rmcl_generate_db(rmc_record_file_t *record_files, BYTE **rmc_db, size
-  * return               : 0 when rmcl found a meta in record which has matched signature of fingerprint. non-zero for failures. Content of
-  *                        policy is not determined when non-zero is returned.
-  */
--extern int query_policy_from_db(rmc_fingerprint_t *fingerprint, BYTE *rmc_db, BYTE type, char *blob_name, rmc_file_t *policy);
-+extern int query_policy_from_db(rmc_fingerprint_t *fingerprint, rmc_uint8_t *rmc_db, rmc_uint8_t type, char *blob_name, rmc_file_t *policy);
- 
- #endif /* INC_RMCL_H_ */
-diff --git a/inc/rsmp.h b/inc/rsmp.h
-index c4258cd..5be768e 100644
---- a/inc/rsmp.h
-+++ b/inc/rsmp.h
-@@ -17,33 +17,33 @@
- typedef union smbios_ep {
-     /* */
-     struct {
--        BYTE ep_anchor[4];
--        BYTE ep_chksum;
--        BYTE ep_len;
--        BYTE major_ver;
--        BYTE minor_ver;
--        WORD max_struct_size;
--        BYTE ep_rev;
--        BYTE fmt_area[5];
--        BYTE interm_anchor[5];
--        BYTE interm_chksum;
--        WORD struct_tbl_len;
--        DWORD struct_tbl_addr;
--        WORD struct_num;
--        BYTE bcd_rev;
-+        rmc_uint8_t ep_anchor[4];
-+        rmc_uint8_t ep_chksum;
-+        rmc_uint8_t ep_len;
-+        rmc_uint8_t major_ver;
-+        rmc_uint8_t minor_ver;
-+        rmc_uint16_t max_struct_size;
-+        rmc_uint8_t ep_rev;
-+        rmc_uint8_t fmt_area[5];
-+        rmc_uint8_t interm_anchor[5];
-+        rmc_uint8_t interm_chksum;
-+        rmc_uint16_t struct_tbl_len;
-+        rmc_uint32_t struct_tbl_addr;
-+        rmc_uint16_t struct_num;
-+        rmc_uint8_t bcd_rev;
-     } ep_32;
- 
-     struct {
--        BYTE ep_anchor[5];
--        BYTE ep_chksum;
--        BYTE ep_len;
--        BYTE major_ver;
--        BYTE minor_ver;
--        BYTE doc_rev;
--        BYTE ep_rev;
--        BYTE reserved;
--        DWORD max_struct_size;
--        QWORD struct_tbl_addr;
-+        rmc_uint8_t ep_anchor[5];
-+        rmc_uint8_t ep_chksum;
-+        rmc_uint8_t ep_len;
-+        rmc_uint8_t major_ver;
-+        rmc_uint8_t minor_ver;
-+        rmc_uint8_t doc_rev;
-+        rmc_uint8_t ep_rev;
-+        rmc_uint8_t reserved;
-+        rmc_uint32_t max_struct_size;
-+        rmc_uint64_t struct_tbl_addr;
- 
-     } ep_64;
- } __attribute__ ((__packed__)) smbios_ep_t;
-@@ -52,9 +52,9 @@ typedef union smbios_ep {
-  * SMBIOS structure header
-  */
- typedef struct smbios_struct_hdr {
--    BYTE type;
--    BYTE len;
--    WORD handle;
-+    rmc_uint8_t type;
-+    rmc_uint8_t len;
-+    rmc_uint16_t handle;
- }  __attribute__ ((__packed__)) smbios_struct_hdr_t;
- 
- 
-@@ -70,7 +70,7 @@ typedef struct smbios_struct_hdr {
-  *
-  * retrun: 0 for success; non-zero for failures
-  */
--extern int rsmp_get_smbios_strcut(uint8_t *start, uint64_t *struct_addr, uint16_t *struct_len);
-+extern int rsmp_get_smbios_strcut(rmc_uint8_t *start, rmc_uint64_t *struct_addr, rmc_uint16_t *struct_len);
- 
- /*
-  * get board RMC fingerprint from smbios structure tabe (not entry table)
-@@ -80,6 +80,6 @@ extern int rsmp_get_smbios_strcut(uint8_t *start, uint64_t *struct_addr, uint16_
-  *
-  * return: retrun: 0 for success; non-zero for failures
-  */
--extern int rsmp_get_fingerprint_from_smbios_struct(BYTE *addr, rmc_fingerprint_t *fp);
-+extern int rsmp_get_fingerprint_from_smbios_struct(rmc_uint8_t *addr, rmc_fingerprint_t *fp);
- 
- #endif /* INC_RSMP_H_ */
+- * Query a RMC database blob provided by caller, to get kernel command line fragment or a policy file blob.
++ * Query a RMC database blob provided by caller
+  * (in) fingerprint     : fingerprint of board
+  * (in) rmc_db          : rmc database blob
+  * (in) type            : type of record
+- * (in) blob_name       : name of file blob to query. Ignored when type is 0 (cmdline)
++ * (in) blob_name       : name of file blob to query
+  * (out) policy         : policy file data structure provided by caller, holding returned policy data
+  *                        if there is a matched meta for board. Pointer members of policy hold data location
+  *                        in rmc_db's memory region. (This functions doesn't copy data.)
 diff --git a/src/lib/api.c b/src/lib/api.c
-index a3abe63..b7bc663 100644
+index b7bc663..0adb390 100644
 --- a/src/lib/api.c
 +++ b/src/lib/api.c
-@@ -17,13 +17,13 @@
- #define EFI_SYSTAB_PATH "/sys/firmware/efi/systab"
- #define SYSTAB_LEN 4096         /* assume 4kb is enough...*/
- 
--int read_file(const char *pathname, char **data, size_t* len) {
-+int read_file(const char *pathname, char **data, rmc_size_t* len) {
-     int fd = -1;
-     struct stat s;
-     off_t total = 0;
-     void *buf = NULL;
--    size_t byte = 0;
--    ssize_t tmp = 0;
-+    rmc_size_t byte = 0;
-+    rmc_ssize_t tmp = 0;
- 
-     *data = NULL;
-     *len = 0;
-@@ -55,7 +55,7 @@ int read_file(const char *pathname, char **data, size_t* len) {
-             return 1;
-         }
- 
--        byte += (size_t)tmp;
-+        byte += (rmc_size_t)tmp;
+@@ -282,12 +282,12 @@ int rmc_query_file_by_fp(rmc_fingerprint_t *fp, char *db_pathname, char *file_na
+      * read rmc database file
+      */
+     if (read_file(db_pathname, (char **)&db, &db_len)) {
+-        fprintf(stderr, "Failed to read database file for command line\n\n");
++        fprintf(stderr, "Failed to read database file\n\n");
+         return ret;
      }
  
-     *data = buf;
-@@ -65,10 +65,10 @@ int read_file(const char *pathname, char **data, size_t* len) {
-     return 0;
- }
+     /* query policy in database */
+-    if(query_policy_from_db(fp, db, RMC_POLICY_BLOB, file_name, file))
++    if(query_policy_from_db(fp, db, RMC_GENERIC_FILE, file_name, file))
+         goto free_db;
  
--int write_file(const char *pathname, void *data, size_t len, int append) {
-+int write_file(const char *pathname, void *data, rmc_size_t len, int append) {
-     int fd = -1;
--    ssize_t tmp = 0;
--    size_t total = 0;
-+    rmc_ssize_t tmp = 0;
-+    rmc_size_t total = 0;
-     int open_flag = O_WRONLY|O_CREAT;
- 
-     if (!data || !pathname)
-@@ -85,13 +85,13 @@ int write_file(const char *pathname, void *data, size_t len, int append) {
-     }
- 
-     while (total < len) {
--        if ((tmp = write(fd, (BYTE *)data + total, len - total)) < 0) {
-+        if ((tmp = write(fd, (rmc_uint8_t *)data + total, len - total)) < 0) {
-             perror("rmc: failed to write file");
-             close(fd);
-             return 1;
-         }
- 
--        total += (size_t)tmp;
-+        total += (rmc_size_t)tmp;
-     }
- 
-     close(fd);
-@@ -103,7 +103,7 @@ int write_file(const char *pathname, void *data, size_t len, int append) {
-  * Read smbios entry table address from sysfs
-  * return 0 when success
-  */
--static int get_smbios_entry_table_addr(uint64_t* addr){
-+static int get_smbios_entry_table_addr(rmc_uint64_t* addr){
- 
-     char *entry_buf = NULL;
-     char *tmp;
-@@ -166,17 +166,17 @@ void rmc_free_file(rmc_file_t *file) {
- int rmc_get_fingerprint(rmc_fingerprint_t *fp) {
- 
-     int fd = -1;
--    uint64_t entry_addr = 0;
--    uint8_t *smbios_entry_map = NULL;
-+    rmc_uint64_t entry_addr = 0;
-+    rmc_uint8_t *smbios_entry_map = NULL;
-     long pg_size = 0;
-     long pg_num = 0;
--    uint8_t *smbios_entry_start = NULL;
--    size_t entry_map_len = 0;
--    size_t struct_map_len = 0;
--    WORD smbios_struct_len = 0;
--    uint64_t smbios_struct_addr = 0;
--    uint8_t *smbios_struct_map = NULL;
--    uint8_t *smbios_struct_start = NULL;
-+    rmc_uint8_t *smbios_entry_start = NULL;
-+    rmc_size_t entry_map_len = 0;
-+    rmc_size_t struct_map_len = 0;
-+    rmc_uint16_t smbios_struct_len = 0;
-+    rmc_uint64_t smbios_struct_addr = 0;
-+    rmc_uint8_t *smbios_struct_map = NULL;
-+    rmc_uint8_t *smbios_struct_start = NULL;
-     int ret = 1;
-     int i;
-     int j;
-@@ -271,10 +271,10 @@ err:
- }
- 
- int rmc_query_file_by_fp(rmc_fingerprint_t *fp, char *db_pathname, char *file_name, rmc_file_t *file) {
--    BYTE *db = NULL;
--    size_t db_len = 0;
-+    rmc_uint8_t *db = NULL;
-+    rmc_size_t db_len = 0;
-     int ret = 1;
--    BYTE *blob = NULL;
-+    rmc_uint8_t *blob = NULL;
- 
-     /* ToDo: We should use file seeking when traversing a database
-      * file instead of load whole DB into mem.
+     /* the returned file blob is actually in db memory region,
 diff --git a/src/lib/common/rmcl.c b/src/lib/common/rmcl.c
-index 1e5839e..e6be585 100644
+index e6be585..67622a0 100644
 --- a/src/lib/common/rmcl.c
 +++ b/src/lib/common/rmcl.c
-@@ -10,7 +10,7 @@
- #include <rmc_util.h>
- #endif
+@@ -77,10 +77,8 @@ int rmcl_generate_record(rmc_fingerprint_t *fingerprint, rmc_file_t *policy_file
  
--static const BYTE rmc_db_signature[RMC_DB_SIG_LEN] = {'R', 'M', 'C', 'D', 'B'};
-+static const rmc_uint8_t rmc_db_signature[RMC_DB_SIG_LEN] = {'R', 'M', 'C', 'D', 'B'};
- 
- /* compute a finger to signature which is stored in record
-  * (in) fingerprint : of board, usually generated by rmc tool and rsmp
-@@ -20,10 +20,10 @@ static const BYTE rmc_db_signature[RMC_DB_SIG_LEN] = {'R', 'M', 'C', 'D', 'B'};
-  */
- static int generate_signature_from_fingerprint(rmc_fingerprint_t *fingerprint, rmc_signature_t *signature) {
- 
--    size_t sig_len = sizeof(signature->raw);
--    size_t i = 0;
--    size_t p = 0;
--    size_t q = 0;
-+    rmc_size_t sig_len = sizeof(signature->raw);
-+    rmc_size_t i = 0;
-+    rmc_size_t p = 0;
-+    rmc_size_t q = 0;
- 
-     if (!signature || !fingerprint)
-         return 1;
-@@ -62,10 +62,10 @@ static int generate_signature_from_fingerprint(rmc_fingerprint_t *fingerprint, r
- int rmcl_generate_record(rmc_fingerprint_t *fingerprint, rmc_file_t *policy_files, rmc_record_file_t *record_file) {
- 
-     rmc_file_t *tmp = NULL;
--    QWORD cmd_len = 0;
--    size_t record_len = 0;
--    BYTE *blob = NULL;
--    BYTE *idx = NULL;
-+    rmc_uint64_t cmd_len = 0;
-+    rmc_size_t record_len = 0;
-+    rmc_uint8_t *blob = NULL;
-+    rmc_uint8_t *idx = NULL;
-     rmc_record_header_t *record = NULL;
-     rmc_meta_header_t *meta = NULL;
- 
-@@ -133,12 +133,12 @@ int rmcl_generate_record(rmc_fingerprint_t *fingerprint, rmc_file_t *policy_file
-     return 0;
- }
- 
--int rmcl_generate_db(rmc_record_file_t *record_files, BYTE **rmc_db, size_t *len) {
-+int rmcl_generate_db(rmc_record_file_t *record_files, rmc_uint8_t **rmc_db, rmc_size_t *len) {
- 
-     rmc_record_file_t *tmp = NULL;
--    QWORD db_len = sizeof(rmc_db_header_t);
-+    rmc_uint64_t db_len = sizeof(rmc_db_header_t);
-     rmc_db_header_t *db = NULL;
--    BYTE *idx = NULL;
-+    rmc_uint8_t *idx = NULL;
-     int i;
- 
-     if (!record_files || !len)
-@@ -170,7 +170,7 @@ int rmcl_generate_db(rmc_record_file_t *record_files, BYTE **rmc_db, size_t *len
-     db->version = 0x1;
- 
-     db->length = db_len;
--    idx = (BYTE *)db;
-+    idx = (rmc_uint8_t *)db;
-     idx += sizeof(rmc_db_header_t);
- 
-     tmp = record_files;
-@@ -182,7 +182,7 @@ int rmcl_generate_db(rmc_record_file_t *record_files, BYTE **rmc_db, size_t *len
+     /* Calculate total length of record for memory allocation */
+     while (tmp) {
+-        /* for type 0 cmdline, don't take blob len into account */
+-        record_len += sizeof(rmc_meta_header_t) + strlen(tmp->cmdline_name) + 1;
+-        if (tmp->type != RMC_POLICY_CMDLINE)
+-            record_len += tmp->blob_len;
++        record_len += sizeof(rmc_meta_header_t) + strlen(tmp->blob_name) + 1;
++        record_len += tmp->blob_len;
          tmp = tmp->next;
      }
  
--    *rmc_db = (BYTE *)db;
-+    *rmc_db = (rmc_uint8_t *)db;
-     *len = db_len;
+@@ -111,18 +109,15 @@ int rmcl_generate_record(rmc_fingerprint_t *fingerprint, rmc_file_t *policy_file
+         meta->length = sizeof(rmc_meta_header_t);
+         idx += sizeof(rmc_meta_header_t);
  
-     return 0;
-@@ -198,14 +198,14 @@ static int match_record(rmc_record_header_t *r, rmc_signature_t* sig) {
-     return strncmp((const char *)r->signature.raw, (const char *)sig->raw, sizeof(r->signature.raw));
- }
+-        cmd_len = strlen(tmp->cmdline_name) + 1;
++        cmd_len = strlen(tmp->blob_name) + 1;
  
--int query_policy_from_db(rmc_fingerprint_t *fingerprint, BYTE *rmc_db, BYTE type, char *blob_name, rmc_file_t *policy) {
-+int query_policy_from_db(rmc_fingerprint_t *fingerprint, rmc_uint8_t *rmc_db, rmc_uint8_t type, char *blob_name, rmc_file_t *policy) {
-     rmc_meta_header_t meta_header;
-     rmc_db_header_t *db_header = NULL;
-     rmc_record_header_t record_header;
-     rmc_signature_t signature;
--    QWORD record_idx = 0;   /* offset of each reacord in db*/
--    QWORD meta_idx = 0;     /* offset of each meta in a record */
--    QWORD policy_idx = 0;   /* offset of policy in a meta */
-+    rmc_uint64_t record_idx = 0;   /* offset of each reacord in db*/
-+    rmc_uint64_t meta_idx = 0;     /* offset of each meta in a record */
-+    rmc_uint64_t policy_idx = 0;   /* offset of policy in a meta */
+-        memcpy(idx, tmp->cmdline_name, cmd_len);
++        memcpy(idx, tmp->blob_name, cmd_len);
+         idx += cmd_len;
+         meta->length += cmd_len;
++        memcpy(idx, tmp->blob, tmp->blob_len);
++        idx += tmp->blob_len;
++        meta->length += tmp->blob_len;
  
+-        /* only pack blob in when policy is not cmdline fragment */
+-        if (tmp->type != RMC_POLICY_CMDLINE) {
+-            memcpy(idx, tmp->blob, tmp->blob_len);
+-            idx += tmp->blob_len;
+-            meta->length += tmp->blob_len;
+-        }
+         tmp = tmp->next;
+     }
+ 
+@@ -210,7 +205,7 @@ int query_policy_from_db(rmc_fingerprint_t *fingerprint, rmc_uint8_t *rmc_db, rm
      if (!fingerprint || !rmc_db || !policy)
          return 1;
-@@ -251,7 +251,7 @@ int query_policy_from_db(rmc_fingerprint_t *fingerprint, BYTE *rmc_db, BYTE type
  
-                         return 0;
-                     } else if (type == RMC_POLICY_BLOB && !strncmp(blob_name, (char *)&rmc_db[policy_idx], strlen(blob_name) + 1)) {
--                        ssize_t cmd_name_len = strlen((char *)&rmc_db[policy_idx]) + 1;
-+                        rmc_ssize_t cmd_name_len = strlen((char *)&rmc_db[policy_idx]) + 1;
+-    if (type != RMC_POLICY_CMDLINE && blob_name == NULL)
++    if (type != RMC_GENERIC_FILE || blob_name == NULL)
+         return 1;
+ 
+     db_header = (rmc_db_header_t *)rmc_db;
+@@ -241,16 +236,7 @@ int query_policy_from_db(rmc_fingerprint_t *fingerprint, rmc_uint8_t *rmc_db, rm
+ 
+                     policy_idx = meta_idx + sizeof(rmc_meta_header_t);
+ 
+-                    /* set fields common among types */
+-                    if (type == RMC_POLICY_CMDLINE) {
+-                        policy->next = NULL;
+-                        policy->type = type;
+-                        policy->blob_len = 0;
+-                        policy->blob = NULL;
+-                        policy->cmdline_name = (char *)&rmc_db[policy_idx];
+-
+-                        return 0;
+-                    } else if (type == RMC_POLICY_BLOB && !strncmp(blob_name, (char *)&rmc_db[policy_idx], strlen(blob_name) + 1)) {
++                    if (!strncmp(blob_name, (char *)&rmc_db[policy_idx], strlen(blob_name) + 1)) {
+                         rmc_ssize_t cmd_name_len = strlen((char *)&rmc_db[policy_idx]) + 1;
                          policy->blob = &rmc_db[policy_idx + cmd_name_len];
                          policy->blob_len = meta_header.length - sizeof(rmc_meta_header_t) - cmd_name_len;
-                         policy->next = NULL;
-diff --git a/src/lib/common/rsmp.c b/src/lib/common/rsmp.c
-index a112537..8e6a4c8 100644
---- a/src/lib/common/rsmp.c
-+++ b/src/lib/common/rsmp.c
-@@ -16,12 +16,12 @@
-  *
-  * return: address of string.
-  */
--static BYTE * get_string_from_struct_table(smbios_struct_hdr_t *header, BYTE offset){
-+static rmc_uint8_t * get_string_from_struct_table(smbios_struct_hdr_t *header, rmc_uint8_t offset){
- 
--    BYTE str_idx = *((BYTE *)header + offset);
--    BYTE *start = (BYTE *)header + header->len;
--    BYTE i;
--    BYTE *end = start;
-+    rmc_uint8_t str_idx = *((rmc_uint8_t *)header + offset);
-+    rmc_uint8_t *start = (rmc_uint8_t *)header + header->len;
-+    rmc_uint8_t i;
-+    rmc_uint8_t *end = start;
- 
-     for (i = 0; i < str_idx; i++) {
-         /* search strings in unformatted area, but don't move head if it is what we are looking for */
-@@ -42,9 +42,9 @@ static BYTE * get_string_from_struct_table(smbios_struct_hdr_t *header, BYTE off
-  *
-  *return: starting address of next structure.
-  */
--static BYTE * forward_to_next_struct_table(smbios_struct_hdr_t *header) {
-+static rmc_uint8_t * forward_to_next_struct_table(smbios_struct_hdr_t *header) {
- 
--    BYTE *str_area = (BYTE *)header + header->len;
-+    rmc_uint8_t *str_area = (rmc_uint8_t *)header + header->len;
- 
-     for (; !(*str_area == '\0' && *(str_area + 1) == '\0'); str_area++)
-         ;
-@@ -52,7 +52,7 @@ static BYTE * forward_to_next_struct_table(smbios_struct_hdr_t *header) {
-     return (str_area + 2);
- }
- 
--int rsmp_get_smbios_strcut(uint8_t *start, uint64_t *struct_addr, uint16_t *struct_len){
-+int rsmp_get_smbios_strcut(rmc_uint8_t *start, rmc_uint64_t *struct_addr, rmc_uint16_t *struct_len){
-     smbios_ep_t *ep = (smbios_ep_t *)start;
- 
-     /* a 64bit machine can still have 32 bit entry defined by older SMBIOS versions than 3.0,
-@@ -71,7 +71,7 @@ int rsmp_get_smbios_strcut(uint8_t *start, uint64_t *struct_addr, uint16_t *stru
-     return 1;
- }
- 
--int rsmp_get_fingerprint_from_smbios_struct(BYTE *addr, rmc_fingerprint_t *fp){
-+int rsmp_get_fingerprint_from_smbios_struct(rmc_uint8_t *addr, rmc_fingerprint_t *fp){
- 
-     smbios_struct_hdr_t *header = (smbios_struct_hdr_t *)addr;
-     int fp_idx;
 diff --git a/src/lib/efi_api.c b/src/lib/efi_api.c
-index 6ce8733..c4535c8 100644
+index c4535c8..79b17a8 100644
 --- a/src/lib/efi_api.c
 +++ b/src/lib/efi_api.c
-@@ -32,7 +32,7 @@ static int compare_guid (EFI_GUID *guid1, EFI_GUID *guid2) {
- 
- static void *get_smbios_entry(void * sys_config_table) {
-     EFI_SYSTEM_TABLE *systab = (EFI_SYSTEM_TABLE *)sys_config_table;
--    UINTN i;
-+    rmc_uintn_t i;
-     EFI_CONFIGURATION_TABLE *entry;
- 
-     if (!systab)
-@@ -51,8 +51,9 @@ static void *get_smbios_entry(void * sys_config_table) {
- 
- int rmc_get_fingerprint(void *sys_table, rmc_fingerprint_t *fp) {
-     void *smbios_entry = NULL;
--    UINT64 smbios_struct_addr = 0;
--    UINT16 smbios_struct_len = 0;
-+    rmc_uint64_t smbios_struct_addr = 0;
-+    rmc_uint16_t smbios_struct_len = 0;
-+    rmc_uint8_t *smbios_struct_start = NULL;
- 
-     if (!fp)
-         return 1;
-@@ -65,14 +66,17 @@ int rmc_get_fingerprint(void *sys_table, rmc_fingerprint_t *fp) {
-     if (rsmp_get_smbios_strcut(smbios_entry, &smbios_struct_addr, &smbios_struct_len))
-         return 1;
- 
--    return rsmp_get_fingerprint_from_smbios_struct((BYTE *)smbios_struct_addr, fp);
-+    /* To avoid compiler warning for 32 bit build */
-+    smbios_struct_start += smbios_struct_addr;
-+
-+    return rsmp_get_fingerprint_from_smbios_struct(smbios_struct_start, fp);
+@@ -73,7 +73,7 @@ int rmc_get_fingerprint(void *sys_table, rmc_fingerprint_t *fp) {
  }
  
--int rmc_query_file_by_fp(rmc_fingerprint_t *fp, BYTE *db_blob, char *file_name, rmc_file_t *file) {
-+int rmc_query_file_by_fp(rmc_fingerprint_t *fp, rmc_uint8_t *db_blob, char *file_name, rmc_file_t *file) {
-     return query_policy_from_db(fp, db_blob, RMC_POLICY_BLOB, file_name, file);
+ int rmc_query_file_by_fp(rmc_fingerprint_t *fp, rmc_uint8_t *db_blob, char *file_name, rmc_file_t *file) {
+-    return query_policy_from_db(fp, db_blob, RMC_POLICY_BLOB, file_name, file);
++    return query_policy_from_db(fp, db_blob, RMC_GENERIC_FILE, file_name, file);
  }
  
--int rmc_gimme_file(void *sys_table, BYTE *db_blob, char *file_name, rmc_file_t *file) {
-+int rmc_gimme_file(void *sys_table, rmc_uint8_t *db_blob, char *file_name, rmc_file_t *file) {
-     rmc_fingerprint_t fp;
- 
-     if (!sys_table || !db_blob || !file_name || !file)
-diff --git a/src/lib/rmc_efi.h b/src/lib/rmc_efi.h
-index a70f7c0..be7f3cb 100644
---- a/src/lib/rmc_efi.h
-+++ b/src/lib/rmc_efi.h
-@@ -6,9 +6,10 @@
-  * configuration table to get SMBIOS data.
-  *
-  * We don't want to bring such dependency for rmc's sake to a
-- * client which is based on a different EFI implementation.
-+ * client which is based on a different EFI implementation or
-+ * compile setup.
-  *
-- * We have to be more self-contained at this point...
-+ * This header file shall be internally used in rmc.
-  */
- 
- #ifndef INC_RMC_EFI_H_
-@@ -17,33 +18,33 @@
- #ifdef RMC_EFI
- #include <rmc_types.h>
- 
--typedef unsigned long int UINTN;
--typedef uint64_t UINT64;
--typedef uint32_t UINT32;
--typedef uint16_t UINT16;
--typedef uint16_t CHAR16;
--typedef uint8_t UINT8;
-+typedef unsigned long int rmc_uintn_t;
-+typedef rmc_uint64_t rmc_uint64_t;
-+typedef rmc_uint32_t rmc_uint32_t;
-+typedef rmc_uint16_t rmc_uint16_t;
-+typedef rmc_uint16_t rmc_uint16_t;
-+typedef rmc_uint8_t rmc_uint8_t;
- 
- typedef void * EFI_HANDLE;
- typedef struct {
--    UINT32 d1;
--    UINT16 d2;
--    UINT16 d3;
--    UINT8 d4[8];
-+    rmc_uint32_t d1;
-+    rmc_uint16_t d2;
-+    rmc_uint16_t d3;
-+    rmc_uint8_t d4[8];
- } EFI_GUID;
- 
--/* Fake place holder for pointers */
-+/* Pointers as place holders */
- typedef void * EFI_SIMPLE_TEXT_INPUT_PROTOCOL_P;
- typedef void * EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL_P;
- typedef void * EFI_RUNTIME_SERVICES_P;
- typedef void * EFI_BOOT_SERVICES_P;
- 
- typedef struct {
--    UINT64 Signature;
--    UINT32 Revision;
--    UINT32 HeaderSize;
--    UINT32 CRC32;
--    UINT32 Reserved;
-+    rmc_uint64_t Signature;
-+    rmc_uint32_t Revision;
-+    rmc_uint32_t HeaderSize;
-+    rmc_uint32_t CRC32;
-+    rmc_uint32_t Reserved;
- } EFI_TABLE_HEADER;
- 
- typedef struct {
-@@ -53,8 +54,8 @@ typedef struct {
- 
- typedef struct {
-     EFI_TABLE_HEADER Hdr;
--    CHAR16 *FirmwareVendor;
--    UINT32 FirmwareRevision;
-+    rmc_uint16_t *FirmwareVendor;
-+    rmc_uint32_t FirmwareRevision;
-     EFI_HANDLE ConsoleInHandle;
-     EFI_SIMPLE_TEXT_INPUT_PROTOCOL_P ConIn;
-     EFI_HANDLE ConsoleOutHandle;
-@@ -63,7 +64,7 @@ typedef struct {
-     EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL_P StdErr;
-     EFI_RUNTIME_SERVICES_P RuntimeServices;
-     EFI_BOOT_SERVICES_P *BootServices;
--    UINTN NumberOfTableEntries;
-+    rmc_uintn_t NumberOfTableEntries;
-     EFI_CONFIGURATION_TABLE *ConfigurationTable;
- } EFI_SYSTEM_TABLE;
- #endif
+ int rmc_gimme_file(void *sys_table, rmc_uint8_t *db_blob, char *file_name, rmc_file_t *file) {
 diff --git a/src/rmc.c b/src/rmc.c
-index 4086928..d4eb203 100644
+index d4eb203..062dd36 100644
 --- a/src/rmc.c
 +++ b/src/rmc.c
-@@ -122,8 +122,8 @@ typedef enum read_fingerprint_state {
+@@ -1,10 +1,10 @@
+-/*
++/* Copyright (C) 2016 Jianxun Zhang <jianxun.zhang@intel.com>
++ *
+  * rmc tool
+  *
+- * An executable supports:
+- *  - Provide fingerprint in human-readable RMC fragment (header) file
+- *  - Generate RMC database file from human-readable RMC fragment files
+- *  - Provide policy fragments like command line to its callers in user space
++ *  - Obtain fingerprint of the type of board it runs on
++ *  - Generate RMC records and database with fingerprint and board-specific data
++ *  - Query file blobs associated to the type of board at run time.
   */
- static int read_fingerprint_from_file(const char* pathname, rmc_fingerprint_t *fp, void **raw) {
-     char *file = NULL;
--    size_t len = 0;
--    size_t idx = 0;
-+    rmc_size_t len = 0;
-+    rmc_size_t idx = 0;
-     int i = 0;
-     int ret = 1;
-     read_fingerprint_state_t state = TYPE;
-@@ -221,7 +221,7 @@ read_fp_done:
+ 
+ #include <stdio.h>
+@@ -16,20 +16,16 @@
+ #define USAGE "RMC (Runtime Machine configuration) Tool\n" \
+     "NOTE: Most of usages require root permission (sudo)\n" \
+     "rmc -F [-o output_fingerprint]\n" \
+-    "rmc -R [-f <fingerprint file>] -c <cmdline file> | -b <blob file list> [-o output_record]\n" \
++    "rmc -R [-f <fingerprint file>] -b <blob file list> [-o output_record]\n" \
+     "rmc -D <rmc record file list> [-o output_database]\n" \
+-	"rmc -C <rmc database file>\n" \
+ 	"rmc -B <name of file blob> -d <rmc database file> -o output_file\n" \
+ 	"\n" \
+ 	"-F: generate board rmc fingerprint of board\n" \
+-	"-R: generate board rmc record of board with its fingerprint, kenrel commandline and blob files.\n" \
++	"-R: generate board rmc record of board with its fingerprint and file blobs.\n" \
+     "-f: fingerprint file to be packed in record, rmc will create a fingerprint for board and use it internally to\n" \
+     "    generate record if -f is missed.\n" \
+-    "-c: kernel command line fragment to be packed in record\n" \
+     "-b: files to be packed in record\n" \
+-	"Note: At least one of -f and -c must be provided when -R is present\n" \
+ 	"-G: generate rmc database file with records specified in record file list\n" \
+-	"-C: get kernel command line fragment from database file for the board rmc is running on, output to stdout\n" \
+ 	"-B: get a flie blob with specified name associated to the board rmc is running on\n" \
+ 	"-d: database file to be queried\n" \
+ 	"-o: path and name of output file of a specific command\n" \
+@@ -37,13 +33,11 @@
+     "Examples (Steps in an order to add board support into rmc):\n" \
+     "generate board fingerprint:\n" \
+     "rmc -F\n\n" \
+-    "generate a rmc record for the board with a kernel command line fragment and two files, output to:\n" \
++    "generate a rmc record for the board with two file blobs, output to:\n" \
+     "a specified file:\n" \
+-    "rmc -R -f fingerprint -c my_cmdline -b file_1 file_2 -o my_board.record\n\n" \
++    "rmc -R -f fingerprint -b file_1 file_2 -o my_board.record\n\n" \
+     "generate a rmc database file with records from 3 different boards:\n" \
+     "rmc -D board1_record board2_record board3_record\n\n" \
+-    "output command line fragment for the board rmc is running on, from a rmc database mn_rmc.db:\n" \
+-    "rmc -C my_rmc.db\n\n" \
+     "query a file blob named audio.conf associated to the board rmc is running on in database my_rmc.db and output\n" \
+     "to /tmp/new_audio.conf:\n" \
+     "rmc -B audio.conf -d my_rmc.db -o /tmp/new_audio.conf\n\n"
+@@ -52,13 +46,11 @@
+ #define RMC_OPT_CAP_F   (1 << 0)
+ #define RMC_OPT_CAP_R   (1 << 1)
+ #define RMC_OPT_CAP_D   (1 << 2)
+-#define RMC_OPT_CAP_C   (1 << 3)
+-#define RMC_OPT_CAP_B   (1 << 4)
+-#define RMC_OPT_C       (1 << 5)
+-#define RMC_OPT_F       (1 << 6)
+-#define RMC_OPT_O       (1 << 7)
+-#define RMC_OPT_B       (1 << 8)
+-#define RMC_OPT_D       (1 << 9)
++#define RMC_OPT_CAP_B   (1 << 3)
++#define RMC_OPT_F       (1 << 4)
++#define RMC_OPT_O       (1 << 5)
++#define RMC_OPT_B       (1 << 6)
++#define RMC_OPT_D       (1 << 7)
+ 
+ static void usage () {
+     fprintf(stdout, USAGE);
+@@ -211,12 +203,12 @@ read_fp_done:
+ }
+ 
+ /*
+- * Read a policy file (cmdline or a blob) into policy file structure
+- * (in) pathname        : path and name of policy file
+- * (in) type            : policy type, commandline or a file blob
++ * Read a file blob into rmc file structure
++ * (in) pathname        : path and name of file
++ * (in) type            : policy type that must be RMC_GENERIC_FILE
+  *
+- * return               : a pointer to policy file structure. Caller shall
+- *                        free memory for returned data AND cmdline or blob
++ * return               : a pointer to rmc file structure. Caller shall
++ *                        free memory for returned data AND blob
+  *                        Null is returned for failures.
   */
  static rmc_file_t *read_policy_file(char *pathname, int type) {
-     rmc_file_t *tmp = NULL;
--    size_t policy_len = 0;
-+    rmc_size_t policy_len = 0;
-     int ret;
+@@ -226,44 +218,28 @@ static rmc_file_t *read_policy_file(char *pathname, int type) {
      char *path_token;
  
-@@ -309,7 +309,7 @@ static rmc_record_file_t *read_record_file(char *pathname) {
- int main(int argc, char **argv){
+     if ((tmp = calloc(1, sizeof(rmc_file_t))) == NULL) {
+-        fprintf(stderr, "Failed to allocate memory for cmdline fragment\n\n");
++        fprintf(stderr, "Failed to allocate memory for file blob\n\n");
+         return NULL;
+     }
  
+     tmp->type = type;
+     tmp->next = NULL;
+ 
+-    if (tmp->type == RMC_POLICY_CMDLINE) {
+-        ret = read_file(pathname, &tmp->cmdline_name, &policy_len);
+-        if (ret) {
+-            fprintf(stderr, "Failed to read kernel command line file %s\n\n", pathname);
+-            free(tmp);
+-            return NULL;
+-        }
+-
+-        if (!policy_len) {
+-            fprintf(stderr, "Empty kernel command line file %s\n\n", pathname);
+-            free(tmp);
+-            return NULL;
+-        }
+-
+-        tmp->blob_len = 0;
+-        tmp->blob = NULL;
+-    } else if (type == RMC_POLICY_BLOB) {
++    if (type == RMC_GENERIC_FILE) {
+         ret = read_file(pathname, (char **)&tmp->blob, &policy_len);
+         if (ret) {
+-            fprintf(stderr, "Failed to read policy file %s\n\n", pathname);
++            fprintf(stderr, "Failed to read file %s\n\n", pathname);
+             free(tmp);
+             return NULL;
+         }
+         tmp->blob_len = policy_len;
+         path_token = strrchr(pathname, '/');
+         if (!path_token)
+-            tmp->cmdline_name = strdup(pathname);
++            tmp->blob_name = strdup(pathname);
+         else
+-            tmp->cmdline_name = strdup(path_token + 1);
++            tmp->blob_name = strdup(path_token + 1);
+ 
+-        if (!tmp->cmdline_name) {
++        if (!tmp->blob_name) {
+             fprintf(stderr, "Failed to allocate mem for policy file name %s\n\n", pathname);
+             free(tmp->blob);
+             free(tmp);
+@@ -279,7 +255,7 @@ static rmc_file_t *read_policy_file(char *pathname, int type) {
+ }
+ 
+ /*
+- * Read a record file (cmdline or a blob) into record file structure
++ * Read a record file into record file structure
+  * (in) pathname        : path and name of record file
+  *
+  * return               : a pointer to record file structure. Caller shall
+@@ -311,13 +287,10 @@ int main(int argc, char **argv){
      int c;
--    uint16_t options = 0;
-+    rmc_uint16_t options = 0;
+     rmc_uint16_t options = 0;
      char *output_path = NULL;
-     /* -C and -d could be present in a single command, with different database files specified.  */
-     char *input_db_path_cap_c = NULL;
-@@ -323,9 +323,9 @@ int main(int argc, char **argv){
+-    /* -C and -d could be present in a single command, with different database files specified.  */
+-    char *input_db_path_cap_c = NULL;
+     char *input_db_path_d = NULL;
+     char **input_file_blobs = NULL;
+     char **input_record_files = NULL;
+     char *input_fingerprint = NULL;
+-    char *input_cmdline_path = NULL;
+     char *input_blob_name = NULL;
+     rmc_fingerprint_t fingerprint;
      rmc_file_t *policy_files = NULL;
-     rmc_record_file_t *record_files = NULL;
-     void *raw_fp = NULL;
--    BYTE *db = NULL;
--    BYTE *db_c = NULL;
--    BYTE *db_d = NULL;
-+    rmc_uint8_t *db = NULL;
-+    rmc_uint8_t *db_c = NULL;
-+    rmc_uint8_t *db_d = NULL;
-     int ret = 1;
-     int i;
-     int arg_num = 0;
-@@ -437,7 +437,7 @@ int main(int argc, char **argv){
+@@ -338,7 +311,7 @@ int main(int argc, char **argv){
+     /* parse options */
+     opterr = 0;
  
-     /* sanity check for -o */
-     if (options & RMC_OPT_O) {
--        uint16_t opt_o = options & (RMC_OPT_CAP_D | RMC_OPT_CAP_R | RMC_OPT_CAP_F | RMC_OPT_CAP_B);
-+        rmc_uint16_t opt_o = options & (RMC_OPT_CAP_D | RMC_OPT_CAP_R | RMC_OPT_CAP_F | RMC_OPT_CAP_B);
-         if (!(opt_o)) {
-             fprintf(stderr, "\nWRONG: Option -o cannot be applied without -B, -D, -R or -F\n\n");
-             usage();
-@@ -466,7 +466,7 @@ int main(int argc, char **argv){
-     /* get cmdline */
-     if (options & RMC_OPT_CAP_C) {
+-    while ((c = getopt(argc, argv, "FRD:C:B:b:c:f:o:d:")) != -1)
++    while ((c = getopt(argc, argv, "FRD:B:b:f:o:d:")) != -1)
+         switch (c) {
+         case 'F':
+             options |= RMC_OPT_CAP_F;
+@@ -371,10 +344,6 @@ int main(int argc, char **argv){
  
--        size_t db_len = 0;
-+        rmc_size_t db_len = 0;
+             options |= RMC_OPT_CAP_D;
+             break;
+-        case 'C':
+-            input_db_path_cap_c = optarg;
+-            options |= RMC_OPT_CAP_C;
+-            break;
+         case 'B':
+             input_blob_name = optarg;
+             options |= RMC_OPT_CAP_B;
+@@ -383,10 +352,6 @@ int main(int argc, char **argv){
+             output_path = optarg;
+             options |= RMC_OPT_O;
+             break;
+-        case 'c':
+-            input_cmdline_path = optarg;
+-            options |= RMC_OPT_C;
+-            break;
+         case 'f':
+             input_fingerprint = optarg;
+             options |= RMC_OPT_F;
+@@ -422,8 +387,8 @@ int main(int argc, char **argv){
+ 
+             break;
+         case '?':
+-            if (optopt == 'F' || optopt == 'R' || optopt == 'D' || optopt == 'C' || optopt == 'B' || \
+-                    optopt == 'b' || optopt == 'f' || optopt == 'c' || optopt == 'o' || optopt == 'd')
++            if (optopt == 'F' || optopt == 'R' || optopt == 'D' || optopt == 'B' || \
++                    optopt == 'b' || optopt == 'f' || optopt == 'o' || optopt == 'd')
+                 fprintf(stderr, "\nWRONG USAGE: -%c\n\n", optopt);
+             else if (isprint(optopt))
+                 fprintf(stderr, "Unknown option `-%c'.\n\n", optopt);
+@@ -450,8 +415,8 @@ int main(int argc, char **argv){
+     }
+ 
+     /* sanity check for -R */
+-    if ((options & RMC_OPT_CAP_R) && (!(options & (RMC_OPT_C|RMC_OPT_B)))) {
+-        fprintf(stderr, "\nWRONG: At least one of -c or -b is required when -R is present\n\n");
++    if ((options & RMC_OPT_CAP_R) && (!(options & RMC_OPT_B))) {
++        fprintf(stderr, "\nWRONG: -b is required when -R is present\n\n");
+         usage();
+         return 1;
+     }
+@@ -463,36 +428,6 @@ int main(int argc, char **argv){
+         return 1;
+     }
+ 
+-    /* get cmdline */
+-    if (options & RMC_OPT_CAP_C) {
+-
+-        rmc_size_t db_len = 0;
+-        rmc_fingerprint_t fp;
+-        rmc_file_t cmd_policy;
+-
+-        /* read rmc database file */
+-        if (read_file(input_db_path_cap_c, (char **)&db_c, &db_len)) {
+-            fprintf(stderr, "Failed to read database file for command line\n\n");
+-            goto main_free;
+-        }
+-
+-        /* get board fingerprint */
+-        if (rmc_get_fingerprint(&fp)) {
+-            fprintf(stderr, "-C Failed to generate fingerprint for this board\n\n");
+-            goto main_free;
+-        }
+-
+-        /* query cmdline in database, no error message if no command line for board found */
+-        if (query_policy_from_db(&fp, db_c, RMC_POLICY_CMDLINE, NULL, &cmd_policy)) {
+-            rmc_free_fingerprint(&fp);
+-            goto main_free;
+-        }
+-
+-        rmc_free_fingerprint(&fp);
+-
+-        fprintf(stdout, "%s", cmd_policy.cmdline_name);
+-    }
+-
+     /* get a file blob */
+     if (options & RMC_OPT_CAP_B) {
+         rmc_file_t file;
+@@ -557,10 +492,7 @@ int main(int argc, char **argv){
+         }
+     }
+ 
+-    /* generate RMC record file, we allow both or either of a list of config files and kenrel command line.
+-     * That means user can choose to have a single record contains both of file blob(s) and command line for
+-     * the board.
+-     */
++    /* generate RMC record file with a list of file blobs. */
+     if (options & RMC_OPT_CAP_R) {
          rmc_fingerprint_t fp;
-         rmc_file_t cmd_policy;
+         rmc_fingerprint_t *free_fp = NULL;
+@@ -593,11 +525,11 @@ int main(int argc, char **argv){
+                 free_fp = &fp;
+         }
  
-@@ -519,7 +519,7 @@ int main(int argc, char **argv){
-         int record_idx = 0;
-         rmc_record_file_t *record = NULL;
-         rmc_record_file_t *current_record = NULL;
--        size_t db_len = 0;
-+        rmc_size_t db_len = 0;
+-        /* read command line file and policy file into a list */
++        /* read policy file into a list */
+         while (input_file_blobs && input_file_blobs[policy_idx]) {
+             char *s = input_file_blobs[policy_idx];
  
-         /* if user doesn't provide pathname for output database, set a default value */
-         if (output_path == NULL)
-diff --git a/src/util/util.c b/src/util/util.c
-index da63093..5482779 100644
---- a/src/util/util.c
-+++ b/src/util/util.c
-@@ -1,13 +1,13 @@
- #include <rmc_util.h>
+-            if ((policy = read_policy_file(s, RMC_POLICY_BLOB)) == NULL) {
++            if ((policy = read_policy_file(s, RMC_GENERIC_FILE)) == NULL) {
+                 fprintf(stderr, "Failed to read policy file %s\n\n", s);
+                 rmc_free_fingerprint(free_fp);
+                 goto main_free;
+@@ -614,18 +546,6 @@ int main(int argc, char **argv){
+             policy_idx++;
+         }
  
--void *memset(void *s, BYTE c, size_t n) {
--    BYTE *p = (BYTE *)s;
-+void *memset(void *s, rmc_uint8_t c, rmc_size_t n) {
-+    rmc_uint8_t *p = (rmc_uint8_t *)s;
-     while (n--)
-         *p++ = c;
-     return s;
- }
+-        if (input_cmdline_path) {
+-            if ((policy = read_policy_file(input_cmdline_path, RMC_POLICY_CMDLINE)) == NULL) {
+-                fprintf(stderr, "Failed to read command line file  %s\n\n", input_cmdline_path);
+-                rmc_free_fingerprint(free_fp);
+-                goto main_free;
+-            }
+-
+-            /* put command line at the head of list */
+-            policy->next = policy_files;
+-            policy_files = policy;
+-        }
+-
+         /* call rmcl to generate record blob */
+         if (rmcl_generate_record(&fp, policy_files, &record)) {
+             fprintf(stderr, "Failed to generate record for this board\n\n");
+@@ -697,7 +617,7 @@ main_free:
+         rmc_file_t *t = policy_files;
+         policy_files = policy_files->next;
+         free(t->blob);
+-        free(t->cmdline_name);
++        free(t->blob_name);
+         free(t);
+     }
  
--int strncmp(const char *s1, const char *s2, size_t n) {
-+int strncmp(const char *s1, const char *s2, rmc_size_t n) {
-     while (n--) {
-         if (*s1 == '\0' || *s1 != *s2)
-             return *s1 - *s2;
-@@ -18,9 +18,9 @@ int strncmp(const char *s1, const char *s2, size_t n) {
-     return 0;
- }
- 
--void *memcpy(void *d, const void *s, size_t n) {
--    BYTE *p = d;
--    BYTE *q = (BYTE *)s;
-+void *memcpy(void *d, const void *s, rmc_size_t n) {
-+    rmc_uint8_t *p = d;
-+    rmc_uint8_t *q = (rmc_uint8_t *)s;
- 
-     while (n--)
-         *p++ = *q++;
-@@ -28,16 +28,16 @@ void *memcpy(void *d, const void *s, size_t n) {
-     return d;
- }
- 
--size_t strlen(const char *s) {
--    size_t ret = 0;
-+rmc_size_t strlen(const char *s) {
-+    rmc_size_t ret = 0;
- 
-     while (*s++ != '\0')
-       ret++;
-     return ret;
- }
- 
--char *strncpy(char *d, const char *s, size_t n) {
--    size_t i;
-+char *strncpy(char *d, const char *s, rmc_size_t n) {
-+    rmc_size_t i;
- 
-     for (i = 0; i < n && s[i] != '\0'; i++)
-         d[i] = s[i];
 -- 
 2.7.4
 
