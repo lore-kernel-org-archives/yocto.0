@@ -1,73 +1,33 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <tracy.graydon@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 96FB1E0080D; Mon, 21 Nov 2016 16:10:02 -0800 (PST)
+	id DF62EE007DA; Mon, 21 Nov 2016 16:50:52 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.192.194 listed in list.dnswl.org]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.115 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pf0-f194.google.com (mail-pf0-f194.google.com
-	[209.85.192.194])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 578F0E007DA
-	for <yocto@yoctoproject.org>; Mon, 21 Nov 2016 16:09:58 -0800 (PST)
-Received: by mail-pf0-f194.google.com with SMTP id c4so103926pfb.3
-	for <yocto@yoctoproject.org>; Mon, 21 Nov 2016 16:09:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=subject:to:references:cc:from:organization:message-id:date
-	:user-agent:mime-version:in-reply-to;
-	bh=6ONLWEMBTfua1BrnJEcVWnt3qT/A+XCWeZhRhivkAdw=;
-	b=z9Y2/a20goBeFSTLpvWAAIq3Sn+VPt2pHZ8mG1fU4FKKy+sLPSoZHaRn1oU01rqoBt
-	xyMgIhVhxXVakUK/bRjl8oDezveihBXYX6WvCvFfO3JBvucISPjXncjwuGSNzkTo8eTJ
-	WhdjPLWmHV8NFHHcTLNPJQu5nKQrndn61SMeC7YF/k4Ltff9xYkl63JZnazadL7jtW7w
-	pTpwxzm7gQZdJtFn8kgKjWhZ2QBTKcKabl6//r8OngP/wHQA8dac8eODuVchs4Q7xKYW
-	41wU7xWUYP9lDsuDYkTg8aWp5nXnOdedW6z3FZVjxltpLr7cqLeiDc2e2sF9l1uv8Sq3
-	+xeg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:subject:to:references:cc:from:organization
-	:message-id:date:user-agent:mime-version:in-reply-to;
-	bh=6ONLWEMBTfua1BrnJEcVWnt3qT/A+XCWeZhRhivkAdw=;
-	b=jx0O3TgG1+CU4in28nUPHoneT6lbY991vM1bUrqSAVxfYKicdm/Hf470fcvnUrRYIr
-	zmYUA4Rfo9Lu2OsRb1BKZqGg0eLveKXGGu7R6Qglr5NVS7F57PYM9ttmbMxAlqgu/4oh
-	SVZJz35lHtQfc5V6mJUXj9o9XpU4w8kgOIC2K+0Aee15tC2mIvrVTn6vfr0vpVpv5DVu
-	LaGji15PCYYF9NIWzOIFRr2Q41SRFF5/SBTD9FqQeJR6anff+usZXaALKZxHFcUj37u4
-	W4m2jPCm0RJUICh0Xlca7A246WWvp81RgzoyPEnCs2StXGILzhDMgeOoSJCmCV4Ys5Gi
-	Bciw==
-X-Gm-Message-State: AKaTC03la1WyVdizSN/khFEF1DeXP6BXIkeasxC4VswG/ngN48GmPT2rRsmCng+/dQz2Zg==
-X-Received: by 10.98.200.203 with SMTP id i72mr21677662pfk.181.1479773397544; 
-	Mon, 21 Nov 2016 16:09:57 -0800 (PST)
-Received: from CACSVMO-14452.local ([2601:646:8882:b8c:ad6a:4d61:b911:9fbb])
-	by smtp.gmail.com with ESMTPSA id
-	n17sm39986795pfg.80.2016.11.21.16.09.56
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Mon, 21 Nov 2016 16:09:56 -0800 (PST)
-To: Trevor Woerner <twoerner@gmail.com>
-References: <002d01d24304$32aa08a0$97fe19e0$@neuf.fr>
-	<CAMKF1sqt2cA5DbPDAwo2=SNUqPuPatavhtQYpOnecQ=i+wc45w@mail.gmail.com>
-	<20161121230726.GA14157@openSUSE-i7.site>
-From: Khem Raj <raj.khem@gmail.com>
-Organization: himvis.com
-Message-ID: <5e81cb71-ff35-4525-0e53-ded77e59dad2@gmail.com>
-Date: Mon, 21 Nov 2016 16:09:50 -0800
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:50.0)
-	Gecko/20100101 Thunderbird/50.0
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7D0B4E007DA;
+	Mon, 21 Nov 2016 16:50:48 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga103.fm.intel.com with ESMTP; 21 Nov 2016 16:50:48 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.31,678,1473145200"; d="scan'208";a="1088667795"
+Received: from pjfrieds-mobl3.amr.corp.intel.com ([10.254.113.38])
+	by fmsmga002.fm.intel.com with ESMTP; 21 Nov 2016 16:50:48 -0800
+From: Tracy Graydon <tracy.graydon@intel.com>
+To: yocto-announce@yoctoproject.org, yocto@yoctoproject.org
+Message-ID: <58339667.4040601@intel.com>
+Date: Mon, 21 Nov 2016 16:50:47 -0800
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:38.0)
+	Gecko/20100101 Thunderbird/38.5.1
 MIME-Version: 1.0
-In-Reply-To: <20161121230726.GA14157@openSUSE-i7.site>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [raspberrypi] raspi3 vs raspi2
+Subject: [ANNOUNCEMENT] Yocto Project 2.1.2 (Krogoth 15.0.2) Released
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -79,123 +39,238 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 22 Nov 2016 00:10:02 -0000
-X-Groupsio-MsgNum: 33072
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature";
-	boundary="DW7gBcjKNEmTP9OPjNMp5ACxHmShkFsil"
-
---DW7gBcjKNEmTP9OPjNMp5ACxHmShkFsil
-Content-Type: multipart/mixed; boundary="mfkwq7fOhPqmRXSIDBL43CAPJAQJeo25T";
- protected-headers="v1"
-From: Khem Raj <raj.khem@gmail.com>
-To: Trevor Woerner <twoerner@gmail.com>
-Cc: Herve Jourdain <herve.jourdain@neuf.fr>,
- "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Message-ID: <5e81cb71-ff35-4525-0e53-ded77e59dad2@gmail.com>
-Subject: Re: [yocto] [raspberrypi] raspi3 vs raspi2
-References: <002d01d24304$32aa08a0$97fe19e0$@neuf.fr>
- <CAMKF1sqt2cA5DbPDAwo2=SNUqPuPatavhtQYpOnecQ=i+wc45w@mail.gmail.com>
- <20161121230726.GA14157@openSUSE-i7.site>
-In-Reply-To: <20161121230726.GA14157@openSUSE-i7.site>
-
---mfkwq7fOhPqmRXSIDBL43CAPJAQJeo25T
+X-List-Received-Date: Tue, 22 Nov 2016 00:50:53 -0000
 Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-4.4 does not support 64-bit pi3, do you set the PREFERRED_VERSION in loca=
-l
-conf metadata ?
+Hello,
 
-On 11/21/16 3:07 PM, Trevor Woerner wrote:
-> On Sun 2016-11-20 @ 11:28:48 AM, Khem Raj wrote:
->> I gave a whirl at building and looking closely at them. As it seems
->> the OE core patch is
->> not needed since for armv8 we want to keep it like x86 ( common )
->> I have therefore made changes to your patches and staged them here.
->>
->> https://github.com/kraj/meta-raspberrypi/commits/kraj/master
->>
->> Which should work without any change in OE-Core, secondly I have
->> further divided them
->> and also fixed 4.8 to compile arm64.
->=20
-> I tried giving this a whirl.
->=20
-> Maybe the order of my layers in bblayers isn't correct, but by default =
-my
-> build uses 4.4% instead of 4.8%.
->=20
-> conf/machine/raspberrypi3-64.conf includes:
-> 	...
-> 	include conf/machine/include/rpi-base.inc
-> 	...
-> 	PREFERRED_VERSION_linux-raspberrypi ?=3D "4.8.%"
->=20
-> conf/machine/include/rpi-base.inc contains:
-> 	...
-> 	include conf/machine/include/rpi-default-versions.inc
-> 	...
->=20
-> conf/machine/include/rpi-default-versions.inc contains:
-> 	...
-> 	PREFERRED_VERSION_linux-raspberrypi ?=3D "4.4.%"
->=20
-> In any case when I try building with 4.4 I get:
->=20
-> 	ERROR: linux-raspberrypi-1_4.4.28+gitAUTOINC+5afda48c34-r0 do_kernel_c=
-onfigme: No default configuration for raspberrypi3-64 / bcmrpi3_defconfig=
- available.
-> 	ERROR: linux-raspberrypi-1_4.4.28+gitAUTOINC+5afda48c34-r0 do_kernel_c=
-onfigme: Function failed: do_kernel_configme (log file is located at /z/l=
-ayerindex-master/raspi3-64/tmp-glibc/work/raspberrypi3_64-oe-linux/linux-=
-raspberrypi/1_4.4.28+gitAUTOINC+5afda48c34-r0/temp/log.do_kernel_configme=
-=2E15498)
->=20
-> When I switch to 4.8 explicitly in my conf/local.conf I get:
->=20
-> 	ERROR: linux-raspberrypi-1_4.8.8+gitAUTOINC+ea6eeaff07-r0 do_fetch: Fe=
-tcher failure: Unable to find revision ea6eeaff07c4881e6287fe3e7ea58fc30e=
-5569d7 in branch rpi-4.8.y even from upstream
-> 	ERROR: linux-raspberrypi-1_4.8.8+gitAUTOINC+ea6eeaff07-r0 do_fetch: Fe=
-tcher failure for URL: 'git://github.com/raspberrypi/linux.git;protocol=3D=
-git;branch=3Drpi-4.8.y'. Unable to fetch URL from any source.
->=20
-> My build configuration is:
-> 	Build Configuration:
-> 	BB_VERSION        =3D "1.32.0"
-> 	BUILD_SYS         =3D "x86_64-linux"
-> 	NATIVELSBSTRING   =3D "opensuse-42.1"
-> 	TARGET_SYS        =3D "aarch64-oe-linux"
-> 	MACHINE           =3D "raspberrypi3-64"
-> 	DISTRO            =3D "nodistro"
-> 	DISTRO_VERSION    =3D "nodistro.0"
-> 	TUNE_FEATURES     =3D "aarch64"
-> 	TARGET_FPU        =3D ""
-> 	meta-raspberrypi__kraj =3D "kraj/master:4735e7cde210b2b0b855bca1eb90ef=
-4adca8019b"
-> 	meta              =3D "master:a675b2c89e477af088faee9b3be96eae19a85f0b=
-"
-> 	meta-oe          =20
-> 	meta-gnome        =3D "master:7f8915a6ecdd5c4b03c7e5b5f1fa903f89c2d560=
-"
->=20
+The latest release of the Yocto Project 2.1.2 (krogoth-15.0.2) is now available for download at:
+
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.1.2/poky-krogoth-15.0.2.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-2.1.2/poky-krogoth-15.0.2.tar.bz2
+
+A gpg signed version of these release notes is available at:
+
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.1.2/RELEASENOTES
+
+Full pass test report is available at:
+
+https://wiki.yoctoproject.org/wiki/WW46_-_2016-11-10_-_Test_Cycle_2.1.2_rc1
+
+Thanks go out to everyone for all their hard work during this release!
+
+Sincerely,
+
+Tracy Graydon
+Yocto Project
+Build and Release
 
 
---mfkwq7fOhPqmRXSIDBL43CAPJAQJeo25T--
+------------------
+yocto-2.1.2 Errata
+------------------
 
---DW7gBcjKNEmTP9OPjNMp5ACxHmShkFsil
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
+Please note that we have added support for Eclipse Neon and have removed Luna support, as reflected below.
 
------BEGIN PGP SIGNATURE-----
-Comment: GPGTools - https://gpgtools.org
+Release Name: eclipse-poky-mars-krogoth-15.0.2
+Branch: mars/krogoth
+Tag: mars/krogoth-15.0.2
+Hash: 92aa0e79e8b01c56f0670af3cd8296ec68b43350
+md5: 10c736f97fd1e7c519e27d9c987173c2
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.1.2/eclipse-poky-mars-krogoth-15.0.2.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-2.1.2/eclipse-poky-mars-krogoth-15.0.2.tar.bz2
 
-iEYEARECAAYFAlgzjNMACgkQuwUzVZGdMxTo4ACfU5WXi8vROe9ap9lpXlmGNGaj
-Jg0An02TSZu/9vBzAuY8aOeS1Qss46pt
-=7Zmu
------END PGP SIGNATURE-----
+Release Name: eclipse-poky-neon-krogoth-15.0.2
+Branch: neon/krogoth
+Tag: neon/krogoth-15.0.2
+Hash: a751bfdcb095bdc7bf8008b205b06adfdaad294f
+md5: e9613760c1b4b71eae120e53f9b21f57
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.1.2/eclipse-poky-neon-krogoth-15.0.2.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-2.1.2/eclipse-poky-neon-krogoth-15.0.2.tar.bz2
 
---DW7gBcjKNEmTP9OPjNMp5ACxHmShkFsil--
+Release Name: meta-qt3-krogoth-15.0.2
+Branch: krogoth
+Tag: krogoth-15.0.2
+Hash: d5d5225ef78e403301a429d0f64bd4a262b0fa4d
+md5: c854634cf76c2e0a21d3f941684e6af6
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.1.2/meta-qt3-krogoth-15.0.2.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-2.1.2/meta-qt3-krogoth-15.0.2.tar.bz2
+
+Release Name: meta-qt4-krogoth-15.0.2
+Branch: krogoth
+Tag: krogoth-15.0.2
+Hash: 92a72a790a427af5f85ce86fea4fce86a72c7b58
+md5: 8ec0b619765d7caa3d514c5e4141e5ba
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.1.2/meta-qt4-krogoth-15.0.2.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-2.1.2/meta-qt4-krogoth-15.0.2.tar.bz2
+
+Release Name: poky-krogoth-15.0.2
+Branch: krogoth
+Tag: krogoth-15.0.2
+Hash: cca8dd15c8096626052f6d8d25ff1e9a606104a3
+md5: 8c1821e1c4b1b06e6114eab4f7544a0f
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.1.2/poky-krogoth-15.0.2.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-2.1.2/poky-krogoth-15.0.2.tar.bz2
+
+
+---------------
+ Known Issues
+---------------
+N/A
+
+---------------
+Security Fixes
+---------------
+python3: Security fix CVE-2016-1000110
+python: Security fix CVE-2016-1000110
+perl: fix CVE-2016-1238
+openssl: Security fix CVE-2016-6306
+openssl: Security fix CVE-2016-6304
+openssl: Security fix CVE-2016-6303
+openssl: Security fix CVE-2016-6302
+openssl: Security fix CVE-2016-2182
+openssl: Security fix CVE-2016-2181
+openssl: Security fix CVE-2016-2180
+openssl: Security fix CVE-2016-2179
+openssl: Security fix CVE-2016-2178
+cracklib: Apply patch to fix CVE-2016-6318
+wpa_supplicant: Security Advisory-CVE-2016-4477
+wpa_supplicant: Security Advisory-CVE-2016-4476
+perl: fix CVE-2015-8607
+perl: fix CVE-2016-6185
+perl: fix CVE-2016-2381
+qemu: Secuirty fix for CVE-2016-5403
+qemu: Security fix for CVE-2016-4002
+qemu: Security fix CVE-2016-6351
+qemu: Security fix CVE-2016-4439
+qemu: Security Fix CVE-2016-3712
+qemu: Security Fix CVE-2016-3710
+util-linux: Security fix for CVE-2016-5011
+wget: Security fix CVE-2016-4971
+openssh: Security fix CVE-2015-8325
+openssh: Security fix CVE-2016-5615
+openssh: Security fix CVE-2016-6210
+curl: security fix for CVE-2016-7141
+sudo: CVE-2015-8239
+tiff: Security fix CVE-2016-5323
+tiff: Security fix CVE-2016-5321
+tiff: Security fix CVE-2016-3186
+tiff: Security fix CVE-2015-8784
+tiff: Security fix CVE-2015-8781
+curl: security fix for CVE-2016-5421
+curl: security fix for CVE-2016-5420
+curl: security fix for CVE-2016-5419
+
+
+---------------
+Fixes
+---------------
+bsp-guide: Updated the yocto-bsp create selections in the example.
+yocto-project-qs: Fixed Minnow MAX build example
+yocto-project-qs: Altered MinnowBoard MAX example
+bsp-guide: Fixed the yocto-bsp create example output
+binutils: fix AR issue when opkg is unpacking IPKs containing empty entries
+multilib_header: avoid sstate checksum issues for -nativesdk recipes
+tzdata: update to 2016g
+tzcode-native: Update to 2016g
+pulseaudio: Disable unit tests
+pigz: Update SRC_URI
+useradd: Fix infinite build loop
+libarchive: respect disable-acl configuration option
+useradd.bbclass: Strip trailing ';' in cmd params
+useradd: use bindir_native for pseudo PATH
+oeqa/buildiptables: Switch from netfilter.org to yoctoproject.org mirror
+python3: Fixes several python3 dependency problems
+documentation: Changes to support a 2.1.2 krogoth release.
+tiff: Update download URL
+perl: Correct perl path for ptest
+perl-native: backport libnm link fix
+perl: fix several perl test failures
+perl: some perl tests require libssp
+perl: set proper perl subversion number in config files
+dropbear: upgrade to 2016.72
+busybox: Avoid race building libbb
+busybox: fix "sed n (flushes pattern space, terminates early)" testcase failure
+rpm: manually cleanup sysck
+rpm: ensure rpm2cpio call rpm relocation code
+rpm: make --nosignature work
+python-smartpm: use md5 as the digest for rpm_sys channel
+python-smartpm_git.bb: Add patch for debugging random errors
+python-smartpm: add support to check signatures
+python-smartpm: Avoid locale issue with bitbake python3
+xserver-xf86-config: pre-load int10 and exa modules
+arch-mips.inc: Disable QEMU usermode usage when building with n32 ABI
+gobject-introspection.bbclass: disable introspection for -native and -nativesdk recipes
+cmake.bbclass: call cmake with a relative path
+useradd_base: avoid unintended expansion for useradd parameters
+binutils: advance SRCREV to obtain versioned symbols
+base.bbclass wipe ${S} before unpacking source
+bitbake.conf: set READELF for cross compilation
+Fix random python backtrace in mutlilib handling code.
+cml1: fix tasks after default [dirs] changed
+bitbake.conf/toolchain-scripts.bbclass: Remove debug prefix mappings in SDK
+gdb: Cache gnu gettext config vars for musl builds
+initramfs-live-boot: Make sure we kill udev before switching root when live booting
+e2fsprogs: Fix missing check for permission denied.
+busybox: Add parallel make fix
+busybox: Backport makefile fix from upstream
+busybox: Fix busybox-init on non-tty consoles
+npm: npm.bbclass now adds nodejs to RDEPENDS
+pulseaudio: fix crash when disconnecting bluetooth devices
+systemd: allow add users as a rootfs postprocess cmd
+systemd: Create missing sysusers offline
+meta/classes: fix bb.build.FuncFailed typos
+python{3}-numpy: Predefine of sizeof off_t on mips/mipsel/ppc
+gcc, qemuppc: Explicitly disable forcing SPE flags for 4.9
+bitbake: lib/bb/tests/fetch: remove URL that doesn't exist anymore
+bitbake: toaster: Fix adding of bitbake variables containing ':'
+python3: update manifest RDEPENDS for importlib and compression packages
+python-3.5-manifest: Add argparse module
+python-3.5-manifest: Rename Queue module to queue
+python3-native: Extend python3-native rproviders
+python3-native: Change code style for rprovides
+yocto-uninative: Update to 1.0.1 tarball
+mesa-demos: Fix OpenGL ES configurability
+lzop: Fix build with gcc-6
+musl: Fix mips regressions in 1.1.15
+glibc: use the host locale archive in nativesdk builds
+base-files: restrict resize to run on serial consoles only in profile â”‚Â·
+documentation: Updated manual revision list tables for August
+ref-manual: Fixed typo in the "Shared State" section.
+ref-manual: Review edits to the PR variable in glossary.
+ref-manual: Updated the RDEPENDS variable description in the glossary
+ref-manual: Updated the PR variable description.
+dev-manual: Review edits to the package installation section
+documentation: Updated manual revision tables for July 2016 date
+ref-manual: Updated the flag descriptions for shared state details
+dev-manual: Edits to the package feed creation section.
+ref-manual: Updated the DISTRO_FEATURES description of Bluez5
+ref-manual: Updated SSTATE_MIRRORS examples to match reality
+dev-manual: Updated Runtime Testing for Package Installation
+dev-manual: Updated the method to set SimpleHTTPServer for testing
+ref-manual: Fixed a typo for installing "python3-git"
+dev-manual: Applied edits to the package feed section.
+ref-manual: Updated the UPSTREAM_CHECK_* variables.
+ref-manual: Review edits to the UPSTREAM_CHECK_* variables.
+dev-manual: Updated Host Server Machine Setup for package feeds
+ref-manual: Added note about installing Git-Python package
+ref-manual: Updates to the UPSTREAM_CHECK_* variables
+dev-manual: Review edits applied to the package feed build considerations.
+ref-manual: Edits to UPSTREAM_CHECK_* variables.
+ref-manual: Added descriptions for three UPSTREAM* variables.
+dev-manual: Updated Package Feed Creation sections
+ref-manual: Updated the INHIBIT_PACKAGE_STRIP variable
+ref-manual: Added BlueZ version 5 feature to distro feature section.
+sdk-manual: Fixed three broken links to sections within manual.
+sdk-manual: Updated configure.ac file in helloworld example.
+documentation: Set up for the 2.1.1 YP Release
+kernel-dev: Fix the locations of .config and source directory
+profile-manual: Added cross-reference links to INHIBIT_PACKAGE_STRIP
+ref-manual: Fixed *[doc] string for INHIBIT_PACKAGE_DEBUG_SPLIT
+
