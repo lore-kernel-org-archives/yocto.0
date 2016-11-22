@@ -1,63 +1,70 @@
-Return-Path: <whulxh@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A78B1E00563; Tue, 22 Nov 2016 13:25:13 -0800 (PST)
+	id 1E5F4E00563; Tue, 22 Nov 2016 15:49:43 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW, 
-	RCVD_IN_SORBS_SPAM autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (whulxh[at]gmail.com)
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [74.125.83.68 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (raj.khem[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.216.180 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.216.180 listed in dnsbl.sorbs.net]
-Received: from mail-qt0-f180.google.com (mail-qt0-f180.google.com
-	[209.85.216.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 28B3BE0049F
-	for <yocto@yoctoproject.org>; Tue, 22 Nov 2016 13:25:11 -0800 (PST)
-Received: by mail-qt0-f180.google.com with SMTP id c47so21122193qtc.2
-	for <yocto@yoctoproject.org>; Tue, 22 Nov 2016 13:25:11 -0800 (PST)
+Received: from mail-pg0-f68.google.com (mail-pg0-f68.google.com [74.125.83.68])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B4E87E0049F
+	for <yocto@yoctoproject.org>; Tue, 22 Nov 2016 15:49:36 -0800 (PST)
+Received: by mail-pg0-f68.google.com with SMTP id e9so3343113pgc.1
+	for <yocto@yoctoproject.org>; Tue, 22 Nov 2016 15:49:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=i8pQS/KIjs9GW3ofM7E07kfjfpYr0e72euQvIjPcF0o=;
-	b=r5gqOrKfZf2jeB8xL51H+kKtAH3S1ooDbao4MHCxG5FCyU0EFXtFShrLncxZoyjDeB
-	DcuL6UKIekYOx9b+g7IUywsiBtdjlslqGgBCR8bCqyeFzpezrbIzL3/cdwGU82qZi5Ul
-	cvlHkabKe2xmwN2dfteS6ISbzA9ZES8hh52aYPA3xXmS6Tv+mlz9gZqVXfzvLMYZB+P7
-	2fcb6qq6RlJCE/WbmXd8c3TF3cL44taZpz6Kj6MFjbEstm/xVeZC8NWdCmfSMEwxNtcD
-	91ge8qbqAUJ4T4LzgFCOSH00ppnVQe8fRW/UDrFD/pe77TV2LyIkQ6GnOA2dJDaPaT8b
-	KZKw==
+	h=subject:to:references:from:organization:message-id:date:user-agent
+	:mime-version:in-reply-to;
+	bh=f2g80Y/s4b3uXk7NzdcDIGNyR2LPFSzUpybx+x5/Lpg=;
+	b=CR49ZezTBs7jizqKiJ3o0MryOqEsOaWavY1LP6xjohzG5nCjHwHGOyNcC+MqQUSDYX
+	HARFWu1XZFxvmmCBnBRz8acJuUWwHcsywIC7doDTf5R5zM3lpQzExKhbvQj/HC7Lqq0w
+	TbR8RHm5zsuWpaXYE04zvWf2Wg0RJLyrQxSZDiaSk/mMui9VJXkyoRy5V4ZMaR7yrOJq
+	Gv4MmVTr46qdDPGEGhuXvWN+uiSHhGhISjw1zoWyiwIUmMPgV9+jhbHw69gZ00CS9LET
+	JWoAFB7ZVvKIZ0lTnNpp6V16proHsOKuK8py9dm/ZXvRJKzZiUIOyKVnIEvOdSP0uhhY
+	4s3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=i8pQS/KIjs9GW3ofM7E07kfjfpYr0e72euQvIjPcF0o=;
-	b=LiL0y3qEoZyWeCBKwYvMDC0ZVWoZymZ4x0EKrjmpLUGHwWIFDt3UY27QkWPwWZblhG
-	S+2OUhtcMTH1u+pxDWT+febzCfI7vNXKwVtu54RqcBiSYq88M/BGJEM+MKyksTXhSVGR
-	daTqJlGX0GmR3QXB1wPYhwjZxdaOyJiNNu7P2XHqHPjiX1RDUduNkjpVNWOnpcEDIGQD
-	UBpvzODnL+o6qMsJ1I3FzDicMODCX88QX910byS/c1T7gv9cdGf+n1CI4QPNCEg0FjPf
-	NDR+6p/Zqu9R7UmyIohbw2X25vA7N7a8OQtsUjkjC70mhdcwCIfhsm7hozHSc6QS7voj
-	WNEg==
-X-Gm-Message-State: AKaTC03UD3fy16hdEmUx4Ic/doCArkc+TrOLegm0OXcVuX79g5XH8P5ESGrs/1lRialgz3J2F65J4ynqLvv40g==
-X-Received: by 10.237.32.205 with SMTP id 71mr14953183qtb.237.1479849910949;
-	Tue, 22 Nov 2016 13:25:10 -0800 (PST)
+	h=x-gm-message-state:subject:to:references:from:organization
+	:message-id:date:user-agent:mime-version:in-reply-to;
+	bh=f2g80Y/s4b3uXk7NzdcDIGNyR2LPFSzUpybx+x5/Lpg=;
+	b=BZUajpfht2e3KDu9FQXyfdh6nnubdu/xSKVgP+vhqoxV+8WcjQOxRHBp1KfBrUUqmc
+	riboTBK3Eg/wHV16sSBYvoURSDRRVDBZr1wjoe0bVkPRHMALw4IXR1F+poCp0GKdnmxA
+	suqvAGZ1ClUNIQmOAgsRzw1CUGgJ/b2bdxNCW5FaGK74CU+XUdrhZ6LHLzgYDg/5tClN
+	4g/gt3ZyL/knprYOMYh+kMZsRTw0/h8F0kUhqKSQS0HMsORKl5orOqwaqorBhQEhFKeG
+	V2irHYFKMjC4WqsCeGa6FztMVbI4AAoFMqgiS6rqObOxsDa+BOBMBwlRa3S8gEYSzmcJ
+	u1xA==
+X-Gm-Message-State: AKaTC01HBfAUgp0qLC7oaqoc/UEFuovNRPuQAp5Zen59vAty3l80yO7uHeZpu6dITJgCug==
+X-Received: by 10.84.129.100 with SMTP id 91mr500619plb.73.1479858575483;
+	Tue, 22 Nov 2016 15:49:35 -0800 (PST)
+Received: from CACSVMO-14452.local ([2601:646:8882:b8c:d191:f445:6e57:1696])
+	by smtp.gmail.com with ESMTPSA id
+	s197sm29679369pgc.38.2016.11.22.15.49.34
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Tue, 22 Nov 2016 15:49:34 -0800 (PST)
+To: Jianxun Zhang <jianxun.zhang@linux.intel.com>, yocto@yoctoproject.org
+References: <1479843349-195099-1-git-send-email-jianxun.zhang@linux.intel.com>
+	<1479843349-195099-6-git-send-email-jianxun.zhang@linux.intel.com>
+From: Khem Raj <raj.khem@gmail.com>
+Organization: himvis.com
+Message-ID: <29d46ef2-a74a-5638-d0d9-2eb6ad3523bd@gmail.com>
+Date: Tue, 22 Nov 2016 15:49:33 -0800
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:50.0)
+	Gecko/20100101 Thunderbird/50.0
 MIME-Version: 1.0
-Received: by 10.55.115.3 with HTTP; Tue, 22 Nov 2016 13:25:10 -0800 (PST)
-From: Xiaohui Liu <whulxh@gmail.com>
-Date: Tue, 22 Nov 2016 13:25:10 -0800
-Message-ID: <CAFxSfzhpwMx-imzDyd5cPHwpVgbNgLXptpidmPP7oYEaGDZK9Q@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: When is a task rerun?
+In-Reply-To: <1479843349-195099-6-git-send-email-jianxun.zhang@linux.intel.com>
+Subject: Re: [PATCH 5/6][rmc] remove kernel command line usage and blob type
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,35 +76,630 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 22 Nov 2016 21:25:13 -0000
-Content-Type: multipart/alternative; boundary=94eb2c0c5e66435d2c0541ea6877
+X-List-Received-Date: Tue, 22 Nov 2016 23:49:43 -0000
+X-Groupsio-MsgNum: 33094
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature";
+	boundary="U8tACgo9m16P2hAX4hRe05PAXPq1ollsV"
 
---94eb2c0c5e66435d2c0541ea6877
-Content-Type: text/plain; charset=UTF-8
+--U8tACgo9m16P2hAX4hRe05PAXPq1ollsV
+Content-Type: multipart/mixed; boundary="hi28kTXrNFR8SbhEOLFRlSe18g3vkGcOk";
+ protected-headers="v1"
+From: Khem Raj <raj.khem@gmail.com>
+To: Jianxun Zhang <jianxun.zhang@linux.intel.com>, yocto@yoctoproject.org
+Message-ID: <29d46ef2-a74a-5638-d0d9-2eb6ad3523bd@gmail.com>
+Subject: Re: [yocto] [PATCH 5/6][rmc] remove kernel command line usage and
+ blob type
+References: <1479843349-195099-1-git-send-email-jianxun.zhang@linux.intel.com>
+ <1479843349-195099-6-git-send-email-jianxun.zhang@linux.intel.com>
+In-Reply-To: <1479843349-195099-6-git-send-email-jianxun.zhang@linux.intel.com>
 
-Hi everyone,
-
-Under what condition will a task be rerun? My understanding is that each
-task has a signature/checksum stored somewhere in tmp/. If the checksum
-changes, bitbake will look for shared state cache in SSTATE_DIR and then in
-SSTATE_MIRRORS. If no match is found, the task is run. Is my understanding
-right? Plus, where is the checksum stored in tmp/?
-
-Thanks in advance.
-
-Best,
-Xiaohui
-
---94eb2c0c5e66435d2c0541ea6877
-Content-Type: text/html; charset=UTF-8
+--hi28kTXrNFR8SbhEOLFRlSe18g3vkGcOk
+Content-Type: text/plain; charset=windows-1252
+Content-Language: en-US
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi everyone,<div><br></div><div>Under what condition will =
-a task be rerun? My understanding is that each task has a signature/checksu=
-m stored somewhere in tmp/. If the checksum changes, bitbake will look for =
-shared state cache in=C2=A0SSTATE_DIR and then in SSTATE_MIRRORS. If no mat=
-ch is found, the task is run. Is my understanding right? Plus, where is the=
- checksum stored in tmp/?</div><div><br></div><div>Thanks in advance.</div>=
-<div><br></div><div>Best,</div><div>Xiaohui</div></div>
 
---94eb2c0c5e66435d2c0541ea6877--
+
+On 11/22/16 11:35 AM, Jianxun Zhang wrote:
+> rmc works as a generic file-based solution now. There is no need
+> to keep a special case for kernel command line type which was
+> designed in early days.
+>=20
+> Signed-off-by: Jianxun Zhang <jianxun.zhang@linux.intel.com>
+> ---
+>  inc/rmcl.h            |  27 ++++-----
+>  src/lib/api.c         |   4 +-
+>  src/lib/common/rmcl.c |  32 +++--------
+>  src/lib/efi_api.c     |   2 +-
+>  src/rmc.c             | 150 ++++++++++++------------------------------=
+--------
+>  5 files changed, 59 insertions(+), 156 deletions(-)
+>=20
+> diff --git a/inc/rmcl.h b/inc/rmcl.h
+> index 4123819..5bbad42 100644
+> --- a/inc/rmcl.h
+> +++ b/inc/rmcl.h
+> @@ -101,23 +101,20 @@ typedef struct rmc_record_header {
+>   * RMC Database Meta (packed)
+>   */
+>  typedef struct rmc_meta_header {
+> -    rmc_uint8_t type;      /* type 0 command line; type 1 file blob*/
+> -    rmc_uint64_t length;   /* covers cmdline_filename and blob blocks.=
+ */
+> -    /* char *cmdline_filename : Invisible, null-terminated string pack=
+ed in mem */
+> +    rmc_uint8_t type;      /* RMC_GENERIC_FILE or or any other types d=
+efined later */
+> +    rmc_uint64_t length;   /* length of blob's name and blob */
+
+is there a need to define rmc_uint64_t and other rmc_* data types ?
+can it depends upong the c99 inttypes ? it would make it readable and sim=
+ple
+
+> +    /* char *blob_name : Invisible, null-terminated string packed in m=
+em */
+>      /* rmc_uint8_t *blob : Invisible, binary packed in mem */
+>  } __attribute__ ((__packed__)) rmc_meta_header_t;
+> =20
+> -/*
+> - * input of a rmc policy file. RMCL accepts command line
+> - * and file blobs presented in this data type (sparse memory)
+> - */
+> -#define RMC_POLICY_CMDLINE 0
+> -#define RMC_POLICY_BLOB 1
+> +/* We only have one type now but keep a type field internally for exte=
+nsions in the future. */
+> +#define RMC_GENERIC_FILE 1
+> +
+>  typedef struct rmc_file {
+> -    rmc_uint8_t type;              /* RMC_POLICY_CMDLINE or RMC_POLICY=
+_BLOB*/
+> -    char *cmdline_name;     /* file name of blob (type 1) or command l=
+ine fragment (type 0) */
+> -    struct rmc_file *next;  /* next rmc file, or null as terminator fo=
+r the last element */
+> -    rmc_size_t blob_len;         /* number of bytes of blob, excluding=
+ length of name */
+> +    rmc_uint8_t type;              /* RMC_GENERIC_FILE or or any other=
+ types defined later */
+> +    char *blob_name;               /* name of blob for type RMC_GENERI=
+C_FILE */
+> +    struct rmc_file *next;         /* next rmc file, or null as termin=
+ator for the last element */
+> +    rmc_size_t blob_len;           /* number of bytes of blob, excludi=
+ng length of name */
+>      rmc_uint8_t *blob;             /* blob of policy file, treated as =
+binary, UNNECESSARILY Null terminated */
+>  } rmc_file_t;
+> =20
+> @@ -153,11 +150,11 @@ extern int rmcl_generate_record(rmc_fingerprint_t=
+ *fingerprint, rmc_file_t *poli
+>  extern int rmcl_generate_db(rmc_record_file_t *record_files, rmc_uint8=
+_t **rmc_db, rmc_size_t *len);
+> =20
+>  /*
+> - * Query a RMC database blob provided by caller, to get kernel command=
+ line fragment or a policy file blob.
+> + * Query a RMC database blob provided by caller
+>   * (in) fingerprint     : fingerprint of board
+>   * (in) rmc_db          : rmc database blob
+>   * (in) type            : type of record
+> - * (in) blob_name       : name of file blob to query. Ignored when typ=
+e is 0 (cmdline)
+> + * (in) blob_name       : name of file blob to query
+>   * (out) policy         : policy file data structure provided by calle=
+r, holding returned policy data
+>   *                        if there is a matched meta for board. Pointe=
+r members of policy hold data location
+>   *                        in rmc_db's memory region. (This functions d=
+oesn't copy data.)
+> diff --git a/src/lib/api.c b/src/lib/api.c
+> index b7bc663..0adb390 100644
+> --- a/src/lib/api.c
+> +++ b/src/lib/api.c
+> @@ -282,12 +282,12 @@ int rmc_query_file_by_fp(rmc_fingerprint_t *fp, c=
+har *db_pathname, char *file_na
+>       * read rmc database file
+>       */
+>      if (read_file(db_pathname, (char **)&db, &db_len)) {
+> -        fprintf(stderr, "Failed to read database file for command line=
+\n\n");
+> +        fprintf(stderr, "Failed to read database file\n\n");
+>          return ret;
+>      }
+> =20
+>      /* query policy in database */
+> -    if(query_policy_from_db(fp, db, RMC_POLICY_BLOB, file_name, file))=
+
+> +    if(query_policy_from_db(fp, db, RMC_GENERIC_FILE, file_name, file)=
+)
+>          goto free_db;
+> =20
+>      /* the returned file blob is actually in db memory region,
+> diff --git a/src/lib/common/rmcl.c b/src/lib/common/rmcl.c
+> index e6be585..67622a0 100644
+> --- a/src/lib/common/rmcl.c
+> +++ b/src/lib/common/rmcl.c
+> @@ -77,10 +77,8 @@ int rmcl_generate_record(rmc_fingerprint_t *fingerpr=
+int, rmc_file_t *policy_file
+> =20
+>      /* Calculate total length of record for memory allocation */
+>      while (tmp) {
+> -        /* for type 0 cmdline, don't take blob len into account */
+> -        record_len +=3D sizeof(rmc_meta_header_t) + strlen(tmp->cmdlin=
+e_name) + 1;
+> -        if (tmp->type !=3D RMC_POLICY_CMDLINE)
+> -            record_len +=3D tmp->blob_len;
+> +        record_len +=3D sizeof(rmc_meta_header_t) + strlen(tmp->blob_n=
+ame) + 1;
+> +        record_len +=3D tmp->blob_len;
+>          tmp =3D tmp->next;
+>      }
+> =20
+> @@ -111,18 +109,15 @@ int rmcl_generate_record(rmc_fingerprint_t *finge=
+rprint, rmc_file_t *policy_file
+>          meta->length =3D sizeof(rmc_meta_header_t);
+>          idx +=3D sizeof(rmc_meta_header_t);
+> =20
+> -        cmd_len =3D strlen(tmp->cmdline_name) + 1;
+> +        cmd_len =3D strlen(tmp->blob_name) + 1;
+> =20
+> -        memcpy(idx, tmp->cmdline_name, cmd_len);
+> +        memcpy(idx, tmp->blob_name, cmd_len);
+>          idx +=3D cmd_len;
+>          meta->length +=3D cmd_len;
+> +        memcpy(idx, tmp->blob, tmp->blob_len);
+> +        idx +=3D tmp->blob_len;
+> +        meta->length +=3D tmp->blob_len;
+> =20
+> -        /* only pack blob in when policy is not cmdline fragment */
+> -        if (tmp->type !=3D RMC_POLICY_CMDLINE) {
+> -            memcpy(idx, tmp->blob, tmp->blob_len);
+> -            idx +=3D tmp->blob_len;
+> -            meta->length +=3D tmp->blob_len;
+> -        }
+>          tmp =3D tmp->next;
+>      }
+> =20
+> @@ -210,7 +205,7 @@ int query_policy_from_db(rmc_fingerprint_t *fingerp=
+rint, rmc_uint8_t *rmc_db, rm
+>      if (!fingerprint || !rmc_db || !policy)
+>          return 1;
+> =20
+> -    if (type !=3D RMC_POLICY_CMDLINE && blob_name =3D=3D NULL)
+> +    if (type !=3D RMC_GENERIC_FILE || blob_name =3D=3D NULL)
+>          return 1;
+> =20
+>      db_header =3D (rmc_db_header_t *)rmc_db;
+> @@ -241,16 +236,7 @@ int query_policy_from_db(rmc_fingerprint_t *finger=
+print, rmc_uint8_t *rmc_db, rm
+> =20
+>                      policy_idx =3D meta_idx + sizeof(rmc_meta_header_t=
+);
+> =20
+> -                    /* set fields common among types */
+> -                    if (type =3D=3D RMC_POLICY_CMDLINE) {
+> -                        policy->next =3D NULL;
+> -                        policy->type =3D type;
+> -                        policy->blob_len =3D 0;
+> -                        policy->blob =3D NULL;
+> -                        policy->cmdline_name =3D (char *)&rmc_db[polic=
+y_idx];
+> -
+> -                        return 0;
+> -                    } else if (type =3D=3D RMC_POLICY_BLOB && !strncmp=
+(blob_name, (char *)&rmc_db[policy_idx], strlen(blob_name) + 1)) {
+> +                    if (!strncmp(blob_name, (char *)&rmc_db[policy_idx=
+], strlen(blob_name) + 1)) {
+>                          rmc_ssize_t cmd_name_len =3D strlen((char *)&r=
+mc_db[policy_idx]) + 1;
+>                          policy->blob =3D &rmc_db[policy_idx + cmd_name=
+_len];
+>                          policy->blob_len =3D meta_header.length - size=
+of(rmc_meta_header_t) - cmd_name_len;
+> diff --git a/src/lib/efi_api.c b/src/lib/efi_api.c
+> index c4535c8..79b17a8 100644
+> --- a/src/lib/efi_api.c
+> +++ b/src/lib/efi_api.c
+> @@ -73,7 +73,7 @@ int rmc_get_fingerprint(void *sys_table, rmc_fingerpr=
+int_t *fp) {
+>  }
+> =20
+>  int rmc_query_file_by_fp(rmc_fingerprint_t *fp, rmc_uint8_t *db_blob, =
+char *file_name, rmc_file_t *file) {
+> -    return query_policy_from_db(fp, db_blob, RMC_POLICY_BLOB, file_nam=
+e, file);
+> +    return query_policy_from_db(fp, db_blob, RMC_GENERIC_FILE, file_na=
+me, file);
+>  }
+> =20
+>  int rmc_gimme_file(void *sys_table, rmc_uint8_t *db_blob, char *file_n=
+ame, rmc_file_t *file) {
+> diff --git a/src/rmc.c b/src/rmc.c
+> index d4eb203..062dd36 100644
+> --- a/src/rmc.c
+> +++ b/src/rmc.c
+> @@ -1,10 +1,10 @@
+> -/*
+> +/* Copyright (C) 2016 Jianxun Zhang <jianxun.zhang@intel.com>
+> + *
+>   * rmc tool
+>   *
+> - * An executable supports:
+> - *  - Provide fingerprint in human-readable RMC fragment (header) file=
+
+> - *  - Generate RMC database file from human-readable RMC fragment file=
+s
+> - *  - Provide policy fragments like command line to its callers in use=
+r space
+> + *  - Obtain fingerprint of the type of board it runs on
+> + *  - Generate RMC records and database with fingerprint and board-spe=
+cific data
+> + *  - Query file blobs associated to the type of board at run time.
+>   */
+> =20
+>  #include <stdio.h>
+> @@ -16,20 +16,16 @@
+>  #define USAGE "RMC (Runtime Machine configuration) Tool\n" \
+>      "NOTE: Most of usages require root permission (sudo)\n" \
+>      "rmc -F [-o output_fingerprint]\n" \
+> -    "rmc -R [-f <fingerprint file>] -c <cmdline file> | -b <blob file =
+list> [-o output_record]\n" \
+> +    "rmc -R [-f <fingerprint file>] -b <blob file list> [-o output_rec=
+ord]\n" \
+>      "rmc -D <rmc record file list> [-o output_database]\n" \
+> -	"rmc -C <rmc database file>\n" \
+>  	"rmc -B <name of file blob> -d <rmc database file> -o output_file\n" =
+\
+>  	"\n" \
+>  	"-F: generate board rmc fingerprint of board\n" \
+> -	"-R: generate board rmc record of board with its fingerprint, kenrel =
+commandline and blob files.\n" \
+> +	"-R: generate board rmc record of board with its fingerprint and file=
+ blobs.\n" \
+>      "-f: fingerprint file to be packed in record, rmc will create a fi=
+ngerprint for board and use it internally to\n" \
+>      "    generate record if -f is missed.\n" \
+> -    "-c: kernel command line fragment to be packed in record\n" \
+>      "-b: files to be packed in record\n" \
+> -	"Note: At least one of -f and -c must be provided when -R is present\=
+n" \
+>  	"-G: generate rmc database file with records specified in record file=
+ list\n" \
+> -	"-C: get kernel command line fragment from database file for the boar=
+d rmc is running on, output to stdout\n" \
+>  	"-B: get a flie blob with specified name associated to the board rmc =
+is running on\n" \
+>  	"-d: database file to be queried\n" \
+>  	"-o: path and name of output file of a specific command\n" \
+> @@ -37,13 +33,11 @@
+>      "Examples (Steps in an order to add board support into rmc):\n" \
+>      "generate board fingerprint:\n" \
+>      "rmc -F\n\n" \
+> -    "generate a rmc record for the board with a kernel command line fr=
+agment and two files, output to:\n" \
+> +    "generate a rmc record for the board with two file blobs, output t=
+o:\n" \
+>      "a specified file:\n" \
+> -    "rmc -R -f fingerprint -c my_cmdline -b file_1 file_2 -o my_board.=
+record\n\n" \
+> +    "rmc -R -f fingerprint -b file_1 file_2 -o my_board.record\n\n" \
+>      "generate a rmc database file with records from 3 different boards=
+:\n" \
+>      "rmc -D board1_record board2_record board3_record\n\n" \
+> -    "output command line fragment for the board rmc is running on, fro=
+m a rmc database mn_rmc.db:\n" \
+> -    "rmc -C my_rmc.db\n\n" \
+>      "query a file blob named audio.conf associated to the board rmc is=
+ running on in database my_rmc.db and output\n" \
+>      "to /tmp/new_audio.conf:\n" \
+>      "rmc -B audio.conf -d my_rmc.db -o /tmp/new_audio.conf\n\n"
+> @@ -52,13 +46,11 @@
+>  #define RMC_OPT_CAP_F   (1 << 0)
+>  #define RMC_OPT_CAP_R   (1 << 1)
+>  #define RMC_OPT_CAP_D   (1 << 2)
+> -#define RMC_OPT_CAP_C   (1 << 3)
+> -#define RMC_OPT_CAP_B   (1 << 4)
+> -#define RMC_OPT_C       (1 << 5)
+> -#define RMC_OPT_F       (1 << 6)
+> -#define RMC_OPT_O       (1 << 7)
+> -#define RMC_OPT_B       (1 << 8)
+> -#define RMC_OPT_D       (1 << 9)
+> +#define RMC_OPT_CAP_B   (1 << 3)
+> +#define RMC_OPT_F       (1 << 4)
+> +#define RMC_OPT_O       (1 << 5)
+> +#define RMC_OPT_B       (1 << 6)
+> +#define RMC_OPT_D       (1 << 7)
+> =20
+>  static void usage () {
+>      fprintf(stdout, USAGE);
+> @@ -211,12 +203,12 @@ read_fp_done:
+>  }
+> =20
+>  /*
+> - * Read a policy file (cmdline or a blob) into policy file structure
+> - * (in) pathname        : path and name of policy file
+> - * (in) type            : policy type, commandline or a file blob
+> + * Read a file blob into rmc file structure
+> + * (in) pathname        : path and name of file
+> + * (in) type            : policy type that must be RMC_GENERIC_FILE
+>   *
+> - * return               : a pointer to policy file structure. Caller s=
+hall
+> - *                        free memory for returned data AND cmdline or=
+ blob
+> + * return               : a pointer to rmc file structure. Caller shal=
+l
+> + *                        free memory for returned data AND blob
+>   *                        Null is returned for failures.
+>   */
+>  static rmc_file_t *read_policy_file(char *pathname, int type) {
+> @@ -226,44 +218,28 @@ static rmc_file_t *read_policy_file(char *pathnam=
+e, int type) {
+>      char *path_token;
+> =20
+>      if ((tmp =3D calloc(1, sizeof(rmc_file_t))) =3D=3D NULL) {
+> -        fprintf(stderr, "Failed to allocate memory for cmdline fragmen=
+t\n\n");
+> +        fprintf(stderr, "Failed to allocate memory for file blob\n\n")=
+;
+>          return NULL;
+>      }
+> =20
+>      tmp->type =3D type;
+>      tmp->next =3D NULL;
+> =20
+> -    if (tmp->type =3D=3D RMC_POLICY_CMDLINE) {
+> -        ret =3D read_file(pathname, &tmp->cmdline_name, &policy_len);
+> -        if (ret) {
+> -            fprintf(stderr, "Failed to read kernel command line file %=
+s\n\n", pathname);
+> -            free(tmp);
+> -            return NULL;
+> -        }
+> -
+> -        if (!policy_len) {
+> -            fprintf(stderr, "Empty kernel command line file %s\n\n", p=
+athname);
+> -            free(tmp);
+> -            return NULL;
+> -        }
+> -
+> -        tmp->blob_len =3D 0;
+> -        tmp->blob =3D NULL;
+> -    } else if (type =3D=3D RMC_POLICY_BLOB) {
+> +    if (type =3D=3D RMC_GENERIC_FILE) {
+>          ret =3D read_file(pathname, (char **)&tmp->blob, &policy_len);=
+
+>          if (ret) {
+> -            fprintf(stderr, "Failed to read policy file %s\n\n", pathn=
+ame);
+> +            fprintf(stderr, "Failed to read file %s\n\n", pathname);
+>              free(tmp);
+>              return NULL;
+>          }
+>          tmp->blob_len =3D policy_len;
+>          path_token =3D strrchr(pathname, '/');
+>          if (!path_token)
+> -            tmp->cmdline_name =3D strdup(pathname);
+> +            tmp->blob_name =3D strdup(pathname);
+>          else
+> -            tmp->cmdline_name =3D strdup(path_token + 1);
+> +            tmp->blob_name =3D strdup(path_token + 1);
+> =20
+> -        if (!tmp->cmdline_name) {
+> +        if (!tmp->blob_name) {
+>              fprintf(stderr, "Failed to allocate mem for policy file na=
+me %s\n\n", pathname);
+>              free(tmp->blob);
+>              free(tmp);
+> @@ -279,7 +255,7 @@ static rmc_file_t *read_policy_file(char *pathname,=
+ int type) {
+>  }
+> =20
+>  /*
+> - * Read a record file (cmdline or a blob) into record file structure
+> + * Read a record file into record file structure
+>   * (in) pathname        : path and name of record file
+>   *
+>   * return               : a pointer to record file structure. Caller s=
+hall
+> @@ -311,13 +287,10 @@ int main(int argc, char **argv){
+>      int c;
+>      rmc_uint16_t options =3D 0;
+>      char *output_path =3D NULL;
+> -    /* -C and -d could be present in a single command, with different =
+database files specified.  */
+> -    char *input_db_path_cap_c =3D NULL;
+>      char *input_db_path_d =3D NULL;
+>      char **input_file_blobs =3D NULL;
+>      char **input_record_files =3D NULL;
+>      char *input_fingerprint =3D NULL;
+> -    char *input_cmdline_path =3D NULL;
+>      char *input_blob_name =3D NULL;
+>      rmc_fingerprint_t fingerprint;
+>      rmc_file_t *policy_files =3D NULL;
+> @@ -338,7 +311,7 @@ int main(int argc, char **argv){
+>      /* parse options */
+>      opterr =3D 0;
+> =20
+> -    while ((c =3D getopt(argc, argv, "FRD:C:B:b:c:f:o:d:")) !=3D -1)
+> +    while ((c =3D getopt(argc, argv, "FRD:B:b:f:o:d:")) !=3D -1)
+>          switch (c) {
+>          case 'F':
+>              options |=3D RMC_OPT_CAP_F;
+> @@ -371,10 +344,6 @@ int main(int argc, char **argv){
+> =20
+>              options |=3D RMC_OPT_CAP_D;
+>              break;
+> -        case 'C':
+> -            input_db_path_cap_c =3D optarg;
+> -            options |=3D RMC_OPT_CAP_C;
+> -            break;
+>          case 'B':
+>              input_blob_name =3D optarg;
+>              options |=3D RMC_OPT_CAP_B;
+> @@ -383,10 +352,6 @@ int main(int argc, char **argv){
+>              output_path =3D optarg;
+>              options |=3D RMC_OPT_O;
+>              break;
+> -        case 'c':
+> -            input_cmdline_path =3D optarg;
+> -            options |=3D RMC_OPT_C;
+> -            break;
+>          case 'f':
+>              input_fingerprint =3D optarg;
+>              options |=3D RMC_OPT_F;
+> @@ -422,8 +387,8 @@ int main(int argc, char **argv){
+> =20
+>              break;
+>          case '?':
+> -            if (optopt =3D=3D 'F' || optopt =3D=3D 'R' || optopt =3D=3D=
+ 'D' || optopt =3D=3D 'C' || optopt =3D=3D 'B' || \
+> -                    optopt =3D=3D 'b' || optopt =3D=3D 'f' || optopt =3D=
+=3D 'c' || optopt =3D=3D 'o' || optopt =3D=3D 'd')
+> +            if (optopt =3D=3D 'F' || optopt =3D=3D 'R' || optopt =3D=3D=
+ 'D' || optopt =3D=3D 'B' || \
+> +                    optopt =3D=3D 'b' || optopt =3D=3D 'f' || optopt =3D=
+=3D 'o' || optopt =3D=3D 'd')
+>                  fprintf(stderr, "\nWRONG USAGE: -%c\n\n", optopt);
+>              else if (isprint(optopt))
+>                  fprintf(stderr, "Unknown option `-%c'.\n\n", optopt);
+> @@ -450,8 +415,8 @@ int main(int argc, char **argv){
+>      }
+> =20
+>      /* sanity check for -R */
+> -    if ((options & RMC_OPT_CAP_R) && (!(options & (RMC_OPT_C|RMC_OPT_B=
+)))) {
+> -        fprintf(stderr, "\nWRONG: At least one of -c or -b is required=
+ when -R is present\n\n");
+> +    if ((options & RMC_OPT_CAP_R) && (!(options & RMC_OPT_B))) {
+> +        fprintf(stderr, "\nWRONG: -b is required when -R is present\n\=
+n");
+>          usage();
+>          return 1;
+>      }
+> @@ -463,36 +428,6 @@ int main(int argc, char **argv){
+>          return 1;
+>      }
+> =20
+> -    /* get cmdline */
+> -    if (options & RMC_OPT_CAP_C) {
+> -
+> -        rmc_size_t db_len =3D 0;
+> -        rmc_fingerprint_t fp;
+> -        rmc_file_t cmd_policy;
+> -
+> -        /* read rmc database file */
+> -        if (read_file(input_db_path_cap_c, (char **)&db_c, &db_len)) {=
+
+> -            fprintf(stderr, "Failed to read database file for command =
+line\n\n");
+> -            goto main_free;
+> -        }
+> -
+> -        /* get board fingerprint */
+> -        if (rmc_get_fingerprint(&fp)) {
+> -            fprintf(stderr, "-C Failed to generate fingerprint for thi=
+s board\n\n");
+> -            goto main_free;
+> -        }
+> -
+> -        /* query cmdline in database, no error message if no command l=
+ine for board found */
+> -        if (query_policy_from_db(&fp, db_c, RMC_POLICY_CMDLINE, NULL, =
+&cmd_policy)) {
+> -            rmc_free_fingerprint(&fp);
+> -            goto main_free;
+> -        }
+> -
+> -        rmc_free_fingerprint(&fp);
+> -
+> -        fprintf(stdout, "%s", cmd_policy.cmdline_name);
+> -    }
+> -
+>      /* get a file blob */
+>      if (options & RMC_OPT_CAP_B) {
+>          rmc_file_t file;
+> @@ -557,10 +492,7 @@ int main(int argc, char **argv){
+>          }
+>      }
+> =20
+> -    /* generate RMC record file, we allow both or either of a list of =
+config files and kenrel command line.
+> -     * That means user can choose to have a single record contains bot=
+h of file blob(s) and command line for
+> -     * the board.
+> -     */
+> +    /* generate RMC record file with a list of file blobs. */
+>      if (options & RMC_OPT_CAP_R) {
+>          rmc_fingerprint_t fp;
+>          rmc_fingerprint_t *free_fp =3D NULL;
+> @@ -593,11 +525,11 @@ int main(int argc, char **argv){
+>                  free_fp =3D &fp;
+>          }
+> =20
+> -        /* read command line file and policy file into a list */
+> +        /* read policy file into a list */
+>          while (input_file_blobs && input_file_blobs[policy_idx]) {
+>              char *s =3D input_file_blobs[policy_idx];
+> =20
+> -            if ((policy =3D read_policy_file(s, RMC_POLICY_BLOB)) =3D=3D=
+ NULL) {
+> +            if ((policy =3D read_policy_file(s, RMC_GENERIC_FILE)) =3D=
+=3D NULL) {
+>                  fprintf(stderr, "Failed to read policy file %s\n\n", s=
+);
+>                  rmc_free_fingerprint(free_fp);
+>                  goto main_free;
+> @@ -614,18 +546,6 @@ int main(int argc, char **argv){
+>              policy_idx++;
+>          }
+> =20
+> -        if (input_cmdline_path) {
+> -            if ((policy =3D read_policy_file(input_cmdline_path, RMC_P=
+OLICY_CMDLINE)) =3D=3D NULL) {
+> -                fprintf(stderr, "Failed to read command line file  %s\=
+n\n", input_cmdline_path);
+> -                rmc_free_fingerprint(free_fp);
+> -                goto main_free;
+> -            }
+> -
+> -            /* put command line at the head of list */
+> -            policy->next =3D policy_files;
+> -            policy_files =3D policy;
+> -        }
+> -
+>          /* call rmcl to generate record blob */
+>          if (rmcl_generate_record(&fp, policy_files, &record)) {
+>              fprintf(stderr, "Failed to generate record for this board\=
+n\n");
+> @@ -697,7 +617,7 @@ main_free:
+>          rmc_file_t *t =3D policy_files;
+>          policy_files =3D policy_files->next;
+>          free(t->blob);
+> -        free(t->cmdline_name);
+> +        free(t->blob_name);
+>          free(t);
+>      }
+> =20
+>=20
+
+
+--hi28kTXrNFR8SbhEOLFRlSe18g3vkGcOk--
+
+--U8tACgo9m16P2hAX4hRe05PAXPq1ollsV
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+Comment: GPGTools - https://gpgtools.org
+
+iEYEARECAAYFAlg02Y0ACgkQuwUzVZGdMxRRGQCcDGS9Pn5LC4kaLAGAnu9sdNSp
+CS4Ani7l4qKnucTvQJT+P8T+jmY1gGRl
+=pOB5
+-----END PGP SIGNATURE-----
+
+--U8tACgo9m16P2hAX4hRe05PAXPq1ollsV--
