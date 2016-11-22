@@ -1,76 +1,48 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <herve.jourdain@neuf.fr>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E8A86E00AAB; Mon, 21 Nov 2016 22:29:28 -0800 (PST)
+	id 4AA94E00AAB; Mon, 21 Nov 2016 22:32:12 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.83.65 listed in dnsbl.sorbs.net]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [93.17.128.20 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.83.65 listed in list.dnswl.org]
-Received: from mail-pg0-f65.google.com (mail-pg0-f65.google.com [74.125.83.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AB01CE00A49
-	for <yocto@yoctoproject.org>; Mon, 21 Nov 2016 22:29:25 -0800 (PST)
-Received: by mail-pg0-f65.google.com with SMTP id e9so1130738pgc.1
-	for <yocto@yoctoproject.org>; Mon, 21 Nov 2016 22:29:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=subject:to:references:cc:from:organization:message-id:date
-	:user-agent:mime-version:in-reply-to;
-	bh=qd+h2733RukG0344UaSosyVxm/AQxSxMjXK1swinIyM=;
-	b=uI0/gfZVa8v2iS5NWjDYhpfTmiVcuvCt+0M+9d1/YgcVtCeTNSByFldotMGVhBYwJ4
-	NifUTVDKRR4lT1xQL3hsr+0TFzdHQlKS3KleA3xXZriSz1D2ToQkYcy/kkvz9Xqd4Z8c
-	27f3VDJ1STaRir7kBunAx6rNme8iFgpizP+TtLVxPW6FP95aNhZXrhfHamCHLdVL7np2
-	MEnAN/vb3KV5qfQlDPGJMkekdEbhvJ8eyJtg29OKZCYeJFV5bOW32IjZID2iaiNsg2bV
-	EQSZzDe4i3ZLPDvwWDyNusWzg2M4lhY5ax0w75h+MmWNpvY/Re3ciLxXgi+7ZPgdWs3P
-	lfFQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:subject:to:references:cc:from:organization
-	:message-id:date:user-agent:mime-version:in-reply-to;
-	bh=qd+h2733RukG0344UaSosyVxm/AQxSxMjXK1swinIyM=;
-	b=io5kuTdnngk2QYPnHbRbdGBizNPsElCrul4teNmlSl3fBSgYFTb6ZlQgpc6rfGdqjB
-	ws3cjIybLCVfPX2nacfdgOPU3yPCO3Q+1dNf9K+EYIrYoiylLyBNBMR06XusElq92Scx
-	Odh+VtFDn9n93cYNvvcNkl7o3H95MC/PqHhKExMbDGOFi35kXZfMhtpHzu89ISJVxdiU
-	BIOp0EHwkp1FLSDkNIQtqHWquHqvy5/skxMlgVMLhnmkohDH2fbYzkQYeYyxi2wmG12c
-	opRvuIuIFub45dB41agF5PuLTRwY0aJ9GNdfc6Cx/dqNErji0bxH9uLLgJE2r0s9B4mS
-	RBdw==
-X-Gm-Message-State: AKaTC0299zFDLds3JxQKg/5cLl/6BEcDTd90VhUGDhuwImSjd49p/IX7knOdxDPoHf+Bow==
-X-Received: by 10.99.170.5 with SMTP id e5mr25863871pgf.46.1479796164881;
-	Mon, 21 Nov 2016 22:29:24 -0800 (PST)
-Received: from CACSVMO-14452.local ([2601:646:8882:b8c:79bd:3a31:4354:fac0])
-	by smtp.gmail.com with ESMTPSA id
-	y89sm41869577pfk.83.2016.11.21.22.29.23
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Mon, 21 Nov 2016 22:29:24 -0800 (PST)
-To: Trevor Woerner <twoerner@gmail.com>
-References: <002d01d24304$32aa08a0$97fe19e0$@neuf.fr>
-	<CAMKF1sqt2cA5DbPDAwo2=SNUqPuPatavhtQYpOnecQ=i+wc45w@mail.gmail.com>
-	<20161121230726.GA14157@openSUSE-i7.site>
-	<5e81cb71-ff35-4525-0e53-ded77e59dad2@gmail.com>
-	<20161122053929.GB16570@openSUSE-i7.site>
-From: Khem Raj <raj.khem@gmail.com>
-Organization: himvis.com
-Message-ID: <4d14c20b-1360-d3dd-c61c-b0d5929d5819@gmail.com>
-Date: Mon, 21 Nov 2016 22:29:18 -0800
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:50.0)
-	Gecko/20100101 Thunderbird/50.0
+Received: from smtp26.services.sfr.fr (smtp26.services.sfr.fr [93.17.128.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1A7D8E00A49
+	for <yocto@yoctoproject.org>; Mon, 21 Nov 2016 22:32:10 -0800 (PST)
+Received: from nbhjo (1-160-241-187.dynamic.hinet.net [1.160.241.187])
+	by msfrf2628.sfr.fr (SMTP Server) with ESMTP id E12081C000C4B;
+	Tue, 22 Nov 2016 07:32:09 +0100 (CET)
+Received: from nbhjo (1-160-241-187.dynamic.hinet.net [1.160.241.187])	(using
+	TLSv1.2
+	with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))	(No client
+	certificate requested)	(Authenticated sender: herve.jourdain@neuf.fr)
+	by msfrf2628.sfr.fr (SMTP Server) with ESMTPSA;
+	Tue, 22 Nov 2016 07:32:08 +0100 (CET)
+Authentication-Results: sfr.fr; auth=pass (LOGIN)
+	smtp.auth=herve.jourdain@neuf.fr
+From: Herve Jourdain <herve.jourdain@neuf.fr>
+To: 'Khem Raj' <raj.khem@gmail.com>
+References: <1479560619-33367-1-git-send-email-herve.jourdain@neuf.fr>
+	<1479560619-33367-2-git-send-email-herve.jourdain@neuf.fr>
+	<f7d407c8-aa02-4c75-fef0-3d6afeaf4a95@gmail.com>
+	<003b01d24326$8ae5cd20$a0b16760$@neuf.fr>
+	<CAMKF1sqR6E=UnU2hOhoPBUBk8-tHhBJrG=LYFG4Eo9t=6W7uKA@mail.gmail.com>
+	<000701d243b7$2989f970$7c9dec50$@neuf.fr>
+	<CAMKF1spCoMCzmwNk9LuGWirobcqqTRDBpk1iSUXudK-X0gBE8Q@mail.gmail.com>
+In-Reply-To: <CAMKF1spCoMCzmwNk9LuGWirobcqqTRDBpk1iSUXudK-X0gBE8Q@mail.gmail.com>
+Date: Tue, 22 Nov 2016 07:32:04 +0100
+Message-ID: <002c01d2448a$26c75920$74560b60$@neuf.fr>
 MIME-Version: 1.0
-In-Reply-To: <20161122053929.GB16570@openSUSE-i7.site>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [raspberrypi] raspi3 vs raspi2
+X-Mailer: Microsoft Outlook 15.0
+thread-index: AQFf1IQYxDJY5eNUZl6goLQmP6eODgOzOf0rAkG3uUkBnNIXGAKgN76/AwgJcxsA8EC4DKFYFL1Q
+X-sfr-mailing: LEGIT
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-raspberrypi][PATCH 1/1] Modify raspberrypi3.conf and add raspberrypi3-64.conf
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -82,156 +54,170 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 22 Nov 2016 06:29:28 -0000
-X-Groupsio-MsgNum: 33076
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature";
-	boundary="aCKfqUDol0miILvSHEX58OQ9Q1iVIIC9s"
-
---aCKfqUDol0miILvSHEX58OQ9Q1iVIIC9s
-Content-Type: multipart/mixed; boundary="NWHc22RPC2pTmmju2s5bdfMnbaL9L88dJ";
- protected-headers="v1"
-From: Khem Raj <raj.khem@gmail.com>
-To: Trevor Woerner <twoerner@gmail.com>
-Cc: Herve Jourdain <herve.jourdain@neuf.fr>,
- "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Message-ID: <4d14c20b-1360-d3dd-c61c-b0d5929d5819@gmail.com>
-Subject: Re: [yocto] [raspberrypi] raspi3 vs raspi2
-References: <002d01d24304$32aa08a0$97fe19e0$@neuf.fr>
- <CAMKF1sqt2cA5DbPDAwo2=SNUqPuPatavhtQYpOnecQ=i+wc45w@mail.gmail.com>
- <20161121230726.GA14157@openSUSE-i7.site>
- <5e81cb71-ff35-4525-0e53-ded77e59dad2@gmail.com>
- <20161122053929.GB16570@openSUSE-i7.site>
-In-Reply-To: <20161122053929.GB16570@openSUSE-i7.site>
-
---NWHc22RPC2pTmmju2s5bdfMnbaL9L88dJ
+X-List-Received-Date: Tue, 22 Nov 2016 06:32:12 -0000
 Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
 Content-Transfer-Encoding: quoted-printable
+Content-Language: fr
 
+Hi Khem,
 
+I believe it would be more appropriate to have it "system-wide", because =
+at some point it should not be something the apps need to worry about.
+Plus, it's really a SoC thing, some armv8 SoCs do implement those =
+options, some don't (when I say "option" there, I mean it's a HW block =
+that may or may not be implemented in the SoC, it's not just a =
+compilation switch that would work for all revisions of armv8).
+So I believe those HW options should indeed be defined in =
+arch-armv8.inc, and each soc-specific file should select the options =
+that are possible for it.
+For instance, cortex-a53 has "by definition" the crc HW included, but =
+the crypto HW block may or may not be implemented. For Raspberrypi3, =
+BCM2837 does not have it. Most other Cortex-A53 I know of have it, =
+though.
+Therefore, the definition of the "crypto" variant for cortexa53-32, in =
+addition with the sf/hf variants for aarch32.
+For aarch64, the floating point abi is hf, so that's less variants, but =
+I should also add cortexa53crypto-64, to be exhaustive... It's not going =
+to be useful for RPI3, but it might be for all future =
+armv8/cortex-a53/cortex-a57/cortex-a72/cortex-a73 based SoCs that will =
+have to be supported in the future.
+So we could add it all now, or we could add it in the future as needs =
+emerge.
 
-On 11/21/16 9:39 PM, Trevor Woerner wrote:
-> On Mon 2016-11-21 @ 04:09:50 PM, Khem Raj wrote:
->> 4.4 does not support 64-bit pi3, do you set the PREFERRED_VERSION in l=
-ocal
->> conf metadata ?
->=20
-> Yes, my conf/local.conf contains:
->=20
-> 	PREFERRED_VERSION_linux-raspberrypi =3D "4.8%"
->=20
-> If you clone git://github.com/raspberrypi/linux.git and checkout the 4.=
-8.y
-> branch, you'll see that there's no commit
-> ea6eeaff07c4881e6287fe3e7ea58fc30e5569d7 anywhere in that branch. In fa=
-ct
-> there is no such commit anywhere in that repository:
->=20
-> 	$ git branch --contains ea6eeaff07c4881e6287fe3e7ea58fc30e5569d7
-> 	error: no such commit ea6eeaff07c4881e6287fe3e7ea58fc30e5569d7
->=20
+Herve
 
-Did you take
+-----Original Message-----
+From: Khem Raj [mailto:raj.khem@gmail.com]=20
+Sent: lundi 21 novembre 2016 17:35
+To: Herve Jourdain <herve.jourdain@neuf.fr>
+Cc: yocto@yoctoproject.org
+Subject: Re: [yocto] [meta-raspberrypi][PATCH 1/1] Modify =
+raspberrypi3.conf and add raspberrypi3-64.conf
 
-https://github.com/kraj/meta-raspberrypi/commit/361757b9c1538b0a15577d753=
-08ecef93db55965
+On Sun, Nov 20, 2016 at 9:21 PM, Herve Jourdain <herve.jourdain@neuf.fr> =
+wrote:
+> Hi Khem,
+>
+> For cortexa53 in aarch32, the problem is to figure out if we want to =
+cover all cases or not.
+> Raspberrypi3 is one case of CortexA53 that has crc support, but no =
+crypto support. So I could define a cortexa53-32 as being just that.
+> But then, there are other CortexA53-based SoCs that do have the crypto =
+extension, and I thought that, since I was going to modify it, I'd =
+rather cover all possible cases/options...
+>
+> The one thing that could be scrapped is the hf option, if we decide =
+that all cortexa53 aarch32 will be hf only.
+> Then that would avoid the hf duplication of the aarch32 tunes, leaving =
+only 2 tunes for cortexa53 aarch32 + 1 tune for cortexa53 aarch64.
+>
+> Please advise what you would prefer me to do.
 
-as well?
-
+is there an advantage of having crc and crypto as systemwide tune =
+options or is it more beneficial to apply them surgically to needed apps =
+via MACHINE_FEATURES
+>
+> Herve
+>
+> -----Original Message-----
+> From: Khem Raj [mailto:raj.khem@gmail.com]
+> Sent: dimanche 20 novembre 2016 20:30
+> To: Herve Jourdain <herve.jourdain@neuf.fr>
+> Cc: yocto@yoctoproject.org
+> Subject: Re: [yocto] [meta-raspberrypi][PATCH 1/1] Modify=20
+> raspberrypi3.conf and add raspberrypi3-64.conf
+>
+> Herve,
+>
+> There is no need to create so many variants for a53 32 bit mode. We =
+can keep using whatever we have its only 64bit that needs to be added as =
+a new machine.
+>
+> On Sun, Nov 20, 2016 at 4:06 AM, Herve Jourdain =
+<herve.jourdain@neuf.fr> wrote:
+>> Hi Khem,
 >>
->> On 11/21/16 3:07 PM, Trevor Woerner wrote:
->>> On Sun 2016-11-20 @ 11:28:48 AM, Khem Raj wrote:
->>>> I gave a whirl at building and looking closely at them. As it seems
->>>> the OE core patch is
->>>> not needed since for armv8 we want to keep it like x86 ( common )
->>>> I have therefore made changes to your patches and staged them here.
->>>>
->>>> https://github.com/kraj/meta-raspberrypi/commits/kraj/master
->>>>
->>>> Which should work without any change in OE-Core, secondly I have
->>>> further divided them
->>>> and also fixed 4.8 to compile arm64.
+>> FYI, I am sending a slightly modified version (cortexa53hf-32 instead =
+
+>> of
+>> cortexa53-32 for raspberrypi3.conf).
+>> They still depend on modifications in oe-core (heavier this time than =
+
+>> before), also posted to the list.
+>>
+>> Herve
+>>
+>> -----Original Message-----
+>> From: Khem Raj [mailto:raj.khem@gmail.com]
+>> Sent: samedi 19 novembre 2016 19:19
+>> To: Herve Jourdain <herve.jourdain@neuf.fr>; yocto@yoctoproject.org
+>> Subject: Re: [yocto] [meta-raspberrypi][PATCH 1/1] Modify=20
+>> raspberrypi3.conf and add raspberrypi3-64.conf
+>>
+>> Nevermind, I managed to apply it, there are some CR changes I guess=20
+>> which was freaking git
+>>
+>> On 11/19/16 5:03 AM, Herve Jourdain wrote:
+>>> Signed-off-by: Herve Jourdain <herve.jourdain@neuf.fr>
+>>> ---
+>>>  conf/machine/raspberrypi3-64.conf | 19 +++++++++++++++++++
+>>>  conf/machine/raspberrypi3.conf    |  8 ++++++--
+>>>  2 files changed, 25 insertions(+), 2 deletions(-)  create mode
+>>> 100644 conf/machine/raspberrypi3-64.conf
 >>>
->>> I tried giving this a whirl.
+>>> diff --git a/conf/machine/raspberrypi3-64.conf
+>>> b/conf/machine/raspberrypi3-64.conf
+>>> new file mode 100644
+>>> index 0000000..a5ceddb
+>>> --- /dev/null
+>>> +++ b/conf/machine/raspberrypi3-64.conf
+>>> @@ -0,0 +1,19 @@
+>>> +#@TYPE: Machine
+>>> +#@NAME: RaspberryPi 3 Development Board
+>>> +#@DESCRIPTION: Machine configuration for the RaspberryPi 3 in 64=20
+>>> +bits mode
+>>> +
+>>> +DEFAULTTUNE ?=3D "cortexa53-64"
+>>> +
+>>> +MACHINEOVERRIDES =3D "raspberrypi3:raspberrypi:${MACHINE}"
+>>> +
+>>> +MACHINE_EXTRA_RRECOMMENDS +=3D "linux-firmware-bcm43430"
+>>> +
+>>> +PREFERRED_VERSION_linux-raspberrypi_raspberrypi3-64 ?=3D "4.7.%"
+>>> +
+>>> +require conf/machine/include/tune-cortexa53.inc
+>>> +include conf/machine/include/rpi-base.inc
+>>> +
+>>> +SERIAL_CONSOLE =3D "115200 ttyS0"
+>>> +VC4_CMA_SIZE ?=3D "cma-256"
+>>> +
+>>> +UBOOT_MACHINE =3D "rpi_3_config"
+>>> diff --git a/conf/machine/raspberrypi3.conf=20
+>>> b/conf/machine/raspberrypi3.conf index 9820209..f142323 100644
+>>> --- a/conf/machine/raspberrypi3.conf
+>>> +++ b/conf/machine/raspberrypi3.conf
+>>> @@ -2,12 +2,16 @@
+>>>  #@NAME: RaspberryPi 3 Development Board
+>>>  #@DESCRIPTION: Machine configuration for the RaspberryPi 3
 >>>
->>> Maybe the order of my layers in bblayers isn't correct, but by defaul=
-t my
->>> build uses 4.4% instead of 4.8%.
+>>> -MACHINEOVERRIDES =3D "raspberrypi2:${MACHINE}"
+>>> +DEFAULTTUNE ?=3D "cortexa53-32"
+>>> +
+>>> +MACHINEOVERRIDES =3D "raspberrypi2:raspberrypi:${MACHINE}"
 >>>
->>> conf/machine/raspberrypi3-64.conf includes:
->>> 	...
->>> 	include conf/machine/include/rpi-base.inc
->>> 	...
->>> 	PREFERRED_VERSION_linux-raspberrypi ?=3D "4.8.%"
+>>>  MACHINE_EXTRA_RRECOMMENDS +=3D "linux-firmware-bcm43430"
 >>>
->>> conf/machine/include/rpi-base.inc contains:
->>> 	...
->>> 	include conf/machine/include/rpi-default-versions.inc
->>> 	...
+>>> -include conf/machine/raspberrypi2.conf
+>>> +require conf/machine/include/tune-cortexa53.inc
+>>> +include conf/machine/include/rpi-base.inc
 >>>
->>> conf/machine/include/rpi-default-versions.inc contains:
->>> 	...
->>> 	PREFERRED_VERSION_linux-raspberrypi ?=3D "4.4.%"
+>>>  SERIAL_CONSOLE =3D "115200 ttyS0"
+>>>  VC4_CMA_SIZE ?=3D "cma-256"
 >>>
->>> In any case when I try building with 4.4 I get:
->>>
->>> 	ERROR: linux-raspberrypi-1_4.4.28+gitAUTOINC+5afda48c34-r0 do_kernel=
-_configme: No default configuration for raspberrypi3-64 / bcmrpi3_defconf=
-ig available.
->>> 	ERROR: linux-raspberrypi-1_4.4.28+gitAUTOINC+5afda48c34-r0 do_kernel=
-_configme: Function failed: do_kernel_configme (log file is located at /z=
-/layerindex-master/raspi3-64/tmp-glibc/work/raspberrypi3_64-oe-linux/linu=
-x-raspberrypi/1_4.4.28+gitAUTOINC+5afda48c34-r0/temp/log.do_kernel_config=
-me.15498)
->>>
->>> When I switch to 4.8 explicitly in my conf/local.conf I get:
->>>
->>> 	ERROR: linux-raspberrypi-1_4.8.8+gitAUTOINC+ea6eeaff07-r0 do_fetch: =
-Fetcher failure: Unable to find revision ea6eeaff07c4881e6287fe3e7ea58fc3=
-0e5569d7 in branch rpi-4.8.y even from upstream
->>> 	ERROR: linux-raspberrypi-1_4.8.8+gitAUTOINC+ea6eeaff07-r0 do_fetch: =
-Fetcher failure for URL: 'git://github.com/raspberrypi/linux.git;protocol=
-=3Dgit;branch=3Drpi-4.8.y'. Unable to fetch URL from any source.
->>>
->>> My build configuration is:
->>> 	Build Configuration:
->>> 	BB_VERSION        =3D "1.32.0"
->>> 	BUILD_SYS         =3D "x86_64-linux"
->>> 	NATIVELSBSTRING   =3D "opensuse-42.1"
->>> 	TARGET_SYS        =3D "aarch64-oe-linux"
->>> 	MACHINE           =3D "raspberrypi3-64"
->>> 	DISTRO            =3D "nodistro"
->>> 	DISTRO_VERSION    =3D "nodistro.0"
->>> 	TUNE_FEATURES     =3D "aarch64"
->>> 	TARGET_FPU        =3D ""
->>> 	meta-raspberrypi__kraj =3D "kraj/master:4735e7cde210b2b0b855bca1eb90=
-ef4adca8019b"
->>> 	meta              =3D "master:a675b2c89e477af088faee9b3be96eae19a85f=
-0b"
->>> 	meta-oe          =20
->>> 	meta-gnome        =3D "master:7f8915a6ecdd5c4b03c7e5b5f1fa903f89c2d5=
-60"
+>>> +UBOOT_MACHINE =3D "rpi_3_config"
 >>>
 >>
->=20
->=20
->=20
+>>
+>
 
 
---NWHc22RPC2pTmmju2s5bdfMnbaL9L88dJ--
-
---aCKfqUDol0miILvSHEX58OQ9Q1iVIIC9s
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-Comment: GPGTools - https://gpgtools.org
-
-iEYEARECAAYFAlgz5cIACgkQuwUzVZGdMxQcYQCfcv2pYbQ/WpdyV6u/ggimCdnr
-+SEAn1xdqo/l4F30rquCG9uLNa/gn/K1
-=v9UK
------END PGP SIGNATURE-----
-
---aCKfqUDol0miILvSHEX58OQ9Q1iVIIC9s--
