@@ -1,47 +1,74 @@
-Return-Path: <nicolas.labriet@transport.alstom.com>
+Return-Path: <twoerner@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A804FE00B8E; Tue, 22 Nov 2016 05:16:13 -0800 (PST)
+	id 07DA9E00BFF; Tue, 22 Nov 2016 06:38:49 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [159.245.16.221 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (twoerner[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 619 seconds by postgrey-1.32 at yocto-www;
-	Tue, 22 Nov 2016 05:16:11 PST
-Received: from MCEGSMTP1.alstom.com (mcegsmtp1.alstom.com [159.245.16.221])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D4283E00AF2
-	for <yocto@yoctoproject.org>; Tue, 22 Nov 2016 05:16:11 -0800 (PST)
-Received: from 041-smtp-out.Alstom.com (unknown [141.251.119.211]) by
-	MCEGSMTP1.alstom.com with smtp
-	(TLS: TLSv1/SSLv3,256bits,ECDHE-RSA-AES256-SHA384)
-	id 4a40_1253_6fb8e102_5790_4ca9_822d_69b92af0d5d9;
-	Tue, 22 Nov 2016 14:05:50 +0100
-Received: from AMXPR48MB0103.041d.mgd.msft.net (141.251.119.211) by
-	AMXPR48MB0103.041d.mgd.msft.net (141.251.119.211) with Microsoft SMTP
-	Server
-	(version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
-	15.1.734.8; Tue, 22 Nov 2016 13:05:44 +0000
-Received: from AMXPR48MB0103.041d.mgd.msft.net ([141.251.119.211]) by
-	AMXPR48MB0103.041d.mgd.msft.net ([141.251.119.211]) with mapi id
-	15.01.0734.014; Tue, 22 Nov 2016 13:05:44 +0000
-From: LABRIET Nicolas <nicolas.labriet@transport.alstom.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: baremetal toolchain for aarch64
-Thread-Index: AdJEwRdbOzJbwgWHTJC7aa1uqMxFBQ==
-Date: Tue, 22 Nov 2016 13:05:44 +0000
-Message-ID: <3e68c48556d544608c903285ffbf4623@AMXPR48MB0103.041d.mgd.msft.net>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [141.251.121.132]
-x-ms-office365-filtering-correlation-id: cb7185ec-4a1a-4d0a-5d57-08d412d844c5
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.214.68 listed in dnsbl.sorbs.net]
+Received: from mail-it0-f68.google.com (mail-it0-f68.google.com
+	[209.85.214.68])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CC85AE00BFF
+	for <yocto@yoctoproject.org>; Tue, 22 Nov 2016 06:38:45 -0800 (PST)
+Received: by mail-it0-f68.google.com with SMTP id b123so1983494itb.2
+	for <yocto@yoctoproject.org>; Tue, 22 Nov 2016 06:38:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-disposition:in-reply-to:user-agent;
+	bh=iQ8sv+xoWgUDPrZfrpq2Fr6JGt/y96Mk8pNyZdcM1Mo=;
+	b=lkPZvDvQVYLWytLIpnTKm6t659lD+WZic6jruDdOeyDh3Bl9eJPaisXHr8xfGG4ZAZ
+	Wyis8Bh33VeHzUrdQEwk8Jl3E3WseJRX3JwX7hEZdVU7Ke/0piuV9qsRe2bcXz6kMmoF
+	hKg1AXW7uoen6kSpgLasBm0Mu5RzCN56n4ALcTNr+C984gY1t8ipnz/iXdmdbz/g78NM
+	4HFeUHiyb3zp9TpPWP6ptnYrTjbUxAerH146UvAk8ENIhBUMXAqdHq3Bp23uL7bQkSWU
+	G/XDP9GRCGJwoJb0lkCSR0tTRJ0DLiZP7BMO7qylO8ILxmsQxzoAIuoBlJmjUgWuFShT
+	fOLQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	:mime-version:content-disposition:in-reply-to:user-agent;
+	bh=iQ8sv+xoWgUDPrZfrpq2Fr6JGt/y96Mk8pNyZdcM1Mo=;
+	b=hrRM61/JY4xsECX+UObE4r1cBj5HNMg/HtqzjNeEkvaSB/bCxrjiAW1iPKjXFLn5If
+	i+9O8ybz1B2FEQcqktSTmjP0qVxrrfL2KMtpYsKznsJ9ut+MyxQr2uCQ9XvrWyGOoh7k
+	+T+rxLdoOjtR0W2Yx7yuZTMmjrdEgkRuOmBFEw8zQWcsR97pc8EEVuWm1H1QiC6zbzog
+	lvbcbm+oRZJsVqdBYhDtYeWewpYNkl2xM40bt/TQEwztvjsTvTR+JDkdKP4BM9Ca7joT
+	RHf74gyuVE4x0eRsFr+pbtE4hD58F2egX50B+MYCnkH5GMtGj1gl6FtP59YXCN54BM3C
+	naug==
+X-Gm-Message-State: AKaTC02LCUFWk2R+0Z2OfItibZkFTJVX61A1tFe4vdS1Avl4LehIRVRsSeTfi6hPF0KVbw==
+X-Received: by 10.36.115.6 with SMTP id y6mr2657291itb.83.1479825524994;
+	Tue, 22 Nov 2016 06:38:44 -0800 (PST)
+Received: from openSUSE-i7.site (dsl-67-55-28-109.acanac.net. [67.55.28.109])
+	by smtp.gmail.com with ESMTPSA id
+	l14sm9760333ioi.18.2016.11.22.06.38.43
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Tue, 22 Nov 2016 06:38:43 -0800 (PST)
+Date: Tue, 22 Nov 2016 09:38:41 -0500
+From: Trevor Woerner <twoerner@gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+Message-ID: <20161122143841.GA7846@openSUSE-i7.site>
+References: <002d01d24304$32aa08a0$97fe19e0$@neuf.fr>
+	<CAMKF1sqt2cA5DbPDAwo2=SNUqPuPatavhtQYpOnecQ=i+wc45w@mail.gmail.com>
+	<20161121230726.GA14157@openSUSE-i7.site>
+	<5e81cb71-ff35-4525-0e53-ded77e59dad2@gmail.com>
+	<20161122053929.GB16570@openSUSE-i7.site>
+	<4d14c20b-1360-d3dd-c61c-b0d5929d5819@gmail.com>
+	<20161122075419.GA31256@openSUSE-i7.site>
 MIME-Version: 1.0
-Subject: baremetal toolchain for aarch64
+In-Reply-To: <20161122075419.GA31256@openSUSE-i7.site>
+User-Agent: Mutt/1.6.0 (2016-04-01)
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [raspberrypi] raspi3 vs raspi2
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,42 +80,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 22 Nov 2016 13:16:13 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 22 Nov 2016 14:38:49 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 
-Hi,
+On Tue 2016-11-22 @ 02:54:20 AM, Trevor Woerner wrote:
+> I'm currently trying 3ce7378bb505825f492615bd71d19a2339e5bf55, which is the
+> current HEAD of the 4.8.y branch of the raspi kernel repository.
 
-I am trying to produce a baremetal cross-compiler for aarch64 using Jethro.
-In my local.conf I set TCLIBC =3D "baremetal" and run bitbake meta-toolchai=
-n.
+It builds if I:
 
-The first error is: Exception: KeyError: 'aarch64'.
-I think insane.bbclass will need to be updated by adding aarch64 to elf:
-             "elf" : {
-+                        "aarch64" :   (183,    0,    0,          True,    =
-      64),
+	diff --git a/recipes-kernel/linux/linux-raspberrypi_4.8.bb b/recipes-kernel/linux/linux-raspberrypi_4.8.bb
+	index 323b0ea..cbb8a50 100644
+	--- a/recipes-kernel/linux/linux-raspberrypi_4.8.bb
+	+++ b/recipes-kernel/linux/linux-raspberrypi_4.8.bb
+	@@ -1,8 +1,8 @@
+	 FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
+	 
+	-LINUX_VERSION ?= "4.8.8"
+	+LINUX_VERSION ?= "4.8.9"
+	 
+	-SRCREV = "ea6eeaff07c4881e6287fe3e7ea58fc30e5569d7"
+	+SRCREV = "3ce7378bb505825f492615bd71d19a2339e5bf55"
+	 SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-4.8.y \
+	 "
+	 require linux-raspberrypi.inc
 
-Then I get a QA error on ILP32 in libgcc-dev:
-ERROR: QA Issue: Bit size did not match (64 to 32) libgcc on work/aarch64-f=
-sl-elf/libgcc/linaro-4.9-r2015.03/packages-split/libgcc-dev/usr/lib/aarch64=
--fsl-elf/4.9.3/ilp32/crtbegin.o [arch]
+but it doesn't (appear to) boot.
 
-I manage to get over this one by disabling multilib on libgcc-linaro, but t=
-he build fails on:
-ERROR: libgcc-dev not found in the base feeds (ls1043ardb aarch64 noarch an=
-y all).
-
-Disabling multilib on libgcc-linaro may not be the right thing to do.
-
-How can I proceed to build the baremetal toolchain?
-
-Nicolas
-
-________________________________
-CONFIDENTIALITY : This e-mail and any attachments are confidential and may =
-be privileged. If you are not a named recipient, please notify the sender i=
-mmediately and do not disclose the contents to another person, use it for a=
-ny purpose or store or copy the information in any medium.
+Is there a way to enable the console of the bootloader? I don't get anything
+on the console (which I do if I load a raspi2 image), and no lights are
+blinking (which occurs with a raspi2 image).
 
