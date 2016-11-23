@@ -1,48 +1,65 @@
-Return-Path: <herve.jourdain@neuf.fr>
+Return-Path: <urnen81@yahoo.es>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 30BC2E008E4; Tue, 22 Nov 2016 19:19:19 -0800 (PST)
+	id C87CBE00ABE; Wed, 23 Nov 2016 02:00:57 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [93.17.128.10 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,FREEMAIL_REPLYTO_END_DIGIT,
+	HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (urnen81[at]yahoo.es)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [212.82.97.165 listed in list.dnswl.org]
+	* 0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in
+	digit *      (oliver <urnen81[at]yahoo.es> )
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from smtp26.services.sfr.fr (smtp26.services.sfr.fr [93.17.128.10])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A093AE0083D
-	for <yocto@yoctoproject.org>; Tue, 22 Nov 2016 19:19:16 -0800 (PST)
-Received: from nbhjo (1-160-241-187.dynamic.hinet.net [1.160.241.187])
-	by msfrf2623.sfr.fr (SMTP Server) with ESMTP id 970651C005C0F;
-	Wed, 23 Nov 2016 04:19:13 +0100 (CET)
-Received: from nbhjo (1-160-241-187.dynamic.hinet.net [1.160.241.187])	(using
-	TLSv1.2
-	with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))	(No client
-	certificate requested)	(Authenticated sender: herve.jourdain@neuf.fr)
-	by msfrf2623.sfr.fr (SMTP Server) with ESMTPSA;
-	Wed, 23 Nov 2016 04:19:12 +0100 (CET)
-Authentication-Results: sfr.fr; auth=pass (LOGIN)
-	smtp.auth=herve.jourdain@neuf.fr
-From: Herve Jourdain <herve.jourdain@neuf.fr>
-To: 'Trevor Woerner' <twoerner@gmail.com>
-References: <1479560619-33367-1-git-send-email-herve.jourdain@neuf.fr>
-	<20161122151027.GA11632@openSUSE-i7.site>
-	<001d01d244dc$d4b41030$7e1c3090$@neuf.fr>
-	<20161122183028.GA18396@openSUSE-i7.site>
-In-Reply-To: <20161122183028.GA18396@openSUSE-i7.site>
-Date: Wed, 23 Nov 2016 04:19:08 +0100
-Message-ID: <004201d24538$5cfdaea0$16f90be0$@neuf.fr>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from nm39-vm6.bullet.mail.ir2.yahoo.com
+	(nm39-vm6.bullet.mail.ir2.yahoo.com [212.82.97.165])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5DFFAE00A61
+	for <yocto@yoctoproject.org>; Wed, 23 Nov 2016 02:00:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.es; s=s2048;
+	t=1479895253; bh=eddmfI16atr2vYc7Ap1w+mOGXFqPg4lK0UDH2HwDXx8=;
+	h=Date:From:Reply-To:To:Subject:References:From:Subject;
+	b=BkAxJ3FXb6+9jGzYMYzRpbJ9bjUaWoEx8iFwIHPlMzd/rqQb9P2r4awbpUG2eV2ptgeAbaaPZuTuoov/PNN3iTkonmn34Ux94B1eP9JXhGcb50cVfBzd7mKZfbqCRO72DzcpxbeBUe20gq4IdVj/TjLoGXpHsBN+iOn2ohea2VCttG2hC6fkK4VpGjtFOYIT8uia+qzebRHmfz011pnUTZBVeSJqZYixNRUEXDLZvmHFq1XWDPqXV7rqf639DTw9dc5cTzcDnErPS5s+GMDp/MrIu3PvYH+UklPn3JOR6wi0m2qKvydvkuR4zigt35sMn7eSrgfiucfgLrCEvB5HVw==
+Received: from [212.82.98.57] by nm39.bullet.mail.ir2.yahoo.com with NNFMP;
+	23 Nov 2016 10:00:53 -0000
+Received: from [212.82.98.67] by tm10.bullet.mail.ir2.yahoo.com with NNFMP;
+	23 Nov 2016 10:00:53 -0000
+Received: from [127.0.0.1] by omp1004.mail.ir2.yahoo.com with NNFMP;
+	23 Nov 2016 10:00:53 -0000
+X-Yahoo-Newman-Property: ymail-3
+X-Yahoo-Newman-Id: 705433.29501.bm@omp1004.mail.ir2.yahoo.com
+X-YMail-OSG: s840JZsVM1kEV1TxP3xxApvxMyn0Ff2mSVxElbbjncf2ZzPbL9BHcoLxKWBpcSl
+	7kpEZCe1rzezjEYruhUMXOpnNgO8hk1avF4z.9a6uWFDxoZxSD.LlTr3z8qa38SNdniphro6zGBA
+	l81BEs16J6nqCzMeFJtdc0f3AkX3FibQwubjjQJzs..pIcP1O0enfVJ1OHhdvKSkQNrVOmF_HdDY
+	tB19zHyTRNAlv4fSUinXw_sGU7ijw18cYsx8aogpVlirxUAgPvgDPvoVDTSYiF5E_B7zh08RTBnT
+	8gOhl5dJddtNwvr4vIr.5lVCRD0oAO.0LtLNPIyuI9uPc1Mx3PZRJSez9f_YAzkxPF_DwNwrTwEv
+	UbDvRv7IaEt8SBLgusQwYLSyHlgO4TBzG7n0SOsm1Ta9W7vzHODSeTFztdGEeYdaszJjUVLs3f_W
+	9CH.vkVp7uAycAQ_7QL5DM2qqrIovbbHaB0ZPDkkrlW8t6DV68bpRRbWEffBFIfJsABJkw31hT4d
+	PM2Ks6q_2o0vtQw--
+Received: from jws700009.mail.ir2.yahoo.com by
+	sendmailws161.mail.ir2.yahoo.com;
+	Wed, 23 Nov 2016 10:00:52 +0000; 1479895252.973
+Date: Wed, 23 Nov 2016 10:00:34 +0000 (UTC)
+From: Oliver <urnen81@yahoo.es>
+To: Yocto Project <yocto@yoctoproject.org>
+Message-ID: <1587381958.322993.1479895234059@mail.yahoo.com>
 MIME-Version: 1.0
-X-Mailer: Microsoft Outlook 15.0
-Thread-Index: AQFf1IQYxDJY5eNUZl6goLQmP6eODgFqulgMAe7Yct8CbSFUyqGckbGQ
-X-sfr-mailing: LEGIT
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-raspberrypi][PATCH 0/1] Modify raspberrypi3.conf and add raspberrypi3-64.conf
+References: <1587381958.322993.1479895234059.ref@mail.yahoo.com>
+Subject: Use recipes but not whole layer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: Oliver <urnen81@yahoo.es>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -51,50 +68,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 Nov 2016 03:19:19 -0000
-Content-Type: text/plain; charset=utf-8
+X-List-Received-Date: Wed, 23 Nov 2016 10:00:57 -0000
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_322992_848329120.1479895234057"
+
+------=_Part_322992_848329120.1479895234057
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+Hello,
+When a layer is included in the build (conf/bblayers.conf), all the bbappends and distro configurations, apply to the current build. Is there something additional which the build is affected after a layer included?
+What is the preferred way if in you are only interested in one specfic recipe of the new layer?
+a) You could invalidate via BBMASK all the specific pathsb) Could somehow modify the BBFILE to remove the undesired "${LAYERDIR}/recipes-*/*/*.bbappend"?
+I am not confortable with either ways, what is the official approach?
+Regards
+
+
+------=_Part_322992_848329120.1479895234057
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
-Content-Language: fr
 
-Hi Trevor,
+<html><head></head><body><div style=3D"color:#000; background-color:#fff; f=
+ont-family:HelveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, =
+sans-serif;font-size:16px"><div id=3D"yui_3_16_0_1_1479894428778_14625">Hel=
+lo,</div><div><br></div><div id=3D"yui_3_16_0_1_1479894428778_14412">When a=
+ layer is included in the build (conf/bblayers.conf), all the bbappends and=
+ distro configurations, apply to the current build. Is there something addi=
+tional which the build is affected after a layer included?</div><div id=3D"=
+yui_3_16_0_1_1479894428778_14411"><br></div><div id=3D"yui_3_16_0_1_1479894=
+428778_14410">What is the preferred way if in you are only interested in on=
+e specfic recipe of the new layer?</div><div id=3D"yui_3_16_0_1_14798944287=
+78_14469"><br></div><div id=3D"yui_3_16_0_1_1479894428778_14535" dir=3D"ltr=
+">a) You could invalidate via BBMASK all the specific paths</div><div id=3D=
+"yui_3_16_0_1_1479894428778_11218" dir=3D"ltr">b) Could somehow modify the =
+BBFILE to remove the undesired "${LAYERDIR}/recipes-*/*/*.bbappend"?</div><=
+div id=3D"yui_3_16_0_1_1479894428778_14534" dir=3D"ltr"><br></div><div id=
+=3D"yui_3_16_0_1_1479894428778_14454" dir=3D"ltr">I am not confortable with=
+ either ways, what is the official approach?</div><div id=3D"yui_3_16_0_1_1=
+479894428778_14630" dir=3D"ltr"><br></div><div id=3D"yui_3_16_0_1_147989442=
+8778_14631" dir=3D"ltr">Regards<br></div><div id=3D"yui_3_16_0_1_1479894428=
+778_11018"><br></div></div></body></html>
 
-No, that would be me missing a patch in my branch... :(
-It should be 4.7.10, and it did compile yesterday.
-My mistake, I'm adding that right now, please retry.
-
-Herve
-
------Original Message-----
-From: Trevor Woerner [mailto:twoerner@gmail.com]=20
-Sent: mardi 22 novembre 2016 19:30
-To: Herve Jourdain <herve.jourdain@neuf.fr>
-Cc: yocto@yoctoproject.org
-Subject: Re: [yocto] [meta-raspberrypi][PATCH 0/1] Modify =
-raspberrypi3.conf and add raspberrypi3-64.conf
-
-On Tue 2016-11-22 @ 05:23:49 PM, Herve Jourdain wrote:
-> I didn't have any such branch, but I've created them now.
-> They are located at: https://github.com/hjourdain/meta-raspberrypi and =
-https://github.com/hjourdain/openembedded-core.
-> I've just pushed my patches there. I've not tested out of those =
-repositories yet, but I did test those patches before, and they were =
-working, so hopefully everything will be alright.
-
-It looks like the raspberry pi's linux tree has been rebased again :-(
-
-	ERROR: linux-raspberrypi-1_4.7.7+gitAUTOINC+a45a35c085-r0 do_fetch: =
-Fetcher failure: Unable to find revision =
-a45a35c08598b23f9fd82e49c83b46c7d536244f in branch rpi-4.7.y even from =
-upstream
-	ERROR: linux-raspberrypi-1_4.7.7+gitAUTOINC+a45a35c085-r0 do_fetch: =
-Fetcher failure for URL: =
-'git://github.com/raspberrypi/linux.git;protocol=3Dgit;branch=3Drpi-4.7.y=
-'. Unable to fetch URL from any source.
-
-Checking out the rpi-4.7.y branch of =
-git://github.com/raspberrypi/linux.git
-doesn't give a a45a35c08598b23f9fd82e49c83b46c7d536244f revision. Also, =
-the HEAD of that branch is 4.7.10. Any idea how far back I have to go to =
-find 4.7.7? Or maybe I should just try 4.7.10?
-
-
+------=_Part_322992_848329120.1479895234057--
