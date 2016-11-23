@@ -1,60 +1,58 @@
-Return-Path: <kergoth@gmail.com>
+Return-Path: <abhinavbipnesh@avaya.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 114E5E00A6B; Wed, 23 Nov 2016 05:43:23 -0800 (PST)
+	id 4423CE00A6B; Wed, 23 Nov 2016 06:02:07 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.218.65 listed in list.dnswl.org]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [135.11.29.13 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-oi0-f65.google.com (mail-oi0-f65.google.com
-	[209.85.218.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 495F3E00A0A
-	for <yocto@yoctoproject.org>; Wed, 23 Nov 2016 05:43:20 -0800 (PST)
-Received: by mail-oi0-f65.google.com with SMTP id v84so981968oie.2
-	for <yocto@yoctoproject.org>; Wed, 23 Nov 2016 05:43:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:from:date:message-id
-	:subject:to:cc;
-	bh=IIxnEgv8ws+PCGiT6+JjIpkoz7bryTYIv2SUvcYcd8E=;
-	b=KedxGFx77E3lqTjNbQDBvEczgyYrLni/HX0JXIx5ieiKHj6aM3enO/dfgR8kFVYPph
-	Md4AeDPeirbr0Oq2m9eNqWhlhRGc08IrgP+9YU0YDCzgemShrdeM2cWjvfuD9xdwCO42
-	K4ZOy2AxFDG3mpCEwIkggo3g/HpjrFTtcw1I4UnzRIBhviPzsiA/S3DtZhM5o0aPr9jk
-	AO3wGrntQirKWK0zQBr+/YX2fkn6FgDkUgwEf85oxy4GJDz8w2D1BMUBPLY6yhNKzrpx
-	u9A5xV/C5PP5hVW645QSYvq2MKdfbeGfYPydhqIawRnVh4Ya39uS//piZU9cc0mIiHg/
-	klPw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:sender:in-reply-to:references:from
-	:date:message-id:subject:to:cc;
-	bh=IIxnEgv8ws+PCGiT6+JjIpkoz7bryTYIv2SUvcYcd8E=;
-	b=OCzhZJCJb9ZYTaqPRLdMSurzNXUvnn3owZZTdVehPHlr6+zOMsJDbHI0MooJFFU3tk
-	DdBMsAGWw8VhlX2j3E7aFE1A74K5gqMlgyUmhvqqkglJrPmH7M06dnpayNVsTvx5ulom
-	qm6KL3yI2MtN0a5Ps4Tkhn+RRjxjjOkBH3uPtGCE5q0VOFhuLJen+Pf2mduBITo4LxQe
-	CzWq85FTcGYs3vlOmL4+QgLTGNEg0qGYMQ/oEnUgdl6uCIpiPOLqEMjoInokg8P8DDMW
-	sJX+WnbW/0UrkF7WNryTAD4ejDSE64Fo6EvDHKoB5NrwxA/yngcSc/OtKMCRphShu0Z9
-	atKA==
-X-Gm-Message-State: AKaTC01kHVtzSN6E6NZc+vfL0Q2GLoxsk5zF6xwbO5GuHtXpcFndNmXpXqfwo+mNjm/y7U0ZovUD/ecvlks0bQ==
-X-Received: by 10.202.80.203 with SMTP id e194mr1665176oib.188.1479908600253; 
-	Wed, 23 Nov 2016 05:43:20 -0800 (PST)
-MIME-Version: 1.0
-Sender: kergoth@gmail.com
-Received: by 10.157.35.65 with HTTP; Wed, 23 Nov 2016 05:42:59 -0800 (PST)
-In-Reply-To: <CAF3SDA6CjS0Tdfy0hqJEg+sYv67HpeYe9HOO9GBL6JQSjXaWHw@mail.gmail.com>
+Received: from p-us1-iereast-outbound.us1.avaya.com
+	(p-us1-iereast-outbound.us1.avaya.com [135.11.29.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 42201E00A0A
+	for <yocto@yoctoproject.org>; Wed, 23 Nov 2016 06:02:04 -0800 (PST)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2GNAwD9oDVY/xUHmMZeHAEBBAEBCgEBg?=
+	=?us-ascii?q?nMhJAEBAQEBH1iBAgcBjTiXGodyjQGCB4JrgzYCGoF/PxQBAgEBAQEBAQEDXyi?=
+	=?us-ascii?q?EaAEBAQEDEhEKTBACAQgNAQMEAQELHQMCAgIfERQJCAIEAQ0FCBqIMQMXAaR7i?=
+	=?us-ascii?q?mOCKSoChx4NhBEBAQEBAQEBAQEBAQEBAQEBAQEBAQEchj+EWoJIggMVH4JOLYI?=
+	=?us-ascii?q?SHgWaGjUBjSwBjXCGE4k7hC+EDB43hlxyhzgBgQwBAQE?=
+X-IPAS-Result: =?us-ascii?q?A2GNAwD9oDVY/xUHmMZeHAEBBAEBCgEBgnMhJAEBAQEBH1i?=
+	=?us-ascii?q?BAgcBjTiXGodyjQGCB4JrgzYCGoF/PxQBAgEBAQEBAQEDXyiEaAEBAQEDEhEKT?=
+	=?us-ascii?q?BACAQgNAQMEAQELHQMCAgIfERQJCAIEAQ0FCBqIMQMXAaR7imOCKSoChx4NhBE?=
+	=?us-ascii?q?BAQEBAQEBAQEBAQEBAQEBAQEBAQEchj+EWoJIggMVH4JOLYISHgWaGjUBjSwBj?=
+	=?us-ascii?q?XCGE4k7hC+EDB43hlxyhzgBgQwBAQE?=
+X-IronPort-AV: E=Sophos;i="5.31,538,1473134400"; 
+	d="scan'208,217";a="217482750"
+Received: from unknown (HELO co300216-co-erhwest-exch.avaya.com)
+	([198.152.7.21]) by p-us1-iereast-outbound.us1.avaya.com with ESMTP;
+	23 Nov 2016 09:01:16 -0500
+X-OutboundMail_SMTP: 1
+Received: from unknown (HELO AZ-FFEXHC03.global.avaya.com) ([135.64.58.13])
+	by co300216-co-erhwest-out.avaya.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
+	23 Nov 2016 09:01:13 -0500
+Received: from AZ-FFEXMB01.global.avaya.com ([fe80::39ee:75fe:e67a:cf4a]) by
+	AZ-FFEXHC03.global.avaya.com ([135.64.58.13]) with mapi id
+	14.03.0319.002; Wed, 23 Nov 2016 09:01:12 -0500
+From: "Bipnesh, Abhinav (Abhinav)" <abhinavbipnesh@avaya.com>
+To: Christopher Larson <clarson@kergoth.com>, Daniel. <danielhilst@gmail.com>
+Thread-Topic: [yocto] Extracting PV & PR from Makefile at compilation time.
+Thread-Index: AQHSRY1iDXf/+7XB2Ey4hWMimZGXtqDmgyOAgAAVhcA=
+Date: Wed, 23 Nov 2016 14:01:11 +0000
+Message-ID: <F38A866CD026F746A3BF0928A84397BE3E7F626B@AZ-FFEXMB01.global.avaya.com>
 References: <CAF3SDA6CjS0Tdfy0hqJEg+sYv67HpeYe9HOO9GBL6JQSjXaWHw@mail.gmail.com>
-From: Christopher Larson <clarson@kergoth.com>
-Date: Wed, 23 Nov 2016 06:42:59 -0700
-X-Google-Sender-Auth: FSkeYF5XeNF4uRUMmXImzl9gpV4
-Message-ID: <CABcZANk0XfQTA5dio2NQvRnV+cSF3dLF+Rpv8+3RY-kUO=0y=w@mail.gmail.com>
-To: "Daniel." <danielhilst@gmail.com>
+	<CABcZANk0XfQTA5dio2NQvRnV+cSF3dLF+Rpv8+3RY-kUO=0y=w@mail.gmail.com>
+In-Reply-To: <CABcZANk0XfQTA5dio2NQvRnV+cSF3dLF+Rpv8+3RY-kUO=0y=w@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [135.64.58.47]
+MIME-Version: 1.0
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Extracting PV & PR from Makefile at compilation time.
 X-BeenThere: yocto@yoctoproject.org
@@ -68,64 +66,117 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 Nov 2016 13:43:23 -0000
-Content-Type: multipart/alternative; boundary=001a113b00d86b1d9c0541f81206
+X-List-Received-Date: Wed, 23 Nov 2016 14:02:07 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_F38A866CD026F746A3BF0928A84397BE3E7F626BAZFFEXMB01globa_"
 
---001a113b00d86b1d9c0541f81206
-Content-Type: text/plain; charset=UTF-8
+--_000_F38A866CD026F746A3BF0928A84397BE3E7F626BAZFFEXMB01globa_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On Wed, Nov 23, 2016 at 6:26 AM, Daniel. <danielhilst@gmail.com> wrote:
+T25lIHF1aWNrIHdheSB3b3VsZCBiZSB0byB1c2UgZW52aXJvbm1lbnQgdmFyaWFibGVzIGluIGJv
+dGggcGxhY2VzLiBTbyB5b3UgY2FuIGV4cG9ydCB0aGVtIGJlZm9yZSBzdGFydGluZyBhIGJ1aWxk
+Lg0KDQpGcm9tOiB5b2N0by1ib3VuY2VzQHlvY3RvcHJvamVjdC5vcmcgW21haWx0bzp5b2N0by1i
+b3VuY2VzQHlvY3RvcHJvamVjdC5vcmddIE9uIEJlaGFsZiBPZiBDaHJpc3RvcGhlciBMYXJzb24N
+ClNlbnQ6IFdlZG5lc2RheSwgTm92ZW1iZXIgMjMsIDIwMTYgMTk6MTMNClRvOiBEYW5pZWwuDQpD
+YzogeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KU3ViamVjdDogUmU6IFt5b2N0b10gRXh0cmFjdGlu
+ZyBQViAmIFBSIGZyb20gTWFrZWZpbGUgYXQgY29tcGlsYXRpb24gdGltZS4NCg0KDQpPbiBXZWQs
+IE5vdiAyMywgMjAxNiBhdCA2OjI2IEFNLCBEYW5pZWwuIDxkYW5pZWxoaWxzdEBnbWFpbC5jb208
+bWFpbHRvOmRhbmllbGhpbHN0QGdtYWlsLmNvbT4+IHdyb3RlOg0KSSBoYXZlIGEgTWFrZWZpbGUg
+d2l0aCB0aGlzIGhlYWRlcg0KDQptYWpvciA9IDENCm1pbm9yID0gMA0KcGF0Y2ggPSAxMA0KcmVs
+ZWFzZSA9IC1iZXRhDQoNCldoaWNoIGNvbXBpbGF0ZXMgc29tZXRpbmcgbGlrZSBsaWJteWxpYi5z
+by4xLjAuMTAtYmV0YSBzaGFyZWQgb2JqZWN0Lg0KT24gcmVjaXBlIEkgZHVwbGljYXRlIHRoaXMg
+aW5mb3JtYXRpb246DQpQVj0iMS4wLjEwIg0KUFI9Ii1iZXRhIg0KDQpJcyB0aGVyZSBhbnl3YXkg
+dG8gZ3JhYiB0aGF0IGluZm9ybWF0aW9uIGZyb20gTWFrZWZpbGUgYW5kIHNldHRpbmcgUFYgJiBQ
+UiBhY2NvcmRpbmcgdG8gaXQ/IEF0IGNvbXBpbGF0aW9uIHRpbWU/IFNvIHRoYXQgSSBvbmx5IGhh
+dmUgdG8gY2hhbmdlIGF0IG9uZSBwbGFjZT8NCg0KYml0YmFrZSB3YW50cyB0byBrbm93IHB2L3By
+IGF0IHBhcnNlIHRpbWUsIGxvbmcgYmVmb3JlIHRoZSBzb3VyY2VzIGhhdmUgYmVlbiBmZXRjaGVk
+IGFuZCB1bnBhY2tlZC4NCi0tDQpDaHJpc3RvcGhlciBMYXJzb24NCmNsYXJzb24gYXQga2VyZ290
+aCBkb3QgY29tDQpGb3VuZGVyIC0gQml0QmFrZSwgT3BlbkVtYmVkZGVkLCBPcGVuWmF1cnVzDQpN
+YWludGFpbmVyIC0gVHNsaWINClNlbmlvciBTb2Z0d2FyZSBFbmdpbmVlciwgTWVudG9yIEdyYXBo
+aWNzDQo=
 
-> I have a Makefile with this header
->
-> major = 1
-> minor = 0
-> patch = 10
-> release = -beta
->
->
-> Which compilates someting like libmylib.so.1.0.10-beta shared object.
->
-> On recipe I duplicate this information:
-> PV="1.0.10"
-> PR="-beta"
->
-> Is there anyway to grab that information from Makefile and setting PV & PR
-> according to it? At compilation time? So that I only have to change at one
-> place?
->
+--_000_F38A866CD026F746A3BF0928A84397BE3E7F626BAZFFEXMB01globa_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-bitbake wants to know pv/pr at parse time, long before the sources have
-been fetched and unpacked.
--- 
-Christopher Larson
-clarson at kergoth dot com
-Founder - BitBake, OpenEmbedded, OpenZaurus
-Maintainer - Tslib
-Senior Software Engineer, Mentor Graphics
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTQgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1IDUgMiAyIDIgNCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJ
+e2ZvbnQtZmFtaWx5OlRhaG9tYTsNCglwYW5vc2UtMToyIDExIDYgNCAzIDUgNCA0IDIgNDt9DQov
+KiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1z
+b05vcm1hbA0KCXttYXJnaW46MGluOw0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNp
+emU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5OiJUaW1lcyBOZXcgUm9tYW4iLCJzZXJpZiI7fQ0KYTps
+aW5rLCBzcGFuLk1zb0h5cGVybGluaw0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6
+Ymx1ZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCmE6dmlzaXRlZCwgc3Bhbi5Nc29I
+eXBlcmxpbmtGb2xsb3dlZA0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6cHVycGxl
+Ow0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0Kc3Bhbi5FbWFpbFN0eWxlMTcNCgl7bXNv
+LXN0eWxlLXR5cGU6cGVyc29uYWwtcmVwbHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLCJzYW5z
+LXNlcmlmIjsNCgljb2xvcjojMUY0OTdEO30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHlsZS10
+eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIiwic2Fucy1zZXJpZiI7fQ0K
+QHBhZ2UgV29yZFNlY3Rpb24xDQoJe3NpemU6OC41aW4gMTEuMGluOw0KCW1hcmdpbjoxLjBpbiAx
+LjBpbiAxLjBpbiAxLjBpbjt9DQpkaXYuV29yZFNlY3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rpb24x
+O30NCi0tPjwvc3R5bGU+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWRlZmF1bHRz
+IHY6ZXh0PSJlZGl0IiBzcGlkbWF4PSIxMDI2IiAvPg0KPC94bWw+PCFbZW5kaWZdLS0+PCEtLVtp
+ZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWxheW91dCB2OmV4dD0iZWRpdCI+DQo8bzppZG1h
+cCB2OmV4dD0iZWRpdCIgZGF0YT0iMSIgLz4NCjwvbzpzaGFwZWxheW91dD48L3htbD48IVtlbmRp
+Zl0tLT4NCjwvaGVhZD4NCjxib2R5IGxhbmc9IkVOLVVTIiBsaW5rPSJibHVlIiB2bGluaz0icHVy
+cGxlIj4NCjxkaXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
+c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1
+b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+T25lIHF1aWNrIHdheSB3
+b3VsZCBiZSB0byB1c2UgZW52aXJvbm1lbnQgdmFyaWFibGVzIGluIGJvdGggcGxhY2VzLiBTbyB5
+b3UgY2FuIGV4cG9ydCB0aGVtIGJlZm9yZSBzdGFydGluZyBhIGJ1aWxkLjxvOnA+PC9vOnA+PC9z
+cGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEu
+MHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90
+Oztjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0i
+TXNvTm9ybWFsIj48Yj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWlseTom
+cXVvdDtUYWhvbWEmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OyI+RnJvbTo8L3NwYW4+PC9i
+PjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O1RhaG9tYSZx
+dW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ij4geW9jdG8tYm91bmNlc0B5b2N0b3Byb2plY3Qu
+b3JnIFttYWlsdG86eW9jdG8tYm91bmNlc0B5b2N0b3Byb2plY3Qub3JnXQ0KPGI+T24gQmVoYWxm
+IE9mIDwvYj5DaHJpc3RvcGhlciBMYXJzb248YnI+DQo8Yj5TZW50OjwvYj4gV2VkbmVzZGF5LCBO
+b3ZlbWJlciAyMywgMjAxNiAxOToxMzxicj4NCjxiPlRvOjwvYj4gRGFuaWVsLjxicj4NCjxiPkNj
+OjwvYj4geW9jdG9AeW9jdG9wcm9qZWN0Lm9yZzxicj4NCjxiPlN1YmplY3Q6PC9iPiBSZTogW3lv
+Y3RvXSBFeHRyYWN0aW5nIFBWICZhbXA7IFBSIGZyb20gTWFrZWZpbGUgYXQgY29tcGlsYXRpb24g
+dGltZS48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZu
+YnNwOzwvbzpwPjwvcD4NCjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4m
+bmJzcDs8L286cD48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+T24gV2VkLCBOb3Yg
+MjMsIDIwMTYgYXQgNjoyNiBBTSwgRGFuaWVsLiAmbHQ7PGEgaHJlZj0ibWFpbHRvOmRhbmllbGhp
+bHN0QGdtYWlsLmNvbSIgdGFyZ2V0PSJfYmxhbmsiPmRhbmllbGhpbHN0QGdtYWlsLmNvbTwvYT4m
+Z3Q7IHdyb3RlOjxvOnA+PC9vOnA+PC9wPg0KPGRpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj5JIGhhdmUgYSBNYWtlZmlsZSB3aXRoIHRoaXMgaGVhZGVyPG86cD48L286cD48L3A+DQo8
+L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+
+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+bWFqb3IgPSAxPG86cD48L286cD48L3A+DQo8
+L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5taW5vciA9IDA8bzpwPjwvbzpwPjwv
+cD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPnBhdGNoID0gMTA8bzpwPjwv
+bzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtYXJn
+aW4tYm90dG9tOjEyLjBwdCI+cmVsZWFzZSA9IC1iZXRhPGJyPg0KPGJyPg0KPG86cD48L286cD48
+L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibWFyZ2luLWJv
+dHRvbToxMi4wcHQiPldoaWNoIGNvbXBpbGF0ZXMgc29tZXRpbmcgbGlrZSBsaWJteWxpYi5zby4x
+LjAuMTAtYmV0YSBzaGFyZWQgb2JqZWN0LjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCI+T24gcmVjaXBlIEkgZHVwbGljYXRlIHRoaXMgaW5mb3JtYXRp
+b246PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5Q
+Vj0mcXVvdDsxLjAuMTAmcXVvdDs8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNs
+YXNzPSJNc29Ob3JtYWwiPlBSPSZxdW90Oy1iZXRhJnF1b3Q7PG86cD48L286cD48L3A+DQo8L2Rp
+dj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwv
+ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPklzIHRoZXJlIGFueXdheSB0byBncmFi
+IHRoYXQgaW5mb3JtYXRpb24gZnJvbSBNYWtlZmlsZSBhbmQgc2V0dGluZyBQViAmYW1wOyBQUiBh
+Y2NvcmRpbmcgdG8gaXQ/IEF0IGNvbXBpbGF0aW9uIHRpbWU/IFNvIHRoYXQgSSBvbmx5IGhhdmUg
+dG8gY2hhbmdlIGF0IG9uZSBwbGFjZT88bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIj48YnI+DQpiaXRiYWtlIHdhbnRzIHRvIGtub3cgcHYvcHIgYXQg
+cGFyc2UgdGltZSwgbG9uZyBiZWZvcmUgdGhlIHNvdXJjZXMgaGF2ZSBiZWVuIGZldGNoZWQgYW5k
+IHVucGFja2VkLjxicj4NCi0tIDxvOnA+PC9vOnA+PC9wPg0KPGRpdj4NCjxwIGNsYXNzPSJNc29O
+b3JtYWwiPkNocmlzdG9waGVyIExhcnNvbjxicj4NCmNsYXJzb24gYXQga2VyZ290aCBkb3QgY29t
+PGJyPg0KRm91bmRlciAtIEJpdEJha2UsIE9wZW5FbWJlZGRlZCwgT3BlblphdXJ1czxicj4NCk1h
+aW50YWluZXIgLSBUc2xpYjxicj4NClNlbmlvciBTb2Z0d2FyZSBFbmdpbmVlciwgTWVudG9yIEdy
+YXBoaWNzPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwv
+Ym9keT4NCjwvaHRtbD4NCg==
 
---001a113b00d86b1d9c0541f81206
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On Wed, Nov 23, 2016 at 6:26 AM, Daniel. <span dir=3D"ltr">&lt;<a href=3D"m=
-ailto:danielhilst@gmail.com" target=3D"_blank">danielhilst@gmail.com</a>&gt=
-;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 =
-.8ex;border-left:1px #ccc solid;padding-left:1ex"><div><div>I have a Makefi=
-le with this header<br></div><br></div><div>major =3D 1<br></div><div>minor=
- =3D 0<br></div><div>patch =3D 10<br></div><div>release =3D -beta<br><br><b=
-r></div><div>Which compilates someting like libmylib.so.1.0.10-beta shared =
-object.<br><br></div><div>On recipe I duplicate this information:<br></div>=
-<div>PV=3D&quot;1.0.10&quot;<br></div><div>PR=3D&quot;-beta&quot;<br></div>=
-<div><br></div><div>Is there anyway to grab that information from Makefile =
-and setting PV &amp; PR according to it? At compilation time? So that I onl=
-y have to change at one place?</div></blockquote></div><br>bitbake wants to=
- know pv/pr at parse time, long before the sources have been fetched and un=
-packed.<br>-- <br><div class=3D"gmail_signature" data-smartmail=3D"gmail_si=
-gnature">Christopher Larson<br>clarson at kergoth dot com<br>Founder - BitB=
-ake, OpenEmbedded, OpenZaurus<br>Maintainer - Tslib<br>Senior Software Engi=
-neer, Mentor Graphics</div>
-</div></div>
-
---001a113b00d86b1d9c0541f81206--
+--_000_F38A866CD026F746A3BF0928A84397BE3E7F626BAZFFEXMB01globa_--
