@@ -1,17 +1,19 @@
-Return-Path: <balazovic.peter@gmail.com>
+Return-Path: <urnen81@yahoo.es>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0BC8FE00CAE; Thu, 24 Nov 2016 02:40:24 -0800 (PST)
+	id 4DB17E00CAE; Thu, 24 Nov 2016 02:43:18 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,FREEMAIL_REPLYTO_END_DIGIT,
+	HTML_MESSAGE,RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (balazovic.peter[at]gmail.com)
+	mail provider *      (urnen81[at]yahoo.es)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [74.125.82.43 listed in list.dnswl.org]
+	*      [212.82.96.229 listed in list.dnswl.org]
+	* 0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in
+	digit *      (oliver <urnen81[at]yahoo.es> )
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -20,43 +22,48 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f43.google.com (mail-wm0-f43.google.com [74.125.82.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B27C8E00955
-	for <yocto@yoctoproject.org>; Thu, 24 Nov 2016 02:40:18 -0800 (PST)
-Received: by mail-wm0-f43.google.com with SMTP id a197so108968426wmd.0
-	for <yocto@yoctoproject.org>; Thu, 24 Nov 2016 02:40:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=XEFjN0rmckk3rf2fzkVdoyGE6KMsLpDnQtWpbVgd6BY=;
-	b=NqLUSi2zcxNdK2D0QZ0KpsG2KBgR/zBQK9RcRF0GqjCKCudocVUWEpaxTwGoeH5oz6
-	lm4ISdw3g7DcX5uzIF1NkIwHEOeDRQxv2CVZKgfWecIi+R6FcgxZYFkBPcabratBNGkV
-	FWrZ/eLx8H3/8UFGZG9cJSA5Rx3Norxzhz221kSAQMoplRfrXIHoQ/7ZJdpVLvr+SV9D
-	Wd5oQ641UmUUi9Q4QPSNrbweGTVy2Otl+Xxt1wR8OyYfpGNXmw04dsBFcK79/Bv3fQpI
-	YXSqD67A/7AjM6zUren+J29bolhD6tMMoiJjOISElz+bhxAYga/DGlJgGt+ReXpTP1ko
-	PzKw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=XEFjN0rmckk3rf2fzkVdoyGE6KMsLpDnQtWpbVgd6BY=;
-	b=a2RMxBw3epaX+qJLbwisHiILoz3/iwxSPv3anWMlSJDWDPinNkB7GY7SX2tm+2FSiq
-	tBB0LcjIWGllKv2cwu9EJblrmsOnBHamPKSYoPH1mKV/KUhrLoVqGDtdyvuIjVbFQYi7
-	Mp+oPycb5CmroVxFC9espzHWte2SsTTDzfb5gfUGdzAByeoVLMN5s/zeDVd1OeA2u8xm
-	URq8ZSVwGGbvovTyuy+HJPAW9q6GEa1L/9zcYb43gMwVxOOUWRx4N6Wmz7ZPYpStgZL0
-	Fiq3ia+VWqgHYxFz9FE47HX4btML9X94DR6rfKFvdok8myEa2RFtLAbf6AeIcOuew5AH
-	pVew==
-X-Gm-Message-State: AKaTC0333zNADVAbEX7cBx4qMqJ+d2IZ6gCs5NVDDId2dFPAszjGwu6VO35aXl6pLr7Ly9q64Jna77fp3hyMkQ==
-X-Received: by 10.194.119.68 with SMTP id ks4mr1532113wjb.171.1479984017048;
-	Thu, 24 Nov 2016 02:40:17 -0800 (PST)
+Received: from nm18-vm5.bullet.mail.ir2.yahoo.com
+	(nm18-vm5.bullet.mail.ir2.yahoo.com [212.82.96.229])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C1F57E00955
+	for <yocto@yoctoproject.org>; Thu, 24 Nov 2016 02:43:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.es; s=s2048;
+	t=1479984191; bh=/93cV16YxVwTWB+hKHgNUBI33gW0Q0v4xqh1xxYYkvk=;
+	h=Date:From:Reply-To:To:Cc:In-Reply-To:References:Subject:From:Subject;
+	b=eQAZn/F20Jjf0UwwAmsqnuQGkCnNIsEOJDQgbQfB4rQR9367Gyzgxti3BWEzYlyuBcU465K064Biy2/C4r8axF1QyfcBFBxo6akyv9/5PtIyRcoW2LpLarvOCILka8u8loOnQzJek35I5CbIOphxL48RvxlvKbsFOLQHIdRXFjAt5NpycuHuySwvJK+kfwVBxS0Ed01i2MspCoz2+YxWuppEih3GhCX60cipudKI9FQ2JVlyKOuYJY+8U4Err+XE0HCAZANoghoVb+MYkBKse6+DF2Kulvghke9AUbiVIK6R9lWbZX//z4DhqzzI1Bx4JmdLW7CzRU9Uek3vC/YI2Q==
+Received: from [212.82.98.55] by nm18.bullet.mail.ir2.yahoo.com with NNFMP;
+	24 Nov 2016 10:43:11 -0000
+Received: from [212.82.98.92] by tm8.bullet.mail.ir2.yahoo.com with NNFMP;
+	24 Nov 2016 10:43:11 -0000
+Received: from [127.0.0.1] by omp1029.mail.ir2.yahoo.com with NNFMP;
+	24 Nov 2016 10:43:11 -0000
+X-Yahoo-Newman-Property: ymail-3
+X-Yahoo-Newman-Id: 426169.54651.bm@omp1029.mail.ir2.yahoo.com
+X-YMail-OSG: sSWbqx0VM1laF6iRwGXNl90Rm6N6aCY_6R.URWt9ZuhZojRgj_zDrK1i0KclYzh
+	0ZvStTCGOJpJRVUFK52Ey6FcsLfAul.BJkzip966zmq9N04wSUj0BrDnlSEMofvhWyJucgbJrv92
+	SIo_yjgFtTUxfERbPsnMFX0freljExokR5eeeL24RrNJ6c94zqz9u_kEhstLEnNnRt6eSeEcPIZM
+	qvWb4ynGSWj6t61kqa90II7y_.dF51QcJWu75geOPZblAJkJJBq.U5SQ8ndsXnHnCBNO5XYzFE3Q
+	h_J1JWyYbbNbZ40zSRPDIP_YRkAGeH2VTHruDaVzUoMzDMd0.YpwI7B1WaZ9fOKNMZg9Kbqs6reK
+	P5w0x3gdyTLA2xImRtMovTMfPP6JGlMp8sNkJTE0VXvsVHGpwRxU_xIIHWxGNzGyD_c9XW.5ii.g
+	7n4wgj_fRGPWn4NFAJKwcZkcCbm48hb1FjnAW7ZzJbKFyKudc76fsXtusquoIcwQQejQuCNrTmKl
+	7sUaOOc0cAaSr8jg-
+Received: from jws700080.mail.ir2.yahoo.com by
+	sendmailws105.mail.ir2.yahoo.com;
+	Thu, 24 Nov 2016 10:43:11 +0000; 1479984191.047
+Date: Thu, 24 Nov 2016 10:43:10 +0000 (UTC)
+From: Oliver <urnen81@yahoo.es>
+To: "Burton, Ross" <ross.burton@intel.com>
+Message-ID: <823264942.1789329.1479984190440@mail.yahoo.com>
+In-Reply-To: <CAJTo0LbHi-79qj7B9PoOt0jyLaxeHU6aUTwwaiOsiXbi1Ra4xw@mail.gmail.com>
+References: <1587381958.322993.1479895234059.ref@mail.yahoo.com>
+	<1587381958.322993.1479895234059@mail.yahoo.com>
+	<CAJTo0LbHi-79qj7B9PoOt0jyLaxeHU6aUTwwaiOsiXbi1Ra4xw@mail.gmail.com>
 MIME-Version: 1.0
-Received: by 10.194.117.41 with HTTP; Thu, 24 Nov 2016 02:40:16 -0800 (PST)
-From: Peter Balazovic <balazovic.peter@gmail.com>
-Date: Thu, 24 Nov 2016 11:40:16 +0100
-Message-ID: <CAFq4t4gmAmVmsxJY-78kooGzBWNJ0O47OQ8+1VFd0x7o0tzxjA@mail.gmail.com>
-To: Yocto list discussion <yocto@yoctoproject.org>
-Subject: change/modify recipe for OpenCV
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: Use recipes but not whole layer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: Oliver <urnen81@yahoo.es>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -65,84 +72,97 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 Nov 2016 10:40:24 -0000
-Content-Type: multipart/alternative; boundary=089e011821cc9c0b61054209a112
+X-List-Received-Date: Thu, 24 Nov 2016 10:43:18 -0000
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_1789327_175944728.1479984190438"
 
---089e011821cc9c0b61054209a112
+------=_Part_1789327_175944728.1479984190438
 Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Dears,
-
-I'm building Yocto image and this includes OpenCV 2.4 release.
-
-For example my loca.conf looks similar as
-http://www.engcore.com/2014/02/building-opencv-2-4-x-for-freescales-i-mx6-bsp-yocto/
-:
-
-..
-*CORE_IMAGE_EXTRA_INSTALL += "libopencv-core-dev libopencv-highgui-dev*
-*libopencv-imgproc-dev libopencv-objdetect-dev libopencv-ml-dev"*
-..
-
-
-I have located recipes *.bb @
-*../sources/meta-openembedded/meta-oe/recipes-support/opencv/*
-*opencv_2.4.bb <http://opencv_2.4.bb>*
-*opencv_3.0.bb <http://opencv_3.0.bb>*
-
-*.bbapend @
-*../sources/meta-fsl-arm/openembedded-layer/recipes-support/opencv/*
-*opencv_2.4.bbappend*
-*opencv_3.0.bbappend*
-
-Within fsl-imx-base.inc I can see reference to opencv_2.4.bbappend
-*../sources/meta-fsl-bsp-release/imx/meta-sdk/conf/distro/include*
-
-..
-BBMASK .=
-"|meta-fsl-arm/openembedded-layer/recipes-support/opencv/opencv_2.4.bbappend"
-..
-
-but replacing with 3.0 doesn't compile with 3.0.
-
-I'd like to have OpenCV 3.0 installed.
-
-1) How/what to modify/configure to get installed OpenCV 3.0 into image ?
-2) How to control OpenCV build for Yocto and how packageconfig option to
-use to turn on/off individual OpenCV options?
+> As per the Yocto Project guidelines, layers that do this are broken.=C2=
+=A0 A BSP layer should only introduce changes that affect the BSP, distro l=
+ayers shouldn't contain general purpose recipes, and everything that is dis=
+tro-specific should be isolated using overrides.
+I was talking more generically for any type of layer. I have the feeling th=
+at many layers in our ecosystem fail to accomplish this.
+I believe I understand the guidelines, based on some discussions about not =
+including the whitelist.bbclass in OE.=20
+But I find it not always possible to follow. Let me expose a very simple, a=
+nd commom use case, a layer which contains:
+recipeAboost_%.bbappend
+recipeB
+In order to success in generate recipeA, I need to extend the boost to expa=
+nd some configuration parameters(log).On the other side someone would like =
+to use recipeB. He/She will unwillingly inherit the boost modifications.
+How should this be correctly done?
+Regards
 
 
-Thank you for your advice very much.
 
---089e011821cc9c0b61054209a112
+
+
+
+
+=20
+
+ =20
+
+------=_Part_1789327_175944728.1479984190438
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Dears,<div><br></div><div>I&#39;m building Yocto image and=
- this includes OpenCV 2.4 release.=C2=A0</div><div><br></div><div>For examp=
-le my loca.conf looks similar as <a href=3D"http://www.engcore.com/2014/02/=
-building-opencv-2-4-x-for-freescales-i-mx6-bsp-yocto/">http://www.engcore.c=
-om/2014/02/building-opencv-2-4-x-for-freescales-i-mx6-bsp-yocto/</a>:</div>=
-<div><br></div><div>..</div><div><div><i>CORE_IMAGE_EXTRA_INSTALL +=3D &quo=
-t;libopencv-core-dev libopencv-highgui-dev</i></div><div><i>libopencv-imgpr=
-oc-dev libopencv-objdetect-dev libopencv-ml-dev&quot;</i></div></div><div>.=
-.</div><div><br></div><div><br></div><div>I have located recipes *.bb @</di=
-v><div><i>../sources/meta-openembedded/meta-oe/recipes-support/opencv/</i><=
-/div><div><i><a href=3D"http://opencv_2.4.bb">opencv_2.4.bb</a></i></div><d=
-iv><div><i><a href=3D"http://opencv_3.0.bb">opencv_3.0.bb</a></i></div></di=
-v><div><br></div><div>*.bbapend @</div><div><div><i>../sources/meta-fsl-arm=
-/openembedded-layer/recipes-support/opencv/</i></div></div><div><div><i>ope=
-ncv_2.4.bbappend</i></div><div><i>opencv_3.0.bbappend</i></div></div><div><=
-i><br></i></div><div>Within fsl-imx-base.inc I can see reference to=C2=A0op=
-encv_2.4.bbappend</div><div><i>../sources/meta-fsl-bsp-release/imx/meta-sdk=
-/conf/distro/include</i></div><div><br></div><div>..</div><div>BBMASK .=3D =
-&quot;|meta-fsl-arm/openembedded-layer/recipes-support/opencv/opencv_2.4.bb=
-append&quot;<br></div><div>..</div><div><br></div><div>but replacing with 3=
-.0 doesn&#39;t compile with 3.0.</div><div><br></div><div>I&#39;d like to h=
-ave OpenCV 3.0 installed.=C2=A0</div><div><br></div><div>1) How/what to mod=
-ify/configure to get installed OpenCV 3.0=C2=A0into image ?</div><div>2) Ho=
-w to control OpenCV build for Yocto and how packageconfig option to use to =
-turn on/off individual OpenCV options?=C2=A0</div><div><br></div><div><br><=
-/div><div>Thank you for your advice very much.</div><div><br></div></div>
+<html><head></head><body><div style=3D"color:#000; background-color:#fff; f=
+ont-family:HelveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, =
+sans-serif;font-size:16px"><div id=3D"yiv6165561440"><div id=3D"yui_3_16_0_=
+1_1479983373001_5664"><div id=3D"yui_3_16_0_1_1479983373001_5663" style=3D"=
+color:#000;background-color:#fff;font-family:HelveticaNeue, Helvetica Neue,=
+ Helvetica, Arial, Lucida Grande, sans-serif;font-size:16px;">&gt; As per t=
+he Yocto Project guidelines, layers that do this are broken.&nbsp; A BSP la=
+yer should only introduce changes that affect the BSP, distro layers should=
+n't contain general purpose recipes, and everything that is distro-specific=
+ should be isolated using overrides.<div id=3D"yiv6165561440yui_3_16_0_1_14=
+79894428778_55543" style=3D"font-family:HelveticaNeue, Helvetica Neue, Helv=
+etica, Arial, Lucida Grande, sans-serif;font-size:16px;"><div class=3D"yiv6=
+165561440y_msg_container" id=3D"yiv6165561440yui_3_16_0_1_1479894428778_555=
+49"><div id=3D"yiv6165561440"><div id=3D"yiv6165561440yui_3_16_0_1_14798944=
+28778_55548"><div dir=3D"ltr" id=3D"yiv6165561440yui_3_16_0_1_1479894428778=
+_55547"><div class=3D"yiv6165561440gmail_extra" id=3D"yiv6165561440yui_3_16=
+_0_1_1479894428778_55546"><div id=3D"yui_3_16_0_1_1479983373001_5725"><br c=
+lear=3D"none"></div><div id=3D"yui_3_16_0_1_1479983373001_5665"><div dir=3D=
+"ltr" id=3D"yui_3_16_0_1_1479983373001_5784">I was talking more generically=
+ for any type of layer. I have the feeling that many layers in our ecosyste=
+m fail to accomplish this.</div><div id=3D"yui_3_16_0_1_1479983373001_5831"=
+><br></div><div dir=3D"ltr" id=3D"yui_3_16_0_1_1479983373001_6057">I believ=
+e I understand the guidelines, based on some discussions about not includin=
+g the whitelist.bbclass in OE. <br></div><div id=3D"yui_3_16_0_1_1479983373=
+001_6571" dir=3D"ltr">But I find it not always possible to follow. Let me e=
+xpose a very simple, and commom use case, a layer which contains:</div><div=
+ id=3D"yui_3_16_0_1_1479983373001_6364"><br></div><div id=3D"yui_3_16_0_1_1=
+479983373001_5839">recipeA</div><div id=3D"yui_3_16_0_1_1479983373001_5838"=
+ dir=3D"ltr">boost_%.bbappend<br></div><div id=3D"yui_3_16_0_1_147998337300=
+1_5836">recipeB</div><div id=3D"yui_3_16_0_1_1479983373001_6317"><br></div>=
+<div id=3D"yui_3_16_0_1_1479983373001_6316" dir=3D"ltr">In order to success=
+ in generate recipeA, I need to extend the boost to expand some configurati=
+on parameters(log).</div><div id=3D"yui_3_16_0_1_1479983373001_6055" dir=3D=
+"ltr">On the other side someone would like to use recipeB. He/She will unwi=
+llingly inherit the boost modifications.</div><div id=3D"yui_3_16_0_1_14799=
+83373001_6456" dir=3D"ltr"><br></div><div id=3D"yui_3_16_0_1_1479983373001_=
+6702" dir=3D"ltr">How should this be correctly done?</div><div id=3D"yui_3_=
+16_0_1_1479983373001_6701" dir=3D"ltr"><br></div><div id=3D"yui_3_16_0_1_14=
+79983373001_6455" dir=3D"ltr">Regards<br></div><div id=3D"yui_3_16_0_1_1479=
+983373001_6454" dir=3D"ltr"><br></div><div id=3D"yui_3_16_0_1_1479983373001=
+_6453"><br></div><div class=3D"qtdSeparateBR"><br><br></div><div class=3D"y=
+iv6165561440yqt2597363238" id=3D"yiv6165561440yqtfd74841"><br clear=3D"none=
+"></div></div></div></div></div></div><br><div class=3D"yiv6165561440yqt259=
+7363238" id=3D"yiv6165561440yqtfd52676"><br clear=3D"none"></div></div><div=
+ class=3D"yiv6165561440yqt2597363238" id=3D"yiv6165561440yqtfd90956">  </di=
+v></div><div class=3D"yiv6165561440yqt2597363238" id=3D"yiv6165561440yqtfd5=
+5505"><div id=3D"yui_3_16_0_1_1479983373001_5744" class=3D"yiv6165561440qtd=
+SeparateBR"><br clear=3D"none"><br clear=3D"none"></div></div></div></div><=
+/div><div class=3D".yiv6165561440yahoo_quoted"><div id=3D"yiv6165561440yui_=
+3_16_0_1_1479894428778_55544" style=3D"font-family:HelveticaNeue, Helvetica=
+ Neue, Helvetica, Arial, Lucida Grande, sans-serif;font-size:16px;"> </div>=
+  </div></div></body></html>
 
---089e011821cc9c0b61054209a112--
+------=_Part_1789327_175944728.1479984190438--
