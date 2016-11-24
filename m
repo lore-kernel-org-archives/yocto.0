@@ -1,38 +1,33 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <michel.dhooge@free.fr>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 20EECE00D07; Wed, 23 Nov 2016 19:09:39 -0800 (PST)
+	id A50A3E00D3B; Wed, 23 Nov 2016 23:50:30 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (michel.dhooge[at]free.fr)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 76618E00C31
-	for <yocto@yoctoproject.org>; Wed, 23 Nov 2016 19:09:38 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by fmsmga102.fm.intel.com with ESMTP; 23 Nov 2016 19:09:37 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.31,689,1473145200"; 
-   d="scan'208";a="8716114"
-Received: from paolienk-mobl4.gar.corp.intel.com (HELO
-	peggleto-mobl.ger.corp.intel.com) ([10.255.157.213])
-	by orsmga002.jf.intel.com with ESMTP; 23 Nov 2016 19:09:35 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Michel D'HOOGE <michel.dhooge@free.fr>
-Date: Thu, 24 Nov 2016 16:09:33 +1300
-Message-ID: <2424887.evz7bmUPsC@peggleto-mobl.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.14.10 (Linux/4.7.10-100.fc23.x86_64; KDE/4.14.20; x86_64; ;
-	)
-In-Reply-To: <1236712221.350820531.1479807888625.JavaMail.root@spooler3-g27.priv.proxad.net>
-References: <1236712221.350820531.1479807888625.JavaMail.root@spooler3-g27.priv.proxad.net>
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [212.27.42.4 listed in list.dnswl.org]
+Received: from smtp4-g21.free.fr (smtp4-g21.free.fr [212.27.42.4])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ACD67E00D33
+	for <yocto@yoctoproject.org>; Wed, 23 Nov 2016 23:50:29 -0800 (PST)
+Received: from spooler3-g27.priv.proxad.net (unknown [172.20.243.239])
+	by smtp4-g21.free.fr (Postfix) with ESMTP id 2D46019F3F4
+	for <yocto@yoctoproject.org>; Thu, 24 Nov 2016 08:50:28 +0100 (CET)
+Date: Thu, 24 Nov 2016 08:50:28 +0100 (CET)
+From: Michel D'HOOGE <michel.dhooge@free.fr>
+To: yocto@yoctoproject.org
+Message-ID: <159453815.361259973.1479973828114.JavaMail.root@spooler3-g27.priv.proxad.net>
+In-Reply-To: <2424887.evz7bmUPsC@peggleto-mobl.ger.corp.intel.com>
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
+X-Originating-IP: [82.233.24.66]
+X-Mailer: Zimbra 7.2.0-GA2598 (ZimbraWebClient - GC53 (Linux)/7.2.0-GA2598)
+X-Authenticated-User: michel.dhooge@free.fr
 Subject: Re: populate_sdk_ext: Unable to locate package nativesdk-buildtools-perl-dummy
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -45,52 +40,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 Nov 2016 03:09:39 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Thu, 24 Nov 2016 07:50:30 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, 22 Nov 2016 10:44:48 Michel D'HOOGE wrote:
-> > From: "Paul Eggleton" <paul.eggleton@linux.intel.com>
-> > Sent: Monday, 21 November, 2016 10:15:16 PM
-> > 
-> > I suspect it has to do with the arch mapping that goes on in
-> > meta/classes/package_deb.bbclass; it probably doesn't understand the
-> > dummy architecture we're giving it. The thing is even if it were to be
-> > "corrected" to fall back to "all" instead of "allarch" that probably still
-> > wouldn't work properly because the architecture of the perl packages would
-> > be a higher priority than "all" and thus the dummy package wouldn't take
-> > precedence.
-> 
-> It seems to be OK.
-> The only other package with 'perl' in its name is 'nativesdk-git-perltools'.
+Hi Paul,
 
-OK, so it may only be working by chance then - if you did have the nativesdk-
-perl package built then I suspect you'd find it would get installed. I'm 
-puzzled as to why it hasn't been built though, since it is a dependency of 
-some of the other items we do include in buildtools (notably git) and does get 
-built when you use rpm as the backend, last I checked anyway.
- 
-> But I have (another) problem with the manifest files:
-> - all "target" manifest files are empty
-> - the 'poky-systemd-blah-blah-toolchain-ext-2.2.host.manifest' has a single
-> entry: meta-environment-extsdk-vtc7200
-> So maybe I don't see everything...
+I'm still investigating the whole thing because nothing works so far!
+The SDK I managed to produce didn't install, and now I can't even
+produce an SDK anymore :'-(
 
-That's expected for the extensible SDK - it isn't built with the same kinds of 
-packages that the standard SDK is built with.
+I chose Debian PM because this is what I already know and thought
+it would be easier than to learn about the RPM world.
+Not sure it was my best move ;-)
 
-> > In any case feel free to file a bug under "OE-Core -> Core" in
-> > bugzilla, that> would be a reasonable category for this issue.
-> 
-> Done: https://bugzilla.yoctoproject.org/show_bug.cgi?id=10700
 
-Thanks.
+During the install, the error was:
+ERROR: e2fsprogs-native-1.43-r1 do_populate_sysroot_setscene:
+ Error executing a python function in exec_python_func() autogenerated:
+[...]
+File: '/mnt/Yocto/sdk/greenfeed/layers/poky/meta/lib/oe/qa.py', lineno: 102, function: getWord
+     0101:    def getWord(self, offset):
+ *** 0102:        return struct.unpack_from(self.sex+"i", self.data, offset)[0]
+Exception: struct.error: unpack_from requires a buffer of at least 4 bytes
 
-Cheers,
-Paul
 
--- 
+And now, the build fails with:
+Exception: FileNotFoundError: [Errno 2] No such file or directory:
+'/mnt/Yocto/build/tmp/sysroots/vtc7110/locked-sigs/locked-sigs-extsdk-toolchain.inc'
+ERROR: image-greenfeed-0.1-r0 do_populate_sdk_ext: Function failed: copy_buildsystem
 
-Paul Eggleton
-Intel Open Source Technology Centre
+
+This is just FYI, I'm still working on it...
+I'll try the devpyshell for the 1st time!
+
+
+> OK, so it may only be working by chance then - if you did have the
+> nativesdk-perl package built then I suspect you'd find it would get installed.
+> I'm puzzled as to why it hasn't been built though, since it is a
+> dependency of
+> some of the other items we do include in buildtools (notably git) and
+> does get built when you use rpm as the backend, last I checked anyway.
+
+Well, a lot of nativesdk-perl packages exist, but I didn't see them 
+in the manifest.
+
+
+Be back soon
+Michel
 
