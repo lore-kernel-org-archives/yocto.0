@@ -1,40 +1,32 @@
-Return-Path: <surya.n@easyarm.com>
+Return-Path: <jose.a.lamego@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F1E29E00D3B; Thu, 24 Nov 2016 06:38:25 -0800 (PST)
+	id 367FFE00BC0; Thu, 24 Nov 2016 07:28:00 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.0 required=5.0 tests=BAYES_20 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -0.0 BAYES_20 BODY: Bayes spam probability is 5 to 20%
-	*      [score: 0.0682]
-X-Greylist: delayed 3224 seconds by postgrey-1.32 at yocto-www;
-	Thu, 24 Nov 2016 06:38:22 PST
-Received: from linux8.hostguy.com (linux8.hostguy.com [144.76.114.198])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A42F8E00BAD
-	for <yocto@yoctoproject.org>; Thu, 24 Nov 2016 06:38:22 -0800 (PST)
-Received: from [106.51.36.173] (port=44699 helo=[192.168.1.17])
-	by linux8.hostguy.com with esmtpsa (TLSv1:ECDHE-RSA-AES256-SHA:256)
-	(Exim 4.87) (envelope-from <surya.n@easyarm.com>) id 1c9uKJ-0017U5-6B
-	for yocto@yoctoproject.org; Thu, 24 Nov 2016 19:14:35 +0530
-Message-ID: <5836EEC2.7070508@easyarm.com>
-Date: Thu, 24 Nov 2016 19:14:34 +0530
-From: Surya <surya.n@easyarm.com>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:17.0) Gecko/20130803 Thunderbird/17.0.8
-MIME-Version: 1.0
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [134.134.136.31 listed in list.dnswl.org]
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 12CA6E00B3D
+	for <yocto@yoctoproject.org>; Thu, 24 Nov 2016 07:27:55 -0800 (PST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by orsmga104.jf.intel.com with ESMTP; 24 Nov 2016 07:27:54 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.31,543,1473145200"; d="scan'208";a="1073042287"
+Received: from fsantes-mobl2.amr.corp.intel.com (HELO
+	jalamego-MOBL2.zpn.intel.com) ([10.219.5.141])
+	by fmsmga001.fm.intel.com with ESMTP; 24 Nov 2016 07:27:54 -0800
+From: Jose Lamego <jose.a.lamego@linux.intel.com>
 To: yocto@yoctoproject.org
-X-OutGoing-Spam-Status: No, score=-1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - linux8.hostguy.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - easyarm.com
-X-Get-Message-Sender-Via: linux8.hostguy.com: authenticated_id:
-	surya.n@easyarm.com
-X-Authenticated-Sender: linux8.hostguy.com: surya.n@easyarm.com
-Subject: Qt Library Version issues
+Date: Thu, 24 Nov 2016 09:27:37 -0600
+Message-Id: <1480001259-6737-1-git-send-email-jose.a.lamego@linux.intel.com>
+X-Mailer: git-send-email 1.9.1
+Subject: [patchwork][PATCH 0/2] Parsemail: Improve references/pull-request search
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,21 +38,20 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 Nov 2016 14:38:26 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 24 Nov 2016 15:28:00 -0000
 
-Hello ,
+These changes are to improve the way email-chain references are created
+and pull-request information to be included even with small formatting
+variations.
 
-I am trying to upgrade the qt5 version from 5.4.2 to 5.5.1 
-.So,accordingly i changed the recipe file & compiled.
-Now after everything is executed properly,i found that the library which 
-are generated still of qt5.4.3.
+Jose Lamego (2):
+  patchwork.bin.parsemail: Use oldest header references
+  patchwork.bin.parsemail: Improve pull-request regex
 
-I have no idea on the above issue.
-Can anyone plz light me on this.
+ patchwork/bin/parsemail.py | 19 ++++++++++++++-----
+ 1 file changed, 14 insertions(+), 5 deletions(-)
 
+-- 
+1.9.1
 
-Regards
-Surya
 
