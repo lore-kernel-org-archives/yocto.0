@@ -1,61 +1,55 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <ron@ron-oakes.us>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5AF96E00C37; Fri, 25 Nov 2016 09:34:26 -0800 (PST)
+	id DAB8CE00DBA; Fri, 25 Nov 2016 10:44:15 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.161.175 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.220.178 listed in list.dnswl.org]
-Received: from mail-qk0-f178.google.com (mail-qk0-f178.google.com
-	[209.85.220.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 06D00E00B74
-	for <yocto@yoctoproject.org>; Fri, 25 Nov 2016 09:34:22 -0800 (PST)
-Received: by mail-qk0-f178.google.com with SMTP id x190so84288187qkb.0
-	for <yocto@yoctoproject.org>; Fri, 25 Nov 2016 09:34:22 -0800 (PST)
+Received: from mail-yw0-f175.google.com (mail-yw0-f175.google.com
+	[209.85.161.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 91129E00C37
+	for <yocto@yoctoproject.org>; Fri, 25 Nov 2016 10:44:12 -0800 (PST)
+Received: by mail-yw0-f175.google.com with SMTP id a10so68829835ywa.3
+	for <yocto@yoctoproject.org>; Fri, 25 Nov 2016 10:44:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=Tl03fR4GxXfSBY+lNwH+NpUPMhMjMDKFboQiI36zDUg=;
-	b=rOqJpgROYaleMCdSoUJu8OWy7B50oJbpMao8jKXkWLbxcv72qPqhiuEgkMNRn0xw2x
-	co2p6MnM4+PdC4TCxw1+gaUsjEY5Wd+vamQIWVPnnOybhFW37OHW1dgoBaIdg4Au7fVA
-	eTdNvIJ5EAgfEsrXasSe4Pug5tU/ElgutGDIc971hdxLx4U9P7JNZ8p/HTQJZecvJiuI
-	VdlpcRfywNlekAJHUYk7ZMuCZnJfNFLIb96tcO5Cw3cVy4gPDuN9ODAmmAk5I6mBLthO
-	gT8OfXsK5/aeU8KlT+XDGXKG1+TC3IvQH2txtPItOtpNrPfjHDAFiJP2ecV+a+Wpx3Hr
-	mJhg==
+	d=ron-oakes-us.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=tkrHELpXnm0MDniSXCSHgbC9a813fgU+2296bIfKySA=;
+	b=KhmGqQEl9cPMki2WzseoBNqajTJlYbYBwaivsTQ/+KlUcKOGOCElpPRcoPy8sIXy6N
+	TuTzZCueCGNYN6iqzjBDqYXrULXo0mkPay5Tui2Uonu3w7tQYVYtxa/CMVi2KEMaqaQy
+	zf9FKB3qiseZINuDbDhODSaaZsCvp92XfDIkZnq/u+0CHZLNMD6ynGVD8Gp++Zn6v7Li
+	g7Qr/tleGpcexufu9OUmVMmWmLXJzynyWe6qwfp0oXFmB7RJZB0HhNWXmzr0ejUFoTdo
+	ZHVLKivuSuKSSFEFe9M5xjM2/EKZdPvGU3IqwihdNVib81JusqK3RugD6VNfRXZJOudO
+	oyog==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=Tl03fR4GxXfSBY+lNwH+NpUPMhMjMDKFboQiI36zDUg=;
-	b=g5qJ7FL7xJ3wvg8qFvBUPqh3QS5D62jrQJ3r+Nr0llHx5WxbZCq8uY7wFy6VXcQfkr
-	UPjlXnuIFwzDv9e/Lq2g3Ee4H6A4ZGOcnPrrhoRv+Gz/Bze7qK3CVrp41xGrxHQ6qyMu
-	nJURn8AOY8TrcvSzLBKK+eYoRgGGbaeIg0TF9GibOCoBvxCeKcvmVTcG4GyfLFvz32/d
-	GBC41Qjn3FnBmFvF1JXbJxrlJatjZzk5ozz9pDrjeSVgpt6Lzir34sW8Slmln59XOwR/
-	b/jaOSfwDSLYGBEVZifrMVy7zLP6ig/qUR3TwUakY77ohLrJovLnkfSBc0arsb1hlGxc
-	zOVQ==
-X-Gm-Message-State: AKaTC007ZzVWOMT4XSdBOokmGfAmrt6OjEc6nR85C0Y9eFCfRFzUebSS4FPzZngXDZYk5SkuSlApER1/lk8rAxTS
-X-Received: by 10.55.31.157 with SMTP id n29mr7667956qkh.221.1480095261730;
-	Fri, 25 Nov 2016 09:34:21 -0800 (PST)
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=tkrHELpXnm0MDniSXCSHgbC9a813fgU+2296bIfKySA=;
+	b=MOy/Bm5NMgc9EQwgGNfakS/18/q9E/osequ7YNa3M2cZF71//2C0OGr8+RlIYIzSs3
+	wWRkppt/tYtRm5hI2T894gUpzzjpNif43xKRHra6ezt98OaLOmSGzn1ESMezBbVCxGNM
+	Ibl/Qw2nhSuwzC6spxTdXmgkTPcqwmm0J/Oa/asrl1TW1uf4pAg0aXQJZYMriE1I/YMo
+	hdUcpiQZgsbzXqCc2ZsiEe5qTjlChKHCXj/HCxDU8oX+4rkqHZ2LaIU/HkgMr7St2ErD
+	KkzIiEhNLQu6lq4an+yIfqbLHsVBi+lg8212si8I9VJf6NXrZ1lLUgCoq8cDVknL6idT
+	Pqrw==
+X-Gm-Message-State: AKaTC01nNoxr7209PVO7/dKE4BsEEjdYQGcZZwsJ/0rriKmajeZlQDmObtjJfOC51gCJAEnxSifRdo7QDtEIdA==
+X-Received: by 10.13.203.69 with SMTP id n66mr11459141ywd.220.1480099451299;
+	Fri, 25 Nov 2016 10:44:11 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.140.85.136 with HTTP; Fri, 25 Nov 2016 09:34:01 -0800 (PST)
-In-Reply-To: <159453815.361259973.1479973828114.JavaMail.root@spooler3-g27.priv.proxad.net>
-References: <2424887.evz7bmUPsC@peggleto-mobl.ger.corp.intel.com>
-	<159453815.361259973.1479973828114.JavaMail.root@spooler3-g27.priv.proxad.net>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Fri, 25 Nov 2016 17:34:01 +0000
-Message-ID: <CAJTo0LY20cf2yHv6z6gfaqzyGC9w=Bt30j7zpcP2BEUkyENZMA@mail.gmail.com>
-To: "Michel D'HOOGE" <michel.dhooge@free.fr>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: populate_sdk_ext: Unable to locate package nativesdk-buildtools-perl-dummy
+From: Ronald Oakes <ron@ron-oakes.us>
+Date: Fri, 25 Nov 2016 18:44:00 +0000
+Message-ID: <CADh9ykHD_4GO+n9hpv-bWn-JCnZaxzS5mTdmC1b1iBQGfRVR3g@mail.gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Problem imaging a hard drive
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,82 +61,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 25 Nov 2016 17:34:26 -0000
-Content-Type: multipart/alternative; boundary=001a1147f2284f53c105422388a8
+X-List-Received-Date: Fri, 25 Nov 2016 18:44:15 -0000
+Content-Type: multipart/alternative; boundary=001a11481de407360a054224823f
 
---001a1147f2284f53c105422388a8
+--001a11481de407360a054224823f
 Content-Type: text/plain; charset=UTF-8
 
-On 24 November 2016 at 07:50, Michel D'HOOGE <michel.dhooge@free.fr> wrote:
+I've been trying to use the directions at
+https://wiki.yoctoproject.org/wiki/How_do_I#Q:_How_do_I_put_Yocto_on_a_hard_drive.3F
+to create a boot drive based on my build.
 
-> During the install, the error was:
-> ERROR: e2fsprogs-native-1.43-r1 do_populate_sysroot_setscene:
->  Error executing a python function in exec_python_func() autogenerated:
-> [...]
-> File: '/mnt/Yocto/sdk/greenfeed/layers/poky/meta/lib/oe/qa.py', lineno:
-> 102, function: getWord
->      0101:    def getWord(self, offset):
->  *** 0102:        return struct.unpack_from(self.sex+"i", self.data,
-> offset)[0]
-> Exception: struct.error: unpack_from requires a buffer of at least 4 bytes
+However, I keep ending up with my root being at /media/ads/, with two big
+issues: my static IP address isn't assigned, and my path is messed up
+leaving my applications not on it by default.
 
+The one main difference from the directions is that I'm using grub2-install
+instead of grub-install. This is because I'm using a current RedHat system
+for development due to a requirement of my client.
 
-I fixed this in oe-core master a few weeks ago.  oe-core
-a66660aa5bb709547ce0b65a4563e4217c3c3d9f.
+I will note that at least one of my added kernel modules is being loaded,
+since I can see related messages in the console/demesg log.
 
-I'll submit a backport to morty request now.
+Ron Oakes
 
-I chose Debian PM because this is what I already know and thought
-> it would be easier than to learn about the RPM world.
-> Not sure it was my best move ;-)
->
-
-If you can in the meantime I do recommend switching to opkg or rpm.
-Changing packaging format will just re-package everything assuming you
-still have the tmp/ so won't take long at all.
-
-Ross
-
---001a1147f2284f53c105422388a8
+--001a11481de407360a054224823f
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra">On 24 November 2016 at 07:50, M=
-ichel D&#39;HOOGE <span dir=3D"ltr">&lt;<a href=3D"mailto:michel.dhooge@fre=
-e.fr" target=3D"_blank">michel.dhooge@free.fr</a>&gt;</span> wrote:</div><d=
-iv class=3D"gmail_extra"><blockquote class=3D"gmail_quote" style=3D"margin:=
-0px 0px 0px 0.8ex;border-left-width:1px;border-left-color:rgb(204,204,204);=
-border-left-style:solid;padding-left:1ex"><span style=3D"font-size:12.80000=
-0190734863px">During the install, the error was:<br></span><span style=3D"f=
-ont-size:12.800000190734863px">ERROR: e2fsprogs-native-1.43-r1 do_populate_=
-sysroot_setscene:<br></span><span style=3D"font-size:12.800000190734863px">=
-=C2=A0Error executing a python function in exec_python_func() autogenerated=
-:<br></span><span style=3D"font-size:12.800000190734863px">[...]<br></span>=
-<span style=3D"font-size:12.800000190734863px">File: &#39;/mnt/Yocto/sdk/gr=
-eenfeed/</span><wbr style=3D"font-size:12.800000190734863px"><span style=3D=
-"font-size:12.800000190734863px">layers/poky/meta/lib/oe/qa.py&#39;</span><=
-wbr style=3D"font-size:12.800000190734863px"><span style=3D"font-size:12.80=
-0000190734863px">, lineno: 102, function: getWord<br></span><span style=3D"=
-font-size:12.800000190734863px">=C2=A0 =C2=A0 =C2=A00101:=C2=A0 =C2=A0 def =
-getWord(self, offset):<br></span><span style=3D"font-size:12.80000019073486=
-3px">=C2=A0*** 0102:=C2=A0 =C2=A0 =C2=A0 =C2=A0 return struct.unpack_from(s=
-elf.sex+&quot;</span><wbr style=3D"font-size:12.800000190734863px"><span st=
-yle=3D"font-size:12.800000190734863px">i&quot;, self.data, offset)[0]<br></=
-span><span style=3D"font-size:12.800000190734863px">Exception: struct.error=
-: unpack_from requires a buffer of at least 4 bytes</span></blockquote><div=
-><br></div><div>I fixed this in oe-core master a few weeks ago. =C2=A0oe-co=
-re a66660aa5bb709547ce0b65a4563e4217c3c3d9f.</div><div><br></div><div>I&#39=
-;ll submit a backport to morty request now.</div><div><br></div><div class=
-=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px =
-0px 0.8ex;border-left-width:1px;border-left-color:rgb(204,204,204);border-l=
-eft-style:solid;padding-left:1ex"><div id=3D"gmail-:1me" class=3D"gmail-a3s=
- gmail-aXjCH gmail-m15895521a2b066c3">I chose Debian PM because this is wha=
-t I already know and thought<br>
-it would be easier than to learn about the RPM world.<br>
-Not sure it was my best move ;-)</div></blockquote></div><div class=3D"gmai=
-l_extra"><br></div>If you can in the meantime I do recommend switching to o=
-pkg or rpm.=C2=A0 Changing packaging format will just re-package everything=
- assuming you still have the tmp/ so won&#39;t take long at all.</div><div =
-class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Ross</div></div>
+<div style=3D"white-space:pre-wrap">I&#39;ve been trying to use the directi=
+ons at <a href=3D"https://wiki.yoctoproject.org/wiki/How_do_I#Q:_How_do_I_p=
+ut_Yocto_on_a_hard_drive.3F">https://wiki.yoctoproject.org/wiki/How_do_I#Q:=
+_How_do_I_put_Yocto_on_a_hard_drive.3F</a> to create a boot drive based on =
+my build. <br><br>However, I keep ending up with my root being at /media/ad=
+s/, with two big issues: my static IP address isn&#39;t assigned, and my pa=
+th is messed up leaving my applications not on it by default. <br><br>The o=
+ne main difference from the directions is that I&#39;m using grub2-install =
+instead of grub-install. This is because I&#39;m using a current RedHat sys=
+tem for development due to a requirement of my client. <br><br>I will note =
+that at least one of my added kernel modules is being loaded, since I can s=
+ee related messages in the console/demesg log. <br><br>Ron Oakes </div>
 
---001a1147f2284f53c105422388a8--
+--001a11481de407360a054224823f--
