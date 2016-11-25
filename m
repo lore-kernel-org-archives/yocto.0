@@ -1,48 +1,61 @@
-Return-Path: <andre.draszik@gmail.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0612AE00C54; Fri, 25 Nov 2016 08:29:10 -0800 (PST)
+	id 5AF96E00C37; Fri, 25 Nov 2016 09:34:26 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.210.196 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-wj0-f196.google.com (mail-wj0-f196.google.com
-	[209.85.210.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A5BCBE00B63
-	for <yocto@yoctoproject.org>; Fri, 25 Nov 2016 08:29:06 -0800 (PST)
-Received: by mail-wj0-f196.google.com with SMTP id o2so2267067wje.2
-	for <yocto@yoctoproject.org>; Fri, 25 Nov 2016 08:29:06 -0800 (PST)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.220.178 listed in list.dnswl.org]
+Received: from mail-qk0-f178.google.com (mail-qk0-f178.google.com
+	[209.85.220.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 06D00E00B74
+	for <yocto@yoctoproject.org>; Fri, 25 Nov 2016 09:34:22 -0800 (PST)
+Received: by mail-qk0-f178.google.com with SMTP id x190so84288187qkb.0
+	for <yocto@yoctoproject.org>; Fri, 25 Nov 2016 09:34:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=Tl03fR4GxXfSBY+lNwH+NpUPMhMjMDKFboQiI36zDUg=;
+	b=rOqJpgROYaleMCdSoUJu8OWy7B50oJbpMao8jKXkWLbxcv72qPqhiuEgkMNRn0xw2x
+	co2p6MnM4+PdC4TCxw1+gaUsjEY5Wd+vamQIWVPnnOybhFW37OHW1dgoBaIdg4Au7fVA
+	eTdNvIJ5EAgfEsrXasSe4Pug5tU/ElgutGDIc971hdxLx4U9P7JNZ8p/HTQJZecvJiuI
+	VdlpcRfywNlekAJHUYk7ZMuCZnJfNFLIb96tcO5Cw3cVy4gPDuN9ODAmmAk5I6mBLthO
+	gT8OfXsK5/aeU8KlT+XDGXKG1+TC3IvQH2txtPItOtpNrPfjHDAFiJP2ecV+a+Wpx3Hr
+	mJhg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-	:content-transfer-encoding;
-	bh=ZLPNG8ZSNVDcgdzIQSaaw/YVJW3GieXBc5GtJqo/r/8=;
-	b=jE5h9/MWKoNqJX6y0D3MNW6IsmH8vpW4gddSfB2fl8QdX+faPz5DjDgdhGyD7+jCHB
-	Vb0sCZxQZzLVKG+Y6WVEN+6cHzB/YKjdfUvLkD1Ukp1npWWKsigiIMvEl4CdYXQkhOOz
-	xR3qmvPLxysYOw9GaUx6j2gZDAiqS6uvg7sdsdpZtuABwiJvFRCECzxAGVb8NbynZbBY
-	RYDBKyiIuOR8xMlm6C/eSLqNL/4vdBw4qWkwLKdNFHke7+SS2ed34V+60qM1/zIs1yj7
-	JBiq3TogbYf5lYcBm5jvz6vVLISEP9nZ76/YbyimptMT8jyeeoymfewpiwInllYLvM7z
-	tjOQ==
-X-Gm-Message-State: AKaTC006cnXSYgUIQ1pYdrgBQnyW/trljR56aOq597pKPajN0cHSDp5zOuzptgGkm+dJ1A==
-X-Received: by 10.194.56.234 with SMTP id d10mr8983802wjq.78.1480091344840;
-	Fri, 25 Nov 2016 08:29:04 -0800 (PST)
-Received: from tfsielt31850.tycofs.com ([77.107.218.170])
-	by smtp.gmail.com with ESMTPSA id
-	138sm14180822wms.20.2016.11.25.08.29.04 for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 25 Nov 2016 08:29:04 -0800 (PST)
-From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <git@andred.net>
-To: yocto@yoctoproject.org
-Date: Fri, 25 Nov 2016 16:29:03 +0000
-Message-Id: <20161125162903.19626-1-git@andred.net>
-X-Mailer: git-send-email 2.10.2
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=Tl03fR4GxXfSBY+lNwH+NpUPMhMjMDKFboQiI36zDUg=;
+	b=g5qJ7FL7xJ3wvg8qFvBUPqh3QS5D62jrQJ3r+Nr0llHx5WxbZCq8uY7wFy6VXcQfkr
+	UPjlXnuIFwzDv9e/Lq2g3Ee4H6A4ZGOcnPrrhoRv+Gz/Bze7qK3CVrp41xGrxHQ6qyMu
+	nJURn8AOY8TrcvSzLBKK+eYoRgGGbaeIg0TF9GibOCoBvxCeKcvmVTcG4GyfLFvz32/d
+	GBC41Qjn3FnBmFvF1JXbJxrlJatjZzk5ozz9pDrjeSVgpt6Lzir34sW8Slmln59XOwR/
+	b/jaOSfwDSLYGBEVZifrMVy7zLP6ig/qUR3TwUakY77ohLrJovLnkfSBc0arsb1hlGxc
+	zOVQ==
+X-Gm-Message-State: AKaTC007ZzVWOMT4XSdBOokmGfAmrt6OjEc6nR85C0Y9eFCfRFzUebSS4FPzZngXDZYk5SkuSlApER1/lk8rAxTS
+X-Received: by 10.55.31.157 with SMTP id n29mr7667956qkh.221.1480095261730;
+	Fri, 25 Nov 2016 09:34:21 -0800 (PST)
 MIME-Version: 1.0
-Subject: [meta-security][PATCH] trousers: fix musl compilation
+Received: by 10.140.85.136 with HTTP; Fri, 25 Nov 2016 09:34:01 -0800 (PST)
+In-Reply-To: <159453815.361259973.1479973828114.JavaMail.root@spooler3-g27.priv.proxad.net>
+References: <2424887.evz7bmUPsC@peggleto-mobl.ger.corp.intel.com>
+	<159453815.361259973.1479973828114.JavaMail.root@spooler3-g27.priv.proxad.net>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Fri, 25 Nov 2016 17:34:01 +0000
+Message-ID: <CAJTo0LY20cf2yHv6z6gfaqzyGC9w=Bt30j7zpcP2BEUkyENZMA@mail.gmail.com>
+To: "Michel D'HOOGE" <michel.dhooge@free.fr>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: populate_sdk_ext: Unable to locate package nativesdk-buildtools-perl-dummy
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,170 +67,82 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 25 Nov 2016 16:29:10 -0000
+X-List-Received-Date: Fri, 25 Nov 2016 17:34:26 -0000
+Content-Type: multipart/alternative; boundary=001a1147f2284f53c105422388a8
+
+--001a1147f2284f53c105422388a8
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
 
-From: André Draszik <adraszik@tycoint.com>
+On 24 November 2016 at 07:50, Michel D'HOOGE <michel.dhooge@free.fr> wrote:
 
-Backport patches to fix compilation.
-
-Signed-off-by: André Draszik <adraszik@tycoint.com>
----
- ...t-getpwent_r-is-available-before-using-it.patch | 85 ++++++++++++++++++++++
- ...si_param.c-Include-limits.h-for-POSIX_MAX.patch | 36 +++++++++
- recipes-tpm/trousers/trousers_0.3.13.bb            |  2 +
- 3 files changed, 123 insertions(+)
- create mode 100644 recipes-tpm/trousers/files/0001-Check-that-getpwent_r-is-available-before-using-it.patch
- create mode 100644 recipes-tpm/trousers/files/0001-tsp_tcsi_param.c-Include-limits.h-for-POSIX_MAX.patch
-
-diff --git a/recipes-tpm/trousers/files/0001-Check-that-getpwent_r-is-available-before-using-it.patch b/recipes-tpm/trousers/files/0001-Check-that-getpwent_r-is-available-before-using-it.patch
-new file mode 100644
-index 0000000..3c57394
---- /dev/null
-+++ b/recipes-tpm/trousers/files/0001-Check-that-getpwent_r-is-available-before-using-it.patch
-@@ -0,0 +1,85 @@
-+From bb721b0ae5882992037153e7257791101172556e Mon Sep 17 00:00:00 2001
-+From: =?UTF-8?q?No=C3=A9=20Rubinstein?= <nrubinstein@aldebaran.com>
-+Date: Wed, 24 Aug 2016 18:55:25 +0200
-+Subject: [PATCH] Check that getpwent_r is available before using it
-+MIME-Version: 1.0
-+Content-Type: text/plain; charset=UTF-8
-+Content-Transfer-Encoding: 8bit
-+
-+This fixes building trousers with musl
-+
-+Signed-off-by: Noé Rubinstein <nrubinstein@aldebaran.com>
-+---
-+Upstream-Status: Pending [https://git.busybox.net/buildroot/plain/package/trousers/0004-Check-that-getpwent_r-is-available-before-using-it.patch]
-+Signed-off-by: André Draszik <adraszik@tycoint.com>
-+ configure.in        |  4 ++++
-+ src/tspi/ps/tspps.c | 10 +++++-----
-+ 2 files changed, 9 insertions(+), 5 deletions(-)
-+
-+diff --git a/configure.in b/configure.in
-+index add23dc..cfdfcaa 100644
-+--- a/configure.in
-++++ b/configure.in
-+@@ -144,6 +144,10 @@ else
-+ 	AC_MSG_ERROR(["gtk", "openssl" and "none" are the only supported gui options for trousers])
-+ fi
-+ 
-++# Look for getpwent_r. If it is not found, getpwent will be used instead, with
-++# an additional mutex.
-++AC_CHECK_FUNC(getpwent_r, [AC_DEFINE(HAVE_GETPWENT_R)])
-++
-+ #
-+ # The default port that the TCS daemon listens on
-+ #
-+diff --git a/src/tspi/ps/tspps.c b/src/tspi/ps/tspps.c
-+index c6f9c3d..9d00d2a 100644
-+--- a/src/tspi/ps/tspps.c
-++++ b/src/tspi/ps/tspps.c
-+@@ -45,7 +45,7 @@
-+ 
-+ static int user_ps_fd = -1;
-+ static MUTEX_DECLARE_INIT(user_ps_lock);
-+-#if (defined (__FreeBSD__) || defined (__OpenBSD__))
-++#ifndef HAVE_GETPWENT_R
-+ static MUTEX_DECLARE_INIT(user_ps_path);
-+ #endif
-+ static struct flock fl;
-+@@ -60,7 +60,7 @@ get_user_ps_path(char **file)
-+ 	TSS_RESULT result;
-+ 	char *file_name = NULL, *home_dir = NULL;
-+ 	struct passwd *pwp;
-+-#if (defined (__linux) || defined (linux) || defined(__GLIBC__))
-++#ifdef HAVE_GETPWENT_R
-+ 	struct passwd pw;
-+ #endif
-+ 	struct stat stat_buf;
-+@@ -72,7 +72,7 @@ get_user_ps_path(char **file)
-+ 		*file = strdup(file_name);
-+ 		return (*file) ? TSS_SUCCESS : TSPERR(TSS_E_OUTOFMEMORY);
-+ 	}
-+-#if (defined (__FreeBSD__) || defined (__OpenBSD__))
-++#ifndef HAVE_GETPWENT_R
-+ 	MUTEX_LOCK(user_ps_path);
-+ #endif
-+ 
-+@@ -90,7 +90,7 @@ get_user_ps_path(char **file)
-+ #else
-+ 	setpwent();
-+ 	while (1) {
-+-#if (defined (__linux) || defined (linux) || defined(__GLIBC__))
-++#ifdef HAVE_GETPWENT_R
-+ 		rc = getpwent_r(&pw, buf, PASSWD_BUFSIZE, &pwp);
-+ 		if (rc) {
-+ 			LogDebugFn("USER PS: Error getting path to home directory: getpwent_r: %s",
-+@@ -99,7 +99,7 @@ get_user_ps_path(char **file)
-+ 			return TSPERR(TSS_E_INTERNAL_ERROR);
-+ 		}
-+ 
-+-#elif (defined (__FreeBSD__) || defined (__OpenBSD__))
-++#else
-+ 		if ((pwp = getpwent()) == NULL) {
-+ 			LogDebugFn("USER PS: Error getting path to home directory: getpwent: %s",
-+                                    strerror(rc));
-+-- 
-+2.10.2
-+
-diff --git a/recipes-tpm/trousers/files/0001-tsp_tcsi_param.c-Include-limits.h-for-POSIX_MAX.patch b/recipes-tpm/trousers/files/0001-tsp_tcsi_param.c-Include-limits.h-for-POSIX_MAX.patch
-new file mode 100644
-index 0000000..c01040d
---- /dev/null
-+++ b/recipes-tpm/trousers/files/0001-tsp_tcsi_param.c-Include-limits.h-for-POSIX_MAX.patch
-@@ -0,0 +1,36 @@
-+From c1b5f33845c56dc7aef769c99758b4f77a041d43 Mon Sep 17 00:00:00 2001
-+From: Felix Janda <felix.janda@posteo.de>
-+Date: Wed, 31 Aug 2016 22:52:58 -0400
-+Subject: [PATCH] tsp_tcsi_param.c: Include <limits.h> for POSIX_MAX
-+MIME-Version: 1.0
-+Content-Type: text/plain; charset=UTF-8
-+Content-Transfer-Encoding: 8bit
-+
-+Use POSIX instead of glibc-specific header.
-+Fixes compilation with musl libc.
-+
-+Signed-off-by: Felix Janda <felix.janda@posteo.de>
-+Reviewed-by: Hon Ching(Vicky) Lo <honclo@linux.vnet.ibm.com>
-+
-+---
-+Upstream-Status: Backport [https://sourceforge.net/p/trousers/trousers/ci/59351a56cac1710e89d207dff07eb23bbc644c13/]
-+Signed-off-by: André Draszik <adraszik@tycoint.com>
-+ src/tspi/tsp_tcsi_param.c | 2 +-
-+ 1 file changed, 1 insertion(+), 1 deletion(-)
-+
-+diff --git a/src/tspi/tsp_tcsi_param.c b/src/tspi/tsp_tcsi_param.c
-+index 670f86f..8f2b4e4 100644
-+--- a/src/tspi/tsp_tcsi_param.c
-++++ b/src/tspi/tsp_tcsi_param.c
-+@@ -11,7 +11,7 @@
-+ #include <stdlib.h>
-+ #include <string.h>
-+ #include <stdio.h>
-+-#include <bits/local_lim.h>
-++#include <limits.h>
-+ #include "trousers/tss.h"
-+ #include "trousers/trousers.h"
-+ #include "trousers_types.h"
-+-- 
-+2.10.2
-+
-diff --git a/recipes-tpm/trousers/trousers_0.3.13.bb b/recipes-tpm/trousers/trousers_0.3.13.bb
-index 6853f18..a69f763 100644
---- a/recipes-tpm/trousers/trousers_0.3.13.bb
-+++ b/recipes-tpm/trousers/trousers_0.3.13.bb
-@@ -7,6 +7,8 @@ SECTION = "security/tpm"
- DEPENDS = "openssl"
- 
- SRC_URI = "http://sourceforge.net/projects/trousers/files/${BPN}/${PV}/${BPN}-${PV}.tar.gz \
-+    file://0001-tsp_tcsi_param.c-Include-limits.h-for-POSIX_MAX.patch \
-+    file://0001-Check-that-getpwent_r-is-available-before-using-it.patch \
-     file://07-read_data-not-inline.patch \
-     file://trousers.init.sh \
-     file://trousers-udev.rules \
--- 
-2.10.2
+> During the install, the error was:
+> ERROR: e2fsprogs-native-1.43-r1 do_populate_sysroot_setscene:
+>  Error executing a python function in exec_python_func() autogenerated:
+> [...]
+> File: '/mnt/Yocto/sdk/greenfeed/layers/poky/meta/lib/oe/qa.py', lineno:
+> 102, function: getWord
+>      0101:    def getWord(self, offset):
+>  *** 0102:        return struct.unpack_from(self.sex+"i", self.data,
+> offset)[0]
+> Exception: struct.error: unpack_from requires a buffer of at least 4 bytes
 
 
+I fixed this in oe-core master a few weeks ago.  oe-core
+a66660aa5bb709547ce0b65a4563e4217c3c3d9f.
+
+I'll submit a backport to morty request now.
+
+I chose Debian PM because this is what I already know and thought
+> it would be easier than to learn about the RPM world.
+> Not sure it was my best move ;-)
+>
+
+If you can in the meantime I do recommend switching to opkg or rpm.
+Changing packaging format will just re-package everything assuming you
+still have the tmp/ so won't take long at all.
+
+Ross
+
+--001a1147f2284f53c105422388a8
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_extra">On 24 November 2016 at 07:50, M=
+ichel D&#39;HOOGE <span dir=3D"ltr">&lt;<a href=3D"mailto:michel.dhooge@fre=
+e.fr" target=3D"_blank">michel.dhooge@free.fr</a>&gt;</span> wrote:</div><d=
+iv class=3D"gmail_extra"><blockquote class=3D"gmail_quote" style=3D"margin:=
+0px 0px 0px 0.8ex;border-left-width:1px;border-left-color:rgb(204,204,204);=
+border-left-style:solid;padding-left:1ex"><span style=3D"font-size:12.80000=
+0190734863px">During the install, the error was:<br></span><span style=3D"f=
+ont-size:12.800000190734863px">ERROR: e2fsprogs-native-1.43-r1 do_populate_=
+sysroot_setscene:<br></span><span style=3D"font-size:12.800000190734863px">=
+=C2=A0Error executing a python function in exec_python_func() autogenerated=
+:<br></span><span style=3D"font-size:12.800000190734863px">[...]<br></span>=
+<span style=3D"font-size:12.800000190734863px">File: &#39;/mnt/Yocto/sdk/gr=
+eenfeed/</span><wbr style=3D"font-size:12.800000190734863px"><span style=3D=
+"font-size:12.800000190734863px">layers/poky/meta/lib/oe/qa.py&#39;</span><=
+wbr style=3D"font-size:12.800000190734863px"><span style=3D"font-size:12.80=
+0000190734863px">, lineno: 102, function: getWord<br></span><span style=3D"=
+font-size:12.800000190734863px">=C2=A0 =C2=A0 =C2=A00101:=C2=A0 =C2=A0 def =
+getWord(self, offset):<br></span><span style=3D"font-size:12.80000019073486=
+3px">=C2=A0*** 0102:=C2=A0 =C2=A0 =C2=A0 =C2=A0 return struct.unpack_from(s=
+elf.sex+&quot;</span><wbr style=3D"font-size:12.800000190734863px"><span st=
+yle=3D"font-size:12.800000190734863px">i&quot;, self.data, offset)[0]<br></=
+span><span style=3D"font-size:12.800000190734863px">Exception: struct.error=
+: unpack_from requires a buffer of at least 4 bytes</span></blockquote><div=
+><br></div><div>I fixed this in oe-core master a few weeks ago. =C2=A0oe-co=
+re a66660aa5bb709547ce0b65a4563e4217c3c3d9f.</div><div><br></div><div>I&#39=
+;ll submit a backport to morty request now.</div><div><br></div><div class=
+=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px =
+0px 0.8ex;border-left-width:1px;border-left-color:rgb(204,204,204);border-l=
+eft-style:solid;padding-left:1ex"><div id=3D"gmail-:1me" class=3D"gmail-a3s=
+ gmail-aXjCH gmail-m15895521a2b066c3">I chose Debian PM because this is wha=
+t I already know and thought<br>
+it would be easier than to learn about the RPM world.<br>
+Not sure it was my best move ;-)</div></blockquote></div><div class=3D"gmai=
+l_extra"><br></div>If you can in the meantime I do recommend switching to o=
+pkg or rpm.=C2=A0 Changing packaging format will just re-package everything=
+ assuming you still have the tmp/ so won&#39;t take long at all.</div><div =
+class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Ross</div></div>
+
+--001a1147f2284f53c105422388a8--
