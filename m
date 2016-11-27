@@ -1,6 +1,6 @@
 Return-Path: <net147@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0182AE009B1; Sat, 26 Nov 2016 22:37:27 -0800 (PST)
+	id 4F192E00A92; Sat, 26 Nov 2016 22:38:01 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,9 +9,6 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (net147[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.83.68 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,48 +16,51 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pg0-f68.google.com (mail-pg0-f68.google.com [74.125.83.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BC0AFE008E3
-	for <yocto@yoctoproject.org>; Sat, 26 Nov 2016 22:37:21 -0800 (PST)
-Received: by mail-pg0-f68.google.com with SMTP id x23so9693950pgx.3
-	for <yocto@yoctoproject.org>; Sat, 26 Nov 2016 22:37:21 -0800 (PST)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.83.66 listed in list.dnswl.org]
+Received: from mail-pg0-f66.google.com (mail-pg0-f66.google.com [74.125.83.66])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 66000E009BF
+	for <yocto@yoctoproject.org>; Sat, 26 Nov 2016 22:37:56 -0800 (PST)
+Received: by mail-pg0-f66.google.com with SMTP id x23so9695023pgx.3
+	for <yocto@yoctoproject.org>; Sat, 26 Nov 2016 22:37:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=from:to:cc:subject:date:message-id:mime-version
 	:content-transfer-encoding;
 	bh=JVtfSJYWebvaveoqJOp3veiW8t4Tl8FEiKsgHa26oq8=;
-	b=T8jqav2A6e+Qa9kdR4KU1MiGXFOoIkkiE+wNQXoCanRFd5PB0MBI+B/9FVKC5RKYdD
-	s6FzDVJmbyo1h5gRlOZ5GRgc+8UL/T+kAWiMHJyU0BZ4LW3kIvsvkSOX54c9fUu+dufe
-	4v+fsCa/ISXqUkPQex/wqKHoU6EXmP+j1rLPBtNEE6Fv/TbLLDf4M0Fffzjja6t6o88u
-	uiNf/A6aHekh+NsqbAkptrUsSX9zn/Ne1sodCbNCndFYca8Flq8Cm2plvrDiwijFYovU
-	hhrcnJCOShX7lx3PRZSbhjK8CgEXXMmUkzMZNwe0wg3SGOLVTSbdGJJbvq2im1d4UALU
-	p3sQ==
+	b=JJTs8Vciwac2Vkz1vqCYQ87r7w/0ZXmgus+iMYeIxzgskO88lcg5R/n1vrWJF6bkvL
+	Vv3RBB2Jv+uogFqtv4r5MpZJI6BrtKGBYEPNL3/w4HATJy2b3OG2W/kb83rV5tgTWJ9V
+	fXdmbCeJDZiJkXJu0sOr9h4mfpOQNay5DLImjg68Yz5Hqwmy7YhHhucIZr6JwILa2Uys
+	Y0fbvRKS+dXEZezosalTjkjndZZT4Ax4u653hO4W6xmqszDSdlP5GtDr4e5K+qOFbAbr
+	xlrqp6CblXPbT55mN87cdA6r+b+vjdFpvRdi7AGRYvA8DPQiGm2g1OxVDBGeto2sTRly
+	Ri2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
 	:content-transfer-encoding;
 	bh=JVtfSJYWebvaveoqJOp3veiW8t4Tl8FEiKsgHa26oq8=;
-	b=kwV76AWgVPxrBo1A0y1IrnjrNJ3J9DL5X1p2JK/p8LCiH4XQj4a46S6ZYVQU1xT4vv
-	jm3pHAqUk1Rnyq8AeJLBRnN81K0jMZb8UZnZHQbd8O0CIZdsoD0OHlgRJFV/1e5tyJwW
-	ZGDvAd0Yo3y76+QwGRFIYvv0xAE341n1JiKoI2FbjzEOUVornCMbloVm5FVMrmqMkOtR
-	pcL9FkDo3YOENwjz4Ny+UTOg8iQ1P5FDOxdEoUmMK1KHJcFmLFtortZaS3gmUxt6GbgN
-	SnQn/oQhdvRtvwadIUFWpwhwqnicwj4eFjLragUenwHAwbsLwkHoQgCyhRpfMMhpE6M5
-	oOJQ==
-X-Gm-Message-State: AKaTC01L3KqHsAAlR+2R2YKktR/q+NG1gbNf+3ho3SqnHaVI9QhJR/G2BZ9MIfS2eSjeAw==
-X-Received: by 10.99.52.10 with SMTP id b10mr29055060pga.42.1480228640737;
-	Sat, 26 Nov 2016 22:37:20 -0800 (PST)
+	b=W0SQBeiMqpdaMNLJyhXxPdMQ2RlhWjp2Ir5cKSFFQVLhTSBT7PcCGG51YAcVp1fZZh
+	cEKLZzIUsEcnu8uP13rnk3kjQe2uM1w7/KG5UiVx7kTelSwwe0LXq5IZ63rkpBzd7/n+
+	AJTqOr6XK7/+wQOkF/HCYd/S+2MXNEsc0YgNT2qIKXQO00rA/9c2D/uZdu+wkAJDvdwg
+	TV19A5RXiUivsgvRZiD2GouUYPx8euVakq/3Q3SMpqk+nh24ITR8vB+9stY06OGpypXx
+	36sLbIoBlnbWfRYGvxajrZ/7fV7H8FETEz+fUwNmroGcyBLrwd4V9FcSoTw39M+zWz1/
+	et6A==
+X-Gm-Message-State: AKaTC036H23TMyPCbfGU1v67R286urL0jAaAmTtB2K5qAEEqaMXjygzzt/OhZXD5abkIvQ==
+X-Received: by 10.84.134.3 with SMTP id 3mr35331504plg.90.1480228676510;
+	Sat, 26 Nov 2016 22:37:56 -0800 (PST)
 Received: from 60-242-179-244.static.tpgi.com.au
 	(60-242-179-244.static.tpgi.com.au. [60.242.179.244])
 	by smtp.gmail.com with ESMTPSA id
-	m5sm60525835pgn.42.2016.11.26.22.37.18
+	x26sm57900847pge.24.2016.11.26.22.37.55
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sat, 26 Nov 2016 22:37:19 -0800 (PST)
+	Sat, 26 Nov 2016 22:37:55 -0800 (PST)
 From: Jonathan Liu <net147@gmail.com>
 To: yocto@yoctoproject.org
-Date: Sun, 27 Nov 2016 17:37:07 +1100
-Message-Id: <20161127063707.10866-1-net147@gmail.com>
+Date: Sun, 27 Nov 2016 17:37:53 +1100
+Message-Id: <20161127063753.10922-1-net147@gmail.com>
 X-Mailer: git-send-email 2.10.2
 MIME-Version: 1.0
-Subject: [PATCH v4] u-boot: Simplify boot script
+Subject: [meta-raspberrypi][PATCH v4] u-boot: Simplify boot script
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,7 +72,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 27 Nov 2016 06:37:28 -0000
+X-List-Received-Date: Sun, 27 Nov 2016 06:38:01 -0000
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
