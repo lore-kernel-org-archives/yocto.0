@@ -1,6 +1,6 @@
-Return-Path: <danielhilst@gmail.com>
+Return-Path: <net147@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 99E2AE00DED; Sat, 26 Nov 2016 07:08:16 -0800 (PST)
+	id 0182AE009B1; Sat, 26 Nov 2016 22:37:27 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,10 +8,10 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (danielhilst[at]gmail.com)
+	mail provider *      (net147[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.213.49 listed in list.dnswl.org]
+	*      [74.125.83.68 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,51 +19,48 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-vk0-f49.google.com (mail-vk0-f49.google.com
-	[209.85.213.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B2497E00DE5
-	for <yocto@yoctoproject.org>; Sat, 26 Nov 2016 07:08:14 -0800 (PST)
-Received: by mail-vk0-f49.google.com with SMTP id x186so54703484vkd.1
-	for <yocto@yoctoproject.org>; Sat, 26 Nov 2016 07:08:14 -0800 (PST)
+Received: from mail-pg0-f68.google.com (mail-pg0-f68.google.com [74.125.83.68])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BC0AFE008E3
+	for <yocto@yoctoproject.org>; Sat, 26 Nov 2016 22:37:21 -0800 (PST)
+Received: by mail-pg0-f68.google.com with SMTP id x23so9693950pgx.3
+	for <yocto@yoctoproject.org>; Sat, 26 Nov 2016 22:37:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=MmexHdFDeccjVGabtzfTBPZ1P/x8CCrximaNc2kcRkM=;
-	b=uAm+Myk2Ol639gVlDdN1jO9Lq79C//ifpcpywf5IlB2TE1HR0Q+Ix+yqROWwgDFvB/
-	9GNyoh0+Gk88W1RET0iB5fX8qzZsOfx+ZTspTOzZUqlmHI8XhjgwZr+NfxrLCtk/p/xV
-	abeBD63Pmz1FxQoARklKWDioFR0zbjeemIzbszHLKjipi7nEiJXkjSv5TYY0aAAMuBRB
-	+AjMik7D5QwdhR8E/4UUiJ7IJBT8KdmSDSuVXsAPlo2cYVkZ1gknWSaBMD1KFi8Gur+q
-	qg7P+mLWhIwzpgQu7f+JAry1IKhlzgr4bag5opO1mLtdTwbDRNvj2qo/5lAwftGc6Gpi
-	d5qg==
+	h=from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding;
+	bh=JVtfSJYWebvaveoqJOp3veiW8t4Tl8FEiKsgHa26oq8=;
+	b=T8jqav2A6e+Qa9kdR4KU1MiGXFOoIkkiE+wNQXoCanRFd5PB0MBI+B/9FVKC5RKYdD
+	s6FzDVJmbyo1h5gRlOZ5GRgc+8UL/T+kAWiMHJyU0BZ4LW3kIvsvkSOX54c9fUu+dufe
+	4v+fsCa/ISXqUkPQex/wqKHoU6EXmP+j1rLPBtNEE6Fv/TbLLDf4M0Fffzjja6t6o88u
+	uiNf/A6aHekh+NsqbAkptrUsSX9zn/Ne1sodCbNCndFYca8Flq8Cm2plvrDiwijFYovU
+	hhrcnJCOShX7lx3PRZSbhjK8CgEXXMmUkzMZNwe0wg3SGOLVTSbdGJJbvq2im1d4UALU
+	p3sQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=MmexHdFDeccjVGabtzfTBPZ1P/x8CCrximaNc2kcRkM=;
-	b=hdmKXBHsYtabmJglVreOwbAuj7YgIdLuog8Dgz0vdiickp+4wbmX9W+InGZc0d6+1O
-	2iXB4BxAoLHkyinm3b4LyhKjiYlzh7chtFcuqRd2+fOg5PgFWhQg+kxbApFOCq2jaxBA
-	Z5hXEWqUW+Tja96US4xyxWXBK17diq6ZGTm1svMXmUSx9K8fL61rkC0i1Gou9yKsdr4D
-	7w2NRb5i9MOyxDfKbGCct1NHON7wRb9LvFjOjBk7QYV7uHTlwnAhQrW2nAGBCuuo0y2x
-	kQxPgSz235VyV5TAkKiPP0iuPu00N/UuKbrnT5FLiptQXkOwcDCP1mXp5r14MzQqb/NW
-	JRRA==
-X-Gm-Message-State: AKaTC00kI4/hX7zhGpliTHgQNr14ll4wltMXy2JfSvnXLQzGS2RsiykTEc0kc3OYTtKZIuiO6chhhDUTYa3o9A==
-X-Received: by 10.31.86.132 with SMTP id k126mr4686066vkb.8.1480172893975;
-	Sat, 26 Nov 2016 07:08:13 -0800 (PST)
+	h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding;
+	bh=JVtfSJYWebvaveoqJOp3veiW8t4Tl8FEiKsgHa26oq8=;
+	b=kwV76AWgVPxrBo1A0y1IrnjrNJ3J9DL5X1p2JK/p8LCiH4XQj4a46S6ZYVQU1xT4vv
+	jm3pHAqUk1Rnyq8AeJLBRnN81K0jMZb8UZnZHQbd8O0CIZdsoD0OHlgRJFV/1e5tyJwW
+	ZGDvAd0Yo3y76+QwGRFIYvv0xAE341n1JiKoI2FbjzEOUVornCMbloVm5FVMrmqMkOtR
+	pcL9FkDo3YOENwjz4Ny+UTOg8iQ1P5FDOxdEoUmMK1KHJcFmLFtortZaS3gmUxt6GbgN
+	SnQn/oQhdvRtvwadIUFWpwhwqnicwj4eFjLragUenwHAwbsLwkHoQgCyhRpfMMhpE6M5
+	oOJQ==
+X-Gm-Message-State: AKaTC01L3KqHsAAlR+2R2YKktR/q+NG1gbNf+3ho3SqnHaVI9QhJR/G2BZ9MIfS2eSjeAw==
+X-Received: by 10.99.52.10 with SMTP id b10mr29055060pga.42.1480228640737;
+	Sat, 26 Nov 2016 22:37:20 -0800 (PST)
+Received: from 60-242-179-244.static.tpgi.com.au
+	(60-242-179-244.static.tpgi.com.au. [60.242.179.244])
+	by smtp.gmail.com with ESMTPSA id
+	m5sm60525835pgn.42.2016.11.26.22.37.18
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Sat, 26 Nov 2016 22:37:19 -0800 (PST)
+From: Jonathan Liu <net147@gmail.com>
+To: yocto@yoctoproject.org
+Date: Sun, 27 Nov 2016 17:37:07 +1100
+Message-Id: <20161127063707.10866-1-net147@gmail.com>
+X-Mailer: git-send-email 2.10.2
 MIME-Version: 1.0
-Received: by 10.176.4.129 with HTTP; Sat, 26 Nov 2016 07:08:13 -0800 (PST)
-In-Reply-To: <CAF3SDA5mXUVo-a6NjdLM8y8=LCFm=E8GSMj=7E4Sf8ygiP=ADQ@mail.gmail.com>
-References: <CAF3SDA6CjS0Tdfy0hqJEg+sYv67HpeYe9HOO9GBL6JQSjXaWHw@mail.gmail.com>
-	<CABcZANk0XfQTA5dio2NQvRnV+cSF3dLF+Rpv8+3RY-kUO=0y=w@mail.gmail.com>
-	<F38A866CD026F746A3BF0928A84397BE3E7F626B@AZ-FFEXMB01.global.avaya.com>
-	<CAF3SDA5ObWo1siH9-S65kLy85imC+ww6F4tTMih1d7iw5HrDkg@mail.gmail.com>
-	<CAF3SDA6xsm6YaFYjb3UiEmTS8=uzk1kCrTQpwMFChRL0bHLi8g@mail.gmail.com>
-	<1DAAFDD0-4691-4EB5-B79A-948B0E9BE705@gmail.com>
-	<CAF3SDA5mXUVo-a6NjdLM8y8=LCFm=E8GSMj=7E4Sf8ygiP=ADQ@mail.gmail.com>
-From: "Daniel." <danielhilst@gmail.com>
-Date: Sat, 26 Nov 2016 13:08:13 -0200
-Message-ID: <CAF3SDA7kFLCyrxKYMP5f=kg+rteeVLziR_P39R8zkSJat5+97Q@mail.gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Extracting PV & PR from Makefile at compilation time.
+Subject: [PATCH v4] u-boot: Simplify boot script
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,158 +72,274 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 26 Nov 2016 15:08:16 -0000
+X-List-Received-Date: Sun, 27 Nov 2016 06:37:28 -0000
 Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Thanks for the advice :)
+A patch is backported to check if the firmware loaded a device tree blob
+into memory and set the fdt_addr variable if it is found. The U-Boot
+script will then read the command line arguments generated by the
+firmware from the device tree and boot the kernel with the command
+line arguments and the loaded device tree.
 
-2016-11-26 13:08 GMT-02:00 Daniel. <danielhilst@gmail.com>:
-> Now I'm using %Y%m plus PR server.
->
-> 2016-11-26 2:12 GMT-02:00 Khem Raj <raj.khem@gmail.com>:
->>
->>> On Nov 24, 2016, at 11:06 AM, Daniel. <danielhilst@gmail.com> wrote:
->>>
->>> Instead of using SVN revision as version I'm trying to use a timestamp like:
->>>
->>> PV = "${@time.strftime("%Y%m%d", time.gmtime())}"
->>>
->>> Does anybody can tell me if this would taint the sstate at each day,
->>> making yocto compile it again? Is this safe at all?
->>
->> I would recommend against it. Use PR server is better.
->>
->>>
->>> Regards,
->>>
->>> 2016-11-24 13:48 GMT-02:00 Daniel. <danielhilst@gmail.com>:
->>>> 2016-11-23 12:01 GMT-02:00 Bipnesh, Abhinav (Abhinav)
->>>> <abhinavbipnesh@avaya.com>:
->>>>> One quick way would be to use environment variables in both places. So you
->>>>> can export them before starting a build.
->>>>>
->>>>>
->>>>>
->>>>> From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org]
->>>>> On Behalf Of Christopher Larson
->>>>> Sent: Wednesday, November 23, 2016 19:13
->>>>> To: Daniel.
->>>>> Cc: yocto@yoctoproject.org
->>>>> Subject: Re: [yocto] Extracting PV & PR from Makefile at compilation time.
->>>>>
->>>>>
->>>>>
->>>>>
->>>>>
->>>>> On Wed, Nov 23, 2016 at 6:26 AM, Daniel. <danielhilst@gmail.com> wrote:
->>>>>
->>>>> I have a Makefile with this header
->>>>>
->>>>>
->>>>>
->>>>> major = 1
->>>>>
->>>>> minor = 0
->>>>>
->>>>> patch = 10
->>>>>
->>>>> release = -beta
->>>>>
->>>>> Which compilates someting like libmylib.so.1.0.10-beta shared object.
->>>>>
->>>>> On recipe I duplicate this information:
->>>>>
->>>>> PV="1.0.10"
->>>>>
->>>>> PR="-beta"
->>>>>
->>>>>
->>>>>
->>>>> Is there anyway to grab that information from Makefile and setting PV & PR
->>>>> according to it? At compilation time? So that I only have to change at one
->>>>> place?
->>>>>
->>>>>
->>>>> bitbake wants to know pv/pr at parse time, long before the sources have been
->>>>> fetched and unpacked.
->>>>> --
->>>>>
->>>>> Christopher Larson
->>>>> clarson at kergoth dot com
->>>>> Founder - BitBake, OpenEmbedded, OpenZaurus
->>>>> Maintainer - Tslib
->>>>> Senior Software Engineer, Mentor Graphics
->>>>
->>>> Thanks guys for the reply.
->>>>
->>>> Christopher, now I understands. It's an egg/chicken problem. So what
->>>> I'm asking is a bit non-sense.
->>>>
->>>> My case is something like this:
->>>>
->>>> We have custom board.
->>>> At this board some peripherals reside.
->>>> Some libraries sit over that peripherals.
->>>> I want to be able to get version of that libraries from a running
->>>> environment when needed. This wouldn't done by my self, but by other
->>>> people that have no good linux knowledge, so that need to be simple
->>>> like a "run this command".
->>>> I want to be able to get the right source code from version number.
->>>> I want to made package updates avaible from package feed, so that
->>>> running images can be updated by package manager instead of burning
->>>> every new image. This would make my development cycle more
->>>> incremental.
->>>>
->>>> Before the first e-mail I was keeping version at makefile and
->>>> generating libsomething.so.X.Y.Z-release. This make it easy to grasp
->>>> version from library file name. But at each version the proper recipes
->>>> had to be edited. This is boring and error prone. I'd already build
->>>> packages like libsomething-1.2.3.rpm that ships libsomething-1.2.4.rpm
->>>> because I forgot to update the recipe.
->>>>
->>>> So now I'm using no revision from SRC_URL (I'm using SVN). And setting
->>>> things like below.
->>>>
->>>> SRCREV = "${AUTOREV}"
->>>> PV = "${SRCPV}"
->>>> PR = "r0"
->>>>
->>>> So that recipe editing can be avoided. Since I'm using SVN the
->>>> revision number aways increase and I can get system update working
->>>> properly.
->>>>
->>>> I'm about to read about PR service since using SVN revision as version
->>>> seems not a good idea for me. The libraries are only used internally
->>>> so I do not have to bother about versining API changes. Anyway, thanks
->>>> for the feedback
->>>>
->>>> Best regards,
->>>>
->>>> --
->>>> "Do or do not. There is no try"
->>>>  Yoda Master
->>>
->>>
->>>
->>> --
->>> "Do or do not. There is no try"
->>>  Yoda Master
->>> --
->>> _______________________________________________
->>> yocto mailing list
->>> yocto@yoctoproject.org
->>> https://lists.yoctoproject.org/listinfo/yocto
->>
->
->
->
-> --
-> "Do or do not. There is no try"
->   Yoda Master
+This allows things like MAC address, board revision and serial number
+to be correctly configured and options in config.txt to be used.
 
+Signed-off-by: Jonathan Liu <net147@gmail.com>
+---
+Changes in v4:
+ - Backport patch from upstream instead of using own patch
+Changes in v3:
+ - Removed incorrect check if fdt_addr_r is already set. The check
+   condition was inverted and fdt_addr_r variable is always set to
+   0x100 by default.
+Changes in v2:
+ - Instead of setting device_tree_address to 0x100 in config.txt, patch
+   U-Boot to detect the device tree blob address if it was loaded.
 
+ recipes-bsp/rpi-u-boot-scr/files/boot.cmd          |   3 +
+ .../rpi-u-boot-scr/files/raspberrypi/boot.cmd      |   6 -
+ .../rpi-u-boot-scr/files/raspberrypi0/boot.cmd     |   6 -
+ .../rpi-u-boot-scr/files/raspberrypi2/boot.cmd     |   6 -
+ .../rpi-u-boot-scr/files/raspberrypi3/boot.cmd     |   6 -
+ ...through-of-the-firmware-provided-FDT-blob.patch | 156 +++++++++++++++++++++
+ recipes-bsp/u-boot/u-boot_%.bbappend               |   2 +
+ 7 files changed, 161 insertions(+), 24 deletions(-)
+ create mode 100644 recipes-bsp/rpi-u-boot-scr/files/boot.cmd
+ delete mode 100644 recipes-bsp/rpi-u-boot-scr/files/raspberrypi/boot.cmd
+ delete mode 100644 recipes-bsp/rpi-u-boot-scr/files/raspberrypi0/boot.cmd
+ delete mode 100644 recipes-bsp/rpi-u-boot-scr/files/raspberrypi2/boot.cmd
+ delete mode 100644 recipes-bsp/rpi-u-boot-scr/files/raspberrypi3/boot.cmd
+ create mode 100644 recipes-bsp/u-boot/files/rpi-passthrough-of-the-firmware-provided-FDT-blob.patch
 
+diff --git a/recipes-bsp/rpi-u-boot-scr/files/boot.cmd b/recipes-bsp/rpi-u-boot-scr/files/boot.cmd
+new file mode 100644
+index 0000000..2e8452e
+--- /dev/null
++++ b/recipes-bsp/rpi-u-boot-scr/files/boot.cmd
+@@ -0,0 +1,3 @@
++fdt addr ${fdt_addr} && fdt get value bootargs /chosen bootargs
++fatload mmc 0:1 ${kernel_addr_r} uImage
++bootm ${kernel_addr_r} - ${fdt_addr}
+diff --git a/recipes-bsp/rpi-u-boot-scr/files/raspberrypi/boot.cmd b/recipes-bsp/rpi-u-boot-scr/files/raspberrypi/boot.cmd
+deleted file mode 100644
+index c86c758..0000000
+--- a/recipes-bsp/rpi-u-boot-scr/files/raspberrypi/boot.cmd
++++ /dev/null
+@@ -1,6 +0,0 @@
+-setenv fdtfile bcm2708-rpi-b.dtb
+-setenv bootargs 'earlyprintk console=tty0 console=ttyAMA0 root=/dev/mmcblk0p2 rootfstype=ext4 rootwait noinitrd'
+-mmc dev 0
+-fatload mmc 0:1 ${kernel_addr_r} uImage
+-fatload mmc 0:1 ${fdt_addr_r} ${fdtfile}
+-bootm ${kernel_addr_r} - ${fdt_addr_r}
+diff --git a/recipes-bsp/rpi-u-boot-scr/files/raspberrypi0/boot.cmd b/recipes-bsp/rpi-u-boot-scr/files/raspberrypi0/boot.cmd
+deleted file mode 100644
+index c86c758..0000000
+--- a/recipes-bsp/rpi-u-boot-scr/files/raspberrypi0/boot.cmd
++++ /dev/null
+@@ -1,6 +0,0 @@
+-setenv fdtfile bcm2708-rpi-b.dtb
+-setenv bootargs 'earlyprintk console=tty0 console=ttyAMA0 root=/dev/mmcblk0p2 rootfstype=ext4 rootwait noinitrd'
+-mmc dev 0
+-fatload mmc 0:1 ${kernel_addr_r} uImage
+-fatload mmc 0:1 ${fdt_addr_r} ${fdtfile}
+-bootm ${kernel_addr_r} - ${fdt_addr_r}
+diff --git a/recipes-bsp/rpi-u-boot-scr/files/raspberrypi2/boot.cmd b/recipes-bsp/rpi-u-boot-scr/files/raspberrypi2/boot.cmd
+deleted file mode 100644
+index aa4ea64..0000000
+--- a/recipes-bsp/rpi-u-boot-scr/files/raspberrypi2/boot.cmd
++++ /dev/null
+@@ -1,6 +0,0 @@
+-setenv fdtfile bcm2709-rpi-2-b.dtb
+-setenv bootargs 'earlyprintk console=tty0 console=ttyAMA0 root=/dev/mmcblk0p2 rootfstype=ext4 rootwait noinitrd'
+-mmc dev 0
+-fatload mmc 0:1 ${kernel_addr_r} uImage
+-fatload mmc 0:1 ${fdt_addr_r} ${fdtfile}
+-bootm ${kernel_addr_r} - ${fdt_addr_r}
+diff --git a/recipes-bsp/rpi-u-boot-scr/files/raspberrypi3/boot.cmd b/recipes-bsp/rpi-u-boot-scr/files/raspberrypi3/boot.cmd
+deleted file mode 100644
+index 2950856..0000000
+--- a/recipes-bsp/rpi-u-boot-scr/files/raspberrypi3/boot.cmd
++++ /dev/null
+@@ -1,6 +0,0 @@
+-setenv fdtfile bcm2710-rpi-3-b.dtb
+-setenv bootargs 'earlyprintk console=tty0 console=ttyAMA0 root=/dev/mmcblk0p2 rootfstype=ext4 rootwait noinitrd'
+-mmc dev 0
+-fatload mmc 0:1 ${kernel_addr_r} uImage
+-fatload mmc 0:1 ${fdt_addr_r} ${fdtfile}
+-bootm ${kernel_addr_r} - ${fdt_addr_r}
+diff --git a/recipes-bsp/u-boot/files/rpi-passthrough-of-the-firmware-provided-FDT-blob.patch b/recipes-bsp/u-boot/files/rpi-passthrough-of-the-firmware-provided-FDT-blob.patch
+new file mode 100644
+index 0000000..323b7ab
+--- /dev/null
++++ b/recipes-bsp/u-boot/files/rpi-passthrough-of-the-firmware-provided-FDT-blob.patch
+@@ -0,0 +1,156 @@
++From ade243a211d62327e9ebadce27bbbff7981e37f0 Mon Sep 17 00:00:00 2001
++From: =?UTF-8?q?C=C3=A9dric=20Schieli?= <cschieli@gmail.com>
++Date: Fri, 11 Nov 2016 11:59:07 +0100
++Subject: [PATCH] rpi: passthrough of the firmware provided FDT blob
++MIME-Version: 1.0
++Content-Type: text/plain; charset=UTF-8
++Content-Transfer-Encoding: 8bit
++
++Raspberry firmware used to pass a FDT blob at a fixed address (0x100),
++but this is not true anymore. The address now depends on both the
++memory size and the blob size [1].
++
++If one wants to passthrough this FDT blob to the kernel, the most
++reliable way is to save its address from the r2/x0 register in the
++U-Boot entry point and expose it in a environment variable for
++further processing.
++
++This patch just does this:
++- save the provided address in the global variable fw_dtb_pointer
++- expose it in ${fdt_addr} if it points to a a valid FDT blob
++
++There are many different ways to use it. One can, for example, use
++the following script which will extract from the tree the command
++line built by the firmware, then hand over the blob to a previously
++loaded kernel:
++
++fdt addr ${fdt_addr}
++fdt get value bootargs /chosen bootargs
++bootz ${kernel_addr_r} - ${fdt_addr}
++
++Alternatively, users relying on sysboot/pxe can simply omit any FDT
++statement in their extlinux.conf file, U-Boot will automagically pick
++${fdt_addr} and pass it to the kernel.
++
++[1] https://www.raspberrypi.org/forums//viewtopic.php?f=107&t=134018
++
++Upstream-Status: Backport
++
++Signed-off-by: Cédric Schieli <cschieli@gmail.com>
++Acked-by: Stephen Warren <swarren@nvidia.com>
++Signed-off-by: Jonathan Liu <net147@gmail.com>
++---
++ board/raspberrypi/rpi/Makefile        |  1 +
++ board/raspberrypi/rpi/lowlevel_init.S | 36 +++++++++++++++++++++++++++++++++++
++ board/raspberrypi/rpi/rpi.c           | 29 ++++++++++++++++++++++++++++
++ 3 files changed, 66 insertions(+)
++ create mode 100644 board/raspberrypi/rpi/lowlevel_init.S
++
++diff --git a/board/raspberrypi/rpi/Makefile b/board/raspberrypi/rpi/Makefile
++index 4ce2c98..dcb25ac 100644
++--- a/board/raspberrypi/rpi/Makefile
+++++ b/board/raspberrypi/rpi/Makefile
++@@ -5,3 +5,4 @@
++ #
++ 
++ obj-y	:= rpi.o
+++obj-y	+= lowlevel_init.o
++diff --git a/board/raspberrypi/rpi/lowlevel_init.S b/board/raspberrypi/rpi/lowlevel_init.S
++new file mode 100644
++index 0000000..cdbd8e1
++--- /dev/null
+++++ b/board/raspberrypi/rpi/lowlevel_init.S
++@@ -0,0 +1,36 @@
+++/*
+++ * (C) Copyright 2016
+++ * Cédric Schieli <cschieli@gmail.com>
+++ *
+++ * SPDX-License-Identifier:	GPL-2.0+
+++ */
+++
+++#include <config.h>
+++
+++.align 8
+++.global fw_dtb_pointer
+++fw_dtb_pointer:
+++#ifdef CONFIG_ARM64
+++	.dword 0x0
+++#else
+++	.word 0x0
+++#endif
+++
+++/*
+++ * Routine: save_boot_params (called after reset from start.S)
+++ * Description: save ATAG/FDT address provided by the firmware at boot time
+++ */
+++
+++.global save_boot_params
+++save_boot_params:
+++
+++	/* The firmware provided ATAG/FDT address can be found in r2/x0 */
+++#ifdef CONFIG_ARM64
+++	adr	x8, fw_dtb_pointer
+++	str	x0, [x8]
+++#else
+++	str	r2, fw_dtb_pointer
+++#endif
+++
+++	/* Returns */
+++	b	save_boot_params_ret
++diff --git a/board/raspberrypi/rpi/rpi.c b/board/raspberrypi/rpi/rpi.c
++index 6245b36..ffd6d31 100644
++--- a/board/raspberrypi/rpi/rpi.c
+++++ b/board/raspberrypi/rpi/rpi.c
++@@ -25,6 +25,9 @@
++ 
++ DECLARE_GLOBAL_DATA_PTR;
++ 
+++/* From lowlevel_init.S */
+++extern unsigned long fw_dtb_pointer;
+++
++ static const struct bcm2835_gpio_platdata gpio_platdata = {
++ 	.base = BCM2835_GPIO_BASE,
++ };
++@@ -285,6 +288,31 @@ static void set_fdtfile(void)
++ 	setenv("fdtfile", fdtfile);
++ }
++ 
+++/*
+++ * If the firmware provided a valid FDT at boot time, let's expose it in
+++ * ${fdt_addr} so it may be passed unmodified to the kernel.
+++ */
+++static void set_fdt_addr(void)
+++{
+++	if (getenv("fdt_addr"))
+++		return;
+++
+++	if (fdt_magic(fw_dtb_pointer) != FDT_MAGIC)
+++		return;
+++
+++	setenv_hex("fdt_addr", fw_dtb_pointer);
+++}
+++
+++/*
+++ * Prevent relocation from stomping on a firmware provided FDT blob.
+++ */
+++unsigned long board_get_usable_ram_top(unsigned long total_size)
+++{
+++	if ((gd->ram_top - fw_dtb_pointer) > SZ_64M)
+++		return gd->ram_top;
+++	return fw_dtb_pointer & ~0xffff;
+++}
+++
++ static void set_usbethaddr(void)
++ {
++ 	ALLOC_CACHE_ALIGN_BUFFER(struct msg_get_mac_address, msg, 1);
++@@ -356,6 +384,7 @@ static void set_serial_number(void)
++ 
++ int misc_init_r(void)
++ {
+++	set_fdt_addr();
++ 	set_fdtfile();
++ 	set_usbethaddr();
++ #ifdef CONFIG_ENV_VARS_UBOOT_RUNTIME_CONFIG
++-- 
++2.10.2
++
+diff --git a/recipes-bsp/u-boot/u-boot_%.bbappend b/recipes-bsp/u-boot/u-boot_%.bbappend
+index 3781666..645547f 100644
+--- a/recipes-bsp/u-boot/u-boot_%.bbappend
++++ b/recipes-bsp/u-boot/u-boot_%.bbappend
+@@ -1 +1,3 @@
++FILESEXTRAPATHS_prepend_rpi := "${THISDIR}/files:"
+ RDEPENDS_${PN}_append_rpi = " rpi-u-boot-scr"
++SRC_URI_append_rpi = " file://rpi-passthrough-of-the-firmware-provided-FDT-blob.patch"
 -- 
-"Do or do not. There is no try"
-  Yoda Master
+2.10.2
+
 
