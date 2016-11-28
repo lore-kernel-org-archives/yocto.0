@@ -1,58 +1,65 @@
-Return-Path: <vmartin@avaya.com>
+Return-Path: <twoerner@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 273F3E00C20; Mon, 28 Nov 2016 08:16:36 -0800 (PST)
+	id 9907DE00C2B; Mon, 28 Nov 2016 08:46:51 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [198.152.13.100 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (twoerner[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.223.173 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from co300216-co-outbound.net.avaya.com
-	(co300216-co-outbound.net.avaya.com [198.152.13.100])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 63441E00BF3
-	for <yocto@yoctoproject.org>; Mon, 28 Nov 2016 08:16:34 -0800 (PST)
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2EUBQBOVjxY/yYyC4deHAEBBAEBCgEBg?=
-	=?us-ascii?q?xQkAQEBAQEfgVsHAaRalHSCB4YhAhqBVUATAQIBAQEBAQEBA18ohGgBAQEBAxI?=
-	=?us-ascii?q?REUUMBAIBCA0IAwICBh0DAgICMBQBEAEBBA4FCBqISwGiKIpjgikqAosPAQEBA?=
-	=?us-ascii?q?QYBAQEBAQEBAQEegQuFM4RbhEuDAi2CMAWaVAGSYYhChhSNcYQMIAMygRSDVwI?=
-	=?us-ascii?q?bgV1yhwABgQwBAQE?=
-X-IPAS-Result: =?us-ascii?q?A2EUBQBOVjxY/yYyC4deHAEBBAEBCgEBgxQkAQEBAQEfgVs?=
-	=?us-ascii?q?HAaRalHSCB4YhAhqBVUATAQIBAQEBAQEBA18ohGgBAQEBAxIREUUMBAIBCA0IA?=
-	=?us-ascii?q?wICBh0DAgICMBQBEAEBBA4FCBqISwGiKIpjgikqAosPAQEBAQYBAQEBAQEBAQE?=
-	=?us-ascii?q?egQuFM4RbhEuDAi2CMAWaVAGSYYhChhSNcYQMIAMygRSDVwIbgV1yhwABgQwBA?=
-	=?us-ascii?q?QE?=
-X-IronPort-AV: E=Sophos;i="5.31,564,1473134400"; d="scan'208";a="205010177"
-Received: from unknown (HELO p-us1-erheast-smtpauth.us1.avaya.com)
-	([135.11.50.38]) by co300216-co-outbound.net.avaya.com with ESMTP;
-	28 Nov 2016 11:16:33 -0500
-X-OutboundMail_SMTP: 1
-Received: from unknown (HELO AZ-US1EXHC02.global.avaya.com) ([135.11.85.13])
-	by p-us1-erheast-out.us1.avaya.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
-	28 Nov 2016 11:16:34 -0500
-Received: from AZ-US1EXMB02.global.avaya.com ([fe80::c01d:740:c927:8888]) by
-	AZ-US1EXHC02.global.avaya.com ([::1]) with mapi id 14.03.0319.002;
-	Mon, 28 Nov 2016 11:16:31 -0500
-From: "Vuille, Martin (Martin)" <vmartin@avaya.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Thread-Topic: [yocto] What source is included in sstate hash, how to change?
-Thread-Index: AdJJh6Joeo+XlXDNTCG/JCB4s3VPBwAMrxeAAAnxBDA=
-Date: Mon, 28 Nov 2016 16:16:30 +0000
-Message-ID: <30C2D590D16A5C46ADFE6521910377987FF8633B@AZ-US1EXMB02.global.avaya.com>
-References: <30C2D590D16A5C46ADFE6521910377987FF86286@AZ-US1EXMB02.global.avaya.com>
-	<CAJTo0LaSCbZH75s_n=wURx1aNe1HKRN=EajOvw13hu_h=GpSAA@mail.gmail.com>
-In-Reply-To: <CAJTo0LaSCbZH75s_n=wURx1aNe1HKRN=EajOvw13hu_h=GpSAA@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [135.11.85.49]
-MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: What source is included in sstate hash, how to change?
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.223.173 listed in dnsbl.sorbs.net]
+Received: from mail-io0-f173.google.com (mail-io0-f173.google.com
+	[209.85.223.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 39A75E00C20
+	for <yocto@yoctoproject.org>; Mon, 28 Nov 2016 08:46:47 -0800 (PST)
+Received: by mail-io0-f173.google.com with SMTP id c21so231975639ioj.1
+	for <yocto@yoctoproject.org>; Mon, 28 Nov 2016 08:46:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:subject:date:message-id;
+	bh=3zR9PCjV2tmWs2zHUW+jke8cL3wvhgNhNAUo1LmxITs=;
+	b=vx4m68OnWqxJb9z8DfGkuSWt2ltBThLFbYb8MhrAZbk1ohBCni5qe2Y2I5PW2h+JA9
+	UmfzKvkIaZlYNmPwWy+dzB2KLmC5kszkQFmT1vPUfM2SvmwoGX8y8c9bhhdD/YgXI0X+
+	mVuLLOC9MknHz+BSGJaMRICEBG173wR6OPSOgTjo3rfhYyk+Hb0nMoCv0WlyV7QW1yP7
+	GrBKGyFOFIe3OhyyooJrPmwfyign2wPlsTZACwZlFEJ7Y7bOktxZqQgD9/Ckxu43C5/i
+	bQtXQKHVBA+0UHs6lqC2iYwk70gQIixdhue1qdJVWTOhoznbfgtVNyLPyVzTznCl8jsx
+	KisA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:from:to:subject:date:message-id;
+	bh=3zR9PCjV2tmWs2zHUW+jke8cL3wvhgNhNAUo1LmxITs=;
+	b=LdYYAK6TlbWRXrgexaVpQj4zwnRIDWLpqC1JHnd41vakN5Hj4+BU/PYItdhGsLvFmb
+	OT9PZspvgKoheV7K1GNOJ7/QQ5mrJQZFHXwJPHT8OVN0kBlawReAqUJBudIH9S7hvwBe
+	At3YCGsU7DG/5jhbqnZR+P9f8hsT+9CeCLpgMJ6HlJEACED5nxl1mkNlJQOwFrIqtMKn
+	MHaZJQg8SHVMsGIWX/p3EZtujad3t1skcZR0bxIsgLXIolIwGu76NWTFpb+JKQEuCtJ6
+	UzkcREQYdzuJIp6eFbvhPkPNN/OvGeQeJPlYVynpRxc2s6SZoB/ABhGFtDO/0NGSlux9
+	QgyQ==
+X-Gm-Message-State: AKaTC01fsc3jSHJTCGIIZihazSYytkj6YAaudOtCDccoZ+7Izqz2CopX76q0L9XoBkE+9w==
+X-Received: by 10.36.103.200 with SMTP id u191mr19368613itc.8.1480351604699;
+	Mon, 28 Nov 2016 08:46:44 -0800 (PST)
+Received: from openSUSE-i7.site (dsl-67-55-28-109.acanac.net. [67.55.28.109])
+	by smtp.gmail.com with ESMTPSA id
+	u12sm6114258ita.1.2016.11.28.08.46.43 for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Mon, 28 Nov 2016 08:46:44 -0800 (PST)
+From: Trevor Woerner <twoerner@gmail.com>
+To: yocto@yoctoproject.org
+Date: Mon, 28 Nov 2016 11:46:38 -0500
+Message-Id: <20161128164638.13097-1-twoerner@gmail.com>
+X-Mailer: git-send-email 2.10.0.129.g35f6318
+Subject: [meta-raspberrypi][PATCH] linux-raspberrypi_4.8.bb: upgrade to 4.8.11
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -64,19 +71,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 28 Nov 2016 16:16:36 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Mon, 28 Nov 2016 16:46:51 -0000
 
-PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBCdXJ0b24sIFJvc3MgW21haWx0
-bzpyb3NzLmJ1cnRvbkBpbnRlbC5jb21dDQo+IA0KPiBPbiAyOCBOb3ZlbWJlciAyMDE2IGF0IDE1
-OjAyLCBWdWlsbGUsIE1hcnRpbiAoTWFydGluKQ0KPiA8dm1hcnRpbkBhdmF5YS5jb20+IHdyb3Rl
-Og0KPiBPciBhbSBJIGNvbXBsZXRlbHkgb2ZmLXRyYWNrPw0KPiANCj4gSXQgd2lsbCB0cmFjayB0
-aGUgbWQ1IG9mIGZpbGVzIG1lbnRpb25lZCBpbiBTUkNfVVJJLCBidXQgaWYgYSBmaWxlIGlzIGdl
-bmVyYXRlZA0KPiBkeW5hbWljYWxseSB0aGVuIGJpdGJha2UgbWF5IG5vdCBiZSBhd2FyZSBvZiBp
-dC4NCj4gDQo+IENhbiB5b3Ugc2hhcmUgYSBtaW5pbWFsIGV4YW1wbGU/DQoNClVuZm9ydHVuYXRl
-bHksIHRoYXQgd291bGQgYmUgZGlmZmljdWx0Lg0KDQpCdXQgdGhlIFNSQ19VUkkgZG9lcyBjb3Zl
-ciAke1N9Ly4uLCBzbyBteSBhc3N1bXB0aW9uIG11c3QgYmUgaW5jb3JyZWN0Lg0KDQpJIHdpbGwg
-aGF2ZSB0byBpbnZlc3RpZ2F0ZSBmdXJ0aGVyDQoNClRoYW5rcw0KTVYNCg==
+The rpi-4.8.y branch of git://github.com/raspberrypi/linux.git was rebased,
+losing any previous commit hashes. This latest update doesn't include the
+raspberry pi patches for 4.8.6, but the upstream patches are included starting
+with 4.8.11.
+
+Signed-off-by: Trevor Woerner <twoerner@gmail.com>
+---
+ recipes-kernel/linux/linux-raspberrypi_4.8.bb | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/recipes-kernel/linux/linux-raspberrypi_4.8.bb b/recipes-kernel/linux/linux-raspberrypi_4.8.bb
+index 4664249..504fb6a 100644
+--- a/recipes-kernel/linux/linux-raspberrypi_4.8.bb
++++ b/recipes-kernel/linux/linux-raspberrypi_4.8.bb
+@@ -1,8 +1,8 @@
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
+ 
+-LINUX_VERSION ?= "4.8.6"
++LINUX_VERSION ?= "4.8.11"
+ 
+-SRCREV = "6abac13566786086cd912d87e4f1a922e2a391b2"
++SRCREV = "429efdba18a1201043eacc15c42f989253fbd68b"
+ SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-4.8.y \
+ "
+ require linux-raspberrypi.inc
+-- 
+2.10.2
+
 
