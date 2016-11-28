@@ -1,54 +1,65 @@
-Return-Path: <vmartin@avaya.com>
+Return-Path: <twoerner@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9F61FE00C1F; Mon, 28 Nov 2016 07:02:24 -0800 (PST)
+	id 443C6E00C20; Mon, 28 Nov 2016 07:12:51 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [198.152.13.100 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (twoerner[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from co300216-co-outbound.net.avaya.com
-	(co300216-co-outbound.net.avaya.com [198.152.13.100])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5665FE00BF3
-	for <yocto@yoctoproject.org>; Mon, 28 Nov 2016 07:02:20 -0800 (PST)
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2ERBQBERjxY/xUHmMZeHAEBBAEBCgEBg?=
-	=?us-ascii?q?nMhJAEBAQEBH1iBCgG5ToIHhiECgW5BEgECAQEBAQEBAQNfHQuEbAMSG14BDAk?=
-	=?us-ascii?q?VViYBBBsaiEsBnQ6FGY0MKgKLHwwBJIY+iSaDL4IwBZpUAYFImVuGFJF9JAEwg?=
-	=?us-ascii?q?RSDVx2BXYdyAYEMAQEB?=
-X-IPAS-Result: =?us-ascii?q?A2ERBQBERjxY/xUHmMZeHAEBBAEBCgEBgnMhJAEBAQEBH1i?=
-	=?us-ascii?q?BCgG5ToIHhiECgW5BEgECAQEBAQEBAQNfHQuEbAMSG14BDAkVViYBBBsaiEsBn?=
-	=?us-ascii?q?Q6FGY0MKgKLHwwBJIY+iSaDL4IwBZpUAYFImVuGFJF9JAEwgRSDVx2BXYdyAYE?=
-	=?us-ascii?q?MAQEB?=
-X-IronPort-AV: E=Sophos;i="5.31,564,1473134400"; 
-	d="scan'208,217";a="204995757"
-Received: from unknown (HELO co300216-co-erhwest-exch.avaya.com)
-	([198.152.7.21]) by co300216-co-outbound.net.avaya.com with ESMTP;
-	28 Nov 2016 10:02:16 -0500
-X-OutboundMail_SMTP: 1
-Received: from unknown (HELO AZ-US1EXHC03.global.avaya.com) ([135.11.85.14])
-	by co300216-co-erhwest-out.avaya.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
-	28 Nov 2016 10:02:16 -0500
-Received: from AZ-US1EXMB02.global.avaya.com ([fe80::c01d:740:c927:8888]) by
-	AZ-US1EXHC03.global.avaya.com ([::1]) with mapi id 14.03.0319.002;
-	Mon, 28 Nov 2016 10:02:15 -0500
-From: "Vuille, Martin (Martin)" <vmartin@avaya.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: What source is included in sstate hash, how to change?
-Thread-Index: AdJJh6Joeo+XlXDNTCG/JCB4s3VPBw==
-Date: Mon, 28 Nov 2016 15:02:15 +0000
-Message-ID: <30C2D590D16A5C46ADFE6521910377987FF86286@AZ-US1EXMB02.global.avaya.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [135.11.85.49]
-MIME-Version: 1.0
-Subject: What source is included in sstate hash, how to change?
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.223.193 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.223.193 listed in dnsbl.sorbs.net]
+Received: from mail-io0-f193.google.com (mail-io0-f193.google.com
+	[209.85.223.193])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 15A80E00BF3
+	for <yocto@yoctoproject.org>; Mon, 28 Nov 2016 07:12:47 -0800 (PST)
+Received: by mail-io0-f193.google.com with SMTP id h133so23292856ioe.2
+	for <yocto@yoctoproject.org>; Mon, 28 Nov 2016 07:12:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:subject:date:message-id;
+	bh=NCdmX6+zMXUAHAf7wivGQj2Zsbhm9Mv22yCeQfy8cnQ=;
+	b=BR7ERt1JxMcsxfLJDGBR1rOcuZRstv64lJtHLVu/3CfGz41+MwW0ec4AMf3Bt5qgrb
+	rRuzB9IYVCyMkKr58G/kWxxlbnZ679QGM7T6qe+uxZa4gHFhe/yLKDjPNJx+DKUef3+9
+	lEZIBbWQJufuPqTPgnzqBXW0LWn3X8mFLWKAzJ7hVOceeogU/7A/dD4HN8KgvdAehdlo
+	UdzgYtouRBPxNeyvxElH01Or1W/fDIE1/BvYEahkd5wuRDugBG5q75Vw2ifKECnThFto
+	Zp1jZR6g5W0qzTKObGgR5ke8DG3d+5CTBV32V9hXPZKLCXagIeui2tA/OfuWK4Vu9sOT
+	y+BQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:from:to:subject:date:message-id;
+	bh=NCdmX6+zMXUAHAf7wivGQj2Zsbhm9Mv22yCeQfy8cnQ=;
+	b=I7VDxf3bq/cZq63LgaDn4ENw6xPgGXWOFUW/KQ1fhpjntJq4VmN6tdMiTvoPPKgNsB
+	MRr9UvB3SyENXJKL0dyAnNG3eZqYSNLNdyIrVkw3UmSjF7+2MVD2cwUSIYE5Z4jnzi8l
+	yJOLFK74kN3oaQ9bCbK2vIVA5nulT9ncXrfHIAB9yerhyDdvAnpgtdbOlFQYWYE4h2sO
+	dYMKNZwm6wp2rhSKdAwEgNfeMFQPEz3FAj3anX8h5SGfSCF2hziahNdDoDlnaocic9P5
+	zvLP0Uh/ULiAned99WHN2+JPwKVCIHfGjlSKXT9FU93QBPqqQ6ncIwR7YmqXmEalYIpr
+	Hbug==
+X-Gm-Message-State: AKaTC01EZjkPyY/DaiR0Xe5KW2xhwWDusQqLFLjQUxQch/PDut+SQpJ07r1+s33kdk4mkQ==
+X-Received: by 10.107.174.4 with SMTP id x4mr16903874ioe.194.1480345965705;
+	Mon, 28 Nov 2016 07:12:45 -0800 (PST)
+Received: from openSUSE-i7.site (dsl-67-55-28-109.acanac.net. [67.55.28.109])
+	by smtp.gmail.com with ESMTPSA id
+	c101sm19949008ioj.25.2016.11.28.07.12.44 for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Mon, 28 Nov 2016 07:12:45 -0800 (PST)
+From: Trevor Woerner <twoerner@gmail.com>
+To: yocto@yoctoproject.org
+Date: Mon, 28 Nov 2016 10:12:33 -0500
+Message-Id: <20161128151233.8861-1-twoerner@gmail.com>
+X-Mailer: git-send-email 2.10.0.129.g35f6318
+Subject: [meta-raspberrypi][PATCH] linux-raspberrypi_4.4.bb: upgrade to 4.4.32
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -60,108 +71,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 28 Nov 2016 15:02:24 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_30C2D590D16A5C46ADFE6521910377987FF86286AZUS1EXMB02glob_"
+X-List-Received-Date: Mon, 28 Nov 2016 15:12:51 -0000
 
---_000_30C2D590D16A5C46ADFE6521910377987FF86286AZUS1EXMB02glob_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+This helps align the raspberry pi 4.4.y kernel with the latest 4.4.y
+PREEMPT_RT patch.
 
-I have a custom recipe for building some peculiarly-structured code:
-the Makefile is compiling source from ${S}/.. (i.e., parent directory of
-the ${S} directory).
+Signed-off-by: Trevor Woerner <twoerner@gmail.com>
+---
+ recipes-kernel/linux/linux-raspberrypi_4.4.bb | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-It seems (not 100% sure of this, sstate is still "magic" to me) that the ss=
-tate
-hash only includes the files in ${S} (which is reasonable). Consequently,
-when something in ${S}/.. changes, the fetch step is not redone.
+diff --git a/recipes-kernel/linux/linux-raspberrypi_4.4.bb b/recipes-kernel/linux/linux-raspberrypi_4.4.bb
+index 19e8552..0724ac1 100644
+--- a/recipes-kernel/linux/linux-raspberrypi_4.4.bb
++++ b/recipes-kernel/linux/linux-raspberrypi_4.4.bb
+@@ -1,8 +1,8 @@
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
+ 
+-LINUX_VERSION ?= "4.4.28"
++LINUX_VERSION ?= "4.4.32"
+ 
+-SRCREV = "5afda48c3408e15742d4569459a4ff668e2857f7"
++SRCREV = "f779cabf56bc88319d582db58969ba6f7184a775"
+ SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-4.4.y \
+            file://0001-fix-dtbo-rules.patch \
+ "
+-- 
+2.10.2
 
-Is there a way to tell sstate to include ${S}/.. in the source hash?
 
-Or am I completely off-track?
-
-MV
-
---_000_30C2D590D16A5C46ADFE6521910377987FF86286AZUS1EXMB02glob_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-CA" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span lang=3D"EN-US">I have a custom recipe for buil=
-ding some peculiarly-structured code:<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">the Makefile is compiling sourc=
-e from ${S}/.. (i.e., parent directory of<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">the ${S} directory).<o:p></o:p>=
-</span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">It seems (not 100% sure of this=
-, sstate is still &#8220;magic&#8221; to me) that the sstate<o:p></o:p></sp=
-an></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">hash only includes the files in=
- ${S} (which is reasonable). Consequently,<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">when something in ${S}/.. chang=
-es, the fetch step is not redone.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Is there a way to tell sstate t=
-o include ${S}/.. in the source hash?<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Or am I completely off-track?<o=
-:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">MV<o:p></o:p></span></p>
-</div>
-</body>
-</html>
-
---_000_30C2D590D16A5C46ADFE6521910377987FF86286AZUS1EXMB02glob_--
