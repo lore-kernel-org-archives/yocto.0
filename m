@@ -1,26 +1,54 @@
-Return-Path: <auh@auh.yoctoproject.org>
+Return-Path: <vmartin@avaya.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6B1EFE00BAD; Mon, 28 Nov 2016 05:00:56 -0800 (PST)
+	id 9F61FE00C1F; Mon, 28 Nov 2016 07:02:24 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [198.152.13.100 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from auh.yoctoproject.org (unknown [198.145.29.2])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 58386E00AAB
-	for <yocto@yoctoproject.org>; Mon, 28 Nov 2016 05:00:52 -0800 (PST)
-Received: from auh.yoctoproject.org (localhost [127.0.0.1])
-	by auh.yoctoproject.org (Postfix) with ESMTP id B89FA6FE2FA9
-	for <yocto@yoctoproject.org>; Mon, 28 Nov 2016 13:00:51 +0000 (UTC)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from co300216-co-outbound.net.avaya.com
+	(co300216-co-outbound.net.avaya.com [198.152.13.100])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5665FE00BF3
+	for <yocto@yoctoproject.org>; Mon, 28 Nov 2016 07:02:20 -0800 (PST)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2ERBQBERjxY/xUHmMZeHAEBBAEBCgEBg?=
+	=?us-ascii?q?nMhJAEBAQEBH1iBCgG5ToIHhiECgW5BEgECAQEBAQEBAQNfHQuEbAMSG14BDAk?=
+	=?us-ascii?q?VViYBBBsaiEsBnQ6FGY0MKgKLHwwBJIY+iSaDL4IwBZpUAYFImVuGFJF9JAEwg?=
+	=?us-ascii?q?RSDVx2BXYdyAYEMAQEB?=
+X-IPAS-Result: =?us-ascii?q?A2ERBQBERjxY/xUHmMZeHAEBBAEBCgEBgnMhJAEBAQEBH1i?=
+	=?us-ascii?q?BCgG5ToIHhiECgW5BEgECAQEBAQEBAQNfHQuEbAMSG14BDAkVViYBBBsaiEsBn?=
+	=?us-ascii?q?Q6FGY0MKgKLHwwBJIY+iSaDL4IwBZpUAYFImVuGFJF9JAEwgRSDVx2BXYdyAYE?=
+	=?us-ascii?q?MAQEB?=
+X-IronPort-AV: E=Sophos;i="5.31,564,1473134400"; 
+	d="scan'208,217";a="204995757"
+Received: from unknown (HELO co300216-co-erhwest-exch.avaya.com)
+	([198.152.7.21]) by co300216-co-outbound.net.avaya.com with ESMTP;
+	28 Nov 2016 10:02:16 -0500
+X-OutboundMail_SMTP: 1
+Received: from unknown (HELO AZ-US1EXHC03.global.avaya.com) ([135.11.85.14])
+	by co300216-co-erhwest-out.avaya.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
+	28 Nov 2016 10:02:16 -0500
+Received: from AZ-US1EXMB02.global.avaya.com ([fe80::c01d:740:c927:8888]) by
+	AZ-US1EXHC03.global.avaya.com ([::1]) with mapi id 14.03.0319.002;
+	Mon, 28 Nov 2016 10:02:15 -0500
+From: "Vuille, Martin (Martin)" <vmartin@avaya.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: What source is included in sstate hash, how to change?
+Thread-Index: AdJJh6Joeo+XlXDNTCG/JCB4s3VPBw==
+Date: Mon, 28 Nov 2016 15:02:15 +0000
+Message-ID: <30C2D590D16A5C46ADFE6521910377987FF86286@AZ-US1EXMB02.global.avaya.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [135.11.85.49]
 MIME-Version: 1.0
-From: auh@auh.yoctoproject.org
-To: yocto@yoctoproject.org
-Message-Id: <20161128130051.B89FA6FE2FA9@auh.yoctoproject.org>
-Date: Mon, 28 Nov 2016 13:00:51 +0000 (UTC)
-Subject: [AUH] Upgrade status: 2016-11-28
+Subject: What source is included in sstate hash, how to change?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,174 +60,108 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 28 Nov 2016 13:00:56 -0000
-Content-Type: multipart/mixed; boundary="===============5512755610608466272=="
+X-List-Received-Date: Mon, 28 Nov 2016 15:02:24 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_30C2D590D16A5C46ADFE6521910377987FF86286AZUS1EXMB02glob_"
 
---===============5512755610608466272==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
+--_000_30C2D590D16A5C46ADFE6521910377987FF86286AZUS1EXMB02glob_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-QVVIIGZpbmlzaGVkIHVwZ3JhZGUgYmF0Y2ggdGhlIHJlc3VsdCBwYXRjaGVzL2xvZ3MgY2FuIGJl
-IGZvdW5kIGF0OgpodHRwczovL2xvZ3MueW9jdG9wcm9qZWN0Lm9yZy9hdWgvLzIwMTYxMTI2MTUw
-MDAzLnRhci5neiwgbmV4dCBhcmUgdGhlIHN0YXRpc3RpY3M6CgpSZWNpcGUgdXBncmFkZSBzdGF0
-aXN0aWNzOgoKICAgICogRmFpbGVkKGRvX3BhY2thZ2UpOiAxCiAgICAgICAgaGRwYXJtLCA5LjUw
-LCBSb2JlcnQgWWFuZyA8bGllemhpLnlhbmdAd2luZHJpdmVyLmNvbT4KICAgICogRmFpbGVkKG90
-aGVyIGVycm9ycyk6IDIwCiAgICAgICAgZ2hvc3RzY3JpcHQsIDkuMjByYzEsIEhvbmd4dSBKaWEg
-PGhvbmd4dS5qaWFAd2luZHJpdmVyLmNvbT4KICAgICAgICBycG0sIDUuNC4xNywgTWFyayBIYXRs
-ZSA8bWFyay5oYXRsZUB3aW5kcml2ZXIuY29tPgogICAgICAgIGZsZXgsIDIuNi4yLCBDaGVuIFFp
-IDxRaS5DaGVuQHdpbmRyaXZlci5jb20+CiAgICAgICAgZGViaWFudXRpbHMsIDQuOC4xLCBSb2Jl
-cnQgWWFuZyA8bGllemhpLnlhbmdAd2luZHJpdmVyLmNvbT4KICAgICAgICBlcGlwaGFueSwgMjMu
-Mi4xLCBBbGV4YW5kZXIgS2FuYXZpbiA8YWxleGFuZGVyLmthbmF2aW5AaW50ZWwuY29tPgogICAg
-ICAgIHdlYmtpdGd0aywgMi4xNC4yLCBBbGV4YW5kZXIgS2FuYXZpbiA8YWxleGFuZGVyLmthbmF2
-aW5AaW50ZWwuY29tPgogICAgICAgIGxzYmluaXRzY3JpcHRzLCA5LjY5LCBSb3NzIEJ1cnRvbiA8
-cm9zcy5idXJ0b25AaW50ZWwuY29tPgogICAgICAgIGRwa2csIDEuMTguMTUsIEFuw61iYWwgTGlt
-w7NuIDxhbmliYWwubGltb25AbGludXguaW50ZWwuY29tPgogICAgICAgIGZpbGUsIDUuMjksIFJv
-YmVydCBZYW5nIDxsaWV6aGkueWFuZ0B3aW5kcml2ZXIuY29tPgogICAgICAgIHhmODYtdmlkZW8t
-aW50ZWwsIDIwMDQwNzIxK2dpdEFVVE9JTkMrYmVjNDdmOTM2OSwgSnVzc2kgS3Vra29uZW4gPGp1
-c3NpLmt1a2tvbmVuQGludGVsLmNvbT4KICAgICAgICBhcHQsIDEuMy4xLCBBbsOtYmFsIExpbcOz
-biA8YW5pYmFsLmxpbW9uQGxpbnV4LmludGVsLmNvbT4KICAgICAgICB4Zjg2LXZpZGVvLXZtd2Fy
-ZSwgMTMuMi4xLCBKdXNzaSBLdWtrb25lbiA8anVzc2kua3Vra29uZW5AaW50ZWwuY29tPgogICAg
-ICAgIHByZWxpbmssIDIwMTUxMDMwLitnaXRBVVRPSU5DKzkyNzk3OWJiZDEsIE1hcmsgSGF0bGUg
-PG1hcmsuaGF0bGVAd2luZHJpdmVyLmNvbT4KICAgICAgICBnb2JqZWN0LWludHJvc3BlY3Rpb24s
-IDEuNTAuMCwgQWxleGFuZGVyIEthbmF2aW4gPGFsZXhhbmRlci5rYW5hdmluQGludGVsLmNvbT4K
-ICAgICAgICBwaWd6LCAyLjMuNCwgSG9uZ3h1IEppYSA8aG9uZ3h1LmppYUB3aW5kcml2ZXIuY29t
-PgogICAgICAgIGN1cHMsIDIuMi4xLCBDaGVuIFFpIDxRaS5DaGVuQHdpbmRyaXZlci5jb20+CiAg
-ICAgICAgdXRpbC1saW51eCwgMi4yOSwgQ2hlbiBRaSA8UWkuQ2hlbkB3aW5kcml2ZXIuY29tPgog
-ICAgICAgIHUtYm9vdC1ta2ltYWdlLCB2MjAxNi4xMStnaXRBVVRPSU5DKzI5ZTBjZmI0ZjcsIERl
-bnlzIERteXRyaXllbmtvIDxkZW5pc0BkZW5peC5vcmc+CiAgICAgICAgc3lzdGVtZC1ib290LCAy
-MzIrZ2l0QVVUT0lOQythMWUyZWY3ZWM5LCBDaGVuIFFpIDxRaS5DaGVuQHdpbmRyaXZlci5jb20+
-CiAgICAgICAgcGVybCwgNS4yNC4xLCBBbsOtYmFsIExpbcOzbiA8YW5pYmFsLmxpbW9uQGxpbnV4
-LmludGVsLmNvbT4KICAgICogU3VjY2VlZGVkOiA1NwogICAgICAgIHhmODYtdmlkZW8tb21hcCwg
-MC40LjUsIEp1c3NpIEt1a2tvbmVuIDxqdXNzaS5rdWtrb25lbkBpbnRlbC5jb20+CiAgICAgICAg
-b2Zvbm8sIDEuMTksIE1heGluIEIuIEpvaG4gPG1heGluLmpvaG5AaW50ZWwuY29tPgogICAgICAg
-IGd1aWxlLCAyLjAuMTMsIFJvYmVydCBZYW5nIDxsaWV6aGkueWFuZ0B3aW5kcml2ZXIuY29tPgog
-ICAgICAgIGRidXMsIDEuMTAuMTIsIENoZW4gUWkgPFFpLkNoZW5Ad2luZHJpdmVyLmNvbT4KICAg
-ICAgICBtc210cCwgMS42LjYsIEFsZXhhbmRlciBLYW5hdmluIDxhbGV4YW5kZXIua2FuYXZpbkBp
-bnRlbC5jb20+CiAgICAgICAgY2EtY2VydGlmaWNhdGVzLCAyMDE2MTEwMiwgQWxleGFuZGVyIEth
-bmF2aW4gPGFsZXhhbmRlci5rYW5hdmluQGludGVsLmNvbT4KICAgICAgICBkaWZmdXRpbHMsIDMu
-NSwgQ2hlbiBRaSA8UWkuQ2hlbkB3aW5kcml2ZXIuY29tPgogICAgICAgIG5mcy11dGlscywgMS4z
-LjQsIE1hcmlhbm8gTG9wZXogPG1hcmlhbm8ubG9wZXpAbGludXguaW50ZWwuY29tPgogICAgICAg
-IHNoYXJlZC1taW1lLWluZm8sIDEuNywgSnVzc2kgS3Vra29uZW4gPGp1c3NpLmt1a2tvbmVuQGlu
-dGVsLmNvbT4KICAgICAgICBuZXR0bGUsIDMuMywgQXJtaW4gS3VzdGVyIDxha3VzdGVyODA4QGdt
-YWlsLmNvbT4KICAgICAgICBzdHJhY2UsIDQuMTQsIFJvYmVydCBZYW5nIDxsaWV6aGkueWFuZ0B3
-aW5kcml2ZXIuY29tPgogICAgICAgIHhrZXlib2FyZC1jb25maWcsIDIuMTksIEp1c3NpIEt1a2tv
-bmVuIDxqdXNzaS5rdWtrb25lbkBpbnRlbC5jb20+CiAgICAgICAgcGF4LXV0aWxzLCAxLjEuNywg
-SG9uZ3h1IEppYSA8aG9uZ3h1LmppYUB3aW5kcml2ZXIuY29tPgogICAgICAgIGdzdHJlYW1lcjEu
-MCwgMS4xMC4xLCBNYXhpbiBCLiBKb2huIDxtYXhpbi5qb2huQGludGVsLmNvbT4KICAgICAgICBn
-ZGIsIDcuMTIsIEtoZW0gUmFqIDxyYWoua2hlbUBnbWFpbC5jb20+CiAgICAgICAgbWFuLXBhZ2Vz
-LCA0LjA4LCBIb25neHUgSmlhIDxob25neHUuamlhQHdpbmRyaXZlci5jb20+CiAgICAgICAgbGli
-bm90aWZ5LCAwLjcuNywgSnVzc2kgS3Vra29uZW4gPGp1c3NpLmt1a2tvbmVuQGludGVsLmNvbT4K
-ICAgICAgICBpdywgNC45LCBNYXhpbiBCLiBKb2huIDxtYXhpbi5qb2huQGludGVsLmNvbT4KICAg
-ICAgICBibHVlejUsIDUuNDMsIE1heGluIEIuIEpvaG4gPG1heGluLmpvaG5AaW50ZWwuY29tPgog
-ICAgICAgIHNsYW5nLCAyLjMuMWEsIFJvYmVydCBZYW5nIDxsaWV6aGkueWFuZ0B3aW5kcml2ZXIu
-Y29tPgogICAgICAgIHN5c3N0YXQsIDExLjUuMiwgQ2hlbiBRaSA8UWkuQ2hlbkB3aW5kcml2ZXIu
-Y29tPgogICAgICAgIHhmODYtaW5wdXQta2V5Ym9hcmQsIDEuOS4wLCBKdXNzaSBLdWtrb25lbiA8
-anVzc2kua3Vra29uZW5AaW50ZWwuY29tPgogICAgICAgIGdsaWItMi4wLCAyLjUwLjIsIEp1c3Np
-IEt1a2tvbmVuIDxqdXNzaS5rdWtrb25lbkBpbnRlbC5jb20+CiAgICAgICAgYnVzeWJveCwgMS4y
-NS4xLCBDaGVuIFFpIDxRaS5DaGVuQHdpbmRyaXZlci5jb20+CiAgICAgICAgZGJ1cy1nbGliLCAw
-LjEwOCwgQ2hlbiBRaSA8UWkuQ2hlbkB3aW5kcml2ZXIuY29tPgogICAgICAgIHRhZ2xpYiwgMS4x
-MS4xLCBNYXhpbiBCLiBKb2huIDxtYXhpbi5qb2huQGludGVsLmNvbT4KICAgICAgICBpc28tY29k
-ZXMsIDMuNzEsIEFsZXhhbmRlciBLYW5hdmluIDxhbGV4YW5kZXIua2FuYXZpbkBpbnRlbC5jb20+
-CiAgICAgICAgbGlieGksIDEuNy44LCBKdXNzaSBLdWtrb25lbiA8anVzc2kua3Vra29uZW5AaW50
-ZWwuY29tPgogICAgICAgIGRidXMtdGVzdCwgMS4xMC4xMiwgQ2hlbiBRaSA8UWkuQ2hlbkB3aW5k
-cml2ZXIuY29tPgogICAgICAgIHNxbGl0ZTMsIDMuMTUuMSwgTWF4aW4gQi4gSm9obiA8bWF4aW4u
-am9obkBpbnRlbC5jb20+CiAgICAgICAgbGlnaHR0cGQsIDEuNC40MywgQWxleGFuZGVyIEthbmF2
-aW4gPGFsZXhhbmRlci5rYW5hdmluQGludGVsLmNvbT4KICAgICAgICBzdWRvLCAxLjguMThwMSwg
-Q2hlbiBRaSA8UWkuQ2hlbkB3aW5kcml2ZXIuY29tPgogICAgICAgIGVsZnV0aWxzLCAwLjE2Nywg
-SG9uZ3h1IEppYSA8aG9uZ3h1LmppYUB3aW5kcml2ZXIuY29tPgogICAgICAgIHRpZmYsIDQuMC43
-LCBBbGV4YW5kZXIgS2FuYXZpbiA8YWxleGFuZGVyLmthbmF2aW5AaW50ZWwuY29tPgogICAgICAg
-IGhhcmZidXp6LCAxLjMuMywgTWF4aW4gQi4gSm9obiA8bWF4aW4uam9obkBpbnRlbC5jb20+CiAg
-ICAgICAgcGNpdXRpbHMsIDMuNS4yLCBDaGVuIFFpIDxRaS5DaGVuQHdpbmRyaXZlci5jb20+CiAg
-ICAgICAgbnB0aCwgMS4zLCBBbGV4YW5kZXIgS2FuYXZpbiA8YWxleGFuZGVyLmthbmF2aW5AaW50
-ZWwuY29tPgogICAgICAgIGx0dG5nLW1vZHVsZXMsIDIuOC4zK2dpdEFVVE9JTkMrMTE0ZTBlNGFm
-ZSwgUmljaGFyZCBQdXJkaWUgPHJpY2hhcmQucHVyZGllQGxpbnV4Zm91bmRhdGlvbi5vcmc+CiAg
-ICAgICAgaWZ1cGRvd24sIDAuOC4xNiwgTWF4aW4gQi4gSm9obiA8bWF4aW4uam9obkBpbnRlbC5j
-b20+CiAgICAgICAgZTJmc3Byb2dzLCAxLjQzLjMsIFJvYmVydCBZYW5nIDxsaWV6aGkueWFuZ0B3
-aW5kcml2ZXIuY29tPgogICAgICAgIGx0cCwgMjAxNjA5MjAsIERlbmdrZSBEdSA8ZGVuZ2tlLmR1
-QHdpbmRyaXZlci5jb20+CiAgICAgICAgeGY4Ni1pbnB1dC1ldmRldiwgMi4xMC40LCBKdXNzaSBL
-dWtrb25lbiA8anVzc2kua3Vra29uZW5AaW50ZWwuY29tPgogICAgICAgIHR6ZGF0YSwgMjAxNmos
-IFJvYmVydCBZYW5nIDxsaWV6aGkueWFuZ0B3aW5kcml2ZXIuY29tPgogICAgICAgIGJ0cmZzLXRv
-b2xzLCA0LjguNCwgQWxleGFuZGVyIEthbmF2aW4gPGFsZXhhbmRlci5rYW5hdmluQGludGVsLmNv
-bT4KICAgICAgICBndGsrMywgMy4yMi40LCBKdXNzaSBLdWtrb25lbiA8anVzc2kua3Vra29uZW5A
-aW50ZWwuY29tPgogICAgICAgIGdzZXR0aW5ncy1kZXNrdG9wLXNjaGVtYXMsIDMuMjIuMCwgSnVz
-c2kgS3Vra29uZW4gPGp1c3NpLmt1a2tvbmVuQGludGVsLmNvbT4KICAgICAgICB2YWxhLCAwLjM0
-LjMsIEFsZXhhbmRlciBLYW5hdmluIDxhbGV4YW5kZXIua2FuYXZpbkBpbnRlbC5jb20+CiAgICAg
-ICAgbXBmciwgMy4xLjUsIEtoZW0gUmFqIDxyYWoua2hlbUBnbWFpbC5jb20+CiAgICAgICAgeGY4
-Ni1pbnB1dC1zeW5hcHRpY3MsIDEuOS4wLCBKdXNzaSBLdWtrb25lbiA8anVzc2kua3Vra29uZW5A
-aW50ZWwuY29tPgogICAgICAgIGdudXRscywgMy41LjYsIEFsZXhhbmRlciBLYW5hdmluIDxhbGV4
-YW5kZXIua2FuYXZpbkBpbnRlbC5jb20+CiAgICAgICAgaXByb3V0ZTIsIDQuOC4wLCBNYXhpbiBC
-LiBKb2huIDxtYXhpbi5qb2huQGludGVsLmNvbT4KICAgICAgICBkaGNwLCA0LjMuNSwgSG9uZ3h1
-IEppYSA8aG9uZ3h1LmppYUB3aW5kcml2ZXIuY29tPgogICAgICAgIHhmODYtaW5wdXQtbW91c2Us
-IDEuOS4yLCBKdXNzaSBLdWtrb25lbiA8anVzc2kua3Vra29uZW5AaW50ZWwuY29tPgogICAgICAg
-IGxpYmlucHV0LCAxLjUuMiwgSnVzc2kgS3Vra29uZW4gPGp1c3NpLmt1a2tvbmVuQGludGVsLmNv
-bT4KICAgICAgICBtZW51LWNhY2hlLCAxLjAuMiwgSnVzc2kgS3Vra29uZW4gPGp1c3NpLmt1a2tv
-bmVuQGludGVsLmNvbT4KICAgICAgICBydWJ5LCAyLjIuNiwgTGVvbmFyZG8gU2FuZG92YWwgPGxl
-b25hcmRvLnNhbmRvdmFsLmdvbnphbGV6QGxpbnV4LmludGVsLmNvbT4KICAgICAgICBsaWJzb2x2
-LCAwLjYuMjQsIE1heGluIEIuIEpvaG4gPG1heGluLmpvaG5AaW50ZWwuY29tPgogICAgKiBGYWls
-ZWQoZG9fcGF0Y2gpOiA0CiAgICAgICAgb3BlbnNzbCwgMS4xLjBjLCBBbGV4YW5kZXIgS2FuYXZp
-biA8YWxleGFuZGVyLmthbmF2aW5AaW50ZWwuY29tPgogICAgICAgIGx0dG5nLXRvb2xzLCAyLjgu
-MitnaXRBVVRPSU5DKzQ4MjYyZjExN2QsIFJpY2hhcmQgUHVyZGllIDxyaWNoYXJkLnB1cmRpZUBs
-aW51eGZvdW5kYXRpb24ub3JnPgogICAgICAgIGJhc2gsIDQuNCwgSG9uZ3h1IEppYSA8aG9uZ3h1
-LmppYUB3aW5kcml2ZXIuY29tPgogICAgICAgIHN5c3Byb2YsIDMuMjIuMitnaXRBVVRPSU5DKzQ0
-MTJhNTY2YmUsIEFsZXhhbmRlciBLYW5hdmluIDxhbGV4YW5kZXIua2FuYXZpbkBpbnRlbC5jb20+
-CiAgICAqIEZhaWxlZChkb19mZXRjaCk6IDIKICAgICAgICBnaXQsIDIuMTAuMiwgUm9iZXJ0IFlh
-bmcgPGxpZXpoaS55YW5nQHdpbmRyaXZlci5jb20+CiAgICAgICAgcHl0aG9uMy1zZXR1cHRvb2xz
-LCAyOS4wLjAsIEVkd2luIFBsYXVjaHUgPGVkd2luLnBsYXVjaHUuY2FtYWNob0BsaW51eC5pbnRl
-bC5jb20+CiAgICAqIEZhaWxlZChkb19jb21waWxlKTogMTMKICAgICAgICBxdWlsdCwgMC42NSwg
-Um9iZXJ0IFlhbmcgPGxpZXpoaS55YW5nQHdpbmRyaXZlci5jb20+CiAgICAgICAgY29nbC0xLjAs
-IDEuMjIuMiwgSnVzc2kgS3Vra29uZW4gPGp1c3NpLmt1a2tvbmVuQGludGVsLmNvbT4KICAgICAg
-ICBsaWJ4a2Jjb21tb24sIDAuNy4wLCBKdXNzaSBLdWtrb25lbiA8anVzc2kua3Vra29uZW5AaW50
-ZWwuY29tPgogICAgICAgIGdudXBnLCAyLjEuMTYsIEhvbmd4dSBKaWEgPGhvbmd4dS5qaWFAd2lu
-ZHJpdmVyLmNvbT4KICAgICAgICBsaWJncGctZXJyb3IsIDEuMjUsIEhvbmd4dSBKaWEgPGhvbmd4
-dS5qaWFAd2luZHJpdmVyLmNvbT4KICAgICAgICBweXRob24tc2V0dXB0b29scywgMjkuMC4wLCBK
-b3NlIExhbWVnbyA8am9zZS5hLmxhbWVnb0BsaW51eC5pbnRlbC5jb20+CiAgICAgICAgZ3BnbWUs
-IDEuOC4wLCBIb25neHUgSmlhIDxob25neHUuamlhQHdpbmRyaXZlci5jb20+CiAgICAgICAgaWN1
-LCA1OC4xLCBBbGV4YW5kZXIgS2FuYXZpbiA8YWxleGFuZGVyLmthbmF2aW5AaW50ZWwuY29tPgog
-ICAgICAgIGxlc3MsIDQ4NywgUm9iZXJ0IFlhbmcgPGxpZXpoaS55YW5nQHdpbmRyaXZlci5jb20+
-CiAgICAgICAga2V4ZWMtdG9vbHMsIDIuMC4xMywgQWxleGFuZGVyIEthbmF2aW4gPGFsZXhhbmRl
-ci5rYW5hdmluQGludGVsLmNvbT4KICAgICAgICB0ZXhpbmZvLCA2LjMsIExlb25hcmRvIFNhbmRv
-dmFsIDxsZW9uYXJkby5zYW5kb3ZhbC5nb256YWxlekBsaW51eC5pbnRlbC5jb20+CiAgICAgICAg
-Y21ha2UsIDMuNy4wLCBBbGV4YW5kZXIgS2FuYXZpbiA8YWxleGFuZGVyLmthbmF2aW5AaW50ZWwu
-Y29tPgogICAgICAgIHdwYS1zdXBwbGljYW50LCAyLjYsIE1heGluIEIuIEpvaG4gPG1heGluLmpv
-aG5AaW50ZWwuY29tPgogICAgKiBGYWlsZWQoZG9fY29uZmlndXJlKTogOAogICAgICAgIHdlc3Rv
-biwgMS4xMi4wLCBKdXNzaSBLdWtrb25lbiA8anVzc2kua3Vra29uZW5AaW50ZWwuY29tPgogICAg
-ICAgIHhzZXJ2ZXIteG9yZywgMS4xOS4wLCBKdXNzaSBLdWtrb25lbiA8anVzc2kua3Vra29uZW5A
-aW50ZWwuY29tPgogICAgICAgIGdzdHJlYW1lcjEuMC1wbHVnaW5zLWJhZCwgMS4xMC4xLCBNYXhp
-biBCLiBKb2huIDxtYXhpbi5qb2huQGludGVsLmNvbT4KICAgICAgICB2dGUsIDAuNDYuMSwgSnVz
-c2kgS3Vra29uZW4gPGp1c3NpLmt1a2tvbmVuQGludGVsLmNvbT4KICAgICAgICBnc3RyZWFtZXIx
-LjAtcGx1Z2lucy1iYXNlLCAxLjEwLjEsIE1heGluIEIuIEpvaG4gPG1heGluLmpvaG5AaW50ZWwu
-Y29tPgogICAgICAgIGdzdHJlYW1lcjEuMC1wbHVnaW5zLWdvb2QsIDEuMTAuMSwgTWF4aW4gQi4g
-Sm9obiA8bWF4aW4uam9obkBpbnRlbC5jb20+CiAgICAgICAgZ3N0cmVhbWVyMS4wLXJ0c3Atc2Vy
-dmVyLCAxLjEwLjEsIE1heGluIEIuIEpvaG4gPG1heGluLmpvaG5AaW50ZWwuY29tPgogICAgICAg
-IHBpbmVudHJ5LCAxLjAuMCwgQXJtaW4gS3VzdGVyIDxha3VzdGVyODA4QGdtYWlsLmNvbT4KCiAg
-ICBUT1RBTDogYXR0ZW1wdGVkPTEwNSBzdWNjZWVkZWQ9NTcoNTQuMjklKSBmYWlsZWQ9NDgoNDUu
-NzElKQoKUmVjaXBlIHVwZ3JhZGUgc3RhdGlzdGljcyBwZXIgTWFpbnRhaW5lcjoKCiAgICBBcm1p
-biBLdXN0ZXIgPGFrdXN0ZXI4MDg6IGF0dGVtcHRlZD0yIHN1Y2NlZWRlZD0xKDUwLjAwJSkgZmFp
-bGVkPTEoNTAuMDAlKQogICAgSG9uZ3h1IEppYSA8aG9uZ3h1LmppYTogYXR0ZW1wdGVkPTEwIHN1
-Y2NlZWRlZD00KDQwLjAwJSkgZmFpbGVkPTYoNjAuMDAlKQogICAgTGVvbmFyZG8gU2FuZG92YWwg
-PGxlb25hcmRvLnNhbmRvdmFsLmdvbnphbGV6OiBhdHRlbXB0ZWQ9MiBzdWNjZWVkZWQ9MSg1MC4w
-MCUpIGZhaWxlZD0xKDUwLjAwJSkKICAgIE1hcmlhbm8gTG9wZXogPG1hcmlhbm8ubG9wZXo6IGF0
-dGVtcHRlZD0xIHN1Y2NlZWRlZD0xKDEwMC4wMCUpIGZhaWxlZD0wKDAuMDAlKQogICAgUm9zcyBC
-dXJ0b24gPHJvc3MuYnVydG9uOiBhdHRlbXB0ZWQ9MSBzdWNjZWVkZWQ9MCgwLjAwJSkgZmFpbGVk
-PTEoMTAwLjAwJSkKICAgIEFsZXhhbmRlciBLYW5hdmluIDxhbGV4YW5kZXIua2FuYXZpbjogYXR0
-ZW1wdGVkPTE3IHN1Y2NlZWRlZD05KDUyLjk0JSkgZmFpbGVkPTgoNDcuMDYlKQogICAgSnVzc2kg
-S3Vra29uZW4gPGp1c3NpLmt1a2tvbmVuOiBhdHRlbXB0ZWQ9MjEgc3VjY2VlZGVkPTE0KDY2LjY3
-JSkgZmFpbGVkPTcoMzMuMzMlKQogICAgUm9iZXJ0IFlhbmcgPGxpZXpoaS55YW5nOiBhdHRlbXB0
-ZWQ9MTEgc3VjY2VlZGVkPTUoNDUuNDUlKSBmYWlsZWQ9Nig1NC41NSUpCiAgICBSaWNoYXJkIFB1
-cmRpZSA8cmljaGFyZC5wdXJkaWU6IGF0dGVtcHRlZD0yIHN1Y2NlZWRlZD0xKDUwLjAwJSkgZmFp
-bGVkPTEoNTAuMDAlKQogICAgS2hlbSBSYWogPHJhai5raGVtOiBhdHRlbXB0ZWQ9MiBzdWNjZWVk
-ZWQ9MigxMDAuMDAlKSBmYWlsZWQ9MCgwLjAwJSkKICAgIE1hcmsgSGF0bGUgPG1hcmsuaGF0bGU6
-IGF0dGVtcHRlZD0yIHN1Y2NlZWRlZD0wKDAuMDAlKSBmYWlsZWQ9MigxMDAuMDAlKQogICAgRWR3
-aW4gUGxhdWNodSA8ZWR3aW4ucGxhdWNodS5jYW1hY2hvOiBhdHRlbXB0ZWQ9MSBzdWNjZWVkZWQ9
-MCgwLjAwJSkgZmFpbGVkPTEoMTAwLjAwJSkKICAgIERlbmdrZSBEdSA8ZGVuZ2tlLmR1OiBhdHRl
-bXB0ZWQ9MSBzdWNjZWVkZWQ9MSgxMDAuMDAlKSBmYWlsZWQ9MCgwLjAwJSkKICAgIERlbnlzIERt
-eXRyaXllbmtvIDxkZW5pczogYXR0ZW1wdGVkPTEgc3VjY2VlZGVkPTAoMC4wMCUpIGZhaWxlZD0x
-KDEwMC4wMCUpCiAgICBDaGVuIFFpIDxRaS5DaGVuOiBhdHRlbXB0ZWQ9MTIgc3VjY2VlZGVkPTgo
-NjYuNjclKSBmYWlsZWQ9NCgzMy4zMyUpCiAgICBBbsOtYmFsIExpbcOzbiA8YW5pYmFsLmxpbW9u
-OiBhdHRlbXB0ZWQ9MyBzdWNjZWVkZWQ9MCgwLjAwJSkgZmFpbGVkPTMoMTAwLjAwJSkKICAgIEpv
-c2UgTGFtZWdvIDxqb3NlLmEubGFtZWdvOiBhdHRlbXB0ZWQ9MSBzdWNjZWVkZWQ9MCgwLjAwJSkg
-ZmFpbGVkPTEoMTAwLjAwJSkKICAgIE1heGluIEIuIEpvaG4gPG1heGluLmpvaG46IGF0dGVtcHRl
-ZD0xNSBzdWNjZWVkZWQ9MTAoNjYuNjclKSBmYWlsZWQ9NSgzMy4zMyUpCg==
+I have a custom recipe for building some peculiarly-structured code:
+the Makefile is compiling source from ${S}/.. (i.e., parent directory of
+the ${S} directory).
 
---===============5512755610608466272==--
+It seems (not 100% sure of this, sstate is still "magic" to me) that the ss=
+tate
+hash only includes the files in ${S} (which is reasonable). Consequently,
+when something in ${S}/.. changes, the fetch step is not redone.
+
+Is there a way to tell sstate to include ${S}/.. in the source hash?
+
+Or am I completely off-track?
+
+MV
+
+--_000_30C2D590D16A5C46ADFE6521910377987FF86286AZUS1EXMB02glob_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-CA" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span lang=3D"EN-US">I have a custom recipe for buil=
+ding some peculiarly-structured code:<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">the Makefile is compiling sourc=
+e from ${S}/.. (i.e., parent directory of<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">the ${S} directory).<o:p></o:p>=
+</span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">It seems (not 100% sure of this=
+, sstate is still &#8220;magic&#8221; to me) that the sstate<o:p></o:p></sp=
+an></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">hash only includes the files in=
+ ${S} (which is reasonable). Consequently,<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">when something in ${S}/.. chang=
+es, the fetch step is not redone.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Is there a way to tell sstate t=
+o include ${S}/.. in the source hash?<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Or am I completely off-track?<o=
+:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">MV<o:p></o:p></span></p>
+</div>
+</body>
+</html>
+
+--_000_30C2D590D16A5C46ADFE6521910377987FF86286AZUS1EXMB02glob_--
