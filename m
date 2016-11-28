@@ -1,26 +1,63 @@
-Return-Path: <recipe-report@yoctoproject.org>
+Return-Path: <prvs=114075f102=holzmayr@rsi-elektrotechnik.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B1AEDE00905; Sun, 27 Nov 2016 21:32:08 -0800 (PST)
+	id AB26BE00997; Sun, 27 Nov 2016 22:44:20 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [81.169.146.218 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from packages.yoctoproject.org (unknown [198.145.29.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9CDFBE00848
-	for <yocto@yoctoproject.org>; Sun, 27 Nov 2016 21:32:01 -0800 (PST)
-Received: from packages.yoctoproject.org (localhost [IPv6:::1])
-	by packages.yoctoproject.org (Postfix) with ESMTP id 46E6784A4C43
-	for <yocto@yoctoproject.org>; Mon, 28 Nov 2016 00:32:00 -0500 (EST)
-MIME-Version: 1.0
-From: recipe-report@yoctoproject.org
-To: yocto@yoctoproject.org
-Date: Mon, 28 Nov 2016 05:32:00 -0000
-Message-ID: <20161128053200.12996.52200@packages.yoctoproject.org>
-Subject: [Recipe reporting system] Upgradable recipe name list
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+X-Greylist: delayed 186 seconds by postgrey-1.32 at yocto-www;
+	Sun, 27 Nov 2016 22:44:17 PST
+Received: from mo4-p00-ob.smtp.rzone.de (mo4-p00-ob.smtp.rzone.de
+	[81.169.146.218])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5F011E00905
+	for <yocto@yoctoproject.org>; Sun, 27 Nov 2016 22:44:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1480315456;
+	l=5671; s=domk; d=rsi-elektrotechnik.de;
+	h=Content-transfer-encoding:Content-type:Mime-version:In-Reply-To:
+	References:To:From:Subject:Date;
+	bh=nRUZe5mna/w1uYsHKgMEsAhrKLOSGv0VgwJ9LIajcJY=;
+	b=i/yY/jA4eM3aU1fmb21G56p++Xj+rumta3lG4p5nYtfgX4u9wWqT8bN4v+6Hwi+lVQ
+	RX3IlorJnIcg8XAX4uF5K4gNGn39qxwxEgqJkdhCSMQlCDwwYF7VqSSdpWpIVCW+Xt4u
+	jNhjh/LEPrQjo6lJdQpmnpDEc+yusEN9LdfGI=
+X-RZG-AUTH: :fz5RJhWIaexwuXGosGLfiBc0xYyi1Y5bd+wRKqrzPWwJyH/ODuV4n+N26eC0MVrEDIlpLg0lWA==
+X-RZG-CLASS-ID: mo00
+Received: from mail.rsi-elektrotechnik.de (p50933415.dip0.t-ipconnect.de
+	[80.147.52.21]) by smtp.strato.de (RZmta 39.9 AUTH)
+	with ESMTPSA id 9097e2sAS6f9kl1
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (curve secp384r1
+	with 384 ECDH bits, eq. 7680 bits RSA))
+	(Client did not present a certificate);
+	Mon, 28 Nov 2016 07:41:09 +0100 (CET)
+Received: from [x.x.x.x] by mail.rsi-elektrotechnik.de (Cipher
+	TLSv1.2:AES-:256) (MDaemon PRO v16.5.1) 
+	with ESMTPSA id md50000481381.msg; Mon, 28 Nov 2016 07:40:58 +0100
+X-MDRemoteIP: 80.147.52.21
+X-MDArrival-Date: Mon, 28 Nov 2016 07:40:58 +0100
+X-Authenticated-Sender: holzmayr@rsi-elektrotechnik.de
+X-Return-Path: prvs=114075f102=holzmayr@rsi-elektrotechnik.de
+X-Envelope-From: holzmayr@rsi-elektrotechnik.de
+User-Agent: Microsoft-MacOutlook/f.1c.1.161117
+Date: Mon, 28 Nov 2016 07:40:56 +0100
+From: Josef Holzmayr <holzmayr@rsi-elektrotechnik.de>
+To: david bensoussan <minipada@gmail.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Message-ID: <DEE62A05-CEDD-45BB-B349-9D856BD6ED29@rsi-elektrotechnik.de>
+Thread-Topic: [yocto] Libgfortran 6.2 doesn't compile
+References: <CALxi_JGQkW8hsJtD=O-niX9n6A37BOh4J=EzjD75FSi_X9h5UA@mail.gmail.com>
+In-Reply-To: <CALxi_JGQkW8hsJtD=O-niX9n6A37BOh4J=EzjD75FSi_X9h5UA@mail.gmail.com>
+Mime-version: 1.0
+Subject: Re: Libgfortran 6.2 doesn't compile
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,199 +69,137 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 28 Nov 2016 05:32:08 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 28 Nov 2016 06:44:20 -0000
+Content-type: text/plain;
+	charset="UTF-8"
+Content-transfer-encoding: quoted-printable
 
-This mail was sent out by Recipe reporting system.
+Hello David,
 
-This message list those recipes which need to be upgraded. If maintainers
-believe some of them needn't to upgrade at this time, they can fill
-RECIPE_NO_UPDATE_REASON in respective recipe file to ignore this remainder
-until newer upstream version was detected.
+Von: <yocto-bounces@yoctoproject.org> im Auftrag von david bensoussan <mini=
+pada@gmail.com>
+Datum: Samstag, 26. November 2016 um 14:32
+An: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Betreff: [yocto] Libgfortran 6.2 doesn't compile
 
-Example:
-RECIPE_NO_UPDATE_REASON = "Version 2.0 is unstable"
+Hello,
+I am trying to compile libgfortran 6.2 on Yocto (Morty version) but can't.
 
-You can check the detail information at:
+    DEBUG: SITE files ['endian-little', 'bit-32', 'ix86-common', 'common-li=
+nux', 'common-glibc', 'i586-linux', 'common']
+    DEBUG: Executing shell function do_compile
+    NOTE: make -j 8 MULTIBUILDTOP=3D/var/www/toaster/openembedded-core/buil=
+d-toaster-2/tmp-glibc/work/i586-oe-linux/libgf$
+    /bin/bash ../../../../../../../../work-shared/gcc-6.2.0-r0/gcc-6.2.0/li=
+bgfortran/mk-sik-inc.sh 'i586-oe-linux-gfort$
+    /bin/bash ../../../../../../../../work-shared/gcc-6.2.0-r0/gcc-6.2.0/li=
+bgfortran/mk-srk-inc.sh 'i586-oe-linux-gfort$
+    /bin/bash ../../../../../../../../work-shared/gcc-6.2.0-r0/gcc-6.2.0/li=
+bgfortran/mk-kinds-h.sh 'i586-oe-linux-gfort$
+    grep '^#' < ../../../../../../../../work-shared/gcc-6.2.0-r0/gcc-6.2.0/=
+libgfortran/c99_protos.h > c99_protos.inc
+    cp ../../../../../../../../work-shared/gcc-6.2.0-r0/gcc-6.2.0/libgfortr=
+an/config/fpu-387.h fpu-target.h
+    grep '^#define GFC_FPE_' < ../../../../../../../../work-shared/gcc-6.2.=
+0-r0/gcc-6.2.0/libgfortran/../gcc/fortran/li$
+    grep '^#define GFC_FPE_' < ../../../../../../../../work-shared/gcc-6.2.=
+0-r0/gcc-6.2.0/libgfortran/libgfortran.h >> $
+    grep '^#' < kinds.h > kinds.inc
+    make  all-am
+    make[1]: Entering directory `/var/www/toaster/openembedded-core/build-t=
+oaster-2/tmp-glibc/work/i586-oe-linux/libgfo$
+    /bin/bash ./libtool  --tag=3DCC   --mode=3Dcompile i586-oe-linux-gcc  -=
+m32 -march=3Di586 --sysroot=3D/var/www/toaster/opene$
+    /bin/bash ./libtool  --tag=3DCC   --mode=3Dcompile i586-oe-linux-gcc  -=
+m32 -march=3Di586 --sysroot=3D/var/www/toaster/opene$
+    /bin/bash ./libtool  --tag=3DCC   --mode=3Dcompile i586-oe-linux-gcc  -=
+m32 -march=3Di586 --sysroot=3D/var/www/toaster/opene$
+    /bin/bash ./libtool  --tag=3DCC   --mode=3Dcompile i586-oe-linux-gcc  -=
+m32 -march=3Di586 --sysroot=3D/var/www/toaster/opene$
+    /bin/bash ./libtool  --tag=3DCC   --mode=3Dcompile i586-oe-linux-gcc  -=
+m32 -march=3Di586 --sysroot=3D/var/www/toaster/opene$
+    /bin/bash ./libtool  --tag=3DCC   --mode=3Dcompile i586-oe-linux-gcc  -=
+m32 -march=3Di586 --sysroot=3D/var/www/toaster/opene$
+    /bin/bash ./libtool  --tag=3DCC   --mode=3Dcompile i586-oe-linux-gcc  -=
+m32 -march=3Di586 --sysroot=3D/var/www/toaster/opene$
+    /bin/bash ./libtool  --tag=3DCC   --mode=3Dcompile i586-oe-linux-gcc  -=
+m32 -march=3Di586 --sysroot=3D/var/www/toaster/opene$
+    libtool: compile:  i586-oe-linux-gcc -m32 -march=3Di586 --sysroot=3D/va=
+r/www/toaster/openembedded-core/build-toaster-2/$
+    libtool: compile:  i586-oe-linux-gcc -m32 -march=3Di586 --sysroot=3D/va=
+r/www/toaster/openembedded-core/build-toaster-2/$
+    libtool: compile:  i586-oe-linux-gcc -m32 -march=3Di586 --sysroot=3D/va=
+r/www/toaster/openembedded-core/build-toaster-2/$
+    libtool: compile:  i586-oe-linux-gcc -m32 -march=3Di586 --sysroot=3D/va=
+r/www/toaster/openembedded-core/build-toaster-2/$
+    libtool: compile:  i586-oe-linux-gcc -m32 -march=3Di586 --sysroot=3D/va=
+r/www/toaster/openembedded-core/build-toaster-2/$
+    libtool: compile:  i586-oe-linux-gcc -m32 -march=3Di586 --sysroot=3D/va=
+r/www/toaster/openembedded-core/build-toaster-2/$
+    libtool: compile:  i586-oe-linux-gcc -m32 -march=3Di586 --sysroot=3D/va=
+r/www/toaster/openembedded-core/build-toaster-2/$
+    libtool: compile:  i586-oe-linux-gcc -m32 -march=3Di586 --sysroot=3D/va=
+r/www/toaster/openembedded-core/build-toaster-2/$
+    ../../../../../../../../work-shared/gcc-6.2.0-r0/gcc-6.2.0/libgfortran/=
+runtime/backtrace.c:37:33: fatal error: back$
+     #include "backtrace-supported.h"
+                                     ^
+    compilation terminated.
+    make[1]: *** [backtrace.lo] Error 1
+    make[1]: *** Waiting for unfinished jobs....
 
-http://recipes.yoctoproject.org/
+Yes, lately libfortran has changed their own backtrace implementation for t=
+he generic one.
 
-Package               Version        Upstream version      Maintainer          NoUpgradeReason
---------------------  -------------  --------------------  ------------------  ------------------------------
-npth                  1.2            1.3                   Alexander Kanavin
-liberation-fonts      1.04           2.00.1                Alexander Kanavin   2.x depends on fontforge pa...
-gobject-introspec...  1.48.0         1.50.0                Alexander Kanavin
-iso-codes             3.70           3.71                  Alexander Kanavin
-ca-certificates       20160104       20161102              Alexander Kanavin
-openssl               1.0.2j         1.1.0c                Alexander Kanavin
-gnutls                3.5.5          3.5.6                 Alexander Kanavin
-vala                  0.34.2         0.34.3                Alexander Kanavin
-btrfs-tools           4.8.2          4.8.4                 Alexander Kanavin
-gnome-desktop3        3.22.1         3.22.2                Alexander Kanavin
-webkitgtk             2.14.1         2.14.2                Alexander Kanavin
-lighttpd              1.4.42         1.4.43                Alexander Kanavin
-ffmpeg                3.2            3.2.1                 Alexander Kanavin
-msmtp                 1.6.5          1.6.6                 Alexander Kanavin
-icu                   57.1           58.1                  Alexander Kanavin
-kexec-tools           2.0.12         2.0.13                Alexander Kanavin
-cmake                 3.6.2          3.7.0                 Alexander Kanavin
-sysprof               3.20.0+gitX    3.22.2+gitAUTOINC...  Alexander Kanavin
-cmake-native          3.6.2          3.7.0                 Alexander Kanavin
-epiphany              3.22.1         23.2.1                Alexander Kanavin
-tiff                  4.0.6          4.0.7                 Alexander Kanavin
-mkelfimage            4.0+gitX       4.5+gitAUTOINC+0b...  Alexander Kanavin   mkelfimage has been removed...
-perl                  5.22.1         5.24.1                Aníbal Limón
-apt                   1.2.12         1.3.1                 Aníbal Limón
-apt-native            1.2.12         1.3.1                 Aníbal Limón
-dpkg                  1.18.7         1.18.15               Aníbal Limón
-perl-native           5.22.1         5.24.1                Aníbal Limón
-pinentry              0.9.2          1.0.0                 Armin Kuster
-nettle                3.2            3.3                   Armin Kuster
-linux-libc-headers    4.8            4.8.11                Bruce Ashfield
-linux-yocto           4.8.6+gitX     4.8.10+gitAUTOINC...  Bruce Ashfield
-linux-yocto-rt        4.8.6+gitX     4.8.10+gitAUTOINC...  Bruce Ashfield
-linux-yocto-tiny      4.8.6+gitX     4.8.10+gitAUTOINC...  Bruce Ashfield
-systemd-bootchart     230+gitX       231+gitAUTOINC+9e...  Chen Qi
-pciutils              3.5.1          3.5.2                 Chen Qi
-systemd-boot          230+gitX       232+gitAUTOINC+a1...  Chen Qi
-dbus-glib             0.106          0.108                 Chen Qi
-dbus-test             1.10.10        1.10.12               Chen Qi
-dbus                  1.10.10        1.10.12               Chen Qi
-busybox               1.25.0+gitX    1.25.1+gitAUTOINC...  Chen Qi
-cups                  2.1.4          2.2.1                 Chen Qi
-systemd               230+gitX       232+gitAUTOINC+a1...  Chen Qi
-util-linux            2.28.1         2.29                  Chen Qi
-sudo                  1.8.17p1       1.8.18p1              Chen Qi
-sysstat               11.4.0         11.5.2                Chen Qi
-flex                  2.6.0          2.6.2                 Chen Qi
-diffutils             3.4            3.5                   Chen Qi
-build-appliance-i...  15.0.0         16.0.0                Cristian Iorga
-chkconfig             1.3.58         1.8                   Dengke Du           Version 1.5 requires selinux
-ltp                   20160126       20160920              Dengke Du
-u-boot-fw-utils       v2016.03+gitX  v2016.11+gitAUTOI...  Denys Dmytriyenko
-u-boot-mkimage        v2016.03+gitX  v2016.11+gitAUTOI...  Denys Dmytriyenko
-u-boot                v2016.03+gitX  v2016.11+gitAUTOI...  Denys Dmytriyenko
-python3-setuptools    22.0.5         29.0.1                Edwin Plauchu
-pax-utils             1.1.6          1.1.7                 Hongxu Jia
-createrepo            0.4.11         0.10.4                Hongxu Jia          Versions after 0.9.* use YU...
-gpgme                 1.6.0          1.8.0                 Hongxu Jia
-bash                  4.3.30         4.4                   Hongxu Jia
-ghostscript           9.19           9.20rc1               Hongxu Jia
-ncurses               6.0+20160625   6.0+20161126          Hongxu Jia
-man-pages             4.07           4.08                  Hongxu Jia
-pigz                  2.3.3          2.3.4                 Hongxu Jia
-elfutils              0.166          0.167                 Hongxu Jia
-libgpg-error          1.24           1.25                  Hongxu Jia
-dhcp                  4.3.4          4.3.5                 Hongxu Jia
-gnupg                 2.1.14         2.1.16                Hongxu Jia
-python-setuptools     22.0.5         29.0.1                Jose Lamego
-libinput              1.5.0          1.5.2                 Jussi Kukkonen
-weston                1.11.1         1.12.0                Jussi Kukkonen
-gtk-icon-utils-na...  3.22.1         3.22.4                Jussi Kukkonen
-xf86-video-intel      2.99.917+gitX  20040721+gitAUTOI...  Jussi Kukkonen
-xf86-input-evdev      2.10.3         2.10.4                Jussi Kukkonen
-xf86-input-keyboard   1.8.1          1.9.0                 Jussi Kukkonen
-xf86-input-synaptics  1.8.3          1.9.0                 Jussi Kukkonen
-xf86-video-omap       0.4.4          0.4.5                 Jussi Kukkonen
-xf86-video-vmware     13.1.0         13.2.1                Jussi Kukkonen
-glib-2.0              2.50.1         2.50.2                Jussi Kukkonen
-libxi                 1.7.7          1.7.8                 Jussi Kukkonen
-libxkbcommon          0.6.1          0.7.0                 Jussi Kukkonen
-xkeyboard-config      2.18           2.19                  Jussi Kukkonen
-vte                   0.44.2         0.46.1                Jussi Kukkonen
-xserver-xorg          1.18.4         1.19.0                Jussi Kukkonen
-shared-mime-info      1.6            1.7                   Jussi Kukkonen
-gtk+3                 3.22.1         3.22.4                Jussi Kukkonen
-libnotify             0.7.6          0.7.7                 Jussi Kukkonen
-cogl-1.0              1.22.0         1.22.2                Jussi Kukkonen
-gsettings-desktop...  3.20.0         3.22.0                Jussi Kukkonen
-xf86-input-mouse      1.9.1          1.9.2                 Jussi Kukkonen
-menu-cache            1.0.1          1.0.2                 Jussi Kukkonen
-mpfr                  3.1.4          3.1.5                 Khem Raj
-gdb                   7.11.1         7.12                  Khem Raj
-texinfo               6.0            6.3                   Leonardo Sandoval
-nfs-utils             1.3.3          1.3.4                 Mariano Lopez
-prelink               1.0+gitX       20151030.+gitAUTO...  Mark Hatle
-db                    6.0.35         6.2.23                Mark Hatle          latest db does not work wit...
-rpm                   5.4.16         5.4.17                Mark Hatle
-libpfm4               4.6.0          4.8.0                 Matthew McClintock
-gstreamer1.0-plug...  1.8.3          1.10.1                Maxin B. John
-bluez5                5.42           5.43                  Maxin B. John
-iproute2              4.7.0          4.8.0                 Maxin B. John
-ofono                 1.18           1.19                  Maxin B. John
-wpa-supplicant        2.5            2.6                   Maxin B. John
-gstreamer1.0-libav    1.8.3          1.10.1                Maxin B. John
-gstreamer1.0-plug...  1.8.3          1.10.1                Maxin B. John
-gstreamer1.0          1.8.3          1.10.1                Maxin B. John
-iw                    4.7            4.9                   Maxin B. John
-harfbuzz              1.3.2          1.3.3                 Maxin B. John
-sqlite3               3.14.1         3.15.1                Maxin B. John
-taglib                1.11           1.11.1                Maxin B. John
-libsolv               0.6.23         0.6.24                Maxin B. John
-gstreamer1.0-plug...  1.8.3          1.10.1                Maxin B. John
-ifupdown              0.8.2          0.8.16                Maxin B. John
-gstreamer1.0-rtsp...  1.8.3          1.10.1                Maxin B. John
-gstreamer1.0-omx      1.2.0          1.10.1                Maxin B. John
-gstreamer1.0-plug...  1.8.3          1.10.1                Maxin B. John
-gdb-cross-i586        7.11.1         7.12                  No maintainer
-gdb-cross-canadia...  7.11.1         7.12                  No maintainer
-lttng-tools           2.8.1+gitX     2.8.2+gitAUTOINC+...  Richard Purdie
-lttng-modules         2.8.0+gitX     2.8.3+gitAUTOINC+...  Richard Purdie
-tzcode-native         2016i          2016j                 Robert Yang
-quilt                 0.64           0.65                  Robert Yang
-strace                4.13           4.14                  Robert Yang
-debianutils           4.8            4.8.1                 Robert Yang
-hdparm                9.48           9.50                  Robert Yang
-less                  481            487                   Robert Yang
-slang                 2.3.0          2.3.1a                Robert Yang
-e2fsprogs             1.43           1.43.3                Robert Yang
-tzdata                2016i          2016j                 Robert Yang
-file                  5.28           5.29                  Robert Yang
-git                   2.9.3          2.10.2                Robert Yang
-guile                 2.0.12         2.0.13                Robert Yang
-mklibs-native         0.1.41         0.1.43                Robert Yang
-quilt-native          0.64           0.65                  Robert Yang
-lsbinitscripts        9.68           9.69                  Ross Burton
+I have default yocto configuration, I simply added:
 
-Upgradable count: 129
-Upgradable total count: 134
+    FORTRAN_forcevariable =3D ",fortran"
+   =20
+to enable it.
 
-The based commit is:
+Am I doing something wrong or is it unstable?
 
-commit 9f1fe76727e98e58fc9e46ea2b49cf5c0cb48e6c
-Author: Fabio Berton <fabio.berton@ossystems.com.br>
-Date:   Thu Nov 17 13:26:34 2016 -0200
+You are not doing wrong, the recipe is just broken at the moment. Unfortuna=
+tely, the fix seems to be non-trivial and nobody has gotten round to do it =
+yet. Basically the libgcc-recipe infrastructure has to be made libbacktrace=
+-aware.
 
-    libpcap: Fix build when PACKAGECONFIG ipv6 is not enable
-    
-    Add patches to fix error:
-    /
-    | ERROR: oe_runmake failed
-    | config.status: creating pcap-config.tmp
-    | mv pcap-config.tmp pcap-config
-    | chmod a+x pcap-config
-    | ../libpcap-1.8.1/gencode.c: In function 'pcap_compile':
-    | ../libpcap-1.8.1/gencode.c:693:8: error: 'compiler_state_t
-    | {aka struct _compiler_state}' has no member named 'ai'
-    |   cstate.ai = NULL;
-    |         ^
-    | ../libpcap-1.8.1/gencode.c: In function 'gen_gateway':
-    | ../libpcap-1.8.1/gencode.c:4914:13: error: 'cstate' undeclared
-    | (first use in this function)
-    |    bpf_error(cstate, "direction applied to 'gateway'");
-    |              ^~~~~~
-    | ../libpcap-1.8.1/gencode.c:4914:13: note: each undeclared identifier is
-    | reported only once for each function it appears in
-    \
-    
-    Patches were submitted to upstream [1]
-    
-    [1] https://github.com/the-tcpdump-group/libpcap/pull/541
-    
-    Signed-off-by: Fabio Berton <fabio.berton@ossystems.com.br>
-    Signed-off-by: Ross Burton <ross.burton@intel.com>
+The only workaround that I know of at the moment is to stick with a libgfor=
+tran version before the libbacktrace change, which should be anything from =
+the 5.X gcc family.
+Greetz
 
-Any problem, please contact Anibal Limon <anibal.limon@intel.com> 
+-- _______________________________________________ yocto mailing list yocto=
+@yoctoproject.org https://lists.yoctoproject.org/listinfo/yocto=20
+
+
+=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=
+=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94
+Josef Holzmayr
+Software Developer Embedded Systems
+
+Tel: +49 8444 9204-48
+Fax: +49 8444 9204-50
+
+R-S-I Elektrotechnik GmbH & Co. KG
+Woelkestrasse 11
+D-85301 Schweitenkirchen
+www.rsi-elektrotechnik.de
+
+=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=
+=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94
+Amtsgericht Ingolstadt =E2=80=93 GmbH: HRB 191328 =E2=80=93 KG: HRA 170393
+Gesch=C3=A4ftsf=C3=BChrer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
+Ust-IdNr: DE 128592548
+
+
+
+
+
+
+_____________________________________________________________
+Amtsgericht Ingolstadt - GmbH: HRB 191328 - KG: HRA 170363
+Gesch=C3=A4ftsf=C3=BChrer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
+USt-IdNr.: DE 128592548
 
 
