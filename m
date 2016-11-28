@@ -1,81 +1,26 @@
-Return-Path: <nick.wareing@aranzmedical.com>
+Return-Path: <recipe-report@yoctoproject.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 26550E00B71; Sun, 27 Nov 2016 13:08:03 -0800 (PST)
+	id B1AEDE00905; Sun, 27 Nov 2016 21:32:08 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [104.47.126.85 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 1046 seconds by postgrey-1.32 at yocto-www;
-	Sun, 27 Nov 2016 13:07:58 PST
-Received: from APC01-PU1-obe.outbound.protection.outlook.com
-	(mail-pu1apc01on0085.outbound.protection.outlook.com [104.47.126.85])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 53E96E00546
-	for <yocto@yoctoproject.org>; Sun, 27 Nov 2016 13:07:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=ARANZMedical.onmicrosoft.com; s=selector1-aranzmedical-com;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
-	bh=fiZFLxWDweqn97/GmsU4nEnFL4TIxzv8QYIBCdncyuk=;
-	b=nwrf2jKA++0VX66qUD82bzN1vHKqv8PnVF4FrxthYFyNRYmJW05abS3ERDP3e+ZpZqiSo8VeiwF2BfXSSnfEIXvfoNpw/aljYQDKHVg14Ml1+Jp97AB21tczENcQBBqMcv2tlim+OFC1LzPdzXc7K56G2cJcd6gXgH9Gca0Va6c=
-Received: from KL1PR0601MB1317.apcprd06.prod.outlook.com (10.169.68.139) by
-	KL1PR0601MB1317.apcprd06.prod.outlook.com (10.169.68.139) with
-	Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
-	15.1.747.13; Sun, 27 Nov 2016 20:34:28 +0000
-Received: from KL1PR0601MB1317.apcprd06.prod.outlook.com ([10.169.68.139]) by
-	KL1PR0601MB1317.apcprd06.prod.outlook.com ([10.169.68.139]) with
-	mapi id 15.01.0747.015; Sun, 27 Nov 2016 20:34:28 +0000
-From: Nick Wareing <nick.wareing@aranzmedical.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Send build information to Toaster
-Thread-Index: AQHSSO0+4P6j8k3bEEOtbF5WI2/CZg==
-Date: Sun, 27 Nov 2016 20:34:27 +0000
-Message-ID: <KL1PR0601MB1317A2F16B73FA12562D06F8F88B0@KL1PR0601MB1317.apcprd06.prod.outlook.com>
-Accept-Language: en-NZ, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=nick.wareing@aranzmedical.com; 
-x-originating-ip: [25.165.63.4]
-x-ms-office365-filtering-correlation-id: b5de6593-6f83-4d20-02d4-08d41704c8d8
-x-microsoft-antispam: UriScan:; BCL:0; PCL:0; RULEID:(22001);
-	SRVR:KL1PR0601MB1317; 
-x-microsoft-exchange-diagnostics: 1; KL1PR0601MB1317;
-	7:oUxDJoBSE6ggXRpU8Egjrh/0T91M2f66bZ28IOBDv0/EGqQYltXL3J5hkLThsApJPE63zaAjCdXQ/P5EpvQJVE7YqrdVUhV7VpwYSoqdQpBTAnpxLR7SquS/ece11mD5MTHxf/M6tQnp17B87brGbfJnpHVbhZLC/wkcyZPlgZnVtJEChlBWr+EEfuUy+lprAzGYA7rbsP1vNlag8l2iD2/A52d97g7SI5wrJX6/HTe6IqMjjdHYa7qU3X2dJdqNSmdv8oYfzf1wByGDXzdZ/f4iBWUIJU1zDMjhd8HvZSdvjsv/7p5lkGZJKFYuqGpsUW4x96mJgcALJOFJrEJqVcnZZJiY1CJAHG8Z/2NPFLYfMgGwZuaHrwBO94Iw7Vu1hfdgBWeEgsAg6ttau3ZxJMeUO6nRZXQ3klQ/BH9YKkG1txQiDK6bqdC+Rts++mZcaJVlAACCiIS9XK3mjx7rvA==
-x-microsoft-antispam-prvs: <KL1PR0601MB1317C1E38A9057E01F05919EF88B0@KL1PR0601MB1317.apcprd06.prod.outlook.com>
-x-exchange-antispam-report-test: UriScan:;
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(6060326)(6040361)(6045199)(601004)(2401047)(5005006)(8121501046)(3002001)(10201501046)(6041248)(6061324)(20161123560025)(20161123555025)(20161123564025)(20161123562025)(2016111802025)(6043046);
-	SRVR:KL1PR0601MB1317; BCL:0; PCL:0; RULEID:;
-	SRVR:KL1PR0601MB1317; 
-x-forefront-prvs: 0139052FDB
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10009020)(7916002)(199003)(53754006)(189002)(450100001)(122556002)(15974865002)(68736007)(6116002)(102836003)(3846002)(3280700002)(8676002)(3660700001)(81156014)(76576001)(2501003)(1730700003)(33656002)(5640700001)(81166006)(8936002)(50986999)(101416001)(54356999)(9686002)(2906002)(77096006)(39450400002)(105586002)(606004)(19627405001)(106116001)(106356001)(39410400001)(2900100001)(2351001)(39380400001)(39400400001)(6506003)(38730400001)(7846002)(7736002)(5660300001)(6606003)(74316002)(7696004)(110136003)(6916009)(97736004)(92566002)(189998001)(107886002)(86362001)(66066001)(7906003);
-	DIR:OUT; SFP:1101; SCL:1; SRVR:KL1PR0601MB1317;
-	H:KL1PR0601MB1317.apcprd06.prod.outlook.com; FPR:; SPF:None;
-	PTR:InfoNoRecords; A:1; MX:3; LANG:en; 
-received-spf: None (protection.outlook.com: aranzmedical.com does not
-	designate permitted sender hosts)
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from packages.yoctoproject.org (unknown [198.145.29.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9CDFBE00848
+	for <yocto@yoctoproject.org>; Sun, 27 Nov 2016 21:32:01 -0800 (PST)
+Received: from packages.yoctoproject.org (localhost [IPv6:::1])
+	by packages.yoctoproject.org (Postfix) with ESMTP id 46E6784A4C43
+	for <yocto@yoctoproject.org>; Mon, 28 Nov 2016 00:32:00 -0500 (EST)
 MIME-Version: 1.0
-X-OriginatorOrg: aranzmedical.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Nov 2016 20:34:27.9046 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 94829a09-ec16-4fed-bd09-30dec66f48c2
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR0601MB1317
-Subject: Send build information to Toaster
+From: recipe-report@yoctoproject.org
+To: yocto@yoctoproject.org
+Date: Mon, 28 Nov 2016 05:32:00 -0000
+Message-ID: <20161128053200.12996.52200@packages.yoctoproject.org>
+Subject: [Recipe reporting system] Upgradable recipe name list
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -87,122 +32,199 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 27 Nov 2016 21:08:03 -0000
-Content-Language: en-NZ
-Content-Type: multipart/alternative;
-	boundary="_000_KL1PR0601MB1317A2F16B73FA12562D06F8F88B0KL1PR0601MB1317_"
+X-List-Received-Date: Mon, 28 Nov 2016 05:32:08 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
---_000_KL1PR0601MB1317A2F16B73FA12562D06F8F88B0KL1PR0601MB1317_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+This mail was sent out by Recipe reporting system.
 
-Hi all,
+This message list those recipes which need to be upgraded. If maintainers
+believe some of them needn't to upgrade at this time, they can fill
+RECIPE_NO_UPDATE_REASON in respective recipe file to ignore this remainder
+until newer upstream version was detected.
+
+Example:
+RECIPE_NO_UPDATE_REASON = "Version 2.0 is unstable"
+
+You can check the detail information at:
+
+http://recipes.yoctoproject.org/
+
+Package               Version        Upstream version      Maintainer          NoUpgradeReason
+--------------------  -------------  --------------------  ------------------  ------------------------------
+npth                  1.2            1.3                   Alexander Kanavin
+liberation-fonts      1.04           2.00.1                Alexander Kanavin   2.x depends on fontforge pa...
+gobject-introspec...  1.48.0         1.50.0                Alexander Kanavin
+iso-codes             3.70           3.71                  Alexander Kanavin
+ca-certificates       20160104       20161102              Alexander Kanavin
+openssl               1.0.2j         1.1.0c                Alexander Kanavin
+gnutls                3.5.5          3.5.6                 Alexander Kanavin
+vala                  0.34.2         0.34.3                Alexander Kanavin
+btrfs-tools           4.8.2          4.8.4                 Alexander Kanavin
+gnome-desktop3        3.22.1         3.22.2                Alexander Kanavin
+webkitgtk             2.14.1         2.14.2                Alexander Kanavin
+lighttpd              1.4.42         1.4.43                Alexander Kanavin
+ffmpeg                3.2            3.2.1                 Alexander Kanavin
+msmtp                 1.6.5          1.6.6                 Alexander Kanavin
+icu                   57.1           58.1                  Alexander Kanavin
+kexec-tools           2.0.12         2.0.13                Alexander Kanavin
+cmake                 3.6.2          3.7.0                 Alexander Kanavin
+sysprof               3.20.0+gitX    3.22.2+gitAUTOINC...  Alexander Kanavin
+cmake-native          3.6.2          3.7.0                 Alexander Kanavin
+epiphany              3.22.1         23.2.1                Alexander Kanavin
+tiff                  4.0.6          4.0.7                 Alexander Kanavin
+mkelfimage            4.0+gitX       4.5+gitAUTOINC+0b...  Alexander Kanavin   mkelfimage has been removed...
+perl                  5.22.1         5.24.1                Aníbal Limón
+apt                   1.2.12         1.3.1                 Aníbal Limón
+apt-native            1.2.12         1.3.1                 Aníbal Limón
+dpkg                  1.18.7         1.18.15               Aníbal Limón
+perl-native           5.22.1         5.24.1                Aníbal Limón
+pinentry              0.9.2          1.0.0                 Armin Kuster
+nettle                3.2            3.3                   Armin Kuster
+linux-libc-headers    4.8            4.8.11                Bruce Ashfield
+linux-yocto           4.8.6+gitX     4.8.10+gitAUTOINC...  Bruce Ashfield
+linux-yocto-rt        4.8.6+gitX     4.8.10+gitAUTOINC...  Bruce Ashfield
+linux-yocto-tiny      4.8.6+gitX     4.8.10+gitAUTOINC...  Bruce Ashfield
+systemd-bootchart     230+gitX       231+gitAUTOINC+9e...  Chen Qi
+pciutils              3.5.1          3.5.2                 Chen Qi
+systemd-boot          230+gitX       232+gitAUTOINC+a1...  Chen Qi
+dbus-glib             0.106          0.108                 Chen Qi
+dbus-test             1.10.10        1.10.12               Chen Qi
+dbus                  1.10.10        1.10.12               Chen Qi
+busybox               1.25.0+gitX    1.25.1+gitAUTOINC...  Chen Qi
+cups                  2.1.4          2.2.1                 Chen Qi
+systemd               230+gitX       232+gitAUTOINC+a1...  Chen Qi
+util-linux            2.28.1         2.29                  Chen Qi
+sudo                  1.8.17p1       1.8.18p1              Chen Qi
+sysstat               11.4.0         11.5.2                Chen Qi
+flex                  2.6.0          2.6.2                 Chen Qi
+diffutils             3.4            3.5                   Chen Qi
+build-appliance-i...  15.0.0         16.0.0                Cristian Iorga
+chkconfig             1.3.58         1.8                   Dengke Du           Version 1.5 requires selinux
+ltp                   20160126       20160920              Dengke Du
+u-boot-fw-utils       v2016.03+gitX  v2016.11+gitAUTOI...  Denys Dmytriyenko
+u-boot-mkimage        v2016.03+gitX  v2016.11+gitAUTOI...  Denys Dmytriyenko
+u-boot                v2016.03+gitX  v2016.11+gitAUTOI...  Denys Dmytriyenko
+python3-setuptools    22.0.5         29.0.1                Edwin Plauchu
+pax-utils             1.1.6          1.1.7                 Hongxu Jia
+createrepo            0.4.11         0.10.4                Hongxu Jia          Versions after 0.9.* use YU...
+gpgme                 1.6.0          1.8.0                 Hongxu Jia
+bash                  4.3.30         4.4                   Hongxu Jia
+ghostscript           9.19           9.20rc1               Hongxu Jia
+ncurses               6.0+20160625   6.0+20161126          Hongxu Jia
+man-pages             4.07           4.08                  Hongxu Jia
+pigz                  2.3.3          2.3.4                 Hongxu Jia
+elfutils              0.166          0.167                 Hongxu Jia
+libgpg-error          1.24           1.25                  Hongxu Jia
+dhcp                  4.3.4          4.3.5                 Hongxu Jia
+gnupg                 2.1.14         2.1.16                Hongxu Jia
+python-setuptools     22.0.5         29.0.1                Jose Lamego
+libinput              1.5.0          1.5.2                 Jussi Kukkonen
+weston                1.11.1         1.12.0                Jussi Kukkonen
+gtk-icon-utils-na...  3.22.1         3.22.4                Jussi Kukkonen
+xf86-video-intel      2.99.917+gitX  20040721+gitAUTOI...  Jussi Kukkonen
+xf86-input-evdev      2.10.3         2.10.4                Jussi Kukkonen
+xf86-input-keyboard   1.8.1          1.9.0                 Jussi Kukkonen
+xf86-input-synaptics  1.8.3          1.9.0                 Jussi Kukkonen
+xf86-video-omap       0.4.4          0.4.5                 Jussi Kukkonen
+xf86-video-vmware     13.1.0         13.2.1                Jussi Kukkonen
+glib-2.0              2.50.1         2.50.2                Jussi Kukkonen
+libxi                 1.7.7          1.7.8                 Jussi Kukkonen
+libxkbcommon          0.6.1          0.7.0                 Jussi Kukkonen
+xkeyboard-config      2.18           2.19                  Jussi Kukkonen
+vte                   0.44.2         0.46.1                Jussi Kukkonen
+xserver-xorg          1.18.4         1.19.0                Jussi Kukkonen
+shared-mime-info      1.6            1.7                   Jussi Kukkonen
+gtk+3                 3.22.1         3.22.4                Jussi Kukkonen
+libnotify             0.7.6          0.7.7                 Jussi Kukkonen
+cogl-1.0              1.22.0         1.22.2                Jussi Kukkonen
+gsettings-desktop...  3.20.0         3.22.0                Jussi Kukkonen
+xf86-input-mouse      1.9.1          1.9.2                 Jussi Kukkonen
+menu-cache            1.0.1          1.0.2                 Jussi Kukkonen
+mpfr                  3.1.4          3.1.5                 Khem Raj
+gdb                   7.11.1         7.12                  Khem Raj
+texinfo               6.0            6.3                   Leonardo Sandoval
+nfs-utils             1.3.3          1.3.4                 Mariano Lopez
+prelink               1.0+gitX       20151030.+gitAUTO...  Mark Hatle
+db                    6.0.35         6.2.23                Mark Hatle          latest db does not work wit...
+rpm                   5.4.16         5.4.17                Mark Hatle
+libpfm4               4.6.0          4.8.0                 Matthew McClintock
+gstreamer1.0-plug...  1.8.3          1.10.1                Maxin B. John
+bluez5                5.42           5.43                  Maxin B. John
+iproute2              4.7.0          4.8.0                 Maxin B. John
+ofono                 1.18           1.19                  Maxin B. John
+wpa-supplicant        2.5            2.6                   Maxin B. John
+gstreamer1.0-libav    1.8.3          1.10.1                Maxin B. John
+gstreamer1.0-plug...  1.8.3          1.10.1                Maxin B. John
+gstreamer1.0          1.8.3          1.10.1                Maxin B. John
+iw                    4.7            4.9                   Maxin B. John
+harfbuzz              1.3.2          1.3.3                 Maxin B. John
+sqlite3               3.14.1         3.15.1                Maxin B. John
+taglib                1.11           1.11.1                Maxin B. John
+libsolv               0.6.23         0.6.24                Maxin B. John
+gstreamer1.0-plug...  1.8.3          1.10.1                Maxin B. John
+ifupdown              0.8.2          0.8.16                Maxin B. John
+gstreamer1.0-rtsp...  1.8.3          1.10.1                Maxin B. John
+gstreamer1.0-omx      1.2.0          1.10.1                Maxin B. John
+gstreamer1.0-plug...  1.8.3          1.10.1                Maxin B. John
+gdb-cross-i586        7.11.1         7.12                  No maintainer
+gdb-cross-canadia...  7.11.1         7.12                  No maintainer
+lttng-tools           2.8.1+gitX     2.8.2+gitAUTOINC+...  Richard Purdie
+lttng-modules         2.8.0+gitX     2.8.3+gitAUTOINC+...  Richard Purdie
+tzcode-native         2016i          2016j                 Robert Yang
+quilt                 0.64           0.65                  Robert Yang
+strace                4.13           4.14                  Robert Yang
+debianutils           4.8            4.8.1                 Robert Yang
+hdparm                9.48           9.50                  Robert Yang
+less                  481            487                   Robert Yang
+slang                 2.3.0          2.3.1a                Robert Yang
+e2fsprogs             1.43           1.43.3                Robert Yang
+tzdata                2016i          2016j                 Robert Yang
+file                  5.28           5.29                  Robert Yang
+git                   2.9.3          2.10.2                Robert Yang
+guile                 2.0.12         2.0.13                Robert Yang
+mklibs-native         0.1.41         0.1.43                Robert Yang
+quilt-native          0.64           0.65                  Robert Yang
+lsbinitscripts        9.68           9.69                  Ross Burton
+
+Upgradable count: 129
+Upgradable total count: 134
+
+The based commit is:
+
+commit 9f1fe76727e98e58fc9e46ea2b49cf5c0cb48e6c
+Author: Fabio Berton <fabio.berton@ossystems.com.br>
+Date:   Thu Nov 17 13:26:34 2016 -0200
+
+    libpcap: Fix build when PACKAGECONFIG ipv6 is not enable
+    
+    Add patches to fix error:
+    /
+    | ERROR: oe_runmake failed
+    | config.status: creating pcap-config.tmp
+    | mv pcap-config.tmp pcap-config
+    | chmod a+x pcap-config
+    | ../libpcap-1.8.1/gencode.c: In function 'pcap_compile':
+    | ../libpcap-1.8.1/gencode.c:693:8: error: 'compiler_state_t
+    | {aka struct _compiler_state}' has no member named 'ai'
+    |   cstate.ai = NULL;
+    |         ^
+    | ../libpcap-1.8.1/gencode.c: In function 'gen_gateway':
+    | ../libpcap-1.8.1/gencode.c:4914:13: error: 'cstate' undeclared
+    | (first use in this function)
+    |    bpf_error(cstate, "direction applied to 'gateway'");
+    |              ^~~~~~
+    | ../libpcap-1.8.1/gencode.c:4914:13: note: each undeclared identifier is
+    | reported only once for each function it appears in
+    \
+    
+    Patches were submitted to upstream [1]
+    
+    [1] https://github.com/the-tcpdump-group/libpcap/pull/541
+    
+    Signed-off-by: Fabio Berton <fabio.berton@ossystems.com.br>
+    Signed-off-by: Ross Burton <ross.burton@intel.com>
+
+Any problem, please contact Anibal Limon <anibal.limon@intel.com> 
 
 
-A dumb question which I feel like I should be able to work out, but can't: =
-how do I send build information to Toaster?
-
-
-I have setup Toaster in Analysis mode on one machine (with MySQL and Apache=
-). I'd now like to forward build information from another machine which I a=
-m running bitbake builds on. How do I do that?
-
-
-I've read the documentation: http://www.yoctoproject.org/docs/latest/toaste=
-r-manual/toaster-manual.html, but can't seem to find the answer there.
-
-
-Cheers,
-
-Nick
-
-Toaster User Manual - Yocto Project<http://www.yoctoproject.org/docs/latest=
-/toaster-manual/toaster-manual.html>
-www.yoctoproject.org
-Note For the latest version of this manual associated with this Yocto Proje=
-ct release, see the Toaster User Manual from the Yocto Project website.
-
-
-
---_000_KL1PR0601MB1317A2F16B73FA12562D06F8F88B0KL1PR0601MB1317_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
-</head>
-<body dir=3D"ltr">
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
--family:Calibri,Arial,Helvetica,sans-serif;" dir=3D"ltr">
-<p>Hi all,</p>
-<p><br>
-</p>
-<p>A dumb question which I feel like I should be able to work out, but can'=
-t: how do I send build information to Toaster?</p>
-<p><br>
-</p>
-<p>I have setup Toaster in Analysis mode on one machine (with MySQL and Apa=
-che). I'd now like to forward build information from another machine which =
-I am running bitbake builds on. How do I do that?</p>
-<p><br>
-</p>
-<p>I've read the documentation:&nbsp;<a href=3D"http://www.yoctoproject.org=
-/docs/latest/toaster-manual/toaster-manual.html" class=3D"OWAAutoLink" id=
-=3D"LPlnk408118" previewremoved=3D"true">http://www.yoctoproject.org/docs/l=
-atest/toaster-manual/toaster-manual.html</a>, but
- can't seem to find the answer there.</p>
-<p><br>
-</p>
-<p>Cheers,</p>
-<p>Nick</p>
-<div id=3D"LPBorder_GT_14802788031170.9909668390700497" style=3D"margin-bot=
-tom: 20px; overflow: auto; width: 100%; text-indent: 0px;">
-<table id=3D"LPContainer_14802788031070.9658710338591985" cellspacing=3D"0"=
- style=3D"width: 90%; background-color: rgb(255, 255, 255); position: relat=
-ive; overflow: auto; padding-top: 20px; padding-bottom: 20px; margin-top: 2=
-0px; border-top: 1px dotted rgb(200, 200, 200); border-bottom: 1px dotted r=
-gb(200, 200, 200);">
-<tbody>
-<tr valign=3D"top" style=3D"border-spacing: 0px;">
-<td id=3D"TextCell_14802788031110.10710435353222714" colspan=3D"2" style=3D=
-"vertical-align: top; position: relative; padding: 0px; display: table-cell=
-;">
-<div id=3D"LPRemovePreviewContainer_14802788031110.34853861123306396"></div=
->
-<div id=3D"LPTitle_14802788031110.02500769105417766" style=3D"top: 0px; col=
-or: rgb(0, 120, 215); font-weight: normal; font-size: 21px; font-family: wf=
-_segoe-ui_light, &quot;Segoe UI Light&quot;, &quot;Segoe WP Light&quot;, &q=
-uot;Segoe UI&quot;, &quot;Segoe WP&quot;, Tahoma, Arial, sans-serif; line-h=
-eight: 21px;">
-<a id=3D"LPUrlAnchor_14802788031130.7810309958433876" href=3D"http://www.yo=
-ctoproject.org/docs/latest/toaster-manual/toaster-manual.html" target=3D"_b=
-lank" style=3D"text-decoration: none;">Toaster User Manual - Yocto Project<=
-/a></div>
-<div id=3D"LPMetadata_14802788031130.02885058736056112" style=3D"margin: 10=
-px 0px 16px; color: rgb(102, 102, 102); font-weight: normal; font-family: w=
-f_segoe-ui_normal, &quot;Segoe UI&quot;, &quot;Segoe WP&quot;, Tahoma, Aria=
-l, sans-serif; font-size: 14px; line-height: 14px;">
-www.yoctoproject.org</div>
-<div id=3D"LPDescription_14802788031150.6242601417104336" style=3D"display:=
- block; color: rgb(102, 102, 102); font-weight: normal; font-family: wf_seg=
-oe-ui_normal, &quot;Segoe UI&quot;, &quot;Segoe WP&quot;, Tahoma, Arial, sa=
-ns-serif; font-size: 14px; line-height: 20px; max-height: 100px; overflow: =
-hidden;">
-Note For the latest version of this manual associated with this Yocto Proje=
-ct release, see the Toaster User Manual from the Yocto Project website.</di=
-v>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<br>
-</div>
-</body>
-</html>
-
---_000_KL1PR0601MB1317A2F16B73FA12562D06F8F88B0KL1PR0601MB1317_--
