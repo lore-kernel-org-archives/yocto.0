@@ -1,40 +1,71 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2ECA9E00C41; Mon, 28 Nov 2016 13:34:49 -0800 (PST)
+	id F1991E00C41; Mon, 28 Nov 2016 15:16:14 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.83.66 listed in dnsbl.sorbs.net]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [192.55.52.43 listed in list.dnswl.org]
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DE264E00C2D
-	for <yocto@yoctoproject.org>; Mon, 28 Nov 2016 13:34:46 -0800 (PST)
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-	by fmsmga105.fm.intel.com with ESMTP; 28 Nov 2016 13:34:45 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.31,565,1473145200"; d="scan'208";a="35245488"
-Received: from schan1-mobl1.gar.corp.intel.com (HELO
-	peggleto-mobl.ger.corp.intel.com) ([10.255.189.70])
-	by orsmga004.jf.intel.com with ESMTP; 28 Nov 2016 13:34:43 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: "Vuille, Martin (Martin)" <vmartin@avaya.com>
-Date: Tue, 29 Nov 2016 10:34:40 +1300
-Message-ID: <1649800.RsDOb5Ucbu@peggleto-mobl.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.14.10 (Linux/4.8.8-100.fc23.x86_64; KDE/4.14.20; x86_64; ;
-	)
-In-Reply-To: <30C2D590D16A5C46ADFE6521910377987FF8633B@AZ-US1EXMB02.global.avaya.com>
-References: <30C2D590D16A5C46ADFE6521910377987FF86286@AZ-US1EXMB02.global.avaya.com>
-	<CAJTo0LaSCbZH75s_n=wURx1aNe1HKRN=EajOvw13hu_h=GpSAA@mail.gmail.com>
-	<30C2D590D16A5C46ADFE6521910377987FF8633B@AZ-US1EXMB02.global.avaya.com>
-MIME-Version: 1.0
+	*      [74.125.83.66 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pg0-f66.google.com (mail-pg0-f66.google.com [74.125.83.66])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1F075E00C2D
+	for <yocto@yoctoproject.org>; Mon, 28 Nov 2016 15:16:13 -0800 (PST)
+Received: by mail-pg0-f66.google.com with SMTP id p66so14368411pga.2
+	for <yocto@yoctoproject.org>; Mon, 28 Nov 2016 15:16:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:subject:from:in-reply-to:date:cc
+	:content-transfer-encoding:message-id:references:to;
+	bh=rWBHQfJaTXv44gT2XaTVFV/LqVYTuT1Zv8kJ1WGFbMM=;
+	b=OlVjKVd8iqjH/yZR0D6QabA3A+EUiOSJv+4jknkf7iJDJg7RTYm+OcksYICmpnlBhn
+	F60quJv5BcHpFchVx8kmyTtTevEuhSwm0+db06+MLwqTJo0Jc0z4Wm6vklWGHHJF8cnz
+	htciP+wTtVh81oa7elVQ/iYIfruNHfzmuLGOsSHT25XprBhL+T9rQuaQ9t3GVFwcQGiu
+	v3g+TmBOZ9d+MhtJa3vDbRjz71/pda72xS0bm8mzWReJNgUsOmZ3UnWujIds2IHN2yLK
+	T6FBUJnKejqnBfHuureiDlSkIMESoTMbwPxnFtB+gfNWkCW5kl4RoVAaDYn5xibOCHE9
+	aDHQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
+	:content-transfer-encoding:message-id:references:to;
+	bh=rWBHQfJaTXv44gT2XaTVFV/LqVYTuT1Zv8kJ1WGFbMM=;
+	b=BGwSHuDW4DsZJ6aJm28CAo7ilkGt6Jv9780CRxrrmZUW5PMlfYT0noZUSc3WDzoq+z
+	caRehG7p8Zu9vLHM/DWXmhwbQzT5Cr92BYoS95HGb9Dt88x93w4AF2jc8ng5+ujr4uuH
+	YKB2pvR4vZoH/h9jRKyRWIBtQeFN0iF/MLQMU2FI+1K+A8GwrxlA/oyJOWRPn2z7DBi3
+	x+sk/0aFib5OT4qtdKv6HH98uIFdPnbzYD37H7am8hmTEOdHFttFbAgrhnwfC8n8DeFd
+	LKrCrtTw2Oz6qXoPmiRzAfFuUA5SmAMzVEz+AlN4oPDlSKzYKF7xh2WSpHRcMUDjbz/G
+	xlrA==
+X-Gm-Message-State: AKaTC00j01wGMarxAhgfzbkc2Li/Tx1hCu3FDFkdolnXYk1oQCfP7ukp87xX3MRCFcqi2w==
+X-Received: by 10.84.150.231 with SMTP id h94mr55366426plh.3.1480374973316;
+	Mon, 28 Nov 2016 15:16:13 -0800 (PST)
+Received: from ?IPv6:2601:646:8882:b8c:f08c:19b4:e718:7b0b?
+	([2601:646:8882:b8c:f08c:19b4:e718:7b0b])
+	by smtp.gmail.com with ESMTPSA id
+	p67sm75399589pfb.2.2016.11.28.15.16.12
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Mon, 28 Nov 2016 15:16:12 -0800 (PST)
+Mime-Version: 1.0 (Mac OS X Mail 10.1 \(3251\))
+From: Khem Raj <raj.khem@gmail.com>
+In-Reply-To: <20161128190745.18053-1-twoerner@gmail.com>
+Date: Mon, 28 Nov 2016 15:16:11 -0800
+Message-Id: <2ACF0BDF-0A7B-4A0E-BC20-B6B222F1644A@gmail.com>
+References: <20161128190745.18053-1-twoerner@gmail.com>
+To: Trevor Woerner <twoerner@gmail.com>
+X-Mailer: Apple Mail (2.3251)
 Cc: yocto@yoctoproject.org
-Subject: Re: What source is included in sstate hash, how to change?
+Subject: Re: [meta-raspberrypi][PATCH] linux-raspberrypi-base.bbclass: allow -rt kernels
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,44 +77,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 28 Nov 2016 21:34:49 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Mon, 28 Nov 2016 23:16:15 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
-Hi Martin,
 
-On Mon, 28 Nov 2016 16:16:30 Vuille, Martin wrote:
-> > -----Original Message-----
-> > From: Burton, Ross [mailto:ross.burton@intel.com]
-> > 
-> > On 28 November 2016 at 15:02, Vuille, Martin (Martin)
-> > <vmartin@avaya.com> wrote:
-> > Or am I completely off-track?
-> > 
-> > It will track the md5 of files mentioned in SRC_URI, but if a file is
-> > generated dynamically then bitbake may not be aware of it.
-> > 
-> > Can you share a minimal example?
-> 
-> Unfortunately, that would be difficult.
-> 
-> But the SRC_URI does cover ${S}/.., so my assumption must be incorrect.
+> On Nov 28, 2016, at 11:07 AM, Trevor Woerner <twoerner@gmail.com> =
+wrote:
+>=20
+> If the PREEMPT_RT patch is applied, the kernel version becomes, say,
+> 4.4.32-rt43 (instead of 4.4.32). This confuses the version handling =
+code in
+> this class. Update how the version string is processed so that =
+trailing rt-
+> strings are properly handled, in addition to handling the existing =
+cases.
+>=20
 
-If what you mean is you want to change the source in the work directory and 
-have the recipe rebuild - I would strongly advise using the externalsrc class 
-instead, since it's designed to enable that situation and avoid losing your 
-changes - since the source unpacked by the build system does get removed under 
-certain circumstances and you don't want your changes to go with it.
+This probably will solve the issue I see with 4.9-rcX recipes that are =
+in my tree on kraj/master
 
-Alternatively, if your configuration is temporary while you are making changes 
-to the source (or can be) then it would be worth checking out "devtool modify" 
-since that helps you build a workflow around making those changes.
+> Signed-off-by: Trevor Woerner <twoerner@gmail.com>
+> ---
+> classes/linux-raspberrypi-base.bbclass | 2 +-
+> 1 file changed, 1 insertion(+), 1 deletion(-)
+>=20
+> diff --git a/classes/linux-raspberrypi-base.bbclass =
+b/classes/linux-raspberrypi-base.bbclass
+> index 3a6e33d..fecac30 100644
+> --- a/classes/linux-raspberrypi-base.bbclass
+> +++ b/classes/linux-raspberrypi-base.bbclass
+> @@ -15,7 +15,7 @@ def get_dts(d, ver=3DNone):
+>         ver =3D get_kernelversion_file(staging_dir)
+>=20
+>     if ver is not None:
+> -        min_ver =3D ver.split('.', 3)
+> +        min_ver =3D re.split(r'[.-]+', ver, maxsplit=3D3)
+>     else:
+>         return dts
+>=20
+> --=20
+> 2.10.2
+>=20
+> --=20
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-Cheers,
-Paul
-
--- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
 
