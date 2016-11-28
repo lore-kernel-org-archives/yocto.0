@@ -1,63 +1,52 @@
-Return-Path: <prvs=114075f102=holzmayr@rsi-elektrotechnik.de>
+Return-Path: <andre.draszik@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AB26BE00997; Sun, 27 Nov 2016 22:44:20 -0800 (PST)
+	id 602CBE00924; Mon, 28 Nov 2016 01:31:37 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [81.169.146.218 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.210.193 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.210.193 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 186 seconds by postgrey-1.32 at yocto-www;
-	Sun, 27 Nov 2016 22:44:17 PST
-Received: from mo4-p00-ob.smtp.rzone.de (mo4-p00-ob.smtp.rzone.de
-	[81.169.146.218])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5F011E00905
-	for <yocto@yoctoproject.org>; Sun, 27 Nov 2016 22:44:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1480315456;
-	l=5671; s=domk; d=rsi-elektrotechnik.de;
-	h=Content-transfer-encoding:Content-type:Mime-version:In-Reply-To:
-	References:To:From:Subject:Date;
-	bh=nRUZe5mna/w1uYsHKgMEsAhrKLOSGv0VgwJ9LIajcJY=;
-	b=i/yY/jA4eM3aU1fmb21G56p++Xj+rumta3lG4p5nYtfgX4u9wWqT8bN4v+6Hwi+lVQ
-	RX3IlorJnIcg8XAX4uF5K4gNGn39qxwxEgqJkdhCSMQlCDwwYF7VqSSdpWpIVCW+Xt4u
-	jNhjh/LEPrQjo6lJdQpmnpDEc+yusEN9LdfGI=
-X-RZG-AUTH: :fz5RJhWIaexwuXGosGLfiBc0xYyi1Y5bd+wRKqrzPWwJyH/ODuV4n+N26eC0MVrEDIlpLg0lWA==
-X-RZG-CLASS-ID: mo00
-Received: from mail.rsi-elektrotechnik.de (p50933415.dip0.t-ipconnect.de
-	[80.147.52.21]) by smtp.strato.de (RZmta 39.9 AUTH)
-	with ESMTPSA id 9097e2sAS6f9kl1
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (curve secp384r1
-	with 384 ECDH bits, eq. 7680 bits RSA))
-	(Client did not present a certificate);
-	Mon, 28 Nov 2016 07:41:09 +0100 (CET)
-Received: from [x.x.x.x] by mail.rsi-elektrotechnik.de (Cipher
-	TLSv1.2:AES-:256) (MDaemon PRO v16.5.1) 
-	with ESMTPSA id md50000481381.msg; Mon, 28 Nov 2016 07:40:58 +0100
-X-MDRemoteIP: 80.147.52.21
-X-MDArrival-Date: Mon, 28 Nov 2016 07:40:58 +0100
-X-Authenticated-Sender: holzmayr@rsi-elektrotechnik.de
-X-Return-Path: prvs=114075f102=holzmayr@rsi-elektrotechnik.de
-X-Envelope-From: holzmayr@rsi-elektrotechnik.de
-User-Agent: Microsoft-MacOutlook/f.1c.1.161117
-Date: Mon, 28 Nov 2016 07:40:56 +0100
-From: Josef Holzmayr <holzmayr@rsi-elektrotechnik.de>
-To: david bensoussan <minipada@gmail.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Message-ID: <DEE62A05-CEDD-45BB-B349-9D856BD6ED29@rsi-elektrotechnik.de>
-Thread-Topic: [yocto] Libgfortran 6.2 doesn't compile
-References: <CALxi_JGQkW8hsJtD=O-niX9n6A37BOh4J=EzjD75FSi_X9h5UA@mail.gmail.com>
-In-Reply-To: <CALxi_JGQkW8hsJtD=O-niX9n6A37BOh4J=EzjD75FSi_X9h5UA@mail.gmail.com>
-Mime-version: 1.0
-Subject: Re: Libgfortran 6.2 doesn't compile
+Received: from mail-wj0-f193.google.com (mail-wj0-f193.google.com
+	[209.85.210.193])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 28C4BE00724
+	for <yocto@yoctoproject.org>; Mon, 28 Nov 2016 01:31:33 -0800 (PST)
+Received: by mail-wj0-f193.google.com with SMTP id jb2so13225774wjb.3
+	for <yocto@yoctoproject.org>; Mon, 28 Nov 2016 01:31:33 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
+	:references:mime-version:content-transfer-encoding;
+	bh=gRvgmHUjNijoUTCmUtH8WUjrhWT11g8b0QiYbmgOQN0=;
+	b=CngRzuskzYfktVgHFJQvrF33LXc3ljeH1RP02/dul2DPR2Th8f642ujRf+ia3AusMC
+	C6ay4Tu9YdElmx+D0lBmOQDtB91wMVku/3vaXCiRTWbdc4rmJFC4uYEoqhOvHcznMegi
+	/XxZK9tuZ+qZCksgZp8pKvVSnx4V4MRzM6YesavapDkxe2M/kHAEh89GDUF74rFjBI1R
+	J75AG+xaEbZlelJZJq2ntwvK/Ck2TE2OwXUm8kEs4r8+bWbLsa0WDY/1sXBz2Nr7h3t8
+	bId96ArbHFlnbTmqwk+2ETQyHMB62NIzxwqEheRfI+17IyHeU5o/NLAR+KkWg8WoFeYq
+	8OVA==
+X-Gm-Message-State: AKaTC00aqoJigGMRHob0FUi5+pg25aOswPZKRJic0QgEJsDijarDgGMadWyymmjjv+U0bA==
+X-Received: by 10.194.7.233 with SMTP id m9mr17473043wja.108.1480325492428;
+	Mon, 28 Nov 2016 01:31:32 -0800 (PST)
+Received: from tfsielt31850.tycofs.com ([77.107.218.170])
+	by smtp.gmail.com with ESMTPSA id
+	x5sm61398495wje.36.2016.11.28.01.31.31 for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Mon, 28 Nov 2016 01:31:31 -0800 (PST)
+From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <git@andred.net>
+To: yocto@yoctoproject.org
+Date: Mon, 28 Nov 2016 09:31:30 +0000
+Message-Id: <20161128093130.17727-1-git@andred.net>
+X-Mailer: git-send-email 2.10.2
+In-Reply-To: <20161125162903.19626-1-git@andred.net>
+References: <20161125162903.19626-1-git@andred.net>
+MIME-Version: 1.0
+Subject: [meta-security][PATCH v2] trousers: fix musl compilation
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,137 +58,170 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 28 Nov 2016 06:44:20 -0000
-Content-type: text/plain;
-	charset="UTF-8"
-Content-transfer-encoding: quoted-printable
+X-List-Received-Date: Mon, 28 Nov 2016 09:31:37 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hello David,
+From: André Draszik <adraszik@tycoint.com>
 
-Von: <yocto-bounces@yoctoproject.org> im Auftrag von david bensoussan <mini=
-pada@gmail.com>
-Datum: Samstag, 26. November 2016 um 14:32
-An: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Betreff: [yocto] Libgfortran 6.2 doesn't compile
+Backport patches to fix compilation.
 
-Hello,
-I am trying to compile libgfortran 6.2 on Yocto (Morty version) but can't.
+Signed-off-by: André Draszik <adraszik@tycoint.com>
+---
+ ...t-getpwent_r-is-available-before-using-it.patch | 85 ++++++++++++++++++++++
+ ...si_param.c-Include-limits.h-for-POSIX_MAX.patch | 36 +++++++++
+ recipes-tpm/trousers/trousers_0.3.13.bb            |  2 +
+ 3 files changed, 123 insertions(+)
+ create mode 100644 recipes-tpm/trousers/files/0001-Check-that-getpwent_r-is-available-before-using-it.patch
+ create mode 100644 recipes-tpm/trousers/files/0001-tsp_tcsi_param.c-Include-limits.h-for-POSIX_MAX.patch
 
-    DEBUG: SITE files ['endian-little', 'bit-32', 'ix86-common', 'common-li=
-nux', 'common-glibc', 'i586-linux', 'common']
-    DEBUG: Executing shell function do_compile
-    NOTE: make -j 8 MULTIBUILDTOP=3D/var/www/toaster/openembedded-core/buil=
-d-toaster-2/tmp-glibc/work/i586-oe-linux/libgf$
-    /bin/bash ../../../../../../../../work-shared/gcc-6.2.0-r0/gcc-6.2.0/li=
-bgfortran/mk-sik-inc.sh 'i586-oe-linux-gfort$
-    /bin/bash ../../../../../../../../work-shared/gcc-6.2.0-r0/gcc-6.2.0/li=
-bgfortran/mk-srk-inc.sh 'i586-oe-linux-gfort$
-    /bin/bash ../../../../../../../../work-shared/gcc-6.2.0-r0/gcc-6.2.0/li=
-bgfortran/mk-kinds-h.sh 'i586-oe-linux-gfort$
-    grep '^#' < ../../../../../../../../work-shared/gcc-6.2.0-r0/gcc-6.2.0/=
-libgfortran/c99_protos.h > c99_protos.inc
-    cp ../../../../../../../../work-shared/gcc-6.2.0-r0/gcc-6.2.0/libgfortr=
-an/config/fpu-387.h fpu-target.h
-    grep '^#define GFC_FPE_' < ../../../../../../../../work-shared/gcc-6.2.=
-0-r0/gcc-6.2.0/libgfortran/../gcc/fortran/li$
-    grep '^#define GFC_FPE_' < ../../../../../../../../work-shared/gcc-6.2.=
-0-r0/gcc-6.2.0/libgfortran/libgfortran.h >> $
-    grep '^#' < kinds.h > kinds.inc
-    make  all-am
-    make[1]: Entering directory `/var/www/toaster/openembedded-core/build-t=
-oaster-2/tmp-glibc/work/i586-oe-linux/libgfo$
-    /bin/bash ./libtool  --tag=3DCC   --mode=3Dcompile i586-oe-linux-gcc  -=
-m32 -march=3Di586 --sysroot=3D/var/www/toaster/opene$
-    /bin/bash ./libtool  --tag=3DCC   --mode=3Dcompile i586-oe-linux-gcc  -=
-m32 -march=3Di586 --sysroot=3D/var/www/toaster/opene$
-    /bin/bash ./libtool  --tag=3DCC   --mode=3Dcompile i586-oe-linux-gcc  -=
-m32 -march=3Di586 --sysroot=3D/var/www/toaster/opene$
-    /bin/bash ./libtool  --tag=3DCC   --mode=3Dcompile i586-oe-linux-gcc  -=
-m32 -march=3Di586 --sysroot=3D/var/www/toaster/opene$
-    /bin/bash ./libtool  --tag=3DCC   --mode=3Dcompile i586-oe-linux-gcc  -=
-m32 -march=3Di586 --sysroot=3D/var/www/toaster/opene$
-    /bin/bash ./libtool  --tag=3DCC   --mode=3Dcompile i586-oe-linux-gcc  -=
-m32 -march=3Di586 --sysroot=3D/var/www/toaster/opene$
-    /bin/bash ./libtool  --tag=3DCC   --mode=3Dcompile i586-oe-linux-gcc  -=
-m32 -march=3Di586 --sysroot=3D/var/www/toaster/opene$
-    /bin/bash ./libtool  --tag=3DCC   --mode=3Dcompile i586-oe-linux-gcc  -=
-m32 -march=3Di586 --sysroot=3D/var/www/toaster/opene$
-    libtool: compile:  i586-oe-linux-gcc -m32 -march=3Di586 --sysroot=3D/va=
-r/www/toaster/openembedded-core/build-toaster-2/$
-    libtool: compile:  i586-oe-linux-gcc -m32 -march=3Di586 --sysroot=3D/va=
-r/www/toaster/openembedded-core/build-toaster-2/$
-    libtool: compile:  i586-oe-linux-gcc -m32 -march=3Di586 --sysroot=3D/va=
-r/www/toaster/openembedded-core/build-toaster-2/$
-    libtool: compile:  i586-oe-linux-gcc -m32 -march=3Di586 --sysroot=3D/va=
-r/www/toaster/openembedded-core/build-toaster-2/$
-    libtool: compile:  i586-oe-linux-gcc -m32 -march=3Di586 --sysroot=3D/va=
-r/www/toaster/openembedded-core/build-toaster-2/$
-    libtool: compile:  i586-oe-linux-gcc -m32 -march=3Di586 --sysroot=3D/va=
-r/www/toaster/openembedded-core/build-toaster-2/$
-    libtool: compile:  i586-oe-linux-gcc -m32 -march=3Di586 --sysroot=3D/va=
-r/www/toaster/openembedded-core/build-toaster-2/$
-    libtool: compile:  i586-oe-linux-gcc -m32 -march=3Di586 --sysroot=3D/va=
-r/www/toaster/openembedded-core/build-toaster-2/$
-    ../../../../../../../../work-shared/gcc-6.2.0-r0/gcc-6.2.0/libgfortran/=
-runtime/backtrace.c:37:33: fatal error: back$
-     #include "backtrace-supported.h"
-                                     ^
-    compilation terminated.
-    make[1]: *** [backtrace.lo] Error 1
-    make[1]: *** Waiting for unfinished jobs....
-
-Yes, lately libfortran has changed their own backtrace implementation for t=
-he generic one.
-
-I have default yocto configuration, I simply added:
-
-    FORTRAN_forcevariable =3D ",fortran"
-   =20
-to enable it.
-
-Am I doing something wrong or is it unstable?
-
-You are not doing wrong, the recipe is just broken at the moment. Unfortuna=
-tely, the fix seems to be non-trivial and nobody has gotten round to do it =
-yet. Basically the libgcc-recipe infrastructure has to be made libbacktrace=
--aware.
-
-The only workaround that I know of at the moment is to stick with a libgfor=
-tran version before the libbacktrace change, which should be anything from =
-the 5.X gcc family.
-Greetz
-
--- _______________________________________________ yocto mailing list yocto=
-@yoctoproject.org https://lists.yoctoproject.org/listinfo/yocto=20
-
-
-=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=
-=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94
-Josef Holzmayr
-Software Developer Embedded Systems
-
-Tel: +49 8444 9204-48
-Fax: +49 8444 9204-50
-
-R-S-I Elektrotechnik GmbH & Co. KG
-Woelkestrasse 11
-D-85301 Schweitenkirchen
-www.rsi-elektrotechnik.de
-
-=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=
-=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94
-Amtsgericht Ingolstadt =E2=80=93 GmbH: HRB 191328 =E2=80=93 KG: HRA 170393
-Gesch=C3=A4ftsf=C3=BChrer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
-Ust-IdNr: DE 128592548
-
-
-
-
-
-
-_____________________________________________________________
-Amtsgericht Ingolstadt - GmbH: HRB 191328 - KG: HRA 170363
-Gesch=C3=A4ftsf=C3=BChrer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
-USt-IdNr.: DE 128592548
+diff --git a/recipes-tpm/trousers/files/0001-Check-that-getpwent_r-is-available-before-using-it.patch b/recipes-tpm/trousers/files/0001-Check-that-getpwent_r-is-available-before-using-it.patch
+new file mode 100644
+index 0000000..e7ba2eb
+--- /dev/null
++++ b/recipes-tpm/trousers/files/0001-Check-that-getpwent_r-is-available-before-using-it.patch
+@@ -0,0 +1,85 @@
++From bb721b0ae5882992037153e7257791101172556e Mon Sep 17 00:00:00 2001
++From: =?UTF-8?q?No=C3=A9=20Rubinstein?= <nrubinstein@aldebaran.com>
++Date: Wed, 24 Aug 2016 18:55:25 +0200
++Subject: [PATCH] Check that getpwent_r is available before using it
++MIME-Version: 1.0
++Content-Type: text/plain; charset=UTF-8
++Content-Transfer-Encoding: 8bit
++
++This fixes building trousers with musl
++
++Signed-off-by: Noé Rubinstein <nrubinstein@aldebaran.com>
++---
++Upstream-Status: Inappropriate [not author https://git.busybox.net/buildroot/plain/package/trousers/0004-Check-that-getpwent_r-is-available-before-using-it.patch]
++Signed-off-by: André Draszik <adraszik@tycoint.com>
++ configure.in        |  4 ++++
++ src/tspi/ps/tspps.c | 10 +++++-----
++ 2 files changed, 9 insertions(+), 5 deletions(-)
++
++diff --git a/configure.in b/configure.in
++index add23dc..cfdfcaa 100644
++--- a/configure.in
+++++ b/configure.in
++@@ -144,6 +144,10 @@ else
++ 	AC_MSG_ERROR(["gtk", "openssl" and "none" are the only supported gui options for trousers])
++ fi
++ 
+++# Look for getpwent_r. If it is not found, getpwent will be used instead, with
+++# an additional mutex.
+++AC_CHECK_FUNC(getpwent_r, [AC_DEFINE(HAVE_GETPWENT_R)])
+++
++ #
++ # The default port that the TCS daemon listens on
++ #
++diff --git a/src/tspi/ps/tspps.c b/src/tspi/ps/tspps.c
++index c6f9c3d..9d00d2a 100644
++--- a/src/tspi/ps/tspps.c
+++++ b/src/tspi/ps/tspps.c
++@@ -45,7 +45,7 @@
++ 
++ static int user_ps_fd = -1;
++ static MUTEX_DECLARE_INIT(user_ps_lock);
++-#if (defined (__FreeBSD__) || defined (__OpenBSD__))
+++#ifndef HAVE_GETPWENT_R
++ static MUTEX_DECLARE_INIT(user_ps_path);
++ #endif
++ static struct flock fl;
++@@ -60,7 +60,7 @@ get_user_ps_path(char **file)
++ 	TSS_RESULT result;
++ 	char *file_name = NULL, *home_dir = NULL;
++ 	struct passwd *pwp;
++-#if (defined (__linux) || defined (linux) || defined(__GLIBC__))
+++#ifdef HAVE_GETPWENT_R
++ 	struct passwd pw;
++ #endif
++ 	struct stat stat_buf;
++@@ -72,7 +72,7 @@ get_user_ps_path(char **file)
++ 		*file = strdup(file_name);
++ 		return (*file) ? TSS_SUCCESS : TSPERR(TSS_E_OUTOFMEMORY);
++ 	}
++-#if (defined (__FreeBSD__) || defined (__OpenBSD__))
+++#ifndef HAVE_GETPWENT_R
++ 	MUTEX_LOCK(user_ps_path);
++ #endif
++ 
++@@ -90,7 +90,7 @@ get_user_ps_path(char **file)
++ #else
++ 	setpwent();
++ 	while (1) {
++-#if (defined (__linux) || defined (linux) || defined(__GLIBC__))
+++#ifdef HAVE_GETPWENT_R
++ 		rc = getpwent_r(&pw, buf, PASSWD_BUFSIZE, &pwp);
++ 		if (rc) {
++ 			LogDebugFn("USER PS: Error getting path to home directory: getpwent_r: %s",
++@@ -99,7 +99,7 @@ get_user_ps_path(char **file)
++ 			return TSPERR(TSS_E_INTERNAL_ERROR);
++ 		}
++ 
++-#elif (defined (__FreeBSD__) || defined (__OpenBSD__))
+++#else
++ 		if ((pwp = getpwent()) == NULL) {
++ 			LogDebugFn("USER PS: Error getting path to home directory: getpwent: %s",
++                                    strerror(rc));
++-- 
++2.10.2
++
+diff --git a/recipes-tpm/trousers/files/0001-tsp_tcsi_param.c-Include-limits.h-for-POSIX_MAX.patch b/recipes-tpm/trousers/files/0001-tsp_tcsi_param.c-Include-limits.h-for-POSIX_MAX.patch
+new file mode 100644
+index 0000000..c01040d
+--- /dev/null
++++ b/recipes-tpm/trousers/files/0001-tsp_tcsi_param.c-Include-limits.h-for-POSIX_MAX.patch
+@@ -0,0 +1,36 @@
++From c1b5f33845c56dc7aef769c99758b4f77a041d43 Mon Sep 17 00:00:00 2001
++From: Felix Janda <felix.janda@posteo.de>
++Date: Wed, 31 Aug 2016 22:52:58 -0400
++Subject: [PATCH] tsp_tcsi_param.c: Include <limits.h> for POSIX_MAX
++MIME-Version: 1.0
++Content-Type: text/plain; charset=UTF-8
++Content-Transfer-Encoding: 8bit
++
++Use POSIX instead of glibc-specific header.
++Fixes compilation with musl libc.
++
++Signed-off-by: Felix Janda <felix.janda@posteo.de>
++Reviewed-by: Hon Ching(Vicky) Lo <honclo@linux.vnet.ibm.com>
++
++---
++Upstream-Status: Backport [https://sourceforge.net/p/trousers/trousers/ci/59351a56cac1710e89d207dff07eb23bbc644c13/]
++Signed-off-by: André Draszik <adraszik@tycoint.com>
++ src/tspi/tsp_tcsi_param.c | 2 +-
++ 1 file changed, 1 insertion(+), 1 deletion(-)
++
++diff --git a/src/tspi/tsp_tcsi_param.c b/src/tspi/tsp_tcsi_param.c
++index 670f86f..8f2b4e4 100644
++--- a/src/tspi/tsp_tcsi_param.c
+++++ b/src/tspi/tsp_tcsi_param.c
++@@ -11,7 +11,7 @@
++ #include <stdlib.h>
++ #include <string.h>
++ #include <stdio.h>
++-#include <bits/local_lim.h>
+++#include <limits.h>
++ #include "trousers/tss.h"
++ #include "trousers/trousers.h"
++ #include "trousers_types.h"
++-- 
++2.10.2
++
+diff --git a/recipes-tpm/trousers/trousers_0.3.13.bb b/recipes-tpm/trousers/trousers_0.3.13.bb
+index 6853f18..a69f763 100644
+--- a/recipes-tpm/trousers/trousers_0.3.13.bb
++++ b/recipes-tpm/trousers/trousers_0.3.13.bb
+@@ -7,6 +7,8 @@ SECTION = "security/tpm"
+ DEPENDS = "openssl"
+ 
+ SRC_URI = "http://sourceforge.net/projects/trousers/files/${BPN}/${PV}/${BPN}-${PV}.tar.gz \
++    file://0001-tsp_tcsi_param.c-Include-limits.h-for-POSIX_MAX.patch \
++    file://0001-Check-that-getpwent_r-is-available-before-using-it.patch \
+     file://07-read_data-not-inline.patch \
+     file://trousers.init.sh \
+     file://trousers-udev.rules \
+-- 
+2.10.2
 
 
