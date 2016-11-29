@@ -1,74 +1,42 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <earwigz@naver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9D480E00C65; Mon, 28 Nov 2016 17:52:47 -0800 (PST)
+	id 6692BE00C88; Mon, 28 Nov 2016 18:54:47 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Level: **
+X-Spam-Status: No, score=2.5 required=5.0 tests=BAYES_50,HTML_IMAGE_ONLY_08,
+	HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	T_REMOTE_IMAGE autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [74.125.83.66 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (raj.khem[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pg0-f66.google.com (mail-pg0-f66.google.com [74.125.83.66])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 61718E00C40
-	for <yocto@yoctoproject.org>; Mon, 28 Nov 2016 17:52:41 -0800 (PST)
-Received: by mail-pg0-f66.google.com with SMTP id 3so14700362pgd.0
-	for <yocto@yoctoproject.org>; Mon, 28 Nov 2016 17:52:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:subject:from:in-reply-to:date:cc
-	:content-transfer-encoding:message-id:references:to;
-	bh=Hg29035eBfmypG1h1Rmf/0cORplU52eeXt5b65TpW1Y=;
-	b=bGUsNkmtO4tgT8p9w6AfVYbbBPbJiHzlOybmXO4cnPC84qlWhSu3DXOednDiiFNSiF
-	1q4ySx5pWHuoPwd/eaBWsG2qJTI1AbPZCmbYccLj8MvLmLGS5vr4yy2+tMOgxRQEHWCJ
-	3EXr44xd5pD2lScP1CLJDCbf97mdM1G0Zq4/YNyT9CjtEqKKPP1GrrZVmDmfpp8h6i/c
-	/f53L2ddRTGZIJjuGKRT6Fa8VjpTGOa5+hXHKcju0Ra92zajAwkf0AXvXrn3YGRk1NVn
-	2j63rTD3ZwzPwKgCgX1+L/3h0f/fcZ6VpWia6xrONEmjfHSmpWSBMCJ3GGKWyLa8RzDl
-	7t0g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
-	:content-transfer-encoding:message-id:references:to;
-	bh=Hg29035eBfmypG1h1Rmf/0cORplU52eeXt5b65TpW1Y=;
-	b=GrFF9q3fjfSHw/A7yDBj+myoLgW7yXNm4nIi6XY04caPoPfXHnOVMFOxxWucIYMLxn
-	pqGyx4Q6Gi3lels0CiTq8XEQJ74j7szlihy0FtA6Yj/v/jtjIffY8aKObuxLOxO+iV5f
-	GSiaUHK6rmIabWyuZ+H/Gciiiqqvuu8ggdgSFeslgAXR45649LDQHcg6yuSOOHpQjO0K
-	Brse1DFy9BYzFwtv8f5aU8+wkZN6JoatWTYktQB+pNq7CfGH2Ai2yEyVtHK1BM1berfU
-	FFK7iDOtxOOjV281thPD3zYkKoH2oUwRDmD2+Q1Pzseqt5e1HaLQjSPTbsxRJsKEiYT6
-	hTNA==
-X-Gm-Message-State: AKaTC02zH8jrBfBbw1GAU2om6/CK8+jwXHkITTTjsgO8rOTqkpPhvRpHRqf93JfhfC2KIA==
-X-Received: by 10.99.240.83 with SMTP id s19mr44941430pgj.175.1480384361087;
-	Mon, 28 Nov 2016 17:52:41 -0800 (PST)
-Received: from ?IPv6:2601:646:8882:b8c:f08c:19b4:e718:7b0b?
-	([2601:646:8882:b8c:f08c:19b4:e718:7b0b])
-	by smtp.gmail.com with ESMTPSA id
-	y134sm90055848pfg.81.2016.11.28.17.52.39
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Mon, 28 Nov 2016 17:52:39 -0800 (PST)
-Mime-Version: 1.0 (Mac OS X Mail 10.1 \(3251\))
-From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <20161129014240.GB30326@openSUSE-i7.site>
-Date: Mon, 28 Nov 2016 17:52:38 -0800
-Message-Id: <5A8D2138-126E-468B-8637-D7A927386706@gmail.com>
-References: <20161128151233.8861-1-twoerner@gmail.com>
-	<9045CDB4-3095-4352-A4A3-04EAC676F466@gmail.com>
-	<20161129014240.GB30326@openSUSE-i7.site>
-To: Trevor Woerner <twoerner@gmail.com>
-X-Mailer: Apple Mail (2.3251)
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-raspberrypi][PATCH] linux-raspberrypi_4.4.bb: upgrade to 4.4.32
+	*      [125.209.208.228 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* 1.7 HTML_IMAGE_ONLY_08 BODY: HTML: images with 400-800 bytes of words
+	*  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
+	*      [score: 0.4979]
+	*  0.0 T_REMOTE_IMAGE Message contains an external image
+X-Greylist: delayed 422 seconds by postgrey-1.32 at yocto-www;
+	Mon, 28 Nov 2016 18:54:44 PST
+Received: from cmailsend19.nm.naver.com (cmailsend19.nm.naver.com
+	[125.209.208.228])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2BFA1E00C65
+	for <yocto@yoctoproject.org>; Mon, 28 Nov 2016 18:54:44 -0800 (PST)
+Received: (qmail 16959 invoked by uid 100); 29 Nov 2016 02:47:41 -0000
+Received: from 10.114.52.100 (HELO cweb29.nm.nhnsystem.com) (10.114.52.100)
+	by cmailsend19.nm.naver.com with SMTP;29 Nov 2016 02:47:40 -0000
+Date: Tue, 29 Nov 2016 11:47:40 +0900 (KST)
+From: =?UTF-8?B?7Jyk7JiB7ISd?= <earwigz@naver.com>
+To: yoctoproject <yocto@yoctoproject.org>
+Message-ID: <91b5be87e9efb9b3b22d86fa7435762c@cweb29.nm.nhnsystem.com>
+MIME-Version: 1.0
+Importance: normal
+X-Priority: 3 (Normal)
+X-Naver-CIP: 61.107.31.52
+Subject: What criteria are categorized? (tmp/work/...)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: =?UTF-8?B?7Jyk7JiB7ISd?= <earwigz@naver.com>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -77,69 +45,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 29 Nov 2016 01:52:47 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 29 Nov 2016 02:54:47 -0000
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_205074_1597422050.1480387660938"
 
+------=_Part_205074_1597422050.1480387660938
+Content-Type: text/plain;
+	charset=UTF-8
+Content-Transfer-Encoding: base64
 
-> On Nov 28, 2016, at 5:42 PM, Trevor Woerner <twoerner@gmail.com> =
-wrote:
->=20
-> On Mon 2016-11-28 @ 03:21:50 PM, Khem Raj wrote:
->> its at 4.4.35 now see
->> https://github.com/kraj/meta-raspberrypi/commits/kraj/master =
-<https://github.com/kraj/meta-raspberrypi/commits/kraj/master>
->=20
-> True. But there's no -rt patch for 4.4.35:
-> https://www.kernel.org/pub/linux/kernel/projects/rt/4.4/
->=20
-> The latest 4.4.y -rt patch is 4.4.32.
->=20
-> Since I'm working on a separate recipe for 4.4.32-rt43 I guess I could =
-just
-> base it on 4.4.32 and let the non-rt-mainline advance to 4.4.35 :-)
+QWZ0ZXIgcG9reSB0aGUgYnVpbGQsIGkgbG9vayBhdCB0aGUgdG1wL3dvcmsgZm9sZGVyLgpJIGNh
+biBzZWUgdGhlc2UgZm9sZGVycy4KQWxsLXBva3ktbGludXggLyBpNTg2LXBva3ktbGludXggLyBx
+ZW11eDg2LXBva3ktbGludXggLyB4ODZfNjQtbGludXggLwogCldoYXQgaXMgdGhlIGNsYXNzaWZp
+Y2F0aW9uIG9mIGVhY2ggZm9sZGVyPwpXaGF0IG9wdGlvbnMgc2hvdWxkIEkgc2V0IGluIHJlY2lw
+ZXM/CiAKVGhhbmtzCg==
 
-does it not apply cleanly on 4.4.35
+------=_Part_205074_1597422050.1480387660938
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: base64
 
->=20
->>=20
->>> On Nov 28, 2016, at 7:12 AM, Trevor Woerner <twoerner@gmail.com> =
-wrote:
->>>=20
->>> This helps align the raspberry pi 4.4.y kernel with the latest 4.4.y
->>> PREEMPT_RT patch.
->>>=20
->>> Signed-off-by: Trevor Woerner <twoerner@gmail.com>
->>> ---
->>> recipes-kernel/linux/linux-raspberrypi_4.4.bb | 4 ++--
->>> 1 file changed, 2 insertions(+), 2 deletions(-)
->>>=20
->>> diff --git a/recipes-kernel/linux/linux-raspberrypi_4.4.bb =
-b/recipes-kernel/linux/linux-raspberrypi_4.4.bb
->>> index 19e8552..0724ac1 100644
->>> --- a/recipes-kernel/linux/linux-raspberrypi_4.4.bb
->>> +++ b/recipes-kernel/linux/linux-raspberrypi_4.4.bb
->>> @@ -1,8 +1,8 @@
->>> FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}-${PV}:"
->>>=20
->>> -LINUX_VERSION ?=3D "4.4.28"
->>> +LINUX_VERSION ?=3D "4.4.32"
->>>=20
->>> -SRCREV =3D "5afda48c3408e15742d4569459a4ff668e2857f7"
->>> +SRCREV =3D "f779cabf56bc88319d582db58969ba6f7184a775"
->>> SRC_URI =3D =
-"git://github.com/raspberrypi/linux.git;protocol=3Dgit;branch=3Drpi-4.4.y =
-\
->>>           file://0001-fix-dtbo-rules.patch \
->>> "
->>> --=20
->>> 2.10.2
->>>=20
->>> --=20
->>> _______________________________________________
->>> yocto mailing list
->>> yocto@yoctoproject.org
->>> https://lists.yoctoproject.org/listinfo/yocto
->>=20
+PGh0bWw+PGhlYWQ+PHN0eWxlPnB7bWFyZ2luLXRvcDowcHg7bWFyZ2luLWJvdHRvbTowcHg7fTwv
+c3R5bGU+PC9oZWFkPjxib2R5PjxkaXYgc3R5bGU9ImZvbnQtc2l6ZToxMHB0OyBmb250LWZhbWls
+eTpHdWxpbTsiPjxwPkFmdGVyIHBva3kgdGhlIGJ1aWxkLCBpIGxvb2sgYXQgdGhlIHRtcC93b3Jr
+IGZvbGRlci48L3A+PHA+SSBjYW4gc2VlIHRoZXNlIGZvbGRlcnMuPC9wPjxwPkFsbC1wb2t5LWxp
+bnV4IC8gaTU4Ni1wb2t5LWxpbnV4IC8gcWVtdXg4Ni1wb2t5LWxpbnV4IC8geDg2XzY0LWxpbnV4
+IC88L3A+PHA+Jm5ic3A7PC9wPjxwPldoYXQgaXMgdGhlIGNsYXNzaWZpY2F0aW9uIG9mIGVhY2gg
+Zm9sZGVyPzwvcD48cD5XaGF0IG9wdGlvbnMgc2hvdWxkIEkgc2V0IGluIHJlY2lwZXM/PC9wPjxw
+PiZuYnNwOzwvcD48cD5UaGFua3M8L3A+PC9kaXY+PC9ib2R5PjwvaHRtbD4KPHRhYmxlIHN0eWxl
+PSJkaXNwbGF5Om5vbmUiPjx0cj48dGQ+PGltZyBzcmM9Imh0dHBzOi8vbWFpbC5uYXZlci5jb20v
+cmVhZFJlY2VpcHQvbm90aWZ5Lz9pbWc9ZmRGTjFCJTJCWk02RTlNb3VsaEFSUE00RSUyRkZyRWxw
+NnBTYTZVcU1vVVpwQTJycDR1WEZBSzlGcU1aTWRJbyUyQnJrU0tvdjVXNGQ1VzRDNWJYMHElMkJ6
+a1I3NEZUV3glMkZzRDZlbyUyQnplZ0Q2ZW8lMkJ6ZW1iNGU4cDZGZDc0ZVpwbSUzRCUzRC5naWYi
+IGJvcmRlcj0iMCI+PC90ZD48L3RyPjwvdGFibGU+
 
-
+------=_Part_205074_1597422050.1480387660938--
