@@ -1,34 +1,34 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <michel.dhooge@free.fr>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 62221E00C75; Tue, 29 Nov 2016 00:32:45 -0800 (PST)
+	id 5A1DBE00C75; Tue, 29 Nov 2016 01:09:49 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HEXHASH_WORD
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (michel.dhooge[at]free.fr)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [212.27.42.1 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HEXHASH_WORD Multiple instances of word + hexadecimal hash
-Received: from mail.analogue-micro.com (mail.analogue-micro.com
-	[217.144.149.242])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DE042E00C4F
-	for <yocto@yoctoproject.org>; Tue, 29 Nov 2016 00:32:43 -0800 (PST)
-Received: by mail.analogue-micro.com (Postfix, from userid 999)
-	id E7ADF68A019; Tue, 29 Nov 2016 08:32:41 +0000 (GMT)
-Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
-	by mail.analogue-micro.com (Postfix) with ESMTP id 732B068A019;
-	Tue, 29 Nov 2016 08:32:41 +0000 (GMT)
-Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
-	by zeus.mlbassoc.com (Postfix) with ESMTP id BA8F767402F9;
-	Tue, 29 Nov 2016 09:32:40 +0100 (CET)
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-From: Gary Thomas <gary@mlbassoc.com>
-Message-ID: <aedf3ef5-7d6a-6c21-42da-adcd40199a9a@mlbassoc.com>
-Date: Tue, 29 Nov 2016 09:32:39 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.4.0
+Received: from smtp1-g21.free.fr (smtp1-g21.free.fr [212.27.42.1])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9311DE00C4F
+	for <yocto@yoctoproject.org>; Tue, 29 Nov 2016 01:09:45 -0800 (PST)
+Received: from spooler3-g27.priv.proxad.net (unknown [172.20.243.239])
+	by smtp1-g21.free.fr (Postfix) with ESMTP id EC655B004E7
+	for <yocto@yoctoproject.org>; Tue, 29 Nov 2016 10:09:43 +0100 (CET)
+Date: Tue, 29 Nov 2016 10:09:42 +0100 (CET)
+From: Michel D'HOOGE <michel.dhooge@free.fr>
+To: yocto@yoctoproject.org
+Message-ID: <1824884597.389459851.1480410582272.JavaMail.root@spooler3-g27.priv.proxad.net>
+In-Reply-To: <aedf3ef5-7d6a-6c21-42da-adcd40199a9a@mlbassoc.com>
 MIME-Version: 1.0
-Subject: New error
+X-Originating-IP: [89.225.253.195]
+X-Mailer: Zimbra 7.2.0-GA2598 (ZimbraWebClient - GC53 (Linux)/7.2.0-GA2598)
+X-Authenticated-User: michel.dhooge@free.fr
+Subject: Re: New error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,23 +40,17 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 29 Nov 2016 08:32:45 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
+X-List-Received-Date: Tue, 29 Nov 2016 09:09:49 -0000
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 7bit
 
-I recently updated my Poky/Yocto repo to 12a0ee049e453b6d0d2ce2f3fa981d1b6e02bd78 and now I'm seeing
-messages like this:
-   ERROR: When reparsing /local/poky-cutting-edge/meta/recipes-core/base-files/base-files_3.0.14.bb.do_install, the
-   basehash value changed from 3c2401cc61fce5eb899de19dbf78862f to 558516a74162944aff656a7d01321b12. The metadata is
-   not deterministic and this needs to be fixed.
+Hi,
 
-Any ideas what this means and what could cause it?
+> I recently updated my Poky/Yocto repo to
+> 12a0ee049e453b6d0d2ce2f3fa981d1b6e02bd78 and now I'm seeing messages
 
-Thanks
+Did you try to erase your build/tmp folder?
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+Michel
+
 
