@@ -1,16 +1,17 @@
-Return-Path: <twoerner@gmail.com>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0004AE00CC0; Mon, 28 Nov 2016 19:03:32 -0800 (PST)
+	id ED18FE00CAF; Mon, 28 Nov 2016 19:30:08 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (twoerner[at]gmail.com)
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.223.195 listed in dnsbl.sorbs.net]
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [74.125.83.66 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (akuster808[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -18,56 +19,55 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.223.195 listed in list.dnswl.org]
-Received: from mail-io0-f195.google.com (mail-io0-f195.google.com
-	[209.85.223.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ABA67E00C80
-	for <yocto@yoctoproject.org>; Mon, 28 Nov 2016 19:03:30 -0800 (PST)
-Received: by mail-io0-f195.google.com with SMTP id k19so26698777iod.3
-	for <yocto@yoctoproject.org>; Mon, 28 Nov 2016 19:03:30 -0800 (PST)
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.83.66 listed in dnsbl.sorbs.net]
+Received: from mail-pg0-f66.google.com (mail-pg0-f66.google.com [74.125.83.66])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9ABB0E00C80
+	for <yocto@yoctoproject.org>; Mon, 28 Nov 2016 19:30:05 -0800 (PST)
+Received: by mail-pg0-f66.google.com with SMTP id 3so14926762pgd.0
+	for <yocto@yoctoproject.org>; Mon, 28 Nov 2016 19:30:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-disposition:in-reply-to:user-agent;
-	bh=OMgOT0uEm6rzZv2Rvb2U+bndLxdga6XUAdLNCTQd52k=;
-	b=FVmFW2Pgl/AlCN+QvN6B7Xh4QDxA9pbJyijMUIvMKCZ3l6Y8WS/iYUn2hGY60KYhg7
-	uSlhyc9ijRPkE2fDNRAu2eexR4sdjQYJnIHDsd+sJTHJuK4wLTWiXuZ0qcaJfn+CNVba
-	pWXDf5RRP5eIpUOCSvbkenqmSi/zt3WJ3HXewhWJaghf57ZSBA7Qb8WamtHy9mBEjzba
-	KCFotR7ifKAnZ3wGsL1886H2j+aJJ+fBsCA8xoHfKCnozNPPfiUlW9Z69avKn4vdu/aH
-	s0HM6AUoM43CNtJCoPDi7Xb7KTXTwvtPo8JWuQpT18NR2VhOJJgxuJD8+rGqfxGFPjlL
-	0Dhg==
+	h=subject:to:references:from:message-id:date:user-agent:mime-version
+	:in-reply-to:content-transfer-encoding;
+	bh=9PJXS58yoGwm599uGBOA5CZObVBWbRWklMx6cOCxmOU=;
+	b=KchDX4JBhh2Xd6+CehPNpfWbAjrsNOw/SN+lpHGf5gn9ltGmhCM/64pHs4iX/MkD9s
+	vXEiqlgSQb7f0EBu29cXFyolkly70702/ZyMuxEvJsjMn1DuKn0fTCpcxLTjZE3v3PjC
+	ZNDfmMVsrtJIPbWnmoCsEx/VyzVRylcL9g0ixLgtzPVw2yofv14Kx8IHwPqJdw2r/5R/
+	kcVGKwlZW+YObTatSRABbm722fLCg0RveSPwH6pV5D4Fd08cGLrHbNnXiHJ0PlWr/v97
+	bZi3IqVS2ta4kwrO6At84EM9VPMbkLDKkdrfiNDOG6l+1oBoaqLJFLM2BG0yb8vJiFHm
+	pddg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-	:mime-version:content-disposition:in-reply-to:user-agent;
-	bh=OMgOT0uEm6rzZv2Rvb2U+bndLxdga6XUAdLNCTQd52k=;
-	b=lEd2F62YyW0LaKriyFdPnKAgg2nayqkjTqhWGfpKYeWHaPPBLyLpxwU4vislEwFMY7
-	9c6bCgDw3Uil9AYxw/WN/LvmBABcoTut9TcSHBgexRkIvFqO3n56VYbr66aaM6eobEAB
-	Mr7OGbw3T2gpHqkow3zc/dUzbSsUj8UiwUpgTWMUA78H3CKIhc+tPzl+iGNuDq+7Il2d
-	L6Bs4i+0iTtxPymU03dEUYTsdOAMNp7DzqZ4QYEIIWl9/bs35z3lJdeC35dSnfBMxJGX
-	vmJ7vosrlVDGccZw5IFKRYbTtThSm5fNPoL4jIl8hWPdzhcrIttFynsjm117kxHZDyhW
-	wxNA==
-X-Gm-Message-State: AKaTC01qqqEfmmUqBY5N5Aa89RiI4p+PnH6qGmKlmgrW/QKLiHegsMy2r8NuXEs/iJKyxA==
-X-Received: by 10.36.148.84 with SMTP id j81mr21663421ite.35.1480388609702;
-	Mon, 28 Nov 2016 19:03:29 -0800 (PST)
-Received: from openSUSE-i7.site (65-110-221-106.cpe.pppoe.ca. [65.110.221.106])
-	by smtp.gmail.com with ESMTPSA id e143sm195585itc.9.2016.11.28.19.03.27
+	h=x-gm-message-state:subject:to:references:from:message-id:date
+	:user-agent:mime-version:in-reply-to:content-transfer-encoding;
+	bh=9PJXS58yoGwm599uGBOA5CZObVBWbRWklMx6cOCxmOU=;
+	b=cOJqXMOoUlkmUwgSV01LlIgD0f+S5qA40Uammf1fk/ptXkyNylNdeTnDA+OVxTqho8
+	tMqqcJhxqXX+dY7X1D1zgfVTx++/K9UWXfYulBf4YV9jeJBP859I7lA1fyOCjk/aoyKc
+	jf3faHXI2b/J9Nf9Dg72pWvj/nWvmtCRrUIAxgHNf/SCk5gECdSEpfsYWIVEDBrrZFY8
+	tLi0Z8xudzrIRW0X4VzDYLnzSbHCMDia9xwjEZ5rNE0ZKpsEs/YRz932dIBoHxQ9m9lp
+	TtwyzvAt876xxH0z4e2U0zpw3nlwHPfAY+ZdPbzKCDuyumHhVSymLrRbBIYncscbLgP+
+	pChA==
+X-Gm-Message-State: AKaTC022mN8ZaQHOPF49pfD9HWhZHnv71IySkOKfWigAgIrpRS9T6kVmzpOj7rsBJwDk8Q==
+X-Received: by 10.84.136.1 with SMTP id 1mr57089205plk.152.1480390204730;
+	Mon, 28 Nov 2016 19:30:04 -0800 (PST)
+Received: from ?IPv6:2601:202:4001:9ea0:ea2a:eaff:fe0e:629e?
+	([2601:202:4001:9ea0:ea2a:eaff:fe0e:629e])
+	by smtp.gmail.com with ESMTPSA id
+	q9sm90396131pfg.47.2016.11.28.19.30.03
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Mon, 28 Nov 2016 19:03:28 -0800 (PST)
-Date: Mon, 28 Nov 2016 22:03:24 -0500
-From: Trevor Woerner <twoerner@gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
-Message-ID: <20161129030324.GA2836@openSUSE-i7.site>
-References: <20161128151233.8861-1-twoerner@gmail.com>
-	<9045CDB4-3095-4352-A4A3-04EAC676F466@gmail.com>
-	<20161129014240.GB30326@openSUSE-i7.site>
-	<5A8D2138-126E-468B-8637-D7A927386706@gmail.com>
+	Mon, 28 Nov 2016 19:30:04 -0800 (PST)
+To: =?UTF-8?Q?Andr=c3=a9_Draszik?= <git@andred.net>, yocto@yoctoproject.org
+References: <20161125162903.19626-1-git@andred.net>
+	<20161128093130.17727-1-git@andred.net>
+	<1480325566.6217.5.camel@andred.net>
+From: akuster808 <akuster808@gmail.com>
+Message-ID: <48298156-e9de-4fa7-a6e9-b38ec72d75cf@gmail.com>
+Date: Mon, 28 Nov 2016 19:30:02 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.4.0
 MIME-Version: 1.0
-In-Reply-To: <5A8D2138-126E-468B-8637-D7A927386706@gmail.com>
-User-Agent: Mutt/1.6.0 (2016-04-01)
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-raspberrypi][PATCH] linux-raspberrypi_4.4.bb: upgrade to 4.4.32
+In-Reply-To: <1480325566.6217.5.camel@andred.net>
+Subject: Re: [meta-security][PATCH v2] trousers: fix musl compilation
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -79,70 +79,201 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 29 Nov 2016 03:03:33 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+X-List-Received-Date: Tue, 29 Nov 2016 03:30:09 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Mon 2016-11-28 @ 05:52:38 PM, Khem Raj wrote:
-> 
-> > On Nov 28, 2016, at 5:42 PM, Trevor Woerner <twoerner@gmail.com> wrote:
-> > 
-> > On Mon 2016-11-28 @ 03:21:50 PM, Khem Raj wrote:
-> >> its at 4.4.35 now see
-> >> https://github.com/kraj/meta-raspberrypi/commits/kraj/master <https://github.com/kraj/meta-raspberrypi/commits/kraj/master>
-> > 
-> > True. But there's no -rt patch for 4.4.35:
-> > https://www.kernel.org/pub/linux/kernel/projects/rt/4.4/
-> > 
-> > The latest 4.4.y -rt patch is 4.4.32.
-> > 
-> > Since I'm working on a separate recipe for 4.4.32-rt43 I guess I could just
-> > base it on 4.4.32 and let the non-rt-mainline advance to 4.4.35 :-)
-> 
-> does it not apply cleanly on 4.4.35
 
-As luck would have it, it does!
-(minus one hunk from Makefile for something that had already been added)
 
-Tomorrow I'll do a boot test and submit the patch (unless the boot test fails,
-or someone else beats me to it)
+On 11/28/2016 01:32 AM, André Draszik wrote:
+> Changes from v1:
+> - Upstream-Status of 0001-Check-that-getpwent_r-is-available-before-using-
+> it.patch updated
+thanks for the note.
 
-> 
-> > 
-> >> 
-> >>> On Nov 28, 2016, at 7:12 AM, Trevor Woerner <twoerner@gmail.com> wrote:
-> >>> 
-> >>> This helps align the raspberry pi 4.4.y kernel with the latest 4.4.y
-> >>> PREEMPT_RT patch.
-> >>> 
-> >>> Signed-off-by: Trevor Woerner <twoerner@gmail.com>
-> >>> ---
-> >>> recipes-kernel/linux/linux-raspberrypi_4.4.bb | 4 ++--
-> >>> 1 file changed, 2 insertions(+), 2 deletions(-)
-> >>> 
-> >>> diff --git a/recipes-kernel/linux/linux-raspberrypi_4.4.bb b/recipes-kernel/linux/linux-raspberrypi_4.4.bb
-> >>> index 19e8552..0724ac1 100644
-> >>> --- a/recipes-kernel/linux/linux-raspberrypi_4.4.bb
-> >>> +++ b/recipes-kernel/linux/linux-raspberrypi_4.4.bb
-> >>> @@ -1,8 +1,8 @@
-> >>> FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
-> >>> 
-> >>> -LINUX_VERSION ?= "4.4.28"
-> >>> +LINUX_VERSION ?= "4.4.32"
-> >>> 
-> >>> -SRCREV = "5afda48c3408e15742d4569459a4ff668e2857f7"
-> >>> +SRCREV = "f779cabf56bc88319d582db58969ba6f7184a775"
-> >>> SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-4.4.y \
-> >>>           file://0001-fix-dtbo-rules.patch \
-> >>> "
-> >>> -- 
-> >>> 2.10.2
-> >>> 
-> >>> -- 
-> >>> _______________________________________________
-> >>> yocto mailing list
-> >>> yocto@yoctoproject.org
-> >>> https://lists.yoctoproject.org/listinfo/yocto
-> >> 
-> 
+merged
+
+Thanks for the patch.
+Armin
+> On Mon, 2016-11-28 at 09:31 +0000, André Draszik wrote:
+>> From: André Draszik <adraszik@tycoint.com>
+>>
+>> Backport patches to fix compilation.
+>>
+>> Signed-off-by: André Draszik <adraszik@tycoint.com>
+>> ---
+>>   ...t-getpwent_r-is-available-before-using-it.patch | 85
+>> ++++++++++++++++++++++
+>>   ...si_param.c-Include-limits.h-for-POSIX_MAX.patch | 36 +++++++++
+>>   recipes-tpm/trousers/trousers_0.3.13.bb            |  2 +
+>>   3 files changed, 123 insertions(+)
+>>   create mode 100644 recipes-tpm/trousers/files/0001-Check-that-getpwent_r-
+>> is-available-before-using-it.patch
+>>   create mode 100644 recipes-tpm/trousers/files/0001-tsp_tcsi_param.c-
+>> Include-limits.h-for-POSIX_MAX.patch
+>>
+>> diff --git a/recipes-tpm/trousers/files/0001-Check-that-getpwent_r-is-
+>> available-before-using-it.patch b/recipes-tpm/trousers/files/0001-Check-
+>> that-getpwent_r-is-available-before-using-it.patch
+>> new file mode 100644
+>> index 0000000..e7ba2eb
+>> --- /dev/null
+>> +++ b/recipes-tpm/trousers/files/0001-Check-that-getpwent_r-is-available-
+>> before-using-it.patch
+>> @@ -0,0 +1,85 @@
+>> +From bb721b0ae5882992037153e7257791101172556e Mon Sep 17 00:00:00 2001
+>> +From: =?UTF-8?q?No=C3=A9=20Rubinstein?= <nrubinstein@aldebaran.com>
+>> +Date: Wed, 24 Aug 2016 18:55:25 +0200
+>> +Subject: [PATCH] Check that getpwent_r is available before using it
+>> +MIME-Version: 1.0
+>> +Content-Type: text/plain; charset=UTF-8
+>> +Content-Transfer-Encoding: 8bit
+>> +
+>> +This fixes building trousers with musl
+>> +
+>> +Signed-off-by: Noé Rubinstein <nrubinstein@aldebaran.com>
+>> +---
+>> +Upstream-Status: Inappropriate [not author https://git.busybox.net/buildr
+>> oot/plain/package/trousers/0004-Check-that-getpwent_r-is-available-before-
+>> using-it.patch]
+>> +Signed-off-by: André Draszik <adraszik@tycoint.com>
+>> + configure.in        |  4 ++++
+>> + src/tspi/ps/tspps.c | 10 +++++-----
+>> + 2 files changed, 9 insertions(+), 5 deletions(-)
+>> +
+>> +diff --git a/configure.in b/configure.in
+>> +index add23dc..cfdfcaa 100644
+>> +--- a/configure.in
+>> ++++ b/configure.in
+>> +@@ -144,6 +144,10 @@ else
+>> + 	AC_MSG_ERROR(["gtk", "openssl" and "none" are the only supported
+>> gui options for trousers])
+>> + fi
+>> +
+>> ++# Look for getpwent_r. If it is not found, getpwent will be used
+>> instead, with
+>> ++# an additional mutex.
+>> ++AC_CHECK_FUNC(getpwent_r, [AC_DEFINE(HAVE_GETPWENT_R)])
+>> ++
+>> + #
+>> + # The default port that the TCS daemon listens on
+>> + #
+>> +diff --git a/src/tspi/ps/tspps.c b/src/tspi/ps/tspps.c
+>> +index c6f9c3d..9d00d2a 100644
+>> +--- a/src/tspi/ps/tspps.c
+>> ++++ b/src/tspi/ps/tspps.c
+>> +@@ -45,7 +45,7 @@
+>> +
+>> + static int user_ps_fd = -1;
+>> + static MUTEX_DECLARE_INIT(user_ps_lock);
+>> +-#if (defined (__FreeBSD__) || defined (__OpenBSD__))
+>> ++#ifndef HAVE_GETPWENT_R
+>> + static MUTEX_DECLARE_INIT(user_ps_path);
+>> + #endif
+>> + static struct flock fl;
+>> +@@ -60,7 +60,7 @@ get_user_ps_path(char **file)
+>> + 	TSS_RESULT result;
+>> + 	char *file_name = NULL, *home_dir = NULL;
+>> + 	struct passwd *pwp;
+>> +-#if (defined (__linux) || defined (linux) || defined(__GLIBC__))
+>> ++#ifdef HAVE_GETPWENT_R
+>> + 	struct passwd pw;
+>> + #endif
+>> + 	struct stat stat_buf;
+>> +@@ -72,7 +72,7 @@ get_user_ps_path(char **file)
+>> + 		*file = strdup(file_name);
+>> + 		return (*file) ? TSS_SUCCESS :
+>> TSPERR(TSS_E_OUTOFMEMORY);
+>> + 	}
+>> +-#if (defined (__FreeBSD__) || defined (__OpenBSD__))
+>> ++#ifndef HAVE_GETPWENT_R
+>> + 	MUTEX_LOCK(user_ps_path);
+>> + #endif
+>> +
+>> +@@ -90,7 +90,7 @@ get_user_ps_path(char **file)
+>> + #else
+>> + 	setpwent();
+>> + 	while (1) {
+>> +-#if (defined (__linux) || defined (linux) || defined(__GLIBC__))
+>> ++#ifdef HAVE_GETPWENT_R
+>> + 		rc = getpwent_r(&pw, buf, PASSWD_BUFSIZE, &pwp);
+>> + 		if (rc) {
+>> + 			LogDebugFn("USER PS: Error getting path to home
+>> directory: getpwent_r: %s",
+>> +@@ -99,7 +99,7 @@ get_user_ps_path(char **file)
+>> + 			return TSPERR(TSS_E_INTERNAL_ERROR);
+>> + 		}
+>> +
+>> +-#elif (defined (__FreeBSD__) || defined (__OpenBSD__))
+>> ++#else
+>> + 		if ((pwp = getpwent()) == NULL) {
+>> + 			LogDebugFn("USER PS: Error getting path to home
+>> directory: getpwent: %s",
+>> +                                    strerror(rc));
+>> +--
+>> +2.10.2
+>> +
+>> diff --git a/recipes-tpm/trousers/files/0001-tsp_tcsi_param.c-Include-
+>> limits.h-for-POSIX_MAX.patch b/recipes-tpm/trousers/files/0001-
+>> tsp_tcsi_param.c-Include-limits.h-for-POSIX_MAX.patch
+>> new file mode 100644
+>> index 0000000..c01040d
+>> --- /dev/null
+>> +++ b/recipes-tpm/trousers/files/0001-tsp_tcsi_param.c-Include-limits.h-
+>> for-POSIX_MAX.patch
+>> @@ -0,0 +1,36 @@
+>> +From c1b5f33845c56dc7aef769c99758b4f77a041d43 Mon Sep 17 00:00:00 2001
+>> +From: Felix Janda <felix.janda@posteo.de>
+>> +Date: Wed, 31 Aug 2016 22:52:58 -0400
+>> +Subject: [PATCH] tsp_tcsi_param.c: Include <limits.h> for POSIX_MAX
+>> +MIME-Version: 1.0
+>> +Content-Type: text/plain; charset=UTF-8
+>> +Content-Transfer-Encoding: 8bit
+>> +
+>> +Use POSIX instead of glibc-specific header.
+>> +Fixes compilation with musl libc.
+>> +
+>> +Signed-off-by: Felix Janda <felix.janda@posteo.de>
+>> +Reviewed-by: Hon Ching(Vicky) Lo <honclo@linux.vnet.ibm.com>
+>> +
+>> +---
+>> +Upstream-Status: Backport [https://sourceforge.net/p/trousers/trousers/ci
+>> /59351a56cac1710e89d207dff07eb23bbc644c13/]
+>> +Signed-off-by: André Draszik <adraszik@tycoint.com>
+>> + src/tspi/tsp_tcsi_param.c | 2 +-
+>> + 1 file changed, 1 insertion(+), 1 deletion(-)
+>> +
+>> +diff --git a/src/tspi/tsp_tcsi_param.c b/src/tspi/tsp_tcsi_param.c
+>> +index 670f86f..8f2b4e4 100644
+>> +--- a/src/tspi/tsp_tcsi_param.c
+>> ++++ b/src/tspi/tsp_tcsi_param.c
+>> +@@ -11,7 +11,7 @@
+>> + #include <stdlib.h>
+>> + #include <string.h>
+>> + #include <stdio.h>
+>> +-#include <bits/local_lim.h>
+>> ++#include <limits.h>
+>> + #include "trousers/tss.h"
+>> + #include "trousers/trousers.h"
+>> + #include "trousers_types.h"
+>> +--
+>> +2.10.2
+>> +
+>> diff --git a/recipes-tpm/trousers/trousers_0.3.13.bb b/recipes-
+>> tpm/trousers/trousers_0.3.13.bb
+>> index 6853f18..a69f763 100644
+>> --- a/recipes-tpm/trousers/trousers_0.3.13.bb
+>> +++ b/recipes-tpm/trousers/trousers_0.3.13.bb
+>> @@ -7,6 +7,8 @@ SECTION = "security/tpm"
+>>   DEPENDS = "openssl"
+>>   
+>>   SRC_URI = "http://sourceforge.net/projects/trousers/files/${BPN}/${PV}/${
+>> BPN}-${PV}.tar.gz \
+>> +    file://0001-tsp_tcsi_param.c-Include-limits.h-for-POSIX_MAX.patch \
+>> +    file://0001-Check-that-getpwent_r-is-available-before-using-it.patch
+>> \
+>>       file://07-read_data-not-inline.patch \
+>>       file://trousers.init.sh \
+>>       file://trousers-udev.rules \
+
 
