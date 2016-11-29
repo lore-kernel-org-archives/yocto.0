@@ -1,59 +1,72 @@
-Return-Path: <ron@ron-oakes.us>
+Return-Path: <twoerner@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 20C2FE00C41; Mon, 28 Nov 2016 15:56:26 -0800 (PST)
+	id F32B5E00C80; Mon, 28 Nov 2016 17:37:14 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.161.174 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (twoerner[at]gmail.com)
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.223.194 listed in dnsbl.sorbs.net]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.223.194 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-yw0-f174.google.com (mail-yw0-f174.google.com
-	[209.85.161.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E4C04E00C2D
-	for <yocto@yoctoproject.org>; Mon, 28 Nov 2016 15:56:24 -0800 (PST)
-Received: by mail-yw0-f174.google.com with SMTP id i145so127875301ywg.2
-	for <yocto@yoctoproject.org>; Mon, 28 Nov 2016 15:56:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=ron-oakes-us.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to; 
-	bh=gkNWvn0DYam6bxeHYpnOuayOHXok5u6fINvjLemL1F4=;
-	b=WrcH3g9EQvp23JQdDtnI1Ja98Dbfd23ld35XHtkg+sPGC85s9iTSI2z1ZTw2SpPEBf
-	BEA3tSFi6Bh3/FLG3jAjYUaNroUfhN5G45RhzqsPnNeQoCymP7hR62xY1r5ucLV7Y118
-	SgqVVQL1hYBQTcyWx4RaiL2Ii93TM8aALARJcUuX0KtGMulcFW4hYiaou8VK8MFUjA1x
-	TEWMM7grqB490h3dNq9tR63v5Rybh1EDIIqaVUemYSzJApShEG3OUDz1ZmgBb6gfHKDw
-	scn9y6Qdsu41/e3nvoGGO+xkFD65lzEmReVG1VVXoLI5pMFgkl3HuIM0CU1BAdMezV4Y
-	aUsA==
+Received: from mail-io0-f194.google.com (mail-io0-f194.google.com
+	[209.85.223.194])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 99F6CE00C59
+	for <yocto@yoctoproject.org>; Mon, 28 Nov 2016 17:37:12 -0800 (PST)
+Received: by mail-io0-f194.google.com with SMTP id h133so26479471ioe.2
+	for <yocto@yoctoproject.org>; Mon, 28 Nov 2016 17:37:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-disposition:in-reply-to:user-agent;
+	bh=taaqP9ruB6VD377dsi4rDKG5TozRp9RfShufXGDqlgs=;
+	b=eBbI4zBtbqglRLh0SFQMXNc2IG/UhpTy+127Gh78KJUHF2XhIWcLCbTElABP5E+cEe
+	tfmg2ud4bNMpNvxlF6xnQEtADT2cyhzxELt7ax4H636A11s1HN/zR6BULMOHS8/S2zwJ
+	IDif/cUCJAUw27zN6o1BE4pLZak2YOpugeTVdAyUAUPvclfsvFhxJX9FsscwxPZGGtFE
+	82smFCQ7EBEDinDF4dVD3h7YrTmEEq7A4fFouBZvOlNJeIo3e93i4tBBSpMUW9VRHNea
+	WJMwyly7koWf+ek4de7vvGU7xuDJ2R8ZJASZ66rAbIvSndOXNvPtvuVTmc/QFQQz0Uxr
+	ff0Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to;
-	bh=gkNWvn0DYam6bxeHYpnOuayOHXok5u6fINvjLemL1F4=;
-	b=mZKna4QRVVY+VygUCJ8mbhpEo0QPTFn6mskb+vsZe+xcZWHyUKKISZOEs/VzhGHlb7
-	/vAclRWlO6domCupRJ2cP1S/ayJCI4UD/Jasz63rJc/adZkBLpHzsbMpk9snjH9gti9n
-	+XnjCjErGPT/ULEcnOUp7OhukhQ8Bfbr0KxNU8NPDkmQO11yRxuz25kfPo7M92ghqQme
-	SXhKu9LT8tQoej+5iKgT5KG+21CA2/sw79tTbKYwy2ijddb5m7xo3tq38mCk0ajQ+DDy
-	8rgqbdkKL49XfMF4gPfSQBYTtRRe35Pf1lvz5preLrPzHRd0pmC01JZgk6Dvw1O+S9Qw
-	/KcQ==
-X-Gm-Message-State: AKaTC01p+O40cezb4a7GSUth+xX+mv+M5AeiNNua24+jASth4R6FX1oKo6u5vfCyhJSEB4Xz+YKj7wgWU5H+kg==
-X-Received: by 10.129.131.200 with SMTP id t191mr33675097ywf.91.1480377383705; 
-	Mon, 28 Nov 2016 15:56:23 -0800 (PST)
+	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	:mime-version:content-disposition:in-reply-to:user-agent;
+	bh=taaqP9ruB6VD377dsi4rDKG5TozRp9RfShufXGDqlgs=;
+	b=ZjLmx4h57cI1WH/O5oK2N5a3amAnlGvj9F9roOa73txrMl7LaGcny56OEADNNhV2ub
+	tipSeJSwzE6QjkWun1Cg2Ugd4QJjWvslDegAJbxfPL9AmNMZ0OO85F+9JcS2N8dZCa79
+	fsPVF5s4qKDopvwJKfJMKXwOduJn5J9chv82fxwxeflf2sn0Rqo7u5e4RLBO2zoMrXPA
+	PoIUR2uMTHVck22iAqvYc9ogg/b/nqx9zKC3E37z5343BVrqyzgo1Oxz/ieiFn3exWE6
+	KMoZP2KipGhw+Z3OpeNtHV2plOlsD4t05cUwAQ1OXw4tVxR/yUjhkJI9D5qlQ5ahRpXW
+	4N4g==
+X-Gm-Message-State: AKaTC03BFk1ZIGkiijquaYQcuwtEU8YWExIocn9wJUnvqPJ5zmpysGo6lDTda7UReObmNA==
+X-Received: by 10.107.59.88 with SMTP id i85mr21960631ioa.198.1480383432246;
+	Mon, 28 Nov 2016 17:37:12 -0800 (PST)
+Received: from openSUSE-i7.site (dsl-67-55-28-109.acanac.net. [67.55.28.109])
+	by smtp.gmail.com with ESMTPSA id
+	m83sm6153258ioi.11.2016.11.28.17.37.11
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Mon, 28 Nov 2016 17:37:11 -0800 (PST)
+Date: Mon, 28 Nov 2016 20:37:09 -0500
+From: Trevor Woerner <twoerner@gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+Message-ID: <20161129013709.GA30326@openSUSE-i7.site>
+References: <20161128190745.18053-1-twoerner@gmail.com>
+	<2ACF0BDF-0A7B-4A0E-BC20-B6B222F1644A@gmail.com>
 MIME-Version: 1.0
-References: <CADh9ykHD_4GO+n9hpv-bWn-JCnZaxzS5mTdmC1b1iBQGfRVR3g@mail.gmail.com>
-	<CADh9ykEWV5YZLDUsGWFB0ktp5QzhqQVdU3wCqEA_G3MPF5NwAw@mail.gmail.com>
-In-Reply-To: <CADh9ykEWV5YZLDUsGWFB0ktp5QzhqQVdU3wCqEA_G3MPF5NwAw@mail.gmail.com>
-From: Ronald Oakes <ron@ron-oakes.us>
-Date: Mon, 28 Nov 2016 23:56:12 +0000
-Message-ID: <CADh9ykFkq5OUxtqdqYN8rFO5R4v-r8SWC9R_S7_FkM1vPx72zw@mail.gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Problem imaging a hard drive
+In-Reply-To: <2ACF0BDF-0A7B-4A0E-BC20-B6B222F1644A@gmail.com>
+User-Agent: Mutt/1.6.0 (2016-04-01)
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-raspberrypi][PATCH] linux-raspberrypi-base.bbclass: allow -rt kernels
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -65,141 +78,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 28 Nov 2016 23:56:26 -0000
-Content-Type: multipart/alternative; boundary=001a114f21fa1725bf0542653812
+X-List-Received-Date: Tue, 29 Nov 2016 01:37:15 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 
---001a114f21fa1725bf0542653812
-Content-Type: text/plain; charset=UTF-8
+On Mon 2016-11-28 @ 03:16:11 PM, Khem Raj wrote:
+> 
+> > On Nov 28, 2016, at 11:07 AM, Trevor Woerner <twoerner@gmail.com> wrote:
+> > 
+> > If the PREEMPT_RT patch is applied, the kernel version becomes, say,
+> > 4.4.32-rt43 (instead of 4.4.32). This confuses the version handling code in
+> > this class. Update how the version string is processed so that trailing rt-
+> > strings are properly handled, in addition to handling the existing cases.
+> > 
+> 
+> This probably will solve the issue I see with 4.9-rcX recipes that are in my tree on kraj/master
 
-I was able to resolve the problem with the help of a coworker today, by
-booting from the grub command line, then using grub-mkconfig to create a
-configuration file, put it in /boot/grub2, then use a .bbappend file to
-ensure that it would continue to be included in my image.
+I'm not familiar with the issue you're seeing, but the existing and new code
+are looking for 3 int()s separated by periods. If your recipes have the string
+"4.9-rcX" then I'm guessing there might still be an issue since the third
+int() will be "-rcX" in your case. If this is true, you'll need to take a look
+at where "int(min_ver[2])" is used further down in that bbclass file.
 
-Ron Oakes
+> 
+> > Signed-off-by: Trevor Woerner <twoerner@gmail.com>
+> > ---
+> > classes/linux-raspberrypi-base.bbclass | 2 +-
+> > 1 file changed, 1 insertion(+), 1 deletion(-)
+> > 
+> > diff --git a/classes/linux-raspberrypi-base.bbclass b/classes/linux-raspberrypi-base.bbclass
+> > index 3a6e33d..fecac30 100644
+> > --- a/classes/linux-raspberrypi-base.bbclass
+> > +++ b/classes/linux-raspberrypi-base.bbclass
+> > @@ -15,7 +15,7 @@ def get_dts(d, ver=None):
+> >         ver = get_kernelversion_file(staging_dir)
+> > 
+> >     if ver is not None:
+> > -        min_ver = ver.split('.', 3)
+> > +        min_ver = re.split(r'[.-]+', ver, maxsplit=3)
+> >     else:
+> >         return dts
+> > 
+> > -- 
+> > 2.10.2
+> > 
+> > -- 
+> > _______________________________________________
+> > yocto mailing list
+> > yocto@yoctoproject.org
+> > https://lists.yoctoproject.org/listinfo/yocto
+> 
 
-On Fri, Nov 25, 2016 at 3:35 PM Ronald Oakes <ron@ron-oakes.us> wrote:
-
-> Well, I partially solved my problem.  It turns out I had a CD in the
-> computer with an old boot image on it that was loading and causing
-> great confusion.
->
-> Now, grub appears to be loading OK, but doesn't look like it has a
-> valid configuration to actually boot the image loaded onto the hard
-> drive.
->
-> My commands (based on the link in my first email) were:
-> - Format the hard drive using mkfs.ex4 -L <name>
-> - Mount it (usually by just unplugging and replugging the USB to SATA
-> adaptor)
-> - Copy the data from the mounted image file using cp -aV
-> - Add grub using "grub2-install --recheck
-> --boot-directory=/run/media/ron/<label>boot /dev/sdc"
->
-> My educated guess is that either I'm missing something in my
-> grub2-install command, or there is something missing in my build or
-> build configuration that is causing the grub configuration to not be
-> picked up when or where needed..
->
-> Ron Oakes
->
-> On Fri, Nov 25, 2016 at 11:44 AM, Ronald Oakes <ron@ron-oakes.us> wrote:
-> > I've been trying to use the directions at
-> >
-> https://wiki.yoctoproject.org/wiki/How_do_I#Q:_How_do_I_put_Yocto_on_a_hard_drive.3F
-> > to create a boot drive based on my build.
-> >
-> > However, I keep ending up with my root being at /media/ads/, with two big
-> > issues: my static IP address isn't assigned, and my path is messed up
-> > leaving my applications not on it by default.
-> >
-> > The one main difference from the directions is that I'm using
-> grub2-install
-> > instead of grub-install. This is because I'm using a current RedHat
-> system
-> > for development due to a requirement of my client.
-> >
-> > I will note that at least one of my added kernel modules is being loaded,
-> > since I can see related messages in the console/demesg log.
-> >
-> > Ron Oakes
->
-
---001a114f21fa1725bf0542653812
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div style=3D"white-space:pre-wrap">I was able to resolve the problem with =
-the help of a coworker today, by booting from the grub command line, then u=
-sing grub-mkconfig to create a configuration file, put it in /boot/grub2, t=
-hen use a .bbappend file to ensure that it would continue to be included in=
- my image. <br><br>Ron Oakes</div><br><div class=3D"gmail_quote"><div dir=
-=3D"ltr">On Fri, Nov 25, 2016 at 3:35 PM Ronald Oakes &lt;<a href=3D"mailto=
-:ron@ron-oakes.us">ron@ron-oakes.us</a>&gt; wrote:<br></div><blockquote cla=
-ss=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;pa=
-dding-left:1ex">Well, I partially solved my problem.=C2=A0 It turns out I h=
-ad a CD in the<br class=3D"gmail_msg">
-computer with an old boot image on it that was loading and causing<br class=
-=3D"gmail_msg">
-great confusion.<br class=3D"gmail_msg">
-<br class=3D"gmail_msg">
-Now, grub appears to be loading OK, but doesn&#39;t look like it has a<br c=
-lass=3D"gmail_msg">
-valid configuration to actually boot the image loaded onto the hard<br clas=
-s=3D"gmail_msg">
-drive.<br class=3D"gmail_msg">
-<br class=3D"gmail_msg">
-My commands (based on the link in my first email) were:<br class=3D"gmail_m=
-sg">
-- Format the hard drive using mkfs.ex4 -L &lt;name&gt;<br class=3D"gmail_ms=
-g">
-- Mount it (usually by just unplugging and replugging the USB to SATA adapt=
-or)<br class=3D"gmail_msg">
-- Copy the data from the mounted image file using cp -aV<br class=3D"gmail_=
-msg">
-- Add grub using &quot;grub2-install --recheck<br class=3D"gmail_msg">
---boot-directory=3D/run/media/ron/&lt;label&gt;boot /dev/sdc&quot;<br class=
-=3D"gmail_msg">
-<br class=3D"gmail_msg">
-My educated guess is that either I&#39;m missing something in my<br class=
-=3D"gmail_msg">
-grub2-install command, or there is something missing in my build or<br clas=
-s=3D"gmail_msg">
-build configuration that is causing the grub configuration to not be<br cla=
-ss=3D"gmail_msg">
-picked up when or where needed..<br class=3D"gmail_msg">
-<br class=3D"gmail_msg">
-Ron Oakes<br class=3D"gmail_msg">
-<br class=3D"gmail_msg">
-On Fri, Nov 25, 2016 at 11:44 AM, Ronald Oakes &lt;<a href=3D"mailto:ron@ro=
-n-oakes.us" class=3D"gmail_msg" target=3D"_blank">ron@ron-oakes.us</a>&gt; =
-wrote:<br class=3D"gmail_msg">
-&gt; I&#39;ve been trying to use the directions at<br class=3D"gmail_msg">
-&gt; <a href=3D"https://wiki.yoctoproject.org/wiki/How_do_I#Q:_How_do_I_put=
-_Yocto_on_a_hard_drive.3F" rel=3D"noreferrer" class=3D"gmail_msg" target=3D=
-"_blank">https://wiki.yoctoproject.org/wiki/How_do_I#Q:_How_do_I_put_Yocto_=
-on_a_hard_drive.3F</a><br class=3D"gmail_msg">
-&gt; to create a boot drive based on my build.<br class=3D"gmail_msg">
-&gt;<br class=3D"gmail_msg">
-&gt; However, I keep ending up with my root being at /media/ads/, with two =
-big<br class=3D"gmail_msg">
-&gt; issues: my static IP address isn&#39;t assigned, and my path is messed=
- up<br class=3D"gmail_msg">
-&gt; leaving my applications not on it by default.<br class=3D"gmail_msg">
-&gt;<br class=3D"gmail_msg">
-&gt; The one main difference from the directions is that I&#39;m using grub=
-2-install<br class=3D"gmail_msg">
-&gt; instead of grub-install. This is because I&#39;m using a current RedHa=
-t system<br class=3D"gmail_msg">
-&gt; for development due to a requirement of my client.<br class=3D"gmail_m=
-sg">
-&gt;<br class=3D"gmail_msg">
-&gt; I will note that at least one of my added kernel modules is being load=
-ed,<br class=3D"gmail_msg">
-&gt; since I can see related messages in the console/demesg log.<br class=
-=3D"gmail_msg">
-&gt;<br class=3D"gmail_msg">
-&gt; Ron Oakes<br class=3D"gmail_msg">
-</blockquote></div>
-
---001a114f21fa1725bf0542653812--
