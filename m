@@ -1,58 +1,41 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <clemens.lang@bmw-carit.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 06B67E00503; Wed, 30 Nov 2016 08:10:32 -0800 (PST)
+	id 51D9CE004E5; Wed, 30 Nov 2016 08:28:02 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.220.182 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qk0-f182.google.com (mail-qk0-f182.google.com
-	[209.85.220.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E1011E0049D
-	for <yocto@yoctoproject.org>; Wed, 30 Nov 2016 08:10:30 -0800 (PST)
-Received: by mail-qk0-f182.google.com with SMTP id q130so26826537qke.1
-	for <yocto@yoctoproject.org>; Wed, 30 Nov 2016 08:10:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=nDpT1Yh1oJ/1v6oA4NwIzFLJTyivh6PMU3hr/mpDjRE=;
-	b=afMXkRjUudh9CQuhpiqPL9DfjEFpGDmbhtPzpEx30gTWxY4tkdwQWhGVjuOmgTce1y
-	Q9wyLBmJRckpeBEI1YHahIB/lw7U5EfmuZ8H/OWOsQyNPLlauOvYEOE1WZPCSd2SQxqH
-	rQmbxJR8ZoOdi7tyb66AnhvEeCFIe+eq7zmHFC47tsMKPihOwvdpN20ItyNuNz3UQNQG
-	MDiqKNd5Lge37cWCb7RBIVaY3MeSf3VDwcJ7uWEAmePed+GATxCaI/uryTX8BPdsa49m
-	0ZNm2IjTF9XTkP5O8zGeFrRVDILMxFpZTxpxzw8r42Pt+ehrMHMua+/cU7Xm1NbCUQXU
-	IDWg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=nDpT1Yh1oJ/1v6oA4NwIzFLJTyivh6PMU3hr/mpDjRE=;
-	b=OZHb8vJRT5w7fgHZ3tKpxisfYWGNBBMf3wX/8BArwnd5kEA/nPXInuRTsMHqHx+UGq
-	VbWxSh2pNlcF0Wh0xMJwTHHGQ27sQhph/c6ZUwKJaKO3s/tMpZddVd5/t4uGVIIC7/MY
-	bu+I4a/CDtsyAaVSGE8l6+3n8dPtxNbCE+cDpsNetC/4iWeAUzW0pOJYej57Wv34ddH9
-	0UnzTLgAafEmSmMRPhungdQSZDWU7tXkxUbIxjAuGYglURDCRIUHx4BcDdgTN2ZJWVza
-	xLzPJfqk0uK89pfGvih1YPbPIrOMNIH/mcpRgEpJgtv0Ifr9+qQlkO/WkfFbUTHJVk+R
-	MUwA==
-X-Gm-Message-State: AKaTC01ilOq+M3ps9A6hztBiDpesXcf1ZTb9NvrGFSVgwdVS1e68xhHDtpRdl/bBIeLAEuC7SgX4qR3w5Lmj2zlU
-X-Received: by 10.55.207.78 with SMTP id e75mr34265683qkj.36.1480522229585;
-	Wed, 30 Nov 2016 08:10:29 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.140.106.99 with HTTP; Wed, 30 Nov 2016 08:10:09 -0800 (PST)
-In-Reply-To: <4f6a6c3622f646e9a01a2cec53be8615@BLUPR6801MB0051.017d.mgd.msft.net>
-References: <4f6a6c3622f646e9a01a2cec53be8615@BLUPR6801MB0051.017d.mgd.msft.net>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 30 Nov 2016 16:10:09 +0000
-Message-ID: <CAJTo0LaRNkCHKYXxs+FP5vTsx-QZJYrGvm+b0EXUzpJkPDcR2g@mail.gmail.com>
+X-Greylist: delayed 167 seconds by postgrey-1.32 at yocto-www;
+	Wed, 30 Nov 2016 08:28:00 PST
+Received: from cit-hm8-gw01.bmw-carit.de (cit-hm8-mail01.bmw-carit.de
+	[212.118.206.84])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CEA9CE00498
+	for <yocto@yoctoproject.org>; Wed, 30 Nov 2016 08:28:00 -0800 (PST)
+Received: from [172.20.0.50] (port=22298 helo=cit-hm8-mail01.bmw-carit.de)
+	by cit-hm8-gw01.bmw-carit.de with esmtps (TLSv1:DHE-RSA-AES256-SHA:256)
+	(Exim 4.82_1-5b7a7c0-XX) (envelope-from <Clemens.Lang@bmw-carit.de>)
+	id 1cC7h0-0005oQ-15; Wed, 30 Nov 2016 17:25:10 +0100
+Received: from ULM-DC01.bmw-carit.intra ([fe80::41cf:62be:aacc:1aad]) by
+	ULM-DC01.bmw-carit.intra ([fe80::41cf:62be:aacc:1aad%11]) with mapi id
+	14.03.0123.003; Wed, 30 Nov 2016 17:25:09 +0100
+X-CTCH-RefID: str=0001.0A0C0205.583EFD66.00BF, ss=1, re=0.000, recu=0.000,
+	reip=0.000, cl=1, cld=1, fgs=0
+From: Clemens Lang <Clemens.Lang@bmw-carit.de>
 To: "Suchy, Pawel" <pawel.suchy@delphi.com>
+Thread-Topic: [yocto] CommonAPI *.so bindings
+Thread-Index: AdJLHuy12sJgYoupSBW7qEBniudmwf///gWA
+Date: Wed, 30 Nov 2016 16:25:09 +0000
+Message-ID: <6211B50E-20F1-45AC-B81E-66CFF6CF4C67@bmw-carit.de>
+References: <4f6a6c3622f646e9a01a2cec53be8615@BLUPR6801MB0051.017d.mgd.msft.net>
+In-Reply-To: <4f6a6c3622f646e9a01a2cec53be8615@BLUPR6801MB0051.017d.mgd.msft.net>
+Accept-Language: de-DE, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.20.20.234]
+MIME-Version: 1.0
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: CommonAPI *.so bindings
 X-BeenThere: yocto@yoctoproject.org
@@ -66,58 +49,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 30 Nov 2016 16:10:32 -0000
-Content-Type: multipart/alternative; boundary=001a1145b7b8941c4a054286f122
+X-List-Received-Date: Wed, 30 Nov 2016 16:28:02 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <AF965E599AD10D4BA198266C4BC7A046@bmw-carit.de>
+Content-Transfer-Encoding: base64
 
---001a1145b7b8941c4a054286f122
-Content-Type: text/plain; charset=UTF-8
+SGkgUGF3ZWwsDQoNClBhd2VsIFN1Y2h5IDxwYXdlbC5zdWNoeUBkZWxwaGkuY29tPiB3cm90ZToN
+Cg0KPiBUaGF0IGlzIGNhdXNpbmcgYSBwcm9ibGVtIHdpdGggYmluZGluZyBDb21tb25BUEkgZHlu
+YW1pYyBsaWJyYXJpZXMgdmlhICANCj4gY29tbW9uYXBpLmluaS4NCj4gVGhlIGNvbW1vbmFwaS5p
+bmkgZmlsZSBjb250YWlucyBzZWN0aW9ucyB3aGVyZSBkZXBlbmRlbmNpZXMgdG8gcHJveHkgIA0K
+PiBvYmplY3RzIGNvdWxkIGJlIGRlZmluZWQ6DQo+IFtwcm94eV0gIA0KPiBsb2NhbDpjb21tb25h
+cGkuZXhhbXBsZXMuVGVzdDpjb21tb25hcGkuZXhhbXBsZXMuVGVzdD1saWJUZXN0LURCdXMuc28N
+Cj4NCj4gQnV0IGl0IGNhbm5vdCB0YWtlIGxpbmsgdG8gdmVyc2lvbmVkIGxpYnJhcnkgYmVjYXVz
+ZSBvZiB0aGF0IGNvZGU6DQo+IGh0dHA6Ly9kb2NzLnByb2plY3RzLmdlbml2aS5vcmcvaXBjLmNv
+bW1vbi1hcGktcnVudGltZS8zLjEuNS9SdW50aW1lXzhjcHBfc291cmNlLmh0bWwjbDAwMjgzDQo+
+DQo+ICBSdW50aW1lOjpsb2FkTGlicmFyeShjb25zdCBzdGQ6OnN0cmluZyAmX2xpYnJhcnkpIHsN
+Cj4gMzIxICBzdGQ6OnN0cmluZyBpdHNMaWJyYXJ5KF9saWJyYXJ5KTsNCj4gMzIyDQo+IDMyMyAg
+Ly8gVE9ETzogZGVjaWRlIHdoZXRoZXIgdGhpcyByZWFsbHkgaXMgYSBnb29kIGlkZWEuLi4NCj4g
+MzI0ICAjaWZkZWYgV0lOMzINCj4gMzI1ICBpZiAoaXRzTGlicmFyeS5yZmluZCgiLmRsbCIpICE9
+IGl0c0xpYnJhcnkubGVuZ3RoKCkgLSA0KSB7DQo+IDMyNiAgaXRzTGlicmFyeSArPSAiLmRsbCI7
+DQo+IDMyNyAgfQ0KPiAzMjggICNlbHNlDQo+IDMyOSAgaWYgKGl0c0xpYnJhcnkucmZpbmQoIi5z
+byIpICE9IGl0c0xpYnJhcnkubGVuZ3RoKCkgLSAzKSB7DQo+IDMzMCAgaXRzTGlicmFyeSArPSAi
+LnNvIjsNCj4gMzMxICB9DQo+IDMzMiAgI2VuZGlmDQo+DQo+IFF1ZXN0aW9uczoNCj4gMS4gSG93
+IHRvIHNvbHZlIGJlc3QgdGhpcz8NCg0KT3VyIHNvbHV0aW9uIHRvIHRoYXQgaXMgdG8gbm90IHJl
+bHkgb24gcnVudGltZSBsb2FkaW5nIG9mIENvbW1vbkFQSSAgDQpsaWJyYXJpZXMgYW5kIGp1c3Qg
+bGluayB0aGUgbGlicmFyaWVzIHRoYXQgeW91IG5lZWQgaW50byB0aGUgYmluYXJ5ICANCmRpcmVj
+dGx5LCBpbiB3aGljaCBjYXNlIHRoaXMgY29kZSB3aWxsIG5vdCBiZSBydW4gYXQgYWxsLiBJZiB5
+b3VyIHByb2plY3QgIA0KZG9lcyBub3QgbmVlZCB0aGUgYWJpbGl0eSB0byBzd2l0Y2ggYmV0d2Vl
+biBkaWZmZXJlbnQgY29tbXVuaWNhdGlvbiAgDQpiYWNrZW5kcyBvZiBDb21tb25BUEksIHRoYXQg
+c2hvdWxkIGFsc28gd29yayBmb3IgeW91Lg0KDQpOb3RlIHRoYXQgeW91IG1heSBuZWVkIC1XbCwt
+LXB1c2gtc3RhdGUsLS1uby1hcy1uZWVkZWQsLWxpYnJhcnksLS1wb3Atc3RhdGUgIA0KZGVwZW5k
+aW5nIG9uIHdoYXQgeW91ciBsaWJyYXJpZXMgbG9vayBsaWtlLg0KDQoNCkhUSCwNCkNsZW1lbnMN
+Ci0tIA0KQk1XIENhciBJVCBHbWJIDQpDbGVtZW5zIExhbmcNClNwZXppYWxpc3QgRW50d2lja2x1
+bmcNCkxpc2UtTWVpdG5lci1TdHJhw59lIDE0DQo4OTA4MSBVbG0NCg0KVGVsOiArNDktNzMxLTM3
+ODA0MTgyDQpNYWlsOiBjbGVtZW5zLmxhbmdAYm13LWNhcml0LmRlDQpXZWI6IGh0dHA6Ly93d3cu
+Ym13LWNhcml0LmRlDQotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KQk1XIENhciBJVCBHbWJIDQpHZXNjaMOkZnRzZsO8
+aHJlcjogTWljaGFlbCBXw7xydGVuYmVyZ2VyIHVuZCBBbGV4aXMgVHJvbGluDQpTaXR6IHVuZCBS
+ZWdpc3RlcmdlcmljaHQ6IE3DvG5jaGVuIEhSQiAxMzQ4MTANCi0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQo=
 
-On 30 November 2016 at 15:32, Suchy, Pawel <pawel.suchy@delphi.com> wrote:
-
-> Questions:
-> 1. How to solve best this?
->
-> 2. Is it a good Yocto practice to not allow to have symbolic links in
-> none-dev images?
->
-> 3. Is there a way to have symbolic links to libs in */usr/lib *directory
-> in none-dev images?
->
-
-If the libraries that this piece of code is dlopen()ing are specific to
-this framework and generally unversioned then you can just fix the
-packaging so that they don't put the .so into the -dev package.
-
-If it's doing dlopen() of general purpose libraries then the TODO at the
-top is very relevant and no, it's not a good idea. It should support
-versions.
-
-Ross
-
---001a1145b7b8941c4a054286f122
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 30 November 2016 at 15:32, Suchy, Pawel <span dir=3D"ltr">&lt;<a href=3D=
-"mailto:pawel.suchy@delphi.com" target=3D"_blank">pawel.suchy@delphi.com</a=
->&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 =
-0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><p class=3D"MsoNormal=
-"><span lang=3D"EN-US"><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Questions:<br>
-1. How to solve best this?<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">2. Is it a good Yocto practice =
-to not allow to have symbolic links in none-dev images?<u></u><u></u></span=
-></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">3. Is there a way to have symbo=
-lic links to libs in
-<i>/usr/lib </i>directory in none-dev images?</span></p></blockquote></div>=
-<br>If the libraries that this piece of code is dlopen()ing are specific to=
- this framework and generally unversioned then you can just fix the packagi=
-ng so that they don&#39;t put the .so into the -dev package.</div><div clas=
-s=3D"gmail_extra"><br></div><div class=3D"gmail_extra">If it&#39;s doing dl=
-open() of general purpose libraries then the TODO at the top is very releva=
-nt and no, it&#39;s not a good idea. It should support versions.</div><div =
-class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Ross</div></div>
-
---001a1145b7b8941c4a054286f122--
