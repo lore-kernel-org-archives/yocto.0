@@ -1,65 +1,46 @@
-Return-Path: <paul.betafive@gmail.com>
+Return-Path: <paul@paulbarker.me.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 377CFE0073D; Wed, 30 Nov 2016 13:03:05 -0800 (PST)
+	id B74A0E0073D; Wed, 30 Nov 2016 13:14:30 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [74.125.82.68 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.82.68 listed in dnsbl.sorbs.net]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [46.105.78.111 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f68.google.com (mail-wm0-f68.google.com [74.125.82.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A35ADE006B4
-	for <yocto@yoctoproject.org>; Wed, 30 Nov 2016 13:03:01 -0800 (PST)
-Received: by mail-wm0-f68.google.com with SMTP id u144so31155047wmu.0
-	for <yocto@yoctoproject.org>; Wed, 30 Nov 2016 13:03:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=sender:from:to:cc:subject:date:message-id:mime-version
-	:content-transfer-encoding;
-	bh=cMMxYFashJt+StL4j45V+adiiN6E7Q3nt/LG7HF98Nk=;
-	b=Jev7k0qXErZkINUIjBDmIzhwQg9Rna2RBZEkZGHQKEwRe4W2AA9ssDJdXkmvMRk68A
-	gx2VRh8Raxmziuzn8iL4xaKthoSqmzdNJBmZC74kHyNorkP5QNAeq8eDj+WKGunXFzB3
-	dhVlverEN9Y5nbzl/3kWse49Yj7nYSz0NqrYPd8VNm/cmnxhdltKgziKSUJVA1X/6bd3
-	1gnh84/dyzotTeiOV0iF7InxYWvyGuyWFI4ZV6ECMoBvCi5GV9FakjdDLzSWNuFgLWrZ
-	eAmPIgi4lSp7bKDTFYD2TWysmqLDXBDTO2+WFZ0Fdd0fLA4FTJQ9MwCfB2GKRAswtIIj
-	tCrg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
-	:mime-version:content-transfer-encoding;
-	bh=cMMxYFashJt+StL4j45V+adiiN6E7Q3nt/LG7HF98Nk=;
-	b=jrm+5jZlFUbdUmmHD8jVUefF7KWpbblk5rGbJCWd5bMR45IYIVEoxcaVBGqh1zXDry
-	hSjkQMWl+M0uXh+o9jHP6aiDvGy8WitImM4rZZI8I5UfOrHvmKF3tjh7+kRmzB6noANn
-	kuIo3YYNTwvCa9mhzmjb4WloF5+3V0qrhqyFm4OzW2PIKXW37IWv1rsGZg2U4shfJgkQ
-	KFGetcjiALIp3rUWQ8B1c5wCAHwncbS+sSp1HtJrVRFFqPjBtI2zPFHhRt3pmAnDWajc
-	gKXX60nlKNqEXt1hw2OfSslKal6J0NFf1Whj38YGe80YPk9YaFjr5TPzxNsCbE/kDUUf
-	bVtw==
-X-Gm-Message-State: AKaTC00F4U+Xs9GdZ3ll6N7yKSztbPj63soX7VBvDfUyPxMhbzgxqH7cR/EECkQ6tWr5RA==
-X-Received: by 10.28.48.145 with SMTP id w139mr31121180wmw.113.1480539779852; 
-	Wed, 30 Nov 2016 13:02:59 -0800 (PST)
-Received: from dev-jessie.betafive.co.uk
-	(cpc11-shep11-2-0-cust130.8-3.cable.virginm.net. [86.27.96.131])
-	by smtp.gmail.com with ESMTPSA id
-	197sm9787826wmy.16.2016.11.30.13.02.58
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Wed, 30 Nov 2016 13:02:58 -0800 (PST)
-Sender: Paul Barker <paul.betafive@gmail.com>
+X-Greylist: delayed 1010 seconds by postgrey-1.32 at yocto-www;
+	Wed, 30 Nov 2016 13:14:27 PST
+Received: from 9.mo68.mail-out.ovh.net (9.mo68.mail-out.ovh.net
+	[46.105.78.111])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 97057E00503
+	for <yocto@yoctoproject.org>; Wed, 30 Nov 2016 13:14:27 -0800 (PST)
+Received: from player737.ha.ovh.net (b9.ovh.net [213.186.33.59])
+	by mo68.mail-out.ovh.net (Postfix) with ESMTP id A521D1593A
+	for <yocto@yoctoproject.org>; Wed, 30 Nov 2016 21:57:35 +0100 (CET)
+Received: from nuc.betafive.co.uk
+	(cpc11-shep11-2-0-cust130.8-3.cable.virginm.net [86.27.96.131])
+	(Authenticated sender: paul@betafive.co.uk)
+	by player737.ha.ovh.net (Postfix) with ESMTPSA id 784AEE007D;
+	Wed, 30 Nov 2016 21:57:32 +0100 (CET)
+Date: Wed, 30 Nov 2016 20:57:31 +0000
 From: Paul Barker <paul@paulbarker.me.uk>
-To: Yocto Project <yocto@yoctoproject.org>
-Date: Wed, 30 Nov 2016 21:02:39 +0000
-Message-Id: <1480539759-18292-1-git-send-email-paul@paulbarker.me.uk>
-X-Mailer: git-send-email 2.1.4
+To: Jonathan Liu <net147@gmail.com>
+Message-ID: <20161130205731.2515005c@nuc.betafive.co.uk>
+In-Reply-To: <CANwerB2ZZRyrwJsgYbEnF1hq2HKafr38wA7gBkvbUHrK9BXanw@mail.gmail.com>
+References: <20161127063753.10922-1-net147@gmail.com>
+	<20161129203914.59f2ae10@nuc.betafive.co.uk>
+	<CANwerB2ZZRyrwJsgYbEnF1hq2HKafr38wA7gBkvbUHrK9BXanw@mail.gmail.com>
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Subject: [meta-raspberrypi][PATCH v5] u-boot: Simplify boot script
+X-Ovh-Tracer-Id: 4413246161963157882
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrfeelfedrfeelgddugedtucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddm
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi][PATCH v4] u-boot: Simplify boot script
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,384 +52,61 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 30 Nov 2016 21:03:05 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Wed, 30 Nov 2016 21:14:30 -0000
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-From: Jonathan Liu <net147@gmail.com>
+On Wed, 30 Nov 2016 10:14:01 +1100
+Jonathan Liu <net147@gmail.com> wrote:
 
-A patch is backported to check if the firmware loaded a device tree blob
-into memory and set the fdt_addr variable if it is found. The U-Boot
-script will then read the command line arguments generated by the
-firmware from the device tree and boot the kernel with the command
-line arguments and the loaded device tree.
+> Hi Paul,
+> 
+> On 30 November 2016 at 07:39, Paul Barker <paul@paulbarker.me.uk> wrote:
+> 
+> > On Sun, 27 Nov 2016 17:37:53 +1100
+> > Jonathan Liu <net147@gmail.com> wrote:
+> >
+> > > A patch is backported to check if the firmware loaded a device tree blob
+> > > into memory and set the fdt_addr variable if it is found. The U-Boot
+> > > script will then read the command line arguments generated by the
+> > > firmware from the device tree and boot the kernel with the command
+> > > line arguments and the loaded device tree.
+> > >
+> > > This allows things like MAC address, board revision and serial number
+> > > to be correctly configured and options in config.txt to be used.
+> > >
+> > > Signed-off-by: Jonathan Liu <net147@gmail.com>
+> > > ---
+> > > Changes in v4:
+> > >  - Backport patch from upstream instead of using own patch
+> >
+> > I had to make a few additional changes on top of this patch to get a
+> > successful compile with u-boot v2016.03. These changes can be seen here:
+> >
+> > https://gitlab.com/pbarker/meta-raspberrypi/commit/
+> > f880569e62d431cbead1555cf6c47342fe79c969
+> >
+> > After those changes though, everything worked as expected on both an
+> > original rpi B+ and an rpi3.
+> >
+> > Does your patch work cleanly on a later version of u-boot? I know
+> > oe-core is likely to upgrade to v2016.11 any day now. We could either
+> > apply the changes I've linked to above or hold off until v2016.11 is
+> > merged to oe-core if that's what you've tested with.
+> >
+> 
+> Yes, my patch applies cleanly to v2016.11 as well. I only tested with
+> Raspberry Pi 3 as I didn't have a Raspberry Pi 2 around at the time.
+> The upstream commits landed in master after v2016.11 so backports will be
+> needed until at least v2017.01.
+> 
+> Are you able to squash your changes into this patch and submit a v5 with
+> your Signed-off-by tag?
+> 
 
-This allows things like MAC address, board revision and serial number
-to be correctly configured and options in config.txt to be used.
+Will do. Currently in progress, will send once I've given it a quick
+test.
 
-An additional patch is backported and further changes are made to support
-this.
-
-Signed-off-by: Jonathan Liu <net147@gmail.com>
-Signed-off-by: Paul Barker <paul@paulbarker.me.uk>
----
-Changes in v5:
- - Backport an additional patch and make further changes to support u-boot
-   v2016.03
-Changes in v4:
- - Backport patch from upstream instead of using own patch
-Changes in v3:
- - Removed incorrect check if fdt_addr_r is already set. The check
-   condition was inverted and fdt_addr_r variable is always set to
-   0x100 by default.
-Changes in v2:
- - Instead of setting device_tree_address to 0x100 in config.txt, patch
-   U-Boot to detect the device tree blob address if it was loaded.
-
- recipes-bsp/rpi-u-boot-scr/files/boot.cmd          |   3 +
- .../rpi-u-boot-scr/files/raspberrypi/boot.cmd      |   6 -
- .../rpi-u-boot-scr/files/raspberrypi0/boot.cmd     |   6 -
- .../rpi-u-boot-scr/files/raspberrypi2/boot.cmd     |   6 -
- .../rpi-u-boot-scr/files/raspberrypi3/boot.cmd     |   6 -
- ...0001-arm-add-save_boot_params-for-ARM1176.patch |  56 ++++++++
- ...through-of-the-firmware-provided-FDT-blob.patch | 156 +++++++++++++++++++++
- .../0003-Include-lowlevel_init.o-for-rpi2.patch    |  25 ++++
- recipes-bsp/u-boot/u-boot_%.bbappend               |   6 +
- 9 files changed, 246 insertions(+), 24 deletions(-)
- create mode 100644 recipes-bsp/rpi-u-boot-scr/files/boot.cmd
- delete mode 100644 recipes-bsp/rpi-u-boot-scr/files/raspberrypi/boot.cmd
- delete mode 100644 recipes-bsp/rpi-u-boot-scr/files/raspberrypi0/boot.cmd
- delete mode 100644 recipes-bsp/rpi-u-boot-scr/files/raspberrypi2/boot.cmd
- delete mode 100644 recipes-bsp/rpi-u-boot-scr/files/raspberrypi3/boot.cmd
- create mode 100644 recipes-bsp/u-boot/files/0001-arm-add-save_boot_params-for-ARM1176.patch
- create mode 100644 recipes-bsp/u-boot/files/0002-rpi-passthrough-of-the-firmware-provided-FDT-blob.patch
- create mode 100644 recipes-bsp/u-boot/files/0003-Include-lowlevel_init.o-for-rpi2.patch
-
-diff --git a/recipes-bsp/rpi-u-boot-scr/files/boot.cmd b/recipes-bsp/rpi-u-boot-scr/files/boot.cmd
-new file mode 100644
-index 0000000..2e8452e
---- /dev/null
-+++ b/recipes-bsp/rpi-u-boot-scr/files/boot.cmd
-@@ -0,0 +1,3 @@
-+fdt addr ${fdt_addr} && fdt get value bootargs /chosen bootargs
-+fatload mmc 0:1 ${kernel_addr_r} uImage
-+bootm ${kernel_addr_r} - ${fdt_addr}
-diff --git a/recipes-bsp/rpi-u-boot-scr/files/raspberrypi/boot.cmd b/recipes-bsp/rpi-u-boot-scr/files/raspberrypi/boot.cmd
-deleted file mode 100644
-index c86c758..0000000
---- a/recipes-bsp/rpi-u-boot-scr/files/raspberrypi/boot.cmd
-+++ /dev/null
-@@ -1,6 +0,0 @@
--setenv fdtfile bcm2708-rpi-b.dtb
--setenv bootargs 'earlyprintk console=tty0 console=ttyAMA0 root=/dev/mmcblk0p2 rootfstype=ext4 rootwait noinitrd'
--mmc dev 0
--fatload mmc 0:1 ${kernel_addr_r} uImage
--fatload mmc 0:1 ${fdt_addr_r} ${fdtfile}
--bootm ${kernel_addr_r} - ${fdt_addr_r}
-diff --git a/recipes-bsp/rpi-u-boot-scr/files/raspberrypi0/boot.cmd b/recipes-bsp/rpi-u-boot-scr/files/raspberrypi0/boot.cmd
-deleted file mode 100644
-index c86c758..0000000
---- a/recipes-bsp/rpi-u-boot-scr/files/raspberrypi0/boot.cmd
-+++ /dev/null
-@@ -1,6 +0,0 @@
--setenv fdtfile bcm2708-rpi-b.dtb
--setenv bootargs 'earlyprintk console=tty0 console=ttyAMA0 root=/dev/mmcblk0p2 rootfstype=ext4 rootwait noinitrd'
--mmc dev 0
--fatload mmc 0:1 ${kernel_addr_r} uImage
--fatload mmc 0:1 ${fdt_addr_r} ${fdtfile}
--bootm ${kernel_addr_r} - ${fdt_addr_r}
-diff --git a/recipes-bsp/rpi-u-boot-scr/files/raspberrypi2/boot.cmd b/recipes-bsp/rpi-u-boot-scr/files/raspberrypi2/boot.cmd
-deleted file mode 100644
-index aa4ea64..0000000
---- a/recipes-bsp/rpi-u-boot-scr/files/raspberrypi2/boot.cmd
-+++ /dev/null
-@@ -1,6 +0,0 @@
--setenv fdtfile bcm2709-rpi-2-b.dtb
--setenv bootargs 'earlyprintk console=tty0 console=ttyAMA0 root=/dev/mmcblk0p2 rootfstype=ext4 rootwait noinitrd'
--mmc dev 0
--fatload mmc 0:1 ${kernel_addr_r} uImage
--fatload mmc 0:1 ${fdt_addr_r} ${fdtfile}
--bootm ${kernel_addr_r} - ${fdt_addr_r}
-diff --git a/recipes-bsp/rpi-u-boot-scr/files/raspberrypi3/boot.cmd b/recipes-bsp/rpi-u-boot-scr/files/raspberrypi3/boot.cmd
-deleted file mode 100644
-index 2950856..0000000
---- a/recipes-bsp/rpi-u-boot-scr/files/raspberrypi3/boot.cmd
-+++ /dev/null
-@@ -1,6 +0,0 @@
--setenv fdtfile bcm2710-rpi-3-b.dtb
--setenv bootargs 'earlyprintk console=tty0 console=ttyAMA0 root=/dev/mmcblk0p2 rootfstype=ext4 rootwait noinitrd'
--mmc dev 0
--fatload mmc 0:1 ${kernel_addr_r} uImage
--fatload mmc 0:1 ${fdt_addr_r} ${fdtfile}
--bootm ${kernel_addr_r} - ${fdt_addr_r}
-diff --git a/recipes-bsp/u-boot/files/0001-arm-add-save_boot_params-for-ARM1176.patch b/recipes-bsp/u-boot/files/0001-arm-add-save_boot_params-for-ARM1176.patch
-new file mode 100644
-index 0000000..a5ebff5
---- /dev/null
-+++ b/recipes-bsp/u-boot/files/0001-arm-add-save_boot_params-for-ARM1176.patch
-@@ -0,0 +1,56 @@
-+From 3e10fcde3f3c24a488866dd33fa3f5d46ff3d7a3 Mon Sep 17 00:00:00 2001
-+From: =?UTF-8?q?C=C3=A9dric=20Schieli?= <cschieli@gmail.com>
-+Date: Fri, 11 Nov 2016 11:59:06 +0100
-+Subject: [PATCH] arm: add save_boot_params for ARM1176
-+MIME-Version: 1.0
-+Content-Type: text/plain; charset=UTF-8
-+Content-Transfer-Encoding: 8bit
-+
-+Implement a hook to allow boards to save boot-time CPU state for later
-+use. When U-Boot is chain-loaded by another bootloader, CPU registers may
-+contain useful information such as system configuration information. This
-+feature mirrors the equivalent ARMv7 feature.
-+
-+Signed-off-by: Cédric Schieli <cschieli@gmail.com>
-+Acked-by: Stephen Warren <swarren@nvidia.com>
-+Signed-off-by: Paul Barker <paul@paulbarker.me.uk>
-+Upstream-status: Backport
-+---
-+ arch/arm/cpu/arm1176/start.S | 10 ++++++++++
-+ 1 file changed, 10 insertions(+)
-+
-+diff --git a/arch/arm/cpu/arm1176/start.S b/arch/arm/cpu/arm1176/start.S
-+index a602d4e..7c00201 100644
-+--- a/arch/arm/cpu/arm1176/start.S
-++++ b/arch/arm/cpu/arm1176/start.S
-+@@ -16,6 +16,7 @@
-+ 
-+ #include <asm-offsets.h>
-+ #include <config.h>
-++#include <linux/linkage.h>
-+ 
-+ #ifndef CONFIG_SYS_PHY_UBOOT_BASE
-+ #define CONFIG_SYS_PHY_UBOOT_BASE	CONFIG_SYS_UBOOT_BASE
-+@@ -37,6 +38,11 @@
-+ 	.globl reset
-+ 
-+ reset:
-++	/* Allow the board to save important registers */
-++	b	save_boot_params
-++.globl	save_boot_params_ret
-++save_boot_params_ret:
-++
-+ 	/*
-+ 	 * set the cpu to SVC32 mode
-+ 	 */
-+@@ -110,3 +116,7 @@ mmu_disable_phys:
-+ c_runtime_cpu_setup:
-+ 
-+ 	mov	pc, lr
-++
-++WEAK(save_boot_params)
-++	b	save_boot_params_ret	/* back to my caller */
-++ENDPROC(save_boot_params)
-+-- 
-+2.1.4
-+
-diff --git a/recipes-bsp/u-boot/files/0002-rpi-passthrough-of-the-firmware-provided-FDT-blob.patch b/recipes-bsp/u-boot/files/0002-rpi-passthrough-of-the-firmware-provided-FDT-blob.patch
-new file mode 100644
-index 0000000..323b7ab
---- /dev/null
-+++ b/recipes-bsp/u-boot/files/0002-rpi-passthrough-of-the-firmware-provided-FDT-blob.patch
-@@ -0,0 +1,156 @@
-+From ade243a211d62327e9ebadce27bbbff7981e37f0 Mon Sep 17 00:00:00 2001
-+From: =?UTF-8?q?C=C3=A9dric=20Schieli?= <cschieli@gmail.com>
-+Date: Fri, 11 Nov 2016 11:59:07 +0100
-+Subject: [PATCH] rpi: passthrough of the firmware provided FDT blob
-+MIME-Version: 1.0
-+Content-Type: text/plain; charset=UTF-8
-+Content-Transfer-Encoding: 8bit
-+
-+Raspberry firmware used to pass a FDT blob at a fixed address (0x100),
-+but this is not true anymore. The address now depends on both the
-+memory size and the blob size [1].
-+
-+If one wants to passthrough this FDT blob to the kernel, the most
-+reliable way is to save its address from the r2/x0 register in the
-+U-Boot entry point and expose it in a environment variable for
-+further processing.
-+
-+This patch just does this:
-+- save the provided address in the global variable fw_dtb_pointer
-+- expose it in ${fdt_addr} if it points to a a valid FDT blob
-+
-+There are many different ways to use it. One can, for example, use
-+the following script which will extract from the tree the command
-+line built by the firmware, then hand over the blob to a previously
-+loaded kernel:
-+
-+fdt addr ${fdt_addr}
-+fdt get value bootargs /chosen bootargs
-+bootz ${kernel_addr_r} - ${fdt_addr}
-+
-+Alternatively, users relying on sysboot/pxe can simply omit any FDT
-+statement in their extlinux.conf file, U-Boot will automagically pick
-+${fdt_addr} and pass it to the kernel.
-+
-+[1] https://www.raspberrypi.org/forums//viewtopic.php?f=107&t=134018
-+
-+Upstream-Status: Backport
-+
-+Signed-off-by: Cédric Schieli <cschieli@gmail.com>
-+Acked-by: Stephen Warren <swarren@nvidia.com>
-+Signed-off-by: Jonathan Liu <net147@gmail.com>
-+---
-+ board/raspberrypi/rpi/Makefile        |  1 +
-+ board/raspberrypi/rpi/lowlevel_init.S | 36 +++++++++++++++++++++++++++++++++++
-+ board/raspberrypi/rpi/rpi.c           | 29 ++++++++++++++++++++++++++++
-+ 3 files changed, 66 insertions(+)
-+ create mode 100644 board/raspberrypi/rpi/lowlevel_init.S
-+
-+diff --git a/board/raspberrypi/rpi/Makefile b/board/raspberrypi/rpi/Makefile
-+index 4ce2c98..dcb25ac 100644
-+--- a/board/raspberrypi/rpi/Makefile
-++++ b/board/raspberrypi/rpi/Makefile
-+@@ -5,3 +5,4 @@
-+ #
-+ 
-+ obj-y	:= rpi.o
-++obj-y	+= lowlevel_init.o
-+diff --git a/board/raspberrypi/rpi/lowlevel_init.S b/board/raspberrypi/rpi/lowlevel_init.S
-+new file mode 100644
-+index 0000000..cdbd8e1
-+--- /dev/null
-++++ b/board/raspberrypi/rpi/lowlevel_init.S
-+@@ -0,0 +1,36 @@
-++/*
-++ * (C) Copyright 2016
-++ * Cédric Schieli <cschieli@gmail.com>
-++ *
-++ * SPDX-License-Identifier:	GPL-2.0+
-++ */
-++
-++#include <config.h>
-++
-++.align 8
-++.global fw_dtb_pointer
-++fw_dtb_pointer:
-++#ifdef CONFIG_ARM64
-++	.dword 0x0
-++#else
-++	.word 0x0
-++#endif
-++
-++/*
-++ * Routine: save_boot_params (called after reset from start.S)
-++ * Description: save ATAG/FDT address provided by the firmware at boot time
-++ */
-++
-++.global save_boot_params
-++save_boot_params:
-++
-++	/* The firmware provided ATAG/FDT address can be found in r2/x0 */
-++#ifdef CONFIG_ARM64
-++	adr	x8, fw_dtb_pointer
-++	str	x0, [x8]
-++#else
-++	str	r2, fw_dtb_pointer
-++#endif
-++
-++	/* Returns */
-++	b	save_boot_params_ret
-+diff --git a/board/raspberrypi/rpi/rpi.c b/board/raspberrypi/rpi/rpi.c
-+index 6245b36..ffd6d31 100644
-+--- a/board/raspberrypi/rpi/rpi.c
-++++ b/board/raspberrypi/rpi/rpi.c
-+@@ -25,6 +25,9 @@
-+ 
-+ DECLARE_GLOBAL_DATA_PTR;
-+ 
-++/* From lowlevel_init.S */
-++extern unsigned long fw_dtb_pointer;
-++
-+ static const struct bcm2835_gpio_platdata gpio_platdata = {
-+ 	.base = BCM2835_GPIO_BASE,
-+ };
-+@@ -285,6 +288,31 @@ static void set_fdtfile(void)
-+ 	setenv("fdtfile", fdtfile);
-+ }
-+ 
-++/*
-++ * If the firmware provided a valid FDT at boot time, let's expose it in
-++ * ${fdt_addr} so it may be passed unmodified to the kernel.
-++ */
-++static void set_fdt_addr(void)
-++{
-++	if (getenv("fdt_addr"))
-++		return;
-++
-++	if (fdt_magic(fw_dtb_pointer) != FDT_MAGIC)
-++		return;
-++
-++	setenv_hex("fdt_addr", fw_dtb_pointer);
-++}
-++
-++/*
-++ * Prevent relocation from stomping on a firmware provided FDT blob.
-++ */
-++unsigned long board_get_usable_ram_top(unsigned long total_size)
-++{
-++	if ((gd->ram_top - fw_dtb_pointer) > SZ_64M)
-++		return gd->ram_top;
-++	return fw_dtb_pointer & ~0xffff;
-++}
-++
-+ static void set_usbethaddr(void)
-+ {
-+ 	ALLOC_CACHE_ALIGN_BUFFER(struct msg_get_mac_address, msg, 1);
-+@@ -356,6 +384,7 @@ static void set_serial_number(void)
-+ 
-+ int misc_init_r(void)
-+ {
-++	set_fdt_addr();
-+ 	set_fdtfile();
-+ 	set_usbethaddr();
-+ #ifdef CONFIG_ENV_VARS_UBOOT_RUNTIME_CONFIG
-+-- 
-+2.10.2
-+
-diff --git a/recipes-bsp/u-boot/files/0003-Include-lowlevel_init.o-for-rpi2.patch b/recipes-bsp/u-boot/files/0003-Include-lowlevel_init.o-for-rpi2.patch
-new file mode 100644
-index 0000000..ce0273f
---- /dev/null
-+++ b/recipes-bsp/u-boot/files/0003-Include-lowlevel_init.o-for-rpi2.patch
-@@ -0,0 +1,25 @@
-+From 1eb01436bc57ad32519a4567a1c9ec82d52d60a1 Mon Sep 17 00:00:00 2001
-+From: Paul Barker <paul@paulbarker.me.uk>
-+Date: Tue, 29 Nov 2016 19:47:49 +0000
-+Subject: [PATCH] Include lowlevel_init.o for rpi2
-+
-+Signed-off-by: Paul Barker <paul@paulbarker.me.uk>
-+Upstream-status: Inappropriate
-+    (not needed upstream as rpi_2 board directory is removed in latest
-+    version)
-+---
-+ board/raspberrypi/rpi_2/Makefile | 1 +
-+ 1 file changed, 1 insertion(+)
-+
-+diff --git a/board/raspberrypi/rpi_2/Makefile b/board/raspberrypi/rpi_2/Makefile
-+index d82cd21..9f865c5 100644
-+--- a/board/raspberrypi/rpi_2/Makefile
-++++ b/board/raspberrypi/rpi_2/Makefile
-+@@ -5,3 +5,4 @@
-+ #
-+ 
-+ obj-y	:= ../rpi/rpi.o
-++obj-y	+= ../rpi/lowlevel_init.o
-+-- 
-+2.1.4
-+
-diff --git a/recipes-bsp/u-boot/u-boot_%.bbappend b/recipes-bsp/u-boot/u-boot_%.bbappend
-index 3781666..a4545f0 100644
---- a/recipes-bsp/u-boot/u-boot_%.bbappend
-+++ b/recipes-bsp/u-boot/u-boot_%.bbappend
-@@ -1 +1,7 @@
-+FILESEXTRAPATHS_prepend_rpi := "${THISDIR}/files:"
- RDEPENDS_${PN}_append_rpi = " rpi-u-boot-scr"
-+SRC_URI_append_rpi = " \
-+    file://0001-arm-add-save_boot_params-for-ARM1176.patch \
-+    file://0002-rpi-passthrough-of-the-firmware-provided-FDT-blob.patch \
-+    file://0003-Include-lowlevel_init.o-for-rpi2.patch \
-+    "
--- 
-2.1.4
-
+Thanks,
+Paul Barker
 
