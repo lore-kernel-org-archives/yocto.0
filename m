@@ -1,33 +1,56 @@
-Return-Path: <jose.a.lamego@linux.intel.com>
+Return-Path: <andre.draszik@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4E46BE00503; Wed, 30 Nov 2016 09:15:07 -0800 (PST)
+	id 5723DE00503; Wed, 30 Nov 2016 09:19:09 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.210.194 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.210.194 listed in dnsbl.sorbs.net]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [134.134.136.20 listed in list.dnswl.org]
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 28989E00498
-	for <yocto@yoctoproject.org>; Wed, 30 Nov 2016 09:15:02 -0800 (PST)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by orsmga101.jf.intel.com with ESMTP; 30 Nov 2016 09:15:02 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.31,574,1473145200"; d="scan'208";a="1075683762"
-Received: from jalamego-mobl2.zpn.intel.com ([10.219.5.146])
-	by fmsmga001.fm.intel.com with ESMTP; 30 Nov 2016 09:15:01 -0800
-From: Jose Lamego <jose.a.lamego@linux.intel.com>
-To: yocto@yoctoproject.org
-Date: Wed, 30 Nov 2016 11:14:46 -0600
-Message-Id: <1480526086-7951-1-git-send-email-jose.a.lamego@linux.intel.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1480028409-13127-1-git-send-email-jose.a.lamego@linux.intel.com>
-References: <1480028409-13127-1-git-send-email-jose.a.lamego@linux.intel.com>
-Subject: [patchwork][PATCH v2] patchwork/models: Include first patch's name in series name
+Received: from mail-wj0-f194.google.com (mail-wj0-f194.google.com
+	[209.85.210.194])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CBEEBE00498
+	for <yocto@yoctoproject.org>; Wed, 30 Nov 2016 09:19:06 -0800 (PST)
+Received: by mail-wj0-f194.google.com with SMTP id kp2so23248496wjc.0
+	for <yocto@yoctoproject.org>; Wed, 30 Nov 2016 09:19:06 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+	:references:mime-version:content-transfer-encoding;
+	bh=q+T8S6g92ospRbgfU0pKPxGhXMWzrnLhqYfbTK9KnyI=;
+	b=FgrM/Lm9Pg4AxdaoTlEIG6aMT8ZbJTOlZckmdY1sLAiR5gsbSRYooTxgtKOZRmdPeR
+	FA4Ar13TBhS9brw4E5gJLBygW5IPOUuD93NGkX7BM2xmn/V3jVPiSJeoPk12kkWTfVTN
+	V6aY60rEnH4pJRcStxdO8Y+j+zVSkhiZBSuUUuWlewfM1f2xdIlb9uzx4RFwoY/8O+/Q
+	ls7bCqspcLnmaggs87urOhiyLdmt98wimXeSp0tfQc6W39wqv0QqD7/Lm4b/Vh/ua/aC
+	Kd5PjGw4KE2SDybZE5W3m+1FRFti8Gd0FRTB6fp2EGyR3/WOnYRrMupLNsOoObP/WBmB
+	zeSA==
+X-Gm-Message-State: AKaTC03ULfqbW5zTNP2YfvpryoT/8boKUwV9i20ncH4reBEKoDf9mHHHRewu661Xgc6v6w==
+X-Received: by 10.194.26.170 with SMTP id m10mr29324465wjg.152.1480526345566; 
+	Wed, 30 Nov 2016 09:19:05 -0800 (PST)
+Received: from tfsielt31850 ([77.107.218.170])
+	by smtp.gmail.com with ESMTPSA id
+	a13sm8996571wma.18.2016.11.30.09.19.04
+	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+	Wed, 30 Nov 2016 09:19:05 -0800 (PST)
+Message-ID: <1480526344.13682.8.camel@andred.net>
+From: =?ISO-8859-1?Q?Andr=E9?= Draszik <git@andred.net>
+To: Patrick Ohly <patrick.ohly@intel.com>
+Date: Wed, 30 Nov 2016 17:19:04 +0000
+In-Reply-To: <1480517999.6873.298.camel@intel.com>
+References: <20161121120355.18309-1-git@andred.net>
+	<1480503859.6873.280.camel@intel.com>
+	<1480516308.13682.1.camel@andred.net>
+	<1480517999.6873.298.camel@intel.com>
+X-Mailer: Evolution 3.22.2-1 
+Mime-Version: 1.0
+Cc: yocto@yoctoproject.org
+Subject: Re: update mechanisms (was: Re: [meta-swupd][PATCH] bsdiff: update to latest version)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,50 +62,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 30 Nov 2016 17:15:07 -0000
+X-List-Received-Date: Wed, 30 Nov 2016 17:19:09 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-Patch Series created without a cover letter are named using a
-non-descriptive generic string.
+On Wed, 2016-11-30 at 15:59 +0100, Patrick Ohly wrote:
+> On Wed, 2016-11-30 at 14:31 +0000, André Draszik wrote:
+> > On Wed, 2016-11-30 at 12:04 +0100, Patrick Ohly wrote:
+> > > On Mon, 2016-11-21 at 12:03 +0000, André Draszik wrote:
+> > > > This allows us to completely remove the build time
+> > > > depenency on libcheck when not needed, reducing
+> > > > overall build time, and in addition tests can be
+> > > > converted into a PACKAGECONFIG to enable them if
+> > > > needed.
+> > > 
+> > > +1
+> > > 
+> > > Sorry for the delay, I had to check with Joshua first who's going to
+> > > merge your patches. I'm currently working on a major update of
+> > > meta-swupd (see https://github.com/ostroproject/ostro-os/pull/198) and
+> > > if there's enough interest for using it as part of Yocto, might
+> > > continue
+> > > maintaining it.
+> > 
+> > Thanks Patrick. Are you saying you would otherwise abandon meta-swupd
+> > completely, or have it be a part of ostro-os only?
+> 
+> That's undecided. We are currently trying to figure out which update
+> mechanism is a good fit for Yocto. Depending on the outcome of that and
+> available resources, we may or may not have the time to support
+> something.
+> 
+> I've started a Wiki page
+> https://wiki.yoctoproject.org/wiki/System_Update - rudimentary at the
+> moment, but might as well be mentioned already now.
+> 
+> Perhaps you can say a few words about your usage of swupd and what you
+> liked or didn't like about it? Note that performance will become better
+> with the upcoming update.
 
-This change names the series using either the first 30 characters in
-patch #1 plus the remaining patches number, or the patch name for
-one-patch (1/1) series.
+In the wiki or here? I'll be out for the next week, but when I come back I
+will write some more.
 
-[Yocto #10625]
+BTW, you probably know this: 
+https://lists.linuxfoundation.org/pipermail/automotive-discussions/2016-May/002061.html
 
-Signed-off-by: Jose Lamego <jose.a.lamego@linux.intel.com>
----
- patchwork/models.py | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+I liked swupd for its ability to be used both for initial provisioning as
+well as for incremental updates. The latter being important when you have
+*loads* of devices, where it doesn't seem to make sense to download a full
+image for a tiny change to each device (think cellular!), the former
+streamlining the update mechanism, so that not two different independent
+things have to be maintained.
 
-diff --git a/patchwork/models.py b/patchwork/models.py
-index 3f531e6..2dfd884 100644
---- a/patchwork/models.py
-+++ b/patchwork/models.py
-@@ -1042,6 +1042,22 @@ def _series_supersede_previous_patches(series):
- def _on_revision_complete(sender, revision, **kwargs):
-     series = revision.series
- 
-+    # Now we know how many patches are in the revision,
-+    # so we can update the name for series without a cover letter
-+    if series.name == SERIES_DEFAULT_NAME:
-+        try:
-+            name = series.latest_revision().ordered_patches()[0].name
-+            n = re.compile(r'(\[\d+\/\d+\]\s?)')
-+            name = n.sub('', name)
-+            c = len(series.latest_revision().ordered_patches())
-+            # For one-patch series (1/1) without cover letter
-+            if c == 1:
-+                series.name = name
-+            else:
-+                series.name = "\"%s...\" and %s more" % (name[:30], c-1)
-+        except:
-+            pass
-+
-     # update series.last_revision
-     series.last_revision = series.latest_revision()
-     series.save()
--- 
-1.9.1
+
+Cheers,
+Andre'
 
 
