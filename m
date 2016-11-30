@@ -1,52 +1,33 @@
-Return-Path: <andre.draszik@gmail.com>
+Return-Path: <jose.a.lamego@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C6279E004E5; Wed, 30 Nov 2016 09:08:44 -0800 (PST)
+	id 4E46BE00503; Wed, 30 Nov 2016 09:15:07 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.210.193 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.210.193 listed in dnsbl.sorbs.net]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-wj0-f193.google.com (mail-wj0-f193.google.com
-	[209.85.210.193])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E96C1E00498
-	for <yocto@yoctoproject.org>; Wed, 30 Nov 2016 09:08:43 -0800 (PST)
-Received: by mail-wj0-f193.google.com with SMTP id jb2so23189652wjb.3
-	for <yocto@yoctoproject.org>; Wed, 30 Nov 2016 09:08:43 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-	:references:mime-version:content-transfer-encoding;
-	bh=iAIDMvknvLxc4l89G5PmAxId7WmiqB3PwPgLzHdQ8T8=;
-	b=kX/NF27X8eL6LkSIFQWUBHRtoTaV7ALg6agylXRbaCZvI2LMAO6uyjKFpeKbqKTESg
-	dElnykRaHKJOObsymiDS7K9Z5y2rPP58YI+m9+z4CzJ+4XTZEOOQIQBRvtOUK6JJBK80
-	3rkmcJM5DYXAqBS+nGTqf3ZbT87ayJfdp1ZSmp9YUdRRnyKbbz1bhfb/wEQyLkeqc6b7
-	YOq9b3GCRzMelvYnW8Xsz6Bk5+rJV7/DIsuUoXLQjT4/wn8MemMg4RALaTKNfxN4QGLg
-	QO6DVeRZq5oCHQXg5FcapSWyMROgCxq21F1pCFzkgWTokjFCM6IqOnLkQjVlMbUCkVdJ
-	wXPw==
-X-Gm-Message-State: AKaTC009l+Z4VD4GSym54J51E4GQFYneHWSIlvQ7cC5crUFID4MMK5vkJuX7+4IFIitKHQ==
-X-Received: by 10.194.91.148 with SMTP id ce20mr34257192wjb.59.1480525722840; 
-	Wed, 30 Nov 2016 09:08:42 -0800 (PST)
-Received: from tfsielt31850 ([77.107.218.170])
-	by smtp.gmail.com with ESMTPSA id l67sm9266765wmf.0.2016.11.30.09.08.42
-	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-	Wed, 30 Nov 2016 09:08:42 -0800 (PST)
-Message-ID: <1480525721.13682.5.camel@andred.net>
-From: =?ISO-8859-1?Q?Andr=E9?= Draszik <git@andred.net>
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [134.134.136.20 listed in list.dnswl.org]
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 28989E00498
+	for <yocto@yoctoproject.org>; Wed, 30 Nov 2016 09:15:02 -0800 (PST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by orsmga101.jf.intel.com with ESMTP; 30 Nov 2016 09:15:02 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.31,574,1473145200"; d="scan'208";a="1075683762"
+Received: from jalamego-mobl2.zpn.intel.com ([10.219.5.146])
+	by fmsmga001.fm.intel.com with ESMTP; 30 Nov 2016 09:15:01 -0800
+From: Jose Lamego <jose.a.lamego@linux.intel.com>
 To: yocto@yoctoproject.org
-Date: Wed, 30 Nov 2016 17:08:41 +0000
-In-Reply-To: <1480510545.6873.285.camel@intel.com>
-References: <20161121154247.14845-1-git@andred.net>
-	<1480510545.6873.285.camel@intel.com>
-X-Mailer: Evolution 3.22.2-1 
-Mime-Version: 1.0
-Subject: Re: [meta-swupd][PATCH] swupd-client: do out-of-tree builds
+Date: Wed, 30 Nov 2016 11:14:46 -0600
+Message-Id: <1480526086-7951-1-git-send-email-jose.a.lamego@linux.intel.com>
+X-Mailer: git-send-email 1.9.1
+In-Reply-To: <1480028409-13127-1-git-send-email-jose.a.lamego@linux.intel.com>
+References: <1480028409-13127-1-git-send-email-jose.a.lamego@linux.intel.com>
+Subject: [patchwork][PATCH v2] patchwork/models: Include first patch's name in series name
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,16 +39,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 30 Nov 2016 17:08:44 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 30 Nov 2016 17:15:07 -0000
 
-On Wed, 2016-11-30 at 13:55 +0100, Patrick Ohly wrote:
-> change would just lead to conflicts with my development branch. Is it
-> okay to wait for this version update?
+Patch Series created without a cover letter are named using a
+non-descriptive generic string.
 
-Sure, no worries.
+This change names the series using either the first 30 characters in
+patch #1 plus the remaining patches number, or the patch name for
+one-patch (1/1) series.
 
-A.
+[Yocto #10625]
+
+Signed-off-by: Jose Lamego <jose.a.lamego@linux.intel.com>
+---
+ patchwork/models.py | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
+
+diff --git a/patchwork/models.py b/patchwork/models.py
+index 3f531e6..2dfd884 100644
+--- a/patchwork/models.py
++++ b/patchwork/models.py
+@@ -1042,6 +1042,22 @@ def _series_supersede_previous_patches(series):
+ def _on_revision_complete(sender, revision, **kwargs):
+     series = revision.series
+ 
++    # Now we know how many patches are in the revision,
++    # so we can update the name for series without a cover letter
++    if series.name == SERIES_DEFAULT_NAME:
++        try:
++            name = series.latest_revision().ordered_patches()[0].name
++            n = re.compile(r'(\[\d+\/\d+\]\s?)')
++            name = n.sub('', name)
++            c = len(series.latest_revision().ordered_patches())
++            # For one-patch series (1/1) without cover letter
++            if c == 1:
++                series.name = name
++            else:
++                series.name = "\"%s...\" and %s more" % (name[:30], c-1)
++        except:
++            pass
++
+     # update series.last_revision
+     series.last_revision = series.latest_revision()
+     series.save()
+-- 
+1.9.1
 
 
