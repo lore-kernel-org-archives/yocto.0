@@ -1,45 +1,54 @@
-Return-Path: <ajlennon@dynamicdevices.co.uk>
+Return-Path: <andre.draszik@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 161D1E00C2E; Wed, 30 Nov 2016 06:18:07 -0800 (PST)
+	id 94DD8E00C40; Wed, 30 Nov 2016 06:31:53 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.0 required=5.0 tests=BAYES_20,HTML_MESSAGE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.0 BAYES_20 BODY: Bayes spam probability is 5 to 20%
-	*      [score: 0.0750]
-X-Greylist: delayed 401 seconds by postgrey-1.32 at yocto-www;
-	Wed, 30 Nov 2016 06:18:02 PST
-Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
-	[89.200.136.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C9241E00C22
-	for <yocto@yoctoproject.org>; Wed, 30 Nov 2016 06:18:02 -0800 (PST)
-Received: from localhost (localhost [127.0.0.1])
-	by www.dynamicdevices.co.uk (Postfix) with ESMTP id A362727EDE8;
-	Wed, 30 Nov 2016 14:11:18 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
-Received: from www.dynamicdevices.co.uk ([127.0.0.1])
-	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id AjqK5PYpxVZx; Wed, 30 Nov 2016 14:10:54 +0000 (UTC)
-Received: from [192.168.0.167] (unknown [51.179.151.35])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id 928E327EDF6;
-	Wed, 30 Nov 2016 14:10:53 +0000 (UTC)
-To: Fabio Berton <fabio.berton@ossystems.com.br>, yocto@yoctoproject.org
-References: <1463062229-23247-1-git-send-email-fabio.berton@ossystems.com.br>
-	<CAAPZna0T95H4PUNzpqxEU=6_bL7fNWA03jW=ZZp31w0+LjMFpg@mail.gmail.com>
-From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
-Message-ID: <3b01364d-388c-5dfa-c39d-91a561a21c4c@dynamicdevices.co.uk>
-Date: Wed, 30 Nov 2016 14:10:49 +0000
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:45.0) Gecko/20100101
-	Thunderbird/45.5.0
-MIME-Version: 1.0
-In-Reply-To: <CAAPZna0T95H4PUNzpqxEU=6_bL7fNWA03jW=ZZp31w0+LjMFpg@mail.gmail.com>
-Subject: Re: [meta-mono][PATCH] mono-4.xx: Remove --disable-static from EXTRA_OECONF
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.210.193 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.210.193 listed in dnsbl.sorbs.net]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+Received: from mail-wj0-f193.google.com (mail-wj0-f193.google.com
+	[209.85.210.193])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 92DECE00C25
+	for <yocto@yoctoproject.org>; Wed, 30 Nov 2016 06:31:50 -0800 (PST)
+Received: by mail-wj0-f193.google.com with SMTP id jb2so22439819wjb.3
+	for <yocto@yoctoproject.org>; Wed, 30 Nov 2016 06:31:50 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+	:references:mime-version:content-transfer-encoding;
+	bh=6fib0JbaYArrEPN6zjhCg2H1IAtNWbAPhA5dzDiyURU=;
+	b=HuGdnO9BM4bw3AlJFwUtMT46h9fnVn000haW0/Jd7YUlZQab4leOnlxi9hKsbX2goA
+	fWunUKAbHCfux8el4X/OcHQV2OR3bPMRPVszQZocjXKw4LwJZufR5b+/8rVXhVUv6AUV
+	ymxCdOrYLNyqjtr9sgWS5crFpYXPY4CupCsnN+CIvaCD3jbNgvXCrVN4sd56cWIDOGlh
+	fQemRhcWrAJiriBdwt+MkXX3g4HXqOESYZaRpgeKt5xem2PhCjacUchkeralrHmCTiaD
+	Ie3+GXInY0fTGA/yQ5XAh2sGo3McIeulDW01alf0r9T3Zzcdk8r+mAJGBcNcicENslqL
+	SMgA==
+X-Gm-Message-State: AKaTC0008jvjo55ELP1G5ykvbzUK1hHa/5AR4VwxdbjOkXESZkolKt8NGa9yKajzuvMl5A==
+X-Received: by 10.194.14.73 with SMTP id n9mr31437106wjc.189.1480516309656;
+	Wed, 30 Nov 2016 06:31:49 -0800 (PST)
+Received: from tfsielt31850 ([77.107.218.170])
+	by smtp.gmail.com with ESMTPSA id
+	ua15sm73235993wjb.1.2016.11.30.06.31.48
+	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+	Wed, 30 Nov 2016 06:31:48 -0800 (PST)
+Message-ID: <1480516308.13682.1.camel@andred.net>
+From: =?ISO-8859-1?Q?Andr=E9?= Draszik <git@andred.net>
+To: Patrick Ohly <patrick.ohly@intel.com>
+Date: Wed, 30 Nov 2016 14:31:48 +0000
+In-Reply-To: <1480503859.6873.280.camel@intel.com>
+References: <20161121120355.18309-1-git@andred.net>
+	<1480503859.6873.280.camel@intel.com>
+X-Mailer: Evolution 3.22.2-1 
+Mime-Version: 1.0
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-swupd][PATCH] bsdiff: update to latest version
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,52 +60,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 30 Nov 2016 14:18:07 -0000
-Content-Type: multipart/alternative;
-	boundary="------------6B6C100542ABEDA57822A222"
+X-List-Received-Date: Wed, 30 Nov 2016 14:31:53 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
---------------6B6C100542ABEDA57822A222
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: 7bit
+On Wed, 2016-11-30 at 12:04 +0100, Patrick Ohly wrote:
+> On Mon, 2016-11-21 at 12:03 +0000, André Draszik wrote:
+> > This allows us to completely remove the build time
+> > depenency on libcheck when not needed, reducing
+> > overall build time, and in addition tests can be
+> > converted into a PACKAGECONFIG to enable them if
+> > needed.
+> 
+> +1
+> 
+> Sorry for the delay, I had to check with Joshua first who's going to
+> merge your patches. I'm currently working on a major update of
+> meta-swupd (see https://github.com/ostroproject/ostro-os/pull/198) and
+> if there's enough interest for using it as part of Yocto, might continue
+> maintaining it.
+
+Thanks Patrick. Are you saying you would otherwise abandon meta-swupd
+completely, or have it be a part of ostro-os only?
+swupd via meta-swupd seems to be a very good addition to yocto.
+
+Thanks,
+Andre'
 
 
-
-On 27/06/2016 19:41, Fabio Berton wrote:
-> Any update on this?
->
-
-Applied, thanks Fabio
-
---------------6B6C100542ABEDA57822A222
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: 7bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=windows-1252"
-      http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <p><br>
-    </p>
-    <br>
-    <div class="moz-cite-prefix">On 27/06/2016 19:41, Fabio Berton
-      wrote:<br>
-    </div>
-    <blockquote
-cite="mid:CAAPZna0T95H4PUNzpqxEU=6_bL7fNWA03jW=ZZp31w0+LjMFpg@mail.gmail.com"
-      type="cite">
-      <div dir="ltr">
-        <div class="gmail_default"
-          style="font-family:monospace,monospace;font-size:small">Any
-          update on this?<br>
-          <br>
-        </div>
-      </div>
-    </blockquote>
-    <br>
-    Applied, thanks Fabio<br>
-  </body>
-</html>
-
---------------6B6C100542ABEDA57822A222--
