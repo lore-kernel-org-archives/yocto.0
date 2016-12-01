@@ -1,84 +1,67 @@
-Return-Path: <bevenson@melinkcorp.com>
+Return-Path: <bruce.ashfield@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0EFA1E00828; Thu,  1 Dec 2016 12:08:52 -0800 (PST)
+	id 58501E00D44; Thu,  1 Dec 2016 14:28:25 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [104.47.37.106 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE, 
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (bruce.ashfield[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.215.65 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 7754 seconds by postgrey-1.32 at yocto-www;
-	Thu, 01 Dec 2016 12:08:44 PST
-Received: from NAM02-CY1-obe.outbound.protection.outlook.com
-	(mail-cys01nam02on0106.outbound.protection.outlook.com
-	[104.47.37.106])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7DDE0E00529
-	for <yocto@yoctoproject.org>; Thu,  1 Dec 2016 12:08:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=Melink.onmicrosoft.com; s=selector1-melinkcorp-com;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
-	bh=/DqvqJ5PlZLyiNHH+HLMm2oMqo7L5VpEjvxOp0AagU4=;
-	b=AKs3QFVwmgAWY06Jk9ZRdJwZe+flyKeIOiwFzXCjSFAQ4RmS6sfutcqlpzdsd8qCAZnXDgFGSxTD9wkxqUrnOYrNzAJyyNwrXj7fPje8w+V1xmjXJvRi4Fw3Nf/XqXmUMTW30sgzTFLzMN4LQ+rjb+kp+J4fLEC5xkJyBvCQvlM=
-Received: from DM5PR05MB2954.namprd05.prod.outlook.com (10.168.176.142) by
-	DM5PR05MB2954.namprd05.prod.outlook.com (10.168.176.142) with Microsoft
-	SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
-	15.1.761.5; Thu, 1 Dec 2016 19:54:11 +0000
-Received: from DM5PR05MB2954.namprd05.prod.outlook.com ([10.168.176.142]) by
-	DM5PR05MB2954.namprd05.prod.outlook.com ([10.168.176.142]) with mapi id
-	15.01.0761.012; Thu, 1 Dec 2016 19:54:11 +0000
-From: Bryan Evenson <bevenson@melinkcorp.com>
-To: Martin Jansa <martin.jansa@gmail.com>
-Thread-Topic: [yocto] Can't set march=armv5te
-Thread-Index: AdJL7sGDta7Td3odSOG3uI8w7JysXwAFz+gAAADkh6A=
-Date: Thu, 1 Dec 2016 19:54:11 +0000
-Message-ID: <DM5PR05MB2954510A2FB8EB42A2CC64F8BB8F0@DM5PR05MB2954.namprd05.prod.outlook.com>
-References: <DM5PR05MB2954A758A4F3A3642281F22FBB8F0@DM5PR05MB2954.namprd05.prod.outlook.com>
-	<CA+chaQeQuM4-WBOJ6Wo2nEupT1Meopg5bzeCeDeYqr=k2swAPQ@mail.gmail.com>
-In-Reply-To: <CA+chaQeQuM4-WBOJ6Wo2nEupT1Meopg5bzeCeDeYqr=k2swAPQ@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=bevenson@melinkcorp.com; 
-x-originating-ip: [98.100.91.242]
-x-ms-office365-filtering-correlation-id: 55540ea1-1ddc-462c-96d0-08d41a23d235
-x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:(22001);SRVR:DM5PR05MB2954;
-x-microsoft-exchange-diagnostics: 1; DM5PR05MB2954;
-	7:tNVVpSp5v7XMIrpd6zoJPGFGy6s/qJRijiIFMiCXDdHrWGMOpMKJXpCoh9p3vG3s87mv/vb2zf9Tr/FXpqvrN8HrF76ubjC452GXxWBQ/eY+1o3Xqro2wYKF4QlmMyIgUXrVrY2m1Tj451DmYokSoSO0sk/+QO1C3q7CJfsKr+UlA/mmYIQV1ExA7XlhpnIH/UhoAHr5YvD5SrXgzulzKyFfguU4PAZOdJyDU1kkWoVVa4ketCKkZwD8O5MYS7NnnqcbaE2Z9wa7ZVX/8Q6W3lVRpp+a3hWjDkdRNHqHn54GQkek706Bn8AG3hG4EfUpOGS0gaxjkS1uE0Q62tD6wX9ulInlnbxy+fleh/2aeudoRYbBgFnDGWsaOhZ2qTHGWOM7QLkjo6m8EFiru8Dc794lxG7E8ef3qtEpWkcTFr6Geh6HVzEJBXIIiRiaYfVypVFqlaa8VapsCkJFfQAkzg==
-x-microsoft-antispam-prvs: <DM5PR05MB29547EDE806F7AF24405D956BB8F0@DM5PR05MB2954.namprd05.prod.outlook.com>
-x-exchange-antispam-report-test: UriScan:(166708455590820)(21748063052155);
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(6040375)(601004)(2401047)(8121501046)(5005006)(10201501046)(3002001)(6041248)(20161123564025)(20161123562025)(20161123555025)(20161123560025)(2016111802025)(6072148)(6043046);
-	SRVR:DM5PR05MB2954; BCL:0; PCL:0; RULEID:; SRVR:DM5PR05MB2954; 
-x-forefront-prvs: 014304E855
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10019020)(7916002)(199003)(24454002)(377454003)(189002)(68736007)(2906002)(5660300001)(39410400001)(3660700001)(4326007)(1860700003)(9686002)(39060400001)(606004)(38730400001)(39450400002)(229853002)(77096006)(105586002)(106356001)(99286002)(81166006)(7736002)(81156014)(110136003)(8676002)(7906003)(189998001)(6506004)(74316002)(97736004)(102836003)(6116002)(19609705001)(6916009)(790700001)(7696004)(7846002)(8936002)(2950100002)(3846002)(33656002)(122556002)(3280700002)(2900100001)(76576001)(66066001)(15395725005)(92566002)(86362001)(54356999)(101416001)(50986999)(76176999)(575784001);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:DM5PR05MB2954;
-	H:DM5PR05MB2954.namprd05.prod.outlook.com; FPR:; SPF:None;
-	PTR:InfoNoRecords; A:1; MX:1; LANG:en; 
-received-spf: None (protection.outlook.com: melinkcorp.com does not designate
-	permitted sender hosts)
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.215.65 listed in dnsbl.sorbs.net]
+Received: from mail-lf0-f65.google.com (mail-lf0-f65.google.com
+	[209.85.215.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A44AFE00D3D
+	for <yocto@yoctoproject.org>; Thu,  1 Dec 2016 14:28:22 -0800 (PST)
+Received: by mail-lf0-f65.google.com with SMTP id o20so20422760lfg.3
+	for <yocto@yoctoproject.org>; Thu, 01 Dec 2016 14:28:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=wv/c28v3GVVDjFOQf5OgAUQiItNDjZHZq/qk/GlcMxU=;
+	b=rmSjCBGw8+RSZkPIpKePm9oMlB2Wdckr9215pVDSyGT6ACzyhlkNocMogRNyqrMwTN
+	92Crue7LxeprkmZjjicGg34tGKIBlEUZ+2TXxGXcV8iYpEO5+vol39sbubFYo7bwfFSY
+	mgkfW3i18+YWXLlrPqC+SVEqsNJqoLgz2nh89/ZOzuV/bORYeUMRRuNMNrwPjujhV1jX
+	n/gOfaIHJJ5pxDQhiWZveuqCGzuLqhluS8XsZ5YSvGgzCqnZn/2V+oSc7EZwVNbQsEi3
+	KnOFEGRaP6Z9XkZrNNQegbyZFb4XTx7uUxCZOP9MojT+zPYvxZInWQoN2efLz670QclE
+	lBow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=wv/c28v3GVVDjFOQf5OgAUQiItNDjZHZq/qk/GlcMxU=;
+	b=LNRThVVWso+2xSHTqrYrzs8iOr0/DLRRCNCXgtsDm89G+CcARtcMF8LWr3m1SBnkam
+	LAhyCe7I93bvRtGsZhGmqmkfinNpW1QsrrQBkh/cwoWfZycbIpj8TXjl9WMc2S/VsEKD
+	tadwQymYH+gwDjKqiuzkdkZ1ZTdkhDm2pqvo7CfXpnmlN/Z7Qa6AbEq3ef2J2bJxbaeL
+	UUk71DiwD/LTFttCvirz/u0bm27ELUbZJ8Wb1+A//PEnjNWymAE9KwHsip/JLgMNAClV
+	Qm0oz/Rpf3ZOhiiq2EKjH1aC2mrsF8pLXv3iGhijc3V0MEEZ8bAiIwXsgIgxZxYnzfsb
+	Bs4A==
+X-Gm-Message-State: AKaTC03D0H/LUBC/wNC70Q0yjcmYTF/kdjYsHvmxnwBP7RJYJJ/dvDthd71aSz0QsQ5DxFfLElCKNO3m3E5p3g==
+X-Received: by 10.25.27.145 with SMTP id b139mr13703445lfb.114.1480631301244; 
+	Thu, 01 Dec 2016 14:28:21 -0800 (PST)
 MIME-Version: 1.0
-X-OriginatorOrg: melinkcorp.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Dec 2016 19:54:11.6995 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: d06db0f9-efcc-42b5-9f8c-c934a01c9bfd
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR05MB2954
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Can't set march=armv5te
+Received: by 10.25.35.194 with HTTP; Thu, 1 Dec 2016 14:28:20 -0800 (PST)
+In-Reply-To: <20161201200550.GA31925@openSUSE-i7.site>
+References: <20161201200550.GA31925@openSUSE-i7.site>
+From: Bruce Ashfield <bruce.ashfield@gmail.com>
+Date: Thu, 1 Dec 2016 17:28:20 -0500
+Message-ID: <CADkTA4OX9crgydX7FWBs6hQ1AYr3rOsGhokNPG+fdZNKef_-7w@mail.gmail.com>
+To: Trevor Woerner <twoerner@gmail.com>
+Cc: Yocto Project Discussion <yocto@yoctoproject.org>
+Subject: Re: yocto-kernel-tools and multiple users
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -90,311 +73,282 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 Dec 2016 20:08:52 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_DM5PR05MB2954510A2FB8EB42A2CC64F8BB8F0DM5PR05MB2954namp_"
+X-List-Received-Date: Thu, 01 Dec 2016 22:28:25 -0000
+Content-Type: multipart/alternative; boundary=001a11401b0ac10dd80542a05669
 
---_000_DM5PR05MB2954510A2FB8EB42A2CC64F8BB8F0DM5PR05MB2954namp_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--001a11401b0ac10dd80542a05669
+Content-Type: text/plain; charset=UTF-8
 
-TWFydGluLA0KDQpPSywgc28gcmVnYXJkbGVzcyBvZiB3aGF0IHRoZSBhcmNoIHdhcyBmaW5hbGx5
-IGdldHRpbmcgc2V0IGF0LCBpbiB0aGlzIGNhc2Ugc2luY2Ug4oCcLW1hcm3igJ0gd2FzIGluIHRo
-ZSBHQ0MgY29tcGlsZXIgb3B0aW9ucyBpdCB3YXMgYWx3YXlzIGNvbXBpbGluZyBhbGwgdGhlIGNv
-ZGUgaW4gQVJNIG1vZGUgYW5kIG5ldmVyIGluIFRodW1iIG1vZGUsIGNvcnJlY3Q/DQoNCkl0IHN0
-aWxsIGJ1Z3MgbWUgd2h5IHRoZSBhcmNoaXRlY3R1cmUgbmFtZSBjaGFuZ2VkIChJ4oCZdmUgdHJh
-Y2VkIHRocm91Z2ggdGhlIG1hY2hpbmUgaW5jbHVkZSBwYXRoIHNldmVyYWwgdGltZXMpLCBidXQg
-aWYgYXQgdGhlIGVuZCBvZiB0aGUgZGF5IGl04oCZbGwgYmUgY29tcGlsaW5nIHRoZSBzYW1lIGNv
-ZGUgdGhlbiBJ4oCZbGwgbW92ZSBvbiB0byBzb21lIG1vcmUgcHJvZHVjdGl2ZSB0YXNrcy4NCg0K
-VGhhbmtzLA0KQnJ5YW4NCg0KRnJvbTogTWFydGluIEphbnNhIFttYWlsdG86bWFydGluLmphbnNh
-QGdtYWlsLmNvbV0NClNlbnQ6IFRodXJzZGF5LCBEZWNlbWJlciAwMSwgMjAxNiAyOjA2IFBNDQpU
-bzogQnJ5YW4gRXZlbnNvbiA8YmV2ZW5zb25AbWVsaW5rY29ycC5jb20+DQpDYzogeW9jdG9AeW9j
-dG9wcm9qZWN0Lm9yZw0KU3ViamVjdDogUmU6IFt5b2N0b10gQ2FuJ3Qgc2V0IG1hcmNoPWFybXY1
-dGUNCg0KVXNpbmcgYW5kIG5vdCB1c2luZyB0aHVtYiB3YXMgYWxzbyBjb250cm9sbGVkIG5vdCBv
-bmx5IGJ5IFRVTkVfRkVBVFVSRVMgKE1BQ0hJTkUgZGVmaW5lcyB0aGF0KSBidXQgYWxzbyBieSBB
-Uk1fSU5TVFJVQ1RJT05fU0VUIChESVNUUk8gZGVmaW5lcyB0aGF0KS4NCg0KU28geW91IHdlcmVu
-J3QgYnVpbGRpbmcgd2l0aCB0aHVtYiBlbmFibGVkIGV2ZW4gd2hlbiB5b3Ugd2VyZSBzZWVpbmcg
-YXJtdjV0ZSBiZWZvcmUuDQoNCk9uIFRodSwgRGVjIDEsIDIwMTYgYXQgNToyNiBQTSwgQnJ5YW4g
-RXZlbnNvbiA8YmV2ZW5zb25AbWVsaW5rY29ycC5jb208bWFpbHRvOmJldmVuc29uQG1lbGlua2Nv
-cnAuY29tPj4gd3JvdGU6DQpJJ20gaW4gdGhlIHByb2Nlc3Mgb2YgdXBncmFkaW5nIGZyb20gdGhl
-IGRpenp5IGJyYW5jaCB0byB0aGUgZmlkbyBicmFuY2gsIGFuZCBJJ20gc3RpbGwgYSBsaXR0bGUg
-Y29uZnVzZWQgYWJvdXQgc29tZSB0dW5lIGNoYW5nZXMgdGhhdCBJJ20gc2VlaW5nLiAgSSdtIHVz
-aW5nIGFuIEF0bWVsIEFUOTFTQU05RzI1IHByb2Nlc3Nvci4gIFRoZSBtZXRhLWF0bWVsIGxheWVy
-IHRoYXQgSSBhbSB1c2luZyBoYWQgaW5jb3JyZWN0bHkgc2V0IERFRkFVTFRUVU5FID0gImFybTky
-NmVqcyIgd2hpY2ggaGFkIGJlZW4gc2V0dGluZyB0aGUgYXJjaGl0ZWN0dXJlIHRvICJhcm05MjZl
-anN0ZSIuICBUaGV5IGZpeGVkIHRoYXQgaGVyZTogaHR0cHM6Ly9naXRodWIuY29tL2xpbnV4NHNh
-bS9tZXRhLWF0bWVsL2NvbW1pdC80NzIzODA2MmMwNGNhOTdjMmVhMDU3MDU3NjA3MmFkNWI0NmNl
-MjYxIGFuZCBhY2NvcmRpbmcgdG8gdGhlIGNvbW1pdCBtZXNzYWdlIGl0IHNob3VsZCBub3cgYmUg
-YnVpbGRpbmcgd2l0aCBERUZBVUxUVFVORSAoYW5kIHRoZSByZXN1bHRpbmcgYXJjaGl0ZWN0dXJl
-KSBzZXQgdG8gImFybXY1dGUiLiAgSG93ZXZlciwgd2hlbiBJIGJ1aWxkIHVzaW5nIG15IGF1dG9i
-dWlsZGVyIEkgYW0gZ2V0dGluZyBhbiBhcmNoaXRlY3R1cmUgb2YgImFybXY1ZSIuICBGcm9tIG15
-IHVuZGVyc3RhbmRpbmcsIHRoaXMgbWVhbnMgdGhlIGNvbXBpbGVyIHRoaW5rcyB0aGUgcHJvY2Vz
-c29yIGRvZXMgbm90IGhhdmUgVGh1bWIgc3VwcG9ydC4gIEkndmUgdHJpZWQgImFybTkyNmVqcyIg
-YW5kICJhcm12NXRlIiBmb3IgREVGQVVMVFRVTkUgc2V0dGluZ3MgYW5kIGl0IGhhc24ndCBtYWRl
-IGFueSBkaWZmZXJlbmNlLg0KDQpJJ3ZlIGNoZWNrZWQgdGhlIHdvcmtpbmcgZGlyZWN0b3JpZXMg
-Zm9yIGEgZmV3IHBhY2thZ2VzLCBhbmQgcHJldmlvdXNseSB0aGUgcmVsZXZhbnQgZ2NjIG9wdGlv
-bnMgd2VyZSBiZWluZyBzZXQgdG86ICItbWFyY2g9YXJtdjV0ZSAtbWFybSAtbXRodW1iLWludGVy
-d29yayAtbXR1bmU9YXJtOTI2ZWotcyIuICBOb3cgdGhleSBhcmUgYmVpbmcgc2V0IHRvOiAiLW1h
-cmNoPWFybXY1ZSAtbWFybSAgLW10aHVtYi1pbnRlcndvcmsiLiAgSG93IGRvIEkgZ2V0IGl0IGJh
-Y2sgdG8gYnVpbGRpbmcgd2l0aCBtYXJjaD1hcm12NXRlPw0KDQpIZXJlIGlzIHRoZSBhdXRvYnVp
-bGRlciBjb25maWd1cmF0aW9uIHRoYXQgSSBhbSB1c2luZzoNCg0KW25pZ2h0bHktYXRtZWwtZGVt
-by1maWRvXQ0KYnVpbGRlcnM6ICdidWlsZGVyMScNCnJlcG9zOiBbeydwb2t5JzoNCiAgICAgICAg
-ICAgIHsncmVwb3VybCc6J2dpdDovL2dpdC55b2N0b3Byb2plY3Qub3JnL3Bva3k8aHR0cDovL2dp
-dC55b2N0b3Byb2plY3Qub3JnL3Bva3k+JywNCiAgICAgICAgICAgICAgICAgJ2xheWVydmVyc2lv
-bic6eydjb3JlJzonbWV0YScsICd5b2N0b2JzcCc6J21ldGEteW9jdG8tYnNwJywgJ3lvY3RvJzon
-bWV0YS15b2N0bycsICdwb2t5JzonbWV0YS1wb2t5J30sDQogICAgICAgICAgICAgJ2JyYW5jaCc6
-J2ZpZG8nfX0sDQogICAgICAgIHsnbWV0YS1hdG1lbCc6DQogICAgICAgICAgICB7J3JlcG91cmwn
-OidnaXQ6Ly9naXRodWIuY29tL2xpbnV4NHNhbS9tZXRhLWF0bWVsLmdpdDxodHRwOi8vZ2l0aHVi
-LmNvbS9saW51eDRzYW0vbWV0YS1hdG1lbC5naXQ+JywNCiAgICAgICAgICAgICAnYnJhbmNoJzon
-Zmlkbyd9fSwNCiAgICAgICAgeydtZXRhLW9wZW5lbWJlZGRlZCc6DQogICAgICAgICAgICB7J2F1
-dG9pbmNsdWRlJzpGYWxzZSwgJ3JlcG91cmwnOidnaXQ6Ly9naXQub3BlbmVtYmVkZGVkLm9yZy9t
-ZXRhLW9wZW5lbWJlZGRlZDxodHRwOi8vZ2l0Lm9wZW5lbWJlZGRlZC5vcmcvbWV0YS1vcGVuZW1i
-ZWRkZWQ+JywNCiAgICAgICAgICAgICAnYnJhbmNoJzonZmlkbyd9fSwNCiAgICAgICAgeydtZXRh
-LXF0NSc6DQogICAgICAgICAgICB7J3JlcG91cmwnOidnaXQ6Ly9naXRodWIuY29tL21ldGEtcXQ1
-L21ldGEtcXQ1LmdpdDxodHRwOi8vZ2l0aHViLmNvbS9tZXRhLXF0NS9tZXRhLXF0NS5naXQ+JywN
-CiAgICAgICAgICAgICAnYnJhbmNoJzonZmlkbyd9fV0NCnN0ZXBzOiBbeydTZXREZXN0Jzp7fX0s
-DQogICAgICAgIHsnQ2hlY2tPdXRMYXllcnMnOiB7fX0sDQogICAgICAgIHsnUnVuUHJlYW1ibGUn
-OiB7fX0sDQogICAgICAgIHsnR2V0RGlzdHJvVmVyc2lvbicgOiB7J2Rpc3Rybyc6ICdwb2t5J319
-LA0KICAgICAgICB7J0NyZWF0ZUF1dG9Db25mJzogeydtYWNoaW5lJzogJ2F0OTFzYW05eDVlaycs
-ICdTREtNQUNISU5FJzogJ2k2ODYnLCAnZGlzdHJvJzogJ3Bva3ktYXRtZWwnLCAnYnVpbGRoaXN0
-b3J5JzogVHJ1ZSwgJ3BhY2thZ2VzJzogJ2lwaycsICdhdGV4dGFwcGVuZCc6ICdFWFRSQV9JTUFH
-RV9GRUFUVVJFUyA9ICIiXG5ERUZBVUxUVFVORSA9ICJhcm12NXRlIlxuJ319LA0KICAgICAgICB7
-J0NyZWF0ZUJCTGF5ZXJzQ29uZic6IHsnYnVpbGRwcm92aWRlcicgOiAneW9jdG8nLCAnbGF5ZXJk
-aXJzJzoNCiAgICAgICAgICAgIFsnbWV0YS1hdG1lbCcsICdtZXRhLXF0NScsICdtZXRhLW9wZW5l
-bWJlZGRlZC9tZXRhLW9lJywgJ21ldGEtb3BlbmVtYmVkZGVkL21ldGEtbmV0d29ya2luZycsICdt
-ZXRhLW9wZW5lbWJlZGRlZC9tZXRhLXB5dGhvbiddfX0sDQogICAgICAgIHsnQnVpbGRJbWFnZXMn
-OiB7J2ltYWdlcyc6ICdhdG1lbC1kZW1vLWltYWdlJ319LA0KICAgICAgICB7J1N5bmNQZXJzaXN0
-REInIDogeydjb21taXQnIDogVHJ1ZSwgJ2Rpc3Rybyc6J3Bva3knfX0sDQogICAgICAgIHsnUHVi
-bGlzaExheWVyVGFyYmFsbHMnOnt9fSwNCiAgICAgICAgeydQdWJsaXNoQXJ0aWZhY3RzJzogeydh
-cnRpZmFjdHMnOiBbJ2F0OTFzYW05eDVlaycsICdpcGsnXX19XQ0Kc2NoZWR1bGVyOiBbeyduaWdo
-dGx5LXNjaGVkdWxlci1hdG1lbC1maWRvJyA6DQogICAgICAgICAgICAgICAgeyd0eXBlJzonTmln
-aHRseScsDQogICAgICAgICAgICAgICAgICdob3VyJzonMScsDQogICAgICAgICAgICAgICAgICdt
-aW51dGUnOicxNScsfX1dDQoNClRoZSByZXN1bHRpbmcgYnVpbGQgY29uZmlndXJhdGlvbjoNCkJ1
-aWxkIENvbmZpZ3VyYXRpb246DQpCQl9WRVJTSU9OICAgICAgICA9ICIxLjI2LjAiDQpCVUlMRF9T
-WVMgICAgICAgICA9ICJ4ODZfNjQtbGludXgiDQpOQVRJVkVMU0JTVFJJTkcgICA9ICJVYnVudHUt
-MTIuMDQiDQpUQVJHRVRfU1lTICAgICAgICA9ICJhcm0tcG9reS1saW51eC1nbnVlYWJpIg0KTUFD
-SElORSAgICAgICAgICAgPSAiYXQ5MXNhbTl4NWVrIg0KRElTVFJPICAgICAgICAgICAgPSAicG9r
-eS1hdG1lbCINCkRJU1RST19WRVJTSU9OICAgID0gIjEuOC4yIg0KVFVORV9GRUFUVVJFUyAgICAg
-PSAiYXJtIGFybXY1IHRodW1iIGRzcCINClRBUkdFVF9GUFUgICAgICAgID0gInNvZnQiDQptZXRh
-DQptZXRhLXlvY3RvDQptZXRhLXlvY3RvLWJzcCAgICA9ICJmaWRvOmM5ZjBhOTkwNTBlYzAwNTBm
-MGRiY2Q1NWQwY2QyYWIxODg0ODExM2YiDQptZXRhLWF0bWVsICAgICAgICA9ICJmaWRvOmRkNTk1
-ZTZlOGVjNzAxMGNmNjQ2YTljYTM1NmIyZTAxZjEwZTI3NGMiDQptZXRhLXF0NSAgICAgICAgICA9
-ICJmaWRvOjkwOTE5YjlkODY5ODhlN2RhMDFmYTJjMGEwNzI0NmI1YjU2MDBhNWQiDQptZXRhLW9l
-DQptZXRhLW5ldHdvcmtpbmcNCm1ldGEtcHl0aG9uICAgICAgID0gImZpZG86OTAyOTY0YTRkYTI2
-ZTQ2MDE4ZDJhOGQxN2RjZGRhMWFjNDYyN2EzOSINCg0KVFVORV9GRUFUVVJFUyBpbmNsdWRlcyAi
-dGh1bWIiLCBidXQgdGhlIGNvbXBpbGVyIG9wdGlvbnMgYXJlbid0IHNldCBmb3IgYXJtdjV0ZS4g
-IEkndmUgdHJpZWQgY2hhbmdpbmcgdGhlIERFRkFVTFRUVU5FIHNwZWNpZmljYXRpb24gaW4gQ3Jl
-YXRlQXV0b0NvbmYgdG8gImFybTkyNmVqcyIgYW5kIEkndmUgaGFkIHRoZSBzYW1lIHJlc3VsdHMu
-ICBIb3cgZG8gSSBnZXQgdGhlIGFyY2hpdGVjdHVyZSBzZXQgYmFjayBjb3JyZWN0bHkgZm9yIHRo
-ZSBwcm9jZXNzb3IgSSdtIHVzaW5nPw0KDQpUaGFua3MsDQpCcnlhbiBFdmVuc29uDQotLQ0KX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCnlvY3RvIG1haWxp
-bmcgbGlzdA0KeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZzxtYWlsdG86eW9jdG9AeW9jdG9wcm9qZWN0
-Lm9yZz4NCmh0dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9saXN0aW5mby95b2N0bw0KDQo=
+On Thu, Dec 1, 2016 at 3:05 PM, Trevor Woerner <twoerner@gmail.com> wrote:
 
---_000_DM5PR05MB2954510A2FB8EB42A2CC64F8BB8F0DM5PR05MB2954namp_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+> I believe a recent change in the yocto-kernel-tools is causing some funny
+> issue I saw this morning on my overnight jenkins builds.
+>
+>         commit 08463d684c1952e74c25344cddace4c3f24c739d
+>         Date:   Mon Oct 31 14:30:12 2016 -0400
+>
+>             scc: exit on error
+>
+>             If there is an error in the processing of the input files, scc
+>             should exit and inform the user.
+>
+>             scc is executed on a combined/preprocessed file and as a result
+>             it doesn't have the granularity to see each input file
+> individually.
+>
+>             Rather than moving preprocessing into scc (from spp), we can
+> trap
+>             the line number of the error and dump context around the line.
+> This
+>             gives the user a pointer to the input file and the specific
+> line
+>             that caused the problem.
+>
+>             Signed-off-by: Bruce Ashfield <bruce.ashfield@windriver.com>
+>
+>         diff --git a/tools/scc b/tools/scc
+>         index b6ab747..0294103 100755
+>         --- a/tools/scc
+>         +++ b/tools/scc
+>         @@ -238,18 +238,37 @@ process_file()
+>                  done
+>
+>                  unset PATH
+>         -        if [ -n "${verbose}" ]; then
+>         -            eval . $in $outfile_append
+>         -        else
+>         -            # hide stderr if we aren't verbose
+>         -            eval . $in $outfile_append 2> /dev/null
+>         -        fi
+>         +        (
+>         +            set -e
+>         +            eval . $in $outfile_append > /tmp/scc-output 2>&1
+>         +        )
+>         +    )
+>
+>         -        if [ $? -ne 0 ]; then
+>         -            echo "[ERROR]: processing of file $in failed"
+>         -            exit 1
+>         +    if [ $? -ne 0 ]; then
+>         +        echo "[ERROR]: processing of file $in failed"
+>         +        cat /tmp/scc-output
+>         +
+>         +        # look for common errors so we can point to the right
+> input file
+>         +
+>         +        # 1) /tmp/tmp.gfN6WsbDHN: line 403: cat: No such file or
+> directory
+>         +        #     "grep -oh" will only output what matches, which
+> gets us "line 404: .."
+>         +        #     cut gets us the second field, which is the line
+> number
+>         +        line=$(cat /tmp/scc-output | grep -oh "line.*:" | cut -f2
+> -d' ' | sed 's/://g')
+>         +        if [ -n "$line" ]; then
+>         +            let start_line=$line-20
+>         +            let end_line=$line+10
+>         +            if [ $start_line -lt 0 ]; then
+>         +                start_line=0
+>         +            fi
+>         +            echo ""
+>         +            echo "Context around the error is:"
+>         +            echo ""
+>         +            sed -n -e "$start_line,$end_line p" -e "$end_line q"
+> $in | sed 's/^/    /'
+>         +            echo ""
+>         +            echo "See pre-processed file $in for more details"
+>                  fi
+>         -    )
+>         +        exit 1
+>         +    fi
+>
+>              return 0
+>          }
+>
+> In order to catch errors, scc's output is being hardcoded to
+> /tmp/scc-output.
+> But on my box there are two users who perform builds: jenkins and myself.
+> When
+> the second person comes along to do a build it finds inadequate
+> permissions on
+> /tmp/scc-output.
+>
+> Is anyone else seeing this?
+>
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
-YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
-IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
-IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJ
-Zm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJvbWFuIixzZXJpZjt9
-DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCglj
-b2xvcjpibHVlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KYTp2aXNpdGVkLCBzcGFu
-Lk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjpw
-dXJwbGU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQpwLm1zb25vcm1hbDAsIGxpLm1z
-b25vcm1hbDAsIGRpdi5tc29ub3JtYWwwDQoJe21zby1zdHlsZS1uYW1lOm1zb25vcm1hbDsNCglt
-c28tbWFyZ2luLXRvcC1hbHQ6YXV0bzsNCgltYXJnaW4tcmlnaHQ6MGluOw0KCW1zby1tYXJnaW4t
-Ym90dG9tLWFsdDphdXRvOw0KCW1hcmdpbi1sZWZ0OjBpbjsNCglmb250LXNpemU6MTIuMHB0Ow0K
-CWZvbnQtZmFtaWx5OiJUaW1lcyBOZXcgUm9tYW4iLHNlcmlmO30NCnNwYW4uaG9lbnpiDQoJe21z
-by1zdHlsZS1uYW1lOmhvZW56Yjt9DQpzcGFuLkVtYWlsU3R5bGUxOQ0KCXttc28tc3R5bGUtdHlw
-ZTpwZXJzb25hbDsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjsNCgljb2xvcjp3
-aW5kb3d0ZXh0O30NCnNwYW4uRW1haWxTdHlsZTIwDQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFs
-LWNvbXBvc2U7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7DQoJY29sb3I6d2lu
-ZG93dGV4dDt9DQouTXNvQ2hwRGVmYXVsdA0KCXttc28tc3R5bGUtdHlwZTpleHBvcnQtb25seTsN
-Cglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjt9DQpAcGFnZSBXb3JkU2VjdGlvbjEN
-Cgl7c2l6ZTo4LjVpbiAxMS4waW47DQoJbWFyZ2luOjEuMGluIDEuMGluIDEuMGluIDEuMGluO30N
-CmRpdi5Xb3JkU2VjdGlvbjENCgl7cGFnZTpXb3JkU2VjdGlvbjE7fQ0KLS0+PC9zdHlsZT48IS0t
-W2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRt
-YXg9IjEwMjYiIC8+DQo8L3htbD48IVtlbmRpZl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4N
-CjxvOnNoYXBlbGF5b3V0IHY6ZXh0PSJlZGl0Ij4NCjxvOmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRh
-PSIxIiAvPg0KPC9vOnNoYXBlbGF5b3V0PjwveG1sPjwhW2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJv
-ZHkgbGFuZz0iRU4tVVMiIGxpbms9ImJsdWUiIHZsaW5rPSJwdXJwbGUiPg0KPGRpdiBjbGFzcz0i
-V29yZFNlY3Rpb24xIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNp
-emU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZiI+TWFy
-dGluLDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0
-eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fu
-cy1zZXJpZiI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
-bCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJy
-aSZxdW90OyxzYW5zLXNlcmlmIj5PSywgc28gcmVnYXJkbGVzcyBvZiB3aGF0IHRoZSBhcmNoIHdh
-cyBmaW5hbGx5IGdldHRpbmcgc2V0IGF0LCBpbiB0aGlzIGNhc2Ugc2luY2Ug4oCcLW1hcm3igJ0g
-d2FzIGluIHRoZSBHQ0MgY29tcGlsZXIgb3B0aW9ucyBpdCB3YXMgYWx3YXlzIGNvbXBpbGluZyBh
-bGwgdGhlIGNvZGUgaW4gQVJNIG1vZGUgYW5kDQogbmV2ZXIgaW4gVGh1bWIgbW9kZSwgY29ycmVj
-dD88bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHls
-ZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMt
-c2VyaWYiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
-PjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkm
-cXVvdDssc2Fucy1zZXJpZiI+SXQgc3RpbGwgYnVncyBtZSB3aHkgdGhlIGFyY2hpdGVjdHVyZSBu
-YW1lIGNoYW5nZWQgKEnigJl2ZSB0cmFjZWQgdGhyb3VnaCB0aGUgbWFjaGluZSBpbmNsdWRlIHBh
-dGggc2V2ZXJhbCB0aW1lcyksIGJ1dCBpZiBhdCB0aGUgZW5kIG9mIHRoZSBkYXkgaXTigJlsbCBi
-ZSBjb21waWxpbmcgdGhlIHNhbWUgY29kZQ0KIHRoZW4gSeKAmWxsIG1vdmUgb24gdG8gc29tZSBt
-b3JlIHByb2R1Y3RpdmUgdGFza3MuPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1z
-b05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7
-Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8
-cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZh
-bWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWYiPlRoYW5rcyw8bzpwPjwvbzpwPjwv
-c3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEx
-LjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWYiPkJyeWFuPG86
-cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZv
-bnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlm
-Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8ZGl2IHN0eWxlPSJib3JkZXI6bm9uZTti
-b3JkZXItbGVmdDpzb2xpZCBibHVlIDEuNXB0O3BhZGRpbmc6MGluIDBpbiAwaW4gNC4wcHQiPg0K
-PGRpdj4NCjxkaXYgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci10b3A6c29saWQgI0UxRTFFMSAx
-LjBwdDtwYWRkaW5nOjMuMHB0IDBpbiAwaW4gMGluIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxi
-PjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkm
-cXVvdDssc2Fucy1zZXJpZiI+RnJvbTo8L3NwYW4+PC9iPjxzcGFuIHN0eWxlPSJmb250LXNpemU6
-MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZiI+IE1hcnRp
-biBKYW5zYSBbbWFpbHRvOm1hcnRpbi5qYW5zYUBnbWFpbC5jb21dDQo8YnI+DQo8Yj5TZW50Ojwv
-Yj4gVGh1cnNkYXksIERlY2VtYmVyIDAxLCAyMDE2IDI6MDYgUE08YnI+DQo8Yj5Ubzo8L2I+IEJy
-eWFuIEV2ZW5zb24gJmx0O2JldmVuc29uQG1lbGlua2NvcnAuY29tJmd0Ozxicj4NCjxiPkNjOjwv
-Yj4geW9jdG9AeW9jdG9wcm9qZWN0Lm9yZzxicj4NCjxiPlN1YmplY3Q6PC9iPiBSZTogW3lvY3Rv
-XSBDYW4ndCBzZXQgbWFyY2g9YXJtdjV0ZTxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0K
-PC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxkaXY+
-DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5Vc2luZyBhbmQgbm90IHVzaW5nIHRodW1iIHdhcyBhbHNv
-IGNvbnRyb2xsZWQgbm90IG9ubHkgYnkgVFVORV9GRUFUVVJFUyAoTUFDSElORSBkZWZpbmVzIHRo
-YXQpIGJ1dCBhbHNvIGJ5Jm5ic3A7QVJNX0lOU1RSVUNUSU9OX1NFVCAoRElTVFJPIGRlZmluZXMg
-dGhhdCkuPG86cD48L286cD48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4m
-bmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5TbyB5
-b3Ugd2VyZW4ndCBidWlsZGluZyB3aXRoIHRodW1iIGVuYWJsZWQgZXZlbiB3aGVuIHlvdSB3ZXJl
-IHNlZWluZyBhcm12NXRlIGJlZm9yZS48bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8
-ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8ZGl2Pg0K
-PHAgY2xhc3M9Ik1zb05vcm1hbCI+T24gVGh1LCBEZWMgMSwgMjAxNiBhdCA1OjI2IFBNLCBCcnlh
-biBFdmVuc29uICZsdDs8YSBocmVmPSJtYWlsdG86YmV2ZW5zb25AbWVsaW5rY29ycC5jb20iIHRh
-cmdldD0iX2JsYW5rIj5iZXZlbnNvbkBtZWxpbmtjb3JwLmNvbTwvYT4mZ3Q7IHdyb3RlOjxvOnA+
-PC9vOnA+PC9wPg0KPGJsb2NrcXVvdGUgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci1sZWZ0OnNv
-bGlkICNDQ0NDQ0MgMS4wcHQ7cGFkZGluZzowaW4gMGluIDBpbiA2LjBwdDttYXJnaW4tbGVmdDo0
-LjhwdDttYXJnaW4tcmlnaHQ6MGluIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkknbSBpbiB0aGUg
-cHJvY2VzcyBvZiB1cGdyYWRpbmcgZnJvbSB0aGUgZGl6enkgYnJhbmNoIHRvIHRoZSBmaWRvIGJy
-YW5jaCwgYW5kIEknbSBzdGlsbCBhIGxpdHRsZSBjb25mdXNlZCBhYm91dCBzb21lIHR1bmUgY2hh
-bmdlcyB0aGF0IEknbSBzZWVpbmcuJm5ic3A7IEknbSB1c2luZyBhbiBBdG1lbCBBVDkxU0FNOUcy
-NSBwcm9jZXNzb3IuJm5ic3A7IFRoZSBtZXRhLWF0bWVsIGxheWVyIHRoYXQgSSBhbSB1c2luZyBo
-YWQgaW5jb3JyZWN0bHkNCiBzZXQgREVGQVVMVFRVTkUgPSAmcXVvdDthcm05MjZlanMmcXVvdDsg
-d2hpY2ggaGFkIGJlZW4gc2V0dGluZyB0aGUgYXJjaGl0ZWN0dXJlIHRvICZxdW90O2FybTkyNmVq
-c3RlJnF1b3Q7LiZuYnNwOyBUaGV5IGZpeGVkIHRoYXQgaGVyZToNCjxhIGhyZWY9Imh0dHBzOi8v
-Z2l0aHViLmNvbS9saW51eDRzYW0vbWV0YS1hdG1lbC9jb21taXQvNDcyMzgwNjJjMDRjYTk3YzJl
-YTA1NzA1NzYwNzJhZDViNDZjZTI2MSIgdGFyZ2V0PSJfYmxhbmsiPg0KaHR0cHM6Ly9naXRodWIu
-Y29tL2xpbnV4NHNhbS9tZXRhLWF0bWVsL2NvbW1pdC80NzIzODA2MmMwNGNhOTdjMmVhMDU3MDU3
-NjA3MmFkNWI0NmNlMjYxPC9hPiBhbmQgYWNjb3JkaW5nIHRvIHRoZSBjb21taXQgbWVzc2FnZSBp
-dCBzaG91bGQgbm93IGJlIGJ1aWxkaW5nIHdpdGggREVGQVVMVFRVTkUgKGFuZCB0aGUgcmVzdWx0
-aW5nIGFyY2hpdGVjdHVyZSkgc2V0IHRvICZxdW90O2FybXY1dGUmcXVvdDsuJm5ic3A7IEhvd2V2
-ZXIsIHdoZW4gSSBidWlsZCB1c2luZyBteSBhdXRvYnVpbGRlcg0KIEkgYW0gZ2V0dGluZyBhbiBh
-cmNoaXRlY3R1cmUgb2YgJnF1b3Q7YXJtdjVlJnF1b3Q7LiZuYnNwOyBGcm9tIG15IHVuZGVyc3Rh
-bmRpbmcsIHRoaXMgbWVhbnMgdGhlIGNvbXBpbGVyIHRoaW5rcyB0aGUgcHJvY2Vzc29yIGRvZXMg
-bm90IGhhdmUgVGh1bWIgc3VwcG9ydC4mbmJzcDsgSSd2ZSB0cmllZCAmcXVvdDthcm05MjZlanMm
-cXVvdDsgYW5kICZxdW90O2FybXY1dGUmcXVvdDsgZm9yIERFRkFVTFRUVU5FIHNldHRpbmdzIGFu
-ZCBpdCBoYXNuJ3QgbWFkZSBhbnkgZGlmZmVyZW5jZS48YnI+DQo8YnI+DQpJJ3ZlIGNoZWNrZWQg
-dGhlIHdvcmtpbmcgZGlyZWN0b3JpZXMgZm9yIGEgZmV3IHBhY2thZ2VzLCBhbmQgcHJldmlvdXNs
-eSB0aGUgcmVsZXZhbnQgZ2NjIG9wdGlvbnMgd2VyZSBiZWluZyBzZXQgdG86ICZxdW90Oy1tYXJj
-aD1hcm12NXRlIC1tYXJtIC1tdGh1bWItaW50ZXJ3b3JrIC1tdHVuZT1hcm05MjZlai1zJnF1b3Q7
-LiZuYnNwOyBOb3cgdGhleSBhcmUgYmVpbmcgc2V0IHRvOiAmcXVvdDstbWFyY2g9YXJtdjVlIC1t
-YXJtJm5ic3A7IC1tdGh1bWItaW50ZXJ3b3JrJnF1b3Q7LiZuYnNwOyBIb3cgZG8gSSBnZXQNCiBp
-dCBiYWNrIHRvIGJ1aWxkaW5nIHdpdGggbWFyY2g9YXJtdjV0ZT88YnI+DQo8YnI+DQpIZXJlIGlz
-IHRoZSBhdXRvYnVpbGRlciBjb25maWd1cmF0aW9uIHRoYXQgSSBhbSB1c2luZzo8YnI+DQo8YnI+
-DQpbbmlnaHRseS1hdG1lbC1kZW1vLWZpZG9dPGJyPg0KYnVpbGRlcnM6ICdidWlsZGVyMSc8YnI+
-DQpyZXBvczogW3sncG9reSc6PGJyPg0KJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNw
-OyAmbmJzcDsgeydyZXBvdXJsJzonZ2l0Oi8vPGEgaHJlZj0iaHR0cDovL2dpdC55b2N0b3Byb2pl
-Y3Qub3JnL3Bva3kiIHRhcmdldD0iX2JsYW5rIj5naXQueW9jdG9wcm9qZWN0Lm9yZy9wb2t5PC9h
-PicsPGJyPg0KJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7
-ICZuYnNwOyAmbmJzcDsnbGF5ZXJ2ZXJzaW9uJzp7J2NvcmUnOidtZXRhJywgJ3lvY3RvYnNwJzon
-bWV0YS15b2N0by1ic3AnLCAneW9jdG8nOidtZXRhLXlvY3RvJywgJ3Bva3knOidtZXRhLXBva3kn
-fSw8YnI+DQombmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsn
-YnJhbmNoJzonZmlkbyd9fSw8YnI+DQombmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgeydtZXRh
-LWF0bWVsJzo8YnI+DQombmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyB7
-J3JlcG91cmwnOidnaXQ6Ly88YSBocmVmPSJodHRwOi8vZ2l0aHViLmNvbS9saW51eDRzYW0vbWV0
-YS1hdG1lbC5naXQiIHRhcmdldD0iX2JsYW5rIj5naXRodWIuY29tL2xpbnV4NHNhbS9tZXRhLWF0
-bWVsLmdpdDwvYT4nLDxicj4NCiZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5i
-c3A7ICZuYnNwOydicmFuY2gnOidmaWRvJ319LDxicj4NCiZuYnNwOyAmbmJzcDsgJm5ic3A7ICZu
-YnNwOyB7J21ldGEtb3BlbmVtYmVkZGVkJzo8YnI+DQombmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJz
-cDsgJm5ic3A7ICZuYnNwOyB7J2F1dG9pbmNsdWRlJzpGYWxzZSwgJ3JlcG91cmwnOidnaXQ6Ly88
-YSBocmVmPSJodHRwOi8vZ2l0Lm9wZW5lbWJlZGRlZC5vcmcvbWV0YS1vcGVuZW1iZWRkZWQiIHRh
-cmdldD0iX2JsYW5rIj5naXQub3BlbmVtYmVkZGVkLm9yZy9tZXRhLW9wZW5lbWJlZGRlZDwvYT4n
-LDxicj4NCiZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOydi
-cmFuY2gnOidmaWRvJ319LDxicj4NCiZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyB7J21ldGEt
-cXQ1Jzo8YnI+DQombmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyB7J3Jl
-cG91cmwnOidnaXQ6Ly88YSBocmVmPSJodHRwOi8vZ2l0aHViLmNvbS9tZXRhLXF0NS9tZXRhLXF0
-NS5naXQiIHRhcmdldD0iX2JsYW5rIj5naXRodWIuY29tL21ldGEtcXQ1L21ldGEtcXQ1LmdpdDwv
-YT4nLDxicj4NCiZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNw
-OydicmFuY2gnOidmaWRvJ319XTxicj4NCnN0ZXBzOiBbeydTZXREZXN0Jzp7fX0sPGJyPg0KJm5i
-c3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7IHsnQ2hlY2tPdXRMYXllcnMnOiB7fX0sPGJyPg0KJm5i
-c3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7IHsnUnVuUHJlYW1ibGUnOiB7fX0sPGJyPg0KJm5ic3A7
-ICZuYnNwOyAmbmJzcDsgJm5ic3A7IHsnR2V0RGlzdHJvVmVyc2lvbicgOiB7J2Rpc3Rybyc6ICdw
-b2t5J319LDxicj4NCiZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyB7J0NyZWF0ZUF1dG9Db25m
-JzogeydtYWNoaW5lJzogJ2F0OTFzYW05eDVlaycsICdTREtNQUNISU5FJzogJ2k2ODYnLCAnZGlz
-dHJvJzogJ3Bva3ktYXRtZWwnLCAnYnVpbGRoaXN0b3J5JzogVHJ1ZSwgJ3BhY2thZ2VzJzogJ2lw
-aycsICdhdGV4dGFwcGVuZCc6ICdFWFRSQV9JTUFHRV9GRUFUVVJFUyA9ICZxdW90OyZxdW90O1xu
-REVGQVVMVFRVTkUgPSAmcXVvdDthcm12NXRlJnF1b3Q7XG4nfX0sPGJyPg0KJm5ic3A7ICZuYnNw
-OyAmbmJzcDsgJm5ic3A7IHsnQ3JlYXRlQkJMYXllcnNDb25mJzogeydidWlsZHByb3ZpZGVyJyA6
-ICd5b2N0bycsICdsYXllcmRpcnMnOjxicj4NCiZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAm
-bmJzcDsgJm5ic3A7IFsnbWV0YS1hdG1lbCcsICdtZXRhLXF0NScsICdtZXRhLW9wZW5lbWJlZGRl
-ZC9tZXRhLW9lJywgJ21ldGEtb3BlbmVtYmVkZGVkL21ldGEtbmV0d29ya2luZycsICdtZXRhLW9w
-ZW5lbWJlZGRlZC9tZXRhLXB5dGhvbiddfX0sPGJyPg0KJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5i
-c3A7IHsnQnVpbGRJbWFnZXMnOiB7J2ltYWdlcyc6ICdhdG1lbC1kZW1vLWltYWdlJ319LDxicj4N
-CiZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyB7J1N5bmNQZXJzaXN0REInIDogeydjb21taXQn
-IDogVHJ1ZSwgJ2Rpc3Rybyc6J3Bva3knfX0sPGJyPg0KJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5i
-c3A7IHsnUHVibGlzaExheWVyVGFyYmFsbHMnOnt9fSw8YnI+DQombmJzcDsgJm5ic3A7ICZuYnNw
-OyAmbmJzcDsgeydQdWJsaXNoQXJ0aWZhY3RzJzogeydhcnRpZmFjdHMnOiBbJ2F0OTFzYW05eDVl
-aycsICdpcGsnXX19XTxicj4NCnNjaGVkdWxlcjogW3snbmlnaHRseS1zY2hlZHVsZXItYXRtZWwt
-ZmlkbycgOjxicj4NCiZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZu
-YnNwOyAmbmJzcDsgeyd0eXBlJzonTmlnaHRseScsPGJyPg0KJm5ic3A7ICZuYnNwOyAmbmJzcDsg
-Jm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsnaG91cic6JzEnLDxicj4N
-CiZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsg
-Jm5ic3A7J21pbnV0ZSc6JzE1Jyx9fV08YnI+DQo8YnI+DQpUaGUgcmVzdWx0aW5nIGJ1aWxkIGNv
-bmZpZ3VyYXRpb246PGJyPg0KQnVpbGQgQ29uZmlndXJhdGlvbjo8YnI+DQpCQl9WRVJTSU9OJm5i
-c3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ID0gJnF1b3Q7MS4yNi4wJnF1b3Q7PGJyPg0KQlVJTERf
-U1lTJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOz0gJnF1b3Q7eDg2XzY0LWxpbnV4
-JnF1b3Q7PGJyPg0KTkFUSVZFTFNCU1RSSU5HJm5ic3A7ICZuYnNwOz0gJnF1b3Q7VWJ1bnR1LTEy
-LjA0JnF1b3Q7PGJyPg0KVEFSR0VUX1NZUyZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyA9ICZx
-dW90O2FybS1wb2t5LWxpbnV4LWdudWVhYmkmcXVvdDs8YnI+DQpNQUNISU5FJm5ic3A7ICZuYnNw
-OyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDs9ICZxdW90O2F0OTFzYW05eDVlayZxdW90Ozxi
-cj4NCkRJU1RSTyZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ID0gJnF1
-b3Q7cG9reS1hdG1lbCZxdW90Ozxicj4NCkRJU1RST19WRVJTSU9OJm5ic3A7ICZuYnNwOyA9ICZx
-dW90OzEuOC4yJnF1b3Q7PGJyPg0KVFVORV9GRUFUVVJFUyZuYnNwOyAmbmJzcDsgJm5ic3A7PSAm
-cXVvdDthcm0gYXJtdjUgdGh1bWIgZHNwJnF1b3Q7PGJyPg0KVEFSR0VUX0ZQVSZuYnNwOyAmbmJz
-cDsgJm5ic3A7ICZuYnNwOyA9ICZxdW90O3NvZnQmcXVvdDs8YnI+DQptZXRhPGJyPg0KbWV0YS15
-b2N0bzxicj4NCm1ldGEteW9jdG8tYnNwJm5ic3A7ICZuYnNwOyA9ICZxdW90O2ZpZG86YzlmMGE5
-OTA1MGVjMDA1MGYwZGJjZDU1ZDBjZDJhYjE4ODQ4MTEzZiZxdW90Ozxicj4NCm1ldGEtYXRtZWwm
-bmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgPSAmcXVvdDtmaWRvOmRkNTk1ZTZlOGVjNzAxMGNm
-NjQ2YTljYTM1NmIyZTAxZjEwZTI3NGMmcXVvdDs8YnI+DQptZXRhLXF0NSZuYnNwOyAmbmJzcDsg
-Jm5ic3A7ICZuYnNwOyAmbmJzcDsgPSAmcXVvdDtmaWRvOjkwOTE5YjlkODY5ODhlN2RhMDFmYTJj
-MGEwNzI0NmI1YjU2MDBhNWQmcXVvdDs8YnI+DQptZXRhLW9lPGJyPg0KbWV0YS1uZXR3b3JraW5n
-PGJyPg0KbWV0YS1weXRob24mbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDs9ICZxdW90O2ZpZG86
-OTAyOTY0YTRkYTI2ZTQ2MDE4ZDJhOGQxN2RjZGRhMWFjNDYyN2EzOSZxdW90Ozxicj4NCjxicj4N
-ClRVTkVfRkVBVFVSRVMgaW5jbHVkZXMgJnF1b3Q7dGh1bWImcXVvdDssIGJ1dCB0aGUgY29tcGls
-ZXIgb3B0aW9ucyBhcmVuJ3Qgc2V0IGZvciBhcm12NXRlLiZuYnNwOyBJJ3ZlIHRyaWVkIGNoYW5n
-aW5nIHRoZSBERUZBVUxUVFVORSBzcGVjaWZpY2F0aW9uIGluIENyZWF0ZUF1dG9Db25mIHRvICZx
-dW90O2FybTkyNmVqcyZxdW90OyBhbmQgSSd2ZSBoYWQgdGhlIHNhbWUgcmVzdWx0cy4mbmJzcDsg
-SG93IGRvIEkgZ2V0IHRoZSBhcmNoaXRlY3R1cmUgc2V0IGJhY2sgY29ycmVjdGx5IGZvciB0aGUg
-cHJvY2Vzc29yDQogSSdtIHVzaW5nPzxicj4NCjxicj4NClRoYW5rcyw8YnI+DQpCcnlhbiBFdmVu
-c29uPGJyPg0KPHNwYW4gY2xhc3M9ImhvZW56YiI+PHNwYW4gc3R5bGU9ImNvbG9yOiM4ODg4ODgi
-Pi0tPC9zcGFuPjwvc3Bhbj48c3BhbiBzdHlsZT0iY29sb3I6Izg4ODg4OCI+PGJyPg0KPHNwYW4g
-Y2xhc3M9ImhvZW56YiI+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX188L3NwYW4+PGJyPg0KPHNwYW4gY2xhc3M9ImhvZW56YiI+eW9jdG8gbWFpbGluZyBsaXN0
-PC9zcGFuPjxicj4NCjxzcGFuIGNsYXNzPSJob2VuemIiPjxhIGhyZWY9Im1haWx0bzp5b2N0b0B5
-b2N0b3Byb2plY3Qub3JnIj55b2N0b0B5b2N0b3Byb2plY3Qub3JnPC9hPjwvc3Bhbj48YnI+DQo8
-c3BhbiBjbGFzcz0iaG9lbnpiIj48YSBocmVmPSJodHRwczovL2xpc3RzLnlvY3RvcHJvamVjdC5v
-cmcvbGlzdGluZm8veW9jdG8iIHRhcmdldD0iX2JsYW5rIj5odHRwczovL2xpc3RzLnlvY3RvcHJv
-amVjdC5vcmcvbGlzdGluZm8veW9jdG88L2E+PC9zcGFuPjwvc3Bhbj48bzpwPjwvbzpwPjwvcD4N
-CjwvYmxvY2txdW90ZT4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8
-L286cD48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
 
---_000_DM5PR05MB2954510A2FB8EB42A2CC64F8BB8F0DM5PR05MB2954namp_--
+
+Gah, that's my bad. I'm currently in transit for a trip to Europe, but I'll
+fix this
+to use mktmp and friends tomorrow and send out a patch.
+
+Bruce
+
+
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+
+
+
+-- 
+"Thou shalt not follow the NULL pointer, for chaos and madness await thee
+at its end"
+
+--001a11401b0ac10dd80542a05669
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><br><div class=3D"gmail_extra"><br><div class=3D"gmail_quo=
+te">On Thu, Dec 1, 2016 at 3:05 PM, Trevor Woerner <span dir=3D"ltr">&lt;<a=
+ href=3D"mailto:twoerner@gmail.com" target=3D"_blank">twoerner@gmail.com</a=
+>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 =
+0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">I believe a recent ch=
+ange in the yocto-kernel-tools is causing some funny<br>
+issue I saw this morning on my overnight jenkins builds.<br>
+<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 commit 08463d684c1952e74c25344cddace4<wbr>c3f24=
+c739d<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 Date:=C2=A0 =C2=A0Mon Oct 31 14:30:12 2016 -040=
+0<br>
+<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 scc: exit on error<br>
+<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 If there is an error in the proce=
+ssing of the input files, scc<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 should exit and inform the user.<=
+br>
+<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 scc is executed on a combined/pre=
+processed file and as a result<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 it doesn&#39;t have the granulari=
+ty to see each input file individually.<br>
+<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 Rather than moving preprocessing =
+into scc (from spp), we can trap<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 the line number of the error and =
+dump context around the line. This<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 gives the user a pointer to the i=
+nput file and the specific line<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 that caused the problem.<br>
+<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 Signed-off-by: Bruce Ashfield &lt=
+;<a href=3D"mailto:bruce.ashfield@windriver.com">bruce.ashfield@windriver.c=
+om</a>&gt;<br>
+<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 diff --git a/tools/scc b/tools/scc<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 index b6ab747..0294103 100755<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 --- a/tools/scc<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 +++ b/tools/scc<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 @@ -238,18 +238,37 @@ process_file()<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0done<br>
+<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0unset PATH<br=
+>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 -=C2=A0 =C2=A0 =C2=A0 =C2=A0 if [ -n &quot;${ve=
+rbose}&quot; ]; then<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 eval=
+ . $in $outfile_append<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 -=C2=A0 =C2=A0 =C2=A0 =C2=A0 else<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 # hi=
+de stderr if we aren&#39;t verbose<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 eval=
+ . $in $outfile_append 2&gt; /dev/null<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 -=C2=A0 =C2=A0 =C2=A0 =C2=A0 fi<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 +=C2=A0 =C2=A0 =C2=A0 =C2=A0 (<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 set =
+-e<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 eval=
+ . $in $outfile_append &gt; /tmp/scc-output 2&gt;&amp;1<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 +=C2=A0 =C2=A0 =C2=A0 =C2=A0 )<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 +=C2=A0 =C2=A0 )<br>
+<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 -=C2=A0 =C2=A0 =C2=A0 =C2=A0 if [ $? -ne 0 ]; t=
+hen<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 echo=
+ &quot;[ERROR]: processing of file $in failed&quot;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 exit=
+ 1<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 +=C2=A0 =C2=A0 if [ $? -ne 0 ]; then<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 +=C2=A0 =C2=A0 =C2=A0 =C2=A0 echo &quot;[ERROR]=
+: processing of file $in failed&quot;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 +=C2=A0 =C2=A0 =C2=A0 =C2=A0 cat /tmp/scc-outpu=
+t<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 +<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 +=C2=A0 =C2=A0 =C2=A0 =C2=A0 # look for common =
+errors so we can point to the right input file<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 +<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 +=C2=A0 =C2=A0 =C2=A0 =C2=A0 # 1) /tmp/tmp.gfN6=
+WsbDHN: line 403: cat: No such file or directory<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 +=C2=A0 =C2=A0 =C2=A0 =C2=A0 #=C2=A0 =C2=A0 =C2=
+=A0&quot;grep -oh&quot; will only output what matches, which gets us &quot;=
+line 404: ..&quot;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 +=C2=A0 =C2=A0 =C2=A0 =C2=A0 #=C2=A0 =C2=A0 =C2=
+=A0cut gets us the second field, which is the line number<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 +=C2=A0 =C2=A0 =C2=A0 =C2=A0 line=3D$(cat /tmp/=
+scc-output | grep -oh &quot;line.*:&quot; | cut -f2 -d&#39; &#39; | sed &#3=
+9;s/://g&#39;)<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 +=C2=A0 =C2=A0 =C2=A0 =C2=A0 if [ -n &quot;$lin=
+e&quot; ]; then<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 let =
+start_line=3D$line-20<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 let =
+end_line=3D$line+10<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 if [=
+ $start_line -lt 0 ]; then<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 start_line=3D0<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 fi<b=
+r>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 echo=
+ &quot;&quot;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 echo=
+ &quot;Context around the error is:&quot;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 echo=
+ &quot;&quot;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 sed =
+-n -e &quot;$start_line,$end_line p&quot; -e &quot;$end_line q&quot; $in | =
+sed &#39;s/^/=C2=A0 =C2=A0 /&#39;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 echo=
+ &quot;&quot;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 echo=
+ &quot;See pre-processed file $in for more details&quot;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0fi<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 -=C2=A0 =C2=A0 )<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 +=C2=A0 =C2=A0 =C2=A0 =C2=A0 exit 1<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 +=C2=A0 =C2=A0 fi<br>
+<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return 0<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
+<br>
+In order to catch errors, scc&#39;s output is being hardcoded to /tmp/scc-o=
+utput.<br>
+But on my box there are two users who perform builds: jenkins and myself. W=
+hen<br>
+the second person comes along to do a build it finds inadequate permissions=
+ on<br>
+/tmp/scc-output.<br>
+<br>
+Is anyone else seeing this?<br></blockquote><div><br><br><br></div><div>Gah=
+, that&#39;s my bad. I&#39;m currently in transit for a trip to Europe, but=
+ I&#39;ll fix this<br></div><div>to use mktmp and friends tomorrow and send=
+ out a patch.<br><br></div><div>Bruce<br></div><div>=C2=A0</div><blockquote=
+ class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc soli=
+d;padding-left:1ex">
+<span class=3D"HOEnZb"><font color=3D"#888888">--<br>
+______________________________<wbr>_________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto</a><=
+br>
+</font></span></blockquote></div><br><br clear=3D"all"><br>-- <br><div clas=
+s=3D"gmail_signature" data-smartmail=3D"gmail_signature">&quot;Thou shalt n=
+ot follow the NULL pointer, for chaos and madness await thee at its end&quo=
+t;</div>
+</div></div>
+
+--001a11401b0ac10dd80542a05669--
