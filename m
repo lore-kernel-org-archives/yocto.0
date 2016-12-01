@@ -1,31 +1,38 @@
-Return-Path: <edwin.plauchu.camacho@linux.intel.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DD48EE00503; Thu,  1 Dec 2016 08:18:58 -0800 (PST)
+	id 39F32E00C8F; Thu,  1 Dec 2016 09:35:11 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.88 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [134.134.136.20 listed in list.dnswl.org]
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8C0BBE0049D
-	for <yocto@yoctoproject.org>; Thu,  1 Dec 2016 08:18:55 -0800 (PST)
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-	by orsmga101.jf.intel.com with ESMTP; 01 Dec 2016 08:18:45 -0800
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C6E24E00C65
+	for <yocto@yoctoproject.org>; Thu,  1 Dec 2016 09:35:10 -0800 (PST)
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+	by fmsmga101.fm.intel.com with ESMTP; 01 Dec 2016 09:35:10 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.33,282,1477983600"; d="scan'208";a="197932686"
-Received: from pianodaemon-contraption.zpn.intel.com ([10.219.128.75])
-	by fmsmga004.fm.intel.com with ESMTP; 01 Dec 2016 08:18:44 -0800
-From: Edwin Plauchu <edwin.plauchu.camacho@linux.intel.com>
-To: yocto@yoctoproject.org
-Date: Thu,  1 Dec 2016 10:20:03 -0600
-Message-Id: <20161201162003.7147-1-edwin.plauchu.camacho@linux.intel.com>
-X-Mailer: git-send-email 2.9.3
-Subject: [PATCH] AUH: status email indicates the URL of the log folder
+X-IronPort-AV: E=Sophos;i="5.33,282,1477983600"; d="scan'208";a="37876610"
+Received: from fang-mobl3.gar.corp.intel.com (HELO
+	peggleto-mobl.ger.corp.intel.com) ([10.255.183.65])
+	by fmsmga005.fm.intel.com with ESMTP; 01 Dec 2016 09:35:07 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Gary Thomas <gary@mlbassoc.com>
+Date: Fri, 02 Dec 2016 06:35:05 +1300
+Message-ID: <1865791.yBGQ8Ql6od@peggleto-mobl.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.14.10 (Linux/4.8.8-100.fc23.x86_64; KDE/4.14.20; x86_64; ;
+	)
+In-Reply-To: <a62994c8-9eef-1457-7355-0681df26a29e@mlbassoc.com>
+References: <a62994c8-9eef-1457-7355-0681df26a29e@mlbassoc.com>
+MIME-Version: 1.0
+Cc: yocto@yoctoproject.org
+Subject: Re: Shared state doesn't live up to its name?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,31 +44,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 Dec 2016 16:18:58 -0000
+X-List-Received-Date: Thu, 01 Dec 2016 17:35:11 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Upgrade status email should indicate the URL of the log folder instead of the tar URL
+On Thu, 01 Dec 2016 10:27:50 Gary Thomas wrote:
+> I have a build machine where I build for lots of targets.  On
+> all of these targets (save a primary), I set the SSTATE_MIRROR
+> to point to the sstate-cache of the primary target.  I always build
+> for the primary target first, then later the secondary ones.
+> 
+> For the most part, the sstate mechanism works pretty well, but I
+> see some anomalies.  For example, why on the same host, built back
+> to back, would a secondary build target (which uses the primary
+> as it's SSTATE_MIRROR and that build is complete) need to rebuild
+> from scratch such NATIVE packages as openssl?  Note that these are
+> native packages I'm asking about, so in my mind they should always
+> be sharable.
+> 
+> Any ideas?  Is there something I can look at to investigate this?
 
-[YOCTO #10670]
+bitbake-diffsigs is the basic tool to compare signatures when those have 
+changed. Find the siginfo / sigdata file for one of the early tasks that 
+executed and compare them to see what changed.
 
-Signed-off-by: Edwin Plauchu <edwin.plauchu.camacho@linux.intel.com>
----
- upgradehelper.py | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+How are you setting SSTATE_MIRRORS in this scenario btw?
 
-diff --git a/upgradehelper.py b/upgradehelper.py
-index 239fd88..3954e1f 100755
---- a/upgradehelper.py
-+++ b/upgradehelper.py
-@@ -616,7 +616,7 @@ class Updater(object):
-                     publish_work_url = ''
- 
-             statistics_summary = self.statistics.get_summary(
--                    publish_work_url, os.path.basename(work_tarball))
-+                    publish_work_url, self.uh_work_dir)
- 
-             statistics_file = os.path.join(self.uh_work_dir,
-                     "statistics_summary")
+Cheers,
+Paul
+
 -- 
-2.9.3
 
+Paul Eggleton
+Intel Open Source Technology Centre
 
