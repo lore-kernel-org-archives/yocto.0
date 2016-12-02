@@ -1,36 +1,59 @@
-Return-Path: <alexander.kanavin@linux.intel.com>
+Return-Path: <danielhilst@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9A940E00D6D; Fri,  2 Dec 2016 03:39:12 -0800 (PST)
+	id A318DE00CAE; Fri,  2 Dec 2016 08:50:08 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (danielhilst[at]gmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 395C6E00A64
-	for <yocto@yoctoproject.org>; Fri,  2 Dec 2016 03:39:11 -0800 (PST)
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-	by fmsmga102.fm.intel.com with ESMTP; 02 Dec 2016 03:39:11 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.33,729,1477983600"; d="scan'208";a="36470448"
-Received: from kanavin-desktop.fi.intel.com (HELO [10.237.68.161])
-	([10.237.68.161])
-	by orsmga004.jf.intel.com with ESMTP; 02 Dec 2016 03:39:10 -0800
-To: yocto@yoctoproject.org
-References: <CAGMNF6VXO9PzmXEb-tPHnw7zxRAM-pUgHa3O2XUVKE2xYidD1A@mail.gmail.com>
-From: Alexander Kanavin <alexander.kanavin@linux.intel.com>
-Message-ID: <aad8d580-b2f9-4cd1-9e2a-d355f6f7cf2e@linux.intel.com>
-Date: Fri, 2 Dec 2016 13:39:19 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Icedove/45.4.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.173 listed in list.dnswl.org]
+Received: from mail-qk0-f173.google.com (mail-qk0-f173.google.com
+	[209.85.220.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 757D7E00B74
+	for <yocto@yoctoproject.org>; Fri,  2 Dec 2016 08:50:04 -0800 (PST)
+Received: by mail-qk0-f173.google.com with SMTP id x190so284667323qkb.0
+	for <yocto@yoctoproject.org>; Fri, 02 Dec 2016 08:50:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=yM381DhRvpG0LuN4jCwl7wVD3pZh/PasdQi945QKzaE=;
+	b=rqVO7byxtVxcKd9VLw6Vyh7N5z3JE0m3XOdfq5yABmQEmN6qRSArE0Yw6BkVewLpWD
+	k9YdHLY3V8bcaO8SZC1Xm3p4C1L0zolkcZX86SY4PvvSqp7tZj1wFtMneVoq4ImXWE8X
+	zWxn1AkB6RPB1yOLbQ3IEOKr7XxEbttUg6kkLNrG111YB6i0/LQ3C0KYysZ+3ogbaQdF
+	7VY7mLS5DvFkgohimpRBqt464j8j59gLrdlUxQXbp7gG0Ask2esGM4XV26/XWrdJD7+c
+	pMvotWKMBrxRdMZRd2/xYyhsno88GJnKtAgnKf7TQi7KFJk2UN99pQHSSe5FRs+F+pww
+	TnYA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=yM381DhRvpG0LuN4jCwl7wVD3pZh/PasdQi945QKzaE=;
+	b=SFSGb1q2ceJfMSv3gV75jl9uDhjSBN30SD98tgnKbcJ+4FuJ6iy1ybWeZ0ClaMFvHV
+	8mdX1/5tByPxuHi5CM1eva2ohc1zlYoaGBK/uaxjIzzOSLmJ9JncQGDhPA2dg4cyEcVm
+	pKMVhSZ6lULh1vwYE0Y62Vx+BjipX2nbvHyJ1LptYMDUTslsdfPwd+zM4EA84Gbr7QrB
+	htzj/egD27T8ERjIaPN/BYtkbcjg/uxLTTAmWN8DoCybQSfeUe3kBkqS3PkKJrY4WUoN
+	+nuVoU2Lw1x1hPMQuURfY3x4peWtKOzX4GWpcaW61wib6bxrocWiwqcLpdf4PpR4z98p
+	l/TA==
+X-Gm-Message-State: AKaTC01dcjuIT/Vhrv3bf5q9k4fmPz188B6Nr4O9TXVBMt3cTXNn1B+MZuiATbHaPOgfxxK7bsTRaCOCGpMVdw==
+X-Received: by 10.55.5.145 with SMTP id 139mr39258563qkf.77.1480697403222;
+	Fri, 02 Dec 2016 08:50:03 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <CAGMNF6VXO9PzmXEb-tPHnw7zxRAM-pUgHa3O2XUVKE2xYidD1A@mail.gmail.com>
-Subject: Re: Yocto doesn't recognize cross-compiled binaries inside SDK
+Received: by 10.140.88.21 with HTTP; Fri, 2 Dec 2016 08:50:02 -0800 (PST)
+From: "Daniel." <danielhilst@gmail.com>
+Date: Fri, 2 Dec 2016 14:50:02 -0200
+Message-ID: <CAF3SDA62UsnFYvSNjvO60yukeVuWpqWw+TvOGQfmKGE4kfosEg@mail.gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Krogoth rpm-native download gives me 404, can anybody confirm?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,29 +65,21 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 02 Dec 2016 11:39:12 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 02 Dec 2016 16:50:08 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On 12/02/2016 10:36 AM, Kun Yi wrote:
-> I'm trying to use SDK for an existing image to run cross-compiled code
-> on my host machine. My target is ARM and host is x86_64. The SDK has
-> arm-openbmc-linux-gnueabi toolchains installed. (The rationale is to
-> build and run C++ unit tests for the modules that I'm developing on
-> the host, but that's not relevant)
+Hi every
 
-Perhaps it is relevant - an alternative approach is to build the unit 
-tests and modules for the host machine (by enabling a native variant in 
-the recipe), and then they should simply run. If you are not testing 
-ARM-specific code, then it shouldn't matter.
+I'm trying to build rpm-native and getting this error[1]
 
-Generally, we don't attempt to run target unit tests on the host machine 
-- they go into target image, and are executed natively on the target.
+Can anybody confirm if this link[2] is returning not found (404)?
 
-Qemu emulation for running binaries kind of works, and we use it for a 
-few things like gobject introspection and pre-generating data caches, 
-but it is notoriously tricky and prone to breakage.
+[1] https://gist.github.com/gkos/9a3596452bd00d6ebba5780e7987fd47
+[2] http://rpm5.org/files/rpm/rpm-5.4/rpm-5.4.15-0.20140824.src.rpm%3bname=srpm%3bextract=rpm-5.4.15.tar.gz
 
-Alex
+Regards,
 
+-- 
+"Do or do not. There is no try"
+  Yoda Master
 
