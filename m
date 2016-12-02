@@ -1,37 +1,56 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <kunyi@google.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 485EDE00D56; Thu,  1 Dec 2016 18:51:41 -0800 (PST)
+	id 2B8D4E00D6E; Fri,  2 Dec 2016 00:36:48 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.216.173 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.analogue-micro.com (mail.analogue-micro.com
-	[217.144.149.242])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CF956E00A64
-	for <yocto@yoctoproject.org>; Thu,  1 Dec 2016 18:51:37 -0800 (PST)
-Received: by mail.analogue-micro.com (Postfix, from userid 999)
-	id A32F768A01A; Fri,  2 Dec 2016 02:51:36 +0000 (GMT)
-Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
-	by mail.analogue-micro.com (Postfix) with ESMTP id 6FF6468A019;
-	Fri,  2 Dec 2016 02:51:35 +0000 (GMT)
-Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
-	by zeus.mlbassoc.com (Postfix) with ESMTP id 1C96467400E0;
-	Fri,  2 Dec 2016 03:51:35 +0100 (CET)
-From: Gary Thomas <gary@mlbassoc.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-References: <a62994c8-9eef-1457-7355-0681df26a29e@mlbassoc.com>
-	<1865791.yBGQ8Ql6od@peggleto-mobl.ger.corp.intel.com>
-Message-ID: <75a81e29-9a06-1377-f5cf-800628151a85@mlbassoc.com>
-Date: Fri, 2 Dec 2016 03:51:35 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.4.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-qt0-f173.google.com (mail-qt0-f173.google.com
+	[209.85.216.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9B124E00A64
+	for <yocto@yoctoproject.org>; Fri,  2 Dec 2016 00:36:46 -0800 (PST)
+Received: by mail-qt0-f173.google.com with SMTP id c47so245553877qtc.2
+	for <yocto@yoctoproject.org>; Fri, 02 Dec 2016 00:36:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20120113;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=qxE4lReDY34ShdQoLSeltzw0fs1VsEskz3TCEIt+gqk=;
+	b=ZBuD+oaX3WOiMs/BiJ88fqiDFz5gOeCuK46rE1QUCUHK2YzR5s/d98mLO+d2ulc1qi
+	2Qy+S1bivMp4XC+IL67QPNs23WBgvdjoNsvGUORoONEQp+0WulumjsmeBV3nwlHsqAtw
+	ie9Setj+7a1hm7NjdGZ5GLW/tdorndLhBR+wCPWzqoT4MehvFfzhhl+IsY7I6flccVBF
+	hJ/4s3Q7yHSk4LEwv/HYZqWR/fXCHoJ8+io2a9bgm/rrGVCuJXu1W8T6CmS7+KYDuGz8
+	N/jNvVna03roAJP6ElqF12eDUEr6omB7iaMvuAHdBmJ5BV79VvIsdYWMgFelGYx94BN8
+	qelQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=qxE4lReDY34ShdQoLSeltzw0fs1VsEskz3TCEIt+gqk=;
+	b=R7vhGxeQa3sgoJVaJpruJHAJIhSTdWEp8gtOkelbAbKVPc7cBrp3g/h5VScTXv8rVr
+	RhefhQnlMmCHZ1FA9yxaSxs5RkjzY63+xwzL/F0OB8W1W+R1EpabuULjG3eFg0jslpl7
+	LTvX3RJAHdYmWw3PvQxLy70RxFAnuCLoqTwSZro0BPB4DHCXDgEEhFFFZqWEIAGf13Vi
+	LMEMiF8n6U4stndfWt+rQmO6LraqJjCbcpxB2ZgKyc3E2KEay+npXD4q51Nqj0IH8j1X
+	nJHb0z9jbyrLdrl1E16IKDvRx8SkQuxr2h8THX9tdK0Y4UC8i45kxm9kvZuRCizhmFVJ
+	56gw==
+X-Gm-Message-State: AKaTC01PmvbNRsXjxBfBtX5X1I/3lLdokwYnIiXTE/FLWziNxP9QJ5eLmj6mHN0iHRfj25TqdzSv1DEhw1MkzDT8
+X-Received: by 10.200.54.89 with SMTP id n25mr41800488qtb.82.1480667805263;
+	Fri, 02 Dec 2016 00:36:45 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <1865791.yBGQ8Ql6od@peggleto-mobl.ger.corp.intel.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: Shared state doesn't live up to its name?
+Received: by 10.140.19.175 with HTTP; Fri, 2 Dec 2016 00:36:24 -0800 (PST)
+From: Kun Yi <kunyi@google.com>
+Date: Fri, 2 Dec 2016 00:36:24 -0800
+Message-ID: <CAGMNF6VXO9PzmXEb-tPHnw7zxRAM-pUgHa3O2XUVKE2xYidD1A@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Yocto doesn't recognize cross-compiled binaries inside SDK
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,73 +62,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 02 Dec 2016 02:51:41 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 02 Dec 2016 08:36:48 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On 2016-12-01 18:35, Paul Eggleton wrote:
-> On Thu, 01 Dec 2016 10:27:50 Gary Thomas wrote:
->> I have a build machine where I build for lots of targets.  On
->> all of these targets (save a primary), I set the SSTATE_MIRROR
->> to point to the sstate-cache of the primary target.  I always build
->> for the primary target first, then later the secondary ones.
->>
->> For the most part, the sstate mechanism works pretty well, but I
->> see some anomalies.  For example, why on the same host, built back
->> to back, would a secondary build target (which uses the primary
->> as it's SSTATE_MIRROR and that build is complete) need to rebuild
->> from scratch such NATIVE packages as openssl?  Note that these are
->> native packages I'm asking about, so in my mind they should always
->> be sharable.
->>
->> Any ideas?  Is there something I can look at to investigate this?
->
-> bitbake-diffsigs is the basic tool to compare signatures when those have
-> changed. Find the siginfo / sigdata file for one of the early tasks that
-> executed and compare them to see what changed.
->
-> How are you setting SSTATE_MIRRORS in this scenario btw?
+Hello,
 
-SSTATE_MIRRORS ?= "\
-file://.* file:///local/p0382_2016-01-13/sstate-cache/PATH"
+I'm trying to use SDK for an existing image to run cross-compiled code
+on my host machine. My target is ARM and host is x86_64. The SDK has
+arm-openbmc-linux-gnueabi toolchains installed. (The rationale is to
+build and run C++ unit tests for the modules that I'm developing on
+the host, but that's not relevant)
 
-I ran a build yesterday that caused me to comment on this pattern.  Here are the
-siginfo files for the secondary target (the latest build):
+Reading Yocto 2.1 reference it seems that I should be able to
+cross-compile binaries for arm inside the SDK shell and run the
+binaries directly, yet even the simple hello-world example shown in
+http://www.yoctoproject.org/docs/2.1/mega-manual/mega-manual.html#creating-and-running-a-project-based-on-gnu-autotools
+ failed for me.
 
--rw-rw-r-- 1 gthomas gthomas 21240 Dec  1 10:12 
-sstate-cache/universal/99/sstate:openssl-native:x86_64-linux:1.0.2j:r0:x86_64:3:99515597e2223aa4413f7f2e4acf6532_configure.tgz.siginfo
--rw-rw-r-- 1 gthomas gthomas  8917 Dec  1 10:17 
-sstate-cache/universal/a4/sstate:openssl-native:x86_64-linux:1.0.2j:r0:x86_64:3:a49c66a9c786fe100f8e8b6e3bbd1e86_compile.tgz.siginfo
--rw-rw-r-- 1 gthomas gthomas 14864 Dec  1 10:18 
-sstate-cache/universal/a7/sstate:openssl-native:x86_64-linux:1.0.2j:r0:x86_64:3:a747322ce06467949097c3da58497c7d_install.tgz.siginfo
--rw-rw-r-- 1 gthomas gthomas 36490 Dec  1 10:18 
-sstate-cache/universal/e6/sstate:openssl-native:x86_64-linux:1.0.2j:r0:x86_64:3:e65ab886428d88f8735dba617268892f_populate_sysroot.tgz.siginfo
+Step 1-9 complete without much issue, but doing ./hello inside the SDK
+shell fails:
 
-Here are the corresponding ones from my primary target:
-cb9e0e1440492b85a6a9683b_unpack.tgz.siginfo
--rw-rw-r-- 1 gthomas gthomas  6278 Nov 28 08:11 
-sstate-cache/44/sstate:openssl-native::1.0.2j:r0::3:44adeda2ff6ac235331af5dae45e45ea_patch.tgz.siginfo
--rw-rw-r-- 1 gthomas gthomas  4997 Nov 28 08:11 
-sstate-cache/e9/sstate:openssl-native::1.0.2j:r0::3:e9ccda2229e69e2138ad0465a709e33a_fetch.tgz.siginfo
--rw-rw-r-- 1 gthomas gthomas 21336 Nov 28 08:13 
-sstate-cache/universal/99/sstate:openssl-native:x86_64-linux:1.0.2j:r0:x86_64:3:99515597e2223aa4413f7f2e4acf6532_configure.tgz.siginfo
--rw-rw-r-- 1 gthomas gthomas  8833 Nov 28 08:14 
-sstate-cache/universal/a4/sstate:openssl-native:x86_64-linux:1.0.2j:r0:x86_64:3:a49c66a9c786fe100f8e8b6e3bbd1e86_compile.tgz.siginfo
--rw-rw-r-- 1 gthomas gthomas 14750 Nov 28 08:14 
-sstate-cache/universal/a7/sstate:openssl-native:x86_64-linux:1.0.2j:r0:x86_64:3:a747322ce06467949097c3da58497c7d_install.tgz.siginfo
--rw-rw-r-- 1 gthomas gthomas 31029 Dec  1 09:45 
-sstate-cache/57/sstate:openssl-native::1.0.2j:r0::3:5725888ec8cde61e1417bc0b6ea51c6c_populate_lic.tgz.siginfo
--rw-rw-r-- 1 gthomas gthomas 36502 Dec  1 09:45 
-sstate-cache/universal/e6/sstate:openssl-native:x86_64-linux:1.0.2j:r0:x86_64:3:e65ab886428d88f8735dba617268892f_populate_sysroot.tgz.siginfo
+bash: ./hello: cannot execute binary file: Exec format error
 
-Clearly, they are identical and the ones from the primary were built long before
-the ones on the secondary target.
 
-I'm still confused why it didn't work as expected.
+"file hello" suggests it was built for ARM:
+
+hello: ELF 32-bit LSB executable, ARM, EABI5 version 1 (SYSV),
+dynamically linked, interpreter /lib/ld-linux.so.3, for GNU/Linux
+2.6.32, BuildID[sha1]=9d47644538b2bf26176bb4897d20b29e531aab59, not
+stripped
+
+"echo $CONFIGURE_FLAGS" gives:
+--target=arm-openbmc-linux-gnueabi --host=arm-openbmc-linux-gnueabi
+--build=x86_64-linux
+--with-libtool-sysroot=$HOME/gbmc/sdk/2.1/sysroots/armv5e-openbmc-linux-gnueabi
+
+
+Am I missing anything? Let me know if any other information is needed.
 
 -- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+Regards,
+Kun
 
