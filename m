@@ -1,60 +1,35 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <alexander.kanavin@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C8C79E00A64; Fri,  2 Dec 2016 01:59:29 -0800 (PST)
+	id 9A940E00D6D; Fri,  2 Dec 2016 03:39:12 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.220.179 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qk0-f179.google.com (mail-qk0-f179.google.com
-	[209.85.220.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 51313E00A64
-	for <yocto@yoctoproject.org>; Fri,  2 Dec 2016 01:59:27 -0800 (PST)
-Received: by mail-qk0-f179.google.com with SMTP id q130so86032715qke.1
-	for <yocto@yoctoproject.org>; Fri, 02 Dec 2016 01:59:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=nfoIe1uwh8gLkOw9xMhPzTnJJ2MhXAbYBNNDGi6HKDg=;
-	b=DYqgwmbvOVmGqHn3N+GVVzauCyEcdrp7PLAImoldWq74rJuHEPN4F3ev8gOd7zUDFl
-	+K47CtRdC5mVE+D9z1AOycvlSnvqJ5CcKLMiANwjc4ucCuJV3QWGmcBVj7OeuZ9HJh+o
-	ylERUV9PVQAZxTPOrLYqkrIAFa9UVUzpCLpiYAPa2I2G4wxeKBTCrJJLShPceRaLzVJU
-	K+hGrp5FPThDKJUye+m/kuP0gqC+hputW7cILUnEMdN0Ntp0ypvefG0WqJb46kRtmdt6
-	qXduwDoTscBnqnMk+VpfQTDXDM8WRWdn+9AfbwIeIziCGOJXP7o1+Y4ykH/uGcfgIdZN
-	HJHw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=nfoIe1uwh8gLkOw9xMhPzTnJJ2MhXAbYBNNDGi6HKDg=;
-	b=EkL+yglvxTFeClYAmtAJbjWP2QQr7eZk0k0fBg+pakV/+a0YUeUENYZuHzydcNKi7z
-	BSkAmxAzAGV5bHSzLp14VwIJP6tMfOuwSnJ9eg7bJW73+zC4TvtAD1wEkWAFyrP6wc/k
-	hyve2hqgIY2g9iSImO/hQ3eKYg1gMLcB4z4Daefnn0shZpsikqia4fVKg1AhiwsqDpfA
-	1jM9hFbKnr2MfGoMWdykbFol0RE2o2IBIcJhkdtdV02olwKBcwjw/csAzDV1hHj1JDmS
-	7ALgWrDdkODAglMCGhp3lAYEhAz9KlXbG90a64/fsPoichvjGgS2m5j0JnXxW+VYTS+9
-	ZeOw==
-X-Gm-Message-State: AKaTC026wZ0FP2bZ/r/bDJejF6DRarwgmG5IEn052/E/4lcQ+Nmg8xUz7NfnPWa4/29Y/wqvMjhDVo1K3DWCC1GG
-X-Received: by 10.55.75.17 with SMTP id y17mr29310261qka.26.1480672767283;
-	Fri, 02 Dec 2016 01:59:27 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.140.106.99 with HTTP; Fri, 2 Dec 2016 01:59:06 -0800 (PST)
-In-Reply-To: <CAJTo0LZPF8kzexk0vhptQtKZVbP71EDKjVpRMT76XY3HhcVfrw@mail.gmail.com>
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [192.55.52.93 listed in list.dnswl.org]
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 395C6E00A64
+	for <yocto@yoctoproject.org>; Fri,  2 Dec 2016 03:39:11 -0800 (PST)
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+	by fmsmga102.fm.intel.com with ESMTP; 02 Dec 2016 03:39:11 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.33,729,1477983600"; d="scan'208";a="36470448"
+Received: from kanavin-desktop.fi.intel.com (HELO [10.237.68.161])
+	([10.237.68.161])
+	by orsmga004.jf.intel.com with ESMTP; 02 Dec 2016 03:39:10 -0800
+To: yocto@yoctoproject.org
 References: <CAGMNF6VXO9PzmXEb-tPHnw7zxRAM-pUgHa3O2XUVKE2xYidD1A@mail.gmail.com>
-	<CAJTo0LZPF8kzexk0vhptQtKZVbP71EDKjVpRMT76XY3HhcVfrw@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Fri, 2 Dec 2016 09:59:06 +0000
-Message-ID: <CAJTo0LYYQ7YbFEdiCRfv4jJnUi8On_eS1zEyrU56LjGS4SoMPA@mail.gmail.com>
-To: Kun Yi <kunyi@google.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+From: Alexander Kanavin <alexander.kanavin@linux.intel.com>
+Message-ID: <aad8d580-b2f9-4cd1-9e2a-d355f6f7cf2e@linux.intel.com>
+Date: Fri, 2 Dec 2016 13:39:19 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Icedove/45.4.0
+MIME-Version: 1.0
+In-Reply-To: <CAGMNF6VXO9PzmXEb-tPHnw7zxRAM-pUgHa3O2XUVKE2xYidD1A@mail.gmail.com>
 Subject: Re: Yocto doesn't recognize cross-compiled binaries inside SDK
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -67,51 +42,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 02 Dec 2016 09:59:29 -0000
-Content-Type: multipart/alternative; boundary=001a114a88c852a4e60542a9fea4
+X-List-Received-Date: Fri, 02 Dec 2016 11:39:12 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
---001a114a88c852a4e60542a9fea4
-Content-Type: text/plain; charset=UTF-8
+On 12/02/2016 10:36 AM, Kun Yi wrote:
+> I'm trying to use SDK for an existing image to run cross-compiled code
+> on my host machine. My target is ARM and host is x86_64. The SDK has
+> arm-openbmc-linux-gnueabi toolchains installed. (The rationale is to
+> build and run C++ unit tests for the modules that I'm developing on
+> the host, but that's not relevant)
 
-On 2 December 2016 at 09:53, Burton, Ross <ross.burton@intel.com> wrote:
+Perhaps it is relevant - an alternative approach is to build the unit 
+tests and modules for the host machine (by enabling a native variant in 
+the recipe), and then they should simply run. If you are not testing 
+ARM-specific code, then it shouldn't matter.
 
-> On 2 December 2016 at 08:36, Kun Yi <kunyi@google.com> wrote:
->
->> Reading Yocto 2.1 reference it seems that I should be able to
->> cross-compile binaries for arm inside the SDK shell and run the
->>
->
-> You can't run cross-compiled binaries inside the SDK unless you use qemu.
->
+Generally, we don't attempt to run target unit tests on the host machine 
+- they go into target image, and are executed natively on the target.
 
-Whoops, sent that too early.
+Qemu emulation for running binaries kind of works, and we use it for a 
+few things like gobject introspection and pre-generating data caches, 
+but it is notoriously tricky and prone to breakage.
 
-For simple binaries you can use qemu-user-* to run it inside the userspace
-qemu emulation.
+Alex
 
-Ross
 
---001a114a88c852a4e60542a9fea4
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 2 December 2016 at 09:53, Burton, Ross <span dir=3D"ltr">&lt;<a href=3D"=
-mailto:ross.burton@intel.com" target=3D"_blank">ross.burton@intel.com</a>&g=
-t;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0=
- .8ex;border-left:1px #ccc solid;padding-left:1ex"><div class=3D"gmail_extr=
-a"><span class=3D""><div class=3D"gmail_quote">On 2 December 2016 at 08:36,=
- Kun Yi <span dir=3D"ltr">&lt;<a href=3D"mailto:kunyi@google.com" target=3D=
-"_blank">kunyi@google.com</a>&gt;</span> wrote:<br><blockquote class=3D"gma=
-il_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-lef=
-t:1ex"><div id=3D"m_-1712959700444094127:45b" class=3D"m_-17129597004440941=
-27a3s m_-1712959700444094127aXjCH m_-1712959700444094127m158beaef70e1354f">=
-Reading Yocto 2.1 reference it seems that I should be able to<br>
-cross-compile binaries for arm inside the SDK shell and run the<br></div></=
-blockquote></div><br></span>You can&#39;t run cross-compiled binaries insid=
-e the SDK unless you use qemu.</div></blockquote><div><br></div><div>Whoops=
-, sent that too early.</div><div><br></div><div>For simple binaries you can=
- use qemu-user-* to run it inside the userspace qemu emulation.</div><div><=
-br></div><div>Ross</div></div></div></div>
-
---001a114a88c852a4e60542a9fea4--
