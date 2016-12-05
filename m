@@ -1,49 +1,68 @@
-Return-Path: <stephen.k.jolley@intel.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1B738E004E5; Mon,  5 Dec 2016 07:42:39 -0800 (PST)
+	id 6ED75E007AA; Mon,  5 Dec 2016 08:51:31 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.65 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.217.196 listed in dnsbl.sorbs.net]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (raj.khem[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.217.196 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C1A34E004E5
-	for <yocto@yoctoproject.org>; Mon,  5 Dec 2016 07:42:33 -0800 (PST)
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-	by orsmga103.jf.intel.com with ESMTP; 05 Dec 2016 07:42:33 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.33,305,1477983600"; 
-	d="scan'208,217";a="908871543"
-Received: from fmsmsx107.amr.corp.intel.com ([10.18.124.205])
-	by orsmga003.jf.intel.com with ESMTP; 05 Dec 2016 07:42:33 -0800
-Received: from fmsmsx157.amr.corp.intel.com (10.18.116.73) by
-	fmsmsx107.amr.corp.intel.com (10.18.124.205) with Microsoft SMTP Server
-	(TLS) id 14.3.248.2; Mon, 5 Dec 2016 07:42:33 -0800
-Received: from fmsmsx112.amr.corp.intel.com ([169.254.5.229]) by
-	FMSMSX157.amr.corp.intel.com ([169.254.14.184]) with mapi id
-	14.03.0248.002; Mon, 5 Dec 2016 07:42:32 -0800
-From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"openembedded-core@lists.openembedded.org"
-	<openembedded-core@lists.openembedded.org>
-Thread-Topic: Yocto Project Status WW50
-Thread-Index: AdJPDJjb1fKVWe9vTDi/rzKqKQtAoQ==
-Date: Mon, 5 Dec 2016 15:42:31 +0000
-Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155E572F4170@FMSMSX112.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ctpclassification: CTP_IC
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiNWQyOTIwMWItMTU5MC00MDQ2LTgzNWUtNGZkNmE1ZWY5Y2Q2IiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX0lDIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE1LjkuNi42IiwiVHJ1c3RlZExhYmVsSGFzaCI6Im52anQ0dEFET0d3ODMxbWF2NmZRaGpLdnVNMXlXTFd6NCswajdERCtlZ2s9In0=
-x-originating-ip: [10.1.200.107]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-ua0-f196.google.com (mail-ua0-f196.google.com
+	[209.85.217.196])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E8C2FE00712
+	for <yocto@yoctoproject.org>; Mon,  5 Dec 2016 08:51:28 -0800 (PST)
+Received: by mail-ua0-f196.google.com with SMTP id 20so32594092uak.0
+	for <yocto@yoctoproject.org>; Mon, 05 Dec 2016 08:51:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=GagCi/YEfS2YOzd0jpQ9VRWAATDZiCD7FKJ1jpe17+w=;
+	b=XGIMLm/BxKuKrRo5oav6bDlANeVMgMnZpfgeeEy+ATfh4znNzcJO+qvuKmA5QeN4kt
+	R/WFyIwwJwcHj2hAjjRU5hfzyS/U4idWNmH/RfYYoboOi8AHxggZMNLzHIWWdA4+NNFT
+	i1JK0+U8t4fPeBkpB0xWvEvefdFP31rvuRsL8c4XtawbIwTVnVMVxQI6wSYHR/nyZgBD
+	8hMxugabQgECYSeORIhQlwPY63D6xmR+elyUxhGpSK8GY6DIWIDkPZiwpi2neS881Tpt
+	dMyQ5pZio0m+aqRgOs01Ry4Sc3OK1G6TsrzoL6w6oxpwSyHojujz5XnbGmVrhOfPt3m2
+	0PzA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=GagCi/YEfS2YOzd0jpQ9VRWAATDZiCD7FKJ1jpe17+w=;
+	b=O/HsIy8Gu2gS/9SXuamygM9+0JHUq+Dmh+MXSpcipzM4fq+CNjCUxwEgbVPnmxENLx
+	JYOS9m37BGdwzAV3a9135/30isJg/IbiDANtVl09a9+fMRWEjd2D9pddbI0wCdTJppxF
+	bi04jpteDJ6Ws0quiV4H0+UMVtV0WlJo/+AJznCcH0tW1G2t3kiNZEnSXW2b5hwesIVl
+	kN554OkSpIqHzOrjROSY/fNulN9ORLFMNoGSWPYIE60G+1ZPG3JtQZBi4toSkIuzkBiD
+	ApbR+Q3Aa44W9AsPF8etZqY2r5X77AJd4nQhLTZqk2eEenq/1bkgcDvmnCi10Tv92mgG
+	+yAQ==
+X-Gm-Message-State: AKaTC03PJlPBVn5VHGq4vLqkpB9ZVFM3GgpPom1kSvghMZtFApcr306/GLNrjDvyrh7O9mCFOV5Ra+azw506vw==
+X-Received: by 10.176.0.180 with SMTP id 49mr44579553uaj.32.1480956687710;
+	Mon, 05 Dec 2016 08:51:27 -0800 (PST)
 MIME-Version: 1.0
-Subject: Yocto Project Status WW50
+Received: by 10.159.48.87 with HTTP; Mon, 5 Dec 2016 08:50:57 -0800 (PST)
+In-Reply-To: <9f5e8157-ba81-7486-d761-3fd0ec5de3f9@mlbassoc.com>
+References: <19a9d76a-2c15-551a-2fce-55d8b8cfe1d0@mlbassoc.com>
+	<20161203141606.2899e98c@nuc.betafive.co.uk>
+	<CAK18fxFm3ttr1TJxw3+-PJD0A8WMDb0SKMMq2cJxiOwuY7=H1A@mail.gmail.com>
+	<9f5e8157-ba81-7486-d761-3fd0ec5de3f9@mlbassoc.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Mon, 5 Dec 2016 08:50:57 -0800
+Message-ID: <CAMKF1sq0U1G-c266eCNCGAdw=B0Dcv0dXF7LjG8G=yPd4dFBXg@mail.gmail.com>
+To: Gary Thomas <gary@mlbassoc.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi] Current master broken
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,466 +74,202 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 05 Dec 2016 15:42:39 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155E572F4170FMSMSX112amrcor_"
+X-List-Received-Date: Mon, 05 Dec 2016 16:51:31 -0000
+Content-Type: text/plain; charset=UTF-8
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E572F4170FMSMSX112amrcor_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-Current Dev Position: YP 2.3 M1
-
-Next Deadline: YP 2.3 M1 by Dec. 12, 2016
-
-
-SWAT team rotation: Anibal -> Tracy
-
-https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team
-
-
-Key Status/Updates:
-
-*        We're now coming to the end of the M1 development period with it c=
-losing next Monday.
-
-*        The recipe specific sysroot patchset has been updated with a numbe=
-r of the key issues being addressed.
-
-*        Patches are being merged but we're continue to struggle to track d=
-own which patches in testing are causing which failures which does slow dow=
-n the overall merge progress. The work Ross has been doing here is much app=
-reciated. We have seen many recipe upgrades being merged.
-
-*        Performance of bitbake on systems with large numbers of cores appe=
-ars to have bottlenecks in bitbake-worker. One patch has already merged for=
- this and there are some further patches pending. Python3 appears to have m=
-ade this issue worse.
-
-*        The monthly tech meeting is tomorrow at 8am PST.  US Phone: 800730=
-2996/9139049836, Bridge: 2705751
-
-
-Proposed upcoming dot releases:
-
-YP 2.0.3 Release by Dec. 9, 2016
-
-YP 2.2.1 Release by Jan. 20, 2017
-
-YP 2.1.3 Release by May. 19, 2017
-
-
-Key YP 2.3 Dates:
-
-YP 2.3 M1 Cutoff is Dec. 12, 2016
-
-YP 2.3 M1 Release is Dec. 23, 2016
-
-YP 2.3 M2 Cutoff is Jan. 23, 2017
-
-YP 2.3 M2 Release is Feb. 3, 2017
-
-YP 2.3 M3 Cutoff is Feb 27, 2017
-
-YP 2.3 M3 Release is Mar. 10, 2017
-
-YP 2.3 M4 Cutoff is April 3, 2017
-
-YP 2.3 M4 Release is April 28, 2017
-
-
-Tracking Metrics:
-
-            WDD 2507 (last week 2552)
-
-(https://wiki.yoctoproject.org/charts/combo.html)
-
-
-Key Status Links for YP:
-
-https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.3_Status
-
-https://wiki.yoctoproject.org/wiki/Yocto_2.3_Schedule
-
-https://wiki.yoctoproject.org/wiki/Yocto_2.3_Features
-
-
-[If anyone has suggestions for other information you'd like to see on this =
-weekly status update, let us know!]
-
-Thanks,
-
-Stephen K. Jolley
-Yocto Project Program Manager
-INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-*   Work Telephone:        (503) 712-0534
-*    Cell:               (208) 244-4460
-* Email:                            stephen.k.jolley@intel.com
-
-
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E572F4170FMSMSX112amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+On Sun, Dec 4, 2016 at 10:03 PM, Gary Thomas <gary@mlbassoc.com> wrote:
+> On 2016-12-05 01:54, Andrei Gherzan wrote:
+>>
+>> Hi Gary,
+>>
+>>
+>> On Sat, Dec 3, 2016 at 2:16 PM, Paul Barker <paul@paulbarker.me.uk> wrote:
+>>>
+>>> On Sat, 3 Dec 2016 08:33:40 +0100
+>>> Gary Thomas <gary@mlbassoc.com> wrote:
+>>>
+>>>> I'm currently unable to build for the RaspberryPi-3 using the master
+>>>> branch:
+>>>>
+>>>> Build Configuration:
+>>>> BB_VERSION        = "1.32.0"
+>>>> BUILD_SYS         = "x86_64-linux"
+>>>> NATIVELSBSTRING   = "universal"
+>>>> TARGET_SYS        = "arm-amltd-linux-gnueabi"
+>>>> MACHINE           = "raspberrypi3"
+>>>> DISTRO            = "amltd"
+>>>> DISTRO_VERSION    = "2.2+snapshot-20161202"
+>>>> TUNE_FEATURES     = "arm armv7ve vfp thumb neon vfpv4
+>>>> callconvention-hard cortexa7"
+>>>> TARGET_FPU        = "hard"
+>>>> meta              = "master:9e63f81c78e284c9b325fe04a1b59e61c7ad8a1a"
+>>>> meta-amltd        = "master:074120ab3a82cea0ac50d4e9eec89130a860a4fa"
+>>>> meta-raspberrypi  = "master:44d41bf3e94c4c8fe5ad5a3650572c8d17ef36c9"
+>>>>
+>>>> Initialising tasks: 100%
+>>>> |#############################################################| Time:
+>>>> 0:00:00
+>>>> Checking sstate mirror object availability: 100%
+>>>> |#####################################| Time: 0:00:00
+>>>> NOTE: Executing SetScene Tasks
+>>>> NOTE: Executing RunQueue Tasks
+>>>> ERROR: linux-raspberrypi-1_4.4.28+gitAUTOINC+5afda48c34-r0
+>>>> do_kernel_metadata: Function failed: do_kernel_metadata (log
+>>>> file is located at
+>>>>
+>>>> /build/rpi3_2016-09-13/tmp/work/raspberrypi3-amltd-linux-gnueabi/linux-raspberrypi/1_4.4.28+gitAUTOINC+5afda48c34-r0/temp/log.do_kernel_metadata.5647)
+>>>> ERROR: Logfile of failure stored in:
+>>>>
+>>>> /build/rpi3_2016-09-13/tmp/work/raspberrypi3-amltd-linux-gnueabi/linux-raspberrypi/1_4.4.28+gitAUTOINC+5afda48c34-r0/temp/log.do_kernel_metadata.5647
+>>>> Log data follows:
+>>>> | DEBUG: Executing shell function do_kernel_metadata
+>>>> | [ERROR]: processing of file /tmp/tmp.bXPr8PVPz3 failed
+>>>> |
+>>>> /build/rpi3_2016-09-13/tmp/sysroots/x86_64-linux/usr/bin/scc-cmds/patch.cmd:
+>>>> line 29: : No such file or directory
+>>>> |
+>>>> | Context around the error is:
+>>>> |
+>>>> |     #
+>>>> |     prefix
+>>>> /local/poky-cutting-edge/meta-raspberrypi/recipes-kernel/linux/linux-raspberrypi/
+>>>> |     kconf non-hardware
+>>>> /local/poky-cutting-edge/meta-raspberrypi/recipes-kernel/linux/linux-raspberrypi/defconfig
+>>>> |     prefix
+>>>> /local/poky-cutting-edge/meta-raspberrypi/recipes-kernel/linux/linux-raspberrypi-4.4/
+>>>> |     patch
+>>>> "/local/poky-cutting-edge/meta-raspberrypi/recipes-kernel/linux/linux-raspberrypi-4.4/0001-fix-dtbo-rules.patch"
+>>>> |     # run time: 0 seconds
+>>>> |     # processed files:
+>>>> |     # _cfg
+>>>> /local/poky-cutting-edge/meta-raspberrypi/recipes-kernel/linux/linux-raspberrypi/defconfig
+>>>> |     # _cfg
+>>>> /local/poky-cutting-edge/meta-raspberrypi/recipes-kernel/linux/linux-raspberrypi-4.4/0001-fix-dtbo-rules.patch
+>>>> |
+>>>> | See pre-processed file /tmp/tmp.bXPr8PVPz3 for more details
+>>>> | #
+>>>> | # scc v0.8
+>>>> | # processed: Fri Dec  2 04:12:25 CET 2016
+>>>> | #
+>>>> | # This is a scc output file, do not edit
+>>>> | #
+>>>> | [ERROR]: processing of file /tmp/tmp.eTLAT789Q2 failed
+>>>> | # _reloc_dir
+>>>> /local/poky-cutting-edge/meta-raspberrypi/recipes-kernel/linux
+>>>> | # _reloc_dir
+>>>> /local/poky-cutting-edge/meta-raspberrypi/recipes-kernel/linux
+>>>> |
+>>>> /build/rpi3_2016-09-13/tmp/sysroots/x86_64-linux/usr/bin/scc-cmds/patch.cmd:
+>>>> line 29: : No such file or directory
+>>>> |
+>>>> | Context around the error is:
+>>>> |
+>>>> |     #
+>>>> |     prefix
+>>>> /local/poky-cutting-edge/meta-raspberrypi/recipes-kernel/linux/linux-raspberrypi/
+>>>> |     kconf non-hardware
+>>>> /local/poky-cutting-edge/meta-raspberrypi/recipes-kernel/linux/linux-raspberrypi/defconfig
+>>>> |     prefix
+>>>> /local/poky-cutting-edge/meta-raspberrypi/recipes-kernel/linux/linux-raspberrypi-4.4/
+>>>> |     patch
+>>>> "/local/poky-cutting-edge/meta-raspberrypi/recipes-kernel/linux/linux-raspberrypi-4.4/0001-fix-dtbo-rules.patch"
+>>>> |     # run time: 1 seconds
+>>>> |     # processed files:
+>>>> |     # _cfg
+>>>> /local/poky-cutting-edge/meta-raspberrypi/recipes-kernel/linux/linux-raspberrypi/defconfig
+>>>> |     # _cfg
+>>>> /local/poky-cutting-edge/meta-raspberrypi/recipes-kernel/linux/linux-raspberrypi-4.4/0001-fix-dtbo-rules.patch
+>>>> |
+>>>> | See pre-processed file /tmp/tmp.eTLAT789Q2 for more details
+>>>> | WARNING: exit code 1 from a shell command.
+>>>> | ERROR: Function failed: do_kernel_metadata (log file is located at
+>>>>
+>>>> /build/rpi3_2016-09-13/tmp/work/raspberrypi3-amltd-linux-gnueabi/linux-raspberrypi/1_4.4.28+gitAUTOINC+5afda48c34-r0/temp/log.do_kernel_metadata.5647)
+>>>> ERROR: Task
+>>>> (/local/poky-cutting-edge/meta-raspberrypi/recipes-kernel/linux/linux-raspberrypi_4.4.bb:do_kernel_metadata)
+>>>> failed with exit code '1'
+>>>>
+>>>> I also tried kernel version 4.7:
+>>>> ERROR: linux-raspberrypi-1_4.7.7+gitAUTOINC+a45a35c085-r0 do_fetch:
+>>>> Fetcher failure: Unable to find revision
+>>>> a45a35c08598b23f9fd82e49c83b46c7d536244f in branch rpi-4.7.y even from
+>>>> upstream
+>>>> ERROR: linux-raspberrypi-1_4.7.7+gitAUTOINC+a45a35c085-r0 do_fetch:
+>>>> Fetcher failure for URL:
+>>>> 'git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-4.7.y'.
+>>>> Unable to fetch URL from any source.
+>>>> ERROR: linux-raspberrypi-1_4.7.7+gitAUTOINC+a45a35c085-r0 do_fetch:
+>>>> Function failed: base_do_fetch
+>>>> ERROR: Logfile of failure stored in:
+>>>>
+>>>> /build/rpi3_2016-09-13/tmp/work/raspberrypi3-amltd-linux-gnueabi/linux-raspberrypi/1_4.7.7+gitAUTOINC+a45a35c085-r0/temp/log.do_fetch.6133
+>>>> ERROR: Task
+>>>> (/local/poky-cutting-edge/meta-raspberrypi/recipes-kernel/linux/linux-raspberrypi_4.7.bb:do_fetch)
+>>>> failed
+>>>> with exit code '1'
+>>>>
+>>>> I was able to build with 4.8, but X didn't come up :-(
+>>>>
+>>>> Any ideas?
+>>>>
+>>>> Note: I changed the 4.7 recipe to use a good revision (c2cbd9c611)
+>>>> but then I suffered the same problem installing the .dtbo patch :-(
+>>>>
+>>>
+>>> It looks like the following oe-core commit broke the build for
+>>> meta-raspberrypi:
+>>>
+>>>
+>>> http://git.openembedded.org/openembedded-core/commit/?id=83d10e2acef936b1f38804988f10eafa48db36f9
+>>>
+>>> Applying the following patch from the oe-core mailing list fixes it for
+>>> me:
+>>>
+>>>
+>>> http://lists.openembedded.org/pipermail/openembedded-core/2016-December/129567.html
+>>>
+>>> I'm just going to apply that locally until it's merged into master.
+>>
+>>
+>> Does the referenced patch by Paul fix your issue here?
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Consolas;
-	panose-1:2 11 6 9 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:"Comic Sans MS";
-	panose-1:3 15 7 2 3 3 2 2 2 4;}
-@font-face
-	{font-family:"MS Sans Serif";
-	panose-1:0 0 0 0 0 0 0 0 0 0;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-p
-	{mso-style-priority:99;
-	mso-margin-top-alt:auto;
-	margin-right:0in;
-	mso-margin-bottom-alt:auto;
-	margin-left:0in;
-	font-size:12.0pt;
-	font-family:"Times New Roman",serif;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-span.apple-tab-span
-	{mso-style-name:apple-tab-span;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
-/* List Definitions */
-@list l0
-	{mso-list-id:1395356215;
-	mso-list-template-ids:-232758314;}
-@list l0:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l0:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Courier New";
-	mso-bidi-font-family:"Times New Roman";}
-@list l0:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-ol
-	{margin-bottom:0in;}
-ul
-	{margin-bottom:0in;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Current Dev Positi=
-on: YP 2.3 M1</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Next Deadline: YP =
-2.3 M1 by Dec. 12, 2016</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">SWAT team rotation=
-: Anibal -&gt; Tracy</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
-project.org/wiki/Yocto_Build_Failure_Swat_Team"><span style=3D"font-size:11=
-.0pt;font-family:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki=
-/Yocto_Build_Failure_Swat_Team</span></a><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Key Status/Updates=
-:</span><o:p></o:p></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l0 level1 lfo=
-1;vertical-align:baseline">
-<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
-or:black"><span style=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt=
- &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
-&quot;Arial&quot;,sans-serif;color:black">We&#8217;re now coming to the end=
- of the M1 development period with it closing next Monday.<o:p></o:p></span=
-></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l0 level1 lfo=
-1;vertical-align:baseline">
-<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
-or:black"><span style=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt=
- &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
-&quot;Arial&quot;,sans-serif;color:black">The recipe specific sysroot patch=
-set has been updated with a number of the key issues being addressed.<o:p><=
-/o:p></span></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l0 level1 lfo=
-1;vertical-align:baseline">
-<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
-or:black"><span style=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt=
- &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
-&quot;Arial&quot;,sans-serif;color:black">Patches are being merged but we&#=
-8217;re continue to struggle to track down which patches in testing are cau=
-sing which failures which does slow down the overall
- merge progress. The work Ross has been doing here is much appreciated. We =
-have seen many recipe upgrades being merged.<o:p></o:p></span></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l0 level1 lfo=
-1;vertical-align:baseline">
-<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
-or:black"><span style=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt=
- &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
-&quot;Arial&quot;,sans-serif;color:black">Performance of bitbake on systems=
- with large numbers of cores appears to have bottlenecks in bitbake-worker.=
- One patch has already merged for this and there
- are some further patches pending. Python3 appears to have made this issue =
-worse.<o:p></o:p></span></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l0 level1 lfo=
-1;vertical-align:baseline">
-<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
-or:black"><span style=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt=
- &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
-&quot;Arial&quot;,sans-serif;color:black">The monthly tech meeting is tomor=
-row at 8am PST. &nbsp;</span><span style=3D"font-size:10.0pt;font-family:&q=
-uot;Arial&quot;,sans-serif;color:black">US Phone: 8007302996/9139049836,
- Bridge: 2705751</span><span style=3D"font-size:11.0pt;font-family:&quot;Ar=
-ial&quot;,sans-serif;color:black"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
-mes New Roman&quot;,serif"><o:p>&nbsp;</o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Proposed upcoming =
-dot releases:</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">YP 2.0.3 Release b=
-y Dec. 9, 2016</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">YP 2.2.1 Release b=
-y Jan. 20, 2017</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">YP 2.1.3 Release b=
-y May. 19, 2017</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Key YP 2.3 Dates:<=
-/span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">YP 2.3 M1 Cutoff i=
-s Dec. 12, 2016</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">YP 2.3 M1 Release =
-is Dec. 23, 2016</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">YP 2.3 M2 Cutoff i=
-s Jan. 23, 2017</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">YP 2.3 M2 Release =
-is Feb. 3, 2017</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">YP 2.3 M3 Cutoff i=
-s Feb 27, 2017</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">YP 2.3 M3 Release =
-is Mar. 10, 2017</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">YP 2.3 M4 Cutoff i=
-s April 3, 2017</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">YP 2.3 M4 Release =
-is April 28, 2017</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Tracking Metrics:<=
-/span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span class=3D"apple-tab-span=
-"><span style=3D"font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;=
-color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;
-</span></span><span style=3D"font-size:11.0pt;font-family:&quot;Arial&quot;=
-,sans-serif;color:black">WDD 2507 (last week 2552)</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt;text-indent:.5in"><span style=
-=3D"font-size:11.0pt;font-family:Consolas;color:black">(</span><a href=3D"h=
-ttps://wiki.yoctoproject.org/charts/combo.html"><span style=3D"font-size:11=
-.0pt;font-family:&quot;Arial&quot;,sans-serif;color:#1155CC">https://wiki.y=
-octoproject.org/charts/combo.html</span></a><span style=3D"font-size:11.0pt=
-;font-family:Consolas;color:black">)</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Key Status Links f=
-or YP:</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
-project.org/wiki/Yocto_Project_v2.3_Status"><span style=3D"font-size:11.0pt=
-;font-family:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yoc=
-to_Project_v2.3_Status</span></a><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
-project.org/wiki/Yocto_2.3_Schedule"><span style=3D"font-size:11.0pt;font-f=
-amily:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_2.3_=
-Schedule</span></a><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
-project.org/wiki/Yocto_2.3_Features"><span style=3D"font-size:11.0pt;font-f=
-amily:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_2.3_=
-Features</span></a><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">[If anyone has sug=
-gestions for other information you&#8217;d like to see on this weekly statu=
-s update, let us know!]</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
-ot;,serif;color:purple">Stephen K. Jolley</span></i></b><b><i><span style=
-=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,sans-serif;color:purple=
-"><o:p></o:p></span></i></b></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
-Courier New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></spa=
-n></b></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
-or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-<o:p></o:p></span></b></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Wingdings;color:black">(<=
-/span><span style=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">
-</span><span style=3D"font-size:8.0pt;font-family:&quot;MS Sans Serif&quot;=
-;color:teal">&nbsp;&nbsp;</span><b><span style=3D"font-size:8.0pt;font-fami=
-ly:&quot;Comic Sans MS&quot;;color:teal">Work Telephone</span></b><span sty=
-le=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-">(503) 712-0534<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
-ans Serif&quot;;color:teal">&nbsp;&nbsp;&nbsp;
-</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
-ot;;color:teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&=
-quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-">(208) 244-4460<span style=3D"color:black"><o:p></o:p></span></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-">* </span>
-<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
-MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
-.0pt;font-family:&quot;MS Sans Serif&quot;;color:teal">:</span><span lang=
-=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;">&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;
-<u><span style=3D"color:blue">stephen.k.jolley@intel.com</span></u></span><=
-span lang=3D"FR" style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,sa=
-ns-serif"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
+>
+> Yes, for version 4.4.x
+>
+> When I tried to build 4.7.x, I got these errors:
+>
+> ERROR: linux-raspberrypi-1_4.7.7+gitAUTOINC+c2cbd9c611-r0
+> do_kernel_version_sanity_check: Package Version
+> (4.7.7+gitAUTOINC+c2cbd9c611) does not match of kernel being built (4.7.10).
+> Please update the PV variable to match the kernel source.
+> ERROR: linux-raspberrypi-1_4.7.7+gitAUTOINC+c2cbd9c611-r0
+> do_kernel_version_sanity_check: Function failed:
+> do_kernel_version_sanity_check (log file is located at
+> /build/rpi3_2016-09-13/tmp/work/raspberrypi3-amltd-linux-gnueabi/linux-raspberrypi/1_4.7.7+gitAUTOINC+c2cbd9c611-r0/temp/log.do_kernel_version_sanity_check.2574)
+> ERROR: Logfile of failure stored in:
+> /build/rpi3_2016-09-13/tmp/work/raspberrypi3-amltd-linux-gnueabi/linux-raspberrypi/1_4.7.7+gitAUTOINC+c2cbd9c611-r0/temp/log.do_kernel_version_sanity_check.2574
+> ERROR: Task
+> (/local/poky-cutting-edge/meta-raspberrypi/recipes-kernel/linux/linux-raspberrypi_4.7.bb:do_kernel_version_sanity_check)
+> failed with exit code '1'
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E572F4170FMSMSX112amrcor_--
+Yeah there are changes in OE-Core master to catch kernel verison
+mismatches now and moreover rpi folks rebase the trees except 4.1 and
+4.4 none of recipes may hold
+true with SRCREV after sometime, we should bring this to notice of rpi
+community if they could instead do merges instead of rebasing the
+trees we can keep those recipes
+locked to a given version, otherwise we are forced to move them as
+soon as the rebase is detected.
+
+>
+> --
+> ------------------------------------------------------------
+> Gary Thomas                 |  Consulting for the
+> MLB Associates              |    Embedded world
+> ------------------------------------------------------------
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
