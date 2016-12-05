@@ -1,33 +1,63 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3FE08E00C4F; Mon,  5 Dec 2016 03:12:54 -0800 (PST)
+	id 5577AE00C4F; Mon,  5 Dec 2016 03:15:43 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.220.169 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.220.169 listed in dnsbl.sorbs.net]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.analogue-micro.com (mail.analogue-micro.com
-	[217.144.149.242])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 801C0E00A39
-	for <yocto@yoctoproject.org>; Mon,  5 Dec 2016 03:12:51 -0800 (PST)
-Received: by mail.analogue-micro.com (Postfix, from userid 999)
-	id 76DAB68A01C; Mon,  5 Dec 2016 11:12:49 +0000 (GMT)
-Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
-	by mail.analogue-micro.com (Postfix) with ESMTP id 7847668A019;
-	Mon,  5 Dec 2016 11:12:49 +0000 (GMT)
-Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
-	by zeus.mlbassoc.com (Postfix) with ESMTP id 0257C67404A2;
-	Mon,  5 Dec 2016 12:12:48 +0100 (CET)
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-From: Gary Thomas <gary@mlbassoc.com>
-Message-ID: <46bab4e1-e552-12b4-5847-daeeaf93099a@mlbassoc.com>
-Date: Mon, 5 Dec 2016 12:12:48 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.5.1
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-qk0-f169.google.com (mail-qk0-f169.google.com
+	[209.85.220.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C7DC1E00A39
+	for <yocto@yoctoproject.org>; Mon,  5 Dec 2016 03:15:42 -0800 (PST)
+Received: by mail-qk0-f169.google.com with SMTP id n204so342118946qke.2
+	for <yocto@yoctoproject.org>; Mon, 05 Dec 2016 03:15:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=hq1XToNkGVN4RKhxgLoEYTC4eYW1fY3a5wmUsIy5tOA=;
+	b=vfM0C4uj2YKeXgl9UzIKyd3M1iYoYwSfTq62kjsKvKaGcZuahfwa9pVSoT0Fsd+nWv
+	yGPSiCoRX+4jUbeMxBxnW3mTaazJ63Ji0wc2BoSdzn7JqVxak4jBzX3Qd6WazLk8ckJK
+	F8sQG16/plncZQoeVrSoZhsvL20iGcCPG7R8FoBntPUQxm3CaK7Sm8Rbb9Zg82J8DnDR
+	W18s8OkU0w71KbHgBCOjWqVNO3hlgmALvJiLuUYPoo7hisAUs9tZ/JmwCZwUasWWHgmm
+	YBPAjdEhykuwtzcbKGvIXARDSEq3LMi/05dByWSgD3VhAWCda4OvywQN/qbkh4iADQCv
+	znvg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=hq1XToNkGVN4RKhxgLoEYTC4eYW1fY3a5wmUsIy5tOA=;
+	b=fZabNLL9IeAADH15rO8f1Q74QX184wVoOTofPzxQd3zgQDKRaoQ5BSBcMwNKBMm9ac
+	zsoiRFCbx6U5gcuBXArivQfWCsN8WVz8B1WS4Na8XiSFBWQ5Rdrnn01o77D8DJe3loyM
+	+v3sb/y2VX4AzO/ddFFey6YU3atRlulCU3hXxlWuovw3XuZwBP3xc+4lUXamboM+0IFv
+	ZpfDfcMbd/kylQvn9vOqKhm5ZlBWqt0DkByaUxV7rR904nHScu3Ut5O+Bte+ph4am90k
+	9M03HAtUBBVSDK8hj4PGTS0qXY3iKsyKSIIf6N59D64IVScbtslSuaGjSCuQxjVUfboJ
+	VfjQ==
+X-Gm-Message-State: AKaTC02gPl+o3pH/PcwC06e23KGPSPUXKzPrb8IX38SAr3Uf8NwSt0NSOdIyosNMKv4YLPaVmzh4KKseEElHJRrp
+X-Received: by 10.55.106.134 with SMTP id f128mr54865433qkc.121.1480936542028; 
+	Mon, 05 Dec 2016 03:15:42 -0800 (PST)
 MIME-Version: 1.0
-Subject: [meta-raspberrypi] X11 failure
+Received: by 10.140.106.99 with HTTP; Mon, 5 Dec 2016 03:15:21 -0800 (PST)
+In-Reply-To: <46bab4e1-e552-12b4-5847-daeeaf93099a@mlbassoc.com>
+References: <46bab4e1-e552-12b4-5847-daeeaf93099a@mlbassoc.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Mon, 5 Dec 2016 11:15:21 +0000
+Message-ID: <CAJTo0La8z_DDK3dGT4kh163oPdvkMdU=bPbXBW0ypnTORRPung@mail.gmail.com>
+To: Gary Thomas <gary@mlbassoc.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi] X11 failure
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,34 +69,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 05 Dec 2016 11:12:54 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 05 Dec 2016 11:15:43 -0000
+Content-Type: multipart/alternative; boundary=001a114fddf685d8ed0542e76839
 
-With the latest Poky+RaspberryPi master branches, I get no X11
-meta              = "fix-kern-tools-native:9e63f81c78e284c9b325fe04a1b59e61c7ad8a1a"
-meta-raspberrypi  = "master:44d41bf3e94c4c8fe5ad5a3650572c8d17ef36c9"
+--001a114fddf685d8ed0542e76839
+Content-Type: text/plain; charset=UTF-8
 
-When I boot (or restart X), I get this:
+On 5 December 2016 at 11:12, Gary Thomas <gary@mlbassoc.com> wrote:
 
-   Couldn't open libGL.so.1: libGL.so.1: cannot open shared object file: No such file or directory
+> What do I need to do to get libGL v1 so X11 will work again?
+>
 
-Indeed, the screen is only black (the mouse pointer is there and moves, but there are no windows)
+That would be part of mesa-gl, but I'm surprised RPi X needs OpenGL (as
+that is pure software, not accelerated).
 
-I looked around and there is no libGL.so.1, just v2:
+Ross
 
-root@raspberrypi3:~# ls -l /usr/lib/libGL*
-lrwxrwxrwx    1 root     root            14 Dec  2 05:17 /usr/lib/libGLESv2.so -> libGLESv2.so.2
-lrwxrwxrwx    1 root     root            18 Dec  2 05:17 /usr/lib/libGLESv2.so.2 -> libGLESv2.so.2.0.0
--rwxr-xr-x    1 root     root         80048 Dec  2 05:17 /usr/lib/libGLESv2.so.2.0.0
+--001a114fddf685d8ed0542e76839
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-What do I need to do to get libGL v1 so X11 will work again?
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 5 December 2016 at 11:12, Gary Thomas <span dir=3D"ltr">&lt;<a href=3D"m=
+ailto:gary@mlbassoc.com" target=3D"_blank">gary@mlbassoc.com</a>&gt;</span>=
+ wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;bor=
+der-left:1px #ccc solid;padding-left:1ex"><div id=3D":o2" class=3D"a3s aXjC=
+H m158ceb0865bec35e">What do I need to do to get libGL v1 so X11 will work =
+again?<br></div></blockquote></div><br>That would be part of mesa-gl, but I=
+&#39;m surprised RPi X needs OpenGL (as that is pure software, not accelera=
+ted).</div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">=
+Ross</div></div>
 
-Thanks
-
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
-
+--001a114fddf685d8ed0542e76839--
