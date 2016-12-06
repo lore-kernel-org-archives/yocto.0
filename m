@@ -1,65 +1,67 @@
 Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 353E4E00571; Tue,  6 Dec 2016 08:03:15 -0800 (PST)
+	id 45145E00571; Tue,  6 Dec 2016 08:20:01 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [209.85.210.195 listed in list.dnswl.org]
+	*      [74.125.82.66 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.82.66 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wj0-f195.google.com (mail-wj0-f195.google.com
-	[209.85.210.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E1A5BE00546
-	for <yocto@yoctoproject.org>; Tue,  6 Dec 2016 08:03:13 -0800 (PST)
-Received: by mail-wj0-f195.google.com with SMTP id xy5so44693761wjc.1
-	for <yocto@yoctoproject.org>; Tue, 06 Dec 2016 08:03:13 -0800 (PST)
+Received: from mail-wm0-f66.google.com (mail-wm0-f66.google.com [74.125.82.66])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2E050E00546
+	for <yocto@yoctoproject.org>; Tue,  6 Dec 2016 08:19:58 -0800 (PST)
+Received: by mail-wm0-f66.google.com with SMTP id a20so22540024wme.2
+	for <yocto@yoctoproject.org>; Tue, 06 Dec 2016 08:19:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
 	h=date:from:to:cc:subject:message-id:references:mime-version
 	:content-disposition:in-reply-to:user-agent;
-	bh=HDByc6X8nQBpdkCeMD6NcFj31OW5jl/H8pakr/f+B7k=;
-	b=W/eJb+ZBrod9y4zgFXPRoAIRA+yeKa4nNfDFBdl8qZcueoW07EZQU07QN8yjXGYjVg
-	osdQ+oXGNoGYTY5FDUosQkZolzD71xuyaqYTJA/xg4O1L6AhuU8XNQK3oG+5QfrFvsYu
-	ksSrUwFpsAQBQ2BZf7Gzydw8HZ3Ro24OOCJfvU7zohAOk+sq7fUnXisnQ1pxbxjjwh4f
-	FZqsJKZR41kQDCjiZIKq7MHpXg6EAKaIE8EYk3SNf6jbalkd0nqnpKepYukbh+zqY/Iw
-	E+44qH013PO7bd+1YfFFnGpZMYR2DLr6auKGjHWak+N2yZpu9Z970WE7bsNcsOlX7flU
-	7pIw==
+	bh=MsX55FUgkKzpHYCOmSLUj4/RnM29VHDy+wGQ6vzUl/I=;
+	b=DZ/Mik1KgHhqjy8CHshVw2ZCta//8I5WRmvfsGevUyRMcjp5wPhtQEASM+ob6LckyB
+	B8YyChZKIuKrKVUWa8v3f+tFoTnE4W71zr7IaXTXjOxVQT6vnJIDPvCq61ck+nmS7EUk
+	yFAw1VXZIQ/+HDziEEP68qeLGjab3uhxQnVWBcoC//51KbfQfDQttcRbFKOLNOlwFC4p
+	7GRgwB55H5yBhEco4GdOyemMNHn1GEDauYyiQcPAqjXrm89DGNa6D+hIj5gzmnoExaQP
+	Xdj/Z4jVgQ7QClZ1t8QkU6L0I/dO6haZN4y0K4WSYYa1C5QIvMUozbGtAFT8+8tmiXpF
+	Yb8A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
 	:mime-version:content-disposition:in-reply-to:user-agent;
-	bh=HDByc6X8nQBpdkCeMD6NcFj31OW5jl/H8pakr/f+B7k=;
-	b=CNTumrI0r+38SdP9tFOuu/uHpZRoZOuUE9AYriGzUCNBiDsby9L/Oq3TvFoKLTrAt5
-	Bj7XiEVi4YCftjJ5hpXszHbQmkBWXGUJYWj3Z8SKxMV4x9YOVHW5ghrpVc6HRBoqozSc
-	yXDt+830zirs6jkS93g9EDtLvBorbJ2ig377u+NgbPUyC3pQ3SS/o5lYduzah+evpujG
-	TPPajEP4ODukIbc2J7fhRkJMJSKuvbDlgozHrT64rZgH6gyRxPgZtoBf2Zp85LaTxOju
-	aqa/ZxWAaab+g4wah2KxbtwKju0ejJQ9jq9z0hrizshQtThqkFgm9by2s/qYqvDCcnvH
-	P5Yg==
-X-Gm-Message-State: AKaTC01QgJqz5DWnGQigNYmxqhRLgINTV5IQeO6kbECU4vnm145WoaQhR4WllGEz/h1Nmg==
-X-Received: by 10.194.82.163 with SMTP id j3mr64832996wjy.232.1481040192546;
-	Tue, 06 Dec 2016 08:03:12 -0800 (PST)
+	bh=MsX55FUgkKzpHYCOmSLUj4/RnM29VHDy+wGQ6vzUl/I=;
+	b=SyaJHKEh+4V5pD8ztoUI41n11iPsfDc4OVUv2TOLqaws4bnmF0jL5n3ccqkMX5Jn1K
+	nRaHpkwZKPwNvbDQP6DjIXpiG6cOL6osVu4CmUqfE8S86gyFaDHeOf2ffa6iMgjPLzpE
+	z7ktfIneVqW5XSBmEPfmpqfKxF6+JUIief+tYN3UVtq3FBkfElCBPJ2UiGhMHnjVKdeb
+	LwnHQ62xP1WqgQ15drDvYRGwjKAOVtI+sz1nF9NGwb9ddkGGKpBdI4yPloD7aFNBRlTN
+	uSDi4iJ7D7nxTVmLMOS+NfIaw9NF+CwpVpPnsIxvVrr78gutoEu1j7Z208gPvcFCrm9p
+	B23g==
+X-Gm-Message-State: AKaTC03Ted5CG8DDK37q6Y+2ONWNQFbBxpaRFMpHrXMR8i4NKXOzgJQixXeifsppRuW8SA==
+X-Received: by 10.28.24.67 with SMTP id 64mr3306256wmy.136.1481041197727;
+	Tue, 06 Dec 2016 08:19:57 -0800 (PST)
 Received: from carbonA (cpc96910-walt25-2-0-cust629.13-2.cable.virginm.net.
-	[82.22.166.118])
-	by smtp.gmail.com with ESMTPSA id l67sm4806090wmf.0.2016.12.06.08.03.11
+	[82.22.166.118]) by smtp.gmail.com with ESMTPSA id
+	n17sm26584348wjq.6.2016.12.06.08.19.55
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 06 Dec 2016 08:03:12 -0800 (PST)
-Date: Tue, 6 Dec 2016 16:03:07 +0000
+	Tue, 06 Dec 2016 08:19:56 -0800 (PST)
+Date: Tue, 6 Dec 2016 16:19:54 +0000
 From: Andrei Gherzan <andrei@gherzan.ro>
-To: Jonathan Liu <net147@gmail.com>
-Message-ID: <20161206160307.GD1636@carbonA>
-References: <20161205110027.13585-1-net147@gmail.com>
+To: Trevor Woerner <twoerner@gmail.com>
+Message-ID: <20161206161954.GE1636@carbonA>
+References: <20161128164638.13097-1-twoerner@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20161205110027.13585-1-net147@gmail.com>
+In-Reply-To: <20161128164638.13097-1-twoerner@gmail.com>
 User-Agent: Mutt/1.7.1 (2016-10-04)
 Cc: yocto@yoctoproject.org
-Subject: Re: [meta-raspberrypi][PATCH] firmware: Update to 20161125
+Subject: Re: [meta-raspberrypi][PATCH] linux-raspberrypi_4.8.bb: upgrade to 4.8.11
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,63 +73,67 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 Dec 2016 16:03:15 -0000
-X-Groupsio-MsgNum: 33319
+X-List-Received-Date: Tue, 06 Dec 2016 16:20:01 -0000
+X-Groupsio-MsgNum: 33320
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="GyRA7555PLgSTuth"
+	protocol="application/pgp-signature"; boundary="19uQFt6ulqmgNgg1"
 Content-Disposition: inline
 
---GyRA7555PLgSTuth
+--19uQFt6ulqmgNgg1
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
-On Mon, Dec 05, 2016 at 10:00:27PM +1100, Jonathan Liu wrote:
-> Signed-off-by: Jonathan Liu <net147@gmail.com>
+On Mon, Nov 28, 2016 at 11:46:38AM -0500, Trevor Woerner wrote:
+> The rpi-4.8.y branch of git://github.com/raspberrypi/linux.git was rebased,
+> losing any previous commit hashes. This latest update doesn't include the
+> raspberry pi patches for 4.8.6, but the upstream patches are included starting
+> with 4.8.11.
+>
+> Signed-off-by: Trevor Woerner <twoerner@gmail.com>
 > ---
->  recipes-bsp/common/firmware.inc | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
+>  recipes-kernel/linux/linux-raspberrypi_4.8.bb | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 >
-> diff --git a/recipes-bsp/common/firmware.inc b/recipes-bsp/common/firmware.inc
-> index 8862f58..1961b48 100644
-> --- a/recipes-bsp/common/firmware.inc
-> +++ b/recipes-bsp/common/firmware.inc
-> @@ -1,10 +1,10 @@
-> -RPIFW_DATE ?= "20161020"
-> +RPIFW_DATE ?= "20161125"
->  RPIFW_SRC_URI ?= "https://github.com/raspberrypi/firmware/archive/1.${RPIFW_DATE}.tar.gz"
->  RPIFW_S ?= "${WORKDIR}/firmware-1.${RPIFW_DATE}"
+> diff --git a/recipes-kernel/linux/linux-raspberrypi_4.8.bb b/recipes-kernel/linux/linux-raspberrypi_4.8.bb
+> index 4664249..504fb6a 100644
+> --- a/recipes-kernel/linux/linux-raspberrypi_4.8.bb
+> +++ b/recipes-kernel/linux/linux-raspberrypi_4.8.bb
+> @@ -1,8 +1,8 @@
+>  FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
 >
->  SRC_URI = "${RPIFW_SRC_URI}"
-> -SRC_URI[md5sum] = "d3c388c114af4c672dd3ee0ed8e984d3"
-> -SRC_URI[sha256sum] = "1c7c49d58800aab2dd1b5ff59a1e297934f9ea6f47ebdf0a3f90632561dc690b"
-> +SRC_URI[md5sum] = "a9281d2869e2d7673a83d41bacfa66c2"
-> +SRC_URI[sha256sum] = "744e050630621c70991c91e0ee8663dc2f579e743583ca762b13b00bc75859bc"
+> -LINUX_VERSION ?= "4.8.6"
+> +LINUX_VERSION ?= "4.8.11"
 >
->  PV = "${RPIFW_DATE}"
->
-Merged to master. Thanks.
+> -SRCREV = "6abac13566786086cd912d87e4f1a922e2a391b2"
+> +SRCREV = "429efdba18a1201043eacc15c42f989253fbd68b"
+>  SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-4.8.y \
+>  "
+>  require linux-raspberrypi.inc
+
+I updated this patch to 4.8.12 as this was not working already, and
+merged to master.
 
 --
 Andrei Gherzan
 
---GyRA7555PLgSTuth
+--19uQFt6ulqmgNgg1
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIcBAEBCAAGBQJYRuE4AAoJEHO76Gt+erfPxhYQAKsK3ev5KPwgsSZxUrUnPzal
-udutrOuuVW/p/Y67WG6pXCj+tt/kR4pgFjkn2JBSalcRmi4KBB7rOtF/N9BHdxwL
-yeE52oEjYgiYN11rph3/miQ8mANq0LXnZ5Gr/5dwrsgQbJhzebWVBOpTqLPMByzp
-d8hZcJgRp2hqhJaYl10AXOX5URvZtSOyakn+nrJHOqkDkcMkmZlujOURBw/qJnt6
-p8H1Lq+6MEyDwPEXd8/ynw7rMeSUDZLGuQ546sSHFtIQ/zMmcaWDlvWLPVox2LSt
-T794biiYUvGr5bgKvOrVZrh4gq/w/dPCJAO/J5nZ1cC52sK9O8EQPodCuspYJhHn
-AHhDgzjR+YgKLLtEURtJ4BsJ+LjmY/4ygjwY4msb332+Qx6u1xO1qGlHyVFRKpeU
-9Mlse/gAdtz9RgBZ/UKRJJfCuoVjiq57uzFDrs8zR2DPxAAr430Ogz8N/9PxTh0T
-P26FkRXKHGvgLMe2A+vojh6FtkoFQHcvSIE7Y/oNa+PBtmLsfelYEAol1BMtPrHB
-20+/Ja3y3E0WJRI4PW6dqBkJxeCfG9ld1VEFqOJv5xW1lotQ3Z/fvRfai0YMP4XC
-nFUQy7oFJhX0p0SQLqJC0rIGPe3vhQ6NFn5vfcJ7n8Gh7gm/Iq2yNnDzLPKPFCVP
-gCrEh1YM7eCjI5hqumeL
-=jxYy
+iQIcBAEBCAAGBQJYRuUqAAoJEHO76Gt+erfPKrAQAIKbrFYVcryjBHzX39bZeaBN
+h9l4pQlzRnRYkj1McRubgj9TDrtsL4j80/EQyh1/VFtnqkTQ6sZHBexHZAuur58Z
+vHaLXmNewkv95e4dE71tesW80zpH1HJHX7LOXO/UVLBvCgm4Mdio2R7oPIIyExu5
+Lpp6wr6KPZKrIY6ZNTBvwu467OFS6wRd9FF7Xv8Z2j9NEJff+1XwbpMp0lhuAhbb
+kZw9ekFCV3WQ6PtUsM2BBXe3p5TGd2x87UyCCPHf07Gv+Sg3iByLo2/Wyfi7ueSI
+iFhA/64DVG+pIUHGAeo5xiZm+FFdi0iUGwKWe7F06BO5mNGs3d41KhZb6J/DBSc3
+wfQ/9jTGQZFEY3pB1eGx3tYm9RNJoF17Nc30m1k3ffOsGhoGImY9ziMdAQ/o6kCU
+vKnWPCw0bIqOaSfcunrh7yTzuO8flGCaptrkc7hMdN5Sw3gs4s7nyNqvTmYpLIxW
+WpDNcG70s1emnED1c6EcaJvxwo2ICsDr0ih+QXb/yp3kQxwNARDzP6E2Ybtv4WKO
+Eg6umnZnjRzgEh9aq619jgdx7QxnjxZNUsyjtiFJdR+/ryr++4Y86q55jYRUQkZ3
+c0rhYxGWI1/UlnqKn7O49SQ3TqnxhlEdu+6zGTLQvSwDZdWxfejZvZgbSub5t0jI
+l4PS/URkVFyf5jWQyfIU
+=ZQEI
 -----END PGP SIGNATURE-----
 
---GyRA7555PLgSTuth--
+--19uQFt6ulqmgNgg1--
