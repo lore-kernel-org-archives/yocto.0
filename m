@@ -1,71 +1,66 @@
-Return-Path: <twoerner@gmail.com>
+Return-Path: <sbabic@denx.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2FC1DE00BF3; Tue,  6 Dec 2016 13:32:32 -0800 (PST)
+	id 9CC31E00C19; Tue,  6 Dec 2016 14:38:37 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (twoerner[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.223.193 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [212.18.0.9 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.223.193 listed in dnsbl.sorbs.net]
-Received: from mail-io0-f193.google.com (mail-io0-f193.google.com
-	[209.85.223.193])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1B421E00BB1
-	for <yocto@yoctoproject.org>; Tue,  6 Dec 2016 13:32:28 -0800 (PST)
-Received: by mail-io0-f193.google.com with SMTP id r94so9286539ioe.1
-	for <yocto@yoctoproject.org>; Tue, 06 Dec 2016 13:32:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-disposition:in-reply-to:user-agent;
-	bh=MgeiQo+lL1rN/ldHNmKGzKPyfYzrFxYcnWqZPhzsnxE=;
-	b=T2sJL9x5k3a66DMq+evM+sS5Mu3Hp5gJx2Bx3eJN+FLelX7olPZpzlIrWTFLCSHaVO
-	RAnHNkX5MzImbzTSQ34/3Tb7i5T2vN4fA24A/Wxlvi5+NDF+G57pCzVHSXk/b6TqegYP
-	ulj0W8ROfHaDPm5NsEjkKubB68YIIKhpQ8v85qqun5PKntvocGhqK5L7L1ufruk7eNaD
-	UBUahflRe6c44JqBKqbp5PBYviL8vvjZjwI4+TaG7dRqiXUWuiwhca5gwb1IYOlWIh7R
-	sm6RAbLv1gBcInYoRwJTQYdTGy/qyTTkKuwEIEhLlxZN4Jq5qHONmYBNd35+ctehBAcM
-	l3Lg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-	:mime-version:content-disposition:in-reply-to:user-agent;
-	bh=MgeiQo+lL1rN/ldHNmKGzKPyfYzrFxYcnWqZPhzsnxE=;
-	b=FwuH/qh0PCKiCf9wKcP182q5j4O5xrIr6rOJAd3qiVGy2D6KITdjOdtDkB8kGb18uw
-	yPGQ4lpBTNiHhyk90ikWFBWAn5NrnXXsjN9p051BjwxJROlAWophZg4AkSrYGEgXBTaQ
-	TsPPRDblEJzIRtc3fmOfyYqDVhr5kLp2B5ebCfq2d7I/4BXEH01Rp7SGrI+wc8OM2kMs
-	0Zq6srLTRiVPGxIeM7MhmZzzhn79chzkcMoDUaLv8IzaU/qHbUe1japM8A4qoydquvxL
-	h4WnPtmhZYxo+pMl3wyGnAnqnclHNjVIY2OJtnkVKiP619KmgiG2oZJundYJFaCpyZD+
-	gP/A==
-X-Gm-Message-State: AKaTC02VBjeO8TDGcIjCs93MYtfqiDFU2Th5Ke8ZZ15tGC7xe7CDYisVsbDXxpTotZb6rQ==
-X-Received: by 10.36.26.23 with SMTP id 23mr631895iti.84.1481059947821;
-	Tue, 06 Dec 2016 13:32:27 -0800 (PST)
-Received: from openSUSE-i7.site ([45.72.150.99])
-	by smtp.gmail.com with ESMTPSA id
-	w188sm2142678itc.9.2016.12.06.13.32.26
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 06 Dec 2016 13:32:26 -0800 (PST)
-Date: Tue, 6 Dec 2016 16:32:24 -0500
-From: Trevor Woerner <twoerner@gmail.com>
-To: Gary Thomas <gary@mlbassoc.com>
-Message-ID: <20161206213224.GA22102@openSUSE-i7.site>
-References: <19a9d76a-2c15-551a-2fce-55d8b8cfe1d0@mlbassoc.com>
+Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 232FBE00BC0
+	for <yocto@yoctoproject.org>; Tue,  6 Dec 2016 14:38:33 -0800 (PST)
+Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
+	by mail-out.m-online.net (Postfix) with ESMTP id 3tYGkD1lrxz3hj1D;
+	Tue,  6 Dec 2016 23:38:28 +0100 (CET)
+Received: from localhost (dynscan1.mnet-online.de [192.168.6.68])
+	by mail.m-online.net (Postfix) with ESMTP id 3tYGkD0p9yzvlVY;
+	Tue,  6 Dec 2016 23:38:28 +0100 (CET)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from mail.mnet-online.de ([192.168.8.182])
+	by localhost (dynscan1.mail.m-online.net [192.168.6.68]) (amavisd-new,
+	port 10024)
+	with ESMTP id 0phhpNodWrJS; Tue,  6 Dec 2016 23:38:26 +0100 (CET)
+Received: from babic.homelinux.org (host-88-217-136-221.customer.m-online.net
+	[88.217.136.221]) by mail.mnet-online.de (Postfix) with ESMTP;
+	Tue,  6 Dec 2016 23:38:25 +0100 (CET)
+Received: from localhost (mail.babic.homelinux.org [127.0.0.1])
+	by babic.homelinux.org (Postfix) with ESMTP id 980E945404A3;
+	Tue,  6 Dec 2016 23:37:48 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at babic.homelinux.org
+Received: from babic.homelinux.org ([127.0.0.1])
+	by localhost (mail.babic.homelinux.org [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id dYEIg8cw-Nqt; Tue,  6 Dec 2016 23:37:45 +0100 (CET)
+Received: from [192.168.178.166] (stefano-MacBookPro.fritz.box
+	[192.168.178.166])
+	by babic.homelinux.org (Postfix) with ESMTPS id E1E12454025B;
+	Tue,  6 Dec 2016 23:37:44 +0100 (CET)
+To: Philip Balister <philip@balister.org>,
+	"Lopez, Mariano" <mariano.lopez@linux.intel.com>,
+	Patrick Ohly <patrick.ohly@intel.com>, Stefano Babic <sbabic@denx.de>
+References: <20161121120355.18309-1-git@andred.net>
+	<1480503859.6873.280.camel@intel.com>
+	<1480516308.13682.1.camel@andred.net>
+	<1480517999.6873.298.camel@intel.com>
+	<30a3dd41-2e1c-8658-b83d-8632944d1709@denx.de>
+	<1481017522.17535.38.camel@intel.com>
+	<8e1fdcb8-d9fb-0e51-2e21-91e7e7c6f450@linux.intel.com>
+	<c3ce9528-f2eb-dd3f-cc68-331435aeda35@balister.org>
+From: Stefano Babic <sbabic@denx.de>
+Message-ID: <16ca1a50-f46a-196f-66b8-91f0d14f59c2@denx.de>
+Date: Tue, 6 Dec 2016 23:38:21 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.5.1
 MIME-Version: 1.0
-In-Reply-To: <19a9d76a-2c15-551a-2fce-55d8b8cfe1d0@mlbassoc.com>
-User-Agent: Mutt/1.6.0 (2016-04-01)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi] Current master broken
+In-Reply-To: <c3ce9528-f2eb-dd3f-cc68-331435aeda35@balister.org>
+Cc: =?UTF-8?Q?Andr=c3=a9_Draszik?= <git@andred.net>, "Lopez,
+	Mariano" <mariano.lopez@intel.com>, yocto@yoctoproject.org
+Subject: Re: update mechanisms
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -77,22 +72,71 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 Dec 2016 21:32:32 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+X-List-Received-Date: Tue, 06 Dec 2016 22:38:37 -0000
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: 7bit
 
-Just to clarify, in the last couple days, there have been *two* major issues
-that have independently broken raspi builds:
+Hi Philip,
 
-1) the rebase of the raspi kernel repository at
-   git://github.com/raspberrypi/linux.git
-2) a bug in a recent commit to oe-core's kernel tools
+On 06/12/2016 19:45, Philip Balister wrote:
+> On 12/06/2016 06:11 AM, Lopez, Mariano wrote:
+>>
+>>
+>> On 12/6/2016 3:45 AM, Patrick Ohly wrote:
+>>> On Tue, 2016-12-06 at 10:01 +0100, Stefano Babic wrote:
+>>>> Hi Patrick,
+>>>>
+>>>> On 30/11/2016 15:59, Patrick Ohly wrote:
+>>>>> I've started a Wiki page
+>>>>> https://wiki.yoctoproject.org/wiki/System_Update - rudimentary at the
+>>>>> moment, but might as well be mentioned already now.
+>>>> I have seen Mariano added an entry for SWUpdate, too, thanks  - I would
+>>>> like to edit for better explanation on some parts. Should I try to edit
+>>>> directly the page or is it better to discuss it here ?
+>>
+>> It will be interesting to have your input directly, I tried to fill the
+>> table with my experience with SWUpdate but I think you could give a
+>> better insight of this. Thanks for joining the effort.
+>>
+>>> Use your own judgment. If its uncontroversial, the feel free to edit the
+>>> page directly, otherwise let's discuss it here.
+>>>
+>>> If feel that putting information directly into the table is too limiting
+>>> (it should be brief), then feel free to start a complete section about
+>>> SWUpdate.
+>>>
+>>> I'll do the same for swupd. Editing the sections should be possible
+>>> without conflicts, we just have to be more careful about editing the
+>>> table concurrently.
+>>>
+>>
+>> I agree with you, that we need to have a section per project, the table
+>> is too limiting.
+> 
+> I just skimmed the page and the table format isn't working well with the
+> length of the blocks of text.
+> 
 
-Andrei pushed patches today to update the src revs so, as of this moment, the
-SRC_URIs in meta-raspberrypi should be valid.
+Agree - I think it is better to have a section per project.
 
-A patch for the kernel tools in oe-core is on the mailing list; hopefully it
-will be pushed to master soon. Incidentally, this same bad commit also
-included a second bug that made it impossible for two different users on the
-same machine to perform OE builds. The fix addresses both issues.
+> I'd also suggest referencing Matt Porter's talk from ELCE 2016 about
+> software update technology:
+> 
+> http://elinux.org/images/3/31/Comparison_of_Linux_Software_Update_Technologies.pdf
+> 
+> https://youtu.be/pdHV9H9nZks?list=PLbzoR-pLrL6pRFP6SOywVJWdEHlmQE51q
+> 
+
+I have added references to the talks at last ELCE from Matt, Chris and
+Silvano.
+
+Stefano
+
+
+-- 
+=====================================================================
+DENX Software Engineering GmbH,      Managing Director: Wolfgang Denk
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: +49-8142-66989-53 Fax: +49-8142-66989-80 Email: sbabic@denx.de
+=====================================================================
 
