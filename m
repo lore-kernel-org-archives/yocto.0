@@ -1,68 +1,68 @@
 Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B4E14E006EA; Tue,  6 Dec 2016 07:43:45 -0800 (PST)
+	id A5471E00BB0; Tue,  6 Dec 2016 07:44:25 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.210.196 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.68 listed in list.dnswl.org]
-Received: from mail-wm0-f68.google.com (mail-wm0-f68.google.com [74.125.82.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6BF77E00546
-	for <yocto@yoctoproject.org>; Tue,  6 Dec 2016 07:43:42 -0800 (PST)
-Received: by mail-wm0-f68.google.com with SMTP id g23so22281769wme.1
-	for <yocto@yoctoproject.org>; Tue, 06 Dec 2016 07:43:41 -0800 (PST)
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.210.196 listed in dnsbl.sorbs.net]
+Received: from mail-wj0-f196.google.com (mail-wj0-f196.google.com
+	[209.85.210.196])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 89475E00B8F
+	for <yocto@yoctoproject.org>; Tue,  6 Dec 2016 07:44:12 -0800 (PST)
+Received: by mail-wj0-f196.google.com with SMTP id j10so17230217wjb.3
+	for <yocto@yoctoproject.org>; Tue, 06 Dec 2016 07:44:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
 	h=date:from:to:cc:subject:message-id:references:mime-version
 	:content-disposition:in-reply-to:user-agent;
-	bh=rgG8a7whw5eOszAJ7ubOEUlhOCe+r660UoD73uiusos=;
-	b=VJx8dTjXYgFmTa0kkwXNvLohuT0IIeiUt7bSPX6exTytmmSJccNRzrTAFUG6Vq4S/F
-	p1qglI8L0nsz3atT2p7k5XW4+neZU5jgBoRINBhVQefjLxPv3bRUPYjXdegPFbOCxQF4
-	x6Asac9HNqhcTFUnKmc9d511JFKo/0dr3SzR9rX5P1ipK/DqVLjEn+GCJ/KjxuPlve9I
-	DVluqbihKgcfIfvphPb7eISIJ4cJ5u8Qa5/037x8zoOpGVkTZWc+6GEZtUF9Ob6jq1iT
-	UUOoOtDFRYPvAsgtLX5v3ylrEGsjwWh8ev1DcypUz4ep6pQjsLbIwCnvkC4wFNZZoai7
-	laVg==
+	bh=n87KUAzNNu7kKulrcbuIazOGUT1W4dWWXJXzgN1Gxp4=;
+	b=IQ4RvuAiGOMzReB8fvjJs/Hcd3WPUSzyQbmVndex2HMpjzyMrwbMObr+NtwVQqDfcv
+	zhI+M6AIrJTC/sSYIvfryN5A0ykSwybqcpWKJO7++HKsqWcIXTQ3Xkkk2fgF5CeoE6Qh
+	jIoPVEbXo7Mj8ZvfSxKIIGxFf7p9bNN+sGK20iZPXdMLQ++r27zlJw1TeRHAdFQi6XpO
+	x+9YKuoanmEsPErYtlR+ZjutYOTabxzwB8F87UMOObz7yyCh0tBOP0eQQ2A70Qu3nkRM
+	oyWPSoVPtanskZbqADoAHYrR7i8FtbKewLLd3cnTLXnCcywEtWlbvUtvhU+hmy/sArrS
+	iWbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
 	:mime-version:content-disposition:in-reply-to:user-agent;
-	bh=rgG8a7whw5eOszAJ7ubOEUlhOCe+r660UoD73uiusos=;
-	b=j6jn8new1EsUm1anihEFMnBRvlgCc607dqzTU8RvzFs3j4n6NyMkaq6BsWWEIuJFRa
-	i5KSIEr9YeOKvy9a97sQe1CZLaG8IFARmlmw/a79w6HocTh8MNTEEnfjv4ygQQfVGuD0
-	NtpHDa6/U3HmBu8n1PAxCxw0XF09SqTxfALup35RkENCeWj26kCGr6aGzu+g4CcgZx8l
-	2gAncvSry1Wqx4vJ9b4PuKfgkRsEaOlRMNrDkGJJoPTxMYf9q7UrXg5q/K+mxokRlFYe
-	imjjv9bzcLnWhZwSdLiuxbArlQ6vtgCPQL+MBMEIy4HGxa61QTBG34Tqk3jOkVd07OV4
-	FmkA==
-X-Gm-Message-State: AKaTC02oyAv4mVeJ0UIGfcFXyid6ZYwodD4sUAefA/zSxfgjSF+4dBDYIm1kco/NqqTqQg==
-X-Received: by 10.28.220.5 with SMTP id t5mr3176847wmg.80.1481039021188;
-	Tue, 06 Dec 2016 07:43:41 -0800 (PST)
+	bh=n87KUAzNNu7kKulrcbuIazOGUT1W4dWWXJXzgN1Gxp4=;
+	b=TlCyDgAIGBvzhSHSEr8sWJy6cBPNW1aDbuTRPjm0tqYLJbmdp6ODr2QGLNpbcAroUQ
+	IcBbOVyqACNObBFsrzZX6H+Aes1n8CbgAvtZZer8+pnv6uE0Nv4K78qF8/HUBCuCFFcP
+	5Zdkjm9g4ooKEOfOF+uKE/cmF6uuxVa6J5KyCiS2si32uOyM9Yg+j/7h40tO11JmUnK7
+	Ys2SUn/iTIxDguC6UVWFXNnaHKGPDkSNlYFyrQLJxDcT2HlyC79WEX9yjo9M38thm+WX
+	Lr3l9sHJc2cl019uUykW7GFHx1kXoqKs8/rrtXtbq0SPGPFhZe5rOFTuRe4//tKg2LC+
+	Lbgw==
+X-Gm-Message-State: AKaTC01JR+YSWpnlgEnIYMRH32CCz1rcbwuqL3vwpaEEMQaASUKCLX/uHQ+r6ggl3zXO7g==
+X-Received: by 10.194.146.131 with SMTP id tc3mr56593805wjb.129.1481039051617; 
+	Tue, 06 Dec 2016 07:44:11 -0800 (PST)
 Received: from carbonA (cpc96910-walt25-2-0-cust629.13-2.cable.virginm.net.
 	[82.22.166.118])
-	by smtp.gmail.com with ESMTPSA id l74sm4662691wmg.2.2016.12.06.07.43.40
+	by smtp.gmail.com with ESMTPSA id 63sm4660049wmg.2.2016.12.06.07.44.10
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 06 Dec 2016 07:43:40 -0800 (PST)
-Date: Tue, 6 Dec 2016 15:43:34 +0000
+	Tue, 06 Dec 2016 07:44:10 -0800 (PST)
+Date: Tue, 6 Dec 2016 15:44:09 +0000
 From: Andrei Gherzan <andrei@gherzan.ro>
 To: Trevor Woerner <twoerner@gmail.com>
-Message-ID: <20161206154334.GA1636@carbonA>
-References: <20161128151233.8861-1-twoerner@gmail.com>
-	<9045CDB4-3095-4352-A4A3-04EAC676F466@gmail.com>
-	<20161129014240.GB30326@openSUSE-i7.site>
-	<5A8D2138-126E-468B-8637-D7A927386706@gmail.com>
-	<20161129030324.GA2836@openSUSE-i7.site>
+Message-ID: <20161206154409.GB1636@carbonA>
+References: <20161129160459.813-1-twoerner@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20161129030324.GA2836@openSUSE-i7.site>
+In-Reply-To: <20161129160459.813-1-twoerner@gmail.com>
 User-Agent: Mutt/1.7.1 (2016-10-04)
 Cc: yocto@yoctoproject.org
-Subject: Re: [meta-raspberrypi][PATCH] linux-raspberrypi_4.4.bb: upgrade to 4.4.32
+Subject: Re: [meta-raspberrypi][PATCH] linux-raspberrypi_4.4.bb: upgrade to 4.4.35
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,65 +74,69 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 Dec 2016 15:43:45 -0000
-X-Groupsio-MsgNum: 33315
+X-List-Received-Date: Tue, 06 Dec 2016 15:44:25 -0000
+X-Groupsio-MsgNum: 33316
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="ZPt4rx8FFjLCG7dd"
+	protocol="application/pgp-signature"; boundary="uQr8t48UFsdbeI+V"
 Content-Disposition: inline
 
---ZPt4rx8FFjLCG7dd
+--uQr8t48UFsdbeI+V
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
-On Mon, Nov 28, 2016 at 10:03:24PM -0500, Trevor Woerner wrote:
-> On Mon 2016-11-28 @ 05:52:38 PM, Khem Raj wrote:
-> >
-> > > On Nov 28, 2016, at 5:42 PM, Trevor Woerner <twoerner@gmail.com> wrote:
-> > >
-> > > On Mon 2016-11-28 @ 03:21:50 PM, Khem Raj wrote:
-> > >> its at 4.4.35 now see
-> > >> https://github.com/kraj/meta-raspberrypi/commits/kraj/master <https://github.com/kraj/meta-raspberrypi/commits/kraj/master>
-> > >
-> > > True. But there's no -rt patch for 4.4.35:
-> > > https://www.kernel.org/pub/linux/kernel/projects/rt/4.4/
-> > >
-> > > The latest 4.4.y -rt patch is 4.4.32.
-> > >
-> > > Since I'm working on a separate recipe for 4.4.32-rt43 I guess I could just
-> > > base it on 4.4.32 and let the non-rt-mainline advance to 4.4.35 :-)
-> >
-> > does it not apply cleanly on 4.4.35
+On Tue, Nov 29, 2016 at 11:04:59AM -0500, Trevor Woerner wrote:
+> Signed-off-by: Trevor Woerner <twoerner@gmail.com>
+> ---
+>  recipes-kernel/linux/linux-raspberrypi_4.4.bb | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 >
-> As luck would have it, it does!
-> (minus one hunk from Makefile for something that had already been added)
+> diff --git a/recipes-kernel/linux/linux-raspberrypi_4.4.bb b/recipes-kernel/linux/linux-raspberrypi_4.4.bb
+> index 19e8552..35a72d7 100644
+> --- a/recipes-kernel/linux/linux-raspberrypi_4.4.bb
+> +++ b/recipes-kernel/linux/linux-raspberrypi_4.4.bb
+> @@ -1,8 +1,8 @@
+>  FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
 >
-> Tomorrow I'll do a boot test and submit the patch (unless the boot test fails,
-> or someone else beats me to it)
+> -LINUX_VERSION ?= "4.4.28"
+> +LINUX_VERSION ?= "4.4.35"
+>
+> -SRCREV = "5afda48c3408e15742d4569459a4ff668e2857f7"
+> +SRCREV = "5d765c8b5782de7ed49f623c107f1b395429b560"
+>  SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-4.4.y \
+>             file://0001-fix-dtbo-rules.patch \
+>  "
+> --
+> 2.10.2
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-It does apply on .35 too (with some very minor changes). So, I will
-merge the other update patch. Thanks guys!
+Merged to master. Thanks.
 
 --
 Andrei Gherzan
 
---ZPt4rx8FFjLCG7dd
+--uQr8t48UFsdbeI+V
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIcBAEBCAAGBQJYRtyfAAoJEHO76Gt+erfPFdoQAIkdul9p4wuEXMZNXl6IcCA5
-qoVWBd83+n02EX7u0wZwODEpE8ZMp7dKFPeBa8nnn3GROVOwe/i75oZcJ5+k0dJW
-+rFPYGb1O9m1tQmx4E9DDOl3HwKFlTlBKoqOcrNrYsEg4DTo+RuxGjW1X425kmjJ
-4exNxfXgI004CJ0YXFEL8vO+juqLRCeg9Tal6r7eM1KFulOHJl8baAiLcfyebrP2
-DEo7kjIXIMtf7Yg8GyD3mkzk7UY3pnOV3kh7etdBpvOpiGeul0EKhKAWfqxud6xL
-IWwRXzGQcpTh0T2RdlK77aaNyaQ9UMrriSDv489LBotb9QhK/b9ea3yRlch+vMRz
-tE1KK+sawVZ7otA9BJPnEIIBnwddmmjSC1JmgROVgthFr+oLwOFqbf7lq1r6uDu1
-GZ4vYPV/FrOTJGrN1ObCAvJD4bDPZbz0KXOhoeWtJpCuWzJVOxjNdYX78zQFZT2W
-YqvaZWJRJUkSbH0ZTcdTMp9DhwAkWGKLFim7rTVfQLObICnAb3sSq8QCxc2bgT7J
-HeHzSY/xqnwiJdcogK+3YmvuC389I+NMW9Upqz+WdU/VbUpDicuFxxrLrARwwkYJ
-z1ucGQmvcwVlzAR5c/2yVOE4tvQrI6NF4xY9vN/TuOpe4T2ZdkLg7Dix9iRaIJma
-jAYdiuKrKG+ObjaWWA80
-=UFQ2
+iQIcBAEBCAAGBQJYRtzJAAoJEHO76Gt+erfPsmIQAMXP3c1H887uKckM3v5niEix
+xpQNek3p55+3BDU5nFAZu3YR+U7vEzM3gI8JpgH1ld8rxV9ldFjVMmwTJZ6qHsSz
+yVCJcs7ncv1RQvh8xIx9EZkDTz5rwmVlV7B/V93qJ9ZZJwVVsgBAnnnF8gRsAuRd
+CGKhtW5LDwClAtc/FvCFnSL6ub8IcCGXV3V3CjwrcK6i6Fkrpm/bWTEn7Id+b+eW
+K3oqwD+rSYW8gx6bYm+ytmC6k14I+o3DByIfFaehC05VFhpWyHRh6k6QmdjyQzMo
+L8mXa4dw0jGcf1iQSHkE+ecYPoE5yItiSbWZlWuuCqU/EOL5BZEImKvyf3GyOJe4
+jt7/GAkbRWoulfQpBklsTGewwJPPupK+sREg8yt+WF1Ydd/NfQNDgRC7hvvHJDJK
++7EfVeoSbO+3HimpVjjCz9FDr5gsC1oRi/P4cIPGbaw/gRxTlqPyaD4OTwAHm+83
+KMLklpCUk6ASZMgaNgAIUeOY7bL45MCzboaf+GKT4cC+kKKXWJx0c8aJOkwACJob
+IrdRPXzl0zozL+mhZUNJqCc1Ga+5JH25plgIsZ27uWaop47tuaH9vsMmLKMd8Py3
+AQ2WfwhNqF8QT78ZGRYFtPLrcd/9Z2L+EcBezjGPBqGttKjAt8p1W5wRQlcTrP1W
+RQqodv/ZWkxslnFSPtvm
+=liC+
 -----END PGP SIGNATURE-----
 
---ZPt4rx8FFjLCG7dd--
+--uQr8t48UFsdbeI+V--
