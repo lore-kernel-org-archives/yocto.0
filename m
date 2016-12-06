@@ -1,67 +1,45 @@
-Return-Path: <andrei@gherzan.ro>
+Return-Path: <herve.jourdain@neuf.fr>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D237EE007A2; Tue,  6 Dec 2016 10:19:36 -0800 (PST)
+	id EA992E007A2; Tue,  6 Dec 2016 10:22:06 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [74.125.82.67 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.82.67 listed in dnsbl.sorbs.net]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [93.17.128.163 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f67.google.com (mail-wm0-f67.google.com [74.125.82.67])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BEB10E006EA
-	for <yocto@yoctoproject.org>; Tue,  6 Dec 2016 10:19:33 -0800 (PST)
-Received: by mail-wm0-f67.google.com with SMTP id a20so23191942wme.2
-	for <yocto@yoctoproject.org>; Tue, 06 Dec 2016 10:19:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-disposition:in-reply-to:user-agent;
-	bh=JyliuutCKy9+0qnezHA3JyuIFuULAZaS299JgDt47UU=;
-	b=J3oCqx0QLv9CXFId+AT7ly+ub/u+UL5V6wzPpGi4/iRZg+pOt9vHsQfHeEf4QKxLXp
-	mg3k8qH/erhw6vabidmSddsniDcNyrMGIZT3IspBsn6Xqi6mHFUitpeQw+OMXVWCic1f
-	1reF5hqan+RH9GqNIsvksBFORR4LopCXM41jgJV+Jk+KEF5FIFKHJBm5uBl6oetiVpcv
-	YsAv9nXCFlWC63PXA+CUZY2U9QyAywIBrOlnKk3o75ruMNjLpRlR/B6j35SC1Mug450H
-	otS5B1iV5tG1rUhw+4wRLvsZAeKW19ZnwY2zAOujY5z4mzjlkCr013M/ap1sOylxSvWH
-	Xfug==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-	:mime-version:content-disposition:in-reply-to:user-agent;
-	bh=JyliuutCKy9+0qnezHA3JyuIFuULAZaS299JgDt47UU=;
-	b=d+kFoB5rGhfIrWNc2vGKmOUrND82XFh8JsBGSYDyX+SQgpzYF1j7wM4JZImE6cYYx0
-	MeZCdGp45eu7ULxMF2/grzZ9TWQWbj8sBn26R/M6TbOwlTXfvO/plF3Bn2ezJd7cb/Yc
-	qlIsPRVyR/RPpfutdhrOmyh6HH+vObXylbV87K0mHT+EnKfiSkhfWZMijSeXrd0Swkj4
-	WTeGBNVABOT6Az9jPyipsrzlv8F6c/R4OKoF/Qjblk66DLwXF2163KtMFuO/MzHPrTFk
-	zlxJ3WMofjCjnbBNFo7DcBasPpfSBL/1MVkbdkxfAl/NbA2o5teQvJbdUZSjU4iu+qqV
-	Ddng==
-X-Gm-Message-State: AKaTC02/dzUyQQOXfVCMIDamhT5fnoq4MfbdEehM5xfgcswCO65jLXPrqZFIyWTc+2WK6w==
-X-Received: by 10.28.187.11 with SMTP id l11mr3773439wmf.72.1481048372971;
-	Tue, 06 Dec 2016 10:19:32 -0800 (PST)
-Received: from carbonA (cpc96910-walt25-2-0-cust629.13-2.cable.virginm.net.
-	[82.22.166.118]) by smtp.gmail.com with ESMTPSA id
-	yg1sm26999968wjb.12.2016.12.06.10.19.31
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 06 Dec 2016 10:19:32 -0800 (PST)
-Date: Tue, 6 Dec 2016 18:19:30 +0000
-From: Andrei Gherzan <andrei@gherzan.ro>
-To: Paul Barker <paul@paulbarker.me.uk>
-Message-ID: <20161206181930.GH1636@carbonA>
-References: <1480539759-18292-1-git-send-email-paul@paulbarker.me.uk>
+Received: from smtp26.services.sfr.fr (smtp26.services.sfr.fr [93.17.128.163])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DEA70E006EA
+	for <yocto@yoctoproject.org>; Tue,  6 Dec 2016 10:22:05 -0800 (PST)
+Received: from nbhjo (plum.beechwoods.com [70.88.250.17])
+	by msfrf2601.sfr.fr (SMTP Server) with ESMTP id 50F281C00886E;
+	Tue,  6 Dec 2016 19:22:04 +0100 (CET)
+Received: from nbhjo (plum.beechwoods.com [70.88.250.17])	(using TLSv1.2
+	with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))	(No client
+	certificate requested)	(Authenticated sender: herve.jourdain@neuf.fr)
+	by msfrf2601.sfr.fr (SMTP Server) with ESMTPSA;
+	Tue,  6 Dec 2016 19:22:01 +0100 (CET)
+Authentication-Results: sfr.fr; auth=pass (LOGIN)
+	smtp.auth=herve.jourdain@neuf.fr
+From: Herve Jourdain <herve.jourdain@neuf.fr>
+To: 'Gary Thomas' <gary@mlbassoc.com>, 'Andrei Gherzan' <andrei@gherzan.ro>
+References: <1481016818-27612-1-git-send-email-gary@mlbassoc.com>
+	<001e01d24fbe$b293d8e0$17bb8aa0$@neuf.fr>
+	<4618c4f6-81dc-18ca-dfc6-a823ee640bc3@mlbassoc.com>
+	<20161206154801.GC1636@carbonA>
+	<456946d1-6c5c-15cb-4c76-4c8484dacfda@mlbassoc.com>
+In-Reply-To: <456946d1-6c5c-15cb-4c76-4c8484dacfda@mlbassoc.com>
+Date: Tue, 6 Dec 2016 19:22:00 +0100
+Message-ID: <00a001d24fed$a4e28dc0$eea7a940$@neuf.fr>
 MIME-Version: 1.0
-In-Reply-To: <1480539759-18292-1-git-send-email-paul@paulbarker.me.uk>
-User-Agent: Mutt/1.7.1 (2016-10-04)
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi][PATCH v5] u-boot: Simplify boot script
+X-Mailer: Microsoft Outlook 15.0
+Thread-Index: AQJYGqWR7tPui6g/rwVhQQhrZs04TwGa2lT2Acj4bZIBj7zJ0wJ62Z2En7QxAKA=
+X-sfr-mailing: LEGIT
+Cc: yocto@yoctoproject.org
+Subject: Re: ***SPAM*** Re: [meta-raspberrypi][PATCH] gstreamer1.0-plugins-bad: Don't hard wire use of userland
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,60 +51,63 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 Dec 2016 18:19:36 -0000
-X-Groupsio-MsgNum: 33325
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="6cMF9JLEeZkfJjkP"
-Content-Disposition: inline
+X-List-Received-Date: Tue, 06 Dec 2016 18:22:07 -0000
+Content-Type: text/plain; charset=iso-8859-1
+Content-Transfer-Encoding: quoted-printable
+Content-Language: fr
 
---6cMF9JLEeZkfJjkP
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Hi Gary,
 
-On Wed, Nov 30, 2016 at 09:02:39PM +0000, Paul Barker wrote:
-> From: Jonathan Liu <net147@gmail.com>
->
-> A patch is backported to check if the firmware loaded a device tree blob
-> into memory and set the fdt_addr variable if it is found. The U-Boot
-> script will then read the command line arguments generated by the
-> firmware from the device tree and boot the kernel with the command
-> line arguments and the loaded device tree.
->
-> This allows things like MAC address, board revision and serial number
-> to be correctly configured and options in config.txt to be used.
->
-> An additional patch is backported and further changes are made to support
-> this.
->
-> Signed-off-by: Jonathan Liu <net147@gmail.com>
-> Signed-off-by: Paul Barker <paul@paulbarker.me.uk>
-> ---
-> Changes in v5:
->  - Backport an additional patch and make further changes to support u-boot
->    v2016.03
+Could you try a local to your layer gstreamer1.0-plugins-bad_%.bbappend,
+that would contain:
+PACKAGECONFIG_remove_rpi =3D " dispmanx"
+And see if it solves your problem?
 
-Merged to master. Thank you.
+I've never built for "vc-graphics-hardfp", as I'm not sure if there are
+benefits in using it over either using the userland or vc4, so I'm not =
+sure
+whether it can work without dispmanx, nor why it would not compile with
+dispmanx enabled.
+But if this works, then we might need to consider to add an additional =
+case
+for not enabling dispmanx.
+
+Cheers,
+Herve
+
+-----Original Message-----
+From: Gary Thomas [mailto:gary@mlbassoc.com]=20
+Sent: mardi 6 d=E9cembre 2016 16:58
+To: Andrei Gherzan <andrei@gherzan.ro>
+Cc: Herve Jourdain <herve.jourdain@neuf.fr>; yocto@yoctoproject.org
+Subject: ***SPAM*** Re: [yocto] [meta-raspberrypi][PATCH]
+gstreamer1.0-plugins-bad: Don't hard wire use of userland
+
+On 2016-12-06 16:48, Andrei Gherzan wrote:
+> On Tue, Dec 06, 2016 at 04:02:20PM +0100, Gary Thomas wrote:
+>> On 2016-12-06 13:45, Herve Jourdain wrote:
+>>> Hi Gary,
+>>>
+>>> But dispmanx is really only provided by userland, it does not exist=20
+>>> in other flavors of egl/libgles.
+>>> Actually, dispmanx should not be selected in PACKAGECONFIG if=20
+>>> userland is not in use for EGL/GLES.
+>>
+>> Fine, but I'm looking for a solution where I can choose to use=20
+>> vc-graphics-hardfp so X11 works again and I can also have gst-player=20
+>> which depends on gstreamer-1.0-bad
+>>
+>> Any ideas?
+>>
+>
+> Disabling dispamanx is not working?
+
+How might I do that?  It's not clear from [at least] that recipe.
+
 --
-Andrei Gherzan
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
---6cMF9JLEeZkfJjkP
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
-
-iQIcBAEBCAAGBQJYRwEyAAoJEHO76Gt+erfPCicP/jGFScOhzdGHr3DTPeVu6s1c
-nf+BnraBNV5s1vm8VBqYclDgOK/tyryaBN0uOgrevsfPWGQvkpF6TbRvPLQT6t+l
-CDqJH6F27ymWTxTXESqJHkM2Xon/6rRdEtxIRLMwLI1DH4TUfowpef7muYrtxGjv
-Up/di+XqasZBeJji5CY/JLzu1T2TpavJhX8dJ58//eR4Etie/osho+moHm4dVSGe
-Cs5SjakfCjGD4puyeYD56DhoJg3BDRCj/Spfzb7G5GmPowt1pb4XP/wXrVeZKuOC
-3UJgG7CjkrGlI4PDq79zWEhMH4z0myu8ZawGwBOIPz99pxO6P+C25Qf8fcZmnvJz
-5tdKOi+3W2UKDYXhWxsQLqhWywMzxgVEfnL2yO/+y3qs4deQ7v9Z2JRoSUV/1TVX
-Sr1Ex79hn7hVc57zVRmGBE6l1gW2oPkxl8DluAsWNii+7qHxZm+//61QuIIq/JCL
-z+xCkRtZ63BMJcJWAQR0To0onINf9bYlwGmU7HDkXSwH6ldsx0i17kADpLnww/Gw
-BiXBspnVFIi6B/druwIA0LeH6xPuqatTf3wtOSdZ9gjnk4g5k8EG4TsznnEn4KWH
-0b27AJx97QuAvWSxGZMq5EORiPFQXtuWfEE/P/545IBu/e30gIqoyCM+QKIf1bwX
-5hISqGnten4QsT6+hIKV
-=+imV
------END PGP SIGNATURE-----
-
---6cMF9JLEeZkfJjkP--
