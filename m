@@ -1,38 +1,48 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <stephen.k.jolley@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9B258E00C41; Mon,  5 Dec 2016 22:03:30 -0800 (PST)
+	id E20D5E00C54; Mon,  5 Dec 2016 23:10:18 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [134.134.136.31 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.analogue-micro.com (mail.analogue-micro.com
-	[217.144.149.242])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D68AFE00C37
-	for <yocto@yoctoproject.org>; Mon,  5 Dec 2016 22:03:27 -0800 (PST)
-Received: by mail.analogue-micro.com (Postfix, from userid 999)
-	id B3E3C68A01B; Tue,  6 Dec 2016 06:03:25 +0000 (GMT)
-Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
-	by mail.analogue-micro.com (Postfix) with ESMTP id E728F68A019;
-	Tue,  6 Dec 2016 06:03:24 +0000 (GMT)
-Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
-	by zeus.mlbassoc.com (Postfix) with ESMTP id 585A66740222;
-	Tue,  6 Dec 2016 07:03:24 +0100 (CET)
-From: Gary Thomas <gary@mlbassoc.com>
-To: Khem Raj <raj.khem@gmail.com>, "Burton, Ross" <ross.burton@intel.com>
-References: <46bab4e1-e552-12b4-5847-daeeaf93099a@mlbassoc.com>
-	<CAJTo0La8z_DDK3dGT4kh163oPdvkMdU=bPbXBW0ypnTORRPung@mail.gmail.com>
-	<CAMKF1srnjaSa314J7GJEuT8Gs8oy2swEWb=oq=Yeob1Wm+mFuw@mail.gmail.com>
-Message-ID: <e2d92350-4a05-5d53-11c6-bb1c6dde5d9a@mlbassoc.com>
-Date: Tue, 6 Dec 2016 07:03:24 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.5.1
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A4D52E00C39
+	for <yocto@yoctoproject.org>; Mon,  5 Dec 2016 23:10:16 -0800 (PST)
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+	by orsmga104.jf.intel.com with ESMTP; 05 Dec 2016 23:10:15 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.33,751,1477983600"; 
+	d="scan'208,217";a="199452788"
+Received: from fmsmsx106.amr.corp.intel.com ([10.18.124.204])
+	by fmsmga004.fm.intel.com with ESMTP; 05 Dec 2016 23:10:15 -0800
+Received: from fmsmsx102.amr.corp.intel.com (10.18.124.200) by
+	FMSMSX106.amr.corp.intel.com (10.18.124.204) with Microsoft SMTP Server
+	(TLS) id 14.3.248.2; Mon, 5 Dec 2016 23:10:15 -0800
+Received: from fmsmsx112.amr.corp.intel.com ([169.254.5.229]) by
+	FMSMSX102.amr.corp.intel.com ([169.254.10.135]) with mapi id
+	14.03.0248.002; Mon, 5 Dec 2016 23:10:15 -0800
+From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Reminder: Yocto Project Technical Team Meeting - Tuesday, Dec.
+	6, 2016 8:00 AM US Pacific Time
+Thread-Index: AdJPj67ReWMi62dVSlW9x7JEDUaPBw==
+Date: Tue, 6 Dec 2016 07:10:14 +0000
+Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155E572F5EFF@FMSMSX112.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.1.200.107]
+x-ctpclassification: CTP_IC
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiZmZkMzlhNzItMGJmNS00Y2E2LTk5NzAtNTRiY2Y0ZDk5MDhlIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX0lDIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE1LjkuNi42IiwiVHJ1c3RlZExhYmVsSGFzaCI6IndBY2FYblBvVFdZVElSOFlNRFBPamdVeWhCYjV1RjB3QTR5V0RXXC9KdjNrPSJ9
 MIME-Version: 1.0
-In-Reply-To: <CAMKF1srnjaSa314J7GJEuT8Gs8oy2swEWb=oq=Yeob1Wm+mFuw@mail.gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi] X11 failure
+Subject: Reminder: Yocto Project Technical Team Meeting - Tuesday, Dec. 6, 2016 8:00 AM US Pacific Time
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,48 +54,275 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 Dec 2016 06:03:30 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 06 Dec 2016 07:10:18 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155E572F5EFFFMSMSX112amrcor_"
 
-On 2016-12-05 19:22, Khem Raj wrote:
-> On Mon, Dec 5, 2016 at 3:15 AM, Burton, Ross <ross.burton@intel.com> wrote:
->>
->> On 5 December 2016 at 11:12, Gary Thomas <gary@mlbassoc.com> wrote:
->>>
->>> What do I need to do to get libGL v1 so X11 will work again?
->>
->>
->> That would be part of mesa-gl, but I'm surprised RPi X needs OpenGL (as that
->> is pure software, not accelerated).
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E572F5EFFFMSMSX112amrcor_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Tuesday, Dec. 6, 2016 8:00 AM US Pacific Time
+
+
+
+Agenda:
+
+
+
+* Opens collection - 5 min (Stephen)
+
+* Yocto Project status - 5 min (Stephen/team)
+
+https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.3_Status
+
+https://wiki.yoctoproject.org/wiki/Yocto_2.3_Schedule
+
+https://wiki.yoctoproject.org/wiki/Yocto_2.3_Features
+
+* Opens - 10 min
+
+* Team Sharing - 10 min
+
+
+
+We encourage people attending the meeting to logon the Yocto Project IRC ch=
+ancel during the meeting (optional):
+
+
+
+Yocto IRC: http://webchat.freenode.net/?channels=3D#yocto
+
+IRC Tutorial: http://www.irchelp.org/irchelp/irctutorial.html
+
+
+
+Conference Details:
+
+Company:           WIND RIVER SYS
+
+Ready-Access Number: 8007302996/9139049836
+
+Access Code:     2705751
+
+
+For International numbers see: https://www.yoctoproject.org/tools-resources=
+/community/monthly-technical-call
+
+
+Thanks,
+
+Stephen K. Jolley
+Yocto Project Program Manager
+INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
+*   Work Telephone:        (503) 712-0534
+*    Cell:               (208) 244-4460
+* Email:                            stephen.k.jolley@intel.com
+
+
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E572F5EFFFMSMSX112amrcor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
-> mesa-gl is used as provider for virtual/libgl when using userland
-> display driver.
-> if you use vc4graphics then you will use mesa for everything.
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";
+	panose-1:0 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:Verdana;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
+	{mso-style-priority:99;
+	mso-style-link:"Plain Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:10.5pt;
+	font-family:Consolas;
+	mso-fareast-language:EN-US;}
+p
+	{mso-style-priority:99;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;
+	mso-fareast-language:ZH-CN;}
+span.PlainTextChar
+	{mso-style-name:"Plain Text Char";
+	mso-style-priority:99;
+	mso-style-link:"Plain Text";
+	font-family:Consolas;}
+span.EmailStyle20
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">Tuesday, Dec. 6, 2016 8:00 AM US Pacific Time<o:p>=
+</o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas"><o:p>&nbsp;</o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">Agenda:<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">&nbsp;<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">* Opens collection - 5 min (Stephen)<o:p></o:p></s=
+pan></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">* Yocto Project status - 5 min (Stephen/team)<o:p>=
+</o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
+o_Project_v2.3_Status">https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.=
+3_Status</a><o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
+o_2.3_Schedule">https://wiki.yoctoproject.org/wiki/Yocto_2.3_Schedule</a><o=
+:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
+o_2.3_Features">https://wiki.yoctoproject.org/wiki/Yocto_2.3_Features</a>
+<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">* Opens - 10 min
+<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">* Team Sharing - 10 min<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoPlainText">We encourage people attending the meeting to logo=
+n the Yocto Project IRC chancel during the meeting (optional):<o:p></o:p></=
+p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText">Yocto IRC: <a href=3D"http://webchat.freenode.net=
+/?channels=3D#yocto">
+http://webchat.freenode.net/?channels=3D#yocto</a><o:p></o:p></p>
+<p class=3D"MsoPlainText">IRC Tutorial: <a href=3D"http://www.irchelp.org/i=
+rchelp/irctutorial.html">
+http://www.irchelp.org/irchelp/irctutorial.html</a> <o:p></o:p></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText">Conference Details:<o:p></o:p></p>
+<p class=3D"MsoPlainText">Company:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp; WIND RIVER SYS<o:p></o:p></p>
+<p class=3D"MsoPlainText">Ready-Access Number: 8007302996/9139049836<o:p></=
+o:p></p>
+<p class=3D"MsoPlainText">Access Code:&nbsp;&nbsp;&nbsp;&nbsp; 2705751<o:p>=
+</o:p></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.5pt;font-family:&quot;=
+Verdana&quot;,sans-serif;color:black"><o:p>&nbsp;</o:p></span></b></p>
+<p class=3D"MsoPlainText">For International numbers see: <a href=3D"https:/=
+/www.yoctoproject.org/tools-resources/community/monthly-technical-call">
+https://www.yoctoproject.org/tools-resources/community/monthly-technical-ca=
+ll</a><o:p></o:p></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
+><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
+ot;,serif;color:purple">Stephen K. Jolley</span></i></b><b><i><span style=
+=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,sans-serif;color:purple=
+"><o:p></o:p></span></i></b></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
+Courier New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></spa=
+n></b></p>
+<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
+><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
+or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
+<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:Wingdings;color:black">(<=
+/span><span style=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">
+</span><span style=3D"font-size:8.0pt;font-family:&quot;MS Sans Serif&quot;=
+;color:teal">&nbsp;&nbsp;</span><b><span style=3D"font-size:8.0pt;font-fami=
+ly:&quot;Comic Sans MS&quot;;color:teal">Work Telephone</span></b><span sty=
+le=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
+">(503) 712-0534<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
+;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
+ans Serif&quot;;color:teal">&nbsp;&nbsp;&nbsp;
+</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
+ot;;color:teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&=
+quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
+">(208) 244-4460<span style=3D"color:black"><o:p></o:p></span></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
+">* </span>
+<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
+MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
+.0pt;font-family:&quot;MS Sans Serif&quot;;color:teal">:</span><span lang=
+=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;">&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;
+<u><span style=3D"color:blue">stephen.k.jolley@intel.com</span></u></span><=
+span lang=3D"FR" style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,sa=
+ns-serif"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
 
-I used to do this with these lines in local.conf
-   PREFERRED_PROVIDER_virtual/egl ?= "vc-graphics-hardfp"
-   PREFERRED_PROVIDER_virtual/libgles2 ?= "vc-graphics-hardfp"
-
-However this now leads to a cascade of errors:
-   ERROR: Nothing PROVIDES 'userland' (but 
-/local/poky-cutting-edge/meta/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.8.3.bb DEPENDS on or otherwise 
-requires it)
-   ERROR: userland was skipped: PREFERRED_PROVIDER_virtual/libgles2 set to vc-graphics-hardfp, not userland
-   NOTE: Runtime target 'gst-player-dev' is unbuildable, removing...
-   Missing or unbuildable dependency chain was: ['gst-player-dev', 'gstreamer1.0-plugins-bad', 'userland']
-   NOTE: Runtime target 'gst-player-bin' is unbuildable, removing...
-   Missing or unbuildable dependency chain was: ['gst-player-bin', 'gstreamer1.0-plugins-bad', 'userland']
-   ERROR: Required build target 'video-demo-image' has no buildable providers.
-   Missing or unbuildable dependency chain was: ['video-demo-image', 'gst-player-bin', 'gstreamer1.0-plugins-bad', 
-'userland']
-
-If I remove gst-player-* from my image, I can build using vc-graphics-hardfp
-and X11 works again.
-
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
-
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E572F5EFFFMSMSX112amrcor_--
