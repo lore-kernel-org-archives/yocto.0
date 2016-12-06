@@ -1,70 +1,67 @@
 Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E1459E0079D; Tue,  6 Dec 2016 10:11:16 -0800 (PST)
+	id D237EE007A2; Tue,  6 Dec 2016 10:19:36 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [74.125.82.68 listed in list.dnswl.org]
+	*      [74.125.82.67 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.82.67 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f68.google.com (mail-wm0-f68.google.com [74.125.82.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1A731E00571
-	for <yocto@yoctoproject.org>; Tue,  6 Dec 2016 10:11:13 -0800 (PST)
-Received: by mail-wm0-f68.google.com with SMTP id u144so22991756wmu.0
-	for <yocto@yoctoproject.org>; Tue, 06 Dec 2016 10:11:13 -0800 (PST)
+Received: from mail-wm0-f67.google.com (mail-wm0-f67.google.com [74.125.82.67])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BEB10E006EA
+	for <yocto@yoctoproject.org>; Tue,  6 Dec 2016 10:19:33 -0800 (PST)
+Received: by mail-wm0-f67.google.com with SMTP id a20so23191942wme.2
+	for <yocto@yoctoproject.org>; Tue, 06 Dec 2016 10:19:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
 	h=date:from:to:cc:subject:message-id:references:mime-version
 	:content-disposition:in-reply-to:user-agent;
-	bh=KhQwpDLXZEixftTxT1IpAJCfLtbwB5XO6xdo5OFgpr4=;
-	b=QFShB0z0oLZxreHZyL1R6bVz0zFFfhOGn7JQEpriO7Frn7ZSCrSscdLhwgSI9+O6/j
-	v4p8O19CShVLG/S0w4jM0z9AeiRu76Z1U4iDgL6ncN+VxcnSo5Alb97/Ne4D21XEEnvy
-	2q7CkjuwvDlP5Gll1SJ3FO01O9agWjtzxiQXbNkwi+AZC5pAARlzsiUzJj+wTBvLl1E6
-	U/YcdYB27tb2m5jwmDB+ll32ZwdcdYaO/JAYY3lyAQW0fEWb5Lz+J9IcEGeh1Hc9s69o
-	EocHV1Q7V+Ebt6ymc043HwOZ0pLO13BMW0MHl10ewzs2XHVYPMo/4aKQ1Fyzmsgut0z+
-	h24g==
+	bh=JyliuutCKy9+0qnezHA3JyuIFuULAZaS299JgDt47UU=;
+	b=J3oCqx0QLv9CXFId+AT7ly+ub/u+UL5V6wzPpGi4/iRZg+pOt9vHsQfHeEf4QKxLXp
+	mg3k8qH/erhw6vabidmSddsniDcNyrMGIZT3IspBsn6Xqi6mHFUitpeQw+OMXVWCic1f
+	1reF5hqan+RH9GqNIsvksBFORR4LopCXM41jgJV+Jk+KEF5FIFKHJBm5uBl6oetiVpcv
+	YsAv9nXCFlWC63PXA+CUZY2U9QyAywIBrOlnKk3o75ruMNjLpRlR/B6j35SC1Mug450H
+	otS5B1iV5tG1rUhw+4wRLvsZAeKW19ZnwY2zAOujY5z4mzjlkCr013M/ap1sOylxSvWH
+	Xfug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
 	:mime-version:content-disposition:in-reply-to:user-agent;
-	bh=KhQwpDLXZEixftTxT1IpAJCfLtbwB5XO6xdo5OFgpr4=;
-	b=mHnmJo+FdEx15qEwWfLNn3+g+VsL9n7Aihlouy0vk8X55DrhlVDb22dArnZGZj94fZ
-	RhbBq+xUF89s2ZzVw3u0HIbxndSbS9902f0215eg8led/BkTS/7p8WMNmFFYn14yZ/ic
-	QyDBYnjpG9mFz5qwCpe65CdG5S3pQqbR97OBAHiTkj513IZYuouQ6BL6pbWC1tniq7QM
-	byI8D4GNkLqMKQ7mCtK1N6v8LJBWw+jdUe21JLDNrabzn21t0QiGR1tRgpVMkAnlNZ+a
-	m8BhOK6jMuyg0WfXgKrYFX5bpcR69E3/L9WGsKBpDr9PyslCafx8tsf861wzUtXto7SR
-	SaEg==
-X-Gm-Message-State: AKaTC02apRwQlX9a1eHuoT/Z3YlwgSgMuhP1b4tDMfYI0/SBSpQirvty4MnEVIr3l5fa3A==
-X-Received: by 10.28.149.135 with SMTP id x129mr4090608wmd.71.1481047872736;
-	Tue, 06 Dec 2016 10:11:12 -0800 (PST)
+	bh=JyliuutCKy9+0qnezHA3JyuIFuULAZaS299JgDt47UU=;
+	b=d+kFoB5rGhfIrWNc2vGKmOUrND82XFh8JsBGSYDyX+SQgpzYF1j7wM4JZImE6cYYx0
+	MeZCdGp45eu7ULxMF2/grzZ9TWQWbj8sBn26R/M6TbOwlTXfvO/plF3Bn2ezJd7cb/Yc
+	qlIsPRVyR/RPpfutdhrOmyh6HH+vObXylbV87K0mHT+EnKfiSkhfWZMijSeXrd0Swkj4
+	WTeGBNVABOT6Az9jPyipsrzlv8F6c/R4OKoF/Qjblk66DLwXF2163KtMFuO/MzHPrTFk
+	zlxJ3WMofjCjnbBNFo7DcBasPpfSBL/1MVkbdkxfAl/NbA2o5teQvJbdUZSjU4iu+qqV
+	Ddng==
+X-Gm-Message-State: AKaTC02/dzUyQQOXfVCMIDamhT5fnoq4MfbdEehM5xfgcswCO65jLXPrqZFIyWTc+2WK6w==
+X-Received: by 10.28.187.11 with SMTP id l11mr3773439wmf.72.1481048372971;
+	Tue, 06 Dec 2016 10:19:32 -0800 (PST)
 Received: from carbonA (cpc96910-walt25-2-0-cust629.13-2.cable.virginm.net.
-	[82.22.166.118])
-	by smtp.gmail.com with ESMTPSA id f3sm5257674wmf.10.2016.12.06.10.11.11
+	[82.22.166.118]) by smtp.gmail.com with ESMTPSA id
+	yg1sm26999968wjb.12.2016.12.06.10.19.31
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 06 Dec 2016 10:11:11 -0800 (PST)
-Date: Tue, 6 Dec 2016 18:11:10 +0000
+	Tue, 06 Dec 2016 10:19:32 -0800 (PST)
+Date: Tue, 6 Dec 2016 18:19:30 +0000
 From: Andrei Gherzan <andrei@gherzan.ro>
-To: Herve Jourdain <herve.jourdain@neuf.fr>
-Message-ID: <20161206181110.GG1636@carbonA>
-References: <19a9d76a-2c15-551a-2fce-55d8b8cfe1d0@mlbassoc.com>
-	<20161203141606.2899e98c@nuc.betafive.co.uk>
-	<CAK18fxFm3ttr1TJxw3+-PJD0A8WMDb0SKMMq2cJxiOwuY7=H1A@mail.gmail.com>
-	<9f5e8157-ba81-7486-d761-3fd0ec5de3f9@mlbassoc.com>
-	<CAMKF1sq0U1G-c266eCNCGAdw=B0Dcv0dXF7LjG8G=yPd4dFBXg@mail.gmail.com>
-	<CAK18fxHR-X12Hr0R2Ba8=UToVtvWmb979k9+eQi+6yqHvbUN2w@mail.gmail.com>
-	<009401d24feb$33bc8f30$9b35ad90$@neuf.fr>
+To: Paul Barker <paul@paulbarker.me.uk>
+Message-ID: <20161206181930.GH1636@carbonA>
+References: <1480539759-18292-1-git-send-email-paul@paulbarker.me.uk>
 MIME-Version: 1.0
-In-Reply-To: <009401d24feb$33bc8f30$9b35ad90$@neuf.fr>
+In-Reply-To: <1480539759-18292-1-git-send-email-paul@paulbarker.me.uk>
 User-Agent: Mutt/1.7.1 (2016-10-04)
-Cc: yocto@yoctoproject.org, 'Gary Thomas' <gary@mlbassoc.com>
-Subject: Re: ***SPAM*** Re: [meta-raspberrypi] Current master broken
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi][PATCH v5] u-boot: Simplify boot script
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,55 +73,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 Dec 2016 18:11:17 -0000
-X-Groupsio-MsgNum: 33324
+X-List-Received-Date: Tue, 06 Dec 2016 18:19:36 -0000
+X-Groupsio-MsgNum: 33325
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="4eRLI4hEmsdu6Npr"
+	protocol="application/pgp-signature"; boundary="6cMF9JLEeZkfJjkP"
 Content-Disposition: inline
 
---4eRLI4hEmsdu6Npr
+--6cMF9JLEeZkfJjkP
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
-On Tue, Dec 06, 2016 at 07:04:31PM +0100, Herve Jourdain wrote:
-> Hi Andrei,
+On Wed, Nov 30, 2016 at 09:02:39PM +0000, Paul Barker wrote:
+> From: Jonathan Liu <net147@gmail.com>
 >
-> But I believe that the core of the problem is not necessarily the patch in
-> oe-core to detect the kernel version itself, but like Khem mentioned the
-> fact that a "well known" SRCREV is only valid for a brief period of time
-> under the RPI tree "constant" rebasing we've been experiencing lately.
-> So basically, the SRCREV that is used is not corresponding to what it used
-> to be, if it's still there in the tree, and the oe-core detects that - the
-> SRCREV thought it was one version of the kernel, and it just happened that
-> it corresponds to a different codebase with a different linux version.
-> Killing the error reporting by a patch will probably not prevent the
-> mismatch happening behind the scene.
-> So like Khem mentioned, either we find a way to "prevent" the rebasing at
-> the source, or we need to track down every version we want to support, and
-> update SRCREV and corresponding kernel version for those.
+> A patch is backported to check if the firmware loaded a device tree blob
+> into memory and set the fdt_addr variable if it is found. The U-Boot
+> script will then read the command line arguments generated by the
+> firmware from the device tree and boot the kernel with the command
+> line arguments and the loaded device tree.
+>
+> This allows things like MAC address, board revision and serial number
+> to be correctly configured and options in config.txt to be used.
+>
+> An additional patch is backported and further changes are made to support
+> this.
+>
+> Signed-off-by: Jonathan Liu <net147@gmail.com>
+> Signed-off-by: Paul Barker <paul@paulbarker.me.uk>
+> ---
+> Changes in v5:
+>  - Backport an additional patch and make further changes to support u-boot
+>    v2016.03
 
-Got it now. What do you mean by "track down every version we want"?
+Merged to master. Thank you.
 --
 Andrei Gherzan
 
---4eRLI4hEmsdu6Npr
+--6cMF9JLEeZkfJjkP
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIcBAEBCAAGBQJYRv8+AAoJEHO76Gt+erfP9z0P/02gmSMtU/0mnyvc8YhMFACp
-qQ4isdeYJUnNjBRJOeQk0kuOoTz4TFOFAb+m/d85R5Pyj5Qhai/psdaDNxZ2weUV
-cnjynxvzNs1FW0RPsoKx/n3RLqHFW0XIcFn7qKTyHaexAB/R794LyIRdy1C+XAbA
-usRkzMU4fH4XGAnX++pw/g+4laYYY3F1Hku6Smu+dOtAr0qlLxpqM9t8/ckWWJhL
-UegnXVzGUvuJHOsClwOvysqZy2zvwjAb6Ud+MFxjXxoKhqXc1GO0lAyJ29/b0N70
-qR2an2IWfHbM1k0xvJHK+qM+C7liCEMCKlBvvsGsFE43F0WK99FcPt0s2iejYUbu
-ReTcPU5tBe41jza1Uc61eP4fNXmaOW1r87poQRQe3pZ+TATuK6nRyW6s3qVjCkpq
-zKpOaViIAJ6S5GuDKGCgc5YbopxTVUXW+btmY+3kN1O7li8nAE/hfo/71jASAhYw
-s9QAMsYTXphoBvBZXqXzjbMjDqXrZNSwaP2jcJRUoeEDt3ctc/2dMXKle7DQ7tml
-5cFaSGADU84+Rn85I3xU5F+YSqyWoqaZq/cBCYRrLs7Ezg13n8HG5rr97QWmUUO3
-2tG+aflSGdrH/IKgeziomUpw6hDpaoUpyrOKCdnHwa1ee3JeQsnGSkPnl4CrN/oZ
-ZAGRyhg9rI/KOkrYVr34
-=3I3Y
+iQIcBAEBCAAGBQJYRwEyAAoJEHO76Gt+erfPCicP/jGFScOhzdGHr3DTPeVu6s1c
+nf+BnraBNV5s1vm8VBqYclDgOK/tyryaBN0uOgrevsfPWGQvkpF6TbRvPLQT6t+l
+CDqJH6F27ymWTxTXESqJHkM2Xon/6rRdEtxIRLMwLI1DH4TUfowpef7muYrtxGjv
+Up/di+XqasZBeJji5CY/JLzu1T2TpavJhX8dJ58//eR4Etie/osho+moHm4dVSGe
+Cs5SjakfCjGD4puyeYD56DhoJg3BDRCj/Spfzb7G5GmPowt1pb4XP/wXrVeZKuOC
+3UJgG7CjkrGlI4PDq79zWEhMH4z0myu8ZawGwBOIPz99pxO6P+C25Qf8fcZmnvJz
+5tdKOi+3W2UKDYXhWxsQLqhWywMzxgVEfnL2yO/+y3qs4deQ7v9Z2JRoSUV/1TVX
+Sr1Ex79hn7hVc57zVRmGBE6l1gW2oPkxl8DluAsWNii+7qHxZm+//61QuIIq/JCL
+z+xCkRtZ63BMJcJWAQR0To0onINf9bYlwGmU7HDkXSwH6ldsx0i17kADpLnww/Gw
+BiXBspnVFIi6B/druwIA0LeH6xPuqatTf3wtOSdZ9gjnk4g5k8EG4TsznnEn4KWH
+0b27AJx97QuAvWSxGZMq5EORiPFQXtuWfEE/P/545IBu/e30gIqoyCM+QKIf1bwX
+5hISqGnten4QsT6+hIKV
+=+imV
 -----END PGP SIGNATURE-----
 
---4eRLI4hEmsdu6Npr--
+--6cMF9JLEeZkfJjkP--
