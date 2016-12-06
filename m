@@ -1,60 +1,42 @@
-Return-Path: <sona.sarmadi@enea.com>
+Return-Path: <herve.jourdain@neuf.fr>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 71758E00CC3; Tue,  6 Dec 2016 06:30:05 -0800 (PST)
+	id 97629E00CC4; Tue,  6 Dec 2016 06:30:57 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [185.38.181.44 listed in list.dnswl.org]
+	*      [93.17.128.1 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 107 seconds by postgrey-1.32 at yocto-www;
-	Tue, 06 Dec 2016 06:30:02 PST
-Received: from smtp-out11.electric.net (smtp-out11.electric.net
-	[185.38.181.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7A534E00CAF
-	for <yocto@yoctoproject.org>; Tue,  6 Dec 2016 06:30:02 -0800 (PST)
-Received: from 1cEGj5-0001Vc-W2 by out11b.electric.net with emc1-ok (Exim 4.87)
-	(envelope-from <sona.sarmadi@enea.com>)
-	id 1cEGj6-0001Wi-V1; Tue, 06 Dec 2016 06:28:12 -0800
-Received: by emcmailer; Tue, 06 Dec 2016 06:28:12 -0800
-Received: from [192.36.1.72] (helo=mx-3.enea.com)
-	by out11b.electric.net with esmtps (TLSv1:AES128-SHA:128) (Exim 4.87)
-	(envelope-from <sona.sarmadi@enea.com>)
-	id 1cEGj5-0001Vc-W2; Tue, 06 Dec 2016 06:28:11 -0800
-Received: from SESTOEX04.enea.se ([fe80::bc2d:9299:d6b2:d0b7]) by
-	SESTOEX08.enea.se ([fe80::1c3:4003:dc47:23c0%11]) with mapi id
-	14.03.0294.000; Tue, 6 Dec 2016 15:28:11 +0100
-From: Sona Sarmadi <sona.sarmadi@enea.com>
-To: Mariano Lopez <mariano.lopez@linux.intel.com>, "mariano.lopez@intel.com"
-	<mariano.lopez@intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto] cve-checker tool
-Thread-Index: AdIwLntiYxJel4UHQ6ebcs09cROndQAEuizQADVV+gAHomiEgA==
-Date: Tue, 6 Dec 2016 14:28:10 +0000
-Message-ID: <3230301C09DEF9499B442BBE162C5E48AC0CF8B7@SESTOEX04.enea.se>
-References: <3230301C09DEF9499B442BBE162C5E48ABEA948F@SESTOEX04.enea.se>
-	<0cfba38f-d090-68d0-5c09-a20a5f5e1973@linux.intel.com>
-In-Reply-To: <0cfba38f-d090-68d0-5c09-a20a5f5e1973@linux.intel.com>
-Accept-Language: sv-SE, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.16.142.231]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from smtp26.services.sfr.fr (smtp26.services.sfr.fr [93.17.128.1])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8DBD7E00CD8
+	for <yocto@yoctoproject.org>; Tue,  6 Dec 2016 06:30:43 -0800 (PST)
+Received: from nbhjo (plum.beechwoods.com [70.88.250.17])
+	by msfrf2614.sfr.fr (SMTP Server) with ESMTP id B2AFF1C000921;
+	Tue,  6 Dec 2016 15:30:42 +0100 (CET)
+Received: from nbhjo (plum.beechwoods.com [70.88.250.17])	(using TLSv1.2
+	with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))	(No client
+	certificate requested)	(Authenticated sender: herve.jourdain@neuf.fr)
+	by msfrf2614.sfr.fr (SMTP Server) with ESMTPSA;
+	Tue,  6 Dec 2016 15:30:41 +0100 (CET)
+Authentication-Results: sfr.fr; auth=pass (LOGIN)
+	smtp.auth=herve.jourdain@neuf.fr
+From: Herve Jourdain <herve.jourdain@neuf.fr>
+To: 'Gerhard de Clercq' <gerharddeclercq@outlook.com>,
+	'Yocto list discussion' <yocto@yoctoproject.org>
+References: <VI1PR0401MB18543D5A6FF9DA2E7D673079B8820@VI1PR0401MB1854.eurprd04.prod.outlook.com>
+In-Reply-To: <VI1PR0401MB18543D5A6FF9DA2E7D673079B8820@VI1PR0401MB1854.eurprd04.prod.outlook.com>
+Date: Tue, 6 Dec 2016 15:30:40 +0100
+Message-ID: <002a01d24fcd$52f69f30$f8e3dd90$@neuf.fr>
 MIME-Version: 1.0
-X-Outbound-IP: 192.36.1.72
-X-Env-From: sona.sarmadi@enea.com
-X-Proto: esmtps
-X-Revdns: mx-3.enea.com
-X-HELO: mx-3.enea.com
-X-TLS: TLSv1:AES128-SHA:128
-X-Authenticated_ID: 
-X-PolicySMART: 6551647
-X-Virus-Status: Scanned by VirusSMART (c)
-X-Virus-Status: Scanned by VirusSMART (s)
-Subject: Re: cve-checker tool
+X-Mailer: Microsoft Outlook 15.0
+Thread-Index: AQKdUzw28eFbJtVS0rizIhJ9C+mmW59k83vQ
+X-sfr-mailing: LEGIT
+Subject: Re: ***SPAM*** [meta-raspberrypi] Qt EGLFS frozen on VC4
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,131 +48,179 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 Dec 2016 14:30:05 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 06 Dec 2016 14:30:57 -0000
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_002B_01D24FD5.B4BB0730"
+Content-Language: fr
+
+------=_NextPart_000_002B_01D24FD5.B4BB0730
+Content-Type: text/plain;
+	charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Mariano, all,
+Hi Gerhard,
 
-> If there is a version affected by a CVE it will look for a patch that sol=
-ves
-> that particular CVE using the the metadata in the patch format.
-> For example, the current bind version is affected by CVE-2016-1285, but
-> there is patch for that, so the cve-check class will find this and will
-> generate a log file saying the vulnerability has been addressed.
-
-It seems that this tool does not detect all CVEs, e.g. bind has some CVE pa=
-tches
-but it is not reported, I tried all options below nothing is reported (no c=
-ve.log file):
-bitbake -c cve_check bind=20
-bitbake -k -c cve_check universe
-bitbake -k -c cve_check world
-
-There are some CVEs in bind (reported in nvd.xml file for our version cpe:/=
-a:isc:bind:9.10.3"/> )
-but cve.check-tool does not report them ex: (CVE-2016-2776). Do you know wh=
-y?
-
-
-CVEs are reported for the following packages using e.g. "bitbake -k -c cve_=
-check universe"
-or  "bitbake -c cve_check perl"
 =20
-tmp/work/i586-poky-linux/perl/5.22.1-r0/cve/cve.log
-tmp/work/i586-poky-linux/foomatic-filters/4.0.17-r1/cve/cve.log
-tmp/work/i586-poky-linux/flex/2.6.0-r0/cve/cve.log
-tmp/work/i586-poky-linux/glibc/2.24-r0/cve/cve.log
-tmp/work/i586-poky-linux/unzip/1_6.0-r5/cve/cve.log
-tmp/work/i586-poky-linux/expat/2.2.0-r0/cve/cve.log
-tmp/work/i586-poky-linux/gnutls/3.5.3-r0/cve/cve.log
-tmp/work/i586-poky-linux/glibc-initial/2.24-r0/cve/cve.log
-tmp/work/i586-poky-linux/libxml2/2.9.4-r0/cve/cve.log
-tmp/work/i586-poky-linux/bzip2/1.0.6-r5/cve/cve.log
 
-We have more recipes which have CVE patches but they are not reported.=20
-I have analyzed these; some of these CVEs are still marked as reserved on M=
-itre
- and are not present in the nvd.xml files (although they are public (e.g. B=
-usybox:=20
-https://www.cve.mitre.org/cgi-bin/cvename.cgi?name=3DCVE-2016-2147).
+Could you please provide a bit more information, like the kernel =
+you=92re
+building against, the kind of features you=92re using in QT, if you=92re =
+using
+GStreamer as well, if you=92re playing video, versions of the
+meta-raspberrypi/yocto/openembedded layers, etc=85
 
-I don't understand why for instance bind CVEs are not detected and reported=
- by cve-check tool?
-Is it because of cpe:/a:isc:bind? It looks for isc?
+I=92m not sure I can help, but without additional information it would =
+be
+second-guessing at best.
 
-morty/poky/meta$ find . -name *CVE-201*.patch
-./recipes-connectivity/ppp/ppp/fix-CVE-2015-3310.patch
+=20
 
-./recipes-connectivity/bind/bind/CVE-2016-2776.patch ?
-./recipes-connectivity/bind/bind/CVE-2016-1286_2.patch
-./recipes-connectivity/bind/bind/CVE-2016-1285.patch
-./recipes-connectivity/bind/bind/CVE-2016-1286_1.patch
-./recipes-connectivity/bind/bind/CVE-2016-2088.patch
-./recipes-connectivity/bind/bind/CVE-2016-2775.patch
+Cheers,
 
-./recipes-extended/unzip/unzip/CVE-2015-7696.patch
-./recipes-extended/unzip/unzip/06-unzip60-alt-iconv-utf8_CVE-2015-1315.patc=
-h
-./recipes-extended/unzip/unzip/CVE-2015-7697.patch
-./recipes-extended/xinetd/xinetd/xinetd-CVE-2013-4342.patch
-./recipes-extended/cpio/cpio-2.12/0001-Fix-CVE-2015-1197.patch
-./recipes-extended/cracklib/cracklib/0001-Apply-patch-to-fix-CVE-2016-6318.=
-patch
-./recipes-extended/bzip2/bzip2-1.0.6/CVE-2016-3189.patch
-./recipes-extended/grep/grep-2.5.1a/grep-CVE-2012-5667.patch
-./recipes-extended/foomatic/foomatic-filters-4.0.17/CVE-2015-8327.patch
-./recipes-extended/foomatic/foomatic-filters-4.0.17/CVE-2015-8560.patch
-./recipes-multimedia/libtiff/files/CVE-2016-3945.patch
-./recipes-multimedia/libtiff/files/CVE-2016-3623.patch
-./recipes-multimedia/libtiff/files/CVE-2016-5323.patch
-./recipes-multimedia/libtiff/files/CVE-2016-5321.patch
-./recipes-multimedia/libtiff/files/CVE-2016-3991.patch
-./recipes-multimedia/libtiff/files/CVE-2016-3622.patch
-./recipes-multimedia/libtiff/files/CVE-2015-8781.patch
-./recipes-multimedia/libtiff/files/CVE-2015-8784.patch
-./recipes-multimedia/libtiff/files/CVE-2016-3186.patch
-./recipes-multimedia/libtiff/files/CVE-2016-3990.patch
-./recipes-multimedia/libtiff/files/CVE-2015-8665_8683.patch
-./recipes-core/systemd/systemd/CVE-2016-7795.patch
-./recipes-core/busybox/busybox/CVE-2016-2147_2.patch  <<< Reserved on Mitre=
-: https://www.cve.mitre.org/cgi-bin/cvename.cgi?name=3DCVE-2016-2147
-./recipes-core/busybox/busybox/CVE-2016-2147.patch
-./recipes-core/busybox/busybox/CVE-2016-2148.patch <<< https://www.cve.mitr=
-e.org/cgi-bin/cvename.cgi?name=3DCVE-2016-2148
-./recipes-devtools/elfutils/elfutils-0.148/elf_begin.c-CVE-2014-9447-fix.pa=
-tch
-./recipes-devtools/python/python3/CVE-2016-5636.patch
-./recipes-devtools/python/python3/python3-fix-CVE-2016-1000110.patch
-./recipes-devtools/python/python/CVE-2016-5636.patch
-./recipes-devtools/python/python/python-fix-CVE-2016-1000110.patch
-./recipes-devtools/qemu/qemu/0002-fix-CVE-2016-7423.patch
-./recipes-devtools/qemu/qemu/0003-fix-CVE-2016-7908.patch
-./recipes-devtools/perl/perl/perl-fix-CVE-2015-8607.patch
-./recipes-devtools/perl/perl/perl-fix-CVE-2016-2381.patch
-./recipes-devtools/perl/perl/perl-fix-CVE-2016-1238.patch
-./recipes-devtools/perl/perl/perl-fix-CVE-2016-6185.patch
-./recipes-devtools/gcc/gcc-6.2/CVE-2016-4490.patch
-./recipes-devtools/flex/flex/CVE-2016-6354.patch
-./recipes-bsp/grub/files/0001-Fix-CVE-2015-8370-Grub2-user-pass-vulnerabili=
-ty.patch
-./recipes-support/nettle/nettle-2.7.1/CVE-2015-8804.patch
-./recipes-support/nettle/nettle-2.7.1/CVE-2015-8803_8805.patch
-./recipes-support/gnutls/gnutls/CVE-2016-7444.patch
-./recipes-support/boost/boost/boost-CVE-2012-2677.patch
-./recipes-support/gnupg/gnupg-1.4.7/GnuPG1-CVE-2012-6085.patch
-./recipes-support/gnupg/gnupg-1.4.7/CVE-2013-4576.patch
-./recipes-support/gnupg/gnupg-1.4.7/CVE-2013-4351.patch
-./recipes-support/gnupg/gnupg-1.4.7/CVE-2013-4242.patch
+Herve
 
-Thanks
-//Sona
+=20
+
+From: yocto-bounces@yoctoproject.org =
+[mailto:yocto-bounces@yoctoproject.org]
+On Behalf Of Gerhard de Clercq
+Sent: mardi 6 d=E9cembre 2016 15:18
+To: Yocto list discussion <yocto@yoctoproject.org>
+Subject: ***SPAM*** [yocto] [meta-raspberrypi] Qt EGLFS frozen on VC4
+
+=20
+
+When I build Qt5 for my RPi 3 so that it uses EGLFS on VC4  (all using
+Yocto) then everything seems to go well initially and I can even get a
+program to launch but it then seems to render only one frame and then =
+stay
+there. There is no response to user input and applications that are =
+supposed
+to have constant animations do not change. It is also not possible to
+terminate the application with ^c.
+
+=20
+
+I'm not even sure where to ask for support because I have no idea if =
+this is
+a problem with Qt, VC4 or Yocto. Does anyone here have a clue of what =
+might
+be wrong?
 
 
+------=_NextPart_000_002B_01D24FD5.B4BB0730
+Content-Type: text/html;
+	charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
+<META HTTP-EQUIV=3D"Content-Type" CONTENT=3D"text/html; =
+charset=3Diso-8859-1">
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta name=3DGenerator =
+content=3D"Microsoft Word 15 (filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p
+	{mso-style-priority:99;
+	margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+span.EmailStyle18
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:#1F497D;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 70.85pt 70.85pt 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DFR =
+link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>Hi Gerhard,<o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>Could you please provide a bit more =
+information, like the kernel you&#8217;re building against, the kind of =
+features you&#8217;re using in QT, if you&#8217;re using GStreamer as =
+well, if you&#8217;re playing video, versions of the =
+meta-raspberrypi/yocto/openembedded layers, =
+etc&#8230;<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>I&#8217;m not sure I can help, but without =
+additional information it would be second-guessing at =
+best.<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>Cheers,<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>Herve<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><div><div =
+style=3D'border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0cm =
+0cm 0cm'><p class=3DMsoNormal><b><span lang=3DEN-US =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif'>From:</span><=
+/b><span lang=3DEN-US =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif'> =
+yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org] =
+<b>On Behalf Of </b>Gerhard de Clercq<br><b>Sent:</b> mardi 6 d=E9cembre =
+2016 15:18<br><b>To:</b> Yocto list discussion =
+&lt;yocto@yoctoproject.org&gt;<br><b>Subject:</b> ***SPAM*** [yocto] =
+[meta-raspberrypi] Qt EGLFS frozen on =
+VC4<o:p></o:p></span></p></div></div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><div =
+id=3Ddivtagdefaultwrapper><p><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>When I build Qt5 =
+for my RPi 3 so that it uses EGLFS on VC4&nbsp; (all using Yocto) then =
+everything seems to go well initially and I can even get a program to =
+launch but it then seems to render only one frame and then stay there. =
+There is no response to user input and applications that are supposed to =
+have constant animations do not change. It is also not possible to =
+terminate the application with ^c.<o:p></o:p></span></p><p><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'><o:p>&nbsp;</o:p><=
+/span></p><p><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>I'm not even sure =
+where to ask for support because I have no idea if this is a problem =
+with Qt, VC4 or Yocto. Does anyone here have a clue of what might be =
+wrong?<o:p></o:p></span></p></div></div></body></html>
 
-
-
-
-
+------=_NextPart_000_002B_01D24FD5.B4BB0730--
