@@ -1,43 +1,67 @@
-Return-Path: <philip@balister.org>
+Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 58CB7E0093B; Tue,  6 Dec 2016 10:45:15 -0800 (PST)
+	id A9E3BE0093B; Tue,  6 Dec 2016 10:54:10 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [216.168.135.166 listed in list.dnswl.org]
+	*      [74.125.82.66 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.82.66 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from starfish.geekisp.com (starfish.geekisp.com [216.168.135.166])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 53D36E0086E
-	for <yocto@yoctoproject.org>; Tue,  6 Dec 2016 10:45:11 -0800 (PST)
-Received: (qmail 9291 invoked by uid 1003); 6 Dec 2016 18:45:11 -0000
-Received: from unknown (HELO ?10.16.32.193?)
-	(philip@opensdr.com@207.114.172.147)
-	by mail.geekisp.com with (DHE-RSA-AES128-SHA encrypted) SMTP;
-	6 Dec 2016 18:45:10 -0000
-To: "Lopez, Mariano" <mariano.lopez@linux.intel.com>,
-	Patrick Ohly <patrick.ohly@intel.com>, Stefano Babic <sbabic@denx.de>
-References: <20161121120355.18309-1-git@andred.net>
-	<1480503859.6873.280.camel@intel.com>
-	<1480516308.13682.1.camel@andred.net>
-	<1480517999.6873.298.camel@intel.com>
-	<30a3dd41-2e1c-8658-b83d-8632944d1709@denx.de>
-	<1481017522.17535.38.camel@intel.com>
-	<8e1fdcb8-d9fb-0e51-2e21-91e7e7c6f450@linux.intel.com>
-From: Philip Balister <philip@balister.org>
-Message-ID: <c3ce9528-f2eb-dd3f-cc68-331435aeda35@balister.org>
-Date: Tue, 6 Dec 2016 10:45:09 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.5.1
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wm0-f66.google.com (mail-wm0-f66.google.com [74.125.82.66])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6D2D5E0086E
+	for <yocto@yoctoproject.org>; Tue,  6 Dec 2016 10:54:07 -0800 (PST)
+Received: by mail-wm0-f66.google.com with SMTP id u144so23219679wmu.0
+	for <yocto@yoctoproject.org>; Tue, 06 Dec 2016 10:54:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-disposition:in-reply-to:user-agent;
+	bh=xH8PcBs520RpQsxCf1OAHFpg1/4y7KVxQiROE3tMj8M=;
+	b=Ts0LqfWLeUl520qjHZKqt7YSPrEV4B6PUaEuME87oYFa/ZcAV43dAbaifyq1N2zhw8
+	xw/ch7lP08rMKKMimBEYpP22/azNj4k/l3UkAQFqnZaPnXofF2/7twqoSR9/AljQ0DZj
+	G/JUvOFe3lK76WN/0M9PSeC+MixLMLXWVNQZXa+hRe6oQ9VVC6WuW6K6vLTqvZl4iyMR
+	EEywqsoj+x6uHsVmZ+4UpmUthArt+x6qN+JAcEJ7jZd/OzSEJo+iB477szXy/5B+Sw0i
+	+oYyGIN+dtV8CBBf618u8NJnI/P5ki/6DANYufHOJ+yuIYBXu0hQpwF9CaIdWoI5icaA
+	i7bQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	:mime-version:content-disposition:in-reply-to:user-agent;
+	bh=xH8PcBs520RpQsxCf1OAHFpg1/4y7KVxQiROE3tMj8M=;
+	b=by++FxhfL/4932NknW0nRtbbWsww8wKpmfpz8Fvr257agEwC37wPnKUgD0Vyl6s05i
+	8riBGsqEh/XISMM+zWbDHK+XTH7RijInBYk8h2YDrK5NZG81ICFPy+deElkmIqo2RtuL
+	9BI2rO5gdvpsKP8cxbPtWEs5YQoMPXNbsM8D78ROlmPoANVOOWWnq+lD4rCM6qAqYsJE
+	ayckq6RY7JMSWvPdhKHpEfI2QarONZWNqEA88eAQ+hAoBKCYm8TXR795pL0NEoGdwsi/
+	7dKwYvpLjzV+maMkJOGk6lOaU3e2Rn6J4z1DPbljwPcQbsWmEYVRHhZBPdx6+mZ/Y9Xz
+	TDug==
+X-Gm-Message-State: AKaTC00SGcpbHM17oaSSx7WIQGxAMYLk22z0k2lwWGUnJp0ZoiPBikxtg3fsgzcZai/JFg==
+X-Received: by 10.28.51.211 with SMTP id z202mr9342wmz.125.1481050446023;
+	Tue, 06 Dec 2016 10:54:06 -0800 (PST)
+Received: from carbonA (cpc96910-walt25-2-0-cust629.13-2.cable.virginm.net.
+	[82.22.166.118]) by smtp.gmail.com with ESMTPSA id
+	f76sm5425009wmd.15.2016.12.06.10.54.05
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Tue, 06 Dec 2016 10:54:05 -0800 (PST)
+Date: Tue, 6 Dec 2016 18:54:03 +0000
+From: Andrei Gherzan <andrei@gherzan.ro>
+To: Frank Meerkoetter <meerkoetter@googlemail.com>
+Message-ID: <20161206185403.GK1636@carbonA>
+References: <1480361865-9547-1-git-send-email-frank@meerkoetter.org>
 MIME-Version: 1.0
-In-Reply-To: <8e1fdcb8-d9fb-0e51-2e21-91e7e7c6f450@linux.intel.com>
-Cc: =?UTF-8?Q?Andr=c3=a9_Draszik?= <git@andred.net>, "Lopez,
-	Mariano" <mariano.lopez@intel.com>, yocto@yoctoproject.org
-Subject: Re: update mechanisms
+In-Reply-To: <1480361865-9547-1-git-send-email-frank@meerkoetter.org>
+User-Agent: Mutt/1.7.1 (2016-10-04)
+Cc: yocto@yoctoproject.org, Frank Meerkoetter <frank@meerkoetter.org>
+Subject: Re: [meta-raspberrypi][PATCH] Do not rely on DISTRO_TYPE to enable/disable kernel debug
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,57 +73,69 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 Dec 2016 18:45:15 -0000
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 06 Dec 2016 18:54:10 -0000
+X-Groupsio-MsgNum: 33330
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="vk/v8fjDPiDepTtA"
+Content-Disposition: inline
 
-On 12/06/2016 06:11 AM, Lopez, Mariano wrote:
-> 
-> 
-> On 12/6/2016 3:45 AM, Patrick Ohly wrote:
->> On Tue, 2016-12-06 at 10:01 +0100, Stefano Babic wrote:
->>> Hi Patrick,
->>>
->>> On 30/11/2016 15:59, Patrick Ohly wrote:
->>>> I've started a Wiki page
->>>> https://wiki.yoctoproject.org/wiki/System_Update - rudimentary at the
->>>> moment, but might as well be mentioned already now.
->>> I have seen Mariano added an entry for SWUpdate, too, thanks  - I would
->>> like to edit for better explanation on some parts. Should I try to edit
->>> directly the page or is it better to discuss it here ?
-> 
-> It will be interesting to have your input directly, I tried to fill the
-> table with my experience with SWUpdate but I think you could give a
-> better insight of this. Thanks for joining the effort.
-> 
->> Use your own judgment. If its uncontroversial, the feel free to edit the
->> page directly, otherwise let's discuss it here.
->>
->> If feel that putting information directly into the table is too limiting
->> (it should be brief), then feel free to start a complete section about
->> SWUpdate.
->>
->> I'll do the same for swupd. Editing the sections should be possible
->> without conflicts, we just have to be more careful about editing the
->> table concurrently.
->>
-> 
-> I agree with you, that we need to have a section per project, the table
-> is too limiting.
+--vk/v8fjDPiDepTtA
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-I just skimmed the page and the table format isn't working well with the
-length of the blocks of text.
+On Mon, Nov 28, 2016 at 08:37:45PM +0100, Frank Meerkoetter wrote:
+> DISTRO_TYPE doesn't seem to be set anywhere in OE/poky. This causes
+> CMDLINE_DEBUG to default to "debug" which is very noisy. This is
+> especially true when building a systemd based system, as systemd
+> also looks at the kernel commandline to set the debug level.
+> Such a system is nearly unuseable from the serial console due
+> to the amount of data logged by systemd.
+> ---
+>  recipes-kernel/linux/linux-rpi.inc | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
+>
+> diff --git a/recipes-kernel/linux/linux-rpi.inc b/recipes-kernel/linux/linux-rpi.inc
+> index 95a9530..53383b0 100644
+> --- a/recipes-kernel/linux/linux-rpi.inc
+> +++ b/recipes-kernel/linux/linux-rpi.inc
+> @@ -13,9 +13,9 @@ ARM_KEEP_OABI ?= "1"
+>  # Quirk for udev greater or equal 141
+>  UDEV_GE_141 ?= "1"
+>
+> -# Set the verbosity of kernel messages during runtime
+> -# You can define CMDLINE_DEBUG in your local.conf or distro.conf to override this behaviour
+> -CMDLINE_DEBUG ?= '${@base_conditional("DISTRO_TYPE", "release", "quiet", "debug", d)}'
+> +# You can define CMDLINE_DEBUG as "debug" in your local.conf or distro.conf
+> +# to enable kernel debugging.
+> +CMDLINE_DEBUG ?= ""
+>  CMDLINE_append = " ${CMDLINE_DEBUG}"
+>
+>  KERNEL_INITRAMFS ?= '${@base_conditional("INITRAMFS_IMAGE_BUNDLE", "1", "1", "", d)}'
+> --
 
-I'd also suggest referencing Matt Porter's talk from ELCE 2016 about
-software update technology:
+I like this. Let's merge it. Master it is.
 
-http://elinux.org/images/3/31/Comparison_of_Linux_Software_Update_Technologies.pdf
+--
+Andrei Gherzan
 
-https://youtu.be/pdHV9H9nZks?list=PLbzoR-pLrL6pRFP6SOywVJWdEHlmQE51q
+--vk/v8fjDPiDepTtA
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Philip
+-----BEGIN PGP SIGNATURE-----
 
+iQIcBAEBCAAGBQJYRwlCAAoJEHO76Gt+erfP/GEQAL0G2xY6TLFajaKCPp18CQWG
+XHcxa5GSHd3FrRrj37aUtXR6LXOa7fHPfCw6UzS/xgR4RheZllc5hZ+r6oP4xWOY
+lYfhLn2sVMmC9xL8F6R08hwLXiKxMPdueD+Fr//JPXdHJISTBfy0HZIAPx9S0A7c
+x/u3YLa7MGQL4SbBIQUFdIVhnhNsA4sutLoWbI30z8OHEX0k6DXFnzA+c1V7j9TI
+Z7CTt8AB5QAbpSKHDrg6lcJm4ceZS8pch+ve2KeQNdATMDl72LEyK47U5JzFJfOj
+9bZHpnqYvqrQIbQlgOUctQpy9FkE5RxsOaHAReTSYzmocz2D9ZlyIgnVWcwuMycL
+kjsy5wUw+Xl4ggYV3yOqLosi0QcqHtkPsUjEiVY46HsYBuv+BqlxCe5VX1/oDe3e
+PDbg1Qc8Rfn/V1zu8p+jy4EA3s9RSNoTQtW4XKIaQXWQ4lY73bF1ax8nBulwBY1N
+MuGBFSnQtrbqTGjy5loK+ZqedmlB27W0/G9hIS1my72IgrBSYrp/vbgQrwBhENXp
+dTvTys1r9yrtunqLYbPbeqtXo0BFrkwWzIFToTHKGPL7Wvh5HimS1w1piF0gooE0
+iJFIqIl2BEEyqbgj+KvCxUiPwnwvcZIrPMILylNQ7SaQM1Xq7C6gBhfolh8P8XOB
+DlP1eJL1Ue/dI+5k8AjR
+=O92n
+-----END PGP SIGNATURE-----
 
-> 
-> Mariano
-
+--vk/v8fjDPiDepTtA--
