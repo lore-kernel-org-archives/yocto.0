@@ -1,40 +1,43 @@
-Return-Path: <herve.jourdain@neuf.fr>
+Return-Path: <mariano.lopez@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 98A78E00CAF; Tue,  6 Dec 2016 04:46:09 -0800 (PST)
+	id 15614E00CAF; Tue,  6 Dec 2016 06:11:49 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [93.17.128.20 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from smtp26.services.sfr.fr (smtp26.services.sfr.fr [93.17.128.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4B92EE00C92
-	for <yocto@yoctoproject.org>; Tue,  6 Dec 2016 04:46:05 -0800 (PST)
-Received: from nbhjo (unknown [65.202.45.61])
-	by msfrf2632.sfr.fr (SMTP Server) with ESMTP id C85891C000853;
-	Tue,  6 Dec 2016 13:46:00 +0100 (CET)
-Received: from nbhjo (unknown [65.202.45.61])	(using TLSv1.2
-	with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))	(No client
-	certificate requested)	(Authenticated sender: herve.jourdain@neuf.fr)
-	by msfrf2632.sfr.fr (SMTP Server) with ESMTPSA;
-	Tue,  6 Dec 2016 13:45:59 +0100 (CET)
-Authentication-Results: sfr.fr; auth=pass (LOGIN)
-	smtp.auth=herve.jourdain@neuf.fr
-From: Herve Jourdain <herve.jourdain@neuf.fr>
-To: 'Gary Thomas' <gary@mlbassoc.com>, yocto@yoctoproject.org
-References: <1481016818-27612-1-git-send-email-gary@mlbassoc.com>
-In-Reply-To: <1481016818-27612-1-git-send-email-gary@mlbassoc.com>
-Date: Tue, 6 Dec 2016 13:45:58 +0100
-Message-ID: <001e01d24fbe$b293d8e0$17bb8aa0$@neuf.fr>
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [192.55.52.43 listed in list.dnswl.org]
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CE6E9E00C9B
+	for <yocto@yoctoproject.org>; Tue,  6 Dec 2016 06:11:46 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga105.fm.intel.com with ESMTP; 06 Dec 2016 06:11:35 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.33,310,1477983600"; d="scan'208";a="1095339066"
+Received: from sawilso3-mobl.amr.corp.intel.com (HELO [10.254.188.115])
+	([10.254.188.115])
+	by fmsmga002.fm.intel.com with ESMTP; 06 Dec 2016 06:11:35 -0800
+To: Patrick Ohly <patrick.ohly@intel.com>, Stefano Babic <sbabic@denx.de>
+References: <20161121120355.18309-1-git@andred.net>
+	<1480503859.6873.280.camel@intel.com>
+	<1480516308.13682.1.camel@andred.net>
+	<1480517999.6873.298.camel@intel.com>
+	<30a3dd41-2e1c-8658-b83d-8632944d1709@denx.de>
+	<1481017522.17535.38.camel@intel.com>
+From: "Lopez, Mariano" <mariano.lopez@linux.intel.com>
+Message-ID: <8e1fdcb8-d9fb-0e51-2e21-91e7e7c6f450@linux.intel.com>
+Date: Tue, 6 Dec 2016 08:11:34 -0600
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:45.0) Gecko/20100101
+	Thunderbird/45.2.0
 MIME-Version: 1.0
-X-Mailer: Microsoft Outlook 15.0
-Thread-Index: AQJYGqWR7tPui6g/rwVhQQhrZs04T5/vR2Ug
-X-sfr-mailing: LEGIT
-Subject: Re: [meta-raspberrypi][PATCH] gstreamer1.0-plugins-bad: Don't	hard wire use of userland
+In-Reply-To: <1481017522.17535.38.camel@intel.com>
+Cc: =?UTF-8?Q?Andr=c3=a9_Draszik?= <git@andred.net>, yocto@yoctoproject.org,
+	"Lopez, Mariano" <mariano.lopez@intel.com>
+Subject: Re: update mechanisms
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,66 +49,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 Dec 2016 12:46:09 -0000
-Content-Type: text/plain; charset=iso-8859-1
-Content-Transfer-Encoding: quoted-printable
-Content-Language: fr
+X-List-Received-Date: Tue, 06 Dec 2016 14:11:49 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Gary,
 
-But dispmanx is really only provided by userland, it does not exist in =
-other
-flavors of egl/libgles.
-Actually, dispmanx should not be selected in PACKAGECONFIG if userland =
-is
-not in use for EGL/GLES.
 
-Cheers,
+On 12/6/2016 3:45 AM, Patrick Ohly wrote:
+> On Tue, 2016-12-06 at 10:01 +0100, Stefano Babic wrote:
+>> Hi Patrick,
+>>
+>> On 30/11/2016 15:59, Patrick Ohly wrote:
+>>> I've started a Wiki page
+>>> https://wiki.yoctoproject.org/wiki/System_Update - rudimentary at the
+>>> moment, but might as well be mentioned already now.
+>> I have seen Mariano added an entry for SWUpdate, too, thanks  - I would
+>> like to edit for better explanation on some parts. Should I try to edit
+>> directly the page or is it better to discuss it here ?
 
-Herve
+It will be interesting to have your input directly, I tried to fill the 
+table with my experience with SWUpdate but I think you could give a 
+better insight of this. Thanks for joining the effort.
 
------Original Message-----
-From: yocto-bounces@yoctoproject.org =
-[mailto:yocto-bounces@yoctoproject.org]
-On Behalf Of Gary Thomas
-Sent: mardi 6 d=E9cembre 2016 10:34
-To: yocto@yoctoproject.org
-Cc: Gary Thomas <gary@mlbassoc.com>
-Subject: [yocto] [meta-raspberrypi][PATCH] gstreamer1.0-plugins-bad: =
-Don't
-hard wire use of userland
+> Use your own judgment. If its uncontroversial, the feel free to edit the
+> page directly, otherwise let's discuss it here.
+>
+> If feel that putting information directly into the table is too limiting
+> (it should be brief), then feel free to start a complete section about
+> SWUpdate.
+>
+> I'll do the same for swupd. Editing the sections should be possible
+> without conflicts, we just have to be more careful about editing the
+> table concurrently.
+>
 
-Selection of the libgl packages should be by virtual/XXX.  Using =
-'userland'
-directly can lead to build conflicts and make the system unbuildable.
+I agree with you, that we need to have a section per project, the table 
+is too limiting.
 
-Signed-off-by: Gary Thomas <gary@mlbassoc.com>
----
- recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_%.bbappend | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git
-a/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_%.bbappend
-b/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_%.bbappend
-index 7292f90..432869d 100644
---- a/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_%.bbappend
-+++ b/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_%.bbappend
-@@ -9,4 +9,4 @@ PACKAGECONFIG_GL_rpi =3D "egl gles2"
-=20
- PACKAGECONFIG_append_rpi =3D " hls libmms faad"
-=20
--PACKAGECONFIG[dispmanx] =3D =
-"--enable-dispmanx,--disable-dispmanx,userland"
-+PACKAGECONFIG[dispmanx] =3D =
-"--enable-dispmanx,--disable-dispmanx,virtual/egl
-virtual/libgles2"
---=20
-2.7.4
-
---=20
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
-
+Mariano
 
