@@ -1,48 +1,71 @@
-Return-Path: <herve.jourdain@neuf.fr>
+Return-Path: <twoerner@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 05A95E00BF8; Tue,  6 Dec 2016 13:21:59 -0800 (PST)
+	id 2FC1DE00BF3; Tue,  6 Dec 2016 13:32:32 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [93.17.128.10 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (twoerner[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.223.193 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from smtp26.services.sfr.fr (smtp26.services.sfr.fr [93.17.128.10])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3485DE00BC0
-	for <yocto@yoctoproject.org>; Tue,  6 Dec 2016 13:21:54 -0800 (PST)
-Received: from nbhjo (plum.beechwoods.com [70.88.250.17])
-	by msfrf2621.sfr.fr (SMTP Server) with ESMTP id 96EC91C00BC2C;
-	Tue,  6 Dec 2016 22:21:53 +0100 (CET)
-Received: from nbhjo (plum.beechwoods.com [70.88.250.17])	(using TLSv1.2
-	with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))	(No client
-	certificate requested)	(Authenticated sender: herve.jourdain@neuf.fr)
-	by msfrf2621.sfr.fr (SMTP Server) with ESMTPSA;
-	Tue,  6 Dec 2016 22:21:52 +0100 (CET)
-Authentication-Results: sfr.fr; auth=pass (LOGIN)
-	smtp.auth=herve.jourdain@neuf.fr
-From: Herve Jourdain <herve.jourdain@neuf.fr>
-To: 'Andrei Gherzan' <andrei@gherzan.ro>
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.223.193 listed in dnsbl.sorbs.net]
+Received: from mail-io0-f193.google.com (mail-io0-f193.google.com
+	[209.85.223.193])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1B421E00BB1
+	for <yocto@yoctoproject.org>; Tue,  6 Dec 2016 13:32:28 -0800 (PST)
+Received: by mail-io0-f193.google.com with SMTP id r94so9286539ioe.1
+	for <yocto@yoctoproject.org>; Tue, 06 Dec 2016 13:32:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-disposition:in-reply-to:user-agent;
+	bh=MgeiQo+lL1rN/ldHNmKGzKPyfYzrFxYcnWqZPhzsnxE=;
+	b=T2sJL9x5k3a66DMq+evM+sS5Mu3Hp5gJx2Bx3eJN+FLelX7olPZpzlIrWTFLCSHaVO
+	RAnHNkX5MzImbzTSQ34/3Tb7i5T2vN4fA24A/Wxlvi5+NDF+G57pCzVHSXk/b6TqegYP
+	ulj0W8ROfHaDPm5NsEjkKubB68YIIKhpQ8v85qqun5PKntvocGhqK5L7L1ufruk7eNaD
+	UBUahflRe6c44JqBKqbp5PBYviL8vvjZjwI4+TaG7dRqiXUWuiwhca5gwb1IYOlWIh7R
+	sm6RAbLv1gBcInYoRwJTQYdTGy/qyTTkKuwEIEhLlxZN4Jq5qHONmYBNd35+ctehBAcM
+	l3Lg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	:mime-version:content-disposition:in-reply-to:user-agent;
+	bh=MgeiQo+lL1rN/ldHNmKGzKPyfYzrFxYcnWqZPhzsnxE=;
+	b=FwuH/qh0PCKiCf9wKcP182q5j4O5xrIr6rOJAd3qiVGy2D6KITdjOdtDkB8kGb18uw
+	yPGQ4lpBTNiHhyk90ikWFBWAn5NrnXXsjN9p051BjwxJROlAWophZg4AkSrYGEgXBTaQ
+	TsPPRDblEJzIRtc3fmOfyYqDVhr5kLp2B5ebCfq2d7I/4BXEH01Rp7SGrI+wc8OM2kMs
+	0Zq6srLTRiVPGxIeM7MhmZzzhn79chzkcMoDUaLv8IzaU/qHbUe1japM8A4qoydquvxL
+	h4WnPtmhZYxo+pMl3wyGnAnqnclHNjVIY2OJtnkVKiP619KmgiG2oZJundYJFaCpyZD+
+	gP/A==
+X-Gm-Message-State: AKaTC02VBjeO8TDGcIjCs93MYtfqiDFU2Th5Ke8ZZ15tGC7xe7CDYisVsbDXxpTotZb6rQ==
+X-Received: by 10.36.26.23 with SMTP id 23mr631895iti.84.1481059947821;
+	Tue, 06 Dec 2016 13:32:27 -0800 (PST)
+Received: from openSUSE-i7.site ([45.72.150.99])
+	by smtp.gmail.com with ESMTPSA id
+	w188sm2142678itc.9.2016.12.06.13.32.26
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Tue, 06 Dec 2016 13:32:26 -0800 (PST)
+Date: Tue, 6 Dec 2016 16:32:24 -0500
+From: Trevor Woerner <twoerner@gmail.com>
+To: Gary Thomas <gary@mlbassoc.com>
+Message-ID: <20161206213224.GA22102@openSUSE-i7.site>
 References: <19a9d76a-2c15-551a-2fce-55d8b8cfe1d0@mlbassoc.com>
-	<20161203141606.2899e98c@nuc.betafive.co.uk>
-	<CAK18fxFm3ttr1TJxw3+-PJD0A8WMDb0SKMMq2cJxiOwuY7=H1A@mail.gmail.com>
-	<9f5e8157-ba81-7486-d761-3fd0ec5de3f9@mlbassoc.com>
-	<CAMKF1sq0U1G-c266eCNCGAdw=B0Dcv0dXF7LjG8G=yPd4dFBXg@mail.gmail.com>
-	<CAK18fxHR-X12Hr0R2Ba8=UToVtvWmb979k9+eQi+6yqHvbUN2w@mail.gmail.com>
-	<009401d24feb$33bc8f30$9b35ad90$@neuf.fr>
-	<20161206181110.GG1636@carbonA>
-In-Reply-To: <20161206181110.GG1636@carbonA>
-Date: Tue, 6 Dec 2016 22:21:50 +0100
-Message-ID: <00d201d25006$c3ea6530$4bbf2f90$@neuf.fr>
 MIME-Version: 1.0
-X-Mailer: Microsoft Outlook 15.0
-Thread-Index: AQIdWPz6eV3C2BSfUPw1Ib/BTgRAkQJ5ti72AXsfg8QBwY5G3wLYon7LAtJBUUwDJF3FAAGuYlCEn+O6fhA=
-X-sfr-mailing: LEGIT
-Cc: yocto@yoctoproject.org, 'Gary Thomas' <gary@mlbassoc.com>
-Subject: Re: ***SPAM*** Re: [meta-raspberrypi] Current master broken
+In-Reply-To: <19a9d76a-2c15-551a-2fce-55d8b8cfe1d0@mlbassoc.com>
+User-Agent: Mutt/1.6.0 (2016-04-01)
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi] Current master broken
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,58 +77,22 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 Dec 2016 21:21:59 -0000
-Content-Type: text/plain; charset=iso-8859-1
-Content-Transfer-Encoding: quoted-printable
-Content-Language: fr
+X-List-Received-Date: Tue, 06 Dec 2016 21:32:32 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 
-Sorry, a bit tired...
-I meant we need to track the changes happening to the versions we decide =
-we
-want to support, and update the recipes accordingly.
-My understanding is we're interested in 4.4, 4.8 and 4.9. And I have a
-personal interest in 4.7 for the moment, so I can try to keep the 4.7 =
-recipe
-up to date with the changes.
-If 4.4 is "stable", then we need some people to focus on tracking the
-changes happening on 4.8 and 4.9.
+Just to clarify, in the last couple days, there have been *two* major issues
+that have independently broken raspi builds:
 
-Cheers,
-Herve
+1) the rebase of the raspi kernel repository at
+   git://github.com/raspberrypi/linux.git
+2) a bug in a recent commit to oe-core's kernel tools
 
------Original Message-----
-From: Andrei Gherzan [mailto:andrei@gherzan.ro]=20
-Sent: mardi 6 d=E9cembre 2016 19:11
-To: Herve Jourdain <herve.jourdain@neuf.fr>
-Cc: 'Khem Raj' <raj.khem@gmail.com>; yocto@yoctoproject.org; 'Gary =
-Thomas'
-<gary@mlbassoc.com>
-Subject: Re: ***SPAM*** Re: [yocto] [meta-raspberrypi] Current master =
-broken
+Andrei pushed patches today to update the src revs so, as of this moment, the
+SRC_URIs in meta-raspberrypi should be valid.
 
-On Tue, Dec 06, 2016 at 07:04:31PM +0100, Herve Jourdain wrote:
-> Hi Andrei,
->
-> But I believe that the core of the problem is not necessarily the=20
-> patch in oe-core to detect the kernel version itself, but like Khem=20
-> mentioned the fact that a "well known" SRCREV is only valid for a=20
-> brief period of time under the RPI tree "constant" rebasing we've been
-experiencing lately.
-> So basically, the SRCREV that is used is not corresponding to what it=20
-> used to be, if it's still there in the tree, and the oe-core detects=20
-> that - the SRCREV thought it was one version of the kernel, and it=20
-> just happened that it corresponds to a different codebase with a =
-different
-linux version.
-> Killing the error reporting by a patch will probably not prevent the=20
-> mismatch happening behind the scene.
-> So like Khem mentioned, either we find a way to "prevent" the rebasing =
-
-> at the source, or we need to track down every version we want to=20
-> support, and update SRCREV and corresponding kernel version for those.
-
-Got it now. What do you mean by "track down every version we want"?
---
-Andrei Gherzan
-
+A patch for the kernel tools in oe-core is on the mailing list; hopefully it
+will be pushed to master soon. Incidentally, this same bad commit also
+included a second bug that made it impossible for two different users on the
+same machine to perform OE builds. The fix addresses both issues.
 
