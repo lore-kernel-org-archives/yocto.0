@@ -1,6 +1,6 @@
 Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A9E3BE0093B; Tue,  6 Dec 2016 10:54:10 -0800 (PST)
+	id 3834EE0093B; Tue,  6 Dec 2016 10:57:21 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,53 +9,53 @@ X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [74.125.82.66 listed in list.dnswl.org]
+	*      [74.125.82.67 listed in list.dnswl.org]
 	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.82.66 listed in dnsbl.sorbs.net]
+	*      [74.125.82.67 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f66.google.com (mail-wm0-f66.google.com [74.125.82.66])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6D2D5E0086E
-	for <yocto@yoctoproject.org>; Tue,  6 Dec 2016 10:54:07 -0800 (PST)
-Received: by mail-wm0-f66.google.com with SMTP id u144so23219679wmu.0
-	for <yocto@yoctoproject.org>; Tue, 06 Dec 2016 10:54:07 -0800 (PST)
+Received: from mail-wm0-f67.google.com (mail-wm0-f67.google.com [74.125.82.67])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A8075E0086E
+	for <yocto@yoctoproject.org>; Tue,  6 Dec 2016 10:57:20 -0800 (PST)
+Received: by mail-wm0-f67.google.com with SMTP id a20so23397245wme.2
+	for <yocto@yoctoproject.org>; Tue, 06 Dec 2016 10:57:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
 	h=date:from:to:cc:subject:message-id:references:mime-version
 	:content-disposition:in-reply-to:user-agent;
-	bh=xH8PcBs520RpQsxCf1OAHFpg1/4y7KVxQiROE3tMj8M=;
-	b=Ts0LqfWLeUl520qjHZKqt7YSPrEV4B6PUaEuME87oYFa/ZcAV43dAbaifyq1N2zhw8
-	xw/ch7lP08rMKKMimBEYpP22/azNj4k/l3UkAQFqnZaPnXofF2/7twqoSR9/AljQ0DZj
-	G/JUvOFe3lK76WN/0M9PSeC+MixLMLXWVNQZXa+hRe6oQ9VVC6WuW6K6vLTqvZl4iyMR
-	EEywqsoj+x6uHsVmZ+4UpmUthArt+x6qN+JAcEJ7jZd/OzSEJo+iB477szXy/5B+Sw0i
-	+oYyGIN+dtV8CBBf618u8NJnI/P5ki/6DANYufHOJ+yuIYBXu0hQpwF9CaIdWoI5icaA
-	i7bQ==
+	bh=J8VqT8NE9gM8+vF4PPZWcpQU50GjEenX04Y1ezDQFX0=;
+	b=v0owvpLbb45p354ekOsdlDtv+tMydBS8yU/9hOBL5akZo35uVgEf/ITYvkDwvmK0t3
+	9cRPuNjANy+mtulR2rlYgFpaJmG9i9ac4JF0Svwab0EQF24w2gHnuS7eVGrXuKVAXLXl
+	sm5tGMtCD5r1pDHfwxe86tN/5YUaVF0n7rHhbqdVByn86214Mncs7d3bupi7YPKV8+SX
+	WeHPPKbwHPiChX11qwqAICRV7H3jBarN7wIcxt3TruinSl74lN/lOXBwZFfAWHxfsJ49
+	nun0KM2IRiBJr2qG0AwcfpC6kDq0vy1vVFiDbTJwx4QF8ynuusBklO7jup4mSbYT76qY
+	uIbw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
 	:mime-version:content-disposition:in-reply-to:user-agent;
-	bh=xH8PcBs520RpQsxCf1OAHFpg1/4y7KVxQiROE3tMj8M=;
-	b=by++FxhfL/4932NknW0nRtbbWsww8wKpmfpz8Fvr257agEwC37wPnKUgD0Vyl6s05i
-	8riBGsqEh/XISMM+zWbDHK+XTH7RijInBYk8h2YDrK5NZG81ICFPy+deElkmIqo2RtuL
-	9BI2rO5gdvpsKP8cxbPtWEs5YQoMPXNbsM8D78ROlmPoANVOOWWnq+lD4rCM6qAqYsJE
-	ayckq6RY7JMSWvPdhKHpEfI2QarONZWNqEA88eAQ+hAoBKCYm8TXR795pL0NEoGdwsi/
-	7dKwYvpLjzV+maMkJOGk6lOaU3e2Rn6J4z1DPbljwPcQbsWmEYVRHhZBPdx6+mZ/Y9Xz
-	TDug==
-X-Gm-Message-State: AKaTC00SGcpbHM17oaSSx7WIQGxAMYLk22z0k2lwWGUnJp0ZoiPBikxtg3fsgzcZai/JFg==
-X-Received: by 10.28.51.211 with SMTP id z202mr9342wmz.125.1481050446023;
-	Tue, 06 Dec 2016 10:54:06 -0800 (PST)
+	bh=J8VqT8NE9gM8+vF4PPZWcpQU50GjEenX04Y1ezDQFX0=;
+	b=Hl42EADJc5FL1sRKw+hfLtk/HeThhc5xhyPD9EZDlHs90Z1mfwtT5X/uWOoj9M9MEg
+	c2DKhc+Xxye3FuuMN9O2KCGBPAj8oKGVScE9o6Wvw6uZZuwTDvlv0LtOLSBUMIs/62Db
+	KOPDByQW+kYwjrlDPbVg7IMsXM8Kqpo7YhRLXDN6pWRy2vTlnogYOgrAhD5HjMtOPXSM
+	FE+GWi9A35R2gsfms//ACCGp95Ua/vQwo2P5czhfxxgp7frd/0SNO/T/qM1nUNKnf8ss
+	AAl5if0gMyaZH+H6yiFKQvFGMXHIScc7qsFU/EvYhzSBHOAWl0Ck4KtrQHCnY6H4PvN7
+	GDhA==
+X-Gm-Message-State: AKaTC03U0mIJNldpYOXd3mRVFzOYaVD2zuA4janBGGsodQYtvEie1sGpSfwnSFfJmp9b2g==
+X-Received: by 10.28.57.193 with SMTP id g184mr51764wma.122.1481050639418;
+	Tue, 06 Dec 2016 10:57:19 -0800 (PST)
 Received: from carbonA (cpc96910-walt25-2-0-cust629.13-2.cable.virginm.net.
 	[82.22.166.118]) by smtp.gmail.com with ESMTPSA id
-	f76sm5425009wmd.15.2016.12.06.10.54.05
+	cl6sm27211700wjc.10.2016.12.06.10.57.18
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 06 Dec 2016 10:54:05 -0800 (PST)
-Date: Tue, 6 Dec 2016 18:54:03 +0000
+	Tue, 06 Dec 2016 10:57:18 -0800 (PST)
+Date: Tue, 6 Dec 2016 18:57:17 +0000
 From: Andrei Gherzan <andrei@gherzan.ro>
 To: Frank Meerkoetter <meerkoetter@googlemail.com>
-Message-ID: <20161206185403.GK1636@carbonA>
+Message-ID: <20161206185717.GL1636@carbonA>
 References: <1480361865-9547-1-git-send-email-frank@meerkoetter.org>
 MIME-Version: 1.0
 In-Reply-To: <1480361865-9547-1-git-send-email-frank@meerkoetter.org>
@@ -73,13 +73,13 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 Dec 2016 18:54:10 -0000
-X-Groupsio-MsgNum: 33330
+X-List-Received-Date: Tue, 06 Dec 2016 18:57:21 -0000
+X-Groupsio-MsgNum: 33331
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="vk/v8fjDPiDepTtA"
+	protocol="application/pgp-signature"; boundary="7l042bGvurpep9Wg"
 Content-Disposition: inline
 
---vk/v8fjDPiDepTtA
+--7l042bGvurpep9Wg
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
@@ -111,31 +111,34 @@ On Mon, Nov 28, 2016 at 08:37:45PM +0100, Frank Meerkoetter wrote:
 >  CMDLINE_append = " ${CMDLINE_DEBUG}"
 >
 >  KERNEL_INITRAMFS ?= '${@base_conditional("INITRAMFS_IMAGE_BUNDLE", "1", "1", "", d)}'
-> --
 
-I like this. Let's merge it. Master it is.
+I had to change the git log a little. Please make sure you submit other
+patches using the format described here:
+http://www.openembedded.org/wiki/Commit_Patch_Message_Guidelines
+
+Thanks for you contribution.
 
 --
 Andrei Gherzan
 
---vk/v8fjDPiDepTtA
+--7l042bGvurpep9Wg
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIcBAEBCAAGBQJYRwlCAAoJEHO76Gt+erfP/GEQAL0G2xY6TLFajaKCPp18CQWG
-XHcxa5GSHd3FrRrj37aUtXR6LXOa7fHPfCw6UzS/xgR4RheZllc5hZ+r6oP4xWOY
-lYfhLn2sVMmC9xL8F6R08hwLXiKxMPdueD+Fr//JPXdHJISTBfy0HZIAPx9S0A7c
-x/u3YLa7MGQL4SbBIQUFdIVhnhNsA4sutLoWbI30z8OHEX0k6DXFnzA+c1V7j9TI
-Z7CTt8AB5QAbpSKHDrg6lcJm4ceZS8pch+ve2KeQNdATMDl72LEyK47U5JzFJfOj
-9bZHpnqYvqrQIbQlgOUctQpy9FkE5RxsOaHAReTSYzmocz2D9ZlyIgnVWcwuMycL
-kjsy5wUw+Xl4ggYV3yOqLosi0QcqHtkPsUjEiVY46HsYBuv+BqlxCe5VX1/oDe3e
-PDbg1Qc8Rfn/V1zu8p+jy4EA3s9RSNoTQtW4XKIaQXWQ4lY73bF1ax8nBulwBY1N
-MuGBFSnQtrbqTGjy5loK+ZqedmlB27W0/G9hIS1my72IgrBSYrp/vbgQrwBhENXp
-dTvTys1r9yrtunqLYbPbeqtXo0BFrkwWzIFToTHKGPL7Wvh5HimS1w1piF0gooE0
-iJFIqIl2BEEyqbgj+KvCxUiPwnwvcZIrPMILylNQ7SaQM1Xq7C6gBhfolh8P8XOB
-DlP1eJL1Ue/dI+5k8AjR
-=O92n
+iQIcBAEBCAAGBQJYRwoNAAoJEHO76Gt+erfP5BAP/1OsCpCkGlI3B+Cxp9d16aWn
+gMBfLEuqnKOKt9KulFxEKqFzOqAZuA8YOUe+6VRu/LG0fMC/7dUQCXS86O5s8r5a
+nBUn/kB3LV+JBTZlhSOvxVajYHzjB826L9ah5dsudf88FmrmtaWkJUHHcZ6yaF8d
+8D4m/E7AdRrOBbG9Fg8PbViSlkEB+OdjEkv2Lsf6rF4iFjUuhtzoiJS/LHeVsVte
+qgb6VCjqDmviKfZquYPj7pWmoJ+MjiahO9qNhbFV7qXIQZ6yuB7kCpnxqBv+u6L5
+Ll0au+02ij8ot5htwylC7avx10er0V2irB1HUBaIXtIq7IZ+3izF8axIlhIYTM/Z
++kYnCbUkHuDiWEDVEqzKxS7/O5YtrN0UBLiUzIM+oNrirqGQ8hjhnARKFoQtM9QI
+v9Hs4qDKeZiUmWao4ySFQ2BuVEcqitPcHx+RuiV7Fhssx148xgYbvm/bprSGceUX
+N7g6C4qXZ0l/S9UPeAE+iU72JvwHssptLJ5Td0oXj3Dbs0eSOVUUIYGCAKnYjwaP
+kzJRjP+9RGoGhe54QfU3f0zq9/pofQpC+oypnDoqBFJIVAQzSK+wp/LmIiEgq+Hl
+lhPoa7oeO4O2MJA2cXx+DZS/cgskG7k+BByVrnpG7OcpMJNFfTO7Zdg1x9jYC0Ui
+3t/+vWNBR/Vx89CyN+4i
+=EniM
 -----END PGP SIGNATURE-----
 
---vk/v8fjDPiDepTtA--
+--7l042bGvurpep9Wg--
