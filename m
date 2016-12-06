@@ -1,96 +1,60 @@
-Return-Path: <gerharddeclercq@outlook.com>
+Return-Path: <sona.sarmadi@enea.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 478E1E00CC3; Tue,  6 Dec 2016 06:18:52 -0800 (PST)
+	id 71758E00CC3; Tue,  6 Dec 2016 06:30:05 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (gerharddeclercq[at]outlook.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [65.55.116.18 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [185.38.181.44 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 60 seconds by postgrey-1.32 at yocto-www;
-	Tue, 06 Dec 2016 06:18:49 PST
-Received: from BLU004-OMC1S7.hotmail.com (blu004-omc1s7.hotmail.com
-	[65.55.116.18])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A6B7AE00C9B
-	for <yocto@yoctoproject.org>; Tue,  6 Dec 2016 06:18:49 -0800 (PST)
-Received: from EUR01-DB5-obe.outbound.protection.outlook.com ([65.55.116.8])
-	by BLU004-OMC1S7.hotmail.com over TLS secured channel with
-	Microsoft SMTPSVC(7.5.7601.23008); Tue, 6 Dec 2016 06:17:49 -0800
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
-	s=selector1; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
-	bh=iG35nVOqoqYqdTG3kDVlyhZP2pzqBSyyNNuAIfCalKY=;
-	b=YvJhrc8yu8rICb9gIPTa6F0eBynMZzEXhVSFDOtUrYmTwORs1PHSzqOjxXQxWMO3pLNNHaRBxAK8tUmkaoFSFTL/63jtoiJvEton9TbzwT9Mkj8goY6Cx7cZh0gEGMhN3/tdArOkqcAdBffVWsAghxKyt3in+Giq6f8DW6AI6Qx3vkd4zBDkkJZf55txpDNFnqWgT24yU1v8WuIN+QWnXwNcbyiwHJFv2INS0rLABNy+20eQO2VO2Ms8LYuRuRgvXHDW6OHCW9OqkKzcK5I4lEWw1ueLtXJhX8392P7MvN7mIxMVLza+RVC53iII03qrZwCb/b/+dGT5nHrKmTS8yQ==
-Received: from VE1EUR01FT015.eop-EUR01.prod.protection.outlook.com
-	(10.152.2.55) by VE1EUR01HT033.eop-EUR01.prod.protection.outlook.com
-	(10.152.3.106) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.734.4;
-	Tue, 6 Dec 2016 14:17:45 +0000
-Received: from VI1PR0401MB1854.eurprd04.prod.outlook.com (10.152.2.57) by
-	VE1EUR01FT015.mail.protection.outlook.com (10.152.2.237) with Microsoft
-	SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
-	15.1.761.6 via Frontend Transport; Tue, 6 Dec 2016 14:17:45 +0000
-Received: from VI1PR0401MB1854.eurprd04.prod.outlook.com ([10.165.235.20]) by
-	VI1PR0401MB1854.eurprd04.prod.outlook.com ([10.165.235.20]) with
-	mapi id 15.01.0761.017; Tue, 6 Dec 2016 14:17:45 +0000
-From: Gerhard de Clercq <gerharddeclercq@outlook.com>
-To: Yocto list discussion <yocto@yoctoproject.org>
-Thread-Topic: [meta-raspberrypi] Qt EGLFS frozen on VC4
-Thread-Index: AQHST8nLP826Ht+MU0OxA/cZ4vSESQ==
-Date: Tue, 6 Dec 2016 14:17:45 +0000
-Message-ID: <VI1PR0401MB18543D5A6FF9DA2E7D673079B8820@VI1PR0401MB1854.eurprd04.prod.outlook.com>
-Accept-Language: en-ZA, en-US
+X-Greylist: delayed 107 seconds by postgrey-1.32 at yocto-www;
+	Tue, 06 Dec 2016 06:30:02 PST
+Received: from smtp-out11.electric.net (smtp-out11.electric.net
+	[185.38.181.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7A534E00CAF
+	for <yocto@yoctoproject.org>; Tue,  6 Dec 2016 06:30:02 -0800 (PST)
+Received: from 1cEGj5-0001Vc-W2 by out11b.electric.net with emc1-ok (Exim 4.87)
+	(envelope-from <sona.sarmadi@enea.com>)
+	id 1cEGj6-0001Wi-V1; Tue, 06 Dec 2016 06:28:12 -0800
+Received: by emcmailer; Tue, 06 Dec 2016 06:28:12 -0800
+Received: from [192.36.1.72] (helo=mx-3.enea.com)
+	by out11b.electric.net with esmtps (TLSv1:AES128-SHA:128) (Exim 4.87)
+	(envelope-from <sona.sarmadi@enea.com>)
+	id 1cEGj5-0001Vc-W2; Tue, 06 Dec 2016 06:28:11 -0800
+Received: from SESTOEX04.enea.se ([fe80::bc2d:9299:d6b2:d0b7]) by
+	SESTOEX08.enea.se ([fe80::1c3:4003:dc47:23c0%11]) with mapi id
+	14.03.0294.000; Tue, 6 Dec 2016 15:28:11 +0100
+From: Sona Sarmadi <sona.sarmadi@enea.com>
+To: Mariano Lopez <mariano.lopez@linux.intel.com>, "mariano.lopez@intel.com"
+	<mariano.lopez@intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto] cve-checker tool
+Thread-Index: AdIwLntiYxJel4UHQ6ebcs09cROndQAEuizQADVV+gAHomiEgA==
+Date: Tue, 6 Dec 2016 14:28:10 +0000
+Message-ID: <3230301C09DEF9499B442BBE162C5E48AC0CF8B7@SESTOEX04.enea.se>
+References: <3230301C09DEF9499B442BBE162C5E48ABEA948F@SESTOEX04.enea.se>
+	<0cfba38f-d090-68d0-5c09-a20a5f5e1973@linux.intel.com>
+In-Reply-To: <0cfba38f-d090-68d0-5c09-a20a5f5e1973@linux.intel.com>
+Accept-Language: sv-SE, en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-authentication-results: yoctoproject.org; dkim=none (message not signed)
-	header.d=none;yoctoproject.org; dmarc=none action=none
-	header.from=outlook.com;
-x-incomingtopheadermarker: OriginalChecksum:217FCC60B3AE83F9E0991A282BBD6D1C832B7C65DDE13E8A232ABBEA75172CB8;
-	UpperCasedChecksum:F4ECDBFEB30D834A17FA840255A3724904D314967E6D15ADF618E0C169F4AE5C;
-	SizeAsReceived:7320; Count:37
-x-ms-exchange-messagesentrepresentingtype: 1
-x-tmn: [hOlgFQrbEbHjCaDYzDjh9zjexJcJ5OLa]
-x-incomingheadercount: 37
-x-eopattributedmessage: 0
-x-microsoft-exchange-diagnostics: 1; VE1EUR01HT033;
-	5:rWY+k1CfgQ12lswypADTQ78cZJHHLHTt0v412k6B8U7bkH/zqX/LkdtHnqVgMLZUsVSForJG2w5mswCaswbvbId9WCvmUaaCeWzhikaDB/dopC1fU9zvAivAATCY6tcz2W9OM9ena98389icRzLJIg==;
-	24:5GqeQ041R3yx18691NzNUOxRbWHywoJ/7+sfB/cUbjY4He1YjMkSxopH/a8fLjXiuV+wtHmLGbn9AJmueN0wmrfeFgiGIi8h2r/NDRdlEh4=;
-	7:G9T8/mjHnGmKS3Tv43Fm7+ZWvaifmFVZRJ9j7NDYmMIa5zb2JtfG7Ujjb7iuqnkqld4coxinnRc8oYZFTwgpamet3wezXUYAuidXNQyOeE5lX5AH5/zdIVe7bwda2tvBw8R7oA7f4GRvPWFchuST7FT/XKzAjb8hKZ2Oi/IDIEkqL+2jEMfM8g3QT8j/dlYfY++bxSWeH3tc0bmmNjtZe4rUkUVmtGyCi4jYHU32uDKBZi2Z2njRzdaOpi5q9A0wcRHD7SrxmLvoFU5X5ds4/dZgc9GaSNwqiqh8k0l3kQDIiXuiEX/69vqzIO11JWvuVX2XlBarVXc/OPz+qVcbBf/v4AJCSIiNkrHgBuYDDxU=
-x-forefront-antispam-report: EFV:NLI; SFV:NSPM; SFS:(10019020)(98900003);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:VE1EUR01HT033;
-	H:VI1PR0401MB1854.eurprd04.prod.outlook.com; FPR:; SPF:None;
-	LANG:en; 
-x-ms-office365-filtering-correlation-id: f3933340-3afc-4341-bf24-08d41de2a64b
-x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
-	RULEID:(22001)(1601124038)(5061506293)(5061507293)(1603103113)(1601125047);
-	SRVR:VE1EUR01HT033; 
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0; RULEID:(432015012)(82015046);
-	SRVR:VE1EUR01HT033; BCL:0; PCL:0; RULEID:; SRVR:VE1EUR01HT033; 
-x-forefront-prvs: 01480965DA
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
+x-originating-ip: [172.16.142.231]
 MIME-Version: 1.0
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Dec 2016 14:17:45.2696 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Internet
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1EUR01HT033
-X-OriginalArrivalTime: 06 Dec 2016 14:17:49.0083 (UTC)
-	FILETIME=[85EA0EB0:01D24FCB]
-Subject: [meta-raspberrypi] Qt EGLFS frozen on VC4
+X-Outbound-IP: 192.36.1.72
+X-Env-From: sona.sarmadi@enea.com
+X-Proto: esmtps
+X-Revdns: mx-3.enea.com
+X-HELO: mx-3.enea.com
+X-TLS: TLSv1:AES128-SHA:128
+X-Authenticated_ID: 
+X-PolicySMART: 6551647
+X-Virus-Status: Scanned by VirusSMART (c)
+X-Virus-Status: Scanned by VirusSMART (s)
+Subject: Re: cve-checker tool
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -102,55 +66,131 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 Dec 2016 14:18:52 -0000
-Content-Language: en-ZA
-Content-Type: multipart/alternative;
-	boundary="_000_VI1PR0401MB18543D5A6FF9DA2E7D673079B8820VI1PR0401MB1854_"
-
---_000_VI1PR0401MB18543D5A6FF9DA2E7D673079B8820VI1PR0401MB1854_
-Content-Type: text/plain; charset="iso-8859-1"
+X-List-Received-Date: Tue, 06 Dec 2016 14:30:05 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-When I build Qt5 for my RPi 3 so that it uses EGLFS on VC4  (all using Yoct=
-o) then everything seems to go well initially and I can even get a program =
-to launch but it then seems to render only one frame and then stay there. T=
-here is no response to user input and applications that are supposed to hav=
-e constant animations do not change. It is also not possible to terminate t=
-he application with ^c.
+Hi Mariano, all,
+
+> If there is a version affected by a CVE it will look for a patch that sol=
+ves
+> that particular CVE using the the metadata in the patch format.
+> For example, the current bind version is affected by CVE-2016-1285, but
+> there is patch for that, so the cve-check class will find this and will
+> generate a log file saying the vulnerability has been addressed.
+
+It seems that this tool does not detect all CVEs, e.g. bind has some CVE pa=
+tches
+but it is not reported, I tried all options below nothing is reported (no c=
+ve.log file):
+bitbake -c cve_check bind=20
+bitbake -k -c cve_check universe
+bitbake -k -c cve_check world
+
+There are some CVEs in bind (reported in nvd.xml file for our version cpe:/=
+a:isc:bind:9.10.3"/> )
+but cve.check-tool does not report them ex: (CVE-2016-2776). Do you know wh=
+y?
 
 
-I'm not even sure where to ask for support because I have no idea if this i=
-s a problem with Qt, VC4 or Yocto. Does anyone here have a clue of what mig=
-ht be wrong?
+CVEs are reported for the following packages using e.g. "bitbake -k -c cve_=
+check universe"
+or  "bitbake -c cve_check perl"
+=20
+tmp/work/i586-poky-linux/perl/5.22.1-r0/cve/cve.log
+tmp/work/i586-poky-linux/foomatic-filters/4.0.17-r1/cve/cve.log
+tmp/work/i586-poky-linux/flex/2.6.0-r0/cve/cve.log
+tmp/work/i586-poky-linux/glibc/2.24-r0/cve/cve.log
+tmp/work/i586-poky-linux/unzip/1_6.0-r5/cve/cve.log
+tmp/work/i586-poky-linux/expat/2.2.0-r0/cve/cve.log
+tmp/work/i586-poky-linux/gnutls/3.5.3-r0/cve/cve.log
+tmp/work/i586-poky-linux/glibc-initial/2.24-r0/cve/cve.log
+tmp/work/i586-poky-linux/libxml2/2.9.4-r0/cve/cve.log
+tmp/work/i586-poky-linux/bzip2/1.0.6-r5/cve/cve.log
 
---_000_VI1PR0401MB18543D5A6FF9DA2E7D673079B8820VI1PR0401MB1854_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+We have more recipes which have CVE patches but they are not reported.=20
+I have analyzed these; some of these CVEs are still marked as reserved on M=
+itre
+ and are not present in the nvd.xml files (although they are public (e.g. B=
+usybox:=20
+https://www.cve.mitre.org/cgi-bin/cvename.cgi?name=3DCVE-2016-2147).
 
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
-</head>
-<body dir=3D"ltr">
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
--family:Calibri,Arial,Helvetica,sans-serif;" dir=3D"ltr">
-<p>When I build Qt5 for my RPi 3 so that it uses EGLFS on VC4&nbsp; (all us=
-ing Yocto) then everything seems to go well initially and I can even get a =
-program to launch but it then seems to render only one frame and then stay =
-there. There is no response to user input
- and applications that are supposed to have constant animations do not chan=
-ge. It is also not possible to terminate the application with ^c.</p>
-<p><br>
-</p>
-<p>I'm not even sure where to ask for support because I have no idea if thi=
-s is a problem with Qt, VC4 or Yocto. Does anyone here have a clue of what =
-might be wrong?<br>
-</p>
-</div>
-</body>
-</html>
+I don't understand why for instance bind CVEs are not detected and reported=
+ by cve-check tool?
+Is it because of cpe:/a:isc:bind? It looks for isc?
 
---_000_VI1PR0401MB18543D5A6FF9DA2E7D673079B8820VI1PR0401MB1854_--
+morty/poky/meta$ find . -name *CVE-201*.patch
+./recipes-connectivity/ppp/ppp/fix-CVE-2015-3310.patch
+
+./recipes-connectivity/bind/bind/CVE-2016-2776.patch ?
+./recipes-connectivity/bind/bind/CVE-2016-1286_2.patch
+./recipes-connectivity/bind/bind/CVE-2016-1285.patch
+./recipes-connectivity/bind/bind/CVE-2016-1286_1.patch
+./recipes-connectivity/bind/bind/CVE-2016-2088.patch
+./recipes-connectivity/bind/bind/CVE-2016-2775.patch
+
+./recipes-extended/unzip/unzip/CVE-2015-7696.patch
+./recipes-extended/unzip/unzip/06-unzip60-alt-iconv-utf8_CVE-2015-1315.patc=
+h
+./recipes-extended/unzip/unzip/CVE-2015-7697.patch
+./recipes-extended/xinetd/xinetd/xinetd-CVE-2013-4342.patch
+./recipes-extended/cpio/cpio-2.12/0001-Fix-CVE-2015-1197.patch
+./recipes-extended/cracklib/cracklib/0001-Apply-patch-to-fix-CVE-2016-6318.=
+patch
+./recipes-extended/bzip2/bzip2-1.0.6/CVE-2016-3189.patch
+./recipes-extended/grep/grep-2.5.1a/grep-CVE-2012-5667.patch
+./recipes-extended/foomatic/foomatic-filters-4.0.17/CVE-2015-8327.patch
+./recipes-extended/foomatic/foomatic-filters-4.0.17/CVE-2015-8560.patch
+./recipes-multimedia/libtiff/files/CVE-2016-3945.patch
+./recipes-multimedia/libtiff/files/CVE-2016-3623.patch
+./recipes-multimedia/libtiff/files/CVE-2016-5323.patch
+./recipes-multimedia/libtiff/files/CVE-2016-5321.patch
+./recipes-multimedia/libtiff/files/CVE-2016-3991.patch
+./recipes-multimedia/libtiff/files/CVE-2016-3622.patch
+./recipes-multimedia/libtiff/files/CVE-2015-8781.patch
+./recipes-multimedia/libtiff/files/CVE-2015-8784.patch
+./recipes-multimedia/libtiff/files/CVE-2016-3186.patch
+./recipes-multimedia/libtiff/files/CVE-2016-3990.patch
+./recipes-multimedia/libtiff/files/CVE-2015-8665_8683.patch
+./recipes-core/systemd/systemd/CVE-2016-7795.patch
+./recipes-core/busybox/busybox/CVE-2016-2147_2.patch  <<< Reserved on Mitre=
+: https://www.cve.mitre.org/cgi-bin/cvename.cgi?name=3DCVE-2016-2147
+./recipes-core/busybox/busybox/CVE-2016-2147.patch
+./recipes-core/busybox/busybox/CVE-2016-2148.patch <<< https://www.cve.mitr=
+e.org/cgi-bin/cvename.cgi?name=3DCVE-2016-2148
+./recipes-devtools/elfutils/elfutils-0.148/elf_begin.c-CVE-2014-9447-fix.pa=
+tch
+./recipes-devtools/python/python3/CVE-2016-5636.patch
+./recipes-devtools/python/python3/python3-fix-CVE-2016-1000110.patch
+./recipes-devtools/python/python/CVE-2016-5636.patch
+./recipes-devtools/python/python/python-fix-CVE-2016-1000110.patch
+./recipes-devtools/qemu/qemu/0002-fix-CVE-2016-7423.patch
+./recipes-devtools/qemu/qemu/0003-fix-CVE-2016-7908.patch
+./recipes-devtools/perl/perl/perl-fix-CVE-2015-8607.patch
+./recipes-devtools/perl/perl/perl-fix-CVE-2016-2381.patch
+./recipes-devtools/perl/perl/perl-fix-CVE-2016-1238.patch
+./recipes-devtools/perl/perl/perl-fix-CVE-2016-6185.patch
+./recipes-devtools/gcc/gcc-6.2/CVE-2016-4490.patch
+./recipes-devtools/flex/flex/CVE-2016-6354.patch
+./recipes-bsp/grub/files/0001-Fix-CVE-2015-8370-Grub2-user-pass-vulnerabili=
+ty.patch
+./recipes-support/nettle/nettle-2.7.1/CVE-2015-8804.patch
+./recipes-support/nettle/nettle-2.7.1/CVE-2015-8803_8805.patch
+./recipes-support/gnutls/gnutls/CVE-2016-7444.patch
+./recipes-support/boost/boost/boost-CVE-2012-2677.patch
+./recipes-support/gnupg/gnupg-1.4.7/GnuPG1-CVE-2012-6085.patch
+./recipes-support/gnupg/gnupg-1.4.7/CVE-2013-4576.patch
+./recipes-support/gnupg/gnupg-1.4.7/CVE-2013-4351.patch
+./recipes-support/gnupg/gnupg-1.4.7/CVE-2013-4242.patch
+
+Thanks
+//Sona
+
+
+
+
+
+
+
+
