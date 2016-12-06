@@ -1,74 +1,40 @@
-Return-Path: <patrick.ohly@intel.com>
+Return-Path: <herve.jourdain@neuf.fr>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 799CBE00C6A; Tue,  6 Dec 2016 01:45:28 -0800 (PST)
+	id 98A78E00CAF; Tue,  6 Dec 2016 04:46:09 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.223.175 listed in dnsbl.sorbs.net]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.223.175 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [93.17.128.20 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-io0-f175.google.com (mail-io0-f175.google.com
-	[209.85.223.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 18716E00C59
-	for <yocto@yoctoproject.org>; Tue,  6 Dec 2016 01:45:26 -0800 (PST)
-Received: by mail-io0-f175.google.com with SMTP id l140so30284027iol.3
-	for <yocto@yoctoproject.org>; Tue, 06 Dec 2016 01:45:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=message-id:subject:from:to:cc:date:in-reply-to:references
-	:organization:mime-version:content-transfer-encoding;
-	bh=pjnuEV3LBuCGwWctRjIQ6wLhR53ig/3eSf7D6jkw3UM=;
-	b=R95rOqIdUo0OfJTUtzuZa9No4/QanEdiXbgH+RGjuWArXdZobBA3Ai8pvBU5BqJUaP
-	dTgY1y0pr7bZPb9w7YIh5TTbuxZp1wala6V5UzYPfwVogcJbQKKj7+JNnSogaRFn3LMB
-	Mlsq6g5X5iMxAlklKTm73ZqN7iXIo25Z3ykzhjgNgQCNaZMMVTbTAG4w5QRy7AMg1IvO
-	ipMv64eMJTOkJ7BCHG7aaEa5gyIjBUmRY+UUOWkMpzBvNRebBITu86DsdAJxMWpSdWJ2
-	V/E+xULHAR9I6usgXHIShDWdrcKBJ+iQx+qRMxuCO9at6tmHA1OykaYeuJGQWpt1y2qR
-	878g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-	:references:organization:mime-version:content-transfer-encoding;
-	bh=pjnuEV3LBuCGwWctRjIQ6wLhR53ig/3eSf7D6jkw3UM=;
-	b=myHqUdVwGdGtaUlvWo2DTGwD13K6u22rcFmsRwg5pZl5ysoqpoe6L77D41r+3ANgJW
-	um6Cgm4au0Tu69ZQp5u3V70Ap/MkbTWyYty5hpY29ZV7GIRVNFk1BB8qnjNWHCwCyhA5
-	Zb3bFwz3Im1Nq2Vz+uEv2WSDTTVz19Gax2RFOR1GuFPR8082U9W42IeBU3HonYMPehOz
-	zQBKf4W0HsfyJ0AHIFVdLb6ja4wXqbZRr6ExNi6HRKGyMUPNf8gBl0fhUpVWUbhDz8fT
-	aE4WtxYp7/n12RxPC1J+HXYCQZBlO7x4cV76AC2cBfGKxEnYNoq0yX6A5hvIpvMVkffs
-	vKHQ==
-X-Gm-Message-State: AKaTC00v/GBp+1P0SvVZftDHO5h74kNOX9JOVqyvO5Oyv8TjFYI7XfF/9ljgXs0xNGVmW2Sb
-X-Received: by 10.36.31.200 with SMTP id d191mr1466348itd.70.1481017526186;
-	Tue, 06 Dec 2016 01:45:26 -0800 (PST)
-Received: from pohly-mobl1 (p57A5612C.dip0.t-ipconnect.de. [87.165.97.44])
-	by smtp.gmail.com with ESMTPSA id
-	e35sm8761242iod.32.2016.12.06.01.45.24
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 06 Dec 2016 01:45:25 -0800 (PST)
-Message-ID: <1481017522.17535.38.camel@intel.com>
-From: Patrick Ohly <patrick.ohly@intel.com>
-To: Stefano Babic <sbabic@denx.de>
-Date: Tue, 06 Dec 2016 10:45:22 +0100
-In-Reply-To: <30a3dd41-2e1c-8658-b83d-8632944d1709@denx.de>
-References: <20161121120355.18309-1-git@andred.net>
-	<1480503859.6873.280.camel@intel.com>
-	<1480516308.13682.1.camel@andred.net>
-	<1480517999.6873.298.camel@intel.com>
-	<30a3dd41-2e1c-8658-b83d-8632944d1709@denx.de>
-Organization: Intel GmbH, Dornacher Strasse 1, D-85622 Feldkirchen/Munich
-X-Mailer: Evolution 3.12.9-1+b1 
-Mime-Version: 1.0
-Cc: =?ISO-8859-1?Q?Andr=E9?= Draszik <git@andred.net>, "Lopez,
-	Mariano" <mariano.lopez@intel.com>, yocto@yoctoproject.org
-Subject: Re: update mechanisms
+Received: from smtp26.services.sfr.fr (smtp26.services.sfr.fr [93.17.128.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4B92EE00C92
+	for <yocto@yoctoproject.org>; Tue,  6 Dec 2016 04:46:05 -0800 (PST)
+Received: from nbhjo (unknown [65.202.45.61])
+	by msfrf2632.sfr.fr (SMTP Server) with ESMTP id C85891C000853;
+	Tue,  6 Dec 2016 13:46:00 +0100 (CET)
+Received: from nbhjo (unknown [65.202.45.61])	(using TLSv1.2
+	with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))	(No client
+	certificate requested)	(Authenticated sender: herve.jourdain@neuf.fr)
+	by msfrf2632.sfr.fr (SMTP Server) with ESMTPSA;
+	Tue,  6 Dec 2016 13:45:59 +0100 (CET)
+Authentication-Results: sfr.fr; auth=pass (LOGIN)
+	smtp.auth=herve.jourdain@neuf.fr
+From: Herve Jourdain <herve.jourdain@neuf.fr>
+To: 'Gary Thomas' <gary@mlbassoc.com>, yocto@yoctoproject.org
+References: <1481016818-27612-1-git-send-email-gary@mlbassoc.com>
+In-Reply-To: <1481016818-27612-1-git-send-email-gary@mlbassoc.com>
+Date: Tue, 6 Dec 2016 13:45:58 +0100
+Message-ID: <001e01d24fbe$b293d8e0$17bb8aa0$@neuf.fr>
+MIME-Version: 1.0
+X-Mailer: Microsoft Outlook 15.0
+Thread-Index: AQJYGqWR7tPui6g/rwVhQQhrZs04T5/vR2Ug
+X-sfr-mailing: LEGIT
+Subject: Re: [meta-raspberrypi][PATCH] gstreamer1.0-plugins-bad: Don't	hard wire use of userland
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -80,41 +46,66 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 Dec 2016 09:45:28 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 06 Dec 2016 12:46:09 -0000
+Content-Type: text/plain; charset=iso-8859-1
+Content-Transfer-Encoding: quoted-printable
+Content-Language: fr
 
-On Tue, 2016-12-06 at 10:01 +0100, Stefano Babic wrote:
-> Hi Patrick,
-> 
-> On 30/11/2016 15:59, Patrick Ohly wrote:
-> > I've started a Wiki page
-> > https://wiki.yoctoproject.org/wiki/System_Update - rudimentary at the
-> > moment, but might as well be mentioned already now.
-> 
-> I have seen Mariano added an entry for SWUpdate, too, thanks  - I would
-> like to edit for better explanation on some parts. Should I try to edit
-> directly the page or is it better to discuss it here ?
+Hi Gary,
 
-Use your own judgment. If its uncontroversial, the feel free to edit the
-page directly, otherwise let's discuss it here.
+But dispmanx is really only provided by userland, it does not exist in =
+other
+flavors of egl/libgles.
+Actually, dispmanx should not be selected in PACKAGECONFIG if userland =
+is
+not in use for EGL/GLES.
 
-If feel that putting information directly into the table is too limiting
-(it should be brief), then feel free to start a complete section about
-SWUpdate. 
+Cheers,
 
-I'll do the same for swupd. Editing the sections should be possible
-without conflicts, we just have to be more careful about editing the
-table concurrently.
+Herve
 
--- 
-Best Regards, Patrick Ohly
+-----Original Message-----
+From: yocto-bounces@yoctoproject.org =
+[mailto:yocto-bounces@yoctoproject.org]
+On Behalf Of Gary Thomas
+Sent: mardi 6 d=E9cembre 2016 10:34
+To: yocto@yoctoproject.org
+Cc: Gary Thomas <gary@mlbassoc.com>
+Subject: [yocto] [meta-raspberrypi][PATCH] gstreamer1.0-plugins-bad: =
+Don't
+hard wire use of userland
 
-The content of this message is my personal opinion only and although
-I am an employee of Intel, the statements I make here in no way
-represent Intel's position on the issue, nor am I authorized to speak
-on behalf of Intel on this matter.
+Selection of the libgl packages should be by virtual/XXX.  Using =
+'userland'
+directly can lead to build conflicts and make the system unbuildable.
 
+Signed-off-by: Gary Thomas <gary@mlbassoc.com>
+---
+ recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_%.bbappend | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
+diff --git
+a/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_%.bbappend
+b/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_%.bbappend
+index 7292f90..432869d 100644
+--- a/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_%.bbappend
++++ b/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_%.bbappend
+@@ -9,4 +9,4 @@ PACKAGECONFIG_GL_rpi =3D "egl gles2"
+=20
+ PACKAGECONFIG_append_rpi =3D " hls libmms faad"
+=20
+-PACKAGECONFIG[dispmanx] =3D =
+"--enable-dispmanx,--disable-dispmanx,userland"
++PACKAGECONFIG[dispmanx] =3D =
+"--enable-dispmanx,--disable-dispmanx,virtual/egl
+virtual/libgles2"
+--=20
+2.7.4
+
+--=20
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 
 
