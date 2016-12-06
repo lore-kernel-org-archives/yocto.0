@@ -1,68 +1,43 @@
-Return-Path: <andrei@gherzan.ro>
+Return-Path: <philip@balister.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CA967E00905; Tue,  6 Dec 2016 10:37:47 -0800 (PST)
+	id 58CB7E0093B; Tue,  6 Dec 2016 10:45:15 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [209.85.210.194 listed in list.dnswl.org]
+	*      [216.168.135.166 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wj0-f194.google.com (mail-wj0-f194.google.com
-	[209.85.210.194])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5FCCBE0083E
-	for <yocto@yoctoproject.org>; Tue,  6 Dec 2016 10:37:43 -0800 (PST)
-Received: by mail-wj0-f194.google.com with SMTP id j10so18109560wjb.3
-	for <yocto@yoctoproject.org>; Tue, 06 Dec 2016 10:37:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-disposition:in-reply-to:user-agent;
-	bh=2ZoZaHvU43c+cqUV+LNepmpbCygEWQD27yMlqgYkHGE=;
-	b=MFd9xS8ANCsRpgaQiNcTPfK7Iay8DjB9OwDwaPtShrVPJ+R9iaWRDP+5E+9vislgVI
-	7ViCyGeGfZMRqqu05Chu0FqPcuhcwhSzTTZMgAkqplpXKg2PHA0ar/TH4NbIQvQGzbN5
-	rf3SAVP+BsKN9vazKpOLsA6aV3/Y5NEiwGR33F0p6B7qt+WrO1zFTRMFJH0HHR5zMgkz
-	O4dd0ES5BXW/xUGD5kuhpyrVOYK+TM72tK7Pc3UArRTbb28KdjSfF5eGRlPaiDpMcFK0
-	M3YEzYEw8jpjgo4+IGjo7aWiv8ifGmC09SB7q5NhbiYmDUy/1uHD70HFp1qoEV4MiFRa
-	e1pw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-	:mime-version:content-disposition:in-reply-to:user-agent;
-	bh=2ZoZaHvU43c+cqUV+LNepmpbCygEWQD27yMlqgYkHGE=;
-	b=luN1G+8BN8KJkzOFlzX8xHs0gfB51cuj7AS516jIjoOHRTWO9tadxC5gmzuu/1bPHe
-	aO2ypGQRivBPGF5igkjHWzCPkBsAnutGCJocrje0XywKCkKGmpmeIgFcL3VYRcYiVQPT
-	ZI/GM3OMc/Gz4bddSDp50FM1HtWceMCQJiBI/5W+rpAmBGRZlTCOAE4mo7D5It3QRWpM
-	5mPXhFFhZISdSHC0VrwHPmTznKIhzS01mMIWHKZcTCA1AVhHWUOlA2vs5amKtRNZJYoG
-	EBCgIl7mUGXgLtjW/hZ/qoRn9V8DwJ6hK1+pkVQ+4jU31f9MB1QzonVxg4zZE4KnRlCw
-	Yc0A==
-X-Gm-Message-State: AKaTC035VLUPIg3srduK4HInNJ7kz7j3kn/dZAfK299xKNSQXB2X41YiG+6FDJCPj0G3xg==
-X-Received: by 10.194.122.65 with SMTP id lq1mr57171007wjb.12.1481049462606;
-	Tue, 06 Dec 2016 10:37:42 -0800 (PST)
-Received: from carbonA (cpc96910-walt25-2-0-cust629.13-2.cable.virginm.net.
-	[82.22.166.118]) by smtp.gmail.com with ESMTPSA id
-	ct7sm27169144wjc.2.2016.12.06.10.37.41
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 06 Dec 2016 10:37:41 -0800 (PST)
-Date: Tue, 6 Dec 2016 18:37:40 +0000
-From: Andrei Gherzan <andrei@gherzan.ro>
-To: Trevor Woerner <twoerner@gmail.com>
-Message-ID: <20161206183740.GJ1636@carbonA>
-References: <20161128190745.18053-1-twoerner@gmail.com>
-	<2ACF0BDF-0A7B-4A0E-BC20-B6B222F1644A@gmail.com>
-	<20161129013709.GA30326@openSUSE-i7.site>
-	<20161206182732.GI1636@carbonA>
+Received: from starfish.geekisp.com (starfish.geekisp.com [216.168.135.166])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 53D36E0086E
+	for <yocto@yoctoproject.org>; Tue,  6 Dec 2016 10:45:11 -0800 (PST)
+Received: (qmail 9291 invoked by uid 1003); 6 Dec 2016 18:45:11 -0000
+Received: from unknown (HELO ?10.16.32.193?)
+	(philip@opensdr.com@207.114.172.147)
+	by mail.geekisp.com with (DHE-RSA-AES128-SHA encrypted) SMTP;
+	6 Dec 2016 18:45:10 -0000
+To: "Lopez, Mariano" <mariano.lopez@linux.intel.com>,
+	Patrick Ohly <patrick.ohly@intel.com>, Stefano Babic <sbabic@denx.de>
+References: <20161121120355.18309-1-git@andred.net>
+	<1480503859.6873.280.camel@intel.com>
+	<1480516308.13682.1.camel@andred.net>
+	<1480517999.6873.298.camel@intel.com>
+	<30a3dd41-2e1c-8658-b83d-8632944d1709@denx.de>
+	<1481017522.17535.38.camel@intel.com>
+	<8e1fdcb8-d9fb-0e51-2e21-91e7e7c6f450@linux.intel.com>
+From: Philip Balister <philip@balister.org>
+Message-ID: <c3ce9528-f2eb-dd3f-cc68-331435aeda35@balister.org>
+Date: Tue, 6 Dec 2016 10:45:09 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.5.1
 MIME-Version: 1.0
-In-Reply-To: <20161206182732.GI1636@carbonA>
-User-Agent: Mutt/1.7.1 (2016-10-04)
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-raspberrypi][PATCH] linux-raspberrypi-base.bbclass: allow -rt kernels
+In-Reply-To: <8e1fdcb8-d9fb-0e51-2e21-91e7e7c6f450@linux.intel.com>
+Cc: =?UTF-8?Q?Andr=c3=a9_Draszik?= <git@andred.net>, "Lopez,
+	Mariano" <mariano.lopez@intel.com>, yocto@yoctoproject.org
+Subject: Re: update mechanisms
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,66 +49,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 Dec 2016 18:37:47 -0000
-X-Groupsio-MsgNum: 33328
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="/qIPZgKzMPM+y5U5"
-Content-Disposition: inline
+X-List-Received-Date: Tue, 06 Dec 2016 18:45:15 -0000
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: 7bit
 
---/qIPZgKzMPM+y5U5
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On 12/06/2016 06:11 AM, Lopez, Mariano wrote:
+> 
+> 
+> On 12/6/2016 3:45 AM, Patrick Ohly wrote:
+>> On Tue, 2016-12-06 at 10:01 +0100, Stefano Babic wrote:
+>>> Hi Patrick,
+>>>
+>>> On 30/11/2016 15:59, Patrick Ohly wrote:
+>>>> I've started a Wiki page
+>>>> https://wiki.yoctoproject.org/wiki/System_Update - rudimentary at the
+>>>> moment, but might as well be mentioned already now.
+>>> I have seen Mariano added an entry for SWUpdate, too, thanks  - I would
+>>> like to edit for better explanation on some parts. Should I try to edit
+>>> directly the page or is it better to discuss it here ?
+> 
+> It will be interesting to have your input directly, I tried to fill the
+> table with my experience with SWUpdate but I think you could give a
+> better insight of this. Thanks for joining the effort.
+> 
+>> Use your own judgment. If its uncontroversial, the feel free to edit the
+>> page directly, otherwise let's discuss it here.
+>>
+>> If feel that putting information directly into the table is too limiting
+>> (it should be brief), then feel free to start a complete section about
+>> SWUpdate.
+>>
+>> I'll do the same for swupd. Editing the sections should be possible
+>> without conflicts, we just have to be more careful about editing the
+>> table concurrently.
+>>
+> 
+> I agree with you, that we need to have a section per project, the table
+> is too limiting.
 
-On Tue, Dec 06, 2016 at 06:27:32PM +0000, Andrei Gherzan wrote:
-> On Mon, Nov 28, 2016 at 08:37:09PM -0500, Trevor Woerner wrote:
-> > On Mon 2016-11-28 @ 03:16:11 PM, Khem Raj wrote:
-> > >
-> > > > On Nov 28, 2016, at 11:07 AM, Trevor Woerner <twoerner@gmail.com> wrote:
-> > > >
-> > > > If the PREEMPT_RT patch is applied, the kernel version becomes, say,
-> > > > 4.4.32-rt43 (instead of 4.4.32). This confuses the version handling code in
-> > > > this class. Update how the version string is processed so that trailing rt-
-> > > > strings are properly handled, in addition to handling the existing cases.
-> > > >
-> > >
-> > > This probably will solve the issue I see with 4.9-rcX recipes that are in my tree on kraj/master
-> >
-> > I'm not familiar with the issue you're seeing, but the existing and new code
-> > are looking for 3 int()s separated by periods. If your recipes have the string
-> > "4.9-rcX" then I'm guessing there might still be an issue since the third
-> > int() will be "-rcX" in your case. If this is true, you'll need to take a look
-> > at where "int(min_ver[2])" is used further down in that bbclass file.
->
-> I agreed this is not the best implementation of this. We should only get
+I just skimmed the page and the table format isn't working well with the
+length of the blocks of text.
 
-agree*
+I'd also suggest referencing Matt Porter's talk from ELCE 2016 about
+software update technology:
 
-> the version using a regex that would get X.Y.Z-R with an optional Z and
-> R.
->
-> --
-> Andrei Gherzan
---
-Andrei Gherzan
+http://elinux.org/images/3/31/Comparison_of_Linux_Software_Update_Technologies.pdf
 
---/qIPZgKzMPM+y5U5
-Content-Type: application/pgp-signature; name="signature.asc"
+https://youtu.be/pdHV9H9nZks?list=PLbzoR-pLrL6pRFP6SOywVJWdEHlmQE51q
 
------BEGIN PGP SIGNATURE-----
+Philip
 
-iQIcBAEBCAAGBQJYRwVwAAoJEHO76Gt+erfPs8wQAKFLtyQPt1ioUZKsKp6vJ+um
-muwoNYj4kT1QQgdHQHv+ihoTHrkohfefzb87kLk3kb0U3P+Ut13EmECRwRpeWrcV
-dZ6APc9YtQwg5NNXf6OVpFqxUj3TOiTv5MzN57FzOWLvD9hNCiQ7mwt1f5f+Z9cm
-ACEBROpMLvqnn6AOUOZubQAHCj5ReNBPdeFLbubR7os05BWh05iEoB7di5JjNJOq
-MEzxlN5ND3O5yX5mwoCZweQZJ1SRqsdAoOtzsEt6wFhSnZt5ReUCEFPj0QWvlGG1
-jVnryDFdY02ZCc5oNKPR268aIWewnEACJyIXEu8KRNPRsS/VFuACJSkDHzyCc3Lq
-uoYO5C2nqYSOyuZXqNfNYHQ8XTjwua5Q+UoRgo7zDuP9VYrtuTfV2MBu3tXfErGv
-qU4FSx4WFTyM3D5dYjNfTVLmharCy/huWLlfSdSSEIoA2cASZznTPdKt/pot/3hc
-QRp5iaXB02mXXJUPN6JpO88yiVs939y83kGDBcKhTLHFto7EnlFeQPREMw5L3eXs
-YgKbFCvYAIfsZyVYQKSFQyJxrRuCyzlRoSxE4ZCwaP2bH2B+NmFFz6idNABK0z3t
-q7G/6NWWEBjHeON87eEMOQB64tsX8sKLivgqeSB+ozKZ+Me2j/EpvAukAn7vxocp
-z9PKaqwRYCMpokAOrvi4
-=Dihu
------END PGP SIGNATURE-----
 
---/qIPZgKzMPM+y5U5--
+> 
+> Mariano
+
