@@ -1,27 +1,35 @@
-Return-Path: <pokybuild@opensuse132.osl.yoctoproject.org>
+Return-Path: <vincent.libre@cryostase.eu>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 42D42E00D08; Tue,  6 Dec 2016 21:34:38 -0800 (PST)
+	id 22743E00D08; Tue,  6 Dec 2016 21:43:46 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.0 ALL_TRUSTED Passed through trusted hosts only via
-	SMTP * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [212.27.42.4 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from opensuse132.osl.yoctoproject.org
-	(opensuse132.osl.yoctoproject.org [10.0.10.111])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 00F6BE00CFC
-	for <yocto@yoctoproject.org>; Tue,  6 Dec 2016 21:34:36 -0800 (PST)
-Received: by opensuse132.osl.yoctoproject.org (Postfix, from userid 1006)
-	id 472B61C0A00; Wed,  7 Dec 2016 05:34:36 +0000 (GMT)
-To: yocto@yoctoproject.org
-Message-Id: <20161207053436.472B61C0A00@opensuse132.osl.yoctoproject.org>
-Date: Wed,  7 Dec 2016 05:34:36 +0000 (GMT)
-From: pokybuild@opensuse132.osl.yoctoproject.org (Poky Build User)
-Cc: otavio@ossystems.com.br, joshua.g.lock@intel.com,
-	alexandru.c.georgescu@intel.com
-Subject: Release Candidate Build for yocto-2.0.3.rc1.rc1 now available.
+Received: from smtp4-g21.free.fr (smtp4-g21.free.fr [212.27.42.4])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C7F1DE00CFC
+	for <yocto@yoctoproject.org>; Tue,  6 Dec 2016 21:43:42 -0800 (PST)
+Received: from [192.168.1.159] (unknown [50.131.250.131])
+	(Authenticated sender: vincent.rubiolo)
+	by smtp4-g21.free.fr (Postfix) with ESMTPSA id 0425819F598;
+	Wed,  7 Dec 2016 06:43:37 +0100 (CET)
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+References: <382d1e8e-1257-c255-354d-ffaf2f54385f@cryostase.eu>
+	<3800149.2tT9rjCn72@peggleto-mobl.ger.corp.intel.com>
+From: Vincent Rubiolo <vincent.libre@cryostase.eu>
+Message-ID: <31b68e8e-3ec0-a355-990a-f0a0a7b716bb@cryostase.eu>
+Date: Tue, 6 Dec 2016 21:43:35 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.4.0
+MIME-Version: 1.0
+In-Reply-To: <3800149.2tT9rjCn72@peggleto-mobl.ger.corp.intel.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: [recipetool] Failure to create a new recipe (failed to parse setup.py)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,23 +41,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 07 Dec 2016 05:34:38 -0000
+X-List-Received-Date: Wed, 07 Dec 2016 05:43:46 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
+Hi Paul,
 
-A release candidate build for yocto-2.0.3.rc1 is now available at:
+On 12/04/2016 11:14 AM, Paul Eggleton wrote:
+> Hmm, it looks like we're treating a byte array as a string (i.e. missing
+> decoding) and that doesn't work. Likely this broke during the Python3
+> migration, and since there are a number of different code paths in
+> recipetool's python handling code our relatively simplistic automated tests
+> didn't hit it. I have a fix here and will send it out soon.
 
+Thanks for the quick and fast reply. Looking forward to the patch, I'll 
+let you know how it goes on my setup.
 
-    http://autobuilder.yoctoproject.org/pub/releases/yocto-2.0.3.rc1
+Cheers,
 
-
-Please begin QA on this build as soon as possible.
-
-
-Build hash information: 
-meta-qt4 : 2c7f8df9039be498f8a2232d1428adb7f4e5e800 
-meta-intel : 28c774bf25eec43020983416ad02a3b4307aaf0c 
-meta-qt3 : b08996efbfb3b26e62b608f34ebf5e671b36ec61 
-poky : adb34b8ddcd8cc34ae7d2b1b2e4b4d291d790f56 
-
-\nThis is an automated message from\nThe Yocto Project Autobuilder\nGit: git://git.yoctoproject.org/yocto-autobuilder\nEmail: pidge@toganlabs.com 
+Vincent
 
