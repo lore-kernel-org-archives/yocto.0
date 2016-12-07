@@ -1,67 +1,55 @@
-Return-Path: <schnitzeltony@googlemail.com>
+Return-Path: <paul@paulbarker.me.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1DFCAE00D19; Wed,  7 Dec 2016 00:02:47 -0800 (PST)
+	id E990FE00D12; Wed,  7 Dec 2016 02:08:43 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (schnitzeltony[at]googlemail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.217.194 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [188.165.38.232 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ua0-f194.google.com (mail-ua0-f194.google.com
-	[209.85.217.194])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 77B73E00D0A
-	for <yocto@yoctoproject.org>; Wed,  7 Dec 2016 00:02:45 -0800 (PST)
-Received: by mail-ua0-f194.google.com with SMTP id 12so38165261uas.3
-	for <yocto@yoctoproject.org>; Wed, 07 Dec 2016 00:02:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=googlemail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=1QYEdpKFNmLGZUhvNy3n0F/HgoR+hCBgunhfRIAeSVU=;
-	b=d38xvudXwCx48i/pxcJidVZn6Z/qE98Qco21vHEmi3XZfJF7XYlHMuZr5FSCeKSxKY
-	z8ktdQp9L4FDD4+HUGHuYa6TMKqEtLS1FJa7K31Ar1SYXNRQTnPm2nS4hlKdQeo5ZpI/
-	IHX2k8ZT/8s6cAIs3oW5DJ9PW1aSp2+hmuVomwDz2ohjOUjALERTQNP8XTroQkGWV0YQ
-	1hgfLJxKdfVtO4VOsG4DKfzw1N8tdohX6hqs1Ln1RfZG5k0Ll245q0jFAB00PILbYIa4
-	aeAX7Be8T1YkNvlYbJ4bC6bvoBfoatxmDjSHe6BF7e7YEnLs43I1m41xWpyP6fTzZ6XY
-	KjWA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=1QYEdpKFNmLGZUhvNy3n0F/HgoR+hCBgunhfRIAeSVU=;
-	b=kazmkiKs35KheXvWl/tbPgksWz47xxuPPM3xdWPwp08vRkTyBe7LuWtn0407EuOwQu
-	2zeiyWCbLM6yfRl3nMNbDUVIrGQo4nIwJErg/kHOg5884hDBfhmNeYwoDP0UanAhKAby
-	cUs+inLbZONt+gRoelic4NnesyoU3Acl7rN/Sp58NZf8QRqtdPQ6A64PG3Eaew3QBOqp
-	Vu6kMPuDLDc0j12oOYAMMJaE92sPJiwYdyf4k/UZBxm8B5ctQKaRVlzbtm5EJ8rCONO8
-	q3PWu/v8aJT4AjgK2o9wWXWg2DmVvKZBIBO0TEmGkVZd4OSBN7F7tC9VAVYD9ClTeRxs
-	os/A==
-X-Gm-Message-State: AKaTC03gEAMO0HZIUwlIf+JsyxD4Mg9Q+1/e2zg738S+YbTLI+L2zbcF8Jq+GAMcYw0iWsuxv0/S+a6DH6vYfw==
-X-Received: by 10.176.0.180 with SMTP id 49mr51699261uaj.32.1481097764421;
-	Wed, 07 Dec 2016 00:02:44 -0800 (PST)
+X-Greylist: delayed 7803 seconds by postgrey-1.32 at yocto-www;
+	Wed, 07 Dec 2016 02:08:40 PST
+Received: from 15.mo1.mail-out.ovh.net (15.mo1.mail-out.ovh.net
+	[188.165.38.232])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4F4BEE00A1E
+	for <yocto@yoctoproject.org>; Wed,  7 Dec 2016 02:08:40 -0800 (PST)
+Received: from player770.ha.ovh.net (b7.ovh.net [213.186.33.57])
+	by mo1.mail-out.ovh.net (Postfix) with ESMTP id 4FE6223811
+	for <yocto@yoctoproject.org>; Wed,  7 Dec 2016 08:42:26 +0100 (CET)
+Received: from nuc.betafive.co.uk
+	(cpc11-shep11-2-0-cust130.8-3.cable.virginm.net [86.27.96.131])
+	(Authenticated sender: paul@betafive.co.uk)
+	by player770.ha.ovh.net (Postfix) with ESMTPSA id 86D5B3C0070;
+	Wed,  7 Dec 2016 08:42:21 +0100 (CET)
+Date: Wed, 7 Dec 2016 07:42:20 +0000
+From: Paul Barker <paul@paulbarker.me.uk>
+To: Trevor Woerner <twoerner@gmail.com>
+Message-ID: <20161207074220.573f9ea3@nuc.betafive.co.uk>
+In-Reply-To: <20161207072523.42e7daf2@nuc.betafive.co.uk>
+References: <19a9d76a-2c15-551a-2fce-55d8b8cfe1d0@mlbassoc.com>
+	<20161203141606.2899e98c@nuc.betafive.co.uk>
+	<CAK18fxFm3ttr1TJxw3+-PJD0A8WMDb0SKMMq2cJxiOwuY7=H1A@mail.gmail.com>
+	<9f5e8157-ba81-7486-d761-3fd0ec5de3f9@mlbassoc.com>
+	<CAMKF1sq0U1G-c266eCNCGAdw=B0Dcv0dXF7LjG8G=yPd4dFBXg@mail.gmail.com>
+	<CAK18fxHR-X12Hr0R2Ba8=UToVtvWmb979k9+eQi+6yqHvbUN2w@mail.gmail.com>
+	<009401d24feb$33bc8f30$9b35ad90$@neuf.fr>
+	<20161206181110.GG1636@carbonA>
+	<00d201d25006$c3ea6530$4bbf2f90$@neuf.fr>
+	<20161206230034.3f25f7b2@nuc.betafive.co.uk>
+	<20161207021755.GA9669@openSUSE-i7.site>
+	<20161207072523.42e7daf2@nuc.betafive.co.uk>
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Received: by 10.176.85.157 with HTTP; Wed, 7 Dec 2016 00:02:44 -0800 (PST)
-In-Reply-To: <20161206183740.GJ1636@carbonA>
-References: <20161128190745.18053-1-twoerner@gmail.com>
-	<2ACF0BDF-0A7B-4A0E-BC20-B6B222F1644A@gmail.com>
-	<20161129013709.GA30326@openSUSE-i7.site>
-	<20161206182732.GI1636@carbonA> <20161206183740.GJ1636@carbonA>
-From: =?UTF-8?Q?Andreas_M=C3=BCller?= <schnitzeltony@googlemail.com>
-Date: Wed, 7 Dec 2016 09:02:44 +0100
-Message-ID: <CALbNGRTLujWEEUgED32Ge+YkkuBATJT2iGjqTYhKuX00h=UOfg@mail.gmail.com>
-To: Andrei Gherzan <andrei@gherzan.ro>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi][PATCH] linux-raspberrypi-base.bbclass: allow -rt kernels
+X-Ovh-Tracer-Id: 13646469825024526797
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrfeelfedrhedugdehtdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+Cc: yocto@yoctoproject.org, 'Gary Thomas' <gary@mlbassoc.com>
+Subject: Re: [meta-raspberrypi] Current master broken
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,45 +61,61 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 07 Dec 2016 08:02:47 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 07 Dec 2016 10:08:44 -0000
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Tue, Dec 6, 2016 at 7:37 PM, Andrei Gherzan <andrei@gherzan.ro> wrote:
-> On Tue, Dec 06, 2016 at 06:27:32PM +0000, Andrei Gherzan wrote:
->> On Mon, Nov 28, 2016 at 08:37:09PM -0500, Trevor Woerner wrote:
->> > On Mon 2016-11-28 @ 03:16:11 PM, Khem Raj wrote:
->> > >
->> > > > On Nov 28, 2016, at 11:07 AM, Trevor Woerner <twoerner@gmail.com> wrote:
->> > > >
->> > > > If the PREEMPT_RT patch is applied, the kernel version becomes, say,
->> > > > 4.4.32-rt43 (instead of 4.4.32). This confuses the version handling code in
->> > > > this class. Update how the version string is processed so that trailing rt-
->> > > > strings are properly handled, in addition to handling the existing cases.
->> > > >
->> > >
->> > > This probably will solve the issue I see with 4.9-rcX recipes that are in my tree on kraj/master
->> >
->> > I'm not familiar with the issue you're seeing, but the existing and new code
->> > are looking for 3 int()s separated by periods. If your recipes have the string
->> > "4.9-rcX" then I'm guessing there might still be an issue since the third
->> > int() will be "-rcX" in your case. If this is true, you'll need to take a look
->> > at where "int(min_ver[2])" is used further down in that bbclass file.
->>
->> I agreed this is not the best implementation of this. We should only get
->
-> agree*
->
->> the version using a regex that would get X.Y.Z-R with an optional Z and
->> R.
->>
->> --
->> Andrei Gherzan
-> --
-> Andrei Gherzan
->
-Question is if this version dance in get_dts is still necessary: We
-don't have kernel < 3.18 or kernel 4.4.<6 around. Why not use what is
-set in KERNEL_DEVICETREE?
+On Wed, 7 Dec 2016 07:25:23 +0000
+Paul Barker <paul@paulbarker.me.uk> wrote:
 
-Andreas
+> On Tue, 6 Dec 2016 21:17:55 -0500
+> Trevor Woerner <twoerner@gmail.com> wrote:
+> 
+> > On Tue 2016-12-06 @ 11:00:34 PM, Paul Barker wrote:
+> > > Upstream effectively support one version, currently 4.4. When upstream
+> > > made that the default branch, the changes to the 4.1 branch stopped -
+> > > there wasn't really much overlap. Everything post-4.4 is active
+> > > development and gets rebased at will. At some point they'll move to the
+> > > next LTS release (4.9) and 4.4 will be dropped.
+> > 
+> > Are you speaking specifically about the kernel for raspberry pi, or in
+> > general?
+> 
+> Raspberrypi specifically.
+> 
+> > Because the kernel for raspberry pi has several branches that are all
+> > maintained and kept up-to-date. It's actually quite commendable how this
+> > repository is maintained. Branches for 4.4, 4.7, 4.8, 4.9 and others are all
+> > usable (ignoring the constant rebasing thing...)
+> 
+> 4.4 is stable and never gets rebased.
+> 
+> 4.7 was last updated Oct 25th so it's now inactive.
+> 
+> 4.8 and 4.9 will be almost the same set of patches rebased on top of
+> the mainline kernel. I think they do things this way to make
+> upstreaming patches easier.
+> 
+> This is the pattern I've seen for the last couple of years - one stable
+> branch that never gets rebased and one or two development branches
+> which do get rebased.
+> 
+
+Sorry, quick follow up.
+
+https://github.com/raspberrypi/linux/issues/1650 is a typical response from
+the Raspberrypi folks about this:
+
+    Future rpi- branches (branches that aren't yet the main development
+    branch, currently rpi-4.4.y) are rebased against upstream commits.
+    Once we start making releases from a branch we stop rebasing and
+    start merging.
+
+    The commit you refer to still exists but with a different commit
+    ID. You need to tell whoever gave you the hash that bookmarking
+    commits in our future branches is futile because they are regularly
+    rebased.
+
+Thanks,
+Paul
 
