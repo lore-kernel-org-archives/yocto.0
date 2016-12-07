@@ -1,40 +1,76 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <schnitzeltony@googlemail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1C337E00D19; Wed,  7 Dec 2016 02:41:33 -0800 (PST)
+	id 502C8E00D12; Wed,  7 Dec 2016 02:54:10 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (schnitzeltony[at]googlemail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.analogue-micro.com (mail.analogue-micro.com
-	[217.144.149.242])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 50703E00D0A
-	for <yocto@yoctoproject.org>; Wed,  7 Dec 2016 02:41:30 -0800 (PST)
-Received: by mail.analogue-micro.com (Postfix, from userid 999)
-	id 135A568A01C; Wed,  7 Dec 2016 10:41:30 +0000 (GMT)
-Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
-	by mail.analogue-micro.com (Postfix) with ESMTP id 8A96268A019;
-	Wed,  7 Dec 2016 10:41:29 +0000 (GMT)
-Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
-	by zeus.mlbassoc.com (Postfix) with ESMTP id 29E1A67400AA;
-	Wed,  7 Dec 2016 11:41:29 +0100 (CET)
-To: yocto@yoctoproject.org
-References: <566212531.1559919.1480508909186.JavaMail.zimbra@ciright.com>
-	<6A92E7CF-F574-4DA6-A84F-C65CA2F1E40E@gmail.com>
-	<1042006133.1610572.1480567719431.JavaMail.zimbra@ciright.com>
-	<1069025273.1664073.1480654660169.JavaMail.zimbra@ciright.com>
-	<2107513184.2068825.1480924816241.JavaMail.zimbra@ciright.com>
-	<138346419.2363700.1481105704623.JavaMail.zimbra@ciright.com>
-From: Gary Thomas <gary@mlbassoc.com>
-Message-ID: <938f008f-007c-e463-bb62-0f0345a2ba5c@mlbassoc.com>
-Date: Wed, 7 Dec 2016 11:41:29 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.5.1
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.217.196 listed in list.dnswl.org]
+Received: from mail-ua0-f196.google.com (mail-ua0-f196.google.com
+	[209.85.217.196])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F1B4AE00C9B
+	for <yocto@yoctoproject.org>; Wed,  7 Dec 2016 02:54:06 -0800 (PST)
+Received: by mail-ua0-f196.google.com with SMTP id 20so38694139uak.0
+	for <yocto@yoctoproject.org>; Wed, 07 Dec 2016 02:54:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=googlemail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=RuLoDqeAlDqnOZndsgxbdnF6A/aVKBWMAgrTUP0/jHo=;
+	b=yHXa/1bEJih8IzEAswQ5LvqfeO+BzG8YKCf7RMC+boRB1z58e3zF7k8JKvz8oGzxX0
+	roHPjsQQEGlM6biB/0xFWiMQ2C5HjMTjGSjgZclorWOC6IUQ0unCd0TgaqPuEiIhs+lY
+	BqER4VsvCNwI2IGwD8E3eHj42cluXAtXAI9P3s9MI2lL5kTvEONHn/ScJ8+m23gF2or0
+	byMP5RnCzB0CGAYgmGxXuSCE13wUnOPWPoQjTbikNW0KbLDJW0jR4vOdF+o1JryOnt5+
+	mAPA2h/TzlqdSypAN39bwAvf8GElsaLaPLGclP7sXOXCi6HFnLp8DHJlBSz1KYtlgJLP
+	1gbw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=RuLoDqeAlDqnOZndsgxbdnF6A/aVKBWMAgrTUP0/jHo=;
+	b=BWceBO9zxZKRkkieLzZ+JAz9JUHOHY3QEFCC8iWSI7ifAfpXpk8SFa4HKApO529Cz0
+	2wrtCq7GmQHhzzWceHKIbhNiUDXJ3cjTL2275uIkFTC74leTltocpwz+7K2jZ78Pdz87
+	arV9hP2wlqqSklUq9owx33I7tHn9GB5AV3L4n3Clhsm0VUZW2vy4jENs0A9vS7r2W3z9
+	lAtBstNbETwt9sPlUjqwwEMtHtqVGRAwcg68xQbImGHK4ie979oKIrUyAHStwaIbuqjC
+	yz7aC+7xasJWj33GPgo1DjCjW3uJTmG1onNt50KH56AwXlckkeBxKuwdaytIAsUjvYOk
+	XySg==
+X-Gm-Message-State: AKaTC01YxxD+W78StvIy1/pWjwymjXsLJCPTRXyxNFwdODDOcpvIlsAl1GoZKvhLGkENihf8Ut4uKHjnzGYMvQ==
+X-Received: by 10.176.84.147 with SMTP id p19mr7145259uaa.76.1481108045179;
+	Wed, 07 Dec 2016 02:54:05 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <138346419.2363700.1481105704623.JavaMail.zimbra@ciright.com>
-Subject: Re: yocto project in raspberry pi 3
+Received: by 10.176.85.157 with HTTP; Wed, 7 Dec 2016 02:54:04 -0800 (PST)
+In-Reply-To: <20161207074220.573f9ea3@nuc.betafive.co.uk>
+References: <19a9d76a-2c15-551a-2fce-55d8b8cfe1d0@mlbassoc.com>
+	<20161203141606.2899e98c@nuc.betafive.co.uk>
+	<CAK18fxFm3ttr1TJxw3+-PJD0A8WMDb0SKMMq2cJxiOwuY7=H1A@mail.gmail.com>
+	<9f5e8157-ba81-7486-d761-3fd0ec5de3f9@mlbassoc.com>
+	<CAMKF1sq0U1G-c266eCNCGAdw=B0Dcv0dXF7LjG8G=yPd4dFBXg@mail.gmail.com>
+	<CAK18fxHR-X12Hr0R2Ba8=UToVtvWmb979k9+eQi+6yqHvbUN2w@mail.gmail.com>
+	<009401d24feb$33bc8f30$9b35ad90$@neuf.fr>
+	<20161206181110.GG1636@carbonA>
+	<00d201d25006$c3ea6530$4bbf2f90$@neuf.fr>
+	<20161206230034.3f25f7b2@nuc.betafive.co.uk>
+	<20161207021755.GA9669@openSUSE-i7.site>
+	<20161207072523.42e7daf2@nuc.betafive.co.uk>
+	<20161207074220.573f9ea3@nuc.betafive.co.uk>
+From: =?UTF-8?Q?Andreas_M=C3=BCller?= <schnitzeltony@googlemail.com>
+Date: Wed, 7 Dec 2016 11:54:04 +0100
+Message-ID: <CALbNGRRa5ChXEXWUKKY_c6=qDNMA+MsN3VMVgG42nNcQRHtvPw@mail.gmail.com>
+To: Paul Barker <paul@paulbarker.me.uk>
+Cc: Yocto Project <yocto@yoctoproject.org>, Gary Thomas <gary@mlbassoc.com>
+Subject: Re: [meta-raspberrypi] Current master broken
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,65 +82,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 07 Dec 2016 10:41:33 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 07 Dec 2016 10:54:10 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On 2016-12-07 11:15, Rushin Thakkar wrote:
->     hello there i am trying to do yocto project on raspberry pi 3.
->     when i run bitbake rpi-basic-image.
+On Wed, Dec 7, 2016 at 8:42 AM, Paul Barker <paul@paulbarker.me.uk> wrote:
+> On Wed, 7 Dec 2016 07:25:23 +0000
+> Paul Barker <paul@paulbarker.me.uk> wrote:
 >
->
->     this task 0: bcm2835-bootfiles-20151021-r3 do_fetch (pid 4922) is taking too much time. after that
->
->
-> You should use latest master where we have switched to tarball fetch
-> especially
->
-> http://git.yoctoproject.org/cgit/cgit.cgi/meta-raspberrypi/commit/?id=716b6a9cd7f24a8bacd539bb40519d185e3f963a
->
->     i am getting message like
->
->
->
->
->     ERROR: Fetcher failure: Fetch command failed with exit code 128, output:
->     Cloning into bare repository '/home/rushin/yoctopi/poky/build/downloads/git2/github.com.raspberrypi.firmware.git'...
->     fatal: The remote end hung up unexpectedly
->     fatal: early EOF
->     fatal: index-pack failed
->
->     ERROR: Function failed: Fetcher failure for URL:
->     'git://github.com/raspberrypi/firmware.git;protocol=git;branch=master'. Unable to fetch URL from any source.
->     ERROR: Logfile of failure stored in:
->     /home/rushin/yoctopi/poky/build/tmp/work/raspberrypi2-poky-linux-gnueabi/bcm2835-bootfiles/20151021-r3/temp/log.do_fetch.3385
->     ERROR: Task 207 (/home/rushin/yoctopi/poky/meta-raspberrypi/recipes-bsp/bootfiles/bcm2835-bootfiles.bb, do_fetch)
->     failed with exit code '1'
->
->     can you tell me how to download this file manually??
+>> On Tue, 6 Dec 2016 21:17:55 -0500
+>> Trevor Woerner <twoerner@gmail.com> wrote:
+>>
+>> > On Tue 2016-12-06 @ 11:00:34 PM, Paul Barker wrote:
+>> > > Upstream effectively support one version, currently 4.4. When upstream
+>> > > made that the default branch, the changes to the 4.1 branch stopped -
+>> > > there wasn't really much overlap. Everything post-4.4 is active
+>> > > development and gets rebased at will. At some point they'll move to the
+>> > > next LTS release (4.9) and 4.4 will be dropped.
+>> >
+>> > Are you speaking specifically about the kernel for raspberry pi, or in
+>> > general?
+>>
+>> Raspberrypi specifically.
+>>
+>> > Because the kernel for raspberry pi has several branches that are all
+>> > maintained and kept up-to-date. It's actually quite commendable how this
+>> > repository is maintained. Branches for 4.4, 4.7, 4.8, 4.9 and others are all
+>> > usable (ignoring the constant rebasing thing...)
+>>
+>> 4.4 is stable and never gets rebased.
+>>
+FWIW: patch fixing 4.4 just arrived in oe-core
 
-Doing it manually will take just as long and end up downloading 6GB+ of [mostly useless] data.
-
-You really need to update to the latest version of this recipe which no longer
-uses GIT to fetch the files (replaced by much smaller TAR files)
-
->
->     like in download folder there is file called
->     wpa_supplicant-2.4.tar.gz . i can download this file. but how to get these files like
->     wpa_supplicant-2.4.tar.gz.done,wpa_supplicant.sh.done??
->
->
->
->
->
->
->
->
-
-
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+Andreas
 
