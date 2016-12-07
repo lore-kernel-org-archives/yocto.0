@@ -1,62 +1,56 @@
-Return-Path: <minipada@gmail.com>
+Return-Path: <pidge@toganlabs.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 02962E00D10; Wed,  7 Dec 2016 03:57:57 -0800 (PST)
+	id 6EE49E00D26; Wed,  7 Dec 2016 05:00:58 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (minipada[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.210.175 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [23.83.209.27 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wj0-f175.google.com (mail-wj0-f175.google.com
-	[209.85.210.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B1701E00C9B
-	for <yocto@yoctoproject.org>; Wed,  7 Dec 2016 03:57:54 -0800 (PST)
-Received: by mail-wj0-f175.google.com with SMTP id v7so358397629wjy.2
-	for <yocto@yoctoproject.org>; Wed, 07 Dec 2016 03:57:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=RaG9zZx7wMnuLCg0ZaTM7JWsAKuWfrgHql8go4U0DuQ=;
-	b=Ga556C044wPOQ53kntYXweEFl6gNjTpCh4IZ9DlXs1lug5Nw+rmGq6UngiDLmVzi9K
-	lPfYW4JVO4BV5y9C/K5ckDPKzplrUcOiXv+VHvorKc8/FUAW7QjYrOzTfIKoDQ6uTzxE
-	oh6hTEaNr6imPOndB2Kdv6MxccqJqnV8EyTclfGC5U9yoZKrJ8+XlJ2Bwq1S9Vd+/Gps
-	ZKsD353edAJf8qEroG+bvtJ8zLxRZSyfseOKWWSaq8lDuzRtauSDU6zAZwxMwSM7Jm0t
-	qBf65jkZJn6etTgw40a1FehBBM8rHb7beu3DNRIFBzhpkVVLldAU1IkqjLXTOZnHN0Or
-	VcJA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=RaG9zZx7wMnuLCg0ZaTM7JWsAKuWfrgHql8go4U0DuQ=;
-	b=h8tQ27qWvF2DLgZHSjEDMfmV6Qm521lJvchCyEm+az/nyJXupVwMJWw29hhpFaQk1U
-	po9n9f/cnFg+0IyqG+dCxoQ1YYCKvNF7pb2nKn1xyY/cr18wh9DSaiW1nlbSi/00V4HK
-	blX7Ukr7iQbGdaLgubyjVTCwK3Fnf8DRMzLlqYI5IQ3uWCa8oGQConXK8r0KF3PwDvmL
-	4QE1s3leO5yM5jKNCwdJxfFumFRtS93h/y652C+zdfUvsEnmb4YOutpO2wwhq6ukMp/m
-	onI3s9Q3PvFiqrONtj6FuBMLuo/AnCIT4X8DlUzpBxfSjd4YcAs5hbOT7Eyx33GaxKkV
-	Mr9Q==
-X-Gm-Message-State: AKaTC008/JCYK7PPdIEbrWKH814ACob/7D/tmlIIiaHzUn94QwneSCB+WjVcqc3YCU3C7TK9e0afNhQOPa1hyw==
-X-Received: by 10.194.7.233 with SMTP id m9mr57452109wja.108.1481111873125;
-	Wed, 07 Dec 2016 03:57:53 -0800 (PST)
-MIME-Version: 1.0
-From: david bensoussan <minipada@gmail.com>
-Date: Wed, 07 Dec 2016 11:57:42 +0000
-Message-ID: <CALxi_JGOFMsiLLavJHF1uNDdu10zA_6YhgXXqEOf5Qw8Mw_C1g@mail.gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Package depending on ATLAS, BLAS, libmetis, liblapack
+	*      [score: 0.0003]
+Received: from butterfly.birch.relay.mailchannels.net
+	(butterfly.birch.relay.mailchannels.net [23.83.209.27])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5C564E00D12
+	for <yocto@yoctoproject.org>; Wed,  7 Dec 2016 05:00:54 -0800 (PST)
+X-Sender-Id: hostpapa|x-authuser|pidge@toganlabs.com
+Received: from relay.mailchannels.net (localhost [127.0.0.1])
+	by relay.mailchannels.net (Postfix) with ESMTP id EE12F1020C9
+	for <yocto@yoctoproject.org>; Wed,  7 Dec 2016 13:00:52 +0000 (UTC)
+Received: from hp181.hostpapa.com (ip-10-107-69-155.us-west-2.compute.internal
+	[10.107.69.155])
+	by relay.mailchannels.net (Postfix) with ESMTPA id 2BA7D1021CC
+	for <yocto@yoctoproject.org>; Wed,  7 Dec 2016 13:00:52 +0000 (UTC)
+X-Sender-Id: hostpapa|x-authuser|pidge@toganlabs.com
+Received: from hp181.hostpapa.com (hp181.hostpapa.com [10.16.27.41])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384)
+	by 0.0.0.0:2500 (trex/5.7.8); Wed, 07 Dec 2016 13:00:52 +0000
+X-MC-Relay: Neutral
+X-MailChannels-SenderId: hostpapa|x-authuser|pidge@toganlabs.com
+X-MailChannels-Auth-Id: hostpapa
+X-MC-Loop-Signature: 1481115652402:4091944678
+X-MC-Ingress-Time: 1481115652401
+Received: from [37.228.244.105] (port=45462 helo=[192.168.0.60])
+	by hp181.hostpapa.com with esmtpsa
+	(TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.87)
+	(envelope-from <pidge@toganlabs.com>) id 1cEbq7-002Srv-KD
+	for yocto@yoctoproject.org; Wed, 07 Dec 2016 14:00:52 +0100
+Message-ID: <1481115648.19291.5.camel@toganlabs.com>
+From: Beth 'pidge' Flanagan <pidge@toganlabs.com>
+To: yocto <yocto@yoctoproject.org>
+Date: Wed, 07 Dec 2016 13:00:48 +0000
+Organization: toganlabs.com
+X-Mailer: Evolution 3.18.5.2-0ubuntu3 
+Mime-Version: 1.0
+X-OutGoing-Spam-Status: No, score=-1.0
+X-AuthUser: pidge@toganlabs.com
+Subject: Ignoring Fetch errors for optional source.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: pidge@toganlabs.com
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -65,39 +59,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 07 Dec 2016 11:57:57 -0000
-Content-Type: multipart/alternative; boundary=047d7b5d57d012039a0543103b47
+X-List-Received-Date: Wed, 07 Dec 2016 13:00:58 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
---047d7b5d57d012039a0543103b47
-Content-Type: text/plain; charset=UTF-8
+I've an odd use case that I wonder if anyone has a work around/way of
+doing it.
 
-Hello,
+I've a client who has contractors who can't have access to a certain
+segment of the code base. So for example, a recipe will have a SRC_URI
+for the main bit that everyone has access to, but an extra src_uri that
+some people won't have access to.
 
-I am currently working on libraries which need *ATLAS, BLAS, libmetis,
-liblapack.*
-Those are tuning libraries which cannot be cross compiled
-<http://www.vesperix.com/arm/atlas-arm/faq/index.html>.
+I want to be able to just ignore any fetch/unpack errors if that extra
+src is unfetchable. Thoughts on how to achieve this?
 
-I created an image, compiled what I needed on it and then created recipes
-providing the libs letting me cross compile projects depending on it
-successfully.
+-b
 
-Did you ever need those libraries, if so, did you find any other way to
-integrate them in Yocto?
+-- 
+Beth 'pidge' Flanagan <pidge@toganlabs.com>
+www.toganlabs.com
 
-Thanks
 
---047d7b5d57d012039a0543103b47
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hello,<br><br>I am currently working on libraries which ne=
-ed=C2=A0<i>ATLAS, BLAS, libmetis, liblapack.</i><div>Those are tuning libra=
-ries which <a href=3D"http://www.vesperix.com/arm/atlas-arm/faq/index.html"=
->cannot be cross compiled</a>.</div><div><br></div><div>I created an image,=
- compiled what I needed on it and then created recipes providing the libs l=
-etting me cross compile projects depending on it successfully.<br><br>Did y=
-ou ever need those libraries, if so, did you find any other way to integrat=
-e them in Yocto?<br><br>Thanks</div></div>
-
---047d7b5d57d012039a0543103b47--
