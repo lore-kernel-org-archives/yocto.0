@@ -1,60 +1,40 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <mariano.lopez@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5903BE00D26; Wed,  7 Dec 2016 06:01:20 -0800 (PST)
+	id 1E13CE00CEA; Wed,  7 Dec 2016 06:58:24 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.65 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.180 listed in list.dnswl.org]
-Received: from mail-qk0-f180.google.com (mail-qk0-f180.google.com
-	[209.85.220.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0448CE00D12
-	for <yocto@yoctoproject.org>; Wed,  7 Dec 2016 06:01:16 -0800 (PST)
-Received: by mail-qk0-f180.google.com with SMTP id q130so226462144qke.1
-	for <yocto@yoctoproject.org>; Wed, 07 Dec 2016 06:01:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=qojeTmgnBK1eXcUnl2b/NsZ0azYCy2LXC/vBQpBEYOY=;
-	b=Djq5VdVNB7+kytVYzFEityvYUf++FKORTmozqnZjrDB9/1xjvvULHq9B2/ySNfUIDc
-	vwaNV0IYY1P2wKm06UlaUf99Fw0skDr0cRZBBd2KmvMv1jbP4Jnqj5DiY28etAkrnctq
-	2hyTOTRKXd20jwNBXylacEmFbDL5KaGiKms3mzZtmGq/YAoEHW7obHhriVgaNnL4DHeK
-	sIoe47j0HzsrReA74FKvdt8i4K6xYvd6QxDqnPMBnhNHIlQVXvaEkQWhZQLHPUWDiiQR
-	rHntWPtKoL0W/RgMtYcUfgqyT7jegj9SL8ywUEWtIyWS9MgB4+L1r5wLb1KQxhmbWus3
-	QrPA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=qojeTmgnBK1eXcUnl2b/NsZ0azYCy2LXC/vBQpBEYOY=;
-	b=I4NjYZ3wFmkkqTMkDl+0bzsncHrbdrc1NgVf29sR8FcfhAfGqDjaMtIQPvj105NxZc
-	MsfNCmhPrjJJ7ZW6HH6WmCw8JBGiXzr11fHqkbxVCaozVHhMZhnYECn92GGs7mDJSUEN
-	MzWtFPPwtBr/up52eUJFhKrwz6BUAU9Rr2Ab0pC9JuSQhlpuymcm3k+eD8MYT1387Wrg
-	6mceOO3BpqDVUP4qYIDpLC6Kb3hIXRDjpjWb2gY7BZ1yp3r1JH6tpqMKMpcEE7JpTFGr
-	EaVVHr2k7gSzv/5WR59ssE63Sfb33KvUUjdA26kxDgoWlmKnejyY15fwinAVT2tkO771
-	6LTQ==
-X-Gm-Message-State: AKaTC01mXBd/Xt8qLIaWxIYYkTh39+K6vIwORSMvjDGSMrj9uRBzeDfCjnsMvjVHSDdbKYC76vYUREtD8U98TyWx
-X-Received: by 10.55.39.88 with SMTP id n85mr57870710qkn.244.1481119275875;
-	Wed, 07 Dec 2016 06:01:15 -0800 (PST)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B680DE00C1C
+	for <yocto@yoctoproject.org>; Wed,  7 Dec 2016 06:58:22 -0800 (PST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by orsmga103.jf.intel.com with ESMTP; 07 Dec 2016 06:58:21 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.33,310,1477983600"; d="scan'208";a="1078731613"
+Received: from unknown (HELO [10.219.5.165]) ([10.219.5.165])
+	by fmsmga001.fm.intel.com with ESMTP; 07 Dec 2016 06:58:21 -0800
+To: Sona Sarmadi <sona.sarmadi@enea.com>,
+	"'mariano.lopez@intel.com'" <mariano.lopez@intel.com>,
+	"'yocto@yoctoproject.org'" <yocto@yoctoproject.org>
+References: <3230301C09DEF9499B442BBE162C5E48ABEA948F@SESTOEX04.enea.se>
+	<0cfba38f-d090-68d0-5c09-a20a5f5e1973@linux.intel.com>
+	<3230301C09DEF9499B442BBE162C5E48AC0CF8B7@SESTOEX04.enea.se>
+	<3230301C09DEF9499B442BBE162C5E48AC0CF8F6@SESTOEX04.enea.se>
+From: Mariano Lopez <mariano.lopez@linux.intel.com>
+Message-ID: <d9a1a2ab-9791-f15d-24f2-ddbc31dbf0fa@linux.intel.com>
+Date: Wed, 7 Dec 2016 08:58:35 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.5.0
 MIME-Version: 1.0
-Received: by 10.140.106.99 with HTTP; Wed, 7 Dec 2016 06:00:55 -0800 (PST)
-In-Reply-To: <cover.1481116465.git.jussi.kukkonen@intel.com>
-References: <cover.1481116465.git.jussi.kukkonen@intel.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 7 Dec 2016 14:00:55 +0000
-Message-ID: <CAJTo0LaGcRAG_v7KjkTP0Z=ewVZGNC8sLH-pCD+NQPsFOvAhVw@mail.gmail.com>
-To: Jussi Kukkonen <jussi.kukkonen@intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [matchbox-wm][PATCH 0/3] matchbox-window-manager fixes
+In-Reply-To: <3230301C09DEF9499B442BBE162C5E48AC0CF8F6@SESTOEX04.enea.se>
+Subject: Re: cve-checker tool
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,34 +46,132 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 07 Dec 2016 14:01:20 -0000
-Content-Type: multipart/alternative; boundary=94eb2c094b164f957a054311f47a
+X-List-Received-Date: Wed, 07 Dec 2016 14:58:24 -0000
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: 7bit
 
---94eb2c094b164f957a054311f47a
-Content-Type: text/plain; charset=UTF-8
 
-On 7 December 2016 at 13:22, Jussi Kukkonen <jussi.kukkonen@intel.com>
-wrote:
 
-> One actual bug fix (YOCTO #10635) and a few build cleanups.
+On 06/12/16 08:41, Sona Sarmadi wrote:
+> Another qustion:
+>
+> We don't have recipes for libcurl, I guess both curl and libcurl CVEs are patched in the curl recipes, right?
+> I think curl uses libcurl, and libcurl is built when building curl. 
+>
+> Those CVEs which are listed in the nvd.xml file under "cpe:/a:haxx:libcurl: are not detected and reported by cve-check tool.
+
+In the case of libcurl, it is build using the curl recipe, and currently
+cve-check class will look for BPN, so it won't check against libcurl.
+Can you open a bug for this?
+
+> [snip]
+
+
+> It seems that this tool does not detect all CVEs, e.g. bind has some CVE patches but it is not reported, I tried all options below nothing is reported (no cve.log file):
+> bitbake -c cve_check bind
+> bitbake -k -c cve_check universe
+> bitbake -k -c cve_check world
+>
+> There are some CVEs in bind (reported in nvd.xml file for our version cpe:/a:isc:bind:9.10.3"/> ) but cve.check-tool does not report them ex: (CVE-2016-2776). Do you know why?
+>
+>
+> CVEs are reported for the following packages using e.g. "bitbake -k -c cve_check universe"
+> or  "bitbake -c cve_check perl"
+>  
+> tmp/work/i586-poky-linux/perl/5.22.1-r0/cve/cve.log
+> tmp/work/i586-poky-linux/foomatic-filters/4.0.17-r1/cve/cve.log
+> tmp/work/i586-poky-linux/flex/2.6.0-r0/cve/cve.log
+> tmp/work/i586-poky-linux/glibc/2.24-r0/cve/cve.log
+> tmp/work/i586-poky-linux/unzip/1_6.0-r5/cve/cve.log
+> tmp/work/i586-poky-linux/expat/2.2.0-r0/cve/cve.log
+> tmp/work/i586-poky-linux/gnutls/3.5.3-r0/cve/cve.log
+> tmp/work/i586-poky-linux/glibc-initial/2.24-r0/cve/cve.log
+> tmp/work/i586-poky-linux/libxml2/2.9.4-r0/cve/cve.log
+> tmp/work/i586-poky-linux/bzip2/1.0.6-r5/cve/cve.log
+>
+> We have more recipes which have CVE patches but they are not reported. 
+> I have analyzed these; some of these CVEs are still marked as reserved on Mitre  and are not present in the nvd.xml files (although they are public (e.g. Busybox: 
+> https://www.cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-2147).
+
+cve-check-tool will only check against the database that got from the
+nvd.xml files, and these files won't have information for not yet fully
+disclosed CVEs, so that is why you will find these cases frequently in
+OE recipes (Armin does a great job with CVEs).
+
+>
+> I don't understand why for instance bind CVEs are not detected and reported by cve-check tool?
+> Is it because of cpe:/a:isc:bind? It looks for isc?
+
+I need to check on this, unfortunately my proxies decided to not
+download the database, I'll get back to you as soon as I can investigate
+more.
+
+>
+> morty/poky/meta$ find . -name *CVE-201*.patch ./recipes-connectivity/ppp/ppp/fix-CVE-2015-3310.patch
+>
+> ./recipes-connectivity/bind/bind/CVE-2016-2776.patch ?
+> ./recipes-connectivity/bind/bind/CVE-2016-1286_2.patch
+> ./recipes-connectivity/bind/bind/CVE-2016-1285.patch
+> ./recipes-connectivity/bind/bind/CVE-2016-1286_1.patch
+> ./recipes-connectivity/bind/bind/CVE-2016-2088.patch
+> ./recipes-connectivity/bind/bind/CVE-2016-2775.patch
+>
+> ./recipes-extended/unzip/unzip/CVE-2015-7696.patch
+> ./recipes-extended/unzip/unzip/06-unzip60-alt-iconv-utf8_CVE-2015-1315.patch
+> ./recipes-extended/unzip/unzip/CVE-2015-7697.patch
+> ./recipes-extended/xinetd/xinetd/xinetd-CVE-2013-4342.patch
+> ./recipes-extended/cpio/cpio-2.12/0001-Fix-CVE-2015-1197.patch
+> ./recipes-extended/cracklib/cracklib/0001-Apply-patch-to-fix-CVE-2016-6318.patch
+> ./recipes-extended/bzip2/bzip2-1.0.6/CVE-2016-3189.patch
+> ./recipes-extended/grep/grep-2.5.1a/grep-CVE-2012-5667.patch
+> ./recipes-extended/foomatic/foomatic-filters-4.0.17/CVE-2015-8327.patch
+> ./recipes-extended/foomatic/foomatic-filters-4.0.17/CVE-2015-8560.patch
+> ./recipes-multimedia/libtiff/files/CVE-2016-3945.patch
+> ./recipes-multimedia/libtiff/files/CVE-2016-3623.patch
+> ./recipes-multimedia/libtiff/files/CVE-2016-5323.patch
+> ./recipes-multimedia/libtiff/files/CVE-2016-5321.patch
+> ./recipes-multimedia/libtiff/files/CVE-2016-3991.patch
+> ./recipes-multimedia/libtiff/files/CVE-2016-3622.patch
+> ./recipes-multimedia/libtiff/files/CVE-2015-8781.patch
+> ./recipes-multimedia/libtiff/files/CVE-2015-8784.patch
+> ./recipes-multimedia/libtiff/files/CVE-2016-3186.patch
+> ./recipes-multimedia/libtiff/files/CVE-2016-3990.patch
+> ./recipes-multimedia/libtiff/files/CVE-2015-8665_8683.patch
+> ./recipes-core/systemd/systemd/CVE-2016-7795.patch
+> ./recipes-core/busybox/busybox/CVE-2016-2147_2.patch  <<< Reserved on Mitre: https://www.cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-2147
+> ./recipes-core/busybox/busybox/CVE-2016-2147.patch
+> ./recipes-core/busybox/busybox/CVE-2016-2148.patch <<< https://www.cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-2148
+> ./recipes-devtools/elfutils/elfutils-0.148/elf_begin.c-CVE-2014-9447-fix.patch
+> ./recipes-devtools/python/python3/CVE-2016-5636.patch
+> ./recipes-devtools/python/python3/python3-fix-CVE-2016-1000110.patch
+> ./recipes-devtools/python/python/CVE-2016-5636.patch
+> ./recipes-devtools/python/python/python-fix-CVE-2016-1000110.patch
+> ./recipes-devtools/qemu/qemu/0002-fix-CVE-2016-7423.patch
+> ./recipes-devtools/qemu/qemu/0003-fix-CVE-2016-7908.patch
+> ./recipes-devtools/perl/perl/perl-fix-CVE-2015-8607.patch
+> ./recipes-devtools/perl/perl/perl-fix-CVE-2016-2381.patch
+> ./recipes-devtools/perl/perl/perl-fix-CVE-2016-1238.patch
+> ./recipes-devtools/perl/perl/perl-fix-CVE-2016-6185.patch
+> ./recipes-devtools/gcc/gcc-6.2/CVE-2016-4490.patch
+> ./recipes-devtools/flex/flex/CVE-2016-6354.patch
+> ./recipes-bsp/grub/files/0001-Fix-CVE-2015-8370-Grub2-user-pass-vulnerability.patch
+> ./recipes-support/nettle/nettle-2.7.1/CVE-2015-8804.patch
+> ./recipes-support/nettle/nettle-2.7.1/CVE-2015-8803_8805.patch
+> ./recipes-support/gnutls/gnutls/CVE-2016-7444.patch
+> ./recipes-support/boost/boost/boost-CVE-2012-2677.patch
+> ./recipes-support/gnupg/gnupg-1.4.7/GnuPG1-CVE-2012-6085.patch
+> ./recipes-support/gnupg/gnupg-1.4.7/CVE-2013-4576.patch
+> ./recipes-support/gnupg/gnupg-1.4.7/CVE-2013-4351.patch
+> ./recipes-support/gnupg/gnupg-1.4.7/CVE-2013-4242.patch
+>
+> Thanks
+> //Sona
+>
+>
+>
+>
+>
+>
 >
 
-Looks good to me, push away.
 
-Ross
-
---94eb2c094b164f957a054311f47a
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 7 December 2016 at 13:22, Jussi Kukkonen <span dir=3D"ltr">&lt;<a href=
-=3D"mailto:jussi.kukkonen@intel.com" target=3D"_blank">jussi.kukkonen@intel=
-.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"ma=
-rgin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div id=3D":1g=
-3" class=3D"a3s aXjCH m158d97326426b5a2">One actual bug fix (YOCTO #10635) =
-and a few build cleanups.<br></div></blockquote></div><br>Looks good to me,=
- push away.</div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_e=
-xtra">Ross</div></div>
-
---94eb2c094b164f957a054311f47a--
