@@ -1,56 +1,63 @@
-Return-Path: <colin.helliwell@ln-systems.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BC979E00E04; Thu,  8 Dec 2016 05:09:38 -0800 (PST)
+	id 9FB81E00B96; Thu,  8 Dec 2016 05:29:36 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.5 required=5.0 tests=BAYES_20,HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE,RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [212.227.126.134 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [212.227.126.134 listed in dnsbl.sorbs.net]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.216.175 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.0 BAYES_20 BODY: Bayes spam probability is 5 to 20%
-	*      [score: 0.0704]
-X-Greylist: delayed 302 seconds by postgrey-1.32 at yocto-www;
-	Thu, 08 Dec 2016 05:08:23 PST
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.134])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7824EE00848
-	for <yocto@yoctoproject.org>; Thu,  8 Dec 2016 05:08:23 -0800 (PST)
-Received: from LNSYSCH3 ([81.130.69.98]) by mrelayeu.kundenserver.de (mreue003
-	[212.227.15.163]) with ESMTPSA (Nemesis) id 0M6ydl-1cbqzK3Sth-00wmhy
-	for <yocto@yoctoproject.org>; Thu, 08 Dec 2016 14:03:20 +0100
-From: <colin.helliwell@ln-systems.com>
-To: <yocto@yoctoproject.org>
-Date: Thu, 8 Dec 2016 13:03:18 -0000
-Organization: LN Systems Limited
-Message-ID: <00e201d25153$72e85590$58b900b0$@ln-systems.com>
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-qt0-f175.google.com (mail-qt0-f175.google.com
+	[209.85.216.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 121AEE00848
+	for <yocto@yoctoproject.org>; Thu,  8 Dec 2016 05:29:33 -0800 (PST)
+Received: by mail-qt0-f175.google.com with SMTP id p16so410348963qta.0
+	for <yocto@yoctoproject.org>; Thu, 08 Dec 2016 05:29:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=NOxojGYjLUB5kj/E9LDE68RZNpnmg5fDsVA9QYl9Gug=;
+	b=oZEyag+RE5/Lf88wXqf2fY8DoJ/jmY3M1z5GhKS5F7eIHjU3fuZLitNw0JdWQQq6cJ
+	59ieY0vcfgAojm4tNx/X2uyNBdvRvl2KRzx9fNJwH9oRwo3p/d3SWbD8v9cRErW9a/a2
+	PHZMNNLcuTHrEISISc9vlSIg1LOTFHFAEe/DxSJMFyBXBvuiK+Af8cfFotnqC1pLwWe3
+	6JWs+a6VP2gg4QnU24ykyhkUa+L52aVp/B4RS0qGedbCqcyjyl9sjB/L/DjyrUPmxdbf
+	oC3jbR1UJvNC8u7HA6CFsPy0BEsSd7hLDa7Z49dhTEgLzlnJp/qV1GylKOsE5HZGgFtG
+	yVfg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=NOxojGYjLUB5kj/E9LDE68RZNpnmg5fDsVA9QYl9Gug=;
+	b=DJrCERxO0gdgXhZwfRIqZAXpJPsPhiwjBBszOGXeWDO1l375LEa+87V3iQkm9wH9Uj
+	lkODtwcchcTn53hx0x8TKWtBR3OruIJCMDwrdwdieukTLPlllJ1vBGf3Zol1Qo7synLS
+	+GgPRtAY0qjuxvkcQ4HYNPE3r79VpZTdP+Lu85IgKOMwwVS0EgHHpA1eCBvSoz/Gu7Tt
+	uh7M5UWHxAJVlhkmCbbxd+bWChXw21QV/0mR6xFHJMF7+Yz3wvg3PprU7U0cUkfiglfv
+	70wkwSsrd5lhb7I5gdKDshrmoR0Xfp/l53/sfZFcyPdZuz/U571UAROat5i+CBfn/bxA
+	5pzw==
+X-Gm-Message-State: AKaTC029PbfFvS9aUWroGMHM2okj9tgn5kFSalYEjP/zhzo1/JuAzwcXQoHZT+iNMuIWYSD756dfbZ+VKhj0nxnp
+X-Received: by 10.237.61.42 with SMTP id g39mr71242814qtf.65.1481203773015;
+	Thu, 08 Dec 2016 05:29:33 -0800 (PST)
 MIME-Version: 1.0
-X-Mailer: Microsoft Outlook 15.0
-Thread-Index: AdJRTP1sg/OCfR83RAuVpCYDVYsUbg==
-X-Provags-ID: V03:K0:HuLdg8mE9LtdnZflXsNmuNasbR+rKBoSXG64kAZawEBuGb6YHmG
-	0UzSl1ZDPLsl0N3iDz2hvtxTu+Vc7lGf087SSXiheU6vl6ksc/75wxnERSi2ONaZc9r9R9C
-	jhjsIXl9nYCvjL5zDVlk87FRAZDrTg5BWclUw0SxdDVjw77XQVeJjOx0mJ3wqvzqTjOdZBJ
-	lx5GOdc1hzho85RhMboDw==
-X-UI-Out-Filterresults: notjunk:1;V01:K0:sDbsv3nuXp4=:BAnoGrPA+XfsG1ZrPmIxJe
-	s/kvLZjvTrbI3XdkJI8Ycxm+JYiF7qRYm2vuKD3Xce8yS/6boZsqv3FBQ5LpcawhzLgANdf8c
-	ArvOA1i4YDVop8Wn7GmAgOfJ0obc/LnUOG1/1jdhy/yCdm0R4SFwqxj3F07L6oBBuZFkZ94uh
-	xY2ApWLyc5DuhSeQRoxUKBFvUH0pg+hwfg8n4Bo2R0kpXip9kXERbpc0ZcmJWFdNYhiXCrAVQ
-	DO+R4cv0O6wmTGUiNHS0AXxGdS6Lgej96WNMaMSnf4FhcjbfQyDOR4nxsad0VGbY5B97KaM4F
-	m9Lj88mK3JBw9TXxAlgttR/xDiWEtFwldUZfejC3CxMGuIX7pGIupvqaVVkrCnsAz5pMHzZhb
-	b6LDKkaiF4WewF+R9fEblO3wvInTk9fidZlFjIzPY4EMa6EJSwd7sSyMVeAHpqu5l3dUvZAw/
-	3mCrbuSVEmPP2zjBmwe2dsCKPN7LBVF7NlpvQBKvXwX/2aZHmNOiXg2OuQm4rMw7WW5ZKp3BX
-	xOUE6sirrvMVKHMOtnLBBrFrS8LKn5nnV0w/zbpeKPQxkTUSbwW3enRwaz4/g8xW5DdDO8T3H
-	5x63cNMpvcT4rKy/aIsZ50XY1C1gE5wdKNY20UJI6Jcn2kWLJxfzEDYMTDVk6MBxVfIiVG1Ob
-	XXdTSgidlPy2zUuC8fOdeKWTO8d4kE4oiuRTh5+XjdI9+sk4MF4yRo+lWkzOAbSOCqk1oWzQe
-	Lq4jLxrdu21vpF2x
-Subject: Building a package for target and native
+Received: by 10.140.106.99 with HTTP; Thu, 8 Dec 2016 05:29:12 -0800 (PST)
+In-Reply-To: <00e201d25153$72e85590$58b900b0$@ln-systems.com>
+References: <00e201d25153$72e85590$58b900b0$@ln-systems.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Thu, 8 Dec 2016 13:29:12 +0000
+Message-ID: <CAJTo0LasFWgp6qgRf1M=EK_eP5x77o8X_MAMN87Bkp8dNSposg@mail.gmail.com>
+To: colin.helliwell@ln-systems.com
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Building a package for target and native
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: colin.helliwell@ln-systems.com
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -59,118 +66,91 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 08 Dec 2016 13:09:38 -0000
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_00E3_01D25153.72E85590"
-Content-Language: en-gb
+X-List-Received-Date: Thu, 08 Dec 2016 13:29:36 -0000
+Content-Type: multipart/alternative; boundary=001a1142a3eabb1da0054325a0b6
 
-------=_NextPart_000_00E3_01D25153.72E85590
-Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-
-I'm creating a recipe for a 3rd party package. 
-
-Part of its install is to create the target's config file by running
-*itself* - obviously this doesn't work as the target cpu is different to the
-host.
-
-I should be able to do a simple patch to alter the executable that the
-Makefile runs to generate the config file, but I'm trying to figure out the
-slickest (=correct!) way to get both architectures built.
-
-It looks like I can add 
-
-   BBCLASSEXTEND="native"
-
-to the recipe and then 'bitbake mypkg-native' will build for native, and
-'bitbake mypkg' for the target.
-
-In which case, can I set up a dependency rule such that the target build is
-dependent on, i.e run after, the native? 
-
-(The package itself will be pulled in with a   IMAGE_INSTALL += " mypkg ")
-
-Or is there a better approach to this in general?   e.g. a separate
-mypkg-native.bb which the target recipe then depends on.
-
- 
-
-
-------=_NextPart_000_00E3_01D25153.72E85590
-Content-Type: text/html;
-	charset="us-ascii"
+--001a1142a3eabb1da0054325a0b6
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
-http-equiv=3DContent-Type content=3D"text/html; =
-charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
-(filtered medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DEN-GB =
-link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
-class=3DMsoNormal>I&#8217;m creating a recipe for a 3<sup>rd</sup> party =
-package. <o:p></o:p></p><p class=3DMsoNormal>Part of its install is to =
-create the target&#8217;s config file by running *itself* - obviously =
-this doesn&#8217;t work as the target cpu is different to the =
-host.<o:p></o:p></p><p class=3DMsoNormal>I should be able to do a simple =
-patch to alter the executable that the Makefile runs to generate the =
-config file, but I&#8217;m trying to figure out the slickest =
-(=3Dcorrect!) way to get both architectures built.<o:p></o:p></p><p =
-class=3DMsoNormal>It looks like I can add <o:p></o:p></p><p =
-class=3DMsoNormal>&nbsp;&nbsp;&nbsp;BBCLASSEXTEND=3D&#8221;native&#8221;<=
-o:p></o:p></p><p class=3DMsoNormal>to the recipe and then &#8216;bitbake =
-mypkg-native&#8217; will build for native, and &#8216;bitbake =
-mypkg&#8217; for the target.<o:p></o:p></p><p class=3DMsoNormal>In which =
-case, can I set up a dependency rule such that the target build is =
-dependent on, i.e run after, the native? <o:p></o:p></p><p =
-class=3DMsoNormal>(The package itself will be pulled in with a&nbsp; =
-&nbsp;IMAGE_INSTALL +=3D &#8221; mypkg &#8221;)<o:p></o:p></p><p =
-class=3DMsoNormal>Or is there a better approach to this in =
-general?&nbsp; &nbsp;e.g. a separate mypkg-native.bb which the target =
-recipe then depends on.<o:p></o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
+On 8 December 2016 at 13:03, <colin.helliwell@ln-systems.com> wrote:
 
-------=_NextPart_000_00E3_01D25153.72E85590--
+> I=E2=80=99m creating a recipe for a 3rd party package.
+>
+> Part of its install is to create the target=E2=80=99s config file by runn=
+ing
+> *itself* - obviously this doesn=E2=80=99t work as the target cpu is diffe=
+rent to
+> the host.
+>
+> I should be able to do a simple patch to alter the executable that the
+> Makefile runs to generate the config file, but I=E2=80=99m trying to figu=
+re out the
+> slickest (=3Dcorrect!) way to get both architectures built.
+>
+> It looks like I can add
+>
+>    BBCLASSEXTEND=3D=E2=80=9Dnative=E2=80=9D
+>
+> to the recipe and then =E2=80=98bitbake mypkg-native=E2=80=99 will build =
+for native, and
+> =E2=80=98bitbake mypkg=E2=80=99 for the target.
+>
+> In which case, can I set up a dependency rule such that the target build
+> is dependent on, i.e run after, the native?
+>
+> (The package itself will be pulled in with a   IMAGE_INSTALL +=3D =E2=80=
+=9D mypkg =E2=80=9D)
+>
+> Or is there a better approach to this in general?   e.g. a separate
+> mypkg-native.bb which the target recipe then depends on.
+>
+
+If it's going to be running the main binary then BBCLASSEXTEND=3Dnative and
+DEPENDS=3Dmypkg-native will do what you want.  You can also tweak the nativ=
+e
+build so that it just builds what is required instead of everything to save
+time.
+
+You'll have to patch the target makefile to run the binary from the native
+sysroot and not the build, of course.
+
+Ross
+
+--001a1142a3eabb1da0054325a0b6
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 8 December 2016 at 13:03,  <span dir=3D"ltr">&lt;<a href=3D"mailto:colin=
+.helliwell@ln-systems.com" target=3D"_blank">colin.helliwell@ln-systems.com=
+</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin=
+:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><p class=3D"MsoNor=
+mal">I=E2=80=99m creating a recipe for a 3<sup>rd</sup> party package. <u><=
+/u><u></u></p><p class=3D"MsoNormal">Part of its install is to create the t=
+arget=E2=80=99s config file by running *itself* - obviously this doesn=E2=
+=80=99t work as the target cpu is different to the host.<u></u><u></u></p><=
+p class=3D"MsoNormal">I should be able to do a simple patch to alter the ex=
+ecutable that the Makefile runs to generate the config file, but I=E2=80=99=
+m trying to figure out the slickest (=3Dcorrect!) way to get both architect=
+ures built.<u></u><u></u></p><p class=3D"MsoNormal">It looks like I can add=
+ <u></u><u></u></p><p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0BBCLASSEXTEND=
+=3D=E2=80=9Dnative=E2=80=9D<u></u><u></u></p><p class=3D"MsoNormal">to the =
+recipe and then =E2=80=98bitbake mypkg-native=E2=80=99 will build for nativ=
+e, and =E2=80=98bitbake mypkg=E2=80=99 for the target.<u></u><u></u></p><p =
+class=3D"MsoNormal">In which case, can I set up a dependency rule such that=
+ the target build is dependent on, i.e run after, the native? <u></u><u></u=
+></p><p class=3D"MsoNormal">(The package itself will be pulled in with a=C2=
+=A0 =C2=A0IMAGE_INSTALL +=3D =E2=80=9D mypkg =E2=80=9D)<u></u><u></u></p><p=
+ class=3D"MsoNormal">Or is there a better approach to this in general?=C2=
+=A0 =C2=A0e.g. a separate <a href=3D"http://mypkg-native.bb" target=3D"_bla=
+nk">mypkg-native.bb</a> which the target recipe then depends on.</p></block=
+quote></div></div><br><div>If it&#39;s going to be running the main binary =
+then BBCLASSEXTEND=3Dnative and DEPENDS=3Dmypkg-native will do what you wan=
+t.=C2=A0 You can also tweak the native build so that it just builds what is=
+ required instead of everything to save time.</div><div><br></div><div>You&=
+#39;ll have to patch the target makefile to run the binary from the native =
+sysroot and not the build, of course.</div><div><br></div><div>Ross</div></=
+div>
+
+--001a1142a3eabb1da0054325a0b6--
