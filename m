@@ -1,31 +1,46 @@
-Return-Path: <stephano.cetola@linux.intel.com>
+Return-Path: <c.andersen@kostal.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0C6B5E007E8; Thu,  8 Dec 2016 09:08:43 -0800 (PST)
+	id 56447E00828; Thu,  8 Dec 2016 10:10:21 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [192.55.52.115 listed in list.dnswl.org]
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CFF8DE006EA
-	for <yocto@yoctoproject.org>; Thu,  8 Dec 2016 09:08:38 -0800 (PST)
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-	by fmsmga103.fm.intel.com with ESMTP; 08 Dec 2016 09:08:38 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.33,320,1477983600"; d="scan'208";a="38292963"
-Received: from pequod.jf.intel.com ([10.7.201.50])
-	by orsmga004.jf.intel.com with ESMTP; 08 Dec 2016 09:08:37 -0800
-From: Stephano Cetola <stephano.cetola@linux.intel.com>
-To: yocto@yoctoproject.org
-Date: Thu,  8 Dec 2016 09:07:36 -0800
-Message-Id: <20161208170736.10328-1-stephano.cetola@linux.intel.com>
-X-Mailer: git-send-email 2.10.2
-Subject: [yocto-autobuilder][PATCH] nightly.conf: add deploy_artifacts to copy_properties
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [193.22.205.227 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0002]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+X-Greylist: delayed 345 seconds by postgrey-1.32 at yocto-www;
+	Thu, 08 Dec 2016 10:10:18 PST
+Received: from securemail.kostal.com (securemail.kostal.com [193.22.205.227])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B5ED8E007B3
+	for <yocto@yoctoproject.org>; Thu,  8 Dec 2016 10:10:18 -0800 (PST)
+Received: from DEBEMAIL002.kostal.int ([10.20.2.182]) by 
+	securemail.kostal.com (8.14.7/8.14.7) with ESMTP id uB8I4NLs019989 
+	(version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=FAIL) for 
+	<yocto@yoctoproject.org>; Thu, 8 Dec 2016 19:04:23 +0100
+Received: from DEBEMAIL002.kostal.int (10.20.2.182) by DEBEMAIL002.kostal.int 
+	(10.20.2.182) with Microsoft SMTP Server (TLS) id 15.0.1210.3;
+	Thu, 8 Dec 2016 19:04:22 +0100
+Received: from DEBEMAIL002.kostal.int ([fe80::e135:11a6:577e:23bb]) by 
+	DEBEMAIL002.kostal.int ([fe80::e135:11a6:577e:23bb%12]) with mapi id 
+	15.00.1210.000; Thu, 8 Dec 2016 19:04:22 +0100
+From: "Andersen, Christian" <c.andersen@kostal.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: vmdk and IMAGE_ROOTFS_EXTRA_SPACE?
+Thread-Index: AdJRfWwzHPICgiBRRJauGzo4KGPjHw==
+Date: Thu, 8 Dec 2016 18:04:22 +0000
+Message-ID: <13ff734520a74049b9eb5dfcb40e0c26@DEBEMAIL002.kostal.int>
+Accept-Language: de-DE, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.20.2.192]
+MIME-Version: 1.0
+x-msw-jemd-spam: not checked
+Subject: vmdk and IMAGE_ROOTFS_EXTRA_SPACE?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,33 +52,128 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 08 Dec 2016 17:08:43 -0000
+X-List-Received-Date: Thu, 08 Dec 2016 18:10:21 -0000
+Content-Language: de-DE
+Content-Type: multipart/alternative; 
+	boundary="_000_13ff734520a74049b9eb5dfcb40e0c26DEBEMAIL002kostalint_"
 
-In order for the build slaves to process the "deploy artifacts"
-property, it needs to be passed in when the builds are triggered.
+--_000_13ff734520a74049b9eb5dfcb40e0c26DEBEMAIL002kostalint_
+Content-Type: text/plain; charset="ISO-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-This fixes [YOCTO 10229]
+Hello,
 
-Signed-off-by: Stephano Cetola <stephano.cetola@linux.intel.com>
----
- buildset-config.controller/nightly.conf | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+is there a way to add some extra space to the rootfs in a vmdk image? It lo=
+oks like the option IMAGE_ROOTFS_EXTRA_SPACE is only used by image.bbclass,=
+ but not by image-vm.bbclass.
 
-diff --git a/buildset-config.controller/nightly.conf b/buildset-config.controller/nightly.conf
-index b811f68..4ed255d 100644
---- a/buildset-config.controller/nightly.conf
-+++ b/buildset-config.controller/nightly.conf
-@@ -84,7 +84,8 @@ steps: [{'SetDest':{}},
-                             'atextprepend': 'SOURCE_MIRROR_FETCH = "1"\n'}},
-         {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
-         {'BuildImages': {'images': 'universe -c fetch'}},
--        {'TriggerBuilds': {'copy_properties': ['custom_create_eventlog', 'custom_yocto_number', 'is_release'],
-+        {'TriggerBuilds': {'copy_properties': ['custom_create_eventlog',
-+                           'custom_yocto_number', 'is_release', 'custom_deploy_artifacts'],
-                            'schedulerName': 'main-build', 'waitForFinish': 'True',
-                            'schedulerNames': {'nightly-arm': {}, 'nightly-arm-lsb': {},
-                            'nightly-mips': {}, 'nightly-mips-lsb': {},
--- 
-2.10.2
+Kind regards
+Christian Andersen
 
 
+KOSTAL Industrie Elektrik GmbH - Sitz L=FCdenscheid, Registergericht Iserlo=
+hn HRB 3924 - USt-Id-Nr./Vat No.: DE 813742170
+Postanschrift: An der Bellmerei 10, D-58513 L=FCdenscheid * Telefon: +49  2=
+351 16-0 * Telefax: +49  2351 16-2400
+Werksanschrift: Lange Eck 11, D-58099 Hagen * Tel. +49 2331 8040-601 * Fax =
++49 2331 8040-602
+Gesch=E4ftsf=FChrung: Axel Zimmermann, Dipl.-Ing. Marwin Kinzl, Dipl.-Oec. =
+Andreas Kostal
+
+
+--_000_13ff734520a74049b9eb5dfcb40e0c26DEBEMAIL002kostalint_
+Content-Type: text/html; charset="ISO-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<META http-equiv=3D"Content-Type" content=3D"text/html; charset=3DISO-8859-=
+1">
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"\@SimSun";
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.E-MailFormatvorlage17
+	{mso-style-type:personal-compose;
+	font-family:"Arial",sans-serif;
+	color:windowtext;
+	font-weight:normal;
+	font-style:normal;
+	text-decoration:none none;}
+.MsoChpDefault
+	{mso-style-type:export-only;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 70.85pt 2.0cm 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"DE" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-=
+family:&quot;Arial&quot;,sans-serif">Hello,<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-=
+family:&quot;Arial&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-=
+family:&quot;Arial&quot;,sans-serif">is there a way to add some extra space=
+ to the rootfs in a vmdk image? It looks like the option IMAGE_ROOTFS_EXTRA=
+_SPACE is only used by image.bbclass, but not by
+ image-vm.bbclass.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-=
+family:&quot;Arial&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-=
+family:&quot;Arial&quot;,sans-serif">Kind regards<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-=
+family:&quot;Arial&quot;,sans-serif">Christian Andersen</span><span style=
+=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,sans-serif"><o:p></o:p><=
+/span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+=0A<table>=0A<tbody><tr valign=3D"bottom">=0A<td valign=3D"bottom">=0A<img =
+border=3D"0" src=3D"http://www.kostal-solar-electric.com/~/media/Industrie%=
+20Elektrik/Header_Logos%20und%20Bilder/blue_Quadrat_Intelligent.ashx" />=0A=
+</td>=0A<td width=3D"5"></td>=0A<td valign=3D"bottom" style=3D"font-size: 8=
+pt;">=0AKOSTAL Industrie Elektrik GmbH - Sitz L=FCdenscheid, Registergerich=
+t Iserlohn HRB 3924 - USt-Id-Nr./Vat No.: DE 813742170=0A<br />=0APostansch=
+rift: An der Bellmerei 10, D-58513 L=FCdenscheid * Telefon: +49  2351 16-0 =
+* Telefax: +49  2351 16-2400=0A<br />=0AWerksanschrift: Lange Eck 11, D-580=
+99 Hagen * Tel. +49 2331 8040-800 * Fax +49 2331 8040-602=0A<br />=0AGesch=
+=E4ftsf=FChrung: Axel Zimmermann, Dipl.-Ing. Marwin Kinzl, Dipl.-Oec. Andre=
+as Kostal=0A</td>=0A</tr>=0A</tbody></table>=0A=0A=0A=0A</body>
+</html>
+
+--_000_13ff734520a74049b9eb5dfcb40e0c26DEBEMAIL002kostalint_--
