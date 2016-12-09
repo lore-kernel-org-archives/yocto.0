@@ -1,65 +1,61 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <develone@sbcglobal.net>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 055B9E00C80; Fri,  9 Dec 2016 05:07:24 -0800 (PST)
+	id 9C7E8E00C9B; Fri,  9 Dec 2016 05:28:39 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [98.139.213.161 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.216.172 listed in list.dnswl.org]
-Received: from mail-qt0-f172.google.com (mail-qt0-f172.google.com
-	[209.85.216.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AE894E00B96
-	for <yocto@yoctoproject.org>; Fri,  9 Dec 2016 05:07:18 -0800 (PST)
-Received: by mail-qt0-f172.google.com with SMTP id w33so15144790qtc.3
-	for <yocto@yoctoproject.org>; Fri, 09 Dec 2016 05:07:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=pJ30XWu87OYWbHahlSfsWZk5mYjtBLCheN52yS42W4c=;
-	b=GqQTdptUcS4sk1fEXVzudqx8wC3W4Tgeh/YEiAq0kMdv4WMYtTDoJMjSKlLjQnZJVe
-	S6Eezqs3+5UH//0V2nSc0D3k0iIHnLAwSQEt8xgglym4xum8AF+WiRDVkiMKcR49VJ4H
-	m3qli7R+zuT0HGJIfsXD87/pp2q6S1FypT98y0S2VHHGczK4/83QtnAFPVOzrLnUA8eK
-	SeR0pz0IQLAYkx2wE8qHOo2lFJB4h65DuKtSJUl/PT5K9PXJNc8PviRA0u0H9leFdm+Q
-	Nsu7rvzqu+CUxJOUgJenlBqwdrQD9tWZHMamOHODqM+lz6pmoUwXSjq5l6rvh9GWiHXH
-	5PUw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=pJ30XWu87OYWbHahlSfsWZk5mYjtBLCheN52yS42W4c=;
-	b=MAywNA9Tx5fJkU3O05VG7ywoaAmrc+nnN98CjRsISSvgfQkkbbNusw3fZttj+4YUNs
-	TH7DBzRqmNkao9lk3Mg2KVFDodzwMgasT+eY02w8a9VcFdkIL//A+TT6jTMFMi6NPfKO
-	dNzPhBUwoq6iHrkzNDxXEKXPqk1ceNd6fu3r2cT9do1ovy3/BT8aoVLITz6PD/3qRra4
-	K0TiJ6qQTgAIa3lY7QzEnb5u2ScxpXcpjH2tzKHxlIqnqlH3S6S8K42mRuVHYeOqSanp
-	j0oUQleMA4tkKQcgXrlceST+4AZeyk0mcTA9/96t0jyyN60rCwwdJWEDGEGBymljyaka
-	Jf8A==
-X-Gm-Message-State: AKaTC02c1xDiY0l4I9PWZGVWiWSisBlEsC+tlgYVpQQbk+u+5Ppqc+0QZDhjVoShctqwH0IVEyB5nfos22M8UEw9
-X-Received: by 10.237.61.42 with SMTP id g39mr76402581qtf.65.1481288837633;
-	Fri, 09 Dec 2016 05:07:17 -0800 (PST)
+Received: from nm24-vm0.bullet.mail.bf1.yahoo.com
+	(nm24-vm0.bullet.mail.bf1.yahoo.com [98.139.213.161])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 129CCE00C80
+	for <yocto@yoctoproject.org>; Fri,  9 Dec 2016 05:28:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sbcglobal.net; s=s2048;
+	t=1481290116; bh=eq72wE4WENpTE5kTFmxU5r5KYYtTd8khpn16vPTkkcw=;
+	h=Date:From:Reply-To:To:Subject:References:From:Subject;
+	b=eTggH60+jLdRfd4a2pSK14CVcHYsJeTBSlvJCFeg4uoDNbTyIPY+sZ1WVWUsTLnoI+p7MzdnehR+HBoalMihEjUUhnpMNIZ9JJgsPXsXbTqNkqduv4OApY4MqI2d2C/ajHgrvsVwFayWKya534A20F+1zrD6d3g+01//WfeCt5onJrWoJs9HU5TZYtOj3JZRSJwmHqL/loTNfPbVIeY9HA7y1OP0pamPYNNvX+hAXcKtIxLIcd1CVZwyTYzPV4NDPC0DVZB5WRv+1FOg1Zu7U6hnzE4JsUioU7MqhU4jEbwvoyxnYBTT49clLd0EmT3wgx2V0hXvgmHg7J+CdiySdA==
+Received: from [98.139.215.143] by nm24.bullet.mail.bf1.yahoo.com with NNFMP;
+	09 Dec 2016 13:28:36 -0000
+Received: from [98.139.212.247] by tm14.bullet.mail.bf1.yahoo.com with NNFMP;
+	09 Dec 2016 13:28:36 -0000
+Received: from [127.0.0.1] by omp1056.mail.bf1.yahoo.com with NNFMP;
+	09 Dec 2016 13:28:36 -0000
+X-Yahoo-Newman-Property: ymail-3
+X-Yahoo-Newman-Id: 678803.97898.bm@omp1056.mail.bf1.yahoo.com
+X-YMail-OSG: RTwO3IUVM1nnH9QR8Q1kPHgy4mWbpEPV4NTGsBnqg0edXNaIim5rai76KgOt_uE
+	dEbUdjhwttuGI..6KkAqjh179jjIYZzpg9XqDWqJ.OdZOADKckG7i1oON4cVFThIFg80wy5Bn_XO
+	cGfr06brqCYu5_7A2uGZAAt6muIwzw2VGSvZTkP8ay7C8oGP94BM2vFW.FJ22lV_NCXZilRz0ke2
+	7Ig3LsHlnKZZopNd7KGpXj_IibP8ugHTYHjyB8y4UJgzDEPxN82Quq5XGjmfyVOGJ6yf6t7M8EEH
+	avFfJ9exkmbT1hyLUBO.5swaaT9oJeJPPT0Y0UOEBSUIxmllrUkG63gQbxViLLUv0f6pxel7jKOi
+	NsY.A.m8BtClwlmJGasKQScfEcfKE8qc8RLw.WZyKuStL53UJB4GkB.wOmTLdFYT5HzZlMViDbxu
+	9ghku5cITDJdbbs80ml9kjlkGvPoxazIWpE2rgLNU8tczZydFju0gnFGu.xZCA8BZ9G1Jda4Zt0a
+	bbGTet_cWFRvCo0sw4NEHO.xzsRDkMrSRuiXsp3kJZO9LUaSA1k237NLpCp3oxJNFwX4A0ai.zS28
+Received: from jws400072.mail.bf2.yahoo.com by
+	sendmailws104.mail.bf1.yahoo.com;
+	Fri, 09 Dec 2016 13:28:36 +0000; 1481290116.320
+Date: Fri, 9 Dec 2016 13:28:35 +0000 (UTC)
+From: Edward Vidal <develone@sbcglobal.net>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Message-ID: <405620911.1114427.1481290115720@mail.yahoo.com>
 MIME-Version: 1.0
-Received: by 10.140.106.99 with HTTP; Fri, 9 Dec 2016 05:06:57 -0800 (PST)
-In-Reply-To: <02f901d2521c$cb62d6e0$622884a0$@renuelectronics.com>
-References: <02e201d25213$77eea330$67cbe990$@renuelectronics.com>
-	<CAJTo0LaXozB7S1XJbWv1jzutoLWQPQ-QHMhB2x6mEBqDuTvm-A@mail.gmail.com>
-	<02f901d2521c$cb62d6e0$622884a0$@renuelectronics.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Fri, 9 Dec 2016 13:06:57 +0000
-Message-ID: <CAJTo0LaY75EyK0wmAjgEJa7eTbWp-Z3=SWwga_0PhrXUbP-1pA@mail.gmail.com>
-To: Alankar Dhobale <alankar.dhobale@renuelectronics.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Qt make: g++: Command not found issue with SDK generated for soloX
+References: <405620911.1114427.1481290115720.ref@mail.yahoo.com>
+Subject: Adding Fortran to Raspberrypi2
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: Edward Vidal <develone@sbcglobal.net>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -68,45 +64,157 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 09 Dec 2016 13:07:24 -0000
-Content-Type: multipart/alternative; boundary=001a1142a3eafa3f230543396efc
+X-List-Received-Date: Fri, 09 Dec 2016 13:28:39 -0000
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_1114426_1078840835.1481290115719"
 
---001a1142a3eafa3f230543396efc
+------=_Part_1114426_1078840835.1481290115719
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-On 9 December 2016 at 13:04, Alankar Dhobale <
-alankar.dhobale@renuelectronics.com> wrote:
+Hi
 
-> But I think =E2=80=9Cmake=E2=80=9D is somehow calling g++ instead of call=
-ing
-> arm-poky-linux-gnueabi-g++. I am not sure about the generated sdk is
-> correct?
->
->
-I'd check the generated makefiles, or your qmake files.  As the
-documentation linked says, if you are writing bare makefiles then pass -e.
-If you're not, then you need to do whatever is relevant.
+Trying to add fortran to 6.2.0 branch morty for a Raspberrypi2
 
-Ross
+Step 1 modified meta/recipes-devtools/gcc/gcc-6.2.inc
+-FORTRAN =3D ""
++FORTRAN =3D ",fortran"
+bitbake core-image-sato created the image=20
 
---001a1142a3eafa3f230543396efc
+Testing on target. I see fortran in the command gcc -v.
+
+gcc -v --enable-languages=3Dc,c++,fortran gcc version 6.2.0 (GCC)
+
+With the command ./configure for octave.
+checking whether a usable Fortran compiler was found... no
+configure: error: A Fortran compiler is required
+
+
+Step 2 Checking the mailing list.
+=C2=A0=C2=A0=C2=A0 |Hi
+=C2=A0=C2=A0=C2=A0 |
+=C2=A0=C2=A0=C2=A0 |On Mon, 8 Feb 2016 08:19:53 +0000
+=C2=A0=C2=A0=C2=A0 |"Liubchynskyi, Stanislav (Nokia - PL/Wroclaw)" <stanisl=
+av.liubchynskyi at nokia.com> wrote:
+=C2=A0=C2=A0=C2=A0 |
+=C2=A0=C2=A0=C2=A0 |> Hi,
+=C2=A0=C2=A0=C2=A0 |> I want to add fortran support to yocto build. I try d=
+ifferent way whitch describe in the ethernet but enyone does't work. I use =
+fido branch and gcc 4.9. Can you describe me step by step how to enable for=
+tran in yocto or where I can find work instruction.
+=C2=A0=C2=A0=C2=A0 |> Thanks for help.
+
+=C2=A0=C2=A0=C2=A0 |Fortran support in gcc is disabled by default, to enabl=
+e it add the following line to your config, then build the libgfortran pack=
+age.
+
+=C2=A0=C2=A0=C2=A0 |FORTRAN_forcevariable =3D ",fortran"
+
+=C2=A0=C2=A0=C2=A0 |>=20
+=C2=A0=C2=A0=C2=A0 |>=20
+=C2=A0=C2=A0=C2=A0 |>=20
+=C2=A0=C2=A0=C2=A0 |> Best regards,
+=C2=A0=C2=A0=C2=A0 |>=20
+=C2=A0=C2=A0=C2=A0 |> Stanislav Liubchynskyi
+=C2=A0=C2=A0=C2=A0 |> Software Developer, LFS, OPSW Wroclaw
+=C2=A0=C2=A0=C2=A0 |> Mobile Broadband, Nokia Networks>=C2=A0=20
+
+I added FORTRAN_forcevariable =3D ",fortran" to my config.=C2=A0 Still no f=
+ortran.
+
+I added libgfortran to variable IMAGE_INSTALL_append and I get the followin=
+g error
+=C2=A0
+ERROR: oe_runmake failed
+
+../../../../../../../../work-shared/gcc-6.2.0-r0/gcc-6.2.0/libgfortran/runt=
+ime/backtrace.c:37:33: fatal error: backtrace-supported.h: No such file or =
+directory
+=C2=A0#include "backtrace-supported.h"
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ^
+compilation terminated.
+
+Thanks in advance,
+
+=C2=A0Edward Vidal Jr. e-mail develone@sbcglobal.net 915-595-1613
+
+------=_Part_1114426_1078840835.1481290115719
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 9 December 2016 at 13:04, Alankar Dhobale <span dir=3D"ltr">&lt;<a href=
-=3D"mailto:alankar.dhobale@renuelectronics.com" target=3D"_blank">alankar.d=
-hobale@renuelectronics.com</a>&gt;</span> wrote:<br><blockquote class=3D"gm=
-ail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-le=
-ft:1ex"><p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:=
-&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#1f497d">But I think =E2=
-=80=9Cmake=E2=80=9D is somehow calling g++ instead of calling arm-poky-linu=
-x-gnueabi-g++. I am not sure about the generated sdk is correct?<u></u><u><=
-/u></span></p><p class=3D"MsoNormal"></p></blockquote></div><br>I&#39;d che=
-ck the generated makefiles, or your qmake files.=C2=A0 As the documentation=
- linked says, if you are writing bare makefiles then pass -e.=C2=A0 If you&=
-#39;re not, then you need to do whatever is relevant.</div><div class=3D"gm=
-ail_extra"><br></div><div class=3D"gmail_extra">Ross</div></div>
+<html><head></head><body><div style=3D"color:#000; background-color:#fff; f=
+ont-family:HelveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, =
+sans-serif;font-size:16px"><div id=3D"yui_3_16_0_ym19_1_1481289452702_30176=
+" dir=3D"ltr"><span id=3D"yui_3_16_0_ym19_1_1481289452702_30361">Hi<br id=
+=3D"yui_3_16_0_ym19_1_1481289452702_30307"><br id=3D"yui_3_16_0_ym19_1_1481=
+289452702_30308">Trying to add fortran to 6.2.0 branch morty for a Raspberr=
+ypi2<br id=3D"yui_3_16_0_ym19_1_1481289452702_30309"><br id=3D"yui_3_16_0_y=
+m19_1_1481289452702_30310">Step 1 modified meta/recipes-devtools/gcc/gcc-6.=
+2.inc<br id=3D"yui_3_16_0_ym19_1_1481289452702_30311">-FORTRAN =3D ""<br id=
+=3D"yui_3_16_0_ym19_1_1481289452702_30312">+FORTRAN =3D ",fortran"<br id=3D=
+"yui_3_16_0_ym19_1_1481289452702_30313">bitbake core-image-sato created the=
+ image <br id=3D"yui_3_16_0_ym19_1_1481289452702_30314"><br id=3D"yui_3_16_=
+0_ym19_1_1481289452702_30315">Testing on target. I see fortran in the comma=
+nd gcc -v.<br id=3D"yui_3_16_0_ym19_1_1481289452702_30316"><br id=3D"yui_3_=
+16_0_ym19_1_1481289452702_30317">gcc -v --enable-languages=3Dc,c++,fortran =
+gcc version 6.2.0 (GCC)<br id=3D"yui_3_16_0_ym19_1_1481289452702_30318"><br=
+ id=3D"yui_3_16_0_ym19_1_1481289452702_30319">With the command ./configure =
+for octave.<br id=3D"yui_3_16_0_ym19_1_1481289452702_30320">checking whethe=
+r a usable Fortran compiler was found... no<br id=3D"yui_3_16_0_ym19_1_1481=
+289452702_30321">configure: error: A Fortran compiler is required<br id=3D"=
+yui_3_16_0_ym19_1_1481289452702_30322"><br id=3D"yui_3_16_0_ym19_1_14812894=
+52702_30323"><br id=3D"yui_3_16_0_ym19_1_1481289452702_30324">Step 2 Checki=
+ng the mailing list.<br id=3D"yui_3_16_0_ym19_1_1481289452702_30325">&nbsp;=
+&nbsp;&nbsp; |Hi<br id=3D"yui_3_16_0_ym19_1_1481289452702_30326">&nbsp;&nbs=
+p;&nbsp; |<br id=3D"yui_3_16_0_ym19_1_1481289452702_30327">&nbsp;&nbsp;&nbs=
+p; |On Mon, 8 Feb 2016 08:19:53 +0000<br id=3D"yui_3_16_0_ym19_1_1481289452=
+702_30328">&nbsp;&nbsp;&nbsp; |"Liubchynskyi, Stanislav (Nokia - PL/Wroclaw=
+)" &lt;stanislav.liubchynskyi at nokia.com&gt; wrote:<br id=3D"yui_3_16_0_y=
+m19_1_1481289452702_30329">&nbsp;&nbsp;&nbsp; |<br id=3D"yui_3_16_0_ym19_1_=
+1481289452702_30330">&nbsp;&nbsp;&nbsp; |&gt; Hi,<br id=3D"yui_3_16_0_ym19_=
+1_1481289452702_30331">&nbsp;&nbsp;&nbsp; |&gt; I want to add fortran suppo=
+rt to yocto build. I try different way whitch describe in the ethernet but =
+enyone does't work. I use fido branch and gcc 4.9. Can you describe me step=
+ by step how to enable fortran in yocto or where I can find work instructio=
+n.<br id=3D"yui_3_16_0_ym19_1_1481289452702_30332">&nbsp;&nbsp;&nbsp; |&gt;=
+ Thanks for help.<br id=3D"yui_3_16_0_ym19_1_1481289452702_30333"><br id=3D=
+"yui_3_16_0_ym19_1_1481289452702_30334">&nbsp;&nbsp;&nbsp; |Fortran support=
+ in gcc is disabled by default, to enable it add the following line to your=
+ config, then build the libgfortran package.<br id=3D"yui_3_16_0_ym19_1_148=
+1289452702_30335"><br id=3D"yui_3_16_0_ym19_1_1481289452702_30336">&nbsp;&n=
+bsp;&nbsp; |FORTRAN_forcevariable =3D ",fortran"<br id=3D"yui_3_16_0_ym19_1=
+_1481289452702_30337"><br id=3D"yui_3_16_0_ym19_1_1481289452702_30338">&nbs=
+p;&nbsp;&nbsp; |&gt; <br id=3D"yui_3_16_0_ym19_1_1481289452702_30339">&nbsp=
+;&nbsp;&nbsp; |&gt; <br id=3D"yui_3_16_0_ym19_1_1481289452702_30340">&nbsp;=
+&nbsp;&nbsp; |&gt; <br id=3D"yui_3_16_0_ym19_1_1481289452702_30341">&nbsp;&=
+nbsp;&nbsp; |&gt; Best regards,<br id=3D"yui_3_16_0_ym19_1_1481289452702_30=
+342">&nbsp;&nbsp;&nbsp; |&gt; <br id=3D"yui_3_16_0_ym19_1_1481289452702_303=
+43">&nbsp;&nbsp;&nbsp; |&gt; Stanislav Liubchynskyi<br id=3D"yui_3_16_0_ym1=
+9_1_1481289452702_30344">&nbsp;&nbsp;&nbsp; |&gt; Software Developer, LFS, =
+OPSW Wroclaw<br id=3D"yui_3_16_0_ym19_1_1481289452702_30345">&nbsp;&nbsp;&n=
+bsp; |&gt; Mobile Broadband, Nokia Networks&gt;&nbsp; <br id=3D"yui_3_16_0_=
+ym19_1_1481289452702_30346"><br id=3D"yui_3_16_0_ym19_1_1481289452702_30347=
+">I added FORTRAN_forcevariable =3D ",fortran" to my config.&nbsp; Still no=
+ fortran.<br id=3D"yui_3_16_0_ym19_1_1481289452702_30348"><br id=3D"yui_3_1=
+6_0_ym19_1_1481289452702_30349">I added libgfortran to variable IMAGE_INSTA=
+LL_append and I get the following error<br id=3D"yui_3_16_0_ym19_1_14812894=
+52702_30350">&nbsp;<br id=3D"yui_3_16_0_ym19_1_1481289452702_30351">ERROR: =
+oe_runmake failed<br id=3D"yui_3_16_0_ym19_1_1481289452702_30352"><br id=3D=
+"yui_3_16_0_ym19_1_1481289452702_30353">../../../../../../../../work-shared=
+/gcc-6.2.0-r0/gcc-6.2.0/libgfortran/runtime/backtrace.c:37:33: fatal error:=
+ backtrace-supported.h: No such file or directory<br id=3D"yui_3_16_0_ym19_=
+1_1481289452702_30354">&nbsp;#include "backtrace-supported.h"<br id=3D"yui_=
+3_16_0_ym19_1_1481289452702_30355">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p; ^<br id=3D"yui_3_16_0_ym19_1_1481289452702_30356">compilation terminated=
+.<br id=3D"yui_3_16_0_ym19_1_1481289452702_30357"><br id=3D"yui_3_16_0_ym19=
+_1_1481289452702_30358">Thanks in advance,<br id=3D"yui_3_16_0_ym19_1_14812=
+89452702_30359"><br id=3D"yui_3_16_0_ym19_1_1481289452702_30360"></span></d=
+iv><div>&nbsp;</div><div class=3D"signature" id=3D"yui_3_16_0_ym19_1_148128=
+9452702_30401">Edward Vidal Jr. e-mail develone@sbcglobal.net 915-595-1613<=
+/div></div></body></html>
 
---001a1142a3eafa3f230543396efc--
+------=_Part_1114426_1078840835.1481290115719--
