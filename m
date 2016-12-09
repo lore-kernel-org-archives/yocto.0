@@ -1,6 +1,6 @@
 Return-Path: <Bruce.Ashfield@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CF024E00D34; Fri,  9 Dec 2016 08:20:04 -0800 (PST)
+	id 02058E00D12; Fri,  9 Dec 2016 08:48:06 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,27 +8,27 @@ X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
 	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
+	*      [147.11.146.13 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5A367E00C40
-	for <yocto@yoctoproject.org>; Fri,  9 Dec 2016 08:20:02 -0800 (PST)
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 186A9E00C40
+	for <yocto@yoctoproject.org>; Fri,  9 Dec 2016 08:48:03 -0800 (PST)
 Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
 	[147.11.189.40])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id uB9GJvk0004698
+	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id uB9GltwS029023
 	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 9 Dec 2016 08:19:57 -0800 (PST)
+	Fri, 9 Dec 2016 08:47:55 -0800 (PST)
 Received: from [128.224.56.48] (128.224.56.48) by ALA-HCA.corp.ad.wrs.com
 	(147.11.189.50) with Microsoft SMTP Server id 14.3.294.0;
-	Fri, 9 Dec 2016 08:19:56 -0800
+	Fri, 9 Dec 2016 08:47:55 -0800
 To: Andrea Galbusera <gizero@gmail.com>
 References: <5ee0797a85054ea6ab6a0d8f02f47856@drift35.mia.local>
 	<30c3c6d7-9f12-e082-33bb-1a218c8f4bd5@windriver.com>
 	<CAC+thW1Hdj8MSdwf-oJegtd8eTfV6Kc_z8NRBtkrN=3Th+xn-g@mail.gmail.com>
 From: Bruce Ashfield <bruce.ashfield@windriver.com>
-Message-ID: <9db74365-d016-5183-0654-8ed27089ad71@windriver.com>
-Date: Fri, 9 Dec 2016 11:19:56 -0500
+Message-ID: <82236320-4030-29f9-8eb7-242af9b4be12@windriver.com>
+Date: Fri, 9 Dec 2016 11:47:54 -0500
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
 	Thunderbird/45.5.1
 MIME-Version: 1.0
@@ -46,7 +46,11 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 09 Dec 2016 16:20:04 -0000
+X-List-Received-Date: Fri, 09 Dec 2016 16:48:06 -0000
+X-Groupsio-MsgNum: 33403
+Content-Type: multipart/mixed; boundary="------------45463DBDF6B9616AB9436DDC"
+
+--------------45463DBDF6B9616AB9436DDC
 Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Transfer-Encoding: 7bit
 
@@ -151,15 +155,6 @@ On 2016-12-09 11:17 AM, Andrea Galbusera wrote:
 >
 > The commit in the patch remove the 'set +e' bits, but the following
 > legit code path expects the cmp command to have a non-zero return value.
-
-Aha. Indeed that is true. Clearly there aren't many people going
-through that path.
-
-I'll spin up a new patch that restores the set +e and instead traps
-the return codes for the commands that are allowed to fail.
-
-Bruce
-
 >
 >         if [ -n "${KBUILD_DEFCONFIG}" ]; then
 >                 if [ -f "${S}/arch/${ARCH}/configs/${KBUILD_DEFCONFIG}"
@@ -184,6 +179,12 @@ Bruce
 > Sorry for posting here, but I wasn't subscribed to the oe-core mailing
 > list, so I don't have the original email to oe-core mailing list with
 > the patch to reply to...
+
+attached is the patch that should fix the issue. I'll send it to oe-core
+later today once I've done more testing.
+
+Bruce
+
 >
 >
 >
@@ -217,3 +218,65 @@ Bruce
 >
 
 
+--------------45463DBDF6B9616AB9436DDC
+Content-Type: text/x-patch;
+	name="0001-kernel-yocto-explicitly-trap-subcommand-errors.patch"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+	filename="0001-kernel-yocto-explicitly-trap-subcommand-errors.patch"
+
+From db987543ed78a7c2747428ca97aae84d9f2473fb Mon Sep 17 00:00:00 2001
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+Date: Fri, 9 Dec 2016 11:38:34 -0500
+Subject: [PATCH] kernel-yocto: explicitly trap subcommand errors
+
+To trap errors and halt processing, do_kernel_metadata was recently
+switched to exit on any non zero return code. While the concept is
+sound, there are subcommands that have legitimate non-zero return
+codes.
+
+Instead of removing set +e, we'll explicitly check the return code
+of the commands that can error, and throw a bbfatal to alert the
+user.
+
+Signed-off-by: Bruce Ashfield <bruce.ashfield@windriver.com>
+---
+ meta/classes/kernel-yocto.bbclass | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/meta/classes/kernel-yocto.bbclass b/meta/classes/kernel-yocto.bbclass
+index cd34a4cf9aef..8d8d9fc9db6f 100644
+--- a/meta/classes/kernel-yocto.bbclass
++++ b/meta/classes/kernel-yocto.bbclass
+@@ -75,6 +75,7 @@ def get_machine_branch(d, default):
+     return default
+ 
+ do_kernel_metadata() {
++	set +e
+ 	cd ${S}
+ 	export KMETA=${KMETA}
+ 
+@@ -156,12 +157,18 @@ do_kernel_metadata() {
+ 	elements="`echo -n ${bsp_definition} ${sccs} ${patches} ${KERNEL_FEATURES}`"
+ 	if [ -n "${elements}" ]; then
+ 		scc --force -o ${S}/${meta_dir}:cfg,meta ${includes} ${bsp_definition} ${sccs} ${patches} ${KERNEL_FEATURES}
++		if [ $? -ne 0 ]; then
++			bbfatal_log "Could not generate configuration queue for ${KMACHINE}."
++		fi
+ 	fi
+ 
+ 	# run2: only generate patches for elements that have been passed on the SRC_URI
+ 	elements="`echo -n ${sccs} ${patches} ${KERNEL_FEATURES}`"
+ 	if [ -n "${elements}" ]; then
+ 		scc --force -o ${S}/${meta_dir}:patch --cmds patch ${includes} ${sccs} ${patches} ${KERNEL_FEATURES}
++		if [ $? -ne 0 ]; then
++			bbfatal_log "Could not generate configuration queue for ${KMACHINE}."
++		fi
+ 	fi
+ }
+ 
+-- 
+2.5.0
+
+
+--------------45463DBDF6B9616AB9436DDC--
