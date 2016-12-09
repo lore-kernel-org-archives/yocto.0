@@ -1,66 +1,65 @@
-Return-Path: <sbabic@denx.de>
+Return-Path: <gizero@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0C0C3E00C40; Fri,  9 Dec 2016 08:03:30 -0800 (PST)
+	id 976C6E00D12; Fri,  9 Dec 2016 08:17:26 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [212.18.0.9 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (gizero[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.210.194 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 89746E00B57
-	for <yocto@yoctoproject.org>; Fri,  9 Dec 2016 08:03:25 -0800 (PST)
-Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
-	by mail-out.m-online.net (Postfix) with ESMTP id 3tZxpv1r6Gz3hjRy;
-	Fri,  9 Dec 2016 17:03:19 +0100 (CET)
-Received: from localhost (dynscan1.mnet-online.de [192.168.6.68])
-	by mail.m-online.net (Postfix) with ESMTP id 3tZxpt3rLRzvxT6;
-	Fri,  9 Dec 2016 17:03:18 +0100 (CET)
-X-Virus-Scanned: amavisd-new at mnet-online.de
-Received: from mail.mnet-online.de ([192.168.8.182])
-	by localhost (dynscan1.mail.m-online.net [192.168.6.68]) (amavisd-new,
-	port 10024)
-	with ESMTP id 6E9wRcyc7cln; Fri,  9 Dec 2016 17:03:16 +0100 (CET)
-Received: from babic.homelinux.org (host-88-217-136-221.customer.m-online.net
-	[88.217.136.221]) by mail.mnet-online.de (Postfix) with ESMTP;
-	Fri,  9 Dec 2016 17:03:16 +0100 (CET)
-Received: from localhost (mail.babic.homelinux.org [127.0.0.1])
-	by babic.homelinux.org (Postfix) with ESMTP id C360B4540332;
-	Fri,  9 Dec 2016 17:02:33 +0100 (CET)
-X-Virus-Scanned: Debian amavisd-new at babic.homelinux.org
-Received: from babic.homelinux.org ([127.0.0.1])
-	by localhost (mail.babic.homelinux.org [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id WPcVW_964wlk; Fri,  9 Dec 2016 17:02:29 +0100 (CET)
-Received: from [192.168.178.132] (papero.fritz.box [192.168.178.132])
-	by babic.homelinux.org (Postfix) with ESMTP id 750D74540034;
-	Fri,  9 Dec 2016 17:02:28 +0100 (CET)
-To: Patrick Ohly <patrick.ohly@intel.com>, Stefano Babic <sbabic@denx.de>,
-	Kristian Amlie <kristian.amlie@mender.io>
-References: <20161121120355.18309-1-git@andred.net>
-	<1480503859.6873.280.camel@intel.com>
-	<1480516308.13682.1.camel@andred.net>
-	<1480517999.6873.298.camel@intel.com>
-	<30a3dd41-2e1c-8658-b83d-8632944d1709@denx.de>
-	<1481017522.17535.38.camel@intel.com>
-	<8e1fdcb8-d9fb-0e51-2e21-91e7e7c6f450@linux.intel.com>
-	<c3ce9528-f2eb-dd3f-cc68-331435aeda35@balister.org>
-	<16ca1a50-f46a-196f-66b8-91f0d14f59c2@denx.de>
-	<1481296433.17535.170.camel@intel.com>
-From: Stefano Babic <sbabic@denx.de>
-Message-ID: <4515f6e0-a99b-09ae-e233-786ceed4847d@denx.de>
-Date: Fri, 9 Dec 2016 17:03:10 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.5.1
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wj0-f194.google.com (mail-wj0-f194.google.com
+	[209.85.210.194])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 387F0E00C38
+	for <yocto@yoctoproject.org>; Fri,  9 Dec 2016 08:17:23 -0800 (PST)
+Received: by mail-wj0-f194.google.com with SMTP id kp2so3089319wjc.0
+	for <yocto@yoctoproject.org>; Fri, 09 Dec 2016 08:17:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=Rh3NbgczU9so9gLRGBZmk1bpL1VHBrmRqv+QohlIZ+Y=;
+	b=Mx12odpeGLVGXK/ClvQkjjFusA4EELj9quLtt10jHW1+xEN6B8oyddvs1ERDciJN36
+	j2/h9j2KUo31KT26TLVxPC1UoOSRt6MYZCacJH21XM+iiJaAt8f9QX7DYJlREzIWTBQP
+	P8SHtBhp1nt2zkPTXeBbYvEbNEZDqGQMIIzvra8Y1QhGQvQ+sYNf1NHErkma8EEZwQFp
+	6lOZyQYWkLIJo5HO448G0QfmhqPikJFJHSE21Wr92gvuJK9SVQvUfCi4DVOZ/Es0I1gS
+	6sMHLXM1Yb3fwoXqSNs+dRtFWjCpc7n4wUR8VPWGwP9MhJJwlqICm3Ce6N8YNgDNqZoH
+	Jlhg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=Rh3NbgczU9so9gLRGBZmk1bpL1VHBrmRqv+QohlIZ+Y=;
+	b=iUm4LiRWFNZRFClt/g4VlfXMU8cY8gypmDnXFguDhGm4vV2OtspdTlaPQ//kislde7
+	VJc+aT0MeCj6Cfy+Dm3V5w/9KBDqb7z7nILGYGOQphOQ1c4VjulH9f6K4V713fRNmxIY
+	mdWdkFVAXUsDzVXFBajWqi/Hr1eVxm46yLK/C8jWmyNaOe3uBE3BDdIo0uopOuaxvzcW
+	YcngYAgpAu5cr0+HS5auMwksKPg619Pxjxig8FUpuIyzMn8y5LE7BQdKIkAS/kSDz0Fx
+	83be3p3MLXgBbgIcIKk2poOv3l5fJYGcpoilLxK7cCnBTbxaJmGSzFy9idN7D0TbxF7m
+	Z5Jw==
+X-Gm-Message-State: AKaTC01WEd0fHni6IfABzk3eDow3qaJC49TBBrDZ/qqzETDXSIicHgC873NFCtzXYJHmD8Em+kyaYocLGcCLjQ==
+X-Received: by 10.194.66.37 with SMTP id c5mr68732105wjt.138.1481300242021;
+	Fri, 09 Dec 2016 08:17:22 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <1481296433.17535.170.camel@intel.com>
-Cc: "Lopez, Mariano" <mariano.lopez@intel.com>, yocto@yoctoproject.org,
-	=?UTF-8?Q?Andr=c3=a9_Draszik?= <git@andred.net>
-Subject: Re: update mechanisms
+Received: by 10.194.169.100 with HTTP; Fri, 9 Dec 2016 08:17:21 -0800 (PST)
+In-Reply-To: <30c3c6d7-9f12-e082-33bb-1a218c8f4bd5@windriver.com>
+References: <5ee0797a85054ea6ab6a0d8f02f47856@drift35.mia.local>
+	<30c3c6d7-9f12-e082-33bb-1a218c8f4bd5@windriver.com>
+From: Andrea Galbusera <gizero@gmail.com>
+Date: Fri, 9 Dec 2016 17:17:21 +0100
+Message-ID: <CAC+thW1Hdj8MSdwf-oJegtd8eTfV6Kc_z8NRBtkrN=3Th+xn-g@mail.gmail.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Kernel config incremental modification not working.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,71 +71,327 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 09 Dec 2016 16:03:30 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 09 Dec 2016 16:17:26 -0000
+Content-Type: multipart/alternative; boundary=089e01494a7cbb410205433c1630
 
-Hi Patrick,
+--089e01494a7cbb410205433c1630
+Content-Type: text/plain; charset=UTF-8
 
-On 09/12/2016 16:13, Patrick Ohly wrote:
-> Hello everyone!
-> 
-> Thanks for contributing directly to the page. It's great to see this
-> done collaboratively.
-> 
-> On Tue, 2016-12-06 at 23:38 +0100, Stefano Babic wrote:
->> Hi Philip,
+Hi Bruce,
+
+On Thu, Dec 8, 2016 at 3:36 PM, Bruce Ashfield <bruce.ashfield@windriver.com
+> wrote:
+
+> On 2016-12-08 09:06 AM, Bent Bisballe Nyeng wrote:
+>
+>> Hi list
 >>
->> On 06/12/2016 19:45, Philip Balister wrote:
->>> On 12/06/2016 06:11 AM, Lopez, Mariano wrote:
->>>> I agree with you, that we need to have a section per project, the table
->>>> is too limiting.
->>>
->>> I just skimmed the page and the table format isn't working well with the
->>> length of the blocks of text.
->>>
+>> I am working on a project based on the iMX6UL-EVK using the meta-fsl-arm
+>> layer for the kernel.
+>> In a local layer I have a bbappend recipe containing a patch for an
+>> extra kernel feature (a framebuffer device) in that kernel as well as a
+>> .cfg enabling said feature.
+>> The bbappend recipe is located in
+>> recipes-kernel/linux/linux-fslc-imx_%.bbappend and looks like this:
+>> FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
 >>
->> Agree - I think it is better to have a section per project.
-> 
-> That always has been the goal, and I now updated the page accordingly.
+>> SRC_URI += " \
+>>         file://0001-mxc-4.1.patch \
+>>         file://ST7789S.cfg \
+>> "
+>>
+>> KERNEL_DEVICETREE = "imx6ul-14x14-evk.dtb"
+>>
+>> The .cfg is located in recipes-kernel/linux/linux-fslc-imx/ST7789S.cfg
+>> and looks like:
+>> CONFIG_FB_MXS_ST7789S_QVGA=y
+>>
+>> The 0001-mxc-4.1.patch patch is correctly applied but the .cfg is either
+>> ignored or overwritten by some later buyild step since the resulting
+>> .config after kernel compilation contains:
+>> # CONFIG_FB_MXS_ST7789S_QVGA is not set
+>>
+>> I have tried finding the script in the build/.../temp folder that takes
+>> care of the .cfg file patching but have not been able to find anything
+>> useful.
+>>
+>> Any hints as to where I should start looking for a solution?
+>>
+>
+> Fragment processing using the kernel tools + auditing is only currently
+> available to kernel recipes that use the kernel-yocto bbclass. That
+> opt-in requirement was to ensure that existing recipes and workflows
+> weren't broken by the new features.
+>
+> Last time I checked, the meta-fsl* kernel recipes don't use the
+> kernel-yocto bbclass, so the fragment would be ignored.
+>
+> I'm taking the processing of fragments and making it universally
+> available in the upcoming 2.3 release, so what I just described
+> won't be an issue for much longer.
+>
+> In the mean time, you have a few options:
+>
+>  - in your bbappend, add "inherit kernel-yocto" and the processing
+>    of fragments will be enabled (I can't say that I've tested
+>    it against that recipe .. but the entire point of the new tasks
+>    is that they are transparent/don't break existing worflows)
+>
+>  - carry a defconfig in your layer, and add it to the SRC_URI. That
+>    defconfig would be the existing kernel recipe's defconfig + your
+>    options
+>
 
-Page is really better now :-)
+I was just testing one of my layers against your recent patchset on
+kernel-yocto when I noticed this thread. My build is broken by commit
+476ffd57cf5b6fba40d4e3f5dd913824ab8a8d3d on oe-core
+(e38775a1d82e6dc60fc96cf243ecb94be964d9b2 on the poky repo side).
 
-> I
-> tried to summarize the key aspects of each mechanism in the table
-> itself. That's something that I haven't seen elsewhere and something
-> that the page can  I tried to be as fair and objective as possible,
-> please shout if I messed something up or you don't agree with my
-> summary.
-> 
-> In particular the "complexity" column is a bit subjective. Stefano, I
-> hope you don't mind that I did not quite buy the "easy to use"
-> characterization of swupdate ;-)
+WARNING: linux-altera-ltsi-4.1.22-ltsi+gitAUTOINC+76bdba2700-r0
+do_kernel_metadata: GIZERO: before 'cmp'
+ERROR: linux-altera-ltsi-4.1.22-ltsi+gitAUTOINC+76bdba2700-r0
+do_kernel_metadata: Function failed: do_kernel_metadata (log file is
+located at
+/scratch/gizero/mitysom-5csx-master-build/tmp/work/cyclone5-poky-linux-gnueabi/linux-altera-ltsi/4.1.22-ltsi+gitAUTOINC+76bdba2700-r0/temp/log.do_kernel_metadata.28274)
+ERROR: Logfile of failure stored in:
+/scratch/gizero/mitysom-5csx-master-build/tmp/work/cyclone5-poky-linux-gnueabi/linux-altera-ltsi/4.1.22-ltsi+gitAUTOINC+76bdba2700-r0/temp/log.do_kernel_metadata.28274
+Log data follows:
+| DEBUG: Executing shell function do_kernel_metadata
+| WARNING: GIZERO: before 'cmp'
+|
+/scratch/gizero/mitysom-5csx-master-build/tmp/work/cyclone5-poky-linux-gnueabi/linux-altera-ltsi/4.1.22-ltsi+gitAUTOINC+76bdba2700-r0/defconfig
+/scratch/gizero/mitysom-5csx-master-build/tmp/work-shared/cyclone5/kernel-source/arch/arm/configs/socfpga_defconfig
+differ: byte 1525, line 72
+| WARNING: exit code 1 from a shell command.
+| ERROR: Function failed: do_kernel_metadata (log file is located at
+/scratch/gizero/mitysom-5csx-master-build/tmp/work/cyclone5-poky-linux-gnueabi/linux-altera-ltsi/4.1.22-ltsi+gitAUTOINC+76bdba2700-r0/temp/log.do_kernel_metadata.28274)
+ERROR: Task
+(/home/gizero/work/decos/repo-master/poky/../meta-altera/recipes-kernel/linux/linux-altera-ltsi_4.1.22.bb:do_kernel_metadata)
+failed with exit code '1'
 
-No worry...and I have not written myself. It was inserted by Mariano, so
-it looks like that swupdate at least for Mariano is "easy to use".
-I think it is correct to point out that customization is required.
+The commit in the patch remove the 'set +e' bits, but the following legit
+code path expects the cmp command to have a non-zero return value.
 
-> For a system that is as flexible as
-> swupdate, I'd expect a more difficult learning curve and some need to
-> customize the system before using it, so I added a "(but requires
-> customization!?)" comment to that statement.
+        if [ -n "${KBUILD_DEFCONFIG}" ]; then
+                if [ -f "${S}/arch/${ARCH}/configs/${KBUILD_DEFCONFIG}" ];
+then
+                        if [ -f "${WORKDIR}/defconfig" ]; then
+                                # If the two defconfig's are different,
+warn that we didn't overwrite the
+                                # one already placed in WORKDIR by the
+fetcher.
+                                cmp "${WORKDIR}/defconfig"
+"${S}/arch/${ARCH}/configs/${KBUILD_DEFCONFIG}"
+                                if [ $? -ne 0 ]; then
+                                        bbwarn "defconfig detected in
+WORKDIR. ${KBUILD_DEFCONFIG} skipped"
+                                fi
 
-Agree.
+My layer provides a defconfig on top of a bsp layer which
+defines KBUILD_DEFCONFIG. So, in my opinion, if this scenario is still
+supported as you confirm in this thread, we should expect cmp to always
+return nonzero when this is the case.
 
-> 
-> Kristian, I added a comment that Mender requires U-Boot. That is
-> correct, isn't it? I understand that this restriction allows you to
-> implement things like automatic rollback, but it's worth mentioning that
-> this comes with that limitation.
+Sorry for posting here, but I wasn't subscribed to the oe-core mailing
+list, so I don't have the original email to oe-core mailing list with the
+patch to reply to...
 
-Best regards,
-Stefano
 
--- 
-=====================================================================
-DENX Software Engineering GmbH,      Managing Director: Wolfgang Denk
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: +49-8142-66989-53 Fax: +49-8142-66989-80 Email: sbabic@denx.de
-=====================================================================
+>
+>  - write a custom task that runs before configuration to add your
+>    options (cat, merge, etc, etc).
+>
+> I wouldn't really suggest the custom task route, but it is a valid
+> option, so I put it in my list.
+>
+> The quickest is probably the defconfig option, and then the new
+> inherit. If you had issues with the inherit, I could lend a hand to
+> debug what is wrong .. since I'll run into it eventually with my
+> feature work for the 2.3 release.
+>
+> Bruce
+>
+>
+>
+>
+>> Kind regards
+>> Bent Bisballe Nyeng
+>>
+>>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
+--089e01494a7cbb410205433c1630
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi Bruce,<div class=3D"gmail_extra"><br><div class=3D"gmai=
+l_quote">On Thu, Dec 8, 2016 at 3:36 PM, Bruce Ashfield <span dir=3D"ltr">&=
+lt;<a href=3D"mailto:bruce.ashfield@windriver.com" target=3D"_blank">bruce.=
+ashfield@windriver.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_=
+quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,=
+204);padding-left:1ex"><div class=3D"gmail-HOEnZb"><div class=3D"gmail-h5">=
+On 2016-12-08 09:06 AM, Bent Bisballe Nyeng wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
+left:1px solid rgb(204,204,204);padding-left:1ex">
+Hi list<br>
+<br>
+I am working on a project based on the iMX6UL-EVK using the meta-fsl-arm<br=
+>
+layer for the kernel.<br>
+In a local layer I have a bbappend recipe containing a patch for an<br>
+extra kernel feature (a framebuffer device) in that kernel as well as a<br>
+.cfg enabling said feature.<br>
+The bbappend recipe is located in<br>
+recipes-kernel/linux/linux-fsl<wbr>c-imx_%.bbappend and looks like this:<br=
+>
+FILESEXTRAPATHS_prepend :=3D &quot;${THISDIR}/${PN}:&quot;<br>
+<br>
+SRC_URI +=3D &quot; \<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 file://0001-mxc-4.1.patch \<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 file://ST7789S.cfg \<br>
+&quot;<br>
+<br>
+KERNEL_DEVICETREE =3D &quot;imx6ul-14x14-evk.dtb&quot;<br>
+<br>
+The .cfg is located in recipes-kernel/linux/linux-fsl<wbr>c-imx/ST7789S.cfg=
+<br>
+and looks like:<br>
+CONFIG_FB_MXS_ST7789S_QVGA=3Dy<br>
+<br>
+The 0001-mxc-4.1.patch patch is correctly applied but the .cfg is either<br=
+>
+ignored or overwritten by some later buyild step since the resulting<br>
+.config after kernel compilation contains:<br>
+# CONFIG_FB_MXS_ST7789S_QVGA is not set<br>
+<br>
+I have tried finding the script in the build/.../temp folder that takes<br>
+care of the .cfg file patching but have not been able to find anything<br>
+useful.<br>
+<br>
+Any hints as to where I should start looking for a solution?<br>
+</blockquote>
+<br></div></div>
+Fragment processing using the kernel tools + auditing is only currently<br>
+available to kernel recipes that use the kernel-yocto bbclass. That<br>
+opt-in requirement was to ensure that existing recipes and workflows<br>
+weren&#39;t broken by the new features.<br>
+<br>
+Last time I checked, the meta-fsl* kernel recipes don&#39;t use the<br>
+kernel-yocto bbclass, so the fragment would be ignored.<br>
+<br>
+I&#39;m taking the processing of fragments and making it universally<br>
+available in the upcoming 2.3 release, so what I just described<br>
+won&#39;t be an issue for much longer.<br>
+<br>
+In the mean time, you have a few options:<br>
+<br>
+=C2=A0- in your bbappend, add &quot;inherit kernel-yocto&quot; and the proc=
+essing<br>
+=C2=A0 =C2=A0of fragments will be enabled (I can&#39;t say that I&#39;ve te=
+sted<br>
+=C2=A0 =C2=A0it against that recipe .. but the entire point of the new task=
+s<br>
+=C2=A0 =C2=A0is that they are transparent/don&#39;t break existing worflows=
+)<br>
+<br>
+=C2=A0- carry a defconfig in your layer, and add it to the SRC_URI. That<br=
+>
+=C2=A0 =C2=A0defconfig would be the existing kernel recipe&#39;s defconfig =
++ your<br>
+=C2=A0 =C2=A0options<br></blockquote><div><br></div><div>I was just testing=
+ one of my layers against your recent patchset on kernel-yocto when I notic=
+ed this thread. My build is broken by commit 476ffd57cf5b6fba40d4e3f5dd9138=
+24ab8a8d3d on oe-core (e38775a1d82e6dc60fc96cf243ecb94be964d9b2 on the poky=
+ repo side).</div><div><br></div><div><div>WARNING: linux-altera-ltsi-4.1.2=
+2-ltsi+gitAUTOINC+76bdba2700-r0 do_kernel_metadata: GIZERO: before &#39;cmp=
+&#39;</div><div>ERROR: linux-altera-ltsi-4.1.22-ltsi+gitAUTOINC+76bdba2700-=
+r0 do_kernel_metadata: Function failed: do_kernel_metadata (log file is loc=
+ated at /scratch/gizero/mitysom-5csx-master-build/tmp/work/cyclone5-poky-li=
+nux-gnueabi/linux-altera-ltsi/4.1.22-ltsi+gitAUTOINC+76bdba2700-r0/temp/log=
+.do_kernel_metadata.28274)</div><div>ERROR: Logfile of failure stored in: /=
+scratch/gizero/mitysom-5csx-master-build/tmp/work/cyclone5-poky-linux-gnuea=
+bi/linux-altera-ltsi/4.1.22-ltsi+gitAUTOINC+76bdba2700-r0/temp/log.do_kerne=
+l_metadata.28274</div><div>Log data follows:</div><div>| DEBUG: Executing s=
+hell function do_kernel_metadata</div><div>| WARNING: GIZERO: before &#39;c=
+mp&#39;</div><div>| /scratch/gizero/mitysom-5csx-master-build/tmp/work/cycl=
+one5-poky-linux-gnueabi/linux-altera-ltsi/4.1.22-ltsi+gitAUTOINC+76bdba2700=
+-r0/defconfig /scratch/gizero/mitysom-5csx-master-build/tmp/work-shared/cyc=
+lone5/kernel-source/arch/arm/configs/socfpga_defconfig differ: byte 1525, l=
+ine 72</div><div>| WARNING: exit code 1 from a shell command.</div><div>| E=
+RROR: Function failed: do_kernel_metadata (log file is located at /scratch/=
+gizero/mitysom-5csx-master-build/tmp/work/cyclone5-poky-linux-gnueabi/linux=
+-altera-ltsi/4.1.22-ltsi+gitAUTOINC+76bdba2700-r0/temp/log.do_kernel_metada=
+ta.28274)</div><div>ERROR: Task (/home/gizero/work/decos/repo-master/poky/.=
+./meta-altera/recipes-kernel/linux/linux-altera-ltsi_4.1.22.bb:do_kernel_me=
+tadata) failed with exit code &#39;1&#39;</div></div><div><br></div><div>Th=
+e commit in the patch remove the &#39;set +e&#39; bits, but the following l=
+egit code path expects the cmp command to have a non-zero return value.</di=
+v><div><br></div><div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 if [ -n &quot;${KBUI=
+LD_DEFCONFIG}&quot; ]; then</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 if [ -f &quot;${S}/arch/${ARCH}/configs/${KBUILD_DEFCO=
+NFIG}&quot; ]; then</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 if [ -f &quot;${WORKDIR}/defconfig&q=
+uot; ]; then</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 # If the two de=
+fconfig&#39;s are different, warn that we didn&#39;t overwrite the</div><di=
+v>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 # one already placed in WORKDIR by t=
+he fetcher.</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 cmp &quot;${WOR=
+KDIR}/defconfig&quot; &quot;${S}/arch/${ARCH}/configs/${KBUILD_DEFCONFIG}&q=
+uot;<br></div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 if [ $? -ne 0 ]; th=
+en</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 bbwarn &quot;defconfig detected in WORKDIR. ${KBUILD_DEFCONFIG} skipped=
+&quot;</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 fi</div></div><div>=
+<br></div><div>My layer provides a defconfig on top of a bsp layer which de=
+fines=C2=A0KBUILD_DEFCONFIG. So, in my opinion, if this scenario is still s=
+upported as you confirm in this thread, we should expect cmp to always retu=
+rn nonzero when this is the case.</div><div><br></div><div>Sorry for postin=
+g here, but I wasn&#39;t subscribed to the oe-core mailing list, so I don&#=
+39;t have the original email to oe-core mailing list with the patch to repl=
+y to...</div><div>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"ma=
+rgin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:=
+1ex">
+<br>
+=C2=A0- write a custom task that runs before configuration to add your<br>
+=C2=A0 =C2=A0options (cat, merge, etc, etc).<br>
+<br>
+I wouldn&#39;t really suggest the custom task route, but it is a valid<br>
+option, so I put it in my list.<br>
+<br>
+The quickest is probably the defconfig option, and then the new<br>
+inherit. If you had issues with the inherit, I could lend a hand to<br>
+debug what is wrong .. since I&#39;ll run into it eventually with my<br>
+feature work for the 2.3 release.<span class=3D"gmail-HOEnZb"><font color=
+=3D"#888888"><br>
+<br>
+Bruce</font></span><div class=3D"gmail-HOEnZb"><div class=3D"gmail-h5"><br>
+<br>
+<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
+left:1px solid rgb(204,204,204);padding-left:1ex">
+<br>
+Kind regards<br>
+Bent Bisballe Nyeng<br>
+<br>
+</blockquote>
+<br>
+-- <br>
+______________________________<wbr>_________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.org<wbr>/listinfo/yocto</a><=
+br>
+</div></div></blockquote></div><br></div></div>
+
+--089e01494a7cbb410205433c1630--
