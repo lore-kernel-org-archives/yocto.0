@@ -1,62 +1,41 @@
-Return-Path: <develone@sbcglobal.net>
+Return-Path: <philippe.coval@osg.samsung.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 10B47E00D3F; Fri,  9 Dec 2016 13:31:01 -0800 (PST)
+	id 8B4E4E00B53; Sat, 10 Dec 2016 06:39:45 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [98.139.213.140 listed in list.dnswl.org]
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,RDNS_DYNAMIC,
+	SPF_HELO_PASS autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from nm12-vm0.bullet.mail.bf1.yahoo.com
-	(nm12-vm0.bullet.mail.bf1.yahoo.com [98.139.213.140])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 57FAEE00D12
-	for <yocto@yoctoproject.org>; Fri,  9 Dec 2016 13:30:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sbcglobal.net; s=s2048;
-	t=1481319052; bh=DxTiPKLnvm0aHP2dpb9ZUezf0lTCdKyuh3p/Gbj7esY=;
-	h=Date:From:Reply-To:To:In-Reply-To:References:Subject:From:Subject;
-	b=mlS1g6OOhdid2kSrgjMasP7aXMzAmSNNHLKtHAfrAo8yoPL7+5tmG7S9aiNW++VTTcU6mCsTvQMXU/1GWQgAUJfUn4v0tbdBu80z3jRyppevNf0kxRqCBFm6VZrrnzYXU/urlB/cMuC0ZR2MB/M+n49mi2pwKonFVFRMR+55pT7Yf3BTHLToS8xuPW6/r5CL0qdQrFXBuh7Uq4pHb3Jhz4dEv5AquOrUqj/qSNHSNexBNRPs8B6HrybYBzCIPYA0ww4LrzAD9NGbNHJ/L+J1cJwHjwvxGnfJ4JYHM4nlNzAgjoUOornx04SxrwNZEDb2B3A6koJ68UZPLkn9JobQxg==
-Received: from [98.139.170.178] by nm12.bullet.mail.bf1.yahoo.com with NNFMP;
-	09 Dec 2016 21:30:52 -0000
-Received: from [98.139.212.226] by tm21.bullet.mail.bf1.yahoo.com with NNFMP;
-	09 Dec 2016 21:30:52 -0000
-Received: from [127.0.0.1] by omp1035.mail.bf1.yahoo.com with NNFMP;
-	09 Dec 2016 21:30:52 -0000
-X-Yahoo-Newman-Property: ymail-3
-X-Yahoo-Newman-Id: 459238.57683.bm@omp1035.mail.bf1.yahoo.com
-X-YMail-OSG: bID_J1oVM1mC98POxbWGpD2PE7ZpUauMMcrFxj9peeVmzOJh10WKQjFEu7AVoe2
-	mvwsYdS4aMfnz8PeS4w.WdVj.JT7uaJ4rEDUmSGG_lpzrp06sU8eV6KC7bX6Qhr6jGJPhF83K5hl
-	skiU6Cb21hVS362akbPIqILH91CFjB5Vw8Tslxatx7nJUfnEWRMeLAjEngB9o2a9ddMLg_PaeQxg
-	6Z.e9gglpydIOFzAemgZnx1dYaT.bB1Hamx.eAp7DGurKxLbP.MzjLz1qhbUHapxRpJQXBAFyJHP
-	Jaj_YlwZFt.X4CoA1VK1IqbSDZ34XCOrq.ZJyH4osPN7DyyEVe52ooweQIpZXvl9um2.ZvEkDtQo
-	xM2ynSGJ5XSC7kdYx7YWboAQbLY.paSBxiA_bARPCTID8GtTZn1nj2FsJAJhemlEsdb6Mkjy37xt
-	po9pfT0MGwEdlR8WT5GlwNB9FfFy22wMaLLUj3Jm3hJtNVx3l6KSXVZxmx9z38TJ5UYmzW3Fix5_
-	f2Hv.zp43.IrSo5.3HooRZrz6lH4lXek13ykXuNowP.jbFFQpq8_EdfH0QuqSiqo30dF9CSw6qUtk
-Received: from jws400007.mail.bf2.yahoo.com by
-	sendmailws135.mail.bf1.yahoo.com;
-	Fri, 09 Dec 2016 21:30:52 +0000; 1481319052.018
-Date: Fri, 9 Dec 2016 21:30:51 +0000 (UTC)
-From: Edward Vidal <develone@sbcglobal.net>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Message-ID: <1152624367.80527.1481319051755@mail.yahoo.com>
-In-Reply-To: <mailman.57820.1481299410.15860.yocto@yoctoproject.org>
-References: <mailman.57820.1481299410.15860.yocto@yoctoproject.org>
-MIME-Version: 1.0
-Subject: Re: Adding Fortran to Raspberrypi2
+	*  1.0 RDNS_DYNAMIC Delivered to internal network by host with
+	*      dynamic-looking rDNS
+Received: from osg.samsung.com
+	(ec2-52-27-115-49.us-west-2.compute.amazonaws.com [52.27.115.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AA7EFE0082A
+	for <yocto@yoctoproject.org>; Sat, 10 Dec 2016 06:39:40 -0800 (PST)
+Received: from localhost (localhost [127.0.0.1])
+	by osg.samsung.com (Postfix) with ESMTP id 925D3A0E75;
+	Sat, 10 Dec 2016 14:39:52 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at osg.samsung.com
+Received: from osg.samsung.com ([127.0.0.1])
+	by localhost (s-opensource.com [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id uVND5dz8fsdy; Sat, 10 Dec 2016 14:39:44 +0000 (UTC)
+Received: from WSF-1127.8.8.8.8 (unknown [82.236.136.171])
+	by osg.samsung.com (Postfix) with ESMTPSA id 1A781A0E58;
+	Sat, 10 Dec 2016 14:39:42 +0000 (UTC)
+From: Philippe Coval <philippe.coval@osg.samsung.com>
+To: kishen.maloor@intel.com
+Date: Sat, 10 Dec 2016 15:39:10 +0100
+Message-Id: <1481380750-28881-1-git-send-email-philippe.coval@osg.samsung.com>
+X-Mailer: git-send-email 1.9.1
+Cc: iotivity-dev@lists.iotivity.org, yocto@yoctoproject.org,
+	Philippe Coval <philippe.coval@osg.samsung.com>
+Subject: [meta-oic][PATCH] Update for IoTivity 1.2.0
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: Edward Vidal <develone@sbcglobal.net>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -65,688 +44,568 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 09 Dec 2016 21:31:01 -0000
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_80526_512984870.1481319051750"
+X-List-Received-Date: Sat, 10 Dec 2016 14:39:45 -0000
+
+Note: build parameters are now aligned to upstream default.
+
+Compared to earlier recipe, configuration changes are:
+
+ - Previous WITH_RD parameter is now replaced by RD_MODE
+   (set to CLIENT by default)
+ - ROOTING was previously set to gateway (GW)
+   while default use EP, which is also used in this version.
+
+For more details please check:
+https://wiki.iotivity.org/yocto
+
+Change-Id: I3296c94baab43ec442994379b2ffaaf9a0146228
+Signed-off-by: Philippe Coval <philippe.coval@osg.samsung.com>
+---
+ README                                  |   2 +-
+ recipes-core/iotivity/iotivity_1.2.0.bb | 521 ++++++++++++++++++++++++++++++++
+ 2 files changed, 522 insertions(+), 1 deletion(-)
+ create mode 100644 recipes-core/iotivity/iotivity_1.2.0.bb
+
+diff --git a/README b/README
+index d076963..c6cf1a7 100644
+--- a/README
++++ b/README
+@@ -1,6 +1,6 @@
+ meta-oic
+ ========
+-This layer contains recipes for the IoTivity Project (v1.1.1)
++This layer contains recipes for the IoTivity Project (v1.2.0)
+ , sample applications and related components for any Yocto target.
+ 
+ Contents
+diff --git a/recipes-core/iotivity/iotivity_1.2.0.bb b/recipes-core/iotivity/iotivity_1.2.0.bb
+new file mode 100644
+index 0000000..3dacbb7
+--- /dev/null
++++ b/recipes-core/iotivity/iotivity_1.2.0.bb
+@@ -0,0 +1,521 @@
++PR = "r1"
++SUMMARY = "IoTivity framework and SDK sponsored by the Open Connectivity Foundation."
++DESCRIPTION = "IoTivity is an open source software framework enabling seamless device-to-device connectivity to address the emerging needs of the Internet of Things."
++HOMEPAGE = "https://www.iotivity.org/"
++DEPENDS = "boost virtual/gettext chrpath-replacement-native expat openssl util-linux curl glib-2.0"
++EXTRANATIVEPATH += "chrpath-native"
++SECTION = "libs"
++LICENSE = "Apache-2.0"
++LIC_FILES_CHKSUM = "file://LICENSE.md;md5=22bf216f3077c279aed7b36b1fa9e6d1"
++
++branch_iotivity = "1.2-rel"
++SRCREV = "1a2e71f9c470c7cc17157f83deb4488ee83050a4"
++SRC_URI = "git://github.com/iotivity/iotivity.git;destsuffix=${S};branch=${branch_iotivity};protocol=http;"
++
++url_tinycbor = "git://github.com/01org/tinycbor.git"
++SRCREV_tinycbor = "31c7f81d45d115d2007b1c881cbbd3a19618465c"
++SRC_URI += "${url_tinycbor};name=tinycbor;destsuffix=${S}/extlibs/tinycbor/tinycbor;protocol=http"
++
++url_gtest = "http://pkgs.fedoraproject.org/repo/pkgs/gtest/gtest-1.7.0.zip/2d6ec8ccdf5c46b05ba54a9fd1d130d7/gtest-1.7.0.zip"
++SRC_URI[gtest.md5sum] = "2d6ec8ccdf5c46b05ba54a9fd1d130d7"
++SRC_URI[gtest.sha256sum] = "247ca18dd83f53deb1328be17e4b1be31514cedfc1e3424f672bf11fd7e0d60d"
++SRC_URI += "${url_gtest};name=gtest;subdir=${BP}/extlibs/gtest"
++
++url_hippomocks = "git://github.com/dascandy/hippomocks.git"
++SRCREV_hippomocks = "dca4725496abb0e41f8b582dec21d124f830a8e5"
++SRC_URI += "${url_hippomocks};name=hippomocks;destsuffix=${S}/extlibs/hippomocks-master;protocol=http"
++SRC_URI += "file://hippomocks_mips_patch"
++
++url_sqlite = "http://www.sqlite.org/2015/sqlite-amalgamation-3081101.zip"
++SRC_URI[sqlite3.md5sum] = "94907e831502e2080b76e281cfa24dde"
++SRC_URI[sqlite3.sha256sum] = "a3b0c07d1398d60ae9d21c2cc7f9be6b1bc5b0168cd94c321ede9a0fce2b3cd7"
++SRC_URI += "${url_sqlite};name=sqlite3;subdir=${BP}/extlibs/sqlite3;unpack=false"
++
++SRCREV_mbedtls = "master"
++SRCREV_mbedtls = "85c2a928ed352845793db000e78e2b42c8dcf055"
++url_mbedtls="git://github.com/ARMmbed/mbedtls.git"
++SRC_URI += "${url_mbedtls};name=mbedtls;destsuffix=${S}/extlibs/mbedtls/mbedtls;protocol=http"
++
++inherit pkgconfig scons
++
++
++python () {
++    IOTIVITY_TARGET_ARCH = d.getVar("TARGET_ARCH", True)
++    d.setVar("IOTIVITY_TARGET_ARCH", IOTIVITY_TARGET_ARCH)
++    EXTRA_OESCONS = d.getVar("EXTRA_OESCONS", True)
++    EXTRA_OESCONS += " TARGET_OS=yocto TARGET_ARCH=" + IOTIVITY_TARGET_ARCH + " RELEASE=1"
++    EXTRA_OESCONS += " VERBOSE=1"
++    # Aligned to default configuration, but features can be changed here (at your own risk):
++    # EXTRA_OESCONS += " ROUTING=GW"
++    # EXTRA_OESCONS += " SECURED=1"
++    # EXTRA_OESCONS += " TCP=1"
++    d.setVar("EXTRA_OESCONS", EXTRA_OESCONS)
++}
++
++
++IOTIVITY_BIN_DIR = "/opt/${PN}"
++IOTIVITY_BIN_DIR_D = "${D}${IOTIVITY_BIN_DIR}"
++
++do_compile_prepend() {
++    export PKG_CONFIG_PATH="${PKG_CONFIG_PATH}"
++    export PKG_CONFIG="PKG_CONFIG_SYSROOT_DIR=\"${PKG_CONFIG_SYSROOT_DIR}\" pkg-config"
++    export LD_FLAGS="${LD_FLAGS}"
++}
++
++make_dir() {
++    install -d $1
++}
++
++copy_file() {
++    install -c -m 444 $1 $2
++}
++
++copy_exec() {
++    install -c -m 555 $1 $2
++}
++
++copy_file_recursive() {
++    cd $1 && find . -type d -exec install -d $2/"{}" \;
++    cd $1 && find . -type f -exec install -c -m 444 "{}" $2/"{}" \;
++}
++
++copy_exec_recursive() {
++    cd $1 && find . -executable -exec install -c -m 555 "{}" $2/"{}" \;
++}
++
++do_install() {
++    make_dir ${D}${libdir}
++    #Resource
++    #C++ APIs
++    copy_file ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/liboc.so ${D}${libdir}
++    if ${@bb.utils.contains('EXTRA_OESCONS', 'SECURED=1', 'true', 'false', d)}; then
++        copy_file ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/resource/provisioning/libocprovision.so ${D}${libdir}
++    fi
++
++    #Logger
++    copy_file ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/liboc_logger.so ${D}${libdir}
++    copy_file ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/liboc_logger_core.so ${D}${libdir}
++
++    #CSDK Shared
++    copy_file ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/libconnectivity_abstraction.so ${D}${libdir}
++    copy_file ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/liboctbstack.so ${D}${libdir}
++
++    #CSDK Static
++    copy_file ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/libconnectivity_abstraction.a ${D}${libdir}
++    copy_file ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/libcoap.a ${D}${libdir}
++    copy_file ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/liboctbstack.a ${D}${libdir}
++    copy_file ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/libc_common.a ${D}${libdir}
++    copy_file ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/libocsrm.a ${D}${libdir}
++    copy_file ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/libroutingmanager.a ${D}${libdir}
++
++    #Resource C++ Apps
++    make_dir ${IOTIVITY_BIN_DIR_D}/examples/resource/cpp
++    find ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/resource/examples/ \
++      -iname "*.dat"\
++      -exec install -c -m 444 "{}"  ${IOTIVITY_BIN_DIR_D}/examples/resource/cpp/ \;
++
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/resource/examples/presenceclient ${IOTIVITY_BIN_DIR_D}/examples/resource/cpp
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/resource/examples/presenceserver ${IOTIVITY_BIN_DIR_D}/examples/resource/cpp
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/resource/examples/groupclient ${IOTIVITY_BIN_DIR_D}/examples/resource/cpp
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/resource/examples/groupserver ${IOTIVITY_BIN_DIR_D}/examples/resource/cpp
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/resource/examples/roomclient ${IOTIVITY_BIN_DIR_D}/examples/resource/cpp
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/resource/examples/roomserver ${IOTIVITY_BIN_DIR_D}/examples/resource/cpp
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/resource/examples/simpleclient ${IOTIVITY_BIN_DIR_D}/examples/resource/cpp
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/resource/examples/simpleclientserver ${IOTIVITY_BIN_DIR_D}/examples/resource/cpp
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/resource/examples/simpleserver ${IOTIVITY_BIN_DIR_D}/examples/resource/cpp
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/resource/examples/fridgeclient ${IOTIVITY_BIN_DIR_D}/examples/resource/cpp
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/resource/examples/fridgeserver ${IOTIVITY_BIN_DIR_D}/examples/resource/cpp
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/resource/examples/garageclient ${IOTIVITY_BIN_DIR_D}/examples/resource/cpp
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/resource/examples/garageserver ${IOTIVITY_BIN_DIR_D}/examples/resource/cpp
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/resource/examples/simpleclientHQ ${IOTIVITY_BIN_DIR_D}/examples/resource/cpp
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/resource/examples/simpleserverHQ ${IOTIVITY_BIN_DIR_D}/examples/resource/cpp
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/resource/examples/devicediscoveryserver ${IOTIVITY_BIN_DIR_D}/examples/resource/cpp
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/resource/examples/devicediscoveryclient ${IOTIVITY_BIN_DIR_D}/examples/resource/cpp
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/resource/examples/threadingsample ${IOTIVITY_BIN_DIR_D}/examples/resource/cpp
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/resource/examples/lightserver ${IOTIVITY_BIN_DIR_D}/examples/resource/cpp
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/examples/OICMiddle/OICMiddle ${IOTIVITY_BIN_DIR_D}/examples/resource/cpp
++    chrpath -d `find ${IOTIVITY_BIN_DIR_D}/examples/resource/cpp/ -type f -perm /u+x`
++
++    #Resource CSDK Apps
++    make_dir ${IOTIVITY_BIN_DIR_D}/examples/resource/c/SimpleClientServer
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/resource/csdk/stack/samples/linux/SimpleClientServer/occlientcoll ${IOTIVITY_BIN_DIR_D}/examples/resource/c/SimpleClientServer
++    if ${@bb.utils.contains('EXTRA_OESCONS', 'ROUTING=GW', 'true', 'false', d)}; then
++        copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/resource/csdk/stack/samples/linux/SimpleClientServer/ocrouting ${IOTIVITY_BIN_DIR_D}/examples/resource/c/SimpleClientServer
++    fi
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/resource/csdk/stack/samples/linux/SimpleClientServer/ocserver ${IOTIVITY_BIN_DIR_D}/examples/resource/c/SimpleClientServer
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/resource/csdk/stack/samples/linux/SimpleClientServer/ocserverbasicops ${IOTIVITY_BIN_DIR_D}/examples/resource/c/SimpleClientServer
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/resource/csdk/stack/samples/linux/SimpleClientServer/occlientslow ${IOTIVITY_BIN_DIR_D}/examples/resource/c/SimpleClientServer
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/resource/csdk/stack/samples/linux/SimpleClientServer/ocserverslow ${IOTIVITY_BIN_DIR_D}/examples/resource/c/SimpleClientServer
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/resource/csdk/stack/samples/linux/SimpleClientServer/occlientbasicops ${IOTIVITY_BIN_DIR_D}/examples/resource/c/SimpleClientServer
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/resource/csdk/stack/samples/linux/SimpleClientServer/ocservercoll ${IOTIVITY_BIN_DIR_D}/examples/resource/c/SimpleClientServer
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/resource/csdk/stack/samples/linux/SimpleClientServer/occlient ${IOTIVITY_BIN_DIR_D}/examples/resource/c/SimpleClientServer
++    chrpath -d ${IOTIVITY_BIN_DIR_D}/examples/resource/c/SimpleClientServer/*
++
++    if ${@bb.utils.contains('EXTRA_OESCONS', 'SECURED=1', 'true', 'false', d)}; then
++        make_dir ${IOTIVITY_BIN_DIR_D}/examples/resource/c/secure
++        copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/resource/csdk/stack/samples/linux/secure/ocamsservice ${IOTIVITY_BIN_DIR_D}/examples/resource/c/secure
++        copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/resource/csdk/stack/samples/linux/secure/ocserverbasicops ${IOTIVITY_BIN_DIR_D}/examples/resource/c/secure
++        copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/resource/csdk/stack/samples/linux/secure/occlientbasicops ${IOTIVITY_BIN_DIR_D}/examples/resource/c/secure
++
++        find ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/resource/csdk/stack/samples/linux \
++          -iname "*.dat"\
++          -exec install -c -m 444 {} ${IOTIVITY_BIN_DIR_D}/examples/resource/c/secure/ \;
++    fi
++
++    #Resource Tests
++    make_dir ${IOTIVITY_BIN_DIR_D}/tests/resource
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/resource/c_common/ocrandom/test/randomtests ${IOTIVITY_BIN_DIR_D}/tests/resource/ocrandom_tests
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/resource/unittests/unittests ${IOTIVITY_BIN_DIR_D}/tests/resource/oc_unittests
++    copy_file ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/resource/unittests/oic_svr_db_client.dat ${IOTIVITY_BIN_DIR_D}/tests/resource
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/resource/csdk/stack/test/stacktests ${IOTIVITY_BIN_DIR_D}/tests/resource/octbstack_tests
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/resource/csdk/connectivity/test/catests ${IOTIVITY_BIN_DIR_D}/tests/resource/ca_tests
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/resource/oc_logger/examples/examples_cpp ${IOTIVITY_BIN_DIR_D}/tests/resource/logger_test_cpp
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/resource/oc_logger/examples/examples_c ${IOTIVITY_BIN_DIR_D}/tests/resource/logger_test_c
++    if ${@bb.utils.contains('EXTRA_OESCONS', 'SECURED=1', 'true', 'false', d)}; then
++        copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/resource/csdk/security/unittest/unittest ${IOTIVITY_BIN_DIR_D}/tests/resource/security_tests
++    fi
++    #Resource headers
++    make_dir ${D}${includedir}/iotivity/resource/stack/
++    make_dir ${D}${includedir}/iotivity/resource/logger/
++    make_dir ${D}${includedir}/iotivity/resource/connectivity/api
++    make_dir ${D}${includedir}/iotivity/resource/connectivity/external
++    make_dir ${D}${includedir}/iotivity/resource/connectivity/common
++    make_dir ${D}${includedir}/iotivity/resource/security/
++    make_dir ${D}${includedir}/iotivity/resource/ocrandom/
++    make_dir ${D}${includedir}/iotivity/resource/oc_logger/
++
++    copy_file_recursive ${S}/resource/include ${D}${includedir}/iotivity/resource
++    copy_file_recursive ${S}/resource/csdk/stack/include ${D}${includedir}/iotivity/resource/stack
++    copy_file_recursive ${S}/resource/csdk/logger/include  ${D}${includedir}/iotivity/resource/logger
++    copy_file_recursive ${S}/resource/csdk/connectivity/inc  ${D}${includedir}/iotivity/resource/connectivity
++    copy_file_recursive ${S}/resource/csdk/connectivity/api ${D}${includedir}/iotivity/resource/connectivity/api
++    copy_file_recursive ${S}/resource/csdk/connectivity/common/inc ${D}${includedir}/iotivity/resource/connectivity/common
++    copy_file_recursive ${S}/resource/csdk/security/include  ${D}${includedir}/iotivity/resource/security
++    copy_file_recursive ${S}/resource/c_common/ocrandom/include ${D}${includedir}/iotivity/resource/ocrandom
++    copy_file_recursive ${S}/resource/oc_logger/include ${D}${includedir}/iotivity/resource/oc_logger
++    copy_file ${S}/resource/c_common/oic_string/include/oic_string.h ${D}${includedir}/iotivity/resource
++    copy_file ${S}/resource/c_common/oic_malloc/include/oic_malloc.h ${D}${includedir}/iotivity/resource
++
++    #ZigBee Plugin
++    #Libraries
++    copy_file ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/libzigbee_wrapper.a ${D}${libdir}
++    copy_file ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/libtelegesis_wrapper.a ${D}${libdir}
++    copy_file ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/libplugin_interface.a ${D}${libdir}
++
++    #Headers
++    make_dir ${D}${includedir}/iotivity/plugins
++    copy_file_recursive ${S}/plugins/include ${D}${includedir}/iotivity/plugins
++
++    #Samples
++    make_dir ${IOTIVITY_BIN_DIR_D}/examples/plugins/zigbee/
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/plugins/samples/linux/iotivityandzigbeeserver ${IOTIVITY_BIN_DIR_D}/examples/plugins/zigbee
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/plugins/samples/linux/iotivityandzigbeeclient ${IOTIVITY_BIN_DIR_D}/examples/plugins/zigbee
++    chrpath -d ${IOTIVITY_BIN_DIR_D}/examples/plugins/zigbee/*
++
++    #Tests
++    make_dir ${IOTIVITY_BIN_DIR_D}/tests/plugins/zigbee/
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/plugins/unittests/piunittests ${IOTIVITY_BIN_DIR_D}/tests/plugins/zigbee
++    chrpath -d ${IOTIVITY_BIN_DIR_D}/tests/plugins/zigbee/*
++
++    #Service Components
++    #Resource container
++    copy_file ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/librcs_container.so ${D}${libdir}
++    copy_file ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/librcs_container.a ${D}${libdir}
++    copy_file ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/libBMISensorBundle.so ${D}${libdir}
++    copy_file ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/libDISensorBundle.so ${D}${libdir}
++    copy_file ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/libHueBundle.so ${D}${libdir}
++
++    #Resource container sample apps
++    make_dir ${IOTIVITY_BIN_DIR_D}/examples/service/resource-container/
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/service/resource-container/HeightSensorApp ${IOTIVITY_BIN_DIR_D}/examples/service/resource-container/
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/service/resource-container/THSensorApp ${IOTIVITY_BIN_DIR_D}/examples/service/resource-container/
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/service/resource-container/THSensorApp1 ${IOTIVITY_BIN_DIR_D}/examples/service/resource-container/
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/service/resource-container/WeightSensorApp ${IOTIVITY_BIN_DIR_D}/examples/service/resource-container/
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/service/resource-container/ContainerSample ${IOTIVITY_BIN_DIR_D}/examples/service/resource-container/
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/service/resource-container/ContainerSampleClient ${IOTIVITY_BIN_DIR_D}/examples/service/resource-container/
++    copy_file ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/service/resource-container/examples/ResourceContainerConfig.xml ${IOTIVITY_BIN_DIR_D}/examples/service/resource-container/
++
++    #Resource container tests
++    make_dir ${IOTIVITY_BIN_DIR_D}/tests/service/resource-container
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/service/resource-container/unittests/container_test ${IOTIVITY_BIN_DIR_D}/tests/service/resource-container
++    copy_file ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/service/resource-container/unittests/libTestBundle.so ${IOTIVITY_BIN_DIR_D}/tests/service/resource-container
++    copy_file ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/service/resource-container/unittests/ResourceContainerInvalidConfig.xml ${IOTIVITY_BIN_DIR_D}/tests/service/resource-container
++    copy_file ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/service/resource-container/unittests/ResourceContainerTestConfig.xml ${IOTIVITY_BIN_DIR_D}/tests/service/resource-container
++    copy_file ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/service/resource-container/unittests/libTestBundle.so ${D}${libdir}
++
++    #Resource encapsulation
++    copy_file ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/librcs_client.so ${D}${libdir}
++    copy_file ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/librcs_client.a ${D}${libdir}
++
++    #Resource encapsulation common
++    copy_file ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/librcs_common.so ${D}${libdir}
++    copy_file ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/librcs_common.a ${D}${libdir}
++
++    #Resource encapsulation server builder
++    copy_file ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/librcs_server.so ${D}${libdir}
++    copy_file ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/librcs_server.a ${D}${libdir}
++
++    #Resource encapsulation sample apps
++    make_dir ${IOTIVITY_BIN_DIR_D}/examples/service/resource-encapsulation
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/service/resource-encapsulation/examples/linux/sampleResourceClient ${IOTIVITY_BIN_DIR_D}/examples/service/resource-encapsulation
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/service/resource-encapsulation/examples/linux/sampleResourceServer ${IOTIVITY_BIN_DIR_D}/examples/service/resource-encapsulation
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/service/resource-encapsulation/examples/linux/nestedAttributesClient ${IOTIVITY_BIN_DIR_D}/examples/service/resource-encapsulation
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/service/resource-encapsulation/examples/linux/nestedAttributesServer ${IOTIVITY_BIN_DIR_D}/examples/service/resource-encapsulation
++
++    #Resource encapsulation test
++    make_dir ${IOTIVITY_BIN_DIR_D}/tests/service/resource-encapsulation/resource-broker
++    make_dir ${IOTIVITY_BIN_DIR_D}/tests/service/resource-encapsulation/resource-cache
++    make_dir ${IOTIVITY_BIN_DIR_D}/tests/service/resource-encapsulation/common
++    make_dir ${IOTIVITY_BIN_DIR_D}/tests/service/resource-encapsulation/server-builder
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/service/resource-encapsulation/unittests/rcs_client_test ${IOTIVITY_BIN_DIR_D}/tests/service/resource-encapsulation
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/service/resource-encapsulation/src/resourceBroker/unittest/broker_test ${IOTIVITY_BIN_DIR_D}/examples/service/resource-encapsulation/resource-broker
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/service/resource-encapsulation/src/resourceCache/unittests/cache_test ${IOTIVITY_BIN_DIR_D}/examples/service/resource-encapsulation/resource-cache
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/service/resource-encapsulation/src/common/rcs_common_test ${IOTIVITY_BIN_DIR_D}/examples/service/resource-encapsulation/common
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/service/resource-encapsulation/src/serverBuilder/rcs_server_test ${IOTIVITY_BIN_DIR_D}/examples/service/resource-encapsulation/server-builder
++
++    #Resource hosting
++    copy_file ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/libresource_hosting.a ${D}${libdir}
++
++    #Resource hosting sample app
++    make_dir ${IOTIVITY_BIN_DIR_D}/examples/service/resource-hosting
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/service/resource-hosting/SampleApp/linux/sampleconsumer ${IOTIVITY_BIN_DIR_D}/examples/service/resource-hosting
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/service/resource-hosting/SampleApp/linux/sampleprovider ${IOTIVITY_BIN_DIR_D}/examples/service/resource-hosting
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/service/resource-hosting/SampleApp/linux/sampleresourcehosting ${IOTIVITY_BIN_DIR_D}/examples/service/resource-hosting
++
++    #Things manager
++    copy_file ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/libTGMSDKLibrary.so ${D}${libdir}
++    copy_file ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/libTGMSDKLibrary.a ${D}${libdir}
++
++    #Things manager apps
++    make_dir ${IOTIVITY_BIN_DIR_D}/examples/service/things-manager/configuration
++    copy_exec_recursive ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/service/things-manager/sampleapp/linux/configuration ${IOTIVITY_BIN_DIR_D}/examples/service/things-manager/configuration
++
++    #Things manager test
++    make_dir ${IOTIVITY_BIN_DIR_D}/tests/service/things-manager
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/service/things-manager/unittests/ThingsManagerTest ${IOTIVITY_BIN_DIR_D}/tests/service/things-manager
++
++    #Resource directory
++    copy_file ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/libresource_directory.a ${D}${libdir}
++
++    #Easy setup
++    copy_file ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/libESEnrolleeSDK.so ${D}${libdir}
++    copy_file ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/libESMediatorRich.so ${D}${libdir}
++
++    #Easy setup app
++    make_dir ${IOTIVITY_BIN_DIR_D}/examples/service/easy-setup
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/service/easy-setup/sampleapp/mediator/linux/richsdk_sample/mediator_rich ${IOTIVITY_BIN_DIR_D}/examples/service/easy-setup
++
++    #Easy setup tests
++    if ${@bb.utils.contains('EXTRA_OESCONS', 'SECURED=1', 'false', 'true', d)}; then
++        make_dir ${IOTIVITY_BIN_DIR_D}/tests/service/easy-setup
++        copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/service/easy-setup/mediator/richsdk/unittests/easysetup_mediator_test ${IOTIVITY_BIN_DIR_D}/tests/service/easy-setup
++    fi
++
++    #Scene manager
++    copy_file ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/libscene_manager.a ${D}${libdir}
++
++    #Scene manager apps
++    make_dir ${IOTIVITY_BIN_DIR_D}/examples/service/scene-manager
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/service/scene-manager/sampleapp/linux/fanserver ${IOTIVITY_BIN_DIR_D}/examples/service/scene-manager
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/service/scene-manager/sampleapp/linux/lightserver ${IOTIVITY_BIN_DIR_D}/examples/service/scene-manager
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/service/scene-manager/sampleapp/linux/sceneclient ${IOTIVITY_BIN_DIR_D}/examples/service/scene-manager
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/service/scene-manager/sampleapp/linux/sceneserver ${IOTIVITY_BIN_DIR_D}/examples/service/scene-manager
++
++    #Scene manager tests
++    make_dir ${IOTIVITY_BIN_DIR_D}/tests/service/scene-manager
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/scene_action_test ${IOTIVITY_BIN_DIR_D}/tests/service/scene-manager
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/scene_collection_test ${IOTIVITY_BIN_DIR_D}/tests/service/scene-manager
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/scene_list_test ${IOTIVITY_BIN_DIR_D}/tests/service/scene-manager
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/scene_test ${IOTIVITY_BIN_DIR_D}/tests/service/scene-manager
++
++    #Service Headers
++    make_dir ${D}${includedir}/iotivity/service/resource-container/
++    make_dir ${D}${includedir}/iotivity/service/resource-encapsulation/
++    make_dir ${D}${includedir}/iotivity/service/resource-hosting/
++    make_dir ${D}${includedir}/iotivity/service/resource-directory/
++    make_dir ${D}${includedir}/iotivity/service/things-manager/
++    make_dir ${D}${includedir}/iotivity/service/easy-setup/enrollee/
++    make_dir ${D}${includedir}/iotivity/service/easy-setup/mediator/csdk/
++    make_dir ${D}${includedir}/iotivity/service/easy-setup/mediator/richsdk/
++    make_dir ${D}${includedir}/iotivity/service/scene-manager/
++
++    #Resource container
++    copy_file_recursive ${S}/service/resource-container/include ${D}${includedir}/iotivity/service/resource-container
++
++    #Resource Encapsulation
++    copy_file_recursive ${S}/service/resource-encapsulation/include ${D}${includedir}/iotivity/service/resource-encapsulation
++    copy_file_recursive ${S}/service/resource-encapsulation/src/common/expiryTimer/include ${D}${includedir}/iotivity/service/resource-encapsulation
++    copy_file_recursive ${S}/service/resource-encapsulation/src/common/primitiveResource/include ${D}${includedir}/iotivity/service/resource-encapsulation
++    copy_file_recursive ${S}/service/resource-encapsulation/src/common/utils/include ${D}${includedir}/iotivity/service/resource-encapsulation
++    copy_file_recursive ${S}/service/resource-encapsulation/src/resourceBroker/include ${D}${includedir}/iotivity/service/resource-encapsulation
++    copy_file_recursive ${S}/service/resource-encapsulation/src/resourceCache/include ${D}${includedir}/iotivity/service/resource-encapsulation
++    copy_file_recursive ${S}/service/resource-encapsulation/src/serverBuilder/include ${D}${includedir}/iotivity/service/resource-encapsulation
++
++    #Resource hosting
++    copy_file_recursive ${S}/service/resource-hosting/include ${D}${includedir}/iotivity/service/resource-hosting
++
++    #Things manager
++    copy_file_recursive ${S}/service/things-manager/sdk/inc ${D}${includedir}/iotivity/service/things-manager
++
++    #Easy setup
++    copy_file_recursive ${S}/service/easy-setup/inc ${D}${includedir}/iotivity/service/easy-setup
++    copy_file_recursive ${S}/service/easy-setup/mediator/richsdk/inc/ ${D}${includedir}/iotivity/service/easy-setup/mediator/richsdk/
++
++    #Scene manager
++    copy_file_recursive ${S}/service/scene-manager/include ${D}${includedir}/iotivity/service/scene-manager/
++
++    #Misc headers
++    make_dir ${D}${includedir}/iotivity/extlibs/cjson
++    make_dir ${D}${includedir}/iotivity/extlibs/timer
++    copy_file ${S}/extlibs/cjson/cJSON.h ${D}${includedir}/iotivity/extlibs/cjson
++    copy_file ${S}/extlibs/timer/timer.h ${D}${includedir}/iotivity/extlibs/timer
++    copy_file ${S}/resource/c_common/platform_features.h ${D}${includedir}/iotivity/resource
++    copy_file ${S}/resource/c_common/platform_features.h ${D}${includedir}/iotivity/resource/stack
++    copy_file ${S}/resource/c_common/iotivity_config.h ${D}${includedir}/iotivity/resource
++
++    #Adapt unaligned pkconfig (transitionnal)
++    sed -e 's|^prefix=.*|prefix=/usr|g' -i ${S}/iotivity.pc
++    make_dir ${D}${libdir}/pkgconfig/
++    copy_file ${S}/iotivity.pc ${D}${libdir}/pkgconfig/
++    ln -s iotivity/resource ${D}${includedir}/resource
++    ln -s iotivity/service ${D}${includedir}/service
++    ln -s ../iotivity/resource/oc_logger/targets ${D}${includedir}/resource/
++
++    chrpath -d ${D}${libdir}/*.so
++}
++
++#IOTIVITY packages:
++#Resource: iotivity-resource, iotivity-resource-dev, iotivity-resource-thin-staticdev, iotivity-resource-dbg
++#Resource Samples: iotivity-resource-samples, iotivity-resource-samples-dbg
++#Service: iotivity-service, iotivity-service-dev, iotivity-service-staticdev, iotivity-service-dbg
++#Service Samples: iotivity-service-samples, iotivity-service-samples-dbg
++#Tests: iotivity-tests, iotivity-tests-dbg
++
++FILES_${PN}-resource-dev = "\
++        ${includedir}/iotivity/resource \
++        ${includedir}/iotivity/extlibs \
++        ${libdir}/pkgconfig/iotivity.pc"
++
++FILES_${PN}-resource-thin-staticdev = "\
++        ${libdir}/libocsrm.a \
++        ${libdir}/libconnectivity_abstraction.a \
++        ${libdir}/liboctbstack.a \
++        ${libdir}/libcoap.a \
++        ${libdir}/libc_common.a \
++        ${libdir}/libroutingmanager.a \
++        ${libdir}/libtimer.a"
++
++FILES_${PN}-plugins-staticdev = "\
++        ${includedir}/iotivity/plugins \
++        ${libdir}/libplugin_interface.a \
++        ${libdir}/libzigbee_wrapper.a \
++        ${libdir}/libtelegesis_wrapper.a"
++
++FILES_${PN}-plugins-dbg = "\
++        ${prefix}/src/debug/${PN}/${EXTENDPE}${PV}-${PR}/${PN}-${PV}/plugins"
++
++FILES_${PN}-resource = "\
++        ${libdir}/libconnectivity_abstraction.so \
++        ${libdir}/liboc.so \
++        ${libdir}/liboctbstack.so \
++        ${libdir}/liboc_logger.so \
++        ${libdir}/liboc_logger_core.so \
++        ${@bb.utils.contains('EXTRA_OESCONS', 'SECURED=1', '${libdir}/libocprovision.so', '', d)}"
++
++FILES_${PN}-resource-dbg = "\
++        ${prefix}/src/debug/${PN}/${EXTENDPE}${PV}-${PR}/${PN}-${PV}/resource \
++        ${prefix}/src/debug/${PN}/${EXTENDPE}${PV}-${PR}/${PN}-${PV}/extlibs \
++        ${prefix}/src/debug/${PN}/${EXTENDPE}${PV}-${PR}/${PN}-${PV}/examples \
++        ${prefix}/src/debug/${PN}/${EXTENDPE}${PV}-${PR}/${PN}-${PV}/out \
++        ${libdir}/.debug/liboc.so \
++        ${libdir}/.debug/liboctbstack.so \
++        ${libdir}/.debug/liboc_logger.so \
++        ${libdir}/.debug/liboc_logger_core.so \
++        ${@bb.utils.contains('EXTRA_OESCONS', 'SECURED=1', '${libdir}/.debug/libocprovision.so', '', d)}"
++
++FILES_${PN}-resource-samples-dbg = "\
++        ${IOTIVITY_BIN_DIR}/examples/resource/cpp/.debug \
++        ${IOTIVITY_BIN_DIR}/examples/resource/c/SimpleClientServer/.debug \
++        ${IOTIVITY_BIN_DIR}/examples/resource/c/secure/.debug"
++
++FILES_${PN}-resource-samples = "\
++        ${IOTIVITY_BIN_DIR}/examples/resource"
++
++FILES_${PN}-plugins-samples = "\
++        ${IOTIVITY_BIN_DIR}/examples/plugins"
++
++FILES_${PN}-plugins-samples-dbg = "\
++        ${IOTIVITY_BIN_DIR}/examples/plugins/zigbee/.debug"
++
++FILES_${PN}-service-dbg = "\
++        ${prefix}/src/debug/${PN}/${EXTENDPE}${PV}-${PR}/${PN}-${PV}/service \
++        ${libdir}/.debug"
++
++FILES_${PN}-service-dev = "\
++        ${includedir}/iotivity/service"
++
++FILES_${PN}-service = "\
++        ${libdir}/libBMISensorBundle.so \
++        ${libdir}/libDISensorBundle.so \
++        ${libdir}/librcs_server.so \
++        ${libdir}/librcs_common.so \
++        ${libdir}/librcs_container.so \
++        ${libdir}/libHueBundle.so \
++        ${libdir}/libTGMSDKLibrary.so \
++        ${libdir}/libESEnrolleeSDK.so \
++        ${libdir}/libESMediatorRich.so \
++        ${libdir}/librcs_client.so \
++        ${libdir}/libTestBundle.so"
++
++FILES_${PN}-service-staticdev = "\
++        ${libdir}/librcs_client.a \
++        ${libdir}/librcs_server.a \
++        ${libdir}/librcs_common.a \
++        ${libdir}/librcs_container.a \
++        ${libdir}/libTGMSDKLibrary.a \
++        ${libdir}/libresource_hosting.a \
++        ${libdir}/libresource_directory.a \
++        ${libdir}/libscene_manager.a"
++
++FILES_${PN}-service-samples-dbg = "\
++        ${IOTIVITY_BIN_DIR}/examples/service/things-manager/groupaction/.debug \
++        ${IOTIVITY_BIN_DIR}/examples/service/resource-encapsulation/.debug \
++        ${IOTIVITY_BIN_DIR}/examples/service/resource-container/.debug \
++        ${IOTIVITY_BIN_DIR}/examples/service/resource-hosting/.debug \
++        ${IOTIVITY_BIN_DIR}/examples/service/resource-directory/.debug \
++        ${IOTIVITY_BIN_DIR}/examples/service/easy-setup/.debug \
++        ${IOTIVITY_BIN_DIR}/examples/service/things-manager/configuration/.debug \
++        ${IOTIVITY_BIN_DIR}/examples/service/scene-manager/.debug"
++
++FILES_${PN}-service-samples = "\
++        ${IOTIVITY_BIN_DIR}/examples/service"
++
++FILES_${PN}-tests-dbg = "\
++        ${libdir}/.debug/libgtest.so \
++        ${libdir}/.debug/libgtest_main.so \
++        ${IOTIVITY_BIN_DIR}/tests/service/easy-setup/.debug \
++        ${IOTIVITY_BIN_DIR}/tests/resource/.debug \
++        ${IOTIVITY_BIN_DIR}/tests/service/things-manager/.debug \
++        ${IOTIVITY_BIN_DIR}/tests/service/resource-container/.debug \
++        ${IOTIVITY_BIN_DIR}/tests/service/resource-encapsulation/.debug \
++        ${IOTIVITY_BIN_DIR}/tests/service/scene-manager/.debug \
++        ${IOTIVITY_BIN_DIR}/tests/plugins/zigbee/.debug"
++
++FILES_${PN}-tests = "\
++        ${IOTIVITY_BIN_DIR}/tests"
++
++PACKAGES = "${PN}-tests-dbg ${PN}-tests ${PN}-plugins-dbg ${PN}-plugins-staticdev ${PN}-plugins-samples-dbg ${PN}-plugins-samples ${PN}-resource-dbg ${PN}-resource ${PN}-resource-dev ${PN}-resource-thin-staticdev ${PN}-resource-samples-dbg ${PN}-resource-samples ${PN}-service-dbg ${PN}-service ${PN}-service-dev ${PN}-service-staticdev ${PN}-service-samples-dbg ${PN}-service-samples ${PN}-dev ${PN}"
++ALLOW_EMPTY_${PN} = "1"
++RDEPENDS_${PN} += "boost"
++RRECOMMENDS_${PN} += "${PN}-resource ${PN}-service"
++RRECOMMENDS_${PN}-dev += "${PN}-resource-dev ${PN}-resource-thin-staticdev ${PN}-plugins-staticdev ${PN}-service-dev ${PN}-service-staticdev"
++RDEPENDS_${PN}-resource += "glib-2.0"
++RRECOMMENDS_${PN}-plugins-staticdev += "${PN}-resource-dev ${PN}-resource-thin-staticdev ${PN}-resource"
++RRECOMMENDS_${PN}-resource-thin-staticdev += "${PN}-resource-dev"
++RRECOMMENDS_${PN}-service-dev += "${PN}-service ${PN}-service-staticdev ${PN}-resource"
++RDEPENDS_${PN}-plugins-samples += "${PN}-resource glib-2.0"
++RDEPENDS_${PN}-resource-samples += "${PN}-resource glib-2.0"
++RDEPENDS_${PN}-tests += "${PN}-resource ${PN}-service glib-2.0"
++RDEPENDS_${PN}-service-samples += "${PN}-service ${PN}-resource glib-2.0"
++RDEPENDS_${PN}-service += "${PN}-resource glib-2.0"
++BBCLASSEXTEND = "native nativesdk"
+-- 
+1.9.1
 
-------=_Part_80526_512984870.1481319051750
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
 
-Hi,=20
-I tried building on the target RPi2B.The config.log and the steps that I di=
-d are found at=20
-https://gist.github.com/develone/bfa03e975f173a07b9fcb22a4d817df6
-I tried reporting the bug but the acct creation is restricted.Let me know i=
-f I can provide adding information,Thanks,
-=C2=A0Edward Vidal Jr. e-mail develone@sbcglobal.net 915-595-1613=20
-
-    On Friday, December 9, 2016 9:04 AM, "yocto-request@yoctoproject.org" <=
-yocto-request@yoctoproject.org> wrote:
-=20
-
- Send yocto mailing list submissions to
-=C2=A0=C2=A0=C2=A0 yocto@yoctoproject.org
-
-To subscribe or unsubscribe via the World Wide Web, visit
-=C2=A0=C2=A0=C2=A0 https://lists.yoctoproject.org/listinfo/yocto
-or, via email, send a message with subject or body 'help' to
-=C2=A0=C2=A0=C2=A0 yocto-request@yoctoproject.org
-
-You can reach the person managing the list at
-=C2=A0=C2=A0=C2=A0 yocto-owner@yoctoproject.org
-
-When replying, please edit your Subject line so it is more specific
-than "Re: Contents of yocto digest..."
-
-
-Today's Topics:
-
-=C2=A0 1. Adding Fortran to Raspberrypi2 (Edward Vidal)
-=C2=A0 2. Re: Kernel config incremental modification not working.
-=C2=A0 =C2=A0 =C2=A0 (Bruce Ashfield)
-=C2=A0 3. Re: update mechanisms (Patrick Ohly)
-=C2=A0 4. Re: update mechanisms (Stefano Babic)
-
-
-----------------------------------------------------------------------
-
-Message: 1
-Date: Fri, 9 Dec 2016 13:28:35 +0000 (UTC)
-From: Edward Vidal <develone@sbcglobal.net>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: [yocto] Adding Fortran to Raspberrypi2
-Message-ID: <405620911.1114427.1481290115720@mail.yahoo.com>
-Content-Type: text/plain; charset=3D"utf-8"
-
-Hi
-
-Trying to add fortran to 6.2.0 branch morty for a Raspberrypi2
-
-Step 1 modified meta/recipes-devtools/gcc/gcc-6.2.inc
--FORTRAN =3D ""
-+FORTRAN =3D ",fortran"
-bitbake core-image-sato created the image=20
-
-Testing on target. I see fortran in the command gcc -v.
-
-gcc -v --enable-languages=3Dc,c++,fortran gcc version 6.2.0 (GCC)
-
-With the command ./configure for octave.
-checking whether a usable Fortran compiler was found... no
-configure: error: A Fortran compiler is required
-
-
-Step 2 Checking the mailing list.
-??? |Hi
-??? |
-??? |On Mon, 8 Feb 2016 08:19:53 +0000
-??? |"Liubchynskyi, Stanislav (Nokia - PL/Wroclaw)" <stanislav.liubchynskyi=
- at nokia.com> wrote:
-??? |
-??? |> Hi,
-??? |> I want to add fortran support to yocto build. I try different way wh=
-itch describe in the ethernet but enyone does't work. I use fido branch and=
- gcc 4.9. Can you describe me step by step how to enable fortran in yocto o=
-r where I can find work instruction.
-??? |> Thanks for help.
-
-??? |Fortran support in gcc is disabled by default, to enable it add the fo=
-llowing line to your config, then build the libgfortran package.
-
-??? |FORTRAN_forcevariable =3D ",fortran"
-
-??? |>=20
-??? |>=20
-??? |>=20
-??? |> Best regards,
-??? |>=20
-??? |> Stanislav Liubchynskyi
-??? |> Software Developer, LFS, OPSW Wroclaw
-??? |> Mobile Broadband, Nokia Networks>?=20
-
-I added FORTRAN_forcevariable =3D ",fortran" to my config.? Still no fortra=
-n.
-
-I added libgfortran to variable IMAGE_INSTALL_append and I get the followin=
-g error
-?
-ERROR: oe_runmake failed
-
-../../../../../../../../work-shared/gcc-6.2.0-r0/gcc-6.2.0/libgfortran/runt=
-ime/backtrace.c:37:33: fatal error: backtrace-supported.h: No such file or =
-directory
-?#include "backtrace-supported.h"
-???????????????????????????????? ^
-compilation terminated.
-
-Thanks in advance,
-
-?Edward Vidal Jr. e-mail develone@sbcglobal.net 915-595-1613
--------------- next part --------------
-An HTML attachment was scrubbed...
-URL: <http://lists.yoctoproject.org/pipermail/yocto/attachments/20161209/64=
-4f3ef0/attachment-0001.html>
-
-------------------------------
-
-Message: 2
-Date: Fri, 9 Dec 2016 08:37:47 -0500
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-To: Bent Bisballe Nyeng <xbbn@mjolner.dk>, "yocto@yoctoproject.org"
-=C2=A0=C2=A0=C2=A0 <yocto@yoctoproject.org>
-Subject: Re: [yocto] Kernel config incremental modification not
-=C2=A0=C2=A0=C2=A0 working.
-Message-ID: <1f6d8fc5-2853-072f-72d5-785c5bd783f1@windriver.com>
-Content-Type: text/plain; charset=3D"windows-1252"; format=3Dflowed
-
-On 2016-12-09 02:25 AM, Bent Bisballe Nyeng wrote:
-> On 12/08/2016 05:06 PM, Bruce Ashfield wrote:
->> On 2016-12-08 09:06 AM, Bent Bisballe Nyeng wrote:
->>> Hi list
->>>
->>> I am working on a project based on the iMX6UL-EVK using the meta-fsl-ar=
-m
->>> layer for the kernel.
->>> In a local layer I have a bbappend recipe containing a patch for an
->>> extra kernel feature (a framebuffer device) in that kernel as well as a
->>> .cfg enabling said feature.
->>> The bbappend recipe is located in
->>> recipes-kernel/linux/linux-fslc-imx_%.bbappend and looks like this:
->>> FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
->>>
->>> SRC_URI +=3D " \
->>>=C2=A0 =C2=A0 =C2=A0 =C2=A0 file://0001-mxc-4.1.patch \
->>>=C2=A0 =C2=A0 =C2=A0 =C2=A0 file://ST7789S.cfg \
->>> "
->>>
->>> KERNEL_DEVICETREE =3D "imx6ul-14x14-evk.dtb"
->>>
->>> The .cfg is located in recipes-kernel/linux/linux-fslc-imx/ST7789S.cfg
->>> and looks like:
->>> CONFIG_FB_MXS_ST7789S_QVGA=3Dy
->>>
->>> The 0001-mxc-4.1.patch patch is correctly applied but the .cfg is eithe=
-r
->>> ignored or overwritten by some later buyild step since the resulting
->>> .config after kernel compilation contains:
->>> # CONFIG_FB_MXS_ST7789S_QVGA is not set
->>>
->>> I have tried finding the script in the build/.../temp folder that takes
->>> care of the .cfg file patching but have not been able to find anything
->>> useful.
->>>
->>> Any hints as to where I should start looking for a solution?
->> Fragment processing using the kernel tools + auditing is only currently
->> available to kernel recipes that use the kernel-yocto bbclass. That
->> opt-in requirement was to ensure that existing recipes and workflows
->> weren't broken by the new features.
->>
->> Last time I checked, the meta-fsl* kernel recipes don't use the
->> kernel-yocto bbclass, so the fragment would be ignored.
->>
->> I'm taking the processing of fragments and making it universally
->> available in the upcoming 2.3 release, so what I just described
->> won't be an issue for much longer.
->>
->> In the mean time, you have a few options:
->>
->>=C2=A0 - in your bbappend, add "inherit kernel-yocto" and the processing
->>=C2=A0 =C2=A0 of fragments will be enabled (I can't say that I've tested
->>=C2=A0 =C2=A0 it against that recipe .. but the entire point of the new t=
-asks
->>=C2=A0 =C2=A0 is that they are transparent/don't break existing worflows)
->>
->>=C2=A0 - carry a defconfig in your layer, and add it to the SRC_URI. That
->>=C2=A0 =C2=A0 defconfig would be the existing kernel recipe's defconfig +=
- your
->>=C2=A0 =C2=A0 options
->>
->>=C2=A0 - write a custom task that runs before configuration to add your
->>=C2=A0 =C2=A0 options (cat, merge, etc, etc).
->>
->> I wouldn't really suggest the custom task route, but it is a valid
->> option, so I put it in my list.
->>
->> The quickest is probably the defconfig option, and then the new
->> inherit. If you had issues with the inherit, I could lend a hand to
->> debug what is wrong .. since I'll run into it eventually with my
->> feature work for the 2.3 release.
-> Hi Bruce
->
-> Thanks for the reply.
->
-> A quick test shows that the linux-fslc-imx recipe doesn't respond well
-> to the 'inherit kernel-yocto' solution failing in the do_kernel_checkout
-> task with a "Bad substitution" error message.
-> So I think I will go with the defconfig solution until the release of 2.3=
-.
-> Any estimate of when 2.3 will be shipping? And do you know if this will
-> by any chance include the upcoming 4.9 LTS kernel?
-
-April 2017, and it will have the 4.9 kernel + 4.10 (unless 4.11 really
-hurries along).
-
->
-> If you would like some more info on the failing task I'll be happy to
-> supply it.
-
-If you put the configuration you are using (bblayers, MACHINE) in an
-email and send it directly to me, I'll find time to poke at it, I'm
-interested to understand why it failed.
-
-bruce
-
->
-> Thanks for your help :-)
->
-> Kind regards
-> Bent Bisballe Nyeng
->
-
-
-
-------------------------------
-
-Message: 3
-Date: Fri, 09 Dec 2016 16:13:53 +0100
-From: Patrick Ohly <patrick.ohly@intel.com>
-To: Stefano Babic <sbabic@denx.de>, Kristian Amlie
-=C2=A0=C2=A0=C2=A0 <kristian.amlie@mender.io>
-Cc: "Lopez, Mariano" <mariano.lopez@intel.com>,
-=C2=A0=C2=A0=C2=A0 yocto@yoctoproject.org, Andr? Draszik <git@andred.net>
-Subject: Re: [yocto] update mechanisms
-Message-ID: <1481296433.17535.170.camel@intel.com>
-Content-Type: text/plain; charset=3D"UTF-8"
-
-Hello everyone!
-
-Thanks for contributing directly to the page. It's great to see this
-done collaboratively.
-
-On Tue, 2016-12-06 at 23:38 +0100, Stefano Babic wrote:
-> Hi Philip,
->=20
-> On 06/12/2016 19:45, Philip Balister wrote:
-> > On 12/06/2016 06:11 AM, Lopez, Mariano wrote:
-> >> I agree with you, that we need to have a section per project, the tabl=
-e
-> >> is too limiting.
-> >=20
-> > I just skimmed the page and the table format isn't working well with th=
-e
-> > length of the blocks of text.
-> >=20
->=20
-> Agree - I think it is better to have a section per project.
-
-That always has been the goal, and I now updated the page accordingly. I
-tried to summarize the key aspects of each mechanism in the table
-itself. That's something that I haven't seen elsewhere and something
-that the page can=C2=A0 I tried to be as fair and objective as possible,
-please shout if I messed something up or you don't agree with my
-summary.
-
-In particular the "complexity" column is a bit subjective. Stefano, I
-hope you don't mind that I did not quite buy the "easy to use"
-characterization of swupdate ;-) For a system that is as flexible as
-swupdate, I'd expect a more difficult learning curve and some need to
-customize the system before using it, so I added a "(but requires
-customization!?)" comment to that statement.
-
-Kristian, I added a comment that Mender requires U-Boot. That is
-correct, isn't it? I understand that this restriction allows you to
-implement things like automatic rollback, but it's worth mentioning that
-this comes with that limitation.
-
-
---=20
-Best Regards, Patrick Ohly
-
-The content of this message is my personal opinion only and although
-I am an employee of Intel, the statements I make here in no way
-represent Intel's position on the issue, nor am I authorized to speak
-on behalf of Intel on this matter.
-
-
-
-
-
-------------------------------
-
-Message: 4
-Date: Fri, 9 Dec 2016 17:03:10 +0100
-From: Stefano Babic <sbabic@denx.de>
-To: Patrick Ohly <patrick.ohly@intel.com>, Stefano Babic
-=C2=A0=C2=A0=C2=A0 <sbabic@denx.de>,=C2=A0=C2=A0=C2=A0 Kristian Amlie <kris=
-tian.amlie@mender.io>
-Cc: "Lopez, Mariano" <mariano.lopez@intel.com>,
-=C2=A0=C2=A0=C2=A0 yocto@yoctoproject.org, Andr? Draszik <git@andred.net>
-Subject: Re: [yocto] update mechanisms
-Message-ID: <4515f6e0-a99b-09ae-e233-786ceed4847d@denx.de>
-Content-Type: text/plain; charset=3Dutf-8
-
-Hi Patrick,
-
-On 09/12/2016 16:13, Patrick Ohly wrote:
-> Hello everyone!
->=20
-> Thanks for contributing directly to the page. It's great to see this
-> done collaboratively.
->=20
-> On Tue, 2016-12-06 at 23:38 +0100, Stefano Babic wrote:
->> Hi Philip,
->>
->> On 06/12/2016 19:45, Philip Balister wrote:
->>> On 12/06/2016 06:11 AM, Lopez, Mariano wrote:
->>>> I agree with you, that we need to have a section per project, the tabl=
-e
->>>> is too limiting.
->>>
->>> I just skimmed the page and the table format isn't working well with th=
-e
->>> length of the blocks of text.
->>>
->>
->> Agree - I think it is better to have a section per project.
->=20
-> That always has been the goal, and I now updated the page accordingly.
-
-Page is really better now :-)
-
-> I
-> tried to summarize the key aspects of each mechanism in the table
-> itself. That's something that I haven't seen elsewhere and something
-> that the page can=C2=A0 I tried to be as fair and objective as possible,
-> please shout if I messed something up or you don't agree with my
-> summary.
->=20
-> In particular the "complexity" column is a bit subjective. Stefano, I
-> hope you don't mind that I did not quite buy the "easy to use"
-> characterization of swupdate ;-)
-
-No worry...and I have not written myself. It was inserted by Mariano, so
-it looks like that swupdate at least for Mariano is "easy to use".
-I think it is correct to point out that customization is required.
-
-> For a system that is as flexible as
-> swupdate, I'd expect a more difficult learning curve and some need to
-> customize the system before using it, so I added a "(but requires
-> customization!?)" comment to that statement.
-
-Agree.
-
->=20
-> Kristian, I added a comment that Mender requires U-Boot. That is
-> correct, isn't it? I understand that this restriction allows you to
-> implement things like automatic rollback, but it's worth mentioning that
-> this comes with that limitation.
-
-Best regards,
-Stefano
-
---=20
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-DENX Software Engineering GmbH,=C2=A0 =C2=A0 =C2=A0 Managing Director: Wolf=
-gang Denk
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: +49-8142-66989-53 Fax: +49-8142-66989-80 Email: sbabic@denx.de
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-
-
-------------------------------
-
---=20
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
-
-
-End of yocto Digest, Vol 75, Issue 37
-*************************************
-
-
-  =20
-
-------=_Part_80526_512984870.1481319051750
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<html><head></head><body><div style=3D"color:#000; background-color:#fff; f=
-ont-family:HelveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, =
-sans-serif;font-size:16px"><div id=3D"yui_3_16_0_ym19_1_1481313204344_25537=
-"><span>Hi, <br></span></div><div id=3D"yui_3_16_0_ym19_1_1481313204344_257=
-32"><span id=3D"yui_3_16_0_ym19_1_1481313204344_25731">I tried building on =
-the target RPi2B.</span></div><div id=3D"yui_3_16_0_ym19_1_1481313204344_27=
-519"><span>The config.log and the steps that I did are found at <br></span>=
-</div><div id=3D"yui_3_16_0_ym19_1_1481313204344_27620" dir=3D"ltr"><span i=
-d=3D"yui_3_16_0_ym19_1_1481313204344_27670"><a href=3D"https://gist.github.=
-com/develone/bfa03e975f173a07b9fcb22a4d817df6" class=3D"" id=3D"yui_3_16_0_=
-ym19_1_1481313204344_27669">https://gist.github.com/develone/bfa03e975f173a=
-07b9fcb22a4d817df6</a></span></div><div id=3D"yui_3_16_0_ym19_1_14813132043=
-44_27677"><br></div><div id=3D"yui_3_16_0_ym19_1_1481313204344_27782">I tri=
-ed reporting the bug but the acct creation is restricted.</div><div id=3D"y=
-ui_3_16_0_ym19_1_1481313204344_28077">Let me know if I can provide adding i=
-nformation,</div><div>Thanks,<br></div><div id=3D"yui_3_16_0_ym19_1_1481313=
-204344_25384">&nbsp;</div><div class=3D"signature" id=3D"yui_3_16_0_ym19_1_=
-1481313204344_25576">Edward Vidal Jr. e-mail develone@sbcglobal.net 915-595=
--1613</div> <div class=3D"qtdSeparateBR"><br><br></div><div class=3D"yahoo_=
-quoted" style=3D"display: block;"> <div style=3D"font-family: HelveticaNeue=
-, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif; font-size: 1=
-6px;"> <div style=3D"font-family: HelveticaNeue, Helvetica Neue, Helvetica,=
- Arial, Lucida Grande, sans-serif; font-size: 16px;"> <div dir=3D"ltr"><fon=
-t size=3D"2" face=3D"Arial"> On Friday, December 9, 2016 9:04 AM, "yocto-re=
-quest@yoctoproject.org" &lt;yocto-request@yoctoproject.org&gt; wrote:<br></=
-font></div>  <br><br> <div class=3D"y_msg_container">Send yocto mailing lis=
-t submissions to<br>&nbsp;&nbsp;&nbsp; <a ymailto=3D"mailto:yocto@yoctoproj=
-ect.org" href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><=
-br><br>To subscribe or unsubscribe via the World Wide Web, visit<br>&nbsp;&=
-nbsp;&nbsp; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" targe=
-t=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>or, via e=
-mail, send a message with subject or body 'help' to<br>&nbsp;&nbsp;&nbsp; <=
-a ymailto=3D"mailto:yocto-request@yoctoproject.org" href=3D"mailto:yocto-re=
-quest@yoctoproject.org">yocto-request@yoctoproject.org</a><br><br>You can r=
-each the person managing the list at<br>&nbsp;&nbsp;&nbsp; <a ymailto=3D"ma=
-ilto:yocto-owner@yoctoproject.org" href=3D"mailto:yocto-owner@yoctoproject.=
-org">yocto-owner@yoctoproject.org</a><br><br>When replying, please edit you=
-r Subject line so it is more specific<br>than "Re: Contents of yocto digest=
-..."<br><br><br>Today's Topics:<br><br>&nbsp;  1. Adding Fortran to Raspber=
-rypi2 (Edward Vidal)<br>&nbsp;  2. Re: Kernel config incremental modificati=
-on not working.<br>&nbsp; &nbsp; &nbsp; (Bruce Ashfield)<br>&nbsp;  3. Re: =
-update mechanisms (Patrick Ohly)<br>&nbsp;  4. Re: update mechanisms (Stefa=
-no Babic)<br><br><br>------------------------------------------------------=
-----------------<br><br>Message: 1<br>Date: Fri, 9 Dec 2016 13:28:35 +0000 =
-(UTC)<br>From: Edward Vidal &lt;<a ymailto=3D"mailto:develone@sbcglobal.net=
-" href=3D"mailto:develone@sbcglobal.net">develone@sbcglobal.net</a>&gt;<br>=
-To: "<a ymailto=3D"mailto:yocto@yoctoproject.org" href=3D"mailto:yocto@yoct=
-oproject.org">yocto@yoctoproject.org</a>" &lt;<a ymailto=3D"mailto:yocto@yo=
-ctoproject.org" href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.o=
-rg</a>&gt;<br>Subject: [yocto] Adding Fortran to Raspberrypi2<br>Message-ID=
-: &lt;<a ymailto=3D"mailto:405620911.1114427.1481290115720@mail.yahoo.com" =
-href=3D"mailto:405620911.1114427.1481290115720@mail.yahoo.com">405620911.11=
-14427.1481290115720@mail.yahoo.com</a>&gt;<br>Content-Type: text/plain; cha=
-rset=3D"utf-8"<br><br>Hi<br><br>Trying to add fortran to 6.2.0 branch morty=
- for a Raspberrypi2<br><br>Step 1 modified meta/recipes-devtools/gcc/gcc-6.=
-2.inc<br>-FORTRAN =3D ""<br>+FORTRAN =3D ",fortran"<br>bitbake core-image-s=
-ato created the image <br><br>Testing on target. I see fortran in the comma=
-nd gcc -v.<br><br>gcc -v --enable-languages=3Dc,c++,fortran gcc version 6.2=
-.0 (GCC)<br><br>With the command ./configure for octave.<br>checking whethe=
-r a usable Fortran compiler was found... no<br>configure: error: A Fortran =
-compiler is required<br><br><br>Step 2 Checking the mailing list.<br>??? |H=
-i<br>??? |<br>??? |On Mon, 8 Feb 2016 08:19:53 +0000<br>??? |"Liubchynskyi,=
- Stanislav (Nokia - PL/Wroclaw)" &lt;stanislav.liubchynskyi at nokia.com&gt=
-; wrote:<br>??? |<br>??? |&gt; Hi,<br>??? |&gt; I want to add fortran suppo=
-rt to yocto build. I try different way whitch describe in the ethernet but =
-enyone does't work. I use fido branch and gcc 4.9. Can you describe me step=
- by step how to enable fortran in yocto or where I can find work instructio=
-n.<br>??? |&gt; Thanks for help.<br><br>??? |Fortran support in gcc is disa=
-bled by default, to enable it add the following line to your config, then b=
-uild the libgfortran package.<br><br>??? |FORTRAN_forcevariable =3D ",fortr=
-an"<br><br>??? |&gt; <br>??? |&gt; <br>??? |&gt; <br>??? |&gt; Best regards=
-,<br>??? |&gt; <br>??? |&gt; Stanislav Liubchynskyi<br>??? |&gt; Software D=
-eveloper, LFS, OPSW Wroclaw<br>??? |&gt; Mobile Broadband, Nokia Networks&g=
-t;? <br><br>I added FORTRAN_forcevariable =3D ",fortran" to my config.? Sti=
-ll no fortran.<br><br>I added libgfortran to variable IMAGE_INSTALL_append =
-and I get the following error<br>?<br>ERROR: oe_runmake failed<br><br>../..=
-/../../../../../../work-shared/gcc-6.2.0-r0/gcc-6.2.0/libgfortran/runtime/b=
-acktrace.c:37:33: fatal error: backtrace-supported.h: No such file or direc=
-tory<br>?#include "backtrace-supported.h"<br>??????????????????????????????=
-?? ^<br>compilation terminated.<br><br>Thanks in advance,<br><br>?Edward Vi=
-dal Jr. e-mail <a ymailto=3D"mailto:develone@sbcglobal.net" href=3D"mailto:=
-develone@sbcglobal.net">develone@sbcglobal.net</a> 915-595-1613<br>--------=
------- next part --------------<br>An HTML attachment was scrubbed...<br>UR=
-L: &lt;<a href=3D"http://lists.yoctoproject.org/pipermail/yocto/attachments=
-/20161209/644f3ef0/attachment-0001.html" target=3D"_blank">http://lists.yoc=
-toproject.org/pipermail/yocto/attachments/20161209/644f3ef0/attachment-0001=
-.html</a>&gt;<br><br>------------------------------<br><br>Message: 2<br>Da=
-te: Fri, 9 Dec 2016 08:37:47 -0500<br>From: Bruce Ashfield &lt;<a ymailto=
-=3D"mailto:bruce.ashfield@windriver.com" href=3D"mailto:bruce.ashfield@wind=
-river.com">bruce.ashfield@windriver.com</a>&gt;<br>To: Bent Bisballe Nyeng =
-&lt;<a ymailto=3D"mailto:xbbn@mjolner.dk" href=3D"mailto:xbbn@mjolner.dk">x=
-bbn@mjolner.dk</a>&gt;, "<a ymailto=3D"mailto:yocto@yoctoproject.org" href=
-=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a>"<br>&nbsp;&nb=
-sp;&nbsp; &lt;<a ymailto=3D"mailto:yocto@yoctoproject.org" href=3D"mailto:y=
-octo@yoctoproject.org">yocto@yoctoproject.org</a>&gt;<br>Subject: Re: [yoct=
-o] Kernel config incremental modification not<br>&nbsp;&nbsp;&nbsp; working=
-.<br>Message-ID: &lt;<a ymailto=3D"mailto:1f6d8fc5-2853-072f-72d5-785c5bd78=
-3f1@windriver.com" href=3D"mailto:1f6d8fc5-2853-072f-72d5-785c5bd783f1@wind=
-river.com">1f6d8fc5-2853-072f-72d5-785c5bd783f1@windriver.com</a>&gt;<br>Co=
-ntent-Type: text/plain; charset=3D"windows-1252"; format=3Dflowed<br><br>On=
- 2016-12-09 02:25 AM, Bent Bisballe Nyeng wrote:<br>&gt; On 12/08/2016 05:0=
-6 PM, Bruce Ashfield wrote:<br>&gt;&gt; On 2016-12-08 09:06 AM, Bent Bisbal=
-le Nyeng wrote:<br>&gt;&gt;&gt; Hi list<br>&gt;&gt;&gt;<br>&gt;&gt;&gt; I a=
-m working on a project based on the iMX6UL-EVK using the meta-fsl-arm<br>&g=
-t;&gt;&gt; layer for the kernel.<br>&gt;&gt;&gt; In a local layer I have a =
-bbappend recipe containing a patch for an<br>&gt;&gt;&gt; extra kernel feat=
-ure (a framebuffer device) in that kernel as well as a<br>&gt;&gt;&gt; .cfg=
- enabling said feature.<br>&gt;&gt;&gt; The bbappend recipe is located in<b=
-r>&gt;&gt;&gt; recipes-kernel/linux/linux-fslc-imx_%.bbappend and looks lik=
-e this:<br>&gt;&gt;&gt; FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"<br=
->&gt;&gt;&gt;<br>&gt;&gt;&gt; SRC_URI +=3D " \<br>&gt;&gt;&gt;&nbsp; &nbsp;=
- &nbsp; &nbsp;  file://0001-mxc-4.1.patch \<br>&gt;&gt;&gt;&nbsp; &nbsp; &n=
-bsp; &nbsp;  file://ST7789S.cfg \<br>&gt;&gt;&gt; "<br>&gt;&gt;&gt;<br>&gt;=
-&gt;&gt; KERNEL_DEVICETREE =3D "imx6ul-14x14-evk.dtb"<br>&gt;&gt;&gt;<br>&g=
-t;&gt;&gt; The .cfg is located in recipes-kernel/linux/linux-fslc-imx/ST778=
-9S.cfg<br>&gt;&gt;&gt; and looks like:<br>&gt;&gt;&gt; CONFIG_FB_MXS_ST7789=
-S_QVGA=3Dy<br>&gt;&gt;&gt;<br>&gt;&gt;&gt; The 0001-mxc-4.1.patch patch is =
-correctly applied but the .cfg is either<br>&gt;&gt;&gt; ignored or overwri=
-tten by some later buyild step since the resulting<br>&gt;&gt;&gt; .config =
-after kernel compilation contains:<br>&gt;&gt;&gt; # CONFIG_FB_MXS_ST7789S_=
-QVGA is not set<br>&gt;&gt;&gt;<br>&gt;&gt;&gt; I have tried finding the sc=
-ript in the build/.../temp folder that takes<br>&gt;&gt;&gt; care of the .c=
-fg file patching but have not been able to find anything<br>&gt;&gt;&gt; us=
-eful.<br>&gt;&gt;&gt;<br>&gt;&gt;&gt; Any hints as to where I should start =
-looking for a solution?<br>&gt;&gt; Fragment processing using the kernel to=
-ols + auditing is only currently<br>&gt;&gt; available to kernel recipes th=
-at use the kernel-yocto bbclass. That<br>&gt;&gt; opt-in requirement was to=
- ensure that existing recipes and workflows<br>&gt;&gt; weren't broken by t=
-he new features.<br>&gt;&gt;<br>&gt;&gt; Last time I checked, the meta-fsl*=
- kernel recipes don't use the<br>&gt;&gt; kernel-yocto bbclass, so the frag=
-ment would be ignored.<br>&gt;&gt;<br>&gt;&gt; I'm taking the processing of=
- fragments and making it universally<br>&gt;&gt; available in the upcoming =
-2.3 release, so what I just described<br>&gt;&gt; won't be an issue for muc=
-h longer.<br>&gt;&gt;<br>&gt;&gt; In the mean time, you have a few options:=
-<br>&gt;&gt;<br>&gt;&gt;&nbsp;  - in your bbappend, add "inherit kernel-yoc=
-to" and the processing<br>&gt;&gt;&nbsp; &nbsp;  of fragments will be enabl=
-ed (I can't say that I've tested<br>&gt;&gt;&nbsp; &nbsp;  it against that =
-recipe .. but the entire point of the new tasks<br>&gt;&gt;&nbsp; &nbsp;  i=
-s that they are transparent/don't break existing worflows)<br>&gt;&gt;<br>&=
-gt;&gt;&nbsp;  - carry a defconfig in your layer, and add it to the SRC_URI=
-. That<br>&gt;&gt;&nbsp; &nbsp;  defconfig would be the existing kernel rec=
-ipe's defconfig + your<br>&gt;&gt;&nbsp; &nbsp;  options<br>&gt;&gt;<br>&gt=
-;&gt;&nbsp;  - write a custom task that runs before configuration to add yo=
-ur<br>&gt;&gt;&nbsp; &nbsp;  options (cat, merge, etc, etc).<br>&gt;&gt;<br=
->&gt;&gt; I wouldn't really suggest the custom task route, but it is a vali=
-d<br>&gt;&gt; option, so I put it in my list.<br>&gt;&gt;<br>&gt;&gt; The q=
-uickest is probably the defconfig option, and then the new<br>&gt;&gt; inhe=
-rit. If you had issues with the inherit, I could lend a hand to<br>&gt;&gt;=
- debug what is wrong .. since I'll run into it eventually with my<br>&gt;&g=
-t; feature work for the 2.3 release.<br>&gt; Hi Bruce<br>&gt;<br>&gt; Thank=
-s for the reply.<br>&gt;<br>&gt; A quick test shows that the linux-fslc-imx=
- recipe doesn't respond well<br>&gt; to the 'inherit kernel-yocto' solution=
- failing in the do_kernel_checkout<br>&gt; task with a "Bad substitution" e=
-rror message.<br>&gt; So I think I will go with the defconfig solution unti=
-l the release of 2.3.<br>&gt; Any estimate of when 2.3 will be shipping? An=
-d do you know if this will<br>&gt; by any chance include the upcoming 4.9 L=
-TS kernel?<br><br>April 2017, and it will have the 4.9 kernel + 4.10 (unles=
-s 4.11 really<br>hurries along).<br><br>&gt;<br>&gt; If you would like some=
- more info on the failing task I'll be happy to<br>&gt; supply it.<br><br>I=
-f you put the configuration you are using (bblayers, MACHINE) in an<br>emai=
-l and send it directly to me, I'll find time to poke at it, I'm<br>interest=
-ed to understand why it failed.<br><br>bruce<br><br>&gt;<br>&gt; Thanks for=
- your help :-)<br>&gt;<br>&gt; Kind regards<br>&gt; Bent Bisballe Nyeng<br>=
-&gt;<br><br><br><br>------------------------------<br><br>Message: 3<br>Dat=
-e: Fri, 09 Dec 2016 16:13:53 +0100<br>From: Patrick Ohly &lt;<a ymailto=3D"=
-mailto:patrick.ohly@intel.com" href=3D"mailto:patrick.ohly@intel.com">patri=
-ck.ohly@intel.com</a>&gt;<br>To: Stefano Babic &lt;<a ymailto=3D"mailto:sba=
-bic@denx.de" href=3D"mailto:sbabic@denx.de">sbabic@denx.de</a>&gt;, Kristia=
-n Amlie<br>&nbsp;&nbsp;&nbsp; &lt;<a ymailto=3D"mailto:kristian.amlie@mende=
-r.io" href=3D"mailto:kristian.amlie@mender.io">kristian.amlie@mender.io</a>=
-&gt;<br>Cc: "Lopez, Mariano" &lt;<a ymailto=3D"mailto:mariano.lopez@intel.c=
-om" href=3D"mailto:mariano.lopez@intel.com">mariano.lopez@intel.com</a>&gt;=
-,<br>&nbsp;&nbsp;&nbsp; <a ymailto=3D"mailto:yocto@yoctoproject.org" href=
-=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a>, Andr? Draszi=
-k &lt;<a ymailto=3D"mailto:git@andred.net" href=3D"mailto:git@andred.net">g=
-it@andred.net</a>&gt;<br>Subject: Re: [yocto] update mechanisms<br>Message-=
-ID: &lt;<a ymailto=3D"mailto:1481296433.17535.170.camel@intel.com" href=3D"=
-mailto:1481296433.17535.170.camel@intel.com">1481296433.17535.170.camel@int=
-el.com</a>&gt;<br>Content-Type: text/plain; charset=3D"UTF-8"<br><br>Hello =
-everyone!<br><br>Thanks for contributing directly to the page. It's great t=
-o see this<br>done collaboratively.<br><br>On Tue, 2016-12-06 at 23:38 +010=
-0, Stefano Babic wrote:<br>&gt; Hi Philip,<br>&gt; <br>&gt; On 06/12/2016 1=
-9:45, Philip Balister wrote:<br>&gt; &gt; On 12/06/2016 06:11 AM, Lopez, Ma=
-riano wrote:<br>&gt; &gt;&gt; I agree with you, that we need to have a sect=
-ion per project, the table<br>&gt; &gt;&gt; is too limiting.<br>&gt; &gt; <=
-br>&gt; &gt; I just skimmed the page and the table format isn't working wel=
-l with the<br>&gt; &gt; length of the blocks of text.<br>&gt; &gt; <br>&gt;=
- <br>&gt; Agree - I think it is better to have a section per project.<br><b=
-r>That always has been the goal, and I now updated the page accordingly. I<=
-br>tried to summarize the key aspects of each mechanism in the table<br>its=
-elf. That's something that I haven't seen elsewhere and something<br>that t=
-he page can&nbsp; I tried to be as fair and objective as possible,<br>pleas=
-e shout if I messed something up or you don't agree with my<br>summary.<br>=
-<br>In particular the "complexity" column is a bit subjective. Stefano, I<b=
-r>hope you don't mind that I did not quite buy the "easy to use"<br>charact=
-erization of swupdate ;-) For a system that is as flexible as<br>swupdate, =
-I'd expect a more difficult learning curve and some need to<br>customize th=
-e system before using it, so I added a "(but requires<br>customization!?)" =
-comment to that statement.<br><br>Kristian, I added a comment that Mender r=
-equires U-Boot. That is<br>correct, isn't it? I understand that this restri=
-ction allows you to<br>implement things like automatic rollback, but it's w=
-orth mentioning that<br>this comes with that limitation.<br><br><br>-- <br>=
-Best Regards, Patrick Ohly<br><br>The content of this message is my persona=
-l opinion only and although<br>I am an employee of Intel, the statements I =
-make here in no way<br>represent Intel's position on the issue, nor am I au=
-thorized to speak<br>on behalf of Intel on this matter.<br><br><br><br><br>=
-<br>------------------------------<br><br>Message: 4<br>Date: Fri, 9 Dec 20=
-16 17:03:10 +0100<br>From: Stefano Babic &lt;<a ymailto=3D"mailto:sbabic@de=
-nx.de" href=3D"mailto:sbabic@denx.de">sbabic@denx.de</a>&gt;<br>To: Patrick=
- Ohly &lt;<a ymailto=3D"mailto:patrick.ohly@intel.com" href=3D"mailto:patri=
-ck.ohly@intel.com">patrick.ohly@intel.com</a>&gt;, Stefano Babic<br>&nbsp;&=
-nbsp;&nbsp; &lt;<a ymailto=3D"mailto:sbabic@denx.de" href=3D"mailto:sbabic@=
-denx.de">sbabic@denx.de</a>&gt;,&nbsp;&nbsp;&nbsp; Kristian Amlie &lt;<a ym=
-ailto=3D"mailto:kristian.amlie@mender.io" href=3D"mailto:kristian.amlie@men=
-der.io">kristian.amlie@mender.io</a>&gt;<br>Cc: "Lopez, Mariano" &lt;<a yma=
-ilto=3D"mailto:mariano.lopez@intel.com" href=3D"mailto:mariano.lopez@intel.=
-com">mariano.lopez@intel.com</a>&gt;,<br>&nbsp;&nbsp;&nbsp; <a ymailto=3D"m=
-ailto:yocto@yoctoproject.org" href=3D"mailto:yocto@yoctoproject.org">yocto@=
-yoctoproject.org</a>, Andr? Draszik &lt;<a ymailto=3D"mailto:git@andred.net=
-" href=3D"mailto:git@andred.net">git@andred.net</a>&gt;<br>Subject: Re: [yo=
-cto] update mechanisms<br>Message-ID: &lt;<a ymailto=3D"mailto:4515f6e0-a99=
-b-09ae-e233-786ceed4847d@denx.de" href=3D"mailto:4515f6e0-a99b-09ae-e233-78=
-6ceed4847d@denx.de">4515f6e0-a99b-09ae-e233-786ceed4847d@denx.de</a>&gt;<br=
->Content-Type: text/plain; charset=3Dutf-8<br><br>Hi Patrick,<br><br>On 09/=
-12/2016 16:13, Patrick Ohly wrote:<br>&gt; Hello everyone!<br>&gt; <br>&gt;=
- Thanks for contributing directly to the page. It's great to see this<br>&g=
-t; done collaboratively.<br>&gt; <br>&gt; On Tue, 2016-12-06 at 23:38 +0100=
-, Stefano Babic wrote:<br>&gt;&gt; Hi Philip,<br>&gt;&gt;<br>&gt;&gt; On 06=
-/12/2016 19:45, Philip Balister wrote:<br>&gt;&gt;&gt; On 12/06/2016 06:11 =
-AM, Lopez, Mariano wrote:<br>&gt;&gt;&gt;&gt; I agree with you, that we nee=
-d to have a section per project, the table<br>&gt;&gt;&gt;&gt; is too limit=
-ing.<br>&gt;&gt;&gt;<br>&gt;&gt;&gt; I just skimmed the page and the table =
-format isn't working well with the<br>&gt;&gt;&gt; length of the blocks of =
-text.<br>&gt;&gt;&gt;<br>&gt;&gt;<br>&gt;&gt; Agree - I think it is better =
-to have a section per project.<br>&gt; <br>&gt; That always has been the go=
-al, and I now updated the page accordingly.<br><br>Page is really better no=
-w :-)<br><br>&gt; I<br>&gt; tried to summarize the key aspects of each mech=
-anism in the table<br>&gt; itself. That's something that I haven't seen els=
-ewhere and something<br>&gt; that the page can&nbsp; I tried to be as fair =
-and objective as possible,<br>&gt; please shout if I messed something up or=
- you don't agree with my<br>&gt; summary.<br>&gt; <br>&gt; In particular th=
-e "complexity" column is a bit subjective. Stefano, I<br>&gt; hope you don'=
-t mind that I did not quite buy the "easy to use"<br>&gt; characterization =
-of swupdate ;-)<br><br>No worry...and I have not written myself. It was ins=
-erted by Mariano, so<br>it looks like that swupdate at least for Mariano is=
- "easy to use".<br>I think it is correct to point out that customization is=
- required.<br><br>&gt; For a system that is as flexible as<br>&gt; swupdate=
-, I'd expect a more difficult learning curve and some need to<br>&gt; custo=
-mize the system before using it, so I added a "(but requires<br>&gt; custom=
-ization!?)" comment to that statement.<br><br>Agree.<br><br>&gt; <br>&gt; K=
-ristian, I added a comment that Mender requires U-Boot. That is<br>&gt; cor=
-rect, isn't it? I understand that this restriction allows you to<br>&gt; im=
-plement things like automatic rollback, but it's worth mentioning that<br>&=
-gt; this comes with that limitation.<br><br>Best regards,<br>Stefano<br><br=
->-- <br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>DENX =
-Software Engineering GmbH,&nbsp; &nbsp; &nbsp; Managing Director: Wolfgang =
-Denk<br>HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germa=
-ny<br>Phone: +49-8142-66989-53 Fax: +49-8142-66989-80 Email: <a ymailto=3D"=
-mailto:sbabic@denx.de" href=3D"mailto:sbabic@denx.de">sbabic@denx.de</a><br=
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br><br><br>---=
----------------------------<br><br>-- <br>_________________________________=
-______________<br>yocto mailing list<br><a ymailto=3D"mailto:yocto@yoctopro=
-ject.org" href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a>=
-<br><a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_bl=
-ank">https://lists.yoctoproject.org/listinfo/yocto</a><br><br><br>End of yo=
-cto Digest, Vol 75, Issue 37<br>*************************************<br><b=
-r><br></div>  </div> </div>  </div></div></body></html>
-
-------=_Part_80526_512984870.1481319051750--
