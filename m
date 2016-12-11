@@ -1,65 +1,39 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B88C0E00848; Sun, 11 Dec 2016 09:50:22 -0800 (PST)
+	id B202AE00905; Sun, 11 Dec 2016 11:33:32 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [134.134.136.100 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.213.53 listed in list.dnswl.org]
-Received: from mail-vk0-f53.google.com (mail-vk0-f53.google.com
-	[209.85.213.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DC048E007E8
-	for <yocto@yoctoproject.org>; Sun, 11 Dec 2016 09:50:21 -0800 (PST)
-Received: by mail-vk0-f53.google.com with SMTP id w194so31206745vkw.2
-	for <yocto@yoctoproject.org>; Sun, 11 Dec 2016 09:50:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=2if5ouD57Z+LXc3fs+TkoUOFtap/4Xr+15o+5ymz1JA=;
-	b=hsBMdBKjyDWm7AgSsJj764uzI9IQt2BhN3cLtncf90+jf5cIXu+/4Bg9nRh4tCTmFv
-	4WTl27ToMMITx6cjAHzuzLtMnE4m/0YLEv/Z4erknsCh43pzNjoLuzp8JmgX+BgRO2KB
-	2Icc6LmE3yUbr/CP9bjquu9xCqwY4i8QS1J8nXH1P9W37/NEO7ZLTcyCBJAqeTpaL0kY
-	yoSPf1hDZ+K2FMBgd+zbBXzGxXA3DG4dl5i4uRCJiWGKapz615j7GafcrRRSGMdLZgeo
-	Q/Zm80m8NHVMIcTBD3ZYnHYk6swWSmERCi7t2N7oXIWUB+gFSnDSTpnE7JPaAt1W+DYI
-	ifxw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=2if5ouD57Z+LXc3fs+TkoUOFtap/4Xr+15o+5ymz1JA=;
-	b=nJMxMOyU0MjAnChx9jTl7+d/ZEmINCHLeNy8FFGWsVMoXsHuv/WWxWu/9U63kbLccj
-	ihV1I1uI3wF45PGrZB+npfoP4Q93I/ZbEVkE4PJpWzcIZijfj9qXUHFcuX/23q33oKUU
-	r1qMJpHJR5PiUVKbSym5Q4lOPV3BbRnF2UKUORKXNPJSRLF7M/wVFApMYxnvMAsgXBt2
-	0YefUn21CkQoMRbGLVdHpp/WUdM8yfdEnr9R/1ak/U4U/TYHnGNEzEGWfCiqKlFZmoet
-	dY1JzxtUz9aWkMBFGa+wVvwHb1urNfANnz2+X1PKvaxUMJah9n85R9RCwN+KDJD1HxrI
-	pbIw==
-X-Gm-Message-State: AKaTC03Q7YH9VGxOBuhShTSMV5HkCj4lp5+8oS28jwkQwWbP2ZvnKLxma2csJORxHdG0CN+oo5lt+wrGAaZwXQ==
-X-Received: by 10.31.168.7 with SMTP id r7mr33461073vke.148.1481478620259;
-	Sun, 11 Dec 2016 09:50:20 -0800 (PST)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5EE93E00848
+	for <yocto@yoctoproject.org>; Sun, 11 Dec 2016 11:33:29 -0800 (PST)
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+	by orsmga105.jf.intel.com with ESMTP; 11 Dec 2016 11:33:28 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.33,332,1477983600"; d="scan'208";a="39043735"
+Received: from pmishrax-mobl.gar.corp.intel.com (HELO
+	peggleto-mobl.ger.corp.intel.com) ([10.255.157.250])
+	by orsmga004.jf.intel.com with ESMTP; 11 Dec 2016 11:33:25 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: yocto@yoctoproject.org, Bruce Ashfield <bruce.ashfield@windriver.com>
+Date: Mon, 12 Dec 2016 08:33:22 +1300
+Message-ID: <1654285.bzP9cumZNH@peggleto-mobl.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.14.10 (Linux/4.8.11-100.fc23.x86_64; KDE/4.14.20; x86_64; ;
+	)
+In-Reply-To: <9db74365-d016-5183-0654-8ed27089ad71@windriver.com>
+References: <5ee0797a85054ea6ab6a0d8f02f47856@drift35.mia.local>
+	<CAC+thW1Hdj8MSdwf-oJegtd8eTfV6Kc_z8NRBtkrN=3Th+xn-g@mail.gmail.com>
+	<9db74365-d016-5183-0654-8ed27089ad71@windriver.com>
 MIME-Version: 1.0
-Received: by 10.159.48.87 with HTTP; Sun, 11 Dec 2016 09:49:49 -0800 (PST)
-In-Reply-To: <CAJ70iBSSsnqR=p8u1gjZR3hd0r6GB-NRZTds2Hb8coUZeP9zxg@mail.gmail.com>
-References: <CAJ70iBTSsyb9oXvPexe+T=McGQPg7gwVpuRPAnVA2T_RRyv2-g@mail.gmail.com>
-	<CAMKF1sogx4YCPJgGZRoUjGvpRmiANUe-nkSGTkcz5Fhq7hpqkw@mail.gmail.com>
-	<CAJ70iBSSsnqR=p8u1gjZR3hd0r6GB-NRZTds2Hb8coUZeP9zxg@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Sun, 11 Dec 2016 09:49:49 -0800
-Message-ID: <CAMKF1soG7vCFQF2ofj-QaWj-Z7rSdcr9-W6gTVOcUfvmU25o5g@mail.gmail.com>
-To: Mont3z Claros <mont3z.claro5@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Error during webkit compilation for rasberry pi3
+Subject: Re: Kernel config incremental modification not working.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,88 +45,140 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 11 Dec 2016 17:50:22 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Sun, 11 Dec 2016 19:33:32 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-userland graphics drivers dont have gles1 support, that might be one
-reason for it. You might try our vc4graphics driver by adding
-'vc4graphics' to MACHINE_FEATURES and then it will use mesa.
+On Fri, 09 Dec 2016 11:19:56 Bruce Ashfield wrote:
+> On 2016-12-09 11:17 AM, Andrea Galbusera wrote:
+> > Hi Bruce,
+> > 
+> > On Thu, Dec 8, 2016 at 3:36 PM, Bruce Ashfield
+> > 
+> > <bruce.ashfield@windriver.com <mailto:bruce.ashfield@windriver.com>> 
+wrote:
+> >     On 2016-12-08 09:06 AM, Bent Bisballe Nyeng wrote:
+> >         Hi list
+> >         
+> >         I am working on a project based on the iMX6UL-EVK using the
+> >         meta-fsl-arm
+> >         layer for the kernel.
+> >         In a local layer I have a bbappend recipe containing a patch for
+> >         an
+> >         extra kernel feature (a framebuffer device) in that kernel as
+> >         well as a
+> >         .cfg enabling said feature.
+> >         The bbappend recipe is located in
+> >         recipes-kernel/linux/linux-fslc-imx_%.bbappend and looks like
+> >         this:
+> >         FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+> >         
+> >         SRC_URI += " \
+> >         
+> >                 file://0001-mxc-4.1.patch \
+> >                 file://ST7789S.cfg \
+> >         
+> >         "
+> >         
+> >         KERNEL_DEVICETREE = "imx6ul-14x14-evk.dtb"
+> >         
+> >         The .cfg is located in
+> >         recipes-kernel/linux/linux-fslc-imx/ST7789S.cfg
+> >         and looks like:
+> >         CONFIG_FB_MXS_ST7789S_QVGA=y
+> >         
+> >         The 0001-mxc-4.1.patch patch is correctly applied but the .cfg
+> >         is either
+> >         ignored or overwritten by some later buyild step since the
+> >         resulting
+> >         .config after kernel compilation contains:
+> >         # CONFIG_FB_MXS_ST7789S_QVGA is not set
+> >         
+> >         I have tried finding the script in the build/.../temp folder
+> >         that takes
+> >         care of the .cfg file patching but have not been able to find
+> >         anything
+> >         useful.
+> >         
+> >         Any hints as to where I should start looking for a solution?
+> >     
+> >     Fragment processing using the kernel tools + auditing is only
+> >     currently
+> >     available to kernel recipes that use the kernel-yocto bbclass. That
+> >     opt-in requirement was to ensure that existing recipes and workflows
+> >     weren't broken by the new features.
+> >     
+> >     Last time I checked, the meta-fsl* kernel recipes don't use the
+> >     kernel-yocto bbclass, so the fragment would be ignored.
+> >     
+> >     I'm taking the processing of fragments and making it universally
+> >     available in the upcoming 2.3 release, so what I just described
+> >     won't be an issue for much longer.
+> >     
+> >     In the mean time, you have a few options:
+> >      - in your bbappend, add "inherit kernel-yocto" and the processing
+> >      
+> >        of fragments will be enabled (I can't say that I've tested
+> >        it against that recipe .. but the entire point of the new tasks
+> >        is that they are transparent/don't break existing worflows)
+> >      
+> >      - carry a defconfig in your layer, and add it to the SRC_URI. That
+> >      
+> >        defconfig would be the existing kernel recipe's defconfig + your
+> >        options
+> > 
+> > I was just testing one of my layers against your recent patchset on
+> > kernel-yocto when I noticed this thread. My build is broken by commit
+> > 476ffd57cf5b6fba40d4e3f5dd913824ab8a8d3d on oe-core
+> > (e38775a1d82e6dc60fc96cf243ecb94be964d9b2 on the poky repo side).
+> > 
+> > WARNING: linux-altera-ltsi-4.1.22-ltsi+gitAUTOINC+76bdba2700-r0
+> > do_kernel_metadata: GIZERO: before 'cmp'
+> > ERROR: linux-altera-ltsi-4.1.22-ltsi+gitAUTOINC+76bdba2700-r0
+> > do_kernel_metadata: Function failed: do_kernel_metadata (log file is
+> > located at
+> > /scratch/gizero/mitysom-5csx-master-build/tmp/work/cyclone5-poky-linux-gnu
+> > eabi/linux-altera-ltsi/4.1.22-ltsi+gitAUTOINC+76bdba2700-r0/temp/log.do_ke
+> > rnel_metadata.28274) ERROR: Logfile of failure stored in:
+> > /scratch/gizero/mitysom-5csx-master-build/tmp/work/cyclone5-poky-linux-gnu
+> > eabi/linux-altera-ltsi/4.1.22-ltsi+gitAUTOINC+76bdba2700-r0/temp/log.do_ke
+> > rnel_metadata.28274> 
+> > Log data follows:
+> > | DEBUG: Executing shell function do_kernel_metadata
+> > | WARNING: GIZERO: before 'cmp'
+> > 
+> > /scratch/gizero/mitysom-5csx-master-build/tmp/work/cyclone5-poky-linux-gnu
+> > eabi/linux-altera-ltsi/4.1.22-ltsi+gitAUTOINC+76bdba2700-r0/defconfig
+> > /scratch/gizero/mitysom-5csx-master-build/tmp/work-shared/cyclone5/kernel
+> > -source/arch/arm/configs/socfpga_defconfig differ: byte 1525, line 72
+> > 
+> > | WARNING: exit code 1 from a shell command.
+> > | ERROR: Function failed: do_kernel_metadata (log file is located at
+> > 
+> > /scratch/gizero/mitysom-5csx-master-build/tmp/work/cyclone5-poky-linux-gnu
+> > eabi/linux-altera-ltsi/4.1.22-ltsi+gitAUTOINC+76bdba2700-r0/temp/log.do_ke
+> > rnel_metadata.28274) ERROR: Task
+> > (/home/gizero/work/decos/repo-master/poky/../meta-altera/recipes-kernel/li
+> > nux/linux-altera-ltsi_4.1.22.bb:do_kernel_metadata) failed with exit code
+> > '1'
+> > 
+> > The commit in the patch remove the 'set +e' bits, but the following
+> > legit code path expects the cmp command to have a non-zero return value.
+> 
+> Aha. Indeed that is true. Clearly there aren't many people going
+> through that path.
 
-On Sun, Dec 11, 2016 at 7:49 AM, Mont3z Claros <mont3z.claro5@gmail.com> wrote:
-> Hi Khem,
->
-> this layer is:
-> https://layers.openembedded.org/layerindex/branch/master/layer/meta-webkit/
->
-> I've also tried to use the webkit recipe from poky but I've got the
-> same error. In this case I used a different configuration because poky
-> doesn't have webkitgtk-bin (mini browser). To test that I've tried to
-> build a modified version of meta-web-kiosk
->  (https://github.com/mont3z/meta-web-kiosk). This is still a work in
-> progress but basically it replaces midori by epiphany.
->
-> local.conf:
-> MACHINE = "raspberrypi3"
-> DISTRO_FEATURES_append = " x11 gles2"
->
-> command:
-> bitbake core-image-web-kiosk
->
-> bblayes.conf:
-> BBLAYERS ?= " \
->   /home/mont3z/yocto/poky/meta \
->   /home/mont3z/yocto/poky/meta-poky \
->   /home/mont3z/yocto/poky/meta-yocto-bsp \
->   /home/mont3z/yocto/meta-openembedded/meta-oe \
->   /home/mont3z/yocto/meta-raspberrypi \
->   /home/mont3z/yocto/meta-web-kiosk \
-> "
->
-> I also found this discussion about rpi2. I'll try to run some of those
-> configurations:
-> https://github.com/Igalia/meta-webkit/issues/1
->
-> On Sat, Dec 10, 2016 at 1:02 PM, Khem Raj <raj.khem@gmail.com> wrote:
->> On Sat, Dec 10, 2016 at 7:52 AM, Mont3z Claros <mont3z.claro5@gmail.com> wrote:
->>> Hi all,
->>>
->>> I don't know what I'm doing wrong but I'm getting an error during
->>> compilation of webkit for raspberry pi3. Please see below the error
->>> and my configurations,
->>>
->>> Thanks,
->>> Mont3z
->>>
->>> local.conf:
->>> MACHINE = "raspberrypi3"
->>> DISTRO_FEATURES_append = " x11 gles2"
->>> IMAGE_INSTALL_append = " webkitgtk-bin"
->>>
->>> Error:
->>> | ERROR: oe_runmake failed
->>> | In file included from
->>> /home/mont3z/yocto/poky/build/tmp/work/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/webkitgtk/2.14.2-r0/webkitgtk-2.14.2/Source/WebCore/platform/graphics/cairo/GraphicsContext3DCairo.cpp:51:0:
->>> | /home/mont3z/yocto/poky/build/tmp/work/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/webkitgtk/2.14.2-r0/webkitgtk-2.14.2/Source/WebCore/platform/graphics/opengl/Extensions3DOpenGLES.h:109:5:
->>> error: 'PFNGLFRAMEBUFFERTEXTURE2DMULTISAMPLEIMGPROC' does not name a
->>> type
->>> |      PFNGLFRAMEBUFFERTEXTURE2DMULTISAMPLEIMGPROC
->>> m_glFramebufferTexture2DMultisampleIMG;
->>> |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->>>
->>> command:
->>> bitbake core-image-sato
->>>
->>> bblayes.conf:
->>> BBLAYERS ?= " \
->>>   /home/mont3z/yocto/poky/meta \
->>>   /home/mont3z/yocto/poky/meta-poky \
->>>   /home/mont3z/yocto/poky/meta-yocto-bsp \
->>>   /home/mont3z/yocto/meta-openembedded/meta-oe \
->>>   /home/mont3z/yocto/meta-webkit \
->>
->>
->> what does this layer do ?
->>
->>>   /home/mont3z/yocto/meta-raspberrypi \
->>>   "
+Can we please have some automated tests covering all of this? Perhaps it would 
+be worth talking to Francisco Pedraza who is looking at adding tests under bug 
+6359:
+
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=6359
+
+Cheers,
+Paul
+
+-- 
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
