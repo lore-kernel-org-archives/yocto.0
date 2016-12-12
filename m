@@ -1,33 +1,83 @@
-Return-Path: <sgw@linux.intel.com>
+Return-Path: <bevenson@melinkcorp.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C8B4FE0050B; Mon, 12 Dec 2016 08:01:59 -0800 (PST)
+	id EF47AE0085D; Mon, 12 Dec 2016 08:04:09 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_PASS,TVD_PH_BODY_ACCOUNTS_PRE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [104.47.36.96 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [192.55.52.115 listed in list.dnswl.org]
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AC083E004E5
-	for <yocto@yoctoproject.org>; Mon, 12 Dec 2016 08:01:58 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by fmsmga103.fm.intel.com with ESMTP; 12 Dec 2016 08:01:33 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.33,337,1477983600"; d="scan'208,217";a="17048999"
-Received: from swold-mobl2.amr.corp.intel.com ([10.254.100.204])
-	by orsmga002.jf.intel.com with ESMTP; 12 Dec 2016 08:01:31 -0800
-Message-ID: <1481558490.4417.167.camel@linux.intel.com>
-From: Saul Wold <sgw@linux.intel.com>
-To: yocto@yoctoproject.org, openembedded-core@lists.openembedded.org
-Date: Mon, 12 Dec 2016 08:01:30 -0800
-X-Mailer: Evolution 3.20.5 (3.20.5-1.fc24) 
-Mime-Version: 1.0
-Subject: Yocto Project Status WW51
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* 0.0 TVD_PH_BODY_ACCOUNTS_PRE The body matches phrases such as
+	"accounts
+	*      suspended", "account credited", "account verification"
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com
+	(mail-sn1nam02on0096.outbound.protection.outlook.com [104.47.36.96])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 89075E004E5
+	for <yocto@yoctoproject.org>; Mon, 12 Dec 2016 08:03:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=Melink.onmicrosoft.com; s=selector1-melinkcorp-com;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
+	bh=N7M4oed94uBVY+Es7HGD9stAxC6/9Cr7/4N3pXpGonE=;
+	b=R0+6XUKMMS8c8BTgt0+rn/j3mBMOPaDw6qYvEIcc1RDYVbV02tCIV9EQdu2kTs7+07J0ZSEB5MuSok6O3x4XNsdpGyimScAWF/m2icdojtJnrZnZZjCh2uyZN4+qeKC90If5Hiv70/gnH4EeAdP+cu6ciNM7rrOfJa1okmuNZVU=
+Received: from DM5PR05MB2954.namprd05.prod.outlook.com (10.168.176.142) by
+	DM5PR05MB2956.namprd05.prod.outlook.com (10.168.176.144) with Microsoft
+	SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
+	15.1.771.4; Mon, 12 Dec 2016 16:03:56 +0000
+Received: from DM5PR05MB2954.namprd05.prod.outlook.com ([10.168.176.142]) by
+	DM5PR05MB2954.namprd05.prod.outlook.com ([10.168.176.142]) with mapi id
+	15.01.0771.014; Mon, 12 Dec 2016 16:03:56 +0000
+From: Bryan Evenson <bevenson@melinkcorp.com>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>, Yocto discussion list
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] suggestions for version controlling multi-layer
+	reproducible builds?
+Thread-Index: AQHSVIt673uiRqwosE6L8009wxkzPKEEctXw
+Date: Mon, 12 Dec 2016 16:03:56 +0000
+Message-ID: <DM5PR05MB29544A2B9D67C803ECDD6DB7BB980@DM5PR05MB2954.namprd05.prod.outlook.com>
+References: <alpine.LFD.2.20.1612121012290.18661@localhost.localdomain>
+In-Reply-To: <alpine.LFD.2.20.1612121012290.18661@localhost.localdomain>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+	smtp.mailfrom=bevenson@melinkcorp.com; 
+x-originating-ip: [98.100.91.242]
+x-ms-office365-filtering-correlation-id: 4ae9c858-73f2-44d6-8f9f-08d422a87a2c
+x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:(22001);SRVR:DM5PR05MB2956;
+x-microsoft-exchange-diagnostics: 1; DM5PR05MB2956;
+	7:jGH8pynMj4BR85FDgJ43JIuc0Pm/tWyDcmVdT3njzI8uIAoFzwETsvlyA/RhOOiiza307+O62/pf9HZofx+FJEsS1oms/dVm5ziH4t9N5tktwhxgFbDHASJc/GcjGnIl2uvzZoK2jjTckq3/49o0p4MYgppq1p8tHyOEwX17B0raSrTQ2W8UQWa8wxuOfy+sYlSN4l0PEk66zaDCtowl0WVHD5lBLz6XFOgrAfOJ4t+fg+ofwGXaNiTiyR3iBTH5/uUZ62NItTKFpqp7Xc+bmzF3li2L20XoTqHgEu1z+udwWSd37M+gXa96NncBIf27drZSaR5Re0/ZVJnw/S6VldDzoOeOSPhSmjRRru9nkeQ/q5aEXIZICEJ6g0lQK9zCz58NuU/KSxRI/3ZqINY6Ae4Z9XEo3lmBP5yHneT9D/Wsd52+HalUKK+GJwYfl5wY33M3zAfcec070fvI/BYQmg==
+x-microsoft-antispam-prvs: <DM5PR05MB2956398157B7AB9E797DB4BBBB980@DM5PR05MB2956.namprd05.prod.outlook.com>
+x-exchange-antispam-report-test: UriScan:(148322886591682)(31418570063057)(116415991822766)(81160342030619)(126878219848629);
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(6040375)(601004)(2401047)(5005006)(8121501046)(3002001)(10201501046)(6041248)(20161123562025)(20161123555025)(20161123560025)(20161123564025)(6072148);
+	SRVR:DM5PR05MB2956; BCL:0; PCL:0; RULEID:; SRVR:DM5PR05MB2956; 
+x-forefront-prvs: 0154C61618
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10019020)(6009001)(7916002)(39450400003)(189002)(43544003)(13464003)(377454003)(199003)(16601075003)(6506006)(107886002)(81156014)(81166006)(38730400001)(86362001)(2950100002)(7736002)(2906002)(15395725005)(6436002)(102836003)(3846002)(229853002)(97736004)(92566002)(77096006)(5001770100001)(6116002)(2900100001)(189998001)(76576001)(33656002)(68736007)(101416001)(31430400001)(5660300001)(74316002)(1720100001)(9686002)(3280700002)(7696004)(8936002)(3660700001)(122556002)(54356999)(99286002)(305945005)(76176999)(50986999)(66066001)(8676002)(106116001)(106356001)(105586002);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:DM5PR05MB2956;
+	H:DM5PR05MB2954.namprd05.prod.outlook.com; FPR:; SPF:None;
+	PTR:InfoNoRecords; MX:1; A:1; LANG:en; 
+received-spf: None (protection.outlook.com: melinkcorp.com does not designate
+	permitted sender hosts)
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
+MIME-Version: 1.0
+X-OriginatorOrg: melinkcorp.com
+X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Dec 2016 16:03:56.4542 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: d06db0f9-efcc-42b5-9f8c-c934a01c9bfd
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR05MB2956
+Subject: Re: suggestions for version controlling multi-layer reproducible builds?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,220 +89,95 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 12 Dec 2016 16:01:59 -0000
-Content-Type: multipart/alternative; boundary="=-dr9Vph+G0eF0e8r30PPF"
-
---=-dr9Vph+G0eF0e8r30PPF
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-
-
-Current Dev Position: YP 2.3 M1 -> M2
-Next Deadline: YP 2.3 M1 by Dec. 12, 2016 (TODAY!!)
-                         YP 2.3 M2 by Jan 23, 2017
-
-SWAT team rotation: Tracy -> Alejandro
-https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team
-
-Key Status/Updates:
- * Today is the M1 feature freeze deadline. Patches are being processed with a view to merging. We believe all patchsets targeting M1 have been posted apart from tinfoil2 which is imminent and we’re planning to try and include that in M1.
- * We’re continuing to struggle to identify which patches are causing which failures which may delay M1 slightly as it is going to take time to figure this out and ensure builds are stable.
- * We’re considering the best way to handle containers and the current build appliance in the project going forwards. If anyone had input they wish to contribute on that subject, Brian has started a thread on the architecture mailing list.
-
-Proposed upcoming dot releases:
-YP 2.0.3 Release by Dec. 9, 2016
-YP 2.2.1 Release by Jan. 20, 2017
-YP 2.1.3 Release by May. 19, 2017
-
-Key YP 2.3 Dates:
-YP 2.3 M1 Cutoff is Dec. 12, 2016
-YP 2.3 M1 Release is Dec. 23, 2016
-YP 2.3 M2 Cutoff is Jan. 23, 2017
-YP 2.3 M2 Release is Feb. 3, 2017
-YP 2.3 M3 Cutoff is Feb 27, 2017
-YP 2.3 M3 Release is Mar. 10, 2017
-YP 2.3 M4 Cutoff is April 3, 2017
-YP 2.3 M4 Release is April 28, 2017
-
-Tracking Metrics:
-	WDD 2437 (last week 2507)
-(https://wiki.yoctoproject.org/charts/combo.html)
-
-Key Status Links for YP:
-https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.3_Status
-https://wiki.yoctoproject.org/wiki/Yocto_2.3_Schedule
-https://wiki.yoctoproject.org/wiki/Yocto_2.3_Features
-
-[If anyone has suggestions for other information you’d like to see on this weekly status update, let us know!]
-
---=-dr9Vph+G0eF0e8r30PPF
-Content-Type: text/html; charset="utf-8"
+X-List-Received-Date: Mon, 12 Dec 2016 16:04:10 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<html><head></head><body><div><span id=3D"docs-internal-guid-c8041880-f3c4-=
-214b-6bea-dc22d3edfc81"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top=
-:0pt;margin-bottom:0pt;"><br></p><p dir=3D"ltr" style=3D"line-height:1.38;m=
-argin-top:0pt;margin-bottom:0pt;"><span style=3D"font-size: 14.666666666666=
-666px; font-family: Arial; color: rgb(0, 0, 0); background-color: transpare=
-nt; vertical-align: baseline; white-space: pre-wrap;">Current Dev Position:=
- YP 2.3 M1 -&gt; M2</span></p><p dir=3D"ltr" style=3D"line-height:1.38;marg=
-in-top:0pt;margin-bottom:0pt;"><span style=3D"font-size: 14.666666666666666=
-px; font-family: Arial; color: rgb(0, 0, 0); background-color: transparent;=
- vertical-align: baseline; white-space: pre-wrap;">Next Deadline: YP 2.3 M1=
- by Dec. 12, 2016 (TODAY!!)</span></p><p dir=3D"ltr" style=3D"line-height:1=
-.38;margin-top:0pt;margin-bottom:0pt;"><span style=3D"font-size: 14.6666666=
-66666666px; font-family: Arial; color: rgb(0, 0, 0); background-color: tran=
-sparent; vertical-align: baseline; white-space: pre-wrap;"> &nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;YP 2.3 M2 by Jan 23, =
-2017</span></p><div dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;ma=
-rgin-bottom:0pt;"><br></div><p dir=3D"ltr" style=3D"line-height:1.38;margin=
--top:0pt;margin-bottom:0pt;"><span style=3D"font-size: 14.666666666666666px=
-; font-family: Arial; color: rgb(0, 0, 0); background-color: transparent; v=
-ertical-align: baseline; white-space: pre-wrap;">SWAT team rotation: Tracy =
--&gt; Alejandro</span></p><p dir=3D"ltr" style=3D"line-height:1.38;margin-t=
-op:0pt;margin-bottom:0pt;"><a href=3D"https://wiki.yoctoproject.org/wiki/Yo=
-cto_Build_Failure_Swat_Team" style=3D"text-decoration:none;"><span style=3D=
-"font-size: 14.666666666666666px; font-family: Consolas; color: rgb(17, 85,=
- 204); background-color: transparent; text-decoration: underline; vertical-=
-align: baseline; white-space: pre-wrap;">https://wiki.yoctoproject.org/wiki=
-/Yocto_Build_Failure_Swat_Team</span></a></p><div dir=3D"ltr" style=3D"line=
--height:1.38;margin-top:0pt;margin-bottom:0pt;"><br></div><p dir=3D"ltr" st=
-yle=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style=3D"f=
-ont-size: 14.666666666666666px; font-family: Arial; color: rgb(0, 0, 0); ba=
-ckground-color: transparent; vertical-align: baseline; white-space: pre-wra=
-p;">Key Status/Updates:</span></p><ul style=3D"margin-top:0pt;margin-bottom=
-:0pt;"><li dir=3D"ltr" style=3D"list-style-type: disc; font-size: 14.666666=
-666666666px; font-family: Arial; color: rgb(0, 0, 0); background-color: tra=
-nsparent; vertical-align: baseline;"><p dir=3D"ltr" style=3D"line-height:1.=
-38;margin-top:0pt;margin-bottom:0pt;"><span style=3D"font-size: 14.66666666=
-6666666px; background-color: transparent; vertical-align: baseline; white-s=
-pace: pre-wrap;">Today is the M1 feature freeze deadline. Patches are being=
- processed with a view to merging. We believe all patchsets targeting M1 ha=
-ve been posted apart from tinfoil2 which is imminent and we=E2=80=99re plan=
-ning to try and include that in M1.</span></p></li><li dir=3D"ltr" style=3D=
-"list-style-type: disc; font-size: 14.666666666666666px; font-family: Arial=
-; color: rgb(0, 0, 0); background-color: transparent; vertical-align: basel=
-ine;"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom=
-:0pt;"><span style=3D"font-size: 14.666666666666666px; background-color: tr=
-ansparent; vertical-align: baseline; white-space: pre-wrap;">We=E2=80=99re =
-continuing to struggle to identify which patches are causing which failures=
- which may delay M1 slightly as it is going to take time to figure this out=
- and ensure builds are stable.</span></p></li><li dir=3D"ltr" style=3D"list=
--style-type: disc; font-size: 14.666666666666666px; font-family: Arial; col=
-or: rgb(0, 0, 0); background-color: transparent; vertical-align: baseline;"=
-><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;=
-"><span style=3D"font-size: 14.666666666666666px; background-color: transpa=
-rent; vertical-align: baseline; white-space: pre-wrap;">We=E2=80=99re consi=
-dering the best way to handle containers and the current build appliance in=
- the project going forwards. If anyone had input they wish to contribute on=
- that subject, Brian has started a thread on the architecture mailing list.=
-</span></p></li></ul><div dir=3D"ltr" style=3D"line-height:1.38;margin-top:=
-0pt;margin-bottom:0pt;"><br></div><p dir=3D"ltr" style=3D"line-height:1.38;=
-margin-top:0pt;margin-bottom:0pt;"><span style=3D"font-size: 14.66666666666=
-6666px; font-family: Arial; color: rgb(0, 0, 0); background-color: transpar=
-ent; vertical-align: baseline; white-space: pre-wrap;">Proposed upcoming do=
-t releases:</span></p><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0=
-pt;margin-bottom:0pt;"><span style=3D"font-size: 14.666666666666666px; font=
--family: Arial; color: rgb(0, 0, 0); background-color: transparent; vertica=
-l-align: baseline; white-space: pre-wrap;">YP 2.0.3 Release by Dec. 9, 2016=
-</span></p><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-b=
-ottom:0pt;"><span style=3D"font-size: 14.666666666666666px; font-family: Ar=
-ial; color: rgb(0, 0, 0); background-color: transparent; vertical-align: ba=
-seline; white-space: pre-wrap;">YP 2.2.1 Release by Jan. 20, 2017</span></p=
-><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;=
-"><span style=3D"font-size: 14.666666666666666px; font-family: Arial; color=
-: rgb(0, 0, 0); background-color: transparent; vertical-align: baseline; wh=
-ite-space: pre-wrap;">YP 2.1.3 Release by May. 19, 2017</span></p><div dir=
-=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><br><=
-/div><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:=
-0pt;"><span style=3D"font-size: 14.666666666666666px; font-family: Arial; c=
-olor: rgb(0, 0, 0); background-color: transparent; vertical-align: baseline=
-; white-space: pre-wrap;">Key YP 2.3 Dates:</span></p><p dir=3D"ltr" style=
-=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style=3D"font=
--size: 14.666666666666666px; font-family: Arial; color: rgb(0, 0, 0); backg=
-round-color: transparent; vertical-align: baseline; white-space: pre-wrap;"=
->YP 2.3 M1 Cutoff is Dec. 12, 2016</span></p><p dir=3D"ltr" style=3D"line-h=
-eight:1.38;margin-top:0pt;margin-bottom:0pt;"><span style=3D"font-size: 14.=
-666666666666666px; font-family: Arial; color: rgb(0, 0, 0); background-colo=
-r: transparent; vertical-align: baseline; white-space: pre-wrap;">YP 2.3 M1=
- Release is Dec. 23, 2016</span></p><p dir=3D"ltr" style=3D"line-height:1.3=
-8;margin-top:0pt;margin-bottom:0pt;"><span style=3D"font-size: 14.666666666=
-666666px; font-family: Arial; color: rgb(0, 0, 0); background-color: transp=
-arent; vertical-align: baseline; white-space: pre-wrap;">YP 2.3 M2 Cutoff i=
-s Jan. 23, 2017</span></p><p dir=3D"ltr" style=3D"line-height:1.38;margin-t=
-op:0pt;margin-bottom:0pt;"><span style=3D"font-size: 14.666666666666666px; =
-font-family: Arial; color: rgb(0, 0, 0); background-color: transparent; ver=
-tical-align: baseline; white-space: pre-wrap;">YP 2.3 M2 Release is Feb. 3,=
- 2017</span></p><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;mar=
-gin-bottom:0pt;"><span style=3D"font-size: 14.666666666666666px; font-famil=
-y: Arial; color: rgb(0, 0, 0); background-color: transparent; vertical-alig=
-n: baseline; white-space: pre-wrap;">YP 2.3 M3 Cutoff is Feb 27, 2017</span=
-></p><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:=
-0pt;"><span style=3D"font-size: 14.666666666666666px; font-family: Arial; c=
-olor: rgb(0, 0, 0); background-color: transparent; vertical-align: baseline=
-; white-space: pre-wrap;">YP 2.3 M3 Release is Mar. 10, 2017</span></p><p d=
-ir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><sp=
-an style=3D"font-size: 14.666666666666666px; font-family: Arial; color: rgb=
-(0, 0, 0); background-color: transparent; vertical-align: baseline; white-s=
-pace: pre-wrap;">YP 2.3 M4 Cutoff is April 3, 2017</span></p><p dir=3D"ltr"=
- style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style=
-=3D"font-size: 14.666666666666666px; font-family: Arial; color: rgb(0, 0, 0=
-); background-color: transparent; vertical-align: baseline; white-space: pr=
-e-wrap;">YP 2.3 M4 Release is April 28, 2017</span></p><div dir=3D"ltr" sty=
-le=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><br></div><p dir=
-=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span=
- style=3D"font-size: 14.666666666666666px; font-family: Arial; color: rgb(0=
-, 0, 0); background-color: transparent; vertical-align: baseline; white-spa=
-ce: pre-wrap;">Tracking Metrics:</span></p><p dir=3D"ltr" style=3D"line-hei=
-ght:1.38;margin-top:0pt;margin-bottom:0pt;"><span style=3D"font-size: 14.66=
-6666666666666px; font-family: Arial; color: rgb(0, 0, 0); background-color:=
- transparent; vertical-align: baseline; white-space: pre-wrap;"><span class=
-=3D"Apple-tab-span" style=3D"white-space:pre;">	</span></span><span style=
-=3D"font-size: 14.666666666666666px; font-family: Arial; color: rgb(0, 0, 0=
-); background-color: transparent; vertical-align: baseline; white-space: pr=
-e-wrap;">WDD 2437 (last week 2507)</span></p><p dir=3D"ltr" style=3D"line-h=
-eight:1.38;margin-top:0pt;margin-bottom:0pt;text-indent: 36pt;"><span style=
-=3D"font-size: 14.666666666666666px; font-family: Consolas; color: rgb(0, 0=
-, 0); background-color: transparent; vertical-align: baseline; white-space:=
- pre-wrap;">(</span><a href=3D"https://wiki.yoctoproject.org/charts/combo.h=
-tml" style=3D"text-decoration:none;"><span style=3D"font-size: 14.666666666=
-666666px; font-family: Arial; color: rgb(17, 85, 204); background-color: tr=
-ansparent; text-decoration: underline; vertical-align: baseline; white-spac=
-e: pre-wrap;">https://wiki.yoctoproject.org/charts/combo.html</span></a><sp=
-an style=3D"font-size: 14.666666666666666px; font-family: Consolas; color: =
-rgb(0, 0, 0); background-color: transparent; vertical-align: baseline; whit=
-e-space: pre-wrap;">)</span></p><div dir=3D"ltr" style=3D"line-height:1.38;=
-margin-top:0pt;margin-bottom:0pt;"><br></div><p dir=3D"ltr" style=3D"line-h=
-eight:1.38;margin-top:0pt;margin-bottom:0pt;"><span style=3D"font-size: 14.=
-666666666666666px; font-family: Arial; color: rgb(0, 0, 0); background-colo=
-r: transparent; vertical-align: baseline; white-space: pre-wrap;">Key Statu=
-s Links for YP:</span></p><p dir=3D"ltr" style=3D"line-height:1.38;margin-t=
-op:0pt;margin-bottom:0pt;"><a href=3D"https://wiki.yoctoproject.org/wiki/Yo=
-cto_Project_v2.3_Status" style=3D"text-decoration:none;"><span style=3D"fon=
-t-size: 14.666666666666666px; font-family: Consolas; color: rgb(17, 85, 204=
-); background-color: transparent; text-decoration: underline; vertical-alig=
-n: baseline; white-space: pre-wrap;">https://wiki.yoctoproject.org/wiki/Yoc=
-to_Project_v2.3_Status</span></a></p><p dir=3D"ltr" style=3D"line-height:1.=
-38;margin-top:0pt;margin-bottom:0pt;"><a href=3D"https://wiki.yoctoproject.=
-org/wiki/Yocto_2.3_Schedule" style=3D"text-decoration:none;"><span style=3D=
-"font-size: 14.666666666666666px; font-family: Consolas; color: rgb(17, 85,=
- 204); background-color: transparent; text-decoration: underline; vertical-=
-align: baseline; white-space: pre-wrap;">https://wiki.yoctoproject.org/wiki=
-/Yocto_2.3_Schedule</span></a></p><p dir=3D"ltr" style=3D"line-height:1.38;=
-margin-top:0pt;margin-bottom:0pt;"><a href=3D"https://wiki.yoctoproject.org=
-/wiki/Yocto_2.3_Features" style=3D"text-decoration:none;"><span style=3D"fo=
-nt-size: 14.666666666666666px; font-family: Consolas; color: rgb(17, 85, 20=
-4); background-color: transparent; text-decoration: underline; vertical-ali=
-gn: baseline; white-space: pre-wrap;">https://wiki.yoctoproject.org/wiki/Yo=
-cto_2.3_Features</span></a></p><div dir=3D"ltr" style=3D"line-height:1.38;m=
-argin-top:0pt;margin-bottom:0pt;"><br></div><p dir=3D"ltr" style=3D"line-he=
-ight:1.38;margin-top:0pt;margin-bottom:0pt;"><span style=3D"font-size: 14.6=
-66666666666666px; font-family: Arial; color: rgb(0, 0, 0); background-color=
-: transparent; vertical-align: baseline; white-space: pre-wrap;">[If anyone=
- has suggestions for other information you=E2=80=99d like to see on this we=
-ekly status update, let us know!]</span></p><div dir=3D"ltr" style=3D"line-=
-height:1.38;margin-top:0pt;margin-bottom:0pt;"><br></div></span></div><div>=
-</div></body></html>
+Robert,
 
---=-dr9Vph+G0eF0e8r30PPF--
+> -----Original Message-----
+> From: yocto-bounces@yoctoproject.org [mailto:yocto-
+> bounces@yoctoproject.org] On Behalf Of Robert P. J. Day
+> Sent: Monday, December 12, 2016 10:20 AM
+> To: Yocto discussion list <yocto@yoctoproject.org>
+> Subject: [yocto] suggestions for version controlling multi-layer reproduc=
+ible
+> builds?
+>=20
+>=20
+>   (if there's already a doc section for this somewhere, a pointer to it w=
+ould be
+> just ducky.)
+>=20
+>   if one is building an image for a releasable, commercial product, and t=
+hat
+> image involves pulling in numerous layers, then dumping all sorts of
+> proprietary apps on top of it, what are the possibilities for how to vers=
+ion
+> number the released images such that, if a client has an issue, they can
+> identify precisely the state of components that went into the system they=
+'re
+> working with?
+>=20
+
+For my setup I have a separate package that is the distribution version num=
+ber.  Whenever we release an update, the distribution version number is upd=
+ated.  We then tag all our layers with the distribution version number for =
+proper record keeping.  The Angstrom distribution was (or maybe still is?) =
+doing something similar and was the inspiration for our setup.
+
+>   in addition to all of the layers involved in the build, one has to take=
+ into
+> account that, when critical bugs are identified, an updated RPM might be
+> sent out and applied, whereupon that system's version number is no longer
+> perfectly accurate. in the end, the state of someone's running system wil=
+l be
+> determined by a possibly huge combination of selected packages, preferred
+> package versions, build config options, additional user space apps, hot f=
+ixes
+> that have been applied and so on.
+>=20
+>   what sort of meaningful "version number" can be applied to something li=
+ke
+> that? i'm sure at least a few other people have to be doing something lik=
+e
+> that, so i'm open to suggestions.
+>=20
+> rday
+
+
+Any time we release an update, no matter how minor, we update the distribut=
+ion version package.  Otherwise, as you state, you could have an update tha=
+t you can't reproduce.  We also archive the package repository and generate=
+d image files for each release so we can flash a board with a previous rele=
+ase and test from there.  It can be a pain to get the process down the firs=
+t time, but after that a simple Bash script can take care of all the hard w=
+ork for you and ensure you don't skip a step.
+
+Bryan
+
+>=20
+> --
+>=20
+> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> Robert P. J. Day                                 Ottawa, Ontario, CANADA
+>                         http://crashcourse.ca
+>=20
+> Twitter:                                       http://twitter.com/rpjday
+> LinkedIn:                               http://ca.linkedin.com/in/rpjday
+> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>=20
+>=20
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
