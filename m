@@ -1,49 +1,33 @@
-Return-Path: <mariano.lopez@linux.intel.com>
+Return-Path: <sgw@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 75DBDE00519; Mon, 12 Dec 2016 07:48:44 -0800 (PST)
+	id C8B4FE0050B; Mon, 12 Dec 2016 08:01:59 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 98628E00503
-	for <yocto@yoctoproject.org>; Mon, 12 Dec 2016 07:48:40 -0800 (PST)
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-	by fmsmga101.fm.intel.com with ESMTP; 12 Dec 2016 07:48:40 -0800
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [192.55.52.115 listed in list.dnswl.org]
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AC083E004E5
+	for <yocto@yoctoproject.org>; Mon, 12 Dec 2016 08:01:58 -0800 (PST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by fmsmga103.fm.intel.com with ESMTP; 12 Dec 2016 08:01:33 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.33,337,1477983600"; d="scan'208";a="41684131"
-Received: from unknown (HELO [10.219.5.165]) ([10.219.5.165])
-	by fmsmga006.fm.intel.com with ESMTP; 12 Dec 2016 07:48:39 -0800
-To: Patrick Ohly <patrick.ohly@intel.com>
-References: <20161121120355.18309-1-git@andred.net>
-	<1480503859.6873.280.camel@intel.com>
-	<1480516308.13682.1.camel@andred.net>
-	<1480517999.6873.298.camel@intel.com>
-	<30a3dd41-2e1c-8658-b83d-8632944d1709@denx.de>
-	<1481017522.17535.38.camel@intel.com>
-	<8e1fdcb8-d9fb-0e51-2e21-91e7e7c6f450@linux.intel.com>
-	<c3ce9528-f2eb-dd3f-cc68-331435aeda35@balister.org>
-	<16ca1a50-f46a-196f-66b8-91f0d14f59c2@denx.de>
-	<1481296433.17535.170.camel@intel.com>
-	<4515f6e0-a99b-09ae-e233-786ceed4847d@denx.de>
-	<f62528f8-aadc-2542-2d2a-96faaa5af01f@linux.intel.com>
-	<1481557268.17535.234.camel@intel.com>
-From: Mariano Lopez <mariano.lopez@linux.intel.com>
-Message-ID: <a696ba47-0a02-d90e-d2cd-297a40dd73c4@linux.intel.com>
-Date: Mon, 12 Dec 2016 09:49:01 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.5.0
-MIME-Version: 1.0
-In-Reply-To: <1481557268.17535.234.camel@intel.com>
-Cc: "Lopez, Mariano" <mariano.lopez@intel.com>, yocto@yoctoproject.org,
-	=?UTF-8?Q?Andr=c3=a9_Draszik?= <git@andred.net>
-Subject: Re: update mechanisms
+X-IronPort-AV: E=Sophos;i="5.33,337,1477983600"; d="scan'208,217";a="17048999"
+Received: from swold-mobl2.amr.corp.intel.com ([10.254.100.204])
+	by orsmga002.jf.intel.com with ESMTP; 12 Dec 2016 08:01:31 -0800
+Message-ID: <1481558490.4417.167.camel@linux.intel.com>
+From: Saul Wold <sgw@linux.intel.com>
+To: yocto@yoctoproject.org, openembedded-core@lists.openembedded.org
+Date: Mon, 12 Dec 2016 08:01:30 -0800
+X-Mailer: Evolution 3.20.5 (3.20.5-1.fc24) 
+Mime-Version: 1.0
+Subject: Yocto Project Status WW51
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,33 +39,220 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 12 Dec 2016 15:48:44 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 12 Dec 2016 16:01:59 -0000
+Content-Type: multipart/alternative; boundary="=-dr9Vph+G0eF0e8r30PPF"
+
+--=-dr9Vph+G0eF0e8r30PPF
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
 
+Current Dev Position: YP 2.3 M1 -> M2
+Next Deadline: YP 2.3 M1 by Dec. 12, 2016 (TODAY!!)
+                         YP 2.3 M2 by Jan 23, 2017
 
-On 12/12/16 09:41, Patrick Ohly wrote:
-> On Mon, 2016-12-12 at 08:59 -0600, Mariano Lopez wrote:
->>>> In particular the "complexity" column is a bit subjective. Stefano, I
->>>> hope you don't mind that I did not quite buy the "easy to use"
->>>> characterization of swupdate ;-)
->>> No worry...and I have not written myself. It was inserted by Mariano, so
->>> it looks like that swupdate at least for Mariano is "easy to use".
->>> I think it is correct to point out that customization is required.
->> Compared to other update mechanism that I tested it was the easier to
->> implement.
-> Which "getting started" document or presentation were you using? The
-> documentation for mender (https://docs.mender.io/) is very
-> straight-forward (partly of course because it doesn't need to cover many
-> variations), while for swupdate
-> (http://sbabic.github.io/swupdate/swupdate.html) I found it less clear
-> how to begin.
->
+SWAT team rotation: Tracy -> Alejandro
+https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team
 
-When I did a research in update mechanism, mender wasn't yet available,
-and indeed it seems very straight forward (need to test it before final
-veredict). But if you compare SWUpdate, swupd, and OSTree; SWUpdate is
-by far less complex than the other two
+Key Status/Updates:
+ * Today is the M1 feature freeze deadline. Patches are being processed with a view to merging. We believe all patchsets targeting M1 have been posted apart from tinfoil2 which is imminent and we’re planning to try and include that in M1.
+ * We’re continuing to struggle to identify which patches are causing which failures which may delay M1 slightly as it is going to take time to figure this out and ensure builds are stable.
+ * We’re considering the best way to handle containers and the current build appliance in the project going forwards. If anyone had input they wish to contribute on that subject, Brian has started a thread on the architecture mailing list.
 
+Proposed upcoming dot releases:
+YP 2.0.3 Release by Dec. 9, 2016
+YP 2.2.1 Release by Jan. 20, 2017
+YP 2.1.3 Release by May. 19, 2017
 
+Key YP 2.3 Dates:
+YP 2.3 M1 Cutoff is Dec. 12, 2016
+YP 2.3 M1 Release is Dec. 23, 2016
+YP 2.3 M2 Cutoff is Jan. 23, 2017
+YP 2.3 M2 Release is Feb. 3, 2017
+YP 2.3 M3 Cutoff is Feb 27, 2017
+YP 2.3 M3 Release is Mar. 10, 2017
+YP 2.3 M4 Cutoff is April 3, 2017
+YP 2.3 M4 Release is April 28, 2017
+
+Tracking Metrics:
+	WDD 2437 (last week 2507)
+(https://wiki.yoctoproject.org/charts/combo.html)
+
+Key Status Links for YP:
+https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.3_Status
+https://wiki.yoctoproject.org/wiki/Yocto_2.3_Schedule
+https://wiki.yoctoproject.org/wiki/Yocto_2.3_Features
+
+[If anyone has suggestions for other information you’d like to see on this weekly status update, let us know!]
+
+--=-dr9Vph+G0eF0e8r30PPF
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html><head></head><body><div><span id=3D"docs-internal-guid-c8041880-f3c4-=
+214b-6bea-dc22d3edfc81"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top=
+:0pt;margin-bottom:0pt;"><br></p><p dir=3D"ltr" style=3D"line-height:1.38;m=
+argin-top:0pt;margin-bottom:0pt;"><span style=3D"font-size: 14.666666666666=
+666px; font-family: Arial; color: rgb(0, 0, 0); background-color: transpare=
+nt; vertical-align: baseline; white-space: pre-wrap;">Current Dev Position:=
+ YP 2.3 M1 -&gt; M2</span></p><p dir=3D"ltr" style=3D"line-height:1.38;marg=
+in-top:0pt;margin-bottom:0pt;"><span style=3D"font-size: 14.666666666666666=
+px; font-family: Arial; color: rgb(0, 0, 0); background-color: transparent;=
+ vertical-align: baseline; white-space: pre-wrap;">Next Deadline: YP 2.3 M1=
+ by Dec. 12, 2016 (TODAY!!)</span></p><p dir=3D"ltr" style=3D"line-height:1=
+.38;margin-top:0pt;margin-bottom:0pt;"><span style=3D"font-size: 14.6666666=
+66666666px; font-family: Arial; color: rgb(0, 0, 0); background-color: tran=
+sparent; vertical-align: baseline; white-space: pre-wrap;"> &nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;YP 2.3 M2 by Jan 23, =
+2017</span></p><div dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;ma=
+rgin-bottom:0pt;"><br></div><p dir=3D"ltr" style=3D"line-height:1.38;margin=
+-top:0pt;margin-bottom:0pt;"><span style=3D"font-size: 14.666666666666666px=
+; font-family: Arial; color: rgb(0, 0, 0); background-color: transparent; v=
+ertical-align: baseline; white-space: pre-wrap;">SWAT team rotation: Tracy =
+-&gt; Alejandro</span></p><p dir=3D"ltr" style=3D"line-height:1.38;margin-t=
+op:0pt;margin-bottom:0pt;"><a href=3D"https://wiki.yoctoproject.org/wiki/Yo=
+cto_Build_Failure_Swat_Team" style=3D"text-decoration:none;"><span style=3D=
+"font-size: 14.666666666666666px; font-family: Consolas; color: rgb(17, 85,=
+ 204); background-color: transparent; text-decoration: underline; vertical-=
+align: baseline; white-space: pre-wrap;">https://wiki.yoctoproject.org/wiki=
+/Yocto_Build_Failure_Swat_Team</span></a></p><div dir=3D"ltr" style=3D"line=
+-height:1.38;margin-top:0pt;margin-bottom:0pt;"><br></div><p dir=3D"ltr" st=
+yle=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style=3D"f=
+ont-size: 14.666666666666666px; font-family: Arial; color: rgb(0, 0, 0); ba=
+ckground-color: transparent; vertical-align: baseline; white-space: pre-wra=
+p;">Key Status/Updates:</span></p><ul style=3D"margin-top:0pt;margin-bottom=
+:0pt;"><li dir=3D"ltr" style=3D"list-style-type: disc; font-size: 14.666666=
+666666666px; font-family: Arial; color: rgb(0, 0, 0); background-color: tra=
+nsparent; vertical-align: baseline;"><p dir=3D"ltr" style=3D"line-height:1.=
+38;margin-top:0pt;margin-bottom:0pt;"><span style=3D"font-size: 14.66666666=
+6666666px; background-color: transparent; vertical-align: baseline; white-s=
+pace: pre-wrap;">Today is the M1 feature freeze deadline. Patches are being=
+ processed with a view to merging. We believe all patchsets targeting M1 ha=
+ve been posted apart from tinfoil2 which is imminent and we=E2=80=99re plan=
+ning to try and include that in M1.</span></p></li><li dir=3D"ltr" style=3D=
+"list-style-type: disc; font-size: 14.666666666666666px; font-family: Arial=
+; color: rgb(0, 0, 0); background-color: transparent; vertical-align: basel=
+ine;"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom=
+:0pt;"><span style=3D"font-size: 14.666666666666666px; background-color: tr=
+ansparent; vertical-align: baseline; white-space: pre-wrap;">We=E2=80=99re =
+continuing to struggle to identify which patches are causing which failures=
+ which may delay M1 slightly as it is going to take time to figure this out=
+ and ensure builds are stable.</span></p></li><li dir=3D"ltr" style=3D"list=
+-style-type: disc; font-size: 14.666666666666666px; font-family: Arial; col=
+or: rgb(0, 0, 0); background-color: transparent; vertical-align: baseline;"=
+><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;=
+"><span style=3D"font-size: 14.666666666666666px; background-color: transpa=
+rent; vertical-align: baseline; white-space: pre-wrap;">We=E2=80=99re consi=
+dering the best way to handle containers and the current build appliance in=
+ the project going forwards. If anyone had input they wish to contribute on=
+ that subject, Brian has started a thread on the architecture mailing list.=
+</span></p></li></ul><div dir=3D"ltr" style=3D"line-height:1.38;margin-top:=
+0pt;margin-bottom:0pt;"><br></div><p dir=3D"ltr" style=3D"line-height:1.38;=
+margin-top:0pt;margin-bottom:0pt;"><span style=3D"font-size: 14.66666666666=
+6666px; font-family: Arial; color: rgb(0, 0, 0); background-color: transpar=
+ent; vertical-align: baseline; white-space: pre-wrap;">Proposed upcoming do=
+t releases:</span></p><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0=
+pt;margin-bottom:0pt;"><span style=3D"font-size: 14.666666666666666px; font=
+-family: Arial; color: rgb(0, 0, 0); background-color: transparent; vertica=
+l-align: baseline; white-space: pre-wrap;">YP 2.0.3 Release by Dec. 9, 2016=
+</span></p><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-b=
+ottom:0pt;"><span style=3D"font-size: 14.666666666666666px; font-family: Ar=
+ial; color: rgb(0, 0, 0); background-color: transparent; vertical-align: ba=
+seline; white-space: pre-wrap;">YP 2.2.1 Release by Jan. 20, 2017</span></p=
+><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;=
+"><span style=3D"font-size: 14.666666666666666px; font-family: Arial; color=
+: rgb(0, 0, 0); background-color: transparent; vertical-align: baseline; wh=
+ite-space: pre-wrap;">YP 2.1.3 Release by May. 19, 2017</span></p><div dir=
+=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><br><=
+/div><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:=
+0pt;"><span style=3D"font-size: 14.666666666666666px; font-family: Arial; c=
+olor: rgb(0, 0, 0); background-color: transparent; vertical-align: baseline=
+; white-space: pre-wrap;">Key YP 2.3 Dates:</span></p><p dir=3D"ltr" style=
+=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style=3D"font=
+-size: 14.666666666666666px; font-family: Arial; color: rgb(0, 0, 0); backg=
+round-color: transparent; vertical-align: baseline; white-space: pre-wrap;"=
+>YP 2.3 M1 Cutoff is Dec. 12, 2016</span></p><p dir=3D"ltr" style=3D"line-h=
+eight:1.38;margin-top:0pt;margin-bottom:0pt;"><span style=3D"font-size: 14.=
+666666666666666px; font-family: Arial; color: rgb(0, 0, 0); background-colo=
+r: transparent; vertical-align: baseline; white-space: pre-wrap;">YP 2.3 M1=
+ Release is Dec. 23, 2016</span></p><p dir=3D"ltr" style=3D"line-height:1.3=
+8;margin-top:0pt;margin-bottom:0pt;"><span style=3D"font-size: 14.666666666=
+666666px; font-family: Arial; color: rgb(0, 0, 0); background-color: transp=
+arent; vertical-align: baseline; white-space: pre-wrap;">YP 2.3 M2 Cutoff i=
+s Jan. 23, 2017</span></p><p dir=3D"ltr" style=3D"line-height:1.38;margin-t=
+op:0pt;margin-bottom:0pt;"><span style=3D"font-size: 14.666666666666666px; =
+font-family: Arial; color: rgb(0, 0, 0); background-color: transparent; ver=
+tical-align: baseline; white-space: pre-wrap;">YP 2.3 M2 Release is Feb. 3,=
+ 2017</span></p><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;mar=
+gin-bottom:0pt;"><span style=3D"font-size: 14.666666666666666px; font-famil=
+y: Arial; color: rgb(0, 0, 0); background-color: transparent; vertical-alig=
+n: baseline; white-space: pre-wrap;">YP 2.3 M3 Cutoff is Feb 27, 2017</span=
+></p><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:=
+0pt;"><span style=3D"font-size: 14.666666666666666px; font-family: Arial; c=
+olor: rgb(0, 0, 0); background-color: transparent; vertical-align: baseline=
+; white-space: pre-wrap;">YP 2.3 M3 Release is Mar. 10, 2017</span></p><p d=
+ir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><sp=
+an style=3D"font-size: 14.666666666666666px; font-family: Arial; color: rgb=
+(0, 0, 0); background-color: transparent; vertical-align: baseline; white-s=
+pace: pre-wrap;">YP 2.3 M4 Cutoff is April 3, 2017</span></p><p dir=3D"ltr"=
+ style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style=
+=3D"font-size: 14.666666666666666px; font-family: Arial; color: rgb(0, 0, 0=
+); background-color: transparent; vertical-align: baseline; white-space: pr=
+e-wrap;">YP 2.3 M4 Release is April 28, 2017</span></p><div dir=3D"ltr" sty=
+le=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><br></div><p dir=
+=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span=
+ style=3D"font-size: 14.666666666666666px; font-family: Arial; color: rgb(0=
+, 0, 0); background-color: transparent; vertical-align: baseline; white-spa=
+ce: pre-wrap;">Tracking Metrics:</span></p><p dir=3D"ltr" style=3D"line-hei=
+ght:1.38;margin-top:0pt;margin-bottom:0pt;"><span style=3D"font-size: 14.66=
+6666666666666px; font-family: Arial; color: rgb(0, 0, 0); background-color:=
+ transparent; vertical-align: baseline; white-space: pre-wrap;"><span class=
+=3D"Apple-tab-span" style=3D"white-space:pre;">	</span></span><span style=
+=3D"font-size: 14.666666666666666px; font-family: Arial; color: rgb(0, 0, 0=
+); background-color: transparent; vertical-align: baseline; white-space: pr=
+e-wrap;">WDD 2437 (last week 2507)</span></p><p dir=3D"ltr" style=3D"line-h=
+eight:1.38;margin-top:0pt;margin-bottom:0pt;text-indent: 36pt;"><span style=
+=3D"font-size: 14.666666666666666px; font-family: Consolas; color: rgb(0, 0=
+, 0); background-color: transparent; vertical-align: baseline; white-space:=
+ pre-wrap;">(</span><a href=3D"https://wiki.yoctoproject.org/charts/combo.h=
+tml" style=3D"text-decoration:none;"><span style=3D"font-size: 14.666666666=
+666666px; font-family: Arial; color: rgb(17, 85, 204); background-color: tr=
+ansparent; text-decoration: underline; vertical-align: baseline; white-spac=
+e: pre-wrap;">https://wiki.yoctoproject.org/charts/combo.html</span></a><sp=
+an style=3D"font-size: 14.666666666666666px; font-family: Consolas; color: =
+rgb(0, 0, 0); background-color: transparent; vertical-align: baseline; whit=
+e-space: pre-wrap;">)</span></p><div dir=3D"ltr" style=3D"line-height:1.38;=
+margin-top:0pt;margin-bottom:0pt;"><br></div><p dir=3D"ltr" style=3D"line-h=
+eight:1.38;margin-top:0pt;margin-bottom:0pt;"><span style=3D"font-size: 14.=
+666666666666666px; font-family: Arial; color: rgb(0, 0, 0); background-colo=
+r: transparent; vertical-align: baseline; white-space: pre-wrap;">Key Statu=
+s Links for YP:</span></p><p dir=3D"ltr" style=3D"line-height:1.38;margin-t=
+op:0pt;margin-bottom:0pt;"><a href=3D"https://wiki.yoctoproject.org/wiki/Yo=
+cto_Project_v2.3_Status" style=3D"text-decoration:none;"><span style=3D"fon=
+t-size: 14.666666666666666px; font-family: Consolas; color: rgb(17, 85, 204=
+); background-color: transparent; text-decoration: underline; vertical-alig=
+n: baseline; white-space: pre-wrap;">https://wiki.yoctoproject.org/wiki/Yoc=
+to_Project_v2.3_Status</span></a></p><p dir=3D"ltr" style=3D"line-height:1.=
+38;margin-top:0pt;margin-bottom:0pt;"><a href=3D"https://wiki.yoctoproject.=
+org/wiki/Yocto_2.3_Schedule" style=3D"text-decoration:none;"><span style=3D=
+"font-size: 14.666666666666666px; font-family: Consolas; color: rgb(17, 85,=
+ 204); background-color: transparent; text-decoration: underline; vertical-=
+align: baseline; white-space: pre-wrap;">https://wiki.yoctoproject.org/wiki=
+/Yocto_2.3_Schedule</span></a></p><p dir=3D"ltr" style=3D"line-height:1.38;=
+margin-top:0pt;margin-bottom:0pt;"><a href=3D"https://wiki.yoctoproject.org=
+/wiki/Yocto_2.3_Features" style=3D"text-decoration:none;"><span style=3D"fo=
+nt-size: 14.666666666666666px; font-family: Consolas; color: rgb(17, 85, 20=
+4); background-color: transparent; text-decoration: underline; vertical-ali=
+gn: baseline; white-space: pre-wrap;">https://wiki.yoctoproject.org/wiki/Yo=
+cto_2.3_Features</span></a></p><div dir=3D"ltr" style=3D"line-height:1.38;m=
+argin-top:0pt;margin-bottom:0pt;"><br></div><p dir=3D"ltr" style=3D"line-he=
+ight:1.38;margin-top:0pt;margin-bottom:0pt;"><span style=3D"font-size: 14.6=
+66666666666666px; font-family: Arial; color: rgb(0, 0, 0); background-color=
+: transparent; vertical-align: baseline; white-space: pre-wrap;">[If anyone=
+ has suggestions for other information you=E2=80=99d like to see on this we=
+ekly status update, let us know!]</span></p><div dir=3D"ltr" style=3D"line-=
+height:1.38;margin-top:0pt;margin-bottom:0pt;"><br></div></span></div><div>=
+</div></body></html>
+
+--=-dr9Vph+G0eF0e8r30PPF--
