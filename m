@@ -1,78 +1,69 @@
-Return-Path: <kristian.amlie@mender.io>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 28BCFE00BAF; Sun, 11 Dec 2016 22:39:48 -0800 (PST)
+	id D7254E00BEB; Sun, 11 Dec 2016 23:44:37 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.82.48 listed in dnsbl.sorbs.net]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [74.125.82.48 listed in list.dnswl.org]
-Received: from mail-wm0-f48.google.com (mail-wm0-f48.google.com [74.125.82.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E22D0E00B93
-	for <yocto@yoctoproject.org>; Sun, 11 Dec 2016 22:39:45 -0800 (PST)
-Received: by mail-wm0-f48.google.com with SMTP id g23so46694030wme.1
-	for <yocto@yoctoproject.org>; Sun, 11 Dec 2016 22:39:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=mender-io.20150623.gappssmtp.com; s=20150623;
-	h=subject:to:references:cc:from:message-id:date:user-agent
-	:mime-version:in-reply-to:content-transfer-encoding;
-	bh=iyQf8kheiDRe1DR7LYuIBnuGlTUw/NNnmifaVc00hL0=;
-	b=aeHXwvFPUQ9foxi8wgJ+natwDpSi4KE1ST6RcfB0U32xOnUoa/ScEYWPr6u3uA4dvW
-	CM0pjHe+ueJondHsWlPhlK25r9Mqu2VuA/oXCG21N9AP1/gy3ViCSwQmzKysVUvBw2hs
-	1dcyUqzUjLECvbN8ytJoEHj7Q8C93x5/AV0dks7Zq9dq3E+4535pZWKyJE4samOxJI1w
-	TZT2n6yEzwqQ8EiuAOOlkRKultMqLv/rr1gpNtBtw55sQMu1Lh2I7g1oTzdLntXKBYLJ
-	SDbf8/LF69rN3rRQkg7vqTMJiK7JlJPeoffB0qBoSN0H/uGXe5Iiv0o2nCHaT/GWOQKV
-	q4Kg==
+	*      [74.125.83.52 listed in list.dnswl.org]
+Received: from mail-pg0-f52.google.com (mail-pg0-f52.google.com [74.125.83.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 434FCE00B96
+	for <yocto@yoctoproject.org>; Sun, 11 Dec 2016 23:44:34 -0800 (PST)
+Received: by mail-pg0-f52.google.com with SMTP id f188so32614490pgc.3
+	for <yocto@yoctoproject.org>; Sun, 11 Dec 2016 23:44:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:subject:from:in-reply-to:date:cc
+	:content-transfer-encoding:message-id:references:to;
+	bh=bBUSyUkzW90vnw/xEW4tX5PzmUbhMLS2j5Y/SgUpwNE=;
+	b=IQH/ioyVpdXz9spV1StXo+6GHqJO7IAVp+dH5a2xpkRDRTfhYqFtYRAqChlk1XKu4e
+	FqfjejpfCEcPG7bliESPVINZbyFlyols+05tc7ccorIek9qeNaKjgECFWEqn5l6yY9EC
+	73FVZ8D3mQ73Rsyv6ziNHggbbLQGfjcTH93PO/70gQjLKYfiej7Gz6aMD42RZw2zqF4I
+	pEocO0vVyabiDqJ1GWRn2FiGhMEhYH/FaK5I+LtxA2bMuN6hj3uERBHCuA/+jBO/POKK
+	qksjTooRFdrnMz3HU39MO2uV1DAjDgRsrXKu9v9fKOD5ESIb8Pu/Z3I/b6A8QqWWHbX/
+	I7AA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:subject:to:references:cc:from:message-id:date
-	:user-agent:mime-version:in-reply-to:content-transfer-encoding;
-	bh=iyQf8kheiDRe1DR7LYuIBnuGlTUw/NNnmifaVc00hL0=;
-	b=hI1IYKtt4tDAaHnkbRiIqzhI7D57/gw5vwNxkW0igy5RYxO2htLd8Tjew//P+KGyAA
-	wduxqy7psNPvTETvz1j14dlBrIkG4F2Vu242HroQyaIQPZpI2iHK5TaybW4nh+OFhoJb
-	GnRL4IMqbhfepN+LKNIeowPwYRTs8LqHl3npR5od11Wp5ZMhuKS11h/zDS7mv2uzTlYq
-	dPOW0bV9XwVx3EKvvXOsuG4O+kVMeM7Mn/EatwTiJV5rRXTSKJrpXp+BkaGQ60j25pAD
-	T8ywmS35IIZwtVDuq/StmFIKtSdO//6ypFXkO5zdoRrqzuPds2zmvFW0Cvox0x8szZFF
-	Xy0A==
-X-Gm-Message-State: AKaTC00+oTq/fSvjNHW4DZyoyHRgiYErDJ/EG9X//FXmidSt7yKkwgnj7NECHfu4rpcwcw==
-X-Received: by 10.25.0.196 with SMTP id 187mr6863798lfa.156.1481524784394;
-	Sun, 11 Dec 2016 22:39:44 -0800 (PST)
-Received: from [10.25.0.170] ([195.159.140.90])
-	by smtp.googlemail.com with ESMTPSA id
-	t126sm8804074lff.26.2016.12.11.22.39.43
+	h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
+	:content-transfer-encoding:message-id:references:to;
+	bh=bBUSyUkzW90vnw/xEW4tX5PzmUbhMLS2j5Y/SgUpwNE=;
+	b=XvdMXLgyPFIFsYQUl42LSX47MninzUcF6T1drp5G0fTFnE3wz//BPTAVuyC0twmmqW
+	pqvRSdKSwwNpNynCE3IJPe/FyiBwLBHcW4jaVC8m0AGKaDMjTNAZ+286BOgl09aJma9f
+	CrN78b8gEptz3nw/+zye8NHcjFm7VLutUbqOyNNuRrXs2AezWyHiQGRgTfPoyALllzPs
+	7YrAFB93Ch+2gZllsY5kyxp1Jq0rSf4eoDj6qm9aVAvBZGAyJP5VYQJDAfAsVxFdHYtP
+	P9lGpsHYhdGGThkb/rbZV1BYjTb8Quc9D/EeA9dflOIDsQU3ghS+TM5rOqH1MDhOwAo2
+	kK6Q==
+X-Gm-Message-State: AKaTC01uWOpRMmvl06IW7Q2NTsODuQmjVbetxaH3OxjrbMute4V54c/1ugUD0RdE0jjl2w==
+X-Received: by 10.99.44.84 with SMTP id s81mr164954383pgs.153.1481528673974;
+	Sun, 11 Dec 2016 23:44:33 -0800 (PST)
+Received: from ?IPv6:2601:646:8882:b8c:7446:7fee:3bbb:1fb9?
+	([2601:646:8882:b8c:7446:7fee:3bbb:1fb9])
+	by smtp.gmail.com with ESMTPSA id
+	y134sm74082213pfg.81.2016.12.11.23.44.32
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sun, 11 Dec 2016 22:39:43 -0800 (PST)
-To: Patrick Ohly <patrick.ohly@intel.com>, Stefano Babic <sbabic@denx.de>
-References: <20161121120355.18309-1-git@andred.net>
-	<1480503859.6873.280.camel@intel.com>
-	<1480516308.13682.1.camel@andred.net>
-	<1480517999.6873.298.camel@intel.com>
-	<30a3dd41-2e1c-8658-b83d-8632944d1709@denx.de>
-	<1481017522.17535.38.camel@intel.com>
-	<8e1fdcb8-d9fb-0e51-2e21-91e7e7c6f450@linux.intel.com>
-	<c3ce9528-f2eb-dd3f-cc68-331435aeda35@balister.org>
-	<16ca1a50-f46a-196f-66b8-91f0d14f59c2@denx.de>
-	<1481296433.17535.170.camel@intel.com>
-From: Kristian Amlie <kristian.amlie@mender.io>
-Message-ID: <7d589da5-ff5b-3cdc-d0e7-fd2289363c98@mender.io>
-Date: Mon, 12 Dec 2016 07:39:43 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.4.0
-MIME-Version: 1.0
-In-Reply-To: <1481296433.17535.170.camel@intel.com>
-Cc: "Lopez, Mariano" <mariano.lopez@intel.com>, yocto@yoctoproject.org,
-	=?UTF-8?Q?Andr=c3=a9_Draszik?= <git@andred.net>
-Subject: Re: update mechanisms
+	Sun, 11 Dec 2016 23:44:33 -0800 (PST)
+Mime-Version: 1.0 (Mac OS X Mail 10.1 \(3251\))
+From: Khem Raj <raj.khem@gmail.com>
+In-Reply-To: <1481115648.19291.5.camel@toganlabs.com>
+Date: Sun, 11 Dec 2016 23:44:55 -0800
+Message-Id: <35A37D50-BEAE-49AF-A826-159CDB02F287@gmail.com>
+References: <1481115648.19291.5.camel@toganlabs.com>
+To: pidge@toganlabs.com
+X-Mailer: Apple Mail (2.3251)
+Cc: yocto <yocto@yoctoproject.org>
+Subject: Re: Ignoring Fetch errors for optional source.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -84,18 +75,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 12 Dec 2016 06:39:48 -0000
+X-List-Received-Date: Mon, 12 Dec 2016 07:44:37 -0000
 Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
 
-On 09/12/16 16:13, Patrick Ohly wrote:
-> Kristian, I added a comment that Mender requires U-Boot. That is
-> correct, isn't it? I understand that this restriction allows you to
-> implement things like automatic rollback, but it's worth mentioning that
-> this comes with that limitation.
 
-Yes, that is correct, I should have added it the first time around.
+> On Dec 7, 2016, at 5:00 AM, Beth 'pidge' Flanagan =
+<pidge@toganlabs.com> wrote:
+>=20
+> I've an odd use case that I wonder if anyone has a work around/way of
+> doing it.
+>=20
+> I've a client who has contractors who can't have access to a certain
+> segment of the code base. So for example, a recipe will have a SRC_URI
+> for the main bit that everyone has access to, but an extra src_uri =
+that
+> some people won't have access to.
+>=20
+> I want to be able to just ignore any fetch/unpack errors if that extra
+> src is unfetchable. Thoughts on how to achieve this?
 
--- 
-Kristian
+You can  append them via bbappends in a layer of its own. and control =
+the access
+to that layer. If the layer does not exist in bblayers then those repos =
+dont bother fetching
+
+if  there is a case where these additional stuff is must have then =
+define
+
+SRC_URI +=3D =E2=80=9C${ADDITIONAL_URIS}=E2=80=9D
+ADDITIONAL_URIS ? =3D =E2=80=9C=E2=80=9D
+
+and let the layers fill this variables via bbappend and if it turns out =
+to be empty in the end
+you can raise parse errors,
+
+basically look into RDK, there are several examples of such cases.
+
+>=20
+> -b
+>=20
+> --=20
+> Beth 'pidge' Flanagan <pidge@toganlabs.com>
+> www.toganlabs.com
+>=20
+> --=20
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
 
