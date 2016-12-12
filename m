@@ -1,26 +1,37 @@
-Return-Path: <recipe-report@yoctoproject.org>
+Return-Path: <gary@mlbassoc.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 83B31E00B96; Sun, 11 Dec 2016 21:34:10 -0800 (PST)
+	id BB1F5E00B96; Sun, 11 Dec 2016 21:55:27 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from packages.yoctoproject.org (unknown [198.145.29.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 64ECBE00B74
-	for <yocto@yoctoproject.org>; Sun, 11 Dec 2016 21:34:04 -0800 (PST)
-Received: from packages.yoctoproject.org (localhost [IPv6:::1])
-	by packages.yoctoproject.org (Postfix) with ESMTP id CEEA784A5214
-	for <yocto@yoctoproject.org>; Mon, 12 Dec 2016 00:34:02 -0500 (EST)
-MIME-Version: 1.0
-From: recipe-report@yoctoproject.org
+Received: from mail.analogue-micro.com (mail.analogue-micro.com
+	[217.144.149.242])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 46D3EE00B74
+	for <yocto@yoctoproject.org>; Sun, 11 Dec 2016 21:55:16 -0800 (PST)
+Received: by mail.analogue-micro.com (Postfix, from userid 999)
+	id 037EA68A01C; Mon, 12 Dec 2016 05:55:14 +0000 (GMT)
+Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
+	by mail.analogue-micro.com (Postfix) with ESMTP id 626D968A019;
+	Mon, 12 Dec 2016 05:55:12 +0000 (GMT)
+Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
+	by zeus.mlbassoc.com (Postfix) with ESMTP id E734967402C5;
+	Mon, 12 Dec 2016 06:55:11 +0100 (CET)
 To: yocto@yoctoproject.org
-Date: Mon, 12 Dec 2016 05:34:02 -0000
-Message-ID: <20161212053402.26988.77876@packages.yoctoproject.org>
-Subject: [Recipe reporting system] Upgradable recipe name list
+References: <CAJ70iBTSsyb9oXvPexe+T=McGQPg7gwVpuRPAnVA2T_RRyv2-g@mail.gmail.com>
+	<CAMKF1sogx4YCPJgGZRoUjGvpRmiANUe-nkSGTkcz5Fhq7hpqkw@mail.gmail.com>
+	<CAJ70iBSSsnqR=p8u1gjZR3hd0r6GB-NRZTds2Hb8coUZeP9zxg@mail.gmail.com>
+From: Gary Thomas <gary@mlbassoc.com>
+Message-ID: <55a47925-aa50-2fce-0c92-5fd4eae54895@mlbassoc.com>
+Date: Mon, 12 Dec 2016 06:55:11 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.5.1
+MIME-Version: 1.0
+In-Reply-To: <CAJ70iBSSsnqR=p8u1gjZR3hd0r6GB-NRZTds2Hb8coUZeP9zxg@mail.gmail.com>
+Subject: Re: Error during webkit compilation for rasberry pi3
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,167 +43,100 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 12 Dec 2016 05:34:10 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 12 Dec 2016 05:55:27 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
-This mail was sent out by Recipe reporting system.
+On 2016-12-11 16:49, Mont3z Claros wrote:
+> Hi Khem,
+>
+> this layer is:
+> https://layers.openembedded.org/layerindex/branch/master/layer/meta-webkit/
+>
+> I've also tried to use the webkit recipe from poky but I've got the
+> same error. In this case I used a different configuration because poky
+> doesn't have webkitgtk-bin (mini browser). To test that I've tried to
+> build a modified version of meta-web-kiosk
+>  (https://github.com/mont3z/meta-web-kiosk). This is still a work in
+> progress but basically it replaces midori by epiphany.
+>
+> local.conf:
+> MACHINE = "raspberrypi3"
+> DISTRO_FEATURES_append = " x11 gles2"
+>
+> command:
+> bitbake core-image-web-kiosk
+>
+> bblayes.conf:
+> BBLAYERS ?= " \
+>   /home/mont3z/yocto/poky/meta \
+>   /home/mont3z/yocto/poky/meta-poky \
+>   /home/mont3z/yocto/poky/meta-yocto-bsp \
+>   /home/mont3z/yocto/meta-openembedded/meta-oe \
+>   /home/mont3z/yocto/meta-raspberrypi \
+>   /home/mont3z/yocto/meta-web-kiosk \
+> "
+>
+> I also found this discussion about rpi2. I'll try to run some of those
+> configurations:
+> https://github.com/Igalia/meta-webkit/issues/1
 
-This message list those recipes which need to be upgraded. If maintainers
-believe some of them needn't to upgrade at this time, they can fill
-RECIPE_NO_UPDATE_REASON in respective recipe file to ignore this remainder
-until newer upstream version was detected.
+I built webkit for rpi3 just fine (yesterday 2016-12-11) using just
+   poky: e38775a1d82e6dc60fc96cf243ecb94be964d9b2
+   meta-raspberrypi: 44d41bf3e94c4c8fe5ad5a3650572c8d17ef36c9
+these were the current master as of then.
 
-Example:
-RECIPE_NO_UPDATE_REASON = "Version 2.0 is unstable"
+What version(s) are you trying to use?
 
-You can check the detail information at:
+>
+> On Sat, Dec 10, 2016 at 1:02 PM, Khem Raj <raj.khem@gmail.com> wrote:
+>> On Sat, Dec 10, 2016 at 7:52 AM, Mont3z Claros <mont3z.claro5@gmail.com> wrote:
+>>> Hi all,
+>>>
+>>> I don't know what I'm doing wrong but I'm getting an error during
+>>> compilation of webkit for raspberry pi3. Please see below the error
+>>> and my configurations,
+>>>
+>>> Thanks,
+>>> Mont3z
+>>>
+>>> local.conf:
+>>> MACHINE = "raspberrypi3"
+>>> DISTRO_FEATURES_append = " x11 gles2"
+>>> IMAGE_INSTALL_append = " webkitgtk-bin"
+>>>
+>>> Error:
+>>> | ERROR: oe_runmake failed
+>>> | In file included from
+>>> /home/mont3z/yocto/poky/build/tmp/work/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/webkitgtk/2.14.2-r0/webkitgtk-2.14.2/Source/WebCore/platform/graphics/cairo/GraphicsContext3DCairo.cpp:51:0:
+>>> | /home/mont3z/yocto/poky/build/tmp/work/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/webkitgtk/2.14.2-r0/webkitgtk-2.14.2/Source/WebCore/platform/graphics/opengl/Extensions3DOpenGLES.h:109:5:
+>>> error: 'PFNGLFRAMEBUFFERTEXTURE2DMULTISAMPLEIMGPROC' does not name a
+>>> type
+>>> |      PFNGLFRAMEBUFFERTEXTURE2DMULTISAMPLEIMGPROC
+>>> m_glFramebufferTexture2DMultisampleIMG;
+>>> |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+>>>
+>>> command:
+>>> bitbake core-image-sato
+>>>
+>>> bblayes.conf:
+>>> BBLAYERS ?= " \
+>>>   /home/mont3z/yocto/poky/meta \
+>>>   /home/mont3z/yocto/poky/meta-poky \
+>>>   /home/mont3z/yocto/poky/meta-yocto-bsp \
+>>>   /home/mont3z/yocto/meta-openembedded/meta-oe \
+>>>   /home/mont3z/yocto/meta-webkit \
+>>
+>>
+>> what does this layer do ?
+>>
+>>>   /home/mont3z/yocto/meta-raspberrypi \
+>>>   "
 
-http://recipes.yoctoproject.org/
 
-Package               Version        Upstream version      Maintainer          NoUpgradeReason
---------------------  -------------  --------------------  ------------------  ------------------------------
-liberation-fonts      1.04           2.00.1                Alexander Kanavin   2.x depends on fontforge pa...
-liburcu               0.9.2          0.9.3                 Alexander Kanavin
-ca-certificates       20161102       20161130              Alexander Kanavin
-openssl               1.0.2j         1.1.0c                Alexander Kanavin
-icu                   58.1           58.2                  Alexander Kanavin
-vala                  0.34.3         0.34.4                Alexander Kanavin
-libfm-extra           1.2.4          1.2.5                 Alexander Kanavin
-babeltrace            1.4.0          1.5.0                 Alexander Kanavin
-gnutls                3.5.6          3.5.7                 Alexander Kanavin
-ffmpeg                3.2.1          3.2.2                 Alexander Kanavin
-kexec-tools           2.0.12         2.0.13                Alexander Kanavin
-btrfs-tools           4.8.4          4.8.5                 Alexander Kanavin
-sysprof               3.22.2         3.22.3                Alexander Kanavin
-cmake-native          3.7.0          3.7.1                 Alexander Kanavin
-libfm                 1.2.4          1.2.5                 Alexander Kanavin
-cmake                 3.7.0          3.7.1                 Alexander Kanavin
-tiff                  4.0.6          4.0.7                 Alexander Kanavin
-mkelfimage            4.0+gitX       4.5+gitAUTOINC+0b...  Alexander Kanavin   mkelfimage has been removed...
-perl                  5.24.0         5.24.1                Aníbal Limón
-dpkg                  1.18.7         1.18.15               Aníbal Limón
-perl-native           5.24.0         5.24.1                Aníbal Limón
-pinentry              0.9.2          1.0.0                 Armin Kuster
-linux-libc-headers    4.8            4.9                   Bruce Ashfield
-systemd-bootchart     230+gitX       231+gitAUTOINC+9e...  Chen Qi
-busybox               1.25.0+gitX    1.25.1+gitAUTOINC...  Chen Qi
-systemd-boot          1.0            232                   Chen Qi
-dbus                  1.10.10        1.10.14               Chen Qi
-byacc                 20160606       20161202              Chen Qi
-coreutils             8.25           8.26                  Chen Qi
-cups                  2.1.4          2.2.1                 Chen Qi
-util-linux            2.28.1         2.29                  Chen Qi
-dbus-glib             0.106          0.108                 Chen Qi
-dbus-test             1.10.10        1.10.14               Chen Qi
-sudo                  1.8.17p1       1.8.18p1              Chen Qi
-sysstat               11.4.0         11.5.3                Chen Qi
-flex                  2.6.0          2.6.2                 Chen Qi
-grep                  2.26           2.27                  Chen Qi
-build-appliance-i...  15.0.0         16.0.0                Cristian Iorga
-chkconfig             1.3.58         1.8                   Dengke Du           Version 1.5 requires selinux
-ltp                   20160126       20160920              Dengke Du
-python3-docutils      0.12           0.13.1                Edwin Plauchu
-pcmanfm               1.2.4          1.2.5                 Edwin Plauchu
-python3-setuptools    29.0.1         31.0.0                Edwin Plauchu
-python-setuptools     29.0.1         31.0.0                Edwin Plauchu
-pax-utils             1.1.6          1.1.7                 Hongxu Jia
-gnupg                 2.1.14         2.1.16                Hongxu Jia
-createrepo            0.4.11         0.10.4                Hongxu Jia          Versions after 0.9.* use YU...
-elfutils              0.166          0.167                 Hongxu Jia
-gpgme                 1.6.0          1.8.0                 Hongxu Jia
-bash                  4.3.30         4.4                   Hongxu Jia
-ghostscript           9.19           9.20rc1               Hongxu Jia
-ncurses               6.0+20160625   6.0+20161126          Hongxu Jia
-rpcbind               0.2.3          0.2.4                 Hongxu Jia
-python-git            2.1.0          2.1.1                 Jose Lamego
-python3-git           2.1.0          2.1.1                 Jose Lamego
-libinput              1.5.0          1.5.3                 Jussi Kukkonen
-weston                1.11.1         1.12.0                Jussi Kukkonen
-gtk-icon-utils-na...  3.22.1         3.22.5                Jussi Kukkonen
-xf86-input-evdev      2.10.3         2.10.4                Jussi Kukkonen
-xf86-input-keyboard   1.8.1          1.9.0                 Jussi Kukkonen
-xf86-input-synaptics  1.8.3          1.9.0                 Jussi Kukkonen
-xf86-video-intel      2.99.917+gitX  20040721+gitAUTOI...  Jussi Kukkonen
-xf86-video-omap       0.4.4          0.4.5                 Jussi Kukkonen
-libevdev              1.5.4          1.5.5                 Jussi Kukkonen
-glib-2.0              2.50.1         2.50.2                Jussi Kukkonen
-libxi                 1.7.7          1.7.8                 Jussi Kukkonen
-libxkbcommon          0.6.1          0.7.0                 Jussi Kukkonen
-xkeyboard-config      2.18           2.19                  Jussi Kukkonen
-mesa                  13.0.1         13.0.2                Jussi Kukkonen
-vte                   0.44.2         0.46.1                Jussi Kukkonen
-gsettings-desktop...  3.20.0         3.22.0                Jussi Kukkonen
-xserver-xorg          1.18.4         1.19.0                Jussi Kukkonen
-clutter-gst-3.0       3.0.20         3.0.22                Jussi Kukkonen
-shared-mime-info      1.6            1.8                   Jussi Kukkonen
-gtk+3                 3.22.1         3.22.5                Jussi Kukkonen
-libnotify             0.7.6          0.7.7                 Jussi Kukkonen
-cairo                 1.14.6         1.14.8                Jussi Kukkonen
-cogl-1.0              1.22.0         1.22.2                Jussi Kukkonen
-xf86-video-vmware     13.1.0         13.2.1                Jussi Kukkonen
-xf86-input-mouse      1.9.1          1.9.2                 Jussi Kukkonen
-matchbox-wm           1.2.1          1.2.2                 Jussi Kukkonen
-menu-cache            1.0.1          1.0.2                 Jussi Kukkonen
-mesa-gl               13.0.1         13.0.2                Jussi Kukkonen
-xf86-input-libinput   0.22.0         0.23.0                Jussi Kukkonen
-mpfr                  3.1.4          3.1.5                 Khem Raj
-gdb                   7.11.1         7.12                  Khem Raj
-prelink               1.0+gitX       20151030.+gitAUTO...  Mark Hatle
-db                    6.0.35         6.2.23                Mark Hatle          latest db does not work wit...
-rpm                   5.4.16         5.4.17                Mark Hatle
-libpfm4               4.6.0          4.8.0                 Matthew McClintock
-gstreamer1.0-plug...  1.8.3          1.10.2                Maxin B. John
-iproute2              4.7.0          4.8.0                 Maxin B. John
-gstreamer1.0-plug...  1.8.3          1.10.2                Maxin B. John
-ifupdown              0.8.2          0.8.16                Maxin B. John
-gstreamer1.0-plug...  1.8.3          1.10.2                Maxin B. John
-gstreamer1.0          1.8.3          1.10.2                Maxin B. John
-libunistring          0.9.6          0.9.7                 Maxin B. John
-wpa-supplicant        2.5            2.6                   Maxin B. John
-sqlite3               3.15.1         3.15.2                Maxin B. John
-harfbuzz              1.3.3          1.3.4                 Maxin B. John
-gstreamer1.0-omx      1.2.0          1.10.2                Maxin B. John
-gstreamer1.0-rtsp...  1.8.3          1.10.2                Maxin B. John
-gstreamer1.0-libav    1.8.3          1.10.2                Maxin B. John
-gstreamer1.0-plug...  1.8.3          1.10.2                Maxin B. John
-gdb-cross-canadia...  7.11.1         7.12                  No maintainer
-gdb-cross-i586        7.11.1         7.12                  No maintainer
-subversion            1.9.4          1.9.5                 Richard Purdie
-lttng-tools           2.8.1+gitX     2.9.0+gitAUTOINC+...  Richard Purdie
-lttng-ust             2.8.1+gitX     2.9.0+gitAUTOINC+...  Richard Purdie
-lttng-modules         2.8.0+gitX     2.9.0+gitAUTOINC+...  Richard Purdie
-quilt                 0.64           0.65                  Robert Yang
-debianutils           4.8            4.8.1                 Robert Yang
-hdparm                9.48           9.50                  Robert Yang
-tzcode-native         2016i          2016j                 Robert Yang
-slang                 2.3.0          2.3.1a                Robert Yang
-e2fsprogs             1.43           1.43.3                Robert Yang
-tzdata                2016i          2016j                 Robert Yang
-file                  5.28           5.29                  Robert Yang
-guile                 2.0.12         2.0.13                Robert Yang
-quilt-native          0.64           0.65                  Robert Yang
-mklibs-native         0.1.41         0.1.43                Robert Yang
-base-passwd           3.5.29         3.5.42                Ross Burton         Version 3.5.38 requires cde...
-lsbinitscripts        9.68           9.69                  Ross Burton
-
-Upgradable count: 117
-Upgradable total count: 123
-
-The based commit is:
-
-commit db7799747b263507427e325638353142ae79403c
-Author: Bruce Ashfield <bruce.ashfield@windriver.com>
-Date:   Thu Dec 8 12:58:55 2016 -0500
-
-    linux-yocto/4.x: CVE-2016-8655
-    
-    Backporting upstream commit 84ac726023 [packet: fix race condition in
-    packet_set_ring] to address CVE-2016-8655
-    
-    Signed-off-by: Bruce Ashfield <bruce.ashfield@windriver.com>
-    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
-
-Any problem, please contact Anibal Limon <anibal.limon@intel.com> 
-
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
