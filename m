@@ -1,40 +1,43 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <juro.bystricky@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 058AEE00905; Mon, 12 Dec 2016 14:07:36 -0800 (PST)
+	id 9C678E00905; Mon, 12 Dec 2016 14:15:59 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [134.134.136.20 listed in list.dnswl.org]
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AB04DE005B9
-	for <yocto@yoctoproject.org>; Mon, 12 Dec 2016 14:07:34 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 12 Dec 2016 14:07:31 -0800
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [192.55.52.115 listed in list.dnswl.org]
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 700BDE005B9
+	for <yocto@yoctoproject.org>; Mon, 12 Dec 2016 14:15:50 -0800 (PST)
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+	by fmsmga103.fm.intel.com with ESMTP; 12 Dec 2016 14:15:49 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.33,338,1477983600"; d="scan'208";a="1071262991"
-Received: from mauric9x-mobl.amr.corp.intel.com (HELO
-	peggleto-mobl.ger.corp.intel.com) ([10.255.158.7])
-	by orsmga001.jf.intel.com with ESMTP; 12 Dec 2016 14:07:28 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-Date: Tue, 13 Dec 2016 11:07:25 +1300
-Message-ID: <1719976.vZW5s3cKoe@peggleto-mobl.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.14.10 (Linux/4.8.12-100.fc23.x86_64; KDE/4.14.20; x86_64; ;
-	)
-In-Reply-To: <1e4eae2e-5dca-341d-12a6-a068dfea51b3@windriver.com>
-References: <5ee0797a85054ea6ab6a0d8f02f47856@drift35.mia.local>
-	<1654285.bzP9cumZNH@peggleto-mobl.ger.corp.intel.com>
-	<1e4eae2e-5dca-341d-12a6-a068dfea51b3@windriver.com>
+X-IronPort-AV: E=Sophos;i="5.33,338,1477983600"; d="scan'208";a="41748325"
+Received: from orsmsx105.amr.corp.intel.com ([10.22.225.132])
+	by fmsmga005.fm.intel.com with ESMTP; 12 Dec 2016 14:15:49 -0800
+Received: from orsmsx155.amr.corp.intel.com (10.22.240.21) by
+	ORSMSX105.amr.corp.intel.com (10.22.225.132) with Microsoft SMTP Server
+	(TLS) id 14.3.248.2; Mon, 12 Dec 2016 14:15:49 -0800
+Received: from orsmsx112.amr.corp.intel.com ([169.254.3.163]) by
+	ORSMSX155.amr.corp.intel.com ([10.22.240.21]) with mapi id
+	14.03.0248.002; Mon, 12 Dec 2016 14:15:48 -0800
+From: "Bystricky, Juro" <juro.bystricky@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: meta-zephyr layer
+Thread-Index: AdJUwsGpugg9Pmu/QsqjzuAXZM7o+w==
+Date: Mon, 12 Dec 2016 22:15:48 +0000
+Message-ID: <6E51916E4A1F32428260031F4C7CD2B6118C682A@ORSMSX112.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.139]
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: Kernel config incremental modification not working.
+Subject: meta-zephyr layer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,26 +49,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 12 Dec 2016 22:07:36 -0000
-Content-Transfer-Encoding: 7Bit
+X-List-Received-Date: Mon, 12 Dec 2016 22:15:59 -0000
+Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, 12 Dec 2016 08:41:36 Bruce Ashfield wrote:
-> On 2016-12-11 02:33 PM, Paul Eggleton wrote:
-> > Can we please have some automated tests covering all of this? Perhaps it
-> > would be worth talking to Francisco Pedraza who is looking at adding
-> > tests under bug
-> > 6359:
->
-> We are already meeting to talk about this :D
+There is interest in the community to support building Zephyr images
+( https://www.zephyrproject.org/ )in Yocto via bitbake recipes.=20
+AFAIK the only way thus far to build Zephyr images is based on command=20
+line/Kconfig, similar to building Linux kernel images.=20
 
-Superb, thanks!
+Building of Zephyr images in Yocto can now be done fairly unobtrusively=20
+via a new layer "meta-zephyr" and specifying a new distro in local.conf:
+DISTRO=3D"zephyr"
 
-Cheers,
-Paul
+The repository for the meta-zephyr is here:=20
+http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=3Djuro/meta-z=
+ephyr.
 
--- 
+The new meta-zephyr layer contains several recipes to build (and run
+in QEMUs) various Zephyr tests. There is also a sample recipe to build=20
+Zephyr sample "philosophers" with instructions how to run it in QEMU.
 
-Paul Eggleton
-Intel Open Source Technology Centre
+This is the first kick at the can.
+At present, only x86 and ARM CortexM3 toolchains are supported, with
+more coming eventually. (Zephyr also supports BSPs for ARC, Nios2, IAMCU,
+and Xtensa and RISC-V coming in the next release)
+
+The new meta-zephyr is work based on previous original work by=20
+Randy Witt and Richard Purdie, so it is actually a second kick at the can.
+
+This is a work in progress, any feedback is appreciated.
+
+Juro
+
+
 
