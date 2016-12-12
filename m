@@ -1,66 +1,26 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <recipe-report@yoctoproject.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D3278E00B96; Sun, 11 Dec 2016 21:22:15 -0800 (PST)
+	id 83B31E00B96; Sun, 11 Dec 2016 21:34:10 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.217.195 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.217.195 listed in dnsbl.sorbs.net]
-Received: from mail-ua0-f195.google.com (mail-ua0-f195.google.com
-	[209.85.217.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 521E5E00B74
-	for <yocto@yoctoproject.org>; Sun, 11 Dec 2016 21:22:13 -0800 (PST)
-Received: by mail-ua0-f195.google.com with SMTP id 20so7453915uak.0
-	for <yocto@yoctoproject.org>; Sun, 11 Dec 2016 21:22:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=m1gn1qOI0k/WxP1QO0ax1GF0WRr2c8FJaF54LIbYXv4=;
-	b=Q/uSkDIQAQLGo7QcNBm5wy9j6tnEIkMISvk0byCpC5QuhSoz24cj2LMOD48/DenOVD
-	V+LBXikNYiHoG55qHb1e5XSBExMLsK6mIjIou8xY+8Pm/zsnPW7zzXBUUZLTG6lGepIj
-	qF+tLyxcQ3VpmvGjcH4v2dEveTF6nvd8FvXn+kK1rSQWP74bLiknzsrCMH+9XGTLpGHs
-	djJ23cYfGCLXi7Mm7rz4FKC4G+Iz7A+v3FCNFx7G/W/zfL+1snDRG71YeDmUK/bD8vYd
-	Qb6qSu+edEs4WzkS1UKnWZpnEoFnM2Fn1eJuX8Z2E2MSViNxi2230S2SaJ/omwLxKy1e
-	HONA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=m1gn1qOI0k/WxP1QO0ax1GF0WRr2c8FJaF54LIbYXv4=;
-	b=UawPjkO6jTB9LZmCgVKVweWg5MGJMRRjq+laC9dzjOak1mYQg+Q3zksqJQD1r22Q/S
-	jKUAC6ivfCVknh4RElh2XJFe1XzGXgZpw5i4qljFtuUVRPuX+chuCQU1TWhK/VBbHge+
-	0mnpwlxo8KPZkiRFYER1xGhonNzbrFoZy9NKqPhwExB6kad8qfrbWi/orLAqoIGAuSai
-	QhUIv39ZhCXRboJ4t8z7vN067OCfYqnPNrTZzuHN0Cgw3PyEa3NARCVQO4PydI+5zYGQ
-	pYbBUmpbMjkXaKb+DU/TYkfkQX7mxuNIf9dotk2nGgYOYWK7fVzYl/AjN1Q/x4enFgyh
-	qI5A==
-X-Gm-Message-State: AKaTC00OQcPD8tmtYauh75YNg26IlJKzf8qmg7MldPY0kebposNtsWi2HtsZ6slZyLTXv/dJcC78v4U31LvAuA==
-X-Received: by 10.159.55.142 with SMTP id q14mr73934617uaq.107.1481520132076; 
-	Sun, 11 Dec 2016 21:22:12 -0800 (PST)
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from packages.yoctoproject.org (unknown [198.145.29.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 64ECBE00B74
+	for <yocto@yoctoproject.org>; Sun, 11 Dec 2016 21:34:04 -0800 (PST)
+Received: from packages.yoctoproject.org (localhost [IPv6:::1])
+	by packages.yoctoproject.org (Postfix) with ESMTP id CEEA784A5214
+	for <yocto@yoctoproject.org>; Mon, 12 Dec 2016 00:34:02 -0500 (EST)
 MIME-Version: 1.0
-Received: by 10.159.48.87 with HTTP; Sun, 11 Dec 2016 21:21:41 -0800 (PST)
-In-Reply-To: <1481193612-18179-1-git-send-email-schnitzeltony@googlemail.com>
-References: <1481193612-18179-1-git-send-email-schnitzeltony@googlemail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Sun, 11 Dec 2016 21:21:41 -0800
-Message-ID: <CAMKF1srbGTypEP2FrNHHKxqdxg595EgdCxn=9dy9OVEA-s2PAw@mail.gmail.com>
-To: =?UTF-8?Q?Andreas_M=C3=BCller?= <schnitzeltony@googlemail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi][PATCH] linux-raspberrypi-base.bbclass: remove version hack
+From: recipe-report@yoctoproject.org
+To: yocto@yoctoproject.org
+Date: Mon, 12 Dec 2016 05:34:02 -0000
+Message-ID: <20161212053402.26988.77876@packages.yoctoproject.org>
+Subject: [Recipe reporting system] Upgradable recipe name list
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,58 +32,167 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 12 Dec 2016 05:22:15 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 12 Dec 2016 05:34:10 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-On Thu, Dec 8, 2016 at 2:40 AM, Andreas M=C3=BCller
-<schnitzeltony@googlemail.com> wrote:
-> * no more required (version > 3.17 | > 4.3.x | > 4.4.5)
-> * causes error with rt kernel
->
+This mail was sent out by Recipe reporting system.
 
-I think this is ok to apply now.
+This message list those recipes which need to be upgraded. If maintainers
+believe some of them needn't to upgrade at this time, they can fill
+RECIPE_NO_UPDATE_REASON in respective recipe file to ignore this remainder
+until newer upstream version was detected.
 
-> Signed-off-by: Andreas M=C3=BCller <schnitzeltony@googlemail.com>
-> ---
->  classes/linux-raspberrypi-base.bbclass | 15 ---------------
->  1 file changed, 15 deletions(-)
->
-> diff --git a/classes/linux-raspberrypi-base.bbclass b/classes/linux-raspb=
-errypi-base.bbclass
-> index 3a6e33d..dc2330a 100644
-> --- a/classes/linux-raspberrypi-base.bbclass
-> +++ b/classes/linux-raspberrypi-base.bbclass
-> @@ -14,21 +14,6 @@ def get_dts(d, ver=3DNone):
->          from the kernel staging '''
->          ver =3D get_kernelversion_file(staging_dir)
->
-> -    if ver is not None:
-> -        min_ver =3D ver.split('.', 3)
-> -    else:
-> -        return dts
-> -
-> -    # Always turn off device tree support for kernel's < 3.18
-> -    try:
-> -        if int(min_ver[0]) >=3D 4:
-> -            if (int(min_ver[1]) < 4) or (int(min_ver[1]) =3D=3D 4 and in=
-t(min_ver[2]) < 6):
-> -                dts =3D ' '.join([(re.sub(r'(.*)\.dtbo$', r'\1-overlay.d=
-tb', x)) for x in dts.split()])
-> -        elif int(min_ver[1]) < 18:
-> -            dts =3D ""
-> -    except IndexError:
-> -        min_ver =3D None
-> -
->      return dts
->
->
-> --
-> 2.7.4
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+Example:
+RECIPE_NO_UPDATE_REASON = "Version 2.0 is unstable"
+
+You can check the detail information at:
+
+http://recipes.yoctoproject.org/
+
+Package               Version        Upstream version      Maintainer          NoUpgradeReason
+--------------------  -------------  --------------------  ------------------  ------------------------------
+liberation-fonts      1.04           2.00.1                Alexander Kanavin   2.x depends on fontforge pa...
+liburcu               0.9.2          0.9.3                 Alexander Kanavin
+ca-certificates       20161102       20161130              Alexander Kanavin
+openssl               1.0.2j         1.1.0c                Alexander Kanavin
+icu                   58.1           58.2                  Alexander Kanavin
+vala                  0.34.3         0.34.4                Alexander Kanavin
+libfm-extra           1.2.4          1.2.5                 Alexander Kanavin
+babeltrace            1.4.0          1.5.0                 Alexander Kanavin
+gnutls                3.5.6          3.5.7                 Alexander Kanavin
+ffmpeg                3.2.1          3.2.2                 Alexander Kanavin
+kexec-tools           2.0.12         2.0.13                Alexander Kanavin
+btrfs-tools           4.8.4          4.8.5                 Alexander Kanavin
+sysprof               3.22.2         3.22.3                Alexander Kanavin
+cmake-native          3.7.0          3.7.1                 Alexander Kanavin
+libfm                 1.2.4          1.2.5                 Alexander Kanavin
+cmake                 3.7.0          3.7.1                 Alexander Kanavin
+tiff                  4.0.6          4.0.7                 Alexander Kanavin
+mkelfimage            4.0+gitX       4.5+gitAUTOINC+0b...  Alexander Kanavin   mkelfimage has been removed...
+perl                  5.24.0         5.24.1                Aníbal Limón
+dpkg                  1.18.7         1.18.15               Aníbal Limón
+perl-native           5.24.0         5.24.1                Aníbal Limón
+pinentry              0.9.2          1.0.0                 Armin Kuster
+linux-libc-headers    4.8            4.9                   Bruce Ashfield
+systemd-bootchart     230+gitX       231+gitAUTOINC+9e...  Chen Qi
+busybox               1.25.0+gitX    1.25.1+gitAUTOINC...  Chen Qi
+systemd-boot          1.0            232                   Chen Qi
+dbus                  1.10.10        1.10.14               Chen Qi
+byacc                 20160606       20161202              Chen Qi
+coreutils             8.25           8.26                  Chen Qi
+cups                  2.1.4          2.2.1                 Chen Qi
+util-linux            2.28.1         2.29                  Chen Qi
+dbus-glib             0.106          0.108                 Chen Qi
+dbus-test             1.10.10        1.10.14               Chen Qi
+sudo                  1.8.17p1       1.8.18p1              Chen Qi
+sysstat               11.4.0         11.5.3                Chen Qi
+flex                  2.6.0          2.6.2                 Chen Qi
+grep                  2.26           2.27                  Chen Qi
+build-appliance-i...  15.0.0         16.0.0                Cristian Iorga
+chkconfig             1.3.58         1.8                   Dengke Du           Version 1.5 requires selinux
+ltp                   20160126       20160920              Dengke Du
+python3-docutils      0.12           0.13.1                Edwin Plauchu
+pcmanfm               1.2.4          1.2.5                 Edwin Plauchu
+python3-setuptools    29.0.1         31.0.0                Edwin Plauchu
+python-setuptools     29.0.1         31.0.0                Edwin Plauchu
+pax-utils             1.1.6          1.1.7                 Hongxu Jia
+gnupg                 2.1.14         2.1.16                Hongxu Jia
+createrepo            0.4.11         0.10.4                Hongxu Jia          Versions after 0.9.* use YU...
+elfutils              0.166          0.167                 Hongxu Jia
+gpgme                 1.6.0          1.8.0                 Hongxu Jia
+bash                  4.3.30         4.4                   Hongxu Jia
+ghostscript           9.19           9.20rc1               Hongxu Jia
+ncurses               6.0+20160625   6.0+20161126          Hongxu Jia
+rpcbind               0.2.3          0.2.4                 Hongxu Jia
+python-git            2.1.0          2.1.1                 Jose Lamego
+python3-git           2.1.0          2.1.1                 Jose Lamego
+libinput              1.5.0          1.5.3                 Jussi Kukkonen
+weston                1.11.1         1.12.0                Jussi Kukkonen
+gtk-icon-utils-na...  3.22.1         3.22.5                Jussi Kukkonen
+xf86-input-evdev      2.10.3         2.10.4                Jussi Kukkonen
+xf86-input-keyboard   1.8.1          1.9.0                 Jussi Kukkonen
+xf86-input-synaptics  1.8.3          1.9.0                 Jussi Kukkonen
+xf86-video-intel      2.99.917+gitX  20040721+gitAUTOI...  Jussi Kukkonen
+xf86-video-omap       0.4.4          0.4.5                 Jussi Kukkonen
+libevdev              1.5.4          1.5.5                 Jussi Kukkonen
+glib-2.0              2.50.1         2.50.2                Jussi Kukkonen
+libxi                 1.7.7          1.7.8                 Jussi Kukkonen
+libxkbcommon          0.6.1          0.7.0                 Jussi Kukkonen
+xkeyboard-config      2.18           2.19                  Jussi Kukkonen
+mesa                  13.0.1         13.0.2                Jussi Kukkonen
+vte                   0.44.2         0.46.1                Jussi Kukkonen
+gsettings-desktop...  3.20.0         3.22.0                Jussi Kukkonen
+xserver-xorg          1.18.4         1.19.0                Jussi Kukkonen
+clutter-gst-3.0       3.0.20         3.0.22                Jussi Kukkonen
+shared-mime-info      1.6            1.8                   Jussi Kukkonen
+gtk+3                 3.22.1         3.22.5                Jussi Kukkonen
+libnotify             0.7.6          0.7.7                 Jussi Kukkonen
+cairo                 1.14.6         1.14.8                Jussi Kukkonen
+cogl-1.0              1.22.0         1.22.2                Jussi Kukkonen
+xf86-video-vmware     13.1.0         13.2.1                Jussi Kukkonen
+xf86-input-mouse      1.9.1          1.9.2                 Jussi Kukkonen
+matchbox-wm           1.2.1          1.2.2                 Jussi Kukkonen
+menu-cache            1.0.1          1.0.2                 Jussi Kukkonen
+mesa-gl               13.0.1         13.0.2                Jussi Kukkonen
+xf86-input-libinput   0.22.0         0.23.0                Jussi Kukkonen
+mpfr                  3.1.4          3.1.5                 Khem Raj
+gdb                   7.11.1         7.12                  Khem Raj
+prelink               1.0+gitX       20151030.+gitAUTO...  Mark Hatle
+db                    6.0.35         6.2.23                Mark Hatle          latest db does not work wit...
+rpm                   5.4.16         5.4.17                Mark Hatle
+libpfm4               4.6.0          4.8.0                 Matthew McClintock
+gstreamer1.0-plug...  1.8.3          1.10.2                Maxin B. John
+iproute2              4.7.0          4.8.0                 Maxin B. John
+gstreamer1.0-plug...  1.8.3          1.10.2                Maxin B. John
+ifupdown              0.8.2          0.8.16                Maxin B. John
+gstreamer1.0-plug...  1.8.3          1.10.2                Maxin B. John
+gstreamer1.0          1.8.3          1.10.2                Maxin B. John
+libunistring          0.9.6          0.9.7                 Maxin B. John
+wpa-supplicant        2.5            2.6                   Maxin B. John
+sqlite3               3.15.1         3.15.2                Maxin B. John
+harfbuzz              1.3.3          1.3.4                 Maxin B. John
+gstreamer1.0-omx      1.2.0          1.10.2                Maxin B. John
+gstreamer1.0-rtsp...  1.8.3          1.10.2                Maxin B. John
+gstreamer1.0-libav    1.8.3          1.10.2                Maxin B. John
+gstreamer1.0-plug...  1.8.3          1.10.2                Maxin B. John
+gdb-cross-canadia...  7.11.1         7.12                  No maintainer
+gdb-cross-i586        7.11.1         7.12                  No maintainer
+subversion            1.9.4          1.9.5                 Richard Purdie
+lttng-tools           2.8.1+gitX     2.9.0+gitAUTOINC+...  Richard Purdie
+lttng-ust             2.8.1+gitX     2.9.0+gitAUTOINC+...  Richard Purdie
+lttng-modules         2.8.0+gitX     2.9.0+gitAUTOINC+...  Richard Purdie
+quilt                 0.64           0.65                  Robert Yang
+debianutils           4.8            4.8.1                 Robert Yang
+hdparm                9.48           9.50                  Robert Yang
+tzcode-native         2016i          2016j                 Robert Yang
+slang                 2.3.0          2.3.1a                Robert Yang
+e2fsprogs             1.43           1.43.3                Robert Yang
+tzdata                2016i          2016j                 Robert Yang
+file                  5.28           5.29                  Robert Yang
+guile                 2.0.12         2.0.13                Robert Yang
+quilt-native          0.64           0.65                  Robert Yang
+mklibs-native         0.1.41         0.1.43                Robert Yang
+base-passwd           3.5.29         3.5.42                Ross Burton         Version 3.5.38 requires cde...
+lsbinitscripts        9.68           9.69                  Ross Burton
+
+Upgradable count: 117
+Upgradable total count: 123
+
+The based commit is:
+
+commit db7799747b263507427e325638353142ae79403c
+Author: Bruce Ashfield <bruce.ashfield@windriver.com>
+Date:   Thu Dec 8 12:58:55 2016 -0500
+
+    linux-yocto/4.x: CVE-2016-8655
+    
+    Backporting upstream commit 84ac726023 [packet: fix race condition in
+    packet_set_ring] to address CVE-2016-8655
+    
+    Signed-off-by: Bruce Ashfield <bruce.ashfield@windriver.com>
+    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+
+Any problem, please contact Anibal Limon <anibal.limon@intel.com> 
+
 
