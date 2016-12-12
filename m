@@ -1,47 +1,67 @@
-Return-Path: <juro.bystricky@intel.com>
+Return-Path: <schnitzeltony@googlemail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8EA8FE00955; Mon, 12 Dec 2016 14:52:59 -0800 (PST)
+	id 3A0C5E00955; Mon, 12 Dec 2016 15:56:07 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [134.134.136.100 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (schnitzeltony[at]googlemail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1052EE00828
-	for <yocto@yoctoproject.org>; Mon, 12 Dec 2016 14:52:56 -0800 (PST)
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-	by orsmga105.jf.intel.com with ESMTP; 12 Dec 2016 14:52:56 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.33,338,1477983600"; d="scan'208";a="39364066"
-Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
-	by orsmga004.jf.intel.com with ESMTP; 12 Dec 2016 14:52:56 -0800
-Received: from orsmsx158.amr.corp.intel.com (10.22.240.20) by
-	ORSMSX104.amr.corp.intel.com (10.22.225.131) with Microsoft SMTP Server
-	(TLS) id 14.3.248.2; Mon, 12 Dec 2016 14:52:55 -0800
-Received: from orsmsx112.amr.corp.intel.com ([169.254.3.163]) by
-	ORSMSX158.amr.corp.intel.com ([10.22.240.20]) with mapi id
-	14.03.0248.002; Mon, 12 Dec 2016 14:52:55 -0800
-From: "Bystricky, Juro" <juro.bystricky@intel.com>
-To: Philip Balister <philip@balister.org>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] meta-zephyr layer
-Thread-Index: AdJUwsGpugg9Pmu/QsqjzuAXZM7o+wARg/WAAA+b+CA=
-Date: Mon, 12 Dec 2016 22:52:55 +0000
-Message-ID: <6E51916E4A1F32428260031F4C7CD2B6118C686A@ORSMSX112.amr.corp.intel.com>
-References: <6E51916E4A1F32428260031F4C7CD2B6118C682A@ORSMSX112.amr.corp.intel.com>
-	<a278001c-6944-42c4-0762-30d4931a2016@balister.org>
-In-Reply-To: <a278001c-6944-42c4-0762-30d4931a2016@balister.org>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.139]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.217.194 listed in list.dnswl.org]
+Received: from mail-ua0-f194.google.com (mail-ua0-f194.google.com
+	[209.85.217.194])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 09FB6E0085D
+	for <yocto@yoctoproject.org>; Mon, 12 Dec 2016 15:56:00 -0800 (PST)
+Received: by mail-ua0-f194.google.com with SMTP id 50so10269693uae.2
+	for <yocto@yoctoproject.org>; Mon, 12 Dec 2016 15:55:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=googlemail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-transfer-encoding;
+	bh=wDCjQzuMMPyxHJwF1NHfCJrhjuIQcxoy0fzEIuw4MqQ=;
+	b=LNWWkbPyZFnvyK8nrZzoQ4VsuM5xCPgkQvYX/1H+Jsro9rNNx0Lt/6QEAP6cT+OilA
+	p4eD9BFHJCMRjV2Mn+hYlvAZImh8sN2pPLMyyPEOnh6+vNmz2H3rIfdY0t+zTQ1VI2lb
+	foJ2o/N/8PnAa9ruq9xDOfpLVKYqajh4sM7s0Lal1lt2WrvuBSqDqH3gfc8lG4KNrjL2
+	xP1wtEaN1pZTveEJISY4gHywb5L0pLdaF5JEuExMoLSr9A9wr3RsPgg/PJswTOSoBCdG
+	BHxczX0isddhT+J6NxpnSIaXNyJ2PsVxTsVhQvzv/CNBZ4mshgCS2sA76tIhr9sEuejR
+	5iNg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=wDCjQzuMMPyxHJwF1NHfCJrhjuIQcxoy0fzEIuw4MqQ=;
+	b=C+VycOJ9DFXeA4veqIHbj1+Q+WXnjRFwJWMNXCy+7gJ0CTfcPADg6Ty4a7fShJb8fk
+	ZqcKLY3LsFHE8wkTkBO839NCxXII9vZ5g2jc++rUBObgVfhsAx392e5CdTfr0hFfSHar
+	B7yySoO2+SlZzGlfpdcF2tIdqotGiyAWgWOdudy+rVFf6A5L76HZAOwKsKhD5X6B2QNv
+	lB2J/9Xh+XpN+T58u+76VIKmJ6bTFXz8tkcY+CtlK6c9JWKG7Beq43I7b3oSMrOZmREY
+	ATDJPrW9OGcg4bG3wH2sfqlouY36IfmYBLXf2ajuo3/3pEU053K97zQi5MZF0leQEEI4
+	DOzQ==
+X-Gm-Message-State: AKaTC01IIMO6QLVnV1r/yYiivrmfGuUhNmhdRwpX8jOE1rxcwTp9G8h+tPeWnwBtUPpEcZEuon77T6E8P6djJg==
+X-Received: by 10.176.0.180 with SMTP id 49mr76833652uaj.32.1481586959355;
+	Mon, 12 Dec 2016 15:55:59 -0800 (PST)
 MIME-Version: 1.0
-Subject: Re: meta-zephyr layer
+Received: by 10.176.85.157 with HTTP; Mon, 12 Dec 2016 15:55:58 -0800 (PST)
+In-Reply-To: <7a0cc3acfeddd7ccc0de8c3b465d9f52@technux.se>
+References: <1481193612-18179-1-git-send-email-schnitzeltony@googlemail.com>
+	<CAMKF1srbGTypEP2FrNHHKxqdxg595EgdCxn=9dy9OVEA-s2PAw@mail.gmail.com>
+	<7a0cc3acfeddd7ccc0de8c3b465d9f52@technux.se>
+From: =?UTF-8?Q?Andreas_M=C3=BCller?= <schnitzeltony@googlemail.com>
+Date: Tue, 13 Dec 2016 00:55:58 +0100
+Message-ID: <CALbNGRQ9s_9wYs-ytD8WZm6OhJNXJ31gWzgKi9OeSOcsHqUeRg@mail.gmail.com>
+To: =?UTF-8?Q?Petter_Mab=C3=A4cker?= <petter@technux.se>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi][PATCH] linux-raspberrypi-base.bbclass: remove version hack
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,56 +73,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 12 Dec 2016 22:52:59 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Mon, 12 Dec 2016 23:56:07 -0000
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-you need poky to build QEMUs and toolchains
+On Mon, Dec 12, 2016 at 11:33 PM, Petter Mab=C3=A4cker <petter@technux.se> =
+wrote:
+> 2016-12-12 06:21 skrev Khem Raj:
+>
+> On Thu, Dec 8, 2016 at 2:40 AM, Andreas M=C3=BCller
+> <schnitzeltony@googlemail.com> wrote:
+>
+> * no more required (version > 3.17 | > 4.3.x | > 4.4.5) * causes error wi=
+th
+> rt kernel
+>
+> I think this is ok to apply now.
+>
+> Signed-off-by: Andreas M=C3=BCller <schnitzeltony@googlemail.com> ---
+> classes/linux-raspberrypi-base.bbclass | 15 --------------- 1 file change=
+d,
+> 15 deletions(-) diff --git a/classes/linux-raspberrypi-base.bbclass
+> b/classes/linux-raspberrypi-base.bbclass index 3a6e33d..dc2330a 100644 --=
+-
+> a/classes/linux-raspberrypi-base.bbclass +++
+> b/classes/linux-raspberrypi-base.bbclass @@ -14,21 +14,6 @@ def get_dts(d=
+,
+> ver=3DNone): from the kernel staging ''' ver =3D
+> get_kernelversion_file(staging_dir) - if ver is not None: - min_ver =3D
+> ver.split('.', 3) - else: - return dts - - # Always turn off device tree
+> support for kernel's < 3.18 - try: - if int(min_ver[0]) >=3D 4: - if
+> (int(min_ver[1]) < 4) or (int(min_ver[1]) =3D=3D 4 and int(min_ver[2]) < =
+6): -
+> dts =3D ' '.join([(re.sub(r'(.*)\.dtbo$', r'\1-overlay.dtb', x)) for x in
+> dts.split()]) - elif int(min_ver[1]) < 18: - dts =3D "" - except IndexErr=
+or: -
+> min_ver =3D None - return dts -- 2.7.4 --
+> _______________________________________________ yocto mailing list
+> yocto@yoctoproject.org https://lists.yoctoproject.org/listinfo/yocto
+>
+> I think you should go even one step further and revert the entire commit
+> merging this obsolete functionality: "git revert
+> 4a4373c02d3d8355a2e5faa10af61450e5b093d8" .
+>
+> BR Petter
+To be honest: I have forked meta-raspberrypi and don't use it any
+more. Just wanted to be a good boy. So maybe you want to send the
+revert here?
 
-> -----Original Message-----
-> From: Philip Balister [mailto:philip@balister.org]
-> Sent: Monday, December 12, 2016 2:19 PM
-> To: Bystricky, Juro <juro.bystricky@intel.com>; yocto@yoctoproject.org
-> Subject: Re: [yocto] meta-zephyr layer
->=20
-> Does that work without poky?
->=20
-> Philip
->=20
-> On 12/12/2016 02:15 PM, Bystricky, Juro wrote:
-> > There is interest in the community to support building Zephyr images
-> > ( https://www.zephyrproject.org/ )in Yocto via bitbake recipes.
-> > AFAIK the only way thus far to build Zephyr images is based on command
-> > line/Kconfig, similar to building Linux kernel images.
-> >
-> > Building of Zephyr images in Yocto can now be done fairly unobtrusively
-> > via a new layer "meta-zephyr" and specifying a new distro in local.conf=
-:
-> > DISTRO=3D"zephyr"
-> >
-> > The repository for the meta-zephyr is here:
-> > http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=3Djuro/me=
-ta-
-> zephyr.
-> >
-> > The new meta-zephyr layer contains several recipes to build (and run
-> > in QEMUs) various Zephyr tests. There is also a sample recipe to build
-> > Zephyr sample "philosophers" with instructions how to run it in QEMU.
-> >
-> > This is the first kick at the can.
-> > At present, only x86 and ARM CortexM3 toolchains are supported, with
-> > more coming eventually. (Zephyr also supports BSPs for ARC, Nios2, IAMC=
-U,
-> > and Xtensa and RISC-V coming in the next release)
-> >
-> > The new meta-zephyr is work based on previous original work by
-> > Randy Witt and Richard Purdie, so it is actually a second kick at the
-> can.
-> >
-> > This is a work in progress, any feedback is appreciated.
-> >
-> > Juro
-> >
-> >
+Andreas
 
