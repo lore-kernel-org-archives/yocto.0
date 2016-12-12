@@ -1,37 +1,78 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <kristian.amlie@mender.io>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BB1F5E00B96; Sun, 11 Dec 2016 21:55:27 -0800 (PST)
+	id 28BCFE00BAF; Sun, 11 Dec 2016 22:39:48 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.82.48 listed in dnsbl.sorbs.net]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.analogue-micro.com (mail.analogue-micro.com
-	[217.144.149.242])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 46D3EE00B74
-	for <yocto@yoctoproject.org>; Sun, 11 Dec 2016 21:55:16 -0800 (PST)
-Received: by mail.analogue-micro.com (Postfix, from userid 999)
-	id 037EA68A01C; Mon, 12 Dec 2016 05:55:14 +0000 (GMT)
-Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
-	by mail.analogue-micro.com (Postfix) with ESMTP id 626D968A019;
-	Mon, 12 Dec 2016 05:55:12 +0000 (GMT)
-Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
-	by zeus.mlbassoc.com (Postfix) with ESMTP id E734967402C5;
-	Mon, 12 Dec 2016 06:55:11 +0100 (CET)
-To: yocto@yoctoproject.org
-References: <CAJ70iBTSsyb9oXvPexe+T=McGQPg7gwVpuRPAnVA2T_RRyv2-g@mail.gmail.com>
-	<CAMKF1sogx4YCPJgGZRoUjGvpRmiANUe-nkSGTkcz5Fhq7hpqkw@mail.gmail.com>
-	<CAJ70iBSSsnqR=p8u1gjZR3hd0r6GB-NRZTds2Hb8coUZeP9zxg@mail.gmail.com>
-From: Gary Thomas <gary@mlbassoc.com>
-Message-ID: <55a47925-aa50-2fce-0c92-5fd4eae54895@mlbassoc.com>
-Date: Mon, 12 Dec 2016 06:55:11 +0100
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.82.48 listed in list.dnswl.org]
+Received: from mail-wm0-f48.google.com (mail-wm0-f48.google.com [74.125.82.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E22D0E00B93
+	for <yocto@yoctoproject.org>; Sun, 11 Dec 2016 22:39:45 -0800 (PST)
+Received: by mail-wm0-f48.google.com with SMTP id g23so46694030wme.1
+	for <yocto@yoctoproject.org>; Sun, 11 Dec 2016 22:39:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=mender-io.20150623.gappssmtp.com; s=20150623;
+	h=subject:to:references:cc:from:message-id:date:user-agent
+	:mime-version:in-reply-to:content-transfer-encoding;
+	bh=iyQf8kheiDRe1DR7LYuIBnuGlTUw/NNnmifaVc00hL0=;
+	b=aeHXwvFPUQ9foxi8wgJ+natwDpSi4KE1ST6RcfB0U32xOnUoa/ScEYWPr6u3uA4dvW
+	CM0pjHe+ueJondHsWlPhlK25r9Mqu2VuA/oXCG21N9AP1/gy3ViCSwQmzKysVUvBw2hs
+	1dcyUqzUjLECvbN8ytJoEHj7Q8C93x5/AV0dks7Zq9dq3E+4535pZWKyJE4samOxJI1w
+	TZT2n6yEzwqQ8EiuAOOlkRKultMqLv/rr1gpNtBtw55sQMu1Lh2I7g1oTzdLntXKBYLJ
+	SDbf8/LF69rN3rRQkg7vqTMJiK7JlJPeoffB0qBoSN0H/uGXe5Iiv0o2nCHaT/GWOQKV
+	q4Kg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:subject:to:references:cc:from:message-id:date
+	:user-agent:mime-version:in-reply-to:content-transfer-encoding;
+	bh=iyQf8kheiDRe1DR7LYuIBnuGlTUw/NNnmifaVc00hL0=;
+	b=hI1IYKtt4tDAaHnkbRiIqzhI7D57/gw5vwNxkW0igy5RYxO2htLd8Tjew//P+KGyAA
+	wduxqy7psNPvTETvz1j14dlBrIkG4F2Vu242HroQyaIQPZpI2iHK5TaybW4nh+OFhoJb
+	GnRL4IMqbhfepN+LKNIeowPwYRTs8LqHl3npR5od11Wp5ZMhuKS11h/zDS7mv2uzTlYq
+	dPOW0bV9XwVx3EKvvXOsuG4O+kVMeM7Mn/EatwTiJV5rRXTSKJrpXp+BkaGQ60j25pAD
+	T8ywmS35IIZwtVDuq/StmFIKtSdO//6ypFXkO5zdoRrqzuPds2zmvFW0Cvox0x8szZFF
+	Xy0A==
+X-Gm-Message-State: AKaTC00+oTq/fSvjNHW4DZyoyHRgiYErDJ/EG9X//FXmidSt7yKkwgnj7NECHfu4rpcwcw==
+X-Received: by 10.25.0.196 with SMTP id 187mr6863798lfa.156.1481524784394;
+	Sun, 11 Dec 2016 22:39:44 -0800 (PST)
+Received: from [10.25.0.170] ([195.159.140.90])
+	by smtp.googlemail.com with ESMTPSA id
+	t126sm8804074lff.26.2016.12.11.22.39.43
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Sun, 11 Dec 2016 22:39:43 -0800 (PST)
+To: Patrick Ohly <patrick.ohly@intel.com>, Stefano Babic <sbabic@denx.de>
+References: <20161121120355.18309-1-git@andred.net>
+	<1480503859.6873.280.camel@intel.com>
+	<1480516308.13682.1.camel@andred.net>
+	<1480517999.6873.298.camel@intel.com>
+	<30a3dd41-2e1c-8658-b83d-8632944d1709@denx.de>
+	<1481017522.17535.38.camel@intel.com>
+	<8e1fdcb8-d9fb-0e51-2e21-91e7e7c6f450@linux.intel.com>
+	<c3ce9528-f2eb-dd3f-cc68-331435aeda35@balister.org>
+	<16ca1a50-f46a-196f-66b8-91f0d14f59c2@denx.de>
+	<1481296433.17535.170.camel@intel.com>
+From: Kristian Amlie <kristian.amlie@mender.io>
+Message-ID: <7d589da5-ff5b-3cdc-d0e7-fd2289363c98@mender.io>
+Date: Mon, 12 Dec 2016 07:39:43 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.5.1
+	Thunderbird/45.4.0
 MIME-Version: 1.0
-In-Reply-To: <CAJ70iBSSsnqR=p8u1gjZR3hd0r6GB-NRZTds2Hb8coUZeP9zxg@mail.gmail.com>
-Subject: Re: Error during webkit compilation for rasberry pi3
+In-Reply-To: <1481296433.17535.170.camel@intel.com>
+Cc: "Lopez, Mariano" <mariano.lopez@intel.com>, yocto@yoctoproject.org,
+	=?UTF-8?Q?Andr=c3=a9_Draszik?= <git@andred.net>
+Subject: Re: update mechanisms
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,100 +84,18 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 12 Dec 2016 05:55:27 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
+X-List-Received-Date: Mon, 12 Dec 2016 06:39:48 -0000
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 7bit
 
-On 2016-12-11 16:49, Mont3z Claros wrote:
-> Hi Khem,
->
-> this layer is:
-> https://layers.openembedded.org/layerindex/branch/master/layer/meta-webkit/
->
-> I've also tried to use the webkit recipe from poky but I've got the
-> same error. In this case I used a different configuration because poky
-> doesn't have webkitgtk-bin (mini browser). To test that I've tried to
-> build a modified version of meta-web-kiosk
->  (https://github.com/mont3z/meta-web-kiosk). This is still a work in
-> progress but basically it replaces midori by epiphany.
->
-> local.conf:
-> MACHINE = "raspberrypi3"
-> DISTRO_FEATURES_append = " x11 gles2"
->
-> command:
-> bitbake core-image-web-kiosk
->
-> bblayes.conf:
-> BBLAYERS ?= " \
->   /home/mont3z/yocto/poky/meta \
->   /home/mont3z/yocto/poky/meta-poky \
->   /home/mont3z/yocto/poky/meta-yocto-bsp \
->   /home/mont3z/yocto/meta-openembedded/meta-oe \
->   /home/mont3z/yocto/meta-raspberrypi \
->   /home/mont3z/yocto/meta-web-kiosk \
-> "
->
-> I also found this discussion about rpi2. I'll try to run some of those
-> configurations:
-> https://github.com/Igalia/meta-webkit/issues/1
+On 09/12/16 16:13, Patrick Ohly wrote:
+> Kristian, I added a comment that Mender requires U-Boot. That is
+> correct, isn't it? I understand that this restriction allows you to
+> implement things like automatic rollback, but it's worth mentioning that
+> this comes with that limitation.
 
-I built webkit for rpi3 just fine (yesterday 2016-12-11) using just
-   poky: e38775a1d82e6dc60fc96cf243ecb94be964d9b2
-   meta-raspberrypi: 44d41bf3e94c4c8fe5ad5a3650572c8d17ef36c9
-these were the current master as of then.
-
-What version(s) are you trying to use?
-
->
-> On Sat, Dec 10, 2016 at 1:02 PM, Khem Raj <raj.khem@gmail.com> wrote:
->> On Sat, Dec 10, 2016 at 7:52 AM, Mont3z Claros <mont3z.claro5@gmail.com> wrote:
->>> Hi all,
->>>
->>> I don't know what I'm doing wrong but I'm getting an error during
->>> compilation of webkit for raspberry pi3. Please see below the error
->>> and my configurations,
->>>
->>> Thanks,
->>> Mont3z
->>>
->>> local.conf:
->>> MACHINE = "raspberrypi3"
->>> DISTRO_FEATURES_append = " x11 gles2"
->>> IMAGE_INSTALL_append = " webkitgtk-bin"
->>>
->>> Error:
->>> | ERROR: oe_runmake failed
->>> | In file included from
->>> /home/mont3z/yocto/poky/build/tmp/work/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/webkitgtk/2.14.2-r0/webkitgtk-2.14.2/Source/WebCore/platform/graphics/cairo/GraphicsContext3DCairo.cpp:51:0:
->>> | /home/mont3z/yocto/poky/build/tmp/work/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/webkitgtk/2.14.2-r0/webkitgtk-2.14.2/Source/WebCore/platform/graphics/opengl/Extensions3DOpenGLES.h:109:5:
->>> error: 'PFNGLFRAMEBUFFERTEXTURE2DMULTISAMPLEIMGPROC' does not name a
->>> type
->>> |      PFNGLFRAMEBUFFERTEXTURE2DMULTISAMPLEIMGPROC
->>> m_glFramebufferTexture2DMultisampleIMG;
->>> |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->>>
->>> command:
->>> bitbake core-image-sato
->>>
->>> bblayes.conf:
->>> BBLAYERS ?= " \
->>>   /home/mont3z/yocto/poky/meta \
->>>   /home/mont3z/yocto/poky/meta-poky \
->>>   /home/mont3z/yocto/poky/meta-yocto-bsp \
->>>   /home/mont3z/yocto/meta-openembedded/meta-oe \
->>>   /home/mont3z/yocto/meta-webkit \
->>
->>
->> what does this layer do ?
->>
->>>   /home/mont3z/yocto/meta-raspberrypi \
->>>   "
-
+Yes, that is correct, I should have added it the first time around.
 
 -- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+Kristian
 
