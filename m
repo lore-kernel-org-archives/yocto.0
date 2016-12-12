@@ -1,45 +1,50 @@
-Return-Path: <petter@technux.se>
+Return-Path: <juro.bystricky@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C3BAAE00961; Mon, 12 Dec 2016 14:34:21 -0800 (PST)
+	id 8EA8FE00955; Mon, 12 Dec 2016 14:52:59 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [195.74.38.228 listed in list.dnswl.org]
+	*      [134.134.136.100 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 64 seconds by postgrey-1.32 at yocto-www;
-	Mon, 12 Dec 2016 14:34:18 PST
-Received: from bin-vsp-out-02.atm.binero.net (bin-mail-out-05.binero.net
-	[195.74.38.228])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 44396E00828
-	for <yocto@yoctoproject.org>; Mon, 12 Dec 2016 14:34:18 -0800 (PST)
-X-Halon-ID: f6dd9f47-c0ba-11e6-bc68-005056917f90
-Authorized-sender: petter@technux.se
-Received: from webmail.binero.se (unknown [195.74.38.9])
-	by bin-vsp-out-02.atm.binero.net (Halon Mail Gateway) with ESMTPA;
-	Mon, 12 Dec 2016 23:33:11 +0100 (CET)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1052EE00828
+	for <yocto@yoctoproject.org>; Mon, 12 Dec 2016 14:52:56 -0800 (PST)
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+	by orsmga105.jf.intel.com with ESMTP; 12 Dec 2016 14:52:56 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.33,338,1477983600"; d="scan'208";a="39364066"
+Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
+	by orsmga004.jf.intel.com with ESMTP; 12 Dec 2016 14:52:56 -0800
+Received: from orsmsx158.amr.corp.intel.com (10.22.240.20) by
+	ORSMSX104.amr.corp.intel.com (10.22.225.131) with Microsoft SMTP Server
+	(TLS) id 14.3.248.2; Mon, 12 Dec 2016 14:52:55 -0800
+Received: from orsmsx112.amr.corp.intel.com ([169.254.3.163]) by
+	ORSMSX158.amr.corp.intel.com ([10.22.240.20]) with mapi id
+	14.03.0248.002; Mon, 12 Dec 2016 14:52:55 -0800
+From: "Bystricky, Juro" <juro.bystricky@intel.com>
+To: Philip Balister <philip@balister.org>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] meta-zephyr layer
+Thread-Index: AdJUwsGpugg9Pmu/QsqjzuAXZM7o+wARg/WAAA+b+CA=
+Date: Mon, 12 Dec 2016 22:52:55 +0000
+Message-ID: <6E51916E4A1F32428260031F4C7CD2B6118C686A@ORSMSX112.amr.corp.intel.com>
+References: <6E51916E4A1F32428260031F4C7CD2B6118C682A@ORSMSX112.amr.corp.intel.com>
+	<a278001c-6944-42c4-0762-30d4931a2016@balister.org>
+In-Reply-To: <a278001c-6944-42c4-0762-30d4931a2016@balister.org>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.139]
 MIME-Version: 1.0
-Date: Mon, 12 Dec 2016 23:33:18 +0100
-From: =?UTF-8?Q?Petter_Mab=C3=A4cker?= <petter@technux.se>
-To: <yocto@yoctoproject.org>, <schnitzeltony@googlemail.com>
-Organization: Technux
-Mail-Reply-To: <petter@technux.se>
-In-Reply-To: <CAMKF1srbGTypEP2FrNHHKxqdxg595EgdCxn=9dy9OVEA-s2PAw@mail.gmail.com>
-References: <1481193612-18179-1-git-send-email-schnitzeltony@googlemail.com>
-	<CAMKF1srbGTypEP2FrNHHKxqdxg595EgdCxn=9dy9OVEA-s2PAw@mail.gmail.com>
-Message-ID: <7a0cc3acfeddd7ccc0de8c3b465d9f52@technux.se>
-X-Sender: petter@technux.se
-User-Agent: Binero Webmail/0.8.4
-Subject: Re: [meta-raspberrypi][PATCH] linux-raspberrypi-base.bbclass: remove version hack
+Subject: Re: meta-zephyr layer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: petter@technux.se
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -48,100 +53,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 12 Dec 2016 22:34:21 -0000
-Content-Type: multipart/alternative;
-	boundary="=_b6c4cb0c12ab2bf7f50483a505ed1d46"
-
---=_b6c4cb0c12ab2bf7f50483a505ed1d46
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain; charset=UTF-8
-
- 
-
-2016-12-12 06:21 skrev Khem Raj: 
-
-> On Thu, Dec 8, 2016 at 2:40 AM,
-Andreas Müller
-> <schnitzeltony@googlemail.com> wrote:
-> 
->> * no more
-required (version > 3.17 | > 4.3.x | > 4.4.5) * causes error with rt
-kernel
-> 
-> I think this is ok to apply now.
-> 
->> Signed-off-by:
-Andreas Müller <schnitzeltony@googlemail.com> ---
-classes/linux-raspberrypi-base.bbclass | 15 --------------- 1 file
-changed, 15 deletions(-) diff --git
-a/classes/linux-raspberrypi-base.bbclass
-b/classes/linux-raspberrypi-base.bbclass index 3a6e33d..dc2330a 100644
---- a/classes/linux-raspberrypi-base.bbclass +++
-b/classes/linux-raspberrypi-base.bbclass @@ -14,21 +14,6 @@ def
-get_dts(d, ver=None): from the kernel staging ''' ver =
-get_kernelversion_file(staging_dir) - if ver is not None: - min_ver =
-ver.split('.', 3) - else: - return dts - - # Always turn off device tree
-support for kernel's < 3.18 - try: - if int(min_ver[0]) >= 4: - if
-(int(min_ver[1]) < 4) or (int(min_ver[1]) == 4 and int(min_ver[2]) < 6):
-- dts = ' '.join([(re.sub(r'(.*).dtbo$', r'1-overlay.dtb', x)) for x in
-dts.split()]) - elif int(min_ver[1]) < 18: - dts = "" - except
-IndexError: - min_ver = None - return dts -- 2.7.4 --
-_______________________________________________ yocto mailing list
-yocto@yoctoproject.org https://lists.yoctoproject.org/listinfo/yocto
-[1]
-
-I think you should go even one step further and revert the entire
-commit merging this obsolete functionality: "git revert
-4a4373c02d3d8355a2e5faa10af61450e5b093d8" . 
-
-BR Petter
-
-
-Links:
-------
-[1] https://lists.yoctoproject.org/listinfo/yocto
-
---=_b6c4cb0c12ab2bf7f50483a505ed1d46
+X-List-Received-Date: Mon, 12 Dec 2016 22:52:59 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html; charset=UTF-8
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
-<html><body style=3D'font-family: Helvetica,Arial,sans-serif'>
-<p>2016-12-12 06:21 skrev Khem Raj:</p>
-<blockquote type=3D"cite" style=3D"padding-left:5px; border-left:#1010ff 2p=
-x solid; margin-left:5px; width:100%"><!-- html ignored --><!-- head ignore=
-d --><!-- meta ignored -->
-<pre>On Thu, Dec 8, 2016 at 2:40 AM, Andreas M&uuml;ller
-&lt;<a href=3D"mailto:schnitzeltony@googlemail.com">schnitzeltony@googlemai=
-l.com</a>&gt; wrote:</pre>
-<blockquote type=3D"cite" style=3D"padding-left:5px; border-left:#1010ff 2p=
-x solid; margin-left:5px; width:100%">* no more required (version &gt; 3.17=
- | &gt; 4.3.x | &gt; 4.4.5) * causes error with rt kernel</blockquote>
-<pre>I think this is ok to apply now.</pre>
-<blockquote type=3D"cite" style=3D"padding-left:5px; border-left:#1010ff 2p=
-x solid; margin-left:5px; width:100%">Signed-off-by: Andreas M&uuml;ller &l=
-t;<a href=3D"mailto:schnitzeltony@googlemail.com">schnitzeltony@googlemail=
-=2Ecom</a>&gt; --- classes/linux-raspberrypi-base.bbclass | 15 ------------=
---- 1 file changed, 15 deletions(-) diff --git a/classes/linux-raspberrypi-=
-base.bbclass b/classes/linux-raspberrypi-base.bbclass index 3a6e33d..dc2330=
-a 100644 --- a/classes/linux-raspberrypi-base.bbclass +++ b/classes/linux-r=
-aspberrypi-base.bbclass @@ -14,21 +14,6 @@ def get_dts(d, ver=3DNone): from=
- the kernel staging ''' ver =3D get_kernelversion_file(staging_dir) - if ve=
-r is not None: - min_ver =3D ver.split('.', 3) - else: - return dts - - # A=
-lways turn off device tree support for kernel's &lt; 3.18 - try: - if int(m=
-in_ver[0]) &gt;=3D 4: - if (int(min_ver[1]) &lt; 4) or (int(min_ver[1]) =3D=
-=3D 4 and int(min_ver[2]) &lt; 6): - dts =3D ' '.join([(re.sub(r'(.*)\.dtbo=
-$', r'\1-overlay.dtb', x)) for x in dts.split()]) - elif int(min_ver[1]) &l=
-t; 18: - dts =3D "" - except IndexError: - min_ver =3D None - return dts --=
- 2.7.4 -- _______________________________________________ yocto mailing lis=
-t <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a> <a h=
-ref=3D"https://lists.yoctoproject.org/listinfo/yocto">https://lists.yoctopr=
-oject.org/listinfo/yocto</a></blockquote>
-</blockquote>
-<p>I think you should go even one step further and revert the entire commit=
- merging this obsolete functionality: "git revert 4a4373c02d3d8355a2e5faa10=
-af61450e5b093d8" .</p>
-<p>BR Petter</p>
-</body></html>
+you need poky to build QEMUs and toolchains
 
---=_b6c4cb0c12ab2bf7f50483a505ed1d46--
+> -----Original Message-----
+> From: Philip Balister [mailto:philip@balister.org]
+> Sent: Monday, December 12, 2016 2:19 PM
+> To: Bystricky, Juro <juro.bystricky@intel.com>; yocto@yoctoproject.org
+> Subject: Re: [yocto] meta-zephyr layer
+>=20
+> Does that work without poky?
+>=20
+> Philip
+>=20
+> On 12/12/2016 02:15 PM, Bystricky, Juro wrote:
+> > There is interest in the community to support building Zephyr images
+> > ( https://www.zephyrproject.org/ )in Yocto via bitbake recipes.
+> > AFAIK the only way thus far to build Zephyr images is based on command
+> > line/Kconfig, similar to building Linux kernel images.
+> >
+> > Building of Zephyr images in Yocto can now be done fairly unobtrusively
+> > via a new layer "meta-zephyr" and specifying a new distro in local.conf=
+:
+> > DISTRO=3D"zephyr"
+> >
+> > The repository for the meta-zephyr is here:
+> > http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=3Djuro/me=
+ta-
+> zephyr.
+> >
+> > The new meta-zephyr layer contains several recipes to build (and run
+> > in QEMUs) various Zephyr tests. There is also a sample recipe to build
+> > Zephyr sample "philosophers" with instructions how to run it in QEMU.
+> >
+> > This is the first kick at the can.
+> > At present, only x86 and ARM CortexM3 toolchains are supported, with
+> > more coming eventually. (Zephyr also supports BSPs for ARC, Nios2, IAMC=
+U,
+> > and Xtensa and RISC-V coming in the next release)
+> >
+> > The new meta-zephyr is work based on previous original work by
+> > Randy Witt and Richard Purdie, so it is actually a second kick at the
+> can.
+> >
+> > This is a work in progress, any feedback is appreciated.
+> >
+> > Juro
+> >
+> >
+
