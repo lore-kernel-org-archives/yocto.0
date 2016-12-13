@@ -1,52 +1,94 @@
-Return-Path: <mariano.lopez@linux.intel.com>
+Return-Path: <christrobridge@hotmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3404DE00C81; Tue, 13 Dec 2016 06:03:23 -0800 (PST)
+	id 6310AE00828; Tue, 13 Dec 2016 08:25:08 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (christrobridge[at]hotmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [65.55.34.209 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [134.134.136.20 listed in list.dnswl.org]
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B72F9E00C75
-	for <yocto@yoctoproject.org>; Tue, 13 Dec 2016 06:03:19 -0800 (PST)
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-	by orsmga101.jf.intel.com with ESMTP; 13 Dec 2016 06:03:18 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.33,341,1477983600"; d="scan'208";a="202078105"
-Received: from mlopezva-mobl.amr.corp.intel.com (HELO [10.254.191.171])
-	([10.254.191.171])
-	by fmsmga004.fm.intel.com with ESMTP; 13 Dec 2016 06:03:17 -0800
-To: Patrick Ohly <patrick.ohly@intel.com>
-References: <20161121120355.18309-1-git@andred.net>
-	<1480503859.6873.280.camel@intel.com>
-	<1480516308.13682.1.camel@andred.net>
-	<1480517999.6873.298.camel@intel.com>
-	<30a3dd41-2e1c-8658-b83d-8632944d1709@denx.de>
-	<1481017522.17535.38.camel@intel.com>
-	<8e1fdcb8-d9fb-0e51-2e21-91e7e7c6f450@linux.intel.com>
-	<c3ce9528-f2eb-dd3f-cc68-331435aeda35@balister.org>
-	<16ca1a50-f46a-196f-66b8-91f0d14f59c2@denx.de>
-	<1481296433.17535.170.camel@intel.com>
-	<4515f6e0-a99b-09ae-e233-786ceed4847d@denx.de>
-	<f62528f8-aadc-2542-2d2a-96faaa5af01f@linux.intel.com>
-	<1481557268.17535.234.camel@intel.com>
-	<a696ba47-0a02-d90e-d2cd-297a40dd73c4@linux.intel.com>
-	<1481569357.17535.247.camel@intel.com>
-From: "Lopez, Mariano" <mariano.lopez@linux.intel.com>
-Message-ID: <687ed4bc-4a94-ef33-9b5c-83bfa73f3409@linux.intel.com>
-Date: Tue, 13 Dec 2016 08:03:17 -0600
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:45.0) Gecko/20100101
-	Thunderbird/45.2.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+X-Greylist: delayed 60 seconds by postgrey-1.32 at yocto-www;
+	Tue, 13 Dec 2016 08:25:06 PST
+Received: from COL004-OMC4S7.hotmail.com (col004-omc4s7.hotmail.com
+	[65.55.34.209])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E9CBEE00571
+	for <yocto@yoctoproject.org>; Tue, 13 Dec 2016 08:25:06 -0800 (PST)
+Received: from EUR03-AM5-obe.outbound.protection.outlook.com ([65.55.34.201])
+	by COL004-OMC4S7.hotmail.com over TLS secured channel with
+	Microsoft SMTPSVC(7.5.7601.23008); Tue, 13 Dec 2016 08:24:05 -0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+	s=selector1; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
+	bh=ZrEmE3MhfmlSK6sZqroaD1bXPhbbq9TUpA5OcqrL5y0=;
+	b=Hj0HxcJ+OLoPFMoz4OEJO6rsvutOPTGLgX9O/Rq+InAzLu1ydIw5fQkvtokzSm2iqcNJsxzMlqfx4B15STgbZbt771wFIjUk2uTEJIE1KHqJNAF7bRi5OmLpYKR+aqTLpW1tQBfNioNc0mt9M3Z1vcOvKCPVFSsV/2JQrmayvOB8XsZ05uUUmJRLABeQIZuKKq9ZHJS+FBgKxb/1AS7+A2KX/iY3Kr4zRuQuYnqa+/GCUrbWwv5io1N2hENIuMOdu4aiKZXOqNbu18sLLRSnsiz6DyesvboTUXxCc7gBwkX9/gB1ieIXb5V79v5hyTBF0+U7wKhMLKFk4Ao653rYow==
+Received: from VE1EUR03FT048.eop-EUR03.prod.protection.outlook.com
+	(10.152.18.58) by VE1EUR03HT224.eop-EUR03.prod.protection.outlook.com
+	(10.152.19.219) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.761.6;
+	Tue, 13 Dec 2016 16:24:03 +0000
+Received: from LOXP123MB1080.GBRP123.PROD.OUTLOOK.COM (10.152.18.54) by
+	VE1EUR03FT048.mail.protection.outlook.com (10.152.19.8) with Microsoft
+	SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
+	15.1.761.6 via Frontend Transport; Tue, 13 Dec 2016 16:24:03 +0000
+Received: from LOXP123MB1080.GBRP123.PROD.OUTLOOK.COM ([10.166.252.12]) by
+	LOXP123MB1080.GBRP123.PROD.OUTLOOK.COM ([10.166.252.12]) with mapi id
+	15.01.0771.014; Tue, 13 Dec 2016 16:24:03 +0000
+From: Chris Trobridge <christrobridge@hotmail.com>
+To: Yocto List <yocto@yoctoproject.org>
+Thread-Topic: Issues Updating Asterisk/Dahdi recipes from meta-telephony
+Thread-Index: AQHSVV1QKjj2YDQM70KG5LW85hs+yQ==
+Date: Tue, 13 Dec 2016 16:24:02 +0000
+Message-ID: <LOXP123MB1080B095E1C6F1532A482B39DA9B0@LOXP123MB1080.GBRP123.PROD.OUTLOOK.COM>
+Accept-Language: en-GB, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: yoctoproject.org; dkim=none (message not signed)
+	header.d=none;yoctoproject.org; dmarc=none action=none
+	header.from=hotmail.com;
+x-incomingtopheadermarker: OriginalChecksum:F0292BA66C666483F38B7B9FC9B31C1B2C29F57804835CDD162104A73F5A61E0;
+	UpperCasedChecksum:EB4AC0584547DB52FFA965A822657DFCD737CC845DCFC4B4AE19690EFEEF9EEA;
+	SizeAsReceived:7270; Count:37
+x-ms-exchange-messagesentrepresentingtype: 1
+x-tmn: [wsjQ1boM+IUAE3rkM/Plb1PQJ3OCcExh]
+x-incomingheadercount: 37
+x-eopattributedmessage: 0
+x-microsoft-exchange-diagnostics: 1; VE1EUR03HT224;
+	7:T7hJ6ZA/2lqvX0Klw54vlDyHXEj7ZZfwyLAeahsyWRX4m8dcrYZPj4JaOpaFNg3ai8cQM43/6h789+bAciJCKfCvgGjCEyUaOfoKyBMA13NpJAi6me5DEa8kjI/mKlZtXJ/wsjDSSdhJiNi4vnUfjdYzvX0dkQ8NBXu3/wK3yXxEYaDMziAog+FOMKnmQVoUQfq3nN4/c/1U9gdrT0C/bmUy0wHFuEZjwlVKGBjFZ0IDF+ENDHiaYvda8EYxRVahAXsbAsbc6+ERYKkna3qd4TUKUz9UoAK2oeKHILcupXR8oBbzvGlTVxmQaZfWOAMLjzy32nphmAoArdR5Tq4bVmkgWsqQlyrYONT0Aa14ydUGMxxGb+Pd7N/uvSIqn3TBw4RzSH9/BqV6KKA7kad2cSYB3Bdy7ERfWdAGnOqpVJMn5yPk35ygVKKKz8EthuvAq9/FAScEKMfHOYxj6uwdZQ==
+x-forefront-antispam-report: EFV:NLI; SFV:NSPM; SFS:(10019020)(98900003);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:VE1EUR03HT224;
+	H:LOXP123MB1080.GBRP123.PROD.OUTLOOK.COM; FPR:; SPF:None;
+	LANG:en; 
+x-ms-office365-filtering-correlation-id: eb1c79ed-0597-4ea5-aaac-08d4237473c8
+x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
+	RULEID:(22001)(1601124038)(1603103113)(1601125047);
+	SRVR:VE1EUR03HT224; 
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0; RULEID:(432015012)(82015046);
+	SRVR:VE1EUR03HT224; BCL:0; PCL:0; RULEID:; SRVR:VE1EUR03HT224; 
+x-forefront-prvs: 01559F388D
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-In-Reply-To: <1481569357.17535.247.camel@intel.com>
-Cc: "Lopez, Mariano" <mariano.lopez@intel.com>, yocto@yoctoproject.org,
-	=?UTF-8?Q?Andr=c3=a9_Draszik?= <git@andred.net>
-Subject: Re: update mechanisms
+X-OriginatorOrg: hotmail.com
+X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Dec 2016 16:24:02.9850 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Internet
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1EUR03HT224
+X-OriginalArrivalTime: 13 Dec 2016 16:24:05.0807 (UTC)
+	FILETIME=[52E2A3F0:01D2555D]
+Subject: Issues Updating Asterisk/Dahdi recipes from meta-telephony
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,57 +100,198 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 13 Dec 2016 14:03:23 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 13 Dec 2016 16:25:08 -0000
+Content-Language: en-GB
+Content-Type: multipart/alternative;
+	boundary="_000_LOXP123MB1080B095E1C6F1532A482B39DA9B0LOXP123MB1080GBRP_"
+
+--_000_LOXP123MB1080B095E1C6F1532A482B39DA9B0LOXP123MB1080GBRP_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+Hi,
 
 
+I have got around to updating these recipes and found a few issues:
 
-On 12/12/2016 1:02 PM, Patrick Ohly wrote:
-> On Mon, 2016-12-12 at 09:49 -0600, Mariano Lopez wrote:
->> On 12/12/16 09:41, Patrick Ohly wrote:
->>> On Mon, 2016-12-12 at 08:59 -0600, Mariano Lopez wrote:
->>>>>> In particular the "complexity" column is a bit subjective. Stefano, I
->>>>>> hope you don't mind that I did not quite buy the "easy to use"
->>>>>> characterization of swupdate ;-)
->>>>> No worry...and I have not written myself. It was inserted by Mariano, so
->>>>> it looks like that swupdate at least for Mariano is "easy to use".
->>>>> I think it is correct to point out that customization is required.
->>>> Compared to other update mechanism that I tested it was the easier to
->>>> implement.
->>> Which "getting started" document or presentation were you using? The
->>> documentation for mender (https://docs.mender.io/) is very
->>> straight-forward (partly of course because it doesn't need to cover many
->>> variations), while for swupdate
->>> (http://sbabic.github.io/swupdate/swupdate.html) I found it less clear
->>> how to begin.
->>>
->> When I did a research in update mechanism, mender wasn't yet available,
->> and indeed it seems very straight forward (need to test it before final
->> veredict). But if you compare SWUpdate, swupd, and OSTree; SWUpdate is
->> by far less complex than the other two
-> Ease-of-use is not necessarily determined by the complexity. Good
-> integration and documentation can go a long way towards making a complex
-> solution easy to use - when sticking to the pre-defined usage patterns.
+
+asterisk has a autoconf macro file for pjproject in ./third-party/pjproject=
+/, which does not get picked up by autobuild.bbclass.
+
+
+This uses find with a -maxdepth of 2 but but 3 would be needed.  I found a =
+temp fix by copying the m4 file manually to ./m4 directory in configure_pre=
+pend but what would the best long term solution be?
+
+
+/etc/init.d/functions stopped being installed for dahdi-tools and asterisk.
+
+
+update-rc.d.bbclass adds a run-time dependency on initscripts-functions if =
+the installed init.d script contains the literal string "/etc/init.d/functi=
+ons" at the packet-split stage.
+
+
+dahdi doesn't contain this literally but asterisk does so I am confused - b=
+ut adding an explicit run-time dependency on initscripts-functions to dahdi=
+-tools solved this.
+
+
+Any ideas on why this isn't working be default?
+
+
+asterisk also seems to have an issue locating neon but I have not started t=
+o investigate that yet.
+
+
+Regards,
+
+Chris
+
+
+morty 5aa481d
+
+asterisk 13.13.1
+
+dahdi-tools 2.10.2
+
+
+--_000_LOXP123MB1080B095E1C6F1532A482B39DA9B0LOXP123MB1080GBRP_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+</head>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Arial,Helvetica,sans-serif;" dir=3D"ltr">
+<p>Hi,</p>
+<p><br>
+</p>
+<p>I have got around to updating these recipes and found a few issues:</p>
+<p><br>
+</p>
+<p>asterisk has a autoconf macro file for pjproject in&nbsp;<span style=3D"=
+font-family: Calibri, Arial, Helvetica, sans-serif, &quot;Apple Color Emoji=
+&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot;Segoe UI Symbol&q=
+uot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size: 16px;">./third-pa=
+rty/pjproject/,
+ which does not get picked up by autobuild.bbclass.</span></p>
+<div></div>
+<p></p>
+<p><span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot=
+;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot=
+;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size:=
+ 16px;"><br>
+</span></p>
+<p><span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot=
+;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot=
+;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size:=
+ 16px;">This uses find with a -maxdepth of 2 but but 3 would be needed. &nb=
+sp;I
+ found a temp fix by copying the m4 file manually to ./m4 directory in conf=
+igure_prepend but what would&nbsp;the best long term solution be?</span></p=
 >
-> The opposite is also true: a simple solution may be hard to use if all
-> one gets is the source code and one first has to reverse-engineer the
-> usage model.
+<p><span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot=
+;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot=
+;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size:=
+ 16px;"><br>
+</span></p>
+<p><span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot=
+;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot=
+;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size:=
+ 16px;">/etc/init.d/functions stopped being installed for dahdi-tools and
+ asterisk.</span></p>
+<p><span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot=
+;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot=
+;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size:=
+ 16px;"><br>
+</span></p>
+<p><span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot=
+;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot=
+;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size:=
+ 16px;">update-rc.d.bbclass adds a run-time&nbsp;dependency on&nbsp;<span>i=
+nitscripts-functions</span>&nbsp;if
+ the installed&nbsp;init.d script contains the literal string &quot;<span>/=
+etc/init.d/functions&quot; at the packet-split stage.</span></span></p>
+<p><span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot=
+;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot=
+;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size:=
+ 16px;"><span><br>
+</span></span></p>
+<p><span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot=
+;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot=
+;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size:=
+ 16px;"><span>dahdi doesn't contain this literally but asterisk does so I
+ am confused - but adding an explicit run-time&nbsp;dependency on&nbsp;<spa=
+n style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot;Apple =
+Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot;Segoe =
+UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size: 16px;"=
+>initscripts-functions
+ to dahdi-tools solved this.</span></span></span></p>
+<p><span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot=
+;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot=
+;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size:=
+ 16px;"><span><span style=3D"font-family: Calibri, Arial, Helvetica, sans-s=
+erif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorE=
+moji, &quot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols;=
+ font-size: 16px;"><br>
+</span></span></span></p>
+<p><span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot=
+;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot=
+;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size:=
+ 16px;"><span><span style=3D"font-family: Calibri, Arial, Helvetica, sans-s=
+erif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorE=
+moji, &quot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols;=
+ font-size: 16px;">Any
+ ideas on why this isn't working be default?</span></span></span></p>
+<p><span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot=
+;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot=
+;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size:=
+ 16px;"><span><span style=3D"font-family: Calibri, Arial, Helvetica, sans-s=
+erif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorE=
+moji, &quot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols;=
+ font-size: 16px;"><br>
+</span></span></span></p>
+<p><span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot=
+;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot=
+;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size:=
+ 16px;"><span><span style=3D"font-family: Calibri, Arial, Helvetica, sans-s=
+erif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorE=
+moji, &quot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols;=
+ font-size: 16px;">asterisk
+ also seems to have an issue locating neon but I have not started to invest=
+igate that yet.</span></span></span></p>
+<p><span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot=
+;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot=
+;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size:=
+ 16px;"><span><span style=3D"font-family: Calibri, Arial, Helvetica, sans-s=
+erif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorE=
+moji, &quot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols;=
+ font-size: 16px;"><br>
+</span></span></span></p>
+<p><span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot=
+;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot=
+;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size:=
+ 16px;"><span><span style=3D"font-family: Calibri, Arial, Helvetica, sans-s=
+erif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorE=
+moji, &quot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols;=
+ font-size: 16px;">Regards,</span></span></span></p>
+<p>Chris</p>
+<p><br>
+</p>
+<p>morty&nbsp;<span>5aa481d</span></p>
+<p>asterisk 13.13.1</p>
+<p>dahdi-tools 2.10.2</p>
+<p><br>
+</p>
+</div>
+</body>
+</html>
 
-Completely agree with you Patrick, it could be a simple solution very 
-hard to use because of the lack of documentation
-
->
-> I agree that the complexity is roughly swupdate < ostree < swupd and
-> there's also no doubt that the latter two aren't easy to use (mostly due
-> to lacking documentation and integration), but I'm still not sure what
-> documentation the "easy to use" verdict for swupdate is based on.
->
-
-I based my verdict using this source:
-https://sbabic.github.io/swupdate/
-You can follow this and create your update image few hours.
-
-Cheers
-Mariano
-
+--_000_LOXP123MB1080B095E1C6F1532A482B39DA9B0LOXP123MB1080GBRP_--
