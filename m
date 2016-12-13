@@ -1,65 +1,46 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <petter@technux.se>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9FB96E0098A; Mon, 12 Dec 2016 16:00:32 -0800 (PST)
+	id E5351E00C59; Mon, 12 Dec 2016 21:39:28 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [209.85.220.172 listed in list.dnswl.org]
+	*      [195.74.38.228 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qk0-f172.google.com (mail-qk0-f172.google.com
-	[209.85.220.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DE6B9E00955
-	for <yocto@yoctoproject.org>; Mon, 12 Dec 2016 16:00:30 -0800 (PST)
-Received: by mail-qk0-f172.google.com with SMTP id n21so100582967qka.3
-	for <yocto@yoctoproject.org>; Mon, 12 Dec 2016 16:00:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=9Fl0SAJ9JajzuuVdoVMtnw+6yZAZmmvu32kT+6olSdw=;
-	b=jMr9c/A155Yr3nsXYr7HOCGZGzk5NKzPIkJ5yquACgbtfZV6OHz9p1lmbeL5hnwPuK
-	4OqqiHlm4fJI5ItU/Vdw/Fn7GwsxXGyINbI2rilC2vfdeJ1rSXTYJBSOg3RNPK2ONBK5
-	OxZkWEcNHn4Bmj3xRB6AXjJLkCIwKhDnGbvWnjGBf/886FMmm3ofVmOwYoCq/4i5wfWH
-	SX663hN7W+14r4NMpUyXp8XvbND3llE2WZu5/jMDOJMep8u5q2/Vf78ANEZrDYVyO6Xn
-	jd7VtZ/cxv8mzomFlo9wV1KAOXw/UZNHeuesrmIHPQJ7toeUl9cW/H3826dHG0BkL8K1
-	lBCg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=9Fl0SAJ9JajzuuVdoVMtnw+6yZAZmmvu32kT+6olSdw=;
-	b=dR/RF0QxyO3YjE1boqT1H1SPeEKw2DDzBpUzrpY2nb1Jhoi/YL90aT/8Uvht7pZe4D
-	5sCBmdZdYZUxCTCW0atysYY54hsKytT0H4//lZ98XFAlY6bwnFqGXeAqsRMAS+utBpHi
-	+1WxuMhsf+4uJ7cMtbN+3x+RmCd+xoRM1El9GpBddVyWTGX4YIWILMoivMAkEIer9O/m
-	EGaFeEKs3X9gfxCwyPwjaMQraLwtzHuMEQYiiK640mzBHWd+b0JKQqvKb6ybSqZuX5gr
-	JTrz0bl4oaPZ0IzSiFvY27gO59oKgFEYHs1USinfLZzM30s8+FeaRjHpTdfTnPHQhXVc
-	YFsg==
-X-Gm-Message-State: AKaTC02GACXrmm/01bNgUM0fe1mFy1YRcQwVrp1Qasd3gZAbHLHNTF2nb+3FQEcFtjFVsig3JOk5LpuWJOmyV2Tm
-X-Received: by 10.55.39.88 with SMTP id n85mr79275378qkn.244.1481587229877;
-	Mon, 12 Dec 2016 16:00:29 -0800 (PST)
+Received: from bin-vsp-out-02.atm.binero.net (bin-mail-out-05.binero.net
+	[195.74.38.228])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 55B70E00C45
+	for <yocto@yoctoproject.org>; Mon, 12 Dec 2016 21:39:24 -0800 (PST)
+X-Halon-ID: 7f5d6a3c-c0f6-11e6-bc68-005056917f90
+Authorized-sender: petter@technux.se
+Received: from webmail.binero.se (unknown [195.74.38.9])
+	by bin-vsp-out-02.atm.binero.net (Halon Mail Gateway) with ESMTPA;
+	Tue, 13 Dec 2016 06:39:21 +0100 (CET)
 MIME-Version: 1.0
-Received: by 10.140.106.99 with HTTP; Mon, 12 Dec 2016 16:00:09 -0800 (PST)
-In-Reply-To: <6E51916E4A1F32428260031F4C7CD2B6118C686A@ORSMSX112.amr.corp.intel.com>
-References: <6E51916E4A1F32428260031F4C7CD2B6118C682A@ORSMSX112.amr.corp.intel.com>
-	<a278001c-6944-42c4-0762-30d4931a2016@balister.org>
-	<6E51916E4A1F32428260031F4C7CD2B6118C686A@ORSMSX112.amr.corp.intel.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Tue, 13 Dec 2016 00:00:09 +0000
-Message-ID: <CAJTo0LYHAUiA1uirCKho1mOVOHWf_Yxsgh1-kKNV2xTHDeEPfQ@mail.gmail.com>
-To: "Bystricky, Juro" <juro.bystricky@intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: meta-zephyr layer
+Date: Tue, 13 Dec 2016 06:39:27 +0100
+From: =?UTF-8?Q?Petter_Mab=C3=A4cker?= <petter@technux.se>
+To: =?UTF-8?Q?Andreas_M=C3=BCller?= <schnitzeltony@googlemail.com>
+Organization: Technux
+Mail-Reply-To: <petter@technux.se>
+In-Reply-To: <CALbNGRQ9s_9wYs-ytD8WZm6OhJNXJ31gWzgKi9OeSOcsHqUeRg@mail.gmail.com>
+References: <1481193612-18179-1-git-send-email-schnitzeltony@googlemail.com>
+	<CAMKF1srbGTypEP2FrNHHKxqdxg595EgdCxn=9dy9OVEA-s2PAw@mail.gmail.com>
+	<7a0cc3acfeddd7ccc0de8c3b465d9f52@technux.se>
+	<CALbNGRQ9s_9wYs-ytD8WZm6OhJNXJ31gWzgKi9OeSOcsHqUeRg@mail.gmail.com>
+Message-ID: <5881aaa6fd0724ed9101d0e6a79f814c@technux.se>
+X-Sender: petter@technux.se
+User-Agent: Binero Webmail/0.8.4
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi][PATCH] linux-raspberrypi-base.bbclass: remove version hack
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: petter@technux.se
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -68,42 +49,129 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 13 Dec 2016 00:00:32 -0000
-Content-Type: multipart/alternative; boundary=94eb2c094b168a7c1805437ee8e6
+X-List-Received-Date: Tue, 13 Dec 2016 05:39:29 -0000
+Content-Type: multipart/alternative;
+	boundary="=_511233348999acb016eed934af9e31db"
 
---94eb2c094b168a7c1805437ee8e6
+--=_511233348999acb016eed934af9e31db
+Content-Transfer-Encoding: 8bit
 Content-Type: text/plain; charset=UTF-8
 
-On 12 December 2016 at 22:52, Bystricky, Juro <juro.bystricky@intel.com>
-wrote:
+ 
 
-> you need poky to build QEMUs and toolchains
+2016-12-13 00:55 skrev Andreas Müller: 
+
+> On Mon, Dec 12, 2016 at
+11:33 PM, Petter Mabäcker <petter@technux.se> wrote:
+> 
+>> 2016-12-12
+06:21 skrev Khem Raj: On Thu, Dec 8, 2016 at 2:40 AM, Andreas Müller
+<schnitzeltony@googlemail.com> wrote: * no more required (version > 3.17
+| > 4.3.x | > 4.4.5) * causes error with rt kernel I think this is ok to
+apply now. Signed-off-by: Andreas Müller <schnitzeltony@googlemail.com>
+--- classes/linux-raspberrypi-base.bbclass | 15 --------------- 1 file
+changed, 15 deletions(-) diff --git
+a/classes/linux-raspberrypi-base.bbclass
+b/classes/linux-raspberrypi-base.bbclass index 3a6e33d..dc2330a 100644
+--- a/classes/linux-raspberrypi-base.bbclass +++
+b/classes/linux-raspberrypi-base.bbclass @@ -14,21 +14,6 @@ def
+get_dts(d, ver=None): from the kernel staging ''' ver =
+get_kernelversion_file(staging_dir) - if ver is not None: - min_ver =
+ver.split('.', 3) - else: - return dts - - # Always turn off device tree
+support for kernel's < 3.18 - try: - if int(min_ver[0]) >= 4: - if
+(int(min_ver[1]) < 4) or (int(min_ver[1]) == 4 and int(min_ver[2]) < 6):
+- dts = ' '.join([(re.sub(r'(.*).dtbo$', r'1-overlay.dtb', x)) for x in
+dts.split()]) - elif int(min_ver[1]) < 18: - dts = "" - except
+IndexError: - min_ver = None - return dts -- 2.7.4 --
+_______________________________________________ yocto mailing list
+yocto@yoctoproject.org https://lists.yoctoproject.org/listinfo/yocto
+[1]
+> 
+>> I think you should go even one step further and revert the
+entire commit merging this obsolete functionality: "git revert
+4a4373c02d3d8355a2e5faa10af61450e5b093d8" .
+> BR Petter 
+> 
+> To be
+honest: I have forked meta-raspberrypi and don't use it any
+> more. Just
+wanted to be a good boy. So maybe you want to send the
+> revert here?
 >
 
-You should just need *OpenEmbedded* to build the qemus and toolchains.  Why
-does zephyr.conf include poky.conf?  I'd say that any variables that are
-useful - such as using the Yocto source mirrors - should just be copied
-into zephyr.conf (or even better, moved into oe-core).
+> Andreas
+> 
+>> 
 
-Ross
+Oh I see. Sure, I can send something up. 
 
-Ross
+Petter
+Mabäcker
 
---94eb2c094b168a7c1805437ee8e6
-Content-Type: text/html; charset=UTF-8
+Technux <petter@technux.se>
+www.technux.se
+
+
+
+Links:
+------
+[1] https://lists.yoctoproject.org/listinfo/yocto
+
+--=_511233348999acb016eed934af9e31db
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=UTF-8
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 12 December 2016 at 22:52, Bystricky, Juro <span dir=3D"ltr">&lt;<a href=
-=3D"mailto:juro.bystricky@intel.com" target=3D"_blank">juro.bystricky@intel=
-.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"ma=
-rgin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div id=3D":2p=
-b" class=3D"a3s aXjCH m158f54696b673b8c">you need poky to build QEMUs and t=
-oolchains<br></div></blockquote><div><br></div><div>You should just need *O=
-penEmbedded* to build the qemus and toolchains.=C2=A0 Why does zephyr.conf =
-include poky.conf?=C2=A0 I&#39;d say that any variables that are useful - s=
-uch as using the Yocto source mirrors - should just be copied into zephyr.c=
-onf (or even better, moved into oe-core).</div><div><br></div><div>Ross</di=
-v><div><br></div><div>Ross</div></div></div></div>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
+<html><body style=3D'font-family: Helvetica,Arial,sans-serif'>
+<p>2016-12-13 00:55 skrev Andreas M&uuml;ller:</p>
+<blockquote type=3D"cite" style=3D"padding-left:5px; border-left:#1010ff 2p=
+x solid; margin-left:5px; width:100%"><!-- html ignored --><!-- head ignore=
+d --><!-- meta ignored -->
+<pre>On Mon, Dec 12, 2016 at 11:33 PM, Petter Mab&auml;cker &lt;<a href=3D"=
+mailto:petter@technux.se">petter@technux.se</a>&gt; wrote:</pre>
+<blockquote type=3D"cite" style=3D"padding-left:5px; border-left:#1010ff 2p=
+x solid; margin-left:5px; width:100%">2016-12-12 06:21 skrev Khem Raj: On T=
+hu, Dec 8, 2016 at 2:40 AM, Andreas M&uuml;ller &lt;<a href=3D"mailto:schni=
+tzeltony@googlemail.com">schnitzeltony@googlemail.com</a>&gt; wrote: * no m=
+ore required (version &gt; 3.17 | &gt; 4.3.x | &gt; 4.4.5) * causes error w=
+ith rt kernel I think this is ok to apply now. Signed-off-by: Andreas M&uum=
+l;ller &lt;<a href=3D"mailto:schnitzeltony@googlemail.com">schnitzeltony@go=
+oglemail.com</a>&gt; --- classes/linux-raspberrypi-base.bbclass | 15 ------=
+--------- 1 file changed, 15 deletions(-) diff --git a/classes/linux-raspbe=
+rrypi-base.bbclass b/classes/linux-raspberrypi-base.bbclass index 3a6e33d=
+=2E.dc2330a 100644 --- a/classes/linux-raspberrypi-base.bbclass +++ b/class=
+es/linux-raspberrypi-base.bbclass @@ -14,21 +14,6 @@ def get_dts(d, ver=3DN=
+one): from the kernel staging ''' ver =3D get_kernelversion_file(staging_di=
+r) - if ver is not None: - min_ver =3D ver.split('.', 3) - else: - return d=
+ts - - # Always turn off device tree support for kernel's &lt; 3.18 - try: =
+- if int(min_ver[0]) &gt;=3D 4: - if (int(min_ver[1]) &lt; 4) or (int(min_v=
+er[1]) =3D=3D 4 and int(min_ver[2]) &lt; 6): - dts =3D ' '.join([(re.sub(r'=
+(.*)\.dtbo$', r'\1-overlay.dtb', x)) for x in dts.split()]) - elif int(min_=
+ver[1]) &lt; 18: - dts =3D "" - except IndexError: - min_ver =3D None - ret=
+urn dts -- 2.7.4 -- _______________________________________________ yocto m=
+ailing list <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.or=
+g</a> <a href=3D"https://lists.yoctoproject.org/listinfo/yocto">https://lis=
+ts.yoctoproject.org/listinfo/yocto</a></blockquote>
+<blockquote type=3D"cite" style=3D"padding-left:5px; border-left:#1010ff 2p=
+x solid; margin-left:5px; width:100%">I think you should go even one step f=
+urther and revert the entire commit merging this obsolete functionality: "g=
+it revert 4a4373c02d3d8355a2e5faa10af61450e5b093d8" .</blockquote>
+<blockquote type=3D"cite" style=3D"padding-left:5px; border-left:#1010ff 2p=
+x solid; margin-left:5px; width:100%">BR Petter</blockquote>
+<pre>To be honest: I have forked meta-raspberrypi and don't use it any
+more. Just wanted to be a good boy. So maybe you want to send the
+revert here?
 
---94eb2c094b168a7c1805437ee8e6--
+Andreas
+</pre>
+</blockquote>
+<p>Oh I see. Sure, I can send something up.</p>
+<div>
+<pre>Petter Mab&auml;cker
+
+Technux &lt;petter@technux.se&gt;
+www.technux.se</pre>
+</div>
+</body></html>
+
+--=_511233348999acb016eed934af9e31db--
