@@ -1,47 +1,32 @@
-Return-Path: <juro.bystricky@intel.com>
+Return-Path: <todor.minchev@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 96421E005B9; Tue, 13 Dec 2016 09:18:27 -0800 (PST)
+	id 8C9DCE00CF2; Tue, 13 Dec 2016 14:09:02 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4EC17E00519
-	for <yocto@yoctoproject.org>; Tue, 13 Dec 2016 09:18:25 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 13 Dec 2016 09:18:00 -0800
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [192.55.52.120 listed in list.dnswl.org]
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6F471E00CC3;
+	Tue, 13 Dec 2016 14:08:59 -0800 (PST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by fmsmga104.fm.intel.com with ESMTP; 13 Dec 2016 14:08:59 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.33,342,1477983600"; d="scan'208";a="1098632668"
-Received: from orsmsx105.amr.corp.intel.com ([10.22.225.132])
-	by fmsmga002.fm.intel.com with ESMTP; 13 Dec 2016 09:18:00 -0800
-Received: from orsmsx157.amr.corp.intel.com (10.22.240.23) by
-	ORSMSX105.amr.corp.intel.com (10.22.225.132) with Microsoft SMTP Server
-	(TLS) id 14.3.248.2; Tue, 13 Dec 2016 09:18:00 -0800
-Received: from orsmsx112.amr.corp.intel.com ([169.254.3.163]) by
-	ORSMSX157.amr.corp.intel.com ([169.254.9.172]) with mapi id
-	14.03.0248.002; Tue, 13 Dec 2016 09:17:59 -0800
-From: "Bystricky, Juro" <juro.bystricky@intel.com>
-To: Josef Holzmayr <holzmayr@rsi-elektrotechnik.de>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] meta-zephyr layer
-Thread-Index: AdJUwsGpugg9Pmu/QsqjzuAXZM7o+wAyENYAAAnJYDA=
-Date: Tue, 13 Dec 2016 17:17:58 +0000
-Message-ID: <6E51916E4A1F32428260031F4C7CD2B6118C6C8D@ORSMSX112.amr.corp.intel.com>
-References: <6E51916E4A1F32428260031F4C7CD2B6118C682A@ORSMSX112.amr.corp.intel.com>
-	<a382fb05-0510-e3e5-6480-3fd56a5f8f31@rsi-elektrotechnik.de>
-In-Reply-To: <a382fb05-0510-e3e5-6480-3fd56a5f8f31@rsi-elektrotechnik.de>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.139]
-MIME-Version: 1.0
-Subject: Re: meta-zephyr layer
+X-IronPort-AV: E=Sophos;i="5.33,342,1477983600"; d="scan'208";a="17703982"
+Received: from unknown (HELO localhost.localdomain) ([10.7.197.100])
+	by orsmga002.jf.intel.com with ESMTP; 13 Dec 2016 14:08:59 -0800
+From: Todor Minchev <todor.minchev@linux.intel.com>
+To: meta-intel@yoctoproject.org
+Date: Tue, 13 Dec 2016 14:08:44 -0800
+Message-Id: <20161213220844.78280-1-todor.minchev@linux.intel.com>
+X-Mailer: git-send-email 2.11.0
+Cc: yocto@yoctoproject.org, Todor Minchev <todor.minchev@linux.intel.com>
+Subject: [meta-inte][rmc][PATCH 1/1] rmc: add support for alternative EFI bootloaders
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,84 +38,109 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 13 Dec 2016 17:18:27 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 13 Dec 2016 22:09:02 -0000
 
-Hello Josef,
-I will find a better place for the meta-zephyr repository eventually.
-As for your patches, I would definitely like to see them.
-I added the cortex-m3 tune as one of the last steps, just to get
-the Zephyr ARM test suite to pass. It works well, but probably=20
-not an optimal implementation.=20
+RMC was previously configured to work only with the systemd-boot EFI
+bootloader. With this commit we can specify alternative bootloaders by
+setting the RMC_BOOTLOADER variable in local.conf. If RMC_BOOTLOADER is
+not set systemd-boot will be used by default.
 
-> -----Original Message-----
-> From: Josef Holzmayr [mailto:holzmayr@rsi-elektrotechnik.de]
-> Sent: Tuesday, December 13, 2016 5:51 AM
-> To: yocto@yoctoproject.org; Bystricky, Juro <juro.bystricky@intel.com>
-> Subject: Re: [yocto] meta-zephyr layer
->=20
-> Hello Juro,
->=20
-> first off, thanks for taking the kick, whatever its count is.
->=20
-> On 12.12.2016 23:15, Bystricky, Juro wrote:
-> > Building of Zephyr images in Yocto can now be done fairly unobtrusively
-> > via a new layer "meta-zephyr" and specifying a new distro in local.conf=
-:
-> > DISTRO=3D"zephyr"
->=20
-> Leaving out the poky/non-poky discussion, zephyr.conf currently contains
-> an include for tune-cortexm3.conf which certainly should not be there,
-> as it is machine specific. My local fix here is to create a warped
-> version of qemuarm.conf named qemuarmm3.conf which fixes that.
->=20
-> >
-> > The repository for the meta-zephyr is here:
-> > http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=3Djuro/me=
-ta-
-> zephyr.
-> >
-> > The new meta-zephyr layer contains several recipes to build (and run
-> > in QEMUs) various Zephyr tests. There is also a sample recipe to build
-> > Zephyr sample "philosophers" with instructions how to run it in QEMU.
->=20
-> The instructions seem to be missing that poky-contrib/meta is also
-> needed in the bblayers for the tune-cortexm3 include.
->=20
-> > The new meta-zephyr is work based on previous original work by
-> > Randy Witt and Richard Purdie, so it is actually a second kick at the
-> can.
->=20
-> Thanks to those too, of course.
->=20
-> >
-> > This is a work in progress, any feedback is appreciated.
->=20
-> Feedback was above - do you also want patches? ;-)
->=20
-> Greetz
->=20
-> --
-> Josef Holzmayr
-> Software Developer Embedded Systems
->=20
-> Tel: +49 8444 9204-48
-> Fax: +49 8444 9204-50
->=20
-> R-S-I Elektrotechnik GmbH & Co. KG
-> Woelkestrasse 11
-> D-85301 Schweitenkirchen
-> www.rsi-elektrotechnik.de
-> ---------------
-> Amtsgericht Ingolstadt - GmbH: HRB 191328 - KG: HRA 170393
-> Gesch=E4ftsf=FChrer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
-> Ust-IdNr: DE 128592548
->=20
-> _____________________________________________________________
-> Amtsgericht Ingolstadt - GmbH: HRB 191328 - KG: HRA 170363
-> Gesch=E4ftsf=FChrer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
-> USt-IdNr.: DE 128592548
+Example for grub-efi:
+
+RMC_BOOTLOADER = "grub-efi"
+
+Signed-off-by: Todor Minchev <todor.minchev@linux.intel.com>
+---
+ .../{rmc-systemd-boot.bbclass => rmc-boot.bbclass} |  5 +++--
+ conf/machine/include/meta-intel.inc                |  2 +-
+ documentation/rmc/README                           | 26 +++++++++++++++++++---
+ 3 files changed, 27 insertions(+), 6 deletions(-)
+ rename classes/{rmc-systemd-boot.bbclass => rmc-boot.bbclass} (73%)
+
+diff --git a/classes/rmc-systemd-boot.bbclass b/classes/rmc-boot.bbclass
+similarity index 73%
+rename from classes/rmc-systemd-boot.bbclass
+rename to classes/rmc-boot.bbclass
+index ad2cf10..a1f2093 100644
+--- a/classes/rmc-systemd-boot.bbclass
++++ b/classes/rmc-boot.bbclass
+@@ -1,9 +1,10 @@
+-# rmc-systemd-boot bbclass
++# rmc-boot bbclass
+ # Deploy central RMC database file to ESP
+ 
+ IMAGE_INSTALL_append = " rmc"
++RMC_BOOTLOADER ?= "systemd-boot"
+ 
+-inherit systemd-boot
++inherit ${RMC_BOOTLOADER}
+ 
+ do_bootimg[depends] += "${MLPREFIX}rmc-db:do_deploy"
+ 
+diff --git a/conf/machine/include/meta-intel.inc b/conf/machine/include/meta-intel.inc
+index c7555ce..fd0a792 100644
+--- a/conf/machine/include/meta-intel.inc
++++ b/conf/machine/include/meta-intel.inc
+@@ -32,7 +32,7 @@ MACHINE_ESSENTIAL_EXTRA_RDEPENDS_append = "${@bb.utils.contains('MACHINE_FEATURE
+ # merge the microcode data in the final initrd image.
+ INITRD_LIVE_prepend = "${@bb.utils.contains('MACHINE_FEATURES', 'intel-ucode', '${DEPLOY_DIR_IMAGE}/microcode.cpio ', '', d)}"
+ 
+-EFI_PROVIDER ?= "rmc-systemd-boot"
++EFI_PROVIDER ?= "rmc-boot"
+ 
+ # Add general MACHINEOVERRIDE for meta-intel
+ MACHINEOVERRIDES =. "intel-x86-common:"
+diff --git a/documentation/rmc/README b/documentation/rmc/README
+index 2427ffd..7dde8a4 100644
+--- a/documentation/rmc/README
++++ b/documentation/rmc/README
+@@ -165,14 +165,34 @@ steps still can override results from this hook for boot entries and KBOOTPARAM.
+ 
+ Enable RMC Feature
+ --------------------------------------------------------------------------------
+-To Enable RMC feature in build, add the below lines in a conf file:
++To enable the RMC feature please add the following variables to your local.conf.
++
+ DISTRO_FEATURES_append = " rmc"
+-EFI_PROVIDER = "rmc-systemd-boot"
++EFI_PROVIDER = "rmc-boot"
++
++The default EFI bootloader used with RMC is systemd-boot. To change the default
++bootloader please overwrite the RMC_BOOTLOADER variable in your local.conf
++
++For example
++
++to use grub-efi:
++RMC_BOOTLOADER = "grub-efi"
++
++OR
++
++to use gummiboot:
++RMC_BOOTLOADER = "gummiboot"
+ 
+ Note:
+ Image could be still bootable if you only have either of two lines, but RMC
+ feature won't be fully functional.
+ 
++To install only the RMC client with the systemd-boot bootloader without
++including a default RMC database file, add the following lines to your
++local.conf:
++
++EFI_PROVIDER = "systemd-boot"
++IMAGE_INSTALL_append = " rmc"
+ 
+ 
+ Examples
+@@ -190,7 +210,7 @@ EXAMPLE 1: Support a new board type:
+ (1) enable the feature and do a build to get a live-boot image by adding these
+     lines in conf/local.conf:
+     DISTRO_FEATURES_append = " rmc"
+-    EFI_PROVIDER = "rmc-systemd-boot"
++    EFI_PROVIDER = "rmc-boot"
+ 
+ (2) flash the image to a USB stick and boot it on your board
+ 
+-- 
+2.11.0
 
 
