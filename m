@@ -1,46 +1,70 @@
-Return-Path: <petter@technux.se>
+Return-Path: <prvs=0155dabe15=mike.looijmans@topicproducts.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E5351E00C59; Mon, 12 Dec 2016 21:39:28 -0800 (PST)
+	id E36C3E00C4B; Tue, 13 Dec 2016 00:53:37 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+	TVD_PH_BODY_ACCOUNTS_PRE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [195.74.38.228 listed in list.dnswl.org]
+	*      [46.165.232.184 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from bin-vsp-out-02.atm.binero.net (bin-mail-out-05.binero.net
-	[195.74.38.228])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 55B70E00C45
-	for <yocto@yoctoproject.org>; Mon, 12 Dec 2016 21:39:24 -0800 (PST)
-X-Halon-ID: 7f5d6a3c-c0f6-11e6-bc68-005056917f90
-Authorized-sender: petter@technux.se
-Received: from webmail.binero.se (unknown [195.74.38.9])
-	by bin-vsp-out-02.atm.binero.net (Halon Mail Gateway) with ESMTPA;
-	Tue, 13 Dec 2016 06:39:21 +0100 (CET)
+	* 0.0 TVD_PH_BODY_ACCOUNTS_PRE The body matches phrases such as
+	"accounts
+	*      suspended", "account credited", "account verification"
+X-Greylist: delayed 111 seconds by postgrey-1.32 at yocto-www;
+	Tue, 13 Dec 2016 00:53:36 PST
+Received: from mx12-14.smtp.antispamcloud.com (mx12-14.smtp.antispamcloud.com
+	[46.165.232.184])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9D98BE00A1E
+	for <yocto@yoctoproject.org>; Tue, 13 Dec 2016 00:53:36 -0800 (PST)
+Received: from [37.74.225.130] (helo=TOP-EX01.TOPIC.LOCAL)
+	by mx12.antispamcloud.com with esmtps (TLSv1:ECDHE-RSA-AES128-SHA:128)
+	(Exim 4.86) (envelope-from <mike.looijmans@topicproducts.com>)
+	id 1cGiq5-0007oz-Ha; Tue, 13 Dec 2016 09:53:34 +0100
+Received: from [192.168.80.121] (192.168.80.121) by webmail.topic.nl
+	(192.168.10.102) with Microsoft SMTP Server id 14.3.224.2;
+	Tue, 13 Dec 2016 09:53:32 +0100
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>, Yocto discussion list
+	<yocto@yoctoproject.org>
+References: <alpine.LFD.2.20.1612121012290.18661@localhost.localdomain>
+From: Mike Looijmans <mike.looijmans@topic.nl>
+Organization: TOPIC
+Message-ID: <78ba92ed-4828-a59e-c96e-809473985d6b@topic.nl>
+Date: Tue, 13 Dec 2016 09:53:31 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.4.0
 MIME-Version: 1.0
-Date: Tue, 13 Dec 2016 06:39:27 +0100
-From: =?UTF-8?Q?Petter_Mab=C3=A4cker?= <petter@technux.se>
-To: =?UTF-8?Q?Andreas_M=C3=BCller?= <schnitzeltony@googlemail.com>
-Organization: Technux
-Mail-Reply-To: <petter@technux.se>
-In-Reply-To: <CALbNGRQ9s_9wYs-ytD8WZm6OhJNXJ31gWzgKi9OeSOcsHqUeRg@mail.gmail.com>
-References: <1481193612-18179-1-git-send-email-schnitzeltony@googlemail.com>
-	<CAMKF1srbGTypEP2FrNHHKxqdxg595EgdCxn=9dy9OVEA-s2PAw@mail.gmail.com>
-	<7a0cc3acfeddd7ccc0de8c3b465d9f52@technux.se>
-	<CALbNGRQ9s_9wYs-ytD8WZm6OhJNXJ31gWzgKi9OeSOcsHqUeRg@mail.gmail.com>
-Message-ID: <5881aaa6fd0724ed9101d0e6a79f814c@technux.se>
-X-Sender: petter@technux.se
-User-Agent: Binero Webmail/0.8.4
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi][PATCH] linux-raspberrypi-base.bbclass: remove version hack
+In-Reply-To: <alpine.LFD.2.20.1612121012290.18661@localhost.localdomain>
+X-Originating-IP: [192.168.80.121]
+X-EXCLAIMER-MD-CONFIG: 9833cda7-5b21-4d34-9a38-8d025ddc3664
+X-EXCLAIMER-MD-BIFURCATION-INSTANCE: 0
+X-Filter-ID: s0sct1PQhAABKnZB5plbIbbvfIHzQjPVmPLZeVYSu3xU9luQrU+8/8qthi+0Jd/W6KAUC/fjyuDn
+	NXFr4uarwy3Yf5i+byKl6pUyknU7g+5s7gTL9ApoG8PDIYbbkxcxb1NmL4SS6PNPrgDfpvI3ZqzF
+	T2J9K1pLxtZHbPNr0KB4PYvpxJqLtlDB4JhOs/rj6ZwB92f8lif9VFb93BO/QLnJIzaxVLmo172a
+	CPBRz4LquLtHkm2WG904pQWwsR+I12LvyHECblh5W5zDrIOtOZfrFYvEvQD3E9jZ0NZfSXi8Ksk+
+	aedMfNWSnJswrtlNaBB1cPRDQ8eTDZZlrbkugZtpK73q0EWFct2mF6mRhPOnSGtDOW/IeYce2Wq8
+	Kn5PWpuDzmWIKo73PrltnLG4RVuDQEdKm65cTUbfWaDAny7D7RhMOrg7fR4O/NaYVInf7atROiED
+	UTjlhcdXluKCo1QTtD1a+e1dr1U8v0rhwD7y3deP8vNnmz84mDUvZqxnESngG/tNYRSgrMVB+thR
+	7JFhVHSlrKDhy22ThtG39l2DwIE7VKe+bqpcdCns72R1XzSZlNoenRqFa0wOmjcLf0xtg4Ql0Tjr
+	YmWDgTJ2lCoBIkUL/j1Y48GvmeURQjjEVK0SxG5jdoTlpJvo45e5qpa7V8NXPSB4yY8R8OtQcPHT
+	3EIa+jwweJRWAPvvdZobjfyyyJ2bDR6Yy7cd1WMMRQ==
+X-Report-Abuse-To: spam@quarantine2.antispamcloud.com
+X-Originating-IP: 37.74.225.130
+X-SpamExperts-Domain: topic.nl
+X-SpamExperts-Username: 37.74.225.128/28
+Authentication-Results: antispamcloud.com;
+	auth=pass smtp.auth=37.74.225.128/28@topic.nl
+X-SpamExperts-Outgoing-Class: unsure
+X-SpamExperts-Outgoing-Evidence: Combined (0.31)
+X-Classification: unsure/combined
+X-Recommended-Action: accept
+Subject: Re: suggestions for version controlling multi-layer reproducible builds?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: petter@technux.se
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -49,129 +73,75 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 13 Dec 2016 05:39:29 -0000
-Content-Type: multipart/alternative;
-	boundary="=_511233348999acb016eed934af9e31db"
-
---=_511233348999acb016eed934af9e31db
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain; charset=UTF-8
-
- 
-
-2016-12-13 00:55 skrev Andreas Müller: 
-
-> On Mon, Dec 12, 2016 at
-11:33 PM, Petter Mabäcker <petter@technux.se> wrote:
-> 
->> 2016-12-12
-06:21 skrev Khem Raj: On Thu, Dec 8, 2016 at 2:40 AM, Andreas Müller
-<schnitzeltony@googlemail.com> wrote: * no more required (version > 3.17
-| > 4.3.x | > 4.4.5) * causes error with rt kernel I think this is ok to
-apply now. Signed-off-by: Andreas Müller <schnitzeltony@googlemail.com>
---- classes/linux-raspberrypi-base.bbclass | 15 --------------- 1 file
-changed, 15 deletions(-) diff --git
-a/classes/linux-raspberrypi-base.bbclass
-b/classes/linux-raspberrypi-base.bbclass index 3a6e33d..dc2330a 100644
---- a/classes/linux-raspberrypi-base.bbclass +++
-b/classes/linux-raspberrypi-base.bbclass @@ -14,21 +14,6 @@ def
-get_dts(d, ver=None): from the kernel staging ''' ver =
-get_kernelversion_file(staging_dir) - if ver is not None: - min_ver =
-ver.split('.', 3) - else: - return dts - - # Always turn off device tree
-support for kernel's < 3.18 - try: - if int(min_ver[0]) >= 4: - if
-(int(min_ver[1]) < 4) or (int(min_ver[1]) == 4 and int(min_ver[2]) < 6):
-- dts = ' '.join([(re.sub(r'(.*).dtbo$', r'1-overlay.dtb', x)) for x in
-dts.split()]) - elif int(min_ver[1]) < 18: - dts = "" - except
-IndexError: - min_ver = None - return dts -- 2.7.4 --
-_______________________________________________ yocto mailing list
-yocto@yoctoproject.org https://lists.yoctoproject.org/listinfo/yocto
-[1]
-> 
->> I think you should go even one step further and revert the
-entire commit merging this obsolete functionality: "git revert
-4a4373c02d3d8355a2e5faa10af61450e5b093d8" .
-> BR Petter 
-> 
-> To be
-honest: I have forked meta-raspberrypi and don't use it any
-> more. Just
-wanted to be a good boy. So maybe you want to send the
-> revert here?
->
-
-> Andreas
-> 
->> 
-
-Oh I see. Sure, I can send something up. 
-
-Petter
-Mabäcker
-
-Technux <petter@technux.se>
-www.technux.se
-
-
-
-Links:
-------
-[1] https://lists.yoctoproject.org/listinfo/yocto
-
---=_511233348999acb016eed934af9e31db
+X-List-Received-Date: Tue, 13 Dec 2016 08:53:38 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html; charset=UTF-8
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
-<html><body style=3D'font-family: Helvetica,Arial,sans-serif'>
-<p>2016-12-13 00:55 skrev Andreas M&uuml;ller:</p>
-<blockquote type=3D"cite" style=3D"padding-left:5px; border-left:#1010ff 2p=
-x solid; margin-left:5px; width:100%"><!-- html ignored --><!-- head ignore=
-d --><!-- meta ignored -->
-<pre>On Mon, Dec 12, 2016 at 11:33 PM, Petter Mab&auml;cker &lt;<a href=3D"=
-mailto:petter@technux.se">petter@technux.se</a>&gt; wrote:</pre>
-<blockquote type=3D"cite" style=3D"padding-left:5px; border-left:#1010ff 2p=
-x solid; margin-left:5px; width:100%">2016-12-12 06:21 skrev Khem Raj: On T=
-hu, Dec 8, 2016 at 2:40 AM, Andreas M&uuml;ller &lt;<a href=3D"mailto:schni=
-tzeltony@googlemail.com">schnitzeltony@googlemail.com</a>&gt; wrote: * no m=
-ore required (version &gt; 3.17 | &gt; 4.3.x | &gt; 4.4.5) * causes error w=
-ith rt kernel I think this is ok to apply now. Signed-off-by: Andreas M&uum=
-l;ller &lt;<a href=3D"mailto:schnitzeltony@googlemail.com">schnitzeltony@go=
-oglemail.com</a>&gt; --- classes/linux-raspberrypi-base.bbclass | 15 ------=
---------- 1 file changed, 15 deletions(-) diff --git a/classes/linux-raspbe=
-rrypi-base.bbclass b/classes/linux-raspberrypi-base.bbclass index 3a6e33d=
-=2E.dc2330a 100644 --- a/classes/linux-raspberrypi-base.bbclass +++ b/class=
-es/linux-raspberrypi-base.bbclass @@ -14,21 +14,6 @@ def get_dts(d, ver=3DN=
-one): from the kernel staging ''' ver =3D get_kernelversion_file(staging_di=
-r) - if ver is not None: - min_ver =3D ver.split('.', 3) - else: - return d=
-ts - - # Always turn off device tree support for kernel's &lt; 3.18 - try: =
-- if int(min_ver[0]) &gt;=3D 4: - if (int(min_ver[1]) &lt; 4) or (int(min_v=
-er[1]) =3D=3D 4 and int(min_ver[2]) &lt; 6): - dts =3D ' '.join([(re.sub(r'=
-(.*)\.dtbo$', r'\1-overlay.dtb', x)) for x in dts.split()]) - elif int(min_=
-ver[1]) &lt; 18: - dts =3D "" - except IndexError: - min_ver =3D None - ret=
-urn dts -- 2.7.4 -- _______________________________________________ yocto m=
-ailing list <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.or=
-g</a> <a href=3D"https://lists.yoctoproject.org/listinfo/yocto">https://lis=
-ts.yoctoproject.org/listinfo/yocto</a></blockquote>
-<blockquote type=3D"cite" style=3D"padding-left:5px; border-left:#1010ff 2p=
-x solid; margin-left:5px; width:100%">I think you should go even one step f=
-urther and revert the entire commit merging this obsolete functionality: "g=
-it revert 4a4373c02d3d8355a2e5faa10af61450e5b093d8" .</blockquote>
-<blockquote type=3D"cite" style=3D"padding-left:5px; border-left:#1010ff 2p=
-x solid; margin-left:5px; width:100%">BR Petter</blockquote>
-<pre>To be honest: I have forked meta-raspberrypi and don't use it any
-more. Just wanted to be a good boy. So maybe you want to send the
-revert here?
+=EF=BB=BFOn 12-12-16 16:20, Robert P. J. Day wrote:
+>
+>   (if there's already a doc section for this somewhere, a pointer to
+> it would be just ducky.)
+>
+>   if one is building an image for a releasable, commercial product,
+> and that image involves pulling in numerous layers, then dumping all
+> sorts of proprietary apps on top of it, what are the possibilities for
+> how to version number the released images such that, if a client has
+> an issue, they can identify precisely the state of components that
+> went into the system they're working with?
 
-Andreas
-</pre>
-</blockquote>
-<p>Oh I see. Sure, I can send something up.</p>
-<div>
-<pre>Petter Mab&auml;cker
+I always make a top-level git repository for the project. It contains all t=
+he=20
+"meta" layers as submodules (sometimes nested).
 
-Technux &lt;petter@technux.se&gt;
-www.technux.se</pre>
-</div>
-</body></html>
+That way, the version of the top layer is the version of the whole product =
+and=20
+can be reproduced any time.
 
---=_511233348999acb016eed934af9e31db--
+>   in addition to all of the layers involved in the build, one has to
+> take into account that, when critical bugs are identified, an updated
+> RPM might be sent out and applied, whereupon that system's version
+> number is no longer perfectly accurate. in the end, the state of
+> someone's running system will be determined by a possibly huge
+> combination of selected packages, preferred package versions, build
+> config options, additional user space apps, hot fixes that have been
+> applied and so on.
+
+The only way to version such a system is to actually dump the whole package=
+=20
+version table (e.g. "opkg list-installed"). You could compare the table to =
+the=20
+initially installed one and only send the difference, as an optimization.
+
+>   what sort of meaningful "version number" can be applied to something
+> like that? i'm sure at least a few other people have to be doing
+> something like that, so i'm open to suggestions.
+
+Version "numbers" are for marketing purposes only and have no useful meanin=
+g=20
+in version management. The git hash is the "technical" version number. Crea=
+te=20
+a table somewhere to map the commercial version number to a git hash. The=20
+simplest implementation is to "tag" the version numbers in the top-level=20
+repository.
+
+
+
+Kind regards,
+
+Mike Looijmans
+System Expert
+
+TOPIC Products
+Materiaalweg 4, NL-5681 RJ Best
+Postbus 440, NL-5680 AK Best
+Telefoon: +31 (0) 499 33 69 79
+E-mail: mike.looijmans@topicproducts.com
+Website: www.topicproducts.com
+
+Please consider the environment before printing this e-mail
+
+
+
+
+
+
