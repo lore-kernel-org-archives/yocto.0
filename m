@@ -1,79 +1,60 @@
-Return-Path: <patrick.ohly@intel.com>
+Return-Path: <prvs=11558569b9=holzmayr@rsi-elektrotechnik.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 20E6EE00C69; Tue, 13 Dec 2016 01:08:42 -0800 (PST)
+	id E213FE00C75; Tue, 13 Dec 2016 05:51:21 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.223.180 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [81.169.146.221 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.223.180 listed in dnsbl.sorbs.net]
-Received: from mail-io0-f180.google.com (mail-io0-f180.google.com
-	[209.85.223.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 711FEE00A1E
-	for <yocto@yoctoproject.org>; Tue, 13 Dec 2016 01:08:39 -0800 (PST)
-Received: by mail-io0-f180.google.com with SMTP id 136so42502576iou.3
-	for <yocto@yoctoproject.org>; Tue, 13 Dec 2016 01:08:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=message-id:subject:from:to:cc:date:in-reply-to:references
-	:organization:mime-version:content-transfer-encoding;
-	bh=NOeTYPr1qCdknfD9JjGKldSHC1tVEQKx3NmGR3K3hzs=;
-	b=Jc5R1/fuRmX024dIqrSEmc+rVDwwa92jMzFxY6CMC0eo5tGbz0ZNKD5Z/8c1nAJpRd
-	EepAqY7luNKNPq7CrmJwP37y0x1BucysXopeQyf8H4WPHgbhGDaN5zFEBv7xAVw/AiUC
-	rz1WjQjjFzyllB5O7ud91N1jHzbwLKB1AtlgO1OPKX2TLQlpwSB3G/3FVaeeXSCSpj7n
-	7jX34bJx6noekksISyF8siPiJswQevccTZ++/2Zqg30TQiRnNg7wTTTXRIHC3Z4NmguQ
-	4vznSYrOM3SDjEriSrWWDufW57pTDJFy28AhHbfKDtf1yGfXas/YMdGrm4HkupO1cddq
-	Kr3w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-	:references:organization:mime-version:content-transfer-encoding;
-	bh=NOeTYPr1qCdknfD9JjGKldSHC1tVEQKx3NmGR3K3hzs=;
-	b=BMU3o54fizCImydE41VBe7PAIGbruHcod4qN0CSCKGglQITg3wxLWN+8gRkfnRuvI+
-	zKE+E6JVIFd/QDo12ZVBD78l6mOsKJsgkPvlBHoFXmeLred8ENry25wqfJTpvGMZhQ3/
-	pDltYGwQ5OK1NC09DPIsbjnvSjTlwwTWaDx5HJrEze5aNO4zMQkvgtU1/bJY0pl04TqD
-	wd9Wh6Rd6g4mICvKC46Er8TTBmZLx4Knj36De42xW/poz/A/6KdLoNuE8tzKL+8jxXbQ
-	X4HSwPo60wxGWILByuQrBZQY1zrJQVIesJSGqHRSESkb24v7wOHPy0wmy63Y0c3tn6Wv
-	cjWQ==
-X-Gm-Message-State: AKaTC00bPt7qBNZMPezjwt2e8bKahJJsVmgFENsj3/Bg8CUvyeaIRUEvCLzbgtfQxXbKxD5c
-X-Received: by 10.107.142.2 with SMTP id q2mr84394561iod.128.1481620118378;
-	Tue, 13 Dec 2016 01:08:38 -0800 (PST)
-Received: from pohly-mobl1 (p5DE8F3B2.dip0.t-ipconnect.de. [93.232.243.178])
-	by smtp.gmail.com with ESMTPSA id
-	22sm21020027iog.28.2016.12.13.01.08.36
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 13 Dec 2016 01:08:37 -0800 (PST)
-Message-ID: <1481620115.17535.262.camel@intel.com>
-From: Patrick Ohly <patrick.ohly@intel.com>
-To: Mike Looijmans <mike.looijmans@topic.nl>
-Date: Tue, 13 Dec 2016 10:08:35 +0100
-In-Reply-To: <ad99fb40-4d8e-c7e0-3fe8-d27bc593f8fb@topic.nl>
-References: <20161121120355.18309-1-git@andred.net>
-	<1480503859.6873.280.camel@intel.com>
-	<1480516308.13682.1.camel@andred.net>
-	<1480517999.6873.298.camel@intel.com>
-	<30a3dd41-2e1c-8658-b83d-8632944d1709@denx.de>
-	<1481017522.17535.38.camel@intel.com>
-	<8e1fdcb8-d9fb-0e51-2e21-91e7e7c6f450@linux.intel.com>
-	<c3ce9528-f2eb-dd3f-cc68-331435aeda35@balister.org>
-	<16ca1a50-f46a-196f-66b8-91f0d14f59c2@denx.de>
-	<1481296433.17535.170.camel@intel.com>
-	<ad99fb40-4d8e-c7e0-3fe8-d27bc593f8fb@topic.nl>
-Organization: Intel GmbH, Dornacher Strasse 1, D-85622 Feldkirchen/Munich
-X-Mailer: Evolution 3.12.9-1+b1 
-Mime-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: update mechanisms
+Received: from mo4-p00-ob.smtp.rzone.de (mo4-p00-ob.smtp.rzone.de
+	[81.169.146.221])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 670B6E00C69
+	for <yocto@yoctoproject.org>; Tue, 13 Dec 2016 05:51:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1481637075;
+	l=1960; s=domk; d=rsi-elektrotechnik.de;
+	h=Content-Transfer-Encoding:Content-Type:In-Reply-To:MIME-Version:
+	Date:From:References:To:Subject;
+	bh=L/f4BCgCASk+2/tqFRhzPG4HC/OGh0G0R+7w2tStddM=;
+	b=eXuq/aooTtWNSYTOEc2ZNdfjNHrprRMXy0huILKnO3t3rGbQfkMANNxrcsjBNJXQko
+	hdIY4vS9x+nJxbTNM7ShbqGfV3ZnhFd19HMaSMxsA9MdyD+1jQs8gpnlSKwlOwDQG5Qu
+	RpXVenkJss5jInVqB3NKP37uzFmyadvgdcgu4=
+X-RZG-AUTH: :fz5RJhWIaexwuXGosGLfiBc0xYyi1Y5bd+wRKqrzPWwJyH/ODuV4n+N26eC0MVrEDIlpLg0lWA==
+X-RZG-CLASS-ID: mo00
+Received: from mail.rsi-elektrotechnik.de (p50933415.dip0.t-ipconnect.de
+	[80.147.52.21]) by smtp.strato.de (RZmta 39.10 AUTH)
+	with ESMTPSA id I05b2dsBDDpE08S
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (curve secp384r1
+	with 384 ECDH bits, eq. 7680 bits RSA))
+	(Client did not present a certificate);
+	Tue, 13 Dec 2016 14:51:14 +0100 (CET)
+Received: from [x.x.x.x] by mail.rsi-elektrotechnik.de (Cipher
+	TLSv1.2:AES-SHA:256) (MDaemon PRO v16.5.2) 
+	with ESMTPSA id md50000486038.msg; Tue, 13 Dec 2016 14:51:14 +0100
+X-MDRemoteIP: 80.147.52.21
+X-MDArrival-Date: Tue, 13 Dec 2016 14:51:14 +0100
+X-Authenticated-Sender: holzmayr@rsi-elektrotechnik.de
+X-Return-Path: prvs=11558569b9=holzmayr@rsi-elektrotechnik.de
+X-Envelope-From: holzmayr@rsi-elektrotechnik.de
+To: yocto@yoctoproject.org, juro.bystricky@intel.com
+References: <6E51916E4A1F32428260031F4C7CD2B6118C682A@ORSMSX112.amr.corp.intel.com>
+From: Josef Holzmayr <holzmayr@rsi-elektrotechnik.de>
+Message-ID: <a382fb05-0510-e3e5-6480-3fd56a5f8f31@rsi-elektrotechnik.de>
+Date: Tue, 13 Dec 2016 14:51:12 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.5.1
+MIME-Version: 1.0
+In-Reply-To: <6E51916E4A1F32428260031F4C7CD2B6118C682A@ORSMSX112.amr.corp.intel.com>
+Subject: Re: meta-zephyr layer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -85,34 +66,66 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 13 Dec 2016 09:08:42 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Tue, 13 Dec 2016 13:51:22 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
 Content-Transfer-Encoding: 8bit
 
-On Tue, 2016-12-13 at 09:51 +0100, Mike Looijmans wrote:
-> ï»¿On 09-12-16 16:13, Patrick Ohly wrote:
-> > Hello everyone!
-> >
-> > Thanks for contributing directly to the page. It's great to see this
-> > done collaboratively.
-> 
-> Nice informative page.
-> 
-> Only thing lacking is simple, OE-built in upgrade procedures like: "Just run 
-> 'opkg update && opkg upgrade'"
+Hello Juro,
 
-Want to add it? :-)
+first off, thanks for taking the kick, whatever its count is.
 
-Seriously, it would be a good addition.
+On 12.12.2016 23:15, Bystricky, Juro wrote:
+> Building of Zephyr images in Yocto can now be done fairly unobtrusively
+> via a new layer "meta-zephyr" and specifying a new distro in local.conf:
+> DISTRO="zephyr"
+
+Leaving out the poky/non-poky discussion, zephyr.conf currently contains 
+an include for tune-cortexm3.conf which certainly should not be there, 
+as it is machine specific. My local fix here is to create a warped 
+version of qemuarm.conf named qemuarmm3.conf which fixes that.
+
+>
+> The repository for the meta-zephyr is here:
+> http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=juro/meta-zephyr.
+>
+> The new meta-zephyr layer contains several recipes to build (and run
+> in QEMUs) various Zephyr tests. There is also a sample recipe to build
+> Zephyr sample "philosophers" with instructions how to run it in QEMU.
+
+The instructions seem to be missing that poky-contrib/meta is also 
+needed in the bblayers for the tune-cortexm3 include.
+
+> The new meta-zephyr is work based on previous original work by
+> Randy Witt and Richard Purdie, so it is actually a second kick at the can.
+
+Thanks to those too, of course.
+
+>
+> This is a work in progress, any feedback is appreciated.
+
+Feedback was above - do you also want patches? ;-)
+
+Greetz
 
 -- 
-Best Regards, Patrick Ohly
+Josef Holzmayr
+Software Developer Embedded Systems
 
-The content of this message is my personal opinion only and although
-I am an employee of Intel, the statements I make here in no way
-represent Intel's position on the issue, nor am I authorized to speak
-on behalf of Intel on this matter.
+Tel: +49 8444 9204-48
+Fax: +49 8444 9204-50
 
+R-S-I Elektrotechnik GmbH & Co. KG
+Woelkestrasse 11
+D-85301 Schweitenkirchen
+www.rsi-elektrotechnik.de
+———————————————
+Amtsgericht Ingolstadt – GmbH: HRB 191328 – KG: HRA 170393
+Geschäftsführer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
+Ust-IdNr: DE 128592548
 
+_____________________________________________________________
+Amtsgericht Ingolstadt - GmbH: HRB 191328 - KG: HRA 170363
+Geschäftsführer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
+USt-IdNr.: DE 128592548
 
 
