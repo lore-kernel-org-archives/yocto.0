@@ -1,94 +1,48 @@
-Return-Path: <christrobridge@hotmail.com>
+Return-Path: <juro.bystricky@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6310AE00828; Tue, 13 Dec 2016 08:25:08 -0800 (PST)
+	id 1A6BCE006EA; Tue, 13 Dec 2016 09:11:09 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (christrobridge[at]hotmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [65.55.34.209 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 60 seconds by postgrey-1.32 at yocto-www;
-	Tue, 13 Dec 2016 08:25:06 PST
-Received: from COL004-OMC4S7.hotmail.com (col004-omc4s7.hotmail.com
-	[65.55.34.209])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E9CBEE00571
-	for <yocto@yoctoproject.org>; Tue, 13 Dec 2016 08:25:06 -0800 (PST)
-Received: from EUR03-AM5-obe.outbound.protection.outlook.com ([65.55.34.201])
-	by COL004-OMC4S7.hotmail.com over TLS secured channel with
-	Microsoft SMTPSVC(7.5.7601.23008); Tue, 13 Dec 2016 08:24:05 -0800
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
-	s=selector1; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
-	bh=ZrEmE3MhfmlSK6sZqroaD1bXPhbbq9TUpA5OcqrL5y0=;
-	b=Hj0HxcJ+OLoPFMoz4OEJO6rsvutOPTGLgX9O/Rq+InAzLu1ydIw5fQkvtokzSm2iqcNJsxzMlqfx4B15STgbZbt771wFIjUk2uTEJIE1KHqJNAF7bRi5OmLpYKR+aqTLpW1tQBfNioNc0mt9M3Z1vcOvKCPVFSsV/2JQrmayvOB8XsZ05uUUmJRLABeQIZuKKq9ZHJS+FBgKxb/1AS7+A2KX/iY3Kr4zRuQuYnqa+/GCUrbWwv5io1N2hENIuMOdu4aiKZXOqNbu18sLLRSnsiz6DyesvboTUXxCc7gBwkX9/gB1ieIXb5V79v5hyTBF0+U7wKhMLKFk4Ao653rYow==
-Received: from VE1EUR03FT048.eop-EUR03.prod.protection.outlook.com
-	(10.152.18.58) by VE1EUR03HT224.eop-EUR03.prod.protection.outlook.com
-	(10.152.19.219) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.761.6;
-	Tue, 13 Dec 2016 16:24:03 +0000
-Received: from LOXP123MB1080.GBRP123.PROD.OUTLOOK.COM (10.152.18.54) by
-	VE1EUR03FT048.mail.protection.outlook.com (10.152.19.8) with Microsoft
-	SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
-	15.1.761.6 via Frontend Transport; Tue, 13 Dec 2016 16:24:03 +0000
-Received: from LOXP123MB1080.GBRP123.PROD.OUTLOOK.COM ([10.166.252.12]) by
-	LOXP123MB1080.GBRP123.PROD.OUTLOOK.COM ([10.166.252.12]) with mapi id
-	15.01.0771.014; Tue, 13 Dec 2016 16:24:03 +0000
-From: Chris Trobridge <christrobridge@hotmail.com>
-To: Yocto List <yocto@yoctoproject.org>
-Thread-Topic: Issues Updating Asterisk/Dahdi recipes from meta-telephony
-Thread-Index: AQHSVV1QKjj2YDQM70KG5LW85hs+yQ==
-Date: Tue, 13 Dec 2016 16:24:02 +0000
-Message-ID: <LOXP123MB1080B095E1C6F1532A482B39DA9B0@LOXP123MB1080.GBRP123.PROD.OUTLOOK.COM>
-Accept-Language: en-GB, en-US
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [192.55.52.115 listed in list.dnswl.org]
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D2122E00519
+	for <yocto@yoctoproject.org>; Tue, 13 Dec 2016 09:10:53 -0800 (PST)
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+	by fmsmga103.fm.intel.com with ESMTP; 13 Dec 2016 09:10:53 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.33,342,1477983600"; 
+	d="scan'208,217";a="797561284"
+Received: from orsmsx107.amr.corp.intel.com ([10.22.240.5])
+	by FMSMGA003.fm.intel.com with ESMTP; 13 Dec 2016 09:10:51 -0800
+Received: from orsmsx112.amr.corp.intel.com ([169.254.3.163]) by
+	ORSMSX107.amr.corp.intel.com ([169.254.1.125]) with mapi id
+	14.03.0248.002; Tue, 13 Dec 2016 09:10:51 -0800
+From: "Bystricky, Juro" <juro.bystricky@intel.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+Thread-Topic: [yocto] meta-zephyr layer
+Thread-Index: AdJUwsGpugg9Pmu/QsqjzuAXZM7o+wARg/WAAA+b+CD//59VgP//buAg
+Date: Tue, 13 Dec 2016 17:10:51 +0000
+Message-ID: <6E51916E4A1F32428260031F4C7CD2B6118C6C6C@ORSMSX112.amr.corp.intel.com>
+References: <6E51916E4A1F32428260031F4C7CD2B6118C682A@ORSMSX112.amr.corp.intel.com>
+	<a278001c-6944-42c4-0762-30d4931a2016@balister.org>
+	<6E51916E4A1F32428260031F4C7CD2B6118C686A@ORSMSX112.amr.corp.intel.com>
+	<CAJTo0LYHAUiA1uirCKho1mOVOHWf_Yxsgh1-kKNV2xTHDeEPfQ@mail.gmail.com>
+In-Reply-To: <CAJTo0LYHAUiA1uirCKho1mOVOHWf_Yxsgh1-kKNV2xTHDeEPfQ@mail.gmail.com>
+Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-authentication-results: yoctoproject.org; dkim=none (message not signed)
-	header.d=none;yoctoproject.org; dmarc=none action=none
-	header.from=hotmail.com;
-x-incomingtopheadermarker: OriginalChecksum:F0292BA66C666483F38B7B9FC9B31C1B2C29F57804835CDD162104A73F5A61E0;
-	UpperCasedChecksum:EB4AC0584547DB52FFA965A822657DFCD737CC845DCFC4B4AE19690EFEEF9EEA;
-	SizeAsReceived:7270; Count:37
-x-ms-exchange-messagesentrepresentingtype: 1
-x-tmn: [wsjQ1boM+IUAE3rkM/Plb1PQJ3OCcExh]
-x-incomingheadercount: 37
-x-eopattributedmessage: 0
-x-microsoft-exchange-diagnostics: 1; VE1EUR03HT224;
-	7:T7hJ6ZA/2lqvX0Klw54vlDyHXEj7ZZfwyLAeahsyWRX4m8dcrYZPj4JaOpaFNg3ai8cQM43/6h789+bAciJCKfCvgGjCEyUaOfoKyBMA13NpJAi6me5DEa8kjI/mKlZtXJ/wsjDSSdhJiNi4vnUfjdYzvX0dkQ8NBXu3/wK3yXxEYaDMziAog+FOMKnmQVoUQfq3nN4/c/1U9gdrT0C/bmUy0wHFuEZjwlVKGBjFZ0IDF+ENDHiaYvda8EYxRVahAXsbAsbc6+ERYKkna3qd4TUKUz9UoAK2oeKHILcupXR8oBbzvGlTVxmQaZfWOAMLjzy32nphmAoArdR5Tq4bVmkgWsqQlyrYONT0Aa14ydUGMxxGb+Pd7N/uvSIqn3TBw4RzSH9/BqV6KKA7kad2cSYB3Bdy7ERfWdAGnOqpVJMn5yPk35ygVKKKz8EthuvAq9/FAScEKMfHOYxj6uwdZQ==
-x-forefront-antispam-report: EFV:NLI; SFV:NSPM; SFS:(10019020)(98900003);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:VE1EUR03HT224;
-	H:LOXP123MB1080.GBRP123.PROD.OUTLOOK.COM; FPR:; SPF:None;
-	LANG:en; 
-x-ms-office365-filtering-correlation-id: eb1c79ed-0597-4ea5-aaac-08d4237473c8
-x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
-	RULEID:(22001)(1601124038)(1603103113)(1601125047);
-	SRVR:VE1EUR03HT224; 
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0; RULEID:(432015012)(82015046);
-	SRVR:VE1EUR03HT224; BCL:0; PCL:0; RULEID:; SRVR:VE1EUR03HT224; 
-x-forefront-prvs: 01559F388D
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
+x-originating-ip: [10.22.254.139]
 MIME-Version: 1.0
-X-OriginatorOrg: hotmail.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Dec 2016 16:24:02.9850 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Internet
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1EUR03HT224
-X-OriginalArrivalTime: 13 Dec 2016 16:24:05.0807 (UTC)
-	FILETIME=[52E2A3F0:01D2555D]
-Subject: Issues Updating Asterisk/Dahdi recipes from meta-telephony
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: meta-zephyr layer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -100,198 +54,103 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 13 Dec 2016 16:25:08 -0000
-Content-Language: en-GB
+X-List-Received-Date: Tue, 13 Dec 2016 17:11:09 -0000
+Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_LOXP123MB1080B095E1C6F1532A482B39DA9B0LOXP123MB1080GBRP_"
+	boundary="_000_6E51916E4A1F32428260031F4C7CD2B6118C6C6CORSMSX112amrcor_"
 
---_000_LOXP123MB1080B095E1C6F1532A482B39DA9B0LOXP123MB1080GBRP_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+--_000_6E51916E4A1F32428260031F4C7CD2B6118C6C6CORSMSX112amrcor_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Hi,
+VGhhbmtzLCBnb29kIHBvaW50LiBUaGUgbmVlZCBmb3IgaXMgcG9reS5jb25mIGhpc3RvcmljLCBu
+b3QgcmVhbGx5IG5lZWRlZCBhdCBhbGwgYW55bW9yZS4NCg0KRnJvbTogQnVydG9uLCBSb3NzIFtt
+YWlsdG86cm9zcy5idXJ0b25AaW50ZWwuY29tXQ0KU2VudDogTW9uZGF5LCBEZWNlbWJlciAxMiwg
+MjAxNiA0OjAwIFBNDQpUbzogQnlzdHJpY2t5LCBKdXJvIDxqdXJvLmJ5c3RyaWNreUBpbnRlbC5j
+b20+DQpDYzogUGhpbGlwIEJhbGlzdGVyIDxwaGlsaXBAYmFsaXN0ZXIub3JnPjsgeW9jdG9AeW9j
+dG9wcm9qZWN0Lm9yZw0KU3ViamVjdDogUmU6IFt5b2N0b10gbWV0YS16ZXBoeXIgbGF5ZXINCg0K
+DQpPbiAxMiBEZWNlbWJlciAyMDE2IGF0IDIyOjUyLCBCeXN0cmlja3ksIEp1cm8gPGp1cm8uYnlz
+dHJpY2t5QGludGVsLmNvbTxtYWlsdG86anVyby5ieXN0cmlja3lAaW50ZWwuY29tPj4gd3JvdGU6
+DQp5b3UgbmVlZCBwb2t5IHRvIGJ1aWxkIFFFTVVzIGFuZCB0b29sY2hhaW5zDQoNCllvdSBzaG91
+bGQganVzdCBuZWVkICpPcGVuRW1iZWRkZWQqIHRvIGJ1aWxkIHRoZSBxZW11cyBhbmQgdG9vbGNo
+YWlucy4gIFdoeSBkb2VzIHplcGh5ci5jb25mIGluY2x1ZGUgcG9reS5jb25mPyAgSSdkIHNheSB0
+aGF0IGFueSB2YXJpYWJsZXMgdGhhdCBhcmUgdXNlZnVsIC0gc3VjaCBhcyB1c2luZyB0aGUgWW9j
+dG8gc291cmNlIG1pcnJvcnMgLSBzaG91bGQganVzdCBiZSBjb3BpZWQgaW50byB6ZXBoeXIuY29u
+ZiAob3IgZXZlbiBiZXR0ZXIsIG1vdmVkIGludG8gb2UtY29yZSkuDQoNClJvc3MNCg0KUm9zcw0K
 
+--_000_6E51916E4A1F32428260031F4C7CD2B6118C6C6CORSMSX112amrcor_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-I have got around to updating these recipes and found a few issues:
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
+YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
+IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
+IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJ
+Zm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJvbWFuIixzZXJpZjt9
+DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCglj
+b2xvcjpibHVlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KYTp2aXNpdGVkLCBzcGFu
+Lk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjpw
+dXJwbGU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQpzcGFuLkVtYWlsU3R5bGUxNw0K
+CXttc28tc3R5bGUtdHlwZTpwZXJzb25hbC1yZXBseTsNCglmb250LWZhbWlseToiQ291cmllciBO
+ZXciOw0KCWNvbG9yOmJsYWNrOw0KCWZvbnQtd2VpZ2h0Om5vcm1hbDsNCglmb250LXN0eWxlOm5v
+cm1hbDt9DQouTXNvQ2hwRGVmYXVsdA0KCXttc28tc3R5bGUtdHlwZTpleHBvcnQtb25seTsNCglm
+b250LXNpemU6MTAuMHB0Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30NCkBw
+YWdlIFdvcmRTZWN0aW9uMQ0KCXtzaXplOjguNWluIDExLjBpbjsNCgltYXJnaW46MS4waW4gMS4w
+aW4gMS4waW4gMS4waW47fQ0KZGl2LldvcmRTZWN0aW9uMQ0KCXtwYWdlOldvcmRTZWN0aW9uMTt9
+DQotLT48L3N0eWxlPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVkZWZhdWx0cyB2
+OmV4dD0iZWRpdCIgc3BpZG1heD0iMTAyNiIgLz4NCjwveG1sPjwhW2VuZGlmXS0tPjwhLS1baWYg
+Z3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVsYXlvdXQgdjpleHQ9ImVkaXQiPg0KPG86aWRtYXAg
+djpleHQ9ImVkaXQiIGRhdGE9IjEiIC8+DQo8L286c2hhcGVsYXlvdXQ+PC94bWw+PCFbZW5kaWZd
+LS0+DQo8L2hlYWQ+DQo8Ym9keSBsYW5nPSJFTi1VUyIgbGluaz0iYmx1ZSIgdmxpbms9InB1cnBs
+ZSI+DQo8ZGl2IGNsYXNzPSJXb3JkU2VjdGlvbjEiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNw
+YW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q291cmllciBOZXcm
+cXVvdDs7Y29sb3I6YmxhY2siPlRoYW5rcywgZ29vZCBwb2ludC4gVGhlIG5lZWQgZm9yIGlzIHBv
+a3kuY29uZiBoaXN0b3JpYywgbm90IHJlYWxseSBuZWVkZWQgYXQgYWxsIGFueW1vcmUuPG86cD48
+L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGEgbmFtZT0iX01haWxFbmRD
+b21wb3NlIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtD
+b3VyaWVyIE5ldyZxdW90Oztjb2xvcjpibGFjayI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9h
+PjwvcD4NCjxkaXYgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci1sZWZ0OnNvbGlkIGJsdWUgMS41
+cHQ7cGFkZGluZzowaW4gMGluIDBpbiA0LjBwdCI+DQo8ZGl2Pg0KPGRpdiBzdHlsZT0iYm9yZGVy
+Om5vbmU7Ym9yZGVyLXRvcDpzb2xpZCAjRTFFMUUxIDEuMHB0O3BhZGRpbmc6My4wcHQgMGluIDBp
+biAwaW4iPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTox
+MS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmIj5Gcm9tOjwv
+c3Bhbj48L2I+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7
+Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmIj4gQnVydG9uLCBSb3NzIFttYWlsdG86cm9zcy5idXJ0
+b25AaW50ZWwuY29tXQ0KPGJyPg0KPGI+U2VudDo8L2I+IE1vbmRheSwgRGVjZW1iZXIgMTIsIDIw
+MTYgNDowMCBQTTxicj4NCjxiPlRvOjwvYj4gQnlzdHJpY2t5LCBKdXJvICZsdDtqdXJvLmJ5c3Ry
+aWNreUBpbnRlbC5jb20mZ3Q7PGJyPg0KPGI+Q2M6PC9iPiBQaGlsaXAgQmFsaXN0ZXIgJmx0O3Bo
+aWxpcEBiYWxpc3Rlci5vcmcmZ3Q7OyB5b2N0b0B5b2N0b3Byb2plY3Qub3JnPGJyPg0KPGI+U3Vi
+amVjdDo8L2I+IFJlOiBbeW9jdG9dIG1ldGEtemVwaHlyIGxheWVyPG86cD48L286cD48L3NwYW4+
+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9v
+OnA+PC9wPg0KPGRpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwv
+bzpwPjwvcD4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5PbiAxMiBEZWNlbWJlciAyMDE2
+IGF0IDIyOjUyLCBCeXN0cmlja3ksIEp1cm8gJmx0OzxhIGhyZWY9Im1haWx0bzpqdXJvLmJ5c3Ry
+aWNreUBpbnRlbC5jb20iIHRhcmdldD0iX2JsYW5rIj5qdXJvLmJ5c3RyaWNreUBpbnRlbC5jb208
+L2E+Jmd0OyB3cm90ZTo8bzpwPjwvbzpwPjwvcD4NCjxibG9ja3F1b3RlIHN0eWxlPSJib3JkZXI6
+bm9uZTtib3JkZXItbGVmdDpzb2xpZCAjQ0NDQ0NDIDEuMHB0O3BhZGRpbmc6MGluIDBpbiAwaW4g
+Ni4wcHQ7bWFyZ2luLWxlZnQ6NC44cHQ7bWFyZ2luLXRvcDo1LjBwdDttYXJnaW4tcmlnaHQ6MGlu
+O21hcmdpbi1ib3R0b206NS4wcHQiPg0KPGRpdiBpZD0iOjJwYiI+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj55b3UgbmVlZCBwb2t5IHRvIGJ1aWxkIFFFTVVzIGFuZCB0b29sY2hhaW5zPG86cD48L286
+cD48L3A+DQo8L2Rpdj4NCjwvYmxvY2txdW90ZT4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiPllvdSBzaG91bGQganVzdCBuZWVkICpPcGVuRW1iZWRkZWQqIHRvIGJ1aWxkIHRoZSBxZW11
+cyBhbmQgdG9vbGNoYWlucy4mbmJzcDsgV2h5IGRvZXMgemVwaHlyLmNvbmYgaW5jbHVkZSBwb2t5
+LmNvbmY/Jm5ic3A7IEknZCBzYXkgdGhhdCBhbnkgdmFyaWFibGVzIHRoYXQgYXJlIHVzZWZ1bCAt
+IHN1Y2ggYXMgdXNpbmcgdGhlIFlvY3RvIHNvdXJjZSBtaXJyb3JzIC0gc2hvdWxkIGp1c3QgYmUg
+Y29waWVkIGludG8gemVwaHlyLmNvbmYNCiAob3IgZXZlbiBiZXR0ZXIsIG1vdmVkIGludG8gb2Ut
+Y29yZSkuPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiPlJvc3M8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05v
+cm1hbCI+Um9zczxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+
+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
 
-
-asterisk has a autoconf macro file for pjproject in ./third-party/pjproject=
-/, which does not get picked up by autobuild.bbclass.
-
-
-This uses find with a -maxdepth of 2 but but 3 would be needed.  I found a =
-temp fix by copying the m4 file manually to ./m4 directory in configure_pre=
-pend but what would the best long term solution be?
-
-
-/etc/init.d/functions stopped being installed for dahdi-tools and asterisk.
-
-
-update-rc.d.bbclass adds a run-time dependency on initscripts-functions if =
-the installed init.d script contains the literal string "/etc/init.d/functi=
-ons" at the packet-split stage.
-
-
-dahdi doesn't contain this literally but asterisk does so I am confused - b=
-ut adding an explicit run-time dependency on initscripts-functions to dahdi=
--tools solved this.
-
-
-Any ideas on why this isn't working be default?
-
-
-asterisk also seems to have an issue locating neon but I have not started t=
-o investigate that yet.
-
-
-Regards,
-
-Chris
-
-
-morty 5aa481d
-
-asterisk 13.13.1
-
-dahdi-tools 2.10.2
-
-
---_000_LOXP123MB1080B095E1C6F1532A482B39DA9B0LOXP123MB1080GBRP_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
-</head>
-<body dir=3D"ltr">
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
--family:Calibri,Arial,Helvetica,sans-serif;" dir=3D"ltr">
-<p>Hi,</p>
-<p><br>
-</p>
-<p>I have got around to updating these recipes and found a few issues:</p>
-<p><br>
-</p>
-<p>asterisk has a autoconf macro file for pjproject in&nbsp;<span style=3D"=
-font-family: Calibri, Arial, Helvetica, sans-serif, &quot;Apple Color Emoji=
-&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot;Segoe UI Symbol&q=
-uot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size: 16px;">./third-pa=
-rty/pjproject/,
- which does not get picked up by autobuild.bbclass.</span></p>
-<div></div>
-<p></p>
-<p><span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot=
-;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot=
-;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size:=
- 16px;"><br>
-</span></p>
-<p><span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot=
-;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot=
-;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size:=
- 16px;">This uses find with a -maxdepth of 2 but but 3 would be needed. &nb=
-sp;I
- found a temp fix by copying the m4 file manually to ./m4 directory in conf=
-igure_prepend but what would&nbsp;the best long term solution be?</span></p=
->
-<p><span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot=
-;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot=
-;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size:=
- 16px;"><br>
-</span></p>
-<p><span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot=
-;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot=
-;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size:=
- 16px;">/etc/init.d/functions stopped being installed for dahdi-tools and
- asterisk.</span></p>
-<p><span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot=
-;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot=
-;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size:=
- 16px;"><br>
-</span></p>
-<p><span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot=
-;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot=
-;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size:=
- 16px;">update-rc.d.bbclass adds a run-time&nbsp;dependency on&nbsp;<span>i=
-nitscripts-functions</span>&nbsp;if
- the installed&nbsp;init.d script contains the literal string &quot;<span>/=
-etc/init.d/functions&quot; at the packet-split stage.</span></span></p>
-<p><span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot=
-;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot=
-;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size:=
- 16px;"><span><br>
-</span></span></p>
-<p><span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot=
-;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot=
-;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size:=
- 16px;"><span>dahdi doesn't contain this literally but asterisk does so I
- am confused - but adding an explicit run-time&nbsp;dependency on&nbsp;<spa=
-n style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot;Apple =
-Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot;Segoe =
-UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size: 16px;"=
->initscripts-functions
- to dahdi-tools solved this.</span></span></span></p>
-<p><span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot=
-;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot=
-;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size:=
- 16px;"><span><span style=3D"font-family: Calibri, Arial, Helvetica, sans-s=
-erif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorE=
-moji, &quot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols;=
- font-size: 16px;"><br>
-</span></span></span></p>
-<p><span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot=
-;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot=
-;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size:=
- 16px;"><span><span style=3D"font-family: Calibri, Arial, Helvetica, sans-s=
-erif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorE=
-moji, &quot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols;=
- font-size: 16px;">Any
- ideas on why this isn't working be default?</span></span></span></p>
-<p><span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot=
-;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot=
-;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size:=
- 16px;"><span><span style=3D"font-family: Calibri, Arial, Helvetica, sans-s=
-erif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorE=
-moji, &quot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols;=
- font-size: 16px;"><br>
-</span></span></span></p>
-<p><span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot=
-;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot=
-;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size:=
- 16px;"><span><span style=3D"font-family: Calibri, Arial, Helvetica, sans-s=
-erif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorE=
-moji, &quot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols;=
- font-size: 16px;">asterisk
- also seems to have an issue locating neon but I have not started to invest=
-igate that yet.</span></span></span></p>
-<p><span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot=
-;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot=
-;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size:=
- 16px;"><span><span style=3D"font-family: Calibri, Arial, Helvetica, sans-s=
-erif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorE=
-moji, &quot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols;=
- font-size: 16px;"><br>
-</span></span></span></p>
-<p><span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot=
-;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot=
-;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size:=
- 16px;"><span><span style=3D"font-family: Calibri, Arial, Helvetica, sans-s=
-erif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorE=
-moji, &quot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols;=
- font-size: 16px;">Regards,</span></span></span></p>
-<p>Chris</p>
-<p><br>
-</p>
-<p>morty&nbsp;<span>5aa481d</span></p>
-<p>asterisk 13.13.1</p>
-<p>dahdi-tools 2.10.2</p>
-<p><br>
-</p>
-</div>
-</body>
-</html>
-
---_000_LOXP123MB1080B095E1C6F1532A482B39DA9B0LOXP123MB1080GBRP_--
+--_000_6E51916E4A1F32428260031F4C7CD2B6118C6C6CORSMSX112amrcor_--
