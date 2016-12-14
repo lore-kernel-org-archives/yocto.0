@@ -1,38 +1,26 @@
-Return-Path: <todor.minchev@linux.intel.com>
+Return-Path: <auh@auh.yoctoproject.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7E69FE00D7C; Wed, 14 Dec 2016 08:32:06 -0800 (PST)
+	id 3A0FDE00E2C; Wed, 14 Dec 2016 10:19:36 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.115 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3A300E00D73;
-	Wed, 14 Dec 2016 08:32:00 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by fmsmga103.fm.intel.com with ESMTP; 14 Dec 2016 08:31:58 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.33,347,1477983600"; d="scan'208";a="1072031412"
-Received: from unknown (HELO speedy) ([10.7.197.100])
-	by orsmga001.jf.intel.com with ESMTP; 14 Dec 2016 08:31:58 -0800
-Message-ID: <1481733118.41690.29.camel@linux.intel.com>
-From: Todor Minchev <todor.minchev@linux.intel.com>
-To: Cal Sullivan <california.l.sullivan@intel.com>
-Date: Wed, 14 Dec 2016 08:31:58 -0800
-In-Reply-To: <1c379d91-5e8a-080b-394a-bcbc5b3aa644@intel.com>
-References: <20161213225649.80589-1-todor.minchev@linux.intel.com>
-	<D283043F-7FBE-41F9-A02E-EB716EF421FB@linux.intel.com>
-	<1481676638.41690.21.camel@linux.intel.com>
-	<1c379d91-5e8a-080b-394a-bcbc5b3aa644@intel.com>
-X-Mailer: Evolution 3.12.9-1+b1 
-Mime-Version: 1.0
-Cc: meta-intel@yoctoproject.org, yocto@yoctoproject.org
-Subject: Re: [meta-inte][rmc][PATCH v2 1/1] rmc: add support for alternative EFI bootloaders
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from auh.yoctoproject.org (unknown [198.145.29.2])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EF497E00E06
+	for <yocto@yoctoproject.org>; Wed, 14 Dec 2016 10:19:33 -0800 (PST)
+Received: from auh.yoctoproject.org (localhost [127.0.0.1])
+	by auh.yoctoproject.org (Postfix) with ESMTP id DEF6A6FE1E18
+	for <yocto@yoctoproject.org>; Wed, 14 Dec 2016 18:19:31 +0000 (UTC)
+MIME-Version: 1.0
+From: auh@auh.yoctoproject.org
+To: yocto@yoctoproject.org
+Message-Id: <20161214181931.DEF6A6FE1E18@auh.yoctoproject.org>
+Date: Wed, 14 Dec 2016 18:19:31 +0000 (UTC)
+Subject: [AUH] Upgrade status: 2016-12-14
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,130 +32,172 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 14 Dec 2016 16:32:06 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Wed, 14 Dec 2016 18:19:36 -0000
+Content-Type: multipart/mixed; boundary="===============2153666021187084748=="
 
-On Tue, 2016-12-13 at 17:50 -0800, Cal Sullivan wrote:
-> I like where this is heading but does RMC function with bootloaders 
-> besides systemd-boot yet?
-> A quick boot test with this patch and RMC_BOOTLOADER = "grub-efi" seems 
-> to give me vanilla grub-efi.
+--===============2153666021187084748==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
 
-At the moment RMC works end-to-end only with systemd-boot. This patch
-resolves bug 10212 which blocks the changes required for RMC support in
-grub-efi (bug 10126).
+QVVIIGZpbmlzaGVkIHVwZ3JhZGUgYmF0Y2ggdGhlIHJlc3VsdCBwYXRjaGVzL2xvZ3MgY2FuIGJl
+IGZvdW5kIGF0OgpodHRwczovL2xvZ3MueW9jdG9wcm9qZWN0Lm9yZy9hdWgvLzIwMTYxMjEyMTUw
+MDAzLCBuZXh0IGFyZSB0aGUgc3RhdGlzdGljczoKClJlY2lwZSB1cGdyYWRlIHN0YXRpc3RpY3M6
+CgogICAgKiBGYWlsZWQob3RoZXIgZXJyb3JzKTogMTMKICAgICAgICB4Zjg2LXZpZGVvLWludGVs
+LCAyMDA0MDcyMStnaXRBVVRPSU5DK2JlYzQ3ZjkzNjksIEp1c3NpIEt1a2tvbmVuIDxqdXNzaS5r
+dWtrb25lbkBpbnRlbC5jb20+CiAgICAgICAgc3lzdGVtZC1ib290LCAyMzIsIENoZW4gUWkgPFFp
+LkNoZW5Ad2luZHJpdmVyLmNvbT4KICAgICAgICBwcmVsaW5rLCAyMDE1MTAzMC4rZ2l0QVVUT0lO
+Qys5Mjc5NzliYmQxLCBNYXJrIEhhdGxlIDxtYXJrLmhhdGxlQHdpbmRyaXZlci5jb20+CiAgICAg
+ICAgcnBtLCA1LjQuMTcsIE1hcmsgSGF0bGUgPG1hcmsuaGF0bGVAd2luZHJpdmVyLmNvbT4KICAg
+ICAgICBwZXJsLCA1LjI0LjEsIEFuw61iYWwgTGltw7NuIDxhbmliYWwubGltb25AbGludXguaW50
+ZWwuY29tPgogICAgICAgIGxzYmluaXRzY3JpcHRzLCA5LjY5LCBSb3NzIEJ1cnRvbiA8cm9zcy5i
+dXJ0b25AaW50ZWwuY29tPgogICAgICAgIGRlYmlhbnV0aWxzLCA0LjguMSwgUm9iZXJ0IFlhbmcg
+PGxpZXpoaS55YW5nQHdpbmRyaXZlci5jb20+CiAgICAgICAgeGY4Ni12aWRlby12bXdhcmUsIDEz
+LjIuMSwgSnVzc2kgS3Vra29uZW4gPGp1c3NpLmt1a2tvbmVuQGludGVsLmNvbT4KICAgICAgICB1
+dGlsLWxpbnV4LCAyLjI5LCBDaGVuIFFpIDxRaS5DaGVuQHdpbmRyaXZlci5jb20+CiAgICAgICAg
+ZmxleCwgMi42LjIsIENoZW4gUWkgPFFpLkNoZW5Ad2luZHJpdmVyLmNvbT4KICAgICAgICBmaWxl
+LCA1LjI5LCBSb2JlcnQgWWFuZyA8bGllemhpLnlhbmdAd2luZHJpdmVyLmNvbT4KICAgICAgICBn
+aG9zdHNjcmlwdCwgOS4yMHJjMSwgSG9uZ3h1IEppYSA8aG9uZ3h1LmppYUB3aW5kcml2ZXIuY29t
+PgogICAgICAgIGRwa2csIDEuMTguMTUsIEFuw61iYWwgTGltw7NuIDxhbmliYWwubGltb25AbGlu
+dXguaW50ZWwuY29tPgogICAgKiBGYWlsZWQoZG9fY29uZmlndXJlKTogMTAKICAgICAgICBnc3Ry
+ZWFtZXIxLjAtcnRzcC1zZXJ2ZXIsIDEuMTAuMiwgTWF4aW4gQi4gSm9obiA8bWF4aW4uam9obkBp
+bnRlbC5jb20+CiAgICAgICAgd2VzdG9uLCAxLjEyLjAsIEp1c3NpIEt1a2tvbmVuIDxqdXNzaS5r
+dWtrb25lbkBpbnRlbC5jb20+CiAgICAgICAgbGliZm0sIDEuMi41LCBBbGV4YW5kZXIgS2FuYXZp
+biA8YWxleGFuZGVyLmthbmF2aW5AaW50ZWwuY29tPgogICAgICAgIHZ0ZSwgMC40Ni4xLCBKdXNz
+aSBLdWtrb25lbiA8anVzc2kua3Vra29uZW5AaW50ZWwuY29tPgogICAgICAgIGdudXRscywgMy41
+LjcsIEFsZXhhbmRlciBLYW5hdmluIDxhbGV4YW5kZXIua2FuYXZpbkBpbnRlbC5jb20+CiAgICAg
+ICAgZ3N0cmVhbWVyMS4wLXBsdWdpbnMtZ29vZCwgMS4xMC4yLCBNYXhpbiBCLiBKb2huIDxtYXhp
+bi5qb2huQGludGVsLmNvbT4KICAgICAgICBwaW5lbnRyeSwgMS4wLjAsIEFybWluIEt1c3RlciA8
+YWt1c3RlcjgwOEBnbWFpbC5jb20+CiAgICAgICAgeHNlcnZlci14b3JnLCAxLjE5LjAsIEp1c3Np
+IEt1a2tvbmVuIDxqdXNzaS5rdWtrb25lbkBpbnRlbC5jb20+CiAgICAgICAgZ3N0cmVhbWVyMS4w
+LXBsdWdpbnMtYmFkLCAxLjEwLjIsIE1heGluIEIuIEpvaG4gPG1heGluLmpvaG5AaW50ZWwuY29t
+PgogICAgICAgIGdzdHJlYW1lcjEuMC1wbHVnaW5zLWJhc2UsIDEuMTAuMiwgTWF4aW4gQi4gSm9o
+biA8bWF4aW4uam9obkBpbnRlbC5jb20+CiAgICAqIEZhaWxlZChkb19jb21waWxlKTogMTAKICAg
+ICAgICBsaWJ4a2Jjb21tb24sIDAuNy4wLCBKdXNzaSBLdWtrb25lbiA8anVzc2kua3Vra29uZW5A
+aW50ZWwuY29tPgogICAgICAgIHB5dGhvbi1naXQsIDIuMS4xLCBKb3NlIExhbWVnbyA8am9zZS5h
+LmxhbWVnb0BsaW51eC5pbnRlbC5jb20+CiAgICAgICAgY29nbC0xLjAsIDEuMjIuMiwgSnVzc2kg
+S3Vra29uZW4gPGp1c3NpLmt1a2tvbmVuQGludGVsLmNvbT4KICAgICAgICBncGdtZSwgMS44LjAs
+IEhvbmd4dSBKaWEgPGhvbmd4dS5qaWFAd2luZHJpdmVyLmNvbT4KICAgICAgICB3cGEtc3VwcGxp
+Y2FudCwgMi42LCBNYXhpbiBCLiBKb2huIDxtYXhpbi5qb2huQGludGVsLmNvbT4KICAgICAgICBx
+dWlsdCwgMC42NSwgUm9iZXJ0IFlhbmcgPGxpZXpoaS55YW5nQHdpbmRyaXZlci5jb20+CiAgICAg
+ICAgcHl0aG9uMy1kb2N1dGlscywgMC4xMy4xLCBFZHdpbiBQbGF1Y2h1IDxlZHdpbi5wbGF1Y2h1
+LmNhbWFjaG9AbGludXguaW50ZWwuY29tPgogICAgICAgIGtleGVjLXRvb2xzLCAyLjAuMTMsIEFs
+ZXhhbmRlciBLYW5hdmluIDxhbGV4YW5kZXIua2FuYXZpbkBpbnRlbC5jb20+CiAgICAgICAgZ251
+cGcsIDIuMS4xNiwgSG9uZ3h1IEppYSA8aG9uZ3h1LmppYUB3aW5kcml2ZXIuY29tPgogICAgICAg
+IGN1cHMsIDIuMi4xLCBDaGVuIFFpIDxRaS5DaGVuQHdpbmRyaXZlci5jb20+CiAgICAqIEZhaWxl
+ZChkb19wYXRjaCk6IDIKICAgICAgICBvcGVuc3NsLCAxLjEuMGMsIEFsZXhhbmRlciBLYW5hdmlu
+IDxhbGV4YW5kZXIua2FuYXZpbkBpbnRlbC5jb20+CiAgICAgICAgYmFzaCwgNC40LCBIb25neHUg
+SmlhIDxob25neHUuamlhQHdpbmRyaXZlci5jb20+CiAgICAqIEZhaWxlZChkb19mZXRjaCk6IDYK
+ICAgICAgICBweXRob24zLXNldHVwdG9vbHMsIDMxLjAuMCwgRWR3aW4gUGxhdWNodSA8ZWR3aW4u
+cGxhdWNodS5jYW1hY2hvQGxpbnV4LmludGVsLmNvbT4KICAgICAgICBsdHRuZy10b29scywgMi45
+LjArZ2l0QVVUT0lOQytiMjJmMDJkMmI4LCBSaWNoYXJkIFB1cmRpZSA8cmljaGFyZC5wdXJkaWVA
+bGludXhmb3VuZGF0aW9uLm9yZz4KICAgICAgICBsdHRuZy1tb2R1bGVzLCAyLjkuMCtnaXRBVVRP
+SU5DKzE0OTc5ZWRhYWQsIFJpY2hhcmQgUHVyZGllIDxyaWNoYXJkLnB1cmRpZUBsaW51eGZvdW5k
+YXRpb24ub3JnPgogICAgICAgIGx0dG5nLXVzdCwgMi45LjArZ2l0QVVUT0lOQys1NTliODdhM2Qz
+LCBSaWNoYXJkIFB1cmRpZSA8cmljaGFyZC5wdXJkaWVAbGludXhmb3VuZGF0aW9uLm9yZz4KICAg
+ICAgICBweXRob24zLWdpdCwgMi4xLjEsIEpvc2UgTGFtZWdvIDxqb3NlLmEubGFtZWdvQGxpbnV4
+LmludGVsLmNvbT4KICAgICAgICBjb3JldXRpbHMsIDguMjYsIENoZW4gUWkgPFFpLkNoZW5Ad2lu
+ZHJpdmVyLmNvbT4KICAgICogU3VjY2VlZGVkOiA2MQogICAgICAgIG1hbi1wYWdlcywgNC4wOSwg
+SG9uZ3h1IEppYSA8aG9uZ3h1LmppYUB3aW5kcml2ZXIuY29tPgogICAgICAgIHhmODYtaW5wdXQt
+a2V5Ym9hcmQsIDEuOS4wLCBKdXNzaSBLdWtrb25lbiA8anVzc2kua3Vra29uZW5AaW50ZWwuY29t
+PgogICAgICAgIGx0cCwgMjAxNjA5MjAsIERlbmdrZSBEdSA8ZGVuZ2tlLmR1QHdpbmRyaXZlci5j
+b20+CiAgICAgICAgZ3RrKzMsIDMuMjIuNSwgSnVzc2kgS3Vra29uZW4gPGp1c3NpLmt1a2tvbmVu
+QGludGVsLmNvbT4KICAgICAgICBjYWlybywgMS4xNC44LCBKdXNzaSBLdWtrb25lbiA8anVzc2ku
+a3Vra29uZW5AaW50ZWwuY29tPgogICAgICAgIHBjbWFuZm0sIDEuMi41LCBFZHdpbiBQbGF1Y2h1
+IDxlZHdpbi5wbGF1Y2h1LmNhbWFjaG9AbGludXguaW50ZWwuY29tPgogICAgICAgIGxpYnVyY3Us
+IDAuOS4zLCBBbGV4YW5kZXIgS2FuYXZpbiA8YWxleGFuZGVyLmthbmF2aW5AaW50ZWwuY29tPgog
+ICAgICAgIGxpYmlucHV0LCAxLjUuMywgSnVzc2kgS3Vra29uZW4gPGp1c3NpLmt1a2tvbmVuQGlu
+dGVsLmNvbT4KICAgICAgICBjbHV0dGVyLWdzdC0zLjAsIDMuMC4yMiwgSnVzc2kgS3Vra29uZW4g
+PGp1c3NpLmt1a2tvbmVuQGludGVsLmNvbT4KICAgICAgICBtYXRjaGJveC13bSwgMS4yLjIsIEp1
+c3NpIEt1a2tvbmVuIDxqdXNzaS5rdWtrb25lbkBpbnRlbC5jb20+CiAgICAgICAgeGY4Ni12aWRl
+by1vbWFwLCAwLjQuNSwgSnVzc2kgS3Vra29uZW4gPGp1c3NpLmt1a2tvbmVuQGludGVsLmNvbT4K
+ICAgICAgICBndWlsZSwgMi4wLjEzLCBSb2JlcnQgWWFuZyA8bGllemhpLnlhbmdAd2luZHJpdmVy
+LmNvbT4KICAgICAgICBzeXNzdGF0LCAxMS41LjMsIENoZW4gUWkgPFFpLkNoZW5Ad2luZHJpdmVy
+LmNvbT4KICAgICAgICBnc3RyZWFtZXIxLjAsIDEuMTAuMiwgTWF4aW4gQi4gSm9obiA8bWF4aW4u
+am9obkBpbnRlbC5jb20+CiAgICAgICAgc3lzcHJvZiwgMy4yMi4zLCBBbGV4YW5kZXIgS2FuYXZp
+biA8YWxleGFuZGVyLmthbmF2aW5AaW50ZWwuY29tPgogICAgICAgIGV1ZGV2LCAzLjIuMSwgQWxl
+amFuZHJvIEhlcm5hbmRleiA8YWxlamFuZHJvLmhlcm5hbmRlekBsaW51eC5pbnRlbC5jb20+CiAg
+ICAgICAgeGY4Ni1pbnB1dC1saWJpbnB1dCwgMC4yMy4wLCBKdXNzaSBLdWtrb25lbiA8anVzc2ku
+a3Vra29uZW5AaW50ZWwuY29tPgogICAgICAgIGNtYWtlLCAzLjcuMSwgQWxleGFuZGVyIEthbmF2
+aW4gPGFsZXhhbmRlci5rYW5hdmluQGludGVsLmNvbT4KICAgICAgICBnc2V0dGluZ3MtZGVza3Rv
+cC1zY2hlbWFzLCAzLjIyLjAsIEp1c3NpIEt1a2tvbmVuIDxqdXNzaS5rdWtrb25lbkBpbnRlbC5j
+b20+CiAgICAgICAgaGFyZmJ1enosIDEuMy40LCBNYXhpbiBCLiBKb2huIDxtYXhpbi5qb2huQGlu
+dGVsLmNvbT4KICAgICAgICBsaWJ1bmlzdHJpbmcsIDAuOS43LCBNYXhpbiBCLiBKb2huIDxtYXhp
+bi5qb2huQGludGVsLmNvbT4KICAgICAgICBpZnVwZG93biwgMC44LjE2LCBNYXhpbiBCLiBKb2hu
+IDxtYXhpbi5qb2huQGludGVsLmNvbT4KICAgICAgICBzbGFuZywgMi4zLjFhLCBSb2JlcnQgWWFu
+ZyA8bGllemhpLnlhbmdAd2luZHJpdmVyLmNvbT4KICAgICAgICBncmVwLCAyLjI3LCBDaGVuIFFp
+IDxRaS5DaGVuQHdpbmRyaXZlci5jb20+CiAgICAgICAgbWVudS1jYWNoZSwgMS4wLjIsIEp1c3Np
+IEt1a2tvbmVuIDxqdXNzaS5rdWtrb25lbkBpbnRlbC5jb20+CiAgICAgICAgZGJ1cy10ZXN0LCAx
+LjEwLjE0LCBDaGVuIFFpIDxRaS5DaGVuQHdpbmRyaXZlci5jb20+CiAgICAgICAgc2hhcmVkLW1p
+bWUtaW5mbywgMS44LCBKdXNzaSBLdWtrb25lbiA8anVzc2kua3Vra29uZW5AaW50ZWwuY29tPgog
+ICAgICAgIGJhYmVsdHJhY2UsIDEuNS4wLCBBbGV4YW5kZXIgS2FuYXZpbiA8YWxleGFuZGVyLmth
+bmF2aW5AaW50ZWwuY29tPgogICAgICAgIHBheC11dGlscywgMS4xLjcsIEhvbmd4dSBKaWEgPGhv
+bmd4dS5qaWFAd2luZHJpdmVyLmNvbT4KICAgICAgICBycGNiaW5kLCAwLjIuNCwgSG9uZ3h1IEpp
+YSA8aG9uZ3h1LmppYUB3aW5kcml2ZXIuY29tPgogICAgICAgIHR6ZGF0YSwgMjAxNmosIFJvYmVy
+dCBZYW5nIDxsaWV6aGkueWFuZ0B3aW5kcml2ZXIuY29tPgogICAgICAgIGxpYnhpLCAxLjcuOCwg
+SnVzc2kgS3Vra29uZW4gPGp1c3NpLmt1a2tvbmVuQGludGVsLmNvbT4KICAgICAgICBzcWxpdGUz
+LCAzLjE1LjIsIE1heGluIEIuIEpvaG4gPG1heGluLmpvaG5AaW50ZWwuY29tPgogICAgICAgIG1w
+ZnIsIDMuMS41LCBLaGVtIFJhaiA8cmFqLmtoZW1AZ21haWwuY29tPgogICAgICAgIHhmODYtaW5w
+dXQtbW91c2UsIDEuOS4yLCBKdXNzaSBLdWtrb25lbiA8anVzc2kua3Vra29uZW5AaW50ZWwuY29t
+PgogICAgICAgIHhmODYtaW5wdXQtc3luYXB0aWNzLCAxLjkuMCwgSnVzc2kgS3Vra29uZW4gPGp1
+c3NpLmt1a2tvbmVuQGludGVsLmNvbT4KICAgICAgICBpc28tY29kZXMsIDMuNzIsIEFsZXhhbmRl
+ciBLYW5hdmluIDxhbGV4YW5kZXIua2FuYXZpbkBpbnRlbC5jb20+CiAgICAgICAgYnRyZnMtdG9v
+bHMsIDQuOC41LCBBbGV4YW5kZXIgS2FuYXZpbiA8YWxleGFuZGVyLmthbmF2aW5AaW50ZWwuY29t
+PgogICAgICAgIHhmODYtaW5wdXQtZXZkZXYsIDIuMTAuNCwgSnVzc2kgS3Vra29uZW4gPGp1c3Np
+Lmt1a2tvbmVuQGludGVsLmNvbT4KICAgICAgICBtZXNhLCAxMy4wLjIsIEp1c3NpIEt1a2tvbmVu
+IDxqdXNzaS5rdWtrb25lbkBpbnRlbC5jb20+CiAgICAgICAgaXByb3V0ZTIsIDQuOC4wLCBNYXhp
+biBCLiBKb2huIDxtYXhpbi5qb2huQGludGVsLmNvbT4KICAgICAgICBkYnVzLWdsaWIsIDAuMTA4
+LCBDaGVuIFFpIDxRaS5DaGVuQHdpbmRyaXZlci5jb20+CiAgICAgICAgZWxmdXRpbHMsIDAuMTY3
+LCBIb25neHUgSmlhIDxob25neHUuamlhQHdpbmRyaXZlci5jb20+CiAgICAgICAgZGJ1cywgMS4x
+MC4xNCwgQ2hlbiBRaSA8UWkuQ2hlbkB3aW5kcml2ZXIuY29tPgogICAgICAgIHN1YnZlcnNpb24s
+IDEuOS41LCBSaWNoYXJkIFB1cmRpZSA8cmljaGFyZC5wdXJkaWVAbGludXhmb3VuZGF0aW9uLm9y
+Zz4KICAgICAgICB4a2V5Ym9hcmQtY29uZmlnLCAyLjE5LCBKdXNzaSBLdWtrb25lbiA8anVzc2ku
+a3Vra29uZW5AaW50ZWwuY29tPgogICAgICAgIGxpYm5vdGlmeSwgMC43LjcsIEp1c3NpIEt1a2tv
+bmVuIDxqdXNzaS5rdWtrb25lbkBpbnRlbC5jb20+CiAgICAgICAgZ2RiLCA3LjEyLCBLaGVtIFJh
+aiA8cmFqLmtoZW1AZ21haWwuY29tPgogICAgICAgIGUyZnNwcm9ncywgMS40My4zLCBSb2JlcnQg
+WWFuZyA8bGllemhpLnlhbmdAd2luZHJpdmVyLmNvbT4KICAgICAgICBpY3UsIDU4LjIsIEFsZXhh
+bmRlciBLYW5hdmluIDxhbGV4YW5kZXIua2FuYXZpbkBpbnRlbC5jb20+CiAgICAgICAgZ2xpYi0y
+LjAsIDIuNTAuMiwgSnVzc2kgS3Vra29uZW4gPGp1c3NpLmt1a2tvbmVuQGludGVsLmNvbT4KICAg
+ICAgICBidXN5Ym94LCAxLjI1LjEsIENoZW4gUWkgPFFpLkNoZW5Ad2luZHJpdmVyLmNvbT4KICAg
+ICAgICBieWFjYywgMjAxNjEyMDIsIENoZW4gUWkgPFFpLkNoZW5Ad2luZHJpdmVyLmNvbT4KICAg
+ICAgICB2YWxhLCAwLjM0LjQsIEFsZXhhbmRlciBLYW5hdmluIDxhbGV4YW5kZXIua2FuYXZpbkBp
+bnRlbC5jb20+CiAgICAgICAgc3VkbywgMS44LjE4cDEsIENoZW4gUWkgPFFpLkNoZW5Ad2luZHJp
+dmVyLmNvbT4KICAgICAgICBydWJ5LCAyLjMuMywgTGVvbmFyZG8gU2FuZG92YWwgPGxlb25hcmRv
+LnNhbmRvdmFsLmdvbnphbGV6QGxpbnV4LmludGVsLmNvbT4KICAgICAgICBsaWJmbS1leHRyYSwg
+MS4yLjUsIEFsZXhhbmRlciBLYW5hdmluIDxhbGV4YW5kZXIua2FuYXZpbkBpbnRlbC5jb20+CiAg
+ICAgICAgbGliZXZkZXYsIDEuNS41LCBKdXNzaSBLdWtrb25lbiA8anVzc2kua3Vra29uZW5AaW50
+ZWwuY29tPgogICAgICAgIHRpZmYsIDQuMC43LCBBbGV4YW5kZXIgS2FuYXZpbiA8YWxleGFuZGVy
+LmthbmF2aW5AaW50ZWwuY29tPgogICAgICAgIGNhLWNlcnRpZmljYXRlcywgMjAxNjExMzAsIEFs
+ZXhhbmRlciBLYW5hdmluIDxhbGV4YW5kZXIua2FuYXZpbkBpbnRlbC5jb20+CiAgICAgICAgcHl0
+aG9uLXNldHVwdG9vbHMsIDMxLjAuMCwgRWR3aW4gUGxhdWNodSA8ZWR3aW4ucGxhdWNodS5jYW1h
+Y2hvQGxpbnV4LmludGVsLmNvbT4KICAgICogRmFpbGVkKGRvX3BhY2thZ2UpOiAxCiAgICAgICAg
+aGRwYXJtLCA5LjUwLCBSb2JlcnQgWWFuZyA8bGllemhpLnlhbmdAd2luZHJpdmVyLmNvbT4KCiAg
+ICBUT1RBTDogYXR0ZW1wdGVkPTEwMyBzdWNjZWVkZWQ9NjEoNTkuMjIlKSBmYWlsZWQ9NDIoNDAu
+NzglKQoKUmVjaXBlIHVwZ3JhZGUgc3RhdGlzdGljcyBwZXIgTWFpbnRhaW5lcjoKCiAgICBKdXNz
+aSBLdWtrb25lbiA8anVzc2kua3Vra29uZW46IGF0dGVtcHRlZD0yNyBzdWNjZWVkZWQ9MjAoNzQu
+MDclKSBmYWlsZWQ9NygyNS45MyUpCiAgICBBcm1pbiBLdXN0ZXIgPGFrdXN0ZXI4MDg6IGF0dGVt
+cHRlZD0xIHN1Y2NlZWRlZD0wKDAuMDAlKSBmYWlsZWQ9MSgxMDAuMDAlKQogICAgUm9iZXJ0IFlh
+bmcgPGxpZXpoaS55YW5nOiBhdHRlbXB0ZWQ9OCBzdWNjZWVkZWQ9NCg1MC4wMCUpIGZhaWxlZD00
+KDUwLjAwJSkKICAgIENoZW4gUWkgPFFpLkNoZW46IGF0dGVtcHRlZD0xMyBzdWNjZWVkZWQ9OCg2
+MS41NCUpIGZhaWxlZD01KDM4LjQ2JSkKICAgIEhvbmd4dSBKaWEgPGhvbmd4dS5qaWE6IGF0dGVt
+cHRlZD04IHN1Y2NlZWRlZD00KDUwLjAwJSkgZmFpbGVkPTQoNTAuMDAlKQogICAgTWFyayBIYXRs
+ZSA8bWFyay5oYXRsZTogYXR0ZW1wdGVkPTIgc3VjY2VlZGVkPTAoMC4wMCUpIGZhaWxlZD0yKDEw
+MC4wMCUpCiAgICBFZHdpbiBQbGF1Y2h1IDxlZHdpbi5wbGF1Y2h1LmNhbWFjaG86IGF0dGVtcHRl
+ZD00IHN1Y2NlZWRlZD0yKDUwLjAwJSkgZmFpbGVkPTIoNTAuMDAlKQogICAgQWxleGFuZGVyIEth
+bmF2aW4gPGFsZXhhbmRlci5rYW5hdmluOiBhdHRlbXB0ZWQ9MTUgc3VjY2VlZGVkPTExKDczLjMz
+JSkgZmFpbGVkPTQoMjYuNjclKQogICAgQWxlamFuZHJvIEhlcm5hbmRleiA8YWxlamFuZHJvLmhl
+cm5hbmRlejogYXR0ZW1wdGVkPTEgc3VjY2VlZGVkPTEoMTAwLjAwJSkgZmFpbGVkPTAoMC4wMCUp
+CiAgICBEZW5na2UgRHUgPGRlbmdrZS5kdTogYXR0ZW1wdGVkPTEgc3VjY2VlZGVkPTEoMTAwLjAw
+JSkgZmFpbGVkPTAoMC4wMCUpCiAgICBNYXhpbiBCLiBKb2huIDxtYXhpbi5qb2huOiBhdHRlbXB0
+ZWQ9MTEgc3VjY2VlZGVkPTYoNTQuNTUlKSBmYWlsZWQ9NSg0NS40NSUpCiAgICBMZW9uYXJkbyBT
+YW5kb3ZhbCA8bGVvbmFyZG8uc2FuZG92YWwuZ29uemFsZXo6IGF0dGVtcHRlZD0xIHN1Y2NlZWRl
+ZD0xKDEwMC4wMCUpIGZhaWxlZD0wKDAuMDAlKQogICAgUm9zcyBCdXJ0b24gPHJvc3MuYnVydG9u
+OiBhdHRlbXB0ZWQ9MSBzdWNjZWVkZWQ9MCgwLjAwJSkgZmFpbGVkPTEoMTAwLjAwJSkKICAgIEFu
+w61iYWwgTGltw7NuIDxhbmliYWwubGltb246IGF0dGVtcHRlZD0yIHN1Y2NlZWRlZD0wKDAuMDAl
+KSBmYWlsZWQ9MigxMDAuMDAlKQogICAgUmljaGFyZCBQdXJkaWUgPHJpY2hhcmQucHVyZGllOiBh
+dHRlbXB0ZWQ9NCBzdWNjZWVkZWQ9MSgyNS4wMCUpIGZhaWxlZD0zKDc1LjAwJSkKICAgIEtoZW0g
+UmFqIDxyYWoua2hlbTogYXR0ZW1wdGVkPTIgc3VjY2VlZGVkPTIoMTAwLjAwJSkgZmFpbGVkPTAo
+MC4wMCUpCiAgICBKb3NlIExhbWVnbyA8am9zZS5hLmxhbWVnbzogYXR0ZW1wdGVkPTIgc3VjY2Vl
+ZGVkPTAoMC4wMCUpIGZhaWxlZD0yKDEwMC4wMCUpCg==
 
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=10212
-
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=10226
-
-Todor
-
-> Thanks,
-> Cal
-> 
-> On 12/13/2016 04:50 PM, Todor Minchev wrote:
-> > On Tue, 2016-12-13 at 16:22 -0800, Jianxun Zhang wrote:
-> >>> On Dec 13, 2016, at 2:56 PM, Todor Minchev <todor.minchev@linux.intel.com> wrote:
-> >>>
-> >>> RMC was previously configured to work only with the systemd-boot EFI
-> >>> bootloader. With this commit we can specify alternative bootloaders by
-> >>> setting the RMC_BOOTLOADER variable in local.conf. If RMC_BOOTLOADER is
-> >>> not set systemd-boot will be used by default.
-> >>>
-> >>> Signed-off-by: Todor Minchev <todor.minchev@linux.intel.com>
-> >>> ---
-> >>> Remove references to grub-efi and gummiboot from V1.
-> >>>
-> >>> classes/{rmc-systemd-boot.bbclass => rmc-boot.bbclass} |  5 +++--
-> >>> conf/machine/include/meta-intel.inc                    |  2 +-
-> >>> documentation/rmc/README                               | 16 +++++++++++++---
-> >>> 3 files changed, 17 insertions(+), 6 deletions(-)
-> >>> rename classes/{rmc-systemd-boot.bbclass => rmc-boot.bbclass} (73%)
-> >>>
-> >>> diff --git a/classes/rmc-systemd-boot.bbclass b/classes/rmc-boot.bbclass
-> >>> similarity index 73%
-> >>> rename from classes/rmc-systemd-boot.bbclass
-> >>> rename to classes/rmc-boot.bbclass
-> >>> index ad2cf10..a1f2093 100644
-> >>> --- a/classes/rmc-systemd-boot.bbclass
-> >>> +++ b/classes/rmc-boot.bbclass
-> >>> @@ -1,9 +1,10 @@
-> >>> -# rmc-systemd-boot bbclass
-> >>> +# rmc-boot bbclass
-> >>> # Deploy central RMC database file to ESP
-> >>>
-> >>> IMAGE_INSTALL_append = " rmc"
-> >>> +RMC_BOOTLOADER ?= "systemd-boot”
-> >> Maybe this is what we could have now without bothering OE. It is better than the corrent code at the cost of another variable to user. I hope in the future we could get rid of  the dependency to EFI_PROVIDER (e.g. bz10084).
-> >>
-> >> Also refer to my comment for the document change at the below.
-> >>> -inherit systemd-boot
-> >>> +inherit ${RMC_BOOTLOADER}
-> >>>
-> >>> do_bootimg[depends] += "${MLPREFIX}rmc-db:do_deploy"
-> >>>
-> >>> diff --git a/conf/machine/include/meta-intel.inc b/conf/machine/include/meta-intel.inc
-> >>> index c7555ce..fd0a792 100644
-> >>> --- a/conf/machine/include/meta-intel.inc
-> >>> +++ b/conf/machine/include/meta-intel.inc
-> >>> @@ -32,7 +32,7 @@ MACHINE_ESSENTIAL_EXTRA_RDEPENDS_append = "${@bb.utils.contains('MACHINE_FEATURE
-> >>> # merge the microcode data in the final initrd image.
-> >>> INITRD_LIVE_prepend = "${@bb.utils.contains('MACHINE_FEATURES', 'intel-ucode', '${DEPLOY_DIR_IMAGE}/microcode.cpio ', '', d)}"
-> >>>
-> >>> -EFI_PROVIDER ?= "rmc-systemd-boot"
-> >>> +EFI_PROVIDER ?= "rmc-boot"
-> >>>
-> >>> # Add general MACHINEOVERRIDE for meta-intel
-> >>> MACHINEOVERRIDES =. "intel-x86-common:"
-> >>> diff --git a/documentation/rmc/README b/documentation/rmc/README
-> >>> index 2427ffd..dbee6b6 100644
-> >>> --- a/documentation/rmc/README
-> >>> +++ b/documentation/rmc/README
-> >>> @@ -165,14 +165,24 @@ steps still can override results from this hook for boot entries and KBOOTPARAM.
-> >>>
-> >>> Enable RMC Feature
-> >>> --------------------------------------------------------------------------------
-> >>> -To Enable RMC feature in build, add the below lines in a conf file:
-> >>> +To enable the RMC feature please add the following variables to your local.conf.
-> >>> +
-> >>> DISTRO_FEATURES_append = " rmc"
-> >>> -EFI_PROVIDER = "rmc-systemd-boot"
-> >>> +EFI_PROVIDER = "rmc-boot"
-> >>> +
-> >>> +The default EFI bootloader used with RMC is systemd-boot. To change the default
-> >>> +bootloader please overwrite the RMC_BOOTLOADER variable in your local.conf
-> >>>
-> >>> Note:
-> >>> Image could be still bootable if you only have either of two lines, but RMC
-> >>> feature won't be fully functional.
-> >>>
-> >>> +To install only the RMC client with the systemd-boot bootloader without
-> >>> +including a default RMC database file, add the following lines to your
-> >>> +local.conf:
-> >>> +
-> >>> +EFI_PROVIDER = "systemd-boot"
-> >>> +IMAGE_INSTALL_append = " rmc”
-> >> I think this use case could confuse for user without much benefit. And actually they still can set EFI_PROVIDER to any available efi bootloaders to get this effect as long as it is not “rmc-boot”, right?
-> >> Maybe we should just say “you won’t get rmc database deployed if you set EFI_PROVIDER to any values not rmc-boot."
-> > Yes, this can be another way to phrase this.
-> >
-> >>> Examples
-> >>> @@ -190,7 +200,7 @@ EXAMPLE 1: Support a new board type:
-> >>> (1) enable the feature and do a build to get a live-boot image by adding these
-> >>>      lines in conf/local.conf:
-> >>>      DISTRO_FEATURES_append = " rmc"
-> >>> -    EFI_PROVIDER = "rmc-systemd-boot"
-> >>> +    EFI_PROVIDER = "rmc-boot"
-> >>>
-> >>> (2) flash the image to a USB stick and boot it on your board
-> >>>
-> >>> -- 
-> >>> 2.11.0
-> >>>
-> >
-> 
-
-
-
+--===============2153666021187084748==--
