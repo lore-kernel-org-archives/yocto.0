@@ -1,42 +1,41 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <california.l.sullivan@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 84EF0E00DE6; Thu, 15 Dec 2016 09:28:12 -0800 (PST)
+	id 6EA35E00B45; Thu, 15 Dec 2016 10:09:19 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
 	RCVD_IN_SORBS_SPAM autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [192.55.52.88 listed in dnsbl.sorbs.net]
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [134.134.136.20 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [134.134.136.20 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 58D69E00DD3
-	for <yocto@yoctoproject.org>; Thu, 15 Dec 2016 09:28:08 -0800 (PST)
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-	by fmsmga101.fm.intel.com with ESMTP; 15 Dec 2016 09:28:08 -0800
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EB0BFE00839;
+	Thu, 15 Dec 2016 10:09:18 -0800 (PST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 15 Dec 2016 10:09:17 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.33,352,1477983600"; d="scan'208";a="798393891"
-Received: from weipengl-mobl.gar.corp.intel.com (HELO
-	peggleto-mobl.ger.corp.intel.com) ([10.255.182.212])
-	by FMSMGA003.fm.intel.com with ESMTP; 15 Dec 2016 09:28:05 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Vincent Rubiolo <vincent.libre@cryostase.eu>
-Date: Fri, 16 Dec 2016 06:28:02 +1300
-Message-ID: <3954267.PvGXSHNjIp@peggleto-mobl.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.14.10 (Linux/4.8.13-100.fc23.x86_64; KDE/4.14.20; x86_64; ;
-	)
-In-Reply-To: <d9f94631-0e2a-3e83-2ab7-e1ddffb79aaa@cryostase.eu>
-References: <382d1e8e-1257-c255-354d-ffaf2f54385f@cryostase.eu>
-	<3800149.2tT9rjCn72@peggleto-mobl.ger.corp.intel.com>
-	<d9f94631-0e2a-3e83-2ab7-e1ddffb79aaa@cryostase.eu>
+X-IronPort-AV: E=Sophos;i="5.33,353,1477983600"; d="scan'208";a="1072495144"
+Received: from clsulliv.jf.intel.com ([10.7.201.36])
+	by orsmga001.jf.intel.com with ESMTP; 15 Dec 2016 10:09:17 -0800
+To: Todor Minchev <todor.minchev@linux.intel.com>,
+	Jianxun Zhang <jianxun.zhang@linux.intel.com>
+References: <20161213225649.80589-1-todor.minchev@linux.intel.com>
+	<D283043F-7FBE-41F9-A02E-EB716EF421FB@linux.intel.com>
+	<1481676638.41690.21.camel@linux.intel.com>
+From: Cal Sullivan <california.l.sullivan@intel.com>
+Message-ID: <853c0b5d-62c4-9ee7-85be-7cde2d8b2341@intel.com>
+Date: Thu, 15 Dec 2016 10:09:17 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.2.0
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: [recipetool] Failure to create a new recipe (failed to parse setup.py)
+In-Reply-To: <1481676638.41690.21.camel@linux.intel.com>
+Cc: meta-intel@yoctoproject.org, yocto@yoctoproject.org
+Subject: Re: [meta-inte][rmc][PATCH v2 1/1] rmc: add support for alternative EFI bootloaders
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,37 +47,115 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 15 Dec 2016 17:28:12 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Thu, 15 Dec 2016 18:09:19 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi Vincent,
 
-On Wed, 14 Dec 2016 20:59:27 Vincent Rubiolo wrote:
-> On 12/04/2016 11:14 AM, Paul Eggleton wrote:
-> > Hmm, it looks like we're treating a byte array as a string (i.e. missing
-> > decoding) and that doesn't work. Likely this broke during the Python3
-> > migration, and since there are a number of different code paths in
-> > recipetool's python handling code our relatively simplistic automated
-> > tests
-> > didn't hit it. I have a fix here and will send it out soon.
-> 
-> Are there any news on this patch? I'd gladly test it out.
-> 
-> In the meantime, I can work around the issue by using the yocto-layer
-> script, asking it to create a sample recipe (or manually copying an
-> existing recipe file) alongside the new layer.
 
-Sorry for not getting back to you earlier - the patch got sent shortly after 
-our discussion and has now been merged:
+On 12/13/2016 04:50 PM, Todor Minchev wrote:
+> On Tue, 2016-12-13 at 16:22 -0800, Jianxun Zhang wrote:
+>>> On Dec 13, 2016, at 2:56 PM, Todor Minchev <todor.minchev@linux.intel.com> wrote:
+>>>
+>>> RMC was previously configured to work only with the systemd-boot EFI
+>>> bootloader. With this commit we can specify alternative bootloaders by
+>>> setting the RMC_BOOTLOADER variable in local.conf. If RMC_BOOTLOADER is
+>>> not set systemd-boot will be used by default.
+>>>
+>>> Signed-off-by: Todor Minchev <todor.minchev@linux.intel.com>
+>>> ---
+>>> Remove references to grub-efi and gummiboot from V1.
+>>>
+>>> classes/{rmc-systemd-boot.bbclass => rmc-boot.bbclass} |  5 +++--
+>>> conf/machine/include/meta-intel.inc                    |  2 +-
+>>> documentation/rmc/README                               | 16 +++++++++++++---
+>>> 3 files changed, 17 insertions(+), 6 deletions(-)
+>>> rename classes/{rmc-systemd-boot.bbclass => rmc-boot.bbclass} (73%)
+>>>
+>>> diff --git a/classes/rmc-systemd-boot.bbclass b/classes/rmc-boot.bbclass
+>>> similarity index 73%
+>>> rename from classes/rmc-systemd-boot.bbclass
+>>> rename to classes/rmc-boot.bbclass
+>>> index ad2cf10..a1f2093 100644
+>>> --- a/classes/rmc-systemd-boot.bbclass
+>>> +++ b/classes/rmc-boot.bbclass
+>>> @@ -1,9 +1,10 @@
+>>> -# rmc-systemd-boot bbclass
+>>> +# rmc-boot bbclass
+>>> # Deploy central RMC database file to ESP
+>>>
+>>> IMAGE_INSTALL_append = " rmc"
+>>> +RMC_BOOTLOADER ?= "systemd-boot”
+>> Maybe this is what we could have now without bothering OE. It is better than the corrent code at the cost of another variable to user. I hope in the future we could get rid of  the dependency to EFI_PROVIDER (e.g. bz10084).
+>>
+>> Also refer to my comment for the document change at the below.
+>>> -inherit systemd-boot
+>>> +inherit ${RMC_BOOTLOADER}
+>>>
+>>> do_bootimg[depends] += "${MLPREFIX}rmc-db:do_deploy"
+>>>
+>>> diff --git a/conf/machine/include/meta-intel.inc b/conf/machine/include/meta-intel.inc
+>>> index c7555ce..fd0a792 100644
+>>> --- a/conf/machine/include/meta-intel.inc
+>>> +++ b/conf/machine/include/meta-intel.inc
+>>> @@ -32,7 +32,7 @@ MACHINE_ESSENTIAL_EXTRA_RDEPENDS_append = "${@bb.utils.contains('MACHINE_FEATURE
+>>> # merge the microcode data in the final initrd image.
+>>> INITRD_LIVE_prepend = "${@bb.utils.contains('MACHINE_FEATURES', 'intel-ucode', '${DEPLOY_DIR_IMAGE}/microcode.cpio ', '', d)}"
+>>>
+>>> -EFI_PROVIDER ?= "rmc-systemd-boot"
+>>> +EFI_PROVIDER ?= "rmc-boot"
+>>>
+>>> # Add general MACHINEOVERRIDE for meta-intel
+>>> MACHINEOVERRIDES =. "intel-x86-common:"
+>>> diff --git a/documentation/rmc/README b/documentation/rmc/README
+>>> index 2427ffd..dbee6b6 100644
+>>> --- a/documentation/rmc/README
+>>> +++ b/documentation/rmc/README
+>>> @@ -165,14 +165,24 @@ steps still can override results from this hook for boot entries and KBOOTPARAM.
+>>>
+>>> Enable RMC Feature
+>>> --------------------------------------------------------------------------------
+>>> -To Enable RMC feature in build, add the below lines in a conf file:
+>>> +To enable the RMC feature please add the following variables to your local.conf.
+>>> +
+>>> DISTRO_FEATURES_append = " rmc"
+>>> -EFI_PROVIDER = "rmc-systemd-boot"
+>>> +EFI_PROVIDER = "rmc-boot"
+>>> +
+>>> +The default EFI bootloader used with RMC is systemd-boot. To change the default
+>>> +bootloader please overwrite the RMC_BOOTLOADER variable in your local.conf
+>>>
+>>> Note:
+>>> Image could be still bootable if you only have either of two lines, but RMC
+>>> feature won't be fully functional.
+>>>
+>>> +To install only the RMC client with the systemd-boot bootloader without
+>>> +including a default RMC database file, add the following lines to your
+>>> +local.conf:
+>>> +
+>>> +EFI_PROVIDER = "systemd-boot"
+>>> +IMAGE_INSTALL_append = " rmc”
+>> I think this use case could confuse for user without much benefit. And actually they still can set EFI_PROVIDER to any available efi bootloaders to get this effect as long as it is not “rmc-boot”, right?
+>> Maybe we should just say “you won’t get rmc database deployed if you set EFI_PROVIDER to any values not rmc-boot."
+> Yes, this can be another way to phrase this.
+Is there going to be a v3 or is it sufficient as-is?
 
-  http://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/?id=8fe1f25ea087cea13c5380de758078f0fb9eae34
+Thanks,
+Cal
+>
+>>> Examples
+>>> @@ -190,7 +200,7 @@ EXAMPLE 1: Support a new board type:
+>>> (1) enable the feature and do a build to get a live-boot image by adding these
+>>>      lines in conf/local.conf:
+>>>      DISTRO_FEATURES_append = " rmc"
+>>> -    EFI_PROVIDER = "rmc-systemd-boot"
+>>> +    EFI_PROVIDER = "rmc-boot"
+>>>
+>>> (2) flash the image to a USB stick and boot it on your board
+>>>
+>>> -- 
+>>> 2.11.0
+>>>
+>
 
-Cheers,
-Paul
-
--- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
 
