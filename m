@@ -1,64 +1,71 @@
-Return-Path: <schnitzeltony@googlemail.com>
+Return-Path: <anders@chargestorm.se>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C8388E00D5F; Thu, 15 Dec 2016 02:51:25 -0800 (PST)
+	id DE33EE00D4E; Thu, 15 Dec 2016 06:09:20 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (schnitzeltony[at]googlemail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.217.196 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [74.125.82.41 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ua0-f196.google.com (mail-ua0-f196.google.com
-	[209.85.217.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 98232E00D4E
-	for <yocto@yoctoproject.org>; Thu, 15 Dec 2016 02:51:21 -0800 (PST)
-Received: by mail-ua0-f196.google.com with SMTP id b35so366468uaa.1
-	for <yocto@yoctoproject.org>; Thu, 15 Dec 2016 02:51:21 -0800 (PST)
+Received: from mail-wm0-f41.google.com (mail-wm0-f41.google.com [74.125.82.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6CE71E00D23
+	for <yocto@yoctoproject.org>; Thu, 15 Dec 2016 06:09:16 -0800 (PST)
+Received: by mail-wm0-f41.google.com with SMTP id f82so47618667wmf.1
+	for <yocto@yoctoproject.org>; Thu, 15 Dec 2016 06:09:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=googlemail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=TAIZQKVRxExAJKcTm8Py7iREEjF60KppalrcjYrmcIY=;
-	b=h8DQwLkIzpuENI+47fk2/AF7C5vnYiTcP56hSb9I9KjDECqPODkI8AokAomn3lxj3c
-	VXJbIVbT9GtQB9dWlZlGHWiXd8JyJ1Rs3BZskV85elJsLl7t4l2DtrcBSmeZ746s8WwO
-	W8Sz/pj/Jd0YjoaLaUSBLIchfKJbNGYrZWgzranfAjKyKBkJ4LVOUuwlhTLEtA5Gewnn
-	+8U+XfHSrUk5ZZ94aSOor0rY8gGB5dos+azJYC9tbrv9zTLtawtvKuGNIlZB+g7PK1xc
-	wuqI63D+64Qze/OtA/k+D+99JEFx+IilLN76EBwPgoajIeQhrqfwWrom4zzObgfYfGGP
-	DnTA==
+	d=chargestorm-se.20150623.gappssmtp.com; s=20150623;
+	h=date:from:to:subject:message-id:mail-followup-to:references
+	:mime-version:content-disposition:in-reply-to:organization
+	:user-agent; bh=vANL/1PfH9kA99b3VYeuKyJ0IUde5P8XNFMCPt/5kww=;
+	b=PVwHku+1M8fcdqEn3yHDKfnmIPSf2HRJj10ggxkRRbkOyKv1Hyfn5fe7Zu0Fih4Meg
+	oSMWJcGF5Qytb55lQDg+1kDoY8j9GNka62Y50CQegwJS+lkq9GQq6a/ch4wwDRk2TD51
+	OOyZiZKv838e1k3N0VTtOL7BdkMQleojdo4U6KT1CxVp0+3AT4JBwYwO7NpHfMDM7/m9
+	fvPUGDwNSpOBVcBWOXfkRgy0mfhJ1FIRVKHeTynsPtu/HC9j6OKK1NuErIgxD3QBVl0w
+	S4wt1lXVLCjLXPdqpSKoW3cd5pDPHy7sh8aBGWIwrsbX7L8JVoRl1K9UiFMgGyXY2AOO
+	j5+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=TAIZQKVRxExAJKcTm8Py7iREEjF60KppalrcjYrmcIY=;
-	b=cpZoRgB7hXoGOnz7lAr7vmU+myJCYymaqhcf7wSI622FGa31ioJ0aWWSCyVL7KADGy
-	pRStt3PtWX/Zt+Zcs/8dhoTS2AQzdJLfwbHKoTq8ETSGH3yOyeVdRUWByrIDrA2m9GmW
-	YMWR3IiycoJQvXUx+UUPwV40uPCmwU7exNQh+YtzjhKde4O0OAuSuCk1VYEkN2dSRMfp
-	towmVmuSf83oGdnkiDIZ+k1b04V8kA1xuKN8KiUegjQ994c+GNKNpqD9jtqQ+IOXUDrr
-	0/xs4gJGdUGcOS/d1iVXv9FA9YDobNGDFbL0D00J0tXQFAw2mrE1UgqH8maOJSzOBjRZ
-	V1og==
-X-Gm-Message-State: AKaTC00xuF8W6w/nOQIQRbAQr3CozCBFhB3BUIrjm8ObfzZoJBNPJDINqK0uPiYpQY+zUl5V6V8VgmU5uOu3Zg==
-X-Received: by 10.176.82.71 with SMTP id j7mr382167uaa.77.1481799081295; Thu,
-	15 Dec 2016 02:51:21 -0800 (PST)
+	h=x-gm-message-state:date:from:to:subject:message-id:mail-followup-to
+	:references:mime-version:content-disposition:in-reply-to
+	:organization:user-agent;
+	bh=vANL/1PfH9kA99b3VYeuKyJ0IUde5P8XNFMCPt/5kww=;
+	b=n+TFP0DwLjVzzg+NcL0Loi5IFexyLh8AiJa9OBKI3CdhIoYxQffTjsBaBedJ78mqkm
+	jB/3WKmZ+89GcnxadvpHm7DTFe9Fj0Kh5+cgVGRLjplg6iA2mB+nwWmXYqJVgULCCQxf
+	xxvXdx3aHoxPQqFN4HVGqHsozakLgCb4ItGZsZbgldodva3EHXPwF4548j26RQACbeuG
+	LwMRSqZaKf4giPNCvz4HfpSrb0UO5KkODg2YdZu1SlIDcmLh5xlZD8RzEIq6zNVkq16a
+	rNI3VKlAwrrtNKe1yBS6+BoaDyMKlXUBiUZQJetD5f7eYghUKAMaWR44xSSan28SdMqC
+	IG+Q==
+X-Gm-Message-State: AKaTC027Dm9fM5U8iMvkWQM4nrXAquc9Mtpr18ERXuxu7WWhf1gzNiIUHo/T6nECVKNTng==
+X-Received: by 10.25.72.215 with SMTP id v206mr539288lfa.12.1481810955658;
+	Thu, 15 Dec 2016 06:09:15 -0800 (PST)
+Received: from ad.chargestorm.se (194-237-220-218.customer.telia.com.
+	[194.237.220.218])
+	by smtp.gmail.com with ESMTPSA id x4sm493082lff.15.2016.12.15.06.09.14
+	for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+	Thu, 15 Dec 2016 06:09:14 -0800 (PST)
+Date: Thu, 15 Dec 2016 15:09:13 +0100
+From: Anders Darander <anders@chargestorm.se>
+To: yocto@yoctoproject.org
+Message-ID: <20161215140913.5vx5ulxby74mp4rz@ad.chargestorm.se>
+Mail-Followup-To: yocto@yoctoproject.org
+References: <5851F18E.3020401@gmail.com>
 MIME-Version: 1.0
-Received: by 10.176.85.157 with HTTP; Thu, 15 Dec 2016 02:51:20 -0800 (PST)
-In-Reply-To: <1481796330-13908-1-git-send-email-piotr.lewicki@elfin.de>
-References: <1481796330-13908-1-git-send-email-piotr.lewicki@elfin.de>
-From: =?UTF-8?Q?Andreas_M=C3=BCller?= <schnitzeltony@googlemail.com>
-Date: Thu, 15 Dec 2016 11:51:20 +0100
-Message-ID: <CALbNGRRq_=CHfTUvTb-hWgFg1jHFWmPOF5dmEcOQHZzTkZpVPg@mail.gmail.com>
-To: Piotr Lewicki <piotr.lewicki@elfin.de>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi][PATCH 0/1] linux-rpi: clean .config in before do_configure step
+In-Reply-To: <5851F18E.3020401@gmail.com>
+X-Accept-Language: sv, en, de
+X-GPG-Fingerprint: 5AF0 B2E9 78FE 9D75 D110  6F8F 3E31 84D7 920E 938C
+X-GPG-Key-Id: 0x920E938C
+X-GPG-Keyserver: hkp://keys.gnupg.net
+Organization: ChargeStorm AB
+User-Agent: NeoMutt/20161126 (1.7.1)
+Subject: Re: NFS rootfs: mount: only root can mount proc on /proc
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,17 +77,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 15 Dec 2016 10:51:25 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 15 Dec 2016 14:09:20 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On Thu, Dec 15, 2016 at 11:05 AM, Piotr Lewicki <piotr.lewicki@elfin.de> wrote:
-> Previously using bbappend files for linux-raspberrypi recipe did not allow to
-> use "kernel_configure_variable" function to set kernel config variables.
-> If user wanted to use it in his bbappend with "do_configure_prepend" it was
-> cleared afterwards. This patch moves cleaning to a separate step.
-> I'm unsure about whether CONF_SED_SCRIPT variable gets cleaned here. Please
-> verify this.
-^^ I would suggest to put this description into the patch itself
+Hi,
 
-Andreas
+* John Rama <john.rama01@gmail.com> [161215 02:58]:
+
+> The ideas I can come up with are followings, but those of them are not perfect..
+> 1. Run the bitbake as root account
+>   - would not run as root since the all of generated files are root permission even for the log files.
+
+Never do this. You've got no idea what bitbake might do to your
+computer...
+
+
+> 2. Change UID and GID whenever generating new image
+>   - I guess next build would fall into the trouble because of the owner change.
+
+Yes, that'll get you problems later on.
+
+> 3. Untar the tar ball under  {YOCTO_BUILD_DIR}//tmp//deploy/image/{TARGET}/*rootfs.tar.bz2 to  the export dir
+>   - takes additional time.. Not good.
+
+This is the right way to do it.
+
+If it takes to much time, create a script that runs bitbake and then
+untars the rootfs.
+
+Cheers,
+Anders
+
+-- 
+Anders Darander, Senior System Architect
+ChargeStorm AB / eStorm AB
 
