@@ -1,40 +1,65 @@
-Return-Path: <Andrew_Stubbs@mentor.com>
+Return-Path: <twoerner@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3152EE00D46; Fri, 16 Dec 2016 06:52:47 -0800 (PST)
+	id 37809E00E32; Fri, 16 Dec 2016 07:06:38 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
-	URIBL_RED autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [192.94.38.131 listed in list.dnswl.org]
-	*  0.0 URIBL_RED Contains an URL listed in the URIBL redlist
-	*      [URIs: codesourcery.com]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (twoerner[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from relay1.mentorg.com (relay1.mentorg.com [192.94.38.131])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 09BBAE00CCD
-	for <yocto@yoctoproject.org>; Fri, 16 Dec 2016 06:52:43 -0800 (PST)
-Received: from nat-ies.mentorg.com ([192.94.31.2]
-	helo=svr-ies-mbx-01.mgc.mentorg.com)
-	by relay1.mentorg.com with esmtp 
-	id 1cHtsI-0003VT-7W from Andrew_Stubbs@mentor.com ;
-	Fri, 16 Dec 2016 06:52:42 -0800
-Received: from [172.30.64.190] (137.202.0.87) by
-	svr-ies-mbx-01.mgc.mentorg.com (139.181.222.1) with Microsoft SMTP
-	Server (TLS) id 15.0.1210.3; Fri, 16 Dec 2016 14:52:38 +0000
-To: "Hatle, Mark" <Mark.Hatle@windriver.com>, <yocto@yoctoproject.org>
-From: Andrew Stubbs <ams@codesourcery.com>
-Message-ID: <67edb1f0-90af-cccc-3a9a-4a9dd6fc442b@codesourcery.com>
-Date: Fri, 16 Dec 2016 14:52:36 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.5.1
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.214.53 listed in list.dnswl.org]
+Received: from mail-it0-f53.google.com (mail-it0-f53.google.com
+	[209.85.214.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 08191E00E2F
+	for <yocto@yoctoproject.org>; Fri, 16 Dec 2016 07:06:30 -0800 (PST)
+Received: by mail-it0-f53.google.com with SMTP id j191so21826375ita.1
+	for <yocto@yoctoproject.org>; Fri, 16 Dec 2016 07:06:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=date:from:to:subject:message-id:mime-version:content-disposition
+	:user-agent; bh=GXHyPZjoT67LzhPQlHbRcViQBTJCgVbf7GkZln99/aQ=;
+	b=saA4jq2p6aVwy8TDWRvXCbUcR6dSQ3G+t5rRGVhGxXfkQXMYIYLJzEagwCeafHoBxn
+	z9g1y3B1D5+HOk8eMwScvnk17ZHannc+lPSrxuNeQdqtbKEpIiv3myrL/oBoGVOnZHqE
+	owDacdRe/CongrQaKTN6G96qUvAsCrlvw824+vFqsadXosTicWc9b+kQHcxumKH26UO9
+	KH3vE3TvPSyVketkNdhibuF4CPkPBV+bIBL0JNyn4qqDy6UQxbw2gM5WkAH5u3Na0rHy
+	bwSGrHgwWqqUDxhFdosKhaxwThtGmKZNmpd/WS4mwj97cv7lAI7gP4V+hsjx1TJ6kWby
+	giDQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:date:from:to:subject:message-id:mime-version
+	:content-disposition:user-agent;
+	bh=GXHyPZjoT67LzhPQlHbRcViQBTJCgVbf7GkZln99/aQ=;
+	b=nuKFSIWz9gZzn0xe1cgFnGSMNpzlCFT8u1eOa9GHQjmkJ+UP6JHQ4AjXlwMQK+tPkJ
+	fIpMS0a6pumYoQL1glB6h89r4LZloOeaIyj7Nqji/Jp5A1TPsdDWWYqvyqvhCHSs2w3g
+	PKLWcnIzIlg9ARfRXssl1zejXrrNPZnz9Uh9vYWSydOCvuS+SdKalPUzJ22ikE3XB9h8
+	I2qgrSe5wLHZDfdc8O1Qb4C8cxaDsA8h8y/vaJpseopqi5LdWjeraXl5wMSYllMawyQb
+	p/zma2azGdgPtgd75b3/Jh0JvDlXCR3QUqQdMqxdDdP9WBFg5ilFgre9rr6jm1Nf6RxE
+	ltcg==
+X-Gm-Message-State: AKaTC02uD2+SAsDpg6ox5g0lMJhBMFpnrrrUcoSRZW978yXbREVx5O0Rb3bvmsFbpD8xsQ==
+X-Received: by 10.36.115.6 with SMTP id y6mr3930578itb.83.1481900788976;
+	Fri, 16 Dec 2016 07:06:28 -0800 (PST)
+Received: from openSUSE-i7.site (dsl-67-55-28-109.acanac.net. [67.55.28.109])
+	by smtp.gmail.com with ESMTPSA id
+	n189sm1460316itc.4.2016.12.16.07.06.26 for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Fri, 16 Dec 2016 07:06:28 -0800 (PST)
+Date: Fri, 16 Dec 2016 10:06:17 -0500
+From: Trevor Woerner <twoerner@gmail.com>
+To: yocto@yoctoproject.org
+Message-ID: <20161216150617.GA21846@openSUSE-i7.site>
 MIME-Version: 1.0
-X-Originating-IP: [137.202.0.87]
-X-ClientProxiedBy: svr-ies-mbx-01.mgc.mentorg.com (139.181.222.1) To
-	svr-ies-mbx-01.mgc.mentorg.com (139.181.222.1)
-Subject: [prelink-cross][patch] Fix layout1 test on x86_64 x32.
+User-Agent: Mutt/1.6.0 (2016-04-01)
+Subject: PSA for anyone using openSUSE 42.2 (or similar)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,66 +71,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 16 Dec 2016 14:52:47 -0000
-X-Groupsio-MsgNum: 33509
-Content-Type: multipart/mixed; boundary="------------1E0A5E7F1FAD3A93D0ABF373"
+X-List-Received-Date: Fri, 16 Dec 2016 15:06:38 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 
---------------1E0A5E7F1FAD3A93D0ABF373
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+Lately I've been seeing very intermittent, sporadic cases where a build will
+fail with something similar to:
 
-Hi Mark,
+	fork: Resource temporarily unavailable
 
-The layout1 test case currently fails for x32 because there is 
-insufficient address space for all the libraries.
+and nothing else wrong. Simply restarting the build causes it to succeed
+without incident. I had been seeing this, maybe, twice a week (on a build
+machine that builds most of the day as well as overnight with Jenkins jobs).
 
-There's two ways to fix this:
+I decided to investigate and found:
 
-1. Increase mmap_end such that there's more space.
+	http://unix.stackexchange.com/questions/253903/creating-threads-fails-with-resource-temporarily-unavailable-with-4-3-kernel
 
-2. Reduce max_page_size so that less space is wasted.
+which suggests the issue is a combination of
+	- linux >= 4.3
+	- systemd >= 228
 
-I'm not sure what the implications of option 2 would be, so the attached 
-patch implements option 1.
+both of which are true when upgrading openSUSE from 42.1 (linux-4.1.36-41/210)
+to 42.2 (linux-4.4.36-8/228).
 
-This still limits the number of possible libraries somewhat severely, 
-but it's more than enough to pass the layout1 test.
+The fix appears to be to modify the "DefaultTasksMax" systemd parameter
+(uncommenting it and setting it to "infinity"). On openSUSE 42.2 this is
+found in /etc/systemd/system.conf, then
+	
+	# systemctl daemon-reexec
 
-Andrew
+or reboot.
 
---------------1E0A5E7F1FAD3A93D0ABF373
-Content-Type: text/x-patch; name="prelink-fix-x32-layout1-test.patch"
-Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment;
-	filename="prelink-fix-x32-layout1-test.patch"
+I just made this adjustment but given it only happened once or twice a week on
+a reasonably busy build machine it might be hard to confirm. I'm also not sure
+if setting it to "infinity" is sensible ;-)
 
-From 6c8aec5590ba9ba93e6cbb458c34ead0481b0b7c Mon Sep 17 00:00:00 2001
-From: Andrew Stubbs <ams@codesourcery.com>
-Date: Fri, 16 Dec 2016 14:08:28 +0000
-Subject: [PATCH] Fix x32 layout1 test.
+I'm guessing other host distros probably also fall into this category.
 
-2016-12-16  Andrew Stubbs  <ams@codesourcery.com>
-
-	* src/arch-x86_64.c (PL_ARCH(x32)): Set mmap_end to 0x60000000.
----
- src/arch-x86_64.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/src/arch-x86_64.c b/src/arch-x86_64.c
-index 6a97370..5c95f47 100644
---- a/src/arch-x86_64.c
-+++ b/src/arch-x86_64.c
-@@ -595,7 +595,7 @@ PL_ARCH(x32) = {
-      Also, if this guard area isn't too small, typically
-      even dlopened libraries will get the slots they desire.  */
-   .mmap_base = 0x41000000,
--  .mmap_end =  0x50000000,
-+  .mmap_end =  0x60000000,
-   .max_page_size = 0x200000,
-   .page_size = 0x1000
- };
--- 
-2.8.1
-
-
---------------1E0A5E7F1FAD3A93D0ABF373--
