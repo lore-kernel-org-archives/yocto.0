@@ -1,59 +1,61 @@
-Return-Path: <danielhilst@gmail.com>
+Return-Path: <kristian.amlie@mender.io>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 55C5CE00DAE; Thu, 15 Dec 2016 18:54:49 -0800 (PST)
+	id 5513BE00E1C; Thu, 15 Dec 2016 22:58:10 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (danielhilst[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.173 listed in list.dnswl.org]
-Received: from mail-qk0-f173.google.com (mail-qk0-f173.google.com
-	[209.85.220.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D0840E00DA5
-	for <yocto@yoctoproject.org>; Thu, 15 Dec 2016 18:54:46 -0800 (PST)
-Received: by mail-qk0-f173.google.com with SMTP id q130so78178460qke.1
-	for <yocto@yoctoproject.org>; Thu, 15 Dec 2016 18:54:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=mGZAnpNCOCzKz6Xs/aK8OWSuygXsG3LYHC04T9gLCU0=;
-	b=P87+w/TtuLtM5uUJ5EThJt+7Flk+I64Tm2JnSItdbDtBMurTsQeSUrVo7PBBcJDhX6
-	IwQK+r6MT1iC432SM+ghlqNy8ypZHx7Xmclin8x/6bYb1w6bptZ/nxqnOrqqUiXYioOZ
-	nVXRXlLPNrdjjhSI23z4ICxkKYI+0NtCfVMfW16LlVnwweTdAubJ7zn7PH4P4SucMEt9
-	T6C1nEeLRg1x3gQEXa6pM9aNcGIOIjOuAAs2zusQcgEWqDErxzyi+On22yTvzR62THvZ
-	rwM29rmxc75EfKxjsWnE4MH97zdA0LS7Ai/1Is4yCFWbe2onGyx56dgXvcjc21qbhqvR
-	mUGg==
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.82.51 listed in dnsbl.sorbs.net]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.82.51 listed in list.dnswl.org]
+Received: from mail-wm0-f51.google.com (mail-wm0-f51.google.com [74.125.82.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 25081E00E03
+	for <yocto@yoctoproject.org>; Thu, 15 Dec 2016 22:58:06 -0800 (PST)
+Received: by mail-wm0-f51.google.com with SMTP id t79so20024358wmt.0
+	for <yocto@yoctoproject.org>; Thu, 15 Dec 2016 22:58:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=mender-io.20150623.gappssmtp.com; s=20150623;
+	h=from:to:subject:date:message-id;
+	bh=JM2h4rZt9pZsLp9CY4gws7UToRPeQxEyCk7z4Bfi91g=;
+	b=RD9sq7icNlXaN47V7Ro170Pgs3+0gNFsz6bYy32Gy1zyHPOBoOPf7u7j7JoNGQ4nbV
+	knK8obQZL+8YKVoYaDLI3p32QqwC5PospH/EiEojDlGvai6tEHgxeV0ItlDhlHRXNB/S
+	2FNhgXsh/7wVwz5kdiBwjHG+32HkKbq1qyN4rm6HnZVTHl20soEEcWgJ6EXFa+DPWuN8
+	VTcMOiWmvPwBJ/eX6xPme/DbDxItEvVuEXjbcZOfcmHo/wPC1mJIPvLOkfIQazEfjRsV
+	53T3z9kXbPa6pG5y1OXNIXd8qnNCCZ6DTaFtcQIFOWKGDc6ZtyrmUOE+HnsDSXRgp5K+
+	vtIQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=mGZAnpNCOCzKz6Xs/aK8OWSuygXsG3LYHC04T9gLCU0=;
-	b=hTtHXWs1bFSo8gRRzfpAVXQDLIjXcCZBG2YyAf+uQ7ohWWxZbVAuomE/ZUqFkTSgxG
-	2wbcIAcnrha7S1MHBmYCZwcWkY26htCnc1FPN1xa4AHRhDW6cc+OisfjD7fUMiTn1g2J
-	uQom3Vabw0Dem7z2dp8dPVduxyGe22/o6OCKLTCrmp+2YKve/q9Ljc59yj0dKUpqUjZy
-	0GvgU5xeK7RYFr/Xf+9CIq888kuPRfyAgz7Zr6XJAaH6Mo6KmRa8xzGyw+P98qpHuiql
-	5X2P8KBZxoZkWG/wL8ajaSF7ZXDVhktghi5NwzGRCmHna80HPU3k249aY4KbqhK0hiGC
-	olGA==
-X-Gm-Message-State: AIkVDXICk3VwxvrfxxXY5j6g3FZxK29AQS8+DifTNt9nhTfCkYU9xB+2PPLtxwZ5GNM+tRD2u+qNdGH1M1je3w==
-X-Received: by 10.55.200.147 with SMTP id t19mr618975qkl.165.1481856885433;
-	Thu, 15 Dec 2016 18:54:45 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.140.88.21 with HTTP; Thu, 15 Dec 2016 18:54:45 -0800 (PST)
-From: "Daniel." <danielhilst@gmail.com>
-Date: Fri, 16 Dec 2016 00:54:45 -0200
-Message-ID: <CAF3SDA4zxDqiyofGbA35UGHgmNG6oBgKK==unMJFh_6RAwTPow@mail.gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: How to get headers installed at target side of SDK?
+	h=x-gm-message-state:from:to:subject:date:message-id;
+	bh=JM2h4rZt9pZsLp9CY4gws7UToRPeQxEyCk7z4Bfi91g=;
+	b=H/ir5I+fWfDOcvq4qg+JrpoqJHDDUu2Hmfmgj9V6drBBZdhuhnWjHHFrZE5QckPtrT
+	m4DdDQkl35bh9Ir1vi9KT6XlKsFLPagzyg6RSe+zPaoy0Z9Tx0k3Iw1MBn7noGOH+VJj
+	yo0fUmCSNuEEFj5qS3eO7WNyOr2zLyWPY1LBNURYLt0RlIi1bEHkTIFlM7G4dPvDCsfT
+	3YTEaQP9z4r3iyMHFobkNoNog6WKF586zwXhdqFwhSoDYeyB3xO4LmHIM2tnQ9glRmwh
+	1+lfxtSxvkRb4sTOnrfVWMHi9sRSmjHMNRxv3MkcawOoBsJ7zLJMazPdwOc/hCWzMlUE
+	Wh7Q==
+X-Gm-Message-State: AIkVDXL7FO6Xkuv/H/BSS8k8Tj/QpoD7F3hLDuxlxrEoge6IwTFwLMQCmgYhwRuOxMvXCw==
+X-Received: by 10.46.69.69 with SMTP id s66mr429984lja.71.1481871485060;
+	Thu, 15 Dec 2016 22:58:05 -0800 (PST)
+Received: from kristian-mender.cfengine.com ([195.159.140.90])
+	by smtp.googlemail.com with ESMTPSA id
+	t15sm1088447lfe.13.2016.12.15.22.58.04
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Thu, 15 Dec 2016 22:58:04 -0800 (PST)
+From: Kristian Amlie <kristian.amlie@mender.io>
+To: yocto@yoctoproject.org
+Date: Fri, 16 Dec 2016 07:58:03 +0100
+Message-Id: <1481871483-18552-1-git-send-email-kristian.amlie@mender.io>
+X-Mailer: git-send-email 2.7.4
+Subject: [PATCH v1] u-boot/beaglebone: Select Beaglebone Black target specifically.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -65,28 +67,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 16 Dec 2016 02:54:49 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Fri, 16 Dec 2016 06:58:10 -0000
 
-I'm a little confuse, so I may be about to say non-sense. Correct me
-if I'm wrong...
+The am335x_evm_config target has a subtle problem which is not present
+in the am335x_boneblack_config target: When booting from an external
+MMC card, the internal MMC is not accessible using the former target.
 
-I'm trying to get some headers installed at SDK so that programs
-compiled with it see that headers. I tried appending
-nativesdk-packagegroup-sdk-host adding my nativesdk-foo-dev as
-dependence to it. With this I got the headers but at
-/opt/poky/1.6.2/sysroots/x86_64-pokysdk-linux/ while I want them at
-/opt/poky/1.6.2/sysroots/cortexa9hf-vfp-neon-poky-linux-gnueabi/. What
-I'm doing wrong?
+This problem was introduced in U-Boot in commit 80b24fcd3083515e6b961,
+due to the addition of the CONFIG_DM_MMC option, and the
+am335x_boneblack_config target does not have this problem.
 
-Then I tried to append packagegroup-sdk-target adding foo-dev to it
-but still I can't get the headers at the SDK. I'm building the SDK by
-building meta-toolchain and installing by executing the script
-generated at tmp/deploy/sdk.
+Signed-off-by: Kristian Amlie <kristian.amlie@mender.io>
+---
+ meta-yocto-bsp/conf/machine/beaglebone.conf | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Regards,
-
+diff --git a/meta-yocto-bsp/conf/machine/beaglebone.conf b/meta-yocto-bsp/conf/machine/beaglebone.conf
+index fc6a527..24a95b4 100644
+--- a/meta-yocto-bsp/conf/machine/beaglebone.conf
++++ b/meta-yocto-bsp/conf/machine/beaglebone.conf
+@@ -31,7 +31,7 @@ KERNEL_EXTRA_ARGS += "LOADADDR=${UBOOT_ENTRYPOINT}"
+ 
+ SPL_BINARY = "MLO"
+ UBOOT_SUFFIX = "img"
+-UBOOT_MACHINE = "am335x_evm_config"
++UBOOT_MACHINE = "am335x_boneblack_config"
+ UBOOT_ENTRYPOINT = "0x80008000"
+ UBOOT_LOADADDRESS = "0x80008000"
+ 
 -- 
-"Do or do not. There is no try"
-  Yoda Master
+2.7.4
+
 
