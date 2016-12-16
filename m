@@ -1,66 +1,66 @@
-Return-Path: <twoerner@gmail.com>
+Return-Path: <prvs=01586588be=mike.looijmans@topicproducts.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3F3F5E00DFF; Fri, 16 Dec 2016 10:24:54 -0800 (PST)
+	id 20E54E00E41; Fri, 16 Dec 2016 12:12:00 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (twoerner[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.220.193 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [95.211.112.140 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.220.193 listed in dnsbl.sorbs.net]
-Received: from mail-qk0-f193.google.com (mail-qk0-f193.google.com
-	[209.85.220.193])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 06ED0E00D49
-	for <yocto@yoctoproject.org>; Fri, 16 Dec 2016 10:24:50 -0800 (PST)
-Received: by mail-qk0-f193.google.com with SMTP id n204so12616908qke.2
-	for <yocto@yoctoproject.org>; Fri, 16 Dec 2016 10:24:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=+hkusFbTOud+qQBDfjA9wRNTztejq82EQIcqY7I5xJc=;
-	b=uRLfvypR/jwg4ixxRRkNK9ZyumLaaNVowFYvqMtP7vkLNxaOcoqp9KA5S9qe/te37/
-	6zqvYtQtOczNGEnZb8mEobNjdu0/NMI9ig3OUELz2wES3JUEEYHJ4pPD20e9jpjqizKd
-	jtRW8i9eXXBwIHv0O9Wb7O+a2/Ez2CHKLUJxPNvyIghND0D5KkyBSRN3ubokIQZGffqa
-	DL5/yhIjcAzX0yNFmga/uES+iNzKO9IcW99a2xWMEFO6mktcT3V3hYQB4wZxOCqEczqH
-	sD6tg9Mm2EbTaC6zZHf1E2tijhXSzO5JJjb3gby4s/aQVlv3XrokMOhW1VfxKMyDs9y1
-	iwBA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=+hkusFbTOud+qQBDfjA9wRNTztejq82EQIcqY7I5xJc=;
-	b=K8ESLs2C4C2H5EPNwEjrAnZlbNjhYnaCQIDhtl210xSo4GmRaTIvBDDMpTsfdSCGZV
-	5+sf8LYq3Q2h0oxxpa+9FkieSApEHBGv7teeMylmq9CnS71PVRXriRSSgre8pPiDqZCM
-	Lu5hD9LMOEdGyGpl/1QOHcVVYw6N1bJHviUm1yng8SghvWZdfPk81FdOfy/SR4ImZYAX
-	tk9BqnwXGYbuL5KNxUbTo4hvT9KWDxwRs8e1OYBBf2JPENnXyRWWDTHJpoVT2MnokXG2
-	o500UTptSXiZqE1XzRtJ40EJo/h0kSQ4gVfkCqozfj3cbs1YN0JuRXaV8V9A2xtgsbWc
-	fl8g==
-X-Gm-Message-State: AIkVDXKiH4Z0zFWEseNTWQCAc3XG/Ajg5hIN1aL5jDfUOui+O7uiCKdKFDXoPRA3SppGIUtpQ5fv0sJ7z88PiQ==
-X-Received: by 10.55.91.1 with SMTP id p1mr4533319qkb.275.1481912689928; Fri,
-	16 Dec 2016 10:24:49 -0800 (PST)
+X-Greylist: delayed 2396 seconds by postgrey-1.32 at yocto-www;
+	Fri, 16 Dec 2016 12:11:56 PST
+Received: from mx5-04.smtp.antispamcloud.com (mx5-04.smtp.antispamcloud.com
+	[95.211.112.140])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 81EBEE00E17
+	for <yocto@yoctoproject.org>; Fri, 16 Dec 2016 12:11:56 -0800 (PST)
+Received: from [37.74.225.130] (helo=TOP-EX01.TOPIC.LOCAL)
+	by mx5.antispamcloud.com with esmtps (TLSv1:ECDHE-RSA-AES128-SHA:128)
+	(Exim 4.86) (envelope-from <mike.looijmans@topicproducts.com>)
+	id 1cHyER-0000Lf-NW
+	for yocto@yoctoproject.org; Fri, 16 Dec 2016 20:31:54 +0100
+Received: from [192.168.1.16] (85.150.144.104) by webmail.topic.nl
+	(192.168.10.102) with Microsoft SMTP Server (TLS) id 14.3.224.2;
+	Fri, 16 Dec 2016 20:31:50 +0100
+To: <yocto@yoctoproject.org>
+References: <1481796330-13908-1-git-send-email-piotr.lewicki@elfin.de>
+	<1481796330-13908-2-git-send-email-piotr.lewicki@elfin.de>
+	<7304ACDB-B05D-472D-8FF5-FC5CE402E88E@gmail.com>
+From: Mike Looijmans <mike.looijmans@topic.nl>
+Organization: Topic
+Message-ID: <58544125.903@topic.nl>
+Date: Fri, 16 Dec 2016 20:31:49 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+	Thunderbird/38.5.1
 MIME-Version: 1.0
-Received: by 10.237.46.162 with HTTP; Fri, 16 Dec 2016 10:24:49 -0800 (PST)
-In-Reply-To: <ba7b7f02-aaff-cd8d-20ee-8619b6201ede@linux.intel.com>
-References: <20161216150617.GA21846@openSUSE-i7.site>
-	<ba7b7f02-aaff-cd8d-20ee-8619b6201ede@linux.intel.com>
-From: Trevor Woerner <twoerner@gmail.com>
-Date: Fri, 16 Dec 2016 13:24:49 -0500
-Message-ID: <CAHUNapTnNh23s42zBGVjgMPXmHVSaucu4d4g6pn-3s+w9insTw@mail.gmail.com>
-To: Alexander Kanavin <alexander.kanavin@linux.intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: PSA for anyone using openSUSE 42.2 (or similar)
+In-Reply-To: <7304ACDB-B05D-472D-8FF5-FC5CE402E88E@gmail.com>
+X-Originating-IP: [85.150.144.104]
+X-EXCLAIMER-MD-CONFIG: 9833cda7-5b21-4d34-9a38-8d025ddc3664
+X-EXCLAIMER-MD-BIFURCATION-INSTANCE: 0
+X-Filter-ID: s0sct1PQhAABKnZB5plbIbbvfIHzQjPVmPLZeVYSu3xU9luQrU+8/8qthi+0Jd/W6KAUC/fjyuDn
+	NXFr4uarw8AABa0l71MJhTGCVSA9t5V02KbWfB+BvCLafvmmGbn9dUv6vb7lzwh4VvH3mLi3t6mx
+	j3Zz/WM/IwRyPjIHIwDopOMi3ASupkyB1tAKIbtMHU77ZIBE3mfnL/SM8xJdQDwJWw42swm4bO6g
+	acpMpzKAsmN/Lb+FQ/HEaohPJy4sx1hqmEa9iilDbgon2SBEM3eltedoxtsLVBJQHGKESyMFY4Gq
+	im2xiRyWNqAIwgPKlF4BAIVCj4pS1pIKtVOXE59Wyy39ARVu6lpph/EphEnxqviw72Riavv+eZyE
+	9H0bbbZrb4z7LVDm3uwJhixiewzr8ZOLud7oSceJFiA/jmR53/wXFnold8ciD8b1mxJhifnL+9wg
+	oTj4ygNPw1XfN5Vao551PLI0A+euz2IJwDlwPHEzll1HTKtfLd0Dh7Mx6JpC9ZPQXZ49HLEasqm4
+	uOphTuacGGzHKdedZEw9KWX4l0QmPyjhxxYY4z85MF0Zcxw3qqhc+N6cuEg4XWh5FiXM+yx0pMoG
+	+P/pBC5VVsJTxZyERX59ZsHZIitGQV6j2KuDs5a464mEDBF5jXtO8W0lTnDhjlXP2kk+CCknNfEx
+	L7hrJSk60SF3F6RYOYr2
+X-Report-Abuse-To: spam@quarantine2.antispamcloud.com
+X-Originating-IP: 37.74.225.130
+X-SpamExperts-Domain: topic.nl
+X-SpamExperts-Username: 37.74.225.128/28
+Authentication-Results: antispamcloud.com;
+	auth=pass smtp.auth=37.74.225.128/28@topic.nl
+X-SpamExperts-Outgoing-Class: ham
+X-SpamExperts-Outgoing-Evidence: SB/global_tokens (0.00324110662473)
+X-Classification: not-spam/statistical-method1-global_tokens
+X-Recommended-Action: accept
+Subject: Re: [meta-raspberrypi][PATCH 1/1] linux-rpi: clean .config in before do_configure step
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,26 +72,88 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 16 Dec 2016 18:24:54 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Fri, 16 Dec 2016 20:12:00 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Dec 16, 2016 at 11:06 AM, Alexander Kanavin
-<alexander.kanavin@linux.intel.com> wrote:
-> On 12/16/2016 05:06 PM, Trevor Woerner wrote:
->>
->> I just made this adjustment but given it only happened once or twice a
->> week on
->> a reasonably busy build machine it might be hard to confirm. I'm also not
->> sure
->> if setting it to "infinity" is sensible ;-)
->>
->> I'm guessing other host distros probably also fall into this category.
+=EF=BB=BFOn 16-12-16 17:58, Khem Raj wrote:
 >
->
-> I've seen this on Debian Testing as well. Care to submit a documentation
-> bug?
->
-> https://bugzilla.yoctoproject.org/enter_bug.cgi?product=General%20Docs
+>>=20
 
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=10818
+Kind regards,
+
+Mike Looijmans
+System Expert
+
+TOPIC Products
+Materiaalweg 4, NL-5681 RJ Best
+Postbus 440, NL-5680 AK Best
+Telefoon: +31 (0) 499 33 69 79
+E-mail: mike.looijmans@topicproducts.com
+Website: www.topicproducts.com
+
+Please consider the environment before printing this e-mail
+
+
+
+
+
+On Dec 15, 2016, at 2:05 AM, Piotr Lewicki <piotr.lewicki@elfin.de> wrote:
+>>
+>> Signed-off-by: Piotr Lewicki <piotr.lewicki@elfin.de>
+>> ---
+>> recipes-kernel/linux/linux-rpi.inc | 11 +++++++++--
+>> 1 file changed, 9 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/recipes-kernel/linux/linux-rpi.inc b/recipes-kernel/linux/l=
+inux-rpi.inc
+>> index 95a9530..c665b9f 100644
+>> --- a/recipes-kernel/linux/linux-rpi.inc
+>> +++ b/recipes-kernel/linux/linux-rpi.inc
+>> @@ -34,11 +34,13 @@ kernel_configure_variable() {
+>>      fi
+>> }
+>>
+>> -do_configure_prepend() {
+>> +do_rpi_kconfig_clean() {
+>>      # Clean .config
+>> -    echo "" > ${B}/.config
+>> +    echo -n "" > ${B}/.config
+>>      CONF_SED_SCRIPT=3D""
+>> +}
+>>
+>> +do_configure_prepend() {
+>>      # oabi / eabi support
+>>      kernel_configure_variable AEABI y
+>>      if [ "${ARM_KEEP_OABI}" =3D "1" ] ; then
+>> @@ -124,8 +126,11 @@ do_configure_prepend() {
+>>      # Keep this the last line
+>>      # Remove all modified configs and add the rest to .config
+>>      sed -e "${CONF_SED_SCRIPT}" < '${WORKDIR}/defconfig' >> '${B}/.conf=
+ig'
+>> +    # Clean variable- useful when calling configure step multiple times
+>> +    CONF_SED_SCRIPT=3D""
+>>
+>>      yes '' | oe_runmake oldconfig
+>> +
+>> }
+>>
+>> # Automatically depend on lzop-native if CONFIG_KERNEL_LZO is enabled
+>> @@ -146,3 +151,5 @@ python () {
+>>
+>>      configfile.close()
+>> }
+>> +
+>> +addtask rpi_kconfig_clean before do_configure after do_populate_lic
+>
+> we should investigate the kernel tooling from OE-Core and use that IMO
+
+See this thread on the OE list for a similar problem:
+http://lists.openembedded.org/pipermail/openembedded-core/2016-November/129=
+205.html
+
+
+
+--=20
+Mike Looijmans
 
