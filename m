@@ -1,17 +1,17 @@
-Return-Path: <mirza.krak@gmail.com>
+Return-Path: <john.rama01@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 34D5BE00AAB; Sun, 18 Dec 2016 22:46:35 -0800 (PST)
+	id C3BD6E00E02; Mon, 19 Dec 2016 02:50:12 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (mirza.krak[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.216.182 listed in list.dnswl.org]
+	mail provider *      (john.rama01[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.83.45 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,47 +19,52 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qt0-f182.google.com (mail-qt0-f182.google.com
-	[209.85.216.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CF3C1E00AAB
-	for <yocto@yoctoproject.org>; Sun, 18 Dec 2016 22:46:29 -0800 (PST)
-Received: by mail-qt0-f182.google.com with SMTP id w33so138767360qtc.3
-	for <yocto@yoctoproject.org>; Sun, 18 Dec 2016 22:46:29 -0800 (PST)
+Received: from mail-pg0-f45.google.com (mail-pg0-f45.google.com [74.125.83.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A1302E00D0C
+	for <yocto@yoctoproject.org>; Mon, 19 Dec 2016 02:50:09 -0800 (PST)
+Received: by mail-pg0-f45.google.com with SMTP id p66so60142049pga.2
+	for <yocto@yoctoproject.org>; Mon, 19 Dec 2016 02:50:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=u2OObhZpNuuYZFe45xR/bTK0eEVckctirjcG3P18vDw=;
-	b=hkEGLaT7mDBCYU/TZfCSxMrk2HMgl/YgZxv62WDk/VaAdlpTCAhMTmFyo4LhmmVmLS
-	mDvewzXfFsaTrefAEeoAbOd0WwfStI4tbNEVBvuozQBhG1I06hFr0Owsaumbm9aksEkD
-	nluOaDrwvdrvlLENumZCN5oodmmlG+WLilW4/Zs2icZeBOAgGNGc3FsjuIVwRVXIrO9y
-	IvlB2uq4zqk9i4eiUEkuKLlb7hlfLEK5qMgfkSZiwPW9K+sCU7v0qSUZ+VPrY3fUC3YA
-	/UTItsV3U7jJkOOTBy6nf0PLAUbkygKsZuRpt61ReCp8cg6GG91DvUD6v7AeOKKwj4ci
-	JiHQ==
+	h=subject:to:references:from:message-id:date:user-agent:mime-version
+	:in-reply-to:content-transfer-encoding;
+	bh=PYP1xr3XnY9IXI3RlV4xzZW07YsLp9pu4xDAhJK4dRM=;
+	b=XrTg5oeEHVdQL73PsgRJptkzQuoGvpumS9/xJFWIDrS0j6jj5VLQMY/N+TU7atPVrC
+	/trmu8hgdr+iC08K0tVga8gBIwhYU7LtvTfQFclbX/RuwHO/aiK9cqkbGUWXLsGweQ3i
+	0zgc4J+N0cqPxTdki73HnjM3sn15qPsx17qXqh3xw9RIN0qIMUkHYv8Ivz8J25mu655Y
+	W6gEHXkR/lp2Pt4Ge8VnFwvje1SXaoFWF/OYbCdQdbTqKG880kv9SX/ST5R9qgbubQj6
+	NKaFs0EAVE52kFXEveahU9PyiO3MTg7srwB0dzLIigG8806ZxRTBaBqRqrWpZAlJyjtI
+	Qf2w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=u2OObhZpNuuYZFe45xR/bTK0eEVckctirjcG3P18vDw=;
-	b=qfMZU4tZAaA5lIEv/J53nm/5RCL+wiLAdIeIz8m+X6B6rAEmS23L5aUXt64QDKACIP
-	LWIz2Of+b4+5CemNanvRfA6RKPHnaQqasIIBE+5fzzSF+QJ6ly5hxJHjrT4tP6UhPV1c
-	wZN9eG4jmcTgOPSHOG7hIq60sPiZkkv9MmsZB7g4L5AOhaRNhk2w0+OK+nwai23twtvK
-	3+OThDY8kXsEjIMnnFj1RyPrGPTyLl8TS2ioG5oILMD/hAzpqe2vSK6TQjgB/KU8TUfm
-	TnfCQvR7SqX7fcbNMHpdXCsrQHHLUIi7ug88bMth9TAA1nEoSmvjYuqAyqDjrAJubuZC
-	rGOQ==
-X-Gm-Message-State: AIkVDXKHE6rINHTP+KlEOcRvoqlcHuU/AhQ5F/W/vI0kjWWnx3PUP9h16n516ivXU9/DY4NgCSalH7xc1dLvIQ==
-X-Received: by 10.200.55.69 with SMTP id p5mr15641387qtb.67.1482129989283;
-	Sun, 18 Dec 2016 22:46:29 -0800 (PST)
+	h=x-gm-message-state:subject:to:references:from:message-id:date
+	:user-agent:mime-version:in-reply-to:content-transfer-encoding;
+	bh=PYP1xr3XnY9IXI3RlV4xzZW07YsLp9pu4xDAhJK4dRM=;
+	b=Wmvqky8rZsrN/Qd/54yB6k1BZukWEB9FsEiPZXPv5a/jssEbzzLVYcDjzt5kLkE11o
+	3Cnc9BryOqGKSVXYkVVIzCAb7LflrUDO/D0ITcPa430ZjcIfLkzkWIvHgKPj8jCYtwwf
+	46nNyI0q/yJlgS4+YmVAyLOMOcgrIooxaj9ca7S9YUTMdX5boWpULozVJ4YEVT8gYmwy
+	DfqREW0oPAVlBvP/6ofXSxfEDYD355oJMeLzTw6nCSCjKz8IZJGzWkbKZmDjuk18Gj0x
+	AJijW+jwt6ZWsuawXok9+7qQQqihnpa1Nad4FczQdCFTznrzvxXGSTfjy2XsuUC6d9bx
+	YoNw==
+X-Gm-Message-State: AKaTC03RJm9h1qMXZ7FLwrhftqwGaLOHY2JMZ5Oi64V26DUYI353VN/CRw3kCtyUcOuI+Q==
+X-Received: by 10.98.107.136 with SMTP id g130mr14407897pfc.20.1482144608144; 
+	Mon, 19 Dec 2016 02:50:08 -0800 (PST)
+Received: from [192.168.10.3] (KD118155101045.ppp-bb.dion.ne.jp.
+	[118.155.101.45]) by smtp.googlemail.com with ESMTPSA id
+	c71sm30616901pga.22.2016.12.19.02.50.06 for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Mon, 19 Dec 2016 02:50:07 -0800 (PST)
+To: yocto@yoctoproject.org
+References: <5851F18E.3020401@gmail.com>
+	<20161215140913.5vx5ulxby74mp4rz@ad.chargestorm.se>
+	<CAF3SDA5yne+Qz=K9dt7_t_1KmUa73qbgVZM96n8OK-gUk8N6zg@mail.gmail.com>
+From: John Rama <john.rama01@gmail.com>
+Message-ID: <5857BB71.8010206@gmail.com>
+Date: Mon, 19 Dec 2016 19:50:25 +0900
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:38.0) Gecko/20100101
+	Thunderbird/38.4.0
 MIME-Version: 1.0
-Received: by 10.200.54.136 with HTTP; Sun, 18 Dec 2016 22:46:28 -0800 (PST)
-In-Reply-To: <CA+n--H9pd1eY8DuY-OSCKxBNiLvAKMQYoDB2Mpo5ajGncvzd6g@mail.gmail.com>
-References: <CALw8SCUt4XR+LYM7pGAC64gO+0y9k-HuJgdHqHz5DRxh1qgv=A@mail.gmail.com>
-	<20161218162554.2dab9f39@nuc.betafive.co.uk>
-	<CA+n--H9pd1eY8DuY-OSCKxBNiLvAKMQYoDB2Mpo5ajGncvzd6g@mail.gmail.com>
-From: Mirza Krak <mirza.krak@gmail.com>
-Date: Mon, 19 Dec 2016 07:46:28 +0100
-Message-ID: <CALw8SCXgz=5TrKE99u4MOhx=tuZvgaPx_4LjO70U_JFK=2GcJA@mail.gmail.com>
-To: Bill Randle <bill.randle@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: setting up autobuilder on local machine
+In-Reply-To: <CAF3SDA5yne+Qz=K9dt7_t_1KmUa73qbgVZM96n8OK-gUk8N6zg@mail.gmail.com>
+Subject: Re: NFS rootfs: mount: only root can mount proc on /proc
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,85 +76,62 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 Dec 2016 06:46:35 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Mon, 19 Dec 2016 10:50:12 -0000
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: 7bit
 
-2016-12-19 4:33 GMT+01:00 Bill Randle <bill.randle@gmail.com>:
-> On Sun, Dec 18, 2016 at 8:25 AM, Paul Barker <paul@paulbarker.me.uk> wrote:
->> On Sun, 18 Dec 2016 15:46:19 +0100
->> Mirza Krak <mirza.krak@gmail.com> wrote:
->>
->>> Hi.
->>>
->>> I have been looking in to the possibility to utilize yocto autobuilder
->>> for one of my own projects.
->>>
->>> But I am having some problems setting this up and hopefully someone
->>> here can provide some pointers.
->>>
->>> I did the "quickstart part":
->>>
->>> git clone git://git.yoctoproject.org/yocto-autobuilder
->>> cd yocto-autobuilder
->>> . ./yocto-autobuilder-setup
->>> yocto-start-autobuilder both
->>>
->>> Above succeeds without any issues. But now what? :)
->>>
->>> I went to https://localhost:8010. I tried to login using the
->>> information that is in the .htpasswd file but that did not work. Where
->>> are the credentials to login setup?
->>
->> You'll need to create the .htpasswd file yourself. I think the
->> "htpasswd" tool can do this for you, I can't remember the exact
->> commands I used to make mine though sorry.
->>
->>>
->>> I also made an attempt to remove all un-wanted buildsets and now
->>> buildset-config contains (all other directories are removed)
->>>
->>> nightly-mender-rpi.conf  yoctoAB.conf
->>>
->>> Above is parsed correctly on start-up but build is never triggered. I
->>> probably removed to much :). Looking in to nigthly.conf it seem that
->>> is the one that trigger all other nightly builds?
->>>
->>> My fork can be found at [1].
->>>
->>> [1]. https://github.com/mirzak/yocto-autobuilder-mender-rpi
->>
->> This looks good, you just need to setup the scheduler with something
->> like this in nightly-mender-rpi.conf:
->>
->>     scheduler:
->>     [{'nightly-build':{'type':'Nightly','hour':23,'minute':0}}]
->>
->> You should only need a separate nightly.conf when you want that to
->> trigger multiple builds.
->>
->> I've recently setup an autobuilder for meta-raspberrypi which I'll be
->> publishing once I've got the last bits of setup done. If you're still
->> struggling to get the nightly triggering working let me know and I'll
->> put up the configurations I've used as a git repository.
->
-> There is also additional helpful information on the Yocto Autobuilder
-> wiki page here:
-> https://wiki.yoctoproject.org/wiki/The_Yocto_Autobuilder. Some of the
-> information applies to the Yocto Project build cluster, but is still
-> applicable to local autobuilders. I followed the same instructions to
-> setup a local AB. Be sure to use the htpasswd command that's in the
-> autobuilder git tree (in one of the bin directories, as I recall),
-> rather than a native system one. The AB version defaults to the
-> shorter crypto scheme that buildbot requires.
+Thanks everyone for the feedback.
+I got #3 would be the best way. 
 
-Thank you for your fast responses. Generating the htpasswd file my
-self did the trick. Now I can login. The full command was (as you
-suggested I used the one in autobuilder git repo under ./bin):
+Kind Regards,
+John Rama
 
-    ./htpasswd -b -c <path to htpasswd file> <user name> <secret password>
+On 2016/12/16 0:20, Daniel. wrote:
+> 2016-12-15 12:09 GMT-02:00 Anders Darander <anders@chargestorm.se>:
+>> Hi,
+>>
+>> * John Rama <john.rama01@gmail.com> [161215 02:58]:
+>>
+>>> The ideas I can come up with are followings, but those of them are not perfect..
+>>> 1. Run the bitbake as root account
+>>>   - would not run as root since the all of generated files are root permission even for the log files.
+>>
+>> Never do this. You've got no idea what bitbake might do to your
+>> computer...
+>>
+>>
+>>> 2. Change UID and GID whenever generating new image
+>>>   - I guess next build would fall into the trouble because of the owner change.
+>>
+>> Yes, that'll get you problems later on.
+>>
+>>> 3. Untar the tar ball under  {YOCTO_BUILD_DIR}//tmp//deploy/image/{TARGET}/*rootfs.tar.bz2 to  the export dir
+>>>   - takes additional time.. Not good.
+>>
+>> This is the right way to do it.
+>>
+>> If it takes to much time, create a script that runs bitbake and then
+>> untars the rootfs.
+> 
+> I do this all the time and have faced no problems regarding exploding
+> the tar. You may want to generate a .tar instead of a .tar.bz2. This
+> will safe the CPU from decrompressing so it should be faster...
+> 
+> Regards,
+>>
+>> Cheers,
+>> Anders
+>>
+>> --
+>> Anders Darander, Senior System Architect
+>> ChargeStorm AB / eStorm AB
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+> 
+> 
+> 
 
-Forced a build of my configuration now and hoping for the best :).
-
-Best Regards
-Mirza
 
