@@ -1,37 +1,65 @@
-Return-Path: <mateusz.orzol@3cityelectronics.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D3134E00955; Mon, 19 Dec 2016 13:53:35 -0800 (PST)
+	id 0629AE00B6C; Mon, 19 Dec 2016 15:44:08 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: **
-X-Spam-Status: No, score=2.0 required=5.0 tests=BAYES_00,FSL_HELO_BARE_IP_2,
-	HTML_IMAGE_ONLY_24,HTML_IMAGE_RATIO_06,HTML_MESSAGE,RCVD_NUMERIC_HELO
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 1.2 RCVD_NUMERIC_HELO Received: contains an IP address
-	used for HELO
-	* 0.0 HTML_IMAGE_RATIO_06 BODY: HTML has a low ratio of text to image
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_IMAGE_RATIO_08,
+	HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.213.46 listed in list.dnswl.org]
+	* 0.0 HTML_IMAGE_RATIO_08 BODY: HTML has a low ratio of text to image
 	area * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 1.6 HTML_IMAGE_ONLY_24 BODY: HTML: images with 2000-2400 bytes of
-	words *  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  1.1 FSL_HELO_BARE_IP_2 FSL_HELO_BARE_IP_2
-X-Greylist: delayed 399 seconds by postgrey-1.32 at yocto-www;
-	Mon, 19 Dec 2016 13:53:32 PST
-Received: from cloudserver125993.home.net.pl (cloudserver125993.home.net.pl
-	[188.128.188.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B8337E0089B
-	for <yocto@yoctoproject.org>; Mon, 19 Dec 2016 13:53:32 -0800 (PST)
-Received: from 31.179.144.210 (31.179.144.210) (HELO [192.168.11.228])
-	by 3cte.home.pl (188.128.188.9) with SMTP (IdeaSmtpServer 0.81.1)
-	id 37f1e65fcccc828d; Mon, 19 Dec 2016 22:46:52 +0100
-From: =?UTF-8?Q?Mateusz_Orzo=c5=82?= <mateusz.orzol@3cityelectronics.com>
-To: yocto@yoctoproject.org
-Message-ID: <396d7721-c317-789c-6a66-938280ccb006@3cityelectronics.com>
-Date: Mon, 19 Dec 2016 22:46:49 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:45.0) Gecko/20100101
-	Thunderbird/45.5.1
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-vk0-f46.google.com (mail-vk0-f46.google.com
+	[209.85.213.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2B276E009BA
+	for <yocto@yoctoproject.org>; Mon, 19 Dec 2016 15:44:04 -0800 (PST)
+Received: by mail-vk0-f46.google.com with SMTP id w194so127219224vkw.2
+	for <yocto@yoctoproject.org>; Mon, 19 Dec 2016 15:44:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=gTMiu4J3BiYivJgLtsKANfmGUR4qF/XLyil7hFYL/qg=;
+	b=d0kXrFirTO1k0JfwTmE5887Ngk/Xo/d8f8C2j4VCPVKqnnZfP57gHN6tRn3QVv04ZM
+	yAlxd8LbeSZ4lcXtjo/7yBXnmKZIeHr++t7rZeUWw+QGWPrjJIb+bbSJVWkVhHMLwzs3
+	Zq5OVrp3j3RjfahmWSxoylNmXeRBj6lOsN+JtTg6W+uRB1Iro+bOF9fBofnt7SQR+/xj
+	OHuWZT8jXQzNhtR5PMGqNC5twZrROTuZfrXKrjY5zuTR8Dt+loKf0SmTtwpNnnld0F1M
+	O87jFuvK0+/jPKAwMdm//L6T9/bzrlvuszwboVD6rr86RAX8kRr4TH+FCyHPWbl5jdBM
+	zP2A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=gTMiu4J3BiYivJgLtsKANfmGUR4qF/XLyil7hFYL/qg=;
+	b=S9Xln1nkZr+atA86gE0E+8H1LP3r4MkL7VP09SCdNym6+81OYNgR0dg+Sba7pdsoM+
+	ElsxCecdddGv1/4WC6QP8OdSDfpgRQzZwyc+9c2V5pUItx2femHhYECeTGCxGD0rQHO+
+	7mFFCUDvsCb08NSdGO/d/gzME+w0BAj9t2bPkaR5NqXf8geGuBKhzYrCY3DRZmawnrCg
+	0Vb527zwqLWSL2IOYY75Nfk9ekewmIWr+nGCdxnBCV1cFGLL7hGhiD/9l/saSdMfhuhD
+	24Lvs38awBA0dQViSOA/0QA1oaaT07qB6mbP/7vSZOhF1fLrKEtBU3o7HrLJihM/qPDZ
+	vFFg==
+X-Gm-Message-State: AIkVDXKfJeetwqsu0b9ruilla8W8gKgkBwUrgQyZ+FcROyGC2hFEaFJ73CD34nn9lazy1mRKbhTvpNaCM0vs8w==
+X-Received: by 10.31.197.195 with SMTP id v186mr7169498vkf.84.1482191043938;
+	Mon, 19 Dec 2016 15:44:03 -0800 (PST)
 MIME-Version: 1.0
-Subject: [bitbake] Failure to compile UltraJson, LMDB and Netifaces python modules recipes for Krogoth.
+Received: by 10.159.48.87 with HTTP; Mon, 19 Dec 2016 15:43:33 -0800 (PST)
+In-Reply-To: <396d7721-c317-789c-6a66-938280ccb006@3cityelectronics.com>
+References: <396d7721-c317-789c-6a66-938280ccb006@3cityelectronics.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Mon, 19 Dec 2016 15:43:33 -0800
+Message-ID: <CAMKF1so+ZwuF=ecyhkaXOzJDB1y08kednf4Bi8KCtZUfTdqKEA@mail.gmail.com>
+To: =?UTF-8?Q?Mateusz_Orzo=C5=82?= <mateusz.orzol@3cityelectronics.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [bitbake] Failure to compile UltraJson, LMDB and Netifaces python modules recipes for Krogoth.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,107 +71,151 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 Dec 2016 21:53:35 -0000
-X-Groupsio-MsgNum: 33546
-Content-Type: multipart/alternative;
-	boundary="------------1CC1F47DE4C7D1539A7D2FA6"
+X-List-Received-Date: Mon, 19 Dec 2016 23:44:08 -0000
+X-Groupsio-MsgNum: 33547
+Content-Type: multipart/related; boundary=001a114bcec2aa5ec105440b7e6a
 
---------------1CC1F47DE4C7D1539A7D2FA6
-Content-Type: text/plain; charset=utf-8
+--001a114bcec2aa5ec105440b7e6a
+Content-Type: multipart/alternative; boundary=001a114bcec2aa5ebe05440b7e69
+
+--001a114bcec2aa5ebe05440b7e69
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Hi everyone,
+On Mon, Dec 19, 2016 at 1:46 PM, Mateusz Orzo=C5=82 <
+mateusz.orzol@3cityelectronics.com> wrote:
 
-I am migrating my old Yocto image from kernel 3.8 to 4.1 on the Intel
-Quark based platform. After dealing with some SPI driver issues now I've
-encountered some strange bitbake behaviour. My web application requires
-UltraJson , LMDB and Netifaces modules. After running bitbake  I am
-getting a lot of undefined reference errors. In all three cases pretty
-similar. Exemplary log for python-ujson is here:
-http://pastebin.com/8ms9PgnY . It seems like the python environment
-wasn't linked properly but many other python recipes have no problem
-with compiling.
+> Hi everyone,
+>
+> I am migrating my old Yocto image from kernel 3.8 to 4.1 on the Intel
+> Quark based platform. After dealing with some SPI driver issues now I've
+> encountered some strange bitbake behaviour. My web application requires
+> UltraJson , LMDB and Netifaces modules. After running bitbake  I am getti=
+ng
+> a lot of undefined reference errors. In all three cases pretty similar.
+> Exemplary log for python-ujson is here: http://pastebin.com/8ms9PgnY . It
+> seems like the python environment wasn't linked properly but many other
+> python recipes have no problem with compiling.
+>
+> The python-ujson recipe comes from here https://layers.openembedded.
+> org/layerindex/recipe/49510/. In  previous distribution with kernel 3.8
+> it was working without any problem.
+>
+> Have you got any idea what could be wrong or what should I check first?
+>
 
-The python-ujson recipe comes from here
-https://layers.openembedded.org/layerindex/recipe/49510/. In  previous
-distribution with kernel 3.8 it was working without any problem.
-
-Have you got any idea what could be wrong or what should I check first?
-
-Thank you for your help in advance,
-
-Mateusz
+=E2=80=8BThe error seems to have nothing to do with kernel version. Are you
+upgrading the whole of yocto framework from one release to another ? and if
+yes from which version to which new version.=E2=80=8B
 
 
---=20
-3City Electronics Sp. z o.o. Abrahama 1A/5.02-5.05 80-307 Gda=C5=84sk tel=
-=2E:
-+48 58 765 01 48
 
---------------1CC1F47DE4C7D1539A7D2FA6
-Content-Type: multipart/related;
- boundary="------------D839B2E2707C72AEDE37C469"
+> Thank you for your help in advance,
+>
+> Mateusz
+>
+>
+> --
+> [image: 3City Electronics Sp. z o.o. Abrahama 1A/5.02-5.05 80-307 Gda=C5=
+=84sk
+> tel.: +48 58 765 01 48]
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
 
---------------D839B2E2707C72AEDE37C469
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
+--001a114bcec2aa5ebe05440b7e69
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-<html>
-  <head>
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:monospac=
+e,monospace"><br></div><div class=3D"gmail_extra"><br><div class=3D"gmail_q=
+uote">On Mon, Dec 19, 2016 at 1:46 PM, Mateusz Orzo=C5=82 <span dir=3D"ltr"=
+>&lt;<a href=3D"mailto:mateusz.orzol@3cityelectronics.com" target=3D"_blank=
+">mateusz.orzol@3cityelectronics.com</a>&gt;</span> wrote:<br><blockquote c=
+lass=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;=
+padding-left:1ex">
+ =20
 
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
+   =20
+ =20
+  <div bgcolor=3D"#FFFFFF" text=3D"#000000">
     <p>Hi everyone,</p>
     <p>I am migrating my old Yocto image from kernel 3.8 to 4.1 on the
       Intel Quark based platform. After dealing with some SPI driver
-      issues now I've encountered some strange bitbake behaviour. My web
+      issues now I&#39;ve encountered some strange bitbake behaviour. My we=
+b
       application requires UltraJson , LMDB and Netifaces modules. After
-      running bitbake  I am getting a lot of undefined reference errors.
+      running bitbake=C2=A0 I am getting a lot of undefined reference error=
+s.
       In all three cases pretty similar. Exemplary log for python-ujson
-      is here: <a class="moz-txt-link-freetext" href="http://pastebin.com/8ms9PgnY">http://pastebin.com/8ms9PgnY</a> . It seems like the python
-      environment wasn't linked properly but many other python recipes
+      is here: <a class=3D"m_5374100980488576139moz-txt-link-freetext" href=
+=3D"http://pastebin.com/8ms9PgnY" target=3D"_blank">http://pastebin.com/8ms=
+9PgnY</a> . It seems like the python
+      environment wasn&#39;t linked properly but many other python recipes
       have no problem with compiling.<br>
     </p>
     <p>The python-ujson recipe comes from here
-      <a class="moz-txt-link-freetext" href="https://layers.openembedded.org/layerindex/recipe/49510/">https://layers.openembedded.org/layerindex/recipe/49510/</a>. In 
+      <a class=3D"m_5374100980488576139moz-txt-link-freetext" href=3D"https=
+://layers.openembedded.org/layerindex/recipe/49510/" target=3D"_blank">http=
+s://layers.openembedded.<wbr>org/layerindex/recipe/49510/</a>. In=C2=A0
       previous distribution with kernel 3.8 it was working without any
       problem. <br>
     </p>
     <p>Have you got any idea what could be wrong or what should I check
-      first?</p>
+      first?</p></div></blockquote><div><br></div><div><div class=3D"gmail_=
+default" style=3D"font-family:monospace,monospace">=E2=80=8BThe error seems=
+ to have nothing to do with kernel version. Are you upgrading the whole of =
+yocto framework from one release to another ? and if yes from which version=
+ to which new version.=E2=80=8B</div><br></div><div>=C2=A0</div><blockquote=
+ class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc soli=
+d;padding-left:1ex"><div bgcolor=3D"#FFFFFF" text=3D"#000000">
     <p>Thank you for your help in advance,</p>
-    <p>Mateusz<br>
-    </p>
+    <p>Mateusz<span class=3D"HOEnZb"><font color=3D"#888888"><br>
+    </font></span></p><span class=3D"HOEnZb"><font color=3D"#888888">
     <p><br>
     </p>
-    <div class="moz-signature">-- <br>
-      <meta http-equiv="content-type" content="text/html; charset=utf-8">
-      <title></title>
-      <map name="mapa1">
-        <area shape="rect" coords="36,110,173,119"
-          href="http://www.3CityElectronics.com/">
-        <area shape="circle" coords="45,145,10"
-          href="https://www.facebook.com/3CTE.POLAND/?fref=nf">
-        <area shape="circle" coords="72,145,10"
-href="https://www.linkedin.com/company/3city-electronics-sp-z-o-o-?trk=company_logo">
-        <area shape="rect" coords="435,34,613,52"
-          href="http://www.3CityElectronics.com/">
+    <div class=3D"m_5374100980488576139moz-signature">-- <br>
+     =20
+     =20
+      <map name=3D"m_5374100980488576139_mapa1">
+        <area shape=3D"rect" coords=3D"36,110,173,119" href=3D"http://www.3=
+CityElectronics.com/" target=3D"_blank">
+        <area shape=3D"circle" coords=3D"45,145,10" href=3D"https://www.fac=
+ebook.com/3CTE.POLAND/?fref=3Dnf" target=3D"_blank">
+        <area shape=3D"circle" coords=3D"72,145,10" href=3D"https://www.lin=
+kedin.com/company/3city-electronics-sp-z-o-o-?trk=3Dcompany_logo" target=3D=
+"_blank">
+        <area shape=3D"rect" coords=3D"435,34,613,52" href=3D"http://www.3C=
+ityElectronics.com/" target=3D"_blank">
       </map>
-      <img alt="3City Electronics Sp. z o.o. Abrahama 1A/5.02-5.05
-        80-307 Gdańsk tel.: +48 58 765 01 48"
-        src="cid:part1.67F29DFF.B691DB72@3cityelectronics.com"
-        usemap="#mapa1" height="200" width="800"> </div>
-  </body>
-</html>
+      <img alt=3D"3City Electronics Sp. z o.o. Abrahama 1A/5.02-5.05
+        80-307 Gda=C5=84sk tel.: +48 58 765 01 48" src=3D"cid:part1.67F29DF=
+F.B691DB72@3cityelectronics.com" usemap=3D"#m_5374100980488576139_mapa1" he=
+ight=3D"200" width=3D"800"> </div>
+  </font></span></div>
 
---------------D839B2E2707C72AEDE37C469
-Content-Type: image/jpeg;
- name="stopka.jpg"
+<br>--<br>
+______________________________<wbr>_________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto</a><=
+br>
+<br></blockquote></div><br></div></div>
+
+--001a114bcec2aa5ebe05440b7e69--
+
+--001a114bcec2aa5ec105440b7e6a
+Content-Type: image/jpeg; name="stopka.jpg"
+Content-Disposition: inline; filename="stopka.jpg"
 Content-Transfer-Encoding: base64
 Content-ID: <part1.67F29DFF.B691DB72@3cityelectronics.com>
-Content-Disposition: inline;
- filename="stopka.jpg"
+X-Attachment-Id: c3071061a7b6738d_0.0.1.1
 
 /9j/4AAQSkZJRgABAQEBLAEsAAD/4QDcRXhpZgAATU0AKgAAAAgABwESAAMAAAABAAEAAAEaAAUA
 AAABAAAAYgEbAAUAAAABAAAAagEoAAMAAAABAAIAAAExAAIAAAAMAAAAcgEyAAIAAAAUAAAAfodp
@@ -807,6 +879,4 @@ AgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIA
 gCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAg
 CAIAgCAIAgCAIAgCAIAgCAIAgCA//9k=
 
---------------D839B2E2707C72AEDE37C469--
-
---------------1CC1F47DE4C7D1539A7D2FA6--
+--001a114bcec2aa5ec105440b7e6a--
