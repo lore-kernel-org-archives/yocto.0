@@ -1,17 +1,15 @@
-Return-Path: <mirza.krak@gmail.com>
+Return-Path: <sandro.stiller@elfin.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 716C4E00CD5; Mon, 19 Dec 2016 07:20:16 -0800 (PST)
+	id AFA4DE00E73; Mon, 19 Dec 2016 07:31:58 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	DKIM_VALID, DKIM_VALID_AU,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (mirza.krak[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.220.177 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.210.177 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,50 +17,55 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qk0-f177.google.com (mail-qk0-f177.google.com
-	[209.85.220.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C31ECE00B71
-	for <yocto@yoctoproject.org>; Mon, 19 Dec 2016 07:20:15 -0800 (PST)
-Received: by mail-qk0-f177.google.com with SMTP id n21so12631863qka.3
-	for <yocto@yoctoproject.org>; Mon, 19 Dec 2016 07:20:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=hnFHvzpgUg9NaHbyX/mzJEYR5KRA2r6pmUqYMEXQrpk=;
-	b=kX/073jG0M0zNps4KYgEWoIRKvfDaSWWkB23Am/ZQnD0meWkK6Ur8GL1VXYi02/dMd
-	MC8f4qJRl1k9hZZjFhRAi2kxDpHL/R/8jYYwnq2MfHsI54DiD6aFn5yZutjoDc4r61Qq
-	qbsLmO97aAQ2AuSzcDKXYZUMbYoOnvuRSbLPOIL4WK7UFS8Ml3lVu7OZKp6QqzMwiWuj
-	eCDf0snUG43pX1/YyVcP9JfElkSa45itFVvusB5fTaT/n85mIWagCeH6AX7HLamLLbcU
-	D6jrpLNp5ymq3lK/1BFA9GjzKk5gzq9OgA5xjCfxlLT5jDBH08DNBKO1Zg1uVUuyVwb5
-	FTww==
+Received: from mail-wj0-f177.google.com (mail-wj0-f177.google.com
+	[209.85.210.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 26272E00E57
+	for <yocto@yoctoproject.org>; Mon, 19 Dec 2016 07:31:56 -0800 (PST)
+Received: by mail-wj0-f177.google.com with SMTP id tk12so153482338wjb.3
+	for <yocto@yoctoproject.org>; Mon, 19 Dec 2016 07:31:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=elfin.de; s=google;
+	h=subject:to:references:from:organization:message-id:date:user-agent
+	:mime-version:in-reply-to:content-transfer-encoding;
+	bh=XKiRUH12rh24zbgPgDvB/+C/7bZR6SpBMLosd08U8hw=;
+	b=Qu+LfPmyZ9RH8367GELF6izbznIhuxYeoATp9po8QBXMCGuEzYZBOMjJ2PTKCNzdRW
+	5bRpiT7XplvzlQd0rnq6I01VzarK+o4qWmGkjg74v/Jaj6SLCbATHrjyBEOuO09+cP5Z
+	NOoPgGWqybaazMrsVxv1vjzDozdYUdJHs6Y0VpfCVIHncfouQupM0IvfQPspjYsqGsTF
+	/p1+JOeSVzFqF1HR712oXNCIszCIT00Sj1muqFEw4hthsbBSkDCGq7XSB7tS5hXfNjGe
+	GK8a4JpONJyB2qKxG6KLM5AeGbPpyGY4eQflbZztvgFiV6kCYSxjkTGXJbSVNsKSwrE6
+	D6+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=hnFHvzpgUg9NaHbyX/mzJEYR5KRA2r6pmUqYMEXQrpk=;
-	b=BM5aBMHBXbm/4ntGd8AqwqKKeqP1cnOL/Hhh2nNtwycrZv5Q/rRXUFgyNFR9Cwq0lx
-	s/1VJl4nXlYycIhdKWM/uf+dYUlwisCl7QtKCgOGRPmi2+DdymIINOBlQJPyzgLNLmvh
-	tYDVOmcLrgy7p+K8byANKBSuGqq6EMZ16TDpiZSPSc9Rgl2UcUJpFHBfsbIw7HcC5eFy
-	uimSiP0HQbtejXLLkNtpB7eGX74b2T/YItSDSlDKn6gmmKXg1uSkegUux/HhySI8mBEu
-	RFAyChqMKLcGxEQaKQ/ezAmBC7tNOGb8IvLqri1Uz2r8xcLyUpun8evr/GIGY8x6E6BY
-	8opw==
-X-Gm-Message-State: AIkVDXK+DITaFVP1YZGrU5VSTwmk48hai4TwgSieGk+fN1o9OSOutHl/t4Aa8sDlBYkCfk9lS8WRUmmuSxI5EA==
-X-Received: by 10.55.77.134 with SMTP id a128mr930441qkb.157.1482160814716;
-	Mon, 19 Dec 2016 07:20:14 -0800 (PST)
+	h=x-gm-message-state:subject:to:references:from:organization
+	:message-id:date:user-agent:mime-version:in-reply-to
+	:content-transfer-encoding;
+	bh=XKiRUH12rh24zbgPgDvB/+C/7bZR6SpBMLosd08U8hw=;
+	b=PjMkTDLg9oJJrDOg3EQofG2QE1I0qlLUtNDaFK4ctpPGq9JG7d02Rr5tFoZ55mOjhf
+	Jx/3pUE6n2U7e4Q9sTx0Mp1MmJEHd8oLgmUaik8flmm6k+JMPd2bdtqLkIoVta+FYDJT
+	EfTcAmE78thBBir2JKruxteE1PpQ7ATnw3edImzs++AY7hjg87YAHOUVh+8WGK3GHZ98
+	Mpgu8DUYnmODbXSC+GdJycO9+uL+PX1XS0WeKqIvZPgfOx/cRh7gYvkmUMZZ15zuLDa4
+	BDPLe62eQAm/Q1jg1iTtQycDy2qpsMPQfcIMetrxk+1IB6o10HJz5le5PtOjYRS0GFVs
+	lhLA==
+X-Gm-Message-State: AIkVDXJn0XLas3mOb3H+/EqA7Ekz3slsBwln9yLhucDkkslepbAf8WUM9HV+5lAol15Euw==
+X-Received: by 10.194.86.165 with SMTP id q5mr13955085wjz.178.1482161515751;
+	Mon, 19 Dec 2016 07:31:55 -0800 (PST)
+Received: from [192.168.2.147] (b2b-94-79-174-114.unitymedia.biz.
+	[94.79.174.114]) by smtp.googlemail.com with ESMTPSA id
+	l2sm21143364wji.7.2016.12.19.07.31.54 for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Mon, 19 Dec 2016 07:31:55 -0800 (PST)
+To: yocto@yoctoproject.org
+References: <1481796330-13908-1-git-send-email-piotr.lewicki@elfin.de>
+	<1481796330-13908-2-git-send-email-piotr.lewicki@elfin.de>
+	<7304ACDB-B05D-472D-8FF5-FC5CE402E88E@gmail.com>
+From: Sandro Stiller <sandro.stiller@elfin.de>
+Organization: ELFIN GmbH
+Message-ID: <b5495259-7f35-f5f2-d5c7-9432ad0a3942@elfin.de>
+Date: Mon, 19 Dec 2016 16:31:54 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.5.1
 MIME-Version: 1.0
-Received: by 10.200.54.136 with HTTP; Mon, 19 Dec 2016 07:20:14 -0800 (PST)
-In-Reply-To: <CAHiDW_HKOb6=jNPjxVNDap0xESSM9=OCBSr4nW7D9nFQbVH4qw@mail.gmail.com>
-References: <CALw8SCUt4XR+LYM7pGAC64gO+0y9k-HuJgdHqHz5DRxh1qgv=A@mail.gmail.com>
-	<20161218162554.2dab9f39@nuc.betafive.co.uk>
-	<CA+n--H9pd1eY8DuY-OSCKxBNiLvAKMQYoDB2Mpo5ajGncvzd6g@mail.gmail.com>
-	<CALw8SCXgz=5TrKE99u4MOhx=tuZvgaPx_4LjO70U_JFK=2GcJA@mail.gmail.com>
-	<CALw8SCVifrWUQgObA+FBoNrAfO42wjVrTue+u_b5O5JZjrvuvA@mail.gmail.com>
-	<CAHiDW_HKOb6=jNPjxVNDap0xESSM9=OCBSr4nW7D9nFQbVH4qw@mail.gmail.com>
-From: Mirza Krak <mirza.krak@gmail.com>
-Date: Mon, 19 Dec 2016 16:20:14 +0100
-Message-ID: <CALw8SCVQaVueELOYE+WneVaaVoiJdgep=jhV8Pg=TsCF+gT_PA@mail.gmail.com>
-To: Jussi Kukkonen <jussi.kukkonen@intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: setting up autobuilder on local machine
+In-Reply-To: <7304ACDB-B05D-472D-8FF5-FC5CE402E88E@gmail.com>
+Subject: Re: [meta-raspberrypi][PATCH 1/1] linux-rpi: clean .config in before do_configure step
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,54 +77,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 Dec 2016 15:20:16 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Mon, 19 Dec 2016 15:31:58 -0000
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: 7bit
 
-2016-12-19 15:57 GMT+01:00 Jussi Kukkonen <jussi.kukkonen@intel.com>:
-> On 19 December 2016 at 15:28, Mirza Krak <mirza.krak@gmail.com> wrote:
->>
->> > Thank you for your fast responses. Generating the htpasswd file my
->> > self did the trick. Now I can login. The full command was (as you
->> > suggested I used the one in autobuilder git repo under ./bin):
->> >
->> >     ./htpasswd -b -c <path to htpasswd file> <user name> <secret
->> > password>
->> >
->> > Forced a build of my configuration now and hoping for the best :).
->>
->> And it was not green all the way.
->>
->> I get an error that I do not get how to get around. The error message is:
->>
->> ERROR: Unable to parse
->>
->> /home/mirzak/project/yocto-autobuilder/yocto-autobuilder-mender-rpi/yocto-worker/nightly-mender-rpi/build/meta-mender/conf/layer.conf:
->> [Errno 2] file
->> /home/mirzak/project/yocto-autobuilder/yocto-autobuilder-mender-rpi/yocto-worker/nightly-mender-rpi/build/meta-mender/conf/layer.conf
->> not found
->>
->> The error message I understand. But I do not understand why it adds
->> meta-mender to bblayers files. I did not tell it to do that, because
->> meta-mender contains layers that I want to include. Similar to
->> meta-openembedded (which is also added to bblayers).
->>
->
-> I'm not an expert but your nightly-mender-rpi.conf contains this:
->     'layerdirs': ['meta-yocto', 'meta-raspberrypi',
-> 'meta-mender/meta-mender-core', 'meta-mender/meta-mender-raspberrypi',
-> 'oe-meta-go', 'meta-openembedded/meta-oe']
 
-That is correct. I add following:
 
-   meta-mender/meta-mender-raspberrypi
-   meta-mender/meta-mender-core
+Am 16.12.2016 um 17:58 schrieb Khem Raj:
+> 
+>> On Dec 15, 2016, at 2:05 AM, Piotr Lewicki <piotr.lewicki@elfin.de> wrote:
+>>
+>> Signed-off-by: Piotr Lewicki <piotr.lewicki@elfin.de>
+>>[...]
+> 
+> we should investigate the kernel tooling from OE-Core and use that IMO
 
-And they are added to the bblayers.conf correctly.
+You mean configuration fragments?
+I don't like the special kernel cfg stuff for meta-raspberrypi and applied this patch to use the same system with all bsp layers:
+https://lists.yoctoproject.org/pipermail/yocto/2015-October/027034.html
 
-But I do not add "meta-mender" which is present in my bblayers.conf
-and is the cause of my error message. It seems to me like it is picked
-up from the "repos" section and hence the "magic" :)
-
-Best Regards
-Mirza
 
