@@ -1,86 +1,68 @@
-Return-Path: <tmatsuzawa@xevo.com>
+Return-Path: <mirza.krak@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6B07EE006C7; Fri, 16 Dec 2016 14:13:13 -0800 (PST)
+	id AD323E004E5; Mon, 19 Dec 2016 10:49:16 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [104.47.34.58 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.220.170 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (mirza.krak[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 869 seconds by postgrey-1.32 at yocto-www;
-	Fri, 16 Dec 2016 14:13:08 PST
-Received: from NAM01-BY2-obe.outbound.protection.outlook.com
-	(mail-by2nam01on0058.outbound.protection.outlook.com [104.47.34.58])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 42731E0049D
-	for <yocto@yoctoproject.org>; Fri, 16 Dec 2016 14:13:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=uievolution.onmicrosoft.com; s=selector1-xevo-com;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
-	bh=1Wyy0QPltzK4dmK1iUSRWNFFY8w12MCdN1IP55g2z+U=;
-	b=iHAqCKwxWQp3Z8J4XQ8/JQ7SPbNwoo+4bhF1TJHOiGUWaIfG4/qmrEwyA01unPWAGUuD1NFknT4Gmb/zTV8TqHFV4SRcDTBUvswXbHt92nikepqBXOTSk2Yk5Okm+ukyg0T+w7Y2e9rQqgDoRuaEpT01YP60cb+BLpYGc8xGKVs=
-Received: from CY1PR0101MB1594.prod.exchangelabs.com (10.163.139.13) by
-	CY1PR0101MB1593.prod.exchangelabs.com (10.163.139.12) with Microsoft
-	SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
-	15.1.789.14; Fri, 16 Dec 2016 21:58:36 +0000
-Received: from CY1PR0101MB1594.prod.exchangelabs.com ([10.163.139.13]) by
-	CY1PR0101MB1594.prod.exchangelabs.com ([10.163.139.13]) with mapi id
-	15.01.0789.014; Fri, 16 Dec 2016 21:58:36 +0000
-From: Takashi Matsuzawa <tmatsuzawa@xevo.com>
-To: Jussi Kukkonen <jussi.kukkonen@intel.com>
-Thread-Topic: [yocto] live" image: iso and ext4 artifacts
-Thread-Index: AQHSVqUSkkMn1Fqn0E+/ccxtXNbIR6EKTm0AgADS8Ic=
-Date: Fri, 16 Dec 2016 21:58:35 +0000
-Message-ID: <CY1PR0101MB15947E67210BC509C66A5C87B69C0@CY1PR0101MB1594.prod.exchangelabs.com>
-References: <CY1PR0101MB15941E53F918A2D5BD56915BD79D0@CY1PR0101MB1594.prod.exchangelabs.com>,
-	<CAHiDW_GF8a=QLb0N4QhFWsWtP3YmoeYF-3+=1LzGELcA5tsoag@mail.gmail.com>
-In-Reply-To: <CAHiDW_GF8a=QLb0N4QhFWsWtP3YmoeYF-3+=1LzGELcA5tsoag@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=tmatsuzawa@xevo.com; 
-x-originating-ip: [132.245.44.5]
-x-ms-office365-filtering-correlation-id: 1ce99dd3-d9d4-4c0c-6fe8-08d425feaf6a
-x-microsoft-antispam: UriScan:; BCL:0; PCL:0; RULEID:(22001);
-	SRVR:CY1PR0101MB1593; 
-x-microsoft-exchange-diagnostics: 1; CY1PR0101MB1593;
-	7:F32FjkumcU4wgbEQPLeyVJD2qKTktcPF2r9sPQ1sA2Jt+2NYbiotXFnfEIohgH89SBT87L6icp+s2qkbciYpjLDximQlTUGr6eLhf1wHuNduDqJMEpvw+7M8Est5qnADVYSni7bpWnVYh3A4uhb5oRW/lTVmd0mt4qoTlZxo2DIRBPqlYiof06ky+9DBsyTIezpwRlJfGwMF6JaHq4ik7Q2mH3zeXqsgUb3dgaJauJ0qubWrjY8F3cyXi4fnmhTDpsKpTrinrZZjnVCXqWdYnav6YDyKh5l1HHrxwTvP28TziiW4UYaDqxfkKw2U6owI4r+OkdpdpuOR+bPdgPc2AtYKR6khNzL1QhrrndAim91Zx5c0w3EuGdIA0kLllqSI+b/yrxNuXuAZTe4bRk2uPMKeQjNEzhT3YGUuKPi3dI5qRZ5L7WxnxjccUiwCJbdDpsimh345z4OvfyCHMZ4Chw==
-x-microsoft-antispam-prvs: <CY1PR0101MB159350AE4C7A6919AD7DEFC4B69C0@CY1PR0101MB1593.prod.exchangelabs.com>
-x-exchange-antispam-report-test: UriScan:(228905959029699);
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(6040375)(2401047)(5005006)(8121501046)(10201501046)(3002001)(6041248)(20161123564025)(20161123555025)(20161123562025)(20161123560025)(6072148);
-	SRVR:CY1PR0101MB1593; BCL:0; PCL:0; RULEID:;
-	SRVR:CY1PR0101MB1593; 
-x-forefront-prvs: 01583E185C
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10009020)(7916002)(39450400003)(199003)(377454003)(24454002)(189002)(2950100002)(86362001)(54356999)(4326007)(50986999)(66066001)(76176999)(33656002)(2906002)(8676002)(3846002)(101416001)(97736004)(8936002)(6506006)(3280700002)(229853002)(77096006)(6116002)(3660700001)(102836003)(38730400001)(25786008)(6436002)(110136003)(7696004)(5660300001)(9686002)(122556002)(68736007)(6606003)(81166006)(106116001)(19627405001)(3900700001)(92566002)(81156014)(189998001)(106356001)(6916009)(2900100001)(105586002)(7736002)(74316002)(21314002);
-	DIR:OUT; SFP:1101; SCL:1; SRVR:CY1PR0101MB1593;
-	H:CY1PR0101MB1594.prod.exchangelabs.com; FPR:; SPF:None;
-	PTR:InfoNoRecords; A:1; MX:1; LANG:en; 
-received-spf: None (protection.outlook.com: xevo.com does not designate
-	permitted sender hosts)
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
+Received: from mail-qk0-f170.google.com (mail-qk0-f170.google.com
+	[209.85.220.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 86789E0034A
+	for <yocto@yoctoproject.org>; Mon, 19 Dec 2016 10:49:15 -0800 (PST)
+Received: by mail-qk0-f170.google.com with SMTP id u25so14075172qki.2
+	for <yocto@yoctoproject.org>; Mon, 19 Dec 2016 10:49:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=ByrEOYdXKZHmQ7UPZGlQTuyt0suo9T7emjw3dz8vpxk=;
+	b=QeNC4o8zoLzQQw1Zm421886qwTGbpjzAB3+pYIc39haTgTFaaVewIrsopQt+CdsJMC
+	Bl/UmfGjbX+dYuXfVDstMjBne2bgOHCJa9rfyo8lJA9p7z/9onzUPtqBfemZepu63Bex
+	3M7rG/0Zfdfk6XabaeaFLcW34c0NDWKYcinwTXN04fV3FzdaK886BKB7tKlrzTM6mabE
+	tsgR34wSyIwFnbBCrnOkiuiwFJn8CbHIc7FS0UHNTWVHvwnAKlbghns4QLqoaoXw6g/D
+	Ntqq9gubAfpUH8qpr2gYIW209pbRpObUIvIehyx+TW+/ZFeAfd1nB/RsO7TKoRbZPUzt
+	RbcA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=ByrEOYdXKZHmQ7UPZGlQTuyt0suo9T7emjw3dz8vpxk=;
+	b=gomqukmaIXRJqaNe+p22LqySiagIVeg5vxUujJoG2h4yx7RpLHv2Ql0dpsntNPx34c
+	RWOKGLLwpMRXjLRVJHHIBfjq2Msjz6Sb8Kwz3YZhzZZ6xXB4/h/Fb1oRxSv1YxmmCNG9
+	wP5VDlhNxrGRMZR5ljreUKsr1bUeXuTYmLAQrnOYt2UxiNnS0+6m8mPrtruf+uhAk7zG
+	kzOinf53YozLTWikDrAxTKyrCqgeMI4l5ejkUkmVUz9Z36hdQIh7Uyl7boDfv81TSSpm
+	lbkvLXhM9RYTQJLJC6e9bcfbNQ0oQR93X+MunZXoBv+1/PothVE6C24tmwxg9WyG4ggj
+	k5gQ==
+X-Gm-Message-State: AIkVDXLR321C1glA1FJZ8DziR1UsbBJRoqAjwltu/2MO/bVlJKwIxTPJjcCLTrIAC1EAsgIKdCote53ra0P+Uw==
+X-Received: by 10.55.132.67 with SMTP id g64mr1013794qkd.8.1482173354571; Mon,
+	19 Dec 2016 10:49:14 -0800 (PST)
 MIME-Version: 1.0
-X-OriginatorOrg: xevo.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Dec 2016 21:58:35.4285 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: e0a7ca1f-2458-4cd6-a7c7-d733c07495ab
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY1PR0101MB1593
-X-Mailman-Approved-At: Mon, 19 Dec 2016 10:18:03 -0800
+Received: by 10.200.54.136 with HTTP; Mon, 19 Dec 2016 10:49:14 -0800 (PST)
+In-Reply-To: <BN6PR05MB294630B36FA4868C016C5FEBBB910@BN6PR05MB2946.namprd05.prod.outlook.com>
+References: <CALw8SCUt4XR+LYM7pGAC64gO+0y9k-HuJgdHqHz5DRxh1qgv=A@mail.gmail.com>
+	<20161218162554.2dab9f39@nuc.betafive.co.uk>
+	<CA+n--H9pd1eY8DuY-OSCKxBNiLvAKMQYoDB2Mpo5ajGncvzd6g@mail.gmail.com>
+	<CALw8SCXgz=5TrKE99u4MOhx=tuZvgaPx_4LjO70U_JFK=2GcJA@mail.gmail.com>
+	<CALw8SCVifrWUQgObA+FBoNrAfO42wjVrTue+u_b5O5JZjrvuvA@mail.gmail.com>
+	<BN6PR05MB294630B36FA4868C016C5FEBBB910@BN6PR05MB2946.namprd05.prod.outlook.com>
+From: Mirza Krak <mirza.krak@gmail.com>
+Date: Mon, 19 Dec 2016 19:49:14 +0100
+Message-ID: <CALw8SCUsoHgpkiuDcoe36=XmG64CQ7nYMrZTRhBkeMOsO=mJ6Q@mail.gmail.com>
+To: Bryan Evenson <bevenson@melinkcorp.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: live" image: iso and ext4 artifacts
+Subject: Re: setting up autobuilder on local machine
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -92,133 +74,174 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 16 Dec 2016 22:13:13 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_CY1PR0101MB15947E67210BC509C66A5C87B69C0CY1PR0101MB1594_"
+X-List-Received-Date: Mon, 19 Dec 2016 18:49:16 -0000
+Content-Type: text/plain; charset=UTF-8
 
---_000_CY1PR0101MB15947E67210BC509C66A5C87B69C0CY1PR0101MB1594_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-Hello.
-
-
-Thanks it worked for .iso files.
-
-
-I have found that this really is a save for build time also.
-
-________________________________
-From: Jussi Kukkonen <jussi.kukkonen@intel.com>
-Sent: Friday, December 16, 2016 6:22 PM
-To: Takashi Matsuzawa
-Cc: yocto@yoctoproject.org
-Subject: Re: [yocto] live" image: iso and ext4 artifacts
-
-On 15 December 2016 at 09:30, Takashi Matsuzawa <tmatsuzawa@uievolution.com=
-<mailto:tmatsuzawa@uievolution.com>> wrote:
+2016-12-19 16:48 GMT+01:00 Bryan Evenson <bevenson@melinkcorp.com>:
+> Mirza,
 >
-> Hello Yocto.
+>> -----Original Message-----
+>> From: yocto-bounces@yoctoproject.org [mailto:yocto-
+>> bounces@yoctoproject.org] On Behalf Of Mirza Krak
+>> Sent: Monday, December 19, 2016 8:28 AM
+>> To: Bill Randle <bill.randle@gmail.com>
+>> Cc: yocto@yoctoproject.org
+>> Subject: Re: [yocto] setting up autobuilder on local machine
+>>
+>> 2016-12-19 7:46 GMT+01:00 Mirza Krak <mirza.krak@gmail.com>:
+>> > 2016-12-19 4:33 GMT+01:00 Bill Randle <bill.randle@gmail.com>:
+>> >> On Sun, Dec 18, 2016 at 8:25 AM, Paul Barker <paul@paulbarker.me.uk>
+>> wrote:
+>> >>> On Sun, 18 Dec 2016 15:46:19 +0100
+>> >>> Mirza Krak <mirza.krak@gmail.com> wrote:
+>> >>>
+>> >>>> Hi.
+>> >>>>
+>> >>>> I have been looking in to the possibility to utilize yocto autobuilder
+>> >>>> for one of my own projects.
+>> >>>>
+>> >>>> But I am having some problems setting this up and hopefully someone
+>> >>>> here can provide some pointers.
+>> >>>>
+>> >>>> I did the "quickstart part":
+>> >>>>
+>> >>>> git clone git://git.yoctoproject.org/yocto-autobuilder
+>> >>>> cd yocto-autobuilder
+>> >>>> . ./yocto-autobuilder-setup
+>> >>>> yocto-start-autobuilder both
+>> >>>>
+>> >>>> Above succeeds without any issues. But now what? :)
+>> >>>>
+>> >>>> I went to https://localhost:8010. I tried to login using the
+>> >>>> information that is in the .htpasswd file but that did not work. Where
+>> >>>> are the credentials to login setup?
+>> >>>
+>> >>> You'll need to create the .htpasswd file yourself. I think the
+>> >>> "htpasswd" tool can do this for you, I can't remember the exact
+>> >>> commands I used to make mine though sorry.
+>> >>>
+>> >>>>
+>> >>>> I also made an attempt to remove all un-wanted buildsets and now
+>> >>>> buildset-config contains (all other directories are removed)
+>> >>>>
+>> >>>> nightly-mender-rpi.conf  yoctoAB.conf
+>> >>>>
+>> >>>> Above is parsed correctly on start-up but build is never triggered. I
+>> >>>> probably removed to much :). Looking in to nigthly.conf it seem that
+>> >>>> is the one that trigger all other nightly builds?
+>> >>>>
+>> >>>> My fork can be found at [1].
+>> >>>>
+>> >>>> [1]. https://github.com/mirzak/yocto-autobuilder-mender-rpi
+>> >>>
+>> >>> This looks good, you just need to setup the scheduler with something
+>> >>> like this in nightly-mender-rpi.conf:
+>> >>>
+>> >>>     scheduler:
+>> >>>     [{'nightly-build':{'type':'Nightly','hour':23,'minute':0}}]
+>> >>>
+>> >>> You should only need a separate nightly.conf when you want that to
+>> >>> trigger multiple builds.
+>> >>>
+>> >>> I've recently setup an autobuilder for meta-raspberrypi which I'll be
+>> >>> publishing once I've got the last bits of setup done. If you're still
+>> >>> struggling to get the nightly triggering working let me know and I'll
+>> >>> put up the configurations I've used as a git repository.
+>> >>
+>> >> There is also additional helpful information on the Yocto Autobuilder
+>> >> wiki page here:
+>> >> https://wiki.yoctoproject.org/wiki/The_Yocto_Autobuilder. Some of the
+>> >> information applies to the Yocto Project build cluster, but is still
+>> >> applicable to local autobuilders. I followed the same instructions to
+>> >> setup a local AB. Be sure to use the htpasswd command that's in the
+>> >> autobuilder git tree (in one of the bin directories, as I recall),
+>> >> rather than a native system one. The AB version defaults to the
+>> >> shorter crypto scheme that buildbot requires.
+>> >
+>> > Thank you for your fast responses. Generating the htpasswd file my
+>> > self did the trick. Now I can login. The full command was (as you
+>> > suggested I used the one in autobuilder git repo under ./bin):
+>> >
+>> >     ./htpasswd -b -c <path to htpasswd file> <user name> <secret
+>> password>
+>> >
+>> > Forced a build of my configuration now and hoping for the best :).
+>>
+>> And it was not green all the way.
+>>
+>> I get an error that I do not get how to get around. The error message is:
+>>
+>> ERROR: Unable to parse
+>> /home/mirzak/project/yocto-autobuilder/yocto-autobuilder-mender-
+>> rpi/yocto-worker/nightly-mender-rpi/build/meta-mender/conf/layer.conf:
+>> [Errno 2] file /home/mirzak/project/yocto-autobuilder/yocto-autobuilder-
+>> mender-rpi/yocto-worker/nightly-mender-rpi/build/meta-
+>> mender/conf/layer.conf
+>> not found
+>>
+>> The error message I understand. But I do not understand why it adds
+>> meta-mender to bblayers files. I did not tell it to do that, because
+>> meta-mender contains layers that I want to include. Similar to
+>> meta-openembedded (which is also added to bblayers).
+>>
+>> Here is the bblayers.conf also for reference:
+>> mirzak@debian:~/project/yocto-autobuilder/yocto-autobuilder-mender-
+>> rpi/yocto-worker/nightly-mender-rpi/build/build/conf$
+>> cat bblayers.conf
+>> POKY_BBLAYERS_CONF_VERSION =  "2"
+>> BBPATH = "${TOPDIR}"
+>> BBFILES ?=""
+>> BBLAYERS += " \
+>> /home/mirzak/project/yocto-autobuilder/yocto-autobuilder-mender-
+>> rpi/yocto-worker/nightly-mender-rpi/build/meta
+>> \
+>> /home/mirzak/project/yocto-autobuilder/yocto-autobuilder-mender-
+>> rpi/yocto-worker/nightly-mender-rpi/build/meta-poky
+>> \
+>> /home/mirzak/project/yocto-autobuilder/yocto-autobuilder-mender-
+>> rpi/yocto-worker/nightly-mender-rpi/build/meta-yocto-bsp
+>> \
+>> /home/mirzak/project/yocto-autobuilder/yocto-autobuilder-mender-
+>> rpi/yocto-worker/nightly-mender-rpi/build/meta-mender
+>> \
+>> /home/mirzak/project/yocto-autobuilder/yocto-autobuilder-mender-
+>> rpi/yocto-worker/nightly-mender-rpi/build/oe-meta-go
+>> \
+>> /home/mirzak/project/yocto-autobuilder/yocto-autobuilder-mender-
+>> rpi/yocto-worker/nightly-mender-rpi/build/meta-raspberrypi
+>> \
+>> /home/mirzak/project/yocto-autobuilder/yocto-autobuilder-mender-
+>> rpi/yocto-worker/nightly-mender-rpi/build/meta-openembedded
+>> \
+>> /home/mirzak/project/yocto-autobuilder/yocto-autobuilder-mender-
+>> rpi/yocto-worker/nightly-mender-rpi/build/meta-yocto
+>> \
+>> /home/mirzak/project/yocto-autobuilder/yocto-autobuilder-mender-
+>> rpi/yocto-worker/nightly-mender-rpi/build/meta-mender/meta-mender-
+>> core
+>> \
+>> /home/mirzak/project/yocto-autobuilder/yocto-autobuilder-mender-
+>> rpi/yocto-worker/nightly-mender-rpi/build/meta-mender/meta-mender-
+>> raspberrypi
+>> \
+>> /home/mirzak/project/yocto-autobuilder/yocto-autobuilder-mender-
+>> rpi/yocto-worker/nightly-mender-rpi/build/meta-openembedded/meta-oe
+>> \
+>> "
+>>
+>> Can I disable the "magic" that added meta-mender and meta-
+>> openembedded?
 >
-> I am trying x86-64 BSP image (based on jethro version).
-> It has following root filesystem type, and it generats xxxx.hddimg file t=
-hat I am using.
+> Yes, you can.  I just ran into this problem the other week when I updated my autobuilder.  Add 'autoinclude':False to your layer definition in the "repos" section in your build configuration file.  For example, in one of my build configurations I have:
 >
-> > IMAGE_FSTYPES =3D "live"
+>         {'meta-openembedded':
+>             {'autoinclude':False, 'repourl':'git://git.openembedded.org/meta-openembedded',
+>              'branch':'fido'}},
 >
-> The issue is that in addition to xxxx.hddimg, it produces following image=
- files and it sometimes cause lack of disk space error on my build PC.
->
-> > 2422489088 xxxx-intel-corei7-64-20161215004421.hddimg
-> > 2402287616 xxxx-intel-corei7-64-20161215004421.iso
-> > 2368578560 xxxx-intel-corei7-64-20161215004421.rootfs.ext4
->
-> I do not need xxx.iso and xxxx.ext4 files as final output, though I under=
-stand that xxxx.ext4 file may have been used to produce xxx.hddimg file.
+> Here's the patch description further describing what the autoinclude option does: http://git.yoctoproject.org/cgit/cgit.cgi/yocto-autobuilder/commit/?id=1599d458ec078378438aeb011ed706a4474b10a6.
 
-I think you should be able to define NOISO=3D1.
+Thanks a lot Bryan. This is exactly what I was looking for.
 
-The rootfs is indeed used to produce the actual images, you could delete it=
- afterwards... but before you spend valuable time writing shell scripts, co=
-nsider a new SSD: 500GB is probably less than 150EUR by now.
+Best Regards
+Mirza
 
-Jussi
-
---_000_CY1PR0101MB15947E67210BC509C66A5C87B69C0CY1PR0101MB1594_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
-</head>
-<body dir=3D"ltr">
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
--family:Calibri,Arial,Helvetica,sans-serif;" dir=3D"ltr">
-<p>Hello.</p>
-<p><br>
-</p>
-<p>Thanks it worked for .iso files.</p>
-<p><br>
-</p>
-<p>I have found that this really is a save for build time also.</p>
-<br>
-<div style=3D"color: rgb(0, 0, 0);">
-<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" co=
-lor=3D"#000000" style=3D"font-size:11pt"><b>From:</b> Jussi Kukkonen &lt;ju=
-ssi.kukkonen@intel.com&gt;<br>
-<b>Sent:</b> Friday, December 16, 2016 6:22 PM<br>
-<b>To:</b> Takashi Matsuzawa<br>
-<b>Cc:</b> yocto@yoctoproject.org<br>
-<b>Subject:</b> Re: [yocto] live&quot; image: iso and ext4 artifacts</font>
-<div>&nbsp;</div>
-</div>
-<div>
-<div dir=3D"ltr">On 15 December 2016 at 09:30, Takashi Matsuzawa &lt;<a hre=
-f=3D"mailto:tmatsuzawa@uievolution.com">tmatsuzawa@uievolution.com</a>&gt; =
-wrote:<br>
-&gt;<br>
-&gt; Hello Yocto.<br>
-&gt;<br>
-&gt; I am trying x86-64 BSP image (based on jethro version).<br>
-&gt; It has following root filesystem type, and it generats xxxx.hddimg fil=
-e that I am using.<br>
-&gt;<br>
-&gt; &gt; IMAGE_FSTYPES =3D &quot;live&quot;<br>
-&gt;<br>
-&gt; The issue is that in addition to xxxx.hddimg, it produces following im=
-age files and it sometimes cause lack of disk space error on my build PC.<b=
-r>
-&gt;<br>
-&gt; &gt; 2422489088 xxxx-intel-corei7-64-20161215004421.hddimg<br>
-&gt; &gt; 2402287616 xxxx-intel-corei7-64-20161215004421.iso<br>
-&gt; &gt; 2368578560 xxxx-intel-corei7-64-20161215004421.rootfs.ext4<br>
-&gt;<br>
-&gt; I do not need xxx.iso and xxxx.ext4 files as final output, though I un=
-derstand that xxxx.ext4 file may have been used to produce xxx.hddimg file.=
-<br>
-<br>
-I think you should be able to define NOISO=3D1.
-<div><br>
-</div>
-<div>The rootfs is indeed used to produce the actual images, you could dele=
-te it afterwards... but before you spend valuable time writing shell script=
-s, consider a new SSD: 500GB is probably less than 150&#8364; by now.</div>
-<div>
-<div><br>
-</div>
-</div>
-<div>Jussi</div>
-</div>
-</div>
-</div>
-</div>
-</body>
-</html>
-
---_000_CY1PR0101MB15947E67210BC509C66A5C87B69C0CY1PR0101MB1594_--
