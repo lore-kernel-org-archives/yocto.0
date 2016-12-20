@@ -1,32 +1,35 @@
-Return-Path: <mircea.gliga@vitheia.com>
+Return-Path: <sgw@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D91CDE008E3; Tue, 20 Dec 2016 06:05:00 -0800 (PST)
+	id 70B7EE00B93; Tue, 20 Dec 2016 12:23:37 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 2743 seconds by postgrey-1.32 at yocto-www;
-	Tue, 20 Dec 2016 06:04:57 PST
-Received: from zeus.integrasoft.ro (zeus.integrasoft.ro [193.231.162.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 10E9CE00874
-	for <yocto@yoctoproject.org>; Tue, 20 Dec 2016 06:04:57 -0800 (PST)
-Received: from [193.231.162.34] (echelon.integrasoft.ro [193.231.162.34])
-	(authenticated bits=0)
-	by zeus.integrasoft.ro (8.13.8/8.13.8) with ESMTP id uBKDJBoT018083
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES128-SHA bits=128 verify=NO)
-	for <yocto@yoctoproject.org>; Tue, 20 Dec 2016 15:19:11 +0200
-From: Mircea Gliga <mircea.gliga@vitheia.com>
-To: yocto@yoctoproject.org
-Message-ID: <377d750d-b4d3-d7da-f922-c35fc457c39c@vitheia.com>
-Date: Tue, 20 Dec 2016 15:19:11 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Icedove/45.5.1
-MIME-Version: 1.0
-Subject: yocto autobuilder scheduler
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [134.134.136.65 listed in list.dnswl.org]
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4F322E009BA
+	for <yocto@yoctoproject.org>; Tue, 20 Dec 2016 12:23:33 -0800 (PST)
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+	by orsmga103.jf.intel.com with ESMTP; 20 Dec 2016 12:23:33 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.33,380,1477983600"; d="scan'208";a="45312768"
+Received: from swold-mobl2.amr.corp.intel.com ([10.254.176.131])
+	by fmsmga006.fm.intel.com with ESMTP; 20 Dec 2016 12:23:32 -0800
+Message-ID: <1482265407.12532.55.camel@linux.intel.com>
+From: Saul Wold <sgw@linux.intel.com>
+To: openembedded-architecture
+	<openembedded-architecture@lists.openembedded.org>, OpenEmbedded List
+	<openembedded-core@lists.openembedded.org>
+Date: Tue, 20 Dec 2016 12:23:27 -0800
+X-Mailer: Evolution 3.20.5 (3.20.5-1.fc24) 
+Mime-Version: 1.0
+Cc: Yocto Discussion <yocto@yoctoproject.org>
+Subject: Deprecating hddimg/isoimg
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,113 +41,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 20 Dec 2016 14:05:00 -0000
-Content-Type: multipart/alternative;
-	boundary="------------A24EA0E255C3CAD2019FC3ED"
-
---------------A24EA0E255C3CAD2019FC3ED
-Content-Type: text/plain; charset=utf-8; format=flowed
+X-List-Received-Date: Tue, 20 Dec 2016 20:23:37 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-Hi
 
-I'm using yocto-autobuilder to build my images. I have a GitPoller 
-scheduler, that triggers a build when one of the layers, eg 
-meta-mylayer, changes.
-In my buildset I have something like:
+Folks,
 
-[...]
-repos: [{'poky':
-             {'repourl':'git://git.yoctoproject.org/poky',
-              'layerversion':{'core':'meta', 'yocto':'meta-yocto', 
-'poky':'meta-poky', 'yoctobsp':'meta-yocto-bsp'},
-              'branch':'krogoth'}},
-         {'meta-openembedded':
-{'repourl':'git://git.openembedded.org/meta-openembedded',
-              'layerversion':{'mete-oe':'meta-oe', 
-'networking':'meta-networking', 'python':'meta-python'},
-              # add autoinclude false to prevent automatic add of teh 
-meta-openembedded foler to the BBLAYERS; sub folders must be added
-              'autoinclude': False,
-              'branch':'krogoth'}},
-         {'meta-mylayer':
-             {'repourl':'http://server.tld/git/meta-mylayer.git',
-              'branch':'master'}},
-        ]
-scheduler: [{'git-poller-scheduler':
-             {'type':'SingleBranchScheduler',
-              'changesource':'GitPoller',
-              'repository':'meta-mylayer',
-              'branch':'master',
-              'interval':'300',
-              'stable-timer':30}}]
+For years we have wanted to get rid of the hddimg/iso type, we now have
+the WIC tool integrated into OE-Core such that we can build properly
+partitioned disk images.
 
-Is it possible to trigger a build when another repository, eg. the 
-application repository, changes ? Obviously, that repo is not in the 
-"repos" field of the buildset.
-According to the "repository" field documentation, "the repository to 
-attach the scheduler to; this is the repo name from the 'repos' 
-section;[...]"
+Historically the hddimg was a single FAT filesystem that contained
+boot-loader, the kernel and a rootfs.img file for booting Intel Arch
+machines. This has a 4G limit due to the FAT limitations and we are
+starting to see this limit hit more frequently.
 
-Thanks and regards.
+Are there any other usages out there that we are not aware of?
+
+Any reasons that this should not get deprecated at this time?
+
+Sau!
 
 
-
---------------A24EA0E255C3CAD2019FC3ED
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    Hi<br>
-    <br>
-    I'm using yocto-autobuilder to build my images. I have a GitPoller
-    scheduler, that triggers a build when one of the layers, eg
-    meta-mylayer, changes.<br>
-    In my buildset I have something like:<br>
-    <br>
-    [...]<br>
-    repos: [{'poky':<br>
-                {'repourl':'git://git.yoctoproject.org/poky',<br>
-                 'layerversion':{'core':'meta', 'yocto':'meta-yocto',
-    'poky':'meta-poky', 'yoctobsp':'meta-yocto-bsp'},<br>
-                 'branch':'krogoth'}},<br>
-            {'meta-openembedded':<br>
-               
-    {'repourl':'git://git.openembedded.org/meta-openembedded',<br>
-                 'layerversion':{'mete-oe':'meta-oe',
-    'networking':'meta-networking', 'python':'meta-python'},<br>
-                 # add autoinclude false to prevent automatic add of teh
-    meta-openembedded foler to the BBLAYERS; sub folders must be added<br>
-                 'autoinclude': False,<br>
-                 'branch':'krogoth'}},<br>
-            {'meta-mylayer':<br>
-                {'repourl':'<a class="moz-txt-link-freetext" href="http://server.tld/git/meta-mylayer.git">http://server.tld/git/meta-mylayer.git</a>',<br>
-                 'branch':'master'}},<br>
-           ]<br>
-    scheduler: [{'git-poller-scheduler':<br>
-                {'type':'SingleBranchScheduler',<br>
-                 'changesource':'GitPoller',<br>
-                 'repository':'meta-mylayer',<br>
-                 'branch':'master',<br>
-                 'interval':'300',<br>
-                 'stable-timer':30}}]<br>
-    <br>
-    Is it possible to trigger a build when another repository, eg. the
-    application repository, changes ? Obviously, that repo is not in the
-    "repos" field of the buildset.<br>
-    According to the "repository" field documentation, "<span class="c0">the
-      repository to attach the scheduler to; this is the repo name from
-      the 'repos' section;[...]</span>"<br>
-    <br>
-    Thanks and regards.<br>
-    <br>
-    <br>
-  </body>
-</html>
-
---------------A24EA0E255C3CAD2019FC3ED--
