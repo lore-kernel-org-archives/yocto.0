@@ -1,35 +1,41 @@
-Return-Path: <sgw@linux.intel.com>
+Return-Path: <mark.hatle@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 70B7EE00B93; Tue, 20 Dec 2016 12:23:37 -0800 (PST)
+	id 9DA7CE00BC1; Tue, 20 Dec 2016 13:10:48 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [134.134.136.65 listed in list.dnswl.org]
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4F322E009BA
-	for <yocto@yoctoproject.org>; Tue, 20 Dec 2016 12:23:33 -0800 (PST)
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-	by orsmga103.jf.intel.com with ESMTP; 20 Dec 2016 12:23:33 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.33,380,1477983600"; d="scan'208";a="45312768"
-Received: from swold-mobl2.amr.corp.intel.com ([10.254.176.131])
-	by fmsmga006.fm.intel.com with ESMTP; 20 Dec 2016 12:23:32 -0800
-Message-ID: <1482265407.12532.55.camel@linux.intel.com>
-From: Saul Wold <sgw@linux.intel.com>
-To: openembedded-architecture
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D4BD2E00848
+	for <yocto@yoctoproject.org>; Tue, 20 Dec 2016 13:10:45 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id uBKLAgmm005285
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Tue, 20 Dec 2016 13:10:42 -0800 (PST)
+Received: from soho-mhatle-m.local (172.25.36.231) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.294.0;
+	Tue, 20 Dec 2016 13:10:41 -0800
+To: Saul Wold <sgw@linux.intel.com>, openembedded-architecture
 	<openembedded-architecture@lists.openembedded.org>, OpenEmbedded List
 	<openembedded-core@lists.openembedded.org>
-Date: Tue, 20 Dec 2016 12:23:27 -0800
-X-Mailer: Evolution 3.20.5 (3.20.5-1.fc24) 
-Mime-Version: 1.0
+References: <1482265407.12532.55.camel@linux.intel.com>
+From: Mark Hatle <mark.hatle@windriver.com>
+Organization: Wind River Systems
+Message-ID: <39dc3b99-ad89-2916-c467-5fae81ff9d62@windriver.com>
+Date: Tue, 20 Dec 2016 15:10:40 -0600
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:45.0)
+	Gecko/20100101 Thunderbird/45.5.1
+MIME-Version: 1.0
+In-Reply-To: <1482265407.12532.55.camel@linux.intel.com>
 Cc: Yocto Discussion <yocto@yoctoproject.org>
-Subject: Deprecating hddimg/isoimg
+Subject: Re: [Openembedded-architecture] Deprecating hddimg/isoimg
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,26 +47,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 20 Dec 2016 20:23:37 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Tue, 20 Dec 2016 21:10:48 -0000
+Content-Type: text/plain; charset="windows-1252"
 Content-Transfer-Encoding: 7bit
 
+On 12/20/16 2:23 PM, Saul Wold wrote:
+> 
+> Folks,
+> 
+> For years we have wanted to get rid of the hddimg/iso type, we now have
+> the WIC tool integrated into OE-Core such that we can build properly
+> partitioned disk images.
 
-Folks,
+No objection to getting rid of them, but I would love to see them replace with
+one or more sample WIC configurations that resulted in -exactly- the same behavior.
 
-For years we have wanted to get rid of the hddimg/iso type, we now have
-the WIC tool integrated into OE-Core such that we can build properly
-partitioned disk images.
+--Mark
 
-Historically the hddimg was a single FAT filesystem that contained
-boot-loader, the kernel and a rootfs.img file for booting Intel Arch
-machines. This has a 4G limit due to the FAT limitations and we are
-starting to see this limit hit more frequently.
-
-Are there any other usages out there that we are not aware of?
-
-Any reasons that this should not get deprecated at this time?
-
-Sau!
+> Historically the hddimg was a single FAT filesystem that contained
+> boot-loader, the kernel and a rootfs.img file for booting Intel Arch
+> machines. This has a 4G limit due to the FAT limitations and we are
+> starting to see this limit hit more frequently.
+> 
+> Are there any other usages out there that we are not aware of?
+> 
+> Any reasons that this should not get deprecated at this time?
+> 
+> Sau!
+> 
+> _______________________________________________
+> Openembedded-architecture mailing list
+> Openembedded-architecture@lists.openembedded.org
+> http://lists.openembedded.org/mailman/listinfo/openembedded-architecture
+> 
 
 
