@@ -1,66 +1,49 @@
-Return-Path: <mont3z.claro5@gmail.com>
+Return-Path: <hamish.guthrie@kistler.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9226BE00D5F; Wed, 21 Dec 2016 07:21:02 -0800 (PST)
+	id 10E70E00D5F; Wed, 21 Dec 2016 08:52:06 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (mont3z.claro5[at]gmail.com)
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.161.172 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-yw0-f172.google.com (mail-yw0-f172.google.com
-	[209.85.161.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 28F2EE00A4D
-	for <yocto@yoctoproject.org>; Wed, 21 Dec 2016 07:21:00 -0800 (PST)
-Received: by mail-yw0-f172.google.com with SMTP id a10so100843445ywa.3
-	for <yocto@yoctoproject.org>; Wed, 21 Dec 2016 07:21:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=b8DVnrXubT1o/Kt5np6PWkBAhqB7ItRtBmtB+fvDVbc=;
-	b=o0lh2QgqwKkcK1F1PtJAZji222jEk1jbBfccEqaeFziF7H4IH/2gCvVra4VWWl/r8O
-	3CVLUD26xK67wiV4x25JjVjewDtxqeC1GwgpURtBbRQCEJ7Tf0edQV7/FaAImtV1lYF0
-	Gidez1JyImaALpPA4K8PSderx0rw8q8WPbsI8Zl9iZTvtsvj9gho6a4CUmcDCbKpZ1/k
-	mjGNQ0w5w1F/hrchUSYMkYsAH0S9z5fnPUIHMeMehRWuPuj+eLKyCUElqK3kUS7JfOR5
-	OrSJ5rt7L7PSd6boGryO4OdTnsmA+2UOITTiWh2Czuw3Lq8oZZeWqrpRUgYT7pxlNvoE
-	ZVUw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=b8DVnrXubT1o/Kt5np6PWkBAhqB7ItRtBmtB+fvDVbc=;
-	b=N8nWGQrp+3FIg55SdotxYFnriXrSfVBEpV7iG4gu1sycJnkTflG9qLUYAfdSLw3xfF
-	LrCwNoDBa+e3wsPeXjl3kJrc94ezfD8sRZm0pwjcPj9Xpf8/6J4jPxhcb8a9vSVTtoas
-	9gcNi80TUxfBmZyoBzK5m/gAfXqO5UvNXBZw9FjCbhJrrOHIbpKpGAwRBOyI7N0z6ooS
-	Lnd4qBRHsrvMSN78hv0JDIEdxlSn9RHERTsjniEelb99HAunX6GK1CWczPogUZ66P9ke
-	cH8UGb/91CYk+D6miGvro7Q0Cih/vvW1C27cdlyyMUB5yT0BRiCaCpZVUkmSxTnMT1YU
-	8b/w==
-X-Gm-Message-State: AIkVDXIz2zht0PBCWPSKIcVXKTl77b/ErhaQfd6jWtt5N+6aRtF6cyVbD24MtVxWiklcZ5jv9be6/Yx4Rmol8A==
-X-Received: by 10.129.95.11 with SMTP id t11mr4494730ywb.128.1482333660079;
-	Wed, 21 Dec 2016 07:21:00 -0800 (PST)
+	*      [91.223.79.45 listed in list.dnswl.org]
+X-Greylist: delayed 64 seconds by postgrey-1.32 at yocto-www;
+	Wed, 21 Dec 2016 08:52:04 PST
+Received: from mx2.kistler.com (mx2.kistler.com [91.223.79.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D2BA8E00A4D
+	for <yocto@yoctoproject.org>; Wed, 21 Dec 2016 08:52:04 -0800 (PST)
+X-IronPort-AV: E=Sophos;i="5.33,384,1477954800"; 
+   d="scan'208";a="4534612"
+Received: from kihagsepp01.int.kistler.com ([192.168.52.67])
+	by mx2.kistler.com with ESMTP/TLS/AES256-GCM-SHA384;
+	21 Dec 2016 17:50:59 +0100
+Received: from mx2.kistler.com (kihagciip02.int.kistler.com [192.168.52.58])
+	by kihagsepp01.int.kistler.com (Postfix) with ESMTPS
+	for <yocto@yoctoproject.org>; Wed, 21 Dec 2016 17:50:59 +0100 (CET)
+X-IronPort-AV: E=Sophos;i="5.33,384,1477954800"; 
+   d="scan'208";a="4534611"
+Received: from kihagwinex02.int.kistler.com ([192.168.100.31])
+	by mx2.kistler.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
+	21 Dec 2016 17:50:58 +0100
+Received: from KIHAGWINEX01.int.kistler.com ([fe80::d70:7df0:c903:4e43]) by
+	kihagwinex02.int.kistler.com ([fe80::10cf:df86:bb65:2502%14]) with mapi
+	id 14.03.0266.001; Wed, 21 Dec 2016 17:50:58 +0100
+From: Hamish Guthrie <Hamish.Guthrie@kistler.com>
+To: "'yocto@yoctoproject.org'" <yocto@yoctoproject.org>
+Thread-Topic: fitImage and initramfs
+Thread-Index: AdJbqVNnBUCbCbYDS66rJ3mlKS7xKQ==
+Date: Wed, 21 Dec 2016 16:50:58 +0000
+Message-ID: <7411EC580D08984EBA0A1730211182191AA8E7A2@kihagwinex01.int.kistler.com>
+Accept-Language: en-US, de-CH
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [192.168.100.116]
 MIME-Version: 1.0
-Received: by 10.129.121.1 with HTTP; Wed, 21 Dec 2016 07:20:59 -0800 (PST)
-In-Reply-To: <55a47925-aa50-2fce-0c92-5fd4eae54895@mlbassoc.com>
-References: <CAJ70iBTSsyb9oXvPexe+T=McGQPg7gwVpuRPAnVA2T_RRyv2-g@mail.gmail.com>
-	<CAMKF1sogx4YCPJgGZRoUjGvpRmiANUe-nkSGTkcz5Fhq7hpqkw@mail.gmail.com>
-	<CAJ70iBSSsnqR=p8u1gjZR3hd0r6GB-NRZTds2Hb8coUZeP9zxg@mail.gmail.com>
-	<55a47925-aa50-2fce-0c92-5fd4eae54895@mlbassoc.com>
-From: Mont3z Claros <mont3z.claro5@gmail.com>
-Date: Wed, 21 Dec 2016 07:20:59 -0800
-Message-ID: <CAJ70iBQz+-=30eEzXY4PhtCXpgx=cDRsEnipbx1fVSR-FObaNw@mail.gmail.com>
-To: Gary Thomas <gary@mlbassoc.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: Error during webkit compilation for rasberry pi3
+Subject: fitImage and initramfs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,125 +55,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Dec 2016 15:21:02 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 21 Dec 2016 16:52:06 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Thanks all for the help. I was able to build webkit using:
-MACHINE_FEATURES += "vc4graphics"
+Hi List,
 
-I'm sorry for asking those basic questions but is there a way to build
-webkit without opencl for the raspberry pi3?
+I am trying to create a fitImage including an initramfs. I am able to creat=
+e a fitImage without an initramfs, and I am able to create a zImage with an=
+ initramfs. If I try to create a fitImage with an initramfs, I receive the =
+following error:
 
-Thanks,
-Montez
+| Creating a kernel image with a bundled initramfs...
+| Copying initramfs into ./usr ...
+| xz decompressing image
+| xz: /home/hamish/build/tmp/work/beaglebone-poky-linux-gnueabi/linux-yocto=
+/4.8.12+gitAUTOINC+926c93ae07_85dc85153c-r0/linux-beaglebone-standard-build=
+/usr/core-image-minimal-beaglebone.cpio.xz: Unexpected end of input
 
-On Sun, Dec 11, 2016 at 9:55 PM, Gary Thomas <gary@mlbassoc.com> wrote:
-> On 2016-12-11 16:49, Mont3z Claros wrote:
->>
->> Hi Khem,
->>
->> this layer is:
->>
->> https://layers.openembedded.org/layerindex/branch/master/layer/meta-webkit/
->>
->> I've also tried to use the webkit recipe from poky but I've got the
->> same error. In this case I used a different configuration because poky
->> doesn't have webkitgtk-bin (mini browser). To test that I've tried to
->> build a modified version of meta-web-kiosk
->>  (https://github.com/mont3z/meta-web-kiosk). This is still a work in
->> progress but basically it replaces midori by epiphany.
->>
->> local.conf:
->> MACHINE = "raspberrypi3"
->> DISTRO_FEATURES_append = " x11 gles2"
->>
->> command:
->> bitbake core-image-web-kiosk
->>
->> bblayes.conf:
->> BBLAYERS ?= " \
->>   /home/mont3z/yocto/poky/meta \
->>   /home/mont3z/yocto/poky/meta-poky \
->>   /home/mont3z/yocto/poky/meta-yocto-bsp \
->>   /home/mont3z/yocto/meta-openembedded/meta-oe \
->>   /home/mont3z/yocto/meta-raspberrypi \
->>   /home/mont3z/yocto/meta-web-kiosk \
->> "
->>
->> I also found this discussion about rpi2. I'll try to run some of those
->> configurations:
->> https://github.com/Igalia/meta-webkit/issues/1
->
->
-> I built webkit for rpi3 just fine (yesterday 2016-12-11) using just
->   poky: e38775a1d82e6dc60fc96cf243ecb94be964d9b2
->   meta-raspberrypi: 44d41bf3e94c4c8fe5ad5a3650572c8d17ef36c9
-> these were the current master as of then.
->
-> What version(s) are you trying to use?
->
->
->>
->> On Sat, Dec 10, 2016 at 1:02 PM, Khem Raj <raj.khem@gmail.com> wrote:
->>>
->>> On Sat, Dec 10, 2016 at 7:52 AM, Mont3z Claros <mont3z.claro5@gmail.com>
->>> wrote:
->>>>
->>>> Hi all,
->>>>
->>>> I don't know what I'm doing wrong but I'm getting an error during
->>>> compilation of webkit for raspberry pi3. Please see below the error
->>>> and my configurations,
->>>>
->>>> Thanks,
->>>> Mont3z
->>>>
->>>> local.conf:
->>>> MACHINE = "raspberrypi3"
->>>> DISTRO_FEATURES_append = " x11 gles2"
->>>> IMAGE_INSTALL_append = " webkitgtk-bin"
->>>>
->>>> Error:
->>>> | ERROR: oe_runmake failed
->>>> | In file included from
->>>>
->>>> /home/mont3z/yocto/poky/build/tmp/work/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/webkitgtk/2.14.2-r0/webkitgtk-2.14.2/Source/WebCore/platform/graphics/cairo/GraphicsContext3DCairo.cpp:51:0:
->>>> |
->>>> /home/mont3z/yocto/poky/build/tmp/work/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/webkitgtk/2.14.2-r0/webkitgtk-2.14.2/Source/WebCore/platform/graphics/opengl/Extensions3DOpenGLES.h:109:5:
->>>> error: 'PFNGLFRAMEBUFFERTEXTURE2DMULTISAMPLEIMGPROC' does not name a
->>>> type
->>>> |      PFNGLFRAMEBUFFERTEXTURE2DMULTISAMPLEIMGPROC
->>>> m_glFramebufferTexture2DMultisampleIMG;
->>>> |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->>>>
->>>> command:
->>>> bitbake core-image-sato
->>>>
->>>> bblayes.conf:
->>>> BBLAYERS ?= " \
->>>>   /home/mont3z/yocto/poky/meta \
->>>>   /home/mont3z/yocto/poky/meta-poky \
->>>>   /home/mont3z/yocto/poky/meta-yocto-bsp \
->>>>   /home/mont3z/yocto/meta-openembedded/meta-oe \
->>>>   /home/mont3z/yocto/meta-webkit \
->>>
->>>
->>>
->>> what does this layer do ?
->>>
->>>>   /home/mont3z/yocto/meta-raspberrypi \
->>>>   "
->
->
->
-> --
-> ------------------------------------------------------------
-> Gary Thomas                 |  Consulting for the
-> MLB Associates              |    Embedded world
-> ------------------------------------------------------------
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+I have added the following to my machine .conf file:
+
+KERNEL_IMAGETYPES =3D "zImage fitImage"
+KERNEL_CLASSES +=3D "kernel-fitimage"
+
+INITRAMFS_IMAGE =3D "core-image-minimal"
+INITRAMFS_IMAGE_BUNDLE =3D "1"
+
+Any ideas would be most welcome.
+
+Hamish
+-
 
