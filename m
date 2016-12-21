@@ -1,63 +1,64 @@
-Return-Path: <jhagen@lithetechnology.com>
+Return-Path: <raltherr@google.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5DA2EE007B3; Wed, 21 Dec 2016 09:44:35 -0800 (PST)
+	id 450AAE00571; Wed, 21 Dec 2016 09:49:28 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [74.125.83.48 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pg0-f48.google.com (mail-pg0-f48.google.com [74.125.83.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 889F0E0049D
-	for <yocto@yoctoproject.org>; Wed, 21 Dec 2016 09:44:34 -0800 (PST)
-Received: by mail-pg0-f48.google.com with SMTP id f188so87674383pgc.3
-	for <yocto@yoctoproject.org>; Wed, 21 Dec 2016 09:44:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=lithetechnology-com.20150623.gappssmtp.com; s=20150623;
-	h=message-id:date:from:organization:user-agent:mime-version:to
-	:subject:content-transfer-encoding;
-	bh=sS3qMQUQ4ZO/hHl9rJw7xwYukdnoSvpCKDdgoJZQZ4c=;
-	b=x9xaP9eNtSOUxtmeNMUAJYmhdGSr3XqGdKFDlxSdlwYeh0qKVxqBykHXfMt2mM50Eq
-	ZxJEI692hi9uv8LZgGCs20kcYEcN8CYYiM6QjomwPb06P0ATpIM3fUtNZJ90CMeKdNG/
-	MbEzoXyrIxTOl01hlVo5CQeMKeWs46UFZYxr97tWUKR4vFCkJaxtro9Pep328zpPpeR8
-	dydYgkuAYn9kSEJC96Io5ugrxr7FW7hBPE/IPPFny5w8CavUVvweX8Ysz0f/pmZB6S+j
-	84ZhsCNtGVtv0uVHvi5J46aC7KgBauxqGmB1rjQR1dsae1rA+skSx+OwI3FBd3+73bym
-	9iPg==
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.213.175 listed in list.dnswl.org]
+Received: from mail-yb0-f175.google.com (mail-yb0-f175.google.com
+	[209.85.213.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EE840E0034A
+	for <yocto@yoctoproject.org>; Wed, 21 Dec 2016 09:49:22 -0800 (PST)
+Received: by mail-yb0-f175.google.com with SMTP id v132so75103372yba.0
+	for <yocto@yoctoproject.org>; Wed, 21 Dec 2016 09:49:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=q5gecdWOIBLV7WOLnYiuzSGLFlbijssF/TM3kro3NPE=;
+	b=SoEeKV98bFDhoeKyoA9yatX8VqRtNiWJxhcHuGBsr/3MxFIJtqYLTx58eAjf1t0KPa
+	1HCIFdO1M4qLoCPWjlWIpjzgNgLc5v+o9/F7FBsfzmgu2DY64HgOLmvxT8LQQwWkjwCM
+	zXoyQHwNausNQidf8S5jsi3Sc/+ttYkUR5bKFO5rtcFPQp66iu14V42cEw3XBo7YKma9
+	m2S7b9gjIxWMx1trwKAO/yKcZCzIHK2GpDz5u13HeVks4mJJRDO0CsJrOMCQh4UJDIxG
+	nlS3wGKXjSsdy553OAA9aZRCF2ahCVqmP0QHP342RTaJQrX++CM+xJX460pQGHgePVxZ
+	WVhg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:message-id:date:from:organization:user-agent
-	:mime-version:to:subject:content-transfer-encoding;
-	bh=sS3qMQUQ4ZO/hHl9rJw7xwYukdnoSvpCKDdgoJZQZ4c=;
-	b=eFgwq90ew16d7uNaPlGyifCJYZwa28koU7fBhQRQWEr2eR9WSuEK8gnr9p9q310/vi
-	yJWGrRPod2d484U/P7KYSunvfNUD2ql5ZGNW9//EHvsIQ25KHyHmuD5m4f54+3bb8Eac
-	TU1lMvTZ0JIXFhnBKG16xcmxzM0ySIa99Q4czrCjmIZFC5bVo7QnF42H+H7hFIJHLj3+
-	7Gxe1GBZklzQa95Hf+mJFNGavkvGziqdD0uyc0p0C0/YiQ3pRkrCf1e7ML8eAV+qIXtP
-	HRopq+i8lt/XkUyMxnuRTKl3IvTxLps5uHvELNo830CA3fe3cOLOBuTW1mD9WNLpePgM
-	aXMA==
-X-Gm-Message-State: AIkVDXIH2yrd1tpn+bXl9KLGbZU097EpDtO3FhbLcRxmq7XmS6l+cr+IQXjQbxPGy6qbaQ==
-X-Received: by 10.84.216.25 with SMTP id m25mr10841889pli.117.1482342273507;
-	Wed, 21 Dec 2016 09:44:33 -0800 (PST)
-Received: from [192.168.2.5] (wsip-68-110-169-14.ph.ph.cox.net.
-	[68.110.169.14]) by smtp.googlemail.com with ESMTPSA id
-	t15sm4337569pgn.18.2016.12.21.09.44.32 for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 21 Dec 2016 09:44:32 -0800 (PST)
-Message-ID: <585ABF7F.5070104@lithetechnology.com>
-Date: Wed, 21 Dec 2016 10:44:31 -0700
-From: Jeff Hagen <jhagen@lithetechnology.com>
-Organization: Lithe Technology LLC
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Icedove/31.4.0
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=q5gecdWOIBLV7WOLnYiuzSGLFlbijssF/TM3kro3NPE=;
+	b=oNFAypqtDrkbgfe1TH1AgQ2YUdTF8QdTUWtaCy9AySzPnegoYk8YO15W38MAOQj7vK
+	r63y4RITwklOhO+5HP/6hsaxTkjF2UPn7Lj76+pEPesKVfHBWrcfnhviQSBILSViKta5
+	kIQQlTmXjCnQAFc/F0qsr0etkQUD2YCihFpOmU771wRIZoWf1VYpu8P0DbWxNQLM+rv1
+	uvgciQfOAXU618P+wwhZjTXVCXZIUTNcjvkRsgcfhTjipXBaV6O7Ktu81C5MveH+DSqk
+	e1z+f4yCrMWNg2qijdJsvssNXOqJnoeYQWFpMQlzf0xaM24nAjRRp+UxrG+tqIrvlQW4
+	1GjA==
+X-Gm-Message-State: AIkVDXK4IRez8eVX0xtwosKkfzSbF9UtEiYWR7yfljaRNWFU/PpUx8o/Hl3rZvJkBzyRXKIT/1eoirmq7GAqWwNK
+X-Received: by 10.37.174.131 with SMTP id b3mr3433085ybj.146.1482342561625;
+	Wed, 21 Dec 2016 09:49:21 -0800 (PST)
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-Subject: question about variables/parameters
+Received: by 10.37.15.69 with HTTP; Wed, 21 Dec 2016 09:49:21 -0800 (PST)
+In-Reply-To: <7411EC580D08984EBA0A1730211182191AA8E7C3@kihagwinex01.int.kistler.com>
+References: <7411EC580D08984EBA0A1730211182191AA8E7A2@kihagwinex01.int.kistler.com>
+	<CAPLgG=kHYWHWzYPiaGdW7avoxzjQy1WnJkMnRDXaXsDH3ODAaA@mail.gmail.com>
+	<7411EC580D08984EBA0A1730211182191AA8E7C3@kihagwinex01.int.kistler.com>
+From: Rick Altherr <raltherr@google.com>
+Date: Wed, 21 Dec 2016 09:49:21 -0800
+Message-ID: <CAPLgG==_xUCSGDEitJNj_OY-wvOUB50_eagrdW+58n4aXreX_w@mail.gmail.com>
+To: Hamish Guthrie <Hamish.Guthrie@kistler.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: fitImage and initramfs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,62 +70,77 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Dec 2016 17:44:35 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 21 Dec 2016 17:49:28 -0000
+Content-Type: multipart/alternative; boundary=f403045dbae8d2a6ef05442ec588
 
+--f403045dbae8d2a6ef05442ec588
+Content-Type: text/plain; charset=UTF-8
 
-I am completely confused about bitbake variables how and when to set 
-them to get the desired result in the poky/yocto environment.
+What happens if you use core-image-minimal-initramfs for INITRAMFS_IMAGE?
+I think the main problem is that you are telling Yocto to include the full
+rootfs image as an initramfs instead of the reduced, special-purpose
+initramfs image.  Are you trying to boot entirely from a ramdisk or do you
+intend to store root somewhere else (NAND, etc)?
 
-For context, I am just a user but I have been around awhile. I have been 
-using yocto/poky for several years now. I have written a number of 
-simple recipes and successfully deployed embedded linux builds on a 
-number of custom projects and architectures (x86 x86_64 zync and 
-alterasoc ). This stuff works. My hat is off to the architects.
+On Wed, Dec 21, 2016 at 9:38 AM, Hamish Guthrie <Hamish.Guthrie@kistler.com>
+wrote:
 
-The problem comes when I want to change something. Frankly, I dont 
-understand the documentation. Its way too generic. I end up wandering 
-around the recipes and web searching and trying everything until I find 
-some seemingly random combination of bbappend or conf file or 
-variable_name that works. Once found, it works no sweat, but there has 
-to be a better way.
+> Hi Rick,
+>
+> >> Have you tried manually extracting the .xz it is having trouble with?
+>
+> Yes I have tried this, in fact I made some changes to the script where the
+> copy and extract is done and I can verify that in fact the copy of the
+> cpio.xz image is done correctly to the usr directory in the kernel
+> directory, I also added a line to make an additional copy of it, and in
+> fact the original is being extracted correctly to the usr directory, and it
+> is correctly extracted, but for some strange reason I get the Unexpected
+> end of input error. I have manually extracted the image and the result of
+> that extraction is identical both in size and content to the one which
+> claims to have an error.
+>
+> The core-image-minimal is purely for experimental purposes, what I am
+> actually trying to do is to create a fit image for our swupdate image so
+> that I can have a single fit image including the kernel, device tree and
+> initramfs for swupdate, so I can include it in a single UBI volume.
+>
+> Hamish -
+>
 
-So here is an example of a problem I am trying to solve. I need to add a 
-boot parameter to the kernel.
-When I run bitbake -v -f core-image-minimal for an x86 system I notice 
-that (at least in the old version I am using) uses syslinux as the boot 
-agent.  So I look at syslinux it needs a file called syslinux.cfg. There 
-is a parameter there called APPEND that I need to add the keyword to. 
-Then I find the syslinux.cfg file in a yocto build and I see that its 
-created by a python script inside of syslinux.bbclass. I look there and 
-sure enough there is a big comment there telling me to set the APPEND 
-variable for the class. I also notice that the python script that 
-creates syslinux.cfg runs when I run bitbake -v -f core-image-minimal
+--f403045dbae8d2a6ef05442ec588
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Also in the documentation there is a class called syslinux and it lists 
-the variables that I found in the comments bbclass file. This is no 
-doubt some clever auto-doc feature.
+<div dir=3D"ltr">What happens if you use core-image-minimal-initramfs for I=
+NITRAMFS_IMAGE?=C2=A0 I think the main problem is that you are telling Yoct=
+o to include the full rootfs image as an initramfs instead of the reduced, =
+special-purpose initramfs image.=C2=A0 Are you trying to boot entirely from=
+ a ramdisk or do you intend to store root somewhere else (NAND, etc)?</div>=
+<div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On Wed, Dec 21, 2=
+016 at 9:38 AM, Hamish Guthrie <span dir=3D"ltr">&lt;<a href=3D"mailto:Hami=
+sh.Guthrie@kistler.com" target=3D"_blank">Hamish.Guthrie@kistler.com</a>&gt=
+;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 =
+.8ex;border-left:1px #ccc solid;padding-left:1ex">Hi Rick,<br>
+<span class=3D""><br>
+&gt;&gt; Have you tried manually extracting the .xz it is having trouble wi=
+th?<br>
+<br>
+</span>Yes I have tried this, in fact I made some changes to the script whe=
+re the copy and extract is done and I can verify that in fact the copy of t=
+he cpio.xz image is done correctly to the usr directory in the kernel direc=
+tory, I also added a line to make an additional copy of it, and in fact the=
+ original is being extracted correctly to the usr directory, and it is corr=
+ectly extracted, but for some strange reason I get the Unexpected end of in=
+put error. I have manually extracted the image and the result of that extra=
+ction is identical both in size and content to the one which claims to have=
+ an error.<br>
+<br>
+The core-image-minimal is purely for experimental purposes, what I am actua=
+lly trying to do is to create a fit image for our swupdate image so that I =
+can have a single fit image including the kernel, device tree and initramfs=
+ for swupdate, so I can include it in a single UBI volume.<br>
+<span class=3D"HOEnZb"><font color=3D"#888888"><br>
+Hamish -<br>
+</font></span></blockquote></div><br></div>
 
-But thats where it ends. How do I know how to set that APPEND variable 
-for my custom build?
-The answer is either a bbappend file in my layer, a conf file, or 
-something I can put in local.conf.
-
-Rather than just telling me the answer, can someone please describe the 
-reasoning that would go into figuring it out so I can figure out other 
-similar issues on my own later? Or perhaps this was already done and I 
-am missing some documentation somewhere. Can you please direct me? 
-Thanks for your patience.
-
-Jeff Hagen
-
--- 
-Jeffrey R Hagen
-Lithe Technology LLC
-jhagen@lithetechnology.com
-(520) 488-1155 (mobile)
-(520) 477-6066 (office)
-http://www.lithetechnology.com
-
-
+--f403045dbae8d2a6ef05442ec588--
