@@ -1,6 +1,6 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3DCAFE00848; Thu, 22 Dec 2016 08:57:26 -0800 (PST)
+	id A3F34E0115F; Thu, 22 Dec 2016 09:03:23 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -11,7 +11,7 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (raj.khem[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [74.125.83.65 listed in list.dnswl.org]
+	*      [74.125.83.51 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -20,50 +20,56 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pg0-f65.google.com (mail-pg0-f65.google.com [74.125.83.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1190DE0073D
-	for <yocto@yoctoproject.org>; Thu, 22 Dec 2016 08:57:21 -0800 (PST)
-Received: by mail-pg0-f65.google.com with SMTP id w68so14685647pgw.3
-	for <yocto@yoctoproject.org>; Thu, 22 Dec 2016 08:57:21 -0800 (PST)
+Received: from mail-pg0-f51.google.com (mail-pg0-f51.google.com [74.125.83.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A46B6E01155
+	for <yocto@yoctoproject.org>; Thu, 22 Dec 2016 09:03:10 -0800 (PST)
+Received: by mail-pg0-f51.google.com with SMTP id f188so99633564pgc.3
+	for <yocto@yoctoproject.org>; Thu, 22 Dec 2016 09:03:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=from:message-id:mime-version:subject:date:in-reply-to:cc:to
-	:references; bh=240In50v4RJczS4cLpFFbuQLFEdpIJDcxFiL7xgxLN4=;
-	b=i4XOZ18mcorniz38Ikts+FgUayg3YUh5O85a3PB1/RxJAQLzYgeU3tbZ9DJ8tcit1M
-	+SMScB2VXtJEI7V5UV2qhZeJY9WRW4zQoUuaYrJQcDPF5Swg0jnD9MbaUNNIjQhLDwWO
-	s4lbvrrtnZZimQiv1OdHrVQON3ht18uR5k2fFjH4V8QUQJoKVdAPfqHkO6EG1Cgwqvl6
-	PG957OtU32oB24aC8smp053kh/pL4oOIDWNx83qkfEkVJv35DnsqGSLC4hR0CcUpqes0
-	w9z7Yio5zZL+oFVBvbwP01nebAyfnttcJyepDN6D3sooANSIjCdpWmET6gGxACw3S0oO
-	Vzvw==
+	:references; bh=kDAltipTqeHzu8T2Rec5/P1KomCUhMXvyAAtk+Y1bWQ=;
+	b=I8+igV0iVmlXsk6nUZuSLsp5iCGKyDsF2AWh+oxdgVfdJWkttg7IW+bRyaQKsnYOm2
+	lkhOHtwGoSfbEV024reKIDB5vlWtCEeM63KCNd5cmceoQ/Slf6a1Rb73/EZYpDuERUX1
+	QKkLioPfGw9Kr5bhH96iAacyLKow3vk5CpH/yz8qJAzWx0YNBjzTnDZCTIa5mTKLD8Bs
+	vygI48eWIyZCurhLdOdgNKiaMuQu7IV8JTLO3Z3SJB2rJ1OFG7vu7UAqpj/j+QRkKAIe
+	cr8iC495OpAlIlVQHJUzTasEqfk54yIhhUDGV5sFparIYs5rTJ3cNZMI6PcQ03PVrO6i
+	Qa2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:from:message-id:mime-version:subject:date
 	:in-reply-to:cc:to:references;
-	bh=240In50v4RJczS4cLpFFbuQLFEdpIJDcxFiL7xgxLN4=;
-	b=EX7S0spJPo6MDqM4HJi1sia1xGfzGylsV8idZXfKsScfzFF8SJ6MFUx5XQP1omw+SR
-	Kvs6uYDzsOqAEDepptm6VnlVytm7OcjV8lJVfLxosSgjMpK9HZf3zjTe2uUbi8Ksom9x
-	ZX00QXllqQM9ANLmy5Rp3AA0T0ueeBIuYnyl+IKIdYg0u7Xj7bbdp/fvdTlRn8VmtXIc
-	FgthbxoMHDtQ+ABcwvCfpoBWQp0AS0u6JyJrvkN02YFXYSElbap/YF7FF/hclKWSxzqj
-	3Jm9juqH0MT2fBpVesiDETqCs1Fbfl/2jxMDIOuDUrRHzQMSZ+mSZ1KMVVgJz+7PyJid
-	u0+A==
-X-Gm-Message-State: AIkVDXK60RkUogi6XCqB1Ej15dYwEgi0ZvSzc9WVRdgwpiPzR4/fiiQYfVq6itqn++HvMw==
-X-Received: by 10.84.141.1 with SMTP id 1mr20962617plu.133.1482425841498;
-	Thu, 22 Dec 2016 08:57:21 -0800 (PST)
+	bh=kDAltipTqeHzu8T2Rec5/P1KomCUhMXvyAAtk+Y1bWQ=;
+	b=q7U/rvlKtZnov2TBttgz2c5/MpJKKQMMhVmhShrBepNfwU5c/4YmOXSe74XX5Sqo8K
+	bDp8p/Ks7bzrjSitq5VSAV/5N2pEOL2kA9T3WAgqK0X4lW1pDPsX6joekazEMsFSG3AH
+	o2AEVk2Cdhjd6XVL89ctJJ/ht8latuILHuO7I43G5YTFiPUxkd45fgVGRNOjx7e+X7AI
+	3KtWVk64oXl64DEgoVhbCY5hjJg/Iqblk0a/vDtk7K2RZs4eIddXUon9iwR62LEGHiK+
+	uV9H0S0Wl3Sg9RXHWJ4JAG+VE5iWoOfv0DBm+xpkcyfg22ig0igSPgKhmdSixCRuirK8
+	FsxA==
+X-Gm-Message-State: AIkVDXLaVn9Ezp2ChXVAbWMEcPeIk7wUPaDUM60Z110AEJeGxFZvzA0ZtTxleE3r3N41Xw==
+X-Received: by 10.99.153.26 with SMTP id d26mr18900397pge.44.1482426189832;
+	Thu, 22 Dec 2016 09:03:09 -0800 (PST)
 Received: from ?IPv6:2601:646:8882:b8c:dc6c:df58:7743:431c?
 	([2601:646:8882:b8c:dc6c:df58:7743:431c])
 	by smtp.gmail.com with ESMTPSA id
-	z29sm29793437pgc.11.2016.12.22.08.57.20
+	c128sm56163790pfc.39.2016.12.22.09.03.08
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Thu, 22 Dec 2016 08:57:21 -0800 (PST)
+	Thu, 22 Dec 2016 09:03:09 -0800 (PST)
 From: Khem Raj <raj.khem@gmail.com>
-Message-Id: <027229CB-5E4B-4F03-A114-8455817BD720@gmail.com>
+Message-Id: <7B260263-CB63-4B9C-BE16-6319C14E6360@gmail.com>
 Mime-Version: 1.0 (Mac OS X Mail 10.2 \(3259\))
-Date: Thu, 22 Dec 2016 08:57:21 -0800
-In-Reply-To: <CY4PR12MB1880B54FDAEE0F03B00ECA30A5910@CY4PR12MB1880.namprd12.prod.outlook.com>
-To: Richard Zhang <richard.zhang@pica8.com>
-References: <CY4PR12MB1880B54FDAEE0F03B00ECA30A5910@CY4PR12MB1880.namprd12.prod.outlook.com>
+Date: Thu, 22 Dec 2016 09:03:09 -0800
+In-Reply-To: <760342d3-506d-f52a-0417-9960183360f8@3cityelectronics.com>
+To: =?utf-8?Q?Mateusz_Orzo=C5=82?= <mateusz.orzol@3cityelectronics.com>
+References: <396d7721-c317-789c-6a66-938280ccb006@3cityelectronics.com>
+	<CAMKF1so+ZwuF=ecyhkaXOzJDB1y08kednf4Bi8KCtZUfTdqKEA@mail.gmail.com>
+	<329f43bf-dcc3-ddea-fb40-8b1bb9f536bd@3cityelectronics.com>
+	<2f7ef8d8-1731-d3d6-ad12-cc90fb398d6d@3cityelectronics.com>
+	<CAMKF1spFedNKS=jWSa7=EK49gxVJ5Z1fXGXgmpb10N8714_f4g@mail.gmail.com>
+	<f8e70915-43bf-5edb-4163-70ba032c6171@3cityelectronics.com>
+	<760342d3-506d-f52a-0417-9960183360f8@3cityelectronics.com>
 X-Mailer: Apple Mail (2.3259)
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: how to use a kernel build path in developing libs
+Subject: Re: [bitbake] Failure to compile UltraJson, LMDB and Netifaces python modules recipes for Krogoth.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,175 +81,330 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 22 Dec 2016 16:57:26 -0000
+X-List-Received-Date: Thu, 22 Dec 2016 17:03:23 -0000
 Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_4325582B-2679-4D2A-8264-34580815887D"
+	boundary="Apple-Mail=_600F9CEE-6D1E-4E32-B612-5DBDE10F9C73"
 
---Apple-Mail=_4325582B-2679-4D2A-8264-34580815887D
+--Apple-Mail=_600F9CEE-6D1E-4E32-B612-5DBDE10F9C73
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain;
-	charset=us-ascii
+	charset=utf-8
 
 
-> On Dec 22, 2016, at 12:23 AM, Richard Zhang <richard.zhang@pica8.com> =
-wrote:
+> On Dec 22, 2016, at 12:20 AM, Mateusz Orzo=C5=82 =
+<mateusz.orzol@3cityelectronics.com> wrote:
 >=20
-> hi all:
 >=20
-> I am trying to add some lib related with kernel.
+>=20
+> W dniu 2016-12-22 o 09:16, Mateusz Orzo=C5=82 pisze:
+>>=20
+>>=20
+>> W dniu 2016-12-21 o 18:21, Khem Raj pisze:
+>>> On Tue, Dec 20, 2016 at 10:54 PM, Mateusz Orzo=C5=82
+>>> <mateusz.orzol@3cityelectronics.com> =
+<mailto:mateusz.orzol@3cityelectronics.com> wrote:
+>>>> W dniu 2016-12-20 o 10:46, Mateusz Orzo=C5=82 pisze:
+>>>>=20
+>>>>=20
+>>>>=20
+>>>> W dniu 2016-12-20 o 00:43, Khem Raj pisze:
+>>>>=20
+>>>>=20
+>>>>=20
+>>>> On Mon, Dec 19, 2016 at 1:46 PM, Mateusz Orzo=C5=82
+>>>> <mateusz.orzol@3cityelectronics.com> =
+<mailto:mateusz.orzol@3cityelectronics.com> wrote:
+>>>>> Hi everyone,
+>>>>>=20
+>>>>> I am migrating my old Yocto image from kernel 3.8 to 4.1 on the =
+Intel
+>>>>> Quark based platform. After dealing with some SPI driver issues =
+now I've
+>>>>> encountered some strange bitbake behaviour. My web application =
+requires
+>>>>> UltraJson , LMDB and Netifaces modules. After running bitbake  I =
+am getting
+>>>>> a lot of undefined reference errors. In all three cases pretty =
+similar.
+>>>>> Exemplary log for python-ujson is here: =
+http://pastebin.com/8ms9PgnY <http://pastebin.com/8ms9PgnY> . It
+>>>>> seems like the python environment wasn't linked properly but many =
+other
+>>>>> python recipes have no problem with compiling.
+>>>>>=20
+>>>>> The python-ujson recipe comes from here
+>>>>> https://layers.openembedded.org/layerindex/recipe/49510/ =
+<https://layers.openembedded.org/layerindex/recipe/49510/>. In  previous
+>>>>> distribution with kernel 3.8 it was working without any problem.
+>>>>>=20
+>>>>> Have you got any idea what could be wrong or what should I check =
+first?
+>>>> The error seems to have nothing to do with kernel version. Are you =
+upgrading
+>>>> the whole of yocto framework from one release to another ? and if =
+yes from
+>>>> which version to which new version.
+>>>>=20
+>>>>=20
+>>>>=20
+>>>> I am upgrading from 1.4.2 Dylan version to Krogoth. Firstly I've =
+prepared
+>>>> clean Krogoth image which worked fine. Now I am adding necessary =
+recipes and
+>>>> packages one by one and currently the only problem I've encountered =
+is the
+>>>> mentioned one.
+>>>>=20
+>>>> Hi,
+>>>> W have found found quick fix for this.  The errors disappeared when =
+all the
+>>>> build flags were cleared in mentioned python modules recipes. It =
+means
+>>>> TARGET_CFLAGS =3D "" LDFLAGS =3D "" CFLAGS =3D "" in module .bb =
+file. It was
+>>>> checked on the device that modules are visible in python and they =
+work. I
+>>>> don't know why this helped and also what was causing the issue. Do =
+you have
+>>>> any clues what was wrong and how to fix it in proper way?
+>>> Can you post the exact change ? perhaps there is issue in Makefile
+>>> environment that
+>>> bitbake is handing off to the makefiles of this component. There
+>>> change in this area
+>>> in OE recently.
+>> Hi,
+>> the exact change in the python-ujson_1.35.bb  file: =
+http://pastebin.com/L2JQvQD0 <http://pastebin.com/L2JQvQD0>.  The change =
+in other python modules bitbake files is identical.=20
+> Sorry the link is broken because of the dot =
+http://pastebin.com/L2JQvQD0 <http://pastebin.com/L2JQvQD0>
+in a way this change is ok but it would be good to know why these flags =
+are being problematic, I guess deeper look into this components
+build is needed. We do not have this problem with master, so there is =
+some discrepancy, I do not have krogoth build handy to try out
+but may be someone else has.
 
-Unless you are writing a kernel module, using raw kernel headers and =
-sources is generally not a good choice. Moreover
-kernel does not have APIs beyond headers it exports for user space to =
-use. So I would suggest to rethink what you are trying
-to do and may be you can use the exposed kernel APIs through kernel =
-headers =20
-
-> When I try to include the kernel build dir to the lib, i am not sure =
-witch kernel build path should to be used :
-> =
-build/tmp/work/genericx86_64-poky-linux/linux-yocto/4.4.3/linux-genericx86=
-_64-standard-build/
->=20
->=20
-> Another question:
->=20
-> When I want to develop an application  use yocto SDK.
-> After I deploy a yocto SDK toolchain that image include full target,  =
-could I use the kernel build path for compile software?
-
-No, unless its a kernel module.
->=20
->=20
->=20
-> Regard,
-> Richard Zhang
-> --=20
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
-> https://lists.yoctoproject.org/listinfo/yocto =
+>>>>> Thank you for your help in advance,
+>>>>>=20
+>>>>> Mateusz
+>>>>>=20
+>>>>>=20
+>>>>> --
+>>>>>=20
+>>>>>=20
+>>>>> --
+>>>>> _______________________________________________
+>>>>> yocto mailing list
+>>>>> yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
+>>>>> https://lists.yoctoproject.org/listinfo/yocto =
 <https://lists.yoctoproject.org/listinfo/yocto>
+>>>>>=20
+>>>> --
+>>>>=20
+>>>>=20
+>>>>=20
+>>>> --
+>>>>=20
+>>=20
+>> --=20
+>> =20
+>=20
+> --=20
+> =20
 
---Apple-Mail=_4325582B-2679-4D2A-8264-34580815887D
+
+--Apple-Mail=_600F9CEE-6D1E-4E32-B612-5DBDE10F9C73
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/html;
-	charset=us-ascii
+	charset=utf-8
 
 <html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
-charset=3Dus-ascii"></head><body style=3D"word-wrap: break-word; =
+charset=3Dutf-8"></head><body style=3D"word-wrap: break-word; =
 -webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
 class=3D""><br class=3D""><div><blockquote type=3D"cite" class=3D""><div =
-class=3D"">On Dec 22, 2016, at 12:23 AM, Richard Zhang &lt;<a =
-href=3D"mailto:richard.zhang@pica8.com" =
-class=3D"">richard.zhang@pica8.com</a>&gt; wrote:</div><br =
-class=3D"Apple-interchange-newline"><div class=3D""><div =
-id=3D"divtagdefaultwrapper" dir=3D"ltr" style=3D"font-style: normal; =
-font-variant-caps: normal; font-weight: normal; letter-spacing: normal; =
-orphans: auto; text-align: start; text-indent: 0px; text-transform: =
-none; white-space: normal; widows: auto; word-spacing: 0px; =
--webkit-text-stroke-width: 0px; font-size: 12pt; font-family: Calibri, =
-Arial, Helvetica, sans-serif;" class=3D""><div style=3D"margin-top: 0px; =
-margin-bottom: 0px;" class=3D"">hi all:</div><div style=3D"margin-top: =
-0px; margin-bottom: 0px;" class=3D""><br class=3D""></div><div =
-style=3D"margin-top: 0px; margin-bottom: 0px;" class=3D"">I am trying to =
-add some lib related with kernel.</div></div></div></blockquote><div><br =
-class=3D""></div><div>Unless you are writing a kernel module, using raw =
-kernel headers and sources is generally not a good choice. =
-Moreover</div><div>kernel does not have APIs beyond headers it exports =
-for user space to use. So I would suggest to rethink what you are =
-trying</div><div>to do and may be you can use the exposed kernel APIs =
-through kernel headers &nbsp;</div><br class=3D""><blockquote =
-type=3D"cite" class=3D""><div class=3D""><div id=3D"divtagdefaultwrapper" =
-dir=3D"ltr" style=3D"font-style: normal; font-variant-caps: normal; =
-font-weight: normal; letter-spacing: normal; orphans: auto; text-align: =
-start; text-indent: 0px; text-transform: none; white-space: normal; =
-widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
-font-size: 12pt; font-family: Calibri, Arial, Helvetica, sans-serif;" =
-class=3D""><div style=3D"margin-top: 0px; margin-bottom: 0px;" =
-class=3D"">When I try to include the kernel build dir to the lib, i am =
-not sure witch kernel build path should to be used :</div><div =
-style=3D"margin-top: 0px; margin-bottom: 0px;" =
-class=3D"">build/tmp/work/genericx86_64-poky-linux/linux-yocto/4.4.3/linux=
--genericx86_64-standard-build/</div><div style=3D"margin-top: 0px; =
-margin-bottom: 0px;" class=3D""><br class=3D""></div><div =
-style=3D"margin-top: 0px; margin-bottom: 0px;" class=3D""><br =
-class=3D""></div><div style=3D"margin-top: 0px; margin-bottom: 0px;" =
-class=3D"">Another question:</div><div style=3D"margin-top: 0px; =
-margin-bottom: 0px;" class=3D""><br class=3D""></div><div =
-style=3D"margin-top: 0px; margin-bottom: 0px;" class=3D"">When I want to =
-develop an application&nbsp; use yocto SDK.</div><div style=3D"margin-top:=
- 0px; margin-bottom: 0px;" class=3D"">After I deploy a yocto SDK<span =
-class=3D"Apple-converted-space">&nbsp;</span><span =
-class=3D"">toolchain</span><span =
-class=3D"Apple-converted-space">&nbsp;</span>that image include full =
-target,&nbsp; could I use the kernel build path for compile =
-software?</div></div></div></blockquote><div><br class=3D""></div>No, =
-unless its a kernel module.</div><div><blockquote type=3D"cite" =
-class=3D""><div class=3D""><div id=3D"divtagdefaultwrapper" dir=3D"ltr" =
-style=3D"font-style: normal; font-variant-caps: normal; font-weight: =
+class=3D"">On Dec 22, 2016, at 12:20 AM, Mateusz Orzo=C5=82 &lt;<a =
+href=3D"mailto:mateusz.orzol@3cityelectronics.com" =
+class=3D"">mateusz.orzol@3cityelectronics.com</a>&gt; wrote:</div><br =
+class=3D"Apple-interchange-newline"><div class=3D""><br =
+class=3D"Apple-interchange-newline"><br style=3D"font-family: =
+Times-Roman; font-size: 14px; font-style: normal; font-variant-caps: =
+normal; font-weight: normal; letter-spacing: normal; orphans: auto; =
+text-align: start; text-indent: 0px; text-transform: none; white-space: =
+normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
+background-color: rgb(255, 255, 255);" class=3D""><div =
+class=3D"moz-cite-prefix" style=3D"font-family: Times-Roman; font-size: =
+14px; font-style: normal; font-variant-caps: normal; font-weight: =
 normal; letter-spacing: normal; orphans: auto; text-align: start; =
 text-indent: 0px; text-transform: none; white-space: normal; widows: =
-auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; font-size: =
-12pt; font-family: Calibri, Arial, Helvetica, sans-serif;" class=3D""><div=
- style=3D"margin-top: 0px; margin-bottom: 0px;" class=3D""><br =
-class=3D""></div><div style=3D"margin-top: 0px; margin-bottom: 0px;" =
-class=3D""><br class=3D""></div><div style=3D"margin-top: 0px; =
-margin-bottom: 0px;" class=3D""><br class=3D""></div><div =
-style=3D"margin-top: 0px; margin-bottom: 0px;" =
-class=3D"">Regard,</div><div style=3D"margin-top: 0px; margin-bottom: =
-0px;" class=3D"">Richard Zhang<br class=3D""></div></div><span =
-style=3D"font-family: Times-Roman; font-size: 14px; font-style: normal; =
-font-variant-caps: normal; font-weight: normal; letter-spacing: normal; =
-orphans: auto; text-align: start; text-indent: 0px; text-transform: =
-none; white-space: normal; widows: auto; word-spacing: 0px; =
--webkit-text-stroke-width: 0px; float: none; display: inline =
-!important;" class=3D"">--<span =
-class=3D"Apple-converted-space">&nbsp;</span></span><br =
-style=3D"font-family: Times-Roman; font-size: 14px; font-style: normal; =
-font-variant-caps: normal; font-weight: normal; letter-spacing: normal; =
-orphans: auto; text-align: start; text-indent: 0px; text-transform: =
-none; white-space: normal; widows: auto; word-spacing: 0px; =
--webkit-text-stroke-width: 0px;" class=3D""><span style=3D"font-family: =
-Times-Roman; font-size: 14px; font-style: normal; font-variant-caps: =
-normal; font-weight: normal; letter-spacing: normal; orphans: auto; =
-text-align: start; text-indent: 0px; text-transform: none; white-space: =
-normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
-float: none; display: inline !important;" =
-class=3D"">_______________________________________________</span><br =
-style=3D"font-family: Times-Roman; font-size: 14px; font-style: normal; =
-font-variant-caps: normal; font-weight: normal; letter-spacing: normal; =
-orphans: auto; text-align: start; text-indent: 0px; text-transform: =
-none; white-space: normal; widows: auto; word-spacing: 0px; =
--webkit-text-stroke-width: 0px;" class=3D""><span style=3D"font-family: =
-Times-Roman; font-size: 14px; font-style: normal; font-variant-caps: =
-normal; font-weight: normal; letter-spacing: normal; orphans: auto; =
-text-align: start; text-indent: 0px; text-transform: none; white-space: =
-normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
-float: none; display: inline !important;" class=3D"">yocto mailing =
-list</span><br style=3D"font-family: Times-Roman; font-size: 14px; =
+auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
+background-color: rgb(255, 255, 255);">W dniu 2016-12-22 o&nbsp;09:16, =
+Mateusz Orzo=C5=82 pisze:<br class=3D""></div><blockquote =
+cite=3D"mid:f8e70915-43bf-5edb-4163-70ba032c6171@3cityelectronics.com" =
+type=3D"cite" style=3D"font-family: Times-Roman; font-size: 14px; =
 font-style: normal; font-variant-caps: normal; font-weight: normal; =
 letter-spacing: normal; orphans: auto; text-align: start; text-indent: =
 0px; text-transform: none; white-space: normal; widows: auto; =
-word-spacing: 0px; -webkit-text-stroke-width: 0px;" class=3D""><a =
-href=3D"mailto:yocto@yoctoproject.org" style=3D"font-family: =
+word-spacing: 0px; -webkit-text-size-adjust: auto; =
+-webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);" =
+class=3D""><p class=3D""><br class=3D""></p><br class=3D""><div =
+class=3D"moz-cite-prefix">W dniu 2016-12-21 o&nbsp;18:21, Khem Raj =
+pisze:<br class=3D""></div><blockquote =
+cite=3D"mid:CAMKF1spFedNKS=3DjWSa7=3DEK49gxVJ5Z1fXGXgmpb10N8714_f4g@mail.g=
+mail.com" type=3D"cite" class=3D""><pre wrap=3D"" class=3D"">On Tue, Dec =
+20, 2016 at 10:54 PM, Mateusz Orzo=C5=82
+<a moz-do-not-send=3D"true" class=3D"moz-txt-link-rfc2396E" =
+href=3D"mailto:mateusz.orzol@3cityelectronics.com">&lt;mateusz.orzol@3city=
+electronics.com&gt;</a> wrote:
+</pre><blockquote type=3D"cite" class=3D""><pre wrap=3D"" class=3D"">W =
+dniu 2016-12-20 o 10:46, Mateusz Orzo=C5=82 pisze:
+
+
+
+W dniu 2016-12-20 o 00:43, Khem Raj pisze:
+
+
+
+On Mon, Dec 19, 2016 at 1:46 PM, Mateusz Orzo=C5=82
+<a moz-do-not-send=3D"true" class=3D"moz-txt-link-rfc2396E" =
+href=3D"mailto:mateusz.orzol@3cityelectronics.com">&lt;mateusz.orzol@3city=
+electronics.com&gt;</a> wrote:
+</pre><blockquote type=3D"cite" class=3D""><pre wrap=3D"" class=3D"">Hi =
+everyone,
+
+I am migrating my old Yocto image from kernel 3.8 to 4.1 on the Intel
+Quark based platform. After dealing with some SPI driver issues now I've
+encountered some strange bitbake behaviour. My web application requires
+UltraJson , LMDB and Netifaces modules. After running bitbake  I am =
+getting
+a lot of undefined reference errors. In all three cases pretty similar.
+Exemplary log for python-ujson is here: <a moz-do-not-send=3D"true" =
+class=3D"moz-txt-link-freetext" =
+href=3D"http://pastebin.com/8ms9PgnY">http://pastebin.com/8ms9PgnY</a> . =
+It
+seems like the python environment wasn't linked properly but many other
+python recipes have no problem with compiling.
+
+The python-ujson recipe comes from here
+<a moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext" =
+href=3D"https://layers.openembedded.org/layerindex/recipe/49510/">https://=
+layers.openembedded.org/layerindex/recipe/49510/</a>. In  previous
+distribution with kernel 3.8 it was working without any problem.
+
+Have you got any idea what could be wrong or what should I check first?
+</pre></blockquote><pre wrap=3D"" class=3D"">The error seems to have =
+nothing to do with kernel version. Are you upgrading
+the whole of yocto framework from one release to another ? and if yes =
+from
+which version to which new version.
+
+
+
+I am upgrading from 1.4.2 Dylan version to Krogoth. Firstly I've =
+prepared
+clean Krogoth image which worked fine. Now I am adding necessary recipes =
+and
+packages one by one and currently the only problem I've encountered is =
+the
+mentioned one.
+
+Hi,
+W have found found quick fix for this.  The errors disappeared when all =
+the
+build flags were cleared in mentioned python modules recipes. It means
+TARGET_CFLAGS =3D "" LDFLAGS =3D "" CFLAGS =3D "" in module .bb file. It =
+was
+checked on the device that modules are visible in python and they work. =
+I
+don't know why this helped and also what was causing the issue. Do you =
+have
+any clues what was wrong and how to fix it in proper way?
+</pre></blockquote><pre wrap=3D"" class=3D"">Can you post the exact =
+change ? perhaps there is issue in Makefile
+environment that
+bitbake is handing off to the makefiles of this component. There
+change in this area
+in OE recently.</pre></blockquote>Hi,<br class=3D"">the exact change in =
+the python-ujson_1.35.bb&nbsp; file:<span =
+class=3D"Apple-converted-space">&nbsp;</span><a moz-do-not-send=3D"true" =
+class=3D"moz-txt-link-freetext" =
+href=3D"http://pastebin.com/L2JQvQD0">http://pastebin.com/L2JQvQD0</a>.&nb=
+sp; The change in other python modules bitbake files is identical.<span =
+class=3D"Apple-converted-space">&nbsp;</span><br =
+class=3D""></blockquote><span style=3D"font-family: Times-Roman; =
+font-size: 14px; font-style: normal; font-variant-caps: normal; =
+font-weight: normal; letter-spacing: normal; orphans: auto; text-align: =
+start; text-indent: 0px; text-transform: none; white-space: normal; =
+widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
+background-color: rgb(255, 255, 255); float: none; display: inline =
+!important;" class=3D"">Sorry the link is broken because of the dot<span =
+class=3D"Apple-converted-space">&nbsp;</span></span><font =
+face=3D"Times-Roman" class=3D""><span style=3D"background-color: =
+rgb(255, 255, 255);" class=3D""><a href=3D"http://pastebin.com/L2JQvQD0" =
+class=3D"">http://pastebin.com/L2JQvQD0</a></span></font></div></blockquot=
+e><div><br class=3D""></div><div>in a way this change is ok but it would =
+be good to know why these flags are being problematic, I guess deeper =
+look into this components</div><div>build is needed. We do not have this =
+problem with master, so there is some discrepancy, I do not have krogoth =
+build handy to try out</div><div>but may be someone else has.</div><br =
+class=3D""><blockquote type=3D"cite" class=3D""><div class=3D""><span =
+style=3D"font-family: Times-Roman; font-size: 14px; font-style: normal; =
+font-variant-caps: normal; font-weight: normal; letter-spacing: normal; =
+orphans: auto; text-align: start; text-indent: 0px; text-transform: =
+none; white-space: normal; widows: auto; word-spacing: 0px; =
+-webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); =
+float: none; display: inline !important;" class=3D""></span><blockquote =
+cite=3D"mid:f8e70915-43bf-5edb-4163-70ba032c6171@3cityelectronics.com" =
+type=3D"cite" style=3D"font-family: Times-Roman; font-size: 14px; =
+font-style: normal; font-variant-caps: normal; font-weight: normal; =
+letter-spacing: normal; orphans: auto; text-align: start; text-indent: =
+0px; text-transform: none; white-space: normal; widows: auto; =
+word-spacing: 0px; -webkit-text-size-adjust: auto; =
+-webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);" =
+class=3D""><blockquote =
+cite=3D"mid:CAMKF1spFedNKS=3DjWSa7=3DEK49gxVJ5Z1fXGXgmpb10N8714_f4g@mail.g=
+mail.com" type=3D"cite" class=3D""><pre wrap=3D"" =
+class=3D""></pre><blockquote type=3D"cite" class=3D""><blockquote =
+type=3D"cite" class=3D""><pre wrap=3D"" class=3D"">Thank you for your =
+help in advance,
+
+Mateusz
+
+
+--
+
+
+--
+_______________________________________________
+yocto mailing list
+<a moz-do-not-send=3D"true" class=3D"moz-txt-link-abbreviated" =
+href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a>
+<a moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext" =
+href=3D"https://lists.yoctoproject.org/listinfo/yocto">https://lists.yocto=
+project.org/listinfo/yocto</a>
+
+</pre></blockquote><pre wrap=3D"" class=3D"">--
+
+
+
+--
+
+</pre></blockquote></blockquote><br class=3D""><div =
+class=3D"moz-signature">--<span =
+class=3D"Apple-converted-space">&nbsp;</span><br class=3D""><map =
+name=3D"mapa1" class=3D"">&nbsp;</map></div></blockquote><br =
+style=3D"font-family: Times-Roman; font-size: 14px; font-style: normal; =
+font-variant-caps: normal; font-weight: normal; letter-spacing: normal; =
+orphans: auto; text-align: start; text-indent: 0px; text-transform: =
+none; white-space: normal; widows: auto; word-spacing: 0px; =
+-webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);" =
+class=3D""><div class=3D"moz-signature" style=3D"font-family: =
 Times-Roman; font-size: 14px; font-style: normal; font-variant-caps: =
 normal; font-weight: normal; letter-spacing: normal; orphans: auto; =
 text-align: start; text-indent: 0px; text-transform: none; white-space: =
-normal; widows: auto; word-spacing: 0px; -webkit-text-size-adjust: auto; =
--webkit-text-stroke-width: 0px;" class=3D"">yocto@yoctoproject.org</a><br =
-style=3D"font-family: Times-Roman; font-size: 14px; font-style: normal; =
-font-variant-caps: normal; font-weight: normal; letter-spacing: normal; =
-orphans: auto; text-align: start; text-indent: 0px; text-transform: =
-none; white-space: normal; widows: auto; word-spacing: 0px; =
--webkit-text-stroke-width: 0px;" class=3D""><a =
-href=3D"https://lists.yoctoproject.org/listinfo/yocto" =
-style=3D"font-family: Times-Roman; font-size: 14px; font-style: normal; =
-font-variant-caps: normal; font-weight: normal; letter-spacing: normal; =
-orphans: auto; text-align: start; text-indent: 0px; text-transform: =
-none; white-space: normal; widows: auto; word-spacing: 0px; =
--webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px;" =
-class=3D"">https://lists.yoctoproject.org/listinfo/yocto</a></div></blockq=
-uote></div><br class=3D""></body></html>=
+normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
+background-color: rgb(255, 255, 255);">--<span =
+class=3D"Apple-converted-space">&nbsp;</span><br class=3D""><map =
+name=3D"mapa1" class=3D"">&nbsp;</map></div></div></blockquote></div><br =
+class=3D""></body></html>=
 
---Apple-Mail=_4325582B-2679-4D2A-8264-34580815887D--
+--Apple-Mail=_600F9CEE-6D1E-4E32-B612-5DBDE10F9C73--
