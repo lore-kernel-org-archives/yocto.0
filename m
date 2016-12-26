@@ -1,17 +1,15 @@
-Return-Path: <martin.jansa@gmail.com>
+Return-Path: <cordlandwehr@kde.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D4E82E0053F; Sun, 25 Dec 2016 23:43:01 -0800 (PST)
+	id 17E8FE0080A; Mon, 26 Dec 2016 05:49:42 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (martin.jansa[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.67 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [46.4.96.248 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,57 +17,29 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.82.67 listed in dnsbl.sorbs.net]
-Received: from mail-wm0-f67.google.com (mail-wm0-f67.google.com [74.125.82.67])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 99495E00524;
-	Sun, 25 Dec 2016 23:43:00 -0800 (PST)
-Received: by mail-wm0-f67.google.com with SMTP id m203so51976086wma.3;
-	Sun, 25 Dec 2016 23:43:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:date:to:cc:subject:message-id:references:mime-version
-	:content-disposition:in-reply-to:user-agent;
-	bh=Gkuw5kLUKDZxDLBJeICGbpEL2QNSknHHTE/+CkbGXfg=;
-	b=hdQUJXl4G3Jg+W4WRvuW1PeFs0wLRzvKulAp4x7D37VS+rMHtgFJwGHCuDIyLfFI34
-	0nJycxcsmtfTYnhq8Hv4YuXqY8QvKhNk26o7zPRfNHur1I3ROxexfc2BRGO1Djmp5dG0
-	CU8WmnIuiRF265jA4ZBIdW9dYlizOPvktStN5g6cZz5ww/TcFkSr9wo33U6Aogp3hYEo
-	zElQjroLoa8ZaAhJloveJ+qLtGwp1/EHGZe5v12rM6RA01sQ51Rq2sZlkOc1VhzbT0Yu
-	QBKh6ocoyVNYW+QeIGc+XyAUAzacuBr6oRIuvcFZaVUtBGUPduEHvBPfZSIdEo2xR5nk
-	3z/w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:date:to:cc:subject:message-id:references
-	:mime-version:content-disposition:in-reply-to:user-agent;
-	bh=Gkuw5kLUKDZxDLBJeICGbpEL2QNSknHHTE/+CkbGXfg=;
-	b=KEeWulcGRzCj8BJlFlE7pz16mHgwt07e+ZZvU84vAnN37lKcBdhPmeRW8FZPBbfAaI
-	e/fBoodfIuRinYFJ7FIEAwZdqf/+KRWjPipzRHsBwxxqgVRIXRFb2TY4B1In5d3Ic153
-	c8Iy/vDhqjQE8KSxB4KXO7YeeDLhs4Lud2V1NZqq0RzPDUn/CSOtql6kUXch6kdWTE25
-	A5fHkAWtcs+VBM8XIVAnMuovtIMiXiuEr8YaavarL+zKWvbbL+bUqn2bUzNb+btNUZvY
-	WIQsgaKO/XA8+aw3BfG6REhhvEoLGHGq266D37+uPT0tLVNYbV3M2FmcGJzzE5LotDO3
-	xFDQ==
-X-Gm-Message-State: AIkVDXJIcTwEfkE2/rqqJpuJrx09G4n/aZ4AfN72IUC6tMHuraTZiPBcjpt8o8bjNvyM9A==
-X-Received: by 10.28.111.139 with SMTP id c11mr24317738wmi.139.1482738179237; 
-	Sun, 25 Dec 2016 23:42:59 -0800 (PST)
-Received: from localhost ([217.30.68.212])
-	by smtp.gmail.com with ESMTPSA id 6sm53537207wjt.5.2016.12.25.23.42.57
-	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-	Sun, 25 Dec 2016 23:42:57 -0800 (PST)
-From: Martin Jansa <martin.jansa@gmail.com>
-X-Google-Original-From: Martin Jansa <Martin.Jansa@gmail.com>
-Date: Mon, 26 Dec 2016 08:43:00 +0100
-To: Michael Halstead <mhalstead@linuxfoundation.org>
-Message-ID: <20161226074300.GB3242@jama>
-References: <CAHQecY48gVbt4S+88MHivSbv-Xdn29WRq5RPL6+QDVGYUPCwYw@mail.gmail.com>
-	<E628426E-84F8-4EA4-A296-D32C3339DF1C@gmail.com>
-	<CAHQecY4oXXwGeLsdXrgjFmouTiwvsJXa6K1Qbp--9WZ0=3O5CQ@mail.gmail.com>
-	<74b16359-8b63-4f34-b9b7-618bd8aa4cb6@linuxfoundation.org>
+X-Greylist: delayed 466 seconds by postgrey-1.32 at yocto-www;
+	Mon, 26 Dec 2016 05:49:38 PST
+Received: from postbox.kde.org (postbox.kde.org [46.4.96.248])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BA449E0070F
+	for <yocto@yoctoproject.org>; Mon, 26 Dec 2016 05:49:38 -0800 (PST)
+Received: from weatherwax.localnet (p4FCD0DED.dip0.t-ipconnect.de
+	[79.205.13.237]) (Authenticated sender: cordlandwehr)
+	by postbox.kde.org (Postfix) with ESMTPSA id 9B578BF1CA
+	for <yocto@yoctoproject.org>; Mon, 26 Dec 2016 13:41:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=kde.org; s=default;
+	t=1482759710; bh=zqQZjt0AyQooNuJrkx2iqJYDYJHdu7ttYljQt5CPYT4=;
+	h=From:To:Subject:Date:From;
+	b=qbfkyVwxefwvRf30kIQxNRBmYtqTg7RomU6jvhoZnBXSbDKBvmO9JO5tvsu4ykqct
+	Y+qigZs+WBFI6oQG8a9rRMdJ9pvei8pgl6gXXHdplZKv8gC3VebidcfuTWoCnxbU8N
+	wjT7F4KxfP4VsmuJ4T9VkrlLiYnc/x1v1mESeGrg=
+From: Andreas Cord-Landwehr <cordlandwehr@kde.org>
+To: yocto@yoctoproject.org
+Date: Mon, 26 Dec 2016 14:41:49 +0100
+Message-ID: <9212079.t3pUQfekqL@weatherwax>
+User-Agent: KMail/5.3.3 (Linux/4.8.0-2-amd64; KDE/5.29.0; x86_64; git-925145c;
+	2016-10-28)
 MIME-Version: 1.0
-In-Reply-To: <74b16359-8b63-4f34-b9b7-618bd8aa4cb6@linuxfoundation.org>
-User-Agent: Mutt/1.7.2 (2016-11-26)
-Cc: yocto@yoctoproject.org, bitbake-devel@lists.openembedded.org,
-	openembedded-devel@lists.openembedded.org,
-	yocto-infrastructure@yoctoproject.org
-Subject: Re: [bitbake-devel] [oe] Infra Full Stop 12/26-12/29
+Subject: [PATCH] Provide additional OECORE_EXTRA_SYSROOT variable for CMake Toolchain
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -81,126 +51,70 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 26 Dec 2016 07:43:01 -0000
-X-Groupsio-MsgNum: 33587
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="RASg3xLB4tUQ4RcS"
-Content-Disposition: inline
+X-List-Received-Date: Mon, 26 Dec 2016 13:49:42 -0000
+X-Groupsio-MsgNum: 33588
+Content-Type: multipart/mixed; boundary="nextPart2222092.GWti2vGBeQ"
+Content-Transfer-Encoding: 7Bit
 
---RASg3xLB4tUQ4RcS
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+--nextPart2222092.GWti2vGBeQ
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On Sun, Dec 25, 2016 at 08:06:50PM -0800, Michael Halstead wrote:
-> In preparation for the scheduled maintenance I have moved
-> git.openembedded.org to a new server temporarily. E-mail and Patchwork
-> hooks may not work correctly. All other git operations as well as
-> listings at http://git.openembedded.org/ should continue working.
->=20
-> If you have a git remote pointed directly at openembedded.org it will
-> fail. Please update your remote to point at git.openembedded.org and try
-> again.
+Hey, I would like to propose the appended patch for Poky's CMake toolchain to 
+allow its usage inside a Yocto SDK for building libraries and applications 
+using an external (meaning as in "different to the native SDK dir") install 
+directory.
 
-It doesn't seem to be working here:
+I hope that I use the correct mailing list and patch format. (It's my first 
+patch to Yocto) Please tell me if this mail is better suited for a different 
+mailing list.
 
-error: Could not fetch origin
-fatal: unable to connect to git.openembedded.org:
-git.openembedded.org[0: 104.236.212.160]: errno=3DConnection refused
-git.openembedded.org[1: 2604:a880:800:10::2127:2001]: errno=3DNetwork is un=
-reachable
+Cheers,
+Andreas
 
-But that's OK for me, I was prepared to do some holiday celebrations
-thanks to planned downtime :). And I have some local mirrors in case
-I got tired of celebrations before the downtime is over.
+--nextPart2222092.GWti2vGBeQ
+Content-Disposition: attachment; filename="0001-Provide-additional-OECORE_EXTRA_SYSROOT-variable.patch"
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/x-patch; charset="UTF-8"; name="0001-Provide-additional-OECORE_EXTRA_SYSROOT-variable.patch"
 
-> Other services that will stay up during the maintenance are:
->=20
-> Layerindex https://layers.openembedded.org/
-> Mailman http://lists.openembedded.org/
-> Patchwork https://patchwork.openembedded.org/
->=20
-> I'd like the share my appreciation for the OpenEmbedded volunteer
-> sysadmins who are taking time away from their holiday celebrations to
-> make this downtime as convenient for the rest of us as possible.
->=20
->=20
-> On 12/22/2016 09:19 AM, Tom King wrote:
-> > Schedule is  06:00UTC 27DEC16 for the full stop.  Things will start com=
-ing
-> > back (estimated) about 48hrs later.
-> >
-> > Tom
-> >
-> > On Tue, Dec 20, 2016 at 11:16 AM, Khem Raj <raj.khem@gmail.com> wrote:
-> >
-> >>> On Dec 20, 2016, at 10:50 AM, Tom King <ka6sox@gmail.com> wrote:
-> >>>
-> >>> Hi All,
-> >>>
-> >>> We have been looking for a time when we could do a full stop of the i=
-nfra
-> >>> to upgrade some bits and clear out some faults.
-> >>>
-> >>> This will involve shutting down the main machine that we use for *mos=
-t*
-> >> of
-> >>> the OE infra.
-> >>>
-> >>> Our goal is to put up a backup git master but other services such as:
-> >> wiki,
-> >>> patches, etc will be offline for some or all of that period.
-> >>>
-> >>> We have delayed doing this much needed maintenance to try to work aro=
-und
-> >>> Yocto and OE release schedules and it is necessary that we take this =
-time
-> >>> to do the work.
-> >>>
-> >> I guess, you need to come up with a tentative down-time schedule.
-> >>
-> >>> Tom
-> >>> (for the OE Infra Team)
-> >>> --
-> >>> _______________________________________________
-> >>> Openembedded-devel mailing list
-> >>> Openembedded-devel@lists.openembedded.org
-> >>> http://lists.openembedded.org/mailman/listinfo/openembedded-devel
-> >> --
-> >> _______________________________________________
-> >> Openembedded-devel mailing list
-> >> Openembedded-devel@lists.openembedded.org
-> >> http://lists.openembedded.org/mailman/listinfo/openembedded-devel
-> >>
->=20
-> --=20
-> Michael Halstead
-> Linux Foundation / SysAdmin
->=20
->=20
+From b09bc09c13d1ec9334bdc8a2c148436f1f363b71 Mon Sep 17 00:00:00 2001
+From: Andreas Cord-Landwehr <cordlandwehr@kde.org>
+Date: Mon, 26 Dec 2016 13:43:02 +0100
+Subject: [PATCH] Provide additional OECORE_EXTRA_SYSROOT variable
+
+When compiling against a Yocto generated SDK and using an install folder
+outside of the SDK's folder, CMake must be configure by using the
+respective CMAKE_FIND_ROOT_PATH. This CMake cache variable is set
+in the toolchain file and hence can only be configured via environment
+variables; unless one wants to modify a project's CMake files.
+
+This patch adds an additional environment variable OECORE_EXTRA_SYSROOT
+to specify such an additional sysroot location that can optionally
+be used when building against a Yocto SDK using this toolchain file.
+
+Signed-off-by: Andreas Cord-Landwehr <cordlandwehr@kde.org>
+---
+ meta/recipes-devtools/cmake/cmake/OEToolchainConfig.cmake | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/meta/recipes-devtools/cmake/cmake/OEToolchainConfig.cmake b/meta/recipes-devtools/cmake/cmake/OEToolchainConfig.cmake
+index 6518408c70..1927e0bdb4 100644
+--- a/meta/recipes-devtools/cmake/cmake/OEToolchainConfig.cmake
++++ b/meta/recipes-devtools/cmake/cmake/OEToolchainConfig.cmake
+@@ -4,7 +4,10 @@ set( CMAKE_CXX_FLAGS $ENV{CXXFLAGS}  CACHE STRING "" FORCE )
+ set( CMAKE ASM_FLAGS ${CMAKE_C_FLAGS} CACHE STRING "" FORCE )
+ set( CMAKE_LDFLAGS_FLAGS ${CMAKE_CXX_FLAGS} CACHE STRING "" FORCE )
+ 
+-set( CMAKE_FIND_ROOT_PATH $ENV{OECORE_TARGET_SYSROOT} $ENV{OECORE_NATIVE_SYSROOT} )
++# Re-root CMake search tree to sysroot locations given by environment variables OECORE_TARGET_SYSROOT and
++# OECORE_NATIVE_SYSROOT. For additional locations, e.g. a cross-building install directory, use
++# the OECORE_EXTRA_SYSROOT variable.
++set( CMAKE_FIND_ROOT_PATH $ENV{OECORE_TARGET_SYSROOT} $ENV{OECORE_NATIVE_SYSROOT} $ENV{OECORE_EXTRA_SYSROOT} )
+ set( CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER )
+ set( CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY )
+ set( CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY )
+-- 
+2.11.0
 
 
-
-
-> --=20
-> _______________________________________________
-> bitbake-devel mailing list
-> bitbake-devel@lists.openembedded.org
-> http://lists.openembedded.org/mailman/listinfo/bitbake-devel
-
-
---=20
-Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
-
---RASg3xLB4tUQ4RcS
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iF0EARECAB0WIQRU+ejDffEzV2Je2oc3VSO3ZXaAHAUCWGDKAwAKCRA3VSO3ZXaA
-HKWuAJ0UrA+4vVn4zTpxl1wKwlTLnUicLACeIO6YJIvZiwwbZMD//8QuGeoj9LQ=
-=EAJu
------END PGP SIGNATURE-----
-
---RASg3xLB4tUQ4RcS--
+--nextPart2222092.GWti2vGBeQ--
