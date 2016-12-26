@@ -1,69 +1,75 @@
-Return-Path: <mhalstead@linuxfoundation.org>
+Return-Path: <martin.jansa@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E39E0E0071C; Sun, 25 Dec 2016 20:06:58 -0800 (PST)
+	id D4E82E0053F; Sun, 25 Dec 2016 23:43:01 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (martin.jansa[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.82.67 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.83.43 listed in list.dnswl.org]
-Received: from mail-pg0-f43.google.com (mail-pg0-f43.google.com [74.125.83.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A25C6E0048B
-	for <yocto@yoctoproject.org>; Sun, 25 Dec 2016 20:06:54 -0800 (PST)
-Received: by mail-pg0-f43.google.com with SMTP id i5so65756926pgh.2
-	for <yocto@yoctoproject.org>; Sun, 25 Dec 2016 20:06:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=linuxfoundation.org; s=google;
-	h=subject:to:references:from:organization:message-id:date:user-agent
-	:mime-version:in-reply-to;
-	bh=R0s/J48cqKZipvOO0eUEw9VF8kl0LLe001M30gD/Smk=;
-	b=LsTfBqMlisITQnmn5dUaUh3uBTe+nHhHQ2i70iOJf53D6INnSiFeP2f+ywazGdA6zv
-	Qws8mS28CjWEyFtVViRt6M0EDfS5tkPBBnhveXHDpcorotfEsoVRlezdV7a7yJP5scHA
-	SRcF0CMKPozLo2JW6lchIjmyc9y5dRyZmygKo=
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.82.67 listed in dnsbl.sorbs.net]
+Received: from mail-wm0-f67.google.com (mail-wm0-f67.google.com [74.125.82.67])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 99495E00524;
+	Sun, 25 Dec 2016 23:43:00 -0800 (PST)
+Received: by mail-wm0-f67.google.com with SMTP id m203so51976086wma.3;
+	Sun, 25 Dec 2016 23:43:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=from:date:to:cc:subject:message-id:references:mime-version
+	:content-disposition:in-reply-to:user-agent;
+	bh=Gkuw5kLUKDZxDLBJeICGbpEL2QNSknHHTE/+CkbGXfg=;
+	b=hdQUJXl4G3Jg+W4WRvuW1PeFs0wLRzvKulAp4x7D37VS+rMHtgFJwGHCuDIyLfFI34
+	0nJycxcsmtfTYnhq8Hv4YuXqY8QvKhNk26o7zPRfNHur1I3ROxexfc2BRGO1Djmp5dG0
+	CU8WmnIuiRF265jA4ZBIdW9dYlizOPvktStN5g6cZz5ww/TcFkSr9wo33U6Aogp3hYEo
+	zElQjroLoa8ZaAhJloveJ+qLtGwp1/EHGZe5v12rM6RA01sQ51Rq2sZlkOc1VhzbT0Yu
+	QBKh6ocoyVNYW+QeIGc+XyAUAzacuBr6oRIuvcFZaVUtBGUPduEHvBPfZSIdEo2xR5nk
+	3z/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:references:from:organization
-	:message-id:date:user-agent:mime-version:in-reply-to;
-	bh=R0s/J48cqKZipvOO0eUEw9VF8kl0LLe001M30gD/Smk=;
-	b=SyKZywC/Mf51czUdHGGh3FYv6QXksTetM5z6+oElaycCwcok5otysxtJFqav1uynYI
-	vaEv09G1dNZYeQ4cxoywpOfFe7LSN9BT8OFMZ78LInmDbfYIr9M8CfFKDiJXbOSG/+Im
-	iY849blES4nwG3ZOmIQ3nlViTQkdExn98V7LjE0RZWlDwl2dPenVI3K1j7BKH01rJZ8+
-	OANGvfO5Kk3dfm8aRr8NZuLXSdmRCeXYQtS0JFqI4Zhy93dyjeeWwV6gL4jJmeXZDLBy
-	7NtLozEu4EGFavbhD3trCJlyaAcpIIkFuclDezLXKSEUv+b3BhxdrEYsczCZmvMtBNE/
-	egNg==
-X-Gm-Message-State: AIkVDXKJdW9yBRmrol/v9cSo8hE6udmpLER5zO5lSRFXzg4F3IOK63hCWWz1KGCqq9w0+3R1
-X-Received: by 10.98.75.75 with SMTP id y72mr18694153pfa.23.1482725214045;
-	Sun, 25 Dec 2016 20:06:54 -0800 (PST)
-Received: from yct-lpt.lan (50-39-165-77.bvtn.or.frontiernet.net.
-	[50.39.165.77]) by smtp.gmail.com with ESMTPSA id
-	q190sm37809398pfb.51.2016.12.25.20.06.52
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sun, 25 Dec 2016 20:06:52 -0800 (PST)
-To: openembedded-devel@lists.openembedded.org,
-	bitbake-devel@lists.openembedded.org,
-	yocto-infrastructure@yoctoproject.org, yocto@yoctoproject.org
+	h=x-gm-message-state:from:date:to:cc:subject:message-id:references
+	:mime-version:content-disposition:in-reply-to:user-agent;
+	bh=Gkuw5kLUKDZxDLBJeICGbpEL2QNSknHHTE/+CkbGXfg=;
+	b=KEeWulcGRzCj8BJlFlE7pz16mHgwt07e+ZZvU84vAnN37lKcBdhPmeRW8FZPBbfAaI
+	e/fBoodfIuRinYFJ7FIEAwZdqf/+KRWjPipzRHsBwxxqgVRIXRFb2TY4B1In5d3Ic153
+	c8Iy/vDhqjQE8KSxB4KXO7YeeDLhs4Lud2V1NZqq0RzPDUn/CSOtql6kUXch6kdWTE25
+	A5fHkAWtcs+VBM8XIVAnMuovtIMiXiuEr8YaavarL+zKWvbbL+bUqn2bUzNb+btNUZvY
+	WIQsgaKO/XA8+aw3BfG6REhhvEoLGHGq266D37+uPT0tLVNYbV3M2FmcGJzzE5LotDO3
+	xFDQ==
+X-Gm-Message-State: AIkVDXJIcTwEfkE2/rqqJpuJrx09G4n/aZ4AfN72IUC6tMHuraTZiPBcjpt8o8bjNvyM9A==
+X-Received: by 10.28.111.139 with SMTP id c11mr24317738wmi.139.1482738179237; 
+	Sun, 25 Dec 2016 23:42:59 -0800 (PST)
+Received: from localhost ([217.30.68.212])
+	by smtp.gmail.com with ESMTPSA id 6sm53537207wjt.5.2016.12.25.23.42.57
+	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+	Sun, 25 Dec 2016 23:42:57 -0800 (PST)
+From: Martin Jansa <martin.jansa@gmail.com>
+X-Google-Original-From: Martin Jansa <Martin.Jansa@gmail.com>
+Date: Mon, 26 Dec 2016 08:43:00 +0100
+To: Michael Halstead <mhalstead@linuxfoundation.org>
+Message-ID: <20161226074300.GB3242@jama>
 References: <CAHQecY48gVbt4S+88MHivSbv-Xdn29WRq5RPL6+QDVGYUPCwYw@mail.gmail.com>
 	<E628426E-84F8-4EA4-A296-D32C3339DF1C@gmail.com>
 	<CAHQecY4oXXwGeLsdXrgjFmouTiwvsJXa6K1Qbp--9WZ0=3O5CQ@mail.gmail.com>
-From: Michael Halstead <mhalstead@linuxfoundation.org>
-Organization: Linux Foundation
-Message-ID: <74b16359-8b63-4f34-b9b7-618bd8aa4cb6@linuxfoundation.org>
-Date: Sun, 25 Dec 2016 20:06:50 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.5.1
+	<74b16359-8b63-4f34-b9b7-618bd8aa4cb6@linuxfoundation.org>
 MIME-Version: 1.0
-In-Reply-To: <CAHQecY4oXXwGeLsdXrgjFmouTiwvsJXa6K1Qbp--9WZ0=3O5CQ@mail.gmail.com>
-Subject: Re: [oe] Infra Full Stop 12/26-12/29
+In-Reply-To: <74b16359-8b63-4f34-b9b7-618bd8aa4cb6@linuxfoundation.org>
+User-Agent: Mutt/1.7.2 (2016-11-26)
+Cc: yocto@yoctoproject.org, bitbake-devel@lists.openembedded.org,
+	openembedded-devel@lists.openembedded.org,
+	yocto-infrastructure@yoctoproject.org
+Subject: Re: [bitbake-devel] [oe] Infra Full Stop 12/26-12/29
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,128 +81,126 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 26 Dec 2016 04:06:59 -0000
-X-Groupsio-MsgNum: 33586
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature";
-	boundary="G0Te5ffCPFULSUrNKPVioCe1IhmMF47fO"
+X-List-Received-Date: Mon, 26 Dec 2016 07:43:01 -0000
+X-Groupsio-MsgNum: 33587
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="RASg3xLB4tUQ4RcS"
+Content-Disposition: inline
 
---G0Te5ffCPFULSUrNKPVioCe1IhmMF47fO
-Content-Type: multipart/mixed; boundary="hGHMl4sm8WLEwn8j8M6ClWp8pHbmKlLKT";
- protected-headers="v1"
-From: Michael Halstead <mhalstead@linuxfoundation.org>
-To: openembedded-devel@lists.openembedded.org,
- bitbake-devel@lists.openembedded.org, yocto-infrastructure@yoctoproject.org,
- yocto@yoctoproject.org
-Message-ID: <74b16359-8b63-4f34-b9b7-618bd8aa4cb6@linuxfoundation.org>
-Subject: Re: [oe] Infra Full Stop 12/26-12/29
-References: <CAHQecY48gVbt4S+88MHivSbv-Xdn29WRq5RPL6+QDVGYUPCwYw@mail.gmail.com>
- <E628426E-84F8-4EA4-A296-D32C3339DF1C@gmail.com>
- <CAHQecY4oXXwGeLsdXrgjFmouTiwvsJXa6K1Qbp--9WZ0=3O5CQ@mail.gmail.com>
-In-Reply-To: <CAHQecY4oXXwGeLsdXrgjFmouTiwvsJXa6K1Qbp--9WZ0=3O5CQ@mail.gmail.com>
-
---hGHMl4sm8WLEwn8j8M6ClWp8pHbmKlLKT
-Content-Type: text/plain; charset=windows-1252
+--RASg3xLB4tUQ4RcS
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-In preparation for the scheduled maintenance I have moved
-git.openembedded.org to a new server temporarily. E-mail and Patchwork
-hooks may not work correctly. All other git operations as well as
-listings at http://git.openembedded.org/ should continue working.
+On Sun, Dec 25, 2016 at 08:06:50PM -0800, Michael Halstead wrote:
+> In preparation for the scheduled maintenance I have moved
+> git.openembedded.org to a new server temporarily. E-mail and Patchwork
+> hooks may not work correctly. All other git operations as well as
+> listings at http://git.openembedded.org/ should continue working.
+>=20
+> If you have a git remote pointed directly at openembedded.org it will
+> fail. Please update your remote to point at git.openembedded.org and try
+> again.
 
-If you have a git remote pointed directly at openembedded.org it will
-fail. Please update your remote to point at git.openembedded.org and try
-again.
+It doesn't seem to be working here:
 
-Other services that will stay up during the maintenance are:
+error: Could not fetch origin
+fatal: unable to connect to git.openembedded.org:
+git.openembedded.org[0: 104.236.212.160]: errno=3DConnection refused
+git.openembedded.org[1: 2604:a880:800:10::2127:2001]: errno=3DNetwork is un=
+reachable
 
-Layerindex https://layers.openembedded.org/
-Mailman http://lists.openembedded.org/
-Patchwork https://patchwork.openembedded.org/
+But that's OK for me, I was prepared to do some holiday celebrations
+thanks to planned downtime :). And I have some local mirrors in case
+I got tired of celebrations before the downtime is over.
 
-I'd like the share my appreciation for the OpenEmbedded volunteer
-sysadmins who are taking time away from their holiday celebrations to
-make this downtime as convenient for the rest of us as possible.
-
-
-On 12/22/2016 09:19 AM, Tom King wrote:
-> Schedule is  06:00UTC 27DEC16 for the full stop.  Things will start com=
+> Other services that will stay up during the maintenance are:
+>=20
+> Layerindex https://layers.openembedded.org/
+> Mailman http://lists.openembedded.org/
+> Patchwork https://patchwork.openembedded.org/
+>=20
+> I'd like the share my appreciation for the OpenEmbedded volunteer
+> sysadmins who are taking time away from their holiday celebrations to
+> make this downtime as convenient for the rest of us as possible.
+>=20
+>=20
+> On 12/22/2016 09:19 AM, Tom King wrote:
+> > Schedule is  06:00UTC 27DEC16 for the full stop.  Things will start com=
 ing
-> back (estimated) about 48hrs later.
->
-> Tom
->
-> On Tue, Dec 20, 2016 at 11:16 AM, Khem Raj <raj.khem@gmail.com> wrote:
->
->>> On Dec 20, 2016, at 10:50 AM, Tom King <ka6sox@gmail.com> wrote:
->>>
->>> Hi All,
->>>
->>> We have been looking for a time when we could do a full stop of the i=
+> > back (estimated) about 48hrs later.
+> >
+> > Tom
+> >
+> > On Tue, Dec 20, 2016 at 11:16 AM, Khem Raj <raj.khem@gmail.com> wrote:
+> >
+> >>> On Dec 20, 2016, at 10:50 AM, Tom King <ka6sox@gmail.com> wrote:
+> >>>
+> >>> Hi All,
+> >>>
+> >>> We have been looking for a time when we could do a full stop of the i=
 nfra
->>> to upgrade some bits and clear out some faults.
->>>
->>> This will involve shutting down the main machine that we use for *mos=
+> >>> to upgrade some bits and clear out some faults.
+> >>>
+> >>> This will involve shutting down the main machine that we use for *mos=
 t*
->> of
->>> the OE infra.
->>>
->>> Our goal is to put up a backup git master but other services such as:=
-
->> wiki,
->>> patches, etc will be offline for some or all of that period.
->>>
->>> We have delayed doing this much needed maintenance to try to work aro=
+> >> of
+> >>> the OE infra.
+> >>>
+> >>> Our goal is to put up a backup git master but other services such as:
+> >> wiki,
+> >>> patches, etc will be offline for some or all of that period.
+> >>>
+> >>> We have delayed doing this much needed maintenance to try to work aro=
 und
->>> Yocto and OE release schedules and it is necessary that we take this =
+> >>> Yocto and OE release schedules and it is necessary that we take this =
 time
->>> to do the work.
->>>
->> I guess, you need to come up with a tentative down-time schedule.
->>
->>> Tom
->>> (for the OE Infra Team)
->>> --
->>> _______________________________________________
->>> Openembedded-devel mailing list
->>> Openembedded-devel@lists.openembedded.org
->>> http://lists.openembedded.org/mailman/listinfo/openembedded-devel
->> --
->> _______________________________________________
->> Openembedded-devel mailing list
->> Openembedded-devel@lists.openembedded.org
->> http://lists.openembedded.org/mailman/listinfo/openembedded-devel
->>
+> >>> to do the work.
+> >>>
+> >> I guess, you need to come up with a tentative down-time schedule.
+> >>
+> >>> Tom
+> >>> (for the OE Infra Team)
+> >>> --
+> >>> _______________________________________________
+> >>> Openembedded-devel mailing list
+> >>> Openembedded-devel@lists.openembedded.org
+> >>> http://lists.openembedded.org/mailman/listinfo/openembedded-devel
+> >> --
+> >> _______________________________________________
+> >> Openembedded-devel mailing list
+> >> Openembedded-devel@lists.openembedded.org
+> >> http://lists.openembedded.org/mailman/listinfo/openembedded-devel
+> >>
+>=20
+> --=20
+> Michael Halstead
+> Linux Foundation / SysAdmin
+>=20
+>=20
+
+
+
+
+> --=20
+> _______________________________________________
+> bitbake-devel mailing list
+> bitbake-devel@lists.openembedded.org
+> http://lists.openembedded.org/mailman/listinfo/bitbake-devel
+
 
 --=20
-Michael Halstead
-Linux Foundation / SysAdmin
+Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
 
-
-
---hGHMl4sm8WLEwn8j8M6ClWp8pHbmKlLKT--
-
---G0Te5ffCPFULSUrNKPVioCe1IhmMF47fO
+--RASg3xLB4tUQ4RcS
 Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
+Content-Description: Digital signature
 
 -----BEGIN PGP SIGNATURE-----
-Version: GnuPG v2
 
-iQIcBAEBCAAGBQJYYJdbAAoJEGpkljW6QlqVmuQP/j9rqDXE6QBpYP34ycYWcCWF
-M7JRwEHsCe/PdR1VNrRJq7XTQy21zYKmBGf3NkWUUwWWvsXaXQ1vxuUGTVBsXMLt
-m+fCak6zwQhcTRV5qGnwIow3Pze0G4QHsRx8FUKGbTksLXTG01OzNfIL0TCmO38s
-qOmNrtBhP5Jc/mJMuLGDLDlx9KodoVAr8vVxqM/aTj6PvbtZYoJeIxCGEgdhyyj0
-IAOA+1xvH/RMrtzL/oTOa9KKYHbGRaF5aZou8M+M4JaGQTma+oPb07dS8annYBdU
-S0/8Wu0c1v0AoepW6ENkR1g1YLZH+9QNekrFlhiTDp95iVhap0mq2nP1t8kX2i/x
-zDKD1rBow0pii9qz0/ixfsoRSn1J9ehfifo/g4tqOaJTqNPkxDelceD4JpOOX8Dj
-gUh+TtHOmZnGvTESyzjsNNVuByqdXwLgJXYW7WcksUu94yk+nj6n3b9eWMRMGVsj
-Q9snNncX/JiJmBSdEEIr9eFqJi0+ON5hkj7HK19jPFfrqA6hHdICH0Wt1zecPoHN
-eLMI2cToaJ1YjZYElo0cldf8jwBjT13rS7tt+rHg+B/IHnM6oCblF6kB99/WtNeI
-z41qhnAbwZsskcUTcMRdtLg5Km4qjSr8dCU6fiGif76GUe/1s8oJWzoihtqTcYY0
-6xWgTf7YPevOsMFSj1Zp
-=SX9n
+iF0EARECAB0WIQRU+ejDffEzV2Je2oc3VSO3ZXaAHAUCWGDKAwAKCRA3VSO3ZXaA
+HKWuAJ0UrA+4vVn4zTpxl1wKwlTLnUicLACeIO6YJIvZiwwbZMD//8QuGeoj9LQ=
+=EAJu
 -----END PGP SIGNATURE-----
 
---G0Te5ffCPFULSUrNKPVioCe1IhmMF47fO--
+--RASg3xLB4tUQ4RcS--
