@@ -1,52 +1,69 @@
-Return-Path: <richard_allen@keysight.com>
+Return-Path: <mhalstead@linuxfoundation.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6C269E00887; Fri, 23 Dec 2016 17:39:42 -0800 (PST)
+	id E39E0E0071C; Sun, 25 Dec 2016 20:06:58 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [192.25.5.35 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from cos-us-iron01k.cos.keysight.com
-	(cos-us-iron01k.cos.keysight.com [192.25.5.35])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 38FF4E00887
-	for <yocto@yoctoproject.org>; Fri, 23 Dec 2016 17:39:39 -0800 (PST)
-X-IPAS-Result: =?us-ascii?q?A2BxBABJ0V1YfRUYjJxeHAEBBAEBCgEBgnE5DQEBAQEBghG?=
-	=?us-ascii?q?OPap3ggkahggCgi4SAQIBAQEBAQEBEwEBFi8whRxeASoZPSYBBBuIaJwYkieKf?=
-	=?us-ascii?q?QELASWPdoMvgjAFiF+HZ4RAhXSiEEmRcyUBMIV1gUaIbQGBDAEBAQ?=
-X-IronPort-AV: E=Sophos;i="5.33,396,1477980000"; d="scan'208,217";a="43793714"
-Received: from wcosexch02k.cos.is.keysight.com (HELO 2k10hubs.keysight.com)
-	([156.140.24.21]) by cos-us-iron01k.cos.keysight.com with
-	ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 23 Dec 2016 18:39:35 -0700
-Received: from wcosexch01k.cos.is.keysight.com ([169.254.3.33]) by
-	wcosexch02k.cos.is.keysight.com ([156.140.24.21]) with mapi id
-	14.03.0279.002; Fri, 23 Dec 2016 18:39:33 -0700
-From: <richard_allen@keysight.com>
-To: <yocto@yoctoproject.org>
-Thread-Topic: morty, how to debug opkg issues with do_populate_sdk? (ipk
-	based) Error 255 (recipes  use bin_package)
-Thread-Index: AdJdhnNOmnONknVRQRmUj1Y2Nn388g==
-Date: Sat, 24 Dec 2016 01:39:33 +0000
-Message-ID: <BC774F321B0EF24DBF41FE7457B2B7862D17CCBE@wcosexch01k.cos.is.keysight.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [156.140.13.70]
-x-tm-as-product-ver: SMEX-12.0.0.1220-8.000.1202-22780.004
-x-tm-as-result: No--5.520500-8.000000-31
-x-tm-as-matchedid: 701625-704425-702876-702609-700359-139704-863828-700748-7
-	09584-707451-701927-705388-700648-702169-701305-711109-701604-121270-701407
-	-706249-704034-701016-701053-701465-188019-701236-702358-701446-700107-1480
-	04-148036-42000-42003
-x-tm-as-user-approved-sender: No
-x-tm-as-user-blocked-sender: No
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.83.43 listed in list.dnswl.org]
+Received: from mail-pg0-f43.google.com (mail-pg0-f43.google.com [74.125.83.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A25C6E0048B
+	for <yocto@yoctoproject.org>; Sun, 25 Dec 2016 20:06:54 -0800 (PST)
+Received: by mail-pg0-f43.google.com with SMTP id i5so65756926pgh.2
+	for <yocto@yoctoproject.org>; Sun, 25 Dec 2016 20:06:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=linuxfoundation.org; s=google;
+	h=subject:to:references:from:organization:message-id:date:user-agent
+	:mime-version:in-reply-to;
+	bh=R0s/J48cqKZipvOO0eUEw9VF8kl0LLe001M30gD/Smk=;
+	b=LsTfBqMlisITQnmn5dUaUh3uBTe+nHhHQ2i70iOJf53D6INnSiFeP2f+ywazGdA6zv
+	Qws8mS28CjWEyFtVViRt6M0EDfS5tkPBBnhveXHDpcorotfEsoVRlezdV7a7yJP5scHA
+	SRcF0CMKPozLo2JW6lchIjmyc9y5dRyZmygKo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:subject:to:references:from:organization
+	:message-id:date:user-agent:mime-version:in-reply-to;
+	bh=R0s/J48cqKZipvOO0eUEw9VF8kl0LLe001M30gD/Smk=;
+	b=SyKZywC/Mf51czUdHGGh3FYv6QXksTetM5z6+oElaycCwcok5otysxtJFqav1uynYI
+	vaEv09G1dNZYeQ4cxoywpOfFe7LSN9BT8OFMZ78LInmDbfYIr9M8CfFKDiJXbOSG/+Im
+	iY849blES4nwG3ZOmIQ3nlViTQkdExn98V7LjE0RZWlDwl2dPenVI3K1j7BKH01rJZ8+
+	OANGvfO5Kk3dfm8aRr8NZuLXSdmRCeXYQtS0JFqI4Zhy93dyjeeWwV6gL4jJmeXZDLBy
+	7NtLozEu4EGFavbhD3trCJlyaAcpIIkFuclDezLXKSEUv+b3BhxdrEYsczCZmvMtBNE/
+	egNg==
+X-Gm-Message-State: AIkVDXKJdW9yBRmrol/v9cSo8hE6udmpLER5zO5lSRFXzg4F3IOK63hCWWz1KGCqq9w0+3R1
+X-Received: by 10.98.75.75 with SMTP id y72mr18694153pfa.23.1482725214045;
+	Sun, 25 Dec 2016 20:06:54 -0800 (PST)
+Received: from yct-lpt.lan (50-39-165-77.bvtn.or.frontiernet.net.
+	[50.39.165.77]) by smtp.gmail.com with ESMTPSA id
+	q190sm37809398pfb.51.2016.12.25.20.06.52
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Sun, 25 Dec 2016 20:06:52 -0800 (PST)
+To: openembedded-devel@lists.openembedded.org,
+	bitbake-devel@lists.openembedded.org,
+	yocto-infrastructure@yoctoproject.org, yocto@yoctoproject.org
+References: <CAHQecY48gVbt4S+88MHivSbv-Xdn29WRq5RPL6+QDVGYUPCwYw@mail.gmail.com>
+	<E628426E-84F8-4EA4-A296-D32C3339DF1C@gmail.com>
+	<CAHQecY4oXXwGeLsdXrgjFmouTiwvsJXa6K1Qbp--9WZ0=3O5CQ@mail.gmail.com>
+From: Michael Halstead <mhalstead@linuxfoundation.org>
+Organization: Linux Foundation
+Message-ID: <74b16359-8b63-4f34-b9b7-618bd8aa4cb6@linuxfoundation.org>
+Date: Sun, 25 Dec 2016 20:06:50 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.5.1
 MIME-Version: 1.0
-Subject: morty, how to debug opkg issues with do_populate_sdk? (ipk based) Error 255 (recipes use bin_package)
+In-Reply-To: <CAHQecY4oXXwGeLsdXrgjFmouTiwvsJXa6K1Qbp--9WZ0=3O5CQ@mail.gmail.com>
+Subject: Re: [oe] Infra Full Stop 12/26-12/29
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,189 +75,128 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 24 Dec 2016 01:39:42 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_BC774F321B0EF24DBF41FE7457B2B7862D17CCBEwcosexch01kcosi_"
+X-List-Received-Date: Mon, 26 Dec 2016 04:06:59 -0000
+X-Groupsio-MsgNum: 33586
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature";
+	boundary="G0Te5ffCPFULSUrNKPVioCe1IhmMF47fO"
 
---_000_BC774F321B0EF24DBF41FE7457B2B7862D17CCBEwcosexch01kcosi_
-Content-Type: text/plain; charset="us-ascii"
+--G0Te5ffCPFULSUrNKPVioCe1IhmMF47fO
+Content-Type: multipart/mixed; boundary="hGHMl4sm8WLEwn8j8M6ClWp8pHbmKlLKT";
+ protected-headers="v1"
+From: Michael Halstead <mhalstead@linuxfoundation.org>
+To: openembedded-devel@lists.openembedded.org,
+ bitbake-devel@lists.openembedded.org, yocto-infrastructure@yoctoproject.org,
+ yocto@yoctoproject.org
+Message-ID: <74b16359-8b63-4f34-b9b7-618bd8aa4cb6@linuxfoundation.org>
+Subject: Re: [oe] Infra Full Stop 12/26-12/29
+References: <CAHQecY48gVbt4S+88MHivSbv-Xdn29WRq5RPL6+QDVGYUPCwYw@mail.gmail.com>
+ <E628426E-84F8-4EA4-A296-D32C3339DF1C@gmail.com>
+ <CAHQecY4oXXwGeLsdXrgjFmouTiwvsJXa6K1Qbp--9WZ0=3O5CQ@mail.gmail.com>
+In-Reply-To: <CAHQecY4oXXwGeLsdXrgjFmouTiwvsJXa6K1Qbp--9WZ0=3O5CQ@mail.gmail.com>
+
+--hGHMl4sm8WLEwn8j8M6ClWp8pHbmKlLKT
+Content-Type: text/plain; charset=windows-1252
 Content-Transfer-Encoding: quoted-printable
 
-I have some simple recipes which
-inherit bin_package
+In preparation for the scheduled maintenance I have moved
+git.openembedded.org to a new server temporarily. E-mail and Patchwork
+hooks may not work correctly. All other git operations as well as
+listings at http://git.openembedded.org/ should continue working.
 
-Local has
-PACKAGE_CLASSES ?=3D "package_ipk"
+If you have a git remote pointed directly at openembedded.org it will
+fail. Please update your remote to point at git.openembedded.org and try
+again.
 
-There are no issues with the krogoth release , can do -c populate_sdk and a=
-ll is well
-with morty, same recipe, same command
-but the -c populate_sdk give me;
+Other services that will stay up during the maintenance are:
 
+Layerindex https://layers.openembedded.org/
+Mailman http://lists.openembedded.org/
+Patchwork https://patchwork.openembedded.org/
 
-
-
-ERROR: core-image-minimal-1.0-r0 do_populate_sdk: Function failed: do_popul=
-ate_sdk
-ERROR: Logfile of failure stored in: /home/rcallen/proto/ipkwork/tmp/work/i=
-mx6qdl_imx-k-linux-gnueabi/core-image-minimal/1.0-r0/temp/log.do_populate_s=
-dk.55748
-ERROR: Task (/opt/yocto/morty/poky/meta/recipes-core/images/core-image-mini=
-mal.bb:do_populate_sdk) failed with exit code '1'
-
-The log file has:
-
-NOTE: Installing the following packages: opkg foosysm foo foocaps-samples p=
-ackagegroup-core-boot foo-sdt foo-utils packagegroup-core-eclipse-debug pac=
-kagegroup-core-standalone-sdk-target packagegroup-core-standalone-sdk-targe=
-t-dbg foo-tests foocaps u-boot-imx- ssh-keys foo-samples run-postinsts fooi=
-o foocaps-tests
-NOTE: /home/rcallen/proto/ipkwork/tmp/sysroots/x86_64-linux/usr/bin/opkg --=
-volatile-cache -f /home/rcallen/proto/ipkwork/tmp/work/imx6qdl_imx-k-linux-=
-gnueabi/core-image-minimal/1.0-r0/opkg.conf -t /home/rcallen/proto/ipkwork/=
-tmp/work/imx6qdl_imx-k-linux-gnueabi/core-image-minimal/1.0-r0/temp/ipktemp=
-/ -o /home/rcallen/proto/ipkwork/tmp/work/imx6qdl_imx-k-linux-gnueabi/core-=
-image-minimal/1.0-r0/sdk/image/opt/tlo/2.2/sysroots/cortexa9hf-neon-k-linux=
--gnueabi  --force_postinstall --prefer-arch-to-version   install opkg foosy=
-sm foo foocaps-samples packagegroup-core-boot foo-sdt foo-utils packagegrou=
-p-core-eclipse-debug packagegroup-core-standalone-sdk-target packagegroup-c=
-ore-standalone-sdk-target-dbg foo-tests foocaps u-boot-imx- ssh-keys foo-sa=
-mples run-postinsts fooio foocaps-tests
-ERROR: Unable to install packages. Command '/home/rcallen/proto/ipkwork/tmp=
-/sysroots/x86_64-linux/usr/bin/opkg --volatile-cache -f /home/rcallen/proto=
-/ipkwork/tmp/work/imx6qdl_imx-k-linux-gnueabi/core-image-minimal/1.0-r0/opk=
-g.conf -t /home/rcallen/proto/ipkwork/tmp/work/imx6qdl_imx-k-linux-gnueabi/=
-core-image-minimal/1.0-r0/temp/ipktemp/ -o /home/rcallen/proto/ipkwork/tmp/=
-work/imx6qdl_imx-k-linux-gnueabi/core-image-minimal/1.0-r0/sdk/image/opt/tl=
-o/2.2/sysroots/cortexa9hf-neon-k-linux-gnueabi  --force_postinstall --prefe=
-r-arch-to-version   install opkg foosysm foo foocaps-samples packagegroup-c=
-ore-boot foo-sdt foo-utils packagegroup-core-eclipse-debug packagegroup-cor=
-e-standalone-sdk-target packagegroup-core-standalone-sdk-target-dbg foo-tes=
-ts foocaps u-boot-imx- ssh-keys foo-samples run-postinsts fooio foocaps-tes=
-ts' returned 255:
- Removing any system startup links for run-postinsts ...
-
-If I change to use rpm
-
-PACKAGE_CLASSES ?=3D "package_rpm"
-
-No issues.
-I need ipk , since want to put the more efficient opkg on my system (no roo=
-m for smartpm)
-
-If I don't include the recipes based on " inherit bin_package"
-I have no problems with
-
-PACKAGE_CLASSES ?=3D "package_ipk"
-
-This is keeping me from moving to morty .
-
-Thanks
-Richard Allen
+I'd like the share my appreciation for the OpenEmbedded volunteer
+sysadmins who are taking time away from their holiday celebrations to
+make this downtime as convenient for the rest of us as possible.
 
 
-
-
---_000_BC774F321B0EF24DBF41FE7457B2B7862D17CCBEwcosexch01kcosi_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+On 12/22/2016 09:19 AM, Tom King wrote:
+> Schedule is  06:00UTC 27DEC16 for the full stop.  Things will start com=
+ing
+> back (estimated) about 48hrs later.
 >
-<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
-<!-- converted from rtf -->
-<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
- #800000 2px solid; } --></style>
-</head>
-<body>
-<font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">
-<div>I have some simple recipes which </div>
-<div>inherit bin_package</div>
-<div>&nbsp;</div>
-<div>Local has</div>
-<div>PACKAGE_CLASSES ?=3D &quot;package_ipk&quot;</div>
-<div>&nbsp;</div>
-<div>There are no issues with the krogoth release , can do -c populate_sdk =
-and all is well</div>
-<div>with morty, same recipe, same command </div>
-<div>but the -c populate_sdk give me;</div>
-<div>&nbsp;</div>
-<div>&nbsp;</div>
-<div>&nbsp;</div>
-<div>&nbsp;</div>
-<div><font face=3D"Courier New">ERROR: core-image-minimal-1.0-r0 do_populat=
-e_sdk: Function failed: do_populate_sdk</font></div>
-<div><font face=3D"Courier New">ERROR: Logfile of failure stored in: /home/=
-rcallen/proto/ipkwork/tmp/work/imx6qdl_imx-k-linux-gnueabi/core-image-minim=
-al/1.0-r0/temp/log.do_populate_sdk.55748</font></div>
-<div><font face=3D"Courier New">ERROR: Task (/opt/yocto/morty/poky/meta/rec=
-ipes-core/images/core-image-minimal.bb:do_populate_sdk) failed with exit co=
-de '1'&nbsp; </font></div>
-<div>&nbsp;</div>
-<div>The log file has:</div>
-<div>&nbsp;</div>
-<div><font face=3D"Courier New">NOTE: Installing the following packages: op=
-kg foosysm foo foocaps-samples packagegroup-core-boot foo-sdt foo-utils pac=
-kagegroup-core-eclipse-debug packagegroup-core-standalone-sdk-target packag=
-egroup-core-standalone-sdk-target-dbg
-foo-tests foocaps u-boot-imx- ssh-keys foo-samples run-postinsts fooio fooc=
-aps-tests</font></div>
-<div><font face=3D"Courier New">NOTE: /home/rcallen/proto/ipkwork/tmp/sysro=
-ots/x86_64-linux/usr/bin/opkg --volatile-cache -f /home/rcallen/proto/ipkwo=
-rk/tmp/work/imx6qdl_imx-k-linux-gnueabi/core-image-minimal/1.0-r0/opkg.conf=
- -t /home/rcallen/proto/ipkwork/tmp/work/imx6qdl_imx-k-linux-gnueabi/core-i=
-mage-minimal/1.0-r0/temp/ipktemp/
--o /home/rcallen/proto/ipkwork/tmp/work/imx6qdl_imx-k-linux-gnueabi/core-im=
-age-minimal/1.0-r0/sdk/image/opt/tlo/2.2/sysroots/cortexa9hf-neon-k-linux-g=
-nueabi&nbsp; --force_postinstall --prefer-arch-to-version&nbsp;&nbsp; insta=
-ll opkg foosysm foo foocaps-samples packagegroup-core-boot
-foo-sdt foo-utils packagegroup-core-eclipse-debug packagegroup-core-standal=
-one-sdk-target packagegroup-core-standalone-sdk-target-dbg foo-tests foocap=
-s u-boot-imx- ssh-keys foo-samples run-postinsts fooio foocaps-tests</font>=
-</div>
-<div><font face=3D"Courier New"><b>ERROR</b>: Unable to install packages. C=
-ommand '/home/rcallen/proto/ipkwork/tmp/sysroots/x86_64-linux/usr/bin/opkg =
---volatile-cache -f /home/rcallen/proto/ipkwork/tmp/work/imx6qdl_imx-k-linu=
-x-gnueabi/core-image-minimal/1.0-r0/opkg.conf
--t /home/rcallen/proto/ipkwork/tmp/work/imx6qdl_imx-k-linux-gnueabi/core-im=
-age-minimal/1.0-r0/temp/ipktemp/ -o /home/rcallen/proto/ipkwork/tmp/work/im=
-x6qdl_imx-k-linux-gnueabi/core-image-minimal/1.0-r0/sdk/image/opt/tlo/2.2/s=
-ysroots/cortexa9hf-neon-k-linux-gnueabi&nbsp;
---force_postinstall --prefer-arch-to-version&nbsp;&nbsp; install opkg foosy=
-sm foo foocaps-samples packagegroup-core-boot foo-sdt foo-utils packagegrou=
-p-core-eclipse-debug packagegroup-core-standalone-sdk-target packagegroup-c=
-ore-standalone-sdk-target-dbg foo-tests foocaps
-u-boot-imx- ssh-keys foo-samples run-postinsts fooio foocaps-tests' returne=
-d 255:</font></div>
-<div><font face=3D"Courier New"> Removing any system startup links for run-=
-postinsts ...</font></div>
-<div>&nbsp;</div>
-<div><font face=3D"Courier New">If I change to use rpm</font></div>
-<div>&nbsp;</div>
-<div>PACKAGE_CLASSES ?=3D &quot;package_rpm&quot;</div>
-<div>&nbsp;</div>
-<div>No issues.</div>
-<div>I need ipk , since want to put the more efficient opkg on my system (n=
-o room for smartpm)</div>
-<div>&nbsp;</div>
-<div>If I don&#8217;t include the recipes based on &#8220; inherit bin_pack=
-age&#8221;</div>
-<div>I have no problems with</div>
-<div>&nbsp;</div>
-<div>PACKAGE_CLASSES ?=3D &quot;package_ipk&quot;</div>
-<div>&nbsp;</div>
-<div>This is keeping me from moving to morty .</div>
-<div>&nbsp;</div>
-<div>Thanks</div>
-<div>Richard Allen</div>
-<div>&nbsp;</div>
-<div>&nbsp;</div>
-<div>&nbsp;</div>
-</span></font>
-</body>
-</html>
+> Tom
+>
+> On Tue, Dec 20, 2016 at 11:16 AM, Khem Raj <raj.khem@gmail.com> wrote:
+>
+>>> On Dec 20, 2016, at 10:50 AM, Tom King <ka6sox@gmail.com> wrote:
+>>>
+>>> Hi All,
+>>>
+>>> We have been looking for a time when we could do a full stop of the i=
+nfra
+>>> to upgrade some bits and clear out some faults.
+>>>
+>>> This will involve shutting down the main machine that we use for *mos=
+t*
+>> of
+>>> the OE infra.
+>>>
+>>> Our goal is to put up a backup git master but other services such as:=
 
---_000_BC774F321B0EF24DBF41FE7457B2B7862D17CCBEwcosexch01kcosi_--
+>> wiki,
+>>> patches, etc will be offline for some or all of that period.
+>>>
+>>> We have delayed doing this much needed maintenance to try to work aro=
+und
+>>> Yocto and OE release schedules and it is necessary that we take this =
+time
+>>> to do the work.
+>>>
+>> I guess, you need to come up with a tentative down-time schedule.
+>>
+>>> Tom
+>>> (for the OE Infra Team)
+>>> --
+>>> _______________________________________________
+>>> Openembedded-devel mailing list
+>>> Openembedded-devel@lists.openembedded.org
+>>> http://lists.openembedded.org/mailman/listinfo/openembedded-devel
+>> --
+>> _______________________________________________
+>> Openembedded-devel mailing list
+>> Openembedded-devel@lists.openembedded.org
+>> http://lists.openembedded.org/mailman/listinfo/openembedded-devel
+>>
+
+--=20
+Michael Halstead
+Linux Foundation / SysAdmin
+
+
+
+--hGHMl4sm8WLEwn8j8M6ClWp8pHbmKlLKT--
+
+--G0Te5ffCPFULSUrNKPVioCe1IhmMF47fO
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2
+
+iQIcBAEBCAAGBQJYYJdbAAoJEGpkljW6QlqVmuQP/j9rqDXE6QBpYP34ycYWcCWF
+M7JRwEHsCe/PdR1VNrRJq7XTQy21zYKmBGf3NkWUUwWWvsXaXQ1vxuUGTVBsXMLt
+m+fCak6zwQhcTRV5qGnwIow3Pze0G4QHsRx8FUKGbTksLXTG01OzNfIL0TCmO38s
+qOmNrtBhP5Jc/mJMuLGDLDlx9KodoVAr8vVxqM/aTj6PvbtZYoJeIxCGEgdhyyj0
+IAOA+1xvH/RMrtzL/oTOa9KKYHbGRaF5aZou8M+M4JaGQTma+oPb07dS8annYBdU
+S0/8Wu0c1v0AoepW6ENkR1g1YLZH+9QNekrFlhiTDp95iVhap0mq2nP1t8kX2i/x
+zDKD1rBow0pii9qz0/ixfsoRSn1J9ehfifo/g4tqOaJTqNPkxDelceD4JpOOX8Dj
+gUh+TtHOmZnGvTESyzjsNNVuByqdXwLgJXYW7WcksUu94yk+nj6n3b9eWMRMGVsj
+Q9snNncX/JiJmBSdEEIr9eFqJi0+ON5hkj7HK19jPFfrqA6hHdICH0Wt1zecPoHN
+eLMI2cToaJ1YjZYElo0cldf8jwBjT13rS7tt+rHg+B/IHnM6oCblF6kB99/WtNeI
+z41qhnAbwZsskcUTcMRdtLg5Km4qjSr8dCU6fiGif76GUe/1s8oJWzoihtqTcYY0
+6xWgTf7YPevOsMFSj1Zp
+=SX9n
+-----END PGP SIGNATURE-----
+
+--G0Te5ffCPFULSUrNKPVioCe1IhmMF47fO--
