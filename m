@@ -1,6 +1,6 @@
 Return-Path: <prvs=11695b2fec=nidhi.gareja@elektrobit.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 00593E0055C; Tue, 27 Dec 2016 01:02:24 -0800 (PST)
+	id AA903E0055C; Tue, 27 Dec 2016 01:14:41 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,43 +9,41 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 169 seconds by postgrey-1.32 at yocto-www;
-	Tue, 27 Dec 2016 01:02:23 PST
 Received: from smtpgwcipde.elektrobit.com
 	(smtpgwcipde.automotive.elektrobit.com [213.95.163.141])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DFCFAE004E5
-	for <yocto@yoctoproject.org>; Tue, 27 Dec 2016 01:02:23 -0800 (PST)
-Received: from denue6es003.localdomain (denue6es003.automotive.elektrobit.com
-	[213.95.163.136]) by smtpgwcipde.elektrobit.com with ESMTP id
-	uBR92Msr010150-uBR92Mst010150
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 21C2FE004E5
+	for <yocto@yoctoproject.org>; Tue, 27 Dec 2016 01:14:39 -0800 (PST)
+Received: from denue6es002.localdomain (denue6es002.automotive.elektrobit.com
+	[213.95.163.135]) by smtpgwcipde.elektrobit.com with ESMTP id
+	uBR8xXjr009961-uBR8xXjt009961
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=OK)
-	for <yocto@yoctoproject.org>; Tue, 27 Dec 2016 10:02:22 +0100
-Received: from denue6es003.securemail.local (localhost [127.0.0.1])
-	by denue6es003.localdomain (Postfix) with SMTP id 996352D482
-	for <yocto@yoctoproject.org>; Tue, 27 Dec 2016 10:02:22 +0100 (CET)
+	for <yocto@yoctoproject.org>; Tue, 27 Dec 2016 09:59:33 +0100
+Received: from denue6es002.securemail.local (localhost [127.0.0.1])
+	by denue6es002.localdomain (Postfix) with SMTP id 5F0F91928E
+	for <yocto@yoctoproject.org>; Tue, 27 Dec 2016 09:59:33 +0100 (CET)
 Received: from denue6es008.ebgroup.elektrobit.com (unknown [10.5.139.25])
-	by denue6es003.localdomain (Postfix) with ESMTPS
-	for <yocto@yoctoproject.org>; Tue, 27 Dec 2016 10:02:22 +0100 (CET)
+	by denue6es002.localdomain (Postfix) with ESMTPS
+	for <yocto@yoctoproject.org>; Tue, 27 Dec 2016 09:59:33 +0100 (CET)
 Received: from denue6es007.ebgroup.elektrobit.com (10.5.139.21) by
 	denue6es008.ebgroup.elektrobit.com (10.5.139.25) with Microsoft SMTP
-	Server (TLS) id 15.0.1210.3; Tue, 27 Dec 2016 10:02:22 +0100
+	Server (TLS) id 15.0.1210.3; Tue, 27 Dec 2016 09:59:32 +0100
 Received: from denue6es007.ebgroup.elektrobit.com ([fe80::3df2:46b8:bd8:b87b])
 	by denue6es007.ebgroup.elektrobit.com
 	([fe80::3df2:46b8:bd8:b87b%12]) with
-	mapi id 15.00.1210.000; Tue, 27 Dec 2016 10:02:22 +0100
+	mapi id 15.00.1210.000; Tue, 27 Dec 2016 09:59:32 +0100
 From: <Nidhi.Gareja@elektrobit.com>
 To: <yocto@yoctoproject.org>
 Thread-Topic: ERROR: Function failed: do_compile 
-Thread-Index: AdJgH4hB9SCmUyxvRd6khciRqRxF4AAAFmZQ
-Date: Tue, 27 Dec 2016 09:02:21 +0000
-Message-ID: <5aee1886fae844b596be31c314714faf@denue6es007.ebgroup.elektrobit.com>
+Thread-Index: AdJgH4hB9SCmUyxvRd6khciRqRxF4A==
+Date: Tue, 27 Dec 2016 08:59:32 +0000
+Message-ID: <0fb79d89d4124632bbcf0be5b674b14a@denue6es007.ebgroup.elektrobit.com>
 Accept-Language: en-US, de-DE
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-ms-exchange-transport-fromentityheader: Hosted
 x-originating-ip: [10.5.137.27]
 MIME-Version: 1.0
-Subject: FW: ERROR: Function failed: do_compile
+Subject: ERROR: Function failed: do_compile
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -57,19 +55,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 27 Dec 2016 09:02:25 -0000
+X-List-Received-Date: Tue, 27 Dec 2016 09:14:41 -0000
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_5aee1886fae844b596be31c314714fafdenue6es007ebgroupelekt_"
+	boundary="_000_0fb79d89d4124632bbcf0be5b674b14adenue6es007ebgroupelekt_"
 
---_000_5aee1886fae844b596be31c314714fafdenue6es007ebgroupelekt_
+--_000_0fb79d89d4124632bbcf0be5b674b14adenue6es007ebgroupelekt_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
 Hi,
 
-When I try to bitbake my customized image, I am getting the following error=
-s :
+When I try to bitbake my customized image, iam getting the following errors=
+ :
 ---------------------------------------------------------------------------=
 -------------------
 ERROR: oe_runmake failed
@@ -138,7 +136,7 @@ Regards,
 Nidhi
 
 
---_000_5aee1886fae844b596be31c314714fafdenue6es007ebgroupelekt_
+--_000_0fb79d89d4124632bbcf0be5b674b14adenue6es007ebgroupelekt_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -179,16 +177,12 @@ a:visited, span.MsoHyperlinkFollowed
 	color:purple;
 	text-decoration:underline;}
 span.EmailStyle17
-	{mso-style-type:personal;
+	{mso-style-type:personal-compose;
 	font-family:"Calibri","sans-serif";
 	color:windowtext;}
-span.EmailStyle18
-	{mso-style-type:personal-reply;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
 .MsoChpDefault
 	{mso-style-type:export-only;
-	font-size:10.0pt;}
+	font-family:"Calibri","sans-serif";}
 @page WordSection1
 	{size:612.0pt 792.0pt;
 	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
@@ -205,9 +199,8 @@ div.WordSection1
 <div class=3D"WordSection1">
 <p class=3D"MsoNormal">Hi,<o:p></o:p></p>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">When I try to bitbake my customized image, <span sty=
-le=3D"color:#1F497D">
-I </span>am getting the following errors :<o:p></o:p></p>
+<p class=3D"MsoNormal">When I try to bitbake my customized image, iam getti=
+ng the following errors :<o:p></o:p></p>
 <p class=3D"MsoNormal">----------------------------------------------------=
 ------------------------------------------<o:p></o:p></p>
 <p class=3D"MsoNormal">ERROR: oe_runmake failed<o:p></o:p></p>
@@ -298,4 +291,4 @@ g a non-zero exit code.<o:p></o:p></p>
 </body>
 </html>
 
---_000_5aee1886fae844b596be31c314714fafdenue6es007ebgroupelekt_--
+--_000_0fb79d89d4124632bbcf0be5b674b14adenue6es007ebgroupelekt_--
