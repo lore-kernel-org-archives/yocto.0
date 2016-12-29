@@ -1,6 +1,6 @@
 Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9B34AE0071C; Thu, 29 Dec 2016 10:20:21 -0800 (PST)
+	id 34558E0071C; Thu, 29 Dec 2016 10:32:45 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -18,52 +18,55 @@ X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 Received: from mail-wm0-f65.google.com (mail-wm0-f65.google.com [74.125.82.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DDA0BE006E3
-	for <yocto@yoctoproject.org>; Thu, 29 Dec 2016 10:20:19 -0800 (PST)
-Received: by mail-wm0-f65.google.com with SMTP id m203so67575712wma.3
-	for <yocto@yoctoproject.org>; Thu, 29 Dec 2016 10:20:19 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D2166E006E3
+	for <yocto@yoctoproject.org>; Thu, 29 Dec 2016 10:32:41 -0800 (PST)
+Received: by mail-wm0-f65.google.com with SMTP id c85so29437543wmi.1
+	for <yocto@yoctoproject.org>; Thu, 29 Dec 2016 10:32:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
 	h=date:from:to:cc:subject:message-id:references:mime-version
 	:content-disposition:in-reply-to:user-agent;
-	bh=/rmkcCQTgPEDsosMd5lAmqUtFkc49lzMBBonvofcwSk=;
-	b=GuvMhoGD1kMrr0MF9UpP8FQOni8QUQ5U1r0Or7LA+xnaAm9mp7ECzEVBw78nxZlgao
-	V7ND2o9pXYaIPQXb/6FkS45yX3tOwy0c4tua2Vl64BXjCnqKAut5/KvgeiBlzUkiEB2c
-	ntaOKu4tnrF2hV3NV0WUIipy5uSjKm08ujTX+lSSfQ2q8i30GJvNGI+Zoob5fb2xB3Dt
-	RjqRiL6uXJXrMtteoGYsiULhy3y7/GMVzr2BC7R5PtP+cebCuq5GbTQia6a2rFPfxaJ7
-	lqUr0PanYbcLizQfU4a9C/BiXQlyeMAvvNS/2s69W1j+0776CZRLiMztUvbUTtPdjOZ0
-	YUgQ==
+	bh=/ZEoB19T4jkdXYXoV2BiUpgslQOWW5sWon1UuKxqQnU=;
+	b=uaaAB03/oqUiHJWL+OF3ifURO7mPIiCskBGn+PEErqxTDJAb6Yg45bU9Xrp80ZV5+C
+	5S5DSbGzgytM3iIhZaLbmg02rlu6SMXNC4ap9Hm/gJVgFpmCxNUxjJJ+FeCh6+mhuDQ0
+	+yAK5xYRVs8tubdVLg1ZTyKF8oZeL+30+U9IxS4QjXQ7qXKkUH5r5d/CiuDIfvmyA3wv
+	m7upfHyFA1UXcFbh344TCNVU9f3lVqr0cOQbe0FFtmWk66judGubMLp0EBA5b9UAbg9R
+	P0U/zFfy88H74Rq7OSi+c+KSmbWEnfYPgpJK/TZ38bZ+Q80y/Gyo6HJNsfBZs5pO3Ut6
+	8+lQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
 	:mime-version:content-disposition:in-reply-to:user-agent;
-	bh=/rmkcCQTgPEDsosMd5lAmqUtFkc49lzMBBonvofcwSk=;
-	b=cW1p8wIHuDDYWh2EB0M235iVP2X/n6tLQZUtp1Jk9c/TJro8V47pl26igXLiSfbWcg
-	2u6lnw010MUf7BFRhapKoRTwSXydrs/JYwzwV9fp3WRVtlHTUu2kUerfrY8X1lEduoXH
-	MKIqQl7LRfjYMvsn4yoBvxDOaKzgS0/Gszg0EDr73xOIwKhv2oZCrKOOMthg+dli0d8c
-	aos0dcDCfXXFu2n02M4dETc5HoMP9zqdDXVJ/J2fb6cD7y4G8jyH6uuj2gs1JB2wPf0V
-	QvNBAzAKtmUp1ct7nvhN8UvLut/kpIONiJH6ipK0N67p4YfJUOcW4kVcRC35YccKmQ9m
-	idOA==
-X-Gm-Message-State: AIkVDXItiqHhzrasT4rV0/jKArQbFLUchfLXPRcPaNrkarPoxjPSGb9RtmdZYoJPb7F+YA==
-X-Received: by 10.28.221.11 with SMTP id u11mr35933301wmg.91.1483035618832;
-	Thu, 29 Dec 2016 10:20:18 -0800 (PST)
+	bh=/ZEoB19T4jkdXYXoV2BiUpgslQOWW5sWon1UuKxqQnU=;
+	b=Cqz5JCeYTltsBtEB+x5sOlzdAprAakns09kbNvEPe6LsInmyY2LS3iSlKZIDDVMjoY
+	ZOrHLZzrbAFass0tXZrcf4YVHXF8ENcYKUyFBJMZq33/uHzRMa/zEtJtsbLPBymC86nY
+	jv9UVFX3Omv9iABnvzkpGsCvtbp/NLQIcaXyduxOvc972URRVcPlR36jR+HM3GSLF1dP
+	kBAZLP4QNqtrsvMXiWqWF4UpyyzLspdKdyBS3KEDsSdV8z1eN+lM5PbYg9u0oAlGqQbh
+	GErCe5xCD05iZ9DkH+rwDHeEAjLV+73LInfZQTxSQiNd3eicS1Oc3E5D2sUUGommTXvy
+	ZyVQ==
+X-Gm-Message-State: AIkVDXLhR2IjZOegWMyCWJr6KF29iNZZrFsLwivy6GWwA3aJrYvn6toPljrOXF0wzG4rtA==
+X-Received: by 10.28.57.193 with SMTP id g184mr36252110wma.122.1483036360962; 
+	Thu, 29 Dec 2016 10:32:40 -0800 (PST)
 Received: from carbonA (cpc96910-walt25-2-0-cust629.13-2.cable.virginm.net.
 	[82.22.166.118]) by smtp.gmail.com with ESMTPSA id
-	e188sm66709659wma.21.2016.12.29.10.20.17
+	f10sm69909447wjl.28.2016.12.29.10.32.39
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Thu, 29 Dec 2016 10:20:17 -0800 (PST)
-Date: Thu, 29 Dec 2016 18:20:15 +0000
+	Thu, 29 Dec 2016 10:32:39 -0800 (PST)
+Date: Thu, 29 Dec 2016 18:32:37 +0000
 From: Andrei Gherzan <andrei@gherzan.ro>
-To: Khem Raj <raj.khem@gmail.com>
-Message-ID: <20161229182015.GE26059@carbonA>
-References: <1481796330-13908-1-git-send-email-piotr.lewicki@elfin.de>
-	<1481796330-13908-2-git-send-email-piotr.lewicki@elfin.de>
-	<7304ACDB-B05D-472D-8FF5-FC5CE402E88E@gmail.com>
+To: Petter =?iso-8859-1?Q?Mab=E4cker?= <petter@technux.se>
+Message-ID: <20161229183237.GF26059@carbonA>
+References: <1481193612-18179-1-git-send-email-schnitzeltony@googlemail.com>
+	<CAMKF1srbGTypEP2FrNHHKxqdxg595EgdCxn=9dy9OVEA-s2PAw@mail.gmail.com>
+	<7a0cc3acfeddd7ccc0de8c3b465d9f52@technux.se>
+	<CALbNGRQ9s_9wYs-ytD8WZm6OhJNXJ31gWzgKi9OeSOcsHqUeRg@mail.gmail.com>
+	<5881aaa6fd0724ed9101d0e6a79f814c@technux.se>
+	<480c2bae1103c9de6d2aca4368022175@technux.se>
 MIME-Version: 1.0
-In-Reply-To: <7304ACDB-B05D-472D-8FF5-FC5CE402E88E@gmail.com>
+In-Reply-To: <480c2bae1103c9de6d2aca4368022175@technux.se>
 User-Agent: Mutt/1.7.1 (2016-10-04)
 Cc: yocto@yoctoproject.org
-Subject: Re: [meta-raspberrypi][PATCH 1/1] linux-rpi: clean .config in before do_configure step
+Subject: Re: [meta-raspberrypi][PATCH] linux-raspberrypi-base.bbclass: remove version hack
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,100 +78,113 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 29 Dec 2016 18:20:21 -0000
-X-Groupsio-MsgNum: 33596
+X-List-Received-Date: Thu, 29 Dec 2016 18:32:45 -0000
+X-Groupsio-MsgNum: 33597
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="AjmyJqqohANyBN/e"
+	protocol="application/pgp-signature"; boundary="kbCYTQG2MZjuOjyn"
 Content-Disposition: inline
 
---AjmyJqqohANyBN/e
-Content-Type: text/plain; charset=us-ascii
+--kbCYTQG2MZjuOjyn
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Dec 16, 2016 at 08:58:22AM -0800, Khem Raj wrote:
+On Thu, Dec 15, 2016 at 06:11:33AM +0100, Petter Mab=E4cker wrote:
 >
-> > On Dec 15, 2016, at 2:05 AM, Piotr Lewicki <piotr.lewicki@elfin.de> wrote:
-> >
-> > Signed-off-by: Piotr Lewicki <piotr.lewicki@elfin.de>
-> > ---
-> > recipes-kernel/linux/linux-rpi.inc | 11 +++++++++--
-> > 1 file changed, 9 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/recipes-kernel/linux/linux-rpi.inc b/recipes-kernel/linux/linux-rpi.inc
-> > index 95a9530..c665b9f 100644
-> > --- a/recipes-kernel/linux/linux-rpi.inc
-> > +++ b/recipes-kernel/linux/linux-rpi.inc
-> > @@ -34,11 +34,13 @@ kernel_configure_variable() {
-> >     fi
-> > }
-> >
-> > -do_configure_prepend() {
-> > +do_rpi_kconfig_clean() {
-> >     # Clean .config
-> > -    echo "" > ${B}/.config
-> > +    echo -n "" > ${B}/.config
-> >     CONF_SED_SCRIPT=""
-> > +}
-> >
-> > +do_configure_prepend() {
-> >     # oabi / eabi support
-> >     kernel_configure_variable AEABI y
-> >     if [ "${ARM_KEEP_OABI}" = "1" ] ; then
-> > @@ -124,8 +126,11 @@ do_configure_prepend() {
-> >     # Keep this the last line
-> >     # Remove all modified configs and add the rest to .config
-> >     sed -e "${CONF_SED_SCRIPT}" < '${WORKDIR}/defconfig' >> '${B}/.config'
-> > +    # Clean variable- useful when calling configure step multiple times
-> > +    CONF_SED_SCRIPT=""
-> >
-> >     yes '' | oe_runmake oldconfig
-> > +
-> > }
-> >
-> > # Automatically depend on lzop-native if CONFIG_KERNEL_LZO is enabled
-> > @@ -146,3 +151,5 @@ python () {
-> >
-> >     configfile.close()
-> > }
-> > +
-> > +addtask rpi_kconfig_clean before do_configure after do_populate_lic
 >
-> we should investigate the kernel tooling from OE-Core and use that IMO
+> 2016-12-13 06:39 skrev Petter Mab=E4cker:
+>
+> > 2016-12-13 00:55 skrev
+> Andreas M=FCller:
+> >
+> >> On Mon, Dec 12, 2016 at 11:33 PM, Petter Mab=E4cker
+> <petter@technux.se> wrote:
+> >>
+> >>> 2016-12-12 06:21 skrev Khem Raj: On
+> Thu, Dec 8, 2016 at 2:40 AM, Andreas M=FCller
+> <schnitzeltony@googlemail.com> wrote: * no more required (version > 3.17
+> | > 4.3.x | > 4.4.5) * causes error with rt kernel I think this is ok to
+> apply now. Signed-off-by: Andreas M=FCller <schnitzeltony@googlemail.com>
+> --- classes/linux-raspberrypi-base.bbclass | 15 --------------- 1 file
+> changed, 15 deletions(-) diff --git
+> a/classes/linux-raspberrypi-base.bbclass
+> b/classes/linux-raspberrypi-base.bbclass index 3a6e33d..dc2330a 100644
+> --- a/classes/linux-raspberrypi-base.bbclass +++
+> b/classes/linux-raspberrypi-base.bbclass @@ -14,21 +14,6 @@ def
+> get_dts(d, ver=3DNone): from the kernel staging ''' ver =3D
+> get_kernelversion_file(staging_dir) - if ver is not None: - min_ver =3D
+> ver.split('.', 3) - else: - return dts - - # Always turn off device tree
+> support for kernel's < 3.18 - try: - if int(min_ver[0]) >=3D 4: - if
+> (int(min_ver[1]) < 4) or (int(min_ver[1]) =3D=3D 4 and int(min_ver[2]) < =
+6):
+> - dts =3D ' '.join([(re.sub(r'(.*).dtbo$', r'1-overlay.dtb', x)) for x in
+> dts.split()]) - elif int(min_ver[1]) < 18: - dts =3D "" - except
+> IndexError: - min_ver =3D None - return dts -- 2.7.4 --
+> _______________________________________________ yocto mailing list
+> yocto@yoctoproject.org https://lists.yoctoproject.org/listinfo/yocto
+> [1]
+> >>
+> >>> I think you should go even one step further and revert the
+> entire commit merging this obsolete functionality: "git revert
+> 4a4373c02d3d8355a2e5faa10af61450e5b093d8" .
+> >> BR Petter
+> >>
+> >> To be
+> honest: I have forked meta-raspberrypi and don't use it any
+> >> more.
+> Just wanted to be a good boy. So maybe you want to send the
+> >> revert
+> here?
+> >>
+> >> Andreas
+> >>
+> >>>
+> >
+> > Oh I see. Sure, I can send something
+> up.
+> >
+> > Petter Mab=E4cker
+> >
+> > Technux <petter@technux.se>
+> >
+> www.technux.se
+>
+> This wasn't as easy that I first thought. I totally
+> forgot about that Device Tree Overlays are assumed to be suffixed by
+> '-overlay.dtb' (4.1.x) or by '.dtbo' (4.4.9+). So it's not possible to
+> just revert the commit and handle some simple conflicts..
+>
+> Andrei: I
+> think you can go ahead and merge this patch when fully verified. Then I
+> instead will see if I can do some cleanup in a later step. But at least
+> this patch simplifies things and solves the rt-issue.
+>
+> BR Petter
+>
 
-I'm all for this. We should get rid of this and unify with oe-core
-tooling.
-
-@Piotr Would you like to work on this and remove completely this while
-reworking on the kernel fragments configuration support? I'll take a
-look on the old patches too.
-
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
+I agree. Let's merge it and continue to fix it afterwards. Merged to
+master. Thanks.
 --
 Andrei Gherzan
 
---AjmyJqqohANyBN/e
+--kbCYTQG2MZjuOjyn
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIcBAEBCAAGBQJYZVPfAAoJEHO76Gt+erfPgCIQAMMAsczh/WBbLBigu+owyDx1
-uoh+0D07qVxS/vKrl79fX074RJ7wZAftB8R3AUornbV66dCZNvNjcYVKsWOglBGJ
-4eJj5/yDhLMDxbn3oqcXk3+Ju3q9ekiQHyAgrSeSnVLgQum6B+4310OvE/WpE323
-k4IKS6Y3tdkfuvcrIBIj4WpJQaPV7Mn6whOZXTVtoTVCDZB8UiUsSZJkdK0xLW5j
-PRYBnpQXdyUIwx69Di2AWlS0P6ZA7rSXZ2etcFoBWJ4atmn6qhuAhCzdoshHqjzZ
-F2DVRLUmdxUFeKbcN8kIAs3Eg+RyJSmRqMzlRlRJ5z4+RxWEM7aqhG2wuSsjmros
-E4jbUpNt/4yFP7scz0zUEJW4E35zrFnbesm3Eq4TPjARngVdlD7p/Stf8QmORe8b
-8EF2QNUi+XR5uShBBGPJmOcfMp65MaJ0Rbvdw1budS2tGvPg2zzXhAhIEdD38vLp
-o2Uo4sM2yaehsujFi2QM61P1A7YLX8rw7cpv2gP1hoLXjAPPy7nAxmRpRWoMkqNW
-+t31nqmjsa8+5dE/W3TC4Kt4dz0G+tC5QkvVKWKX7T7kVnMIjrQmomi29TFfWILn
-mPSwkMoidJxL6HpJXtqLWl4LAe9DZfAbc/MFkT2ajcXKmC10awjX+jcOOx83S0Ha
-9YsnFMEsgZe9Q8SBLt0g
-=46E7
+iQIcBAEBCAAGBQJYZVbFAAoJEHO76Gt+erfPU8sP/1xzRHcpYaC9+p+ByTpCpY/w
+/F9v14FKMoNEL/ZAonkasUpjSxCqIJzykHRn1HPeYZuWHAUoGQmEsA3JkrjoAx9o
++gtD1hLpKlX0fy1mU79J2GNorOi3V/WrdeST12iVN4mOX41gYUW8fUwRykgN2WWA
+Jw1KcXFkdZ9JryDF2ylcn8gTii3TadSgSVTcq1RCW+Id9x5gX4DUp8SKb0tQ0KVH
+7Chg3Xmz+RoIatjbvZ9zD9IkDExYJyJgnne5QTcKife6n+r5HJ3XbsQqj3EoRY7J
+R45yxhAr/Cq9om/5cBJiOhe2HNFWtCOVaEQmVv8IqJG0t8hU6/fKUw+2f2DAQU68
+mRU94WEygKX3fmYMqYtzzp8+3VLNdZUizmilnJ1BXSpqwZiF6uaLnQOorqPhxJL1
+No0GcdkPe2/9rcmyUherAbn9dvBI6mwsmP6Eh+AttuDExtQ8MZXLROfxpIGpDhJn
+Q09+nsy3Ny0geyyM9ff3IE+/U7DefQepeKmUCURG8CPmPoG3VvLW9zlZIW5B5HgT
+W5VITIDQKd6fbktZsBD9rN5F43GACKhFBuBXM7q8+kfnoUhuMsk1kr5IKC3ZxFgd
+wjPKWzOM9/2AibEuTVFFsT/Iqyk2BfZCE3YqChx4q48IELKlpvg3Cly/2bILipfg
+D4BY4ppzA9CI6jd1dfTK
+=beF9
 -----END PGP SIGNATURE-----
 
---AjmyJqqohANyBN/e--
+--kbCYTQG2MZjuOjyn--
