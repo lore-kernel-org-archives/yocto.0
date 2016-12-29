@@ -1,6 +1,6 @@
 Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id ADF20E006EC; Thu, 29 Dec 2016 10:16:36 -0800 (PST)
+	id 9B34AE0071C; Thu, 29 Dec 2016 10:20:21 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,59 +9,61 @@ X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [74.125.82.66 listed in list.dnswl.org]
+	*      [74.125.82.65 listed in list.dnswl.org]
 	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.82.66 listed in dnsbl.sorbs.net]
+	*      [74.125.82.65 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f66.google.com (mail-wm0-f66.google.com [74.125.82.66])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0AA84E006E3
-	for <yocto@yoctoproject.org>; Thu, 29 Dec 2016 10:16:32 -0800 (PST)
-Received: by mail-wm0-f66.google.com with SMTP id m203so67561037wma.3
-	for <yocto@yoctoproject.org>; Thu, 29 Dec 2016 10:16:31 -0800 (PST)
+Received: from mail-wm0-f65.google.com (mail-wm0-f65.google.com [74.125.82.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DDA0BE006E3
+	for <yocto@yoctoproject.org>; Thu, 29 Dec 2016 10:20:19 -0800 (PST)
+Received: by mail-wm0-f65.google.com with SMTP id m203so67575712wma.3
+	for <yocto@yoctoproject.org>; Thu, 29 Dec 2016 10:20:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
 	h=date:from:to:cc:subject:message-id:references:mime-version
 	:content-disposition:in-reply-to:user-agent;
-	bh=c0Xz0Nb6vteUaqYM0zQizHj+JlEvtUeYrAYu/tpN0pw=;
-	b=yRfP270ykOz2ZlKhZKZasfvIQUoPZpbBihhHCiTxXuiQeVW8oMvyMeu20BtcqezSdT
-	dFd/mriuBgj9XJsN62docrDcEF/4WxxlCVqpk8NVmvh+VP9qvhzsM7pPh8QjkwMgwaaA
-	KIiRxPRN9Lw0mpaiEy+So/dQ4S5IoflgVtcy15yyM4n9SJR8X4O0SLZcN5GOZbDQIhHY
-	e78oYGqt0tUE2MeRqB4WLRFR3a+//VT0fpU+fapNMqKUtby8yVEuoCbXftO2b0DZlEQx
-	o/2evr9c/B9lTCFGt3kFNPKEaJGE9p0bdYH5DhdbEoxhIcwgiKTclhONne/KsWrEaWEA
-	gnww==
+	bh=/rmkcCQTgPEDsosMd5lAmqUtFkc49lzMBBonvofcwSk=;
+	b=GuvMhoGD1kMrr0MF9UpP8FQOni8QUQ5U1r0Or7LA+xnaAm9mp7ECzEVBw78nxZlgao
+	V7ND2o9pXYaIPQXb/6FkS45yX3tOwy0c4tua2Vl64BXjCnqKAut5/KvgeiBlzUkiEB2c
+	ntaOKu4tnrF2hV3NV0WUIipy5uSjKm08ujTX+lSSfQ2q8i30GJvNGI+Zoob5fb2xB3Dt
+	RjqRiL6uXJXrMtteoGYsiULhy3y7/GMVzr2BC7R5PtP+cebCuq5GbTQia6a2rFPfxaJ7
+	lqUr0PanYbcLizQfU4a9C/BiXQlyeMAvvNS/2s69W1j+0776CZRLiMztUvbUTtPdjOZ0
+	YUgQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
 	:mime-version:content-disposition:in-reply-to:user-agent;
-	bh=c0Xz0Nb6vteUaqYM0zQizHj+JlEvtUeYrAYu/tpN0pw=;
-	b=it4SoLa8WmdEV9bwoMQmolPAMIc56Nj1DrVRzJ5S87gYmJLYBNLV7hgwLrY4mLaO+w
-	nnlLLHIxgCH74DUebvQCwSwsbwPE7QQ75G2FKwdUKce02sa3lWOdhho9lt6f1vIxyL8F
-	qGWmRDRc54SjtGbyq7C4cRF7kBvKuR7YJ2KgC1DXy8PprSKbbS3dMehllMwSlSmc4oor
-	WNNhZcPTn4aS7zY4l4pA6ogHau3Cvp4/UqexYaCONErDDpUytFivTKGgJ4HAj+qkjyeV
-	2Yf9cMyvwJor8g1HXThEok1zTXyQmrv4IXZ0z1nrP2x35vfohQT4Va6XjjhzqO3uxopD
-	uGNg==
-X-Gm-Message-State: AIkVDXKSLoWIE+s6rgOgpbkNMIX1QF0SG1rrSAmFBGRChRX3VtyjqJDJIJLnwXVhWT8Wpw==
-X-Received: by 10.28.8.12 with SMTP id 12mr35816034wmi.46.1483035390789;
-	Thu, 29 Dec 2016 10:16:30 -0800 (PST)
+	bh=/rmkcCQTgPEDsosMd5lAmqUtFkc49lzMBBonvofcwSk=;
+	b=cW1p8wIHuDDYWh2EB0M235iVP2X/n6tLQZUtp1Jk9c/TJro8V47pl26igXLiSfbWcg
+	2u6lnw010MUf7BFRhapKoRTwSXydrs/JYwzwV9fp3WRVtlHTUu2kUerfrY8X1lEduoXH
+	MKIqQl7LRfjYMvsn4yoBvxDOaKzgS0/Gszg0EDr73xOIwKhv2oZCrKOOMthg+dli0d8c
+	aos0dcDCfXXFu2n02M4dETc5HoMP9zqdDXVJ/J2fb6cD7y4G8jyH6uuj2gs1JB2wPf0V
+	QvNBAzAKtmUp1ct7nvhN8UvLut/kpIONiJH6ipK0N67p4YfJUOcW4kVcRC35YccKmQ9m
+	idOA==
+X-Gm-Message-State: AIkVDXItiqHhzrasT4rV0/jKArQbFLUchfLXPRcPaNrkarPoxjPSGb9RtmdZYoJPb7F+YA==
+X-Received: by 10.28.221.11 with SMTP id u11mr35933301wmg.91.1483035618832;
+	Thu, 29 Dec 2016 10:20:18 -0800 (PST)
 Received: from carbonA (cpc96910-walt25-2-0-cust629.13-2.cable.virginm.net.
 	[82.22.166.118]) by smtp.gmail.com with ESMTPSA id
-	x7sm70052365wjp.18.2016.12.29.10.16.29
+	e188sm66709659wma.21.2016.12.29.10.20.17
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Thu, 29 Dec 2016 10:16:30 -0800 (PST)
-Date: Thu, 29 Dec 2016 18:16:28 +0000
+	Thu, 29 Dec 2016 10:20:17 -0800 (PST)
+Date: Thu, 29 Dec 2016 18:20:15 +0000
 From: Andrei Gherzan <andrei@gherzan.ro>
 To: Khem Raj <raj.khem@gmail.com>
-Message-ID: <20161229181628.GD26059@carbonA>
-References: <20161222075921.23729-1-raj.khem@gmail.com>
+Message-ID: <20161229182015.GE26059@carbonA>
+References: <1481796330-13908-1-git-send-email-piotr.lewicki@elfin.de>
+	<1481796330-13908-2-git-send-email-piotr.lewicki@elfin.de>
+	<7304ACDB-B05D-472D-8FF5-FC5CE402E88E@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20161222075921.23729-1-raj.khem@gmail.com>
+In-Reply-To: <7304ACDB-B05D-472D-8FF5-FC5CE402E88E@gmail.com>
 User-Agent: Mutt/1.7.1 (2016-10-04)
 Cc: yocto@yoctoproject.org
-Subject: Re: [meta-raspberrypi][PATCH] gstreamer1.0-omx: Add 1.10x support
+Subject: Re: [meta-raspberrypi][PATCH 1/1] linux-rpi: clean .config in before do_configure step
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,442 +75,73 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 29 Dec 2016 18:16:36 -0000
-X-Groupsio-MsgNum: 33595
+X-List-Received-Date: Thu, 29 Dec 2016 18:20:21 -0000
+X-Groupsio-MsgNum: 33596
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="x4pBfXISqBoDm8sr"
+	protocol="application/pgp-signature"; boundary="AjmyJqqohANyBN/e"
 Content-Disposition: inline
 
---x4pBfXISqBoDm8sr
+--AjmyJqqohANyBN/e
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
-On Wed, Dec 21, 2016 at 11:59:21PM -0800, Khem Raj wrote:
-> Restructure the bbappends such that common portions
-> can be put in a common bbappend and version specific
-> bbappend then only do the patching
+On Fri, Dec 16, 2016 at 08:58:22AM -0800, Khem Raj wrote:
 >
-> Signed-off-by: Khem Raj <raj.khem@gmail.com>
-> ---
->  .../gstreamer/gstreamer1.0-omx%.bbappend           |   9 ++
->  ...o-acquire-buffer-when-src-pad-isn-t-activ.patch |  48 ++++++++
->  .../0001-config-files-path.patch                   | 137 +++++++++++++++++++++
->  .../0002-fix-decoder-flushing.patch                |  16 +++
->  .../0003-no-timeout-on-get-state.patch             |  16 +++
->  ...erly-handle-drain-requests-while-flushing.patch |  30 +++++
->  ...-gst_omx_video_dec_set_format-if-there-s-.patch |  30 +++++
->  .../gstreamer/gstreamer1.0-omx_1.10%.bbappend      |  13 ++
->  .../gstreamer/gstreamer1.0-omx_1.2.0.bbappend      |  10 --
->  .../gstreamer/gstreamer1.0-omx_git.bbappend        |   9 --
->  10 files changed, 299 insertions(+), 19 deletions(-)
->  create mode 100644 recipes-multimedia/gstreamer/gstreamer1.0-omx%.bbappend
->  create mode 100644 recipes-multimedia/gstreamer/gstreamer1.0-omx-1.10/0001-Don-t-try-to-acquire-buffer-when-src-pad-isn-t-activ.patch
->  create mode 100644 recipes-multimedia/gstreamer/gstreamer1.0-omx-1.10/0001-config-files-path.patch
->  create mode 100644 recipes-multimedia/gstreamer/gstreamer1.0-omx-1.10/0002-fix-decoder-flushing.patch
->  create mode 100644 recipes-multimedia/gstreamer/gstreamer1.0-omx-1.10/0003-no-timeout-on-get-state.patch
->  create mode 100644 recipes-multimedia/gstreamer/gstreamer1.0-omx-1.10/0004-Properly-handle-drain-requests-while-flushing.patch
->  create mode 100644 recipes-multimedia/gstreamer/gstreamer1.0-omx-1.10/0005-Don-t-abort-gst_omx_video_dec_set_format-if-there-s-.patch
->  create mode 100644 recipes-multimedia/gstreamer/gstreamer1.0-omx_1.10%.bbappend
+> > On Dec 15, 2016, at 2:05 AM, Piotr Lewicki <piotr.lewicki@elfin.de> wrote:
+> >
+> > Signed-off-by: Piotr Lewicki <piotr.lewicki@elfin.de>
+> > ---
+> > recipes-kernel/linux/linux-rpi.inc | 11 +++++++++--
+> > 1 file changed, 9 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/recipes-kernel/linux/linux-rpi.inc b/recipes-kernel/linux/linux-rpi.inc
+> > index 95a9530..c665b9f 100644
+> > --- a/recipes-kernel/linux/linux-rpi.inc
+> > +++ b/recipes-kernel/linux/linux-rpi.inc
+> > @@ -34,11 +34,13 @@ kernel_configure_variable() {
+> >     fi
+> > }
+> >
+> > -do_configure_prepend() {
+> > +do_rpi_kconfig_clean() {
+> >     # Clean .config
+> > -    echo "" > ${B}/.config
+> > +    echo -n "" > ${B}/.config
+> >     CONF_SED_SCRIPT=""
+> > +}
+> >
+> > +do_configure_prepend() {
+> >     # oabi / eabi support
+> >     kernel_configure_variable AEABI y
+> >     if [ "${ARM_KEEP_OABI}" = "1" ] ; then
+> > @@ -124,8 +126,11 @@ do_configure_prepend() {
+> >     # Keep this the last line
+> >     # Remove all modified configs and add the rest to .config
+> >     sed -e "${CONF_SED_SCRIPT}" < '${WORKDIR}/defconfig' >> '${B}/.config'
+> > +    # Clean variable- useful when calling configure step multiple times
+> > +    CONF_SED_SCRIPT=""
+> >
+> >     yes '' | oe_runmake oldconfig
+> > +
+> > }
+> >
+> > # Automatically depend on lzop-native if CONFIG_KERNEL_LZO is enabled
+> > @@ -146,3 +151,5 @@ python () {
+> >
+> >     configfile.close()
+> > }
+> > +
+> > +addtask rpi_kconfig_clean before do_configure after do_populate_lic
 >
-> diff --git a/recipes-multimedia/gstreamer/gstreamer1.0-omx%.bbappend b/recipes-multimedia/gstreamer/gstreamer1.0-omx%.bbappend
-> new file mode 100644
-> index 0000000..67e46de
-> --- /dev/null
-> +++ b/recipes-multimedia/gstreamer/gstreamer1.0-omx%.bbappend
+> we should investigate the kernel tooling from OE-Core and use that IMO
 
-Is the wildcard working like this? A potentially TIL
+I'm all for this. We should get rid of this and unify with oe-core
+tooling.
 
-> @@ -0,0 +1,9 @@
-> +GSTREAMER_1_0_OMX_TARGET_rpi = "rpi"
-> +GSTREAMER_1_0_OMX_CORE_NAME_rpi = "${libdir}/libopenmaxil.so"
-> +
-> +
-> +# How to make this RPI specific?
-> +EXTRA_OECONF_append_rpi  = " CFLAGS="$CFLAGS -I${STAGING_DIR_TARGET}/usr/include/IL -I${STAGING_DIR_TARGET}/usr/include/interface/vcos/pthreads -I${STAGING_DIR_TARGET}/usr/include/interface/vmcs_host/linux""
-> +#examples only build with GL but not GLES, so disable it for RPI
-> +EXTRA_OECONF_append_rpi = " --disable-examples"
-> +
-> diff --git a/recipes-multimedia/gstreamer/gstreamer1.0-omx-1.10/0001-Don-t-try-to-acquire-buffer-when-src-pad-isn-t-activ.patch b/recipes-multimedia/gstreamer/gstreamer1.0-omx-1.10/0001-Don-t-try-to-acquire-buffer-when-src-pad-isn-t-activ.patch
-> new file mode 100644
-> index 0000000..815a7c2
-> --- /dev/null
-> +++ b/recipes-multimedia/gstreamer/gstreamer1.0-omx-1.10/0001-Don-t-try-to-acquire-buffer-when-src-pad-isn-t-activ.patch
-> @@ -0,0 +1,48 @@
-> +From 2e111e52f96f0b942abda120c30a876629bd73fc Mon Sep 17 00:00:00 2001
-> +From: =?UTF-8?q?Enrique=20Oca=C3=B1a=20Gonz=C3=A1lez?= <eocanha@igalia.com>
-> +Date: Mon, 25 May 2015 14:53:35 +0200
-> +Subject: [PATCH] Don't try to acquire buffer when src pad isn't active
-> +
-> +This solves a race condition when setting the pipeline from PAUSE to
-> +NULL while the decoder loop is still running. Without this patch, the
-> +thread which interacts with the decode sink pad gets blocked here:
-> +
-> +  gst_element_change_state()
-> +  gst_element_change_state_func()
-> +  gst_element_pads_activate() --> Deactivating pads
-> +  activate_pads()
-> +  gst_pad_set_active()
-> +  gst_pad_activate_mode()
-> +  post_activate()
-> +  GST_PAD_STREAM_LOCK()
-> +
-> +while gst_omx_port_acquire_buffer() gets stalled forever in
-> +gst_omx_component_wait_message() waiting for a message that will never
-> +arrive:
-> +
-> +  gst_omx_video_dec_loop()
-> +  gst_omx_port_acquire_buffer()
-> +  gst_omx_component_wait_message()
-> +---
-> + omx/gstomxvideodec.c | 5 +++++
-> + 1 file changed, 5 insertions(+)
-> +
-> +diff --git a/omx/gstomxvideodec.c b/omx/gstomxvideodec.c
-> +index cd24944..57a61dd 100644
-> +--- a/omx/gstomxvideodec.c
-> ++++ b/omx/gstomxvideodec.c
-> +@@ -1247,6 +1247,11 @@ gst_omx_video_dec_loop (GstOMXVideoDec * self)
-> +   GstClockTimeDiff deadline;
-> +   OMX_ERRORTYPE err;
-> +
-> ++  if (!gst_pad_is_active(GST_VIDEO_DECODER_SRC_PAD (self))) {
-> ++    GST_DEBUG_OBJECT (self, "Src pad not active, not acquiring buffer and flushing instead");
-> ++      goto flushing;
-> ++  }
-> ++
-> + #if defined (USE_OMX_TARGET_RPI) && defined (HAVE_GST_GL)
-> +   port = self->eglimage ? self->egl_out_port : self->dec_out_port;
-> + #else
-> +--
-> +1.8.3.2
-> +
-> diff --git a/recipes-multimedia/gstreamer/gstreamer1.0-omx-1.10/0001-config-files-path.patch b/recipes-multimedia/gstreamer/gstreamer1.0-omx-1.10/0001-config-files-path.patch
-> new file mode 100644
-> index 0000000..a7da922
-> --- /dev/null
-> +++ b/recipes-multimedia/gstreamer/gstreamer1.0-omx-1.10/0001-config-files-path.patch
-> @@ -0,0 +1,137 @@
-> +--- a/config/bellagio/gstomx.conf
-> ++++ b/config/bellagio/gstomx.conf
-> +@@ -1,6 +1,6 @@
-> + [omxmpeg4videodec]
-> + type-name=GstOMXMPEG4VideoDec
-> +-core-name=/usr/local/lib/libomxil-bellagio.so.0
-> ++core-name=/usr/lib/libomxil-bellagio.so.0
-> + component-name=OMX.st.video_decoder.mpeg4
-> + rank=256
-> + in-port-index=0
-> +@@ -9,7 +9,7 @@
-> +
-> + [omxh264dec]
-> + type-name=GstOMXH264Dec
-> +-core-name=/usr/local/lib/libomxil-bellagio.so.0
-> ++core-name=/usr/lib/libomxil-bellagio.so.0
-> + component-name=OMX.st.video_decoder.avc
-> + rank=256
-> + in-port-index=0
-> +@@ -18,7 +18,7 @@
-> +
-> + [omxmpeg4videoenc]
-> + type-name=GstOMXMPEG4VideoEnc
-> +-core-name=/usr/local/lib/libomxil-bellagio.so.0
-> ++core-name=/usr/lib/libomxil-bellagio.so.0
-> + component-name=OMX.st.video_encoder.mpeg4
-> + rank=0
-> + in-port-index=0
-> +@@ -27,7 +27,7 @@
-> +
-> + [omxaacenc]
-> + type-name=GstOMXAACEnc
-> +-core-name=/usr/local/lib/libomxil-bellagio.so.0
-> ++core-name=/usr/lib/libomxil-bellagio.so.0
-> + component-name=OMX.st.audio_encoder.aac
-> + rank=0
-> + in-port-index=0
-> +--- a/config/rpi/gstomx.conf
-> ++++ b/config/rpi/gstomx.conf
-> +@@ -1,6 +1,6 @@
-> + [omxmpeg2videodec]
-> + type-name=GstOMXMPEG2VideoDec
-> +-core-name=/opt/vc/lib/libopenmaxil.so
-> ++core-name=/usr/lib/libopenmaxil.so
-> + component-name=OMX.broadcom.video_decode
-> + rank=257
-> + in-port-index=130
-> +@@ -9,7 +9,7 @@
-> +
-> + [omxmpeg4videodec]
-> + type-name=GstOMXMPEG4VideoDec
-> +-core-name=/opt/vc/lib/libopenmaxil.so
-> ++core-name=/usr/lib/libopenmaxil.so
-> + component-name=OMX.broadcom.video_decode
-> + rank=257
-> + in-port-index=130
-> +@@ -18,7 +18,7 @@
-> +
-> + [omxh263dec]
-> + type-name=GstOMXH263Dec
-> +-core-name=/opt/vc/lib/libopenmaxil.so
-> ++core-name=/usr/lib/libopenmaxil.so
-> + component-name=OMX.broadcom.video_decode
-> + rank=257
-> + in-port-index=130
-> +@@ -27,7 +27,7 @@
-> +
-> + [omxh264dec]
-> + type-name=GstOMXH264Dec
-> +-core-name=/opt/vc/lib/libopenmaxil.so
-> ++core-name=/usr/lib/libopenmaxil.so
-> + component-name=OMX.broadcom.video_decode
-> + rank=257
-> + in-port-index=130
-> +@@ -36,7 +36,7 @@
-> +
-> + [omxtheoradec]
-> + type-name=GstOMXTheoraDec
-> +-core-name=/opt/vc/lib/libopenmaxil.so
-> ++core-name=/usr/lib/libopenmaxil.so
-> + component-name=OMX.broadcom.video_decode
-> + rank=257
-> + in-port-index=130
-> +@@ -45,7 +45,7 @@
-> +
-> + [omxvp8dec]
-> + type-name=GstOMXVP8Dec
-> +-core-name=/opt/vc/lib/libopenmaxil.so
-> ++core-name=/usr/lib/libopenmaxil.so
-> + component-name=OMX.broadcom.video_decode
-> + rank=257
-> + in-port-index=130
-> +@@ -54,7 +54,7 @@
-> +
-> + [omxmjpegdec]
-> + type-name=GstOMXMJPEGDec
-> +-core-name=/opt/vc/lib/libopenmaxil.so
-> ++core-name=/usr/lib/libopenmaxil.so
-> + component-name=OMX.broadcom.video_decode
-> + rank=257
-> + in-port-index=130
-> +@@ -63,7 +63,7 @@
-> +
-> + [omxvc1dec]
-> + type-name=GstOMXWMVDec
-> +-core-name=/opt/vc/lib/libopenmaxil.so
-> ++core-name=/usr/lib/libopenmaxil.so
-> + component-name=OMX.broadcom.video_decode
-> + rank=256
-> + in-port-index=130
-> +@@ -73,7 +73,7 @@
-> +
-> + [omxh264enc]
-> + type-name=GstOMXH264Enc
-> +-core-name=/opt/vc/lib/libopenmaxil.so
-> ++core-name=/usr/lib/libopenmaxil.so
-> + component-name=OMX.broadcom.video_encode
-> + rank=257
-> + in-port-index=200
-> +@@ -82,7 +82,7 @@
-> +
-> + [omxanalogaudiosink]
-> + type-name=GstOMXAnalogAudioSink
-> +-core-name=/opt/vc/lib/libopenmaxil.so
-> ++core-name=/usr/lib/libopenmaxil.so
-> + component-name=OMX.broadcom.audio_render
-> + rank=256
-> + in-port-index=100
-> +@@ -92,7 +92,7 @@
-> +
-> + [omxhdmiaudiosink]
-> + type-name=GstOMXHdmiAudioSink
-> +-core-name=/opt/vc/lib/libopenmaxil.so
-> ++core-name=/usr/lib/libopenmaxil.so
-> + component-name=OMX.broadcom.audio_render
-> + rank=257
-> + in-port-index=100
-> diff --git a/recipes-multimedia/gstreamer/gstreamer1.0-omx-1.10/0002-fix-decoder-flushing.patch b/recipes-multimedia/gstreamer/gstreamer1.0-omx-1.10/0002-fix-decoder-flushing.patch
-> new file mode 100644
-> index 0000000..d4c7c81
-> --- /dev/null
-> +++ b/recipes-multimedia/gstreamer/gstreamer1.0-omx-1.10/0002-fix-decoder-flushing.patch
-> @@ -0,0 +1,16 @@
-> +diff --git a/omx/gstomx.c b/omx/gstomx.c
-> +index 69696c4..c382019 100644
-> +--- a/omx/gstomx.c
-> ++++ b/omx/gstomx.c
-> +@@ -1508,8 +1508,8 @@ gst_omx_port_set_flushing (GstOMXPort * port, GstClockTime timeout,
-> +     last_error = OMX_ErrorNone;
-> +     gst_omx_component_handle_messages (comp);
-> +     while (signalled && last_error == OMX_ErrorNone && !port->flushed
-> +-        && port->buffers
-> +-        && port->buffers->len > g_queue_get_length (&port->pending_buffers)) {
-> ++     /* && port->buffers
-> ++        && port->buffers->len > g_queue_get_length (&port->pending_buffers) */) {
-> +       signalled = gst_omx_component_wait_message (comp, timeout);
-> +       if (signalled)
-> +         gst_omx_component_handle_messages (comp);
-> +
-> diff --git a/recipes-multimedia/gstreamer/gstreamer1.0-omx-1.10/0003-no-timeout-on-get-state.patch b/recipes-multimedia/gstreamer/gstreamer1.0-omx-1.10/0003-no-timeout-on-get-state.patch
-> new file mode 100644
-> index 0000000..0a0050d
-> --- /dev/null
-> +++ b/recipes-multimedia/gstreamer/gstreamer1.0-omx-1.10/0003-no-timeout-on-get-state.patch
-> @@ -0,0 +1,16 @@
-> +diff --git a/omx/gstomxvideodec.c b/omx/gstomxvideodec.c
-> +index 0d4e7a1..a0d9c74 100644
-> +--- a/omx/gstomxvideodec.c
-> ++++ b/omx/gstomxvideodec.c
-> +@@ -1697,9 +1697,9 @@ gst_omx_video_dec_stop (GstVideoDecoder * decoder)
-> +   g_cond_broadcast (&self->drain_cond);
-> +   g_mutex_unlock (&self->drain_lock);
-> +
-> +-  gst_omx_component_get_state (self->dec, 5 * GST_SECOND);
-> ++  gst_omx_component_get_state (self->dec, 0);
-> + #if defined (USE_OMX_TARGET_RPI) && defined (HAVE_GST_GL)
-> +-  gst_omx_component_get_state (self->egl_render, 1 * GST_SECOND);
-> ++  gst_omx_component_get_state (self->egl_render, 0);
-> + #endif
-> +
-> +   gst_buffer_replace (&self->codec_data, NULL);
-> diff --git a/recipes-multimedia/gstreamer/gstreamer1.0-omx-1.10/0004-Properly-handle-drain-requests-while-flushing.patch b/recipes-multimedia/gstreamer/gstreamer1.0-omx-1.10/0004-Properly-handle-drain-requests-while-flushing.patch
-> new file mode 100644
-> index 0000000..4d10f24
-> --- /dev/null
-> +++ b/recipes-multimedia/gstreamer/gstreamer1.0-omx-1.10/0004-Properly-handle-drain-requests-while-flushing.patch
-> @@ -0,0 +1,30 @@
-> +From 80dddfd13aaf2fe7272765f8cf291215fe375e28 Mon Sep 17 00:00:00 2001
-> +From: =?UTF-8?q?Enrique=20Oca=C3=B1a=20Gonz=C3=A1lez?= <eocanha@igalia.com>
-> +Date: Tue, 17 Nov 2015 16:51:27 +0000
-> +Subject: [PATCH] Properly handle drain requests while flushing
-> +
-> +Without this commit the decoder streaming thread stops without ever attending
-> +the drain request, leaving the decoder input thread waiting forever.
-> +---
-> + omx/gstomx.c         |  7 +++++++
-> + omx/gstomxvideodec.c | 13 +++++++++++++
-> + 2 files changed, 20 insertions(+)
-> +
-> +Index: gst-omx-1.10.2/omx/gstomx.c
-> +===================================================================
-> +--- gst-omx-1.10.2.orig/omx/gstomx.c
-> ++++ gst-omx-1.10.2/omx/gstomx.c
-> +@@ -737,6 +737,13 @@ gst_omx_component_new (GstObject * paren
-> +
-> +   g_mutex_lock (&comp->lock);
-> +   gst_omx_component_handle_messages (comp);
-> ++
-> ++  if (err != OMX_ErrorNone && comp->last_error == OMX_ErrorNone) {
-> ++    GST_ERROR_OBJECT (comp->parent,
-> ++        "Last operation returned an error. Setting last_error manually.");
-> ++    comp->last_error = err;
-> ++  }
-> ++
-> +   g_mutex_unlock (&comp->lock);
-> +
-> +   return comp;
-> diff --git a/recipes-multimedia/gstreamer/gstreamer1.0-omx-1.10/0005-Don-t-abort-gst_omx_video_dec_set_format-if-there-s-.patch b/recipes-multimedia/gstreamer/gstreamer1.0-omx-1.10/0005-Don-t-abort-gst_omx_video_dec_set_format-if-there-s-.patch
-> new file mode 100644
-> index 0000000..b7a8753
-> --- /dev/null
-> +++ b/recipes-multimedia/gstreamer/gstreamer1.0-omx-1.10/0005-Don-t-abort-gst_omx_video_dec_set_format-if-there-s-.patch
-> @@ -0,0 +1,30 @@
-> +From 12103842d5f347cf245e71071d0c44297bcdb1f9 Mon Sep 17 00:00:00 2001
-> +From: =?UTF-8?q?Enrique=20Oca=C3=B1a=20Gonz=C3=A1lez?= <eocanha@igalia.com>
-> +Date: Fri, 4 Dec 2015 18:39:59 +0100
-> +Subject: [PATCH] Don't abort gst_omx_video_dec_set_format() if there's a
-> + timeout releasing the buffers taken by the egl_render out port
-> +
-> +---
-> + omx/gstomxvideodec.c | 5 ++++-
-> + 1 file changed, 4 insertions(+), 1 deletion(-)
-> +
-> +diff --git a/omx/gstomxvideodec.c b/omx/gstomxvideodec.c
-> +index 2368f34..da35e0d 100644
-> +--- a/omx/gstomxvideodec.c
-> ++++ b/omx/gstomxvideodec.c
-> +@@ -1905,8 +1905,11 @@ gst_omx_video_dec_set_format (GstVideoDecoder * decoder,
-> +               5 * GST_SECOND) != OMX_ErrorNone)
-> +         return FALSE;
-> +       if (gst_omx_port_wait_buffers_released (out_port,
-> +-              1 * GST_SECOND) != OMX_ErrorNone)
-> ++              1 * GST_SECOND) != OMX_ErrorNone) {
-> ++#if !(defined (USE_OMX_TARGET_RPI) && defined (HAVE_GST_GL))
-> +         return FALSE;
-> ++#endif
-> ++      }
-> +       if (gst_omx_port_deallocate_buffers (self->dec_in_port) != OMX_ErrorNone)
-> +         return FALSE;
-> +       if (gst_omx_video_dec_deallocate_output_buffers (self) != OMX_ErrorNone)
-> +--
-> +2.1.4
-> +
-> diff --git a/recipes-multimedia/gstreamer/gstreamer1.0-omx_1.10%.bbappend b/recipes-multimedia/gstreamer/gstreamer1.0-omx_1.10%.bbappend
+@Piotr Would you like to work on this and remove completely this while
+reworking on the kernel fragments configuration support? I'll take a
+look on the old patches too.
 
-Where is the main recipe for this? I get the following error when using
-master meta-oe and poky:
-
-ERROR: No recipes available for:
-  /home/andrei/work/raspberrypi/meta-raspberrypi/recipes-multimedia/gstreamer/gstreamer1.0-omx_1.10%.bbappend
-
-
-> new file mode 100644
-> index 0000000..d419867
-> --- /dev/null
-> +++ b/recipes-multimedia/gstreamer/gstreamer1.0-omx_1.10%.bbappend
-> @@ -0,0 +1,13 @@
-> +#
-> +# Need to make this conditional to gstreamer1
-> +#
-> +SRC_URI_append_rpi = " \
-> +             file://0001-config-files-path.patch \
-> +             file://0001-Don-t-try-to-acquire-buffer-when-src-pad-isn-t-activ.patch \
-> +             file://0002-fix-decoder-flushing.patch \
-> +             file://0003-no-timeout-on-get-state.patch \
-> +             file://0004-Properly-handle-drain-requests-while-flushing.patch \
-> +             file://0005-Don-t-abort-gst_omx_video_dec_set_format-if-there-s-.patch \
-> +"
-> +
-> +FILESEXTRAPATHS_prepend := "${THISDIR}/gstreamer1.0-omx-1.10:"
-> diff --git a/recipes-multimedia/gstreamer/gstreamer1.0-omx_1.2.0.bbappend b/recipes-multimedia/gstreamer/gstreamer1.0-omx_1.2.0.bbappend
-> index 1e84abe..49ba376 100644
-> --- a/recipes-multimedia/gstreamer/gstreamer1.0-omx_1.2.0.bbappend
-> +++ b/recipes-multimedia/gstreamer/gstreamer1.0-omx_1.2.0.bbappend
-> @@ -9,16 +9,6 @@ SRC_URI_append_rpi = " \
->               file://0004-Properly-handle-drain-requests-while-flushing.patch \
->               file://0005-Don-t-abort-gst_omx_video_dec_set_format-if-there-s-.patch \
->               file://0006-omxvideodec-unref-allocator-after-getting-it-from-al.patch \
-> -             file://0007-omxvideodec-Use-gstglmemoryegl-for-the-RPi.patch \
->  "
->
->  FILESEXTRAPATHS_prepend := "${THISDIR}/gstreamer1.0-omx-1.2.0:"
-> -
-> -GSTREAMER_1_0_OMX_TARGET_rpi = "rpi"
-> -GSTREAMER_1_0_OMX_CORE_NAME_rpi = "${libdir}/libopenmaxil.so"
-> -
-> -
-> -# How to make this RPI specific?
-> -EXTRA_OECONF_append_rpi  = " CFLAGS="$CFLAGS -I${STAGING_DIR_TARGET}/usr/include/IL -I${STAGING_DIR_TARGET}/usr/include/interface/vcos/pthreads -I${STAGING_DIR_TARGET}/usr/include/interface/vmcs_host/linux""
-> -#examples only build with GL but not GLES, so disable it for RPI
-> -EXTRA_OECONF_append_rpi = " --disable-examples"
-> diff --git a/recipes-multimedia/gstreamer/gstreamer1.0-omx_git.bbappend b/recipes-multimedia/gstreamer/gstreamer1.0-omx_git.bbappend
-> index a13aad7..9bcc446 100644
-> --- a/recipes-multimedia/gstreamer/gstreamer1.0-omx_git.bbappend
-> +++ b/recipes-multimedia/gstreamer/gstreamer1.0-omx_git.bbappend
-> @@ -11,12 +11,3 @@ SRC_URI_append_rpi = " \
->  "
->
->  FILESEXTRAPATHS_prepend := "${THISDIR}/gstreamer1.0-omx:"
-> -
-> -GSTREAMER_1_0_OMX_TARGET_rpi = "rpi"
-> -GSTREAMER_1_0_OMX_CORE_NAME_rpi = "${libdir}/libopenmaxil.so"
-> -
-> -
-> -# How to make this RPI specific?
-> -EXTRA_OECONF_append_rpi  = " CFLAGS="$CFLAGS -I${STAGING_DIR_TARGET}/usr/include/IL -I${STAGING_DIR_TARGET}/usr/include/interface/vcos/pthreads -I${STAGING_DIR_TARGET}/usr/include/interface/vmcs_host/linux""
-> -#examples only build with GL but not GLES, so disable it for RPI
-> -EXTRA_OECONF_append_rpi = " --disable-examples"
-> --
-> 2.11.0
->
 > --
 > _______________________________________________
 > yocto mailing list
@@ -518,24 +151,24 @@ ERROR: No recipes available for:
 --
 Andrei Gherzan
 
---x4pBfXISqBoDm8sr
+--AjmyJqqohANyBN/e
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIcBAEBCAAGBQJYZVL7AAoJEHO76Gt+erfP3HYP+QF8RuLf+MOZLPbQMSGN+j4D
-+QoGdbJSBd85yLw/zp7fMhXz2FHpjUPYSm7g2VGaMJlyHvOc2hRdHMxiNdEywK49
-yWq8viMWhg5bgcnydwMLpswo5qLf6j+6dvyQetOjjGHamroPc063Lej7PmGE73D9
-vvLjhLcCuFZ1iksWjCRpq7/MhH3Wn24BJsXbUCNFM3Uidj5h/2d4tgQgK3DuK7fb
-MYi7/mfm5Ea4iJ9GcJk2KhqGKUdTQ2M8s+NIITMsBBWFkIUZttUIYk5h1GKJukQL
-Gcn1UzVV25LaYKMgHAc6tfwLh70OHVikRpIhd5P6pnjRXq3pH+xxJ22YZYWH7+Bc
-L9zVuhcVi8pddr6J6fNKnmby58MaBoNg/P0AtKeo2DHcETnAnSSqjqAoKLcWTeoN
-tjqlGYULjkdIk57HJbwIkfPOY5R8FSm6NigrGtK3hYWrDxK/5s+aOAMhHGwdNiOH
-SegM+ZZEYsuMrA4AGYOTnWy8bTunafP5QJqrPqtraJHKukGgo4+0TLBFm4APkDwv
-D47FcSBXXtIJCaNfWUYLnnT0iyNwwbBjfZy4YLnroLCuvmdyhTOzGS3eXHdvlOef
-NDVLr0E/b+/R097GjYVx9EzyumI/fVgS9t0T+xKzW4yeAZRKN3+FosM/5FqSxuQA
-XIZCEFSBMoYcUh46cEUM
-=pGlN
+iQIcBAEBCAAGBQJYZVPfAAoJEHO76Gt+erfPgCIQAMMAsczh/WBbLBigu+owyDx1
+uoh+0D07qVxS/vKrl79fX074RJ7wZAftB8R3AUornbV66dCZNvNjcYVKsWOglBGJ
+4eJj5/yDhLMDxbn3oqcXk3+Ju3q9ekiQHyAgrSeSnVLgQum6B+4310OvE/WpE323
+k4IKS6Y3tdkfuvcrIBIj4WpJQaPV7Mn6whOZXTVtoTVCDZB8UiUsSZJkdK0xLW5j
+PRYBnpQXdyUIwx69Di2AWlS0P6ZA7rSXZ2etcFoBWJ4atmn6qhuAhCzdoshHqjzZ
+F2DVRLUmdxUFeKbcN8kIAs3Eg+RyJSmRqMzlRlRJ5z4+RxWEM7aqhG2wuSsjmros
+E4jbUpNt/4yFP7scz0zUEJW4E35zrFnbesm3Eq4TPjARngVdlD7p/Stf8QmORe8b
+8EF2QNUi+XR5uShBBGPJmOcfMp65MaJ0Rbvdw1budS2tGvPg2zzXhAhIEdD38vLp
+o2Uo4sM2yaehsujFi2QM61P1A7YLX8rw7cpv2gP1hoLXjAPPy7nAxmRpRWoMkqNW
++t31nqmjsa8+5dE/W3TC4Kt4dz0G+tC5QkvVKWKX7T7kVnMIjrQmomi29TFfWILn
+mPSwkMoidJxL6HpJXtqLWl4LAe9DZfAbc/MFkT2ajcXKmC10awjX+jcOOx83S0Ha
+9YsnFMEsgZe9Q8SBLt0g
+=46E7
 -----END PGP SIGNATURE-----
 
---x4pBfXISqBoDm8sr--
+--AjmyJqqohANyBN/e--
