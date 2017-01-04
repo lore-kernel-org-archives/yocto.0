@@ -1,6 +1,6 @@
 Return-Path: <anibal.limon@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B0B7CE00443; Wed,  4 Jan 2017 11:44:35 -0800 (PST)
+	id 01FACE00998; Wed,  4 Jan 2017 11:44:37 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,22 +12,24 @@ X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 26745E0043B
-	for <yocto@yoctoproject.org>; Wed,  4 Jan 2017 11:44:34 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A23F6E0043F
+	for <yocto@yoctoproject.org>; Wed,  4 Jan 2017 11:44:36 -0800 (PST)
 Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-	by fmsmga101.fm.intel.com with ESMTP; 04 Jan 2017 11:44:34 -0800
+	by fmsmga101.fm.intel.com with ESMTP; 04 Jan 2017 11:44:36 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.33,317,1477983600"; d="scan'208";a="49546239"
+X-IronPort-AV: E=Sophos;i="5.33,317,1477983600"; d="scan'208";a="49546243"
 Received: from alimonb-mobl1.zpn.intel.com ([10.219.5.143])
-	by fmsmga005.fm.intel.com with ESMTP; 04 Jan 2017 11:44:34 -0800
+	by fmsmga005.fm.intel.com with ESMTP; 04 Jan 2017 11:44:36 -0800
 From: =?UTF-8?q?An=C3=ADbal=20Lim=C3=B3n?= <anibal.limon@linux.intel.com>
 To: yocto@yoctoproject.org
-Date: Wed,  4 Jan 2017 13:47:19 -0600
-Message-Id: <1483559240-7206-1-git-send-email-anibal.limon@linux.intel.com>
+Date: Wed,  4 Jan 2017 13:47:20 -0600
+Message-Id: <1483559240-7206-2-git-send-email-anibal.limon@linux.intel.com>
 X-Mailer: git-send-email 2.1.4
+In-Reply-To: <1483559240-7206-1-git-send-email-anibal.limon@linux.intel.com>
+References: <1483559240-7206-1-git-send-email-anibal.limon@linux.intel.com>
 MIME-Version: 1.0
 Cc: alexander.kanavin@intel.com
-Subject: [[PATCH][RRS] 1/2] layerindex/tools/import_layer.py: Fix Openembedded VCS URL
+Subject: [[PATCH][RRS] 2/2] templates/rrs/recipedetail.html: Fix unneeded quotes in url call
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,35 +41,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 04 Jan 2017 19:44:35 -0000
+X-List-Received-Date: Wed, 04 Jan 2017 19:44:37 -0000
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-Since Openembedded cgit was upgrade so point to new url to reflect
-the real URL.
+The url template function resolve an URL associated with a model, so
+in Django 1.6 quotes around variables don't get the variable value.
+
+[YOCTO #10871]
 
 Signed-off-by: Aníbal Limón <anibal.limon@linux.intel.com>
 ---
- layerindex/tools/import_layer.py | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ templates/rrs/recipedetail.html | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/layerindex/tools/import_layer.py b/layerindex/tools/import_layer.py
-index b472d2a..5835467 100755
---- a/layerindex/tools/import_layer.py
-+++ b/layerindex/tools/import_layer.py
-@@ -28,9 +28,9 @@ def set_vcs_fields(layer, repoval):
-     layer.vcs_url = repoval
-     if repoval.startswith('git://git.openembedded.org/'):
-         reponame = re.sub('^.*/', '', repoval)
--        layer.vcs_web_url = 'http://cgit.openembedded.org/cgit.cgi/' + reponame
--        layer.vcs_web_tree_base_url = 'http://cgit.openembedded.org/cgit.cgi/' + reponame + '/tree/%path%?h=%branch%'
--        layer.vcs_web_file_base_url = 'http://cgit.openembedded.org/cgit.cgi/' + reponame + '/tree/%path%?h=%branch%'
-+        layer.vcs_web_url = 'http://cgit.openembedded.org/' + reponame
-+        layer.vcs_web_tree_base_url = 'http://cgit.openembedded.org/' + reponame + '/tree/%path%?h=%branch%'
-+        layer.vcs_web_file_base_url = 'http://cgit.openembedded.org/' + reponame + '/tree/%path%?h=%branch%'
-     elif 'git.yoctoproject.org/' in repoval:
-         reponame = re.sub('^.*/', '', repoval)
-         layer.vcs_web_url = 'http://git.yoctoproject.org/cgit/cgit.cgi/' + reponame
+diff --git a/templates/rrs/recipedetail.html b/templates/rrs/recipedetail.html
+index fc3395c..9ac15da 100644
+--- a/templates/rrs/recipedetail.html
++++ b/templates/rrs/recipedetail.html
+@@ -79,7 +79,7 @@
+                     <td>{{ rud.version }}</td>
+                     {% if rud.milestone_name %}
+                     <td>
+-                        <a href="{% url 'recipes' 'rud.release_name' 'rud.milestone_name' %}">
++                        <a href="{% url 'recipes' rud.release_name rud.milestone_name %}">
+                             {{ rud.release_name }}
+                             {% if rud.milestone_name != "All" %}
+                             {{ rud.milestone_name }}
+@@ -97,7 +97,7 @@
+                     <td>{{ rud.date }}</td>
+ 
+                     {% if rud.is_recipe_maintainer %} 
+-                    <td><a href="{% url 'recipes' 'rud.release_name' 'rud.milestone_name' %}?maintainer_name={{ rud.maintainer_name|urlencode }}">{{ rud.maintainer_name }}</a></td>
++                    <td><a href="{% url 'recipes' rud.release_name rud.milestone_name %}?maintainer_name={{ rud.maintainer_name|urlencode }}">{{ rud.maintainer_name }}</a></td>
+                     {% else %}
+                     <td>{{ rud.maintainer_name }}</a></td>
+                     {% endif %}
 -- 
 2.1.4
 
