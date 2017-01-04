@@ -1,40 +1,74 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <twoerner@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 338B7E0043F; Wed,  4 Jan 2017 05:25:35 -0800 (PST)
+	id C87D9E00443; Wed,  4 Jan 2017 05:37:39 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (twoerner[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.223.193 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.223.193 listed in dnsbl.sorbs.net]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.analogue-micro.com (mail.analogue-micro.com
-	[217.144.149.242])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F1885E00405
-	for <yocto@yoctoproject.org>; Wed,  4 Jan 2017 05:25:33 -0800 (PST)
-Received: by mail.analogue-micro.com (Postfix, from userid 999)
-	id 890E068A019; Wed,  4 Jan 2017 13:25:32 +0000 (GMT)
-Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
-	by mail.analogue-micro.com (Postfix) with ESMTP id 0155C68A019;
-	Wed,  4 Jan 2017 13:25:32 +0000 (GMT)
-Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
-	by zeus.mlbassoc.com (Postfix) with ESMTP id 8D09B6740355;
-	Wed,  4 Jan 2017 14:25:31 +0100 (CET)
-To: yocto@yoctoproject.org
-References: <f13af171-a99e-cfb4-176b-4c1a5d459c44@mlbassoc.com>
-	<3716500.351XhGvxqH@peggleto-mobl.ger.corp.intel.com>
-	<fca382f4-53b0-55e2-e635-e78e93363a46@mlbassoc.com>
-	<1539248.F6glg5RPsy@peggleto-mobl.ger.corp.intel.com>
-	<d8c31717-b728-65ef-782c-10918fb331bb@mlbassoc.com>
-	<1483534455.28169.46.camel@intel.com>
-From: Gary Thomas <gary@mlbassoc.com>
-Message-ID: <61560e1d-6f14-58ec-0a87-36320fe8c0d8@mlbassoc.com>
-Date: Wed, 4 Jan 2017 14:25:31 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.5.1
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-io0-f193.google.com (mail-io0-f193.google.com
+	[209.85.223.193])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 99929E003DB
+	for <yocto@yoctoproject.org>; Wed,  4 Jan 2017 05:37:36 -0800 (PST)
+Received: by mail-io0-f193.google.com with SMTP id n85so33419303ioi.1
+	for <yocto@yoctoproject.org>; Wed, 04 Jan 2017 05:37:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-disposition:content-transfer-encoding:in-reply-to
+	:user-agent; bh=4EiwMtBriMWP3sKY31gycpajXTw5MrZYOYT+xipWHhs=;
+	b=fcJRx81HSU//w5xWMBizSdzcBYIGqEI3DdRRu1HHuDw1UOqeHu3gaEE4gByfJZXH9V
+	bZuP1YztQveAHMSYtfVeHNj55+bxYBpXbFLUONDHbr6PG3IWjJME5zNUoSUq77h2cJ8U
+	p3Svf3Unm6jcyvc9cLXIw1+PX6Y2M2h+0HTwtgh2QCkjtDGk2AbLJy9z7YBSj6U4Y0UD
+	jVrqz2bPM1FYQhZm5mFC8FbpJ1APJeb8uQOLbxfj8J6jwTNY3+qwLtCFDazwOHXk7RmF
+	8nQWb5Q2rdcoeCoU6OJ5an51iNABPjKkzLZ16InqSIIudcO/i05Eimh+8JLonSkPoCab
+	Bsgg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	:mime-version:content-disposition:content-transfer-encoding
+	:in-reply-to:user-agent;
+	bh=4EiwMtBriMWP3sKY31gycpajXTw5MrZYOYT+xipWHhs=;
+	b=NbWscxNE2ba0esHLS2GVekB5eHkQ3klQHYrSfmNfeG9hCGVU2I5gEt+1cQLtM2rTXi
+	g6nSNbWFE+5SvWmo5HHTJBj7RKB47JsL2eznByIm1q0L7AWKGMQkYK5ehDTwIiWa+L6X
+	n/wMAuJ5KPYOoVXYKJBsTFnC1nASgTt9iCNekCL4nyvzYkkLHgla49Sc93TvzyvW14YL
+	X9YR0BDRKbLXy+nodQtdW3RxVl4s4P1yMGXjYEjaRTlZIBMmGpfkzPp2Z9JGR3ZhwUKH
+	9BgLHg3W6QClsgQsqW7SgqOvup6cUOLf48/73qXlVhMJYxNc6TqhQXyIINRrR68Oig9l
+	rTng==
+X-Gm-Message-State: AIkVDXK2hRBtOZF4thjh9XCKvfnnLFlcaJjBy4awc/l5a4CxCKOYmhYPow5Q2ohEKyQhDw==
+X-Received: by 10.107.161.78 with SMTP id k75mr63152868ioe.39.1483537055620;
+	Wed, 04 Jan 2017 05:37:35 -0800 (PST)
+Received: from openSUSE-i7.site (76-10-182-217.dsl.teksavvy.com.
+	[76.10.182.217]) by smtp.gmail.com with ESMTPSA id
+	l74sm34198931ita.15.2017.01.04.05.37.33
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Wed, 04 Jan 2017 05:37:34 -0800 (PST)
+Date: Wed, 4 Jan 2017 08:37:32 -0500
+From: Trevor Woerner <twoerner@gmail.com>
+To: Andreas =?utf-8?Q?M=C3=BCller?= <schnitzeltony@googlemail.com>
+Message-ID: <20170104133732.GA11738@openSUSE-i7.site>
+References: <20170103193831.16829-1-twoerner@gmail.com>
+	<20170103193831.16829-2-twoerner@gmail.com>
+	<CALbNGRTSd1DWt_kK6esOjBT0HFqRVjcgwvJ+RRyXKs6q1vX83g@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <1483534455.28169.46.camel@intel.com>
-Subject: Re: esdk without using Poky?
+In-Reply-To: <CALbNGRTSd1DWt_kK6esOjBT0HFqRVjcgwvJ+RRyXKs6q1vX83g@mail.gmail.com>
+User-Agent: Mutt/1.6.0 (2016-04-01)
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi][PATCH] linux-raspberrypi-rt: add
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,65 +80,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 04 Jan 2017 13:25:35 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 04 Jan 2017 13:37:39 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 
-On 2017-01-04 13:54, Patrick Ohly wrote:
-> On Wed, 2017-01-04 at 12:05 +0100, Gary Thomas wrote:
->> On 2016-11-04 04:41, Paul Eggleton wrote:
->>> On Wed, 02 Nov 2016 07:25:13 Gary Thomas wrote:
->>>> I've tested your patches for this (from the OE-core mailing list)
->>>> and I can now build and use the eSDK for my board :-)
->>>
->>> Great!
->>>
->>>> I do have a couple observations/questions:
->>>>
->>>> * I added my missing tool with this line in my local.conf
->>>>       TOOLCHAIN_HOST_TASK_append = " nativesdk-ti-cgt-pru"
->>>>    Why did this cause many of the nativesdk tools to have to be rebuilt?
->>>
->>> So just FYI this will only work for the standard SDK, it's not the right way
->>> to add these tools for the eSDK - in fact it may break the eSDK due to
->>> bringing things into the native sysroot that shouldn't be there.
->>>
->>> At the moment I think the only way to properly add this to the eSDK is to do
->>> this:
->>>
->>> SDK_TARGETS += "ti-cgt-pru-native:do_populate_sysroot"
->>>
->>> We don't document this, and it's a little awkward in any case. I'll work on
->>> it.
->>
->> This was working great for me until I just upgraded to the latest [poky]
->> master (rev dbb247cac5fbf7b037e4955f9793828451723924).  With the SDK_TARGETS
->> line in my local.conf, I get this error:
->>
->> ERROR: Error for /local/poky-cutting-edge/meta-rainier-am335x-p8701/packages/images/magicard-demo-image_1.0.bb,
->> dependency ti-cgt-pru-native:do_populate_sysroot:do_populate_sysroot
->                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
->
->>  does not contain exactly one ':' character.
->>   Task 'rdepends' should be specified in the form 'packagename:task'
->>
->> Any ideas what changed and how I get it working again?
->
-> I enhanced the error checking, and the rdepends varflag in your example
-> indeed isn't valid. ":do_populate_sysroot" got appended twice to the
-> recipe name. That error got ignored silently earlier.
->
-> populate_sdk_ext.bbclass appends ":do_populate_sysroot" when setting
-> do_sdk_depends[rdepends], so you should use just:
->
->    SDK_TARGETS += "ti-cgt-pru-native"
->
+On Wed 2017-01-04 @ 01:05:27 AM, Andreas Müller wrote:
+> On Tue, Jan 3, 2017 at 8:38 PM, Trevor Woerner <twoerner@gmail.com> wrote:
+> > Add an -rt kernel option for Raspberry Pi that includes the FIQ patch which
+> > adds stability to the -rt kernel (with full preemption enabled) and is an
+> > improvement to simply disabling FIQ on the kernel cmdline.
+> >
+> > Signed-off-by: Trevor Woerner <twoerner@gmail.com>
+> I played around with rt-kernel too but had no solution for the crashes
+> so far. Will test soon and hope you are my hero..
 
-Thanks that worked - at least I can build, I haven't checked the esdk yet.
+Without any tweak I couldn't get a kernel with CONFIG_PREEMPT_RT_FULL=y
+enabled to run for more than 10 minutes before failing.
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+Simply adding the two kernel cmdline options to disable the FIQ completely
+also works, but (compared to using the FIQ patch) simply disabling the FIQ
+gives results from cyclictest that aren't as good as the results from using
+the FIQ patch.
+
+I ran one test on a raspi3 with the -rt kernel, with CONFIG_PREEMPT_RT_FULL=y,
+with the FIQ disabled from the kernel cmdline, running both:
+
+	# stress --cpu 5 --io 4 --vm 2 --vm-bytes 128M&
+	# cyclictest -p 80 -t5 -n
+
+It ran for 3 days successfully before I shut it down.
+
+I then ran another test with everything the same, but instead of a disabled
+FIQ, I updated the FIQ patch for raspi-4.4.35 and applied it. The above
+stress/cyclictest ran for 6 days successfully before I stopped it.
+
+So I have pretty good confidence in this recipe ;-)
 
