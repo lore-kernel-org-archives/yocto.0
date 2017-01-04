@@ -1,17 +1,17 @@
 Return-Path: <schnitzeltony@googlemail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 57336E007AE; Tue,  3 Jan 2017 17:13:14 -0800 (PST)
+	id 3C49DE0043B; Tue,  3 Jan 2017 19:01:41 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (schnitzeltony[at]googlemail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.217.193 listed in list.dnswl.org]
+	*      [209.85.217.176 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,54 +19,49 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.217.193 listed in dnsbl.sorbs.net]
-Received: from mail-ua0-f193.google.com (mail-ua0-f193.google.com
-	[209.85.217.193])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C3515E006EC
-	for <yocto@yoctoproject.org>; Tue,  3 Jan 2017 17:13:12 -0800 (PST)
-Received: by mail-ua0-f193.google.com with SMTP id 2so751484uax.3
-	for <yocto@yoctoproject.org>; Tue, 03 Jan 2017 17:13:12 -0800 (PST)
+Received: from mail-ua0-f176.google.com (mail-ua0-f176.google.com
+	[209.85.217.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E92C7E003DB
+	for <yocto@yoctoproject.org>; Tue,  3 Jan 2017 19:01:37 -0800 (PST)
+Received: by mail-ua0-f176.google.com with SMTP id y9so8812043uae.2
+	for <yocto@yoctoproject.org>; Tue, 03 Jan 2017 19:01:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=googlemail.com; s=20161025;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=3obOw5r5mIbxNSqRVInmALHpvRjZtXv4N6n6gKT0J0w=;
-	b=DD423+WcYBaY3I48uctFCOW7wNiZgv2VmYfeiKUx0sEX5E42i++K/xCELZLhg5+L1N
-	Mg3EuJroVoWE9dhI+BIg1dWvkeepUhfef3l5P//I+H7G3itJgWfCyoL/0eNgSNFpPYnr
-	UPKkgJn18O+BXUKs7TXcPNtjsq001/TfQFLRiuj4/DJAdQpgtIXEUDv14TWNfJhK0cMx
-	ZAXWEyjmB2YKsx6Cim2MiwhEmq2p9mVBMEhUZf5fFfMCnP78Lja92bsrkovWy0zhjSUX
-	3QzPnnn9k0hAuetoWhzEVBgZM8uBiVKdo4/lVliNHvBmh+pfG3EDPqoGsxzAln2Qe+Sf
-	cLbQ==
+	:cc:content-transfer-encoding;
+	bh=g2XgqoUu0lU0nK1ZJXhS5Lf19SNOqnt7SB2pWmACpIk=;
+	b=BbmODtp0qIg4s/fyNx1+qL1DpP4eSjlkLUjqDbqFIBTfrBdgS/SGqsGZeN2bSF8DDU
+	LAT7Zz2COyunUTdtZSDZ0yuPRX9rolJU7siHvr2hFbHJjcyvceiVcYR6RoYoyekZZzMr
+	f2FZdc3AFbrHIu521qGve6HcxeCo87HIY/8TnGPMji0DGiuFzi+r0iAhEI5SXlc4Gad4
+	8DZtKRf6uaEl9gZeWlX3/cNBa4GSNwO5HEjdbmGW4aoIVujNsLOw2JRRRkmaaMPuNifc
+	s4FAbuuHJJEDfWyn4JFTee6l1L3xvvVProu4BX2B7VG/GPAfvbEg/mHZ5Z9s+SFORp4t
+	H6vg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=3obOw5r5mIbxNSqRVInmALHpvRjZtXv4N6n6gKT0J0w=;
-	b=HY7f9K+sPpekd3+TTRgtntNSk1+KjSQx7ii5Q8auOH5klYLSc0X7bonoNebtxLTKNt
-	kdly2mI4uGJNjmEu1H1teDmnGJFWkJiQd/R1048r+eqd7bDkO0hzNhCOJwSKIMAiH7q/
-	9teneqsBC3sDqKfnw2LNeFHWgoPHAs5NaoP+Oc9LFh1X0D5evCh4cEsF9zSvLs+53LHq
-	VxRCYFIXaF/yFwgVetoQkvQStbl0HNdVNDbLPVoQiaHpt/c1fzl0yZ9BPNYmdgfHejsf
-	5rhGKp6rhPj1TKFMv3aDT8TNwO4Lj1WrRjqs/Da1UN1nxqandv0HfzEO5HgS8duu2+fB
-	LYig==
-X-Gm-Message-State: AIkVDXIemQ4xZ34Fy08I7qBWEut7rRWfW1asSD/JG0XBV54kfmOMh/YEFcIDMDF+wP33e12A/bT6T6EGznJAEQ==
-X-Received: by 10.159.37.227 with SMTP id 90mr47837279uaf.67.1483492391633;
-	Tue, 03 Jan 2017 17:13:11 -0800 (PST)
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=g2XgqoUu0lU0nK1ZJXhS5Lf19SNOqnt7SB2pWmACpIk=;
+	b=Mt1dfFPB6UFcgg3c5jr1v/vHF7WLmdEG2vIv+IXwJM+UPu/EgyZZJVeDR4DXHdUxOC
+	baW6kAGS8IFiX//jpoUAuqR51X6n+WnReBD8xL3Cv5hoCWhydDVGLGjx1l9kVjHHxT52
+	TgH1nPgCFwU3NM5DURNCMIyiNkBOR7jJE0inIQSEwOiYdnrcS+ADFUE1QK3Iw1efh99o
+	1kzrh9+xXVcWhQDFiXOqJNaUYdTdbt/FKZkK4lMwAVrRjVboWukrhS+JWIC6HHnYnVcv
+	nVR0NqloU8HIzw/zzFFy9+RiEO40Q3ILV/XrtQa9GWisGEJzpeFGJXxL156BzpdnSUJP
+	1IdQ==
+X-Gm-Message-State: AIkVDXIPUq+Gucsoq+70x9IeF3p78PLy7h98W0c/irkJk7V8dS5TzVAn+A0YjGmrY4kYHK20rMgsyj6lVggeFA==
+X-Received: by 10.159.37.227 with SMTP id 90mr48066178uaf.67.1483498896985;
+	Tue, 03 Jan 2017 19:01:36 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.176.85.157 with HTTP; Tue, 3 Jan 2017 17:13:11 -0800 (PST)
-In-Reply-To: <65082de4-2ba6-3b18-1845-00b2d637404e@balister.org>
-References: <65082de4-2ba6-3b18-1845-00b2d637404e@balister.org>
+Received: by 10.176.85.157 with HTTP; Tue, 3 Jan 2017 19:01:36 -0800 (PST)
+In-Reply-To: <CALbNGRTSd1DWt_kK6esOjBT0HFqRVjcgwvJ+RRyXKs6q1vX83g@mail.gmail.com>
+References: <20170103193831.16829-1-twoerner@gmail.com>
+	<20170103193831.16829-2-twoerner@gmail.com>
+	<CALbNGRTSd1DWt_kK6esOjBT0HFqRVjcgwvJ+RRyXKs6q1vX83g@mail.gmail.com>
 From: =?UTF-8?Q?Andreas_M=C3=BCller?= <schnitzeltony@googlemail.com>
-Date: Wed, 4 Jan 2017 02:13:11 +0100
-Message-ID: <CALbNGRSrXLdfUK3U2bXr20P+fFm4ROArGPRi9Ag=AhXbGjUv+g@mail.gmail.com>
-To: Philip Balister <philip@balister.org>
-Cc: Yocto Project <yocto@yoctoproject.org>,
-	"openembedded-members@lists.openembedded.org"
-	<openembedded-members@lists.openembedded.org>, openembedded-architecture
-	<openembedded-architecture@lists.openembedded.org>,
-	"openembedded-devel@lists.openembedded.org"
-	<openembedded-devel@lists.openembedded.org>,
-	openembedded-core <openembedded-core@lists.openembedded.org>
-Subject: Re: [OE-core] OpenEmbedded Stand at FOSDEM
+Date: Wed, 4 Jan 2017 04:01:36 +0100
+Message-ID: <CALbNGRSjfwYLCMAgzFHbezZ49or4G6pELoE_jRrJDE0Gk94O=w@mail.gmail.com>
+To: Trevor Woerner <twoerner@gmail.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi][PATCH] linux-raspberrypi-rt: add
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -78,42 +73,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 04 Jan 2017 01:13:14 -0000
+X-List-Received-Date: Wed, 04 Jan 2017 03:01:41 -0000
 Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jan 3, 2017 at 4:32 PM, Philip Balister <philip@balister.org> wrote:
-> Every year since 2007, OpenEmbedded has a stand at FOSDEM
-> (http://www.fosdem.org)
+On Wed, Jan 4, 2017 at 1:05 AM, Andreas M=C3=BCller
+<schnitzeltony@googlemail.com> wrote:
+> On Tue, Jan 3, 2017 at 8:38 PM, Trevor Woerner <twoerner@gmail.com> wrote=
+:
+>> Add an -rt kernel option for Raspberry Pi that includes the FIQ patch wh=
+ich
+>> adds stability to the -rt kernel (with full preemption enabled) and is a=
+n
+>> improvement to simply disabling FIQ on the kernel cmdline.
+>>
+>> Signed-off-by: Trevor Woerner <twoerner@gmail.com>
+> I played around with rt-kernel too but had no solution for the crashes
+> so far. Will test soon and hope you are my hero..
 >
-> From the first year:
->
-> https://www.flickr.com/photos/32615155@N00/405229708/in/album-72157594561002629/
->
-> Belen and I are sort of organizing this, but both of us are also
-> involved in devrooms, so we will need a lot of help manning the stand
-> and getting some demos together.
->
-> Demos should try and show how the project makes embedded work easier, by
-> showing tools and/or cool examples of devices using Linux built with
-> OpenEmbedded. In previous years, we've shown toaster with data collected
-> from demos on the table. Collections of devices running images built
-> from the same recipe and interesting products using Linux by OpenEmbedded.
->
-> I'm happy to try and organize demos and staffing, but I could really use
-> some help this year, so if you are in a position to tak ethe lead on
-> operating the stand, that would be a huge help to me and the rest of the
-> project.
->
-> Thanks,
->
-> Philip
-> --
-I could bring along
-
-1. Raspi2 + Hifiberry + Speakers + Midi-Keyboard + Xbox-controller
-2. a SDCard full of desktops/multimedia/office/games using 1.
-3. 2 days time
-4. ?? - let me know
+Have a rt-kernel on raspi without crashes. FIQ patch is it: Thanks so
+much for sorting this out!
 
 Andreas
 
