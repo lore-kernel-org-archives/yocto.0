@@ -1,6 +1,6 @@
-Return-Path: <anibal.limon@linux.intel.com>
+Return-Path: <stephano.cetola@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 01FACE00998; Wed,  4 Jan 2017 11:44:37 -0800 (PST)
+	id 28A75E0049D; Wed,  4 Jan 2017 16:31:31 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,28 +8,28 @@ X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
+	*      [134.134.136.65 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A23F6E0043F
-	for <yocto@yoctoproject.org>; Wed,  4 Jan 2017 11:44:36 -0800 (PST)
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-	by fmsmga101.fm.intel.com with ESMTP; 04 Jan 2017 11:44:36 -0800
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 80C6AE00443
+	for <yocto@yoctoproject.org>; Wed,  4 Jan 2017 16:31:28 -0800 (PST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga103.jf.intel.com with ESMTP; 04 Jan 2017 16:31:26 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.33,317,1477983600"; d="scan'208";a="49546243"
-Received: from alimonb-mobl1.zpn.intel.com ([10.219.5.143])
-	by fmsmga005.fm.intel.com with ESMTP; 04 Jan 2017 11:44:36 -0800
-From: =?UTF-8?q?An=C3=ADbal=20Lim=C3=B3n?= <anibal.limon@linux.intel.com>
-To: yocto@yoctoproject.org
-Date: Wed,  4 Jan 2017 13:47:20 -0600
-Message-Id: <1483559240-7206-2-git-send-email-anibal.limon@linux.intel.com>
-X-Mailer: git-send-email 2.1.4
-In-Reply-To: <1483559240-7206-1-git-send-email-anibal.limon@linux.intel.com>
-References: <1483559240-7206-1-git-send-email-anibal.limon@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="5.33,318,1477983600"; d="scan'208";a="1079292961"
+Received: from daswan-mobl5.amr.corp.intel.com ([10.254.61.101])
+	by orsmga001.jf.intel.com with ESMTP; 04 Jan 2017 16:31:27 -0800
+Date: Wed, 4 Jan 2017 16:31:27 -0800
+From: Stephano Cetola <stephano.cetola@linux.intel.com>
+To: richard_allen@keysight.com
+Message-ID: <20170105003127.GA87812@daswan-mobl5.amr.corp.intel.com>
+References: <BC774F321B0EF24DBF41FE7457B2B7862D17D5A2@wcosexch01k.cos.is.keysight.com>
 MIME-Version: 1.0
-Cc: alexander.kanavin@intel.com
-Subject: [[PATCH][RRS] 2/2] templates/rrs/recipedetail.html: Fix unneeded quotes in url call
+In-Reply-To: <BC774F321B0EF24DBF41FE7457B2B7862D17D5A2@wcosexch01k.cos.is.keysight.com>
+User-Agent: Mutt/1.7.2 (2016-11-26)
+Cc: yocto@yoctoproject.org
+Subject: Re: morty populate_sdk_ext fails for recipes inherit bin_package
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,43 +41,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 04 Jan 2017 19:44:37 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Thu, 05 Jan 2017 00:31:31 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-The url template function resolve an URL associated with a model, so
-in Django 1.6 quotes around variables don't get the variable value.
+On 01/04, richard_allen@keysight.com wrote:
+> I am getting errors with morty and -c populate_sdk_ext when I have recipes which inherit bin_package
+> These recipes work fine with Krogoth and it's populate_sdk_ext
+> 
+> Note: package is not empty, Use to install package on running system.
+> 
+> No idea how to proceed on fixing this (or if this is an morty issue with populate_sdk_ext
+> (-c populate_sdk works fine)
 
-[YOCTO #10871]
+Are you able to bitbake the image without "-c populate_sdk_ext"?
 
-Signed-off-by: Aníbal Limón <anibal.limon@linux.intel.com>
----
- templates/rrs/recipedetail.html | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+I am currently working on some bin_package related features, and I am
+able to build my image (with a bin_package recipe) as well as well as
+populate the eSDK and SDK.
 
-diff --git a/templates/rrs/recipedetail.html b/templates/rrs/recipedetail.html
-index fc3395c..9ac15da 100644
---- a/templates/rrs/recipedetail.html
-+++ b/templates/rrs/recipedetail.html
-@@ -79,7 +79,7 @@
-                     <td>{{ rud.version }}</td>
-                     {% if rud.milestone_name %}
-                     <td>
--                        <a href="{% url 'recipes' 'rud.release_name' 'rud.milestone_name' %}">
-+                        <a href="{% url 'recipes' rud.release_name rud.milestone_name %}">
-                             {{ rud.release_name }}
-                             {% if rud.milestone_name != "All" %}
-                             {{ rud.milestone_name }}
-@@ -97,7 +97,7 @@
-                     <td>{{ rud.date }}</td>
- 
-                     {% if rud.is_recipe_maintainer %} 
--                    <td><a href="{% url 'recipes' 'rud.release_name' 'rud.milestone_name' %}?maintainer_name={{ rud.maintainer_name|urlencode }}">{{ rud.maintainer_name }}</a></td>
-+                    <td><a href="{% url 'recipes' rud.release_name rud.milestone_name %}?maintainer_name={{ rud.maintainer_name|urlencode }}">{{ rud.maintainer_name }}</a></td>
-                     {% else %}
-                     <td>{{ rud.maintainer_name }}</a></td>
-                     {% endif %}
--- 
-2.1.4
+> If I use ipk for package managment
+> 
+> NOTE: Executing RunQueue Tasks
+> ERROR: uninative-tarball-1.0-r0 do_populate_sdk: Unable to install packages. Command '/home/rcallen/proto/morty/tmp/sysroots/x86_64-linux/usr/bin/opkg --volatile-cache -f /home/rcallen/proto/morty/tmp/work/x86_64-nativesdk-linux/uninative-tarball/1.0-r0/opkg.conf -t /home/rcallen/proto/morty/tmp/work/x86_64-nativesdk-linux/uninative-tarball/1.0-r0/temp/ipktemp/ -o /home/rcallen/proto/morty/tmp/work/x86_64-nativesdk-linux/uninative-tarball/1.0-r0/sdk/image/opt/tlo/2.2/sysroots/none  --force_postinstall --prefer-arch-to-version   install hals hals-doc' returned 255:
 
+Looks like it can't find hals or hals-doc. Are you sure these are
+built? The error you are seeing (Couldn't find anything to satisfy)
+is from the above command: opkg [...] install hals hals-doc.
+
+The RPM error is the same. It is telling you that the package-feeds
+don't contain anything called "hals".
+
+> Collected errors:
+>  * opkg_prepare_url_for_install: Couldn't find anything to satisfy 'hals'.
+>  * rm_r: Failed to open dir /home/rcallen/proto/morty/tmp/work/x86_64-nativesdk-linux/uninative-tarball/1.0-r0/temp/ipktemp//opkg-BL2Z8g: No such file or directory.
+> 
 
