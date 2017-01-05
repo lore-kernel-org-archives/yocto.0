@@ -1,37 +1,47 @@
-Return-Path: <stephano.cetola@linux.intel.com>
+Return-Path: <paul@paulbarker.me.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1BA12E0052B; Thu,  5 Jan 2017 10:57:57 -0800 (PST)
+	id BD3CDE007D1; Thu,  5 Jan 2017 11:33:48 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [217.70.178.86 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B34FCE00510
-	for <yocto@yoctoproject.org>; Thu,  5 Jan 2017 10:57:54 -0800 (PST)
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-	by fmsmga101.fm.intel.com with ESMTP; 05 Jan 2017 10:57:54 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.33,322,1477983600"; d="scan'208";a="50525104"
-Received: from schillax-mobl.gar.corp.intel.com ([10.252.197.177])
-	by fmsmga006.fm.intel.com with ESMTP; 05 Jan 2017 10:57:54 -0800
-Date: Thu, 5 Jan 2017 10:57:54 -0800
-From: Stephano Cetola <stephano.cetola@linux.intel.com>
-To: richard_allen@keysight.com
-Message-ID: <20170105185754.GA13163@schillax-mobl.gar.corp.intel.com>
-References: <BC774F321B0EF24DBF41FE7457B2B7862D17D5A2@wcosexch01k.cos.is.keysight.com>
-	<20170105003127.GA87812@daswan-mobl5.amr.corp.intel.com>
-	<BC774F321B0EF24DBF41FE7457B2B7862D17D8A9@wcosexch01k.cos.is.keysight.com>
+Received: from slow1-d.mail.gandi.net (slow1-d.mail.gandi.net [217.70.178.86])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 51FB0E0071C
+	for <yocto@yoctoproject.org>; Thu,  5 Jan 2017 11:33:45 -0800 (PST)
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net
+	[217.70.183.197])
+	by slow1-d.mail.gandi.net (Postfix) with ESMTP id E38AC496017
+	for <yocto@yoctoproject.org>; Thu,  5 Jan 2017 20:33:44 +0100 (CET)
+Received: from mfilter39-d.gandi.net (mfilter39-d.gandi.net [217.70.178.170])
+	by relay5-d.mail.gandi.net (Postfix) with ESMTP id C62DF41C099;
+	Thu,  5 Jan 2017 20:33:41 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at mfilter39-d.gandi.net
+Received: from relay5-d.mail.gandi.net ([IPv6:::ffff:217.70.183.197])
+	by mfilter39-d.gandi.net (mfilter39-d.gandi.net [::ffff:10.0.15.180])
+	(amavisd-new, port 10024)
+	with ESMTP id 81dE-AGKXA3o; Thu,  5 Jan 2017 20:33:40 +0100 (CET)
+X-Originating-IP: 86.24.150.36
+Received: from nuc.betafive.co.uk
+	(cpc15-shep11-2-0-cust35.8-3.cable.virginm.net [86.24.150.36])
+	(Authenticated sender: paul@paulbarker.me.uk)
+	by relay5-d.mail.gandi.net (Postfix) with ESMTPSA id CD0B741C089;
+	Thu,  5 Jan 2017 20:33:39 +0100 (CET)
+Date: Thu, 5 Jan 2017 19:33:38 +0000
+From: Paul Barker <paul@paulbarker.me.uk>
+To: Trevor Woerner <twoerner@gmail.com>
+Message-ID: <20170105193338.5b1360ec@nuc.betafive.co.uk>
+In-Reply-To: <20170105174229.1648-1-twoerner@gmail.com>
+References: <20170105174229.1648-1-twoerner@gmail.com>
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-In-Reply-To: <BC774F321B0EF24DBF41FE7457B2B7862D17D8A9@wcosexch01k.cos.is.keysight.com>
-User-Agent: Mutt/1.7.2 (2016-11-26)
 Cc: yocto@yoctoproject.org
-Subject: Re: morty populate_sdk_ext fails for recipes inherit bin_package
+Subject: Re: [meta-raspberrypi][PATCH v2] linux-raspberrypi-rt: add
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,66 +53,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 05 Jan 2017 18:57:57 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Thu, 05 Jan 2017 19:33:48 -0000
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On 01/05, richard_allen@keysight.com wrote:
-> Hi
-> 1) I had just successfully built an image with all the recipes ( hals, hals-doc)  [and yes, there these are non-empty]
-> 2) I had then successfully built image with -c populate_sdk
-> 3) The bitbake image -c populate_sdk_ext is what is failing
-> [ The above works with Krogoth, only on Morty am I getting the errors during populate_sdk_ext
-> 
-> May be the recipe is wrong for Morty? ( I have several other recipes, same thing, same structure)
+On Thu,  5 Jan 2017 12:42:29 -0500
+Trevor Woerner <twoerner@gmail.com> wrote:
 
-Nothing jumps out about that recipe. If you do a `find` in
-tmp/deploy/ipk for hals*, does anything show up? That's where opkg
-will be looking for the packages, so I assume it is not there.
+> Add an -rt kernel recipe for Raspberry Pi that includes the FIQ patch which
+> adds stability to the -rt kernel (with full preemption enabled) and is an
+> improvement to simply disabling FIQ on the kernel cmdline.
+> 
+> Signed-off-by: Trevor Woerner <twoerner@gmail.com>
+> ---
+> 
+> changes since v1:
+> 	- use "make savedefconfig" to generate the defconfig instead of just
+> 	  using the full .config
+> 
+>  .../0001-fix-dtbo-rules.patch                      |    44 +
+>  .../FIQ_PREEMPT_RT_on_raspi.patch                  |   310 +
+>  .../linux/linux-raspberrypi-rt-4.4/defconfig       |  1249 +
+>  .../patch-4.4.32-rt43.patch                        | 31403 +++++++++++++++++++
+>  recipes-kernel/linux/linux-raspberrypi-rt_4.4.bb   |    55 +
+>  5 files changed, 33061 insertions(+)
+>  create mode 100644 recipes-kernel/linux/linux-raspberrypi-rt-4.4/0001-fix-dtbo-rules.patch
+>  create mode 100644 recipes-kernel/linux/linux-raspberrypi-rt-4.4/FIQ_PREEMPT_RT_on_raspi.patch
+>  create mode 100644 recipes-kernel/linux/linux-raspberrypi-rt-4.4/defconfig
+>  create mode 100644 recipes-kernel/linux/linux-raspberrypi-rt-4.4/patch-4.4.32-rt43.patch
+>  create mode 100644 recipes-kernel/linux/linux-raspberrypi-rt_4.4.bb
+> 
 
-> 
-> inherit bin_package
-> 
-> SUMMARY = "HALs "
-> DESCRIPTION = "HALs"
-> 
-> LICENSE = "CLOSED"
-> LIC_FILES_CHKSUM = ""
-> 
-> # this can be overridden in local.conf
-> HALS_TARBALL_URI ?= "file:///opt/packages/${PN}-${PV}-arm.tar.gz"
-> 
-> SRC_URI = "${HALS_TARBALL_URI}"
-> 
-> # the tar has a root directory , which has the files under
-> HALS_TAR_ROOT_DIR_NAME ?= "${PN}-${PV}-arm"
-> 
-> #make the source directory start in this directory
-> S = "${WORKDIR}/${HALS_TAR_ROOT_DIR_NAME}"
-> 
-> #runtime depends
-> RDEPENDS_${PN} = " libgcc \
->                          libstdc++ \
->                          dtc \
->                            "
-> DEPENDS_${PN} = " gtest"
-> 
-> #bring in all to build toolchain
-> DEPENDS_${PN}-dev += " ${PN}-doc ${PN}-tests ${PN}-samples"
-> 
-> PACKAGES =+ "${PN}-tests ${PN}-samples "
-> 
-> FILES_${PN}-staticdev += "  ${libdir}/*/*.a"
-> FILES_${PN}-dev           += "${includedir} ""
-> FILES_${PN}-samples   += "${bindir}/*"
-> FILES_${PN}-tests     += "${bindir}/*[tT]est"
-> FILES_${PN}-doc       += "${prefix}/src/doc"
-> 
-> 
-> # this stops an QA issue
-> 
-> INSANE_SKIP_hals += "dev-so"
-> BBCLASSEXTEND = "native nativesdk"
-> 
-> 
+Would it be possible to point SRC_URI at kernel.org [1] instead of
+including the whole patch in meta-raspberrypi? It feels a bit much to
+me to include a >1MB patch file.
+
+[1]: https://www.kernel.org/pub/linux/kernel/projects/rt/4.4/older/patch-4.4.32-rt43.patch.gz
+
+Thanks,
+Paul
 
