@@ -1,60 +1,72 @@
-Return-Path: <richard_allen@keysight.com>
+Return-Path: <twoerner@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0FF45E00A51; Thu,  5 Jan 2017 12:12:36 -0800 (PST)
+	id 8A680E009BC; Thu,  5 Jan 2017 12:16:27 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [192.25.5.36 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (twoerner[at]gmail.com)
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.223.195 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from cos-us-iron02k.cos.keysight.com
-	(cos-us-iron02k.cos.keysight.com [192.25.5.36])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B4755E00A04
-	for <yocto@yoctoproject.org>; Thu,  5 Jan 2017 12:12:32 -0800 (PST)
-X-IPAS-Result: =?us-ascii?q?A2CFAQBqqG5YfRUYjJxdGwEBAQMBAQEJAQEBgzgBAQEBAYI?=
-	=?us-ascii?q?KB41QcpNUkFWEUoIJhiICggsUAQIBAQEBAQEBEwEBFjAwhGgBAQEBAgE6PwwEA?=
-	=?us-ascii?q?gEIEQQBAQEKFAkHMhQJCAEBBA4FCIhgCLImihsBAQEBAQEBAQEBAQEBAQEBAQE?=
-	=?us-ascii?q?BAQEdiyaESIMzgjEFiGqGKYFCijuiHUiRfh83gTyGa3MBh1gBgQwBAQE?=
-X-IronPort-AV: E=Sophos;i="5.33,322,1477980000"; d="scan'208";a="43954626"
-Received: from wcosexch02k.cos.is.keysight.com (HELO 2k10hubs.keysight.com)
-	([156.140.24.21]) by cos-us-iron02k.cos.keysight.com with
-	ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 05 Jan 2017 13:12:22 -0700
-Received: from wcosexch01k.cos.is.keysight.com ([169.254.3.33]) by
-	wcosexch02k.cos.is.keysight.com ([169.254.2.150]) with mapi id
-	14.03.0279.002; Thu, 5 Jan 2017 13:12:14 -0700
-From: <richard_allen@keysight.com>
-To: <stephano.cetola@linux.intel.com>
-Thread-Topic: [yocto] morty populate_sdk_ext fails for recipes inherit
-	bin_package
-Thread-Index: AdJmrdhZ9pbqzvy0R9qZ/7zxjaZvSQAd+EaAAA4nawAAGH0EAAAMIZRg
-Date: Thu, 5 Jan 2017 20:12:13 +0000
-Message-ID: <BC774F321B0EF24DBF41FE7457B2B7862D17DA53@wcosexch01k.cos.is.keysight.com>
-References: <BC774F321B0EF24DBF41FE7457B2B7862D17D5A2@wcosexch01k.cos.is.keysight.com>
-	<20170105003127.GA87812@daswan-mobl5.amr.corp.intel.com>
-	<BC774F321B0EF24DBF41FE7457B2B7862D17D8A9@wcosexch01k.cos.is.keysight.com>
-	<20170105185754.GA13163@schillax-mobl.gar.corp.intel.com>
-In-Reply-To: <20170105185754.GA13163@schillax-mobl.gar.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [156.140.13.70]
-x-tm-as-product-ver: SMEX-12.0.0.1220-8.000.1202-22806.002
-x-tm-as-result: No--18.551900-8.000000-31
-x-tm-as-matchedid: 144069-150567-701625-704425-700685-701347-702020-709584-1
-	88198-701407-704761-188019-704421-701053-707451-700648-705388-702169-711109
-	-704034-701016-701465-706817-701339-704504-708797-701927-701305-701604-1390
-	06-701960-106660-700075-139010-701708-702113-707654-701005-703283-709137-70
-	2187-860163-701232-704568-862883-711664-139504-704496-188199-702118-711740-
-	705861-700978-709755-148004-148133-20043-42000-42003
-x-tm-as-user-approved-sender: No
-x-tm-as-user-blocked-sender: No
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.223.195 listed in list.dnswl.org]
+Received: from mail-io0-f195.google.com (mail-io0-f195.google.com
+	[209.85.223.195])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 74EBEE009B9
+	for <yocto@yoctoproject.org>; Thu,  5 Jan 2017 12:16:23 -0800 (PST)
+Received: by mail-io0-f195.google.com with SMTP id n85so37587355ioi.1
+	for <yocto@yoctoproject.org>; Thu, 05 Jan 2017 12:16:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-disposition:in-reply-to:user-agent;
+	bh=YGzUfUW3IEX7vhzPkRjMGMQikoscGZtB2Pu8HpQd1jo=;
+	b=mPNHf8yLLHfb2LZWJsF24X9d/CD8NrZGp5fnzQv6yoMYsRSGN7sxiZn/1970EdGoJV
+	AfNomHUAbdkF9a9PfcAoaW/iBGnL7zqCE3r/0ZO1aWNvRmKVtImL1g190AEkuY+Pp73C
+	rJW22+dSadV1AqR73cOtWA/sT7IESZ9amO7ZCLafjl9RuquzhqtiQHHJOWuH8yzT/vTN
+	BQT7U51B6QRfNQRFFtlJ7kMTZLH69ij3QIxL1D3g363zqmscao93fsJE3EozeXvGeA4d
+	LuKz812TYdixBMIZVGBMaSfTg2NNJf9TjnSUOIKZfEfXnrT3lwzYX8E73h0KaA85EdGq
+	cgjA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	:mime-version:content-disposition:in-reply-to:user-agent;
+	bh=YGzUfUW3IEX7vhzPkRjMGMQikoscGZtB2Pu8HpQd1jo=;
+	b=L6nJKOKhnDKM+r+GAuHyomo92h36S7J6jytkr7dP/rgW5cCRBsfQS9PPtEf68PiP8s
+	r8kWFWboIjo+1s7f3Y0yPARopUGG9TA6hMp+iQ2sg0f4t22cANJMKr5LY7+bjjo4awKp
+	ByLE6mGFAlvgcPTzfz0oKESWZEEOc9xdaN8YzbP96QpnQfzKyakhSpHYrTSD1h0/8HnW
+	To8CNvek9kLx2L14l34frTf+21BS2VE3Sfxffs9t/lbMXTPkg54x1a4QtoMFRdS9HMuX
+	A1LIZdFQXk0YhNULAPRsVavLGFcgebjTaruEBZfvY6s6Dj69HJJxq/l3xtNW9gE5h2oi
+	j+dQ==
+X-Gm-Message-State: AIkVDXJL9hooAggSoyGPkgSzfNZMnJ8XBMlUrsBzzFxKt5GtpGh72FtOC684f7LGGEno+w==
+X-Received: by 10.107.2.210 with SMTP id 201mr54211947ioc.67.1483647382383;
+	Thu, 05 Jan 2017 12:16:22 -0800 (PST)
+Received: from openSUSE-i7.site (76-10-182-217.dsl.teksavvy.com.
+	[76.10.182.217])
+	by smtp.gmail.com with ESMTPSA id d77sm33640itc.10.2017.01.05.12.16.21
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Thu, 05 Jan 2017 12:16:21 -0800 (PST)
+Date: Thu, 5 Jan 2017 15:16:19 -0500
+From: Trevor Woerner <twoerner@gmail.com>
+To: Paul Barker <paul@paulbarker.me.uk>
+Message-ID: <20170105201619.GA7568@openSUSE-i7.site>
+References: <20170105174229.1648-1-twoerner@gmail.com>
+	<20170105193338.5b1360ec@nuc.betafive.co.uk>
 MIME-Version: 1.0
+In-Reply-To: <20170105193338.5b1360ec@nuc.betafive.co.uk>
+User-Agent: Mutt/1.6.0 (2016-04-01)
 Cc: yocto@yoctoproject.org
-Subject: Re: morty populate_sdk_ext fails for recipes inherit bin_package
+Subject: Re: [meta-raspberrypi][PATCH v2] linux-raspberrypi-rt: add
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,142 +78,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 05 Jan 2017 20:12:36 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 05 Jan 2017 20:16:27 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 
-Appreciate your suggestions.
-The ipk's are there
+On Thu 2017-01-05 @ 07:33:38 PM, Paul Barker wrote:
+> On Thu,  5 Jan 2017 12:42:29 -0500
+> Trevor Woerner <twoerner@gmail.com> wrote:
+> 
+> > Add an -rt kernel recipe for Raspberry Pi that includes the FIQ patch which
+> > adds stability to the -rt kernel (with full preemption enabled) and is an
+> > improvement to simply disabling FIQ on the kernel cmdline.
+> > 
+> > Signed-off-by: Trevor Woerner <twoerner@gmail.com>
+> > ---
+> > 
+> > changes since v1:
+> > 	- use "make savedefconfig" to generate the defconfig instead of just
+> > 	  using the full .config
+> > 
+> >  .../0001-fix-dtbo-rules.patch                      |    44 +
+> >  .../FIQ_PREEMPT_RT_on_raspi.patch                  |   310 +
+> >  .../linux/linux-raspberrypi-rt-4.4/defconfig       |  1249 +
+> >  .../patch-4.4.32-rt43.patch                        | 31403 +++++++++++++++++++
+> >  recipes-kernel/linux/linux-raspberrypi-rt_4.4.bb   |    55 +
+> >  5 files changed, 33061 insertions(+)
+> >  create mode 100644 recipes-kernel/linux/linux-raspberrypi-rt-4.4/0001-fix-dtbo-rules.patch
+> >  create mode 100644 recipes-kernel/linux/linux-raspberrypi-rt-4.4/FIQ_PREEMPT_RT_on_raspi.patch
+> >  create mode 100644 recipes-kernel/linux/linux-raspberrypi-rt-4.4/defconfig
+> >  create mode 100644 recipes-kernel/linux/linux-raspberrypi-rt-4.4/patch-4.4.32-rt43.patch
+> >  create mode 100644 recipes-kernel/linux/linux-raspberrypi-rt_4.4.bb
+> > 
+> 
+> Would it be possible to point SRC_URI at kernel.org [1] instead of
+> including the whole patch in meta-raspberrypi? It feels a bit much to
+> me to include a >1MB patch file.
+> 
+> [1]: https://www.kernel.org/pub/linux/kernel/projects/rt/4.4/older/patch-4.4.32-rt43.patch.gz
 
-$ find tmp/deploy/ipk/ -name hals*
-tmp/deploy/ipk/cortexa9hf-neon/hals-tests_5.0.0-r0_cortexa9hf-neon.ipk
-tmp/deploy/ipk/cortexa9hf-neon/hals_5.0.0-r0_cortexa9hf-neon.ipk
-tmp/deploy/ipk/cortexa9hf-neon/hals-dev_5.0.0-r0_cortexa9hf-neon.ipk
-tmp/deploy/ipk/cortexa9hf-neon/hals-doc_5.0.0-r0_cortexa9hf-neon.ipk
-tmp/deploy/ipk/cortexa9hf-neon/hals-dbg_5.0.0-r0_cortexa9hf-neon.ipk
+The "virgin" -rt patch from kernel.org doesn't apply cleanly. First off there
+is a slight version mismatch and secondly this is the raspberrypi kernel, not
+a pure upstream kernel.
 
-But error persist (no issues with -c populate_sdk)..
-
-
-
-$ bitbake core-image-minimal -R cfgs/add-hals.conf -c populate_sdk_ext
-
-NOTE: Executing RunQueue Tasks
-ERROR: uninative-tarball-1.0-r0 do_populate_sdk: Unable to install packages=
-. Command '/home/rcallen/proto/morty/tmp/sysroots/x86_64-linux/usr/bin/opkg=
- --volatile-cache -f /home/rcallen/proto/morty/tmp/work/x86_64-nativesdk-ke=
-ysight-linux/uninative-tarball/1.0-r0/opkg.conf -t /home/rcallen/proto/mort=
-y/tmp/work/x86_64-nativesdk-keysight-linux/uninative-tarball/1.0-r0/temp/ip=
-ktemp/ -o /home/rcallen/proto/morty/tmp/work/x86_64-nativesdk-keysight-linu=
-x/uninative-tarball/1.0-r0/sdk/image/opt/tlo/2.2/sysroots/none  --force_pos=
-tinstall --prefer-arch-to-version   install hals-doc hals' returned 255:
-Collected errors:
- * opkg_prepare_url_for_install: Couldn't find anything to satisfy 'hals-do=
-c'.
- * rm_r: Failed to open dir /home/rcallen/proto/morty/tmp/work/x86_64-nativ=
-esdk-keysight-linux/uninative-tarball/1.0-r0/temp/ipktemp//opkg-HSRjMc: No =
-such file or directory.
-
-ERROR: uninative-tarball-1.0-r0 do_populate_sdk: Function failed: do_popula=
-te_sdk
-ERROR: Logfile of failure stored in: /home/rcallen/proto/morty/tmp/work/x86=
-_64-nativesdk-keysight-linux/uninative-tarball/1.0-r0/temp/log.do_populate_=
-sdk.39088
-ERROR: Task (/opt/yocto/morty/poky/meta/recipes-core/meta/uninative-tarball=
-.bb:do_populate_sdk) failed with exit code '1'
-ERROR: buildtools-tarball-1.0-r0 do_populate_sdk: Unable to install package=
-s. Command '/home/rcallen/proto/morty/tmp/sysroots/x86_64-linux/usr/bin/opk=
-g --volatile-cache -f /home/rcallen/proto/morty/tmp/work/x86_64-nativesdk-k=
-eysight-linux/buildtools-tarball/1.0-r0/opkg.conf -t /home/rcallen/proto/mo=
-rty/tmp/work/x86_64-nativesdk-keysight-linux/buildtools-tarball/1.0-r0/temp=
-/ipktemp/ -o /home/rcallen/proto/morty/tmp/work/x86_64-nativesdk-keysight-l=
-inux/buildtools-tarball/1.0-r0/sdk/image/opt/tlo/2.2/sysroots/none  --force=
-_postinstall --prefer-arch-to-version   install hals-doc hals' returned 255=
-:
-Collected errors:
- * opkg_prepare_url_for_install: Couldn't find anything to satisfy 'hals-do=
-c'.
- * rm_r: Failed to open dir /home/rcallen/proto/morty/tmp/work/x86_64-nativ=
-esdk-keysight-linux/buildtools-tarball/1.0-r0/temp/ipktemp//opkg-eTg08o: No=
- such file or directory.
-
-ERROR: buildtools-tarball-1.0-r0 do_populate_sdk: Function failed: do_popul=
-ate_sdk
-ERROR: Logfile of failure stored in: /home/rcallen/proto/morty/tmp/work/x86=
-_64-nativesdk-keysight-linux/buildtools-tarball/1.0-r0/temp/log.do_populate=
-_sdk.39087
-ERROR: Task (/opt/yocto/morty/poky/meta/recipes-core/meta/buildtools-tarbal=
-l.bb:do_populate_sdk) failed with exit code '1'
-
-
------Original Message-----
-From: Stephano Cetola [mailto:stephano.cetola@linux.intel.com]=20
-Sent: Thursday, January 05, 2017 10:58 AM
-To: ALLEN,RICHARD (K-SantaClara,ex1) <richard_allen@keysight.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: [yocto] morty populate_sdk_ext fails for recipes inherit bin_p=
-ackage
-
-On 01/05, richard_allen@keysight.com wrote:
-> Hi
-> 1) I had just successfully built an image with all the recipes ( hals,=20
-> hals-doc)  [and yes, there these are non-empty]
-> 2) I had then successfully built image with -c populate_sdk
-> 3) The bitbake image -c populate_sdk_ext is what is failing [ The=20
-> above works with Krogoth, only on Morty am I getting the errors during=20
-> populate_sdk_ext
->=20
-> May be the recipe is wrong for Morty? ( I have several other recipes,=20
-> same thing, same structure)
-
-Nothing jumps out about that recipe. If you do a `find` in tmp/deploy/ipk f=
-or hals*, does anything show up? That's where opkg will be looking for the =
-packages, so I assume it is not there.
-
->=20
-> inherit bin_package
->=20
-> SUMMARY =3D "HALs "
-> DESCRIPTION =3D "HALs"
->=20
-> LICENSE =3D "CLOSED"
-> LIC_FILES_CHKSUM =3D ""
->=20
-> # this can be overridden in local.conf HALS_TARBALL_URI ?=3D=20
-> "file:///opt/packages/${PN}-${PV}-arm.tar.gz"
->=20
-> SRC_URI =3D "${HALS_TARBALL_URI}"
->=20
-> # the tar has a root directory , which has the files under=20
-> HALS_TAR_ROOT_DIR_NAME ?=3D "${PN}-${PV}-arm"
->=20
-> #make the source directory start in this directory S =3D=20
-> "${WORKDIR}/${HALS_TAR_ROOT_DIR_NAME}"
->=20
-> #runtime depends
-> RDEPENDS_${PN} =3D " libgcc \
->                          libstdc++ \
->                          dtc \
->                            "
-> DEPENDS_${PN} =3D " gtest"
->=20
-> #bring in all to build toolchain
-> DEPENDS_${PN}-dev +=3D " ${PN}-doc ${PN}-tests ${PN}-samples"
->=20
-> PACKAGES =3D+ "${PN}-tests ${PN}-samples "
->=20
-> FILES_${PN}-staticdev +=3D "  ${libdir}/*/*.a"
-> FILES_${PN}-dev           +=3D "${includedir} ""
-> FILES_${PN}-samples   +=3D "${bindir}/*"
-> FILES_${PN}-tests     +=3D "${bindir}/*[tT]est"
-> FILES_${PN}-doc       +=3D "${prefix}/src/doc"
->=20
->=20
-> # this stops an QA issue
->=20
-> INSANE_SKIP_hals +=3D "dev-so"
-> BBCLASSEXTEND =3D "native nativesdk"
->=20
->=20
+Is there a way to patch a patch before it gets applied? If it could be
+fetched from kernel.org then patched before applying that would be ideal!
+The diff isn't that big; it's sad to have to provide a >1MB patch for such
+a small tweak. I guess that's why the yocto kernels/patches have their own
+repositories on yoctoproject.org?
 
