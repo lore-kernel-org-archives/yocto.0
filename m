@@ -1,33 +1,36 @@
 Return-Path: <Wenzong.Fan@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 46EA0E00571; Thu,  5 Jan 2017 00:23:34 -0800 (PST)
+	id 6F666E00571; Thu,  5 Jan 2017 00:23:35 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CC688E00480
-	for <yocto@yoctoproject.org>; Thu,  5 Jan 2017 00:23:33 -0800 (PST)
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D0169E00510
+	for <yocto@yoctoproject.org>; Thu,  5 Jan 2017 00:23:34 -0800 (PST)
 Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
 	[147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id v058NXJZ006603
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=OK)
-	for <yocto@yoctoproject.org>; Thu, 5 Jan 2017 00:23:33 -0800
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id v058NYtS003845
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Thu, 5 Jan 2017 00:23:34 -0800 (PST)
 Received: from ala-lpggp5.wrs.com (147.11.105.121) by ALA-HCA.corp.ad.wrs.com
 	(147.11.189.50) with Microsoft SMTP Server id 14.3.294.0;
-	Thu, 5 Jan 2017 00:23:32 -0800
+	Thu, 5 Jan 2017 00:23:33 -0800
 From: <wenzong.fan@windriver.com>
 To: <yocto@yoctoproject.org>
-Date: Thu, 5 Jan 2017 00:23:25 -0800
-Message-ID: <11bc5999e93ba35bf9bed84869bf101c7109b929.1483601828.git.wenzong.fan@windriver.com>
+Date: Thu, 5 Jan 2017 00:23:26 -0800
+Message-ID: <9bb9bc4ad2106913b1abac0ab09e5d0f633c7469.1483601828.git.wenzong.fan@windriver.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <cover.1483601828.git.wenzong.fan@windriver.com>
 References: <cover.1483601828.git.wenzong.fan@windriver.com>
 MIME-Version: 1.0
-Subject: [meta-selinux][PATCH 8/9] secilc: uprev to 2.6 (20161014)
+Subject: [meta-selinux][PATCH 9/9] selinux_common: remove EXTRA_OEMAKE = "-e"
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,45 +42,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 05 Jan 2017 08:23:34 -0000
+X-List-Received-Date: Thu, 05 Jan 2017 08:23:35 -0000
 Content-Type: text/plain
 
 From: Wenzong Fan <wenzong.fan@windriver.com>
 
+Some variables are exported by top Makefile and updated from sub
+Makefile (such as PCRE_LDFLAGS, DISABLE_FLAGS ...).
+
+The '-e' option prevents those variables from updating in the sub
+Makefile and causes libselinux build errors:
+
+| label.lo:(.data.rel.ro.local+0x20): undefined reference to `selabel_property_init'
+| label.lo:(.data.rel.ro.local+0x28): undefined reference to `selabel_service_init'
+
+oe-core also cleaned such default value from commit: aeb65386
+
 Signed-off-by: Wenzong Fan <wenzong.fan@windriver.com>
 ---
- recipes-security/selinux/secilc_2.5.bb | 7 -------
- recipes-security/selinux/secilc_2.6.bb | 7 +++++++
- 2 files changed, 7 insertions(+), 7 deletions(-)
- delete mode 100644 recipes-security/selinux/secilc_2.5.bb
- create mode 100644 recipes-security/selinux/secilc_2.6.bb
+ recipes-security/selinux/selinux_common.inc | 5 -----
+ 1 file changed, 5 deletions(-)
 
-diff --git a/recipes-security/selinux/secilc_2.5.bb b/recipes-security/selinux/secilc_2.5.bb
-deleted file mode 100644
-index 56e0086..0000000
---- a/recipes-security/selinux/secilc_2.5.bb
-+++ /dev/null
-@@ -1,7 +0,0 @@
--include selinux_20160223.inc
--include ${BPN}.inc
+diff --git a/recipes-security/selinux/selinux_common.inc b/recipes-security/selinux/selinux_common.inc
+index 7efa694..e4c23a1 100644
+--- a/recipes-security/selinux/selinux_common.inc
++++ b/recipes-security/selinux/selinux_common.inc
+@@ -1,10 +1,5 @@
+ HOMEPAGE = "https://github.com/SELinuxProject"
+ 
+-# EXTRA_OEMAKE is typically: -e MAKEFLAGS=
+-# "MAKEFLAGS= " causes problems as ENV variables will not pass to subdirs, so
+-# we redefine EXTRA_OEMAKE here
+-EXTRA_OEMAKE = "-e"
 -
--LIC_FILES_CHKSUM = "file://COPYING;md5=5fb82e8deb357d4e5fd8f3fed01d2f38"
--
--SRC_URI[md5sum] = "af73267cccd0e46cb455d5702565cd41"
--SRC_URI[sha256sum] = "4303d911c06ee5c207e00f778ca786c1a6efa2554a562f5d014dbc0d2f4cc4a4"
-diff --git a/recipes-security/selinux/secilc_2.6.bb b/recipes-security/selinux/secilc_2.6.bb
-new file mode 100644
-index 0000000..0f84b0e
---- /dev/null
-+++ b/recipes-security/selinux/secilc_2.6.bb
-@@ -0,0 +1,7 @@
-+include selinux_20161014.inc
-+include ${BPN}.inc
-+
-+LIC_FILES_CHKSUM = "file://COPYING;md5=5fb82e8deb357d4e5fd8f3fed01d2f38"
-+
-+SRC_URI[md5sum] = "38c06fb8d97206a12016b4516ee23efc"
-+SRC_URI[sha256sum] = "a84838c15bb7b0141238b48294b15ff0e1618107f547541a0067d1ddabcc9502"
+ do_compile() {
+     oe_runmake all \
+             INCLUDEDIR='${STAGING_INCDIR}' \
 -- 
 2.7.4
 
