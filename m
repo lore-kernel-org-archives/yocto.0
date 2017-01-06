@@ -1,6 +1,6 @@
 Return-Path: <twoerner@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 77727E0053F; Thu,  5 Jan 2017 19:54:04 -0800 (PST)
+	id 8E087E0055C; Thu,  5 Jan 2017 20:13:56 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,11 +9,6 @@ X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (twoerner[at]gmail.com)
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.216.194 listed in dnsbl.sorbs.net]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.216.194 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -21,47 +16,54 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qt0-f194.google.com (mail-qt0-f194.google.com
-	[209.85.216.194])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0C3BFE0043B
-	for <yocto@yoctoproject.org>; Thu,  5 Jan 2017 19:54:02 -0800 (PST)
-Received: by mail-qt0-f194.google.com with SMTP id f4so1594109qte.2
-	for <yocto@yoctoproject.org>; Thu, 05 Jan 2017 19:54:02 -0800 (PST)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.214.67 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.214.67 listed in dnsbl.sorbs.net]
+Received: from mail-it0-f67.google.com (mail-it0-f67.google.com
+	[209.85.214.67])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2773AE0052B
+	for <yocto@yoctoproject.org>; Thu,  5 Jan 2017 20:13:53 -0800 (PST)
+Received: by mail-it0-f67.google.com with SMTP id c20so1016541itb.0
+	for <yocto@yoctoproject.org>; Thu, 05 Jan 2017 20:13:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=yHC5m3PfJ1PSMuB2b1mdl5L6QHyImJeeAt88MYStDgE=;
-	b=l7jsIyCW23am/l2DUdzawWNQrdMO0emUvM23dCrlriLyXrI8kUDju7AoiT0DcdJoU6
-	A6MZu2rdqC7/v2lOi2GJlkJSbuVgf03/vQQOCohH3UuYYDQWfcShdrZL8d1srBSVFgSL
-	q2LWk3NyIXjEwXGdsGNAYUYlw/fiyyTA7vqUu1e2Wui5CQIoj+qmIgKmvxSI+Ue7HIaQ
-	8DKBW09Zue+U6oCzwvq91pSk2pcyIReu9aCdxtdFxY+8Dap4B/xHBhyPOA89jnCqaEiB
-	DfjXcsYAhUcw0SzU7It03G3Uujd+00Thi/pNkaJyRMuJF6+dzyo7Ur/e7v3kWmutq+FK
-	7Pbw==
+	h=date:from:to:subject:message-id:references:mime-version
+	:content-disposition:in-reply-to:user-agent;
+	bh=svquKAfVFx7ea2ODZoq4iqMAl72RS2ufaBAz3x8Esvs=;
+	b=QuWTK0tkqsrkCbcLR6Ynz8UMUJ3XltaZUmSf7JskcNj7+T7eUs6SmwVV3nyn0wcKDl
+	i0hBRny5/INFgIZdlMPcuxbXBPn2I8mp28q2UsIN3S+k651pcDuSI5Vz45HhkI/Z7DEG
+	rNY5U2BdBnyhioS3vhkcyTgad3qdg7MtMFfAnm8dtOS+NAlDGu87puTtSU/QBeu0jLFr
+	Jr4lbwuv5PzFWSk8D8mPnwUWdLLw2nAz5zea+PL1U/CXo2aFtjmMLZW8/hWIKBuCfX8T
+	xT1AHeL1OD8CtAKBD5Fxzg+cvNh7/GxxSPN9AXVCIFcQAzX6zUnSB0ZS0sJoOC1QP0Bm
+	pnLQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=yHC5m3PfJ1PSMuB2b1mdl5L6QHyImJeeAt88MYStDgE=;
-	b=US4bBAZMMZ4pSPIh1Snlb82P3Jd3CObPBltoz5B1dSXRoQ4hBjYZkoEnskB8frSRTY
-	u3feZLOv5Iwv+adetb7fOO8UfT3RAeYKcnyKd3OwQ5zg5BIZsGc5rtwWQwtEY7Xh/xa0
-	siYdtbSAegMRzpovNgDJWNK3jJodFi9RrIe1JsY9CiyN/VF6afPLJeqTugA0yPGyEOVb
-	Z7bpNdwSZxrvMirMTj2KRz38BE+IsODbgNiccCaSlcFBH5YCs/aEJi5IfWgb+w2HWddj
-	6MmxYlSCDt16Zr4oZPzvA2YtApNcfhz0fYdh/jZkeU7Et/M7XAoXDQl2ORnlnLKSNQxl
-	zp4A==
-X-Gm-Message-State: AIkVDXLPGnWHWF9IcPbLvze8nog75Dx9/UH69aBMsXFk41nbbAzPlqzjkwg7Dc4+4yOeKnfmvvfQZ/wwIBm/2A==
-X-Received: by 10.237.36.12 with SMTP id r12mr70677483qtc.97.1483674841783;
-	Thu, 05 Jan 2017 19:54:01 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.237.43.135 with HTTP; Thu, 5 Jan 2017 19:54:01 -0800 (PST)
-In-Reply-To: <20170105215916.072b9215@nuc.betafive.co.uk>
-References: <20170105174229.1648-1-twoerner@gmail.com>
-	<20170105193338.5b1360ec@nuc.betafive.co.uk>
-	<20170105201619.GA7568@openSUSE-i7.site>
-	<20170105215916.072b9215@nuc.betafive.co.uk>
+	h=x-gm-message-state:date:from:to:subject:message-id:references
+	:mime-version:content-disposition:in-reply-to:user-agent;
+	bh=svquKAfVFx7ea2ODZoq4iqMAl72RS2ufaBAz3x8Esvs=;
+	b=r8t3y3JJP9P4w1htCyNli9MAo+EnxYutdjAjuiVCqLx6HUHsfEv35unQGhP3ytP2oo
+	zg3wOI+aLOiba2oIQJxS9R/xZrRR3lsrumuooUv/S3jEf3LixNXJ2AJI542E4mLjpzCl
+	IeusARDitlOSTQN+i4HI1whIy1h1wkai8O0zl7QahOOgsCTi3jI3PGlDZdzDj+9WCZzu
+	ErWFJCKVrikEuemYtMcCo/rzV9GWG3Mw2eepP6szefqGPzECj3Zx/YxYD0mznpIXddyY
+	lv5UEhMtwhMWd+vvQJSyq3bC5Crk3/w4A/DZmE6gYXiY2gTCS5rG3lFkpCmTMg7uCq4V
+	YuBA==
+X-Gm-Message-State: AIkVDXKTpbW72oE7EMGmfwUymNGTB8HFEb854cI1L9MUhKNzq7kD4DJfCnkVpFlTkCkEog==
+X-Received: by 10.36.101.129 with SMTP id u123mr948863itb.30.1483676032646;
+	Thu, 05 Jan 2017 20:13:52 -0800 (PST)
+Received: from openSUSE-i7.site (76-10-182-217.dsl.teksavvy.com.
+	[76.10.182.217]) by smtp.gmail.com with ESMTPSA id
+	d25sm27802001ioj.25.2017.01.05.20.13.51 for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Thu, 05 Jan 2017 20:13:51 -0800 (PST)
+Date: Thu, 5 Jan 2017 23:13:49 -0500
 From: Trevor Woerner <twoerner@gmail.com>
-Date: Thu, 5 Jan 2017 22:54:01 -0500
-Message-ID: <CAHUNapTy3KM_MwRkdXVptjUYR5S344pvXKQDG-5v9+==2tA3sQ@mail.gmail.com>
-To: Paul Barker <paul@paulbarker.me.uk>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+To: yocto@yoctoproject.org
+Message-ID: <20170106041349.GA23468@openSUSE-i7.site>
+References: <20170105174229.1648-1-twoerner@gmail.com>
+MIME-Version: 1.0
+In-Reply-To: <20170105174229.1648-1-twoerner@gmail.com>
+User-Agent: Mutt/1.6.0 (2016-04-01)
 Subject: Re: [meta-raspberrypi][PATCH v2] linux-raspberrypi-rt: add
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -74,83 +76,11 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 06 Jan 2017 03:54:04 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Fri, 06 Jan 2017 04:13:56 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 
-On Thu, Jan 5, 2017 at 4:59 PM, Paul Barker <paul@paulbarker.me.uk> wrote:
-> On Thu, 5 Jan 2017 15:16:19 -0500
-> Trevor Woerner <twoerner@gmail.com> wrote:
->
->> On Thu 2017-01-05 @ 07:33:38 PM, Paul Barker wrote:
->> > On Thu,  5 Jan 2017 12:42:29 -0500
->> > Trevor Woerner <twoerner@gmail.com> wrote:
->> >
->> > > Add an -rt kernel recipe for Raspberry Pi that includes the FIQ patch which
->> > > adds stability to the -rt kernel (with full preemption enabled) and is an
->> > > improvement to simply disabling FIQ on the kernel cmdline.
->> > >
->> > > Signed-off-by: Trevor Woerner <twoerner@gmail.com>
->> > > ---
->> > >
->> > > changes since v1:
->> > >   - use "make savedefconfig" to generate the defconfig instead of just
->> > >     using the full .config
->> > >
->> > >  .../0001-fix-dtbo-rules.patch                      |    44 +
->> > >  .../FIQ_PREEMPT_RT_on_raspi.patch                  |   310 +
->> > >  .../linux/linux-raspberrypi-rt-4.4/defconfig       |  1249 +
->> > >  .../patch-4.4.32-rt43.patch                        | 31403 +++++++++++++++++++
->> > >  recipes-kernel/linux/linux-raspberrypi-rt_4.4.bb   |    55 +
->> > >  5 files changed, 33061 insertions(+)
->> > >  create mode 100644 recipes-kernel/linux/linux-raspberrypi-rt-4.4/0001-fix-dtbo-rules.patch
->> > >  create mode 100644 recipes-kernel/linux/linux-raspberrypi-rt-4.4/FIQ_PREEMPT_RT_on_raspi.patch
->> > >  create mode 100644 recipes-kernel/linux/linux-raspberrypi-rt-4.4/defconfig
->> > >  create mode 100644 recipes-kernel/linux/linux-raspberrypi-rt-4.4/patch-4.4.32-rt43.patch
->> > >  create mode 100644 recipes-kernel/linux/linux-raspberrypi-rt_4.4.bb
->> > >
->> >
->> > Would it be possible to point SRC_URI at kernel.org [1] instead of
->> > including the whole patch in meta-raspberrypi? It feels a bit much to
->> > me to include a >1MB patch file.
->> >
->> > [1]: https://www.kernel.org/pub/linux/kernel/projects/rt/4.4/older/patch-4.4.32-rt43.patch.gz
->>
->> The "virgin" -rt patch from kernel.org doesn't apply cleanly. First off there
->> is a slight version mismatch and secondly this is the raspberrypi kernel, not
->> a pure upstream kernel.
->>
->> Is there a way to patch a patch before it gets applied? If it could be
->> fetched from kernel.org then patched before applying that would be ideal!
->> The diff isn't that big; it's sad to have to provide a >1MB patch for such
->> a small tweak. I guess that's why the yocto kernels/patches have their own
->> repositories on yoctoproject.org?
->
-> I think it depends how you want to maintain it going forward. With
-> frequent upgrades to linux-raspberrypi I can see that >1MB patch being
-> modified very often and I'm not sure how good it will be for the git
-> repository size and efficiency.
-
-Okay, agreed.
-
-> A linux-raspberrypi-rt repository on GitLab[1] or some other git hosting
-> service may be a good idea. I can see this having value outside the
-> OpenEmbedded/Yocto Project world, especially if the vanilla -rt patches
-> don't directly apply to linux-raspberrypi. If you decide to go this
-> route and need any support to make it happen, let me know and I'll see
-> what I can do.
-
-Sounds good... and Wow! GitLab looks awesome! I guess I'll look at how
-the yocto kernels are managed and see if it applies.
-
-> Also, are you thinking of moving the -rt recipe to the 4.9 series when
-> upstream linux-raspberrypi declares that stable?
-
-Yes.
-
-> When they declared 4.4
-> stable they stopped updating the 4.1 series pretty much immediately. I'm
-> currently investigating whether there is any value in maintaining the
-> 4.4 series ourselves after upstream moves on.
-
-I want to see how managing one goes.
+As it turns out, this v2 patch doesn't work, the kernel fails to build
+successfully with this stripped down config. Maybe I didn't generate it
+correctly?
 
