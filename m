@@ -1,33 +1,68 @@
-Return-Path: <tracy.graydon@intel.com>
+Return-Path: <twoerner@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0A242E00A0C; Thu,  5 Jan 2017 16:30:28 -0800 (PST)
+	id 77727E0053F; Thu,  5 Jan 2017 19:54:04 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.24 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (twoerner[at]gmail.com)
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.216.194 listed in dnsbl.sorbs.net]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.216.194 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3A11BE00963;
-	Thu,  5 Jan 2017 16:30:26 -0800 (PST)
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-	by orsmga102.jf.intel.com with ESMTP; 05 Jan 2017 16:30:26 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.33,323,1477983600"; d="scan'208";a="49821640"
-Received: from ktsoltis-mobl1.amr.corp.intel.com ([10.255.231.29])
-	by orsmga005.jf.intel.com with ESMTP; 05 Jan 2017 16:30:25 -0800
-To: yocto-announce@yoctoproject.org, yocto@yoctoproject.org
-From: Tracy Graydon <tracy.graydon@intel.com>
-Message-ID: <586EE521.8090208@intel.com>
-Date: Thu, 5 Jan 2017 16:30:25 -0800
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:38.0)
-	Gecko/20100101 Thunderbird/38.5.1
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-qt0-f194.google.com (mail-qt0-f194.google.com
+	[209.85.216.194])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0C3BFE0043B
+	for <yocto@yoctoproject.org>; Thu,  5 Jan 2017 19:54:02 -0800 (PST)
+Received: by mail-qt0-f194.google.com with SMTP id f4so1594109qte.2
+	for <yocto@yoctoproject.org>; Thu, 05 Jan 2017 19:54:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=yHC5m3PfJ1PSMuB2b1mdl5L6QHyImJeeAt88MYStDgE=;
+	b=l7jsIyCW23am/l2DUdzawWNQrdMO0emUvM23dCrlriLyXrI8kUDju7AoiT0DcdJoU6
+	A6MZu2rdqC7/v2lOi2GJlkJSbuVgf03/vQQOCohH3UuYYDQWfcShdrZL8d1srBSVFgSL
+	q2LWk3NyIXjEwXGdsGNAYUYlw/fiyyTA7vqUu1e2Wui5CQIoj+qmIgKmvxSI+Ue7HIaQ
+	8DKBW09Zue+U6oCzwvq91pSk2pcyIReu9aCdxtdFxY+8Dap4B/xHBhyPOA89jnCqaEiB
+	DfjXcsYAhUcw0SzU7It03G3Uujd+00Thi/pNkaJyRMuJF6+dzyo7Ur/e7v3kWmutq+FK
+	7Pbw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=yHC5m3PfJ1PSMuB2b1mdl5L6QHyImJeeAt88MYStDgE=;
+	b=US4bBAZMMZ4pSPIh1Snlb82P3Jd3CObPBltoz5B1dSXRoQ4hBjYZkoEnskB8frSRTY
+	u3feZLOv5Iwv+adetb7fOO8UfT3RAeYKcnyKd3OwQ5zg5BIZsGc5rtwWQwtEY7Xh/xa0
+	siYdtbSAegMRzpovNgDJWNK3jJodFi9RrIe1JsY9CiyN/VF6afPLJeqTugA0yPGyEOVb
+	Z7bpNdwSZxrvMirMTj2KRz38BE+IsODbgNiccCaSlcFBH5YCs/aEJi5IfWgb+w2HWddj
+	6MmxYlSCDt16Zr4oZPzvA2YtApNcfhz0fYdh/jZkeU7Et/M7XAoXDQl2ORnlnLKSNQxl
+	zp4A==
+X-Gm-Message-State: AIkVDXLPGnWHWF9IcPbLvze8nog75Dx9/UH69aBMsXFk41nbbAzPlqzjkwg7Dc4+4yOeKnfmvvfQZ/wwIBm/2A==
+X-Received: by 10.237.36.12 with SMTP id r12mr70677483qtc.97.1483674841783;
+	Thu, 05 Jan 2017 19:54:01 -0800 (PST)
 MIME-Version: 1.0
-Subject: [ANNOUNCEMENT] Yocto Project 2.0.3 (Jethro 14.0.3) Released: minor correction
+Received: by 10.237.43.135 with HTTP; Thu, 5 Jan 2017 19:54:01 -0800 (PST)
+In-Reply-To: <20170105215916.072b9215@nuc.betafive.co.uk>
+References: <20170105174229.1648-1-twoerner@gmail.com>
+	<20170105193338.5b1360ec@nuc.betafive.co.uk>
+	<20170105201619.GA7568@openSUSE-i7.site>
+	<20170105215916.072b9215@nuc.betafive.co.uk>
+From: Trevor Woerner <twoerner@gmail.com>
+Date: Thu, 5 Jan 2017 22:54:01 -0500
+Message-ID: <CAHUNapTy3KM_MwRkdXVptjUYR5S344pvXKQDG-5v9+==2tA3sQ@mail.gmail.com>
+To: Paul Barker <paul@paulbarker.me.uk>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi][PATCH v2] linux-raspberrypi-rt: add
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,153 +74,83 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 06 Jan 2017 00:30:28 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 06 Jan 2017 03:54:04 -0000
+Content-Type: text/plain; charset=UTF-8
 
-Corrected version: link for kernel mirror was wrong.
+On Thu, Jan 5, 2017 at 4:59 PM, Paul Barker <paul@paulbarker.me.uk> wrote:
+> On Thu, 5 Jan 2017 15:16:19 -0500
+> Trevor Woerner <twoerner@gmail.com> wrote:
+>
+>> On Thu 2017-01-05 @ 07:33:38 PM, Paul Barker wrote:
+>> > On Thu,  5 Jan 2017 12:42:29 -0500
+>> > Trevor Woerner <twoerner@gmail.com> wrote:
+>> >
+>> > > Add an -rt kernel recipe for Raspberry Pi that includes the FIQ patch which
+>> > > adds stability to the -rt kernel (with full preemption enabled) and is an
+>> > > improvement to simply disabling FIQ on the kernel cmdline.
+>> > >
+>> > > Signed-off-by: Trevor Woerner <twoerner@gmail.com>
+>> > > ---
+>> > >
+>> > > changes since v1:
+>> > >   - use "make savedefconfig" to generate the defconfig instead of just
+>> > >     using the full .config
+>> > >
+>> > >  .../0001-fix-dtbo-rules.patch                      |    44 +
+>> > >  .../FIQ_PREEMPT_RT_on_raspi.patch                  |   310 +
+>> > >  .../linux/linux-raspberrypi-rt-4.4/defconfig       |  1249 +
+>> > >  .../patch-4.4.32-rt43.patch                        | 31403 +++++++++++++++++++
+>> > >  recipes-kernel/linux/linux-raspberrypi-rt_4.4.bb   |    55 +
+>> > >  5 files changed, 33061 insertions(+)
+>> > >  create mode 100644 recipes-kernel/linux/linux-raspberrypi-rt-4.4/0001-fix-dtbo-rules.patch
+>> > >  create mode 100644 recipes-kernel/linux/linux-raspberrypi-rt-4.4/FIQ_PREEMPT_RT_on_raspi.patch
+>> > >  create mode 100644 recipes-kernel/linux/linux-raspberrypi-rt-4.4/defconfig
+>> > >  create mode 100644 recipes-kernel/linux/linux-raspberrypi-rt-4.4/patch-4.4.32-rt43.patch
+>> > >  create mode 100644 recipes-kernel/linux/linux-raspberrypi-rt_4.4.bb
+>> > >
+>> >
+>> > Would it be possible to point SRC_URI at kernel.org [1] instead of
+>> > including the whole patch in meta-raspberrypi? It feels a bit much to
+>> > me to include a >1MB patch file.
+>> >
+>> > [1]: https://www.kernel.org/pub/linux/kernel/projects/rt/4.4/older/patch-4.4.32-rt43.patch.gz
+>>
+>> The "virgin" -rt patch from kernel.org doesn't apply cleanly. First off there
+>> is a slight version mismatch and secondly this is the raspberrypi kernel, not
+>> a pure upstream kernel.
+>>
+>> Is there a way to patch a patch before it gets applied? If it could be
+>> fetched from kernel.org then patched before applying that would be ideal!
+>> The diff isn't that big; it's sad to have to provide a >1MB patch for such
+>> a small tweak. I guess that's why the yocto kernels/patches have their own
+>> repositories on yoctoproject.org?
+>
+> I think it depends how you want to maintain it going forward. With
+> frequent upgrades to linux-raspberrypi I can see that >1MB patch being
+> modified very often and I'm not sure how good it will be for the git
+> repository size and efficiency.
 
-Tracy
+Okay, agreed.
 
+> A linux-raspberrypi-rt repository on GitLab[1] or some other git hosting
+> service may be a good idea. I can see this having value outside the
+> OpenEmbedded/Yocto Project world, especially if the vanilla -rt patches
+> don't directly apply to linux-raspberrypi. If you decide to go this
+> route and need any support to make it happen, let me know and I'll see
+> what I can do.
 
-Hello,
+Sounds good... and Wow! GitLab looks awesome! I guess I'll look at how
+the yocto kernels are managed and see if it applies.
 
-The latest release of the Yocto Project 2.0.3 (jethro-14.0.3) is now available
-for download at:
+> Also, are you thinking of moving the -rt recipe to the 4.9 series when
+> upstream linux-raspberrypi declares that stable?
 
-http://downloads.yoctoproject.org/releases/yocto/yocto-2.0.3/poky-jethro-14.0.3.tar.bz2
-http://mirrors.kernel.org/yocto/yocto/yocto-2.0.3/poky-jethro-14.0.3.tar.bz2
+Yes.
 
-A gpg signed version of these release notes is available at:
+> When they declared 4.4
+> stable they stopped updating the 4.1 series pretty much immediately. I'm
+> currently investigating whether there is any value in maintaining the
+> 4.4 series ourselves after upstream moves on.
 
-http://downloads.yoctoproject.org/releases/yocto/yocto-2.0.3/RELEASENOTES
-
-Full pass test report is available at:
-
-https://wiki.yoctoproject.org/wiki/WW50_-_2016-12-09_-_QA_Cycle_2.0.3.rc6
-
-Thanks to everyone for all their work on this release!
-
-Sincerely,
-
-Tracy Graydon
-Yocto Project
-Build and Release
-
--------------------
-yocto-2.0.3 Errata
----------------------
-
-Release Name: eclipse-poky-mars-jethro-14.0.3
-Branch: mars/jethro
-Tag: mars/jethro-14.0.3
-Hash: e38ce99f413b832be4a8c6db5f739fed0041d2f4
-md5: 3e3110fd0c8d8dda31407ee8f4233b24
-Download Locations:
-http://downloads.yoctoproject.org/releases/yocto/yocto-2.0.3/eclipse-poky-mars-jethro-14.0.3.tar.bz2
-http://mirrors.kernel.org/yocto/yocto/yocto-2.0.3/eclipse-poky-mars-jethro-14.0.3.tar.bz2
-
-Release Name: meta-qt3-jethro-14.0.3
-Branch: jethro
-Tag: jethro-14.0.3
-Hash: b08996efbfb3b26e62b608f34ebf5e671b36ec61
-md5: ae83d352e5c59ddc95e5d308428440fb
-Download Locations:
-http://downloads.yoctoproject.org/releases/yocto/yocto-2.0.3/meta-qt3-jethro-14.0.3.tar.bz2
-http://mirrors.kernel.org/yocto/yocto/yocto-2.0.3/meta-qt3-jethro-14.0.3.tar.bz2
-
-Release Name: poky-jethro-14.0.3
-Branch: jethro
-Tag: jethro-14.0.3
-Hash: adb34b8ddcd8cc34ae7d2b1b2e4b4d291d790f56
-md5: a53a50132f73660f7ddfab19146ed994
-Download Locations:
-http://downloads.yoctoproject.org/releases/yocto/yocto-2.0.3/poky-jethro-14.0.3.tar.bz2
-http://mirrors.kernel.org/yocto/yocto/yocto-2.0.3/poky-jethro-14.0.3.tar.bz2
-
-
-----------------
-Known Issues
-----------------
-N/A
-
-----------------
-Security Fixes
-----------------
-perl: CVE-2016-1238
-perl: CVE-2015-8607
-perl: CVE-2016-6185
-perl: CVE-2016-2381
-openssl: CVE-2016-6306
-openssl: CVE-2016-6304
-openssl: CVE-2016-6303
-openssl: CVE-2016-6302
-openssl: CVE-2016-2182
-openssl: CVE-2016-2181
-openssl: CVE-2016-2180
-util-linux: CVE-2016-5011
-qemu: CVE-2016-5403
-qemu: CVE-2016-4002
-qemu: CVE-2016-6351
-qemu: CVE-2016-4439
-qemu: CVE-2016-3712
-qemu: CVE-2016-3710
-wget: CVE-2016-4971
-openssh: CVE-2015-8325
-openssh: CVE-2016-5615
-openssh: CVE-2016-6210
-git: CVE-2016-2315
-git: CVE-2016-2324
-bind: CVE-2016-2088
-tiff: CVE-2016-5323
-tiff: CVE-2016-5321
-tiff: CVE-2016-3186
-libpcre: CVE-2016-3191
-openssl: CVE-2016-2178
-openssl: CVE-2016-2177
-curl: CVE-2016-5421
-curl: CVE-2016-5420
-curl: CVE-2016-5419
-libxml2: CVE-2016-4448
-libxml2: CVE-2016-4447
-libxml2: CVE-2016-3627
-libxml2: CVE-2016-1833
-libxml2: CVE-2016-1835
-libxml2: CVE-2016-1837
-libxml2: CVE-2016-4449
-libxml2: CVE-2016-1836
-libxml2: CVE-2016-1839
-libxml2: CVE-2016-1838
-libxml2: CVE-2016-1840
-libxml2: CVE-2016-4483
-libxml2: CVE-2016-1834
-libxml2: CVE-2016-3705
-libxml2: CVE-2016-1762
-glibc: CVE-2016-4429
-glibc: CVE-2016-3706
-
-
-----------------
-Fixes
-----------------
-tzdata: update to 2016g
-tzcode-native: Update to 2016g
-init-install.sh: fix disk_size
-openssl: add a patch to fix parallel builds
-bitbake: fetch2/wget: fallback to GET if HEAD is rejected in checkstatus()
-bitbake: lib/bb/tests/fetch: remove URL that doesn't exist anymore
-bitbake: bb/tests/fetch: Update cups url
-perl-ptest.inc: fix tar call to prevent objcopy failure
-gcc: make sure header path is set correctly
-tzcode: update to 2016e
-wic: fix path parsing, use last occurrence
-bluez5: move btmgmt to common READLINE section
-documentation: Updated date in the manual revision tables.
-kernel-dev: Fix the locations of .config and source directory
-profile-manual: Added cross-reference links to INHIBIT_PACKAGE_STRIP
-ref-manual: Fixed *[doc] string for INHIBIT_PACKAGE_DEBUG_SPLIT
-yocto-project-qs: Added note for Fedora23 users
-documentation: Prepped for a 2.0.2 release
-toasterconf.json: exclude releases Toaster can't build
-wic: insert local Python paths at front
+I want to see how managing one goes.
 
