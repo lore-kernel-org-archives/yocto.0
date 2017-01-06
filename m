@@ -1,39 +1,31 @@
-Return-Path: <rpjday@crashcourse.ca>
+Return-Path: <jose.a.lamego@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6B85CE005A2; Fri,  6 Jan 2017 14:30:54 -0800 (PST)
+	id B5A5EE00B19; Fri,  6 Jan 2017 15:03:17 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [208.80.206.85 listed in list.dnswl.org]
-Received: from smtp685.redcondor.net (smtp685.redcondor.net [208.80.206.85])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2001DE0052B
-	for <yocto@yoctoproject.org>; Fri,  6 Jan 2017 14:30:45 -0800 (PST)
-Received: from astoria.ccjclearline.com ([64.235.106.9])
-	by smtp685.redcondor.net ({20c8e40f-6b6c-4c9e-abff-1640ea7bf404})
-	via TCP (outbound) with ESMTPS id 20170106223043223_0685
-	for <yocto@yoctoproject.org>; Fri, 06 Jan 2017 14:30:43 -0800
-X-RC-FROM: <rpjday@crashcourse.ca>
-X-RC-RCPT: <yocto@yoctoproject.org>
-Received: from [174.118.92.171] (port=44794 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1cPd1x-0006CG-C3
-	for yocto@yoctoproject.org; Fri, 06 Jan 2017 17:30:37 -0500
-Date: Fri, 6 Jan 2017 17:30:35 -0500 (EST)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost.localdomain
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.LFD.2.20.1701061728340.8194@localhost.localdomain>
-User-Agent: Alpine 2.20 (LFD 67 2015-01-07)
-MIME-Version: 1.0
-X-MAG-OUTBOUND: ccj.redcondor.net@64.235.106.9/32
-Subject: has support for MPC8315E-RDB been dropped?
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [134.134.136.100 listed in list.dnswl.org]
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7C52AE00AF4
+	for <yocto@yoctoproject.org>; Fri,  6 Jan 2017 15:03:13 -0800 (PST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga105.jf.intel.com with ESMTP; 06 Jan 2017 15:03:12 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.33,326,1477983600"; d="scan'208";a="27166511"
+Received: from jalamego-mobl2.zpn.intel.com ([10.219.5.139])
+	by orsmga002.jf.intel.com with ESMTP; 06 Jan 2017 15:03:12 -0800
+From: Jose Lamego <jose.a.lamego@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Fri,  6 Jan 2017 17:03:05 -0600
+Message-Id: <1483743785-13872-1-git-send-email-jose.a.lamego@linux.intel.com>
+X-Mailer: git-send-email 1.9.1
+Subject: [patchwork][PATCH] patchwork/bin/parsemail: Make "[PATCH" prefix mandatory
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,29 +37,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 06 Jan 2017 22:30:54 -0000
-Content-Type: text/plain; charset=US-ASCII
+X-List-Received-Date: Fri, 06 Jan 2017 23:03:17 -0000
 
+Patchwork may incorrectly identify emails containing patch-like content as
+patches.
+This change makes "[PATCH" prefix in subject mandatory for emails to be
+considered as new patches.
 
-  i notice that if you search for the powerpc BSP in the latest
-release here:
+[YOCTO #10764]
 
-https://www.yoctoproject.org/downloads/bsps?release=98&processer%5B%5D=22&title=
+Signed-off-by: Jose Lamego <jose.a.lamego@linux.intel.com>
+---
+ patchwork/bin/parsemail.py | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-you get no match. i haven't been paying attention -- has yocto dropped
-that board as its powerpc reference board? is it being replaced by a
-newer powerpc system?
-
-rday
-
+diff --git a/patchwork/bin/parsemail.py b/patchwork/bin/parsemail.py
+index 476118d..8d6529c 100755
+--- a/patchwork/bin/parsemail.py
++++ b/patchwork/bin/parsemail.py
+@@ -399,7 +399,8 @@ def find_content(project, mail):
+     refs = build_references_list(mail)
+     is_root = refs == []
+     is_cover_letter = is_root and x == 0
+-    is_patch = patchbuf is not None
++    patch_prefix = re.search('\[\s*PATCH', mail.get('Subject'))
++    is_patch = patchbuf is not None and patch_prefix
+ 
+     drop_patch = not is_attachment and \
+         project.git_send_email_only and not is_git_send_email(mail)
 -- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+1.9.1
 
 
