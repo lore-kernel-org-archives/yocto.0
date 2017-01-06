@@ -1,33 +1,33 @@
 Return-Path: <tracy.graydon@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 13A71E007C9; Thu,  5 Jan 2017 14:06:34 -0800 (PST)
+	id 0A242E00A0C; Thu,  5 Jan 2017 16:30:28 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [192.55.52.43 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.24 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BEFBEE0070F;
-	Thu,  5 Jan 2017 14:06:21 -0800 (PST)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3A11BE00963;
+	Thu,  5 Jan 2017 16:30:26 -0800 (PST)
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
-	by fmsmga105.fm.intel.com with ESMTP; 05 Jan 2017 14:06:21 -0800
+	by orsmga102.jf.intel.com with ESMTP; 05 Jan 2017 16:30:26 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.33,322,1477983600"; d="scan'208";a="49782363"
+X-IronPort-AV: E=Sophos;i="5.33,323,1477983600"; d="scan'208";a="49821640"
 Received: from ktsoltis-mobl1.amr.corp.intel.com ([10.255.231.29])
-	by orsmga005.jf.intel.com with ESMTP; 05 Jan 2017 14:06:20 -0800
+	by orsmga005.jf.intel.com with ESMTP; 05 Jan 2017 16:30:25 -0800
 To: yocto-announce@yoctoproject.org, yocto@yoctoproject.org
 From: Tracy Graydon <tracy.graydon@intel.com>
-Message-ID: <586EC35C.1040905@intel.com>
-Date: Thu, 5 Jan 2017 14:06:20 -0800
+Message-ID: <586EE521.8090208@intel.com>
+Date: Thu, 5 Jan 2017 16:30:25 -0800
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:38.0)
 	Gecko/20100101 Thunderbird/38.5.1
 MIME-Version: 1.0
-Subject: [ANNOUNCEMENT] Yocto Project 2.0.3 (Jethro 14.0.3) Released
+Subject: [ANNOUNCEMENT] Yocto Project 2.0.3 (Jethro 14.0.3) Released: minor correction
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,9 +39,13 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 05 Jan 2017 22:06:34 -0000
+X-List-Received-Date: Fri, 06 Jan 2017 00:30:28 -0000
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 7bit
+
+Corrected version: link for kernel mirror was wrong.
+
+Tracy
 
 
 Hello,
@@ -50,7 +54,7 @@ The latest release of the Yocto Project 2.0.3 (jethro-14.0.3) is now available
 for download at:
 
 http://downloads.yoctoproject.org/releases/yocto/yocto-2.0.3/poky-jethro-14.0.3.tar.bz2
-http://mirrors.kernel.org/yocto/yocto/yocto-2.0.3/poky-fido-14.0.3.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-2.0.3/poky-jethro-14.0.3.tar.bz2
 
 A gpg signed version of these release notes is available at:
 
@@ -101,7 +105,7 @@ http://mirrors.kernel.org/yocto/yocto/yocto-2.0.3/poky-jethro-14.0.3.tar.bz2
 
 
 ----------------
- Known Issues
+Known Issues
 ----------------
 N/A
 
@@ -130,7 +134,7 @@ wget: CVE-2016-4971
 openssh: CVE-2015-8325
 openssh: CVE-2016-5615
 openssh: CVE-2016-6210
-git: CVE-2016-2315 
+git: CVE-2016-2315
 git: CVE-2016-2324
 bind: CVE-2016-2088
 tiff: CVE-2016-5323
@@ -184,5 +188,4 @@ yocto-project-qs: Added note for Fedora23 users
 documentation: Prepped for a 2.0.2 release
 toasterconf.json: exclude releases Toaster can't build
 wic: insert local Python paths at front
-
 
