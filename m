@@ -1,66 +1,60 @@
-Return-Path: <john.rama01@gmail.com>
+Return-Path: <rohitj.chd@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9151AE00A39; Sat,  7 Jan 2017 05:53:56 -0800 (PST)
+	id 25C8BE0083D; Sat,  7 Jan 2017 07:05:18 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (john.rama01[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.83.47 listed in list.dnswl.org]
+	mail provider *      (rohitj.chd[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pg0-f47.google.com (mail-pg0-f47.google.com [74.125.83.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0A4AFE00A08
-	for <yocto@yoctoproject.org>; Sat,  7 Jan 2017 05:53:54 -0800 (PST)
-Received: by mail-pg0-f47.google.com with SMTP id f188so260926158pgc.3
-	for <yocto@yoctoproject.org>; Sat, 07 Jan 2017 05:53:54 -0800 (PST)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.215.48 listed in list.dnswl.org]
+Received: from mail-lf0-f48.google.com (mail-lf0-f48.google.com
+	[209.85.215.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 72587E006F1
+	for <yocto@yoctoproject.org>; Sat,  7 Jan 2017 07:05:15 -0800 (PST)
+Received: by mail-lf0-f48.google.com with SMTP id k86so70814274lfi.0
+	for <yocto@yoctoproject.org>; Sat, 07 Jan 2017 07:05:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=to:from:subject:message-id:date:user-agent:mime-version
-	:content-transfer-encoding;
-	bh=GcYkuJJE9MomdOgiXipFssBdHUQFgpeVRZ+YlIsRSM4=;
-	b=JmFVflVChQ6vvOjnNj/S6UuL4b+hWe5NYS6FUpfteybhGL15FeLcuMB7hsiv5svsok
-	EN/Fyr8ToP+wzmcI1ycr8pjan/RGj/Lp1nRLKK6j8QAdBbG5MMslLVfkLJh2VQB21qKL
-	1/1hppkbBzR4DGW+tD3G5/VAZCsrmIipD2Rnr9/DjUTYaEn8R35nYrTBfOdlBHtqbN+F
-	Jyjm+SrbPihQG1UKcva1EK9vK0ZmpFRUPPJcAcUbmK8WBND1Hi6vVWghKWL1WiBbnPs7
-	llbHxMRLo7kVjqOiUryLRdSP/Ef+5PXV3LS3BX7ljrPhHXdouGEAGJlyKG5/izpoo7SN
-	vNEw==
+	h=mime-version:from:date:message-id:subject:to;
+	bh=vMRCgHd8kQcifSK1a9DH5yUu+XLMoUSfcpyYbU07Fvo=;
+	b=eNUcPoVRfVF/lxKwYT1ZDyOKTiv25K6W2FcbkaEc4IOYzge1cJW52axxo4Ro0sIpCm
+	OahXRWLp4CjP97JceZgC+uZIrzYMX6oSHHHMiqnAR5YO/vDrok4pmJu3WrP94fP1hNtD
+	z1JdI55qT3QejjwoCV6m0GIH7d/rvZnFsiFq+xvH2M7xDg6MfnaeAY+qtjcvK10mUphV
+	IYvf8kl4VhzBHA0zzwFacdXf1+5kQoeaVgMHe0TQikc4T34CuIdf4nMQexiKvrb+us9s
+	/f6rZWaewAuoej/6Tmah5gHTBCiezlw/m/u+Akk2wihfguXFmntKSrAzPSJdtaftxAme
+	4dGw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:to:from:subject:message-id:date:user-agent
-	:mime-version:content-transfer-encoding;
-	bh=GcYkuJJE9MomdOgiXipFssBdHUQFgpeVRZ+YlIsRSM4=;
-	b=bcBq3S6m3RxubxS1y8UFiV/d9LcOJWaERC4tzrWymXJtpOka5iOB5kiSuLqHrloNgg
-	Y5XycntMhB85BsYOsysbQIViihjNGIxTYImnmsKtRCQI/UYXmDI1adOmpcSB0fz9Zkeu
-	lpu0O9JjqNJLku2Q+SzI3+pzG+xzCjG5iCawqU6qR8PCbTlyALzsXTbMo7wTnarHVDsf
-	TSZQj/D/Q67xhQht7diL80qcmLgG3VtiGxbCJ1ktH/cDmhE7e/fNGVFBmTncWdSJfsWb
-	FZyesIU1w2e0J58/eXTDWZB8tediTFFGofcyzaYD78+CM5XbLO0PCPm5oPg5jTd10eFy
-	yRsw==
-X-Gm-Message-State: AIkVDXJjOQT1Yz4tCFFkE2MT0ZVcRZJlqWFc+EgLzyJDAaLG4fUtIXCRxSX9v+qm4xw6VQ==
-X-Received: by 10.84.200.39 with SMTP id s36mr174691406pld.77.1483797234031;
-	Sat, 07 Jan 2017 05:53:54 -0800 (PST)
-Received: from [192.168.10.3] (KD118155101045.ppp-bb.dion.ne.jp.
-	[118.155.101.45]) by smtp.googlemail.com with ESMTPSA id
-	x4sm168018943pgc.14.2017.01.07.05.53.51 for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sat, 07 Jan 2017 05:53:52 -0800 (PST)
-To: yocto@yoctoproject.org
-From: John Rama <john.rama01@gmail.com>
-Message-ID: <5870F2F2.4060508@gmail.com>
-Date: Sat, 7 Jan 2017 22:53:54 +0900
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:38.0) Gecko/20100101
-	Thunderbird/38.4.0
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=vMRCgHd8kQcifSK1a9DH5yUu+XLMoUSfcpyYbU07Fvo=;
+	b=OwcIrxvCZlPCXW/oCjnSC3SMcFiVZQDlpjwr3xByOexwOoqMXpiPp//kPBxW/q4BPG
+	lrqGLb3k0aS3K7k+OJ3HShYEguArBJ5RZkhJTXRtwKP0lzsRpkGzDA2YveXWgIadnqkY
+	Y2qFW9IwLceN56A/l1d1ZsQM/+D0DgyOfzBEtryHDCKd4jtmzwGPmT/4PvFS1fNJVeJF
+	3oHvChUgT15PdbK1RSr3RhymCcOAGunT8EgntLdm7onnlYc2fB/o8pOrbAATVhcLrZKS
+	MTMNKtQuG9C7V8Gvtq1liusYkMUjNPUR+CgnOC1jW24BMA0DE+NMmn8sZwtqg+piWnnh
+	BLHw==
+X-Gm-Message-State: AIkVDXKKOsBZEvFmd8mHCdsxROdDBsElKj7zObo/iPNi5vE6Mg+OdTaiGOpxuh6mYMgRoXwASbQqvGq6kdnC1A==
+X-Received: by 10.25.1.130 with SMTP id 124mr4538855lfb.60.1483801513650; Sat,
+	07 Jan 2017 07:05:13 -0800 (PST)
 MIME-Version: 1.0
-Subject: Q on how to keep the debug information for kernel module
+Received: by 10.114.187.47 with HTTP; Sat, 7 Jan 2017 07:05:13 -0800 (PST)
+From: Rohit Jindal <rohitj.chd@gmail.com>
+Date: Sat, 7 Jan 2017 20:35:13 +0530
+Message-ID: <CAHX_jjtT_JE9L9A4hmxL1QgftWEfC75nabgfGYEYCYWaKTKdNg@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: openjdk 8 support compile for arm with jit support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,29 +66,18 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 07 Jan 2017 13:53:56 -0000
+X-List-Received-Date: Sat, 07 Jan 2017 15:05:18 -0000
+Content-Type: multipart/alternative; boundary=001a113c9e9a2372760545827645
+
+--001a113c9e9a2372760545827645
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
 
-Dear Yocto specialists
+Please suggest me the solution for compiling
+Openjdk 8 for arm adding support for any jit compiler like shark or jamvm
 
-I have one question. 
-When building the kernel module and install to rootfs with Yocto, I got the kernel module without debug information.
-Investigating a little bit revealed that it seems do_package process remove the debug information from binary, 
-as the file size indicates as shown below.
+--001a113c9e9a2372760545827645
+Content-Type: text/html; charset=UTF-8
 
--rw-r--r-- 1 atmark atmark    321 12月 14 17:15 ./3.14.28-r0/git/drivers/net/usb/.usbnet.ko.cmd
--rw-r--r-- 1 atmark atmark 278101 12月 14 17:15 ./3.14.28-r0/git/drivers/net/usb/usbnet.ko
--rw-r--r-- 1 atmark atmark 278101 12月 14 20:08 ./3.14.28-r0/image/lib/modules/3.14.28-rt25-1.0.0_ga-avb_1_0_0+g91cf351/kernel/drivers/net/usb/usbnet.ko
--rw-r--r-- 2 atmark atmark  45328 12月 14 20:08 ./3.14.28-r0/package/lib/modules/3.14.28-rt25-1.0.0_ga-avb_1_0_0+g91cf351/kernel/drivers/net/usb/usbnet.ko
--rw-r--r-- 2 atmark atmark  45328 12月 14 20:08 ./3.14.28-r0/packages-split/kernel-module-usbnet/lib/modules/3.14.28-rt25-1.0.0_ga-avb_1_0_0+g91cf351/kernel/drivers/net/usb/usbnet.ko
+Please suggest me the solution for compiling <br>Openjdk 8 for arm adding support for any jit compiler like shark or jamvm<br>
 
-I would like to kept debug information preserved.
-I've check the manual but could not find out how to control this behavior.
-
-Does anyone know how to do that ?
-Any information is highly appreciated.
-
-Kind Regars,
-John Rama
-
+--001a113c9e9a2372760545827645--
