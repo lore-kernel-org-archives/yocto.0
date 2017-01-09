@@ -1,38 +1,63 @@
-Return-Path: <philippe.coval@osg.samsung.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7B0A8E00B4C; Mon,  9 Jan 2017 02:19:16 -0800 (PST)
+	id BFFD5E00782; Mon,  9 Jan 2017 02:34:12 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,RDNS_DYNAMIC,
-	SPF_HELO_PASS autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_LOW,
+	RCVD_IN_SORBS_SPAM autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.220.170 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  1.0 RDNS_DYNAMIC Delivered to internal network by host with
-	*      dynamic-looking rDNS
-Received: from osg.samsung.com
-	(ec2-52-27-115-49.us-west-2.compute.amazonaws.com [52.27.115.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3D686E0053F
-	for <yocto@yoctoproject.org>; Mon,  9 Jan 2017 02:19:11 -0800 (PST)
-Received: from localhost (localhost [127.0.0.1])
-	by osg.samsung.com (Postfix) with ESMTP id 67436A0E75;
-	Mon,  9 Jan 2017 10:19:27 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at osg.samsung.com
-Received: from osg.samsung.com ([127.0.0.1])
-	by localhost (s-opensource.com [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 7Azu770cS2e1; Mon,  9 Jan 2017 10:19:24 +0000 (UTC)
-Received: from WSF-1127.8.8.8.8 (unknown [82.236.136.171])
-	by osg.samsung.com (Postfix) with ESMTPSA id 83275A0E66;
-	Mon,  9 Jan 2017 10:19:22 +0000 (UTC)
-From: Philippe Coval <philippe.coval@osg.samsung.com>
-To: kishen.maloor@intel.com
-Date: Mon,  9 Jan 2017 11:18:56 +0100
-Message-Id: <1483957138-21658-1-git-send-email-philippe.coval@osg.samsung.com>
-X-Mailer: git-send-email 1.9.1
-Cc: iotivity-dev@lists.iotivity.org, yocto@yoctoproject.org,
-	Philippe Coval <philippe.coval@osg.samsung.com>
-Subject: [meta-oic][PATCH v3 1/3] Hotfix to support aarch64 for DragonBoard-410c
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.220.170 listed in dnsbl.sorbs.net]
+Received: from mail-qk0-f170.google.com (mail-qk0-f170.google.com
+	[209.85.220.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4F327E0050B
+	for <yocto@yoctoproject.org>; Mon,  9 Jan 2017 02:34:09 -0800 (PST)
+Received: by mail-qk0-f170.google.com with SMTP id 11so37336261qkl.3
+	for <yocto@yoctoproject.org>; Mon, 09 Jan 2017 02:34:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=dMurFnynDKdl0g5vSE72EOPeSPksSAGjOF6G85TaPQ0=;
+	b=BpJbOd0XGqRWbXnkOAwg8flMk5lJsvGH4Qjj+pAMRfq900qQBBc/Dg4tnJhhKfhPwr
+	0UaS15vfp9drmtiq4GdTnYcA3qQUp8lRSnSqLwCEJh5/pdl7wj75iIJmaTfPOoK/lknz
+	fHZmfxd0sngwuuwZado6bMnyVzdNFTvHfvFElnfjnL5lx/WtgLy98i1J6NAFQoj8adMP
+	UEfMbMzCa9nN4sMNfQhA5hCf41RV7FKJLWeSh6GdZppP5Q2ADMX5J3sQWmBD1RNNENom
+	IYeVIM5rGXZ8c74yrv+xgsJF0PcM0cMhXSbubi+83cgDQox8cJ+N7Ov2POxLd9cWLecE
+	ArSA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=dMurFnynDKdl0g5vSE72EOPeSPksSAGjOF6G85TaPQ0=;
+	b=NOSMtyqxh0x6S+sTrwvElDHN80LiU41ybyoLrBbTvKAyLC01UFVMV/SRiGZFyfXLbi
+	h69HhN/6QPYG/uE6oB2lNafs5tgQqu8O7092ZoRns8uaDoKTLhHoTtqbq1vSl9W94F6S
+	JX6sO4VGiTj2Ng5+3uwdWJSBi+4/h7pyVk411XZr49AFJlne5ReKzJMiJiM/ncC4csXG
+	ROkX9gg+594I20RCRZGjxguRRjuO24kkL64cuRwqP5eiA3SYc+UedWWkUzC6nogmcPrC
+	65GCFtBENwDXqDK4ODJg9mdLH0wVgsh2EA7JGZ7ZYb3IPIrxu49NYthhDDnGrOgYMJPM
+	kWbw==
+X-Gm-Message-State: AIkVDXJZhyJgOkcrUojKZN2E3J6b7vgTCULeqXee/QvKPKgFiDJzscBGdXQg8g8PoGLfHjWReCfx3DtEEKzQi4q7
+X-Received: by 10.55.15.231 with SMTP id 100mr79999650qkp.244.1483958049338;
+	Mon, 09 Jan 2017 02:34:09 -0800 (PST)
+MIME-Version: 1.0
+Received: by 10.140.106.99 with HTTP; Mon, 9 Jan 2017 02:33:48 -0800 (PST)
+In-Reply-To: <3768029.mGSIKBvTM1@weatherwax>
+References: <9212079.t3pUQfekqL@weatherwax> <3768029.mGSIKBvTM1@weatherwax>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Mon, 9 Jan 2017 10:33:48 +0000
+Message-ID: <CAJTo0Lbb_+iUpVHj9aXJedUvsonoo4jzMKOqrZvXPRYmRt=6xQ@mail.gmail.com>
+To: Andreas Cord-Landwehr <cordlandwehr@kde.org>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [PATCH] Provide additional OECORE_EXTRA_SYSROOT variable for CMake Toolchain
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,86 +69,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 09 Jan 2017 10:19:16 -0000
+X-List-Received-Date: Mon, 09 Jan 2017 10:34:12 -0000
+Content-Type: multipart/alternative; boundary=001a1147603264911e0545a6e857
 
-Apply patch from iotivity-1.2.1:
+--001a1147603264911e0545a6e857
+Content-Type: text/plain; charset=UTF-8
 
-* [PATCH 081/341] yocto: Add aarch64 for DragonBoard-410c
+On 7 January 2017 at 10:49, Andreas Cord-Landwehr <cordlandwehr@kde.org>
+wrote:
 
-Signed-off-by: Philippe Coval <philippe.coval@osg.samsung.com>
----
- ...81-yocto-Add-aarch64-for-DragonBoard-410c.patch | 48 ++++++++++++++++++++++
- recipes-core/iotivity/iotivity_1.2.0.bb            |  1 +
- 2 files changed, 49 insertions(+)
- create mode 100644 recipes-core/iotivity/files/0081-yocto-Add-aarch64-for-DragonBoard-410c.patch
+> Hi, since it's roughly two weeks, I just wanted to bump this patch again
+> (yes,
+> I know many people were on vacations).
+> But actually, I would already be glad to hear whether I sent the patch to
+> the
+> right list.
+>
 
-diff --git a/recipes-core/iotivity/files/0081-yocto-Add-aarch64-for-DragonBoard-410c.patch b/recipes-core/iotivity/files/0081-yocto-Add-aarch64-for-DragonBoard-410c.patch
-new file mode 100644
-index 0000000..08c93f6
---- /dev/null
-+++ b/recipes-core/iotivity/files/0081-yocto-Add-aarch64-for-DragonBoard-410c.patch
-@@ -0,0 +1,48 @@
-+From 6554de025f4819f9f458cde70d706beab3ed11b8 Mon Sep 17 00:00:00 2001
-+From: Philippe Coval <philippe.coval@osg.samsung.com>
-+Date: Thu, 10 Nov 2016 12:47:39 +0100
-+Subject: [PATCH 081/341] yocto: Add aarch64 for DragonBoard-410c
-+
-+Backported to 1.1-rel branch
-+
-+Change-Id: I0ebf93ca17a9a6624da3caaaf7487529b2c556d6
-+Credit-to: Kotaro HASHIMOTO <Hashimoto.Kotaro@ds.MitsubishiElectric.co.jp>
-+Origin: https://lists.linuxfoundation.org/pipermail/automotive-discussions/2016-November/002805.html
-+Signed-off-by: Philippe Coval <philippe.coval@osg.samsung.com>
-+Reviewed-on: https://gerrit.iotivity.org/gerrit/14187
-+Tested-by: jenkins-iotivity <jenkins-iotivity@opendaylight.org>
-+Reviewed-by: Habib Virji <habib.virji@samsung.com>
-+---
-+ build_common/SConscript                     | 2 +-
-+ resource/csdk/connectivity/build/SConscript | 2 +-
-+ 2 files changed, 2 insertions(+), 2 deletions(-)
-+
-+diff --git a/build_common/SConscript b/build_common/SConscript
-+index 1427f08..56ea713 100644
-+--- a/build_common/SConscript
-++++ b/build_common/SConscript
-+@@ -26,7 +26,7 @@ os_arch_map = {
-+ 		'darwin': ['i386', 'x86_64'],
-+ 		'ios': ['i386', 'x86_64', 'armv7', 'armv7s', 'arm64'],
-+ 		'arduino': ['avr', 'arm'],
-+-		'yocto': ['i586', 'i686', 'x86_64', 'arm', 'powerpc', 'powerpc64', 'mips', 'mipsel'],
-++		'yocto': ['i586', 'i686', 'x86_64', 'arm', 'aarch64', 'powerpc', 'powerpc64', 'mips', 'mipsel'],
-+ 		}
-+ 
-+ host = platform.system().lower()
-+diff --git a/resource/csdk/connectivity/build/SConscript b/resource/csdk/connectivity/build/SConscript
-+index b812fed..44c7d09 100644
-+--- a/resource/csdk/connectivity/build/SConscript
-++++ b/resource/csdk/connectivity/build/SConscript
-+@@ -21,7 +21,7 @@ os_arch_map = {
-+ 		'darwin': ['i386', 'x86_64'],
-+ 		'ios': ['i386', 'x86_64', 'armv7', 'armv7s', 'arm64'],
-+ 		'arduino': ['avr', 'arm'],
-+-                'yocto': ['i586', 'i686', 'x86_64', 'arm', 'powerpc', 'powerpc64', 'mips', 'mipsel'],
-++                'yocto': ['i586', 'i686', 'x86_64', 'arm', 'aarch64', 'powerpc', 'powerpc64', 'mips', 'mipsel'],
-+ 		}
-+ 
-+ host = platform.system().lower()
-+-- 
-+1.9.1
-+
-diff --git a/recipes-core/iotivity/iotivity_1.2.0.bb b/recipes-core/iotivity/iotivity_1.2.0.bb
-index dfae54b..60a2b56 100644
---- a/recipes-core/iotivity/iotivity_1.2.0.bb
-+++ b/recipes-core/iotivity/iotivity_1.2.0.bb
-@@ -10,6 +10,7 @@ LIC_FILES_CHKSUM = "file://LICENSE.md;md5=22bf216f3077c279aed7b36b1fa9e6d1"
- branch_iotivity = "1.2-rel"
- SRCREV = "1a2e71f9c470c7cc17157f83deb4488ee83050a4"
- SRC_URI = "git://github.com/iotivity/iotivity.git;destsuffix=${S};branch=${branch_iotivity};protocol=http;"
-+SRC_URI += "file://0081-yocto-Add-aarch64-for-DragonBoard-410c.patch"
- 
- url_tinycbor = "git://github.com/01org/tinycbor.git"
- SRCREV_tinycbor = "31c7f81d45d115d2007b1c881cbbd3a19618465c"
--- 
-1.9.1
+The correct list would be openembedded-core@lists.openembedded.org, and if
+possible please send the patch with git-send-email (or similar) for easier
+reviewing.
 
+Ross
 
+--001a1147603264911e0545a6e857
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 7 January 2017 at 10:49, Andreas Cord-Landwehr <span dir=3D"ltr">&lt;<a =
+href=3D"mailto:cordlandwehr@kde.org" target=3D"_blank">cordlandwehr@kde.org=
+</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin=
+:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div id=3D":hn" cl=
+ass=3D"a3s aXjCH m15978c7112e1b743">Hi, since it&#39;s roughly two weeks, I=
+ just wanted to bump this patch again (yes,<br>
+I know many people were on vacations).<br>
+But actually, I would already be glad to hear whether I sent the patch to t=
+he<br>
+right list.<br></div></blockquote></div><br>The correct list would be <a hr=
+ef=3D"mailto:openembedded-core@lists.openembedded.org">openembedded-core@li=
+sts.openembedded.org</a>, and if possible please send the patch with git-se=
+nd-email (or similar) for easier reviewing.</div><div class=3D"gmail_extra"=
+><br></div><div class=3D"gmail_extra">Ross</div></div>
+
+--001a1147603264911e0545a6e857--
