@@ -1,40 +1,35 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <Bruce.Ashfield@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 30A4DE00A71; Tue, 10 Jan 2017 12:52:05 -0800 (PST)
+	id 9ED59E003E4; Tue, 10 Jan 2017 12:58:14 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [134.134.136.65 listed in list.dnswl.org]
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CF5D9E00A5C
-	for <yocto@yoctoproject.org>; Tue, 10 Jan 2017 12:52:01 -0800 (PST)
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-	by orsmga103.jf.intel.com with ESMTP; 10 Jan 2017 12:52:01 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.33,344,1477983600"; d="scan'208";a="52336392"
-Received: from lancehou-mobl1.gar.corp.intel.com (HELO
-	peggleto-mobl.ger.corp.intel.com) ([10.255.189.93])
-	by fmsmga006.fm.intel.com with ESMTP; 10 Jan 2017 12:51:57 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Bent Bisballe Nyeng <xbbn@mjolner.dk>
-Date: Wed, 11 Jan 2017 09:51:55 +1300
-Message-ID: <3536641.0CtJjzRgDn@peggleto-mobl.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.14.10 (Linux/4.8.13-100.fc23.x86_64; KDE/4.14.20; x86_64; ;
-	)
-In-Reply-To: <1c32c82c773d4d0b81f428bc62435118@drift35.mia.local>
-References: <alpine.LFD.2.20.1701071028270.18312@localhost.localdomain>
-	<CAJTo0LbbmO2S2XaWve2=uESbtd9UAn533XAcKBvfZ7XHzyngNA@mail.gmail.com>
-	<1c32c82c773d4d0b81f428bc62435118@drift35.mia.local>
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D69FCE0034A
+	for <yocto@yoctoproject.org>; Tue, 10 Jan 2017 12:58:12 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id v0AKwBLo024701
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=OK);
+	Tue, 10 Jan 2017 12:58:11 -0800
+Received: from server.local (128.224.20.250) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.40) with Microsoft SMTP Server id 14.3.294.0;
+	Tue, 10 Jan 2017 12:58:10 -0800
+To: "Schmitt, Richard" <Richard.Schmitt@commscope.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <BLUPR0601MB16491766FFC1CA176DBA4533E6670@BLUPR0601MB1649.namprd06.prod.outlook.com>
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+Message-ID: <06e6b60b-4efe-de7e-0b69-b683b2f2cda7@windriver.com>
+Date: Tue, 10 Jan 2017 15:58:10 -0500
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:45.0)
+	Gecko/20100101 Thunderbird/45.6.0
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: how does one stay on top of YP security alerts?
+In-Reply-To: <BLUPR0601MB16491766FFC1CA176DBA4533E6670@BLUPR0601MB1649.namprd06.prod.outlook.com>
+Subject: Re: kernel config fragments not applied
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,38 +41,127 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Jan 2017 20:52:05 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 10 Jan 2017 20:58:14 -0000
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Tue, 10 Jan 2017 10:37:48 Bent Bisballe Nyeng wrote:
-> I found the list initially through this page:
-> https://wiki.yoctoproject.org/wiki/Security where it is described as the
-> security [at] yoctoprojct [dot] org being the discussion list and the yocto
-> [dash] security [at] yoctoproject[dot] org being the security announcement
-> list.
+On 2017-01-10 1:05 PM, Schmitt, Richard wrote:
+> I am having a heck of a hard time getting a minor kernel config fragment
+> applied.
+>
+>
+>
+> In order to minimize all variables, I am simply trying to build
+> linux-yocto for a qemux86 MACHINE target.
+>
+>
+>
 
-That's not what it says. What it does say is that yocto-security@ list is for 
-discussions about security patches, and security@ is for private notification 
-about security issues *to* several nominated individuals. There isn't an 
-announcement list I'm afraid.
- 
-> If the yocto [dash] security [at] yoctoproject[dot] org is in fact no longer
-> active I think it is important that the wiki page is changed to reflect
-> that to prevent potential dangerous misunderstandings in the future.
+What release ? Everything is working here, but I can switch to
+whatever release you are using and run the test there (I'm using
+master).
 
-I'm not sure how you came to the conclusions you did - do you have any 
-suggestions on rewording?
+Bruce
 
-I will say that the yocto-security@ list has been pretty quiet since it was 
-set up. Adding a few people on CC - are there any plans to make better use of 
-this list?
+> There had been some discussion on the mailing list previously that
+> suggested making sure linux-yocto.inc was included within the recipes.
+> The ones being used are standard poky recipes and they do include the
+> linux-yocto.inc file.
+>
+>
+>
+> My configuration is very simple.  I have my own layer and linux-yocto
+> bbappend:
+>
+>
+>
+> meta-mylayer/recipes-kernel/linux/linux-yocto_4.4.bbappend
+>
+>
+>
+> Whose contents are:
+>
+>
+>
+> FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+>
+>
+>
+> SRC_URI += " \
+>
+>         file://overlayfs.cfg \
+>
+>         "
+>
+>
+>
+> With the config fragment in:
+>
+>
+>
+> meta-mylayer/recipes-kernel/linux/linux-yocto/overlayfs.cfg
+>
+>
+>
+> whose contents is:
+>
+>
+>
+> CONFIG_OVERLAY_FS=y
+>
+>
+>
+> If I do a “bitbake linux-yocto” I would expect it to generate a config
+> file that includes CONFIG_OVERLAY_FS=y and a kernel that includes this
+> filesystem.  I don’t.
+>
+>
+>
+> My layer is parsed correctly and the bbappend is found and parsed.  I
+> know this because in the tmp directory:
+>
+>
+>
+> tmp/work/qemux86-poky-linux/linux-yocto/4.4.26+gitAUTOINC+3030330b06_ca6a08bd7f-r0/
+>
+>
+>
+> the file overlayfs.cfg exists.
+>
+>
+>
+> Searching the log files, the only one that references this file though
+> is log.do_unpack.  I do not see any reference to it in
+> log.do_kernel_configme or log.do_configure.    I’m not sure how kernel
+> fragments are applied, but looking through the classes and recipes for
+> linux-yocto in poky/meta, I do not see any code that would apply kernel
+> fragments.  So I’m not sure if I’m missing some piece.
+>
+>
+>
+> Searching through the files in poky/meta, I find meta-config.sh only in
+> recipes-core/uclibc and recipes-core/busybox.  That’s why I think I’m
+> missing something.
+>
+>
+>
+> I’m using the krogoth branch of poky.
+>
+>
+>
+> What am I missing?
+>
+>
+>
+> Thanks,
+>
+> Rich
+>
+>
+>
+>
+>
+>
+>
 
-Cheers,
-Paul
-
--- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
 
