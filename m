@@ -1,6 +1,6 @@
-Return-Path: <Wenzong.Fan@windriver.com>
+Return-Path: <xbbn@mjolner.dk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 596FEE007AA; Tue, 10 Jan 2017 00:54:17 -0800 (PST)
+	id 11CE4E00AE0; Tue, 10 Jan 2017 02:01:16 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,26 +8,31 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
 	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0BF75E0053F
-	for <yocto@yoctoproject.org>; Tue, 10 Jan 2017 00:54:14 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id v0A8sEXP007023
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=OK)
-	for <yocto@yoctoproject.org>; Tue, 10 Jan 2017 00:54:14 -0800
-Received: from ala-lpggp5.wrs.com (147.11.105.121) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.294.0;
-	Tue, 10 Jan 2017 00:54:13 -0800
-From: <wenzong.fan@windriver.com>
-To: <yocto@yoctoproject.org>
-Date: Tue, 10 Jan 2017 00:54:11 -0800
-Message-ID: <f5b771f20c349c121b8a78883caa3fe8bda45492.1484037945.git.wenzong.fan@windriver.com>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <cover.1484037945.git.wenzong.fan@windriver.com>
-References: <cover.1484037945.git.wenzong.fan@windriver.com>
+Received: from mail.mjolner.dk (bifrost.fuz.mjolner.dk [87.116.45.34])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9415DE00AE0
+	for <yocto@yoctoproject.org>; Tue, 10 Jan 2017 02:01:11 -0800 (PST)
+Received: from drift35.mia.local (10.16.200.35) by drift35.mia.local
+	(10.16.200.35) with Microsoft SMTP Server (TLS) id 15.0.1236.3;
+	Tue, 10 Jan 2017 11:01:09 +0100
+Received: from drift35.mia.local ([::1]) by drift35.mia.local ([::1]) with
+	mapi id 15.00.1236.000; Tue, 10 Jan 2017 11:01:09 +0100
+From: Bent Bisballe Nyeng <xbbn@mjolner.dk>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto] how does one stay on top of YP security alerts?
+Thread-Index: AQHSaQIdW9SjFBHHKEWCaar1bowPsw==
+Date: Tue, 10 Jan 2017 10:01:09 +0000
+Message-ID: <e9802d68dc1240a2ae137c424a154d8a@drift35.mia.local>
+References: <alpine.LFD.2.20.1701071028270.18312@localhost.localdomain>
+	<bbffbd48-0944-ccde-e7dd-5a912aea4dd8@linux.intel.com>
+Accept-Language: en-GB, da-DK, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [87.116.45.78]
+x-pmwin-version: 4.0.2, Antivirus-Engine: 3.64.3, Antivirus-Data: 5.34
+x-puremessage: [Scanned]
 MIME-Version: 1.0
-Subject: [meta-selinux][PATCH 2/2] refpolicy-minimum: update patch file
+Subject: Re: how does one stay on top of YP security alerts?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,48 +44,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Jan 2017 08:54:17 -0000
-Content-Type: text/plain
+X-List-Received-Date: Tue, 10 Jan 2017 10:01:16 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-From: Wenzong Fan <wenzong.fan@windriver.com>
-
-Fix build errors:
-| policy/modules/system/init.te:1120:ERROR 'class dbus is not within scope' at token ';' on line 40246:
-| allow initrc_t init_t:dbus send_msg;
-| allow init_t initrc_t:dbus { send_msg acquire_svc };
-
-Signed-off-by: Wenzong Fan <wenzong.fan@windriver.com>
----
- ...07-refpolicy-minimum-systemd-fix-for-login-journal-serv.patch | 9 ++++++---
- 1 file changed, 6 insertions(+), 3 deletions(-)
-
-diff --git a/recipes-security/refpolicy/refpolicy-minimum/0007-refpolicy-minimum-systemd-fix-for-login-journal-serv.patch b/recipes-security/refpolicy/refpolicy-minimum/0007-refpolicy-minimum-systemd-fix-for-login-journal-serv.patch
-index 50e3c64..a4084d7 100644
---- a/recipes-security/refpolicy/refpolicy-minimum/0007-refpolicy-minimum-systemd-fix-for-login-journal-serv.patch
-+++ b/recipes-security/refpolicy/refpolicy-minimum/0007-refpolicy-minimum-systemd-fix-for-login-journal-serv.patch
-@@ -49,15 +49,18 @@ diff --git a/policy/modules/system/init.te b/policy/modules/system/init.te
- index 19a7a20..cefa59d 100644
- --- a/policy/modules/system/init.te
- +++ b/policy/modules/system/init.te
--@@ -1105,3 +1105,8 @@ allow init_t self:capability2 audit_read;
-+@@ -1105,3 +1105,11 @@ allow init_t self:capability2 audit_read;
-  
-  allow initrc_t init_t:system { start status reboot };
-  allow initrc_t init_var_run_t:service { start status };
- +
- +allow initrc_t init_var_run_t:service stop;
--+allow initrc_t init_t:dbus send_msg;
-++init_dbus_chat(initrc_t)
- +
--+allow init_t initrc_t:dbus { send_msg acquire_svc };
-++gen_require(`
-++	class dbus acquire_svc;
-++')
-++allow init_t initrc_t:dbus { acquire_svc };
- diff --git a/policy/modules/system/locallogin.te b/policy/modules/system/locallogin.te
- index 09ec33f..be25c82 100644
- --- a/policy/modules/system/locallogin.te
--- 
-2.11.0
-
+On 01/09/2017 02:12 PM, Alexander Kanavin wrote:=0A=
+> On 01/07/2017 05:29 PM, Robert P. J. Day wrote:=0A=
+>>   colleague wants to know how one stays up to date with security=0A=
+>> alerts related to YP releases, i checked out the yocto-security=0A=
+>> mailing list:=0A=
+>>=0A=
+>> https://lists.yoctoproject.org/pipermail/yocto-security/=0A=
+>>=0A=
+>> but that looks like a very dead mailing list. are there other options?=
+=0A=
+> You can subscribe to yocto-announce list and follow the announcements =0A=
+> for stable point releases, or simply pull from release branches as often =
+=0A=
+> as possible, and make some form of 'git log' your personal security alert=
+.=0A=
+>=0A=
+> Alex=0A=
+>=0A=
+So /is/ the yocto-security mailinglist considered "dead"? Or has there=0A=
+simply not been any security issues for a while?=0A=
+=0A=
+Kind regards=0A=
+Bent Bisballe Nyeng=0A=
+=0A=
 
