@@ -1,21 +1,17 @@
-Return-Path: <bobadeshrikant@gmail.com>
+Return-Path: <karim_atiki@hotmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8DD32E0049D; Tue, 10 Jan 2017 07:40:24 -0800 (PST)
+	id 814C8E00524; Tue, 10 Jan 2017 07:41:47 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE, 
-	RCVD_IN_SORBS_SPAM,URI_HEX autolearn=no version=3.3.1
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (bobadeshrikant[at]gmail.com)
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.218.49 listed in dnsbl.sorbs.net]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.218.49 listed in list.dnswl.org]
-	*  1.1 URI_HEX URI: URI hostname has long hexadecimal sequence
+	mail provider *      (karim_atiki[at]hotmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [65.55.111.156 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -24,45 +20,75 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-oi0-f49.google.com (mail-oi0-f49.google.com
-	[209.85.218.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 35BE5E0034A
-	for <yocto@yoctoproject.org>; Tue, 10 Jan 2017 07:40:21 -0800 (PST)
-Received: by mail-oi0-f49.google.com with SMTP id 3so550450462oih.1
-	for <yocto@yoctoproject.org>; Tue, 10 Jan 2017 07:40:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=uBIISKiCLda+Hi1/vjCXvL1TIAR/84bd3y9NJQMieC0=;
-	b=JBWnsWNLyd4YAKUoPVvK0FWp2gy+ktx3b7r8znSXK1osn/p2uavdnwlI5Gxz9CtnN2
-	Uy2VMmgaxgdkGVXUTM0Xnm7rZ2KJXETBzFn1bnjlsrKmooWQqd2loUbsIBZnKWQ0wwzJ
-	gIXFQaIS9wrSRI3I2bDvO5ti06IRYxRq+NRLGs4y0x0CxZvVcTEmRoYlHmFZQUWHJE2U
-	z8bYXF/O5uYDIIrZgoU3tjiBm2/vDLoFGZ0qMQi/i/95nZZALw4B1mpEHGFG+CKHZuxh
-	1OdLILqmxp6/jlwAvYRw2QUK1NL/+hMg9xl2KppH6kos37aBCRGOBzU0v96R5KpFjM7a
-	g8sw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=uBIISKiCLda+Hi1/vjCXvL1TIAR/84bd3y9NJQMieC0=;
-	b=bhOiti/LTO0iBWB2IoiE8Tp2vXyYiskHM3M5VU6AH5d/XXUxsIxAmky+ggVu+Ybt0q
-	bdTB7qehoiIUNn1LSUuEg5kvto7R9N4STDbCuSCoIaHsGqfCmOxIIISY0/FNaCPDheCo
-	a5jvQe+hH2/VXzzOq7BON/xkEJ8no8oD5O+uVvwk66HRokYS+x4BNahU0TBQR+Rs30oe
-	L6TVxyf0OistqA0OH9BWRDgjdCMyI0UEqR2R+C7JjxJfLvE057XnG+SPLCJtdvCpkSMh
-	8VcqvGL/mB953UuPcPA5pPAjEtgRcCRtyzzh3Qunj4wfTNrkXjYJeeaG1ch26ubMmY+1
-	IbMw==
-X-Gm-Message-State: AIkVDXJMqlZdLLp1P4ivJG6LjYyMNPssv9vQmb9hXInEuKOIRbZmlQ7eVQUuF3gvIuqUDse1UJqBeFoJlcX1Qg==
-X-Received: by 10.157.13.166 with SMTP id 35mr1925238ots.140.1484062820762;
-	Tue, 10 Jan 2017 07:40:20 -0800 (PST)
+Received: from BLU004-OMC4S17.hotmail.com (blu004-omc4s17.hotmail.com
+	[65.55.111.156])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1765BE003E1
+	for <yocto@yoctoproject.org>; Tue, 10 Jan 2017 07:41:45 -0800 (PST)
+Received: from EUR01-VE1-obe.outbound.protection.outlook.com ([65.55.111.136])
+	by BLU004-OMC4S17.hotmail.com over TLS secured channel with
+	Microsoft SMTPSVC(7.5.7601.23008); Tue, 10 Jan 2017 07:41:45 -0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+	s=selector1; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
+	bh=xsVMamEd9uvM+cgLuv5ZQfXSrHFNGtOpx+4HP/gMcS4=;
+	b=cDJHLc+bGYsJuhw9sr6TECTuOygZC2F2ESUhOG9zY80spRzdcvwvx3gJ9CUNwvUDWCTm6j5sP+3dvgMXvmRvs3FdlAcYGtQJnX0mm7omoxRB9dgZvmYSk2AgJA2R+mbAYDHwl+98UY8iQsAsaWgqacH9cMVhws7m64/f4MRHmzCWEzuF0yB4zmGuSdH35AcGfdoET/+CungczLJuF+dmZefRoYxKMbxNZoVLcWi4BLQBuMAeudGxlUOervPBfWsWWtO1nZ4mhIXEUBCnReGH+dpCyZD7t78shdiFx88/QpT75u5uJXHQSaZci1+DLoOQ9zjVMHIYWTKzl6XIEP/t/A==
+Received: from HE1EUR01FT017.eop-EUR01.prod.protection.outlook.com
+	(10.152.0.51) by HE1EUR01HT086.eop-EUR01.prod.protection.outlook.com
+	(10.152.1.100) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.789.10;
+	Tue, 10 Jan 2017 15:41:43 +0000
+Received: from AMSPR01MB184.eurprd01.prod.exchangelabs.com (10.152.0.56) by
+	HE1EUR01FT017.mail.protection.outlook.com (10.152.0.166) with Microsoft
+	SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
+	15.1.803.8 via Frontend Transport; Tue, 10 Jan 2017 15:41:43 +0000
+Received: from AMSPR01MB184.eurprd01.prod.exchangelabs.com ([169.254.10.210])
+	by AMSPR01MB184.eurprd01.prod.exchangelabs.com ([169.254.10.210])
+	with mapi id 15.01.0845.012; Tue, 10 Jan 2017 15:41:43 +0000
+From: Karim ATIKI <karim_atiki@hotmail.com>
+To: yocto <yocto@yoctoproject.org>
+Thread-Topic: [yocto][bitbake] OECORE_TARGET_SYSROOT and OECORE_NATIVE_SYSROOT
+	variables not availables ?
+Thread-Index: AQHSa1eW6OAJtC4moUWLJnQC9mFtAw==
+Date: Tue, 10 Jan 2017 15:41:43 +0000
+Message-ID: <AMSPR01MB18430DE5FD33B321C4C42E192670@AMSPR01MB184.eurprd01.prod.exchangelabs.com>
+Accept-Language: fr-FR, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: yoctoproject.org; dkim=none (message not signed)
+	header.d=none;yoctoproject.org; dmarc=none action=none
+	header.from=hotmail.com;
+x-incomingtopheadermarker: OriginalChecksum:C9892F64F4BF1FF04C2AEA8EEB1C174FDB4E2BF0F777B34F55A26F3D5B81A03D;
+	UpperCasedChecksum:E3DCBB6B7BACA35E733828C9AC3777DB16EC83BC31033024EF20DC91DCBF2439;
+	SizeAsReceived:7594; Count:37
+x-ms-exchange-messagesentrepresentingtype: 1
+x-tmn: [m8Kc/MUhkitSPlsWsqIFgrUJKJOKQPMP]
+x-incomingheadercount: 37
+x-eopattributedmessage: 0
+x-microsoft-exchange-diagnostics: 1; HE1EUR01HT086;
+	7:jicBEGm50w5YPn4wlcbCw9o9vfPnmgRXjWREQcm/akkKLNZJFmiZiZvImYiRd8BasJVzM2zn4JHta+ECTnm31wKY28gj5gV0AZOydjZVFnmSGZiX6Zq24IjJr4jnfc3Gu1m8I7Hk+R+6QOsAlvbHkDQs90tQIOWJSbo6AyUjQ95I6DIryArJmXZdsiu7CFdWLt9ISm7EOxF6XSoo+gntaG5erYHuFpHtnO+J1w3WXqKuXOlSfQExT6nBvw4E3MnuaYoUoOoWWOmvO69maIrPIz1fc96BPJjfoXoD2fD7xmhBR9i4Y6JIWqI2c2i/ioswJ0Glm4Sq4DT4fUcSJRlqVgSmrE61GXG/CWItq82zzbdKNCH0AePNQfSs4vQqvh/8KoG4TNfO69zXBV5L/0cjOD+VEmgf25ygSrItbTRkRbbUIBNBJK/CIenuK+i8d0lggWBadYOKj8ZUoCfolbUwrA==
+x-forefront-antispam-report: EFV:NLI; SFV:NSPM; SFS:(10019020)(98900003);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:HE1EUR01HT086;
+	H:AMSPR01MB184.eurprd01.prod.exchangelabs.com; FPR:; SPF:None;
+	LANG:en; 
+x-ms-office365-filtering-correlation-id: 349f4a24-8122-4d93-2b93-08d4396f2d81
+x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
+	RULEID:(22001)(1601124038)(1603103113)(1601125047)(1701031023);
+	SRVR:HE1EUR01HT086; 
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(444111334)(444112120)(432015012)(82015046);
+	SRVR:HE1EUR01HT086; BCL:0; PCL:0; RULEID:; SRVR:HE1EUR01HT086; 
+x-forefront-prvs: 01834E39B7
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-Received: by 10.74.1.71 with HTTP; Tue, 10 Jan 2017 07:40:20 -0800 (PST)
-In-Reply-To: <20170110144821.GC8258@mentor.com>
-References: <20170110144821.GC8258@mentor.com>
-From: Shrikant Bobade <bobadeshrikant@gmail.com>
-Date: Tue, 10 Jan 2017 21:10:20 +0530
-Message-ID: <CALwQErqYtkpFUAf3DKYuRBYC2n9bY23zCuyE3WFWC3K-orWqMw@mail.gmail.com>
-To: Joe MacDonald <Joe_MacDonald@mentor.com>
-Cc: yocto@yoctoproject.org, Shrikant Bobade <shrikant_bobade@mentor.com>
-Subject: Re: [meta-selinux] What's the point of refpolicy-minimum?
+X-OriginatorOrg: hotmail.com
+X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Jan 2017 15:41:43.1325 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Internet
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: HE1EUR01HT086
+X-OriginalArrivalTime: 10 Jan 2017 15:41:45.0251 (UTC)
+	FILETIME=[0C298F30:01D26B58]
+Subject: [bitbake] OECORE_TARGET_SYSROOT and OECORE_NATIVE_SYSROOT variables not availables ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,162 +100,105 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Jan 2017 15:40:24 -0000
-Content-Type: multipart/alternative; boundary=94eb2c033158418b2d0545bf4dbb
+X-List-Received-Date: Tue, 10 Jan 2017 15:41:47 -0000
+Content-Language: fr-FR
+Content-Type: multipart/alternative;
+	boundary="_000_AMSPR01MB18430DE5FD33B321C4C42E192670AMSPR01MB184eurprd_"
 
---94eb2c033158418b2d0545bf4dbb
-Content-Type: text/plain; charset=UTF-8
-
-Hi Joe,
-
-
-On Tue, Jan 10, 2017 at 8:18 PM, Joe MacDonald <Joe_MacDonald@mentor.com>
-wrote:
->
-> Wenzong / Shrikant,
->
-> I thought I knew the answer to the above question, and maybe my
-> understanding is still correct, but I think I need to ask it now anyway.
->
-> I don't use refpolicy-minimum for anything, so when I did the updates to
-> refpolicy*_git I didn't even glance at refpolicy-minimum_git.  Wenzong's
-> change to refpolicy-minimum_2.20161023 (in the same thread as the uprev
-> of the recipe) piqued my curiosity, so I had a look.  Of course,
-> refpolicy-minimum_git.bb also needs to be updated (or thrown out), but
-> now that I'm looking at the recipe I see what seems like conflicting
-> statements in the recipe:
->
->    recipes-security/refpolicy/refpolicy-minimum_2.20161023.bb:
->
->      1 include refpolicy-targeted_${PV}.bb
->      2
->      3 SUMMARY = "SELinux minimum policy"
->      4 DESCRIPTION = "\
->      5 This is a minimum reference policy with just core policy modules,
-and \
->      6 could be used as a base for customizing targeted policy. \
->      7 Pretty much everything runs as initrc_t or unconfined_t so all of
-the \
->      8 domains are unconfined. \
->      9 "
->
-> and:
->
->    recipes-security/refpolicy/refpolicy-targeted_2.20161023.bb:
->
->      1 SUMMARY = "SELinux targeted policy"
->      2 DESCRIPTION = "\
->      3 This is the targeted variant of the SELinux reference policy.
-Most service \
->      4 domains are locked down. Users and admins will login in with
-unconfined_t \
->      5 domain, so they have the same access to the system as if SELinux
-was not \
->      6 enabled. \
->      7 "
->
-> So now I'm trying to understand what the point of refpolicy-minimum
-> really is here.  Those of you who are using it, what are you using it
-> for and what do you expect would be the correct behaviour of a system
-> running that policy?
-
-recently used refpolicy-minimum, as it provides protection/security for
-minimum modules
-and reaming things with unconfined, the minimum coverage(modules) of policy
-easy to start on
-& cross check the prepared infrastructure against the expected selinux
-behavior.
-
-Also it is easy to patch for systemd compared to other policies. Till
-refpolicy v20151208 release
-we have refpolicy-minimum working with systemd as init manager.
-regarding the latest release need to check.
-
-But moving ahead similar policy with minimum modules can be used..
-
->
-> At the very least, I'm going to remove the 'include [...].bb' from both
-> 'minimum' recipes, as that's completely incorrect, but when I do that I
-> want to know what anyone using this recipe wants to see from it, so
-> whatever the 'include' gets replaced with is doing the right thing
-> (which isn't necessarily what it's doing today).
-
-agree..
->
-> --
-> -Joe MacDonald.
-> :wq
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
-
-Thanks
-Shrikant
-
---94eb2c033158418b2d0545bf4dbb
-Content-Type: text/html; charset=UTF-8
+--_000_AMSPR01MB18430DE5FD33B321C4C42E192670AMSPR01MB184eurprd_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div><br>Hi Joe,<br><br></div><div><div><br>On Tue, Jan 10=
-, 2017 at 8:18 PM, Joe MacDonald &lt;<a href=3D"mailto:Joe_MacDonald@mentor=
-.com">Joe_MacDonald@mentor.com</a>&gt; wrote:<br>&gt;<br>&gt; Wenzong / Shr=
-ikant,<br>&gt;<br>&gt; I thought I knew the answer to the above question, a=
-nd maybe my<br>&gt; understanding is still correct, but I think I need to a=
-sk it now anyway.<br>&gt;<br>&gt; I don&#39;t use refpolicy-minimum for any=
-thing, so when I did the updates to<br>&gt; refpolicy*_git I didn&#39;t eve=
-n glance at refpolicy-minimum_git.=C2=A0 Wenzong&#39;s<br>&gt; change to re=
-fpolicy-minimum_2.20161023 (in the same thread as the uprev<br>&gt; of the =
-recipe) piqued my curiosity, so I had a look.=C2=A0 Of course,<br>&gt; <a h=
-ref=3D"http://refpolicy-minimum_git.bb">refpolicy-minimum_git.bb</a> also n=
-eeds to be updated (or thrown out), but<br>&gt; now that I&#39;m looking at=
- the recipe I see what seems like conflicting<br>&gt; statements in the rec=
-ipe:<br>&gt;<br>&gt; =C2=A0 =C2=A0recipes-security/refpolicy/<a href=3D"htt=
-p://refpolicy-minimum_2.20161023.bb">refpolicy-minimum_2.20161023.bb</a>:<b=
-r>&gt;<br>&gt; =C2=A0 =C2=A0 =C2=A01 include refpolicy-targeted_${PV}.bb<br=
->&gt; =C2=A0 =C2=A0 =C2=A02<br>&gt; =C2=A0 =C2=A0 =C2=A03 SUMMARY =3D &quot=
-;SELinux minimum policy&quot;<br>&gt; =C2=A0 =C2=A0 =C2=A04 DESCRIPTION =3D=
- &quot;\<br>&gt; =C2=A0 =C2=A0 =C2=A05 This is a minimum reference policy w=
-ith just core policy modules, and \<br>&gt; =C2=A0 =C2=A0 =C2=A06 could be =
-used as a base for customizing targeted policy. \<br>&gt; =C2=A0 =C2=A0 =C2=
-=A07 Pretty much everything runs as initrc_t or unconfined_t so all of the =
-\<br>&gt; =C2=A0 =C2=A0 =C2=A08 domains are unconfined. \<br>&gt; =C2=A0 =
-=C2=A0 =C2=A09 &quot;<br>&gt;<br>&gt; and:<br>&gt;<br>&gt; =C2=A0 =C2=A0rec=
-ipes-security/refpolicy/<a href=3D"http://refpolicy-targeted_2.20161023.bb"=
->refpolicy-targeted_2.20161023.bb</a>:<br>&gt;<br>&gt; =C2=A0 =C2=A0 =C2=A0=
-1 SUMMARY =3D &quot;SELinux targeted policy&quot;<br>&gt; =C2=A0 =C2=A0 =C2=
-=A02 DESCRIPTION =3D &quot;\<br>&gt; =C2=A0 =C2=A0 =C2=A03 This is the targ=
-eted variant of the SELinux reference policy.=C2=A0 Most service \<br>&gt; =
-=C2=A0 =C2=A0 =C2=A04 domains are locked down. Users and admins will login =
-in with unconfined_t \<br>&gt; =C2=A0 =C2=A0 =C2=A05 domain, so they have t=
-he same access to the system as if SELinux was not \<br>&gt; =C2=A0 =C2=A0 =
-=C2=A06 enabled. \<br>&gt; =C2=A0 =C2=A0 =C2=A07 &quot;<br>&gt;<br>&gt; So =
-now I&#39;m trying to understand what the point of refpolicy-minimum<br>&gt=
-; really is here.=C2=A0 Those of you who are using it, what are you using i=
-t<br>&gt; for and what do you expect would be the correct behaviour of a sy=
-stem<br>&gt; running that policy?<br><br></div><div>recently used refpolicy=
--minimum, as it provides protection/security for minimum modules <br>and re=
-aming things with unconfined, the minimum coverage(modules) of policy easy =
-to start on <br>&amp; cross check the prepared infrastructure against the e=
-xpected selinux behavior.<br></div><div><br></div><div>Also it is easy to p=
-atch for systemd compared to other policies. Till refpolicy  v20151208 rele=
-ase <br>we have refpolicy-minimum working with systemd as init manager. <br=
->regarding the latest release need to check.<br><br></div><div>But moving a=
-head similar policy with minimum modules can be used.. <br></div><div>=C2=
-=A0<br></div><div>&gt;<br>&gt; At the very least, I&#39;m going to remove t=
-he &#39;include [...].bb&#39; from both<br>&gt; &#39;minimum&#39; recipes, =
-as that&#39;s completely incorrect, but when I do that I<br>&gt; want to kn=
-ow what anyone using this recipe wants to see from it, so<br>&gt; whatever =
-the &#39;include&#39; gets replaced with is doing the right thing<br>&gt; (=
-which isn&#39;t necessarily what it&#39;s doing today).<br><br></div><div>a=
-gree..<br></div><div>&gt;<br>&gt; --<br>&gt; -Joe MacDonald.<br>&gt; :wq<br=
->&gt;<br>&gt; --<br>&gt; _______________________________________________<br=
->&gt; yocto mailing list<br>&gt; <a href=3D"mailto:yocto@yoctoproject.org">=
-yocto@yoctoproject.org</a><br>&gt; <a href=3D"https://lists.yoctoproject.or=
-g/listinfo/yocto">https://lists.yoctoproject.org/listinfo/yocto</a><br>&gt;=
-<br><br></div><div>Thanks<br></div><div>Shrikant<br></div></div></div>
+Hi,
 
---94eb2c033158418b2d0545bf4dbb--
+
+I'm using generated Poky SDK to cross-compile our program source-codes, whi=
+ch works fine.
+
+
+Now I wish to integrate the build of the project into Yocto recipes using o=
+ur makefiles.
+
+
+However, some custom parameters in the makefiles are using the variables OE=
+CORE_TARGET_SYSROOT  and OECORE_NATIVE_SYSROOT to manage paths.
+
+But it appears that these 2 variables do not exists when the makefiles are =
+called in a do_compile() function of a recipe.
+
+
+Is it normal ? Did I did something wrong ?
+
+Should my recipe inherit something specific?
+
+
+Or should I "source" my "environment-setup-cortexa9hf-vfp-neon-poky-linux-g=
+nueabi" from the SDK into my recipe file ? (=3D> not portable)
+
+
+Thanks.
+
+
+Z.
+
+
+
+
+--_000_AMSPR01MB18430DE5FD33B321C4C42E192670AMSPR01MB184eurprd_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+</head>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Arial,Helvetica,sans-serif;" dir=3D"ltr">
+<p>Hi,</p>
+<p><br>
+</p>
+<p>I'm using generated&nbsp;Poky SDK to cross-compile our program source-co=
+des, which works fine.</p>
+<p><br>
+</p>
+<p>Now I wish to integrate the build of the project into Yocto recipes usin=
+g our makefiles.</p>
+<p><br>
+</p>
+<p>However, some custom parameters in the makefiles are using the variables=
+&nbsp;<span>OECORE_TARGET_SYSROOT &nbsp;and&nbsp;<span>OECORE_NATIVE_SYSROO=
+T to manage paths.</span></span></p>
+<p>But it appears that these 2 variables do not exists when the makefiles a=
+re called in a do_compile() function of a recipe.</p>
+<p><br>
+</p>
+<p>Is it normal ? Did I did something wrong ?&nbsp;</p>
+<p>Should my recipe inherit something specific?&nbsp;</p>
+<p><br>
+</p>
+<p>Or should I &quot;source&quot; my &quot;<span style=3D"font-size: 12pt;"=
+>environment-setup-cortexa9hf-vfp-neon-poky-linux-gnueabi&quot; from the SD=
+K into my recipe file ? (=3D&gt; not portable)</span></p>
+<p><br>
+</p>
+<p>Thanks.</p>
+<p><br>
+</p>
+<p>Z.<br>
+<span style=3D"font-size: 12pt;"></span></p>
+<div><br>
+</div>
+<p></p>
+<p><br>
+</p>
+<p><br>
+</p>
+</div>
+</body>
+</html>
+
+--_000_AMSPR01MB18430DE5FD33B321C4C42E192670AMSPR01MB184eurprd_--
