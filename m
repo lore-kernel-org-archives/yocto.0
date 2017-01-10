@@ -1,65 +1,35 @@
-Return-Path: <rohitj.chd@gmail.com>
+Return-Path: <Wenzong.Fan@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 019BDE0071C; Mon,  9 Jan 2017 23:58:13 -0800 (PST)
+	id 32DE1E006D8; Tue, 10 Jan 2017 00:54:15 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (rohitj.chd[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.215.41 listed in list.dnswl.org]
+X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+	URI_HEX autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
+	*  1.1 URI_HEX URI: URI hostname has long hexadecimal sequence
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-lf0-f41.google.com (mail-lf0-f41.google.com
-	[209.85.215.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A1568E0050B
-	for <yocto@yoctoproject.org>; Mon,  9 Jan 2017 23:58:07 -0800 (PST)
-Received: by mail-lf0-f41.google.com with SMTP id k86so110303413lfi.0
-	for <yocto@yoctoproject.org>; Mon, 09 Jan 2017 23:58:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to; 
-	bh=xTA0SI8yuMeS/dr0DUKsyBRoh7+1zQCDsuFh17DxKcs=;
-	b=XFqBt0XJysw+y8Zci9X5qkYwWiajLbd4tWPFUVbeeCAoUmktooM4E2LwD8eWmJn8WJ
-	YfCzKugF3L+pgMm+9OVvmrhufAXWv879aYB31Z3R98PsO5IYFGyemgaUedunVn7bAJvi
-	t77GjNc/qIT7ckuKpMh+GqRTyMulIMhzbuW2CJBggAegQRj8huJhoTQmFXDcfsCTi1Ab
-	/QaFoyLWoIv6ALG7VgkzFWPz77P3q7hfK1aDAwo9WZkIXUVWtLjGMimRvw6mq8VuGqN2
-	ZnfYJy/mEMj2HwygNK5Y/E8bT7eizBgQNwrGj8a/xAPvYC8GLsQxVN8RxrCV00XfmzW0
-	GOpA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to;
-	bh=xTA0SI8yuMeS/dr0DUKsyBRoh7+1zQCDsuFh17DxKcs=;
-	b=GXaGYNHR3b/+4Bx8wGLvJW4RpmDp7qDiWBaUJdvb1GiEiIgQRtRO7RFFtxWYpanqXQ
-	Dy4cuTdWVXWitt3nsbvFQ5WazoDK+daGZ/WgfwD1//r4FfE6kRpjc/G2elfCb+cD8e+j
-	98RPZ7mYkO3DEzH8eomFgpLfa7WLG57PlTuVW21599pRGqtsNk/JhpcvuNF2bASYTPjP
-	TCuJnLObu4vDguCzxoUTzSxwAjo7kHfcI0PFUhMtXASpgbGlSgogUEOUlb66QBEXShXC
-	4A2+gyaVTvANaxzDkSxZfx4P36DEot9ePP8FfvQ52sIyKdeVrJMDmNyxVlG+vI7oruhP
-	gSBw==
-X-Gm-Message-State: AIkVDXKatiFQg5lFPXap1STGFKZaSic0lS6cYJ4rhJuHi0S2LSkXWbz6mj42Rv45gl1Rg022GZrZvlxlyCMquw==
-X-Received: by 10.25.193.3 with SMTP id r3mr604923lff.54.1484035086383; Mon,
-	09 Jan 2017 23:58:06 -0800 (PST)
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C77D3E00443
+	for <yocto@yoctoproject.org>; Tue, 10 Jan 2017 00:54:13 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id v0A8sCQb006509
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Tue, 10 Jan 2017 00:54:12 -0800 (PST)
+Received: from ala-lpggp5.wrs.com (147.11.105.121) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.294.0;
+	Tue, 10 Jan 2017 00:54:11 -0800
+From: <wenzong.fan@windriver.com>
+To: <yocto@yoctoproject.org>
+Date: Tue, 10 Jan 2017 00:54:09 -0800
+Message-ID: <cover.1484037945.git.wenzong.fan@windriver.com>
+X-Mailer: git-send-email 2.11.0
 MIME-Version: 1.0
-Received: by 10.114.187.47 with HTTP; Mon, 9 Jan 2017 23:58:05 -0800 (PST)
-In-Reply-To: <CAHX_jjt4C4VQCKk1Jrz07eSb3vuGuPpjPdfEgds-86pJmD2Zjw@mail.gmail.com>
-References: <CAHX_jjtT_JE9L9A4hmxL1QgftWEfC75nabgfGYEYCYWaKTKdNg@mail.gmail.com>
-	<de6ecb7c-afa3-348d-a226-24fb735d48ef@linux.intel.com>
-	<CAHX_jjt4C4VQCKk1Jrz07eSb3vuGuPpjPdfEgds-86pJmD2Zjw@mail.gmail.com>
-From: Rohit Jindal <rohitj.chd@gmail.com>
-Date: Tue, 10 Jan 2017 13:28:05 +0530
-Message-ID: <CAHX_jjum-pOKSZwfcp=GLffqLBd--gRupQPYW_JOaEoMjWYpvA@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: openjdk 8 support compile for arm with jit support
+Subject: [meta-selinux][PATCH 0/2] uprev refpolicy to 2.20161023
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,66 +41,128 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Jan 2017 07:58:13 -0000
-Content-Type: multipart/alternative; boundary=94eb2c1a171028813b0545b8d826
+X-List-Received-Date: Tue, 10 Jan 2017 08:54:15 -0000
+Content-Type: text/plain
 
---94eb2c1a171028813b0545b8d826
-Content-Type: text/plain; charset=UTF-8
+From: Wenzong Fan <wenzong.fan@windriver.com>
 
-Sorry i am new to this forum, actually my target is as follows:
+Uprev refpolicy to 2.20161023 and fix build errors for refpolicy-minimum.
 
-I want to compile openjdk 8 for arm processor due to one of my requirement .
-I have used meta-java layer with openjre 102b14 version.
-Its compiling good with arm compiler.
-But i want to add any available JIT ie just in time compiler to be added in
-my working arm based java binaries to increase the performance of my java
-applications to be used.
-Steps followed are :
-Downloaded poky and meta-java layer.
-Set machine to be qemuarm .
-Toolchain get downloaded as required along with required tools.
-Openjre 8_102b14 is compiled for arm successfully.
-I twisted the recipe and added enable-jamvm as config param. Now jamvm is
-compiled as dependency.
-After successful compilations of recipes i tried to run java binaries using
-chroot replacing libjvm.so default with created using jamvm .
-Java -jamvm -version
-Getting segmentation fault core dumped.
+The following changes since commit bae51859f0dbcdde9fd563d15128a6dbbb816801:
 
-Please suggest the solution for the same.
+  audit: upgrade 2.6.6 -> 2.7 (2017-01-09 08:59:55 -0500)
 
-I tried with diffrrent VMs also but all in vein.
+are available in the git repository at:
 
-Even i tried diiferent variants of openjdk that says that Jit works fine
-with it. Like openjdk8u-111-b14 works fine for debian but same source gives
-compilation errors. Please suggest openjdk8 version for arm to add jit
-support that will work fine for me.
+  git://git.pokylinux.org/poky-contrib wenzong/refpolicy-2.20161023
+  http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=wenzong/refpolicy-2.20161023
 
-Thanks
-Rohit jindal
+Wenzong Fan (2):
+  refpolicy: uprev 2.20151208 -> 2.20161023
+  refpolicy-minimum: update patch file
 
---94eb2c1a171028813b0545b8d826
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+ .../ftp-add-ftpd_t-to-mlsfilewrite.patch                         | 0
+ .../poky-fc-clock.patch                                          | 0
+ .../poky-fc-corecommands.patch                                   | 0
+ .../poky-fc-dmesg.patch                                          | 0
+ .../poky-fc-fix-bind.patch                                       | 0
+ .../poky-fc-fix-real-path_login.patch                            | 0
+ .../poky-fc-fix-real-path_resolv.conf.patch                      | 0
+ .../poky-fc-fix-real-path_shadow.patch                           | 0
+ .../poky-fc-fix-real-path_su.patch                               | 0
+ .../poky-fc-fstools.patch                                        | 0
+ .../poky-fc-ftpwho-dir.patch                                     | 0
+ .../poky-fc-iptables.patch                                       | 0
+ .../poky-fc-mta.patch                                            | 0
+ .../poky-fc-netutils.patch                                       | 0
+ .../poky-fc-nscd.patch                                           | 0
+ .../poky-fc-rpm.patch                                            | 0
+ .../poky-fc-screen.patch                                         | 0
+ .../poky-fc-ssh.patch                                            | 0
+ .../poky-fc-su.patch                                             | 0
+ .../poky-fc-subs_dist.patch                                      | 0
+ .../poky-fc-sysnetwork.patch                                     | 0
+ .../poky-fc-udevd.patch                                          | 0
+ .../poky-fc-update-alternatives_hostname.patch                   | 0
+ .../poky-fc-update-alternatives_sysklogd.patch                   | 0
+ .../poky-fc-update-alternatives_sysvinit.patch                   | 0
+ .../poky-policy-add-rules-for-bsdpty_device_t.patch              | 0
+ .../poky-policy-add-rules-for-syslogd_t-symlink.patch            | 0
+ .../poky-policy-add-rules-for-tmp-symlink.patch                  | 0
+ .../poky-policy-add-rules-for-var-cache-symlink.patch            | 0
+ .../poky-policy-add-rules-for-var-log-symlink-apache.patch       | 0
+ ...ky-policy-add-rules-for-var-log-symlink-audisp_remote_t.patch | 0
+ .../poky-policy-add-rules-for-var-log-symlink.patch              | 0
+ .../poky-policy-add-syslogd_t-to-trusted-object.patch            | 0
+ .../poky-policy-allow-nfsd-to-exec-shell-commands.patch          | 0
+ .../poky-policy-allow-setfiles_t-to-read-symlinks.patch          | 0
+ .../poky-policy-allow-sysadm-to-run-rpcinfo.patch                | 0
+ .../poky-policy-don-t-audit-tty_device_t.patch                   | 0
+ .../poky-policy-fix-dmesg-to-use-dev-kmsg.patch                  | 0
+ .../poky-policy-fix-new-SELINUXMNT-in-sys.patch                  | 0
+ .../poky-policy-fix-nfsd_t-to-mount_nfsd_fs_t.patch              | 0
+ .../poky-policy-fix-setfiles-statvfs-get-file-count.patch        | 0
+ .../poky-policy-fix-seutils-manage-config-files.patch            | 0
+ .../refpolicy-update-for_systemd.patch                           | 0
+ .../{refpolicy-mcs_2.20151208.bb => refpolicy-mcs_2.20161023.bb} | 0
+ ...07-refpolicy-minimum-systemd-fix-for-login-journal-serv.patch | 9 ++++++---
+ ...icy-minimum_2.20151208.bb => refpolicy-minimum_2.20161023.bb} | 0
+ .../{refpolicy-mls_2.20151208.bb => refpolicy-mls_2.20161023.bb} | 0
+ ...y-standard_2.20151208.bb => refpolicy-standard_2.20161023.bb} | 0
+ ...y-targeted_2.20151208.bb => refpolicy-targeted_2.20161023.bb} | 0
+ .../{refpolicy_2.20151208.inc => refpolicy_2.20161023.inc}       | 8 ++++----
+ 50 files changed, 10 insertions(+), 7 deletions(-)
+ rename recipes-security/refpolicy/{refpolicy-2.20151208 => refpolicy-2.20161023}/ftp-add-ftpd_t-to-mlsfilewrite.patch (100%)
+ rename recipes-security/refpolicy/{refpolicy-2.20151208 => refpolicy-2.20161023}/poky-fc-clock.patch (100%)
+ rename recipes-security/refpolicy/{refpolicy-2.20151208 => refpolicy-2.20161023}/poky-fc-corecommands.patch (100%)
+ rename recipes-security/refpolicy/{refpolicy-2.20151208 => refpolicy-2.20161023}/poky-fc-dmesg.patch (100%)
+ rename recipes-security/refpolicy/{refpolicy-2.20151208 => refpolicy-2.20161023}/poky-fc-fix-bind.patch (100%)
+ rename recipes-security/refpolicy/{refpolicy-2.20151208 => refpolicy-2.20161023}/poky-fc-fix-real-path_login.patch (100%)
+ rename recipes-security/refpolicy/{refpolicy-2.20151208 => refpolicy-2.20161023}/poky-fc-fix-real-path_resolv.conf.patch (100%)
+ rename recipes-security/refpolicy/{refpolicy-2.20151208 => refpolicy-2.20161023}/poky-fc-fix-real-path_shadow.patch (100%)
+ rename recipes-security/refpolicy/{refpolicy-2.20151208 => refpolicy-2.20161023}/poky-fc-fix-real-path_su.patch (100%)
+ rename recipes-security/refpolicy/{refpolicy-2.20151208 => refpolicy-2.20161023}/poky-fc-fstools.patch (100%)
+ rename recipes-security/refpolicy/{refpolicy-2.20151208 => refpolicy-2.20161023}/poky-fc-ftpwho-dir.patch (100%)
+ rename recipes-security/refpolicy/{refpolicy-2.20151208 => refpolicy-2.20161023}/poky-fc-iptables.patch (100%)
+ rename recipes-security/refpolicy/{refpolicy-2.20151208 => refpolicy-2.20161023}/poky-fc-mta.patch (100%)
+ rename recipes-security/refpolicy/{refpolicy-2.20151208 => refpolicy-2.20161023}/poky-fc-netutils.patch (100%)
+ rename recipes-security/refpolicy/{refpolicy-2.20151208 => refpolicy-2.20161023}/poky-fc-nscd.patch (100%)
+ rename recipes-security/refpolicy/{refpolicy-2.20151208 => refpolicy-2.20161023}/poky-fc-rpm.patch (100%)
+ rename recipes-security/refpolicy/{refpolicy-2.20151208 => refpolicy-2.20161023}/poky-fc-screen.patch (100%)
+ rename recipes-security/refpolicy/{refpolicy-2.20151208 => refpolicy-2.20161023}/poky-fc-ssh.patch (100%)
+ rename recipes-security/refpolicy/{refpolicy-2.20151208 => refpolicy-2.20161023}/poky-fc-su.patch (100%)
+ rename recipes-security/refpolicy/{refpolicy-2.20151208 => refpolicy-2.20161023}/poky-fc-subs_dist.patch (100%)
+ rename recipes-security/refpolicy/{refpolicy-2.20151208 => refpolicy-2.20161023}/poky-fc-sysnetwork.patch (100%)
+ rename recipes-security/refpolicy/{refpolicy-2.20151208 => refpolicy-2.20161023}/poky-fc-udevd.patch (100%)
+ rename recipes-security/refpolicy/{refpolicy-2.20151208 => refpolicy-2.20161023}/poky-fc-update-alternatives_hostname.patch (100%)
+ rename recipes-security/refpolicy/{refpolicy-2.20151208 => refpolicy-2.20161023}/poky-fc-update-alternatives_sysklogd.patch (100%)
+ rename recipes-security/refpolicy/{refpolicy-2.20151208 => refpolicy-2.20161023}/poky-fc-update-alternatives_sysvinit.patch (100%)
+ rename recipes-security/refpolicy/{refpolicy-2.20151208 => refpolicy-2.20161023}/poky-policy-add-rules-for-bsdpty_device_t.patch (100%)
+ rename recipes-security/refpolicy/{refpolicy-2.20151208 => refpolicy-2.20161023}/poky-policy-add-rules-for-syslogd_t-symlink.patch (100%)
+ rename recipes-security/refpolicy/{refpolicy-2.20151208 => refpolicy-2.20161023}/poky-policy-add-rules-for-tmp-symlink.patch (100%)
+ rename recipes-security/refpolicy/{refpolicy-2.20151208 => refpolicy-2.20161023}/poky-policy-add-rules-for-var-cache-symlink.patch (100%)
+ rename recipes-security/refpolicy/{refpolicy-2.20151208 => refpolicy-2.20161023}/poky-policy-add-rules-for-var-log-symlink-apache.patch (100%)
+ rename recipes-security/refpolicy/{refpolicy-2.20151208 => refpolicy-2.20161023}/poky-policy-add-rules-for-var-log-symlink-audisp_remote_t.patch (100%)
+ rename recipes-security/refpolicy/{refpolicy-2.20151208 => refpolicy-2.20161023}/poky-policy-add-rules-for-var-log-symlink.patch (100%)
+ rename recipes-security/refpolicy/{refpolicy-2.20151208 => refpolicy-2.20161023}/poky-policy-add-syslogd_t-to-trusted-object.patch (100%)
+ rename recipes-security/refpolicy/{refpolicy-2.20151208 => refpolicy-2.20161023}/poky-policy-allow-nfsd-to-exec-shell-commands.patch (100%)
+ rename recipes-security/refpolicy/{refpolicy-2.20151208 => refpolicy-2.20161023}/poky-policy-allow-setfiles_t-to-read-symlinks.patch (100%)
+ rename recipes-security/refpolicy/{refpolicy-2.20151208 => refpolicy-2.20161023}/poky-policy-allow-sysadm-to-run-rpcinfo.patch (100%)
+ rename recipes-security/refpolicy/{refpolicy-2.20151208 => refpolicy-2.20161023}/poky-policy-don-t-audit-tty_device_t.patch (100%)
+ rename recipes-security/refpolicy/{refpolicy-2.20151208 => refpolicy-2.20161023}/poky-policy-fix-dmesg-to-use-dev-kmsg.patch (100%)
+ rename recipes-security/refpolicy/{refpolicy-2.20151208 => refpolicy-2.20161023}/poky-policy-fix-new-SELINUXMNT-in-sys.patch (100%)
+ rename recipes-security/refpolicy/{refpolicy-2.20151208 => refpolicy-2.20161023}/poky-policy-fix-nfsd_t-to-mount_nfsd_fs_t.patch (100%)
+ rename recipes-security/refpolicy/{refpolicy-2.20151208 => refpolicy-2.20161023}/poky-policy-fix-setfiles-statvfs-get-file-count.patch (100%)
+ rename recipes-security/refpolicy/{refpolicy-2.20151208 => refpolicy-2.20161023}/poky-policy-fix-seutils-manage-config-files.patch (100%)
+ rename recipes-security/refpolicy/{refpolicy-2.20151208 => refpolicy-2.20161023}/refpolicy-update-for_systemd.patch (100%)
+ rename recipes-security/refpolicy/{refpolicy-mcs_2.20151208.bb => refpolicy-mcs_2.20161023.bb} (100%)
+ rename recipes-security/refpolicy/{refpolicy-minimum_2.20151208.bb => refpolicy-minimum_2.20161023.bb} (100%)
+ rename recipes-security/refpolicy/{refpolicy-mls_2.20151208.bb => refpolicy-mls_2.20161023.bb} (100%)
+ rename recipes-security/refpolicy/{refpolicy-standard_2.20151208.bb => refpolicy-standard_2.20161023.bb} (100%)
+ rename recipes-security/refpolicy/{refpolicy-targeted_2.20151208.bb => refpolicy-targeted_2.20161023.bb} (100%)
+ rename recipes-security/refpolicy/{refpolicy_2.20151208.inc => refpolicy_2.20161023.inc} (91%)
 
-<br>Sorry i am new to this forum, actually my target is as follows:<br><br>=
-I want to compile openjdk 8 for arm processor due to one of my requirement =
-.<br>I have used meta-java layer with openjre 102b14 version.<br>Its compil=
-ing good with arm compiler.<br>But i want to add any available JIT ie just =
-in time compiler to be added in my working arm based java binaries to incre=
-ase the performance of my java applications to be used.<br>Steps followed a=
-re :<br>Downloaded poky and meta-java layer.<br>Set machine to be qemuarm .=
-<br>Toolchain get downloaded as required along with required tools.<br>Open=
-jre 8_102b14 is compiled for arm successfully.<br>I twisted the recipe and =
-added enable-jamvm as config param. Now jamvm is compiled as dependency.<br=
->After successful compilations of recipes i tried to run java binaries usin=
-g chroot replacing libjvm.so default with created using jamvm .<br>Java -ja=
-mvm -version<br>Getting segmentation fault core dumped.<br><br>Please sugge=
-st the solution for the same.<br><br>I tried with diffrrent VMs also but al=
-l in vein.<br><br>Even i tried diiferent variants of openjdk that says that=
- Jit works fine with it. Like openjdk8u-111-b14 works fine for debian but s=
-ame source gives compilation errors. Please suggest openjdk8 version for ar=
-m to add jit support that will work fine for me.<br><br>Thanks<br>Rohit jin=
-dal<br>
+-- 
+2.11.0
 
---94eb2c1a171028813b0545b8d826--
+
