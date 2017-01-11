@@ -1,39 +1,40 @@
-Return-Path: <anibal.limon@linux.intel.com>
+Return-Path: <philip@balister.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C8661E00524; Wed, 11 Jan 2017 06:40:03 -0800 (PST)
+	id 98251E007AA; Wed, 11 Jan 2017 06:49:54 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [216.168.135.167 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [134.134.136.65 listed in list.dnswl.org]
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BFA4FE00443
-	for <yocto@yoctoproject.org>; Wed, 11 Jan 2017 06:40:02 -0800 (PST)
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-	by orsmga103.jf.intel.com with ESMTP; 11 Jan 2017 06:40:00 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.33,346,1477983600"; 
-	d="asc'?scan'208";a="807651404"
-Received: from alimonb-mobl1.zpn.intel.com (HELO [10.219.5.143])
-	([10.219.5.143])
-	by FMSMGA003.fm.intel.com with ESMTP; 11 Jan 2017 06:40:00 -0800
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-References: <1483651296-8419-1-git-send-email-anibal.limon@linux.intel.com>
-	<3147446.lSPnudXIVY@peggleto-mobl.ger.corp.intel.com>
-From: =?UTF-8?B?QW7DrWJhbCBMaW3Ds24=?= <anibal.limon@linux.intel.com>
-Message-ID: <58764466.8030100@linux.intel.com>
-Date: Wed, 11 Jan 2017 08:42:46 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.3.0
+Received: from sanddollar.geekisp.com (sanddollar.geekisp.com
+	[216.168.135.167])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7285EE0033D
+	for <yocto@yoctoproject.org>; Wed, 11 Jan 2017 06:49:51 -0800 (PST)
+Received: (qmail 28547 invoked by uid 1003); 11 Jan 2017 14:49:50 -0000
+Received: from unknown (HELO ?192.168.11.142?)
+	(philip@opensdr.com@108.4.175.67)
+	by mail.geekisp.com with (DHE-RSA-AES128-SHA encrypted) SMTP;
+	11 Jan 2017 14:49:50 -0000
+To: Bent Bisballe Nyeng <xbbn@mjolner.dk>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <alpine.LFD.2.20.1701071028270.18312@localhost.localdomain>
+	<bbffbd48-0944-ccde-e7dd-5a912aea4dd8@linux.intel.com>
+	<e9802d68dc1240a2ae137c424a154d8a@drift35.mia.local>
+	<CAJTo0LbbmO2S2XaWve2=uESbtd9UAn533XAcKBvfZ7XHzyngNA@mail.gmail.com>
+	<1c32c82c773d4d0b81f428bc62435118@drift35.mia.local>
+From: Philip Balister <philip@balister.org>
+Message-ID: <300aed1d-93fe-7d21-2436-172e7d35e728@balister.org>
+Date: Wed, 11 Jan 2017 09:49:48 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.5.1
 MIME-Version: 1.0
-In-Reply-To: <3147446.lSPnudXIVY@peggleto-mobl.ger.corp.intel.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: [[PATCH][layerindex]] layerindex: Update tinfoil to call shutdown method
+In-Reply-To: <1c32c82c773d4d0b81f428bc62435118@drift35.mia.local>
+Subject: Re: how does one stay on top of YP security alerts?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,72 +46,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Jan 2017 14:40:03 -0000
-X-Groupsio-MsgNum: 33755
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature";
-	boundary="VDdN6tJCLcfNOq879WCnoqjEniNNvgOAS"
-
---VDdN6tJCLcfNOq879WCnoqjEniNNvgOAS
+X-List-Received-Date: Wed, 11 Jan 2017 14:49:54 -0000
 Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
 
+The question of security comes up at every OpenEmbedded developer
+meeting. Clearly, the companies building products with OpenEmbedded care
+about security.
 
+The problem following the CVE's direct is you need to do analysis to
+determine if a specific release has the vulnerability.
 
-On 01/11/2017 02:59 AM, Paul Eggleton wrote:
-> Hi An=EDbal,
->=20
-> On Thu, 05 Jan 2017 15:21:36 An=EDbal Lim=F3n wrote:
->> The new client/server API of tinfoil requires explicit call of
->> shutdown method to send the event for finalize cooker process.
->>
->> Also in update_layer remove the databuilder and cache instance
->> now isn't needed.
->=20
-> This patch didn't apply against master - the databuilder piece does not=
- appear=20
-> to be there.
+We do have guidelines for marking CVE's addressed by commits, to help
+people interested in developing tools to show what CVE's are addressed
+in the meta data.
 
-Great may be was my own changes against RRS,
+One suggestion made is to setup some form of git hook to email commits
+with CVE tags to the security list. We are very interested in
+encouraging people who care about security to use the security mailing
+list to improve overall security of distributions (like Poky) built with
+OpenEmbedded.
 
-Only a comment if your layerindex scripts don't call shutdown the update
-script seems blocked because never arrives the event.
+Philip
 
-Cheers,
-	alimon
->=20
-> Since it was a simple patch, I've remade the changes (with most of your=
- commit=20
-> message) and pushed it to the paule/django18 branch that hopefully we'l=
-l be=20
-> moving over to soon.
->=20
-> Cheers,
-> Paul
->=20
+On 01/10/2017 05:37 AM, Bent Bisballe Nyeng wrote:
+> On 01/10/2017 11:29 AM, Burton, Ross wrote:
+> 
+> On 10 January 2017 at 10:01, Bent Bisballe Nyeng <xbbn@mjolner.dk<mailto:xbbn@mjolner.dk>> wrote:
+> So /is/ the yocto-security mailinglist considered "dead"? Or has there
+> simply not been any security issues for a while?
+> 
+> IIRC, yocto-security was more to discuss security issues, not an announcement of security related fixes.  If you care about security then you'll want notice for more than just what is in oe-core, so I suggest monitoring the CVE announcements directly.
+> 
+> Ross
+> 
+> I found the list initially through this page: https://wiki.yoctoproject.org/wiki/Security where it is described as the security [at] yoctoprojct [dot] org being the discussion list and the yocto [dash] security [at] yoctoproject[dot] org being the security announcement list.
+> 
+> If the yocto [dash] security [at] yoctoproject[dot] org is in fact no longer active I think it is important that the wiki page is changed to reflect that to prevent potential dangerous misunderstandings in the future.
+> 
+> Kind regards
+> Bent Bisballe Nyeng
+> 
+> 
+> 
 
-
---VDdN6tJCLcfNOq879WCnoqjEniNNvgOAS
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2
-
-iQIcBAEBAgAGBQJYdkRrAAoJEGJqcE9h3glgCfUP/jUab1KUDM5ItUOwpBhAkVgm
-XERtquRKQ2mrkZKrYQwoXvqIFt3IhRI39HafIT4GCNTDbhc6JstS8f1q6gUiC6VV
-pjjb1MqDJrEc0UWPbIvxMI94kJ8ft78b4o4REgK6Zc4vpymHnz1h/dphcWDD+tIo
-WwpxxYTgpxi8KmSMiwVgiPUEeuTM7X3gaaBPzBRbO8Afz9f7q2FOgpNOILqktHLa
-G3ygru1vfeojDf/JuYrTlsU6YfNi3DaSj+qf8lDBzE+ORbOs6kFHD/i54y0HKeOO
-pJNmDMjs7s+iWNKjaGmqdmub66kxoq/DKyJGGDOASHtHX4k57xU7Ykdel7c8oHQp
-fzVATpUZXwi5pna17VJ05pQn4iJerz5xmVIYThgKmqULSJjMfaI39efk1D8ou8gV
-s1CdYjs3vIbL+iGruW5VrjiH34YqetvsiMjsykILzya78Y6w1LjBoIqOHdILePmr
-17A9P+qClF8X2mK2YOHmuXR7zt+Dz/+r2l3qcudc/J4HWoLOSeEpvJ5pyn5rP7SN
-HCZygnuGDNfKSZe7NgqtXNslNAvQ3aGv4809Bh1vcPBM53uBoi3cG5Y+lamnmGdw
-Zisg6WzV87ClTZDZbIt2K4GzRwx/1eDQs39BEiaDWKlZXTw1T4vRyYTh95293TYa
-YNLU0EQW2EiGX0LQUFzX
-=LaQl
------END PGP SIGNATURE-----
-
---VDdN6tJCLcfNOq879WCnoqjEniNNvgOAS--
