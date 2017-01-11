@@ -1,6 +1,6 @@
-Return-Path: <jose.a.lamego@linux.intel.com>
+Return-Path: <mark.hatle@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 74732E0049A; Wed, 11 Jan 2017 09:01:45 -0800 (PST)
+	id 6CDC7E0049A; Wed, 11 Jan 2017 09:46:52 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,27 +8,37 @@ X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
 	http://www.dnswl.org/, *      medium trust
-	*      [192.55.52.120 listed in list.dnswl.org]
+	*      [147.11.146.13 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2A2A2E003C1
-	for <yocto@yoctoproject.org>; Wed, 11 Jan 2017 09:01:43 -0800 (PST)
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-	by fmsmga104.fm.intel.com with ESMTP; 11 Jan 2017 09:01:43 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.33,346,1477983600"; d="scan'208";a="921404688"
-Received: from jalamego-mobl2.zpn.intel.com ([10.219.5.139])
-	by orsmga003.jf.intel.com with ESMTP; 11 Jan 2017 09:01:42 -0800
-From: Jose Lamego <jose.a.lamego@linux.intel.com>
-To: yocto@yoctoproject.org
-Date: Wed, 11 Jan 2017 11:01:19 -0600
-Message-Id: <1484154079-8351-1-git-send-email-jose.a.lamego@linux.intel.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <20d716f4-ab8f-d0af-2372-55d16ef8f28c@linux.intel.com>
-References: <1483743785-13872-1-git-send-email-jose.a.lamego@linux.intel.com><1483958944.2137.22.camel@intel.com>
-Cc: Jose Lamego <jose.a.lamego@intel.com>
-Subject: [patchwork][PATCH] patchwork/bin/parsemail: Improve new patch filtering
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 06B8BE003C1
+	for <yocto@yoctoproject.org>; Wed, 11 Jan 2017 09:46:49 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id v0BHkeLI013499
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Wed, 11 Jan 2017 09:46:40 -0800 (PST)
+Received: from soho-mhatle-m.local (172.25.36.235) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.294.0;
+	Wed, 11 Jan 2017 09:46:40 -0800
+To: Philip Balister <philip@balister.org>, Bent Bisballe Nyeng
+	<xbbn@mjolner.dk>, "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <alpine.LFD.2.20.1701071028270.18312@localhost.localdomain>
+	<bbffbd48-0944-ccde-e7dd-5a912aea4dd8@linux.intel.com>
+	<e9802d68dc1240a2ae137c424a154d8a@drift35.mia.local>
+	<CAJTo0LbbmO2S2XaWve2=uESbtd9UAn533XAcKBvfZ7XHzyngNA@mail.gmail.com>
+	<1c32c82c773d4d0b81f428bc62435118@drift35.mia.local>
+	<300aed1d-93fe-7d21-2436-172e7d35e728@balister.org>
+From: Mark Hatle <mark.hatle@windriver.com>
+Organization: Wind River Systems
+Message-ID: <455a3bfe-5329-5ea0-a908-cabc640daa57@windriver.com>
+Date: Wed, 11 Jan 2017 11:46:39 -0600
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:45.0)
+	Gecko/20100101 Thunderbird/45.6.0
+MIME-Version: 1.0
+In-Reply-To: <300aed1d-93fe-7d21-2436-172e7d35e728@balister.org>
+Subject: Re: how does one stay on top of YP security alerts?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,45 +50,74 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Jan 2017 17:01:45 -0000
+X-List-Received-Date: Wed, 11 Jan 2017 17:46:52 -0000
+Content-Type: text/plain; charset="windows-1252"
+Content-Transfer-Encoding: 7bit
 
-From: Jose Lamego <jose.a.lamego@intel.com>
+On 1/11/17 8:49 AM, Philip Balister wrote:
+> The question of security comes up at every OpenEmbedded developer
+> meeting. Clearly, the companies building products with OpenEmbedded care
+> about security.
+> 
+> The problem following the CVE's direct is you need to do analysis to
+> determine if a specific release has the vulnerability.
+> 
+> We do have guidelines for marking CVE's addressed by commits, to help
+> people interested in developing tools to show what CVE's are addressed
+> in the meta data.
+> 
+> One suggestion made is to setup some form of git hook to email commits
+> with CVE tags to the security list. We are very interested in
+> encouraging people who care about security to use the security mailing
+> list to improve overall security of distributions (like Poky) built with
+> OpenEmbedded.
 
-Patchwork may incorrectly identify emails containing patch-like content or
-that are replies/forwards from a previous message as patches, thus wrongly
-creating a new series revision.
-This change makes "[PATCH" prefix in subject mandatory for emails to be
-considered as possible new patches, and makes any email with a subject
-starting with any character other than a square bracket ("[") to be handled
-as a possible comment to an existing patch.
+We started looking into having a git hook that would email the list whenever a
+commit (with the CVE tag in it) was present, but with holidays (and other work
+items I had).. this of course dropped lower in the priority list.
 
-[YOCTO #10764]
-[YOCTO #10877]
+I do think this is the only reasonable way to do this.  Use an individual
+branch's commit information to discover what is fixed.
 
-Signed-off-by: Jose Lamego <jose.a.lamego@intel.com>
----
+If it's not listed as fixed, it's the users responsibility to understand if they
+are vulnerable, deal with the vulnerability and (hopefully) send the patch to
+the mailing lists so others can benefit from it.
 
-Notes:
-    v2 renamed to reflect that the subject filtering now includes ruling-out emails with a Subject header not starting with the expected square bracket
+(Speaking as a commercial OSV for a second)  The latest step of triage, fix and
+send -- as well as announcing to customers and documenting things that are NOT
+vulnerable are all services we provide.  I would expect any commercial OSV to
+provide a similar service for their customers.  This is certainly a 'value-add'
+that we do above and beyond the open source community.
 
- patchwork/bin/parsemail.py | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+This really is an 'above and beyond' request for the community.  The community
+only cares about what HAS been fixed and the in-progress development release.
+Anything beyond that is best effort, and the Yocto Project compliance guidelines
+(and related process, encouraging contributions) helps keep commercial OSVs (who
+do this work anyway) involved with keeping the community up to date.
 
-diff --git a/patchwork/bin/parsemail.py b/patchwork/bin/parsemail.py
-index 1c2c774..94c7669 100755
---- a/patchwork/bin/parsemail.py
-+++ b/patchwork/bin/parsemail.py
-@@ -399,7 +399,8 @@ def find_content(project, mail):
-     refs = build_references_list(mail)
-     is_root = refs == []
-     is_cover_letter = is_root and x == 0
--    is_patch = patchbuf is not None
-+    patch_prefix = re.match('(\s*\[[^]]*\]\s*)*\[\s*PATCH', mail.get('Subject'))
-+    is_patch = patchbuf is not None and patch_prefix
- 
-     drop_patch = not is_attachment and \
-         project.git_send_email_only and not is_git_send_email(mail)
--- 
-1.9.1
+--Mark
+
+> Philip
+> 
+> On 01/10/2017 05:37 AM, Bent Bisballe Nyeng wrote:
+>> On 01/10/2017 11:29 AM, Burton, Ross wrote:
+>>
+>> On 10 January 2017 at 10:01, Bent Bisballe Nyeng <xbbn@mjolner.dk<mailto:xbbn@mjolner.dk>> wrote:
+>> So /is/ the yocto-security mailinglist considered "dead"? Or has there
+>> simply not been any security issues for a while?
+>>
+>> IIRC, yocto-security was more to discuss security issues, not an announcement of security related fixes.  If you care about security then you'll want notice for more than just what is in oe-core, so I suggest monitoring the CVE announcements directly.
+>>
+>> Ross
+>>
+>> I found the list initially through this page: https://wiki.yoctoproject.org/wiki/Security where it is described as the security [at] yoctoprojct [dot] org being the discussion list and the yocto [dash] security [at] yoctoproject[dot] org being the security announcement list.
+>>
+>> If the yocto [dash] security [at] yoctoproject[dot] org is in fact no longer active I think it is important that the wiki page is changed to reflect that to prevent potential dangerous misunderstandings in the future.
+>>
+>> Kind regards
+>> Bent Bisballe Nyeng
+>>
+>>
+>>
 
 
