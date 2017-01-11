@@ -1,93 +1,44 @@
-Return-Path: <christrobridge@hotmail.com>
+Return-Path: <Joe_MacDonald@mentor.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1DCA7E004A0; Wed, 11 Jan 2017 04:34:12 -0800 (PST)
+	id 86042E00524; Wed, 11 Jan 2017 05:51:07 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (christrobridge[at]hotmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [65.55.111.175 listed in list.dnswl.org]
+X-Spam-Status: No, score=-0.8 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
+	URI_HEX autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [192.94.38.131 listed in list.dnswl.org]
+	*  1.1 URI_HEX URI: URI hostname has long hexadecimal sequence
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 61 seconds by postgrey-1.32 at yocto-www;
-	Wed, 11 Jan 2017 04:34:09 PST
-Received: from BLU004-OMC4S36.hotmail.com (blu004-omc4s36.hotmail.com
-	[65.55.111.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 623AFE003E4
-	for <yocto@yoctoproject.org>; Wed, 11 Jan 2017 04:34:09 -0800 (PST)
-Received: from EUR02-HE1-obe.outbound.protection.outlook.com ([65.55.111.136])
-	by BLU004-OMC4S36.hotmail.com over TLS secured channel with
-	Microsoft SMTPSVC(7.5.7601.23008); Wed, 11 Jan 2017 04:33:07 -0800
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
-	s=selector1; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
-	bh=M3tzcP97+TEM/ZW4Go9O+18sNyUFOJ4AYQq311WpgGE=;
-	b=u63AJ5/MWC4cWnFm3L2+nay1KEexZKdOMb4rSdj7Fm0CZk2pDUqmppBiby0YK4HyWmAgWsci5zCn24iTjzh0HzdOMCLpBgzYcFPP+46vbuf55u/Ju/fuWNlVG2/CRZYof0A0rZQr0Gkdi7rpKTor05Ef3o94AjAMg9ygxHmxbhrU2eNkRFCItbRijrwFUQlvPlaqqEzXkWMDz3FZRjIb/t50thSukNTCqGci/eDrrkNRAaNLo3k2iqhhAqC9WepKMJlZLtdSNGKe4YzbV8wbqau4b6aCjr2eMaDzpw0gxi0w3DqaIHWmlGbh9ZhuyC1Si6wgYb3Uj37eiEWegpGV7w==
-Received: from AM5EUR02FT023.eop-EUR02.prod.protection.outlook.com
-	(10.152.8.57) by AM5EUR02HT063.eop-EUR02.prod.protection.outlook.com
-	(10.152.9.126) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.803.8;
-	Wed, 11 Jan 2017 12:33:06 +0000
-Received: from MMXP123MB0125.GBRP123.PROD.OUTLOOK.COM (10.152.8.58) by
-	AM5EUR02FT023.mail.protection.outlook.com (10.152.8.166) with Microsoft
-	SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
-	15.1.803.8 via Frontend Transport; Wed, 11 Jan 2017 12:33:06 +0000
-Received: from MMXP123MB0125.GBRP123.PROD.OUTLOOK.COM ([10.166.236.147]) by
-	MMXP123MB0125.GBRP123.PROD.OUTLOOK.COM ([10.166.236.147]) with mapi id
-	15.01.0845.012; Wed, 11 Jan 2017 12:33:06 +0000
-From: Chris Trobridge <christrobridge@hotmail.com>
-To: Khem Raj <raj.khem@gmail.com>
-Thread-Topic: [yocto] Failure Inheriting rpm_sign
-Thread-Index: AQHSaBLQr6aBtVwoVUGgLuVcOQw3RKEwgW+AgAK8CYA=
-Date: Wed, 11 Jan 2017 12:33:05 +0000
-Message-ID: <MMXP123MB012561EAC82EB3E38F223035DA660@MMXP123MB0125.GBRP123.PROD.OUTLOOK.COM>
-References: <MMXP123MB0125B632BF3BE563B71B6EA1DA630@MMXP123MB0125.GBRP123.PROD.OUTLOOK.COM>
-	<CAMKF1sqAb+CStmPbEcTNb15kUBgj-HTdjCiY89CTwdVmjA-DPQ@mail.gmail.com>
-In-Reply-To: <CAMKF1sqAb+CStmPbEcTNb15kUBgj-HTdjCiY89CTwdVmjA-DPQ@mail.gmail.com>
-Accept-Language: en-GB, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originalarrivaltime: 11 Jan 2017 12:33:00.0737 (UTC)
-	FILETIME=[D8A39B10:01D26C06]
-x-incomingtopheadermarker: OriginalChecksum:FAD3003165EDFE6A8AC42717ABB80A8CF21633113F9BF70EC550774A0D3302A5;
-	UpperCasedChecksum:1DD52E71E531FF4B04617A24675E6389169BE385DECDE27334F0B8BCFB7A0255;
-	SizeAsReceived:7681; Count:38
-x-ms-exchange-messagesentrepresentingtype: 1
-x-incomingheadercount: 38
-x-eopattributedmessage: 0
-x-microsoft-exchange-diagnostics: 1; AM5EUR02HT063;
-	7:ID12YZ++DBLOUKaVYodRFbu8+xrNLIWych3tMEjxJL0Mq3RV1xbcyMx1+ojIdvur4YZdv8VkhBglLFkpsy3zxtTw5M6CblWRz1dq23mR+CkiQXQSAfh2Tm66Lu7/8NCDCvUt0PI9jvZ0FBq8a49/U/gbAC+jF///PaOOxqk8PNSXnVlTPFXwwum7N86J1UuIWW7ZgyBUfLqHsDjnboTq0xdN6f+aeBxN3Is4+dHKRjvDuUCTB5HxFz0rPLCB8oeuO8gcmeLBM0JkX1/J4x/KXfXwSJ1kuLAhvvUFyAaIfkH9JCx9W7j9HlnfgpnsX5fVh93IzTWOrKQ0WbTiYrth/WUep+7ocWiLkGf/Eq05n3dehsbQD+alnpI6rfMQdfa8OzDTsqexQ9rNfc3yxGUaouDtNMFgOh+NcX6PMI6xeFl2KZ2utqLDPw3Bf7g8WIb3O9PJ2C9HBHASfKtAqAP2TA==
-x-forefront-antispam-report: EFV:NLI; SFV:NSPM; SFS:(10019020)(98900003);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:AM5EUR02HT063;
-	H:MMXP123MB0125.GBRP123.PROD.OUTLOOK.COM; FPR:; SPF:None;
-	LANG:en; 
-x-ms-office365-filtering-correlation-id: ae356445-8f82-4861-93d4-08d43a1dfd8d
-x-microsoft-antispam: BCL:0; PCL:0; RULEID:(22001)(8291501021);
-	SRVR:AM5EUR02HT063; 
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(444111334)(444112120)(432015012)(82015046);
-	SRVR:AM5EUR02HT063; BCL:0; PCL:0; RULEID:; SRVR:AM5EUR02HT063; 
-x-forefront-prvs: 01842C458A
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
+Received: from relay1.mentorg.com (relay1.mentorg.com [192.94.38.131])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5CDC4E00443
+	for <yocto@yoctoproject.org>; Wed, 11 Jan 2017 05:51:04 -0800 (PST)
+Received: from svr-orw-fem-06.mgc.mentorg.com ([147.34.97.120])
+	by relay1.mentorg.com with esmtp 
+	id 1cRJIt-0003uc-Pc from Joe_MacDonald@mentor.com ;
+	Wed, 11 Jan 2017 05:51:03 -0800
+Received: from burninator (147.34.91.1) by SVR-ORW-FEM-06.mgc.mentorg.com
+	(147.34.97.120) with Microsoft SMTP Server id 14.3.224.2;
+	Wed, 11 Jan 2017 05:51:03 -0800
+Received: by burninator (Postfix, from userid 1000)	id 763B058061C; Wed, 11
+	Jan 2017 08:51:02 -0500 (EST)
+Date: Wed, 11 Jan 2017 08:51:02 -0500
+From: Joe MacDonald <Joe_MacDonald@mentor.com>
+To: wenzong fan <wenzong.fan@windriver.com>
+Message-ID: <20170111135101.GB8049@mentor.com>
+References: <cover.1484037945.git.wenzong.fan@windriver.com>
+	<20170110142540.GA8258@mentor.com>
+	<42e8d273-7331-2771-adb8-c005184b781d@windriver.com>
 MIME-Version: 1.0
-X-OriginatorOrg: hotmail.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Jan 2017 12:33:05.8427 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Internet
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM5EUR02HT063
-Cc: Yocto List <yocto@yoctoproject.org>
-Subject: Re: Failure Inheriting rpm_sign
+In-Reply-To: <42e8d273-7331-2771-adb8-c005184b781d@windriver.com>
+X-URL: http://github.com/joeythesaint/joe-s-common-environment/tree/master
+X-Configuration: git://github.com/joeythesaint/joe-s-common-environment.git
+X-Editor: Vim-704 http://www.vim.org
+User-Agent: Mutt/1.5.23 (2014-03-12)
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-selinux][PATCH 0/2] uprev refpolicy to 2.20161023
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -99,57 +50,243 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Jan 2017 12:34:12 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <207FC9C0484A544FAD962CDD0B045D98@GBRP123.PROD.OUTLOOK.COM>
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Wed, 11 Jan 2017 13:51:07 -0000
+X-Groupsio-MsgNum: 33754
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="FkmkrVfFsRoUs1wW"
+Content-Disposition: inline
 
-T24gTW9uLCAyMDE3LTAxLTA5IGF0IDEwOjQ3IC0wODAwLCBLaGVtIFJhaiB3cm90ZToNCj4gT24g
-RnJpLCBKYW4gNiwgMjAxNyBhdCAzOjUyIEFNLCBDaHJpcyBUcm9icmlkZ2UNCj4gPGNocmlzdHJv
-YnJpZGdlQGhvdG1haWwuY29tPiB3cm90ZToNCj4gPiBJIGFtIGdldHRpbmcgIkV4Y2VwdGlvbjog
-T1NFcnJvcjogW0Vycm5vIDddIEFyZ3VtZW50IGxpc3QgdG9vIGxvbmciDQo+ID4gZm9yIHNpZ25f
-cnBtIGluIHRoZSBkb19wYWNrYWdlX3dyaXRlX3JwbSB0YXNrcyBmb3IgdGhlDQo+ID4gbGludXgt
-eW9jdG8gYW5kIGdsaWJjLWxvY2FsZSByZWNpcGVzLg0KPiA+IA0KPiA+IFRoaXMgaXMgYnVpbGRp
-bmcgY29yZS1pbWFnZS1taW5pbWFsIChhbmQgYWxzbyBteSBvd24gaW1hZ2UpIHdpdGgNCj4gPiBt
-b3J0eSAoNWFhNDgxZCkgb24gRmVkb3JhIDI1Lg0KPiA+IA0KPiA+IEkgaGF2ZSBlbmFibGVkIHRo
-ZSBycG0gc2lnbmluZyB3aXRoOg0KPiA+IA0KPiA+IElOSEVSSVQgKz0gIiBzaWduX3JwbSINCj4g
-PiBSUE1fR1BHX05BTUUgPSAie25hbWV9Ig0KPiA+IFJQTV9HUEdfUEFTU1BIUkFTRSA9ICJ7cGFz
-c3BocmFzZX0iDQo+ID4gSU1BR0VfSU5TVEFMTF9hcHBlbmQgPSAiIHNpZ25pbmcta2V5cy1ycG0i
-DQo+ID4gDQo+ID4gVGhlIGVycm9yIG1lc3NhZ2UgbWFrZXMgc29tZSBzZW5zZSBpbiBhcyBtdWNo
-IGFzIHRoZXNlIHJlY2lwZXMNCj4gPiBwcm9kdWNlIGEgbG90IG9mIHBhY2thZ2VzIChmb3IgZXhh
-bXBsZSwgZ2xpYmMtbG9jYWxlIHByb2R1Y2VzIDE3OTENCj4gPiBwYWNrYWdlcykgYW5kIHRoZSBj
-b21tYW5kIGxpbmUgaW4gdGhlIGxvZyBpcyBwcmV0dHkgYmlnLCBhbHRob3VnaA0KPiA+IHJlYWRp
-bmcgYXJvdW5kIEkgZGlkbid0IGZpbmQgYSBjb25zZW5zdXMgb24gd2hhdCB0aGUgbWF4IGNvbW1h
-bmQNCj4gPiBsaW5lIHNob3VsZCBiZS4NCj4gPiANCj4gPiBUaGUgY29kZSB0byBzaWduIHJwbXMg
-aXMgaW4gbWV0YS9saWIvb2UvZ3BnX3NpZ24ucHkNCj4gPiBiL21ldGEvbGliL29lL2dwZ19zaWdu
-LnB5IGFuZCBpdCBidWlsZHMgdXAgb25lIGNvbW1hbmQgbGluZSB3aXRoDQo+ID4gYWxsIHRoZSBw
-YWNrYWdlcy4NCj4gPiANCj4gPiBJIGNoYW5nZWQgdGhlIGNvZGUgKHBhdGNoIGFwcGVuZGVkKSB0
-byBzaWduIGVhY2ggcnBtIGluIGEgc2VwYXJhdGUNCj4gPiBjb21tYW5kIGFuZCB0aGUgYnVpbGQg
-Y29tcGxldGVkIHN1Y2Nlc3NmdWxseS7CoMKgVGhlIHNpZ25pbmcNCj4gPiBvcGVyYXRpb25zIHRh
-a2UgYSBsYXJnZSBhbW91bnQgb2YgdGltZSBzbyBJIHRoaW5rIHRoaXMgbWlnaHQgYmUgYQ0KPiA+
-IHJlYXNvbmFibGUgY2hhbmdlIGJ1dCB5b3UgbWF5IGhhdmUgb3RoZXIgY29uY2VybnMuDQo+IA0K
-PiBUaGlzIGNlcnRhaW5seSBpcyB1c2VmdWwsIHBlcmhhcHMgdGhlIHNpZ25pbmcgYml0cyBjYW4g
-YmUgbW92ZWQgdG8NCj4gaW5kaXZpZHVhbA0KPiByZWNpcGUgcGFja2FnaW5nIHRhc2tzIHRoYXQg
-d2F5IGl0IG1heSBiZSBwYXJhbGxlbGl6ZWQgYSBiaXQNCj4gDQoNClRoYW5rcyBSYWosDQoNClNv
-bWV0aGluZyBuZWVkcyB0byBiZSBkb25lIGFzLCB1bmxlc3MgSSd2ZSBtZXNzZWQgdXAgc29tZXdo
-ZXJlLCB5b3UNCmNhbm5vdCBidWlsZCBldmVuIGNvcmUtaW1hZ2UtbWluaW1hbCB3aXRoIHJwbSBz
-aWduaW5nIGVuYWJsZWQgc28gdGhlDQpzaWduX3JwbSBjbGFzcyBpcyBlZmZlY3RpdmVseSBicm9r
-ZW4uDQoNClRoZSBjaGFuZ2UgSSBtYWRlIHdvcmtzLCBidXQgaXQncyB0cnVlIGlzIGxlc3MgZWZm
-aWNpZW50IHRoYW4gc2lnbmluZw0KcnBtcyBpbmRpdmlkdWFsbHkuICBUaGUgZXhwZW5zZSBvZiB0
-aGUgc2lnbmF0dXJlIGdlbmVyYXRpb24gbWVhbnQgaXQNCndhc24ndCBpbmVmZmljaWVudCB0byBz
-aWduIGVhY2ggcGFja2FnZSBpbiBhIHJlY2lwZSB3aXRoIGEgc2VwYXJhdGUNCmNvbW1hbmQuDQoN
-Ckhvd2V2ZXIsIGxvb2tpbmcgaW4gcGFja2FnZV9ycG0uYmJjbGFzcywgdGhlIGVuZCBvZiBkb19w
-YWNrYWdlX3JwbSgpDQpoYXM6DQoNCmlmIGQuZ2V0VmFyKCdSUE1fU0lHTl9QQUNLQUdFUycsIFRy
-dWUpID09ICcxJzoNCsKgwqDCoMKgYmIuYnVpbGQuZXhlY19mdW5jKCJzaWduX3JwbSIsIGQpDQoN
-ClNvLCB0byBhdm9pZCBjb25mdXNpb24sIGFsbCB0aGUgcnBtcyBpbiBvbmUgcmVjaXBlIGFyZSBw
-YWNrYWdlZCBpbg0KdGFzaywgYW5kIHRoZW4gdGhhdCB0YXNrIGNhbGxzIHRoZSBmdW5jdGlvbiAg
-c2lnbiBhbGwgdGhlIHBhY2thZ2VzLiAgSQ0KZG9uJ3Qga25vdyBpZiB0aGVyZSdzIGEgd2F5IGZv
-ciBkb19wYWNrYWdlX3JwbSgpIHRvIHNwYXduIHRhc2tzIHRvIHNpZ24NCmVhY2ggcGFja2FnZSBp
-bmRpdmlkdWFsbHkuDQoNCkkgYWxzbyBmb3VuZCBJIG5lZWRlZCAnSU1BR0VfSU5TVEFMTF9hcHBl
-bmQgPSAiIHNpZ25pbmcta2V5cy1ycG0iJw0KbG9jYWwuY29uZiwgdG8gZGVwbG95IHRoZSBwdWJs
-aWMga2V5IGJ1dCBpbiBzaWduX3JwbXMuYmJjbGFzcyB0aGVyZSBpczoNCg0KZG9fcGFja2FnZV9p
-bmRleFtkZXBlbmRzXSArPSAic2lnbmluZy1rZXlzOmRvX2RlcGxveSINCmRvX3Jvb3Rmc1tkZXBl
-bmRzXSArPSAic2lnbmluZy1rZXlzOmRvX3BvcHVsYXRlX3N5c3Jvb3QiDQoNCkl0IG1heSBiZSB0
-aGlzIGlzbid0IHF1aXRlIHdoYXQgaXMgcmVxdWlyZWQuDQoNClJlZ2FyZHMsDQpDaHJpcw0KDQo=
+--FkmkrVfFsRoUs1wW
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+[Re: [yocto] [meta-selinux][PATCH 0/2] uprev refpolicy to 2.20161023] On 17=
+=2E01.11 (Wed 10:24) wenzong fan wrote:
+
+> On 01/10/2017 10:25 PM, Joe MacDonald wrote:
+> >[[yocto] [meta-selinux][PATCH 0/2] uprev refpolicy to 2.20161023] On 17.=
+01.10 (Tue 00:54) wenzong.fan@windriver.com wrote:
+> >
+> >>From: Wenzong Fan <wenzong.fan@windriver.com>
+> >>
+> >>Uprev refpolicy to 2.20161023 and fix build errors for refpolicy-minimu=
+m.
+> >>
+> >>The following changes since commit bae51859f0dbcdde9fd563d15128a6dbbb81=
+6801:
+> >>
+> >>  audit: upgrade 2.6.6 -> 2.7 (2017-01-09 08:59:55 -0500)
+> >>
+> >>are available in the git repository at:
+> >>
+> >>  git://git.pokylinux.org/poky-contrib wenzong/refpolicy-2.20161023
+> >>  http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=3Dwenzong/refpo=
+licy-2.20161023
+> >
+> >As poky-contrib is full of unrelated stuff, it's not the right place to
+> >be doing meta-selinux work AFAICT.  I'd rather you actually just
+> >fork meta-selinux somewhere like github if you plan to send pull
+> >requests.  Patches are fine, of course, they're even easier for me to
+> >work with.
+>=20
+> Oko<=0C I didn't notice that before, I'll fork it on github for my pull
+> requests later.
+
+You don't have to, patches are always fine with me.  I'm just letting
+you know that I won't be pulling anything from your poky-contrib
+branches for meta-selinux since they're completely different repos.
+
+Thanks Wenzong.
+-J.
+
+>=20
+> Thanks
+> Wenzong
+>=20
+> >
+> >-J.
+> >
+> >>
+> >>Wenzong Fan (2):
+> >>  refpolicy: uprev 2.20151208 -> 2.20161023
+> >>  refpolicy-minimum: update patch file
+> >>
+> >> .../ftp-add-ftpd_t-to-mlsfilewrite.patch                         | 0
+> >> .../poky-fc-clock.patch                                          | 0
+> >> .../poky-fc-corecommands.patch                                   | 0
+> >> .../poky-fc-dmesg.patch                                          | 0
+> >> .../poky-fc-fix-bind.patch                                       | 0
+> >> .../poky-fc-fix-real-path_login.patch                            | 0
+> >> .../poky-fc-fix-real-path_resolv.conf.patch                      | 0
+> >> .../poky-fc-fix-real-path_shadow.patch                           | 0
+> >> .../poky-fc-fix-real-path_su.patch                               | 0
+> >> .../poky-fc-fstools.patch                                        | 0
+> >> .../poky-fc-ftpwho-dir.patch                                     | 0
+> >> .../poky-fc-iptables.patch                                       | 0
+> >> .../poky-fc-mta.patch                                            | 0
+> >> .../poky-fc-netutils.patch                                       | 0
+> >> .../poky-fc-nscd.patch                                           | 0
+> >> .../poky-fc-rpm.patch                                            | 0
+> >> .../poky-fc-screen.patch                                         | 0
+> >> .../poky-fc-ssh.patch                                            | 0
+> >> .../poky-fc-su.patch                                             | 0
+> >> .../poky-fc-subs_dist.patch                                      | 0
+> >> .../poky-fc-sysnetwork.patch                                     | 0
+> >> .../poky-fc-udevd.patch                                          | 0
+> >> .../poky-fc-update-alternatives_hostname.patch                   | 0
+> >> .../poky-fc-update-alternatives_sysklogd.patch                   | 0
+> >> .../poky-fc-update-alternatives_sysvinit.patch                   | 0
+> >> .../poky-policy-add-rules-for-bsdpty_device_t.patch              | 0
+> >> .../poky-policy-add-rules-for-syslogd_t-symlink.patch            | 0
+> >> .../poky-policy-add-rules-for-tmp-symlink.patch                  | 0
+> >> .../poky-policy-add-rules-for-var-cache-symlink.patch            | 0
+> >> .../poky-policy-add-rules-for-var-log-symlink-apache.patch       | 0
+> >> ...ky-policy-add-rules-for-var-log-symlink-audisp_remote_t.patch | 0
+> >> .../poky-policy-add-rules-for-var-log-symlink.patch              | 0
+> >> .../poky-policy-add-syslogd_t-to-trusted-object.patch            | 0
+> >> .../poky-policy-allow-nfsd-to-exec-shell-commands.patch          | 0
+> >> .../poky-policy-allow-setfiles_t-to-read-symlinks.patch          | 0
+> >> .../poky-policy-allow-sysadm-to-run-rpcinfo.patch                | 0
+> >> .../poky-policy-don-t-audit-tty_device_t.patch                   | 0
+> >> .../poky-policy-fix-dmesg-to-use-dev-kmsg.patch                  | 0
+> >> .../poky-policy-fix-new-SELINUXMNT-in-sys.patch                  | 0
+> >> .../poky-policy-fix-nfsd_t-to-mount_nfsd_fs_t.patch              | 0
+> >> .../poky-policy-fix-setfiles-statvfs-get-file-count.patch        | 0
+> >> .../poky-policy-fix-seutils-manage-config-files.patch            | 0
+> >> .../refpolicy-update-for_systemd.patch                           | 0
+> >> .../{refpolicy-mcs_2.20151208.bb =3D> refpolicy-mcs_2.20161023.bb} | 0
+> >> ...07-refpolicy-minimum-systemd-fix-for-login-journal-serv.patch | 9 +=
++++++---
+> >> ...icy-minimum_2.20151208.bb =3D> refpolicy-minimum_2.20161023.bb} | 0
+> >> .../{refpolicy-mls_2.20151208.bb =3D> refpolicy-mls_2.20161023.bb} | 0
+> >> ...y-standard_2.20151208.bb =3D> refpolicy-standard_2.20161023.bb} | 0
+> >> ...y-targeted_2.20151208.bb =3D> refpolicy-targeted_2.20161023.bb} | 0
+> >> .../{refpolicy_2.20151208.inc =3D> refpolicy_2.20161023.inc}       | 8=
+ ++++----
+> >> 50 files changed, 10 insertions(+), 7 deletions(-)
+> >> rename recipes-security/refpolicy/{refpolicy-2.20151208 =3D> refpolicy=
+-2.20161023}/ftp-add-ftpd_t-to-mlsfilewrite.patch (100%)
+> >> rename recipes-security/refpolicy/{refpolicy-2.20151208 =3D> refpolicy=
+-2.20161023}/poky-fc-clock.patch (100%)
+> >> rename recipes-security/refpolicy/{refpolicy-2.20151208 =3D> refpolicy=
+-2.20161023}/poky-fc-corecommands.patch (100%)
+> >> rename recipes-security/refpolicy/{refpolicy-2.20151208 =3D> refpolicy=
+-2.20161023}/poky-fc-dmesg.patch (100%)
+> >> rename recipes-security/refpolicy/{refpolicy-2.20151208 =3D> refpolicy=
+-2.20161023}/poky-fc-fix-bind.patch (100%)
+> >> rename recipes-security/refpolicy/{refpolicy-2.20151208 =3D> refpolicy=
+-2.20161023}/poky-fc-fix-real-path_login.patch (100%)
+> >> rename recipes-security/refpolicy/{refpolicy-2.20151208 =3D> refpolicy=
+-2.20161023}/poky-fc-fix-real-path_resolv.conf.patch (100%)
+> >> rename recipes-security/refpolicy/{refpolicy-2.20151208 =3D> refpolicy=
+-2.20161023}/poky-fc-fix-real-path_shadow.patch (100%)
+> >> rename recipes-security/refpolicy/{refpolicy-2.20151208 =3D> refpolicy=
+-2.20161023}/poky-fc-fix-real-path_su.patch (100%)
+> >> rename recipes-security/refpolicy/{refpolicy-2.20151208 =3D> refpolicy=
+-2.20161023}/poky-fc-fstools.patch (100%)
+> >> rename recipes-security/refpolicy/{refpolicy-2.20151208 =3D> refpolicy=
+-2.20161023}/poky-fc-ftpwho-dir.patch (100%)
+> >> rename recipes-security/refpolicy/{refpolicy-2.20151208 =3D> refpolicy=
+-2.20161023}/poky-fc-iptables.patch (100%)
+> >> rename recipes-security/refpolicy/{refpolicy-2.20151208 =3D> refpolicy=
+-2.20161023}/poky-fc-mta.patch (100%)
+> >> rename recipes-security/refpolicy/{refpolicy-2.20151208 =3D> refpolicy=
+-2.20161023}/poky-fc-netutils.patch (100%)
+> >> rename recipes-security/refpolicy/{refpolicy-2.20151208 =3D> refpolicy=
+-2.20161023}/poky-fc-nscd.patch (100%)
+> >> rename recipes-security/refpolicy/{refpolicy-2.20151208 =3D> refpolicy=
+-2.20161023}/poky-fc-rpm.patch (100%)
+> >> rename recipes-security/refpolicy/{refpolicy-2.20151208 =3D> refpolicy=
+-2.20161023}/poky-fc-screen.patch (100%)
+> >> rename recipes-security/refpolicy/{refpolicy-2.20151208 =3D> refpolicy=
+-2.20161023}/poky-fc-ssh.patch (100%)
+> >> rename recipes-security/refpolicy/{refpolicy-2.20151208 =3D> refpolicy=
+-2.20161023}/poky-fc-su.patch (100%)
+> >> rename recipes-security/refpolicy/{refpolicy-2.20151208 =3D> refpolicy=
+-2.20161023}/poky-fc-subs_dist.patch (100%)
+> >> rename recipes-security/refpolicy/{refpolicy-2.20151208 =3D> refpolicy=
+-2.20161023}/poky-fc-sysnetwork.patch (100%)
+> >> rename recipes-security/refpolicy/{refpolicy-2.20151208 =3D> refpolicy=
+-2.20161023}/poky-fc-udevd.patch (100%)
+> >> rename recipes-security/refpolicy/{refpolicy-2.20151208 =3D> refpolicy=
+-2.20161023}/poky-fc-update-alternatives_hostname.patch (100%)
+> >> rename recipes-security/refpolicy/{refpolicy-2.20151208 =3D> refpolicy=
+-2.20161023}/poky-fc-update-alternatives_sysklogd.patch (100%)
+> >> rename recipes-security/refpolicy/{refpolicy-2.20151208 =3D> refpolicy=
+-2.20161023}/poky-fc-update-alternatives_sysvinit.patch (100%)
+> >> rename recipes-security/refpolicy/{refpolicy-2.20151208 =3D> refpolicy=
+-2.20161023}/poky-policy-add-rules-for-bsdpty_device_t.patch (100%)
+> >> rename recipes-security/refpolicy/{refpolicy-2.20151208 =3D> refpolicy=
+-2.20161023}/poky-policy-add-rules-for-syslogd_t-symlink.patch (100%)
+> >> rename recipes-security/refpolicy/{refpolicy-2.20151208 =3D> refpolicy=
+-2.20161023}/poky-policy-add-rules-for-tmp-symlink.patch (100%)
+> >> rename recipes-security/refpolicy/{refpolicy-2.20151208 =3D> refpolicy=
+-2.20161023}/poky-policy-add-rules-for-var-cache-symlink.patch (100%)
+> >> rename recipes-security/refpolicy/{refpolicy-2.20151208 =3D> refpolicy=
+-2.20161023}/poky-policy-add-rules-for-var-log-symlink-apache.patch (100%)
+> >> rename recipes-security/refpolicy/{refpolicy-2.20151208 =3D> refpolicy=
+-2.20161023}/poky-policy-add-rules-for-var-log-symlink-audisp_remote_t.patc=
+h (100%)
+> >> rename recipes-security/refpolicy/{refpolicy-2.20151208 =3D> refpolicy=
+-2.20161023}/poky-policy-add-rules-for-var-log-symlink.patch (100%)
+> >> rename recipes-security/refpolicy/{refpolicy-2.20151208 =3D> refpolicy=
+-2.20161023}/poky-policy-add-syslogd_t-to-trusted-object.patch (100%)
+> >> rename recipes-security/refpolicy/{refpolicy-2.20151208 =3D> refpolicy=
+-2.20161023}/poky-policy-allow-nfsd-to-exec-shell-commands.patch (100%)
+> >> rename recipes-security/refpolicy/{refpolicy-2.20151208 =3D> refpolicy=
+-2.20161023}/poky-policy-allow-setfiles_t-to-read-symlinks.patch (100%)
+> >> rename recipes-security/refpolicy/{refpolicy-2.20151208 =3D> refpolicy=
+-2.20161023}/poky-policy-allow-sysadm-to-run-rpcinfo.patch (100%)
+> >> rename recipes-security/refpolicy/{refpolicy-2.20151208 =3D> refpolicy=
+-2.20161023}/poky-policy-don-t-audit-tty_device_t.patch (100%)
+> >> rename recipes-security/refpolicy/{refpolicy-2.20151208 =3D> refpolicy=
+-2.20161023}/poky-policy-fix-dmesg-to-use-dev-kmsg.patch (100%)
+> >> rename recipes-security/refpolicy/{refpolicy-2.20151208 =3D> refpolicy=
+-2.20161023}/poky-policy-fix-new-SELINUXMNT-in-sys.patch (100%)
+> >> rename recipes-security/refpolicy/{refpolicy-2.20151208 =3D> refpolicy=
+-2.20161023}/poky-policy-fix-nfsd_t-to-mount_nfsd_fs_t.patch (100%)
+> >> rename recipes-security/refpolicy/{refpolicy-2.20151208 =3D> refpolicy=
+-2.20161023}/poky-policy-fix-setfiles-statvfs-get-file-count.patch (100%)
+> >> rename recipes-security/refpolicy/{refpolicy-2.20151208 =3D> refpolicy=
+-2.20161023}/poky-policy-fix-seutils-manage-config-files.patch (100%)
+> >> rename recipes-security/refpolicy/{refpolicy-2.20151208 =3D> refpolicy=
+-2.20161023}/refpolicy-update-for_systemd.patch (100%)
+> >> rename recipes-security/refpolicy/{refpolicy-mcs_2.20151208.bb =3D> re=
+fpolicy-mcs_2.20161023.bb} (100%)
+> >> rename recipes-security/refpolicy/{refpolicy-minimum_2.20151208.bb =3D=
+> refpolicy-minimum_2.20161023.bb} (100%)
+> >> rename recipes-security/refpolicy/{refpolicy-mls_2.20151208.bb =3D> re=
+fpolicy-mls_2.20161023.bb} (100%)
+> >> rename recipes-security/refpolicy/{refpolicy-standard_2.20151208.bb =
+=3D> refpolicy-standard_2.20161023.bb} (100%)
+> >> rename recipes-security/refpolicy/{refpolicy-targeted_2.20151208.bb =
+=3D> refpolicy-targeted_2.20161023.bb} (100%)
+> >> rename recipes-security/refpolicy/{refpolicy_2.20151208.inc =3D> refpo=
+licy_2.20161023.inc} (91%)
+> >>
+> >>--
+> >>2.11.0
+> >>
+
+--=20
+-Joe MacDonald.
+:wq
+
+--FkmkrVfFsRoUs1wW
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1
+
+iQEcBAEBAgAGBQJYdjhFAAoJEEn8ffcsOfaWarYIAL/EC1VnU8GbOX71YLO4ovdd
+ehrSFArCDl/ociJr6KtR1aP3kQV0taqy7ZoloODpKypUn4ssWJxAfPNEg5PO2sIk
+XFDjsWBHaSIBjjBQrvJquhkc6hanIP9nOAi6WlAyZV2vvfyQOXX0h9yYD/cIyG4v
+mP6oNi7YY2DgAjKyz6021NKK+J4iOkMt+8+hYIT/rJswoD1MWScRhjYu/EeGCqEG
+vcwIz89WM3q1s5amZiClb1JsG+kvyIuosMuZ/P196IG/lR6WQwoWuyvgyDPwxVL+
+R2R40VoTwmpP74nl3CpPlgYSraRJ0GBS9VhBu986EWTKh1+aHzhaVLG6rIH4UpQ=
+=jCuu
+-----END PGP SIGNATURE-----
+
+--FkmkrVfFsRoUs1wW--
