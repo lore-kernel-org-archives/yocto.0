@@ -1,60 +1,66 @@
-Return-Path: <ayoub.zaki@googlemail.com>
+Return-Path: <maciej.borzecki@rndity.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 25694E00405; Thu, 12 Jan 2017 10:38:01 -0800 (PST)
+	id 07F94E009AD; Thu, 12 Jan 2017 10:43:43 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (ayoub.zaki[at]googlemail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [74.125.82.49 listed in list.dnswl.org]
-Received: from mail-wm0-f49.google.com (mail-wm0-f49.google.com [74.125.82.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A5C17E0034A
-	for <yocto@yoctoproject.org>; Thu, 12 Jan 2017 10:37:57 -0800 (PST)
-Received: by mail-wm0-f49.google.com with SMTP id c206so34255954wme.0
-	for <yocto@yoctoproject.org>; Thu, 12 Jan 2017 10:37:57 -0800 (PST)
+	*      [74.125.82.48 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.82.48 listed in dnsbl.sorbs.net]
+Received: from mail-wm0-f48.google.com (mail-wm0-f48.google.com [74.125.82.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 601FCE003E4
+	for <yocto@yoctoproject.org>; Thu, 12 Jan 2017 10:43:30 -0800 (PST)
+Received: by mail-wm0-f48.google.com with SMTP id r126so32489443wmr.0
+	for <yocto@yoctoproject.org>; Thu, 12 Jan 2017 10:43:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=googlemail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=WGqvByq5poPaEFiBKV8BNh+na/ybZj1QmBTrhidmWdY=;
-	b=C/SmCZlrIdBIJ/xXKy3lxo3Hm+DKpXWpioHnH89dCoXn6z5DI4moA7XyGNWC4sdJHf
-	BxAwRO7JPc+KJ/XVnTn+gZfH2HhXrbIueRtNLroNl1RQbaYTEprriBT1Pi6kL0oN4ioX
-	1G8ejqpWaHFBBb54HkxAu/mv4o056yXMcWYYJl3AV7pXSYnHJopF4gnbY+KIQ2SFN5D+
-	C+ewbGjL51esCMtxuf+3q1OmgRpCB6VdcqKKvC3OvFk5YGavNFtBPmgZRKt9tLRzrPMu
-	/wZjXB3h+gUNOwow2futmZhaixRQKWn6j+XNwO49cTzXB7D0EJV7t8VrcdfBEZ3mEq5U
-	FTJg==
+	d=rndity-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-transfer-encoding;
+	bh=YdKnr+e7ktpPXg49AMueq6ahcIPscbIoC28CRV1XRqY=;
+	b=uKrBckLe+BjITiTTpk7x301bK5YA3RMQparI7QCWbLr8pTpf5lI4VskemUlKgC6dBa
+	ae1zQV6sp3CWfJvhEixjUS8+MOoyp8R3VJmzMJLr/h1Q9UZ/gf6h/sA3kNF13IuQq0hP
+	rHWMwx9cm0XNi61TU+wEC5HizsH4Hqhh68dfhTywujA+mJ47N/3nyWu3gqf/lHO02knF
+	do0gqHjqZ1P2ax9hroJRYZ+9Sja3gP64hp9Q4o/hb5d/mkgqIPzuM+iGIv4IZ4SPBa3j
+	2WH9r5I6W8wL0SO5gMp3tUcK5U5NjN8C2EtO3jyzLSHU+UyYJeZRDAHWOCUs/VEhZb1O
+	7SzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=WGqvByq5poPaEFiBKV8BNh+na/ybZj1QmBTrhidmWdY=;
-	b=jlOC4CdMEsXktXtLsYRxPPHZeMcwaC1F3cUCCXHXOX88yPudenMJYXaa4slW8wJL2A
-	XCcuiG8ivF7S/8D2XjMaNhWsIv8ReQJoMAOAGOjNAkvEPNEP0T7ZE67NqdtGBDJMGITo
-	uOqm0FJtYsUPCIns4OnLNQZEt0n3Qel5Km7/X9W9znMS3klQXC1Jz86HIPlsYaPdr0K8
-	8xKOo2LkjxsqEd/1+LNktzHJBbrEUxjCLk3eEbeVHttgbrKKWgPOnBC5ztAaje09BoGE
-	e9BFsvUW5llOo7jgDz9CzdcWWJ5oEyGYvZcDYmsmmy3RO8wyyF8CfGXzUyAP0XyEs/gL
-	pk7g==
-X-Gm-Message-State: AIkVDXJ2nOYgvLPW1daQ4DLafcj2JBP22dKH/21oGL3jaZTcutfVor/8BKMWjqL1b794czQJX7oDINBQwa3LjA==
-X-Received: by 10.28.41.70 with SMTP id p67mr7173808wmp.4.1484246276190; Thu,
-	12 Jan 2017 10:37:56 -0800 (PST)
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=YdKnr+e7ktpPXg49AMueq6ahcIPscbIoC28CRV1XRqY=;
+	b=RPdQV+hDrPe/D8zl6Q+g//YJtbHb8Cenr1EG9oNSAd0ajzG33GWTbGlzSxFnwET/T4
+	E5URTvpbGu3lY4XGcS2MSRVnKaMcO4yiadrX6Q2mq0pDc+78aU1uIlSxmgjp2Z8dINF1
+	hhIwmz5xoQp53gx4tRUXshUg8+fSUZ7wNOwWM41rN9FM4GH/pl3CmlmqeZFBKJSxrS2v
+	ys19jGlehAorg31W7EO2l2pqY9h4JV57dcprQUlUYnw9QJaaOsUzwEInoCvQGX0ldatf
+	tR/mOIKRGNZbNGpMzztG1sJQz7lGFGv+WttrZi5sMbO+sPFyYOkwMkWVm8Yl+c1oMdE0
+	s9zg==
+X-Gm-Message-State: AIkVDXJZzpLE8u1BR8TE1jkCupXYlbCNVM7M16Yljf5VRvJoJxba86Fnp26s/wYysIEIa5xazHM8R8s4F8UBJg==
+X-Received: by 10.223.150.58 with SMTP id b55mr8238731wra.192.1484246609090;
+	Thu, 12 Jan 2017 10:43:29 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.28.217.207 with HTTP; Thu, 12 Jan 2017 10:37:55 -0800 (PST)
-From: Ayoub Zaki <ayoub.zaki@googlemail.com>
-Date: Thu, 12 Jan 2017 19:37:55 +0100
-Message-ID: <CA+-BmJabGkyK91Uw47pevvvXNKg+Uf8hiCC8xf1gz87mYWAkQg@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: Override machine conf settings
+Received: by 10.28.10.69 with HTTP; Thu, 12 Jan 2017 10:43:08 -0800 (PST)
+In-Reply-To: <CAC+thW1osKnAEFqaDtQe-+9pE6JpSJUMeU86Yb+GE5oQ9XDZzg@mail.gmail.com>
+References: <F2336301-06DF-41BD-B64E-82D421DB9366@sentientblue.com>
+	<CAJTo0LZiwodwfYbokKD1n9hK_ddxYFFzpTiLixZSkVnzTtQxVQ@mail.gmail.com>
+	<990F24BD-1C6F-4985-8E33-0C8E5B59E84A@linux.intel.com>
+	<CAD4b0_KFHF9o29giYkdJXA+RvwmTnHJ=V9ubY2Zz2s7Wwt7KoA@mail.gmail.com>
+	<CAC+thW1osKnAEFqaDtQe-+9pE6JpSJUMeU86Yb+GE5oQ9XDZzg@mail.gmail.com>
+From: =?UTF-8?Q?Maciej_Borz=C4=99cki?= <maciej.borzecki@rndity.com>
+Date: Thu, 12 Jan 2017 19:43:08 +0100
+Message-ID: <CAD4b0_+qT-rdOWUjcx6FEkgHSg_8M+2=speaGxFUw=uUon8NTg@mail.gmail.com>
+To: Andrea Galbusera <gizero@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Building on MacOS X
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,120 +72,111 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Jan 2017 18:38:01 -0000
-Content-Type: multipart/alternative; boundary=001a114e30560d373d0545ea0432
-
---001a114e30560d373d0545ea0432
+X-List-Received-Date: Thu, 12 Jan 2017 18:43:43 -0000
 Content-Type: text/plain; charset=UTF-8
-
-Hello,
-
-I'm trying to figure out how can I override machine settings, for example
-in raspberrypi  I want to change default kernel version from 4.4.x to 4.1.x
-for that I created in my layer meta-somelayer/conf/machine/raspberrypi.conf
-:
-
-require conf/machine/raspberrypi.conf
-PREFERRED_VERSION_linux-raspberrypi = "4.1.%"
-
-
-when I ran bitbake it gives:
-
-$ MACHINE=raspberrypi bitbake virtual/kernel
-
-NOTE: Tainting hash to force rebuild of task
-/home/zak/Projects/yocto/meta-somelayer/recipes-kernel/linux/
-linux-raspberrypi_4.4.bb, do_compile
-
-so it seems that bitbake ignored my override settings !
-
-I'm using morty branch and my layer meta-somelayer has higher priority than
-meta-rapberrypi :
-
-$ bitbake-layers show-layers
-layer                 path                                      priority
-==========================================================================
-meta                  /home/zak/Projects/yocto/meta        5
-meta-yocto-bsp        /home/zak/Projects/yocto/meta-yocto-bsp  5
-meta-poky             /home/zak/Projects/yocto/meta-poky   5
-meta-yocto-bsp        /home/zak/Projects/yocto/meta-yocto-bsp  5
-meta-raspberrypi      /home/zak/Projects/yocto/meta-raspberrypi  9
-meta-somelayer        /home/zak/Projects/yocto/meta-somelayer  5
-
-
-when I tried to override the setting in rpi.conf instead of
-raspberrypi.conf in meta-somelayer/conf/machine/rpi.conf:
-
-MACHINEOVERRIDES = "raspberrypi:${MACHINE}"
-require conf/machine/raspberrypi.conf
-
-PREFERRED_VERSION_linux-raspberrypi = "4.1.%"
-
-and running bitbake with :
-
-
-$ MACHINE=rpi bitbake virtual/kernel
-NOTE: Tainting hash to force rebuild of task
-/home/zak/Projects/yocto/meta-somelayer/recipes-kernel/linux/
-linux-raspberrypi_4.1.bb, do_compile
-
-it worked !
-
-My objective however is to override the machine settings and keep the same
-MACHINE name.
-
-Any Ideas?
-
-
-Regards,
-
---001a114e30560d373d0545ea0432
-Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hello,</div><div><br></div>I&#39;m trying to figure o=
-ut how can I override machine settings, for example in raspberrypi =C2=A0I =
-want to change default kernel version from 4.4.x to 4.1.x for that I create=
-d in my layer meta-somelayer/conf/machine/raspberrypi.conf :<div><br></div>=
-<div><div>require conf/machine/raspberrypi.conf</div><div>PREFERRED_VERSION=
-_linux-raspberrypi =3D &quot;4.1.%&quot;<br></div></div><div><br></div><div=
-><br></div><div>when I ran bitbake it gives:</div><div><br></div><div>$ MAC=
-HINE=3Draspberrypi bitbake virtual/kernel=C2=A0</div><div><br></div><div>NO=
-TE: Tainting hash to force rebuild of task /home/zak/Projects/yocto/meta-so=
-melayer/recipes-kernel/linux/<a href=3D"http://linux-raspberrypi_4.4.bb">li=
-nux-raspberrypi_4.4.bb</a>, do_compile<br></div><div><br></div><div>so it s=
-eems that bitbake ignored my override settings !</div><div><br></div><div>I=
-&#39;m using morty branch and my layer meta-somelayer has higher priority t=
-han meta-rapberrypi :</div><div><br></div><div><div>$ bitbake-layers show-l=
-ayers</div><div>layer =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 path =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0priority<=
-/div><div>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D</div><div>meta =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0/home/zak/Projects/yocto/meta =C2=A0 =C2=A0 =C2=A0 =C2=A05</di=
-v><div>meta-yocto-bsp =C2=A0 =C2=A0 =C2=A0 =C2=A0/home/zak/Projects/yocto/m=
-eta-yocto-bsp =C2=A05</div><div>meta-poky =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 /home/zak/Projects/yocto/meta-poky =C2=A0 5</div><div>meta-yocto=
--bsp =C2=A0 =C2=A0 =C2=A0 =C2=A0/home/zak/Projects/yocto/meta-yocto-bsp =C2=
-=A05</div><div>meta-raspberrypi =C2=A0 =C2=A0 =C2=A0/home/zak/Projects/yoct=
-o/meta-raspberrypi =C2=A09</div><div>meta-somelayer =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0/home/zak/Projects/yocto/meta-somelayer =C2=A05</div></div><div><br><=
-/div><div><br></div><div>when I tried to override the setting in rpi.conf i=
-nstead of raspberrypi.conf in meta-somelayer/conf/machine/rpi.conf:</div><d=
-iv><br></div><div><div>MACHINEOVERRIDES =3D &quot;raspberrypi:${MACHINE}&qu=
-ot;</div><div>require conf/machine/raspberrypi.conf</div><div><br></div><di=
-v>PREFERRED_VERSION_linux-raspberrypi =3D &quot;4.1.%&quot;</div></div><div=
-><br></div><div>and running bitbake with :</div><div><br></div><div><br cla=
-ss=3D"gmail-Apple-interchange-newline">$ MACHINE=3Drpi bitbake virtual/kern=
-el=C2=A0<br></div><div>NOTE: Tainting hash to force rebuild of task /home/z=
-ak/Projects/yocto/meta-somelayer/recipes-kernel/linux/<a href=3D"http://lin=
-ux-raspberrypi_4.1.bb">linux-raspberrypi_4.1.bb</a>, do_compile<br></div><d=
-iv><br></div><div>it worked !</div><div><br></div><div>My objective however=
- is to override the machine settings and keep the same MACHINE name.</div><=
-div><br></div><div><span style=3D"font-size:12.8px">Any Ideas?</span><br></=
-div><div><br></div><div><br></div><div>Regards,</div><div><br></div><div><b=
-r></div><div><br></div><div><br></div></div>
+On Thu, Jan 12, 2017 at 7:12 PM, Andrea Galbusera <gizero@gmail.com> wrote:
+> On Thu, Jan 12, 2017 at 6:55 PM, Maciej Borz=C4=99cki
+> <maciej.borzecki@rndity.com> wrote:
+>>
+>> On Thu, Jan 12, 2017 at 4:39 PM, Tim Orling
+>> <timothy.t.orling@linux.intel.com> wrote:
+>> > You can also build using Docker containers:
+>> > https://github.com/crops/docker-win-mac-docs/wiki
+>>
+>> IIRC docker on mac relies on docker-machine, which in turn spins up a
+>> virtualbox VM.
+>
+>
+> Not anymore! There's a native implementation [1] but still a linux kernel
+> around anyway! ;-)
+>
+> [1]
+> https://www.docker.com/docker-news-and-press/docker-released-native-mac-a=
+nd-windows-apps-optimize-developer-experience
 
---001a114e30560d373d0545ea0432--
+Good to know. There is still hope for mac users after all :)
+
+>>
+>>
+>>
+>> >
+>> > On Jan 12, 2017, at 7:34 AM, Burton, Ross <ross.burton@intel.com> wrot=
+e:
+>> >
+>> >
+>> > On 12 January 2017 at 15:14, Roger Smith <roger@sentientblue.com> wrot=
+e:
+>> >>
+>> >> Is there any documentation for running the Yocto build system on Mac =
+OS
+>> >> X
+>> >> or macOS as Apple now calls it? I am working with the Intel Aero boar=
+d.
+>> >> Before I go down the rabbit hole of fixing issues like this one (and =
+I
+>> >> am
+>> >> using the bash shell), I=E2=80=99d like to know if anyone has build i=
+t on os x
+>> >> before.
+>> >
+>> >
+>> > If you install all of the GNU tools using brew or similar and put them
+>> > first
+>> > on $PATH then you can get bitbake started.  Then you need to stub out
+>> > the
+>> > linux-specific bits in bitbake.  I've previously started on this work
+>> > already
+>> >
+>> > (http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=3Dross/=
+darwin).
+>> > The next step is figuring out how to configure OE to build and link
+>> > natively
+>> > on OSX using LLVM instead of GCC.
+>> >
+>> > However all of this is mostly academic because in Sierra (iirc) onward=
+s
+>> > there is tighter security on processes, which means that pseudo won't
+>> > work
+>> > even if you port it to macOS.
+>> >
+>> > So unless you fancy some non-trivial engineering the short version is
+>> > just
+>> > use something like Docker to run a Linux system on your Mac.
+>> >
+>> > Ross
+>> > --
+>> > _______________________________________________
+>> > yocto mailing list
+>> > yocto@yoctoproject.org
+>> > https://lists.yoctoproject.org/listinfo/yocto
+>> >
+>> >
+>> >
+>> > --
+>> > _______________________________________________
+>> > yocto mailing list
+>> > yocto@yoctoproject.org
+>> > https://lists.yoctoproject.org/listinfo/yocto
+>> >
+>>
+>>
+>>
+>> --
+>> Maciej Borzecki
+>> RnDity
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
+
+
+
+--=20
+Maciej Borzecki
+RnDity
+
