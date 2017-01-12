@@ -1,36 +1,64 @@
-Return-Path: <timothy.t.orling@linux.intel.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A8D17E00970; Thu, 12 Jan 2017 07:39:17 -0800 (PST)
+	id CA443E00953; Thu, 12 Jan 2017 07:43:04 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [192.55.52.120 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.216.171 listed in dnsbl.sorbs.net]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.216.171 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 33E94E00953
-	for <yocto@yoctoproject.org>; Thu, 12 Jan 2017 07:39:13 -0800 (PST)
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-	by fmsmga104.fm.intel.com with ESMTP; 12 Jan 2017 07:39:13 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.33,219,1477983600"; 
-	d="scan'208,217";a="921777492"
-Received: from oamoraso-mobl.amr.corp.intel.com ([10.254.1.5])
-	by orsmga003.jf.intel.com with ESMTP; 12 Jan 2017 07:39:12 -0800
-From: Tim Orling <timothy.t.orling@linux.intel.com>
-Message-Id: <990F24BD-1C6F-4985-8E33-0C8E5B59E84A@linux.intel.com>
-Mime-Version: 1.0 (Mac OS X Mail 10.2 \(3259\))
-Date: Thu, 12 Jan 2017 07:39:11 -0800
-In-Reply-To: <CAJTo0LZiwodwfYbokKD1n9hK_ddxYFFzpTiLixZSkVnzTtQxVQ@mail.gmail.com>
-To: "Burton, Ross" <ross.burton@intel.com>
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-qt0-f171.google.com (mail-qt0-f171.google.com
+	[209.85.216.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 82763E0088B
+	for <yocto@yoctoproject.org>; Thu, 12 Jan 2017 07:43:03 -0800 (PST)
+Received: by mail-qt0-f171.google.com with SMTP id v23so21437176qtb.0
+	for <yocto@yoctoproject.org>; Thu, 12 Jan 2017 07:43:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=oO84Jg18ID/TzQP40vkrjRlR48MeOtrQEYB3l/68Dxg=;
+	b=zLsKK085iTQV4KXZs0xbHSsOTKQl5DVyZGeCHgswRIIvcNhXas13LAA7RpF74IoOmM
+	/XZenK58iU10Eir12k2jyeUb6h/smE4DjR7May/iPxjzGp3lSUXbIcVkiQmO3Du4OuX4
+	MwZoJNYGiUmj8aQXRzRQDUwkQH+sgqBLXlJkjlZ4p//1KP7t/Anv0IY5K/1A7ZoYwd/1
+	kf61EzacpMX9GGt/PwUxgcrQsEUDP7xH5Z+4VBZoisM6NHHlXVlaoGJgTbNYirJp3pyr
+	rlbxyfmhg+VVhCTeHDgOXvTPRs91NUUSJrhSqf8nPIqa4giBTicxNBqPeMEVOvSual6Y
+	YKmA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=oO84Jg18ID/TzQP40vkrjRlR48MeOtrQEYB3l/68Dxg=;
+	b=OJyB/k4kHu3KCC45jxQaNkphgy6gDdiJO9PwLNmskQTgvk1lptP0LBteU1l2Tq5M1s
+	mQ1dLfi+trwchcCp0ZyXx9Wm6IwBgwCIvwIrWJZrWh3rqAUJhviYfuY/HaXWOfIJbSM4
+	OskzVkltZ8nU75MKaaurrXKR2VmRHGtvRAj3RE3MdVvFXq6Y2/Wx6DTvGoyS7U9KotFJ
+	HCR8B2qiGtruyg85AkicI5p06QixI3kOL6B6zUB4vszkTXb8i9m+kvDmpPnbp05aBarn
+	kq98mSEzlOGoXVddr262fkOR1RYlgHWWBDAjzqIXw9wnPY90UMZ8S7dCrEC1GkfD4evc
+	6EFQ==
+X-Gm-Message-State: AIkVDXJhqs3EXVyNApDWkXNUfOVMIxwfUtGTf38M40yn3g8p67HvF0SntEL5PJCpPegaHgtkewBqhIdTFwNFAirP
+X-Received: by 10.200.45.247 with SMTP id q52mr14536961qta.197.1484235782721; 
+	Thu, 12 Jan 2017 07:43:02 -0800 (PST)
+MIME-Version: 1.0
+Received: by 10.140.106.99 with HTTP; Thu, 12 Jan 2017 07:42:42 -0800 (PST)
+In-Reply-To: <990F24BD-1C6F-4985-8E33-0C8E5B59E84A@linux.intel.com>
 References: <F2336301-06DF-41BD-B64E-82D421DB9366@sentientblue.com>
 	<CAJTo0LZiwodwfYbokKD1n9hK_ddxYFFzpTiLixZSkVnzTtQxVQ@mail.gmail.com>
-X-Mailer: Apple Mail (2.3259)
+	<990F24BD-1C6F-4985-8E33-0C8E5B59E84A@linux.intel.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Thu, 12 Jan 2017 15:42:42 +0000
+Message-ID: <CAJTo0Lb9Lo5TEdu5f_1CVcyeRLEBZxv1uOoU7GosDfLDwPjrXg@mail.gmail.com>
+To: Tim Orling <timothy.t.orling@linux.intel.com>,
+	Roger Smith <roger@sentientblue.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Building on MacOS X
 X-BeenThere: yocto@yoctoproject.org
@@ -44,109 +72,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Jan 2017 15:39:17 -0000
-Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_DD474032-EA7A-4D22-8314-64F6D8DC2895"
+X-List-Received-Date: Thu, 12 Jan 2017 15:43:04 -0000
+Content-Type: multipart/alternative; boundary=001a1139cdf097b5430545e79230
 
---Apple-Mail=_DD474032-EA7A-4D22-8314-64F6D8DC2895
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=utf-8
+--001a1139cdf097b5430545e79230
+Content-Type: text/plain; charset=UTF-8
 
-You can also build using Docker containers:
-https://github.com/crops/docker-win-mac-docs/wiki =
-<https://github.com/crops/docker-win-mac-docs/wiki>
-
-> On Jan 12, 2017, at 7:34 AM, Burton, Ross <ross.burton@intel.com> =
+On 12 January 2017 at 15:39, Tim Orling <timothy.t.orling@linux.intel.com>
 wrote:
->=20
->=20
-> On 12 January 2017 at 15:14, Roger Smith <roger@sentientblue.com =
-<mailto:roger@sentientblue.com>> wrote:
-> Is there any documentation for running the Yocto build system on Mac =
-OS X or macOS as Apple now calls it? I am working with the Intel Aero =
-board. Before I go down the rabbit hole of fixing issues like this one =
-(and I am using the bash shell), I=E2=80=99d like to know if anyone has =
-build it on os x before.
->=20
-> If you install all of the GNU tools using brew or similar and put them =
-first on $PATH then you can get bitbake started.  Then you need to stub =
-out the linux-specific bits in bitbake.  I've previously started on this =
-work already =
-(http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=3Dross/darw=
-in =
-<http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=3Dross/darw=
-in>).  The next step is figuring out how to configure OE to build and =
-link natively on OSX using LLVM instead of GCC.
->=20
-> However all of this is mostly academic because in Sierra (iirc) =
-onwards there is tighter security on processes, which means that pseudo =
-won't work even if you port it to macOS.
->=20
-> So unless you fancy some non-trivial engineering the short version is =
-just use something like Docker to run a Linux system on your Mac.
->=20
-> Ross
-> --=20
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
 
+> You can also build using Docker containers:
+> https://github.com/crops/docker-win-mac-docs/wiki
+>
 
---Apple-Mail=_DD474032-EA7A-4D22-8314-64F6D8DC2895
+Yes, this is the link I was failing to find, thanks Tim.  This is basically
+the official way of using OE on Windows or Mac.
+
+Ross
+
+--001a1139cdf097b5430545e79230
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=utf-8
 
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
-charset=3Dutf-8"></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
-class=3D"">You can also build using Docker containers:<div class=3D""><a =
-href=3D"https://github.com/crops/docker-win-mac-docs/wiki" =
-class=3D"">https://github.com/crops/docker-win-mac-docs/wiki</a></div><div=
- class=3D""><br class=3D""><div><blockquote type=3D"cite" class=3D""><div =
-class=3D"">On Jan 12, 2017, at 7:34 AM, Burton, Ross &lt;<a =
-href=3D"mailto:ross.burton@intel.com" =
-class=3D"">ross.burton@intel.com</a>&gt; wrote:</div><br =
-class=3D"Apple-interchange-newline"><div class=3D""><div dir=3D"ltr" =
-class=3D""><div class=3D"gmail_extra"><br class=3D""><div =
-class=3D"gmail_quote">On 12 January 2017 at 15:14, Roger Smith <span =
-dir=3D"ltr" class=3D"">&lt;<a href=3D"mailto:roger@sentientblue.com" =
-target=3D"_blank" class=3D"">roger@sentientblue.com</a>&gt;</span> =
-wrote:<br class=3D""><blockquote class=3D"gmail_quote" style=3D"margin:0px=
- 0px 0px =
-0.8ex;border-left-width:1px;border-left-color:rgb(204,204,204);border-left=
--style:solid;padding-left:1ex"><div style=3D"word-wrap:break-word" =
-class=3D"">Is there any documentation for running the Yocto build system =
-on Mac OS X or macOS as Apple now calls it? I am working with the Intel =
-Aero board. Before I go down the rabbit hole of fixing issues like this =
-one (and I am using the bash shell), I=E2=80=99d like to know if anyone =
-has build it on os x before.<div =
-class=3D""></div></div></blockquote></div><br class=3D"">If you install =
-all of the GNU tools using brew or similar and put them first on $PATH =
-then you can get bitbake started.&nbsp; Then you need to stub out the =
-linux-specific bits in bitbake.&nbsp; I've previously started on this =
-work already (<a =
-href=3D"http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=3Dro=
-ss/darwin" =
-class=3D"">http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=3D=
-ross/darwin</a>).&nbsp; The next step is figuring out how to configure =
-OE to build and link natively on OSX using LLVM instead of =
-GCC.</div><div class=3D"gmail_extra"><br class=3D""></div><div =
-class=3D"gmail_extra">However all of this is mostly academic because in =
-Sierra (iirc) onwards there is tighter security on processes, which =
-means that pseudo won't work even if you port it to macOS.</div><div =
-class=3D"gmail_extra"><br class=3D""></div><div class=3D"gmail_extra">So =
-unless you fancy some non-trivial engineering the short version is just =
-use something like Docker to run a Linux system on your Mac.</div><div =
-class=3D"gmail_extra"><br class=3D""></div><div =
-class=3D"gmail_extra">Ross</div></div>
--- <br class=3D"">_______________________________________________<br =
-class=3D"">yocto mailing list<br class=3D""><a =
-href=3D"mailto:yocto@yoctoproject.org" =
-class=3D"">yocto@yoctoproject.org</a><br =
-class=3D"">https://lists.yoctoproject.org/listinfo/yocto<br =
-class=3D""></div></blockquote></div><br class=3D""></div></body></html>=
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 12 January 2017 at 15:39, Tim Orling <span dir=3D"ltr">&lt;<a href=3D"ma=
+ilto:timothy.t.orling@linux.intel.com" target=3D"_blank">timothy.t.orling@l=
+inux.intel.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" s=
+tyle=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div=
+ style=3D"word-wrap:break-word">You can also build using Docker containers:=
+<div><a href=3D"https://github.com/crops/docker-win-mac-docs/wiki" target=
+=3D"_blank">https://github.com/crops/<wbr>docker-win-mac-docs/wiki</a></div=
+></div></blockquote><div><br></div><div>Yes, this is the link I was failing=
+ to find, thanks Tim.=C2=A0 This is basically the official way of using OE =
+on Windows or Mac.</div><div><br></div><div>Ross</div></div></div></div>
 
---Apple-Mail=_DD474032-EA7A-4D22-8314-64F6D8DC2895--
+--001a1139cdf097b5430545e79230--
