@@ -1,37 +1,37 @@
-Return-Path: <mark.hatle@windriver.com>
+Return-Path: <timothy.t.orling@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A9E3FE00953; Thu, 12 Jan 2017 07:38:49 -0800 (PST)
+	id A8D17E00970; Thu, 12 Jan 2017 07:39:17 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
 	http://www.dnswl.org/, *      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
+	*      [192.55.52.120 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 53739E0088B
-	for <yocto@yoctoproject.org>; Thu, 12 Jan 2017 07:38:46 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id v0CFcZaT024671
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 12 Jan 2017 07:38:35 -0800 (PST)
-Received: from soho-mhatle-m.local (172.25.36.235) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.294.0;
-	Thu, 12 Jan 2017 07:38:34 -0800
-To: Roger Smith <roger@sentientblue.com>, <yocto@yoctoproject.org>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 33E94E00953
+	for <yocto@yoctoproject.org>; Thu, 12 Jan 2017 07:39:13 -0800 (PST)
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+	by fmsmga104.fm.intel.com with ESMTP; 12 Jan 2017 07:39:13 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.33,219,1477983600"; 
+	d="scan'208,217";a="921777492"
+Received: from oamoraso-mobl.amr.corp.intel.com ([10.254.1.5])
+	by orsmga003.jf.intel.com with ESMTP; 12 Jan 2017 07:39:12 -0800
+From: Tim Orling <timothy.t.orling@linux.intel.com>
+Message-Id: <990F24BD-1C6F-4985-8E33-0C8E5B59E84A@linux.intel.com>
+Mime-Version: 1.0 (Mac OS X Mail 10.2 \(3259\))
+Date: Thu, 12 Jan 2017 07:39:11 -0800
+In-Reply-To: <CAJTo0LZiwodwfYbokKD1n9hK_ddxYFFzpTiLixZSkVnzTtQxVQ@mail.gmail.com>
+To: "Burton, Ross" <ross.burton@intel.com>
 References: <F2336301-06DF-41BD-B64E-82D421DB9366@sentientblue.com>
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-Message-ID: <56c0100f-a4c3-482a-93f9-55168d8b71d1@windriver.com>
-Date: Thu, 12 Jan 2017 09:38:33 -0600
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:45.0)
-	Gecko/20100101 Thunderbird/45.6.0
-MIME-Version: 1.0
-In-Reply-To: <F2336301-06DF-41BD-B64E-82D421DB9366@sentientblue.com>
+	<CAJTo0LZiwodwfYbokKD1n9hK_ddxYFFzpTiLixZSkVnzTtQxVQ@mail.gmail.com>
+X-Mailer: Apple Mail (2.3259)
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Building on MacOS X
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -44,50 +44,109 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Jan 2017 15:38:49 -0000
-Content-Type: text/plain; charset="windows-1252"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Thu, 12 Jan 2017 15:39:17 -0000
+Content-Type: multipart/alternative;
+	boundary="Apple-Mail=_DD474032-EA7A-4D22-8314-64F6D8DC2895"
 
-On 1/12/17 9:14 AM, Roger Smith wrote:
-> Is there any documentation for running the Yocto build system on Mac OS X or
-> macOS as Apple now calls it? I am working with the Intel Aero board. Before I go
-> down the rabbit hole of fixing issues like this one (and I am using the bash
-> shell), I’d like to know if anyone has build it on os x before.
+--Apple-Mail=_DD474032-EA7A-4D22-8314-64F6D8DC2895
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=utf-8
 
-As far as I am aware, nobody has ever finished this work.
+You can also build using Docker containers:
+https://github.com/crops/docker-win-mac-docs/wiki =
+<https://github.com/crops/docker-win-mac-docs/wiki>
 
-There are numerous places (scripts primarily) that will expect GNU
-util-linux/coreutils (and similar) extensions.
+> On Jan 12, 2017, at 7:34 AM, Burton, Ross <ross.burton@intel.com> =
+wrote:
+>=20
+>=20
+> On 12 January 2017 at 15:14, Roger Smith <roger@sentientblue.com =
+<mailto:roger@sentientblue.com>> wrote:
+> Is there any documentation for running the Yocto build system on Mac =
+OS X or macOS as Apple now calls it? I am working with the Intel Aero =
+board. Before I go down the rabbit hole of fixing issues like this one =
+(and I am using the bash shell), I=E2=80=99d like to know if anyone has =
+build it on os x before.
+>=20
+> If you install all of the GNU tools using brew or similar and put them =
+first on $PATH then you can get bitbake started.  Then you need to stub =
+out the linux-specific bits in bitbake.  I've previously started on this =
+work already =
+(http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=3Dross/darw=
+in =
+<http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=3Dross/darw=
+in>).  The next step is figuring out how to configure OE to build and =
+link natively on OSX using LLVM instead of GCC.
+>=20
+> However all of this is mostly academic because in Sierra (iirc) =
+onwards there is tighter security on processes, which means that pseudo =
+won't work even if you port it to macOS.
+>=20
+> So unless you fancy some non-trivial engineering the short version is =
+just use something like Docker to run a Linux system on your Mac.
+>=20
+> Ross
+> --=20
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-In addition, the pseudo program, used to emulate filesystem permissions and
-related items only partially works on MacOS.  (I know it was working at one
-point, but Apple changed some of the system properties [preloaded library] for
-security reasons, and ended up making pseudo no longer work.  You may want to
-look into this before getting too far in.  Without pseudo, there is no way to
-perform a build/package.)
 
-Some -very- old work:
+--Apple-Mail=_DD474032-EA7A-4D22-8314-64F6D8DC2895
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=utf-8
 
-http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib-archive/refs/heads
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
+charset=3Dutf-8"></head><body style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
+class=3D"">You can also build using Docker containers:<div class=3D""><a =
+href=3D"https://github.com/crops/docker-win-mac-docs/wiki" =
+class=3D"">https://github.com/crops/docker-win-mac-docs/wiki</a></div><div=
+ class=3D""><br class=3D""><div><blockquote type=3D"cite" class=3D""><div =
+class=3D"">On Jan 12, 2017, at 7:34 AM, Burton, Ross &lt;<a =
+href=3D"mailto:ross.burton@intel.com" =
+class=3D"">ross.burton@intel.com</a>&gt; wrote:</div><br =
+class=3D"Apple-interchange-newline"><div class=3D""><div dir=3D"ltr" =
+class=3D""><div class=3D"gmail_extra"><br class=3D""><div =
+class=3D"gmail_quote">On 12 January 2017 at 15:14, Roger Smith <span =
+dir=3D"ltr" class=3D"">&lt;<a href=3D"mailto:roger@sentientblue.com" =
+target=3D"_blank" class=3D"">roger@sentientblue.com</a>&gt;</span> =
+wrote:<br class=3D""><blockquote class=3D"gmail_quote" style=3D"margin:0px=
+ 0px 0px =
+0.8ex;border-left-width:1px;border-left-color:rgb(204,204,204);border-left=
+-style:solid;padding-left:1ex"><div style=3D"word-wrap:break-word" =
+class=3D"">Is there any documentation for running the Yocto build system =
+on Mac OS X or macOS as Apple now calls it? I am working with the Intel =
+Aero board. Before I go down the rabbit hole of fixing issues like this =
+one (and I am using the bash shell), I=E2=80=99d like to know if anyone =
+has build it on os x before.<div =
+class=3D""></div></div></blockquote></div><br class=3D"">If you install =
+all of the GNU tools using brew or similar and put them first on $PATH =
+then you can get bitbake started.&nbsp; Then you need to stub out the =
+linux-specific bits in bitbake.&nbsp; I've previously started on this =
+work already (<a =
+href=3D"http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=3Dro=
+ss/darwin" =
+class=3D"">http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=3D=
+ross/darwin</a>).&nbsp; The next step is figuring out how to configure =
+OE to build and link natively on OSX using LLVM instead of =
+GCC.</div><div class=3D"gmail_extra"><br class=3D""></div><div =
+class=3D"gmail_extra">However all of this is mostly academic because in =
+Sierra (iirc) onwards there is tighter security on processes, which =
+means that pseudo won't work even if you port it to macOS.</div><div =
+class=3D"gmail_extra"><br class=3D""></div><div class=3D"gmail_extra">So =
+unless you fancy some non-trivial engineering the short version is just =
+use something like Docker to run a Linux system on your Mac.</div><div =
+class=3D"gmail_extra"><br class=3D""></div><div =
+class=3D"gmail_extra">Ross</div></div>
+-- <br class=3D"">_______________________________________________<br =
+class=3D"">yocto mailing list<br class=3D""><a =
+href=3D"mailto:yocto@yoctoproject.org" =
+class=3D"">yocto@yoctoproject.org</a><br =
+class=3D"">https://lists.yoctoproject.org/listinfo/yocto<br =
+class=3D""></div></blockquote></div><br class=3D""></div></body></html>=
 
-search for macosx
-
-(I'd love to see a native bitbake/oe-core work on MacOS X... but as far as I
-know the work stalled a while back due to lack of interest by people.)
-
-Most of the people I know using MacOS X for development are using virtual box
-(or similar) and a Linux based VM.
-
---Mark
-
-> thanks
-> 
-> 
-> source oe-init-build-env
-> readlink: illegal option -- f
-> usage: readlink [-n] [file ...]
-> -bash: /scripts/oe-buildenv-internal: No such file or directory
-> 
-> 
-
-
+--Apple-Mail=_DD474032-EA7A-4D22-8314-64F6D8DC2895--
