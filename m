@@ -1,43 +1,66 @@
-Return-Path: <mark.hatle@windriver.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CA0FAE00C78; Thu, 12 Jan 2017 14:59:07 -0800 (PST)
+	id CE5F0E0034A; Thu, 12 Jan 2017 18:05:01 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.213.68 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 37AA6E00C65
-	for <yocto@yoctoproject.org>; Thu, 12 Jan 2017 14:59:05 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id v0CMx4nO028005
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Thu, 12 Jan 2017 14:59:04 -0800 (PST)
-Received: from soho-mhatle-m.local (172.25.36.235) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.294.0;
-	Thu, 12 Jan 2017 14:59:03 -0800
-To: <yocto@yoctoproject.org>
-References: <F2336301-06DF-41BD-B64E-82D421DB9366@sentientblue.com>
-	<CAJTo0LZiwodwfYbokKD1n9hK_ddxYFFzpTiLixZSkVnzTtQxVQ@mail.gmail.com>
-	<990F24BD-1C6F-4985-8E33-0C8E5B59E84A@linux.intel.com>
-	<CAAfyv36YrBOVfui1Udia8Ba3dwzBn9Sb59w7k8L4p+EGLWLzLg@mail.gmail.com>
-	<CAC+thW2das3i_qYatGthx9pm27xEtW-2OHxhEy-qQNasrMLwVQ@mail.gmail.com>
-	<448FE605-0D5E-4057-BF49-9EFFBC5CB8DD@sentientblue.com>
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-Message-ID: <a0f910e1-e4e3-a36c-54f8-029cd72bae83@windriver.com>
-Date: Thu, 12 Jan 2017 16:59:03 -0600
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:45.0)
-	Gecko/20100101 Thunderbird/45.6.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.213.68 listed in list.dnswl.org]
+Received: from mail-vk0-f68.google.com (mail-vk0-f68.google.com
+	[209.85.213.68])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AD1A1E0030B
+	for <yocto@yoctoproject.org>; Thu, 12 Jan 2017 18:04:58 -0800 (PST)
+Received: by mail-vk0-f68.google.com with SMTP id j12so2771831vkd.0
+	for <yocto@yoctoproject.org>; Thu, 12 Jan 2017 18:04:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=4TL5ZgL/husik2iMOLDRv/PkxlTQVdsRu2JYBoaPF+k=;
+	b=kO1TaBT1EL2kMpwC9aYWEC0WvwKlspb2/yWtn7NjMT/Qw1QRtkhoF/0K7/k9Nhh6hx
+	uuYIt9Sy4m6fUtkoNXqTQAd7NL6+NsGZRq9P4DijkBBejoGyrTRO8GdXXptxGUHFuuIA
+	PoJDmZ4XdWywSOuQdbPPDscOMJjO2LRLfCoHYROvU5C0G8ryO7rDu7nVzCbns+53v+R9
+	+er7PQu6SlYEcyD7ewHd3b6DbXFmTlT1DXKigYv8+isbZTOGfZQhPoff6XaPQRPgaPpx
+	3SIz+GRtxpNn5+LBmpr8R2Czx8oUqOI/LBJYbKKIORNXkbKTg8K0I8CJyvqlfwk03T0e
+	zmpw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=4TL5ZgL/husik2iMOLDRv/PkxlTQVdsRu2JYBoaPF+k=;
+	b=iUiy3Qbu19LZgvG9RsvAK+6vvspurwThdm0TPgar8mz1W28TQRnfvEYuTJNJfH27E4
+	g0onjOsi2NJC6udayicXEjmrq9c20j6tPOBqXfLJfcu09RZnTI8cDAUUEu8rQAk1IK//
+	ShOiSiuh4CXZy4PIrXCoCvHKrgBNzHIiDcqd92XNRNMr3qcjeMX1hCrZsaZ6pry8EhKS
+	1byRuccrhi/5CpaN26DGINdHxv6dTjZeb3NKq888u3WN5QFRv9zrih+vTorB179Vdy1N
+	QO1e09GQ/50BsAS0clybzKVGRPrBaIKNlCjpyzTEvrtzQoVuA6BXXP01hc7oXgv9EQPv
+	Iy6Q==
+X-Gm-Message-State: AIkVDXJ/Por5O09kJPnD58JJuNjiahuAbHrB7+bz5K6P0cjn93m2ndzUcWlDtvZg2OWkoPLIbJQXkeKAhlyyZQ==
+X-Received: by 10.31.153.8 with SMTP id b8mr4045428vke.140.1484273097469; Thu,
+	12 Jan 2017 18:04:57 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <448FE605-0D5E-4057-BF49-9EFFBC5CB8DD@sentientblue.com>
-Subject: Re: Building on MacOS X
+Received: by 10.159.48.222 with HTTP; Thu, 12 Jan 2017 18:04:26 -0800 (PST)
+In-Reply-To: <CAK18fxEs0UGdhSZ18yiEB5s2fDe3zExHX88Gv-DYt=VJheDWow@mail.gmail.com>
+References: <20170112182905.15203-1-raj.khem@gmail.com>
+	<CAK18fxEs0UGdhSZ18yiEB5s2fDe3zExHX88Gv-DYt=VJheDWow@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Thu, 12 Jan 2017 18:04:26 -0800
+Message-ID: <CAMKF1soVdmjRHd9z8N_4d7N8SX25co=kJh9M1P6wzNQgqLuJGA@mail.gmail.com>
+To: Andrei Gherzan <andrei@gherzan.ro>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi][PATCH 1/2] linux-raspberrypi_4.8.bb: Upgrade to 4.8.16
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,182 +72,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Jan 2017 22:59:07 -0000
-Content-Type: text/plain; charset="windows-1252"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Fri, 13 Jan 2017 02:05:01 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On 1/12/17 11:41 AM, Roger Smith wrote:
->  I have Parallels (running on El Capitan the one before Sierra)  and ubuntu 14
->  running my current build environment on a MacBook Pro, but boy is the build
-> slow… I also worked at Apple for 19 years on drivers inside MacOS X/iOS, so I am
-> more than motivated to have this working natively rather than inside any
-> container or disk space hogging environment.  As I mentioned I am working with
-> the Intel Aero compute board, so slogging though all this fat to build an image
-> is a productivity killer.
+On Thu, Jan 12, 2017 at 1:54 PM, Andrei Gherzan <andrei@gherzan.ro> wrote:
+> On Thu, Jan 12, 2017 at 6:29 PM, Khem Raj <raj.khem@gmail.com> wrote:
+>> Signed-off-by: Khem Raj <raj.khem@gmail.com>
+>> ---
+>>  recipes-kernel/linux/linux-raspberrypi_4.8.bb | 4 ++--
+>>  1 file changed, 2 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/recipes-kernel/linux/linux-raspberrypi_4.8.bb b/recipes-kernel/linux/linux-raspberrypi_4.8.bb
+>> index 7511f93..be25e65 100644
+>> --- a/recipes-kernel/linux/linux-raspberrypi_4.8.bb
+>> +++ b/recipes-kernel/linux/linux-raspberrypi_4.8.bb
+>> @@ -1,8 +1,8 @@
+>>  FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
+>>
+>> -LINUX_VERSION ?= "4.8.15"
+>> +LINUX_VERSION ?= "4.8.16"
+>>
+>> -SRCREV = "c8af0c2f515556ef052913d552b6b11501c71996"
+>> +SRCREV = "061dccce6cf6705bbb5da29a643f4b0ad1d11630"
+>>  SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-4.8.y \
+>>  "
+>>  require linux-raspberrypi.inc
+>> --
+>> 2.11.0
+>>
+>
+> Merged both to master.
 
-So take from this.. there is desire for oe/bitbake to work natively.  Most
-people don't have the skill or free time to do the work.  A number of us started
-it at one time or another and made enough progress to say "ya I think it's
-possible" and then ran out of time.
+ What do folks think about deleting all other kernel besides 4.1 4.4 and 4.9
 
-As far as I know pseudo and the security introduced in 10.11 that affect
-preloading is likely the biggest technical problem...  everything else is just
-"it's not Linux".
-
---Mark
-
-> I think most of the  incompatibilities between Linux and os x (which btw is
-> coming from the ios side of the fence unfortunately), can be mitigated with boot
-> args or via the command line . Apple’s compiler team had to make llvm compatible
-> with gcc, so I am surprised if in 2017, there are compiler issues to building
-> for an x86_64 platform with llvm on the Mac . That’s the kind of bug Apple likes
-> to fix promptly.. 
-> 
-> As I mentioned, I tried to simply source the oe-init-build-env, and got an error
-> that the readlink command that yocto is using is incompatible with the bsd
-> version of readlink built into os x. 
-> 
-> i.e when I run .
-> 
-> source oe-init-build-env
-> 
-> I get the error
-> 
-> readlink: illegal option -- f
-> 
-> Which is because on OS X readlink doesn’t specify -f
-> 
-> YNOPSIS
->      stat [-FLnq] [-f format| -l | -r | -s | -x] [-t timefmt] [file...]
->      readlink [-n] [file...]
-> 
-> I didn’t want to go through this level of change in the Yocto sources if (1)
-> people don’t care to take changes or (2) it had already been done before.. I was
-> curious how far down this rabbit hole people had gone before..
-> 
-> Roger
-> 
-> 
->> On Jan 12, 2017, at 8:50 AM, Andrea Galbusera <gizero@gmail.com
->> <mailto:gizero@gmail.com>> wrote:
->>
->> On Thu, Jan 12, 2017 at 5:21 PM, Belisko Marek <marek.belisko@gmail.com
->> <mailto:marek.belisko@gmail.com>> wrote:
->>
->>     On Thu, Jan 12, 2017 at 4:39 PM, Tim Orling
->>     <timothy.t.orling@linux.intel.com
->>     <mailto:timothy.t.orling@linux.intel.com>> wrote:
->>     > You can also build using Docker containers:
->>     > https://github.com/crops/docker-win-mac-docs/wiki
->>     <https://github.com/crops/docker-win-mac-docs/wiki>
->>     Well the re is other limitation about slow filesystem access from
->>     docker on osx. There is workaround to use nfs but it's not possible to
->>     use nfs for building yocto - so it's kind of chicken-egg problem ;)
->>
->>
->> I shortly tested the CROPS docker-based setup after watching some presentation
->> at ELCE 2016 in Berlin. It basically worked but I experienced the filesystem
->> slowness your are talking about. I ended up waiting hours to see a simple
->> core-image-minimal build complete (even after giving more cores to docker).
->> One more point is that slightly more complex build scenarios, i.e. building
->> resin.os, also required tweaking docker run parameters for the build container
->> in order to give bitbake access to features like loop devices it needed (not
->> always easily debuggable issues indeed). Turned out I decided to stick with
->> more canonical linux based environments for the moment.
->>
->> Anyway, the technology behind CROPS is *very* interesting to me, and I'd like
->> to hear from people closely involved (Tim?) what the state of the art is and
->> what we can expect to see in the near future. IIRC, the roadmap for Yocto 2.3
->> release was supposed to resurrect the Eclipse plugin and adopt CROPS as an
->> alternative for running eSDK in a seamless way on different development host
->> OSs. Beside from the images on docker hub and the github projects that didn't
->> have high activity in the latest months, I hardly find discussions and
->> documentation on the whole approach. Isn't this hot enough anymore or are
->> there big issues that will prevent this technology from taking off. I often
->> manage SDKs for Windows-minded developers and I strongly yearn to find a
->> better approach to help them feel at home while building stuff for OE/Yocto
->> based systems... 
->>
->>  
->>
->>     >
->>     > On Jan 12, 2017, at 7:34 AM, Burton, Ross <ross.burton@intel.com
->>     <mailto:ross.burton@intel.com>> wrote:
->>     >
->>     >
->>     > On 12 January 2017 at 15:14, Roger Smith <roger@sentientblue.com
->>     <mailto:roger@sentientblue.com>> wrote:
->>     >>
->>     >> Is there any documentation for running the Yocto build system on Mac OS X
->>     >> or macOS as Apple now calls it? I am working with the Intel Aero board.
->>     >> Before I go down the rabbit hole of fixing issues like this one (and I am
->>     >> using the bash shell), I’d like to know if anyone has build it on os x
->>     >> before.
->>     >
->>     >
->>     > If you install all of the GNU tools using brew or similar and put them first
->>     > on $PATH then you can get bitbake started.  Then you need to stub out the
->>     > linux-specific bits in bitbake.  I've previously started on this work
->>     > already
->>     >
->>     (http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=ross/darwin
->>     <http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=ross/darwin>).
->>     > The next step is figuring out how to configure OE to build and link natively
->>     > on OSX using LLVM instead of GCC.
->>     >
->>     > However all of this is mostly academic because in Sierra (iirc) onwards
->>     > there is tighter security on processes, which means that pseudo won't work
->>     > even if you port it to macOS.
->>     >
->>     > So unless you fancy some non-trivial engineering the short version is just
->>     > use something like Docker to run a Linux system on your Mac.
->>     >
->>     > Ross
->>     > --
->>     > _______________________________________________
->>     > yocto mailing list
->>     > yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
->>     > https://lists.yoctoproject.org/listinfo/yocto
->>     <https://lists.yoctoproject.org/listinfo/yocto>
->>     >
->>     >
->>     >
->>     > --
->>     > _______________________________________________
->>     > yocto mailing list
->>     > yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
->>     > https://lists.yoctoproject.org/listinfo/yocto
->>     <https://lists.yoctoproject.org/listinfo/yocto>
->>     >
->>
->>     marek
->>
->>     --
->>     as simple and primitive as possible
->>     -------------------------------------------------
->>     Marek Belisko - OPEN-NANDRA
->>     Freelance Developer
->>
->>     Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
->>     Tel: +421 915 052 184 <tel:%2B421%20915%20052%20184>
->>     skype: marekwhite
->>     twitter: #opennandra
->>     web: http://open-nandra.com <http://open-nandra.com/>
->>     --
->>     _______________________________________________
->>     yocto mailing list
->>     yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
->>     https://lists.yoctoproject.org/listinfo/yocto
->>     <https://lists.yoctoproject.org/listinfo/yocto>
->>
->>
->> -- 
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
->> https://lists.yoctoproject.org/listinfo/yocto
-> 
-> 
-> 
-
+cheers!
 
