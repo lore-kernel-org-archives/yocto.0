@@ -1,73 +1,39 @@
-Return-Path: <Vinothkumar.Eswaran@de.bosch.com>
+Return-Path: <markus.lehtonen@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E5345E003E4; Fri, 13 Jan 2017 02:38:35 -0800 (PST)
+	id A1FC1E003C1; Fri, 13 Jan 2017 03:25:14 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_HI autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [139.15.243.226 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [134.134.136.100 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from imta21.fe.bosch.de (imta21.fe.bosch.de [139.15.243.226])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 75719E0033D
-	for <yocto@yoctoproject.org>; Fri, 13 Jan 2017 02:38:32 -0800 (PST)
-Received: from smtp6-v.fe.bosch.de (imta24.fe.bosch.de [139.15.243.27])
-	by imta21.fe.bosch.de (Postfix) with ESMTP id 1BE17C09F8
-	for <yocto@yoctoproject.org>; Fri, 13 Jan 2017 11:38:31 +0100 (CET)
-Received: from vsmta11.fe.internet.bosch.com (unknown [10.4.98.51])
-	by imta24.fe.bosch.de (Postfix) with ESMTP id 96207D80219
-	for <yocto@yoctoproject.org>; Fri, 13 Jan 2017 11:38:27 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=de.bosch.com;
-	s=2015-01-21; t=1484303907;
-	bh=5WbBUBujBf53EaW1tEDNrrdtbcY0YNlTlcXUVu/I0BA=; l=10;
-	h=From:From:Reply-To:Sender;
-	b=BVHxouLGElNNbgmdCEtDlw8sQ1Ck2DvlAukPBLOSR8SaXbW3JcAKF13VaPfHLZzxj
-	BFZxlfAaxIPc4f5oX5RZz2UOYJOozgf9urHr9jZ5aQjbtcPqPj3mMXDC0JT1v/AGq5
-	iAD5t2HtO4kG/bcOT1a9HVYgxAhn3iuE58ESum7g=
-Received: from SI-MBX1013.de.bosch.com (vsgw22.fe.internet.bosch.com
-	[10.4.98.11])
-	by vsmta11.fe.internet.bosch.com (Postfix) with ESMTP id 3FB15238098C
-	for <yocto@yoctoproject.org>; Fri, 13 Jan 2017 11:38:27 +0100 (CET)
-Received: from FE-MBX1014.de.bosch.com (10.3.230.72) by
-	SI-MBX1013.de.bosch.com (10.3.230.50) with Microsoft SMTP Server (TLS)
-	id 15.0.1236.3; Fri, 13 Jan 2017 11:38:26 +0100
-Received: from FE-MBX1014.de.bosch.com ([fe80::f960:d6c4:9c04:b471]) by
-	FE-MBX1014.de.bosch.com ([fe80::f960:d6c4:9c04:b471%16]) with mapi id
-	15.00.1236.000; Fri, 13 Jan 2017 11:38:26 +0100
-From: "Eswaran Vinothkumar (BEG-PT/PJ-IOT1)" <Vinothkumar.Eswaran@de.bosch.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: How to decide which Yocto branch to use -krogoth or Jethro or
-	any other
-Thread-Index: AdJtiStBjNVIyxQPSyW9XLqPdIw65w==
-Date: Fri, 13 Jan 2017 10:38:26 +0000
-Message-ID: <479b9a6cb016421f850b9ae8e1cdbb88@FE-MBX1014.de.bosch.com>
-Accept-Language: de-DE, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.60.64.211]
-MIME-Version: 1.0
-X-TM-AS-MML: disable
-X-TM-AS-Product-Ver: IMSS-7.1.0.1679-8.0.0.1202-22818.006
-X-TMASE-MatchedRID: le1dUZb+QbPaptcWRK0FR5a/iwJMDYarJizcFpTcRGebKbiOQazMl3OI
-	kCCcW30agNpvDzTNH6qmKBrvzeFofIx8jP90278eYr99ImIZafjDHSNFHFxB8/gnJH5vm2+gj89
-	UNKHJMW1ep8t5paFR/d3MVuP+/y3dTEZzxMifA6DWmh5xCo4mMJ4IbsXmum7GdDwP5ItpCOwcSR
-	F9JP5Ozi4jb1n1eNA354mbosKUuYfCKxdd3mKUa4oLoibgjVEX+Gz435tISEHwBIKUA18CB1vr9
-	JucnAavzkH/0tV77RAZttB2H+RMvwkbnmLrKdcc+KUzuemidPxfohHCqSnabhUZTfM00s4+2s92
-	sh0zjZvZfQx3B5aMuJJTzjwz+Gzox7hajJv6RUWdVNZaI2n6/503C0fPk8xKCsPisOq3oZvkakA
-	MW1g/fuLzNWBegCW2Tvt7hjXGr/fJzqAJgIs7jjsAVzN+Ov/sscQTctAVJKGuuRPo2dvGiWr/MB
-	n6h0CuyaVcUA8pGfBqbJplk/n+Ww==
-Subject: How to decide which Yocto branch to use -krogoth or Jethro or any other
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CC2DEE0030B
+	for <yocto@yoctoproject.org>; Fri, 13 Jan 2017 03:25:13 -0800 (PST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by orsmga105.jf.intel.com with ESMTP; 13 Jan 2017 03:25:12 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.33,221,1477983600"; d="scan'208";a="1093625266"
+Received: from hessakys-mobl1.ger.corp.intel.com (HELO [10.252.14.44])
+	([10.252.14.44])
+	by fmsmga001.fm.intel.com with ESMTP; 13 Jan 2017 03:25:09 -0800
+User-Agent: Microsoft-MacOutlook/14.7.1.161129
+Date: Fri, 13 Jan 2017 13:25:05 +0200
+From: Markus Lehtonen <markus.lehtonen@linux.intel.com>
+To: Chris Trobridge <christrobridge@hotmail.com>, Khem Raj <raj.khem@gmail.com>
+Message-ID: <D49E85B1.6F055%markus.lehtonen@linux.intel.com>
+Thread-Topic: [yocto] Failure Inheriting rpm_sign
+References: <MMXP123MB0125B632BF3BE563B71B6EA1DA630@MMXP123MB0125.GBRP123.PROD.OUTLOOK.COM>
+	<CAMKF1sqAb+CStmPbEcTNb15kUBgj-HTdjCiY89CTwdVmjA-DPQ@mail.gmail.com>
+	<718C63C6-EC5D-474D-8FC2-18573E1B7DBA@hotmail.com>
+In-Reply-To: <718C63C6-EC5D-474D-8FC2-18573E1B7DBA@hotmail.com>
+Mime-version: 1.0
+Cc: Yocto List <yocto@yoctoproject.org>
+Subject: Re: Failure Inheriting rpm_sign
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -79,135 +45,107 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 13 Jan 2017 10:38:36 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_479b9a6cb016421f850b9ae8e1cdbb88FEMBX1014deboschcom_"
+X-List-Received-Date: Fri, 13 Jan 2017 11:25:14 -0000
+Content-type: text/plain;
+	charset="US-ASCII"
+Content-transfer-encoding: 7bit
 
---_000_479b9a6cb016421f850b9ae8e1cdbb88FEMBX1014deboschcom_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+On 11/01/2017, 14.33, "Chris Trobridge" <yocto-bounces@yoctoproject.org on
+behalf of christrobridge@hotmail.com> wrote:
 
-Hello,
+>On Mon, 2017-01-09 at 10:47 -0800, Khem Raj wrote:
+>> On Fri, Jan 6, 2017 at 3:52 AM, Chris Trobridge
+>> <christrobridge@hotmail.com> wrote:
+>> > I am getting "Exception: OSError: [Errno 7] Argument list too long"
+>> > for sign_rpm in the do_package_write_rpm tasks for the
+>> > linux-yocto and glibc-locale recipes.
+>> > 
+>> > This is building core-image-minimal (and also my own image) with
+>> > morty (5aa481d) on Fedora 25.
+>> > 
+>> > I have enabled the rpm signing with:
+>> > 
+>> > INHERIT += " sign_rpm"
+>> > RPM_GPG_NAME = "{name}"
+>> > RPM_GPG_PASSPHRASE = "{passphrase}"
+>> > IMAGE_INSTALL_append = " signing-keys-rpm"
+>> > 
+>> > The error message makes some sense in as much as these recipes
+>> > produce a lot of packages (for example, glibc-locale produces 1791
+>> > packages) and the command line in the log is pretty big, although
+>> > reading around I didn't find a consensus on what the max command
+>> > line should be.
+>> > 
+>> > The code to sign rpms is in meta/lib/oe/gpg_sign.py
+>> > b/meta/lib/oe/gpg_sign.py and it builds up one command line with
+>> > all the packages.
+>> > 
+>> > I changed the code (patch appended) to sign each rpm in a separate
+>> > command and the build completed successfully.  The signing
+>> > operations take a large amount of time so I think this might be a
+>> > reasonable change but you may have other concerns.
+>> 
+>> This certainly is useful, perhaps the signing bits can be moved to
+>> individual
+>> recipe packaging tasks that way it may be parallelized a bit
+>> 
+>
+>Thanks Raj,
+>
+>Something needs to be done as, unless I've messed up somewhere, you
+>cannot build even core-image-minimal with rpm signing enabled so the
+>sign_rpm class is effectively broken.
 
-I am newbie to the Yocto world. I am trying to learn how to create an Embed=
-ded Linux distribution using the Yocto and so far have succeeded in buildin=
-g a base image for my customized board and the system is working fine. I am=
- currently using the Yocto branch - krogoth. I checked the Yocto website fo=
-r the stable releases:
-
-https://wiki.yoctoproject.org/wiki/Releases
-
-Krogoth and Jethro branches are marked as the stable versions. Since the Kr=
-ogoth version is relatively new, I decided to use that. Now I am planning t=
-o create an Yocto based build system for my embedded Product.
-
-What's the influence in choosing one branch over the other. Any long term b=
-enefits or what should I keep in mind when I choose which branch to use? An=
-y inputs on these would be helpful. cheers:)
-Mit freundlichen Gr=FC=DFen / Best regards
-Vinothkumar Eswaran
+Signing should not break this way. Could you create a bug about this.
 
 
 
---_000_479b9a6cb016421f850b9ae8e1cdbb88FEMBX1014deboschcom_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+>The change I made works, but it's true is less efficient than signing
+>rpms individually.  The expense of the signature generation meant it
+>wasn't inefficient to sign each package in a recipe with a separate
+>command.
+>
+>However, looking in package_rpm.bbclass, the end of do_package_rpm()
+>has:
+>
+>if d.getVar('RPM_SIGN_PACKAGES', True) == '1':
+>    bb.build.exec_func("sign_rpm", d)
+>
+>So, to avoid confusion, all the rpms in one recipe are packaged in
+>task, and then that task calls the function  sign all the packages.  I
+>don't know if there's a way for do_package_rpm() to spawn tasks to sign
+>each package individually.
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Verdana;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-p
-	{mso-style-priority:99;
-	mso-margin-top-alt:auto;
-	margin-right:0cm;
-	mso-margin-bottom-alt:auto;
-	margin-left:0cm;
-	font-size:12.0pt;
-	font-family:"Times New Roman",serif;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Arial",sans-serif;
-	color:windowtext;
-	font-weight:normal;
-	font-style:normal;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p><span style=3D"font-family:&quot;Verdana&quot;,sans-serif">Hello,<o:p></=
-o:p></span></p>
-<p><span style=3D"font-family:&quot;Verdana&quot;,sans-serif">I am newbie t=
-o the Yocto world. I am trying to learn how to create an Embedded Linux dis=
-tribution using the Yocto and so far have succeeded in building a base imag=
-e for my customized board and the system is
- working fine. I am currently using the Yocto branch - krogoth. I checked t=
-he Yocto website for the stable releases:<o:p></o:p></span></p>
-<p><span style=3D"font-family:&quot;Verdana&quot;,sans-serif"><a href=3D"ht=
-tps://wiki.yoctoproject.org/wiki/Releases">https://wiki.yoctoproject.org/wi=
-ki/Releases</a><o:p></o:p></span></p>
-<p><span style=3D"font-family:&quot;Verdana&quot;,sans-serif">Krogoth and J=
-ethro branches are marked as the stable versions. Since the Krogoth version=
- is relatively new, I decided to use that. Now I am planning to create an Y=
-octo based build system for my embedded Product.<o:p></o:p></span></p>
-<p><span style=3D"font-family:&quot;Verdana&quot;,sans-serif">What's the in=
-fluence in choosing one branch over the other. Any long term benefits or wh=
-at should I keep in mind when I choose which branch to use? Any inputs on t=
-hese would be helpful. cheers:)<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"DE" style=3D"font-size:12.0pt;font-fam=
-ily:&quot;Verdana&quot;,sans-serif;color:black">Mit freundlichen Gr=FC=DFen=
- / Best regards
-<br>
-Vinothkumar Eswaran<br>
-<br>
-<br>
-</span><span lang=3D"DE" style=3D"font-size:12.0pt;font-family:&quot;Verdan=
-a&quot;,sans-serif"><o:p></o:p></span></p>
-</div>
-</body>
-</html>
+Probably an easy solution would be to sign packages in batches of, say,
+100 packages. That way almost all recipes would be signed in one go. Few
+packages would require multiple invocations of rpm but that shouldn't be
+significant total overhead.
 
---_000_479b9a6cb016421f850b9ae8e1cdbb88FEMBX1014deboschcom_--
+
+
+>I also found I needed 'IMAGE_INSTALL_append = " signing-keys-rpm"'
+>local.conf, to deploy the public key but in sign_rpms.bbclass there is:
+
+Yes, you need to add that package if you want to get the signing keys
+installed in the image.
+
+
+
+>
+>do_package_index[depends] += "signing-keys:do_deploy"
+>do_rootfs[depends] += "signing-keys:do_populate_sysroot"
+>
+>It may be this isn't quite what is required.
+
+These are needed at build time and they do not install anything in the
+final image. The first one is needed for creating rpm package feeds (or
+repositories). The second one is needed needed for rpm-native to have the
+correct keys when it is installing packages to create the rootfs.
+
+
+
+Thanks,
+   Markus
+
+
+
