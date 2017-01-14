@@ -1,37 +1,31 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
+Return-Path: <timothy.t.orling@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id ABCDDE0071C; Fri, 13 Jan 2017 12:33:52 -0800 (PST)
+	id 08371E006EA; Sat, 14 Jan 2017 10:55:39 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 806D8E0034A
-	for <yocto@yoctoproject.org>; Fri, 13 Jan 2017 12:33:48 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id v0DKXl5c008830
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 13 Jan 2017 12:33:47 -0800 (PST)
-Received: from server.local (128.224.21.59) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.40) with Microsoft SMTP Server id 14.3.294.0;
-	Fri, 13 Jan 2017 12:33:46 -0800
-To: George McCollister <george.mccollister@gmail.com>, <yocto@yoctoproject.org>
-References: <20170113202720.16883-1-george.mccollister@gmail.com>
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-Message-ID: <f1f856ca-ebe0-9a90-2eee-a1bac7078e64@windriver.com>
-Date: Fri, 13 Jan 2017 15:33:46 -0500
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:45.0)
-	Gecko/20100101 Thunderbird/45.6.0
-MIME-Version: 1.0
-In-Reply-To: <20170113202720.16883-1-george.mccollister@gmail.com>
-Subject: Re: [kernel-tools][PATCH] scc: Fix process_file error check
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [134.134.136.31 listed in list.dnswl.org]
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C9FD8E0052B
+	for <yocto@yoctoproject.org>; Sat, 14 Jan 2017 10:55:36 -0800 (PST)
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+	by orsmga104.jf.intel.com with ESMTP; 14 Jan 2017 10:55:35 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.33,229,1477983600"; d="scan'208";a="53048868"
+Received: from timo-fedora.jf.intel.com ([10.7.201.162])
+	by orsmga005.jf.intel.com with ESMTP; 14 Jan 2017 10:55:36 -0800
+From: Tim Orling <timothy.t.orling@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Sat, 14 Jan 2017 10:59:14 -0800
+Message-Id: <1484420355-12038-1-git-send-email-timothy.t.orling@linux.intel.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [eclipse-poky][PATCH 1/2] Update setup.sh to Neon.1 release
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,56 +37,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 13 Jan 2017 20:33:52 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sat, 14 Jan 2017 18:55:40 -0000
 
-On 2017-01-13 3:27 PM, George McCollister wrote:
-> Commit 626ceac135fa66277c2fa53197be33cc9d4d7614 broke the error check in
-> process_file by adding in three lines that stomp on $? which print the
-> output file when verbose is set.
->
-> Move output file on verbose print to an elif after the error check.
+Signed-off-by: Tim Orling <timothy.t.orling@linux.intel.com>
+---
+ scripts/setup.sh | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 
-Good catch!
-
-Merged.
-
-My oe-core submissions are queued up at the moment, but I'll have this
-in my next batch.
-
-Bruce
-
->
-> Signed-off-by: George McCollister <george.mccollister@gmail.com>
-> ---
->  tools/scc | 6 ++----
->  1 file changed, 2 insertions(+), 4 deletions(-)
->
-> diff --git a/tools/scc b/tools/scc
-> index 4cd68a4..3d17496 100755
-> --- a/tools/scc
-> +++ b/tools/scc
-> @@ -246,10 +246,6 @@ process_file()
->          )
->      )
->
-> -    if [ -n "${verbose}" ]; then
-> -        cat ${scc_output_file}
-> -    fi
-> -
->      if [ $? -ne 0 ]; then
->          echo "[ERROR]: processing of file $in failed"
->          cat ${scc_output_file}
-> @@ -275,6 +271,8 @@ process_file()
->          fi
->  	rm -f ${scc_output_file}
->          exit 1
-> +    elif [ -n "${verbose}" ]; then
-> +        cat ${scc_output_file}
->      fi
->
->      rm -f ${scc_output_file}
->
+diff --git a/scripts/setup.sh b/scripts/setup.sh
+index e1f7ca5..93d5147 100755
+--- a/scripts/setup.sh
++++ b/scripts/setup.sh
+@@ -1,6 +1,6 @@
+ #!/bin/bash
+ 
+-#setup Yocto Eclipse plug-in build environment for Neon
++#setup Yocto Eclipse plug-in build environment for Neon.1
+ #comment out the following line if you wish to use your own http proxy settings
+ #export http_proxy=http://proxy.yourproxyinfo.com:8080
+ 
+@@ -92,12 +92,12 @@ fi
+ 
+ # prepare the base Eclipse installation in folder "eclipse"
+ ep_rel="R-"
+-ep_ver="4.6"
+-ep_date="-201606061100"
++ep_ver="4.6.1"
++ep_date="-201609071200"
+ P2_disabled=false
+ P2_no_dropins=false
+ 
+-if [ ! -f eclipse/plugins/org.eclipse.swt_3.105.0.v20160603-0902.jar ]; then
++if [ ! -f eclipse/plugins/org.eclipse.swt_3.105.1.v20160907-0248.jar ]; then
+ 
+   pushd .
+ 
+@@ -261,11 +261,11 @@ UPDATE_SITE="http://download.eclipse.org/eclipse/updates/4.6"
+ 
+ #CDT related
+ echo -e "\nPlease wait. Installing CDT.SDK.FEATURE.GROUP"
+-CDTFEAT="9.0.0"
++CDTFEAT="9.1.0"
+ update_feature_remote ${MAIN_SITE} org.eclipse.cdt.sdk.feature.group ${CDTFEAT}
+ 
+ echo -e "\nPlease wait. Installing CDT.LAUNCH.REMOTE.FEATURE.GROUP"
+-CDTREMOTEVER="9.0.0"
++CDTREMOTEVER="9.1.0"
+ update_feature_remote ${MAIN_SITE} org.eclipse.cdt.launch.remote.feature.group ${CDTREMOTEVER}
+ 
+ #TM Terminal (was RSE) related
+@@ -293,7 +293,7 @@ update_feature_remote ${TM_SITE} org.eclipse.rse.terminals.feature.group ${RSETE
+ 
+ #AUTOTOOLS
+ echo -e "\nPlease wait. Installing AUTOTOOLS.FEATURE.GROUP"
+-ATVER="9.0.0"
++ATVER="9.1.0"
+ update_feature_remote ${MAIN_SITE} org.eclipse.cdt.autotools.feature.group ${ATVER}
+ 
+ #Lttng2
+-- 
+2.7.4
 
 
