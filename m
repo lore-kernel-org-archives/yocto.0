@@ -1,66 +1,69 @@
 Return-Path: <nathan@nathanrossi.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 32388E00985; Mon, 16 Jan 2017 06:24:47 -0800 (PST)
+	id BB99EE00985; Mon, 16 Jan 2017 06:24:52 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [74.125.83.65 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.192.195 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.192.195 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pg0-f65.google.com (mail-pg0-f65.google.com [74.125.83.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E439DE009F0
-	for <yocto@yoctoproject.org>; Mon, 16 Jan 2017 06:24:32 -0800 (PST)
-Received: by mail-pg0-f65.google.com with SMTP id 204so5499868pge.2
-	for <yocto@yoctoproject.org>; Mon, 16 Jan 2017 06:24:32 -0800 (PST)
+Received: from mail-pf0-f195.google.com (mail-pf0-f195.google.com
+	[209.85.192.195])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B72CCE009A0
+	for <yocto@yoctoproject.org>; Mon, 16 Jan 2017 06:24:39 -0800 (PST)
+Received: by mail-pf0-f195.google.com with SMTP id e4so3931543pfg.0
+	for <yocto@yoctoproject.org>; Mon, 16 Jan 2017 06:24:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=nathanrossi.com; s=google;
 	h=date:message-id:in-reply-to:references:from:to:cc:subject
 	:mime-version:content-transfer-encoding;
-	bh=8I+WmDNd9yXWv0L864OULsrvhG7XRCdGW51u5ybAsm0=;
-	b=hzmZUcIT/h82pBX3jYwu3MUlFn1f4o322wiW4YLtXVMKfYOUbK9uQegQuNa7yhdMqI
-	G4I/iMvls5uf/CM+HjFPo1K27g2/kPXhlzyJcn2TRth/lfOsJw/ytMIMb8sLUA39GfnM
-	al9bTvHtcZ0v1H86neLCMlh64SeSdDppA8tTX/rb6ciuq+hn3GLEfh9ROGVCiZRJPNEL
-	OilTc9YPOSxFfbvskuXZ0sgLBbc/oL4U7mArVke8f47NSB6ukGpo/I4XcNT6RMCt5cOY
-	eJw+BvgO6mg2vF9Wxysw4kfkP9IPId8RIA3OMQluVg9VLVNwI4tJ9KgyBq3SVVDNCF12
-	jUbw==
+	bh=fv2QWmVGBQGiBt0ymsvBlJ0dtNjmkriZSHTkEcLP7w0=;
+	b=dtGjUTBf4k+H9spHi21+KG7gPAPwsVs9nem5iqui+3tV9dIUPLKf2+9rvyszTMzvG+
+	QUrXkyuH5uwjzzd7XsOAQxZRvq3jHPEpOkaWt0VQsgWL+/h8jEPjHIcaEf8RGouS/cMG
+	jmCKnGsM0o/nz6GK1B9p9+EwI2KGLmBUg51fFXfi7QJyb52006NJHn6nu36grwdZFTtg
+	LnAV1BtZCkAwsJ/lSAbSlsKKGc7dBy9oRYw3eYKzYgvRwkPmMNvRA3WzT4a4/u9eVEdv
+	8cNqUwxqnpSX38v6TzXQKLjh2o6TDk0CyUhVejH2Oxbqp8YVSXG94J+0lX3W2mGYpbQO
+	AHjA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:date:message-id:in-reply-to:references:from:to
 	:cc:subject:mime-version:content-transfer-encoding;
-	bh=8I+WmDNd9yXWv0L864OULsrvhG7XRCdGW51u5ybAsm0=;
-	b=TvR7R32GOwHIaXhJXVyzLYzJA0dY3aIg1yQm/kLvBK9O3dPoWzLXPPB+bQj+gdwVp3
-	i0Vtq8Cfyha7kXZ4OGhgmjET9L3SFHe+fdGnwITjO5w8xRP08jPUrDigHScFx5NNupDM
-	UMqKSehPd/IGZ5Cl72z+MXlZZwc1wyq9srWLSotNhNPiH32VFKvqlZIgf/JqWw3jtNpy
-	FVf3nQXk7H/Gv3xWnzZiM6D8IhW+yRrF4JPJvRIAPbyyvlo5TtJYn1CmUMlgbMK3cgLi
-	oNwyc/iaePE5fdc/pcuE8wyzllXXGVr7iXoiIkLops/fBNIoCIXkS1ACYYIha65MrGyN
-	JUJw==
-X-Gm-Message-State: AIkVDXLeZSDKyPPKoOS+It3BrXGdx2QDgF/UxcyMkFsDFV2G3Kh8ELKmPKfY1sL3ICPAWw==
-X-Received: by 10.99.127.71 with SMTP id p7mr40075841pgn.125.1484576672662;
-	Mon, 16 Jan 2017 06:24:32 -0800 (PST)
+	bh=fv2QWmVGBQGiBt0ymsvBlJ0dtNjmkriZSHTkEcLP7w0=;
+	b=bSKn65H772FkVcj2iqEHR3CP9jJjJNt3JMt0dTAuyFUidjBiFvpkI1TZ88WDBfFz2h
+	rhAx6lnVash5xCea71Qp3iKYcYNfM/FRKQQtpvISQ2wcAIprJUXZX/DuisTDQIkmUxRk
+	/EOW5kLGV5L5U9oWWNNvM6ZDrNO6vdr9kMgGb6/0XzzUde19Gt0qTU2x1asWPo+Hh6SU
+	q/85cSbPRQ3xy0gPxjxYZaFWfHBrtg62B4wHYVd+f7CR8jY8RbCQjeadDRX5zRhX2U8L
+	7gt6JvkaZJxHU2Vf1XbZnTT7t27pl8RyibIMCKH/aK7CJ7NtTEAugr5wJ08O+RinLHhY
+	o3hA==
+X-Gm-Message-State: AIkVDXKcTdiJ6vIDpxqFExb6i7kfCcmRBh3Gu0+ImMohh9FQNCymHUUUluS1bAEpA4+H+w==
+X-Received: by 10.84.236.76 with SMTP id h12mr51098325pln.173.1484576679188;
+	Mon, 16 Jan 2017 06:24:39 -0800 (PST)
 Received: from [127.0.1.1] (CPE-58-165-45-185.lns1.lon.bigpond.net.au.
 	[58.165.45.185]) by smtp.gmail.com with ESMTPSA id
-	f191sm9040152pgc.12.2017.01.16.06.24.30
+	f191sm9040777pgc.12.2017.01.16.06.24.36
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Mon, 16 Jan 2017 06:24:32 -0800 (PST)
+	Mon, 16 Jan 2017 06:24:38 -0800 (PST)
 Date: Tue, 17 Jan 2017 00:23:41 +1000
-Message-Id: <20170116142341.5400-6-nathan@nathanrossi.com>
+Message-Id: <20170116142341.5400-7-nathan@nathanrossi.com>
 In-Reply-To: <20170116142341.5400-0-nathan@nathanrossi.com>
 References: <20170116142341.5400-0-nathan@nathanrossi.com>
 From: Nathan Rossi <nathan@nathanrossi.com>
 To: yocto@yoctoproject.org
 MIME-Version: 1.0
 Cc: Alistair Francis <alistai@xilinx.com>
-Subject: [meta-mingw][PATCH 6/7] libgcc_%.bbappend: Relocate and package dll's in bindir
+Subject: [meta-mingw][PATCH 7/7] dtc_%.bbappend: Only build libfdt for mingw32
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,34 +75,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 16 Jan 2017 14:24:47 -0000
+X-List-Received-Date: Mon, 16 Jan 2017 14:24:52 -0000
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 
-Relocate and package the dll's provided by libgcc in bindir. It is
-convention that on mingw/windows dll files are installed into the
-bindir, this is done to avoid issues with search paths and allows for
-execution of binaries without the need to point at a libdir.
+Whilst building libfdt on mingw32 is functional, building dtc for minw32
+is not. This is due to dtc relying on certain POSIX functions as well as
+not handling the MSVCRT printf formatting.
+
+This change enables building and installing libfdt only for mingw32,
+disabling the build of device-tree-compiler itself.
 
 Signed-off-by: Nathan Rossi <nathan@nathanrossi.com>
 ---
- recipes-devtools/gcc/libgcc_%.bbappend | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
+ recipes-core/dtc/dtc_%.bbappend | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
+ create mode 100644 recipes-core/dtc/dtc_%.bbappend
 
-diff --git a/recipes-devtools/gcc/libgcc_%.bbappend b/recipes-devtools/gcc/libgcc_%.bbappend
-index dd95317618..2a95d02cad 100644
---- a/recipes-devtools/gcc/libgcc_%.bbappend
-+++ b/recipes-devtools/gcc/libgcc_%.bbappend
-@@ -1,2 +1,8 @@
--FILES_${PN}_append_mingw32 = " ${base_libdir}/libgcc*.dll"
-+FILES_${PN}_append_mingw32 = " ${bindir}/libgcc*.dll"
- FILES_${PN}-dev_append_mingw32 = " ${base_libdir}/libgcc*.a"
+diff --git a/recipes-core/dtc/dtc_%.bbappend b/recipes-core/dtc/dtc_%.bbappend
+new file mode 100644
+index 0000000000..140693778a
+--- /dev/null
++++ b/recipes-core/dtc/dtc_%.bbappend
+@@ -0,0 +1,16 @@
 +
-+do_install_append_mingw32 () {
-+	# move the .dll files into bindir
-+	install -d ${D}${bindir}
-+	mv ${D}${base_libdir}/libgcc*.dll ${D}${bindir}/
++do_configure_append_mingw32 () {
++		# don't try to build the other dtc components when installing libs
++		sed -i 's/install-lib: all/install-lib: libfdt/g' ${S}/Makefile
 +}
++
++do_compile_mingw32 () {
++		oe_runmake libfdt
++}
++
++do_install_mingw32 () {
++		oe_runmake install-lib install-includes
++}
++
++RDEPENDS_${PN}-misc_remove_mingw32 = "bash"
++
 -- 
 2.11.0
 
