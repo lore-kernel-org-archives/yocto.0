@@ -1,44 +1,65 @@
-Return-Path: <paul@paulbarker.me.uk>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7A4E2E00805; Mon, 16 Jan 2017 07:12:58 -0800 (PST)
+	id B432CE00805; Mon, 16 Jan 2017 07:41:04 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_LOW,
+	RCVD_IN_SORBS_SPAM autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [217.70.183.195 listed in list.dnswl.org]
+	*      [209.85.220.175 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.220.175 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net
-	[217.70.183.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D4987E0078F
-	for <yocto@yoctoproject.org>; Mon, 16 Jan 2017 07:12:55 -0800 (PST)
-Received: from mfilter6-d.gandi.net (mfilter6-d.gandi.net [217.70.178.135])
-	by relay3-d.mail.gandi.net (Postfix) with ESMTP id AF133A814B;
-	Mon, 16 Jan 2017 16:12:54 +0100 (CET)
-X-Virus-Scanned: Debian amavisd-new at mfilter6-d.gandi.net
-Received: from relay3-d.mail.gandi.net ([IPv6:::ffff:217.70.183.195])
-	by mfilter6-d.gandi.net (mfilter6-d.gandi.net [::ffff:10.0.15.180])
-	(amavisd-new, port 10024)
-	with ESMTP id aUuLgdkgaaTH; Mon, 16 Jan 2017 16:12:53 +0100 (CET)
-X-Originating-IP: 131.231.60.35
-Received: from [10.10.10.204] (inno-commagility-ownrouter.lut.ac.uk
-	[131.231.60.35]) (Authenticated sender: paul@paulbarker.me.uk)
-	by relay3-d.mail.gandi.net (Postfix) with ESMTPSA id 8199BA80EE;
-	Mon, 16 Jan 2017 16:12:52 +0100 (CET)
-Date: Mon, 16 Jan 2017 15:12:51 +0000
-User-Agent: K-9 Mail for Android
-In-Reply-To: <d027a8ed-4f40-e4cb-d1de-349d93343f63@mlbassoc.com>
-References: <1484551617-11222-1-git-send-email-paul@paulbarker.me.uk>
-	<8b8a6e45-6aa1-1536-92ae-837192b97ca7@mlbassoc.com>
-	<d027a8ed-4f40-e4cb-d1de-349d93343f63@mlbassoc.com>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-qk0-f175.google.com (mail-qk0-f175.google.com
+	[209.85.220.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4C813E007A7
+	for <yocto@yoctoproject.org>; Mon, 16 Jan 2017 07:41:01 -0800 (PST)
+Received: by mail-qk0-f175.google.com with SMTP id a20so122691733qkc.1
+	for <yocto@yoctoproject.org>; Mon, 16 Jan 2017 07:41:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=wCOGE8ve/D49Haj6O4fpRqAW0+Afa6KgN2CqrZ6KQ98=;
+	b=IWxRoBTugn4YNmFpsCapKBWxbTUNKYQioTwKM6Qf8G4lPvw6zR+sKGcezj9BynnHZq
+	qQC9egt+qJdqvoa/0CtiF3ul27PYuuJhuGuBmj/RCQUfPe/BAHRyfo//HvIufr5fvbkz
+	UysT+F9ESubF56PZuJydmXwpJvwzGiDEKnt+k22nTrRrmbHoXdu2twsyTnLBBzu/9cvy
+	V6xrQKa/Hj2dOtUICDDoWmybyKWstlhErsmffpN7nlYO+XGjBpzAamp55n41PAwPv8VS
+	ari7my911i2KdKWJkkyDxJdfiy9cOUHftkH4VPba6n9lOE8hHSuFsZ6rjyR33Q6P0hzN
+	GRlQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=wCOGE8ve/D49Haj6O4fpRqAW0+Afa6KgN2CqrZ6KQ98=;
+	b=rpOhyd6C4jkXE/2h/wf1Ir8jBtFlB7/rTGVfamNs7VrHveqOX/ht4j24tDQLFDUpGp
+	7dpv2bwXkAPebLM+ARNCh8/D3fMU5sMHBWmwT+BrRyr/JRP7dry0IBv0CGi0PykZz/xw
+	iZ8wIrZnz6XW3EzlemyEOnGw6l1743t1FdILOqq1pMogpZmRIaoEXXyVgqDE40rzBlfC
+	cfkh7moyKBVrAK6FF3BeTEQiSyzuL2atqe+JU5EKPtSOUGo+TcPSvGLNFIQI424nqokB
+	nbD2HSvS2Uv/qMT2MZJnsCaLsMf17oLaNlsAVHci1lwdJ06tNOd0SwAtupZW8RUA0auG
+	CtJQ==
+X-Gm-Message-State: AIkVDXL6t3DqeCz0qDlqk4zHUnHLItLbhtHKPeiUuOf09Fq8JFEnRA+K+6KnUt8uJ3VDxqVam89YYbA7a0gNexaL
+X-Received: by 10.55.31.24 with SMTP id f24mr29674086qkf.221.1484581261421;
+	Mon, 16 Jan 2017 07:41:01 -0800 (PST)
 MIME-Version: 1.0
-To: yocto@yoctoproject.org,Gary Thomas <gary@mlbassoc.com>
-From: Paul Barker <paul@paulbarker.me.uk>
-Message-ID: <E4828DAD-529B-4C43-A13B-67096B6741EE@paulbarker.me.uk>
-Subject: Re: [meta-raspberrypi][PATCH 0/2] Drop kernel versions 4.7 and 4.8
+Received: by 10.140.103.233 with HTTP; Mon, 16 Jan 2017 07:40:41 -0800 (PST)
+In-Reply-To: <MMXP123MB0125453F658E5DDFDDBD3FECDA7D0@MMXP123MB0125.GBRP123.PROD.OUTLOOK.COM>
+References: <MMXP123MB0125266F42AF93B43F4F1BD7DA7D0@MMXP123MB0125.GBRP123.PROD.OUTLOOK.COM>
+	<CAMjhiJh+bbE1v1FRSWtaRoY+ncCxhr7Oqgb07soTfiipU6Qy8Q@mail.gmail.com>
+	<MMXP123MB0125453F658E5DDFDDBD3FECDA7D0@MMXP123MB0125.GBRP123.PROD.OUTLOOK.COM>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Mon, 16 Jan 2017 15:40:41 +0000
+Message-ID: <CAJTo0LaSMudTXAh5AzsqTb+rU2Cyc66UoE0jY48SJaW24hCdmQ@mail.gmail.com>
+To: Chris Trobridge <christrobridge@hotmail.com>
+Cc: Yocto List <yocto@yoctoproject.org>
+Subject: Re: Illegal Instruction Generate for Intel Atom
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,94 +71,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 16 Jan 2017 15:12:58 -0000
-Content-Type: text/plain;
- charset=utf-8
+X-List-Received-Date: Mon, 16 Jan 2017 15:41:04 -0000
+Content-Type: multipart/alternative; boundary=001a1147e2baba432705463802d8
+
+--001a1147e2baba432705463802d8
+Content-Type: text/plain; charset=UTF-8
+
+On 16 January 2017 at 14:47, Chris Trobridge <christrobridge@hotmail.com>
+wrote:
+
+> Managed to get the actual compiler lines and the initial args are "-m32
+> -march=i586" but there is "-march=native" appended to the end of the line.
+>
+>
+Looks like asterisk itself is adding -march=native, so you'll need to dig
+through it's makefiles and work out how to disable it (or just delete them).
+
+Ross
+
+--001a1147e2baba432705463802d8
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-On 16 January 2017 14:51:55 GMT+00:00, Gary Thomas <gary@mlbassoc=2Ecom> wr=
-ote:
->On 2017-01-16 15:48, Gary Thomas wrote:
->> On 2017-01-16 08:26, Paul Barker wrote:
->>> As discussed recently on the list, we can just keep LTS versions now
->>> that v4=2E9 is available=2E
->>>
->>> I'm sending these so anyone who still needs v4=2E7 or v4=2E8 can shout
->>> 'stop!' before we remove them=2E
->>>
->>> Paul Barker (2):
->>>   linux-raspberrypi: Drop v4=2E7
->>>   linux-raspberrypi: Drop v4=2E8
->>>
->>>  =2E=2E=2E/0001-fix-dtbo-rules=2Epatch                      | 44
->----------------------
->>>  recipes-kernel/linux/linux-raspberrypi_4=2E7=2Ebb      |  9 -----
->>>  recipes-kernel/linux/linux-raspberrypi_4=2E8=2Ebb      |  8 ----
->>>  3 files changed, 61 deletions(-)
->>>  delete mode 100644
->recipes-kernel/linux/linux-raspberrypi-4=2E7/0001-fix-dtbo-rules=2Epatch
->>>  delete mode 100644 recipes-kernel/linux/linux-raspberrypi_4=2E7=2Ebb
->>>  delete mode 100644 recipes-kernel/linux/linux-raspberrypi_4=2E8=2Ebb
->>>
->>
->> +1 at least for 4=2E7 given that with today's repo I get this:
->>
->> ERROR: linux-raspberrypi-1_4=2E7=2E7+gitAUTOINC+c2cbd9c611-r0
->do_kernel_version_sanity_check: Package Version
->> (4=2E7=2E7+gitAUTOINC+c2cbd9c611) does not match of kernel being built
->(4=2E7=2E10)=2E Please update the PV variable to match the
->> kernel source=2E
->> ERROR: linux-raspberrypi-1_4=2E7=2E7+gitAUTOINC+c2cbd9c611-r0
->do_kernel_version_sanity_check: Function failed:
->> do_kernel_version_sanity_check (log file is located at
->>
->/build/rpi3_2016-09-13/tmp/work/raspberrypi3-amltd-linux-gnueabi/linux-ra=
-spberrypi/1_4=2E7=2E7+gitAUTOINC+c2cbd9c611-r0/temp/log=2Edo_kernel_version=
-_sanity_check=2E27925)
->>
->> ERROR: Logfile of failure stored in:
->>
->/build/rpi3_2016-09-13/tmp/work/raspberrypi3-amltd-linux-gnueabi/linux-ra=
-spberrypi/1_4=2E7=2E7+gitAUTOINC+c2cbd9c611-r0/temp/log=2Edo_kernel_version=
-_sanity_check=2E27925
->>
->> ERROR: Task
->>
->(/local/poky-cutting-edge/meta-raspberrypi/recipes-kernel/linux/linux-ras=
-pberrypi_4=2E7=2Ebb:do_kernel_version_sanity_check)
->> failed with exit code '1'
->>
->
->
->However, there is this error when I tried to switch to 4=2E9:
->ERROR: linux-raspberrypi-1_4=2E9=2E2+gitAUTOINC+4052b0da7d-r0 do_fetch:
->Fetcher failure: Unable to find revision=20
->4052b0da7dbab0df22ca8733cf50b3e573e221e0 in branch rpi-4=2E9=2Ey even fro=
-m
->upstream
->ERROR: linux-raspberrypi-1_4=2E9=2E2+gitAUTOINC+4052b0da7d-r0 do_fetch:
->Fetcher failure for URL:=20
->'git://github=2Ecom/raspberrypi/linux=2Egit;protocol=3Dgit;branch=3Drpi-4=
-=2E9=2Ey'=2E
->Unable to fetch URL from any source=2E
->ERROR: linux-raspberrypi-1_4=2E9=2E2+gitAUTOINC+4052b0da7d-r0 do_fetch:
->Function failed: base_do_fetch
->ERROR: Logfile of failure stored in:=20
->/build/rpi3_2016-09-13/tmp/work/raspberrypi3-amltd-linux-gnueabi/linux-ra=
-spberrypi/1_4=2E9=2E2+gitAUTOINC+4052b0da7d-r0/temp/log=2Edo_fetch=2E13098
->ERROR: Task
->(/local/poky-cutting-edge/meta-raspberrypi/recipes-kernel/linux/linux-ras=
-pberrypi_4=2E9=2Ebb:do_fetch)
->failed=20
->with exit code '1'
->
->Using meta-raspberrypi:e1f69daa805cb02ddd123ae2d4d48035cb5b41d0
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 16 January 2017 at 14:47, Chris Trobridge <span dir=3D"ltr">&lt;<a href=
+=3D"mailto:christrobridge@hotmail.com" target=3D"_blank">christrobridge@hot=
+mail.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=
+=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><p>Manag=
+ed to get the actual compiler lines and the initial args are &quot;<span>-m=
+32 -march=3Di586&quot; but</span>=C2=A0there is &quot;<span>-march=3Dnative=
+&quot; appended to the end of the line.</span></p>
+<p></p></blockquote></div><br>Looks like asterisk itself is adding -march=
+=3Dnative, so you&#39;ll need to dig through it&#39;s makefiles and work ou=
+t how to disable it (or just delete them).</div><div class=3D"gmail_extra">=
+<br></div><div class=3D"gmail_extra">Ross</div></div>
 
-I think any upstream branch after 4=2E4=2Ey is still at risk of being reba=
-sed at the minute=2E I think the best solution is to still drop 4=2E7=2Ey a=
-nd 4=2E8=2Ey, but try to get an update in for 4=2E9=2Ey first=2E
-
-
---=20
-Sent from my Android device with K-9 Mail=2E Please excuse my brevity=2E
-
+--001a1147e2baba432705463802d8--
