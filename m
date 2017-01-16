@@ -1,26 +1,43 @@
-Return-Path: <recipe-report@yoctoproject.org>
+Return-Path: <paul@paulbarker.me.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 23A1AE00828; Sun, 15 Jan 2017 21:34:27 -0800 (PST)
+	id CAB27E00828; Sun, 15 Jan 2017 23:15:29 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [217.70.183.195 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from packages.yoctoproject.org (unknown [198.145.29.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BC768E006EA
-	for <yocto@yoctoproject.org>; Sun, 15 Jan 2017 21:34:25 -0800 (PST)
-Received: from packages.yoctoproject.org (localhost [IPv6:::1])
-	by packages.yoctoproject.org (Postfix) with ESMTP id B389484A4C45
-	for <yocto@yoctoproject.org>; Mon, 16 Jan 2017 00:34:24 -0500 (EST)
-MIME-Version: 1.0
-From: recipe-report@yoctoproject.org
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net
+	[217.70.183.195])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4774AE006EA
+	for <yocto@yoctoproject.org>; Sun, 15 Jan 2017 23:15:27 -0800 (PST)
+Received: from mfilter40-d.gandi.net (mfilter40-d.gandi.net [217.70.178.171])
+	by relay3-d.mail.gandi.net (Postfix) with ESMTP id 878F1A80C4;
+	Mon, 16 Jan 2017 08:15:26 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at mfilter40-d.gandi.net
+Received: from relay3-d.mail.gandi.net ([IPv6:::ffff:217.70.183.195])
+	by mfilter40-d.gandi.net (mfilter40-d.gandi.net [::ffff:10.0.15.180])
+	(amavisd-new, port 10024)
+	with ESMTP id BhL3cF-YOyNi; Mon, 16 Jan 2017 08:15:25 +0100 (CET)
+X-Originating-IP: 86.24.150.36
+Received: from nuc.betafive.co.uk
+	(cpc15-shep11-2-0-cust35.8-3.cable.virginm.net [86.24.150.36])
+	(Authenticated sender: paul@paulbarker.me.uk)
+	by relay3-d.mail.gandi.net (Postfix) with ESMTPSA id A74D3A80C6;
+	Mon, 16 Jan 2017 08:15:24 +0100 (CET)
+Date: Mon, 16 Jan 2017 07:15:23 +0000
+From: Paul Barker <paul@paulbarker.me.uk>
 To: yocto@yoctoproject.org
-Date: Mon, 16 Jan 2017 05:34:24 -0000
-Message-ID: <20170116053424.13013.39034@packages.yoctoproject.org>
-Subject: [Recipe reporting system] Upgradable recipe name list
+Message-ID: <20170116071523.4bae5890@nuc.betafive.co.uk>
+In-Reply-To: <1483363213-27822-1-git-send-email-paul@paulbarker.me.uk>
+References: <1483363213-27822-1-git-send-email-paul@paulbarker.me.uk>
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Subject: Re: [meta-raspberrypi][PATCH 0/3] Kernel update and getVar cleanup
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,161 +49,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 16 Jan 2017 05:34:27 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 16 Jan 2017 07:15:29 -0000
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-This mail was sent out by Recipe reporting system.
+On Mon,  2 Jan 2017 13:20:10 +0000
+Paul Barker <paul@paulbarker.me.uk> wrote:
 
-This message list those recipes which need to be upgraded. If maintainers
-believe some of them needn't to upgrade at this time, they can fill
-RECIPE_NO_UPDATE_REASON in respective recipe file to ignore this remainder
-until newer upstream version was detected.
+> These patches have been boot tested for both raspberrypi and raspberrypi3.
+> 
+> The first patch in the series probably breaks things for the morty branch. I'm
+> also proposing we drop support for linux-raspberrypi v4.1 as it's currently
+> broken on master. We should create a morty branch for meta-raspberrypi before
+> applying these patches.
+> 
+> Any objections to dropping linux-raspberrypi v4.1 or making a morty branch at
+> this point?
+> 
+> Paul Barker (3):
+>   Remove True option to getVar calls
+>   linux-raspberrypi: Drop v4.1
+>   linux-raspberrypi: Upgrade to v4.4.39
+> 
+>  classes/linux-raspberrypi-base.bbclass             |   4 +-
+>  .../0001-dts-add-overlay-for-pitft22.patch         | 110 ---------------------
+>  ...ove-unused-sm_cache_map_vector-definition.patch |  31 ------
+>  .../linux-raspberrypi-4.1/0003-fix-gcc6.patch      |  78 ---------------
+>  recipes-kernel/linux/linux-raspberrypi.inc         |   4 +-
+>  recipes-kernel/linux/linux-raspberrypi_4.1.bb      |  12 ---
+>  recipes-kernel/linux/linux-raspberrypi_4.4.bb      |   4 +-
+>  7 files changed, 6 insertions(+), 237 deletions(-)
+>  delete mode 100644 recipes-kernel/linux/linux-raspberrypi-4.1/0001-dts-add-overlay-for-pitft22.patch
+>  delete mode 100644 recipes-kernel/linux/linux-raspberrypi-4.1/0002-vmcs-Remove-unused-sm_cache_map_vector-definition.patch
+>  delete mode 100644 recipes-kernel/linux/linux-raspberrypi-4.1/0003-fix-gcc6.patch
+>  delete mode 100644 recipes-kernel/linux/linux-raspberrypi_4.1.bb
+> 
 
-Example:
-RECIPE_NO_UPDATE_REASON = "Version 2.0 is unstable"
-
-You can check the detail information at:
-
-http://recipes.yoctoproject.org/
-
-Package               Version       Upstream version      Maintainer            NoUpgradeReason
---------------------  ------------  --------------------  --------------------  ------------------------------
-opkg-utils            0.3.2+gitX    0.3.4+gitAUTOINC+...  Alejandro del Cas...
-opkg                  0.3.3         0.3.4                 Alejandro del Cas...
-python3               3.5.2         3.6.0                 Alejandro Hernandez
-python                2.7.12        2.7.13                Alejandro Hernandez
-eudev                 3.2           3.2.1                 Alejandro Hernandez
-python-native         2.7.12        2.7.13                Alejandro Hernandez
-python3-native        3.5.2         3.6.0                 Alejandro Hernandez
-liberation-fonts      1.04          2.00.1                Alexander Kanavin     2.x depends on fontforge pa...
-boost                 1.62.0        1.63.0                Alexander Kanavin
-openssl               1.0.2j        1.1.0c                Alexander Kanavin
-bjam-native           1.62.0        1.63.0                Alexander Kanavin
-gnutls                3.5.7         3.5.8                 Alexander Kanavin
-libnl                 3.2.28        3.2.29                Alexander Kanavin
-kbd                   2.0.3         2.0.4                 Alexander Kanavin
-gperf                 3.0.4         3.1                   Alexander Kanavin
-nss                   3.27.1        3.28.1                Alexander Kanavin
-lighttpd              1.4.43        1.4.45                Alexander Kanavin
-btrfs-tools           4.8.5         4.9                   Alexander Kanavin
-cmake                 3.7.1         3.7.2                 Alexander Kanavin
-cmake-native          3.7.1         3.7.2                 Alexander Kanavin
-iso-codes             3.72          3.73                  Alexander Kanavin
-epiphany              3.22.3        3.22.4                Alexander Kanavin
-babeltrace            1.5.0         1.5.1                 Alexander Kanavin
-libwebp               0.5.1         0.5.2                 Alexander Kanavin
-mkelfimage            4.0+gitX      4.5+gitAUTOINC+0b...  Alexander Kanavin     mkelfimage has been removed...
-perl                  5.24.0        5.24.1                Aníbal Limón
-qemu                  2.7.0         2.8.0                 Aníbal Limón
-dpkg                  1.18.7        1.18.18               Aníbal Limón
-perl-native           5.24.0        5.24.1                Aníbal Limón
-pinentry              0.9.2         1.0.0                 Armin Kuster
-linux-libc-headers    4.8           4.9.4                 Bruce Ashfield
-linux-yocto-rt        4.8.12+gitX   4.8.17+gitAUTOINC...  Bruce Ashfield
-linux-yocto           4.8.12+gitX   4.8.17+gitAUTOINC...  Bruce Ashfield
-libunwind             1.1+gitX      1.2+gitAUTOINC+cc...  Bruce Ashfield
-linux-yocto-tiny      4.8.12+gitX   4.8.17+gitAUTOINC...  Bruce Ashfield
-busybox               1.25.0+gitX   1.26.2+gitAUTOINC...  Chen Qi
-dbus                  1.10.10       1.10.14               Chen Qi
-byacc                 20160606      20161202              Chen Qi
-dbus-test             1.10.10       1.10.14               Chen Qi
-sed                   4.2.2         4.3                   Chen Qi
-sudo                  1.8.18p1      1.8.19p2              Chen Qi
-sysstat               11.4.0        11.5.4                Chen Qi
-systemd-bootchart     230+gitX      231+gitAUTOINC+9e...  Chen Qi
-flex                  2.6.0         2.6.3                 Chen Qi
-xz                    5.2.2         5.2.3                 Chen Qi
-coreutils             8.25          8.26                  Chen Qi
-grep                  2.26          2.27                  Chen Qi
-build-appliance-i...  15.0.0        16.0.0                Cristian Iorga
-openssh               7.3p1         7.4p1                 Dengke Du
-chkconfig             1.3.58        1.8                   Dengke Du             Version 1.5 requires selinux
-ltp                   20160126      20160920              Dengke Du
-u-boot-fw-utils       2016.11       2017.01               Denys Dmytriyenko
-u-boot-mkimage        2016.11       2017.01               Denys Dmytriyenko
-u-boot                2016.11       2017.01               Denys Dmytriyenko
-python3-docutils      0.12          0.13.1                Edwin Plauchu
-swig                  3.0.10        3.0.11                Edwin Plauchu
-python3-setuptools    31.0.0        33.1.0                Edwin Plauchu
-python-setuptools     31.0.0        33.1.0                Edwin Plauchu
-pax-utils             1.1.6         1.1.7                 Hongxu Jia
-createrepo            0.4.11        0.10.4                Hongxu Jia            Versions after 0.9.* use YU...
-elfutils              0.166         0.168                 Hongxu Jia
-gpgme                 1.6.0         1.8.0                 Hongxu Jia
-bash                  4.3.30        4.4                   Hongxu Jia
-libgcrypt             1.7.3         1.7.5                 Hongxu Jia
-libgpg-error          1.25          1.26                  Hongxu Jia
-ncurses               6.0+20160625  6.0+20161126          Hongxu Jia
-man-pages             4.08          4.09                  Hongxu Jia
-rpcbind               0.2.3         0.2.4                 Hongxu Jia
-gnupg                 2.1.14        2.1.17                Hongxu Jia
-libinput              1.5.0         1.5.902               Jussi Kukkonen
-weston                1.11.1        1.12.0                Jussi Kukkonen
-gtk-icon-utils-na...  3.22.5        3.22.6                Jussi Kukkonen
-libevdev              1.5.4         1.5.6                 Jussi Kukkonen
-libxpm                3.5.11        3.5.12                Jussi Kukkonen
-mesa                  13.0.2        13.0.3                Jussi Kukkonen
-vte                   0.44.2        0.46.1                Jussi Kukkonen
-xserver-xorg          1.19.0        1.19.1                Jussi Kukkonen
-gdk-pixbuf            2.36.1        2.36.3                Jussi Kukkonen
-gtk+3                 3.22.5        3.22.6                Jussi Kukkonen
-freetype              2.7           2.7.1                 Jussi Kukkonen
-menu-cache            1.0.1         1.0.2                 Jussi Kukkonen
-mesa-gl               13.0.2        13.0.3                Jussi Kukkonen
-musl                  1.1.15+gitX   1.1.16+gitAUTOINC...  Khem Raj
-gmp                   6.1.1         6.1.2                 Khem Raj
-ruby                  2.3.3         2.4.0                 Leonardo Sandoval
-libusb1               1.0.20        1.0.21                Leonardo Sandoval
-nfs-utils             1.3.4         2.1.1                 Mariano Lopez
-prelink               1.0+gitX      20151030.+gitAUTO...  Mark Hatle
-db                    6.0.35        6.2.23                Mark Hatle            latest db does not work wit...
-rpm                   5.4.16        5.4.17                Mark Hatle
-libpfm4               4.6.0         4.8.0                 Matthew McClintock
-libpng12              1.2.56        1.2.57                Maxin B. John
-iproute2              4.7.0         4.9.0                 Maxin B. John
-ifupdown              0.8.16        0.8.18                Maxin B. John
-libproxy              0.4.13        0.4.14                Maxin B. John
-netbase               5.3           5.4                   Maxin B. John
-sqlite3               3.15.2        3.16.2                Maxin B. John
-mdadm                 3.4           4.0                   Maxin B. John
-libpng                1.6.26        1.6.28                Maxin B. John
-harfbuzz              1.3.4         1.4.1                 Maxin B. John
-gstreamer1.0-vaapi    1.10.2        1.11.1                No maintainer
-lttng-tools           2.8.1+gitX    2.9.3+gitAUTOINC+...  Richard Purdie
-lttng-ust             2.8.1+gitX    2.9.0+gitAUTOINC+...  Richard Purdie
-lttng-modules         2.8.0+gitX    2.9.0+gitAUTOINC+...  Richard Purdie
-gnu-efi               3.0.4         3.0.5                 Robert Yang
-libpcre               8.39          8.40                  Robert Yang
-strace                4.14          4.15                  Robert Yang
-slang                 2.3.1         2.3.1a                Robert Yang
-m4                    1.4.17        1.4.18                Robert Yang
-mklibs-native         0.1.41        0.1.43                Robert Yang
-base-passwd           3.5.29        3.5.42                Ross Burton           Version 3.5.38 requires cde...
-lsbinitscripts        9.68          9.69                  Ross Burton
-alsa-lib              1.1.2         1.1.3                 Tanu Kaskinen
-pulseaudio            9.0           9.99.1                Tanu Kaskinen
-alsa-utils-scripts    1.1.2         1.1.3                 Tanu Kaskinen
-alsa-tools            1.1.0         1.1.3                 Tanu Kaskinen
-alsa-utils            1.1.2         1.1.3                 Tanu Kaskinen
-flac                  1.3.1         1.3.2                 Tanu Kaskinen
-
-Upgradable count: 112
-Upgradable total count: 118
-
-The based commit is:
-
-commit acce512a0b85853b5acf2ef07e4163a3b4f33a98
-Author: Ross Burton <ross.burton@intel.com>
-Date:   Fri Jan 6 12:36:45 2017 +0000
-
-    selftest/devtool: update test to work with new mtd-utils
-    
-    The new mtd-utils (version 2.0) has been autotooled so the test needs to touch
-    Makefile.am instead of Makefile.
-    
-    Signed-off-by: Ross Burton <ross.burton@intel.com>
-
-Any problem, please contact Anibal Limon <anibal.limon@intel.com> 
-
+Ping on this patch series.
 
