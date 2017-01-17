@@ -1,52 +1,36 @@
-Return-Path: <andre.draszik@gmail.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D7FE2E00A1C; Tue, 17 Jan 2017 08:49:39 -0800 (PST)
+	id 69E10E0093F; Tue, 17 Jan 2017 10:06:08 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [74.125.82.66 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.82.66 listed in dnsbl.sorbs.net]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [134.134.136.100 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-wm0-f66.google.com (mail-wm0-f66.google.com [74.125.82.66])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 56EEEE00938
-	for <yocto@yoctoproject.org>; Tue, 17 Jan 2017 08:49:32 -0800 (PST)
-Received: by mail-wm0-f66.google.com with SMTP id d140so23406247wmd.2
-	for <yocto@yoctoproject.org>; Tue, 17 Jan 2017 08:49:31 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
-	:references:mime-version:content-transfer-encoding;
-	bh=FZSKFm9AC+a6wMDh5EMwsxKpmKyScyqqn4xSiww6BW4=;
-	b=d6QSX0xLZvgY/68+Q533pfTGbQOF3xD16LEpK61QyZpC9t+ZnjBQf17sdZVxmVYIje
-	iGrqbClTAGVSd9/o6Wa83XqMQ8ElIL6sYL7ydhlRaRf9ngA+1kAjIBzvZloM0YZ53vC+
-	tlQYqV7FJ+gEx9dL9wugvMlFgOeo0hNyhGqHAOMjhw+ueIz7lzvdtTLZIjUEg+l/VJiW
-	8+Aj8rtP+0E4/fl111N3g4gWXMkAyQYfaGpT9oNHNhsuOIyo9/m487INS+M0/RmkpXUu
-	dKKOz1JcEuYRWIp6pP6E1GUWzJ2rOKGDx9w4FuJQRgjkcoNYdA+2oWvJM2eAOXhtM3mg
-	6GHg==
-X-Gm-Message-State: AIkVDXIkpOVJr79r50wV0VddCUDFOj2lmoKYSEXgGsOBai3JdnwTWUOQTR246D/G59y9hA==
-X-Received: by 10.28.14.65 with SMTP id 62mr17666436wmo.46.1484671770961;
-	Tue, 17 Jan 2017 08:49:30 -0800 (PST)
-Received: from tfsielt31850 ([77.107.218.170])
-	by smtp.gmail.com with ESMTPSA id
-	k11sm38174101wmb.18.2017.01.17.08.49.29 for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-	Tue, 17 Jan 2017 08:49:30 -0800 (PST)
-Message-ID: <1484671769.3257.8.camel@andred.net>
-From: =?ISO-8859-1?Q?Andr=E9?= Draszik <git@andred.net>
-To: yocto@yoctoproject.org
-Date: Tue, 17 Jan 2017 16:49:29 +0000
-In-Reply-To: <1484671376.19478.75.camel@intel.com>
-References: <20170117155910.23792-1-git@andred.net>
-	<1484671376.19478.75.camel@intel.com>
-X-Mailer: Evolution 3.22.3-1 
-Mime-Version: 1.0
-Subject: Re: [meta-swupd][PATCH] swupd-image.bbclass: do_swupd_update() depends on time-native
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0C1C8E00963
+	for <yocto@yoctoproject.org>; Tue, 17 Jan 2017 10:06:03 -0800 (PST)
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+	by orsmga105.jf.intel.com with ESMTP; 17 Jan 2017 10:06:02 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.33,245,1477983600"; d="scan'208";a="54347034"
+Received: from jayyinch-mobl6.gar.corp.intel.com (HELO
+	peggleto-mobl.ger.corp.intel.com) ([10.255.188.18])
+	by fmsmga005.fm.intel.com with ESMTP; 17 Jan 2017 10:06:00 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: openembedded-architecture@lists.openembedded.org,
+	openembedded-core@lists.openembedded.org, yocto@yoctoproject.org
+Date: Wed, 18 Jan 2017 07:05:58 +1300
+Message-ID: <2683342.SVnRAGIE1W@peggleto-mobl.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.14.10 (Linux/4.8.13-100.fc23.x86_64; KDE/4.14.20; x86_64; ;
+	)
+MIME-Version: 1.0
+Subject: Patchwork and incoming patch testing
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,37 +42,117 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 17 Jan 2017 16:49:39 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Tue, 17 Jan 2017 18:06:08 -0000
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
 
-On Tue, 2017-01-17 at 17:42 +0100, Patrick Ohly wrote:
-> On Tue, 2017-01-17 at 15:59 +0000, André Draszik wrote:
-> > The shell script uses time, which is either a bash built-in, or
-> > a GNU utility. Not all build machines will have either bash or
-> > GNU time available out of the box. Make sure it is available.
-> 
-> Good catch. I'm just wondering whether it wouldn't be simpler to remove
-> the usage of "time" instead, or make it optional?
-> 
-> The "time" utility was useful while working on performance of the code,
+Hi all,
 
-I thought the same, and was contemplating removing its use...
+As some of you are aware some of my colleagues and I have been working =
+on=20
+improving how incoming patches are handled - initially for OE-Core but =
+we hope=20
+to arrive at something that will be useful for other layers as well. Th=
+e aim=20
+was to do so without adversely affecting existing workflows, so that me=
+ans=20
+building on top of the things we already have. It's taken a bit longer =
+than=20
+we'd originally planned - we embarked on this a little over a year ago =
+[1] -=20
+but now I am happy to be able to show some meaningful progress.
 
-> but now that this is done, it's merely nice to have when one can get it
+A few months ago we upgraded OE's patchwork instance [2], moving not ju=
+st to a=20
+later version but to a fork of patchwork where a bunch of new functiona=
+lity=20
+was being developed for freedesktop.org [3], notably support for captur=
+ing and=20
+presenting patch series instead of just individual patches. There were =
+some=20
+teething problems but we've now resolved most of them. Unfortunately wo=
+rk on=20
+said freedesktop.org fork appears to have stalled so for now we have fo=
+rked it=20
+ourselves [4]; long term we'll have to see if we can merge back with pa=
+tchwork=20
+upstream - at least for small fixes we'll try to push those back up=20
+independent of any wholesale merge. In any event we are now finally in =
+the=20
+position where our patchwork instance can be relied upon to collect ema=
+ils,=20
+and the UI is much improved. This should give us a bit more visibility =
+into=20
+where patches are at in the process, although we are still working on a=
+ few=20
+places where patch series status needs to be updated (e.g. when a patch=
+ goes=20
+into testing).
 
-...but I was curious as well, so I left it in and added the dependency.
+On top of patchwork we have built a simple smoke-testing framework call=
+ed=20
+"patchtest" [5] along with a suite of corresponding tests for OE [6]. T=
+hese=20
+tests are fairly simplistic at this point but check the basics such as =
+whether=20
+a patch has been properly signed off, etc. We should soon start seeing =
+replies=20
+sent to the mailing list and to submitters with results if there are an=
+y=20
+failures, saving us from noticing and pointing out some of the more obv=
+ious=20
+classes of mistakes. The tests are easy to run locally without the rest=
+ of the=20
+infrastructure and can be extended without difficulty, and I expect we'=
+ll=20
+continue to work on those as time progresses. Contributions would be ve=
+ry=20
+welcome.
 
-> for free, which isn't the case when time-native has to be compiled
-> first.
+My sincere thanks to Jos=E9 Lamego, Leonardo Sandoval, Daniela Plascenc=
+ia,=20
+Belen Barros Pena, Michael Halstead, Damien Lespiau, Patrick Ohly and o=
+thers=20
+that have been part of implementing this, and to everyone else who has =
+put up=20
+with the delays.
 
-It's a one-time host-depend, which should also be satisfied from sstate
-after that, so I thought it'd be OK to keep it.
+Please let us know if you have issues with any part of this process or=20=
 
-I have no preference either way.
-
+suggestions on how to improve it. We're tracking improvements in the Yo=
+cto=20
+Project bugzilla [7] so you can see what's being worked on there if you=
+'re=20
+interested.
 
 Cheers,
-Andre'
+Paul
 
+[1] Earlier announcement:
+    https://www.mail-archive.com/openembedded-core@lists.openembedded.o=
+rg/msg72952.html
+
+[2] OE's patchwork instance:
+    http://patchwork.openembedded.org
+
+[3] Freedesktop.org patchwork fork:
+    https://github.com/dlespiau/patchwork
+
+[4] Our patchwork fork:
+    http://git.yoctoproject.org/cgit/cgit.cgi/patchwork/
+
+[5] Patchtest main repository:
+    http://git.yoctoproject.org/cgit/cgit.cgi/patchtest/
+
+[6] OE test suite for patchtest:
+    http://git.yoctoproject.org/cgit/cgit.cgi/patchtest-oe/
+
+[7] Yocto Project bugzilla area for patchwork/patchtest:
+    https://bugzilla.yoctoproject.org/describecomponents.cgi?product=3D=
+Patchwork%2FPatchtest
+
+--=20
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
