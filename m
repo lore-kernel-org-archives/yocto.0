@@ -1,63 +1,82 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <gmane@reliableembeddedsystems.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8416EE008EE; Tue, 17 Jan 2017 05:55:58 -0800 (PST)
+	id E782BE00546; Tue, 17 Jan 2017 06:59:56 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_LOW,
-	RCVD_IN_SORBS_SPAM autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.216.170 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.216.170 listed in dnsbl.sorbs.net]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+X-Spam-Status: No, score=-0.1 required=5.0 tests=BAYES_20,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [198.143.161.30 listed in list.dnswl.org]
+	* -0.0 BAYES_20 BODY: Bayes spam probability is 5 to 20%
+	*      [score: 0.1565]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qt0-f170.google.com (mail-qt0-f170.google.com
-	[209.85.216.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EAD36E008D3
-	for <yocto@yoctoproject.org>; Tue, 17 Jan 2017 05:55:57 -0800 (PST)
-Received: by mail-qt0-f170.google.com with SMTP id l7so158715484qtd.1
-	for <yocto@yoctoproject.org>; Tue, 17 Jan 2017 05:55:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=KRGMfUV58H+alQsKMJ30MfutgqX34MTNp3u+OY5ROw8=;
-	b=eMh49D4rlZglZu0vC7n755jHPimHVOLD8cZ0utEQq+3Gpgc6loeritD8rUMPuibpXO
-	7BXWz2a+TNcwnne013/eVxsDR6ayp2/sgdmW5rstqT2xyYAxkTNkT00bZlT2y0Eq+Vbn
-	vFXiCSSf7srT+hxHHFX/HZCJr4nIQWc4TORrNC3554EgwGIlogwoL99SoLpUTqe3srcZ
-	jFhIpYUpW/bYbGowjnVdJqvMt3Th9WqdVSqq7uWPhpGvR63+gCP2mxmIfMnKjbjJykw4
-	ixDvEGxFL0QkMseTLsnEvGas9As669ZD+xdkFyP2WIz9tJL+F/eC43yj7ZnhCYzAf2u2
-	yTuQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=KRGMfUV58H+alQsKMJ30MfutgqX34MTNp3u+OY5ROw8=;
-	b=M2iF56oXEa9mlnJn9TCERWJnzlgMZxZ+VLKPpwQxo+27qIwyjdfdBzGVaedTo4Mt8X
-	jcSCKupxIvERHjIpt3PahAIsfv32ihjYRjEOPBKETlHSavifFTw7jYuT/89a7rmRrpNb
-	20PVo/X88yzHo7iuHZnR/I3QvHKi4Y0iQreXOIv71NIdNU3qTDy2fFMBMGcZTUPzRPhq
-	Z9g+rGgJEaWd+ROE1Zdw47mk8YebAtz8zBN8cBImq3bp4vp2SlF/11AVInYXZ6HET+eO
-	r3R2tuVukMn9L+QGw+ueOVVv6KMOg0wMI+qIFM/HV40ElJQU17MYAIpSZwiKAkPqDQ0s
-	c0tA==
-X-Gm-Message-State: AIkVDXL5waIYMss0zft16sxgPqbvoB2VzVCaHjVTyV55zZZrXbt6Fot5a9H3lB/owmUNXFa62TyP0dWdg13SBeH5
-X-Received: by 10.55.31.24 with SMTP id f24mr33712705qkf.221.1484661356555;
-	Tue, 17 Jan 2017 05:55:56 -0800 (PST)
+X-Greylist: delayed 4753 seconds by postgrey-1.32 at yocto-www;
+	Tue, 17 Jan 2017 06:59:54 PST
+Received: from delivery.mailspamprotection.com
+	(delivery.mailspamprotection.com [198.143.161.30])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 62829E004A0
+	for <yocto@yoctoproject.org>; Tue, 17 Jan 2017 06:59:54 -0800 (PST)
+Received: from ns1.siteground282.com ([184.154.233.8] helo=siteground282.com)
+	by se7.mailspamprotection.com with esmtps
+	(TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.86)
+	(envelope-from <gmane@reliableembeddedsystems.com>)
+	id 1cTSNV-00040a-Nz
+	for yocto@yoctoproject.org; Tue, 17 Jan 2017 05:56:42 -0600
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=reliableembeddedsystems.com; s=dkim;
+	h=Message-ID:Subject:Cc:To:From:Date:
+	Content-Transfer-Encoding:Content-Type:MIME-Version;
+	bh=GUtwKmeMkKgDFkfDfCIzNVtA/bgwkwPvAs6NSJeScPQ=;
+	b=BcXQFmfV7HwF3nad/BoGZwlfyT
+	VKRktTyJBGerGj3rqN/G5L2h8b8adhldv+mTuBdGrIkHlnlayhgf1ITsE+re6LZPWAtM4uFfD9yUJ
+	RJ/qN3K1jKafjf4pmipYNysjJRFe83mRZ30x1vskF6zV4///CSV99us0K8+mPfH+vwB0=; 
+Received: from [127.0.0.1] (port=45202 helo=secure282.sgcpanel.com)
+	by siteground282.com with esmtpa (Exim 4.86_2)
+	(envelope-from <gmane@reliableembeddedsystems.com>)
+	id 1cTSNV-00012L-4n; Tue, 17 Jan 2017 05:56:41 -0600
 MIME-Version: 1.0
-Received: by 10.140.103.233 with HTTP; Tue, 17 Jan 2017 05:55:36 -0800 (PST)
-In-Reply-To: <20170111205520.30747-1-raltherr@google.com>
-References: <20170111205520.30747-1-raltherr@google.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Tue, 17 Jan 2017 13:55:36 +0000
-Message-ID: <CAJTo0LZCYtOji2agFMhnqaW6RGurv+s6A6V4HszK4nuz-YEzXQ@mail.gmail.com>
-To: Rick Altherr <raltherr@google.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [PATCH] kernel-fit: Change FIT (kernel+initrd) symlinks to fitImage-*
+Date: Tue, 17 Jan 2017 05:56:41 -0600
+From: gmane@reliableembeddedsystems.com
+To: yocto@yoctoproject.org
+Message-ID: <f5df85a01eecd22894f83c66b3c3884c@reliableembeddedsystems.com>
+X-Sender: gmane@reliableembeddedsystems.com
+User-Agent: Roundcube Webmail/1.1.7
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - siteground282.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - reliableembeddedsystems.com
+X-Originating-IP: 184.154.233.8
+X-SpamExperts-Domain: siteground282.com
+X-SpamExperts-Username: 184.154.233.8
+Authentication-Results: mailspamprotection.com;
+	auth=pass smtp.auth=184.154.233.8@siteground282.com
+X-SpamExperts-Outgoing-Class: ham
+X-SpamExperts-Outgoing-Evidence: Combined (0.27)
+X-Filter-ID: s0sct1PQhAABKnZB5plbIWEcM0d9a2K3OcfFeaASvaIT05e+4t99MpEggFbXzbnhJWdbsu/PGngF
+	sP6QHv82uiZTaFCDa9A7C/jInU0NPk5o9qUFE8XEupMgL9lQhc5MhXE3Kd6zku9YzkFh73wKYPbj
+	aPZXen3YvWHScRpGw7AMebEgKQmdigT2SqdPgCRDW0zmIkNrImXiVOsNfYFDjefHzJ6mVE7ewsip
+	SVIfs4bRTRbdwQaG5TGsQPmdEtKTYb30GV/LTTOHpImWPCex54onRWlBmDnjzYnePIvOXJvlgTl6
+	fJxyntEfhZCKje4ZpF5GFn0VGJE1yVv3RLa3Fi7/+fOTvqVqTiiM4NskccT/51HuFxEGlQ85t+9R
+	s1HAWpqH02ENgZUUUrBwtgAspuoAEMCxBXuH+MlsW5Hvjb34fCyRIMupElmSLIG80pM6xBjqU7yU
+	/iv1FJDtCzXYFT8sJIOjW5RNgDi+Om2uksEu//nzk76lak4ojODbJHHEf1tgk/FI+C5mQXdfxOSX
+	bwoAYmcdpnyHSuRXmhOk2PvNXXvCoqHrC8VNYHdZTN9A6e4Zua+qm6zs49H5LaZzSMesr1PnPryu
+	VKjB4aKIPn7rk0ddJ6PPSAVfBV147b50ZmWRlGDEKzlmcJohf5ZCEfiVz7XtMUVSq7cn4yEc4dYl
+	oHPxm0j3XNJOib0a46boIHcD2G1yAgPl/VKfAzd5t8OEWO3u9MCHzXiSW9itZ39qj69U3bSV11sY
+	EWWoU3X8iOof+kYC9SBQv2XDzgKaVnmoaJWXmt7UlGnOn2qM5H/CHJalEUDn01MA3vkYtNXyLm7H
+	cH58QZhCmcoFYFghx8JphFKEtikJ8+mEAuMVEz5hkmJr/+tlpu01QYwcwG2k
+X-Report-Abuse-To: spam@quarantine1.mailspamprotection.com
+X-Recommended-Action: accept
+Cc: robert.berger@reliableembeddedsystems.com
+Subject: "external"/"internal" SDK
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,40 +88,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 17 Jan 2017 13:55:58 -0000
-Content-Type: multipart/alternative; boundary=001a1147e2bac508c205464aa8c0
+X-List-Received-Date: Tue, 17 Jan 2017 14:59:57 -0000
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
 
---001a1147e2bac508c205464aa8c0
-Content-Type: text/plain; charset=UTF-8
+Hi,
 
-On 11 January 2017 at 20:55, Rick Altherr <raltherr@google.com> wrote:
+A client would like to dish out an SDK to their customers, but only with 
+a subset of header files compared to those they use internally.
 
-> KERNEL_IMAGETYPE only provides the first image type specified in
-> KERNEL_IMAGETYPES which can provide surprising results.  Since this
-> class is solely for FIT images, just hardcode the names to fitImage-*.
->
+internal SDK:
+As it is right now when you build an sdk with e.g. bitbake whatever -c 
+populate_sdk
 
-Nathan sent the identical patch earlier, so I merged his.  Expect this in
-master shortly.
+external SDK:
+everything the same as above, but for some packages there should be only 
+libraries - no header files.
 
-Ross
+I guess I'm not the first one who needs something like this.
 
---001a1147e2bac508c205464aa8c0
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+How would you do something like this the "Yocto way"?
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 11 January 2017 at 20:55, Rick Altherr <span dir=3D"ltr">&lt;<a href=3D"=
-mailto:raltherr@google.com" target=3D"_blank">raltherr@google.com</a>&gt;</=
-span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8e=
-x;border-left:1px #ccc solid;padding-left:1ex"><div id=3D":158" class=3D"a3=
-s aXjCH m1598f51426f0ffaa">KERNEL_IMAGETYPE only provides the first image t=
-ype specified in<br>
-KERNEL_IMAGETYPES which can provide surprising results.=C2=A0 Since this<br=
->
-class is solely for FIT images, just hardcode the names to fitImage-*.<br><=
-/div></blockquote></div><br>Nathan sent the identical patch earlier, so I m=
-erged his.=C2=A0 Expect this in master shortly.</div><div class=3D"gmail_ex=
-tra"><br></div><div class=3D"gmail_extra">Ross</div></div>
+Regards,
 
---001a1147e2bac508c205464aa8c0--
+Robert
+
