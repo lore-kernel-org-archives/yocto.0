@@ -1,65 +1,64 @@
 Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5F75EE00A16; Wed, 18 Jan 2017 07:41:34 -0800 (PST)
+	id 6AC8BE009F8; Wed, 18 Jan 2017 08:04:36 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, RCVD_IN_DNSWL_NONE,
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.82.68 listed in dnsbl.sorbs.net]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [74.125.82.67 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.82.67 listed in dnsbl.sorbs.net]
-Received: from mail-wm0-f67.google.com (mail-wm0-f67.google.com [74.125.82.67])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3BABEE009CF
-	for <yocto@yoctoproject.org>; Wed, 18 Jan 2017 07:41:31 -0800 (PST)
-Received: by mail-wm0-f67.google.com with SMTP id r126so4921796wmr.3
-	for <yocto@yoctoproject.org>; Wed, 18 Jan 2017 07:41:31 -0800 (PST)
+	*      [74.125.82.68 listed in list.dnswl.org]
+Received: from mail-wm0-f68.google.com (mail-wm0-f68.google.com [74.125.82.68])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A2272E00A6D
+	for <yocto@yoctoproject.org>; Wed, 18 Jan 2017 08:04:22 -0800 (PST)
+Received: by mail-wm0-f68.google.com with SMTP id r126so5067699wmr.3
+	for <yocto@yoctoproject.org>; Wed, 18 Jan 2017 08:04:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
 	h=date:from:to:cc:subject:message-id:references:mime-version
 	:content-disposition:in-reply-to:user-agent;
-	bh=0PS1yBu3M/jdrsdNgA4IT3onBUB58lah4XNaOiBmRMY=;
-	b=hdRyule4V16RWkiHgfIZbv1/f3EjA+8yjDiwAfvcQyDdJu6Gy9YduNEWQcXu7jA+c1
-	BnrBHCEPFfvgoDCcK88dmviym8p+9RGKRXHE2U2HkX8P+Y8aNO5EUe2wbkMRUEe5XgJh
-	qSUTxZ6fseRU3ail7mYA4TV6GVAGGWQjT7FD9lDXvuJ7391CeiSe8Co9wiXxLw/cyP66
-	MKd1zIAGEqEYgiBo30ztwUJldIBg26u57Ef+awmXj1IM5h9wbqOKEzgvACL0D/Cde5Nq
-	DlG30l/BqTut/SSnTAh6hqY4TVYlsemW1++4ODz7dYbzHZhVrvlXj1ywSWuv0Re/WEXA
-	JqNw==
+	bh=WmEQv0SXBF9ECWd4DDe9SpqXeH0y4wnj4GOpO1vJzgo=;
+	b=yzIfnsmlAwzmAkpRDnRLywnxs9j3VQ8olwWqczrDmD4uTA5Z1YUB97ZL4ht4tB6np8
+	d6O3ZK+Fe6enbuSciADWV3KysftYeNk8N3nLi+XbsaT6BgRAqZStNLShzn5DrtaRhohW
+	/6ZSrtmCmGx56G+32hIii3rw/gTGgifEUtz7KXdJyHBO96s2HfiRzB/lQWo3X+pdz5DF
+	69liWUP17p1YjtQVJm1mUR1ekYQNF4h/GmDIvVFxJNsyCMEEVuFiQuLdt+Gi9pWaVDAm
+	wj979sFPeP8u2tgW2Cu0IiynxZDoiUzpJGk2Wu9GNwCHSTOlvh8gOaG1A5aVQzgGTmQq
+	sV9g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
 	:mime-version:content-disposition:in-reply-to:user-agent;
-	bh=0PS1yBu3M/jdrsdNgA4IT3onBUB58lah4XNaOiBmRMY=;
-	b=YQQIiM+zCYAexhVtBD77VwU4rx8uy7dJxbIqZsE82szxszNdJKkVpcrZ45gsSM4p3z
-	NmTt+gvo3oVnis/tI7KaOToTMQH4+UDApnycsOK8Pu6ykl1Wg+hgjXxxQyMWipY5EQxo
-	XuR7gSe7V7GhlhiSwJnQi1rqtU8WwnCKPOpz3jfzRY+wLOuWDFmfTCh9NjJL2vRobMxL
-	M4fWlSaU8em7aMGzEiRuCY++pSbXW5LNznCp9jp3PNBQJTtoB5DwknhXgjYCOEr6HByh
-	KJAna9plKq03XWpIzZExNQxijLx5MZDXyeGHonQDrtOltWQizEeGRFRkMrGC4DBCRYiR
-	gsMA==
-X-Gm-Message-State: AIkVDXITp05fRav40uOLNVmeSB9My+0xrjB0UZ72qRLWINPA4DvCx4VJu9+/M2hy3j4zRw==
-X-Received: by 10.223.145.45 with SMTP id j42mr3850942wrj.141.1484754090758;
-	Wed, 18 Jan 2017 07:41:30 -0800 (PST)
+	bh=WmEQv0SXBF9ECWd4DDe9SpqXeH0y4wnj4GOpO1vJzgo=;
+	b=U3uWj/2AQIKgHo9CJiQZ5K5m/lkSfVMMV8i5w/2ang4j3Btw3nsjJJTmtKnrTVYCqt
+	EyTiP+FLBBI0KjHA3nONfEzIVqpbQLnMJOr9Ag5UVGORdng8ye4C4/V0FsOJIgAsx33y
+	0GgkSt9BoResa0IosqK+tT0c+8Jss6d/m4L3jSn4pErBM6usKPRJzY4aktSJtFrFwmLQ
+	m/ZW7ywPQ76NExgAPcs7F7kYCwCFyLeelo126PtYWi8KtD7329RyxVXelpktEd/kYX+E
+	GkVqAxwWCGkzCwmnsL68cTmab+5f1cTzJHzfB+rGVAW77jf6o6uktLSZ6sutiQAEf3P7
+	VbtA==
+X-Gm-Message-State: AIkVDXKNJShl4/1NqF6HY95kcwpG2wIGRfbe6GVjzcn/ZDr6wtMpufLkLL0+HFv8lREsAA==
+X-Received: by 10.223.153.15 with SMTP id x15mr3449526wrb.179.1484755461550;
+	Wed, 18 Jan 2017 08:04:21 -0800 (PST)
 Received: from carbonA (cpc96910-walt25-2-0-cust629.13-2.cable.virginm.net.
-	[82.22.166.118]) by smtp.gmail.com with ESMTPSA id
-	135sm5660740wmh.14.2017.01.18.07.41.29
+	[82.22.166.118])
+	by smtp.gmail.com with ESMTPSA id g75sm5840506wme.5.2017.01.18.08.04.19
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 18 Jan 2017 07:41:29 -0800 (PST)
-Date: Wed, 18 Jan 2017 15:41:27 +0000
+	Wed, 18 Jan 2017 08:04:20 -0800 (PST)
+Date: Wed, 18 Jan 2017 16:04:16 +0000
 From: Andrei Gherzan <andrei@gherzan.ro>
 To: Paul Barker <paul@paulbarker.me.uk>
-Message-ID: <20170118154127.GB31825@carbonA>
+Message-ID: <20170118160352.GA14533@carbonA>
 References: <1483363213-27822-1-git-send-email-paul@paulbarker.me.uk>
-	<20170116071523.4bae5890@nuc.betafive.co.uk>
 MIME-Version: 1.0
-In-Reply-To: <20170116071523.4bae5890@nuc.betafive.co.uk>
+In-Reply-To: <1483363213-27822-1-git-send-email-paul@paulbarker.me.uk>
 User-Agent: Mutt/1.7.2 (2016-11-26)
 Cc: yocto@yoctoproject.org
 Subject: Re: [meta-raspberrypi][PATCH 0/3] Kernel update and getVar cleanup
@@ -74,74 +73,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 18 Jan 2017 15:41:34 -0000
-X-Groupsio-MsgNum: 33908
+X-List-Received-Date: Wed, 18 Jan 2017 16:04:36 -0000
+X-Groupsio-MsgNum: 33909
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="eAbsdosE1cNLO4uF"
+	protocol="application/pgp-signature"; boundary="bAmEntskrkuBymla"
 Content-Disposition: inline
 
---eAbsdosE1cNLO4uF
+--bAmEntskrkuBymla
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
-On Mon, Jan 16, 2017 at 07:15:23AM +0000, Paul Barker wrote:
-> On Mon,  2 Jan 2017 13:20:10 +0000
-> Paul Barker <paul@paulbarker.me.uk> wrote:
+On Mon, Jan 02, 2017 at 01:20:10PM +0000, Paul Barker wrote:
+> These patches have been boot tested for both raspberrypi and raspberrypi3.
 >
-> > These patches have been boot tested for both raspberrypi and raspberrypi3.
-> >
-> > The first patch in the series probably breaks things for the morty branch. I'm
-> > also proposing we drop support for linux-raspberrypi v4.1 as it's currently
-> > broken on master. We should create a morty branch for meta-raspberrypi before
-> > applying these patches.
-> >
-> > Any objections to dropping linux-raspberrypi v4.1 or making a morty branch at
-> > this point?
-> >
-> > Paul Barker (3):
-> >   Remove True option to getVar calls
-> >   linux-raspberrypi: Drop v4.1
-> >   linux-raspberrypi: Upgrade to v4.4.39
-> >
-> >  classes/linux-raspberrypi-base.bbclass             |   4 +-
-> >  .../0001-dts-add-overlay-for-pitft22.patch         | 110 ---------------------
-> >  ...ove-unused-sm_cache_map_vector-definition.patch |  31 ------
-> >  .../linux-raspberrypi-4.1/0003-fix-gcc6.patch      |  78 ---------------
-> >  recipes-kernel/linux/linux-raspberrypi.inc         |   4 +-
-> >  recipes-kernel/linux/linux-raspberrypi_4.1.bb      |  12 ---
-> >  recipes-kernel/linux/linux-raspberrypi_4.4.bb      |   4 +-
-> >  7 files changed, 6 insertions(+), 237 deletions(-)
-> >  delete mode 100644 recipes-kernel/linux/linux-raspberrypi-4.1/0001-dts-add-overlay-for-pitft22.patch
-> >  delete mode 100644 recipes-kernel/linux/linux-raspberrypi-4.1/0002-vmcs-Remove-unused-sm_cache_map_vector-definition.patch
-> >  delete mode 100644 recipes-kernel/linux/linux-raspberrypi-4.1/0003-fix-gcc6.patch
-> >  delete mode 100644 recipes-kernel/linux/linux-raspberrypi_4.1.bb
-> >
+> The first patch in the series probably breaks things for the morty branch. I'm
+> also proposing we drop support for linux-raspberrypi v4.1 as it's currently
+> broken on master. We should create a morty branch for meta-raspberrypi before
+> applying these patches.
 >
-> Ping on this patch series.
+> Any objections to dropping linux-raspberrypi v4.1 or making a morty branch at
+> this point?
+>
 
-On it right now.
-
+Created a morty branch and merged these patches in master. Thank you.
 --
 Andrei Gherzan
 
---eAbsdosE1cNLO4uF
+--bAmEntskrkuBymla
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAEBCAAdFiEEQvNqws+Dz7aX1cEEc7voa356t88FAlh/jKYACgkQc7voa356
-t88ErBAAm3zvD51LUqtfPKcAziet2n94QFQRlXYZKFStP7by/Hko0y5NjT05C9pA
-lGLXoQGFAMK6wkAxZYUGg+TjcVatiw56dsW7KF/oz3nEEx94AmJgpV4gxEj/C32I
-LYfw1iAy36aTolIEV9uaAaXSnMzLIbymzpQ3Ky3Nhed5Ha+axOphd3jq6/41Y8lG
-zLndnOwpRmPJvcJHuS0VXbzD0YJSEQBZ0DaKrkSB/5LyYavihLD7f1D6ACq4hq2Y
-h87d1NamB9Sy+BWsIyWQiBvXOtIh5O4tbWIBGOrC2AY9aLtUv5gMZigHRN40asvi
-LycqjfD/qwGfUBlwuTsHEMlHeQ9Y3nwmxljQrlZYanCYuq0GCy1Uj/tGQNhENBqG
-5MKkcWww1Be/LRnrjTeLHoK81So0V8uji1AhHVj75fv6ofk3Y6wOFC2YN029rWhQ
-cdnTlfGMUSwao33aJ8ImR8pZ7zoX/tt3PNrluxKdtRYC2ynEClBJea/A0jk0rulL
-2zOL7VSSAQXEFl1u8FSSHb8VCsvz+COvC1ev458foaB/UjpoIim4xr4K6uoNMJtq
-t4MkYcm8gxyoyhHBeHxHHsHaoCzR8p6zgQ0loBIqhFDVmQMwnjkjKgyTwx2Tl/mI
-/KYD/HkoZCYTNjz+Q9ThfEqvMwZ7Ha84mkCcE/Lr14ghOfBkOvU=
-=UmLa
+iQIzBAEBCAAdFiEEQvNqws+Dz7aX1cEEc7voa356t88FAlh/kf8ACgkQc7voa356
+t8+CWQ//ec6s74bOk0UuzpEx1Fg4MUSAtQ800L1d9mb6LM0UCqc35c/iPMkBvZZz
++R3MMeWWYfmVM8Cc8VyZ5zdIdoPVrZnFyv0rya7qFjRpo9uvwkE7t1XTC9OjWsAf
+dJjOW0XV6WFfnFboDTh9StnnmLRiQ+74jEPN9ZUZJK8svmXLT9Vmx24B3gnvXLpH
+VoUeINgO18rSRFk3rDo7PJV4BMMF8bc9Fn7P1h15/+6lkk5yprUTjAGVwXugLGik
+XVdo56TjpBaCVy050GJRpWqTTsaHZBWY2pnhf5Y9NZtz2GL19e7ayJydpe0/O7eg
+3/le5wTvL6pEoLD7AVHo+8hJ4hXVsh5RiQP6Ww19O1sb5wbF3WECpVjyhqc4ZU5B
+Lw0AfnvxTKs/rUgZQ3lpw3tXOKR8t8s44hRx8twdWGTtHU7zoampg6oxbVwJ+FnT
+z4lYlWJfPU3uXOYLzUOu+9J3ruNSgq1Cy1fqOAyzZJlzgXNBY360cBg3Fp5pR3z0
+W4Dc0OGFM7flAj6/l5i/wUho+ArpOljQettwOe/r67hh7GCMbOP3X3Fq7Z6908Bz
+/K7N0AHyju4fblB98XEDnf1CcL5sgO6tVeFeEzz6/A8KM0r9/u7r6eC54Wfus/SV
+8FydM0va87UxR+81HJrylTkBX1bilheiMtjPUe5qI90PCdQNzVY=
+=CIu7
 -----END PGP SIGNATURE-----
 
---eAbsdosE1cNLO4uF--
+--bAmEntskrkuBymla--
