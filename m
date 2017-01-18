@@ -1,63 +1,35 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <gary@mlbassoc.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 94E4FE009A0; Wed, 18 Jan 2017 01:24:09 -0800 (PST)
+	id 52207E009CE; Wed, 18 Jan 2017 01:30:04 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_LOW,
-	RCVD_IN_SORBS_SPAM autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.220.170 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.220.170 listed in dnsbl.sorbs.net]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qk0-f170.google.com (mail-qk0-f170.google.com
-	[209.85.220.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 214CFE0098A
-	for <yocto@yoctoproject.org>; Wed, 18 Jan 2017 01:24:05 -0800 (PST)
-Received: by mail-qk0-f170.google.com with SMTP id 11so7013276qkl.3
-	for <yocto@yoctoproject.org>; Wed, 18 Jan 2017 01:24:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=l1pjiQ1WUI1f9/MfqJR3d1a1HBop3pohY1juWgQeVyE=;
-	b=vNIuCTmLrl0lNPEW4AnVKUm27XiAVusm64YnFPE9iVncLsc209yHikOxXnZmbuS+nT
-	Ib02jNEmuU9g4pvtiPttyWQqLFUsqf1Ij5VvZfduj/4wrHXQh9HV5jFGfc7LT7tQoy23
-	Z1hpLZ2ZQ3lHvzsXt5oqcj7et17z/YiC7397iOvUPlPEf4z1wooBo5dMmx8TSUg5v9mu
-	XipXJg3JfAj7xcNJDVosvleJRq7j1zBFP2N/RXfBp26qs4KcHFJu4sRPFp6Kt3oBZ+ey
-	wLavJbmWu1vjArP8IVanPmYzwoXRE6Jqik0LwaWGGM6j7GKieMaL57YrMnEbXNIQLZm0
-	NVmA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=l1pjiQ1WUI1f9/MfqJR3d1a1HBop3pohY1juWgQeVyE=;
-	b=l/hdByrb4s4W6YzECELO7t1J4K+tQTwaejkPzTtOiloLroeUw254k7tOKzgZBJk8P4
-	1MJfaaEkGpvGlPHEjjNeJCZwS0aKl+e04WkXfKjDQq2KSxsr/9YzwOACa4tMuLEp121w
-	+P4aXwtssUfCP0E6Dsjzev3GMyA6o0B90l5RF+uUkKK63tMDaI6DxrQItxPIJ3LnpH4O
-	Lj2he/LzTAX2PJ1Sj/p3jfTp3YSLQHNAg9frwzdDpu45xV84L6tKFOl/S13L/k7FSRto
-	lbhj2R25UJQvFc4nFHdGyCveUvN2/DvWcvkTyo9U/ucN0CCXE5o9+FNc1x3WG6I1GBFD
-	+SHQ==
-X-Gm-Message-State: AIkVDXL/GQiEitQ/dZoi10HuEf1fyrLvrRK3j7zA/F8LU7PzIXplWAMjBbWpgkSWIQG0qsbvgdTlMQ7Zafab2MKq
-X-Received: by 10.55.183.133 with SMTP id h127mr2064443qkf.121.1484731445055; 
-	Wed, 18 Jan 2017 01:24:05 -0800 (PST)
+Received: from mail.analogue-micro.com (mail.analogue-micro.com
+	[217.144.149.242])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EEAC6E00BB3
+	for <yocto@yoctoproject.org>; Wed, 18 Jan 2017 01:29:51 -0800 (PST)
+Received: by mail.analogue-micro.com (Postfix, from userid 999)
+	id C415068A01C; Wed, 18 Jan 2017 09:29:50 +0000 (GMT)
+Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
+	by mail.analogue-micro.com (Postfix) with ESMTP id 65D8368A019;
+	Wed, 18 Jan 2017 09:29:50 +0000 (GMT)
+Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
+	by zeus.mlbassoc.com (Postfix) with ESMTP id 0BEED67402AC;
+	Wed, 18 Jan 2017 10:29:50 +0100 (CET)
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <709d0576-a880-c109-b602-73cf671a96ae@mlbassoc.com>
+From: Gary Thomas <gary@mlbassoc.com>
+Message-ID: <2d26ac4b-64e5-dadc-ba9c-a58a41ff6908@mlbassoc.com>
+Date: Wed, 18 Jan 2017 10:29:49 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.5.1
 MIME-Version: 1.0
-Received: by 10.140.103.233 with HTTP; Wed, 18 Jan 2017 01:23:44 -0800 (PST)
-In-Reply-To: <48565564-9e2f-f8e7-e3da-21aad9fca0a3@mlbassoc.com>
-References: <48565564-9e2f-f8e7-e3da-21aad9fca0a3@mlbassoc.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 18 Jan 2017 09:23:44 +0000
-Message-ID: <CAJTo0LavqhLMFgkxFwBHTZ671czH_XahTpoXMCvPn7hjev_V2Q@mail.gmail.com>
-To: Gary Thomas <gary@mlbassoc.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: x86 testing
+In-Reply-To: <709d0576-a880-c109-b602-73cf671a96ae@mlbassoc.com>
+Subject: Re: sstate-cache and native recipes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,66 +41,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 18 Jan 2017 09:24:09 -0000
-Content-Type: multipart/alternative; boundary=94eb2c0600565ea70205465afa57
+X-List-Received-Date: Wed, 18 Jan 2017 09:30:04 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
---94eb2c0600565ea70205465afa57
-Content-Type: text/plain; charset=UTF-8
+On 2017-01-18 10:13, Gary Thomas wrote:
+> I've been trying to understand (as was recently posted here by
+> another user) why native recipes are not being well shared/reused
+> by the sstate-cache mechanism.  I have a build machine where I
+> do lots of builds for various targets.  I would think (hope!)
+> that xxx-native packages would be the same for every build and
+> if I have the sstate mirror set up correctly, be shared appropriately.
+> To this end, I have one "master" build that I always run first
+> whenever the metadata changes, then point all the other builds
+> at that tree.
+>
+> For the most part, this works pretty well, but there are still
+> some places where it doesn't.  Here are a couple of examples
+> which I've investigated:
+>
+> * glib-2.0-native depends on ${DISTRO_FEATURES}
+>   To me this seems silly as "native" should be "native" and
+>   not depend on any distribution settings.  Here's the code
+>   that's causing it (in do_install)
+>
+>         if [ -f ${D}${datadir}/installed-tests/glib/gdbus-serialization.test ]; then
+>                 if ${@bb.utils.contains("DISTRO_FEATURES", "x11", "false", "true", d)}; then
+>                         rm ${D}${datadir}/installed-tests/glib/gdbus-serialization.test
+>                 fi
+>         fi
+>
+>   Obviously this isn't important for a native package.  Any
+>   suggestions on how I might keep this from creeping in?
 
-On 18 January 2017 at 07:02, Gary Thomas <gary@mlbassoc.com> wrote:
+BTW, once glib-2.0-native can't be shared, a number of other native
+packages will also have to be rebuilt because of build dependencies.
+I discovered this when qemu-native was being rebuilt on almost all
+of my targets...
 
-> It used to be that I could run qemu and it would pop up a separate
-> window that emulated a display+keyboard+mouse.  That doesn't seem
-> to be the same now, or at least I don't see how to make it work.
-> Advice on this would be great as I need to test the "native" X
-> setup, not VNC connections.
+>
+> * xxx-native packages are not shared if ${DISTRO} is different.
+>   Again, this seems wrong as "native" packages should really only
+>   depend on the build ${HOST}, not ${DISTRO}
+>
+> I'm looking at this for the sole purpose of reducing the load on my
+> build machine.  Any package that can be shared and not have to be
+> rebuilt just makes it more productive :-)
+>
+> Thanks for any ideas or comments
 >
 
-Still is the case if you have 'sdl' in qemu-native's PACKAGECONFIG.  See
-the sample local.conf, this was a change in behaviour a year or so ago so
-there's a chance your local.conf doesn't do this.
 
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
-> I'd also be happy to try this on real hardware, e.g. my wife's
-> laptop, but I need some way to do that non-destructively.  Again,
-> pointers would be greatly appreciated.
->
-
-Build an image using ideally meta-intel's intel-corei7-64 (or core2-32)
-machine and put the hddimg on a USB stick.  This can live boot from the
-stick directly.
-
-Ross
-
---94eb2c0600565ea70205465afa57
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 18 January 2017 at 07:02, Gary Thomas <span dir=3D"ltr">&lt;<a href=3D"m=
-ailto:gary@mlbassoc.com" target=3D"_blank">gary@mlbassoc.com</a>&gt;</span>=
- wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;bor=
-der-left:1px #ccc solid;padding-left:1ex"><div id=3D":1us" class=3D"a3s aXj=
-CH m159b06b2f22899ce">It used to be that I could run qemu and it would pop =
-up a separate<br>
-window that emulated a display+keyboard+mouse.=C2=A0 That doesn&#39;t seem<=
-br>
-to be the same now, or at least I don&#39;t see how to make it work.<br>
-Advice on this would be great as I need to test the &quot;native&quot; X<br=
->
-setup, not VNC connections.<br></div></blockquote><div><br></div><div>Still=
- is the case if you have &#39;sdl&#39; in qemu-native&#39;s PACKAGECONFIG.=
-=C2=A0 See the sample local.conf, this was a change in behaviour a year or =
-so ago so there&#39;s a chance your local.conf doesn&#39;t do this.</div><d=
-iv>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex=
-;border-left:1px #ccc solid;padding-left:1ex"><div id=3D":1us" class=3D"a3s=
- aXjCH m159b06b2f22899ce">
-I&#39;d also be happy to try this on real hardware, e.g. my wife&#39;s<br>
-laptop, but I need some way to do that non-destructively.=C2=A0 Again,<br>
-pointers would be greatly appreciated.</div></blockquote></div><br>Build an=
- image using ideally meta-intel&#39;s intel-corei7-64 (or core2-32) machine=
- and put the hddimg on a USB stick.=C2=A0 This can live boot from the stick=
- directly.</div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_ex=
-tra">Ross</div></div>
-
---94eb2c0600565ea70205465afa57--
