@@ -1,44 +1,36 @@
-Return-Path: <leonardo.sandoval.gonzalez@linux.intel.com>
+Return-Path: <maxin.john@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 55911E00AA7; Wed, 18 Jan 2017 06:46:09 -0800 (PST)
+	id 124C7E00ACE; Wed, 18 Jan 2017 06:58:55 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.24 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [134.134.136.100 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3571DE00998
-	for <yocto@yoctoproject.org>; Wed, 18 Jan 2017 06:46:05 -0800 (PST)
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-	by orsmga102.jf.intel.com with ESMTP; 18 Jan 2017 06:46:05 -0800
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BC10AE00A6D
+	for <yocto@yoctoproject.org>; Wed, 18 Jan 2017 06:58:53 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by orsmga105.jf.intel.com with ESMTP; 18 Jan 2017 06:58:52 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.33,249,1477983600"; d="scan'208,217";a="50067690"
-Received: from lsandov1-mobl2.zpn.intel.com (HELO [10.219.128.142])
-	([10.219.128.142])
-	by orsmga004.jf.intel.com with ESMTP; 18 Jan 2017 06:46:04 -0800
-To: Jussi Kukkonen <jussi.kukkonen@intel.com>,
-	Paul Eggleton <paul.eggleton@linux.intel.com>
-References: <2683342.SVnRAGIE1W@peggleto-mobl.ger.corp.intel.com>
-	<CAHiDW_F=ybZibjGyjMpg4Gi+sEhSQPw6eVmGm7yxeUAj9mqFtQ@mail.gmail.com>
-From: Leonardo Sandoval <leonardo.sandoval.gonzalez@linux.intel.com>
-Message-ID: <981c058a-c2ca-ac37-f160-192c9c820563@linux.intel.com>
-Date: Wed, 18 Jan 2017 08:52:54 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.6.0
+X-IronPort-AV: E=Sophos;i="5.33,249,1477983600"; d="scan'208";a="1114495484"
+Received: from mbabyjoh-desk.fi.intel.com (HELO
+	mbabyjoh-desk.ger.corp.intel.com) ([10.237.72.71])
+	by fmsmga002.fm.intel.com with ESMTP; 18 Jan 2017 06:58:51 -0800
+Date: Wed, 18 Jan 2017 16:59:26 +0200
+From: "Maxin B. John" <maxin.john@intel.com>
+To: Gowtham Pandi <gowtham.pandi@tataelxsi.co.in>
+Message-ID: <20170118145925.GA18363@mbabyjoh-desk.ger.corp.intel.com>
+References: <SINPR0401MB1808A26F945A2E7ACB69D115A97F0@SINPR0401MB1808.apcprd04.prod.outlook.com>
 MIME-Version: 1.0
-In-Reply-To: <CAHiDW_F=ybZibjGyjMpg4Gi+sEhSQPw6eVmGm7yxeUAj9mqFtQ@mail.gmail.com>
-Cc: Yocto Project <yocto@yoctoproject.org>,
-	openembedded-architecture@lists.openembedded.org,
-	Jose Lamego <jose.a.lamego@intel.com>,
-	Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>
-Subject: Re: [Openembedded-architecture] Patchwork and incoming patch testing
+In-Reply-To: <SINPR0401MB1808A26F945A2E7ACB69D115A97F0@SINPR0401MB1808.apcprd04.prod.outlook.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Pulseaudio: build issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,182 +42,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 18 Jan 2017 14:46:09 -0000
-Content-Type: multipart/alternative;
-	boundary="------------25B27CDEBBBF6AF39190CC74"
+X-List-Received-Date: Wed, 18 Jan 2017 14:58:55 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
---------------25B27CDEBBBF6AF39190CC74
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+Hi Gowtham,
 
-+ Jose Lamego
-
-
-Jose is doing recent work on the patchwork UI, perhaps there are already 
-bugs for the items you are asking.
-
-
-On 01/18/2017 02:40 AM, Jussi Kukkonen wrote:
-> This looks great, thanks.
+On Wed, Jan 18, 2017 at 12:00:52PM +0000, Gowtham Pandi wrote:
 >
-> On 17 January 2017 at 20:05, Paul Eggleton 
-> <paul.eggleton@linux.intel.com <mailto:paul.eggleton@linux.intel.com>> 
-> wrote:
+>Hi All,
 >
->     In any event we are now finally in the
->     position where our patchwork instance can be relied upon to
->     collect emails,
->     and the UI is much improved. This should give us a bit more
->     visibility into
->     where patches are at in the process, although we are still working
->     on a few
->     places where patch series status needs to be updated (e.g. when a
->     patch goes
->     into testing).
+>I am using Raspberry Pi 3 model B. I am facing build issues while building bitbake pulseaudio.
+>
+>Please find my configuration details:
+>
+>Yocto : Jethro branch
+>pulseaudio.inc RDEPENDS_pulseaudio-server += "alsa-plugins-pulseaudio-conf"
+>we are using alsa-plugins_1.0.29.bb
+>bitbake pulseaudio
+>ERROR: Nothing RPROVIDES 'alsa-plugins-pulseaudio-conf' 
+> (but /home/guest/openembedded-core/meta/recipes-multimedia/pulseaudio/pulseaudio_6.0.bb RDEPENDS on or otherwise requires it)
+>
+>NOTE: Runtime target 'alsa-plugins-pulseaudio-conf' is unbuildable, removing... 
+>Missing or unbuildable dependency chain was: ['alsa-plugins-pulseaudio-conf'] 
+> ERROR: Required build target 'pulseaudio' has no buildable providers.
+> Missing or unbuildable dependency chain was: ['pulseaudio', 'alsa-plugins-pulseaudio-conf']
 >
 >
-> What's the plan for these status updates -- is the idea that you go to 
-> patchwork UI to see the state of a specific patch set?
-> Or maybe a reply to either patch sender or even the ML?
->
->     On top of patchwork we have built a simple smoke-testing framework
->     called
->     "patchtest" [5] along with a suite of corresponding tests for OE
->     [6]. These
->     tests are fairly simplistic at this point but check the basics
->     such as whether
->     a patch has been properly signed off, etc. We should soon start
->     seeing replies
->     sent to the mailing list and to submitters with results if there
->     are any
->     failures, saving us from noticing and pointing out some of the
->     more obvious
->     classes of mistakes.
->
->
->  Is there a reason for patchwork only showing "success" or "failure" 
-> in the web ui, instead of linking to test results at least in in the 
-> failure case?
+>Please share your inputs.
 
-Jussi, that is a good idea. Right now we need to click into the series, 
-then into the patches and then one can see the patch test results, 
-obviously, not the best way.
+Please make sure that "pulseaudio" is present in the 'DISTRO_FEATURES'.
+
+To test this, add the following line in your "local.conf" file and build again:
+DISTRO_FEATURES_append =" pulseaudio"
 
 >
->
->
->  - Jussi
->
->
->
+>Thanks
+>Gowtham  P
 
+Best Regards,
+Maxin
 
---------------25B27CDEBBBF6AF39190CC74
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=windows-1252"
-      http-equiv="Content-Type">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <p>+ Jose Lamego <br>
-    </p>
-    <p><br>
-    </p>
-    <p>Jose is doing recent work on the patchwork UI, perhaps there are
-      already bugs for the items you are asking.<br>
-    </p>
-    <br>
-    <div class="moz-cite-prefix">On 01/18/2017 02:40 AM, Jussi Kukkonen
-      wrote:<br>
-    </div>
-    <blockquote
-cite="mid:CAHiDW_F=ybZibjGyjMpg4Gi+sEhSQPw6eVmGm7yxeUAj9mqFtQ@mail.gmail.com"
-      type="cite">
-      <meta http-equiv="Context-Type" content="text/html; charset=UTF-8">
-      <div dir="ltr">
-        <div class="gmail_extra">
-          <div>This looks great, thanks.</div>
-          <div class="gmail_quote"><br>
-          </div>
-          <div class="gmail_quote">On 17 January 2017 at 20:05, Paul
-            Eggleton <span dir="ltr">&lt;<a moz-do-not-send="true"
-                href="mailto:paul.eggleton@linux.intel.com"
-                target="_blank">paul.eggleton@linux.intel.com</a>&gt;</span>
-            wrote:<br>
-          </div>
-          <blockquote class="gmail_quote"><span>In any event we are now
-              finally in the<br>
-            </span><span>position where our patchwork instance can be
-              relied upon to collect emails,<br>
-            </span><span>and the UI is much improved. This should give
-              us a bit more visibility into<br>
-            </span><span>where patches are at in the process, although
-              we are still working on a few<br>
-            </span><span>places where patch series status needs to be
-              updated (e.g. when a patch goes<br>
-            </span><span>into testing).</span></blockquote>
-          <div class="gmail_quote"><span><br>
-            </span></div>
-          <div class="gmail_quote"><span>What's the plan for these
-              status updates -- is the idea that you go to patchwork UI
-              to see the state of a specific patch set?</span></div>
-          <div class="gmail_quote"><span>Or maybe a reply to either
-              patch sender or even the ML?</span></div>
-          <div class="gmail_quote"><span><br>
-            </span></div>
-          <div class="gmail_quote">
-            <blockquote class="gmail_quote">On top of patchwork we have
-              built a simple smoke-testing framework called<br>
-              "patchtest" [5] along with a suite of corresponding tests
-              for OE [6]. These<br>
-              tests are fairly simplistic at this point but check the
-              basics such as whether<br>
-              a patch has been properly signed off, etc. We should soon
-              start seeing replies<br>
-              sent to the mailing list and to submitters with results if
-              there are any<br>
-              failures, saving us from noticing and pointing out some of
-              the more obvious<br>
-              classes of mistakes.</blockquote>
-            <div><br>
-            </div>
-            <div> Is there a reason for patchwork only showing "success"
-              or "failure" in the web ui, instead of linking to test
-              results at least in in the failure case?</div>
-          </div>
-        </div>
-      </div>
-    </blockquote>
-    <br>
-    Jussi, that is a good idea. Right now we need to click into the
-    series, then into the patches and then one can see the patch test
-    results, obviously, not the best way.<br>
-    <br>
-    <blockquote
-cite="mid:CAHiDW_F=ybZibjGyjMpg4Gi+sEhSQPw6eVmGm7yxeUAj9mqFtQ@mail.gmail.com"
-      type="cite">
-      <div dir="ltr">
-        <div class="gmail_extra">
-          <div class="gmail_quote"><br>
-            <div><br>
-            </div>
-            <div><br>
-            </div>
-            <div> - Jussi</div>
-            <div><br>
-            </div>
-          </div>
-        </div>
-      </div>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <br>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------25B27CDEBBBF6AF39190CC74--
