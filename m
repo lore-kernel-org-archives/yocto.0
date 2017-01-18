@@ -1,54 +1,70 @@
-Return-Path: <colin.helliwell@ln-systems.com>
+Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 081A4E00A08; Wed, 18 Jan 2017 07:10:30 -0800 (PST)
+	id 68AA3E00A16; Wed, 18 Jan 2017 07:40:37 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE,RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [212.227.126.133 listed in dnsbl.sorbs.net]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [212.227.126.133 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [74.125.82.66 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.133])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 238E1E00A03
-	for <yocto@yoctoproject.org>; Wed, 18 Jan 2017 07:10:26 -0800 (PST)
-Received: from LNSYSCH3 ([81.130.69.98]) by mrelayeu.kundenserver.de (mreue005
-	[212.227.15.163]) with ESMTPSA (Nemesis) id 0M6heq-1cfuaa3CBI-00wVew
-	for <yocto@yoctoproject.org>; Wed, 18 Jan 2017 16:10:24 +0100
-From: <colin.helliwell@ln-systems.com>
-To: <yocto@yoctoproject.org>
-Date: Wed, 18 Jan 2017 15:10:23 -0000
-Organization: LN Systems Limited
-Message-ID: <049201d2719c$fea9e670$fbfdb350$@ln-systems.com>
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wm0-f66.google.com (mail-wm0-f66.google.com [74.125.82.66])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F2E9BE009CE
+	for <yocto@yoctoproject.org>; Wed, 18 Jan 2017 07:40:32 -0800 (PST)
+Received: by mail-wm0-f66.google.com with SMTP id c85so4951923wmi.1
+	for <yocto@yoctoproject.org>; Wed, 18 Jan 2017 07:40:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-disposition:in-reply-to:user-agent;
+	bh=dSGPb5iO0xQhkBYhQje7HDWBYtsc3tP4Qq8g4pfs41o=;
+	b=OhwiT3FyHwMZIDIXvcxW+ebhlllW3t/QFW3poTd+cWozfMBuSbDB7jLHy+UddGaSZn
+	aeyxHm+Flgl75Emjbp8kzx9tx6AfIGXkpHrWFzHvpZI+NdnroWBRnzv4fD4nUQZRdlLw
+	/CWXq95sdXGE+m2oXMbi9vFspfRDCM28cHDz1QArndkcy4fFgG0vxY9Ppdx4OwM1SoYy
+	KUgauoT/fKuE3qkwZIh095ysiE/SJyDwpSv5SDE101b9XfX8sAY3/65GiFW9u+aHX5Ct
+	saj9C9usnZpACoIliCmefKeufOR256I+j43qSyNWlzbHVdcVXQZaUB2e61Fpq5y70OYU
+	bGXw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	:mime-version:content-disposition:in-reply-to:user-agent;
+	bh=dSGPb5iO0xQhkBYhQje7HDWBYtsc3tP4Qq8g4pfs41o=;
+	b=QAHxV3uGzWmur9h2trhoZs4JoewzKVKfBdI2y4gWFQ6OtV0hcgt/t2Nl9LGkv3O5UV
+	JhHEDUpU1jGdeYFmHQtWpEAjgqXdpPqafJK5uQQavDonGftQvza51ScbHRawFYjNzhj0
+	JzS7LFRsG3i3Wjm/VFZixhnYYbUdOUBdV17CxLWYrpGLFqSZBDLwSeDsL0/naXTff/ib
+	FR2RZ+u+rtMrtokL7Cy6RFw+I/wB2zrf+5ZeqfKcEe31NtxgbvM5WRS2rPBi/dJfLCnU
+	eIPv0ukOWM3mls1GkxbQs3IP7woHnwaTNYisamPZdxRY/4qyo7K85T7xV6w8R9pmFmHO
+	Atqw==
+X-Gm-Message-State: AIkVDXLou32rnLijvvPu56gpcA5gzJJUvnHvLMlrNr+yKDtQ9oO5u445GiemhWRsQktQyw==
+X-Received: by 10.28.113.9 with SMTP id m9mr22396337wmc.60.1484754031718;
+	Wed, 18 Jan 2017 07:40:31 -0800 (PST)
+Received: from carbonA (cpc96910-walt25-2-0-cust629.13-2.cable.virginm.net.
+	[82.22.166.118]) by smtp.gmail.com with ESMTPSA id
+	a186sm46203410wmh.1.2017.01.18.07.40.30
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Wed, 18 Jan 2017 07:40:30 -0800 (PST)
+Date: Wed, 18 Jan 2017 15:40:24 +0000
+From: Andrei Gherzan <andrei@gherzan.ro>
+To: Paul Barker <paul@paulbarker.me.uk>
+Message-ID: <20170118154024.GA31825@carbonA>
+References: <1484551617-11222-1-git-send-email-paul@paulbarker.me.uk>
+	<8b8a6e45-6aa1-1536-92ae-837192b97ca7@mlbassoc.com>
+	<d027a8ed-4f40-e4cb-d1de-349d93343f63@mlbassoc.com>
+	<E4828DAD-529B-4C43-A13B-67096B6741EE@paulbarker.me.uk>
 MIME-Version: 1.0
-X-Mailer: Microsoft Outlook 15.0
-Thread-Index: AdJxm76r42G/wrCZRhaTKOOUulQQTA==
-X-Provags-ID: V03:K0:wIkGo3QE6g/NYr8HRZ2m8qKpAnw4HwU3LNzmmt8LkZ6qVHvd14v
-	cdOCu4bL7imygKiZ0/BJFlA2ckZzwoPwU+GJWpxMsWJ1/KXGRxa1YPGnGKSjr8EGc0i/hnJ
-	vub9+sb44CwfsEHj/uI2Pt9olQdhCkD6n7zdEeqT0LeD5gvtuoWbrqws+zVnk6nEbU39lrc
-	B6gEOo3Uy3SJMJ6ScVweQ==
-X-UI-Out-Filterresults: notjunk:1;V01:K0:tqwyGhVYTqY=:5dnaiotQw76sFrxVVGErhs
-	TAzrqL2mEzl2C1T281hXv074fQSPNYmN66UbZ5NSmmHIiUas46mhE5oKjUT7NHgzi9YSs2iE/
-	nxZGYYcLt3K+4kzbn3AI31mUfxuuV40OjK3nVq+jhPA0LoenPBOfo5iTzWwiPY/C8/dV77QOM
-	H0zEOXmLMEGYjOMe3yJ5OmD35fxvmGqhvMhwLRKpoObTEX5erl1M8N47kAg7VBBkTJViaagaa
-	vbQTHNTSFqCo2jMm/QXU6tHba5pxHhJVzoxEcYmGe3ciQc8UdCCwhZlvGZ7w8qPGZfdrb2yMC
-	PcIBZ306T7iQ9HCvTNCOl/ngpcQ+72gxmcOTyCE5NAsu4QhNrziq3TpeUIV1eth+U2fWtOtXc
-	KJZwwSc92+UiP2NjMog/vJf3UgTorRG3m2neQuR4sBTEt3+Y8gBI8aa9NoVPffnVdTBaKaEvM
-	nmuwcIQ8IRIVVQEhChh1y1/J76rMxuQHMDkxy0Mq28/CpDwazCq7rH/8xJDyKvl9bSzxEMxl1
-	1xPMeM0SFeopuIOTMVOSjkfbAidSZ2mIimXoIlK3ha1/9Q/TGefYN0KdFE4x1YmEaxZG/Sofi
-	O+n0EPBUnsm4RwXcGkgESuitGDzKaqwuX3xqJisRwaU8de5F7F+rYkxJ4+uSMqweidJ5Lu3/z
-	Zr7Imw1/MqL4ydoS2F/h/wzxIop4KLTHEyUYRFSiCDMYppoczoSs4idKO+Y0AJfe3bw6Z5Txf
-	9Umy0lJIlEPfH5xI
-Subject: Changing over to systemd (no dhcp)
+In-Reply-To: <E4828DAD-529B-4C43-A13B-67096B6741EE@paulbarker.me.uk>
+User-Agent: Mutt/1.7.2 (2016-11-26)
+Cc: yocto@yoctoproject.org, Gary Thomas <gary@mlbassoc.com>
+Subject: Re: [meta-raspberrypi][PATCH 0/2] Drop kernel versions 4.7 and 4.8
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: colin.helliwell@ln-systems.com
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -57,162 +73,129 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 18 Jan 2017 15:10:30 -0000
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_0493_01D2719C.FEAC3060"
-Content-Language: en-gb
+X-List-Received-Date: Wed, 18 Jan 2017 15:40:37 -0000
+X-Groupsio-MsgNum: 33907
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="J/dobhs11T7y2rNN"
+Content-Disposition: inline
 
-------=_NextPart_000_0493_01D2719C.FEAC3060
-Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+--J/dobhs11T7y2rNN
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-We have a configuration for our embedded system which is working via SysV,
-but we're investigating moving over to systemd. 
+On Mon, Jan 16, 2017 at 03:12:51PM +0000, Paul Barker wrote:
+> On 16 January 2017 14:51:55 GMT+00:00, Gary Thomas <gary@mlbassoc.com> wrote:
+> >On 2017-01-16 15:48, Gary Thomas wrote:
+> >> On 2017-01-16 08:26, Paul Barker wrote:
+> >>> As discussed recently on the list, we can just keep LTS versions now
+> >>> that v4.9 is available.
+> >>>
+> >>> I'm sending these so anyone who still needs v4.7 or v4.8 can shout
+> >>> 'stop!' before we remove them.
+> >>>
+> >>> Paul Barker (2):
+> >>>   linux-raspberrypi: Drop v4.7
+> >>>   linux-raspberrypi: Drop v4.8
+> >>>
+> >>>  .../0001-fix-dtbo-rules.patch                      | 44
+> >----------------------
+> >>>  recipes-kernel/linux/linux-raspberrypi_4.7.bb      |  9 -----
+> >>>  recipes-kernel/linux/linux-raspberrypi_4.8.bb      |  8 ----
+> >>>  3 files changed, 61 deletions(-)
+> >>>  delete mode 100644
+> >recipes-kernel/linux/linux-raspberrypi-4.7/0001-fix-dtbo-rules.patch
+> >>>  delete mode 100644 recipes-kernel/linux/linux-raspberrypi_4.7.bb
+> >>>  delete mode 100644 recipes-kernel/linux/linux-raspberrypi_4.8.bb
+> >>>
+> >>
+> >> +1 at least for 4.7 given that with today's repo I get this:
+> >>
+> >> ERROR: linux-raspberrypi-1_4.7.7+gitAUTOINC+c2cbd9c611-r0
+> >do_kernel_version_sanity_check: Package Version
+> >> (4.7.7+gitAUTOINC+c2cbd9c611) does not match of kernel being built
+> >(4.7.10). Please update the PV variable to match the
+> >> kernel source.
+> >> ERROR: linux-raspberrypi-1_4.7.7+gitAUTOINC+c2cbd9c611-r0
+> >do_kernel_version_sanity_check: Function failed:
+> >> do_kernel_version_sanity_check (log file is located at
+> >>
+> >/build/rpi3_2016-09-13/tmp/work/raspberrypi3-amltd-linux-gnueabi/linux-raspberrypi/1_4.7.7+gitAUTOINC+c2cbd9c611-r0/temp/log.do_kernel_version_sanity_check.27925)
+> >>
+> >> ERROR: Logfile of failure stored in:
+> >>
+> >/build/rpi3_2016-09-13/tmp/work/raspberrypi3-amltd-linux-gnueabi/linux-raspberrypi/1_4.7.7+gitAUTOINC+c2cbd9c611-r0/temp/log.do_kernel_version_sanity_check.27925
+> >>
+> >> ERROR: Task
+> >>
+> >(/local/poky-cutting-edge/meta-raspberrypi/recipes-kernel/linux/linux-raspberrypi_4.7.bb:do_kernel_version_sanity_check)
+> >> failed with exit code '1'
+> >>
+> >
+> >
+> >However, there is this error when I tried to switch to 4.9:
+> >ERROR: linux-raspberrypi-1_4.9.2+gitAUTOINC+4052b0da7d-r0 do_fetch:
+> >Fetcher failure: Unable to find revision
+> >4052b0da7dbab0df22ca8733cf50b3e573e221e0 in branch rpi-4.9.y even from
+> >upstream
+> >ERROR: linux-raspberrypi-1_4.9.2+gitAUTOINC+4052b0da7d-r0 do_fetch:
+> >Fetcher failure for URL:
+> >'git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-4.9.y'.
+> >Unable to fetch URL from any source.
+> >ERROR: linux-raspberrypi-1_4.9.2+gitAUTOINC+4052b0da7d-r0 do_fetch:
+> >Function failed: base_do_fetch
+> >ERROR: Logfile of failure stored in:
+> >/build/rpi3_2016-09-13/tmp/work/raspberrypi3-amltd-linux-gnueabi/linux-raspberrypi/1_4.9.2+gitAUTOINC+4052b0da7d-r0/temp/log.do_fetch.13098
+> >ERROR: Task
+> >(/local/poky-cutting-edge/meta-raspberrypi/recipes-kernel/linux/linux-raspberrypi_4.9.bb:do_fetch)
+> >failed
+> >with exit code '1'
+> >
+> >Using meta-raspberrypi:e1f69daa805cb02ddd123ae2d4d48035cb5b41d0
+>
+> I think any upstream branch after 4.4.y is still at risk of being rebased at the minute. I think the best solution is to still drop 4.7.y and 4.8.y, but try to get an update in for 4.9.y first.
 
-Not sure if this is 'wise' - if anyone has technological arguments
-for/against then I'd be interested - but I wanted to investigate it anyway.
+I totally agree with this. I left this thread for a while to see if
+people are really attached to these versions. Our last decision was to
+keep:
+1. last LTS
+2. current stable version as considered by the upstream [default]
+3. the latest bleading edge
 
- 
+Based we should only keep 4.4 and 4.10 (or 4.9).
 
-I've modified local.conf (right or wrong) with
+Ane comments before I proceed? :)
 
-  DISTRO_FEATURES_append = " systemd"
+>
+>
+> --
+> Sent from my Android device with K-9 Mail. Please excuse my brevity.
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-  VIRTUAL-RUNTIME_init_manager = "systemd"
+--
+Andrei Gherzan
 
-  DISTRO_FEATURES_BACKFILL_CONSIDERED = "sysvinit"
+--J/dobhs11T7y2rNN
+Content-Type: application/pgp-signature; name="signature.asc"
 
-  VIRTUAL-RUNTIME_initscripts = ""
+-----BEGIN PGP SIGNATURE-----
 
-  KERNEL_ENABLE_CGROUPS = "1"
+iQIzBAEBCAAdFiEEQvNqws+Dz7aX1cEEc7voa356t88FAlh/jGYACgkQc7voa356
+t89tuxAAipcQcD1ZrpE2XsUdSD2vugxZv+lgUXTU+G3Whypx8H+NBLSewV0OSWgR
+1ywSnBM7hEsdCsYUww5HiSxW9Q6FrwJC5xZO+t/OyAnab6xbKWm7qE7dKouheUWx
+QbaIq3hwaAWp2x5YS6VzAN0ka7D7k3Me8644Qudyrs0bUWuZSvN65xf1hO+UCBV3
+Idc2C2Mj3OW3ecX2wzfOt5izqkflOziPcCMrygLVZxS5bh3pKI8BXmizlFEWnuac
+C2K3jIR1bTfF3cxyG6nFuBnm3YJ5a0/IXL0+FAhVLIM+CvjEZcEBtLcmvKHo69B6
+r3NRfin2PBz/A6zOgndhnCTL1mnt/G22b6QROXcoCmtC8TA7AJY1oQ1/SkZplUzl
+nXiyqXKx+DUBYJcmIIbv/xnf6e5qyMQ76af/lzefsWRIlxigOlOWiQS0znPdsE2I
++zWYkSgnxRKsltWHWE85roVR1mAMpJhKQh9w+X2AULOW286YNNnFwXu3mRHRkVP1
+XG8dcQoLreyOrDceS7TK5WoI0GZM3SGfFXppi9ZcZHJWyFgo+BX+0ntrCXTxCclQ
+G0RBbDWX9BVzSY7f43Kg6IpD1emvTvbrfaA4xJCORgUFfQ8WGntxWIDwY+uWfWIA
+KKErmBbL3IxYsWqiCf8QOR4UsNtqhQW2R1xes4409QjJrl9E5+Q=
+=ZD5u
+-----END PGP SIGNATURE-----
 
- 
-
-I also found a readme
-(https://cgit.freedesktop.org/systemd/systemd/tree/README#n37) about the
-kernel requirements for systemd, and it does at least now boot.
-
-However although eth0 is coming up ('ifconfig eth0'), there doesn't seem to
-be any dhcp happening - no IP etc.
-
-Previously (under SysV) I had the busybox dhcp client; now it seems that is
-missing. There's a symlink /etc/systemd/system/busybox-udhcpc.service to
-/dev/null
-
-I'm using 
-
-  Poky Jethro
-
-  Kernel 4.4.0
-
-  Busybox 1.23.2 (with 'CONFIG_FEATURE_SYSTEMD=y')
-
- 
-
-I wondered if this is just a simple switch I'm missing somewhere, or is
-there a whole load more modifications I need to dig into and hand-craft?
-(Was hoping for something 'out of the box'..)
-
- 
-
-Thanks
-
- 
-
-
-------=_NextPart_000_0493_01D2719C.FEAC3060
-Content-Type: text/html;
-	charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
-http-equiv=3DContent-Type content=3D"text/html; =
-charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
-(filtered medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DEN-GB =
-link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
-class=3DMsoNormal>We have a configuration for our embedded system which =
-is working via SysV, but we&#8217;re investigating moving over to =
-systemd. <o:p></o:p></p><p class=3DMsoNormal>Not sure if this is =
-&#8216;wise&#8217; &#8211; if anyone has technological arguments =
-for/against then I&#8217;d be interested &#8211; but I wanted to =
-investigate it anyway.<o:p></o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>I&#8217;ve =
-modified local.conf (right or wrong) with<o:p></o:p></p><p =
-class=3DMsoNormal>&nbsp; DISTRO_FEATURES_append =3D &quot; =
-systemd&quot;<o:p></o:p></p><p class=3DMsoNormal>&nbsp; =
-VIRTUAL-RUNTIME_init_manager =3D &quot;systemd&quot;<o:p></o:p></p><p =
-class=3DMsoNormal>&nbsp; DISTRO_FEATURES_BACKFILL_CONSIDERED =3D =
-&quot;sysvinit&quot;<o:p></o:p></p><p class=3DMsoNormal>&nbsp; =
-VIRTUAL-RUNTIME_initscripts =3D &quot;&quot;<o:p></o:p></p><p =
-class=3DMsoNormal>&nbsp; KERNEL_ENABLE_CGROUPS =3D =
-&quot;1&quot;<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
-class=3DMsoNormal>I also found a readme =
-(https://cgit.freedesktop.org/systemd/systemd/tree/README#n37) about the =
-kernel requirements for systemd, and it does at least now =
-boot.<o:p></o:p></p><p class=3DMsoNormal>However although eth0 is coming =
-up (&#8216;ifconfig eth0&#8217;), there doesn&#8217;t seem to be any =
-dhcp happening &#8211; no IP etc.<o:p></o:p></p><p =
-class=3DMsoNormal>Previously (under SysV) I had the busybox dhcp client; =
-now it seems that is missing. There&#8217;s a symlink =
-/etc/systemd/system/busybox-udhcpc.service to /dev/null<o:p></o:p></p><p =
-class=3DMsoNormal>I&#8217;m using <o:p></o:p></p><p =
-class=3DMsoNormal>&nbsp;&nbsp;Poky Jethro<o:p></o:p></p><p =
-class=3DMsoNormal>&nbsp; Kernel 4.4.0<o:p></o:p></p><p =
-class=3DMsoNormal>&nbsp; Busybox 1.23.2 (with =
-&#8216;CONFIG_FEATURE_SYSTEMD=3Dy&#8217;)<o:p></o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>I wondered =
-if this is just a simple switch I&#8217;m missing somewhere, or is there =
-a whole load more modifications I need to dig into and hand-craft? (Was =
-hoping for something &#8216;out of the =
-box&#8217;&#8230;.)<o:p></o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
-class=3DMsoNormal>Thanks<o:p></o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
-
-------=_NextPart_000_0493_01D2719C.FEAC3060--
+--J/dobhs11T7y2rNN--
