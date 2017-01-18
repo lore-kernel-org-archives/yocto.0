@@ -1,65 +1,70 @@
-Return-Path: <leon@sidebranch.com>
+Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 80E43E004E5; Wed, 18 Jan 2017 08:24:08 -0800 (PST)
+	id 8C13FE009D4; Wed, 18 Jan 2017 08:30:18 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [74.125.82.68 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.82.68 listed in dnsbl.sorbs.net]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.169 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.82.169 listed in dnsbl.sorbs.net]
-Received: from mail-ot0-f169.google.com (mail-ot0-f169.google.com
-	[74.125.82.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D129CE0049D
-	for <yocto@yoctoproject.org>; Wed, 18 Jan 2017 08:24:06 -0800 (PST)
-Received: by mail-ot0-f169.google.com with SMTP id 65so12238726otq.2
-	for <yocto@yoctoproject.org>; Wed, 18 Jan 2017 08:24:06 -0800 (PST)
+Received: from mail-wm0-f68.google.com (mail-wm0-f68.google.com [74.125.82.68])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2C3F2E009CD
+	for <yocto@yoctoproject.org>; Wed, 18 Jan 2017 08:30:14 -0800 (PST)
+Received: by mail-wm0-f68.google.com with SMTP id d140so5259150wmd.2
+	for <yocto@yoctoproject.org>; Wed, 18 Jan 2017 08:30:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=sidebranch-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=tTi0gTUYYlBmv9MxAhAH7wi1Z/DmZkylP3cjao95cic=;
-	b=coPsmjeV65CReT+Ob3FBXl/+ihiwaJxussXkcbfrKT++WcXTGZp6fl9yRFft6mw2K9
-	27IE9WblnffPZYbgEP59S+9DK/JqNHUjvRjELzz+vo6qsbN4aTI8+IBWgbxuz22JGktO
-	Pz6KOyGLRRSmrGd0+C/bastxbE71R4P3IyIP5HnUBriye+2RRID66H2ck1+945zTETC+
-	ONFIJZ2HePaUaRttBlmL8wdsk6Kea+zGVUGcjf6lE8edjU8VDqy3uCXb5bxd5y9my3Y8
-	thqCK9RUL1hHqoUnnRHRKg8dPTRa/CVlJwq6CpfrYZ9KOiuyFw9ITEQnMFbf2pvc24e2
-	r40Q==
+	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-disposition:in-reply-to:user-agent;
+	bh=LgPcFMXfAyD8zi8Mx+bgQsN5l/OqwjcQP7+r32A8Yzw=;
+	b=I7Dz9UPR8XvY/uWOELbSZuj0tBfvSNcU0ZxIOAeVa7vozorSxVaaZX2hawCI+DaliP
+	tzc+uZaCx9qN/6IrEgFRxtfGYvhHVMFg2K16J9po/62f0Smamr8gsAPYZe3qev7NpG5u
+	kBEE9tniqI1HwEoWW+UxIFCpuc0NQ6oz5mnbAfuPUtBnGtyyd0djHVmLmZK/hzVx6HXb
+	RFd+lUkh5bkQr1BL2zJbfdAbOSdeV4GDVC6bPUM+RQBR7i3g+YhX1ew67XgEEAiVhB1E
+	Z3r1WatkqQGthrLnq4kR9mqm0FT2Wg0RDFlvDIZ4rCurUE0iCP0tdNtZuy6yTHk3fzdP
+	xppg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=tTi0gTUYYlBmv9MxAhAH7wi1Z/DmZkylP3cjao95cic=;
-	b=Uy64FFxM2aBFvdU/89wVd8bMiXolU79Y/qQB6qrye6vsQ5IGORT6W02bio6aWoCL+T
-	5EL3SpVwz/OM8xnkJ1NQmcjSwqWCgy75N8XYjMocaPvoVkM3qIwIDjGKhWeL4j2n2pwD
-	heS93qfRqwA/OWHWp2TKGQVedMWw6nc1ygrdWNWNXjEr54vmkD5c3xsSX0FSgvo3nZy1
-	MQXSM5ZqOhOoRZM0DFrwGKkR7d+rz35FP5da1FwB9fBFARKrIWOmwt7lRLXMtYB7Csqd
-	FXUN0btFFGQxE+2wHrwG/ko1tJrn9vi2yTpiT6xKN614t5ppU7sFz+QDZhwV0OvNedFf
-	afOg==
-X-Gm-Message-State: AIkVDXIOxjSAvNTq6TjXM7lfpqcLSR42mTTSHpQNmkaCNvZORIzVz4rcR7dNIv5NcvEQVR0NGZ0kdRG6LWjj+A==
-X-Received: by 10.157.38.165 with SMTP id l34mr1898422otb.97.1484756645898;
-	Wed, 18 Jan 2017 08:24:05 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.157.48.108 with HTTP; Wed, 18 Jan 2017 08:24:05 -0800 (PST)
-In-Reply-To: <20170118154024.GA31825@carbonA>
+	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	:mime-version:content-disposition:in-reply-to:user-agent;
+	bh=LgPcFMXfAyD8zi8Mx+bgQsN5l/OqwjcQP7+r32A8Yzw=;
+	b=jY5+7/iO3wieybK7v6qZ0Bg8VX+H1ZKOjQ5UtXlgj2tntWAphV05wFCJ0VmeSmAN/O
+	e+kAfO2oldWGwlxbDoj9B5TXG2UvEUqW/SBrHss3DSopnP4OSW9X4651oE3Vb468Ysmp
+	QPij9TTslumfIuwjKCpk9RgwZMyPQ1aa+ofs0UwSkTDKeWzF1tk/XWCF4dfJ8+YQg7Ai
+	gW0Wh2ButxANUWMHrNFPoToU/cc/0mQzlDUwqm59nBGs/uol1a/0qvXXEGwLm7MoO+xB
+	AVJopjO04t3ExCwwMUsGBW3zb42P1d9nDTxyKtvYRisr+HrVIRwvb41ElTiUGVd47W6I
+	J8lA==
+X-Gm-Message-State: AIkVDXL63T93NXRmRw4epjKTpM90107dNojW2uj3mJGYwOu4ttZiPnDsq/sptMxqWdVs5Q==
+X-Received: by 10.28.143.5 with SMTP id r5mr22046991wmd.141.1484757013741;
+	Wed, 18 Jan 2017 08:30:13 -0800 (PST)
+Received: from carbonA (cpc96910-walt25-2-0-cust629.13-2.cable.virginm.net.
+	[82.22.166.118])
+	by smtp.gmail.com with ESMTPSA id r6sm5949507wmd.4.2017.01.18.08.30.12
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Wed, 18 Jan 2017 08:30:13 -0800 (PST)
+Date: Wed, 18 Jan 2017 16:30:08 +0000
+From: Andrei Gherzan <andrei@gherzan.ro>
+To: Leon Woestenberg <leon@sidebranch.com>
+Message-ID: <20170118163008.GG14533@carbonA>
 References: <1484551617-11222-1-git-send-email-paul@paulbarker.me.uk>
 	<8b8a6e45-6aa1-1536-92ae-837192b97ca7@mlbassoc.com>
 	<d027a8ed-4f40-e4cb-d1de-349d93343f63@mlbassoc.com>
 	<E4828DAD-529B-4C43-A13B-67096B6741EE@paulbarker.me.uk>
 	<20170118154024.GA31825@carbonA>
-From: Leon Woestenberg <leon@sidebranch.com>
-Date: Wed, 18 Jan 2017 17:24:05 +0100
-Message-ID: <CAMjhiJiDszPCeLvBn1Hoopu99Ot5BGMm-7pFRUWv+TpQka9Cqg@mail.gmail.com>
-To: Andrei Gherzan <andrei@gherzan.ro>
+	<CAMjhiJiDszPCeLvBn1Hoopu99Ot5BGMm-7pFRUWv+TpQka9Cqg@mail.gmail.com>
+MIME-Version: 1.0
+In-Reply-To: <CAMjhiJiDszPCeLvBn1Hoopu99Ot5BGMm-7pFRUWv+TpQka9Cqg@mail.gmail.com>
+User-Agent: Mutt/1.7.2 (2016-11-26)
 Cc: Yocto List <yocto@yoctoproject.org>, Gary Thomas <gary@mlbassoc.com>
 Subject: Re: [meta-raspberrypi][PATCH 0/2] Drop kernel versions 4.7 and 4.8
 X-BeenThere: yocto@yoctoproject.org
@@ -73,42 +78,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 18 Jan 2017 16:24:08 -0000
-Content-Type: multipart/alternative; boundary=001a113ce6fa7500d7054660d880
+X-List-Received-Date: Wed, 18 Jan 2017 16:30:18 -0000
+X-Groupsio-MsgNum: 33913
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="aFi3jz1oiPowsTUB"
+Content-Disposition: inline
 
---001a113ce6fa7500d7054660d880
-Content-Type: text/plain; charset=UTF-8
+--aFi3jz1oiPowsTUB
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On Wed, Jan 18, 2017 at 4:40 PM, Andrei Gherzan <andrei@gherzan.ro> wrote:
+On Wed, Jan 18, 2017 at 05:24:05PM +0100, Leon Woestenberg wrote:
+> On Wed, Jan 18, 2017 at 4:40 PM, Andrei Gherzan <andrei@gherzan.ro> wrote:
+>
+> >
+> > Based we should only keep 4.4 and 4.10 (or 4.9).
+> >
+> > Ane comments before I proceed? :)
+> >
+> >
+> I think keeping 4.9 (Long Term Support kernel) for sure.
+
+Is it?
+https://www.kernel.org/category/releases.html
 
 >
-> Based we should only keep 4.4 and 4.10 (or 4.9).
+>  Regards,
 >
-> Ane comments before I proceed? :)
->
->
-I think keeping 4.9 (Long Term Support kernel) for sure.
+> Leon.
 
- Regards,
+--
+Andrei Gherzan
 
-Leon.
+--aFi3jz1oiPowsTUB
+Content-Type: application/pgp-signature; name="signature.asc"
 
---001a113ce6fa7500d7054660d880
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+-----BEGIN PGP SIGNATURE-----
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><div class=3D"gmail_quote">On W=
-ed, Jan 18, 2017 at 4:40 PM, Andrei Gherzan <span dir=3D"ltr">&lt;<a href=
-=3D"mailto:andrei@gherzan.ro" target=3D"_blank">andrei@gherzan.ro</a>&gt;</=
-span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
-px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-<br>
-Based we should only keep 4.4 and 4.10 (or 4.9).<br>
-<br></blockquote><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px =
-0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-Ane comments before I proceed? :)<br>
-<span class=3D"gmail-"><br></span></blockquote><div><div><br>I think keepin=
-g 4.9 (Long Term Support kernel) for sure.<br><br></div>=C2=A0Regards,<br><=
-br></div><div>Leon.<br></div></div></div></div>
+iQIzBAEBCAAdFiEEQvNqws+Dz7aX1cEEc7voa356t88FAlh/mBAACgkQc7voa356
+t8+KqxAAt072kskTW8u8nkW+QJlBxff2MX1shnkFCMAhD55Kh+2jVcyyeRSEsMRv
+/bkf0VFUjkfs/Eaf7ohpZEG+094m7S4p2SrqbtAo4pd8s1c3TZwtPR6JR66zOhEx
+F0k+mb/6B80kWDub6TDBkWHmlYOXetelTTzrYt9nXHghcRj9UBcwc7S+Z7UtCZdo
+H1n8/ug5BmmxXSWaDeBkT7cy8BDVQMEH+fe2x/5rUsGTtl+AzGhu9bjX7+ebEHV6
+ALtf3PoLQVCBKyKIy1KDQ1zFNMq3IxhTqfyhxXQa5kcnVLo4FIAa8gDJqFVj8MLq
+zeLKB8YbZmpQxWevjs4g+g72wftiurged0ExtE5US2mHuG+3vOTOOuzmqwLYjZTF
+rXxukfJM7fsXeBzeHa8GtJFZlM2C4BmS+1zO2gCGXJEW86jf2tpxFXB3ekrz8Kff
+Yf7ATbMVwtGnM4mzRtUYkmXBDgQ2OXvJTOt8VsjTYPIBiH0wpxrsTC6Ta/KpCp0+
+A1Si/uuA0sVjePnoBFV2V+tSuu+4IqWQNc07zah0QfoNA38YuyA/ylT+4uA3mdMB
+p4RsrAdzAmQsxDw9IVY6N7GOjZFlcyl2Ka9dwFiM58r3z+yO27mn8GRonBTTDPir
+eQGgvrBIb/JU6AHDHhnqBc2NpYP2Jkrdy0f1+OkYoxAZwktZ9fA=
+=pSFh
+-----END PGP SIGNATURE-----
 
---001a113ce6fa7500d7054660d880--
+--aFi3jz1oiPowsTUB--
