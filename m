@@ -1,36 +1,45 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <paul@paulbarker.me.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7432EE00992; Wed, 18 Jan 2017 02:02:07 -0800 (PST)
+	id F1BC1E00998; Wed, 18 Jan 2017 02:08:36 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [192.55.52.120 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+	RCVD_IN_SORBS_SPAM autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [217.70.183.194 listed in dnsbl.sorbs.net]
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [217.70.183.194 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 16EBAE00985
-	for <yocto@yoctoproject.org>; Wed, 18 Jan 2017 02:02:04 -0800 (PST)
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-	by fmsmga104.fm.intel.com with ESMTP; 18 Jan 2017 02:02:04 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.33,249,1477983600"; d="scan'208";a="214722695"
-Received: from jayyinch-mobl6.gar.corp.intel.com (HELO
-	peggleto-mobl.ger.corp.intel.com) ([10.255.188.18])
-	by fmsmga004.fm.intel.com with ESMTP; 18 Jan 2017 02:02:02 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: openembedded-architecture@lists.openembedded.org,
-	openembedded-core@lists.openembedded.org, yocto@yoctoproject.org
-Date: Wed, 18 Jan 2017 23:02 +1300
-Message-ID: <8251941.rtFFyTMRIg@peggleto-mobl.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.14.10 (Linux/4.8.13-100.fc23.x86_64; KDE/4.14.20; x86_64; ;
-	)
+Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net
+	[217.70.183.194])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C7C4CE0098A
+	for <yocto@yoctoproject.org>; Wed, 18 Jan 2017 02:08:35 -0800 (PST)
+Received: from mfilter1-d.gandi.net (mfilter1-d.gandi.net [217.70.178.130])
+	by relay2-d.mail.gandi.net (Postfix) with ESMTP id 60331C5A65;
+	Wed, 18 Jan 2017 11:08:34 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at mfilter1-d.gandi.net
+Received: from relay2-d.mail.gandi.net ([IPv6:::ffff:217.70.183.194])
+	by mfilter1-d.gandi.net (mfilter1-d.gandi.net [::ffff:10.0.15.180])
+	(amavisd-new, port 10024)
+	with ESMTP id pme_qOlpVV4V; Wed, 18 Jan 2017 11:08:33 +0100 (CET)
+X-Originating-IP: 131.231.60.35
+Received: from [10.10.10.204] (inno-commagility-ownrouter.lut.ac.uk
+	[131.231.60.35]) (Authenticated sender: paul@paulbarker.me.uk)
+	by relay2-d.mail.gandi.net (Postfix) with ESMTPSA id BC78EC5A46;
+	Wed, 18 Jan 2017 11:08:32 +0100 (CET)
+Date: Wed, 18 Jan 2017 10:08:31 +0000
+User-Agent: K-9 Mail for Android
+In-Reply-To: <b1e7905ec4364774a6848060c6ebee45@FE-MBX1014.de.bosch.com>
+References: <b1e7905ec4364774a6848060c6ebee45@FE-MBX1014.de.bosch.com>
 MIME-Version: 1.0
-Subject: Layer index enhancements
+To: yocto@yoctoproject.org,
+	"Eswaran Vinothkumar (BEG-PT/PJ-IOT1)" <Vinothkumar.Eswaran@de.bosch.com>
+From: Paul Barker <paul@paulbarker.me.uk>
+Message-ID: <66BF569C-2E5E-42F7-9CAD-4687CC870171@paulbarker.me.uk>
+Subject: Re: Whats the better way to maintain the Yocto project for an embedded product - git submodules or repo or using Combo-layer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,83 +51,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 18 Jan 2017 10:02:07 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Wed, 18 Jan 2017 10:08:37 -0000
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-Hi all,
+On 18 January 2017 09:32:15 GMT+00:00, "Eswaran Vinothkumar (BEG-PT/PJ-IOT1=
+)" <Vinothkumar=2EEswaran@de=2Ebosch=2Ecom> wrote:
+>Hello Yocto community members,
+>
+>Currently I am working on the task of using Yocto to build customized
+>Embedded Linux distribution for an embedded product=2E I have created a
+>new BSP layer for my project (meta-custommachine) and have successfully
+>created barebox, Linux Kernel and root filesystem images for my board=2E
+>
+>Now I wish to create an internal repository for Yocto project to track
+>and maintain the changes=2E I am unclear what is the better way to create
+>an repository=2E I googled for the same and found that the Freescale
+>community is maintaining their Yocto project using the repo tool=2E So I
+>tried to have a similar structure for my project=2E I created a repo with
+>the default=2Exml file which has the information about where to fetch the
+>repositories for poky, meta-ptx and meta-custommachine=2E I am seeing the
+>folder structures as expected and build is also fine=2E
+>
+>I had a discussion with one of my senior team member about this and he
+>is interested in using git submodules=2E So I tried to add the layers
+>meta-custommachine and meta-ptx within poky repository as sub-modules=2E
+>Is this the proper way of adding new layers within the poky repository?
+>Or may I know how can I maintain a Yocto repository using git
+>submodules=2E Does git submodules work better than repo tool ?
+>
+>I am newbie to create and maintain a repo, so I am not able to
+>visualize what is the future effect of choosing one over the other=2E
+>Currently I am using the krogoth release of Yocto and planning to
+>update this with new Yocto releases=2E
+>
+>Any information on the topic would be helpful=2E
 
-We've done some work recently on the OE layer index [1] and I thought it might 
-be useful to give a summary of what's been implemented:
+Both of these approaches are widely used, I'd go with whichever feels most=
+ comfortable to you/your team=2E Personally I'm a fan of using repo as I ca=
+n set it to check out the latest commits on a given branch (eg=2E krogoth) =
+instead of always having to set an exact commit hash to use=2E
 
-* Upgraded to Django 1.8. This was a bunch of work without much visible 
-impact, however it does mean we are now on an LTS version of Django which is 
-much easier to maintain and will receive security updates until some time in 
-2018.
-
-* Added the ability to search for recipes inheriting a specific class - just 
-add inherits:classname to the search text. For example [2] - you can even 
-search for recipes inheriting several classes [3] (i.e. all specified classes 
-must be inherited in order to match). Note: any other search words are 
-interpreted as part of a string that must be present - we haven't switched to 
-doing keyword-based searching.
-
-* Distros provided by each layer are now collected. I still have to sort out 
-an issue with the collection so most of them aren't showing up in the index 
-yet, but the capability exists.
-
-* Update records - each time we do an update (every three hours) or when a 
-manual update is triggered by Michael, we record the output against the layer 
-plus a separate overall record for the update showing the output for all 
-layers (if you log in this is available from Tools -> Updates, but anyone can 
-access it at [4]). The latter also lets us see how long updates are taking. If 
-you look over the recent update logs you can see we still have to fix up some 
-issues with the data (e.g. because of branches and repos going away, missing 
-dependencies or other metadata issues, etc.). Hopefully making this more 
-visible will help us to tidy these up.
-
-* The layer submission/editing page now lets you select a git web interface, 
-so if you're submitting a layer that's hosted on a server providing a cgit, 
-gitweb or gitlab web interface that isn't one of the common servers we know 
-about (e.g. git.openembedded.org, github, etc.) then you won't have to figure 
-out the syntax for the file/tree URLs, you just select the type and it'll set 
-those fields automatically.
-
-* Fixed a bug that caused recipes to show up twice in the search results if 
-the searched string appeared in both the name and description. Exact matches 
-on name now show up first in the search results as well.
-
-* Fixed a recently introduced bug in the OE-Classic search that resulted in 
-Internal Server errors when searching by name
-
-* We now pick up layer dependencies (and recommends) specified in the 
-layer.conf, but only if they match the layer name - we don't handle collection 
-names yet, so this won't currently work where the collection name doesn't 
-match the layer name (e.g. oe-core, meta-oe...).
-
-* Counts for recipes, machines, classes, appends, and distros are now shown on 
-each tab on the layer detail page
-
-Thanks to Michael Halstead, Liam Howlett and Mark Hatle for helping me with 
-these.
-
-Cheers,
-Paul
-
-
-[1] https://layers.openembedded.org/
-
-[2] 
-http://layers.openembedded.org/layerindex/branch/master/recipes/?q=inherits%3Acmake
-
-[3]
-http://layers.openembedded.org/layerindex/branch/master/recipes/?q=inherits%3Acmake+inherits%3Apkgconfig
-
-[4] https://layers.openembedded.org/layerindex/updates/
-
-
--- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
+If using git submodules it is often advised to have a separate top level r=
+epository which just pulls in the submodules=2E
 
