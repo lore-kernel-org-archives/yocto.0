@@ -1,35 +1,33 @@
-Return-Path: <gley-yocto@m.gmane.org>
+Return-Path: <gary@mlbassoc.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1266EE00992; Tue, 17 Jan 2017 22:47:52 -0800 (PST)
+	id 885DDE00992; Tue, 17 Jan 2017 23:03:01 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-X-Greylist: delayed 902 seconds by postgrey-1.32 at yocto-www;
-	Tue, 17 Jan 2017 22:47:47 PST
-Received: from blaine.gmane.org (unknown [195.159.176.226])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D0037E0098A
-	for <yocto@yoctoproject.org>; Tue, 17 Jan 2017 22:47:48 -0800 (PST)
-Received: from list by blaine.gmane.org with local (Exim 4.84_2)
-	(envelope-from <gley-yocto@m.gmane.org>) id 1cTjn7-0001no-2u
-	for yocto@yoctoproject.org; Wed, 18 Jan 2017 07:32:17 +0100
-X-Injected-Via-Gmane: http://gmane.org/
-To: yocto@yoctoproject.org
-From: "robert.berger@gmane" <gmane@reliableembeddedsystems.com>
-Date: Wed, 18 Jan 2017 08:32:11 +0200
-Message-ID: <ab1774f5-620b-c72a-255d-8208f5d995cf@reliableembeddedsystems.com>
-References: <f5df85a01eecd22894f83c66b3c3884c@reliableembeddedsystems.com>
-	<53dace6e-9334-13e1-c963-eb27428e27f3@gmail.com>
-Mime-Version: 1.0
-X-Complaints-To: usenet@blaine.gmane.org
+Received: from mail.analogue-micro.com (mail.analogue-micro.com
+	[217.144.149.242])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4D346E0098A
+	for <yocto@yoctoproject.org>; Tue, 17 Jan 2017 23:02:56 -0800 (PST)
+Received: by mail.analogue-micro.com (Postfix, from userid 999)
+	id 22BEE68A019; Wed, 18 Jan 2017 07:02:55 +0000 (GMT)
+Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
+	by mail.analogue-micro.com (Postfix) with ESMTP id B684468A019;
+	Wed, 18 Jan 2017 07:02:54 +0000 (GMT)
+Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
+	by zeus.mlbassoc.com (Postfix) with ESMTP id 524FB67402AC;
+	Wed, 18 Jan 2017 08:02:54 +0100 (CET)
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+From: Gary Thomas <gary@mlbassoc.com>
+Message-ID: <48565564-9e2f-f8e7-e3da-21aad9fca0a3@mlbassoc.com>
+Date: Wed, 18 Jan 2017 08:02:53 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
 	Thunderbird/45.5.1
-In-Reply-To: <53dace6e-9334-13e1-c963-eb27428e27f3@gmail.com>
-Subject: Re: "external"/"internal" SDK
+MIME-Version: 1.0
+Subject: x86 testing
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,42 +39,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 18 Jan 2017 06:47:52 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
+X-List-Received-Date: Wed, 18 Jan 2017 07:03:01 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Hi,
+I'm trying to track down some recent changes in the X server
+(using the latest Poky/Yocto master).  I've had failures on
+a number of the embedded targets I work with, so I thought
+I'd give it a go on platforms with a larger base - x86 machines.
 
-On 2017-01-18 04:54, Joshua Watt wrote:
->
->> external SDK:
->> everything the same as above, but for some packages there should be
->> only libraries - no header files.
-> Is there a reason why you want the libraries without the headers? It
-> doesn't seem particularly useful to be able to link a program against a
-> library, but not have the header to use its API (especially in an SDK,
-> where the point is to build program against the libraries).
+It used to be that I could run qemu and it would pop up a separate
+window that emulated a display+keyboard+mouse.  That doesn't seem
+to be the same now, or at least I don't see how to make it work.
+Advice on this would be great as I need to test the "native" X
+setup, not VNC connections.
 
-I think they are worried about revealing their "internal" API since they 
-don't want their customers to access it directly.
+I'd also be happy to try this on real hardware, e.g. my wife's
+laptop, but I need some way to do that non-destructively.  Again,
+pointers would be greatly appreciated.
 
->
-> As an alternative, there might be a way to completely exclude those
-> particular packages from the external SDK instead of removing the header
-> files (see below)?
+Once I get this figured out, I'll disappear back down my embedded
+rabbit hole...
 
-I'll try to clarify this with them.
+Thanks
 
-...
-
-> Hopefully it will at least give a place to start.
-
-Certainly. This gives me some more ideas how other people would do it.
-
-Thanks!
-
-> Joshua Watt
-
-
-
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
