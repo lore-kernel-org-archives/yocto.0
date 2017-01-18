@@ -1,67 +1,64 @@
 Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6AC8BE009F8; Wed, 18 Jan 2017 08:04:36 -0800 (PST)
+	id 1C788E00480; Wed, 18 Jan 2017 08:08:41 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.82.68 listed in dnsbl.sorbs.net]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [74.125.82.65 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.68 listed in list.dnswl.org]
-Received: from mail-wm0-f68.google.com (mail-wm0-f68.google.com [74.125.82.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A2272E00A6D
-	for <yocto@yoctoproject.org>; Wed, 18 Jan 2017 08:04:22 -0800 (PST)
-Received: by mail-wm0-f68.google.com with SMTP id r126so5067699wmr.3
-	for <yocto@yoctoproject.org>; Wed, 18 Jan 2017 08:04:22 -0800 (PST)
+Received: from mail-wm0-f65.google.com (mail-wm0-f65.google.com [74.125.82.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9C0D8E0030B
+	for <yocto@yoctoproject.org>; Wed, 18 Jan 2017 08:08:37 -0800 (PST)
+Received: by mail-wm0-f65.google.com with SMTP id c85so5129056wmi.1
+	for <yocto@yoctoproject.org>; Wed, 18 Jan 2017 08:08:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
 	h=date:from:to:cc:subject:message-id:references:mime-version
 	:content-disposition:in-reply-to:user-agent;
-	bh=WmEQv0SXBF9ECWd4DDe9SpqXeH0y4wnj4GOpO1vJzgo=;
-	b=yzIfnsmlAwzmAkpRDnRLywnxs9j3VQ8olwWqczrDmD4uTA5Z1YUB97ZL4ht4tB6np8
-	d6O3ZK+Fe6enbuSciADWV3KysftYeNk8N3nLi+XbsaT6BgRAqZStNLShzn5DrtaRhohW
-	/6ZSrtmCmGx56G+32hIii3rw/gTGgifEUtz7KXdJyHBO96s2HfiRzB/lQWo3X+pdz5DF
-	69liWUP17p1YjtQVJm1mUR1ekYQNF4h/GmDIvVFxJNsyCMEEVuFiQuLdt+Gi9pWaVDAm
-	wj979sFPeP8u2tgW2Cu0IiynxZDoiUzpJGk2Wu9GNwCHSTOlvh8gOaG1A5aVQzgGTmQq
-	sV9g==
+	bh=0mqebKnn88yKWC0dgfdFMZagnTuwBy2OKmXUTuyaPlE=;
+	b=wEpJ4jKr8yg2t+WOCfWM6syDUxyK8tm73EGPHjPl/eDW/xZzDfwlHQvJi3CiZGhqQH
+	omJ5HFM9wfA2Y78qJymY/o+fUzs3wgKnlnImTSyggHfn/6bIc8coBSWxz8DF+/kUCTQN
+	dt6+41s7W76YXamzakDX8XAlSswvhL6mcAUeWXrRnuymrrpsRsWQkHxIv8ifGQMMX0b4
+	eJtMrBXieL6naz+/XohECe2LhoV1KOk70YLBk5m2s1wvSDWE2gX59E0y41ElToIlxoSW
+	kUzkBG88/J8V8o5dxyLFDPd7xSxPm+Jgpo+AOBqCouGXkIODppvU6r+cim+AS3qyUOj5
+	/w6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
 	:mime-version:content-disposition:in-reply-to:user-agent;
-	bh=WmEQv0SXBF9ECWd4DDe9SpqXeH0y4wnj4GOpO1vJzgo=;
-	b=U3uWj/2AQIKgHo9CJiQZ5K5m/lkSfVMMV8i5w/2ang4j3Btw3nsjJJTmtKnrTVYCqt
-	EyTiP+FLBBI0KjHA3nONfEzIVqpbQLnMJOr9Ag5UVGORdng8ye4C4/V0FsOJIgAsx33y
-	0GgkSt9BoResa0IosqK+tT0c+8Jss6d/m4L3jSn4pErBM6usKPRJzY4aktSJtFrFwmLQ
-	m/ZW7ywPQ76NExgAPcs7F7kYCwCFyLeelo126PtYWi8KtD7329RyxVXelpktEd/kYX+E
-	GkVqAxwWCGkzCwmnsL68cTmab+5f1cTzJHzfB+rGVAW77jf6o6uktLSZ6sutiQAEf3P7
-	VbtA==
-X-Gm-Message-State: AIkVDXKNJShl4/1NqF6HY95kcwpG2wIGRfbe6GVjzcn/ZDr6wtMpufLkLL0+HFv8lREsAA==
-X-Received: by 10.223.153.15 with SMTP id x15mr3449526wrb.179.1484755461550;
-	Wed, 18 Jan 2017 08:04:21 -0800 (PST)
+	bh=0mqebKnn88yKWC0dgfdFMZagnTuwBy2OKmXUTuyaPlE=;
+	b=HFeYYqZ7gjqFTtunWZLqSoRsl00BG1Rs8SyjoVr2Pv7nWWVy4OXnn92y4S8CrsMiyJ
+	HAGE7KMnfAh3gUTbh/YVoAiRwEZ8DYFzi6jEPH6P1sksUk7930yiVDARIiOhY+fgxM7z
+	fiQSVz49NFV+89C1Rf3LLQaYzJxk3doCuun9GF4JX3dBJoplh1G5qFwee8hs3XSrp6AO
+	x42Y69VhahvjXxNMUgGQIFuful3vcqFs6AYdlMWJA1QPuNSeF76TLHs8PyteRiQfs9YO
+	9plNOrMn6tLcz8Nync+OdsUdg39WpodxrwgkrginTs49DQmczgqWtxcVwA/zXHvaWuRk
+	5eQA==
+X-Gm-Message-State: AIkVDXKH6vD3JyjbZjRI222kXhWBiYoJrg2x1pd/trzx8JMuKcIq9x9y69QI9RSaGXeqPA==
+X-Received: by 10.223.174.73 with SMTP id u9mr3319745wrd.159.1484755715053;
+	Wed, 18 Jan 2017 08:08:35 -0800 (PST)
 Received: from carbonA (cpc96910-walt25-2-0-cust629.13-2.cable.virginm.net.
-	[82.22.166.118])
-	by smtp.gmail.com with ESMTPSA id g75sm5840506wme.5.2017.01.18.08.04.19
+	[82.22.166.118]) by smtp.gmail.com with ESMTPSA id
+	v143sm32112762wmv.4.2017.01.18.08.08.33
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 18 Jan 2017 08:04:20 -0800 (PST)
-Date: Wed, 18 Jan 2017 16:04:16 +0000
+	Wed, 18 Jan 2017 08:08:34 -0800 (PST)
+Date: Wed, 18 Jan 2017 16:08:31 +0000
 From: Andrei Gherzan <andrei@gherzan.ro>
 To: Paul Barker <paul@paulbarker.me.uk>
-Message-ID: <20170118160352.GA14533@carbonA>
-References: <1483363213-27822-1-git-send-email-paul@paulbarker.me.uk>
+Message-ID: <20170118160831.GC14533@carbonA>
+References: <1484551617-11222-1-git-send-email-paul@paulbarker.me.uk>
 MIME-Version: 1.0
-In-Reply-To: <1483363213-27822-1-git-send-email-paul@paulbarker.me.uk>
+In-Reply-To: <1484551617-11222-1-git-send-email-paul@paulbarker.me.uk>
 User-Agent: Mutt/1.7.2 (2016-11-26)
 Cc: yocto@yoctoproject.org
-Subject: Re: [meta-raspberrypi][PATCH 0/3] Kernel update and getVar cleanup
+Subject: Re: [meta-raspberrypi][PATCH 0/2] Drop kernel versions 4.7 and 4.8
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,50 +70,67 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 18 Jan 2017 16:04:36 -0000
-X-Groupsio-MsgNum: 33909
+X-List-Received-Date: Wed, 18 Jan 2017 16:08:41 -0000
+X-Groupsio-MsgNum: 33910
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="bAmEntskrkuBymla"
+	protocol="application/pgp-signature"; boundary="qOrJKOH36bD5yhNe"
 Content-Disposition: inline
 
---bAmEntskrkuBymla
+--qOrJKOH36bD5yhNe
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
-On Mon, Jan 02, 2017 at 01:20:10PM +0000, Paul Barker wrote:
-> These patches have been boot tested for both raspberrypi and raspberrypi3.
+On Mon, Jan 16, 2017 at 07:26:55AM +0000, Paul Barker wrote:
+> As discussed recently on the list, we can just keep LTS versions now
+> that v4.9 is available.
 >
-> The first patch in the series probably breaks things for the morty branch. I'm
-> also proposing we drop support for linux-raspberrypi v4.1 as it's currently
-> broken on master. We should create a morty branch for meta-raspberrypi before
-> applying these patches.
+> I'm sending these so anyone who still needs v4.7 or v4.8 can shout
+> 'stop!' before we remove them.
 >
-> Any objections to dropping linux-raspberrypi v4.1 or making a morty branch at
-> this point?
+> Paul Barker (2):
+>   linux-raspberrypi: Drop v4.7
+>   linux-raspberrypi: Drop v4.8
 >
+>  .../0001-fix-dtbo-rules.patch                      | 44 ----------------------
+>  recipes-kernel/linux/linux-raspberrypi_4.7.bb      |  9 -----
+>  recipes-kernel/linux/linux-raspberrypi_4.8.bb      |  8 ----
+>  3 files changed, 61 deletions(-)
+>  delete mode 100644 recipes-kernel/linux/linux-raspberrypi-4.7/0001-fix-dtbo-rules.patch
+>  delete mode 100644 recipes-kernel/linux/linux-raspberrypi_4.7.bb
+>  delete mode 100644 recipes-kernel/linux/linux-raspberrypi_4.8.bb
+>
+> --
+> 2.1.4
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-Created a morty branch and merged these patches in master. Thank you.
+Merged to master.
+
 --
 Andrei Gherzan
 
---bAmEntskrkuBymla
+--qOrJKOH36bD5yhNe
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAEBCAAdFiEEQvNqws+Dz7aX1cEEc7voa356t88FAlh/kf8ACgkQc7voa356
-t8+CWQ//ec6s74bOk0UuzpEx1Fg4MUSAtQ800L1d9mb6LM0UCqc35c/iPMkBvZZz
-+R3MMeWWYfmVM8Cc8VyZ5zdIdoPVrZnFyv0rya7qFjRpo9uvwkE7t1XTC9OjWsAf
-dJjOW0XV6WFfnFboDTh9StnnmLRiQ+74jEPN9ZUZJK8svmXLT9Vmx24B3gnvXLpH
-VoUeINgO18rSRFk3rDo7PJV4BMMF8bc9Fn7P1h15/+6lkk5yprUTjAGVwXugLGik
-XVdo56TjpBaCVy050GJRpWqTTsaHZBWY2pnhf5Y9NZtz2GL19e7ayJydpe0/O7eg
-3/le5wTvL6pEoLD7AVHo+8hJ4hXVsh5RiQP6Ww19O1sb5wbF3WECpVjyhqc4ZU5B
-Lw0AfnvxTKs/rUgZQ3lpw3tXOKR8t8s44hRx8twdWGTtHU7zoampg6oxbVwJ+FnT
-z4lYlWJfPU3uXOYLzUOu+9J3ruNSgq1Cy1fqOAyzZJlzgXNBY360cBg3Fp5pR3z0
-W4Dc0OGFM7flAj6/l5i/wUho+ArpOljQettwOe/r67hh7GCMbOP3X3Fq7Z6908Bz
-/K7N0AHyju4fblB98XEDnf1CcL5sgO6tVeFeEzz6/A8KM0r9/u7r6eC54Wfus/SV
-8FydM0va87UxR+81HJrylTkBX1bilheiMtjPUe5qI90PCdQNzVY=
-=CIu7
+iQIzBAEBCAAdFiEEQvNqws+Dz7aX1cEEc7voa356t88FAlh/kv4ACgkQc7voa356
+t88U+RAAm46vPIjJWu1iDRVAQioOl17FVvjK0nNJ/+G2NAzSTEe+R+y6vYde/gDo
+NqGC90BPBOwineURG2NQZjgVzl481wtt8AIFyLaYZBkkvD29v8gmEm4be6og0aHl
+2e3lDG82dlmwr0EgMtMorg7IRy4xxjA3UZDBJBjl81o3yjP5CmhbHOWl+EN1pD9m
+KigsN/MO2iglPEoXVVvoph0BSA6sLrBGJ2H82Fqv8+43/Gf5jEwWmtQQZjO0WoOY
+B8vbBJuEtJgGNHHJ9YkjOHsiVsnNqhtDYxzy50NmJYYrXEWOQLKzC0lGOkrpQm8G
+mHMRCS51VAWs0w4IuxvtREljegn1+czTyeqnf/f9ruWIpz1+rRyk7/UmX/Iqi3Wu
+w5ZbaPgotbLrHf5+RPkbCechKqmJIh8kXffIoevclvT6tDzZPl5/lU9SHiLwvWGf
+OAhXAp+oLVccZMai8kT0+5iBBW0AJQRfCuDNkyu4pvLajUdN2uTO7nq8zZrFk7EP
+rz5DIL/Q1QhTAgMIN1KFa1p66mns1USX2lS0ymxHAvUOK/gEU6qvPTTsM0UQV/xA
+h9pV9hxAS6am/xSnt3qTOqh9BFjlyM73du7g6B5BzX5yEZBkKTn0SAQvmqZqdA82
+62qz6ArzTDBqexPmcaWF7eCk/7FcDtajgvEhowgKxAIAbTw1kCY=
+=h+gf
 -----END PGP SIGNATURE-----
 
---bAmEntskrkuBymla--
+--qOrJKOH36bD5yhNe--
