@@ -1,6 +1,6 @@
 Return-Path: <jacobchen110@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BAB84E004D8; Thu, 19 Jan 2017 02:10:00 -0800 (PST)
+	id C0A10E004E5; Thu, 19 Jan 2017 02:10:03 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,40 +9,43 @@ X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE,
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
 	*      [74.125.83.66 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
 	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
 	*      [74.125.83.66 listed in dnsbl.sorbs.net]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
 Received: from mail-pg0-f66.google.com (mail-pg0-f66.google.com [74.125.83.66])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E44ADE004A0
-	for <yocto@yoctoproject.org>; Thu, 19 Jan 2017 02:09:58 -0800 (PST)
-Received: by mail-pg0-f66.google.com with SMTP id t6so3841364pgt.1
-	for <yocto@yoctoproject.org>; Thu, 19 Jan 2017 02:09:58 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3C728E004D2
+	for <yocto@yoctoproject.org>; Thu, 19 Jan 2017 02:10:01 -0800 (PST)
+Received: by mail-pg0-f66.google.com with SMTP id 204so3841753pge.2
+	for <yocto@yoctoproject.org>; Thu, 19 Jan 2017 02:10:01 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=b/6GsRYGy6Ka1pVkCfXVVXdY2+3uDz72TQHtOOyRxZg=;
-	b=R2m9vyypz3YvmuDBULvaYJvRlR46RmKjwfRMYylP/42PWJIkPiBImBXtUnXvNo8URY
-	IagdJLXsHYBr1Lc+hHAS21zU06l8/QuPP0PhOTHk6VCzjadNlJ79EE4ZZOqEChvJVB07
-	BaKP8rVsxLB4gQPPtDmn0XTieh6exv2IJqqg4JjtXZ+UGsAsAV/yyDy5ZCpbR35xKe3c
-	3aUjKnGpfoicaQXFRTI4JSkHkbBvywa6HG7p8D0qHGdQgnag0rqio/UpDm4bOTcwf5fn
-	rXtr/TA6G1lgbbz0F+s9favnr+Sdv912YJD+AF1uqAbNykQG4ACuRxvvZdJa6QS+XOqv
-	Popg==
-X-Gm-Message-State: AIkVDXKIVaf5LL7wWQoJh5q8jxWhII+XN9QsL3b4dDl7lF67OQakwANIYq1cCvIGCVoFWA==
-X-Received: by 10.84.149.139 with SMTP id m11mr12158424pla.38.1484820597981;
-	Thu, 19 Jan 2017 02:09:57 -0800 (PST)
+	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+	:references;
+	bh=UZ+vl8TaGpxJmeEIyWkson27I/nq+UP2daNkKimr4BI=;
+	b=R1gHOL7klMOZ2Vfe2mHLqTQOLxvt1gck4MBb6SEkYofGwxClglsAPUka8ywA/PsI2Q
+	ymM4rNKhspFB/slGrFrTp3LrolCxQC+uTQz8rpPUe6eATd9ajRvsMfQ4SieyPxFKW1ya
+	JXhZJOYpbjKizyAsFhmO7TQMLyskh8HirW2thG4ay0NEy4/3aatX58IfTVyNCz3heSlO
+	Qoz+tQLNB2BQScHRWpn5jb0NPWeYW1xdLJafsw7lCTTrN9AP+f3gRxDErT+N+xivvtE1
+	ajwbCN1wJ0nKZgZ53ZhU3pvT1ve7vqUAQY2YN/mbR2bvNAQQRR3KxwanaYNltpNxwjBo
+	9y/w==
+X-Gm-Message-State: AIkVDXIztKQz/XYxVCdPP1D5MDVA8ol+X4v2cNPw7TTey8UG8Uh01U82I1mF/ynFUBbW8g==
+X-Received: by 10.84.248.70 with SMTP id e6mr12223825pln.179.1484820601009;
+	Thu, 19 Jan 2017 02:10:01 -0800 (PST)
 Received: from localhost.localdomain ([103.29.142.67])
 	by smtp.gmail.com with ESMTPSA id
-	w125sm7440387pfb.8.2017.01.19.02.09.53
+	w125sm7440387pfb.8.2017.01.19.02.09.58
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Thu, 19 Jan 2017 02:09:56 -0800 (PST)
+	Thu, 19 Jan 2017 02:09:59 -0800 (PST)
 From: Jacob Chen <jacob-chen@iotwrt.com>
 To: yocto@yoctoproject.org
-Date: Thu, 19 Jan 2017 18:09:25 +0800
-Message-Id: <1484820572-11891-1-git-send-email-jacob-chen@iotwrt.com>
+Date: Thu, 19 Jan 2017 18:09:26 +0800
+Message-Id: <1484820572-11891-2-git-send-email-jacob-chen@iotwrt.com>
 X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1484820572-11891-1-git-send-email-jacob-chen@iotwrt.com>
+References: <1484820572-11891-1-git-send-email-jacob-chen@iotwrt.com>
 Cc: Jacob Chen <jacob-chen@iotwrt.com>, eddie.cai@rock-chips.com
-Subject: [PATCH 0/7] introduce rockchip offical linux support to meta-rockchip
+Subject: [PATCH 1/7] recipes-kernel: linux-rockchip: Add new recipe for 4.4
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,62 +57,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 19 Jan 2017 10:10:00 -0000
+X-List-Received-Date: Thu, 19 Jan 2017 10:10:03 -0000
 
-This series of patches add below features, will add more supports in the future(medias, more chips).
+Rockchip 4.4 kernel is currently the latest version of the rockchip offical kernel,
+will be an upstream tracking branch.
+We regularly release the kernel through github.
+It support all rockchip 64-bit chips and a few 32-bit chips.
 
-1. rockchip 4.4 kernel
-
-Rockchip 4.4 kernel is currently the latest version of the rockchip offical kernel, will be an upstream tracking branch. 
-We regularly release the kernel through github. It support all rockchip 64-bit chips and a few 32-bit chips.
-
-2. rockchip next-dev U-boot
-
-Rockchip next-dev U-boot is the next generation of rockchip u-boot, will also be an upstream tracking branch.
-At present, this branch is just a rebased upstream u-boot.
-
-3. graphics
-
-We have plans for the acceleration in wayland, x11 in the rockchip platform, but in this series of patches, we only include the mali bianry support.
-
-4. rockchip-next-image
-
-Being different from the previous rk-u-boot which use parameter, next-dev u-boot use gpt partition, so it needs to generate a different image.
-
-
-Jacob Chen (7):
-  recipes-kernel: linux-rockchip: Add new recipe for 4.4
-  machine: Add machine file for the rk3288 linux Boards
-  machine: firefly: use linux-rockchip by default
-  recipes-graphics: Add support for mali-userspace
-  recipes-bsp: add u-boot-rockchip support
-  rk3288.inc: add some variables
-  rockchip-next-image: introduce image for rockchip next-dev u-boot
-
- classes/rockchip-next-image.bbclass                | 130 +++++++++++++++++++++
- conf/machine/evb-rk3288.conf                       |  12 ++
- conf/machine/fennec-rk3288.conf                    |  12 ++
- conf/machine/firefly-rk3288.conf                   |   4 +
- conf/machine/include/rk-linux.inc                  |  20 ++++
- conf/machine/include/rk3288.inc                    |  10 +-
- conf/machine/tinker-rk3288.conf                    |  13 +++
- recipes-bsp/u-boot/u-boot-rockchip_next.bb         |  17 +++
- recipes-graphics/mali-userspace/mali-userspace.inc |  57 +++++++++
- .../mali-userspace/mali-userspace_t76x.bb          |  18 +++
- recipes-graphics/mesa/mesa_%.bbappend              |   9 ++
- recipes-kernel/linux/linux-rockchip_4.4.bb         |  20 ++++
- 12 files changed, 321 insertions(+), 1 deletion(-)
- create mode 100644 classes/rockchip-next-image.bbclass
- create mode 100644 conf/machine/evb-rk3288.conf
- create mode 100644 conf/machine/fennec-rk3288.conf
- create mode 100644 conf/machine/include/rk-linux.inc
- create mode 100644 conf/machine/tinker-rk3288.conf
- create mode 100644 recipes-bsp/u-boot/u-boot-rockchip_next.bb
- create mode 100644 recipes-graphics/mali-userspace/mali-userspace.inc
- create mode 100644 recipes-graphics/mali-userspace/mali-userspace_t76x.bb
- create mode 100644 recipes-graphics/mesa/mesa_%.bbappend
+Signed-off-by: Jacob Chen <jacob-chen@iotwrt.com>
+---
+ recipes-kernel/linux/linux-rockchip_4.4.bb | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
  create mode 100644 recipes-kernel/linux/linux-rockchip_4.4.bb
 
+diff --git a/recipes-kernel/linux/linux-rockchip_4.4.bb b/recipes-kernel/linux/linux-rockchip_4.4.bb
+new file mode 100644
+index 0000000..ca3674e
+--- /dev/null
++++ b/recipes-kernel/linux/linux-rockchip_4.4.bb
+@@ -0,0 +1,20 @@
++# Copyright (C) 2017 Fuzhou Rockchip Electronics Co., Ltd
++# Released under the MIT license (see COPYING.MIT for the terms)
++
++require recipes-kernel/linux/linux-yocto.inc
++
++SRC_URI = "git://github.com/rockchip-linux/kernel.git;branch=release-4.4;"
++
++SRCREV = "${AUTOREV}"
++LINUX_VERSION = "4.4.41"
++# Override local version in order to use the one generated by linux build system
++# And not "yocto-standard"
++LINUX_VERSION_EXTENSION = ""
++PR = "r1"
++PV = "${LINUX_VERSION}"
++
++# Include only supported boards for now
++COMPATIBLE_MACHINE = "(rk3288)"
++deltask kernel_configme
++
++KBUILD_DEFCONFIG = "rockchip_linux_defconfig"
 -- 
 2.7.4
 
