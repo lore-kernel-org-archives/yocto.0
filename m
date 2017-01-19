@@ -1,39 +1,43 @@
-Return-Path: <rpjday@crashcourse.ca>
+Return-Path: <paul@paulbarker.me.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7BE68E00B19; Thu, 19 Jan 2017 04:00:23 -0800 (PST)
+	id EE50CE004E5; Thu, 19 Jan 2017 04:03:11 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.7 required=5.0 tests=BAYES_40,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [208.80.204.84 listed in list.dnswl.org]
-	* -0.0 BAYES_40 BODY: Bayes spam probability is 20 to 40%
-	*      [score: 0.2255]
-Received: from smtp484.redcondor.net (smtp484.redcondor.net [208.80.204.84])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 35F84E00AF4
-	for <yocto@yoctoproject.org>; Thu, 19 Jan 2017 04:00:21 -0800 (PST)
-Received: from astoria.ccjclearline.com ([64.235.106.9])
-	by smtp484.redcondor.net ({c48374e7-08df-40d9-a0de-96cc9883a037})
-	via TCP (outbound) with ESMTPS id 20170119120019782_0484
-	for <yocto@yoctoproject.org>; Thu, 19 Jan 2017 12:00:19 +0000
-X-RC-FROM: <rpjday@crashcourse.ca>
-X-RC-RCPT: <yocto@yoctoproject.org>
-Received: from [216.191.234.70] (port=11426 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1cUBO1-0004Sf-V9
-	for yocto@yoctoproject.org; Thu, 19 Jan 2017 07:00:14 -0500
-Date: Thu, 19 Jan 2017 07:00:12 -0500 (EST)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@uk63952.mitel.com
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.LFD.2.20.1701190656550.4070@uk63952.mitel.com>
-User-Agent: Alpine 2.20 (LFD 67 2015-01-07)
+	*      [217.70.183.194 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net
+	[217.70.183.194])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C1D8DE00480
+	for <yocto@yoctoproject.org>; Thu, 19 Jan 2017 04:03:10 -0800 (PST)
+Received: from mfilter28-d.gandi.net (mfilter28-d.gandi.net [217.70.178.159])
+	by relay2-d.mail.gandi.net (Postfix) with ESMTP id 1A6D1C5A65;
+	Thu, 19 Jan 2017 13:03:09 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at mfilter28-d.gandi.net
+Received: from relay2-d.mail.gandi.net ([IPv6:::ffff:217.70.183.194])
+	by mfilter28-d.gandi.net (mfilter28-d.gandi.net [::ffff:10.0.15.180])
+	(amavisd-new, port 10024)
+	with ESMTP id Edo03wlAaOmm; Thu, 19 Jan 2017 13:03:07 +0100 (CET)
+X-Originating-IP: 131.231.60.35
+Received: from [10.10.10.204] (inno-commagility-ownrouter.lut.ac.uk
+	[131.231.60.35]) (Authenticated sender: paul@paulbarker.me.uk)
+	by relay2-d.mail.gandi.net (Postfix) with ESMTPSA id 48D0AC5A7E;
+	Thu, 19 Jan 2017 13:03:07 +0100 (CET)
+Date: Thu, 19 Jan 2017 12:03:06 +0000
+User-Agent: K-9 Mail for Android
+In-Reply-To: <1484826659-21692-4-git-send-email-andrei@gherzan.ro>
+References: <1484826659-21692-1-git-send-email-andrei@gherzan.ro>
+	<1484826659-21692-4-git-send-email-andrei@gherzan.ro>
 MIME-Version: 1.0
-X-MAG-OUTBOUND: ccj.redcondor.net@64.235.106.9/32
-Subject: where does one find a OE/YP recipe for mod_auth_tkt?
+To: Andrei Gherzan <andrei@gherzan.ro>,yocto@yoctoproject.org
+From: Paul Barker <paul@paulbarker.me.uk>
+Message-ID: <DEBEB5BC-0FA4-4862-BC62-CC79049AD504@paulbarker.me.uk>
+Subject: Re: [meta-raspberrypi][morty][PATCH 4/6] linux-raspberrypi: Drop v4.8
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,23 +49,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 19 Jan 2017 12:00:23 -0000
-Content-Type: text/plain; charset=US-ASCII
+X-List-Received-Date: Thu, 19 Jan 2017 12:03:12 -0000
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
+On 19 January 2017 11:50:57 GMT+00:00, Andrei Gherzan <andrei@gherzan=2Ero>=
+ wrote:
+>From: Paul Barker <paul@paulbarker=2Eme=2Euk>
+>
+>Signed-off-by: Paul Barker <paul@paulbarker=2Eme=2Euk>
+>---
+> recipes-kernel/linux/linux-raspberrypi_4=2E8=2Ebb | 8 --------
+> 1 file changed, 8 deletions(-)
+> delete mode 100644 recipes-kernel/linux/linux-raspberrypi_4=2E8=2Ebb
+>
+>diff --git a/recipes-kernel/linux/linux-raspberrypi_4=2E8=2Ebb
+>b/recipes-kernel/linux/linux-raspberrypi_4=2E8=2Ebb
+>deleted file mode 100644
+>index be25e65=2E=2E0000000
+>--- a/recipes-kernel/linux/linux-raspberrypi_4=2E8=2Ebb
+>+++ /dev/null
+>@@ -1,8 +0,0 @@
+>-FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}-${PV}:"
+>-
+>-LINUX_VERSION ?=3D "4=2E8=2E16"
+>-
+>-SRCREV =3D "061dccce6cf6705bbb5da29a643f4b0ad1d11630"
+>-SRC_URI =3D
+>"git://github=2Ecom/raspberrypi/linux=2Egit;protocol=3Dgit;branch=3Drpi-4=
+=2E8=2Ey \
+>-"
+>-require linux-raspberrypi=2Einc
 
-  i was looking for this a while ago with no luck ... still
-interested ... am i just being clueless in not seeing where to get it?
+I'm not sure on this one=2E I don't think we should drop kernel versions f=
+rom a stable branch unless they're broken=2E Can we hold off on this and I'=
+ll have a look at it tomorrow=2E
 
-rday
-
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
-
+(Resending as I mis-clicked and didn't do reply all)
 
