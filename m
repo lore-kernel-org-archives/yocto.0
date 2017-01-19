@@ -1,6 +1,6 @@
 Return-Path: <jacobchen110@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 131ADE00A48; Thu, 19 Jan 2017 06:05:15 -0800 (PST)
+	id 5C22AE00A51; Thu, 19 Jan 2017 06:05:19 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -15,39 +15,38 @@ X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	*      [score: 0.0000]
 Received: from mail-pf0-f195.google.com (mail-pf0-f195.google.com
 	[209.85.192.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E09BEE00A38
-	for <yocto@yoctoproject.org>; Thu, 19 Jan 2017 06:05:12 -0800 (PST)
-Received: by mail-pf0-f195.google.com with SMTP id 19so3426015pfo.3
-	for <yocto@yoctoproject.org>; Thu, 19 Jan 2017 06:05:12 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 41483E00A4C
+	for <yocto@yoctoproject.org>; Thu, 19 Jan 2017 06:05:15 -0800 (PST)
+Received: by mail-pf0-f195.google.com with SMTP id y143so3439448pfb.1
+	for <yocto@yoctoproject.org>; Thu, 19 Jan 2017 06:05:15 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
 	:references;
-	bh=+LvSQDMRv44gT3N2HjkgpFcbmtyCzTi/kFOooCFHnhQ=;
-	b=KNviPnDynNJqkfVSJ4aLmjSQszw8LvvhN/HXCxqm090UYciSKJ2Csf0ihD3hKKifsj
-	Tx12LRNqs4ddqSRbZ4YevlX+Yun4/ImmOcYfHbI+IoQaXaItcWhkUAiOi936f9toRc27
-	xQL0hFaIzOzD7lOzUh7uHbrFq2pLYsEfhSaMT5CRjFvc85PelTdAbO9ZPLWVvBpFhflM
-	qfXOx929KSy6XH8GtWaJqs4+W1eFS9z1j75O8MU9pmLafOzg7hCEWZ2EKC/iFnk4Qm7F
-	fGkrxu6+UpLqPtbpsjFuuHY384b3n21+Brm6Kl9OUstiNbgZXakMwIhFRDcohvrb7/lW
-	T6Mw==
-X-Gm-Message-State: AIkVDXKcSPqXA4cABXsxWcMO22Gqc1Lu22IBA4iqumMGHluK/2y0iyBJ8lmec7HfcRPqkA==
-X-Received: by 10.98.28.129 with SMTP id c123mr10138040pfc.92.1484834712184;
-	Thu, 19 Jan 2017 06:05:12 -0800 (PST)
+	bh=7DinBVqcyYsO+vKORlbyeMEZHSnXmrrrYRew8cYRKPQ=;
+	b=PcQZhqYoXPUHffqs7oRRDEyJD4dFfYSJ6y68msLTKrq3dQ+jAtBSXp6/gE3lyKHyyj
+	ciUr42xmGDzSdbbD4uL+dSW6VndmAdfjHip2HG55FuQ5/be5L9ylkH7rpExROhTUQdKn
+	r9121AsWYMhPd1B+f/c2UrKR6vnmSzVBlvOyHwQRPhqXVIaiaTwEORsv2qryOUL3MAKr
+	e8wdkPmM7roQSxMscIKTeUmsfUFdNSxtlY9XZ8Q1TOP3a+vIBrN4Z+Qlw5hKUsT32BD2
+	WjxlBodY2Iabz/t3kYC1D0Xxmjj2KW9KKSghJ7eJFtlUrR/ROl4N9cfBlU+9f9ieze1L
+	5Xwg==
+X-Gm-Message-State: AIkVDXJPJ1nnydiktWfgJIBMR7fewCHq7emt/PIbLNyrnPs5ijozEA/S8/2I5L0X247I4g==
+X-Received: by 10.99.253.85 with SMTP id m21mr10566918pgj.38.1484834715474;
+	Thu, 19 Jan 2017 06:05:15 -0800 (PST)
 Received: from localhost.localdomain ([27.155.138.228])
 	by smtp.gmail.com with ESMTPSA id
-	u78sm9259496pfa.53.2017.01.19.06.05.09
+	u78sm9259496pfa.53.2017.01.19.06.05.12
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Thu, 19 Jan 2017 06:05:10 -0800 (PST)
+	Thu, 19 Jan 2017 06:05:14 -0800 (PST)
 From: Jacob Chen <jacob-chen@iotwrt.com>
 To: yocto@yoctoproject.org
-Date: Thu, 19 Jan 2017 22:04:42 +0800
-Message-Id: <1484834687-15746-3-git-send-email-jacob-chen@iotwrt.com>
+Date: Thu, 19 Jan 2017 22:04:43 +0800
+Message-Id: <1484834687-15746-4-git-send-email-jacob-chen@iotwrt.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1484834687-15746-1-git-send-email-jacob-chen@iotwrt.com>
 References: <1484834687-15746-1-git-send-email-jacob-chen@iotwrt.com>
-Cc: Jacob Chen <jacob-chen@iotwrt.com>, eddie.cai@rock-chips.com,
-	Jacob Chen <jacob-chen@rock-chips.com>
-Subject: [meta-rockchip][PATCH 2/7] machine: Add machine file for the rk3288 linux Boards
+Cc: Jacob Chen <jacob-chen@iotwrt.com>, eddie.cai@rock-chips.com
+Subject: [meta-rockchip][PATCH 3/7] machine: firefly: use linux-rockchip by default
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,108 +58,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 19 Jan 2017 14:05:15 -0000
+X-List-Received-Date: Thu, 19 Jan 2017 14:05:19 -0000
 
-Evb-rk3288 is the offical evaluate board, add it to help myself develop.
+This is the kernel vendor that supports all hw components for this board,
+so we use it by default.
 
-Fennec-rk3288 and Tinker-rk3288 is rk3288 based SBCs.
-    .
-Tinker Boards:
-http://www.cnx-software.com/2017/01/05/asus-tinker-board-is-a-raspberry-pi-3-alternative-based-on-rockchip-rk3288-processor/
-
-Signed-off-by: Jacob Chen <jacob-chen@rock-chips.com>
+Signed-off-by: Jacob Chen <jacob-chen@iotwrt.com>
 ---
- conf/machine/evb-rk3288.conf      | 12 ++++++++++++
- conf/machine/fennec-rk3288.conf   | 12 ++++++++++++
- conf/machine/include/rk-linux.inc | 20 ++++++++++++++++++++
- conf/machine/tinker-rk3288.conf   | 13 +++++++++++++
- 4 files changed, 57 insertions(+)
- create mode 100644 conf/machine/evb-rk3288.conf
- create mode 100644 conf/machine/fennec-rk3288.conf
- create mode 100644 conf/machine/include/rk-linux.inc
- create mode 100644 conf/machine/tinker-rk3288.conf
+ conf/machine/firefly-rk3288.conf | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/conf/machine/evb-rk3288.conf b/conf/machine/evb-rk3288.conf
-new file mode 100644
-index 0000000..88a5f78
---- /dev/null
-+++ b/conf/machine/evb-rk3288.conf
-@@ -0,0 +1,12 @@
-+# Copyright (C) 2017 Fuzhou Rockchip Electronics Co., Ltd
-+# Released under the MIT license (see COPYING.MIT for the terms)
-+
-+#@TYPE: Machine
-+#@NAME: EVB 3288
-+
-+include conf/machine/include/rk3288.inc
+diff --git a/conf/machine/firefly-rk3288.conf b/conf/machine/firefly-rk3288.conf
+index 8fa005d..47e63e1 100644
+--- a/conf/machine/firefly-rk3288.conf
++++ b/conf/machine/firefly-rk3288.conf
+@@ -7,4 +7,8 @@
+ #http://www.t-firefly.com/en/
+ 
+ include conf/machine/include/rk3288.inc
 +include conf/machine/include/rk-linux.inc
 +
-+KERNEL_DEVICETREE = "rk3288-evb-act8846.dtb"
+ KERNEL_DEVICETREE = "rk3288-firefly.dtb"
 +
-+UBOOT_MACHINE = "evb-rk3288_defconfig"
-diff --git a/conf/machine/fennec-rk3288.conf b/conf/machine/fennec-rk3288.conf
-new file mode 100644
-index 0000000..a85045f
---- /dev/null
-+++ b/conf/machine/fennec-rk3288.conf
-@@ -0,0 +1,12 @@
-+# Copyright (C) 2017 Fuzhou Rockchip Electronics Co., Ltd
-+# Released under the MIT license (see COPYING.MIT for the terms)
-+
-+#@TYPE: Machine
-+#@NAME: FENNEC RK3288
-+
-+include conf/machine/include/rk3288.inc
-+include conf/machine/include/rk-linux.inc
-+
-+KERNEL_DEVICETREE = "rk3288-fennec.dtb"
-+
-+UBOOT_MACHINE = "fennec-rk3288_defconfig"
-diff --git a/conf/machine/include/rk-linux.inc b/conf/machine/include/rk-linux.inc
-new file mode 100644
-index 0000000..6abaa0d
---- /dev/null
-+++ b/conf/machine/include/rk-linux.inc
-@@ -0,0 +1,20 @@
-+# Rockchip BSP default settings
-+
-+PREFERRED_PROVIDER_virtual/egl = "mali-userspace"
-+PREFERRED_PROVIDER_virtual/libgles1 = "mali-userspace"
-+PREFERRED_PROVIDER_virtual/libgles2 = "mali-userspace"
-+PREFERRED_PROVIDER_virtual/libopencl = "mali-userspace"
-+
-+# Workaround: libmali.so provided by rk having no SONAME field in it
-+# so add it to fix rdepends problems
-+ASSUME_SHLIBS += "libEGL.so:mali-userspace"
-+ASSUME_SHLIBS += "libGLESv1_CM.so:mali-userspace"
-+ASSUME_SHLIBS += "libGLESv2.so:mali-userspace"
-+ASSUME_SHLIBS += "libOpenCL.so:mali-userspace"
-+ASSUME_SHLIBS += "libgbm.so:mali-userspace"
-+ASSUME_SHLIBS += "libwayland-egl.so:mali-userspace"
-+
-+PREFERRED_PROVIDER_virtual/kernel = "linux-rockchip"
-+PREFERRED_PROVIDER_virtual/bootloader = "u-boot-rockchip"
-+
-+IMAGE_CLASSES += "rockchip-next-image"
-diff --git a/conf/machine/tinker-rk3288.conf b/conf/machine/tinker-rk3288.conf
-new file mode 100644
-index 0000000..0464133
---- /dev/null
-+++ b/conf/machine/tinker-rk3288.conf
-@@ -0,0 +1,13 @@
-+# Copyright (C) 2017 Fuzhou Rockchip Electronics Co., Ltd
-+# Released under the MIT license (see COPYING.MIT for the terms)
-+
-+#@TYPE: Machine
-+#@NAME: Tinker RK3288
-+#@DESCRIPTION: ASUS Tinker Board is a Raspberry Pi 3 Alternative based on Rockchip RK3288 Processor.
-+
-+include conf/machine/include/rk3288.inc
-+include conf/machine/include/rk-linux.inc
-+
-+KERNEL_DEVICETREE = "rk3288-miniarm.dtb"
-+
-+UBOOT_MACHINE = "miniarm-rk3288_defconfig"
++UBOOT_MACHINE = "firefly-rk3288_defconfig"
 -- 
 2.7.4
 
