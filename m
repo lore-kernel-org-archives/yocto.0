@@ -1,67 +1,64 @@
-Return-Path: <jacobchen110@gmail.com>
+Return-Path: <pidge@toganlabs.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 12666E009C2; Thu, 19 Jan 2017 02:19:22 -0800 (PST)
+	id 75021E0077F; Thu, 19 Jan 2017 02:54:01 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (jacobchen110[at]gmail.com)
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [46.232.183.70 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.67 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.82.67 listed in dnsbl.sorbs.net]
-Received: from mail-wm0-f67.google.com (mail-wm0-f67.google.com [74.125.82.67])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D4B2FE009B9
-	for <yocto@yoctoproject.org>; Thu, 19 Jan 2017 02:19:18 -0800 (PST)
-Received: by mail-wm0-f67.google.com with SMTP id d140so10871300wmd.2
-	for <yocto@yoctoproject.org>; Thu, 19 Jan 2017 02:19:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=ILZVcgss3dK36mKRc+gdYszo37fi5L6kBbgriYXOd4U=;
-	b=VhabEYDRF5nSb7ZqTLFIVn7kvV6s5pP+26lUyFG7FcaiQw89zrkNFG/eEBxHb73Q6R
-	uK7z9BnrRs8MQ+u0y+pKznueroH5sdeYvcGdmYjQ8bBTmCNGFYalJcGpZDHkQDPpqsrM
-	VOGldU87h0x9V6BpuP57pdb3Kk4PEtvRG2tHUmbCVtblDAEPvJB5n6FVqALueGz7KlL3
-	h8oJBstMsshis6rqZz2YbfbkiEkicqO9sxyDjEe1VXWUtL1f+MmHBVD9p9FtHMmNlioM
-	BKEGAFYuZ2sIRVojUISYxZSgf4ewNBTdomuv1HqhKf/t66l02D52SpGZKZZ0PNAip2Cb
-	MYFQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=ILZVcgss3dK36mKRc+gdYszo37fi5L6kBbgriYXOd4U=;
-	b=LShvnbS86xYYUuDh6oOg6vvsT0m9bgOB9d2wydHRPcUA+pPE21p2v+KG7XJXkMH/J6
-	qAdciaKtygJDYUC7FVD73W1is25LMx752Qe3D+RmSNXdnsbSYv3lm2owxlfw8VumBMwm
-	xr2yIsGPPF5xnTM0xgV57npHHYM58DdbCBzt0A/9O1Ysf4whGuscRrr3EJWJD5aQAWxu
-	jn7yMrPf7kj5l65Czzpj6zae1ZvAbHLCI5EekD6EX0rqZ7ugqDBE4G3a++vEPJ5izjot
-	5O8YpXtsiji8F0S+MdnGxeGkA1F0J0xblbkLwyByWI8PN+KWFj8ztpo02sqN55wlqhDK
-	lH7w==
-X-Gm-Message-State: AIkVDXKnXtuE/sU47rBkPM2hHbRvQLugqL8sV/STkrtJT6+tvPVdGPpBMwtEF1u0SqaB/bX6psXqbSAgnelRPQ==
-X-Received: by 10.28.5.72 with SMTP id 69mr6092638wmf.6.1484821157022; Thu, 19
-	Jan 2017 02:19:17 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.194.157.230 with HTTP; Thu, 19 Jan 2017 02:19:16 -0800 (PST)
-In-Reply-To: <1484820572-11891-1-git-send-email-jacob-chen@iotwrt.com>
-References: <1484820572-11891-1-git-send-email-jacob-chen@iotwrt.com>
-From: Jacob Chen <jacobchen110@gmail.com>
-Date: Thu, 19 Jan 2017 18:19:16 +0800
-Message-ID: <CAFLEztR7kqmNzDaZ8Pwjzn9hh6ixSi1+i+t4OMAzT9ENaOpSww@mail.gmail.com>
-To: yocto@yoctoproject.org
-Cc: Jacob Chen <jacob-chen@iotwrt.com>, Eddie Cai <eddie.cai@rock-chips.com>
-Subject: Re: [PATCH 0/7] introduce rockchip offical linux support to meta-rockchip
+X-Greylist: delayed 600 seconds by postgrey-1.32 at yocto-www;
+	Thu, 19 Jan 2017 02:53:56 PST
+Received: from nov-007-i516.relay.mailchannels.net
+	(nov-007-i516.relay.mailchannels.net [46.232.183.70])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4438BE006D8
+	for <yocto@yoctoproject.org>; Thu, 19 Jan 2017 02:53:55 -0800 (PST)
+X-Sender-Id: hostpapa|x-authuser|pidge@toganlabs.com
+Received: from relay.mailchannels.net (localhost [127.0.0.1])
+	by relay.mailchannels.net (Postfix) with ESMTP id 21942101093;
+	Thu, 19 Jan 2017 10:37:37 +0000 (UTC)
+Received: from hp181.hostpapa.com (ip-10-220-3-24.us-west-2.compute.internal
+	[10.220.3.24])
+	by relay.mailchannels.net (Postfix) with ESMTPA id 47D64100673;
+	Thu, 19 Jan 2017 10:37:35 +0000 (UTC)
+X-Sender-Id: hostpapa|x-authuser|pidge@toganlabs.com
+Received: from hp181.hostpapa.com ([TEMPUNAVAIL]. [10.30.2.41])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384)
+	by 0.0.0.0:2500 (trex/5.7.8); Thu, 19 Jan 2017 10:37:37 +0000
+X-MC-Relay: Neutral
+X-MailChannels-SenderId: hostpapa|x-authuser|pidge@toganlabs.com
+X-MailChannels-Auth-Id: hostpapa
+X-MC-Loop-Signature: 1484822256058:1705520382
+X-MC-Ingress-Time: 1484822256058
+Received: from [37.228.251.243] (port=58638 helo=[192.168.0.10])
+	by hp181.hostpapa.com with esmtpsa
+	(TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.87)
+	(envelope-from <pidge@toganlabs.com>)
+	id 1cUA5x-000tep-P6; Thu, 19 Jan 2017 11:37:30 +0100
+Message-ID: <1484822246.5397.0.camel@toganlabs.com>
+From: Beth 'pidge' Flanagan <pidge@toganlabs.com>
+To: Joshua Lock <joshua.g.lock@linux.intel.com>, 
+	=?ISO-8859-1?Q?An=EDbal_Lim=F3n?=
+	<anibal.limon@linux.intel.com>, yocto@yoctoproject.org
+Date: Thu, 19 Jan 2017 10:37:26 +0000
+In-Reply-To: <1484763187.3137.1.camel@linux.intel.com>
+References: <1484583955-23541-1-git-send-email-anibal.limon@linux.intel.com>
+	<1484763187.3137.1.camel@linux.intel.com>
+Organization: toganlabs.com
+X-Mailer: Evolution 3.18.5.2-0ubuntu3 
+Mime-Version: 1.0
+X-OutGoing-Spam-Status: No, score=-1.0
+X-AuthUser: pidge@toganlabs.com
+Cc: richard.purdie@intel.com
+Subject: Re: [[PATCH][yocto-autobuilder] 1/2] buildsteps/CreateAutoConf.py: Add support for specify MACHINE by build prop
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: pidge@toganlabs.com
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -70,71 +67,73 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 19 Jan 2017 10:19:22 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 19 Jan 2017 10:54:01 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-2017-01-19 18:09 GMT+08:00 Jacob Chen <jacob-chen@iotwrt.com>:
-> This series of patches add below features, will add more supports in the future(medias, more chips).
->
-> 1. rockchip 4.4 kernel
->
-> Rockchip 4.4 kernel is currently the latest version of the rockchip offical kernel, will be an upstream tracking branch.
-> We regularly release the kernel through github. It support all rockchip 64-bit chips and a few 32-bit chips.
->
-> 2. rockchip next-dev U-boot
->
-> Rockchip next-dev U-boot is the next generation of rockchip u-boot, will also be an upstream tracking branch.
-> At present, this branch is just a rebased upstream u-boot.
->
-> 3. graphics
->
-> We have plans for the acceleration in wayland, x11 in the rockchip platform, but in this series of patches, we only include the mali bianry support.
->
-> 4. rockchip-next-image
->
-> Being different from the previous rk-u-boot which use parameter, next-dev u-boot use gpt partition, so it needs to generate a different image.
->
->
-> Jacob Chen (7):
->   recipes-kernel: linux-rockchip: Add new recipe for 4.4
->   machine: Add machine file for the rk3288 linux Boards
->   machine: firefly: use linux-rockchip by default
->   recipes-graphics: Add support for mali-userspace
->   recipes-bsp: add u-boot-rockchip support
->   rk3288.inc: add some variables
->   rockchip-next-image: introduce image for rockchip next-dev u-boot
->
->  classes/rockchip-next-image.bbclass                | 130 +++++++++++++++++++++
->  conf/machine/evb-rk3288.conf                       |  12 ++
->  conf/machine/fennec-rk3288.conf                    |  12 ++
->  conf/machine/firefly-rk3288.conf                   |   4 +
->  conf/machine/include/rk-linux.inc                  |  20 ++++
->  conf/machine/include/rk3288.inc                    |  10 +-
->  conf/machine/tinker-rk3288.conf                    |  13 +++
->  recipes-bsp/u-boot/u-boot-rockchip_next.bb         |  17 +++
->  recipes-graphics/mali-userspace/mali-userspace.inc |  57 +++++++++
->  .../mali-userspace/mali-userspace_t76x.bb          |  18 +++
->  recipes-graphics/mesa/mesa_%.bbappend              |   9 ++
->  recipes-kernel/linux/linux-rockchip_4.4.bb         |  20 ++++
->  12 files changed, 321 insertions(+), 1 deletion(-)
->  create mode 100644 classes/rockchip-next-image.bbclass
->  create mode 100644 conf/machine/evb-rk3288.conf
->  create mode 100644 conf/machine/fennec-rk3288.conf
->  create mode 100644 conf/machine/include/rk-linux.inc
->  create mode 100644 conf/machine/tinker-rk3288.conf
->  create mode 100644 recipes-bsp/u-boot/u-boot-rockchip_next.bb
->  create mode 100644 recipes-graphics/mali-userspace/mali-userspace.inc
->  create mode 100644 recipes-graphics/mali-userspace/mali-userspace_t76x.bb
->  create mode 100644 recipes-graphics/mesa/mesa_%.bbappend
->  create mode 100644 recipes-kernel/linux/linux-rockchip_4.4.bb
->
-> --
-> 2.7.4
->
+On Wed, 2017-01-18 at 18:13 +0000, Joshua Lock wrote:
+> On Mon, 2017-01-16 at 10:25 -0600, An=C3=ADbal Lim=C3=B3n wrote:
+> >=20
+> > Sometimes is a good idea to could specify a machine to build via a
+> > build
+> > property.
+> Why's that? I can guess but the commit log should really tell me what
+> the motivation for the change is.
 
-Yocto is really amazing.
-It truly have a powerful customization architecture.  : )
+I agree. Please submit a v2 with a bit better of a commit log.
 
-I'm going to get the gstreamer-rk working with yocto and then plan to
-add more chips to it (rk3036,rk3399,rk3328)....
+-b
+
+>=20
+> >=20
+> >=20
+> > Signed-off-by: An=C3=ADbal Lim=C3=B3n <anibal.limon@linux.intel.com>
+> > ---
+> > =C2=A0.../site-
+> > packages/autobuilder/buildsteps/CreateAutoConf.py=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0| 6
+> > +++++-
+> > =C2=A01 file changed, 5 insertions(+), 1 deletion(-)
+> >=20
+> > diff --git a/lib/python2.7/site-
+> > packages/autobuilder/buildsteps/CreateAutoConf.py
+> > b/lib/python2.7/site-
+> > packages/autobuilder/buildsteps/CreateAutoConf.py
+> > index 021f542..7915dd5 100644
+> > --- a/lib/python2.7/site-
+> > packages/autobuilder/buildsteps/CreateAutoConf.py
+> > +++ b/lib/python2.7/site-
+> > packages/autobuilder/buildsteps/CreateAutoConf.py
+> > @@ -174,7 +174,11 @@ class CreateAutoConf(ShellCommand):
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0fout =3D fout + =
+'baselib =3D \\042${@d.getVar(\\04
+> > 7B
+> > ASE_LIB_tune-\\047 + (d.getVar(\\047DEFAULTTUNE\\047, True) or
+> > \\047INVALID\\047), True) or \\047lib\\047}\\042 \n'
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0if self.distro =3D=3D "poky-rt":
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0fout =3D fout +
+> > 'PREFERRED_PROVIDER_virtual/kernel=3D"linux-yocto-rt" \n'
+> > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0machine=3Dself.machine
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0machine=3Dself.getProperty('custom_machine')
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0if machine:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0self.machine =3D machine
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0else:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0machine =3D self.machine
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0if layerversion is not None and int(layerversion) > 1:
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if self.machine =3D=3D "atom-pc":
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0machine =3D self=
+.machine.replace("atom-pc",
+> > "genericx86")
 
