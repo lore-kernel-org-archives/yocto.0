@@ -1,62 +1,71 @@
-Return-Path: <raltherr@google.com>
+Return-Path: <twoerner@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1661AE009CF; Wed, 18 Jan 2017 17:52:43 -0800 (PST)
+	id 1C9C5E009DA; Wed, 18 Jan 2017 19:54:37 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_NONE,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (twoerner[at]gmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.214.66 listed in dnsbl.sorbs.net]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [74.125.83.49 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.83.49 listed in dnsbl.sorbs.net]
-Received: from mail-pg0-f49.google.com (mail-pg0-f49.google.com [74.125.83.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0641BE009CA
-	for <yocto@yoctoproject.org>; Wed, 18 Jan 2017 17:52:39 -0800 (PST)
-Received: by mail-pg0-f49.google.com with SMTP id 14so9264302pgg.1
-	for <yocto@yoctoproject.org>; Wed, 18 Jan 2017 17:52:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20161025;
-	h=from:to:subject:date:message-id;
-	bh=WTnVAIL+CwvvnTBwiCY3GB+LfdQNojU+512nme6yTuE=;
-	b=r6VAzqdLtYgbURI0AMUMYx9wOwQ0JH+P+n6AoJCli7uI02B1C8bo8Y0UhbecC+qeAD
-	y9v0gxVe90QCdiCmvK4Y/dR+f/yaFb3sg+G/IME2ujfhw+AQAIdsAN5QKTkuh38eh2rE
-	mg/Ur3L12JmZuwoqejzgdoKrTfIALsKdD5b3Onfsivbd+QLAvtU98COGmpgH3sSYj8IP
-	6p8cGmAA7lYHrLkqxf4xZEXANqTaj0bVslTL1BOJEEW5GGLmizpz9dqRlTDoykyWiHRz
-	14X1hU0M0Hv5irSw7VFXUWjZUbPDZ1RdIEYo4nWoztkuNAtoTH1oUa+K2LL1HforVtRB
-	l7XA==
+	*      [209.85.214.66 listed in list.dnswl.org]
+Received: from mail-it0-f66.google.com (mail-it0-f66.google.com
+	[209.85.214.66])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7851EE009C2
+	for <yocto@yoctoproject.org>; Wed, 18 Jan 2017 19:54:33 -0800 (PST)
+Received: by mail-it0-f66.google.com with SMTP id e137so3801115itc.0
+	for <yocto@yoctoproject.org>; Wed, 18 Jan 2017 19:54:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-disposition:in-reply-to:user-agent;
+	bh=FBEUU87KvUmasYXLwuA0+0ujDrPovyFPWkzO0G6LgjI=;
+	b=l8IbLb/VUogmPVR+p706fRp6b1z3hRMwAL3Qz5gY4swbxJrrV5+iW1RKii/J+yK0rd
+	glS5C1nEZmi/feDi7YZ+fEwMxcKZOQYG9rPFA2ReV80J6B0taCCzusEdc5MHa35eN3Jw
+	zskYqQbsPrBqvmxIlvD3+Zf9lVvBg1w5QxS+JgsFsXvqeQEvWs1+CRhspPGVslB4iKYZ
+	TRjvSeSMprp4lQFzuiIkSzK5EcvXCsGZTcr628QH3zsTR5YkiFpqeB5hek0CvNKWH66E
+	s/YfF4zknCPHNjpzOXj5Mcf6G263yzCLlDaRihDVCOX4V3vZztbor4QUx9fTOb9WrPNy
+	mQEA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:subject:date:message-id;
-	bh=WTnVAIL+CwvvnTBwiCY3GB+LfdQNojU+512nme6yTuE=;
-	b=HXuiZsjn2e3JEjjVytdmwwRmm9gxMqEpfD5ZPF3tQJEqoAtwXGpjy9hNRLswkXNJQA
-	yyS9Fr5k+D82XKAvR8/jMNgZKa1cF7KNB/oAc3nQ0458UDl1j1vJnq6HWEDk/xTqS/Zr
-	MfcS2FrU3ybrMtPqhJNtadobULR6FHLfxRJbMnBLXtOsmBjlxmYvMJo8enz2fQ7nvU+6
-	4N6cEtygj9VjfJR3CP2+SllOKnOwFcTwMKChCRao+PSMKVr9uI3uyYmjq3L+dhzBdbXB
-	cuB5q3mB4XexWNGoH3x51wpBLN0zv9IogmDYKTZ+73JgYWo2+xCOhlduAgtdkovwiW5y
-	EjlA==
-X-Gm-Message-State: AIkVDXJw9Y3lmNEjdY30ifWq3b64XZxotJvJY0snmYvpfRYiFQTzmgVuZUwSgV3s4LnqGD8k
-X-Received: by 10.99.226.3 with SMTP id q3mr7483560pgh.37.1484790757993;
-	Wed, 18 Jan 2017 17:52:37 -0800 (PST)
-Received: from raltherr-linux.svl.corp.google.com ([100.123.242.49])
-	by smtp.gmail.com with ESMTPSA id 64sm3575198pfz.48.2017.01.18.17.52.37
-	for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Wed, 18 Jan 2017 17:52:37 -0800 (PST)
-From: Rick Altherr <raltherr@google.com>
-To: yocto@yoctoproject.org
-Date: Wed, 18 Jan 2017 17:52:36 -0800
-Message-Id: <20170119015236.6498-1-raltherr@google.com>
-X-Mailer: git-send-email 2.11.0.483.g087da7b7c-goog
-Subject: [PATCH 1/1] kernel-fitimage: Let U-Boot select ramdisk load/entry address
+	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	:mime-version:content-disposition:in-reply-to:user-agent;
+	bh=FBEUU87KvUmasYXLwuA0+0ujDrPovyFPWkzO0G6LgjI=;
+	b=I20VldVfJCMDE2Nmm+MBAIhbfCarQki+Jjt/zKaZ5Yk33u38/7wySJl90zAWncIRiM
+	N8nm9AWW4eUWLB6LdTqKROGEqByB6amrvcjiAyVDZx+6Kg8DnVhAllt5lJ4R2CppgAaV
+	XDSY/0Y8nUQM66xtXCeuICvhC4J90V5V0t4ausA7vItAobXdAFjzQ6wK5laGDB8hr3jp
+	OSJL2IR3eYXg519XMLr4+GCj0kIJD9rpkrAyHw54IW+sb7q1O896jhlEhDpIwmVNG8G6
+	lagSwG2IvYUWjV/V0RmWguZ7mhmQ9yUK/nVort1aUIkbMbWR3QTlPUiOd/W+Cc2H1sPF
+	669A==
+X-Gm-Message-State: AIkVDXIIge3xncM/oxBgKljIS50uI45STdQ9wKFq8/iMIy2FvCGB7kEAl+00ITM3TInPew==
+X-Received: by 10.36.225.195 with SMTP id n186mr28036829ith.35.1484798073442; 
+	Wed, 18 Jan 2017 19:54:33 -0800 (PST)
+Received: from linux-uys3 (dsl-67-55-28-109.acanac.net. [67.55.28.109])
+	by smtp.gmail.com with ESMTPSA id a99sm2197097ioj.7.2017.01.18.19.54.32
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Wed, 18 Jan 2017 19:54:32 -0800 (PST)
+Date: Wed, 18 Jan 2017 22:54:30 -0500
+From: Trevor Woerner <twoerner@gmail.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Message-ID: <20170119035430.GA24183@linux-uys3>
+References: <2683342.SVnRAGIE1W@peggleto-mobl.ger.corp.intel.com>
+MIME-Version: 1.0
+In-Reply-To: <2683342.SVnRAGIE1W@peggleto-mobl.ger.corp.intel.com>
+User-Agent: Mutt/1.6.0 (2016-04-01)
+Cc: yocto@yoctoproject.org, openembedded-architecture@lists.openembedded.org,
+	openembedded-core@lists.openembedded.org
+Subject: Re: [OE-core] Patchwork and incoming patch testing
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,32 +77,17 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 19 Jan 2017 01:52:43 -0000
+X-List-Received-Date: Thu, 19 Jan 2017 03:54:37 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 
-If the ramdisk load and entry parameters are omitted in the FIT image
-specification, U-Boot will determine if the ramdisk needs to be
-relocated and will automatically allocate a location in RAM if so.
+On Wed 2017-01-18 @ 07:05:58 AM, Paul Eggleton wrote:
+> This should give us a bit more visibility into 
+> where patches are at in the process, although we are still working on a few 
+> places where patch series status needs to be updated (e.g. when a patch goes 
+> into testing).
 
-Change-Id: I0717c2ab04d13e58c2b91a829063c2d0fb6eaf34
-Signed-off-by: Rick Altherr <raltherr@google.com>
----
- meta/classes/kernel-fitimage.bbclass | 2 --
- 1 file changed, 2 deletions(-)
+Is the testing process for OE patches formalized?
 
-diff --git a/meta/classes/kernel-fitimage.bbclass b/meta/classes/kernel-fitimage.bbclass
-index 2934b3a31a..ee721d1fff 100644
---- a/meta/classes/kernel-fitimage.bbclass
-+++ b/meta/classes/kernel-fitimage.bbclass
-@@ -187,8 +187,6 @@ fitimage_emit_section_ramdisk() {
-                         arch = "${UBOOT_ARCH}";
-                         os = "linux";
-                         compression = "none";
--                        load = <${UBOOT_RD_LOADADDRESS}>;
--                        entry = <${UBOOT_RD_ENTRYPOINT}>;
-                         hash@1 {
-                                 algo = "${ramdisk_csum}";
-                         };
--- 
-2.11.0.483.g087da7b7c-goog
-
+I'm not referring to the Yocto Project's release testing.
 
