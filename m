@@ -1,66 +1,53 @@
-Return-Path: <jacobchen110@gmail.com>
+Return-Path: <jacob-chen@iotwrt.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 92B71E00B6C; Thu, 19 Jan 2017 06:11:49 -0800 (PST)
+	id F1509E00A93; Thu, 19 Jan 2017 03:50:26 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (jacobchen110[at]gmail.com)
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.82.68 listed in dnsbl.sorbs.net]
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00, FROM_EXCESS_BASE64, 
+	HTML_MESSAGE,RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [184.105.206.26 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.68 listed in list.dnswl.org]
-Received: from mail-wm0-f68.google.com (mail-wm0-f68.google.com [74.125.82.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 18768E00ACE
-	for <yocto@yoctoproject.org>; Thu, 19 Jan 2017 06:11:45 -0800 (PST)
-Received: by mail-wm0-f68.google.com with SMTP id r126so12294257wmr.3
-	for <yocto@yoctoproject.org>; Thu, 19 Jan 2017 06:11:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=FN74GIM+ff0jl0xbUVjGbjpcAR88UfIVWl9X5c/ji+o=;
-	b=SPkARmJ9esW4/EH8EyNpRGu5vHmu2WB8HMDIK/7gP3xNvXRPeYtMVgHuAw7yyQ8GTl
-	2YuQ4PIyo1Ulim4HJSt0tkbrANrQll23YvKaLQSo9J7hjjva3NNNJnOG60GC64XBg8oR
-	8LbaImU6SVgsiLGsQXjp/hdn1U0h9BuDc1JQGy0VHGk5pg1G+XnAakZS/bAL1rfWwPxz
-	SjLLOCMBA6Ke74pMP/rLpjmNlfcqjK6EurcCnynRpH0/hnIDQtlMKFSFMGE8rmTSsufT
-	14saKudgQu0tHtgAsykecgewVZO9xxcTfA4vZA9FCP6lqwwnO7ALll8LTX4/UoaUJm0h
-	TXSA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=FN74GIM+ff0jl0xbUVjGbjpcAR88UfIVWl9X5c/ji+o=;
-	b=qeGyZlN4ViCAQ6wePQTw9C/eGyKmKeQauPu2VLjTXXFCC3Oc1wQRBfE0PqlfebNWKI
-	5Qg8QLhopWo65A9IXHSh7vYkKVBNgRzHGQODJ38zv1GGRM3tvsMKGvuKomdrXSLLvI8c
-	PU+7E60kGSgi/7euFTa7QvqGrr0tKMqu/KuNnlppFR4qgsDUEECDhm9QKh0ZyZvx26Vs
-	NXB4El/Yl5JM8t+cFzGRq0GLpS85RxCGIlZPk3d+3AD8x/BVrfrGjTZDUnBKbE5G3iKU
-	WM3glv0rBADyTMTvZRxNRH5elixAbm150k+3HBUqTrJpAc1R8Mb+y9lQSptsDaBgVbbd
-	s3vA==
-X-Gm-Message-State: AIkVDXLzzq1M9+55wAqgk9WX4BhQp9uHUoHiKmomlCza3RkmOMIqzIzjiD2I0+2jqyeUIQR2uplQK6ffclICsw==
-X-Received: by 10.28.62.204 with SMTP id l195mr16935067wma.88.1484835104403;
-	Thu, 19 Jan 2017 06:11:44 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.194.157.230 with HTTP; Thu, 19 Jan 2017 06:11:43 -0800 (PST)
-In-Reply-To: <CAFLEztRa6rDCz-3P74Jd6wnETBarOBKxKvn1sCu93ugj+bjHiQ@mail.gmail.com>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  1.0 FROM_EXCESS_BASE64 From: base64 encoded unnecessarily
+X-Greylist: delayed 64 seconds by postgrey-1.32 at yocto-www;
+	Thu, 19 Jan 2017 03:50:23 PST
+Received: from smtpbg303.qq.com (smtpbg303.qq.com [184.105.206.26])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5FA45E00A73
+	for <yocto@yoctoproject.org>; Thu, 19 Jan 2017 03:50:23 -0800 (PST)
+X-QQ-FEAT: JDiT06roKfM7P7D498/x0Ss9BAUckQ+rkITM/vUmwLOCHZguJU+EPG+2y0IfE
+	2BLzBEezvXbPzHsNtxCrrlE2ziz5IfPoqKrOytK0G3gWoYsjB/0gfXVeUVsQW4zV87XHU5a
+	gOLEL0t9BOukCZ17ZxQom1oq5O2XWZJEDA1vS6iVzxj0MWKxiKjQEqnjw33OSBGV9DLQj6H
+	ynaNgiTeja0P21sAduZ2SrVIaFcwKKjlAPszSYVtvCS0F87ut2jUZPorSBqCXdERiPjV/6Y
+	qwMwkxFzqGWTWXnjlTuzK7ReA=
+X-QQ-SSF: 000000000000000000000000000000X
+X-HAS-ATTACH: no
+X-QQ-BUSINESS-ORIGIN: 2
+X-Originating-IP: 27.155.38.158
+In-Reply-To: <CAJTo0Lb_vK5H7xNArruXy_vJSg4Hunut0O615LcaDF-dJM-t5w@mail.gmail.com>
 References: <1484820572-11891-1-git-send-email-jacob-chen@iotwrt.com>
 	<CAJTo0Lb_vK5H7xNArruXy_vJSg4Hunut0O615LcaDF-dJM-t5w@mail.gmail.com>
-	<79b41a93-ab66-cafe-69e4-4bbad827cb26@mlbassoc.com>
-	<CAFLEztRa6rDCz-3P74Jd6wnETBarOBKxKvn1sCu93ugj+bjHiQ@mail.gmail.com>
-From: Jacob Chen <jacobchen110@gmail.com>
-Date: Thu, 19 Jan 2017 22:11:43 +0800
-Message-ID: <CAFLEztSDg2Mys9XMgf_WuKpNyye0zfg5ny6oFoAqXsbicrdrjw@mail.gmail.com>
-To: Gary Thomas <gary@mlbassoc.com>
-Cc: yocto@yoctoproject.org
+X-QQ-STYLE: 
+X-QQ-mid: webmail190t1484826544t9162885
+From: "=?gb18030?B?SmFjb2IgQ2hlbg==?=" <jacob-chen@iotwrt.com>
+To: "=?gb18030?B?QnVydG9uLCBSb3Nz?=" <ross.burton@intel.com>
+Mime-Version: 1.0
+Date: Thu, 19 Jan 2017 19:49:04 +0800
+X-Priority: 3
+Message-ID: <tencent_10C5DAEF019122E86F05EE4D@qq.com>
+X-QQ-MIME: TCMime 1.0 by Tencent
+X-Mailer: QQMail 2.x
+X-QQ-Mailer: QQMail 2.x
+X-QQ-ReplyHash: 1141690174
+X-QQ-SENDSIZE: 520
+X-QQ-FName: 3CDBD9CFFE5444B0B192F761EB450E9C
+X-QQ-LocalIP: 10.130.87.224
+X-Mailman-Approved-At: Thu, 19 Jan 2017 06:33:06 -0800
+Cc: =?gb18030?B?eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw==?= <yocto@yoctoproject.org>,
+	=?gb18030?B?ssy34w==?= <eddie.cai@rock-chips.com>
 Subject: Re: [PATCH 0/7] introduce rockchip offical linux support to meta-rockchip
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -73,112 +60,180 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 19 Jan 2017 14:11:49 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 19 Jan 2017 11:50:27 -0000
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_5880A7B0_08EDD958_49C80E9D"
+Content-Transfer-Encoding: 8Bit
 
-Sorry for bothring : ).....
+------=_NextPart_5880A7B0_08EDD958_49C80E9D
+Content-Type: text/plain;
+	charset="gb18030"
+Content-Transfer-Encoding: base64
 
-2017-01-19 21:55 GMT+08:00 Jacob Chen <jacobchen110@gmail.com>:
-> Sorry for sending without prefix, and make you guys confused.
-> This series patches is sending for meta-rockchip, not core meta data.
->
-> I will resend it and add prefix.
->
-> 2017-01-19 20:49 GMT+08:00 Gary Thomas <gary@mlbassoc.com>:
->> On 2017-01-19 12:30, Burton, Ross wrote:
->>>
->>> (CCing the layer maintainers as listed in the README to ensure this gets
->>> noticed)
->>>
->>
->> Shouldn't this have [meta-rockchip] (or some such) in the subject? - it's
->> certainly
->> not OE-core or even Poky AFAICT
->>
->>>
->>> On 19 January 2017 at 10:09, Jacob Chen <jacob-chen@iotwrt.com
->>> <mailto:jacob-chen@iotwrt.com>> wrote:
->>>
->>>     This series of patches add below features, will add more supports in
->>> the future(medias, more chips).
->>>
->>>     1. rockchip 4.4 kernel
->>>
->>>     Rockchip 4.4 kernel is currently the latest version of the rockchip
->>> offical kernel, will be an upstream tracking branch.
->>>     We regularly release the kernel through github. It support all
->>> rockchip 64-bit chips and a few 32-bit chips.
->>>
->>>     2. rockchip next-dev U-boot
->>>
->>>     Rockchip next-dev U-boot is the next generation of rockchip u-boot,
->>> will also be an upstream tracking branch.
->>>     At present, this branch is just a rebased upstream u-boot.
->>>
->>>     3. graphics
->>>
->>>     We have plans for the acceleration in wayland, x11 in the rockchip
->>> platform, but in this series of patches, we only
->>>     include the mali bianry support.
->>>
->>>     4. rockchip-next-image
->>>
->>>     Being different from the previous rk-u-boot which use parameter,
->>> next-dev u-boot use gpt partition, so it needs to
->>>     generate a different image.
->>>
->>>
->>>     Jacob Chen (7):
->>>       recipes-kernel: linux-rockchip: Add new recipe for 4.4
->>>       machine: Add machine file for the rk3288 linux Boards
->>>       machine: firefly: use linux-rockchip by default
->>>       recipes-graphics: Add support for mali-userspace
->>>       recipes-bsp: add u-boot-rockchip support
->>>       rk3288.inc: add some variables
->>>       rockchip-next-image: introduce image for rockchip next-dev u-boot
->>>
->>>      classes/rockchip-next-image.bbclass                | 130
->>> +++++++++++++++++++++
->>>      conf/machine/evb-rk3288.conf                       |  12 ++
->>>      conf/machine/fennec-rk3288.conf                    |  12 ++
->>>      conf/machine/firefly-rk3288.conf                   |   4 +
->>>      conf/machine/include/rk-linux.inc                  |  20 ++++
->>>      conf/machine/include/rk3288.inc                    |  10 +-
->>>      conf/machine/tinker-rk3288.conf                    |  13 +++
->>>      recipes-bsp/u-boot/u-boot-rockchip_next.bb
->>> <http://u-boot-rockchip_next.bb>         |  17 +++
->>>      recipes-graphics/mali-userspace/mali-userspace.inc |  57 +++++++++
->>>      .../mali-userspace/mali-userspace_t76x.bb
->>> <http://mali-userspace_t76x.bb>          |  18 +++
->>>      recipes-graphics/mesa/mesa_%.bbappend              |   9 ++
->>>      recipes-kernel/linux/linux-rockchip_4.4.bb
->>> <http://linux-rockchip_4.4.bb>         |  20 ++++
->>>      12 files changed, 321 insertions(+), 1 deletion(-)
->>>      create mode 100644 classes/rockchip-next-image.bbclass
->>>      create mode 100644 conf/machine/evb-rk3288.conf
->>>      create mode 100644 conf/machine/fennec-rk3288.conf
->>>      create mode 100644 conf/machine/include/rk-linux.inc
->>>      create mode 100644 conf/machine/tinker-rk3288.conf
->>>      create mode 100644 recipes-bsp/u-boot/u-boot-rockchip_next.bb
->>> <http://u-boot-rockchip_next.bb>
->>>      create mode 100644 recipes-graphics/mali-userspace/mali-userspace.inc
->>>      create mode 100644
->>> recipes-graphics/mali-userspace/mali-userspace_t76x.bb
->>> <http://mali-userspace_t76x.bb>
->>>      create mode 100644 recipes-graphics/mesa/mesa_%.bbappend
->>>      create mode 100644 recipes-kernel/linux/linux-rockchip_4.4.bb
->>> <http://linux-rockchip_4.4.bb>
->>
->>
->> --
->> ------------------------------------------------------------
->> Gary Thomas                 |  Consulting for the
->> MLB Associates              |    Embedded world
->> ------------------------------------------------------------
->>
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
+VGhhbmtzIGZvciByZW1pbmRpbmcsIEkndmUgYWxyZWFkeSBhZGRlZCB0aGVtLg0KQnV0IGl0
+IHNlZW1zIEkgZm9yZ290IHRvIGFkZCB0aGUgcHJlZml4ICJtZXRhLXJvY2tjaGlwIg0KDQoN
+Cg0KDQoNCi0tLS0tLS0tLS0tLS0tLS0tLSBPcmlnaW5hbCAtLS0tLS0tLS0tLS0tLS0tLS0N
+CkZyb206ICAiQnVydG9uLCBSb3NzIjs8cm9zcy5idXJ0b25AaW50ZWwuY29tPjsNCkRhdGU6
+ICBUaHUsIEphbiAxOSwgMjAxNyAwNzozMCBQTQ0KVG86ICAiSmFjb2IgQ2hlbiI8amFjb2It
+Y2hlbkBpb3R3cnQuY29tPjsgDQpDYzogICJ5b2N0b0B5b2N0b3Byb2plY3Qub3JnIjx5b2N0
+b0B5b2N0b3Byb2plY3Qub3JnPjsgImVkZGllLmNhaSI8ZWRkaWUuY2FpQHJvY2stY2hpcHMu
+Y29tPjsgInJvbWFpbi5wZXJpZXIiPHJvbWFpbi5wZXJpZXJAZ21haWwuY29tPjsgIlRyZXZv
+ciBXb2VybmVyIjx0d29lcm5lckBnbWFpbC5jb20+OyANClN1YmplY3Q6ICBSZTogW3lvY3Rv
+XSBbUEFUQ0ggMC83XSBpbnRyb2R1Y2Ugcm9ja2NoaXAgb2ZmaWNhbCBsaW51eCBzdXBwb3J0
+IHRvIG1ldGEtcm9ja2NoaXANCg0KDQoNCihDQ2luZyB0aGUgbGF5ZXIgbWFpbnRhaW5lcnMg
+YXMgbGlzdGVkIGluIHRoZSBSRUFETUUgdG8gZW5zdXJlIHRoaXMgZ2V0cyBub3RpY2VkKQ0K
+DQoNCg0KDQpPbiAxOSBKYW51YXJ5IDIwMTcgYXQgMTA6MDksIEphY29iIENoZW4gPGphY29i
+LWNoZW5AaW90d3J0LmNvbT4gd3JvdGU6DQpUaGlzIHNlcmllcyBvZiBwYXRjaGVzIGFkZCBi
+ZWxvdyBmZWF0dXJlcywgd2lsbCBhZGQgbW9yZSBzdXBwb3J0cyBpbiB0aGUgZnV0dXJlKG1l
+ZGlhcywgbW9yZSBjaGlwcykuDQogDQogMS4gcm9ja2NoaXAgNC40IGtlcm5lbA0KIA0KIFJv
+Y2tjaGlwIDQuNCBrZXJuZWwgaXMgY3VycmVudGx5IHRoZSBsYXRlc3QgdmVyc2lvbiBvZiB0
+aGUgcm9ja2NoaXAgb2ZmaWNhbCBrZXJuZWwsIHdpbGwgYmUgYW4gdXBzdHJlYW0gdHJhY2tp
+bmcgYnJhbmNoLg0KIFdlIHJlZ3VsYXJseSByZWxlYXNlIHRoZSBrZXJuZWwgdGhyb3VnaCBn
+aXRodWIuIEl0IHN1cHBvcnQgYWxsIHJvY2tjaGlwIDY0LWJpdCBjaGlwcyBhbmQgYSBmZXcg
+MzItYml0IGNoaXBzLg0KIA0KIDIuIHJvY2tjaGlwIG5leHQtZGV2IFUtYm9vdA0KIA0KIFJv
+Y2tjaGlwIG5leHQtZGV2IFUtYm9vdCBpcyB0aGUgbmV4dCBnZW5lcmF0aW9uIG9mIHJvY2tj
+aGlwIHUtYm9vdCwgd2lsbCBhbHNvIGJlIGFuIHVwc3RyZWFtIHRyYWNraW5nIGJyYW5jaC4N
+CiBBdCBwcmVzZW50LCB0aGlzIGJyYW5jaCBpcyBqdXN0IGEgcmViYXNlZCB1cHN0cmVhbSB1
+LWJvb3QuDQogDQogMy4gZ3JhcGhpY3MNCiANCiBXZSBoYXZlIHBsYW5zIGZvciB0aGUgYWNj
+ZWxlcmF0aW9uIGluIHdheWxhbmQsIHgxMSBpbiB0aGUgcm9ja2NoaXAgcGxhdGZvcm0sIGJ1
+dCBpbiB0aGlzIHNlcmllcyBvZiBwYXRjaGVzLCB3ZSBvbmx5IGluY2x1ZGUgdGhlIG1hbGkg
+YmlhbnJ5IHN1cHBvcnQuDQogDQogNC4gcm9ja2NoaXAtbmV4dC1pbWFnZQ0KIA0KIEJlaW5n
+IGRpZmZlcmVudCBmcm9tIHRoZSBwcmV2aW91cyByay11LWJvb3Qgd2hpY2ggdXNlIHBhcmFt
+ZXRlciwgbmV4dC1kZXYgdS1ib290IHVzZSBncHQgcGFydGl0aW9uLCBzbyBpdCBuZWVkcyB0
+byBnZW5lcmF0ZSBhIGRpZmZlcmVudCBpbWFnZS4NCiANCiANCiBKYWNvYiBDaGVuICg3KToN
+CiAgIHJlY2lwZXMta2VybmVsOiBsaW51eC1yb2NrY2hpcDogQWRkIG5ldyByZWNpcGUgZm9y
+IDQuNA0KICAgbWFjaGluZTogQWRkIG1hY2hpbmUgZmlsZSBmb3IgdGhlIHJrMzI4OCBsaW51
+eCBCb2FyZHMNCiAgIG1hY2hpbmU6IGZpcmVmbHk6IHVzZSBsaW51eC1yb2NrY2hpcCBieSBk
+ZWZhdWx0DQogICByZWNpcGVzLWdyYXBoaWNzOiBBZGQgc3VwcG9ydCBmb3IgbWFsaS11c2Vy
+c3BhY2UNCiAgIHJlY2lwZXMtYnNwOiBhZGQgdS1ib290LXJvY2tjaGlwIHN1cHBvcnQNCiAg
+IHJrMzI4OC5pbmM6IGFkZCBzb21lIHZhcmlhYmxlcw0KICAgcm9ja2NoaXAtbmV4dC1pbWFn
+ZTogaW50cm9kdWNlIGltYWdlIGZvciByb2NrY2hpcCBuZXh0LWRldiB1LWJvb3QNCiANCiAg
+Y2xhc3Nlcy9yb2NrY2hpcC1uZXh0LWltYWdlLmJiY2xhc3MgICAgICAgICAgICAgICAgfCAx
+MzAgKysrKysrKysrKysrKysrKysrKysrDQogIGNvbmYvbWFjaGluZS9ldmItcmszMjg4LmNv
+bmYgICAgICAgICAgICAgICAgICAgICAgIHwgIDEyICsrDQogIGNvbmYvbWFjaGluZS9mZW5u
+ZWMtcmszMjg4LmNvbmYgICAgICAgICAgICAgICAgICAgIHwgIDEyICsrDQogIGNvbmYvbWFj
+aGluZS9maXJlZmx5LXJrMzI4OC5jb25mICAgICAgICAgICAgICAgICAgIHwgICA0ICsNCiAg
+Y29uZi9tYWNoaW5lL2luY2x1ZGUvcmstbGludXguaW5jICAgICAgICAgICAgICAgICAgfCAg
+MjAgKysrKw0KICBjb25mL21hY2hpbmUvaW5jbHVkZS9yazMyODguaW5jICAgICAgICAgICAg
+ICAgICAgICB8ICAxMCArLQ0KICBjb25mL21hY2hpbmUvdGlua2VyLXJrMzI4OC5jb25mICAg
+ICAgICAgICAgICAgICAgICB8ICAxMyArKysNCiAgcmVjaXBlcy1ic3AvdS1ib290L3UtYm9v
+dC1yb2NrY2hpcF9uZXh0LmJiICAgICAgICAgfCAgMTcgKysrDQogIHJlY2lwZXMtZ3JhcGhp
+Y3MvbWFsaS11c2Vyc3BhY2UvbWFsaS11c2Vyc3BhY2UuaW5jIHwgIDU3ICsrKysrKysrKw0K
+ICAuLi4vbWFsaS11c2Vyc3BhY2UvbWFsaS11c2Vyc3BhY2VfdDc2eC5iYiAgICAgICAgICB8
+ICAxOCArKysNCiAgcmVjaXBlcy1ncmFwaGljcy9tZXNhL21lc2FfJS5iYmFwcGVuZCAgICAg
+ICAgICAgICAgfCAgIDkgKysNCiAgcmVjaXBlcy1rZXJuZWwvbGludXgvbGludXgtcm9ja2No
+aXBfNC40LmJiICAgICAgICAgfCAgMjAgKysrKw0KICAxMiBmaWxlcyBjaGFuZ2VkLCAzMjEg
+aW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQ0KICBjcmVhdGUgbW9kZSAxMDA2NDQgY2xh
+c3Nlcy9yb2NrY2hpcC1uZXh0LWltYWdlLmJiY2xhc3MNCiAgY3JlYXRlIG1vZGUgMTAwNjQ0
+IGNvbmYvbWFjaGluZS9ldmItcmszMjg4LmNvbmYNCiAgY3JlYXRlIG1vZGUgMTAwNjQ0IGNv
+bmYvbWFjaGluZS9mZW5uZWMtcmszMjg4LmNvbmYNCiAgY3JlYXRlIG1vZGUgMTAwNjQ0IGNv
+bmYvbWFjaGluZS9pbmNsdWRlL3JrLWxpbnV4LmluYw0KICBjcmVhdGUgbW9kZSAxMDA2NDQg
+Y29uZi9tYWNoaW5lL3Rpbmtlci1yazMyODguY29uZg0KICBjcmVhdGUgbW9kZSAxMDA2NDQg
+cmVjaXBlcy1ic3AvdS1ib290L3UtYm9vdC1yb2NrY2hpcF9uZXh0LmJiDQogIGNyZWF0ZSBt
+b2RlIDEwMDY0NCByZWNpcGVzLWdyYXBoaWNzL21hbGktdXNlcnNwYWNlL21hbGktdXNlcnNw
+YWNlLmluYw0KICBjcmVhdGUgbW9kZSAxMDA2NDQgcmVjaXBlcy1ncmFwaGljcy9tYWxpLXVz
+ZXJzcGFjZS9tYWxpLXVzZXJzcGFjZV90NzZ4LmJiDQogIGNyZWF0ZSBtb2RlIDEwMDY0NCBy
+ZWNpcGVzLWdyYXBoaWNzL21lc2EvbWVzYV8lLmJiYXBwZW5kDQogIGNyZWF0ZSBtb2RlIDEw
+MDY0NCByZWNpcGVzLWtlcm5lbC9saW51eC9saW51eC1yb2NrY2hpcF80LjQuYmINCiANCiAt
+LQ0KIDIuNy40DQogDQogLS0NCiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXw0KIHlvY3RvIG1haWxpbmcgbGlzdA0KIHlvY3RvQHlvY3RvcHJvamVj
+dC5vcmcNCiBodHRwczovL2xpc3RzLnlvY3RvcHJvamVjdC5vcmcvbGlzdGluZm8veW9jdG8=
 
+------=_NextPart_5880A7B0_08EDD958_49C80E9D
+Content-Type: text/html;
+	charset="gb18030"
+Content-Transfer-Encoding: base64
+
+PGRpdj48ZGl2PlRoYW5rcyBmb3IgcmVtaW5kaW5nLCBJJ3ZlIGFscmVhZHkgYWRkZWQgdGhl
+bS48L2Rpdj48ZGl2PkJ1dCBpdCBzZWVtcyBJIGZvcmdvdCB0byBhZGQgdGhlIHByZWZpeCAi
+bWV0YS1yb2NrY2hpcCI8L2Rpdj48L2Rpdj48ZGl2PjxkaXY+PGJyPjwvZGl2PjxkaXY+PGJy
+PjwvZGl2PjxkaXYgc3R5bGU9ImZvbnQtc2l6ZTogMTJweDtmb250LWZhbWlseTogQXJpYWwg
+TmFycm93O3BhZGRpbmc6MnB4IDAgMnB4IDA7Ij4tLS0tLS0tLS0tLS0tLS0tLS0mbmJzcDtP
+cmlnaW5hbCZuYnNwOy0tLS0tLS0tLS0tLS0tLS0tLTwvZGl2PjxkaXYgc3R5bGU9ImZvbnQt
+c2l6ZTogMTJweDtiYWNrZ3JvdW5kOiNlZmVmZWY7cGFkZGluZzo4cHg7Ij48ZGl2PjxiPkZy
+b206IDwvYj4mbmJzcDsiQnVydG9uLCBSb3NzIjsmbHQ7cm9zcy5idXJ0b25AaW50ZWwuY29t
+Jmd0Ozs8L2Rpdj48ZGl2PjxiPkRhdGU6IDwvYj4mbmJzcDtUaHUsIEphbiAxOSwgMjAxNyAw
+NzozMCBQTTwvZGl2PjxkaXY+PGI+VG86IDwvYj4mbmJzcDsiSmFjb2IgQ2hlbiImbHQ7amFj
+b2ItY2hlbkBpb3R3cnQuY29tJmd0OzsgPHdicj48L2Rpdj48ZGl2PjxiPkNjOiA8L2I+Jm5i
+c3A7InlvY3RvQHlvY3RvcHJvamVjdC5vcmciJmx0O3lvY3RvQHlvY3RvcHJvamVjdC5vcmcm
+Z3Q7OyAiZWRkaWUuY2FpIiZsdDtlZGRpZS5jYWlAcm9jay1jaGlwcy5jb20mZ3Q7OyAicm9t
+YWluLnBlcmllciImbHQ7cm9tYWluLnBlcmllckBnbWFpbC5jb20mZ3Q7OyAiVHJldm9yIFdv
+ZXJuZXIiJmx0O3R3b2VybmVyQGdtYWlsLmNvbSZndDs7IDx3YnI+PC9kaXY+PGRpdj48Yj5T
+dWJqZWN0OiA8L2I+Jm5ic3A7UmU6IFt5b2N0b10gW1BBVENIIDAvN10gaW50cm9kdWNlIHJv
+Y2tjaGlwIG9mZmljYWwgbGludXggc3VwcG9ydCB0byBtZXRhLXJvY2tjaGlwPC9kaXY+PC9k
+aXY+PGRpdj48YnI+PC9kaXY+KENDaW5nIHRoZSBsYXllciBtYWludGFpbmVycyBhcyBsaXN0
+ZWQgaW4gdGhlIFJFQURNRSB0byBlbnN1cmUgdGhpcyBnZXRzIG5vdGljZWQpPGJyPjxicj48
+YnI+PGJyPjxicj5PbiAxOSBKYW51YXJ5IDIwMTcgYXQgMTA6MDksIEphY29iIENoZW4gJmx0
+O2phY29iLWNoZW5AaW90d3J0LmNvbSZndDsgd3JvdGU6PGJyPlRoaXMgc2VyaWVzIG9mIHBh
+dGNoZXMgYWRkIGJlbG93IGZlYXR1cmVzLCB3aWxsIGFkZCBtb3JlIHN1cHBvcnRzIGluIHRo
+ZSBmdXR1cmUobWVkaWFzLCBtb3JlIGNoaXBzKS48YnI+IDxicj4gMS4gcm9ja2NoaXAgNC40
+IGtlcm5lbDxicj4gPGJyPiBSb2NrY2hpcCA0LjQga2VybmVsIGlzIGN1cnJlbnRseSB0aGUg
+bGF0ZXN0IHZlcnNpb24gb2YgdGhlIHJvY2tjaGlwIG9mZmljYWwga2VybmVsLCB3aWxsIGJl
+IGFuIHVwc3RyZWFtIHRyYWNraW5nIGJyYW5jaC48YnI+IFdlIHJlZ3VsYXJseSByZWxlYXNl
+IHRoZSBrZXJuZWwgdGhyb3VnaCBnaXRodWIuIEl0IHN1cHBvcnQgYWxsIHJvY2tjaGlwIDY0
+LWJpdCBjaGlwcyBhbmQgYSBmZXcgMzItYml0IGNoaXBzLjxicj4gPGJyPiAyLiByb2NrY2hp
+cCBuZXh0LWRldiBVLWJvb3Q8YnI+IDxicj4gUm9ja2NoaXAgbmV4dC1kZXYgVS1ib290IGlz
+IHRoZSBuZXh0IGdlbmVyYXRpb24gb2Ygcm9ja2NoaXAgdS1ib290LCB3aWxsIGFsc28gYmUg
+YW4gdXBzdHJlYW0gdHJhY2tpbmcgYnJhbmNoLjxicj4gQXQgcHJlc2VudCwgdGhpcyBicmFu
+Y2ggaXMganVzdCBhIHJlYmFzZWQgdXBzdHJlYW0gdS1ib290Ljxicj4gPGJyPiAzLiBncmFw
+aGljczxicj4gPGJyPiBXZSBoYXZlIHBsYW5zIGZvciB0aGUgYWNjZWxlcmF0aW9uIGluIHdh
+eWxhbmQsIHgxMSBpbiB0aGUgcm9ja2NoaXAgcGxhdGZvcm0sIGJ1dCBpbiB0aGlzIHNlcmll
+cyBvZiBwYXRjaGVzLCB3ZSBvbmx5IGluY2x1ZGUgdGhlIG1hbGkgYmlhbnJ5IHN1cHBvcnQu
+PGJyPiA8YnI+IDQuIHJvY2tjaGlwLW5leHQtaW1hZ2U8YnI+IDxicj4gQmVpbmcgZGlmZmVy
+ZW50IGZyb20gdGhlIHByZXZpb3VzIHJrLXUtYm9vdCB3aGljaCB1c2UgcGFyYW1ldGVyLCBu
+ZXh0LWRldiB1LWJvb3QgdXNlIGdwdCBwYXJ0aXRpb24sIHNvIGl0IG5lZWRzIHRvIGdlbmVy
+YXRlIGEgZGlmZmVyZW50IGltYWdlLjxicj4gPGJyPiA8YnI+IEphY29iIENoZW4gKDcpOjxi
+cj4gJm5ic3A7IHJlY2lwZXMta2VybmVsOiBsaW51eC1yb2NrY2hpcDogQWRkIG5ldyByZWNp
+cGUgZm9yIDQuNDxicj4gJm5ic3A7IG1hY2hpbmU6IEFkZCBtYWNoaW5lIGZpbGUgZm9yIHRo
+ZSByazMyODggbGludXggQm9hcmRzPGJyPiAmbmJzcDsgbWFjaGluZTogZmlyZWZseTogdXNl
+IGxpbnV4LXJvY2tjaGlwIGJ5IGRlZmF1bHQ8YnI+ICZuYnNwOyByZWNpcGVzLWdyYXBoaWNz
+OiBBZGQgc3VwcG9ydCBmb3IgbWFsaS11c2Vyc3BhY2U8YnI+ICZuYnNwOyByZWNpcGVzLWJz
+cDogYWRkIHUtYm9vdC1yb2NrY2hpcCBzdXBwb3J0PGJyPiAmbmJzcDsgcmszMjg4LmluYzog
+YWRkIHNvbWUgdmFyaWFibGVzPGJyPiAmbmJzcDsgcm9ja2NoaXAtbmV4dC1pbWFnZTogaW50
+cm9kdWNlIGltYWdlIGZvciByb2NrY2hpcCBuZXh0LWRldiB1LWJvb3Q8YnI+IDxicj4gJm5i
+c3A7Y2xhc3Nlcy9yb2NrY2hpcC1uZXh0LWltYWdlLmJiY2xhc3MmbmJzcDsgJm5ic3A7ICZu
+YnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7IHwgMTMwICsrKysrKysr
+KysrKysrKysrKysrKzxicj4gJm5ic3A7Y29uZi9tYWNoaW5lL2V2Yi1yazMyODguY29uZiZu
+YnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsg
+Jm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7fCZuYnNwOyAxMiArKzxicj4gJm5ic3A7Y29u
+Zi9tYWNoaW5lL2Zlbm5lYy1yazMyODguY29uZiZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNw
+OyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyB8Jm5ic3A7IDEy
+ICsrPGJyPiAmbmJzcDtjb25mL21hY2hpbmUvZmlyZWZseS1yazMyODguY29uZiZuYnNwOyAm
+bmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7
+ICZuYnNwO3wmbmJzcDsgJm5ic3A7NCArPGJyPiAmbmJzcDtjb25mL21hY2hpbmUvaW5jbHVk
+ZS9yay1saW51eC5pbmMmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNw
+OyAmbmJzcDsgJm5ic3A7ICZuYnNwOyB8Jm5ic3A7IDIwICsrKys8YnI+ICZuYnNwO2NvbmYv
+bWFjaGluZS9pbmNsdWRlL3JrMzI4OC5pbmMmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsg
+Jm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgfCZuYnNwOyAxMCAr
+LTxicj4gJm5ic3A7Y29uZi9tYWNoaW5lL3Rpbmtlci1yazMyODguY29uZiZuYnNwOyAmbmJz
+cDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZu
+YnNwOyB8Jm5ic3A7IDEzICsrKzxicj4gJm5ic3A7cmVjaXBlcy1ic3AvdS1ib290L3UtYm9v
+dC1yb2NrY2hpcF9uZXh0LmJiJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwO3wm
+bmJzcDsgMTcgKysrPGJyPiAmbmJzcDtyZWNpcGVzLWdyYXBoaWNzL21hbGktdXNlcnNwYWNl
+L21hbGktdXNlcnNwYWNlLmluYyB8Jm5ic3A7IDU3ICsrKysrKysrKzxicj4gJm5ic3A7Li4u
+L21hbGktdXNlcnNwYWNlL21hbGktdXNlcnNwYWNlX3Q3NnguYmImbmJzcDsgJm5ic3A7ICZu
+YnNwOyAmbmJzcDsgJm5ic3A7IHwmbmJzcDsgMTggKysrPGJyPiAmbmJzcDtyZWNpcGVzLWdy
+YXBoaWNzL21lc2EvbWVzYV8lLmJiYXBwZW5kJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7
+ICZuYnNwOyAmbmJzcDsgJm5ic3A7IHwmbmJzcDsgJm5ic3A7OSArKzxicj4gJm5ic3A7cmVj
+aXBlcy1rZXJuZWwvbGludXgvbGludXgtcm9ja2NoaXBfNC40LmJiJm5ic3A7ICZuYnNwOyAm
+bmJzcDsgJm5ic3A7ICZuYnNwO3wmbmJzcDsgMjAgKysrKzxicj4gJm5ic3A7MTIgZmlsZXMg
+Y2hhbmdlZCwgMzIxIGluc2VydGlvbnMoKyksIDEgZGVsZXRpb24oLSk8YnI+ICZuYnNwO2Ny
+ZWF0ZSBtb2RlIDEwMDY0NCBjbGFzc2VzL3JvY2tjaGlwLW5leHQtaW1hZ2UuYmJjbGFzczxi
+cj4gJm5ic3A7Y3JlYXRlIG1vZGUgMTAwNjQ0IGNvbmYvbWFjaGluZS9ldmItcmszMjg4LmNv
+bmY8YnI+ICZuYnNwO2NyZWF0ZSBtb2RlIDEwMDY0NCBjb25mL21hY2hpbmUvZmVubmVjLXJr
+MzI4OC5jb25mPGJyPiAmbmJzcDtjcmVhdGUgbW9kZSAxMDA2NDQgY29uZi9tYWNoaW5lL2lu
+Y2x1ZGUvcmstbGludXguaW5jPGJyPiAmbmJzcDtjcmVhdGUgbW9kZSAxMDA2NDQgY29uZi9t
+YWNoaW5lL3Rpbmtlci1yazMyODguY29uZjxicj4gJm5ic3A7Y3JlYXRlIG1vZGUgMTAwNjQ0
+IHJlY2lwZXMtYnNwL3UtYm9vdC91LWJvb3Qtcm9ja2NoaXBfbmV4dC5iYjxicj4gJm5ic3A7
+Y3JlYXRlIG1vZGUgMTAwNjQ0IHJlY2lwZXMtZ3JhcGhpY3MvbWFsaS11c2Vyc3BhY2UvbWFs
+aS11c2Vyc3BhY2UuaW5jPGJyPiAmbmJzcDtjcmVhdGUgbW9kZSAxMDA2NDQgcmVjaXBlcy1n
+cmFwaGljcy9tYWxpLXVzZXJzcGFjZS9tYWxpLXVzZXJzcGFjZV90NzZ4LmJiPGJyPiAmbmJz
+cDtjcmVhdGUgbW9kZSAxMDA2NDQgcmVjaXBlcy1ncmFwaGljcy9tZXNhL21lc2FfJS5iYmFw
+cGVuZDxicj4gJm5ic3A7Y3JlYXRlIG1vZGUgMTAwNjQ0IHJlY2lwZXMta2VybmVsL2xpbnV4
+L2xpbnV4LXJvY2tjaGlwXzQuNC5iYjxicj4gPGJyPiAtLTxicj4gMi43LjQ8YnI+IDxicj4g
+LS08YnI+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+PGJyPiB5b2N0byBtYWlsaW5nIGxpc3Q8YnI+IHlvY3RvQHlvY3RvcHJvamVjdC5vcmc8YnI+
+IGh0dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9saXN0aW5mby95b2N0bzxicj4gPGJy
+Pjxicj48L2Rpdj4=
+
+------=_NextPart_5880A7B0_08EDD958_49C80E9D--
