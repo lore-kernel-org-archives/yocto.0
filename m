@@ -1,61 +1,62 @@
-Return-Path: <terry.farnham@quanergy.com>
+Return-Path: <raltherr@google.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8C022E004D8; Wed, 18 Jan 2017 16:35:20 -0800 (PST)
+	id 1661AE009CF; Wed, 18 Jan 2017 17:52:43 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_20,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_LOW,
-	RCVD_IN_SORBS_SPAM autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.216.180 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.216.180 listed in dnsbl.sorbs.net]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.0 BAYES_20 BODY: Bayes spam probability is 5 to 20%
-	*      [score: 0.0890]
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qt0-f180.google.com (mail-qt0-f180.google.com
-	[209.85.216.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C9179E004A0
-	for <yocto@yoctoproject.org>; Wed, 18 Jan 2017 16:35:19 -0800 (PST)
-Received: by mail-qt0-f180.google.com with SMTP id v23so40258595qtb.0
-	for <yocto@yoctoproject.org>; Wed, 18 Jan 2017 16:35:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=quanergy-com.20150623.gappssmtp.com; s=20150623;
-	h=from:mime-version:thread-index:date:message-id:subject:to;
-	bh=9ljLvF4G6sfG6ZRifXZWGiZzTuhHGQnFb4yxKSrU3/g=;
-	b=qpQsQPLIt5aV4GIlGCnE/GQegCMlJX+ApTYx21gUgJrS+jUDLj6dgfZ0PJMHY/Sjgh
-	AK6s/2Ug9zbrqPkpyxkbrAanlspDAoKtz8oS9jn4MQKU9Z/mAp26uhRWBiR/FUzOg2Lk
-	dOdwRhn5IhAAMyi6pmyFI4l3gLYFHWZSKO/15aKPl7MYenx0RLsqZZ8wWy+iU4OnDMq6
-	F6WVhYHK622x7RHujdHEsWjaiiplgx4mUdisZ/0N1sZ6ZXNUVy9rjf9wczQouGC8lsc1
-	p/8fBJHDuafE2BpjP3xYqU2fP6qKrnUqU1dJtYAIygPAnDoQBr+0+WwEd2iX8zDER1rm
-	fs/A==
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.83.49 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.83.49 listed in dnsbl.sorbs.net]
+Received: from mail-pg0-f49.google.com (mail-pg0-f49.google.com [74.125.83.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0641BE009CA
+	for <yocto@yoctoproject.org>; Wed, 18 Jan 2017 17:52:39 -0800 (PST)
+Received: by mail-pg0-f49.google.com with SMTP id 14so9264302pgg.1
+	for <yocto@yoctoproject.org>; Wed, 18 Jan 2017 17:52:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20161025;
+	h=from:to:subject:date:message-id;
+	bh=WTnVAIL+CwvvnTBwiCY3GB+LfdQNojU+512nme6yTuE=;
+	b=r6VAzqdLtYgbURI0AMUMYx9wOwQ0JH+P+n6AoJCli7uI02B1C8bo8Y0UhbecC+qeAD
+	y9v0gxVe90QCdiCmvK4Y/dR+f/yaFb3sg+G/IME2ujfhw+AQAIdsAN5QKTkuh38eh2rE
+	mg/Ur3L12JmZuwoqejzgdoKrTfIALsKdD5b3Onfsivbd+QLAvtU98COGmpgH3sSYj8IP
+	6p8cGmAA7lYHrLkqxf4xZEXANqTaj0bVslTL1BOJEEW5GGLmizpz9dqRlTDoykyWiHRz
+	14X1hU0M0Hv5irSw7VFXUWjZUbPDZ1RdIEYo4nWoztkuNAtoTH1oUa+K2LL1HforVtRB
+	l7XA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:mime-version:thread-index:date:message-id
-	:subject:to;
-	bh=9ljLvF4G6sfG6ZRifXZWGiZzTuhHGQnFb4yxKSrU3/g=;
-	b=MBI/ga89u96eX3OYn5d2FtbgR/MqOwBJBd24QSvofMFrtwH3ME+jZWdBL266PeAgCp
-	yj3rW4w2+RhJ/vXhs0ZlELqbLPWc2YW+Gm8yFFp3LyCl3THjXcPkpIwDefDyyMaqGlQB
-	b2k4vzciRnBNuwkYv6+QbLxfmS04WGpBkcqt3LeUSdzL+XqnrheIMw2EsvX+On9u/nTh
-	wYEPKc5RA+SIT8S7fHIOJ19pB1nqcKb5EW9i9O3md0qCcIDN0NtKFiRyN2QsJq4c2f/D
-	t9KYatW5aB8hbZszW60bylrPoI1jS3IxHaT/eO2Y0SNVYWszTYqxTOntSlgrpq49GRTd
-	0++A==
-X-Gm-Message-State: AIkVDXKo15zNchd19k6oA6JDEQQgTrqTqmUc3L5Xwk1H+wx0NmOubo/238l9DATHHPLDuLEnOtn+v29sS/rA8zTQ
-X-Received: by 10.55.105.129 with SMTP id e123mr5875756qkc.229.1484786118506; 
-	Wed, 18 Jan 2017 16:35:18 -0800 (PST)
-From: Terry Farnham <terry.farnham@quanergy.com>
-MIME-Version: 1.0
-X-Mailer: Microsoft Outlook 14.0
-Thread-Index: AdJx67cY33ANn+E9SQyLsg8Lv0PMSQ==
-Date: Wed, 18 Jan 2017 16:35:17 -0800
-Message-ID: <fd9a97fabe9dcd9bf8938aa7b790b4f7@mail.gmail.com>
+	h=x-gm-message-state:from:to:subject:date:message-id;
+	bh=WTnVAIL+CwvvnTBwiCY3GB+LfdQNojU+512nme6yTuE=;
+	b=HXuiZsjn2e3JEjjVytdmwwRmm9gxMqEpfD5ZPF3tQJEqoAtwXGpjy9hNRLswkXNJQA
+	yyS9Fr5k+D82XKAvR8/jMNgZKa1cF7KNB/oAc3nQ0458UDl1j1vJnq6HWEDk/xTqS/Zr
+	MfcS2FrU3ybrMtPqhJNtadobULR6FHLfxRJbMnBLXtOsmBjlxmYvMJo8enz2fQ7nvU+6
+	4N6cEtygj9VjfJR3CP2+SllOKnOwFcTwMKChCRao+PSMKVr9uI3uyYmjq3L+dhzBdbXB
+	cuB5q3mB4XexWNGoH3x51wpBLN0zv9IogmDYKTZ+73JgYWo2+xCOhlduAgtdkovwiW5y
+	EjlA==
+X-Gm-Message-State: AIkVDXJw9Y3lmNEjdY30ifWq3b64XZxotJvJY0snmYvpfRYiFQTzmgVuZUwSgV3s4LnqGD8k
+X-Received: by 10.99.226.3 with SMTP id q3mr7483560pgh.37.1484790757993;
+	Wed, 18 Jan 2017 17:52:37 -0800 (PST)
+Received: from raltherr-linux.svl.corp.google.com ([100.123.242.49])
+	by smtp.gmail.com with ESMTPSA id 64sm3575198pfz.48.2017.01.18.17.52.37
+	for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Wed, 18 Jan 2017 17:52:37 -0800 (PST)
+From: Rick Altherr <raltherr@google.com>
 To: yocto@yoctoproject.org
-Subject: Flatbuffers
+Date: Wed, 18 Jan 2017 17:52:36 -0800
+Message-Id: <20170119015236.6498-1-raltherr@google.com>
+X-Mailer: git-send-email 2.11.0.483.g087da7b7c-goog
+Subject: [PATCH 1/1] kernel-fitimage: Let U-Boot select ramdisk load/entry address
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,65 +68,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 19 Jan 2017 00:35:20 -0000
-Content-Type: multipart/alternative; boundary=001a114872ba2975f9054667b5a3
+X-List-Received-Date: Thu, 19 Jan 2017 01:52:43 -0000
 
---001a114872ba2975f9054667b5a3
-Content-Type: text/plain; charset=UTF-8
+If the ramdisk load and entry parameters are omitted in the FIT image
+specification, U-Boot will determine if the ramdisk needs to be
+relocated and will automatically allocate a location in RAM if so.
 
-Curious if anyone has ever built googles flatbuffers for embedded and
-whether or not they might share their recipe?
+Change-Id: I0717c2ab04d13e58c2b91a829063c2d0fb6eaf34
+Signed-off-by: Rick Altherr <raltherr@google.com>
+---
+ meta/classes/kernel-fitimage.bbclass | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/meta/classes/kernel-fitimage.bbclass b/meta/classes/kernel-fitimage.bbclass
+index 2934b3a31a..ee721d1fff 100644
+--- a/meta/classes/kernel-fitimage.bbclass
++++ b/meta/classes/kernel-fitimage.bbclass
+@@ -187,8 +187,6 @@ fitimage_emit_section_ramdisk() {
+                         arch = "${UBOOT_ARCH}";
+                         os = "linux";
+                         compression = "none";
+-                        load = <${UBOOT_RD_LOADADDRESS}>;
+-                        entry = <${UBOOT_RD_ENTRYPOINT}>;
+                         hash@1 {
+                                 algo = "${ramdisk_csum}";
+                         };
+-- 
+2.11.0.483.g087da7b7c-goog
 
 
-
-Thanks,
-
-
-
-Terry
-
---001a114872ba2975f9054667b5a3
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html; charset=
-=3Dus-ascii"><meta name=3D"Generator" content=3D"Microsoft Word 14 (filtere=
-d medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style></head><body lang=3D"EN-US" link=3D"blue" vlink=3D"purple"><div =
-class=3D"WordSection1"><p class=3D"MsoNormal">Curious if anyone has ever bu=
-ilt googles flatbuffers for embedded and whether or not they might share th=
-eir recipe?</p><p class=3D"MsoNormal">=C2=A0</p><p class=3D"MsoNormal">Than=
-ks,</p><p class=3D"MsoNormal">=C2=A0</p><p class=3D"MsoNormal">Terry</p></d=
-iv></body></html>
-
---001a114872ba2975f9054667b5a3--
