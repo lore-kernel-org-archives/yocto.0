@@ -1,6 +1,6 @@
 Return-Path: <jacobchen110@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 979D5E00A39; Thu, 19 Jan 2017 06:05:11 -0800 (PST)
+	id 131ADE00A48; Thu, 19 Jan 2017 06:05:15 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,44 +8,46 @@ X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE,
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [74.125.83.68 listed in list.dnswl.org]
+	*      [209.85.192.195 listed in list.dnswl.org]
 	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.83.68 listed in dnsbl.sorbs.net]
+	*      [209.85.192.195 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-pg0-f68.google.com (mail-pg0-f68.google.com [74.125.83.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6A752E00A37
-	for <yocto@yoctoproject.org>; Thu, 19 Jan 2017 06:05:08 -0800 (PST)
-Received: by mail-pg0-f68.google.com with SMTP id t6so4281946pgt.1
-	for <yocto@yoctoproject.org>; Thu, 19 Jan 2017 06:05:08 -0800 (PST)
+Received: from mail-pf0-f195.google.com (mail-pf0-f195.google.com
+	[209.85.192.195])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E09BEE00A38
+	for <yocto@yoctoproject.org>; Thu, 19 Jan 2017 06:05:12 -0800 (PST)
+Received: by mail-pf0-f195.google.com with SMTP id 19so3426015pfo.3
+	for <yocto@yoctoproject.org>; Thu, 19 Jan 2017 06:05:12 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
 	:references;
-	bh=UZ+vl8TaGpxJmeEIyWkson27I/nq+UP2daNkKimr4BI=;
-	b=BryoDwqQ07Zky2sAQqiwVmtJ1ESb6SZ1aWj0WXRr1votkB4sAd0rDgILTy2+EurEtg
-	gGKkOeS1xzlGx3tel8Togy+0D0GFObpdopx5wsOOQ0F1UeLdrdIrJymq3DwSZYRwEsiY
-	1QHOuHjoTWOaAYNam0l0Dg8Ohy+tuZXtyKCfin5Buu3wpbgBVIsG1S9h65aJlPF1Ft2k
-	DW0NVmZ8Dwdw8TCOLI0hZ2MFKHwNmAIMoUsYZXGnK2kI+egiN2uMY4OjuIGSakyZk43g
-	WLQZVcLbouk3X927cBty7O1AwA7ejyKZCS1zJEmKci3CztOtP8eJ+1PIRqySxQJOc7wl
-	a47Q==
-X-Gm-Message-State: AIkVDXLsvBLNO8/6Bpbme6F8OOhYPTu75HLyCQ8KMrEDuxKbgJniB4Z82mZg7HxVhitahA==
-X-Received: by 10.84.143.34 with SMTP id 31mr13247257ply.81.1484834708753;
-	Thu, 19 Jan 2017 06:05:08 -0800 (PST)
+	bh=+LvSQDMRv44gT3N2HjkgpFcbmtyCzTi/kFOooCFHnhQ=;
+	b=KNviPnDynNJqkfVSJ4aLmjSQszw8LvvhN/HXCxqm090UYciSKJ2Csf0ihD3hKKifsj
+	Tx12LRNqs4ddqSRbZ4YevlX+Yun4/ImmOcYfHbI+IoQaXaItcWhkUAiOi936f9toRc27
+	xQL0hFaIzOzD7lOzUh7uHbrFq2pLYsEfhSaMT5CRjFvc85PelTdAbO9ZPLWVvBpFhflM
+	qfXOx929KSy6XH8GtWaJqs4+W1eFS9z1j75O8MU9pmLafOzg7hCEWZ2EKC/iFnk4Qm7F
+	fGkrxu6+UpLqPtbpsjFuuHY384b3n21+Brm6Kl9OUstiNbgZXakMwIhFRDcohvrb7/lW
+	T6Mw==
+X-Gm-Message-State: AIkVDXKcSPqXA4cABXsxWcMO22Gqc1Lu22IBA4iqumMGHluK/2y0iyBJ8lmec7HfcRPqkA==
+X-Received: by 10.98.28.129 with SMTP id c123mr10138040pfc.92.1484834712184;
+	Thu, 19 Jan 2017 06:05:12 -0800 (PST)
 Received: from localhost.localdomain ([27.155.138.228])
 	by smtp.gmail.com with ESMTPSA id
-	u78sm9259496pfa.53.2017.01.19.06.05.05
+	u78sm9259496pfa.53.2017.01.19.06.05.09
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Thu, 19 Jan 2017 06:05:07 -0800 (PST)
+	Thu, 19 Jan 2017 06:05:10 -0800 (PST)
 From: Jacob Chen <jacob-chen@iotwrt.com>
 To: yocto@yoctoproject.org
-Date: Thu, 19 Jan 2017 22:04:41 +0800
-Message-Id: <1484834687-15746-2-git-send-email-jacob-chen@iotwrt.com>
+Date: Thu, 19 Jan 2017 22:04:42 +0800
+Message-Id: <1484834687-15746-3-git-send-email-jacob-chen@iotwrt.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1484834687-15746-1-git-send-email-jacob-chen@iotwrt.com>
 References: <1484834687-15746-1-git-send-email-jacob-chen@iotwrt.com>
-Cc: Jacob Chen <jacob-chen@iotwrt.com>, eddie.cai@rock-chips.com
-Subject: [meta-rockchip][PATCH 1/7] recipes-kernel: linux-rockchip: Add new recipe for 4.4
+Cc: Jacob Chen <jacob-chen@iotwrt.com>, eddie.cai@rock-chips.com,
+	Jacob Chen <jacob-chen@rock-chips.com>
+Subject: [meta-rockchip][PATCH 2/7] machine: Add machine file for the rk3288 linux Boards
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -57,45 +59,108 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 19 Jan 2017 14:05:11 -0000
+X-List-Received-Date: Thu, 19 Jan 2017 14:05:15 -0000
 
-Rockchip 4.4 kernel is currently the latest version of the rockchip offical kernel,
-will be an upstream tracking branch.
-We regularly release the kernel through github.
-It support all rockchip 64-bit chips and a few 32-bit chips.
+Evb-rk3288 is the offical evaluate board, add it to help myself develop.
 
-Signed-off-by: Jacob Chen <jacob-chen@iotwrt.com>
+Fennec-rk3288 and Tinker-rk3288 is rk3288 based SBCs.
+    .
+Tinker Boards:
+http://www.cnx-software.com/2017/01/05/asus-tinker-board-is-a-raspberry-pi-3-alternative-based-on-rockchip-rk3288-processor/
+
+Signed-off-by: Jacob Chen <jacob-chen@rock-chips.com>
 ---
- recipes-kernel/linux/linux-rockchip_4.4.bb | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
- create mode 100644 recipes-kernel/linux/linux-rockchip_4.4.bb
+ conf/machine/evb-rk3288.conf      | 12 ++++++++++++
+ conf/machine/fennec-rk3288.conf   | 12 ++++++++++++
+ conf/machine/include/rk-linux.inc | 20 ++++++++++++++++++++
+ conf/machine/tinker-rk3288.conf   | 13 +++++++++++++
+ 4 files changed, 57 insertions(+)
+ create mode 100644 conf/machine/evb-rk3288.conf
+ create mode 100644 conf/machine/fennec-rk3288.conf
+ create mode 100644 conf/machine/include/rk-linux.inc
+ create mode 100644 conf/machine/tinker-rk3288.conf
 
-diff --git a/recipes-kernel/linux/linux-rockchip_4.4.bb b/recipes-kernel/linux/linux-rockchip_4.4.bb
+diff --git a/conf/machine/evb-rk3288.conf b/conf/machine/evb-rk3288.conf
 new file mode 100644
-index 0000000..ca3674e
+index 0000000..88a5f78
 --- /dev/null
-+++ b/recipes-kernel/linux/linux-rockchip_4.4.bb
-@@ -0,0 +1,20 @@
++++ b/conf/machine/evb-rk3288.conf
+@@ -0,0 +1,12 @@
 +# Copyright (C) 2017 Fuzhou Rockchip Electronics Co., Ltd
 +# Released under the MIT license (see COPYING.MIT for the terms)
 +
-+require recipes-kernel/linux/linux-yocto.inc
++#@TYPE: Machine
++#@NAME: EVB 3288
 +
-+SRC_URI = "git://github.com/rockchip-linux/kernel.git;branch=release-4.4;"
++include conf/machine/include/rk3288.inc
++include conf/machine/include/rk-linux.inc
 +
-+SRCREV = "${AUTOREV}"
-+LINUX_VERSION = "4.4.41"
-+# Override local version in order to use the one generated by linux build system
-+# And not "yocto-standard"
-+LINUX_VERSION_EXTENSION = ""
-+PR = "r1"
-+PV = "${LINUX_VERSION}"
++KERNEL_DEVICETREE = "rk3288-evb-act8846.dtb"
 +
-+# Include only supported boards for now
-+COMPATIBLE_MACHINE = "(rk3288)"
-+deltask kernel_configme
++UBOOT_MACHINE = "evb-rk3288_defconfig"
+diff --git a/conf/machine/fennec-rk3288.conf b/conf/machine/fennec-rk3288.conf
+new file mode 100644
+index 0000000..a85045f
+--- /dev/null
++++ b/conf/machine/fennec-rk3288.conf
+@@ -0,0 +1,12 @@
++# Copyright (C) 2017 Fuzhou Rockchip Electronics Co., Ltd
++# Released under the MIT license (see COPYING.MIT for the terms)
 +
-+KBUILD_DEFCONFIG = "rockchip_linux_defconfig"
++#@TYPE: Machine
++#@NAME: FENNEC RK3288
++
++include conf/machine/include/rk3288.inc
++include conf/machine/include/rk-linux.inc
++
++KERNEL_DEVICETREE = "rk3288-fennec.dtb"
++
++UBOOT_MACHINE = "fennec-rk3288_defconfig"
+diff --git a/conf/machine/include/rk-linux.inc b/conf/machine/include/rk-linux.inc
+new file mode 100644
+index 0000000..6abaa0d
+--- /dev/null
++++ b/conf/machine/include/rk-linux.inc
+@@ -0,0 +1,20 @@
++# Rockchip BSP default settings
++
++PREFERRED_PROVIDER_virtual/egl = "mali-userspace"
++PREFERRED_PROVIDER_virtual/libgles1 = "mali-userspace"
++PREFERRED_PROVIDER_virtual/libgles2 = "mali-userspace"
++PREFERRED_PROVIDER_virtual/libopencl = "mali-userspace"
++
++# Workaround: libmali.so provided by rk having no SONAME field in it
++# so add it to fix rdepends problems
++ASSUME_SHLIBS += "libEGL.so:mali-userspace"
++ASSUME_SHLIBS += "libGLESv1_CM.so:mali-userspace"
++ASSUME_SHLIBS += "libGLESv2.so:mali-userspace"
++ASSUME_SHLIBS += "libOpenCL.so:mali-userspace"
++ASSUME_SHLIBS += "libgbm.so:mali-userspace"
++ASSUME_SHLIBS += "libwayland-egl.so:mali-userspace"
++
++PREFERRED_PROVIDER_virtual/kernel = "linux-rockchip"
++PREFERRED_PROVIDER_virtual/bootloader = "u-boot-rockchip"
++
++IMAGE_CLASSES += "rockchip-next-image"
+diff --git a/conf/machine/tinker-rk3288.conf b/conf/machine/tinker-rk3288.conf
+new file mode 100644
+index 0000000..0464133
+--- /dev/null
++++ b/conf/machine/tinker-rk3288.conf
+@@ -0,0 +1,13 @@
++# Copyright (C) 2017 Fuzhou Rockchip Electronics Co., Ltd
++# Released under the MIT license (see COPYING.MIT for the terms)
++
++#@TYPE: Machine
++#@NAME: Tinker RK3288
++#@DESCRIPTION: ASUS Tinker Board is a Raspberry Pi 3 Alternative based on Rockchip RK3288 Processor.
++
++include conf/machine/include/rk3288.inc
++include conf/machine/include/rk-linux.inc
++
++KERNEL_DEVICETREE = "rk3288-miniarm.dtb"
++
++UBOOT_MACHINE = "miniarm-rk3288_defconfig"
 -- 
 2.7.4
 
