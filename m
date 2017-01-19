@@ -1,36 +1,67 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A99A4E00A96; Thu, 19 Jan 2017 04:50:14 -0800 (PST)
+	id 5359EE00AF4; Thu, 19 Jan 2017 04:55:58 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.223.196 listed in dnsbl.sorbs.net]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.223.196 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.analogue-micro.com (mail.analogue-micro.com
-	[217.144.149.242])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2B0CDE00B7A
-	for <yocto@yoctoproject.org>; Thu, 19 Jan 2017 04:50:03 -0800 (PST)
-Received: by mail.analogue-micro.com (Postfix, from userid 999)
-	id 4469B68A01C; Thu, 19 Jan 2017 12:50:02 +0000 (GMT)
-Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
-	by mail.analogue-micro.com (Postfix) with ESMTP id 7E5D468A019;
-	Thu, 19 Jan 2017 12:49:57 +0000 (GMT)
-Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
-	by zeus.mlbassoc.com (Postfix) with ESMTP id 0F0196740160;
-	Thu, 19 Jan 2017 13:49:57 +0100 (CET)
-To: yocto@yoctoproject.org
-References: <1484820572-11891-1-git-send-email-jacob-chen@iotwrt.com>
-	<CAJTo0Lb_vK5H7xNArruXy_vJSg4Hunut0O615LcaDF-dJM-t5w@mail.gmail.com>
-From: Gary Thomas <gary@mlbassoc.com>
-Message-ID: <79b41a93-ab66-cafe-69e4-4bbad827cb26@mlbassoc.com>
-Date: Thu, 19 Jan 2017 13:49:56 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.5.1
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-io0-f196.google.com (mail-io0-f196.google.com
+	[209.85.223.196])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3A80EE007B5
+	for <yocto@yoctoproject.org>; Thu, 19 Jan 2017 04:55:50 -0800 (PST)
+Received: by mail-io0-f196.google.com with SMTP id m98so4862064iod.2
+	for <yocto@yoctoproject.org>; Thu, 19 Jan 2017 04:55:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=zEGCpK8/8wyqgzEdvuaq/LqLoYPXykeuviMkGv2MtTI=;
+	b=dl9TMyXqyeWW6odFCPjWsO4cJtG1DT4SIg8mcXBwvhm3LEk72Skm1cmexOwU7sW/l/
+	RyOir5C7B461Saak1w0Jc6Sh5cVy/Kp1MzpIQPHmcRfvf4zb4+4t4zdZIlzMHEpQZjfh
+	DyhogQmDILq3ilNCLo84PF7yEjgx2lXtpHwOSt3wA2UddQIjdj6/YGAIx28RSWfuomTU
+	FiLPYW4AAcslrEVdvznYcUpHSZRdIL+eKFBVON9AT8Uu+cdSzBXUewAlsSQ8vLh8Tca+
+	d9pl+5nKj17IlqphlaHkBO5yTob9Ss9M28vKYW6rfcWzdwyVTQemkBWOeB9eQ78TRis2
+	xZ5w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=zEGCpK8/8wyqgzEdvuaq/LqLoYPXykeuviMkGv2MtTI=;
+	b=HcwGzGmKeH7IUw1dUgWitod8uILqR17/gFCsfZVWqFJfvyj9DT8mqb2kAvahe5y/C0
+	SX47zT+xcvmC7FO5CPQ0HR8cqfu8jIFPNRGInKJyPpFiAHS/MWKfEYGrUBGu+XcSakVm
+	apBtS6pse5Sip6M0YtHUBxyVaMNM6gqDLENNigHX8m4E6hHJVm1buxJdEnHS2PDZT1CR
+	qagJ4vcXQx5uvpvskmciw7YEcTJpTwd1XlCPdb5vQmnqgQde7IgDjgJngMBbPt+kMUom
+	Suz3knLvPPw/PxrKB+reHsDEx4l07BkgvNU3ynlcf/440HlNQLE7UkhKkiZR7KVTIJAi
+	MN5Q==
+X-Gm-Message-State: AIkVDXLQzbNMZgAAjpazJywqDw/NuEaWN73Efk7BsOcj5yT0jUBLGHUtYfSAjyJmn0y+f6c7gaK80+Y63FJpTw==
+X-Received: by 10.107.44.74 with SMTP id s71mr8940922ios.111.1484830550088;
+	Thu, 19 Jan 2017 04:55:50 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <CAJTo0Lb_vK5H7xNArruXy_vJSg4Hunut0O615LcaDF-dJM-t5w@mail.gmail.com>
-Subject: Re: [PATCH 0/7] introduce rockchip offical linux support to meta-rockchip
+Received: by 10.107.195.69 with HTTP; Thu, 19 Jan 2017 04:55:09 -0800 (PST)
+X-Originating-IP: [86.141.163.25]
+In-Reply-To: <12A2100F-D90D-44BE-B337-D1CB34B30EBD@paulbarker.me.uk>
+References: <1484826659-21692-1-git-send-email-andrei@gherzan.ro>
+	<1484826659-21692-4-git-send-email-andrei@gherzan.ro>
+	<DEBEB5BC-0FA4-4862-BC62-CC79049AD504@paulbarker.me.uk>
+	<CAK18fxEbwBSkL7=Gnhxt65Ab=3XVKQ=tJLqk_AhrWqb6VuFvhQ@mail.gmail.com>
+	<12A2100F-D90D-44BE-B337-D1CB34B30EBD@paulbarker.me.uk>
+From: Andrei Gherzan <andrei@gherzan.ro>
+Date: Thu, 19 Jan 2017 12:55:09 +0000
+Message-ID: <CAK18fxFr_GrVC4z5eVa_VOMsyPFGMKNc10ErCKKY=fGFhpQmQA@mail.gmail.com>
+To: Paul Barker <paul@paulbarker.me.uk>
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-raspberrypi][morty][PATCH 4/6] linux-raspberrypi: Drop v4.8
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,79 +73,61 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 19 Jan 2017 12:50:14 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 19 Jan 2017 12:55:58 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On 2017-01-19 12:30, Burton, Ross wrote:
-> (CCing the layer maintainers as listed in the README to ensure this gets noticed)
+On Thu, Jan 19, 2017 at 12:41 PM, Paul Barker <paul@paulbarker.me.uk> wrote:
+> On 19 January 2017 12:07:11 GMT+00:00, Andrei Gherzan <andrei@gherzan.ro> wrote:
+>>On Thu, Jan 19, 2017 at 12:03 PM, Paul Barker <paul@paulbarker.me.uk>
+>>wrote:
+>>> On 19 January 2017 11:50:57 GMT+00:00, Andrei Gherzan
+>><andrei@gherzan.ro> wrote:
+>>>>From: Paul Barker <paul@paulbarker.me.uk>
+>>>>
+>>>>Signed-off-by: Paul Barker <paul@paulbarker.me.uk>
+>>>>---
+>>>> recipes-kernel/linux/linux-raspberrypi_4.8.bb | 8 --------
+>>>> 1 file changed, 8 deletions(-)
+>>>> delete mode 100644 recipes-kernel/linux/linux-raspberrypi_4.8.bb
+>>>>
+>>>>diff --git a/recipes-kernel/linux/linux-raspberrypi_4.8.bb
+>>>>b/recipes-kernel/linux/linux-raspberrypi_4.8.bb
+>>>>deleted file mode 100644
+>>>>index be25e65..0000000
+>>>>--- a/recipes-kernel/linux/linux-raspberrypi_4.8.bb
+>>>>+++ /dev/null
+>>>>@@ -1,8 +0,0 @@
+>>>>-FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
+>>>>-
+>>>>-LINUX_VERSION ?= "4.8.16"
+>>>>-
+>>>>-SRCREV = "061dccce6cf6705bbb5da29a643f4b0ad1d11630"
+>>>>-SRC_URI =
+>>>>"git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-4.8.y
+>>\
+>>>>-"
+>>>>-require linux-raspberrypi.inc
+>>>
+>>> I'm not sure on this one. I don't think we should drop kernel
+>>versions from a stable branch unless they're broken. Can we hold off on
+>>this and I'll have a look at it tomorrow.
+>>>
+>>> (Resending as I mis-clicked and didn't do reply all)
+>>
+>>I don't see the benefit in keeping 4.8 and 4.9. The default + the
+>>latest should be enough. Default would give stability and suitable for
+>>production while latest will give new features.
+>>
+>>BTW I already removed 4.8 from master.
+>>
 >
+> Agreed for master. I'm just wondering if we want to leave 4.8 on morty (if it currently builds) in case anyone depends on that version.
+>
+> I can see the other side though - if you need a stable branch of openembedded you should probably also use a linux-raspberrypi version that's stable.
 
-Shouldn't this have [meta-rockchip] (or some such) in the subject? - it's certainly
-not OE-core or even Poky AFAICT
+I'll try to compile and not remove it if it compiles. Doesn't hurt to
+leave it there anyway.
 
->
-> On 19 January 2017 at 10:09, Jacob Chen <jacob-chen@iotwrt.com <mailto:jacob-chen@iotwrt.com>> wrote:
->
->     This series of patches add below features, will add more supports in the future(medias, more chips).
->
->     1. rockchip 4.4 kernel
->
->     Rockchip 4.4 kernel is currently the latest version of the rockchip offical kernel, will be an upstream tracking branch.
->     We regularly release the kernel through github. It support all rockchip 64-bit chips and a few 32-bit chips.
->
->     2. rockchip next-dev U-boot
->
->     Rockchip next-dev U-boot is the next generation of rockchip u-boot, will also be an upstream tracking branch.
->     At present, this branch is just a rebased upstream u-boot.
->
->     3. graphics
->
->     We have plans for the acceleration in wayland, x11 in the rockchip platform, but in this series of patches, we only
->     include the mali bianry support.
->
->     4. rockchip-next-image
->
->     Being different from the previous rk-u-boot which use parameter, next-dev u-boot use gpt partition, so it needs to
->     generate a different image.
->
->
->     Jacob Chen (7):
->       recipes-kernel: linux-rockchip: Add new recipe for 4.4
->       machine: Add machine file for the rk3288 linux Boards
->       machine: firefly: use linux-rockchip by default
->       recipes-graphics: Add support for mali-userspace
->       recipes-bsp: add u-boot-rockchip support
->       rk3288.inc: add some variables
->       rockchip-next-image: introduce image for rockchip next-dev u-boot
->
->      classes/rockchip-next-image.bbclass                | 130 +++++++++++++++++++++
->      conf/machine/evb-rk3288.conf                       |  12 ++
->      conf/machine/fennec-rk3288.conf                    |  12 ++
->      conf/machine/firefly-rk3288.conf                   |   4 +
->      conf/machine/include/rk-linux.inc                  |  20 ++++
->      conf/machine/include/rk3288.inc                    |  10 +-
->      conf/machine/tinker-rk3288.conf                    |  13 +++
->      recipes-bsp/u-boot/u-boot-rockchip_next.bb <http://u-boot-rockchip_next.bb>         |  17 +++
->      recipes-graphics/mali-userspace/mali-userspace.inc |  57 +++++++++
->      .../mali-userspace/mali-userspace_t76x.bb <http://mali-userspace_t76x.bb>          |  18 +++
->      recipes-graphics/mesa/mesa_%.bbappend              |   9 ++
->      recipes-kernel/linux/linux-rockchip_4.4.bb <http://linux-rockchip_4.4.bb>         |  20 ++++
->      12 files changed, 321 insertions(+), 1 deletion(-)
->      create mode 100644 classes/rockchip-next-image.bbclass
->      create mode 100644 conf/machine/evb-rk3288.conf
->      create mode 100644 conf/machine/fennec-rk3288.conf
->      create mode 100644 conf/machine/include/rk-linux.inc
->      create mode 100644 conf/machine/tinker-rk3288.conf
->      create mode 100644 recipes-bsp/u-boot/u-boot-rockchip_next.bb <http://u-boot-rockchip_next.bb>
->      create mode 100644 recipes-graphics/mali-userspace/mali-userspace.inc
->      create mode 100644 recipes-graphics/mali-userspace/mali-userspace_t76x.bb <http://mali-userspace_t76x.bb>
->      create mode 100644 recipes-graphics/mesa/mesa_%.bbappend
->      create mode 100644 recipes-kernel/linux/linux-rockchip_4.4.bb <http://linux-rockchip_4.4.bb>
-
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+--
+Andrei Gherzan
 
