@@ -1,64 +1,63 @@
-Return-Path: <raltherr@google.com>
+Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F2260E003DB; Fri, 20 Jan 2017 09:07:54 -0800 (PST)
+	id 60FEAE003DB; Fri, 20 Jan 2017 09:41:18 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.223.194 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.223.175 listed in list.dnswl.org]
 	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.223.175 listed in dnsbl.sorbs.net]
-Received: from mail-io0-f175.google.com (mail-io0-f175.google.com
-	[209.85.223.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 91479E0033D
-	for <yocto@yoctoproject.org>; Fri, 20 Jan 2017 09:07:53 -0800 (PST)
-Received: by mail-io0-f175.google.com with SMTP id j13so65981080iod.3
-	for <yocto@yoctoproject.org>; Fri, 20 Jan 2017 09:07:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20161025;
+	*      [209.85.223.194 listed in dnsbl.sorbs.net]
+Received: from mail-io0-f194.google.com (mail-io0-f194.google.com
+	[209.85.223.194])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DE4AAE0033D
+	for <yocto@yoctoproject.org>; Fri, 20 Jan 2017 09:41:14 -0800 (PST)
+Received: by mail-io0-f194.google.com with SMTP id 101so481222iom.0
+	for <yocto@yoctoproject.org>; Fri, 20 Jan 2017 09:41:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=oXQDVwuiZVZtJ2DsuE51JjixDfnhBj6F1+HJr3p1FV8=;
-	b=c7LvWoGGFZKJlFJM+XKj29VEnfojHLamix2VPlqud/h4yzE91UAEXZnFVPebo4vYBa
-	Lq6K1DKqN99b/w1VbZ4X6ZXagOl2dCCQ0oKQPBb8d9gI+QeceEdTV5WO1NDhII3RDSQI
-	KSd5Lt1PH9pVj1rhXo8ACK5LPFKbxwJzbd9NolE2ecJ8DVSAOtXsthHmFgvuD9aQFwMC
-	kx52x6ommJukMKcFMmmdd0qCNyXHIjx2b6IW76pU063ofq9L3kskkAm9BLDOS9tFcb0E
-	hDed7l9lNWsOffrq6QAXomDqwCao10HF18NeKnAgplVGFYaKxdCwT1L1FEirkw0x0u2l
-	uqvQ==
+	:cc:content-transfer-encoding;
+	bh=0pjvjlBR0xNB0dfoFhS5Y/DYqkrqTvyyFWnGx/828+c=;
+	b=Oo8F3dSo1WiEQKdnARZXf2gf9neDxOR+rstdWkTSxSrxpssrP21yrIH3Fogp1KBE4q
+	EwtAQgmFB38VS/C30u1x3BfqA25xHufT7EGfuxlfPkk1p2qX2Km3GRUjHloNwu2be83Z
+	NP91TA6N9+2rXEQp/eoJvEtrHJ1LJJKpwJVSfTaVvC4xYH2wbYTpOUG3oPsdE/irhM8Z
+	g/BZ6K80IMTxUIOGV7soS6+8W15KVl4BtS5fVU+7leA/wLVbjwUsjS3TO+ipUcXC5GU1
+	oxyXmEz7PxXUFdQ+mA+EpS3BMgs91/IM6JhzmJZ1b3kRkx9+9yN0VoIlxTYlxXKEqBCt
+	iRjw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=oXQDVwuiZVZtJ2DsuE51JjixDfnhBj6F1+HJr3p1FV8=;
-	b=XRMWby+Q9NUtefjTeuiv1u+BSA/0FJjkJreAq15SBRTzpEEtotQFleTwDGToMmimIO
-	vd0eCuFbIKWIa9dnS3U4fzmm0DPkO5iE8uymVzbAGoP2Elsr51qjXvVf+1LcP8JsMy68
-	3i11GWMhzf+cJqy9/3XB1QUB4xAz4RglqNe03HbV7tW0fwb09bSHQql+P8U07q+3Bbur
-	S1fpKe6hVYNlPZTjrrejqsRzSdgr7U5lBxs9uksG8jS4UMnw5PyoBHybez7CBQGBmDOL
-	Pafdstiiu04hHvELl+iNsJnQk3pLxHOk3MjzPHCUj5af9zrPipYcPFGXaPdZAioQ6Y0q
-	JcPA==
-X-Gm-Message-State: AIkVDXIabIwqZ7YTKH2NYNqO0S379rCIRFvQvOnXOrRmH4eeYUQ8VglLUkKWuu9OTopq8aVokaSZaVLCW/BXV0nU
-X-Received: by 10.107.53.13 with SMTP id c13mr14474164ioa.55.1484932072122;
-	Fri, 20 Jan 2017 09:07:52 -0800 (PST)
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=0pjvjlBR0xNB0dfoFhS5Y/DYqkrqTvyyFWnGx/828+c=;
+	b=nxEe0uHD820I0tiFkxpEkPiZ5Hxx+GRwE9H9kb3VXmdJWMUV9CMqcsZHjgblAH8QL5
+	66OWUW1hMdCLds4iLoHCHSUiVa33dhmS7VbOGsPh/7cDsN8gVxfMYOhIQ5ePWnNY910a
+	/0kD8oU2pd8KyYEGDf45x6y9ZO/J1ZgCjlwNpnyMibeA4x4D5P18ggoOETchj+dFmzn+
+	Qn1moxIBoJdnxX+YYpvnkP+BlzSACz/+QQEaAM8wCJNnuItBI6cUYwr/wLmHQ1CPpCA8
+	V4IQAdvIWXGIOXkPJ+nVgHzeZdQVh0wyoWtWBkIadIB5T7Kiw8IBozWAlqtDKgMiDH7F
+	OJ6g==
+X-Gm-Message-State: AIkVDXIWlN877ZvJCvQGz1P6E1U/OQXOl8fa4XdBVlqIeTbYCOA0zOvmrZwdaYP+nYXorLHxBBCuyq8blKF/Rg==
+X-Received: by 10.107.44.74 with SMTP id s71mr15702738ios.111.1484934073750;
+	Fri, 20 Jan 2017 09:41:13 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.107.130.106 with HTTP; Fri, 20 Jan 2017 09:07:51 -0800 (PST)
-In-Reply-To: <b2610f4ee0fe434e9820784963e2e0c3@FE-MBX1014.de.bosch.com>
-References: <b2610f4ee0fe434e9820784963e2e0c3@FE-MBX1014.de.bosch.com>
-From: Rick Altherr <raltherr@google.com>
-Date: Fri, 20 Jan 2017 09:07:51 -0800
-Message-ID: <CAPLgG==DimRGGufhUtxQGjEA95Tb_38O8ALg6qinYktW1Lm9Lg@mail.gmail.com>
-To: "Eswaran Vinothkumar (BEG-PT/PJ-IOT1)" <Vinothkumar.Eswaran@de.bosch.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Yocto - Building initramfs to run a shell script for the support of IMA/EVM
+Received: by 10.107.195.69 with HTTP; Fri, 20 Jan 2017 09:40:33 -0800 (PST)
+X-Originating-IP: [82.22.166.118]
+In-Reply-To: <1484826659-21692-1-git-send-email-andrei@gherzan.ro>
+References: <1484826659-21692-1-git-send-email-andrei@gherzan.ro>
+From: Andrei Gherzan <andrei@gherzan.ro>
+Date: Fri, 20 Jan 2017 17:40:33 +0000
+Message-ID: <CAK18fxHEOoRgtBk_vPYwtR+u338M5kdvUPPEyW=Hg4bNTSdhfA@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Re: [meta-raspberrypi][morty][PATCH 1/6] linux-raspberrypi: Drop v4.1
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,209 +69,321 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 20 Jan 2017 17:07:55 -0000
-Content-Type: multipart/alternative; boundary=001a11449e90acf943054689b043
-
---001a11449e90acf943054689b043
+X-List-Received-Date: Fri, 20 Jan 2017 17:41:18 -0000
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Did you look at
-http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/recipes-core/image=
-s/core-image-minimal-initramfs.bb?
-You do want to use the core-image class but some of the variables need to
-be adjusted to build an initramfs.  OpenBMC does something similar to what
-you are describing with their obmc-phosphor-initramfs (
-https://github.com/openbmc/openbmc/blob/master/meta-phosphor/common/recipes=
--phosphor/images/obmc-phosphor-initramfs.bb)
-that does a few things like applying staged rootfs updates before mounting
-the rootfs.
-
-On Fri, Jan 20, 2017 at 4:44 AM, Eswaran Vinothkumar (BEG-PT/PJ-IOT1) <
-Vinothkumar.Eswaran@de.bosch.com> wrote:
-
-> Hello Yocto community developers,
+On Thu, Jan 19, 2017 at 11:50 AM, Andrei Gherzan <andrei@gherzan.ro> wrote:
+> From: Paul Barker <paul@paulbarker.me.uk>
 >
+> The linux-raspberrypi 4.1 recipe has been broken for a while, probably si=
+nce
+> 09b76a43f6f6852406de385a45f472c52b6a8571. It should now be safe to drop t=
+his
+> version.
 >
+> Signed-off-by: Paul Barker <paul@paulbarker.me.uk>
+> ---
+>  .../0001-dts-add-overlay-for-pitft22.patch         | 110 ---------------=
+------
+>  ...ove-unused-sm_cache_map_vector-definition.patch |  31 ------
+>  .../linux-raspberrypi-4.1/0003-fix-gcc6.patch      |  78 ---------------
+>  recipes-kernel/linux/linux-raspberrypi_4.1.bb      |  12 ---
+>  4 files changed, 231 deletions(-)
+>  delete mode 100644 recipes-kernel/linux/linux-raspberrypi-4.1/0001-dts-a=
+dd-overlay-for-pitft22.patch
+>  delete mode 100644 recipes-kernel/linux/linux-raspberrypi-4.1/0002-vmcs-=
+Remove-unused-sm_cache_map_vector-definition.patch
+>  delete mode 100644 recipes-kernel/linux/linux-raspberrypi-4.1/0003-fix-g=
+cc6.patch
+>  delete mode 100644 recipes-kernel/linux/linux-raspberrypi_4.1.bb
 >
-> I am currently working on the task of porting an existing build system to
-> Yocto to create customized Linux distribution for an embedded product. I
-> have successfully created a bare box image, the kernel and root file syst=
-em
-> image and the system startup is working fine.
->
->
->
-> I am now investigating on creating the initramfs using Yocto and have gon=
-e
-> through the Yocto documents for the same.
->
->
->
-> Adding the options :
->
-> INITRAMFS_FSTYPES =3D "cpio.gz"
->
-> INITRAMFS_IMAGE =3D "custom-initramfs"  =C3=A0 my recipe which inherited
-> core-image.bb recipe
->
->
->
-> Results in the creation of =E2=80=98custom-image-20170120105621.rootfs.cp=
-io.gz=E2=80=99
-> file.
->
->
->
-> We are using initramfs to run a script which before mounting the root fil=
-e
-> system checks for ima policy and also responsible for loading the evm-key=
-s.
-> In short, the initramfs contains a script which is executed before mounti=
-ng
-> the main root file system. So I think I need to follow a different
-> procedure than the one I mentioned above for my use case. Also we are usi=
-ng
-> systemd as the init system and for the initramfs I don=E2=80=99t need sys=
-v or
-> systemd as all I will do is running a script in initramfs.
->
->
->
-> Is there a better way of creating this structure in Yocto, any informatio=
-n
-> would be helpful.
->
->
->
->
->
-> Mit freundlichen Gr=C3=BC=C3=9Fen / Best regards
->
->
->
-> *Vinothkumar Eswaran BEG-PT/PJ-IOT1 *
-> Tel. +49(7062)911-02 <+49%207062%2091102>
->
->
+> diff --git a/recipes-kernel/linux/linux-raspberrypi-4.1/0001-dts-add-over=
+lay-for-pitft22.patch b/recipes-kernel/linux/linux-raspberrypi-4.1/0001-dts=
+-add-overlay-for-pitft22.patch
+> deleted file mode 100644
+> index e6e0a84..0000000
+> --- a/recipes-kernel/linux/linux-raspberrypi-4.1/0001-dts-add-overlay-for=
+-pitft22.patch
+> +++ /dev/null
+> @@ -1,110 +0,0 @@
+> -From a28bd410022b32a64e208f04b45add6326990332 Mon Sep 17 00:00:00 2001
+> -From: =3D?UTF-8?q?Petter=3D20Mab=3DC3=3DA4cker?=3D <petter@technux.se>
+> -Date: Fri, 8 Jan 2016 09:02:44 +0100
+> -Subject: [PATCH] dts: add overlay for pitft22
+> -MIME-Version: 1.0
+> -Content-Type: text/plain; charset=3DUTF-8
+> -Content-Transfer-Encoding: 8bit
+> -
+> -Upstream-Status: Pending
+> -
+> -Add the pitft22 overlay from adafruit Adafruit-Pi-Kernel-o-Matic repo:
+> -https://github.com/adafruit/Adafruit-Pi-Kernel-o-Matic
+> -
+> -Signed-off-by: Petter Mab=C3=A4cker <petter@technux.se>
+> ----
+> - arch/arm/boot/dts/overlays/Makefile            |  1 +
+> - arch/arm/boot/dts/overlays/pitft22-overlay.dts | 69 +++++++++++++++++++=
++++++++
+> - 2 files changed, 70 insertions(+)
+> - create mode 100755 arch/arm/boot/dts/overlays/pitft22-overlay.dts
+> -
+> -diff --git a/arch/arm/boot/dts/overlays/Makefile b/arch/arm/boot/dts/ove=
+rlays/Makefile
+> -index 1a60e9c..a2535a2 100644
+> ---- a/arch/arm/boot/dts/overlays/Makefile
+> -+++ b/arch/arm/boot/dts/overlays/Makefile
+> -@@ -37,6 +37,7 @@ dtb-$(RPI_DT_OVERLAYS) +=3D mmc-overlay.dtb
+> - dtb-$(RPI_DT_OVERLAYS) +=3D mz61581-overlay.dtb
+> - dtb-$(RPI_DT_OVERLAYS) +=3D piscreen-overlay.dtb
+> - dtb-$(RPI_DT_OVERLAYS) +=3D piscreen2r-overlay.dtb
+> -+dtb-$(RPI_DT_OVERLAYS) +=3D pitft22-overlay.dtb
+> - dtb-$(RPI_DT_OVERLAYS) +=3D pitft28-capacitive-overlay.dtb
+> - dtb-$(RPI_DT_OVERLAYS) +=3D pitft28-resistive-overlay.dtb
+> - dtb-$(RPI_DT_OVERLAYS) +=3D pps-gpio-overlay.dtb
+> -diff --git a/arch/arm/boot/dts/overlays/pitft22-overlay.dts b/arch/arm/b=
+oot/dts/overlays/pitft22-overlay.dts
+> -new file mode 100755
+> -index 0000000..894ba22
+> ---- /dev/null
+> -+++ b/arch/arm/boot/dts/overlays/pitft22-overlay.dts
+> -@@ -0,0 +1,69 @@
+> -+/*
+> -+ * Device Tree overlay for pitft by Adafruit
+> -+ *
+> -+ */
+> -+
+> -+/dts-v1/;
+> -+/plugin/;
+> -+
+> -+/ {
+> -+        compatible =3D "brcm,bcm2835", "brcm,bcm2708", "brcm,bcm2709";
+> -+
+> -+        fragment@0 {
+> -+                target =3D <&spi0>;
+> -+                __overlay__ {
+> -+                        status =3D "okay";
+> -+
+> -+                        spidev@0{
+> -+                                status =3D "disabled";
+> -+                        };
+> -+
+> -+                        spidev@1{
+> -+                                status =3D "disabled";
+> -+                        };
+> -+                };
+> -+        };
+> -+
+> -+        fragment@1 {
+> -+                target =3D <&gpio>;
+> -+                __overlay__ {
+> -+                        pitft_pins: pitft_pins {
+> -+                                brcm,pins =3D <25>;
+> -+                                brcm,function =3D <1>; /* out */
+> -+                                brcm,pull =3D <0>; /* none */
+> -+                        };
+> -+                };
+> -+        };
+> -+
+> -+        fragment@2 {
+> -+                target =3D <&spi0>;
+> -+                __overlay__ {
+> -+                        /* needed to avoid dtc warning */
+> -+                        #address-cells =3D <1>;
+> -+                        #size-cells =3D <0>;
+> -+
+> -+                        pitft: pitft@0{
+> -+                                compatible =3D "ilitek,ili9340";
+> -+                                reg =3D <0>;
+> -+                                pinctrl-names =3D "default";
+> -+                                pinctrl-0 =3D <&pitft_pins>;
+> -+
+> -+                                spi-max-frequency =3D <32000000>;
+> -+                                rotate =3D <90>;
+> -+                                fps =3D <25>;
+> -+                                bgr;
+> -+                                buswidth =3D <8>;
+> -+                                dc-gpios =3D <&gpio 25 0>;
+> -+                                debug =3D <0>;
+> -+                        };
+> -+
+> -+                };
+> -+        };
+> -+
+> -+        __overrides__ {
+> -+                speed =3D   <&pitft>,"spi-max-frequency:0";
+> -+                rotate =3D  <&pitft>,"rotate:0";
+> -+                fps =3D     <&pitft>,"fps:0";
+> -+                debug =3D   <&pitft>,"debug:0";
+> -+        };
+> -+};
+> ---
+> -1.9.1
+> -
+> diff --git a/recipes-kernel/linux/linux-raspberrypi-4.1/0002-vmcs-Remove-=
+unused-sm_cache_map_vector-definition.patch b/recipes-kernel/linux/linux-ra=
+spberrypi-4.1/0002-vmcs-Remove-unused-sm_cache_map_vector-definition.patch
+> deleted file mode 100644
+> index 8d4a900..0000000
+> --- a/recipes-kernel/linux/linux-raspberrypi-4.1/0002-vmcs-Remove-unused-=
+sm_cache_map_vector-definition.patch
+> +++ /dev/null
+> @@ -1,31 +0,0 @@
+> -The code using it also ifdef'ed with 0, anyyd gcc 6
+> -complains
+> -
+> -error: 'sm_cache_map_vector' defined but not used
+> -
+> -The code using it also ifdef'ed out
+> -
+> -Upstream-status: Denied [https://github.com/raspberrypi/linux/pull/1528]
+> -
+> -Signed-off-by: Khem Raj <raj.khem@gmail.com>
+> ----
+> - drivers/char/broadcom/vc_sm/vmcs_sm.c | 2 ++
+> - 1 file changed, 2 insertions(+)
+> -
+> ---- a/drivers/char/broadcom/vc_sm/vmcs_sm.c
+> -+++ b/drivers/char/broadcom/vc_sm/vmcs_sm.c
+> -@@ -197,12 +197,14 @@ struct SM_STATE_T {
+> - static struct SM_STATE_T *sm_state;
+> - static int sm_inited;
+> -
+> -+#if 0
+> - static const char *const sm_cache_map_vector[] =3D {
+> -       "(null)",
+> -       "host",
+> -       "videocore",
+> -       "host+videocore",
+> - };
+> -+#endif
+> -
+> - /* ---- Private Function Prototypes -----------------------------------=
+--- */
+> -
+> diff --git a/recipes-kernel/linux/linux-raspberrypi-4.1/0003-fix-gcc6.pat=
+ch b/recipes-kernel/linux/linux-raspberrypi-4.1/0003-fix-gcc6.patch
+> deleted file mode 100644
+> index 61ec2fb..0000000
+> --- a/recipes-kernel/linux/linux-raspberrypi-4.1/0003-fix-gcc6.patch
+> +++ /dev/null
+> @@ -1,78 +0,0 @@
+> -Fix compile with GCC6
+> -
+> -Upstream-status: Denied [https://github.com/raspberrypi/linux/pull/1528]
+> -
+> -Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
+> -
+> -Index: source/include/linux/compiler-gcc6.h
+> -=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> ---- /dev/null
+> -+++ source/include/linux/compiler-gcc6.h
+> -@@ -0,0 +1,67 @@
+> -+#ifndef __LINUX_COMPILER_H
+> -+#error "Please don't include <linux/compiler-gcc5.h> directly, include =
+<linux/compiler.h> instead."
+> -+#endif
+> -+
+> -+#define __used                                __attribute__((__used__))
+> -+#define __must_check                  __attribute__((warn_unused_result=
+))
+> -+#define __compiler_offsetof(a, b)     __builtin_offsetof(a, b)
+> -+
+> -+/* Mark functions as cold. gcc will assume any path leading to a call
+> -+   to them will be unlikely.  This means a lot of manual unlikely()s
+> -+   are unnecessary now for any paths leading to the usual suspects
+> -+   like BUG(), printk(), panic() etc. [but let's keep them for now for
+> -+   older compilers]
+> -+
+> -+   Early snapshots of gcc 4.3 don't support this and we can't detect th=
+is
+> -+   in the preprocessor, but we can live with this because they're unrel=
+eased.
+> -+   Maketime probing would be overkill here.
+> -+
+> -+   gcc also has a __attribute__((__hot__)) to move hot functions into
+> -+   a special section, but I don't see any sense in this right now in
+> -+   the kernel context */
+> -+#define __cold                        __attribute__((__cold__))
+> -+
+> -+#define __UNIQUE_ID(prefix) __PASTE(__PASTE(__UNIQUE_ID_, prefix), __CO=
+UNTER__)
+> -+
+> -+#ifndef __CHECKER__
+> -+# define __compiletime_warning(message) __attribute__((warning(message)=
+))
+> -+# define __compiletime_error(message) __attribute__((error(message)))
+> -+#endif /* __CHECKER__ */
+> -+
+> -+/*
+> -+ * Mark a position in code as unreachable.  This can be used to
+> -+ * suppress control flow warnings after asm blocks that transfer
+> -+ * control elsewhere.
+> -+ *
+> -+ * Early snapshots of gcc 4.5 don't support this and we can't detect
+> -+ * this in the preprocessor, but we can live with this because they're
+> -+ * unreleased.  Really, we need to have autoconf for the kernel.
+> -+ */
+> -+#define unreachable() __builtin_unreachable()
+> -+
+> -+/* Mark a function definition as prohibited from being cloned. */
+> -+#define __noclone     __attribute__((__noclone__))
+> -+
+> -+/*
+> -+ * Tell the optimizer that something else uses this function or variabl=
+e.
+> -+ */
+> -+#define __visible __attribute__((externally_visible))
+> -+
+> -+/*
+> -+ * GCC 'asm goto' miscompiles certain code sequences:
+> -+ *
+> -+ *   http://gcc.gnu.org/bugzilla/show_bug.cgi?id=3D58670
+> -+ *
+> -+ * Work it around via a compiler barrier quirk suggested by Jakub Jelin=
+ek.
+> -+ *
+> -+ * (asm goto is automatically volatile - the naming reflects this.)
+> -+ */
+> -+#define asm_volatile_goto(x...)       do { asm goto(x); asm (""); } whi=
+le (0)
+> -+
+> -+#ifdef CONFIG_ARCH_USE_BUILTIN_BSWAP
+> -+#define __HAVE_BUILTIN_BSWAP32__
+> -+#define __HAVE_BUILTIN_BSWAP64__
+> -+#define __HAVE_BUILTIN_BSWAP16__
+> -+#endif /* CONFIG_ARCH_USE_BUILTIN_BSWAP */
+> -+
+> -+#define KASAN_ABI_VERSION 4
+> diff --git a/recipes-kernel/linux/linux-raspberrypi_4.1.bb b/recipes-kern=
+el/linux/linux-raspberrypi_4.1.bb
+> deleted file mode 100644
+> index 87c77b8..0000000
+> --- a/recipes-kernel/linux/linux-raspberrypi_4.1.bb
+> +++ /dev/null
+> @@ -1,12 +0,0 @@
+> -FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}-${PV}:"
+> -
+> -LINUX_VERSION ?=3D "4.1.21"
+> -
+> -SRCREV =3D "ff45bc0e8917c77461b2901e2743e6339bb70413"
+> -SRC_URI =3D "git://github.com/raspberrypi/linux.git;protocol=3Dgit;branc=
+h=3Drpi-4.1.y \
+> -           file://0001-dts-add-overlay-for-pitft22.patch \
+> -           file://0002-vmcs-Remove-unused-sm_cache_map_vector-definition=
+.patch \
+> -           file://0003-fix-gcc6.patch \
+> -          "
+> -
+> -require linux-raspberrypi.inc
 > --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+> 2.7.4
 >
 
---001a11449e90acf943054689b043
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Merged this entire series for morty.
 
-<div dir=3D"ltr">Did you look at=C2=A0<a href=3D"http://git.yoctoproject.or=
-g/cgit/cgit.cgi/poky/tree/meta/recipes-core/images/core-image-minimal-initr=
-amfs.bb">http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/recipes-c=
-ore/images/core-image-minimal-initramfs.bb</a>?=C2=A0 You do want to use th=
-e core-image class but some of the variables need to be adjusted to build a=
-n initramfs.=C2=A0 OpenBMC does something similar to what you are describin=
-g with their obmc-phosphor-initramfs (<a href=3D"https://github.com/openbmc=
-/openbmc/blob/master/meta-phosphor/common/recipes-phosphor/images/obmc-phos=
-phor-initramfs.bb">https://github.com/openbmc/openbmc/blob/master/meta-phos=
-phor/common/recipes-phosphor/images/obmc-phosphor-initramfs.bb</a>) that do=
-es a few things like applying staged rootfs updates before mounting the roo=
-tfs.</div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On Fri,=
- Jan 20, 2017 at 4:44 AM, Eswaran Vinothkumar (BEG-PT/PJ-IOT1) <span dir=3D=
-"ltr">&lt;<a href=3D"mailto:Vinothkumar.Eswaran@de.bosch.com" target=3D"_bl=
-ank">Vinothkumar.Eswaran@de.bosch.com</a>&gt;</span> wrote:<br><blockquote =
-class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid=
-;padding-left:1ex">
+We have to decide what to do with the versions of kernel that rebase
+often making the recipes fail. To do as follow up patches.
 
-
-
-
-
-<div lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"m_3631563516865396683WordSection1">
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
-ial&quot;,sans-serif">Hello Yocto community developers,<u></u><u></u></span=
-></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
-ial&quot;,sans-serif"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
-ial&quot;,sans-serif">I am currently working on the task of porting an exis=
-ting build system to Yocto to create customized Linux distribution for an e=
-mbedded product. I have successfully created a
- bare box image, the kernel and root file system image and the system start=
-up is working fine.<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
-ial&quot;,sans-serif"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
-ial&quot;,sans-serif">I am now investigating on creating the initramfs usin=
-g Yocto and have gone through the Yocto documents for the same.<u></u><u></=
-u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
-ial&quot;,sans-serif"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
-ial&quot;,sans-serif">Adding the options :<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
-ial&quot;,sans-serif">INITRAMFS_FSTYPES =3D &quot;cpio.gz&quot;<u></u><u></=
-u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
-ial&quot;,sans-serif">INITRAMFS_IMAGE =3D &quot;custom-initramfs&quot;=C2=
-=A0
-</span><span style=3D"font-size:10.0pt;font-family:Wingdings">=C3=A0</span>=
-<span style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,sans-serif"> =
-my recipe which inherited <a href=3D"http://core-image.bb" target=3D"_blank=
-">core-image.bb</a> recipe<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
-ial&quot;,sans-serif"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
-ial&quot;,sans-serif">Results in the creation of =E2=80=98custom-image-2017=
-0120105621.<wbr>rootfs.cpio.gz=E2=80=99 file.<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
-ial&quot;,sans-serif"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
-ial&quot;,sans-serif">We are using initramfs to run a script which before m=
-ounting the root file system checks for ima policy and also responsible for=
- loading the evm-keys. In short, the initramfs
- contains a script which is executed before mounting the main root file sys=
-tem. So I think I need to follow a different procedure than the one I menti=
-oned above for my use case. Also we are using systemd as the init system an=
-d for the initramfs I don=E2=80=99t need
- sysv or systemd as all I will do is running a script in initramfs.<u></u><=
-u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
-ial&quot;,sans-serif"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
-ial&quot;,sans-serif">Is there a better way of creating this structure in Y=
-octo, any information would be helpful.<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
-ial&quot;,sans-serif"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
-ial&quot;,sans-serif"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"DE" style=3D"font-size:10.0pt;font-fam=
-ily:&quot;Arial&quot;,sans-serif;color:black">Mit freundlichen Gr=C3=BC=C3=
-=9Fen / Best regards
-<br>
-<br>
-<b>Vinothkumar Eswaran<br>
-BEG-PT/PJ-IOT1<br>
-</b><br>
-Tel. </span><span style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,s=
-ans-serif;color:black"><a href=3D"tel:+49%207062%2091102" value=3D"+4970629=
-1102" target=3D"_blank">+49(7062)911-02</a>
-</span><span style=3D"font-size:8.0pt;font-family:&quot;Arial&quot;,sans-se=
-rif;color:black"><br>
-<br>
-</span><u></u><u></u></p>
-</div>
-</div>
-
-<br>--<br>
-______________________________<wbr>_________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto</a><=
-br>
-<br></blockquote></div><br></div>
-
---001a11449e90acf943054689b043--
