@@ -1,64 +1,69 @@
-Return-Path: <colin.helliwell@ln-systems.com>
+Return-Path: <george.mccollister@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 26428E00A21; Fri, 20 Jan 2017 06:12:43 -0800 (PST)
+	id 05736E00AAA; Fri, 20 Jan 2017 06:19:17 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=BAYES_05,HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE,RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [212.227.17.24 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (george.mccollister[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.218.66 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [212.227.17.24 listed in dnsbl.sorbs.net]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.5 BAYES_05 BODY: Bayes spam probability is 1 to 5%
-	*      [score: 0.0298]
-X-Greylist: delayed 758 seconds by postgrey-1.32 at yocto-www;
-	Fri, 20 Jan 2017 06:12:40 PST
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 64C0EE009CA
-	for <yocto@yoctoproject.org>; Fri, 20 Jan 2017 06:12:40 -0800 (PST)
-Received: from LNSYSCH3 ([81.130.69.98]) by mrelayeu.kundenserver.de (mreue104
-	[212.227.15.179]) with ESMTPSA (Nemesis) id 0MSJlD-1cx0TT35MR-00TWoP
-	for <yocto@yoctoproject.org>; Fri, 20 Jan 2017 15:00:00 +0100
-From: <colin.helliwell@ln-systems.com>
-To: "'Yocto discussion list'" <yocto@yoctoproject.org>
-References: <049201d2719c$fea9e670$fbfdb350$@ln-systems.com>
-	<CAJ86T=Xx0Dt_Y6x+5Ujz=5-edNzFusrFa_oyrEOcZjW9mkCrkA@mail.gmail.com>
-	<CAPLgG=myHpDap+GOgoNm6-vJncFj2WmkjwsVt+WCyjvQWY4qzw@mail.gmail.com>
-	<060101d27224$ad344a00$079cde00$@ln-systems.com>
-	<53576169-6d7a-5db2-72c7-20e8d04ab5c5@windriver.com>
-	<069b01d2723b$c14be860$43e3b920$@ln-systems.com>
-	<19c3b372-c26a-85b5-9dea-f3b4524437df@windriver.com>
-In-Reply-To: <19c3b372-c26a-85b5-9dea-f3b4524437df@windriver.com>
-Date: Fri, 20 Jan 2017 13:59:59 -0000
-Organization: LN Systems Limited
-Message-ID: <093001d27325$7dc14cd0$7943e670$@ln-systems.com>
+	*      [209.85.218.66 listed in dnsbl.sorbs.net]
+Received: from mail-oi0-f66.google.com (mail-oi0-f66.google.com
+	[209.85.218.66])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 74C6AE009CA
+	for <yocto@yoctoproject.org>; Fri, 20 Jan 2017 06:19:14 -0800 (PST)
+Received: by mail-oi0-f66.google.com with SMTP id u143so5633514oif.3
+	for <yocto@yoctoproject.org>; Fri, 20 Jan 2017 06:19:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=56WJ09QS2AbLun2/3HEp4G34WflQ1lJk0lFkxWuB3ns=;
+	b=R7OCRjm5PzewaE2+Ze3BoR0trRXLETJDrdkLowcSLOQLeKSXj9u/7CupE5mgoSabW2
+	XP0kStKJ9+seDNONALdDadcYPe9IQN8fvQLxiYzmB6H3VG0yWD+BnkG7UKHwmec0TsFY
+	sRuuoqsNd9Wbw+wElGv24eg7wzNf4TAE7FKoCaL0oMkCAevHydZjQL+i9bVABX1awPkt
+	IGa1hqPLZRnJKkHaUq4qZbTWxdLLhTMdN0sn8vNK2yGWSs3phpAyfjZZIVbwBZZZYBl0
+	Ji5kK/+rqxcXlvwPTtPq5DGjGqq1lOU2ekwtVhKqK9vF85kKwnZKl95urs09dp7lFDci
+	cWlg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=56WJ09QS2AbLun2/3HEp4G34WflQ1lJk0lFkxWuB3ns=;
+	b=MxJ7+2s6RoXleBRvlkO9Ugbzzxu23M6Eg6k6cArAq1CsQmcBnyBYyoAEeOR3rcoNWo
+	QLevOtSASQs9jcCPJK77bPPolBq6a8/be2lqWyIncU8HhBX2RKRTFvfZ5oGRXaBHLesi
+	6JtDqhAW5Kx6HZG+bECvvBagFH1aiuXX4N4e02++8Jo+ONC576W3Bf4vEIK2pTWbHg/h
+	WxHbmFhT1sOBmYUYZMYo5QtV87mrtCb+Z157o2s5gD6SjSx0KfKoco6vVIYjOSVQOfpR
+	PJSHWAaCl7jPyghDcT4gMa+MhPr60HGgOeGSTizjFz0T0LVqkEaDxEULFa9l4GRgInvW
+	CK3Q==
+X-Gm-Message-State: AIkVDXLM1pewHF/5LHj4C1sBQWdFiDaB6zpxfkqWaX+omVtwgBVC3OWfsHueQFUV4w/j7yOdIHxf/II19spP0g==
+X-Received: by 10.202.91.85 with SMTP id p82mr270285oib.49.1484921954093; Fri,
+	20 Jan 2017 06:19:14 -0800 (PST)
 MIME-Version: 1.0
-X-Mailer: Microsoft Outlook 15.0
-Thread-Index: AQHftmx71IEooMCGrNMDnT4mUuYiOAMHaxycAYiQnzUArlHioQJ0NfAEAmWA6MIBhWNA5qDJ6h5A
-X-Provags-ID: V03:K0:zEhU1KkjCd161cz4D9kzXW0+SaFfPjH/c7Pc8Pjbzp2FlsrYIH8
-	ND6rb5dyR+AoCDl26qPUeRgJtPp8xVungDAs58NKRBg4yKAgiFq8YXQ6QGJypyeoz19R/Na
-	s68AxK6wJi226GR3E0R3bhNYQImzZTYKrrjKoUh7/i60xzgalLWXZX8sR4DM4o0qLAVKoQY
-	Zf48xkv5X8Ozcw5dIe6AQ==
-X-UI-Out-Filterresults: notjunk:1;V01:K0:eiTX4Sg+xEo=:cOvhluc/nvWMoBGQhIaaZY
-	ZWHr2P5wEozB3MhPM5e+QoxfYVixWKiyvW8Cpzd1lQ0BZf+C3cIKw3qkE49fLVilAlWPrGxCW
-	hU8VTqZKpUK65AZ3zTf2vFBmAhnvl377T3YaNZmWroSLspl5BBx3c6x4oi6xiGSIxW0bbf0gX
-	cAoRYVe9tCSeFgLC+GC7fvGyVaCEa+eVkLXh0Je7aOjdrz9SecGxoMXikvl+BeLgnEV+4Aski
-	jzQVMozQzbunxHZJemkcnJJ6zoNlpSOcGaE9slIAKYKksSKun++GOG/as3SoSoHheM5K3Yqyy
-	gEZybyXBlpaSW43o3+r1oixiuR/XKaT13QBzf8HAW/80/fuBj3TZstoAiIydfXrIG0cQXgI1a
-	fSgUr8HxkEUl79q2XSTNgoBQGT8kecnLYJT3huUu0lhDxoSapCRd6Ofy2HzpcCVfXLGrN1KuV
-	08U4y9/1Wt7oYagGTjDdLUbLVBjbNqFTPClJYdtJCdBhWgYBRd5pWEEiUZJf+j/dfdvBXu6O6
-	9Ea/cOXXczYVTM+rw6rOF1yyy4e88QkrLKv65CnKAvObBKWvAtPHVn0j9H7My5uzNzCd13vb9
-	w3HiDsfsitAj7Spmet+OUlZpWQFxBvG4c7GlQ+58bSdD/z5deUVLf/BJi9vygtc4Ip9TmWhEP
-	AXL81sKZB99jKMg/VajqDlcEMPBptMGAx91SmQ9UG7emv+VumUvLi6EC8sJ7M1sI1HL/JGqeA
-	c4+mEN8A1Pq2myck
-Subject: Re: Changing over to systemd (no dhcp)
+Received: by 10.202.46.9 with HTTP; Fri, 20 Jan 2017 06:19:13 -0800 (PST)
+In-Reply-To: <5e9b5d05-63a0-81c2-f609-8227c5ef6d26@windriver.com>
+References: <CAFSKS=Mr_Q4xhCKT3YEpkyFBAom9OLw0tD+aAbiuti3fb2nxuA@mail.gmail.com>
+	<5e9b5d05-63a0-81c2-f609-8227c5ef6d26@windriver.com>
+From: George McCollister <george.mccollister@gmail.com>
+Date: Fri, 20 Jan 2017 08:19:13 -0600
+Message-ID: <CAFSKS=NWd-oEv__khX1cM74uHiivwnn8f9ATQAgODaXCoc+d5w@mail.gmail.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: Correct way to use a custom bsp .scc file in morty
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: colin.helliwell@ln-systems.com
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -67,154 +72,73 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 20 Jan 2017 14:12:43 -0000
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_0931_01D27325.7DC2D370"
-Content-Language: en-gb
+X-List-Received-Date: Fri, 20 Jan 2017 14:19:17 -0000
+Content-Type: text/plain; charset=UTF-8
 
-------=_NextPart_000_0931_01D27325.7DC2D370
-Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+On Thu, Jan 19, 2017 at 5:24 PM, Bruce Ashfield
+<bruce.ashfield@windriver.com> wrote:
+> On 2017-01-19 6:20 PM, George McCollister wrote:
+>>
+>> What's the correct way to use a custom bsp .scc file located in my
+>> custom bsp layer? For purposes of this email let's say it's name is
+>> myplatform-preempt-rt.scc. If I specifically add it to the
+>> yocto-linux-rt_4.4 SRC_URI it appears to get processed twice by scc
+>> according to the meta-series output file. It then tries to apply
+>> patches to standard/preempt-rt/base that don't apply. When building on
+>> a intel-core2-32 platform, intel-core2-32-preempt-rt.scc only gets
+>> processed once and no incorrect patches are applied.
+>
+>
+> Something could have broken, I never rule out bugs!
+>
+> Morty had some different semantics than the newer branches (which
+> are simplified compared to the auto-resume logic in old releases).
+>
+> That being said, the capability to have a BSP description in the
+> SRC_URI is there, and did work during that release cycle. To have
+> it work, you do need the right format in the BSP .scc file, in
+> particular something with the KMACHINE and KTYPE descriptions will
+> be seen as an entry point, and not trigger the re-application of
+> the inherited patches.
+>
+> Is there any way that I can see the contents of that .scc file ?
+> Otherwise, I can spin up a morty build and mock something up
+> myself.
 
-Thanks for all the pointers everyone. I've now got (in my distro conf):
+Bruce,
 
-DISTRO_FEATURES_append = " systemd"
+I stripped down my bsp later and pushed it github. You can find the
+BSP .scc (and the files it includes) here:
+https://github.com/gmccollister/meta-orion-minimal-bsp/tree/master/recipes-kernel/linux/linux-yocto/orion-io
 
-DISTRO_FEATURES_remove = " sysvinit"
+The linux-yocto-rt_4.4.bbappend that adds orion-io-preempt-rt.scc to
+the SRC_URI is here:
+https://github.com/gmccollister/meta-orion-minimal-bsp/blob/master/recipes-kernel/linux/linux-yocto-rt_4.4.bbappend
 
-VIRTUAL-RUNTIME_init_manager = "systemd"
+-George
 
-PREFERRED_PROVIDER_udev = "systemd"
+>
+> Bruce
+>
+>
+>>
+>> If I don't include it in the yocto-linux-rt_4.4 SRC_URI it's never
+>> applied at all. I'm wondering if this a new problem with the last big
+>> push to morty since I didn't notice this before.
+>>
+>> I also verified that I can make myplatform-preempt-rt.scc work by
+>> doing the following (only shows as processed once in meta-series and
+>> no incorrect patches applied):
+>> bitbake -c cleanall linux-yocto-rt
+>> bitbake -c unpack linux-yocto-rt
+>> Manually copy myplatform-preempt-rt.scc and related .scc, .cfg files
+>> to the following path:
+>>
+>> work/myplatform-oe-linux-gnueabi/linux-yocto-rt/4.4.36+gitAUTOINC+b846fc6436_61d7bf47fe-r0/kernel-meta/bsp/myplatform/
+>> bitbake -c compile linux-yocto-rt
+>>
+>> Regards,
+>> George McCollister
+>>
+>
 
-PACKAGECONFIG_append_pn-systemd = " resolved networkd"
-
- 
-
-It's booting fine (if 'noisily'!) and starting up dhcp. 
-
-I suspect there's also some de-cluttering needed e.g. init.d scripts still
-being installed as well as a .service.  On that subject, is there some
-clever syntax for a do_install() and/or recipe in order to control which
-type of file is installed into rootfs?
-
- 
-
-
-------=_NextPart_000_0931_01D27325.7DC2D370
-Content-Type: text/html;
-	charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
-http-equiv=3DContent-Type content=3D"text/html; =
-charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
-(filtered medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:12.0pt;
-	font-family:"Times New Roman",serif;
-	color:black;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p
-	{mso-style-priority:99;
-	mso-margin-top-alt:auto;
-	margin-right:0cm;
-	mso-margin-bottom-alt:auto;
-	margin-left:0cm;
-	font-size:12.0pt;
-	font-family:"Times New Roman",serif;
-	color:black;}
-span.EmailStyle18
-	{mso-style-type:personal;
-	font-family:"Calibri",sans-serif;
-	color:#1F497D;}
-span.EmailStyle19
-	{mso-style-type:personal;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-span.EmailStyle20
-	{mso-style-type:personal;
-	font-family:"Calibri",sans-serif;
-	color:#1F497D;}
-span.EmailStyle21
-	{mso-style-type:personal;
-	font-family:"Calibri",sans-serif;
-	color:#1F497D;}
-span.EmailStyle22
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body bgcolor=3Dwhite =
-lang=3DEN-GB link=3Dblue vlink=3Dpurple><div class=3DWordSection1><p =
-class=3DMsoNormal><span =
-style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
-mso-fareast-language:EN-US'>Thanks for all the pointers everyone. =
-I&#8217;ve now got (in my distro conf):<o:p></o:p></span></p><p =
-class=3DMsoNormal><span =
-style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
-mso-fareast-language:EN-US'>DISTRO_FEATURES_append =3D &quot; =
-systemd&quot;<o:p></o:p></span></p><p class=3DMsoNormal><span =
-style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
-mso-fareast-language:EN-US'>DISTRO_FEATURES_remove =3D &quot; =
-sysvinit&quot;<o:p></o:p></span></p><p class=3DMsoNormal><span =
-style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
-mso-fareast-language:EN-US'>VIRTUAL-RUNTIME_init_manager =3D =
-&quot;systemd&quot;<o:p></o:p></span></p><p class=3DMsoNormal><span =
-style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
-mso-fareast-language:EN-US'>PREFERRED_PROVIDER_udev =3D =
-&quot;systemd&quot;<o:p></o:p></span></p><p class=3DMsoNormal><span =
-style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
-mso-fareast-language:EN-US'>PACKAGECONFIG_append_pn-systemd =3D &quot; =
-resolved networkd&quot;<o:p></o:p></span></p><p class=3DMsoNormal><span =
-style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
-mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoNormal><span =
-style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
-mso-fareast-language:EN-US'>It&#8217;s booting fine (if =
-&#8216;noisily&#8217;!) and starting up dhcp. <o:p></o:p></span></p><p =
-class=3DMsoNormal><span =
-style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
-mso-fareast-language:EN-US'>I suspect there&#8217;s also some =
-de-cluttering needed e.g. init.d scripts still being installed as well =
-as a .service.&nbsp; On that subject, is there some clever syntax for a =
-do_install() and/or recipe in order to control which type of file is =
-installed into rootfs?<o:p></o:p></span></p><p class=3DMsoNormal><span =
-style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
-mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p></div></body></ht=
-ml>
-
-------=_NextPart_000_0931_01D27325.7DC2D370--
