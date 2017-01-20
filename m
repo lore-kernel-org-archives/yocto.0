@@ -1,6 +1,6 @@
 Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0EF08E006EA; Fri, 20 Jan 2017 11:16:39 -0800 (PST)
+	id 11208E003DB; Fri, 20 Jan 2017 11:16:39 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -19,46 +19,46 @@ X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
 	*      [209.85.213.193 listed in list.dnswl.org]
 Received: from mail-yb0-f193.google.com (mail-yb0-f193.google.com
 	[209.85.213.193])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AF256E003DB
-	for <yocto@yoctoproject.org>; Fri, 20 Jan 2017 11:16:34 -0800 (PST)
-Received: by mail-yb0-f193.google.com with SMTP id w194so8849618ybe.1
-	for <yocto@yoctoproject.org>; Fri, 20 Jan 2017 11:16:34 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4ED22E003E4
+	for <yocto@yoctoproject.org>; Fri, 20 Jan 2017 11:16:37 -0800 (PST)
+Received: by mail-yb0-f193.google.com with SMTP id w194so8849719ybe.1
+	for <yocto@yoctoproject.org>; Fri, 20 Jan 2017 11:16:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
 	h=from:to:cc:subject:date:message-id:in-reply-to:references;
-	bh=yHKSjVWJgG1kUqSUFJtZ0XM+2QXUctDcXZ0VVIAb4oY=;
-	b=QXo3jXj42yFEcWHrYvnM/5j/bPDvRRjf7bSrQ+8Ygi4jGQstwu1EnLcPGYal9GEUUT
-	gByn1NFv0keveI3Vuyr4h1D090pBk99lj+WCtUcCI1XIF1yaR26zCX/oHVu0tnxe5Jt7
-	38/7PhRSLofa5ebJrRV8hkS+rVsBNuXc/rv1Yac/IAVwSASUOQhECSPQ4+zkJL/0KFt0
-	F/FUhbCDnkYcQt7y1KF0IkshoWFvlReF/YAPTw/DKodk4d0JHpxeetluRLz9AXQ/S0Wl
-	XvKe99lXt0H9LGaTFBiN+81VgVvPvI7IGa1bpF/++kir2JBTeL2JZEPRWN/Z2iS3YTpb
-	xCZQ==
+	bh=gpqvTYJ2HnEtPgbYBuNvnrqelLOEF6pWG9v+ubrc0QM=;
+	b=CgiKy9+uEnU8J1WSyPTPwc1lawIMDThGsckqtnW/CqkOt6117lXpxfTXFtm/IfoaGT
+	wVf5f6XAYvNcff0SunDymaxWx3OCpFa9wtMx6/jzKN72uhE51ufBlhL0kzFIiMhffyfJ
+	dmZ8OWA0EBocPDFxDENm0Bh0YfGt7o7rFJWM9LSIH6gdnXiuMDh93guIZI7sIgnLIdeh
+	tzuC4+Vs0zZo+LYEsEhmRzj5PKKn7uX74MRDSUKjQHio776c1U2AIvUbOu4NbcqLgsxZ
+	uO3/ngBWSszhsp67zyduyYrOPCfb6au+hc9jD9s9Oizeg2JbqxQaS3NxrtwuXI2RfmYb
+	p2VQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
 	:references;
-	bh=yHKSjVWJgG1kUqSUFJtZ0XM+2QXUctDcXZ0VVIAb4oY=;
-	b=J9Szlq2ZUKCvRMK85CMTjnu9lXZgzlr9DceaNA/eae+vMRWBY53ol0RzOfzKONbbum
-	LfhRIJ/Z37Pjr3mJf8cjd7EH+r8/80zm6PzoqmG8sNMvwj1979EED3ZjGMKi1V0y+OJF
-	69aqoie/D40tX3nHVuu268EZ1dmO9sGF7rdzqwP48t6x/HaH4GUT+QIP+awrl1vGaCXe
-	/W5X4BEdl0Z4jTU5C9AlVxQnaQyqBNpVy7CsPflpENlmXEJ9GVp53E4LhxDv2dQdL3W8
-	MeS3Qs7gMJsB3lj3+KmV6puWQjiayh1BCZ33VQMzLG+/sH9yeYiJf3xXv2/kRzSLkfIs
-	XEQw==
-X-Gm-Message-State: AIkVDXItSwXAWPzA3NU2hrq+CBvcgmIYX4ESD+z9qq02V3levITcSCzsA/HJMry47CtCxQ==
-X-Received: by 10.200.45.211 with SMTP id q19mr13308866qta.115.1484939794408; 
-	Fri, 20 Jan 2017 11:16:34 -0800 (PST)
+	bh=gpqvTYJ2HnEtPgbYBuNvnrqelLOEF6pWG9v+ubrc0QM=;
+	b=oJgyHv9Th6Pxmwe8pcrPUq1CW0ydTnkSYpRAI5lkueK53xvKa2V8opw1Kjh45zRlQo
+	JCkwvgHgadX+lbKcTToZN+L++7ecc9tDUjgrAF3FJzdyIqeJXQ/teGg96wU1aZS7LOuF
+	D2cO+bwKkX+N+Y1Yy+zcU3TaVETE7l0poTO1E/MA4tibzDeGvP8Oq/RZ0MVmkB0i3Rop
+	tNAuOVD0TzvkTJlalANMlY/UYifU6iNeRQOsyu80wgEm2B5nT9eSvWl4XMAwGEWnrZUH
+	3YzS2AX/POrGKUJ935Q7HwYr9AZuJquP5SxOhzZvnSygerlqVpxUKrkx9mIgB3zMHjiX
+	yoXg==
+X-Gm-Message-State: AIkVDXIX5tk0k2NoMPJgqyMyXXnhbYW9pwxeJZ3ztKAwvuUDRrtGnh7CpWsZhSO+9IAGvg==
+X-Received: by 10.200.51.100 with SMTP id u33mr13505707qta.110.1484939796732; 
+	Fri, 20 Jan 2017 11:16:36 -0800 (PST)
 Received: from misc1.dev.resin.io ([2a01:4f8:173:120a::2])
-	by smtp.gmail.com with ESMTPSA id e3sm6673488qtg.7.2017.01.20.11.16.33
+	by smtp.gmail.com with ESMTPSA id e3sm6673488qtg.7.2017.01.20.11.16.35
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Fri, 20 Jan 2017 11:16:33 -0800 (PST)
+	Fri, 20 Jan 2017 11:16:36 -0800 (PST)
 From: Andrei Gherzan <andrei@gherzan.ro>
 To: yocto@yoctoproject.org
-Date: Fri, 20 Jan 2017 20:16:03 +0100
-Message-Id: <1484939765-30566-3-git-send-email-andrei@gherzan.ro>
+Date: Fri, 20 Jan 2017 20:16:05 +0100
+Message-Id: <1484939765-30566-5-git-send-email-andrei@gherzan.ro>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1484939765-30566-1-git-send-email-andrei@gherzan.ro>
 References: <1484939765-30566-1-git-send-email-andrei@gherzan.ro>
-Subject: [meta-raspberrypi][PATCH 3/5] raspberrypi*.conf: Minor tweaks
+Subject: [meta-raspberrypi][PATCH 5/5] README: Mention CM1 and CM3 support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,56 +74,22 @@ X-List-Received-Date: Fri, 20 Jan 2017 19:16:39 -0000
 
 Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
 ---
- conf/machine/raspberrypi.conf  | 1 -
- conf/machine/raspberrypi0.conf | 1 -
- conf/machine/raspberrypi2.conf | 1 -
- conf/machine/raspberrypi3.conf | 4 +---
- 4 files changed, 1 insertion(+), 6 deletions(-)
+ README | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/conf/machine/raspberrypi.conf b/conf/machine/raspberrypi.conf
-index df8194c..ad3b061 100644
---- a/conf/machine/raspberrypi.conf
-+++ b/conf/machine/raspberrypi.conf
-@@ -11,4 +11,3 @@ SERIAL_CONSOLE = "115200 ttyAMA0"
- 
- UBOOT_MACHINE = "rpi_config"
- VC4_CMA_SIZE_raspberrypi ?= "cma-64"
--
-diff --git a/conf/machine/raspberrypi0.conf b/conf/machine/raspberrypi0.conf
-index 0df9121..7c2b811 100644
---- a/conf/machine/raspberrypi0.conf
-+++ b/conf/machine/raspberrypi0.conf
-@@ -7,4 +7,3 @@ include conf/machine/raspberrypi.conf
- 
- SERIAL_CONSOLE = "115200 ttyAMA0"
- VC4_CMA_SIZE ?= "cma-128"
--
-diff --git a/conf/machine/raspberrypi2.conf b/conf/machine/raspberrypi2.conf
-index 3f13dc0..9b4c02a 100644
---- a/conf/machine/raspberrypi2.conf
-+++ b/conf/machine/raspberrypi2.conf
-@@ -11,4 +11,3 @@ SERIAL_CONSOLE = "115200 ttyAMA0"
- 
- UBOOT_MACHINE = "rpi_2_config"
- VC4_CMA_SIZE ?= "cma-256"
--
-diff --git a/conf/machine/raspberrypi3.conf b/conf/machine/raspberrypi3.conf
-index 9820209..1ac5928 100644
---- a/conf/machine/raspberrypi3.conf
-+++ b/conf/machine/raspberrypi3.conf
-@@ -3,11 +3,9 @@
- #@DESCRIPTION: Machine configuration for the RaspberryPi 3
- 
- MACHINEOVERRIDES = "raspberrypi2:${MACHINE}"
-+include conf/machine/raspberrypi2.conf
- 
- MACHINE_EXTRA_RRECOMMENDS += "linux-firmware-bcm43430"
- 
--include conf/machine/raspberrypi2.conf
--
- SERIAL_CONSOLE = "115200 ttyS0"
- VC4_CMA_SIZE ?= "cma-256"
--
+diff --git a/README b/README
+index a784890..65a1e5f 100644
+--- a/README
++++ b/README
+@@ -79,6 +79,8 @@ c. Set MACHINE in local.conf to one of the supported boards:
+     - raspberrypi0
+     - raspberrypi2
+     - raspberrypi3
++    - raspberrypi-cm (dummy alias for raspberrypi)
++    - raspberrypi-cm3 (dummy alias for raspberrypi2)
+ d. bitbake rpi-hwup-image
+ e. dd to a SD card the generated sdimg file (use xzcat if rpi-sdimg.xz is used)
+ f. Boot your RPI.
 -- 
 2.7.4
 
