@@ -1,63 +1,65 @@
-Return-Path: <andrei@gherzan.ro>
+Return-Path: <george.mccollister@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 60FEAE003DB; Fri, 20 Jan 2017 09:41:18 -0800 (PST)
+	id 67571E003DB; Fri, 20 Jan 2017 10:07:27 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.223.194 listed in list.dnswl.org]
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (george.mccollister[at]gmail.com)
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.82.181 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.223.194 listed in dnsbl.sorbs.net]
-Received: from mail-io0-f194.google.com (mail-io0-f194.google.com
-	[209.85.223.194])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DE4AAE0033D
-	for <yocto@yoctoproject.org>; Fri, 20 Jan 2017 09:41:14 -0800 (PST)
-Received: by mail-io0-f194.google.com with SMTP id 101so481222iom.0
-	for <yocto@yoctoproject.org>; Fri, 20 Jan 2017 09:41:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
+Received: from mail-ot0-f181.google.com (mail-ot0-f181.google.com
+	[74.125.82.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 98C8EE0033D
+	for <yocto@yoctoproject.org>; Fri, 20 Jan 2017 10:07:25 -0800 (PST)
+Received: by mail-ot0-f181.google.com with SMTP id 73so61223324otj.0
+	for <yocto@yoctoproject.org>; Fri, 20 Jan 2017 10:07:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=0pjvjlBR0xNB0dfoFhS5Y/DYqkrqTvyyFWnGx/828+c=;
-	b=Oo8F3dSo1WiEQKdnARZXf2gf9neDxOR+rstdWkTSxSrxpssrP21yrIH3Fogp1KBE4q
-	EwtAQgmFB38VS/C30u1x3BfqA25xHufT7EGfuxlfPkk1p2qX2Km3GRUjHloNwu2be83Z
-	NP91TA6N9+2rXEQp/eoJvEtrHJ1LJJKpwJVSfTaVvC4xYH2wbYTpOUG3oPsdE/irhM8Z
-	g/BZ6K80IMTxUIOGV7soS6+8W15KVl4BtS5fVU+7leA/wLVbjwUsjS3TO+ipUcXC5GU1
-	oxyXmEz7PxXUFdQ+mA+EpS3BMgs91/IM6JhzmJZ1b3kRkx9+9yN0VoIlxTYlxXKEqBCt
-	iRjw==
+	:cc; bh=yuTm4cP9rjFTl/WoBoiearvtsZyEENUSGnvMxX/1VVk=;
+	b=gdjY4vsaSnsktNjE6KHjXH6BlwbZ/LPvgFz6haJ7ZTW3wtmn9l9OrEFmCP3k1FJHzt
+	Kgn9G9F8NwzzthDBbLblr1ZUT+YUWQ3EyFtHxVZiFbU+IwQDu+nq5cbOMkoNGEJmFhKr
+	vWOppog8zcklZTCyUMz4OK86HeYNd6ZHHS2yJm5+u6nkducKswMhQ6Bp8Cu6u4BrwYzJ
+	ngDsdKPzReyDQ1YbJfefVaKUZYoUQTKYhTSoCrjoWIvamSQXeWfPWOaVe53kLgNj27Yl
+	zS1WFM+78Otio8FvaM60ynLVN5kwg4+oNTgdy4Nyy6lEwjCOEKhtiju/TujU6Ym0NJtI
+	T8eg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=0pjvjlBR0xNB0dfoFhS5Y/DYqkrqTvyyFWnGx/828+c=;
-	b=nxEe0uHD820I0tiFkxpEkPiZ5Hxx+GRwE9H9kb3VXmdJWMUV9CMqcsZHjgblAH8QL5
-	66OWUW1hMdCLds4iLoHCHSUiVa33dhmS7VbOGsPh/7cDsN8gVxfMYOhIQ5ePWnNY910a
-	/0kD8oU2pd8KyYEGDf45x6y9ZO/J1ZgCjlwNpnyMibeA4x4D5P18ggoOETchj+dFmzn+
-	Qn1moxIBoJdnxX+YYpvnkP+BlzSACz/+QQEaAM8wCJNnuItBI6cUYwr/wLmHQ1CPpCA8
-	V4IQAdvIWXGIOXkPJ+nVgHzeZdQVh0wyoWtWBkIadIB5T7Kiw8IBozWAlqtDKgMiDH7F
-	OJ6g==
-X-Gm-Message-State: AIkVDXIWlN877ZvJCvQGz1P6E1U/OQXOl8fa4XdBVlqIeTbYCOA0zOvmrZwdaYP+nYXorLHxBBCuyq8blKF/Rg==
-X-Received: by 10.107.44.74 with SMTP id s71mr15702738ios.111.1484934073750;
-	Fri, 20 Jan 2017 09:41:13 -0800 (PST)
+	:message-id:subject:to:cc;
+	bh=yuTm4cP9rjFTl/WoBoiearvtsZyEENUSGnvMxX/1VVk=;
+	b=VfqmwePXXUyPOx/s64Mzu72h91UGYXcrvMgfjyEcKE/vpu91wu9b4FnY7fYGeeOpRa
+	9rAumPqXe0HsvvJlfURhjo7R2s3OyW1B7TDRUBl5ophMkbAHwXml0SfdvUX48Or1dniK
+	v7fLLBBr+QxAtmK5k0lpuNT5ZPA/cexy2ieD8kTNqw1P0jquw8g3lnw0sDi+h2vMSaO8
+	REv1JkkAuoE0RYbha8XJ40T8kiXIGrAlnWm7DyrL6rdezE/OCRBm8jViqAcEka4aIEsN
+	TcKYm12Z0USx9KU0QOoXDA9VgV2Kaq0gMlCujDoxrRsDcEebAhmHNMbeq7MFUlitW1AM
+	vYNQ==
+X-Gm-Message-State: AIkVDXJpUwx3/DaS23WRkRlZMDOf+LPgoACUcC+JaJY/j/pMqmVPlZpxvpYxMLDyB2OngaL/McJYUUD78H5dKw==
+X-Received: by 10.157.43.225 with SMTP id u88mr8545778ota.5.1484935645213;
+	Fri, 20 Jan 2017 10:07:25 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.107.195.69 with HTTP; Fri, 20 Jan 2017 09:40:33 -0800 (PST)
-X-Originating-IP: [82.22.166.118]
-In-Reply-To: <1484826659-21692-1-git-send-email-andrei@gherzan.ro>
-References: <1484826659-21692-1-git-send-email-andrei@gherzan.ro>
-From: Andrei Gherzan <andrei@gherzan.ro>
-Date: Fri, 20 Jan 2017 17:40:33 +0000
-Message-ID: <CAK18fxHEOoRgtBk_vPYwtR+u338M5kdvUPPEyW=Hg4bNTSdhfA@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: Re: [meta-raspberrypi][morty][PATCH 1/6] linux-raspberrypi: Drop v4.1
+Received: by 10.202.46.9 with HTTP; Fri, 20 Jan 2017 10:07:24 -0800 (PST)
+In-Reply-To: <0ec84843-4240-11c6-0141-5a1365d338a5@windriver.com>
+References: <CAFSKS=Mr_Q4xhCKT3YEpkyFBAom9OLw0tD+aAbiuti3fb2nxuA@mail.gmail.com>
+	<5e9b5d05-63a0-81c2-f609-8227c5ef6d26@windriver.com>
+	<CAFSKS=NWd-oEv__khX1cM74uHiivwnn8f9ATQAgODaXCoc+d5w@mail.gmail.com>
+	<0ec84843-4240-11c6-0141-5a1365d338a5@windriver.com>
+From: George McCollister <george.mccollister@gmail.com>
+Date: Fri, 20 Jan 2017 12:07:24 -0600
+Message-ID: <CAFSKS=MPD7eMAW_czMMyNsy2Pgfv4Uu3pG+_-cM9zwgGUu5weg@mail.gmail.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: Correct way to use a custom bsp .scc file in morty
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,321 +71,143 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 20 Jan 2017 17:41:18 -0000
+X-List-Received-Date: Fri, 20 Jan 2017 18:07:27 -0000
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jan 19, 2017 at 11:50 AM, Andrei Gherzan <andrei@gherzan.ro> wrote:
-> From: Paul Barker <paul@paulbarker.me.uk>
+On Fri, Jan 20, 2017 at 10:59 AM, Bruce Ashfield
+<bruce.ashfield@windriver.com> wrote:
+> On 2017-01-20 09:19 AM, George McCollister wrote:
+>>
+>> On Thu, Jan 19, 2017 at 5:24 PM, Bruce Ashfield
+>> <bruce.ashfield@windriver.com> wrote:
+>>>
+>>> On 2017-01-19 6:20 PM, George McCollister wrote:
+>>>>
+>>>>
+>>>> What's the correct way to use a custom bsp .scc file located in my
+>>>> custom bsp layer? For purposes of this email let's say it's name is
+>>>> myplatform-preempt-rt.scc. If I specifically add it to the
+>>>> yocto-linux-rt_4.4 SRC_URI it appears to get processed twice by scc
+>>>> according to the meta-series output file. It then tries to apply
+>>>> patches to standard/preempt-rt/base that don't apply. When building on
+>>>> a intel-core2-32 platform, intel-core2-32-preempt-rt.scc only gets
+>>>> processed once and no incorrect patches are applied.
+>>>
+>>>
+>>>
+>>> Something could have broken, I never rule out bugs!
+>>>
+>>> Morty had some different semantics than the newer branches (which
+>>> are simplified compared to the auto-resume logic in old releases).
+>>>
+>>> That being said, the capability to have a BSP description in the
+>>> SRC_URI is there, and did work during that release cycle. To have
+>>> it work, you do need the right format in the BSP .scc file, in
+>>> particular something with the KMACHINE and KTYPE descriptions will
+>>> be seen as an entry point, and not trigger the re-application of
+>>> the inherited patches.
+>>>
+>>> Is there any way that I can see the contents of that .scc file ?
+>>> Otherwise, I can spin up a morty build and mock something up
+>>> myself.
+>>
+>>
+>> Bruce,
+>>
+>> I stripped down my bsp later and pushed it github. You can find the
+>> BSP .scc (and the files it includes) here:
+>>
+>> https://github.com/gmccollister/meta-orion-minimal-bsp/tree/master/recipes-kernel/linux/linux-yocto/orion-io
+>>
+>> The linux-yocto-rt_4.4.bbappend that adds orion-io-preempt-rt.scc to
+>> the SRC_URI is here:
+>>
+>> https://github.com/gmccollister/meta-orion-minimal-bsp/blob/master/recipes-kernel/linux/linux-yocto-rt_4.4.bbappend
+>>
 >
-> The linux-raspberrypi 4.1 recipe has been broken for a while, probably si=
-nce
-> 09b76a43f6f6852406de385a45f472c52b6a8571. It should now be safe to drop t=
-his
-> version.
+> Thanks, this helped .. and did show me the behaviour that you were
+> mentioning.
 >
-> Signed-off-by: Paul Barker <paul@paulbarker.me.uk>
-> ---
->  .../0001-dts-add-overlay-for-pitft22.patch         | 110 ---------------=
-------
->  ...ove-unused-sm_cache_map_vector-definition.patch |  31 ------
->  .../linux-raspberrypi-4.1/0003-fix-gcc6.patch      |  78 ---------------
->  recipes-kernel/linux/linux-raspberrypi_4.1.bb      |  12 ---
->  4 files changed, 231 deletions(-)
->  delete mode 100644 recipes-kernel/linux/linux-raspberrypi-4.1/0001-dts-a=
-dd-overlay-for-pitft22.patch
->  delete mode 100644 recipes-kernel/linux/linux-raspberrypi-4.1/0002-vmcs-=
-Remove-unused-sm_cache_map_vector-definition.patch
->  delete mode 100644 recipes-kernel/linux/linux-raspberrypi-4.1/0003-fix-g=
-cc6.patch
->  delete mode 100644 recipes-kernel/linux/linux-raspberrypi_4.1.bb
+> I had to scratch my head for minute, since I tested this scenario
+> myself when doing the major re-work in morty for how the kernel
+> meta data s processed.
 >
-> diff --git a/recipes-kernel/linux/linux-raspberrypi-4.1/0001-dts-add-over=
-lay-for-pitft22.patch b/recipes-kernel/linux/linux-raspberrypi-4.1/0001-dts=
--add-overlay-for-pitft22.patch
-> deleted file mode 100644
-> index e6e0a84..0000000
-> --- a/recipes-kernel/linux/linux-raspberrypi-4.1/0001-dts-add-overlay-for=
--pitft22.patch
-> +++ /dev/null
-> @@ -1,110 +0,0 @@
-> -From a28bd410022b32a64e208f04b45add6326990332 Mon Sep 17 00:00:00 2001
-> -From: =3D?UTF-8?q?Petter=3D20Mab=3DC3=3DA4cker?=3D <petter@technux.se>
-> -Date: Fri, 8 Jan 2016 09:02:44 +0100
-> -Subject: [PATCH] dts: add overlay for pitft22
-> -MIME-Version: 1.0
-> -Content-Type: text/plain; charset=3DUTF-8
-> -Content-Transfer-Encoding: 8bit
-> -
-> -Upstream-Status: Pending
-> -
-> -Add the pitft22 overlay from adafruit Adafruit-Pi-Kernel-o-Matic repo:
-> -https://github.com/adafruit/Adafruit-Pi-Kernel-o-Matic
-> -
-> -Signed-off-by: Petter Mab=C3=A4cker <petter@technux.se>
-> ----
-> - arch/arm/boot/dts/overlays/Makefile            |  1 +
-> - arch/arm/boot/dts/overlays/pitft22-overlay.dts | 69 +++++++++++++++++++=
-+++++++
-> - 2 files changed, 70 insertions(+)
-> - create mode 100755 arch/arm/boot/dts/overlays/pitft22-overlay.dts
-> -
-> -diff --git a/arch/arm/boot/dts/overlays/Makefile b/arch/arm/boot/dts/ove=
-rlays/Makefile
-> -index 1a60e9c..a2535a2 100644
-> ---- a/arch/arm/boot/dts/overlays/Makefile
-> -+++ b/arch/arm/boot/dts/overlays/Makefile
-> -@@ -37,6 +37,7 @@ dtb-$(RPI_DT_OVERLAYS) +=3D mmc-overlay.dtb
-> - dtb-$(RPI_DT_OVERLAYS) +=3D mz61581-overlay.dtb
-> - dtb-$(RPI_DT_OVERLAYS) +=3D piscreen-overlay.dtb
-> - dtb-$(RPI_DT_OVERLAYS) +=3D piscreen2r-overlay.dtb
-> -+dtb-$(RPI_DT_OVERLAYS) +=3D pitft22-overlay.dtb
-> - dtb-$(RPI_DT_OVERLAYS) +=3D pitft28-capacitive-overlay.dtb
-> - dtb-$(RPI_DT_OVERLAYS) +=3D pitft28-resistive-overlay.dtb
-> - dtb-$(RPI_DT_OVERLAYS) +=3D pps-gpio-overlay.dtb
-> -diff --git a/arch/arm/boot/dts/overlays/pitft22-overlay.dts b/arch/arm/b=
-oot/dts/overlays/pitft22-overlay.dts
-> -new file mode 100755
-> -index 0000000..894ba22
-> ---- /dev/null
-> -+++ b/arch/arm/boot/dts/overlays/pitft22-overlay.dts
-> -@@ -0,0 +1,69 @@
-> -+/*
-> -+ * Device Tree overlay for pitft by Adafruit
-> -+ *
-> -+ */
-> -+
-> -+/dts-v1/;
-> -+/plugin/;
-> -+
-> -+/ {
-> -+        compatible =3D "brcm,bcm2835", "brcm,bcm2708", "brcm,bcm2709";
-> -+
-> -+        fragment@0 {
-> -+                target =3D <&spi0>;
-> -+                __overlay__ {
-> -+                        status =3D "okay";
-> -+
-> -+                        spidev@0{
-> -+                                status =3D "disabled";
-> -+                        };
-> -+
-> -+                        spidev@1{
-> -+                                status =3D "disabled";
-> -+                        };
-> -+                };
-> -+        };
-> -+
-> -+        fragment@1 {
-> -+                target =3D <&gpio>;
-> -+                __overlay__ {
-> -+                        pitft_pins: pitft_pins {
-> -+                                brcm,pins =3D <25>;
-> -+                                brcm,function =3D <1>; /* out */
-> -+                                brcm,pull =3D <0>; /* none */
-> -+                        };
-> -+                };
-> -+        };
-> -+
-> -+        fragment@2 {
-> -+                target =3D <&spi0>;
-> -+                __overlay__ {
-> -+                        /* needed to avoid dtc warning */
-> -+                        #address-cells =3D <1>;
-> -+                        #size-cells =3D <0>;
-> -+
-> -+                        pitft: pitft@0{
-> -+                                compatible =3D "ilitek,ili9340";
-> -+                                reg =3D <0>;
-> -+                                pinctrl-names =3D "default";
-> -+                                pinctrl-0 =3D <&pitft_pins>;
-> -+
-> -+                                spi-max-frequency =3D <32000000>;
-> -+                                rotate =3D <90>;
-> -+                                fps =3D <25>;
-> -+                                bgr;
-> -+                                buswidth =3D <8>;
-> -+                                dc-gpios =3D <&gpio 25 0>;
-> -+                                debug =3D <0>;
-> -+                        };
-> -+
-> -+                };
-> -+        };
-> -+
-> -+        __overrides__ {
-> -+                speed =3D   <&pitft>,"spi-max-frequency:0";
-> -+                rotate =3D  <&pitft>,"rotate:0";
-> -+                fps =3D     <&pitft>,"fps:0";
-> -+                debug =3D   <&pitft>,"debug:0";
-> -+        };
-> -+};
-> ---
-> -1.9.1
-> -
-> diff --git a/recipes-kernel/linux/linux-raspberrypi-4.1/0002-vmcs-Remove-=
-unused-sm_cache_map_vector-definition.patch b/recipes-kernel/linux/linux-ra=
-spberrypi-4.1/0002-vmcs-Remove-unused-sm_cache_map_vector-definition.patch
-> deleted file mode 100644
-> index 8d4a900..0000000
-> --- a/recipes-kernel/linux/linux-raspberrypi-4.1/0002-vmcs-Remove-unused-=
-sm_cache_map_vector-definition.patch
-> +++ /dev/null
-> @@ -1,31 +0,0 @@
-> -The code using it also ifdef'ed with 0, anyyd gcc 6
-> -complains
-> -
-> -error: 'sm_cache_map_vector' defined but not used
-> -
-> -The code using it also ifdef'ed out
-> -
-> -Upstream-status: Denied [https://github.com/raspberrypi/linux/pull/1528]
-> -
-> -Signed-off-by: Khem Raj <raj.khem@gmail.com>
-> ----
-> - drivers/char/broadcom/vc_sm/vmcs_sm.c | 2 ++
-> - 1 file changed, 2 insertions(+)
-> -
-> ---- a/drivers/char/broadcom/vc_sm/vmcs_sm.c
-> -+++ b/drivers/char/broadcom/vc_sm/vmcs_sm.c
-> -@@ -197,12 +197,14 @@ struct SM_STATE_T {
-> - static struct SM_STATE_T *sm_state;
-> - static int sm_inited;
-> -
-> -+#if 0
-> - static const char *const sm_cache_map_vector[] =3D {
-> -       "(null)",
-> -       "host",
-> -       "videocore",
-> -       "host+videocore",
-> - };
-> -+#endif
-> -
-> - /* ---- Private Function Prototypes -----------------------------------=
---- */
-> -
-> diff --git a/recipes-kernel/linux/linux-raspberrypi-4.1/0003-fix-gcc6.pat=
-ch b/recipes-kernel/linux/linux-raspberrypi-4.1/0003-fix-gcc6.patch
-> deleted file mode 100644
-> index 61ec2fb..0000000
-> --- a/recipes-kernel/linux/linux-raspberrypi-4.1/0003-fix-gcc6.patch
-> +++ /dev/null
-> @@ -1,78 +0,0 @@
-> -Fix compile with GCC6
-> -
-> -Upstream-status: Denied [https://github.com/raspberrypi/linux/pull/1528]
-> -
-> -Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
-> -
-> -Index: source/include/linux/compiler-gcc6.h
-> -=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> ---- /dev/null
-> -+++ source/include/linux/compiler-gcc6.h
-> -@@ -0,0 +1,67 @@
-> -+#ifndef __LINUX_COMPILER_H
-> -+#error "Please don't include <linux/compiler-gcc5.h> directly, include =
-<linux/compiler.h> instead."
-> -+#endif
-> -+
-> -+#define __used                                __attribute__((__used__))
-> -+#define __must_check                  __attribute__((warn_unused_result=
-))
-> -+#define __compiler_offsetof(a, b)     __builtin_offsetof(a, b)
-> -+
-> -+/* Mark functions as cold. gcc will assume any path leading to a call
-> -+   to them will be unlikely.  This means a lot of manual unlikely()s
-> -+   are unnecessary now for any paths leading to the usual suspects
-> -+   like BUG(), printk(), panic() etc. [but let's keep them for now for
-> -+   older compilers]
-> -+
-> -+   Early snapshots of gcc 4.3 don't support this and we can't detect th=
-is
-> -+   in the preprocessor, but we can live with this because they're unrel=
-eased.
-> -+   Maketime probing would be overkill here.
-> -+
-> -+   gcc also has a __attribute__((__hot__)) to move hot functions into
-> -+   a special section, but I don't see any sense in this right now in
-> -+   the kernel context */
-> -+#define __cold                        __attribute__((__cold__))
-> -+
-> -+#define __UNIQUE_ID(prefix) __PASTE(__PASTE(__UNIQUE_ID_, prefix), __CO=
-UNTER__)
-> -+
-> -+#ifndef __CHECKER__
-> -+# define __compiletime_warning(message) __attribute__((warning(message)=
-))
-> -+# define __compiletime_error(message) __attribute__((error(message)))
-> -+#endif /* __CHECKER__ */
-> -+
-> -+/*
-> -+ * Mark a position in code as unreachable.  This can be used to
-> -+ * suppress control flow warnings after asm blocks that transfer
-> -+ * control elsewhere.
-> -+ *
-> -+ * Early snapshots of gcc 4.5 don't support this and we can't detect
-> -+ * this in the preprocessor, but we can live with this because they're
-> -+ * unreleased.  Really, we need to have autoconf for the kernel.
-> -+ */
-> -+#define unreachable() __builtin_unreachable()
-> -+
-> -+/* Mark a function definition as prohibited from being cloned. */
-> -+#define __noclone     __attribute__((__noclone__))
-> -+
-> -+/*
-> -+ * Tell the optimizer that something else uses this function or variabl=
-e.
-> -+ */
-> -+#define __visible __attribute__((externally_visible))
-> -+
-> -+/*
-> -+ * GCC 'asm goto' miscompiles certain code sequences:
-> -+ *
-> -+ *   http://gcc.gnu.org/bugzilla/show_bug.cgi?id=3D58670
-> -+ *
-> -+ * Work it around via a compiler barrier quirk suggested by Jakub Jelin=
-ek.
-> -+ *
-> -+ * (asm goto is automatically volatile - the naming reflects this.)
-> -+ */
-> -+#define asm_volatile_goto(x...)       do { asm goto(x); asm (""); } whi=
-le (0)
-> -+
-> -+#ifdef CONFIG_ARCH_USE_BUILTIN_BSWAP
-> -+#define __HAVE_BUILTIN_BSWAP32__
-> -+#define __HAVE_BUILTIN_BSWAP64__
-> -+#define __HAVE_BUILTIN_BSWAP16__
-> -+#endif /* CONFIG_ARCH_USE_BUILTIN_BSWAP */
-> -+
-> -+#define KASAN_ABI_VERSION 4
-> diff --git a/recipes-kernel/linux/linux-raspberrypi_4.1.bb b/recipes-kern=
-el/linux/linux-raspberrypi_4.1.bb
-> deleted file mode 100644
-> index 87c77b8..0000000
-> --- a/recipes-kernel/linux/linux-raspberrypi_4.1.bb
-> +++ /dev/null
-> @@ -1,12 +0,0 @@
-> -FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}-${PV}:"
-> -
-> -LINUX_VERSION ?=3D "4.1.21"
-> -
-> -SRCREV =3D "ff45bc0e8917c77461b2901e2743e6339bb70413"
-> -SRC_URI =3D "git://github.com/raspberrypi/linux.git;protocol=3Dgit;branc=
-h=3Drpi-4.1.y \
-> -           file://0001-dts-add-overlay-for-pitft22.patch \
-> -           file://0002-vmcs-Remove-unused-sm_cache_map_vector-definition=
-.patch \
-> -           file://0003-fix-gcc6.patch \
-> -          "
-> -
-> -require linux-raspberrypi.inc
-> --
-> 2.7.4
+> In morty I was able to delete about 40% of all the code and simplified
+> the processing. There used to be logic that would process the patch
+> series, resume processing, wrap .cfg/.scc files, detect BSP definitions
+> and do special processing .. etc, etc. It was a rats nest of corner
+> cases.
 >
+> In morty, if something is on the SRC_URI .. it is applied to the
+> tree. No exceptions. Hence why when your BSP definition is on the
+> SRC_URI .. it tries to reapply all the patches to the tree.
+>
+> The way that out of tree/recipe space meta data is handled is now
+> the same as the way the core linux-yocto 'kernel-meta' is handled.
+> You specify either a git repo or a directory on the SRC_URI and
+> tag it as having meta-data. Those directories are searched for
+> a BSP that matches the machine that is being built. Once found,
+> it is processed like any other BSP .. no special cases.
+>
+> What looks to have been missed was documenting *how* this should
+> be done with a directory in a layer, versus a separate git
+> repository. If you'd like to open a bug against me, I'll make sure
+> that it is documented in the upcoming release (and hopefully on
+> morty as well).
 
-Merged this entire series for morty.
+Done:
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=10946
 
-We have to decide what to do with the versions of kernel that rebase
-often making the recipes fail. To do as follow up patches.
+>
+> The following change to your bbappend triggered the right processing
+> in my case:
+>
+>  SRC_URI_append_orion-io = " \
+> -       file://orion-io-preempt-rt.scc \
+> +       file://orion-io;type=kmeta;destsuffix=orion-io \
+>  "
+
+Perfect, that works. Thanks for clearing this up!
+
+>
+> All that says, is that the directory orion-io (where you had the
+> .scc/.cfg files) is kernel meta data, and that it can be found
+> in the directory called 'orion-io' after the fetcher pulls it
+> into WORKDIR.
+>
+> From there, it is found, and the configuration, etc, applied to
+> the build.
+>
+> Bruce
+>
+>
+>
+>> -George
+>>
+>>>
+>>> Bruce
+>>>
+>>>
+>>>>
+>>>> If I don't include it in the yocto-linux-rt_4.4 SRC_URI it's never
+>>>> applied at all. I'm wondering if this a new problem with the last big
+>>>> push to morty since I didn't notice this before.
+>>>>
+>>>> I also verified that I can make myplatform-preempt-rt.scc work by
+>>>> doing the following (only shows as processed once in meta-series and
+>>>> no incorrect patches applied):
+>>>> bitbake -c cleanall linux-yocto-rt
+>>>> bitbake -c unpack linux-yocto-rt
+>>>> Manually copy myplatform-preempt-rt.scc and related .scc, .cfg files
+>>>> to the following path:
+>>>>
+>>>>
+>>>> work/myplatform-oe-linux-gnueabi/linux-yocto-rt/4.4.36+gitAUTOINC+b846fc6436_61d7bf47fe-r0/kernel-meta/bsp/myplatform/
+>>>> bitbake -c compile linux-yocto-rt
+>>>>
+>>>> Regards,
+>>>> George McCollister
+>>>>
+>>>
+>
 
