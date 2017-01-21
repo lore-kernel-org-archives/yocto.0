@@ -1,39 +1,52 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <paul@paulbarker.me.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3AD30E003DB; Fri, 20 Jan 2017 12:42:35 -0800 (PST)
+	id 0172BE006EA; Sat, 21 Jan 2017 03:18:07 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.analogue-micro.com (mail.analogue-micro.com
-	[217.144.149.242])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C919AE0033D
-	for <yocto@yoctoproject.org>; Fri, 20 Jan 2017 12:42:31 -0800 (PST)
-Received: by mail.analogue-micro.com (Postfix, from userid 999)
-	id 9CC9368A019; Fri, 20 Jan 2017 20:42:30 +0000 (GMT)
-Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
-	by mail.analogue-micro.com (Postfix) with ESMTP id 0B92D68A019;
-	Fri, 20 Jan 2017 20:42:29 +0000 (GMT)
-Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
-	by zeus.mlbassoc.com (Postfix) with ESMTP id A3100674024D;
-	Fri, 20 Jan 2017 21:42:29 +0100 (CET)
-To: yocto@yoctoproject.org
-References: <709d0576-a880-c109-b602-73cf671a96ae@mlbassoc.com>
-	<CAJTo0LZina7gy9PAiEj_1Wusvfi8HDMpqfHg5oYKkJbHBdsxgA@mail.gmail.com>
-	<6bf7b6d1-fcbc-6f27-6694-4742e3f4f8e5@mlbassoc.com>
-	<CAJTo0LYL5JtzNV7S-E68h=6hMrzBkrrquF9-wOWQ=wHOsVk2TA@mail.gmail.com>
-	<eee4fd59-1c5a-5ce0-e51c-1f43b23fd0da@mender.io>
-From: Gary Thomas <gary@mlbassoc.com>
-Message-ID: <b8b4d89e-5429-b184-58ab-2363f68836bd@mlbassoc.com>
-Date: Fri, 20 Jan 2017 21:42:29 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.5.1
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [217.70.183.196 listed in list.dnswl.org]
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net
+	[217.70.183.196])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A8747E003DB
+	for <yocto@yoctoproject.org>; Sat, 21 Jan 2017 03:18:02 -0800 (PST)
+Received: from mfilter22-d.gandi.net (mfilter22-d.gandi.net [217.70.178.150])
+	by relay4-d.mail.gandi.net (Postfix) with ESMTP id 8052617209C;
+	Sat, 21 Jan 2017 12:18:01 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at mfilter22-d.gandi.net
+Received: from relay4-d.mail.gandi.net ([IPv6:::ffff:217.70.183.196])
+	by mfilter22-d.gandi.net (mfilter22-d.gandi.net [::ffff:10.0.15.180])
+	(amavisd-new, port 10024)
+	with ESMTP id P-ffFbMSrFku; Sat, 21 Jan 2017 12:18:00 +0100 (CET)
+X-Originating-IP: 86.24.150.36
+Received: from host0.betafive.co.uk
+	(cpc15-shep11-2-0-cust35.8-3.cable.virginm.net [86.24.150.36])
+	(Authenticated sender: paul@paulbarker.me.uk)
+	by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id 60F8A17209D;
+	Sat, 21 Jan 2017 12:17:59 +0100 (CET)
+Date: Sat, 21 Jan 2017 11:17:56 +0000
+From: Paul Barker <paul@paulbarker.me.uk>
+To: Khem Raj <raj.khem@gmail.com>
+Message-ID: <20170121111756.2577840b@host0.betafive.co.uk>
+In-Reply-To: <CAMKF1spczvaF1RBAADQ542qi7Yv532r0su=eyCpVcaBSze9EqQ@mail.gmail.com>
+References: <1484826659-21692-1-git-send-email-andrei@gherzan.ro>
+	<1484826659-21692-4-git-send-email-andrei@gherzan.ro>
+	<DEBEB5BC-0FA4-4862-BC62-CC79049AD504@paulbarker.me.uk>
+	<CAK18fxEbwBSkL7=Gnhxt65Ab=3XVKQ=tJLqk_AhrWqb6VuFvhQ@mail.gmail.com>
+	<12A2100F-D90D-44BE-B337-D1CB34B30EBD@paulbarker.me.uk>
+	<CAK18fxFr_GrVC4z5eVa_VOMsyPFGMKNc10ErCKKY=fGFhpQmQA@mail.gmail.com>
+	<CAMKF1sr3FmoMT5hzWjqn0dXpBF4cMBbjj9SY016TVikPYAZTfQ@mail.gmail.com>
+	<CAK18fxGB=3S4Pu0WPRWkKOg1bD1VYG0uG0vWVMTf_AW-8pkTEQ@mail.gmail.com>
+	<CAMKF1spczvaF1RBAADQ542qi7Yv532r0su=eyCpVcaBSze9EqQ@mail.gmail.com>
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-In-Reply-To: <eee4fd59-1c5a-5ce0-e51c-1f43b23fd0da@mender.io>
-Subject: Re: sstate-cache and native recipes
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi][morty][PATCH 4/6] linux-raspberrypi: Drop v4.8
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,33 +58,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 20 Jan 2017 20:42:35 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
+X-List-Received-Date: Sat, 21 Jan 2017 11:18:08 -0000
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On 2017-01-20 14:05, Kristian Amlie wrote:
-> On 18/01/17 12:28, Burton, Ross wrote:
->>
->> On 18 January 2017 at 09:51, Gary Thomas <gary@mlbassoc.com
->> <mailto:gary@mlbassoc.com>> wrote:
->>
->>     How would one change the recipe to reflect that?  Is there an
->>     override that effectively says "not -native"?
->>
->>
->> do_install_class-target.
->
-> This is exactly the annoyance I've hit as well. Did you have any success
-> with this?
->
-> I can probably give it a spin as well if you want me to.
->
+On Fri, 20 Jan 2017 10:21:12 -0800
+Khem Raj <raj.khem@gmail.com> wrote:
 
-I have a patch that I'll post tomorrow
+> On Fri, Jan 20, 2017 at 8:25 AM, Andrei Gherzan <andrei@gherzan.ro>
+> wrote:
+> > On Fri, Jan 20, 2017 at 6:49 AM, Khem Raj <raj.khem@gmail.com>
+> > wrote:  
+> >> 4.8 will build until rpi kernel folks rebase the branch :( moving
+> >> forward, we should only keep stable branches which they dont rebase
+> >> hopefully and 1 more recipe called linux-raspberrypi_dev.bb to
+> >> track the latest upstream release, so it will be clear that this
+> >> is a dev kernel.  
+> >
+> > I like this idea. So you mean having two kernel recipes from now on:
+> > 1. one current default of ilnux-raspberrypi
+> > 2. and the latest one as linux-raspberrypi-dev
+> > ?  
+> 
+> yes. We can have multiple stable kernel recipes if needed but I would
+> like to avoid that too if possible.
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+This sounds like a great idea.
+
+I'd have an overlap period of a month or so when moving to a new stable
+release to give people time to move over. But after that I'd agree we
+should just keep a single stable kernel recipe in meta-raspberrypi,
+unless there's someone in the community heavily invested in the old
+version and willing to maintain it and update it. What we don't want is
+releases like 4.1 hanging around long after they've been broken by
+changes elsewhere.
 
