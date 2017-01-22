@@ -1,68 +1,67 @@
-Return-Path: <ayoub.zaki@googlemail.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2A9EBE0049F; Sat, 21 Jan 2017 14:50:29 -0800 (PST)
+	id E5658E00595; Sat, 21 Jan 2017 19:53:00 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE, 
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (ayoub.zaki[at]googlemail.com)
+	mail provider *      (raj.khem[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [74.125.82.52 listed in list.dnswl.org]
+	*      [209.85.217.194 listed in list.dnswl.org]
 	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.82.52 listed in dnsbl.sorbs.net]
+	*      [209.85.217.194 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f52.google.com (mail-wm0-f52.google.com [74.125.82.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6EDE8E00405
-	for <yocto@yoctoproject.org>; Sat, 21 Jan 2017 14:50:26 -0800 (PST)
-Received: by mail-wm0-f52.google.com with SMTP id c85so83859395wmi.1
-	for <yocto@yoctoproject.org>; Sat, 21 Jan 2017 14:50:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=googlemail.com; s=20161025;
+Received: from mail-ua0-f194.google.com (mail-ua0-f194.google.com
+	[209.85.217.194])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B1DD0E0043F
+	for <yocto@yoctoproject.org>; Sat, 21 Jan 2017 19:52:58 -0800 (PST)
+Received: by mail-ua0-f194.google.com with SMTP id i68so10709878uad.1
+	for <yocto@yoctoproject.org>; Sat, 21 Jan 2017 19:52:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=KjDsdpeUFFcojPquxIIJRVVrK5dHqJVsbLLY//k2fWw=;
-	b=ZO+g+zeYNODqCiX51dxpYXd9ST5yQ6TvXD3kXhr6GDCc0PYcH6J+6HeLLilzlPDFSj
-	4dmlqUvIHUW87DMYO0XhF/VjZSMaIKNVNoAZbjvKPxow8mDOlHvw38zVP33xbso+pfxq
-	VuZ1rwP/e/vyAW1XQb5DILrwIiKgh0KXC2cXtlT6yv4WlDp8jFW/syuFijKF+3mDPKPt
-	FdVhCXjE2bV43x9h1hq71MHrpg69iQ8bWadewnNr5fhAJrogr4j+wEUSmU6U7mFIIBVi
-	W6+khl9mayBRufQCNjdLDMIjWl6zWCm1KmZ3otVLausz0bwM0WwZt7USdPGy8Bl6mGKQ
-	BycQ==
+	:cc:content-transfer-encoding;
+	bh=/GyLrzLzGYnEongbbECuD9bA8HorEoRw70G5OVolv7w=;
+	b=TYCCWrVfloaKvBUfdiMcDICTjZhyvK9xn9e8cX+dxcZh7f8POjmWwDquV5kzXhzgbT
+	lZPTw8Rd73rftRi/kb3Ql8CkAIqbutVv8082b0fe595HKuus5mKwpRsuJPz81JxX2EgV
+	ztgHh7EDA9KuONutMAafi+AgFJ1cCH/g+WAhWf1TybEMCDqjVBKN2qNi9+wZ+zc9b+6L
+	6h1fEog0GChVyAv6CU3KwGPWYPig6aMpOoA9M8JQqw6LKMJcDm9oW81I9ERCdSs8xjqC
+	63WYD8OfixSMrLbmcooocWgDLsSIQiXXtpo9j0PqoJqdFFRKPPlQdCkZeMxNu9zknjMT
+	2JjA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=KjDsdpeUFFcojPquxIIJRVVrK5dHqJVsbLLY//k2fWw=;
-	b=iRDUrYr1IZzL+sEixCFz1S6QZNb8sjTITUPbghP1T3XdjkGxpUYrzbfQ9Kfx8npe5C
-	NONdAhTaRYYL7jXVZnzCDkjX971hHrh1GwVCcWa2qQKfWytp572RMicNk2EiS+pYxNmj
-	770ltYa+kEzNmqZSlJ5EcgxZt1s0UQ8lKT+0jDE3gtBrYRWj9P7UeERjmI+8bAYLQu72
-	AXY2mEA8/V7vxXjlWJSF5twsdtpLvGv3ZOGIIPADgtIV2an87MxmWhfLvut7sYJCcMB/
-	nyy48bskb6AQSDdJRBTgBV8y1IoaW5/fAqcL8Chh5c3CxDEQJGuC5lPGWja7VDcGpAv+
-	K6ag==
-X-Gm-Message-State: AIkVDXI4xevSpCaLajY8Ue+0RL4QjlAx5L/vFcFx6hYxZrSm7xXHYRxrM24CKMuTqZTFifhbfMcUOBPY5ey2PQ==
-X-Received: by 10.28.130.207 with SMTP id e198mr8051887wmd.4.1485039024994;
-	Sat, 21 Jan 2017 14:50:24 -0800 (PST)
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=/GyLrzLzGYnEongbbECuD9bA8HorEoRw70G5OVolv7w=;
+	b=INnnlZuxlNHW4dOEDvAQnmP4iOxW24f9DLRFXEInrfmFqrlgLz5O6w1cNuQT5JS+3/
+	1icJ2H/4tYlIuwWGGoeJ9vTVaMWrp9LfASHuYMoOYL79PJ4APn7dunF9keRlqpCGzEoY
+	Eo0kgfW3NwOtuTt8/8Q2B/l+dgJFipuH+hsQsUkxe3hMH0R9rBNUlLQr/u3kws931uT1
+	TrBi4NhmIMKzNuCilUKnsFH8ZRN3uVZCGDm2mqMlQL5xzJ4xsiTY4fWN5tlCifWuxHM8
+	OzWNlaVTFsri9hiINN5Epmg1UIV6BKECqfzw9mq+EuXIL2cGrfqzCAfcPk5p6icS9Ki6
+	27vg==
+X-Gm-Message-State: AIkVDXKf6MhTho0VywIdvk5/5+r3jzwBZsV9TFqKAmpTMdfZcK/ThSrd0KM1bZmkAc8Ht4gl9uPpB23CnN4oJQ==
+X-Received: by 10.176.6.130 with SMTP id g2mr9780881uag.91.1485057177385; Sat,
+	21 Jan 2017 19:52:57 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.28.137.210 with HTTP; Sat, 21 Jan 2017 14:50:24 -0800 (PST)
-In-Reply-To: <CAMKF1sovnNFPC_2tytR6jvxwwQsWfVjO3Cu4+uTqoBADFMq+8Q@mail.gmail.com>
-References: <CA+-BmJabGkyK91Uw47pevvvXNKg+Uf8hiCC8xf1gz87mYWAkQg@mail.gmail.com>
-	<CAMKF1sovnNFPC_2tytR6jvxwwQsWfVjO3Cu4+uTqoBADFMq+8Q@mail.gmail.com>
-From: Ayoub Zaki <ayoub.zaki@googlemail.com>
-Date: Sat, 21 Jan 2017 23:50:24 +0100
-Message-ID: <CA+-BmJYkghWNOBK=PyRQBKQ0y0SuOknfE-t_DTii9FxbHj1Uag@mail.gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
+Received: by 10.159.48.222 with HTTP; Sat, 21 Jan 2017 19:52:27 -0800 (PST)
+In-Reply-To: <CAK18fxHEOoRgtBk_vPYwtR+u338M5kdvUPPEyW=Hg4bNTSdhfA@mail.gmail.com>
+References: <1484826659-21692-1-git-send-email-andrei@gherzan.ro>
+	<CAK18fxHEOoRgtBk_vPYwtR+u338M5kdvUPPEyW=Hg4bNTSdhfA@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Sat, 21 Jan 2017 19:52:27 -0800
+Message-ID: <CAMKF1so6nv8sAm-ZkOTG8uVkZg9oatg4ptCU8HPB0rYAitPU=g@mail.gmail.com>
+To: Andrei Gherzan <andrei@gherzan.ro>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Override machine conf settings
+Subject: Re: [meta-raspberrypi][morty][PATCH 1/6] linux-raspberrypi: Drop v4.1
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,348 +73,335 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 21 Jan 2017 22:50:29 -0000
-Content-Type: multipart/alternative; boundary=001a1144340290004c0546a297af
-
---001a1144340290004c0546a297af
+X-List-Received-Date: Sun, 22 Jan 2017 03:53:01 -0000
 Content-Type: text/plain; charset=UTF-8
-
-Hi Khem,
-
-Thanks for the hints but unfortunately I got the following error :
-
-~/Projects/yocto/build$ MACHINE=raspberrypi bitbake -f virtual/kernel
-
-
-
-
-
-
-WARNING: Duplicate inclusion for /home/zak/Projects/yocto/meta-
-something/conf/machine/raspberrypi.conf in /home/zak/Projects/yocto/meta-
-something/conf/machine/raspberrypi.conf
-
-WARNING: Duplicate inclusion for /home/zak/Projects/yocto/meta-
-something/conf/machine/raspberrypi.conf in /home/zak/Projects/yocto/meta-
-something/conf/machine/raspberrypi.conf
-
-WARNING: Duplicate inclusion for /home/zak/Projects/yocto/meta-
-something/conf/machine/raspberrypi.conf in /home/zak/Projects/yocto/meta-
-something/conf/machine/raspberrypi.conf
-
-WARNING: Duplicate inclusion for /home/zak/Projects/yocto/meta-
-something/conf/machine/raspberrypi.conf in /home/zak/Projects/yocto/meta-
-something/conf/machine/raspberrypi.conf
-
-ERROR: Unable to parse /home/zak/Projects/yocto/bitbake/lib/bb/data_smart.py
-
-Traceback (most recent call last):
-
-  File "/home/zak/Projects/yocto/bitbake/lib/bb/data_smart.py", line 400,
-in DataSmart.expandWithRefs(s='/home/zak/Projects/yocto/meta-
-poky:${TOPDIR}:/home/zak/Projects/yocto/meta:/home/zak/
-Projects/yocto/meta-yocto-bsp:/home/zak/Projects/yocto/meta-
-yocto-bsp:/home/zak/Projects/yocto/meta-something:/home/
-zak/Projects/yocto/meta-raspberrypi:/home/zak/Projects/yocto/meta-openembedded/meta-oe',
-varname='BBPATH'):
-
-                 except Exception as exc:
-
-    >                raise ExpansionError(varname, s, exc) from exc
-
-
-
-bb.data_smart.ExpansionError: Failure expanding variable BBPATH, expression
-was /home/zak/Projects/yocto/meta-poky:${TOPDIR}:/home/zak/
-Projects/yocto/meta:/home/zak/Projects/yocto/meta-yocto-bsp:
-/home/zak/Projects/yocto/meta-yocto-bsp:/home/zak/Projects/
-yocto/meta-something:/home/zak/Projects/yocto/meta-raspberrypi:/home/zak/
-Projects/yocto/meta-openembedded/meta-oe which triggered exception
-RecursionError: maximum recursion depth exceeded while calling a Python
-object
-
-
-
-
-
-2017-01-12 21:39 GMT+01:00 Khem Raj <raj.khem@gmail.com>:
-
-> On Thu, Jan 12, 2017 at 10:37 AM, Ayoub Zaki <ayoub.zaki@googlemail.com>
-> wrote:
-> > Hello,
-> >
-> > I'm trying to figure out how can I override machine settings, for
-> example in
-> > raspberrypi  I want to change default kernel version from 4.4.x to 4.1.x
-> for
-> > that I created in my layer meta-somelayer/conf/machine/raspberrypi.conf
-> :
->
-> there is a machine config with same name in meta-raspberrypi layer and
-> thats taking
-> precedence over your layer see conf/layer.conf where it sets the
-> PRIORITY and also ensure
-> the BBPATHs are prefixed for your layer to be in front of
-> meta-raspberrypi layer. So that
-> it uses your layer and falls back to meta-raspberrypi to do the filler
-> work.
->
->
-> >
-> > require conf/machine/raspberrypi.conf
-> > PREFERRED_VERSION_linux-raspberrypi = "4.1.%"
-> >
-> >
-> > when I ran bitbake it gives:
-> >
-> > $ MACHINE=raspberrypi bitbake virtual/kernel
-> >
-> > NOTE: Tainting hash to force rebuild of task
-> > /home/zak/Projects/yocto/meta-somelayer/recipes-kernel/linux/
-> linux-raspberrypi_4.4.bb,
-> > do_compile
-> >
-> > so it seems that bitbake ignored my override settings !
-> >
-> > I'm using morty branch and my layer meta-somelayer has higher priority
-> than
-> > meta-rapberrypi :
-> >
-> > $ bitbake-layers show-layers
-> > layer                 path                                      priority
-> > ============================================================
-> ==============
-> > meta                  /home/zak/Projects/yocto/meta        5
-> > meta-yocto-bsp        /home/zak/Projects/yocto/meta-yocto-bsp  5
-> > meta-poky             /home/zak/Projects/yocto/meta-poky   5
-> > meta-yocto-bsp        /home/zak/Projects/yocto/meta-yocto-bsp  5
-> > meta-raspberrypi      /home/zak/Projects/yocto/meta-raspberrypi  9
-> > meta-somelayer        /home/zak/Projects/yocto/meta-somelayer  5
-> >
-> >
-> > when I tried to override the setting in rpi.conf instead of
-> raspberrypi.conf
-> > in meta-somelayer/conf/machine/rpi.conf:
-> >
-> > MACHINEOVERRIDES = "raspberrypi:${MACHINE}"
-> > require conf/machine/raspberrypi.conf
-> >
-> > PREFERRED_VERSION_linux-raspberrypi = "4.1.%"
-> >
-> > and running bitbake with :
-> >
-> >
-> > $ MACHINE=rpi bitbake virtual/kernel
-> > NOTE: Tainting hash to force rebuild of task
-> > /home/zak/Projects/yocto/meta-somelayer/recipes-kernel/linux/
-> linux-raspberrypi_4.1.bb,
-> > do_compile
-> >
-> > it worked !
-> >
-> > My objective however is to override the machine settings and keep the
-> same
-> > MACHINE name.
-> >
-> > Any Ideas?
-> >
-> >
-> > Regards,
-> >
-> >
-> >
-> >
-> >
-> > --
-> > _______________________________________________
-> > yocto mailing list
-> > yocto@yoctoproject.org
-> > https://lists.yoctoproject.org/listinfo/yocto
-> >
->
-
---001a1144340290004c0546a297af
-Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi Khem,<div><br></div><div>Thanks for the hints but unfor=
-tunately I got the following error :</div><div><br></div><div><p class=3D"M=
-soNormal" style=3D"font-size:12.8px"><span lang=3D"EN-US" style=3D"font-siz=
-e:10pt;font-family:arial,sans-serif">~/Projects/yocto/<wbr>build$ MACHINE=
-=3Draspberrypi bitbake -f virtual/kernel<u></u><u></u></span></p><p class=
-=3D"MsoNormal" style=3D"font-size:12.8px"><span lang=3D"EN-US" style=3D"fon=
-t-size:10pt;font-family:arial,sans-serif"><u></u>=C2=A0<u></u></span></p><p=
- class=3D"MsoNormal" style=3D"font-size:12.8px"><br></p><p class=3D"MsoNorm=
-al" style=3D"font-size:12.8px"><span lang=3D"EN-US" style=3D"font-size:10pt=
-;font-family:arial,sans-serif"><u></u>=C2=A0<u></u></span></p><p class=3D"M=
-soNormal" style=3D"font-size:12.8px"><span lang=3D"EN-US" style=3D"font-siz=
-e:10pt;font-family:arial,sans-serif">WARNING: Duplicate inclusion for /home=
-/zak/Projects/yocto/meta-<wbr>something/conf/machine/<wbr>raspberrypi.conf =
-in /home/zak/Projects/yocto/meta-<wbr>something/conf/machine/<wbr>raspberry=
-pi.conf<u></u><u></u></span></p><p class=3D"MsoNormal" style=3D"font-size:1=
-2.8px"><span lang=3D"EN-US" style=3D"font-size:10pt;font-family:arial,sans-=
-serif">WARNING: Duplicate inclusion for /home/zak/Projects/yocto/meta-<wbr>=
-something/conf/machine/<wbr>raspberrypi.conf in /home/zak/Projects/yocto/me=
-ta-<wbr>something/conf/machine/<wbr>raspberrypi.conf<u></u><u></u></span></=
-p><p class=3D"MsoNormal" style=3D"font-size:12.8px"><span lang=3D"EN-US" st=
-yle=3D"font-size:10pt;font-family:arial,sans-serif">WARNING: Duplicate incl=
-usion for /home/zak/Projects/yocto/meta-<wbr>something/conf/machine/<wbr>ra=
-spberrypi.conf in /home/zak/Projects/yocto/meta-<wbr>something/conf/machine=
-/<wbr>raspberrypi.conf<u></u><u></u></span></p><p class=3D"MsoNormal" style=
-=3D"font-size:12.8px"><span lang=3D"EN-US" style=3D"font-size:10pt;font-fam=
-ily:arial,sans-serif">WARNING: Duplicate inclusion for /home/zak/Projects/y=
-octo/meta-<wbr>something/conf/machine/<wbr>raspberrypi.conf in /home/zak/Pr=
-ojects/yocto/meta-<wbr>something/conf/machine/<wbr>raspberrypi.conf<u></u><=
-u></u></span></p><p class=3D"MsoNormal" style=3D"font-size:12.8px"><span la=
-ng=3D"EN-US" style=3D"font-size:10pt;font-family:arial,sans-serif">ERROR: U=
-nable to parse /home/zak/Projects/yocto/<wbr>bitbake/lib/bb/data_smart.py<u=
-></u><u></u></span></p><p class=3D"MsoNormal" style=3D"font-size:12.8px"><s=
-pan lang=3D"EN-US" style=3D"font-size:10pt;font-family:arial,sans-serif">Tr=
-aceback (most recent call last):<u></u><u></u></span></p><p class=3D"MsoNor=
-mal" style=3D"font-size:12.8px"><span lang=3D"EN-US" style=3D"font-size:10p=
-t;font-family:arial,sans-serif">=C2=A0 File &quot;/home/zak/Projects/yocto/=
-<wbr>bitbake/lib/bb/data_smart.py&quot;, line 400, in DataSmart.expandWithR=
-efs(s=3D&#39;/<wbr>home/zak/Projects/yocto/meta-<wbr>poky:${TOPDIR}:/home/z=
-ak/<wbr>Projects/yocto/meta:/home/zak/<wbr>Projects/yocto/meta-yocto-bsp:<w=
-br>/home/zak/Projects/yocto/meta-<wbr>yocto-bsp:/home/zak/Projects/<wbr>yoc=
-to/meta-something:/home/<wbr>zak/Projects/yocto/meta-<wbr>raspberrypi:/home=
-/zak/<wbr>Projects/yocto/meta-<wbr>openembedded/meta-oe&#39;, varname=3D&#3=
-9;BBPATH&#39;):<u></u><u></u></span></p><p class=3D"MsoNormal" style=3D"fon=
-t-size:12.8px"><span lang=3D"EN-US" style=3D"font-size:10pt;font-family:ari=
-al,sans-serif">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 except Exception as exc:<u></u><u></u>=
-</span></p><p class=3D"MsoNormal" style=3D"font-size:12.8px"><span lang=3D"=
-EN-US" style=3D"font-size:10pt;font-family:arial,sans-serif">=C2=A0=C2=A0=
-=C2=A0 &gt;=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0raise ExpansionError(varname, s, exc) from exc<u=
-></u><u></u></span></p><p class=3D"MsoNormal" style=3D"font-size:12.8px"><s=
-pan lang=3D"EN-US" style=3D"font-size:10pt;font-family:arial,sans-serif">=
-=C2=A0=C2=A0=C2=A0=C2=A0<u></u><u></u></span></p><p class=3D"MsoNormal" sty=
-le=3D"font-size:12.8px"><span lang=3D"EN-US" style=3D"font-size:10pt;font-f=
-amily:arial,sans-serif">bb.data_smart.ExpansionError: Failure expanding var=
-iable BBPATH, expression was /home/zak/Projects/yocto/meta-<wbr>poky:${TOPD=
-IR}:/home/zak/<wbr>Projects/yocto/meta:/home/zak/<wbr>Projects/yocto/meta-y=
-octo-bsp:<wbr>/home/zak/Projects/yocto/meta-<wbr>yocto-bsp:/home/zak/Projec=
-ts/<wbr>yocto/meta-something:/home/<wbr>zak/Projects/yocto/meta-<wbr>raspbe=
-rrypi:/home/zak/<wbr>Projects/yocto/meta-<wbr>openembedded/meta-oe which tr=
-iggered exception RecursionError: maximum recursion depth exceeded while ca=
-lling a Python object<u></u><u></u></span></p><p class=3D"MsoNormal" style=
-=3D"font-size:12.8px"><span lang=3D"EN-US" style=3D"font-size:10pt;font-fam=
-ily:arial,sans-serif"><u></u>=C2=A0</span></p><p class=3D"MsoNormal" style=
-=3D"font-size:12.8px"><span lang=3D"EN-US" style=3D"font-size:10pt;font-fam=
-ily:arial,sans-serif"><br></span></p></div></div><div class=3D"gmail_extra"=
-><br><div class=3D"gmail_quote">2017-01-12 21:39 GMT+01:00 Khem Raj <span d=
-ir=3D"ltr">&lt;<a href=3D"mailto:raj.khem@gmail.com" target=3D"_blank">raj.=
-khem@gmail.com</a>&gt;</span>:<br><blockquote class=3D"gmail_quote" style=
-=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><span cl=
-ass=3D"">On Thu, Jan 12, 2017 at 10:37 AM, Ayoub Zaki &lt;<a href=3D"mailto=
-:ayoub.zaki@googlemail.com">ayoub.zaki@googlemail.com</a>&gt; wrote:<br>
-&gt; Hello,<br>
-&gt;<br>
-&gt; I&#39;m trying to figure out how can I override machine settings, for =
-example in<br>
-&gt; raspberrypi=C2=A0 I want to change default kernel version from 4.4.x t=
-o 4.1.x for<br>
-&gt; that I created in my layer meta-somelayer/conf/machine/<wbr>raspberryp=
-i.conf :<br>
-<br>
-</span>there is a machine config with same name in meta-raspberrypi layer a=
-nd<br>
-thats taking<br>
-precedence over your layer see conf/layer.conf where it sets the<br>
-PRIORITY and also ensure<br>
-the BBPATHs are prefixed for your layer to be in front of<br>
-meta-raspberrypi layer. So that<br>
-it uses your layer and falls back to meta-raspberrypi to do the filler work=
-.<br>
-<div class=3D"HOEnZb"><div class=3D"h5"><br>
-<br>
-&gt;<br>
-&gt; require conf/machine/raspberrypi.conf<br>
-&gt; PREFERRED_VERSION_linux-<wbr>raspberrypi =3D &quot;4.1.%&quot;<br>
-&gt;<br>
-&gt;<br>
-&gt; when I ran bitbake it gives:<br>
-&gt;<br>
-&gt; $ MACHINE=3Draspberrypi bitbake virtual/kernel<br>
-&gt;<br>
-&gt; NOTE: Tainting hash to force rebuild of task<br>
-&gt; /home/zak/Projects/yocto/meta-<wbr>somelayer/recipes-kernel/<wbr>linux=
-/<a href=3D"http://linux-raspberrypi_4.4.bb" rel=3D"noreferrer" target=3D"_=
-blank">linux-raspberrypi_4.4.bb</a><wbr>,<br>
-&gt; do_compile<br>
-&gt;<br>
-&gt; so it seems that bitbake ignored my override settings !<br>
-&gt;<br>
-&gt; I&#39;m using morty branch and my layer meta-somelayer has higher prio=
-rity than<br>
-&gt; meta-rapberrypi :<br>
-&gt;<br>
-&gt; $ bitbake-layers show-layers<br>
-&gt; layer=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0pat=
-h=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 priority<br>
-&gt; =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D<wbr>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<wbr>=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D<br>
-&gt; meta=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 /ho=
-me/zak/Projects/yocto/meta=C2=A0 =C2=A0 =C2=A0 =C2=A0 5<br>
-&gt; meta-yocto-bsp=C2=A0 =C2=A0 =C2=A0 =C2=A0 /home/zak/Projects/yocto/met=
-a-<wbr>yocto-bsp=C2=A0 5<br>
-&gt; meta-poky=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0/home/zak/Pro=
-jects/yocto/meta-<wbr>poky=C2=A0 =C2=A05<br>
-&gt; meta-yocto-bsp=C2=A0 =C2=A0 =C2=A0 =C2=A0 /home/zak/Projects/yocto/met=
-a-<wbr>yocto-bsp=C2=A0 5<br>
-&gt; meta-raspberrypi=C2=A0 =C2=A0 =C2=A0 /home/zak/Projects/yocto/meta-<wb=
-r>raspberrypi=C2=A0 9<br>
-&gt; meta-somelayer=C2=A0 =C2=A0 =C2=A0 =C2=A0 /home/zak/Projects/yocto/met=
-a-<wbr>somelayer=C2=A0 5<br>
-&gt;<br>
-&gt;<br>
-&gt; when I tried to override the setting in rpi.conf instead of raspberryp=
-i.conf<br>
-&gt; in meta-somelayer/conf/machine/<wbr>rpi.conf:<br>
-&gt;<br>
-&gt; MACHINEOVERRIDES =3D &quot;raspberrypi:${MACHINE}&quot;<br>
-&gt; require conf/machine/raspberrypi.conf<br>
-&gt;<br>
-&gt; PREFERRED_VERSION_linux-<wbr>raspberrypi =3D &quot;4.1.%&quot;<br>
-&gt;<br>
-&gt; and running bitbake with :<br>
-&gt;<br>
-&gt;<br>
-&gt; $ MACHINE=3Drpi bitbake virtual/kernel<br>
-&gt; NOTE: Tainting hash to force rebuild of task<br>
-&gt; /home/zak/Projects/yocto/meta-<wbr>somelayer/recipes-kernel/<wbr>linux=
-/<a href=3D"http://linux-raspberrypi_4.1.bb" rel=3D"noreferrer" target=3D"_=
-blank">linux-raspberrypi_4.1.bb</a><wbr>,<br>
-&gt; do_compile<br>
-&gt;<br>
-&gt; it worked !<br>
-&gt;<br>
-&gt; My objective however is to override the machine settings and keep the =
-same<br>
-&gt; MACHINE name.<br>
-&gt;<br>
-&gt; Any Ideas?<br>
-&gt;<br>
-&gt;<br>
-&gt; Regards,<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-</div></div><span class=3D"HOEnZb"><font color=3D"#888888">&gt; --<br>
-&gt; ______________________________<wbr>_________________<br>
-&gt; yocto mailing list<br>
-&gt; <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><b=
-r>
-&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noref=
-errer" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto=
-</a><br>
-&gt;<br>
-</font></span></blockquote></div><br></div>
+On Fri, Jan 20, 2017 at 9:40 AM, Andrei Gherzan <andrei@gherzan.ro> wrote:
+> On Thu, Jan 19, 2017 at 11:50 AM, Andrei Gherzan <andrei@gherzan.ro> wrot=
+e:
+>> From: Paul Barker <paul@paulbarker.me.uk>
+>>
+>> The linux-raspberrypi 4.1 recipe has been broken for a while, probably s=
+ince
+>> 09b76a43f6f6852406de385a45f472c52b6a8571. It should now be safe to drop =
+this
+>> version.
+>>
+>> Signed-off-by: Paul Barker <paul@paulbarker.me.uk>
+>> ---
+>>  .../0001-dts-add-overlay-for-pitft22.patch         | 110 --------------=
+-------
+>>  ...ove-unused-sm_cache_map_vector-definition.patch |  31 ------
+>>  .../linux-raspberrypi-4.1/0003-fix-gcc6.patch      |  78 --------------=
+-
+>>  recipes-kernel/linux/linux-raspberrypi_4.1.bb      |  12 ---
+>>  4 files changed, 231 deletions(-)
+>>  delete mode 100644 recipes-kernel/linux/linux-raspberrypi-4.1/0001-dts-=
+add-overlay-for-pitft22.patch
+>>  delete mode 100644 recipes-kernel/linux/linux-raspberrypi-4.1/0002-vmcs=
+-Remove-unused-sm_cache_map_vector-definition.patch
+>>  delete mode 100644 recipes-kernel/linux/linux-raspberrypi-4.1/0003-fix-=
+gcc6.patch
+>>  delete mode 100644 recipes-kernel/linux/linux-raspberrypi_4.1.bb
+>>
+>> diff --git a/recipes-kernel/linux/linux-raspberrypi-4.1/0001-dts-add-ove=
+rlay-for-pitft22.patch b/recipes-kernel/linux/linux-raspberrypi-4.1/0001-dt=
+s-add-overlay-for-pitft22.patch
+>> deleted file mode 100644
+>> index e6e0a84..0000000
+>> --- a/recipes-kernel/linux/linux-raspberrypi-4.1/0001-dts-add-overlay-fo=
+r-pitft22.patch
+>> +++ /dev/null
+>> @@ -1,110 +0,0 @@
+>> -From a28bd410022b32a64e208f04b45add6326990332 Mon Sep 17 00:00:00 2001
+>> -From: =3D?UTF-8?q?Petter=3D20Mab=3DC3=3DA4cker?=3D <petter@technux.se>
+>> -Date: Fri, 8 Jan 2016 09:02:44 +0100
+>> -Subject: [PATCH] dts: add overlay for pitft22
+>> -MIME-Version: 1.0
+>> -Content-Type: text/plain; charset=3DUTF-8
+>> -Content-Transfer-Encoding: 8bit
+>> -
+>> -Upstream-Status: Pending
+>> -
+>> -Add the pitft22 overlay from adafruit Adafruit-Pi-Kernel-o-Matic repo:
+>> -https://github.com/adafruit/Adafruit-Pi-Kernel-o-Matic
+>> -
+>> -Signed-off-by: Petter Mab=C3=A4cker <petter@technux.se>
+>> ----
+>> - arch/arm/boot/dts/overlays/Makefile            |  1 +
+>> - arch/arm/boot/dts/overlays/pitft22-overlay.dts | 69 ++++++++++++++++++=
+++++++++
+>> - 2 files changed, 70 insertions(+)
+>> - create mode 100755 arch/arm/boot/dts/overlays/pitft22-overlay.dts
+>> -
+>> -diff --git a/arch/arm/boot/dts/overlays/Makefile b/arch/arm/boot/dts/ov=
+erlays/Makefile
+>> -index 1a60e9c..a2535a2 100644
+>> ---- a/arch/arm/boot/dts/overlays/Makefile
+>> -+++ b/arch/arm/boot/dts/overlays/Makefile
+>> -@@ -37,6 +37,7 @@ dtb-$(RPI_DT_OVERLAYS) +=3D mmc-overlay.dtb
+>> - dtb-$(RPI_DT_OVERLAYS) +=3D mz61581-overlay.dtb
+>> - dtb-$(RPI_DT_OVERLAYS) +=3D piscreen-overlay.dtb
+>> - dtb-$(RPI_DT_OVERLAYS) +=3D piscreen2r-overlay.dtb
+>> -+dtb-$(RPI_DT_OVERLAYS) +=3D pitft22-overlay.dtb
+>> - dtb-$(RPI_DT_OVERLAYS) +=3D pitft28-capacitive-overlay.dtb
+>> - dtb-$(RPI_DT_OVERLAYS) +=3D pitft28-resistive-overlay.dtb
+>> - dtb-$(RPI_DT_OVERLAYS) +=3D pps-gpio-overlay.dtb
+>> -diff --git a/arch/arm/boot/dts/overlays/pitft22-overlay.dts b/arch/arm/=
+boot/dts/overlays/pitft22-overlay.dts
+>> -new file mode 100755
+>> -index 0000000..894ba22
+>> ---- /dev/null
+>> -+++ b/arch/arm/boot/dts/overlays/pitft22-overlay.dts
+>> -@@ -0,0 +1,69 @@
+>> -+/*
+>> -+ * Device Tree overlay for pitft by Adafruit
+>> -+ *
+>> -+ */
+>> -+
+>> -+/dts-v1/;
+>> -+/plugin/;
+>> -+
+>> -+/ {
+>> -+        compatible =3D "brcm,bcm2835", "brcm,bcm2708", "brcm,bcm2709";
+>> -+
+>> -+        fragment@0 {
+>> -+                target =3D <&spi0>;
+>> -+                __overlay__ {
+>> -+                        status =3D "okay";
+>> -+
+>> -+                        spidev@0{
+>> -+                                status =3D "disabled";
+>> -+                        };
+>> -+
+>> -+                        spidev@1{
+>> -+                                status =3D "disabled";
+>> -+                        };
+>> -+                };
+>> -+        };
+>> -+
+>> -+        fragment@1 {
+>> -+                target =3D <&gpio>;
+>> -+                __overlay__ {
+>> -+                        pitft_pins: pitft_pins {
+>> -+                                brcm,pins =3D <25>;
+>> -+                                brcm,function =3D <1>; /* out */
+>> -+                                brcm,pull =3D <0>; /* none */
+>> -+                        };
+>> -+                };
+>> -+        };
+>> -+
+>> -+        fragment@2 {
+>> -+                target =3D <&spi0>;
+>> -+                __overlay__ {
+>> -+                        /* needed to avoid dtc warning */
+>> -+                        #address-cells =3D <1>;
+>> -+                        #size-cells =3D <0>;
+>> -+
+>> -+                        pitft: pitft@0{
+>> -+                                compatible =3D "ilitek,ili9340";
+>> -+                                reg =3D <0>;
+>> -+                                pinctrl-names =3D "default";
+>> -+                                pinctrl-0 =3D <&pitft_pins>;
+>> -+
+>> -+                                spi-max-frequency =3D <32000000>;
+>> -+                                rotate =3D <90>;
+>> -+                                fps =3D <25>;
+>> -+                                bgr;
+>> -+                                buswidth =3D <8>;
+>> -+                                dc-gpios =3D <&gpio 25 0>;
+>> -+                                debug =3D <0>;
+>> -+                        };
+>> -+
+>> -+                };
+>> -+        };
+>> -+
+>> -+        __overrides__ {
+>> -+                speed =3D   <&pitft>,"spi-max-frequency:0";
+>> -+                rotate =3D  <&pitft>,"rotate:0";
+>> -+                fps =3D     <&pitft>,"fps:0";
+>> -+                debug =3D   <&pitft>,"debug:0";
+>> -+        };
+>> -+};
+>> ---
+>> -1.9.1
+>> -
+>> diff --git a/recipes-kernel/linux/linux-raspberrypi-4.1/0002-vmcs-Remove=
+-unused-sm_cache_map_vector-definition.patch b/recipes-kernel/linux/linux-r=
+aspberrypi-4.1/0002-vmcs-Remove-unused-sm_cache_map_vector-definition.patch
+>> deleted file mode 100644
+>> index 8d4a900..0000000
+>> --- a/recipes-kernel/linux/linux-raspberrypi-4.1/0002-vmcs-Remove-unused=
+-sm_cache_map_vector-definition.patch
+>> +++ /dev/null
+>> @@ -1,31 +0,0 @@
+>> -The code using it also ifdef'ed with 0, anyyd gcc 6
+>> -complains
+>> -
+>> -error: 'sm_cache_map_vector' defined but not used
+>> -
+>> -The code using it also ifdef'ed out
+>> -
+>> -Upstream-status: Denied [https://github.com/raspberrypi/linux/pull/1528=
+]
+>> -
+>> -Signed-off-by: Khem Raj <raj.khem@gmail.com>
+>> ----
+>> - drivers/char/broadcom/vc_sm/vmcs_sm.c | 2 ++
+>> - 1 file changed, 2 insertions(+)
+>> -
+>> ---- a/drivers/char/broadcom/vc_sm/vmcs_sm.c
+>> -+++ b/drivers/char/broadcom/vc_sm/vmcs_sm.c
+>> -@@ -197,12 +197,14 @@ struct SM_STATE_T {
+>> - static struct SM_STATE_T *sm_state;
+>> - static int sm_inited;
+>> -
+>> -+#if 0
+>> - static const char *const sm_cache_map_vector[] =3D {
+>> -       "(null)",
+>> -       "host",
+>> -       "videocore",
+>> -       "host+videocore",
+>> - };
+>> -+#endif
+>> -
+>> - /* ---- Private Function Prototypes ----------------------------------=
+---- */
+>> -
+>> diff --git a/recipes-kernel/linux/linux-raspberrypi-4.1/0003-fix-gcc6.pa=
+tch b/recipes-kernel/linux/linux-raspberrypi-4.1/0003-fix-gcc6.patch
+>> deleted file mode 100644
+>> index 61ec2fb..0000000
+>> --- a/recipes-kernel/linux/linux-raspberrypi-4.1/0003-fix-gcc6.patch
+>> +++ /dev/null
+>> @@ -1,78 +0,0 @@
+>> -Fix compile with GCC6
+>> -
+>> -Upstream-status: Denied [https://github.com/raspberrypi/linux/pull/1528=
+]
+>> -
+>> -Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
+>> -
+>> -Index: source/include/linux/compiler-gcc6.h
+>> -=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>> ---- /dev/null
+>> -+++ source/include/linux/compiler-gcc6.h
+>> -@@ -0,0 +1,67 @@
+>> -+#ifndef __LINUX_COMPILER_H
+>> -+#error "Please don't include <linux/compiler-gcc5.h> directly, include=
+ <linux/compiler.h> instead."
+>> -+#endif
+>> -+
+>> -+#define __used                                __attribute__((__used__)=
+)
+>> -+#define __must_check                  __attribute__((warn_unused_resul=
+t))
+>> -+#define __compiler_offsetof(a, b)     __builtin_offsetof(a, b)
+>> -+
+>> -+/* Mark functions as cold. gcc will assume any path leading to a call
+>> -+   to them will be unlikely.  This means a lot of manual unlikely()s
+>> -+   are unnecessary now for any paths leading to the usual suspects
+>> -+   like BUG(), printk(), panic() etc. [but let's keep them for now for
+>> -+   older compilers]
+>> -+
+>> -+   Early snapshots of gcc 4.3 don't support this and we can't detect t=
+his
+>> -+   in the preprocessor, but we can live with this because they're unre=
+leased.
+>> -+   Maketime probing would be overkill here.
+>> -+
+>> -+   gcc also has a __attribute__((__hot__)) to move hot functions into
+>> -+   a special section, but I don't see any sense in this right now in
+>> -+   the kernel context */
+>> -+#define __cold                        __attribute__((__cold__))
+>> -+
+>> -+#define __UNIQUE_ID(prefix) __PASTE(__PASTE(__UNIQUE_ID_, prefix), __C=
+OUNTER__)
+>> -+
+>> -+#ifndef __CHECKER__
+>> -+# define __compiletime_warning(message) __attribute__((warning(message=
+)))
+>> -+# define __compiletime_error(message) __attribute__((error(message)))
+>> -+#endif /* __CHECKER__ */
+>> -+
+>> -+/*
+>> -+ * Mark a position in code as unreachable.  This can be used to
+>> -+ * suppress control flow warnings after asm blocks that transfer
+>> -+ * control elsewhere.
+>> -+ *
+>> -+ * Early snapshots of gcc 4.5 don't support this and we can't detect
+>> -+ * this in the preprocessor, but we can live with this because they're
+>> -+ * unreleased.  Really, we need to have autoconf for the kernel.
+>> -+ */
+>> -+#define unreachable() __builtin_unreachable()
+>> -+
+>> -+/* Mark a function definition as prohibited from being cloned. */
+>> -+#define __noclone     __attribute__((__noclone__))
+>> -+
+>> -+/*
+>> -+ * Tell the optimizer that something else uses this function or variab=
+le.
+>> -+ */
+>> -+#define __visible __attribute__((externally_visible))
+>> -+
+>> -+/*
+>> -+ * GCC 'asm goto' miscompiles certain code sequences:
+>> -+ *
+>> -+ *   http://gcc.gnu.org/bugzilla/show_bug.cgi?id=3D58670
+>> -+ *
+>> -+ * Work it around via a compiler barrier quirk suggested by Jakub Jeli=
+nek.
+>> -+ *
+>> -+ * (asm goto is automatically volatile - the naming reflects this.)
+>> -+ */
+>> -+#define asm_volatile_goto(x...)       do { asm goto(x); asm (""); } wh=
+ile (0)
+>> -+
+>> -+#ifdef CONFIG_ARCH_USE_BUILTIN_BSWAP
+>> -+#define __HAVE_BUILTIN_BSWAP32__
+>> -+#define __HAVE_BUILTIN_BSWAP64__
+>> -+#define __HAVE_BUILTIN_BSWAP16__
+>> -+#endif /* CONFIG_ARCH_USE_BUILTIN_BSWAP */
+>> -+
+>> -+#define KASAN_ABI_VERSION 4
+>> diff --git a/recipes-kernel/linux/linux-raspberrypi_4.1.bb b/recipes-ker=
+nel/linux/linux-raspberrypi_4.1.bb
+>> deleted file mode 100644
+>> index 87c77b8..0000000
+>> --- a/recipes-kernel/linux/linux-raspberrypi_4.1.bb
+>> +++ /dev/null
+>> @@ -1,12 +0,0 @@
+>> -FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}-${PV}:"
+>> -
+>> -LINUX_VERSION ?=3D "4.1.21"
+>> -
+>> -SRCREV =3D "ff45bc0e8917c77461b2901e2743e6339bb70413"
+>> -SRC_URI =3D "git://github.com/raspberrypi/linux.git;protocol=3Dgit;bran=
+ch=3Drpi-4.1.y \
+>> -           file://0001-dts-add-overlay-for-pitft22.patch \
+>> -           file://0002-vmcs-Remove-unused-sm_cache_map_vector-definitio=
+n.patch \
+>> -           file://0003-fix-gcc6.patch \
+>> -          "
+>> -
+>> -require linux-raspberrypi.inc
+>> --
+>> 2.7.4
+>>
+>
+> Merged this entire series for morty.
+>
+> We have to decide what to do with the versions of kernel that rebase
+> often making the recipes fail. To do as follow up patches.
 
---001a1144340290004c0546a297af--
+We should remove them from release branches too.
+
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
