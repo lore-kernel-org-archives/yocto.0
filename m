@@ -1,70 +1,63 @@
-Return-Path: <maciej.borzecki@rndity.com>
+Return-Path: <patrick.ohly@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 82BD2E0082A; Mon, 23 Jan 2017 03:19:41 -0800 (PST)
+	id 5B59EE0082A; Mon, 23 Jan 2017 05:25:54 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [74.125.82.46 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.82.46 listed in dnsbl.sorbs.net]
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_LOW,
+	RCVD_IN_SORBS_SPAM autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.214.53 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f46.google.com (mail-wm0-f46.google.com [74.125.82.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DC6C9E00823
-	for <yocto@yoctoproject.org>; Mon, 23 Jan 2017 03:19:38 -0800 (PST)
-Received: by mail-wm0-f46.google.com with SMTP id c85so127215205wmi.1
-	for <yocto@yoctoproject.org>; Mon, 23 Jan 2017 03:19:38 -0800 (PST)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.214.53 listed in list.dnswl.org]
+Received: from mail-it0-f53.google.com (mail-it0-f53.google.com
+	[209.85.214.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2C7A7E00823
+	for <yocto@yoctoproject.org>; Mon, 23 Jan 2017 05:25:41 -0800 (PST)
+Received: by mail-it0-f53.google.com with SMTP id c7so62490258itd.1
+	for <yocto@yoctoproject.org>; Mon, 23 Jan 2017 05:25:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=rndity-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=+5Xt5oG3FZ28Nlls6tlmi0OafsNyvoxs7jMaRChYQVM=;
-	b=HqZJ9gMgq0EwRZkspFt9h/8/TqRE3DZLog+KmChE9aF0RpctXi5UGZhJo8msyF939n
-	zURPpdalfO4auckwhCnU1XypoGAeeUgV/XDPTYsjf3bS1IOMp8qENApGHOJNc7Si7pZA
-	PXZW2Zsxhr+kRytQXeDTNmFJpiZciRcTUJiz20HFKeAWf8OUguiK4gw64aBMpsi4ozd6
-	UuXvo6Cw2PU+f68EEFxgvim8h3mXab9rIdHLdqgaoZCPV6SK/mPfabXz9WV53zFg3/iI
-	heLrMRKlCZSNr7urow7m713VpVVQykj7Y94NoIfdiHH9MG+dbcenmSymX+AURnOXjASx
-	8jKQ==
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=from:to:cc:subject:date:message-id;
+	bh=ZTzG4x9VX/AkIA8BcA2ljDYiccqFIvlnKwykrn6K4pg=;
+	b=fHBxzrVtg9TPBaSG/dbSz+nRyYRrhNpvuKS6fF0kFoj5b6KEnw+93neSkNrmEC/uXN
+	x2sAbWq+d1US6Ryt++1iWeF73jB5h1c/upWNowMaovuZ3i6tSDg9GVJ5njFS2J0xt1NH
+	/UprhDVx1YKsYSurwqVfGmRIOo9qyHEKbi0AN533+lQEFePCZCaAikXD+uaC9Ys1y5GK
+	Ux3Imh3yb/0oP4lwyfAHvS93+nrXyAfgN1RxCbsveQMAji+8+mI1HAZAQ12q1jyfYr5/
+	kpz6vnUcdhAvW9kt9ao9kaIoefbvCMVixXYTFnhjkV3LM8nCBrunPmGSlmy1/twGUMNn
+	Z0YQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=+5Xt5oG3FZ28Nlls6tlmi0OafsNyvoxs7jMaRChYQVM=;
-	b=mYgz2m6nZJyT8pwYeP/n0qmVrjzOEj9gnjE+8x5/6s9WbC+ICM87ppCd6qmmBKKmcn
-	a9KjEVnxN5PgCOuJlKSJqOxEfAnqmBbfhfXnyQkplkw6mFKW7PxAYNENDvtT2/RtVwX/
-	jK8a/5e/j2nQHEaMCGY2w54peayhtUQ/Q4vsdZgrc/5HLPTHx40U8ckRyhBb7rUWH+0D
-	VJ67Qw9iL2g7kTW/vvr7pezTEwaNa7r9z6YJAi73FgRp/DWuRomHtW1oehpcKxyEe/+C
-	Zl31rEYzlm7an3844BMpk7rWuHEAwc9Gp9ZFWqku3xUk369rfVFT+GwZMVjKUN3MXU+f
-	6ZAQ==
-X-Gm-Message-State: AIkVDXJA/C64L/Euo58n4eb0OD3znDv3YhrH+Nf6SS3APHbxWjCLm5O/IKNmLHSjLsYOgD1ignXDkXJBSfA3aw==
-X-Received: by 10.28.13.16 with SMTP id 16mr12602358wmn.101.1485170377192;
-	Mon, 23 Jan 2017 03:19:37 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.28.52.78 with HTTP; Mon, 23 Jan 2017 03:19:16 -0800 (PST)
-In-Reply-To: <8ce61c39-5082-5540-ca6c-d234cf62d993@topic.nl>
-References: <049201d2719c$fea9e670$fbfdb350$@ln-systems.com>
-	<CAJ86T=Xx0Dt_Y6x+5Ujz=5-edNzFusrFa_oyrEOcZjW9mkCrkA@mail.gmail.com>
-	<CAPLgG=myHpDap+GOgoNm6-vJncFj2WmkjwsVt+WCyjvQWY4qzw@mail.gmail.com>
-	<060101d27224$ad344a00$079cde00$@ln-systems.com>
-	<53576169-6d7a-5db2-72c7-20e8d04ab5c5@windriver.com>
-	<069b01d2723b$c14be860$43e3b920$@ln-systems.com>
-	<19c3b372-c26a-85b5-9dea-f3b4524437df@windriver.com>
-	<093001d27325$7dc14cd0$7943e670$@ln-systems.com>
-	<8ce61c39-5082-5540-ca6c-d234cf62d993@topic.nl>
-From: =?UTF-8?Q?Maciej_Borz=C4=99cki?= <maciej.borzecki@rndity.com>
-Date: Mon, 23 Jan 2017 12:19:16 +0100
-Message-ID: <CAD4b0_+F+TL3QwzZrqhKRFyhe964R5FBPcmAz=9ahHdDjcad3w@mail.gmail.com>
-To: Mike Looijmans <mike.looijmans@topic.nl>
-Cc: yocto@yoctoproject.org
-Subject: Re: Changing over to systemd (no dhcp)
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=ZTzG4x9VX/AkIA8BcA2ljDYiccqFIvlnKwykrn6K4pg=;
+	b=YR2TVQQhDKdnmOLFpT67ErjLyeFO/+srHHFScGNu1Ml3eyicAHwTUOlIOlHDK9izXK
+	HWDiVmLYQQkJew0XzOahmpgOQ2FI1zwtJtc0s44OnvxNVD9X3xhYKuvnQ37ZFGnR9+/g
+	jskAwp4yJ6Oh07mohkiT0sEHbOC3FVIW5T0SWFiIgF9S5tZYqt7Sf/bXL3D8yb/4VS89
+	O9/njwoLe4zOnK1WPx7a9GutrRoOby3SH3zwOBowhKkXJI5i34ubQtUC17IzDZTdSVAg
+	EmosHuuMlkaFm9+IkCGxXD1YBH+R9/wBOq2H95b8uI2f+kFqh8gwq53RqDrMPMwrKzwW
+	/5Uw==
+X-Gm-Message-State: AIkVDXJ/8jkqbf0c1PFVwg71do4HJ0188bkWOwyIXwVECNNhM27qa+zFfXJon2Pni6wnUkPJ
+X-Received: by 10.36.4.2 with SMTP id 2mr13799708itb.116.1485177940501;
+	Mon, 23 Jan 2017 05:25:40 -0800 (PST)
+Received: from pohly-desktop.fritz.box (p5DE8FC12.dip0.t-ipconnect.de.
+	[93.232.252.18])
+	by smtp.gmail.com with ESMTPSA id z42sm6378217ita.6.2017.01.23.05.25.38
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Mon, 23 Jan 2017 05:25:39 -0800 (PST)
+From: Patrick Ohly <patrick.ohly@intel.com>
+To: yocto@yoctoproject.org
+Date: Mon, 23 Jan 2017 14:25:32 +0100
+Message-Id: <20170123132532.31749-1-patrick.ohly@intel.com>
+X-Mailer: git-send-email 2.11.0
+Cc: =?UTF-8?q?Andr=C3=A9=20Draszik?= <git@andred.net>
+Subject: [meta-swupd][PATCH] swupd-image.bbclass: avoid depending on time command
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,55 +69,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 23 Jan 2017 11:19:41 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 23 Jan 2017 13:25:54 -0000
 
-On Mon, Jan 23, 2017 at 12:02 PM, Mike Looijmans
-<mike.looijmans@topic.nl> wrote:
-> On 20-01-17 14:59, colin.helliwell@ln-systems.com wrote:
->>
->> Thanks for all the pointers everyone. I=E2=80=99ve now got (in my distro=
- conf):
->>
->> DISTRO_FEATURES_append =3D " systemd"
->>
->> DISTRO_FEATURES_remove =3D " sysvinit"
->>
->> VIRTUAL-RUNTIME_init_manager =3D "systemd"
->>
->> PREFERRED_PROVIDER_udev =3D "systemd"
->>
->> PACKAGECONFIG_append_pn-systemd =3D " resolved networkd"
->
->
-> Thanks for the tip, I was also wondering why network didn't work with
-> systemd.
->
-> Is there a reason why this has been disabled by default? It's strange to
-> have a system without network as the default setup.
->
-> I would at least have expected network support to be enabled for any mach=
-ine
-> that has some networking features.
+The time command's output is merely informational and less relevant
+now that performance is better than it used to be. Calling it
+unconditional is problematic because some build hosts might not have
+it.
 
-Pick an choose, most features are opt-in to avoid bloating the final image.
+By default the command is no longer used, but can still be enabled
+locally by setting SWUPD_TIMING_CMD = "time" in local.conf or
+site.conf.
 
-Some people are not interested in networkd and prefer to use connman,
-NetworkManager or other tool.
-Note that networkd is not wifi aware, but does observe interface state
-changes. For wifi you'll need wpa_supplicant to actually drive the
-process of joining networks, while networkd will handle DHCP part.
+Signed-off-by: Patrick Ohly <patrick.ohly@intel.com>
+---
+ classes/swupd-image.bbclass | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
 
-resolved is not enabled by default either. Even when enabled, it's not
-really useful without the nss-resolved piece. I've posted a patch to
-OE-core [1] that would set up /etc/nsswitch.conf properly but I wasn't
-merged.
+diff --git a/classes/swupd-image.bbclass b/classes/swupd-image.bbclass
+index 78a26ac..771a416 100644
+--- a/classes/swupd-image.bbclass
++++ b/classes/swupd-image.bbclass
+@@ -338,6 +338,12 @@ python do_fetch_swupd_inputs () {
+ do_fetch_swupd_inputs[dirs] = "${SWUPDIMAGEDIR}"
+ addtask do_fetch_swupd_inputs before do_swupd_update
+ 
++# Change this to SWUPD_TIMING_CMD = "time" in local.conf
++# to enable timing the individual swupd server command invocations.
++# Relies on a build host which has "time" as a shell or system
++# command.
++SWUPD_TIMING_CMD ?= ""
++
+ # do_swupd_update uses its own pseudo database, for several reasons:
+ # - Performance is better when the pseudo instance is not shared
+ #   with other tasks that run in parallel (for example, meta-isafw's do_analyse_image).
+@@ -504,7 +510,7 @@ END
+ 
+     invoke_swupd () {
+         echo $PSEUDO "$@"
+-        time env $PSEUDO "$@"
++        ${SWUPD_TIMING_CMD} env $PSEUDO "$@"
+     }
+ 
+     waitall () {
+-- 
+2.11.0
 
-[1]. http://lists.openembedded.org/pipermail/openembedded-core/2016-Septemb=
-er/126738.html
-
---=20
-Maciej Borzecki
-RnDity
 
