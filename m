@@ -1,64 +1,62 @@
-Return-Path: <jeremy.thien@adtecdigital.net>
+Return-Path: <patrick.ohly@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F161EE0083C; Mon, 23 Jan 2017 06:08:41 -0800 (PST)
+	id C6283E0082E; Mon, 23 Jan 2017 06:11:29 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_LOW,
-	RCVD_IN_SORBS_SPAM autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.216.178 listed in dnsbl.sorbs.net]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.216.178 listed in list.dnswl.org]
-Received: from mail-qt0-f178.google.com (mail-qt0-f178.google.com
-	[209.85.216.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 297D8E00823
-	for <yocto@yoctoproject.org>; Mon, 23 Jan 2017 06:08:39 -0800 (PST)
-Received: by mail-qt0-f178.google.com with SMTP id v23so125886465qtb.0
-	for <yocto@yoctoproject.org>; Mon, 23 Jan 2017 06:08:39 -0800 (PST)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.223.179 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.223.179 listed in dnsbl.sorbs.net]
+Received: from mail-io0-f179.google.com (mail-io0-f179.google.com
+	[209.85.223.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8EB5EE00823
+	for <yocto@yoctoproject.org>; Mon, 23 Jan 2017 06:11:27 -0800 (PST)
+Received: by mail-io0-f179.google.com with SMTP id j18so110870965ioe.2
+	for <yocto@yoctoproject.org>; Mon, 23 Jan 2017 06:11:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=adtecinc-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=khxTSyEd1SItyEN9rZzmeEPybbodzBHwI2nQJx69Vnw=;
-	b=P553pUhAjkfENjHJdMDmeXmrUF3r6hl2wm0fJJnY70x7xdr1zfNkMpI7NHQYstr1JY
-	vcwvlhuWIvUnm4Eu+gGt4xS3Uzehv+TDNGfUQquk1YY0kvdZwWa1dToQbYnXqQyBmgUK
-	5qtijXyKs0mJUGc/cHmiMH0hpTbYRyVhMI0TYu0KoFGeFTmKndpv2OGlc9XcywnbkiC3
-	s+FnpKQASoQd6U6InBL7r7rKuZsk6H24SzPJPcMT3cQUbv5gTsJ1f3mVnkPIhFSB/HSQ
-	s6qNu994s5Q1Rdexx0dSi2SK/TcLL7XrifQsmSZ3omARpmjzybOMFrraWK5NN8UHWYux
-	0x3Q==
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=from:to:cc:subject:date:message-id;
+	bh=78nyJOyJ/Oj7rjn3EcJsV0Gb1pI9modl6I6QXe/8SHM=;
+	b=aUncLKwoF9QuuQIMbCbqfzmtPbxpeyF7TpOn3SyaSzAwBHuo0562VsT8VzU8gz72fH
+	zw/2ZYxm9oDCO2LywMImcfQyucPml+QN2YEwpElOUF9BC4Hw++rEw4wTbjth+D8M5Tnh
+	Tk7S7Xj8QlWHF3+PCpJ9u2a3023rZhfITC7QEGwlOaRst9eHoNsiS+F6KQirWAAAxuKY
+	gJPPj3eNdOenrK8IXMw1+LshcjWpV7KYVQU+MmmRaWeBdJadYKTYGxFqNtsPa6rP/XGA
+	48iSvJAhBt5UIFGjIYj4VYa9m264ou1CoobV0zPCeVKNXtccCerD3Z7kBGV0RggJChWV
+	R30A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=khxTSyEd1SItyEN9rZzmeEPybbodzBHwI2nQJx69Vnw=;
-	b=hW+SR0z600b+lU9UG8U7cFGNq0P5zEroTqRWfaPnVJ7cp0WVz4rsFwSgXh/kwst1iH
-	0y/nJly43FfY64dB4BgBx2D+swWdTHIQDuXd0+XjPuCvgmsz3ad7qIkVin8LDBqlhHLA
-	FeIym4ozk/TAFn08Y5TiV6JdoCi5ODSUfYBE9KWjKHcHT/S2GD1dPp2e0L+qaST2OwOB
-	kew8w9sat+qEkcwLWn7PDnaK/YA8YyAaNuyKORhdfJISsu37ZdiK3DkoP7UtysmGNeTw
-	i+0qonbZI+CEyAdgsfVADr+G9+Ow2GVKIG4A3dCHr9xHHycgGaQXgle4dKM8hfiTKai5
-	nuMA==
-X-Gm-Message-State: AIkVDXLvYQYpWtHzLOXRSi7srbsDYXUOJLXUkjx+6521OtDM90f6wKTarFECC1a5Zi+LnFzIWFAu69r04jI/pA==
-X-Received: by 10.200.0.25 with SMTP id a25mr24646774qtg.191.1485180518189;
-	Mon, 23 Jan 2017 06:08:38 -0800 (PST)
-MIME-Version: 1.0
-References: <b2610f4ee0fe434e9820784963e2e0c3@FE-MBX1014.de.bosch.com>
-	<1485085344.20333.7.camel@intel.com>
-In-Reply-To: <1485085344.20333.7.camel@intel.com>
-From: Jeremy Thien <jeremyt@adtecinc.com>
-Date: Mon, 23 Jan 2017 14:08:27 +0000
-Message-ID: <CALzCvPTYcMYbKt8xqjkCEDYmueTvR4ALpWeODG08SbZzJd4kJg@mail.gmail.com>
-To: Patrick Ohly <patrick.ohly@intel.com>, 
-	"Eswaran Vinothkumar (BEG-PT/PJ-IOT1)" <Vinothkumar.Eswaran@de.bosch.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Yocto - Building initramfs to run a shell script for the support of IMA/EVM
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=78nyJOyJ/Oj7rjn3EcJsV0Gb1pI9modl6I6QXe/8SHM=;
+	b=WAKAVrhEFWPY0f4RlDgAlHWqYXPPGkxu8fOZzQgvRLXqfy2EVH5V34RdBW2FLQCKGX
+	QUryrUZmsXVjus8KjoUGK8hpNN2f/7rDBlV+aewr+ZmScu7woa4blS1vZSFJUbviYUIE
+	/ZnZ/9P1Bn1N7VTPaw9mtfQgtro/ClOoc3SDd4Dj2940eL8UcKGYG6ilXg9OVa/JK5YM
+	K4FKVErc9uqZwcb1/HIiQjs/CbFj7tQcIuPD/juH4TlPzSU1ULLXIkxE+woVqXyvqz4o
+	+uln9m8ZBu9f/cbpnyGp8auWJ2yUU4jk4EzRJUXWvUR1na2/nvE76R9bfWwcqbDStT4y
+	XbRA==
+X-Gm-Message-State: AIkVDXIayQaJ+S3Q73/HWs7o2VRlLkn5p7/Mf7KtMssgLKKumbgQnxDZwEdH6FZauG2V1jST
+X-Received: by 10.107.2.138 with SMTP id 132mr22986458ioc.67.1485180687004;
+	Mon, 23 Jan 2017 06:11:27 -0800 (PST)
+Received: from pohly-desktop.fritz.box (p5DE8FC12.dip0.t-ipconnect.de.
+	[93.232.252.18]) by smtp.gmail.com with ESMTPSA id
+	x197sm6462963ite.17.2017.01.23.06.11.25
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Mon, 23 Jan 2017 06:11:25 -0800 (PST)
+From: Patrick Ohly <patrick.ohly@intel.com>
+To: yocto@yoctoproject.org
+Date: Mon, 23 Jan 2017 15:11:18 +0100
+Message-Id: <cover.d80eadf93cc834138baf753dee75bd75faefc003.1485180600.git-series.patrick.ohly@intel.com>
+X-Mailer: git-send-email 2.11.0
+Subject: [yocto-kernel-cache][PATCH 0/1] features: enable tpm
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,137 +68,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 23 Jan 2017 14:08:42 -0000
-Content-Type: multipart/alternative; boundary=f403045e736236e0250546c3898f
+X-List-Received-Date: Mon, 23 Jan 2017 14:11:29 -0000
 
---f403045e736236e0250546c3898f
-Content-Type: text/plain; charset=UTF-8
+This was tested with the yocto-4.8 branch and linux-yocto 4.8.17 under
+qemu with TPM provided by swtpm, but can and should also get merged
+into the yocto-4.9 and master branches.
 
-I suggest the debug-iniramfs-image from meta-openembedded/meta-initramfs.
+The feature intentionally enables all current TPM drivers. A real
+production kernel should be more selective.
 
-On Sun, Jan 22, 2017, 6:42 AM Patrick Ohly <patrick.ohly@intel.com> wrote:
+Patrick Ohly (1):
+  meta: add TPM feature
 
-> On Fri, 2017-01-20 at 12:44 +0000, Eswaran Vinothkumar (BEG-PT/PJ-IOT1)
-> wrote:
-> > We are using initramfs to run a script which before mounting the root
-> > file system checks for ima policy and also responsible for loading the
-> > evm-keys. In short, the initramfs contains a script which is executed
-> > before mounting the main root file system.
->
-> Ostro OS does the same, with IMA activated via a plugin for the
-> initramfs-framework (a set of scripts in OE-core).
->
-> meta-integrity:
-> https://github.com/01org/meta-intel-iot-security/tree/master/meta-integrity
->
-> IMA plugin:
->
-> https://github.com/01org/meta-intel-iot-security/tree/master/meta-integrity/recipes-core/initrdscripts
->
-> Full initramfs using this is ostro-initramfs.bb in:
->
-> https://github.com/ostroproject/ostro-os/tree/master/meta-ostro/recipes-image/images
->
-> Perhaps this will give you some ideas how to do this, or can even be
-> used as-is?
->
-> --
-> Best Regards, Patrick Ohly
->
-> The content of this message is my personal opinion only and although
-> I am an employee of Intel, the statements I make here in no way
-> represent Intel's position on the issue, nor am I authorized to speak
-> on behalf of Intel on this matter.
->
->
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+ features/tpm/tpm.cfg | 18 ++++++++++++++++++
+ features/tpm/tpm.scc |  4 ++++
+ 2 files changed, 22 insertions(+)
+ create mode 100644 features/tpm/tpm.cfg
+ create mode 100644 features/tpm/tpm.scc
+
+base-commit: 3edb4de355873d32da9307a011adea2542bd05a7
 -- 
-Jeremy Thien
-Adtec Digital
-adtecdigital.com
-jeremy.thien@adtecdigital.net
+git-series 0.9.1
 
---f403045e736236e0250546c3898f
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<p dir=3D"ltr">I suggest the debug-iniramfs-image from meta-openembedded/me=
-ta-initramfs.</p>
-<br><div class=3D"gmail_quote"><div dir=3D"ltr">On Sun, Jan 22, 2017, 6:42 =
-AM Patrick Ohly &lt;<a href=3D"mailto:patrick.ohly@intel.com">patrick.ohly@=
-intel.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
-=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">On Fri, =
-2017-01-20 at 12:44 +0000, Eswaran Vinothkumar (BEG-PT/PJ-IOT1)<br class=3D=
-"gmail_msg">
-wrote:<br class=3D"gmail_msg">
-&gt; We are using initramfs to run a script which before mounting the root<=
-br class=3D"gmail_msg">
-&gt; file system checks for ima policy and also responsible for loading the=
-<br class=3D"gmail_msg">
-&gt; evm-keys. In short, the initramfs contains a script which is executed<=
-br class=3D"gmail_msg">
-&gt; before mounting the main root file system.<br class=3D"gmail_msg">
-<br class=3D"gmail_msg">
-Ostro OS does the same, with IMA activated via a plugin for the<br class=3D=
-"gmail_msg">
-initramfs-framework (a set of scripts in OE-core).<br class=3D"gmail_msg">
-<br class=3D"gmail_msg">
-meta-integrity:<br class=3D"gmail_msg">
-<a href=3D"https://github.com/01org/meta-intel-iot-security/tree/master/met=
-a-integrity" rel=3D"noreferrer" class=3D"gmail_msg" target=3D"_blank">https=
-://github.com/01org/meta-intel-iot-security/tree/master/meta-integrity</a><=
-br class=3D"gmail_msg">
-<br class=3D"gmail_msg">
-IMA plugin:<br class=3D"gmail_msg">
-<a href=3D"https://github.com/01org/meta-intel-iot-security/tree/master/met=
-a-integrity/recipes-core/initrdscripts" rel=3D"noreferrer" class=3D"gmail_m=
-sg" target=3D"_blank">https://github.com/01org/meta-intel-iot-security/tree=
-/master/meta-integrity/recipes-core/initrdscripts</a><br class=3D"gmail_msg=
-">
-<br class=3D"gmail_msg">
-Full initramfs using this is <a href=3D"http://ostro-initramfs.bb" rel=3D"n=
-oreferrer" class=3D"gmail_msg" target=3D"_blank">ostro-initramfs.bb</a> in:=
-<br class=3D"gmail_msg">
-<a href=3D"https://github.com/ostroproject/ostro-os/tree/master/meta-ostro/=
-recipes-image/images" rel=3D"noreferrer" class=3D"gmail_msg" target=3D"_bla=
-nk">https://github.com/ostroproject/ostro-os/tree/master/meta-ostro/recipes=
--image/images</a><br class=3D"gmail_msg">
-<br class=3D"gmail_msg">
-Perhaps this will give you some ideas how to do this, or can even be<br cla=
-ss=3D"gmail_msg">
-used as-is?<br class=3D"gmail_msg">
-<br class=3D"gmail_msg">
---<br class=3D"gmail_msg">
-Best Regards, Patrick Ohly<br class=3D"gmail_msg">
-<br class=3D"gmail_msg">
-The content of this message is my personal opinion only and although<br cla=
-ss=3D"gmail_msg">
-I am an employee of Intel, the statements I make here in no way<br class=3D=
-"gmail_msg">
-represent Intel&#39;s position on the issue, nor am I authorized to speak<b=
-r class=3D"gmail_msg">
-on behalf of Intel on this matter.<br class=3D"gmail_msg">
-<br class=3D"gmail_msg">
-<br class=3D"gmail_msg">
-<br class=3D"gmail_msg">
---<br class=3D"gmail_msg">
-_______________________________________________<br class=3D"gmail_msg">
-yocto mailing list<br class=3D"gmail_msg">
-<a href=3D"mailto:yocto@yoctoproject.org" class=3D"gmail_msg" target=3D"_bl=
-ank">yocto@yoctoproject.org</a><br class=3D"gmail_msg">
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" class=3D"gmail_msg" target=3D"_blank">https://lists.yoctoproject.org/list=
-info/yocto</a><br class=3D"gmail_msg">
-</blockquote></div><div dir=3D"ltr">-- <br></div><div data-smartmail=3D"gma=
-il_signature"><div dir=3D"ltr">Jeremy Thien<div>Adtec Digital</div><div><a =
-href=3D"http://adtecdigital.com">adtecdigital.com</a></div><div><a href=3D"=
-mailto:jeremy.thien@adtecdigital.net">jeremy.thien@adtecdigital.net</a></di=
-v></div></div>
-
---f403045e736236e0250546c3898f--
