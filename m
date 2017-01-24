@@ -1,65 +1,31 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <jose.a.lamego@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D5EBFE0088B; Tue, 24 Jan 2017 10:20:25 -0800 (PST)
+	id 3ABB4E00C06; Tue, 24 Jan 2017 10:22:11 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.213.41 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.213.41 listed in dnsbl.sorbs.net]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [192.55.52.120 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-vk0-f41.google.com (mail-vk0-f41.google.com
-	[209.85.213.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B0294E00833
-	for <yocto@yoctoproject.org>; Tue, 24 Jan 2017 10:20:22 -0800 (PST)
-Received: by mail-vk0-f41.google.com with SMTP id x75so117672170vke.2
-	for <yocto@yoctoproject.org>; Tue, 24 Jan 2017 10:20:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=eluAyBZioEYUrhmjBw4CUSoLUORZts0IOFFKYtTzqrI=;
-	b=oZJhI6NO9sTLJjD8qPXgY+RjO60/fUzbhB9KZm+T3OwVOHq7UgA4gwFOG1+Zdgr4JI
-	ydjEK4U2GTk3xlXtxaU0o9W++5bNMC3ah1KOi7mLF5VWyHiV0CIHJVaojHkl+/5dtcFv
-	6pzer7Q8TBInHJTutI0Z1bNVliJNIsQd/KnXWC9DwcHEjAzo6BgdYqG60Zg2Izif7vxv
-	I5VPytLUEujWhSdjXxmPcdpbdPfBF35ZpCqcRZnEcEgIGqichCQ+Pw9nHl2lcLi0KcCP
-	rvtOf1tTMk54vv7I59sBM5m/GGa3WSwmmuTB9W8NW3ONtTuX9T4CLbvCYHFCaoejhnBJ
-	UWbw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=eluAyBZioEYUrhmjBw4CUSoLUORZts0IOFFKYtTzqrI=;
-	b=jttflIr9lFSLwP6b4PHckWbYGTC4aUPMwqZz2DM8OGQiD4mhOooPAEU6zAVHfdkgwh
-	MJ0+1vpIbiCrykFEvyXVaHeSiS/krLvtSZwaGQ11yFvfLEt2mJWYO16jcySkWDoQktfN
-	j/HRukgItLyPhn0P3mY3sZfmfOmcuQxOcBKs3agUqErMA2X1sxQjj+y0atfHsX7q02xd
-	i8y0l0GYJM2tEW5dTQw8+UVOgyTYqGCsdY8dzaHIgFBS0ieayN3Wo1XSOvIDt+ZN8X2U
-	O4o9Kj5hE14jh8cEVZH0nC8ItT6E/FB+E6QCoJu/hV2IkRaDvUcpfe91Aj5pOzRLqfbI
-	32RQ==
-X-Gm-Message-State: AIkVDXITVPru2sZtHsodmevQrqU15H5vkJ9tm4Vu8ZKZb6CF8aadx0hKGPZMzVM5sIbqtWNpXv0BqJks/sEQeg==
-X-Received: by 10.31.108.149 with SMTP id j21mr13599926vki.93.1485282022210;
-	Tue, 24 Jan 2017 10:20:22 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.159.48.222 with HTTP; Tue, 24 Jan 2017 10:19:51 -0800 (PST)
-In-Reply-To: <CAJgxT3_QyunmpzGW69j27sR_BFvvhisQVtG+-uGnMxhsO8mCLg@mail.gmail.com>
-References: <CAJgxT3_QyunmpzGW69j27sR_BFvvhisQVtG+-uGnMxhsO8mCLg@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Tue, 24 Jan 2017 10:19:51 -0800
-Message-ID: <CAMKF1sp05mvcfJaQ__dJgEOPRgqQOXNEjrPrkatuDtH2kbUmfQ@mail.gmail.com>
-To: Matt Hoosier <matt.hoosier@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Ordering of anonymous Python functions and task signature calculations
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CE082E00B7A
+	for <yocto@yoctoproject.org>; Tue, 24 Jan 2017 10:22:09 -0800 (PST)
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+	by fmsmga104.fm.intel.com with ESMTP; 24 Jan 2017 10:22:08 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.33,279,1477983600"; d="scan'208";a="217113470"
+Received: from jalamego-mobl2.zpn.intel.com ([10.219.128.123])
+	by fmsmga004.fm.intel.com with ESMTP; 24 Jan 2017 10:22:07 -0800
+From: Jose Lamego <jose.a.lamego@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Tue, 24 Jan 2017 12:21:52 -0600
+Message-Id: <1485282112-13877-1-git-send-email-jose.a.lamego@linux.intel.com>
+X-Mailer: git-send-email 1.9.1
+Subject: [patchwork][PATCH] parsemail: Set patch state from email metadata
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,54 +37,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 24 Jan 2017 18:20:25 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Tue, 24 Jan 2017 18:22:11 -0000
 
-On Tue, Jan 24, 2017 at 9:55 AM, Matt Hoosier <matt.hoosier@gmail.com> wrote:
-> In order to support a use-case that embeds information about the Git
-> revision of Yocto itself that was used to make a build, I would like to run
-> some arbitrary Python code and dump the results (Git SHA1's, tag names, etc)
-> into a Bitbake variable.
->
-> The idea is that the variable would get consumed in a do_install() task to
-> populate some cookie-crumb file in the package payload.
->
-> Something like:
->
->   DEPENDS = "git-native"
->
->   python () {
->     # This pseudocode isn't strictly functional for invoking Git, but you
-> get the idea
->     d.setVar('GIT_INFO', subprocess.Popen(['git', 'rev-list',
-> ...]).communicate().stdout)
->   }
->
->   do_install () {
->     install -d ${D}/etc
->     echo "${GIT_INFO}" > ${D}/etc/git-info.txt
->   }
->
-> This all works on a fresh run, but Bitbake appears not to be evaluating the
-> anonymous Python function on each execution. This leads it to have
-> out-of-date information about the Git working copy when global state changes
-> but happens not to impact the particular recipe holding this logic.
->
-> Is there any trick available to cause the Python function to execute (and
-> hence update the value of ${GIT_INFO} each Bitbake execution so that the
-> up-to-the-moment contents of it filter into the calculation of the signature
-> for do_install()? Or am I just trying a wrong-headed approach and doing
-> something illegitimate?
->
+Patch state can only be set/changed at patchwork web interface,
+resulting in a poor user experience for project maintainers.
 
-May be you can do it as a post processing step at image build time.
+This change allows project maintainers to change a patch status
+directly from an email message sent as a reply to the related mailing list
+thread by including a the string "[Patchwork-Status: <new status>]"
 
-> -Matt
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+[YOCTO #10624]
+
+Signed-off-by: Jose Lamego <jose.a.lamego@linux.intel.com>
+---
+ patchwork/bin/parsemail.py | 31 +++++++++++++++++++++++++++++++
+ 1 file changed, 31 insertions(+)
+
+diff --git a/patchwork/bin/parsemail.py b/patchwork/bin/parsemail.py
+index 1ce0cdf..eb92243 100755
+--- a/patchwork/bin/parsemail.py
++++ b/patchwork/bin/parsemail.py
+@@ -820,6 +820,37 @@ def parse_mail(mail):
+         comment.save()
+         LOGGER.debug('Comment saved')
+ 
++        # if comment's author has project-maintainer permissions,
++        # parse comment content and process the status-change command
++        # if it is found
++        if project in (author.user).profile.maintainer_projects.all():
++            cmd = None
++            comment_re = re.compile('^\[Patchwork-Status:\s*(Under Review|\
++Rejected|RFC|Not Applicable|Changes Requested|Awaiting Upstream|Superseded|\
++Deferred)\]$', re.M | re.I)
++            # if multiple valid status-change commands are found, use last one
++            for match in comment_re.finditer(comment.content):
++                cmd = re.sub(r'(\[Patchwork-Status:\s*)(.*)(\])', r'\2',
++                             "{}".format(match.group(0)))
++            if cmd is not None:
++                new_state = State.objects.get(name=cmd.title())
++                mod_patch = Patch.objects.get(pk=comment.patch.pk)
++                if new_state and mod_patch.state != new_state:
++                    mod_patch.state = new_state
++                    mod_patch.save()
++                    cmd_message = 'This is a system generated Comment: Patch \
++%s status was updated to "%s" due to request in comment.' % (
++                                  comment.patch.pk, cmd)
++                    cmd_msgid = "%s: System generated by comment %s" % (
++                                datetime.datetime.now().strftime("\
++%d%b%Y.%H:%M:%S.%f"), comment.pk)
++                    new_comment = Comment(pk=None, patch=comment.patch,
++                                          content=cmd_message,
++                                          date=datetime.datetime.now(),
++                                          submitter=comment.submitter,
++                                          msgid=cmd_msgid)
++                    new_comment.save()
++
+     series_revision_complete.disconnect(on_revision_complete)
+ 
+     return 0
+-- 
+1.9.1
+
 
