@@ -1,63 +1,39 @@
-Return-Path: <mirza.krak@gmail.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 01F89E00B99; Tue, 24 Jan 2017 11:15:24 -0800 (PST)
+	id 976A4E00C0A; Tue, 24 Jan 2017 11:22:12 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (mirza.krak[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.215.68 listed in dnsbl.sorbs.net]
-Received: from mail-lf0-f68.google.com (mail-lf0-f68.google.com
-	[209.85.215.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9259FE00B8F
-	for <yocto@yoctoproject.org>; Tue, 24 Jan 2017 11:15:20 -0800 (PST)
-Received: by mail-lf0-f68.google.com with SMTP id h65so18405725lfi.3
-	for <yocto@yoctoproject.org>; Tue, 24 Jan 2017 11:15:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:cc:subject:date:message-id;
-	bh=Lzb4tMIxxghaEIpKBDJgHD9cNEGafBMZJtZaM43Ua0A=;
-	b=WEYW3JLw2n11mVzrfDMqgvKsous31Js+i2LDJ4gEEAhhnjY0+DpKGnZtELXG5mLOPX
-	NE4LJxrsC21KzO5C1NPq/9IOOjm7COrJWvqYI29w102o5VooRXGLhip2Qbf9yCFk5L9P
-	BC3NklmBSiM8lXqeRAjyPdDbZ2zx0SWF2oS7alhXdJOmeI3atRb9VQ8/mv0pTb+I6gdH
-	mRAGxRRP1nI3KRtPDEyxMIZEeF75tVR30LwClp41uAFEbIArBVMWhr4dNILKVWvDIFAf
-	scLvIvwNzpVixnp+QI888jCJ4FhNUPwIxtihBTvn7i4Lo2lIdiRiiO5AhnJwyeVuyQUn
-	R3Kg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=Lzb4tMIxxghaEIpKBDJgHD9cNEGafBMZJtZaM43Ua0A=;
-	b=sqMf/qLF3DScpkouPT436dYnqlLNJpF78WK77H9Rb4bb/a5+Su2ss5scyLzZBdKg7h
-	QatnfFrjavwiOK7RXkMNOHlsxPIdKMo7cSrcJBp3oOpum+oOvWCyegWEFdhfrIuoQRM2
-	LpakkhXBubzVi8EkTeCTCiNiVcFcoph/R+tsBXrRSRkGnS34PRUP9A9TvJU+I0BfKZeG
-	TQFScJOtZ34La87a5XDJ7kKk65avl5kw/Q16W2Oc93svgCjssLRpgnKyyTstnr4IwfUB
-	8gMfp3iO624QzYX32HoFDXNxxqt6D6/u5SicaT1KW9KWddHcxoQxOYXpJnuj9K51Ogcx
-	8FhA==
-X-Gm-Message-State: AIkVDXKSzjDWhQI/BIC1LjrCtWwOYM2Sjws4pTRnIGWwjioKj8qkUrnlpdEh3kNrNuLdPQ==
-X-Received: by 10.25.21.205 with SMTP id 74mr4119947lfv.182.1485285319898;
-	Tue, 24 Jan 2017 11:15:19 -0800 (PST)
-Received: from debian.lan (78-71-171-99-no154.tbcn.telia.com. [78.71.171.99])
-	by smtp.gmail.com with ESMTPSA id
-	x17sm4433169lff.49.2017.01.24.11.15.19
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Tue, 24 Jan 2017 11:15:19 -0800 (PST)
-From: Mirza Krak <mirza.krak@gmail.com>
-X-Google-Original-From: Mirza Krak < mirza.krak@gmail.com >
-To: yocto@yoctoproject.org
-Date: Tue, 24 Jan 2017 19:16:38 +0100
-Message-Id: <1485281798-9016-1-git-send-email-mirza.krak@gmail.com>
-X-Mailer: git-send-email 2.1.4
-Subject: [meta-raspberrypi][morty][PATCH V2] Revert "u-boot: drop patch to include lowlevel_init"
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [134.134.136.20 listed in list.dnswl.org]
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3613FE00B76
+	for <yocto@yoctoproject.org>; Tue, 24 Jan 2017 11:22:08 -0800 (PST)
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+	by orsmga101.jf.intel.com with ESMTP; 24 Jan 2017 11:21:46 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.33,279,1477983600"; d="scan'208";a="52022010"
+Received: from hnguy31-mobl.ccr.corp.intel.com (HELO
+	peggleto-mobl.ger.corp.intel.com) ([10.255.186.17])
+	by orsmga004.jf.intel.com with ESMTP; 24 Jan 2017 11:21:44 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Peter Tulpen <ptulpen@emailn.de>
+Date: Wed, 25 Jan 2017 08:21:42 +1300
+Message-ID: <2502677.vKdr2oArzh@peggleto-mobl.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/5.3.3 (Linux/4.9.4-201.fc25.x86_64; KDE/5.29.0; x86_64; ; )
+In-Reply-To: <19b5983d2bf16e461f6251c84f2e0d76@mail.emailn.de>
+References: <b8e51238b7798e9b642c019b120adac0@mail.emailn.de>
+	<9523039.54BZtVoRWY@peggleto-mobl.ger.corp.intel.com>
+	<19b5983d2bf16e461f6251c84f2e0d76@mail.emailn.de>
+MIME-Version: 1.0
+Cc: yocto@yoctoproject.org
+Subject: Re: [layerindex-web] issue with webinterface
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,70 +45,95 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 24 Jan 2017 19:15:25 -0000
+X-List-Received-Date: Tue, 24 Jan 2017 19:22:12 -0000
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
 
-From: Mirza Krak <mirza.krak@gmail.com>
+Right, we have not tested the layer index code with Django > 1.8.x, I would=
+=20
+expect problems like this until we migrate (which probably won't be for a=20
+while I suspect).
 
-Not applicable on U-boot 2016.03 which is used in poky/morty and causes an build
-error when KERNEL_IMAGETYPE = "uImage".
+Cheers,
+Paul
 
-This reverts commit 031e26954b95d49a66ea4677b9e867d08441f450.
+On Tuesday, 24 January 2017 2:57:46 PM NZDT Peter Tulpen wrote:
+> Hello Paul,
+> you are brilliant:
+> I had errors with django 1.10 and uncommented:
+> from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
+> TEMPLATE_CONTEXT_PROCESSORS =3D TCP + (
+>     'django.core.context_processors.request',
+>     'layerindex.context_processors.layerindex_context',
+> )
+>=20
+> Since it was causing problems and was deprecated and not needed in 1.10
+> (according to some websites) But since I cold not get it working with 1.10
+> anyway, I downgraded to 1.8 again and forgot about this parts
+>=20
+> Thanks a lot
+>=20
+>=20
+> --- Urspr=FCngliche Nachricht ---
+> Von: Paul Eggleton <paul.eggleton@linux.intel.com>
+> Datum: 22.01.2017 20:23:43
+> An: Peter Tulpen <ptulpen@emailn.de>
+> Betreff: Re: [yocto] [layerindex-web] issue with webinterface
+>=20
+> > Hi Peter,
+> >=20
+> > On Thu, 19 Jan 2017 18:05:12 Peter Tulpen wrote:
+> > > Hello, I installed the webinterface locally and configured it with
+> > > several
+> > >=20
+> > > branches But when I want to browse it, I can only choose master:
+> > >=20
+> > > https://postimg.org/image/dq1vj6v7h/
+> > >=20
+> > > When I browse to http://MYSERVER/layerindex/branch/jethro/layers/, I
+> >=20
+> > see
+> >=20
+> > > that the branches are there My installation based on a git clone from
+> >=20
+> > the
+> >=20
+> > > master tree.
+> > >=20
+> > > Did I miss something or did I hit a bug?
+> >=20
+> > There's no filtering on the query used to get the list of branches to s=
+how
+> >=20
+> > other than the name is not "oe-classic". However, one way I can
+> > think of that
+> > that could be blank would be if the context processors used to inject t=
+he
+> >=20
+> > "all_branches" queryset results into the context for each page.
+> > You haven't
+> > modified settings.py such that
+> > layerindex.context_processors.layerindex_context has been removed from =
+the
+> >=20
+> > TEMPLATE_CONTEXT_PROCESSORS value by any chance?
+> >=20
+> > Otherwise, what changes did you make to settings.py? Which Django versi=
+on
+> > are
+> > you using?
+> >=20
+> > Cheers,
+> > Paul
+> >=20
+> > --
+> >=20
+> > Paul Eggleton
+> > Intel Open Source Technology Centre
 
-[Issue #43]
 
-Signed-off-by: Mirza Krak <mirza.krak@gmail.com>
----
+=2D-=20
 
-Changes in V2:
-- Fixed spelling and improved commit message
-
- .../0003-Include-lowlevel_init.o-for-rpi2.patch    | 25 ++++++++++++++++++++++
- recipes-bsp/u-boot/u-boot_%.bbappend               |  1 +
- 2 files changed, 26 insertions(+)
- create mode 100644 recipes-bsp/u-boot/files/0003-Include-lowlevel_init.o-for-rpi2.patch
-
-diff --git a/recipes-bsp/u-boot/files/0003-Include-lowlevel_init.o-for-rpi2.patch b/recipes-bsp/u-boot/files/0003-Include-lowlevel_init.o-for-rpi2.patch
-new file mode 100644
-index 0000000..ce0273f
---- /dev/null
-+++ b/recipes-bsp/u-boot/files/0003-Include-lowlevel_init.o-for-rpi2.patch
-@@ -0,0 +1,25 @@
-+From 1eb01436bc57ad32519a4567a1c9ec82d52d60a1 Mon Sep 17 00:00:00 2001
-+From: Paul Barker <paul@paulbarker.me.uk>
-+Date: Tue, 29 Nov 2016 19:47:49 +0000
-+Subject: [PATCH] Include lowlevel_init.o for rpi2
-+
-+Signed-off-by: Paul Barker <paul@paulbarker.me.uk>
-+Upstream-status: Inappropriate
-+    (not needed upstream as rpi_2 board directory is removed in latest
-+    version)
-+---
-+ board/raspberrypi/rpi_2/Makefile | 1 +
-+ 1 file changed, 1 insertion(+)
-+
-+diff --git a/board/raspberrypi/rpi_2/Makefile b/board/raspberrypi/rpi_2/Makefile
-+index d82cd21..9f865c5 100644
-+--- a/board/raspberrypi/rpi_2/Makefile
-++++ b/board/raspberrypi/rpi_2/Makefile
-+@@ -5,3 +5,4 @@
-+ #
-+
-+ obj-y	:= ../rpi/rpi.o
-++obj-y	+= ../rpi/lowlevel_init.o
-+--
-+2.1.4
-+
-diff --git a/recipes-bsp/u-boot/u-boot_%.bbappend b/recipes-bsp/u-boot/u-boot_%.bbappend
-index 0edc8dc..a4545f0 100644
---- a/recipes-bsp/u-boot/u-boot_%.bbappend
-+++ b/recipes-bsp/u-boot/u-boot_%.bbappend
-@@ -3,4 +3,5 @@ RDEPENDS_${PN}_append_rpi = " rpi-u-boot-scr"
- SRC_URI_append_rpi = " \
-     file://0001-arm-add-save_boot_params-for-ARM1176.patch \
-     file://0002-rpi-passthrough-of-the-firmware-provided-FDT-blob.patch \
-+    file://0003-Include-lowlevel_init.o-for-rpi2.patch \
-     "
---
-2.1.4
-
+Paul Eggleton
+Intel Open Source Technology Centre
 
