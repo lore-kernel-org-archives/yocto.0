@@ -1,37 +1,66 @@
-Return-Path: <jose.a.lamego@linux.intel.com>
+Return-Path: <mirza.krak@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 96753E0085D; Tue, 24 Jan 2017 10:47:45 -0800 (PST)
+	id 8DFF3E00B93; Tue, 24 Jan 2017 11:09:25 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [134.134.136.31 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (mirza.krak[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.215.65 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.215.65 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5B125E00828
-	for <yocto@yoctoproject.org>; Tue, 24 Jan 2017 10:47:43 -0800 (PST)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by orsmga104.jf.intel.com with ESMTP; 24 Jan 2017 10:47:43 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.33,279,1477983600"; d="scan'208";a="1098363285"
-Received: from jalamego-mobl2.zpn.intel.com (HELO [10.219.128.123])
-	([10.219.128.123])
-	by fmsmga001.fm.intel.com with ESMTP; 24 Jan 2017 10:47:42 -0800
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-References: <1484778698-14581-1-git-send-email-jose.a.lamego@linux.intel.com>
-	<1484778698-14581-3-git-send-email-jose.a.lamego@linux.intel.com>
-From: Jose Lamego <jose.a.lamego@linux.intel.com>
-Message-ID: <374da41c-b7f3-4522-32ad-4774cc681fa4@linux.intel.com>
-Date: Tue, 24 Jan 2017 12:47:43 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.5.1
-MIME-Version: 1.0
-In-Reply-To: <1484778698-14581-3-git-send-email-jose.a.lamego@linux.intel.com>
-Subject: Re: [layerindex-web][PATCH 2/2] views.py: Consider layer name in recipe search
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-lf0-f65.google.com (mail-lf0-f65.google.com
+	[209.85.215.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 45AC2E00B8E
+	for <yocto@yoctoproject.org>; Tue, 24 Jan 2017 11:09:23 -0800 (PST)
+Received: by mail-lf0-f65.google.com with SMTP id h65so18394720lfi.3
+	for <yocto@yoctoproject.org>; Tue, 24 Jan 2017 11:09:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=from:to:cc:subject:date:message-id;
+	bh=6VxLt3KsmLmjedY9IxdSHhZyNsMlgI/KOOvt7OyfIUo=;
+	b=a7RcoU1TCim8xcu6J8idiSMNTd4r1O3aT94KyyVlX0XdXCXJOOS+R0n9h7sxzOmaDa
+	5qqhM+U4ZDbJofYklT+5El7fQYf7j1WiRfYEoVwFTBh7g5mh+9mL5UHwwVFrJ2MP3MnY
+	EpVRbPesqaUjIRxf85CqqPxIQi+OdGGSbpmPGJmL4FqIMJaMy/RB9YLbXs1gsrNgf15q
+	CKRm9hbbMBuZvBHouKrONZ3inCDFTGoFNau6cwFndn9rxUqizpxJoV2sTW/05hj7yBlH
+	/hCHunHzt215MXdSsJ0o0Ytat/DnyP8fkFNdDDmauH960t7MMtMMHFhaJ4v0agexabUn
+	VPxQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=6VxLt3KsmLmjedY9IxdSHhZyNsMlgI/KOOvt7OyfIUo=;
+	b=ieFm5HOdprROUsQ5SkVVSLvM4yw/fRodSz/CMiRpgg9vvJYgc0TpBiSav+idXn+yc/
+	tb9Cc7WcmrQn+v3cyuSczxjMrG62pYV6iccgC73iYo8NQQpWjDT+qEfisyRmZ1zyAJqR
+	TeoyF6G+rH+3fpTUSZPmJs3zxXhGjPGwUwNjY4hMMBJjAvHmz3Fdd8+ppaXlj7M6Hmtm
+	pUs1Li27SzxqXmE9L2jx6rMW1d8lxSAefLExvoVZHklIfoNUkk0QDkZ0ZSn8j7A5zzpR
+	/e/Aixyhtk3re3p1ouCA+Vzm53aifl45DqFPRhk6KTr4kWp61vLS0Yyx58vU1Ab3m0/T
+	I0cQ==
+X-Gm-Message-State: AIkVDXKqXnVkpdYxrsxUmpbkLKlVE+G7uctioqH0hRfLbCxITJB8KIjptkejd/WcEUeT8A==
+X-Received: by 10.25.141.12 with SMTP id p12mr4395123lfd.147.1485284962556;
+	Tue, 24 Jan 2017 11:09:22 -0800 (PST)
+Received: from debian.lan (78-71-171-99-no154.tbcn.telia.com. [78.71.171.99])
+	by smtp.gmail.com with ESMTPSA id
+	f8sm7769763lji.2.2017.01.24.11.09.21
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Tue, 24 Jan 2017 11:09:22 -0800 (PST)
+From: Mirza Krak <mirza.krak@gmail.com>
+X-Google-Original-From: Mirza Krak < mirza.krak@gmail.com >
+To: yocto@yoctoproject.org
+Date: Tue, 24 Jan 2017 19:10:40 +0100
+Message-Id: <1485281440-6280-1-git-send-email-mirza.krak@gmail.com>
+X-Mailer: git-send-email 2.1.4
+Subject: [meta-raspberrypi][morty][PATCH] Revert "u-boot: drop patch to include lowlevel_init"
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,45 +72,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 24 Jan 2017 18:47:45 -0000
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 24 Jan 2017 19:09:25 -0000
 
-ping
+From: Mirza Krak <mirza.krak@gmail.com>
 
-On 01/18/2017 04:31 PM, Jose Lamego wrote:
-> From: Alex Franco <alejandro.franco@linux.intel.com>
-> 
-> Recipe search cannot be narrowed to a specific layer, producing
-> unnecessary results.
-> 
-> This change allows including a layers name when searching for recipes to
-> narrow the yielded results by adding a layer name to the simplesearch.getquery
-> call in the recipe search view.
-> 
-> [YOCTO #6618]
-> 
-> Signed-off-by: Jose Lamego <jose.a.lamego@linux.intel.com>
-> ---
->  layerindex/views.py | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
-> 
-> diff --git a/layerindex/views.py b/layerindex/views.py
-> index 03fadbb..5db6fbc 100644
-> --- a/layerindex/views.py
-> +++ b/layerindex/views.py
-> @@ -406,7 +406,8 @@ class RecipeSearchView(ListView):
->              qs0 = init_qs.filter(pn=query_string).order_by(*order_by)
->              qs0 = recipes_preferred_count(qs0)
->  
-> -            entry_query = simplesearch.get_query(query_string, ['pn'])
-> +            entry_query = simplesearch.get_query(
-> +                query_string, ['pn', 'layerbranch__layer__name'])
->              qs1 = init_qs.filter(entry_query).order_by(*order_by)
->              qs1 = recipes_preferred_count(qs1)
->  
-> 
+Not applicaple on U-boot 2016.03 which is used in poky/morty.
 
+This reverts commit 031e26954b95d49a66ea4677b9e867d08441f450.
+
+[Issue #43]
+
+Signed-off-by: Mirza Krak <mirza.krak@gmail.com>
+---
+ .../0003-Include-lowlevel_init.o-for-rpi2.patch    | 25 ++++++++++++++++++++++
+ recipes-bsp/u-boot/u-boot_%.bbappend               |  1 +
+ 2 files changed, 26 insertions(+)
+ create mode 100644 recipes-bsp/u-boot/files/0003-Include-lowlevel_init.o-for-rpi2.patch
+
+diff --git a/recipes-bsp/u-boot/files/0003-Include-lowlevel_init.o-for-rpi2.patch b/recipes-bsp/u-boot/files/0003-Include-lowlevel_init.o-for-rpi2.patch
+new file mode 100644
+index 0000000..ce0273f
+--- /dev/null
++++ b/recipes-bsp/u-boot/files/0003-Include-lowlevel_init.o-for-rpi2.patch
+@@ -0,0 +1,25 @@
++From 1eb01436bc57ad32519a4567a1c9ec82d52d60a1 Mon Sep 17 00:00:00 2001
++From: Paul Barker <paul@paulbarker.me.uk>
++Date: Tue, 29 Nov 2016 19:47:49 +0000
++Subject: [PATCH] Include lowlevel_init.o for rpi2
++
++Signed-off-by: Paul Barker <paul@paulbarker.me.uk>
++Upstream-status: Inappropriate
++    (not needed upstream as rpi_2 board directory is removed in latest
++    version)
++---
++ board/raspberrypi/rpi_2/Makefile | 1 +
++ 1 file changed, 1 insertion(+)
++
++diff --git a/board/raspberrypi/rpi_2/Makefile b/board/raspberrypi/rpi_2/Makefile
++index d82cd21..9f865c5 100644
++--- a/board/raspberrypi/rpi_2/Makefile
+++++ b/board/raspberrypi/rpi_2/Makefile
++@@ -5,3 +5,4 @@
++ #
++ 
++ obj-y	:= ../rpi/rpi.o
+++obj-y	+= ../rpi/lowlevel_init.o
++-- 
++2.1.4
++
+diff --git a/recipes-bsp/u-boot/u-boot_%.bbappend b/recipes-bsp/u-boot/u-boot_%.bbappend
+index 0edc8dc..a4545f0 100644
+--- a/recipes-bsp/u-boot/u-boot_%.bbappend
++++ b/recipes-bsp/u-boot/u-boot_%.bbappend
+@@ -3,4 +3,5 @@ RDEPENDS_${PN}_append_rpi = " rpi-u-boot-scr"
+ SRC_URI_append_rpi = " \
+     file://0001-arm-add-save_boot_params-for-ARM1176.patch \
+     file://0002-rpi-passthrough-of-the-firmware-provided-FDT-blob.patch \
++    file://0003-Include-lowlevel_init.o-for-rpi2.patch \
+     "
 -- 
-Jose Lamego | OTC Embedded Platforms & Tools | GDC
+2.1.4
+
 
