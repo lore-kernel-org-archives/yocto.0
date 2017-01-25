@@ -1,50 +1,64 @@
-Return-Path: <andre.draszik@gmail.com>
+Return-Path: <freesilicon@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9C535E00833; Wed, 25 Jan 2017 01:03:17 -0800 (PST)
+	id A59B8E00BD6; Wed, 25 Jan 2017 02:39:08 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.82.68 listed in dnsbl.sorbs.net]
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (freesilicon[at]gmail.com)
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.82.67 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [74.125.82.68 listed in list.dnswl.org]
-Received: from mail-wm0-f68.google.com (mail-wm0-f68.google.com [74.125.82.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 418EAE00828
-	for <yocto@yoctoproject.org>; Wed, 25 Jan 2017 01:03:13 -0800 (PST)
-Received: by mail-wm0-f68.google.com with SMTP id d140so41244278wmd.2
-	for <yocto@yoctoproject.org>; Wed, 25 Jan 2017 01:03:13 -0800 (PST)
+	*      [74.125.82.67 listed in list.dnswl.org]
+Received: from mail-wm0-f67.google.com (mail-wm0-f67.google.com [74.125.82.67])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6474DE00BBF
+	for <yocto@yoctoproject.org>; Wed, 25 Jan 2017 02:39:05 -0800 (PST)
+Received: by mail-wm0-f67.google.com with SMTP id d140so41785845wmd.2
+	for <yocto@yoctoproject.org>; Wed, 25 Jan 2017 02:39:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=from:to:cc:subject:date:message-id;
+	bh=rOKJJMgSgarbdp+s9m0B7g4vEyQo2KlNyUItgPRCaHc=;
+	b=t13dz0Kvaf6ASx+nmO28WaOs91IDny4Uuut3iAeAPAUCr5yfZBBDjHhv+Nt00RkM9m
+	uCIaqyUGszXPyVDgkXrspSr/xGA+10tek+zRn7sml9ZloGaR9+cqhGbCaFy/5IXKN3XK
+	kFXq4ujGbtYlzh/6Xl+v+MEz0KOCn1L66EZjBmAndmGU96I/TVUS5aY1ox/BVV4Fsgbn
+	HuGBvAlrSMm1fLhZ4A8vYsk6ShhoYbRQir29Cdk9f8NZjupJbJQMNzG3yN8KcOGFQ/+w
+	ftDGwjW45WTfV9gjcm+VAyad5IL4BHHRCHMZf0itzgC6qugcGxuM9BTSloooIVVMYzzq
+	ZX5w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
-	:references:mime-version:content-transfer-encoding;
-	bh=fteZ5CuDGeOnQOyQbabsa4krzWGo03OfaX0PlcXE5/A=;
-	b=C5j0rkgT1kOp2HoIUpZ4eZIqdCMTpRTrSgpjqFO0g3yxYU2eCqzW4f5PLiQk3IXuHV
-	/lniqEA5iX7B4qBrI1JeQAtimvFtE2T85RrcvzC9ZsYR3s7vSIAY5UjXj87slRZrVpvd
-	ba/jDPmB7GkrbYK4r1ydLF2RjRl95PgBqiJAeYogpsRL0E+HQv9puwLo+4v10z0vhvIh
-	dfJDdpv3VUcrlxVB8zjWAefTZrnAP3F7s16DOII4F89cZKZs/mmDpRYO3XRIib950R50
-	xuSkTF2PatF1k681YzP4HvDxImrP6CnlSHacW3cPo1ukAmHd5bUpDBK0tJb4p/zyfsN/
-	Y4iQ==
-X-Gm-Message-State: AIkVDXJJooswzO3XNQHabkZay9CD4+6Cx3xLXDZV8kz2r08XNtCgYwWUstmQpacZoMw9wg==
-X-Received: by 10.28.111.75 with SMTP id k72mr21013166wmc.39.1485334992566;
-	Wed, 25 Jan 2017 01:03:12 -0800 (PST)
-Received: from tfsielt31850 ([77.107.218.170])
-	by smtp.gmail.com with ESMTPSA id r6sm30370585wmd.4.2017.01.25.01.03.11
-	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-	Wed, 25 Jan 2017 01:03:11 -0800 (PST)
-Message-ID: <1485334991.6808.3.camel@andred.net>
-From: =?ISO-8859-1?Q?Andr=E9?= Draszik <git@andred.net>
-To: Matt Hoosier <matt.hoosier@gmail.com>, yocto@yoctoproject.org
-Date: Wed, 25 Jan 2017 09:03:11 +0000
-In-Reply-To: <CAJgxT3_QyunmpzGW69j27sR_BFvvhisQVtG+-uGnMxhsO8mCLg@mail.gmail.com>
-References: <CAJgxT3_QyunmpzGW69j27sR_BFvvhisQVtG+-uGnMxhsO8mCLg@mail.gmail.com>
-X-Mailer: Evolution 3.22.3-1 
-Mime-Version: 1.0
-Subject: Re: Ordering of anonymous Python functions and task signature calculations
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=rOKJJMgSgarbdp+s9m0B7g4vEyQo2KlNyUItgPRCaHc=;
+	b=RJs0n7BvsJ560ZpHgGnRpOB6qQOt2toq5/07gS17b0tublp41/wlrgxIHlAesUFQKu
+	TpreDZUj70VKQ9JJk4Sx9whKRDQxX3Hlk65PoLItpps1UvcD8D2ZokfeB3fy9qrUnrTI
+	X/JzzJm45R4B8MAyym5dq0Ntwle45SomIqeRUZdgAArIDUMAyRVTP1Y8L8tCHvpmrbl5
+	YlwyjTSkccRL4gxD0Nw/Sm+64JAk+qTyCIOmKXXW3dhE6bgihEaghIXg2a+1uOGL3uB2
+	TqZQoBfl2Ivd1Rz7cQq7nLtTumrCQlPUbe3L9j+nGRtsXZp+IFN29Ov9Ur3tfZFKi8GA
+	zcQQ==
+X-Gm-Message-State: AIkVDXJ3s3AJOOXVtLHdVE7wMp/xsj5fBcOuPGIYXJ5RB0SRli/Tz/Rx9izkHmv/Px8e+A==
+X-Received: by 10.28.197.77 with SMTP id v74mr23773106wmf.30.1485340743953;
+	Wed, 25 Jan 2017 02:39:03 -0800 (PST)
+Received: from localhost.localdomain ([185.47.80.46])
+	by smtp.gmail.com with ESMTPSA id
+	h75sm24340116wrh.37.2017.01.25.02.39.02
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Wed, 25 Jan 2017 02:39:03 -0800 (PST)
+From: David Vincent <freesilicon@gmail.com>
+To: yocto@yoctoproject.org
+Date: Wed, 25 Jan 2017 11:37:58 +0100
+Message-Id: <20170125103759.15880-1-freesilicon@gmail.com>
+X-Mailer: git-send-email 2.11.0
+Subject: [yocto-kernel-tools][PATCH 0/1] Rework merge of feature branches
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,26 +70,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 25 Jan 2017 09:03:17 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 25 Jan 2017 10:39:08 -0000
 
-On Tue, 2017-01-24 at 11:55 -0600, Matt Hoosier wrote:
-> In order to support a use-case that embeds information about the Git
-> revision of Yocto itself that was used to make a build, I would like to
-> run
-> some arbitrary Python code and dump the results (Git SHA1's, tag names,
-> etc) into a Bitbake variable.
+I've recently noticed that, on Morty, feature branches of a Yocto kernel are not
+merged anymore. This is due to the fact that the meta-series file does not
+process the git merge commands anymore.
 
-Have you looked at image-buildinfo.bbclass? From your description, it seems
-to do what you want.
+This commit creates a new merge command to be executed when processing the
+kernel metadata. To solve the issue, there is also a patch to send to oe-core
+for kernel-yocto.bbclass, but I wait for this patch to be included since there
+is no point without it.
 
-INHERIT += "image-buildinfo"
+David Vincent (1):
+  scc: Move merge command
 
-works well for me...
+ tools/kgit-meta          | 14 ++++++++++++++
+ tools/scc                | 13 -------------
+ tools/scc-cmds/merge.cmd | 10 ++++++++++
+ 3 files changed, 24 insertions(+), 13 deletions(-)
+ create mode 100644 tools/scc-cmds/merge.cmd
 
-
-Cheers,
-Andre'
+-- 
+2.11.0
 
 
