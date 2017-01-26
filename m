@@ -1,67 +1,59 @@
-Return-Path: <freesilicon@gmail.com>
+Return-Path: <Jason.Cooper@attocore.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 52756E009AD; Thu, 26 Jan 2017 00:39:13 -0800 (PST)
+	id 19817E0085D; Thu, 26 Jan 2017 02:43:26 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (freesilicon[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.67 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.82.67 listed in dnsbl.sorbs.net]
-Received: from mail-wm0-f67.google.com (mail-wm0-f67.google.com [74.125.82.67])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E9B84E00867
-	for <yocto@yoctoproject.org>; Thu, 26 Jan 2017 00:39:09 -0800 (PST)
-Received: by mail-wm0-f67.google.com with SMTP id r144so48758625wme.0
-	for <yocto@yoctoproject.org>; Thu, 26 Jan 2017 00:39:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:cc:subject:date:message-id:in-reply-to:references;
-	bh=DBuXyl6oNpGCDWYmxv2u/yoH20nYSgFLH29SS0jqdsc=;
-	b=qNGVQlBe3iUafoUOBMX6OuUvJXIrCXDp4qFlLZIe/G6hb60SUlNT4dVX7QB3sb6h3w
-	R+McDBkQzMarQZfcW2AMpzpiwh83pMO6ux1IhyEDeKUzhrArf8PJELijwKFJtRQ/x1ip
-	4gkrOcpHD3Hk4neeu5NdfmuJdHDxbA8C5cX0jPVHEs7Wn+anhQbWz6fXaD2mnf+Fq1nc
-	pqY6sjW27xR8NZmTJrGx1tFq5eVpIRrSYiFFlDxKFqo26/heZeI5sLk0yVbM1YF4sdJZ
-	rzVaM/mp0+G65na0neQAZ6k/4PQF+hoMPZk80DkCEWLKzpL+Nr/0+XkpDr83toh5fGzb
-	lkmg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-	:references;
-	bh=DBuXyl6oNpGCDWYmxv2u/yoH20nYSgFLH29SS0jqdsc=;
-	b=Idn2rnGsdYIxvx1doyUMrmCj6zBz/hMfLxKOmzfE9PW4Pv/XxxbE78vm+hUrmY4qoj
-	LXI9n/1cXcmhi3wZ1YxBue7BIE99rV/dI6pMPpdUNm42LujcU1W9eecIXC5k6ZJXJmuE
-	bR/gD+RapJ4HOqDC2olRfShbDCUpLjR0nHHOi4WKyXI1MFp8MgPjWvs/fyIUYXntdOGs
-	FN56/VBxhFiZb/utiTTtJjsDaU1mV4/yGpppGJhA511uPozso7KZb2Ep0gxKeaLzkhec
-	FoUGBIFywQ9w5LRmR+sysKyv0+PM0+3skRo9KQzSeJPJkdmG5CoEftnIPvm00R5TKSVw
-	0h5g==
-X-Gm-Message-State: AIkVDXIgoaqsFjhIIxHeY7sKMyURAFSdDOxfzO4em5aojadjM8IwXQ8qmxrWVoCgtzMH/w==
-X-Received: by 10.223.167.71 with SMTP id e7mr1482326wrd.154.1485419948468;
-	Thu, 26 Jan 2017 00:39:08 -0800 (PST)
-Received: from localhost.localdomain ([185.47.80.46])
-	by smtp.gmail.com with ESMTPSA id p7sm1387074wrc.2.2017.01.26.00.39.05
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Thu, 26 Jan 2017 00:39:07 -0800 (PST)
-From: David Vincent <freesilicon@gmail.com>
-To: bruce.ashfield@gmail.com,
-	yocto@yoctoproject.org
-Date: Thu, 26 Jan 2017 09:38:08 +0100
-Message-Id: <20170126083808.27949-1-freesilicon@gmail.com>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <CADkTA4N8iMJD1pt=E9qSsjGKAOfvMnHAwS=3h1AntxTxDXOUGQ@mail.gmail.com>
-References: <CADkTA4N8iMJD1pt=E9qSsjGKAOfvMnHAwS=3h1AntxTxDXOUGQ@mail.gmail.com>
-Subject: [PATCH] kernel-yocto: Update source tree with kgit-meta
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+X-Greylist: delayed 997 seconds by postgrey-1.32 at yocto-www;
+	Thu, 26 Jan 2017 02:43:22 PST
+Received: from mx1.solardns.com (mx1.solardns.com [109.73.127.119])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CB60DE0082E
+	for <yocto@yoctoproject.org>; Thu, 26 Jan 2017 02:43:22 -0800 (PST)
+Received: from titan.solardns.com ([213.129.84.167])
+	by mx1.solardns.com with esmtps
+	(TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.86)
+	(envelope-from <Jason.Cooper@attocore.com>)
+	id 1cWhGN-0008K2-Dw; Thu, 26 Jan 2017 10:26:44 +0000
+Received: from [80.85.87.23] (port=52366 helo=[10.8.0.18])
+	by titan.solardns.com with esmtpsa
+	(TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.87)
+	(envelope-from <Jason.Cooper@attocore.com>)
+	id 1cWhGN-001ucT-9L; Thu, 26 Jan 2017 10:26:43 +0000
+From: Jason Cooper <Jason.Cooper@attocore.com>
+To: yocto@yoctoproject.org
+Message-ID: <a7383673-0d71-e73c-9f18-0ffc5f6e9ba7@attocore.com>
+Date: Thu, 26 Jan 2017 10:26:43 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.5.1
+MIME-Version: 1.0
+X-AuthUser: jason.cooper@attocore.com
+X-Originating-IP: 213.129.84.167
+X-SpamExperts-Domain: out.solardns.com
+X-SpamExperts-Username: 213.129.84.167
+Authentication-Results: solardns.com;
+	auth=pass smtp.auth=213.129.84.167@out.solardns.com
+X-SpamExperts-Outgoing-Class: unsure
+X-SpamExperts-Outgoing-Evidence: Combined (0.50)
+X-Recommended-Action: accept
+X-Filter-ID: s0sct1PQhAABKnZB5plbIeDM3CFaILk+pXAj5lg13p3Bkn2V7eX5DaYwDpeBIoaGBjIf54pj8W0w
+	FGRH58WQD6M+f+aiQxyq7mtv3xEd2UkL39xq7iFOofCrBDF/WHtM8psfgciDTedlVS49q/iD+WGx
+	cw3wiKGQw5espMTiPkmKyTz9VqY3I3xkM2Fm9JJ836hipxfgslCv1n9Mb2FW45XJP5sTyAl0Iq4A
+	JGo3KV030OXrvk+NRCiId9raL5YDDbUi/NnhTlhgEBYHGnQ9wnmRjAEWMdJfXJIBIxjtDySgo2Eg
+	KKi5BubPHM68Th8O/z1Qipe0YczecXzcAhw/PyLpQCk9LN96ieg5guM8uFgjsEjgD9bPVONMogqW
+	B/Riv2yws1Z2lXL3aklLfDoslJ4KrJMzhTy/4u5BvaE2XRi4eulKklTg9CWoWP3v3vCCwaEh4MHC
+	ziS+7iGBWJgglI4fsV6VMUQDns66AKNCom+rlcOVKLVL8ICqnrHqCItSkBp1o6ksvu/MCUfP1W3S
+	UlsfersVIkQC+ZylEOD4Nxfv2K2kVZYsHdn7nL9nN+8+3XgnE1t5vxZ+TApKVlvN1A0DDFbYC82S
+	1xHEqATOcSlPW8p9pEocP7Urx8rcAa4jO7uz9AZ3Ew2Chg1trGZ/d4KhjxclRupbAAFsqkHq96QH
+	mFDqewO9xyOqCYO8P1aHYzaNP4QGREZyTZPoqrLKMygMT3gEJWyA1sjaWEbZdSqXcnZVa/7ZEBco
+	qnhGF2YhhnkcAonl3Q/0EYqU2sT2Rt2DpCPlyxQuiYcM0SpCLDyZedOYmRn73hG8gDECUbzlRzSn
+	En+RQV8UENZIDqzRq2SDo+JAHJG25dj6Q3se1O9NdpZGAoL29rHwr/p7LPcT
+X-Report-Abuse-To: spam@mx1.solardns.com
+Subject: mips64 with 'seh' instruction?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,42 +65,71 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 Jan 2017 08:39:13 -0000
+X-List-Received-Date: Thu, 26 Jan 2017 10:43:26 -0000
+Content-Type: multipart/alternative;
+	boundary="------------1CF17DA7DAD62D2F505518F4"
 
-kgit-meta processes a file called meta-series to update the source tree
-(create, merge branches, ...). This fixes the merging of feature
-branches using the new merge command of yocto-kernel-tools.
+--------------1CF17DA7DAD62D2F505518F4
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: David Vincent <freesilicon@gmail.com>
----
- meta/classes/kernel-yocto.bbclass | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+Folks,
 
-diff --git a/meta/classes/kernel-yocto.bbclass b/meta/classes/kernel-yocto.bbclass
-index 5cfd8aff50..b37ac01a84 100644
---- a/meta/classes/kernel-yocto.bbclass
-+++ b/meta/classes/kernel-yocto.bbclass
-@@ -162,6 +162,19 @@ do_kernel_metadata() {
- 			bbfatal_log "Could not generate configuration queue for ${KMACHINE}."
- 		fi
- 	fi
-+
-+	# Update git repository by running kgit-meta
-+	cd ${S}
-+
-+	check_git_config
-+	meta_dir=$(kgit --meta)
-+	if [ -f "${meta_dir}/meta-series" ]; then
-+		kgit-meta ${meta_dir}/meta-series
-+		if [ $? -ne 0 ]; then
-+			bberror "Could not apply metadata for ${KMACHINE}."
-+			bbfatal_log "Failures can be resolved in the linux source directory ${S})"
-+		fi
-+	fi
- }
- 
- do_patch() {
--- 
-2.11.0
+I'm trying to build a mips64 toolchain and qemu runtime. I can build and 
+run code but if I link with a third-party library that contains the 
+'seh' assembly instruction the executable is killed with SIGILL Illegal 
+Instruction, when run with qemu.
+
+If I run the program on the target it works fine. Looking at the 
+disassembly shows me that this is when qemu is trying to execute the 
+'seh' instruction. This is Krogoth 2.1.2 with:
+
+MACHINE = "qemumips64"
+TARGET_FPU = "soft"
+DEFAULTTUNE = "mips64-nf"
+TUNE_FEATURES = "n64 bigendian"
+
+The 'seh' instruction was introduced in mips32 Release 2, I believe. I 
+tried a DEFAULTTUNE of "mips32r2" and a few others but they did not 
+help... or perhaps I should be looking at the qemu code?
+
+Thanks
+
+Jason
 
 
+--------------1CF17DA7DAD62D2F505518F4
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  </head>
+  <body bgcolor="#FFFFFF" text="#333399">
+    <p>Folks,</p>
+    <p>I'm trying to build a mips64 toolchain and qemu runtime. I can
+      build and run code but if I link with a third-party library that
+      contains the 'seh' assembly instruction the executable is killed
+      with SIGILL Illegal Instruction, when run with qemu. </p>
+    <p>If I run the program on the target it works fine. Looking at the
+      disassembly shows me that this is when qemu is trying to execute
+      the 'seh' instruction. This is Krogoth 2.1.2 with:<br>
+    </p>
+    MACHINE = "qemumips64"<br>
+    TARGET_FPU = "soft"<br>
+    DEFAULTTUNE = "mips64-nf"<br>
+    TUNE_FEATURES = "n64 bigendian"<br>
+    <br>
+    <p>The 'seh' instruction was introduced in mips32 Release 2, I
+      believe. I tried a DEFAULTTUNE of "mips32r2" and a few others but
+      they did not help... or perhaps I should be looking at the qemu
+      code?</p>
+    <p>Thanks</p>
+    <p>Jason<br>
+      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    </p>
+  </body>
+</html>
+
+--------------1CF17DA7DAD62D2F505518F4--
