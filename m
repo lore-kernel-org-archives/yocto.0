@@ -1,52 +1,52 @@
-Return-Path: <peter.t.smith@alstom.com>
+Return-Path: <colin.helliwell@ln-systems.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D5224E00833; Thu, 26 Jan 2017 06:04:53 -0800 (PST)
+	id 03E23E004E5; Thu, 26 Jan 2017 06:22:18 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [159.245.16.222 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [212.227.17.24 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 621 seconds by postgrey-1.32 at yocto-www;
-	Thu, 26 Jan 2017 06:04:49 PST
-Received: from MCEGSMTP2.alstom.com (mcegsmtp2.alstom.com [159.245.16.222])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2FD55E006D8
-	for <yocto@yoctoproject.org>; Thu, 26 Jan 2017 06:04:49 -0800 (PST)
-Received: from 041-smtp-out.Alstom.com (unknown [141.251.121.215]) by
-	MCEGSMTP2.alstom.com with smtp
-	(TLS: TLSv1/SSLv3,256bits,ECDHE-RSA-AES256-SHA384)
-	id 0ce8_1476_c1e86ac4_e1e4_44fc_b973_b3b8b5b49b88;
-	Thu, 26 Jan 2017 14:54:27 +0100
-Received: from AMXPR48MB0165.041d.mgd.msft.net (141.251.121.213) by
-	AMXPR48MB0167.041d.mgd.msft.net (141.251.121.215) with Microsoft SMTP
-	Server
-	(version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
-	15.1.874.12; Thu, 26 Jan 2017 13:54:17 +0000
-Received: from AMXPR48MB0165.041d.mgd.msft.net ([141.251.121.213]) by
-	AMXPR48MB0165.041d.mgd.msft.net ([141.251.121.213]) with mapi id
-	15.01.0860.023; Thu, 26 Jan 2017 13:54:16 +0000
-From: SMITH Peter T <peter.t.smith@alstom.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Exception in bitbake during build of openjdk-8 using meta-linaro
-Thread-Index: AdJ32654tpI1sT6KQ0+hng1EoiASzw==
-Date: Thu, 26 Jan 2017 13:54:16 +0000
-Message-ID: <0bbf6acc9f2646b899d4837a90641d26@AMXPR48MB0165.041d.mgd.msft.net>
-Accept-Language: en-GB, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-dg-ref: PG1ldGE+PGF0IG5tPSJib2R5Lmh0bWwiIHA9ImM6XHVzZXJzXDI2NDY3MVxhcHBkYXRhXHJvYW1pbmdcMDlkODQ5YjYtMzJkMy00YTQwLTg1ZWUtNmI4NGJhMjllMzViXG1zZ3NcbXNnLWVjMzVmNjllLWUzY2UtMTFlNi05ZTM3LTAwMDdlOTAzMDM3OVxhbWUtdGVzdFxlYzM1ZjZhMC1lM2NlLTExZTYtOWUzNy0wMDA3ZTkwMzAzNzlib2R5Lmh0bWwiIHN6PSIxNTMxNSIgdD0iMTMxMjk5MTI0NTU3MjI2NDg2IiBoPSJ6SjkxTEtHcjQ1cjZDRGJVUUR2QU9aNkpGcW89IiBpZD0iIiBibD0iMCIgYm89IjEiLz48L21ldGE+
-x-originating-ip: [141.251.119.4]
-x-ms-office365-filtering-correlation-id: 57af76aa-b021-4aad-2d85-08d445f2d1b9
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F23C4E003E1
+	for <yocto@yoctoproject.org>; Thu, 26 Jan 2017 06:22:14 -0800 (PST)
+Received: from LNSYSCH3 ([81.130.69.98]) by mrelayeu.kundenserver.de (mreue102
+	[212.227.15.179]) with ESMTPSA (Nemesis) id 0MGzR4-1cjSFy31kY-00DkkO
+	for <yocto@yoctoproject.org>; Thu, 26 Jan 2017 15:22:12 +0100
+From: <colin.helliwell@ln-systems.com>
+To: "'Yocto discussion list'" <yocto@yoctoproject.org>
+Date: Thu, 26 Jan 2017 14:22:11 -0000
+Organization: LN Systems Limited
+Message-ID: <123e01d277df$9629cd60$c27d6820$@ln-systems.com>
 MIME-Version: 1.0
-Subject: Exception in bitbake during build of openjdk-8 using meta-linaro
+X-Mailer: Microsoft Outlook 15.0
+Thread-Index: AdJ335Sp4czwVRDSRxmTf03q7Fq93g==
+X-Provags-ID: V03:K0:zYXBkSS67FnYvsIWhL04N34PtC9U++mQ/4I5WJ4qp/J+PRp0kGN
+	n4DoTNx1/w0okusiKWguzyW6eGbmjQA1K5BR5LDSMU4+zbDFA3xb6HqRoTpAjqn7nABwnDV
+	2hMWZORMvTwOfNEJExPmJKNHxu5ApnkTGRvGhd5ap/Ofg5RU1mhN3mGEBSmRpViceI66rT3
+	hmrnfXG0pjNzLEwRi0PCw==
+X-UI-Out-Filterresults: notjunk:1;V01:K0:4JFEX7qSZ/U=:/kiDZnmSMXDlM2RusxCC2b
+	4uPzYfsZupcBOv3d2Sa9dvFneNuPENPTvii0Q46FWYq3gXuAw2tbpLuKl/yR+lhzLXgHZ+ISY
+	Ei3RQ0w7q1plgGV2f/8pueYmAeHRCIIYkbBy1+uJlz57XQpe1ZaSSblWW9tYzXaMVaNzr7KB/
+	VlhV9EGSQSCIdYs43KahuKdVS+xM+YsAAPBPtPIfjifEaStMGxCryC9LuH8I+9M8qpX0Np5eC
+	0lL8CBsrS/N6061vievcBe2V2CYs/10tbubxz/XjYG433RFHu2Td4Wfc5eYROH0SdHsbLMf+9
+	IIqVPYD9RNvQDEXLYzyoo6s2IcGiHkrpTH5jHqDhm82nYe6/zCM0KCHigBF5IgXq2+6kJmOU6
+	yn4Lp1Uv8L3Ya3LxpQJM9WEh9xYrrm1srecq5Wa0L6xnl9uuszSFyz4n+3zPhS/B83boxduIB
+	nZAN9rA1XB3hzHIEYqv/6W01IhfeivRusJPiYN26w4awGKevYeih3F2DLZruBGvitauJncL5v
+	5SNHyfnJWNqJLfnbJmaCUcy7KXapmBoK0VrIyhvZm5/kDi6XoPc3lVOfEl9uG3aJk4IARbW39
+	XzKXwWrrWDWciMKnZWRAxA9aBaCHKBJ9NsEEmOwZ5g8dlBQ73JPRGkmmkMhU0Jxnjh5T/ZHA2
+	T05F1Duuxd8D90zxYgXvN8b/zxoB8WSbqLUtJlVojTpwIYx/63Wbm8zSp0+njiawhk0LzINjd
+	Box5c8MOI8/3gbqR
+Subject: QEMU with host USB serial
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: colin.helliwell@ln-systems.com
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -55,168 +55,179 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 Jan 2017 14:04:53 -0000
-Content-Language: en-US
+X-List-Received-Date: Thu, 26 Jan 2017 14:22:18 -0000
 Content-Type: multipart/alternative;
-	boundary="_000_0bbf6acc9f2646b899d4837a90641d26AMXPR48MB0165041dmgdmsf_"
+	boundary="----=_NextPart_000_123F_01D277DF.962C6570"
+Content-Language: en-gb
 
---_000_0bbf6acc9f2646b899d4837a90641d26AMXPR48MB0165041dmgdmsf_
-Content-Type: text/plain; charset="us-ascii"
+------=_NextPart_000_123F_01D277DF.962C6570
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+
+I'm investigating using qemu to give us some test capability, for which we
+need to use the host's serial devices.
+
+I have a qemu build which boots up fine; I'm trying to give it access to the
+host USB. To keep it simple(r), I've seen mention of FTDI's device
+(0403:6001) in the qemu source so that's what I've plugged in. I've done a
+'chmod me:me' on the relevant /dev/bus/usb/xxx/yyy node.
+
+ 
+
+I can't though figure out what options I should be passing to runqemu to
+hook this in. I daresay I may need bootparams too, but am first just trying
+to get past 'qemuparams'.
+
+As a starting point, I'm trying things like
+
+    runqemu qemux86-64 nographic qemuparams="-usbdevice serial"
+
+ 
+
+which reports
+
+ 
+
+Continuing with the following parameters:
+
+KERNEL:
+[/home/colin/100051-karo/fsl-community-bsp/buildq/tmp/deploy/images/qemux86-
+64/bzImage-qemux86-64.bin]
+
+ROOTFS:
+[/home/colin/100051-karo/fsl-community-bsp/buildq/tmp/deploy/images/qemux86-
+64/core-image-qemu-qemux86-64-20170124145819.rootfs.ext4]
+
+FSTYPE: [ext4]
+
+Setting up tap interface under sudo
+
+Acquiring lockfile for tap0...
+
+-net nic,model=virtio -net tap,vlan=0,ifname=tap0,script=no,downscript=no
+-cpu core2duo -drive
+file=/home/colin/100051-karo/fsl-community-bsp/buildq/tmp/deploy/images/qemu
+x86-64/core-image-qemu-qemux86-64-20170124145819.rootfs.ext4,if=virtio,forma
+t=raw -show-cursor -usb -usbdevice wacom-tablet -vga vmware   -nographic
+-usbdevice serial -m 256
+
+Running qemu-system-x86_64...
+
+/home/colin/100051-karo/fsl-community-bsp/buildq/tmp/sysroots/x86_64-linux/u
+sr/bin/qemu-system-x86_64 -kernel
+/home/colin/100051-karo/fsl-community-bsp/buildq/tmp/deploy/images/qemux86-6
+4/bzImage-qemux86-64.bin -net nic,model=virtio -net
+tap,vlan=0,ifname=tap0,script=no,downscript=no -cpu core2duo -drive
+file=/home/colin/100051-karo/fsl-community-bsp/buildq/tmp/deploy/images/qemu
+x86-64/core-image-qemu-qemux86-64-20170124145819.rootfs.ext4,if=virtio,forma
+t=raw -show-cursor -usb -usbdevice wacom-tablet -vga vmware -no-reboot
+-nographic -usbdevice serial -m 256 -serial mon:stdio -serial null --append
+"vga=0 uvesafb.mode_option=640x480-32 root=/dev/vda rw mem=256M
+ip=192.168.7.2::192.168.7.1:255.255.255.0 oprofile.timer=1 rootfstype=ext4
+console=ttyS0"
+
+qemu-system-x86_64: -usbdevice serial: character device specification needed
+
+qemu-system-x86_64: -usbdevice serial: Failed to create USB device
+'usb-serial'
+
+qemu: could not add USB device 'serial'
+
+Set 'tap0' nonpersistent
+
+Releasing lockfile of preconfigured tap device 'tap0'
+
+ 
+
+Or
+
+   runqemu qemux86-64 nographic qemuparams="-device
+usb-serial,vendorid=0403,productid=6001"
+
+ 
+
+which reports
+
+ 
+
+Please use simplified serial or kvm options instead
+
+Continuing with the following parameters:
+
+KERNEL:
+[/home/colin/100051-karo/fsl-community-bsp/buildq/tmp/deploy/images/qemux86-
+64/bzImage-qemux86-64.bin]
+
+ROOTFS:
+[/home/colin/100051-karo/fsl-community-bsp/buildq/tmp/deploy/images/qemux86-
+64/core-image-qemu-qemux86-64-20170124145819.rootfs.ext4]
+
+FSTYPE: [ext4]
+
+Setting up tap interface under sudo
+
+Acquiring lockfile for tap0...
+
+-net nic,model=virtio -net tap,vlan=0,ifname=tap0,script=no,downscript=no
+-cpu core2duo -drive
+file=/home/colin/100051-karo/fsl-community-bsp/buildq/tmp/deploy/images/qemu
+x86-64/core-image-qemu-qemux86-64-20170124145819.rootfs.ext4,if=virtio,forma
+t=raw -show-cursor -usb -usbdevice wacom-tablet -vga vmware   -nographic
+-device usb-serial,vendorid=0403,productid=6001 -m 256
+
+Running qemu-system-x86_64...
+
+/home/colin/100051-karo/fsl-community-bsp/buildq/tmp/sysroots/x86_64-linux/u
+sr/bin/qemu-system-x86_64 -kernel
+/home/colin/100051-karo/fsl-community-bsp/buildq/tmp/deploy/images/qemux86-6
+4/bzImage-qemux86-64.bin -net nic,model=virtio -net
+tap,vlan=0,ifname=tap0,script=no,downscript=no -cpu core2duo -drive
+file=/home/colin/100051-karo/fsl-community-bsp/buildq/tmp/deploy/images/qemu
+x86-64/core-image-qemu-qemux86-64-20170124145819.rootfs.ext4,if=virtio,forma
+t=raw -show-cursor -usb -usbdevice wacom-tablet -vga vmware -no-reboot
+-nographic -device usb-serial,vendorid=0403,productid=6001 -m 256 -serial
+null --append "vga=0 uvesafb.mode_option=640x480-32 root=/dev/vda rw
+mem=256M ip=192.168.7.2::192.168.7.1:255.255.255.0 oprofile.timer=1
+rootfstype=ext4 console=ttyS0"
+
+QEMU 2.4.0 monitor - type 'help' for more information
+
+(qemu) usb_device_add 1 'wacom-tablet'
+
+usb_device_add success 'wacom-tablet'
+
+qemu-system-x86_64: -device usb-serial,vendorid=0403,productid=6001:
+Property '.vendorid' not found
+
+Set 'tap0' nonpersistent
+
+Releasing lockfile of preconfigured tap device 'tap0'
+
+ 
+
+ 
+
+Can someone clue me in on the correct syntax please!
+
+Thanks
+
+ 
+
+
+------=_NextPart_000_123F_01D277DF.962C6570
+Content-Type: text/html;
+	charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hi, I am trying to build openjdk-8 from the meta-linaro layer (I'm specific=
-ally interested in building for aarch64), everything proceeds well with gat=
-hering and building the dependencies until poky/bitbake attempts to fetch s=
-ources using hg when I see the error below. Anyone seen this before or can =
-offer a pointer to what might be wrong?
-
-
-DEBUG: Executing python function do_fetch
-DEBUG: Executing python function base_do_fetch
-ERROR: Error executing a python function in exec_python_func() autogenerate=
-d:
-
-The stack trace of python calls that resulted in this exception/failure was=
-:
-File: 'exec_python_func() autogenerated', lineno: 2, function: <module>
-     0001:
-*** 0002:base_do_fetch(d)
-     0003:
-File: '/sdd/peter/Yocto/TEST/sources/poky/meta/classes/base.bbclass', linen=
-o: 134, function: base_do_fetch
-     0130:    if len(src_uri) =3D=3D 0:
-     0131:        return
-     0132:
-     0133:    try:
-*** 0134:        fetcher =3D bb.fetch2.Fetch(src_uri, d)
-     0135:        fetcher.download()
-     0136:    except bb.fetch2.BBFetchException as e:
-     0137:        bb.fatal(str(e))
-     0138:}
-File: '/sdd/peter/Yocto/TEST/sources/poky/bitbake/lib/bb/fetch2/__init__.py=
-', lineno: 1535, function: __init__
-     1531:
-     1532:        for url in urls:
-     1533:            if url not in self.ud:
-     1534:                try:
-*** 1535:                    self.ud[url] =3D FetchData(url, d, localonly)
-     1536:                except NonLocalMethod:
-     1537:                    if localonly:
-     1538:                        self.ud[url] =3D None
-     1539:                        pass
-File: '/sdd/peter/Yocto/TEST/sources/poky/bitbake/lib/bb/fetch2/__init__.py=
-', lineno: 1214, function: __init__
-     1210:            logger.warning('Consider updating %s recipe to use "p=
-rotocol" not "proto" in SRC_URI.', d.getVar('PN'))
-     1211:            self.parm["protocol"] =3D self.parm.get("proto", None=
-)
-     1212:
-     1213:        if hasattr(self.method, "urldata_init"):
-*** 1214:            self.method.urldata_init(self, d)
-     1215:
-     1216:        if "localpath" in self.parm:
-     1217:            # if user sets localpath for file, use it instead.
-     1218:            self.localpath =3D self.parm["localpath"]
-File: '/sdd/peter/Yocto/TEST/sources/poky/bitbake/lib/bb/fetch2/hg.py', lin=
-eno: 70, function: urldata_init
-     0066:            ud.proto =3D 'file'
-     0067:        else:
-     0068:            ud.proto =3D "hg"
-     0069:
-*** 0070:        ud.setup_revisons(d)
-     0071:
-     0072:        if 'rev' in ud.parm:
-     0073:            ud.revision =3D ud.parm['rev']
-     0074:        elif not ud.revision:
-File: '/sdd/peter/Yocto/TEST/sources/poky/bitbake/lib/bb/fetch2/__init__.py=
-', lineno: 1244, function: setup_revisons
-     1240:
-     1241:    def setup_revisons(self, d):
-     1242:        self.revisions =3D {}
-     1243:        for name in self.names:
-*** 1244:            self.revisions[name] =3D srcrev_internal_helper(self, =
-d, name)
-     1245:
-     1246:        # add compatibility code for non name specified case
-     1247:        if len(self.names) =3D=3D 1:
-     1248:            self.revision =3D self.revisions[self.names[0]]
-File: '/sdd/peter/Yocto/TEST/sources/poky/bitbake/lib/bb/fetch2/__init__.py=
-', lineno: 1109, function: srcrev_internal_helper
-     1105:
-     1106:    if srcrev =3D=3D "INVALID" or not srcrev:
-     1107:        raise FetchError("Please set a valid SRCREV for url %s (p=
-ossible key names are %s, or use a ;rev=3DX URL parameter)" % (str(attempts=
-), ud.url), ud.url)
-     1108:    if srcrev =3D=3D "AUTOINC":
-*** 1109:        srcrev =3D ud.method.latest_revision(ud, d, name)
-     1110:
-     1111:    return srcrev
-     1112:
-     1113:def get_checksum_file_list(d):
-File: '/sdd/peter/Yocto/TEST/sources/poky/bitbake/lib/bb/fetch2/__init__.py=
-', lineno: 1500, function: latest_revision
-     1496:        if not hasattr(self, "_latest_revision"):
-     1497:            raise ParameterError("The fetcher for this URL does n=
-ot support _latest_revision", url)
-     1498:
-     1499:        revs =3D bb.persist_data.persist('BB_URI_HEADREVS', d)
-*** 1500:        key =3D self.generate_revision_key(ud, d, name)
-     1501:        try:
-     1502:            return revs[key]
-     1503:        except KeyError:
-     1504:            revs[key] =3D rev =3D self._latest_revision(ud, d, na=
-me)
-File: '/sdd/peter/Yocto/TEST/sources/poky/bitbake/lib/bb/fetch2/__init__.py=
-', lineno: 1512, function: generate_revision_key
-     1508:        latest_rev =3D self._build_revision(ud, d, name)
-     1509:        return True, str(latest_rev)
-     1510:
-     1511:    def generate_revision_key(self, ud, d, name):
-*** 1512:        key =3D self._revision_key(ud, d, name)
-     1513:        return "%s-%s" % (key, d.getVar("PN") or "")
-     1514:
-     1515:class Fetch(object):
-     1516:    def __init__(self, urls, d, cache =3D True, localonly =3D Fal=
-se, connection_cache =3D None):
-File: '/sdd/peter/Yocto/TEST/sources/poky/bitbake/lib/bb/fetch2/hg.py', lin=
-eno: 235, function: _revision_key
-     0231:    def _revision_key(self, ud, d, name):
-     0232:        """
-     0233:        Return a unique key for the url
-     0234:        """
-*** 0235:        return "hg:" + ud.moddir
-     0236:
-     0237:    def build_mirror_data(self, ud, d):
-     0238:        # Generate a mirror tarball if needed
-     0239:        if ud.write_tarballs =3D=3D "1" and not os.path.exists(ud=
-.fullmirror):
-Exception: AttributeError: 'FetchData' object has no attribute 'moddir'
-
-DEBUG: Python function base_do_fetch finished
-DEBUG: Python function do_fetch finished
-ERROR: Function failed: base_do_fetch
-
-Peter Smith
-
-________________________________
-CONFIDENTIALITY : This e-mail and any attachments are confidential and may =
-be privileged. If you are not a named recipient, please notify the sender i=
-mmediately and do not disclose the contents to another person, use it for a=
-ny purpose or store or copy the information in any medium.
-
---_000_0bbf6acc9f2646b899d4837a90641d26AMXPR48MB0165041dmgdmsf_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
 /* Font Definitions */
 @font-face
 	{font-family:"Cambria Math";
@@ -233,11 +244,11 @@ p.MsoNormal, li.MsoNormal, div.MsoNormal
 	mso-fareast-language:EN-US;}
 a:link, span.MsoHyperlink
 	{mso-style-priority:99;
-	color:blue;
+	color:#0563C1;
 	text-decoration:underline;}
 a:visited, span.MsoHyperlinkFollowed
 	{mso-style-priority:99;
-	color:purple;
+	color:#954F72;
 	text-decoration:underline;}
 span.EmailStyle17
 	{mso-style-type:personal-compose;
@@ -257,254 +268,116 @@ div.WordSection1
 </xml><![endif]--><!--[if gte mso 9]><xml>
 <o:shapelayout v:ext=3D"edit">
 <o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-GB" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi, I am trying to build openjdk-8 from the meta-lin=
-aro layer (I&#8217;m specifically interested in building for aarch64), ever=
-ything proceeds well with gathering and building the dependencies until pok=
-y/bitbake attempts to fetch sources using
- hg when I see the error below. Anyone seen this before or can offer a poin=
-ter to what might be wrong?<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">DEBUG: Executing python function do_fetch<o:p></o:p>=
-</p>
-<p class=3D"MsoNormal">DEBUG: Executing python function base_do_fetch<o:p><=
-/o:p></p>
-<p class=3D"MsoNormal">ERROR: Error executing a python function in exec_pyt=
-hon_func() autogenerated:<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">The stack trace of python calls that resulted in thi=
-s exception/failure was:<o:p></o:p></p>
-<p class=3D"MsoNormal">File: 'exec_python_func() autogenerated', lineno: 2,=
- function: &lt;module&gt;<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0001:<o:p></o:p></p>
-<p class=3D"MsoNormal">*** 0002:base_do_fetch(d)<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0003:<o:p></o:p></p>
-<p class=3D"MsoNormal">File: '/sdd/peter/Yocto/TEST/sources/poky/meta/class=
-es/base.bbclass', lineno: 134, function: base_do_fetch<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0130:&nbsp;&nbsp;&nbsp; if =
-len(src_uri) =3D=3D 0:<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0131:&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp; return<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0132:<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0133:&nbsp;&nbsp;&nbsp; try=
-:<o:p></o:p></p>
-<p class=3D"MsoNormal">*** 0134:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
-fetcher =3D bb.fetch2.Fetch(src_uri, d)<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0135:&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp; fetcher.download()<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0136:&nbsp;&nbsp;&nbsp; exc=
-ept bb.fetch2.BBFetchException as e:<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0137:&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp; bb.fatal(str(e))<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0138:}<o:p></o:p></p>
-<p class=3D"MsoNormal">File: '/sdd/peter/Yocto/TEST/sources/poky/bitbake/li=
-b/bb/fetch2/__init__.py', lineno: 1535, function: __init__<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1531:<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1532:&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp; for url in urls:<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1533:&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if url not in self.ud:<o:p></o=
-:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1534:&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try:<o=
-:p></o:p></p>
-<p class=3D"MsoNormal">*** 1535:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sel=
-f.ud[url] =3D FetchData(url, d, localonly)<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1536:&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; except=
- NonLocalMethod:<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1537:&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp; if localonly:<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1538:&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; self.ud[url] =3D None<o:p></o:p><=
-/p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1539:&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pass<o:p></o:p></p>
-<p class=3D"MsoNormal">File: '/sdd/peter/Yocto/TEST/sources/poky/bitbake/li=
-b/bb/fetch2/__init__.py', lineno: 1214, function: __init__<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1210:&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; logger.warning('Consider updat=
-ing %s recipe to use &quot;protocol&quot; not &quot;proto&quot; in SRC_URI.=
-', d.getVar('PN'))<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1211:&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; self.parm[&quot;protocol&quot;=
-] =3D self.parm.get(&quot;proto&quot;, None)<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1212:<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1213:&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp; if hasattr(self.method, &quot;urldata_init&quot;):<o:p=
-></o:p></p>
-<p class=3D"MsoNormal">*** 1214:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp; self.method.urldata_init(self, d)<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1215:<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1216:&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp; if &quot;localpath&quot; in self.parm:<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1217:&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # if user sets localpath for f=
-ile, use it instead.<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1218:&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; self.localpath =3D self.parm[&=
-quot;localpath&quot;]<o:p></o:p></p>
-<p class=3D"MsoNormal">File: '/sdd/peter/Yocto/TEST/sources/poky/bitbake/li=
-b/bb/fetch2/hg.py', lineno: 70, function: urldata_init<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0066:&nbsp;&nbsp;&nbsp; &nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ud.proto =3D 'file'<o:p></o:p>=
-</p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0067:&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp; else:<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0068:&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ud.proto =3D &quot;hg&quot;<o:=
-p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0069:<o:p></o:p></p>
-<p class=3D"MsoNormal">*** 0070:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
-ud.setup_revisons(d)<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0071:<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0072:&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp; if 'rev' in ud.parm:<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0073:&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ud.revision =3D ud.parm['rev']=
-<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0074:&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; &nbsp;elif not ud.revision:<o:p></o:p></p>
-<p class=3D"MsoNormal">File: '/sdd/peter/Yocto/TEST/sources/poky/bitbake/li=
-b/bb/fetch2/__init__.py', lineno: 1244, function: setup_revisons<o:p></o:p>=
-</p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1240:<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1241:&nbsp;&nbsp;&nbsp; def=
- setup_revisons(self, d):<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1242:&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp; self.revisions =3D {}<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1243:&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp; for name in self.names:<o:p></o:p></p>
-<p class=3D"MsoNormal">*** 1244:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp; self.revisions[name] =3D srcrev_internal_helper(sel=
-f, d, name)<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1245:<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1246:&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp; # add compatibility code for non name specified case<o=
-:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1247:&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp; if len(self.names) =3D=3D 1:<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1248:&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; self.revision =3D self.revisio=
-ns[self.names[0]]<o:p></o:p></p>
-<p class=3D"MsoNormal">File: '/sdd/peter/Yocto/TEST/sources/poky/bitbake/li=
-b/bb/fetch2/__init__.py', lineno: 1109, function: srcrev_internal_helper<o:=
-p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1105:<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1106:&nbsp;&nbsp;&nbsp; if =
-srcrev =3D=3D &quot;INVALID&quot; or not srcrev:<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1107:&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp; raise FetchError(&quot;Please set a valid SRCREV for u=
-rl %s (possible key names are %s, or use a ;rev=3DX URL parameter)&quot; % =
-(str(attempts), ud.url), ud.url)<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1108:&nbsp;&nbsp;&nbsp; if =
-srcrev =3D=3D &quot;AUTOINC&quot;:<o:p></o:p></p>
-<p class=3D"MsoNormal">*** 1109:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
-srcrev =3D ud.method.latest_revision(ud, d, name)<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1110:<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1111:&nbsp;&nbsp;&nbsp; ret=
-urn srcrev<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1112:<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1113:def get_checksum_file_=
-list(d):<o:p></o:p></p>
-<p class=3D"MsoNormal">File: '/sdd/peter/Yocto/TEST/sources/poky/bitbake/li=
-b/bb/fetch2/__init__.py', lineno: 1500, function: latest_revision<o:p></o:p=
-></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1496:&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp; if not hasattr(self, &quot;_latest_revision&quot;):<o:=
-p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1497:&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; raise ParameterError(&quot;The=
- fetcher for this URL does not support _latest_revision&quot;, url)<o:p></o=
-:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1498:<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1499:&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp; revs =3D bb.persist_data.persist('BB_URI_HEADREVS', d)=
-<o:p></o:p></p>
-<p class=3D"MsoNormal">*** 1500:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
-key =3D self.generate_revision_key(ud, d, name)<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1501:&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp; try:<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1502:&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return revs[key]<o:p></o:p></p=
->
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1503:&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp; except KeyError:<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1504:&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; revs[key] =3D rev =3D self._la=
-test_revision(ud, d, name)<o:p></o:p></p>
-<p class=3D"MsoNormal">File: '/sdd/peter/Yocto/TEST/sources/poky/bitbake/li=
-b/bb/fetch2/__init__.py', lineno: 1512, function: generate_revision_key<o:p=
-></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1508:&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp; latest_rev =3D self._build_revision(ud, d, name)<o:p><=
-/o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1509:&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp; return True, str(latest_rev)<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1510:<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1511:&nbsp;&nbsp;&nbsp; def=
- generate_revision_key(self, ud, d, name):<o:p></o:p></p>
-<p class=3D"MsoNormal">*** 1512:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
-key =3D self._revision_key(ud, d, name)<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1513:&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp; return &quot;%s-%s&quot; % (key, d.getVar(&quot;PN&quo=
-t;) or &quot;&quot;)<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1514:<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1515:class Fetch(object):<o=
-:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1516:&nbsp;&nbsp;&nbsp; def=
- __init__(self, urls, d, cache =3D True, localonly =3D False, connection_ca=
-che =3D None):<o:p></o:p></p>
-<p class=3D"MsoNormal">File: '/sdd/peter/Yocto/TEST/sources/poky/bitbake/li=
-b/bb/fetch2/hg.py', lineno: 235, function: _revision_key<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0231:&nbsp;&nbsp;&nbsp; def=
- _revision_key(self, ud, d, name):<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0232:&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp; &quot;&quot;&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0233:&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp; Return a unique key for the url<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0234:&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp; &quot;&quot;&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal">*** 0235:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
-return &quot;hg:&quot; &#43; ud.moddir<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0236:<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0237:&nbsp;&nbsp;&nbsp; def=
- build_mirror_data(self, ud, d):<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0238:&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp; # Generate a mirror tarball if needed<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0239:&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp; if ud.write_tarballs =3D=3D &quot;1&quot; and not os.p=
-ath.exists(ud.fullmirror):<o:p></o:p></p>
-<p class=3D"MsoNormal">Exception: AttributeError: 'FetchData' object has no=
- attribute 'moddir'<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">DEBUG: Python function base_do_fetch finished<o:p></=
-o:p></p>
-<p class=3D"MsoNormal">DEBUG: Python function do_fetch finished<o:p></o:p><=
-/p>
-<p class=3D"MsoNormal">ERROR: Function failed: base_do_fetch<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:9.0pt;font-family:&quot;=
-Arial&quot;,sans-serif;color:#005CB9;mso-fareast-language:EN-GB">Peter Smit=
-h<o:p></o:p></span></b></p>
-</div>
-<br>
-<hr>
-<font face=3D"Arial" color=3D"Black" size=3D"2">CONFIDENTIALITY : This e-ma=
-il and any attachments are confidential and may be privileged. If you are n=
-ot a named recipient, please notify the sender immediately and do not discl=
-ose the contents to another person, use
- it for any purpose or store or copy the information in any medium.<br>
-</font>
-</body>
-</html>
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-GB =
+link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
+class=3DMsoNormal>I&#8217;m investigating using qemu to give us some =
+test capability, for which we need to use the host&#8217;s serial =
+devices.<o:p></o:p></p><p class=3DMsoNormal>I have a qemu build which =
+boots up fine; I&#8217;m trying to give it access to the host USB. To =
+keep it simple(r), I&#8217;ve seen mention of FTDI&#8217;s device =
+(0403:6001) in the qemu source so that&#8217;s what I&#8217;ve plugged =
+in. I&#8217;ve done a &#8216;chmod me:me&#8217; on the relevant =
+/dev/bus/usb/xxx/yyy node.<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>I =
+can&#8217;t though figure out what options I should be passing to =
+runqemu to hook this in. I daresay I may need bootparams too, but am =
+first just trying to get past &#8216;qemuparams&#8217;.<o:p></o:p></p><p =
+class=3DMsoNormal>As a starting point, I&#8217;m trying things =
+like<o:p></o:p></p><p class=3DMsoNormal>&nbsp;&nbsp;&nbsp; runqemu =
+qemux86-64 nographic qemuparams=3D&quot;-usbdevice =
+serial&quot;<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal>which reports<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>Continuing =
+with the following parameters:<o:p></o:p></p><p =
+class=3DMsoNormal>KERNEL: =
+[/home/colin/100051-karo/fsl-community-bsp/buildq/tmp/deploy/images/qemux=
+86-64/bzImage-qemux86-64.bin]<o:p></o:p></p><p class=3DMsoNormal>ROOTFS: =
+[/home/colin/100051-karo/fsl-community-bsp/buildq/tmp/deploy/images/qemux=
+86-64/core-image-qemu-qemux86-64-20170124145819.rootfs.ext4]<o:p></o:p></=
+p><p class=3DMsoNormal>FSTYPE: [ext4]<o:p></o:p></p><p =
+class=3DMsoNormal>Setting up tap interface under sudo<o:p></o:p></p><p =
+class=3DMsoNormal>Acquiring lockfile for tap0...<o:p></o:p></p><p =
+class=3DMsoNormal>-net nic,model=3Dvirtio -net =
+tap,vlan=3D0,ifname=3Dtap0,script=3Dno,downscript=3Dno -cpu core2duo =
+-drive =
+file=3D/home/colin/100051-karo/fsl-community-bsp/buildq/tmp/deploy/images=
+/qemux86-64/core-image-qemu-qemux86-64-20170124145819.rootfs.ext4,if=3Dvi=
+rtio,format=3Draw -show-cursor -usb -usbdevice wacom-tablet -vga =
+vmware&nbsp;&nbsp; -nographic -usbdevice serial -m 256<o:p></o:p></p><p =
+class=3DMsoNormal>Running qemu-system-x86_64...<o:p></o:p></p><p =
+class=3DMsoNormal>/home/colin/100051-karo/fsl-community-bsp/buildq/tmp/sy=
+sroots/x86_64-linux/usr/bin/qemu-system-x86_64 -kernel =
+/home/colin/100051-karo/fsl-community-bsp/buildq/tmp/deploy/images/qemux8=
+6-64/bzImage-qemux86-64.bin -net nic,model=3Dvirtio -net =
+tap,vlan=3D0,ifname=3Dtap0,script=3Dno,downscript=3Dno -cpu core2duo =
+-drive =
+file=3D/home/colin/100051-karo/fsl-community-bsp/buildq/tmp/deploy/images=
+/qemux86-64/core-image-qemu-qemux86-64-20170124145819.rootfs.ext4,if=3Dvi=
+rtio,format=3Draw -show-cursor -usb -usbdevice wacom-tablet -vga vmware =
+-no-reboot -nographic -usbdevice serial -m 256 -serial mon:stdio -serial =
+null --append &quot;vga=3D0 uvesafb.mode_option=3D640x480-32 =
+root=3D/dev/vda rw mem=3D256M =
+ip=3D192.168.7.2::192.168.7.1:255.255.255.0 oprofile.timer=3D1 =
+rootfstype=3Dext4 console=3DttyS0&quot;<o:p></o:p></p><p =
+class=3DMsoNormal>qemu-system-x86_64: -usbdevice serial: character =
+device specification needed<o:p></o:p></p><p =
+class=3DMsoNormal>qemu-system-x86_64: -usbdevice serial: Failed to =
+create USB device 'usb-serial'<o:p></o:p></p><p class=3DMsoNormal>qemu: =
+could not add USB device 'serial'<o:p></o:p></p><p class=3DMsoNormal>Set =
+'tap0' nonpersistent<o:p></o:p></p><p class=3DMsoNormal>Releasing =
+lockfile of preconfigured tap device 'tap0'<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal>Or<o:p></o:p></p><p class=3DMsoNormal>&nbsp;&nbsp; =
+runqemu qemux86-64 nographic qemuparams=3D&quot;-device =
+usb-serial,vendorid=3D0403,productid=3D6001&quot;<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>which =
+reports<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal>Please use simplified serial or kvm options =
+instead<o:p></o:p></p><p class=3DMsoNormal>Continuing with the following =
+parameters:<o:p></o:p></p><p class=3DMsoNormal>KERNEL: =
+[/home/colin/100051-karo/fsl-community-bsp/buildq/tmp/deploy/images/qemux=
+86-64/bzImage-qemux86-64.bin]<o:p></o:p></p><p class=3DMsoNormal>ROOTFS: =
+[/home/colin/100051-karo/fsl-community-bsp/buildq/tmp/deploy/images/qemux=
+86-64/core-image-qemu-qemux86-64-20170124145819.rootfs.ext4]<o:p></o:p></=
+p><p class=3DMsoNormal>FSTYPE: [ext4]<o:p></o:p></p><p =
+class=3DMsoNormal>Setting up tap interface under sudo<o:p></o:p></p><p =
+class=3DMsoNormal>Acquiring lockfile for tap0...<o:p></o:p></p><p =
+class=3DMsoNormal>-net nic,model=3Dvirtio -net =
+tap,vlan=3D0,ifname=3Dtap0,script=3Dno,downscript=3Dno -cpu core2duo =
+-drive =
+file=3D/home/colin/100051-karo/fsl-community-bsp/buildq/tmp/deploy/images=
+/qemux86-64/core-image-qemu-qemux86-64-20170124145819.rootfs.ext4,if=3Dvi=
+rtio,format=3Draw -show-cursor -usb -usbdevice wacom-tablet -vga =
+vmware&nbsp;&nbsp; -nographic -device =
+usb-serial,vendorid=3D0403,productid=3D6001 -m 256<o:p></o:p></p><p =
+class=3DMsoNormal>Running qemu-system-x86_64...<o:p></o:p></p><p =
+class=3DMsoNormal>/home/colin/100051-karo/fsl-community-bsp/buildq/tmp/sy=
+sroots/x86_64-linux/usr/bin/qemu-system-x86_64 -kernel =
+/home/colin/100051-karo/fsl-community-bsp/buildq/tmp/deploy/images/qemux8=
+6-64/bzImage-qemux86-64.bin -net nic,model=3Dvirtio -net =
+tap,vlan=3D0,ifname=3Dtap0,script=3Dno,downscript=3Dno -cpu core2duo =
+-drive =
+file=3D/home/colin/100051-karo/fsl-community-bsp/buildq/tmp/deploy/images=
+/qemux86-64/core-image-qemu-qemux86-64-20170124145819.rootfs.ext4,if=3Dvi=
+rtio,format=3Draw -show-cursor -usb -usbdevice wacom-tablet -vga vmware =
+-no-reboot -nographic -device =
+usb-serial,vendorid=3D0403,productid=3D6001 -m 256 -serial null --append =
+&quot;vga=3D0 uvesafb.mode_option=3D640x480-32 root=3D/dev/vda rw =
+mem=3D256M ip=3D192.168.7.2::192.168.7.1:255.255.255.0 =
+oprofile.timer=3D1 rootfstype=3Dext4 =
+console=3DttyS0&quot;<o:p></o:p></p><p class=3DMsoNormal>QEMU 2.4.0 =
+monitor - type 'help' for more information<o:p></o:p></p><p =
+class=3DMsoNormal>(qemu) usb_device_add 1 =
+'wacom-tablet'<o:p></o:p></p><p class=3DMsoNormal>usb_device_add success =
+'wacom-tablet'<o:p></o:p></p><p class=3DMsoNormal>qemu-system-x86_64: =
+-device usb-serial,vendorid=3D0403,productid=3D6001: Property =
+'.vendorid' not found<o:p></o:p></p><p class=3DMsoNormal>Set 'tap0' =
+nonpersistent<o:p></o:p></p><p class=3DMsoNormal>Releasing lockfile of =
+preconfigured tap device 'tap0'<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>Can someone =
+clue me in on the correct syntax please!<o:p></o:p></p><p =
+class=3DMsoNormal>Thanks<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
 
---_000_0bbf6acc9f2646b899d4837a90641d26AMXPR48MB0165041dmgdmsf_--
+------=_NextPart_000_123F_01D277DF.962C6570--
