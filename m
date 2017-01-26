@@ -1,59 +1,49 @@
-Return-Path: <Jason.Cooper@attocore.com>
+Return-Path: <peter.t.smith@alstom.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 19817E0085D; Thu, 26 Jan 2017 02:43:26 -0800 (PST)
+	id D5224E00833; Thu, 26 Jan 2017 06:04:53 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [159.245.16.222 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 997 seconds by postgrey-1.32 at yocto-www;
-	Thu, 26 Jan 2017 02:43:22 PST
-Received: from mx1.solardns.com (mx1.solardns.com [109.73.127.119])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CB60DE0082E
-	for <yocto@yoctoproject.org>; Thu, 26 Jan 2017 02:43:22 -0800 (PST)
-Received: from titan.solardns.com ([213.129.84.167])
-	by mx1.solardns.com with esmtps
-	(TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.86)
-	(envelope-from <Jason.Cooper@attocore.com>)
-	id 1cWhGN-0008K2-Dw; Thu, 26 Jan 2017 10:26:44 +0000
-Received: from [80.85.87.23] (port=52366 helo=[10.8.0.18])
-	by titan.solardns.com with esmtpsa
-	(TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.87)
-	(envelope-from <Jason.Cooper@attocore.com>)
-	id 1cWhGN-001ucT-9L; Thu, 26 Jan 2017 10:26:43 +0000
-From: Jason Cooper <Jason.Cooper@attocore.com>
-To: yocto@yoctoproject.org
-Message-ID: <a7383673-0d71-e73c-9f18-0ffc5f6e9ba7@attocore.com>
-Date: Thu, 26 Jan 2017 10:26:43 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.5.1
+X-Greylist: delayed 621 seconds by postgrey-1.32 at yocto-www;
+	Thu, 26 Jan 2017 06:04:49 PST
+Received: from MCEGSMTP2.alstom.com (mcegsmtp2.alstom.com [159.245.16.222])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2FD55E006D8
+	for <yocto@yoctoproject.org>; Thu, 26 Jan 2017 06:04:49 -0800 (PST)
+Received: from 041-smtp-out.Alstom.com (unknown [141.251.121.215]) by
+	MCEGSMTP2.alstom.com with smtp
+	(TLS: TLSv1/SSLv3,256bits,ECDHE-RSA-AES256-SHA384)
+	id 0ce8_1476_c1e86ac4_e1e4_44fc_b973_b3b8b5b49b88;
+	Thu, 26 Jan 2017 14:54:27 +0100
+Received: from AMXPR48MB0165.041d.mgd.msft.net (141.251.121.213) by
+	AMXPR48MB0167.041d.mgd.msft.net (141.251.121.215) with Microsoft SMTP
+	Server
+	(version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
+	15.1.874.12; Thu, 26 Jan 2017 13:54:17 +0000
+Received: from AMXPR48MB0165.041d.mgd.msft.net ([141.251.121.213]) by
+	AMXPR48MB0165.041d.mgd.msft.net ([141.251.121.213]) with mapi id
+	15.01.0860.023; Thu, 26 Jan 2017 13:54:16 +0000
+From: SMITH Peter T <peter.t.smith@alstom.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Exception in bitbake during build of openjdk-8 using meta-linaro
+Thread-Index: AdJ32654tpI1sT6KQ0+hng1EoiASzw==
+Date: Thu, 26 Jan 2017 13:54:16 +0000
+Message-ID: <0bbf6acc9f2646b899d4837a90641d26@AMXPR48MB0165.041d.mgd.msft.net>
+Accept-Language: en-GB, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-dg-ref: PG1ldGE+PGF0IG5tPSJib2R5Lmh0bWwiIHA9ImM6XHVzZXJzXDI2NDY3MVxhcHBkYXRhXHJvYW1pbmdcMDlkODQ5YjYtMzJkMy00YTQwLTg1ZWUtNmI4NGJhMjllMzViXG1zZ3NcbXNnLWVjMzVmNjllLWUzY2UtMTFlNi05ZTM3LTAwMDdlOTAzMDM3OVxhbWUtdGVzdFxlYzM1ZjZhMC1lM2NlLTExZTYtOWUzNy0wMDA3ZTkwMzAzNzlib2R5Lmh0bWwiIHN6PSIxNTMxNSIgdD0iMTMxMjk5MTI0NTU3MjI2NDg2IiBoPSJ6SjkxTEtHcjQ1cjZDRGJVUUR2QU9aNkpGcW89IiBpZD0iIiBibD0iMCIgYm89IjEiLz48L21ldGE+
+x-originating-ip: [141.251.119.4]
+x-ms-office365-filtering-correlation-id: 57af76aa-b021-4aad-2d85-08d445f2d1b9
 MIME-Version: 1.0
-X-AuthUser: jason.cooper@attocore.com
-X-Originating-IP: 213.129.84.167
-X-SpamExperts-Domain: out.solardns.com
-X-SpamExperts-Username: 213.129.84.167
-Authentication-Results: solardns.com;
-	auth=pass smtp.auth=213.129.84.167@out.solardns.com
-X-SpamExperts-Outgoing-Class: unsure
-X-SpamExperts-Outgoing-Evidence: Combined (0.50)
-X-Recommended-Action: accept
-X-Filter-ID: s0sct1PQhAABKnZB5plbIeDM3CFaILk+pXAj5lg13p3Bkn2V7eX5DaYwDpeBIoaGBjIf54pj8W0w
-	FGRH58WQD6M+f+aiQxyq7mtv3xEd2UkL39xq7iFOofCrBDF/WHtM8psfgciDTedlVS49q/iD+WGx
-	cw3wiKGQw5espMTiPkmKyTz9VqY3I3xkM2Fm9JJ836hipxfgslCv1n9Mb2FW45XJP5sTyAl0Iq4A
-	JGo3KV030OXrvk+NRCiId9raL5YDDbUi/NnhTlhgEBYHGnQ9wnmRjAEWMdJfXJIBIxjtDySgo2Eg
-	KKi5BubPHM68Th8O/z1Qipe0YczecXzcAhw/PyLpQCk9LN96ieg5guM8uFgjsEjgD9bPVONMogqW
-	B/Riv2yws1Z2lXL3aklLfDoslJ4KrJMzhTy/4u5BvaE2XRi4eulKklTg9CWoWP3v3vCCwaEh4MHC
-	ziS+7iGBWJgglI4fsV6VMUQDns66AKNCom+rlcOVKLVL8ICqnrHqCItSkBp1o6ksvu/MCUfP1W3S
-	UlsfersVIkQC+ZylEOD4Nxfv2K2kVZYsHdn7nL9nN+8+3XgnE1t5vxZ+TApKVlvN1A0DDFbYC82S
-	1xHEqATOcSlPW8p9pEocP7Urx8rcAa4jO7uz9AZ3Ew2Chg1trGZ/d4KhjxclRupbAAFsqkHq96QH
-	mFDqewO9xyOqCYO8P1aHYzaNP4QGREZyTZPoqrLKMygMT3gEJWyA1sjaWEbZdSqXcnZVa/7ZEBco
-	qnhGF2YhhnkcAonl3Q/0EYqU2sT2Rt2DpCPlyxQuiYcM0SpCLDyZedOYmRn73hG8gDECUbzlRzSn
-	En+RQV8UENZIDqzRq2SDo+JAHJG25dj6Q3se1O9NdpZGAoL29rHwr/p7LPcT
-X-Report-Abuse-To: spam@mx1.solardns.com
-Subject: mips64 with 'seh' instruction?
+Subject: Exception in bitbake during build of openjdk-8 using meta-linaro
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -65,71 +55,456 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 Jan 2017 10:43:26 -0000
+X-List-Received-Date: Thu, 26 Jan 2017 14:04:53 -0000
+Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="------------1CF17DA7DAD62D2F505518F4"
+	boundary="_000_0bbf6acc9f2646b899d4837a90641d26AMXPR48MB0165041dmgdmsf_"
 
---------------1CF17DA7DAD62D2F505518F4
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+--_000_0bbf6acc9f2646b899d4837a90641d26AMXPR48MB0165041dmgdmsf_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Folks,
-
-I'm trying to build a mips64 toolchain and qemu runtime. I can build and 
-run code but if I link with a third-party library that contains the 
-'seh' assembly instruction the executable is killed with SIGILL Illegal 
-Instruction, when run with qemu.
-
-If I run the program on the target it works fine. Looking at the 
-disassembly shows me that this is when qemu is trying to execute the 
-'seh' instruction. This is Krogoth 2.1.2 with:
-
-MACHINE = "qemumips64"
-TARGET_FPU = "soft"
-DEFAULTTUNE = "mips64-nf"
-TUNE_FEATURES = "n64 bigendian"
-
-The 'seh' instruction was introduced in mips32 Release 2, I believe. I 
-tried a DEFAULTTUNE of "mips32r2" and a few others but they did not 
-help... or perhaps I should be looking at the qemu code?
-
-Thanks
-
-Jason
+Hi, I am trying to build openjdk-8 from the meta-linaro layer (I'm specific=
+ally interested in building for aarch64), everything proceeds well with gat=
+hering and building the dependencies until poky/bitbake attempts to fetch s=
+ources using hg when I see the error below. Anyone seen this before or can =
+offer a pointer to what might be wrong?
 
 
---------------1CF17DA7DAD62D2F505518F4
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 7bit
+DEBUG: Executing python function do_fetch
+DEBUG: Executing python function base_do_fetch
+ERROR: Error executing a python function in exec_python_func() autogenerate=
+d:
 
-<html>
-  <head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  </head>
-  <body bgcolor="#FFFFFF" text="#333399">
-    <p>Folks,</p>
-    <p>I'm trying to build a mips64 toolchain and qemu runtime. I can
-      build and run code but if I link with a third-party library that
-      contains the 'seh' assembly instruction the executable is killed
-      with SIGILL Illegal Instruction, when run with qemu. </p>
-    <p>If I run the program on the target it works fine. Looking at the
-      disassembly shows me that this is when qemu is trying to execute
-      the 'seh' instruction. This is Krogoth 2.1.2 with:<br>
-    </p>
-    MACHINE = "qemumips64"<br>
-    TARGET_FPU = "soft"<br>
-    DEFAULTTUNE = "mips64-nf"<br>
-    TUNE_FEATURES = "n64 bigendian"<br>
-    <br>
-    <p>The 'seh' instruction was introduced in mips32 Release 2, I
-      believe. I tried a DEFAULTTUNE of "mips32r2" and a few others but
-      they did not help... or perhaps I should be looking at the qemu
-      code?</p>
-    <p>Thanks</p>
-    <p>Jason<br>
-      <meta http-equiv="content-type" content="text/html; charset=utf-8">
-    </p>
-  </body>
+The stack trace of python calls that resulted in this exception/failure was=
+:
+File: 'exec_python_func() autogenerated', lineno: 2, function: <module>
+     0001:
+*** 0002:base_do_fetch(d)
+     0003:
+File: '/sdd/peter/Yocto/TEST/sources/poky/meta/classes/base.bbclass', linen=
+o: 134, function: base_do_fetch
+     0130:    if len(src_uri) =3D=3D 0:
+     0131:        return
+     0132:
+     0133:    try:
+*** 0134:        fetcher =3D bb.fetch2.Fetch(src_uri, d)
+     0135:        fetcher.download()
+     0136:    except bb.fetch2.BBFetchException as e:
+     0137:        bb.fatal(str(e))
+     0138:}
+File: '/sdd/peter/Yocto/TEST/sources/poky/bitbake/lib/bb/fetch2/__init__.py=
+', lineno: 1535, function: __init__
+     1531:
+     1532:        for url in urls:
+     1533:            if url not in self.ud:
+     1534:                try:
+*** 1535:                    self.ud[url] =3D FetchData(url, d, localonly)
+     1536:                except NonLocalMethod:
+     1537:                    if localonly:
+     1538:                        self.ud[url] =3D None
+     1539:                        pass
+File: '/sdd/peter/Yocto/TEST/sources/poky/bitbake/lib/bb/fetch2/__init__.py=
+', lineno: 1214, function: __init__
+     1210:            logger.warning('Consider updating %s recipe to use "p=
+rotocol" not "proto" in SRC_URI.', d.getVar('PN'))
+     1211:            self.parm["protocol"] =3D self.parm.get("proto", None=
+)
+     1212:
+     1213:        if hasattr(self.method, "urldata_init"):
+*** 1214:            self.method.urldata_init(self, d)
+     1215:
+     1216:        if "localpath" in self.parm:
+     1217:            # if user sets localpath for file, use it instead.
+     1218:            self.localpath =3D self.parm["localpath"]
+File: '/sdd/peter/Yocto/TEST/sources/poky/bitbake/lib/bb/fetch2/hg.py', lin=
+eno: 70, function: urldata_init
+     0066:            ud.proto =3D 'file'
+     0067:        else:
+     0068:            ud.proto =3D "hg"
+     0069:
+*** 0070:        ud.setup_revisons(d)
+     0071:
+     0072:        if 'rev' in ud.parm:
+     0073:            ud.revision =3D ud.parm['rev']
+     0074:        elif not ud.revision:
+File: '/sdd/peter/Yocto/TEST/sources/poky/bitbake/lib/bb/fetch2/__init__.py=
+', lineno: 1244, function: setup_revisons
+     1240:
+     1241:    def setup_revisons(self, d):
+     1242:        self.revisions =3D {}
+     1243:        for name in self.names:
+*** 1244:            self.revisions[name] =3D srcrev_internal_helper(self, =
+d, name)
+     1245:
+     1246:        # add compatibility code for non name specified case
+     1247:        if len(self.names) =3D=3D 1:
+     1248:            self.revision =3D self.revisions[self.names[0]]
+File: '/sdd/peter/Yocto/TEST/sources/poky/bitbake/lib/bb/fetch2/__init__.py=
+', lineno: 1109, function: srcrev_internal_helper
+     1105:
+     1106:    if srcrev =3D=3D "INVALID" or not srcrev:
+     1107:        raise FetchError("Please set a valid SRCREV for url %s (p=
+ossible key names are %s, or use a ;rev=3DX URL parameter)" % (str(attempts=
+), ud.url), ud.url)
+     1108:    if srcrev =3D=3D "AUTOINC":
+*** 1109:        srcrev =3D ud.method.latest_revision(ud, d, name)
+     1110:
+     1111:    return srcrev
+     1112:
+     1113:def get_checksum_file_list(d):
+File: '/sdd/peter/Yocto/TEST/sources/poky/bitbake/lib/bb/fetch2/__init__.py=
+', lineno: 1500, function: latest_revision
+     1496:        if not hasattr(self, "_latest_revision"):
+     1497:            raise ParameterError("The fetcher for this URL does n=
+ot support _latest_revision", url)
+     1498:
+     1499:        revs =3D bb.persist_data.persist('BB_URI_HEADREVS', d)
+*** 1500:        key =3D self.generate_revision_key(ud, d, name)
+     1501:        try:
+     1502:            return revs[key]
+     1503:        except KeyError:
+     1504:            revs[key] =3D rev =3D self._latest_revision(ud, d, na=
+me)
+File: '/sdd/peter/Yocto/TEST/sources/poky/bitbake/lib/bb/fetch2/__init__.py=
+', lineno: 1512, function: generate_revision_key
+     1508:        latest_rev =3D self._build_revision(ud, d, name)
+     1509:        return True, str(latest_rev)
+     1510:
+     1511:    def generate_revision_key(self, ud, d, name):
+*** 1512:        key =3D self._revision_key(ud, d, name)
+     1513:        return "%s-%s" % (key, d.getVar("PN") or "")
+     1514:
+     1515:class Fetch(object):
+     1516:    def __init__(self, urls, d, cache =3D True, localonly =3D Fal=
+se, connection_cache =3D None):
+File: '/sdd/peter/Yocto/TEST/sources/poky/bitbake/lib/bb/fetch2/hg.py', lin=
+eno: 235, function: _revision_key
+     0231:    def _revision_key(self, ud, d, name):
+     0232:        """
+     0233:        Return a unique key for the url
+     0234:        """
+*** 0235:        return "hg:" + ud.moddir
+     0236:
+     0237:    def build_mirror_data(self, ud, d):
+     0238:        # Generate a mirror tarball if needed
+     0239:        if ud.write_tarballs =3D=3D "1" and not os.path.exists(ud=
+.fullmirror):
+Exception: AttributeError: 'FetchData' object has no attribute 'moddir'
+
+DEBUG: Python function base_do_fetch finished
+DEBUG: Python function do_fetch finished
+ERROR: Function failed: base_do_fetch
+
+Peter Smith
+
+________________________________
+CONFIDENTIALITY : This e-mail and any attachments are confidential and may =
+be privileged. If you are not a named recipient, please notify the sender i=
+mmediately and do not disclose the contents to another person, use it for a=
+ny purpose or store or copy the information in any medium.
+
+--_000_0bbf6acc9f2646b899d4837a90641d26AMXPR48MB0165041dmgdmsf_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-GB" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi, I am trying to build openjdk-8 from the meta-lin=
+aro layer (I&#8217;m specifically interested in building for aarch64), ever=
+ything proceeds well with gathering and building the dependencies until pok=
+y/bitbake attempts to fetch sources using
+ hg when I see the error below. Anyone seen this before or can offer a poin=
+ter to what might be wrong?<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">DEBUG: Executing python function do_fetch<o:p></o:p>=
+</p>
+<p class=3D"MsoNormal">DEBUG: Executing python function base_do_fetch<o:p><=
+/o:p></p>
+<p class=3D"MsoNormal">ERROR: Error executing a python function in exec_pyt=
+hon_func() autogenerated:<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">The stack trace of python calls that resulted in thi=
+s exception/failure was:<o:p></o:p></p>
+<p class=3D"MsoNormal">File: 'exec_python_func() autogenerated', lineno: 2,=
+ function: &lt;module&gt;<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0001:<o:p></o:p></p>
+<p class=3D"MsoNormal">*** 0002:base_do_fetch(d)<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0003:<o:p></o:p></p>
+<p class=3D"MsoNormal">File: '/sdd/peter/Yocto/TEST/sources/poky/meta/class=
+es/base.bbclass', lineno: 134, function: base_do_fetch<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0130:&nbsp;&nbsp;&nbsp; if =
+len(src_uri) =3D=3D 0:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0131:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp; return<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0132:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0133:&nbsp;&nbsp;&nbsp; try=
+:<o:p></o:p></p>
+<p class=3D"MsoNormal">*** 0134:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+fetcher =3D bb.fetch2.Fetch(src_uri, d)<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0135:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp; fetcher.download()<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0136:&nbsp;&nbsp;&nbsp; exc=
+ept bb.fetch2.BBFetchException as e:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0137:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp; bb.fatal(str(e))<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0138:}<o:p></o:p></p>
+<p class=3D"MsoNormal">File: '/sdd/peter/Yocto/TEST/sources/poky/bitbake/li=
+b/bb/fetch2/__init__.py', lineno: 1535, function: __init__<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1531:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1532:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp; for url in urls:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1533:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if url not in self.ud:<o:p></o=
+:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1534:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try:<o=
+:p></o:p></p>
+<p class=3D"MsoNormal">*** 1535:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sel=
+f.ud[url] =3D FetchData(url, d, localonly)<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1536:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; except=
+ NonLocalMethod:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1537:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp; if localonly:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1538:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; self.ud[url] =3D None<o:p></o:p><=
+/p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1539:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pass<o:p></o:p></p>
+<p class=3D"MsoNormal">File: '/sdd/peter/Yocto/TEST/sources/poky/bitbake/li=
+b/bb/fetch2/__init__.py', lineno: 1214, function: __init__<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1210:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; logger.warning('Consider updat=
+ing %s recipe to use &quot;protocol&quot; not &quot;proto&quot; in SRC_URI.=
+', d.getVar('PN'))<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1211:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; self.parm[&quot;protocol&quot;=
+] =3D self.parm.get(&quot;proto&quot;, None)<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1212:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1213:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp; if hasattr(self.method, &quot;urldata_init&quot;):<o:p=
+></o:p></p>
+<p class=3D"MsoNormal">*** 1214:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp; self.method.urldata_init(self, d)<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1215:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1216:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp; if &quot;localpath&quot; in self.parm:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1217:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # if user sets localpath for f=
+ile, use it instead.<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1218:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; self.localpath =3D self.parm[&=
+quot;localpath&quot;]<o:p></o:p></p>
+<p class=3D"MsoNormal">File: '/sdd/peter/Yocto/TEST/sources/poky/bitbake/li=
+b/bb/fetch2/hg.py', lineno: 70, function: urldata_init<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0066:&nbsp;&nbsp;&nbsp; &nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ud.proto =3D 'file'<o:p></o:p>=
+</p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0067:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp; else:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0068:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ud.proto =3D &quot;hg&quot;<o:=
+p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0069:<o:p></o:p></p>
+<p class=3D"MsoNormal">*** 0070:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+ud.setup_revisons(d)<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0071:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0072:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp; if 'rev' in ud.parm:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0073:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ud.revision =3D ud.parm['rev']=
+<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0074:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; &nbsp;elif not ud.revision:<o:p></o:p></p>
+<p class=3D"MsoNormal">File: '/sdd/peter/Yocto/TEST/sources/poky/bitbake/li=
+b/bb/fetch2/__init__.py', lineno: 1244, function: setup_revisons<o:p></o:p>=
+</p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1240:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1241:&nbsp;&nbsp;&nbsp; def=
+ setup_revisons(self, d):<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1242:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp; self.revisions =3D {}<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1243:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp; for name in self.names:<o:p></o:p></p>
+<p class=3D"MsoNormal">*** 1244:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp; self.revisions[name] =3D srcrev_internal_helper(sel=
+f, d, name)<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1245:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1246:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp; # add compatibility code for non name specified case<o=
+:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1247:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp; if len(self.names) =3D=3D 1:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1248:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; self.revision =3D self.revisio=
+ns[self.names[0]]<o:p></o:p></p>
+<p class=3D"MsoNormal">File: '/sdd/peter/Yocto/TEST/sources/poky/bitbake/li=
+b/bb/fetch2/__init__.py', lineno: 1109, function: srcrev_internal_helper<o:=
+p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1105:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1106:&nbsp;&nbsp;&nbsp; if =
+srcrev =3D=3D &quot;INVALID&quot; or not srcrev:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1107:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp; raise FetchError(&quot;Please set a valid SRCREV for u=
+rl %s (possible key names are %s, or use a ;rev=3DX URL parameter)&quot; % =
+(str(attempts), ud.url), ud.url)<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1108:&nbsp;&nbsp;&nbsp; if =
+srcrev =3D=3D &quot;AUTOINC&quot;:<o:p></o:p></p>
+<p class=3D"MsoNormal">*** 1109:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+srcrev =3D ud.method.latest_revision(ud, d, name)<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1110:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1111:&nbsp;&nbsp;&nbsp; ret=
+urn srcrev<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1112:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1113:def get_checksum_file_=
+list(d):<o:p></o:p></p>
+<p class=3D"MsoNormal">File: '/sdd/peter/Yocto/TEST/sources/poky/bitbake/li=
+b/bb/fetch2/__init__.py', lineno: 1500, function: latest_revision<o:p></o:p=
+></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1496:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp; if not hasattr(self, &quot;_latest_revision&quot;):<o:=
+p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1497:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; raise ParameterError(&quot;The=
+ fetcher for this URL does not support _latest_revision&quot;, url)<o:p></o=
+:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1498:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1499:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp; revs =3D bb.persist_data.persist('BB_URI_HEADREVS', d)=
+<o:p></o:p></p>
+<p class=3D"MsoNormal">*** 1500:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+key =3D self.generate_revision_key(ud, d, name)<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1501:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp; try:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1502:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return revs[key]<o:p></o:p></p=
+>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1503:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp; except KeyError:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1504:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; revs[key] =3D rev =3D self._la=
+test_revision(ud, d, name)<o:p></o:p></p>
+<p class=3D"MsoNormal">File: '/sdd/peter/Yocto/TEST/sources/poky/bitbake/li=
+b/bb/fetch2/__init__.py', lineno: 1512, function: generate_revision_key<o:p=
+></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1508:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp; latest_rev =3D self._build_revision(ud, d, name)<o:p><=
+/o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1509:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp; return True, str(latest_rev)<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1510:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1511:&nbsp;&nbsp;&nbsp; def=
+ generate_revision_key(self, ud, d, name):<o:p></o:p></p>
+<p class=3D"MsoNormal">*** 1512:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+key =3D self._revision_key(ud, d, name)<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1513:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp; return &quot;%s-%s&quot; % (key, d.getVar(&quot;PN&quo=
+t;) or &quot;&quot;)<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1514:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1515:class Fetch(object):<o=
+:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 1516:&nbsp;&nbsp;&nbsp; def=
+ __init__(self, urls, d, cache =3D True, localonly =3D False, connection_ca=
+che =3D None):<o:p></o:p></p>
+<p class=3D"MsoNormal">File: '/sdd/peter/Yocto/TEST/sources/poky/bitbake/li=
+b/bb/fetch2/hg.py', lineno: 235, function: _revision_key<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0231:&nbsp;&nbsp;&nbsp; def=
+ _revision_key(self, ud, d, name):<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0232:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp; &quot;&quot;&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0233:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp; Return a unique key for the url<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0234:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp; &quot;&quot;&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">*** 0235:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+return &quot;hg:&quot; &#43; ud.moddir<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0236:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0237:&nbsp;&nbsp;&nbsp; def=
+ build_mirror_data(self, ud, d):<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0238:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp; # Generate a mirror tarball if needed<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0239:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp; if ud.write_tarballs =3D=3D &quot;1&quot; and not os.p=
+ath.exists(ud.fullmirror):<o:p></o:p></p>
+<p class=3D"MsoNormal">Exception: AttributeError: 'FetchData' object has no=
+ attribute 'moddir'<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">DEBUG: Python function base_do_fetch finished<o:p></=
+o:p></p>
+<p class=3D"MsoNormal">DEBUG: Python function do_fetch finished<o:p></o:p><=
+/p>
+<p class=3D"MsoNormal">ERROR: Function failed: base_do_fetch<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:9.0pt;font-family:&quot;=
+Arial&quot;,sans-serif;color:#005CB9;mso-fareast-language:EN-GB">Peter Smit=
+h<o:p></o:p></span></b></p>
+</div>
+<br>
+<hr>
+<font face=3D"Arial" color=3D"Black" size=3D"2">CONFIDENTIALITY : This e-ma=
+il and any attachments are confidential and may be privileged. If you are n=
+ot a named recipient, please notify the sender immediately and do not discl=
+ose the contents to another person, use
+ it for any purpose or store or copy the information in any medium.<br>
+</font>
+</body>
 </html>
 
---------------1CF17DA7DAD62D2F505518F4--
+--_000_0bbf6acc9f2646b899d4837a90641d26AMXPR48MB0165041dmgdmsf_--
