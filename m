@@ -1,19 +1,19 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <twoerner@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CA892E0050B; Fri, 27 Jan 2017 11:54:19 -0800 (PST)
+	id 8BEC1E0050B; Fri, 27 Jan 2017 12:24:42 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [74.125.83.67 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (raj.khem[at]gmail.com)
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_LOW,
+	RCVD_IN_SORBS_SPAM autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (twoerner[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.216.178 listed in list.dnswl.org]
 	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.83.67 listed in dnsbl.sorbs.net]
+	*      [209.85.216.178 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -21,53 +21,48 @@ X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pg0-f67.google.com (mail-pg0-f67.google.com [74.125.83.67])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6F3A2E003DB
-	for <yocto@yoctoproject.org>; Fri, 27 Jan 2017 11:54:16 -0800 (PST)
-Received: by mail-pg0-f67.google.com with SMTP id 194so25724559pgd.0
-	for <yocto@yoctoproject.org>; Fri, 27 Jan 2017 11:54:16 -0800 (PST)
+Received: from mail-qt0-f178.google.com (mail-qt0-f178.google.com
+	[209.85.216.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BBB38E003DB
+	for <yocto@yoctoproject.org>; Fri, 27 Jan 2017 12:24:41 -0800 (PST)
+Received: by mail-qt0-f178.google.com with SMTP id v23so154206029qtb.0
+	for <yocto@yoctoproject.org>; Fri, 27 Jan 2017 12:24:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=subject:to:references:from:message-id:date:user-agent:mime-version
-	:in-reply-to:content-transfer-encoding;
-	bh=9FEU/Pu0QN4MV2XzX8h+CcL3fyRli2gT+5oliCYIGUs=;
-	b=jp6F5ODo6yc9NCgewHYlT5GCfyItB3WV4/75rhiZUD60gBIl1PzL1syycUQCa33ZIW
-	BP5YGaU689hD1jZqR/YpaNLITrTIAUsuRmRKK28xbSMpjtSmvLGOeC7L4TxxQv+g4Qtg
-	ghtfz8TbG5NdlDcnIJplQ9iWC2V0nWDcJuI5Gw6gQvJHO0omocMtqMTfoUo8bVsBoahz
-	yag4pd2n3b7cVe3Uqfy+TMjtsDkpqUKVwl8OAHIxgKHzvd5UR2lOTjzKqWtqlb84IXxE
-	WmDfn0g7UBbdoZIsMZPcc9pFKLtsi9AT/09a5yQh+NSSLLMR8/7uw1alskp3fwnQuoOt
-	DFQw==
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=5ESdCf+2MpDwSDBB8VsLgN0TmY9enhamzq/4JlXu0kw=;
+	b=RBhsyLdG1cyn3cZymyItbrckqFmpNB7N/k6E2K7u0+7M3Hkdz5ofngWhqdPvf0xh6r
+	jAyfDOAJZCyvgEVWAGJelohjQexCqbu039zE43bfK+dqxRDIZMu2vvXSYqXhjVW/9FHO
+	GAxvxXYKYPl9yl1vBmHyr4iavCkjhf/oFIeKrxpa+E0BX9h5o93X1LSZ1SnnlCbfO+9Q
+	9eFRnCPfAcxSgszy250S/uPmVqaioPsjHKU600AC+wzgILQWqjKTmo9PvzV5BnDIvVIh
+	j5Cpx1jHVlMx2ItRDzmWcj7vkvCjpONCLFYqggzxIACiffrAhNn8fltELmQ/7Rd5DM7w
+	1vJA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:references:from:message-id:date
-	:user-agent:mime-version:in-reply-to:content-transfer-encoding;
-	bh=9FEU/Pu0QN4MV2XzX8h+CcL3fyRli2gT+5oliCYIGUs=;
-	b=XsNbneH7PLAjanbozxkMzE+jB6/jSqXMW+N8b4svk1uzGtI07YEBhiUtfJsqSrThyF
-	FQmgcX5+1+aq+kaG+fem++d673K0OcYkwU22NXW23VO+GP6DggGK9f09eioa0y1z2Kxq
-	6eHqZV3vc7/oiNFMZocLzFrAL6Ucus41IbkhnWl2OpDBYdjx32q7XCTeqfxDbDiKtUOI
-	tP9+LRxugFb7VqgwTRpzUwLVnklhZEZEU8IfOywp0efUbLIYh3tcXiQi4CX3qvaVdt3l
-	H7kWla7DFNa6asAUm3XA1E3FwZfHWNuRmqmJRiLF7QrMefsM7qIl0JeIcJkcupCrbCuJ
-	/nqg==
-X-Gm-Message-State: AIkVDXKnjceYZGm3tmd5qlOUXpyOf1wtFb1AdFKYguA+7PGzYs633Yol5cAvwpr2g0u4Yw==
-X-Received: by 10.98.133.202 with SMTP id m71mr11194106pfk.102.1485546856351; 
-	Fri, 27 Jan 2017 11:54:16 -0800 (PST)
-Received: from CACSVMO-14452.local ([2601:646:8882:b8c:6d8d:a1ec:12d:52de])
-	by smtp.gmail.com with ESMTPSA id
-	t14sm13295988pfk.85.2017.01.27.11.54.15 for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 27 Jan 2017 11:54:15 -0800 (PST)
-To: yocto@yoctoproject.org
-References: <1484834687-15746-1-git-send-email-jacob-chen@iotwrt.com>
-	<1484834687-15746-3-git-send-email-jacob-chen@iotwrt.com>
-	<CABgxDo+5x6-ByOUikkG45S6Yo5NO+=L4S3GRX7firgpMqQQiAA@mail.gmail.com>
-	<CAHUNapS5cAGbdbkHcTOaEJM9SKhHOJb8naqFxacbCvBj24crUw@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Message-ID: <d9254844-a522-54b4-39c5-d9a07fbdaab0@gmail.com>
-Date: Fri, 27 Jan 2017 11:54:14 -0800
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:45.0)
-	Gecko/20100101 Thunderbird/45.7.0
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=5ESdCf+2MpDwSDBB8VsLgN0TmY9enhamzq/4JlXu0kw=;
+	b=miKlYtq7q/1Njd4+eedUyaJS7AjrF/co3op+BdiJWjWPPClRabjiOg7qoqVfpaXome
+	dXHTVR7MHDtcitOd03QFb7gAWIpNjqtR/Alsq2Tok+O+p3CXhhRtuMeBlJiadL9Gr5jJ
+	j7e5AbesPVyeQPiiix9KSALeZd0ry2aCVM+LL4S90LujAMcwXkbn87fYxgKZnfRtTfYG
+	80B6DWycjaRznNUxNYjVkdGXskMjmTIxmxyN9EDIoQsN6t+n9ieAe26nsrziCVPrxT+e
+	FWN0bQjkWnA+0SGgURb+/fU13h2TCJpTN8DcasTxopwUvGp4y/YP/anmr89qk0UxHurs
+	j1KQ==
+X-Gm-Message-State: AIkVDXJ76N6odORLSyj+baZimADEqJGa03LHwlKer8CSLZm8dSfkxCp52SNe1vL0G/F2UZZR3PbRp6Gc3XMOCA==
+X-Received: by 10.55.24.76 with SMTP id j73mr9822012qkh.267.1485548680226;
+	Fri, 27 Jan 2017 12:24:40 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <CAHUNapS5cAGbdbkHcTOaEJM9SKhHOJb8naqFxacbCvBj24crUw@mail.gmail.com>
-Subject: Re: [meta-rockchip][PATCH 2/7] machine: Add machine file for the rk3288 linux Boards
+Received: by 10.200.39.252 with HTTP; Fri, 27 Jan 2017 12:24:39 -0800 (PST)
+In-Reply-To: <CABgxDoKoJ+2FznE89F7v89w_t0p0Z_9-1KZt2DrdU-NdDSQ2GA@mail.gmail.com>
+References: <1484834687-15746-1-git-send-email-jacob-chen@iotwrt.com>
+	<1484834687-15746-7-git-send-email-jacob-chen@iotwrt.com>
+	<CABgxDoKoJ+2FznE89F7v89w_t0p0Z_9-1KZt2DrdU-NdDSQ2GA@mail.gmail.com>
+From: Trevor Woerner <twoerner@gmail.com>
+Date: Fri, 27 Jan 2017 15:24:39 -0500
+Message-ID: <CAHUNapTaveEHDiF7VPTDYbLVJM8EbDJ6PcMbNxCjvOepj2sxzw@mail.gmail.com>
+To: Romain Perier <romain.perier@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	Jacob Chen <jacob-chen@iotwrt.com>, Eddie Cai <eddie.cai@rock-chips.com>
+Subject: Re: [meta-rockchip][PATCH 6/7] rk3288.inc: add some variables
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -79,59 +74,88 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 27 Jan 2017 19:54:19 -0000
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 27 Jan 2017 20:24:42 -0000
+Content-Type: text/plain; charset=UTF-8
 
+Hi Romain,
 
+On Fri, Jan 27, 2017 at 10:01 AM, Romain Perier <romain.perier@gmail.com> wrote:
+> Hi all,
+>
+> It remembers me a discussion that I wanted to have with Trevor:  do we want
+> specific TUNES (like these ones) in the machines files ? it is distro
+> specific ?
 
-On 1/27/17 11:41 AM, Trevor Woerner wrote:
-> On Fri, Jan 27, 2017 at 9:37 AM, Romain Perier <romain.perier@gmail.com> wrote:
->> Could you:
->> - Make one patch per new machine file and not one patch for all new added
->> machine
-> 
-> Agreed.
-> 
-> Are all of these machines actual devices? The evb one doesn't sound real.
-> 
-> Are all of these machines released and available for purchase? I've
-> heard of the tinkerboard (although I can't seem to find one I can
-> actually buy) but I haven't heard of the fennec.
-> 
->> - Add a clear @DESCRIPTION for each board, see an example here:
->> https://git.yoctoproject.org/cgit/cgit.cgi/meta-rockchip/tree/conf/machine/firefly-rk3288.conf
->> - Write a clear and an understandable commit message for your new patches
->>
->> @Trevor: What do you think about this rk-linux.inc ? I don't like this,
->> either its name and what it contains.
-> 
-> First off, I think it's really great to see people contributing to
-> meta-rockchip! :-)
-> 
-> This entire set of patches seems to be adding "official" support for
-> the rockchip devices; in other words, these recipes will help you to
-> create builds that use the official rockchip sources. That is great.
-> But I think a good BSP gives a user all the possibilities but then
-> leaves the final decision up to them.
-> 
-> So I agree with Romain, I think the name could use more work. It would
-> be nice if this set of patches included something in the name that let
-> the user know these build from official sources. Then the user could
-> decide whether they want to use the official rockchip sources, or
-> whether they want to build from upstream. So I'm not opposed to the
-> idea of adding recipes for official sources, I'd like like to see them
-> added in a way that leaves the decision with the user.
+Awesome! I'm happy to see we're both thinking along the same lines!
+That was exactly the same thought I had too :-) I even had a couple
+private conversations with some other BSP maintainers I know to ask
+them about this, and I spent some time surveying other BSP layers to
+see what other people are doing.
 
-Usually convention is <packagename>-mainline.bb in some BSP layer. In
-somecases community layers are maintained in repo of their own.
+Unfortunately there's no consensus, which means that there is no
+absolute right or wrong.
 
-> 
-> 
-> 
->> That's it for now.
->> Thanks for your patches
-> 
-> +1 :-)
-> 
+I personally do feel that a good BSP layer should not be providing a
+DEFAULTTUNE, this decision should be up to the user and/or a DISTRO
+layer.
+
+In practice, however, this topic is complicated (especially in the ARM
+world) by the existence of the binaries for things like MALI
+(accelerated graphics). Other devices could potentially have binary
+blobs for various other reasons.
+
+BSPs which provide support for aarch64 devices are lucky because they
+can skirt this entire issue; aarch64 implies hard float, so the
+default tunes are always going to enable hard float and therefore work
+with binaries. 32-bit BSPs are going to have this problem. Looking at
+other BSP layers many specify a DEFAULTTUNE:
+
+- meta-raspberrypi
+- meta-xilinx
+- meta-gumstix
+- meta-intel
+- meta-odroid (akuster)
+- meta-freescale
+- meta-sunxi
+
+Most of these DEFAULTTUNE suggestions, however, are found in
+conf/machine/include/<processor>.inc files, not in
+conf/machine/<board>.bb files directly. Looking closely, however, in
+many cases a BSP layer might have configurations for many different
+devices, only some of which have DEFAULTTUNEs (this is true for
+meta-sunxi, for example).
+
+BSP layers that I can find that don't have DEFAULTTUNES are:
+
+- meta-qcom
+- meta-beaglebone (koen)
+- meta-exynos
+- meta-ettus
+
+In meta-beaglebone's case, it requires conf/machine/include/ti33x.inc
+(which comes from meta-ti), that file then has a "DEFAULTTUNE ?=" but
+it could be argued that meta-ti is a chip layer and not a BSP layer.
+
+At the very least, it should not be something that is provided with an
+equals sign, it should be specified in a BSP layer with ?=. Also, the
+general consensus is that a DEFAULTTUNE should not be given in a
+machine file directly. Most BSP layers have a "chip include file" in
+which a DEFAULTTUNE is given. Many layers don't include DEFAULTTUNE
+but have notes in their README files that explain this to the user and
+give suggestions for what they might put in their conf/local.conf
+files.
+
+meta-sunxi, for example, doesn't give DEFAULTTUNEs for all their
+machine files, but they do provide recipes for mali. They handle this
+in the mali recipe by checking to see if the user has enabled hf. If
+the user is trying to use mali but hasn't enabled hf then that recipe
+will error out and let the user know they have to enable hf if they
+want mali or they have to not try to use mali if they prefer to use
+soft-float. I think that's a good way of handling this situation (see
+meta-sunxi/recipes-graphics/libgles/sunxi-mali_git.bb).
+
+There is some debate on whether a default tune should point to a
+specific chip (e.g. cortexa17) or whether it should only specify an
+ABI (e.g. armv7a). Overwhelmingly in the ARM BSPs specific chips are
+used.
 
