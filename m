@@ -1,6 +1,6 @@
-Return-Path: <romain.perier@gmail.com>
+Return-Path: <nitishjha16@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3FF10E00932; Fri, 27 Jan 2017 07:27:53 -0800 (PST)
+	id A86F4E006EA; Fri, 27 Jan 2017 06:59:40 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,11 +10,9 @@ X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [74.125.82.68 listed in list.dnswl.org]
+	*      [209.85.223.173 listed in list.dnswl.org]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (romain.perier[at]gmail.com)
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.82.68 listed in dnsbl.sorbs.net]
+	provider *      (nitishjha16[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -23,47 +21,44 @@ X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f68.google.com (mail-wm0-f68.google.com [74.125.82.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4F560E0052B
-	for <yocto@yoctoproject.org>; Fri, 27 Jan 2017 07:27:49 -0800 (PST)
-Received: by mail-wm0-f68.google.com with SMTP id d140so59219975wmd.2
-	for <yocto@yoctoproject.org>; Fri, 27 Jan 2017 07:27:49 -0800 (PST)
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.223.173 listed in dnsbl.sorbs.net]
+Received: from mail-io0-f173.google.com (mail-io0-f173.google.com
+	[209.85.223.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 74CF4E00510
+	for <yocto@yoctoproject.org>; Fri, 27 Jan 2017 06:59:36 -0800 (PST)
+Received: by mail-io0-f173.google.com with SMTP id v96so62253887ioi.0
+	for <yocto@yoctoproject.org>; Fri, 27 Jan 2017 06:59:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=qHTYSW2+jth7wY6UoX+wIy3799kyYgFFAsGSN1BMTFQ=;
-	b=lyEhI7ROsTnI2gG0+z+nwfKF2WwerN4uATPX7zBBqc7Q1T0GXDRmVi2K0Q6+vnQtqC
-	RZ7Y6TaIWYNmr/QgkvAPvLKaDY1gUW395WKcmeWjmU/SmI9k+3i/eNOr5YvGFxHuCefQ
-	R+AeR/MZ9zRgwTb2oyzpCja9HAaIQJu6k7ad/XLi+H33hDgnVeJvCTXC+5U4bWvaAlQ9
-	8Q1t8Bec3nv5IwjxoeMIWtwm9a4xynXBhJSAh6Qvq6Js3G6Swru4NtUK5ausqZFgYEXM
-	ZCWqDKTori75oWcQrV0pnCip0xbxZyc2WRrcQlmynYYtrUxjstZ1nQzi8maujSs5HmyH
-	iNZA==
+	h=mime-version:from:date:message-id:subject:to;
+	bh=bh/fRLNiwfxVg9OxzRQbqqG83jnNizLVhaeZcOtKXi4=;
+	b=h7GCqumQRhMEu6oZLhC3fAfIcAQNDvkd2bj9GuteSYaFRs8EWz5Xt6MSkQJh/yGs2x
+	J/Ls7HdOELKiniBTv8CuZjeQrt12XaaMHQLikdaCL6KyhaokzkIY82ES44St5fcHb82C
+	cNT0F3ErJ+u5csLccI9DjWMrzJjxKHKhvZw99frOVzgMQOaY7QpTVl3jxqw0SGa8hVij
+	Iprx6MGTRDQZx8bebBUfZH2UMezVAeyHpBxise91uA2yPLLPJC4lxlEigCup19f+ncsQ
+	u+VSSsalmdvM9tv9dhWOS9kpJIHS2t6NFci66S65JvC+u1fdilaOHtg85YXeo1MQBxhu
+	ttxw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=qHTYSW2+jth7wY6UoX+wIy3799kyYgFFAsGSN1BMTFQ=;
-	b=XHXheSpizv0EeRT4R0l6anFuTH+JovBKuOxpaHOiYDRnFca6HkKg1KGIGiLU1T/DZr
-	AaT0tvk5V0vfBIYXEdYvPdAqYH6K9lZTozIh/lb2JfMu3QPWhj40jeAFH6E83WowCZFe
-	KQDVAJG5Gqd9x4a1yEusLyrDuXoZFbOrrpWD6C5vtT43NC8plqJK9Ddo/JQi/xQ2DtlX
-	tZ/E+HQsi/ODKbrTlCGOjSYOvrgEp/V0Zty1e2kO87N6j+4ksMr1sD/MHxxDD1xXVb00
-	XtgaZPBm52ZtQVThLUflojOMLAZrVwxhHPRVSC4dD8RjvW8nw7n2/++6tDuxZE/WAC/N
-	uGfg==
-X-Gm-Message-State: AIkVDXJI9NvRb894qbhzGQYOLJd/pcSHeceLQxX/m0BTRFF5dXrqplFjMiUPaar8eAi8tYxUkAG75aT7ZSEBEQ==
-X-Received: by 10.28.166.215 with SMTP id p206mr3839423wme.87.1485530868536;
-	Fri, 27 Jan 2017 07:27:48 -0800 (PST)
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=bh/fRLNiwfxVg9OxzRQbqqG83jnNizLVhaeZcOtKXi4=;
+	b=sHct5SZYhvvDLQ4a0ZouQqj7JiU5bEdxhWl198ILzERl4RvhntrCbnU2YZXzrTI8WJ
+	/9TSvOtgQMDMMI84HmEYubu8x09FI9FGi7584MxvbBJ3b/nI78+RpTwFy2b7X1wXY2+b
+	epWFPqGmOt02H7jCzPGq+na5d95fQQO8c1efwzz+Ioa/nPpaKvmf6k1lJwVWYPTRjaeb
+	fId19d8ttvunj/p9c+OsGMelpvSc46g1/LUmucyoT98vMzcSlCmJq/S1nQUSrU+lGI75
+	DOUM1hUBK+uBYaxyGmQoq068EFIjrHWgx7g0OqOOGNZT0xWYqV4VboQaXceycLAqEsdE
+	NP2w==
+X-Gm-Message-State: AIkVDXIqtLm0AuKzAyxkbea1KO8dZlpAla/9tCKOrMpNGz/MOKJuO0FVA5L5ibEGWPsakF/JdVCkg9kA2mXFiQ==
+X-Received: by 10.107.10.24 with SMTP id u24mr7371071ioi.94.1485529176218;
+	Fri, 27 Jan 2017 06:59:36 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.80.196.2 with HTTP; Fri, 27 Jan 2017 07:27:48 -0800 (PST)
-In-Reply-To: <CAJrj+DP7XGadbn-03EuAy4WAKgV=Pq67AjKghfuzR5gMbSpxLA@mail.gmail.com>
-References: <1484820572-11891-1-git-send-email-jacob-chen@iotwrt.com>
-	<1484820572-11891-4-git-send-email-jacob-chen@iotwrt.com>
-	<CAJrj+DP7XGadbn-03EuAy4WAKgV=Pq67AjKghfuzR5gMbSpxLA@mail.gmail.com>
-From: Romain Perier <romain.perier@gmail.com>
-Date: Fri, 27 Jan 2017 16:27:48 +0100
-Message-ID: <CABgxDo+jYOL2tq9A71kSJgNiuYkCzzHnBES1z-mR1xO0E8G-XQ@mail.gmail.com>
-To: Eddie Cai <eddie.cai.linux@gmail.com>
-Cc: yocto@yoctoproject.org, Jacob Chen <jacob-chen@iotwrt.com>,
-	Eddie Cai <eddie.cai@rock-chips.com>
-Subject: Re: [PATCH 3/7] machine: firefly: use linux-rockchip by default
+Received: by 10.107.142.205 with HTTP; Fri, 27 Jan 2017 06:59:35 -0800 (PST)
+From: nitish jha <nitishjha16@gmail.com>
+Date: Fri, 27 Jan 2017 15:59:35 +0100
+Message-ID: <CABh+fob2rRDKGYhGRm5bjHZU+v-KoKvCaTHDEFNNmmmMYPS82w@mail.gmail.com>
+To: yocto@yoctoproject.org
+X-Mailman-Approved-At: Fri, 27 Jan 2017 08:06:39 -0800
+Subject: Change default OS in YOCTO poky distro
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,143 +70,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 27 Jan 2017 15:27:53 -0000
-Content-Type: multipart/alternative; boundary=94eb2c12943eb8e0840547151b31
+X-List-Received-Date: Fri, 27 Jan 2017 14:59:40 -0000
+Content-Type: multipart/alternative; boundary=001a113f9762da242f054714b627
 
---94eb2c12943eb8e0840547151b31
+--001a113f9762da242f054714b627
 Content-Type: text/plain; charset=UTF-8
 
-Hi all,
+Hello All,
 
-1. Add more details to your commits
-2. As I said in a previous patch, I don't like this... rk-linux.inc , the
-name of the file is not clear at all... and I don't like its content for
-now.
-3. There is really a small differences between a kernel mainline and your
-kernel rk3288 nowadays... Do you have a working VPU in your kernel ?
-perhaps that it might be interesting for this... (if I remember, it's not
-supported in upstream)
+I have few question regarding Yocto poky distribution, it may be very silly
+question but if somebody could help to clear my doubts it will be very
+useful.
+
+Q1. What is the default OS in Yocto Poky build.
+
+Q1. What Steps I need to do in case I want to have some different
+OS(Android) or Type 1 Hypervisor on my Yocot Poky distro, which layers I
+need to add or remove from default Yocto Poky distro
 
 
-Thanks,
-Romain
+Thanks and Regards
 
-2017-01-19 15:40 GMT+01:00 Eddie Cai <eddie.cai.linux@gmail.com>:
+-- 
+*Nitish Jha*
 
-> Hi
->
-> 2017-01-19 18:09 GMT+08:00 Jacob Chen <jacob-chen@iotwrt.com>:
-> > This is the kernel vendor that supports all hw components for this board,
-> > so we use it by default.
-> The title and commit message didn't match the your content. Linux
-> rockchip should refer to http://github.com/linux-rockchip.
-> firefly-rk3288.conf already using http://github.com/linux-rockchip
-> >
-> > Signed-off-by: Jacob Chen <jacob-chen@iotwrt.com>
-> > ---
-> >  conf/machine/firefly-rk3288.conf | 4 ++++
-> >  1 file changed, 4 insertions(+)
-> >
-> > diff --git a/conf/machine/firefly-rk3288.conf
-> b/conf/machine/firefly-rk3288.conf
-> > index 8fa005d..47e63e1 100644
-> > --- a/conf/machine/firefly-rk3288.conf
-> > +++ b/conf/machine/firefly-rk3288.conf
-> > @@ -7,4 +7,8 @@
-> >  #http://www.t-firefly.com/en/
-> >
-> >  include conf/machine/include/rk3288.inc
-> > +include conf/machine/include/rk-linux.inc
-> > +
-> >  KERNEL_DEVICETREE = "rk3288-firefly.dtb"
-> > +
-> > +UBOOT_MACHINE = "firefly-rk3288_defconfig"
-> > --
-> > 2.7.4
-> >
-> > --
-> > _______________________________________________
-> > yocto mailing list
-> > yocto@yoctoproject.org
-> > https://lists.yoctoproject.org/listinfo/yocto
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
-
---94eb2c12943eb8e0840547151b31
+--001a113f9762da242f054714b627
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div><div><div><div><div>Hi all,<br><br></div>1. Add more =
-details to your commits<br></div>2. As I said in a previous patch, I don&#3=
-9;t like this... rk-linux.inc , the name of the file is not clear at all...=
- and I don&#39;t like its content for now.<br></div>3. There is really a sm=
-all differences between a kernel mainline and your kernel rk3288 nowadays..=
-. Do you have a working VPU in your kernel ? perhaps that it might be inter=
-esting for this... (if I remember, it&#39;s not supported in upstream)<br><=
-br><br></div>Thanks,<br></div>Romain<br></div><div class=3D"gmail_extra"><b=
-r><div class=3D"gmail_quote">2017-01-19 15:40 GMT+01:00 Eddie Cai <span dir=
-=3D"ltr">&lt;<a href=3D"mailto:eddie.cai.linux@gmail.com" target=3D"_blank"=
->eddie.cai.linux@gmail.com</a>&gt;</span>:<br><blockquote class=3D"gmail_qu=
-ote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex=
-">Hi<br>
-<span class=3D""><br>
-2017-01-19 18:09 GMT+08:00 Jacob Chen &lt;<a href=3D"mailto:jacob-chen@iotw=
-rt.com">jacob-chen@iotwrt.com</a>&gt;:<br>
-&gt; This is the kernel vendor that supports all hw components for this boa=
-rd,<br>
-&gt; so we use it by default.<br>
-</span>The title and commit message didn&#39;t match the your content. Linu=
-x<br>
-rockchip should refer to <a href=3D"http://github.com/linux-rockchip" rel=
-=3D"noreferrer" target=3D"_blank">http://github.com/linux-<wbr>rockchip</a>=
-.<br>
-firefly-rk3288.conf already using <a href=3D"http://github.com/linux-rockch=
-ip" rel=3D"noreferrer" target=3D"_blank">http://github.com/linux-<wbr>rockc=
-hip</a><br>
-<div class=3D"HOEnZb"><div class=3D"h5">&gt;<br>
-&gt; Signed-off-by: Jacob Chen &lt;<a href=3D"mailto:jacob-chen@iotwrt.com"=
->jacob-chen@iotwrt.com</a>&gt;<br>
-&gt; ---<br>
-&gt;=C2=A0 conf/machine/firefly-rk3288.<wbr>conf | 4 ++++<br>
-&gt;=C2=A0 1 file changed, 4 insertions(+)<br>
-&gt;<br>
-&gt; diff --git a/conf/machine/firefly-rk3288.<wbr>conf b/conf/machine/fire=
-fly-rk3288.<wbr>conf<br>
-&gt; index 8fa005d..47e63e1 100644<br>
-&gt; --- a/conf/machine/firefly-rk3288.<wbr>conf<br>
-&gt; +++ b/conf/machine/firefly-rk3288.<wbr>conf<br>
-&gt; @@ -7,4 +7,8 @@<br>
-&gt;=C2=A0 #<a href=3D"http://www.t-firefly.com/en/" rel=3D"noreferrer" tar=
-get=3D"_blank">http://www.t-firefly.com/en/</a><br>
-&gt;<br>
-&gt;=C2=A0 include conf/machine/include/rk3288.<wbr>inc<br>
-&gt; +include conf/machine/include/rk-linux.<wbr>inc<br>
-&gt; +<br>
-&gt;=C2=A0 KERNEL_DEVICETREE =3D &quot;rk3288-firefly.dtb&quot;<br>
-&gt; +<br>
-&gt; +UBOOT_MACHINE =3D &quot;firefly-rk3288_defconfig&quot;<br>
-&gt; --<br>
-&gt; 2.7.4<br>
-&gt;<br>
-</div></div><span class=3D"HOEnZb"><font color=3D"#888888">&gt; --<br>
-&gt; ______________________________<wbr>_________________<br>
-&gt; yocto mailing list<br>
-&gt; <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><b=
-r>
-&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noref=
-errer" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto=
-</a><br>
---<br>
-______________________________<wbr>_________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto</a><=
-br>
-</font></span></blockquote></div><br></div>
+<div dir=3D"ltr">Hello All,=C2=A0<div><br></div><div>I have few question re=
+garding Yocto poky distribution, it may be very silly question but if someb=
+ody could help to clear my doubts it will be very useful.</div><div><br></d=
+iv><div>Q1. What is the default OS in Yocto Poky build.</div><div><br></div=
+><div>Q1. What Steps I need to do in case I want to have some different OS(=
+Android) or Type 1 Hypervisor on my Yocot Poky distro, which layers I need =
+to add or remove from default Yocto Poky distro</div><div><br></div><div><b=
+r></div><div>Thanks and Regards<br clear=3D"all"><div><br></div>-- <br><div=
+ class=3D"gmail_signature" data-smartmail=3D"gmail_signature"><div dir=3D"l=
+tr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><di=
+v style=3D"font-family:arial;font-size:small"><div><b>Nitish Jha</b></div><=
+div><br></div></div></div></div></div></div></div></div>
+</div></div>
 
---94eb2c12943eb8e0840547151b31--
+--001a113f9762da242f054714b627--
