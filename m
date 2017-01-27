@@ -1,17 +1,20 @@
 Return-Path: <romain.perier@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3F5DEE00995; Fri, 27 Jan 2017 07:12:09 -0800 (PST)
+	id 3FF10E00932; Fri, 27 Jan 2017 07:27:53 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+	RCVD_IN_DNSWL_NONE, 
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [74.125.82.65 listed in list.dnswl.org]
+	*      [74.125.82.68 listed in list.dnswl.org]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
 	provider *      (romain.perier[at]gmail.com)
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.82.68 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -20,45 +23,47 @@ X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f65.google.com (mail-wm0-f65.google.com [74.125.82.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8A2DAE00938
-	for <yocto@yoctoproject.org>; Fri, 27 Jan 2017 07:12:03 -0800 (PST)
-Received: by mail-wm0-f65.google.com with SMTP id r144so58940712wme.0
-	for <yocto@yoctoproject.org>; Fri, 27 Jan 2017 07:12:03 -0800 (PST)
+Received: from mail-wm0-f68.google.com (mail-wm0-f68.google.com [74.125.82.68])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4F560E0052B
+	for <yocto@yoctoproject.org>; Fri, 27 Jan 2017 07:27:49 -0800 (PST)
+Received: by mail-wm0-f68.google.com with SMTP id d140so59219975wmd.2
+	for <yocto@yoctoproject.org>; Fri, 27 Jan 2017 07:27:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=P20+y1S9x7WwRZhaOQuClGP+1W10n/w6JEJlO3u1m5I=;
-	b=tq5sxiF1Vy7cqU5dXS8+HWll6FJnnFuMk/dtcWlSK52KeVDfHgTkbAySSYTD6aU5rb
-	DVWuj6oGgtORQDHodxO56iyTqG5+ZmQBGB/RQKVFCaLNsJNpjky9px8NHiUoOQ6uLnQ0
-	JRhfVLzWnRPYjmBsdkkYbxmwSeWHFxe96TpD9A06J5tYoYUI66602bUNoWHGs+qW1aUl
-	JHAWL3NmsRx1bV9388wA+nk4l1w5UFMdpyERz8bhzHZowjK6v8FhTlepMBeVAwaZe8BA
-	BVZcb0C4FQOV0CCXgdutQ3CukXaKPxcCd1LPaIhhHcxEl+n0f3bWGFnCn/MzlMC2CxV2
-	/2Iw==
+	:cc; bh=qHTYSW2+jth7wY6UoX+wIy3799kyYgFFAsGSN1BMTFQ=;
+	b=lyEhI7ROsTnI2gG0+z+nwfKF2WwerN4uATPX7zBBqc7Q1T0GXDRmVi2K0Q6+vnQtqC
+	RZ7Y6TaIWYNmr/QgkvAPvLKaDY1gUW395WKcmeWjmU/SmI9k+3i/eNOr5YvGFxHuCefQ
+	R+AeR/MZ9zRgwTb2oyzpCja9HAaIQJu6k7ad/XLi+H33hDgnVeJvCTXC+5U4bWvaAlQ9
+	8Q1t8Bec3nv5IwjxoeMIWtwm9a4xynXBhJSAh6Qvq6Js3G6Swru4NtUK5ausqZFgYEXM
+	ZCWqDKTori75oWcQrV0pnCip0xbxZyc2WRrcQlmynYYtrUxjstZ1nQzi8maujSs5HmyH
+	iNZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=P20+y1S9x7WwRZhaOQuClGP+1W10n/w6JEJlO3u1m5I=;
-	b=rby3yMKW4y+XUVQqZuAq+nTR7gi2xy9OszMqCaDZak5YbXPeq025Kura25yfxhcfKM
-	f02RDCEXINTuYnCHJ9jmJPakm+BdeMqkEBjwcMHkSz4bbe1fHJKkLtHHo9EKUQ8ZnJEg
-	EtN2Z9m9Nr5nx/7lOU9sIC/+kvLse/Yj6sIaxwr2js5jr6+Hvx59zb+RxYIuTAFyfyOo
-	36vkv7Vk1llhF/CSmpCNWTI6R6RaKdIMmXIQ7jtUnZmrGHzzX/jlYVH3rhlPl3QkoPlA
-	9f/XJ/Q2RLCf+BS3d6L+GVAfskZBkIXalx+rwd+WxQysPeFa8RHH10OAHI0s3XjRa5Xm
-	0zqA==
-X-Gm-Message-State: AIkVDXJ5z7kU4jLdvyP1dy1vqs8e56pEUSGFt0ZXR6G5jgR3wkQC6w23URf+SpAumqq+vejYGVsoGZzpvHIfvg==
-X-Received: by 10.28.143.5 with SMTP id r5mr3573690wmd.141.1485529923095; Fri,
-	27 Jan 2017 07:12:03 -0800 (PST)
+	bh=qHTYSW2+jth7wY6UoX+wIy3799kyYgFFAsGSN1BMTFQ=;
+	b=XHXheSpizv0EeRT4R0l6anFuTH+JovBKuOxpaHOiYDRnFca6HkKg1KGIGiLU1T/DZr
+	AaT0tvk5V0vfBIYXEdYvPdAqYH6K9lZTozIh/lb2JfMu3QPWhj40jeAFH6E83WowCZFe
+	KQDVAJG5Gqd9x4a1yEusLyrDuXoZFbOrrpWD6C5vtT43NC8plqJK9Ddo/JQi/xQ2DtlX
+	tZ/E+HQsi/ODKbrTlCGOjSYOvrgEp/V0Zty1e2kO87N6j+4ksMr1sD/MHxxDD1xXVb00
+	XtgaZPBm52ZtQVThLUflojOMLAZrVwxhHPRVSC4dD8RjvW8nw7n2/++6tDuxZE/WAC/N
+	uGfg==
+X-Gm-Message-State: AIkVDXJI9NvRb894qbhzGQYOLJd/pcSHeceLQxX/m0BTRFF5dXrqplFjMiUPaar8eAi8tYxUkAG75aT7ZSEBEQ==
+X-Received: by 10.28.166.215 with SMTP id p206mr3839423wme.87.1485530868536;
+	Fri, 27 Jan 2017 07:27:48 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.80.196.2 with HTTP; Fri, 27 Jan 2017 07:12:02 -0800 (PST)
-In-Reply-To: <1484820572-11891-2-git-send-email-jacob-chen@iotwrt.com>
+Received: by 10.80.196.2 with HTTP; Fri, 27 Jan 2017 07:27:48 -0800 (PST)
+In-Reply-To: <CAJrj+DP7XGadbn-03EuAy4WAKgV=Pq67AjKghfuzR5gMbSpxLA@mail.gmail.com>
 References: <1484820572-11891-1-git-send-email-jacob-chen@iotwrt.com>
-	<1484820572-11891-2-git-send-email-jacob-chen@iotwrt.com>
+	<1484820572-11891-4-git-send-email-jacob-chen@iotwrt.com>
+	<CAJrj+DP7XGadbn-03EuAy4WAKgV=Pq67AjKghfuzR5gMbSpxLA@mail.gmail.com>
 From: Romain Perier <romain.perier@gmail.com>
-Date: Fri, 27 Jan 2017 16:12:02 +0100
-Message-ID: <CABgxDoKrQasvvq4Puq1xMn-gbxjG89YXcOE_Fu1-TcXgrYDUQQ@mail.gmail.com>
-To: Jacob Chen <jacob-chen@iotwrt.com>
-Cc: yocto@yoctoproject.org, eddie.cai@rock-chips.com
-Subject: Re: [PATCH 1/7] recipes-kernel: linux-rockchip: Add new recipe for 4.4
+Date: Fri, 27 Jan 2017 16:27:48 +0100
+Message-ID: <CABgxDo+jYOL2tq9A71kSJgNiuYkCzzHnBES1z-mR1xO0E8G-XQ@mail.gmail.com>
+To: Eddie Cai <eddie.cai.linux@gmail.com>
+Cc: yocto@yoctoproject.org, Jacob Chen <jacob-chen@iotwrt.com>,
+	Eddie Cai <eddie.cai@rock-chips.com>
+Subject: Re: [PATCH 3/7] machine: firefly: use linux-rockchip by default
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,153 +75,143 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 27 Jan 2017 15:12:09 -0000
-Content-Type: multipart/alternative; boundary=001a114690e45e9673054714e3f2
+X-List-Received-Date: Fri, 27 Jan 2017 15:27:53 -0000
+Content-Type: multipart/alternative; boundary=94eb2c12943eb8e0840547151b31
 
---001a114690e45e9673054714e3f2
+--94eb2c12943eb8e0840547151b31
 Content-Type: text/plain; charset=UTF-8
 
 Hi all,
 
+1. Add more details to your commits
+2. As I said in a previous patch, I don't like this... rk-linux.inc , the
+name of the file is not clear at all... and I don't like its content for
+now.
+3. There is really a small differences between a kernel mainline and your
+kernel rk3288 nowadays... Do you have a working VPU in your kernel ?
+perhaps that it might be interesting for this... (if I remember, it's not
+supported in upstream)
 
-supposing that this patch series is for meta-rockchip (next time add a
-prefix meta-rockchip, as it is explained in the README)
-
-2017-01-19 11:09 GMT+01:00 Jacob Chen <jacob-chen@iotwrt.com>:
-
-> Rockchip 4.4 kernel is currently the latest version of the rockchip
-> offical kernel,
-> will be an upstream tracking branch.
-> We regularly release the kernel through github.
-> It support all rockchip 64-bit chips and a few 32-bit chips.
->
-
-
-Could you be more precise ? if some SoCs are better supported by this
-kernel instead the mainline kernel, we can consider to accept this recipe
-and use it for a set of boards.
-
-
-
->
-> Signed-off-by: Jacob Chen <jacob-chen@iotwrt.com>
-> ---
->  recipes-kernel/linux/linux-rockchip_4.4.bb | 20 ++++++++++++++++++++
->  1 file changed, 20 insertions(+)
->  create mode 100644 recipes-kernel/linux/linux-rockchip_4.4.bb
->
-> diff --git a/recipes-kernel/linux/linux-rockchip_4.4.bb
-> b/recipes-kernel/linux/linux-rockchip_4.4.bb
-> new file mode 100644
-> index 0000000..ca3674e
-> --- /dev/null
-> +++ b/recipes-kernel/linux/linux-rockchip_4.4.bb
-> @@ -0,0 +1,20 @@
-> +# Copyright (C) 2017 Fuzhou Rockchip Electronics Co., Ltd
-> +# Released under the MIT license (see COPYING.MIT for the terms)
-> +
-> +require recipes-kernel/linux/linux-yocto.inc
-> +
-> +SRC_URI = "git://github.com/rockchip-linux/kernel.git;branch=release-4.4
-> ;"
-> +
-> +SRCREV = "${AUTOREV}"
-> +LINUX_VERSION = "4.4.41"
-> +# Override local version in order to use the one generated by linux build
-> system
-> +# And not "yocto-standard"
-> +LINUX_VERSION_EXTENSION = ""
-> +PR = "r1"
-> +PV = "${LINUX_VERSION}"
-> +
-> +# Include only supported boards for now
-> +COMPATIBLE_MACHINE = "(rk3288)"
->
-+deltask kernel_configme
->
-
-
-
-> +KBUILD_DEFCONFIG = "rockchip_linux_defconfig"
->
->
-I think that you can move this to a machine file... (for the board that use
-linux-rockchip)
 
 Thanks,
 Romain
 
---001a114690e45e9673054714e3f2
+2017-01-19 15:40 GMT+01:00 Eddie Cai <eddie.cai.linux@gmail.com>:
+
+> Hi
+>
+> 2017-01-19 18:09 GMT+08:00 Jacob Chen <jacob-chen@iotwrt.com>:
+> > This is the kernel vendor that supports all hw components for this board,
+> > so we use it by default.
+> The title and commit message didn't match the your content. Linux
+> rockchip should refer to http://github.com/linux-rockchip.
+> firefly-rk3288.conf already using http://github.com/linux-rockchip
+> >
+> > Signed-off-by: Jacob Chen <jacob-chen@iotwrt.com>
+> > ---
+> >  conf/machine/firefly-rk3288.conf | 4 ++++
+> >  1 file changed, 4 insertions(+)
+> >
+> > diff --git a/conf/machine/firefly-rk3288.conf
+> b/conf/machine/firefly-rk3288.conf
+> > index 8fa005d..47e63e1 100644
+> > --- a/conf/machine/firefly-rk3288.conf
+> > +++ b/conf/machine/firefly-rk3288.conf
+> > @@ -7,4 +7,8 @@
+> >  #http://www.t-firefly.com/en/
+> >
+> >  include conf/machine/include/rk3288.inc
+> > +include conf/machine/include/rk-linux.inc
+> > +
+> >  KERNEL_DEVICETREE = "rk3288-firefly.dtb"
+> > +
+> > +UBOOT_MACHINE = "firefly-rk3288_defconfig"
+> > --
+> > 2.7.4
+> >
+> > --
+> > _______________________________________________
+> > yocto mailing list
+> > yocto@yoctoproject.org
+> > https://lists.yoctoproject.org/listinfo/yocto
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+
+--94eb2c12943eb8e0840547151b31
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hi all,<br><br><br></div>supposing that this patch se=
-ries is for meta-rockchip (next time add a prefix meta-rockchip, as it is e=
-xplained in the README)<br><div><div><div class=3D"gmail_extra"><br><div cl=
-ass=3D"gmail_quote">2017-01-19 11:09 GMT+01:00 Jacob Chen <span dir=3D"ltr"=
->&lt;<a href=3D"mailto:jacob-chen@iotwrt.com" target=3D"_blank">jacob-chen@=
-iotwrt.com</a>&gt;</span>:<br><blockquote class=3D"gmail_quote" style=3D"ma=
-rgin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">Rockchip 4.4 k=
-ernel is currently the latest version of the rockchip offical kernel,<br>
-will be an upstream tracking branch.<br>
-We regularly release the kernel through github.<br>
-It support all rockchip 64-bit chips and a few 32-bit chips.<br></blockquot=
-e><div><br><br>Could you be more precise ? if some SoCs are better supporte=
-d by this kernel instead the mainline kernel, we can consider to accept thi=
-s recipe and use it for a set of boards.<br><br></div><div>=C2=A0</div><blo=
-ckquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #c=
-cc solid;padding-left:1ex">
-<br>
-Signed-off-by: Jacob Chen &lt;<a href=3D"mailto:jacob-chen@iotwrt.com">jaco=
-b-chen@iotwrt.com</a>&gt;<br>
----<br>
-=C2=A0recipes-kernel/linux/<a href=3D"http://linux-rockchip_4.4.bb" rel=3D"=
-noreferrer" target=3D"_blank">linux-<wbr>rockchip_4.4.bb</a> | 20 +++++++++=
-+++++++++++<br>
-=C2=A01 file changed, 20 insertions(+)<br>
-=C2=A0create mode 100644 recipes-kernel/linux/<a href=3D"http://linux-rockc=
-hip_4.4.bb" rel=3D"noreferrer" target=3D"_blank">linux-<wbr>rockchip_4.4.bb=
+<div dir=3D"ltr"><div><div><div><div><div>Hi all,<br><br></div>1. Add more =
+details to your commits<br></div>2. As I said in a previous patch, I don&#3=
+9;t like this... rk-linux.inc , the name of the file is not clear at all...=
+ and I don&#39;t like its content for now.<br></div>3. There is really a sm=
+all differences between a kernel mainline and your kernel rk3288 nowadays..=
+. Do you have a working VPU in your kernel ? perhaps that it might be inter=
+esting for this... (if I remember, it&#39;s not supported in upstream)<br><=
+br><br></div>Thanks,<br></div>Romain<br></div><div class=3D"gmail_extra"><b=
+r><div class=3D"gmail_quote">2017-01-19 15:40 GMT+01:00 Eddie Cai <span dir=
+=3D"ltr">&lt;<a href=3D"mailto:eddie.cai.linux@gmail.com" target=3D"_blank"=
+>eddie.cai.linux@gmail.com</a>&gt;</span>:<br><blockquote class=3D"gmail_qu=
+ote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex=
+">Hi<br>
+<span class=3D""><br>
+2017-01-19 18:09 GMT+08:00 Jacob Chen &lt;<a href=3D"mailto:jacob-chen@iotw=
+rt.com">jacob-chen@iotwrt.com</a>&gt;:<br>
+&gt; This is the kernel vendor that supports all hw components for this boa=
+rd,<br>
+&gt; so we use it by default.<br>
+</span>The title and commit message didn&#39;t match the your content. Linu=
+x<br>
+rockchip should refer to <a href=3D"http://github.com/linux-rockchip" rel=
+=3D"noreferrer" target=3D"_blank">http://github.com/linux-<wbr>rockchip</a>=
+.<br>
+firefly-rk3288.conf already using <a href=3D"http://github.com/linux-rockch=
+ip" rel=3D"noreferrer" target=3D"_blank">http://github.com/linux-<wbr>rockc=
+hip</a><br>
+<div class=3D"HOEnZb"><div class=3D"h5">&gt;<br>
+&gt; Signed-off-by: Jacob Chen &lt;<a href=3D"mailto:jacob-chen@iotwrt.com"=
+>jacob-chen@iotwrt.com</a>&gt;<br>
+&gt; ---<br>
+&gt;=C2=A0 conf/machine/firefly-rk3288.<wbr>conf | 4 ++++<br>
+&gt;=C2=A0 1 file changed, 4 insertions(+)<br>
+&gt;<br>
+&gt; diff --git a/conf/machine/firefly-rk3288.<wbr>conf b/conf/machine/fire=
+fly-rk3288.<wbr>conf<br>
+&gt; index 8fa005d..47e63e1 100644<br>
+&gt; --- a/conf/machine/firefly-rk3288.<wbr>conf<br>
+&gt; +++ b/conf/machine/firefly-rk3288.<wbr>conf<br>
+&gt; @@ -7,4 +7,8 @@<br>
+&gt;=C2=A0 #<a href=3D"http://www.t-firefly.com/en/" rel=3D"noreferrer" tar=
+get=3D"_blank">http://www.t-firefly.com/en/</a><br>
+&gt;<br>
+&gt;=C2=A0 include conf/machine/include/rk3288.<wbr>inc<br>
+&gt; +include conf/machine/include/rk-linux.<wbr>inc<br>
+&gt; +<br>
+&gt;=C2=A0 KERNEL_DEVICETREE =3D &quot;rk3288-firefly.dtb&quot;<br>
+&gt; +<br>
+&gt; +UBOOT_MACHINE =3D &quot;firefly-rk3288_defconfig&quot;<br>
+&gt; --<br>
+&gt; 2.7.4<br>
+&gt;<br>
+</div></div><span class=3D"HOEnZb"><font color=3D"#888888">&gt; --<br>
+&gt; ______________________________<wbr>_________________<br>
+&gt; yocto mailing list<br>
+&gt; <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><b=
+r>
+&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noref=
+errer" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto=
 </a><br>
-<br>
-diff --git a/recipes-kernel/linux/<a href=3D"http://linux-rockchip_4.4.bb" =
-rel=3D"noreferrer" target=3D"_blank">linux-<wbr>rockchip_4.4.bb</a> b/recip=
-es-kernel/linux/<a href=3D"http://linux-rockchip_4.4.bb" rel=3D"noreferrer"=
- target=3D"_blank">linux-<wbr>rockchip_4.4.bb</a><br>
-new file mode 100644<br>
-index 0000000..ca3674e<br>
---- /dev/null<br>
-+++ b/recipes-kernel/linux/<a href=3D"http://linux-rockchip_4.4.bb" rel=3D"=
-noreferrer" target=3D"_blank">linux-<wbr>rockchip_4.4.bb</a><br>
-@@ -0,0 +1,20 @@<br>
-+# Copyright (C) 2017 Fuzhou Rockchip Electronics Co., Ltd<br>
-+# Released under the MIT license (see COPYING.MIT for the terms)<br>
-+<br>
-+require recipes-kernel/linux/linux-<wbr>yocto.inc<br>
-+<br>
-+SRC_URI =3D &quot;git://<a href=3D"http://github.com/rockchip-linux/kernel=
-.git;branch=3Drelease-4.4" rel=3D"noreferrer" target=3D"_blank">github.com/=
-rockchip-<wbr>linux/kernel.git;branch=3D<wbr>release-4.4</a>;&quot;<br>
-+<br>
-+SRCREV =3D &quot;${AUTOREV}&quot;<br>
-+LINUX_VERSION =3D &quot;4.4.41&quot;<br>
-+# Override local version in order to use the one generated by linux build =
-system<br>
-+# And not &quot;yocto-standard&quot;<br>
-+LINUX_VERSION_EXTENSION =3D &quot;&quot;<br>
-+PR =3D &quot;r1&quot;<br>
-+PV =3D &quot;${LINUX_VERSION}&quot;<br>
-+<br>
-+# Include only supported boards for now<br>
-+COMPATIBLE_MACHINE =3D &quot;(rk3288)&quot; <br></blockquote><blockquote c=
-lass=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;=
-padding-left:1ex">
-+deltask kernel_configme<br></blockquote><div><br>=C2=A0</div><blockquote c=
-lass=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;=
-padding-left:1ex">
-+KBUILD_DEFCONFIG =3D &quot;rockchip_linux_defconfig&quot;<br>
-<span class=3D"HOEnZb"><font color=3D"#888888"><br></font></span></blockquo=
-te><div><br></div><div>I think that you can move this to a machine file... =
-(for the board that use linux-rockchip)<br><br></div><div>Thanks,<br></div>=
-<div>Romain <br></div></div><br></div></div></div></div>
+--<br>
+______________________________<wbr>_________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto</a><=
+br>
+</font></span></blockquote></div><br></div>
 
---001a114690e45e9673054714e3f2--
+--94eb2c12943eb8e0840547151b31--
