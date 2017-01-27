@@ -1,6 +1,6 @@
 Return-Path: <romain.perier@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6B2F6E0052B; Fri, 27 Jan 2017 06:37:21 -0800 (PST)
+	id 01098E0052B; Fri, 27 Jan 2017 06:41:41 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -11,6 +11,8 @@ X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
 	*      [74.125.82.67 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.82.67 listed in dnsbl.sorbs.net]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
 	provider *      (romain.perier[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
@@ -21,48 +23,45 @@ X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.82.67 listed in dnsbl.sorbs.net]
 Received: from mail-wm0-f67.google.com (mail-wm0-f67.google.com [74.125.82.67])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 04453E00510
-	for <yocto@yoctoproject.org>; Fri, 27 Jan 2017 06:37:16 -0800 (PST)
-Received: by mail-wm0-f67.google.com with SMTP id d140so58920085wmd.2
-	for <yocto@yoctoproject.org>; Fri, 27 Jan 2017 06:37:16 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6CB63E00510
+	for <yocto@yoctoproject.org>; Fri, 27 Jan 2017 06:41:37 -0800 (PST)
+Received: by mail-wm0-f67.google.com with SMTP id r144so58760389wme.0
+	for <yocto@yoctoproject.org>; Fri, 27 Jan 2017 06:41:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=gCpXKHJIu2zMkFe73SHzVN5UTmtNKuthaX39kU8hh5I=;
-	b=rK2fHXYygqTG9moCGX0ZU9SRJVSVhznpeMQO6niE5NlgZKVPLKZAl/aHwAjgk1pXll
-	J+YLHULtav7nwewb+aob6y+rWkI0rzfBKgODThulpYOQGRsnsB+K97Npe2MVttkgFWxY
-	GGRu+/a+/LEta7Y5j8l9+6EpO8bi4Q1RFwJ2BjqZoPHA917Q5VDb5zXoPcH+1HMObsNC
-	yKm5buyc9LjKkIb3fAuLnsdR+eA41KVv7zyg4vcYghbW9oR/EEvisfJ/RhAPTu8ASySW
-	gODCNAHtEorxFUan6Eo+7fp+rvfbAy0TQbl3l5IUbqXGePYOfwNYxJ3fkllzzyYVviyV
-	BfNQ==
+	:cc; bh=OEvsiUWRB8wyZQaXnwCiX+P5fqncOGUj555zl/u62s8=;
+	b=aKfx2tJv3Yz6aGhdU9XK+Cn/f8q5IGN/RxSH145zSFbD2d9xkCxFQaO2jY3IZN1lV/
+	dg0Mr+MUMIVuWVg4PugycKH7W+HgJGxLKic9H2bGrvC0nYwauoQNf2HlZIKuPKgUmv7m
+	xzjNC+TgKlWyRTYolJxzm7jQeP4K6SUbxxOyerDG3lBkHGeebwDSu21Daa/w5UF5Gtuc
+	Oi99W51R0b3ryqtrvHrIvzJelhgtIO8qx9+BTeMOc6yOt4ZM1F9yHR9GkbctiW+VZCv9
+	Xpa/UijRi7eTTf4MZUzBqGa+3LRbe00UOjMGNbMFtKb2riu/BNW/6+fLg6wUJxDreNhf
+	hH4g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=gCpXKHJIu2zMkFe73SHzVN5UTmtNKuthaX39kU8hh5I=;
-	b=DZaGkeM+b7R6nd/q+uv8uxpNR7WKFVAuV3c6iWF2CAgF5rz04fPfE0zD/CSvjrMPhw
-	Zdtl0hj3Y/V2Z0WIhJLtn4l32Q+HOSBWziq0TsA7RdtJISHeKxb/H4HLP10mPm9Nu1fv
-	OLAA/Mx3s5JHGNHrad7kL6FaErLiwrppRjQX1cXEvnAeu+f++MFnzRn38Pm922IubrNJ
-	KYJefc4t8kj71EOGtdR0IWY4ns78xCFi72dj/3039VRkdRBjWbFdgDPTH+MD716ECezi
-	XwsvuDn4HaX5/SY135yPWsntMWnOAEEc5mApL3fLnKQGiHwDxEoXxMLSznso+prpVQqZ
-	uS7g==
-X-Gm-Message-State: AIkVDXISzcvSXprMswnmTzBUfOWiuEbkZhNI524Sh1wJMRy5AifaC0qkZhQpXcWUfmtFByYohUIHA/ZHHDnl/g==
-X-Received: by 10.28.50.135 with SMTP id y129mr3260378wmy.2.1485527836047;
-	Fri, 27 Jan 2017 06:37:16 -0800 (PST)
+	bh=OEvsiUWRB8wyZQaXnwCiX+P5fqncOGUj555zl/u62s8=;
+	b=kNvLH4+MvtsTH8CFeuiFNK71IwtLIlScmv/Va0DSv8R0ygextLvTPlUf/TkmU6fC4T
+	nDTfbUmqWEY4AVUOtoLiXeFxVPL+hn9ik5uho660F8TcLXVoBuIsaifNTEvkTG3OcCAK
+	rFOmiiLCMrwtS8xnH7XhxSXcSQ+HYWL2V8Wtg2AIKHMMgBIFzwjP5LoSwEzLdtKlgKLA
+	ZrXi46bUxKZ0NXjjXOyHv7Ca8N8BCdlpxMtHt+AenLwRWsCho3trECm6LBbeqGP1P5dq
+	Rogx08dIPozDnY/5AikPbRPEaa9i5i3DBKWdbybHTQFMRK7L4f2LjBakfR8BdCwt4g8z
+	8gsQ==
+X-Gm-Message-State: AIkVDXLFsLAPPZ0Q01dirox1n4sL6mXu1MJkCPlGGr76K9ViAbU+JR4T6s0HlHaviyKLSWrCb4elyxg51yWfdQ==
+X-Received: by 10.28.166.215 with SMTP id p206mr3644554wme.87.1485528096643;
+	Fri, 27 Jan 2017 06:41:36 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.80.196.2 with HTTP; Fri, 27 Jan 2017 06:37:15 -0800 (PST)
-In-Reply-To: <1484834687-15746-3-git-send-email-jacob-chen@iotwrt.com>
+Received: by 10.80.196.2 with HTTP; Fri, 27 Jan 2017 06:41:36 -0800 (PST)
+In-Reply-To: <1484834687-15746-5-git-send-email-jacob-chen@iotwrt.com>
 References: <1484834687-15746-1-git-send-email-jacob-chen@iotwrt.com>
-	<1484834687-15746-3-git-send-email-jacob-chen@iotwrt.com>
+	<1484834687-15746-5-git-send-email-jacob-chen@iotwrt.com>
 From: Romain Perier <romain.perier@gmail.com>
-Date: Fri, 27 Jan 2017 15:37:15 +0100
-Message-ID: <CABgxDo+5x6-ByOUikkG45S6Yo5NO+=L4S3GRX7firgpMqQQiAA@mail.gmail.com>
+Date: Fri, 27 Jan 2017 15:41:36 +0100
+Message-ID: <CABgxDoLt2RbidD-3L93UkjLuaXn_eoB08=HqLaHsD9=8nLpqmQ@mail.gmail.com>
 To: Jacob Chen <jacob-chen@iotwrt.com>
-Cc: yocto@yoctoproject.org, Jacob Chen <jacob-chen@rock-chips.com>,
-	eddie.cai@rock-chips.com
-Subject: Re: [meta-rockchip][PATCH 2/7] machine: Add machine file for the rk3288 linux Boards
+Cc: yocto@yoctoproject.org, eddie.cai@rock-chips.com
+Subject: Re: [meta-rockchip][PATCH 4/7] recipes-graphics: Add support for mali-userspace
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,280 +73,342 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 27 Jan 2017 14:37:21 -0000
-Content-Type: multipart/alternative; boundary=001a1140df22f8d0bd054714660f
+X-List-Received-Date: Fri, 27 Jan 2017 14:41:41 -0000
+Content-Type: multipart/alternative; boundary=94eb2c12943e81264105471476f1
 
---001a1140df22f8d0bd054714660f
+--94eb2c12943e81264105471476f1
 Content-Type: text/plain; charset=UTF-8
 
-Hey,
+Hi all,
 
-Could you:
-- Make one patch per new machine file and not one patch for all new added
-machine
-- Add a clear @DESCRIPTION for each board, see an example here:
-https://git.yoctoproject.org/cgit/cgit.cgi/meta-rockchip/tree/conf/machine/firefly-rk3288.conf
-- Write a clear and an understandable commit message for your new patches
+Correct me if I am wrong, but these are generic mali userpace binaries ?
+meta-rockchip is a bsp meta layer, it should only contains files and
+recipes to make rockchip board working or things specific to the rockchip
+board. For me these recipes are completly generic and might be re-used for
+another platform with another SoC.
 
-@Trevor: What do you think about this rk-linux.inc ? I don't like this,
-either its name and what it contains.
+I don't want this in meta-rockchip. There is no a layer called meta-mali or
+something ?
 
-That's it for now.
-Thanks for your patches
+@Trevor: Feel free to comment, the point of view of the second maintainer
+is always welcome
 
+Thanks,
+Romain
 
 2017-01-19 15:04 GMT+01:00 Jacob Chen <jacob-chen@iotwrt.com>:
 
-> Evb-rk3288 is the offical evaluate board, add it to help myself develop.
+> Add support for mali userspace which are binaries that can be run
+> with weston and X11.
 >
-> Fennec-rk3288 and Tinker-rk3288 is rk3288 based SBCs.
->     .
-> Tinker Boards:
-> http://www.cnx-software.com/2017/01/05/asus-tinker-board-
-> is-a-raspberry-pi-3-alternative-based-on-rockchip-rk3288-processor/
->
-> Signed-off-by: Jacob Chen <jacob-chen@rock-chips.com>
+> Signed-off-by: Jacob Chen <jacob-chen@iotwrt.com>
 > ---
->  conf/machine/evb-rk3288.conf      | 12 ++++++++++++
->  conf/machine/fennec-rk3288.conf   | 12 ++++++++++++
->  conf/machine/include/rk-linux.inc | 20 ++++++++++++++++++++
->  conf/machine/tinker-rk3288.conf   | 13 +++++++++++++
->  4 files changed, 57 insertions(+)
->  create mode 100644 conf/machine/evb-rk3288.conf
->  create mode 100644 conf/machine/fennec-rk3288.conf
->  create mode 100644 conf/machine/include/rk-linux.inc
->  create mode 100644 conf/machine/tinker-rk3288.conf
+>  recipes-graphics/mali-userspace/mali-userspace.inc | 57
+> ++++++++++++++++++++++
+>  .../mali-userspace/mali-userspace_t76x.bb          | 18 +++++++
+>  recipes-graphics/mesa/mesa_%.bbappend              |  9 ++++
+>  3 files changed, 84 insertions(+)
+>  create mode 100644 recipes-graphics/mali-userspace/mali-userspace.inc
+>  create mode 100644 recipes-graphics/mali-userspace/mali-userspace_t76x.bb
+>  create mode 100644 recipes-graphics/mesa/mesa_%.bbappend
 >
-> diff --git a/conf/machine/evb-rk3288.conf b/conf/machine/evb-rk3288.conf
+> diff --git a/recipes-graphics/mali-userspace/mali-userspace.inc
+> b/recipes-graphics/mali-userspace/mali-userspace.inc
 > new file mode 100644
-> index 0000000..88a5f78
+> index 0000000..d40f583
 > --- /dev/null
-> +++ b/conf/machine/evb-rk3288.conf
-> @@ -0,0 +1,12 @@
-> +# Copyright (C) 2017 Fuzhou Rockchip Electronics Co., Ltd
-> +# Released under the MIT license (see COPYING.MIT for the terms)
+> +++ b/recipes-graphics/mali-userspace/mali-userspace.inc
+> @@ -0,0 +1,57 @@
+> +SUMMARY = "Userspace mali driver for Midgard-T76x"
+> +DESCRIPTION = "Userspace mali driver for Midgard-T76x"
+> +LICENSE = "CLOSED"
+> +SECTION = "libs"
 > +
-> +#@TYPE: Machine
-> +#@NAME: EVB 3288
+> +DEPENDS = "libdrm"
+> +DEPENDS += "${@bb.utils.contains("DISTRO_FEATURES", "wayland", " mesa",
+> " ", d)}"
 > +
-> +include conf/machine/include/rk3288.inc
-> +include conf/machine/include/rk-linux.inc
+> +PROVIDES += "virtual/egl virtual/libgles1 virtual/libgles2
+> virtual/libopencl libgbm"
+> +PROVIDES += "${@bb.utils.contains("DISTRO_FEATURES", "wayland", "
+> virtual/libwayland-egl", " ", d)}"
 > +
-> +KERNEL_DEVICETREE = "rk3288-evb-act8846.dtb"
+> +S = "${WORKDIR}"
 > +
-> +UBOOT_MACHINE = "evb-rk3288_defconfig"
-> diff --git a/conf/machine/fennec-rk3288.conf b/conf/machine/fennec-rk3288.
-> conf
-> new file mode 100644
-> index 0000000..a85045f
-> --- /dev/null
-> +++ b/conf/machine/fennec-rk3288.conf
-> @@ -0,0 +1,12 @@
-> +# Copyright (C) 2017 Fuzhou Rockchip Electronics Co., Ltd
-> +# Released under the MIT license (see COPYING.MIT for the terms)
+> +SRC_URI = "git://github.com/rockchip-linux/libmali.git;branch=rockchip;"
+> +SRCREV_pn-${PN} = "${AUTOREV}"
 > +
-> +#@TYPE: Machine
-> +#@NAME: FENNEC RK3288
+> +INSANE_SKIP_${PN} = "already-stripped ldflags dev-so"
 > +
-> +include conf/machine/include/rk3288.inc
-> +include conf/machine/include/rk-linux.inc
+> +INHIBIT_PACKAGE_DEBUG_SPLIT = "1"
+> +INHIBIT_PACKAGE_STRIP = "1"
 > +
-> +KERNEL_DEVICETREE = "rk3288-fennec.dtb"
+> +USE_X11 = "${@bb.utils.contains("DISTRO_FEATURES", "x11", "yes", "no",
+> d)}"
+> +USE_WL = "${@bb.utils.contains("DISTRO_FEATURES", "wayland", "yes",
+> "no", d)}"
 > +
-> +UBOOT_MACHINE = "fennec-rk3288_defconfig"
-> diff --git a/conf/machine/include/rk-linux.inc b/conf/machine/include/rk-
-> linux.inc
-> new file mode 100644
-> index 0000000..6abaa0d
-> --- /dev/null
-> +++ b/conf/machine/include/rk-linux.inc
-> @@ -0,0 +1,20 @@
-> +# Rockchip BSP default settings
+> +do_configure[noexec] = "1"
+> +do_compile[noexec] = "1"
 > +
-> +PREFERRED_PROVIDER_virtual/egl = "mali-userspace"
-> +PREFERRED_PROVIDER_virtual/libgles1 = "mali-userspace"
-> +PREFERRED_PROVIDER_virtual/libgles2 = "mali-userspace"
-> +PREFERRED_PROVIDER_virtual/libopencl = "mali-userspace"
+> +do_install () {
+> +       # Create MALI manifest
+> +       install -m 755 -d ${D}/${libdir}
+> +       if [ "${USE_X11}" = "yes" ]; then
+> +               install ${S}/x11/libmali.so ${D}/${libdir}
+> +       elif [ "${USE_WL}" = "yes" ]; then
+> +               install ${S}/wayland/libmali.so ${D}/${libdir}
+> +       fi
+> +
+> +       ln -sf libmali.so ${D}/${libdir}/libEGL.so
+> +       ln -sf libmali.so ${D}/${libdir}/libGLESv1_CM.so
+> +       ln -sf libmali.so ${D}/${libdir}/libGLESv2.so
+> +       ln -sf libmali.so ${D}/${libdir}/libOpenCL.so
+> +       ln -sf libmali.so ${D}/${libdir}/libgbm.so
+> +
+> +       if [ "${USE_WL}" = "yes" ]; then
+> +               ln -sf libmali.so ${D}/${libdir}/libwayland-egl.so
+> +       fi
+> +}
+> +
+> +PACKAGES = "${PN}"
+> +FILES_${PN} += "${libdir}/*.so"
+> +
+> +RREPLACES_${PN} = "libegl libgles1 libglesv1-cm1 libgles2 libglesv2-2
+> libgbm"
+> +RPROVIDES_${PN} = "libegl libgles1 libglesv1-cm1 libgles2 libglesv2-2
+> libgbm"
+> +RCONFLICTS_${PN} = "libegl libgles1 libglesv1-cm1 libgles2 libglesv2-2
+> libgbm"
 > +
 > +# Workaround: libmali.so provided by rk having no SONAME field in it
 > +# so add it to fix rdepends problems
-> +ASSUME_SHLIBS += "libEGL.so:mali-userspace"
-> +ASSUME_SHLIBS += "libGLESv1_CM.so:mali-userspace"
-> +ASSUME_SHLIBS += "libGLESv2.so:mali-userspace"
-> +ASSUME_SHLIBS += "libOpenCL.so:mali-userspace"
-> +ASSUME_SHLIBS += "libgbm.so:mali-userspace"
-> +ASSUME_SHLIBS += "libwayland-egl.so:mali-userspace"
-> +
-> +PREFERRED_PROVIDER_virtual/kernel = "linux-rockchip"
-> +PREFERRED_PROVIDER_virtual/bootloader = "u-boot-rockchip"
-> +
-> +IMAGE_CLASSES += "rockchip-next-image"
-> diff --git a/conf/machine/tinker-rk3288.conf b/conf/machine/tinker-rk3288.
-> conf
+> +RPROVIDES_${PN} += "libwayland-egl.so libgbm.so libGLESv1_CM.so
+> libGLESv2.so libEGL.so libOpenCL.so"
+> diff --git a/recipes-graphics/mali-userspace/mali-userspace_t76x.bb
+> b/recipes-graphics/mali-userspace/mali-userspace_t76x.bb
 > new file mode 100644
-> index 0000000..0464133
+> index 0000000..3281ac0
 > --- /dev/null
-> +++ b/conf/machine/tinker-rk3288.conf
-> @@ -0,0 +1,13 @@
-> +# Copyright (C) 2017 Fuzhou Rockchip Electronics Co., Ltd
-> +# Released under the MIT license (see COPYING.MIT for the terms)
+> +++ b/recipes-graphics/mali-userspace/mali-userspace_t76x.bb
+> @@ -0,0 +1,18 @@
+> +require mali-userspace.inc
 > +
-> +#@TYPE: Machine
-> +#@NAME: Tinker RK3288
-> +#@DESCRIPTION: ASUS Tinker Board is a Raspberry Pi 3 Alternative based on
-> Rockchip RK3288 Processor.
+> +TYPE = "midgard"
+> +SW_VER = "r13p0"
+> +HW_VER = "r0p0"
 > +
-> +include conf/machine/include/rk3288.inc
-> +include conf/machine/include/rk-linux.inc
+> +LIB_PATH = "arm-linux-gnueabihf"
 > +
-> +KERNEL_DEVICETREE = "rk3288-miniarm.dtb"
+> +MALI_X11 = "libmali-${TYPE}-${SW_VER}-${HW_VER}.so"
+> +MALI_WAYLAND = "libmali-${TYPE}-${SW_VER}-${HW_VER}-wayland.so"
 > +
-> +UBOOT_MACHINE = "miniarm-rk3288_defconfig"
+> +do_install_prepend () {
+> +       mkdir -p x11
+> +       cp git/lib/${LIB_PATH}/${MALI_X11} x11/libmali.so
+> +
+> +       mkdir -p wayland
+> +       cp git/lib/${LIB_PATH}/${MALI_WAYLAND}  wayland/libmali.so
+> +}
+> diff --git a/recipes-graphics/mesa/mesa_%.bbappend
+> b/recipes-graphics/mesa/mesa_%.bbappend
+> new file mode 100644
+> index 0000000..d9cab75
+> --- /dev/null
+> +++ b/recipes-graphics/mesa/mesa_%.bbappend
+> @@ -0,0 +1,9 @@
+> +PROVIDES_remove = "virtual/libgles1 virtual/libgles2 virtual/egl
+> virtual/libwayland-egl"
+> +
+> +do_install_append () {
+> +    rm -f ${D}/${libdir}/libEGL*
+> +    rm -f ${D}/${libdir}/libGLESv1_CM.*
+> +    rm -f ${D}/${libdir}/libGLESv2.*
+> +    rm -f ${D}/${libdir}/libgbm*
+> +    rm -f ${D}/${libdir}/libwayland-egl*
+> +}
 > --
 > 2.7.4
 >
 >
 
---001a1140df22f8d0bd054714660f
+--94eb2c12943e81264105471476f1
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div><div><div><div><div><div>Hey,<br><br></div>Could you:=
-<br></div>- Make one patch per new machine file and not one patch for all n=
-ew added machine<br></div>- Add a clear @DESCRIPTION for each board, see an=
- example here: <a href=3D"https://git.yoctoproject.org/cgit/cgit.cgi/meta-r=
-ockchip/tree/conf/machine/firefly-rk3288.conf">https://git.yoctoproject.org=
-/cgit/cgit.cgi/meta-rockchip/tree/conf/machine/firefly-rk3288.conf</a><br><=
-/div>- Write a clear and an understandable commit message for your new patc=
-hes<br><br></div><div>@Trevor: What do you think about this rk-linux.inc ? =
-I don&#39;t like this, either its name and what it contains.<br></div><div>=
-<br></div>That&#39;s it for now.<br></div>Thanks for your patches<br><div><=
-div><br></div></div></div><div class=3D"gmail_extra"><br><div class=3D"gmai=
-l_quote">2017-01-19 15:04 GMT+01:00 Jacob Chen <span dir=3D"ltr">&lt;<a hre=
-f=3D"mailto:jacob-chen@iotwrt.com" target=3D"_blank">jacob-chen@iotwrt.com<=
-/a>&gt;</span>:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 =
-.8ex;border-left:1px #ccc solid;padding-left:1ex"><div class=3D"HOEnZb"><di=
-v class=3D"h5">Evb-rk3288 is the offical evaluate board, add it to help mys=
-elf develop.<br>
+<div dir=3D"ltr"><div><div><div><div><div>Hi all,<br><br></div>Correct me i=
+f I am wrong, but these are generic mali userpace binaries ? meta-rockchip =
+is a bsp meta layer, it should only contains files and recipes to make rock=
+chip board working or things specific to the rockchip board. For me these r=
+ecipes are completly generic and might be re-used for another platform with=
+ another SoC.<br><br></div>I don&#39;t want this in meta-rockchip. There is=
+ no a layer called meta-mali or something ?<br><br></div>@Trevor: Feel free=
+ to comment, the point of view of the second maintainer is always welcome<b=
+r><br></div>Thanks,<br></div>Romain<br></div><div class=3D"gmail_extra"><br=
+><div class=3D"gmail_quote">2017-01-19 15:04 GMT+01:00 Jacob Chen <span dir=
+=3D"ltr">&lt;<a href=3D"mailto:jacob-chen@iotwrt.com" target=3D"_blank">jac=
+ob-chen@iotwrt.com</a>&gt;</span>:<br><blockquote class=3D"gmail_quote" sty=
+le=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div c=
+lass=3D"HOEnZb"><div class=3D"h5">Add support for mali userspace which are =
+binaries that can be run<br>
+with weston and X11.<br>
 <br>
-Fennec-rk3288 and Tinker-rk3288 is rk3288 based SBCs.<br>
-=C2=A0 =C2=A0 .<br>
-Tinker Boards:<br>
-<a href=3D"http://www.cnx-software.com/2017/01/05/asus-tinker-board-is-a-ra=
-spberry-pi-3-alternative-based-on-rockchip-rk3288-processor/" rel=3D"norefe=
-rrer" target=3D"_blank">http://www.cnx-software.com/<wbr>2017/01/05/asus-ti=
-nker-board-<wbr>is-a-raspberry-pi-3-<wbr>alternative-based-on-rockchip-<wbr=
->rk3288-processor/</a><br>
-<br>
-Signed-off-by: Jacob Chen &lt;<a href=3D"mailto:jacob-chen@rock-chips.com">=
-jacob-chen@rock-chips.com</a>&gt;<br>
+Signed-off-by: Jacob Chen &lt;<a href=3D"mailto:jacob-chen@iotwrt.com">jaco=
+b-chen@iotwrt.com</a>&gt;<br>
 ---<br>
-=C2=A0conf/machine/evb-rk3288.conf=C2=A0 =C2=A0 =C2=A0 | 12 ++++++++++++<br=
->
-=C2=A0conf/machine/fennec-rk3288.<wbr>conf=C2=A0 =C2=A0| 12 ++++++++++++<br=
->
-=C2=A0conf/machine/include/rk-linux.<wbr>inc | 20 ++++++++++++++++++++<br>
-=C2=A0conf/machine/tinker-rk3288.<wbr>conf=C2=A0 =C2=A0| 13 +++++++++++++<b=
-r>
-=C2=A04 files changed, 57 insertions(+)<br>
-=C2=A0create mode 100644 conf/machine/evb-rk3288.conf<br>
-=C2=A0create mode 100644 conf/machine/fennec-rk3288.<wbr>conf<br>
-=C2=A0create mode 100644 conf/machine/include/rk-linux.<wbr>inc<br>
-=C2=A0create mode 100644 conf/machine/tinker-rk3288.<wbr>conf<br>
+=C2=A0recipes-graphics/mali-<wbr>userspace/mali-userspace.inc | 57 ++++++++=
+++++++++++++++<br>
+=C2=A0.../mali-userspace/<a href=3D"http://mali-userspace_t76x.bb" rel=3D"n=
+oreferrer" target=3D"_blank">mali-<wbr>userspace_t76x.bb</a>=C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 | 18 +++++++<br>
+=C2=A0recipes-graphics/mesa/mesa_%.<wbr>bbappend=C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 |=C2=A0 9 ++++<br>
+=C2=A03 files changed, 84 insertions(+)<br>
+=C2=A0create mode 100644 recipes-graphics/mali-<wbr>userspace/mali-userspac=
+e.inc<br>
+=C2=A0create mode 100644 recipes-graphics/mali-<wbr>userspace/<a href=3D"ht=
+tp://mali-userspace_t76x.bb" rel=3D"noreferrer" target=3D"_blank">mali-user=
+space_t76x.<wbr>bb</a><br>
+=C2=A0create mode 100644 recipes-graphics/mesa/mesa_%.<wbr>bbappend<br>
 <br>
-diff --git a/conf/machine/evb-rk3288.conf b/conf/machine/evb-rk3288.conf<br=
->
+diff --git a/recipes-graphics/mali-<wbr>userspace/mali-userspace.inc b/reci=
+pes-graphics/mali-<wbr>userspace/mali-userspace.inc<br>
 new file mode 100644<br>
-index 0000000..88a5f78<br>
+index 0000000..d40f583<br>
 --- /dev/null<br>
-+++ b/conf/machine/evb-rk3288.conf<br>
-@@ -0,0 +1,12 @@<br>
-+# Copyright (C) 2017 Fuzhou Rockchip Electronics Co., Ltd<br>
-+# Released under the MIT license (see COPYING.MIT for the terms)<br>
++++ b/recipes-graphics/mali-<wbr>userspace/mali-userspace.inc<br>
+@@ -0,0 +1,57 @@<br>
++SUMMARY =3D &quot;Userspace mali driver for Midgard-T76x&quot;<br>
++DESCRIPTION =3D &quot;Userspace mali driver for Midgard-T76x&quot;<br>
++LICENSE =3D &quot;CLOSED&quot;<br>
++SECTION =3D &quot;libs&quot;<br>
 +<br>
-+#@TYPE: Machine<br>
-+#@NAME: EVB 3288<br>
++DEPENDS =3D &quot;libdrm&quot;<br>
++DEPENDS +=3D &quot;${@bb.utils.contains(&quot;DISTRO_<wbr>FEATURES&quot;, =
+&quot;wayland&quot;, &quot; mesa&quot;, &quot; &quot;, d)}&quot;<br>
 +<br>
-+include conf/machine/include/rk3288.<wbr>inc<br>
-+include conf/machine/include/rk-linux.<wbr>inc<br>
++PROVIDES +=3D &quot;virtual/egl virtual/libgles1 virtual/libgles2 virtual/=
+libopencl libgbm&quot;<br>
++PROVIDES +=3D &quot;${@bb.utils.contains(&quot;DISTRO_<wbr>FEATURES&quot;,=
+ &quot;wayland&quot;, &quot; virtual/libwayland-egl&quot;, &quot; &quot;, d=
+)}&quot;<br>
 +<br>
-+KERNEL_DEVICETREE =3D &quot;rk3288-evb-act8846.dtb&quot;<br>
++S =3D &quot;${WORKDIR}&quot;<br>
 +<br>
-+UBOOT_MACHINE =3D &quot;evb-rk3288_defconfig&quot;<br>
-diff --git a/conf/machine/fennec-rk3288.<wbr>conf b/conf/machine/fennec-rk3=
-288.<wbr>conf<br>
-new file mode 100644<br>
-index 0000000..a85045f<br>
---- /dev/null<br>
-+++ b/conf/machine/fennec-rk3288.<wbr>conf<br>
-@@ -0,0 +1,12 @@<br>
-+# Copyright (C) 2017 Fuzhou Rockchip Electronics Co., Ltd<br>
-+# Released under the MIT license (see COPYING.MIT for the terms)<br>
++SRC_URI =3D &quot;git://<a href=3D"http://github.com/rockchip-linux/libmal=
+i.git;branch=3Drockchip" rel=3D"noreferrer" target=3D"_blank">github.com/ro=
+ckchip-<wbr>linux/libmali.git;branch=3D<wbr>rockchip</a>;&quot;<br>
++SRCREV_pn-${PN} =3D &quot;${AUTOREV}&quot;<br>
 +<br>
-+#@TYPE: Machine<br>
-+#@NAME: FENNEC RK3288<br>
++INSANE_SKIP_${PN} =3D &quot;already-stripped ldflags dev-so&quot;<br>
 +<br>
-+include conf/machine/include/rk3288.<wbr>inc<br>
-+include conf/machine/include/rk-linux.<wbr>inc<br>
++INHIBIT_PACKAGE_DEBUG_SPLIT =3D &quot;1&quot;<br>
++INHIBIT_PACKAGE_STRIP =3D &quot;1&quot;<br>
 +<br>
-+KERNEL_DEVICETREE =3D &quot;rk3288-fennec.dtb&quot;<br>
++USE_X11 =3D &quot;${@bb.utils.contains(&quot;DISTRO_<wbr>FEATURES&quot;, &=
+quot;x11&quot;, &quot;yes&quot;, &quot;no&quot;, d)}&quot;<br>
++USE_WL =3D &quot;${@bb.utils.contains(&quot;DISTRO_<wbr>FEATURES&quot;, &q=
+uot;wayland&quot;, &quot;yes&quot;, &quot;no&quot;, d)}&quot;<br>
 +<br>
-+UBOOT_MACHINE =3D &quot;fennec-rk3288_defconfig&quot;<br>
-diff --git a/conf/machine/include/rk-<wbr>linux.inc b/conf/machine/include/=
-rk-<wbr>linux.inc<br>
-new file mode 100644<br>
-index 0000000..6abaa0d<br>
---- /dev/null<br>
-+++ b/conf/machine/include/rk-<wbr>linux.inc<br>
-@@ -0,0 +1,20 @@<br>
-+# Rockchip BSP default settings<br>
++do_configure[noexec] =3D &quot;1&quot;<br>
++do_compile[noexec] =3D &quot;1&quot;<br>
 +<br>
-+PREFERRED_PROVIDER_virtual/<wbr>egl =3D &quot;mali-userspace&quot;<br>
-+PREFERRED_PROVIDER_virtual/<wbr>libgles1 =3D &quot;mali-userspace&quot;<br=
->
-+PREFERRED_PROVIDER_virtual/<wbr>libgles2 =3D &quot;mali-userspace&quot;<br=
->
-+PREFERRED_PROVIDER_virtual/<wbr>libopencl =3D &quot;mali-userspace&quot;<b=
++do_install () {<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0# Create MALI manifest<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0install -m 755 -d ${D}/${libdir}<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0if [ &quot;${USE_X11}&quot; =3D &quot;yes&quot;=
+ ]; then<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0install ${S}/x11/li=
+bmali.so ${D}/${libdir}<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0elif [ &quot;${USE_WL}&quot; =3D &quot;yes&quot=
+; ]; then<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0install ${S}/waylan=
+d/libmali.so ${D}/${libdir}<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0fi<br>
++<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0ln -sf libmali.so ${D}/${libdir}/libEGL.so<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0ln -sf libmali.so ${D}/${libdir}/libGLESv1_CM.s=
+o<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0ln -sf libmali.so ${D}/${libdir}/libGLESv2.so<b=
 r>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0ln -sf libmali.so ${D}/${libdir}/libOpenCL.so<b=
+r>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0ln -sf libmali.so ${D}/${libdir}/libgbm.so<br>
++<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0if [ &quot;${USE_WL}&quot; =3D &quot;yes&quot; =
+]; then<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0ln -sf libmali.so $=
+{D}/${libdir}/libwayland-egl.<wbr>so<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0fi<br>
++}<br>
++<br>
++PACKAGES =3D &quot;${PN}&quot;<br>
++FILES_${PN} +=3D &quot;${libdir}/*.so&quot;<br>
++<br>
++RREPLACES_${PN} =3D &quot;libegl libgles1 libglesv1-cm1 libgles2 libglesv2=
+-2 libgbm&quot;<br>
++RPROVIDES_${PN} =3D &quot;libegl libgles1 libglesv1-cm1 libgles2 libglesv2=
+-2 libgbm&quot;<br>
++RCONFLICTS_${PN} =3D &quot;libegl libgles1 libglesv1-cm1 libgles2 libglesv=
+2-2 libgbm&quot;<br>
 +<br>
 +# Workaround: libmali.so provided by rk having no SONAME field in it<br>
 +# so add it to fix rdepends problems<br>
-+ASSUME_SHLIBS +=3D &quot;libEGL.so:mali-userspace&quot;<br>
-+ASSUME_SHLIBS +=3D &quot;libGLESv1_CM.so:mali-<wbr>userspace&quot;<br>
-+ASSUME_SHLIBS +=3D &quot;libGLESv2.so:mali-userspace&quot;<br>
-+ASSUME_SHLIBS +=3D &quot;libOpenCL.so:mali-userspace&quot;<br>
-+ASSUME_SHLIBS +=3D &quot;libgbm.so:mali-userspace&quot;<br>
-+ASSUME_SHLIBS +=3D &quot;libwayland-egl.so:mali-<wbr>userspace&quot;<br>
-+<br>
-+PREFERRED_PROVIDER_virtual/<wbr>kernel =3D &quot;linux-rockchip&quot;<br>
-+PREFERRED_PROVIDER_virtual/<wbr>bootloader =3D &quot;u-boot-rockchip&quot;=
-<br>
-+<br>
-+IMAGE_CLASSES +=3D &quot;rockchip-next-image&quot;<br>
-diff --git a/conf/machine/tinker-rk3288.<wbr>conf b/conf/machine/tinker-rk3=
-288.<wbr>conf<br>
++RPROVIDES_${PN} +=3D &quot;libwayland-egl.so libgbm.so libGLESv1_CM.so lib=
+GLESv2.so libEGL.so libOpenCL.so&quot;<br>
+diff --git a/recipes-graphics/mali-<wbr>userspace/<a href=3D"http://mali-us=
+erspace_t76x.bb" rel=3D"noreferrer" target=3D"_blank">mali-userspace_t76x.<=
+wbr>bb</a> b/recipes-graphics/mali-<wbr>userspace/<a href=3D"http://mali-us=
+erspace_t76x.bb" rel=3D"noreferrer" target=3D"_blank">mali-userspace_t76x.<=
+wbr>bb</a><br>
 new file mode 100644<br>
-index 0000000..0464133<br>
+index 0000000..3281ac0<br>
 --- /dev/null<br>
-+++ b/conf/machine/tinker-rk3288.<wbr>conf<br>
-@@ -0,0 +1,13 @@<br>
-+# Copyright (C) 2017 Fuzhou Rockchip Electronics Co., Ltd<br>
-+# Released under the MIT license (see COPYING.MIT for the terms)<br>
++++ b/recipes-graphics/mali-<wbr>userspace/<a href=3D"http://mali-userspace=
+_t76x.bb" rel=3D"noreferrer" target=3D"_blank">mali-userspace_t76x.<wbr>bb<=
+/a><br>
+@@ -0,0 +1,18 @@<br>
++require mali-userspace.inc<br>
 +<br>
-+#@TYPE: Machine<br>
-+#@NAME: Tinker RK3288<br>
-+#@DESCRIPTION: ASUS Tinker Board is a Raspberry Pi 3 Alternative based on =
-Rockchip RK3288 Processor.<br>
++TYPE =3D &quot;midgard&quot;<br>
++SW_VER =3D &quot;r13p0&quot;<br>
++HW_VER =3D &quot;r0p0&quot;<br>
 +<br>
-+include conf/machine/include/rk3288.<wbr>inc<br>
-+include conf/machine/include/rk-linux.<wbr>inc<br>
++LIB_PATH =3D &quot;arm-linux-gnueabihf&quot;<br>
 +<br>
-+KERNEL_DEVICETREE =3D &quot;rk3288-miniarm.dtb&quot;<br>
++MALI_X11 =3D &quot;libmali-${TYPE}-${SW_VER}-${<wbr>HW_VER}.so&quot;<br>
++MALI_WAYLAND =3D &quot;libmali-${TYPE}-${SW_VER}-${<wbr>HW_VER}-wayland.so=
+&quot;<br>
 +<br>
-+UBOOT_MACHINE =3D &quot;miniarm-rk3288_defconfig&quot;<br>
++do_install_prepend () {<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0mkdir -p x11<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0cp git/lib/${LIB_PATH}/${MALI_<wbr>X11} x11/lib=
+mali.so<br>
++<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0mkdir -p wayland<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0cp git/lib/${LIB_PATH}/${MALI_<wbr>WAYLAND}=C2=
+=A0 wayland/libmali.so<br>
++}<br>
+diff --git a/recipes-graphics/mesa/mesa_%<wbr>.bbappend b/recipes-graphics/=
+mesa/mesa_%<wbr>.bbappend<br>
+new file mode 100644<br>
+index 0000000..d9cab75<br>
+--- /dev/null<br>
++++ b/recipes-graphics/mesa/mesa_%<wbr>.bbappend<br>
+@@ -0,0 +1,9 @@<br>
++PROVIDES_remove =3D &quot;virtual/libgles1 virtual/libgles2 virtual/egl vi=
+rtual/libwayland-egl&quot;<br>
++<br>
++do_install_append () {<br>
++=C2=A0 =C2=A0 rm -f ${D}/${libdir}/libEGL*<br>
++=C2=A0 =C2=A0 rm -f ${D}/${libdir}/libGLESv1_CM.*<br>
++=C2=A0 =C2=A0 rm -f ${D}/${libdir}/libGLESv2.*<br>
++=C2=A0 =C2=A0 rm -f ${D}/${libdir}/libgbm*<br>
++=C2=A0 =C2=A0 rm -f ${D}/${libdir}/libwayland-egl*<br>
++}<br>
 --<br>
 2.7.4<br>
 <br>
 </div></div></blockquote></div><br></div>
 
---001a1140df22f8d0bd054714660f--
+--94eb2c12943e81264105471476f1--
