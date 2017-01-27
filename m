@@ -1,49 +1,67 @@
-Return-Path: <me@herrie.org>
+Return-Path: <romain.perier@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9659DE00932; Fri, 27 Jan 2017 07:12:02 -0800 (PST)
+	id 3F5DEE00995; Fri, 27 Jan 2017 07:12:09 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [149.210.149.72 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [74.125.82.65 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (romain.perier[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 396 seconds by postgrey-1.32 at yocto-www;
-	Fri, 27 Jan 2017 07:11:57 PST
-Received: from outbound1.mail.transip.nl (outbound1.mail.transip.nl
-	[149.210.149.72])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1D4A4E0052B
-	for <yocto@yoctoproject.org>; Fri, 27 Jan 2017 07:11:57 -0800 (PST)
-Received: from submission6.mail.transip.nl (submission6.mail.transip.nl
-	[149.210.149.10])
-	by outbound1.mail.transip.nl (Postfix) with ESMTP id 3v92CM2Xj7zcg7j;
-	Fri, 27 Jan 2017 16:05:19 +0100 (CET)
-Received: from webmail.frontend (web2.mail.transip.nl [149.210.149.97])
-	by submission6.mail.transip.nl (Postfix) with ESMTPA id
-	3v92CJ2hTcz12N5c; Fri, 27 Jan 2017 16:05:15 +0100 (CET)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wm0-f65.google.com (mail-wm0-f65.google.com [74.125.82.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8A2DAE00938
+	for <yocto@yoctoproject.org>; Fri, 27 Jan 2017 07:12:03 -0800 (PST)
+Received: by mail-wm0-f65.google.com with SMTP id r144so58940712wme.0
+	for <yocto@yoctoproject.org>; Fri, 27 Jan 2017 07:12:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=P20+y1S9x7WwRZhaOQuClGP+1W10n/w6JEJlO3u1m5I=;
+	b=tq5sxiF1Vy7cqU5dXS8+HWll6FJnnFuMk/dtcWlSK52KeVDfHgTkbAySSYTD6aU5rb
+	DVWuj6oGgtORQDHodxO56iyTqG5+ZmQBGB/RQKVFCaLNsJNpjky9px8NHiUoOQ6uLnQ0
+	JRhfVLzWnRPYjmBsdkkYbxmwSeWHFxe96TpD9A06J5tYoYUI66602bUNoWHGs+qW1aUl
+	JHAWL3NmsRx1bV9388wA+nk4l1w5UFMdpyERz8bhzHZowjK6v8FhTlepMBeVAwaZe8BA
+	BVZcb0C4FQOV0CCXgdutQ3CukXaKPxcCd1LPaIhhHcxEl+n0f3bWGFnCn/MzlMC2CxV2
+	/2Iw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=P20+y1S9x7WwRZhaOQuClGP+1W10n/w6JEJlO3u1m5I=;
+	b=rby3yMKW4y+XUVQqZuAq+nTR7gi2xy9OszMqCaDZak5YbXPeq025Kura25yfxhcfKM
+	f02RDCEXINTuYnCHJ9jmJPakm+BdeMqkEBjwcMHkSz4bbe1fHJKkLtHHo9EKUQ8ZnJEg
+	EtN2Z9m9Nr5nx/7lOU9sIC/+kvLse/Yj6sIaxwr2js5jr6+Hvx59zb+RxYIuTAFyfyOo
+	36vkv7Vk1llhF/CSmpCNWTI6R6RaKdIMmXIQ7jtUnZmrGHzzX/jlYVH3rhlPl3QkoPlA
+	9f/XJ/Q2RLCf+BS3d6L+GVAfskZBkIXalx+rwd+WxQysPeFa8RHH10OAHI0s3XjRa5Xm
+	0zqA==
+X-Gm-Message-State: AIkVDXJ5z7kU4jLdvyP1dy1vqs8e56pEUSGFt0ZXR6G5jgR3wkQC6w23URf+SpAumqq+vejYGVsoGZzpvHIfvg==
+X-Received: by 10.28.143.5 with SMTP id r5mr3573690wmd.141.1485529923095; Fri,
+	27 Jan 2017 07:12:03 -0800 (PST)
 MIME-Version: 1.0
-Date: Fri, 27 Jan 2017 16:05:15 +0100
-From: Herman van Hazendonk <me@herrie.org>
-To: Jakob Hasse <jakob.hasse@smart-home-technology.ch>
-Mail-Reply-To: yoctoproject.org@herrie.org
-In-Reply-To: <4f301547-ca13-69dd-438b-47987c3dd9fe@smart-home-technology.ch>
-References: <4bf25102-0b23-f4dd-7688-bebf892946ab@smart-home-technology.ch>
-	<CAMjhiJg__hdSHbKNE8BO68d7WBz-QhtKNKtUGxw6wd68aF_uFQ@mail.gmail.com>
-	<4f301547-ca13-69dd-438b-47987c3dd9fe@smart-home-technology.ch>
-Message-ID: <dc63dcc2a37f902b0ce5fa0f3326fb2f@herrie.org>
-X-Sender: me@herrie.org
-User-Agent: Webmail
-X-Scanned-By: ClueGetter at submission6.mail.transip.nl
-X-Report-Abuse-To: abuse@transip.nl
-Cc: Yocto List <yocto@yoctoproject.org>
-Subject: Re: Where to find help for yocto application and and system development
+Received: by 10.80.196.2 with HTTP; Fri, 27 Jan 2017 07:12:02 -0800 (PST)
+In-Reply-To: <1484820572-11891-2-git-send-email-jacob-chen@iotwrt.com>
+References: <1484820572-11891-1-git-send-email-jacob-chen@iotwrt.com>
+	<1484820572-11891-2-git-send-email-jacob-chen@iotwrt.com>
+From: Romain Perier <romain.perier@gmail.com>
+Date: Fri, 27 Jan 2017 16:12:02 +0100
+Message-ID: <CABgxDoKrQasvvq4Puq1xMn-gbxjG89YXcOE_Fu1-TcXgrYDUQQ@mail.gmail.com>
+To: Jacob Chen <jacob-chen@iotwrt.com>
+Cc: yocto@yoctoproject.org, eddie.cai@rock-chips.com
+Subject: Re: [PATCH 1/7] recipes-kernel: linux-rockchip: Add new recipe for 4.4
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: yoctoproject.org@herrie.org
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -52,216 +70,153 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 27 Jan 2017 15:12:02 -0000
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 27 Jan 2017 15:12:09 -0000
+Content-Type: multipart/alternative; boundary=001a114690e45e9673054714e3f2
 
-Hi Jakob,
+--001a114690e45e9673054714e3f2
+Content-Type: text/plain; charset=UTF-8
 
-It's a bit trial & error with Yocto to be fair.
+Hi all,
 
-We use it quite extensively in our LuneOS project. There are quite some 
-layers available with example recipes as well that you could look into 
-for inspiration :)
 
-I think 2 important things to note for you:
+supposing that this patch series is for meta-rockchip (next time add a
+prefix meta-rockchip, as it is explained in the README)
 
-SRC_URI can point to a git repo, tar.gz etc
-When you point to a git repo you need to include SRCREV (with V not 
-F!!).
+2017-01-19 11:09 GMT+01:00 Jacob Chen <jacob-chen@iotwrt.com>:
 
-When you point to a .tar.gz for example you need to add:
+> Rockchip 4.4 kernel is currently the latest version of the rockchip
+> offical kernel,
+> will be an upstream tracking branch.
+> We regularly release the kernel through github.
+> It support all rockchip 64-bit chips and a few 32-bit chips.
+>
 
-SRC_URI[md5sum] = "mymd5sum"
-SRC_URI[sha256sum] = "mysha256sum"
 
-For example see:
-
-For using git: 
-https://github.com/webOS-ports/meta-webos-ports/blob/b0ca23f27d2496209656b037b113417b0af25480/meta-luneos/recipes-nemomobile/voicecall/voicecall_git.bb#L13
-
-For using a .tar.xz with autotools: 
-https://github.com/webOS-ports/meta-webos-ports/blob/b0ca23f27d2496209656b037b113417b0af25480/meta-luneos/recipes-support/pidgin/pidgin-sipe_1.21.1.bb
-
-I hope this helps a bit at least.
-
-Herman
+Could you be more precise ? if some SoCs are better supported by this
+kernel instead the mainline kernel, we can consider to accept this recipe
+and use it for a set of boards.
 
 
 
-On 2017-01-27 15:51, Jakob Hasse wrote:
-> Hello Leon,
-> 
-> Thank you for the answer!
-> 
-> I read the documentation, it doesn't really give me more than general
-> hints what to try (or maybe I read at the wrong place). I also read in
->  "Embedded Linux Project Using Yocto Project Cookbook". I know that
-> bitbake should use autotools somehow. I set up my directories exactly
-> like the other projects which work without any issues. The other
-> project, however, are simple executables.
-> 
-> What is unclear to me:
-> To what shall SCR_URI point? The git repo? Downloaded .tar.gz file?
-> The source dir copied into the project directory besided the recipe)?
-> I tried all these ways already, each bringing up a different error,
-> basically.
-> 
-> Do I need to change do_install() or does the makefile handles it? If I
-> interpret the documentation and the book correctly, I don't need to do
-> anything more in the recipe...
-> 
-> When I want to fetch from git, it complains about the SRCREF not being
-> set. So I tried to set it to the most recent commit of the repo in the
-> recipe file, but it gave another error. I also tried to "append" it
-> somehow to the git URI which didn't work either.
-> 
-> Note that I need to include the development version of openssl, not
-> openssl itself (on Ubuntu host you do something like apt install
-> openssl-dev).
-> 
-> The recipe is appended, if it helps:
-> 
-> # Recipe created by recipetool
-> # This is the basis of a recipe and may need further editing in order
-> to be fully functional.
-> # (Feel free to remove these comments when editing.)
-> #
-> # WARNING: the following LICENSE and LIC_FILES_CHKSUM values are best
-> guesses - it is
-> # your responsibility to verify that the values are complete and
-> correct.
-> LICENSE = "Unknown"
-> LIC_FILES_CHKSUM =
-> "file://COPYING;md5=c8ee358fdf91d887aa014c8712e8c22d" [5]
-> SRC_URI[md5sum] = "da7315f9bc22ff4c24a1cef404b4f3a8"
-> # No information for SRC_URI yet (only an external source tree was
-> specified)
-> SRC_URI =
-> "/usr/local/dey-2.0/sources/meta-training/recipes-examples/tr-50/tr-50-0.1/"
-> #SRC_URI =
-> "git://https://github.com/inhedron/libtr50.git;rev=aedc45c4e9a9a9a3aa301616ad03f07b903d9a81"
-> #SRC_URI = "file:///home/jakob/Downloads/libtr50-0.1.0.tar.gz" [6]
-> #SRCREF = "aedc45c4e9a9a9a3aa301616ad03f07b903d9a81"
-> 
-> DEPENDS = "openssl "
-> # NOTE: if this software is not capable of being built in a separate
-> build directory
-> # from the source, you should replace autotools with
-> autotools-brokensep in the
-> # inherit line
-> inherit autotools
-> 
-> # Specify any options you want to pass to the configure script using
-> EXTRA_OECONF:
-> EXTRA_OECONF = " --with-examples"
-> 
-> #do_install(){
-> #    eo_runmake install DESTDIR=${D} PREFIX=${D}
-> #}
-> 
-> Thanks in advance for any answers!
-> 
-> All the best,
-> Jakob
-> 
-> On 27.01.2017 14:39, Leon Woestenberg wrote:
-> 
->> Hi Jakob,
->> 
->> welcome on-board.
->> 
->> The Yocto community expects you to re-use the available
->> documentation and online resources (or even offline resources like
->> books) on Yocto or OpenEmbedded. Then if things remains unclear you
->> can ask questions here on the mailing list and on IRC channels
->> yocto.
->> 
->> Your question (and probably a lot of subsequent things you learn on
->> the way) can be answered by the documentation and existing
->> resources.
->> 
->> I would recommend to read the documentation, then find an existing
->> recipe that uses "autotools" and another that DEPENDS on openssl.
->> 
->> There are a lot of resources online:
->> 
->> 
-> http://www.yoctoproject.org/docs/1.6.1/dev-manual/dev-manual.html#new-recipe-writing-a-new-recipe
->> 
->> https://www.yoctoproject.org/tools-resources/community/irc
->> 
->> Regards,
->> 
->> Leon.
->> 
->> On Fri, Jan 27, 2017 at 12:43 PM, Jakob Hasse
->> <jakob.hasse@smart-home-technology.ch> wrote:
->> 
->>> Hello,
->>> 
->>> I'm beginning with Yocto.
->>> I would like to know where to find general help (like a forum, or
->>> mailing lists) for my Yocto-related technical problems.
->>> Right now I have problems just integrating a library into my
->>> build. Later I will also do system development.
->>> 
->>> If this helps, a further description of my most urgent problem:
->>> 
->>> I want to integrate the tr-50 library, available on github:
->>> 
->>> https://github.com/inhedron/libtr50 [1]
->>> 
->>> It is managed via autotools.
->>> I built a new project subdirectory in my custom layer for the lib.
->>> I built a basic recipe (with some tool) which, in principle should
->>> somehow recognize the autotools and build the project then. I
->>> changed the SCR_URI to the local .tar.gz file. But when I build,
->>> it comes down to this:
->>> make: *** No rule to make target 'install'.  Stop.
->>> I don't know if and which parameters I should change in the
->>> recipe.
->>> Another problem is that the lib needs openssl-dev. I can't find
->>> how to include openssl-dev into the Yocto build.
->>> 
->>> Looking forward for your answers, best regards,
->>> Jakob
->>> 
->>> --
->>> Jakob Hasse
->>> Software Developement
->>> 
->>> E: jakob.hasse@smart-home-technology.ch
->>> T: +41 44 552 02 66 [2]
->>> 
->>> Smart Home Technology GmbH
->>> www.smart-home-technology.ch [3]
->>> 
->>> --
->>> _______________________________________________
->>> yocto mailing list
->>> yocto@yoctoproject.org
->>> https://lists.yoctoproject.org/listinfo/yocto [4]
-> 
-> --
-> Jakob Hasse
-> Software Developement
-> 
-> E: jakob.hasse@smart-home-technology.ch
-> T: +41 44 552 02 66
-> 
-> Smart Home Technology GmbH
-> www.smart-home-technology.ch [3]
-> 
-> 
-> Links:
-> ------
-> [1] https://github.com/inhedron/libtr50
-> [2] tel:%2B41%2044%20552%2002%2066
-> [3] http://www.smart-home-technology.ch
-> [4] https://lists.yoctoproject.org/listinfo/yocto
-> [5] file://COPYING;md5=c8ee358fdf91d887aa014c8712e8c22d
-> [6] file:///home/jakob/Downloads/libtr50-0.1.0.tar.gz
+>
+> Signed-off-by: Jacob Chen <jacob-chen@iotwrt.com>
+> ---
+>  recipes-kernel/linux/linux-rockchip_4.4.bb | 20 ++++++++++++++++++++
+>  1 file changed, 20 insertions(+)
+>  create mode 100644 recipes-kernel/linux/linux-rockchip_4.4.bb
+>
+> diff --git a/recipes-kernel/linux/linux-rockchip_4.4.bb
+> b/recipes-kernel/linux/linux-rockchip_4.4.bb
+> new file mode 100644
+> index 0000000..ca3674e
+> --- /dev/null
+> +++ b/recipes-kernel/linux/linux-rockchip_4.4.bb
+> @@ -0,0 +1,20 @@
+> +# Copyright (C) 2017 Fuzhou Rockchip Electronics Co., Ltd
+> +# Released under the MIT license (see COPYING.MIT for the terms)
+> +
+> +require recipes-kernel/linux/linux-yocto.inc
+> +
+> +SRC_URI = "git://github.com/rockchip-linux/kernel.git;branch=release-4.4
+> ;"
+> +
+> +SRCREV = "${AUTOREV}"
+> +LINUX_VERSION = "4.4.41"
+> +# Override local version in order to use the one generated by linux build
+> system
+> +# And not "yocto-standard"
+> +LINUX_VERSION_EXTENSION = ""
+> +PR = "r1"
+> +PV = "${LINUX_VERSION}"
+> +
+> +# Include only supported boards for now
+> +COMPATIBLE_MACHINE = "(rk3288)"
+>
++deltask kernel_configme
+>
 
 
+
+> +KBUILD_DEFCONFIG = "rockchip_linux_defconfig"
+>
+>
+I think that you can move this to a machine file... (for the board that use
+linux-rockchip)
+
+Thanks,
+Romain
+
+--001a114690e45e9673054714e3f2
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hi all,<br><br><br></div>supposing that this patch se=
+ries is for meta-rockchip (next time add a prefix meta-rockchip, as it is e=
+xplained in the README)<br><div><div><div class=3D"gmail_extra"><br><div cl=
+ass=3D"gmail_quote">2017-01-19 11:09 GMT+01:00 Jacob Chen <span dir=3D"ltr"=
+>&lt;<a href=3D"mailto:jacob-chen@iotwrt.com" target=3D"_blank">jacob-chen@=
+iotwrt.com</a>&gt;</span>:<br><blockquote class=3D"gmail_quote" style=3D"ma=
+rgin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">Rockchip 4.4 k=
+ernel is currently the latest version of the rockchip offical kernel,<br>
+will be an upstream tracking branch.<br>
+We regularly release the kernel through github.<br>
+It support all rockchip 64-bit chips and a few 32-bit chips.<br></blockquot=
+e><div><br><br>Could you be more precise ? if some SoCs are better supporte=
+d by this kernel instead the mainline kernel, we can consider to accept thi=
+s recipe and use it for a set of boards.<br><br></div><div>=C2=A0</div><blo=
+ckquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #c=
+cc solid;padding-left:1ex">
+<br>
+Signed-off-by: Jacob Chen &lt;<a href=3D"mailto:jacob-chen@iotwrt.com">jaco=
+b-chen@iotwrt.com</a>&gt;<br>
+---<br>
+=C2=A0recipes-kernel/linux/<a href=3D"http://linux-rockchip_4.4.bb" rel=3D"=
+noreferrer" target=3D"_blank">linux-<wbr>rockchip_4.4.bb</a> | 20 +++++++++=
++++++++++++<br>
+=C2=A01 file changed, 20 insertions(+)<br>
+=C2=A0create mode 100644 recipes-kernel/linux/<a href=3D"http://linux-rockc=
+hip_4.4.bb" rel=3D"noreferrer" target=3D"_blank">linux-<wbr>rockchip_4.4.bb=
+</a><br>
+<br>
+diff --git a/recipes-kernel/linux/<a href=3D"http://linux-rockchip_4.4.bb" =
+rel=3D"noreferrer" target=3D"_blank">linux-<wbr>rockchip_4.4.bb</a> b/recip=
+es-kernel/linux/<a href=3D"http://linux-rockchip_4.4.bb" rel=3D"noreferrer"=
+ target=3D"_blank">linux-<wbr>rockchip_4.4.bb</a><br>
+new file mode 100644<br>
+index 0000000..ca3674e<br>
+--- /dev/null<br>
++++ b/recipes-kernel/linux/<a href=3D"http://linux-rockchip_4.4.bb" rel=3D"=
+noreferrer" target=3D"_blank">linux-<wbr>rockchip_4.4.bb</a><br>
+@@ -0,0 +1,20 @@<br>
++# Copyright (C) 2017 Fuzhou Rockchip Electronics Co., Ltd<br>
++# Released under the MIT license (see COPYING.MIT for the terms)<br>
++<br>
++require recipes-kernel/linux/linux-<wbr>yocto.inc<br>
++<br>
++SRC_URI =3D &quot;git://<a href=3D"http://github.com/rockchip-linux/kernel=
+.git;branch=3Drelease-4.4" rel=3D"noreferrer" target=3D"_blank">github.com/=
+rockchip-<wbr>linux/kernel.git;branch=3D<wbr>release-4.4</a>;&quot;<br>
++<br>
++SRCREV =3D &quot;${AUTOREV}&quot;<br>
++LINUX_VERSION =3D &quot;4.4.41&quot;<br>
++# Override local version in order to use the one generated by linux build =
+system<br>
++# And not &quot;yocto-standard&quot;<br>
++LINUX_VERSION_EXTENSION =3D &quot;&quot;<br>
++PR =3D &quot;r1&quot;<br>
++PV =3D &quot;${LINUX_VERSION}&quot;<br>
++<br>
++# Include only supported boards for now<br>
++COMPATIBLE_MACHINE =3D &quot;(rk3288)&quot; <br></blockquote><blockquote c=
+lass=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;=
+padding-left:1ex">
++deltask kernel_configme<br></blockquote><div><br>=C2=A0</div><blockquote c=
+lass=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;=
+padding-left:1ex">
++KBUILD_DEFCONFIG =3D &quot;rockchip_linux_defconfig&quot;<br>
+<span class=3D"HOEnZb"><font color=3D"#888888"><br></font></span></blockquo=
+te><div><br></div><div>I think that you can move this to a machine file... =
+(for the board that use linux-rockchip)<br><br></div><div>Thanks,<br></div>=
+<div>Romain <br></div></div><br></div></div></div></div>
+
+--001a114690e45e9673054714e3f2--
