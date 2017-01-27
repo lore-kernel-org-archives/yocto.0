@@ -1,43 +1,67 @@
-Return-Path: <jakob.hasse@smart-home-technology.ch>
+Return-Path: <romain.perier@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B0B8EE006EA; Fri, 27 Jan 2017 06:51:22 -0800 (PST)
+	id 26549E0092C; Fri, 27 Jan 2017 07:01:45 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [217.26.49.173 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE, 
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [74.125.82.45 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.82.45 listed in dnsbl.sorbs.net]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (romain.perier[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mxout013.mail.hostpoint.ch (mxout013.mail.hostpoint.ch
-	[217.26.49.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1CC7FE00510
-	for <yocto@yoctoproject.org>; Fri, 27 Jan 2017 06:51:18 -0800 (PST)
-Received: from [10.0.2.46] (helo=asmtp013.mail.hostpoint.ch)
-	by mxout013.mail.hostpoint.ch with esmtp (Exim 4.87_1 (FreeBSD))
-	(envelope-from <jakob.hasse@smart-home-technology.ch>)
-	id 1cX7rw-000DNz-Uc
-	for yocto@yoctoproject.org; Fri, 27 Jan 2017 15:51:16 +0100
-Received: from [2a02:168:6918:0:e8c0:be9b:ce6b:fd88]
-	by asmtp013.mail.hostpoint.ch with esmtpa (Exim 4.87_1 (FreeBSD))
-	(envelope-from <jakob.hasse@smart-home-technology.ch>)
-	id 1cX7rw-000L7v-QG
-	for yocto@yoctoproject.org; Fri, 27 Jan 2017 15:51:16 +0100
-X-Authenticated-Sender-Id: jakob.hasse@smart-home-technology.ch
-References: <4bf25102-0b23-f4dd-7688-bebf892946ab@smart-home-technology.ch>
-	<CAMjhiJg__hdSHbKNE8BO68d7WBz-QhtKNKtUGxw6wd68aF_uFQ@mail.gmail.com>
-To: Yocto List <yocto@yoctoproject.org>
-From: Jakob Hasse <jakob.hasse@smart-home-technology.ch>
-Message-ID: <4f301547-ca13-69dd-438b-47987c3dd9fe@smart-home-technology.ch>
-Date: Fri, 27 Jan 2017 15:51:16 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.5.1
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wm0-f45.google.com (mail-wm0-f45.google.com [74.125.82.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 66624E0052B
+	for <yocto@yoctoproject.org>; Fri, 27 Jan 2017 07:01:43 -0800 (PST)
+Received: by mail-wm0-f45.google.com with SMTP id c206so142280996wme.0
+	for <yocto@yoctoproject.org>; Fri, 27 Jan 2017 07:01:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=JMloT3aPx6rM7NvHL7C1O/02NtJOFofKdG1Bs0CaHpc=;
+	b=QT9IfScbMUJpXZkIwb2vIde4LxoI4dezmtNsBRtua8RoMFk1BlfVJEUNpIXVSlwepS
+	r6I5wnw9u/xG2JV+KihEICUfZzL4An7YZ2PmfNXjH8dqHlCuPzb/YxhdRK1NVs7rWJ9A
+	GSDkSXrANN8L2vXG3jPZdQl73yGzMZ//jHr6uN33f+GNJi9NsQ+n1FOt0qnknpiF3Ff9
+	z1kTwoHBFhwT+/0CV0NIX+YsJ4EWl0wGQki5LKx2ahfSCI7DOjyUklSgEmK3msv6H/ES
+	HO3EgUCXHEoVqSQPMlemayZK7Ah7jKe0EqF5PHXIpumJt7qI3WbSTGJLhMoblXqSAGaU
+	apgw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=JMloT3aPx6rM7NvHL7C1O/02NtJOFofKdG1Bs0CaHpc=;
+	b=W9Ukh4211ZThOTUyTpRLWcx32XJTKE0D5aGADOjZ1LKdsanqnavl+LX1CRjeO2i8AZ
+	fTffyUOXF6zIJn6GJvFB89YsJe60llKYikVDBLbD+0PinD0QW1z7nsVDsxcEFYKJw1No
+	sr9dUya5PoXYM1XHX/ieFMEpdWhf/3Kb4/TnDJF1/h7JCIXzYpbTSDc6EWrslRGCahME
+	TFNz6WHoHh37mFjodFjGD8p/foBd6eYO94EicUEBJl6IZeGafjlr61QZpD0JCGnrgqeF
+	rheeliDIJEV9oH+wWhD53DU2ThtIppH4IUi8DtHecnvj1Ktv3JDFSnwH6t4phE+yFBaE
+	chaQ==
+X-Gm-Message-State: AIkVDXKIefHoN6/s/9MpgMS4p+MCAanVkhrOZK1++1AcrOshXo7SePTdTC/WXjDY/ffznap3lOzH01QVKRus5A==
+X-Received: by 10.28.0.2 with SMTP id 2mr3534354wma.141.1485529302958; Fri, 27
+	Jan 2017 07:01:42 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <CAMjhiJg__hdSHbKNE8BO68d7WBz-QhtKNKtUGxw6wd68aF_uFQ@mail.gmail.com>
-Subject: Re: Where to find help for yocto application and and system development
+Received: by 10.80.196.2 with HTTP; Fri, 27 Jan 2017 07:01:42 -0800 (PST)
+In-Reply-To: <1484834687-15746-7-git-send-email-jacob-chen@iotwrt.com>
+References: <1484834687-15746-1-git-send-email-jacob-chen@iotwrt.com>
+	<1484834687-15746-7-git-send-email-jacob-chen@iotwrt.com>
+From: Romain Perier <romain.perier@gmail.com>
+Date: Fri, 27 Jan 2017 16:01:42 +0100
+Message-ID: <CABgxDoKoJ+2FznE89F7v89w_t0p0Z_9-1KZt2DrdU-NdDSQ2GA@mail.gmail.com>
+To: Jacob Chen <jacob-chen@iotwrt.com>
+Cc: yocto@yoctoproject.org, eddie.cai@rock-chips.com
+Subject: Re: [meta-rockchip][PATCH 6/7] rk3288.inc: add some variables
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,393 +73,146 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 27 Jan 2017 14:51:22 -0000
-Content-Type: multipart/alternative;
-	boundary="------------3AF6F1B7B5C246D25EB00EC7"
+X-List-Received-Date: Fri, 27 Jan 2017 15:01:45 -0000
+Content-Type: multipart/alternative; boundary=001a113ca22e68089b054714be61
 
---------------3AF6F1B7B5C246D25EB00EC7
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+--001a113ca22e68089b054714be61
+Content-Type: text/plain; charset=UTF-8
 
-Hello Leon,
+Hi all,
 
-Thank you for the answer!
+It remembers me a discussion that I wanted to have with Trevor:  do we want
+specific TUNES (like these ones) in the machines files ? it is distro
+specific ?
+I think that we might use "simple tune" like cortexa17 and let the
+possibility to the user to select neon or hf or vfpv4 for example. You
+could imagine a case where you write a machine file into another layer that
+inherits from a machine file (which is in meta-rockchip) and overrides
+DEFAULTTUNE for example.
 
-I read the documentation, it doesn't really give me more than general 
-hints what to try (or maybe I read at the wrong place). I also read in  
-"Embedded Linux Project Using Yocto Project Cookbook". I know that 
-bitbake should use autotools somehow. I set up my directories exactly 
-like the other projects which work without any issues. The other 
-project, however, are simple executables.
+Also Jacob, seriously split your commits :) . One commit per feature with a
+clear message to describe your changes please.
 
-What is unclear to me:
-To what shall SCR_URI point? The git repo? Downloaded .tar.gz file? The 
-source dir copied into the project directory besided the recipe)? I 
-tried all these ways already, each bringing up a different error, basically.
-
-Do I need to change do_install() or does the makefile handles it? If I 
-interpret the documentation and the book correctly, I don't need to do 
-anything more in the recipe...
-
-When I want to fetch from git, it complains about the SRCREF not being 
-set. So I tried to set it to the most recent commit of the repo in the 
-recipe file, but it gave another error. I also tried to "append" it 
-somehow to the git URI which didn't work either.
+Thanks,
+Romain
 
 
-Note that I need to include the development version of openssl, not 
-openssl itself (on Ubuntu host you do something like apt install 
-openssl-dev).
+2017-01-19 15:04 GMT+01:00 Jacob Chen <jacob-chen@iotwrt.com>:
 
-The recipe is appended, if it helps:
-
-# Recipe created by recipetool
-# This is the basis of a recipe and may need further editing in order to 
-be fully functional.
-# (Feel free to remove these comments when editing.)
-#
-# WARNING: the following LICENSE and LIC_FILES_CHKSUM values are best 
-guesses - it is
-# your responsibility to verify that the values are complete and correct.
-LICENSE = "Unknown"
-LIC_FILES_CHKSUM = "file://COPYING;md5=c8ee358fdf91d887aa014c8712e8c22d"
-SRC_URI[md5sum] = "da7315f9bc22ff4c24a1cef404b4f3a8"
-# No information for SRC_URI yet (only an external source tree was 
-specified)
-SRC_URI = 
-"/usr/local/dey-2.0/sources/meta-training/recipes-examples/tr-50/tr-50-0.1/"
-#SRC_URI = 
-"git://https://github.com/inhedron/libtr50.git;rev=aedc45c4e9a9a9a3aa301616ad03f07b903d9a81"
-#SRC_URI = "file:///home/jakob/Downloads/libtr50-0.1.0.tar.gz"
-#SRCREF = "aedc45c4e9a9a9a3aa301616ad03f07b903d9a81"
-
-DEPENDS = "openssl "
-# NOTE: if this software is not capable of being built in a separate 
-build directory
-# from the source, you should replace autotools with autotools-brokensep 
-in the
-# inherit line
-inherit autotools
-
-# Specify any options you want to pass to the configure script using 
-EXTRA_OECONF:
-EXTRA_OECONF = " --with-examples"
-
-#do_install(){
-#    eo_runmake install DESTDIR=${D} PREFIX=${D}
-#}
-
-Thanks in advance for any answers!
-
-All the best,
-Jakob
-
-On 27.01.2017 14:39, Leon Woestenberg wrote:
-> Hi Jakob,
+> change tune to cortexa17hf-neon:
+> Using the soft floating point abi is incompatible with some binary
+> libaries.
 >
-> welcome on-board.
+> Set preferred mali version to t76x.
 >
-> The Yocto community expects you to re-use the available documentation 
-> and online resources (or even offline resources like books) on Yocto 
-> or OpenEmbedded. Then if things remains unclear you can ask questions 
-> here on the mailing list and on IRC channels yocto.
+> Add APPEND which will be used in extlinux.conf.
 >
-> Your question (and probably a lot of subsequent things you learn on 
-> the way) can be answered by the documentation and existing resources.
+> Add SOC_FAMILY to help add chip specific changes.
 >
-> I would recommend to read the documentation, then find an existing 
-> recipe that uses "autotools" and another that DEPENDS on openssl.
+> Add SPL_BINARY to support build u-boot spl
 >
-> There are a lot of resources online:
+> Signed-off-by: Jacob Chen <jacob-chen@iotwrt.com>
+> ---
+>  conf/machine/include/rk3288.inc | 10 +++++++++-
+>  1 file changed, 9 insertions(+), 1 deletion(-)
 >
-> http://www.yoctoproject.org/docs/1.6.1/dev-manual/dev-manual.html#new-recipe-writing-a-new-recipe
+> diff --git a/conf/machine/include/rk3288.inc
+> b/conf/machine/include/rk3288.inc
+> index e6c19a2..9e7804a 100644
+> --- a/conf/machine/include/rk3288.inc
+> +++ b/conf/machine/include/rk3288.inc
+> @@ -1,10 +1,18 @@
+>  # Copyright (C) 2015 Romain Perier
+>  # Released under the MIT license (see COPYING.MIT for the terms)
 >
-> https://www.yoctoproject.org/tools-resources/community/irc
+> +SOC_FAMILY  = "rk3288"
+> +
+>  require conf/machine/include/tune-cortexa17.inc
+> +require conf/machine/include/soc-family.inc
 >
-> Regards,
->
-> Leon.
->
-> On Fri, Jan 27, 2017 at 12:43 PM, Jakob Hasse 
-> <jakob.hasse@smart-home-technology.ch 
-> <mailto:jakob.hasse@smart-home-technology.ch>> wrote:
->
->     Hello,
->
->     I'm beginning with Yocto.
->     I would like to know where to find general help (like a forum, or
->     mailing lists) for my Yocto-related technical problems.
->     Right now I have problems just integrating a library into my
->     build. Later I will also do system development.
->
->     If this helps, a further description of my most urgent problem:
->
->     I want to integrate the tr-50 library, available on github:
->
->     https://github.com/inhedron/libtr50
->     <https://github.com/inhedron/libtr50>
->
->     It is managed via autotools.
->     I built a new project subdirectory in my custom layer for the lib.
->     I built a basic recipe (with some tool) which, in principle should
->     somehow recognize the autotools and build the project then. I
->     changed the SCR_URI to the local .tar.gz file. But when I build,
->     it comes down to this:
->     make: *** No rule to make target 'install'.  Stop.
->     I don't know if and which parameters I should change in the recipe.
->     Another problem is that the lib needs openssl-dev. I can't find
->     how to include openssl-dev into the Yocto build.
->
->     Looking forward for your answers, best regards,
->     Jakob
->
->     -- 
->     Jakob Hasse
->     Software Developement
->
->     E: jakob.hasse@smart-home-technology.ch
->     <mailto:jakob.hasse@smart-home-technology.ch>
->     T: +41 44 552 02 66 <tel:%2B41%2044%20552%2002%2066>
->
->     Smart Home Technology GmbH
->     www.smart-home-technology.ch <http://www.smart-home-technology.ch>
->
->     -- 
->     _______________________________________________
->     yocto mailing list
->     yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
->     https://lists.yoctoproject.org/listinfo/yocto
->     <https://lists.yoctoproject.org/listinfo/yocto>
+> -DEFAULTTUNE="cortexa17-neon"
+> +DEFAULTTUNE="cortexa17hf-neon"
+>  PREFERRED_PROVIDER_virtual/kernel = "linux"
+>  SERIAL_CONSOLES = "115200;ttyS2"
+> +SPL_BINARY = "u-boot-spl-dtb.bin"
+>  KERNEL_IMAGETYPE = "zImage"
+>  KBUILD_DEFCONFIG = "multi_v7_defconfig"
+> +
+> +PREFERRED_VERSION_mali-userspace = "t76x"
+> +
+> +APPEND = "console=tty1 console=ttyS2,115200n8 rw root=/dev/mmcblk2p7
+> rootfstype=ext4 init=/sbin/init"
+> --
+> 2.7.4
 >
 >
 
--- 
-Jakob Hasse
-Software Developement
+--001a113ca22e68089b054714be61
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-E: jakob.hasse@smart-home-technology.ch
-T: +41 44 552 02 66
+<div dir=3D"ltr"><div>Hi all,<br><br></div><div>It remembers me a discussio=
+n that I wanted to have with Trevor:=C2=A0 do we want specific TUNES (like =
+these ones) in the machines files ? it is distro specific ?<br></div><div>I=
+ think that we might use &quot;simple tune&quot; like cortexa17 and let the=
+ possibility to the user to select neon or hf or vfpv4 for example. You cou=
+ld imagine a case where you write a machine file into another layer that in=
+herits from a machine file (which is in meta-rockchip) and overrides DEFAUL=
+TTUNE for example.<br><br></div><div>Also Jacob, seriously split your commi=
+ts :) . One commit per feature with a clear message to describe your change=
+s please.<br><br></div><div>Thanks,<br></div><div>Romain<br></div><div><br>=
+</div></div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">2017-=
+01-19 15:04 GMT+01:00 Jacob Chen <span dir=3D"ltr">&lt;<a href=3D"mailto:ja=
+cob-chen@iotwrt.com" target=3D"_blank">jacob-chen@iotwrt.com</a>&gt;</span>=
+:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-le=
+ft:1px #ccc solid;padding-left:1ex"><div class=3D"HOEnZb"><div class=3D"h5"=
+>change tune to cortexa17hf-neon:<br>
+Using the soft floating point abi is incompatible with some binary libaries=
+.<br>
+<br>
+Set preferred mali version to t76x.<br>
+<br>
+Add APPEND which will be used in extlinux.conf.<br>
+<br>
+Add SOC_FAMILY to help add chip specific changes.<br>
+<br>
+Add SPL_BINARY to support build u-boot spl<br>
+<br>
+Signed-off-by: Jacob Chen &lt;<a href=3D"mailto:jacob-chen@iotwrt.com">jaco=
+b-chen@iotwrt.com</a>&gt;<br>
+---<br>
+=C2=A0conf/machine/include/rk3288.<wbr>inc | 10 +++++++++-<br>
+=C2=A01 file changed, 9 insertions(+), 1 deletion(-)<br>
+<br>
+diff --git a/conf/machine/include/rk3288.<wbr>inc b/conf/machine/include/rk=
+3288.<wbr>inc<br>
+index e6c19a2..9e7804a 100644<br>
+--- a/conf/machine/include/rk3288.<wbr>inc<br>
++++ b/conf/machine/include/rk3288.<wbr>inc<br>
+@@ -1,10 +1,18 @@<br>
+=C2=A0# Copyright (C) 2015 Romain Perier<br>
+=C2=A0# Released under the MIT license (see COPYING.MIT for the terms)<br>
+<br>
++SOC_FAMILY=C2=A0 =3D &quot;rk3288&quot;<br>
++<br>
+=C2=A0require conf/machine/include/tune-<wbr>cortexa17.inc<br>
++require conf/machine/include/soc-<wbr>family.inc<br>
+<br>
+-DEFAULTTUNE=3D&quot;cortexa17-neon&quot;<br>
++DEFAULTTUNE=3D&quot;cortexa17hf-<wbr>neon&quot;<br>
+=C2=A0PREFERRED_PROVIDER_virtual/<wbr>kernel =3D &quot;linux&quot;<br>
+=C2=A0SERIAL_CONSOLES =3D &quot;115200;ttyS2&quot;<br>
++SPL_BINARY =3D &quot;u-boot-spl-dtb.bin&quot;<br>
+=C2=A0KERNEL_IMAGETYPE =3D &quot;zImage&quot;<br>
+=C2=A0KBUILD_DEFCONFIG =3D &quot;multi_v7_defconfig&quot;<br>
++<br>
++PREFERRED_VERSION_mali-<wbr>userspace =3D &quot;t76x&quot;<br>
++<br>
++APPEND =3D &quot;console=3Dtty1 console=3DttyS2,115200n8 rw root=3D/dev/mm=
+cblk2p7 rootfstype=3Dext4 init=3D/sbin/init&quot;<br>
+--<br>
+2.7.4<br>
+<br>
+</div></div></blockquote></div><br></div>
 
-Smart Home Technology GmbH
-www.smart-home-technology.ch
-
-
---------------3AF6F1B7B5C246D25EB00EC7
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    Hello Leon,<br>
-    <br>
-    Thank you for the answer!<br>
-    <br>
-    I read the documentation, it doesn't really give me more than
-    general hints what to try (or maybe I read at the wrong place). I
-    also read in  "Embedded Linux Project Using Yocto Project Cookbook".
-    I know that bitbake should use autotools somehow. I set up my
-    directories exactly like the other projects which work without any
-    issues. The other project, however, are simple executables.<br>
-    <br>
-    What is unclear to me:<br>
-    To what shall SCR_URI point? The git repo? Downloaded .tar.gz file?
-    The source dir copied into the project directory besided the
-    recipe)? I tried all these ways already, each bringing up a
-    different error, basically.<br>
-    <br>
-    Do I need to change do_install() or does the makefile handles it? If
-    I interpret the documentation and the book correctly, I don't need
-    to do anything more in the recipe...<br>
-    <br>
-    When I want to fetch from git, it complains about the SRCREF not
-    being set. So I tried to set it to the most recent commit of the
-    repo in the recipe file, but it gave another error. I also tried to
-    "append" it somehow to the git URI which didn't work either.<br>
-    <br>
-    <br>
-    Note that I need to include the development version of openssl, not
-    openssl itself (on Ubuntu host you do something like apt install
-    openssl-dev).<br>
-    <br>
-    The recipe is appended, if it helps:<br>
-    <br>
-    # Recipe created by recipetool<br>
-    # This is the basis of a recipe and may need further editing in
-    order to be fully functional.<br>
-    # (Feel free to remove these comments when editing.)<br>
-    #<br>
-    # WARNING: the following LICENSE and LIC_FILES_CHKSUM values are
-    best guesses - it is<br>
-    # your responsibility to verify that the values are complete and
-    correct.<br>
-    LICENSE = "Unknown"<br>
-    LIC_FILES_CHKSUM =
-    <a class="moz-txt-link-rfc2396E" href="file://COPYING;md5=c8ee358fdf91d887aa014c8712e8c22d">"file://COPYING;md5=c8ee358fdf91d887aa014c8712e8c22d"</a><br>
-    SRC_URI[md5sum] = "da7315f9bc22ff4c24a1cef404b4f3a8"<br>
-    # No information for SRC_URI yet (only an external source tree was
-    specified)<br>
-    SRC_URI =
-"/usr/local/dey-2.0/sources/meta-training/recipes-examples/tr-50/tr-50-0.1/"<br>
-    #SRC_URI =
-"git://<a class="moz-txt-link-freetext" href="https://github.com/inhedron/libtr50.git;rev=aedc45c4e9a9a9a3aa301616ad03f07b903d9a81">https://github.com/inhedron/libtr50.git;rev=aedc45c4e9a9a9a3aa301616ad03f07b903d9a81</a>"<br>
-    #SRC_URI = <a class="moz-txt-link-rfc2396E" href="file:///home/jakob/Downloads/libtr50-0.1.0.tar.gz">"file:///home/jakob/Downloads/libtr50-0.1.0.tar.gz"</a><br>
-    #SRCREF = "aedc45c4e9a9a9a3aa301616ad03f07b903d9a81"<br>
-    <br>
-    DEPENDS = "openssl "<br>
-    # NOTE: if this software is not capable of being built in a separate
-    build directory<br>
-    # from the source, you should replace autotools with
-    autotools-brokensep in the<br>
-    # inherit line<br>
-    inherit autotools<br>
-    <br>
-    # Specify any options you want to pass to the configure script using
-    EXTRA_OECONF:<br>
-    EXTRA_OECONF = " --with-examples"<br>
-    <br>
-    #do_install(){<br>
-    #    eo_runmake install DESTDIR=${D} PREFIX=${D}<br>
-    #}<br>
-    <br>
-    Thanks in advance for any answers!<br>
-    <br>
-    All the best,<br>
-    Jakob<br>
-    <br>
-    <div class="moz-cite-prefix">On 27.01.2017 14:39, Leon Woestenberg
-      wrote:<br>
-    </div>
-    <blockquote
-cite="mid:CAMjhiJg__hdSHbKNE8BO68d7WBz-QhtKNKtUGxw6wd68aF_uFQ@mail.gmail.com"
-      type="cite">
-      <div dir="ltr">
-        <div>Hi Jakob,<br>
-          <br>
-        </div>
-        <div>welcome on-board.<br>
-        </div>
-        <div><br>
-        </div>
-        <div>The Yocto community expects you to re-use the available
-          documentation and online resources (or even offline resources
-          like books) on Yocto or OpenEmbedded. Then if things remains
-          unclear you can ask questions here on the mailing list and on
-          IRC channels yocto.<br>
-          <br>
-        </div>
-        <div>Your question (and probably a lot of subsequent things you
-          learn on the way) can be answered by the documentation and
-          existing resources.<br>
-        </div>
-        <div><br>
-        </div>
-        <div>I would recommend to read the documentation, then find an
-          existing recipe that uses "autotools" and another that DEPENDS
-          on openssl.<br>
-        </div>
-        <div><br>
-        </div>
-        <div>There are a lot of resources online:<br>
-        </div>
-        <div><br>
-          <a moz-do-not-send="true"
-href="http://www.yoctoproject.org/docs/1.6.1/dev-manual/dev-manual.html#new-recipe-writing-a-new-recipe">http://www.yoctoproject.org/docs/1.6.1/dev-manual/dev-manual.html#new-recipe-writing-a-new-recipe</a><br>
-          <br>
-          <a moz-do-not-send="true"
-            href="https://www.yoctoproject.org/tools-resources/community/irc">https://www.yoctoproject.org/tools-resources/community/irc</a>
-          <br>
-          <br>
-        </div>
-        <div>Regards,<br>
-          <br>
-        </div>
-        <div>Leon.<br>
-        </div>
-      </div>
-      <div class="gmail_extra"><br>
-        <div class="gmail_quote">On Fri, Jan 27, 2017 at 12:43 PM, Jakob
-          Hasse <span dir="ltr">&lt;<a moz-do-not-send="true"
-              href="mailto:jakob.hasse@smart-home-technology.ch"
-              target="_blank">jakob.hasse@smart-home-technology.ch</a>&gt;</span>
-          wrote:<br>
-          <blockquote class="gmail_quote" style="margin:0 0 0
-            .8ex;border-left:1px #ccc solid;padding-left:1ex">Hello,<br>
-            <br>
-            I'm beginning with Yocto.<br>
-            I would like to know where to find general help (like a
-            forum, or mailing lists) for my Yocto-related technical
-            problems.<br>
-            Right now I have problems just integrating a library into my
-            build. Later I will also do system development.<br>
-            <br>
-            If this helps, a further description of my most urgent
-            problem:<br>
-            <br>
-            I want to integrate the tr-50 library, available on github:<br>
-            <br>
-            <a moz-do-not-send="true"
-              href="https://github.com/inhedron/libtr50"
-              rel="noreferrer" target="_blank">https://github.com/inhedron/li<wbr>btr50</a><br>
-            <br>
-            It is managed via autotools.<br>
-            I built a new project subdirectory in my custom layer for
-            the lib.<br>
-            I built a basic recipe (with some tool) which, in principle
-            should somehow recognize the autotools and build the project
-            then. I changed the SCR_URI to the local .tar.gz file. But
-            when I build, it comes down to this:<br>
-            make: *** No rule to make target 'install'.  Stop.<br>
-            I don't know if and which parameters I should change in the
-            recipe.<br>
-            Another problem is that the lib needs openssl-dev. I can't
-            find how to include openssl-dev into the Yocto build.<br>
-            <br>
-            Looking forward for your answers, best regards,<br>
-            Jakob<span class="HOEnZb"><font color="#888888"><br>
-                <br>
-                -- <br>
-                Jakob Hasse<br>
-                Software Developement<br>
-                <br>
-                E: <a moz-do-not-send="true"
-                  href="mailto:jakob.hasse@smart-home-technology.ch"
-                  target="_blank">jakob.hasse@smart-home-technol<wbr>ogy.ch</a><br>
-                T: <a moz-do-not-send="true"
-                  href="tel:%2B41%2044%20552%2002%2066"
-                  value="+41445520266" target="_blank">+41 44 552 02 66</a><br>
-                <br>
-                Smart Home Technology GmbH<br>
-                <a moz-do-not-send="true"
-                  href="http://www.smart-home-technology.ch"
-                  rel="noreferrer" target="_blank">www.smart-home-technology.ch</a><br>
-                <br>
-                -- <br>
-                ______________________________<wbr>_________________<br>
-                yocto mailing list<br>
-                <a moz-do-not-send="true"
-                  href="mailto:yocto@yoctoproject.org" target="_blank">yocto@yoctoproject.org</a><br>
-                <a moz-do-not-send="true"
-                  href="https://lists.yoctoproject.org/listinfo/yocto"
-                  rel="noreferrer" target="_blank">https://lists.yoctoproject.org<wbr>/listinfo/yocto</a><br>
-              </font></span></blockquote>
-        </div>
-        <br>
-      </div>
-    </blockquote>
-    <br>
-    <pre class="moz-signature" cols="72">-- 
-Jakob Hasse
-Software Developement
-
-E: <a class="moz-txt-link-abbreviated" href="mailto:jakob.hasse@smart-home-technology.ch">jakob.hasse@smart-home-technology.ch</a>
-T: +41 44 552 02 66 
-
-Smart Home Technology GmbH
-<a class="moz-txt-link-abbreviated" href="http://www.smart-home-technology.ch">www.smart-home-technology.ch</a></pre>
-  </body>
-</html>
-
---------------3AF6F1B7B5C246D25EB00EC7--
+--001a113ca22e68089b054714be61--
