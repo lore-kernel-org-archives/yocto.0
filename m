@@ -1,67 +1,43 @@
-Return-Path: <romain.perier@gmail.com>
+Return-Path: <jakob.hasse@smart-home-technology.ch>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A2E19E0052B; Fri, 27 Jan 2017 06:49:00 -0800 (PST)
+	id B0B8EE006EA; Fri, 27 Jan 2017 06:51:22 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE, 
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (romain.perier[at]gmail.com)
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.82.45 listed in dnsbl.sorbs.net]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.45 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [217.26.49.173 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f45.google.com (mail-wm0-f45.google.com [74.125.82.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 271D5E00510
-	for <yocto@yoctoproject.org>; Fri, 27 Jan 2017 06:48:58 -0800 (PST)
-Received: by mail-wm0-f45.google.com with SMTP id c85so120043589wmi.1
-	for <yocto@yoctoproject.org>; Fri, 27 Jan 2017 06:48:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=ZeCbqLv1MPz8NSvbjX8pnYI8mpMIBe3alYvXpni0yQU=;
-	b=S+H5BjSyJi0QTwUoA/0wabe5GZrxIyATI8gK7SSVRVTiJGlvDvEVjzzVS1xWG1XfyG
-	l4J+wXD1y8vAHOkXmeKr7uRgvedR41zIT+GDwy6sTsGcHb7c1LYKuxpC3oY9QXZ6br+5
-	mPH1g3ZJXaoLd7h9i3sl8QzK2RIwdwjZPpBn9gc0VhXinPH9KkVP0D7wwimdCzI35Twp
-	xKDnnyLU+sUUNt2M+BlmwyV5cLQxO3ala9wTcyWrZ4Cz6QpfMwtODw9fhKpZOvZGLoqG
-	W2aZroJ+Hr7GkT51nza0vGtU1cZzq2871UvxMhlFNWVVYZM7E7tdlozTbrh2ByH/7aiH
-	U4fQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=ZeCbqLv1MPz8NSvbjX8pnYI8mpMIBe3alYvXpni0yQU=;
-	b=nK3wueb9VD3td9a1lJLcCZLvkDPLznnDgHUuzXx3hB9R8HZR6glyQ+tPP+d16aCKSi
-	7nte9ObJervIV7/Hmr7y6GNB0cEExYPzgytPx39paVwCPE6MFYCX6MrUd23N6gmBT6XV
-	9noPx6zYKZBh+BEvZEkiDNLkQ4xbmCv5rln8F7S3nIdOgtxf+4xeuYRCsG4qmCLEHRki
-	5mkWvVU9dzyxhbTIcU6AnnRmqljr4Voo1PAlpjBxCF6493IX1utAdDM1DdvKQuFaf+Cc
-	uBAYJDYZOTMQw4AzjqfD4FOy20GTo5FQebURsl6przRte3eZ6NKd5lEnt1n1K5EnHLfO
-	p4aA==
-X-Gm-Message-State: AIkVDXJDEa2xB2DnBm0EYPCNrf2ETbuaKBY9zCGQVKdiSM0/374Ar9z09j8n/IHYQNlxjPRgrE/FKf43R4qfdA==
-X-Received: by 10.28.166.215 with SMTP id p206mr3673341wme.87.1485528537617;
-	Fri, 27 Jan 2017 06:48:57 -0800 (PST)
+Received: from mxout013.mail.hostpoint.ch (mxout013.mail.hostpoint.ch
+	[217.26.49.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1CC7FE00510
+	for <yocto@yoctoproject.org>; Fri, 27 Jan 2017 06:51:18 -0800 (PST)
+Received: from [10.0.2.46] (helo=asmtp013.mail.hostpoint.ch)
+	by mxout013.mail.hostpoint.ch with esmtp (Exim 4.87_1 (FreeBSD))
+	(envelope-from <jakob.hasse@smart-home-technology.ch>)
+	id 1cX7rw-000DNz-Uc
+	for yocto@yoctoproject.org; Fri, 27 Jan 2017 15:51:16 +0100
+Received: from [2a02:168:6918:0:e8c0:be9b:ce6b:fd88]
+	by asmtp013.mail.hostpoint.ch with esmtpa (Exim 4.87_1 (FreeBSD))
+	(envelope-from <jakob.hasse@smart-home-technology.ch>)
+	id 1cX7rw-000L7v-QG
+	for yocto@yoctoproject.org; Fri, 27 Jan 2017 15:51:16 +0100
+X-Authenticated-Sender-Id: jakob.hasse@smart-home-technology.ch
+References: <4bf25102-0b23-f4dd-7688-bebf892946ab@smart-home-technology.ch>
+	<CAMjhiJg__hdSHbKNE8BO68d7WBz-QhtKNKtUGxw6wd68aF_uFQ@mail.gmail.com>
+To: Yocto List <yocto@yoctoproject.org>
+From: Jakob Hasse <jakob.hasse@smart-home-technology.ch>
+Message-ID: <4f301547-ca13-69dd-438b-47987c3dd9fe@smart-home-technology.ch>
+Date: Fri, 27 Jan 2017 15:51:16 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.5.1
 MIME-Version: 1.0
-Received: by 10.80.196.2 with HTTP; Fri, 27 Jan 2017 06:48:57 -0800 (PST)
-In-Reply-To: <1484820572-11891-6-git-send-email-jacob-chen@iotwrt.com>
-References: <1484820572-11891-1-git-send-email-jacob-chen@iotwrt.com>
-	<1484820572-11891-6-git-send-email-jacob-chen@iotwrt.com>
-From: Romain Perier <romain.perier@gmail.com>
-Date: Fri, 27 Jan 2017 15:48:57 +0100
-Message-ID: <CABgxDoJzMo931=QcCr4xTV4aae+gFTSvUNPnX9f6DnLL_r1fqQ@mail.gmail.com>
-To: Jacob Chen <jacob-chen@iotwrt.com>
-Cc: yocto@yoctoproject.org, eddie.cai@rock-chips.com
-Subject: Re: [PATCH 5/7] recipes-bsp: add u-boot-rockchip support
+In-Reply-To: <CAMjhiJg__hdSHbKNE8BO68d7WBz-QhtKNKtUGxw6wd68aF_uFQ@mail.gmail.com>
+Subject: Re: Where to find help for yocto application and and system development
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,128 +49,393 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 27 Jan 2017 14:49:00 -0000
-Content-Type: multipart/alternative; boundary=94eb2c12943ec9de490547149058
+X-List-Received-Date: Fri, 27 Jan 2017 14:51:22 -0000
+Content-Type: multipart/alternative;
+	boundary="------------3AF6F1B7B5C246D25EB00EC7"
 
---94eb2c12943ec9de490547149058
-Content-Type: text/plain; charset=UTF-8
+--------------3AF6F1B7B5C246D25EB00EC7
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi all,
+Hello Leon,
+
+Thank you for the answer!
+
+I read the documentation, it doesn't really give me more than general 
+hints what to try (or maybe I read at the wrong place). I also read in  
+"Embedded Linux Project Using Yocto Project Cookbook". I know that 
+bitbake should use autotools somehow. I set up my directories exactly 
+like the other projects which work without any issues. The other 
+project, however, are simple executables.
+
+What is unclear to me:
+To what shall SCR_URI point? The git repo? Downloaded .tar.gz file? The 
+source dir copied into the project directory besided the recipe)? I 
+tried all these ways already, each bringing up a different error, basically.
+
+Do I need to change do_install() or does the makefile handles it? If I 
+interpret the documentation and the book correctly, I don't need to do 
+anything more in the recipe...
+
+When I want to fetch from git, it complains about the SRCREF not being 
+set. So I tried to set it to the most recent commit of the repo in the 
+recipe file, but it gave another error. I also tried to "append" it 
+somehow to the git URI which didn't work either.
 
 
-2017-01-19 11:09 GMT+01:00 Jacob Chen <jacob-chen@iotwrt.com>:
+Note that I need to include the development version of openssl, not 
+openssl itself (on Ubuntu host you do something like apt install 
+openssl-dev).
 
-> Rockchip next-dev U-boot is the next generation of rockchip u-boot, will
-> also be an upstream tracking branch.
-> At present, this branch is just a rebased upstream u-boot.
+The recipe is appended, if it helps:
+
+# Recipe created by recipetool
+# This is the basis of a recipe and may need further editing in order to 
+be fully functional.
+# (Feel free to remove these comments when editing.)
+#
+# WARNING: the following LICENSE and LIC_FILES_CHKSUM values are best 
+guesses - it is
+# your responsibility to verify that the values are complete and correct.
+LICENSE = "Unknown"
+LIC_FILES_CHKSUM = "file://COPYING;md5=c8ee358fdf91d887aa014c8712e8c22d"
+SRC_URI[md5sum] = "da7315f9bc22ff4c24a1cef404b4f3a8"
+# No information for SRC_URI yet (only an external source tree was 
+specified)
+SRC_URI = 
+"/usr/local/dey-2.0/sources/meta-training/recipes-examples/tr-50/tr-50-0.1/"
+#SRC_URI = 
+"git://https://github.com/inhedron/libtr50.git;rev=aedc45c4e9a9a9a3aa301616ad03f07b903d9a81"
+#SRC_URI = "file:///home/jakob/Downloads/libtr50-0.1.0.tar.gz"
+#SRCREF = "aedc45c4e9a9a9a3aa301616ad03f07b903d9a81"
+
+DEPENDS = "openssl "
+# NOTE: if this software is not capable of being built in a separate 
+build directory
+# from the source, you should replace autotools with autotools-brokensep 
+in the
+# inherit line
+inherit autotools
+
+# Specify any options you want to pass to the configure script using 
+EXTRA_OECONF:
+EXTRA_OECONF = " --with-examples"
+
+#do_install(){
+#    eo_runmake install DESTDIR=${D} PREFIX=${D}
+#}
+
+Thanks in advance for any answers!
+
+All the best,
+Jakob
+
+On 27.01.2017 14:39, Leon Woestenberg wrote:
+> Hi Jakob,
 >
-> Signed-off-by: Jacob Chen <jacob-chen@iotwrt.com>
-> ---
->  recipes-bsp/u-boot/u-boot-rockchip_next.bb | 17 +++++++++++++++++
->  1 file changed, 17 insertions(+)
->  create mode 100644 recipes-bsp/u-boot/u-boot-rockchip_next.bb
+> welcome on-board.
 >
-> diff --git a/recipes-bsp/u-boot/u-boot-rockchip_next.bb
-> b/recipes-bsp/u-boot/u-boot-rockchip_next.bb
-> new file mode 100644
-> index 0000000..30d16b0
-> --- /dev/null
-> +++ b/recipes-bsp/u-boot/u-boot-rockchip_next.bb
-> @@ -0,0 +1,17 @@
-> +# Copyright (C) 2017 Fuzhou Rockchip Electronics Co., Ltd
-> +# Released under the MIT license (see COPYING.MIT for the terms)
-> +
-> +require recipes-bsp/u-boot/u-boot.inc
-> +
-> +DESCRIPTION = "Rockchip next-dev U-Boot"
-> +LICENSE = "GPLv2+"
-> +LIC_FILES_CHKSUM = "file://Licenses/README;md5=
-> a2c678cfd4a4d97135585cad908541c6"
-> +COMPATIBLE_MACHINE = "(rk3288)"
+> The Yocto community expects you to re-use the available documentation 
+> and online resources (or even offline resources like books) on Yocto 
+> or OpenEmbedded. Then if things remains unclear you can ask questions 
+> here on the mailing list and on IRC channels yocto.
+>
+> Your question (and probably a lot of subsequent things you learn on 
+> the way) can be answered by the documentation and existing resources.
+>
+> I would recommend to read the documentation, then find an existing 
+> recipe that uses "autotools" and another that DEPENDS on openssl.
+>
+> There are a lot of resources online:
+>
+> http://www.yoctoproject.org/docs/1.6.1/dev-manual/dev-manual.html#new-recipe-writing-a-new-recipe
+>
+> https://www.yoctoproject.org/tools-resources/community/irc
+>
+> Regards,
+>
+> Leon.
+>
+> On Fri, Jan 27, 2017 at 12:43 PM, Jakob Hasse 
+> <jakob.hasse@smart-home-technology.ch 
+> <mailto:jakob.hasse@smart-home-technology.ch>> wrote:
+>
+>     Hello,
+>
+>     I'm beginning with Yocto.
+>     I would like to know where to find general help (like a forum, or
+>     mailing lists) for my Yocto-related technical problems.
+>     Right now I have problems just integrating a library into my
+>     build. Later I will also do system development.
+>
+>     If this helps, a further description of my most urgent problem:
+>
+>     I want to integrate the tr-50 library, available on github:
+>
+>     https://github.com/inhedron/libtr50
+>     <https://github.com/inhedron/libtr50>
+>
+>     It is managed via autotools.
+>     I built a new project subdirectory in my custom layer for the lib.
+>     I built a basic recipe (with some tool) which, in principle should
+>     somehow recognize the autotools and build the project then. I
+>     changed the SCR_URI to the local .tar.gz file. But when I build,
+>     it comes down to this:
+>     make: *** No rule to make target 'install'.  Stop.
+>     I don't know if and which parameters I should change in the recipe.
+>     Another problem is that the lib needs openssl-dev. I can't find
+>     how to include openssl-dev into the Yocto build.
+>
+>     Looking forward for your answers, best regards,
+>     Jakob
+>
+>     -- 
+>     Jakob Hasse
+>     Software Developement
+>
+>     E: jakob.hasse@smart-home-technology.ch
+>     <mailto:jakob.hasse@smart-home-technology.ch>
+>     T: +41 44 552 02 66 <tel:%2B41%2044%20552%2002%2066>
+>
+>     Smart Home Technology GmbH
+>     www.smart-home-technology.ch <http://www.smart-home-technology.ch>
+>
+>     -- 
+>     _______________________________________________
+>     yocto mailing list
+>     yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
+>     https://lists.yoctoproject.org/listinfo/yocto
+>     <https://lists.yoctoproject.org/listinfo/yocto>
+>
 >
 
+-- 
+Jakob Hasse
+Software Developement
 
-So... in this case why not simply use u-boot mainline ? Most of
-rk3288-based boards are very well supported with
-http://git.denx.de/?p=u-boot/u-boot-rockchip.git ..
-Do you need something specific that it is not supported yet by u-boot
-mainline ?
+E: jakob.hasse@smart-home-technology.ch
+T: +41 44 552 02 66
 
-My philosophy is simple:  When the SoC and the board is correctly supported
-by a project on upstream, we use the mainline version of this project (ex:
-the linux kernel, u-boot, etc). When that's not the case, we can write a
-specific recipe for a vendor version. This is the case for example for the
-kernel vendor "linux-rockchip" (
-https://git.yoctoproject.org/cgit/cgit.cgi/meta-rockchip/tree/recipes-kernel/linux/linux-rockchip_3.0.bb?id=0f7f53c00e7787d5e4843752721a1690169f4ffd),
-that's basically the kernel vendor 3.0.36 for the radxa rock here because
-that's the kernel which supports the most features and I/O (compared to the
-mainline kernel for this SoC or this board).
+Smart Home Technology GmbH
+www.smart-home-technology.ch
 
 
-Thanks,
-Romain
+--------------3AF6F1B7B5C246D25EB00EC7
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
 
---94eb2c12943ec9de490547149058
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+<html>
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    Hello Leon,<br>
+    <br>
+    Thank you for the answer!<br>
+    <br>
+    I read the documentation, it doesn't really give me more than
+    general hints what to try (or maybe I read at the wrong place). I
+    also read in  "Embedded Linux Project Using Yocto Project Cookbook".
+    I know that bitbake should use autotools somehow. I set up my
+    directories exactly like the other projects which work without any
+    issues. The other project, however, are simple executables.<br>
+    <br>
+    What is unclear to me:<br>
+    To what shall SCR_URI point? The git repo? Downloaded .tar.gz file?
+    The source dir copied into the project directory besided the
+    recipe)? I tried all these ways already, each bringing up a
+    different error, basically.<br>
+    <br>
+    Do I need to change do_install() or does the makefile handles it? If
+    I interpret the documentation and the book correctly, I don't need
+    to do anything more in the recipe...<br>
+    <br>
+    When I want to fetch from git, it complains about the SRCREF not
+    being set. So I tried to set it to the most recent commit of the
+    repo in the recipe file, but it gave another error. I also tried to
+    "append" it somehow to the git URI which didn't work either.<br>
+    <br>
+    <br>
+    Note that I need to include the development version of openssl, not
+    openssl itself (on Ubuntu host you do something like apt install
+    openssl-dev).<br>
+    <br>
+    The recipe is appended, if it helps:<br>
+    <br>
+    # Recipe created by recipetool<br>
+    # This is the basis of a recipe and may need further editing in
+    order to be fully functional.<br>
+    # (Feel free to remove these comments when editing.)<br>
+    #<br>
+    # WARNING: the following LICENSE and LIC_FILES_CHKSUM values are
+    best guesses - it is<br>
+    # your responsibility to verify that the values are complete and
+    correct.<br>
+    LICENSE = "Unknown"<br>
+    LIC_FILES_CHKSUM =
+    <a class="moz-txt-link-rfc2396E" href="file://COPYING;md5=c8ee358fdf91d887aa014c8712e8c22d">"file://COPYING;md5=c8ee358fdf91d887aa014c8712e8c22d"</a><br>
+    SRC_URI[md5sum] = "da7315f9bc22ff4c24a1cef404b4f3a8"<br>
+    # No information for SRC_URI yet (only an external source tree was
+    specified)<br>
+    SRC_URI =
+"/usr/local/dey-2.0/sources/meta-training/recipes-examples/tr-50/tr-50-0.1/"<br>
+    #SRC_URI =
+"git://<a class="moz-txt-link-freetext" href="https://github.com/inhedron/libtr50.git;rev=aedc45c4e9a9a9a3aa301616ad03f07b903d9a81">https://github.com/inhedron/libtr50.git;rev=aedc45c4e9a9a9a3aa301616ad03f07b903d9a81</a>"<br>
+    #SRC_URI = <a class="moz-txt-link-rfc2396E" href="file:///home/jakob/Downloads/libtr50-0.1.0.tar.gz">"file:///home/jakob/Downloads/libtr50-0.1.0.tar.gz"</a><br>
+    #SRCREF = "aedc45c4e9a9a9a3aa301616ad03f07b903d9a81"<br>
+    <br>
+    DEPENDS = "openssl "<br>
+    # NOTE: if this software is not capable of being built in a separate
+    build directory<br>
+    # from the source, you should replace autotools with
+    autotools-brokensep in the<br>
+    # inherit line<br>
+    inherit autotools<br>
+    <br>
+    # Specify any options you want to pass to the configure script using
+    EXTRA_OECONF:<br>
+    EXTRA_OECONF = " --with-examples"<br>
+    <br>
+    #do_install(){<br>
+    #    eo_runmake install DESTDIR=${D} PREFIX=${D}<br>
+    #}<br>
+    <br>
+    Thanks in advance for any answers!<br>
+    <br>
+    All the best,<br>
+    Jakob<br>
+    <br>
+    <div class="moz-cite-prefix">On 27.01.2017 14:39, Leon Woestenberg
+      wrote:<br>
+    </div>
+    <blockquote
+cite="mid:CAMjhiJg__hdSHbKNE8BO68d7WBz-QhtKNKtUGxw6wd68aF_uFQ@mail.gmail.com"
+      type="cite">
+      <div dir="ltr">
+        <div>Hi Jakob,<br>
+          <br>
+        </div>
+        <div>welcome on-board.<br>
+        </div>
+        <div><br>
+        </div>
+        <div>The Yocto community expects you to re-use the available
+          documentation and online resources (or even offline resources
+          like books) on Yocto or OpenEmbedded. Then if things remains
+          unclear you can ask questions here on the mailing list and on
+          IRC channels yocto.<br>
+          <br>
+        </div>
+        <div>Your question (and probably a lot of subsequent things you
+          learn on the way) can be answered by the documentation and
+          existing resources.<br>
+        </div>
+        <div><br>
+        </div>
+        <div>I would recommend to read the documentation, then find an
+          existing recipe that uses "autotools" and another that DEPENDS
+          on openssl.<br>
+        </div>
+        <div><br>
+        </div>
+        <div>There are a lot of resources online:<br>
+        </div>
+        <div><br>
+          <a moz-do-not-send="true"
+href="http://www.yoctoproject.org/docs/1.6.1/dev-manual/dev-manual.html#new-recipe-writing-a-new-recipe">http://www.yoctoproject.org/docs/1.6.1/dev-manual/dev-manual.html#new-recipe-writing-a-new-recipe</a><br>
+          <br>
+          <a moz-do-not-send="true"
+            href="https://www.yoctoproject.org/tools-resources/community/irc">https://www.yoctoproject.org/tools-resources/community/irc</a>
+          <br>
+          <br>
+        </div>
+        <div>Regards,<br>
+          <br>
+        </div>
+        <div>Leon.<br>
+        </div>
+      </div>
+      <div class="gmail_extra"><br>
+        <div class="gmail_quote">On Fri, Jan 27, 2017 at 12:43 PM, Jakob
+          Hasse <span dir="ltr">&lt;<a moz-do-not-send="true"
+              href="mailto:jakob.hasse@smart-home-technology.ch"
+              target="_blank">jakob.hasse@smart-home-technology.ch</a>&gt;</span>
+          wrote:<br>
+          <blockquote class="gmail_quote" style="margin:0 0 0
+            .8ex;border-left:1px #ccc solid;padding-left:1ex">Hello,<br>
+            <br>
+            I'm beginning with Yocto.<br>
+            I would like to know where to find general help (like a
+            forum, or mailing lists) for my Yocto-related technical
+            problems.<br>
+            Right now I have problems just integrating a library into my
+            build. Later I will also do system development.<br>
+            <br>
+            If this helps, a further description of my most urgent
+            problem:<br>
+            <br>
+            I want to integrate the tr-50 library, available on github:<br>
+            <br>
+            <a moz-do-not-send="true"
+              href="https://github.com/inhedron/libtr50"
+              rel="noreferrer" target="_blank">https://github.com/inhedron/li<wbr>btr50</a><br>
+            <br>
+            It is managed via autotools.<br>
+            I built a new project subdirectory in my custom layer for
+            the lib.<br>
+            I built a basic recipe (with some tool) which, in principle
+            should somehow recognize the autotools and build the project
+            then. I changed the SCR_URI to the local .tar.gz file. But
+            when I build, it comes down to this:<br>
+            make: *** No rule to make target 'install'.  Stop.<br>
+            I don't know if and which parameters I should change in the
+            recipe.<br>
+            Another problem is that the lib needs openssl-dev. I can't
+            find how to include openssl-dev into the Yocto build.<br>
+            <br>
+            Looking forward for your answers, best regards,<br>
+            Jakob<span class="HOEnZb"><font color="#888888"><br>
+                <br>
+                -- <br>
+                Jakob Hasse<br>
+                Software Developement<br>
+                <br>
+                E: <a moz-do-not-send="true"
+                  href="mailto:jakob.hasse@smart-home-technology.ch"
+                  target="_blank">jakob.hasse@smart-home-technol<wbr>ogy.ch</a><br>
+                T: <a moz-do-not-send="true"
+                  href="tel:%2B41%2044%20552%2002%2066"
+                  value="+41445520266" target="_blank">+41 44 552 02 66</a><br>
+                <br>
+                Smart Home Technology GmbH<br>
+                <a moz-do-not-send="true"
+                  href="http://www.smart-home-technology.ch"
+                  rel="noreferrer" target="_blank">www.smart-home-technology.ch</a><br>
+                <br>
+                -- <br>
+                ______________________________<wbr>_________________<br>
+                yocto mailing list<br>
+                <a moz-do-not-send="true"
+                  href="mailto:yocto@yoctoproject.org" target="_blank">yocto@yoctoproject.org</a><br>
+                <a moz-do-not-send="true"
+                  href="https://lists.yoctoproject.org/listinfo/yocto"
+                  rel="noreferrer" target="_blank">https://lists.yoctoproject.org<wbr>/listinfo/yocto</a><br>
+              </font></span></blockquote>
+        </div>
+        <br>
+      </div>
+    </blockquote>
+    <br>
+    <pre class="moz-signature" cols="72">-- 
+Jakob Hasse
+Software Developement
 
-<div dir=3D"ltr">Hi all,<br><br><div><div class=3D"gmail_extra"><br><div cl=
-ass=3D"gmail_quote">2017-01-19 11:09 GMT+01:00 Jacob Chen <span dir=3D"ltr"=
->&lt;<a href=3D"mailto:jacob-chen@iotwrt.com" target=3D"_blank">jacob-chen@=
-iotwrt.com</a>&gt;</span>:<br><blockquote class=3D"gmail_quote" style=3D"ma=
-rgin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:=
-1ex">Rockchip next-dev U-boot is the next generation of rockchip u-boot, wi=
-ll also be an upstream tracking branch.<br>
-At present, this branch is just a rebased upstream u-boot.<br>
-<br>
-Signed-off-by: Jacob Chen &lt;<a href=3D"mailto:jacob-chen@iotwrt.com">jaco=
-b-chen@iotwrt.com</a>&gt;<br>
----<br>
-=C2=A0recipes-bsp/u-boot/<a href=3D"http://u-boot-rockchip_next.bb" rel=3D"=
-noreferrer" target=3D"_blank">u-boot-<wbr>rockchip_next.bb</a> | 17 +++++++=
-++++++++++<br>
-=C2=A01 file changed, 17 insertions(+)<br>
-=C2=A0create mode 100644 recipes-bsp/u-boot/<a href=3D"http://u-boot-rockch=
-ip_next.bb" rel=3D"noreferrer" target=3D"_blank">u-boot-<wbr>rockchip_next.=
-bb</a><br>
-<br>
-diff --git a/recipes-bsp/u-boot/<a href=3D"http://u-boot-rockchip_next.bb" =
-rel=3D"noreferrer" target=3D"_blank">u-boot-<wbr>rockchip_next.bb</a> b/rec=
-ipes-bsp/u-boot/<a href=3D"http://u-boot-rockchip_next.bb" rel=3D"noreferre=
-r" target=3D"_blank">u-boot-<wbr>rockchip_next.bb</a><br>
-new file mode 100644<br>
-index 0000000..30d16b0<br>
---- /dev/null<br>
-+++ b/recipes-bsp/u-boot/<a href=3D"http://u-boot-rockchip_next.bb" rel=3D"=
-noreferrer" target=3D"_blank">u-boot-<wbr>rockchip_next.bb</a><br>
-@@ -0,0 +1,17 @@<br>
-+# Copyright (C) 2017 Fuzhou Rockchip Electronics Co., Ltd<br>
-+# Released under the MIT license (see COPYING.MIT for the terms)<br>
-+<br>
-+require recipes-bsp/u-boot/u-boot.inc<br>
-+<br>
-+DESCRIPTION =3D &quot;Rockchip next-dev U-Boot&quot;<br>
-+LICENSE =3D &quot;GPLv2+&quot;<br>
-+LIC_FILES_CHKSUM =3D &quot;file://Licenses/README;md5=3D<wbr>a2c678cfd4a4d=
-97135585cad908541<wbr>c6&quot;<br>
-+COMPATIBLE_MACHINE =3D &quot;(rk3288)&quot;<br></blockquote><div><br><br><=
-/div><div>So... in this case why not simply use u-boot mainline ? Most of r=
-k3288-based boards are very well supported with <a href=3D"http://git.denx.=
-de/?p=3Du-boot/u-boot-rockchip.git">http://git.denx.de/?p=3Du-boot/u-boot-r=
-ockchip.git</a> ..<br></div><div>Do you need something specific that it is =
-not supported yet by u-boot mainline ?<br><br></div><div>My philosophy is s=
-imple:=C2=A0 When the SoC and the board is correctly supported by a project=
- on upstream, we use the mainline version of this project (ex: the linux ke=
-rnel, u-boot, etc). When that&#39;s not the case, we can write a specific r=
-ecipe for a vendor version. This is the case for example for the kernel ven=
-dor &quot;linux-rockchip&quot; (<a href=3D"https://git.yoctoproject.org/cgi=
-t/cgit.cgi/meta-rockchip/tree/recipes-kernel/linux/linux-rockchip_3.0.bb?id=
-=3D0f7f53c00e7787d5e4843752721a1690169f4ffd">https://git.yoctoproject.org/c=
-git/cgit.cgi/meta-rockchip/tree/recipes-kernel/linux/linux-rockchip_3.0.bb?=
-id=3D0f7f53c00e7787d5e4843752721a1690169f4ffd</a>), that&#39;s basically th=
-e kernel vendor 3.0.36 for the radxa rock here because that&#39;s the kerne=
-l which supports the most features and I/O (compared to the mainline kernel=
- for this SoC or this board).<br><br></div><div><br></div><div>Thanks,<br><=
-/div><div>Romain<br></div><div>=C2=A0</div></div><br></div></div></div>
+E: <a class="moz-txt-link-abbreviated" href="mailto:jakob.hasse@smart-home-technology.ch">jakob.hasse@smart-home-technology.ch</a>
+T: +41 44 552 02 66 
 
---94eb2c12943ec9de490547149058--
+Smart Home Technology GmbH
+<a class="moz-txt-link-abbreviated" href="http://www.smart-home-technology.ch">www.smart-home-technology.ch</a></pre>
+  </body>
+</html>
+
+--------------3AF6F1B7B5C246D25EB00EC7--
