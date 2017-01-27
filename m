@@ -1,6 +1,6 @@
-Return-Path: <paul@paulbarker.me.uk>
+Return-Path: <jakob.hasse@smart-home-technology.ch>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 55D63E00A6D; Thu, 26 Jan 2017 23:45:04 -0800 (PST)
+	id BAF19E008D3; Fri, 27 Jan 2017 04:53:08 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,46 +8,34 @@ X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [217.70.183.197 listed in list.dnswl.org]
+	*      [217.26.49.172 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net
-	[217.70.183.197])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4AE50E0094C
-	for <yocto@yoctoproject.org>; Thu, 26 Jan 2017 23:45:01 -0800 (PST)
-Received: from mfilter2-d.gandi.net (mfilter2-d.gandi.net [217.70.178.140])
-	by relay5-d.mail.gandi.net (Postfix) with ESMTP id 9832541C09F;
-	Fri, 27 Jan 2017 08:45:00 +0100 (CET)
-X-Virus-Scanned: Debian amavisd-new at mfilter2-d.gandi.net
-Received: from relay5-d.mail.gandi.net ([IPv6:::ffff:217.70.183.197])
-	by mfilter2-d.gandi.net (mfilter2-d.gandi.net [::ffff:10.0.15.180])
-	(amavisd-new, port 10024)
-	with ESMTP id syel-XyGicKM; Fri, 27 Jan 2017 08:44:59 +0100 (CET)
-X-Originating-IP: 86.24.150.36
-Received: from host0.betafive.co.uk
-	(cpc15-shep11-2-0-cust35.8-3.cable.virginm.net [86.24.150.36])
-	(Authenticated sender: paul@paulbarker.me.uk)
-	by relay5-d.mail.gandi.net (Postfix) with ESMTPSA id 2E39841C07E;
-	Fri, 27 Jan 2017 08:44:58 +0100 (CET)
-Date: Fri, 27 Jan 2017 07:44:56 +0000
-From: Paul Barker <paul@paulbarker.me.uk>
-To: Andreas =?UTF-8?B?TcO8bGxlcg==?= <schnitzeltony@googlemail.com>
-Message-ID: <20170127074456.04009ae6@host0.betafive.co.uk>
-In-Reply-To: <CALbNGRT_H_Vz8b6vcfgJGWYEyVw6og4+zKmLjLZ6P+2O0oY6eA@mail.gmail.com>
-References: <65082de4-2ba6-3b18-1845-00b2d637404e@balister.org>
-	<CALbNGRSrXLdfUK3U2bXr20P+fFm4ROArGPRi9Ag=AhXbGjUv+g@mail.gmail.com>
-	<bbd8fb9d-8215-c73f-f4aa-b20523291ec0@balister.org>
-	<CALbNGRT_H_Vz8b6vcfgJGWYEyVw6og4+zKmLjLZ6P+2O0oY6eA@mail.gmail.com>
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
+X-Greylist: delayed 4199 seconds by postgrey-1.32 at yocto-www;
+	Fri, 27 Jan 2017 04:53:04 PST
+Received: from mxout012.mail.hostpoint.ch (mxout012.mail.hostpoint.ch
+	[217.26.49.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6B04FE0082E
+	for <yocto@yoctoproject.org>; Fri, 27 Jan 2017 04:53:04 -0800 (PST)
+Received: from [10.0.2.46] (helo=asmtp013.mail.hostpoint.ch)
+	by mxout012.mail.hostpoint.ch with esmtp (Exim 4.87_1 (FreeBSD))
+	(envelope-from <jakob.hasse@smart-home-technology.ch>)
+	id 1cX4vo-000PXe-KF
+	for yocto@yoctoproject.org; Fri, 27 Jan 2017 12:43:04 +0100
+Received: from [2a02:168:6918:0:e8c0:be9b:ce6b:fd88]
+	by asmtp013.mail.hostpoint.ch with esmtpa (Exim 4.87_1 (FreeBSD))
+	(envelope-from <jakob.hasse@smart-home-technology.ch>)
+	id 1cX4vo-000C8j-Ie
+	for yocto@yoctoproject.org; Fri, 27 Jan 2017 12:43:04 +0100
+X-Authenticated-Sender-Id: jakob.hasse@smart-home-technology.ch
+To: yocto@yoctoproject.org
+From: Jakob Hasse <jakob.hasse@smart-home-technology.ch>
+Message-ID: <4bf25102-0b23-f4dd-7688-bebf892946ab@smart-home-technology.ch>
+Date: Fri, 27 Jan 2017 12:43:04 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.5.1
 MIME-Version: 1.0
-Cc: Yocto Project <yocto@yoctoproject.org>,
-	"openembedded-members@lists.openembedded.org"
-	<openembedded-members@lists.openembedded.org>,
-	openembedded-core <openembedded-core@lists.openembedded.org>,
-	"openembedded-devel@lists.openembedded.org"
-	<openembedded-devel@lists.openembedded.org>, openembedded-architecture
-	<openembedded-architecture@lists.openembedded.org>
-Subject: Re: [Openembedded-architecture] [OE-core] OpenEmbedded Stand at FOSDEM
+Subject: Where to find help for yocto application and and system development
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,63 +47,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 27 Jan 2017 07:45:04 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 27 Jan 2017 12:53:08 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thu, 26 Jan 2017 22:39:17 +0100
-Andreas M=C3=BCller <schnitzeltony@googlemail.com> wrote:
+Hello,
 
-> On Thu, Jan 5, 2017 at 4:30 PM, Philip Balister <philip@balister.org>
-> wrote:
-> > On 01/03/2017 08:13 PM, Andreas M=C3=BCller wrote: =20
-> >> On Tue, Jan 3, 2017 at 4:32 PM, Philip Balister
-> >> <philip@balister.org> wrote: =20
-> >>> Every year since 2007, OpenEmbedded has a stand at FOSDEM
-> >>> (http://www.fosdem.org)
-> >>>
-> >>> From the first year:
-> >>>
-> >>> https://www.flickr.com/photos/32615155@N00/405229708/in/album-7215759=
-4561002629/
-> >>>
-> >>> Belen and I are sort of organizing this, but both of us are also
-> >>> involved in devrooms, so we will need a lot of help manning the
-> >>> stand and getting some demos together.
-> >>>
-> >>> Demos should try and show how the project makes embedded work
-> >>> easier, by showing tools and/or cool examples of devices using
-> >>> Linux built with OpenEmbedded. In previous years, we've shown
-> >>> toaster with data collected from demos on the table. Collections
-> >>> of devices running images built from the same recipe and
-> >>> interesting products using Linux by OpenEmbedded.
-> >>>
-> >>> I'm happy to try and organize demos and staffing, but I could
-> >>> really use some help this year, so if you are in a position to
-> >>> tak ethe lead on operating the stand, that would be a huge help
-> >>> to me and the rest of the project.
-> >>>
-> >>> Thanks,
-> >>>
-> >>> Philip =20
-> Nobody?
->=20
-> Andreas
+I'm beginning with Yocto.
+I would like to know where to find general help (like a forum, or 
+mailing lists) for my Yocto-related technical problems.
+Right now I have problems just integrating a library into my build. 
+Later I will also do system development.
 
-There's 3 of us from Tog=C3=A1n Labs who'll be able to help out manning the
-stand. I know I can do all day Saturday and up to about 4pm on Sunday
-and I'm happy to be at the stand all day (with the obvious caffeine
-breaks!). Let me know if you need help setting things up and what time
-you need people to turn up on Saturday morning.
+If this helps, a further description of my most urgent problem:
 
-If you need anything printing then send it to me.
+I want to integrate the tr-50 library, available on github:
 
-I can bring 2x 4-way UK power strips plus 2x EU->UK power adaptors for
-our gear. I've got 2 laptops plus a few embedded devices. I don't have
-any EU power strips though.
+https://github.com/inhedron/libtr50
 
-I've updated the wiki page.
+It is managed via autotools.
+I built a new project subdirectory in my custom layer for the lib.
+I built a basic recipe (with some tool) which, in principle should 
+somehow recognize the autotools and build the project then. I changed 
+the SCR_URI to the local .tar.gz file. But when I build, it comes down 
+to this:
+make: *** No rule to make target 'install'.  Stop.
+I don't know if and which parameters I should change in the recipe.
+Another problem is that the lib needs openssl-dev. I can't find how to 
+include openssl-dev into the Yocto build.
 
-Thanks,
-Paul
+Looking forward for your answers, best regards,
+Jakob
+
+-- 
+Jakob Hasse
+Software Developement
+
+E: jakob.hasse@smart-home-technology.ch
+T: +41 44 552 02 66
+
+Smart Home Technology GmbH
+www.smart-home-technology.ch
+
 
