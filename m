@@ -1,68 +1,81 @@
-Return-Path: <twoerner@gmail.com>
+Return-Path: <tmatsuzawa@xevo.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D1462E00510; Fri, 27 Jan 2017 17:44:15 -0800 (PST)
+	id E3941E0052B; Fri, 27 Jan 2017 20:31:56 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (twoerner[at]gmail.com)
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.216.193 listed in dnsbl.sorbs.net]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [104.47.36.83 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.216.193 listed in list.dnswl.org]
-Received: from mail-qt0-f193.google.com (mail-qt0-f193.google.com
-	[209.85.216.193])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B2EABE004A0
-	for <yocto@yoctoproject.org>; Fri, 27 Jan 2017 17:44:12 -0800 (PST)
-Received: by mail-qt0-f193.google.com with SMTP id s58so8521718qtc.2
-	for <yocto@yoctoproject.org>; Fri, 27 Jan 2017 17:44:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=g0+W9BaQfau/kaJ6YWrxBmC1vMkkHRiQRPclfduLAqg=;
-	b=Z8PHT4qVI/W8dRif65lpEw5iuq6RleHY6Y6GOvcn/1zIC4z3zTAc6Sq4tHSwtEjnkG
-	eemv0DmgDJjUme+X8Lt5ne3Hfo+KjOGDQ+FfiQJbae40+UQQmrjSIruw1UaCbNcgf0zo
-	StXXg26kUGsKYjMP8MjqBCA9J4atulLoZpSP4suM6Ej+SwSXCZqrVxjD5zJk2Ql+NhMf
-	R1ZW4uoW0KHVh4+t64eeqJVO4hOI52izGGA/9BotAWReI0ug40b8CAb2tVVp1z9KjRX1
-	btPGI+3rcUSyT4zcoV6KgeVJgW+hbVjHNAzdEGweTzQC3vSYKCGdXdhZodV4z8Y8m6ys
-	4Ofw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=g0+W9BaQfau/kaJ6YWrxBmC1vMkkHRiQRPclfduLAqg=;
-	b=N83VND/lAfkGV1yKclrZbIgjGbcMAvzhmi+r2nrrSVLbHLcQ9ADQ6bnmK205//zLKM
-	M5PIv4A1RQRXEBSEKQhsfu4OeoGlWhYVoS9AmJWMlfZ0BBOOWxOact+YGEXDOMcoB8U8
-	GHogRFv2ot8dWIUL4U3iG87+eMOUUQRQpzmNuZ2C3nUy8wGeRuVmW3hvj480vZz9kag2
-	ZRwX2q3ZvO5mlljcm/gixAWAOorJNODA6UGHXkh6y2za4+3jFMQ6bDCkqBCaQJxOx1yX
-	IipblcT2n3fe74enR27qfwhobTjtRDAvdTCeSnOGdDl9aXn/S9iuHyrDBhg4VcA07s1D
-	ZFbA==
-X-Gm-Message-State: AIkVDXKIs/JkG3Jtvcv6mR+ysDbFOp3/9CpWktWEVstQgRJ0LhwCyQDI/xAwDCA5VWl/z9C7y3/16T41AL1cJg==
-X-Received: by 10.200.57.9 with SMTP id s9mr10690620qtb.125.1485567851873;
-	Fri, 27 Jan 2017 17:44:11 -0800 (PST)
+X-Greylist: delayed 3647 seconds by postgrey-1.32 at yocto-www;
+	Fri, 27 Jan 2017 20:31:46 PST
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com
+	(mail-sn1nam02on0083.outbound.protection.outlook.com [104.47.36.83])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8A338E0050B
+	for <yocto@yoctoproject.org>; Fri, 27 Jan 2017 20:31:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=uievolution.onmicrosoft.com; s=selector1-xevo-com;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
+	bh=DlMhsg6Mn17Z75ed9UB9R3ASKDPFIHXz1AekcuMd3bg=;
+	b=3J1f4WFxNfamObxmaneaqFguHicHhYZ73dxD8povByYJKaQ2RRDp35hWcsn9jkzFhDP/0rpI5X/otOXA76h3HitMIMnMJZqPuR87BCnqW0NMaync7AIOgngh+LI/+i3NJcK7Jwk5+QtB1SZgFq+OtNPg6nJWYPQeMb7AKdlkwDQ=
+Received: from CY1PR0101MB1594.prod.exchangelabs.com (10.163.139.13) by
+	CY1PR0101MB1596.prod.exchangelabs.com (10.163.139.14) with Microsoft
+	SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
+	15.1.860.13; Sat, 28 Jan 2017 02:58:04 +0000
+Received: from CY1PR0101MB1594.prod.exchangelabs.com ([10.163.139.13]) by
+	CY1PR0101MB1594.prod.exchangelabs.com ([10.163.139.13]) with mapi id
+	15.01.0860.023; Sat, 28 Jan 2017 02:58:04 +0000
+From: Takashi Matsuzawa <tmatsuzawa@xevo.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: pkg_postinst shell?
+Thread-Index: AQHSeRJXqfLOGUVvzEKgC07itriPAA==
+Date: Sat, 28 Jan 2017 02:58:03 +0000
+Message-ID: <CY1PR0101MB159483D0BB39CD4126D1B71CB6490@CY1PR0101MB1594.prod.exchangelabs.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+	smtp.mailfrom=tmatsuzawa@xevo.com; 
+x-originating-ip: [218.225.179.82]
+x-ms-office365-filtering-correlation-id: c134b10b-8c4f-4a52-1085-08d447297a78
+x-microsoft-antispam: UriScan:; BCL:0; PCL:0; RULEID:(22001);
+	SRVR:CY1PR0101MB1596; 
+x-microsoft-exchange-diagnostics: 1; CY1PR0101MB1596;
+	7:9sQI0ZTtgB2EhhKHfkTLA45S3h4itcUpUboKl+EBcSM7ISwmAjdnYd7aj41mcRF834ppDRx9reJe9bB0ACVhuvv6quaQwTvMtTGHNokN2NyZWAyXIXrjuZQ82P/G1x8gqhhiVVlAnnZlyQo0Um+J6rYXnCB/kqBSEo4hkw4m9Hy0NDUucGS4Axb+uRVbeJX/QBoBNOEzxTg0m96oNYAFNe5XxlmMXQ2dAZoqpFIKEIcgMu9D4XPbZwVDXEwtpFe4nlh4SRMl2rm7V3D9PhuFk0FAqZ9TmXuLi4QKm55Zn0jLxIeiTFD9MC0He88beUdI252FwEqLGr0Oc0AarMLAVEKSwtaTMO6avhTz8YRsHqeNcNvv2lkA/lKIWIbIHg0vI/t/Lppz2b0I+rgFC8HNLJwa/8CQB8OfLIG43iwAPmytQ72uGRRTg+1D2lmfV+br9ApxTMIfDd56M8IIBR/PGw==
+x-microsoft-antispam-prvs: <CY1PR0101MB1596670C0600A17B9DB8C5C2B6490@CY1PR0101MB1596.prod.exchangelabs.com>
+x-exchange-antispam-report-test: UriScan:;
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(6040375)(2401047)(5005006)(8121501046)(3002001)(10201501046)(6041248)(20161123560025)(20161123555025)(20161123564025)(20161123562025)(6072148);
+	SRVR:CY1PR0101MB1596; BCL:0; PCL:0; RULEID:;
+	SRVR:CY1PR0101MB1596; 
+x-forefront-prvs: 02015246A9
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10009020)(6009001)(7916002)(39450400003)(199003)(189002)(33656002)(25786008)(102836003)(5640700003)(6116002)(3846002)(38730400001)(19627405001)(2351001)(105586002)(101416001)(3660700001)(74316002)(2906002)(106116001)(7116003)(5660300001)(6506006)(68736007)(6916009)(3280700002)(97736004)(110136003)(7696004)(6606003)(77096006)(2900100001)(106356001)(53936002)(92566002)(54896002)(99286003)(7736002)(66066001)(450100001)(189998001)(1730700003)(8936002)(9686003)(8676002)(107886002)(2501003)(54356999)(122556002)(81156014)(81166006)(6436002)(55016002)(50986999)(86362001);
+	DIR:OUT; SFP:1101; SCL:1; SRVR:CY1PR0101MB1596;
+	H:CY1PR0101MB1594.prod.exchangelabs.com; FPR:; SPF:None;
+	PTR:InfoNoRecords; A:1; MX:1; LANG:en; 
+received-spf: None (protection.outlook.com: xevo.com does not designate
+	permitted sender hosts)
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-Received: by 10.200.39.252 with HTTP; Fri, 27 Jan 2017 17:44:11 -0800 (PST)
-In-Reply-To: <CABgxDoLt2RbidD-3L93UkjLuaXn_eoB08=HqLaHsD9=8nLpqmQ@mail.gmail.com>
-References: <1484834687-15746-1-git-send-email-jacob-chen@iotwrt.com>
-	<1484834687-15746-5-git-send-email-jacob-chen@iotwrt.com>
-	<CABgxDoLt2RbidD-3L93UkjLuaXn_eoB08=HqLaHsD9=8nLpqmQ@mail.gmail.com>
-From: Trevor Woerner <twoerner@gmail.com>
-Date: Fri, 27 Jan 2017 20:44:11 -0500
-Message-ID: <CAHUNapRxFr0kj_ZGv7GW10WySyOgU3g7Zr5B+1UTjULCxtd=cw@mail.gmail.com>
-To: Romain Perier <romain.perier@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Jacob Chen <jacob-chen@iotwrt.com>, Eddie Cai <eddie.cai@rock-chips.com>
-Subject: Re: [meta-rockchip][PATCH 4/7] recipes-graphics: Add support for mali-userspace
+X-OriginatorOrg: xevo.com
+X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Jan 2017 02:58:03.8141 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: e0a7ca1f-2458-4cd6-a7c7-d733c07495ab
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY1PR0101MB1596
+Subject: pkg_postinst shell?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,32 +87,99 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 28 Jan 2017 01:44:15 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Sat, 28 Jan 2017 04:31:56 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_CY1PR0101MB159483D0BB39CD4126D1B71CB6490CY1PR0101MB1594_"
 
-On Fri, Jan 27, 2017 at 9:41 AM, Romain Perier <romain.perier@gmail.com> wrote:
-> Hi all,
->
-> Correct me if I am wrong, but these are generic mali userpace binaries ?
-> meta-rockchip is a bsp meta layer, it should only contains files and recipes
-> to make rockchip board working or things specific to the rockchip board. For
-> me these recipes are completly generic and might be re-used for another
-> platform with another SoC.
->
-> I don't want this in meta-rockchip. There is no a layer called meta-mali or
-> something ?
->
-> @Trevor: Feel free to comment, the point of view of the second maintainer is
-> always welcome
+--_000_CY1PR0101MB159483D0BB39CD4126D1B71CB6490CY1PR0101MB1594_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-:-)
+Hello Yocto.
+I am debugging my recipe, which uses pkg_postinst but does not seem to work=
+ as expected.
+
+It runs fine without $D detection.
+However, if I try to run it at first boot (skipping with exit 1 if $D is no=
+t empty), the board boot seems to hang.
+I think error (syntax error, etc.?) happening when it is run on the board, =
+but package manager.
+
+I doubt it is caused by non-existence of '#!/bin/sh' in my script but I am =
+not sure since I am still trying the builds again and again.
+
+i) Regarding the posttest script execution, is there log available so that =
+I can look into (instead of writing out log file by myself from within my s=
+cript)?  I do not seem to find it in temp folder of my recipes's working di=
+rectory.
+
+ii) Is '#!/bin/sh' always necessary?
+
+iii) What happens with pkg_postinst_PN_append?  If it is defined without pk=
+g_postinst_PN, it still works and executed?  If i) is true what about '#!/b=
+in/sh' in this case?
+
+If you have qucik suggestions, it is a great help.
 
 
-I was just about to point out that there is no meta-mali, and that
-most BSP layers do include their own recipes for mali (meta-sunxi,
-meta-96boards, meta-xilinx) but, googling around, there is in fact a
-meta-mali provided my ARM itself:
-https://github.com/ARM-software/meta-mali . So I guess we could go
-either way. Although I haven't looked at what's specifically provided
-in meta-mali to know if it would be useful or not.
 
+
+--_000_CY1PR0101MB159483D0BB39CD4126D1B71CB6490CY1PR0101MB1594_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+</head>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Arial,Helvetica,sans-serif;" dir=3D"ltr">
+<p></p>
+<div><span style=3D"font-size: 12pt;">Hello Yocto.</span><br>
+</div>
+<div>I am debugging my recipe, which uses pkg_postinst but does not seem to=
+ work as expected.</div>
+<div><br>
+</div>
+<div>It runs fine without $D detection.</div>
+<div>However, if I try to run it at first boot (skipping with exit 1 if $D =
+is not empty), the board boot seems to hang.</div>
+<div>I think error (syntax error, etc.?) happening when it is run on the bo=
+ard, but package manager.</div>
+<div><br>
+</div>
+<div>I doubt it is caused by non-existence of '#!/bin/sh' in my script but =
+I am not sure since I am still trying the builds again and again.</div>
+<div><br>
+</div>
+<div>i) Regarding the posttest script execution, is there log available so =
+that I can look into (instead of writing out log file by myself from within=
+ my script)? &nbsp;I do not seem to find it in temp folder of my recipes's =
+working directory.</div>
+<div><br>
+</div>
+<div>ii) Is '#!/bin/sh' always necessary?</div>
+<div><br>
+</div>
+<div>iii) What happens with pkg_postinst_PN_append? &nbsp;If it is defined =
+without pkg_postinst_PN, it still works and executed? &nbsp;If i) is true w=
+hat about '#!/bin/sh' in this case?</div>
+<div><br>
+</div>
+<div>If you have qucik suggestions, it is a great help.</div>
+<div><br>
+</div>
+<div><br>
+</div>
+<br>
+<p></p>
+</div>
+</body>
+</html>
+
+--_000_CY1PR0101MB159483D0BB39CD4126D1B71CB6490CY1PR0101MB1594_--
