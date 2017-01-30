@@ -1,68 +1,26 @@
-Return-Path: <bruce.ashfield@gmail.com>
+Return-Path: <recipe-report@yoctoproject.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D9DC6E003D7; Sun, 29 Jan 2017 20:31:59 -0800 (PST)
+	id 50970E003D7; Sun, 29 Jan 2017 21:36:13 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE, 
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (bruce.ashfield[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.216.194 listed in dnsbl.sorbs.net]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.216.194 listed in list.dnswl.org]
-Received: from mail-qt0-f194.google.com (mail-qt0-f194.google.com
-	[209.85.216.194])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BB685E0030B
-	for <yocto@yoctoproject.org>; Sun, 29 Jan 2017 20:31:51 -0800 (PST)
-Received: by mail-qt0-f194.google.com with SMTP id h53so17945804qth.3
-	for <yocto@yoctoproject.org>; Sun, 29 Jan 2017 20:31:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=hlIyLqrWfqluSRi7x83QEVZA95/nzwDA4fQy/TfUwek=;
-	b=e2sdKdA4F3QyV+VOe4u2IXcIZe+5fXVzR1yhWB8FoQHx0w9Xk2oWsM7Cm8HcoNUgDp
-	+iCgRNJYYe0kOTG3z16lbobsablSRhFvXu6h8EBqPK2/iDEgdqwY/A/zztFp51Siw8aH
-	ylKTIqhZQPA13AASnBielXMobD9y2KABvSaK8RPYcdhsPix6Ve6zfC0SZ9tsn8q/9bl1
-	10ZKLHnBa4oFZQ4s+H0koAHL9t2Rfd32smG84+JNhiQgmCV3N2AcRw/sc87cnaqRcf4K
-	JD+t53YabwuE0XX5NAHHK3BxJSssci8vEftT7r+q8xqIQ9Onu066ZhyFP53H4K7yGZbL
-	N83g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=hlIyLqrWfqluSRi7x83QEVZA95/nzwDA4fQy/TfUwek=;
-	b=RoX1Nxt4cFPumj/cgLxIW2rwDrS+H6tCDszyooDBEmK5OGgzG0UiyZ78fSI908sNhy
-	X4nr/pnW1d3PlKZj1rIH5ZoXInOqeDbs3noN6wgIVDkIGhkStbsZTVNqkEd4wn4dsrN8
-	+T3mOz8sY8aUHzOQtEu5T6XAiFJUybLuVNbxCC87C15uYtlFV2VDNa/72VgiDUhe+xDj
-	1VhBtHr+wcEM9gRdICnDbunff/3MzLlDJAxauRFqQxhNFouezZDY+HmOY3/VyD4SQkXC
-	lXKc6pknFtBX+21wJrHTVp5mKMSBHdH5V//dVWiiTaDYIk0SZKBgyRuRFRfx4y+EW84L
-	uM0Q==
-X-Gm-Message-State: AIkVDXKYdOCjNpAr1/L0O4ca90clMX6Ou8ltCj7HdCPPhgkG7nCXSAJJ4irMAftkokQAKs9nN7rdGoD8LSKNLQ==
-X-Received: by 10.200.43.212 with SMTP id n20mr18074957qtn.117.1485750710445; 
-	Sun, 29 Jan 2017 20:31:50 -0800 (PST)
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from packages.yoctoproject.org (unknown [198.145.29.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3A8DDE0030B
+	for <yocto@yoctoproject.org>; Sun, 29 Jan 2017 21:36:09 -0800 (PST)
+Received: from packages.yoctoproject.org (localhost [IPv6:::1])
+	by packages.yoctoproject.org (Postfix) with ESMTP id 213568715299
+	for <yocto@yoctoproject.org>; Mon, 30 Jan 2017 00:36:09 -0500 (EST)
 MIME-Version: 1.0
-Received: by 10.12.135.153 with HTTP; Sun, 29 Jan 2017 20:31:49 -0800 (PST)
-In-Reply-To: <CADkTA4N8iMJD1pt=E9qSsjGKAOfvMnHAwS=3h1AntxTxDXOUGQ@mail.gmail.com>
-References: <20170125103759.15880-1-freesilicon@gmail.com>
-	<CADkTA4N8iMJD1pt=E9qSsjGKAOfvMnHAwS=3h1AntxTxDXOUGQ@mail.gmail.com>
-From: Bruce Ashfield <bruce.ashfield@gmail.com>
-Date: Sun, 29 Jan 2017 23:31:49 -0500
-Message-ID: <CADkTA4MvR-tpPbyHgDsVV7xcRk5Ef6zKJF335m4vcphYCvhGWg@mail.gmail.com>
-To: David Vincent <freesilicon@gmail.com>
-Cc: Yocto Project Discussion <yocto@yoctoproject.org>
-Subject: Re: [yocto-kernel-tools][PATCH 0/1] Rework merge of feature branches
+From: recipe-report@yoctoproject.org
+To: yocto@yoctoproject.org
+Date: Mon, 30 Jan 2017 05:36:09 -0000
+Message-ID: <20170130053609.25634.55644@packages.yoctoproject.org>
+Subject: [Recipe reporting system] Upgradable recipe name list
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,220 +32,145 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 30 Jan 2017 04:32:00 -0000
-Content-Type: multipart/alternative; boundary=001a1135b98e523a730547484b7d
+X-List-Received-Date: Mon, 30 Jan 2017 05:36:13 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
---001a1135b98e523a730547484b7d
-Content-Type: text/plain; charset=UTF-8
+This mail was sent out by Recipe reporting system.
 
-On Wed, Jan 25, 2017 at 1:05 PM, Bruce Ashfield <bruce.ashfield@gmail.com>
-wrote:
+This message list those recipes which need to be upgraded. If maintainers
+believe some of them needn't to upgrade at this time, they can fill
+RECIPE_NO_UPDATE_REASON in respective recipe file to ignore this remainder
+until newer upstream version was detected.
 
->
->
-> On Wed, Jan 25, 2017 at 5:37 AM, David Vincent <freesilicon@gmail.com>
-> wrote:
->
->> I've recently noticed that, on Morty, feature branches of a Yocto kernel
->> are not
->> merged anymore. This is due to the fact that the meta-series file does not
->> process the git merge commands anymore.
->>
->
-> Indeed. I dropped that functionality on purpose when I did the
-> simplification
-> and streamlining of the processing .. since I wanted to see if anyone was
-> using it.
->
-> I now have my answer :D
->
-> I need to have a closer look at the patch and run it through some tests
-> here, but  on my glance, you've done it correctly.
->
->
->> This commit creates a new merge command to be executed when processing the
->> kernel metadata. To solve the issue, there is also a patch to send to
->> oe-core
->> for kernel-yocto.bbclass, but I wait for this patch to be included since
->> there
->> is no point without it.
->>
->
-> Send that patch to me, or I'll just do the patch myself .. since yes, we
-> do need
-> to add merge to the list of valid comments when processing the meta data.
->
-> I'll submit all the changes in my next consolidated pull request for the
-> kernels + tools.
->
+Example:
+RECIPE_NO_UPDATE_REASON = "Version 2.0 is unstable"
 
-I spent Friday looking into this in more detail, and to keep things
-consistent
-with how the path and config queues are handled, with all the tree
-manipulations
-pull out of the various scripts and exposed in the bbclass itself, I ended
-up with
-a different implementation of the support.
+You can check the detail information at:
 
-The kern-tools change is the same as you did (and is your change), the
-difference
-is in the bbclass processing, where do_patch() modifies the tree, and it
-consumes
-the output of the meta-data routine .. versus the kgit-meta script itself.
+http://recipes.yoctoproject.org/
 
-The work can be seen in my poky-contrib tree:
+Package               Version       Upstream version      Maintainer           NoUpgradeReason
+--------------------  ------------  --------------------  -------------------  ------------------------------
+python3               3.5.2         3.6.0                 Alejandro Hernandez
+python                2.7.12        2.7.13                Alejandro Hernandez
+eudev                 3.2           3.2.1                 Alejandro Hernandez
+python-native         2.7.12        2.7.13                Alejandro Hernandez
+python3-native        3.5.2         3.6.0                 Alejandro Hernandez
+liberation-fonts      1.04          2.00.1                Alexander Kanavin    2.x depends on fontforge pa...
+webkitgtk             2.14.2        2.14.3                Alexander Kanavin
+boost                 1.62.0        1.63.0                Alexander Kanavin
+openssl               1.0.2j        1.1.0d                Alexander Kanavin
+ed                    1.9           4.2.2                 Alexander Kanavin
+gnutls                3.5.7         3.5.8                 Alexander Kanavin
+bjam-native           1.62.0        1.63.0                Alexander Kanavin
+libwebp               0.5.1         0.5.2                 Alexander Kanavin
+libnl                 3.2.28        3.2.29                Alexander Kanavin
+kbd                   2.0.3         2.0.4                 Alexander Kanavin
+gperf                 3.0.4         3.1                   Alexander Kanavin
+nss                   3.27.1        3.28.1                Alexander Kanavin
+lighttpd              1.4.43        1.4.45                Alexander Kanavin
+btrfs-tools           4.8.5         4.9.1                 Alexander Kanavin
+cmake                 3.7.1         3.7.2                 Alexander Kanavin
+cmake-native          3.7.1         3.7.2                 Alexander Kanavin
+iso-codes             3.72          3.74                  Alexander Kanavin
+epiphany              3.22.3        3.22.5                Alexander Kanavin
+mkelfimage            4.0+gitX      4.5+gitAUTOINC+0b...  Alexander Kanavin    mkelfimage has been removed...
+qemu                  2.7.1         2.8.0                 Aníbal Limón
+perl                  5.24.0        5.24.1                Aníbal Limón
+dpkg                  1.18.7        1.18.21               Aníbal Limón
+perl-native           5.24.0        5.24.1                Aníbal Limón
+pinentry              0.9.2         1.0.0                 Armin Kuster
+linux-libc-headers    4.9           4.9.6                 Bruce Ashfield
+libunwind             1.1+gitX      1.2+gitAUTOINC+cc...  Bruce Ashfield
+busybox               1.25.0+gitX   1.26.2+gitAUTOINC...  Chen Qi
+cups                  2.2.1         2.2.2                 Chen Qi
+util-linux            2.29          2.29.1                Chen Qi
+sed                   4.2.2         4.3                   Chen Qi
+sudo                  1.8.18p1      1.8.19p2              Chen Qi
+sysstat               11.5.3        11.5.4                Chen Qi
+flex                  2.6.2         2.6.3                 Chen Qi
+xz                    5.2.2         5.2.3                 Chen Qi
+build-appliance-i...  15.0.0        16.0.0                Cristian Iorga
+chkconfig             1.3.58        1.8                   Dengke Du            Version 1.5 requires selinux
+ltp                   20160126      20170116              Dengke Du
+dosfstools            4.0           4.1                   Dengke Du
+swig                  3.0.11        3.0.12                Edwin Plauchu
+python3-setuptools    32.1.1        34.1.0                Edwin Plauchu
+python-setuptools     32.1.1        34.1.0                Edwin Plauchu
+pax-utils             1.1.6         1.2.2                 Hongxu Jia
+createrepo            0.4.11        0.10.4                Hongxu Jia           Versions after 0.9.* use YU...
+socat                 1.7.3.1       1.7.3.2               Hongxu Jia
+elfutils              0.166         0.168                 Hongxu Jia
+gpgme                 1.6.0         1.8.0                 Hongxu Jia
+libgcrypt             1.7.3         1.7.6                 Hongxu Jia
+libgpg-error          1.25          1.26                  Hongxu Jia
+bash                  4.3.30        4.4                   Hongxu Jia
+ncurses               6.0+20160625  6.0+20161126          Hongxu Jia
+man-pages             4.08          4.09                  Hongxu Jia
+rpcbind               0.2.3         0.2.4                 Hongxu Jia
+gnupg                 2.1.14        2.1.18                Hongxu Jia
+wayland               1.12.0        1.12.91               Jussi Kukkonen
+weston                1.11.1        1.99.91               Jussi Kukkonen
+xauth                 1.0.9         1.0.10                Jussi Kukkonen
+util-macros           1.19.0        1.19.1                Jussi Kukkonen
+libevent              2.0.22        2.1.8                 Jussi Kukkonen
+mesa                  13.0.2        13.0.3                Jussi Kukkonen
+vte                   0.44.2        0.46.1                Jussi Kukkonen
+presentproto          1.0+gitX      1.1+gitAUTOINC+bf...  Jussi Kukkonen
+gdk-pixbuf            2.36.1        2.36.4                Jussi Kukkonen
+libdrm                2.4.74        2.4.75                Jussi Kukkonen
+menu-cache            1.0.1         1.0.2                 Jussi Kukkonen
+mesa-gl               13.0.2        13.0.3                Jussi Kukkonen
+gmp                   6.1.1         6.1.2                 Khem Raj
+gdb                   7.12          7.12.1                Khem Raj
+ruby                  2.3.3         2.4.0                 Leonardo Sandoval
+libusb1               1.0.20        1.0.21                Leonardo Sandoval
+nfs-utils             1.3.4         2.1.1                 Mariano Lopez
+prelink               1.0+gitX      20151030.+gitAUTO...  Mark Hatle
+db                    6.0.35        6.2.23                Mark Hatle           latest db does not work wit...
+rpm                   5.4.16        5.4.17                Mark Hatle
+libpfm4               4.6.0         4.8.0                 Matthew McClintock
+libtasn1              4.9           4.10                  Maxin B. John
+ifupdown              0.8.16        0.8.18                Maxin B. John
+iptables              1.6.0         1.6.1                 Maxin B. John
+screen                4.4.0         4.5.0                 Maxin B. John
+harfbuzz              1.4.1         1.4.2                 Maxin B. John
+gstreamer1.0-vaapi    1.10.2        1.11.1                No maintainer
+gdb-cross-canadia...  7.12          7.12.1                No maintainer
+linux-yocto-rt        4.9.3+gitX    4.9.6+gitAUTOINC+...  No maintainer
+linux-yocto-tiny      4.9.3+gitX    4.9.6+gitAUTOINC+...  No maintainer
+linux-yocto           4.9.3+gitX    4.9.6+gitAUTOINC+...  No maintainer
+gdb-cross-i586        7.12          7.12.1                No maintainer
+gnu-efi               3.0.4         3.0.5                 Robert Yang
+strace                4.14          4.15                  Robert Yang
+libpcre               8.39          8.40                  Robert Yang
+hdparm                9.50          9.51                  Robert Yang
+m4                    1.4.17        1.4.18                Robert Yang
+slang                 2.3.1         2.3.1a                Robert Yang
+mklibs-native         0.1.41        0.1.43                Robert Yang
+base-passwd           3.5.29        3.5.43                Ross Burton          Version 3.5.38 requires cde...
+lsbinitscripts        9.68          9.69                  Ross Burton
+alsa-lib              1.1.2         1.1.3                 Tanu Kaskinen
+pulseaudio            9.0           10.0                  Tanu Kaskinen
 
-http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=zedd/kernel,
-in the
-commit "kern-tools: re-enable scc merge command".
+Upgradable count: 95
+Upgradable total count: 101
 
-These changes are on master, and passed my testing to merge feature branches
-into the branch being built.
+The based commit is:
 
-If you are able to try it out (on master), that would be great. I'm going
-to let it
-soak for a few days, and once it merges to master, it can be ported to
-morty.
+commit d7d26488f252d60628862ee114a4404e8d6cb6f1
+Author: Richard Purdie <richard.purdie@linuxfoundation.org>
+Date:   Sat Jan 28 14:40:36 2017 +0000
 
-Cheers,
+    staging: Handle stale sysroot rebuild issue
+    
+    If a stale sysroot object was found the complete stamp wasn't removed,
+    meaning later code could fail when the new link creation was attempted.
+    Ensure the stale complete stamp is also removed if present.
+    
+    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
 
-Bruce
-
-
-
->
-> Bruce
->
->
->>
->> David Vincent (1):
->>   scc: Move merge command
->>
->>  tools/kgit-meta          | 14 ++++++++++++++
->>  tools/scc                | 13 -------------
->>  tools/scc-cmds/merge.cmd | 10 ++++++++++
->>  3 files changed, 24 insertions(+), 13 deletions(-)
->>  create mode 100644 tools/scc-cmds/merge.cmd
->>
->> --
->> 2.11.0
->>
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->>
->
->
->
-> --
-> "Thou shalt not follow the NULL pointer, for chaos and madness await thee
-> at its end"
->
+Any problem, please contact Anibal Limon <anibal.limon@intel.com> 
 
 
-
--- 
-"Thou shalt not follow the NULL pointer, for chaos and madness await thee
-at its end"
-
---001a1135b98e523a730547484b7d
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><br><div class=3D"gmail_extra"><br><div class=3D"gmail_quo=
-te">On Wed, Jan 25, 2017 at 1:05 PM, Bruce Ashfield <span dir=3D"ltr">&lt;<=
-a href=3D"mailto:bruce.ashfield@gmail.com" target=3D"_blank">bruce.ashfield=
-@gmail.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=
-=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
--left:1ex"><div dir=3D"ltr"><br><div class=3D"gmail_extra"><br><div class=
-=3D"gmail_quote"><span class=3D"gmail-">On Wed, Jan 25, 2017 at 5:37 AM, Da=
-vid Vincent <span dir=3D"ltr">&lt;<a href=3D"mailto:freesilicon@gmail.com" =
-target=3D"_blank">freesilicon@gmail.com</a>&gt;</span> wrote:<br><blockquot=
-e class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px s=
-olid rgb(204,204,204);padding-left:1ex">I&#39;ve recently noticed that, on =
-Morty, feature branches of a Yocto kernel are not<br>
-merged anymore. This is due to the fact that the meta-series file does not<=
-br>
-process the git merge commands anymore.<br></blockquote><div><br></div></sp=
-an><div>Indeed. I dropped that functionality on purpose when I did the simp=
-lification<br></div><div>and streamlining of the processing .. since I want=
-ed to see if anyone was<br></div><div>using it.<br><br></div><div>I now hav=
-e my answer :D<br></div><div>=C2=A0<br></div><div>I need to have a closer l=
-ook at the patch and run it through some tests<br></div><div>here, but=C2=
-=A0 on my glance, you&#39;ve done it correctly.<br></div><span class=3D"gma=
-il-"><div><br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0=
-px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-<br>
-This commit creates a new merge command to be executed when processing the<=
-br>
-kernel metadata. To solve the issue, there is also a patch to send to oe-co=
-re<br>
-for kernel-yocto.bbclass, but I wait for this patch to be included since th=
-ere<br>
-is no point without it.<br></blockquote><div><br></div></span><div>Send tha=
-t patch to me, or I&#39;ll just do the patch myself .. since yes, we do nee=
-d<br></div><div>to add merge to the list of valid comments when processing =
-the meta data.<br><br></div><div>I&#39;ll submit all the changes in my next=
- consolidated pull request for the<br></div><div>kernels + tools.<br></div>=
-</div></div></div></blockquote><div><br></div><div>I spent Friday looking i=
-nto this in more detail, and to keep things consistent</div><div>with how t=
-he path and config queues are handled, with all the tree manipulations</div=
-><div>pull out of the various scripts and exposed in the bbclass itself, I =
-ended up with</div><div>a different implementation of the support.</div><di=
-v><br></div><div>The kern-tools change is the same as you did (and is your =
-change), the difference</div><div>is in the bbclass processing, where do_pa=
-tch() modifies the tree, and it consumes</div><div>the output of the meta-d=
-ata routine .. versus the kgit-meta script itself.</div><div><br></div><div=
->The work can be seen in my poky-contrib tree:</div><div><br></div><div><a =
-href=3D"http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=3Dzed=
-d/kernel">http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=3Dz=
-edd/kernel</a>, in the<br></div><div>commit &quot;kern-tools: re-enable scc=
- merge command&quot;.</div><div><br></div><div>These changes are on master,=
- and passed my testing to merge feature branches</div><div>into the branch =
-being built.</div><div><br></div><div>If you are able to try it out (on mas=
-ter), that would be great. I&#39;m going to let it</div><div>soak for a few=
- days, and once it merges to master, it can be ported to morty.</div><div><=
-br></div><div>Cheers,</div><div><br></div><div>Bruce</div><div><br></div><d=
-iv>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0p=
-x 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=
-=3D"ltr"><div class=3D"gmail_extra"><div class=3D"gmail_quote"><div><br></d=
-iv><div>Bruce<br></div><span class=3D"gmail-"><div>=C2=A0</div><blockquote =
-class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px sol=
-id rgb(204,204,204);padding-left:1ex">
-<br>
-David Vincent (1):<br>
-=C2=A0 scc: Move merge command<br>
-<br>
-=C2=A0tools/kgit-meta=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 | 14 ++++++++++++++=
-<br>
-=C2=A0tools/scc=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 | 13=
- -------------<br>
-=C2=A0tools/scc-cmds/merge.cmd | 10 ++++++++++<br>
-=C2=A03 files changed, 24 insertions(+), 13 deletions(-)<br>
-=C2=A0create mode 100644 tools/scc-cmds/merge.cmd<br>
-<span class=3D"gmail-m_7767945799124234993HOEnZb"><font color=3D"#888888"><=
-br>
---<br>
-2.11.0<br>
-<br>
---<br>
-______________________________<wbr>_________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.org<wbr>/listinfo/yocto</a><=
-br>
-</font></span></blockquote></span></div><span class=3D"gmail-HOEnZb"><font =
-color=3D"#888888"><br><br clear=3D"all"><br>-- <br><div class=3D"gmail-m_77=
-67945799124234993gmail_signature">&quot;Thou shalt not follow the NULL poin=
-ter, for chaos and madness await thee at its end&quot;</div>
-</font></span></div></div>
-</blockquote></div><br><br clear=3D"all"><div><br></div>-- <br><div class=
-=3D"gmail_signature">&quot;Thou shalt not follow the NULL pointer, for chao=
-s and madness await thee at its end&quot;</div>
-</div></div>
-
---001a1135b98e523a730547484b7d--
