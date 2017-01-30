@@ -1,32 +1,33 @@
 Return-Path: <jose.a.lamego@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A5A69E00724; Mon, 30 Jan 2017 15:31:43 -0800 (PST)
+	id BDE39E00405; Mon, 30 Jan 2017 15:31:44 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [192.55.52.115 listed in list.dnswl.org]
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 804E3E003C1
-	for <yocto@yoctoproject.org>; Mon, 30 Jan 2017 15:31:36 -0800 (PST)
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [192.55.52.43 listed in list.dnswl.org]
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 649EFE00405
+	for <yocto@yoctoproject.org>; Mon, 30 Jan 2017 15:31:41 -0800 (PST)
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-	by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	30 Jan 2017 15:31:36 -0800
+	by fmsmga105.fm.intel.com with ESMTP; 30 Jan 2017 15:31:41 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.33,312,1477983600"; d="scan'208";a="815212778"
+X-IronPort-AV: E=Sophos;i="5.33,312,1477983600"; d="scan'208";a="815212793"
 Received: from jalamego-mobl2.zpn.intel.com ([10.219.128.123])
-	by FMSMGA003.fm.intel.com with ESMTP; 30 Jan 2017 15:31:35 -0800
+	by FMSMGA003.fm.intel.com with ESMTP; 30 Jan 2017 15:31:41 -0800
 From: Jose Lamego <jose.a.lamego@linux.intel.com>
 To: yocto@yoctoproject.org
-Date: Mon, 30 Jan 2017 17:31:28 -0600
-Message-Id: <1485819090-16001-1-git-send-email-jose.a.lamego@linux.intel.com>
+Date: Mon, 30 Jan 2017 17:31:29 -0600
+Message-Id: <1485819090-16001-2-git-send-email-jose.a.lamego@linux.intel.com>
 X-Mailer: git-send-email 1.9.1
-Subject: [patchwork][PATCH 0/2] Series-view: Enable status/bundle edition
+In-Reply-To: <1485819090-16001-1-git-send-email-jose.a.lamego@linux.intel.com>
+References: <1485819090-16001-1-git-send-email-jose.a.lamego@linux.intel.com>
+Subject: [patchwork][PATCH 1/2] series.js: Get patch id and pass it to POST request
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,21 +39,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 30 Jan 2017 23:31:43 -0000
+X-List-Received-Date: Mon, 30 Jan 2017 23:31:44 -0000
 
-This changes enable patch status updating, adding a patch to an existing
-bundle and creating a new bundle from the series view.
+Patch forms in series view do not pass selected patch id
+as context element during a POST call, so no status/bundle
+updates can be performed from such view.
+
+This change includes the selected patch id as a context
+element and pass it to POST call through a hidden input field.
 
 [YOCTO #10973]
 
-Jose Lamego (2):
-  series.js: Get patch id and pass it to POST request
-  series.py: Add POST call
+Signed-off-by: Jose Lamego <jose.a.lamego@linux.intel.com>
+---
+ htdocs/js/series.js | 24 ++++++++++++++++++++++--
+ 1 file changed, 22 insertions(+), 2 deletions(-)
 
- htdocs/js/series.js       | 24 ++++++++++++--
- patchwork/views/series.py | 84 +++++++++++++++++++++++++++++++++++++++++++++--
- 2 files changed, 104 insertions(+), 4 deletions(-)
-
+diff --git a/htdocs/js/series.js b/htdocs/js/series.js
+index 4f4f477..1795bc3 100644
+--- a/htdocs/js/series.js
++++ b/htdocs/js/series.js
+@@ -1,5 +1,5 @@
+ $(document).ready(function(){
+-    $('[data-toggle="tooltip"]').tooltip();
++    $('[data-toggle="tooltip"]').tooltip()
+     revTab=document.getElementById('revs-list')
+     coverView=document.getElementById('cover-letter-view'),
+     patchView=document.getElementById('patch-view'),
+@@ -34,10 +34,30 @@ $(document).ready(function(){
+     })
+ 
+     $('.patch-link').on('click', function(){
++        var pa=this.getAttribute("data-url")
++        var curr_rev=document.getElementById('revs-list').value
++        pa=pa.match(/\d+/)[0]
+         coverView.style.display='none'
+         patchView.style.display='block'
+         patchView.innerHTML=
+         '<p style="text-align:center;">Loading patch...</p>'
+-        $("#patch-view").load(this.getAttribute("data-url") + " #patch-body")
++        $("#patch-view").load(
++            this.getAttribute("data-url") + " #patch-body", function() {
++                forms=document.forms
++                for (i=0 i < document.forms.length i++){
++                    var n=(i + 1)
++                    var patch_field=document.createElement("input")
++                    patch_field.type="hidden"
++                    patch_field.name="patch"
++                    patch_field.value=pa
++                    var div=document.createElement("div")
++                    var this_form=document.forms.item(i)
++                    if (typeof this_form !== "undefined"){
++                        this_form.appendChild(div)
++                        div.appendChild(patch_field)
++                    }
++                }
++            }
++        )
+     })
+ })
 -- 
 1.9.1
 
