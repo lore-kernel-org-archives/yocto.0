@@ -1,26 +1,81 @@
-Return-Path: <recipe-report@yoctoproject.org>
+Return-Path: <tmatsuzawa@xevo.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 50970E003D7; Sun, 29 Jan 2017 21:36:13 -0800 (PST)
+	id 5E761E003D7; Sun, 29 Jan 2017 21:45:20 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [104.47.34.85 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from packages.yoctoproject.org (unknown [198.145.29.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3A8DDE0030B
-	for <yocto@yoctoproject.org>; Sun, 29 Jan 2017 21:36:09 -0800 (PST)
-Received: from packages.yoctoproject.org (localhost [IPv6:::1])
-	by packages.yoctoproject.org (Postfix) with ESMTP id 213568715299
-	for <yocto@yoctoproject.org>; Mon, 30 Jan 2017 00:36:09 -0500 (EST)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from NAM01-BY2-obe.outbound.protection.outlook.com
+	(mail-by2nam01on0085.outbound.protection.outlook.com [104.47.34.85])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6731AE0030B
+	for <yocto@yoctoproject.org>; Sun, 29 Jan 2017 21:45:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=uievolution.onmicrosoft.com; s=selector1-xevo-com;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
+	bh=qMKzryiU+FGSlAPJDlFrodBNnT40jibRhyyRVNYzXbY=;
+	b=rI7iQwm6OTrYBWJ2lb944n3JObn6d22Ai8ZCiyFY8p5DDAA+C/5Da5Y/n9lw+ySmStbMrZ28JuhY23BltGF2st3FhK62iWEZY0ozWoGHpk/LsTslXq45+QToVRgi4i6uHx10Yj8/T/bfG5SJ6cpPoK2+kqI6RYJ6MA1wAODpVgQ=
+Received: from CY1PR0101MB1594.prod.exchangelabs.com (10.163.139.13) by
+	CY1PR0101MB1594.prod.exchangelabs.com (10.163.139.13) with Microsoft
+	SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
+	15.1.860.13; Mon, 30 Jan 2017 05:29:53 +0000
+Received: from CY1PR0101MB1594.prod.exchangelabs.com ([10.163.139.13]) by
+	CY1PR0101MB1594.prod.exchangelabs.com ([10.163.139.13]) with mapi id
+	15.01.0860.026; Mon, 30 Jan 2017 05:29:53 +0000
+From: Takashi Matsuzawa <tmatsuzawa@xevo.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: pkg_postinst shell?
+Thread-Index: AQHSeRJXqfLOGUVvzEKgC07itriPAKFQgOcE
+Date: Mon, 30 Jan 2017 05:29:52 +0000
+Message-ID: <CY1PR0101MB1594FE408435CBAB28FDAB9AB64B0@CY1PR0101MB1594.prod.exchangelabs.com>
+References: <CY1PR0101MB159483D0BB39CD4126D1B71CB6490@CY1PR0101MB1594.prod.exchangelabs.com>
+In-Reply-To: <CY1PR0101MB159483D0BB39CD4126D1B71CB6490@CY1PR0101MB1594.prod.exchangelabs.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+	smtp.mailfrom=tmatsuzawa@xevo.com; 
+x-originating-ip: [118.238.252.194]
+x-ms-office365-filtering-correlation-id: 3914976d-9a57-4ab5-58a2-08d448d104b2
+x-microsoft-antispam: UriScan:; BCL:0; PCL:0; RULEID:(22001);
+	SRVR:CY1PR0101MB1594; 
+x-microsoft-exchange-diagnostics: 1; CY1PR0101MB1594;
+	7:70bjOECnmhYmKDwJhARSuY+eZ71WBLJk1ZIMsdVzIhFpNqx+w/OSmFKIilJ48qhzPIaU7k5tJ3h4/VrvetMw+qP0CMnPOr4JO9b+VZ2O0En0649goXkc/YMx4aPP350p3lhHek0iF5fGOXNdfvXMS/D2FuHCk+9ytk0LpKZyQYRwTcR23BfZZFxEJ3LmL0PlsGPZdYc/RMm4AmHRVOHdr6PsHl67dMwjMlS1fwW91YuFd2hfM/TSLJNPmz5TOsJmISfoB2dD1kT49wzsjg7tu++0kIrPMVvZq2pSe8LhSw4OQCrOq15YjCHHKuOzp3iaTzRUGeTNATLmzYS4o1ymw9tFG+T9l4eRG7X8cu1YEI2YM2YUsqwU8qOhtgez6O9Oe2bD2hDHyF8ts9QbmnUuHrIv4Jpdl1e7vUOEAvRJvVmawp7zQuXbgrV9IdXqBwWM/id94XGw3fdlEZtdx9Pmrg==
+x-microsoft-antispam-prvs: <CY1PR0101MB1594710C63DCC0E45E51068CB64B0@CY1PR0101MB1594.prod.exchangelabs.com>
+x-exchange-antispam-report-test: UriScan:;
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(6040375)(2401047)(8121501046)(5005006)(3002001)(10201501046)(6041248)(20161123564025)(20161123562025)(20161123555025)(20161123560025)(6072148);
+	SRVR:CY1PR0101MB1594; BCL:0; PCL:0; RULEID:;
+	SRVR:CY1PR0101MB1594; 
+x-forefront-prvs: 0203C93D51
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10009020)(6009001)(7916002)(39450400003)(377454003)(199003)(189002)(3660700001)(110136003)(53936002)(7736002)(74316002)(9686003)(99286003)(2906002)(19627405001)(450100001)(5640700003)(2351001)(25786008)(55016002)(66066001)(5660300001)(7696004)(7116003)(2501003)(101416001)(2900100001)(68736007)(3900700001)(92566002)(54356999)(2950100002)(6916009)(189998001)(107886002)(76176999)(6606003)(97736004)(106116001)(106356001)(122556002)(8936002)(81156014)(229853002)(81166006)(1730700003)(54896002)(6306002)(77096006)(102836003)(3846002)(6116002)(50986999)(6506006)(33656002)(8676002)(86362001)(38730400001)(6436002)(3280700002)(105586002);
+	DIR:OUT; SFP:1101; SCL:1; SRVR:CY1PR0101MB1594;
+	H:CY1PR0101MB1594.prod.exchangelabs.com; FPR:; SPF:None;
+	PTR:InfoNoRecords; A:1; MX:1; LANG:en; 
+received-spf: None (protection.outlook.com: xevo.com does not designate
+	permitted sender hosts)
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-From: recipe-report@yoctoproject.org
-To: yocto@yoctoproject.org
-Date: Mon, 30 Jan 2017 05:36:09 -0000
-Message-ID: <20170130053609.25634.55644@packages.yoctoproject.org>
-Subject: [Recipe reporting system] Upgradable recipe name list
+X-OriginatorOrg: xevo.com
+X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Jan 2017 05:29:52.7992 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: e0a7ca1f-2458-4cd6-a7c7-d733c07495ab
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY1PR0101MB1594
+Subject: Re: pkg_postinst shell?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,145 +87,144 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 30 Jan 2017 05:36:13 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 30 Jan 2017 05:45:20 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_CY1PR0101MB1594FE408435CBAB28FDAB9AB64B0CY1PR0101MB1594_"
 
-This mail was sent out by Recipe reporting system.
+--_000_CY1PR0101MB1594FE408435CBAB28FDAB9AB64B0CY1PR0101MB1594_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-This message list those recipes which need to be upgraded. If maintainers
-believe some of them needn't to upgrade at this time, they can fill
-RECIPE_NO_UPDATE_REASON in respective recipe file to ignore this remainder
-until newer upstream version was detected.
+Hello.
+It seems the below patch fixes this problem.
 
-Example:
-RECIPE_NO_UPDATE_REASON = "Version 2.0 is unstable"
+systemd.bbclass: don't block on service restart
+https://patchwork.openembedded.org/patch/134317/
 
-You can check the detail information at:
+(By the way, it may related to my question in another thread, but which is =
+the convenient way to apply this kind of patches to my local build system?)
 
-http://recipes.yoctoproject.org/
-
-Package               Version       Upstream version      Maintainer           NoUpgradeReason
---------------------  ------------  --------------------  -------------------  ------------------------------
-python3               3.5.2         3.6.0                 Alejandro Hernandez
-python                2.7.12        2.7.13                Alejandro Hernandez
-eudev                 3.2           3.2.1                 Alejandro Hernandez
-python-native         2.7.12        2.7.13                Alejandro Hernandez
-python3-native        3.5.2         3.6.0                 Alejandro Hernandez
-liberation-fonts      1.04          2.00.1                Alexander Kanavin    2.x depends on fontforge pa...
-webkitgtk             2.14.2        2.14.3                Alexander Kanavin
-boost                 1.62.0        1.63.0                Alexander Kanavin
-openssl               1.0.2j        1.1.0d                Alexander Kanavin
-ed                    1.9           4.2.2                 Alexander Kanavin
-gnutls                3.5.7         3.5.8                 Alexander Kanavin
-bjam-native           1.62.0        1.63.0                Alexander Kanavin
-libwebp               0.5.1         0.5.2                 Alexander Kanavin
-libnl                 3.2.28        3.2.29                Alexander Kanavin
-kbd                   2.0.3         2.0.4                 Alexander Kanavin
-gperf                 3.0.4         3.1                   Alexander Kanavin
-nss                   3.27.1        3.28.1                Alexander Kanavin
-lighttpd              1.4.43        1.4.45                Alexander Kanavin
-btrfs-tools           4.8.5         4.9.1                 Alexander Kanavin
-cmake                 3.7.1         3.7.2                 Alexander Kanavin
-cmake-native          3.7.1         3.7.2                 Alexander Kanavin
-iso-codes             3.72          3.74                  Alexander Kanavin
-epiphany              3.22.3        3.22.5                Alexander Kanavin
-mkelfimage            4.0+gitX      4.5+gitAUTOINC+0b...  Alexander Kanavin    mkelfimage has been removed...
-qemu                  2.7.1         2.8.0                 Aníbal Limón
-perl                  5.24.0        5.24.1                Aníbal Limón
-dpkg                  1.18.7        1.18.21               Aníbal Limón
-perl-native           5.24.0        5.24.1                Aníbal Limón
-pinentry              0.9.2         1.0.0                 Armin Kuster
-linux-libc-headers    4.9           4.9.6                 Bruce Ashfield
-libunwind             1.1+gitX      1.2+gitAUTOINC+cc...  Bruce Ashfield
-busybox               1.25.0+gitX   1.26.2+gitAUTOINC...  Chen Qi
-cups                  2.2.1         2.2.2                 Chen Qi
-util-linux            2.29          2.29.1                Chen Qi
-sed                   4.2.2         4.3                   Chen Qi
-sudo                  1.8.18p1      1.8.19p2              Chen Qi
-sysstat               11.5.3        11.5.4                Chen Qi
-flex                  2.6.2         2.6.3                 Chen Qi
-xz                    5.2.2         5.2.3                 Chen Qi
-build-appliance-i...  15.0.0        16.0.0                Cristian Iorga
-chkconfig             1.3.58        1.8                   Dengke Du            Version 1.5 requires selinux
-ltp                   20160126      20170116              Dengke Du
-dosfstools            4.0           4.1                   Dengke Du
-swig                  3.0.11        3.0.12                Edwin Plauchu
-python3-setuptools    32.1.1        34.1.0                Edwin Plauchu
-python-setuptools     32.1.1        34.1.0                Edwin Plauchu
-pax-utils             1.1.6         1.2.2                 Hongxu Jia
-createrepo            0.4.11        0.10.4                Hongxu Jia           Versions after 0.9.* use YU...
-socat                 1.7.3.1       1.7.3.2               Hongxu Jia
-elfutils              0.166         0.168                 Hongxu Jia
-gpgme                 1.6.0         1.8.0                 Hongxu Jia
-libgcrypt             1.7.3         1.7.6                 Hongxu Jia
-libgpg-error          1.25          1.26                  Hongxu Jia
-bash                  4.3.30        4.4                   Hongxu Jia
-ncurses               6.0+20160625  6.0+20161126          Hongxu Jia
-man-pages             4.08          4.09                  Hongxu Jia
-rpcbind               0.2.3         0.2.4                 Hongxu Jia
-gnupg                 2.1.14        2.1.18                Hongxu Jia
-wayland               1.12.0        1.12.91               Jussi Kukkonen
-weston                1.11.1        1.99.91               Jussi Kukkonen
-xauth                 1.0.9         1.0.10                Jussi Kukkonen
-util-macros           1.19.0        1.19.1                Jussi Kukkonen
-libevent              2.0.22        2.1.8                 Jussi Kukkonen
-mesa                  13.0.2        13.0.3                Jussi Kukkonen
-vte                   0.44.2        0.46.1                Jussi Kukkonen
-presentproto          1.0+gitX      1.1+gitAUTOINC+bf...  Jussi Kukkonen
-gdk-pixbuf            2.36.1        2.36.4                Jussi Kukkonen
-libdrm                2.4.74        2.4.75                Jussi Kukkonen
-menu-cache            1.0.1         1.0.2                 Jussi Kukkonen
-mesa-gl               13.0.2        13.0.3                Jussi Kukkonen
-gmp                   6.1.1         6.1.2                 Khem Raj
-gdb                   7.12          7.12.1                Khem Raj
-ruby                  2.3.3         2.4.0                 Leonardo Sandoval
-libusb1               1.0.20        1.0.21                Leonardo Sandoval
-nfs-utils             1.3.4         2.1.1                 Mariano Lopez
-prelink               1.0+gitX      20151030.+gitAUTO...  Mark Hatle
-db                    6.0.35        6.2.23                Mark Hatle           latest db does not work wit...
-rpm                   5.4.16        5.4.17                Mark Hatle
-libpfm4               4.6.0         4.8.0                 Matthew McClintock
-libtasn1              4.9           4.10                  Maxin B. John
-ifupdown              0.8.16        0.8.18                Maxin B. John
-iptables              1.6.0         1.6.1                 Maxin B. John
-screen                4.4.0         4.5.0                 Maxin B. John
-harfbuzz              1.4.1         1.4.2                 Maxin B. John
-gstreamer1.0-vaapi    1.10.2        1.11.1                No maintainer
-gdb-cross-canadia...  7.12          7.12.1                No maintainer
-linux-yocto-rt        4.9.3+gitX    4.9.6+gitAUTOINC+...  No maintainer
-linux-yocto-tiny      4.9.3+gitX    4.9.6+gitAUTOINC+...  No maintainer
-linux-yocto           4.9.3+gitX    4.9.6+gitAUTOINC+...  No maintainer
-gdb-cross-i586        7.12          7.12.1                No maintainer
-gnu-efi               3.0.4         3.0.5                 Robert Yang
-strace                4.14          4.15                  Robert Yang
-libpcre               8.39          8.40                  Robert Yang
-hdparm                9.50          9.51                  Robert Yang
-m4                    1.4.17        1.4.18                Robert Yang
-slang                 2.3.1         2.3.1a                Robert Yang
-mklibs-native         0.1.41        0.1.43                Robert Yang
-base-passwd           3.5.29        3.5.43                Ross Burton          Version 3.5.38 requires cde...
-lsbinitscripts        9.68          9.69                  Ross Burton
-alsa-lib              1.1.2         1.1.3                 Tanu Kaskinen
-pulseaudio            9.0           10.0                  Tanu Kaskinen
-
-Upgradable count: 95
-Upgradable total count: 101
-
-The based commit is:
-
-commit d7d26488f252d60628862ee114a4404e8d6cb6f1
-Author: Richard Purdie <richard.purdie@linuxfoundation.org>
-Date:   Sat Jan 28 14:40:36 2017 +0000
-
-    staging: Handle stale sysroot rebuild issue
-    
-    If a stale sysroot object was found the complete stamp wasn't removed,
-    meaning later code could fail when the new link creation was attempted.
-    Ensure the stale complete stamp is also removed if present.
-    
-    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
-
-Any problem, please contact Anibal Limon <anibal.limon@intel.com> 
+________________________________
+From: Takashi Matsuzawa
+Sent: Saturday, January 28, 2017 11:58 AM
+To: yocto@yoctoproject.org
+Subject: pkg_postinst shell?
 
 
+Hello Yocto.
+I am debugging my recipe, which uses pkg_postinst but does not seem to work=
+ as expected.
+
+It runs fine without $D detection.
+However, if I try to run it at first boot (skipping with exit 1 if $D is no=
+t empty), the board boot seems to hang.
+I think error (syntax error, etc.?) happening when it is run on the board, =
+but package manager.
+
+I doubt it is caused by non-existence of '#!/bin/sh' in my script but I am =
+not sure since I am still trying the builds again and again.
+
+i) Regarding the posttest script execution, is there log available so that =
+I can look into (instead of writing out log file by myself from within my s=
+cript)?  I do not seem to find it in temp folder of my recipes's working di=
+rectory.
+
+ii) Is '#!/bin/sh' always necessary?
+
+iii) What happens with pkg_postinst_PN_append?  If it is defined without pk=
+g_postinst_PN, it still works and executed?  If i) is true what about '#!/b=
+in/sh' in this case?
+
+If you have qucik suggestions, it is a great help.
+
+
+
+
+--_000_CY1PR0101MB1594FE408435CBAB28FDAB9AB64B0CY1PR0101MB1594_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+</head>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Arial,Helvetica,sans-serif;" dir=3D"ltr">
+<p></p>
+<div>Hello.</div>
+<div>It seems the below patch fixes&nbsp;this problem.</div>
+<div><br>
+</div>
+<div>systemd.bbclass: don't block on service restart</div>
+<div>https://patchwork.openembedded.org/patch/134317/</div>
+<p></p>
+<div><br>
+</div>
+(By the way, it may related to my question in another thread, but which is =
+the convenient way to apply this kind of patches to my local build system?)
+<div><br>
+<div style=3D"color: rgb(0, 0, 0);">
+<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" co=
+lor=3D"#000000" style=3D"font-size:11pt"><b>From:</b> Takashi Matsuzawa<br>
+<b>Sent:</b> Saturday, January 28, 2017 11:58 AM<br>
+<b>To:</b> yocto@yoctoproject.org<br>
+<b>Subject:</b> pkg_postinst shell?</font>
+<div>&nbsp;</div>
+</div>
+<div>
+<div id=3D"divtagdefaultwrapper" dir=3D"ltr" style=3D"font-size:12pt; color=
+:#000000; font-family:Calibri,Arial,Helvetica,sans-serif">
+<p></p>
+<div><span style=3D"font-size:12pt">Hello Yocto.</span><br>
+</div>
+<div>I am debugging my recipe, which uses pkg_postinst but does not seem to=
+ work as expected.</div>
+<div><br>
+</div>
+<div>It runs fine without $D detection.</div>
+<div>However, if I try to run it at first boot (skipping with exit 1 if $D =
+is not empty), the board boot seems to hang.</div>
+<div>I think error (syntax error, etc.?) happening when it is run on the bo=
+ard, but package manager.</div>
+<div><br>
+</div>
+<div>I doubt it is caused by non-existence of '#!/bin/sh' in my script but =
+I am not sure since I am still trying the builds again and again.</div>
+<div><br>
+</div>
+<div>i) Regarding the posttest script execution, is there log available so =
+that I can look into (instead of writing out log file by myself from within=
+ my script)? &nbsp;I do not seem to find it in temp folder of my recipes's =
+working directory.</div>
+<div><br>
+</div>
+<div>ii) Is '#!/bin/sh' always necessary?</div>
+<div><br>
+</div>
+<div>iii) What happens with pkg_postinst_PN_append? &nbsp;If it is defined =
+without pkg_postinst_PN, it still works and executed? &nbsp;If i) is true w=
+hat about '#!/bin/sh' in this case?</div>
+<div><br>
+</div>
+<div>If you have qucik suggestions, it is a great help.</div>
+<div><br>
+</div>
+<div><br>
+</div>
+<br>
+<p></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
+
+--_000_CY1PR0101MB1594FE408435CBAB28FDAB9AB64B0CY1PR0101MB1594_--
