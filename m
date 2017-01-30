@@ -1,15 +1,20 @@
 Return-Path: <danielhilst@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C728EE00405; Mon, 30 Jan 2017 11:56:12 -0800 (PST)
+	id 3773BE00405; Mon, 30 Jan 2017 12:09:30 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW, 
-	RCVD_IN_SORBS_SPAM autolearn=ham version=3.3.1
+	RCVD_IN_DNSWL_NONE, 
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (danielhilst[at]gmail.com)
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.216.169 listed in dnsbl.sorbs.net]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.216.169 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -18,46 +23,44 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.216.173 listed in dnsbl.sorbs.net]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.216.173 listed in list.dnswl.org]
-Received: from mail-qt0-f173.google.com (mail-qt0-f173.google.com
-	[209.85.216.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 81394E0030B
-	for <yocto@yoctoproject.org>; Mon, 30 Jan 2017 11:56:06 -0800 (PST)
-Received: by mail-qt0-f173.google.com with SMTP id x49so213441619qtc.2
-	for <yocto@yoctoproject.org>; Mon, 30 Jan 2017 11:56:06 -0800 (PST)
+Received: from mail-qt0-f169.google.com (mail-qt0-f169.google.com
+	[209.85.216.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9DA9EE0030B
+	for <yocto@yoctoproject.org>; Mon, 30 Jan 2017 12:09:29 -0800 (PST)
+Received: by mail-qt0-f169.google.com with SMTP id w20so145926072qtb.1
+	for <yocto@yoctoproject.org>; Mon, 30 Jan 2017 12:09:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=tqnSoAjx7cadVmwIS/2M7rmFY5lPTQiG67WlCIeB1ic=;
-	b=krLnK967lp9JAnxf/j2Wne74O3hGWDzWdr5n+/1csv+47ho0QZvypXacSNLXlfaPhI
-	KTeLX1KkjEAa3CCZ5EvHlXpvub3RWc/A2Dfc+sdhJjKyEu8XftYYt1bIKq0OwM3civ27
-	DEcpr1eRaub87NyxagtHJZX+XByTK+fxLNIT4LmlbUzlBDxImD7JZfPAmARQlY568doj
-	C4WT9wgQMZftiXHOg4iUt7CGLPTMC/lOF/LIqAxhG4eC+I1gJkHOfa87NEXTFM+GxFpl
-	AgOFhec6bb2hPi6L4ygby6eKLbhdbWSsTX8l7qlcWjv1qXBXgr+luoOLIeVEVFzxvNiB
-	ki3w==
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to; 
+	bh=Ded+ySBEufqzQQV2xjbUdLDTxiLqA7PNWuL9xos5HK8=;
+	b=kQo0bp7jPdrrcuwEm5Rhbdxvw8jU12d0xvXLC14A8uHQNt02JhdsUy6h860CrrJINH
+	TPXB8CvS7PAvF8tDx9BpICrmoq1qzM41pPZm/bkvtJp7Vcf97aEXpG+/VwKigMaz9Ks3
+	fQ5B0eoorOFNXC7McToXGEwXatyfxYEdMCzifUZsiHWzIAJ9G9nESmECwNwNeqxKHExz
+	k04Jbp0FtFBiiURtNbDcX94Cm2MIfCLaOVG7MsQE4/Yjv8ZR849HzZ6NE6VjrBLDC+/B
+	t4PX7Pf0PFgCIDBDHgBDi6XKXjdvP6Q9c4qY5oFwfaiay3WXTqf9+tiD5VulXhx6eIa6
+	NoKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=tqnSoAjx7cadVmwIS/2M7rmFY5lPTQiG67WlCIeB1ic=;
-	b=DSkgjY1rWsU7R+oV8k0aMZf8LM+QvrhjqObVdCEXZCJA3tTLoxglkM0DqIUrWslCSz
-	saNqpvOmc1Fm22uRbqKVWdgYo8NdA+fmPSCwnYcmwZe6f4lcawgDlNTXwAGNDt/OWJ4d
-	wVK7z8Miwiski3uoGD/YbtpnvelYYO/hGEnflq4yZmyuRj2WTmCwmAnFvxFc1v96sim8
-	EZG7MrQCrCF7OlOn/YEFcwAVKCu2w13mm3McV8QLv06Obm/A4WiuY5uJp+84IrMCUwVz
-	hndqBDn1qbUsaPeVGPqwk1qXhOb7JRvuP78R8IwSRvg0vzuR68Yc+g2zUtg2lXUl9ikn
-	bJpA==
-X-Gm-Message-State: AIkVDXJg+hzOYZn3OcmVQxKXcouUHB0zThPs8NeLykl8apEjCrrf4Ty8FD8Mb994qo5fwlvkfaD8dBem2/6IvA==
-X-Received: by 10.237.39.222 with SMTP id m30mr20881810qtg.118.1485806165836; 
-	Mon, 30 Jan 2017 11:56:05 -0800 (PST)
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to;
+	bh=Ded+ySBEufqzQQV2xjbUdLDTxiLqA7PNWuL9xos5HK8=;
+	b=uLV1UJOktyamIa5Oj7oxS0fgorZ3mbLWKIn18QGcrHgm2jhI/q0W5IqdjE+W8d+vBh
+	W5fKJUtvedSpYOwwoUljKvTWtQ5J9L/NVjPkrwVkkidNAGYASf/cLy7SEh1zl2KVh+jf
+	oYHU6PagPtzP/8wcZNtkmbE7hY34LTzr8V93klVmnht+n6i4QdIz6pWncva9Oz4ynG3y
+	V+jPzsh8ewq56bF5mRgZ+puoPMvRKozQg5GBlgHIFT+1rjExuoUENmclA9eTiKL+uC6c
+	4OPXMgAyUgRkYYsVMG3GXZRNoTtEutkqVZLv3rFd8xRi4TCsVl2FTHp9LQmkczK9mPuZ
+	8F0w==
+X-Gm-Message-State: AIkVDXI4Pl4c2p6VTvQiv7wQpjuscav68jk0kVkE5SGDfcXDXyKKJfOLyZ7OJEI/btACi6z3prtuEXkLu154vw==
+X-Received: by 10.237.53.164 with SMTP id c33mr23215864qte.121.1485806968183; 
+	Mon, 30 Jan 2017 12:09:28 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.140.96.17 with HTTP; Mon, 30 Jan 2017 11:56:05 -0800 (PST)
+Received: by 10.140.96.17 with HTTP; Mon, 30 Jan 2017 12:09:27 -0800 (PST)
+In-Reply-To: <CAF3SDA6VazzB3w8s6egf6qfjOqV9FuCe4rW5DgzAvwCGzLXegA@mail.gmail.com>
+References: <CAF3SDA6VazzB3w8s6egf6qfjOqV9FuCe4rW5DgzAvwCGzLXegA@mail.gmail.com>
 From: "Daniel." <danielhilst@gmail.com>
-Date: Mon, 30 Jan 2017 17:56:05 -0200
-Message-ID: <CAF3SDA6VazzB3w8s6egf6qfjOqV9FuCe4rW5DgzAvwCGzLXegA@mail.gmail.com>
+Date: Mon, 30 Jan 2017 18:09:27 -0200
+Message-ID: <CAF3SDA4A65EvdF8qCv4UqsR8++vREmrz02X=5-9b=eCvnt--kw@mail.gmail.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Test packages and staging area conflicts
+Subject: Re: Test packages and staging area conflicts
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,56 +72,86 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 30 Jan 2017 19:56:12 -0000
-Content-Type: multipart/alternative; boundary=f403045f4342b84a9c0547553437
+X-List-Received-Date: Mon, 30 Jan 2017 20:09:30 -0000
+Content-Type: multipart/alternative; boundary=001a11c110fc8b21300547556402
 
---f403045f4342b84a9c0547553437
+--001a11c110fc8b21300547556402
 Content-Type: text/plain; charset=UTF-8
 
-I've been using testing packages so that they can be built from SCM testing
-branches and quickdly deployed to package repository. This makes new
-testing releases avaible to software developers and they can installs it by
-using package manager. The testing packages are the same as production
-packages except that they don't go to the image, they conflict with
-production packages (so asking for installing removes the production
-package as expected) and they have a -text suffix.
+I'm using this little hack:
 
-The problem with this aproach is that the testing and production packages
-conflict so I face this warnings at each compilation of any of both:
+do_install[depends] = "${RCONFLICTS_${PN}}:do_cleansstate"
 
-WARNING: The recipe foo-test is trying to install files into a shared area
-when those files already exist.
-
-And buil
-
-How to aproach that? Am I doing something stupid?
+But this seems not right...
 
 Regards,
+
+2017-01-30 17:56 GMT-02:00 Daniel. <danielhilst@gmail.com>:
+
+> I've been using testing packages so that they can be built from SCM
+> testing branches and quickdly deployed to package repository. This makes
+> new testing releases avaible to software developers and they can installs
+> it by using package manager. The testing packages are the same as
+> production packages except that they don't go to the image, they conflict
+> with production packages (so asking for installing removes the production
+> package as expected) and they have a -text suffix.
+>
+> The problem with this aproach is that the testing and production packages
+> conflict so I face this warnings at each compilation of any of both:
+>
+> WARNING: The recipe foo-test is trying to install files into a shared area
+> when those files already exist.
+>
+> And buil
+>
+> How to aproach that? Am I doing something stupid?
+>
+> Regards,
+>
+> --
+> *"Do or do not. There is no try"*
+>   *Yoda Master*
+>
+
+
 
 -- 
 *"Do or do not. There is no try"*
   *Yoda Master*
 
---f403045f4342b84a9c0547553437
+--001a11c110fc8b21300547556402
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div><div><div>I&#39;ve been using testing packages so tha=
-t they can be built from SCM testing branches and quickdly deployed to pack=
-age repository. This makes new testing releases avaible to software develop=
-ers and they can installs it by using package manager. The testing packages=
- are the same as production packages except that they don&#39;t go to the i=
-mage, they conflict with production packages (so asking for installing remo=
-ves the production package as expected) and they have a -text suffix.<br><b=
-r></div>The problem with this aproach is that the testing and production pa=
-ckages conflict so I face this warnings at each compilation of any of both:=
-<br><br>WARNING: The recipe foo-test is trying to install files into a shar=
-ed area when those files already exist.<br><br></div><div>And buil<br></div=
-><div><br></div>How to aproach that? Am I doing something stupid?<br><br></=
-div>Regards,<br clear=3D"all"><div><div><div><div><br>-- <br><div class=3D"=
-gmail_signature"><div style=3D"text-align:right"><i>&quot;Do or do not. The=
-re is no try&quot;</i><br><i>=C2=A0 </i><i><b>Yoda Master</b></i><br></div>=
+<div dir=3D"ltr"><div><div><div>I&#39;m using this little hack:<br><br></di=
+v>do_install[depends] =3D &quot;${RCONFLICTS_${PN}}:do_cleansstate&quot;<br=
+><br></div>But this seems not right...<br><br></div>Regards,<br></div><div =
+class=3D"gmail_extra"><br><div class=3D"gmail_quote">2017-01-30 17:56 GMT-0=
+2:00 Daniel. <span dir=3D"ltr">&lt;<a href=3D"mailto:danielhilst@gmail.com"=
+ target=3D"_blank">danielhilst@gmail.com</a>&gt;</span>:<br><blockquote cla=
+ss=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;pa=
+dding-left:1ex"><div dir=3D"ltr"><div><div><div>I&#39;ve been using testing=
+ packages so that they can be built from SCM testing branches and quickdly =
+deployed to package repository. This makes new testing releases avaible to =
+software developers and they can installs it by using package manager. The =
+testing packages are the same as production packages except that they don&#=
+39;t go to the image, they conflict with production packages (so asking for=
+ installing removes the production package as expected) and they have a -te=
+xt suffix.<br><br></div>The problem with this aproach is that the testing a=
+nd production packages conflict so I face this warnings at each compilation=
+ of any of both:<br><br>WARNING: The recipe foo-test is trying to install f=
+iles into a shared area when those files already exist.<br><br></div><div>A=
+nd buil<br></div><div><br></div>How to aproach that? Am I doing something s=
+tupid?<br><br></div>Regards,<span class=3D"HOEnZb"><font color=3D"#888888">=
+<br clear=3D"all"><div><div><div><div><br>-- <br><div class=3D"m_3378944400=
+428340572gmail_signature"><div style=3D"text-align:right"><i>&quot;Do or do=
+ not. There is no try&quot;</i><br><i>=C2=A0 </i><i><b>Yoda Master</b></i><=
+br></div></div>
+</div></div></div></div></font></span></div>
+</blockquote></div><br><br clear=3D"all"><br>-- <br><div class=3D"gmail_sig=
+nature" data-smartmail=3D"gmail_signature"><div style=3D"text-align:right">=
+<i>&quot;Do or do not. There is no try&quot;</i><br><i>=C2=A0 </i><i><b>Yod=
+a Master</b></i><br></div></div>
 </div>
-</div></div></div></div></div>
 
---f403045f4342b84a9c0547553437--
+--001a11c110fc8b21300547556402--
