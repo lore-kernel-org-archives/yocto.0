@@ -1,83 +1,65 @@
-Return-Path: <tmatsuzawa@xevo.com>
+Return-Path: <nathan@nathanrossi.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 283FBE003D7; Sun, 29 Jan 2017 22:39:01 -0800 (PST)
+	id 8A5F6E007AD; Mon, 30 Jan 2017 00:41:39 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [104.47.38.48 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.83.67 listed in dnsbl.sorbs.net]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.83.67 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 4142 seconds by postgrey-1.32 at yocto-www;
-	Sun, 29 Jan 2017 22:38:58 PST
-Received: from NAM02-BL2-obe.outbound.protection.outlook.com
-	(mail-bl2nam02on0048.outbound.protection.outlook.com [104.47.38.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 088D2E0030B
-	for <yocto@yoctoproject.org>; Sun, 29 Jan 2017 22:38:58 -0800 (PST)
+Received: from mail-pg0-f67.google.com (mail-pg0-f67.google.com [74.125.83.67])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 694CDE0030B
+	for <yocto@yoctoproject.org>; Mon, 30 Jan 2017 00:41:35 -0800 (PST)
+Received: by mail-pg0-f67.google.com with SMTP id 194so31001052pgd.0
+	for <yocto@yoctoproject.org>; Mon, 30 Jan 2017 00:41:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=uievolution.onmicrosoft.com; s=selector1-xevo-com;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
-	bh=WvmhXd/2BsnFe3S0Tmbk2zMKTBkaw59g/ww7k4FGlaA=;
-	b=PPEuOk4BPzhly9WhsM+6WreV6gPFLzB/mActtvVLHvNaF0hBB9vKhLUw/MDwA+jFSzckytkRFZcvewUyYEiMNDLaOCiwJ/IKzFJrRFuXewQnVmO8K5dUq5UQJhpcogJSHej71d+LeEGSEHKE3cKyjo4ZKEY091HNzkipq11KFnQ=
-Received: from CY1PR0101MB1594.prod.exchangelabs.com (10.163.139.13) by
-	CY1PR0101MB1594.prod.exchangelabs.com (10.163.139.13) with Microsoft
-	SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
-	15.1.860.13; Mon, 30 Jan 2017 06:38:56 +0000
-Received: from CY1PR0101MB1594.prod.exchangelabs.com ([10.163.139.13]) by
-	CY1PR0101MB1594.prod.exchangelabs.com ([10.163.139.13]) with mapi id
-	15.01.0860.026; Mon, 30 Jan 2017 06:38:56 +0000
-From: Takashi Matsuzawa <tmatsuzawa@xevo.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: patching .bbclass files?
-Thread-Index: AQHSepyncpo3Pz/Vkka7Vim2pvlBLqFQkXeu
-Date: Mon, 30 Jan 2017 06:38:55 +0000
-Message-ID: <CY1PR0101MB159426412AA0C373C827823BB64B0@CY1PR0101MB1594.prod.exchangelabs.com>
-References: <CY1PR0101MB1594DCF757DEC39182FB3F8FB64B0@CY1PR0101MB1594.prod.exchangelabs.com>
-In-Reply-To: <CY1PR0101MB1594DCF757DEC39182FB3F8FB64B0@CY1PR0101MB1594.prod.exchangelabs.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=tmatsuzawa@xevo.com; 
-x-originating-ip: [118.238.252.194]
-x-ms-office365-filtering-correlation-id: e0eddccb-4f91-4970-f8b5-08d448daaa25
-x-microsoft-antispam: UriScan:; BCL:0; PCL:0; RULEID:(22001);
-	SRVR:CY1PR0101MB1594; 
-x-microsoft-exchange-diagnostics: 1; CY1PR0101MB1594;
-	7:jXO9ipTc5wbe8YgeefyPLdjMSejKpcN0k1THAnSYcifLN6R0+XJCWbkXIt4Z1vOwCK6G/SftqK/q9YrWg61uV1bJbUN0yToePd2GB+PS4UUr6zyPJrBBh0VjaWeserVNOMYnkBAjfGH2KGEBbL2Q75yq0tvVfKUX/6WXSaUzLFLpfd6YqcxKCfska38IWJnDhhKPbwndmt7C1WcKYtQOmiNbfTCxvyIGApDBHlSvzper6Dx7o4cl8ZJBBrYhbEotXc76q1SLUDtxh/JMyMnXa2NoaAWR1Lydef3/JkGJUr6WLdwxOvt4YY56CGp81rJD7btZLqC45Et9+VtT7j8XoT+EwExwCnk7XvpwqieMiJg4sZ+V2MBAciqnpAYnqRmqGMWTXGyk7s/VtqMiKCkRcdBmexBMhVLi1i4rPW3XcAVCJzd59wZOnhsd2WIGOUeDLBGGhnqc9PXOM8Zcw+K5OA==
-x-microsoft-antispam-prvs: <CY1PR0101MB1594CD45DBF69B6F4E3A3B1DB64B0@CY1PR0101MB1594.prod.exchangelabs.com>
-x-exchange-antispam-report-test: UriScan:(228788266533470)(211936372134217);
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(6040375)(2401047)(8121501046)(5005006)(3002001)(10201501046)(6041248)(20161123564025)(20161123562025)(20161123555025)(20161123560025)(6072148);
-	SRVR:CY1PR0101MB1594; BCL:0; PCL:0; RULEID:;
-	SRVR:CY1PR0101MB1594; 
-x-forefront-prvs: 0203C93D51
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10009020)(6009001)(7916002)(39450400003)(189002)(377454003)(199003)(106356001)(106116001)(122556002)(189998001)(107886002)(76176999)(6916009)(2950100002)(54356999)(97736004)(6606003)(86362001)(33656002)(6506006)(8676002)(105586002)(3280700002)(38730400001)(6436002)(81156014)(229853002)(81166006)(8936002)(1730700003)(77096006)(50986999)(6116002)(3846002)(102836003)(6306002)(54896002)(450100001)(2906002)(19627405001)(99286003)(2351001)(5640700003)(55016002)(25786008)(110136003)(53936002)(3660700001)(9686003)(7736002)(74316002)(2900100001)(101416001)(3900700001)(92566002)(68736007)(66066001)(5660300001)(2501003)(7696004)(142923001)(21314002);
-	DIR:OUT; SFP:1101; SCL:1; SRVR:CY1PR0101MB1594;
-	H:CY1PR0101MB1594.prod.exchangelabs.com; FPR:; SPF:None;
-	PTR:InfoNoRecords; MX:1; A:1; LANG:en; 
-received-spf: None (protection.outlook.com: xevo.com does not designate
-	permitted sender hosts)
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
+	d=nathanrossi.com; s=google;
+	h=date:message-id:from:to:cc:subject:mime-version
+	:content-transfer-encoding;
+	bh=LzN4wCBTxK2jvtcQvUSz26gG6SPxjv/Iuy1rUKukN0Q=;
+	b=MnN/eZ+4YMyiitwTeRh6i+l87DArsY73ahDoIoSi+0snTAnTrKBv2aE8Rtg+btWW0u
+	wG9/nFS3DqnOwUnxL3tA6iC50PnNf+xo299Egx0I5cxjpXziv/+oLIyIklAOBjLmmeVZ
+	JLB80fpf9f0U6xlZI+szA6CyOLGmEBJleJodq6UI9jScT7r7ofTId/JkVUSYFazgGYBa
+	qjsCZJcMNbRWB7Az0KmwoMrLsnoKOq46XQCzLl4qph/635+KKCV29ffuaNyDhGI9BR/h
+	Bf3nm9Kjmn1e809crwui46cE8U4ladC2X7Opps8wymeDVLsXOPtzVYijqeQ2HwMUjx5S
+	KJrA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:date:message-id:from:to:cc:subject:mime-version
+	:content-transfer-encoding;
+	bh=LzN4wCBTxK2jvtcQvUSz26gG6SPxjv/Iuy1rUKukN0Q=;
+	b=K0dpfWDTQVTlIRIyhT+LXCKmNoQQ407EvmzGKWEtNNO22TBfxP6uZKmli2HAZeiMwI
+	Og+H9nTRTCWwIpGdVFTYAXMMI8+MVt+Ji4gopGzlZDTCXdYj2FHdzyH1YYjqMac+/Zb5
+	YU/QNLGn1i0kdLO/Z1JsN6u37pi99WFGi2W12aaZe57tnlnpYySTvlMzl3dWrAf3NjFc
+	+f/M+ivM5MuONaGc5CCFU6auvGWAyP6p43xSAsEZeyhlycbEHXsXp4EyStWu2QIRSbHB
+	Yr0gm2CL8xrJsviPjnBixLGMXQNs7WCVfPHagYyWjAKoahSN3bmGQUaT3mZwBhPSviOC
+	9lYQ==
+X-Gm-Message-State: AIkVDXLchG3DPwm8KjyvCim7gScLYb1p900gj+CUTQ3r6Tss+7k96N3Sio/tk+WUP2WObQ==
+X-Received: by 10.84.168.3 with SMTP id e3mr30083818plb.144.1485765694607;
+	Mon, 30 Jan 2017 00:41:34 -0800 (PST)
+Received: from [127.0.1.1] ([58.165.136.65]) by smtp.gmail.com with ESMTPSA id
+	d69sm30199666pfd.11.2017.01.30.00.41.32
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Mon, 30 Jan 2017 00:41:34 -0800 (PST)
+Date: Mon, 30 Jan 2017 18:41:24 +1000
+Message-Id: <20170130084124.10596-0-nathan@nathanrossi.com>
+From: Nathan Rossi <nathan@nathanrossi.com>
+To: yocto@yoctoproject.org
 MIME-Version: 1.0
-X-OriginatorOrg: xevo.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Jan 2017 06:38:55.8996 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: e0a7ca1f-2458-4cd6-a7c7-d733c07495ab
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY1PR0101MB1594
-Subject: Re: patching .bbclass files?
+Cc: Alistair Francis <alistai@xilinx.com>
+Subject: [meta-mingw][PATCH 0/19] Adding support for building QEMU for Windows
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -89,128 +71,127 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 30 Jan 2017 06:39:01 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_CY1PR0101MB159426412AA0C373C827823BB64B0CY1PR0101MB1594_"
+X-List-Received-Date: Mon, 30 Jan 2017 08:41:39 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
 
---_000_CY1PR0101MB159426412AA0C373C827823BB64B0CY1PR0101MB1594_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+This series enables a number of packages and dependencies to be built
+for mingw32. The goal is to enable the building and packaging of QEMU
+targeting mingw32 with support for SDL/VNC enabled as well as being able
+to execute the qemu* machines of oe-core/meta.
 
-Well, doing repo -diff and apply produced patch when I newly repo sync coul=
-d work.
+The following series fixes a number of issues with compilation of
+certain components that are required to build and distribute QEMU. This
+series includes:
 
+ * Enabling 'secure-api' for mingw-w64-headers
+ * Fix/enable building of shared libraries for gettext
+ * Work around to avoid dependency on bash for glib-2.0, clean up of
+   some glib-2.0 appends which are resolved in oe-core meta
+ * Better packaging of libgcc for easy use on Windows (deploy dll to
+   bindir)
+ * Updating FILES_* to support locations for mingw32 output (bindir
+   contains .dll) for libgcc, expat, libpcre, gettext, glib-2.0, libsdl,
+   libgpg-error and libgcrypt
+ * Addition of PACKAGECONFIG options to libsdl, and configuring of
+   PACKAGECONFIG for libsdl, glib-2.0 and libgcrypt to handle Windows
+   only features and or ability to disable features that do not support
+   mingw32/Windows
+ * Enabling build of libfdt in the dtc recipe, but skipping dtc itself
+ * Fixes for configuring libgpg-error and libgcrypt when targeting
+   mingw32
 
-https://groups.google.com/forum/#!topic/repo-discuss/43juvD1qGIQ
+The intended build execution is to allow for 'buildtools-tarball' (or
+any populate_sdk target with 'nativesdk-qemu' in TOOLCHAIN_HOST_TASK) to
+create an output that includes all dependent nativesdk binaries as well
+as a nativesdk QEMU binaries. This series does not however address
+fixing the environment setup script or self-extracting installer shell
+script that is normally provided by buildtools-tarball.
 
+This series with the multiple oe-core/meta series was tested on the
+following target Windows platforms: Windows 10 (64-bit), Windows 8.1
+(64-bit) and Windows 7 SP1 (64-bit).
 
-________________________________
-From: Takashi Matsuzawa
-Sent: Monday, January 30, 2017 11:00 AM
-To: yocto@yoctoproject.org
-Subject: patching .bbclass files?
+The changes were also tested on the following Linux build hosts: Debian
+8 (64-bit), Ubuntu 16.04 (64-bit), CentOS 7 (64-bit).
 
+For convenience this series is also available in the git repository:
 
-Hello Yocto
-I am curious if there is a better way of doing this manually every time I r=
-e-synch to Yocto based BSP.
+  https://github.com/nathanrossi/meta-mingw nrossi/mingw-qemu-v2
 
-Say, I have a patch or customization I want to try on .bbclass files (inste=
-ad of .bb or .bbappend, or the source files that are fetched.)
-The reason for this is sometimes I want to try the latest fix to the BSP wh=
-ile building old versino of my image, or debbuging image by modifying the b=
-uild system files.
+This series partly depends on a set of series for oe-core/meta. The
+following series are required for building of QEMU (but not all parts of
+this series specifically), including dll packaging detection and
+libgcrypt support:
 
-I think by using .bbappend files I can try modification to the .bb file beh=
-aviros, but it does not for .bbclass files.
-I could add slightly modified xxx.bbclass to my own layer so that it may ov=
-erride what is available in poky/meta/..., but it may mean I just duplicate=
- a lot of bitbake related files in my layer for just a few lines of changes=
-.
+  https://patchwork.openembedded.org/series/5049/
+  https://patchwork.openembedded.org/series/5050/
+  https://patchwork.openembedded.org/series/5051/
+  https://patchwork.openembedded.org/series/5052/
+  https://patchwork.openembedded.org/series/5053/
 
-'repo' having a feature copying files when repositories are synched.  This =
-may work for me?
+A branch which has the series above merged has been published to allow
+for easy testing, it is available at:
 
-Ideally, the poky and other remote gits have branches or releases that have=
- the patches I want to try, or I should be using the latest releases that s=
-hould include meaningful fixes already.
-But it is not possible always.
+  https://github.com/nathanrossi/openembedded-core testing/mingw-support-2017-01-30
 
+---
 
---_000_CY1PR0101MB159426412AA0C373C827823BB64B0CY1PR0101MB1594_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Changes v2:
+ * Moved a number of patches from oe-core series to this series
+ * Updated cover letter to reflect series additional inclusion
+ * Bring cover letter info from oe-core/meta series
+ * Updated commit messages
 
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
-</head>
-<body dir=3D"ltr">
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
--family:Calibri,Arial,Helvetica,sans-serif;" dir=3D"ltr">
-<p>Well, doing repo -diff and apply produced patch when I newly repo sync c=
-ould work.</p>
-<p><br>
-</p>
-<p></p>
-<div>https://groups.google.com/forum/#!topic/repo-discuss/43juvD1qGIQ</div>
-<div><br>
-</div>
-<p></p>
-<div style=3D"color: rgb(0, 0, 0);">
-<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" co=
-lor=3D"#000000" style=3D"font-size:11pt"><b>From:</b> Takashi Matsuzawa<br>
-<b>Sent:</b> Monday, January 30, 2017 11:00 AM<br>
-<b>To:</b> yocto@yoctoproject.org<br>
-<b>Subject:</b> patching .bbclass files?</font>
-<div>&nbsp;</div>
-</div>
-<div>
-<div id=3D"divtagdefaultwrapper" dir=3D"ltr" style=3D"font-size:12pt; color=
-:#000000; font-family:Calibri,Arial,Helvetica,sans-serif">
-<p></p>
-<div><span style=3D"font-size:12pt">Hello Yocto</span><br>
-</div>
-<div>I am curious if there is a better way of doing this manually every tim=
-e I re-synch to Yocto based BSP.</div>
-<div><br>
-</div>
-<div>Say, I have a patch or customization I want to try on .bbclass files (=
-instead of .bb or .bbappend, or the source files that are fetched.)</div>
-<div>The reason for this is sometimes I want to try the latest fix to the B=
-SP while building old versino of my image, or debbuging image by modifying =
-the build system files.</div>
-<div><br>
-</div>
-<div>I think by using .bbappend files I can try modification to the .bb fil=
-e behaviros, but it does not for .bbclass files.</div>
-<div>I could add slightly modified xxx.bbclass to my own layer so that it m=
-ay override what is available in poky/meta/..., but it may mean I just dupl=
-icate a lot of bitbake related files in my layer for just a few lines of ch=
-anges.</div>
-<div><br>
-</div>
-<div>'repo' having a feature copying files when repositories are synched. &=
-nbsp;This may work for me?</div>
-<div><br>
-</div>
-<div>Ideally, the poky and other remote gits have branches or releases that=
- have the patches I want to try, or I should be using the latest releases t=
-hat should include meaningful fixes already.</div>
-<div>But it is not possible always.</div>
-<div><br>
-</div>
-<p></p>
-</div>
-</div>
-</div>
-</div>
-</body>
-</html>
+Nathan Rossi (19):
+  mingw-w64-headers: Add 'secure-api' PACKAGECONFIG
+  libgcc: Relocate and package dll's in bindir
+  expat: Fix ${PN}-bin handling for .exe files
+  libpcre: Handle shipping .exe and .dll files for mingw32
+  gettext_0.19.%.bbappend: Fix/enable shared building of gettext
+  gettext_0.19.%.bbappend: Handle packaging .dll's for mingw32
+  gettext_0.19.%.bbappend: Handle gettext-libintl .dll packaging
+  glib-2.0: Prevent a bash dependency via bash-completion
+  glib-2.0: Disable libmount support for mingw32 targets
+  glib-2.0: Handle packaging .dll and .exe files for mingw32
+  glib-2.0: Clean up unnecessary appends that are resolved in oe-core
+  dtc: Only build libfdt for mingw32
+  libsdl: Windows specific PACKAGECONFIG
+  libsdl: Fix ${PN}-bin handling for .exe files
+  libgpg-error: Handle packaging .exe files
+  libgpg-error_1.25.bbappend: Add patch to fix configure bug for mingw32
+  libgcrypt: Handle packaging of .exe and .def files
+  libgcrypt: Disable 'capabilities' for mingw32
+  libgcrypt_1.7.3.bbappend: Add patch to fix configure bug for mingw32
 
---_000_CY1PR0101MB159426412AA0C373C827823BB64B0CY1PR0101MB1594_--
+ recipes-core/dtc/dtc_%.bbappend                    | 16 ++++++
+ recipes-core/expat/expat_%.bbappend                |  3 +
+ .../fix-gl_cv_prog_as_underscore-test.patch        | 67 ++++++++++++++++++++++
+ recipes-core/gettext/gettext_0.19.%.bbappend       | 11 +++-
+ recipes-core/glib-2.0/glib-2.0_%.bbappend          | 17 +++++-
+ recipes-devtools/gcc/libgcc_%.bbappend             |  8 ++-
+ .../mingw-w64/nativesdk-mingw-w64-headers_3.1.0.bb |  4 ++
+ recipes-graphics/libsdl/libsdl_%.bbappend          |  9 +++
+ ...c-Set-mym4_revision-to-0-if-not-a-git-rep.patch | 46 +++++++++++++++
+ recipes-support/libgcrypt/libgcrypt_%.bbappend     | 11 ++++
+ recipes-support/libgcrypt/libgcrypt_1.7.3.bbappend |  6 ++
+ ...c-Set-mym4_revision-to-0-if-not-a-git-rep.patch | 46 +++++++++++++++
+ .../libgpg-error/libgpg-error_%.bbappend           |  3 +
+ .../libgpg-error/libgpg-error_1.25.bbappend        |  6 ++
+ recipes-support/libpcre/libpcre_%.bbappend         |  6 ++
+ 15 files changed, 255 insertions(+), 4 deletions(-)
+ create mode 100644 recipes-core/dtc/dtc_%.bbappend
+ create mode 100644 recipes-core/expat/expat_%.bbappend
+ create mode 100644 recipes-core/gettext/gettext/fix-gl_cv_prog_as_underscore-test.patch
+ create mode 100644 recipes-graphics/libsdl/libsdl_%.bbappend
+ create mode 100644 recipes-support/libgcrypt/files/configure.ac-Set-mym4_revision-to-0-if-not-a-git-rep.patch
+ create mode 100644 recipes-support/libgcrypt/libgcrypt_%.bbappend
+ create mode 100644 recipes-support/libgcrypt/libgcrypt_1.7.3.bbappend
+ create mode 100644 recipes-support/libgpg-error/files/configure.ac-Set-mym4_revision-to-0-if-not-a-git-rep.patch
+ create mode 100644 recipes-support/libgpg-error/libgpg-error_%.bbappend
+ create mode 100644 recipes-support/libgpg-error/libgpg-error_1.25.bbappend
+ create mode 100644 recipes-support/libpcre/libpcre_%.bbappend
+
+-- 
+2.11.0
+
