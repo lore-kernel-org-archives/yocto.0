@@ -1,69 +1,79 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <tmatsuzawa@xevo.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AAEB0E0092C; Sun, 29 Jan 2017 09:12:43 -0800 (PST)
+	id A621DE00935; Sun, 29 Jan 2017 19:32:48 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (akuster808[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.83.68 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.83.68 listed in dnsbl.sorbs.net]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [104.47.41.74 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pg0-f68.google.com (mail-pg0-f68.google.com [74.125.83.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8C76DE008F2
-	for <yocto@yoctoproject.org>; Sun, 29 Jan 2017 09:12:40 -0800 (PST)
-Received: by mail-pg0-f68.google.com with SMTP id 194so29507227pgd.0
-	for <yocto@yoctoproject.org>; Sun, 29 Jan 2017 09:12:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:subject:date:message-id:in-reply-to:references;
-	bh=enGoF+pnW+a57urbWZ1tJimToj7YCQZiWxc4E9XHcQM=;
-	b=LGM18bvtVIEXAOUegofGLZQH2MA/+LaADTe0jzwck7ZsMPfgtRghhEXy5p6cA27P2/
-	l73PSPWYnx17YxXiAZOfNopuJDc+LI4hh1lB3u1a97eYRdqDLW+9rGqohp9VZ9yQ/2d5
-	/znH1nY9//tOKXh9WHcaSQU6jBWqwPyFKiwHDteYP86W6Ln4WYV6MSC9Olmkq9nv4Vsu
-	HdZ2U5ALBw8S2UmMpIS9hXDPx8BChuP7GVUCCBZ/qqdmMfUWWr0+8R7ESzjFtO2N5k3e
-	uWE5dk1dfOcn11P0tAgEJXSLL+KtrXzW56dNG3yBFUHEkEoXm1iIt7KHbwyyjWdwuHUQ
-	jHGA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-	:references;
-	bh=enGoF+pnW+a57urbWZ1tJimToj7YCQZiWxc4E9XHcQM=;
-	b=c3+5oOh4jBF6RP61UNxU2J3ncLWFLFvV8LcGhdWogCmIFrz8gFwju9Qx5edFYjO7F9
-	yjlQREVwaRhQBgjf/UKQajG/HnFc+XyJTJZgmQrlFQPlptdTwZnQNiAC1DYc9yRlbQEZ
-	jGa9KlHpeAeGww0RQa+IlFZ1o5/Ho4Sb43BtiIgiPs3N0wk2hNmgSdnXclJpa1cvWCyp
-	OHmWTfUYREvDu+cpR1v1nhjFiGzYE/VGihPHp1To5p3acdUgUfjGdn/0hwwLvIjOc0Se
-	D7un5ssJjwTFRKbZHKJ0iVDbNImmlQK49CVGddhJO8ZQFKGQcRWBWzOcNEamQ0tK7Ewk
-	yuiA==
-X-Gm-Message-State: AIkVDXInne/uZ+WqVxuiTmVTsi7daapQoL73f4FY9x82jzLBgTWRO6dPnFUcKO8KwNN47A==
-X-Received: by 10.84.133.1 with SMTP id 1mr26333434plf.151.1485709959542;
-	Sun, 29 Jan 2017 09:12:39 -0800 (PST)
-Received: from akuster-ThinkPad-X240.hsd1.ca.comcast.net
-	([2601:202:4001:9ea0:d8f8:ce4a:79c4:7a9d])
-	by smtp.gmail.com with ESMTPSA id
-	g70sm25877403pfb.50.2017.01.29.09.12.38
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Sun, 29 Jan 2017 09:12:39 -0800 (PST)
-From: Armin Kuster <akuster808@gmail.com>
-To: yocto@yoctoproject.org,
-	akuster@mvista.com
-Date: Sun, 29 Jan 2017 09:12:32 -0800
-Message-Id: <1485709952-13916-6-git-send-email-akuster808@gmail.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1485709952-13916-1-git-send-email-akuster808@gmail.com>
-References: <1485709952-13916-1-git-send-email-akuster808@gmail.com>
-Subject: [meta-security][PATCH 6/6] swtpm: update to tip
+Received: from NAM03-DM3-obe.outbound.protection.outlook.com
+	(mail-dm3nam03on0074.outbound.protection.outlook.com [104.47.41.74])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4D130E0082A
+	for <yocto@yoctoproject.org>; Sun, 29 Jan 2017 19:32:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=uievolution.onmicrosoft.com; s=selector1-xevo-com;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
+	bh=IMyJT7bT4oXxd5X1wMR0nZMKmCjTzF340Pmc5HHugXk=;
+	b=the8ITKSDzXdl1iG2+RyLdSCKLfULAq3CRx6/HqnqjxIRP1q8u2aWKY5hJbwB6kHQAQlLuKuh2ryjqSDz0z+1kqISpNzzYIWrg/o4rgL0BX9CUGoZXZxsqt1zUmul2Pk5bP8bF/nBM8091bedqYSemzQmNbhER1LeX1044fYLRw=
+Received: from CY1PR0101MB1594.prod.exchangelabs.com (10.163.139.13) by
+	CY1PR0101MB1593.prod.exchangelabs.com (10.163.139.12) with Microsoft
+	SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
+	15.1.860.13; Mon, 30 Jan 2017 02:00:41 +0000
+Received: from CY1PR0101MB1594.prod.exchangelabs.com ([10.163.139.13]) by
+	CY1PR0101MB1594.prod.exchangelabs.com ([10.163.139.13]) with mapi id
+	15.01.0860.026; Mon, 30 Jan 2017 02:00:40 +0000
+From: Takashi Matsuzawa <tmatsuzawa@xevo.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: patching .bbclass files?
+Thread-Index: AQHSepyncpo3Pz/Vkka7Vim2pvlBLg==
+Date: Mon, 30 Jan 2017 02:00:40 +0000
+Message-ID: <CY1PR0101MB1594DCF757DEC39182FB3F8FB64B0@CY1PR0101MB1594.prod.exchangelabs.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+	smtp.mailfrom=tmatsuzawa@xevo.com; 
+x-originating-ip: [118.238.252.194]
+x-ms-office365-filtering-correlation-id: 064fb45e-9306-481b-4803-08d448b3cacd
+x-microsoft-antispam: UriScan:; BCL:0; PCL:0; RULEID:(22001);
+	SRVR:CY1PR0101MB1593; 
+x-microsoft-exchange-diagnostics: 1; CY1PR0101MB1593;
+	7:jgggnglTo4s+lGGgbp85BMOwDj7t3pgYRgkU2wdITef+Xu6LhVY0uDbeazRqp6BcTYgRMNYv/xwpPianxX5MaYAbCtr1Lix8Y2XsnKqW4p2sOJIPzBP0fi0RHWvFg1GGlU5GKElt8dPABC2xbPT8XEqi5r0wNUgmgubcg4XAeP1IClW7WM6ogMu1XgoJ+F5S6gHeyFy9259soM9RFaRXjycIghAyvROxR6t5+9ejDs+KU1/otvhqTa7nCIYkAflTCuptkpoFgZ4hRBDuEIlmzc+gfybmuHMMkF7/F2sNR+qL4z3t3QpccenpHE4BperrsGCGDdH1p7k0lNkaVHPL0v+URObPvARVQIRC0HouVbGCSgz1H4TrgA39A9FJjxZdKCHmmmrTOfIqTsFz0xnwaXAtj/rwTV40/EBV5SqfJdfm3bGxEtL8k0NRn+59hBo3owlvdcIxJb0M0GvJEQmUvw==
+x-microsoft-antispam-prvs: <CY1PR0101MB1593BBC894BF9AC80EAE5306B64B0@CY1PR0101MB1593.prod.exchangelabs.com>
+x-exchange-antispam-report-test: UriScan:;
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(6040375)(2401047)(8121501046)(5005006)(10201501046)(3002001)(6041248)(20161123564025)(20161123562025)(20161123555025)(20161123560025)(6072148);
+	SRVR:CY1PR0101MB1593; BCL:0; PCL:0; RULEID:;
+	SRVR:CY1PR0101MB1593; 
+x-forefront-prvs: 0203C93D51
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10009020)(6009001)(7916002)(39450400003)(189002)(199003)(81166006)(81156014)(101416001)(102836003)(8936002)(2906002)(1730700003)(2900100001)(7696004)(107886002)(110136003)(105586002)(3280700002)(189998001)(5660300001)(97736004)(122556002)(19627405001)(6916009)(106356001)(6116002)(53936002)(6606003)(450100001)(2351001)(106116001)(8676002)(33656002)(3846002)(38730400001)(92566002)(6436002)(77096006)(6506006)(68736007)(86362001)(25786008)(7736002)(74316002)(9686003)(54896002)(2501003)(54356999)(55016002)(66066001)(5640700003)(50986999)(99286003)(3660700001)(142923001)(21314002);
+	DIR:OUT; SFP:1101; SCL:1; SRVR:CY1PR0101MB1593;
+	H:CY1PR0101MB1594.prod.exchangelabs.com; FPR:; SPF:None;
+	PTR:InfoNoRecords; MX:1; A:1; LANG:en; 
+received-spf: None (protection.outlook.com: xevo.com does not designate
+	permitted sender hosts)
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
+MIME-Version: 1.0
+X-OriginatorOrg: xevo.com
+X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Jan 2017 02:00:40.0935 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: e0a7ca1f-2458-4cd6-a7c7-d733c07495ab
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY1PR0101MB1593
+Subject: patching .bbclass files?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,162 +85,90 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 29 Jan 2017 17:12:43 -0000
+X-List-Received-Date: Mon, 30 Jan 2017 03:32:48 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_CY1PR0101MB1594DCF757DEC39182FB3F8FB64B0CY1PR0101MB1594_"
 
-fix signed build issues
+--_000_CY1PR0101MB1594DCF757DEC39182FB3F8FB64B0CY1PR0101MB1594_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- recipes-tpm/swtpm/files/fix_lib_search_path.patch | 41 -------------------
- recipes-tpm/swtpm/files/fix_signed_issue.patch    | 48 +++++++++++++++++++++++
- recipes-tpm/swtpm/swtpm_1.0.bb                    | 18 +++++++--
- 3 files changed, 63 insertions(+), 44 deletions(-)
- delete mode 100644 recipes-tpm/swtpm/files/fix_lib_search_path.patch
- create mode 100644 recipes-tpm/swtpm/files/fix_signed_issue.patch
+Hello Yocto
+I am curious if there is a better way of doing this manually every time I r=
+e-synch to Yocto based BSP.
 
-diff --git a/recipes-tpm/swtpm/files/fix_lib_search_path.patch b/recipes-tpm/swtpm/files/fix_lib_search_path.patch
-deleted file mode 100644
-index 015f418..0000000
---- a/recipes-tpm/swtpm/files/fix_lib_search_path.patch
-+++ /dev/null
-@@ -1,41 +0,0 @@
--
--Upstream-Status: Inappropriate [OE config]
--
--Signed-off-by: Armin Kuster <akuster808@gmail.com>
--
--Index: configure.ac
--===================================================================
----- a/configure.ac
--+++ b/configure.ac
--@@ -349,21 +349,17 @@ CFLAGS="$CFLAGS -Wformat -Wformat-securi
-- dnl We have to make sure libtpms is using the same crypto library
-- dnl to avoid problems
-- AC_MSG_CHECKING([the crypto library libtpms is using])
---dirs=$($CC $CFLAGS -Xlinker --verbose 2>/dev/null | \
---       sed -n '/SEARCH_DIR/p' | \
---       sed 's/SEARCH_DIR("=\?\(@<:@^"@:>@\+\)"); */\1\n/g')
---for dir in $dirs; do
---  if test -r $dir/libtpms.so; then
---    if test -n "`ldd $dir/libtpms.so | grep libcrypto.so`"; then
---      libtpms_cryptolib="openssl"
---      break
---    fi
---    if test -n "`ldd $dir/libtpms.so | grep libnss3.so`"; then
---      libtpms_cryptolib="freebl"
---      break
---    fi
--+dir="$SEARCH_DIR"
--+if test -r $dir/libtpms.so; then
--+  if test -n "`ldd $dir/libtpms.so | grep libcrypto.so`"; then
--+    libtpms_cryptolib="openssl"
--+    break
--   fi
---done
--+  if test -n "`ldd $dir/libtpms.so | grep libnss3.so`"; then
--+    libtpms_cryptolib="freebl"
--+    break
--+  fi
--+fi
-- 
-- if test -z "$libtpms_cryptolib"; then
--   AC_MSG_ERROR([Could not determine libtpms crypto library.])
-diff --git a/recipes-tpm/swtpm/files/fix_signed_issue.patch b/recipes-tpm/swtpm/files/fix_signed_issue.patch
-new file mode 100644
-index 0000000..427df62
---- /dev/null
-+++ b/recipes-tpm/swtpm/files/fix_signed_issue.patch
-@@ -0,0 +1,48 @@
-+Upstream-Status: Pending
-+Signed-off-by Armin Kuster <akuster808@gmail>
-+
-+Index: git/src/swtpm/ctrlchannel.c
-+===================================================================
-+--- git.orig/src/swtpm/ctrlchannel.c
-++++ git/src/swtpm/ctrlchannel.c
-+@@ -152,7 +152,8 @@ static int ctrlchannel_receive_state(ptm
-+     uint32_t tpm_number = 0;
-+     unsigned char *blob = NULL;
-+     uint32_t blob_length = be32toh(pss->u.req.length);
-+-    uint32_t remain = blob_length, offset = 0;
-++    ssize_t remain = (ssize_t) blob_length;
-++    uint32_t offset = 0;
-+     TPM_RESULT res;
-+     uint32_t flags = be32toh(pss->u.req.state_flags);
-+     TPM_BOOL is_encrypted = (flags & PTM_STATE_FLAG_ENCRYPTED) != 0;
-+Index: git/src/swtpm_ioctl/tpm_ioctl.c
-+===================================================================
-+--- git.orig/src/swtpm_ioctl/tpm_ioctl.c
-++++ git/src/swtpm_ioctl/tpm_ioctl.c
-+@@ -303,7 +303,7 @@ static int do_save_state_blob(int fd, bo
-+         numbytes = write(file_fd, pgs.u.resp.data,
-+                          devtoh32(is_chardev, pgs.u.resp.length));
-+ 
-+-        if (numbytes != devtoh32(is_chardev, pgs.u.resp.length)) {
-++        if (numbytes != (ssize_t) devtoh32(is_chardev, pgs.u.resp.length)) {
-+             fprintf(stderr,
-+                     "Could not write to file '%s': %s\n",
-+                     filename, strerror(errno));
-+@@ -420,7 +420,7 @@ static int do_load_state_blob(int fd, bo
-+                had_error = true;
-+                break;
-+             }
-+-            pss.u.req.length = htodev32(is_chardev, numbytes);
-++            pss.u.req.length = htodev32(is_chardev, (uint32_t) numbytes);
-+ 
-+             /* the returnsize is zero on all intermediate packets */
-+             returnsize = ((size_t)numbytes < sizeof(pss.u.req.data))
-+@@ -863,7 +863,7 @@ int main(int argc, char *argv[])
-+             return EXIT_FAILURE;
-+         }
-+         /* no tpm_result here */
-+-        printf("ptm capability is 0x%lx\n", (uint64_t)devtoh64(is_chardev, cap));
-++        printf("ptm capability is 0x%llx\n", (uint64_t)devtoh64(is_chardev, cap));
-+ 
-+     } else if (!strcmp(command, "-i")) {
-+         init.u.req.init_flags = htodev32(is_chardev, PTM_INIT_FLAG_DELETE_VOLATILE);
-diff --git a/recipes-tpm/swtpm/swtpm_1.0.bb b/recipes-tpm/swtpm/swtpm_1.0.bb
-index 04777e1..27b4b8c 100644
---- a/recipes-tpm/swtpm/swtpm_1.0.bb
-+++ b/recipes-tpm/swtpm/swtpm_1.0.bb
-@@ -5,9 +5,11 @@ SECTION = "apps"
- 
- DEPENDS = "libtasn1 fuse expect socat glib-2.0 libtpm libtpm-native"
- 
--SRCREV = "2cd10cee2f74c84bda22081514b6b2cb566fa42d"
--SRC_URI = "git://github.com/stefanberger/swtpm.git \
--	   file://fix_lib_search_path.patch"
-+SRCREV = "ca906a02124d0ed8b6194e845d272d23ee394a34"
-+SRC_URI = " \
-+	git://github.com/stefanberger/swtpm.git \
-+	file://fix_signed_issue.patch \
-+	"
- 
- S = "${WORKDIR}/git"
- 
-@@ -22,11 +24,21 @@ PACKAGECONFIG += "${@bb.utils.contains('DISTRO_FEATURES', 'selinux', 'selinux',
- PACKAGECONFIG[openssl] = "--with-openssl, --without-openssl, openssl"
- PACKAGECONFIG[gnutls] = "--with-gnutls, --without-gnutls, gnutls"
- PACKAGECONFIG[selinux] = "--with-selinux, --without-selinux, libselinux"
-+PACKAGECONFIG[cuse] = "--with-cuse, --without-cuse, libselinux"
- 
- EXTRA_OECONF += "--with-tss-user=${TSS_USER} --with-tss-group=${TSS_GROUP}"
- 
- export SEARCH_DIR = "${STAGING_LIBDIR_NATIVE}"
- 
-+# dup bootstrap 
-+do_configure_prepend () {
-+	libtoolize --force --copy
-+	autoheader
-+	aclocal
-+	automake --add-missing -c
-+	autoconf
-+}
-+
- USERADD_PACKAGES = "${PN}"
- GROUPADD_PARAM_${PN} = "--system ${TSS_USER}"
- USERADD_PARAM_${PN} = "--system -g ${TSS_GROUP} --home-dir  \
--- 
-2.7.4
+Say, I have a patch or customization I want to try on .bbclass files (inste=
+ad of .bb or .bbappend, or the source files that are fetched.)
+The reason for this is sometimes I want to try the latest fix to the BSP wh=
+ile building old versino of my image, or debbuging image by modifying the b=
+uild system files.
+
+I think by using .bbappend files I can try modification to the .bb file beh=
+aviros, but it does not for .bbclass files.
+I could add slightly modified xxx.bbclass to my own layer so that it may ov=
+erride what is available in poky/meta/..., but it may mean I just duplicate=
+ a lot of bitbake related files in my layer for just a few lines of changes=
+.
+
+'repo' having a feature copying files when repositories are synched.  This =
+may work for me?
+
+Ideally, the poky and other remote gits have branches or releases that have=
+ the patches I want to try, or I should be using the latest releases that s=
+hould include meaningful fixes already.
+But it is not possible always.
 
 
+--_000_CY1PR0101MB1594DCF757DEC39182FB3F8FB64B0CY1PR0101MB1594_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+</head>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Arial,Helvetica,sans-serif;" dir=3D"ltr">
+<p></p>
+<div><span style=3D"font-size: 12pt;">Hello Yocto</span><br>
+</div>
+<div>I am curious if there is a better way of doing this manually every tim=
+e I re-synch to Yocto based BSP.</div>
+<div><br>
+</div>
+<div>Say, I have a patch or customization I want to try on .bbclass files (=
+instead of .bb or .bbappend, or the source files that are fetched.)</div>
+<div>The reason for this is sometimes I want to try the latest fix to the B=
+SP while building old versino of my image, or debbuging image by modifying =
+the build system files.</div>
+<div><br>
+</div>
+<div>I think by using .bbappend files I can try modification to the .bb fil=
+e behaviros, but it does not for .bbclass files.</div>
+<div>I could add slightly modified xxx.bbclass to my own layer so that it m=
+ay override what is available in poky/meta/..., but it may mean I just dupl=
+icate a lot of bitbake related files in my layer for just a few lines of ch=
+anges.</div>
+<div><br>
+</div>
+<div>'repo' having a feature copying files when repositories are synched. &=
+nbsp;This may work for me?</div>
+<div><br>
+</div>
+<div>Ideally, the poky and other remote gits have branches or releases that=
+ have the patches I want to try, or I should be using the latest releases t=
+hat should include meaningful fixes already.</div>
+<div>But it is not possible always.</div>
+<div><br>
+</div>
+<p></p>
+</div>
+</body>
+</html>
+
+--_000_CY1PR0101MB1594DCF757DEC39182FB3F8FB64B0CY1PR0101MB1594_--
