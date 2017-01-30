@@ -1,72 +1,52 @@
-Return-Path: <patrick.ohly@intel.com>
+Return-Path: <colin.helliwell@ln-systems.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1EEF6E00405; Mon, 30 Jan 2017 07:32:44 -0800 (PST)
+	id 975ECE00405; Mon, 30 Jan 2017 07:37:34 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.214.41 listed in dnsbl.sorbs.net]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.214.41 listed in list.dnswl.org]
-Received: from mail-it0-f41.google.com (mail-it0-f41.google.com
-	[209.85.214.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E3F1AE0030B
-	for <yocto@yoctoproject.org>; Mon, 30 Jan 2017 07:32:40 -0800 (PST)
-Received: by mail-it0-f41.google.com with SMTP id r185so103745277ita.0
-	for <yocto@yoctoproject.org>; Mon, 30 Jan 2017 07:32:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=message-id:subject:from:to:cc:date:in-reply-to:references
-	:organization:mime-version:content-transfer-encoding;
-	bh=/wSOvumO4EbLqM/IvMyR33XmdnDMG1oKaVwqOVmKQIg=;
-	b=Oi7F1+vkkKXOgtixY+Y1SVmJa6MUFXDZM83+QnXCvksp7mQzN8EFeQdcjvaafAcMZN
-	Rrfdd53WaxkTDSeSohYrK7eNI+/24JNXTwd/8UDzD44c98GRpNfVZNzkCVNh0RDa0YIe
-	NGw/e+C93mOae/X4Pg3AfLBldE74L5ryMRJ00nC/0FG1fl6EaWTK4CBB/8sNOEl0lzmJ
-	OhzEGrAGvRPQfq1R5jxbAoZg6pz2acZjAYul8hnrRlixreQvlP/WyQ78w1sdTtyRxHvy
-	kMSxyJMjQBRaoGqJ44o1f1slYffpyABRO1t2pvg1rIsOMPydhYDN/IdyO1RWgLAwpd0j
-	AdUw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-	:references:organization:mime-version:content-transfer-encoding;
-	bh=/wSOvumO4EbLqM/IvMyR33XmdnDMG1oKaVwqOVmKQIg=;
-	b=TigHBvmNTrIuydL6OVQImiLn+51VFS06FNbqP9Q/yMFV80nnDNpigasfLB1yBmCZPg
-	LJN+jr4iFrreJsEsMYroID72W/2WvGqwL8wM7V6mvRkSC42AG1wq7Ksdho+T7VXJ57qe
-	fzE8Wt2mcMc9/ijMv4oOn7AlH5s2SGV0jpYHjAaWmUV0ItsRmMgaTXyG4H3rZ7+ruWGZ
-	KenI39xlpRA9fBhhJ6qyLxKO8s/SB55SBxchk1dqI3SGFsEu+FshPXJI5nAUCtaicaKr
-	CvnFQjc6oqqC7VrVmoeli6X6h6d+VCc9nyCLUBG9f9SpbxF4keZjRxH6/G7Rym0SGmos
-	1L8g==
-X-Gm-Message-State: AIkVDXILLJH/2vt7YwRBCvtZjE2Dqbct0j4WhM3Pjx+oR0kS0HdDU1HtjfbV5Id89w908JlO
-X-Received: by 10.36.29.80 with SMTP id 77mr15939815itj.29.1485790359454;
-	Mon, 30 Jan 2017 07:32:39 -0800 (PST)
-Received: from pohly-mobl1 (p5DE8CDEB.dip0.t-ipconnect.de. [93.232.205.235])
-	by smtp.gmail.com with ESMTPSA id u63sm8394834ioi.4.2017.01.30.07.32.37
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Mon, 30 Jan 2017 07:32:38 -0800 (PST)
-Message-ID: <1485790355.20333.148.camel@intel.com>
-From: Patrick Ohly <patrick.ohly@intel.com>
-To: Armin Kuster <akuster808@gmail.com>
-Date: Mon, 30 Jan 2017 16:32:35 +0100
-In-Reply-To: <1485709952-13916-6-git-send-email-akuster808@gmail.com>
-References: <1485709952-13916-1-git-send-email-akuster808@gmail.com>
-	<1485709952-13916-6-git-send-email-akuster808@gmail.com>
-Organization: Intel GmbH, Dornacher Strasse 1, D-85622 Feldkirchen/Munich
-X-Mailer: Evolution 3.12.9-1+b1 
-Mime-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-security][PATCH 6/6] swtpm: update to tip
+X-Spam-Status: No, score=-0.5 required=5.0 tests=BAYES_05,HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [212.227.126.131 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.5 BAYES_05 BODY: Bayes spam probability is 1 to 5%
+	*      [score: 0.0150]
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.131])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2C5C4E0030B
+	for <yocto@yoctoproject.org>; Mon, 30 Jan 2017 07:37:32 -0800 (PST)
+Received: from LNSYSCH3 ([81.130.69.98]) by mrelayeu.kundenserver.de (mreue005
+	[212.227.15.163]) with ESMTPSA (Nemesis) id 0Mgrp6-1cu8cN1z1c-00M4Q5
+	for <yocto@yoctoproject.org>; Mon, 30 Jan 2017 16:37:31 +0100
+From: <colin.helliwell@ln-systems.com>
+To: <yocto@yoctoproject.org>
+Date: Mon, 30 Jan 2017 15:37:30 -0000
+Organization: LN Systems Limited
+Message-ID: <005301d27b0e$c532b900$4f982b00$@ln-systems.com>
+MIME-Version: 1.0
+X-Mailer: Microsoft Outlook 15.0
+Thread-Index: AdJ7DazY7wHv1lVCSBGip25qJDIG4g==
+X-Provags-ID: V03:K0:TiLZgxinVHarLYNVfZNY+OJJKJfhUzoCcbwe1WHCtXJE/e8n0iF
+	a5cPv7sS+QUsJ/8t+67wD09b5YlmGSybOxNaDU5MeBqyN1zYQ75e2DcOcKdzLJvKGEpMz9x
+	M03CJDRmLFVhzKetq6JkzaWcS/DtgZFIMmM55oX1ctgmi8S9TFkFl36Ac/vRfauniJdEKVg
+	MyaFubT3WRsP7L9iS6gkw==
+X-UI-Out-Filterresults: notjunk:1;V01:K0:X8ldzoK8MWY=:gaUT62lptYrCYCxx4Oj6Pt
+	DYDiIRPYuLoSMJ1J9xv+LLlW0nj9loc/SsS1FDWN0dXtxytKzAxj+PVo9eXTZHxLCelUbkEBm
+	Vb3YcIqw3qsIOswDT2OJFyxcG4IY4kaNC/pWfjktfNMpWCTZpDT1BAVwdKMqDUDcbIdeM7nFw
+	3zL5PPZwzDEXAledHOTIcg8CKrVM8j1OEwIhoF8AB3WzSAfLEfJ/0mlG+GS7MY0K0pqcC3iRq
+	5P87K5wMTMyT//1qFN2HgRMcL5dVIeeeKMk5thnJJ5fgi4o2UhxgVLaXSWESep3kHrg0HoCM1
+	iORazIjSZr9ffH1afVDGks/9F/Adw9uJSPaB+cfLbJuhIo3T4KixxNuZzPex/3NDoR2ciYI2w
+	26IfVTbULawkN4qDtPv6GU26TfA+69pMVfgkBTN22uAVeZA9djd2wZZ9S4tnhCbXxHWDKIBAy
+	Ag0VIua6cnodHDiSxbgvdFvmkn4YjjpfJFgmtysj99lR3MG+V4kzVKC+DKEKCiJuxGX0CV/7T
+	bRB4SL9ppXFqOmUA0GGFMCZbEGl/5loL/0JcxFririF/NZJlqYYW5CqxcdWofcUi+AFqq9yAr
+	/awD1m9DbhxjGVYidfeDd4NI3xob8eieyk1njXdRIfa/d88tLx8c0HYOfraiXqfqS9+d1e2jo
+	pkJg+9PR9TdagwfsIy/WHlqdG7E/EtUFxMpkvkul2ZA/9XTfqB1Uxfcy3/JOqTrcRwyIRzrct
+	MrX7FLm/zU0tZs5k
+Subject: Making header of out-of-tree module available
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: colin.helliwell@ln-systems.com
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -75,71 +55,90 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 30 Jan 2017 15:32:44 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 30 Jan 2017 15:37:34 -0000
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_0054_01D27B0E.C53502F0"
+Content-Language: en-gb
 
-On Sun, 2017-01-29 at 09:12 -0800, Armin Kuster wrote:
-> fix signed build issues
-> 
-> Signed-off-by: Armin Kuster <akuster808@gmail.com>
-> ---
->  recipes-tpm/swtpm/files/fix_lib_search_path.patch | 41 -------------------
->  recipes-tpm/swtpm/files/fix_signed_issue.patch    | 48 +++++++++++++++++++++++
->  recipes-tpm/swtpm/swtpm_1.0.bb                    | 18 +++++++--
->  3 files changed, 63 insertions(+), 44 deletions(-)
->  delete mode 100644 recipes-tpm/swtpm/files/fix_lib_search_path.patch
->  create mode 100644 recipes-tpm/swtpm/files/fix_signed_issue.patch
-> 
-> diff --git a/recipes-tpm/swtpm/files/fix_lib_search_path.patch b/recipes-tpm/swtpm/files/fix_lib_search_path.patch
-> deleted file mode 100644
-> index 015f418..0000000
-> --- a/recipes-tpm/swtpm/files/fix_lib_search_path.patch
-> +++ /dev/null
+------=_NextPart_000_0054_01D27B0E.C53502F0
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-This patch is still needed when building swtpm-native. I'll add back a
-version that applies to latest tip.
+I have a recipe which builds my own (out-of-tree) driver module - this
+packages/installs the module fine. (It's recipe has "inherit module"). 
 
-> diff --git a/recipes-tpm/swtpm/files/fix_signed_issue.patch b/recipes-tpm/swtpm/files/fix_signed_issue.patch
-> new file mode 100644
-> index 0000000..427df62
-> --- /dev/null
-> +++ b/recipes-tpm/swtpm/files/fix_signed_issue.patch
-> @@ -0,0 +1,48 @@
-> +Upstream-Status: Pending
-> +Signed-off-by Armin Kuster <akuster808@gmail>
+Now I'm writing a recipe to build a library which uses the driver. What's
+needed to get the driver's header file 'exported' so that it can be included
+by the library's recipe?
 
-[...]
+Thanks
 
-> +Index: git/src/swtpm_ioctl/tpm_ioctl.c
-> +===================================================================
-> +--- git.orig/src/swtpm_ioctl/tpm_ioctl.c
-> ++++ git/src/swtpm_ioctl/tpm_ioctl.c
-> +@@ -303,7 +303,7 @@ static int do_save_state_blob(int fd, bo
-[...]
-> +         /* no tpm_result here */
-> +-        printf("ptm capability is 0x%lx\n", (uint64_t)devtoh64(is_chardev, cap));
-> ++        printf("ptm capability is 0x%llx\n", (uint64_t)devtoh64(is_chardev, cap));
-
-This is causing an error when building for x86-64:
-
-tpm_ioctl.c:866:9: error: format ‘%llx’ expects argument of type ‘long long unsigned int’, but argument 2 has type ‘long unsigned int’ [-Werror=format=]
-|          printf("ptm capability is 0x%llx\n", (uint64_t)devtoh64(is_chardev, cap));
-|          ^
-| cc1: all warnings being treated as errors
-
-If you want, I can fix it as part of my upcoming patches with:
-
-printf("ptm capability is 0x%llx\n", (long long unsigned)devtoh64(is_chardev, cap));
-
--- 
-Best Regards, Patrick Ohly
-
-The content of this message is my personal opinion only and although
-I am an employee of Intel, the statements I make here in no way
-represent Intel's position on the issue, nor am I authorized to speak
-on behalf of Intel on this matter.
+ 
 
 
+------=_NextPart_000_0054_01D27B0E.C53502F0
+Content-Type: text/html;
+	charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-GB =
+link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
+class=3DMsoNormal>I have a recipe which builds my own (out-of-tree) =
+driver module &#8211; this packages/installs the module fine. =
+(It&#8217;s recipe has &#8220;inherit module&#8221;). <o:p></o:p></p><p =
+class=3DMsoNormal>Now I&#8217;m writing a recipe to build a library =
+which uses the driver. What&#8217;s needed to get the driver&#8217;s =
+header file &#8216;exported&#8217; so that it can be included by the =
+library&#8217;s recipe?<o:p></o:p></p><p =
+class=3DMsoNormal>Thanks<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
 
+------=_NextPart_000_0054_01D27B0E.C53502F0--
