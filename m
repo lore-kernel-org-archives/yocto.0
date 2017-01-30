@@ -1,79 +1,68 @@
-Return-Path: <tmatsuzawa@xevo.com>
+Return-Path: <bruce.ashfield@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A621DE00935; Sun, 29 Jan 2017 19:32:48 -0800 (PST)
+	id D9DC6E003D7; Sun, 29 Jan 2017 20:31:59 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [104.47.41.74 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE, 
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (bruce.ashfield[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from NAM03-DM3-obe.outbound.protection.outlook.com
-	(mail-dm3nam03on0074.outbound.protection.outlook.com [104.47.41.74])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4D130E0082A
-	for <yocto@yoctoproject.org>; Sun, 29 Jan 2017 19:32:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=uievolution.onmicrosoft.com; s=selector1-xevo-com;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
-	bh=IMyJT7bT4oXxd5X1wMR0nZMKmCjTzF340Pmc5HHugXk=;
-	b=the8ITKSDzXdl1iG2+RyLdSCKLfULAq3CRx6/HqnqjxIRP1q8u2aWKY5hJbwB6kHQAQlLuKuh2ryjqSDz0z+1kqISpNzzYIWrg/o4rgL0BX9CUGoZXZxsqt1zUmul2Pk5bP8bF/nBM8091bedqYSemzQmNbhER1LeX1044fYLRw=
-Received: from CY1PR0101MB1594.prod.exchangelabs.com (10.163.139.13) by
-	CY1PR0101MB1593.prod.exchangelabs.com (10.163.139.12) with Microsoft
-	SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
-	15.1.860.13; Mon, 30 Jan 2017 02:00:41 +0000
-Received: from CY1PR0101MB1594.prod.exchangelabs.com ([10.163.139.13]) by
-	CY1PR0101MB1594.prod.exchangelabs.com ([10.163.139.13]) with mapi id
-	15.01.0860.026; Mon, 30 Jan 2017 02:00:40 +0000
-From: Takashi Matsuzawa <tmatsuzawa@xevo.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: patching .bbclass files?
-Thread-Index: AQHSepyncpo3Pz/Vkka7Vim2pvlBLg==
-Date: Mon, 30 Jan 2017 02:00:40 +0000
-Message-ID: <CY1PR0101MB1594DCF757DEC39182FB3F8FB64B0@CY1PR0101MB1594.prod.exchangelabs.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=tmatsuzawa@xevo.com; 
-x-originating-ip: [118.238.252.194]
-x-ms-office365-filtering-correlation-id: 064fb45e-9306-481b-4803-08d448b3cacd
-x-microsoft-antispam: UriScan:; BCL:0; PCL:0; RULEID:(22001);
-	SRVR:CY1PR0101MB1593; 
-x-microsoft-exchange-diagnostics: 1; CY1PR0101MB1593;
-	7:jgggnglTo4s+lGGgbp85BMOwDj7t3pgYRgkU2wdITef+Xu6LhVY0uDbeazRqp6BcTYgRMNYv/xwpPianxX5MaYAbCtr1Lix8Y2XsnKqW4p2sOJIPzBP0fi0RHWvFg1GGlU5GKElt8dPABC2xbPT8XEqi5r0wNUgmgubcg4XAeP1IClW7WM6ogMu1XgoJ+F5S6gHeyFy9259soM9RFaRXjycIghAyvROxR6t5+9ejDs+KU1/otvhqTa7nCIYkAflTCuptkpoFgZ4hRBDuEIlmzc+gfybmuHMMkF7/F2sNR+qL4z3t3QpccenpHE4BperrsGCGDdH1p7k0lNkaVHPL0v+URObPvARVQIRC0HouVbGCSgz1H4TrgA39A9FJjxZdKCHmmmrTOfIqTsFz0xnwaXAtj/rwTV40/EBV5SqfJdfm3bGxEtL8k0NRn+59hBo3owlvdcIxJb0M0GvJEQmUvw==
-x-microsoft-antispam-prvs: <CY1PR0101MB1593BBC894BF9AC80EAE5306B64B0@CY1PR0101MB1593.prod.exchangelabs.com>
-x-exchange-antispam-report-test: UriScan:;
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(6040375)(2401047)(8121501046)(5005006)(10201501046)(3002001)(6041248)(20161123564025)(20161123562025)(20161123555025)(20161123560025)(6072148);
-	SRVR:CY1PR0101MB1593; BCL:0; PCL:0; RULEID:;
-	SRVR:CY1PR0101MB1593; 
-x-forefront-prvs: 0203C93D51
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10009020)(6009001)(7916002)(39450400003)(189002)(199003)(81166006)(81156014)(101416001)(102836003)(8936002)(2906002)(1730700003)(2900100001)(7696004)(107886002)(110136003)(105586002)(3280700002)(189998001)(5660300001)(97736004)(122556002)(19627405001)(6916009)(106356001)(6116002)(53936002)(6606003)(450100001)(2351001)(106116001)(8676002)(33656002)(3846002)(38730400001)(92566002)(6436002)(77096006)(6506006)(68736007)(86362001)(25786008)(7736002)(74316002)(9686003)(54896002)(2501003)(54356999)(55016002)(66066001)(5640700003)(50986999)(99286003)(3660700001)(142923001)(21314002);
-	DIR:OUT; SFP:1101; SCL:1; SRVR:CY1PR0101MB1593;
-	H:CY1PR0101MB1594.prod.exchangelabs.com; FPR:; SPF:None;
-	PTR:InfoNoRecords; MX:1; A:1; LANG:en; 
-received-spf: None (protection.outlook.com: xevo.com does not designate
-	permitted sender hosts)
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.216.194 listed in dnsbl.sorbs.net]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.216.194 listed in list.dnswl.org]
+Received: from mail-qt0-f194.google.com (mail-qt0-f194.google.com
+	[209.85.216.194])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BB685E0030B
+	for <yocto@yoctoproject.org>; Sun, 29 Jan 2017 20:31:51 -0800 (PST)
+Received: by mail-qt0-f194.google.com with SMTP id h53so17945804qth.3
+	for <yocto@yoctoproject.org>; Sun, 29 Jan 2017 20:31:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=hlIyLqrWfqluSRi7x83QEVZA95/nzwDA4fQy/TfUwek=;
+	b=e2sdKdA4F3QyV+VOe4u2IXcIZe+5fXVzR1yhWB8FoQHx0w9Xk2oWsM7Cm8HcoNUgDp
+	+iCgRNJYYe0kOTG3z16lbobsablSRhFvXu6h8EBqPK2/iDEgdqwY/A/zztFp51Siw8aH
+	ylKTIqhZQPA13AASnBielXMobD9y2KABvSaK8RPYcdhsPix6Ve6zfC0SZ9tsn8q/9bl1
+	10ZKLHnBa4oFZQ4s+H0koAHL9t2Rfd32smG84+JNhiQgmCV3N2AcRw/sc87cnaqRcf4K
+	JD+t53YabwuE0XX5NAHHK3BxJSssci8vEftT7r+q8xqIQ9Onu066ZhyFP53H4K7yGZbL
+	N83g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=hlIyLqrWfqluSRi7x83QEVZA95/nzwDA4fQy/TfUwek=;
+	b=RoX1Nxt4cFPumj/cgLxIW2rwDrS+H6tCDszyooDBEmK5OGgzG0UiyZ78fSI908sNhy
+	X4nr/pnW1d3PlKZj1rIH5ZoXInOqeDbs3noN6wgIVDkIGhkStbsZTVNqkEd4wn4dsrN8
+	+T3mOz8sY8aUHzOQtEu5T6XAiFJUybLuVNbxCC87C15uYtlFV2VDNa/72VgiDUhe+xDj
+	1VhBtHr+wcEM9gRdICnDbunff/3MzLlDJAxauRFqQxhNFouezZDY+HmOY3/VyD4SQkXC
+	lXKc6pknFtBX+21wJrHTVp5mKMSBHdH5V//dVWiiTaDYIk0SZKBgyRuRFRfx4y+EW84L
+	uM0Q==
+X-Gm-Message-State: AIkVDXKYdOCjNpAr1/L0O4ca90clMX6Ou8ltCj7HdCPPhgkG7nCXSAJJ4irMAftkokQAKs9nN7rdGoD8LSKNLQ==
+X-Received: by 10.200.43.212 with SMTP id n20mr18074957qtn.117.1485750710445; 
+	Sun, 29 Jan 2017 20:31:50 -0800 (PST)
 MIME-Version: 1.0
-X-OriginatorOrg: xevo.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Jan 2017 02:00:40.0935 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: e0a7ca1f-2458-4cd6-a7c7-d733c07495ab
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY1PR0101MB1593
-Subject: patching .bbclass files?
+Received: by 10.12.135.153 with HTTP; Sun, 29 Jan 2017 20:31:49 -0800 (PST)
+In-Reply-To: <CADkTA4N8iMJD1pt=E9qSsjGKAOfvMnHAwS=3h1AntxTxDXOUGQ@mail.gmail.com>
+References: <20170125103759.15880-1-freesilicon@gmail.com>
+	<CADkTA4N8iMJD1pt=E9qSsjGKAOfvMnHAwS=3h1AntxTxDXOUGQ@mail.gmail.com>
+From: Bruce Ashfield <bruce.ashfield@gmail.com>
+Date: Sun, 29 Jan 2017 23:31:49 -0500
+Message-ID: <CADkTA4MvR-tpPbyHgDsVV7xcRk5Ef6zKJF335m4vcphYCvhGWg@mail.gmail.com>
+To: David Vincent <freesilicon@gmail.com>
+Cc: Yocto Project Discussion <yocto@yoctoproject.org>
+Subject: Re: [yocto-kernel-tools][PATCH 0/1] Rework merge of feature branches
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -85,90 +74,220 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 30 Jan 2017 03:32:48 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_CY1PR0101MB1594DCF757DEC39182FB3F8FB64B0CY1PR0101MB1594_"
+X-List-Received-Date: Mon, 30 Jan 2017 04:32:00 -0000
+Content-Type: multipart/alternative; boundary=001a1135b98e523a730547484b7d
 
---_000_CY1PR0101MB1594DCF757DEC39182FB3F8FB64B0CY1PR0101MB1594_
-Content-Type: text/plain; charset="iso-8859-1"
+--001a1135b98e523a730547484b7d
+Content-Type: text/plain; charset=UTF-8
+
+On Wed, Jan 25, 2017 at 1:05 PM, Bruce Ashfield <bruce.ashfield@gmail.com>
+wrote:
+
+>
+>
+> On Wed, Jan 25, 2017 at 5:37 AM, David Vincent <freesilicon@gmail.com>
+> wrote:
+>
+>> I've recently noticed that, on Morty, feature branches of a Yocto kernel
+>> are not
+>> merged anymore. This is due to the fact that the meta-series file does not
+>> process the git merge commands anymore.
+>>
+>
+> Indeed. I dropped that functionality on purpose when I did the
+> simplification
+> and streamlining of the processing .. since I wanted to see if anyone was
+> using it.
+>
+> I now have my answer :D
+>
+> I need to have a closer look at the patch and run it through some tests
+> here, but  on my glance, you've done it correctly.
+>
+>
+>> This commit creates a new merge command to be executed when processing the
+>> kernel metadata. To solve the issue, there is also a patch to send to
+>> oe-core
+>> for kernel-yocto.bbclass, but I wait for this patch to be included since
+>> there
+>> is no point without it.
+>>
+>
+> Send that patch to me, or I'll just do the patch myself .. since yes, we
+> do need
+> to add merge to the list of valid comments when processing the meta data.
+>
+> I'll submit all the changes in my next consolidated pull request for the
+> kernels + tools.
+>
+
+I spent Friday looking into this in more detail, and to keep things
+consistent
+with how the path and config queues are handled, with all the tree
+manipulations
+pull out of the various scripts and exposed in the bbclass itself, I ended
+up with
+a different implementation of the support.
+
+The kern-tools change is the same as you did (and is your change), the
+difference
+is in the bbclass processing, where do_patch() modifies the tree, and it
+consumes
+the output of the meta-data routine .. versus the kgit-meta script itself.
+
+The work can be seen in my poky-contrib tree:
+
+http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=zedd/kernel,
+in the
+commit "kern-tools: re-enable scc merge command".
+
+These changes are on master, and passed my testing to merge feature branches
+into the branch being built.
+
+If you are able to try it out (on master), that would be great. I'm going
+to let it
+soak for a few days, and once it merges to master, it can be ported to
+morty.
+
+Cheers,
+
+Bruce
+
+
+
+>
+> Bruce
+>
+>
+>>
+>> David Vincent (1):
+>>   scc: Move merge command
+>>
+>>  tools/kgit-meta          | 14 ++++++++++++++
+>>  tools/scc                | 13 -------------
+>>  tools/scc-cmds/merge.cmd | 10 ++++++++++
+>>  3 files changed, 24 insertions(+), 13 deletions(-)
+>>  create mode 100644 tools/scc-cmds/merge.cmd
+>>
+>> --
+>> 2.11.0
+>>
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>>
+>
+>
+>
+> --
+> "Thou shalt not follow the NULL pointer, for chaos and madness await thee
+> at its end"
+>
+
+
+
+-- 
+"Thou shalt not follow the NULL pointer, for chaos and madness await thee
+at its end"
+
+--001a1135b98e523a730547484b7d
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Hello Yocto
-I am curious if there is a better way of doing this manually every time I r=
-e-synch to Yocto based BSP.
+<div dir=3D"ltr"><br><div class=3D"gmail_extra"><br><div class=3D"gmail_quo=
+te">On Wed, Jan 25, 2017 at 1:05 PM, Bruce Ashfield <span dir=3D"ltr">&lt;<=
+a href=3D"mailto:bruce.ashfield@gmail.com" target=3D"_blank">bruce.ashfield=
+@gmail.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=
+=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
+-left:1ex"><div dir=3D"ltr"><br><div class=3D"gmail_extra"><br><div class=
+=3D"gmail_quote"><span class=3D"gmail-">On Wed, Jan 25, 2017 at 5:37 AM, Da=
+vid Vincent <span dir=3D"ltr">&lt;<a href=3D"mailto:freesilicon@gmail.com" =
+target=3D"_blank">freesilicon@gmail.com</a>&gt;</span> wrote:<br><blockquot=
+e class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px s=
+olid rgb(204,204,204);padding-left:1ex">I&#39;ve recently noticed that, on =
+Morty, feature branches of a Yocto kernel are not<br>
+merged anymore. This is due to the fact that the meta-series file does not<=
+br>
+process the git merge commands anymore.<br></blockquote><div><br></div></sp=
+an><div>Indeed. I dropped that functionality on purpose when I did the simp=
+lification<br></div><div>and streamlining of the processing .. since I want=
+ed to see if anyone was<br></div><div>using it.<br><br></div><div>I now hav=
+e my answer :D<br></div><div>=C2=A0<br></div><div>I need to have a closer l=
+ook at the patch and run it through some tests<br></div><div>here, but=C2=
+=A0 on my glance, you&#39;ve done it correctly.<br></div><span class=3D"gma=
+il-"><div><br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0=
+px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+<br>
+This commit creates a new merge command to be executed when processing the<=
+br>
+kernel metadata. To solve the issue, there is also a patch to send to oe-co=
+re<br>
+for kernel-yocto.bbclass, but I wait for this patch to be included since th=
+ere<br>
+is no point without it.<br></blockquote><div><br></div></span><div>Send tha=
+t patch to me, or I&#39;ll just do the patch myself .. since yes, we do nee=
+d<br></div><div>to add merge to the list of valid comments when processing =
+the meta data.<br><br></div><div>I&#39;ll submit all the changes in my next=
+ consolidated pull request for the<br></div><div>kernels + tools.<br></div>=
+</div></div></div></blockquote><div><br></div><div>I spent Friday looking i=
+nto this in more detail, and to keep things consistent</div><div>with how t=
+he path and config queues are handled, with all the tree manipulations</div=
+><div>pull out of the various scripts and exposed in the bbclass itself, I =
+ended up with</div><div>a different implementation of the support.</div><di=
+v><br></div><div>The kern-tools change is the same as you did (and is your =
+change), the difference</div><div>is in the bbclass processing, where do_pa=
+tch() modifies the tree, and it consumes</div><div>the output of the meta-d=
+ata routine .. versus the kgit-meta script itself.</div><div><br></div><div=
+>The work can be seen in my poky-contrib tree:</div><div><br></div><div><a =
+href=3D"http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=3Dzed=
+d/kernel">http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=3Dz=
+edd/kernel</a>, in the<br></div><div>commit &quot;kern-tools: re-enable scc=
+ merge command&quot;.</div><div><br></div><div>These changes are on master,=
+ and passed my testing to merge feature branches</div><div>into the branch =
+being built.</div><div><br></div><div>If you are able to try it out (on mas=
+ter), that would be great. I&#39;m going to let it</div><div>soak for a few=
+ days, and once it merges to master, it can be ported to morty.</div><div><=
+br></div><div>Cheers,</div><div><br></div><div>Bruce</div><div><br></div><d=
+iv>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0p=
+x 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=
+=3D"ltr"><div class=3D"gmail_extra"><div class=3D"gmail_quote"><div><br></d=
+iv><div>Bruce<br></div><span class=3D"gmail-"><div>=C2=A0</div><blockquote =
+class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px sol=
+id rgb(204,204,204);padding-left:1ex">
+<br>
+David Vincent (1):<br>
+=C2=A0 scc: Move merge command<br>
+<br>
+=C2=A0tools/kgit-meta=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 | 14 ++++++++++++++=
+<br>
+=C2=A0tools/scc=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 | 13=
+ -------------<br>
+=C2=A0tools/scc-cmds/merge.cmd | 10 ++++++++++<br>
+=C2=A03 files changed, 24 insertions(+), 13 deletions(-)<br>
+=C2=A0create mode 100644 tools/scc-cmds/merge.cmd<br>
+<span class=3D"gmail-m_7767945799124234993HOEnZb"><font color=3D"#888888"><=
+br>
+--<br>
+2.11.0<br>
+<br>
+--<br>
+______________________________<wbr>_________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.org<wbr>/listinfo/yocto</a><=
+br>
+</font></span></blockquote></span></div><span class=3D"gmail-HOEnZb"><font =
+color=3D"#888888"><br><br clear=3D"all"><br>-- <br><div class=3D"gmail-m_77=
+67945799124234993gmail_signature">&quot;Thou shalt not follow the NULL poin=
+ter, for chaos and madness await thee at its end&quot;</div>
+</font></span></div></div>
+</blockquote></div><br><br clear=3D"all"><div><br></div>-- <br><div class=
+=3D"gmail_signature">&quot;Thou shalt not follow the NULL pointer, for chao=
+s and madness await thee at its end&quot;</div>
+</div></div>
 
-Say, I have a patch or customization I want to try on .bbclass files (inste=
-ad of .bb or .bbappend, or the source files that are fetched.)
-The reason for this is sometimes I want to try the latest fix to the BSP wh=
-ile building old versino of my image, or debbuging image by modifying the b=
-uild system files.
-
-I think by using .bbappend files I can try modification to the .bb file beh=
-aviros, but it does not for .bbclass files.
-I could add slightly modified xxx.bbclass to my own layer so that it may ov=
-erride what is available in poky/meta/..., but it may mean I just duplicate=
- a lot of bitbake related files in my layer for just a few lines of changes=
-.
-
-'repo' having a feature copying files when repositories are synched.  This =
-may work for me?
-
-Ideally, the poky and other remote gits have branches or releases that have=
- the patches I want to try, or I should be using the latest releases that s=
-hould include meaningful fixes already.
-But it is not possible always.
-
-
---_000_CY1PR0101MB1594DCF757DEC39182FB3F8FB64B0CY1PR0101MB1594_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
-</head>
-<body dir=3D"ltr">
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
--family:Calibri,Arial,Helvetica,sans-serif;" dir=3D"ltr">
-<p></p>
-<div><span style=3D"font-size: 12pt;">Hello Yocto</span><br>
-</div>
-<div>I am curious if there is a better way of doing this manually every tim=
-e I re-synch to Yocto based BSP.</div>
-<div><br>
-</div>
-<div>Say, I have a patch or customization I want to try on .bbclass files (=
-instead of .bb or .bbappend, or the source files that are fetched.)</div>
-<div>The reason for this is sometimes I want to try the latest fix to the B=
-SP while building old versino of my image, or debbuging image by modifying =
-the build system files.</div>
-<div><br>
-</div>
-<div>I think by using .bbappend files I can try modification to the .bb fil=
-e behaviros, but it does not for .bbclass files.</div>
-<div>I could add slightly modified xxx.bbclass to my own layer so that it m=
-ay override what is available in poky/meta/..., but it may mean I just dupl=
-icate a lot of bitbake related files in my layer for just a few lines of ch=
-anges.</div>
-<div><br>
-</div>
-<div>'repo' having a feature copying files when repositories are synched. &=
-nbsp;This may work for me?</div>
-<div><br>
-</div>
-<div>Ideally, the poky and other remote gits have branches or releases that=
- have the patches I want to try, or I should be using the latest releases t=
-hat should include meaningful fixes already.</div>
-<div>But it is not possible always.</div>
-<div><br>
-</div>
-<p></p>
-</div>
-</body>
-</html>
-
---_000_CY1PR0101MB1594DCF757DEC39182FB3F8FB64B0CY1PR0101MB1594_--
+--001a1135b98e523a730547484b7d--
