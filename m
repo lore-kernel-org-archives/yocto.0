@@ -1,33 +1,41 @@
-Return-Path: <jose.a.lamego@linux.intel.com>
+Return-Path: <gary@mlbassoc.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 51624E007EB; Mon, 30 Jan 2017 15:31:47 -0800 (PST)
+	id 49F8DE00938; Mon, 30 Jan 2017 23:09:14 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [192.55.52.43 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 94303E00405
-	for <yocto@yoctoproject.org>; Mon, 30 Jan 2017 15:31:45 -0800 (PST)
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-	by fmsmga105.fm.intel.com with ESMTP; 30 Jan 2017 15:31:45 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.33,312,1477983600"; d="scan'208";a="815212807"
-Received: from jalamego-mobl2.zpn.intel.com ([10.219.128.123])
-	by FMSMGA003.fm.intel.com with ESMTP; 30 Jan 2017 15:31:45 -0800
-From: Jose Lamego <jose.a.lamego@linux.intel.com>
+Received: from mail.analogue-micro.com (mail.analogue-micro.com
+	[217.144.149.242])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D789FE007EB
+	for <yocto@yoctoproject.org>; Mon, 30 Jan 2017 23:09:10 -0800 (PST)
+Received: by mail.analogue-micro.com (Postfix, from userid 999)
+	id 0317D68A019; Tue, 31 Jan 2017 07:09:07 +0000 (GMT)
+Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
+	by mail.analogue-micro.com (Postfix) with ESMTP id EEC7568A019;
+	Tue, 31 Jan 2017 07:09:02 +0000 (GMT)
+Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
+	by zeus.mlbassoc.com (Postfix) with ESMTP id 1F3BD6740322;
+	Tue, 31 Jan 2017 08:09:02 +0100 (CET)
 To: yocto@yoctoproject.org
-Date: Mon, 30 Jan 2017 17:31:30 -0600
-Message-Id: <1485819090-16001-3-git-send-email-jose.a.lamego@linux.intel.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1485819090-16001-1-git-send-email-jose.a.lamego@linux.intel.com>
-References: <1485819090-16001-1-git-send-email-jose.a.lamego@linux.intel.com>
-Subject: [patchwork][PATCH 2/2] series.py: Add POST call
+References: <f13af171-a99e-cfb4-176b-4c1a5d459c44@mlbassoc.com>
+	<3716500.351XhGvxqH@peggleto-mobl.ger.corp.intel.com>
+	<fca382f4-53b0-55e2-e635-e78e93363a46@mlbassoc.com>
+	<1539248.F6glg5RPsy@peggleto-mobl.ger.corp.intel.com>
+	<d8c31717-b728-65ef-782c-10918fb331bb@mlbassoc.com>
+	<1483534455.28169.46.camel@intel.com>
+	<61560e1d-6f14-58ec-0a87-36320fe8c0d8@mlbassoc.com>
+From: Gary Thomas <gary@mlbassoc.com>
+Message-ID: <6be2ac85-ea27-993e-faff-f3c4a8a53ecf@mlbassoc.com>
+Date: Tue, 31 Jan 2017 08:09:01 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.7.0
+MIME-Version: 1.0
+In-Reply-To: <61560e1d-6f14-58ec-0a87-36320fe8c0d8@mlbassoc.com>
+Subject: Re: esdk without using Poky?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,122 +47,82 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 30 Jan 2017 23:31:47 -0000
+X-List-Received-Date: Tue, 31 Jan 2017 07:09:14 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Current view is missing a POST call, avoiding users to update
-or edit patch status or bundles.
+On 2017-01-04 14:25, Gary Thomas wrote:
+> On 2017-01-04 13:54, Patrick Ohly wrote:
+>> On Wed, 2017-01-04 at 12:05 +0100, Gary Thomas wrote:
+>>> On 2016-11-04 04:41, Paul Eggleton wrote:
+>>>> On Wed, 02 Nov 2016 07:25:13 Gary Thomas wrote:
+>>>>> I've tested your patches for this (from the OE-core mailing list)
+>>>>> and I can now build and use the eSDK for my board :-)
+>>>>
+>>>> Great!
+>>>>
+>>>>> I do have a couple observations/questions:
+>>>>>
+>>>>> * I added my missing tool with this line in my local.conf
+>>>>>       TOOLCHAIN_HOST_TASK_append = " nativesdk-ti-cgt-pru"
+>>>>>    Why did this cause many of the nativesdk tools to have to be rebuilt?
+>>>>
+>>>> So just FYI this will only work for the standard SDK, it's not the right way
+>>>> to add these tools for the eSDK - in fact it may break the eSDK due to
+>>>> bringing things into the native sysroot that shouldn't be there.
+>>>>
+>>>> At the moment I think the only way to properly add this to the eSDK is to do
+>>>> this:
+>>>>
+>>>> SDK_TARGETS += "ti-cgt-pru-native:do_populate_sysroot"
+>>>>
+>>>> We don't document this, and it's a little awkward in any case. I'll work on
+>>>> it.
+>>>
+>>> This was working great for me until I just upgraded to the latest [poky]
+>>> master (rev dbb247cac5fbf7b037e4955f9793828451723924).  With the SDK_TARGETS
+>>> line in my local.conf, I get this error:
+>>>
+>>> ERROR: Error for /local/poky-cutting-edge/meta-rainier-am335x-p8701/packages/images/magicard-demo-image_1.0.bb,
+>>> dependency ti-cgt-pru-native:do_populate_sysroot:do_populate_sysroot
+>>                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>>
+>>>  does not contain exactly one ':' character.
+>>>   Task 'rdepends' should be specified in the form 'packagename:task'
+>>>
+>>> Any ideas what changed and how I get it working again?
+>>
+>> I enhanced the error checking, and the rdepends varflag in your example
+>> indeed isn't valid. ":do_populate_sysroot" got appended twice to the
+>> recipe name. That error got ignored silently earlier.
+>>
+>> populate_sdk_ext.bbclass appends ":do_populate_sysroot" when setting
+>> do_sdk_depends[rdepends], so you should use just:
+>>
+>>    SDK_TARGETS += "ti-cgt-pru-native"
+>>
+>
+> Thanks that worked - at least I can build, I haven't checked the esdk yet.
+>
 
-This change adds POST call to series view, including the target
-patch id, which is taken from request context.
+Sadly, this is broken once again.  I just upgraded my Poky/Yocto
+to rev d45d4a5a21ab4209b87331dddf515ecdb62367fa and if I have the
+   SDK_TARGETS += "ti-cgt-pru-native"
+in my local.conf, I get this hard error:
 
-[YOCTO #10973]
+ERROR: Task do_sdk_depends in 
+/home/gary/tmp/p8701_2017-01-31/opt/amltd/poky/meta-rainier-am335x-p8701/packages/images/installer-image.bb rdepends 
+upon non-existent task do_package_write_ipk in 
+virtual:native:/home/gary/tmp/p8701_2017-01-31/opt/amltd/poky/meta-ti/recipes-ti/devtools/ti-cgt-pru_2.1.1.bb
+ERROR: Command execution failed: 1
 
-Signed-off-by: Jose Lamego <jose.a.lamego@linux.intel.com>
----
- patchwork/views/series.py | 84 +++++++++++++++++++++++++++++++++++++++++++++--
- 1 file changed, 82 insertions(+), 2 deletions(-)
+Any ideas how to proceed?
 
-diff --git a/patchwork/views/series.py b/patchwork/views/series.py
-index 1c14074..0a70232 100644
---- a/patchwork/views/series.py
-+++ b/patchwork/views/series.py
-@@ -18,9 +18,14 @@
- # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
- 
- from django.conf import settings
--from django.shortcuts import render, get_object_or_404, get_list_or_404
-+from django.shortcuts import render, render_to_response
-+from django.shortcuts import get_object_or_404, get_list_or_404
-+from django.http import HttpResponseForbidden
- from django.views.generic import View
--from patchwork.models import Project, Series, SeriesRevision, TestResult
-+from patchwork.models import Patch, Project, Bundle
-+from patchwork.models import Series, SeriesRevision, TestResult
-+from patchwork.requestcontext import PatchworkRequestContext
-+from patchwork.forms import PatchForm, CreateBundleForm
- 
- 
- class SeriesListView(View):
-@@ -53,3 +58,78 @@ class SeriesView(View):
-             'cover_letter': revision.cover_letter,
-             'revisions': revisions,
-         })
-+
-+    def post(self, request, *args, **kwargs):
-+        init_data = request.POST
-+        pa_id = init_data.get('patch', None)
-+        curr_rev = init_data.get('rev', None)
-+        patch = get_object_or_404(Patch, id=pa_id)
-+        series = get_object_or_404(Series, pk=kwargs['series'])
-+        context = PatchworkRequestContext(request)
-+        context.project = patch.project
-+        editable = patch.is_editable(request.user)
-+
-+        revisions = get_list_or_404(SeriesRevision, series=series)
-+        for revision in revisions:
-+            revision.patch_list = revision.ordered_patches().\
-+                select_related('state', 'submitter')
-+            revision.test_results = TestResult.objects \
-+                    .filter(revision=revision, patch=None) \
-+                    .order_by('test__name').select_related('test')
-+
-+        form = None
-+        createbundleform = None
-+
-+        if editable:
-+            form = PatchForm(instance=patch)
-+        if request.user.is_authenticated():
-+            createbundleform = CreateBundleForm()
-+
-+        if request.method == 'POST':
-+            action = request.POST.get('action', None)
-+            if action:
-+                action = action.lower()
-+
-+            if action == 'createbundle':
-+                bundle = Bundle(owner=request.user, project=patch.project)
-+                createbundleform = CreateBundleForm(instance=bundle,
-+                                                    data=request.POST)
-+                if createbundleform.is_valid():
-+                    createbundleform.save()
-+                    bundle.append_patch(patch)
-+                    bundle.save()
-+                    createbundleform = CreateBundleForm()
-+                    context.add_message('Bundle %s created' % bundle.name)
-+
-+            elif action == 'addtobundle':
-+                bundle = get_object_or_404(
-+                    Bundle, id=request.POST.get('bundle_id'))
-+                try:
-+                    bundle.append_patch(patch)
-+                    bundle.save()
-+                    context.add_message('Patch added to bundle "%s"' %
-+                                        bundle.name)
-+                except Exception as ex:
-+                    context.add_message("Couldn't add patch '%s' to bundle %s:\
-+ %s" % (patch.name, bundle.name, ex.message))
-+
-+            # all other actions require edit privs
-+            elif not editable:
-+                return HttpResponseForbidden()
-+
-+            elif action is None:
-+                form = PatchForm(data=request.POST, instance=patch)
-+                if form.is_valid():
-+                    form.save()
-+                    context.add_message('Patch ID: %s updated' % patch.pk)
-+
-+        context['series'] = series
-+        context['patchform'] = form
-+        context['createbundleform'] = createbundleform
-+        context['project'] = patch.project
-+        context['revisions'] = revisions
-+        context['test_results'] = TestResult.objects \
-+            .filter(revision=None, patch=patch) \
-+            .order_by('test__name').select_related('test')
-+
-+        return render_to_response('patchwork/series.html', context)
+Thanks
+
 -- 
-1.9.1
-
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
