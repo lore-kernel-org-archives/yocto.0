@@ -1,67 +1,65 @@
 Return-Path: <patrick.ohly@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B2C44E009AA; Mon, 30 Jan 2017 23:48:36 -0800 (PST)
+	id 5F8AEE00A0A; Mon, 30 Jan 2017 23:48:45 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.214.48 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_LOW,
+	RCVD_IN_SORBS_SPAM autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.223.169 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.223.169 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.214.48 listed in dnsbl.sorbs.net]
-Received: from mail-it0-f48.google.com (mail-it0-f48.google.com
-	[209.85.214.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4E62CE009CF
-	for <yocto@yoctoproject.org>; Mon, 30 Jan 2017 23:48:32 -0800 (PST)
-Received: by mail-it0-f48.google.com with SMTP id c7so119626448itd.1
-	for <yocto@yoctoproject.org>; Mon, 30 Jan 2017 23:48:32 -0800 (PST)
+Received: from mail-io0-f169.google.com (mail-io0-f169.google.com
+	[209.85.223.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 015B8E009AA
+	for <yocto@yoctoproject.org>; Mon, 30 Jan 2017 23:48:38 -0800 (PST)
+Received: by mail-io0-f169.google.com with SMTP id j13so125589782iod.3
+	for <yocto@yoctoproject.org>; Mon, 30 Jan 2017 23:48:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=from:to:cc:subject:date:message-id:mime-version:in-reply-to
-	:references:content-transfer-encoding;
-	bh=E5rEsfwxaAT2EPdesdK+F8Jfja4Fakc1p8br0VrfV60=;
-	b=qGLmTeumzC/AL9Y6eFLpIKjzcgQlLr8iP/EaGRZcRjb/mqVyNRXMsO8ssD+pf/lUvF
-	rmEiB6siaCUq8WQD1y/iTdYUUFaGNzpyXQgUEfx/PFrZxRCozTg5uwIhQHDIfU+eckNT
-	Yva8dFVYTC97AvwA/qxJZVG1g9eSic4RuzzBmMIn3zrVV+RRG10tgOd2KRGlZppiJ89c
-	hEYC/lEhmiwkCmueMqJS4+xCAItw10pUrNpZYKAdP1mgM87RkOsj2D6Shy0tfP/iJdIE
-	HdzqwgqiZA1zNW2lOqAq98vR5Leik9PJCYSLilt8XPKU2PqicBwIt32FjxSmYAr7A73x
-	bIIQ==
+	h=from:to:cc:subject:date:message-id:in-reply-to:references;
+	bh=WgCcd5hV1xOXWXu090CP43sQhhL2t2NlKuIkip8hftg=;
+	b=CHruWwXlGs3dHG1EkogbOFuwFbckE7lSVqntwsRiFQZM1MKkUKbBEftbe3c9E7yy1x
+	qY2CFFI8HCBNtibHOlmYRomIwwKXWftFw2TjZFuM0Yv5+L6PTsZulJHPwi4N46YFedGa
+	jtcPnDzWEUmOVni0y7H0Wl9b7EyJK5U/t1r8mJARtkhM+7n3MaHVWfVBX+sZ6L0sFiNW
+	sFI/glQbY3+6x33yzMCzux526dWj8F4Y4/ebSWHn+fPDesRTDw63Ww8WGanoPX+WHbcP
+	ug9HR9VCdJSQkvuQ4qJu4DXHXdcMDxyZ4OabNnhqsNQnTTp1PC7bEKDtI71oZjp/netU
+	DiUQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-	:in-reply-to:references:content-transfer-encoding;
-	bh=E5rEsfwxaAT2EPdesdK+F8Jfja4Fakc1p8br0VrfV60=;
-	b=MfUgr1Uw/1lq1M4QnakzO4CK8VLyGVnIYRFbdtSD2ek/1RZasEvmn1slLqcMjfOAD0
-	rMzyv5QFZ0JBXsaa6/XDnXPipqDWv4VIMf8TGgi29XCyt/dbSmOMX8os6SY9jjff/slH
-	yfXcF63xvpNkmbkFhCe35yEqXCzWX4HYmD48ASPsimE22bUQ4b11A32CfWdVySDcV/l6
-	+FWeGkW7OwQb8vsXNfnMEfgOBM4J4xJclH5AlDmqutPXwXTQaQ/USZ3JoKsfPB4lDiId
-	o/1i157mWe89C5aRkua6qFLMSGhEfVUA4SnieF/Pmb1xu6LOzW0kzI9Jx6g0RjdqQa2l
-	oOPw==
-X-Gm-Message-State: AIkVDXLMPmfPU1wUnr/lyHK1fewG2E+AWgGGARSjPC2HWja+LUgrf3slRSbS+SeKL6LbK2TU
-X-Received: by 10.36.175.23 with SMTP id t23mr18218378ite.18.1485848912130;
-	Mon, 30 Jan 2017 23:48:32 -0800 (PST)
+	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+	:references;
+	bh=WgCcd5hV1xOXWXu090CP43sQhhL2t2NlKuIkip8hftg=;
+	b=MT93AwTjl96VmReZFrYZe8Me84nqzXv5xUHvolohxoXCCK1GtrN/QSJ/GFs21wFsle
+	smNDkUwy6R+TEdwWKrj6J5xTapxDSn9y0jNNfQQ4EST6byge7dv9rFo7gfOvfmvp3269
+	F4xmnm9XRsQSlNisSThpHUTC7skNcL4rbiTkVKkOevr+rM2lGBsEjzYniGvamxSEJcjY
+	69ZWJCHAdm+TBt7yv6C5nHLwGNc3HYOrNK51c/ijNnrzgW0deMvZdFcJNLvlrSE3yU5P
+	qhJVsvD9Kec9myS5FqfopRHm4tUiRzjBlhsYg8x+O1fM3P51CEY0XaDHMP7Tt01cv+gm
+	1/yw==
+X-Gm-Message-State: AIkVDXKfHjOKizSgmHzD0aCXS49/icCEfh4+CcG4GRhfYMw0UVVuAi8taohysEmf1V0OK9Bo
+X-Received: by 10.107.158.143 with SMTP id h137mr1043731ioe.43.1485848918090; 
+	Mon, 30 Jan 2017 23:48:38 -0800 (PST)
 Received: from pohly-desktop.fritz.box (p5DE8DFEB.dip0.t-ipconnect.de.
 	[93.232.223.235])
-	by smtp.gmail.com with ESMTPSA id 86sm9758942iok.8.2017.01.30.23.48.30
+	by smtp.gmail.com with ESMTPSA id 86sm9758942iok.8.2017.01.30.23.48.36
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Mon, 30 Jan 2017 23:48:31 -0800 (PST)
+	Mon, 30 Jan 2017 23:48:37 -0800 (PST)
 From: Patrick Ohly <patrick.ohly@intel.com>
 To: yocto@yoctoproject.org
-Date: Tue, 31 Jan 2017 08:48:05 +0100
-Message-Id: <6b733369fdd7b40dc0cf96f9a2e8395aa366eb1c.1485848669.git-series.patrick.ohly@intel.com>
+Date: Tue, 31 Jan 2017 08:48:07 +0100
+Message-Id: <28a45876c170ac7913df2b4ad78577bbc0b0790f.1485848669.git-series.patrick.ohly@intel.com>
 X-Mailer: git-send-email 2.11.0
-MIME-Version: 1.0
 In-Reply-To: <cover.42397547dfc6733226cafa5b4b6bbe50956b78cf.1485848669.git-series.patrick.ohly@intel.com>
 References: <cover.42397547dfc6733226cafa5b4b6bbe50956b78cf.1485848669.git-series.patrick.ohly@intel.com>
-Subject: [meta-security][PATCH 6/8] swtpm: fix compiler format warning
+Subject: [meta-security][PATCH 8/8] swtpm-wrappers: simplify using swtpm-native
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,38 +71,91 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 31 Jan 2017 07:48:36 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Tue, 31 Jan 2017 07:48:45 -0000
 
-When building for x86-64, gcc complains:
+Native tools exist in recipe specific sysroots and are normally
+not meant to be called from outside a build. But that's what we
+need to do when using swtpm-native together with qemu, so these
+wrappers make that possible by setting up the necessary environment
+and hiding the internal paths.
 
-tpm_ioctl.c:866:9: error: format ‘%llx’ expects argument of type ‘long long unsigned int’, but argument 2 has type ‘long unsigned int’ [-Werror=format=]
-|          printf("ptm capability is 0x%llx\n", (uint64_t)devtoh64(is_chardev, cap));
-|          ^
-| cc1: all warnings being treated as errors
+Invoking swtpm_setup.sh gets some special support: swtpm_setup.sh runs
+two daemons, tcsd and swtpm, of which tcsd insists on running as root
+or tss. In practice, running as the normal user is perfectly
+fine. Instead of patching the upstream source code, the approach take
+here is to run under pseudo.
 
-Casting to "long long unsigned" matches the format specifier in all
-cases, including those where "long long" is larger than 64 bits.
+Usage examples:
+
+$ bitbake swtpm-wrappers
+$ mkdir -p my-machine/myvtpm0
+$ tmp-glibc/work/x86_64-linux/swtpm-wrappers/1.0-r0/swtpm_setup_oe.sh --tpm-state my-machine/myvtpm0
+Starting vTPM manufacturing as root:root @ Mon 16 Jan 2017 04:09:21 PM CET
+TPM is listening on TCP port 55675.
+-rw------- 1 root root 65 Jan 16 16:09 /tmp/tmp.2yJBKTTwRk
+Ending vTPM manufacturing @ Mon 16 Jan 2017 04:09:21 PM CET
+
+The resulting "my-machine/myvtpm0" can then be used with swtpm (this time,
+it really has to be running as root because it uses CUSES to create /dev/vtpm0)
+and qemu-tpm (patches not currently in OE-core, have to be applied manually):
+
+$ sudo env TPM_DIR=my-machine/myvtpm0 tmp-glibc/work/x86_64-linux/swtpm-wrappers/1.0-r0/swtpm_cuse_oe.sh -n vtpm0
+$ sudo chmod a+rw /dev/vtpm0
+$ runqemu ... 'qemuparams=-tpmdev cuse-tpm,id=tpm0,path=/dev/vtpm0 -device tpm-tis,tpmdev=tpm0'
 
 Signed-off-by: Patrick Ohly <patrick.ohly@intel.com>
 ---
- recipes-tpm/swtpm/files/fix_signed_issue.patch | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ recipes-tpm/swtpm/swtpm-wrappers.bb | 41 ++++++++++++++++++++++++++++++-
+ 1 file changed, 41 insertions(+)
+ create mode 100644 recipes-tpm/swtpm/swtpm-wrappers.bb
 
-diff --git a/recipes-tpm/swtpm/files/fix_signed_issue.patch b/recipes-tpm/swtpm/files/fix_signed_issue.patch
-index 427df62..140585b 100644
---- a/recipes-tpm/swtpm/files/fix_signed_issue.patch
-+++ b/recipes-tpm/swtpm/files/fix_signed_issue.patch
-@@ -42,7 +42,7 @@ Index: git/src/swtpm_ioctl/tpm_ioctl.c
-          }
-          /* no tpm_result here */
- -        printf("ptm capability is 0x%lx\n", (uint64_t)devtoh64(is_chardev, cap));
--+        printf("ptm capability is 0x%llx\n", (uint64_t)devtoh64(is_chardev, cap));
-++        printf("ptm capability is 0x%llx\n", (long long unsigned)devtoh64(is_chardev, cap));
-  
-      } else if (!strcmp(command, "-i")) {
-          init.u.req.init_flags = htodev32(is_chardev, PTM_INIT_FLAG_DELETE_VOLATILE);
+diff --git a/recipes-tpm/swtpm/swtpm-wrappers.bb b/recipes-tpm/swtpm/swtpm-wrappers.bb
+new file mode 100644
+index 0000000..676c35e
+--- /dev/null
++++ b/recipes-tpm/swtpm/swtpm-wrappers.bb
+@@ -0,0 +1,41 @@
++SUMMARY = "SWTPM - OpenEmbedded wrapper scripts for native swtpm tools"
++LICENSE = "MIT"
++DEPENDS = "swtpm-native tpm-tools-native"
++
++inherit native
++
++# The whole point of the recipe is to make files available
++# for use after the build is done, so don't clean up...
++RM_WORK_EXCLUDE += "${PN}"
++
++do_create_wrapper () {
++    cat >${WORKDIR}/swtpm_setup_oe.sh <<EOF
++#! /bin/sh
++#
++# Wrapper around swtpm_setup.sh which adds parameters required to
++# run the setup as non-root directly from the native sysroot.
++
++PATH="${bindir}:${base_bindir}:${sbindir}:${base_sbindir}:\$PATH"
++export PATH
++
++# tcsd only allows to be run as root or tss. Pretend to be root...
++exec env ${FAKEROOTENV} ${FAKEROOTCMD} swtpm_setup.sh --config ${STAGING_DIR_NATIVE}/etc/swtpm_setup.conf "\$@"
++EOF
++
++    cat >${WORKDIR}/swtpm_cuse_oe.sh <<EOF
++#! /bin/sh
++#
++# Wrapper around swtpm_cuse which makes it easier to invoke
++# the right binary. Has to be run as root with TPM_PATH set
++# to a directory initialized as virtual TPM by swtpm_setup_oe.sh.
++
++PATH="${bindir}:${base_bindir}:${sbindir}:${base_sbindir}:\$PATH"
++export PATH
++
++exec swtpm_cuse "\$@"
++EOF
++
++    chmod a+rx ${WORKDIR}/*.sh
++}
++
++addtask do_create_wrapper before do_build after do_prepare_recipe_sysroot
 -- 
 git-series 0.9.1
 
