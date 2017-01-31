@@ -1,41 +1,62 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <patrick.ohly@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 49F8DE00938; Mon, 30 Jan 2017 23:09:14 -0800 (PST)
+	id 5EFE2E00938; Mon, 30 Jan 2017 23:48:17 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.223.176 listed in dnsbl.sorbs.net]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.analogue-micro.com (mail.analogue-micro.com
-	[217.144.149.242])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D789FE007EB
-	for <yocto@yoctoproject.org>; Mon, 30 Jan 2017 23:09:10 -0800 (PST)
-Received: by mail.analogue-micro.com (Postfix, from userid 999)
-	id 0317D68A019; Tue, 31 Jan 2017 07:09:07 +0000 (GMT)
-Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
-	by mail.analogue-micro.com (Postfix) with ESMTP id EEC7568A019;
-	Tue, 31 Jan 2017 07:09:02 +0000 (GMT)
-Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
-	by zeus.mlbassoc.com (Postfix) with ESMTP id 1F3BD6740322;
-	Tue, 31 Jan 2017 08:09:02 +0100 (CET)
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.223.176 listed in list.dnswl.org]
+Received: from mail-io0-f176.google.com (mail-io0-f176.google.com
+	[209.85.223.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ABEBDE007EB
+	for <yocto@yoctoproject.org>; Mon, 30 Jan 2017 23:48:15 -0800 (PST)
+Received: by mail-io0-f176.google.com with SMTP id j13so125584926iod.3
+	for <yocto@yoctoproject.org>; Mon, 30 Jan 2017 23:48:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=from:to:cc:subject:date:message-id;
+	bh=49thtDDAhDXFoh71InuGIEiakTJ/fIhSHhDNYUV/YmQ=;
+	b=Oj+ayfuY/AH464EK5jY2QWBdVlQdFI9jP4rUAnr3uTou2N2UJpwRfrR16ae7RJdQX2
+	bK0hOJeiKhP+etJpkymcr2iXcw298NfT5Xh1XmxcZPScOyFeH9RbIdZbW9ka4lR9sKh7
+	nvmY5uQEsysv1+NLHxQQZwR+NJB1+K3mALkQeuZ6QkRVnYeI7GYbyKZdh97cf6b6t+8r
+	zwoGc6XUUxUdUh291tDKgF3HHI+cvyLdCAbFuvkKj18+zE2ATb5pGzPKnvUdUFGgHkS1
+	8RqXHxtqxj73996W2927WXqXFXOMWr5qsxwBXClkoKZKcEDBElbSqoIEiBdre9zkCVVL
+	T66g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=49thtDDAhDXFoh71InuGIEiakTJ/fIhSHhDNYUV/YmQ=;
+	b=AKY4UGgNfWRssP9srPP2p0Eeuo2G6WDRyAZSqlCYH7mMStF/oWuKolw1ep7Mt/I8iP
+	jB06o2/R0QW8eSGySKeQLOfZDTpmYlcTlHtkgRw/ypRT3nkoLFW8VKAaXX7pk8f7lKlS
+	2tA5GsYMsYtgGmxrPe/D1k3slhuRlBKL+Db9q6F8RU7A5ZVjCuSbERcTqLgZOZmBaz05
+	sqMGlC6XYqdaIR/hbvbR3trUsMmPgwqX1tJJVSjinyMJWaKHo4OfCV7kVTRMZwNNCtZr
+	kZB3mwSY1FPz35v43DG7Zp/i5EW2s0s1ELK22MIPLTSfNIPg3GozzaExxdRBQCQUcwY7
+	2DTA==
+X-Gm-Message-State: AIkVDXJsIgvVg2lVi8hytogs1TP3VKh22nWlSAYMF4AeI56JvLGuTxFz9ikQlUMD5iaQetJD
+X-Received: by 10.107.16.156 with SMTP id 28mr22322563ioq.228.1485848894676;
+	Mon, 30 Jan 2017 23:48:14 -0800 (PST)
+Received: from pohly-desktop.fritz.box (p5DE8DFEB.dip0.t-ipconnect.de.
+	[93.232.223.235])
+	by smtp.gmail.com with ESMTPSA id 86sm9758942iok.8.2017.01.30.23.48.12
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Mon, 30 Jan 2017 23:48:13 -0800 (PST)
+From: Patrick Ohly <patrick.ohly@intel.com>
 To: yocto@yoctoproject.org
-References: <f13af171-a99e-cfb4-176b-4c1a5d459c44@mlbassoc.com>
-	<3716500.351XhGvxqH@peggleto-mobl.ger.corp.intel.com>
-	<fca382f4-53b0-55e2-e635-e78e93363a46@mlbassoc.com>
-	<1539248.F6glg5RPsy@peggleto-mobl.ger.corp.intel.com>
-	<d8c31717-b728-65ef-782c-10918fb331bb@mlbassoc.com>
-	<1483534455.28169.46.camel@intel.com>
-	<61560e1d-6f14-58ec-0a87-36320fe8c0d8@mlbassoc.com>
-From: Gary Thomas <gary@mlbassoc.com>
-Message-ID: <6be2ac85-ea27-993e-faff-f3c4a8a53ecf@mlbassoc.com>
-Date: Tue, 31 Jan 2017 08:09:01 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.7.0
-MIME-Version: 1.0
-In-Reply-To: <61560e1d-6f14-58ec-0a87-36320fe8c0d8@mlbassoc.com>
-Subject: Re: esdk without using Poky?
+Date: Tue, 31 Jan 2017 08:47:59 +0100
+Message-Id: <cover.42397547dfc6733226cafa5b4b6bbe50956b78cf.1485848669.git-series.patrick.ohly@intel.com>
+X-Mailer: git-send-email 2.11.0
+Subject: [meta-security][PATCH 0/8] tpm: virtual TPM for qemu
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,82 +68,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 31 Jan 2017 07:09:14 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 31 Jan 2017 07:48:17 -0000
 
-On 2017-01-04 14:25, Gary Thomas wrote:
-> On 2017-01-04 13:54, Patrick Ohly wrote:
->> On Wed, 2017-01-04 at 12:05 +0100, Gary Thomas wrote:
->>> On 2016-11-04 04:41, Paul Eggleton wrote:
->>>> On Wed, 02 Nov 2016 07:25:13 Gary Thomas wrote:
->>>>> I've tested your patches for this (from the OE-core mailing list)
->>>>> and I can now build and use the eSDK for my board :-)
->>>>
->>>> Great!
->>>>
->>>>> I do have a couple observations/questions:
->>>>>
->>>>> * I added my missing tool with this line in my local.conf
->>>>>       TOOLCHAIN_HOST_TASK_append = " nativesdk-ti-cgt-pru"
->>>>>    Why did this cause many of the nativesdk tools to have to be rebuilt?
->>>>
->>>> So just FYI this will only work for the standard SDK, it's not the right way
->>>> to add these tools for the eSDK - in fact it may break the eSDK due to
->>>> bringing things into the native sysroot that shouldn't be there.
->>>>
->>>> At the moment I think the only way to properly add this to the eSDK is to do
->>>> this:
->>>>
->>>> SDK_TARGETS += "ti-cgt-pru-native:do_populate_sysroot"
->>>>
->>>> We don't document this, and it's a little awkward in any case. I'll work on
->>>> it.
->>>
->>> This was working great for me until I just upgraded to the latest [poky]
->>> master (rev dbb247cac5fbf7b037e4955f9793828451723924).  With the SDK_TARGETS
->>> line in my local.conf, I get this error:
->>>
->>> ERROR: Error for /local/poky-cutting-edge/meta-rainier-am335x-p8701/packages/images/magicard-demo-image_1.0.bb,
->>> dependency ti-cgt-pru-native:do_populate_sysroot:do_populate_sysroot
->>                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
->>
->>>  does not contain exactly one ':' character.
->>>   Task 'rdepends' should be specified in the form 'packagename:task'
->>>
->>> Any ideas what changed and how I get it working again?
->>
->> I enhanced the error checking, and the rdepends varflag in your example
->> indeed isn't valid. ":do_populate_sysroot" got appended twice to the
->> recipe name. That error got ignored silently earlier.
->>
->> populate_sdk_ext.bbclass appends ":do_populate_sysroot" when setting
->> do_sdk_depends[rdepends], so you should use just:
->>
->>    SDK_TARGETS += "ti-cgt-pru-native"
->>
->
-> Thanks that worked - at least I can build, I haven't checked the esdk yet.
->
+I recently started using swtpm-native in combination with the qemu-tpm
+patches to simulate a virtual TPM chip in qemu. The qemu-tpm patches
+should go into OE-core, but currently usage is a bit cumbersome
+(requires root privileges and manually starting swtpm before each
+runqemu invocation), so at this time I only consider the meta-security
+changes ready and useful enough for merging.
 
-Sadly, this is broken once again.  I just upgraded my Poky/Yocto
-to rev d45d4a5a21ab4209b87331dddf515ecdb62367fa and if I have the
-   SDK_TARGETS += "ti-cgt-pru-native"
-in my local.conf, I get this hard error:
+Inside the virtual machine I used tpm-tools + trousers to set up
+sealed keys for EVM, which required fixing a few things.
 
-ERROR: Task do_sdk_depends in 
-/home/gary/tmp/p8701_2017-01-31/opt/amltd/poky/meta-rainier-am335x-p8701/packages/images/installer-image.bb rdepends 
-upon non-existent task do_package_write_ipk in 
-virtual:native:/home/gary/tmp/p8701_2017-01-31/opt/amltd/poky/meta-ti/recipes-ti/devtools/ti-cgt-pru_2.1.1.bb
-ERROR: Command execution failed: 1
+These patches were based on Armin's swtpm+trousers version update
+series which needs to be merged first to avoid merge conflicts.
 
-Any ideas how to proceed?
+Patrick Ohly (8):
+  trousers: missing libtspi.so.1 in libtspi package
+  trousers: recommend tcsd
+  trousers: tcsd.conf must be owned tss:tss
+  swtpm: enable native and nativesdk flavors
+  swtpm: depends on tpm-tools
+  swtpm: fix compiler format warning
+  swtpm: cuse packageconfig
+  swtpm-wrappers: simplify using swtpm-native
 
-Thanks
+ recipes-tpm/swtpm/files/fix_lib_search_path.patch | 64 ++++++++++++++++-
+ recipes-tpm/swtpm/files/fix_signed_issue.patch    |  2 +-
+ recipes-tpm/swtpm/swtpm-wrappers.bb               | 41 ++++++++++-
+ recipes-tpm/swtpm/swtpm_1.0.bb                    | 12 ++-
+ recipes-tpm/trousers/trousers_git.bb              |  7 +-
+ 5 files changed, 121 insertions(+), 5 deletions(-)
+ create mode 100644 recipes-tpm/swtpm/files/fix_lib_search_path.patch
+ create mode 100644 recipes-tpm/swtpm/swtpm-wrappers.bb
 
+base-commit: 6787dd986122cd6420b1f348c4550a42ed596f57
 -- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+git-series 0.9.1
 
