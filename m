@@ -1,38 +1,45 @@
-Return-Path: <anibal.limon@linux.intel.com>
+Return-Path: <donaldx.wilde@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CF3D6E0082A; Wed,  1 Feb 2017 12:11:45 -0800 (PST)
+	id 5F6E8E00546; Wed,  1 Feb 2017 12:29:04 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
 	http://www.dnswl.org/, *      medium trust
-	*      [134.134.136.20 listed in list.dnswl.org]
+	*      [134.134.136.100 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D5FA0E004D8
-	for <yocto@yoctoproject.org>; Wed,  1 Feb 2017 12:11:44 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by orsmga101.jf.intel.com with ESMTP; 01 Feb 2017 12:11:44 -0800
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E787CE004D8
+	for <yocto@yoctoproject.org>; Wed,  1 Feb 2017 12:29:01 -0800 (PST)
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+	by orsmga105.jf.intel.com with ESMTP; 01 Feb 2017 12:29:00 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="5.33,321,1477983600"; 
-	d="asc'?scan'208";a="1120835914"
-Received: from alimonb-mobl1.zpn.intel.com (HELO [10.219.128.122])
-	([10.219.128.122])
-	by fmsmga002.fm.intel.com with ESMTP; 01 Feb 2017 12:11:43 -0800
-To: yocto@yoctoproject.org
-References: <1485979978-4971-1-git-send-email-anibal.limon@linux.intel.com>
-From: =?UTF-8?B?QW7DrWJhbCBMaW3Ds24=?= <anibal.limon@linux.intel.com>
-Message-ID: <589241B8.20809@linux.intel.com>
-Date: Wed, 1 Feb 2017 14:14:48 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.3.0
+	d="scan'208,217";a="220244061"
+Received: from fmsmsx104.amr.corp.intel.com ([10.18.124.202])
+	by fmsmga004.fm.intel.com with ESMTP; 01 Feb 2017 12:29:00 -0800
+Received: from fmsmsx125.amr.corp.intel.com (10.18.125.40) by
+	fmsmsx104.amr.corp.intel.com (10.18.124.202) with Microsoft SMTP Server
+	(TLS) id 14.3.248.2; Wed, 1 Feb 2017 12:29:00 -0800
+Received: from fmsmsx106.amr.corp.intel.com ([169.254.5.63]) by
+	FMSMSX125.amr.corp.intel.com ([169.254.2.191]) with mapi id
+	14.03.0248.002; Wed, 1 Feb 2017 12:29:00 -0800
+From: "Wilde, DonaldX" <donaldx.wilde@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Installing iperf3 causes strange image corruption
+Thread-Index: AdJ8xzXqXI6BrB6TQ+qOEs+rjz9rxg==
+Date: Wed, 1 Feb 2017 20:28:59 +0000
+Message-ID: <6CE91E52E49AA047A2349BA2FF8E4BCA1546AA31@FMSMSX106.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.1.200.108]
 MIME-Version: 1.0
-In-Reply-To: <1485979978-4971-1-git-send-email-anibal.limon@linux.intel.com>
-Cc: joshua.g.lock@intel.com
-Subject: Re: [[PATCH][yocto-autobuilder]] bin/forcebuild.py: Add a script to support force a build
+Subject: Installing iperf3 causes strange image corruption
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,272 +51,175 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 01 Feb 2017 20:11:45 -0000
-X-Groupsio-MsgNum: 34213
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature";
-	boundary="shjLm1JpS9U2J0Ae7TMNo7GI8a7kPNa6m"
+X-List-Received-Date: Wed, 01 Feb 2017 20:29:04 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_6CE91E52E49AA047A2349BA2FF8E4BCA1546AA31FMSMSX106amrcor_"
 
---shjLm1JpS9U2J0Ae7TMNo7GI8a7kPNa6m
-Content-Type: text/plain; charset=utf-8
+--_000_6CE91E52E49AA047A2349BA2FF8E4BCA1546AA31FMSMSX106amrcor_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-I know we have the remote_kick.py [1] script but i don't know if is
-currently on use also this new script support list the options in
-builders and specify custom ones via cmdline.
+Hello, Yocto co-workers -
 
-Cheers,
-	alimon
+Our project in CHD uses the poky version Daisy, which does not include iper=
+f3. We've decided that we just have to have the newer version built into ou=
+r firmware to get the results we need.
 
-[1]
-http://git.yoctoproject.org/cgit/cgit.cgi/yocto-autobuilder/tree/bin/remo=
-te_kick.py
+One of our much better - but very busy, naturally - people took the Yocto r=
+ecipes for iperf3 from poky 1.8 (fido) and adapted them for our build.
 
-On 02/01/2017 02:12 PM, An=C3=ADbal Lim=C3=B3n wrote:
-> The script supports to list avaialable builders and his options,
-> also can force a build if the builder is IDLE or not.
->=20
-> Also supports specify options via cmdline using python dictionaries
-> as string.
->=20
-> Signed-off-by: An=C3=ADbal Lim=C3=B3n <anibal.limon@linux.intel.com>
-> ---
->  bin/forcebuild.py | 183 ++++++++++++++++++++++++++++++++++++++++++++++=
-++++++++
->  1 file changed, 183 insertions(+)
->  create mode 100755 bin/forcebuild.py
->=20
-> diff --git a/bin/forcebuild.py b/bin/forcebuild.py
-> new file mode 100755
-> index 0000000..5fe61a0
-> --- /dev/null
-> +++ b/bin/forcebuild.py
-> @@ -0,0 +1,183 @@
-> +#!/usr/bin/env python
-> +
-> +# YoctoAutobuilder force build script
-> +#
-> +# Copyright (C) 2017 Intel Corporation
-> +#
-> +# This program is free software; you can redistribute it and/or modify=
+Unfortunately, what happens is that somewhere along the line after the init=
+ial patch and compilation, something in our image gets radically corrupted.=
+ With IMAGE_INCLUDE +=3D "iperf3" set, the image is corrupted. Horrible res=
+ults occur including that much of our NVRAM content becomes invisible and w=
+e get dumped into some kind of emergency debugging shell after about 6.3 se=
+conds.
 
-> +# it under the terms of the GNU General Public License version 2 as
-> +# published by the Free Software Foundation.
-> +#
-> +# This program is distributed in the hope that it will be useful,
-> +# but WITHOUT ANY WARRANTY; without even the implied warranty of
-> +# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-> +# GNU General Public License for more details.
-> +#
-> +# You should have received a copy of the GNU General Public License al=
-ong
-> +# with this program; if not, write to the Free Software Foundation, In=
-c.,
-> +# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-> +
-> +import urllib2
-> +import urllib
-> +import cookielib
-> +import uuid
-> +import sys
-> +import argparse
-> +import json
-> +from bs4 import BeautifulSoup
-> +
-> +class YoctoAutobuilderAPI(object):
-> +    def __init__(self, server):
-> +        self.server =3D server
-> +        self.opener =3D urllib2.build_opener(
-> +                urllib2.HTTPCookieProcessor(cookielib.CookieJar()))
-> +
-> +    def login(self, user, passwd):
-> +        data =3D urllib.urlencode(dict(username=3Duser,
-> +                                     passwd=3Dpasswd))
-> +        url =3D self.server + "/login"
-> +        request =3D urllib2.Request(url, data)
-> +        result =3D self.opener.open(request).read()
-> +        if result.find("The username or password you entered were not =
-correct") > 0:
-> +            print("Invalid username or password")
-> +            return 1
-> +        return 0
-> +
-> +    def _get_builders(self):
-> +        url =3D "%s/json/builders/?as_text=3D1" % (self.server)
-> +        request =3D urllib2.Request(url)
-> +        json_raw_data =3D self.opener.open(request)
-> +
-> +        return json.load(json_raw_data)
-> +
-> +    def list_builders(self):
-> +        builders =3D self._get_builders()
-> +
-> +        if builders:
-> +            print('Available builders:\n')
-> +            for builder in builders:
-> +                print(builder)
-> +            return 0
-> +        else:
-> +            print('No available builders in this server.')
-> +            return 1
-> +
-> +    def _get_options_by_builder(self, builder):
-> +        options =3D {}
-> +
-> +        url =3D "%s/builders/%s" % (self.server, builder)
-> +        request =3D urllib2.Request(url)
-> +        html =3D self.opener.open(request).read()
-> +
-> +        inputs =3D BeautifulSoup(html, 'lxml').find_all('input')
-> +        for input in inputs:
-> +            type =3D input.attrs['type']
-> +            if  type =3D=3D 'submit':
-> +                continue
-> +
-> +            options[input.attrs['name']] =3D input.attrs['value']
-> +
-> +        selects =3D BeautifulSoup(html, 'lxml').find_all('select')
-> +        for select in selects:
-> +            value =3D select.find_all('option', selected=3DTrue)[0].ge=
-tText()
-> +            options[select.attrs['name']] =3D value
-> +
-> +        return options
-> +
-> +    def list_options(self, builder):
-> +        builders =3D self._get_builders()
-> +        if not builder in builders:
-> +            print('Builder %s specified isn\'t available' % builder)
-> +            return 1
-> +
-> +        opts =3D self._get_options_by_builder(builder)
-> +        print('Available options in builder %s:\n' % (builder))
-> +        for name in opts:
-> +            value =3D opts[name]
-> +            print('Name: %s, Default value: %s' % (name, value))
-> +
-> +    def force_build(self, builder, opts, idle_check=3DFalse):
-> +        builders =3D self._get_builders()
-> +        if not builder in builders:
-> +            print('Builder specified isn\'t available')
-> +            return 1
-> +
-> +        state =3D builders[builder]['state']
-> +        if idle_check and not state =3D=3D 'idle':
-> +            print('Builder %s specified isn\'t IDLE, current state %s'=
- \
-> +                    % (builder, state))
-> +            return 1
-> +
-> +        opts =3D eval(opts) # FIXME: transform string argument into di=
-ctionary, security?
-> +        current_opts =3D self._get_options_by_builder(builder)
-> +        for opt in opts:
-> +            if not opt in current_opts:
-> +                print('Option %s isn\'t supported by builder %s' % \
-> +                        (opt, builder))
-> +                return 1
-> +            else:
-> +                current_opts[opt] =3D opts[opt]
-> +
-> +        url_params =3D urllib.urlencode(current_opts)
-> +        url =3D "%s/builders/%s/force" % (self.server, builder)
-> +        request =3D urllib2.Request(url, url_params)
-> +        result =3D self.opener.open(request)
-> +        if 'Forced build' in result.read():
-> +            return 0
-> +        else:
-> +            print("Failed to force build")
-> +            return 1
-> +
-> +def main():
-> +    parser =3D argparse.ArgumentParser(description=3D"Yocto Autobuilde=
-r force build script",
-> +            add_help=3DFalse)
-> +    parser.add_argument('-s', '--server', help=3D'Server URL',
-> +            action=3D'store', required=3DTrue)
-> +
-> +    parser.add_argument('-u', '--username', action=3D'store', required=
-=3DTrue)
-> +    parser.add_argument('-p', '--password', action=3D'store', required=
-=3DTrue)
-> +
-> +    group =3D parser.add_mutually_exclusive_group()
-> +    group.add_argument('--list-builders', help=3D'List available build=
-ers',
-> +            action=3D'store_true')
-> +    group.add_argument('--list-options', help=3D'List options by build=
-er',
-> +            action=3D'store', metavar=3D'BUILDER')
-> +    group.add_argument('--force-build', help=3D'Force build by builder=
-',
-> +            action=3D'store', metavar=3D'BUILDER')
-> +    group.add_argument('--force-build-idle', help=3D'Force build by bu=
-ilder if is idle',
-> +            action=3D'store', metavar=3D'BUILDER')
-> +
-> +    parser.add_argument('-o', '--options', help=3D'Custom options by o=
-peration',
-> +            action=3D'store')
-> +
-> +    parser.add_argument('-d', '--debug', help=3D'Enable debug output',=
+Here's what I want to do, and please tell me if I'm all wet. What I want to=
+ do is to find an intermediate target that will enable me to activate every=
+ task up through populate_sysroot so that I can do a diff tree on three ver=
+sions of tmp/sysroots: one with no iperf recipes, one with everything enabl=
+ed, and one with everything but the image including process activating iper=
+f3.
 
-> +            action=3D'store_true')
-> +    parser.add_argument('-q', '--quiet', help=3D'Print only errors',
-> +            action=3D'store_true')
-> +
-> +    parser.add_argument('-h', '--help', action=3D'help', default=3Darg=
-parse.SUPPRESS,
-> +                        help=3D'show this help message and exit')
-> +
-> +    args =3D parser.parse_args()
-> +
-> +    api =3D YoctoAutobuilderAPI(args.server)
-> +    if api.login(args.username, args.password):
-> +        return 1
-> +
-> +    if args.list_builders:
-> +        return api.list_builders()
-> +    elif args.list_options:
-> +        return api.list_options(args.list_options)
-> +    elif args.force_build:
-> +        return api.force_build(args.force_build, args.options)
-> +    elif args.force_build_idle:
-> +        return api.force_build(args.force_build_idle, args.options, id=
-le_check=3DTrue)
-> +
-> +if __name__ =3D=3D '__main__':
-> +    try:
-> +        ret =3D main()
-> +    except Exception:
-> +        ret =3D 1
-> +        import traceback
-> +        traceback.print_exc()
-> +    sys.exit(ret)
->=20
+The strange thing is that iperf3 built from the recipes does work properly =
+even with the image whacked to un-usability. I suspected that some global v=
+ariable was getting overridden but I can't see it in the iperf3-specific re=
+cipe and autoconf  patch.
+
+I do see that iperf3 is being added to a Yocto-generated file called toe.c,=
+ but I don't know what that means yet.
+
+In particular, this is a portion of our log that I want to look at, though =
+what is happening to make it fail to generate this file correctly at this p=
+oint is as yet unclear:
+
+starting pid 1363, tty '': '/etc/init.d/rcS'
+can't run '/etc/init.d/rcS': No such file or directory
+
+Please press Enter to activate this console.
+starting pid 1364, tty '': '-/bin/sh'
 
 
---shjLm1JpS9U2J0Ae7TMNo7GI8a7kPNa6m
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
+Don Wilde
+Intel Connected Home Division
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2
+--_000_6CE91E52E49AA047A2349BA2FF8E4BCA1546AA31FMSMSX106amrcor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-iQIcBAEBAgAGBQJYkkG6AAoJEGJqcE9h3glgipUP/3Yy0xww6xiecVy2T7u4Egsi
-t5ZKhZBPhxJE0NdMSaIE18KzsbgD+jHlbSMBiTEmUYQEUTKisGw95Mv9XaSvIEQw
-SVP3w3AQmuOKc6XBMI3PTzer24wTe6qb+HjUlT6JvP3hJoigDefIDvjjSGgaQZvd
-boexBU541rAhXrCS/ZTV1tM4qfFx57VD56VD42bOV677g3dkf46O9QZtH+EVtt8Z
-1cnUfj5gyN4R+IlTJM3BF8dnuDen/mTKpZHmOS5OE4RuJU71pCbB+/TLOq8jn97k
-xGVIjCvWIzK8DynhH6P9z4DMO2wkvky7bIvExIB8mxftrJs8gQOexAlG3R9A3h90
-41FdFjab3DhsU/0tqNYJwe/q904OLC2STwfnEilWWZ74B9rN0ru+UCqRadz6OMk8
-ePe//0n5p5WMtuQkleGoapvQOaqhD92xktd+eZ/IuzP1irX6n9ueelEECDH6Vi3l
-ch2Sy+GkUPY/jlqMjQFxHOF5U0BCE82c9skgbmL14Cl4QuZCn7w1YxCMS6hPTGUZ
-gqNuY7preXcypLwcE7sawhsDYceYH4XjwUrGBjQneIIOsuH0Vu7qtcWN0StXjbuq
-DM35iQzByH+bZpxpHy/fxnjeKVv6l+ukE1qMUPrRZ/tnLApws73b9LWBfIHE3Vjm
-27jTjkiFwpS+0Z+hH5av
-=vQbY
------END PGP SIGNATURE-----
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Brush Script MT";
+	panose-1:3 6 8 2 4 4 6 7 3 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hello, Yocto co-workers -<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Our project in CHD uses the poky version Daisy, whic=
+h does not include iperf3. We&#8217;ve decided that we just have to have th=
+e newer version built into our firmware to get the results we need.<o:p></o=
+:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">One of our much better &#8211; but very busy, natura=
+lly &#8211; people took the Yocto recipes for iperf3 from poky 1.8 (fido) a=
+nd adapted them for our build.
+<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Unfortunately, what happens is that somewhere along =
+the line after the initial patch and compilation, something in our image ge=
+ts radically corrupted. With IMAGE_INCLUDE &#43;=3D &#8220;iperf3&#8221; se=
+t, the image is corrupted. Horrible results occur including
+ that much of our NVRAM content becomes invisible and we get dumped into so=
+me kind of emergency debugging shell after about 6.3 seconds.<o:p></o:p></p=
+>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Here&#8217;s what I want to do, and please tell me i=
+f I&#8217;m all wet. What I want to do is to find an intermediate target th=
+at will enable me to activate every task up through populate_sysroot so tha=
+t I can do a diff tree on three versions of tmp/sysroots:
+ one with no iperf recipes, one with everything enabled, and one with every=
+thing but the image including process activating iperf3.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">The strange thing is that iperf3 built from the reci=
+pes does work properly even with the image whacked to un-usability. I suspe=
+cted that some global variable was getting overridden but I can&#8217;t see=
+ it in the iperf3-specific recipe and autoconf
+ &nbsp;patch.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I do see that iperf3 is being added to a Yocto-gener=
+ated file called toe.c, but I don&#8217;t know what that means yet.<br>
+<br>
+In particular, this is a portion of our log that I want to look at, though =
+what is happening to make it fail to generate this file correctly at this p=
+oint is as yet unclear:<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">starting pid 1363, tty '': '/etc/init.d/rcS'<o:p></o=
+:p></p>
+<p class=3D"MsoNormal">can't run '/etc/init.d/rcS': No such file or directo=
+ry<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Please press Enter to activate this console. <o:p></=
+o:p></p>
+<p class=3D"MsoNormal">starting pid 1364, tty '': '-/bin/sh'<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal" style=3D"margin-left:20.25pt"><span style=3D"font-si=
+ze:18.0pt;font-family:&quot;Brush Script MT&quot;">Don Wilde<o:p></o:p></sp=
+an></p>
+<p class=3D"MsoNormal" style=3D"margin-left:20.25pt"><span style=3D"font-si=
+ze:9.0pt;font-family:&quot;Arial&quot;,sans-serif">Intel Connected Home Div=
+ision<o:p></o:p></span></p>
+</div>
+</body>
+</html>
 
---shjLm1JpS9U2J0Ae7TMNo7GI8a7kPNa6m--
+--_000_6CE91E52E49AA047A2349BA2FF8E4BCA1546AA31FMSMSX106amrcor_--
