@@ -1,17 +1,19 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 77273E00963; Wed,  1 Feb 2017 08:39:26 -0800 (PST)
+	id 51B80E0082A; Wed,  1 Feb 2017 09:24:56 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (akuster808[at]gmail.com)
+X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.83.68 listed in dnsbl.sorbs.net]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (raj.khem[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.192.193 listed in list.dnswl.org]
+	*      [74.125.83.68 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,54 +21,50 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.192.193 listed in dnsbl.sorbs.net]
-Received: from mail-pf0-f193.google.com (mail-pf0-f193.google.com
-	[209.85.192.193])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3E368E00524
-	for <yocto@yoctoproject.org>; Wed,  1 Feb 2017 08:39:23 -0800 (PST)
-Received: by mail-pf0-f193.google.com with SMTP id y143so32171944pfb.1
-	for <yocto@yoctoproject.org>; Wed, 01 Feb 2017 08:39:23 -0800 (PST)
+Received: from mail-pg0-f68.google.com (mail-pg0-f68.google.com [74.125.83.68])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D2277E00524
+	for <yocto@yoctoproject.org>; Wed,  1 Feb 2017 09:24:55 -0800 (PST)
+Received: by mail-pg0-f68.google.com with SMTP id 3so16957181pgj.1
+	for <yocto@yoctoproject.org>; Wed, 01 Feb 2017 09:24:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=subject:to:references:from:message-id:date:user-agent:mime-version
 	:in-reply-to:content-transfer-encoding;
-	bh=mVDPGK96YlWWFEP3So50I3xJ89E9bRXMKyKcVX3vg8w=;
-	b=InX8iJG7aBjJt6dRr8FpT6mHWgQdWevYVvmW3vKMCTwMVvkFtuQNl2bJd0pf1BhPif
-	CfeiLMRVfpddWsKYa1n1wRS3b17glehgixBnVgv/T1V5yfOAPHA76utA7Xq8m0rb7RXR
-	nrd/rI+S+rLh9w1PpOLypR9/FmcOvCKlXge37r0AHjIcyMaPFEIUBUWDNhDiZJIxMw8l
-	8LE+/6jAjWNmEnL+PdJnUuiwidKYZZkmk3ADWMZ6oQJMCTPh1CuPE0JhfDtbYIHLMY+J
-	uT4tyo5wuv3BHNiWrd6iHQ347GOzE/Rz1EMd4wZWtLzFvxfPxZ9gqxJc5W9CjY1mSOY6
-	4JFA==
+	bh=G9RJfcpY2WqmuJ8ByLKUXF+UwwVx/a1kHTmZtJiF7ws=;
+	b=AhtoYBZAUSJnyzEDanAQnnEKZAqBQEFycDFsNVxqveD9TYgcOEM4o0I9zpP6/Yrg4Q
+	6qjp/tugJwHVsiUDYgBzcZGICwD+TQKSNXFKfs8bHRHNxWQ4CIEHmZzu39UYC8lBFvDo
+	Ecz96AZHhIaDFaUybxZbuENhYptY2+G3Q1PAhmVypjyPK/hBzvpNsTqlmmBFS6upzWqu
+	g5uVf8k2D2gGKbtz1JH4qwc3RBxlB2ZFdCoHYNVsC0TGSGIWCMAGZrgIK2R2UeV16viU
+	h5hasEMvr5H3ewhEhDaExRKlKJACBqcZHZP9yDRZJfL2zCA0cO5VywQ1KsWYoyeEG/4H
+	7sFA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:subject:to:references:from:message-id:date
 	:user-agent:mime-version:in-reply-to:content-transfer-encoding;
-	bh=mVDPGK96YlWWFEP3So50I3xJ89E9bRXMKyKcVX3vg8w=;
-	b=XHCWkvXdYm5GiKk/Rgi0L0IP+pzBsp7M0dIoGBKrtuPJqJgl0s4d3HMCWSDUX7VRGj
-	04pSJClMB63M2ojub3/OJrX8hm0BPc0zH0Vq58qnQ3KGdHoSf8ID8H6SabFulzo/BoT4
-	gfTkEzyq+Ice+gWan5QO+uNrPQGozlDunCyxWOIlwUKxYZ18fWbdGOOToN9HCacVVehq
-	TYJwOv4i8OC7579hNiW7vckKNiR3qQi5FA4LroiUCbPIvfGnvHQDjb6vorz6V0bk7hQr
-	RY8CWYHkQYY9c6xgt2nlyS8HOntC/KqzmOEIosLfKFleVOsRoxTdGyYHduvCVwUCSiHi
-	sIdw==
-X-Gm-Message-State: AIkVDXKiRm1CnXVV1rDMvjqqx1vcstodJxxSj+fzrHoI61cuy0jI+SAAwjTxXSA8XWz5qw==
-X-Received: by 10.98.34.130 with SMTP id p2mr4657487pfj.11.1485967162996;
-	Wed, 01 Feb 2017 08:39:22 -0800 (PST)
-Received: from ?IPv6:2601:202:4001:9ea0:d12f:3ef1:f4ff:7b5b?
-	([2601:202:4001:9ea0:d12f:3ef1:f4ff:7b5b])
+	bh=G9RJfcpY2WqmuJ8ByLKUXF+UwwVx/a1kHTmZtJiF7ws=;
+	b=QJyB8dBDhgLIlw7in5Pl0IKzcoRqSARyDksvcJrQldGbQOyctLTuisbHsbVIF6gG7Q
+	ZtOLXxKFaKCBrwnrKTN62rabahUduyyuQVFWyM+YVCF9Cz7a2iK1SOBLRYg14lyE9r8I
+	BjLh8hqy7G6ZhpSJuTqmGud11+bJhWVm+dNEXHNxeVaFRhHr2VgbyZXebrIjwqpHCoBE
+	mSb+488ppVLmV6iLkYDoiNWhQ3uH52QMvlhMt7g0FwM0Wo3fDeFrVgQq6t4abFqasHDK
+	WLRRhskMW8OclcluiSFga2LVCj2aBaUYU6DjfUBK7CIpGz3MdhyaP9rk7DPUT7HDMuUU
+	Jtjw==
+X-Gm-Message-State: AIkVDXL7xZGK/FQ/TsOnQZ4X3RvED7z3Ewq5Ebqe7pC6cbwZOEBdt52vzdE2VSj7zbVoRQ==
+X-Received: by 10.98.65.148 with SMTP id g20mr5060185pfd.44.1485969894572;
+	Wed, 01 Feb 2017 09:24:54 -0800 (PST)
+Received: from CACSVMO-14452.local ([2601:646:8882:b8c:8ce9:48a5:c3c4:adfc])
 	by smtp.gmail.com with ESMTPSA id
-	m20sm51321526pgd.17.2017.02.01.08.39.22
+	f3sm51209499pfd.10.2017.02.01.09.24.53 for <yocto@yoctoproject.org>
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 01 Feb 2017 08:39:22 -0800 (PST)
-To: Patrick Ohly <patrick.ohly@intel.com>, yocto@yoctoproject.org
-References: <cover.42397547dfc6733226cafa5b4b6bbe50956b78cf.1485848669.git-series.patrick.ohly@intel.com>
-From: akuster808 <akuster808@gmail.com>
-Message-ID: <dc1cc1d1-1b53-e2c3-ceb1-d8d4977ecbc3@gmail.com>
-Date: Wed, 1 Feb 2017 08:39:21 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.7.0
+	Wed, 01 Feb 2017 09:24:54 -0800 (PST)
+To: yocto@yoctoproject.org
+References: <CANxWOTYfkUDguyFogHHA2HH77McT06-4+z96S7pJupfRKHhm+g@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Message-ID: <a1f5e2a1-62cc-9141-0f4e-9aeec971453e@gmail.com>
+Date: Wed, 1 Feb 2017 09:24:53 -0800
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:45.0)
+	Gecko/20100101 Thunderbird/45.7.0
 MIME-Version: 1.0
-In-Reply-To: <cover.42397547dfc6733226cafa5b4b6bbe50956b78cf.1485848669.git-series.patrick.ohly@intel.com>
-Subject: Re: [meta-security][PATCH 0/8] tpm: virtual TPM for qemu
+In-Reply-To: <CANxWOTYfkUDguyFogHHA2HH77McT06-4+z96S7pJupfRKHhm+g@mail.gmail.com>
+Subject: Re: meta-raspberrypi issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -78,51 +76,81 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 01 Feb 2017 16:39:26 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
+X-List-Received-Date: Wed, 01 Feb 2017 17:24:56 -0000
+Content-Type: text/plain; charset=windows-1252
 Content-Transfer-Encoding: 7bit
 
-Patrick,
 
 
+On 2/1/17 8:08 AM, Usman Haider wrote:
+> Hi,
+> 
+> I am new to yocto and just started working on it. I am having issue
+> with meta-raspberrypi. I did inside poky
+> 
+> $ git checkout -b work_branch -t origin/daisy
+> 
+> $ git clone git://git.yoctoproject.org/meta-raspberrypi
+> <http://git.yoctoproject.org/meta-raspberrypi>
+> 
 
-On 01/30/2017 11:47 PM, Patrick Ohly wrote:
-> I recently started using swtpm-native in combination with the qemu-tpm
-> patches to simulate a virtual TPM chip in qemu. The qemu-tpm patches
-> should go into OE-core, but currently usage is a bit cumbersome
-> (requires root privileges and manually starting swtpm before each
-> runqemu invocation), so at this time I only consider the meta-security
-> changes ready and useful enough for merging.
->
-> Inside the virtual machine I used tpm-tools + trousers to set up
-> sealed keys for EVM, which required fixing a few things.
->
-> These patches were based on Armin's swtpm+trousers version update
-> series which needs to be merged first to avoid merge conflicts.
->
-> Patrick Ohly (8):
->    trousers: missing libtspi.so.1 in libtspi package
->    trousers: recommend tcsd
->    trousers: tcsd.conf must be owned tss:tss
->    swtpm: enable native and nativesdk flavors
->    swtpm: depends on tpm-tools
->    swtpm: fix compiler format warning
->    swtpm: cuse packageconfig
->    swtpm-wrappers: simplify using swtpm-native
+you need to checkout daisy branch of meta-raspberrypi as well.
 
-Thanks for the patch series, I am looking at them now.
-
-- armin
->
->   recipes-tpm/swtpm/files/fix_lib_search_path.patch | 64 ++++++++++++++++-
->   recipes-tpm/swtpm/files/fix_signed_issue.patch    |  2 +-
->   recipes-tpm/swtpm/swtpm-wrappers.bb               | 41 ++++++++++-
->   recipes-tpm/swtpm/swtpm_1.0.bb                    | 12 ++-
->   recipes-tpm/trousers/trousers_git.bb              |  7 +-
->   5 files changed, 121 insertions(+), 5 deletions(-)
->   create mode 100644 recipes-tpm/swtpm/files/fix_lib_search_path.patch
->   create mode 100644 recipes-tpm/swtpm/swtpm-wrappers.bb
->
-> base-commit: 6787dd986122cd6420b1f348c4550a42ed596f57
-
+> $ source oe-init-build-env rpi-build
+> 
+> updated the local.conf and bblayer.conf files inside rpi-build
+> 
+> In local.conf
+> 
+> BB_NUMBER_THREADS ?= "${@oe.utils.cpu_count()}"
+> PARALLEL_MAKE ?= "-j ${@oe.utils.cpu_count()}"
+> MACHINE ?= "raspberrypi"
+> 
+> In bblayer.conf
+> # LAYER_CONF_VERSION is increased each time build/conf/bblayers.conf
+> # changes incompatibly
+> LCONF_VERSION = "6"
+> 
+> BBPATH = "${TOPDIR}"
+> BBFILES ?= ""
+> 
+> BBLAYERS ?= " \
+>   /home/vm/poky/meta \
+>   /home/vm/poky/meta-yocto \
+>   /home/vm/poky/meta-yocto-bsp \
+>   /home/vm/poky/meta-raspberrypi \
+>   "
+> BBLAYERS_NON_REMOVABLE ?= " \
+>   /home/vm/poky/meta \
+>   /home/vm/poky/meta-yocto \
+>   "
+> 
+> When I run bitbake rpi-basic-image, I get following
+> 
+> 
+> *********************************
+> 
+> vm@sdr-vm:~/poky/rpi-build$ bitbake rpi-basic-image
+> WARNING: Host distribution "Ubuntu-16.04" has not been validated with
+> this version of the build system; you may possibly experience unexpected
+> failures. It is recommended that you use a tested distribution.
+> Parsing recipes: 100% |#########################################| Time:
+> 00:02:37
+> Parsing of 882 .bb files complete (0 cached, 882 parsed). 1241 targets,
+> 63 skipped, 0 masked, 0 errors.
+> ERROR: No recipes available for:
+>  
+> /home/vm/poky/meta-raspberrypi/recipes-multimedia/gstreamer/gstreamer1.0-omx_1.10%.bbappend
+>  
+> /home/vm/poky/meta-raspberrypi/recipes-multimedia/gstreamer/gstreamer1.0-omx_1.2.0.bbappend
+> ERROR: Command execution failed: Exited with 1
+> 
+> *************************************
+> 
+> What could be the issue?
+> 
+> --
+> Usman
+> 
+> 
 
