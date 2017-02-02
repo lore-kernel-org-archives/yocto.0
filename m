@@ -1,17 +1,17 @@
 Return-Path: <cardoe@cardoe.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8E4FAE009AA; Thu,  2 Feb 2017 07:47:54 -0800 (PST)
+	id C83BDE009AA; Thu,  2 Feb 2017 07:47:55 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_NONE,
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.213.196 listed in dnsbl.sorbs.net]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.213.196 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.213.195 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.213.195 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,45 +19,50 @@ X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-yb0-f196.google.com (mail-yb0-f196.google.com
-	[209.85.213.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 72ADAE00995
-	for <yocto@yoctoproject.org>; Thu,  2 Feb 2017 07:47:50 -0800 (PST)
-Received: by mail-yb0-f196.google.com with SMTP id w194so804814ybe.1
-	for <yocto@yoctoproject.org>; Thu, 02 Feb 2017 07:47:50 -0800 (PST)
+Received: from mail-yb0-f195.google.com (mail-yb0-f195.google.com
+	[209.85.213.195])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2DEE8E00998
+	for <yocto@yoctoproject.org>; Thu,  2 Feb 2017 07:47:51 -0800 (PST)
+Received: by mail-yb0-f195.google.com with SMTP id j82so800568ybg.2
+	for <yocto@yoctoproject.org>; Thu, 02 Feb 2017 07:47:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cardoe.com; s=google;
-	h=from:to:cc:subject:date:message-id;
-	bh=oZrw6jE+cSWMJwyKKsV+VQfzHw+8MStnaLYk6UNXX/M=;
-	b=DtPU9beTBuBS4OQ7fcGmoqwLZ0zLfkrCY+sDRu8zNrZccdL9a7bwuFquNL+IAQtzXm
-	zyAU2kYCn8Y66f9UdPZF+wnA1u89mmtiqJkzkFi1O2g6OibTeWtxMRaiwrX3yMxBXXI6
-	l4usfky5IucH9O4GO2r0cqlyvowYP1I0d3qto=
+	h=from:to:cc:subject:date:message-id:in-reply-to:references
+	:mime-version:content-transfer-encoding;
+	bh=K3Vg+4hzKx3cJgufrlVi6KPzFyswc/pYP+GZZQJejdE=;
+	b=NR0r2WD23NTCY98f7ScIUOBs0xHh05J8BFIJCihywCWo/sBm8MeCuSsGnNKF7Mgtew
+	WitqshfBFPH+S9BvygD5dENGPgsx0F3oJwVLKhKF9kdsL39lhjQ6ExvNzdRQGa00B0H5
+	jBUgxChNjIeRmkM3G4EiscHjdtSTv8o2VGodg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=oZrw6jE+cSWMJwyKKsV+VQfzHw+8MStnaLYk6UNXX/M=;
-	b=Sf5kpHr24R+mp2vFDwRGwKraQ3gluGq+0JQGbfWq3+ysPHmhejijoH3KIx2/nW47+K
-	BdXewRNChDkofnj24b/j8VT3EcoH7id3NhAFjRR+GjruG2JJGpM7lNHTX8nE8AHidx9U
-	66x98cA8LTOJ7OKxYhdxFYFk+W6RZE45Bv5N+2/B7hQWetotHxN31W/IasN10qVS1nNT
-	h/PePbtZILEsuBsOinYjNVf34/Na2UlF/vWnVn51MNBETbgZElImwFb91Q+s/kERPZlY
-	7PSCq09/545uYjIpIZmUn1eZRhe3Gx5wCHNLi9eueJUFk/NR3TEHiFq7wiakOW1ca8IF
-	eiHg==
-X-Gm-Message-State: AIkVDXLnsB77cqcqga4WYo6HzOHI9BXrGruHcuWlpLlTvuLL17n7ovmX0LlnsE8e317scw==
-X-Received: by 10.37.170.19 with SMTP id s19mr3019234ybi.53.1486050469093;
-	Thu, 02 Feb 2017 07:47:49 -0800 (PST)
+	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+	:references:mime-version:content-transfer-encoding;
+	bh=K3Vg+4hzKx3cJgufrlVi6KPzFyswc/pYP+GZZQJejdE=;
+	b=imkxljHM/X7AT7CtnR/E1pF+luViaO5r7npfxyQOJlJ9huz1pMwC+j+Mmr+RjhLlCB
+	INaMVnnl4eJQj+tdW+TU+McytyZyIulIHNVKJASiwHiMNoN8qUbdd/OTYsBr7wRa4nYA
+	Uo8MLjyVgkT0yX4OYEPrcHRUmpRPjZLq2SjvNmY0dEy0zPWI8MOCDLrCpVbdmZRDRYzu
+	Y9WvRxemat3szCMtoTz5B78iOh0HkBVmKp3RChudwFFTlxWh4wvCUNIt8KBkYtme0zHE
+	eXdRJarISa/j0plIWja4dvZGKDz8XVi7xJhMfyFYR0D0Ewy/tXnjIewvF4NXHJ1xFm27
+	wJEw==
+X-Gm-Message-State: AIkVDXKkV9kVriyY6xPEQlNRqxnA1ZMXHqm42gRHnjN7jcyB8FuPPYBxvaJ/Gl+QL7/syw==
+X-Received: by 10.37.162.67 with SMTP id b61mr3177434ybi.104.1486050470508;
+	Thu, 02 Feb 2017 07:47:50 -0800 (PST)
 Received: from swanson.attlocal.net
 	(104-179-196-18.lightspeed.brhmal.sbcglobal.net. [104.179.196.18])
 	by smtp.gmail.com with ESMTPSA id
-	d5sm12995376ywe.48.2017.02.02.07.47.48
+	d5sm12995376ywe.48.2017.02.02.07.47.49
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Thu, 02 Feb 2017 07:47:48 -0800 (PST)
+	Thu, 02 Feb 2017 07:47:50 -0800 (PST)
 From: Doug Goldstein <cardoe@cardoe.com>
 To: yocto@yoctoproject.org
-Date: Thu,  2 Feb 2017 09:47:35 -0600
-Message-Id: <20170202154737.4461-1-cardoe@cardoe.com>
+Date: Thu,  2 Feb 2017 09:47:37 -0600
+Message-Id: <20170202154737.4461-3-cardoe@cardoe.com>
 X-Mailer: git-send-email 2.10.2
+In-Reply-To: <20170202154737.4461-1-cardoe@cardoe.com>
+References: <20170202154737.4461-1-cardoe@cardoe.com>
+MIME-Version: 1.0
 X-Mailman-Approved-At: Fri, 03 Feb 2017 06:58:08 -0800
 Cc: Doug Goldstein <cardoe@cardoe.com>
-Subject: [meta-selinux][PATCH 1/3] libsemanage: remove dependency on ustr
+Subject: [meta-selinux][PATCH 3/3] removed ustr package as it is unused
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,740 +74,1251 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 02 Feb 2017 15:47:54 -0000
-
-Use the upstream patches to remove the dependency on ustr which no
-longer builds with new versions of GCC and the author is unresponsive
-and the site hosting the code is down.
+X-List-Received-Date: Thu, 02 Feb 2017 15:47:55 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
 Signed-off-by: Doug Goldstein <cardoe@cardoe.com>
 ---
- recipes-security/selinux/libsemanage.inc           |   2 +-
- ...anage-simplify-string-utilities-functions.patch | 115 ++++++++
- ...-add-semanage_str_replace-utility-functio.patch | 164 +++++++++++
- ...manage-genhomedircon-drop-ustr-dependency.patch | 323 +++++++++++++++++++++
- ...-remove-ustr-library-from-Makefiles-READM.patch |  61 ++++
- recipes-security/selinux/libsemanage_2.6.bb        |   4 +
- 6 files changed, 668 insertions(+), 1 deletion(-)
- create mode 100644 recipes-security/selinux/libsemanage/0001-libsemanage-simplify-string-utilities-functions.patch
- create mode 100644 recipes-security/selinux/libsemanage/0002-libsemanage-add-semanage_str_replace-utility-functio.patch
- create mode 100644 recipes-security/selinux/libsemanage/0003-libsemanage-genhomedircon-drop-ustr-dependency.patch
- create mode 100644 recipes-security/selinux/libsemanage/0004-libsemanage-remove-ustr-library-from-Makefiles-READM.patch
+ recipes-extended/ustr/ustr/ustr-c99-inline.patch   |  30 -
+ .../ustr/ustr/ustr-fix__va_copy-not-defined.patch  |  26 -
+ recipes-extended/ustr/ustr/ustr-gnu-inline.diff    | 871 ---------------------
+ recipes-extended/ustr/ustr/ustr-makefile-fix.patch | 215 -----
+ recipes-extended/ustr/ustr_1.0.4.bb                |  55 --
+ 5 files changed, 1197 deletions(-)
+ delete mode 100644 recipes-extended/ustr/ustr/ustr-c99-inline.patch
+ delete mode 100644 recipes-extended/ustr/ustr/ustr-fix__va_copy-not-defined.patch
+ delete mode 100644 recipes-extended/ustr/ustr/ustr-gnu-inline.diff
+ delete mode 100644 recipes-extended/ustr/ustr/ustr-makefile-fix.patch
+ delete mode 100644 recipes-extended/ustr/ustr_1.0.4.bb
 
-diff --git a/recipes-security/selinux/libsemanage.inc b/recipes-security/selinux/libsemanage.inc
-index 41fd3f5..fe5dad5 100644
---- a/recipes-security/selinux/libsemanage.inc
-+++ b/recipes-security/selinux/libsemanage.inc
-@@ -8,7 +8,7 @@ LICENSE = "LGPLv2.1+"
- 
- inherit lib_package python-dir
- 
--DEPENDS += "libsepol libselinux ustr bzip2 python bison-native flex-native"
-+DEPENDS += "libsepol libselinux bzip2 python bison-native flex-native"
- DEPENDS_append_class-target += "audit"
- 
- # For /usr/libexec/selinux/semanage_migrate_store
-diff --git a/recipes-security/selinux/libsemanage/0001-libsemanage-simplify-string-utilities-functions.patch b/recipes-security/selinux/libsemanage/0001-libsemanage-simplify-string-utilities-functions.patch
-new file mode 100644
-index 0000000..fd478d0
---- /dev/null
-+++ b/recipes-security/selinux/libsemanage/0001-libsemanage-simplify-string-utilities-functions.patch
-@@ -0,0 +1,115 @@
-+From 514a5df959ea0e13db4e87f73c2ac5edcceebd52 Mon Sep 17 00:00:00 2001
-+From: Nicolas Iooss <nicolas.iooss@m4x.org>
-+Date: Wed, 21 Dec 2016 19:21:01 +0100
-+Subject: [PATCH 1/4] libsemanage: simplify string utilities functions
-+
-+Use string functions from C standard library instead of ustr. This makes
-+the code simpler and make utilities.c no longer depend on ustr library.
-+
-+This changes how semanage_split() behaves when delim is not empty (NULL
-+or "") and the input string contains several successive delimiters:
-+semanage_split("foo::::bar", ":") returned "bar" and now returns ":bar".
-+This would not have any impact in the current code as semanage_split()
-+is only called with delim="=" (through semanage_findval(), in
-+libsemanage/src/genhomedircon.c), in order to split a "key=value"
-+statement.
-+
-+Signed-off-by: Nicolas Iooss <nicolas.iooss@m4x.org>
-+(cherry picked from commit a228bb3736c5957d41ad9e01eb1283fc6883a6e5)
-+---
-+ libsemanage/src/utilities.c | 59 ++++++++++-----------------------------------
-+ 1 file changed, 13 insertions(+), 46 deletions(-)
-+
-+diff --git a/libsemanage/src/utilities.c b/libsemanage/src/utilities.c
-+index f48ffa4..fa86cc7 100644
-+--- a/libsemanage/src/utilities.c
-++++ b/libsemanage/src/utilities.c
-+@@ -26,7 +26,6 @@
-+ #include <string.h>
-+ #include <sys/types.h>
-+ #include <assert.h>
-+-#include <ustr.h>
-+ 
-+ #define TRUE 1
-+ #define FALSE 0
-+@@ -74,64 +73,32 @@ char *semanage_split_on_space(const char *str)
-+ {
-+ 	/* as per the man page, these are the isspace() chars */
-+ 	const char *seps = "\f\n\r\t\v ";
-+-	size_t slen = strlen(seps);
-+-	size_t off = 0, rside_len = 0;
-+-	char *retval = NULL;
-+-	Ustr *ustr = USTR_NULL, *temp = USTR_NULL;
-++	size_t off = 0;
-+ 
-+ 	if (!str)
-+-		goto done;
-+-	if (!(ustr = ustr_dup_cstr(str)))
-+-		goto done;
-+-	temp =
-+-	    ustr_split_spn_chrs(ustr, &off, seps, slen, USTR_NULL,
-+-				USTR_FLAG_SPLIT_DEF);
-+-	if (!temp)
-+-		goto done;
-+-	/* throw away the left hand side */
-+-	ustr_sc_free(&temp);
-+-
-+-	rside_len = ustr_len(ustr) - off;
-+-	temp = ustr_dup_subustr(ustr, off + 1, rside_len);
-+-	if (!temp)
-+-		goto done;
-+-	retval = strdup(ustr_cstr(temp));
-+-	ustr_sc_free(&temp);
-++		return NULL;
-+ 
-+-      done:
-+-	ustr_sc_free(&ustr);
-+-	return retval;
-++	/* skip one token and the spaces before and after it */
-++	off = strspn(str, seps);
-++	off += strcspn(str + off, seps);
-++	off += strspn(str + off, seps);
-++	return strdup(str + off);
-+ }
-+ 
-+ char *semanage_split(const char *str, const char *delim)
-+ {
-+-	Ustr *ustr = USTR_NULL, *temp = USTR_NULL;
-+-	size_t off = 0, rside_len = 0;
-+-	char *retval = NULL;
-++	char *retval;
-+ 
-+ 	if (!str)
-+-		goto done;
-++		return NULL;
-+ 	if (!delim || !(*delim))
-+ 		return semanage_split_on_space(str);
-+-	ustr = ustr_dup_cstr(str);
-+-	temp =
-+-	    ustr_split_cstr(ustr, &off, delim, USTR_NULL, USTR_FLAG_SPLIT_DEF);
-+-	if (!temp)
-+-		goto done;
-+-	/* throw away the left hand side */
-+-	ustr_sc_free(&temp);
-+-
-+-	rside_len = ustr_len(ustr) - off;
-+ 
-+-	temp = ustr_dup_subustr(ustr, off + 1, rside_len);
-+-	if (!temp)
-+-		goto done;
-+-	retval = strdup(ustr_cstr(temp));
-+-	ustr_sc_free(&temp);
-++	retval = strstr(str, delim);
-++	if (retval == NULL)
-++		return NULL;
-+ 
-+-      done:
-+-	ustr_sc_free(&ustr);
-+-	return retval;
-++	return strdup(retval + strlen(delim));
-+ }
-+ 
-+ int semanage_list_push(semanage_list_t ** list, const char *data)
-+-- 
-+2.10.2
-+
-diff --git a/recipes-security/selinux/libsemanage/0002-libsemanage-add-semanage_str_replace-utility-functio.patch b/recipes-security/selinux/libsemanage/0002-libsemanage-add-semanage_str_replace-utility-functio.patch
-new file mode 100644
-index 0000000..ed32785
---- /dev/null
-+++ b/recipes-security/selinux/libsemanage/0002-libsemanage-add-semanage_str_replace-utility-functio.patch
-@@ -0,0 +1,164 @@
-+From de8b13baf3773b41367f265e7dd06c013816ba0a Mon Sep 17 00:00:00 2001
-+From: Nicolas Iooss <nicolas.iooss@m4x.org>
-+Date: Wed, 21 Dec 2016 19:21:02 +0100
-+Subject: [PATCH 2/4] libsemanage: add semanage_str_replace() utility function
-+
-+This function will be used in the next commit.
-+
-+Signed-off-by: Nicolas Iooss <nicolas.iooss@m4x.org>
-+(cherry picked from commit 57a3b1b4b0a50a1d14f825d2933339063ced4fec)
-+---
-+ libsemanage/src/utilities.c        | 55 ++++++++++++++++++++++++++++++++++++++
-+ libsemanage/src/utilities.h        | 10 +++++++
-+ libsemanage/tests/test_utilities.c | 34 +++++++++++++++++++++++
-+ 3 files changed, 99 insertions(+)
-+
-+diff --git a/libsemanage/src/utilities.c b/libsemanage/src/utilities.c
-+index fa86cc7..0d50d99 100644
-+--- a/libsemanage/src/utilities.c
-++++ b/libsemanage/src/utilities.c
-+@@ -230,6 +230,61 @@ void semanage_rtrim(char *str, char trim_to)
-+ 	}
-+ }
-+ 
-++char *semanage_str_replace(const char *search, const char *replace,
-++			   const char *src, size_t lim)
-++{
-++	size_t count = 0, slen, rlen, newsize;
-++	char *p, *pres, *result;
-++	const char *psrc;
-++
-++	slen = strlen(search);
-++	rlen = strlen(replace);
-++
-++	/* Do not support empty search strings */
-++	if (slen == 0)
-++		return NULL;
-++
-++	/* Count the occurences of search in src and compute the new size */
-++	for (p = strstr(src, search); p != NULL; p = strstr(p + slen, search)) {
-++		count++;
-++		if (lim && count >= lim)
-++			break;
-++	}
-++	if (!count)
-++		return strdup(src);
-++
-++	/* Allocate the result string */
-++	newsize = strlen(src) + 1 + count * (rlen - slen);
-++	result = malloc(newsize);
-++	if (!result)
-++		return NULL;
-++
-++	/* Fill the result */
-++	psrc = src;
-++	pres = result;
-++	for (p = strstr(src, search); p != NULL; p = strstr(psrc, search)) {
-++		/* Copy the part which has not been modified */
-++		if (p != psrc) {
-++			size_t length = (size_t)(p - psrc);
-++			memcpy(pres, psrc, length);
-++			pres += length;
-++		}
-++		/* Copy the replacement part */
-++		if (rlen != 0) {
-++			memcpy(pres, replace, rlen);
-++			pres += rlen;
-++		}
-++		psrc = p + slen;
-++		count--;
-++		if (!count)
-++			break;
-++	}
-++	/* Copy the last part, after doing a sanity check */
-++	assert(pres + strlen(psrc) + 1 == result + newsize);
-++	strcpy(pres, psrc);
-++	return result;
-++}
-++
-+ /* list_addafter_controlmem does *NOT* duplicate the data argument
-+  * use at your own risk, I am building a list out of malloc'd memory and
-+  * it is only going to get stored into this list, thus when I destroy it
-+diff --git a/libsemanage/src/utilities.h b/libsemanage/src/utilities.h
-+index 5fa15ef..f2ff31f 100644
-+--- a/libsemanage/src/utilities.h
-++++ b/libsemanage/src/utilities.h
-+@@ -116,6 +116,16 @@ int semanage_str_count(char *data, char what);
-+ void semanage_rtrim(char *str, char trim_to);
-+ 
-+ /**
-++ * @param      value being searched for
-++ * @param      replacement value that replaces found search values
-++ * @param      string being searched and replaced on
-++ * @param      maximum number of value occurences (zero for unlimited)
-++ * @return     newly-allocated string with the replaced values
-++ */
-++char *semanage_str_replace(const char *search, const char *replace,
-++			   const char *src, size_t lim);
-++
-++/**
-+  * @param data    some string
-+  * @return  modifies the string such that the first whitespace char becomes
-+  *	    '\0', ending the string.
-+diff --git a/libsemanage/tests/test_utilities.c b/libsemanage/tests/test_utilities.c
-+index 32cc33c..cdfed0c 100644
-+--- a/libsemanage/tests/test_utilities.c
-++++ b/libsemanage/tests/test_utilities.c
-+@@ -40,6 +40,7 @@ void test_semanage_split(void);
-+ void test_semanage_list(void);
-+ void test_semanage_str_count(void);
-+ void test_semanage_rtrim(void);
-++void test_semanage_str_replace(void);
-+ void test_semanage_findval(void);
-+ void test_slurp_file_filter(void);
-+ 
-+@@ -101,6 +102,10 @@ int semanage_utilities_add_tests(CU_pSuite suite)
-+ 	if (NULL == CU_add_test(suite, "semanage_rtrim", test_semanage_rtrim)) {
-+ 		goto err;
-+ 	}
-++	if (NULL == CU_add_test(suite, "semanage_str_replace",
-++				test_semanage_str_replace)) {
-++		goto err;
-++	}
-+ 	if (NULL == CU_add_test(suite, "semanage_findval",
-+ 				test_semanage_findval)) {
-+ 		goto err;
-+@@ -244,6 +249,35 @@ void test_semanage_rtrim(void)
-+ 	CU_ASSERT_STRING_EQUAL(str, "/blah/foo/bar");
-+ }
-+ 
-++void test_semanage_str_replace(void)
-++{
-++	const char *test_str = "Hello, I am %{USERNAME} and my id is %{USERID}";
-++	char *str1, *str2;
-++
-++	str1 = semanage_str_replace("%{USERNAME}", "root", test_str, 0);
-++	CU_ASSERT_STRING_EQUAL(str1, "Hello, I am root and my id is %{USERID}");
-++
-++	str2 = semanage_str_replace("%{USERID}", "0", str1, 1);
-++	CU_ASSERT_STRING_EQUAL(str2, "Hello, I am root and my id is 0");
-++	free(str1);
-++	free(str2);
-++
-++	str1 = semanage_str_replace(":(", ";)", "Test :( :) ! :(:(:))(:(", 0);
-++	CU_ASSERT_STRING_EQUAL(str1, "Test ;) :) ! ;);):))(;)");
-++	free(str1);
-++
-++	str1 = semanage_str_replace(":(", ";)", "Test :( :) ! :(:(:))(:(", 3);
-++	CU_ASSERT_STRING_EQUAL(str1, "Test ;) :) ! ;);):))(:(");
-++	free(str1);
-++
-++	str1 = semanage_str_replace("", "empty search string", "test", 0);
-++	CU_ASSERT_EQUAL(str1, NULL);
-++
-++	str1 = semanage_str_replace("a", "", "abracadabra", 0);
-++	CU_ASSERT_STRING_EQUAL(str1, "brcdbr");
-++	free(str1);
-++}
-++
-+ void test_semanage_findval(void)
-+ {
-+ 	char *tok;
-+-- 
-+2.10.2
-+
-diff --git a/recipes-security/selinux/libsemanage/0003-libsemanage-genhomedircon-drop-ustr-dependency.patch b/recipes-security/selinux/libsemanage/0003-libsemanage-genhomedircon-drop-ustr-dependency.patch
-new file mode 100644
-index 0000000..fde2349
---- /dev/null
-+++ b/recipes-security/selinux/libsemanage/0003-libsemanage-genhomedircon-drop-ustr-dependency.patch
-@@ -0,0 +1,323 @@
-+From e8dd31df2268013afb1e8dbe5e617b9c4e9e388e Mon Sep 17 00:00:00 2001
-+From: Nicolas Iooss <nicolas.iooss@m4x.org>
-+Date: Wed, 21 Dec 2016 19:21:03 +0100
-+Subject: [PATCH 3/4] libsemanage: genhomedircon: drop ustr dependency
-+
-+ustr library uses old (pre-C99) "extern inline" semantic. This makes it
-+incompatible with recent versions of gcc and clang, which default to
-+C99 standard. Distributions have shipped patched versions of this
-+library to fix issues (e.g. Gentoo package uses this patch:
-+https://gitweb.gentoo.org/repo/gentoo.git/tree/dev-libs/ustr/files/ustr-1.0.4-gcc_5-check.patch?id=7dea6f8820f36bf389e6315044bea7507553bed0
-+) but there is no upstream solution to make ustr compatible with C99
-+standard.
-+
-+The git tree of ustr (http://www.and.org/ustr/ustr.git) has not been
-+updated since 2008 and the developer of this project did not reply to
-+emails.
-+
-+Therefore update genhomedircon implementation in order to no longer
-+rely on ustr library.
-+
-+Signed-off-by: Nicolas Iooss <nicolas.iooss@m4x.org>
-+(cherry picked from commit 300b8ad4235688171f2a91e7aeb14d0ee3561c13)
-+---
-+ libsemanage/src/genhomedircon.c | 154 ++++++++++++++++++++--------------------
-+ 1 file changed, 77 insertions(+), 77 deletions(-)
-+
-+diff --git a/libsemanage/src/genhomedircon.c b/libsemanage/src/genhomedircon.c
-+index 6991fff..0f84aa3 100644
-+--- a/libsemanage/src/genhomedircon.c
-++++ b/libsemanage/src/genhomedircon.c
-+@@ -34,9 +34,9 @@
-+ 
-+ #include "utilities.h"
-+ #include "genhomedircon.h"
-+-#include <ustr.h>
-+ 
-+ #include <assert.h>
-++#include <ctype.h>
-+ #include <limits.h>
-+ #include <stdio.h>
-+ #include <stdlib.h>
-+@@ -239,46 +239,39 @@ static int fcontext_matches(const semanage_fcontext_t *fcontext, void *varg)
-+ {
-+ 	const char *oexpr = semanage_fcontext_get_expr(fcontext);
-+ 	fc_match_handle_t *handp = varg;
-+-	struct Ustr *expr;
-++	char *expr = NULL;
-+ 	regex_t re;
-+ 	int type, retval = -1;
-++	size_t len;
-+ 
-+ 	/* Only match ALL or DIR */
-+ 	type = semanage_fcontext_get_type(fcontext);
-+ 	if (type != SEMANAGE_FCONTEXT_ALL && type != SEMANAGE_FCONTEXT_ALL)
-+ 		return 0;
-+ 
-+-	/* Convert oexpr into a Ustr and anchor it at the beginning */
-+-	expr = ustr_dup_cstr("^");
-+-	if (expr == USTR_NULL)
-+-		goto done;
-+-	if (!ustr_add_cstr(&expr, oexpr))
-+-		goto done;
-+-
-+-	/* Strip off trailing ".+" or ".*" */
-+-	if (ustr_cmp_suffix_cstr_eq(expr, ".+") ||
-+-	    ustr_cmp_suffix_cstr_eq(expr, ".*")) {
-+-		if (!ustr_del(&expr, 2))
-+-			goto done;
-+-	}
-+-
-+-	/* Strip off trailing "(/.*)?" */
-+-	if (ustr_cmp_suffix_cstr_eq(expr, "(/.*)?")) {
-+-		if (!ustr_del(&expr, 6))
-+-			goto done;
-+-	}
-+-
-+-	if (ustr_cmp_suffix_cstr_eq(expr, "/")) {
-+-		if (!ustr_del(&expr, 1))
-+-			goto done;
-+-	}
-+-
-+-	/* Append pattern to eat up trailing slashes */
-+-	if (!ustr_add_cstr(&expr, "/*$"))
-+-		goto done;
-++	len = strlen(oexpr);
-++	/* Define a macro to strip a literal string from the end of oexpr */
-++#define rstrip_oexpr_len(cstr, cstrlen) \
-++	do { \
-++		if (len >= (cstrlen) && !strncmp(oexpr + len - (cstrlen), (cstr), (cstrlen))) \
-++			len -= (cstrlen); \
-++	} while (0)
-++#define rstrip_oexpr(cstr) rstrip_oexpr_len(cstr, sizeof(cstr) - 1)
-++
-++	rstrip_oexpr(".+");
-++	rstrip_oexpr(".*");
-++	rstrip_oexpr("(/.*)?");
-++	rstrip_oexpr("/");
-++
-++#undef rstrip_oexpr_len
-++#undef rstrip_oexpr
-++
-++	/* Anchor oexpr at the beginning and append pattern to eat up trailing slashes */
-++	if (asprintf(&expr, "^%.*s/*$", (int)len, oexpr) < 0)
-++		return -1;
-+ 
-+ 	/* Check dir against expr */
-+-	if (regcomp(&re, ustr_cstr(expr), REG_EXTENDED) != 0)
-++	if (regcomp(&re, expr, REG_EXTENDED) != 0)
-+ 		goto done;
-+ 	if (regexec(&re, handp->dir, 0, NULL, 0) == 0)
-+ 		handp->matched = 1;
-+@@ -287,7 +280,7 @@ static int fcontext_matches(const semanage_fcontext_t *fcontext, void *varg)
-+ 	retval = 0;
-+ 
-+ done:
-+-	ustr_free(expr);
-++	free(expr);
-+ 
-+ 	return retval;
-+ }
-+@@ -523,44 +516,50 @@ static semanage_list_t *make_template(genhomedircon_settings_t * s,
-+ 	return template_data;
-+ }
-+ 
-+-static Ustr *replace_all(const char *str, const replacement_pair_t * repl)
-++static char *replace_all(const char *str, const replacement_pair_t * repl)
-+ {
-+-	Ustr *retval = USTR_NULL;
-++	char *retval, *retval2;
-+ 	int i;
-+ 
-+ 	if (!str || !repl)
-+-		goto done;
-+-	if (!(retval = ustr_dup_cstr(str)))
-+-		goto done;
-++		return NULL;
-+ 
-+-	for (i = 0; repl[i].search_for; i++) {
-+-		ustr_replace_cstr(&retval, repl[i].search_for,
-+-				  repl[i].replace_with, 0);
-++	retval = strdup(str);
-++	for (i = 0; retval != NULL && repl[i].search_for; i++) {
-++		retval2 = semanage_str_replace(repl[i].search_for,
-++					       repl[i].replace_with, retval, 0);
-++		free(retval);
-++		retval = retval2;
-+ 	}
-+-	if (ustr_enomem(retval))
-+-		ustr_sc_free(&retval);
-+-
-+-      done:
-+ 	return retval;
-+ }
-+ 
-+-static const char * extract_context(Ustr *line)
-++static const char *extract_context(const char *line)
-+ {
-+-	const char whitespace[] = " \t\n";
-+-	size_t off, len;
-+-
-+-	/* check for trailing whitespace */
-+-	off = ustr_spn_chrs_rev(line, 0, whitespace, strlen(whitespace));
-+-
-+-	/* find the length of the last field in line */
-+-	len = ustr_cspn_chrs_rev(line, off, whitespace, strlen(whitespace));
-+-
-+-	if (len == 0)
-++	const char *p = line;
-++	size_t off;
-++
-++	off = strlen(p);
-++	p += off;
-++	/* consider trailing whitespaces */
-++	while (off > 0) {
-++		p--;
-++		off--;
-++		if (!isspace(*p))
-++			break;
-++	}
-++	if (off == 0)
-+ 		return NULL;
-+-	return ustr_cstr(line) + ustr_len(line) - (len + off);
-++
-++	/* find the last field in line */
-++	while (off > 0 && !isspace(*(p - 1))) {
-++		p--;
-++		off--;
-++	}
-++	return p;
-+ }
-+ 
-+-static int check_line(genhomedircon_settings_t * s, Ustr *line)
-++static int check_line(genhomedircon_settings_t * s, const char *line)
-+ {
-+ 	sepol_context_t *ctx_record = NULL;
-+ 	const char *ctx_str;
-+@@ -584,22 +583,22 @@ static int write_replacements(genhomedircon_settings_t * s, FILE * out,
-+ 			      const semanage_list_t * tpl,
-+ 			      const replacement_pair_t *repl)
-+ {
-+-	Ustr *line = USTR_NULL;
-++	char *line;
-+ 
-+ 	for (; tpl; tpl = tpl->next) {
-+ 		line = replace_all(tpl->data, repl);
-+ 		if (!line)
-+ 			goto fail;
-+ 		if (check_line(s, line) == STATUS_SUCCESS) {
-+-			if (!ustr_io_putfileline(&line, out))
-++			if (fprintf(out, "%s\n", line) < 0)
-+ 				goto fail;
-+ 		}
-+-		ustr_sc_free(&line);
-++		free(line);
-+ 	}
-+ 	return STATUS_SUCCESS;
-+ 
-+       fail:
-+-	ustr_sc_free(&line);
-++	free(line);
-+ 	return STATUS_ERR;
-+ }
-+ 
-+@@ -607,7 +606,7 @@ static int write_contexts(genhomedircon_settings_t *s, FILE *out,
-+ 			  semanage_list_t *tpl, const replacement_pair_t *repl,
-+ 			  const genhomedircon_user_entry_t *user)
-+ {
-+-	Ustr *line = USTR_NULL;
-++	char *line, *temp;
-+ 	sepol_context_t *context = NULL;
-+ 	char *new_context_str = NULL;
-+ 
-+@@ -624,10 +623,10 @@ static int write_contexts(genhomedircon_settings_t *s, FILE *out,
-+ 
-+ 		if (strcmp(old_context_str, CONTEXT_NONE) == 0) {
-+ 			if (check_line(s, line) == STATUS_SUCCESS &&
-+-			    !ustr_io_putfileline(&line, out)) {
-++			    fprintf(out, "%s\n", line) < 0) {
-+ 				goto fail;
-+ 			}
-+-
-++			free(line);
-+ 			continue;
-+ 		}
-+ 
-+@@ -653,25 +652,27 @@ static int write_contexts(genhomedircon_settings_t *s, FILE *out,
-+ 			goto fail;
-+ 		}
-+ 
-+-		if (!ustr_replace_cstr(&line, old_context_str,
-+-				       new_context_str, 1)) {
-++		temp = semanage_str_replace(old_context_str, new_context_str,
-++					    line, 1);
-++		if (!temp) {
-+ 			goto fail;
-+ 		}
-++		free(line);
-++		line = temp;
-+ 
-+ 		if (check_line(s, line) == STATUS_SUCCESS) {
-+-			if (!ustr_io_putfileline(&line, out)) {
-++			if (fprintf(out, "%s\n", line) < 0)
-+ 				goto fail;
-+-			}
-+ 		}
-+ 
-+-		ustr_sc_free(&line);
-++		free(line);
-+ 		sepol_context_free(context);
-+ 		free(new_context_str);
-+ 	}
-+ 
-+ 	return STATUS_SUCCESS;
-+ fail:
-+-	ustr_sc_free(&line);
-++	free(line);
-+ 	sepol_context_free(context);
-+ 	free(new_context_str);
-+ 	return STATUS_ERR;
-+@@ -1284,20 +1285,19 @@ static int write_context_file(genhomedircon_settings_t * s, FILE * out)
-+ 		}
-+ 
-+ 		for (h = homedirs; h; h = h->next) {
-+-			Ustr *temp = ustr_dup_cstr(h->data);
-++			char *temp = NULL;
-+ 
-+-			if (!temp || !ustr_add_cstr(&temp, "/" FALLBACK_NAME)) {
-+-				ustr_sc_free(&temp);
-++			if (asprintf(&temp, "%s/%s", h->data, FALLBACK_NAME) < 0) {
-+ 				retval = STATUS_ERR;
-+ 				goto done;
-+ 			}
-+ 
-+ 			free(s->fallback->home);
-+-			s->fallback->home = (char*) ustr_cstr(temp);
-++			s->fallback->home = temp;
-+ 
-+ 			if (write_home_dir_context(s, out, homedir_context_tpl,
-+ 						   s->fallback) != STATUS_SUCCESS) {
-+-				ustr_sc_free(&temp);
-++				free(temp);
-+ 				s->fallback->home = NULL;
-+ 				retval = STATUS_ERR;
-+ 				goto done;
-+@@ -1305,13 +1305,13 @@ static int write_context_file(genhomedircon_settings_t * s, FILE * out)
-+ 			if (write_home_root_context(s, out,
-+ 						    homeroot_context_tpl,
-+ 						    h->data) != STATUS_SUCCESS) {
-+-				ustr_sc_free(&temp);
-++				free(temp);
-+ 				s->fallback->home = NULL;
-+ 				retval = STATUS_ERR;
-+ 				goto done;
-+ 			}
-+ 
-+-			ustr_sc_free(&temp);
-++			free(temp);
-+ 			s->fallback->home = NULL;
-+ 		}
-+ 	}
-+-- 
-+2.10.2
-+
-diff --git a/recipes-security/selinux/libsemanage/0004-libsemanage-remove-ustr-library-from-Makefiles-READM.patch b/recipes-security/selinux/libsemanage/0004-libsemanage-remove-ustr-library-from-Makefiles-READM.patch
-new file mode 100644
-index 0000000..1800493
---- /dev/null
-+++ b/recipes-security/selinux/libsemanage/0004-libsemanage-remove-ustr-library-from-Makefiles-READM.patch
-@@ -0,0 +1,61 @@
-+From c7e55daa20f5659799aed47b819ad73e03d11e8f Mon Sep 17 00:00:00 2001
-+From: Nicolas Iooss <nicolas.iooss@m4x.org>
-+Date: Wed, 21 Dec 2016 19:21:04 +0100
-+Subject: [PATCH 4/4] libsemanage: remove ustr library from Makefiles, README
-+ and pkg-config
-+
-+This library is no longer used by libsemanage.
-+
-+Signed-off-by: Nicolas Iooss <nicolas.iooss@m4x.org>
-+(cherry picked from commit 920ee9ee18024c7714f1121e91854f38fa1eef73)
-+
-+Tweaked due to conditional audit patch and no README.
-+---
-+ README                            | 2 +-
-+ libsemanage/src/Makefile          | 2 +-
-+ libsemanage/src/libsemanage.pc.in | 2 +-
-+ libsemanage/tests/Makefile        | 2 +-
-+ 4 files changed, 4 insertions(+), 4 deletions(-)
-+
-+diff --git a/libsemanage/src/Makefile b/libsemanage/src/Makefile
-+index 68aab72..83daf0f 100644
-+--- a/libsemanage/src/Makefile
-++++ b/libsemanage/src/Makefile
-+@@ -91,7 +91,7 @@ $(LIBA): $(OBJS)
-+ 	$(RANLIB) $@
-+ 
-+ $(LIBSO): $(LOBJS)
-+-	$(CC) $(CFLAGS) $(LDFLAGS) -shared -o $@ $^ -lsepol $(LIBAUDIT) -lselinux -lbz2 -lustr -L$(LIBDIR) -Wl,-soname,$(LIBSO),--version-script=libsemanage.map,-z,defs
-++	$(CC) $(CFLAGS) $(LDFLAGS) -shared -o $@ $^ -lsepol $(LIBAUDIT) -lselinux -lbz2 -L$(LIBDIR) -Wl,-soname,$(LIBSO),--version-script=libsemanage.map,-z,defs
-+ 	ln -sf $@ $(TARGET)
-+ 
-+ $(LIBPC): $(LIBPC).in ../VERSION
-+diff --git a/libsemanage/src/libsemanage.pc.in b/libsemanage/src/libsemanage.pc.in
-+index 81e1805..d3eaa06 100644
-+--- a/libsemanage/src/libsemanage.pc.in
-++++ b/libsemanage/src/libsemanage.pc.in
-+@@ -7,7 +7,7 @@ Name: libsemanage
-+ Description: SELinux management library
-+ Version: @VERSION@
-+ URL: http://userspace.selinuxproject.org/
-+-Requires.private: libselinux libsepol ustr
-++Requires.private: libselinux libsepol
-+ Libs: -L${libdir} -lsemanage
-+ Libs.private: -lbz2
-+ Cflags: -I${includedir}
-+diff --git a/libsemanage/tests/Makefile b/libsemanage/tests/Makefile
-+index 4b81fed..56285b3 100644
-+--- a/libsemanage/tests/Makefile
-++++ b/libsemanage/tests/Makefile
-+@@ -12,7 +12,7 @@ LIBS = ../src/libsemanage.a ../../libselinux/src/libselinux.a ../../libsepol/src
-+ 	LIBAUDIT = -laudit
-+ endif
-+
-+-LDFLAGS += -lcunit -lustr -lbz2 $(LIBAUDIT)
-++LDFLAGS += -lcunit -lbz2 $(LIBAUDIT)
-+ OBJECTS = $(SOURCES:.c=.o) 
-+ 
-+ all: $(EXECUTABLE) 
-+-- 
-+2.10.2
-+
-diff --git a/recipes-security/selinux/libsemanage_2.6.bb b/recipes-security/selinux/libsemanage_2.6.bb
-index 6361181..5e24c9d 100644
---- a/recipes-security/selinux/libsemanage_2.6.bb
-+++ b/recipes-security/selinux/libsemanage_2.6.bb
-@@ -15,5 +15,9 @@ SRC_URI += "\
- 	file://libsemanage-allow-to-disable-audit-support.patch \
- 	file://libsemanage-disable-expand-check-on-policy-load.patch \
- 	file://0001-src-Makefile-fix-includedir-in-libselinux.pc.patch \
-+	file://0001-libsemanage-simplify-string-utilities-functions.patch;striplevel=2 \
-+	file://0002-libsemanage-add-semanage_str_replace-utility-functio.patch;striplevel=2 \
-+	file://0003-libsemanage-genhomedircon-drop-ustr-dependency.patch;striplevel=2 \
-+	file://0004-libsemanage-remove-ustr-library-from-Makefiles-READM.patch;striplevel=2 \
- 	"
- FILES_${PN} += "/usr/libexec"
+diff --git a/recipes-extended/ustr/ustr/ustr-c99-inline.patch b/recipes-extended/ustr/ustr/ustr-c99-inline.patch
+deleted file mode 100644
+index dfa021f..0000000
+--- a/recipes-extended/ustr/ustr/ustr-c99-inline.patch
++++ /dev/null
+@@ -1,30 +0,0 @@
+-diff -rup ustr-1.0.4-orig/ustr-compiler.h ustr-1.0.4/ustr-compiler.h
+---- ustr-1.0.4-orig/ustr-compiler.h	2008-02-15 15:12:28.000000000 -0500
+-+++ ustr-1.0.4/ustr-compiler.h	2008-06-13 15:25:18.000000000 -0400
+-@@ -113,17 +113,23 @@
+- #endif
+- 
+- #ifndef USTR_CONF_EI_PROTO /* external inline */
+--# if USTR_CONF_INCLUDE_CODEONLY_HEADERS
+-+# if USTR_CONF_INCLUDE_CODEONLY_HEADERS || ! defined(__GNUC__) || \
+-+     ! USTR_CONF_COMPILE_USE_INLINE
+- #  define USTR_CONF_EI_PROTO static USTR__INLINE
+- # else
+- #  define USTR_CONF_EI_PROTO extern
+- # endif
+- #endif
+- #ifndef USTR_CONF_II_PROTO /* implementation of inline */
+--# if USTR_CONF_INCLUDE_CODEONLY_HEADERS
+-+# if USTR_CONF_INCLUDE_CODEONLY_HEADERS || ! defined(__GNUC__) || \
+-+     ! USTR_CONF_COMPILE_USE_INLINE
+- #  define USTR_CONF_II_PROTO static USTR__INLINE
+- # else
+--#  define USTR_CONF_II_PROTO extern inline
+-+#  if defined(__GNUC_STDC_INLINE__) || defined(__GNUC_GNU_INLINE__)
+-+#   define USTR_CONF_II_PROTO extern inline __attribute__ ((__gnu_inline__))
+-+#  else
+-+#   define USTR_CONF_II_PROTO extern inline
+-+#  endif
+- # endif
+- #endif
+- 
+diff --git a/recipes-extended/ustr/ustr/ustr-fix__va_copy-not-defined.patch b/recipes-extended/ustr/ustr/ustr-fix__va_copy-not-defined.patch
+deleted file mode 100644
+index cd5ef87..0000000
+--- a/recipes-extended/ustr/ustr/ustr-fix__va_copy-not-defined.patch
++++ /dev/null
+@@ -1,26 +0,0 @@
+-From c35a8949e305666ffe7fdc89f7cf506c6e6821d0 Mon Sep 17 00:00:00 2001
+-From: Xin Ouyang <Xin.Ouyang@windriver.com>
+-Date: Fri, 3 Feb 2012 11:28:21 +0800
+-Subject: [PATCH] Fix "__va_copy" not defined warning.
+-
+-ustr-compiler.h:19:16: warning: "__va_copy" is not defined [-Wundef]
+----
+- ustr-compiler.h |    2 +-
+- 1 files changed, 1 insertions(+), 1 deletions(-)
+-
+-diff --git a/ustr-compiler.h b/ustr-compiler.h
+-index 9e71276..642e6e8 100644
+---- a/ustr-compiler.h
+-+++ b/ustr-compiler.h
+-@@ -16,7 +16,7 @@
+- #ifdef va_copy
+- # define USTR_CONF_HAVE_VA_COPY 1
+- # define USTR__VA_COPY(x, y)   va_copy(x, y)
+--#elif __va_copy
+-+#elif defined(__va_copy)
+- # define USTR_CONF_HAVE_VA_COPY 1
+- # define USTR__VA_COPY(x, y) __va_copy(x, y)
+- #else
+--- 
+-1.7.5.4
+-
+diff --git a/recipes-extended/ustr/ustr/ustr-gnu-inline.diff b/recipes-extended/ustr/ustr/ustr-gnu-inline.diff
+deleted file mode 100644
+index 7ea0454..0000000
+--- a/recipes-extended/ustr/ustr/ustr-gnu-inline.diff
++++ /dev/null
+@@ -1,871 +0,0 @@
+-From: Václav Ovsík <vaclav.ovsik@gmail.com>
+-Subject: [PATCH] fixes/gnu-inline
+-
+-This patch adds `__attribute__ ((gnu_inline))' into prototype macros
+-before `inline' to force GNU89 behaviour of inline functions
+-in C99 mode.
+-See http://www.gnu.org/software/gcc/gcc-5/porting_to.html
+-
+-Signed-off-by: Václav Ovsík <vaclav.ovsik@gmail.com>
+-
+-Update it to fix the conflicts with ustr-c99-inline.patch.
+-
+-Upstream-Status: Backport [debian]
+-
+-Signed-off-by: Robert Yang <liezhi.yang@windriver.com>
+-
+----
+- ustr-b-dbg-code.c       | 8 ++++----
+- ustr-b-opt-code.c       | 8 ++++----
+- ustr-cmp-dbg-code.c     | 8 ++++----
+- ustr-cmp-opt-code.c     | 8 ++++----
+- ustr-compiler.h         | 4 ++--
+- ustr-fmt-dbg-code.c     | 8 ++++----
+- ustr-fmt-opt-code.c     | 8 ++++----
+- ustr-ins-dbg-code.c     | 8 ++++----
+- ustr-ins-opt-code.c     | 8 ++++----
+- ustr-io-dbg-code.c      | 8 ++++----
+- ustr-io-opt-code.c      | 8 ++++----
+- ustr-main-dbg-code.c    | 2 +-
+- ustr-main-opt-code.c    | 2 +-
+- ustr-parse-dbg-code.c   | 8 ++++----
+- ustr-parse-opt-code.c   | 8 ++++----
+- ustr-pool-dbg-code.c    | 8 ++++----
+- ustr-pool-opt-code.c    | 8 ++++----
+- ustr-replace-dbg-code.c | 8 ++++----
+- ustr-replace-opt-code.c | 8 ++++----
+- ustr-sc-dbg-code.c      | 8 ++++----
+- ustr-sc-opt-code.c      | 8 ++++----
+- ustr-set-dbg-code.c     | 8 ++++----
+- ustr-set-opt-code.c     | 8 ++++----
+- ustr-split-dbg-code.c   | 8 ++++----
+- ustr-split-opt-code.c   | 8 ++++----
+- ustr-spn-dbg-code.c     | 8 ++++----
+- ustr-spn-opt-code.c     | 8 ++++----
+- ustr-srch-dbg-code.c    | 8 ++++----
+- ustr-srch-opt-code.c    | 8 ++++----
+- ustr-sub-dbg-code.c     | 8 ++++----
+- ustr-sub-opt-code.c     | 8 ++++----
+- ustr-utf8-dbg-code.c    | 8 ++++----
+- ustr-utf8-opt-code.c    | 8 ++++----
+- 33 files changed, 124 insertions(+), 124 deletions(-)
+-
+-diff --git a/ustr-b-dbg-code.c b/ustr-b-dbg-code.c
+-index 4a7fdac..60e383e 100644
+---- a/ustr-b-dbg-code.c
+-+++ b/ustr-b-dbg-code.c
+-@@ -3,11 +3,11 @@
+- #include "ustr-conf-debug.h"
+- #define USTR_CONF_USE_DYNAMIC_CONF USTR_CONF_HAVE_DYNAMIC_CONF
+- #define USTR_CONF_e_PROTO  extern
+--#define USTR_CONF_i_PROTO  extern inline
+-+#define USTR_CONF_i_PROTO  extern  __attribute__ ((gnu_inline)) inline
+- #define USTR_CONF_E_PROTO  extern
+--#define USTR_CONF_I_PROTO  extern inline
+-+#define USTR_CONF_I_PROTO  extern  __attribute__ ((gnu_inline)) inline
+- #define USTR_CONF_EI_PROTO extern
+--#define USTR_CONF_II_PROTO extern inline
+-+#define USTR_CONF_II_PROTO extern  __attribute__ ((gnu_inline)) inline
+- #include "ustr-main.h"
+- #undef  USTR_CONF_INCLUDE_CODEONLY_HEADERS
+- #define USTR_CONF_INCLUDE_CODEONLY_HEADERS 1
+-@@ -16,5 +16,5 @@
+- #undef  USTR_CONF_I_PROTO
+- #define USTR_CONF_I_PROTO
+- #undef  USTR_CONF_II_PROTO
+--#define USTR_CONF_II_PROTO inline
+-+#define USTR_CONF_II_PROTO  __attribute__ ((gnu_inline)) inline
+- #include "ustr-b.h"
+-diff --git a/ustr-b-opt-code.c b/ustr-b-opt-code.c
+-index 45e9e87..4011898 100644
+---- a/ustr-b-opt-code.c
+-+++ b/ustr-b-opt-code.c
+-@@ -3,11 +3,11 @@
+- #include "ustr-conf.h"
+- #define USTR_CONF_USE_DYNAMIC_CONF USTR_CONF_HAVE_DYNAMIC_CONF
+- #define USTR_CONF_e_PROTO  extern
+--#define USTR_CONF_i_PROTO  extern inline
+-+#define USTR_CONF_i_PROTO  extern  __attribute__ ((gnu_inline)) inline
+- #define USTR_CONF_E_PROTO  extern
+--#define USTR_CONF_I_PROTO  extern inline
+-+#define USTR_CONF_I_PROTO  extern  __attribute__ ((gnu_inline)) inline
+- #define USTR_CONF_EI_PROTO extern
+--#define USTR_CONF_II_PROTO extern inline
+-+#define USTR_CONF_II_PROTO extern  __attribute__ ((gnu_inline)) inline
+- #include "ustr-main.h"
+- #undef  USTR_CONF_INCLUDE_CODEONLY_HEADERS
+- #define USTR_CONF_INCLUDE_CODEONLY_HEADERS 1
+-@@ -16,5 +16,5 @@
+- #undef  USTR_CONF_I_PROTO
+- #define USTR_CONF_I_PROTO
+- #undef  USTR_CONF_II_PROTO
+--#define USTR_CONF_II_PROTO inline
+-+#define USTR_CONF_II_PROTO  __attribute__ ((gnu_inline)) inline
+- #include "ustr-b.h"
+-diff --git a/ustr-cmp-dbg-code.c b/ustr-cmp-dbg-code.c
+-index 7b8af33..4c3adc2 100644
+---- a/ustr-cmp-dbg-code.c
+-+++ b/ustr-cmp-dbg-code.c
+-@@ -3,11 +3,11 @@
+- #include "ustr-conf-debug.h"
+- #define USTR_CONF_USE_DYNAMIC_CONF USTR_CONF_HAVE_DYNAMIC_CONF
+- #define USTR_CONF_e_PROTO  extern
+--#define USTR_CONF_i_PROTO  extern inline
+-+#define USTR_CONF_i_PROTO  extern  __attribute__ ((gnu_inline)) inline
+- #define USTR_CONF_E_PROTO  extern
+--#define USTR_CONF_I_PROTO  extern inline
+-+#define USTR_CONF_I_PROTO  extern  __attribute__ ((gnu_inline)) inline
+- #define USTR_CONF_EI_PROTO extern
+--#define USTR_CONF_II_PROTO extern inline
+-+#define USTR_CONF_II_PROTO extern  __attribute__ ((gnu_inline)) inline
+- #include "ustr-main.h"
+- #undef  USTR_CONF_INCLUDE_CODEONLY_HEADERS
+- #define USTR_CONF_INCLUDE_CODEONLY_HEADERS 1
+-@@ -16,5 +16,5 @@
+- #undef  USTR_CONF_I_PROTO
+- #define USTR_CONF_I_PROTO
+- #undef  USTR_CONF_II_PROTO
+--#define USTR_CONF_II_PROTO inline
+-+#define USTR_CONF_II_PROTO  __attribute__ ((gnu_inline)) inline
+- #include "ustr-cmp.h"
+-diff --git a/ustr-cmp-opt-code.c b/ustr-cmp-opt-code.c
+-index 2076d1c..ff5d02c 100644
+---- a/ustr-cmp-opt-code.c
+-+++ b/ustr-cmp-opt-code.c
+-@@ -3,11 +3,11 @@
+- #include "ustr-conf.h"
+- #define USTR_CONF_USE_DYNAMIC_CONF USTR_CONF_HAVE_DYNAMIC_CONF
+- #define USTR_CONF_e_PROTO  extern
+--#define USTR_CONF_i_PROTO  extern inline
+-+#define USTR_CONF_i_PROTO  extern  __attribute__ ((gnu_inline)) inline
+- #define USTR_CONF_E_PROTO  extern
+--#define USTR_CONF_I_PROTO  extern inline
+-+#define USTR_CONF_I_PROTO  extern  __attribute__ ((gnu_inline)) inline
+- #define USTR_CONF_EI_PROTO extern
+--#define USTR_CONF_II_PROTO extern inline
+-+#define USTR_CONF_II_PROTO extern  __attribute__ ((gnu_inline)) inline
+- #include "ustr-main.h"
+- #undef  USTR_CONF_INCLUDE_CODEONLY_HEADERS
+- #define USTR_CONF_INCLUDE_CODEONLY_HEADERS 1
+-@@ -16,5 +16,5 @@
+- #undef  USTR_CONF_I_PROTO
+- #define USTR_CONF_I_PROTO
+- #undef  USTR_CONF_II_PROTO
+--#define USTR_CONF_II_PROTO inline
+-+#define USTR_CONF_II_PROTO  __attribute__ ((gnu_inline)) inline
+- #include "ustr-cmp.h"
+-diff --git a/ustr-compiler.h b/ustr-compiler.h
+-index 9e71276..38ae026 100644
+---- a/ustr-compiler.h
+-+++ b/ustr-compiler.h
+-@@ -92,7 +92,7 @@
+- #endif
+- 
+- #if USTR_CONF_COMPILE_USE_INLINE
+--#define USTR__INLINE inline
+-+#define USTR__INLINE  __attribute__ ((gnu_inline)) inline
+- #else
+- #define USTR__INLINE /* no inline */
+- #endif
+-diff --git a/ustr-fmt-dbg-code.c b/ustr-fmt-dbg-code.c
+-index 4249bb1..1f147a0 100644
+---- a/ustr-fmt-dbg-code.c
+-+++ b/ustr-fmt-dbg-code.c
+-@@ -3,11 +3,11 @@
+- #include "ustr-conf-debug.h"
+- #define USTR_CONF_USE_DYNAMIC_CONF USTR_CONF_HAVE_DYNAMIC_CONF
+- #define USTR_CONF_e_PROTO  extern
+--#define USTR_CONF_i_PROTO  extern inline
+-+#define USTR_CONF_i_PROTO  extern  __attribute__ ((gnu_inline)) inline
+- #define USTR_CONF_E_PROTO  extern
+--#define USTR_CONF_I_PROTO  extern inline
+-+#define USTR_CONF_I_PROTO  extern  __attribute__ ((gnu_inline)) inline
+- #define USTR_CONF_EI_PROTO extern
+--#define USTR_CONF_II_PROTO extern inline
+-+#define USTR_CONF_II_PROTO extern  __attribute__ ((gnu_inline)) inline
+- #include "ustr-main.h"
+- #undef  USTR_CONF_INCLUDE_CODEONLY_HEADERS
+- #define USTR_CONF_INCLUDE_CODEONLY_HEADERS 1
+-@@ -16,5 +16,5 @@
+- #undef  USTR_CONF_I_PROTO
+- #define USTR_CONF_I_PROTO
+- #undef  USTR_CONF_II_PROTO
+--#define USTR_CONF_II_PROTO inline
+-+#define USTR_CONF_II_PROTO  __attribute__ ((gnu_inline)) inline
+- #include "ustr-fmt.h"
+-diff --git a/ustr-fmt-opt-code.c b/ustr-fmt-opt-code.c
+-index c73e375..989b29f 100644
+---- a/ustr-fmt-opt-code.c
+-+++ b/ustr-fmt-opt-code.c
+-@@ -3,11 +3,11 @@
+- #include "ustr-conf.h"
+- #define USTR_CONF_USE_DYNAMIC_CONF USTR_CONF_HAVE_DYNAMIC_CONF
+- #define USTR_CONF_e_PROTO  extern
+--#define USTR_CONF_i_PROTO  extern inline
+-+#define USTR_CONF_i_PROTO  extern  __attribute__ ((gnu_inline)) inline
+- #define USTR_CONF_E_PROTO  extern
+--#define USTR_CONF_I_PROTO  extern inline
+-+#define USTR_CONF_I_PROTO  extern  __attribute__ ((gnu_inline)) inline
+- #define USTR_CONF_EI_PROTO extern
+--#define USTR_CONF_II_PROTO extern inline
+-+#define USTR_CONF_II_PROTO extern  __attribute__ ((gnu_inline)) inline
+- #include "ustr-main.h"
+- #undef  USTR_CONF_INCLUDE_CODEONLY_HEADERS
+- #define USTR_CONF_INCLUDE_CODEONLY_HEADERS 1
+-@@ -16,5 +16,5 @@
+- #undef  USTR_CONF_I_PROTO
+- #define USTR_CONF_I_PROTO
+- #undef  USTR_CONF_II_PROTO
+--#define USTR_CONF_II_PROTO inline
+-+#define USTR_CONF_II_PROTO  __attribute__ ((gnu_inline)) inline
+- #include "ustr-fmt.h"
+-diff --git a/ustr-ins-dbg-code.c b/ustr-ins-dbg-code.c
+-index 39f9bba..4c6d5ea 100644
+---- a/ustr-ins-dbg-code.c
+-+++ b/ustr-ins-dbg-code.c
+-@@ -3,11 +3,11 @@
+- #include "ustr-conf-debug.h"
+- #define USTR_CONF_USE_DYNAMIC_CONF USTR_CONF_HAVE_DYNAMIC_CONF
+- #define USTR_CONF_e_PROTO  extern
+--#define USTR_CONF_i_PROTO  extern inline
+-+#define USTR_CONF_i_PROTO  extern  __attribute__ ((gnu_inline)) inline
+- #define USTR_CONF_E_PROTO  extern
+--#define USTR_CONF_I_PROTO  extern inline
+-+#define USTR_CONF_I_PROTO  extern  __attribute__ ((gnu_inline)) inline
+- #define USTR_CONF_EI_PROTO extern
+--#define USTR_CONF_II_PROTO extern inline
+-+#define USTR_CONF_II_PROTO extern  __attribute__ ((gnu_inline)) inline
+- #include "ustr-main.h"
+- #include "ustr-fmt.h"
+- #undef  USTR_CONF_INCLUDE_CODEONLY_HEADERS
+-@@ -17,5 +17,5 @@
+- #undef  USTR_CONF_I_PROTO
+- #define USTR_CONF_I_PROTO
+- #undef  USTR_CONF_II_PROTO
+--#define USTR_CONF_II_PROTO inline
+-+#define USTR_CONF_II_PROTO  __attribute__ ((gnu_inline)) inline
+- #include "ustr-ins.h"
+-diff --git a/ustr-ins-opt-code.c b/ustr-ins-opt-code.c
+-index 1aca827..859b44d 100644
+---- a/ustr-ins-opt-code.c
+-+++ b/ustr-ins-opt-code.c
+-@@ -3,11 +3,11 @@
+- #include "ustr-conf.h"
+- #define USTR_CONF_USE_DYNAMIC_CONF USTR_CONF_HAVE_DYNAMIC_CONF
+- #define USTR_CONF_e_PROTO  extern
+--#define USTR_CONF_i_PROTO  extern inline
+-+#define USTR_CONF_i_PROTO  extern  __attribute__ ((gnu_inline)) inline
+- #define USTR_CONF_E_PROTO  extern
+--#define USTR_CONF_I_PROTO  extern inline
+-+#define USTR_CONF_I_PROTO  extern  __attribute__ ((gnu_inline)) inline
+- #define USTR_CONF_EI_PROTO extern
+--#define USTR_CONF_II_PROTO extern inline
+-+#define USTR_CONF_II_PROTO extern  __attribute__ ((gnu_inline)) inline
+- #include "ustr-main.h"
+- #include "ustr-fmt.h"
+- #undef  USTR_CONF_INCLUDE_CODEONLY_HEADERS
+-@@ -17,5 +17,5 @@
+- #undef  USTR_CONF_I_PROTO
+- #define USTR_CONF_I_PROTO
+- #undef  USTR_CONF_II_PROTO
+--#define USTR_CONF_II_PROTO inline
+-+#define USTR_CONF_II_PROTO  __attribute__ ((gnu_inline)) inline
+- #include "ustr-ins.h"
+-diff --git a/ustr-io-dbg-code.c b/ustr-io-dbg-code.c
+-index c361c93..d42e43f 100644
+---- a/ustr-io-dbg-code.c
+-+++ b/ustr-io-dbg-code.c
+-@@ -3,11 +3,11 @@
+- #include "ustr-conf-debug.h"
+- #define USTR_CONF_USE_DYNAMIC_CONF USTR_CONF_HAVE_DYNAMIC_CONF
+- #define USTR_CONF_e_PROTO  extern
+--#define USTR_CONF_i_PROTO  extern inline
+-+#define USTR_CONF_i_PROTO  extern  __attribute__ ((gnu_inline)) inline
+- #define USTR_CONF_E_PROTO  extern
+--#define USTR_CONF_I_PROTO  extern inline
+-+#define USTR_CONF_I_PROTO  extern  __attribute__ ((gnu_inline)) inline
+- #define USTR_CONF_EI_PROTO extern
+--#define USTR_CONF_II_PROTO extern inline
+-+#define USTR_CONF_II_PROTO extern  __attribute__ ((gnu_inline)) inline
+- #include "ustr-main.h"
+- #undef  USTR_CONF_INCLUDE_CODEONLY_HEADERS
+- #define USTR_CONF_INCLUDE_CODEONLY_HEADERS 1
+-@@ -16,5 +16,5 @@
+- #undef  USTR_CONF_I_PROTO
+- #define USTR_CONF_I_PROTO
+- #undef  USTR_CONF_II_PROTO
+--#define USTR_CONF_II_PROTO inline
+-+#define USTR_CONF_II_PROTO  __attribute__ ((gnu_inline)) inline
+- #include "ustr-io.h"
+-diff --git a/ustr-io-opt-code.c b/ustr-io-opt-code.c
+-index b1b4525..ae8de87 100644
+---- a/ustr-io-opt-code.c
+-+++ b/ustr-io-opt-code.c
+-@@ -3,11 +3,11 @@
+- #include "ustr-conf.h"
+- #define USTR_CONF_USE_DYNAMIC_CONF USTR_CONF_HAVE_DYNAMIC_CONF
+- #define USTR_CONF_e_PROTO  extern
+--#define USTR_CONF_i_PROTO  extern inline
+-+#define USTR_CONF_i_PROTO  extern  __attribute__ ((gnu_inline)) inline
+- #define USTR_CONF_E_PROTO  extern
+--#define USTR_CONF_I_PROTO  extern inline
+-+#define USTR_CONF_I_PROTO  extern  __attribute__ ((gnu_inline)) inline
+- #define USTR_CONF_EI_PROTO extern
+--#define USTR_CONF_II_PROTO extern inline
+-+#define USTR_CONF_II_PROTO extern  __attribute__ ((gnu_inline)) inline
+- #include "ustr-main.h"
+- #undef  USTR_CONF_INCLUDE_CODEONLY_HEADERS
+- #define USTR_CONF_INCLUDE_CODEONLY_HEADERS 1
+-@@ -16,5 +16,5 @@
+- #undef  USTR_CONF_I_PROTO
+- #define USTR_CONF_I_PROTO
+- #undef  USTR_CONF_II_PROTO
+--#define USTR_CONF_II_PROTO inline
+-+#define USTR_CONF_II_PROTO  __attribute__ ((gnu_inline)) inline
+- #include "ustr-io.h"
+-diff --git a/ustr-main-dbg-code.c b/ustr-main-dbg-code.c
+-index 4b821ce..abaa53a 100644
+---- a/ustr-main-dbg-code.c
+-+++ b/ustr-main-dbg-code.c
+-@@ -7,5 +7,5 @@
+- #define USTR_CONF_E_PROTO  extern
+- #define USTR_CONF_I_PROTO
+- #define USTR_CONF_EI_PROTO extern
+--#define USTR_CONF_II_PROTO inline
+-+#define USTR_CONF_II_PROTO  __attribute__ ((gnu_inline)) inline
+- #include "ustr-main.h"
+-diff --git a/ustr-main-opt-code.c b/ustr-main-opt-code.c
+-index 233fb60..7ef6e98 100644
+---- a/ustr-main-opt-code.c
+-+++ b/ustr-main-opt-code.c
+-@@ -7,5 +7,5 @@
+- #define USTR_CONF_E_PROTO  extern
+- #define USTR_CONF_I_PROTO
+- #define USTR_CONF_EI_PROTO extern
+--#define USTR_CONF_II_PROTO inline
+-+#define USTR_CONF_II_PROTO  __attribute__ ((gnu_inline)) inline
+- #include "ustr-main.h"
+-diff --git a/ustr-parse-dbg-code.c b/ustr-parse-dbg-code.c
+-index c9653af..6e1707d 100644
+---- a/ustr-parse-dbg-code.c
+-+++ b/ustr-parse-dbg-code.c
+-@@ -3,11 +3,11 @@
+- #include "ustr-conf-debug.h"
+- #define USTR_CONF_USE_DYNAMIC_CONF USTR_CONF_HAVE_DYNAMIC_CONF
+- #define USTR_CONF_e_PROTO  extern
+--#define USTR_CONF_i_PROTO  extern inline
+-+#define USTR_CONF_i_PROTO  extern  __attribute__ ((gnu_inline)) inline
+- #define USTR_CONF_E_PROTO  extern
+--#define USTR_CONF_I_PROTO  extern inline
+-+#define USTR_CONF_I_PROTO  extern  __attribute__ ((gnu_inline)) inline
+- #define USTR_CONF_EI_PROTO extern
+--#define USTR_CONF_II_PROTO extern inline
+-+#define USTR_CONF_II_PROTO extern  __attribute__ ((gnu_inline)) inline
+- #include "ustr-main.h"
+- #undef  USTR_CONF_INCLUDE_CODEONLY_HEADERS
+- #define USTR_CONF_INCLUDE_CODEONLY_HEADERS 1
+-@@ -16,5 +16,5 @@
+- #undef  USTR_CONF_I_PROTO
+- #define USTR_CONF_I_PROTO
+- #undef  USTR_CONF_II_PROTO
+--#define USTR_CONF_II_PROTO inline
+-+#define USTR_CONF_II_PROTO  __attribute__ ((gnu_inline)) inline
+- #include "ustr-parse.h"
+-diff --git a/ustr-parse-opt-code.c b/ustr-parse-opt-code.c
+-index 0c8df4d..fc96db2 100644
+---- a/ustr-parse-opt-code.c
+-+++ b/ustr-parse-opt-code.c
+-@@ -3,11 +3,11 @@
+- #include "ustr-conf.h"
+- #define USTR_CONF_USE_DYNAMIC_CONF USTR_CONF_HAVE_DYNAMIC_CONF
+- #define USTR_CONF_e_PROTO  extern
+--#define USTR_CONF_i_PROTO  extern inline
+-+#define USTR_CONF_i_PROTO  extern  __attribute__ ((gnu_inline)) inline
+- #define USTR_CONF_E_PROTO  extern
+--#define USTR_CONF_I_PROTO  extern inline
+-+#define USTR_CONF_I_PROTO  extern  __attribute__ ((gnu_inline)) inline
+- #define USTR_CONF_EI_PROTO extern
+--#define USTR_CONF_II_PROTO extern inline
+-+#define USTR_CONF_II_PROTO extern  __attribute__ ((gnu_inline)) inline
+- #include "ustr-main.h"
+- #undef  USTR_CONF_INCLUDE_CODEONLY_HEADERS
+- #define USTR_CONF_INCLUDE_CODEONLY_HEADERS 1
+-@@ -16,5 +16,5 @@
+- #undef  USTR_CONF_I_PROTO
+- #define USTR_CONF_I_PROTO
+- #undef  USTR_CONF_II_PROTO
+--#define USTR_CONF_II_PROTO inline
+-+#define USTR_CONF_II_PROTO  __attribute__ ((gnu_inline)) inline
+- #include "ustr-parse.h"
+-diff --git a/ustr-pool-dbg-code.c b/ustr-pool-dbg-code.c
+-index adf7519..957f9ca 100644
+---- a/ustr-pool-dbg-code.c
+-+++ b/ustr-pool-dbg-code.c
+-@@ -3,11 +3,11 @@
+- #include "ustr-conf-debug.h"
+- #define USTR_CONF_USE_DYNAMIC_CONF USTR_CONF_HAVE_DYNAMIC_CONF
+- #define USTR_CONF_e_PROTO  extern
+--#define USTR_CONF_i_PROTO  extern inline
+-+#define USTR_CONF_i_PROTO  extern  __attribute__ ((gnu_inline)) inline
+- #define USTR_CONF_E_PROTO  extern
+--#define USTR_CONF_I_PROTO  extern inline
+-+#define USTR_CONF_I_PROTO  extern  __attribute__ ((gnu_inline)) inline
+- #define USTR_CONF_EI_PROTO extern
+--#define USTR_CONF_II_PROTO extern inline
+-+#define USTR_CONF_II_PROTO extern  __attribute__ ((gnu_inline)) inline
+- #include "ustr-main.h"
+- #undef  USTR_CONF_INCLUDE_CODEONLY_HEADERS
+- #define USTR_CONF_INCLUDE_CODEONLY_HEADERS 1
+-@@ -16,5 +16,5 @@
+- #undef  USTR_CONF_I_PROTO
+- #define USTR_CONF_I_PROTO
+- #undef  USTR_CONF_II_PROTO
+--#define USTR_CONF_II_PROTO inline
+-+#define USTR_CONF_II_PROTO  __attribute__ ((gnu_inline)) inline
+- #include "ustr-pool.h"
+-diff --git a/ustr-pool-opt-code.c b/ustr-pool-opt-code.c
+-index 2b0367c..c1b2413 100644
+---- a/ustr-pool-opt-code.c
+-+++ b/ustr-pool-opt-code.c
+-@@ -3,11 +3,11 @@
+- #include "ustr-conf.h"
+- #define USTR_CONF_USE_DYNAMIC_CONF USTR_CONF_HAVE_DYNAMIC_CONF
+- #define USTR_CONF_e_PROTO  extern
+--#define USTR_CONF_i_PROTO  extern inline
+-+#define USTR_CONF_i_PROTO  extern  __attribute__ ((gnu_inline)) inline
+- #define USTR_CONF_E_PROTO  extern
+--#define USTR_CONF_I_PROTO  extern inline
+-+#define USTR_CONF_I_PROTO  extern  __attribute__ ((gnu_inline)) inline
+- #define USTR_CONF_EI_PROTO extern
+--#define USTR_CONF_II_PROTO extern inline
+-+#define USTR_CONF_II_PROTO extern  __attribute__ ((gnu_inline)) inline
+- #include "ustr-main.h"
+- #undef  USTR_CONF_INCLUDE_CODEONLY_HEADERS
+- #define USTR_CONF_INCLUDE_CODEONLY_HEADERS 1
+-@@ -16,5 +16,5 @@
+- #undef  USTR_CONF_I_PROTO
+- #define USTR_CONF_I_PROTO
+- #undef  USTR_CONF_II_PROTO
+--#define USTR_CONF_II_PROTO inline
+-+#define USTR_CONF_II_PROTO  __attribute__ ((gnu_inline)) inline
+- #include "ustr-pool.h"
+-diff --git a/ustr-replace-dbg-code.c b/ustr-replace-dbg-code.c
+-index fe02187..90531ac 100644
+---- a/ustr-replace-dbg-code.c
+-+++ b/ustr-replace-dbg-code.c
+-@@ -3,11 +3,11 @@
+- #include "ustr-conf-debug.h"
+- #define USTR_CONF_USE_DYNAMIC_CONF USTR_CONF_HAVE_DYNAMIC_CONF
+- #define USTR_CONF_e_PROTO  extern
+--#define USTR_CONF_i_PROTO  extern inline
+-+#define USTR_CONF_i_PROTO  extern  __attribute__ ((gnu_inline)) inline
+- #define USTR_CONF_E_PROTO  extern
+--#define USTR_CONF_I_PROTO  extern inline
+-+#define USTR_CONF_I_PROTO  extern  __attribute__ ((gnu_inline)) inline
+- #define USTR_CONF_EI_PROTO extern
+--#define USTR_CONF_II_PROTO extern inline
+-+#define USTR_CONF_II_PROTO extern  __attribute__ ((gnu_inline)) inline
+- #include "ustr-main.h"
+- #include "ustr-set.h"
+- #include "ustr-srch.h"
+-@@ -19,5 +19,5 @@
+- #undef  USTR_CONF_I_PROTO
+- #define USTR_CONF_I_PROTO
+- #undef  USTR_CONF_II_PROTO
+--#define USTR_CONF_II_PROTO inline
+-+#define USTR_CONF_II_PROTO  __attribute__ ((gnu_inline)) inline
+- #include "ustr-replace.h"
+-diff --git a/ustr-replace-opt-code.c b/ustr-replace-opt-code.c
+-index e76b3bb..6232753 100644
+---- a/ustr-replace-opt-code.c
+-+++ b/ustr-replace-opt-code.c
+-@@ -3,11 +3,11 @@
+- #include "ustr-conf.h"
+- #define USTR_CONF_USE_DYNAMIC_CONF USTR_CONF_HAVE_DYNAMIC_CONF
+- #define USTR_CONF_e_PROTO  extern
+--#define USTR_CONF_i_PROTO  extern inline
+-+#define USTR_CONF_i_PROTO  extern  __attribute__ ((gnu_inline)) inline
+- #define USTR_CONF_E_PROTO  extern
+--#define USTR_CONF_I_PROTO  extern inline
+-+#define USTR_CONF_I_PROTO  extern  __attribute__ ((gnu_inline)) inline
+- #define USTR_CONF_EI_PROTO extern
+--#define USTR_CONF_II_PROTO extern inline
+-+#define USTR_CONF_II_PROTO extern  __attribute__ ((gnu_inline)) inline
+- #include "ustr-main.h"
+- #include "ustr-set.h"
+- #include "ustr-srch.h"
+-@@ -19,5 +19,5 @@
+- #undef  USTR_CONF_I_PROTO
+- #define USTR_CONF_I_PROTO
+- #undef  USTR_CONF_II_PROTO
+--#define USTR_CONF_II_PROTO inline
+-+#define USTR_CONF_II_PROTO  __attribute__ ((gnu_inline)) inline
+- #include "ustr-replace.h"
+-diff --git a/ustr-sc-dbg-code.c b/ustr-sc-dbg-code.c
+-index 0011c63..d7ce317 100644
+---- a/ustr-sc-dbg-code.c
+-+++ b/ustr-sc-dbg-code.c
+-@@ -3,11 +3,11 @@
+- #include "ustr-conf-debug.h"
+- #define USTR_CONF_USE_DYNAMIC_CONF USTR_CONF_HAVE_DYNAMIC_CONF
+- #define USTR_CONF_e_PROTO  extern
+--#define USTR_CONF_i_PROTO  extern inline
+-+#define USTR_CONF_i_PROTO  extern  __attribute__ ((gnu_inline)) inline
+- #define USTR_CONF_E_PROTO  extern
+--#define USTR_CONF_I_PROTO  extern inline
+-+#define USTR_CONF_I_PROTO  extern  __attribute__ ((gnu_inline)) inline
+- #define USTR_CONF_EI_PROTO extern
+--#define USTR_CONF_II_PROTO extern inline
+-+#define USTR_CONF_II_PROTO extern  __attribute__ ((gnu_inline)) inline
+- #include "ustr-main.h"
+- #include "ustr-spn.h"
+- #include "ustr-utf8.h"
+-@@ -18,5 +18,5 @@
+- #undef  USTR_CONF_I_PROTO
+- #define USTR_CONF_I_PROTO
+- #undef  USTR_CONF_II_PROTO
+--#define USTR_CONF_II_PROTO inline
+-+#define USTR_CONF_II_PROTO  __attribute__ ((gnu_inline)) inline
+- #include "ustr-sc.h"
+-diff --git a/ustr-sc-opt-code.c b/ustr-sc-opt-code.c
+-index 7cb81ba..4a97ed9 100644
+---- a/ustr-sc-opt-code.c
+-+++ b/ustr-sc-opt-code.c
+-@@ -3,11 +3,11 @@
+- #include "ustr-conf.h"
+- #define USTR_CONF_USE_DYNAMIC_CONF USTR_CONF_HAVE_DYNAMIC_CONF
+- #define USTR_CONF_e_PROTO  extern
+--#define USTR_CONF_i_PROTO  extern inline
+-+#define USTR_CONF_i_PROTO  extern  __attribute__ ((gnu_inline)) inline
+- #define USTR_CONF_E_PROTO  extern
+--#define USTR_CONF_I_PROTO  extern inline
+-+#define USTR_CONF_I_PROTO  extern  __attribute__ ((gnu_inline)) inline
+- #define USTR_CONF_EI_PROTO extern
+--#define USTR_CONF_II_PROTO extern inline
+-+#define USTR_CONF_II_PROTO extern  __attribute__ ((gnu_inline)) inline
+- #include "ustr-main.h"
+- #include "ustr-spn.h"
+- #include "ustr-utf8.h"
+-@@ -18,5 +18,5 @@
+- #undef  USTR_CONF_I_PROTO
+- #define USTR_CONF_I_PROTO
+- #undef  USTR_CONF_II_PROTO
+--#define USTR_CONF_II_PROTO inline
+-+#define USTR_CONF_II_PROTO  __attribute__ ((gnu_inline)) inline
+- #include "ustr-sc.h"
+-diff --git a/ustr-set-dbg-code.c b/ustr-set-dbg-code.c
+-index 023875a..cf77071 100644
+---- a/ustr-set-dbg-code.c
+-+++ b/ustr-set-dbg-code.c
+-@@ -3,11 +3,11 @@
+- #include "ustr-conf-debug.h"
+- #define USTR_CONF_USE_DYNAMIC_CONF USTR_CONF_HAVE_DYNAMIC_CONF
+- #define USTR_CONF_e_PROTO  extern
+--#define USTR_CONF_i_PROTO  extern inline
+-+#define USTR_CONF_i_PROTO  extern  __attribute__ ((gnu_inline)) inline
+- #define USTR_CONF_E_PROTO  extern
+--#define USTR_CONF_I_PROTO  extern inline
+-+#define USTR_CONF_I_PROTO  extern  __attribute__ ((gnu_inline)) inline
+- #define USTR_CONF_EI_PROTO extern
+--#define USTR_CONF_II_PROTO extern inline
+-+#define USTR_CONF_II_PROTO extern  __attribute__ ((gnu_inline)) inline
+- #include "ustr-main.h"
+- #include "ustr-fmt.h"
+- #undef  USTR_CONF_INCLUDE_CODEONLY_HEADERS
+-@@ -17,5 +17,5 @@
+- #undef  USTR_CONF_I_PROTO
+- #define USTR_CONF_I_PROTO
+- #undef  USTR_CONF_II_PROTO
+--#define USTR_CONF_II_PROTO inline
+-+#define USTR_CONF_II_PROTO  __attribute__ ((gnu_inline)) inline
+- #include "ustr-set.h"
+-diff --git a/ustr-set-opt-code.c b/ustr-set-opt-code.c
+-index e726888..34dcaf6 100644
+---- a/ustr-set-opt-code.c
+-+++ b/ustr-set-opt-code.c
+-@@ -3,11 +3,11 @@
+- #include "ustr-conf.h"
+- #define USTR_CONF_USE_DYNAMIC_CONF USTR_CONF_HAVE_DYNAMIC_CONF
+- #define USTR_CONF_e_PROTO  extern
+--#define USTR_CONF_i_PROTO  extern inline
+-+#define USTR_CONF_i_PROTO  extern  __attribute__ ((gnu_inline)) inline
+- #define USTR_CONF_E_PROTO  extern
+--#define USTR_CONF_I_PROTO  extern inline
+-+#define USTR_CONF_I_PROTO  extern  __attribute__ ((gnu_inline)) inline
+- #define USTR_CONF_EI_PROTO extern
+--#define USTR_CONF_II_PROTO extern inline
+-+#define USTR_CONF_II_PROTO extern  __attribute__ ((gnu_inline)) inline
+- #include "ustr-main.h"
+- #include "ustr-fmt.h"
+- #undef  USTR_CONF_INCLUDE_CODEONLY_HEADERS
+-@@ -17,5 +17,5 @@
+- #undef  USTR_CONF_I_PROTO
+- #define USTR_CONF_I_PROTO
+- #undef  USTR_CONF_II_PROTO
+--#define USTR_CONF_II_PROTO inline
+-+#define USTR_CONF_II_PROTO  __attribute__ ((gnu_inline)) inline
+- #include "ustr-set.h"
+-diff --git a/ustr-split-dbg-code.c b/ustr-split-dbg-code.c
+-index 03e5ca5..e40d2a5 100644
+---- a/ustr-split-dbg-code.c
+-+++ b/ustr-split-dbg-code.c
+-@@ -3,11 +3,11 @@
+- #include "ustr-conf-debug.h"
+- #define USTR_CONF_USE_DYNAMIC_CONF USTR_CONF_HAVE_DYNAMIC_CONF
+- #define USTR_CONF_e_PROTO  extern
+--#define USTR_CONF_i_PROTO  extern inline
+-+#define USTR_CONF_i_PROTO  extern  __attribute__ ((gnu_inline)) inline
+- #define USTR_CONF_E_PROTO  extern
+--#define USTR_CONF_I_PROTO  extern inline
+-+#define USTR_CONF_I_PROTO  extern  __attribute__ ((gnu_inline)) inline
+- #define USTR_CONF_EI_PROTO extern
+--#define USTR_CONF_II_PROTO extern inline
+-+#define USTR_CONF_II_PROTO extern  __attribute__ ((gnu_inline)) inline
+- #include "ustr-main.h"
+- #include "ustr-set.h"
+- #include "ustr-spn.h"
+-@@ -19,5 +19,5 @@
+- #undef  USTR_CONF_I_PROTO
+- #define USTR_CONF_I_PROTO
+- #undef  USTR_CONF_II_PROTO
+--#define USTR_CONF_II_PROTO inline
+-+#define USTR_CONF_II_PROTO  __attribute__ ((gnu_inline)) inline
+- #include "ustr-split.h"
+-diff --git a/ustr-split-opt-code.c b/ustr-split-opt-code.c
+-index d64e300..74f4b1c 100644
+---- a/ustr-split-opt-code.c
+-+++ b/ustr-split-opt-code.c
+-@@ -3,11 +3,11 @@
+- #include "ustr-conf.h"
+- #define USTR_CONF_USE_DYNAMIC_CONF USTR_CONF_HAVE_DYNAMIC_CONF
+- #define USTR_CONF_e_PROTO  extern
+--#define USTR_CONF_i_PROTO  extern inline
+-+#define USTR_CONF_i_PROTO  extern  __attribute__ ((gnu_inline)) inline
+- #define USTR_CONF_E_PROTO  extern
+--#define USTR_CONF_I_PROTO  extern inline
+-+#define USTR_CONF_I_PROTO  extern  __attribute__ ((gnu_inline)) inline
+- #define USTR_CONF_EI_PROTO extern
+--#define USTR_CONF_II_PROTO extern inline
+-+#define USTR_CONF_II_PROTO extern  __attribute__ ((gnu_inline)) inline
+- #include "ustr-main.h"
+- #include "ustr-set.h"
+- #include "ustr-spn.h"
+-@@ -19,5 +19,5 @@
+- #undef  USTR_CONF_I_PROTO
+- #define USTR_CONF_I_PROTO
+- #undef  USTR_CONF_II_PROTO
+--#define USTR_CONF_II_PROTO inline
+-+#define USTR_CONF_II_PROTO  __attribute__ ((gnu_inline)) inline
+- #include "ustr-split.h"
+-diff --git a/ustr-spn-dbg-code.c b/ustr-spn-dbg-code.c
+-index ff97432..b0b09d4 100644
+---- a/ustr-spn-dbg-code.c
+-+++ b/ustr-spn-dbg-code.c
+-@@ -3,11 +3,11 @@
+- #include "ustr-conf-debug.h"
+- #define USTR_CONF_USE_DYNAMIC_CONF USTR_CONF_HAVE_DYNAMIC_CONF
+- #define USTR_CONF_e_PROTO  extern
+--#define USTR_CONF_i_PROTO  extern inline
+-+#define USTR_CONF_i_PROTO  extern  __attribute__ ((gnu_inline)) inline
+- #define USTR_CONF_E_PROTO  extern
+--#define USTR_CONF_I_PROTO  extern inline
+-+#define USTR_CONF_I_PROTO  extern  __attribute__ ((gnu_inline)) inline
+- #define USTR_CONF_EI_PROTO extern
+--#define USTR_CONF_II_PROTO extern inline
+-+#define USTR_CONF_II_PROTO extern  __attribute__ ((gnu_inline)) inline
+- #include "ustr-main.h"
+- #include "ustr-srch.h"
+- #include "ustr-utf8.h"
+-@@ -18,5 +18,5 @@
+- #undef  USTR_CONF_I_PROTO
+- #define USTR_CONF_I_PROTO
+- #undef  USTR_CONF_II_PROTO
+--#define USTR_CONF_II_PROTO inline
+-+#define USTR_CONF_II_PROTO  __attribute__ ((gnu_inline)) inline
+- #include "ustr-spn.h"
+-diff --git a/ustr-spn-opt-code.c b/ustr-spn-opt-code.c
+-index 3ff0a07..92c5ccc 100644
+---- a/ustr-spn-opt-code.c
+-+++ b/ustr-spn-opt-code.c
+-@@ -3,11 +3,11 @@
+- #include "ustr-conf.h"
+- #define USTR_CONF_USE_DYNAMIC_CONF USTR_CONF_HAVE_DYNAMIC_CONF
+- #define USTR_CONF_e_PROTO  extern
+--#define USTR_CONF_i_PROTO  extern inline
+-+#define USTR_CONF_i_PROTO  extern  __attribute__ ((gnu_inline)) inline
+- #define USTR_CONF_E_PROTO  extern
+--#define USTR_CONF_I_PROTO  extern inline
+-+#define USTR_CONF_I_PROTO  extern  __attribute__ ((gnu_inline)) inline
+- #define USTR_CONF_EI_PROTO extern
+--#define USTR_CONF_II_PROTO extern inline
+-+#define USTR_CONF_II_PROTO extern  __attribute__ ((gnu_inline)) inline
+- #include "ustr-main.h"
+- #include "ustr-srch.h"
+- #include "ustr-utf8.h"
+-@@ -18,5 +18,5 @@
+- #undef  USTR_CONF_I_PROTO
+- #define USTR_CONF_I_PROTO
+- #undef  USTR_CONF_II_PROTO
+--#define USTR_CONF_II_PROTO inline
+-+#define USTR_CONF_II_PROTO  __attribute__ ((gnu_inline)) inline
+- #include "ustr-spn.h"
+-diff --git a/ustr-srch-dbg-code.c b/ustr-srch-dbg-code.c
+-index 40e4dbf..0f4da21 100644
+---- a/ustr-srch-dbg-code.c
+-+++ b/ustr-srch-dbg-code.c
+-@@ -3,11 +3,11 @@
+- #include "ustr-conf-debug.h"
+- #define USTR_CONF_USE_DYNAMIC_CONF USTR_CONF_HAVE_DYNAMIC_CONF
+- #define USTR_CONF_e_PROTO  extern
+--#define USTR_CONF_i_PROTO  extern inline
+-+#define USTR_CONF_i_PROTO  extern  __attribute__ ((gnu_inline)) inline
+- #define USTR_CONF_E_PROTO  extern
+--#define USTR_CONF_I_PROTO  extern inline
+-+#define USTR_CONF_I_PROTO  extern  __attribute__ ((gnu_inline)) inline
+- #define USTR_CONF_EI_PROTO extern
+--#define USTR_CONF_II_PROTO extern inline
+-+#define USTR_CONF_II_PROTO extern  __attribute__ ((gnu_inline)) inline
+- #include "ustr-main.h"
+- #include "ustr-cmp-internal.h"
+- #undef  USTR_CONF_INCLUDE_CODEONLY_HEADERS
+-@@ -17,6 +17,6 @@
+- #undef  USTR_CONF_I_PROTO
+- #define USTR_CONF_I_PROTO
+- #undef  USTR_CONF_II_PROTO
+--#define USTR_CONF_II_PROTO inline
+-+#define USTR_CONF_II_PROTO  __attribute__ ((gnu_inline)) inline
+- #include "ustr-srch.h"
+- 
+-diff --git a/ustr-srch-opt-code.c b/ustr-srch-opt-code.c
+-index 635464d..8dde13d 100644
+---- a/ustr-srch-opt-code.c
+-+++ b/ustr-srch-opt-code.c
+-@@ -3,11 +3,11 @@
+- #include "ustr-conf.h"
+- #define USTR_CONF_USE_DYNAMIC_CONF USTR_CONF_HAVE_DYNAMIC_CONF
+- #define USTR_CONF_e_PROTO  extern
+--#define USTR_CONF_i_PROTO  extern inline
+-+#define USTR_CONF_i_PROTO  extern  __attribute__ ((gnu_inline)) inline
+- #define USTR_CONF_E_PROTO  extern
+--#define USTR_CONF_I_PROTO  extern inline
+-+#define USTR_CONF_I_PROTO  extern  __attribute__ ((gnu_inline)) inline
+- #define USTR_CONF_EI_PROTO extern
+--#define USTR_CONF_II_PROTO extern inline
+-+#define USTR_CONF_II_PROTO extern  __attribute__ ((gnu_inline)) inline
+- #include "ustr-main.h"
+- #include "ustr-cmp-internal.h"
+- #undef  USTR_CONF_INCLUDE_CODEONLY_HEADERS
+-@@ -17,6 +17,6 @@
+- #undef  USTR_CONF_I_PROTO
+- #define USTR_CONF_I_PROTO
+- #undef  USTR_CONF_II_PROTO
+--#define USTR_CONF_II_PROTO inline
+-+#define USTR_CONF_II_PROTO  __attribute__ ((gnu_inline)) inline
+- #include "ustr-srch.h"
+- 
+-diff --git a/ustr-sub-dbg-code.c b/ustr-sub-dbg-code.c
+-index f994716..b1712e6 100644
+---- a/ustr-sub-dbg-code.c
+-+++ b/ustr-sub-dbg-code.c
+-@@ -3,11 +3,11 @@
+- #include "ustr-conf-debug.h"
+- #define USTR_CONF_USE_DYNAMIC_CONF USTR_CONF_HAVE_DYNAMIC_CONF
+- #define USTR_CONF_e_PROTO  extern
+--#define USTR_CONF_i_PROTO  extern inline
+-+#define USTR_CONF_i_PROTO  extern  __attribute__ ((gnu_inline)) inline
+- #define USTR_CONF_E_PROTO  extern
+--#define USTR_CONF_I_PROTO  extern inline
+-+#define USTR_CONF_I_PROTO  extern  __attribute__ ((gnu_inline)) inline
+- #define USTR_CONF_EI_PROTO extern
+--#define USTR_CONF_II_PROTO extern inline
+-+#define USTR_CONF_II_PROTO extern  __attribute__ ((gnu_inline)) inline
+- #include "ustr-main.h"
+- #include "ustr-fmt.h"
+- #include "ustr-ins.h"
+-@@ -19,5 +19,5 @@
+- #undef  USTR_CONF_I_PROTO
+- #define USTR_CONF_I_PROTO
+- #undef  USTR_CONF_II_PROTO
+--#define USTR_CONF_II_PROTO inline
+-+#define USTR_CONF_II_PROTO  __attribute__ ((gnu_inline)) inline
+- #include "ustr-sub.h"
+-diff --git a/ustr-sub-opt-code.c b/ustr-sub-opt-code.c
+-index 8cdb4eb..91780c7 100644
+---- a/ustr-sub-opt-code.c
+-+++ b/ustr-sub-opt-code.c
+-@@ -3,11 +3,11 @@
+- #include "ustr-conf.h"
+- #define USTR_CONF_USE_DYNAMIC_CONF USTR_CONF_HAVE_DYNAMIC_CONF
+- #define USTR_CONF_e_PROTO  extern
+--#define USTR_CONF_i_PROTO  extern inline
+-+#define USTR_CONF_i_PROTO  extern  __attribute__ ((gnu_inline)) inline
+- #define USTR_CONF_E_PROTO  extern
+--#define USTR_CONF_I_PROTO  extern inline
+-+#define USTR_CONF_I_PROTO  extern  __attribute__ ((gnu_inline)) inline
+- #define USTR_CONF_EI_PROTO extern
+--#define USTR_CONF_II_PROTO extern inline
+-+#define USTR_CONF_II_PROTO extern  __attribute__ ((gnu_inline)) inline
+- #include "ustr-main.h"
+- #include "ustr-fmt.h"
+- #include "ustr-ins.h"
+-@@ -19,5 +19,5 @@
+- #undef  USTR_CONF_I_PROTO
+- #define USTR_CONF_I_PROTO
+- #undef  USTR_CONF_II_PROTO
+--#define USTR_CONF_II_PROTO inline
+-+#define USTR_CONF_II_PROTO  __attribute__ ((gnu_inline)) inline
+- #include "ustr-sub.h"
+-diff --git a/ustr-utf8-dbg-code.c b/ustr-utf8-dbg-code.c
+-index 2666fc2..30786e9 100644
+---- a/ustr-utf8-dbg-code.c
+-+++ b/ustr-utf8-dbg-code.c
+-@@ -3,11 +3,11 @@
+- #include "ustr-conf-debug.h"
+- #define USTR_CONF_USE_DYNAMIC_CONF USTR_CONF_HAVE_DYNAMIC_CONF
+- #define USTR_CONF_e_PROTO  extern
+--#define USTR_CONF_i_PROTO  extern inline
+-+#define USTR_CONF_i_PROTO  extern  __attribute__ ((gnu_inline)) inline
+- #define USTR_CONF_E_PROTO  extern
+--#define USTR_CONF_I_PROTO  extern inline
+-+#define USTR_CONF_I_PROTO  extern  __attribute__ ((gnu_inline)) inline
+- #define USTR_CONF_EI_PROTO extern
+--#define USTR_CONF_II_PROTO extern inline
+-+#define USTR_CONF_II_PROTO extern  __attribute__ ((gnu_inline)) inline
+- #include "ustr-main.h"
+- #undef  USTR_CONF_INCLUDE_CODEONLY_HEADERS
+- #define USTR_CONF_INCLUDE_CODEONLY_HEADERS 1
+-@@ -16,5 +16,5 @@
+- #undef  USTR_CONF_I_PROTO
+- #define USTR_CONF_I_PROTO
+- #undef  USTR_CONF_II_PROTO
+--#define USTR_CONF_II_PROTO inline
+-+#define USTR_CONF_II_PROTO  __attribute__ ((gnu_inline)) inline
+- #include "ustr-utf8.h"
+-diff --git a/ustr-utf8-opt-code.c b/ustr-utf8-opt-code.c
+-index 91fa754..abdf4c0 100644
+---- a/ustr-utf8-opt-code.c
+-+++ b/ustr-utf8-opt-code.c
+-@@ -3,11 +3,11 @@
+- #include "ustr-conf.h"
+- #define USTR_CONF_USE_DYNAMIC_CONF USTR_CONF_HAVE_DYNAMIC_CONF
+- #define USTR_CONF_e_PROTO  extern
+--#define USTR_CONF_i_PROTO  extern inline
+-+#define USTR_CONF_i_PROTO  extern  __attribute__ ((gnu_inline)) inline
+- #define USTR_CONF_E_PROTO  extern
+--#define USTR_CONF_I_PROTO  extern inline
+-+#define USTR_CONF_I_PROTO  extern  __attribute__ ((gnu_inline)) inline
+- #define USTR_CONF_EI_PROTO extern
+--#define USTR_CONF_II_PROTO extern inline
+-+#define USTR_CONF_II_PROTO extern  __attribute__ ((gnu_inline)) inline
+- #include "ustr-main.h"
+- #undef  USTR_CONF_INCLUDE_CODEONLY_HEADERS
+- #define USTR_CONF_INCLUDE_CODEONLY_HEADERS 1
+-@@ -16,5 +16,5 @@
+- #undef  USTR_CONF_I_PROTO
+- #define USTR_CONF_I_PROTO
+- #undef  USTR_CONF_II_PROTO
+--#define USTR_CONF_II_PROTO inline
+-+#define USTR_CONF_II_PROTO  __attribute__ ((gnu_inline)) inline
+- #include "ustr-utf8.h"
+--- 
+-tg: (b148fb7..) fixes/gnu-inline (depends on: upstream)
+diff --git a/recipes-extended/ustr/ustr/ustr-makefile-fix.patch b/recipes-extended/ustr/ustr/ustr-makefile-fix.patch
+deleted file mode 100644
+index b07e746..0000000
+--- a/recipes-extended/ustr/ustr/ustr-makefile-fix.patch
++++ /dev/null
+@@ -1,215 +0,0 @@
+----
+- Makefile |  109 ++++++++++++++++++++++++++-------------------------------------
+- 1 file changed, 46 insertions(+), 63 deletions(-)
+-
+---- a/Makefile
+-+++ b/Makefile
+-@@ -7,35 +7,36 @@ VERS_FULL=$(VERS).4
+- VERS_BSO =1.0
+- VERS_ESONAME =1
+- VERS_ESO     =$(VERS_ESONAME).0.4
+- 
+- DESTDIR =
+--prefix=/usr
+--datadir=$(prefix)/share
+--libdir=$(prefix)/lib
+--libexecdir=$(prefix)/libexec
+--bindir=$(prefix)/bin
+--includedir=$(prefix)/include
+--SHRDIR=$(datadir)/ustr-$(VERS_FULL)
+--DOCSHRDIR=$(datadir)/doc/ustr-devel-$(VERS_FULL)
+--EXAMDIR=$(SHRDIR)/examples
+--mandir=$(datadir)/doc/man
+--MBINDIR=$(libexecdir)/ustr-$(VERS_FULL)
+-+prefix		?= /usr
+-+datadir		?= $(prefix)/share
+-+libdir		?= $(prefix)/lib
+-+libexecdir	?= $(prefix)/libexec
+-+bindir		?= $(prefix)/bin
+-+includedir	?= $(prefix)/include
+-+SHRDIR		?= $(datadir)/ustr-$(VERS_FULL)
+-+DOCSHRDIR	?= $(datadir)/doc/ustr-devel-$(VERS_FULL)
+-+EXAMDIR		?= $(SHRDIR)/examples
+-+mandir		?=$(datadir)/doc/man
+-+MBINDIR		?=$(libexecdir)/ustr-$(VERS_FULL)
+- 
+- ###############################################################################
+- #  This is here to work around the "Fedora build system requirement" that a big
+- # pile of crap ends up in the build.log file even though all sane people don't
+- # want that. See rhbz#248231
+- ###############################################################################
+--HIDE=@
+-+#HIDE=@
+- 
+--CC = cc
+--AR = ar
+--RANLIB = ranlib
+--LDCONFIG = /sbin/ldconfig
+-+vsnp		?= 0
+-+CC		?= cc
+-+AR		?= ar
+-+RANLIB		?= ranlib
+-+LDCONFIG	?= /sbin/ldconfig
+- 
+--CFLAGS  = -O2 -g
+-+CFLAGS		?= -O2 -g
+- 
+- # Debug versions...
+- WARNS = -W -Wall -Wundef -Wshadow -Wpointer-arith -Wbad-function-cast -Wcast-align -Wwrite-strings -Waggregate-return -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wnested-externs -Wno-format-zero-length -Wformat-nonliteral -Wformat-security # -Wfloat-equal -- no floats
+- #  Fedora policies/"reviewers" are completely retarded and refuse to allow
+- # lowering the "Fedora build flags" even when it activley hurts their users,
+-@@ -386,48 +387,46 @@ install: all-shared ustr.pc ustr-debug.p
+- 		install -d $(DESTDIR)$(mandir)/man1
+- 		install -d $(DESTDIR)$(mandir)/man3
+- 		install -d $(DESTDIR)$(bindir)
+- 		install -d $(DESTDIR)$(libdir)/pkgconfig
+- 		$(HIDE)echo Installing files
+--		install -m 644 -t $(DESTDIR)$(libdir) $(LIB_STATIC)
+--		install -m 755 -t $(DESTDIR)$(libdir) $(LIB_SHARED)
+-+		install -m 644 $(LIB_STATIC) $(DESTDIR)$(libdir)
+-+		install -m 755 $(LIB_SHARED) $(DESTDIR)$(libdir)
+- 		-rm -f $(DESTDIR)$(libdir)/$(OPT_LIB_SHARED_NAME)
+- 		ln -s $(OPT_LIB_SHARED) $(DESTDIR)$(libdir)/$(OPT_LIB_SHARED_NAME)
+- 		-rm -f $(DESTDIR)$(libdir)/$(OPT_LIB_SHAREDEV)
+- 		ln -s $(OPT_LIB_SHARED_NAME) $(DESTDIR)$(libdir)/$(OPT_LIB_SHAREDEV)
+- 		-rm -f $(DESTDIR)$(libdir)/$(DBG_LIB_SHARED_NAME)
+- 		ln -s $(DBG_LIB_SHARED) $(DESTDIR)$(libdir)/$(DBG_LIB_SHARED_NAME)
+- 		-rm -f $(DESTDIR)$(libdir)/$(DBG_LIB_SHAREDEV)
+- 		ln -s $(DBG_LIB_SHARED_NAME) $(DESTDIR)$(libdir)/$(DBG_LIB_SHAREDEV)
+- 		$(LDCONFIG) -n $(DESTDIR)$(libdir)
+--		install -pm 644 -t $(DESTDIR)$(includedir) $(SRC_HDRS)
+--		install -pm 644 -t $(DESTDIR)$(SHRDIR) $(SRC_SRCS)
+--		install -pm 644 -t $(DESTDIR)$(SHRDIR) $(XSRC_SRCS)
+--		install -pm 644 -t $(DESTDIR)$(DOCSHRDIR) $(DOCS)
+--		install -pm 644 -t $(DESTDIR)$(EXAMDIR) $(EXAMPLES)
+--		install -pm 644 -t $(DESTDIR)$(mandir)/man1 $(MAN_PAGES_1)
+--		install -pm 644 -t $(DESTDIR)$(mandir)/man3 $(MAN_PAGES_3)
+--		install -m 755 -t $(DESTDIR)$(bindir) ustr-import
+--		install -pm 644 -t $(DESTDIR)$(libdir)/pkgconfig ustr.pc ustr-debug.pc
+-+		install -pm 644 $(SRC_HDRS) $(DESTDIR)$(includedir)
+-+		install -pm 644 $(SRC_SRCS) $(DESTDIR)$(SHRDIR)
+-+		install -pm 644 $(XSRC_SRCS) $(DESTDIR)$(SHRDIR)
+-+		install -pm 644 $(DOCS) $(DESTDIR)$(DOCSHRDIR)
+-+		install -pm 644 $(EXAMPLES) $(DESTDIR)$(EXAMDIR)
+-+		install -pm 644 $(MAN_PAGES_1) $(DESTDIR)$(mandir)/man1
+-+		install -pm 644 $(MAN_PAGES_3) $(DESTDIR)$(mandir)/man3
+-+		install -m 755 ustr-import $(DESTDIR)$(bindir)
+-+		install -pm 644 ustr.pc ustr-debug.pc $(DESTDIR)$(libdir)/pkgconfig
+- 
+- ustr-import-multilib: ustr-import-multilib.in
+- 		sed -e 's,@INCLUDEDIR@,$(includedir),g' -e 's,@MBINDIR@,$(MBINDIR),g' < $< > $@
+- 
+--install-multilib-linux: install autoconf_64b ustr-import-multilib
+-+install-multilib-linux: install ustr-import-multilib
+- 		install -d $(DESTDIR)$(MBINDIR)
+--		$(HIDE)mlib=`./autoconf_64b`; \
+--                   if test "x$$mlib" = "x1"; then mlib=64; else mlib=32; fi; \
+--                   mv -f $(DESTDIR)$(includedir)/ustr-conf-debug.h \
+--                         $(DESTDIR)$(includedir)/ustr-conf-debug-$$mlib.h; \
+-+		mv -f $(DESTDIR)$(includedir)/ustr-conf-debug.h \
+-+                         $(DESTDIR)$(includedir)/ustr-conf-debug-$(mlib).h; \
+-                    mv -f $(DESTDIR)$(includedir)/ustr-conf.h \
+--                         $(DESTDIR)$(includedir)/ustr-conf-$$mlib.h; \
+-+                         $(DESTDIR)$(includedir)/ustr-conf-$(mlib).h; \
+-                    mv -f $(DESTDIR)$(bindir)/ustr-import \
+--                         $(DESTDIR)$(MBINDIR)/ustr-import-$$mlib
+--		install -m 644 -t $(DESTDIR)$(includedir) $(SRC_HDRS_MULTI_LIB)
+-+                         $(DESTDIR)$(MBINDIR)/ustr-import-$(mlib)
+-+		install -m 644 $(SRC_HDRS_MULTI_LIB) $(DESTDIR)$(includedir)
+- 		$(HIDE)mv -f $(DESTDIR)$(includedir)/ustr-conf-debug-multilib-linux.h $(DESTDIR)$(includedir)/ustr-conf-debug.h
+- 		$(HIDE)mv -f $(DESTDIR)$(includedir)/ustr-conf-multilib-linux.h $(DESTDIR)$(includedir)/ustr-conf.h
+--		install -m 755 -t $(DESTDIR)$(bindir) ustr-import-multilib
+-+		install -m 755 ustr-import-multilib $(DESTDIR)$(bindir)
+- 		$(HIDE)mv -f $(DESTDIR)$(bindir)/ustr-import-multilib $(DESTDIR)$(bindir)/ustr-import
+- 		$(HIDE)touch --reference ustr-conf-multilib-linux.h $(DESTDIR)$(includedir)/ustr-conf.h
+- 		$(HIDE)touch --reference ustr-conf-debug-multilib-linux.h $(DESTDIR)$(includedir)/ustr-conf-debug.h
+- 		$(HIDE)touch --reference ustr-import-multilib.in $(DESTDIR)$(bindir)/ustr-import
+- 
+-@@ -442,31 +441,20 @@ clean:
+- 		$(HIDE)rm -f tst_*.c ctst_*.c otst_*.c octst_*.c
+- 		$(HIDE)rm -f ustr-import-multilib
+- 
+- distclean: clean
+- 		rm -f ustr-import
+--		rm -f autoconf_64b autoconf_vsnprintf
+- 		rm -f ustr-conf.h ustr-conf-debug.h
+- 		rm -rf lcov-output
+- 
+- 
+--ustr-import: ustr-import.in autoconf_64b autoconf_vsnprintf
+-+ustr-import: ustr-import.in
+- 		$(HIDE)echo Creating $@
+--		$(HIDE)sz64=`./autoconf_64b`; vsnp=`./autoconf_vsnprintf`; \
+--		sed -e 's,@INCLUDEDIR@,$(includedir),g' -e 's,@SHRDIR@,$(SHRDIR),g' -e 's,@VERS@,$(VERS),g'  -e 's,@VERS_FULL@,$(VERS_FULL),g' -e "s,@HAVE_64bit_SIZE_MAX@,$$sz64,g" -e "s,@HAVE_RETARDED_VSNPRINTF@,$$vsnp,g" < $< > $@
+-+		$(HIDE)if test "$(mlib)" = "64" ; then sz64=1; else sz64=0; fi; \
+-+		sed -e 's,@INCLUDEDIR@,$(includedir),g' -e 's,@SHRDIR@,$(SHRDIR),g' -e 's,@VERS@,$(VERS),g'  -e 's,@VERS_FULL@,$(VERS_FULL),g' -e "s,@HAVE_64bit_SIZE_MAX@,$$sz64,g" -e "s,@HAVE_RETARDED_VSNPRINTF@,$(vsnp),g" < $< > $@
+- 		$(HIDE)chmod 755 $@
+- 
+--# Use CFLAGS so that CFLAGS="... -m32" does the right thing
+--autoconf_64b: autoconf_64b.c
+--		$(HIDE)echo Compiling: auto configuration test:  64bit
+--		$(HIDE)$(CC) $(CFLAGS) -o $@ $<
+--
+--autoconf_vsnprintf: autoconf_vsnprintf.c
+--		$(HIDE)echo Compiling: auto configuration test:  vsnprintf
+--		$(HIDE)$(CC) -o $@ $<
+--
+--# Use LDFLAGS for LDFLAGS="-m32"
+- $(OPT_LIB_SHARED): $(LIB_SHARED_OPT)
+- 		$(HIDE)echo Linking SO OPT lib: $@
+- 		$(HIDE)$(CC) -shared $^ -Wl,-soname -Wl,$(OPT_LIB_SHARED_NAME) -Wl,-version-script -Wl,libustr.ver $(LDFLAGS) -o $@
+- 
+- $(DBG_LIB_SHARED): $(LIB_SHARED_DBG)
+-@@ -480,46 +468,40 @@ libustr.a: $(LIB_STATIC_OPT)
+- libustr-debug.a: $(LIB_STATIC_DBG)
+- 		$(HIDE)echo Linking A DBG lib: $@
+- 		$(HIDE)$(AR) ru $@ $^
+- 		$(HIDE)$(RANLIB) $@
+- 
+--ustr-conf.h: ustr-conf.h.in autoconf_64b autoconf_vsnprintf
+-+ustr-conf.h: ustr-conf.h.in
+- 		$(HIDE)echo Creating $@
+- 		$(HIDE)have_stdint_h=0; dbg1=0; dbg2=0; \
+--                sz64=`./autoconf_64b`; vsnp=`./autoconf_vsnprintf`; \
+--                if test -f "/usr/include/stdint.h"; then have_stdint_h=1; fi; \
+-+		$(HIDE)if test "$(mlib)" = "64" ; then sz64=1; else sz64=0; fi; \
+-                 if test -f "$(prefix)/include/stdint.h"; then have_stdint_h=1; fi; \
+-                 if test -f "$(includedir)/stdint.h"; then have_stdint_h=1; fi; \
+--		sed -e "s,@HAVE_STDINT_H@,$$have_stdint_h,g" -e "s,@USE_ASSERT@,$$dbg1,g" -e "s,@USE_EOS_MARK@,$$dbg2,g" -e "s,@HAVE_64bit_SIZE_MAX@,$$sz64,g" -e "s,@HAVE_RETARDED_VSNPRINTF@,$$vsnp,g" < $< > $@
+-+		sed -e "s,@HAVE_STDINT_H@,$$have_stdint_h,g" -e "s,@USE_ASSERT@,$$dbg1,g" -e "s,@USE_EOS_MARK@,$$dbg2,g" -e "s,@HAVE_64bit_SIZE_MAX@,$$sz64,g" -e "s,@HAVE_RETARDED_VSNPRINTF@,$(vsnp),g" < $< > $@
+- 
+--ustr-conf-debug.h: ustr-conf.h.in autoconf_64b autoconf_vsnprintf
+-+ustr-conf-debug.h: ustr-conf.h.in
+- 		$(HIDE)echo Creating $@
+- 		$(HIDE)have_stdint_h=0; dbg1=1; dbg2=1; \
+--                sz64=`./autoconf_64b`; vsnp=`./autoconf_vsnprintf`; \
+--                if test -f "/usr/include/stdint.h"; then have_stdint_h=1; fi; \
+-+		$(HIDE)if test "$(mlib)" = "64" ; then sz64=1; else sz64=0; fi; \
+-                 if test -f "$(prefix)/include/stdint.h"; then have_stdint_h=1; fi; \
+-                 if test -f "$(includedir)/stdint.h"; then have_stdint_h=1; fi; \
+--		sed -e "s,@HAVE_STDINT_H@,$$have_stdint_h,g" -e "s,@USE_ASSERT@,$$dbg1,g" -e "s,@USE_EOS_MARK@,$$dbg2,g" -e "s,@HAVE_64bit_SIZE_MAX@,$$sz64,g" -e "s,@HAVE_RETARDED_VSNPRINTF@,$$vsnp,g" < $< > $@
+-+		sed -e "s,@HAVE_STDINT_H@,$$have_stdint_h,g" -e "s,@USE_ASSERT@,$$dbg1,g" -e "s,@USE_EOS_MARK@,$$dbg2,g" -e "s,@HAVE_64bit_SIZE_MAX@,$$sz64,g" -e "s,@HAVE_RETARDED_VSNPRINTF@,$(vsnp),g" < $< > $@
+- 
+- 
+- #  We don't use $(DEPS_NONC_ALL) as deps. because it then recompiles everything
+- # too much, and we care about speed more. Do make clean to "fix".
+- #  Yes, scons fixes this.
+- %-code-so-opt.o: %-opt-code.c %-code.h %.h $(DEPS_C_ALL)
+--		$(HIDE)echo Compiling for SO OPT lib: $<
+- 		$(HIDE)$(CC) $(CFLAGS)     -fPIC $(CFLG_LIB_OPT) -o $@ -c $<
+- 
+- %-code-so-dbg.o: %-dbg-code.c %-code.h %.h $(DEPS_C_ALL)
+--		$(HIDE)echo Compiling for SO DBG lib: $<
+- 		$(HIDE)$(CC) $(DBG_CFLAGS) -fPIC $(CFLG_LIB_DBG) -o $@ -c $<
+- 
+- %-code-a-opt.o:  %-opt-code.c %-code.h %.h $(DEPS_C_ALL)
+--		$(HIDE)echo Compiling for A  OPT lib: $<
+- 		$(HIDE)$(CC) $(CFLAGS)           $(CFLG_LIB_OPT) -o $@ -c $<
+- 
+- %-code-a-dbg.o:  %-dbg-code.c %-code.h %.h $(DEPS_C_ALL)
+--		$(HIDE)echo Compiling for A  DBG lib: $<
+- 		$(HIDE)$(CC) $(DBG_CFLAGS)       $(CFLG_LIB_DBG) -o $@ -c $<
+- 
+- 
+- perf-sizes: perf-sizes.c $(OBJS_C_OPT_ALL)
+- 		$(CC) $(WARNS) -O2 -g $(LDFLAGS) -o $@ $^
+diff --git a/recipes-extended/ustr/ustr_1.0.4.bb b/recipes-extended/ustr/ustr_1.0.4.bb
+deleted file mode 100644
+index c34799b..0000000
+--- a/recipes-extended/ustr/ustr_1.0.4.bb
++++ /dev/null
+@@ -1,55 +0,0 @@
+-SUMMARY = "Micro String API - for C"
+-DESCRIPTION = "Micro string library, very low overhead from plain strdup() (Ave. 44% for \
+-0-20B strings). Very easy to use in existing C code. At it's simplest you can \
+-just include a single header file into your .c and start using it."
+-
+-SECTION = "base"
+-PR = "r2"
+-LICENSE = "MIT | LGPLv2+ | BSD"
+-LIC_FILES_CHKSUM = "file://LICENSE;md5=c79c6e2ae13418d16d7dc82df960a1e7 \
+-		    file://LICENSE_BSD;md5=ceb504b0b6471e76cc9cb32cfb150f3c \
+-		    file://LICENSE_LGPL;md5=d8045f3b8f929c1cb29a1e3fd737b499 \
+-		    file://LICENSE_MIT;md5=c61e779b782608472bd87593c3c3916f"
+-
+-SRC_URI = "\
+-    http://www.and.org/ustr/${PV}/${BPN}-${PV}.tar.bz2 \
+-    file://ustr-makefile-fix.patch;patch=1 \
+-    file://ustr-fix__va_copy-not-defined.patch;patch=2 \
+-    file://ustr-c99-inline.patch;patch=3 \
+-    file://ustr-gnu-inline.diff;patch=4 \
+-"
+-SRC_URI[md5sum] = "93147d9f0c9765d4cd0f04f7e44bdfce"
+-SRC_URI[sha256sum] = "3daf6eae9f78de1e872c0b2b83cce35515b94d4bb8a074e48f331fd99e1fc2c4"
+-
+-inherit lib_package
+-inherit siteinfo
+-
+-LEAD_SONAME = "libustr-1.0.so.1"
+-
+-FILES_${PN}-dev += "${bindir}/ustr-import \
+-			${libexecdir}/ustr-${PV}/ustr-import-* \
+-			${datadir}/.gdb_init \
+-			${datadir}/ustr-${PV} \
+-			"
+-
+-EXTRA_OEMAKE_virtclass-native = "prefix=/usr"
+-
+-do_compile() {
+-	oe_runmake all-shared \
+-		mlib=${SITEINFO_BITS}
+-}
+-
+-do_install() {
+-	oe_runmake install-multilib-linux  \
+-		mlib=${SITEINFO_BITS} \
+-		DESTDIR=${D} LDCONFIG=/bin/true
+-	mkdir -p ${D}/${datadir}/doc/${BPN}-${PV}
+-	install ChangeLog ${D}/${datadir}/doc/${BPN}-${PV}
+-	install LICENSE* ${D}/${datadir}/doc/${BPN}-${PV}
+-	install README ${D}/${datadir}/doc/${BPN}-${PV}
+-	install NEWS ${D}/${datadir}/doc/${BPN}-${PV}
+-	mv ${D}/${docdir}/ustr-devel-${PV}/strdup\ vs.\ ustr.gnumeric \
+-		${D}/${docdir}/ustr-devel-${PV}/strdup_vs._ustr.gnumeric
+-}
+-
+-BBCLASSEXTEND = "native"
 -- 
 2.10.2
 
