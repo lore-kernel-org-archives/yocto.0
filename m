@@ -1,62 +1,64 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <prvs=12065cf1dc=holzmayr@rsi-elektrotechnik.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 67FC4E0083C; Thu,  2 Feb 2017 00:44:15 -0800 (PST)
+	id 5122DE0097D; Thu,  2 Feb 2017 00:45:18 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_LOW,
-	RCVD_IN_SORBS_SPAM autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.216.180 listed in dnsbl.sorbs.net]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [81.169.146.220 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.216.180 listed in list.dnswl.org]
-Received: from mail-qt0-f180.google.com (mail-qt0-f180.google.com
-	[209.85.216.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B79F4E004E5
-	for <yocto@yoctoproject.org>; Thu,  2 Feb 2017 00:44:12 -0800 (PST)
-Received: by mail-qt0-f180.google.com with SMTP id x49so17362817qtc.2
-	for <yocto@yoctoproject.org>; Thu, 02 Feb 2017 00:44:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=bphU2cyKi5umUSVutR6BHxhg72QZ92xmekMEn/4/79k=;
-	b=UVYMVgHjTU1bSDTkGx2YXjFuK2gzQyvluY4Phz8SrPt4UtptC4+3U+xagq6dL8pl+X
-	9p533/6uJy/WZSSuoX7yx116LE2Rli0CM3q9le4AyBzutLpKbgxmLOzPB5LxlR0+GCM8
-	ZWCYHfO343qrhWZ3jMF3zLd6pehkwYZOgDiiD/HYS/gVEu2Y8W0qz6LJli4k75UZY6OX
-	TCSHsRJF85IG499thYCVNwvSsWXkw0vyHlOoetg8nsd+tD0iJIBwZRoR+VU95ucTO6B2
-	/Dv6F2Q8lPsb9UqddtC5T7Edn8fgFLG7/lh9RMbQ7ZYxFsrXwDucR6sJYTOGdoD3TdGk
-	zfTw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=bphU2cyKi5umUSVutR6BHxhg72QZ92xmekMEn/4/79k=;
-	b=CUnUPy0sfB48KN+bGEqGg7mq54aVUk8JuSdaCy2v9iNOVUBE31PgzfMwUlGave9zi0
-	LacofMQ5bwDbyFIRLPVA6sL4zQCFzwdwBBbnViiJPtbbztH+Uy7NCLH3tVZi6ul1xW1b
-	L6cRMEn25/4St7Z2dyLdmoZoGDSfkad9PZtD3ocLGpOD4EWQlTSNXwoXnxMWRT4Zf/lE
-	xVUGk200wZSbiXD7Pkx3Nno5p/IhZuAGiXwQVb6ZsOCv4n2id0J19GNI3PvtxbRwlvbD
-	mOKOENaTooWuFE5VURnSSJhEl4rmsZ62ZQyDX8hC3ZJI1YwJFAGgTppAyUNklad+UdK/
-	TfAw==
-X-Gm-Message-State: AMke39mVvsOAroV8nE0Arn2VwPS3EjJw8QHWcRc6NJgCS8KmdYpCWFDAoS2iEoegyjFo4ZZWcKNpz/S4qxW7e6xM
-X-Received: by 10.55.15.231 with SMTP id 100mr6868320qkp.244.1486025052007;
-	Thu, 02 Feb 2017 00:44:12 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.140.103.233 with HTTP; Thu, 2 Feb 2017 00:43:51 -0800 (PST)
-In-Reply-To: <OF4FB9DFFD.52F1E88C-ONC12580BB.002DEC1F-C12580BB.002E638E@esa-grimma.de>
+X-Greylist: delayed 201 seconds by postgrey-1.32 at yocto-www;
+	Thu, 02 Feb 2017 00:45:04 PST
+Received: from mo4-p00-ob.smtp.rzone.de (mo4-p00-ob.smtp.rzone.de
+	[81.169.146.220])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5D188E0082A
+	for <yocto@yoctoproject.org>; Thu,  2 Feb 2017 00:45:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1486025101;
+	l=1899; s=domk; d=rsi-elektrotechnik.de;
+	h=Content-Transfer-Encoding:Content-Type:In-Reply-To:MIME-Version:
+	Date:From:References:To:Subject;
+	bh=zRmm619Yk7b/kWHam9Z182mCSBoWxaBcmB5utr59POs=;
+	b=V6W2NqP4viW8fDOKR+FCwX9Kcde5pN0+rhbogzhrELWUuIEuEakep3V49XRFsGo9Z1
+	bLWs1w9+yz+5YfTkfnWRHCRORfYOKCROLsgBqGaAH9Z0WQ9Mvqm0HQAP+qGuK1LylJc4
+	bgpo3b9eF6LoCbeRtKuH7Y/jQ18r69483kN3c=
+X-RZG-AUTH: :fz5RJhWIaexwuXGosGLfiBc0xYyi1Y5bd+wRKqrzPWwJyH/ODuV4n+N26eC0MVrEDIlpLg0lWA==
+X-RZG-CLASS-ID: mo00
+Received: from mail.rsi-elektrotechnik.de (p50933415.dip0.t-ipconnect.de
+	[80.147.52.21]) by smtp.strato.de (RZmta 39.12 AUTH)
+	with ESMTPSA id z079a2t128fco8l
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (curve secp384r1
+	with 384 ECDH bits, eq. 7680 bits RSA))
+	(Client did not present a certificate) for <yocto@yoctoproject.org>;
+	Thu, 2 Feb 2017 09:41:38 +0100 (CET)
+Received: from [x.x.x.x] by mail.rsi-elektrotechnik.de (Cipher
+	TLSv1.2:AES-SHA:256) (MDaemon PRO v16.5.2) 
+	with ESMTPSA id md50000497655.msg for <yocto@yoctoproject.org>;
+	Thu, 02 Feb 2017 09:41:28 +0100
+X-MDRemoteIP: 80.147.52.21
+X-MDArrival-Date: Thu, 02 Feb 2017 09:41:28 +0100
+X-Authenticated-Sender: holzmayr@rsi-elektrotechnik.de
+X-Return-Path: prvs=12065cf1dc=holzmayr@rsi-elektrotechnik.de
+X-Envelope-From: holzmayr@rsi-elektrotechnik.de
+X-MDaemon-Deliver-To: yocto@yoctoproject.org
+X-CAV-Result: skipped - holzmayr@rsi-elektrotechnik.de is in exclusion list
+To: yocto@yoctoproject.org
 References: <OF4FB9DFFD.52F1E88C-ONC12580BB.002DEC1F-C12580BB.002E638E@esa-grimma.de>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Thu, 2 Feb 2017 08:43:51 +0000
-Message-ID: <CAJTo0LbUOOaxcUCZhKiMHCcyAk7dv2N4mNWeGDfROOpHfVZJ1g@mail.gmail.com>
-To: S.Jaritz@esa-grimma.de
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+From: Josef Holzmayr <holzmayr@rsi-elektrotechnik.de>
+Message-ID: <be87e205-7c37-1b72-d9a1-1828d85f2d27@rsi-elektrotechnik.de>
+Date: Thu, 2 Feb 2017 09:41:25 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.7.0
+MIME-Version: 1.0
+In-Reply-To: <OF4FB9DFFD.52F1E88C-ONC12580BB.002DEC1F-C12580BB.002E638E@esa-grimma.de>
 Subject: Re: How to setup apt-get to work togehter with the packages build with yocto?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -69,41 +71,61 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 02 Feb 2017 08:44:15 -0000
-Content-Type: multipart/alternative; boundary=001a114760325a44720547882b42
+X-List-Received-Date: Thu, 02 Feb 2017 08:45:18 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 8bit
 
---001a114760325a44720547882b42
-Content-Type: text/plain; charset=UTF-8
+Howdy!
 
-On 2 February 2017 at 08:26, <S.Jaritz@esa-grimma.de> wrote:
+On 02.02.2017 09:26, S.Jaritz@esa-grimma.de wrote:
+ > Hej
+ >
+ > I like to setup a central host for the packages build with yocto. The
+ > goal is, that everyone can download the "new" packages from a server in
+ > the local network. I am looking for a description how to archive that or
+ > some tips to start from.
 
-> I like to setup a central host for the packages build with yocto. The goal
-> is, that everyone can download the "new" packages from a server in the
-> local network. I am looking for a description how to archive that or some
-> tips to start from.
->
+Basically, you want to create a package feed. The mega manual contains a 
+lot of bits and pieces (start here: 
+http://www.yoctoproject.org/docs/latest/mega-manual/mega-manual.html#building-images-for-more-than-one-machine). 
+AFAICS the most common (and therefore best tested) packaging mechanisms 
+are rpm and ipk, so maybe start with those.
 
-I've not tried it with dpkg/apt, but setting PACKAGE_FEED_URIS to the base
-URL of the feeds works well with opkg and should work on all package types.
+Also on a second note, you can look at what Angstrom does for example: 
+it mainly is exactly what you want, an OE-based package feed.
 
-Ross
+ > This e-mail may contain confidential and/or privileged information. If
+ > you are
+ > not the intended recipient (or have received this e-mail in error) please
+ > notify the sender immediately and destroy this e-mail. Any unauthorized
+ > copying, disclosure or distribution of the material in this e-mail is
+ > strictly
+ > forbidden.
 
---001a114760325a44720547882b42
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+I hereby inform you that I will not destroy the email, and that I will 
+copy, distribute and/or disclose any information that I have received 
+just as I wish.
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 2 February 2017 at 08:26,  <span dir=3D"ltr">&lt;<a href=3D"mailto:S.Jar=
-itz@esa-grimma.de" target=3D"_blank">S.Jaritz@esa-grimma.de</a>&gt;</span> =
-wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;bord=
-er-left:1px #ccc solid;padding-left:1ex"><font size=3D"2" face=3D"sans-seri=
-f">I like to setup a central host for the
-packages build with yocto. The goal is, that everyone can download the
-&quot;new&quot; packages from a server in the local network. I am looking
-for a description how to archive that or some tips to start from.</font>
-<br></blockquote></div><br>I&#39;ve not tried it with dpkg/apt, but setting=
- PACKAGE_FEED_URIS to the base URL of the feeds works well with opkg and sh=
-ould work on all package types.</div><div class=3D"gmail_extra"><br></div><=
-div class=3D"gmail_extra">Ross</div></div>
+Greetz!
 
---001a114760325a44720547882b42--
+-- 
+Josef Holzmayr
+Software Developer Embedded Systems
+
+Tel: +49 8444 9204-48
+Fax: +49 8444 9204-50
+
+R-S-I Elektrotechnik GmbH & Co. KG
+Woelkestrasse 11
+D-85301 Schweitenkirchen
+www.rsi-elektrotechnik.de
+———————————————
+Amtsgericht Ingolstadt – GmbH: HRB 191328 – KG: HRA 170393
+Geschäftsführer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
+
+_____________________________________________________________
+Amtsgericht Ingolstadt - GmbH: HRB 191328 - KG: HRA 170363
+Geschäftsführer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
+USt-IdNr.: DE 128592548
+
+
