@@ -1,35 +1,67 @@
-Return-Path: <todor.minchev@linux.intel.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B5101E009F0; Thu,  2 Feb 2017 14:37:58 -0800 (PST)
+	id B0B29E009A0; Thu,  2 Feb 2017 14:47:55 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE, 
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.217.181 listed in dnsbl.sorbs.net]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.217.181 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A784BE009A0;
-	Thu,  2 Feb 2017 14:37:56 -0800 (PST)
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-	by fmsmga101.fm.intel.com with ESMTP; 02 Feb 2017 14:37:56 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.33,326,1477983600"; d="scan'208";a="929565752"
-Received: from unknown (HELO localhost.localdomain) ([10.7.197.100])
-	by orsmga003.jf.intel.com with ESMTP; 02 Feb 2017 14:37:50 -0800
-From: Todor Minchev <todor.minchev@linux.intel.com>
-To: yocto@yoctoproject.org, meta-intel@yoctoproject.org,
-	jianxun.zhang@linux.intel.com
-Date: Thu,  2 Feb 2017 14:37:12 -0800
-Message-Id: <20170202223712.8164-4-todor.minchev@linux.intel.com>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20170202223712.8164-1-todor.minchev@linux.intel.com>
-References: <20170202223712.8164-1-todor.minchev@linux.intel.com>
-Cc: Todor Minchev <todor.minchev@linux.intel.com>
-Subject: [PATCH 3/3] rmc: add database extraction functionality
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-ua0-f181.google.com (mail-ua0-f181.google.com
+	[209.85.217.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D93ABE00826
+	for <yocto@yoctoproject.org>; Thu,  2 Feb 2017 14:47:52 -0800 (PST)
+Received: by mail-ua0-f181.google.com with SMTP id i68so1835277uad.0
+	for <yocto@yoctoproject.org>; Thu, 02 Feb 2017 14:47:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to; 
+	bh=kUr/6Zae7fqzOXupw+reEyb3ynjY5uY/LsE5VpffzSE=;
+	b=tp6tf0EV3CM62OECEfnuHgJ8jL7cl+1cBMGit+aAsYhGQM+liCuHk0DjkrSopeq2+Y
+	rF6kdp434+IIpk4JuksZwJA07yzGMG6iFz5zDrreGlVSSeaGVgWE38+cws9wzeUXXp8D
+	2l3uk7gvRagapkKCMI0C05ea8Okb9fVixX8lbo6oHCNF7BUjCsnBAF9AF3IptyYzCO0f
+	c2tYRryMrzhbl/FZ9O0PCXk1btHywYUoZlHbfeqwhFRmWnV4IHItZof2NFmjDReJyGdL
+	khCLI0ZQ9jS9hrxQTc9bioCFv+uGkFU6OXIf8RwbSKFntGjzIXDoJOMXopy4TWWEp4Ur
+	0Tew==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to;
+	bh=kUr/6Zae7fqzOXupw+reEyb3ynjY5uY/LsE5VpffzSE=;
+	b=cFcOacFWupCMZOtZVgRFLAc+lVIjR67V/qhjeEYNp8/RnucYqD9AmR00ambSMJ9bT0
+	BBdjyw6wcqALKsylnVf2lq2+BwHbqAIIGyQVMqzJYqcd/ZZ8TyRVPGaFlz7JMiB+sJZq
+	xf17Hvz5xmNVRvsFdhyeLcvTv9Y3gAR4RFvUENHBrjedeN8vx8n5UOAAKoF780O6lzfG
+	Lgod2F1WtuE+PKKxbLex5o7S8d6rgUAgDopu6SHkQdyMlfR7VsuV/+yRUyiMtzdWycHR
+	7ML0BmRpw5Fr67ooiFtATV8QzcF6XVX+1NBMp82mnBaY2KGgPoACAJv0Dz8RUVLVnycI
+	Arcw==
+X-Gm-Message-State: AIkVDXJrljBDFjeLC5pw+mekUTq75T45CrvoqImWGDxv+eld9A9b75odQxDoQz1SyZ3UUQx9qGpqicgR5PW/ZQ==
+X-Received: by 10.176.83.153 with SMTP id k25mr4632780uaa.141.1486075671759;
+	Thu, 02 Feb 2017 14:47:51 -0800 (PST)
+MIME-Version: 1.0
+References: <DM5PR0101MB29538BCBC9CDC57270E87C48B64C0@DM5PR0101MB2953.prod.exchangelabs.com>
+	<DM5PR0101MB295318DCFD9BA318D91CD38BB64C0@DM5PR0101MB2953.prod.exchangelabs.com>
+In-Reply-To: <DM5PR0101MB295318DCFD9BA318D91CD38BB64C0@DM5PR0101MB2953.prod.exchangelabs.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Thu, 02 Feb 2017 22:47:40 +0000
+Message-ID: <CAMKF1sr4Go-8_9k+1d32JkzSeWKguc9S+iZ94Vk_iFKrv_-kDw@mail.gmail.com>
+To: Takashi Matsuzawa <tmatsuzawa@xevo.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Ruby and OpenSSL version mismatch?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,287 +73,209 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 02 Feb 2017 22:37:58 -0000
+X-List-Received-Date: Thu, 02 Feb 2017 22:47:55 -0000
+Content-Type: multipart/alternative; boundary=f403045dd7ec8651e2054793f4cb
 
-The contents of an existing database file can be extracted in the
-current working directory with the -E option. The top level of the
-directory tree is rmc_db_dump and all files corresponding to
-a given record will be saved in a separate sub-directory. The sub-directory
-name of each record is the signature corresponding to the fingerprint for
-that record.
+--f403045dd7ec8651e2054793f4cb
+Content-Type: text/plain; charset=UTF-8
 
-Example:
-./src/rmc -E -d rmc.db
-
-Successfully extracted rmc.db
-
-Signed-off-by: Todor Minchev <todor.minchev@linux.intel.com>
----
- inc/rmc_api.h         |  9 ++++++
- src/lib/api.c         | 85 +++++++++++++++++++++++++++++++++++++++++++++++++--
- src/lib/common/rmcl.c |  3 +-
- src/rmc.c             | 44 +++++++++++++++++++-------
- 4 files changed, 126 insertions(+), 15 deletions(-)
-
-diff --git a/inc/rmc_api.h b/inc/rmc_api.h
-index a484389..ce26220 100644
---- a/inc/rmc_api.h
-+++ b/inc/rmc_api.h
-@@ -74,6 +74,15 @@ extern int rmc_query_file_by_fp(rmc_fingerprint_t *fp, char *db_pathname, char *
-  */
- extern int rmc_gimme_file(char* db_pathname, char *file_name, rmc_file_t *file);
- 
-+
-+/* extract the contents of a database file and store the files corresponding to
-+ * each record in a separate directory. The name of each directory is the signature
-+ * of the fingerpring for that record
-+ * (in) db_pathname: The path and file name of a RMC database file generated by RMC tool
-+ * return: 0 on success, non-zero on failure.
-+ */
-+int dump_db(char *db_pathname) ;
-+
- /* 1.3 - Helper APIs */
- 
- /* Free allocated data referred in a fingerprint
-diff --git a/src/lib/api.c b/src/lib/api.c
-index 0adb390..aca8d99 100644
---- a/src/lib/api.c
-+++ b/src/lib/api.c
-@@ -3,6 +3,7 @@
-  * RMC API implementation for Linux user space
-  */
- 
-+#define _GNU_SOURCE
- #include <stdio.h>
- #include <unistd.h>
- #include <errno.h>
-@@ -14,8 +15,11 @@
- #include <rmcl.h>
- #include <rsmp.h>
- 
--#define EFI_SYSTAB_PATH "/sys/firmware/efi/systab"
--#define SYSTAB_LEN 4096         /* assume 4kb is enough...*/
-+#define EFI_SYSTAB_PATH  "/sys/firmware/efi/systab"
-+#define SYSTAB_LEN       4096             /* assume 4kb is enough...*/
-+#define DB_DUMP_DIR      "./rmc_db_dump"  /* directory to store db data dump */
-+
-+extern const rmc_uint8_t rmc_db_signature[RMC_DB_SIG_LEN];
- 
- int read_file(const char *pathname, char **data, rmc_size_t* len) {
-     int fd = -1;
-@@ -325,3 +329,80 @@ int rmc_gimme_file(char* db_pathname, char *file_name, rmc_file_t *file) {
- 
-     return ret;
- }
-+
-+/*
-+ * Dump contents of database file
-+ * (in) rmc_db - input database file to extract
-+ */
-+int dump_db(char *db_pathname) {
-+    rmc_meta_header_t meta_header;
-+    rmc_db_header_t *db_header = NULL;
-+    rmc_record_header_t record_header;
-+    rmc_uint64_t record_idx = 0;   /* offset of each reacord in db*/
-+    rmc_uint64_t meta_idx = 0;     /* offset of each meta in a record */
-+    rmc_uint64_t file_idx = 0;     /* offset of file in a meta */
-+    rmc_file_t file;
-+    char *out_dir = NULL, *out_name = NULL;
-+    rmc_size_t db_len = 0;
-+    rmc_uint8_t *rmc_db = NULL;
-+    struct stat s = {0};
-+
-+    if (read_file(db_pathname, (char **)&rmc_db, &db_len)) {
-+        fprintf(stderr, "Failed to read database file\n\n");
-+        return 1;
-+    }
-+
-+    db_header = (rmc_db_header_t *)rmc_db;
-+
-+    /* sanity check of db */
-+    if (strncmp((const char *)db_header->signature,
-+        (const char *)rmc_db_signature, RMC_DB_SIG_LEN))
-+        return 1;
-+
-+    /* create the top level directory */
-+    if (stat(DB_DUMP_DIR, &s) == -1) {
-+        if(mkdir(DB_DUMP_DIR, 0755)) {
-+            fprintf(stderr, "Failed to create %s directory\n\n", out_name);
-+        }
-+    }
-+
-+    /* query the meta. idx: start of record */
-+    record_idx = sizeof(rmc_db_header_t);
-+    while (record_idx < db_header->length) {
-+        memcpy(&record_header, rmc_db + record_idx,
-+            sizeof(rmc_record_header_t));
-+
-+        /* directory name is fingerprint signature */
-+        asprintf(&out_dir, "%s/%s/", DB_DUMP_DIR, record_header.signature.raw);
-+        if (stat(out_dir, &s) == -1) {
-+            if(mkdir(out_dir, 0755)) {
-+                fprintf(stderr, "Failed to create %s directory\n\n", out_name);
-+            }
-+        }
-+
-+        /* find meta */
-+        for (meta_idx = record_idx + sizeof(rmc_record_header_t);
-+            meta_idx < record_idx + record_header.length;) {
-+            memcpy(&meta_header, rmc_db + meta_idx, sizeof(rmc_meta_header_t));
-+            file_idx = meta_idx + sizeof(rmc_meta_header_t);
-+            rmc_ssize_t name_len = strlen((char *)&rmc_db[file_idx]) + 1;
-+            file.blob = &rmc_db[file_idx + name_len];
-+            file.blob_len = meta_header.length - sizeof(rmc_meta_header_t) -
-+                name_len;
-+            file.next = NULL;
-+            file.type = RMC_GENERIC_FILE;
-+            asprintf(&out_name, "%s%s", out_dir, (char *)&rmc_db[file_idx]);
-+            /* write file to dump directory */
-+            if (write_file((const char *)out_name, file.blob, file.blob_len, 0))
-+                return 1;
-+
-+            /* next meta */
-+            meta_idx += meta_header.length;
-+            free(out_name);
-+        }
-+        /* next record */
-+        record_idx += record_header.length;
-+        free(out_dir);
-+    }
-+    return 0;
-+}
-diff --git a/src/lib/common/rmcl.c b/src/lib/common/rmcl.c
-index 67622a0..c996577 100644
---- a/src/lib/common/rmcl.c
-+++ b/src/lib/common/rmcl.c
-@@ -10,7 +10,7 @@
- #include <rmc_util.h>
- #endif
- 
--static const rmc_uint8_t rmc_db_signature[RMC_DB_SIG_LEN] = {'R', 'M', 'C', 'D', 'B'};
-+const rmc_uint8_t rmc_db_signature[RMC_DB_SIG_LEN] = {'R', 'M', 'C', 'D', 'B'};
- 
- /* compute a finger to signature which is stored in record
-  * (in) fingerprint : of board, usually generated by rmc tool and rsmp
-@@ -242,7 +242,6 @@ int query_policy_from_db(rmc_fingerprint_t *fingerprint, rmc_uint8_t *rmc_db, rm
-                         policy->blob_len = meta_header.length - sizeof(rmc_meta_header_t) - cmd_name_len;
-                         policy->next = NULL;
-                         policy->type = type;
--
-                         return 0;
-                     }
-                 }
-diff --git a/src/rmc.c b/src/rmc.c
-index a051ccf..888cbdb 100644
---- a/src/rmc.c
-+++ b/src/rmc.c
-@@ -32,6 +32,8 @@
-   "running on\n" \
-     "\t-d: database file to be queried\n" \
-     "\t-o: path and name of output file of a specific command\n\n" \
-+  "-E: Extract database data to current working directory\n" \
-+    "\t-d: database file to extract\n\n" \
-     "Examples (Steps in an order to add board support into rmc):\n\n" \
-     "1. Generate board fingerprint:\n" \
-     "\t./rmc -F\n\n" \
-@@ -49,11 +51,12 @@
- #define RMC_OPT_CAP_R   (1 << 1)
- #define RMC_OPT_CAP_D   (1 << 2)
- #define RMC_OPT_CAP_B   (1 << 3)
--#define RMC_OPT_F       (1 << 4)
--#define RMC_OPT_O       (1 << 5)
--#define RMC_OPT_B       (1 << 6)
--#define RMC_OPT_D       (1 << 7)
--#define RMC_OPT_I       (1 << 8)
-+#define RMC_OPT_CAP_E   (1 << 4)
-+#define RMC_OPT_F       (1 << 5)
-+#define RMC_OPT_O       (1 << 6)
-+#define RMC_OPT_B       (1 << 7)
-+#define RMC_OPT_D       (1 << 8)
-+#define RMC_OPT_I       (1 << 9)
- 
- static void usage () {
-     fprintf(stdout, USAGE);
-@@ -312,7 +315,7 @@ int main(int argc, char **argv){
-     /* parse options */
-     opterr = 0;
- 
--    while ((c = getopt(argc, argv, "FRD:B:b:f:o:i:d:")) != -1)
-+    while ((c = getopt(argc, argv, "FRED:B:b:f:o:i:d:")) != -1)
-         switch (c) {
-         case 'F':
-             options |= RMC_OPT_CAP_F;
-@@ -320,6 +323,9 @@ int main(int argc, char **argv){
-         case 'R':
-             options |= RMC_OPT_CAP_R;
-             break;
-+        case 'E':
-+            options |= RMC_OPT_CAP_E;
-+            break;
-         case 'D':
-             /* we don't know number of arguments for this option at this point,
-              * allocate array with argc which is bigger than needed. But we also
-@@ -393,8 +399,8 @@ int main(int argc, char **argv){
-             break;
-         case '?':
-             if (optopt == 'F' || optopt == 'R' || optopt == 'D' || optopt == 'B' || \
--                    optopt == 'b' || optopt == 'f' || optopt == 'o' || optopt == 'd'  \
--                    || optopt == 'i')
-+                    optopt == 'E' ||  optopt == 'b' || optopt == 'f' || \
-+                    optopt == 'o' || optopt == 'd' || optopt == 'i')
-                 fprintf(stderr, "\nWRONG USAGE: -%c\n\n", optopt);
-             else if (isprint(optopt))
-                 fprintf(stderr, "Unknown option `-%c'.\n\n", optopt);
-@@ -436,6 +442,13 @@ int main(int argc, char **argv){
-         return 1;
-     }
- 
-+    /* sanity check for -E */
-+    if ((options & RMC_OPT_CAP_E) && (!(options & RMC_OPT_D))) {
-+        fprintf(stderr, "\nERROR: -E requires -d <database file name>\n\n");
-+        usage();
-+        return 1;
-+    }
-+
-     /* sanity check for -B */
-     if ((options & RMC_OPT_CAP_B) && (!(options & RMC_OPT_D) || !(options & RMC_OPT_O))) {
-         fprintf(stderr, "\nWRONG: -B requires -d and -o\n\n");
-@@ -448,7 +461,8 @@ int main(int argc, char **argv){
-         rmc_file_t file;
- 
-         if (!output_path) {
--            fprintf(stderr, "-B internal error, with -o but no output pathname specified\n\n");
-+            fprintf(stderr, "-B internal error, with -o but no output \
-+                pathname specified\n\n");
-             goto main_free;
-         }
- 
-@@ -456,14 +470,22 @@ int main(int argc, char **argv){
-             goto main_free;
- 
-         if (write_file(output_path, file.blob, file.blob_len, 0)) {
--            fprintf(stderr, "-B failed to write file %s to %s\n\n", input_blob_name, output_path);
-+            fprintf(stderr, "-B failed to write file %s to %s\n\n",
-+                input_blob_name, output_path);
-             rmc_free_file(&file);
-             goto main_free;
-         }
--
-         rmc_free_file(&file);
-     }
- 
-+    /* dump database data */
-+    if (options & RMC_OPT_CAP_E) {
-+        if(dump_db(input_db_path_d))
-+            fprintf(stderr, "\nFailed to extract %s\n\n", input_db_path_d);
-+        else
-+            printf("\nSuccessfully extracted %s\n\n", input_db_path_d);
-+    }
-+
-     /* generate RMC database file */
-     if (options & RMC_OPT_CAP_D) {
-         int record_idx = 0;
--- 
-2.11.0
+Send a back port request
 
 
+On Thu, Feb 2, 2017 at 5:32 AM Takashi Matsuzawa <tmatsuzawa@xevo.com>
+wrote:
+
+> Hello, I just tried and the below seems to be the fix.
+>
+>
+> https://patchwork.openembedded.org/patch/119999/
+>
+> ------------------------------
+> *From:* Takashi Matsuzawa
+> *Sent:* Thursday, February 2, 2017 3:25 PM
+> *To:* yocto@yoctoproject.org
+> *Subject:* Ruby and OpenSSL version mismatch?
+>
+>
+> Hello, Yocto.
+>
+> I am trynig a build of fido based yocto image, with openssl 1.0.2j for
+> security reason.
+> The openssl recipe itself builds successfully, but later in the build I
+> see error in jscore.
+> In fact, ruby is complaining that 'OPENSSL_1.0.0' is not available.
+>
+> |
+> /xxx/sysroots/x86_64-linux/usr/lib/ruby/2.2.0/rubygems/core_ext/kernel_require.rb:54:in
+> `require':
+> /xxx/sysroots/x86_64-linux/usr/lib/ruby/2.2.0/x86_64-linux-gnu/digest/../../../../libcrypto.so.1.0.0:
+> version `OPENSSL_1.0.0' not found (required by
+> /xxx/sysroots/x86_64-linux/usr/lib/ruby/2.2.0/x86_64-linux-gnu/digest/sha1.so)
+> -
+> /xxx/sysroots/x86_64-linux/usr/lib/ruby/2.2.0/x86_64-linux-gnu/digest/sha1.so
+> (LoadError)
+> |     from
+> /xxx/sysroots/x86_64-linux/usr/lib/ruby/2.2.0/rubygems/core_ext/kernel_require.rb:54:in
+> `require'
+> |     from
+> /xxx/work/core2-32-poky-linux/qtwebkit/5.5.0+gitAUTOINC+0d592678ba-r0/git/Source/JavaScriptCore/offlineasm/generate_offset_extractor.rb:30:in
+> `<main>'
+> | make[2]: *** [LLIntDesiredOffsets.h] Error 1
+>
+> In fact, if I do objdump -p on sha1.so (in ruby tree):
+>
+> >  required from libcrypto.so.1.0.0:
+> >    0x066a2b20 0x00 02 OPENSSL_1.0.0
+>
+> Whereas, my libcrypt.so.1.0.0 says:
+>
+> >Version definitions:
+> >1 0x01 0x0746be50 libcrypto.so.1.0.0
+> >2 0x00 0x06a2b2e4 OPENSSL_1.0.2d
+> >3 0x00 0x06a2b2e7 OPENSSL_1.0.2g
+> >    OPENSSL_1.0.2d
+>
+> So, this might be the cause of the problem.
+> But I am not sure why sha1.so (which ruby build generats) define these
+> version numbers and not refer to the OpenSSL library in the build.
+>
+> I googled, but there were some tips on updating ruby to solve OpenSSL
+> version mismatch, but it is through grew or apt-get, etc.  Not a tip for
+> yocto build.
+>
+> I may be not familiar with ruby build yet, but any idea how I can fix this?
+> I could try updating ruby recipe as well to more recent version, but first
+> I want to confirm how ruby is deciding the OpenSSL version for its plugin
+> library and causing this mismatch.
+>
+> Thank you for your knowledge..
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+
+--f403045dd7ec8651e2054793f4cb
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div>Send a back port request=C2=A0</div><div><br></div><div><br><div class=
+=3D"gmail_quote"><div>On Thu, Feb 2, 2017 at 5:32 AM Takashi Matsuzawa &lt;=
+<a href=3D"mailto:tmatsuzawa@xevo.com">tmatsuzawa@xevo.com</a>&gt; wrote:<b=
+r></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border=
+-left:1px #ccc solid;padding-left:1ex">
+
+
+
+
+<div class=3D"gmail_msg">
+<div id=3D"m_-4250042900346355981divtagdefaultwrapper" style=3D"font-size:1=
+2pt;color:#000000;font-family:Calibri,Arial,Helvetica,sans-serif" class=3D"=
+gmail_msg">
+<p class=3D"gmail_msg">Hello, I just tried and=C2=A0the below seems to be t=
+he=C2=A0fix.</p>
+<p class=3D"gmail_msg"><br class=3D"gmail_msg">
+</p>
+<p class=3D"gmail_msg"><a href=3D"https://patchwork.openembedded.org/patch/=
+119999/" class=3D"m_-4250042900346355981OWAAutoLink gmail_msg" id=3D"m_-425=
+0042900346355981LPlnk864878" target=3D"_blank">https://patchwork.openembedd=
+ed.org/patch/119999/</a></p>
+<br class=3D"gmail_msg">
+<div style=3D"color:rgb(0,0,0)" class=3D"gmail_msg">
+<hr style=3D"display:inline-block;width:98%" class=3D"gmail_msg">
+<div id=3D"m_-4250042900346355981divRplyFwdMsg" class=3D"gmail_msg"><font f=
+ace=3D"Calibri, sans-serif" color=3D"#000000" style=3D"font-size:11pt" clas=
+s=3D"gmail_msg"><b class=3D"gmail_msg">From:</b> Takashi Matsuzawa<br class=
+=3D"gmail_msg">
+<b class=3D"gmail_msg">Sent:</b> Thursday, February 2, 2017 3:25 PM<br clas=
+s=3D"gmail_msg">
+<b class=3D"gmail_msg">To:</b> <a href=3D"mailto:yocto@yoctoproject.org" cl=
+ass=3D"gmail_msg" target=3D"_blank">yocto@yoctoproject.org</a><br class=3D"=
+gmail_msg">
+<b class=3D"gmail_msg">Subject:</b> Ruby and OpenSSL version mismatch?</fon=
+t>
+<div class=3D"gmail_msg">=C2=A0</div>
+</div></div></div></div><div class=3D"gmail_msg"><div id=3D"m_-425004290034=
+6355981divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font-fam=
+ily:Calibri,Arial,Helvetica,sans-serif" class=3D"gmail_msg"><div style=3D"c=
+olor:rgb(0,0,0)" class=3D"gmail_msg">
+<div class=3D"gmail_msg">
+<div id=3D"m_-4250042900346355981divtagdefaultwrapper" style=3D"font-size:1=
+2pt;color:#000000;font-family:Calibri,Arial,Helvetica,sans-serif" class=3D"=
+gmail_msg">
+<p class=3D"gmail_msg"></p>
+<div class=3D"gmail_msg">Hello, Yocto.<br class=3D"gmail_msg">
+<br class=3D"gmail_msg">
+I am trynig a build of fido based yocto image, with openssl 1.0.2j for secu=
+rity reason.<br class=3D"gmail_msg">
+The openssl recipe itself builds successfully, but later in the build I see=
+ error in jscore.<br class=3D"gmail_msg">
+In fact, ruby is complaining that &#39;OPENSSL_1.0.0&#39; is not available.=
+<br class=3D"gmail_msg">
+<br class=3D"gmail_msg">
+| /xxx/sysroots/x86_64-linux/usr/lib/ruby/2.2.0/rubygems/core_ext/kernel_re=
+quire.rb:54:in `require&#39;: /xxx/sysroots/x86_64-linux/usr/lib/ruby/2.2.0=
+/x86_64-linux-gnu/digest/../../../../libcrypto.so.1.0.0: version `OPENSSL_1=
+.0.0&#39; not found (required by /xxx/sysroots/x86_64-linux/usr/lib/ruby/2.=
+2.0/x86_64-linux-gnu/digest/sha1.so)
+ - /xxx/sysroots/x86_64-linux/usr/lib/ruby/2.2.0/x86_64-linux-gnu/digest/sh=
+a1.so (LoadError)<br class=3D"gmail_msg">
+| =C2=A0=C2=A0 =C2=A0from /xxx/sysroots/x86_64-linux/usr/lib/ruby/2.2.0/rub=
+ygems/core_ext/kernel_require.rb:54:in `require&#39;<br class=3D"gmail_msg"=
+>
+| =C2=A0=C2=A0 =C2=A0from /xxx/work/core2-32-poky-linux/qtwebkit/5.5.0+gitA=
+UTOINC+0d592678ba-r0/git/Source/JavaScriptCore/offlineasm/generate_offset_e=
+xtractor.rb:30:in `&lt;main&gt;&#39;<br class=3D"gmail_msg">
+| make[2]: *** [LLIntDesiredOffsets.h] Error 1<br class=3D"gmail_msg">
+<br class=3D"gmail_msg">
+In fact, if I do objdump -p on sha1.so (in ruby tree):<br class=3D"gmail_ms=
+g">
+<br class=3D"gmail_msg">
+&gt;=C2=A0 required from libcrypto.so.1.0.0:<br class=3D"gmail_msg">
+&gt;=C2=A0=C2=A0=C2=A0 0x066a2b20 0x00 02 OPENSSL_1.0.0<br class=3D"gmail_m=
+sg">
+<br class=3D"gmail_msg">
+Whereas, my libcrypt.so.1.0.0 says:<br class=3D"gmail_msg">
+<br class=3D"gmail_msg">
+&gt;Version definitions:<br class=3D"gmail_msg">
+&gt;1 0x01 0x0746be50 libcrypto.so.1.0.0<br class=3D"gmail_msg">
+&gt;2 0x00 0x06a2b2e4 OPENSSL_1.0.2d<br class=3D"gmail_msg">
+&gt;3 0x00 0x06a2b2e7 OPENSSL_1.0.2g<br class=3D"gmail_msg">
+&gt;=C2=A0=C2=A0 =C2=A0OPENSSL_1.0.2d <br class=3D"gmail_msg">
+<br class=3D"gmail_msg">
+So, this might be the cause of the problem.<br class=3D"gmail_msg">
+But I am not sure why sha1.so (which ruby build generats) define these vers=
+ion numbers and not refer to the OpenSSL library in the build.<br class=3D"=
+gmail_msg">
+<br class=3D"gmail_msg">
+I googled, but there were some tips on updating ruby to solve OpenSSL versi=
+on mismatch, but it is through grew or apt-get, etc.=C2=A0 Not a tip for yo=
+cto build.<br class=3D"gmail_msg">
+<br class=3D"gmail_msg">
+I may be not familiar with ruby build yet, but any idea how I can fix this?=
+<br class=3D"gmail_msg">
+I could try updating ruby recipe as well to more recent version, but first =
+I want to confirm how ruby is deciding the OpenSSL version for its plugin l=
+ibrary and causing this mismatch.<br class=3D"gmail_msg">
+<br class=3D"gmail_msg">
+Thank you for your knowledge..<br class=3D"gmail_msg">
+</div>
+<br class=3D"gmail_msg">
+<p class=3D"gmail_msg"></p>
+</div>
+</div>
+</div></div></div>
+
+--<br class=3D"gmail_msg">
+_______________________________________________<br class=3D"gmail_msg">
+yocto mailing list<br class=3D"gmail_msg">
+<a href=3D"mailto:yocto@yoctoproject.org" class=3D"gmail_msg" target=3D"_bl=
+ank">yocto@yoctoproject.org</a><br class=3D"gmail_msg">
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" class=3D"gmail_msg" target=3D"_blank">https://lists.yoctoproject.org/list=
+info/yocto</a><br class=3D"gmail_msg">
+</blockquote></div></div>
+
+--f403045dd7ec8651e2054793f4cb--
