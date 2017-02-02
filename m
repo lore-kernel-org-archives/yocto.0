@@ -1,6 +1,6 @@
 Return-Path: <todor.minchev@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1E4CCE009B8; Thu,  2 Feb 2017 14:37:57 -0800 (PST)
+	id B5101E009F0; Thu,  2 Feb 2017 14:37:58 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,24 +12,24 @@ X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EC0CDE00826;
-	Thu,  2 Feb 2017 14:37:55 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A784BE009A0;
+	Thu,  2 Feb 2017 14:37:56 -0800 (PST)
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
-	by fmsmga101.fm.intel.com with ESMTP; 02 Feb 2017 14:37:54 -0800
+	by fmsmga101.fm.intel.com with ESMTP; 02 Feb 2017 14:37:56 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.33,326,1477983600"; d="scan'208";a="929565670"
+X-IronPort-AV: E=Sophos;i="5.33,326,1477983600"; d="scan'208";a="929565752"
 Received: from unknown (HELO localhost.localdomain) ([10.7.197.100])
-	by orsmga003.jf.intel.com with ESMTP; 02 Feb 2017 14:37:44 -0800
+	by orsmga003.jf.intel.com with ESMTP; 02 Feb 2017 14:37:50 -0800
 From: Todor Minchev <todor.minchev@linux.intel.com>
 To: yocto@yoctoproject.org, meta-intel@yoctoproject.org,
 	jianxun.zhang@linux.intel.com
-Date: Thu,  2 Feb 2017 14:37:11 -0800
-Message-Id: <20170202223712.8164-3-todor.minchev@linux.intel.com>
+Date: Thu,  2 Feb 2017 14:37:12 -0800
+Message-Id: <20170202223712.8164-4-todor.minchev@linux.intel.com>
 X-Mailer: git-send-email 2.11.0
 In-Reply-To: <20170202223712.8164-1-todor.minchev@linux.intel.com>
 References: <20170202223712.8164-1-todor.minchev@linux.intel.com>
 Cc: Todor Minchev <todor.minchev@linux.intel.com>
-Subject: [PATCH 2/3] rmc: Enable reading the contents of an existing fingerprint file
+Subject: [PATCH 3/3] rmc: add database extraction functionality
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,220 +41,286 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 02 Feb 2017 22:37:57 -0000
+X-List-Received-Date: Thu, 02 Feb 2017 22:37:58 -0000
 
-The contents of an existing fingerprint file can be read and output on
-the command line with the following options:
+The contents of an existing database file can be extracted in the
+current working directory with the -E option. The top level of the
+directory tree is rmc_db_dump and all files corresponding to
+a given record will be saved in a separate sub-directory. The sub-directory
+name of each record is the signature corresponding to the fingerprint for
+that record.
 
-./rmc -F -i input_fingerprint_file
+Example:
+./src/rmc -E -d rmc.db
+
+Successfully extracted rmc.db
 
 Signed-off-by: Todor Minchev <todor.minchev@linux.intel.com>
 ---
- src/rmc.c | 121 +++++++++++++++++++++++++++++++++++++++-----------------------
- 1 file changed, 76 insertions(+), 45 deletions(-)
+ inc/rmc_api.h         |  9 ++++++
+ src/lib/api.c         | 85 +++++++++++++++++++++++++++++++++++++++++++++++++--
+ src/lib/common/rmcl.c |  3 +-
+ src/rmc.c             | 44 +++++++++++++++++++-------
+ 4 files changed, 126 insertions(+), 15 deletions(-)
 
-diff --git a/src/rmc.c b/src/rmc.c
-index 062dd36..a051ccf 100644
---- a/src/rmc.c
-+++ b/src/rmc.c
-@@ -14,33 +14,35 @@
- #include <rmc_api.h>
+diff --git a/inc/rmc_api.h b/inc/rmc_api.h
+index a484389..ce26220 100644
+--- a/inc/rmc_api.h
++++ b/inc/rmc_api.h
+@@ -74,6 +74,15 @@ extern int rmc_query_file_by_fp(rmc_fingerprint_t *fp, char *db_pathname, char *
+  */
+ extern int rmc_gimme_file(char* db_pathname, char *file_name, rmc_file_t *file);
  
- #define USAGE "RMC (Runtime Machine configuration) Tool\n" \
--    "NOTE: Most of usages require root permission (sudo)\n" \
--    "rmc -F [-o output_fingerprint]\n" \
-+    "NOTE: Most of usages require root permission (sudo)\n\n" \
-+    "rmc -F [-o output_fingerprint] | -i input_fingerprint\n" \
-     "rmc -R [-f <fingerprint file>] -b <blob file list> [-o output_record]\n" \
-     "rmc -D <rmc record file list> [-o output_database]\n" \
--	"rmc -B <name of file blob> -d <rmc database file> -o output_file\n" \
--	"\n" \
--	"-F: generate board rmc fingerprint of board\n" \
--	"-R: generate board rmc record of board with its fingerprint and file blobs.\n" \
--    "-f: fingerprint file to be packed in record, rmc will create a fingerprint for board and use it internally to\n" \
--    "    generate record if -f is missed.\n" \
--    "-b: files to be packed in record\n" \
--	"-G: generate rmc database file with records specified in record file list\n" \
--	"-B: get a flie blob with specified name associated to the board rmc is running on\n" \
--	"-d: database file to be queried\n" \
--	"-o: path and name of output file of a specific command\n" \
--	"\n" \
--    "Examples (Steps in an order to add board support into rmc):\n" \
--    "generate board fingerprint:\n" \
--    "rmc -F\n\n" \
--    "generate a rmc record for the board with two file blobs, output to:\n" \
--    "a specified file:\n" \
--    "rmc -R -f fingerprint -b file_1 file_2 -o my_board.record\n\n" \
--    "generate a rmc database file with records from 3 different boards:\n" \
--    "rmc -D board1_record board2_record board3_record\n\n" \
--    "query a file blob named audio.conf associated to the board rmc is running on in database my_rmc.db and output\n" \
--    "to /tmp/new_audio.conf:\n" \
--    "rmc -B audio.conf -d my_rmc.db -o /tmp/new_audio.conf\n\n"
-+    "rmc -B <name of file blob> -d <rmc database file> -o output_file\n\n" \
-+  "-F: manage fingerprint file\n" \
-+    "\t-o output_file: store RMC fingerprint of current board in output_file\n" \
-+    "\t-i input_file: print RMC fingerprint stored in input_file\n\n" \
-+  "-R: generate board rmc record of board with its fingerprint and file blobs.\n" \
-+    "\t-f intput_file : input fingerprint file to be packed in record\n\n" \
-+    "\tNOTE: RMC will create a fingerprint for the board and use it to\n" \
-+    "\tgenerate record if an input fingerprint file is not provided.\n\n" \
-+    "\t-b: files to be packed in record\n\n" \
-+  "-G: generate rmc database file with records specified in record file list\n\n" \
-+  "-B: get a file blob with specified name associated to the board rmc is\n" \
-+  "running on\n" \
-+    "\t-d: database file to be queried\n" \
-+    "\t-o: path and name of output file of a specific command\n\n" \
-+    "Examples (Steps in an order to add board support into rmc):\n\n" \
-+    "1. Generate board fingerprint:\n" \
-+    "\t./rmc -F\n\n" \
-+    "2. Generate a rmc record for the board with two file blobs and save it\n" \
-+    "to a specified file:\n" \
-+    "\t./rmc -R -f fingerprint -b file_1 file_2 -o my_board.record\n\n" \
-+    "3. Generate a rmc database file with records from 3 different boards:\n" \
-+    "\t./rmc -D board1_record board2_record board3_record\n\n" \
-+    "4. Query a file blob named audio.conf associated to the board rmc is\n" \
-+    "running on in database my_rmc.db and output to /tmp/new_audio.conf:\n" \
-+    "\t./rmc -B audio.conf -d my_rmc.db -o /tmp/new_audio.conf\n\n"
++
++/* extract the contents of a database file and store the files corresponding to
++ * each record in a separate directory. The name of each directory is the signature
++ * of the fingerpring for that record
++ * (in) db_pathname: The path and file name of a RMC database file generated by RMC tool
++ * return: 0 on success, non-zero on failure.
++ */
++int dump_db(char *db_pathname) ;
++
+ /* 1.3 - Helper APIs */
  
+ /* Free allocated data referred in a fingerprint
+diff --git a/src/lib/api.c b/src/lib/api.c
+index 0adb390..aca8d99 100644
+--- a/src/lib/api.c
++++ b/src/lib/api.c
+@@ -3,6 +3,7 @@
+  * RMC API implementation for Linux user space
+  */
  
- #define RMC_OPT_CAP_F   (1 << 0)
-@@ -51,6 +53,7 @@
- #define RMC_OPT_O       (1 << 5)
- #define RMC_OPT_B       (1 << 6)
- #define RMC_OPT_D       (1 << 7)
-+#define RMC_OPT_I       (1 << 8)
++#define _GNU_SOURCE
+ #include <stdio.h>
+ #include <unistd.h>
+ #include <errno.h>
+@@ -14,8 +15,11 @@
+ #include <rmcl.h>
+ #include <rsmp.h>
  
- static void usage () {
-     fprintf(stdout, USAGE);
-@@ -78,7 +81,7 @@ static void dump_fingerprint(rmc_fingerprint_t *fp) {
- static int write_fingerprint_file(const char* pathname, rmc_fingerprint_t *fp) {
-     int i;
-     int first = 0;
--
-+    /* TODO - do we need to open/close file multiple times to write each field */
-     for (i = 0; i < RMC_FINGER_NUM; i++) {
-         if (write_file(pathname, &fp->rmc_fingers[i].type, sizeof(fp->rmc_fingers[i].type), first))
-             return 1;
-@@ -214,7 +217,6 @@ read_fp_done:
- static rmc_file_t *read_policy_file(char *pathname, int type) {
-     rmc_file_t *tmp = NULL;
-     rmc_size_t policy_len = 0;
--    int ret;
-     char *path_token;
+-#define EFI_SYSTAB_PATH "/sys/firmware/efi/systab"
+-#define SYSTAB_LEN 4096         /* assume 4kb is enough...*/
++#define EFI_SYSTAB_PATH  "/sys/firmware/efi/systab"
++#define SYSTAB_LEN       4096             /* assume 4kb is enough...*/
++#define DB_DUMP_DIR      "./rmc_db_dump"  /* directory to store db data dump */
++
++extern const rmc_uint8_t rmc_db_signature[RMC_DB_SIG_LEN];
  
-     if ((tmp = calloc(1, sizeof(rmc_file_t))) == NULL) {
-@@ -226,8 +228,7 @@ static rmc_file_t *read_policy_file(char *pathname, int type) {
-     tmp->next = NULL;
+ int read_file(const char *pathname, char **data, rmc_size_t* len) {
+     int fd = -1;
+@@ -325,3 +329,80 @@ int rmc_gimme_file(char* db_pathname, char *file_name, rmc_file_t *file) {
  
-     if (type == RMC_GENERIC_FILE) {
--        ret = read_file(pathname, (char **)&tmp->blob, &policy_len);
--        if (ret) {
-+        if (read_file(pathname, (char **)&tmp->blob, &policy_len)) {
-             fprintf(stderr, "Failed to read file %s\n\n", pathname);
-             free(tmp);
-             return NULL;
-@@ -311,7 +312,7 @@ int main(int argc, char **argv){
-     /* parse options */
-     opterr = 0;
- 
--    while ((c = getopt(argc, argv, "FRD:B:b:f:o:d:")) != -1)
-+    while ((c = getopt(argc, argv, "FRD:B:b:f:o:i:d:")) != -1)
-         switch (c) {
-         case 'F':
-             options |= RMC_OPT_CAP_F;
-@@ -352,6 +353,10 @@ int main(int argc, char **argv){
-             output_path = optarg;
-             options |= RMC_OPT_O;
-             break;
-+        case 'i':
-+            input_fingerprint = optarg;
-+            options |= RMC_OPT_I;
-+            break;
-         case 'f':
-             input_fingerprint = optarg;
-             options |= RMC_OPT_F;
-@@ -388,7 +393,8 @@ int main(int argc, char **argv){
-             break;
-         case '?':
-             if (optopt == 'F' || optopt == 'R' || optopt == 'D' || optopt == 'B' || \
--                    optopt == 'b' || optopt == 'f' || optopt == 'o' || optopt == 'd')
-+                    optopt == 'b' || optopt == 'f' || optopt == 'o' || optopt == 'd'  \
-+                    || optopt == 'i')
-                 fprintf(stderr, "\nWRONG USAGE: -%c\n\n", optopt);
-             else if (isprint(optopt))
-                 fprintf(stderr, "Unknown option `-%c'.\n\n", optopt);
-@@ -414,6 +420,15 @@ int main(int argc, char **argv){
-         }
-     }
- 
-+    /* sanity check for -i */
-+    if (options & RMC_OPT_I) {
-+        if (!(options & RMC_OPT_CAP_F)) {
-+            fprintf(stderr, "\nWRONG: Option -i cannot be applied without -F\n\n");
-+            usage();
-+            return 1;
+     return ret;
+ }
++
++/*
++ * Dump contents of database file
++ * (in) rmc_db - input database file to extract
++ */
++int dump_db(char *db_pathname) {
++    rmc_meta_header_t meta_header;
++    rmc_db_header_t *db_header = NULL;
++    rmc_record_header_t record_header;
++    rmc_uint64_t record_idx = 0;   /* offset of each reacord in db*/
++    rmc_uint64_t meta_idx = 0;     /* offset of each meta in a record */
++    rmc_uint64_t file_idx = 0;     /* offset of file in a meta */
++    rmc_file_t file;
++    char *out_dir = NULL, *out_name = NULL;
++    rmc_size_t db_len = 0;
++    rmc_uint8_t *rmc_db = NULL;
++    struct stat s = {0};
++
++    if (read_file(db_pathname, (char **)&rmc_db, &db_len)) {
++        fprintf(stderr, "Failed to read database file\n\n");
++        return 1;
++    }
++
++    db_header = (rmc_db_header_t *)rmc_db;
++
++    /* sanity check of db */
++    if (strncmp((const char *)db_header->signature,
++        (const char *)rmc_db_signature, RMC_DB_SIG_LEN))
++        return 1;
++
++    /* create the top level directory */
++    if (stat(DB_DUMP_DIR, &s) == -1) {
++        if(mkdir(DB_DUMP_DIR, 0755)) {
++            fprintf(stderr, "Failed to create %s directory\n\n", out_name);
 +        }
 +    }
 +
-     /* sanity check for -R */
-     if ((options & RMC_OPT_CAP_R) && (!(options & RMC_OPT_B))) {
-         fprintf(stderr, "\nWRONG: -b is required when -R is present\n\n");
-@@ -563,25 +578,41 @@ int main(int argc, char **argv){
++    /* query the meta. idx: start of record */
++    record_idx = sizeof(rmc_db_header_t);
++    while (record_idx < db_header->length) {
++        memcpy(&record_header, rmc_db + record_idx,
++            sizeof(rmc_record_header_t));
++
++        /* directory name is fingerprint signature */
++        asprintf(&out_dir, "%s/%s/", DB_DUMP_DIR, record_header.signature.raw);
++        if (stat(out_dir, &s) == -1) {
++            if(mkdir(out_dir, 0755)) {
++                fprintf(stderr, "Failed to create %s directory\n\n", out_name);
++            }
++        }
++
++        /* find meta */
++        for (meta_idx = record_idx + sizeof(rmc_record_header_t);
++            meta_idx < record_idx + record_header.length;) {
++            memcpy(&meta_header, rmc_db + meta_idx, sizeof(rmc_meta_header_t));
++            file_idx = meta_idx + sizeof(rmc_meta_header_t);
++            rmc_ssize_t name_len = strlen((char *)&rmc_db[file_idx]) + 1;
++            file.blob = &rmc_db[file_idx + name_len];
++            file.blob_len = meta_header.length - sizeof(rmc_meta_header_t) -
++                name_len;
++            file.next = NULL;
++            file.type = RMC_GENERIC_FILE;
++            asprintf(&out_name, "%s%s", out_dir, (char *)&rmc_db[file_idx]);
++            /* write file to dump directory */
++            if (write_file((const char *)out_name, file.blob, file.blob_len, 0))
++                return 1;
++
++            /* next meta */
++            meta_idx += meta_header.length;
++            free(out_name);
++        }
++        /* next record */
++        record_idx += record_header.length;
++        free(out_dir);
++    }
++    return 0;
++}
+diff --git a/src/lib/common/rmcl.c b/src/lib/common/rmcl.c
+index 67622a0..c996577 100644
+--- a/src/lib/common/rmcl.c
++++ b/src/lib/common/rmcl.c
+@@ -10,7 +10,7 @@
+ #include <rmc_util.h>
+ #endif
+ 
+-static const rmc_uint8_t rmc_db_signature[RMC_DB_SIG_LEN] = {'R', 'M', 'C', 'D', 'B'};
++const rmc_uint8_t rmc_db_signature[RMC_DB_SIG_LEN] = {'R', 'M', 'C', 'D', 'B'};
+ 
+ /* compute a finger to signature which is stored in record
+  * (in) fingerprint : of board, usually generated by rmc tool and rsmp
+@@ -242,7 +242,6 @@ int query_policy_from_db(rmc_fingerprint_t *fingerprint, rmc_uint8_t *rmc_db, rm
+                         policy->blob_len = meta_header.length - sizeof(rmc_meta_header_t) - cmd_name_len;
+                         policy->next = NULL;
+                         policy->type = type;
+-
+                         return 0;
+                     }
+                 }
+diff --git a/src/rmc.c b/src/rmc.c
+index a051ccf..888cbdb 100644
+--- a/src/rmc.c
++++ b/src/rmc.c
+@@ -32,6 +32,8 @@
+   "running on\n" \
+     "\t-d: database file to be queried\n" \
+     "\t-o: path and name of output file of a specific command\n\n" \
++  "-E: Extract database data to current working directory\n" \
++    "\t-d: database file to extract\n\n" \
+     "Examples (Steps in an order to add board support into rmc):\n\n" \
+     "1. Generate board fingerprint:\n" \
+     "\t./rmc -F\n\n" \
+@@ -49,11 +51,12 @@
+ #define RMC_OPT_CAP_R   (1 << 1)
+ #define RMC_OPT_CAP_D   (1 << 2)
+ #define RMC_OPT_CAP_B   (1 << 3)
+-#define RMC_OPT_F       (1 << 4)
+-#define RMC_OPT_O       (1 << 5)
+-#define RMC_OPT_B       (1 << 6)
+-#define RMC_OPT_D       (1 << 7)
+-#define RMC_OPT_I       (1 << 8)
++#define RMC_OPT_CAP_E   (1 << 4)
++#define RMC_OPT_F       (1 << 5)
++#define RMC_OPT_O       (1 << 6)
++#define RMC_OPT_B       (1 << 7)
++#define RMC_OPT_D       (1 << 8)
++#define RMC_OPT_I       (1 << 9)
+ 
+ static void usage () {
+     fprintf(stdout, USAGE);
+@@ -312,7 +315,7 @@ int main(int argc, char **argv){
+     /* parse options */
+     opterr = 0;
+ 
+-    while ((c = getopt(argc, argv, "FRD:B:b:f:o:i:d:")) != -1)
++    while ((c = getopt(argc, argv, "FRED:B:b:f:o:i:d:")) != -1)
+         switch (c) {
+         case 'F':
+             options |= RMC_OPT_CAP_F;
+@@ -320,6 +323,9 @@ int main(int argc, char **argv){
+         case 'R':
+             options |= RMC_OPT_CAP_R;
+             break;
++        case 'E':
++            options |= RMC_OPT_CAP_E;
++            break;
+         case 'D':
+             /* we don't know number of arguments for this option at this point,
+              * allocate array with argc which is bigger than needed. But we also
+@@ -393,8 +399,8 @@ int main(int argc, char **argv){
+             break;
+         case '?':
+             if (optopt == 'F' || optopt == 'R' || optopt == 'D' || optopt == 'B' || \
+-                    optopt == 'b' || optopt == 'f' || optopt == 'o' || optopt == 'd'  \
+-                    || optopt == 'i')
++                    optopt == 'E' ||  optopt == 'b' || optopt == 'f' || \
++                    optopt == 'o' || optopt == 'd' || optopt == 'i')
+                 fprintf(stderr, "\nWRONG USAGE: -%c\n\n", optopt);
+             else if (isprint(optopt))
+                 fprintf(stderr, "Unknown option `-%c'.\n\n", optopt);
+@@ -436,6 +442,13 @@ int main(int argc, char **argv){
+         return 1;
      }
  
-     if (options & RMC_OPT_CAP_F) {
--        /* set a default fingerprint file name if user didn't provide one */
--        if (!output_path)
--            output_path = "rmc.fingerprint";
-+        /* print fingerpring file to console*/
-+        if (options & RMC_OPT_I) {
-+            rmc_fingerprint_t fp;
-+            /* read fingerprint file*/
-+            if (input_fingerprint != NULL) {
-+                if (read_fingerprint_from_file(input_fingerprint, &fp, &raw_fp)) {
-+                    fprintf(stderr, "Cannot read fingerprint from %s\n\n",
-+                    input_fingerprint);
-+                    goto main_free;
-+                }
-+                printf("Successfully read fingerprint from %s \n", input_fingerprint);
-+                dump_fingerprint(&fp);
-+            }else {
-+                printf("Fingerprint file not provided! Exiting.\n");
-+            }
-+        } else { /* generate fingerprint file for the current board*/
-+            /* set a default fingerprint file name if user didn't provide one */
-+            if (!output_path)
-+                output_path = "rmc.fingerprint";
++    /* sanity check for -E */
++    if ((options & RMC_OPT_CAP_E) && (!(options & RMC_OPT_D))) {
++        fprintf(stderr, "\nERROR: -E requires -d <database file name>\n\n");
++        usage();
++        return 1;
++    }
++
+     /* sanity check for -B */
+     if ((options & RMC_OPT_CAP_B) && (!(options & RMC_OPT_D) || !(options & RMC_OPT_O))) {
+         fprintf(stderr, "\nWRONG: -B requires -d and -o\n\n");
+@@ -448,7 +461,8 @@ int main(int argc, char **argv){
+         rmc_file_t file;
  
--        if (rmc_get_fingerprint(&fingerprint)) {
--            fprintf(stderr, "Cannot get board fingerprint\n");
--            goto main_free;
--        }
-+            if (rmc_get_fingerprint(&fingerprint)) {
-+                fprintf(stderr, "Cannot get board fingerprint\n");
-+                goto main_free;
-+            }
+         if (!output_path) {
+-            fprintf(stderr, "-B internal error, with -o but no output pathname specified\n\n");
++            fprintf(stderr, "-B internal error, with -o but no output \
++                pathname specified\n\n");
+             goto main_free;
+         }
  
--        printf("Got Fingerprint for board:\n\n");
--        dump_fingerprint(&fingerprint);
-+            printf("Got Fingerprint for board:\n\n");
-+            dump_fingerprint(&fingerprint);
+@@ -456,14 +470,22 @@ int main(int argc, char **argv){
+             goto main_free;
  
--        if (write_fingerprint_file(output_path, &fingerprint)) {
--            fprintf(stderr, "Cannot write board fingerprint to %s\n", output_path);
-+            if (write_fingerprint_file(output_path, &fingerprint)) {
-+                fprintf(stderr, "Cannot write board fingerprint to %s\n", output_path);
-+                rmc_free_fingerprint(&fingerprint);
-+                goto main_free;
-+            }
-             rmc_free_fingerprint(&fingerprint);
--            goto main_free;
+         if (write_file(output_path, file.blob, file.blob_len, 0)) {
+-            fprintf(stderr, "-B failed to write file %s to %s\n\n", input_blob_name, output_path);
++            fprintf(stderr, "-B failed to write file %s to %s\n\n",
++                input_blob_name, output_path);
+             rmc_free_file(&file);
+             goto main_free;
          }
 -
--        rmc_free_fingerprint(&fingerprint);
+         rmc_free_file(&file);
      }
  
-     ret = 0;
++    /* dump database data */
++    if (options & RMC_OPT_CAP_E) {
++        if(dump_db(input_db_path_d))
++            fprintf(stderr, "\nFailed to extract %s\n\n", input_db_path_d);
++        else
++            printf("\nSuccessfully extracted %s\n\n", input_db_path_d);
++    }
++
+     /* generate RMC database file */
+     if (options & RMC_OPT_CAP_D) {
+         int record_idx = 0;
 -- 
 2.11.0
 
