@@ -1,63 +1,74 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <jacob2.chen@rock-chips.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8E52DE00992; Mon,  6 Feb 2017 03:45:43 -0800 (PST)
+	id 18079E004A0; Fri,  3 Feb 2017 08:01:30 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_LOW,
-	RCVD_IN_SORBS_SPAM autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [54.79.106.188 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.216.179 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.216.179 listed in dnsbl.sorbs.net]
-Received: from mail-qt0-f179.google.com (mail-qt0-f179.google.com
-	[209.85.216.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 61E05E007BA
-	for <yocto@yoctoproject.org>; Mon,  6 Feb 2017 03:45:40 -0800 (PST)
-Received: by mail-qt0-f179.google.com with SMTP id w20so97245661qtb.1
-	for <yocto@yoctoproject.org>; Mon, 06 Feb 2017 03:45:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=s7zQxo6wEyD2mm0Co6Fcf/1vhg4u5HicC1/ihKd9E7g=;
-	b=LZdyMpXMoXj/nD5156b+OMqygOys0twhFMVEcdoX+JCdn4Bf4FwFxvILKYgb0DnElv
-	Syy09H7B7jpT5U1X2ZC8D9913o2WFWDAH8qlTrkp8TiUe2t6d7xycGgmlg9nDALedGJy
-	IaJrf4wkvzO4UIi9EPrPhGPOS5yZGVDmmf/7aLYH6Nqk3renVvTc+XxbkhfehybyByca
-	rGm5CtE9xCpUReAhn9xmNAWfy3+kmL+AC7vhP827CBgtPac5aUmw3p5zUATLBEDdoo9R
-	EAWW9CRtB7Yx03BBSaGGzKeVNNPLoV0myN8elXsoTO6JNDTFMAAacUfmGsUO1LZNC9HN
-	08pA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=s7zQxo6wEyD2mm0Co6Fcf/1vhg4u5HicC1/ihKd9E7g=;
-	b=sHtXSUtIL9DrKKwy8Y8CQlA6i0ap0r0hKjz92a95xfgLpqXmALljX/f/d2y4CbYj8a
-	/e0iQ42kg7clToLbLd7N5rSSpkQ5aSALQooAsNeTUdcbebcxlTeE433aCTrWm8Ih256N
-	QoKSBD6n87E0AyKstiCqrovzQsBfVnGqaYNncnjifmXCOYfrDqbqpCCTT3udBBzkArjX
-	nuGemOTGafHN6Wq9jee2EZ2oP4yoMntiFZcId+1JgE1jXLbHXYrDCXl8us3Sb4yazKwf
-	V7VSeqhdcMRKiQ/t9HYUb7etdC5q/5yvPMutDp5xMhkZrtJQznZMhXZDljldNDbNjQMr
-	tc5A==
-X-Gm-Message-State: AMke39muVyRo32iRfgyb4Jkaaltl0VrCaJcpNku/rKz77zFrTz0HJvFBk5dJT3JOy6lo8Zr0qWM4sqyG2w5nWdeH
-X-Received: by 10.237.36.208 with SMTP id u16mr9629984qtc.105.1486381539452;
-	Mon, 06 Feb 2017 03:45:39 -0800 (PST)
+X-Greylist: delayed 477 seconds by postgrey-1.32 at yocto-www;
+	Fri, 03 Feb 2017 08:01:18 PST
+Received: from smtphy.263.net (syd-smtp01.263.net [54.79.106.188])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4E07CE0030B
+	for <yocto@yoctoproject.org>; Fri,  3 Feb 2017 08:01:18 -0800 (PST)
+Received: from smtphy.263.net (sg-smtp01.263.net [54.255.195.220])
+	by smtphy.263.net (Postfix) with ESMTPS id C04E6401E7
+	for <yocto@yoctoproject.org>; Fri,  3 Feb 2017 23:53:21 +0800 (CST)
+Received: from smtphy.263.net (irl-smtp01.263.net [54.76.167.174])
+	by smtphy.263.net (Postfix) with ESMTPS id 6093F17
+	for <yocto@yoctoproject.org>; Fri,  3 Feb 2017 23:53:18 +0800 (CST)
+Received: from transport.263xmail.com (unknown [38.83.106.156])
+	by smtphy.263.net (Postfix) with ESMTPS id D556DE0190
+	for <yocto@yoctoproject.org>; Fri,  3 Feb 2017 23:53:12 +0800 (CST)
+Received: from regular2.263xmail.com (unknown [192.168.165.161])
+	by transport.263xmail.com (Postfix) with ESMTP id 1FD412384
+	for <yocto@yoctoproject.org>; Fri,  3 Feb 2017 23:53:07 +0800 (CST)
+Received: from regular1.263xmail.com (unknown [192.168.165.235])
+	by regular2.263xmail.com (Postfix) with ESMTP id DAD9C18EAD0
+	for <yocto@yoctoproject.org>; Fri,  3 Feb 2017 23:53:01 +0800 (CST)
+Received: from jacob2.chen?rock-chips.com (unknown [192.168.167.175])
+	by regular1.263xmail.com (Postfix) with ESMTP id 6E2B01DD42;
+	Fri,  3 Feb 2017 23:52:57 +0800 (CST)
+X-263anti-spam: KSV:0;
+X-MAIL-GRAY: 0
+X-MAIL-DELIVERY: 1
+X-KSVirus-check: 0
+X-ABS-CHECKED: 4
+Received: from [192.168.10.237] (localhost [127.0.0.1])
+	by smtp.263.net (Postfix) with ESMTP id 11C7237E;
+	Fri,  3 Feb 2017 23:52:58 +0800 (CST)
+X-RL-SENDER: jacob2.chen@rock-chips.com
+X-FST-TO: eddie.cai@rock-chips.com
+X-SENDER-IP: 222.76.54.158
+X-LOGIN-NAME: jacob2.chen@rock-chips.com
+X-UNIQUE-TAG: <b8f4f2f592e536464bf7e9f5647fa514>
+X-ATTACHMENT-NUM: 0
+X-SENDER: jacob2.chen@rock-chips.com
+X-DNS-TYPE: 7
+Received: from [192.168.10.237]
+	(158.54.76.222.broad.fz.fj.dynamic.163data.com.cn [222.76.54.158])
+	by smtp.263.net (Postfix) whith ESMTP id 4234UFURK7;
+	Fri, 03 Feb 2017 23:52:59 +0800 (CST)
+To: Romain Perier <romain.perier@gmail.com>, Jacob Chen <jacob-chen@iotwrt.com>
+References: <1484834687-15746-1-git-send-email-jacob-chen@iotwrt.com>
+	<1484834687-15746-3-git-send-email-jacob-chen@iotwrt.com>
+	<CABgxDo+5x6-ByOUikkG45S6Yo5NO+=L4S3GRX7firgpMqQQiAA@mail.gmail.com>
+From: Jacob Chen <jacob2.chen@rock-chips.com>
+Message-ID: <71be717d-9216-ac67-395d-d9af4ba18527@rock-chips.com>
+Date: Fri, 3 Feb 2017 23:52:58 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.7.0
 MIME-Version: 1.0
-Received: by 10.140.103.233 with HTTP; Mon, 6 Feb 2017 03:45:19 -0800 (PST)
-In-Reply-To: <CAA2DH4sy_BxdFqVRa=R5VC7BAuSNqu-mwGPdTxXsZoh7k+p2ag@mail.gmail.com>
-References: <CAA2DH4sy_BxdFqVRa=R5VC7BAuSNqu-mwGPdTxXsZoh7k+p2ag@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Mon, 6 Feb 2017 11:45:19 +0000
-Message-ID: <CAJTo0LbDJqmja5a1PSp3im35eicbexo74SSzMyS=t+6kjR-6Zg@mail.gmail.com>
-To: Prasant J <pj0585@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Build only one specific C source from git clone with many C files
+In-Reply-To: <CABgxDo+5x6-ByOUikkG45S6Yo5NO+=L4S3GRX7firgpMqQQiAA@mail.gmail.com>
+X-Mailman-Approved-At: Mon, 06 Feb 2017 06:42:09 -0800
+Cc: yocto@yoctoproject.org, eddie.cai@rock-chips.com
+Subject: Re: [meta-rockchip][PATCH 2/7] machine: Add machine file for the rk3288 linux Boards
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,40 +80,359 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 06 Feb 2017 11:45:43 -0000
-Content-Type: multipart/alternative; boundary=001a114104cea8ff070547db2be0
+X-List-Received-Date: Fri, 03 Feb 2017 16:01:30 -0000
+Content-Type: multipart/alternative;
+	boundary="------------8E43948398BC0EDAE3036A92"
 
---001a114104cea8ff070547db2be0
-Content-Type: text/plain; charset=UTF-8
+--------------8E43948398BC0EDAE3036A92
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On 6 February 2017 at 11:27, Prasant J <pj0585@gmail.com> wrote:
+Hi all,
 
-> Is it possible to modify SRC_URI to take only one source file from a
-> git clone and build it?
+Thanks for reviewing, I will looking at comments and suggestions after 
+the other work finished.
+
+: )
+
+
+
+在 2017年01月27日 22:37, Romain Perier 写道:
+> Hey,
+>
+> Could you:
+> - Make one patch per new machine file and not one patch for all new 
+> added machine
+> - Add a clear @DESCRIPTION for each board, see an example here: 
+> https://git.yoctoproject.org/cgit/cgit.cgi/meta-rockchip/tree/conf/machine/firefly-rk3288.conf
+> - Write a clear and an understandable commit message for your new patches
+>
+> @Trevor: What do you think about this rk-linux.inc ? I don't like 
+> this, either its name and what it contains.
+>
+> That's it for now.
+> Thanks for your patches
+>
+>
+> 2017-01-19 15:04 GMT+01:00 Jacob Chen <jacob-chen@iotwrt.com 
+> <mailto:jacob-chen@iotwrt.com>>:
+>
+>     Evb-rk3288 is the offical evaluate board, add it to help myself
+>     develop.
+>
+>     Fennec-rk3288 and Tinker-rk3288 is rk3288 based SBCs.
+>         .
+>     Tinker Boards:
+>     http://www.cnx-software.com/2017/01/05/asus-tinker-board-is-a-raspberry-pi-3-alternative-based-on-rockchip-rk3288-processor/
+>     <http://www.cnx-software.com/2017/01/05/asus-tinker-board-is-a-raspberry-pi-3-alternative-based-on-rockchip-rk3288-processor/>
+>
+>     Signed-off-by: Jacob Chen <jacob-chen@rock-chips.com
+>     <mailto:jacob-chen@rock-chips.com>>
+>     ---
+>      conf/machine/evb-rk3288.conf      | 12 ++++++++++++
+>      conf/machine/fennec-rk3288.conf   | 12 ++++++++++++
+>      conf/machine/include/rk-linux.inc | 20 ++++++++++++++++++++
+>      conf/machine/tinker-rk3288.conf   | 13 +++++++++++++
+>      4 files changed, 57 insertions(+)
+>      create mode 100644 conf/machine/evb-rk3288.conf
+>      create mode 100644 conf/machine/fennec-rk3288.conf
+>      create mode 100644 conf/machine/include/rk-linux.inc
+>      create mode 100644 conf/machine/tinker-rk3288.conf
+>
+>     diff --git a/conf/machine/evb-rk3288.conf
+>     b/conf/machine/evb-rk3288.conf
+>     new file mode 100644
+>     index 0000000..88a5f78
+>     --- /dev/null
+>     +++ b/conf/machine/evb-rk3288.conf
+>     @@ -0,0 +1,12 @@
+>     +# Copyright (C) 2017 Fuzhou Rockchip Electronics Co., Ltd
+>     +# Released under the MIT license (see COPYING.MIT for the terms)
+>     +
+>     +#@TYPE: Machine
+>     +#@NAME: EVB 3288
+>     +
+>     +include conf/machine/include/rk3288.inc
+>     +include conf/machine/include/rk-linux.inc
+>     +
+>     +KERNEL_DEVICETREE = "rk3288-evb-act8846.dtb"
+>     +
+>     +UBOOT_MACHINE = "evb-rk3288_defconfig"
+>     diff --git a/conf/machine/fennec-rk3288.conf
+>     b/conf/machine/fennec-rk3288.conf
+>     new file mode 100644
+>     index 0000000..a85045f
+>     --- /dev/null
+>     +++ b/conf/machine/fennec-rk3288.conf
+>     @@ -0,0 +1,12 @@
+>     +# Copyright (C) 2017 Fuzhou Rockchip Electronics Co., Ltd
+>     +# Released under the MIT license (see COPYING.MIT for the terms)
+>     +
+>     +#@TYPE: Machine
+>     +#@NAME: FENNEC RK3288
+>     +
+>     +include conf/machine/include/rk3288.inc
+>     +include conf/machine/include/rk-linux.inc
+>     +
+>     +KERNEL_DEVICETREE = "rk3288-fennec.dtb"
+>     +
+>     +UBOOT_MACHINE = "fennec-rk3288_defconfig"
+>     diff --git a/conf/machine/include/rk-linux.inc
+>     b/conf/machine/include/rk-linux.inc
+>     new file mode 100644
+>     index 0000000..6abaa0d
+>     --- /dev/null
+>     +++ b/conf/machine/include/rk-linux.inc
+>     @@ -0,0 +1,20 @@
+>     +# Rockchip BSP default settings
+>     +
+>     +PREFERRED_PROVIDER_virtual/egl = "mali-userspace"
+>     +PREFERRED_PROVIDER_virtual/libgles1 = "mali-userspace"
+>     +PREFERRED_PROVIDER_virtual/libgles2 = "mali-userspace"
+>     +PREFERRED_PROVIDER_virtual/libopencl = "mali-userspace"
+>     +
+>     +# Workaround: libmali.so provided by rk having no SONAME field in it
+>     +# so add it to fix rdepends problems
+>     +ASSUME_SHLIBS += "libEGL.so:mali-userspace"
+>     +ASSUME_SHLIBS += "libGLESv1_CM.so:mali-userspace"
+>     +ASSUME_SHLIBS += "libGLESv2.so:mali-userspace"
+>     +ASSUME_SHLIBS += "libOpenCL.so:mali-userspace"
+>     +ASSUME_SHLIBS += "libgbm.so:mali-userspace"
+>     +ASSUME_SHLIBS += "libwayland-egl.so:mali-userspace"
+>     +
+>     +PREFERRED_PROVIDER_virtual/kernel = "linux-rockchip"
+>     +PREFERRED_PROVIDER_virtual/bootloader = "u-boot-rockchip"
+>     +
+>     +IMAGE_CLASSES += "rockchip-next-image"
+>     diff --git a/conf/machine/tinker-rk3288.conf
+>     b/conf/machine/tinker-rk3288.conf
+>     new file mode 100644
+>     index 0000000..0464133
+>     --- /dev/null
+>     +++ b/conf/machine/tinker-rk3288.conf
+>     @@ -0,0 +1,13 @@
+>     +# Copyright (C) 2017 Fuzhou Rockchip Electronics Co., Ltd
+>     +# Released under the MIT license (see COPYING.MIT for the terms)
+>     +
+>     +#@TYPE: Machine
+>     +#@NAME: Tinker RK3288
+>     +#@DESCRIPTION: ASUS Tinker Board is a Raspberry Pi 3 Alternative
+>     based on Rockchip RK3288 Processor.
+>     +
+>     +include conf/machine/include/rk3288.inc
+>     +include conf/machine/include/rk-linux.inc
+>     +
+>     +KERNEL_DEVICETREE = "rk3288-miniarm.dtb"
+>     +
+>     +UBOOT_MACHINE = "miniarm-rk3288_defconfig"
+>     --
+>     2.7.4
+>
 >
 
-No, you can't do that with git.
 
-One way would be to use the http fetcher to get the file directly from the
-web interface to the kernel.
+--------------8E43948398BC0EDAE3036A92
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
 
-Ross
+<html>
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <p>Hi all,</p>
+    <p>
+      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+      Thanks for reviewing, I will looking at comments and suggestions
+      after the other work finished. <br>
+    </p>
+    <p>: )</p>
+    <p><br>
+    </p>
+    <br>
+    <div class="moz-cite-prefix">在 2017年01月27日 22:37, Romain Perier 写道:<br>
+    </div>
+    <blockquote
+cite="mid:CABgxDo+5x6-ByOUikkG45S6Yo5NO+=L4S3GRX7firgpMqQQiAA@mail.gmail.com"
+      type="cite">
+      <div dir="ltr">
+        <div>
+          <div>
+            <div>
+              <div>
+                <div>
+                  <div>Hey,<br>
+                    <br>
+                  </div>
+                  Could you:<br>
+                </div>
+                - Make one patch per new machine file and not one patch
+                for all new added machine<br>
+              </div>
+              - Add a clear @DESCRIPTION for each board, see an example
+              here: <a moz-do-not-send="true"
+href="https://git.yoctoproject.org/cgit/cgit.cgi/meta-rockchip/tree/conf/machine/firefly-rk3288.conf">https://git.yoctoproject.org/cgit/cgit.cgi/meta-rockchip/tree/conf/machine/firefly-rk3288.conf</a><br>
+            </div>
+            - Write a clear and an understandable commit message for
+            your new patches<br>
+            <br>
+          </div>
+          <div>@Trevor: What do you think about this rk-linux.inc ? I
+            don't like this, either its name and what it contains.<br>
+          </div>
+          <div><br>
+          </div>
+          That's it for now.<br>
+        </div>
+        Thanks for your patches<br>
+        <div>
+          <div><br>
+          </div>
+        </div>
+      </div>
+      <div class="gmail_extra"><br>
+        <div class="gmail_quote">2017-01-19 15:04 GMT+01:00 Jacob Chen <span
+            dir="ltr">&lt;<a moz-do-not-send="true"
+              href="mailto:jacob-chen@iotwrt.com" target="_blank">jacob-chen@iotwrt.com</a>&gt;</span>:<br>
+          <blockquote class="gmail_quote" style="margin:0 0 0
+            .8ex;border-left:1px #ccc solid;padding-left:1ex">
+            <div class="HOEnZb">
+              <div class="h5">Evb-rk3288 is the offical evaluate board,
+                add it to help myself develop.<br>
+                <br>
+                Fennec-rk3288 and Tinker-rk3288 is rk3288 based SBCs.<br>
+                    .<br>
+                Tinker Boards:<br>
+                <a moz-do-not-send="true"
+href="http://www.cnx-software.com/2017/01/05/asus-tinker-board-is-a-raspberry-pi-3-alternative-based-on-rockchip-rk3288-processor/"
+                  rel="noreferrer" target="_blank">http://www.cnx-software.com/<wbr>2017/01/05/asus-tinker-board-<wbr>is-a-raspberry-pi-3-<wbr>alternative-based-on-rockchip-<wbr>rk3288-processor/</a><br>
+                <br>
+                Signed-off-by: Jacob Chen &lt;<a moz-do-not-send="true"
+                  href="mailto:jacob-chen@rock-chips.com">jacob-chen@rock-chips.com</a>&gt;<br>
+                ---<br>
+                 conf/machine/evb-rk3288.conf      | 12 ++++++++++++<br>
+                 conf/machine/fennec-rk3288.<wbr>conf   | 12
+                ++++++++++++<br>
+                 conf/machine/include/rk-linux.<wbr>inc | 20
+                ++++++++++++++++++++<br>
+                 conf/machine/tinker-rk3288.<wbr>conf   | 13
+                +++++++++++++<br>
+                 4 files changed, 57 insertions(+)<br>
+                 create mode 100644 conf/machine/evb-rk3288.conf<br>
+                 create mode 100644 conf/machine/fennec-rk3288.<wbr>conf<br>
+                 create mode 100644 conf/machine/include/rk-linux.<wbr>inc<br>
+                 create mode 100644 conf/machine/tinker-rk3288.<wbr>conf<br>
+                <br>
+                diff --git a/conf/machine/evb-rk3288.conf
+                b/conf/machine/evb-rk3288.conf<br>
+                new file mode 100644<br>
+                index 0000000..88a5f78<br>
+                --- /dev/null<br>
+                +++ b/conf/machine/evb-rk3288.conf<br>
+                @@ -0,0 +1,12 @@<br>
+                +# Copyright (C) 2017 Fuzhou Rockchip Electronics Co.,
+                Ltd<br>
+                +# Released under the MIT license (see COPYING.MIT for
+                the terms)<br>
+                +<br>
+                +#@TYPE: Machine<br>
+                +#@NAME: EVB 3288<br>
+                +<br>
+                +include conf/machine/include/rk3288.<wbr>inc<br>
+                +include conf/machine/include/rk-linux.<wbr>inc<br>
+                +<br>
+                +KERNEL_DEVICETREE = "rk3288-evb-act8846.dtb"<br>
+                +<br>
+                +UBOOT_MACHINE = "evb-rk3288_defconfig"<br>
+                diff --git a/conf/machine/fennec-rk3288.<wbr>conf
+                b/conf/machine/fennec-rk3288.<wbr>conf<br>
+                new file mode 100644<br>
+                index 0000000..a85045f<br>
+                --- /dev/null<br>
+                +++ b/conf/machine/fennec-rk3288.<wbr>conf<br>
+                @@ -0,0 +1,12 @@<br>
+                +# Copyright (C) 2017 Fuzhou Rockchip Electronics Co.,
+                Ltd<br>
+                +# Released under the MIT license (see COPYING.MIT for
+                the terms)<br>
+                +<br>
+                +#@TYPE: Machine<br>
+                +#@NAME: FENNEC RK3288<br>
+                +<br>
+                +include conf/machine/include/rk3288.<wbr>inc<br>
+                +include conf/machine/include/rk-linux.<wbr>inc<br>
+                +<br>
+                +KERNEL_DEVICETREE = "rk3288-fennec.dtb"<br>
+                +<br>
+                +UBOOT_MACHINE = "fennec-rk3288_defconfig"<br>
+                diff --git a/conf/machine/include/rk-<wbr>linux.inc
+                b/conf/machine/include/rk-<wbr>linux.inc<br>
+                new file mode 100644<br>
+                index 0000000..6abaa0d<br>
+                --- /dev/null<br>
+                +++ b/conf/machine/include/rk-<wbr>linux.inc<br>
+                @@ -0,0 +1,20 @@<br>
+                +# Rockchip BSP default settings<br>
+                +<br>
+                +PREFERRED_PROVIDER_virtual/<wbr>egl = "mali-userspace"<br>
+                +PREFERRED_PROVIDER_virtual/<wbr>libgles1 =
+                "mali-userspace"<br>
+                +PREFERRED_PROVIDER_virtual/<wbr>libgles2 =
+                "mali-userspace"<br>
+                +PREFERRED_PROVIDER_virtual/<wbr>libopencl =
+                "mali-userspace"<br>
+                +<br>
+                +# Workaround: libmali.so provided by rk having no
+                SONAME field in it<br>
+                +# so add it to fix rdepends problems<br>
+                +ASSUME_SHLIBS += "libEGL.so:mali-userspace"<br>
+                +ASSUME_SHLIBS += "libGLESv1_CM.so:mali-<wbr>userspace"<br>
+                +ASSUME_SHLIBS += "libGLESv2.so:mali-userspace"<br>
+                +ASSUME_SHLIBS += "libOpenCL.so:mali-userspace"<br>
+                +ASSUME_SHLIBS += "libgbm.so:mali-userspace"<br>
+                +ASSUME_SHLIBS += "libwayland-egl.so:mali-<wbr>userspace"<br>
+                +<br>
+                +PREFERRED_PROVIDER_virtual/<wbr>kernel =
+                "linux-rockchip"<br>
+                +PREFERRED_PROVIDER_virtual/<wbr>bootloader =
+                "u-boot-rockchip"<br>
+                +<br>
+                +IMAGE_CLASSES += "rockchip-next-image"<br>
+                diff --git a/conf/machine/tinker-rk3288.<wbr>conf
+                b/conf/machine/tinker-rk3288.<wbr>conf<br>
+                new file mode 100644<br>
+                index 0000000..0464133<br>
+                --- /dev/null<br>
+                +++ b/conf/machine/tinker-rk3288.<wbr>conf<br>
+                @@ -0,0 +1,13 @@<br>
+                +# Copyright (C) 2017 Fuzhou Rockchip Electronics Co.,
+                Ltd<br>
+                +# Released under the MIT license (see COPYING.MIT for
+                the terms)<br>
+                +<br>
+                +#@TYPE: Machine<br>
+                +#@NAME: Tinker RK3288<br>
+                +#@DESCRIPTION: ASUS Tinker Board is a Raspberry Pi 3
+                Alternative based on Rockchip RK3288 Processor.<br>
+                +<br>
+                +include conf/machine/include/rk3288.<wbr>inc<br>
+                +include conf/machine/include/rk-linux.<wbr>inc<br>
+                +<br>
+                +KERNEL_DEVICETREE = "rk3288-miniarm.dtb"<br>
+                +<br>
+                +UBOOT_MACHINE = "miniarm-rk3288_defconfig"<br>
+                --<br>
+                2.7.4<br>
+                <br>
+              </div>
+            </div>
+          </blockquote>
+        </div>
+        <br>
+      </div>
+    </blockquote>
+    <br>
+  </body>
+</html>
 
---001a114104cea8ff070547db2be0
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 6 February 2017 at 11:27, Prasant J <span dir=3D"ltr">&lt;<a href=3D"mai=
-lto:pj0585@gmail.com" target=3D"_blank">pj0585@gmail.com</a>&gt;</span> wro=
-te:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-=
-left:1px #ccc solid;padding-left:1ex"><div id=3D":26o" class=3D"a3s aXjCH m=
-15a132f516bfe187">Is it possible to modify SRC_URI to take only one source =
-file from a<br>
-git clone and build it?<br></div></blockquote></div><br>No, you can&#39;t d=
-o that with git.</div><div class=3D"gmail_extra"><br></div><div class=3D"gm=
-ail_extra">One way would be to use the http fetcher to get the file directl=
-y from the web interface to the kernel.</div><div class=3D"gmail_extra"><br=
-></div><div class=3D"gmail_extra">Ross</div></div>
-
---001a114104cea8ff070547db2be0--
+--------------8E43948398BC0EDAE3036A92--
