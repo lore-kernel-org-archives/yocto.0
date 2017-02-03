@@ -1,61 +1,42 @@
-Return-Path: <danielhilst@gmail.com>
+Return-Path: <clemens.lang@bmw-carit.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 04D8FE009D4; Fri,  3 Feb 2017 05:11:53 -0800 (PST)
+	id B96FFE009CD; Fri,  3 Feb 2017 05:31:41 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_LOW,
-	RCVD_IN_SORBS_SPAM autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (danielhilst[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.216.174 listed in dnsbl.sorbs.net]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.216.174 listed in list.dnswl.org]
-Received: from mail-qt0-f174.google.com (mail-qt0-f174.google.com
-	[209.85.216.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CFA5BE009CD
-	for <yocto@yoctoproject.org>; Fri,  3 Feb 2017 05:11:49 -0800 (PST)
-Received: by mail-qt0-f174.google.com with SMTP id v23so35831277qtb.0
-	for <yocto@yoctoproject.org>; Fri, 03 Feb 2017 05:11:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=hT1uaY1QS6vosmy6x9+A7jGdRlnIdPXHi/m8Fzs4Hms=;
-	b=XKsRHinbz7oK20eS5mUo1WE43DtSNz13Li8JwPqCZbADAPmLp5RtNVtrN372oV1YQx
-	xBxucgEMj5VlCbQ7QWS2KkgbWMY5BR/31gLKCeXYVOfS+EjNBJt3hLjU6M2Z1Doqx2F8
-	qaN+GWm7AzpeyylTXrB2C/boD5X2Y0k9PbxKjmds93juGDQlQSDGCzah8SH2uD6MNm6w
-	oJgV5lnG7u32oChBrMTh/Mi/vpduOZhVA1HOFtjcI8fGqqH9cmB5itM4m68nWQWic8/7
-	1LtxIl0Ax+gwHP00oLm0Ndc7+WfLy8OIxAz5Ufboub6Jg9JOa1m3K3BEGRrno+9MaQFs
-	pE6w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=hT1uaY1QS6vosmy6x9+A7jGdRlnIdPXHi/m8Fzs4Hms=;
-	b=cup/18qcG5+EwF9auMXPfHMGpxiakPwcHFI8g1npSn4Mr6BiadgEB64RUJb83/LWG8
-	NyqzZ30rF3reQufjMEJT8l2LRHT/Wi77gtw//S5PKvG3ong8lueM5bc7CkikdcE7dWqi
-	vMFJnud+eIO4rwgYRTLOm4ynm4Zdapr2cN+LoVRh9qbAHdTzcN9wsz6SD3ag5Oa7Xeyf
-	BvWPJKtUsjjWsHrrz9AG/j1UN9F7ALtNbtdl0t0E3YJeHFthVSpk43bB1LO8/HPu6zSb
-	DCgAh7nPMqwjcXstBhK0kRRnHTNfreTqfmTWAq+6DcBHKK/K4vaJmk7CyW28GMgRiqRM
-	rPZQ==
-X-Gm-Message-State: AIkVDXJvMdZOyeXqh8ZFszh9ATKcUnxGTtyDQGyzPwWGP3kJNI/ZAIRWEVKeNzZIWT4cfIXnNi6WzRrgZklkaA==
-X-Received: by 10.237.53.164 with SMTP id c33mr13667734qte.121.1486127508612; 
-	Fri, 03 Feb 2017 05:11:48 -0800 (PST)
+Received: from cit-hm8-gw01.bmw-carit.de (cit-hm8-mail01.bmw-carit.de
+	[212.118.206.84])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 66A76E009CD
+	for <yocto@yoctoproject.org>; Fri,  3 Feb 2017 05:31:31 -0800 (PST)
+Received: from [172.20.0.50] (port=27504 helo=cit-hm8-mail01.bmw-carit.de)
+	by cit-hm8-gw01.bmw-carit.de with esmtps (TLSv1:DHE-RSA-AES256-SHA:256)
+	(Exim 4.82_1-5b7a7c0-XX) (envelope-from <Clemens.Lang@bmw-carit.de>)
+	id 1cZdxX-0000gd-1y; Fri, 03 Feb 2017 14:31:27 +0100
+Received: from ULM-DC01.bmw-carit.intra ([fe80::41cf:62be:aacc:1aad]) by
+	ULM-DC01.bmw-carit.intra ([fe80::41cf:62be:aacc:1aad%11]) with mapi id
+	14.03.0123.003; Fri, 3 Feb 2017 14:31:27 +0100
+X-CTCH-RefID: str=0001.0A0C0207.5894862F.01FB, ss=1, re=0.000, recu=0.000,
+	reip=0.000, cl=1, cld=1, fgs=0
+From: Clemens Lang <Clemens.Lang@bmw-carit.de>
+To: Daniel. <danielhilst@gmail.com>
+Thread-Topic: [yocto] Repeteability in image compilation. How to achieve it?
+	How	to measure it?
+Thread-Index: AQHSfh9q2E210T5I5UWpmuhu9lDMWaFXNp+A
+Date: Fri, 3 Feb 2017 13:31:26 +0000
+Message-ID: <8960F08D-AEDC-4474-A6D6-219BC5764252@bmw-carit.de>
+References: <CAF3SDA56bgLyrmSKxm=ObR-rrj2RVXojXnbeErkys2uJfdXU9w@mail.gmail.com>
+In-Reply-To: <CAF3SDA56bgLyrmSKxm=ObR-rrj2RVXojXnbeErkys2uJfdXU9w@mail.gmail.com>
+Accept-Language: de-DE, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.20.20.80]
 MIME-Version: 1.0
-Received: by 10.140.96.17 with HTTP; Fri, 3 Feb 2017 05:11:48 -0800 (PST)
-From: "Daniel." <danielhilst@gmail.com>
-Date: Fri, 3 Feb 2017 11:11:48 -0200
-Message-ID: <CAF3SDA56bgLyrmSKxm=ObR-rrj2RVXojXnbeErkys2uJfdXU9w@mail.gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Repeteability in image compilation. How to achieve it? How to measure it?
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Repeteability in image compilation. How to achieve it? How	to measure it?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,17 +48,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 03 Feb 2017 13:11:53 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Fri, 03 Feb 2017 13:31:41 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <BF40FD1A9569F142AAA448002BBD6103@bmw-carit.de>
+Content-Transfer-Encoding: base64
 
-Hi everybody,
-
-How can I be sure that the same image built by distinct building hosts
-are trully identical?? Is it possible to measure that?
-
-Regards!
-
--- 
-"Do or do not. There is no try"
-  Yoda Master
+SGksDQoNCj4gT24gMyBGZWIgMjAxNywgYXQgMTQ6MTEsIERhbmllbC4gPGRhbmllbGhpbHN0QGdt
+YWlsLmNvbT4gd3JvdGU6DQo+IA0KPiBIaSBldmVyeWJvZHksDQo+IA0KPiBIb3cgY2FuIEkgYmUg
+c3VyZSB0aGF0IHRoZSBzYW1lIGltYWdlIGJ1aWx0IGJ5IGRpc3RpbmN0IGJ1aWxkaW5nIGhvc3Rz
+DQo+IGFyZSB0cnVsbHkgaWRlbnRpY2FsPz8gSXMgaXQgcG9zc2libGUgdG8gbWVhc3VyZSB0aGF0
+Pw0KDQpJIGNhbiByZWNvbW1lbmQgdG9vbGluZyBvZmZlcmVkIGJ5IHRoZSByZXByb2R1Y2libGUg
+YnVpbGRzIHByb2plY3QuIEVzcGVjaWFsbHkgZGlmZm9zY29wZSBjYW4gYmUgdmVyeSBoZWxwZnVs
+IGluIHRoaXMuIFNlZSBodHRwczovL3JlcHJvZHVjaWJsZS1idWlsZHMub3JnL3Rvb2xzLy4gWW91
+IG1heSB3YW50IHRvIHN0YXJ0IGNvbXBhcmluZyBpbmRpdmlkdWFsIHBhY2thZ2VzIGZpcnN0LCBi
+ZWZvcmUgeW91IHRhY2tsZSBpbWFnZSBjcmVhdGlvbiwgdGhvdWdoLg0KDQpIVEgsDQpDbGVtZW5z
+DQotLSANCkNsZW1lbnMgTGFuZyDigKIgRGV2ZWxvcG1lbnQgU3BlY2lhbGlzdA0KQk1XIENhciBJ
+VCBHbWJIIOKAoiBMaXNlLU1laXRuZXItU3RyLiAxNCDigKIgODkwODEgVWxtIOKAoiBodHRwOi8v
+Ym13LWNhcml0LmNvbQ0KLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KQk1XIENhciBJVCBHbWJIDQpHZXNjaMOk
+ZnRzZsO8aHJlcjogTWljaGFlbCBXw7xydGVuYmVyZ2VyIHVuZCBBbGV4aXMgVHJvbGluDQpTaXR6
+IHVuZCBSZWdpc3RlcmdlcmljaHQ6IE3DvG5jaGVuIEhSQiAxMzQ4MTANCi0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0NCg0K
 
