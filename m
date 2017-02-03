@@ -1,18 +1,18 @@
 Return-Path: <danielhilst@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 07553E00480; Fri,  3 Feb 2017 07:36:52 -0800 (PST)
+	id D5AB2E004D8; Fri,  3 Feb 2017 07:37:12 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW, 
-	RCVD_IN_SORBS_SPAM autolearn=ham version=3.3.1
+	RCVD_IN_DNSWL_NONE, 
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (danielhilst[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.216.172 listed in list.dnswl.org]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.220.176 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -22,44 +22,45 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.216.172 listed in dnsbl.sorbs.net]
-Received: from mail-qt0-f172.google.com (mail-qt0-f172.google.com
-	[209.85.216.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7BD0AE0030B
-	for <yocto@yoctoproject.org>; Fri,  3 Feb 2017 07:36:48 -0800 (PST)
-Received: by mail-qt0-f172.google.com with SMTP id x49so41785156qtc.2
-	for <yocto@yoctoproject.org>; Fri, 03 Feb 2017 07:36:48 -0800 (PST)
+	*      [209.85.220.176 listed in dnsbl.sorbs.net]
+Received: from mail-qk0-f176.google.com (mail-qk0-f176.google.com
+	[209.85.220.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8CCC3E003E1
+	for <yocto@yoctoproject.org>; Fri,  3 Feb 2017 07:37:10 -0800 (PST)
+Received: by mail-qk0-f176.google.com with SMTP id 11so1501407qkl.3
+	for <yocto@yoctoproject.org>; Fri, 03 Feb 2017 07:37:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=7wr17tsd8f0erEURI9X8CJPWeRze4IuL32DCB8AZxTg=;
-	b=C917Gir2kE0OZLeoxg7JdBM1XMobmGL58r6MrKJOZZWAXVt/EQxDWgARsiZgy0E3+Y
-	OPoWM/RX9SkX+qWD2D6db1jLr39jkLtvW6G6QjekCSfEJxcH3rFqB/zKg0iOJ7Gjrmkh
-	C/xQ0u/jZ1ryTdAGcT+DJJUW+kqY1YjR27h+Og7sBStDbISn5L+ksmxfea0ILG6CwT3Q
-	huj/XpHHGAZ8VVVWXrYFPZ2EoKcfuAKIs+5ITPtuOsFNnQLvj6+/ciimzuK3cINJlVgF
-	pfRc4KD1vZ3/T3gE5v7hahLYhy3vgOB4mBajBa9oQYhIw5owo2SUJhJA2L69jtoqaEp0
-	BYaQ==
+	:cc; bh=pT9yTr1jd8SldkpNsfGu6VZbUtottqpmBsaVbefz4QE=;
+	b=bGIE5UJtFBAXgSxKIbzvDTSFnb3CvEp4FtxswltekiWrfToUAD8UyW2ze4NyLWf/uO
+	f+jX+o2y3IfWfWFKY39gJnS/nuv8Hteq5tLXi3yBe2Qx/YN9/DZ5CVJyfmodAUAnRQug
+	b89pKij1HKOyS2NeGL6sCc/5k/ykd7jZkv4B6nL36LneVDwnUzFM97QqYx8OaMfXlIQR
+	f3hDRQt1RSzEYrlmueZF1UmnxKESlpZzhJvZw6ZmpyRyDHmG1xh+c2eFl2J9/kSpEzer
+	W3m4lLY5iuUWLih0h7j9yNqeSLQRQXugCAHUlmRtJx02OwJka/aWo9HEIApJ/gZHBHlO
+	tr7g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=7wr17tsd8f0erEURI9X8CJPWeRze4IuL32DCB8AZxTg=;
-	b=SR3Rz57IS+kgMz8ARJtj37OtQCN+5bPagdt4U/LKsM0eUY0USRIKG4cbflcb1Xq+61
-	TFPtwn3UI8/uM+Sang9pRa5PiQ/G56UXd/8s5KGgqrz9htWTjxBLv5DLpIxARA6d/BFn
-	SSH4HPFcGKDKZj1R8ft/SOb9HlSdR/wAQXLnMdhGVxZFoKFXJGKf1GTDVXZYYkyXM/t3
-	JTyWCGVQqhXHeTaQfG/TtncTdt1/lZ0iDX4IMBxXMIh/wrB9V7xJjq/Xyl0ydChY2snh
-	QBFZwO+VpcdroLi9f3thYZ+fbWrnG8iw0c1ja2vmk1JvaLIOuIekTMwMfZQV4aaplAD8
-	0e5Q==
-X-Gm-Message-State: AIkVDXLB+7oGeUWzYjs18lORx9INQXCc5Ce5gvySl10Kmqo/ViSg8MoSEphd1QqO59I+PRzxdiOfrrjWD3fLFw==
-X-Received: by 10.237.33.209 with SMTP id m17mr14262807qtc.59.1486136207883;
-	Fri, 03 Feb 2017 07:36:47 -0800 (PST)
+	bh=pT9yTr1jd8SldkpNsfGu6VZbUtottqpmBsaVbefz4QE=;
+	b=A1ZkLIsWE29P2Y6XubVogjaDRaXSOlI/kidxxq1HApRtQUTlan04hLcxjeGMT1QUAB
+	360SuRJWNWA4nJRZhz1bGC2ILOohZ05JpACzY/IiOw7EtnvRb4EPjp3hiVUrClTh6ESC
+	Eu6Q17WI7ylwnbwFt+ONBVEEVmTfp5NT1gfMfI331X7mWfw+hN2spH5KzT1LlD52XsU1
+	JQ1QUfrM4na0Sa2DoHlCjK/xBHPzCE8oZCJ+FFlJ2n4Fe0aiYlIiLtC3H+FxEP1VODir
+	auy80cluw41iRgB+z9VnkuAWxR1yQnc8lund20Zkys60FJsTdWXRinnFSVfaNEQ3fheZ
+	BrVQ==
+X-Gm-Message-State: AMke39kwlNRUQka2VsapPZrSg0q2Ek8glsckDQwnE7ZLIP0djbj8v0wssWE9X356NJXKdoXkwJ6Twu5K/Xczzw==
+X-Received: by 10.55.70.79 with SMTP id t76mr14407962qka.271.1486136229525;
+	Fri, 03 Feb 2017 07:37:09 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.140.96.17 with HTTP; Fri, 3 Feb 2017 07:36:47 -0800 (PST)
-In-Reply-To: <8960F08D-AEDC-4474-A6D6-219BC5764252@bmw-carit.de>
+Received: by 10.140.96.17 with HTTP; Fri, 3 Feb 2017 07:37:09 -0800 (PST)
+In-Reply-To: <CAF3SDA5nQFbFYED7cA09WHm-OFHTwrrdtJvmxMb4AuHtwc=njQ@mail.gmail.com>
 References: <CAF3SDA56bgLyrmSKxm=ObR-rrj2RVXojXnbeErkys2uJfdXU9w@mail.gmail.com>
 	<8960F08D-AEDC-4474-A6D6-219BC5764252@bmw-carit.de>
+	<CAF3SDA5nQFbFYED7cA09WHm-OFHTwrrdtJvmxMb4AuHtwc=njQ@mail.gmail.com>
 From: "Daniel." <danielhilst@gmail.com>
-Date: Fri, 3 Feb 2017 13:36:47 -0200
-Message-ID: <CAF3SDA5nQFbFYED7cA09WHm-OFHTwrrdtJvmxMb4AuHtwc=njQ@mail.gmail.com>
+Date: Fri, 3 Feb 2017 13:37:09 -0200
+Message-ID: <CAF3SDA56XbjtxyO11H1jaM1z_bGhXhZp814yZqOU09xmztsJ4g@mail.gmail.com>
 To: Clemens Lang <Clemens.Lang@bmw-carit.de>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Repeteability in image compilation. How to achieve it? How to measure it?
@@ -74,65 +75,84 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 03 Feb 2017 15:36:52 -0000
-Content-Type: multipart/alternative; boundary=001a11377ff2c2436d0547a20c5b
+X-List-Received-Date: Fri, 03 Feb 2017 15:37:12 -0000
+Content-Type: multipart/alternative; boundary=001a114ac10a0c82860547a20ea4
 
---001a11377ff2c2436d0547a20c5b
+--001a114ac10a0c82860547a20ea4
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Thank you so mutch Clemens!!!! I'll take a look!!
+much*
 
-Regards,
+2017-02-03 13:36 GMT-02:00 Daniel. <danielhilst@gmail.com>:
 
-2017-02-03 11:31 GMT-02:00 Clemens Lang <Clemens.Lang@bmw-carit.de>:
-
-> Hi,
+> Thank you so mutch Clemens!!!! I'll take a look!!
 >
-> > On 3 Feb 2017, at 14:11, Daniel. <danielhilst@gmail.com> wrote:
-> >
-> > Hi everybody,
-> >
-> > How can I be sure that the same image built by distinct building hosts
-> > are trully identical?? Is it possible to measure that?
+> Regards,
 >
-> I can recommend tooling offered by the reproducible builds project.
-> Especially diffoscope can be very helpful in this. See
-> https://reproducible-builds.org/tools/. You may want to start comparing
-> individual packages first, before you tackle image creation, though.
+> 2017-02-03 11:31 GMT-02:00 Clemens Lang <Clemens.Lang@bmw-carit.de>:
 >
-> HTH,
-> Clemens
+>> Hi,
+>>
+>> > On 3 Feb 2017, at 14:11, Daniel. <danielhilst@gmail.com> wrote:
+>> >
+>> > Hi everybody,
+>> >
+>> > How can I be sure that the same image built by distinct building hosts
+>> > are trully identical?? Is it possible to measure that?
+>>
+>> I can recommend tooling offered by the reproducible builds project.
+>> Especially diffoscope can be very helpful in this. See
+>> https://reproducible-builds.org/tools/. You may want to start comparing
+>> individual packages first, before you tackle image creation, though.
+>>
+>> HTH,
+>> Clemens
+>> --
+>> Clemens Lang =E2=80=A2 Development Specialist
+>> BMW Car IT GmbH =E2=80=A2 Lise-Meitner-Str. 14 =E2=80=A2 89081 Ulm =E2=
+=80=A2 http://bmw-carit.com
+>> ------------------------------------------------------------------------=
+-
+>> BMW Car IT GmbH
+>> Gesch=C3=A4ftsf=C3=BChrer: Michael W=C3=BCrtenberger und Alexis Trolin
+>> Sitz und Registergericht: M=C3=BCnchen HRB 134810
+>> ------------------------------------------------------------------------=
+-
+>>
+>>
+>
+>
 > --
-> Clemens Lang =E2=80=A2 Development Specialist
-> BMW Car IT GmbH =E2=80=A2 Lise-Meitner-Str. 14 =E2=80=A2 89081 Ulm =E2=80=
-=A2 http://bmw-carit.com
-> -------------------------------------------------------------------------
-> BMW Car IT GmbH
-> Gesch=C3=A4ftsf=C3=BChrer: Michael W=C3=BCrtenberger und Alexis Trolin
-> Sitz und Registergericht: M=C3=BCnchen HRB 134810
-> -------------------------------------------------------------------------
+> *"Do or do not. There is no try"*
+>   *Yoda Master*
 >
->
+
 
 
 --=20
 *"Do or do not. There is no try"*
   *Yoda Master*
 
---001a11377ff2c2436d0547a20c5b
+--001a114ac10a0c82860547a20ea4
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Thank you so mutch Clemens!!!! I&#39;ll take a look!!=
-<br><br></div>Regards,<br></div><div class=3D"gmail_extra"><br><div class=
-=3D"gmail_quote">2017-02-03 11:31 GMT-02:00 Clemens Lang <span dir=3D"ltr">=
-&lt;<a href=3D"mailto:Clemens.Lang@bmw-carit.de" target=3D"_blank">Clemens.=
-Lang@bmw-carit.de</a>&gt;</span>:<br><blockquote class=3D"gmail_quote" styl=
-e=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">Hi,<br>
-<span class=3D""><br>
+<div dir=3D"ltr">much*<br></div><div class=3D"gmail_extra"><br><div class=
+=3D"gmail_quote">2017-02-03 13:36 GMT-02:00 Daniel. <span dir=3D"ltr">&lt;<=
+a href=3D"mailto:danielhilst@gmail.com" target=3D"_blank">danielhilst@gmail=
+.com</a>&gt;</span>:<br><blockquote class=3D"gmail_quote" style=3D"margin:0=
+ 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr"><di=
+v>Thank you so mutch Clemens!!!! I&#39;ll take a look!!<br><br></div>Regard=
+s,<br></div><div class=3D"gmail_extra"><div><div class=3D"h5"><br><div clas=
+s=3D"gmail_quote">2017-02-03 11:31 GMT-02:00 Clemens Lang <span dir=3D"ltr"=
+>&lt;<a href=3D"mailto:Clemens.Lang@bmw-carit.de" target=3D"_blank">Clemens=
+.Lang@bmw-carit.de</a>&gt;</span>:<br><blockquote class=3D"gmail_quote" sty=
+le=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">Hi,<br=
+>
+<span><br>
 &gt; On 3 Feb 2017, at 14:11, Daniel. &lt;<a href=3D"mailto:danielhilst@gma=
-il.com">danielhilst@gmail.com</a>&gt; wrote:<br>
+il.com" target=3D"_blank">danielhilst@gmail.com</a>&gt; wrote:<br>
 &gt;<br>
 &gt; Hi everybody,<br>
 &gt;<br>
@@ -143,12 +163,12 @@ il.com">danielhilst@gmail.com</a>&gt; wrote:<br>
 </span>I can recommend tooling offered by the reproducible builds project. =
 Especially diffoscope can be very helpful in this. See <a href=3D"https://r=
 eproducible-builds.org/tools/" rel=3D"noreferrer" target=3D"_blank">https:/=
-/reproducible-builds.<wbr>org/tools/</a>. You may want to start comparing i=
+/reproducible-builds.or<wbr>g/tools/</a>. You may want to start comparing i=
 ndividual packages first, before you tackle image creation, though.<br>
 <br>
 HTH,<br>
 Clemens<br>
-<span class=3D"HOEnZb"><font color=3D"#888888">--<br>
+<span class=3D"m_3919083179544913361HOEnZb"><font color=3D"#888888">--<br>
 Clemens Lang =E2=80=A2 Development Specialist<br>
 BMW Car IT GmbH =E2=80=A2 Lise-Meitner-Str. 14 =E2=80=A2 89081 Ulm =E2=80=
 =A2 <a href=3D"http://bmw-carit.com" rel=3D"noreferrer" target=3D"_blank">h=
@@ -161,10 +181,16 @@ Sitz und Registergericht: M=C3=BCnchen HRB 134810<br>
 ------------------------------<wbr>------------------------------<wbr>-----=
 --------<br>
 <br>
-</font></span></blockquote></div><br><br clear=3D"all"><br>-- <br><div clas=
-s=3D"gmail_signature" data-smartmail=3D"gmail_signature"><div style=3D"text=
--align:right"><i>&quot;Do or do not. There is no try&quot;</i><br><i>=C2=A0=
- </i><i><b>Yoda Master</b></i><br></div></div>
+</font></span></blockquote></div><br><br clear=3D"all"><br></div></div><spa=
+n class=3D"">-- <br><div class=3D"m_3919083179544913361gmail_signature" dat=
+a-smartmail=3D"gmail_signature"><div style=3D"text-align:right"><i>&quot;Do=
+ or do not. There is no try&quot;</i><br><i>=C2=A0 </i><i><b>Yoda Master</b=
+></i><br></div></div>
+</span></div>
+</blockquote></div><br><br clear=3D"all"><br>-- <br><div class=3D"gmail_sig=
+nature" data-smartmail=3D"gmail_signature"><div style=3D"text-align:right">=
+<i>&quot;Do or do not. There is no try&quot;</i><br><i>=C2=A0 </i><i><b>Yod=
+a Master</b></i><br></div></div>
 </div>
 
---001a11377ff2c2436d0547a20c5b--
+--001a114ac10a0c82860547a20ea4--
