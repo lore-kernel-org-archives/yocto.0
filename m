@@ -1,69 +1,50 @@
-Return-Path: <danielhilst@gmail.com>
+Return-Path: <547884940@qq.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D5AB2E004D8; Fri,  3 Feb 2017 07:37:12 -0800 (PST)
+	id F11B5E00480; Fri,  3 Feb 2017 07:49:52 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE, 
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (danielhilst[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.220.176 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [184.105.206.26 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.220.176 listed in dnsbl.sorbs.net]
-Received: from mail-qk0-f176.google.com (mail-qk0-f176.google.com
-	[209.85.220.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8CCC3E003E1
-	for <yocto@yoctoproject.org>; Fri,  3 Feb 2017 07:37:10 -0800 (PST)
-Received: by mail-qk0-f176.google.com with SMTP id 11so1501407qkl.3
-	for <yocto@yoctoproject.org>; Fri, 03 Feb 2017 07:37:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=pT9yTr1jd8SldkpNsfGu6VZbUtottqpmBsaVbefz4QE=;
-	b=bGIE5UJtFBAXgSxKIbzvDTSFnb3CvEp4FtxswltekiWrfToUAD8UyW2ze4NyLWf/uO
-	f+jX+o2y3IfWfWFKY39gJnS/nuv8Hteq5tLXi3yBe2Qx/YN9/DZ5CVJyfmodAUAnRQug
-	b89pKij1HKOyS2NeGL6sCc/5k/ykd7jZkv4B6nL36LneVDwnUzFM97QqYx8OaMfXlIQR
-	f3hDRQt1RSzEYrlmueZF1UmnxKESlpZzhJvZw6ZmpyRyDHmG1xh+c2eFl2J9/kSpEzer
-	W3m4lLY5iuUWLih0h7j9yNqeSLQRQXugCAHUlmRtJx02OwJka/aWo9HEIApJ/gZHBHlO
-	tr7g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=pT9yTr1jd8SldkpNsfGu6VZbUtottqpmBsaVbefz4QE=;
-	b=A1ZkLIsWE29P2Y6XubVogjaDRaXSOlI/kidxxq1HApRtQUTlan04hLcxjeGMT1QUAB
-	360SuRJWNWA4nJRZhz1bGC2ILOohZ05JpACzY/IiOw7EtnvRb4EPjp3hiVUrClTh6ESC
-	Eu6Q17WI7ylwnbwFt+ONBVEEVmTfp5NT1gfMfI331X7mWfw+hN2spH5KzT1LlD52XsU1
-	JQ1QUfrM4na0Sa2DoHlCjK/xBHPzCE8oZCJ+FFlJ2n4Fe0aiYlIiLtC3H+FxEP1VODir
-	auy80cluw41iRgB+z9VnkuAWxR1yQnc8lund20Zkys60FJsTdWXRinnFSVfaNEQ3fheZ
-	BrVQ==
-X-Gm-Message-State: AMke39kwlNRUQka2VsapPZrSg0q2Ek8glsckDQwnE7ZLIP0djbj8v0wssWE9X356NJXKdoXkwJ6Twu5K/Xczzw==
-X-Received: by 10.55.70.79 with SMTP id t76mr14407962qka.271.1486136229525;
-	Fri, 03 Feb 2017 07:37:09 -0800 (PST)
+X-Greylist: delayed 63 seconds by postgrey-1.32 at yocto-www;
+	Fri, 03 Feb 2017 07:49:48 PST
+Received: from smtpbg303.qq.com (smtpbg303.qq.com [184.105.206.26])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 57324E0030B
+	for <yocto@yoctoproject.org>; Fri,  3 Feb 2017 07:49:48 -0800 (PST)
+X-QQ-mid: esmtp31t1486136913t4s7dj9j3
+Received: from [192.168.10.237] (unknown [222.76.54.158])
+	by esmtp4.qq.com (ESMTP) with 
+	id ; Fri, 03 Feb 2017 23:48:33 +0800 (CST)
+X-QQ-SSF: B000000000000000FG101F00000000X
+X-QQ-FEAT: y/Yfw/TLgL7I0BJHuvbqqp2OreCmbaJJjwcAyXm4NLvC3rhpjA9MON4qujdce
+	RdtT7VSf08B/nOVbbh7wbe3ZKQK9gTWjsHcpwPozcCtYChk8cLO6jG/iMKqCuGqA3NHPNwL
+	TO1WnKYQs+ZRDGUeYJHQpsQT6xHwQv+54CKLvKBzJonki+KZPn12b7gylypNEhMazdXGpAv
+	KNCzfmbTC2wkjHdgiur9gw+4XhMbdVTZq8JOjLgBd+fmTPdawHgyoHCEGFzSaiIWMjl3a/r
+	1UfawbriAFPks5pwT2YVyQ0EvYjZ2i1gdylQ==
+X-QQ-GoodBg: 0
+To: Romain Perier <romain.perier@gmail.com>, Jacob Chen <jacob-chen@iotwrt.com>
+References: <1484834687-15746-1-git-send-email-jacob-chen@iotwrt.com>
+	<1484834687-15746-3-git-send-email-jacob-chen@iotwrt.com>
+	<CABgxDo+5x6-ByOUikkG45S6Yo5NO+=L4S3GRX7firgpMqQQiAA@mail.gmail.com>
+From: jacob-chen@iotwrt.com
+Message-ID: <344e28b6-13f7-2162-0ce7-9d57b33af46a@qq.com>
+Date: Fri, 3 Feb 2017 23:48:33 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.7.0
 MIME-Version: 1.0
-Received: by 10.140.96.17 with HTTP; Fri, 3 Feb 2017 07:37:09 -0800 (PST)
-In-Reply-To: <CAF3SDA5nQFbFYED7cA09WHm-OFHTwrrdtJvmxMb4AuHtwc=njQ@mail.gmail.com>
-References: <CAF3SDA56bgLyrmSKxm=ObR-rrj2RVXojXnbeErkys2uJfdXU9w@mail.gmail.com>
-	<8960F08D-AEDC-4474-A6D6-219BC5764252@bmw-carit.de>
-	<CAF3SDA5nQFbFYED7cA09WHm-OFHTwrrdtJvmxMb4AuHtwc=njQ@mail.gmail.com>
-From: "Daniel." <danielhilst@gmail.com>
-Date: Fri, 3 Feb 2017 13:37:09 -0200
-Message-ID: <CAF3SDA56XbjtxyO11H1jaM1z_bGhXhZp814yZqOU09xmztsJ4g@mail.gmail.com>
-To: Clemens Lang <Clemens.Lang@bmw-carit.de>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Repeteability in image compilation. How to achieve it? How to measure it?
+In-Reply-To: <CABgxDo+5x6-ByOUikkG45S6Yo5NO+=L4S3GRX7firgpMqQQiAA@mail.gmail.com>
+X-QQ-SENDSIZE: 520
+X-QQ-FName: 38405EA44362403BA3BCFC91C0C6B809
+X-QQ-LocalIP: 10.130.87.224
+Cc: yocto@yoctoproject.org, Jacob Chen <jacob-chen@rock-chips.com>,
+	eddie.cai@rock-chips.com
+Subject: Re: [meta-rockchip][PATCH 2/7] machine: Add machine file for the rk3288 linux Boards
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,122 +56,359 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 03 Feb 2017 15:37:12 -0000
-Content-Type: multipart/alternative; boundary=001a114ac10a0c82860547a20ea4
+X-List-Received-Date: Fri, 03 Feb 2017 15:49:53 -0000
+Content-Type: multipart/alternative;
+	boundary="------------E487B8AC1CC0FDB6E1B9BF6B"
 
---001a114ac10a0c82860547a20ea4
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+--------------E487B8AC1CC0FDB6E1B9BF6B
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-much*
+Hi all,
 
-2017-02-03 13:36 GMT-02:00 Daniel. <danielhilst@gmail.com>:
+Thanks for reviewing, I will looking at comments and suggestions after 
+the other work finished.
 
-> Thank you so mutch Clemens!!!! I'll take a look!!
+: )
+
+
+
+在 2017年01月27日 22:37, Romain Perier 写道:
+> Hey,
 >
-> Regards,
+> Could you:
+> - Make one patch per new machine file and not one patch for all new 
+> added machine
+> - Add a clear @DESCRIPTION for each board, see an example here: 
+> https://git.yoctoproject.org/cgit/cgit.cgi/meta-rockchip/tree/conf/machine/firefly-rk3288.conf
+> - Write a clear and an understandable commit message for your new patches
 >
-> 2017-02-03 11:31 GMT-02:00 Clemens Lang <Clemens.Lang@bmw-carit.de>:
+> @Trevor: What do you think about this rk-linux.inc ? I don't like 
+> this, either its name and what it contains.
 >
->> Hi,
->>
->> > On 3 Feb 2017, at 14:11, Daniel. <danielhilst@gmail.com> wrote:
->> >
->> > Hi everybody,
->> >
->> > How can I be sure that the same image built by distinct building hosts
->> > are trully identical?? Is it possible to measure that?
->>
->> I can recommend tooling offered by the reproducible builds project.
->> Especially diffoscope can be very helpful in this. See
->> https://reproducible-builds.org/tools/. You may want to start comparing
->> individual packages first, before you tackle image creation, though.
->>
->> HTH,
->> Clemens
->> --
->> Clemens Lang =E2=80=A2 Development Specialist
->> BMW Car IT GmbH =E2=80=A2 Lise-Meitner-Str. 14 =E2=80=A2 89081 Ulm =E2=
-=80=A2 http://bmw-carit.com
->> ------------------------------------------------------------------------=
--
->> BMW Car IT GmbH
->> Gesch=C3=A4ftsf=C3=BChrer: Michael W=C3=BCrtenberger und Alexis Trolin
->> Sitz und Registergericht: M=C3=BCnchen HRB 134810
->> ------------------------------------------------------------------------=
--
->>
->>
+> That's it for now.
+> Thanks for your patches
 >
 >
-> --
-> *"Do or do not. There is no try"*
->   *Yoda Master*
+> 2017-01-19 15:04 GMT+01:00 Jacob Chen <jacob-chen@iotwrt.com 
+> <mailto:jacob-chen@iotwrt.com>>:
+>
+>     Evb-rk3288 is the offical evaluate board, add it to help myself
+>     develop.
+>
+>     Fennec-rk3288 and Tinker-rk3288 is rk3288 based SBCs.
+>         .
+>     Tinker Boards:
+>     http://www.cnx-software.com/2017/01/05/asus-tinker-board-is-a-raspberry-pi-3-alternative-based-on-rockchip-rk3288-processor/
+>     <http://www.cnx-software.com/2017/01/05/asus-tinker-board-is-a-raspberry-pi-3-alternative-based-on-rockchip-rk3288-processor/>
+>
+>     Signed-off-by: Jacob Chen <jacob-chen@rock-chips.com
+>     <mailto:jacob-chen@rock-chips.com>>
+>     ---
+>      conf/machine/evb-rk3288.conf      | 12 ++++++++++++
+>      conf/machine/fennec-rk3288.conf   | 12 ++++++++++++
+>      conf/machine/include/rk-linux.inc | 20 ++++++++++++++++++++
+>      conf/machine/tinker-rk3288.conf   | 13 +++++++++++++
+>      4 files changed, 57 insertions(+)
+>      create mode 100644 conf/machine/evb-rk3288.conf
+>      create mode 100644 conf/machine/fennec-rk3288.conf
+>      create mode 100644 conf/machine/include/rk-linux.inc
+>      create mode 100644 conf/machine/tinker-rk3288.conf
+>
+>     diff --git a/conf/machine/evb-rk3288.conf
+>     b/conf/machine/evb-rk3288.conf
+>     new file mode 100644
+>     index 0000000..88a5f78
+>     --- /dev/null
+>     +++ b/conf/machine/evb-rk3288.conf
+>     @@ -0,0 +1,12 @@
+>     +# Copyright (C) 2017 Fuzhou Rockchip Electronics Co., Ltd
+>     +# Released under the MIT license (see COPYING.MIT for the terms)
+>     +
+>     +#@TYPE: Machine
+>     +#@NAME: EVB 3288
+>     +
+>     +include conf/machine/include/rk3288.inc
+>     +include conf/machine/include/rk-linux.inc
+>     +
+>     +KERNEL_DEVICETREE = "rk3288-evb-act8846.dtb"
+>     +
+>     +UBOOT_MACHINE = "evb-rk3288_defconfig"
+>     diff --git a/conf/machine/fennec-rk3288.conf
+>     b/conf/machine/fennec-rk3288.conf
+>     new file mode 100644
+>     index 0000000..a85045f
+>     --- /dev/null
+>     +++ b/conf/machine/fennec-rk3288.conf
+>     @@ -0,0 +1,12 @@
+>     +# Copyright (C) 2017 Fuzhou Rockchip Electronics Co., Ltd
+>     +# Released under the MIT license (see COPYING.MIT for the terms)
+>     +
+>     +#@TYPE: Machine
+>     +#@NAME: FENNEC RK3288
+>     +
+>     +include conf/machine/include/rk3288.inc
+>     +include conf/machine/include/rk-linux.inc
+>     +
+>     +KERNEL_DEVICETREE = "rk3288-fennec.dtb"
+>     +
+>     +UBOOT_MACHINE = "fennec-rk3288_defconfig"
+>     diff --git a/conf/machine/include/rk-linux.inc
+>     b/conf/machine/include/rk-linux.inc
+>     new file mode 100644
+>     index 0000000..6abaa0d
+>     --- /dev/null
+>     +++ b/conf/machine/include/rk-linux.inc
+>     @@ -0,0 +1,20 @@
+>     +# Rockchip BSP default settings
+>     +
+>     +PREFERRED_PROVIDER_virtual/egl = "mali-userspace"
+>     +PREFERRED_PROVIDER_virtual/libgles1 = "mali-userspace"
+>     +PREFERRED_PROVIDER_virtual/libgles2 = "mali-userspace"
+>     +PREFERRED_PROVIDER_virtual/libopencl = "mali-userspace"
+>     +
+>     +# Workaround: libmali.so provided by rk having no SONAME field in it
+>     +# so add it to fix rdepends problems
+>     +ASSUME_SHLIBS += "libEGL.so:mali-userspace"
+>     +ASSUME_SHLIBS += "libGLESv1_CM.so:mali-userspace"
+>     +ASSUME_SHLIBS += "libGLESv2.so:mali-userspace"
+>     +ASSUME_SHLIBS += "libOpenCL.so:mali-userspace"
+>     +ASSUME_SHLIBS += "libgbm.so:mali-userspace"
+>     +ASSUME_SHLIBS += "libwayland-egl.so:mali-userspace"
+>     +
+>     +PREFERRED_PROVIDER_virtual/kernel = "linux-rockchip"
+>     +PREFERRED_PROVIDER_virtual/bootloader = "u-boot-rockchip"
+>     +
+>     +IMAGE_CLASSES += "rockchip-next-image"
+>     diff --git a/conf/machine/tinker-rk3288.conf
+>     b/conf/machine/tinker-rk3288.conf
+>     new file mode 100644
+>     index 0000000..0464133
+>     --- /dev/null
+>     +++ b/conf/machine/tinker-rk3288.conf
+>     @@ -0,0 +1,13 @@
+>     +# Copyright (C) 2017 Fuzhou Rockchip Electronics Co., Ltd
+>     +# Released under the MIT license (see COPYING.MIT for the terms)
+>     +
+>     +#@TYPE: Machine
+>     +#@NAME: Tinker RK3288
+>     +#@DESCRIPTION: ASUS Tinker Board is a Raspberry Pi 3 Alternative
+>     based on Rockchip RK3288 Processor.
+>     +
+>     +include conf/machine/include/rk3288.inc
+>     +include conf/machine/include/rk-linux.inc
+>     +
+>     +KERNEL_DEVICETREE = "rk3288-miniarm.dtb"
+>     +
+>     +UBOOT_MACHINE = "miniarm-rk3288_defconfig"
+>     --
+>     2.7.4
+>
 >
 
 
+--------------E487B8AC1CC0FDB6E1B9BF6B
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
 
---=20
-*"Do or do not. There is no try"*
-  *Yoda Master*
+<html>
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <p>Hi all,</p>
+    <p>
+      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+      Thanks for reviewing, I will looking at comments and suggestions
+      after the other work finished. <br>
+    </p>
+    <p>: )</p>
+    <p><br>
+    </p>
+    <br>
+    <div class="moz-cite-prefix">在 2017年01月27日 22:37, Romain Perier 写道:<br>
+    </div>
+    <blockquote
+cite="mid:CABgxDo+5x6-ByOUikkG45S6Yo5NO+=L4S3GRX7firgpMqQQiAA@mail.gmail.com"
+      type="cite">
+      <div dir="ltr">
+        <div>
+          <div>
+            <div>
+              <div>
+                <div>
+                  <div>Hey,<br>
+                    <br>
+                  </div>
+                  Could you:<br>
+                </div>
+                - Make one patch per new machine file and not one patch
+                for all new added machine<br>
+              </div>
+              - Add a clear @DESCRIPTION for each board, see an example
+              here: <a moz-do-not-send="true"
+href="https://git.yoctoproject.org/cgit/cgit.cgi/meta-rockchip/tree/conf/machine/firefly-rk3288.conf">https://git.yoctoproject.org/cgit/cgit.cgi/meta-rockchip/tree/conf/machine/firefly-rk3288.conf</a><br>
+            </div>
+            - Write a clear and an understandable commit message for
+            your new patches<br>
+            <br>
+          </div>
+          <div>@Trevor: What do you think about this rk-linux.inc ? I
+            don't like this, either its name and what it contains.<br>
+          </div>
+          <div><br>
+          </div>
+          That's it for now.<br>
+        </div>
+        Thanks for your patches<br>
+        <div>
+          <div><br>
+          </div>
+        </div>
+      </div>
+      <div class="gmail_extra"><br>
+        <div class="gmail_quote">2017-01-19 15:04 GMT+01:00 Jacob Chen <span
+            dir="ltr">&lt;<a moz-do-not-send="true"
+              href="mailto:jacob-chen@iotwrt.com" target="_blank">jacob-chen@iotwrt.com</a>&gt;</span>:<br>
+          <blockquote class="gmail_quote" style="margin:0 0 0
+            .8ex;border-left:1px #ccc solid;padding-left:1ex">
+            <div class="HOEnZb">
+              <div class="h5">Evb-rk3288 is the offical evaluate board,
+                add it to help myself develop.<br>
+                <br>
+                Fennec-rk3288 and Tinker-rk3288 is rk3288 based SBCs.<br>
+                    .<br>
+                Tinker Boards:<br>
+                <a moz-do-not-send="true"
+href="http://www.cnx-software.com/2017/01/05/asus-tinker-board-is-a-raspberry-pi-3-alternative-based-on-rockchip-rk3288-processor/"
+                  rel="noreferrer" target="_blank">http://www.cnx-software.com/<wbr>2017/01/05/asus-tinker-board-<wbr>is-a-raspberry-pi-3-<wbr>alternative-based-on-rockchip-<wbr>rk3288-processor/</a><br>
+                <br>
+                Signed-off-by: Jacob Chen &lt;<a moz-do-not-send="true"
+                  href="mailto:jacob-chen@rock-chips.com">jacob-chen@rock-chips.com</a>&gt;<br>
+                ---<br>
+                 conf/machine/evb-rk3288.conf      | 12 ++++++++++++<br>
+                 conf/machine/fennec-rk3288.<wbr>conf   | 12
+                ++++++++++++<br>
+                 conf/machine/include/rk-linux.<wbr>inc | 20
+                ++++++++++++++++++++<br>
+                 conf/machine/tinker-rk3288.<wbr>conf   | 13
+                +++++++++++++<br>
+                 4 files changed, 57 insertions(+)<br>
+                 create mode 100644 conf/machine/evb-rk3288.conf<br>
+                 create mode 100644 conf/machine/fennec-rk3288.<wbr>conf<br>
+                 create mode 100644 conf/machine/include/rk-linux.<wbr>inc<br>
+                 create mode 100644 conf/machine/tinker-rk3288.<wbr>conf<br>
+                <br>
+                diff --git a/conf/machine/evb-rk3288.conf
+                b/conf/machine/evb-rk3288.conf<br>
+                new file mode 100644<br>
+                index 0000000..88a5f78<br>
+                --- /dev/null<br>
+                +++ b/conf/machine/evb-rk3288.conf<br>
+                @@ -0,0 +1,12 @@<br>
+                +# Copyright (C) 2017 Fuzhou Rockchip Electronics Co.,
+                Ltd<br>
+                +# Released under the MIT license (see COPYING.MIT for
+                the terms)<br>
+                +<br>
+                +#@TYPE: Machine<br>
+                +#@NAME: EVB 3288<br>
+                +<br>
+                +include conf/machine/include/rk3288.<wbr>inc<br>
+                +include conf/machine/include/rk-linux.<wbr>inc<br>
+                +<br>
+                +KERNEL_DEVICETREE = "rk3288-evb-act8846.dtb"<br>
+                +<br>
+                +UBOOT_MACHINE = "evb-rk3288_defconfig"<br>
+                diff --git a/conf/machine/fennec-rk3288.<wbr>conf
+                b/conf/machine/fennec-rk3288.<wbr>conf<br>
+                new file mode 100644<br>
+                index 0000000..a85045f<br>
+                --- /dev/null<br>
+                +++ b/conf/machine/fennec-rk3288.<wbr>conf<br>
+                @@ -0,0 +1,12 @@<br>
+                +# Copyright (C) 2017 Fuzhou Rockchip Electronics Co.,
+                Ltd<br>
+                +# Released under the MIT license (see COPYING.MIT for
+                the terms)<br>
+                +<br>
+                +#@TYPE: Machine<br>
+                +#@NAME: FENNEC RK3288<br>
+                +<br>
+                +include conf/machine/include/rk3288.<wbr>inc<br>
+                +include conf/machine/include/rk-linux.<wbr>inc<br>
+                +<br>
+                +KERNEL_DEVICETREE = "rk3288-fennec.dtb"<br>
+                +<br>
+                +UBOOT_MACHINE = "fennec-rk3288_defconfig"<br>
+                diff --git a/conf/machine/include/rk-<wbr>linux.inc
+                b/conf/machine/include/rk-<wbr>linux.inc<br>
+                new file mode 100644<br>
+                index 0000000..6abaa0d<br>
+                --- /dev/null<br>
+                +++ b/conf/machine/include/rk-<wbr>linux.inc<br>
+                @@ -0,0 +1,20 @@<br>
+                +# Rockchip BSP default settings<br>
+                +<br>
+                +PREFERRED_PROVIDER_virtual/<wbr>egl = "mali-userspace"<br>
+                +PREFERRED_PROVIDER_virtual/<wbr>libgles1 =
+                "mali-userspace"<br>
+                +PREFERRED_PROVIDER_virtual/<wbr>libgles2 =
+                "mali-userspace"<br>
+                +PREFERRED_PROVIDER_virtual/<wbr>libopencl =
+                "mali-userspace"<br>
+                +<br>
+                +# Workaround: libmali.so provided by rk having no
+                SONAME field in it<br>
+                +# so add it to fix rdepends problems<br>
+                +ASSUME_SHLIBS += "libEGL.so:mali-userspace"<br>
+                +ASSUME_SHLIBS += "libGLESv1_CM.so:mali-<wbr>userspace"<br>
+                +ASSUME_SHLIBS += "libGLESv2.so:mali-userspace"<br>
+                +ASSUME_SHLIBS += "libOpenCL.so:mali-userspace"<br>
+                +ASSUME_SHLIBS += "libgbm.so:mali-userspace"<br>
+                +ASSUME_SHLIBS += "libwayland-egl.so:mali-<wbr>userspace"<br>
+                +<br>
+                +PREFERRED_PROVIDER_virtual/<wbr>kernel =
+                "linux-rockchip"<br>
+                +PREFERRED_PROVIDER_virtual/<wbr>bootloader =
+                "u-boot-rockchip"<br>
+                +<br>
+                +IMAGE_CLASSES += "rockchip-next-image"<br>
+                diff --git a/conf/machine/tinker-rk3288.<wbr>conf
+                b/conf/machine/tinker-rk3288.<wbr>conf<br>
+                new file mode 100644<br>
+                index 0000000..0464133<br>
+                --- /dev/null<br>
+                +++ b/conf/machine/tinker-rk3288.<wbr>conf<br>
+                @@ -0,0 +1,13 @@<br>
+                +# Copyright (C) 2017 Fuzhou Rockchip Electronics Co.,
+                Ltd<br>
+                +# Released under the MIT license (see COPYING.MIT for
+                the terms)<br>
+                +<br>
+                +#@TYPE: Machine<br>
+                +#@NAME: Tinker RK3288<br>
+                +#@DESCRIPTION: ASUS Tinker Board is a Raspberry Pi 3
+                Alternative based on Rockchip RK3288 Processor.<br>
+                +<br>
+                +include conf/machine/include/rk3288.<wbr>inc<br>
+                +include conf/machine/include/rk-linux.<wbr>inc<br>
+                +<br>
+                +KERNEL_DEVICETREE = "rk3288-miniarm.dtb"<br>
+                +<br>
+                +UBOOT_MACHINE = "miniarm-rk3288_defconfig"<br>
+                --<br>
+                2.7.4<br>
+                <br>
+              </div>
+            </div>
+          </blockquote>
+        </div>
+        <br>
+      </div>
+    </blockquote>
+    <br>
+  </body>
+</html>
 
---001a114ac10a0c82860547a20ea4
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">much*<br></div><div class=3D"gmail_extra"><br><div class=
-=3D"gmail_quote">2017-02-03 13:36 GMT-02:00 Daniel. <span dir=3D"ltr">&lt;<=
-a href=3D"mailto:danielhilst@gmail.com" target=3D"_blank">danielhilst@gmail=
-.com</a>&gt;</span>:<br><blockquote class=3D"gmail_quote" style=3D"margin:0=
- 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr"><di=
-v>Thank you so mutch Clemens!!!! I&#39;ll take a look!!<br><br></div>Regard=
-s,<br></div><div class=3D"gmail_extra"><div><div class=3D"h5"><br><div clas=
-s=3D"gmail_quote">2017-02-03 11:31 GMT-02:00 Clemens Lang <span dir=3D"ltr"=
->&lt;<a href=3D"mailto:Clemens.Lang@bmw-carit.de" target=3D"_blank">Clemens=
-.Lang@bmw-carit.de</a>&gt;</span>:<br><blockquote class=3D"gmail_quote" sty=
-le=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">Hi,<br=
->
-<span><br>
-&gt; On 3 Feb 2017, at 14:11, Daniel. &lt;<a href=3D"mailto:danielhilst@gma=
-il.com" target=3D"_blank">danielhilst@gmail.com</a>&gt; wrote:<br>
-&gt;<br>
-&gt; Hi everybody,<br>
-&gt;<br>
-&gt; How can I be sure that the same image built by distinct building hosts=
-<br>
-&gt; are trully identical?? Is it possible to measure that?<br>
-<br>
-</span>I can recommend tooling offered by the reproducible builds project. =
-Especially diffoscope can be very helpful in this. See <a href=3D"https://r=
-eproducible-builds.org/tools/" rel=3D"noreferrer" target=3D"_blank">https:/=
-/reproducible-builds.or<wbr>g/tools/</a>. You may want to start comparing i=
-ndividual packages first, before you tackle image creation, though.<br>
-<br>
-HTH,<br>
-Clemens<br>
-<span class=3D"m_3919083179544913361HOEnZb"><font color=3D"#888888">--<br>
-Clemens Lang =E2=80=A2 Development Specialist<br>
-BMW Car IT GmbH =E2=80=A2 Lise-Meitner-Str. 14 =E2=80=A2 89081 Ulm =E2=80=
-=A2 <a href=3D"http://bmw-carit.com" rel=3D"noreferrer" target=3D"_blank">h=
-ttp://bmw-carit.com</a><br>
-------------------------------<wbr>------------------------------<wbr>-----=
---------<br>
-BMW Car IT GmbH<br>
-Gesch=C3=A4ftsf=C3=BChrer: Michael W=C3=BCrtenberger und Alexis Trolin<br>
-Sitz und Registergericht: M=C3=BCnchen HRB 134810<br>
-------------------------------<wbr>------------------------------<wbr>-----=
---------<br>
-<br>
-</font></span></blockquote></div><br><br clear=3D"all"><br></div></div><spa=
-n class=3D"">-- <br><div class=3D"m_3919083179544913361gmail_signature" dat=
-a-smartmail=3D"gmail_signature"><div style=3D"text-align:right"><i>&quot;Do=
- or do not. There is no try&quot;</i><br><i>=C2=A0 </i><i><b>Yoda Master</b=
-></i><br></div></div>
-</span></div>
-</blockquote></div><br><br clear=3D"all"><br>-- <br><div class=3D"gmail_sig=
-nature" data-smartmail=3D"gmail_signature"><div style=3D"text-align:right">=
-<i>&quot;Do or do not. There is no try&quot;</i><br><i>=C2=A0 </i><i><b>Yod=
-a Master</b></i><br></div></div>
-</div>
-
---001a114ac10a0c82860547a20ea4--
+--------------E487B8AC1CC0FDB6E1B9BF6B--
