@@ -1,63 +1,82 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <tmatsuzawa@xevo.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 81801E00510; Fri,  3 Feb 2017 15:15:21 -0800 (PST)
+	id D2598E00510; Fri,  3 Feb 2017 15:16:39 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.216.171 listed in dnsbl.sorbs.net]
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [104.47.37.44 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.216.171 listed in list.dnswl.org]
-Received: from mail-qt0-f171.google.com (mail-qt0-f171.google.com
-	[209.85.216.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 607AFE004D2
-	for <yocto@yoctoproject.org>; Fri,  3 Feb 2017 15:15:17 -0800 (PST)
-Received: by mail-qt0-f171.google.com with SMTP id k15so59612779qtg.3
-	for <yocto@yoctoproject.org>; Fri, 03 Feb 2017 15:15:17 -0800 (PST)
+X-Greylist: delayed 147079 seconds by postgrey-1.32 at yocto-www;
+	Fri, 03 Feb 2017 15:16:32 PST
+Received: from NAM02-CY1-obe.outbound.protection.outlook.com
+	(mail-cys01nam02on0044.outbound.protection.outlook.com
+	[104.47.37.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 90ECCE004D2
+	for <yocto@yoctoproject.org>; Fri,  3 Feb 2017 15:16:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=Dz9jJFjyvTlNgqei/ctzmMQk+VZeeq9AH7dnMh95nyM=;
-	b=xWRJPN+w02qNX+IiGz7VK1WS6V0pOGTR1155i8Si6jC/ozB4OihmFBPwu+XLO+jTAw
-	rrTkbTOcAUBt1a7UG/+CoUGx+h4i58K3cpEF3kzGuflXUH4Dv7fhLJgplHLdDBPY4IIj
-	Xfzn+1Q/6RBZJcmFmrnGHw7KoCWAOm6ZuPs6lvowpZ65ZP1eeSwjsqF8gmvF8s5O+U5I
-	mv+qthbWxLuzfebNwPBvQ06IM5D6+ZQvYnaTyWfXFDhSjXzCpmU7YPTP7Sg2u2FO5o2J
-	clxYGV579iu8VsuRViOn+pPTNKskC0bFa8P2t6sPngHyWcG88gcDrTupswM6viaG2Jbm
-	crBA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=Dz9jJFjyvTlNgqei/ctzmMQk+VZeeq9AH7dnMh95nyM=;
-	b=Ay6+eB0RIUNzXuxiJRVM1Z5EXPEDkuGB7IdxF9ye7IaMzYg2VGAQgXBVVUSbLe/FuV
-	gONID2lMu6okosyTNaELDoMK/gMQHqCNcKZOSV15FiVfitgVygwYIfQzVfoduNcBj1tr
-	SAIYnDrWx+idMfDkTijH/9a6a9Sn7ZX2mHegtl4hjwkCyWF9ny+mV9jTZgLlgkB1q0js
-	4EkW5BVhzjWl46JKs/8Bi06wdlR9p00AGt5m8DdK8smT/2s80P51SV/GsPoCisFTIOG6
-	2DhoA5iCbYdshh6qYp0nweDsv8joubpkz+6QNTnOCvn3tByqSqeX4wrzv5nucAJVg2gd
-	juKQ==
-X-Gm-Message-State: AIkVDXIKp9levDada4iz7PzECrpK51bFAwi+dOmH868IF3xcbiJSaPCixWzSPE4xEhOX2IRq67goqQb0rNndATB7
-X-Received: by 10.237.36.208 with SMTP id u16mr16395676qtc.105.1486163717158; 
-	Fri, 03 Feb 2017 15:15:17 -0800 (PST)
+	d=uievolution.onmicrosoft.com; s=selector1-xevo-com;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
+	bh=70sMdhuZr+sRk6s6St++wnYmtN7eNWWOyNVABnx54rU=;
+	b=mQnDtX0TH6vgYsNtzteuPwHvqtxSmp289i6Je2SFenoGyXe3L3xqPoPH+6GUWJhV3/lxbUS/AB1stsxbV94QRYuF9pQow83USU8isyaszt7NAXs30duB5JQrEHbjckHq17aKtmmlTzE2lxV25PA00JJzVGK45EuLTzQAVaM4zPM=
+Received: from DM5PR0101MB2953.prod.exchangelabs.com (10.174.181.143) by
+	DM5PR0101MB2954.prod.exchangelabs.com (10.174.181.144) with Microsoft
+	SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
+	15.1.845.12; Fri, 3 Feb 2017 23:16:29 +0000
+Received: from DM5PR0101MB2953.prod.exchangelabs.com ([10.174.181.143]) by
+	DM5PR0101MB2953.prod.exchangelabs.com ([10.174.181.143]) with mapi id
+	15.01.0845.028; Fri, 3 Feb 2017 23:16:29 +0000
+From: Takashi Matsuzawa <tmatsuzawa@xevo.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: genericx86 vs qemux86
+Thread-Index: AQHSfnOMPAcBXCcZX0KRUyMiVC1ulw==
+Date: Fri, 3 Feb 2017 23:16:29 +0000
+Message-ID: <DM5PR0101MB295332119B0A4D1653E73F98B64F0@DM5PR0101MB2953.prod.exchangelabs.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+	smtp.mailfrom=tmatsuzawa@xevo.com; 
+x-originating-ip: [218.225.179.82]
+x-ms-office365-filtering-correlation-id: d7b60ecb-0172-47d6-c1c1-08d44c8aaf59
+x-microsoft-antispam: UriScan:; BCL:0; PCL:0; RULEID:(22001);
+	SRVR:DM5PR0101MB2954; 
+x-microsoft-exchange-diagnostics: 1; DM5PR0101MB2954;
+	7:PtiN4ohXdtNOVKMzCD+EvijQ4GNWJjdjaYekZ0HaPKZ76NGVzTHh4udOPpWqQ0wQ7e26LKN/ss9YWQflljcw4zoV6YtT9atCbDDLM2PyiUnLWHZEGsdYboQDeYshP/P3C7csWkAUqxlDPGtnpUxGtlAAMgkEvj5m2EmiT5jRABvIKpEW1+B0Cm5mp/mHZ9vzi0xMqq+AUJqcnkxZo25PdLSOBGYMkUAIPn3DJRAXccRRhTNY3zu98AbIEs/9D8SITN8Cj7bUz6vZzu7ijLzKXo9Z1XmVxVW1w/c8caZrtgoM521xjeSnr24UPvaHChsLiF5+CHayBAQh3d1bTPZwM097kNJkeHKKiF78cVZDVX+hOpLHcGS5kZ+J5EjCuT5ZPe6cm0wrOD52wPJm63g3+d+aUWACxZWBQbdwF9Hqwhs+uU/qa6PfN/o8uHDharDYPyxkiLS+vNYqW3wxF0Rbov0hvHyeSbmx/3xNLkA3RIP5Ls5h/aOx6LWj8cN0QaCsuWCmpkpFb3k6AUiB6QeBwA==
+x-microsoft-antispam-prvs: <DM5PR0101MB29541DC8DC0501997A5A995EB64F0@DM5PR0101MB2954.prod.exchangelabs.com>
+x-exchange-antispam-report-test: UriScan:;
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(6040375)(2401047)(5005006)(8121501046)(3002001)(10201501046)(6041248)(20161123558025)(20161123564025)(20161123562025)(20161123560025)(20161123555025)(6072148);
+	SRVR:DM5PR0101MB2954; BCL:0; PCL:0; RULEID:;
+	SRVR:DM5PR0101MB2954; 
+x-forefront-prvs: 02070414A1
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10009020)(6009001)(7916002)(39450400003)(189002)(199003)(107886002)(7696004)(5640700003)(74316002)(25786008)(2501003)(55016002)(5660300001)(38730400001)(81156014)(106356001)(1730700003)(6916009)(450100001)(86362001)(19627405001)(54896002)(8676002)(54356999)(53936002)(81166006)(6606003)(9686003)(68736007)(6506006)(6436002)(2351001)(99286003)(50986999)(77096006)(110136003)(101416001)(2900100001)(3280700002)(105586002)(33656002)(7736002)(189998001)(97736004)(7116003)(122556002)(92566002)(66066001)(3660700001)(6116002)(2906002)(8936002)(106116001)(3846002)(102836003);
+	DIR:OUT; SFP:1101; SCL:1; SRVR:DM5PR0101MB2954;
+	H:DM5PR0101MB2953.prod.exchangelabs.com; FPR:; SPF:None;
+	PTR:InfoNoRecords; MX:1; A:1; LANG:en; 
+received-spf: None (protection.outlook.com: xevo.com does not designate
+	permitted sender hosts)
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-Received: by 10.140.103.233 with HTTP; Fri, 3 Feb 2017 15:14:56 -0800 (PST)
-In-Reply-To: <43debf33-b22d-2838-fcc3-286bc837e015@tantosonline.com>
-References: <43debf33-b22d-2838-fcc3-286bc837e015@tantosonline.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Fri, 3 Feb 2017 23:14:56 +0000
-Message-ID: <CAJTo0Laxnjdzn4pGz9JsvesUHuUeRO3nPymfYFaDDTsTjVj2Hg@mail.gmail.com>
-To: Andras Tantos <andras@tantosonline.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Problem building glibc-locale
+X-OriginatorOrg: xevo.com
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Feb 2017 23:16:29.5612 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: e0a7ca1f-2458-4cd6-a7c7-d733c07495ab
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR0101MB2954
+Subject: genericx86 vs qemux86
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,59 +88,62 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 03 Feb 2017 23:15:21 -0000
-Content-Type: multipart/alternative; boundary=001a114104ce7092320547a874ce
+X-List-Received-Date: Fri, 03 Feb 2017 23:16:39 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_DM5PR0101MB295332119B0A4D1653E73F98B64F0DM5PR0101MB2953_"
 
---001a114104ce7092320547a874ce
-Content-Type: text/plain; charset=UTF-8
-
-So you did:
-
-echo "DISTRO_FEATURES += \"usbhost\"" >> conf/local.conf
-
-But poky.conf does:
-
-DISTRO_FEATURES ?= "${DISTRO_FEATURES_DEFAULT} ${DISTRO_FEATURES_LIBC}
-${POKY_DEFAULT_DISTRO_FEATURES}"
-
-Which means that the final value of DISTRO_FEATURES is "usbhost", so none
-of the locale support is enabled, and glibc packages badly.
-
-If you just want to add a feature, use DISTRO_FEATURES_append = " usbhost"
-(leading whitespace in the string is critical).  Note that usbhost is a
-default distro feature:
-
-meta/conf/distro/include/default-distrovars.inc:DISTRO_FEATURES_DEFAULT ?=
-"acl alsa argp bluetooth ext2 irda largefile pcmcia usbgadget usbhost wifi
-xattr nfs zeroconf pci 3g nfc x11"
-
-So you don't need to specify it unless you are defining a distribution from
-scratch.
-
-Ross
-
---001a114104ce7092320547a874ce
-Content-Type: text/html; charset=UTF-8
+--_000_DM5PR0101MB295332119B0A4D1653E73F98B64F0DM5PR0101MB2953_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra">So you did:</div><div class=3D"=
-gmail_extra"><br></div><div class=3D"gmail_extra">echo &quot;DISTRO_FEATURE=
-S +=3D \&quot;usbhost\&quot;&quot; &gt;&gt; conf/local.conf<br><br>But poky=
-.conf does:</div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_e=
-xtra">DISTRO_FEATURES ?=3D &quot;${DISTRO_FEATURES_DEFAULT} ${DISTRO_FEATUR=
-ES_LIBC} ${POKY_DEFAULT_DISTRO_FEATURES}&quot;<br></div><div class=3D"gmail=
-_extra"><br></div><div class=3D"gmail_extra">Which means that the final val=
-ue of DISTRO_FEATURES is &quot;usbhost&quot;, so none of the locale support=
- is enabled, and glibc packages badly.</div><div class=3D"gmail_extra"><br>=
-</div><div class=3D"gmail_extra">If you just want to add a feature, use DIS=
-TRO_FEATURES_append =3D &quot; usbhost&quot; (leading whitespace in the str=
-ing is critical).=C2=A0 Note that usbhost is a default distro feature:</div=
-><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">meta/conf/=
-distro/include/default-distrovars.inc:DISTRO_FEATURES_DEFAULT ?=3D &quot;ac=
-l alsa argp bluetooth ext2 irda largefile pcmcia usbgadget usbhost wifi xat=
-tr nfs zeroconf pci 3g nfc x11&quot;</div><div class=3D"gmail_extra"><br></=
-div><div class=3D"gmail_extra">So you don&#39;t need to specify it unless y=
-ou are defining a distribution from scratch.</div><div class=3D"gmail_extra=
-"><br></div><div class=3D"gmail_extra">Ross</div></div>
+Hello, Yocto.
 
---001a114104ce7092320547a874ce--
+Sorry, I am still a bit confused with genericx86 and qemux86 targets.  What=
+ is their difference and which one to choose.
+Both are x86 target and maybe genericx86 has more support for PC hardware? =
+ qemux86 has v86d?
+genericx86 is from poky and qemux86 is from openembeded?
+
+I am making x86 image for virtual environment and maybe PCs, so I wanted to=
+ know the pros/cons of these two.
+
+
+
+--_000_DM5PR0101MB295332119B0A4D1653E73F98B64F0DM5PR0101MB2953_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+</head>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Arial,Helvetica,sans-serif;" dir=3D"ltr">
+<p></p>
+<div><span style=3D"font-size: 12pt;">Hello, Yocto.</span><br>
+</div>
+<div><br>
+</div>
+<div>Sorry,&nbsp;I am still&nbsp;a bit confused with genericx86 and qemux86=
+ targets. &nbsp;What is their difference and which one to choose.</div>
+<div>Both are x86 target and maybe genericx86 has more support for PC hardw=
+are? &nbsp;qemux86 has v86d?</div>
+<div>genericx86 is from poky and qemux86 is from openembeded?</div>
+<div><br>
+</div>
+<div>I am making x86 image for virtual environment and maybe PCs, so I want=
+ed to know the pros/cons of these two.</div>
+<div><br>
+</div>
+<br>
+<p></p>
+</div>
+</body>
+</html>
+
+--_000_DM5PR0101MB295332119B0A4D1653E73F98B64F0DM5PR0101MB2953_--
