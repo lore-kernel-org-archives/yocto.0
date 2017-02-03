@@ -1,71 +1,59 @@
-Return-Path: <freesilicon@gmail.com>
+Return-Path: <patrick.ohly@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 21866E009BA; Fri,  3 Feb 2017 00:42:31 -0800 (PST)
+	id 0800AE009C9; Fri,  3 Feb 2017 00:46:29 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (freesilicon[at]gmail.com)
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.82.68 listed in dnsbl.sorbs.net]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.68 listed in list.dnswl.org]
-Received: from mail-wm0-f68.google.com (mail-wm0-f68.google.com [74.125.82.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E3F78E009A5
-	for <yocto@yoctoproject.org>; Fri,  3 Feb 2017 00:42:27 -0800 (PST)
-Received: by mail-wm0-f68.google.com with SMTP id c85so2849708wmi.1
-	for <yocto@yoctoproject.org>; Fri, 03 Feb 2017 00:42:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:cc:subject:date:message-id:in-reply-to:references
-	:mime-version:content-transfer-encoding;
-	bh=FHF/guA/Z/bV9TWMatlpZsiO3n9TUzXP3bqWoPEgcnc=;
-	b=KG9cl0C+BHF/Fx6A9gV1iDnRkjCHQiA3gCoipOCzuiAsRgyJPMNUeZQdFLwCX6TRNq
-	zZhWiCjPkCnatq8u6Vh+kENXU6vmVmG+Xjqb41VRzZb0ja91cooG6QF9c52YHm5+GWKU
-	Ud7m+mp85MNtHteogp+CpNqsApquq23DO5jxYUw52yaAze8YfMSA0PPU1DAw+R1fa6kn
-	49XIV1kaQxgfvHhYB9ykl9KV67frnUeIH1qgNFun/HJhk+gRUTc81CRFlvNaQ+YKp4MB
-	kW+1e4XJGXuhsQU0lZXzWbBd1FGqeQgg03D/P73Kyn3sVzABELXsmTcxAX7fgN/0zUv9
-	4Sgw==
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.214.53 listed in list.dnswl.org]
+Received: from mail-it0-f53.google.com (mail-it0-f53.google.com
+	[209.85.214.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C6DD9E009A5
+	for <yocto@yoctoproject.org>; Fri,  3 Feb 2017 00:46:21 -0800 (PST)
+Received: by mail-it0-f53.google.com with SMTP id c7so7206709itd.1
+	for <yocto@yoctoproject.org>; Fri, 03 Feb 2017 00:46:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=from:to:cc:subject:date:message-id;
+	bh=tfrUianDNW3Q+NbaxgbKEWvklND9m3tHfbqvT6mAx/Q=;
+	b=2MZhXIU2juBuvRdCxAqROT7SP7T0t1wtw5utrTvn0f8E9yMnFMFQtPI25VQxAcW+6F
+	a9VFf2p1Qa280yS5zH5bBr4SOxAbImnR3ghCuI1zoxXmUPpaxxNeS/p0SkKclEPRcwmo
+	oVXi4MX8YeArpWQwGYkX7WeOlI7DovlRmXlTqxeAHpp57wcmzIAVhvlehaKYc10Z6V7z
+	WwKTlZpwdyYYy7pWYdkRpzWiui7x3hjbYxGBG5h6oM3r76tBOzNvpBE2nkHhZRqE7CcU
+	OxizmNPjy/5VraAFaKe/1tLmFwfjKrOdTo+YUtHGAqUcoq6iIzM6fvz4zxeyO2C79kE/
+	r98g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-	:references:mime-version:content-transfer-encoding;
-	bh=FHF/guA/Z/bV9TWMatlpZsiO3n9TUzXP3bqWoPEgcnc=;
-	b=NaT7vFBnfaedGJ+HdkKUe+HfvyNAJMj9KeL9LRGQ0zEBFbN8yG5QnXz3JArklFT+tQ
-	jjGh+XhmgSxLUOwKLolKrd30DvmqyZQPE9W/e2GHKM8fLTTwzI322zRPJVMZeFuUA0QQ
-	jfYs01xFHn/dxSk0KOLi3s2fh43RM/5UErIQY1FqT5SoNHMyye2jcS2BBE/OQouJ+GVw
-	mUzaKwTmayTfb6e1yfZuenRR1+zmm7OaBgeqpzGIoiqXAOGTia8bJevEdDqlqu74Xobm
-	ltZlbX3km4czW2XUC+8mHJS2h7QgUSNCgz6AIRY2IGDfHs7l3dyvTgA1UvBhliTSgEou
-	GxKg==
-X-Gm-Message-State: AMke39ktcLn3G4no1tk5AM0rnulg2EBllqpRVTz/pO3suAcl9/DgiJtSDU83Hrf0vEun9g==
-X-Received: by 10.28.170.211 with SMTP id t202mr319722wme.71.1486111346103;
-	Fri, 03 Feb 2017 00:42:26 -0800 (PST)
-Received: from crde-port-20.cahors.local ([185.47.80.46])
-	by smtp.gmail.com with ESMTPSA id
-	y30sm44026839wrc.23.2017.02.03.00.42.25
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 03 Feb 2017 00:42:25 -0800 (PST)
-From: David Vincent <freesilicon@gmail.com>
-To: Bruce Ashfield <bruce.ashfield@gmail.com>
-Date: Fri, 03 Feb 2017 09:42:22 +0100
-Message-ID: <1710687.9RfHKcS4U3@crde-port-20.cahors.local>
-In-Reply-To: <CADkTA4MvR-tpPbyHgDsVV7xcRk5Ef6zKJF335m4vcphYCvhGWg@mail.gmail.com>
-References: <20170125103759.15880-1-freesilicon@gmail.com>
-	<CADkTA4N8iMJD1pt=E9qSsjGKAOfvMnHAwS=3h1AntxTxDXOUGQ@mail.gmail.com>
-	<CADkTA4MvR-tpPbyHgDsVV7xcRk5Ef6zKJF335m4vcphYCvhGWg@mail.gmail.com>
-MIME-Version: 1.0
-Cc: Yocto Project Discussion <yocto@yoctoproject.org>
-Subject: Re: [yocto-kernel-tools][PATCH 0/1] Rework merge of feature branches
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=tfrUianDNW3Q+NbaxgbKEWvklND9m3tHfbqvT6mAx/Q=;
+	b=KFu9eQ96TVK7ty4JzN2aL/5czW37yHfoCwgT75g5WGp6d/Ot6ATOgK62t8WS03wZjp
+	UadU5307QE6kaEqbJEdVNxUl7zvpUp4C4Cyms9ECIohaUUwtgmMbm1jsasy0CaBJx93O
+	y6yvVDoxsZjUb/BO08eZQGamPEM1By3GOFIBmC/h6APXNI8+7eqRPq92hX2kAYwVdcnL
+	AaJXMcZwHq0F+gRXIDULBmbsOMyFIEvsW7/YDZT0DgrvHniCp9KejrkoXLzcsvys5PbD
+	IMCmfC/7Jvvvo1dAG++eg3Wle1QyVTj7zKEV8S6N916GI+r6km9m4revQNinxv+rRSn+
+	vTPA==
+X-Gm-Message-State: AIkVDXLdVMViPDQtx+Hlmvl2Wg0mCKdajwf+wqCJvhhUdWNaTkbniJRkat1h5hR2y5izU7DO
+X-Received: by 10.36.61.143 with SMTP id n137mr193733itn.82.1486111580295;
+	Fri, 03 Feb 2017 00:46:20 -0800 (PST)
+Received: from pohly-desktop.fritz.box (p5DE8E712.dip0.t-ipconnect.de.
+	[93.232.231.18])
+	by smtp.gmail.com with ESMTPSA id r85sm635758itc.13.2017.02.03.00.46.18
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Fri, 03 Feb 2017 00:46:19 -0800 (PST)
+From: Patrick Ohly <patrick.ohly@intel.com>
+To: yocto@yoctoproject.org
+Date: Fri,  3 Feb 2017 09:46:05 +0100
+Message-Id: <cover.b42849c0e1d715c25364d4e1b5f3660bbe65c775.1486111542.git-series.patrick.ohly@intel.com>
+X-Mailer: git-send-email 2.11.0
+Subject: [meta-security][PATCH v2 0/9] tpm: virtual TPM for qemu
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -77,45 +65,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 03 Feb 2017 08:42:31 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Fri, 03 Feb 2017 08:46:29 -0000
 
-On dimanche 29 janvier 2017 23:31:49 CET Bruce Ashfield wrote:
-> On Wed, Jan 25, 2017 at 1:05 PM, Bruce Ashfield <bruce.ashfield@gmail.com>
-> wrote:
-> 
-> I spent Friday looking into this in more detail, and to keep things
-> consistent
-> with how the path and config queues are handled, with all the tree
-> manipulations
-> pull out of the various scripts and exposed in the bbclass itself, I ended
-> up with
-> a different implementation of the support.
-> 
-> The kern-tools change is the same as you did (and is your change), the
-> difference
-> is in the bbclass processing, where do_patch() modifies the tree, and it
-> consumes
-> the output of the meta-data routine .. versus the kgit-meta script itself.
-Thanks for looking into this and come up with a better implementation. I agree 
-that mine was a little harsh.
-> The work can be seen in my poky-contrib tree:
-> 
-> http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=zedd/kernel,
-> in the
-> commit "kern-tools: re-enable scc merge command".
-> 
-> These changes are on master, and passed my testing to merge feature branches
-> into the branch being built.
-Saw it, read it and saw that it was now in master-next, ready to be pulled.
-> 
-> If you are able to try it out (on master), that would be great. I'm going
-> to let it
-> soak for a few days, and once it merges to master, it can be ported to
-> morty.
-Sorry, I don't have a master build ready but as soon as I can test it whether 
-on morty or master, I will report back.
+I recently started using swtpm-native in combination with the qemu-tpm
+patches to simulate a virtual TPM chip in qemu. The qemu-tpm patches
+should go into OE-core, but currently usage is a bit cumbersome
+(requires root privileges and manually starting swtpm before each
+runqemu invocation), so at this time I only consider the meta-security
+changes ready and useful enough for merging.
 
-David
+Inside the virtual machine I used tpm-tools + trousers to set up
+sealed keys for EVM, which required fixing a few things.
+
+These patches were based on Armin's swtpm+trousers version update
+series which needs to be merged first to avoid merge conflicts.
+
+Changes in V2:
+- add --system to tss user and group creation
+- revised commit message for wrapper scripts (swtpm_cuse needs
+  absolute path to tpm state dir, can be passed via parameter)
+- another swtpm SRCREV bump
+
+Patrick Ohly (9):
+  trousers: missing libtspi.so.1 in libtspi package
+  trousers: recommend tcsd
+  trousers: tcsd.conf must be owned tss:tss
+  swtpm: enable native and nativesdk flavors
+  swtpm: depends on tpm-tools
+  swtpm: fix compiler format warning
+  swtpm: cuse packageconfig
+  swtpm-wrappers: simplify using swtpm-native
+  swtpm: update to latest tip
+
+ recipes-tpm/swtpm/files/fix_lib_search_path.patch | 64 ++++++++++++++++-
+ recipes-tpm/swtpm/files/fix_signed_issue.patch    |  2 +-
+ recipes-tpm/swtpm/swtpm-wrappers.bb               | 41 ++++++++++-
+ recipes-tpm/swtpm/swtpm_1.0.bb                    | 14 +++-
+ recipes-tpm/trousers/trousers_git.bb              | 11 +--
+ 5 files changed, 124 insertions(+), 8 deletions(-)
+ create mode 100644 recipes-tpm/swtpm/files/fix_lib_search_path.patch
+ create mode 100644 recipes-tpm/swtpm/swtpm-wrappers.bb
+
+base-commit: 6787dd986122cd6420b1f348c4550a42ed596f57
+-- 
+git-series 0.9.1
 
