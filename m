@@ -1,17 +1,19 @@
 Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1ABCAE00A0A; Thu,  2 Feb 2017 16:38:10 -0800 (PST)
+	id 35BCCE00A16; Thu,  2 Feb 2017 16:38:27 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.192.196 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (akuster808[at]gmail.com)
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (akuster808[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.192.195 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.192.195 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,52 +21,50 @@ X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pf0-f196.google.com (mail-pf0-f196.google.com
-	[209.85.192.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9DD97E00A04
-	for <yocto@yoctoproject.org>; Thu,  2 Feb 2017 16:37:58 -0800 (PST)
-Received: by mail-pf0-f196.google.com with SMTP id y143so291668pfb.1
-	for <yocto@yoctoproject.org>; Thu, 02 Feb 2017 16:37:58 -0800 (PST)
+Received: from mail-pf0-f195.google.com (mail-pf0-f195.google.com
+	[209.85.192.195])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9AE0BE009A5
+	for <yocto@yoctoproject.org>; Thu,  2 Feb 2017 16:38:15 -0800 (PST)
+Received: by mail-pf0-f195.google.com with SMTP id 19so283821pfo.3
+	for <yocto@yoctoproject.org>; Thu, 02 Feb 2017 16:38:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=subject:to:references:from:message-id:date:user-agent:mime-version
-	:in-reply-to:content-transfer-encoding;
-	bh=uCwK1O/ktE/wSuiLvV5NIneV+G1sfXxLNhbPF7uWfVM=;
-	b=ILQRzVYQBcCyoTU/Xk1MXGAwirSmlOBT/mJTSKsq/cGDtdLiioKmFdoQJlNTradbGh
-	dtxxAzz68f+XwWNsNOndtyM1qAFpYIvJvObT2Ucp+koxyez7IAZCyi/S90Frxb/Vok1J
-	ubis77P8EC0UY4VKjEkWKFnn58HZneKzk5yyU4Yg3weVQcVfAcWkVgHNGSXmBeVuii6y
-	BojsSe6UqDx++9IhN3sXtXLzp7gSp+EXwRFRWNNvoGRFPMdGRFd1LnQPpAFr/h79hBFh
-	4V3UvCactiVwSBFyPuwifY02+tTz6V5w4TF1i6p6W4B/g2SmCYbL0920S2atuLakHWha
-	kRkw==
+	h=from:to:cc:subject:date:message-id:in-reply-to:references;
+	bh=YZDg/Xm81u7XAnxNtaqySuadW7fC/jt2Z9n+Jjb+fPM=;
+	b=YeDweHNipVcncEcVpTQOQIYC0kgmVTlE1PXaAx9blJl75eZSXlPMSo5DFsMRKUnnAq
+	wtDfbZFcovV6BNcmtOPTcUj3kBaLWgLJWk62DGLtZj4TnNrxkD/DMatgBwB84B2LGixD
+	lEgyVr9w9tDIKYBpAm5bZu8uvB/ZNLxcmO/CNX4Ua7hzFu+rBXBHEPO1sXgDxX3HlBX+
+	abbKRWYjq4CGdHCsYJgMjOVL0Q1JUMI9dJzx6hUnUSt4ziSgQESrbsx+PO85pvenyMmW
+	xvQn42rQYDfDqmBUJNdadWt+N13HfnrcYYfphJi7eJCzZzdVC9mC5SACH5fMbQCiLGiw
+	EEbQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:references:from:message-id:date
-	:user-agent:mime-version:in-reply-to:content-transfer-encoding;
-	bh=uCwK1O/ktE/wSuiLvV5NIneV+G1sfXxLNhbPF7uWfVM=;
-	b=Kxh5Kxp3GmP0VVwq5bR8bbAOONDfuLzjgKcoCycmsI33duwToSszv8/Z/j/U+H6dsr
-	IhFYakRILy7tMILrKPHrtvqk/Ah+T4RKIh37bVPROxdn6vmskf5vUXIiJ1b9AUTV5I3b
-	PpETyc66oEwo4oBAu2Mb959U8r4LiM2kYGaKCFLJO/Yx/7i+6iF36Z2f1q3B+rHPoe5C
-	uPaXVZDplSVJmRoQH4AeqtNmhbZVZOIPbuvPhFdI7FP7iS10/E1EhV19cmE01iT5Ouee
-	DN9OwljwoF72gy0Cglj0NUL3/sniIUS7e/XT7j96+IJsQZAKMzSpAPB9Ix+iJfa5RhAL
-	1GGw==
-X-Gm-Message-State: AIkVDXI7CCuaLmqkforASLM8BWp9x7j/bEMe3g/ypVYf9m4UkvSSLcxPeYkt/mWq7cxOuw==
-X-Received: by 10.84.217.216 with SMTP id d24mr16853005plj.101.1486082278124; 
-	Thu, 02 Feb 2017 16:37:58 -0800 (PST)
-Received: from [10.22.11.238] (50-233-148-156-static.hfc.comcastbusiness.net.
-	[50.233.148.156]) by smtp.gmail.com with ESMTPSA id
-	q22sm61445237pfj.77.2017.02.02.16.37.57
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Thu, 02 Feb 2017 16:37:57 -0800 (PST)
-To: Armin Kuster <akuster808@gmail.com>, yocto@yoctoproject.org
-References: <1486082196-29895-1-git-send-email-akuster808@gmail.com>
-	<1486082196-29895-3-git-send-email-akuster808@gmail.com>
-From: akuster808 <akuster808@gmail.com>
-Message-ID: <a943e751-9405-f55b-3e98-09bff290e715@gmail.com>
-Date: Thu, 2 Feb 2017 16:37:56 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.7.0
-MIME-Version: 1.0
-In-Reply-To: <1486082196-29895-3-git-send-email-akuster808@gmail.com>
-Subject: Re: [meta-cgl][PATCH 3/3] initramfs: fix parsing issue with do to uboot inclusion
+	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+	:references;
+	bh=YZDg/Xm81u7XAnxNtaqySuadW7fC/jt2Z9n+Jjb+fPM=;
+	b=KivsfYvsVidA0UKDqBdZ+ZMCrEJccrO2gBcl6OQ5chknbqWUkaSfLVF9TNM/gaFiO2
+	CWNnjuWk9jm9HOYB/d9RpxJNQ6cImWRjlDvhOaJNqO5mPHjNncwtVtYSpo+1mFSehHpY
+	xrrW67wWPz24azc6AZeS5JcADOQrX6XeXxowOuB4vWg+ZyhQG8F2KLg6bPs5syVKfJpm
+	UMa+bZzo0u0DCCtv2Dg5zCI2vHb5UhDX8seveq+Db85mMQEh9o1g1n+mFuK6bPFGOX5H
+	vCOO/ssix1C5LFhnMKvA9SQ/iER66k0aIby4stwUZYh4vdgoDPDF4i2aLjex+47WABCt
+	PGDA==
+X-Gm-Message-State: AIkVDXKVRLSmruLixnYpPnffdKQ0NNh8W+5t9YRjHOSLPNa8876sLMOLpSgMVVj0hpghvg==
+X-Received: by 10.99.56.29 with SMTP id f29mr14184597pga.167.1486082294957;
+	Thu, 02 Feb 2017 16:38:14 -0800 (PST)
+Received: from akuster-ThinkPad-X240.mvista.com
+	(50-233-148-156-static.hfc.comcastbusiness.net. [50.233.148.156])
+	by smtp.gmail.com with ESMTPSA id
+	b10sm62032560pga.21.2017.02.02.16.38.14
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Thu, 02 Feb 2017 16:38:14 -0800 (PST)
+From: Armin Kuster <akuster808@gmail.com>
+To: akuster808@gmail.com,
+	yocto@yoctoproject.org
+Date: Thu,  2 Feb 2017 16:38:11 -0800
+Message-Id: <1486082292-29971-2-git-send-email-akuster808@gmail.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1486082292-29971-1-git-send-email-akuster808@gmail.com>
+References: <1486082292-29971-1-git-send-email-akuster808@gmail.com>
+Subject: [meta-cgl][PATCH 2/3] iscsi-initiator-utils: make it DISTRO_FEATURE dependent
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,39 +76,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 03 Feb 2017 00:38:10 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 03 Feb 2017 00:38:27 -0000
 
-ignore this one. started at wrong location
+From: Armin Kuster <akuster@mvista.com>
 
--armin
+When this package was updated in OE,
+it now requires systemd. Make this optional.
 
+Signed-off-by: Armin Kuster <akuster@mvista.com>
+---
+ meta-cgl-common/packagegroups/packagegroup-cgl-middleware.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-On 02/02/2017 04:36 PM, Armin Kuster wrote:
-> From: Armin Kuster <akuster@mvista.com>
->
-> since the image type includes "uboot", need to inherit the class for it
->
-> Signed-off-by: Armin Kuster <akuster@mvista.com>
-> ---
->   meta-cgl-common/images/core-image-cgl-initramfs.bb | 4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/meta-cgl-common/images/core-image-cgl-initramfs.bb b/meta-cgl-common/images/core-image-cgl-initramfs.bb
-> index 0777b7c..2ebbdf5 100644
-> --- a/meta-cgl-common/images/core-image-cgl-initramfs.bb
-> +++ b/meta-cgl-common/images/core-image-cgl-initramfs.bb
-> @@ -12,8 +12,8 @@ export IMAGE_BASENAME = "core-image-cgl-initramfs"
->   IMAGE_LINGUAS = ""
->   
->   LICENSE = "MIT"
-> -
-> -IMAGE_FSTYPES = "cpio.gz.u-boot"
-> +IMAGE_CLASSES = " image_types_uboot"
-> +IMAGE_FSTYPES ??= "cpio.gz.u-boot"
->   
->   IMAGE_ROOTFS_SIZE = "8192"
->   
+diff --git a/meta-cgl-common/packagegroups/packagegroup-cgl-middleware.bb b/meta-cgl-common/packagegroups/packagegroup-cgl-middleware.bb
+index b0c2cac..045691a 100644
+--- a/meta-cgl-common/packagegroups/packagegroup-cgl-middleware.bb
++++ b/meta-cgl-common/packagegroups/packagegroup-cgl-middleware.bb
+@@ -42,7 +42,7 @@ RDEPENDS_packagegroup-cgl-middleware = "\
+     strongswan \
+     vlan \
+     corosync \
+-    iscsi-initiator-utils \
++ ${@bb.utils.contains("DISTRO_FEATURES", "systemd", "iscsi-initiator-utils", "",d)} \
+     openais \
+     openipmi \
+     openhpi \
+-- 
+2.7.4
 
 
