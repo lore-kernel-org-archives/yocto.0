@@ -1,42 +1,42 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <earwigz@naver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E301CE009A5; Thu,  2 Feb 2017 17:54:15 -0800 (PST)
+	id 993CDE009CD; Thu,  2 Feb 2017 21:06:50 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
-	*      medium trust
-	*      [134.134.136.100 listed in list.dnswl.org]
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B5255E00998
-	for <yocto@yoctoproject.org>; Thu,  2 Feb 2017 17:54:12 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga105.jf.intel.com with ESMTP; 02 Feb 2017 17:54:11 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.33,327,1477983600"; d="scan'208";a="1090300983"
-Received: from shermanc-mobl2.gar.corp.intel.com (HELO
-	peggleto-mobl.ger.corp.intel.com) ([10.255.134.229])
-	by orsmga001.jf.intel.com with ESMTP; 02 Feb 2017 17:54:09 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Gary Thomas <gary@mlbassoc.com>
-Date: Fri, 03 Feb 2017 14:54:07 +1300
-Message-ID: <7584430.GtjaL60tIm@peggleto-mobl.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/5.3.3 (Linux/4.9.6-200.fc25.x86_64; KDE/5.29.0; x86_64; ; )
-In-Reply-To: <6be2ac85-ea27-993e-faff-f3c4a8a53ecf@mlbassoc.com>
-References: <f13af171-a99e-cfb4-176b-4c1a5d459c44@mlbassoc.com>
-	<61560e1d-6f14-58ec-0a87-36320fe8c0d8@mlbassoc.com>
-	<6be2ac85-ea27-993e-faff-f3c4a8a53ecf@mlbassoc.com>
+X-Spam-Level: **
+X-Spam-Status: No, score=2.5 required=5.0 tests=BAYES_50,HTML_IMAGE_ONLY_08,
+	HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	T_REMOTE_IMAGE autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [125.209.208.220 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* 1.7 HTML_IMAGE_ONLY_08 BODY: HTML: images with 400-800 bytes of words
+	*  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
+	*      [score: 0.5021]
+	*  0.0 T_REMOTE_IMAGE Message contains an external image
+X-Greylist: delayed 400 seconds by postgrey-1.32 at yocto-www;
+	Thu, 02 Feb 2017 21:06:48 PST
+Received: from cmailsend11.nm.naver.com (cmailsend11.nm.naver.com
+	[125.209.208.220])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 34812E009C9
+	for <yocto@yoctoproject.org>; Thu,  2 Feb 2017 21:06:48 -0800 (PST)
+Received: (qmail 29012 invoked by uid 100); 3 Feb 2017 05:00:06 -0000
+Received: from 10.114.49.82 (HELO cweb15.nm.nhnsystem.com) (10.114.49.82)
+	by cmailsend11.nm.naver.com with SMTP;3 Feb 2017 05:00:06 -0000
+Date: Fri, 3 Feb 2017 14:00:06 +0900 (KST)
+From: =?UTF-8?B?7Jyk7JiB7ISd?= <earwigz@naver.com>
+To: yoctoproject <yocto@yoctoproject.org>
+Message-ID: <bc491a6cd12ed6a25644567baeb5356b@cweb15.nm.nhnsystem.com>
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: esdk without using Poky?
+Importance: normal
+X-Priority: 3 (Normal)
+X-Naver-CIP: 61.107.31.52
+Subject: how to use prebuilts image without recompile?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: =?UTF-8?B?7Jyk7JiB7ISd?= <earwigz@naver.com>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -45,95 +45,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 03 Feb 2017 01:54:16 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Fri, 03 Feb 2017 05:06:50 -0000
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_147252_1162060212.1486098006829"
 
-On Tuesday, 31 January 2017 8:09:01 AM NZDT Gary Thomas wrote:
-> On 2017-01-04 14:25, Gary Thomas wrote:
-> > On 2017-01-04 13:54, Patrick Ohly wrote:
-> >> On Wed, 2017-01-04 at 12:05 +0100, Gary Thomas wrote:
-> >>> On 2016-11-04 04:41, Paul Eggleton wrote:
-> >>>> On Wed, 02 Nov 2016 07:25:13 Gary Thomas wrote:
-> >>>>> I've tested your patches for this (from the OE-core mailing list)
-> >>>>> and I can now build and use the eSDK for my board :-)
-> >>>> 
-> >>>> Great!
-> >>>> 
-> >>>>> I do have a couple observations/questions:
-> >>>>> 
-> >>>>> * I added my missing tool with this line in my local.conf
-> >>>>> 
-> >>>>>       TOOLCHAIN_HOST_TASK_append = " nativesdk-ti-cgt-pru"
-> >>>>>    
-> >>>>>    Why did this cause many of the nativesdk tools to have to be
-> >>>>>    rebuilt?
-> >>>> 
-> >>>> So just FYI this will only work for the standard SDK, it's not the
-> >>>> right way to add these tools for the eSDK - in fact it may break the
-> >>>> eSDK due to bringing things into the native sysroot that shouldn't be
-> >>>> there.
-> >>>> 
-> >>>> At the moment I think the only way to properly add this to the eSDK is
-> >>>> to do this:
-> >>>> 
-> >>>> SDK_TARGETS += "ti-cgt-pru-native:do_populate_sysroot"
-> >>>> 
-> >>>> We don't document this, and it's a little awkward in any case. I'll
-> >>>> work on
-> >>>> it.
-> >>> 
-> >>> This was working great for me until I just upgraded to the latest [poky]
-> >>> master (rev dbb247cac5fbf7b037e4955f9793828451723924).  With the
-> >>> SDK_TARGETS line in my local.conf, I get this error:
-> >>> 
-> >>> ERROR: Error for
-> >>> /local/poky-cutting-edge/meta-rainier-am335x-p8701/packages/images/magi
-> >>> card-demo-image_1.0.bb, dependency
-> >>> ti-cgt-pru-native:do_populate_sysroot:do_populate_sysroot>>> 
-> >>                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> >>>  
-> >>>  does not contain exactly one ':' character.
-> >>>  
-> >>>   Task 'rdepends' should be specified in the form 'packagename:task'
-> >>> 
-> >>> Any ideas what changed and how I get it working again?
-> >> 
-> >> I enhanced the error checking, and the rdepends varflag in your example
-> >> indeed isn't valid. ":do_populate_sysroot" got appended twice to the
-> >> recipe name. That error got ignored silently earlier.
-> >> 
-> >> populate_sdk_ext.bbclass appends ":do_populate_sysroot" when setting
-> >> 
-> >> do_sdk_depends[rdepends], so you should use just:
-> >>    SDK_TARGETS += "ti-cgt-pru-native"
-> > 
-> > Thanks that worked - at least I can build, I haven't checked the esdk yet.
-> 
-> Sadly, this is broken once again.  I just upgraded my Poky/Yocto
-> to rev d45d4a5a21ab4209b87331dddf515ecdb62367fa and if I have the
->    SDK_TARGETS += "ti-cgt-pru-native"
-> in my local.conf, I get this hard error:
-> 
-> ERROR: Task do_sdk_depends in
-> /home/gary/tmp/p8701_2017-01-31/opt/amltd/poky/meta-rainier-am335x-p8701/pac
-> kages/images/installer-image.bb rdepends upon non-existent task
-> do_package_write_ipk in
-> virtual:native:/home/gary/tmp/p8701_2017-01-31/opt/amltd/poky/meta-ti/recipe
-> s-ti/devtools/ti-cgt-pru_2.1.1.bb ERROR: Command execution failed: 1
-> 
-> Any ideas how to proceed?
+------=_Part_147252_1162060212.1486098006829
+Content-Type: text/plain;
+	charset=UTF-8
+Content-Transfer-Encoding: base64
 
-Sorry for the delay - I have a fix for this that I'll send out soon (basically 
-drop setting SDK_RDEPENDS in populate_sdk_ext.bbclass). I'm not sure what 
-happened recently to cause this to come up, but the dependency is erroneous 
-and it appears SDK_REPENDS doesn't need to be set anyway.
+Q2FuIEkgdXNlIGl0IHdpdGhvdXQgYSBjb21waWxlIHVzaW5nIHRoZSBpbWFnZSBjcmVhdGVkIGFm
+dGVyIHRoZSBidWlsZD8gCiAKVGhhbmtzCg==
 
-Cheers,
-Paul
+------=_Part_147252_1162060212.1486098006829
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: base64
 
--- 
+PGh0bWw+PGhlYWQ+PHN0eWxlPnB7bWFyZ2luLXRvcDowcHg7bWFyZ2luLWJvdHRvbTowcHg7fTwv
+c3R5bGU+PC9oZWFkPjxib2R5PjxkaXYgc3R5bGU9ImZvbnQtc2l6ZToxMHB0OyBmb250LWZhbWls
+eTpHdWxpbTsiPjxwPkNhbiBJIHVzZSBpdCB3aXRob3V0IGEgY29tcGlsZSB1c2luZyB0aGUgaW1h
+Z2UgY3JlYXRlZCBhZnRlciB0aGUgYnVpbGQ/Jm5ic3A7PC9wPjxwPiZuYnNwOzwvcD48cD5UaGFu
+a3M8L3A+PC9kaXY+PC9ib2R5PjwvaHRtbD4KPHRhYmxlIHN0eWxlPSJkaXNwbGF5Om5vbmUiPjx0
+cj48dGQ+PGltZyBzcmM9Imh0dHBzOi8vbWFpbC5uYXZlci5jb20vcmVhZFJlY2VpcHQvbm90aWZ5
+Lz9pbWc9ZlklMkJOMUIlMkJaTTZFbEZ6RlNoQVJQSzZ1ck1ydHdLNGt2RjR1WkZ4TWRGQUVyRnJp
+Q3A2VTlLcUVyTXZJbyUyQnJrU0t4RTVXNGQ1VzRDNWJYMHElMkJ6a1I3NEZUV3glMkZzRDZlbyUy
+QnplZ0Q2ZW8lMkJ6ZW1iNGU4cDZGZDc0ZVpwbSUzRCUzRC5naWYiIGJvcmRlcj0iMCI+PC90ZD48
+L3RyPjwvdGFibGU+
 
-Paul Eggleton
-Intel Open Source Technology Centre
-
+------=_Part_147252_1162060212.1486098006829--
