@@ -1,17 +1,18 @@
-Return-Path: <prashant.a@pathpartnertech.com>
+Return-Path: <danielhilst@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3E044E009CE; Thu,  2 Feb 2017 21:21:33 -0800 (PST)
+	id 07553E00480; Fri,  3 Feb 2017 07:36:52 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.216.169 listed in dnsbl.sorbs.net]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.216.169 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW, 
+	RCVD_IN_SORBS_SPAM autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (danielhilst[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.216.172 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -20,43 +21,48 @@ X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qt0-f169.google.com (mail-qt0-f169.google.com
-	[209.85.216.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 800CAE009CA
-	for <yocto@yoctoproject.org>; Thu,  2 Feb 2017 21:21:30 -0800 (PST)
-Received: by mail-qt0-f169.google.com with SMTP id v23so18044183qtb.0
-	for <yocto@yoctoproject.org>; Thu, 02 Feb 2017 21:21:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=pathpartnertech.com; s=google;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=A+KdASJRfiTYKX9Nlc2vCzT+2x34ZgyL2ouewoJRqWI=;
-	b=mKRHwiWekbV0wwyk1R0HdJ67+HtEGWukc2mu+DbKv+IUAB+90eNzZi9fJF9l43ZoH+
-	WN0vYA1hhXcmtl3ZHnAHwThKVfbjPr9bfs+kKs8JLFEoRGm9n3qKIO8jemoK2EDMb2C+
-	nxCDzt1g/yosMPgAS2fueUMmkrph/SMtRYhACN1LaYF8dxPaOwgIuI4Unzcy3GOhcTGs
-	tNSM4Z1PKCfTSxc8r1ZWbQq6Hh8u/l6unL8zpL+tPYPpd4PZ952VGF9P/qVsXXEYiT9M
-	jS11Qhbx06mhQUk+GXAlzNxViGRHyqzTqt3N2JS5020t37VON7GP1my0DCWpEneAtlxg
-	cuAA==
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.216.172 listed in dnsbl.sorbs.net]
+Received: from mail-qt0-f172.google.com (mail-qt0-f172.google.com
+	[209.85.216.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7BD0AE0030B
+	for <yocto@yoctoproject.org>; Fri,  3 Feb 2017 07:36:48 -0800 (PST)
+Received: by mail-qt0-f172.google.com with SMTP id x49so41785156qtc.2
+	for <yocto@yoctoproject.org>; Fri, 03 Feb 2017 07:36:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=7wr17tsd8f0erEURI9X8CJPWeRze4IuL32DCB8AZxTg=;
+	b=C917Gir2kE0OZLeoxg7JdBM1XMobmGL58r6MrKJOZZWAXVt/EQxDWgARsiZgy0E3+Y
+	OPoWM/RX9SkX+qWD2D6db1jLr39jkLtvW6G6QjekCSfEJxcH3rFqB/zKg0iOJ7Gjrmkh
+	C/xQ0u/jZ1ryTdAGcT+DJJUW+kqY1YjR27h+Og7sBStDbISn5L+ksmxfea0ILG6CwT3Q
+	huj/XpHHGAZ8VVVWXrYFPZ2EoKcfuAKIs+5ITPtuOsFNnQLvj6+/ciimzuK3cINJlVgF
+	pfRc4KD1vZ3/T3gE5v7hahLYhy3vgOB4mBajBa9oQYhIw5owo2SUJhJA2L69jtoqaEp0
+	BYaQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=A+KdASJRfiTYKX9Nlc2vCzT+2x34ZgyL2ouewoJRqWI=;
-	b=BS335b/OUKHB40WssnxX+uurCOjOY+9MKWb9oSSBTj3YdtEVPGph4Z+jl0xB8+hyOr
-	lcBsIfgfnDon36GlJhlntIB5NwhJrbOPjU3iCILyOQAk2LKZY8BrJFrLz4SL0gAJuUYr
-	8gBsVRQBPPrBJCK4QvqGmfYgGNYoYfN4XAqeHWPr5jsJvBXprX4+/kl+C/mjDYGUnDgo
-	A5sjYNkEOQlSnHb6znon19ofoKc0vk4rxRH6lF1wtHLDqFA3x+usFI02FcO+0ZUMInUk
-	J3Q1ccn4cT3X047DdQrfB4QSHctPTROfKo1VZg6fgnKAPsA/+EzfJ+Uu9WNGM5Ya5zE8
-	7whA==
-X-Gm-Message-State: AIkVDXIYEy/1YexMty7q3rXZ312x9VU5uoMhPkX7af+X1n9MWjz4C2MzqTM19Xvfvp9B9KfRqQuywAg3FvLHCy3AnxtAMqvERXt2wMZ68XT/KinEfGX9AmuvPtfbeosqIbJmhFckPVcK3yMbMued
-X-Received: by 10.237.36.85 with SMTP id s21mr12069203qtc.80.1486099290299;
-	Thu, 02 Feb 2017 21:21:30 -0800 (PST)
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=7wr17tsd8f0erEURI9X8CJPWeRze4IuL32DCB8AZxTg=;
+	b=SR3Rz57IS+kgMz8ARJtj37OtQCN+5bPagdt4U/LKsM0eUY0USRIKG4cbflcb1Xq+61
+	TFPtwn3UI8/uM+Sang9pRa5PiQ/G56UXd/8s5KGgqrz9htWTjxBLv5DLpIxARA6d/BFn
+	SSH4HPFcGKDKZj1R8ft/SOb9HlSdR/wAQXLnMdhGVxZFoKFXJGKf1GTDVXZYYkyXM/t3
+	JTyWCGVQqhXHeTaQfG/TtncTdt1/lZ0iDX4IMBxXMIh/wrB9V7xJjq/Xyl0ydChY2snh
+	QBFZwO+VpcdroLi9f3thYZ+fbWrnG8iw0c1ja2vmk1JvaLIOuIekTMwMfZQV4aaplAD8
+	0e5Q==
+X-Gm-Message-State: AIkVDXLB+7oGeUWzYjs18lORx9INQXCc5Ce5gvySl10Kmqo/ViSg8MoSEphd1QqO59I+PRzxdiOfrrjWD3fLFw==
+X-Received: by 10.237.33.209 with SMTP id m17mr14262807qtc.59.1486136207883;
+	Fri, 03 Feb 2017 07:36:47 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.200.38.153 with HTTP; Thu, 2 Feb 2017 21:21:30 -0800 (PST)
-From: Prashant Andani <prashant.a@pathpartnertech.com>
-Date: Fri, 3 Feb 2017 10:51:30 +0530
-Message-ID: <CA+=be-isZFZGy59RFWwtzX3a+mKrwUw6pHcHMcxaQX=QN0S7gw@mail.gmail.com>
-To: yocto@yoctoproject.org
-X-Mailman-Approved-At: Fri, 03 Feb 2017 06:58:08 -0800
-Subject: optimize rootfs using strip
+Received: by 10.140.96.17 with HTTP; Fri, 3 Feb 2017 07:36:47 -0800 (PST)
+In-Reply-To: <8960F08D-AEDC-4474-A6D6-219BC5764252@bmw-carit.de>
+References: <CAF3SDA56bgLyrmSKxm=ObR-rrj2RVXojXnbeErkys2uJfdXU9w@mail.gmail.com>
+	<8960F08D-AEDC-4474-A6D6-219BC5764252@bmw-carit.de>
+From: "Daniel." <danielhilst@gmail.com>
+Date: Fri, 3 Feb 2017 13:36:47 -0200
+Message-ID: <CAF3SDA5nQFbFYED7cA09WHm-OFHTwrrdtJvmxMb4AuHtwc=njQ@mail.gmail.com>
+To: Clemens Lang <Clemens.Lang@bmw-carit.de>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Repeteability in image compilation. How to achieve it? How to measure it?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,75 +74,97 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 03 Feb 2017 05:21:33 -0000
-Content-Type: multipart/alternative; boundary=001a113bfc704cb5130547997489
+X-List-Received-Date: Fri, 03 Feb 2017 15:36:52 -0000
+Content-Type: multipart/alternative; boundary=001a11377ff2c2436d0547a20c5b
 
---001a113bfc704cb5130547997489
+--001a11377ff2c2436d0547a20c5b
 Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Thank you so mutch Clemens!!!! I'll take a look!!
 
-I want to remove unwanted packages but most of them are dependent. So not
-able to remove easily.
-
-can i strip all binary and library before creating rootfs, if possible tell
-me where to add flags?
-Can you help me to remove packages like kbd shadow dbus?
-
-
--- 
 Regards,
-Prashant
 
--- 
- 
+2017-02-03 11:31 GMT-02:00 Clemens Lang <Clemens.Lang@bmw-carit.de>:
 
-This message contains confidential information and is intended only for the 
-individual(s) named. If you are not the intended recipient, you are 
-notified that disclosing, copying, distributing or taking any action in 
-reliance on the contents of this mail and attached file/s is strictly 
-prohibited. Please notify the sender immediately and delete this e-mail 
-from your system. E-mail transmission cannot be guaranteed to be secured or 
-error-free as information could be intercepted, corrupted, lost, destroyed, 
-arrive late or incomplete, or contain viruses. The sender therefore does 
-not accept liability for any errors or omissions in the contents of this 
-message, which arise as a result of e-mail transmission.
+> Hi,
+>
+> > On 3 Feb 2017, at 14:11, Daniel. <danielhilst@gmail.com> wrote:
+> >
+> > Hi everybody,
+> >
+> > How can I be sure that the same image built by distinct building hosts
+> > are trully identical?? Is it possible to measure that?
+>
+> I can recommend tooling offered by the reproducible builds project.
+> Especially diffoscope can be very helpful in this. See
+> https://reproducible-builds.org/tools/. You may want to start comparing
+> individual packages first, before you tackle image creation, though.
+>
+> HTH,
+> Clemens
+> --
+> Clemens Lang =E2=80=A2 Development Specialist
+> BMW Car IT GmbH =E2=80=A2 Lise-Meitner-Str. 14 =E2=80=A2 89081 Ulm =E2=80=
+=A2 http://bmw-carit.com
+> -------------------------------------------------------------------------
+> BMW Car IT GmbH
+> Gesch=C3=A4ftsf=C3=BChrer: Michael W=C3=BCrtenberger und Alexis Trolin
+> Sitz und Registergericht: M=C3=BCnchen HRB 134810
+> -------------------------------------------------------------------------
+>
+>
 
---001a113bfc704cb5130547997489
+
+--=20
+*"Do or do not. There is no try"*
+  *Yoda Master*
+
+--001a11377ff2c2436d0547a20c5b
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div><div>Hi,<br><br></div>I want to remove unwanted packa=
-ges but most of them are dependent. So not able to remove easily.<br><br></=
-div><div>can i strip all binary and library before creating rootfs, if poss=
-ible tell me where to add flags?<br></div>Can you help me to remove package=
-s like kbd shadow dbus?<br><br clear=3D"all"><div><div><div><div><br>-- <br=
-><div class=3D"gmail_signature" data-smartmail=3D"gmail_signature"><div dir=
-=3D"ltr"><div>Regards,<br></div>Prashant<br></div></div>
-</div></div></div></div></div>
-
+<div dir=3D"ltr"><div>Thank you so mutch Clemens!!!! I&#39;ll take a look!!=
+<br><br></div>Regards,<br></div><div class=3D"gmail_extra"><br><div class=
+=3D"gmail_quote">2017-02-03 11:31 GMT-02:00 Clemens Lang <span dir=3D"ltr">=
+&lt;<a href=3D"mailto:Clemens.Lang@bmw-carit.de" target=3D"_blank">Clemens.=
+Lang@bmw-carit.de</a>&gt;</span>:<br><blockquote class=3D"gmail_quote" styl=
+e=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">Hi,<br>
+<span class=3D""><br>
+&gt; On 3 Feb 2017, at 14:11, Daniel. &lt;<a href=3D"mailto:danielhilst@gma=
+il.com">danielhilst@gmail.com</a>&gt; wrote:<br>
+&gt;<br>
+&gt; Hi everybody,<br>
+&gt;<br>
+&gt; How can I be sure that the same image built by distinct building hosts=
 <br>
+&gt; are trully identical?? Is it possible to measure that?<br>
+<br>
+</span>I can recommend tooling offered by the reproducible builds project. =
+Especially diffoscope can be very helpful in this. See <a href=3D"https://r=
+eproducible-builds.org/tools/" rel=3D"noreferrer" target=3D"_blank">https:/=
+/reproducible-builds.<wbr>org/tools/</a>. You may want to start comparing i=
+ndividual packages first, before you tackle image creation, though.<br>
+<br>
+HTH,<br>
+Clemens<br>
+<span class=3D"HOEnZb"><font color=3D"#888888">--<br>
+Clemens Lang =E2=80=A2 Development Specialist<br>
+BMW Car IT GmbH =E2=80=A2 Lise-Meitner-Str. 14 =E2=80=A2 89081 Ulm =E2=80=
+=A2 <a href=3D"http://bmw-carit.com" rel=3D"noreferrer" target=3D"_blank">h=
+ttp://bmw-carit.com</a><br>
+------------------------------<wbr>------------------------------<wbr>-----=
+--------<br>
+BMW Car IT GmbH<br>
+Gesch=C3=A4ftsf=C3=BChrer: Michael W=C3=BCrtenberger und Alexis Trolin<br>
+Sitz und Registergericht: M=C3=BCnchen HRB 134810<br>
+------------------------------<wbr>------------------------------<wbr>-----=
+--------<br>
+<br>
+</font></span></blockquote></div><br><br clear=3D"all"><br>-- <br><div clas=
+s=3D"gmail_signature" data-smartmail=3D"gmail_signature"><div style=3D"text=
+-align:right"><i>&quot;Do or do not. There is no try&quot;</i><br><i>=C2=A0=
+ </i><i><b>Yoda Master</b></i><br></div></div>
+</div>
 
-
-
-
-<p><span lang=3D"EN-IN">This
-message contains confidential information and is intended only for the
-individual(s) named.</span><span lang=3D"EN-IN"> </span>If you are not the =
-intended
-recipient, you are notified that disclosing, copying, distributing or takin=
-g any
-action in reliance on the contents of this mail and attached file/s is stri=
-ctly
-prohibited<span lang=3D"EN-IN">. Please notify the
-sender immediately and delete this e-mail from your system. E-mail transmis=
-sion
-cannot be guaranteed to be secured or error-free as information could be
-intercepted, corrupted, lost, destroyed, arrive late or incomplete, or cont=
-ain
-viruses. The sender therefore does not accept liability for any errors or
-omissions in the contents of this message, which arise as a result of e-mai=
-l
-transmission.</span></p>
-
---001a113bfc704cb5130547997489--
+--001a11377ff2c2436d0547a20c5b--
