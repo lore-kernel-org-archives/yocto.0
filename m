@@ -1,64 +1,46 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <andras@tantosonline.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 18BF1E00510; Fri,  3 Feb 2017 16:02:52 -0800 (PST)
+	id 46EDDE00724; Fri,  3 Feb 2017 18:25:29 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (akuster808[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [74.125.83.42 listed in list.dnswl.org]
-Received: from mail-pg0-f42.google.com (mail-pg0-f42.google.com [74.125.83.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DFFB6E004D2
-	for <yocto@yoctoproject.org>; Fri,  3 Feb 2017 16:02:48 -0800 (PST)
-Received: by mail-pg0-f42.google.com with SMTP id 194so10505338pgd.2
-	for <yocto@yoctoproject.org>; Fri, 03 Feb 2017 16:02:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:subject:date:message-id;
-	bh=i3deKOIhLWLHcRV9eQItDhPihOqEajqvzG1Hr/mrYRU=;
-	b=rkkmhfxLErbbY8PPcfwix0erxURCqecjrNmBHpJ5PQUcoLy+PnSQ1lSRqIcvtGCAri
-	EPcTnXb1fyngkFzERMFINHS/1XdkVQHmKr3O+TfNstxj+GXudZTDs9CokCIg/X7iJDtP
-	gfy4ZxGgmZNe1DAibc6gxES2U1lOicfZpM14Rfhs8riJGYT2Pwkg6uJPcm2bdyMKWf0P
-	Nnuu81iFUYh7VnzpEK/W1Gn/1Esxb0QVlEA1eGyH9YU8AJG3Dp1+0yTy79T+4Se1zt+5
-	ha8CdaojuX2k3NpLarIyn08ywxYC+/gK9PiwU37FKB9zadRmTVrjvOETy/C/Zdd99DzY
-	WNdQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:subject:date:message-id;
-	bh=i3deKOIhLWLHcRV9eQItDhPihOqEajqvzG1Hr/mrYRU=;
-	b=MHNbNB1KURUU2WmgWfzdywIY4kg2WB+cbi/sNBTd58R2O/y4Pm1f9EYM0PeqrT3oA9
-	/mVSh05tOA2Eo/GJGL3ZjIiiMuMC3wkLBqpwckA3kPXsFQURsAiZbVfNjJxpn8UGs4U6
-	MFAhkKcqNM78dgYkMC6YlGDS0Vms2Vy7VEEJCcynmYjfrzosfQZMqATDx7U8Ctp5gydq
-	DBQz982xlbu/IDbrYA925MT6AayMywj18qSbJqx6dQDNtBBrLSsq6lsbWhicGW7qDelI
-	vaZPuVn+GZzkl0MIFqQKkdfrHF0MVDOmM60PH7NI2VdG3V0ql06v4qmXBEZnvlBOBpq4
-	Jd9g==
-X-Gm-Message-State: AIkVDXIPeGCCrs+L6AMWNGCmb6S0/VjFMpAIUOQ0ayP7SnXckljjnEJkvb6DAc4QowVO3w==
-X-Received: by 10.84.210.232 with SMTP id a95mr24867355pli.31.1486166568164;
-	Fri, 03 Feb 2017 16:02:48 -0800 (PST)
-Received: from akuster-ThinkPad-X240.hsd1.ca.comcast.net
-	([2601:202:4001:9ea0:d531:58a3:5f79:edad])
-	by smtp.gmail.com with ESMTPSA id
-	r78sm69765276pfe.55.2017.02.03.16.02.47
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Fri, 03 Feb 2017 16:02:47 -0800 (PST)
-From: Armin Kuster <akuster808@gmail.com>
-To: akuster@mvista.com,
-	yocto@yoctoproject.org
-Date: Fri,  3 Feb 2017 16:02:46 -0800
-Message-Id: <1486166566-28447-1-git-send-email-akuster808@gmail.com>
-X-Mailer: git-send-email 2.7.4
-Subject: [meta-selinux][PATCH] audit: fix build failure
+	*      [96.114.154.165 listed in list.dnswl.org]
+Received: from resqmta-po-06v.sys.comcast.net (resqmta-po-06v.sys.comcast.net
+	[96.114.154.165])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 15108E00510
+	for <yocto@yoctoproject.org>; Fri,  3 Feb 2017 18:25:25 -0800 (PST)
+Received: from resomta-po-14v.sys.comcast.net ([96.114.154.238])
+	by resqmta-po-06v.sys.comcast.net with SMTP
+	id Zq2WcBmlxLSLVZq2Wc1EjB; Sat, 04 Feb 2017 02:25:24 +0000
+Received: from kakukkfu.nl.home ([76.28.198.67])
+	by resomta-po-14v.sys.comcast.net with SMTP
+	id Zq2WcZlOUqUWeZq2WcdV27; Sat, 04 Feb 2017 02:25:24 +0000
+Received: from [10.60.16.43] (unknown [192.31.242.194])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by kakukkfu.nl.home (Postfix) with ESMTPSA id 99E30440029;
+	Fri,  3 Feb 2017 18:28:44 -0800 (PST)
+To: "Burton, Ross" <ross.burton@intel.com>
+References: <43debf33-b22d-2838-fcc3-286bc837e015@tantosonline.com>
+	<CAJTo0Laxnjdzn4pGz9JsvesUHuUeRO3nPymfYFaDDTsTjVj2Hg@mail.gmail.com>
+From: Andras Tantos <andras@tantosonline.com>
+Message-ID: <54bfae0a-8762-fe6c-48b8-bbee60da7824@tantosonline.com>
+Date: Fri, 3 Feb 2017 18:25:22 -0800
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:45.0) Gecko/20100101
+	Thunderbird/45.7.0
+MIME-Version: 1.0
+In-Reply-To: <CAJTo0Laxnjdzn4pGz9JsvesUHuUeRO3nPymfYFaDDTsTjVj2Hg@mail.gmail.com>
+X-CMAE-Envelope: MS4wfJv3RDxJ0cp4ZAZR0EcYQK3LtURXO+imV7q5beOiqds9Z92mFEVX1h3+BxJrxwF8Vmg7RVSBPIffFKY6RmCyvxGUa4/cKu3JIv5PmKS3Zb9tARiTE9d7
+	NgEYFY+IYcHSKbr/E/H9LFOBZTxYjnJuDQdVKRG+fQHdsfDVNZQSfFSk7WRkjinDTVuErSvO3omr8Fnrf5ro0HdbAjwiq3zho/4=
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Problem building glibc-locale
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,36 +52,104 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 04 Feb 2017 00:02:52 -0000
+X-List-Received-Date: Sat, 04 Feb 2017 02:25:29 -0000
+Content-Type: multipart/alternative;
+	boundary="------------32A3032E3D7E165A3D4604F5"
 
-From: Armin Kuster <akuster@mvista.com>
+--------------32A3032E3D7E165A3D4604F5
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-ERROR: oe_runmake failed
-| /bin/bash: swig: command not found
-| Makefile:776: recipe for target 'audit_wrap.c' failed
-| make[4]: *** [audit_wrap.c] Error 127
+Thank you very much! This solved my problems!!
 
-add swig-native to depends
+Andras
 
-Signed-off-by: Armin Kuster <akuster@mvista.com>
----
- recipes-security/audit/audit_2.7.bb | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On 2/3/2017 3:14 PM, Burton, Ross wrote:
+> So you did:
+>
+> echo "DISTRO_FEATURES += \"usbhost\"" >> conf/local.conf
+>
+> But poky.conf does:
+>
+> DISTRO_FEATURES ?= "${DISTRO_FEATURES_DEFAULT} ${DISTRO_FEATURES_LIBC} 
+> ${POKY_DEFAULT_DISTRO_FEATURES}"
+>
+> Which means that the final value of DISTRO_FEATURES is "usbhost", so 
+> none of the locale support is enabled, and glibc packages badly.
+>
+> If you just want to add a feature, use DISTRO_FEATURES_append = " 
+> usbhost" (leading whitespace in the string is critical).  Note that 
+> usbhost is a default distro feature:
+>
+> meta/conf/distro/include/default-distrovars.inc:DISTRO_FEATURES_DEFAULT 
+> ?= "acl alsa argp bluetooth ext2 irda largefile pcmcia usbgadget 
+> usbhost wifi xattr nfs zeroconf pci 3g nfc x11"
+>
+> So you don't need to specify it unless you are defining a distribution 
+> from scratch.
+>
+> Ross
 
-diff --git a/recipes-security/audit/audit_2.7.bb b/recipes-security/audit/audit_2.7.bb
-index 6bcbecd..61d084b 100644
---- a/recipes-security/audit/audit_2.7.bb
-+++ b/recipes-security/audit/audit_2.7.bb
-@@ -26,7 +26,7 @@ INITSCRIPT_PARAMS = "defaults"
- 
- SYSTEMD_SERVICE_${PN} = "auditd.service"
- 
--DEPENDS += "python tcp-wrappers libcap-ng linux-libc-headers (>= 2.6.30)"
-+DEPENDS += "swig-native python tcp-wrappers libcap-ng linux-libc-headers (>= 2.6.30)"
- 
- EXTRA_OECONF += "--without-prelude \
- 	--with-libwrap \
--- 
-2.7.4
 
+--------------32A3032E3D7E165A3D4604F5
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
 
+<html>
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <p>Thank you very much! This solved my problems!!</p>
+    <p>Andras<br>
+    </p>
+    <div class="moz-cite-prefix">On 2/3/2017 3:14 PM, Burton, Ross
+      wrote:<br>
+    </div>
+    <blockquote
+cite="mid:CAJTo0Laxnjdzn4pGz9JsvesUHuUeRO3nPymfYFaDDTsTjVj2Hg@mail.gmail.com"
+      type="cite">
+      <div dir="ltr">
+        <div class="gmail_extra">So you did:</div>
+        <div class="gmail_extra"><br>
+        </div>
+        <div class="gmail_extra">echo "DISTRO_FEATURES += \"usbhost\""
+          &gt;&gt; conf/local.conf<br>
+          <br>
+          But poky.conf does:</div>
+        <div class="gmail_extra"><br>
+        </div>
+        <div class="gmail_extra">DISTRO_FEATURES ?=
+          "${DISTRO_FEATURES_DEFAULT} ${DISTRO_FEATURES_LIBC}
+          ${POKY_DEFAULT_DISTRO_FEATURES}"<br>
+        </div>
+        <div class="gmail_extra"><br>
+        </div>
+        <div class="gmail_extra">Which means that the final value of
+          DISTRO_FEATURES is "usbhost", so none of the locale support is
+          enabled, and glibc packages badly.</div>
+        <div class="gmail_extra"><br>
+        </div>
+        <div class="gmail_extra">If you just want to add a feature, use
+          DISTRO_FEATURES_append = " usbhost" (leading whitespace in the
+          string is critical).  Note that usbhost is a default distro
+          feature:</div>
+        <div class="gmail_extra"><br>
+        </div>
+        <div class="gmail_extra">meta/conf/distro/include/default-distrovars.inc:DISTRO_FEATURES_DEFAULT
+          ?= "acl alsa argp bluetooth ext2 irda largefile pcmcia
+          usbgadget usbhost wifi xattr nfs zeroconf pci 3g nfc x11"</div>
+        <div class="gmail_extra"><br>
+        </div>
+        <div class="gmail_extra">So you don't need to specify it unless
+          you are defining a distribution from scratch.</div>
+        <div class="gmail_extra"><br>
+        </div>
+        <div class="gmail_extra">Ross</div>
+      </div>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------32A3032E3D7E165A3D4604F5--
