@@ -1,6 +1,6 @@
 Return-Path: <juro.bystricky@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 394F9E0091A; Sat,  4 Feb 2017 10:40:53 -0800 (PST)
+	id 4FFB1E00905; Sat,  4 Feb 2017 10:40:53 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,23 +12,23 @@ X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 80741E00905
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 65AF9E008F2
 	for <yocto@yoctoproject.org>; Sat,  4 Feb 2017 10:40:47 -0800 (PST)
 Received: from orsmga004.jf.intel.com ([10.7.209.38])
-	by fmsmga102.fm.intel.com with ESMTP; 04 Feb 2017 10:40:39 -0800
+	by fmsmga102.fm.intel.com with ESMTP; 04 Feb 2017 10:40:38 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.33,335,1477983600"; d="scan'208";a="55400545"
+X-IronPort-AV: E=Sophos;i="5.33,335,1477983600"; d="scan'208";a="55400542"
 Received: from juro-precision-t5610.jf.intel.com ([10.7.198.149])
 	by orsmga004.jf.intel.com with ESMTP; 04 Feb 2017 10:40:38 -0800
 From: Juro Bystricky <juro.bystricky@intel.com>
 To: yocto@yoctoproject.org
-Date: Sat,  4 Feb 2017 10:36:49 -0800
-Message-Id: <1486233410-15671-7-git-send-email-juro.bystricky@intel.com>
+Date: Sat,  4 Feb 2017 10:36:48 -0800
+Message-Id: <1486233410-15671-6-git-send-email-juro.bystricky@intel.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1486233410-15671-1-git-send-email-juro.bystricky@intel.com>
 References: <1486233410-15671-1-git-send-email-juro.bystricky@intel.com>
 Cc: jurobystricky@hotmail.com
-Subject: [meta-zephyr][morty][PATCH 6/7] qemu-*.conf: support for qemuboot
+Subject: [meta-zephyr][morty][PATCH 5/7] zephyrtest.bbclass: refactor
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,70 +42,76 @@ List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Sat, 04 Feb 2017 18:40:53 -0000
 
-Add support to run qemus using runqemu.
-All qemu machines will inherit the bbclass "zephyr-qemuboot",
-which is responsible to set up everything that is needed
-in order to use "runqemu".
+Only keep code/variables related to individual test/package names.
+Moved ZEPHYR_TEST_SRCDIR into zephyr-kernel.inc as it is
+zephyr kernel version specific.
+Moved ZEPHYR_MAKE_OUTPUT into zephyr-kernel-common.inc as it is
+as it is not zephyr test specific but applicable to all
+zephyr images.
+Additional minor cleanup.
 
 Signed-off-by: Juro Bystricky <juro.bystricky@intel.com>
 ---
- conf/machine/qemu-cortex-m3.conf | 8 ++++++--
- conf/machine/qemu-nios2.conf     | 7 +++++--
- conf/machine/qemu-x86.conf       | 6 +++++-
- 3 files changed, 16 insertions(+), 5 deletions(-)
+ classes/zephyrtest.bbclass                            | 10 ++++------
+ recipes-kernel/zephyr-kernel/zephyr-kernel-common.inc |  1 +
+ recipes-kernel/zephyr-kernel/zephyr-kernel.inc        |  3 +++
+ 3 files changed, 8 insertions(+), 6 deletions(-)
 
-diff --git a/conf/machine/qemu-cortex-m3.conf b/conf/machine/qemu-cortex-m3.conf
-index aeb9a69..6a6d45e 100644
---- a/conf/machine/qemu-cortex-m3.conf
-+++ b/conf/machine/qemu-cortex-m3.conf
-@@ -5,7 +5,11 @@
- require conf/machine/include/qemu.inc
- require conf/machine/include/tune-cortexm3.inc
+diff --git a/classes/zephyrtest.bbclass b/classes/zephyrtest.bbclass
+index e396bf7..aa9ee3c 100644
+--- a/classes/zephyrtest.bbclass
++++ b/classes/zephyrtest.bbclass
+@@ -1,6 +1,5 @@
  
--# For runqemu (TBD)
-+ZEPHYR_INHERIT_CLASSES += "zephyr-qemuboot"
-+
-+# For runqemu
- QB_SYSTEM_NAME = "qemu-system-arm"
- QB_MACHINE = "-machine lm3s6965evb"
--QB_OPT_APPEND = "-nographic -vga none -cpu=cortex-m3"
-+QB_OPT_APPEND = "-nographic -vga none"
-+QB_CPU = "-cpu cortex-m3"
-+
-diff --git a/conf/machine/qemu-nios2.conf b/conf/machine/qemu-nios2.conf
-index d74017f..abc9574 100644
---- a/conf/machine/qemu-nios2.conf
-+++ b/conf/machine/qemu-nios2.conf
-@@ -5,7 +5,10 @@
- require conf/machine/include/qemu.inc
- require conf/machine/include/tune-nios2.inc
+ python zephyrtest_virtclass_handler () {
+-    cls = e.data.getVar("BBEXTENDCURR", True)
+     variant = e.data.getVar("BBEXTENDVARIANT", True)
  
--# For runqemu (TBD)
-+ZEPHYR_INHERIT_CLASSES += "zephyr-qemuboot"
-+
-+# For runqemu
- QB_SYSTEM_NAME = "qemu-system-nios2"
- QB_MACHINE = "-machine altera_10m50_zephyr"
--QB_OPT_APPEND = "-nographic -cpu=nios2"
-+QB_OPT_APPEND = "-nographic"
-+QB_CPU = "-cpu nios2"
-diff --git a/conf/machine/qemu-x86.conf b/conf/machine/qemu-x86.conf
-index 0d595a1..9a46809 100644
---- a/conf/machine/qemu-x86.conf
-+++ b/conf/machine/qemu-x86.conf
-@@ -5,7 +5,11 @@
- require conf/machine/include/qemu.inc
- require conf/machine/include/tune-i586.inc
+     # ipk doesn't like underscores in pacakges names. So just use dashes
+@@ -11,13 +10,12 @@ python zephyrtest_virtclass_handler () {
+     pn_underscores = e.data.getVar("PN", True) + "-" + variant
  
--# For runqemu (TBD)
-+ZEPHYR_INHERIT_CLASSES += "zephyr-qemuboot"
+     e.data.setVar("PN", pn)
+-    e.data.setVar("ZEPHYR_IMAGENAME", variant_dashes + ".elf")
++    e.data.setVar("ZEPHYR_IMAGENAME", pn + ".elf")
+ 
+-    # Most tests for Zephyr 1.6 are in the "legacy" folder
+-    e.data.setVar("ZEPHYR_IMAGE_SRCDIR", "tests/legacy/kernel/" + variant)
+-    e.data.setVar("ZEPHYR_MAKE_OUTPUT", "zephyr.elf")
++    testsrc = e.data.getVar("ZEPHYR_TEST_SRCDIR", True)
++    e.data.setVar("ZEPHYR_IMAGE_SRCDIR", testsrc + variant)
+ 
+-    # Allow to build using both foo-some_test form as well ass foo-some-test
++    # Allow to build using both foo-some_test form as well as foo-some-test
+     e.data.setVar("PROVIDES", e.data.getVar("PROVIDES", True) + pn_underscores)
+ }
+ 
+diff --git a/recipes-kernel/zephyr-kernel/zephyr-kernel-common.inc b/recipes-kernel/zephyr-kernel/zephyr-kernel-common.inc
+index 078ea72..f5106c1 100644
+--- a/recipes-kernel/zephyr-kernel/zephyr-kernel-common.inc
++++ b/recipes-kernel/zephyr-kernel/zephyr-kernel-common.inc
+@@ -10,6 +10,7 @@ IMAGE_NO_MANIFEST = "1"
+ ZEPHYR_GCC_VARIANT="yocto"
+ ZEPHYR_SYSROOT="${STAGING_DIR_TARGET}"
+ 
++ZEPHYR_MAKE_OUTPUT = "zephyr.elf"
+ ZEPHYR_MAKE_ARGS = " V=1 BOARD=${BOARD} CROSS_COMPILE=${CROSS_COMPILE} ZEPHYR_GCC_VARIANT=${ZEPHYR_GCC_VARIANT} ZEPHYR_BASE=${ZEPHYR_BASE} ZEPHYR_SYSROOT=${ZEPHYR_SYSROOT}"
+ 
+ # We always need a toolchain to cross-compile.
+diff --git a/recipes-kernel/zephyr-kernel/zephyr-kernel.inc b/recipes-kernel/zephyr-kernel/zephyr-kernel.inc
+index 71c7a29..59b0713 100644
+--- a/recipes-kernel/zephyr-kernel/zephyr-kernel.inc
++++ b/recipes-kernel/zephyr-kernel/zephyr-kernel.inc
+@@ -8,6 +8,9 @@ SRC_URI += "file://Makefile.toolchain.yocto"
+ 
+ PV = "1.6.0"
+ 
++# Most tests for Zephyr 1.6 are in the "legacy" folder
++ZEPHYR_TEST_SRCDIR = "tests/legacy/kernel/"
 +
-+# For runqemu
- QB_SYSTEM_NAME = "qemu-system-i386"
- QB_MACHINE = "-machine pc-0.14"
- QB_OPT_APPEND = "-nographic -display none -clock dynticks -no-acpi -balloon none"
-+QB_CPU_x86 = "-cpu qemu32"
-+QB_CPU_KVM_x86 = "-cpu kvm32"
+ S = "${WORKDIR}/git"
+ 
+ do_compile_prepend() {
 -- 
 2.7.4
 
