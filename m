@@ -1,36 +1,49 @@
-Return-Path: <jianxun.zhang@linux.intel.com>
+Return-Path: <stephen.k.jolley@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4E882E00839; Mon,  6 Feb 2017 13:09:54 -0800 (PST)
+	id 3195AE0082E; Mon,  6 Feb 2017 13:23:48 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.24 listed in list.dnswl.org]
+	*      [192.55.52.115 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8AF88E007AD;
-	Mon,  6 Feb 2017 13:09:53 -0800 (PST)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by orsmga102.jf.intel.com with ESMTP; 06 Feb 2017 13:09:52 -0800
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D4828E007AD
+	for <yocto@yoctoproject.org>; Mon,  6 Feb 2017 13:23:45 -0800 (PST)
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+	by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	06 Feb 2017 13:23:45 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.33,342,1477983600"; d="scan'208";a="1103843593"
-Received: from jzhang80-mac02.jf.intel.com ([10.24.8.200])
-	by fmsmga001.fm.intel.com with ESMTP; 06 Feb 2017 13:09:52 -0800
-Mime-Version: 1.0 (Mac OS X Mail 10.2 \(3259\))
-From: Jianxun Zhang <jianxun.zhang@linux.intel.com>
-In-Reply-To: <20170202223712.8164-4-todor.minchev@linux.intel.com>
-Date: Mon, 6 Feb 2017 13:09:52 -0800
-Message-Id: <CF160430-A522-443A-B34F-6A8F52548B7C@linux.intel.com>
-References: <20170202223712.8164-1-todor.minchev@linux.intel.com>
-	<20170202223712.8164-4-todor.minchev@linux.intel.com>
-To: Todor Minchev <todor.minchev@linux.intel.com>
-X-Mailer: Apple Mail (2.3259)
-Cc: meta-intel@yoctoproject.org, yocto@yoctoproject.org
-Subject: Re: [PATCH 3/3] rmc: add database extraction functionality
+X-IronPort-AV: E=Sophos;i="5.33,342,1477983600"; 
+	d="scan'208,217";a="817775756"
+Received: from fmsmsx107.amr.corp.intel.com ([10.18.124.205])
+	by FMSMGA003.fm.intel.com with ESMTP; 06 Feb 2017 13:23:44 -0800
+Received: from fmsmsx115.amr.corp.intel.com (10.18.116.19) by
+	fmsmsx107.amr.corp.intel.com (10.18.124.205) with Microsoft SMTP Server
+	(TLS) id 14.3.248.2; Mon, 6 Feb 2017 13:23:44 -0800
+Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.234]) by
+	fmsmsx115.amr.corp.intel.com ([169.254.4.4]) with mapi id
+	14.03.0248.002; Mon, 6 Feb 2017 13:23:44 -0800
+From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Reminder: Yocto Project Technical Team Meeting - Tuesday, Feb
+	7, 2017 8:00 AM US Pacific Time
+Thread-Index: AdKAvzNd/T6JdCTJQZa4xPDJjDRnhA==
+Date: Mon, 6 Feb 2017 21:23:44 +0000
+Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155E573576CD@fmsmsx111.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.1.200.108]
+x-ctpclassification: CTP_IC
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiZmZkMzlhNzItMGJmNS00Y2E2LTk5NzAtNTRiY2Y0ZDk5MDhlIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX0lDIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE1LjkuNi42IiwiVHJ1c3RlZExhYmVsSGFzaCI6IndBY2FYblBvVFdZVElSOFlNRFBPamdVeWhCYjV1RjB3QTR5V0RXXC9KdjNrPSJ9
+MIME-Version: 1.0
+Subject: Reminder: Yocto Project Technical Team Meeting - Tuesday, Feb 7, 2017 8:00 AM US Pacific Time
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,375 +55,274 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 06 Feb 2017 21:09:54 -0000
-Content-Type: text/plain; charset=utf-8
+X-List-Received-Date: Mon, 06 Feb 2017 21:23:48 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155E573576CDfmsmsx111amrcor_"
+
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E573576CDfmsmsx111amrcor_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Todor,
-Nice change overall. I haven=E2=80=99t run any test and just share =
-multiple (11) inline comments for this patch.
-
-This should be the last one in the series. Please let me know if I =
-missed any other RMC patches for review.
-
-I plan to run rmc internal test once we have an updated patch set. We =
-could need to add a new test case for the dumping feature in the future.
-
-You can refer to the README in rmc project for the pipeline of merging.
-
-Thanks!
-
-> On Feb 2, 2017, at 2:37 PM, Todor Minchev =
-<todor.minchev@linux.intel.com> wrote:
->=20
-> The contents of an existing database file can be extracted in the
-> current working directory with the -E option. The top level of the
-> directory tree is rmc_db_dump and all files corresponding to
-> a given record will be saved in a separate sub-directory. The =
-sub-directory
-> name of each record is the signature corresponding to the fingerprint =
-for
-> that record.
->=20
-> Example:
-> ./src/rmc -E -d rmc.db
->=20
-> Successfully extracted rmc.db
->=20
-> Signed-off-by: Todor Minchev <todor.minchev@linux.intel.com>
-> ---
-> inc/rmc_api.h         |  9 ++++++
-> src/lib/api.c         | 85 =
-+++++++++++++++++++++++++++++++++++++++++++++++++--
-> src/lib/common/rmcl.c |  3 +-
-> src/rmc.c             | 44 +++++++++++++++++++-------
-> 4 files changed, 126 insertions(+), 15 deletions(-)
->=20
-> diff --git a/inc/rmc_api.h b/inc/rmc_api.h
-> index a484389..ce26220 100644
-> --- a/inc/rmc_api.h
-> +++ b/inc/rmc_api.h
-> @@ -74,6 +74,15 @@ extern int rmc_query_file_by_fp(rmc_fingerprint_t =
-*fp, char *db_pathname, char *
->  */
-> extern int rmc_gimme_file(char* db_pathname, char *file_name, =
-rmc_file_t *file);
->=20
-> +
-> +/* extract the contents of a database file and store the files =
-corresponding to
-> + * each record in a separate directory. The name of each directory is =
-the signature
-> + * of the fingerpring for that record
-> + * (in) db_pathname: The path and file name of a RMC database file =
-generated by RMC tool
-> + * return: 0 on success, non-zero on failure.
-> + */
-> +int dump_db(char *db_pathname) ;
-> +
-Please move this into section 1.3, somewhere after next line. It =
-doesn=E2=80=99t belong to section 1.2 =E2=80=9Cdouble-action API=E2=80=9D
-
-> /* 1.3 - Helper APIs */
->=20
-> /* Free allocated data referred in a fingerprint
-> diff --git a/src/lib/api.c b/src/lib/api.c
-> index 0adb390..aca8d99 100644
-> --- a/src/lib/api.c
-> +++ b/src/lib/api.c
-> @@ -3,6 +3,7 @@
->  * RMC API implementation for Linux user space
->  */
->=20
-> +#define _GNU_SOURCE
-> #include <stdio.h>
-> #include <unistd.h>
-> #include <errno.h>
-> @@ -14,8 +15,11 @@
-> #include <rmcl.h>
-> #include <rsmp.h>
->=20
-> -#define EFI_SYSTAB_PATH "/sys/firmware/efi/systab"
-> -#define SYSTAB_LEN 4096         /* assume 4kb is enough...*/
-> +#define EFI_SYSTAB_PATH  "/sys/firmware/efi/systab"
-> +#define SYSTAB_LEN       4096             /* assume 4kb is =
-enough...*/
-> +#define DB_DUMP_DIR      "./rmc_db_dump"  /* directory to store db =
-data dump */
-> +
-> +extern const rmc_uint8_t rmc_db_signature[RMC_DB_SIG_LEN];
-We could have a new small helper API like is_rmcdb(db_blob) in RMCL to =
-hold checker logic at line 357 in this file, so that we can get rid of =
-this line and make the checker reusable. (So far I feel the checker =
-should work in both EFI and Linux contexts.)
-
-We could even update checker API without bothering its callers in the =
-future. Let me know if it makes sense...
-
->=20
-> int read_file(const char *pathname, char **data, rmc_size_t* len) {
->     int fd =3D -1;
-> @@ -325,3 +329,80 @@ int rmc_gimme_file(char* db_pathname, char =
-*file_name, rmc_file_t *file) {
->=20
->     return ret;
-> }
-> +
-> +/*
-> + * Dump contents of database file
-> + * (in) rmc_db - input database file to extract
-rmc_db VS db_pathname. I think we can remove the comment here, it is =
-already in the header file.
-> + */
-> +int dump_db(char *db_pathname) {
-> +    rmc_meta_header_t meta_header;
-> +    rmc_db_header_t *db_header =3D NULL;
-> +    rmc_record_header_t record_header;
-> +    rmc_uint64_t record_idx =3D 0;   /* offset of each reacord in =
-db*/
-> +    rmc_uint64_t meta_idx =3D 0;     /* offset of each meta in a =
-record */
-> +    rmc_uint64_t file_idx =3D 0;     /* offset of file in a meta */
-> +    rmc_file_t file;
-> +    char *out_dir =3D NULL, *out_name =3D NULL;
-> +    rmc_size_t db_len =3D 0;
-> +    rmc_uint8_t *rmc_db =3D NULL;
-> +    struct stat s =3D {0};
-> +
-> +    if (read_file(db_pathname, (char **)&rmc_db, &db_len)) {
-> +        fprintf(stderr, "Failed to read database file\n\n");
-> +        return 1;
-> +    }
-> +
-> +    db_header =3D (rmc_db_header_t *)rmc_db;
-> +
-> +    /* sanity check of db */
-> +    if (strncmp((const char *)db_header->signature,
-> +        (const char *)rmc_db_signature, RMC_DB_SIG_LEN))
-> +        return 1;
-> +
-> +    /* create the top level directory */
-> +    if (stat(DB_DUMP_DIR, &s) =3D=3D -1) {
-> +        if(mkdir(DB_DUMP_DIR, 0755)) {
-> +            fprintf(stderr, "Failed to create %s directory\n\n", =
-out_name);
-I think we should not go any further when we cannot create the top dir.
-> +        }
-> +    }
-> +
-> +    /* query the meta. idx: start of record */
-> +    record_idx =3D sizeof(rmc_db_header_t);
-> +    while (record_idx < db_header->length) {
-> +        memcpy(&record_header, rmc_db + record_idx,
-> +            sizeof(rmc_record_header_t));
-> +
-> +        /* directory name is fingerprint signature */
-> +        asprintf(&out_dir, "%s/%s/", DB_DUMP_DIR, =
-record_header.signature.raw);
-Technically, what we get from firmware could contain any kinds of chars. =
-I guess there are some corner cases when chars are not accepted in a dir =
-name.
-
-> +        if (stat(out_dir, &s) =3D=3D -1) {
-> +            if(mkdir(out_dir, 0755)) {
-> +                fprintf(stderr, "Failed to create %s directory\n\n", =
-out_name);
-out_name -> out_dir
-
-> +            }
-> +        }
-> +
-> +        /* find meta */
-> +        for (meta_idx =3D record_idx + sizeof(rmc_record_header_t);
-> +            meta_idx < record_idx + record_header.length;) {
-> +            memcpy(&meta_header, rmc_db + meta_idx, =
-sizeof(rmc_meta_header_t));
-> +            file_idx =3D meta_idx + sizeof(rmc_meta_header_t);
-> +            rmc_ssize_t name_len =3D strlen((char =
-*)&rmc_db[file_idx]) + 1;
-> +            file.blob =3D &rmc_db[file_idx + name_len];
-> +            file.blob_len =3D meta_header.length - =
-sizeof(rmc_meta_header_t) -
-> +                name_len;
-> +            file.next =3D NULL;
-> +            file.type =3D RMC_GENERIC_FILE;
-> +            asprintf(&out_name, "%s%s", out_dir, (char =
-*)&rmc_db[file_idx]);
-> +            /* write file to dump directory */
-> +            if (write_file((const char *)out_name, file.blob, =
-file.blob_len, 0))
-> +                return 1;
-> +
-> +            /* next meta */
-> +            meta_idx +=3D meta_header.length;
-> +            free(out_name);
-> +        }
-> +        /* next record */
-> +        record_idx +=3D record_header.length;
-> +        free(out_dir);
-> +    }
-> +    return 0;
-> +}
-> diff --git a/src/lib/common/rmcl.c b/src/lib/common/rmcl.c
-> index 67622a0..c996577 100644
-> --- a/src/lib/common/rmcl.c
-> +++ b/src/lib/common/rmcl.c
-> @@ -10,7 +10,7 @@
-> #include <rmc_util.h>
-> #endif
->=20
-> -static const rmc_uint8_t rmc_db_signature[RMC_DB_SIG_LEN] =3D {'R', =
-'M', 'C', 'D', 'B'};
-> +const rmc_uint8_t rmc_db_signature[RMC_DB_SIG_LEN] =3D {'R', 'M', =
-'C', 'D', 'B=E2=80=99};
-Refer to my first comment. And signature should be internal in rmcl.
->=20
-> /* compute a finger to signature which is stored in record
->  * (in) fingerprint : of board, usually generated by rmc tool and rsmp
-> @@ -242,7 +242,6 @@ int query_policy_from_db(rmc_fingerprint_t =
-*fingerprint, rmc_uint8_t *rmc_db, rm
->                         policy->blob_len =3D meta_header.length - =
-sizeof(rmc_meta_header_t) - cmd_name_len;
->                         policy->next =3D NULL;
->                         policy->type =3D type;
-> -
-I usually insert a new line before a return in rmc project as a loose =
-rule, assuming this is an intentional change.
->                         return 0;
->                     }
->                 }
-> diff --git a/src/rmc.c b/src/rmc.c
-> index a051ccf..888cbdb 100644
-> --- a/src/rmc.c
-> +++ b/src/rmc.c
-> @@ -32,6 +32,8 @@
->   "running on\n" \
->     "\t-d: database file to be queried\n" \
->     "\t-o: path and name of output file of a specific command\n\n" \
-> +  "-E: Extract database data to current working directory\n=E2=80=9D =
-\
-I believe user should be able to specify the output dir. DB_DUMP_DIR can =
-serve as the default.
-
-> +    "\t-d: database file to extract\n\n" \
->     "Examples (Steps in an order to add board support into rmc):\n\n" =
-\
->     "1. Generate board fingerprint:\n" \
->     "\t./rmc -F\n\n" \
-> @@ -49,11 +51,12 @@
-> #define RMC_OPT_CAP_R   (1 << 1)
-> #define RMC_OPT_CAP_D   (1 << 2)
-> #define RMC_OPT_CAP_B   (1 << 3)
-> -#define RMC_OPT_F       (1 << 4)
-> -#define RMC_OPT_O       (1 << 5)
-> -#define RMC_OPT_B       (1 << 6)
-> -#define RMC_OPT_D       (1 << 7)
-> -#define RMC_OPT_I       (1 << 8)
-> +#define RMC_OPT_CAP_E   (1 << 4)
-> +#define RMC_OPT_F       (1 << 5)
-> +#define RMC_OPT_O       (1 << 6)
-> +#define RMC_OPT_B       (1 << 7)
-> +#define RMC_OPT_D       (1 << 8)
-> +#define RMC_OPT_I       (1 << 9)
->=20
-> static void usage () {
->     fprintf(stdout, USAGE);
-> @@ -312,7 +315,7 @@ int main(int argc, char **argv){
->     /* parse options */
->     opterr =3D 0;
->=20
-> -    while ((c =3D getopt(argc, argv, "FRD:B:b:f:o:i:d:")) !=3D -1)
-> +    while ((c =3D getopt(argc, argv, "FRED:B:b:f:o:i:d:")) !=3D -1)
->         switch (c) {
->         case 'F':
->             options |=3D RMC_OPT_CAP_F;
-> @@ -320,6 +323,9 @@ int main(int argc, char **argv){
->         case 'R':
->             options |=3D RMC_OPT_CAP_R;
->             break;
-> +        case 'E':
-> +            options |=3D RMC_OPT_CAP_E;
-> +            break;
->         case 'D':
->             /* we don't know number of arguments for this option at =
-this point,
->              * allocate array with argc which is bigger than needed. =
-But we also
-> @@ -393,8 +399,8 @@ int main(int argc, char **argv){
->             break;
->         case '?':
->             if (optopt =3D=3D 'F' || optopt =3D=3D 'R' || optopt =3D=3D =
-'D' || optopt =3D=3D 'B' || \
-> -                    optopt =3D=3D 'b' || optopt =3D=3D 'f' || optopt =
-=3D=3D 'o' || optopt =3D=3D 'd'  \
-> -                    || optopt =3D=3D 'i')
-> +                    optopt =3D=3D 'E' ||  optopt =3D=3D 'b' || optopt =
-=3D=3D 'f' || \
-> +                    optopt =3D=3D 'o' || optopt =3D=3D 'd' || optopt =
-=3D=3D 'i')
->                 fprintf(stderr, "\nWRONG USAGE: -%c\n\n", optopt);
->             else if (isprint(optopt))
->                 fprintf(stderr, "Unknown option `-%c'.\n\n", optopt);
-> @@ -436,6 +442,13 @@ int main(int argc, char **argv){
->         return 1;
->     }
->=20
-> +    /* sanity check for -E */
-> +    if ((options & RMC_OPT_CAP_E) && (!(options & RMC_OPT_D))) {
-> +        fprintf(stderr, "\nERROR: -E requires -d <database file =
-name>\n\n");
-> +        usage();
-> +        return 1;
-> +    }
-> +
->     /* sanity check for -B */
->     if ((options & RMC_OPT_CAP_B) && (!(options & RMC_OPT_D) || =
-!(options & RMC_OPT_O))) {
->         fprintf(stderr, "\nWRONG: -B requires -d and -o\n\n");
-> @@ -448,7 +461,8 @@ int main(int argc, char **argv){
->         rmc_file_t file;
->=20
->         if (!output_path) {
-> -            fprintf(stderr, "-B internal error, with -o but no output =
-pathname specified\n\n");
-> +            fprintf(stderr, "-B internal error, with -o but no output =
-\
-> +                pathname specified\n\n=E2=80=9D);
-Irrelevant change...
->             goto main_free;
->         }
->=20
-> @@ -456,14 +470,22 @@ int main(int argc, char **argv){
->             goto main_free;
->=20
->         if (write_file(output_path, file.blob, file.blob_len, 0)) {
-> -            fprintf(stderr, "-B failed to write file %s to %s\n\n", =
-input_blob_name, output_path);
-> +            fprintf(stderr, "-B failed to write file %s to %s\n\n",
-> +                input_blob_name, output_path);
-Irrelevant change...
->             rmc_free_file(&file);
->             goto main_free;
->         }
-> -
->         rmc_free_file(&file);
->     }
->=20
-> +    /* dump database data */
-> +    if (options & RMC_OPT_CAP_E) {
-> +        if(dump_db(input_db_path_d))
-> +            fprintf(stderr, "\nFailed to extract %s\n\n", =
-input_db_path_d);
-> +        else
-> +            printf("\nSuccessfully extracted %s\n\n", =
-input_db_path_d);
-> +    }
-> +
->     /* generate RMC database file */
->     if (options & RMC_OPT_CAP_D) {
->         int record_idx =3D 0;
-> --=20
-> 2.11.0
->=20
+Tuesday, Feb. 7, 2017 8:00 AM US Pacific Time
 
 
+
+Agenda:
+
+
+
+* Opens collection - 5 min (Stephen)
+
+* Yocto Project status - 5 min (Stephen/team)
+
+https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.3_Status
+
+https://wiki.yoctoproject.org/wiki/Yocto_2.3_Schedule
+
+https://wiki.yoctoproject.org/wiki/Yocto_2.3_Features
+
+* Opens - 10 min
+
+* Team Sharing - 10 min
+
+
+
+We encourage people attending the meeting to logon the Yocto Project IRC ch=
+ancel during the meeting (optional):
+
+
+
+Yocto IRC: http://webchat.freenode.net/?channels=3D#yocto
+
+IRC Tutorial: http://www.irchelp.org/irchelp/irctutorial.html
+
+
+
+Conference Details:
+
+Company:           WIND RIVER SYS
+
+Ready-Access Number: 8007302996/9139049836
+
+Access Code:     2705751
+
+
+For International numbers see: https://www.yoctoproject.org/tools-resources=
+/community/monthly-technical-call
+
+
+Thanks,
+
+Stephen K. Jolley
+Yocto Project Program Manager
+INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
+*   Work Telephone:        (503) 712-0534
+*    Cell:               (208) 244-4460
+* Email:                            stephen.k.jolley@intel.com
+
+
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E573576CDfmsmsx111amrcor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;}
+@font-face
+	{font-family:Verdana;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
+	{mso-style-priority:99;
+	mso-style-link:"Plain Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:10.5pt;
+	font-family:Consolas;
+	mso-fareast-language:EN-US;}
+p
+	{mso-style-priority:99;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;
+	mso-fareast-language:ZH-CN;}
+span.PlainTextChar
+	{mso-style-name:"Plain Text Char";
+	mso-style-priority:99;
+	mso-style-link:"Plain Text";
+	font-family:Consolas;}
+span.EmailStyle20
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">Tuesday, Feb. 7, 2017 8:00 AM US Pacific Time<o:p>=
+</o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas"><o:p>&nbsp;</o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">Agenda:<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">&nbsp;<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">* Opens collection - 5 min (Stephen)<o:p></o:p></s=
+pan></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">* Yocto Project status - 5 min (Stephen/team)<o:p>=
+</o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
+o_Project_v2.3_Status">https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.=
+3_Status</a><o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
+o_2.3_Schedule">https://wiki.yoctoproject.org/wiki/Yocto_2.3_Schedule</a><o=
+:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
+o_2.3_Features">https://wiki.yoctoproject.org/wiki/Yocto_2.3_Features</a>
+<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">* Opens - 10 min
+<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">* Team Sharing - 10 min<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoPlainText">We encourage people attending the meeting to logo=
+n the Yocto Project IRC chancel during the meeting (optional):<o:p></o:p></=
+p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText">Yocto IRC: <a href=3D"http://webchat.freenode.net=
+/?channels=3D#yocto">
+http://webchat.freenode.net/?channels=3D#yocto</a><o:p></o:p></p>
+<p class=3D"MsoPlainText">IRC Tutorial: <a href=3D"http://www.irchelp.org/i=
+rchelp/irctutorial.html">
+http://www.irchelp.org/irchelp/irctutorial.html</a> <o:p></o:p></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText">Conference Details:<o:p></o:p></p>
+<p class=3D"MsoPlainText">Company:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp; WIND RIVER SYS<o:p></o:p></p>
+<p class=3D"MsoPlainText">Ready-Access Number: 8007302996/9139049836<o:p></=
+o:p></p>
+<p class=3D"MsoPlainText">Access Code:&nbsp;&nbsp;&nbsp;&nbsp; 2705751<o:p>=
+</o:p></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.5pt;font-family:&quot;=
+Verdana&quot;,sans-serif;color:black"><o:p>&nbsp;</o:p></span></b></p>
+<p class=3D"MsoPlainText">For International numbers see: <a href=3D"https:/=
+/www.yoctoproject.org/tools-resources/community/monthly-technical-call">
+https://www.yoctoproject.org/tools-resources/community/monthly-technical-ca=
+ll</a><o:p></o:p></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
+><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
+ot;,serif;color:purple">Stephen K. Jolley</span></i></b><b><i><span style=
+=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,sans-serif;color:purple=
+"><o:p></o:p></span></i></b></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
+Courier New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></spa=
+n></b></p>
+<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
+><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
+or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
+<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:Wingdings;color:black">(<=
+/span><span style=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">
+</span><span style=3D"font-size:8.0pt;font-family:&quot;MS Sans Serif&quot;=
+;color:teal">&nbsp;&nbsp;</span><b><span style=3D"font-size:8.0pt;font-fami=
+ly:&quot;Comic Sans MS&quot;;color:teal">Work Telephone</span></b><span sty=
+le=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
+">(503) 712-0534<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
+;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
+ans Serif&quot;;color:teal">&nbsp;&nbsp;&nbsp;
+</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
+ot;;color:teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&=
+quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
+">(208) 244-4460<span style=3D"color:black"><o:p></o:p></span></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
+">* </span>
+<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
+MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
+.0pt;font-family:&quot;MS Sans Serif&quot;;color:teal">:</span><span lang=
+=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;">&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;
+<u><span style=3D"color:blue">stephen.k.jolley@intel.com</span></u></span><=
+span lang=3D"FR" style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,sa=
+ns-serif"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
+
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E573576CDfmsmsx111amrcor_--
