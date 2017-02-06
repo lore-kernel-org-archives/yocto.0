@@ -1,81 +1,26 @@
-Return-Path: <peter.spierenburg@nautel.com>
+Return-Path: <recipe-report@yoctoproject.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CD873E008D7; Sun,  5 Feb 2017 06:20:35 -0800 (PST)
+	id ACF27E009A7; Sun,  5 Feb 2017 21:37:38 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [104.47.37.128 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 1946 seconds by postgrey-1.32 at yocto-www;
-	Sun, 05 Feb 2017 06:20:32 PST
-Received: from NAM02-CY1-obe.outbound.protection.outlook.com
-	(mail-cys01nam02on0128.outbound.protection.outlook.com
-	[104.47.37.128])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1B036E0073C
-	for <yocto@yoctoproject.org>; Sun,  5 Feb 2017 06:20:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=nautel.onmicrosoft.com; s=selector1-nautel-com;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
-	bh=u7CacJ0vHf7oVjhZ37ZDx9eW1CSnAunm8d8kD2gBtK0=;
-	b=CS9iaNf1JMknMaMx9UyGoG4goxqBH5ar3w5WHRgr3kovEt7HVXqQzkuNliMYDc2k6GDMGA8KopZcprJR0sL/tRrsVHiRUWp7ZQ688P9wuldO+aDBuxgUm9X935paf6BopkYERD5FLHvYOYLX5gVik9c+dyMIdji+1mCYVw7k0EY=
-Received: from BN6PR05MB2851.namprd05.prod.outlook.com (10.168.255.136) by
-	BN6PR05MB2851.namprd05.prod.outlook.com (10.168.255.136) with Microsoft
-	SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
-	15.1.888.5; Sun, 5 Feb 2017 13:48:04 +0000
-Received: from BN6PR05MB2851.namprd05.prod.outlook.com ([10.168.255.136]) by
-	BN6PR05MB2851.namprd05.prod.outlook.com ([10.168.255.136]) with mapi id
-	15.01.0888.022; Sun, 5 Feb 2017 13:48:04 +0000
-From: Peter Spierenburg <peter.spierenburg@nautel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: I am getting an error when I try to do a build that includes
-	docker. 
-Thread-Index: AQHSf7X7BEIvCDuu5EuPuPaDQdy1sg==
-Date: Sun, 5 Feb 2017 13:48:04 +0000
-Message-ID: <BN6PR05MB2851F21407B50335281BC88C9E410@BN6PR05MB2851.namprd05.prod.outlook.com>
-Accept-Language: en-CA, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=peter.spierenburg@nautel.com; 
-x-originating-ip: [71.7.217.59]
-x-ms-office365-filtering-correlation-id: 1c345e9f-b83d-4210-402c-08d44dcd9bd8
-x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:(22001);SRVR:BN6PR05MB2851;
-x-microsoft-exchange-diagnostics: 1; BN6PR05MB2851;
-	7:p49/wO90LapOegqP0IRSO2rBy2ruwa6H8gOi902X5BrxCYTnyVXGAAVTAcQ2oZStnYXNfdCFpychf6r4N7KyzD6ssmNA1C/aViAGuw4GfKHy+Dd+FUhrCHvWPbzDwPInDhdX8m2CjZDQRhAy6ByZDrIEH5EKeVfS/CfDIBUlF31r6NG1RMmslbEXDS0wiIFKRbmXJUXkEpJ18tN/2hGm5yfsEWZLbRC5Zw9pdgkqbSw4aIZYvYskd5exRP/osJ0GH4+Y7i8fY7WyIa/IOGgJbukgOTWZyR+R5g3g7RMv4Oq6Z+Oa1O/rdiQVPpBPAXhC4p0pjQlGyFCb5UZhdfaF4NLPNBldZG1X80L0v37lF1AVWBXEkqR1m9aYJd77NThYyPsGRFrGfby5Nhh3d6xB32GgSZElT4z9metpiYq93/xuEc3otPrNyoGhG3CXd7wUqdYQyAhbg/e1cH8RYSWFpPidDLvSRJ10r0OxGXwYffPg8FoYLqNQfBu7x80wHTrKWE8z9zWJBlNBfXJ7tqize9Di5k3KGpVLD/o7yTWAZOExsWSFNQOJiSG7B9ysfo3l
-x-microsoft-antispam-prvs: <BN6PR05MB2851F67653C01D5964F4B4669E410@BN6PR05MB2851.namprd05.prod.outlook.com>
-x-exchange-antispam-report-test: UriScan:;
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(6040375)(601004)(2401047)(8121501046)(20170203043)(5005006)(10201501046)(3002001)(6041248)(20161123560025)(20161123558025)(20161123555025)(20161123562025)(20161123564025)(6072148);
-	SRVR:BN6PR05MB2851; BCL:0; PCL:0; RULEID:; SRVR:BN6PR05MB2851; 
-x-forefront-prvs: 0209425D0A
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10019020)(6009001)(7916002)(39450400003)(199003)(189002)(5660300001)(3846002)(2906002)(102836003)(6116002)(53936002)(6436002)(6916009)(3280700002)(92566002)(7696004)(189998001)(122556002)(6606003)(68736007)(2900100001)(86362001)(110136003)(50986999)(54356999)(107886002)(2501003)(450100001)(3660700001)(101416001)(9686003)(7736002)(25786008)(33656002)(105586002)(6506006)(55016002)(74316002)(54896002)(66066001)(99286003)(38730400001)(97736004)(19627405001)(77096006)(5640700003)(106356001)(8676002)(2351001)(8936002)(1730700003)(81156014)(81166006)(106116001)(161833001);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:BN6PR05MB2851;
-	H:BN6PR05MB2851.namprd05.prod.outlook.com; FPR:; SPF:None;
-	PTR:InfoNoRecords; A:1; MX:1; LANG:en; 
-received-spf: None (protection.outlook.com: nautel.com does not designate
-	permitted sender hosts)
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from packages.yoctoproject.org (unknown [198.145.29.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5D8E0E009A0
+	for <yocto@yoctoproject.org>; Sun,  5 Feb 2017 21:37:35 -0800 (PST)
+Received: from packages.yoctoproject.org (localhost [IPv6:::1])
+	by packages.yoctoproject.org (Postfix) with ESMTP id 3D5FD84AC33B
+	for <yocto@yoctoproject.org>; Mon,  6 Feb 2017 00:37:35 -0500 (EST)
 MIME-Version: 1.0
-X-OriginatorOrg: nautel.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Feb 2017 13:48:04.2005 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 656f830c-eb88-49fe-90f1-433363ec7ccf
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR05MB2851
-Subject: I am getting an error when I try to do a build that includes docker.
+From: recipe-report@yoctoproject.org
+To: yocto@yoctoproject.org
+Date: Mon, 06 Feb 2017 05:37:35 -0000
+Message-ID: <20170206053735.30056.8905@packages.yoctoproject.org>
+Subject: [Recipe reporting system] Upgradable recipe name list
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -87,124 +32,151 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 05 Feb 2017 14:20:35 -0000
-Content-Language: en-CA
-Content-Type: multipart/alternative;
-	boundary="_000_BN6PR05MB2851F21407B50335281BC88C9E410BN6PR05MB2851namp_"
+X-List-Received-Date: Mon, 06 Feb 2017 05:37:38 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
---_000_BN6PR05MB2851F21407B50335281BC88C9E410BN6PR05MB2851namp_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+This mail was sent out by Recipe reporting system.
 
-I am trying to build yocto/poky so that it includes docker. However, I get =
-the following error. It appears to indicate that i586 is not supported by d=
-ocker. Is this the case?
+This message list those recipes which need to be upgraded. If maintainers
+believe some of them needn't to upgrade at this time, they can fill
+RECIPE_NO_UPDATE_REASON in respective recipe file to ignore this remainder
+until newer upstream version was detected.
 
-ERROR: docker-1.9.0+git76d6bc9a9f1690e16f3721ba165364688b626de2-r0 do_compi=
-le: Function failed: do_compile (log file is located at /home/peter/gaia-qe=
-mu-master/poky/build/tmp/work/i586-poky-linux/docker/1.9.0+git76d6bc9a9f169=
-0e16f3721ba165364688b626de2-r0/temp/log.do_compile.31224)
-ERROR: Logfile of failure stored in: /home/peter/gaia-qemu-master/poky/buil=
-d/tmp/work/i586-poky-linux/docker/1.9.0+git76d6bc9a9f1690e16f3721ba16536468=
-8b626de2-r0/temp/log.do_compile.31224
-Log data follows:
-| DEBUG: Executing shell function do_compile
-| /home/peter/gaia-qemu-master/poky/build/tmp/work/i586-poky-linux/docker/1=
-.9.0+git76d6bc9a9f1690e16f3721ba165364688b626de2-r0/git
-| # WARNING! I don't seem to be running in the Docker container.
-| # The result of this command might be an incorrect build, and will not be
-| #   officially supported.
-| #
-| # Try this instead: make all
-| #
-|
-| ---> Making bundle: dynbinary (in bundles/1.9.0/dynbinary)
-| # runtime/internal/sys
-| compile: unknown architecture "i586"
-| WARNING: exit code 2 from a shell command.
-| ERROR: Function failed: do_compile (log file is located at /home/peter/ga=
-ia-qemu-master/poky/build/tmp/work/i586-poky-linux/docker/1.9.0+git76d6bc9a=
-9f1690e16f3721ba165364688b626de2-r0/temp/log.do_compile.31224)
-ERROR: Task 263 (/home/peter/gaia-qemu-master/poky/build/../meta-virtualiza=
-tion/recipes-containers/docker/docker_git.bb, do_compile) failed with exit =
-code '1'
-NOTE: Tasks Summary: Attempted 3076 tasks of which 3060 didn't need to be r=
-erun and 1 failed.
-Waiting for 0 running tasks to finish:
+Example:
+RECIPE_NO_UPDATE_REASON = "Version 2.0 is unstable"
 
-Summary: 1 task failed:
-  /home/peter/gaia-qemu-master/poky/build/../meta-virtualization/recipes-co=
-ntainers/docker/docker_git.bb, do_compile
-Summary: There was 1 WARNING message shown.
-Summary: There was 1 ERROR message shown, returning a non-zero exit code.
+You can check the detail information at:
+
+http://recipes.yoctoproject.org/
+
+Package               Version       Upstream version      Maintainer           NoUpgradeReason
+--------------------  ------------  --------------------  -------------------  ------------------------------
+python3               3.5.2         3.6.0                 Alejandro Hernandez
+python                2.7.12        2.7.13                Alejandro Hernandez
+eudev                 3.2           3.2.1                 Alejandro Hernandez
+python-native         2.7.12        2.7.13                Alejandro Hernandez
+python3-native        3.5.2         3.6.0                 Alejandro Hernandez
+liberation-fonts      1.04          2.00.1                Alexander Kanavin    2.x depends on fontforge pa...
+boost                 1.62.0        1.63.0                Alexander Kanavin
+openssl               1.0.2k        1.1.0d                Alexander Kanavin
+ed                    1.9           4.2.2                 Alexander Kanavin
+gnutls                3.5.7         3.5.8                 Alexander Kanavin
+bjam-native           1.62.0        1.63.0                Alexander Kanavin
+libiconv              1.14          1.15                  Alexander Kanavin
+libnl                 3.2.28        3.2.29                Alexander Kanavin
+kbd                   2.0.3         2.0.4                 Alexander Kanavin
+gperf                 3.0.4         3.1                   Alexander Kanavin
+nss                   3.27.1        3.28.1                Alexander Kanavin
+webkitgtk             2.14.2        2.14.3                Alexander Kanavin
+lighttpd              1.4.43        1.4.45                Alexander Kanavin
+bash-completion       2.4           2.5                   Alexander Kanavin
+btrfs-tools           4.8.5         4.9.1                 Alexander Kanavin
+cmake                 3.7.1         3.7.2                 Alexander Kanavin
+cmake-native          3.7.1         3.7.2                 Alexander Kanavin
+iso-codes             3.72          3.74                  Alexander Kanavin
+epiphany              3.22.3        3.22.6                Alexander Kanavin
+libwebp               0.5.1         0.6.0                 Alexander Kanavin
+mkelfimage            4.0+gitX      4.5+gitAUTOINC+0b...  Alexander Kanavin    mkelfimage has been removed...
+perl                  5.24.0        5.24.1                Aníbal Limón
+dpkg                  1.18.7        1.18.22               Aníbal Limón
+perl-native           5.24.0        5.24.1                Aníbal Limón
+pinentry              0.9.2         1.0.0                 Armin Kuster
+linux-libc-headers    4.9           4.9.8                 Bruce Ashfield
+libunwind             1.1+gitX      1.2+gitAUTOINC+cc...  Bruce Ashfield
+linux-yocto-dev       4.9-rc++gitX  4.9.6                 Bruce Ashfield
+busybox               1.25.0+gitX   1.26.2+gitAUTOINC...  Chen Qi
+byacc                 20161202      20170201              Chen Qi
+cups                  2.2.1         2.2.2                 Chen Qi
+flex                  2.6.2         2.6.3                 Chen Qi
+util-linux            2.29          2.29.1                Chen Qi
+sed                   4.2.2         4.4                   Chen Qi
+sudo                  1.8.18p1      1.8.19p2              Chen Qi
+sysstat               11.5.3        11.5.4                Chen Qi
+xz                    5.2.2         5.2.3                 Chen Qi
+build-appliance-i...  15.0.0        16.0.0                Cristian Iorga
+chkconfig             1.3.58        1.8                   Dengke Du            Version 1.5 requires selinux
+ltp                   20160126      20170116              Dengke Du
+dosfstools            4.0           4.1                   Dengke Du
+swig                  3.0.11        3.0.12                Edwin Plauchu
+python3-setuptools    32.1.1        34.1.1                Edwin Plauchu
+python-setuptools     32.1.1        34.1.1                Edwin Plauchu
+pax-utils             1.1.6         1.2.2                 Hongxu Jia
+createrepo            0.4.11        0.10.4                Hongxu Jia           Versions after 0.9.* use YU...
+socat                 1.7.3.1       1.7.3.2               Hongxu Jia
+elfutils              0.166         0.168                 Hongxu Jia
+gpgme                 1.6.0         1.8.0                 Hongxu Jia
+libgcrypt             1.7.3         1.7.6                 Hongxu Jia
+libgpg-error          1.25          1.26                  Hongxu Jia
+bash                  4.3.30        4.4                   Hongxu Jia
+ncurses               6.0+20160625  6.0+20161126          Hongxu Jia
+man-pages             4.08          4.09                  Hongxu Jia
+rpcbind               0.2.3         0.2.4                 Hongxu Jia
+gnupg                 2.1.14        2.1.18                Hongxu Jia
+libinput              1.6.0         1.6.1                 Jussi Kukkonen
+wayland               1.12.0        1.12.91               Jussi Kukkonen
+weston                1.11.1        1.99.91               Jussi Kukkonen
+xauth                 1.0.9         1.0.10                Jussi Kukkonen
+util-macros           1.19.0        1.19.1                Jussi Kukkonen
+libevent              2.0.22        2.1.8                 Jussi Kukkonen
+xkeyboard-config      2.19          2.20                  Jussi Kukkonen
+vte                   0.44.2        0.46.1                Jussi Kukkonen
+presentproto          1.0+gitX      1.1+gitAUTOINC+bf...  Jussi Kukkonen
+gdk-pixbuf            2.36.1        2.36.4                Jussi Kukkonen
+libdrm                2.4.74        2.4.75                Jussi Kukkonen
+menu-cache            1.0.1         1.0.2                 Jussi Kukkonen
+gmp                   6.1.1         6.1.2                 Khem Raj
+gdb                   7.12          7.12.1                Khem Raj
+ruby                  2.3.3         2.4.0                 Leonardo Sandoval
+libusb1               1.0.20        1.0.21                Leonardo Sandoval
+nfs-utils             1.3.4         2.1.1                 Mariano Lopez
+prelink               1.0+gitX      20151030.+gitAUTO...  Mark Hatle
+db                    6.0.35        6.2.23                Mark Hatle           latest db does not work wit...
+rpm                   5.4.16        5.4.17                Mark Hatle
+libpfm4               4.6.0         4.8.0                 Matthew McClintock
+ifupdown              0.8.16        0.8.19                Maxin B. John
+iptables              1.6.0         1.6.1                 Maxin B. John
+screen                4.4.0         4.5.0                 Maxin B. John
+harfbuzz              1.4.1         1.4.2                 Maxin B. John
+gstreamer1.0-vaapi    1.10.3        1.11.1                No maintainer
+gdb-cross-canadia...  7.12          7.12.1                No maintainer
+gdb-cross-i586        7.12          7.12.1                No maintainer
+gnu-efi               3.0.4         3.0.5                 Robert Yang
+strace                4.14          4.15                  Robert Yang
+libpcre               8.39          8.40                  Robert Yang
+hdparm                9.50          9.51                  Robert Yang
+m4                    1.4.17        1.4.18                Robert Yang
+slang                 2.3.1         2.3.1a                Robert Yang
+e2fsprogs             1.43.3        1.43.4                Robert Yang
+wget                  1.18          1.19                  Robert Yang
+git                   2.11.0        2.11.1                Robert Yang
+mklibs-native         0.1.41        0.1.43                Robert Yang
+base-passwd           3.5.29        3.5.43                Ross Burton          Version 3.5.38 requires cde...
+lsbinitscripts        9.68          9.69                  Ross Burton
+alsa-lib              1.1.2         1.1.3                 Tanu Kaskinen
+pulseaudio            9.0           10.0                  Tanu Kaskinen
+
+Upgradable count: 97
+Upgradable total count: 103
+
+The based commit is:
+
+commit 7da04721a620ad741ea50adf116e6b5afd47caa5
+Author: Khem Raj <raj.khem@gmail.com>
+Date:   Fri Feb 3 14:45:26 2017 -0800
+
+    gcc-6: Sync gcc stddef.h with musl stddef.h
+    
+    GCC provides some of std* headers including stddef.h
+    and it syncs with glibc definitions via __needed* defines
+    to find which datatypes are expected to be defined on top
+    of glibc. we need same for musl.
+    
+    Drop unused 0048-ARM-PR-target-71056-Don-t-use-vectorized-builtins-wh.patch
+    
+    Signed-off-by: Khem Raj <raj.khem@gmail.com>
+    Signed-off-by: Ross Burton <ross.burton@intel.com>
+
+Any problem, please contact Anibal Limon <anibal.limon@intel.com> 
 
 
---_000_BN6PR05MB2851F21407B50335281BC88C9E410BN6PR05MB2851namp_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
-</head>
-<body dir=3D"ltr">
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
--family:Calibri,Arial,Helvetica,sans-serif;" dir=3D"ltr">
-<p></p>
-<div>I am trying to build yocto/poky so that it includes docker. However, I=
- get the following error. It appears to indicate that i586 is not supported=
- by docker. Is this the case?</div>
-<div><br>
-</div>
-<div>ERROR: docker-1.9.0&#43;git76d6bc9a9f1690e16f3721ba165364688b626de2-r0=
- do_compile: Function failed: do_compile (log file is located at /home/pete=
-r/gaia-qemu-master/poky/build/tmp/work/i586-poky-linux/docker/1.9.0&#43;git=
-76d6bc9a9f1690e16f3721ba165364688b626de2-r0/temp/log.do_compile.31224)</div=
->
-<div>ERROR: Logfile of failure stored in: /home/peter/gaia-qemu-master/poky=
-/build/tmp/work/i586-poky-linux/docker/1.9.0&#43;git76d6bc9a9f1690e16f3721b=
-a165364688b626de2-r0/temp/log.do_compile.31224</div>
-<div>Log data follows:</div>
-<div>| DEBUG: Executing shell function do_compile</div>
-<div>| /home/peter/gaia-qemu-master/poky/build/tmp/work/i586-poky-linux/doc=
-ker/1.9.0&#43;git76d6bc9a9f1690e16f3721ba165364688b626de2-r0/git</div>
-<div>| # WARNING! I don't seem to be running in the Docker container.</div>
-<div>| # The result of this command might be an incorrect build, and will n=
-ot be</div>
-<div>| # &nbsp; officially supported.</div>
-<div>| #</div>
-<div>| # Try this instead: make all</div>
-<div>| #</div>
-<div>|&nbsp;</div>
-<div>| ---&gt; Making bundle: dynbinary (in bundles/1.9.0/dynbinary)</div>
-<div>| # runtime/internal/sys</div>
-<div>| compile: unknown architecture &quot;i586&quot;</div>
-<div>| WARNING: exit code 2 from a shell command.</div>
-<div>| ERROR: Function failed: do_compile (log file is located at /home/pet=
-er/gaia-qemu-master/poky/build/tmp/work/i586-poky-linux/docker/1.9.0&#43;gi=
-t76d6bc9a9f1690e16f3721ba165364688b626de2-r0/temp/log.do_compile.31224)</di=
-v>
-<div>ERROR: Task 263 (/home/peter/gaia-qemu-master/poky/build/../meta-virtu=
-alization/recipes-containers/docker/docker_git.bb, do_compile) failed with =
-exit code '1'</div>
-<div>NOTE: Tasks Summary: Attempted 3076 tasks of which 3060 didn't need to=
- be rerun and 1 failed.</div>
-<div>Waiting for 0 running tasks to finish:</div>
-<div><br>
-</div>
-<div>Summary: 1 task failed:</div>
-<div>&nbsp; /home/peter/gaia-qemu-master/poky/build/../meta-virtualization/=
-recipes-containers/docker/docker_git.bb, do_compile</div>
-<div>Summary: There was 1 WARNING message shown.</div>
-<div>Summary: There was 1 ERROR message shown, returning a non-zero exit co=
-de.</div>
-<br>
-<p></p>
-</div>
-</body>
-</html>
-
---_000_BN6PR05MB2851F21407B50335281BC88C9E410BN6PR05MB2851namp_--
