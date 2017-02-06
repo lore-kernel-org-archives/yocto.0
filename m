@@ -1,60 +1,35 @@
-Return-Path: <pj0585@gmail.com>
+Return-Path: <jussi.kukkonen@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1192CE00992; Mon,  6 Feb 2017 03:27:48 -0800 (PST)
+	id 64516E00992; Mon,  6 Feb 2017 03:38:20 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (pj0585[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.82.42 listed in dnsbl.sorbs.net]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.42 listed in list.dnswl.org]
-Received: from mail-wm0-f42.google.com (mail-wm0-f42.google.com [74.125.82.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 41108E007BA
-	for <yocto@yoctoproject.org>; Mon,  6 Feb 2017 03:27:45 -0800 (PST)
-Received: by mail-wm0-f42.google.com with SMTP id v77so110735948wmv.0
-	for <yocto@yoctoproject.org>; Mon, 06 Feb 2017 03:27:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=iXNeooBDS38AO32SKAI75ZnlEF0gVVVH1qOtHIZhsNQ=;
-	b=dMUIvTt/F2NVbE4LX0TGGdzFBBNC0eC/YcZfd1gmDcnbMAlxFF2OsuA5HhFqmJoyGG
-	C41tF4O+z3rM0vR57prbIt6cimIqocUnEkM8PC3c/9Q4+PpQBVcxl2bUz7ES8NaI0UEZ
-	bZ8KgOihMqnogI6AjEpDQXspvQhETFkz2K8zija1N376D9h1zXGNb5AnS+1xsq/G1S1f
-	Ea2yCRI+hTXzpj5LneCSmz3+JJzj/F4BDM8RHStve9NtGOnxMKSnRwPSj3gz2iry0fV8
-	zeVZT61oXKsPitL5ZMPV7auuasOGoyLMmZqIR9mY+JSHmmte+bnSDTqEE/8EeuLim9eS
-	xDGQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=iXNeooBDS38AO32SKAI75ZnlEF0gVVVH1qOtHIZhsNQ=;
-	b=B6Z3qzmSAPJIV8TZxnEGZp/wZm4XPBo9QuHCqx6wc4LmMNa+BnfGxvWjhMwlX13dDw
-	U2ci9Am3R9/UdLFOyTnZUNvOFsbeBI2O4SNfmaUydqXiXqCr0N7cud/GcRZi8S7wrn49
-	7rQqrnwUIrMW0Z2YlHD8nCqHLxk2o01v6tnPu7JR9aNAcWzzbVJXuht1LexJkZfcZ6Pt
-	WbH3hX2+blZj0EUCv32RjO2TMdVv/EW/9suho20TOhUZF1FPOSewS/KdhNomIhvkJ3P0
-	ZpGxI3+oWHRwyt70WMnlAoezkxxaAHwcr76nsNYsy/kZd8q8JfJsgSnphJjCUYckFdtg
-	6uMw==
-X-Gm-Message-State: AMke39kAjTK7ORMYdX3BULR6oebQchIcttMTYXkxgKtVV4+ZSrYsBn6V9FnxIVkbBqPOI73/htBWbjvzE0L7WQ==
-X-Received: by 10.28.220.135 with SMTP id t129mr8958030wmg.97.1486380464569;
-	Mon, 06 Feb 2017 03:27:44 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.28.130.137 with HTTP; Mon, 6 Feb 2017 03:27:44 -0800 (PST)
-From: Prasant J <pj0585@gmail.com>
-Date: Mon, 6 Feb 2017 16:57:44 +0530
-Message-ID: <CAA2DH4sy_BxdFqVRa=R5VC7BAuSNqu-mwGPdTxXsZoh7k+p2ag@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: Build only one specific C source from git clone with many C files
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [134.134.136.20 listed in list.dnswl.org]
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 41A21E007BA
+	for <yocto@yoctoproject.org>; Mon,  6 Feb 2017 03:38:14 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by orsmga101.jf.intel.com with ESMTP; 06 Feb 2017 03:38:13 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.33,342,1477983600"; d="scan'208";a="1122672646"
+Received: from linux.intel.com ([10.54.29.200])
+	by fmsmga002.fm.intel.com with ESMTP; 06 Feb 2017 03:38:13 -0800
+Received: from theory.fi.intel.com (theory.fi.intel.com [10.237.72.53])
+	by linux.intel.com (Postfix) with ESMTP id 9F32D6A4080;
+	Mon,  6 Feb 2017 03:37:12 -0800 (PST)
+From: Jussi Kukkonen <jussi.kukkonen@intel.com>
+To: yocto@yoctoproject.org,
+	srifenbark@gmail.com
+Date: Mon,  6 Feb 2017 13:38:04 +0200
+Message-Id: <1486381084-21415-1-git-send-email-jussi.kukkonen@intel.com>
+X-Mailer: git-send-email 2.1.4
+Subject: [PATCH][yocto-docs] poky.ent: Fix Debian essential packages
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,20 +41,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 06 Feb 2017 11:27:48 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Mon, 06 Feb 2017 11:38:20 -0000
 
-Hi,
+pip3, pexpect do not exist on any Debian version. Replace with
+python3-pip, python3-pexpect.
 
-I want to build only spidev_test.c from kernel sources
-(kernel/Documentation/spi/spidev_test.c)
+Signed-off-by: Jussi Kukkonen <jussi.kukkonen@intel.com>
+---
+ documentation/poky.ent | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Is it possible to modify SRC_URI to take only one source file from a
-git clone and build it?
+diff --git a/documentation/poky.ent b/documentation/poky.ent
+index 46e1137..e7d76bd 100644
+--- a/documentation/poky.ent
++++ b/documentation/poky.ent
+@@ -61,7 +61,7 @@
+ <!ENTITY OE_INIT_PATH "&YOCTO_POKY;/oe-init-build-env">
+ <!ENTITY OE_INIT_FILE "oe-init-build-env">
+ <!ENTITY UBUNTU_HOST_PACKAGES_ESSENTIAL "gawk wget git-core diffstat unzip texinfo gcc-multilib \
+-     build-essential chrpath socat cpio python python3 pip3 pexpect">
++     build-essential chrpath socat cpio python python3 python3-pip python3-pexpect">
+ <!ENTITY FEDORA_HOST_PACKAGES_ESSENTIAL "gawk make wget tar bzip2 gzip python3 unzip perl patch \
+      diffutils diffstat git cpp gcc gcc-c++ glibc-devel texinfo chrpath \
+      ccache perl-Data-Dumper perl-Text-ParseWords perl-Thread-Queue perl-bignum socat \
+-- 
+2.1.4
 
-
-Any inputs will be of help!
-
-
-Regards, Pj
 
