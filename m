@@ -1,49 +1,37 @@
-Return-Path: <stephen.k.jolley@intel.com>
+Return-Path: <todor.minchev@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3195AE0082E; Mon,  6 Feb 2017 13:23:48 -0800 (PST)
+	id E001BE0082E; Mon,  6 Feb 2017 14:21:54 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.115 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D4828E007AD
-	for <yocto@yoctoproject.org>; Mon,  6 Feb 2017 13:23:45 -0800 (PST)
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-	by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	06 Feb 2017 13:23:45 -0800
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [134.134.136.65 listed in list.dnswl.org]
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 85208E007AD;
+	Mon,  6 Feb 2017 14:21:48 -0800 (PST)
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+	by orsmga103.jf.intel.com with ESMTP; 06 Feb 2017 14:21:39 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.33,342,1477983600"; 
-	d="scan'208,217";a="817775756"
-Received: from fmsmsx107.amr.corp.intel.com ([10.18.124.205])
-	by FMSMGA003.fm.intel.com with ESMTP; 06 Feb 2017 13:23:44 -0800
-Received: from fmsmsx115.amr.corp.intel.com (10.18.116.19) by
-	fmsmsx107.amr.corp.intel.com (10.18.124.205) with Microsoft SMTP Server
-	(TLS) id 14.3.248.2; Mon, 6 Feb 2017 13:23:44 -0800
-Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.234]) by
-	fmsmsx115.amr.corp.intel.com ([169.254.4.4]) with mapi id
-	14.03.0248.002; Mon, 6 Feb 2017 13:23:44 -0800
-From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Reminder: Yocto Project Technical Team Meeting - Tuesday, Feb
-	7, 2017 8:00 AM US Pacific Time
-Thread-Index: AdKAvzNd/T6JdCTJQZa4xPDJjDRnhA==
-Date: Mon, 6 Feb 2017 21:23:44 +0000
-Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155E573576CD@fmsmsx111.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.1.200.108]
-x-ctpclassification: CTP_IC
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiZmZkMzlhNzItMGJmNS00Y2E2LTk5NzAtNTRiY2Y0ZDk5MDhlIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX0lDIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE1LjkuNi42IiwiVHJ1c3RlZExhYmVsSGFzaCI6IndBY2FYblBvVFdZVElSOFlNRFBPamdVeWhCYjV1RjB3QTR5V0RXXC9KdjNrPSJ9
-MIME-Version: 1.0
-Subject: Reminder: Yocto Project Technical Team Meeting - Tuesday, Feb 7, 2017 8:00 AM US Pacific Time
+X-IronPort-AV: E=Sophos;i="5.33,342,1477983600"; d="scan'208";a="930846710"
+Received: from unknown (HELO speedy) ([10.7.197.100])
+	by orsmga003.jf.intel.com with ESMTP; 06 Feb 2017 14:21:39 -0800
+Message-ID: <1486419699.42955.147.camel@linux.intel.com>
+From: Todor Minchev <todor.minchev@linux.intel.com>
+To: Jianxun Zhang <jianxun.zhang@linux.intel.com>
+Date: Mon, 06 Feb 2017 14:21:39 -0800
+In-Reply-To: <AE0DC8C0-0FD1-4CEF-93CD-1C68966B5C9F@linux.intel.com>
+References: <20170202223712.8164-1-todor.minchev@linux.intel.com>
+	<20170202223712.8164-2-todor.minchev@linux.intel.com>
+	<AE0DC8C0-0FD1-4CEF-93CD-1C68966B5C9F@linux.intel.com>
+X-Mailer: Evolution 3.12.9-1+b1 
+Mime-Version: 1.0
+Cc: meta-intel@yoctoproject.org, yocto@yoctoproject.org
+Subject: Re: [PATCH 1/3] Makefile: add verbosity and debug options to Makefile
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,274 +43,120 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 06 Feb 2017 21:23:48 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155E573576CDfmsmsx111amrcor_"
+X-List-Received-Date: Mon, 06 Feb 2017 22:21:55 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E573576CDfmsmsx111amrcor_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+On Mon, 2017-02-06 at 11:06 -0800, Jianxun Zhang wrote:
+> Todor,
+> Please refer to my 2 inline comments.
+> 
+> > On Feb 2, 2017, at 2:37 PM, Todor Minchev <todor.minchev@linux.intel.com> wrote:
+> > 
+> > By default Makefile verbosity is disabled (V=0). Verbosity can be enabled by
+> > setting the V environment variable to any value not equal to 0 (e.g V=1)
+> > 
+> > Example:
+> > make clean V=1; make V=1
+> > 
+> > A debug version of the rmc binary can be built by using the debug
+> > Makefile target. This will include debug symbols and will disable compiler
+> > optimizations when compiling rmc.
+> > 
+> > Example:
+> > 
+> > make debug
+> > 
+> > Signed-off-by: Todor Minchev <todor.minchev@linux.intel.com>
+> > ---
+> > Makefile | 31 +++++++++++++++++++++----------
+> > 1 file changed, 21 insertions(+), 10 deletions(-)
+> > 
+> > diff --git a/Makefile b/Makefile
+> > index 9ade775..d85d8e9 100644
+> > --- a/Makefile
+> > +++ b/Makefile
+> > @@ -1,5 +1,12 @@
+> > # Copyright (C) 2016 Jianxun Zhang <jianxun.zhang@intel.com>
+> > 
+> > +V ?= 0
+> > +ifeq ($(V),0)
+> > +  VERBOSITY = @
+> > +else
+> > +  VERBOSITY =
+> > +endif
+> > +
+> I am thinking maybe we should remove ‘@‘ in rules and use -s option of make (in recipe) when we want to mute the output. This should reach the same effect without bothering new variables.
+> 
+> We still enable/disable output as a whole anyway.
+> 
+> Let me know if this proposal works for you.
 
-Tuesday, Feb. 7, 2017 8:00 AM US Pacific Time
+Sounds good. Removing the @ will make it possible to toggle the
+verbosity with 'make -s' without introducing any extra variables. 
+
+> 
+> > TOPDIR = $(shell if [ -z "$$PWD" ]; then pwd; else echo "$$PWD"; fi)
+> > 
+> > RMC_TOOL_SRC := $(wildcard src/*.c)
+> > @@ -20,28 +27,32 @@ RMC_INSTALL_HEADER_PATH := $(RMC_INSTALL_PREFIX)/include/rmc/
+> > 
+> > ALL_OBJS := $(RMC_TOOL_OBJ) $(RMC_LIB_OBJ)
+> > 
+> > +
+> > RMC_CFLAGS := -Wall -I$(TOPDIR)/inc
+> > 
+> > all: rmc
+> > +debug: RMC_CFLAGS += -DDEBUG -g -O0
+> > +debug: rmc
+> I am not sure if this is necessary because we already have CFLAGS. I think you can reach the same effect without adding a new debug target:
+> make CFLAGS='-DDEBUG -g -O0’
+> 
+
+Yup, the above will have the same effect as 'make debug'.
+I thought that 'make debug' might be a convenient way to build a debug
+binary? Do you think it makes sense to keep this extra target for
+convenience since it doesn't affect the other usages of make?
+
+> also refer to commit e8b48e6 in rmc project.
+> 
+> > 
+> > $(ALL_OBJS): %.o: %.c
+> > -	@$(CC) -c $(CFLAGS) $(RMC_CFLAGS) $< -o $@
+> > +	$(VERBOSITY)$(CC) -c $(CFLAGS) $(RMC_CFLAGS) $< -o $@
+> > 
+> > librmc: $(RMC_LIB_OBJ)
+> > -	@$(AR) rcs src/lib/$@.a $^
+> > +	$(VERBOSITY)$(AR) rcs src/lib/$@.a $^
+> > 
+> > rmc: $(RMC_TOOL_OBJ) librmc
+> > -	@$(CC) $(CFLAGS) $(RMC_CFLAGS) -Lsrc/lib/ -lrmc $(RMC_TOOL_OBJ) src/lib/librmc.a -o src/$@
+> > +	$(VERBOSITY)$(CC) $(CFLAGS) $(RMC_CFLAGS) -Lsrc/lib/ -lrmc $(RMC_TOOL_OBJ) \
+> > +  src/lib/librmc.a -o src/$@
+> > 
+> > clean:
+> > -	@rm -f $(ALL_OBJS) src/rmc src/lib/librmc.a
+> > +	$(VERBOSITY)rm -f $(ALL_OBJS) src/rmc src/lib/librmc.a
+> > 
+> > .PHONY: clean rmc librmc
+> > 
+> > install:
+> > -	@mkdir -p $(RMC_INSTALL_BIN_PATH)
+> > -	@install -m 755 src/rmc $(RMC_INSTALL_BIN_PATH)
+> > -	@mkdir -p $(RMC_INSTALL_LIB_PATH)
+> > -	@install -m 644 src/lib/librmc.a $(RMC_INSTALL_LIB_PATH)
+> > -	@mkdir -p $(RMC_INSTALL_HEADER_PATH)
+> > -	@install -m 644 $(RMC_INSTALL_HEADERS) $(RMC_INSTALL_HEADER_PATH)
+> > +	$(VERBOSITY)mkdir -p $(RMC_INSTALL_BIN_PATH)
+> > +	$(VERBOSITY)install -m 755 src/rmc $(RMC_INSTALL_BIN_PATH)
+> > +	$(VERBOSITY)mkdir -p $(RMC_INSTALL_LIB_PATH)
+> > +	$(VERBOSITY)install -m 644 src/lib/librmc.a $(RMC_INSTALL_LIB_PATH)
+> > +	$(VERBOSITY)mkdir -p $(RMC_INSTALL_HEADER_PATH)
+> > +	$(VERBOSITY)install -m 644 $(RMC_INSTALL_HEADERS) $(RMC_INSTALL_HEADER_PATH)
+> > -- 
+> > 2.11.0
+> > 
+> 
 
 
 
-Agenda:
-
-
-
-* Opens collection - 5 min (Stephen)
-
-* Yocto Project status - 5 min (Stephen/team)
-
-https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.3_Status
-
-https://wiki.yoctoproject.org/wiki/Yocto_2.3_Schedule
-
-https://wiki.yoctoproject.org/wiki/Yocto_2.3_Features
-
-* Opens - 10 min
-
-* Team Sharing - 10 min
-
-
-
-We encourage people attending the meeting to logon the Yocto Project IRC ch=
-ancel during the meeting (optional):
-
-
-
-Yocto IRC: http://webchat.freenode.net/?channels=3D#yocto
-
-IRC Tutorial: http://www.irchelp.org/irchelp/irctutorial.html
-
-
-
-Conference Details:
-
-Company:           WIND RIVER SYS
-
-Ready-Access Number: 8007302996/9139049836
-
-Access Code:     2705751
-
-
-For International numbers see: https://www.yoctoproject.org/tools-resources=
-/community/monthly-technical-call
-
-
-Thanks,
-
-Stephen K. Jolley
-Yocto Project Program Manager
-INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-*   Work Telephone:        (503) 712-0534
-*    Cell:               (208) 244-4460
-* Email:                            stephen.k.jolley@intel.com
-
-
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E573576CDfmsmsx111amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Consolas;
-	panose-1:2 11 6 9 2 2 4 3 2 4;}
-@font-face
-	{font-family:Verdana;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:"Comic Sans MS";
-	panose-1:3 15 7 2 3 3 2 2 2 4;}
-@font-face
-	{font-family:"MS Sans Serif";}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
-	{mso-style-priority:99;
-	mso-style-link:"Plain Text Char";
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:10.5pt;
-	font-family:Consolas;
-	mso-fareast-language:EN-US;}
-p
-	{mso-style-priority:99;
-	mso-margin-top-alt:auto;
-	margin-right:0in;
-	mso-margin-bottom-alt:auto;
-	margin-left:0in;
-	font-size:12.0pt;
-	font-family:"Times New Roman",serif;
-	mso-fareast-language:ZH-CN;}
-span.PlainTextChar
-	{mso-style-name:"Plain Text Char";
-	mso-style-priority:99;
-	mso-style-link:"Plain Text";
-	font-family:Consolas;}
-span.EmailStyle20
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">Tuesday, Feb. 7, 2017 8:00 AM US Pacific Time<o:p>=
-</o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><o:p>&nbsp;</o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">Agenda:<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">&nbsp;<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* Opens collection - 5 min (Stephen)<o:p></o:p></s=
-pan></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* Yocto Project status - 5 min (Stephen/team)<o:p>=
-</o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
-o_Project_v2.3_Status">https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.=
-3_Status</a><o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
-o_2.3_Schedule">https://wiki.yoctoproject.org/wiki/Yocto_2.3_Schedule</a><o=
-:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
-o_2.3_Features">https://wiki.yoctoproject.org/wiki/Yocto_2.3_Features</a>
-<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* Opens - 10 min
-<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* Team Sharing - 10 min<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoPlainText">We encourage people attending the meeting to logo=
-n the Yocto Project IRC chancel during the meeting (optional):<o:p></o:p></=
-p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">Yocto IRC: <a href=3D"http://webchat.freenode.net=
-/?channels=3D#yocto">
-http://webchat.freenode.net/?channels=3D#yocto</a><o:p></o:p></p>
-<p class=3D"MsoPlainText">IRC Tutorial: <a href=3D"http://www.irchelp.org/i=
-rchelp/irctutorial.html">
-http://www.irchelp.org/irchelp/irctutorial.html</a> <o:p></o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">Conference Details:<o:p></o:p></p>
-<p class=3D"MsoPlainText">Company:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp; WIND RIVER SYS<o:p></o:p></p>
-<p class=3D"MsoPlainText">Ready-Access Number: 8007302996/9139049836<o:p></=
-o:p></p>
-<p class=3D"MsoPlainText">Access Code:&nbsp;&nbsp;&nbsp;&nbsp; 2705751<o:p>=
-</o:p></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:8.5pt;font-family:&quot;=
-Verdana&quot;,sans-serif;color:black"><o:p>&nbsp;</o:p></span></b></p>
-<p class=3D"MsoPlainText">For International numbers see: <a href=3D"https:/=
-/www.yoctoproject.org/tools-resources/community/monthly-technical-call">
-https://www.yoctoproject.org/tools-resources/community/monthly-technical-ca=
-ll</a><o:p></o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
-ot;,serif;color:purple">Stephen K. Jolley</span></i></b><b><i><span style=
-=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,sans-serif;color:purple=
-"><o:p></o:p></span></i></b></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
-Courier New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></spa=
-n></b></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
-or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-<o:p></o:p></span></b></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Wingdings;color:black">(<=
-/span><span style=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">
-</span><span style=3D"font-size:8.0pt;font-family:&quot;MS Sans Serif&quot;=
-;color:teal">&nbsp;&nbsp;</span><b><span style=3D"font-size:8.0pt;font-fami=
-ly:&quot;Comic Sans MS&quot;;color:teal">Work Telephone</span></b><span sty=
-le=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-">(503) 712-0534<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
-ans Serif&quot;;color:teal">&nbsp;&nbsp;&nbsp;
-</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
-ot;;color:teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&=
-quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-">(208) 244-4460<span style=3D"color:black"><o:p></o:p></span></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-">* </span>
-<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
-MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
-.0pt;font-family:&quot;MS Sans Serif&quot;;color:teal">:</span><span lang=
-=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;">&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;
-<u><span style=3D"color:blue">stephen.k.jolley@intel.com</span></u></span><=
-span lang=3D"FR" style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,sa=
-ns-serif"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
-
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E573576CDfmsmsx111amrcor_--
