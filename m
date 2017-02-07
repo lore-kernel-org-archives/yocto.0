@@ -1,61 +1,49 @@
-Return-Path: <marc.ferland@gmail.com>
+Return-Path: <donaldx.wilde@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8BAE7E009A7; Tue,  7 Feb 2017 11:20:11 -0800 (PST)
+	id 51B44E008D0; Tue,  7 Feb 2017 09:42:57 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (marc.ferland[at]gmail.com)
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [134.134.136.31 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.217.169 listed in dnsbl.sorbs.net]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.217.169 listed in list.dnswl.org]
-Received: from mail-ua0-f169.google.com (mail-ua0-f169.google.com
-	[209.85.217.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 003A9E00924
-	for <yocto@yoctoproject.org>; Tue,  7 Feb 2017 11:20:10 -0800 (PST)
-Received: by mail-ua0-f169.google.com with SMTP id i68so92285908uad.0
-	for <yocto@yoctoproject.org>; Tue, 07 Feb 2017 11:20:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=G6eatGBu1OzXwDcni6T8GKm2Qxx/c5HKsBhwk/1A31E=;
-	b=u4mrAnDPLJ6P1mlSZMbMPV22t+MuDU0sgpxeq60bld2luDxvws1DJlfDee9JFj6OR5
-	kXobS0aEYqr39l3+rH7SPMRCGwHvkm9eafTGCupKoXXfjXhdmA0SAdJ9x3c+c7E3NcT9
-	9EMZMbM2MMF7QXnjL44IkZwfKbvnZ5k9WRNdKLxGECfOix0LlgOkbScUR9Sk58FGHSCn
-	beyBh1hGkgmhYh9hT0ScZLblpxkUxpCzfKqbQSYRsUNwn2xxJQI59HzqWmpwRbVQK1AO
-	PJU+Vm4Bjy8gABbNtAcObcJM1fmIYwDs6nM/lJwiabgvYp4Gc6XevRN807WdAEZZ36LP
-	QaDw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=G6eatGBu1OzXwDcni6T8GKm2Qxx/c5HKsBhwk/1A31E=;
-	b=UJtyalt3g78bpcxOg3chopIQOw7tL3/qiE3hwH3hm0GyepVeIg9ByM4aJWEDijSCi8
-	8sMcMdQZpDiNRNLc0IQGaCRxt3vFkkyL7vH78vA45PObb69DnPgriKRy4BL9dFavk9DU
-	ePPhLtoYVXRyEywvyuCsEZm1WJZHCjS6Gd0ridPgqHXdzGZbEC7sOyxMpB2fnLpWH5gR
-	s47P/jK1vdQDXCbnHvKDP7g40v8TGUnMxpYyzs98uFenOc/ynt5o1X32VLaMQUtdU3gn
-	zGlcp//7Hveggtpn+Zgk+P93QVstrFBdTusmxSRqLDZJAsMYxLrJWwgCKvjXp38UK25w
-	c+ig==
-X-Gm-Message-State: AMke39lJqtezO5Ue7+ebOKDKR+3JctA5pmZYAldxF8d3yan25Oj9/9GQkF+faLGY/bAvsaowft3Izeil65jMxw==
-X-Received: by 10.159.34.105 with SMTP id 96mr8636898uad.84.1486495209909;
-	Tue, 07 Feb 2017 11:20:09 -0800 (PST)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 255F7E00655
+	for <yocto@yoctoproject.org>; Tue,  7 Feb 2017 09:42:53 -0800 (PST)
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+	by orsmga104.jf.intel.com with ESMTP; 07 Feb 2017 09:42:53 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.33,346,1477983600"; d="scan'208,217";a="61905650"
+Received: from fmsmsx103.amr.corp.intel.com ([10.18.124.201])
+	by orsmga005.jf.intel.com with ESMTP; 07 Feb 2017 09:42:52 -0800
+Received: from FMSMSX110.amr.corp.intel.com (10.18.116.10) by
+	FMSMSX103.amr.corp.intel.com (10.18.124.201) with Microsoft SMTP Server
+	(TLS) id 14.3.248.2; Tue, 7 Feb 2017 09:42:52 -0800
+Received: from fmsmsx106.amr.corp.intel.com ([169.254.5.63]) by
+	FMSMSX110.amr.corp.intel.com ([169.254.14.203]) with mapi id
+	14.03.0248.002; Tue, 7 Feb 2017 09:42:52 -0800
+From: "Wilde, DonaldX" <donaldx.wilde@intel.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+Thread-Topic: [yocto] Installing iperf3 causes strange image corruption
+Thread-Index: AdJ8xzXqXI6BrB6TQ+qOEs+rjz9rxgE5EGCAABCFbxA=
+Date: Tue, 7 Feb 2017 17:42:51 +0000
+Message-ID: <6CE91E52E49AA047A2349BA2FF8E4BCA1546B2CC@FMSMSX106.amr.corp.intel.com>
+References: <6CE91E52E49AA047A2349BA2FF8E4BCA1546AA31@FMSMSX106.amr.corp.intel.com>
+	<CAJTo0LZ6PsPyW1ahJqikBucqFyhvRz_tXZa=2+R5NjiTu9CMvg@mail.gmail.com>
+In-Reply-To: <CAJTo0LZ6PsPyW1ahJqikBucqFyhvRz_tXZa=2+R5NjiTu9CMvg@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.1.200.107]
 MIME-Version: 1.0
-Received: by 10.103.17.131 with HTTP; Tue, 7 Feb 2017 11:20:09 -0800 (PST)
-From: Marc Ferland <marc.ferland@gmail.com>
-Date: Tue, 7 Feb 2017 14:20:09 -0500
-Message-ID: <CAMRMzCDUQnK3f+xe0sGrYZPrf7LuWXf8EnGUWYoD1q2e7UTQxg@mail.gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Removing/Disabling /etc/version
+X-Mailman-Approved-At: Tue, 07 Feb 2017 11:56:06 -0800
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Installing iperf3 causes strange image corruption
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,17 +55,134 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 07 Feb 2017 19:20:11 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Tue, 07 Feb 2017 17:42:57 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_6CE91E52E49AA047A2349BA2FF8E4BCA1546B2CCFMSMSX106amrcor_"
 
-Hi,
+--_000_6CE91E52E49AA047A2349BA2FF8E4BCA1546B2CCFMSMSX106amrcor_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Easy question!
+TXkgYmFkLCBSb3NzLiBJIG1lYW50IElNQUdFX0lOU1RBTEwuIE11c3QgaGF2ZSBiZWVuIGxleGR5
+c2ljIHRoZSBvdGhlciBkYXkuIOKYug0KDQpGcm9tOiBCdXJ0b24sIFJvc3MgW21haWx0bzpyb3Nz
+LmJ1cnRvbkBpbnRlbC5jb21dDQpTZW50OiBUdWVzZGF5LCBGZWJydWFyeSA3LCAyMDE3IDEwOjM0
+IEFNDQpUbzogV2lsZGUsIERvbmFsZFggPGRvbmFsZHgud2lsZGVAaW50ZWwuY29tPg0KQ2M6IHlv
+Y3RvQHlvY3RvcHJvamVjdC5vcmcNClN1YmplY3Q6IFJlOiBbeW9jdG9dIEluc3RhbGxpbmcgaXBl
+cmYzIGNhdXNlcyBzdHJhbmdlIGltYWdlIGNvcnJ1cHRpb24NCg0KDQpPbiAxIEZlYnJ1YXJ5IDIw
+MTcgYXQgMjA6MjgsIFdpbGRlLCBEb25hbGRYIDxkb25hbGR4LndpbGRlQGludGVsLmNvbTxtYWls
+dG86ZG9uYWxkeC53aWxkZUBpbnRlbC5jb20+PiB3cm90ZToNClVuZm9ydHVuYXRlbHksIHdoYXQg
+aGFwcGVucyBpcyB0aGF0IHNvbWV3aGVyZSBhbG9uZyB0aGUgbGluZSBhZnRlciB0aGUgaW5pdGlh
+bCBwYXRjaCBhbmQgY29tcGlsYXRpb24sIHNvbWV0aGluZyBpbiBvdXIgaW1hZ2UgZ2V0cyByYWRp
+Y2FsbHkgY29ycnVwdGVkLiBXaXRoIElNQUdFX0lOQ0xVREUgKz0g4oCcaXBlcmYz4oCdIHNldCwg
+dGhlIGltYWdlIGlzIGNvcnJ1cHRlZC4gSG9ycmlibGUgcmVzdWx0cyBvY2N1ciBpbmNsdWRpbmcg
+dGhhdCBtdWNoIG9mIG91ciBOVlJBTSBjb250ZW50IGJlY29tZXMgaW52aXNpYmxlIGFuZCB3ZSBn
+ZXQgZHVtcGVkIGludG8gc29tZSBraW5kIG9mIGVtZXJnZW5jeSBkZWJ1Z2dpbmcgc2hlbGwgYWZ0
+ZXIgYWJvdXQgNi4zIHNlY29uZHMuDQouLi4NCnN0YXJ0aW5nIHBpZCAxMzYzLCB0dHkgJyc6ICcv
+ZXRjL2luaXQuZC9yY1MnDQpjYW4ndCBydW4gJy9ldGMvaW5pdC5kL3JjUyc6IE5vIHN1Y2ggZmls
+ZSBvciBkaXJlY3RvcnkNCg0KSU1BR0VfSU5DTFVERSBpc24ndCBhIHN0YW5kYXJkIHZhcmlhYmxl
+LCBzbyBlaXRoZXIgeW91IHR5cG8nZCB0aGF0IG9yIGl0J3MgYSB2YXJpYWJsZSB0aGF0ICB5b3Vy
+IGltYWdlcyB1c2UuICBFaXRoZXIgd2F5LCB5b3VyIGVycm9yIGlzIGJhc2ljYWxseSAidGhlIHJv
+b3RmcyBpcyBidXN0IiBzbyBpdCdzIHF1aXRlIHBvc3NpYmxlIHRoYXQgYnkgYXNzaWduaW5nIHRv
+IElNQUdFX0lOQ0xVREUgZnJvbSB5b3VyIGxvY2FsLmNvbmYgbWF5IGJlIG92ZXJyaWRpbmcgdGhl
+IGRlZmF1bHQgdmFsdWUgKHNldCBieSA/PSkuDQoNCkZvciBleGFtcGxlLCBpZiB5b3UgbWVhbnQg
+SU1BR0VfSU5TVEFMTCB0aGVuIGltYWdlLmJiY2xhc3MgdXNlcyBJTUFHRV9JTlNUQUxMID89IHNv
+IGJ5IGRvaW5nICs9aXBlcmYzLCB5b3UncmUgYnVpbGRpbmcgYW4gaW1hZ2UgdGhhdCAqanVzdCog
+Y29udGFpbnMgaXBlcmYzLg0KDQpUcnkgdXNpbmcgSU1BR0VfSU5TVEFMTF9hcHBlbmQgPSAiIGlw
+ZXJmMyIuDQoNClJvc3MNCg==
 
-I would like to disable the /etc/version file from being installed to
-the rootfs. How do I proceed? It looks hard-coded at first glance...?
+--_000_6CE91E52E49AA047A2349BA2FF8E4BCA1546B2CCFMSMSX106amrcor_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Regards,
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+V2luZ2RpbmdzOw0KCXBhbm9zZS0xOjUgMCAwIDAgMCAwIDAgMCAwIDA7fQ0KQGZvbnQtZmFjZQ0K
+CXtmb250LWZhbWlseToiQ2FtYnJpYSBNYXRoIjsNCglwYW5vc2UtMToyIDQgNSAzIDUgNCA2IDMg
+MiA0O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1
+IDUgMiAyIDIgNCAzIDIgNDt9DQovKiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3JtYWws
+IGxpLk1zb05vcm1hbCwgZGl2Lk1zb05vcm1hbA0KCXttYXJnaW46MGluOw0KCW1hcmdpbi1ib3R0
+b206LjAwMDFwdDsNCglmb250LXNpemU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5OiJUaW1lcyBOZXcg
+Um9tYW4iLHNlcmlmO30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsNCgl7bXNvLXN0eWxlLXBy
+aW9yaXR5Ojk5Ow0KCWNvbG9yOmJsdWU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQph
+OnZpc2l0ZWQsIHNwYW4uTXNvSHlwZXJsaW5rRm9sbG93ZWQNCgl7bXNvLXN0eWxlLXByaW9yaXR5
+Ojk5Ow0KCWNvbG9yOnB1cnBsZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCnNwYW4u
+RW1haWxTdHlsZTE3DQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFsLXJlcGx5Ow0KCWZvbnQtZmFt
+aWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0KCWNvbG9yOiMxRjQ5N0Q7fQ0KLk1zb0NocERlZmF1
+bHQNCgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9ubHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmki
+LHNhbnMtc2VyaWY7fQ0KQHBhZ2UgV29yZFNlY3Rpb24xDQoJe3NpemU6OC41aW4gMTEuMGluOw0K
+CW1hcmdpbjoxLjBpbiAxLjBpbiAxLjBpbiAxLjBpbjt9DQpkaXYuV29yZFNlY3Rpb24xDQoJe3Bh
+Z2U6V29yZFNlY3Rpb24xO30NCi0tPjwvc3R5bGU+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8
+bzpzaGFwZWRlZmF1bHRzIHY6ZXh0PSJlZGl0IiBzcGlkbWF4PSIxMDI2IiAvPg0KPC94bWw+PCFb
+ZW5kaWZdLS0+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWxheW91dCB2OmV4dD0i
+ZWRpdCI+DQo8bzppZG1hcCB2OmV4dD0iZWRpdCIgZGF0YT0iMSIgLz4NCjwvbzpzaGFwZWxheW91
+dD48L3htbD48IVtlbmRpZl0tLT4NCjwvaGVhZD4NCjxib2R5IGxhbmc9IkVOLVVTIiBsaW5rPSJi
+bHVlIiB2bGluaz0icHVycGxlIj4NCjxkaXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFz
+cz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTom
+cXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+TXkgYmFkLCBSb3Nz
+LiBJIG1lYW50IElNQUdFX0lOU1RBTEwuIE11c3QgaGF2ZSBiZWVuIGxleGR5c2ljIHRoZSBvdGhl
+ciBkYXkuDQo8L3NwYW4+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6
+V2luZ2RpbmdzO2NvbG9yOiMxRjQ5N0QiPko8L3NwYW4+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTox
+MS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMx
+RjQ5N0QiPjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFu
+IHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDss
+c2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250
+LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWYiPkZyb206PC9zcGFuPjwvYj48
+c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1
+b3Q7LHNhbnMtc2VyaWYiPiBCdXJ0b24sIFJvc3MgW21haWx0bzpyb3NzLmJ1cnRvbkBpbnRlbC5j
+b21dDQo8YnI+DQo8Yj5TZW50OjwvYj4gVHVlc2RheSwgRmVicnVhcnkgNywgMjAxNyAxMDozNCBB
+TTxicj4NCjxiPlRvOjwvYj4gV2lsZGUsIERvbmFsZFggJmx0O2RvbmFsZHgud2lsZGVAaW50ZWwu
+Y29tJmd0Ozxicj4NCjxiPkNjOjwvYj4geW9jdG9AeW9jdG9wcm9qZWN0Lm9yZzxicj4NCjxiPlN1
+YmplY3Q6PC9iPiBSZTogW3lvY3RvXSBJbnN0YWxsaW5nIGlwZXJmMyBjYXVzZXMgc3RyYW5nZSBp
+bWFnZSBjb3JydXB0aW9uPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPk9u
+IDEgRmVicnVhcnkgMjAxNyBhdCAyMDoyOCwgV2lsZGUsIERvbmFsZFggJmx0OzxhIGhyZWY9Im1h
+aWx0bzpkb25hbGR4LndpbGRlQGludGVsLmNvbSIgdGFyZ2V0PSJfYmxhbmsiPmRvbmFsZHgud2ls
+ZGVAaW50ZWwuY29tPC9hPiZndDsgd3JvdGU6PG86cD48L286cD48L3A+DQo8YmxvY2txdW90ZSBz
+dHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLWxlZnQ6c29saWQgI0NDQ0NDQyAxLjBwdDtwYWRkaW5n
+OjBpbiAwaW4gMGluIDYuMHB0O21hcmdpbi1sZWZ0OjQuOHB0O21hcmdpbi1yaWdodDowaW4iPg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1t
+YXJnaW4tYm90dG9tLWFsdDphdXRvIj5VbmZvcnR1bmF0ZWx5LCB3aGF0IGhhcHBlbnMgaXMgdGhh
+dCBzb21ld2hlcmUgYWxvbmcgdGhlIGxpbmUgYWZ0ZXIgdGhlIGluaXRpYWwgcGF0Y2ggYW5kIGNv
+bXBpbGF0aW9uLCBzb21ldGhpbmcgaW4gb3VyIGltYWdlIGdldHMgcmFkaWNhbGx5IGNvcnJ1cHRl
+ZC4gV2l0aCBJTUFHRV9JTkNMVURFICYjNDM7PSDigJxpcGVyZjPigJ0NCiBzZXQsIHRoZSBpbWFn
+ZSBpcyBjb3JydXB0ZWQuIEhvcnJpYmxlIHJlc3VsdHMgb2NjdXIgaW5jbHVkaW5nIHRoYXQgbXVj
+aCBvZiBvdXIgTlZSQU0gY29udGVudCBiZWNvbWVzIGludmlzaWJsZSBhbmQgd2UgZ2V0IGR1bXBl
+ZCBpbnRvIHNvbWUga2luZCBvZiBlbWVyZ2VuY3kgZGVidWdnaW5nIHNoZWxsIGFmdGVyIGFib3V0
+IDYuMyBzZWNvbmRzLjxvOnA+PC9vOnA+PC9wPg0KPC9ibG9ja3F1b3RlPg0KPGRpdj4NCjxwIGNs
+YXNzPSJNc29Ob3JtYWwiPi4uLiAmbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGJsb2Nr
+cXVvdGUgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci1sZWZ0OnNvbGlkICNDQ0NDQ0MgMS4wcHQ7
+cGFkZGluZzowaW4gMGluIDBpbiA2LjBwdDttYXJnaW4tbGVmdDo0LjhwdDttYXJnaW4tcmlnaHQ6
+MGluIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0
+bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+c3RhcnRpbmcgcGlkIDEzNjMsIHR0eSAnJzog
+Jy9ldGMvaW5pdC5kL3JjUyc8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0
+eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+
+Y2FuJ3QgcnVuICcvZXRjL2luaXQuZC9yY1MnOiBObyBzdWNoIGZpbGUgb3IgZGlyZWN0b3J5PG86
+cD48L286cD48L3A+DQo8L2Jsb2NrcXVvdGU+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
+Pjxicj4NCklNQUdFX0lOQ0xVREUgaXNuJ3QgYSBzdGFuZGFyZCB2YXJpYWJsZSwgc28gZWl0aGVy
+IHlvdSB0eXBvJ2QgdGhhdCBvciBpdCdzIGEgdmFyaWFibGUgdGhhdCAmbmJzcDt5b3VyIGltYWdl
+cyB1c2UuJm5ic3A7IEVpdGhlciB3YXksIHlvdXIgZXJyb3IgaXMgYmFzaWNhbGx5ICZxdW90O3Ro
+ZSByb290ZnMgaXMgYnVzdCZxdW90OyBzbyBpdCdzIHF1aXRlIHBvc3NpYmxlIHRoYXQgYnkgYXNz
+aWduaW5nIHRvIElNQUdFX0lOQ0xVREUgZnJvbSB5b3VyIGxvY2FsLmNvbmYgbWF5IGJlIG92ZXJy
+aWRpbmcNCiB0aGUgZGVmYXVsdCB2YWx1ZSAoc2V0IGJ5ID89KS48bzpwPjwvbzpwPjwvcD4NCjwv
+ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0K
+PC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+Rm9yIGV4YW1wbGUsIGlmIHlvdSBt
+ZWFudCBJTUFHRV9JTlNUQUxMIHRoZW4gaW1hZ2UuYmJjbGFzcyB1c2VzIElNQUdFX0lOU1RBTEwg
+Pz0gc28gYnkgZG9pbmcgJiM0Mzs9aXBlcmYzLCB5b3UncmUgYnVpbGRpbmcgYW4gaW1hZ2UgdGhh
+dCAqanVzdCogY29udGFpbnMgaXBlcmYzLjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+
+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5UcnkgdXNpbmcgSU1BR0VfSU5TVEFMTF9hcHBlbmQgPSAm
+cXVvdDsgaXBlcmYzJnF1b3Q7LjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIj5Sb3NzPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9k
+aXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
 
-Marc
-
+--_000_6CE91E52E49AA047A2349BA2FF8E4BCA1546B2CCFMSMSX106amrcor_--
