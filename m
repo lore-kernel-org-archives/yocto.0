@@ -1,41 +1,39 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
+Return-Path: <rpjday@crashcourse.ca>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A11F2E00935; Tue,  7 Feb 2017 06:00:48 -0800 (PST)
+	id DB575E00935; Tue,  7 Feb 2017 06:31:53 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [208.80.204.86 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
-	*      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 49FC7E0083C
-	for <yocto@yoctoproject.org>; Tue,  7 Feb 2017 06:00:46 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id v17E0gYc011897
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Tue, 7 Feb 2017 06:00:42 -0800 (PST)
-Received: from [128.224.56.214] (128.224.56.214) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.294.0;
-	Tue, 7 Feb 2017 06:00:41 -0800
-To: David Vincent <freesilicon@gmail.com>, Yocto Project Discussion
-	<yocto@yoctoproject.org>
-References: <20170125103759.15880-1-freesilicon@gmail.com>
-	<1710687.9RfHKcS4U3@crde-port-20.cahors.local>
-	<503ef641-856e-a831-d39e-2c33b3b2440d@windriver.com>
-	<2822590.mQdJjHCjeH@crde-port-20.cahors.local>
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-Message-ID: <186bf3c4-a317-34f5-7f6d-cc0e8ae2f233@windriver.com>
-Date: Tue, 7 Feb 2017 09:00:41 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.7.0
+Received: from smtp486.redcondor.net (smtp486.redcondor.net [208.80.204.86])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9BD5EE0083C
+	for <yocto@yoctoproject.org>; Tue,  7 Feb 2017 06:31:49 -0800 (PST)
+Received: from astoria.ccjclearline.com ([64.235.106.9])
+	by smtp486.redcondor.net ({6695537a-536a-45f9-a249-877c85428649})
+	via TCP (outbound) with ESMTPS id 20170207143148135_0486
+	for <yocto@yoctoproject.org>; Tue, 07 Feb 2017 14:31:48 +0000
+X-RC-FROM: <rpjday@crashcourse.ca>
+X-RC-RCPT: <yocto@yoctoproject.org>
+Received: from [216.191.234.70] (port=44320 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1cb6o2-0003QZ-6I
+	for yocto@yoctoproject.org; Tue, 07 Feb 2017 09:31:42 -0500
+Date: Tue, 7 Feb 2017 09:31:40 -0500 (EST)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@uk63952.mitel.com
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.LFD.2.20.1702070921520.13830@uk63952.mitel.com>
+User-Agent: Alpine 2.20 (LFD 67 2015-01-07)
 MIME-Version: 1.0
-In-Reply-To: <2822590.mQdJjHCjeH@crde-port-20.cahors.local>
-Subject: Re: [yocto-kernel-tools][PATCH 0/1] Rework merge of feature branches
+X-MAG-OUTBOUND: ccj.redcondor.net@64.235.106.9/32
+Subject: is there a list somewhere of OE/YP-supported system perf/monitoring tools?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,34 +45,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 07 Feb 2017 14:00:48 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Tue, 07 Feb 2017 14:31:53 -0000
+Content-Type: text/plain; charset=US-ASCII
 
-On 2017-02-07 06:21 AM, David Vincent wrote:
-> On vendredi 3 février 2017 13:51:34 CET Bruce Ashfield wrote:
->>
->> I was able to merge branches with this patch applied to Morty.
->>
->> Cheers,
->>
->> Bruce
->>
-> I've just successfully tested it on Morty myself. Works for me too, branches
-> are merged just like they were before !
 
-Good news!
+  colleague asked me for a list of OE/YP recipes for monitoring system
+performance/resource utilization/profiling, i'm unaware of any single
+list that tracks that sort of thing so i'll just ask what people are
+aware of. just off the top of my head:
 
-I'll send the patch to the morty maintainer so it can be merged.
+ * sysstat
+ * atop
+ * collectd
+ * netdata
+ * rrdtool
+ * dstat
 
-Cheers,
+i'm going to stop there since that's just a sample list. what other
+recipes should be added to that list that people find spectacularly
+useful? thanks.
 
-Bruce
+rday
 
->
-> Thank you
-> David
->
->
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
 
