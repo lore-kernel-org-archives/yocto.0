@@ -1,47 +1,63 @@
-Return-Path: <stephen.k.jolley@intel.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D0B83E006C6; Tue,  7 Feb 2017 08:27:35 -0800 (PST)
+	id 3FE5DE0085D; Tue,  7 Feb 2017 09:34:43 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [134.134.136.100 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.220.178 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6C399E00566
-	for <yocto@yoctoproject.org>; Tue,  7 Feb 2017 08:27:33 -0800 (PST)
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-	by orsmga105.jf.intel.com with ESMTP; 07 Feb 2017 08:27:31 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.33,346,1477983600"; d="scan'208,217";a="61868731"
-Received: from fmsmsx103.amr.corp.intel.com ([10.18.124.201])
-	by orsmga005.jf.intel.com with ESMTP; 07 Feb 2017 08:27:19 -0800
-Received: from fmsmsx124.amr.corp.intel.com (10.18.125.39) by
-	FMSMSX103.amr.corp.intel.com (10.18.124.201) with Microsoft SMTP Server
-	(TLS) id 14.3.248.2; Tue, 7 Feb 2017 08:27:19 -0800
-Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.234]) by
-	fmsmsx124.amr.corp.intel.com ([169.254.8.190]) with mapi id
-	14.03.0248.002; Tue, 7 Feb 2017 08:27:19 -0800
-From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Minutes: Yocto Project Technical Team Meeting - Tuesday, Feb
-	7, 2017 8:00 AM US Pacific Time
-Thread-Index: AdKBWt6kWtr2LUkvTrmq0NVtsZB2UA==
-Date: Tue, 7 Feb 2017 16:27:18 +0000
-Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155E573584DF@fmsmsx111.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ctpclassification: CTP_IC
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiNjFlOTNlNzItN2RlNS00NWVmLTkyM2EtNDAxY2M5MDZjY2NkIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX0lDIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE1LjkuNi42IiwiVHJ1c3RlZExhYmVsSGFzaCI6Ik5cL0ZhRUtTd3dOTUg4QW5ZMWVicmlWbzloUTVLbVFha3h2MENvSFwvXC9vQVE9In0=
-x-originating-ip: [10.1.200.107]
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.220.178 listed in dnsbl.sorbs.net]
+Received: from mail-qk0-f178.google.com (mail-qk0-f178.google.com
+	[209.85.220.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ED21EE00655
+	for <yocto@yoctoproject.org>; Tue,  7 Feb 2017 09:34:40 -0800 (PST)
+Received: by mail-qk0-f178.google.com with SMTP id s186so95604620qkb.1
+	for <yocto@yoctoproject.org>; Tue, 07 Feb 2017 09:34:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=tMOqCOsLa6oc79v/5vEd4eUx1AUyOfFbNzjmaZxvVQU=;
+	b=WT29xOpvnvtfOmuc2nA1das6obxkN4eUYGdacOP7JNMk9Syr5s70RoLZciH20eSUlo
+	38/CyITnfMxSR2CYs67QYCjfZWeg8JKuX0ePv7YFNn2ZdI7ktuJfVHXo1NHEgBSaSYYb
+	QyKppOLEkW25XmktgfdqD/+PNsyJlrA+Py4WNuYbIpV9W0IVq5WPDnxqKH7Ihzr4cSY7
+	56NvdvhoyjpTHJhXLuvaHCJUTvAp1RkOgpHNIbODbcJiuHDfhHLnNStOUUYh8nOviuE7
+	Rpv7rEKi0DfVUi5IUNc5jcJzPbyvNv9fd3s6jAUzjf0fP6bl5m2ItJi0AoxXflqY5QGB
+	SnXg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=tMOqCOsLa6oc79v/5vEd4eUx1AUyOfFbNzjmaZxvVQU=;
+	b=UjznGufmi1Ny8JI3fqGHXCK+EtNzQV/f6lEpzr2F83qEXhjsW7j9ivZTbUUyZahYAO
+	ovIv5t+B4XRdI5LfB00IctbD0T0b5qS6L73adTZm7iI1x4rf2uB25f+xSAGFPEdUOvAP
+	s29CiE9gCCT+3q4+l5h+75/flAVi4EKpKK+H7j/4RVSOUU0U6ewr2V/PvuQzKA5ARq/7
+	tRPs688Qb7WHevWFtnh5O58PRG6J/bdEZ32H6jqC7P2TtoJL/bde/GgsAiuYMtNFLUAX
+	bd0XRBlqH5x/ZEsxvkn3N1k/tVWNWx1cj7O+ELoUOYdTpdxo00Jnb27DemA2MP8O/Vr1
+	qemw==
+X-Gm-Message-State: AMke39nkCuSsTs9ycCYGfJaiGCyA2lPwMb4NsqHp/zsiEQ4EElihr2Z4kpdYBZGqU4MgQsN4qbwrt+ecR3w5sJvj
+X-Received: by 10.55.1.134 with SMTP id u6mr17963023qkg.36.1486488879697; Tue,
+	07 Feb 2017 09:34:39 -0800 (PST)
 MIME-Version: 1.0
-Subject: Minutes: Yocto Project Technical Team Meeting - Tuesday, Feb 7, 2017 8:00 AM US Pacific Time
+Received: by 10.140.103.233 with HTTP; Tue, 7 Feb 2017 09:34:19 -0800 (PST)
+In-Reply-To: <6CE91E52E49AA047A2349BA2FF8E4BCA1546AA31@FMSMSX106.amr.corp.intel.com>
+References: <6CE91E52E49AA047A2349BA2FF8E4BCA1546AA31@FMSMSX106.amr.corp.intel.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Tue, 7 Feb 2017 17:34:19 +0000
+Message-ID: <CAJTo0LZ6PsPyW1ahJqikBucqFyhvRz_tXZa=2+R5NjiTu9CMvg@mail.gmail.com>
+To: "Wilde, DonaldX" <donaldx.wilde@intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Installing iperf3 causes strange image corruption
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,244 +69,76 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 07 Feb 2017 16:27:35 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155E573584DFfmsmsx111amrcor_"
+X-List-Received-Date: Tue, 07 Feb 2017 17:34:43 -0000
+Content-Type: multipart/alternative; boundary=001a114046c4a329cf0547f42982
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E573584DFfmsmsx111amrcor_
-Content-Type: text/plain; charset="us-ascii"
+--001a114046c4a329cf0547f42982
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Attendees: Stephen, Armin, Stephano Sona, Ross, Joshua, Jussi, Saul, Sveins=
-e, Richard,
+On 1 February 2017 at 20:28, Wilde, DonaldX <donaldx.wilde@intel.com> wrote=
+:
 
-
-
-Agenda:
-
-
-
-* Opens collection - 5 min (Stephen)
-
-* Yocto Project status - 5 min (Stephen/team)
-
-YP 2.3 M2 rc3 is in QA.
-
-YP 2.3 M3 target cut off is Feb. 27th.
-
-YP 2.2.1 should go into QA after YP 2.3 M2 is out.
-
-https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.3_Status
-
-https://wiki.yoctoproject.org/wiki/Yocto_2.3_Schedule
-
-https://wiki.yoctoproject.org/wiki/Yocto_2.3_Features
-
-* Opens - 10 min
-
-* Team Sharing - 10 min
-
-Sona - CVE Check tool doesn't currently build on master.  Jussi discussed t=
-hat patches to fix it should be sent this week.  We has some issues with th=
-e tool and discussed if we can get this into QA. We need an automated test =
-script to add testing the tool to QA.
-
-Richard - How are recipe specific sysroots doing?  No issues not filed in b=
-ugzilla yet.
-
-
-Thanks,
-
-Stephen K. Jolley
-Yocto Project Program Manager
-INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-*   Work Telephone:        (503) 712-0534
-*    Cell:               (208) 244-4460
-* Email:                            stephen.k.jolley@intel.com
-
-
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E573584DFfmsmsx111amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:m=3D"http://schema=
-s.microsoft.com/office/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-html=
-40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+> Unfortunately, what happens is that somewhere along the line after the
+> initial patch and compilation, something in our image gets radically
+> corrupted. With IMAGE_INCLUDE +=3D =E2=80=9Ciperf3=E2=80=9D set, the imag=
+e is corrupted.
+> Horrible results occur including that much of our NVRAM content becomes
+> invisible and we get dumped into some kind of emergency debugging shell
+> after about 6.3 seconds.
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Consolas;
-	panose-1:2 11 6 9 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:"Comic Sans MS";
-	panose-1:3 15 7 2 3 3 2 2 2 4;}
-@font-face
-	{font-family:"MS Sans Serif";}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-p
-	{mso-style-priority:99;
-	mso-margin-top-alt:auto;
-	margin-right:0in;
-	mso-margin-bottom-alt:auto;
-	margin-left:0in;
-	font-size:12.0pt;
-	font-family:"Times New Roman",serif;
-	mso-fareast-language:ZH-CN;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">Attendees: Stephen, Armin, Stephano Sona, Ross, Jo=
-shua, Jussi, Saul, Sveinse, Richard, &nbsp;<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><o:p>&nbsp;</o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">Agenda:<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">&nbsp;<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* Opens collection - 5 min (Stephen)<o:p></o:p></s=
-pan></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* Yocto Project status - 5 min (Stephen/team)<o:p>=
-</o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">YP 2.3 M2 rc3 is in QA.&nbsp;
-<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">YP 2.3 M3 target cut off is Feb. 27<sup>th</sup>.<=
-o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">YP 2.2.1 should go into QA after YP 2.3 M2 is out.=
-<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
-o_Project_v2.3_Status">https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.=
-3_Status</a><o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
-o_2.3_Schedule">https://wiki.yoctoproject.org/wiki/Yocto_2.3_Schedule</a><o=
-:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
-o_2.3_Features">https://wiki.yoctoproject.org/wiki/Yocto_2.3_Features</a>
-<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* Opens - 10 min
-<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* Team Sharing - 10 min<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">Sona - CVE Check tool doesn&#8217;t currently buil=
-d on master.&nbsp; Jussi discussed that patches to fix it should be sent th=
-is week. &nbsp;We has some issues with the tool and
- discussed if we can get this into QA. We need an automated test script to =
-add testing the tool to QA.
-<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">Richard &#8211; How are recipe specific sysroots d=
-oing?&nbsp; No issues not filed in bugzilla yet.
-<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
-ot;,serif;color:purple">Stephen K. Jolley</span></i></b><b><i><span style=
-=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,sans-serif;color:purple=
-"><o:p></o:p></span></i></b></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
-Courier New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></spa=
-n></b></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
-or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-<o:p></o:p></span></b></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Wingdings;color:black">(<=
-/span><span style=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">
-</span><span style=3D"font-size:8.0pt;font-family:&quot;MS Sans Serif&quot;=
-;color:teal">&nbsp;&nbsp;</span><b><span style=3D"font-size:8.0pt;font-fami=
-ly:&quot;Comic Sans MS&quot;;color:teal">Work Telephone</span></b><span sty=
-le=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-">(503) 712-0534<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
-ans Serif&quot;;color:teal">&nbsp;&nbsp;&nbsp;
-</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
-ot;;color:teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&=
-quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-">(208) 244-4460<span style=3D"color:black"><o:p></o:p></span></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-">* </span>
-<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
-MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
-.0pt;font-family:&quot;MS Sans Serif&quot;;color:teal">:</span><span lang=
-=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;">&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;
-<u><span style=3D"color:blue">stephen.k.jolley@intel.com</span></u></span><=
-span lang=3D"FR" style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,sa=
-ns-serif"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
+...
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E573584DFfmsmsx111amrcor_--
+> starting pid 1363, tty '': '/etc/init.d/rcS'
+>
+> can't run '/etc/init.d/rcS': No such file or directory
+>
+
+IMAGE_INCLUDE isn't a standard variable, so either you typo'd that or it's
+a variable that  your images use.  Either way, your error is basically "the
+rootfs is bust" so it's quite possible that by assigning to IMAGE_INCLUDE
+from your local.conf may be overriding the default value (set by ?=3D).
+
+For example, if you meant IMAGE_INSTALL then image.bbclass uses
+IMAGE_INSTALL ?=3D so by doing +=3Diperf3, you're building an image that *j=
+ust*
+contains iperf3.
+
+Try using IMAGE_INSTALL_append =3D " iperf3".
+
+Ross
+
+--001a114046c4a329cf0547f42982
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 1 February 2017 at 20:28, Wilde, DonaldX <span dir=3D"ltr">&lt;<a href=
+=3D"mailto:donaldx.wilde@intel.com" target=3D"_blank">donaldx.wilde@intel.c=
+om</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"marg=
+in:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><p class=3D"MsoN=
+ormal">Unfortunately, what happens is that somewhere along the line after t=
+he initial patch and compilation, something in our image gets radically cor=
+rupted. With IMAGE_INCLUDE +=3D =E2=80=9Ciperf3=E2=80=9D set, the image is =
+corrupted. Horrible results occur including
+ that much of our NVRAM content becomes invisible and we get dumped into so=
+me kind of emergency debugging shell after about 6.3 seconds.</p></blockquo=
+te><div>... =C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0=
+ 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><p class=3D"MsoNorma=
+l"><u></u></p><p class=3D"MsoNormal"><u></u></p>
+<p class=3D"MsoNormal">starting pid 1363, tty &#39;&#39;: &#39;/etc/init.d/=
+rcS&#39;<u></u><u></u></p>
+<p class=3D"MsoNormal">can&#39;t run &#39;/etc/init.d/rcS&#39;: No such fil=
+e or directory</p></blockquote></div><br>IMAGE_INCLUDE isn&#39;t a standard=
+ variable, so either you typo&#39;d that or it&#39;s a variable that =C2=A0=
+your images use.=C2=A0 Either way, your error is basically &quot;the rootfs=
+ is bust&quot; so it&#39;s quite possible that by assigning to IMAGE_INCLUD=
+E from your local.conf may be overriding the default value (set by ?=3D).</=
+div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">For exa=
+mple, if you meant IMAGE_INSTALL then image.bbclass uses IMAGE_INSTALL ?=3D=
+ so by doing +=3Diperf3, you&#39;re building an image that *just* contains =
+iperf3.</div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra=
+">Try using IMAGE_INSTALL_append =3D &quot; iperf3&quot;.</div><div class=
+=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Ross</div></div>
+
+--001a114046c4a329cf0547f42982--
