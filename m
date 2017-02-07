@@ -1,6 +1,6 @@
 Return-Path: <leonardo.sandoval.gonzalez@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5A2C2E0085D; Tue,  7 Feb 2017 08:18:29 -0800 (PST)
+	id 7DF47E006C6; Tue,  7 Feb 2017 08:23:44 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -16,20 +16,20 @@ X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	*      information
 	*  0.3 FILL_THIS_FORM_FRAUD_PHISH Answer suspicious question(s)
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8E0C3E00655
-	for <yocto@yoctoproject.org>; Tue,  7 Feb 2017 08:18:28 -0800 (PST)
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-	by fmsmga101.fm.intel.com with ESMTP; 07 Feb 2017 08:18:27 -0800
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B1332E00566
+	for <yocto@yoctoproject.org>; Tue,  7 Feb 2017 08:23:40 -0800 (PST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 07 Feb 2017 08:23:40 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.33,346,1477983600"; d="scan'208";a="931147948"
+X-IronPort-AV: E=Sophos;i="5.33,346,1477983600"; d="scan'208";a="1104231188"
 Received: from lsandov1-mobl2.zpn.intel.com ([10.219.128.141])
-	by orsmga003.jf.intel.com with ESMTP; 07 Feb 2017 08:18:26 -0800
+	by fmsmga001.fm.intel.com with ESMTP; 07 Feb 2017 08:23:39 -0800
 From: leonardo.sandoval.gonzalez@linux.intel.com
 To: yocto@yoctoproject.org
-Date: Tue,  7 Feb 2017 10:25:41 -0600
-Message-Id: <1486484741-2569-1-git-send-email-leonardo.sandoval.gonzalez@linux.intel.com>
+Date: Tue,  7 Feb 2017 10:30:58 -0600
+Message-Id: <1486485058-2743-1-git-send-email-leonardo.sandoval.gonzalez@linux.intel.com>
 X-Mailer: git-send-email 2.1.4
-Subject: [PATCH] git-pw: include bundle sub-command
+Subject: [patchwork][PATCH] git-pw: include bundle sub-command
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,7 +41,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 07 Feb 2017 16:18:29 -0000
+X-List-Received-Date: Tue, 07 Feb 2017 16:23:44 -0000
 
 From: Leonardo Sandoval <leonardo.sandoval.gonzalez@linux.intel.com>
 
