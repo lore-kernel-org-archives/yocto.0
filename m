@@ -1,36 +1,64 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <maciej.borzecki@rndity.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9A485E009AD; Wed,  8 Feb 2017 04:09:09 -0800 (PST)
+	id 282CBE009AA; Wed,  8 Feb 2017 04:12:34 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [74.125.82.47 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.82.47 listed in dnsbl.sorbs.net]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.analogue-micro.com (mail.analogue-micro.com
-	[217.144.149.242])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CFEA5E007AD
-	for <yocto@yoctoproject.org>; Wed,  8 Feb 2017 04:09:08 -0800 (PST)
-Received: by mail.analogue-micro.com (Postfix, from userid 999)
-	id EF33C68A01C; Wed,  8 Feb 2017 12:09:07 +0000 (GMT)
-Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
-	by mail.analogue-micro.com (Postfix) with ESMTP id 5BE6368A019;
-	Wed,  8 Feb 2017 12:09:07 +0000 (GMT)
-Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
-	by zeus.mlbassoc.com (Postfix) with ESMTP id 0F41067400D4;
-	Wed,  8 Feb 2017 13:09:07 +0100 (CET)
-To: yocto@yoctoproject.org
-References: <CANxWOTYfkUDguyFogHHA2HH77McT06-4+z96S7pJupfRKHhm+g@mail.gmail.com>
-	<a1f5e2a1-62cc-9141-0f4e-9aeec971453e@gmail.com>
-From: Gary Thomas <gary@mlbassoc.com>
-Message-ID: <a8fd94f0-0fa5-95bf-67b8-637e8c6413ca@mlbassoc.com>
-Date: Wed, 8 Feb 2017 13:09:07 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.7.0
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wm0-f47.google.com (mail-wm0-f47.google.com [74.125.82.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EDC39E007AD
+	for <yocto@yoctoproject.org>; Wed,  8 Feb 2017 04:12:29 -0800 (PST)
+Received: by mail-wm0-f47.google.com with SMTP id v77so188146683wmv.0
+	for <yocto@yoctoproject.org>; Wed, 08 Feb 2017 04:12:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=rndity-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-transfer-encoding;
+	bh=+GVuVO3tuCjkFxZS/ghIYzEPJICzBpFkmUPu2K+VGLY=;
+	b=Aif81SLxCcf/31vcpHE/0MStdFu0ke5mMma8si17isPBgN+rDllI/JFSyNZuk/VVYd
+	Ds0t8axQdBk9A8i1AhSq0rvW28wUT0SE9o5Gwj3ARXQkefXBjcOCRzhzK0/xJpbor/I2
+	poaiANL7zYqpdI+2acBdDlHbks2I23NBYclchyF9XdbGuYtw8lH2Eic4N5ms8L73Qxa/
+	47wtCeGtsJXDehEl/67PgOeqI/yW2ZzawegbWzW4tnofk1HHc9btuiGycZ78qkfPqs/G
+	iKkNAV8Z9Ilpf2tGQdEAuzenvNQ7LYomKfkUlVmj+VIU1wO4YuBA5WywsK8EoABjewWh
+	vQGw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=+GVuVO3tuCjkFxZS/ghIYzEPJICzBpFkmUPu2K+VGLY=;
+	b=WdWfiRvCGI1GrS7as4pIirMe/FUemWzGeSB+qAhztLVNdTeB0+hTaTMbKuw4IkVfqy
+	ifWnTQg/oFNKSvuWJ/byZTepn8b+xgD2sWrtnWba1QR/eoGcl3VyzT8MLyA301kFKG6X
+	Vs+UYlHLcPXKc+arUK5+iCLoCBasGWx481fLbGv0BP4gtrCXlBR9HIpQv+AjNh0ykZ29
+	YEWJiSjCAD2Ow8tIAQ3Cq8elcdHMs7oW8oB5R0oNP4MpmtZ4x9CPhPyxOeLHn8rAWtwH
+	F0nA8zuITucgOc/GzQSKMr1bz/NwpDYo4vIsaK5vcsjdFwQdFwk9dYJXaNQEsKnk2ByR
+	IUTA==
+X-Gm-Message-State: AMke39m1or9a5F/DQqCAkLbVmo0G4lLpllTrQlpO5rPQyFZXgj7ELjtfWvzgZvhMPSObP3m9TsYauxsQKjvSgQ==
+X-Received: by 10.28.4.216 with SMTP id 207mr16520663wme.45.1486555948733;
+	Wed, 08 Feb 2017 04:12:28 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <a1f5e2a1-62cc-9141-0f4e-9aeec971453e@gmail.com>
-Subject: Re: meta-raspberrypi issue
+Received: by 10.28.52.78 with HTTP; Wed, 8 Feb 2017 04:12:08 -0800 (PST)
+In-Reply-To: <alpine.LFD.2.20.1702080702070.12201@localhost.localdomain>
+References: <alpine.LFD.2.20.1702070921520.13830@uk63952.mitel.com>
+	<CAD4b0_Lqk756919hasgMuHx2eMxBPtywjLvzs0r3cjb9mj49Ag@mail.gmail.com>
+	<alpine.LFD.2.20.1702080702070.12201@localhost.localdomain>
+From: =?UTF-8?Q?Maciej_Borz=C4=99cki?= <maciej.borzecki@rndity.com>
+Date: Wed, 8 Feb 2017 13:12:08 +0100
+Message-ID: <CAD4b0_JRJa+xyg5QrJarbRD-PCZ3=aAtK56iBBx7mUX9_eysrQ@mail.gmail.com>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: is there a list somewhere of OE/YP-supported system perf/monitoring tools?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,93 +70,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Feb 2017 12:09:09 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 08 Feb 2017 12:12:34 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On 2017-02-01 18:24, Khem Raj wrote:
+On Wed, Feb 8, 2017 at 1:02 PM, Robert P. J. Day <rpjday@crashcourse.ca> wr=
+ote:
+> On Wed, 8 Feb 2017, Maciej Borz=C4=99cki wrote:
 >
+>> On Tue, Feb 7, 2017 at 3:31 PM, Robert P. J. Day <rpjday@crashcourse.ca>=
+ wrote:
+>> >
+>> >   colleague asked me for a list of OE/YP recipes for monitoring system
+>> > performance/resource utilization/profiling, i'm unaware of any single
+>> > list that tracks that sort of thing so i'll just ask what people are
+>> > aware of. just off the top of my head:
+>> >
+>> >  * sysstat
+>> >  * atop
+>> >  * collectd
+>> >  * netdata
+>> >  * rrdtool
+>> >  * dstat
+>>
+>> * pcp http://pcp.io/
 >
-> On 2/1/17 8:08 AM, Usman Haider wrote:
->> Hi,
->>
->> I am new to yocto and just started working on it. I am having issue
->> with meta-raspberrypi. I did inside poky
->>
->> $ git checkout -b work_branch -t origin/daisy
->>
->> $ git clone git://git.yoctoproject.org/meta-raspberrypi
->> <http://git.yoctoproject.org/meta-raspberrypi>
->>
->
-> you need to checkout daisy branch of meta-raspberrypi as well.
+>   is there an OE recipe for that? i don't see one.
 
-That said, daisy is REALLY OLD.  You'd probably be much better off with
-something recent, e.g. morty.
-
->
->> $ source oe-init-build-env rpi-build
->>
->> updated the local.conf and bblayer.conf files inside rpi-build
->>
->> In local.conf
->>
->> BB_NUMBER_THREADS ?= "${@oe.utils.cpu_count()}"
->> PARALLEL_MAKE ?= "-j ${@oe.utils.cpu_count()}"
->> MACHINE ?= "raspberrypi"
->>
->> In bblayer.conf
->> # LAYER_CONF_VERSION is increased each time build/conf/bblayers.conf
->> # changes incompatibly
->> LCONF_VERSION = "6"
->>
->> BBPATH = "${TOPDIR}"
->> BBFILES ?= ""
->>
->> BBLAYERS ?= " \
->>   /home/vm/poky/meta \
->>   /home/vm/poky/meta-yocto \
->>   /home/vm/poky/meta-yocto-bsp \
->>   /home/vm/poky/meta-raspberrypi \
->>   "
->> BBLAYERS_NON_REMOVABLE ?= " \
->>   /home/vm/poky/meta \
->>   /home/vm/poky/meta-yocto \
->>   "
->>
->> When I run bitbake rpi-basic-image, I get following
->>
->>
->> *********************************
->>
->> vm@sdr-vm:~/poky/rpi-build$ bitbake rpi-basic-image
->> WARNING: Host distribution "Ubuntu-16.04" has not been validated with
->> this version of the build system; you may possibly experience unexpected
->> failures. It is recommended that you use a tested distribution.
->> Parsing recipes: 100% |#########################################| Time:
->> 00:02:37
->> Parsing of 882 .bb files complete (0 cached, 882 parsed). 1241 targets,
->> 63 skipped, 0 masked, 0 errors.
->> ERROR: No recipes available for:
->>
->> /home/vm/poky/meta-raspberrypi/recipes-multimedia/gstreamer/gstreamer1.0-omx_1.10%.bbappend
->>
->> /home/vm/poky/meta-raspberrypi/recipes-multimedia/gstreamer/gstreamer1.0-omx_1.2.0.bbappend
->> ERROR: Command execution failed: Exited with 1
->>
->> *************************************
->>
->> What could be the issue?
->>
->> --
->> Usman
->>
->>
+Sadly not :( The build system is based on autotools though. Most of
+the 'heavy' features can be easily turned off using configure.
 
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+--=20
+Maciej Borzecki
+RnDity
 
