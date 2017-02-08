@@ -1,6 +1,6 @@
 Return-Path: <eddie.cai.linux@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D5869E0093F; Wed,  8 Feb 2017 06:39:32 -0800 (PST)
+	id 4334DE009C3; Wed,  8 Feb 2017 06:40:15 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -11,7 +11,7 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (eddie.cai.linux[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.192.195 listed in list.dnswl.org]
+	*      [74.125.83.68 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -20,48 +20,50 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.192.195 listed in dnsbl.sorbs.net]
-Received: from mail-pf0-f195.google.com (mail-pf0-f195.google.com
-	[209.85.192.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 89E9DE0092C
-	for <yocto@yoctoproject.org>; Wed,  8 Feb 2017 06:39:30 -0800 (PST)
-Received: by mail-pf0-f195.google.com with SMTP id e4so11807706pfg.0
-	for <yocto@yoctoproject.org>; Wed, 08 Feb 2017 06:39:30 -0800 (PST)
+	*      [74.125.83.68 listed in dnsbl.sorbs.net]
+Received: from mail-pg0-f68.google.com (mail-pg0-f68.google.com [74.125.83.68])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 09D9CE009F3
+	for <yocto@yoctoproject.org>; Wed,  8 Feb 2017 06:40:09 -0800 (PST)
+Received: by mail-pg0-f68.google.com with SMTP id 204so15360996pge.2
+	for <yocto@yoctoproject.org>; Wed, 08 Feb 2017 06:40:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:cc:subject:date:message-id;
-	bh=I8ULUPK/qT4ByPh5kzASkfplS/z30p7UHA5KrMU2608=;
-	b=MgqyYw6WvN/WfCJqzQvflcIKPwSULAVhSVxUPjlASWlrht3Z5T95jIYfnrCHRYPDyi
-	utSeNZkbZEhgJ0d4kHkodYYLsF4lwCS07VlnDb9emxhuLeV6R1UPzPCnxeqnYi5MsEP2
-	w/bZb6KHjQcFYQSoHifBgzAxIelt+ZFvOeMKR7GI18e0HZoTCE5irCIzMYrq+tpg+bve
-	6Pr3f7QitZ1b9hR7TDvbPQws3TClkOi2Yp3HZz14MmBBtjjm2JYg9IPV3J6+T/jH/vau
-	VR5Z90JesMLgsZv3f7Q31wuiQ2VSBKJzZLX6slFo5n1FRueJuR9XzZvfo1TDbtf1o+ot
-	zohg==
+	h=from:to:cc:subject:date:message-id:in-reply-to:references;
+	bh=jGVgsIrZi8tt97KAUoJvy98uu/55HTHfbeEjz6a06TI=;
+	b=bKajUvV8w1SDkzSmNmPz20kVYqP+NkI75ZCfvpaEgnPI3iX0/ZrRTeK27QzPsFgKvh
+	ws41lE4Owei+i3mKKWhwm8LMUawYunCNbx6BZc/ga5emSSVDP7MvW2tnM2JfG0N2QYuI
+	Pk8CXiYGVlc2njnzYlfbDjcEamz6d9f0UiszmDLaCGm1pVpEpHFL1+OaQTM9twCTgUbn
+	6qWg0ld1tT1KVq4ZtCA3MCVj8HDBA3jTrFV8G3BV3bNZI792brwL3RvO7gIN8TXp9opZ
+	e7uOpqcmWR43uQ4gw4o186raZH5asRfnl4msddE005XYk2C3zn6ty0QFWBth9JPQM5DJ
+	QXkQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=I8ULUPK/qT4ByPh5kzASkfplS/z30p7UHA5KrMU2608=;
-	b=ALLVjQbAweHhwoqEvebCeYxVKyanLdj1G34vMOaxlrAODJLMVwKnOlwJXl+QFJ2L5N
-	SKpEhyS8alzcKRIEwoU6jB1QfswhXk+XCLLfxWqA58KPwRHfHRw7d+u1VF0XPxniHl2M
-	jDffItELZIa2wJ+MEw8VaGnaVHN8nRNGxbrhY8S6uBbgHUGWAE5hVcM93sNE/zz+KQui
-	UfKv0vMmpYIqfF3UHMXZ9OTKT0I+FvgDAXxTyD59BmlIbZs4Lk0MxJ3grVhlU1Rgrrgk
-	kKgBm1u5yoX7Yf+GD2klmRhNc8NkVv2143GqqyFB5MMj9fEzP47a747cYCNLNtLk4ja1
-	lcMw==
-X-Gm-Message-State: AIkVDXJKmkNErPSwKCjzFOQGI7rqClv5y6mbAcWaCrd762w13XKhTt0RF6a1gIa9bkfsdw==
-X-Received: by 10.99.155.18 with SMTP id r18mr26896084pgd.193.1486564769549;
-	Wed, 08 Feb 2017 06:39:29 -0800 (PST)
+	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+	:references;
+	bh=jGVgsIrZi8tt97KAUoJvy98uu/55HTHfbeEjz6a06TI=;
+	b=F8CvQcWalhmy3jin8wHjbSlVgV+z1NdRhUUpj+wKl4jr61JU1oihY5qIrzRhQ9hz8p
+	HZa01Wh8/cTpLxurQ8l+dNnMutPO4ondVRuJ/qrJXqfKWgs0m148yKN1m/mccxHSmfyY
+	2m0NC1ZQmX5ZNnImZY+7Y1bPFBsX8/K2gW3qcF9UnWAfPIJ8J4Ocn3y/Y17uoZQ//ZaD
+	T0q9ThzABqYdT54FKMIm+/ZhU8csbyMJaVh0nmUW24uWpWuVYW/KP+6+fw7PcHi06eT3
+	9AlelxiChdCG17pdKFyhlAi4pY71UNKpQ2Pvk2mGk64uNSwiICjFmljbFWAOZI5pYaOR
+	MjSg==
+X-Gm-Message-State: AIkVDXJF7n0oDKOHN7gdWXU7CanqJ9okh7GpMwhPjlanLfRGcpzxWaOYeK22IJsDN6Hz2Q==
+X-Received: by 10.98.35.25 with SMTP id j25mr26482142pfj.35.1486564809356;
+	Wed, 08 Feb 2017 06:40:09 -0800 (PST)
 Received: from localhost.localdomain ([103.29.142.67])
 	by smtp.gmail.com with ESMTPSA id
-	p15sm21016966pfk.58.2017.02.08.06.39.27
+	p15sm21016966pfk.58.2017.02.08.06.39.50
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Wed, 08 Feb 2017 06:39:28 -0800 (PST)
+	Wed, 08 Feb 2017 06:40:08 -0800 (PST)
 From: Eddie Cai <eddie.cai.linux@gmail.com>
 To: romain.perier@gmail.com,
 	twoerner@gmail.com
-Date: Wed,  8 Feb 2017 22:38:16 +0800
-Message-Id: <1486564699-6001-1-git-send-email-eddie.cai.linux@gmail.com>
+Date: Wed,  8 Feb 2017 22:38:17 +0800
+Message-Id: <1486564699-6001-2-git-send-email-eddie.cai.linux@gmail.com>
 X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1486564699-6001-1-git-send-email-eddie.cai.linux@gmail.com>
+References: <1486564699-6001-1-git-send-email-eddie.cai.linux@gmail.com>
 Cc: yocto@yoctoproject.org
-Subject: [meta-rockchip][morty][PATH 0/3] add main line kernel support
+Subject: [meta-rockchip][morty][PATH 1/3] machine: Use cortexa17hf-neon-vfpv4 as default tune for rk3288.inc
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,20 +75,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Feb 2017 14:39:32 -0000
+X-List-Received-Date: Wed, 08 Feb 2017 14:40:15 -0000
 
-This patch set add main line kernel support for meta-rockchip
+RK3288 support hard float and vfpv4. So we should use cortexa17hf-neon-vfpv4
+as default tune.
 
-Eddie Cai (3):
-  machine: Use cortexa17hf-neon-vfpv4 as default tune for rk3288.inc
-  machine: Use SOC specific assignements
-  recipes-kernel: linux: Add mainline kernel
+Signed-off-by: Eddie Cai <eddie.cai.linux@gmail.com>
+---
+ conf/machine/include/rk3288.inc | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
- conf/machine/include/rk3288.inc    |  5 ++++-
- recipes-kernel/linux/linux_4.10.bb | 18 ++++++++++++++++++
- 2 files changed, 22 insertions(+), 1 deletion(-)
- create mode 100644 recipes-kernel/linux/linux_4.10.bb
-
+diff --git a/conf/machine/include/rk3288.inc b/conf/machine/include/rk3288.inc
+index e6c19a2..6d4affd 100644
+--- a/conf/machine/include/rk3288.inc
++++ b/conf/machine/include/rk3288.inc
+@@ -3,7 +3,7 @@
+ 
+ require conf/machine/include/tune-cortexa17.inc
+ 
+-DEFAULTTUNE="cortexa17-neon"
++DEFAULTTUNE="cortexa17hf-neon-vfpv4"
+ PREFERRED_PROVIDER_virtual/kernel = "linux"
+ SERIAL_CONSOLES = "115200;ttyS2"
+ KERNEL_IMAGETYPE = "zImage"
 -- 
 2.7.4
 
