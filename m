@@ -1,60 +1,63 @@
-Return-Path: <jngigiw@gmail.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8195FE009A5; Wed,  8 Feb 2017 02:43:20 -0800 (PST)
+	id 1898FE006C6; Wed,  8 Feb 2017 07:01:44 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (jngigiw[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.128.179 listed in dnsbl.sorbs.net]
-Received: from mail-wr0-f179.google.com (mail-wr0-f179.google.com
-	[209.85.128.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8559EE009B9
-	for <yocto@yoctoproject.org>; Wed,  8 Feb 2017 02:43:16 -0800 (PST)
-Received: by mail-wr0-f179.google.com with SMTP id o16so58087587wra.1
-	for <yocto@yoctoproject.org>; Wed, 08 Feb 2017 02:43:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=4Kz3IpDhU/5ZntiVq5l8aZtQHk6MrRyPkaA0sLx9Skc=;
-	b=J2YSqHedSc0K396W/QDITP0EiVitbbDv6FQ31psykOAyQQsSfu0VHJNJYMeiZzT5HL
-	N6rcmod26Rt26n+83YhtGLhwURwg4V6v7Wm3mQ/BAamP2ggDsSVLt3BGqXwKtMIOuPFg
-	+xSDeqzPre+LN3LMEnjUFWhOlcrIJvsYNnLsPEAU7CunGrSB/y9YmxOMwUi9dX9fTPmC
-	mPPSDcPJzdOizakvEZBw7Q6+ZVjaM5fops4CnTOVuwWVbXVo/ChxZ5Su1z5EUD58x7N2
-	YDK6oTO2KQhf6cHoP82iCj3YutFgrvhz2g61OlDIMHxMKdMFO+8ZEOMNQOMLCzNmJy84
-	pVDQ==
+	*      [209.85.216.177 listed in dnsbl.sorbs.net]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.216.177 listed in list.dnswl.org]
+Received: from mail-qt0-f177.google.com (mail-qt0-f177.google.com
+	[209.85.216.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6911CE00519
+	for <yocto@yoctoproject.org>; Wed,  8 Feb 2017 07:01:30 -0800 (PST)
+Received: by mail-qt0-f177.google.com with SMTP id x49so167183364qtc.2
+	for <yocto@yoctoproject.org>; Wed, 08 Feb 2017 07:01:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=4pbEQSS7VzeZhCHV9/VcHWh6tNky/SIMum3CZcs11l0=;
+	b=gDEtTf82B5N8acLjajeZ5wi622vfUyscSUGDa4ZWY/KDaFDvU3XzBoo04O5l+c7aHK
+	CNbqy1Rr7SMsPWU27InZar2ob2F7JiYfHELY3+6MsgKgKnDlAlerPne+n58FU5uQboSn
+	yyoEZ8MadD3OgtN7hEQOqZlzbSeL290Dsxp1E7nwESIfvfJBym+g3ZhKKNk767eoxLiG
+	wnRTe/HvBJjHs71tqb57LavSTjdrJXRnmKOAC7CnBv6Fbi0VywjBrTyA3St6scngShQa
+	nQmrNJlghdPTwf1ysuEplSvawSYCwllGWm92C4WOxGvdkcNA5cT0Z56EpPGd3i3yW7ml
+	CTjQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=4Kz3IpDhU/5ZntiVq5l8aZtQHk6MrRyPkaA0sLx9Skc=;
-	b=uVEemGO9f1Ckzygbckp/gPe7I0twmtXap+CgLwc7tvlI59vvGnpMuPS3AGn29xQTZR
-	6uwErFavdx9K9VKxO6Ow6BpmcHapMTJ45n0NXsgvNWq/4gdobdayDlKtVAYnSHPpxqiZ
-	b2kuNveQzdyxne0AwyoYtnyAvAJXDkzE1cEVrqB6WktyBQ3XchurQNJtER9jzjwBgUvi
-	ith/zxJwmwYuyl0sa4TDXQdFvEy4OdDY71xG/jDIXlLAJoweg2dMTI9LnINB9FquO7ti
-	WtSQ9bK8dLpdx3IyewHybPU5m2iY6Ygo+7oT1BZqiqca88NofGRXw/lklNZSdVKO+og3
-	/BQA==
-X-Gm-Message-State: AIkVDXLzRQIpi0VJ6XAHskViUrmaByJqzguzy4rXMgs3ogcX3lfcqAV5lT1Y9A/BpVjXm/KIgY3w5z9z6nRa6w==
-X-Received: by 10.223.174.199 with SMTP id y65mr22174458wrc.19.1486550595222; 
-	Wed, 08 Feb 2017 02:43:15 -0800 (PST)
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=4pbEQSS7VzeZhCHV9/VcHWh6tNky/SIMum3CZcs11l0=;
+	b=BvqymzPRW/xFGG68hRReKfAHNZAItz7UIGQrrWEKoe7mHp5QQus5K0bwAcjlQL1pZ8
+	Z6ftfR2KqToQvp1l/jS5nwFxQIEuGi3MkhkrUsxvdvDrkVujoSmlcx9TzN+wmQL+2XIh
+	rY8EtzOStqv5hGhBoj0bZ1n/Z9ASLyxx5sFd2Y7J3Uc1kiOgVG2/eS2HGI+Ryh1fp+9L
+	I2IBfYCskuotKllzyVMOKMvGtS2CF1QBeW0KE9+x4XP7UgBcoElxbuVwyA+g+lR4QiLN
+	DBhQ75AJqGO1+GCCUrK+0A5j/Vr8oJUnQJ9h99CNVystPwkdtul9d1JAkA2TdvbReTJw
+	n/qQ==
+X-Gm-Message-State: AMke39nkyElo7FrfTTVLOt2OaDAd5MeHvoP83WR4BuNl2YJ6g7+fJRVeq0p12fMJVMb4i6nDGjtyysxM4Koalcg/
+X-Received: by 10.237.54.1 with SMTP id e1mr18971011qtb.68.1486566090269; Wed,
+	08 Feb 2017 07:01:30 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.28.16.149 with HTTP; Wed, 8 Feb 2017 02:43:14 -0800 (PST)
-From: Joseph Ngigi <jngigiw@gmail.com>
-Date: Wed, 8 Feb 2017 13:43:14 +0300
-Message-ID: <CABaDK3Vx3kuY0h8G9pX8TLKCCWEOz3-s2XfzpoxSKHKShx-MAQ@mail.gmail.com>
-To: yocto@yoctoproject.org
-X-Mailman-Approved-At: Wed, 08 Feb 2017 06:52:32 -0800
-Subject: Core-Image-sato GUI
+Received: by 10.140.103.233 with HTTP; Wed, 8 Feb 2017 07:01:09 -0800 (PST)
+In-Reply-To: <CABaDK3Vx3kuY0h8G9pX8TLKCCWEOz3-s2XfzpoxSKHKShx-MAQ@mail.gmail.com>
+References: <CABaDK3Vx3kuY0h8G9pX8TLKCCWEOz3-s2XfzpoxSKHKShx-MAQ@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 8 Feb 2017 15:01:09 +0000
+Message-ID: <CAJTo0LbMNK-z=w8eB4R+AHBjw5FoPJiZ9_kxYh1P3O_PFowtuA@mail.gmail.com>
+To: Joseph Ngigi <jngigiw@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Core-Image-sato GUI
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,41 +69,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Feb 2017 10:43:20 -0000
-Content-Type: multipart/alternative; boundary=001a114767fa2b43e0054802885e
+X-List-Received-Date: Wed, 08 Feb 2017 15:01:44 -0000
+Content-Type: multipart/alternative; boundary=001a1142dcf0bf0c4005480623e3
 
---001a114767fa2b43e0054802885e
+--001a1142dcf0bf0c4005480623e3
 Content-Type: text/plain; charset=UTF-8
 
-Hello,
+On 8 February 2017 at 10:43, Joseph Ngigi <jngigiw@gmail.com> wrote:
 
-I am developing a Linux system for Allwinner's cubieboard2. I have so far
-managed to build the core-image-sato which works well.
+> My only concern is I'd like to include a login prompt once the GUI starts,
+> for security purposes. Which files should I use to do that?
+>
 
-My only concern is I'd like to include a login prompt once the GUI starts,
-for security purposes. Which files should I use to do that?
-I know how to do that using xdm but Sato doesn't seem to be using xdm
-despite X being in-built. I will appreciate any help to that effect.
+meta-oe has some graphical login managers, such as lxdm or gdm.
 
--- 
-J.W.Ngigi
+Ross
 
-+254 725 451 900
-
---001a114767fa2b43e0054802885e
+--001a1142dcf0bf0c4005480623e3
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div><div><div>Hello,<br><br></div>I am developing a Linux=
- system for Allwinner&#39;s cubieboard2. I have so far managed to build the=
- core-image-sato which works well. <br><br></div>My only concern is I&#39;d=
- like to include a login prompt once the GUI starts, for security purposes.=
- Which files should I use to do that?<br></div>I know how to do that using =
-xdm but Sato doesn&#39;t seem to be using xdm despite X being in-built. I w=
-ill appreciate any help to that effect.<br clear=3D"all"><div><div><div><di=
-v><br>-- <br><div class=3D"gmail_signature" data-smartmail=3D"gmail_signatu=
-re"><div dir=3D"ltr"><div><div dir=3D"ltr">J.W.Ngigi</div><div dir=3D"ltr">=
-<br>+254 725 451 900<br></div></div></div></div>
-</div></div></div></div></div>
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 8 February 2017 at 10:43, Joseph Ngigi <span dir=3D"ltr">&lt;<a href=3D"=
+mailto:jngigiw@gmail.com" target=3D"_blank">jngigiw@gmail.com</a>&gt;</span=
+> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;bo=
+rder-left:1px #ccc solid;padding-left:1ex"><div>My only concern is I&#39;d =
+like to include a login prompt once the GUI starts, for security purposes. =
+Which files should I use to do that?<br></div></blockquote></div><br>meta-o=
+e has some graphical login managers, such as lxdm or gdm.</div><div class=
+=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Ross</div></div>
 
---001a114767fa2b43e0054802885e--
+--001a1142dcf0bf0c4005480623e3--
