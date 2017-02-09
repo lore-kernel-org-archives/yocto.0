@@ -1,34 +1,37 @@
-Return-Path: <Jackie.Huang@windriver.com>
+Return-Path: <gary@mlbassoc.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2A922E0093F; Wed,  8 Feb 2017 18:51:38 -0800 (PST)
+	id 900FCE009CD; Wed,  8 Feb 2017 20:24:02 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E01B5E006C6
-	for <yocto@yoctoproject.org>; Wed,  8 Feb 2017 18:51:33 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id v192pWmN017434
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Wed, 8 Feb 2017 18:51:32 -0800 (PST)
-Received: from pek-hostel-deb01.wrs.com (128.224.153.151) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server id
-	14.3.294.0; Wed, 8 Feb 2017 18:51:31 -0800
-From: <jackie.huang@windriver.com>
-To: <yocto@yoctoproject.org>
-Date: Thu, 9 Feb 2017 10:44:27 +0800
-Message-ID: <20170209024427.30212-1-jackie.huang@windriver.com>
-X-Mailer: git-send-email 2.8.3
+Received: from mail.analogue-micro.com (mail.analogue-micro.com
+	[217.144.149.242])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1795EE00939
+	for <yocto@yoctoproject.org>; Wed,  8 Feb 2017 20:23:58 -0800 (PST)
+Received: by mail.analogue-micro.com (Postfix, from userid 999)
+	id C2CEA68A01C; Thu,  9 Feb 2017 04:23:56 +0000 (GMT)
+Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
+	by mail.analogue-micro.com (Postfix) with ESMTP id 4A0D768A019;
+	Thu,  9 Feb 2017 04:23:56 +0000 (GMT)
+Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
+	by zeus.mlbassoc.com (Postfix) with ESMTP id B3D4867402A6;
+	Thu,  9 Feb 2017 05:23:55 +0100 (CET)
+From: Gary Thomas <gary@mlbassoc.com>
+To: yocto@yoctoproject.org
+References: <39e27fc1-7ad6-9411-5cd1-96628e962f75@mlbassoc.com>
+	<89ae4442-5ec2-7d25-1245-dc4e9af683b9@mlbassoc.com>
+	<15650683.oLyvIqKQ2l@peggleto-mobl.ger.corp.intel.com>
+Message-ID: <31b81d5d-a30a-3a1a-bdcd-9a91b03d7b85@mlbassoc.com>
+Date: Thu, 9 Feb 2017 05:23:55 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.7.0
 MIME-Version: 1.0
-Subject: [meta-security][PATCH] scapy: fix the pickling issue
+In-Reply-To: <15650683.oLyvIqKQ2l@peggleto-mobl.ger.corp.intel.com>
+Subject: Re: sysroot question
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,152 +43,81 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 Feb 2017 02:51:38 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 09 Feb 2017 04:24:02 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Jackie Huang <jackie.huang@windriver.com>
+On 2017-02-08 20:36, Paul Eggleton wrote:
+> Hi Gary,
+>
+> On Wednesday, 8 February 2017 12:12:25 PM NZDT Gary Thomas wrote:
+>> On 2017-02-08 11:42, Gary Thomas wrote:
+>>> I had a recipe that used to work and now fails after the change
+>>> to the split sysroots.  I'm building an out-of-tree kernel module
+>>> and patterned my recipe after the meta-skeleton example. My recipe
+>>> has this setup:
+>>>
+>>> inherit module-base kernel-module-split
+>>>
+>>> do_compile() {
+>>>
+>>>     unset CFLAGS CPPFLAGS CXXFLAGS LDFLAGS
+>>>     oe_runmake KERNEL_PATH=${STAGING_KERNEL_DIR}   \
+>>>
+>>>            KERNEL_VERSION=${KERNEL_VERSION}    \
+>>>            CC="${KERNEL_CC}" LD="${KERNEL_LD}" \
+>>>            AR="${KERNEL_AR}" \
+>>>
+>>>                O=${STAGING_KERNEL_BUILDDIR} \
+>>>
+>>>            install
+>>>
+>>> }
+>>>
+>>> The problem is that ${CC} (arm-amltd-linux-gnueabi-gcc) can no longer be
+>>> found.  I know it's available, just not sure what needs to change to be
+>>> able to find it.
+>>>
+>>> $ find tmp/work/teton_p7618-amltd-linux-gnueabi/my-module/ -name "arm*gcc"
+>>> tmp/work/teton_p7618-amltd-linux-gnueabi/my-module/5.2.2-r2-r0/recipe-sysr
+>>> oot-native/usr/libexec/arm-amltd-linux-gnueabi/gcc/arm-amltd-linux-gnueabi
+>>> /5.4.0/arm-amltd-linux-gnueabi-gcc
+>>>
+>>> tmp/work/teton_p7618-amltd-linux-gnueabi/my-module/5.2.2-r2-r0/recipe-sysr
+>>> oot-native/usr/bin/arm-amltd-linux-gnueabi/arm-amltd-linux-gnueabi-gcc
+>>
+>> It looks like the failure is actually happening in a class method
+>> (make_scripts) My recipe also contains this
+>>    addtask make_scripts after do_patch before do_compile
+>> which doesn't seem to be setting the ${PATH} correctly anymore.
+>>
+>> Any ideas what might be missing?
+>>
+>> Note: just moving the call to do_make_scripts to the top of do_compile
+>> instead of running it as a separate task fixes the problem.
+>
+> I think the problem is that the task that prepares the sysroot
+> (do_prepare_recipe_sysroot) isn't a dependency of your task. module.bbclass
+> uses this:
+>
+> addtask make_scripts after do_prepare_recipe_sysroot before do_compile
+>
+> BTW you say you patterned your recipe after the skeleton example, except
+> hello-mod at least currently inherits module rather than module-base + kernel-
+> module-split - is there a compelling reason not to inherit module?
 
-Backport a patch to fix the pickling issue when save_session:
+I may have been mistaken about the original source - it looks like I
+used a similar module strategy from meta-freescale.  I did [just now]
+try using "inherit module" and the build dies a horrible death with
+this error
+| make: *** No rule to make target 'modules_install'.  Stop.
 
-PicklingError: Can't pickle <type 'function'>: attribute lookup __builtin__.function failed
+I changed my [task] dependencies to match what you've quoted and everything
+works as before.  !Thanks!
 
-Signed-off-by: Jackie Huang <jackie.huang@windriver.com>
----
- .../scapy/scapy/scapy-Pickling-issues-fixed.patch  | 111 +++++++++++++++++++++
- recipes-security/scapy/scapy_2.3.2.bb              |   1 +
- 2 files changed, 112 insertions(+)
- create mode 100644 recipes-security/scapy/scapy/scapy-Pickling-issues-fixed.patch
-
-diff --git a/recipes-security/scapy/scapy/scapy-Pickling-issues-fixed.patch b/recipes-security/scapy/scapy/scapy-Pickling-issues-fixed.patch
-new file mode 100644
-index 0000000..9901f91
---- /dev/null
-+++ b/recipes-security/scapy/scapy/scapy-Pickling-issues-fixed.patch
-@@ -0,0 +1,111 @@
-+From 331dff6c73f89307d108f9ae89264b9548e22dc6 Mon Sep 17 00:00:00 2001
-+From: Guillaume Valadon <guillaume.valadon@ssi.gouv.fr>
-+Date: Wed, 31 Aug 2016 13:59:21 +0200
-+Subject: [PATCH] Pickling issues fixed
-+
-+Backport from:
-+https://github.com/secdev/scapy/pull/284
-+
-+Upstream-Status: Backport
-+
-+Signed-off-by: Jackie Huang <jackie.huang@windriver.com>
-+---
-+ scapy/layers/inet.py  |  6 ++++--
-+ scapy/layers/inet6.py |  4 +++-
-+ scapy/layers/l2.py    | 14 +++++++++-----
-+ scapy/route.py        |  1 -
-+ 4 files changed, 16 insertions(+), 9 deletions(-)
-+
-+diff --git a/scapy/layers/inet.py b/scapy/layers/inet.py
-+index 4b66946..e35a247 100644
-+--- a/scapy/layers/inet.py
-++++ b/scapy/layers/inet.py
-+@@ -734,8 +734,10 @@ conf.l3types.register(ETH_P_IP, IP)
-+ conf.l3types.register_num2layer(ETH_P_ALL, IP)
-+ 
-+ 
-+-conf.neighbor.register_l3(Ether, IP, lambda l2,l3: getmacbyip(l3.dst))
-+-conf.neighbor.register_l3(Dot3, IP, lambda l2,l3: getmacbyip(l3.dst))
-++def inet_register_l3(l2, l3):
-++    return getmacbyip(l3.dst)
-++conf.neighbor.register_l3(Ether, IP, inet_register_l3)
-++conf.neighbor.register_l3(Dot3, IP, inet_register_l3)
-+ 
-+ 
-+ ###################
-+diff --git a/scapy/layers/inet6.py b/scapy/layers/inet6.py
-+index ba5674c..195ca9c 100644
-+--- a/scapy/layers/inet6.py
-++++ b/scapy/layers/inet6.py
-+@@ -474,7 +474,9 @@ class IPv6(_IPv6GuessPayload, Packet, IPTools):
-+             return self.payload.answers(other.payload)
-+ 
-+ 
-+-conf.neighbor.register_l3(Ether, IPv6, lambda l2,l3: getmacbyip6(l3.dst))
-++def inet6_register_l3(l2, l3):
-++    return getmacbyip6(l3.dst)
-++conf.neighbor.register_l3(Ether, IPv6, inet6_register_l3)
-+ 
-+ 
-+ class IPerror6(IPv6):
-+diff --git a/scapy/layers/l2.py b/scapy/layers/l2.py
-+index 3d88961..47fa386 100644
-+--- a/scapy/layers/l2.py
-++++ b/scapy/layers/l2.py
-+@@ -183,8 +183,10 @@ class LLC(Packet):
-+                     XByteField("ssap", 0x00),
-+                     ByteField("ctrl", 0) ]
-+ 
-+-conf.neighbor.register_l3(Ether, LLC, lambda l2,l3: conf.neighbor.resolve(l2,l3.payload))
-+-conf.neighbor.register_l3(Dot3, LLC, lambda l2,l3: conf.neighbor.resolve(l2,l3.payload))
-++def l2_register_l3(l2, l3):
-++    return conf.neighbor.resolve(l2, l3.payload)
-++conf.neighbor.register_l3(Ether, LLC, l2_register_l3)
-++conf.neighbor.register_l3(Dot3, LLC, l2_register_l3)
-+ 
-+ 
-+ class CookedLinux(Packet):
-+@@ -203,7 +205,7 @@ class SNAP(Packet):
-+     fields_desc = [ X3BytesField("OUI",0x000000),
-+                     XShortEnumField("code", 0x000, ETHER_TYPES) ]
-+ 
-+-conf.neighbor.register_l3(Dot3, SNAP, lambda l2,l3: conf.neighbor.resolve(l2,l3.payload))
-++conf.neighbor.register_l3(Dot3, SNAP, l2_register_l3)
-+ 
-+ 
-+ class Dot1Q(Packet):
-+@@ -236,7 +238,7 @@ class Dot1Q(Packet):
-+             return self.sprintf("802.1q (%Dot1Q.type%) vlan %Dot1Q.vlan%")
-+ 
-+             
-+-conf.neighbor.register_l3(Ether, Dot1Q, lambda l2,l3: conf.neighbor.resolve(l2,l3.payload))
-++conf.neighbor.register_l3(Ether, Dot1Q, l2_register_l3)
-+ 
-+ class STP(Packet):
-+     name = "Spanning Tree Protocol"
-+@@ -351,7 +353,9 @@ class ARP(Packet):
-+         else:
-+             return self.sprintf("ARP %op% %psrc% > %pdst%")
-+                  
-+-conf.neighbor.register_l3(Ether, ARP, lambda l2,l3: getmacbyip(l3.pdst))
-++def l2_register_l3_arp(l2, l3):
-++    return getmacbyip(l3.pdst)
-++conf.neighbor.register_l3(Ether, ARP, l2_register_l3_arp)
-+ 
-+ class GRErouting(Packet):
-+     name = "GRE routing informations"
-+diff --git a/scapy/route.py b/scapy/route.py
-+index 52a9562..4bd27b7 100644
-+--- a/scapy/route.py
-++++ b/scapy/route.py
-+@@ -20,7 +20,6 @@ from error import Scapy_Exception,warning
-+ class Route:
-+     def __init__(self):
-+         self.resync()
-+-        self.s=socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-+         self.cache = {}
-+ 
-+     def invalidate_cache(self):
-+-- 
-+2.8.3
-+
-diff --git a/recipes-security/scapy/scapy_2.3.2.bb b/recipes-security/scapy/scapy_2.3.2.bb
-index 0a42ad9..2965c72 100644
---- a/recipes-security/scapy/scapy_2.3.2.bb
-+++ b/recipes-security/scapy/scapy_2.3.2.bb
-@@ -7,6 +7,7 @@ LIC_FILES_CHKSUM = "file://bin/scapy;beginline=9;endline=13;md5=1d5249872cc54cd4
- 
- SRC_URI = "https://github.com/secdev/${BPN}/archive/v${PV}.tar.gz;downloadfilename=${BP}.tar.gz \
-            file://run-ptest \
-+           file://scapy-Pickling-issues-fixed.patch \
- "
- 
- SRC_URI[md5sum] = "00f11df3d6b46fe6ac306efd757486f9"
 -- 
-2.8.3
-
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
