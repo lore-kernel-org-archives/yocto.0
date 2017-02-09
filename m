@@ -1,32 +1,67 @@
-Return-Path: <leonardo.sandoval.gonzalez@linux.intel.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6FE70E009BC; Thu,  9 Feb 2017 12:34:16 -0800 (PST)
+	id 2FC98E009B8; Thu,  9 Feb 2017 13:23:24 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.65 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.213.68 listed in dnsbl.sorbs.net]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.213.68 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0CE0EE009AA
-	for <yocto@yoctoproject.org>; Thu,  9 Feb 2017 12:34:14 -0800 (PST)
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-	by orsmga103.jf.intel.com with ESMTP; 09 Feb 2017 12:34:14 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.35,137,1484035200"; d="scan'208";a="63902058"
-Received: from lsandov1-mobl2.zpn.intel.com ([10.219.128.141])
-	by fmsmga006.fm.intel.com with ESMTP; 09 Feb 2017 12:34:13 -0800
-From: leonardo.sandoval.gonzalez@linux.intel.com
-To: yocto@yoctoproject.org
-Date: Thu,  9 Feb 2017 14:41:34 -0600
-Message-Id: <1486672894-3837-1-git-send-email-leonardo.sandoval.gonzalez@linux.intel.com>
-X-Mailer: git-send-email 2.1.4
-Cc: paul.eggleton@linux.intel.com
-Subject: [patchtest-oe][PATCH] test/test_mbox_mailinglist.py: check if series was intended for other project
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-vk0-f68.google.com (mail-vk0-f68.google.com
+	[209.85.213.68])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C6AE6E008F2
+	for <yocto@yoctoproject.org>; Thu,  9 Feb 2017 13:23:22 -0800 (PST)
+Received: by mail-vk0-f68.google.com with SMTP id n125so1303478vke.3
+	for <yocto@yoctoproject.org>; Thu, 09 Feb 2017 13:23:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=mEP/qJRgR8jCEJuzAi2k40vBtzL3gMepRxWkZ0wYi0A=;
+	b=uSTvOuJrZcdL+C9e9rfX53CVN9O6NuSkQEuKjb8EQPUHNGtmEHwMMjcU7Hy1RrGWZG
+	X8t1+KzLqemCJKDbT06nNaIbB2+GV+/0jhlkpuyrqZY4cJRUEm9l0CFkWr0k/34i97t2
+	If4wNmBwPVeBUeQD+IrzGnKcknso6UJlTf8HrqjaaPQ6rsQ8GbRyplOf/lAvONKieux/
+	odiPeBQJGknWyP2PNtklAvWp/j3BRAjJiP0+9Fa1JjSlfOsV8WwtfAdiEQ852TgxOnWq
+	V0GkpSrL2o2H3Jt6beu63PbF9wwvUPIm4Lbsk+bzq+QV3MyFAfEweZgLxnT0rtvo3YYE
+	mYoA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=mEP/qJRgR8jCEJuzAi2k40vBtzL3gMepRxWkZ0wYi0A=;
+	b=LHq672iAS/m1acZVuZKKlvsPLNgYLaXWe2D5ew1nRy2qGzBGoEpR+qcgOzq66MLnd/
+	1swV2BCLER0txDVW6Y5k/aMNt8ZEvglJ64g52kuT5ozowpfPJmVaFh2B0s+JASIGUeke
+	qTh9Mhvk4kUSdAeJQzF2qEeHuXAQoRtwgBnBA7lPdIsVdB2lF/8/m5+LI//mYJ9WtN9B
+	gIaKzEQ9yxNlCi8o3bpHvkXlcwdsqlWUlBuOjprog2hRHqoMRJ6vvfwvJVeP5AGbnFuy
+	VLovB73FciycP0wTjoAE4JF8dpEQ2L2gFbnZyAPcKKYbCCHjw0lDjdjazEL1leQ6UK2m
+	nCBA==
+X-Gm-Message-State: AMke39nfKZL0RcF0MBnE1palTffNLHTiOGmhaW4wKphW+Y0EgINduwHl15QH155W4V+/avmKP5D5LmBYTstcSw==
+X-Received: by 10.31.115.142 with SMTP id o136mr2629109vkc.139.1486675400909; 
+	Thu, 09 Feb 2017 13:23:20 -0800 (PST)
+MIME-Version: 1.0
+Received: by 10.159.48.222 with HTTP; Thu, 9 Feb 2017 13:22:50 -0800 (PST)
+In-Reply-To: <20170209082412.18263c84@host0.betafive.co.uk>
+References: <20170209054903.31598-1-raj.khem@gmail.com>
+	<20170209054903.31598-8-raj.khem@gmail.com>
+	<20170209082412.18263c84@host0.betafive.co.uk>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Thu, 9 Feb 2017 13:22:50 -0800
+Message-ID: <CAMKF1sryONDoNQXFNiDnoj1_D1C=1Er1+RjisU3dX1VF6H_jpw@mail.gmail.com>
+To: Paul Barker <paul@paulbarker.me.uk>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi][PATCH 8/9] userland: Upgrade to latest
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,87 +73,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 Feb 2017 20:34:16 -0000
+X-List-Received-Date: Thu, 09 Feb 2017 21:23:24 -0000
+Content-Type: text/plain; charset=UTF-8
 
-From: Leonardo Sandoval <leonardo.sandoval.gonzalez@linux.intel.com>
+On Thu, Feb 9, 2017 at 12:24 AM, Paul Barker <paul@paulbarker.me.uk> wrote:
+> On Wed,  8 Feb 2017 21:49:02 -0800
+> Khem Raj <raj.khem@gmail.com> wrote:
+>
+>> Signed-off-by: Khem Raj <raj.khem@gmail.com>
+>> ---
+>>  recipes-graphics/userland/userland_git.bb | 2 +-
+>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/recipes-graphics/userland/userland_git.bb b/recipes-graphics/userland/userland_git.bb
+>> index cec591d..5a83c8a 100644
+>> --- a/recipes-graphics/userland/userland_git.bb
+>> +++ b/recipes-graphics/userland/userland_git.bb
+>> @@ -16,7 +16,7 @@ COMPATIBLE_MACHINE = "raspberrypi"
+>>
+>>  SRCBRANCH = "master"
+>>  SRCFORK = "raspberrypi"
+>> -SRCREV = "0f015eaa17add5bca00ecf8a354ea62e19bd7920"
+>> +SRCREV = "d35be767ce54ba46893ffa6d612b6b9d490b1e4e"
+>>
+>>  SRC_URI = "\
+>>      git://github.com/${SRCFORK}/userland.git;protocol=git;branch=${SRCBRANCH} \
+>
+> Can we squash this with the other userland upgrade in this series?
 
-People working on the Poky project often send  patches to the wrong
-mailing list, the most common scenarios area: bitbake patches sent to the
-oe-core list, OE patches sent to OE-Core. This new code checks these possible
-scenarios (and two other projects, Poky and OE) and suggest the proper
-ML.
-
-Signed-off-by: Leonardo Sandoval <leonardo.sandoval.gonzalez@linux.intel.com>
----
- tests/test_mbox_mailinglist.py | 58 ++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 58 insertions(+)
- create mode 100644 tests/test_mbox_mailinglist.py
-
-diff --git a/tests/test_mbox_mailinglist.py b/tests/test_mbox_mailinglist.py
-new file mode 100644
-index 0000000..dcf3d75
---- /dev/null
-+++ b/tests/test_mbox_mailinglist.py
-@@ -0,0 +1,58 @@
-+#!/usr/bin/env python
-+#
-+# Check if the series was intended for other project (not OE-Core)
-+#
-+# Copyright (C) 2017 Intel Corporation
-+#
-+# This program is free software; you can redistribute it and/or modify
-+# it under the terms of the GNU General Public License version 2 as
-+# published by the Free Software Foundation.
-+#
-+# This program is distributed in the hope that it will be useful,
-+# but WITHOUT ANY WARRANTY; without even the implied warranty of
-+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-+# GNU General Public License for more details.
-+#
-+# You should have received a copy of the GNU General Public License along
-+# with this program; if not, write to the Free Software Foundation, Inc.,
-+# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-+
-+import subprocess
-+import collections
-+import base
-+from patchtestdata import PatchTestInput as pti
-+
-+class MailingList(base.Base):
-+
-+    # base paths of main yocto project sub-projects
-+    paths = {
-+        'oe-core': ['meta-selftest', 'meta-skeleton', 'meta', 'scripts'],
-+        'bitbake': ['lib', 'classes', 'conf', 'doc', 'contrib', 'bin'],
-+        'documentation': ['adt-manual','ref-manual', 'sdk-manual','bsp-guide', 'profile-manual','template','toaster-manual','dev-manual', 'mega-manual','tools','kernel-dev','yocto-project-qs'],
-+        'poky': ['meta-poky','meta-yocto-bsp'],
-+        'oe': ['meta-gpe', 'meta-gnome', 'meta-efl', 'meta-networking', 'meta-multimedia','meta-initramfs', 'meta-ruby', 'contrib', 'meta-xfce', 'meta-filesystems', 'meta-perl', 'meta-webserver', 'meta-systemd', 'meta-oe', 'meta-python']
-+        }
-+
-+    Project = collections.namedtuple('Project', ['name', 'listemail', 'gitrepo', 'paths'])
-+
-+    bitbake = Project(name='Bitbake', listemail='bitbake-devel@lists.openembedded.org', gitrepo='http://git.openembedded.org/bitbake/', paths=paths['bitbake'])
-+    doc     = Project(name='Documentantion', listemail='yocto@yoctoproject.org', gitrepo='http://git.yoctoproject.org/cgit/cgit.cgi/yocto-docs/', paths=paths['documentation'])
-+    poky    = Project(name='Poky', listemail='poky@yoctoproject.org', gitrepo='http://git.yoctoproject.org/cgit/cgit.cgi/meta-yocto(-bsp)', paths=paths['poky'])
-+    oe      = Project(name='oe', listemail='openembedded-devel@lists.openembedded.org', gitrepo='http://git.openembedded.org/meta-openembedded/', paths=paths['oe'])
-+
-+
-+    def test_target_mailing_list(self):
-+        """In case of merge failure, check for other targeted projects"""
-+        if pti.repo.ismerged:
-+            self.skipTest('Series merged, no reason to check other mailing lists')
-+
-+        for patch in self.patchset:
-+            folders = patch.path.split('/')
-+            base_path = folders[0]
-+            for project in [self.bitbake, self.doc, self.oe, self.poky]:
-+                if base_path in  project.paths:
-+                    self.fail('Series sent to the wrong mailing list', 'Send the series again to the correct mailing list (ML)',
-+                              data=[('Suggested ML', '%s [%s]' % (project.listemail, project.gitrepo))])
-+
-+
-+
--- 
-2.1.4
-
+I intentionally, did not since I did not want to rebase my master, and both
+bumps are tested individually over period of time. since my master is used
+by others I did not want to make it painful for them when it merged into master
+the first set has been posted few weeks ago to ml already which is
+still pending.
 
