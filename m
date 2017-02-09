@@ -1,17 +1,18 @@
-Return-Path: <karim_atiki@hotmail.com>
+Return-Path: <usmanhaider89@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5C819E00A3B; Thu,  9 Feb 2017 08:40:19 -0800 (PST)
+	id B74DAE00A3B; Thu,  9 Feb 2017 08:44:59 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+	RCVD_IN_DNSWL_NONE, 
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (karim_atiki[at]hotmail.com)
+	mail provider *      (usmanhaider89[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [65.55.34.76 listed in list.dnswl.org]
+	*      [74.125.82.182 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -20,75 +21,49 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from COL004-OMC2S2.hotmail.com (col004-omc2s2.hotmail.com
-	[65.55.34.76])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EA8FEE0094C
-	for <yocto@yoctoproject.org>; Thu,  9 Feb 2017 08:40:16 -0800 (PST)
-Received: from EUR03-DB5-obe.outbound.protection.outlook.com ([65.55.34.71])
-	by COL004-OMC2S2.hotmail.com over TLS secured channel with
-	Microsoft SMTPSVC(7.5.7601.23008); Thu, 9 Feb 2017 08:40:16 -0800
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
-	s=selector1; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
-	bh=1DbjWxuYPNDECjSDcQ+g+zSR50Ed1RaSYy3gStK/h7c=;
-	b=hEhEStF1Ggw4R966FyYTjUqWwBaV70tyUZAlPDDH/YCvE3sEdgFkwHGXJgrBVYraPIdxTi9F6Bxsyo8xklUsxLw9Ed3MEJMfZaidnABb6zrASv3Fnz/CD5ybPfi9abmOWXxPnqvn2JJeUfXcLDT30UFag81vmFNcnx/fjiUc2Zr9+MkKQB5S6bgbHrYXD0eOcH7RvSVPN1yKw+voZA/h4AqKhlMnKB00VOuhDpWhqmgms4TYvHCPaHQEzx8VunYdAs1UIXxRWgzdv6Ma8mTGP0yBZpleMhUG4gu8PsKpCi5CVJ86ZN1Vs5v5c4xTPS05y5TR4XN9B8IQHUjwSDzohw==
-Received: from DB5EUR03FT052.eop-EUR03.prod.protection.outlook.com
-	(10.152.20.57) by DB5EUR03HT053.eop-EUR03.prod.protection.outlook.com
-	(10.152.21.238) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.888.7;
-	Thu, 9 Feb 2017 16:40:13 +0000
-Received: from AMSPR01MB184.eurprd01.prod.exchangelabs.com (10.152.20.55) by
-	DB5EUR03FT052.mail.protection.outlook.com (10.152.21.82) with Microsoft
-	SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
-	15.1.888.7 via Frontend Transport; Thu, 9 Feb 2017 16:40:13 +0000
-Received: from AMSPR01MB184.eurprd01.prod.exchangelabs.com ([169.254.10.241])
-	by AMSPR01MB184.eurprd01.prod.exchangelabs.com ([169.254.10.241])
-	with mapi id 15.01.0888.026; Thu, 9 Feb 2017 16:40:13 +0000
-From: Karim ATIKI <karim_atiki@hotmail.com>
-To: yocto <yocto@yoctoproject.org>
-Thread-Topic: [yocto][bitbake] Custom LIC_FILES_CHKSUM location
-Thread-Index: AQHSgvL4FLG4WGXnVk+QymJ6oA3QAg==
-Date: Thu, 9 Feb 2017 16:40:12 +0000
-Message-ID: <AMSPR01MB184EE0F28D568C71146B57392450@AMSPR01MB184.eurprd01.prod.exchangelabs.com>
-Accept-Language: fr-FR, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: yoctoproject.org; dkim=none (message not signed)
-	header.d=none;yoctoproject.org; dmarc=none action=none
-	header.from=hotmail.com;
-x-incomingtopheadermarker: OriginalChecksum:C45D1D4D9A1D857E0B8CE35B57A2AC1B9EB8237CDD0A78927574E8F080BB5F35;
-	UpperCasedChecksum:29C527756A0FA390E26EFF3758ED17E9820714921DEBF219CA77A5DB17746FD2;
-	SizeAsReceived:7627; Count:37
-x-ms-exchange-messagesentrepresentingtype: 1
-x-tmn: [hcwxBID09efGSBLEDQnvw/tUJcLVz5B+]
-x-incomingheadercount: 37
-x-eopattributedmessage: 0
-x-microsoft-exchange-diagnostics: 1; DB5EUR03HT053;
-	5:fDrLGG48B8F/uXv9aV8mv/pXse7HRgxlmUWxBDK5WGZ4A/Kx3UiX8pM65Up39AnUfeqdng0yE7FWm+hPzPz7n1EXqTHwQB05NfFPh1EZ3F4gvoM0sjCBeNLDakJBtzb81dgrpU3VNtFl8SrEDGCXvg==;
-	24:rOZbK+zbkdSt8dVwQ6ktxyasOhhlD+5QqiyH4OMOWDSoT6ds5321mAeRc+Wwxzjp980LCSTXke1eDVzzBdv60DjETDcwQT0r10zfx/l9OT0=;
-	7:rQUt8JDVC8TYn4jJREJMl9Rlsw8FJ+IdgvQwKCS7h27pyYW/Bw5tcST7/CQZ+vwO8n/MyDgOld2eG7jnE2uYo/ALta7qREqIGWXnvkgBfu9MLHHcjbM+YKNCufvQtxtEql5BjBBePc2YaNXUdS+el7Xx+HJjyMcKqWma4FoB0fSyF23xHtRYH7hBk/l8mWiIvA9qAuHLuuNM91g2NZHwyU3gSQv2xL1he0uZVD15jez9bAhdUlkHMgptOPfZDAoN8U/WV0b3YP6I0Ql5nmH9lPhMmgvoo+F3hC+VLe2m4Iuy2DbJCG7L2cIXO550Bo+Mv02ZrZqEhffioFdH+07pE9aCRm4p3JzJffZj1O994py2o2/U1a7DHPz1SOswgYg2ZR0/70agRnFNf5QkfS0ctrsfBlWX0v7kUWcQ5krt/ao91U9n/SdJFIAHSWibSNeEkGHt6oyWkA/tC9m9RXOP5tX7JhDHKqKbFM8utrCfRXtxOx1Fq3RBzdToclMXLpiW801ju0V7WZ19WY9DQ4uEUA==
-x-forefront-antispam-report: EFV:NLI; SFV:NSPM; SFS:(10019020)(98900006);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:DB5EUR03HT053;
-	H:AMSPR01MB184.eurprd01.prod.exchangelabs.com; FPR:; SPF:None;
-	LANG:en; 
-x-ms-office365-filtering-correlation-id: d60dda69-6b1b-434c-aa6f-08d4510a51e8
-x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
-	RULEID:(22001)(5061506426)(5061507331)(1603103135)(1601125107)(1701031045);
-	SRVR:DB5EUR03HT053; 
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0; RULEID:(432015086)(82015046);
-	SRVR:DB5EUR03HT053; BCL:0; PCL:0; RULEID:; SRVR:DB5EUR03HT053; 
-x-forefront-prvs: 02135EB356
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.82.182 listed in dnsbl.sorbs.net]
+Received: from mail-ot0-f182.google.com (mail-ot0-f182.google.com
+	[74.125.82.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C56E9E0094C
+	for <yocto@yoctoproject.org>; Thu,  9 Feb 2017 08:44:57 -0800 (PST)
+Received: by mail-ot0-f182.google.com with SMTP id 73so7391740otj.0
+	for <yocto@yoctoproject.org>; Thu, 09 Feb 2017 08:44:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=8muRQAAOmbnGZtMcqCA1jc5CwumX1a8ZHqe935G8Cvw=;
+	b=Tvm0TgqSXuaAym8MWhxBTpuYK2xv0FhiKZPr6RYjCtRbvLaCNy+uuNRdRrJn7yF0OI
+	h3HKtnCz15RfbWTzmhvw2fNy6sdUL3q9WHLVJjTlQgWLYMiVDbB0aMPvdEylV8+j3RFZ
+	R6WdeJBkj7bVFPpgN4/8A95VX5dDFPKhnQgjTExpnnLZqJx+N4Tr0GYt9plwIRg9TByZ
+	h84daMd9z3rQ51TvIKmzDhz0Ugq0cPb7Hi23zWWvhsVyuv4EdHJosZ+KitXofQ6LY3pl
+	PBidBWhs5jtZbTIsV3ePHzEPnYREBH/0NxrZBBveSn/Y0EdspgQrjCHRn+rV5wGasK+O
+	aenw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=8muRQAAOmbnGZtMcqCA1jc5CwumX1a8ZHqe935G8Cvw=;
+	b=aSYHlMZnN872wwSJwrPvSRh6TjKA4jYMAnT9jJkpY7/2AEmFbIYTMVdRM313fiarST
+	Vv3y+g0ATMQ3VDgb8CYQ1ndISDNIFlIfk2JWVJxs7YP52+RXRajCkkQMqdhzoZVIbe5H
+	i7ozjMIeLvFbihixU5DXHQwSglPmcs+H+Hs9gCEgrFdqX7KC9SQ07zTer9wtfdB81KHO
+	cRJQPtMSgTk08XZmvCuzBkvTVvdA37Fm47BtpCXFAcKy6tRzcANx5IzGi6hTupi6KxUH
+	h+PsAZ6jSm5IDH0XeH/yhONtXaS9NBwVTR8C5npYimUJIApthuAC2ADYdn3y6A9vGHkt
+	KMtg==
+X-Gm-Message-State: AMke39mgfK0wsljm2Seg0h9+m2r0ZUnw5b0vDUjU+Gc+nc7R8H7w1Fv1L4O0xBlIq+gG+9RhZs0NpG4Ko3/jQw==
+X-Received: by 10.157.39.14 with SMTP id r14mr2021578ota.45.1486658696736;
+	Thu, 09 Feb 2017 08:44:56 -0800 (PST)
 MIME-Version: 1.0
-X-OriginatorOrg: hotmail.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Feb 2017 16:40:12.9087 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Internet
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB5EUR03HT053
-X-OriginalArrivalTime: 09 Feb 2017 16:40:16.0428 (UTC)
-	FILETIME=[316126C0:01D282F3]
-Subject: [bitbake] Custom LIC_FILES_CHKSUM location
+Received: by 10.182.7.100 with HTTP; Thu, 9 Feb 2017 08:44:56 -0800 (PST)
+In-Reply-To: <a8fd94f0-0fa5-95bf-67b8-637e8c6413ca@mlbassoc.com>
+References: <CANxWOTYfkUDguyFogHHA2HH77McT06-4+z96S7pJupfRKHhm+g@mail.gmail.com>
+	<a1f5e2a1-62cc-9141-0f4e-9aeec971453e@gmail.com>
+	<a8fd94f0-0fa5-95bf-67b8-637e8c6413ca@mlbassoc.com>
+From: Usman Haider <usmanhaider89@gmail.com>
+Date: Thu, 9 Feb 2017 21:44:56 +0500
+Message-ID: <CANxWOTYiC-smHBpTErpyhvvJCnSa-Xyzq4RiGo1nJrO9wR=Z9Q@mail.gmail.com>
+To: Gary Thomas <gary@mlbassoc.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: meta-raspberrypi issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -100,144 +75,248 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 Feb 2017 16:40:19 -0000
-Content-Language: fr-FR
-Content-Type: multipart/alternative;
-	boundary="_000_AMSPR01MB184EE0F28D568C71146B57392450AMSPR01MB184eurprd_"
+X-List-Received-Date: Thu, 09 Feb 2017 16:44:59 -0000
+Content-Type: multipart/alternative; boundary=001a113ac9b4857a5b05481bb317
 
---_000_AMSPR01MB184EE0F28D568C71146B57392450AMSPR01MB184eurprd_
-Content-Type: text/plain; charset="iso-8859-1"
+--001a113ac9b4857a5b05481bb317
+Content-Type: text/plain; charset=UTF-8
+
+Thanks,
+
+I'll definitely move to morty. I was following I guide that uses daisy.
+
+--
+Usman
+
+On Wed, Feb 8, 2017 at 5:09 PM, Gary Thomas <gary@mlbassoc.com> wrote:
+
+> On 2017-02-01 18:24, Khem Raj wrote:
+>
+>>
+>>
+>> On 2/1/17 8:08 AM, Usman Haider wrote:
+>>
+>>> Hi,
+>>>
+>>> I am new to yocto and just started working on it. I am having issue
+>>> with meta-raspberrypi. I did inside poky
+>>>
+>>> $ git checkout -b work_branch -t origin/daisy
+>>>
+>>> $ git clone git://git.yoctoproject.org/meta-raspberrypi
+>>> <http://git.yoctoproject.org/meta-raspberrypi>
+>>>
+>>>
+>> you need to checkout daisy branch of meta-raspberrypi as well.
+>>
+>
+> That said, daisy is REALLY OLD.  You'd probably be much better off with
+> something recent, e.g. morty.
+>
+>
+>
+>> $ source oe-init-build-env rpi-build
+>>>
+>>> updated the local.conf and bblayer.conf files inside rpi-build
+>>>
+>>> In local.conf
+>>>
+>>> BB_NUMBER_THREADS ?= "${@oe.utils.cpu_count()}"
+>>> PARALLEL_MAKE ?= "-j ${@oe.utils.cpu_count()}"
+>>> MACHINE ?= "raspberrypi"
+>>>
+>>> In bblayer.conf
+>>> # LAYER_CONF_VERSION is increased each time build/conf/bblayers.conf
+>>> # changes incompatibly
+>>> LCONF_VERSION = "6"
+>>>
+>>> BBPATH = "${TOPDIR}"
+>>> BBFILES ?= ""
+>>>
+>>> BBLAYERS ?= " \
+>>>   /home/vm/poky/meta \
+>>>   /home/vm/poky/meta-yocto \
+>>>   /home/vm/poky/meta-yocto-bsp \
+>>>   /home/vm/poky/meta-raspberrypi \
+>>>   "
+>>> BBLAYERS_NON_REMOVABLE ?= " \
+>>>   /home/vm/poky/meta \
+>>>   /home/vm/poky/meta-yocto \
+>>>   "
+>>>
+>>> When I run bitbake rpi-basic-image, I get following
+>>>
+>>>
+>>> *********************************
+>>>
+>>> vm@sdr-vm:~/poky/rpi-build$ bitbake rpi-basic-image
+>>> WARNING: Host distribution "Ubuntu-16.04" has not been validated with
+>>> this version of the build system; you may possibly experience unexpected
+>>> failures. It is recommended that you use a tested distribution.
+>>> Parsing recipes: 100% |#########################################| Time:
+>>> 00:02:37
+>>> Parsing of 882 .bb files complete (0 cached, 882 parsed). 1241 targets,
+>>> 63 skipped, 0 masked, 0 errors.
+>>> ERROR: No recipes available for:
+>>>
+>>> /home/vm/poky/meta-raspberrypi/recipes-multimedia/gstreamer/
+>>> gstreamer1.0-omx_1.10%.bbappend
+>>>
+>>> /home/vm/poky/meta-raspberrypi/recipes-multimedia/gstreamer/
+>>> gstreamer1.0-omx_1.2.0.bbappend
+>>> ERROR: Command execution failed: Exited with 1
+>>>
+>>> *************************************
+>>>
+>>> What could be the issue?
+>>>
+>>> --
+>>> Usman
+>>>
+>>>
+>>>
+>
+> --
+> ------------------------------------------------------------
+> Gary Thomas                 |  Consulting for the
+> MLB Associates              |    Embedded world
+> ------------------------------------------------------------
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+
+--001a113ac9b4857a5b05481bb317
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-I need to integrate a custom licence file in the recipes we're creating.
+<div dir=3D"ltr">Thanks,<div><br></div><div>I&#39;ll definitely move to mor=
+ty. I was following I guide that uses daisy.=C2=A0</div><div><br></div><div=
+>--</div><div>Usman<br><div class=3D"gmail_extra"><br><div class=3D"gmail_q=
+uote">On Wed, Feb 8, 2017 at 5:09 PM, Gary Thomas <span dir=3D"ltr">&lt;<a =
+href=3D"mailto:gary@mlbassoc.com" target=3D"_blank">gary@mlbassoc.com</a>&g=
+t;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0=
+ .8ex;border-left:1px #ccc solid;padding-left:1ex"><span class=3D"">On 2017=
+-02-01 18:24, Khem Raj wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
+<br>
+<br>
+On 2/1/17 8:08 AM, Usman Haider wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
+Hi,<br>
+<br>
+I am new to yocto and just started working on it. I am having issue<br>
+with meta-raspberrypi. I did inside poky<br>
+<br>
+$ git checkout -b work_branch -t origin/daisy<br>
+<br>
+$ git clone git://<a href=3D"http://git.yoctoproject.org/meta-raspberrypi" =
+rel=3D"noreferrer" target=3D"_blank">git.yoctoproject.org/met<wbr>a-raspber=
+rypi</a><br>
+&lt;<a href=3D"http://git.yoctoproject.org/meta-raspberrypi" rel=3D"norefer=
+rer" target=3D"_blank">http://git.yoctoproject.org/m<wbr>eta-raspberrypi</a=
+>&gt;<br>
+<br>
+</blockquote>
+<br>
+you need to checkout daisy branch of meta-raspberrypi as well.<br>
+</blockquote>
+<br></span>
+That said, daisy is REALLY OLD.=C2=A0 You&#39;d probably be much better off=
+ with<br>
+something recent, e.g. morty.<div><div class=3D"h5"><br>
+<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
+<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
+$ source oe-init-build-env rpi-build<br>
+<br>
+updated the local.conf and bblayer.conf files inside rpi-build<br>
+<br>
+In local.conf<br>
+<br>
+BB_NUMBER_THREADS ?=3D &quot;${@oe.utils.cpu_count()}&quot;<br>
+PARALLEL_MAKE ?=3D &quot;-j ${@oe.utils.cpu_count()}&quot;<br>
+MACHINE ?=3D &quot;raspberrypi&quot;<br>
+<br>
+In bblayer.conf<br>
+# LAYER_CONF_VERSION is increased each time build/conf/bblayers.conf<br>
+# changes incompatibly<br>
+LCONF_VERSION =3D &quot;6&quot;<br>
+<br>
+BBPATH =3D &quot;${TOPDIR}&quot;<br>
+BBFILES ?=3D &quot;&quot;<br>
+<br>
+BBLAYERS ?=3D &quot; \<br>
+=C2=A0 /home/vm/poky/meta \<br>
+=C2=A0 /home/vm/poky/meta-yocto \<br>
+=C2=A0 /home/vm/poky/meta-yocto-bsp \<br>
+=C2=A0 /home/vm/poky/meta-raspberrypi \<br>
+=C2=A0 &quot;<br>
+BBLAYERS_NON_REMOVABLE ?=3D &quot; \<br>
+=C2=A0 /home/vm/poky/meta \<br>
+=C2=A0 /home/vm/poky/meta-yocto \<br>
+=C2=A0 &quot;<br>
+<br>
+When I run bitbake rpi-basic-image, I get following<br>
+<br>
+<br>
+******************************<wbr>***<br>
+<br>
+vm@sdr-vm:~/poky/rpi-build$ bitbake rpi-basic-image<br>
+WARNING: Host distribution &quot;Ubuntu-16.04&quot; has not been validated =
+with<br>
+this version of the build system; you may possibly experience unexpected<br=
+>
+failures. It is recommended that you use a tested distribution.<br>
+Parsing recipes: 100% |#############################<wbr>############| Time=
+:<br>
+00:02:37<br>
+Parsing of 882 .bb files complete (0 cached, 882 parsed). 1241 targets,<br>
+63 skipped, 0 masked, 0 errors.<br>
+ERROR: No recipes available for:<br>
+<br>
+/home/vm/poky/meta-raspberrypi<wbr>/recipes-multimedia/gstreamer/<wbr>gstre=
+amer1.0-omx_1.10%.bbappen<wbr>d<br>
+<br>
+/home/vm/poky/meta-raspberrypi<wbr>/recipes-multimedia/gstreamer/<wbr>gstre=
+amer1.0-omx_1.2.0.bbappen<wbr>d<br>
+ERROR: Command execution failed: Exited with 1<br>
+<br>
+******************************<wbr>*******<br>
+<br>
+What could be the issue?<br>
+<br>
+--<br>
+Usman<br>
+<br>
+<br>
+</blockquote></blockquote>
+<br>
+<br>
+-- <br></div></div>
+------------------------------<wbr>------------------------------<br>
+Gary Thomas=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0|=
+=C2=A0 Consulting for the<br>
+MLB Associates=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 |=C2=A0 =C2=
+=A0 Embedded world<br>
+------------------------------<wbr>------------------------------<div class=
+=3D"HOEnZb"><div class=3D"h5"><br>
+-- <br>
+______________________________<wbr>_________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.org<wbr>/listinfo/yocto</a><=
+br>
+</div></div></blockquote></div><br></div></div></div>
 
-
-Basically, the layer strcutureis:
-
-
-
-meta-mylayer
-
-     + recipes-connectivity /
-
-         + bootscripts /
-
-                 + bootscript_0-1.bb
-
-     + recipes-qt
-
-     ...
-
-    MYLICENSE.TXT
-
-
-
-
-In bootscript_0-1.bb:
-
-I've added:
-
-LIC_FILES_CHKSUM =3D "file://LICENSE.PGA;md5=3D149a23532762ef4f5c3a1ad0d021=
-249c"
-
-
-But of course, it does not find the file.
-
-What variable should I use so that the file points to valid location ?
-
-
-Best Regards,
-
-Z.
-
-
---_000_AMSPR01MB184EE0F28D568C71146B57392450AMSPR01MB184eurprd_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
-</head>
-<body dir=3D"ltr">
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
--family:Calibri,Arial,Helvetica,sans-serif;" dir=3D"ltr">
-<p>I need to integrate a custom licence file in the recipes we're creating.=
-</p>
-<p><br>
-</p>
-<p>Basically, the layer strcutureis:</p>
-<p><br>
-</p>
-<p><br>
-</p>
-<p>meta-mylayer</p>
-<p>&nbsp; &nbsp; &nbsp;&#43; recipes-connectivity /</p>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&#43; bootscripts /&nbsp;</p>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&#43; boot=
-script_0-1.bb</p>
-<p>&nbsp; &nbsp; &nbsp;&#43; recipes-qt</p>
-<p>&nbsp; &nbsp; &nbsp;...</p>
-<p>&nbsp; &nbsp; MYLICENSE.TXT</p>
-<p><br>
-</p>
-<p><br>
-</p>
-<p><br>
-</p>
-<p><span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot=
-;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot=
-;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size:=
- 16px;">In bootscript_0-1.bb:</span><br>
-</p>
-<p><span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot=
-;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot=
-;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size:=
- 16px;">I've added:&nbsp;</span></p>
-<p><span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot=
-;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot=
-;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size:=
- 16px;"><span>LIC_FILES_CHKSUM =3D &quot;file://LICENSE.PGA;md5=3D149a23532=
-762ef4f5c3a1ad0d021249c&quot;</span><br>
-</span></p>
-<p><span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot=
-;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot=
-;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size:=
- 16px;"><span><br>
-</span></span></p>
-<p><span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot=
-;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot=
-;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size:=
- 16px;"><span>But of course, it does not find the file.</span></span></p>
-<p><span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot=
-;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot=
-;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size:=
- 16px;"><span>What variable&nbsp;should I use so that the file points to va=
-lid
- location ?</span></span></p>
-<p><span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot=
-;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot=
-;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size:=
- 16px;"><span><br>
-</span></span></p>
-<p><span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot=
-;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot=
-;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size:=
- 16px;"><span>Best&nbsp;Regards,</span></span></p>
-<p><span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot=
-;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot=
-;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size:=
- 16px;"><span>Z.</span></span></p>
-<p><span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot=
-;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot=
-;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size:=
- 16px;"><br>
-</span></p>
-</div>
-</body>
-</html>
-
---_000_AMSPR01MB184EE0F28D568C71146B57392450AMSPR01MB184eurprd_--
+--001a113ac9b4857a5b05481bb317--
