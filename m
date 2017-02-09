@@ -1,6 +1,6 @@
-Return-Path: <todor.minchev@linux.intel.com>
+Return-Path: <leonardo.sandoval.gonzalez@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4BD49E009F8; Thu,  9 Feb 2017 11:18:16 -0800 (PST)
+	id 6FE70E009BC; Thu,  9 Feb 2017 12:34:16 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,28 +8,25 @@ X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.24 listed in list.dnswl.org]
+	*      [134.134.136.65 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 61FD2E009F0;
-	Thu,  9 Feb 2017 11:18:15 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 09 Feb 2017 11:18:15 -0800
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0CE0EE009AA
+	for <yocto@yoctoproject.org>; Thu,  9 Feb 2017 12:34:14 -0800 (PST)
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+	by orsmga103.jf.intel.com with ESMTP; 09 Feb 2017 12:34:14 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.35,137,1484035200"; d="scan'208";a="42160816"
-Received: from unknown (HELO localhost.localdomain) ([10.7.197.100])
-	by orsmga002.jf.intel.com with ESMTP; 09 Feb 2017 11:18:15 -0800
-From: Todor Minchev <todor.minchev@linux.intel.com>
-To: yocto@yoctoproject.org, meta-intel@yoctoproject.org,
-	jianxun.zhang@linux.intel.com
-Date: Thu,  9 Feb 2017 11:17:40 -0800
-Message-Id: <20170209191740.63387-6-todor.minchev@linux.intel.com>
-X-Mailer: git-send-email 2.11.1
-In-Reply-To: <20170209191740.63387-1-todor.minchev@linux.intel.com>
-References: <20170209191740.63387-1-todor.minchev@linux.intel.com>
-Cc: Todor Minchev <todor.minchev@linux.intel.com>
-Subject: [PATCH v2 5/5] rmc: add database extraction functionality
+X-IronPort-AV: E=Sophos;i="5.35,137,1484035200"; d="scan'208";a="63902058"
+Received: from lsandov1-mobl2.zpn.intel.com ([10.219.128.141])
+	by fmsmga006.fm.intel.com with ESMTP; 09 Feb 2017 12:34:13 -0800
+From: leonardo.sandoval.gonzalez@linux.intel.com
+To: yocto@yoctoproject.org
+Date: Thu,  9 Feb 2017 14:41:34 -0600
+Message-Id: <1486672894-3837-1-git-send-email-leonardo.sandoval.gonzalez@linux.intel.com>
+X-Mailer: git-send-email 2.1.4
+Cc: paul.eggleton@linux.intel.com
+Subject: [patchtest-oe][PATCH] test/test_mbox_mailinglist.py: check if series was intended for other project
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,312 +38,87 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 Feb 2017 19:18:16 -0000
+X-List-Received-Date: Thu, 09 Feb 2017 20:34:16 -0000
 
-The contents of an existing database file can be extracted with the -E option.
-By default the top level of the directory tree is rmc_db_dump, an alternative
-path can be specified with the -o option. The file blobs corresponding
-to a given record will be saved in a separate sub-directory. The sub-directory
-name of each record is the signature corresponding to the fingerprint for that
-record with all non-alphanumeric characters stripped.
+From: Leonardo Sandoval <leonardo.sandoval.gonzalez@linux.intel.com>
 
-Example:
-./src/rmc -E -d rmc.db -o output/directory/
+People working on the Poky project often send  patches to the wrong
+mailing list, the most common scenarios area: bitbake patches sent to the
+oe-core list, OE patches sent to OE-Core. This new code checks these possible
+scenarios (and two other projects, Poky and OE) and suggest the proper
+ML.
 
-Successfully extracted rmc.db
-
-Signed-off-by: Todor Minchev <todor.minchev@linux.intel.com>
+Signed-off-by: Leonardo Sandoval <leonardo.sandoval.gonzalez@linux.intel.com>
 ---
- inc/rmc_api.h         |   9 +++++
- inc/rmcl.h            |   7 ++++
- src/lib/api.c         | 106 +++++++++++++++++++++++++++++++++++++++++++++++++-
- src/lib/common/rmcl.c |  17 +++++++-
- src/rmc.c             |  30 +++++++++-----
- 5 files changed, 157 insertions(+), 12 deletions(-)
+ tests/test_mbox_mailinglist.py | 58 ++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 58 insertions(+)
+ create mode 100644 tests/test_mbox_mailinglist.py
 
-diff --git a/inc/rmc_api.h b/inc/rmc_api.h
-index a484389..2f8c978 100644
---- a/inc/rmc_api.h
-+++ b/inc/rmc_api.h
-@@ -109,6 +109,15 @@ extern int read_file(const char *pathname, char **data, rmc_size_t* len);
-  */
- int write_file(const char *pathname, void *data, rmc_size_t len, int append);
- 
-+/* extract the contents of a database file and store the files corresponding to
-+ * each record in a separate directory. The name of each directory is the signature
-+ * of the fingerpring for that record with all non-alphanumeric characters stripped
-+ * (in) db_pathname: The path and file name of a RMC database file generated by RMC tool
-+ * (in) output_path: A directory path to extract the database to
-+ * return: 0 on success, non-zero on failure.
-+ */
-+int dump_db(char *db_pathname, char *output_path) ;
+diff --git a/tests/test_mbox_mailinglist.py b/tests/test_mbox_mailinglist.py
+new file mode 100644
+index 0000000..dcf3d75
+--- /dev/null
++++ b/tests/test_mbox_mailinglist.py
+@@ -0,0 +1,58 @@
++#!/usr/bin/env python
++#
++# Check if the series was intended for other project (not OE-Core)
++#
++# Copyright (C) 2017 Intel Corporation
++#
++# This program is free software; you can redistribute it and/or modify
++# it under the terms of the GNU General Public License version 2 as
++# published by the Free Software Foundation.
++#
++# This program is distributed in the hope that it will be useful,
++# but WITHOUT ANY WARRANTY; without even the implied warranty of
++# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++# GNU General Public License for more details.
++#
++# You should have received a copy of the GNU General Public License along
++# with this program; if not, write to the Free Software Foundation, Inc.,
++# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 +
- #else
- /* 2 - API for UEFI context */
- 
-diff --git a/inc/rmcl.h b/inc/rmcl.h
-index 5bbad42..471ebfe 100644
---- a/inc/rmcl.h
-+++ b/inc/rmcl.h
-@@ -164,4 +164,11 @@ extern int rmcl_generate_db(rmc_record_file_t *record_files, rmc_uint8_t **rmc_d
-  */
- extern int query_policy_from_db(rmc_fingerprint_t *fingerprint, rmc_uint8_t *rmc_db, rmc_uint8_t type, char *blob_name, rmc_file_t *policy);
- 
-+/*
-+ * Check if db_blob has a valid rmc database signature
-+ *
-+ * return 0 if db_blob has a valid signature or non-zero otherwise
-+ */
-+int is_rmcdb(rmc_uint8_t *db_blob);
++import subprocess
++import collections
++import base
++from patchtestdata import PatchTestInput as pti
 +
- #endif /* INC_RMCL_H_ */
-diff --git a/src/lib/api.c b/src/lib/api.c
-index 0adb390..56746a4 100644
---- a/src/lib/api.c
-+++ b/src/lib/api.c
-@@ -3,6 +3,7 @@
-  * RMC API implementation for Linux user space
-  */
- 
-+#define _GNU_SOURCE
- #include <stdio.h>
- #include <unistd.h>
- #include <errno.h>
-@@ -10,12 +11,15 @@
- #include <sys/stat.h>
- #include <fcntl.h>
- #include <sys/mman.h>
-+#include <dirent.h>
-+#include <ctype.h>
- 
- #include <rmcl.h>
- #include <rsmp.h>
- 
--#define EFI_SYSTAB_PATH "/sys/firmware/efi/systab"
--#define SYSTAB_LEN 4096         /* assume 4kb is enough...*/
-+#define EFI_SYSTAB_PATH  "/sys/firmware/efi/systab"
-+#define SYSTAB_LEN       4096             /* assume 4kb is enough...*/
-+#define DB_DUMP_DIR      "./rmc_db_dump"  /* directory to store db data dump */
- 
- int read_file(const char *pathname, char **data, rmc_size_t* len) {
-     int fd = -1;
-@@ -325,3 +329,101 @@ int rmc_gimme_file(char* db_pathname, char *file_name, rmc_file_t *file) {
- 
-     return ret;
- }
++class MailingList(base.Base):
 +
-+void remove_non_alphanum(char *in) {
-+    char c;
-+    unsigned long i = 0, j = 0;
-+
-+    while ((c = in[i++]) != '\0'){
-+        if (isalnum(c))
-+            in[j++] = c;
-+    }
-+    in[j] = '\0';
-+}
-+
-+int dump_db(char *db_pathname, char *output_path) {
-+    rmc_meta_header_t meta_header;
-+    rmc_db_header_t *db_header = NULL;
-+    rmc_record_header_t record_header;
-+    rmc_uint64_t record_idx = 0;   /* offset of each reacord in db*/
-+    rmc_uint64_t meta_idx = 0;     /* offset of each meta in a record */
-+    rmc_uint64_t file_idx = 0;     /* offset of file in a meta */
-+    rmc_file_t file;
-+    char *out_dir = NULL, *out_name = NULL, *cmd = NULL, *tmp_dir_name = NULL;
-+    rmc_size_t db_len = 0;
-+    rmc_uint8_t *rmc_db = NULL;
-+    DIR *tmp_dir = NULL;
-+
-+    if (read_file(db_pathname, (char **)&rmc_db, &db_len)) {
-+        fprintf(stderr, "Failed to read database file\n\n");
-+        return 1;
-+    }
-+
-+    db_header = (rmc_db_header_t *)rmc_db;
-+
-+    /* sanity check of db */
-+    if (is_rmcdb(rmc_db))
-+        return 1;
-+
-+    /* query the meta. idx: start of record */
-+    record_idx = sizeof(rmc_db_header_t);
-+    while (record_idx < db_header->length) {
-+        memcpy(&record_header, rmc_db + record_idx,
-+            sizeof(rmc_record_header_t));
-+
-+        /* directory name is fingerprint signature with stripped special chars*/
-+        asprintf(&tmp_dir_name, "%s", record_header.signature.raw);
-+        remove_non_alphanum(tmp_dir_name);
-+        if(output_path)
-+            asprintf(&out_dir, "%s/%s/", output_path, tmp_dir_name);
-+        else
-+            asprintf(&out_dir, "%s/%s/", DB_DUMP_DIR, tmp_dir_name);
-+        if ((tmp_dir = opendir(out_dir))) {
-+            /* Directory exists */
-+            closedir(tmp_dir);
-+            free(tmp_dir_name);
-+        } else if (ENOENT == errno) {
-+            /* Directory does not exist, try to create it. */
-+            asprintf(&cmd, "mkdir -p %s", out_dir);
-+            if(system(cmd) == -1) {
-+                fprintf(stderr, "Failed to create %s directory\n\n", out_dir);
-+                free(out_dir);
-+                free(tmp_dir_name);
-+                free(cmd);
-+                return 1;
-+            }
-+            free(cmd);
-+        } else {
-+            /* Some other error occured */
-+            free(out_dir);
-+            free(tmp_dir_name);
-+            free(cmd);
-+            return 1;
++    # base paths of main yocto project sub-projects
++    paths = {
++        'oe-core': ['meta-selftest', 'meta-skeleton', 'meta', 'scripts'],
++        'bitbake': ['lib', 'classes', 'conf', 'doc', 'contrib', 'bin'],
++        'documentation': ['adt-manual','ref-manual', 'sdk-manual','bsp-guide', 'profile-manual','template','toaster-manual','dev-manual', 'mega-manual','tools','kernel-dev','yocto-project-qs'],
++        'poky': ['meta-poky','meta-yocto-bsp'],
++        'oe': ['meta-gpe', 'meta-gnome', 'meta-efl', 'meta-networking', 'meta-multimedia','meta-initramfs', 'meta-ruby', 'contrib', 'meta-xfce', 'meta-filesystems', 'meta-perl', 'meta-webserver', 'meta-systemd', 'meta-oe', 'meta-python']
 +        }
 +
-+        /* find meta */
-+        for (meta_idx = record_idx + sizeof(rmc_record_header_t);
-+            meta_idx < record_idx + record_header.length;) {
-+            memcpy(&meta_header, rmc_db + meta_idx, sizeof(rmc_meta_header_t));
-+            file_idx = meta_idx + sizeof(rmc_meta_header_t);
-+            rmc_ssize_t name_len = strlen((char *)&rmc_db[file_idx]) + 1;
-+            file.blob = &rmc_db[file_idx + name_len];
-+            file.blob_len = meta_header.length - sizeof(rmc_meta_header_t) -
-+                name_len;
-+            file.next = NULL;
-+            file.type = RMC_GENERIC_FILE;
-+            asprintf(&out_name, "%s%s", out_dir, (char *)&rmc_db[file_idx]);
-+            /* write file to dump directory */
-+            if (write_file((const char *)out_name, file.blob, file.blob_len, 0))
-+                return 1;
++    Project = collections.namedtuple('Project', ['name', 'listemail', 'gitrepo', 'paths'])
 +
-+            /* next meta */
-+            meta_idx += meta_header.length;
-+            free(out_name);
-+        }
-+        /* next record */
-+        record_idx += record_header.length;
-+        free(out_dir);
-+    }
-+    return 0;
-+}
-diff --git a/src/lib/common/rmcl.c b/src/lib/common/rmcl.c
-index 67622a0..58a4a52 100644
---- a/src/lib/common/rmcl.c
-+++ b/src/lib/common/rmcl.c
-@@ -193,6 +193,21 @@ static int match_record(rmc_record_header_t *r, rmc_signature_t* sig) {
-     return strncmp((const char *)r->signature.raw, (const char *)sig->raw, sizeof(r->signature.raw));
- }
- 
-+int is_rmcdb(rmc_uint8_t *db_blob) {
-+    rmc_db_header_t *db_header = NULL;
++    bitbake = Project(name='Bitbake', listemail='bitbake-devel@lists.openembedded.org', gitrepo='http://git.openembedded.org/bitbake/', paths=paths['bitbake'])
++    doc     = Project(name='Documentantion', listemail='yocto@yoctoproject.org', gitrepo='http://git.yoctoproject.org/cgit/cgit.cgi/yocto-docs/', paths=paths['documentation'])
++    poky    = Project(name='Poky', listemail='poky@yoctoproject.org', gitrepo='http://git.yoctoproject.org/cgit/cgit.cgi/meta-yocto(-bsp)', paths=paths['poky'])
++    oe      = Project(name='oe', listemail='openembedded-devel@lists.openembedded.org', gitrepo='http://git.openembedded.org/meta-openembedded/', paths=paths['oe'])
 +
-+    if (db_blob == NULL)
-+        return 1;
 +
-+    db_header = (rmc_db_header_t *)db_blob;
++    def test_target_mailing_list(self):
++        """In case of merge failure, check for other targeted projects"""
++        if pti.repo.ismerged:
++            self.skipTest('Series merged, no reason to check other mailing lists')
 +
-+    /* sanity check of db */
-+    if (strncmp((const char *)db_header->signature, (const char *)rmc_db_signature, RMC_DB_SIG_LEN))
-+        return 1;
-+    else
-+        return 0;
-+}
++        for patch in self.patchset:
++            folders = patch.path.split('/')
++            base_path = folders[0]
++            for project in [self.bitbake, self.doc, self.oe, self.poky]:
++                if base_path in  project.paths:
++                    self.fail('Series sent to the wrong mailing list', 'Send the series again to the correct mailing list (ML)',
++                              data=[('Suggested ML', '%s [%s]' % (project.listemail, project.gitrepo))])
 +
- int query_policy_from_db(rmc_fingerprint_t *fingerprint, rmc_uint8_t *rmc_db, rmc_uint8_t type, char *blob_name, rmc_file_t *policy) {
-     rmc_meta_header_t meta_header;
-     rmc_db_header_t *db_header = NULL;
-@@ -211,7 +226,7 @@ int query_policy_from_db(rmc_fingerprint_t *fingerprint, rmc_uint8_t *rmc_db, rm
-     db_header = (rmc_db_header_t *)rmc_db;
- 
-     /* sanity check of db */
--    if (strncmp((const char *)db_header->signature, (const char *)rmc_db_signature, RMC_DB_SIG_LEN))
-+    if (is_rmcdb(rmc_db))
-         return 1;
- 
-     /* calculate signature of fingerprint */
-diff --git a/src/rmc.c b/src/rmc.c
-index b5c7847..0740223 100644
---- a/src/rmc.c
-+++ b/src/rmc.c
-@@ -31,8 +31,10 @@
-   "running on\n" \
-     "\t-d: database file to be queried\n" \
-     "\t-o: path and name of output file of a specific command\n\n" \
--  "-E: Extract data from fingerprint file and print it to terminal\n" \
--    "\t-f: fingerprint file to extract\n\n" \
-+  "-E: Extract data from fingerprint file or database\n" \
-+    "\t-f: fingerprint file to extract\n" \
-+    "\t-d: database file to extract\n" \
-+    "\t-o: directory to extract the database to\n\n" \
-     "Examples (Steps in an order to add board support into rmc):\n\n" \
-     "1. Generate board fingerprint:\n" \
-     "\trmc -F\n\n" \
-@@ -408,12 +410,14 @@ int main(int argc, char **argv){
- 
-     /* sanity check for -o */
-     if (options & RMC_OPT_O) {
--        rmc_uint16_t opt_o = options & (RMC_OPT_CAP_D | RMC_OPT_CAP_R | RMC_OPT_CAP_F | RMC_OPT_CAP_B);
-+        rmc_uint16_t opt_o = options & (RMC_OPT_CAP_D | RMC_OPT_CAP_R |
-+            RMC_OPT_CAP_F | RMC_OPT_CAP_B | RMC_OPT_CAP_E);
-         if (!(opt_o)) {
--            fprintf(stderr, "\nWRONG: Option -o cannot be applied without -B, -D, -R or -F\n\n");
-+            fprintf(stderr, "\nWRONG: Option -o cannot be applied without -B, -D, -E, -R or -F\n\n");
-             usage();
-             return 1;
--        } else if (opt_o != RMC_OPT_CAP_D && opt_o != RMC_OPT_CAP_R && opt_o != RMC_OPT_CAP_F && opt_o != RMC_OPT_CAP_B) {
-+        } else if (opt_o != RMC_OPT_CAP_D && opt_o != RMC_OPT_CAP_R &&
-+            opt_o != RMC_OPT_CAP_F && opt_o != RMC_OPT_CAP_B  && opt_o != RMC_OPT_CAP_E) {
-             fprintf(stderr, "\nWRONG: Option -o can be applied with only one of -B, -D, -R and -F\n\n");
-             usage();
-             return 1;
-@@ -428,8 +432,8 @@ int main(int argc, char **argv){
-     }
- 
-     /* sanity check for -E */
--    if ((options & RMC_OPT_CAP_E) && (!(options & RMC_OPT_F))) {
--        fprintf(stderr, "\nERROR: -E requires -f <fingerprint file name>\n\n");
-+    if ((options & RMC_OPT_CAP_E) && (!(options & RMC_OPT_F) && !(options & RMC_OPT_D))) {
-+        fprintf(stderr, "\nERROR: -E requires -f <fingerprint file name> or -d <database file name>\n\n");
-         usage();
-         return 1;
-     }
-@@ -446,7 +450,8 @@ int main(int argc, char **argv){
-         rmc_file_t file;
- 
-         if (!output_path) {
--            fprintf(stderr, "-B internal error, with -o but no output pathname specified\n\n");
-+            fprintf(stderr, "-B internal error, with -o but no output \
-+                pathname specified\n\n");
-             goto main_free;
-         }
- 
-@@ -454,7 +459,8 @@ int main(int argc, char **argv){
-             goto main_free;
- 
-         if (write_file(output_path, file.blob, file.blob_len, 0)) {
--            fprintf(stderr, "-B failed to write file %s to %s\n\n", input_blob_name, output_path);
-+            fprintf(stderr, "-B failed to write file %s to %s\n\n",
-+                input_blob_name, output_path);
-             rmc_free_file(&file);
-             goto main_free;
-         }
-@@ -477,6 +483,12 @@ int main(int argc, char **argv){
-             }else {
-                 printf("Fingerprint file not provided! Exiting.\n");
-             }
-+        } else if (options & RMC_OPT_D) {
-+            if(dump_db(input_db_path_d, output_path)) {
-+               fprintf(stderr, "\nFailed to extract %s\n\n", input_db_path_d);
-+               goto main_free;
-+            } else
-+               printf("\nSuccessfully extracted %s\n\n", input_db_path_d);
-         }
-     }
- 
++
++
 -- 
-2.11.1
+2.1.4
 
 
