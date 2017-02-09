@@ -1,37 +1,27 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <pokybuild@fedora24.osl.yoctoproject.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 900FCE009CD; Wed,  8 Feb 2017 20:24:02 -0800 (PST)
+	id D012DE00939; Wed,  8 Feb 2017 21:14:56 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=unavailable version=3.3.1
+X-Spam-HAM-Report: * -1.0 ALL_TRUSTED Passed through trusted hosts only via
+	SMTP * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.analogue-micro.com (mail.analogue-micro.com
-	[217.144.149.242])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1795EE00939
-	for <yocto@yoctoproject.org>; Wed,  8 Feb 2017 20:23:58 -0800 (PST)
-Received: by mail.analogue-micro.com (Postfix, from userid 999)
-	id C2CEA68A01C; Thu,  9 Feb 2017 04:23:56 +0000 (GMT)
-Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
-	by mail.analogue-micro.com (Postfix) with ESMTP id 4A0D768A019;
-	Thu,  9 Feb 2017 04:23:56 +0000 (GMT)
-Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
-	by zeus.mlbassoc.com (Postfix) with ESMTP id B3D4867402A6;
-	Thu,  9 Feb 2017 05:23:55 +0100 (CET)
-From: Gary Thomas <gary@mlbassoc.com>
+Received: from fedora24.osl.yoctoproject.org (fedora24.osl.yoctoproject.org
+	[10.0.10.110])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 65388E00939;
+	Wed,  8 Feb 2017 21:14:55 -0800 (PST)
+Received: by fedora24.osl.yoctoproject.org (Postfix, from userid 1006)
+	id 2BB1B42F5586; Thu,  9 Feb 2017 05:14:54 +0000 (GMT)
 To: yocto@yoctoproject.org
-References: <39e27fc1-7ad6-9411-5cd1-96628e962f75@mlbassoc.com>
-	<89ae4442-5ec2-7d25-1245-dc4e9af683b9@mlbassoc.com>
-	<15650683.oLyvIqKQ2l@peggleto-mobl.ger.corp.intel.com>
-Message-ID: <31b81d5d-a30a-3a1a-bdcd-9a91b03d7b85@mlbassoc.com>
-Date: Thu, 9 Feb 2017 05:23:55 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.7.0
-MIME-Version: 1.0
-In-Reply-To: <15650683.oLyvIqKQ2l@peggleto-mobl.ger.corp.intel.com>
-Subject: Re: sysroot question
+Message-Id: <20170209051454.2BB1B42F5586@fedora24.osl.yoctoproject.org>
+Date: Thu,  9 Feb 2017 05:14:54 +0000 (GMT)
+From: pokybuild@fedora24.osl.yoctoproject.org (Poky Build User)
+Cc: otavio@ossystems.com.br, joshua.g.lock@intel.com,
+	alexandru.c.georgescu@intel.com
+Subject: Release Candidate Build for yocto-2.2.1.rc1 now available.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,81 +33,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 Feb 2017 04:24:02 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 09 Feb 2017 05:14:56 -0000
 
-On 2017-02-08 20:36, Paul Eggleton wrote:
-> Hi Gary,
->
-> On Wednesday, 8 February 2017 12:12:25 PM NZDT Gary Thomas wrote:
->> On 2017-02-08 11:42, Gary Thomas wrote:
->>> I had a recipe that used to work and now fails after the change
->>> to the split sysroots.  I'm building an out-of-tree kernel module
->>> and patterned my recipe after the meta-skeleton example. My recipe
->>> has this setup:
->>>
->>> inherit module-base kernel-module-split
->>>
->>> do_compile() {
->>>
->>>     unset CFLAGS CPPFLAGS CXXFLAGS LDFLAGS
->>>     oe_runmake KERNEL_PATH=${STAGING_KERNEL_DIR}   \
->>>
->>>            KERNEL_VERSION=${KERNEL_VERSION}    \
->>>            CC="${KERNEL_CC}" LD="${KERNEL_LD}" \
->>>            AR="${KERNEL_AR}" \
->>>
->>>                O=${STAGING_KERNEL_BUILDDIR} \
->>>
->>>            install
->>>
->>> }
->>>
->>> The problem is that ${CC} (arm-amltd-linux-gnueabi-gcc) can no longer be
->>> found.  I know it's available, just not sure what needs to change to be
->>> able to find it.
->>>
->>> $ find tmp/work/teton_p7618-amltd-linux-gnueabi/my-module/ -name "arm*gcc"
->>> tmp/work/teton_p7618-amltd-linux-gnueabi/my-module/5.2.2-r2-r0/recipe-sysr
->>> oot-native/usr/libexec/arm-amltd-linux-gnueabi/gcc/arm-amltd-linux-gnueabi
->>> /5.4.0/arm-amltd-linux-gnueabi-gcc
->>>
->>> tmp/work/teton_p7618-amltd-linux-gnueabi/my-module/5.2.2-r2-r0/recipe-sysr
->>> oot-native/usr/bin/arm-amltd-linux-gnueabi/arm-amltd-linux-gnueabi-gcc
->>
->> It looks like the failure is actually happening in a class method
->> (make_scripts) My recipe also contains this
->>    addtask make_scripts after do_patch before do_compile
->> which doesn't seem to be setting the ${PATH} correctly anymore.
->>
->> Any ideas what might be missing?
->>
->> Note: just moving the call to do_make_scripts to the top of do_compile
->> instead of running it as a separate task fixes the problem.
->
-> I think the problem is that the task that prepares the sysroot
-> (do_prepare_recipe_sysroot) isn't a dependency of your task. module.bbclass
-> uses this:
->
-> addtask make_scripts after do_prepare_recipe_sysroot before do_compile
->
-> BTW you say you patterned your recipe after the skeleton example, except
-> hello-mod at least currently inherits module rather than module-base + kernel-
-> module-split - is there a compelling reason not to inherit module?
 
-I may have been mistaken about the original source - it looks like I
-used a similar module strategy from meta-freescale.  I did [just now]
-try using "inherit module" and the build dies a horrible death with
-this error
-| make: *** No rule to make target 'modules_install'.  Stop.
+A release candidate build for yocto-2.2.1.rc1 is now available at:
 
-I changed my [task] dependencies to match what you've quoted and everything
-works as before.  !Thanks!
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+    http://autobuilder.yoctoproject.org/pub/releases/yocto-2.2.1.rc1
+
+
+Please begin QA on this build as soon as possible.
+
+
+Build hash information: 
+meta-qt4 : 2c7f8df9039be498f8a2232d1428adb7f4e5e800 
+meta-intel : 6add41510412ca196efb3e4f949d403a8b6f35d7 
+meta-qt3 : f33b73a9563f2dfdfd0ee37b61d65d90197a456f 
+poky : 6a1f33cc40bfac33cf030fe41e1a8efd1e5fad6f 
+
+\nThis is an automated message from\nThe Yocto Project Autobuilder\nGit: git://git.yoctoproject.org/yocto-autobuilder\nEmail: joshua.g.lock@intel.com 
 
