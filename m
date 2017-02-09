@@ -1,71 +1,45 @@
-Return-Path: <eddie.cai.linux@gmail.com>
+Return-Path: <paul@paulbarker.me.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E5348E009CD; Thu,  9 Feb 2017 00:20:08 -0800 (PST)
+	id B1422E009CD; Thu,  9 Feb 2017 00:22:54 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_LOW,
-	RCVD_IN_SORBS_SPAM autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (eddie.cai.linux[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.196 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.220.196 listed in dnsbl.sorbs.net]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [217.70.183.197 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qk0-f196.google.com (mail-qk0-f196.google.com
-	[209.85.220.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 314F6E006C6
-	for <yocto@yoctoproject.org>; Thu,  9 Feb 2017 00:20:06 -0800 (PST)
-Received: by mail-qk0-f196.google.com with SMTP id 11so21352264qkl.0
-	for <yocto@yoctoproject.org>; Thu, 09 Feb 2017 00:20:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=vL4p/xV2lwIfnBzfLRKM750zjPOFzwpoQkr0hRfGs9I=;
-	b=Qm+snEcVUdl2KzhFRhXp4xmCKOxNDOjsHqHB9jZhYd2fa2h4NlfAbIzfdGzGzEnUoo
-	UG/j5tOqGQ27NPUx0E1tkq4yBzaHhQUCPvbRUFepTDKZiGDa8QvUO2kg+3dW56QrlKks
-	6/e34r/0q0QzyTZ5cO8L5eYbQJ4TMtOHIKc5u1qAEUE6sGPJ2ESSArYymiz2bvUf3ldQ
-	qG9ufVIWKkhEaEIFq/mtBFMiO59z24tzdew1lgAvfpcghYPwoCE4WNh0+MProOrJozam
-	JbGV166vnUGGZcejOxkqtrtwvz9gePw++rpN8zSfoXmm8P+KX7nUva9Vyj6BcUqL0+gt
-	47ew==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=vL4p/xV2lwIfnBzfLRKM750zjPOFzwpoQkr0hRfGs9I=;
-	b=W6MHq7tb3aZu+jFPHHEZP6BoZfw0w3EuisaUIaWA2tojuuauUpw7AU/SBCtFii3/9V
-	R2n41mnYIF/pD2oy8Jr5ka2DO7CSeuFP+itKHKhUeP/TIM+ZoXIIWWSezARyBeZybsP0
-	ZHAeCPx6hF8qb/gLZo4lt+GVS/x3b3cnW1OfHIqIHphkfKZLHJbLadfj4kYJKTnbTg5s
-	eOOsNV8E5M9s4HU6srA8nOCPSps2yusSUGLQYQ9KRGKrwuSYY+zl5DXPjGRWLz8Foe6V
-	5k2ADf8R/r4BhGlq80GG7P1mSzf/JPcTi9IF4Ysh+AcVE3keQgU79Z5NarfMXBDDz71z
-	o8fg==
-X-Gm-Message-State: AMke39lOxHVwQNi6gYKk/O8QlwujZhzYltwxuBzySODmLY/Nc0anpwRFMKkaeHL+h6E+k38dglidenoD//TjzQ==
-X-Received: by 10.55.177.133 with SMTP id a127mr1596746qkf.301.1486628406088; 
-	Thu, 09 Feb 2017 00:20:06 -0800 (PST)
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net
+	[217.70.183.197])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3CC5DE006C6
+	for <yocto@yoctoproject.org>; Thu,  9 Feb 2017 00:22:52 -0800 (PST)
+Received: from mfilter24-d.gandi.net (mfilter24-d.gandi.net [217.70.178.152])
+	by relay5-d.mail.gandi.net (Postfix) with ESMTP id CC9AE41C08E;
+	Thu,  9 Feb 2017 09:22:51 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at mfilter24-d.gandi.net
+Received: from relay5-d.mail.gandi.net ([IPv6:::ffff:217.70.183.197])
+	by mfilter24-d.gandi.net (mfilter24-d.gandi.net [::ffff:10.0.15.180])
+	(amavisd-new, port 10024)
+	with ESMTP id P2afUlXMsavd; Thu,  9 Feb 2017 09:22:49 +0100 (CET)
+X-Originating-IP: 86.24.150.36
+Received: from host0.betafive.co.uk
+	(cpc15-shep11-2-0-cust35.8-3.cable.virginm.net [86.24.150.36])
+	(Authenticated sender: paul@paulbarker.me.uk)
+	by relay5-d.mail.gandi.net (Postfix) with ESMTPSA id 4086F41C074;
+	Thu,  9 Feb 2017 09:22:49 +0100 (CET)
+Date: Thu, 9 Feb 2017 08:22:48 +0000
+From: Paul Barker <paul@paulbarker.me.uk>
+To: Khem Raj <raj.khem@gmail.com>
+Message-ID: <20170209082248.446b1937@host0.betafive.co.uk>
+In-Reply-To: <20170209054903.31598-4-raj.khem@gmail.com>
+References: <20170209054903.31598-1-raj.khem@gmail.com>
+	<20170209054903.31598-4-raj.khem@gmail.com>
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Received: by 10.237.47.71 with HTTP; Thu, 9 Feb 2017 00:20:05 -0800 (PST)
-In-Reply-To: <33ec9539-bc2b-064f-a5c2-5b761841af00@rock-chips.com>
-References: <1484834687-15746-1-git-send-email-jacob-chen@iotwrt.com>
-	<1484834687-15746-3-git-send-email-jacob-chen@iotwrt.com>
-	<CABgxDo+5x6-ByOUikkG45S6Yo5NO+=L4S3GRX7firgpMqQQiAA@mail.gmail.com>
-	<CAHUNapS5cAGbdbkHcTOaEJM9SKhHOJb8naqFxacbCvBj24crUw@mail.gmail.com>
-	<33ec9539-bc2b-064f-a5c2-5b761841af00@rock-chips.com>
-From: Eddie Cai <eddie.cai.linux@gmail.com>
-Date: Thu, 9 Feb 2017 16:20:05 +0800
-Message-ID: <CAJrj+DME6M2NydRpVk3ks5QqsO0m8mKGC6BaT+vnVQXcvgPCDA@mail.gmail.com>
-To: Jacob Chen <jacob2.chen@rock-chips.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Eddie Cai <eddie.cai@rock-chips.com>, Jacob Chen <jacob-chen@iotwrt.com>
-Subject: Re: [meta-rockchip][PATCH 2/7] machine: Add machine file for the rk3288 linux Boards
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-raspberrypi][PATCH 4/9] linux-raspberrypi_dev.bb: Add recipe for tracking development tip
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -77,111 +51,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 Feb 2017 08:20:09 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 09 Feb 2017 08:22:54 -0000
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-HI
+On Wed,  8 Feb 2017 21:48:58 -0800
+Khem Raj <raj.khem@gmail.com> wrote:
 
-2017-02-09 14:49 GMT+08:00 Jacob Chen <jacob2.chen@rock-chips.com>:
-> Hi
->
->
-> Trevor Woerner wrote on 2017=E5=B9=B401=E6=9C=8828=E6=97=A5 03:41:
->
-> On Fri, Jan 27, 2017 at 9:37 AM, Romain Perier <romain.perier@gmail.com>
-> wrote:
->
-> Could you:
-> - Make one patch per new machine file and not one patch for all new added
-> machine
->
-> Agreed.
->
-> Are all of these machines actual devices? The evb one doesn't sound real.
->
-> Are all of these machines released and available for purchase? I've
-> heard of the tinkerboard (although I can't seem to find one I can
-> actually buy) but I haven't heard of the fennec.
->
->
-> I think i should only leave tinker board here.
-> We have a lot of boards which are not open to the public,  it's not suita=
-ble
-> to push them to the community.
->
-> - Add a clear @DESCRIPTION for each board, see an example here:
-> https://git.yoctoproject.org/cgit/cgit.cgi/meta-rockchip/tree/conf/machin=
-e/firefly-rk3288.conf
-> - Write a clear and an understandable commit message for your new patches
->
-> @Trevor: What do you think about this rk-linux.inc ? I don't like this,
-> either its name and what it contains.
->
-> First off, I think it's really great to see people contributing to
-> meta-rockchip! :-)
->
-> This entire set of patches seems to be adding "official" support for
-> the rockchip devices; in other words, these recipes will help you to
-> create builds that use the official rockchip sources. That is great.
-> But I think a good BSP gives a user all the possibilities but then
-> leaves the final decision up to them.
->
->
-> : ) That's the reason why we try to push patches to here, we want that
-> "meta-rockchip" can
-> build between vendor old kernel/new kernel/old u-boot/new u-boot and
-> mainline kernel/u-boot
->  well.  Community people might help develop mainline things.
->
-> So I agree with Romain, I think the name could use more work. It would
-> be nice if this set of patches included something in the name that let
-> the user know these build from official sources. Then the user could
-> decide whether they want to use the official rockchip sources, or
-> whether they want to build from upstream. So I'm not opposed to the
-> idea of adding recipes for official sources, I'd like like to see them
-> added in a way that leaves the decision with the user.
->
->
->
-> I added rk-linux.inc because i need a place to set up verndor-BSP default
-> settings.
-> I want that the user can choose various combinations by change the includ=
-e
-> file in machine file.
-> e.g:
->     rk-linux.inc for linux-rockchip 4.4 + u-boot-rockchip-nex-dev
->     rk-linux.inc + rk-uboot.inc for linux-rockchip + u-boot-rockchip
->
->     rk-linux.inc for linux-mainline + u-boot-mainline
->
-> BTW, which name you think is better?
-What about follow raspberrypi?
-=E2=94=9C=E2=94=80=E2=94=80 include
-=E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 rpi-base.inc
-=E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 rpi-default-providers.inc
-=E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 rpi-default-settings.inc
-=E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 rpi-default-versions.inc
-=E2=94=82   =E2=94=94=E2=94=80=E2=94=80 tune-arm1176jzf-s.inc
-=E2=94=9C=E2=94=80=E2=94=80 raspberrypi0.conf
-=E2=94=9C=E2=94=80=E2=94=80 raspberrypi2.conf
-=E2=94=9C=E2=94=80=E2=94=80 raspberrypi3.conf
-=E2=94=94=E2=94=80=E2=94=80 raspberrypi.conf
+> Signed-off-by: Khem Raj <raj.khem@gmail.com>
+> ---
+>  recipes-kernel/linux/linux-raspberrypi_dev.bb | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+>  create mode 100644 recipes-kernel/linux/linux-raspberrypi_dev.bb
+> 
+> diff --git a/recipes-kernel/linux/linux-raspberrypi_dev.bb b/recipes-kernel/linux/linux-raspberrypi_dev.bb
+> new file mode 100644
+> index 0000000..9440d80
+> --- /dev/null
+> +++ b/recipes-kernel/linux/linux-raspberrypi_dev.bb
+> @@ -0,0 +1,8 @@
+> +FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
+> +
+> +LINUX_VERSION ?= "4.9.0-rc7"
+> +
+> +SRCREV = "10da0c942de1830b48dfbfb5d68ec00af7ca7c43"
+> +SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-4.9.y \
+> +"
+> +require linux-raspberrypi.inc
 
-
->
->
-> That's it for now.
-> Thanks for your patches
->
-> +1 :-)
->
->
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+Can we hold off on this and target 4.10 here when it comes out in a week
+or two instead of 4.9-rc7? I find it confusing to have the _dev recipe
+be behind the _4.9 recipe.
 
