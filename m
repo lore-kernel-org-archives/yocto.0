@@ -1,62 +1,77 @@
-Return-Path: <jacob2.chen@rock-chips.com>
+Return-Path: <anders@chargestorm.se>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 65075E009CD; Wed,  8 Feb 2017 23:24:11 -0800 (PST)
+	id 35C2DE009DA; Wed,  8 Feb 2017 23:49:15 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [211.150.99.140 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.215.42 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 2045 seconds by postgrey-1.32 at yocto-www;
-	Wed, 08 Feb 2017 23:24:08 PST
-Received: from regular1.263xmail.com (regular1.263xmail.com [211.150.99.140])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 71627E00939
-	for <yocto@yoctoproject.org>; Wed,  8 Feb 2017 23:24:08 -0800 (PST)
-Received: from jacob2.chen?rock-chips.com (unknown [192.168.165.252])
-	by regular1.263xmail.com (Postfix) with ESMTP id 76F9F4A89;
-	Thu,  9 Feb 2017 15:24:03 +0800 (CST)
-X-263anti-spam: KSV:0;
-X-MAIL-GRAY: 0
-X-MAIL-DELIVERY: 1
-X-KSVirus-check: 0
-X-ABS-CHECKED: 4
-Received: from smtp.263.net (va-smtp01.263.net [54.88.144.211])
-	by smtp.263.net (Postfix) with ESMTP id EDB653E0;
-	Thu,  9 Feb 2017 15:24:02 +0800 (CST)
-Received: from [172.20.10.10] (localhost.localdomain [127.0.0.1])
-	by smtp.263.net (Postfix) with ESMTP id 015C79F603;
-	Thu,  9 Feb 2017 15:23:45 +0800 (CST)
-X-RL-SENDER: jacob2.chen@rock-chips.com
-X-FST-TO: eddie.cai@rock-chips.com
-X-SENDER-IP: 202.68.200.147
-X-LOGIN-NAME: jacob2.chen@rock-chips.com
-X-UNIQUE-TAG: <44b2c99573d053309b90a766a473b970>
-X-ATTACHMENT-NUM: 0
-X-SENDER: jacob2.chen@rock-chips.com
-X-DNS-TYPE: 0
-Received: from [172.20.10.10] (unknown [202.68.200.147])
-	by smtp.263.net (Postfix) whith ESMTP id 28983WTOLRS;
-	Thu, 09 Feb 2017 15:23:48 +0800 (CST)
-To: Trevor Woerner <twoerner@gmail.com>,
-	Romain Perier <romain.perier@gmail.com>
-References: <1484834687-15746-1-git-send-email-jacob-chen@iotwrt.com>
-	<1484834687-15746-5-git-send-email-jacob-chen@iotwrt.com>
-	<CABgxDoLt2RbidD-3L93UkjLuaXn_eoB08=HqLaHsD9=8nLpqmQ@mail.gmail.com>
-	<CAHUNapRxFr0kj_ZGv7GW10WySyOgU3g7Zr5B+1UTjULCxtd=cw@mail.gmail.com>
-From: Jacob Chen <jacob2.chen@rock-chips.com>
-Message-ID: <2aa1072c-b51f-9e04-fd95-64e9a6330f63@rock-chips.com>
-Date: Thu, 9 Feb 2017 15:23:41 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.7.0
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.215.42 listed in list.dnswl.org]
+Received: from mail-lf0-f42.google.com (mail-lf0-f42.google.com
+	[209.85.215.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BD3C9E00939
+	for <yocto@yoctoproject.org>; Wed,  8 Feb 2017 23:49:11 -0800 (PST)
+Received: by mail-lf0-f42.google.com with SMTP id z134so96365208lff.3
+	for <yocto@yoctoproject.org>; Wed, 08 Feb 2017 23:49:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=chargestorm-se.20150623.gappssmtp.com; s=20150623;
+	h=date:from:to:subject:message-id:mail-followup-to:references
+	:mime-version:content-disposition:in-reply-to:organization
+	:user-agent; bh=KeCP0/9Fiogjo7EO5RJkWIoIPk+oLahM1JRbBHjELF4=;
+	b=jJ33JjMfzSziwvm7yIAPKVOV53vsFC918NL0xBPXWqKGOBFGSXIdl7NqTOB6Qr0fq3
+	u2U5ZVEoact44UXJGDewVTtysrxFH6Cy31bgRX5F6Tn0vMyhOKsz3acIl2Nq9Bv2Ns2m
+	PoKNVWlK6Vj02Xuh1VVVMBR/eLMP+JhlBQ99O1iyKFocYTj3mhNXWetixCspIavxbDgr
+	SnhKJic5lNCv66Ds2xl1GWDbHkDFeKsUH8aL57H4z0LidJLhEziQn/uJjIOxTHM+CjY+
+	2rKXaBgDgWHm4dHetM83LqmE2SyYAOEc3ZxxLqZHegKCevYp9xkfrgug2+iVWSZaXwN+
+	mySg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:date:from:to:subject:message-id:mail-followup-to
+	:references:mime-version:content-disposition:in-reply-to
+	:organization:user-agent;
+	bh=KeCP0/9Fiogjo7EO5RJkWIoIPk+oLahM1JRbBHjELF4=;
+	b=sE6Q4EcrafowzvJSD0v9AZDjPQIgoZpjI6HxD/ll5P7m0gxoaa18J+DPbc9y71B4DO
+	JeFevDTxkPMd+qQqfUjs0TtveKs+Wf2I+YnIW+maGx1Hzs30q+G+MG7U4UMGS6X7iUOu
+	PLO4XMP5oWC11L/6UgfIQy1c1tWWrcfeRcbTDPzvmrm/jkwizTceE4+OhNVAFGPcObwL
+	ztEMSjI3QyD8PzYTkDbHRHudtehnkAM/SrkF4B3ANME6GDhbeLs+haPIMbKpnYCjshf3
+	HqyNugF3wu0VscI3yNdrljcmw5N3+Z1rSxysz1BHIzgnZoHdwS9HKIVxA98LYSUdaDvi
+	a0Yw==
+X-Gm-Message-State: AMke39kj73bKtuVYCiBLSOi0ofTQFlLHf3LZ4UZIrKCOkeH3yoAVm8d1XyLy+YIu+gV+EQ==
+X-Received: by 10.46.77.9 with SMTP id a9mr644149ljb.25.1486626549785;
+	Wed, 08 Feb 2017 23:49:09 -0800 (PST)
+Received: from ad.chargestorm.se (h83-209-191-235.cust.se.alltele.net.
+	[83.209.191.235]) by smtp.gmail.com with ESMTPSA id
+	a71sm3211072lfe.36.2017.02.08.23.49.08 for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+	Wed, 08 Feb 2017 23:49:08 -0800 (PST)
+Date: Thu, 9 Feb 2017 08:49:07 +0100
+From: Anders Darander <anders@chargestorm.se>
+To: yocto@yoctoproject.org
+Message-ID: <20170209074907.u2ghryme4xzxopi7@ad.chargestorm.se>
+Mail-Followup-To: yocto@yoctoproject.org
+References: <39e27fc1-7ad6-9411-5cd1-96628e962f75@mlbassoc.com>
+	<89ae4442-5ec2-7d25-1245-dc4e9af683b9@mlbassoc.com>
+	<15650683.oLyvIqKQ2l@peggleto-mobl.ger.corp.intel.com>
+	<31b81d5d-a30a-3a1a-bdcd-9a91b03d7b85@mlbassoc.com>
 MIME-Version: 1.0
-In-Reply-To: <CAHUNapRxFr0kj_ZGv7GW10WySyOgU3g7Zr5B+1UTjULCxtd=cw@mail.gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Jacob Chen <jacob-chen@iotwrt.com>, Eddie Cai <eddie.cai@rock-chips.com>
-Subject: Re: [meta-rockchip][PATCH 4/7] recipes-graphics: Add support for mali-userspace
+In-Reply-To: <31b81d5d-a30a-3a1a-bdcd-9a91b03d7b85@mlbassoc.com>
+X-Accept-Language: sv, en, de
+X-GPG-Fingerprint: 5AF0 B2E9 78FE 9D75 D110  6F8F 3E31 84D7 920E 938C
+X-GPG-Key-Id: 0x920E938C
+X-GPG-Keyserver: hkp://keys.gnupg.net
+Organization: ChargeStorm AB
+User-Agent: NeoMutt/20170113 (1.7.2)
+Subject: Re: sysroot question
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,48 +83,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 Feb 2017 07:24:11 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Thu, 09 Feb 2017 07:49:15 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Hi,
+* Gary Thomas <gary@mlbassoc.com> [170209 05:25]:
+> On 2017-02-08 20:36, Paul Eggleton wrote:
+> > I think the problem is that the task that prepares the sysroot
+> > (do_prepare_recipe_sysroot) isn't a dependency of your task. module.bbclass
+> > uses this:
 
+> > addtask make_scripts after do_prepare_recipe_sysroot before do_compile
 
-Trevor Woerner wrote on 2017年01月28日 09:44:
-> On Fri, Jan 27, 2017 at 9:41 AM, Romain Perier <romain.perier@gmail.com> wrote:
->> Hi all,
->>
->> Correct me if I am wrong, but these are generic mali userpace binaries ?
->> meta-rockchip is a bsp meta layer, it should only contains files and recipes
->> to make rockchip board working or things specific to the rockchip board. For
->> me these recipes are completly generic and might be re-used for another
->> platform with another SoC.
->>
->> I don't want this in meta-rockchip. There is no a layer called meta-mali or
->> something ?
->>
->> @Trevor: Feel free to comment, the point of view of the second maintainer is
->> always welcome
-> :-)
->
->
-> I was just about to point out that there is no meta-mali, and that
-> most BSP layers do include their own recipes for mali (meta-sunxi,
-> meta-96boards, meta-xilinx) but, googling around, there is in fact a
-> meta-mali provided my ARM itself:
-> https://github.com/ARM-software/meta-mali . So I guess we could go
-> either way. Although I haven't looked at what's specifically provided
-> in meta-mali to know if it would be useful or not.
->
+> > BTW you say you patterned your recipe after the skeleton example, except
+> > hello-mod at least currently inherits module rather than module-base + kernel-
+> > module-split - is there a compelling reason not to inherit module?
 
-I think GPU is a part of SOC. Other bsp meta layer also contain gpu 
-userpace binaries.
-And, mali userpace binaries are not very generic, there are different in 
-hardware versions, software versions and backends.
-e.g:
-     rk3288's GPU is T76x-r0p0 but rk3288w's GPU is T76x-r1p0, so they 
-have to use different binaries.
+> I may have been mistaken about the original source - it looks like I
+> used a similar module strategy from meta-freescale.  I did [just now]
+> try using "inherit module" and the build dies a horrible death with
+> this error
+> | make: *** No rule to make target 'modules_install'.  Stop.
 
+Well, that is simple to solve. module.bbclasses sets
 
+MODULES_INSTALL_TARGET ?= "modules_install"
 
+just override that with your own install target. (Or fix the module's
+Makefile). The last option is to simply override do_install in your
+recipe.
+
+> I changed my [task] dependencies to match what you've quoted and everything
+> works as before.  !Thanks!
+
+I'd still recommend doing as little as possible in each recipe, and
+leverage the standard modules.
+
+Cheers,
+Anders
+
+-- 
+Anders Darander, Senior System Architect
+ChargeStorm AB / eStorm AB
 
