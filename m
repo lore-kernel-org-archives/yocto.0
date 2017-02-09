@@ -1,6 +1,6 @@
 Return-Path: <todor.minchev@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CE868E0094C; Thu,  9 Feb 2017 11:17:55 -0800 (PST)
+	id 3D9A5E009CF; Thu,  9 Feb 2017 11:18:13 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,22 +12,24 @@ X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6F6FBE00924;
-	Thu,  9 Feb 2017 11:17:52 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 29BFEE009AA;
+	Thu,  9 Feb 2017 11:18:11 -0800 (PST)
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga105.jf.intel.com with ESMTP; 09 Feb 2017 11:17:51 -0800
+	by orsmga105.jf.intel.com with ESMTP; 09 Feb 2017 11:17:57 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.35,137,1484035200"; d="scan'208";a="42160649"
+X-IronPort-AV: E=Sophos;i="5.35,137,1484035200"; d="scan'208";a="42160681"
 Received: from unknown (HELO localhost.localdomain) ([10.7.197.100])
-	by orsmga002.jf.intel.com with ESMTP; 09 Feb 2017 11:17:52 -0800
+	by orsmga002.jf.intel.com with ESMTP; 09 Feb 2017 11:17:58 -0800
 From: Todor Minchev <todor.minchev@linux.intel.com>
 To: yocto@yoctoproject.org, meta-intel@yoctoproject.org,
 	jianxun.zhang@linux.intel.com
-Date: Thu,  9 Feb 2017 11:17:35 -0800
-Message-Id: <20170209191740.63387-1-todor.minchev@linux.intel.com>
+Date: Thu,  9 Feb 2017 11:17:36 -0800
+Message-Id: <20170209191740.63387-2-todor.minchev@linux.intel.com>
 X-Mailer: git-send-email 2.11.1
+In-Reply-To: <20170209191740.63387-1-todor.minchev@linux.intel.com>
+References: <20170209191740.63387-1-todor.minchev@linux.intel.com>
 Cc: Todor Minchev <todor.minchev@linux.intel.com>
-Subject: [PATCH v2 0/5] [meta-intel][rmc] Add fingerprint quering and database extraction functionality to RMC
+Subject: [PATCH v2 1/5] Makefile: disable silent mode in Makefiles
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,35 +41,85 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 Feb 2017 19:17:55 -0000
+X-List-Received-Date: Thu, 09 Feb 2017 19:18:13 -0000
 
-This is V2 of the patchset. It addresses all feedback received in V1.
+By default make will output the commands that are executed for each
+target. Silent mode can be enabled with the '-s' option.
 
-Changes from previous version:
+Example:
+make -s
 
-* remove default silent mode from Makefile
-* extract fingerprint with -E instead of -F
-* add is_rmcdb(db_blob) for database validation
-* add -o option to specify an output directory to extract the database to
-* remove non-alphanumeric characters from fingerprint signatures before
-  using the signatures as directory names
+Signed-off-by: Todor Minchev <todor.minchev@linux.intel.com>
+---
+ Makefile     | 21 +++++++++++----------
+ Makefile.efi | 10 +++++-----
+ 2 files changed, 16 insertions(+), 15 deletions(-)
 
-Todor Minchev (5):
-  Makefile: disable silent mode in Makefiles
-  Makefile: add debug target
-  rmc: Enable reading the contents of an existing fingerprint file
-  rmc: remove unnecessary return variable
-  rmc: add database extraction functionality
-
- Makefile              |  23 ++++++----
- Makefile.efi          |  10 ++--
- inc/rmc_api.h         |   9 ++++
- inc/rmcl.h            |   7 +++
- src/lib/api.c         | 106 +++++++++++++++++++++++++++++++++++++++++-
- src/lib/common/rmcl.c |  17 ++++++-
- src/rmc.c             | 124 +++++++++++++++++++++++++++++++++-----------------
- 7 files changed, 237 insertions(+), 59 deletions(-)
-
+diff --git a/Makefile b/Makefile
+index 9ade775..c58047a 100644
+--- a/Makefile
++++ b/Makefile
+@@ -25,23 +25,24 @@ RMC_CFLAGS := -Wall -I$(TOPDIR)/inc
+ all: rmc
+ 
+ $(ALL_OBJS): %.o: %.c
+-	@$(CC) -c $(CFLAGS) $(RMC_CFLAGS) $< -o $@
++	$(CC) -c $(CFLAGS) $(RMC_CFLAGS) $< -o $@
+ 
+ librmc: $(RMC_LIB_OBJ)
+-	@$(AR) rcs src/lib/$@.a $^
++	$(AR) rcs src/lib/$@.a $^
+ 
+ rmc: $(RMC_TOOL_OBJ) librmc
+-	@$(CC) $(CFLAGS) $(RMC_CFLAGS) -Lsrc/lib/ -lrmc $(RMC_TOOL_OBJ) src/lib/librmc.a -o src/$@
++	$(CC) $(CFLAGS) $(RMC_CFLAGS) -Lsrc/lib/ -lrmc $(RMC_TOOL_OBJ) \
++  src/lib/librmc.a -o src/$@
+ 
+ clean:
+-	@rm -f $(ALL_OBJS) src/rmc src/lib/librmc.a
++	rm -f $(ALL_OBJS) src/rmc src/lib/librmc.a
+ 
+ .PHONY: clean rmc librmc
+ 
+ install:
+-	@mkdir -p $(RMC_INSTALL_BIN_PATH)
+-	@install -m 755 src/rmc $(RMC_INSTALL_BIN_PATH)
+-	@mkdir -p $(RMC_INSTALL_LIB_PATH)
+-	@install -m 644 src/lib/librmc.a $(RMC_INSTALL_LIB_PATH)
+-	@mkdir -p $(RMC_INSTALL_HEADER_PATH)
+-	@install -m 644 $(RMC_INSTALL_HEADERS) $(RMC_INSTALL_HEADER_PATH)
++	mkdir -p $(RMC_INSTALL_BIN_PATH)
++	install -m 755 src/rmc $(RMC_INSTALL_BIN_PATH)
++	mkdir -p $(RMC_INSTALL_LIB_PATH)
++	install -m 644 src/lib/librmc.a $(RMC_INSTALL_LIB_PATH)
++	mkdir -p $(RMC_INSTALL_HEADER_PATH)
++	install -m 644 $(RMC_INSTALL_HEADERS) $(RMC_INSTALL_HEADER_PATH)
+diff --git a/Makefile.efi b/Makefile.efi
+index 3bd417d..66081d7 100644
+--- a/Makefile.efi
++++ b/Makefile.efi
+@@ -18,16 +18,16 @@ RMC_CFLAGS := -DRMC_EFI -Wall -I$(TOPDIR)/inc -fpic -nostdinc -nostdlib  -fno-bu
+ all: librmcefi
+ 
+ $(RMC_LIB_OBJ): %.efi.o: %.c
+-	@$(CC) -c $(CFLAGS) $(RMC_CFLAGS) $< -o $@
++	$(CC) -c $(CFLAGS) $(RMC_CFLAGS) $< -o $@
+ 
+ librmcefi: $(RMC_LIB_OBJ)
+-	@$(AR) rcs src/lib/$@.a $^
++	$(AR) rcs src/lib/$@.a $^
+ 
+ clean:
+-	@rm -f $(RMC_LIB_OBJ) src/lib/librmcefi.a
++	rm -f $(RMC_LIB_OBJ) src/lib/librmcefi.a
+ 
+ .PHONY: clean librmcefi
+ 
+ install:
+-	@mkdir -p $(RMC_INSTALL_LIB_PATH)
+-	@install -m 644 $(RMC_INSTALL_LIBS) $(RMC_INSTALL_LIB_PATH)
++	mkdir -p $(RMC_INSTALL_LIB_PATH)
++	install -m 644 $(RMC_INSTALL_LIBS) $(RMC_INSTALL_LIB_PATH)
 -- 
 2.11.1
 
