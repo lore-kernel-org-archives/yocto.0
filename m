@@ -1,47 +1,35 @@
-Return-Path: <winfried.dobbe@xmsnet.nl>
+Return-Path: <jose.a.lamego@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7BFB3E00546; Fri, 10 Feb 2017 07:18:46 -0800 (PST)
+	id 415DAE00566; Fri, 10 Feb 2017 09:05:22 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.7 required=5.0 tests=BAYES_40,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [213.197.30.127 listed in list.dnswl.org]
-	* -0.0 BAYES_40 BODY: Bayes spam probability is 20 to 40%
-	*      [score: 0.2584]
-X-Greylist: delayed 907 seconds by postgrey-1.32 at yocto-www;
-	Fri, 10 Feb 2017 07:18:44 PST
-Received: from smtp-3.concepts.nl (smtp-3.concepts.nl [213.197.30.127])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1A20BE004D8
-	for <yocto@yoctoproject.org>; Fri, 10 Feb 2017 07:18:44 -0800 (PST)
-Received: from [2001:838:2:1::30:241] (helo=webmail.xmsnet.nl)
-	by smtp-3.concepts.nl with esmtp (Exim 4.80.1)
-	(envelope-from <winfried.dobbe@xmsnet.nl>)
-	id 1ccCjW-0001qu-9t; Fri, 10 Feb 2017 16:03:34 +0100
-MIME-Version: 1.0
-Date: Fri, 10 Feb 2017 16:05:03 +0100
-From: winfried.dobbe@xmsnet.nl
-To: Florian Wulff <der_flori@hotmail.de>
-Mail-Reply-To: winfried.dobbe@xmsnet.nl
-In-Reply-To: <DB6PR0901MB095165B364EBD4494E85F5F8FD440@DB6PR0901MB0951.eurprd09.prod.outlook.com>
-References: <DB6PR0901MB095165B364EBD4494E85F5F8FD440@DB6PR0901MB0951.eurprd09.prod.outlook.com>
-Message-ID: <aba3154f5651505494a3b9eb53fc0e07@xmsnet.nl>
-X-Sender: winfried.dobbe@xmsnet.nl
-User-Agent: Roundcube Webmail/1.0.3
-X-Concepts-MailScanner-Information: Please contact abuse@concepts.nl for more
-	information
-X-Concepts-MailScanner-ID: 1ccCjW-0001qu-9t
-X-Concepts-MailScanner: Found to be clean
-X-Concepts-MailScanner-SpamCheck: 
-X-Concepts-MailScanner-From: winfried.dobbe@xmsnet.nl
-Cc: yocto@yoctoproject.org
-Subject: Re: ld: cannot find -lgcc in glibc 2.24-r0
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [134.134.136.20 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EAE76E004D8
+	for <yocto@yoctoproject.org>; Fri, 10 Feb 2017 09:05:20 -0800 (PST)
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+	by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	10 Feb 2017 09:05:20 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.35,142,1484035200"; d="scan'208";a="64257429"
+Received: from jalamego-mobl2.zpn.intel.com ([10.219.128.117])
+	by fmsmga006.fm.intel.com with ESMTP; 10 Feb 2017 09:05:19 -0800
+From: Jose Lamego <jose.a.lamego@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Fri, 10 Feb 2017 11:05:12 -0600
+Message-Id: <1486746312-7283-1-git-send-email-jose.a.lamego@linux.intel.com>
+X-Mailer: git-send-email 1.9.1
+Subject: [patchwork][PATCH] parsemail: Split PATCH prefix if not single
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: winfried.dobbe@xmsnet.nl
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -50,20 +38,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 10 Feb 2017 15:18:46 -0000
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 10 Feb 2017 17:05:22 -0000
 
-> 
-> This problem occur when bitbake core-image-minimal-dev or bitbake
-> core-image-minimal-dev -c populate_sdk but only for glibc
-> 
+PATCH prefix is not appropriately identified as such if it is not
+sepparated from following word in an email Subject line. This leads to
+wrong email parsing and revisions not appended to initial series.
 
-Did you override variable SDKPATH ? I had the exact same issue last week 
-when I tried to include ${TUNE_PKGARCH} in the SDKPATH variable. After 
-setting SDKPATH to a simpler value the problem disappeared.
+This change allows appropriate email parsing by checking if PATCH prefix
+in Subject line is not sepparated from following word and adding a space
+ between them.
 
-regards,
-Winfried
+[YOCTO #10823]
+
+Signed-off-by: Jose Lamego <jose.a.lamego@linux.intel.com>
+---
+ patchwork/bin/parsemail.py | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/patchwork/bin/parsemail.py b/patchwork/bin/parsemail.py
+index c9eb05c..6e13beb 100755
+--- a/patchwork/bin/parsemail.py
++++ b/patchwork/bin/parsemail.py
+@@ -578,11 +578,18 @@ def find_patch_for_comment(project, refs):
+ 
+ 
+ split_re = re.compile(r'[,\s]+')
++patch_pref = re.re.compile(r'^.*\[(\s*PATCH\w+).*', re.I)
+ 
+ 
+ def split_prefixes(prefix):
+     """ Turn a prefix string into a list of prefix tokens """
+ 
++    # Check if PATCH prefix is followed by anoter word without a sepparation
++    # space. Add missing space to allow appropriate parsing
++    if patch_pref.match(prefix):
++        index = prefix.find(patch_pref.match(prefix).group(1))
++        prefix = prefix[:index + 5] + ' ' + prefix[index + 5:]
++
+     matches = split_re.split(prefix)
+     return [s for s in matches if s != '']
+ 
+-- 
+1.9.1
+
 
