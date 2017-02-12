@@ -1,6 +1,6 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7FEC3E00A0C; Sat, 11 Feb 2017 21:27:10 -0800 (PST)
+	id 3F7C6E00A03; Sat, 11 Feb 2017 21:27:11 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -20,46 +20,46 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 Received: from mail-pg0-f68.google.com (mail-pg0-f68.google.com [74.125.83.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 381B6E00A04
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B1D39E00A03
 	for <yocto@yoctoproject.org>; Sat, 11 Feb 2017 21:27:08 -0800 (PST)
-Received: by mail-pg0-f68.google.com with SMTP id 204so6503726pge.2
+Received: by mail-pg0-f68.google.com with SMTP id 204so6503711pge.2
 	for <yocto@yoctoproject.org>; Sat, 11 Feb 2017 21:27:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=from:to:cc:subject:date:message-id:in-reply-to:references;
-	bh=P6zC7GF5T7o/QSRbyBqRHXX6gCk/kvszLyAt5mHWv0o=;
-	b=LtXIXbnLomlE1HUBw/rt420YxXsUFIfzim7tzV+D40VevzR7c2/1jL/3/uFphlg66w
-	r8MD9KqReBh0C/HHAtbkWMvZA2kSFOIBNQMXDbT08XjWhtUydlGXd/r5odF1ZuI0REJv
-	C52Rr6ExFR3G4hbh9YOQL7HbqpUVZhGGNY/rtFvpQnSN6gsi1aoUs1pY8qv6htHTCe7J
-	/1jc+JFxm3OGJwrqHyo7dwrAdtWVFKH4z2Qj3T8Ac08GrgV5arfXJAahk7/hp0uLGTk4
-	SMdC80miQCcJrTbQDEUG7CeXcJF4Tcq8bO674bIMm2SRORjniWOtE9/F/kQs2YKDXeYi
-	abBw==
+	bh=yivF7REQO385aTJG9hYuwauWdo4XlnCBixZfSTH28Ks=;
+	b=VG1AfVdmTmUFfJ6VaMPCrhlkJUqJRCz+Rd4r50FUqtKsEkJeGB483+kjVNPZSdp7oO
+	+zbv1KxEF+clCKUtKg5N2YzJBrCVfmdFGC5lhuBu7UR1HdZzgN0co2vICvMJX2SI9LRg
+	pIzjoPyCB+2EnjjKpz8obEVwtLJn8YXm0qF/GXWvev72wqO7JpuD5zSPRBsl4DLDBiD0
+	7HwcqN/5Qg2dIhsF4w4+UhBhDbza4v8b6aJpjx2F3LYddmcfgdbCZyiJhLqHWl8gzTaz
+	dgxsQ8SRdwVT2Sa7owpOSAst4WzAWkLfalTizuQ1ehOsZK91r+ONKMCcgKimB2mxFRq6
+	A2gw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
 	:references;
-	bh=P6zC7GF5T7o/QSRbyBqRHXX6gCk/kvszLyAt5mHWv0o=;
-	b=GBFrA6q4aH52u3FBkGuHDx8hZm0aPhiJIArpcBHqgZk2uh/t151xvDjG8b5M5G0UA3
-	OI++R/rqL2LH9oJi5obi4XisYptCpJsn44WaMwWPIiP/YcRTep8JMh0ozMnKvjkCOKOO
-	20RUPkXW54qGoHfG0IU5KBtuj2hCygYr+nbGKDykDvf28+BoJGyCCYvejwtVj/1TEi0I
-	GuNpsxuOVWHZsqv61HEl5BtCc/V34a0vJX+UEi+PckKfZILXfr37Hc/0rsfPXir2ZGvb
-	Qfa2GL9IeKXoH84PvnETt+jWUlXA0wMOZp872LwPil/lcheVe4YObm5vJ/0+oTgZk4Je
-	rt8A==
-X-Gm-Message-State: AMke39nmom6DRK8R6vcAWTINS+Iw/gSyDnxDjCLrV5B31tdy17pcFYuybk28pYGCetK2eA==
-X-Received: by 10.98.88.133 with SMTP id m127mr19313637pfb.155.1486877228513; 
-	Sat, 11 Feb 2017 21:27:08 -0800 (PST)
+	bh=yivF7REQO385aTJG9hYuwauWdo4XlnCBixZfSTH28Ks=;
+	b=JRy1bZ6l/LDqJJ6TOKUHA/Kytl+7OZmVD+MdcNBUttepXEl2/4ZLu6vO1tyPo3gX9o
+	E5LmDAP0qecu0SZG5Y4aKrlMmB/UUAuN2j2MzImuad11yCH6ZJm0YavIhD8RqCTTNRms
+	gcjvioT0hRl4vkzr5312vt0XPq8K5aFiADxid6TJnSOcsW8f9CqdJjQSpFX7qbK0KI/f
+	gmJQRUBqlKXMtrJCX4MLXeL+xdNttr85Dg0qsfFNIotpIowWoNIaCaTh11BaqmbgehM/
+	mE8guOA6mBRRVAPw2lyhkqUprAFdfMoJZSZBmeu8uDvkUi68/eUQRcnQSa6EnBbLnwjh
+	IajA==
+X-Gm-Message-State: AMke39kb3NCc3OTkLVZVlBlksDwSaN3KRv+1UzgXDivY76JQqVqG7xCxgc/82VkvBUrP0w==
+X-Received: by 10.98.79.150 with SMTP id f22mr19130650pfj.55.1486877227687;
+	Sat, 11 Feb 2017 21:27:07 -0800 (PST)
 Received: from localhost.localdomain (c-76-102-32-192.hsd1.ca.comcast.net.
 	[76.102.32.192]) by smtp.gmail.com with ESMTPSA id
-	f3sm13549604pfd.10.2017.02.11.21.27.07
+	f3sm13549604pfd.10.2017.02.11.21.27.06
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sat, 11 Feb 2017 21:27:08 -0800 (PST)
+	Sat, 11 Feb 2017 21:27:07 -0800 (PST)
 From: Khem Raj <raj.khem@gmail.com>
 To: yocto@yoctoproject.org
-Date: Sat, 11 Feb 2017 21:26:49 -0800
-Message-Id: <20170212052655.12342-5-raj.khem@gmail.com>
+Date: Sat, 11 Feb 2017 21:26:48 -0800
+Message-Id: <20170212052655.12342-4-raj.khem@gmail.com>
 X-Mailer: git-send-email 2.11.1
 In-Reply-To: <20170212052655.12342-1-raj.khem@gmail.com>
 References: <20170212052655.12342-1-raj.khem@gmail.com>
-Subject: [meta-raspberrypi][PATCH V2 05/11] linux-raspberrypi_4.9.bb: Upgrade to 4.9.9
+Subject: [meta-raspberrypi][PATCH V2 04/11] linux-raspberrypi_dev.bb: Add recipe for tracking development tip
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,68 +71,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 12 Feb 2017 05:27:10 -0000
-
-Fix dtbo builds for arm64
+X-List-Received-Date: Sun, 12 Feb 2017 05:27:11 -0000
 
 Signed-off-by: Khem Raj <raj.khem@gmail.com>
 ---
- ...-Add-rules-for-.dtbo-files-for-dts-overla.patch | 29 ++++++++++++++++++++++
- recipes-kernel/linux/linux-raspberrypi_4.9.bb      |  5 ++--
- 2 files changed, 32 insertions(+), 2 deletions(-)
- create mode 100644 recipes-kernel/linux/linux-raspberrypi-4.9/0001-build-arm64-Add-rules-for-.dtbo-files-for-dts-overla.patch
+ recipes-kernel/linux/linux-raspberrypi_dev.bb | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+ create mode 100644 recipes-kernel/linux/linux-raspberrypi_dev.bb
 
-diff --git a/recipes-kernel/linux/linux-raspberrypi-4.9/0001-build-arm64-Add-rules-for-.dtbo-files-for-dts-overla.patch b/recipes-kernel/linux/linux-raspberrypi-4.9/0001-build-arm64-Add-rules-for-.dtbo-files-for-dts-overla.patch
+diff --git a/recipes-kernel/linux/linux-raspberrypi_dev.bb b/recipes-kernel/linux/linux-raspberrypi_dev.bb
 new file mode 100644
-index 0000000..e8bc52e
+index 0000000..9440d80
 --- /dev/null
-+++ b/recipes-kernel/linux/linux-raspberrypi-4.9/0001-build-arm64-Add-rules-for-.dtbo-files-for-dts-overla.patch
-@@ -0,0 +1,29 @@
-+From 922ce1fd0eb810b713f6ffa9a7ab97c11b6e38cf Mon Sep 17 00:00:00 2001
-+From: Khem Raj <raj.khem@gmail.com>
-+Date: Fri, 10 Feb 2017 17:57:08 -0800
-+Subject: [PATCH] build/arm64: Add rules for .dtbo files for dts overlays
++++ b/recipes-kernel/linux/linux-raspberrypi_dev.bb
+@@ -0,0 +1,8 @@
++FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
 +
-+We now create overlays as .dtbo files.
++LINUX_VERSION ?= "4.9.0-rc7"
 +
-+Signed-off-by: Khem Raj <raj.khem@gmail.com>
-+---
-+ arch/arm64/Makefile | 3 +++
-+ 1 file changed, 3 insertions(+)
-+
-+diff --git a/arch/arm64/Makefile b/arch/arm64/Makefile
-+index 3635b8662724..822fefeb1cd0 100644
-+--- a/arch/arm64/Makefile
-++++ b/arch/arm64/Makefile
-+@@ -113,6 +113,9 @@ zinstall install:
-+ %.dtb: scripts
-+ 	$(Q)$(MAKE) $(build)=$(boot)/dts $(boot)/dts/$@
-+ 
-++%.dtbo: | scripts
-++	$(Q)$(MAKE) $(build)=$(boot)/dts MACHINE=$(MACHINE) $(boot)/dts/$@
-++
-+ PHONY += dtbs dtbs_install
-+ 
-+ dtbs: prepare scripts
-+-- 
-+2.11.1
-+
-diff --git a/recipes-kernel/linux/linux-raspberrypi_4.9.bb b/recipes-kernel/linux/linux-raspberrypi_4.9.bb
-index cffea1a..d414100 100644
---- a/recipes-kernel/linux/linux-raspberrypi_4.9.bb
-+++ b/recipes-kernel/linux/linux-raspberrypi_4.9.bb
-@@ -1,8 +1,9 @@
- FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
- 
--LINUX_VERSION ?= "4.9.4"
-+LINUX_VERSION ?= "4.9.9"
- 
--SRCREV = "8b0be887f834e7eccf0de3edf630003880779a5f"
-+SRCREV = "bc589fd786cec5bda91c32c683f1c3aeca9c0560"
- SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-4.9.y \
-+           file://0001-build-arm64-Add-rules-for-.dtbo-files-for-dts-overla.patch \
- "
- require linux-raspberrypi.inc
++SRCREV = "10da0c942de1830b48dfbfb5d68ec00af7ca7c43"
++SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-4.9.y \
++"
++require linux-raspberrypi.inc
 -- 
 2.11.1
 
