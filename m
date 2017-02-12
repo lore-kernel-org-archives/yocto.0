@@ -1,12 +1,12 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 02EB3E00A0A; Sat, 11 Feb 2017 21:27:09 -0800 (PST)
+	id D2773E00A08; Sat, 11 Feb 2017 21:27:09 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (raj.khem[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
@@ -16,51 +16,47 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.192.196 listed in list.dnswl.org]
-Received: from mail-pf0-f196.google.com (mail-pf0-f196.google.com
-	[209.85.192.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 750F3E009F3
-	for <yocto@yoctoproject.org>; Sat, 11 Feb 2017 21:27:06 -0800 (PST)
-Received: by mail-pf0-f196.google.com with SMTP id 19so4957917pfo.3
-	for <yocto@yoctoproject.org>; Sat, 11 Feb 2017 21:27:06 -0800 (PST)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.83.66 listed in list.dnswl.org]
+Received: from mail-pg0-f66.google.com (mail-pg0-f66.google.com [74.125.83.66])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 95801E009F0
+	for <yocto@yoctoproject.org>; Sat, 11 Feb 2017 21:27:05 -0800 (PST)
+Received: by mail-pg0-f66.google.com with SMTP id 204so6503639pge.2
+	for <yocto@yoctoproject.org>; Sat, 11 Feb 2017 21:27:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:cc:subject:date:message-id:in-reply-to:references;
-	bh=gQpkvF1SIJXzrK/AHPBccCh1NrgaAqAqq95TYs6aC/w=;
-	b=oVJzpxyKAS1xQVjTpXuQdeLs1t9aMhmsO0KFnVrwGEr3i1djxYuA1cb+jf680nQGlq
-	Oq0LmyjeVncEZdn6528a7oSbM0uVhxDUyVINeZP8A5A+TYj5TVEy39/aqXcG78CyofJ6
-	tfB07PGWPHzHLkJAIz8KrFm8Ns4P5MNSB3YZLlgrDvDSnJFhVR1qgwD0ijUymwh3RQik
-	+VPXAtgHn2IcWV4VbgCaGkHaqsZWEu5z589uxYVPFnth6FwU0RbDZDQmYQzjMPwwa5Ao
-	bbXsU2oM4RU+NkZ/x6ugJ7YlmvbFBmup5UFvd80pkcXcfNGwRskwZ+hF/+3xPrboClr8
-	picw==
+	h=from:to:cc:subject:date:message-id;
+	bh=Emybrd22u6WrNd6aaxB5wU0cE8WDbYM81BuQYR6QioM=;
+	b=kP9RlX97s+NGkrgQ423WgQCvQXvG1LJQSCC2n6g8aLK1Vj5lKLE81L58BdflVLxoal
+	aKjEkxOqDiZKeHzWwmYgAOY3CeT0EA7cwMKKBMBOFmqh6bI38CGysTpsOFNwZkiT6XRp
+	aeadEmSFK52HMhwkRF+Vd1fifiYp2wE7IkRpiE5+TQ1H+IjRUSG/mNhgcfJVIf7uPldG
+	GA3wCPOg0L0hNZSyqQnn+0yz6xz2/q8n1mXdzKhFjMjE6aV+mHfch6h1MG5o4j1Fxz5/
+	AOaxyE2JxLsc/b3N6HV0mfMyo2rQ1+yVmVO4OoKBr8eZn69NE4fVCH8fvTxOERicSurp
+	WH9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-	:references;
-	bh=gQpkvF1SIJXzrK/AHPBccCh1NrgaAqAqq95TYs6aC/w=;
-	b=NlTPRI4jXJxAkz4S/AlHS0Fj2zNm3aPlcH75P2rdNYUGf0xDwp7Tct0Wu8BnYZW94h
-	4o5MGI4gYqRSbGjrR7xWZQiuBRB1OtfDoPUi6/JYNFoct1AIbIRM5cDEte83kZttOxTi
-	xu3JtmEvqsC0zO9ZUGWdz+qYU7MwppOzH5lZWZWT9DSnEJ8JFXGGGbg9B9BemDEdPlbd
-	OjzqS05LLh0G2LcNrFOcDyVvvW6u2jfAjDVD3Mtu7tkkomBS7bUqx+b6i8y6cQZjxjU8
-	zqBcEbMYankdD7cBoL59TCnoYYgPmtKCjL3lwVPRr8ugauEg8Lo3gMkriWMyCu5xCIiT
-	sRCA==
-X-Gm-Message-State: AMke39nt4QD02BtBANYbNsChxyEx2vvvLGVInImWwXcNKyUssqfRWXqlJ/GPPU3X5NIszw==
-X-Received: by 10.98.75.16 with SMTP id y16mr19129893pfa.23.1486877225919;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=Emybrd22u6WrNd6aaxB5wU0cE8WDbYM81BuQYR6QioM=;
+	b=Xae8V4QBUHXxf0s22/A9DXcPFRJk/llhJMquP2wXHhFgz1S7PaCfAxE/tMKhDkK0px
+	xPYbQzvXXS4xIMI7oc/umednsa0VZdv20raAg+xL4pAtaL1qQox1spXL9kOiYXqnHPkf
+	So9J7fiLcXjAtI1Kz6+JCl6ciYU4OZENpB7x2Wf3Ip8btPUlahQj/t6eRJKRnofWzDQV
+	XHkeDnBxDidMp8IAtF7FJoQ7xIK6i14inHvqspT7mTvbRl1S4kIKOTuPB7lc/2APorn2
+	PX8nWj5bLqnmS9KR4yWnQYOEZtpZQsP3JVq6MOXEKfJgUX5xcFyvn8EtLQ5gCpdhwnTO
+	2TJQ==
+X-Gm-Message-State: AMke39nKYtalJNwiNtyQRF+PFKQDmg702PP34vFkzjBhtdFVA5kaYH7x8AeI4814TNbPAQ==
+X-Received: by 10.84.191.129 with SMTP id a1mr21462370pld.62.1486877225058;
 	Sat, 11 Feb 2017 21:27:05 -0800 (PST)
 Received: from localhost.localdomain (c-76-102-32-192.hsd1.ca.comcast.net.
 	[76.102.32.192]) by smtp.gmail.com with ESMTPSA id
-	f3sm13549604pfd.10.2017.02.11.21.27.05
+	f3sm13549604pfd.10.2017.02.11.21.27.03
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sat, 11 Feb 2017 21:27:05 -0800 (PST)
+	Sat, 11 Feb 2017 21:27:03 -0800 (PST)
 From: Khem Raj <raj.khem@gmail.com>
 To: yocto@yoctoproject.org
-Date: Sat, 11 Feb 2017 21:26:46 -0800
-Message-Id: <20170212052655.12342-2-raj.khem@gmail.com>
+Date: Sat, 11 Feb 2017 21:26:45 -0800
+Message-Id: <20170212052655.12342-1-raj.khem@gmail.com>
 X-Mailer: git-send-email 2.11.1
-In-Reply-To: <20170212052655.12342-1-raj.khem@gmail.com>
-References: <20170212052655.12342-1-raj.khem@gmail.com>
-Subject: [meta-raspberrypi][PATCH V2 02/11] rpi-default-providers: Let mesa provide libgbm
+Subject: [meta-raspberrypi][PATCH V2 01/11] Add raspberrypi3-64.conf
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,21 +70,36 @@ List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Sun, 12 Feb 2017 05:27:10 -0000
 
+From: Herve Jourdain <herve.jourdain@neuf.fr>
+
+Signed-off-by: Herve Jourdain <herve.jourdain@neuf.fr>
 Signed-off-by: Khem Raj <raj.khem@gmail.com>
 ---
- conf/machine/include/rpi-default-providers.inc | 1 +
- 1 file changed, 1 insertion(+)
+ conf/machine/raspberrypi3-64.conf | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
+ create mode 100644 conf/machine/raspberrypi3-64.conf
 
-diff --git a/conf/machine/include/rpi-default-providers.inc b/conf/machine/include/rpi-default-providers.inc
-index 078e9d6..5b2658b 100644
---- a/conf/machine/include/rpi-default-providers.inc
-+++ b/conf/machine/include/rpi-default-providers.inc
-@@ -6,4 +6,5 @@ PREFERRED_PROVIDER_virtual/egl ?= "${@bb.utils.contains("MACHINE_FEATURES", "vc4
- PREFERRED_PROVIDER_virtual/libgles2 ?= "${@bb.utils.contains("MACHINE_FEATURES", "vc4graphics", "mesa", "userland", d)}"
- PREFERRED_PROVIDER_virtual/libgl ?= "${@bb.utils.contains("MACHINE_FEATURES", "vc4graphics", "mesa", "mesa-gl", d)}"
- PREFERRED_PROVIDER_virtual/mesa ?= "${@bb.utils.contains("MACHINE_FEATURES", "vc4graphics", "mesa", "mesa-gl", d)}"
-+PREFERRED_PROVIDER_libgbm ?= "${@bb.utils.contains("MACHINE_FEATURES", "vc4graphics", "mesa", "mesa-gl", d)}"
- PREFERRED_PROVIDER_jpeg ?= "jpeg"
+diff --git a/conf/machine/raspberrypi3-64.conf b/conf/machine/raspberrypi3-64.conf
+new file mode 100644
+index 0000000..5598e50
+--- /dev/null
++++ b/conf/machine/raspberrypi3-64.conf
+@@ -0,0 +1,15 @@
++#@TYPE: Machine
++#@NAME: RaspberryPi 3 Development Board
++#@DESCRIPTION: Machine configuration for the RaspberryPi 3 in 64 bits mode
++
++MACHINEOVERRIDES = "raspberrypi3:raspberrypi:${MACHINE}"
++
++MACHINE_EXTRA_RRECOMMENDS += "linux-firmware-bcm43430"
++
++require conf/machine/include/arm/arch-armv8.inc
++include conf/machine/include/rpi-base.inc
++
++SERIAL_CONSOLE = "115200 ttyS0"
++VC4_CMA_SIZE ?= "cma-256"
++
++UBOOT_MACHINE = "rpi_3_config"
 -- 
 2.11.1
 
