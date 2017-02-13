@@ -1,26 +1,68 @@
-Return-Path: <recipe-report@yoctoproject.org>
+Return-Path: <whulxh@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 40F2CE009B2; Sun, 12 Feb 2017 21:37:59 -0800 (PST)
+	id 91F6AE00A0A; Sun, 12 Feb 2017 21:58:51 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW, 
+	RCVD_IN_SORBS_SPAM autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (whulxh[at]gmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from packages.yoctoproject.org (unknown [198.145.29.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 31C85E007BA
-	for <yocto@yoctoproject.org>; Sun, 12 Feb 2017 21:37:55 -0800 (PST)
-Received: from packages.yoctoproject.org (localhost [IPv6:::1])
-	by packages.yoctoproject.org (Postfix) with ESMTP id 501D184AE134
-	for <yocto@yoctoproject.org>; Mon, 13 Feb 2017 00:37:55 -0500 (EST)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.220.196 listed in dnsbl.sorbs.net]
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.196 listed in list.dnswl.org]
+Received: from mail-qk0-f196.google.com (mail-qk0-f196.google.com
+	[209.85.220.196])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5EFA8E0082E
+	for <yocto@yoctoproject.org>; Sun, 12 Feb 2017 21:58:47 -0800 (PST)
+Received: by mail-qk0-f196.google.com with SMTP id u25so13269672qki.2
+	for <yocto@yoctoproject.org>; Sun, 12 Feb 2017 21:58:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=UlEE6uqsD56SZJHknEZK5ErnN+eufAz7Zsx4+/vMpaQ=;
+	b=o3mm9OdSCZ6w6b67f+F/dIfyCKHh0EvEgW9MxmS9dBze5hj2w0HoF877Xz1+bS03Ks
+	A4UHFge4mSKnAIUPibxO7JmVLtZobdCZbSC3CR/i+BxUg22mxs54xoukgirMKrNEReV7
+	awpnZ62xmbhEXwxk5sxGRNHKJ9Dlow+kpVHJcnwqxqhdz8yW7keYglytMUliOZHRE0wC
+	LCmjmp//NTR86ZaQec/vNeRdK11Lxpc1WFGEVkOaBId7i4ptWTx/UpBDo0h5+YyHsaXc
+	VZ7dlbzBVck/5OGSHq2JxojoYjojgxNfzltDctiPdy2Ywi0CP1AN0wvclODjBMKSkqRW
+	zomA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=UlEE6uqsD56SZJHknEZK5ErnN+eufAz7Zsx4+/vMpaQ=;
+	b=U30j9QZ7+X2xfQGvBLcceqgGMgYjcVffHn6R5zyxJFGuX2oVPLk7edTDi3+gBR6Uhi
+	dlrVWC+dLwSWL7IqN07MEg+e7rKY6j94aiKsFxQl8f0Bo7I71yYx1KoDJgnUtlyxd1qe
+	JQbpJ8dDBRvBhuzq5J6R1UFJDZKIj9WYL7OJPHZLOrzta9ReTI+BjPycSws5hbxR+ruS
+	tM3WCX2BMvQmg7pvHyqikQskDj0F5ntZPr9wA3+DaEQ1EzzecB9DzNMG/WuueJMQS5Wo
+	GRrEVSf1RR5FNwCudX1vwEfK9zLUBOjl08sAYzslZ3EN24iTIKZs5UbUHc99pmtlGs31
+	JT5g==
+X-Gm-Message-State: AMke39nqxMdkChNFqYl/GBqwaLS0x42xwKt9mg8h432l8LhJ2eiDx9yUwkWMf2NENP/RYBEBbRxA27fkwqbcbw==
+X-Received: by 10.55.136.2 with SMTP id k2mr18991842qkd.310.1486965526769;
+	Sun, 12 Feb 2017 21:58:46 -0800 (PST)
 MIME-Version: 1.0
-From: recipe-report@yoctoproject.org
-To: yocto@yoctoproject.org
-Date: Mon, 13 Feb 2017 05:37:55 -0000
-Message-ID: <20170213053755.2613.35564@packages.yoctoproject.org>
-Subject: [Recipe reporting system] Upgradable recipe name list
+Received: by 10.237.43.98 with HTTP; Sun, 12 Feb 2017 21:58:46 -0800 (PST)
+In-Reply-To: <CAMKF1srwUOY7VH0S_PfnpbMmr9ONaUrXMHkHcDvUCz+k-0GHyQ@mail.gmail.com>
+References: <CAFxSfziYaKn98sUWbUuPbYiXVWXXpqu4vRdbR=BNP8QV2t+yrQ@mail.gmail.com>
+	<CAMKF1srwUOY7VH0S_PfnpbMmr9ONaUrXMHkHcDvUCz+k-0GHyQ@mail.gmail.com>
+From: Xiaohui Liu <whulxh@gmail.com>
+Date: Sun, 12 Feb 2017 21:58:46 -0800
+Message-ID: <CAFxSfzjO7ah2pYMzM2p0HUK9FuSKH34i4bvfsQ5vF4SY5t7oow@mail.gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: How to gracefully disable a setscene task?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,161 +74,111 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 13 Feb 2017 05:37:59 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 13 Feb 2017 05:58:51 -0000
+Content-Type: multipart/alternative; boundary=94eb2c07259a0435c80548632406
 
-This mail was sent out by Recipe reporting system.
+--94eb2c07259a0435c80548632406
+Content-Type: text/plain; charset=UTF-8
 
-This message list those recipes which need to be upgraded. If maintainers
-believe some of them needn't to upgrade at this time, they can fill
-RECIPE_NO_UPDATE_REASON in respective recipe file to ignore this remainder
-until newer upstream version was detected.
+Hi Khem,
 
-Example:
-RECIPE_NO_UPDATE_REASON = "Version 2.0 is unstable"
+Thanks, it works like a charm.
 
-You can check the detail information at:
+On Fri, Feb 10, 2017 at 5:24 PM, Khem Raj <raj.khem@gmail.com> wrote:
 
-http://recipes.yoctoproject.org/
+> On Fri, Feb 10, 2017 at 3:05 PM, Xiaohui Liu <whulxh@gmail.com> wrote:
+> > Hi everyone,
+> >
+> > I tried to disable a setscene task as below:
+> >
+> > do_populate_lic_setscene () {
+> >    exit 1
+> > }
+> >
+>
+> you could use something like
+>
+> deltask  do_populate_lic_setscene
+>
+> > It works but shows a warning:
+> >
+> > WARNING: Logfile for failed setscene task is
+> > /data/users/xhliu/poky/build-arm/tmp/work/armada39x-poky-
+> linux-gnueabi/linux-terragraph/4.4.8-r0/temp/log.do_populate_lic_setscene.
+> 2825388
+> > WARNING: Setscene task 1
+> > (/data/users/xhliu/poky/meta-terragraph/recipes-kernel/linux/
+> linux-terragraph_4.4.8.bb,
+> > do_populate_lic_setscene) failed with exit code '1' - real task will be
+> run
+> > instead
+> >
+> > Any way to disable it without the warning? Thanks in advance.
+> >
+> > Best,
+> > Xiaohui
+> >
+> > --
+> > _______________________________________________
+> > yocto mailing list
+> > yocto@yoctoproject.org
+> > https://lists.yoctoproject.org/listinfo/yocto
+> >
+>
 
-Package               Version       Upstream version      Maintainer           NoUpgradeReason
---------------------  ------------  --------------------  -------------------  ------------------------------
-python3               3.5.2         3.6.0                 Alejandro Hernandez
-python                2.7.12        2.7.13                Alejandro Hernandez
-eudev                 3.2           3.2.1                 Alejandro Hernandez
-python-native         2.7.12        2.7.13                Alejandro Hernandez
-python3-native        3.5.2         3.6.0                 Alejandro Hernandez
-liberation-fonts      1.04          2.00.1                Alexander Kanavin    2.x depends on fontforge pa...
-boost                 1.62.0        1.63.0                Alexander Kanavin
-openssl               1.0.2k        1.1.0d                Alexander Kanavin
-gnutls                3.5.7         3.5.9                 Alexander Kanavin
-bjam-native           1.62.0        1.63.0                Alexander Kanavin
-libiconv              1.14          1.15                  Alexander Kanavin
-libnl                 3.2.28        3.2.29                Alexander Kanavin
-ed                    1.9           4.2.2                 Alexander Kanavin
-kbd                   2.0.3         2.0.4                 Alexander Kanavin
-gperf                 3.0.4         3.1                   Alexander Kanavin
-nss                   3.27.1        3.28.1                Alexander Kanavin
-webkitgtk             2.14.2        2.14.4                Alexander Kanavin
-lighttpd              1.4.43        1.4.45                Alexander Kanavin
-ffmpeg                3.2.2         3.2.4                 Alexander Kanavin
-bash-completion       2.4           2.5                   Alexander Kanavin
-btrfs-tools           4.8.5         4.9.1                 Alexander Kanavin
-cmake                 3.7.1         3.7.2                 Alexander Kanavin
-cmake-native          3.7.1         3.7.2                 Alexander Kanavin
-iso-codes             3.72          3.74                  Alexander Kanavin
-epiphany              3.22.3        3.22.6                Alexander Kanavin
-libwebp               0.5.1         0.6.0                 Alexander Kanavin
-mkelfimage            4.0+gitX      4.5+gitAUTOINC+0b...  Alexander Kanavin    mkelfimage has been removed...
-perl                  5.24.0        5.24.1                Aníbal Limón
-dpkg                  1.18.7        1.18.22               Aníbal Limón
-perl-native           5.24.0        5.24.1                Aníbal Limón
-pinentry              0.9.2         1.0.0                 Armin Kuster
-linux-libc-headers    4.9           4.9.9                 Bruce Ashfield
-libunwind             1.1+gitX      1.2+gitAUTOINC+cc...  Bruce Ashfield
-linux-yocto-dev       4.9-rc++gitX  4.9.6                 Bruce Ashfield
-busybox               1.25.0+gitX   1.26.2+gitAUTOINC...  Chen Qi
-byacc                 20161202      20170201              Chen Qi
-cups                  2.2.1         2.2.2                 Chen Qi
-flex                  2.6.2         2.6.3                 Chen Qi
-util-linux            2.29          2.29.1                Chen Qi
-sed                   4.2.2         4.4                   Chen Qi
-sudo                  1.8.18p1      1.8.19p2              Chen Qi
-sysstat               11.5.3        11.5.4                Chen Qi
-xz                    5.2.2         5.2.3                 Chen Qi
-grep                  2.27          3.0                   Chen Qi
-build-appliance-i...  15.0.0        16.0.0                Cristian Iorga
-chkconfig             1.3.58        1.8                   Dengke Du            Version 1.5 requires selinux
-ltp                   20160126      20170116              Dengke Du
-swig                  3.0.11        3.0.12                Edwin Plauchu
-python3-setuptools    32.1.1        34.2.0                Edwin Plauchu
-python-setuptools     32.1.1        34.2.0                Edwin Plauchu
-pax-utils             1.1.6         1.2.2                 Hongxu Jia
-createrepo            0.4.11        0.10.4                Hongxu Jia           Versions after 0.9.* use YU...
-socat                 1.7.3.1       1.7.3.2               Hongxu Jia
-elfutils              0.166         0.168                 Hongxu Jia
-gpgme                 1.6.0         1.8.0                 Hongxu Jia
-bash                  4.3.30        4.4                   Hongxu Jia
-libgcrypt             1.7.3         1.7.6                 Hongxu Jia
-libgpg-error          1.25          1.26                  Hongxu Jia
-ncurses               6.0+20160625  6.0+20161126          Hongxu Jia
-man-pages             4.08          4.09                  Hongxu Jia
-rpcbind               0.2.3         0.2.4                 Hongxu Jia
-gnupg                 2.1.14        2.1.18                Hongxu Jia
-libinput              1.6.0         1.6.1                 Jussi Kukkonen
-wayland               1.12.0        1.12.92               Jussi Kukkonen
-weston                1.11.1        1.99.92               Jussi Kukkonen
-xauth                 1.0.9         1.0.10                Jussi Kukkonen
-util-macros           1.19.0        1.19.1                Jussi Kukkonen
-libevent              2.0.22        2.1.8                 Jussi Kukkonen
-xkeyboard-config      2.19          2.20                  Jussi Kukkonen
-vte                   0.44.2        0.46.1                Jussi Kukkonen
-presentproto          1.0+gitX      1.1+gitAUTOINC+bf...  Jussi Kukkonen
-libepoxy              1.3.1         1.4.0                 Jussi Kukkonen
-gdk-pixbuf            2.36.1        2.36.4                Jussi Kukkonen
-libdrm                2.4.74        2.4.75                Jussi Kukkonen
-menu-cache            1.0.1         1.0.2                 Jussi Kukkonen
-xf86-input-libinput   0.23.0        0.24.0                Jussi Kukkonen
-gmp                   6.1.1         6.1.2                 Khem Raj
-gdb                   7.12          7.12.1                Khem Raj
-ruby                  2.3.3         2.4.0                 Leonardo Sandoval
-libusb1               1.0.20        1.0.21                Leonardo Sandoval
-nfs-utils             1.3.4         2.1.1                 Mariano Lopez
-prelink               1.0+gitX      20151030.+gitAUTO...  Mark Hatle
-db                    6.0.35        6.2.23                Mark Hatle           latest db does not work wit...
-rpm                   5.4.16        5.4.17                Mark Hatle
-libpfm4               4.6.0         4.8.0                 Matthew McClintock
-ifupdown              0.8.16        0.8.19                Maxin B. John
-iptables              1.6.0         1.6.1                 Maxin B. John
-libsolv               0.6.24        0.6.25                Maxin B. John
-screen                4.4.0         4.5.0                 Maxin B. John
-harfbuzz              1.4.1         1.4.2                 Maxin B. John
-gdb-cross-canadia...  7.12          7.12.1                No maintainer
-gstreamer1.0-vaapi    1.10.3        1.11.1                No maintainer
-linux-yocto-rt        4.9.6+gitX    4.9.8+gitAUTOINC+...  No maintainer
-linux-yocto-tiny      4.9.6+gitX    4.9.8+gitAUTOINC+...  No maintainer
-linux-yocto           4.9.6+gitX    4.9.8+gitAUTOINC+...  No maintainer
-gdb-cross-i586        7.12          7.12.1                No maintainer
-gnu-efi               3.0.4         3.0.5                 Robert Yang
-strace                4.14          4.15                  Robert Yang
-libpcre               8.39          8.40                  Robert Yang
-hdparm                9.50          9.51                  Robert Yang
-slang                 2.3.1         2.3.1a                Robert Yang
-e2fsprogs             1.43.3        1.43.4                Robert Yang
-file                  5.29          5.30                  Robert Yang
-wget                  1.18          1.19.1                Robert Yang
-git                   2.11.0        2.11.1                Robert Yang
-m4                    1.4.17        1.4.18                Robert Yang
-mklibs-native         0.1.41        0.1.43                Robert Yang
-base-passwd           3.5.29        3.5.43                Ross Burton          Version 3.5.38 requires cde...
-unifdef               2.11          2.11.23.1cca442       Ross Burton
-lsbinitscripts        9.68          9.69                  Ross Burton
-alsa-lib              1.1.2         1.1.3                 Tanu Kaskinen
-pulseaudio            9.0           10.0                  Tanu Kaskinen
+--94eb2c07259a0435c80548632406
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Upgradable count: 106
-Upgradable total count: 112
+<div dir=3D"ltr">Hi Khem,<div><br></div><div>Thanks, it works like a charm.=
+</div></div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On Fr=
+i, Feb 10, 2017 at 5:24 PM, Khem Raj <span dir=3D"ltr">&lt;<a href=3D"mailt=
+o:raj.khem@gmail.com" target=3D"_blank">raj.khem@gmail.com</a>&gt;</span> w=
+rote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;borde=
+r-left:1px #ccc solid;padding-left:1ex"><span class=3D"">On Fri, Feb 10, 20=
+17 at 3:05 PM, Xiaohui Liu &lt;<a href=3D"mailto:whulxh@gmail.com">whulxh@g=
+mail.com</a>&gt; wrote:<br>
+&gt; Hi everyone,<br>
+&gt;<br>
+&gt; I tried to disable a setscene task as below:<br>
+&gt;<br>
+&gt; do_populate_lic_setscene () {<br>
+&gt;=C2=A0 =C2=A0 exit 1<br>
+&gt; }<br>
+&gt;<br>
+<br>
+</span>you could use something like<br>
+<br>
+deltask=C2=A0 do_populate_lic_setscene<br>
+<div class=3D"HOEnZb"><div class=3D"h5"><br>
+&gt; It works but shows a warning:<br>
+&gt;<br>
+&gt; WARNING: Logfile for failed setscene task is<br>
+&gt; /data/users/xhliu/poky/build-<wbr>arm/tmp/work/armada39x-poky-<wbr>lin=
+ux-gnueabi/linux-<wbr>terragraph/4.4.8-r0/temp/log.<wbr>do_populate_lic_set=
+scene.<wbr>2825388<br>
+&gt; WARNING: Setscene task 1<br>
+&gt; (/data/users/xhliu/poky/meta-<wbr>terragraph/recipes-kernel/<wbr>linux=
+/<a href=3D"http://linux-terragraph_4.4.8.bb" rel=3D"noreferrer" target=3D"=
+_blank">linux-terragraph_4.4.8.<wbr>bb</a>,<br>
+&gt; do_populate_lic_setscene) failed with exit code &#39;1&#39; - real tas=
+k will be run<br>
+&gt; instead<br>
+&gt;<br>
+&gt; Any way to disable it without the warning? Thanks in advance.<br>
+&gt;<br>
+&gt; Best,<br>
+&gt; Xiaohui<br>
+&gt;<br>
+</div></div><span class=3D"HOEnZb"><font color=3D"#888888">&gt; --<br>
+&gt; ______________________________<wbr>_________________<br>
+&gt; yocto mailing list<br>
+&gt; <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><b=
+r>
+&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noref=
+errer" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto=
+</a><br>
+&gt;<br>
+</font></span></blockquote></div><br></div>
 
-The based commit is:
-
-commit d1109378d730c5cf50240c4d1a468e3aef5208ea
-Author: Richard Purdie <richard.purdie@linuxfoundation.org>
-Date:   Wed Feb 8 21:29:43 2017 +0000
-
-    nss: Fix nss-native so the checksum doesn't change with BUILD_ARCH
-    
-    Switching between 32 and 64 bit BUILD_ARCH shows:
-    
-    $ bitbake-diffsigs tmp-sstatesamehash*/stamps/*/nss-native/3.27.1-r0.do_compile.sigdata.*
-    basehash changed from 944cc4554a823ba966aeda0ac3d33b79 to 2475db3659c248d81d0e4dadb3c1b4cd
-    Variable SITEINFO_BITS value changed from '32' to '64'
-    
-    We shouldn't have this dependency and it would fail oe-selftest test_sstate_32_64_same_hash
-    if nss-native were included, therefore exclude it.
-    
-    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
-
-Any problem, please contact Anibal Limon <anibal.limon@intel.com> 
-
-
+--94eb2c07259a0435c80548632406--
