@@ -1,68 +1,33 @@
-Return-Path: <whulxh@gmail.com>
+Return-Path: <gary@mlbassoc.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 91F6AE00A0A; Sun, 12 Feb 2017 21:58:51 -0800 (PST)
+	id 8021BE00A0A; Sun, 12 Feb 2017 22:02:14 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW, 
-	RCVD_IN_SORBS_SPAM autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (whulxh[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.220.196 listed in dnsbl.sorbs.net]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.196 listed in list.dnswl.org]
-Received: from mail-qk0-f196.google.com (mail-qk0-f196.google.com
-	[209.85.220.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5EFA8E0082E
-	for <yocto@yoctoproject.org>; Sun, 12 Feb 2017 21:58:47 -0800 (PST)
-Received: by mail-qk0-f196.google.com with SMTP id u25so13269672qki.2
-	for <yocto@yoctoproject.org>; Sun, 12 Feb 2017 21:58:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=UlEE6uqsD56SZJHknEZK5ErnN+eufAz7Zsx4+/vMpaQ=;
-	b=o3mm9OdSCZ6w6b67f+F/dIfyCKHh0EvEgW9MxmS9dBze5hj2w0HoF877Xz1+bS03Ks
-	A4UHFge4mSKnAIUPibxO7JmVLtZobdCZbSC3CR/i+BxUg22mxs54xoukgirMKrNEReV7
-	awpnZ62xmbhEXwxk5sxGRNHKJ9Dlow+kpVHJcnwqxqhdz8yW7keYglytMUliOZHRE0wC
-	LCmjmp//NTR86ZaQec/vNeRdK11Lxpc1WFGEVkOaBId7i4ptWTx/UpBDo0h5+YyHsaXc
-	VZ7dlbzBVck/5OGSHq2JxojoYjojgxNfzltDctiPdy2Ywi0CP1AN0wvclODjBMKSkqRW
-	zomA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=UlEE6uqsD56SZJHknEZK5ErnN+eufAz7Zsx4+/vMpaQ=;
-	b=U30j9QZ7+X2xfQGvBLcceqgGMgYjcVffHn6R5zyxJFGuX2oVPLk7edTDi3+gBR6Uhi
-	dlrVWC+dLwSWL7IqN07MEg+e7rKY6j94aiKsFxQl8f0Bo7I71yYx1KoDJgnUtlyxd1qe
-	JQbpJ8dDBRvBhuzq5J6R1UFJDZKIj9WYL7OJPHZLOrzta9ReTI+BjPycSws5hbxR+ruS
-	tM3WCX2BMvQmg7pvHyqikQskDj0F5ntZPr9wA3+DaEQ1EzzecB9DzNMG/WuueJMQS5Wo
-	GRrEVSf1RR5FNwCudX1vwEfK9zLUBOjl08sAYzslZ3EN24iTIKZs5UbUHc99pmtlGs31
-	JT5g==
-X-Gm-Message-State: AMke39nqxMdkChNFqYl/GBqwaLS0x42xwKt9mg8h432l8LhJ2eiDx9yUwkWMf2NENP/RYBEBbRxA27fkwqbcbw==
-X-Received: by 10.55.136.2 with SMTP id k2mr18991842qkd.310.1486965526769;
-	Sun, 12 Feb 2017 21:58:46 -0800 (PST)
+Received: from mail.analogue-micro.com (mail.analogue-micro.com
+	[217.144.149.242])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4F721E0082E
+	for <yocto@yoctoproject.org>; Sun, 12 Feb 2017 22:02:12 -0800 (PST)
+Received: by mail.analogue-micro.com (Postfix, from userid 999)
+	id 7D56068A01B; Mon, 13 Feb 2017 06:02:11 +0000 (GMT)
+Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
+	by mail.analogue-micro.com (Postfix) with ESMTP id 0736668A019;
+	Mon, 13 Feb 2017 06:02:10 +0000 (GMT)
+Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
+	by zeus.mlbassoc.com (Postfix) with ESMTP id B9B836740322;
+	Mon, 13 Feb 2017 07:02:10 +0100 (CET)
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+From: Gary Thomas <gary@mlbassoc.com>
+Message-ID: <9c692488-5c82-bd81-734d-74266648aef8@mlbassoc.com>
+Date: Mon, 13 Feb 2017 07:02:10 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.7.0
 MIME-Version: 1.0
-Received: by 10.237.43.98 with HTTP; Sun, 12 Feb 2017 21:58:46 -0800 (PST)
-In-Reply-To: <CAMKF1srwUOY7VH0S_PfnpbMmr9ONaUrXMHkHcDvUCz+k-0GHyQ@mail.gmail.com>
-References: <CAFxSfziYaKn98sUWbUuPbYiXVWXXpqu4vRdbR=BNP8QV2t+yrQ@mail.gmail.com>
-	<CAMKF1srwUOY7VH0S_PfnpbMmr9ONaUrXMHkHcDvUCz+k-0GHyQ@mail.gmail.com>
-From: Xiaohui Liu <whulxh@gmail.com>
-Date: Sun, 12 Feb 2017 21:58:46 -0800
-Message-ID: <CAFxSfzjO7ah2pYMzM2p0HUK9FuSKH34i4bvfsQ5vF4SY5t7oow@mail.gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: How to gracefully disable a setscene task?
+Subject: Getting build dependencies correct
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,111 +39,66 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 13 Feb 2017 05:58:51 -0000
-Content-Type: multipart/alternative; boundary=94eb2c07259a0435c80548632406
+X-List-Received-Date: Mon, 13 Feb 2017 06:02:14 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
---94eb2c07259a0435c80548632406
-Content-Type: text/plain; charset=UTF-8
+I'm trying to work with a new tool that creates executables
+for my target.  This tool has a shared library and some include
+files.  What I need to figure out is how to run the tool in my
+build environment such that it uses those files to create an
+executable for my target board.
 
-Hi Khem,
+The tool is created by some recipe xxx.  I have enabled both
+the target version and the xxx-native version (using BBCLASSEXTEND)
+and end up with these files in the tmp/sysroots
 
-Thanks, it works like a charm.
+gthomas@europa:p8701_2016-10-22$ find tmp/sysroots-components/armv7ahf-neon/am335x-pru-support
+tmp/sysroots-components/armv7ahf-neon/am335x-pru-support
+tmp/sysroots-components/armv7ahf-neon/am335x-pru-support/sysroot-providers
+tmp/sysroots-components/armv7ahf-neon/am335x-pru-support/sysroot-providers/am335x-pru-support
+tmp/sysroots-components/armv7ahf-neon/am335x-pru-support/usr
+tmp/sysroots-components/armv7ahf-neon/am335x-pru-support/usr/lib
+tmp/sysroots-components/armv7ahf-neon/am335x-pru-support/usr/lib/libprussdrv.so.0
+tmp/sysroots-components/armv7ahf-neon/am335x-pru-support/usr/lib/libprussdrv.so.0.0
+tmp/sysroots-components/armv7ahf-neon/am335x-pru-support/usr/include
+tmp/sysroots-components/armv7ahf-neon/am335x-pru-support/usr/include/pruss
+tmp/sysroots-components/armv7ahf-neon/am335x-pru-support/usr/include/pruss/pruss_intc_mapping.h
+tmp/sysroots-components/armv7ahf-neon/am335x-pru-support/usr/include/pruss/prussdrv.h
+gthomas@europa:p8701_2016-10-22$ find tmp/sysroots-components/x86_64/am335x-pru-support-native/
+tmp/sysroots-components/x86_64/am335x-pru-support-native/
+tmp/sysroots-components/x86_64/am335x-pru-support-native/sysroot-providers
+tmp/sysroots-components/x86_64/am335x-pru-support-native/sysroot-providers/am335x-pru-support-native
+tmp/sysroots-components/x86_64/am335x-pru-support-native/usr
+tmp/sysroots-components/x86_64/am335x-pru-support-native/usr/lib
+tmp/sysroots-components/x86_64/am335x-pru-support-native/usr/lib/libprussdrv.so.0
+tmp/sysroots-components/x86_64/am335x-pru-support-native/usr/lib/libprussdrv.so.0.0
+tmp/sysroots-components/x86_64/am335x-pru-support-native/usr/include
+tmp/sysroots-components/x86_64/am335x-pru-support-native/usr/include/pruss
+tmp/sysroots-components/x86_64/am335x-pru-support-native/usr/include/pruss/pruss_intc_mapping.h
+tmp/sysroots-components/x86_64/am335x-pru-support-native/usr/include/pruss/prussdrv.h
+tmp/sysroots-components/x86_64/am335x-pru-support-native/usr/bin
+tmp/sysroots-components/x86_64/am335x-pru-support-native/usr/bin/pasm
 
-On Fri, Feb 10, 2017 at 5:24 PM, Khem Raj <raj.khem@gmail.com> wrote:
+The question becomes how to make use of this in a separate recipe
+that wants to use both the 'pasm' tool, as well as the include files
+and library from the 'pruss' support.
 
-> On Fri, Feb 10, 2017 at 3:05 PM, Xiaohui Liu <whulxh@gmail.com> wrote:
-> > Hi everyone,
-> >
-> > I tried to disable a setscene task as below:
-> >
-> > do_populate_lic_setscene () {
-> >    exit 1
-> > }
-> >
->
-> you could use something like
->
-> deltask  do_populate_lic_setscene
->
-> > It works but shows a warning:
-> >
-> > WARNING: Logfile for failed setscene task is
-> > /data/users/xhliu/poky/build-arm/tmp/work/armada39x-poky-
-> linux-gnueabi/linux-terragraph/4.4.8-r0/temp/log.do_populate_lic_setscene.
-> 2825388
-> > WARNING: Setscene task 1
-> > (/data/users/xhliu/poky/meta-terragraph/recipes-kernel/linux/
-> linux-terragraph_4.4.8.bb,
-> > do_populate_lic_setscene) failed with exit code '1' - real task will be
-> run
-> > instead
-> >
-> > Any way to disable it without the warning? Thanks in advance.
-> >
-> > Best,
-> > Xiaohui
-> >
-> > --
-> > _______________________________________________
-> > yocto mailing list
-> > yocto@yoctoproject.org
-> > https://lists.yoctoproject.org/listinfo/yocto
-> >
->
+I tried to use
+   DEPENDS="am335x-pru-support"
+as well as
+   DEPENDS="am335x-pru-support-native"
+in my recipe, but the correct sysroot is never found (e.g. <pruss/prussdrv.h>
+is not in my search path).
 
---94eb2c07259a0435c80548632406
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Any help on how to proceed would be greatly appreciated.  I'm happy to share the
+actual recipes if needed (I just left them out to avoid too much noise...)
 
-<div dir=3D"ltr">Hi Khem,<div><br></div><div>Thanks, it works like a charm.=
-</div></div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On Fr=
-i, Feb 10, 2017 at 5:24 PM, Khem Raj <span dir=3D"ltr">&lt;<a href=3D"mailt=
-o:raj.khem@gmail.com" target=3D"_blank">raj.khem@gmail.com</a>&gt;</span> w=
-rote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;borde=
-r-left:1px #ccc solid;padding-left:1ex"><span class=3D"">On Fri, Feb 10, 20=
-17 at 3:05 PM, Xiaohui Liu &lt;<a href=3D"mailto:whulxh@gmail.com">whulxh@g=
-mail.com</a>&gt; wrote:<br>
-&gt; Hi everyone,<br>
-&gt;<br>
-&gt; I tried to disable a setscene task as below:<br>
-&gt;<br>
-&gt; do_populate_lic_setscene () {<br>
-&gt;=C2=A0 =C2=A0 exit 1<br>
-&gt; }<br>
-&gt;<br>
-<br>
-</span>you could use something like<br>
-<br>
-deltask=C2=A0 do_populate_lic_setscene<br>
-<div class=3D"HOEnZb"><div class=3D"h5"><br>
-&gt; It works but shows a warning:<br>
-&gt;<br>
-&gt; WARNING: Logfile for failed setscene task is<br>
-&gt; /data/users/xhliu/poky/build-<wbr>arm/tmp/work/armada39x-poky-<wbr>lin=
-ux-gnueabi/linux-<wbr>terragraph/4.4.8-r0/temp/log.<wbr>do_populate_lic_set=
-scene.<wbr>2825388<br>
-&gt; WARNING: Setscene task 1<br>
-&gt; (/data/users/xhliu/poky/meta-<wbr>terragraph/recipes-kernel/<wbr>linux=
-/<a href=3D"http://linux-terragraph_4.4.8.bb" rel=3D"noreferrer" target=3D"=
-_blank">linux-terragraph_4.4.8.<wbr>bb</a>,<br>
-&gt; do_populate_lic_setscene) failed with exit code &#39;1&#39; - real tas=
-k will be run<br>
-&gt; instead<br>
-&gt;<br>
-&gt; Any way to disable it without the warning? Thanks in advance.<br>
-&gt;<br>
-&gt; Best,<br>
-&gt; Xiaohui<br>
-&gt;<br>
-</div></div><span class=3D"HOEnZb"><font color=3D"#888888">&gt; --<br>
-&gt; ______________________________<wbr>_________________<br>
-&gt; yocto mailing list<br>
-&gt; <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><b=
-r>
-&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noref=
-errer" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto=
-</a><br>
-&gt;<br>
-</font></span></blockquote></div><br></div>
+Thanks
 
---94eb2c07259a0435c80548632406--
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
+
