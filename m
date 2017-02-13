@@ -1,6 +1,6 @@
 Return-Path: <gary@mlbassoc.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0CFE2E00A0C; Sun, 12 Feb 2017 22:06:21 -0800 (PST)
+	id BF0E2E00A0C; Sun, 12 Feb 2017 22:28:22 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,30 +10,26 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from mail.analogue-micro.com (mail.analogue-micro.com
 	[217.144.149.242])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BF631E0082E
-	for <yocto@yoctoproject.org>; Sun, 12 Feb 2017 22:06:13 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5EB79E0082E
+	for <yocto@yoctoproject.org>; Sun, 12 Feb 2017 22:28:16 -0800 (PST)
 Received: by mail.analogue-micro.com (Postfix, from userid 999)
-	id AAD5568A01A; Mon, 13 Feb 2017 06:06:12 +0000 (GMT)
+	id 9535368A01C; Mon, 13 Feb 2017 06:28:15 +0000 (GMT)
 Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
-	by mail.analogue-micro.com (Postfix) with ESMTP id 2C8FF68A019;
-	Mon, 13 Feb 2017 06:06:10 +0000 (GMT)
+	by mail.analogue-micro.com (Postfix) with ESMTP id 0C9C568A019;
+	Mon, 13 Feb 2017 06:28:14 +0000 (GMT)
 Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
-	by zeus.mlbassoc.com (Postfix) with ESMTP id E38B96740322;
-	Mon, 13 Feb 2017 07:06:09 +0100 (CET)
-To: Xiaohui Liu <whulxh@gmail.com>
-References: <CAFxSfziYaKn98sUWbUuPbYiXVWXXpqu4vRdbR=BNP8QV2t+yrQ@mail.gmail.com>
-	<CAMKF1srwUOY7VH0S_PfnpbMmr9ONaUrXMHkHcDvUCz+k-0GHyQ@mail.gmail.com>
-	<cf76c5ae-d74b-8edd-65b3-190d2fd1870a@mlbassoc.com>
-	<CAFxSfziow5fS_zFMQ2n4fBus4+RMBQbbP21t1DYj_RC6hHu1+A@mail.gmail.com>
+	by zeus.mlbassoc.com (Postfix) with ESMTP id B3898674043C;
+	Mon, 13 Feb 2017 07:28:14 +0100 (CET)
+To: yocto@yoctoproject.org
+References: <9c692488-5c82-bd81-734d-74266648aef8@mlbassoc.com>
 From: Gary Thomas <gary@mlbassoc.com>
-Message-ID: <0eae669f-e20b-7abe-09e7-6f4be136bb92@mlbassoc.com>
-Date: Mon, 13 Feb 2017 07:06:09 +0100
+Message-ID: <3a67914a-52e5-3e4a-89a4-ee63c5a7b6ba@mlbassoc.com>
+Date: Mon, 13 Feb 2017 07:28:14 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
 	Thunderbird/45.7.0
 MIME-Version: 1.0
-In-Reply-To: <CAFxSfziow5fS_zFMQ2n4fBus4+RMBQbbP21t1DYj_RC6hHu1+A@mail.gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: How to gracefully disable a setscene task?
+In-Reply-To: <9c692488-5c82-bd81-734d-74266648aef8@mlbassoc.com>
+Subject: Re: Getting build dependencies correct
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,54 +41,80 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 13 Feb 2017 06:06:21 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
+X-List-Received-Date: Mon, 13 Feb 2017 06:28:22 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 2017-02-13 07:02, Xiaohui Liu wrote:
-> Hi Gary,
+On 2017-02-13 07:02, Gary Thomas wrote:
+> I'm trying to work with a new tool that creates executables
+> for my target.  This tool has a shared library and some include
+> files.  What I need to figure out is how to run the tool in my
+> build environment such that it uses those files to create an
+> executable for my target board.
 >
-> Some tasks depend on do_populate_lic, which requires kernel source. But when do_populate_lic_setscene is called instead
-> of do_populate_lic, it does not populate kernel source and leads to those tasks complain missing kernel source. That's
-> why I want to disable do_populate_lic_setscene. Thanks.
+> The tool is created by some recipe xxx.  I have enabled both
+> the target version and the xxx-native version (using BBCLASSEXTEND)
+> and end up with these files in the tmp/sysroots
+>
+> gthomas@europa:p8701_2016-10-22$ find tmp/sysroots-components/armv7ahf-neon/am335x-pru-support
+> tmp/sysroots-components/armv7ahf-neon/am335x-pru-support
+> tmp/sysroots-components/armv7ahf-neon/am335x-pru-support/sysroot-providers
+> tmp/sysroots-components/armv7ahf-neon/am335x-pru-support/sysroot-providers/am335x-pru-support
+> tmp/sysroots-components/armv7ahf-neon/am335x-pru-support/usr
+> tmp/sysroots-components/armv7ahf-neon/am335x-pru-support/usr/lib
+> tmp/sysroots-components/armv7ahf-neon/am335x-pru-support/usr/lib/libprussdrv.so.0
+> tmp/sysroots-components/armv7ahf-neon/am335x-pru-support/usr/lib/libprussdrv.so.0.0
+> tmp/sysroots-components/armv7ahf-neon/am335x-pru-support/usr/include
+> tmp/sysroots-components/armv7ahf-neon/am335x-pru-support/usr/include/pruss
+> tmp/sysroots-components/armv7ahf-neon/am335x-pru-support/usr/include/pruss/pruss_intc_mapping.h
+> tmp/sysroots-components/armv7ahf-neon/am335x-pru-support/usr/include/pruss/prussdrv.h
+> gthomas@europa:p8701_2016-10-22$ find tmp/sysroots-components/x86_64/am335x-pru-support-native/
+> tmp/sysroots-components/x86_64/am335x-pru-support-native/
+> tmp/sysroots-components/x86_64/am335x-pru-support-native/sysroot-providers
+> tmp/sysroots-components/x86_64/am335x-pru-support-native/sysroot-providers/am335x-pru-support-native
+> tmp/sysroots-components/x86_64/am335x-pru-support-native/usr
+> tmp/sysroots-components/x86_64/am335x-pru-support-native/usr/lib
+> tmp/sysroots-components/x86_64/am335x-pru-support-native/usr/lib/libprussdrv.so.0
+> tmp/sysroots-components/x86_64/am335x-pru-support-native/usr/lib/libprussdrv.so.0.0
+> tmp/sysroots-components/x86_64/am335x-pru-support-native/usr/include
+> tmp/sysroots-components/x86_64/am335x-pru-support-native/usr/include/pruss
+> tmp/sysroots-components/x86_64/am335x-pru-support-native/usr/include/pruss/pruss_intc_mapping.h
+> tmp/sysroots-components/x86_64/am335x-pru-support-native/usr/include/pruss/prussdrv.h
+> tmp/sysroots-components/x86_64/am335x-pru-support-native/usr/bin
+> tmp/sysroots-components/x86_64/am335x-pru-support-native/usr/bin/pasm
+>
+> The question becomes how to make use of this in a separate recipe
+> that wants to use both the 'pasm' tool, as well as the include files
+> and library from the 'pruss' support.
+>
+> I tried to use
+>   DEPENDS="am335x-pru-support"
+> as well as
+>   DEPENDS="am335x-pru-support-native"
+> in my recipe, but the correct sysroot is never found (e.g. <pruss/prussdrv.h>
+> is not in my search path).
+>
+> Any help on how to proceed would be greatly appreciated.  I'm happy to share the
+> actual recipes if needed (I just left them out to avoid too much noise...)
 
-That sounds like some other dependency is broken and disabling this task
-is just side-stepping around that issue.
+Following up on this, I'm rather confused.  I installed this package to my target,
+but some files seem to be missing:
 
->
-> On Fri, Feb 10, 2017 at 10:13 PM, Gary Thomas <gary@mlbassoc.com <mailto:gary@mlbassoc.com>> wrote:
->
->     On 2017-02-11 02:24, Khem Raj wrote:
->
->         On Fri, Feb 10, 2017 at 3:05 PM, Xiaohui Liu <whulxh@gmail.com <mailto:whulxh@gmail.com>> wrote:
->
->             Hi everyone,
->
->             I tried to disable a setscene task as below:
->
->             do_populate_lic_setscene () {
->                exit 1
->             }
->
->
->         you could use something like
->
->         deltask  do_populate_lic_setscene
->
->             It works but shows a warning:
->
->             WARNING: Logfile for failed setscene task is
->             /data/users/xhliu/poky/build-arm/tmp/work/armada39x-poky-linux-gnueabi/linux-terragraph/4.4.8-r0/temp/log.do_populate_lic_setscene.2825388
->             WARNING: Setscene task 1
->             (/data/users/xhliu/poky/meta-terragraph/recipes-kernel/linux/linux-terragraph_4.4.8.bb
->             <http://linux-terragraph_4.4.8.bb>,
->             do_populate_lic_setscene) failed with exit code '1' - real task will be run
->             instead
->
->             Any way to disable it without the warning? Thanks in advance.
->
->
->     Why would you want to do this?
+# opkg files am335x-pru-support-dev
+Package am335x-pru-support-dev (2016-08-30-r0.1) is installed on root and has the following files:
+
+When I look in my build, I see something quite different:
+
+tmp/work/armv7ahf-neon-amltd-linux-gnueabi/am335x-pru-support/2016-08-30-r0/packages-split/am335x-pru-support-dev
+tmp/work/armv7ahf-neon-amltd-linux-gnueabi/am335x-pru-support/2016-08-30-r0/packages-split/am335x-pru-support-dev/usr
+tmp/work/armv7ahf-neon-amltd-linux-gnueabi/am335x-pru-support/2016-08-30-r0/packages-split/am335x-pru-support-dev/usr/include
+tmp/work/armv7ahf-neon-amltd-linux-gnueabi/am335x-pru-support/2016-08-30-r0/packages-split/am335x-pru-support-dev/usr/include/pruss
+tmp/work/armv7ahf-neon-amltd-linux-gnueabi/am335x-pru-support/2016-08-30-r0/packages-split/am335x-pru-support-dev/usr/include/pruss/pruss_intc_mapping.h
+tmp/work/armv7ahf-neon-amltd-linux-gnueabi/am335x-pru-support/2016-08-30-r0/packages-split/am335x-pru-support-dev/usr/include/pruss/prussdrv.h
+tmp/work/armv7ahf-neon-amltd-linux-gnueabi/am335x-pru-support/2016-08-30-r0/packages-split/am335x-pru-support-locale
+
+So why aren't these include files actually in the final package?
+(Probably related to why I can't find them in my desktop build)
 
 -- 
 ------------------------------------------------------------
