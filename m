@@ -1,6 +1,6 @@
 Return-Path: <todor.minchev@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C5B6EE0050B; Tue, 14 Feb 2017 09:51:07 -0800 (PST)
+	id D9D07E007BA; Tue, 14 Feb 2017 14:37:08 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,31 +8,27 @@ X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.115 listed in list.dnswl.org]
+	*      [134.134.136.24 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7525AE004A0;
-	Tue, 14 Feb 2017 09:50:57 -0800 (PST)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BB358E00566;
+	Tue, 14 Feb 2017 14:37:04 -0800 (PST)
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	14 Feb 2017 09:50:57 -0800
+	by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	14 Feb 2017 14:37:04 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.35,162,1484035200"; d="scan'208";a="44379867"
-Received: from unknown (HELO speedy) ([10.7.197.100])
-	by orsmga002.jf.intel.com with ESMTP; 14 Feb 2017 09:50:57 -0800
-Message-ID: <1487094657.40476.53.camel@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="5.35,163,1484035200"; d="scan'208";a="44502735"
+Received: from unknown (HELO localhost.localdomain) ([10.7.197.100])
+	by orsmga002.jf.intel.com with ESMTP; 14 Feb 2017 14:37:04 -0800
 From: Todor Minchev <todor.minchev@linux.intel.com>
-To: Jianxun Zhang <jianxun.zhang@linux.intel.com>
-Date: Tue, 14 Feb 2017 09:50:57 -0800
-In-Reply-To: <C01E67ED-47A7-4ECE-B9BF-6A354B4FF09E@linux.intel.com>
-References: <20170209191740.63387-1-todor.minchev@linux.intel.com>
-	<20170209191740.63387-6-todor.minchev@linux.intel.com>
-	<C01E67ED-47A7-4ECE-B9BF-6A354B4FF09E@linux.intel.com>
-X-Mailer: Evolution 3.12.9-1+b1 
-Mime-Version: 1.0
-Cc: meta-intel@yoctoproject.org, yocto@yoctoproject.org
-Subject: Re: [PATCH v2 5/5] rmc: add database extraction functionality
+To: jianxun.zhang@linux.intel.com, yocto@yoctoproject.org,
+	meta-intel@yoctoproject.org
+Date: Tue, 14 Feb 2017 14:36:47 -0800
+Message-Id: <20170214223652.88931-1-todor.minchev@linux.intel.com>
+X-Mailer: git-send-email 2.11.1
+Cc: Todor Minchev <todor.minchev@linux.intel.com>
+Subject: [PATCH v3 0/5][meta-intel][rmc] Add fingerprint quering and database extraction functionality to RMC
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,352 +40,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 14 Feb 2017 17:51:07 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Tue, 14 Feb 2017 22:37:08 -0000
 
-On Fri, 2017-02-10 at 11:52 -0800, Jianxun Zhang wrote:
-> Todor,
-> Appreciate the V2 series. I have only one real concern on using system() in this patch and the whole series. The other comments are more for corner cases which have less impact.
-> 
-> I could miss some of your feedbacks in V1 threads. Sorry for not to point out things earlier before the V2.
-> 
-> Thanks
-> 
-> > On Feb 9, 2017, at 11:17 AM, Todor Minchev <todor.minchev@linux.intel.com> wrote:
-> > 
-> > The contents of an existing database file can be extracted with the -E option.
-> > By default the top level of the directory tree is rmc_db_dump, an alternative
-> > path can be specified with the -o option. The file blobs corresponding
-> > to a given record will be saved in a separate sub-directory. The sub-directory
-> > name of each record is the signature corresponding to the fingerprint for that
-> > record with all non-alphanumeric characters stripped.
-> > 
-> > Example:
-> > ./src/rmc -E -d rmc.db -o output/directory/
-> > 
-> > Successfully extracted rmc.db
-> > 
-> > Signed-off-by: Todor Minchev <todor.minchev@linux.intel.com>
-> > ---
-> > inc/rmc_api.h         |   9 +++++
-> > inc/rmcl.h            |   7 ++++
-> > src/lib/api.c         | 106 +++++++++++++++++++++++++++++++++++++++++++++++++-
-> > src/lib/common/rmcl.c |  17 +++++++-
-> > src/rmc.c             |  30 +++++++++-----
-> > 5 files changed, 157 insertions(+), 12 deletions(-)
-> > 
-> > diff --git a/inc/rmc_api.h b/inc/rmc_api.h
-> > index a484389..2f8c978 100644
-> > --- a/inc/rmc_api.h
-> > +++ b/inc/rmc_api.h
-> > @@ -109,6 +109,15 @@ extern int read_file(const char *pathname, char **data, rmc_size_t* len);
-> >  */
-> > int write_file(const char *pathname, void *data, rmc_size_t len, int append);
-> > 
-> > +/* extract the contents of a database file and store the files corresponding to
-> > + * each record in a separate directory. The name of each directory is the signature
-> > + * of the fingerpring for that record with all non-alphanumeric characters stripped
-> > + * (in) db_pathname: The path and file name of a RMC database file generated by RMC tool
-> > + * (in) output_path: A directory path to extract the database to
-> > + * return: 0 on success, non-zero on failure.
-> > + */
-> > +int dump_db(char *db_pathname, char *output_path) ;
-> > +
-> > #else
-> > /* 2 - API for UEFI context */
-> > 
-> > diff --git a/inc/rmcl.h b/inc/rmcl.h
-> > index 5bbad42..471ebfe 100644
-> > --- a/inc/rmcl.h
-> > +++ b/inc/rmcl.h
-> > @@ -164,4 +164,11 @@ extern int rmcl_generate_db(rmc_record_file_t *record_files, rmc_uint8_t **rmc_d
-> >  */
-> > extern int query_policy_from_db(rmc_fingerprint_t *fingerprint, rmc_uint8_t *rmc_db, rmc_uint8_t type, char *blob_name, rmc_file_t *policy);
-> > 
-> > +/*
-> > + * Check if db_blob has a valid rmc database signature
-> > + *
-> > + * return 0 if db_blob has a valid signature or non-zero otherwise
-> > + */
-> > +int is_rmcdb(rmc_uint8_t *db_blob);
-> > +
-> > #endif /* INC_RMCL_H_ */
-> > diff --git a/src/lib/api.c b/src/lib/api.c
-> > index 0adb390..56746a4 100644
-> > --- a/src/lib/api.c
-> > +++ b/src/lib/api.c
-> > @@ -3,6 +3,7 @@
-> >  * RMC API implementation for Linux user space
-> >  */
-> > 
-> > +#define _GNU_SOURCE
-> > #include <stdio.h>
-> > #include <unistd.h>
-> > #include <errno.h>
-> > @@ -10,12 +11,15 @@
-> > #include <sys/stat.h>
-> > #include <fcntl.h>
-> > #include <sys/mman.h>
-> > +#include <dirent.h>
-> > +#include <ctype.h>
-> > 
-> > #include <rmcl.h>
-> > #include <rsmp.h>
-> > 
-> > -#define EFI_SYSTAB_PATH "/sys/firmware/efi/systab"
-> > -#define SYSTAB_LEN 4096         /* assume 4kb is enough...*/
-> > +#define EFI_SYSTAB_PATH  "/sys/firmware/efi/systab"
-> > +#define SYSTAB_LEN       4096             /* assume 4kb is enough...*/
-> > +#define DB_DUMP_DIR      "./rmc_db_dump"  /* directory to store db data dump */
-> > 
-> > int read_file(const char *pathname, char **data, rmc_size_t* len) {
-> >     int fd = -1;
-> > @@ -325,3 +329,101 @@ int rmc_gimme_file(char* db_pathname, char *file_name, rmc_file_t *file) {
-> > 
-> >     return ret;
-> > }
-> > +
-> > +void remove_non_alphanum(char *in) {
-> > +    char c;
-> > +    unsigned long i = 0, j = 0;
-> > +
-> > +    while ((c = in[i++]) != '\0'){
-> > +        if (isalnum(c))
-> > +            in[j++] = c;
-> I think this will work in the almost all the real cases. A corner case, though very rare, is two fingerprints differ each other _only_ by non alphnum characters. The dumps of two different fingerprints will be wrongly in the same dir as a result. (We can’t dictate what FW engineers put into bios)
-> 
-> Maybe in the future we could use ASCII code of hex values of a signature which is a field with a fixed length as dir name?
+This is V3 of the patchset. It addresses all feedback received in V2.
 
-I agree, this is highly unlikely but theoretically possible. The
-directory names can be either an MD5 hash of the fingerprint signature
-or as you suggested just the hex representation of the signature. Your
-suggestion sounds better (and simpler) so I will go with it.
+Changes from previous version:
 
-> 
-> > +    }
-> > +    in[j] = '\0';
-> > +}
-> > +
-> > +int dump_db(char *db_pathname, char *output_path) {
-> > +    rmc_meta_header_t meta_header;
-> > +    rmc_db_header_t *db_header = NULL;
-> > +    rmc_record_header_t record_header;
-> > +    rmc_uint64_t record_idx = 0;   /* offset of each reacord in db*/
-> > +    rmc_uint64_t meta_idx = 0;     /* offset of each meta in a record */
-> > +    rmc_uint64_t file_idx = 0;     /* offset of file in a meta */
-> > +    rmc_file_t file;
-> > +    char *out_dir = NULL, *out_name = NULL, *cmd = NULL, *tmp_dir_name = NULL;
-> > +    rmc_size_t db_len = 0;
-> > +    rmc_uint8_t *rmc_db = NULL;
-> > +    DIR *tmp_dir = NULL;
-> > +
-> > +    if (read_file(db_pathname, (char **)&rmc_db, &db_len)) {
-> > +        fprintf(stderr, "Failed to read database file\n\n");
-> > +        return 1;
-> > +    }
-> > +
-> > +    db_header = (rmc_db_header_t *)rmc_db;
-> > +
-> > +    /* sanity check of db */
-> > +    if (is_rmcdb(rmc_db))
-> > +        return 1;
-> > +
-> > +    /* query the meta. idx: start of record */
-> > +    record_idx = sizeof(rmc_db_header_t);
-> > +    while (record_idx < db_header->length) {
-> > +        memcpy(&record_header, rmc_db + record_idx,
-> > +            sizeof(rmc_record_header_t));
-> > +
-> > +        /* directory name is fingerprint signature with stripped special chars*/
-> > +        asprintf(&tmp_dir_name, "%s", record_header.signature.raw);
-> > +        remove_non_alphanum(tmp_dir_name);
-> The stripped tmp_dir_name could be a null string when all of its values are non alphanum. The following logic could behave unexpected in such case.
-> 
-> But resolving this issue requires more logic, refer to my first comment too.
+* use mkdir() instead of system() to create output directories
+* use ASCII representation of fingerprint signatures in hex as directory names
+* remove extra verbosity from fingerprint dump
 
-+1
+Todor Minchev (5):
+  Makefile: disable silent mode in Makefiles
+  Makefile: add debug target
+  rmc: enable reading the contents of an existing fingerprint file
+  rmc: remove unnecessary return variable
+  rmc: add database extraction functionality
 
-> > +        if(output_path)
-> > +            asprintf(&out_dir, "%s/%s/", output_path, tmp_dir_name);
-> > +        else
-> > +            asprintf(&out_dir, "%s/%s/", DB_DUMP_DIR, tmp_dir_name);
-> > +        if ((tmp_dir = opendir(out_dir))) {
-> > +            /* Directory exists */
-> > +            closedir(tmp_dir);
-> > +            free(tmp_dir_name);
-> > +        } else if (ENOENT == errno) {
-> > +            /* Directory does not exist, try to create it. */
-> > +            asprintf(&cmd, "mkdir -p %s", out_dir);
-> > +            if(system(cmd) == -1) {
-> I think this is a blocker. Generally the system() is overkilling here and it causes security concerns. Why do you change it from mkdir() in V1?
+ Makefile              |  23 +++++----
+ Makefile.efi          |  10 ++--
+ inc/rmc_api.h         |   9 ++++
+ inc/rmcl.h            |   7 +++
+ src/lib/api.c         | 126 +++++++++++++++++++++++++++++++++++++++++++++++++-
+ src/lib/common/rmcl.c |  17 ++++++-
+ src/rmc.c             | 123 ++++++++++++++++++++++++++++++++----------------
+ 7 files changed, 256 insertions(+), 59 deletions(-)
 
-I got rid of mkdir, because it can only create a single directory at a
-time and with the requirement to be able to dump the user output to a
-user defined directory this will require implementing a directory path
-parser. This said, using system() on unvalidated user input is certainly
-dangerous, I will have to switch this back to mkdir.
-
-> 
-> > +                fprintf(stderr, "Failed to create %s directory\n\n", out_dir);
-> > +                free(out_dir);
-> > +                free(tmp_dir_name);
-> > +                free(cmd);
-> > +                return 1;
-> > +            }
-> > +            free(cmd);
-> > +        } else {
-> > +            /* Some other error occured */
-> > +            free(out_dir);
-> > +            free(tmp_dir_name);
-> > +            free(cmd);
-> > +            return 1;
-> > +        }
-> > +
-> > +        /* find meta */
-> > +        for (meta_idx = record_idx + sizeof(rmc_record_header_t);
-> > +            meta_idx < record_idx + record_header.length;) {
-> > +            memcpy(&meta_header, rmc_db + meta_idx, sizeof(rmc_meta_header_t));
-> > +            file_idx = meta_idx + sizeof(rmc_meta_header_t);
-> > +            rmc_ssize_t name_len = strlen((char *)&rmc_db[file_idx]) + 1;
-> > +            file.blob = &rmc_db[file_idx + name_len];
-> > +            file.blob_len = meta_header.length - sizeof(rmc_meta_header_t) -
-> > +                name_len;
-> > +            file.next = NULL;
-> > +            file.type = RMC_GENERIC_FILE;
-> > +            asprintf(&out_name, "%s%s", out_dir, (char *)&rmc_db[file_idx]);
-> > +            /* write file to dump directory */
-> > +            if (write_file((const char *)out_name, file.blob, file.blob_len, 0))
-> > +                return 1;
-> > +
-> > +            /* next meta */
-> > +            meta_idx += meta_header.length;
-> > +            free(out_name);
-> > +        }
-> > +        /* next record */
-> > +        record_idx += record_header.length;
-> > +        free(out_dir);
-> > +    }
-> > +    return 0;
-> > +}
-> > diff --git a/src/lib/common/rmcl.c b/src/lib/common/rmcl.c
-> > index 67622a0..58a4a52 100644
-> > --- a/src/lib/common/rmcl.c
-> > +++ b/src/lib/common/rmcl.c
-> > @@ -193,6 +193,21 @@ static int match_record(rmc_record_header_t *r, rmc_signature_t* sig) {
-> >     return strncmp((const char *)r->signature.raw, (const char *)sig->raw, sizeof(r->signature.raw));
-> > }
-> > 
-> > +int is_rmcdb(rmc_uint8_t *db_blob) {
-> > +    rmc_db_header_t *db_header = NULL;
-> > +
-> > +    if (db_blob == NULL)
-> > +        return 1;
-> > +
-> > +    db_header = (rmc_db_header_t *)db_blob;
-> > +
-> > +    /* sanity check of db */
-> > +    if (strncmp((const char *)db_header->signature, (const char *)rmc_db_signature, RMC_DB_SIG_LEN))
-> > +        return 1;
-> > +    else
-> > +        return 0;
-> > +}
-> > +
-> > int query_policy_from_db(rmc_fingerprint_t *fingerprint, rmc_uint8_t *rmc_db, rmc_uint8_t type, char *blob_name, rmc_file_t *policy) {
-> >     rmc_meta_header_t meta_header;
-> >     rmc_db_header_t *db_header = NULL;
-> > @@ -211,7 +226,7 @@ int query_policy_from_db(rmc_fingerprint_t *fingerprint, rmc_uint8_t *rmc_db, rm
-> >     db_header = (rmc_db_header_t *)rmc_db;
-> > 
-> >     /* sanity check of db */
-> > -    if (strncmp((const char *)db_header->signature, (const char *)rmc_db_signature, RMC_DB_SIG_LEN))
-> > +    if (is_rmcdb(rmc_db))
-> >         return 1;
-> > 
-> >     /* calculate signature of fingerprint */
-> > diff --git a/src/rmc.c b/src/rmc.c
-> > index b5c7847..0740223 100644
-> > --- a/src/rmc.c
-> > +++ b/src/rmc.c
-> > @@ -31,8 +31,10 @@
-> >   "running on\n" \
-> >     "\t-d: database file to be queried\n" \
-> >     "\t-o: path and name of output file of a specific command\n\n" \
-> > -  "-E: Extract data from fingerprint file and print it to terminal\n" \
-> > -    "\t-f: fingerprint file to extract\n\n" \
-> > +  "-E: Extract data from fingerprint file or database\n" \
-> > +    "\t-f: fingerprint file to extract\n" \
-> > +    "\t-d: database file to extract\n" \
-> > +    "\t-o: directory to extract the database to\n\n" \
-> >     "Examples (Steps in an order to add board support into rmc):\n\n" \
-> >     "1. Generate board fingerprint:\n" \
-> >     "\trmc -F\n\n" \
-> > @@ -408,12 +410,14 @@ int main(int argc, char **argv){
-> > 
-> >     /* sanity check for -o */
-> >     if (options & RMC_OPT_O) {
-> > -        rmc_uint16_t opt_o = options & (RMC_OPT_CAP_D | RMC_OPT_CAP_R | RMC_OPT_CAP_F | RMC_OPT_CAP_B);
-> > +        rmc_uint16_t opt_o = options & (RMC_OPT_CAP_D | RMC_OPT_CAP_R |
-> > +            RMC_OPT_CAP_F | RMC_OPT_CAP_B | RMC_OPT_CAP_E);
-> >         if (!(opt_o)) {
-> > -            fprintf(stderr, "\nWRONG: Option -o cannot be applied without -B, -D, -R or -F\n\n");
-> > +            fprintf(stderr, "\nWRONG: Option -o cannot be applied without -B, -D, -E, -R or -F\n\n");
-> >             usage();
-> >             return 1;
-> > -        } else if (opt_o != RMC_OPT_CAP_D && opt_o != RMC_OPT_CAP_R && opt_o != RMC_OPT_CAP_F && opt_o != RMC_OPT_CAP_B) {
-> > +        } else if (opt_o != RMC_OPT_CAP_D && opt_o != RMC_OPT_CAP_R &&
-> > +            opt_o != RMC_OPT_CAP_F && opt_o != RMC_OPT_CAP_B  && opt_o != RMC_OPT_CAP_E) {
-> >             fprintf(stderr, "\nWRONG: Option -o can be applied with only one of -B, -D, -R and -F\n\n");
-> >             usage();
-> >             return 1;
-> > @@ -428,8 +432,8 @@ int main(int argc, char **argv){
-> >     }
-> > 
-> >     /* sanity check for -E */
-> > -    if ((options & RMC_OPT_CAP_E) && (!(options & RMC_OPT_F))) {
-> > -        fprintf(stderr, "\nERROR: -E requires -f <fingerprint file name>\n\n");
-> > +    if ((options & RMC_OPT_CAP_E) && (!(options & RMC_OPT_F) && !(options & RMC_OPT_D))) {
-> > +        fprintf(stderr, "\nERROR: -E requires -f <fingerprint file name> or -d <database file name>\n\n");
-> >         usage();
-> >         return 1;
-> >     }
-> > @@ -446,7 +450,8 @@ int main(int argc, char **argv){
-> >         rmc_file_t file;
-> > 
-> >         if (!output_path) {
-> > -            fprintf(stderr, "-B internal error, with -o but no output pathname specified\n\n");
-> > +            fprintf(stderr, "-B internal error, with -o but no output \
-> > +                pathname specified\n\n");
-> >             goto main_free;
-> >         }
-> > 
-> > @@ -454,7 +459,8 @@ int main(int argc, char **argv){
-> >             goto main_free;
-> > 
-> >         if (write_file(output_path, file.blob, file.blob_len, 0)) {
-> > -            fprintf(stderr, "-B failed to write file %s to %s\n\n", input_blob_name, output_path);
-> > +            fprintf(stderr, "-B failed to write file %s to %s\n\n",
-> > +                input_blob_name, output_path);
-> >             rmc_free_file(&file);
-> >             goto main_free;
-> >         }
-> > @@ -477,6 +483,12 @@ int main(int argc, char **argv){
-> >             }else {
-> >                 printf("Fingerprint file not provided! Exiting.\n");
-> >             }
-> > +        } else if (options & RMC_OPT_D) {
-> > +            if(dump_db(input_db_path_d, output_path)) {
-> > +               fprintf(stderr, "\nFailed to extract %s\n\n", input_db_path_d);
-> > +               goto main_free;
-> > +            } else
-> > +               printf("\nSuccessfully extracted %s\n\n", input_db_path_d);
-> >         }
-> >     }
-> > 
-> > -- 
-> > 2.11.1
-> > 
-> 
-
+-- 
+2.11.1
 
 
