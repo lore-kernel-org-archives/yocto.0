@@ -1,61 +1,72 @@
-Return-Path: <maciej.borzecki@rndity.com>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8E945E00953; Tue, 14 Feb 2017 03:36:15 -0800 (PST)
+	id 63E8BE0050B; Tue, 14 Feb 2017 08:25:17 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [74.125.82.52 listed in list.dnswl.org]
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (akuster808[at]gmail.com)
 	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.82.52 listed in dnsbl.sorbs.net]
+	*      [209.85.218.68 listed in dnsbl.sorbs.net]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.218.68 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f52.google.com (mail-wm0-f52.google.com [74.125.82.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BB914E0089D
-	for <yocto@yoctoproject.org>; Tue, 14 Feb 2017 03:36:12 -0800 (PST)
-Received: by mail-wm0-f52.google.com with SMTP id c85so15403561wmi.1
-	for <yocto@yoctoproject.org>; Tue, 14 Feb 2017 03:36:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=rndity-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=fN4OFogBZ2avMinXy0n9y9ivvdIMvuIt/5b9yDY7kl0=;
-	b=NoeabUsA2wmwy2RXWJnMOak89WpMkN4H4GvD30M5kpwsBO27bI1yWPsA1Hj+t0MNRA
-	H4ItFLqSw2axHEh/LxF1+sUY40hvNT5FCcPSrRWTHi5FGx7L7uZucjZkTuHl7BrJECoh
-	7Wpo7LgVOW0BU38mp0bvKHFPWR+/xgze+uR+knM9pbywyOPY+u6fe7TPj2jt4BmxIHoS
-	v+2oy/muoRRMMNAQorO8+G5O2W8C00269KI4VFPSdInMbhm94tvLKx2GVYXSI62XnhB9
-	9nb+LLkbq1oBKDHHdtQ78F1mE+Iu+cR42TvWw86RdWSfCezMAluWLVJzTYDXcoS7gq2l
-	glXg==
+Received: from mail-oi0-f68.google.com (mail-oi0-f68.google.com
+	[209.85.218.68])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 19547E004A0
+	for <yocto@yoctoproject.org>; Tue, 14 Feb 2017 08:25:15 -0800 (PST)
+Received: by mail-oi0-f68.google.com with SMTP id x84so2880105oix.2
+	for <yocto@yoctoproject.org>; Tue, 14 Feb 2017 08:25:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=subject:to:references:from:message-id:date:user-agent:mime-version
+	:in-reply-to:content-transfer-encoding;
+	bh=5va2Sd8AbwC5RWKmaSiJpQcbTPFofsCToS3IvZ2c7a0=;
+	b=vcmOifGTkD6c8tqI4HPxA83iyUVvKXeOR7LpXZaFxqCIvb0K3ZiIqmrSN0tlZtL7GH
+	B7ZVuyH7oliAS2ddN0lfVTliUQ2UITyHaqHiN0vEDBQL+ZvtbKxJ+TJywpRW0kSSrSuB
+	JKm9pTJ0geyZN94ElMTy7sbAJPpjp/QnT4zJwkc1bEXKxvikA1FXiFt5Qgo0G/tSpqOJ
+	H4xS9OBhLJ48Vr+qfex8IDZfn/fJ+o2i1wfE1LCU5FRqJxF/hseTohC7Vg37yQ8xUtV8
+	Ud8WT5v4uEUXUv02jH+iT12pLWpTSdprozXFECpL/Lt8vEZJJAXiXE+4JCmIF5tDmwn9
+	AwZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=fN4OFogBZ2avMinXy0n9y9ivvdIMvuIt/5b9yDY7kl0=;
-	b=QRcpsmrCZthHmyIpuRzy8SowLrSj2QpJ1sM4jVbFlb0VgAIOA37NbOfrmwwxiIkCSn
-	NVdD5WP68ZfWybGOVukH42MQFtxk6tj9Xo4Kipi9zPWiPLdoGb22JnBFjs2VWdGGFKef
-	udCEs6q7u7XNJj2yZZgsPtbzmxALiI45TBPjK5Ce8dMWW08jqOgdouf+y2Wd7/CzBMBx
-	UhZ24HTs7p+//r1S0vUnZaari9xrql3a4sYNXyd55BW71lT0BsvX0GegoSPGgjst/fQb
-	HHSOKSep99cmkeP94DUzg7O4ibm+uTJHLpd443GtOc0lLq1vmxb6s9Wl61KTBhg7Lf9h
-	VPkQ==
-X-Gm-Message-State: AMke39kOj4tp0sbrFzRDXcHKxV8f8oCG2pR3Uhl5p4H/duHUVg9R9SAenSE5sx5yNA7CFAVnn55y/c20poQPXg==
-X-Received: by 10.28.13.16 with SMTP id 16mr2732370wmn.101.1487072171401; Tue,
-	14 Feb 2017 03:36:11 -0800 (PST)
+	h=x-gm-message-state:subject:to:references:from:message-id:date
+	:user-agent:mime-version:in-reply-to:content-transfer-encoding;
+	bh=5va2Sd8AbwC5RWKmaSiJpQcbTPFofsCToS3IvZ2c7a0=;
+	b=td9d/0DeZOjjwWSUZEGjTHkXsFLgEWiB9gKb16ZCAk4MoA1MdDxcivhP3D9bnpvRWy
+	UPuU5eCqKzDlsP03g9useIBXml2Aezb9vhnfluHqdUJUzyIyiTWAR7O8Iq8L0efDoiUm
+	Q7lsZPldBJp67Oc9gnnc+wygsOT8bvnHg3kAZhjHVRfUOci/I1Gvx2lPsLJdJWCQfum0
+	TSp2ysUyl9/E0vbxaYJeDT/9T978OqNwV1fvrHcZBnEhYm9kDBiQB4QIX8Vn1gd2gHNJ
+	X1UIpR9ruvPvtOOE1D2d7WmTZXbVYvrGo/v7kT1W5zSCjga/vPoDeazirNmwDThNI8J+
+	Vs6w==
+X-Gm-Message-State: AMke39mZWH3psKIkpIEATJvSRCxkGeMtmshovwzftudz2soJgmQ4MDjSomJOmjYcYeNYTw==
+X-Received: by 10.84.211.7 with SMTP id b7mr37260455pli.82.1487089514683;
+	Tue, 14 Feb 2017 08:25:14 -0800 (PST)
+Received: from ?IPv6:2601:202:4001:9ea0:b420:65dd:6ce9:c9f9?
+	([2601:202:4001:9ea0:b420:65dd:6ce9:c9f9])
+	by smtp.gmail.com with ESMTPSA id s3sm2227788pgn.55.2017.02.14.08.25.13
+	for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Tue, 14 Feb 2017 08:25:14 -0800 (PST)
+To: yocto@yoctoproject.org
+References: <20170209024427.30212-1-jackie.huang@windriver.com>
+From: akuster808 <akuster808@gmail.com>
+Message-ID: <e573202a-a405-1876-ae2e-9885cac21ce4@gmail.com>
+Date: Tue, 14 Feb 2017 08:25:12 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.7.0
 MIME-Version: 1.0
-Received: by 10.28.52.78 with HTTP; Tue, 14 Feb 2017 03:35:50 -0800 (PST)
-In-Reply-To: <28d2a024-7e72-99d9-0f80-8495b2a244c5@3mdeb.com>
-References: <28d2a024-7e72-99d9-0f80-8495b2a244c5@3mdeb.com>
-From: =?UTF-8?Q?Maciej_Borz=C4=99cki?= <maciej.borzecki@rndity.com>
-Date: Tue, 14 Feb 2017 12:35:50 +0100
-Message-ID: <CAD4b0_JdiAypT6Faay39XQAFxRrKxsoeCftPUTZX99hqZjayfA@mail.gmail.com>
-To: Maciej Pijanowski <maciej.pijanowski@3mdeb.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>, piotr.krol@3mdeb.com
-Subject: Re: [wic] Fixed size partitions (--grow)
+In-Reply-To: <20170209024427.30212-1-jackie.huang@windriver.com>
+Subject: Re: [meta-security][PATCH] scapy: fix the pickling issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,46 +78,159 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 14 Feb 2017 11:36:15 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Tue, 14 Feb 2017 16:25:17 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Tue, Feb 14, 2017 at 12:20 PM, Maciej Pijanowski
-<maciej.pijanowski@3mdeb.com> wrote:
-> Hello,
+merged.
+
+thanks,
+
+Armin
+
+
+On 02/08/2017 06:44 PM, jackie.huang@windriver.com wrote:
+> From: Jackie Huang <jackie.huang@windriver.com>
 >
-> I have a question regarding wic. If this is not appropriate list to ask,
-> then
-> please point me to correct one.
+> Backport a patch to fix the pickling issue when save_session:
 >
-> wic seems like a really simple and powerful tool. My intention was to create
-> disk image with multiple partitions with fixed size. While the first part
-> seems
-> doable, the second does not. I have found a suggestion there [1] that recent
-> wic may support --grow and --maxsize switches. As I found out, it does not
-> (correct me if I'm mistaken).
+> PicklingError: Can't pickle <type 'function'>: attribute lookup __builtin__.function failed
 >
-> So the question is, how hard would it be to implement those options and
-> what would be necessary to do so. Those are available in kickstart [2]. As
-> far
-> as I understand, wic is based on kickstart project. Do you think it is
-> desired
-> that wic would have the ability to produce fixed size partition based on
-> yocto
-> images?
+> Signed-off-by: Jackie Huang <jackie.huang@windriver.com>
+> ---
+>   .../scapy/scapy/scapy-Pickling-issues-fixed.patch  | 111 +++++++++++++++++++++
+>   recipes-security/scapy/scapy_2.3.2.bb              |   1 +
+>   2 files changed, 112 insertions(+)
+>   create mode 100644 recipes-security/scapy/scapy/scapy-Pickling-issues-fixed.patch
+>
+> diff --git a/recipes-security/scapy/scapy/scapy-Pickling-issues-fixed.patch b/recipes-security/scapy/scapy/scapy-Pickling-issues-fixed.patch
+> new file mode 100644
+> index 0000000..9901f91
+> --- /dev/null
+> +++ b/recipes-security/scapy/scapy/scapy-Pickling-issues-fixed.patch
+> @@ -0,0 +1,111 @@
+> +From 331dff6c73f89307d108f9ae89264b9548e22dc6 Mon Sep 17 00:00:00 2001
+> +From: Guillaume Valadon <guillaume.valadon@ssi.gouv.fr>
+> +Date: Wed, 31 Aug 2016 13:59:21 +0200
+> +Subject: [PATCH] Pickling issues fixed
+> +
+> +Backport from:
+> +https://github.com/secdev/scapy/pull/284
+> +
+> +Upstream-Status: Backport
+> +
+> +Signed-off-by: Jackie Huang <jackie.huang@windriver.com>
+> +---
+> + scapy/layers/inet.py  |  6 ++++--
+> + scapy/layers/inet6.py |  4 +++-
+> + scapy/layers/l2.py    | 14 +++++++++-----
+> + scapy/route.py        |  1 -
+> + 4 files changed, 16 insertions(+), 9 deletions(-)
+> +
+> +diff --git a/scapy/layers/inet.py b/scapy/layers/inet.py
+> +index 4b66946..e35a247 100644
+> +--- a/scapy/layers/inet.py
+> ++++ b/scapy/layers/inet.py
+> +@@ -734,8 +734,10 @@ conf.l3types.register(ETH_P_IP, IP)
+> + conf.l3types.register_num2layer(ETH_P_ALL, IP)
+> +
+> +
+> +-conf.neighbor.register_l3(Ether, IP, lambda l2,l3: getmacbyip(l3.dst))
+> +-conf.neighbor.register_l3(Dot3, IP, lambda l2,l3: getmacbyip(l3.dst))
+> ++def inet_register_l3(l2, l3):
+> ++    return getmacbyip(l3.dst)
+> ++conf.neighbor.register_l3(Ether, IP, inet_register_l3)
+> ++conf.neighbor.register_l3(Dot3, IP, inet_register_l3)
+> +
+> +
+> + ###################
+> +diff --git a/scapy/layers/inet6.py b/scapy/layers/inet6.py
+> +index ba5674c..195ca9c 100644
+> +--- a/scapy/layers/inet6.py
+> ++++ b/scapy/layers/inet6.py
+> +@@ -474,7 +474,9 @@ class IPv6(_IPv6GuessPayload, Packet, IPTools):
+> +             return self.payload.answers(other.payload)
+> +
+> +
+> +-conf.neighbor.register_l3(Ether, IPv6, lambda l2,l3: getmacbyip6(l3.dst))
+> ++def inet6_register_l3(l2, l3):
+> ++    return getmacbyip6(l3.dst)
+> ++conf.neighbor.register_l3(Ether, IPv6, inet6_register_l3)
+> +
+> +
+> + class IPerror6(IPv6):
+> +diff --git a/scapy/layers/l2.py b/scapy/layers/l2.py
+> +index 3d88961..47fa386 100644
+> +--- a/scapy/layers/l2.py
+> ++++ b/scapy/layers/l2.py
+> +@@ -183,8 +183,10 @@ class LLC(Packet):
+> +                     XByteField("ssap", 0x00),
+> +                     ByteField("ctrl", 0) ]
+> +
+> +-conf.neighbor.register_l3(Ether, LLC, lambda l2,l3: conf.neighbor.resolve(l2,l3.payload))
+> +-conf.neighbor.register_l3(Dot3, LLC, lambda l2,l3: conf.neighbor.resolve(l2,l3.payload))
+> ++def l2_register_l3(l2, l3):
+> ++    return conf.neighbor.resolve(l2, l3.payload)
+> ++conf.neighbor.register_l3(Ether, LLC, l2_register_l3)
+> ++conf.neighbor.register_l3(Dot3, LLC, l2_register_l3)
+> +
+> +
+> + class CookedLinux(Packet):
+> +@@ -203,7 +205,7 @@ class SNAP(Packet):
+> +     fields_desc = [ X3BytesField("OUI",0x000000),
+> +                     XShortEnumField("code", 0x000, ETHER_TYPES) ]
+> +
+> +-conf.neighbor.register_l3(Dot3, SNAP, lambda l2,l3: conf.neighbor.resolve(l2,l3.payload))
+> ++conf.neighbor.register_l3(Dot3, SNAP, l2_register_l3)
+> +
+> +
+> + class Dot1Q(Packet):
+> +@@ -236,7 +238,7 @@ class Dot1Q(Packet):
+> +             return self.sprintf("802.1q (%Dot1Q.type%) vlan %Dot1Q.vlan%")
+> +
+> +
+> +-conf.neighbor.register_l3(Ether, Dot1Q, lambda l2,l3: conf.neighbor.resolve(l2,l3.payload))
+> ++conf.neighbor.register_l3(Ether, Dot1Q, l2_register_l3)
+> +
+> + class STP(Packet):
+> +     name = "Spanning Tree Protocol"
+> +@@ -351,7 +353,9 @@ class ARP(Packet):
+> +         else:
+> +             return self.sprintf("ARP %op% %psrc% > %pdst%")
+> +
+> +-conf.neighbor.register_l3(Ether, ARP, lambda l2,l3: getmacbyip(l3.pdst))
+> ++def l2_register_l3_arp(l2, l3):
+> ++    return getmacbyip(l3.pdst)
+> ++conf.neighbor.register_l3(Ether, ARP, l2_register_l3_arp)
+> +
+> + class GRErouting(Packet):
+> +     name = "GRE routing informations"
+> +diff --git a/scapy/route.py b/scapy/route.py
+> +index 52a9562..4bd27b7 100644
+> +--- a/scapy/route.py
+> ++++ b/scapy/route.py
+> +@@ -20,7 +20,6 @@ from error import Scapy_Exception,warning
+> + class Route:
+> +     def __init__(self):
+> +         self.resync()
+> +-        self.s=socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+> +         self.cache = {}
+> +
+> +     def invalidate_cache(self):
+> +--
+> +2.8.3
+> +
+> diff --git a/recipes-security/scapy/scapy_2.3.2.bb b/recipes-security/scapy/scapy_2.3.2.bb
+> index 0a42ad9..2965c72 100644
+> --- a/recipes-security/scapy/scapy_2.3.2.bb
+> +++ b/recipes-security/scapy/scapy_2.3.2.bb
+> @@ -7,6 +7,7 @@ LIC_FILES_CHKSUM = "file://bin/scapy;beginline=9;endline=13;md5=1d5249872cc54cd4
+>   
+>   SRC_URI = "https://github.com/secdev/${BPN}/archive/v${PV}.tar.gz;downloadfilename=${BP}.tar.gz \
+>              file://run-ptest \
+> +           file://scapy-Pickling-issues-fixed.patch \
+>   "
+>   
+>   SRC_URI[md5sum] = "00f11df3d6b46fe6ac306efd757486f9"
 
-There's a --fixed-size partition option, albeit it's not really that
-documented. See `wic help kickstart` for details.
-
-We're also currently using it in Mender [1] when building disk images.
-
-Some additional usage examples can be found in patchset adding wic
-tests that I posted [2]. I don't think it was merged and unfortunately
-I didn't really have time to rebase.
-
-1. https://github.com/mendersoftware/meta-mender/blob/master/meta-mender-core/classes/mender-sdimg.bbclass#L154
-2. https://patchwork.openembedded.org/series/4708/#
-
--- 
-Maciej Borzecki
-RnDity
 
