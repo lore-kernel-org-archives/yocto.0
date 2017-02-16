@@ -1,71 +1,64 @@
-Return-Path: <patrick.ohly@intel.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CF934E00566; Thu, 16 Feb 2017 07:50:38 -0800 (PST)
+	id 7368EE006D8; Thu, 16 Feb 2017 10:46:56 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, RCVD_IN_DNSWL_LOW,
-	RCVD_IN_SORBS_SPAM autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.214.54 listed in list.dnswl.org]
 	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.214.54 listed in dnsbl.sorbs.net]
-Received: from mail-it0-f54.google.com (mail-it0-f54.google.com
-	[209.85.214.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8FD86E004A0
-	for <yocto@yoctoproject.org>; Thu, 16 Feb 2017 07:50:35 -0800 (PST)
-Received: by mail-it0-f54.google.com with SMTP id 203so104466035ith.0
-	for <yocto@yoctoproject.org>; Thu, 16 Feb 2017 07:50:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=message-id:subject:from:to:cc:date:in-reply-to:references
-	:organization:mime-version:content-transfer-encoding;
-	bh=Kp6i//XuA7pJ9f4C0UN9YCm5/4Vc9rNR9y9o13MPWw0=;
-	b=kZ6SSbL56gbT203Ip4MKSLp6qRbXsxu+AWZ5fjcoRkBxeQl1QkZBEmcu9dJVnAdo+F
-	iIv3JH+ytYUTTN80sJyL7v+6rfjCO3iF4yMCpLtzHORGhmQ3q+JC8Rl+Ir83otcxHkRr
-	bqTn8v7exfjtqeLX4z9GXeRsAQ3lpvxxUe5T/awfD0DVZzDcaGOHrl1y3JlDqSGjTzwK
-	eQOcjQq+qZv81DtyXZzLzSMnVxxbV5R6h3RID+5U49nPPNgA8QihduQXRvLjJY6gfq/l
-	zy+VXL686HwMTsh0Aqh0mpeD0aYqHsFhfGxkQWleYoBnAsiYcqknokDKQKSPiM8+4DJp
-	Fawg==
+	*      [74.125.83.65 listed in dnsbl.sorbs.net]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.83.65 listed in list.dnswl.org]
+Received: from mail-pg0-f65.google.com (mail-pg0-f65.google.com [74.125.83.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D8F59E004A0
+	for <yocto@yoctoproject.org>; Thu, 16 Feb 2017 10:46:53 -0800 (PST)
+Received: by mail-pg0-f65.google.com with SMTP id 13so1720068pgd.3
+	for <yocto@yoctoproject.org>; Thu, 16 Feb 2017 10:46:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=from:to:cc:subject:date:message-id;
+	bh=Emybrd22u6WrNd6aaxB5wU0cE8WDbYM81BuQYR6QioM=;
+	b=klYfjWcpn3/WGPpV5S06LhjpVXECMDhE8nkYgB6Pag//eigd4qipujxQKfRbmKPQY+
+	ujKLIOlNq9giEUpjzMu+Vj4ztE6dZrdhPk+qKoROtt6F3tq8mTqMQSHouBJq9nd9g4Qj
+	d7okcSlar02iSoE7X4LYmzisbYSJvTgV701jkwkEx5G67O2p4JbIjWf4EJ0uqSdM6Dy/
+	htzpWgc6b0kZSIKelK+5C+vAg28Wn5olBhrK1GCQ/Ma2YSNTPuZLhotuNpnEuNzcCwf7
+	Bk7NrH2rJJnV9alfLfoea1ABL/mvHav88QusPgzuauVsgLxaX92eh57SrmxIRD5MwT0R
+	valA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-	:references:organization:mime-version:content-transfer-encoding;
-	bh=Kp6i//XuA7pJ9f4C0UN9YCm5/4Vc9rNR9y9o13MPWw0=;
-	b=Mg+BaGvNjCzlLI3649nzG4SlgNctJlUhGYGvEGeYzIy5voJHLBalEH8u26Oy2lXtiw
-	xFs23NTecnlgG2Ajb14bz6P9HFgVS3d4TEeiIO2S+m7dVTm4cagiuQEq7xU7kJ/MsXY/
-	QpqUEtXxWtxPwatksrSLbdLRKIidjjOYcHuc1P9vI+KIhfuStEO/PoMzvgHZBwK0xJyh
-	pw/Y63SSG5dUN3eBxVVPSyg4qWvllH/4TXPOTKVKg1W3DBjp9/W5doTBtBWaKwVkwsxS
-	/nw0yuyO565x9DyvlJpI4/ffAglruAIodCJoHzlSq6VF6jrSD0+4ym7Z9j8H9WbIgRxI
-	DTAw==
-X-Gm-Message-State: AMke39l0R9+jgd1aKKyjStd+fGW/gjAYEMCxAAw+3Mdl1BHjmU/dP845Q98GD3ZOvPQm7hJK
-X-Received: by 10.107.164.147 with SMTP id d19mr2868584ioj.79.1487260234402;
-	Thu, 16 Feb 2017 07:50:34 -0800 (PST)
-Received: from pohly-mobl1 (p5DE8C6B9.dip0.t-ipconnect.de. [93.232.198.185])
-	by smtp.gmail.com with ESMTPSA id
-	e139sm3370214iof.54.2017.02.16.07.50.32
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=Emybrd22u6WrNd6aaxB5wU0cE8WDbYM81BuQYR6QioM=;
+	b=cDIP5G2+jNw19SIPMy+7sJPDuPxaBKR7ir5P3mjigdiAPZqj5Us4gQUyk21MsPbg21
+	6n9SNmg0NHPoFnM1YvUVOgDtgf/XJp2Za52FtX1latAn0LpOMkiSX7fhzv28J1EaKWqe
+	gpNn8YS/NBEAdVQ1al+QzogIvLOPNPLMRxDfy0GBQNFV+FSBETvn9pPww0QaR1W7AOp+
+	ELnwjn5jT6aOfYF3mQDYoUbqUCAOiN7AMBA0ZJyNPxlfZO27D6rKwmVj4uLa7Am0k925
+	CrdomGxxpTHezLCLX0maFXaasWuioZSnGxv7pcZx+6Hz1Um1UfqobxDJy9r5yl7PFD1H
+	yt+g==
+X-Gm-Message-State: AMke39kjjmmVVx05qKOsRW8AMtUrgYdYgFV1O38ezZtLKYilo78+O8O2OiR7UhsfpY1lhw==
+X-Received: by 10.99.109.140 with SMTP id i134mr2469614pgc.11.1487270812757;
+	Thu, 16 Feb 2017 10:46:52 -0800 (PST)
+Received: from localhost.localdomain (c-76-102-32-192.hsd1.ca.comcast.net.
+	[76.102.32.192]) by smtp.gmail.com with ESMTPSA id
+	188sm14970399pfg.99.2017.02.16.10.46.51
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Thu, 16 Feb 2017 07:50:33 -0800 (PST)
-Message-ID: <1487260231.13854.471.camel@intel.com>
-From: Patrick Ohly <patrick.ohly@intel.com>
-To: =?ISO-8859-1?Q?Andr=E9?= Draszik <git@andred.net>
-Date: Thu, 16 Feb 2017 16:50:31 +0100
-In-Reply-To: <1487259700.13854.467.camel@intel.com>
-References: <20170216145830.21766-1-git@andred.net>
-	<20170216145830.21766-4-git@andred.net>
-	<1487259700.13854.467.camel@intel.com>
-Organization: Intel GmbH, Dornacher Strasse 1, D-85622 Feldkirchen/Munich
-X-Mailer: Evolution 3.12.9-1+b1 
-Mime-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-swupd][PATCH 3/3] bundles.py: fix copying of full image to full bundle when no SWUPD_BUNDLES
+	Thu, 16 Feb 2017 10:46:52 -0800 (PST)
+From: Khem Raj <raj.khem@gmail.com>
+To: yocto@yoctoproject.org
+Date: Thu, 16 Feb 2017 10:46:32 -0800
+Message-Id: <20170216184645.6258-1-raj.khem@gmail.com>
+X-Mailer: git-send-email 2.11.1
+Subject: [meta-raspberrypi][PATCH V4 01/14] Add raspberrypi3-64.conf
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -77,43 +70,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 16 Feb 2017 15:50:38 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Thu, 16 Feb 2017 18:46:56 -0000
 
-On Thu, 2017-02-16 at 16:41 +0100, Patrick Ohly wrote:
-> On Thu, 2017-02-16 at 14:58 +0000, André Draszik wrote:
-> > When SWUPD_BUNDLES is not set, exceptions are thrown, stopping the
-> > build - there are two issues in here:
-> > - the debug statement references a non-existent variable, 'bundle' was
-> >   renamed to fulltar
-> > - copyxattrfiles() needs a list of files as 2nd argument, not a filename
-> >   of a file which contains this list
-> > 
-> > This got broken in commit 6c097131ad39
-> > ("meta-swupd: support rm_work.bbclass") while support for rm_work
-> > was being added.
-> 
-> I should have fixed that already in commit 
-> 531a8e636 "bundles.py: fix "no bundles" special case". Can you rebase
-> onto current master and retest.
+From: Herve Jourdain <herve.jourdain@neuf.fr>
 
-Never mind, my bad. The commit you mentioned is after my fix, so in
-other words, I fixed it, changed something, and broke it again. Clearly
-this whole layer needs automated test cases :-/
+Signed-off-by: Herve Jourdain <herve.jourdain@neuf.fr>
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
+---
+ conf/machine/raspberrypi3-64.conf | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
+ create mode 100644 conf/machine/raspberrypi3-64.conf
 
-Something to do for a maintainer with a bit more time available. There
-is https://bugzilla.yoctoproject.org/show_bug.cgi?id=9783 for it, but I
-don't think I'll be able to work on that anytime soon.
-
+diff --git a/conf/machine/raspberrypi3-64.conf b/conf/machine/raspberrypi3-64.conf
+new file mode 100644
+index 0000000..5598e50
+--- /dev/null
++++ b/conf/machine/raspberrypi3-64.conf
+@@ -0,0 +1,15 @@
++#@TYPE: Machine
++#@NAME: RaspberryPi 3 Development Board
++#@DESCRIPTION: Machine configuration for the RaspberryPi 3 in 64 bits mode
++
++MACHINEOVERRIDES = "raspberrypi3:raspberrypi:${MACHINE}"
++
++MACHINE_EXTRA_RRECOMMENDS += "linux-firmware-bcm43430"
++
++require conf/machine/include/arm/arch-armv8.inc
++include conf/machine/include/rpi-base.inc
++
++SERIAL_CONSOLE = "115200 ttyS0"
++VC4_CMA_SIZE ?= "cma-256"
++
++UBOOT_MACHINE = "rpi_3_config"
 -- 
-Best Regards, Patrick Ohly
-
-The content of this message is my personal opinion only and although
-I am an employee of Intel, the statements I make here in no way
-represent Intel's position on the issue, nor am I authorized to speak
-on behalf of Intel on this matter.
-
-
+2.11.1
 
 
