@@ -1,6 +1,6 @@
-Return-Path: <martin.jansa@gmail.com>
+Return-Path: <schnitzeltony@googlemail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1D7B2E00A18; Thu, 16 Feb 2017 03:05:34 -0800 (PST)
+	id 8F441E00A21; Thu, 16 Feb 2017 03:49:11 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,9 +8,12 @@ X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (martin.jansa[at]gmail.com)
+	mail provider *      (schnitzeltony[at]googlemail.com)
 	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.82.68 listed in dnsbl.sorbs.net]
+	*      [74.125.82.51 listed in dnsbl.sorbs.net]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.82.51 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -18,55 +21,49 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.68 listed in list.dnswl.org]
-Received: from mail-wm0-f68.google.com (mail-wm0-f68.google.com [74.125.82.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7A7A4E00A0A
-	for <yocto@yoctoproject.org>; Thu, 16 Feb 2017 03:05:31 -0800 (PST)
-Received: by mail-wm0-f68.google.com with SMTP id u63so2526156wmu.2
-	for <yocto@yoctoproject.org>; Thu, 16 Feb 2017 03:05:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:date:to:cc:subject:message-id:references:mime-version
-	:content-disposition:in-reply-to:user-agent;
-	bh=N4maKfvDr38e7Q7NloJP4U6O0FSkScmGuG+lvUxnYlc=;
-	b=L8hN+JUlHLC/eWWkNQI2Lx9L7OW444JkEQ2t3LgSpsk5C5ALXmLhBkFZ+Ii9gLYVaV
-	Ujp+JBA3XoGO1IACyRZ9JKys+Inx7fodDVKXWqtENvPVpDlvWLRQLe+clpBh0kTW2Hbk
-	isj+sE8MNPVz1u7mnvYQ9/GbyNO+wlyb9w0iHBPPCrNMO0qEUEgsH6vxI3oMkhv1NXHA
-	jjopPZljY57hfBfgKvJ2O84lHITF8GuVTKbLhX7WSlxOsw6I9O9Enhez4fvNP6w0NyXl
-	WPV7+E/c1SLO7oe/n84jMndSbZWTmR+wUF4u7pv8Fe055q5ZoY50BlHDkVu/tzzt1Hcy
-	P3RQ==
+Received: from mail-wm0-f51.google.com (mail-wm0-f51.google.com [74.125.82.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D4E78E00A18
+	for <yocto@yoctoproject.org>; Thu, 16 Feb 2017 03:49:09 -0800 (PST)
+Received: by mail-wm0-f51.google.com with SMTP id r141so13120709wmg.1
+	for <yocto@yoctoproject.org>; Thu, 16 Feb 2017 03:49:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=googlemail.com; s=20161025;
+	h=from:to:subject:date:message-id:mime-version
+	:content-transfer-encoding;
+	bh=35BVEofkLB076F9HgjDF0XV8mkW2WoOhiZymPuzozts=;
+	b=qNG7BsIqeL5wxao0GOhy9LbHH3JAKT1wrNr5rWTTU/P2fZXWdUWzWJ9bRcCx9FRpcm
+	QvC5ep/5pfTWyr8eN0Ox7wG/QGT1iDDcNjo8yrNJw7bwZwx0mqG5o9Ob+ENpA4eU3V87
+	MHu1TjCQmXtemzJNrxq2I5H9ZEz3+UBdNjSxBJxbpVhMjbb11ZvyrkJUVao65m2b1EsR
+	Gu/bcL7sPv0a/VQh8MlSxI7CKPTvpNf7BVfcz0NzQxKhXWRFP79Q9/Vu9FXEH9k7SCvA
+	sxypErCwpWjljtjS8UsxVepqATbL8cN82OOqy2eIzksfzKhIIc/2T+nq1ntJEkAapdqh
+	zNBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:date:to:cc:subject:message-id:references
-	:mime-version:content-disposition:in-reply-to:user-agent;
-	bh=N4maKfvDr38e7Q7NloJP4U6O0FSkScmGuG+lvUxnYlc=;
-	b=bEbuXIsFnBTHmF5PakRRyCsobWY2rd3bTpFPZKvIP05EBAk8DYcYkp5Y73CStIgP0/
-	qIjA9KeT6M/itNFekGw+bempPSoxEuvpkdRylMh3Cxz/82WT2frfUtjKtgNO05xE5mmv
-	DtuPqnV0X3L8AXCTvu2MbeNkEef0IhC9oiMACmklAs7HG2jwZGfP+4WdfM9/xaH6LZCn
-	eob2jJ4QeolYWEigL2eBi25m+CFXDC1HjoYnV5ES0bo/7APh87W6hWz3WTWWWNHRwTwF
-	2SVruuN4uhPXpZJqz8r9/sEQ1G0yfGBH+rxTs2ko3+wl7ELGrIQPsw2sUv+3UJ5kDjf2
-	kb7g==
-X-Gm-Message-State: AMke39kNan98HAkjaGNUe78kRAbjx9oDVGRtH6JhB7uQv0iI/YVTw1zs4kZ8vm//1WnPEQ==
-X-Received: by 10.28.92.193 with SMTP id q184mr12499185wmb.139.1487243131174; 
-	Thu, 16 Feb 2017 03:05:31 -0800 (PST)
-Received: from localhost ([217.30.68.212]) by smtp.gmail.com with ESMTPSA id
-	y97sm2978477wmh.24.2017.02.16.03.05.29
-	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-	Thu, 16 Feb 2017 03:05:29 -0800 (PST)
-From: Martin Jansa <martin.jansa@gmail.com>
-X-Google-Original-From: Martin Jansa <Martin.Jansa@gmail.com>
-Date: Thu, 16 Feb 2017 12:05:32 +0100
-To: Takashi Matsuzawa <tmatsuzawa@xevo.com>
-Message-ID: <20170216110532.GB3621@jama>
-References: <DM5PR0101MB295324100DA9294101797F66B65A0@DM5PR0101MB2953.prod.exchangelabs.com>
-	<CAMKF1sqq7W8TQYVRAWJuyP9eTs5Xyrkd=4a6n3kx4u1J0wSADQ@mail.gmail.com>
-	<DM5PR0101MB2953489C05E784507F21F276B65A0@DM5PR0101MB2953.prod.exchangelabs.com>
+	h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+	:content-transfer-encoding;
+	bh=35BVEofkLB076F9HgjDF0XV8mkW2WoOhiZymPuzozts=;
+	b=ACOHq/eLEZHak4RmZoO0fOozuRh9htdO9XQEx8kNxAkbZR0XUbk5wWxb4zKHAf6of2
+	2J/GfKIzu4LNp71q5fefQEdUpALFCLKVQ+iKT5czvEZrCPPV79dD0+n8tigGvP0zgI7H
+	QPLrj8wik1NYQ/fMR7eMF6OTwXs0wYM5qGfrdvzhKXn5NeMhd5SPVQaJsTZXu85U6nIr
+	hj7pTJ5FYA013PmKeIOgQUeu7uoGR4aDfedMg20fMxn6tCyI/fDqUv785k7O/5d2yKOI
+	1vRddc0HI2nQSKUWS92SrXPQplPUPJN65dWwequmW3se8WOgGaSI6l7Rhq8K/d3Bjkuy
+	BDQw==
+X-Gm-Message-State: AMke39kJP9adP+MM9dftuAoZW2ry9vBrdrjCeSYeeVKWOpU9qNKa3Nuo16r67/qLd5qfJw==
+X-Received: by 10.28.158.82 with SMTP id h79mr12691546wme.30.1487245748162;
+	Thu, 16 Feb 2017 03:49:08 -0800 (PST)
+Received: from mueller-a-nb-linux.zera.local
+	(ip-109-91-251-48.hsi12.unitymediagroup.de. [109.91.251.48])
+	by smtp.googlemail.com with ESMTPSA id
+	k9sm5483704wrd.51.2017.02.16.03.49.07 for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Thu, 16 Feb 2017 03:49:07 -0800 (PST)
+From: =?UTF-8?q?Andreas=20M=C3=BCller?= <schnitzeltony@googlemail.com>
+To: yocto@yoctoproject.org
+Date: Thu, 16 Feb 2017 12:49:01 +0100
+Message-Id: <1487245741-13739-1-git-send-email-schnitzeltony@googlemail.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-In-Reply-To: <DM5PR0101MB2953489C05E784507F21F276B65A0@DM5PR0101MB2953.prod.exchangelabs.com>
-User-Agent: Mutt/1.7.2 (2016-11-26)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: meta-efl build?
+Subject: [meta-raspberrypi][PATCH] xserver-xf86-config: remove evdev configuration
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -78,141 +75,109 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 16 Feb 2017 11:05:34 -0000
-X-Groupsio-MsgNum: 34515
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="yEPQxsgoJgBvi8ip"
-Content-Disposition: inline
+X-List-Received-Date: Thu, 16 Feb 2017 11:49:11 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
---yEPQxsgoJgBvi8ip
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+xorg-xserver recommends xf86-input-libinput since oe-core's commit
 
-On Thu, Feb 16, 2017 at 07:48:33AM +0000, Takashi Matsuzawa wrote:
-> Hello.
->=20
-> Thank you very much for the pointer, but I think this image is x11 based..
->=20
-> I can see EFL project has some pages mentioning about booting EFL on wayl=
-and-only environment, but it is not yocto (or oe) based instruction.
+| commit 2d005faff6341a81a2afae28860101ba9db51ae8
+| Author: Jussi Kukkonen <jussi.kukkonen@intel.com>
+| Date:   Wed Oct 26 11:37:38 2016 +0300
+|
+|    conf: Use xf86-input-libinput by default
+| ...
 
-I was always using meta-efl only in x11 builds.
+As nice side effect warnings for missing evdev in Xorg.0.log are gone.
 
-There is wayland PACKAGECONFIG for efl:
-recipes-efl/efl/efl.inc:PACKAGECONFIG ?=3D "egl opengl-es gstreamer1
-pulseaudio luajit ${@bb.utils.contains('DISTRO_FEATURES', 'wayland',
-'wayland', '', d)}"
-recipes-efl/efl/efl.inc:PACKAGECONFIG[wayland] =3D "--enable-wayland
---enable-wayland-ivi-shell,--disable-wayland
---disable-wayland-ivi-shell,wayland"
+Signed-off-by: Andreas Müller <schnitzeltony@googlemail.com>
+---
+ .../rpi/xorg.conf.d/10-evdev.conf                  | 40 ----------------------
+ .../xorg-xserver/xserver-xf86-config_0.1.bbappend  | 22 ++++++------
+ 2 files changed, 10 insertions(+), 52 deletions(-)
+ delete mode 100644 recipes-graphics/xorg-xserver/xserver-xf86-config/rpi/xorg.conf.d/10-evdev.conf
 
-but in e-wm which you were probably trying to build (it's not clear what
-exactly you meant with "build EFL") there is indeed dependency on
-libxcb.
-
-So it will need few more changes and lot more testing to make it work on
-wayland-only, patches are welcome, but EFL is in sad state in current
-master branch and I'm not planing to spend much time on it now, because
-I don't use it anymore (we officially let SHR distribution die last
-month by stopping the build server) and with the switch to CMake in
-upcoming release there will be again more work needed to build/package
-new version.
-
-Patches from people who are still using it (and able to test it
-properly) are of course welcome.
-
-Regards,
-
-> ________________________________
-> From: Khem Raj <raj.khem@gmail.com>
-> Sent: Thursday, February 16, 2017 11:53 AM
-> To: Takashi Matsuzawa
-> Cc: yocto@yoctoproject.org
-> Subject: Re: [yocto] meta-efl build?
->=20
-> Takashi-san
->=20
-> On Wed, Feb 15, 2017 at 6:35 PM, Takashi Matsuzawa <tmatsuzawa@xevo.com> =
-wrote:
-> > Hello, Yocto.
-> >
-> >
-> > I am trying to build EFL on top of my mayland environment (krogoth base=
-d).
-> >
-> > I thought it would be easy since there is meta-openembedded/meta-efl
-> > recipes, but now I am stuck.
-> >
-> >
-> > Specifically, I am experiencing x11 dependency (the recipes erquire x11=
- to
-> > be in DISTRO_FEATURES here and elsewhere), but for my target I am settt=
-ing
-> > wayland only, no x11.
-> >
-> > (e.g. it says it needs libxcb, etc.)
-> >
-> >
-> > Is it normal and I am failing to configure it properly?
-> >
-> >
-> > I found below, but it does not talk much about the build errors I am fa=
-cing,
-> > and if the targets I am specifying is correct, etc.
-> >
-> >
-> > https://www.enlightenment.org/distros/yocto-start
-> Yocto - Enlightenment Main<https://www.enlightenment.org/distros/yocto-st=
-art>
-> www.enlightenment.org
-> In Yocto, a meta-efl layer is provided by the meta-openembedded layer. It=
- contains EFL, Elementary, Enlightenment, Terminology and other recipes.
->=20
->=20
->=20
-> >
-> > If you are aware of any previous attempt, or, guide that I just overloo=
-ked
-> > for my laziness - I highly appreciate your pointers.
-> >
->=20
-> Using some preexisting image like angstrom one would be a good start
-> for you e.g.
->=20
-> https://github.com/Angstrom-distribution/meta-angstrom/blob/master/recipe=
-s-images/angstrom/efl-nodm-image.bb
-> meta-angstrom/efl-nodm-image.bb at master =B7 Angstrom-distribution/meta-=
-angstrom =B7 GitHub<https://github.com/Angstrom-distribution/meta-angstrom/=
-blob/master/recipes-images/angstrom/efl-nodm-image.bb>
-> github.com
-> meta-angstrom - MIrror of Angstrom metadata layer
->=20
->=20
->=20
->=20
-> it should work if you were to use angstrom distribution but if you
-> dont it should serve a good jump start.
-
-> --=20
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+diff --git a/recipes-graphics/xorg-xserver/xserver-xf86-config/rpi/xorg.conf.d/10-evdev.conf b/recipes-graphics/xorg-xserver/xserver-xf86-config/rpi/xorg.conf.d/10-evdev.conf
+deleted file mode 100644
+index cc83ab2..0000000
+--- a/recipes-graphics/xorg-xserver/xserver-xf86-config/rpi/xorg.conf.d/10-evdev.conf
++++ /dev/null
+@@ -1,40 +0,0 @@
+-#
+-# Catch-all evdev loader for udev-based systems
+-# We don't simply match on any device since that also adds accelerometers
+-# and other devices that we don't really want to use. The list below
+-# matches everything but joysticks.
+-
+-Section "InputClass"
+-        Identifier "evdev pointer catchall"
+-        MatchIsPointer "on"
+-        MatchDevicePath "/dev/input/event*"
+-        Driver "evdev"
+-EndSection
+-
+-Section "InputClass"
+-        Identifier "evdev keyboard catchall"
+-        MatchIsKeyboard "on"
+-        MatchDevicePath "/dev/input/event*"
+-        Driver "evdev"
+-EndSection
+-
+-Section "InputClass"
+-        Identifier "evdev touchpad catchall"
+-        MatchIsTouchpad "on"
+-        MatchDevicePath "/dev/input/event*"
+-        Driver "evdev"
+-EndSection
+-
+-Section "InputClass"
+-        Identifier "evdev tablet catchall"
+-        MatchIsTablet "on"
+-        MatchDevicePath "/dev/input/event*"
+-        Driver "evdev"
+-EndSection
+-
+-Section "InputClass"
+-        Identifier "evdev touchscreen catchall"
+-        MatchIsTouchscreen "on"
+-        MatchDevicePath "/dev/input/event*"
+-        Driver "evdev"
+-EndSection
+diff --git a/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend b/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend
+index 062de2d..b361eef 100644
+--- a/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend
++++ b/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend
+@@ -1,19 +1,17 @@
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ 
+-SRC_URI_append_rpi = " file://xorg.conf.d/10-evdev.conf \
+-                       file://xorg.conf.d/98-pitft.conf \
+-                       file://xorg.conf.d/99-calibration.conf \
+-                     "
++SRC_URI_append_rpi = " \
++    file://xorg.conf.d/98-pitft.conf \
++    file://xorg.conf.d/99-calibration.conf \
++"
+ 
+ do_install_append_rpi () {
+-	install -d ${D}/${sysconfdir}/X11/xorg.conf.d/
+-	install -m 0644 ${WORKDIR}/xorg.conf.d/10-evdev.conf ${D}/${sysconfdir}/X11/xorg.conf.d/
+-
+-	PITFT="${@bb.utils.contains("MACHINE_FEATURES", "pitft", "1", "0", d)}"
+-	if [ "${PITFT}" = "1" ]; then
+-		install -m 0644 ${WORKDIR}/xorg.conf.d/98-pitft.conf ${D}/${sysconfdir}/X11/xorg.conf.d/
+-		install -m 0644 ${WORKDIR}/xorg.conf.d/99-calibration.conf ${D}/${sysconfdir}/X11/xorg.conf.d/
+-	fi
++    PITFT="${@bb.utils.contains("MACHINE_FEATURES", "pitft", "1", "0", d)}"
++    if [ "${PITFT}" = "1" ]; then
++        install -d ${D}/${sysconfdir}/X11/xorg.conf.d/
++        install -m 0644 ${WORKDIR}/xorg.conf.d/98-pitft.conf ${D}/${sysconfdir}/X11/xorg.conf.d/
++        install -m 0644 ${WORKDIR}/xorg.conf.d/99-calibration.conf ${D}/${sysconfdir}/X11/xorg.conf.d/
++    fi
+ }
+ 
+ FILES_${PN}_rpi += "${sysconfdir}/X11/xorg.conf ${sysconfdir}/X11/xorg.conf.d/*"
+-- 
+2.7.4
 
 
---=20
-Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
-
---yEPQxsgoJgBvi8ip
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iF0EARECAB0WIQRU+ejDffEzV2Je2oc3VSO3ZXaAHAUCWKWHewAKCRA3VSO3ZXaA
-HLX5AKCzTCLRYH7kodijzilkrZLagW/CuQCfd3oGuA2EL/d5Mcfd4Z1GgmdwCX4=
-=BHmN
------END PGP SIGNATURE-----
-
---yEPQxsgoJgBvi8ip--
