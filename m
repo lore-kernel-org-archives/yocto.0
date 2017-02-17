@@ -1,19 +1,16 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id ACE2BE006EA; Thu, 16 Feb 2017 16:47:22 -0800 (PST)
+	id BDBA8E008D0; Thu, 16 Feb 2017 18:04:17 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_LOW,
+	RCVD_IN_SORBS_SPAM autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (raj.khem[at]gmail.com)
 	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.192.193 listed in dnsbl.sorbs.net]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.192.193 listed in list.dnswl.org]
+	*      [209.85.192.196 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -21,45 +18,48 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pf0-f193.google.com (mail-pf0-f193.google.com
-	[209.85.192.193])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 884B9E00510
-	for <yocto@yoctoproject.org>; Thu, 16 Feb 2017 16:47:18 -0800 (PST)
-Received: by mail-pf0-f193.google.com with SMTP id o64so2727736pfb.1
-	for <yocto@yoctoproject.org>; Thu, 16 Feb 2017 16:47:18 -0800 (PST)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.196 listed in list.dnswl.org]
+Received: from mail-pf0-f196.google.com (mail-pf0-f196.google.com
+	[209.85.192.196])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 95A84E00724
+	for <yocto@yoctoproject.org>; Thu, 16 Feb 2017 18:04:14 -0800 (PST)
+Received: by mail-pf0-f196.google.com with SMTP id 19so2858145pfo.3
+	for <yocto@yoctoproject.org>; Thu, 16 Feb 2017 18:04:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=from:to:cc:subject:date:message-id;
-	bh=OQZKHjpSuKlGfVQqovE8wS2edijG0R8c4s8LOePn1/8=;
-	b=PJPFPQTSZ+fUV4mMkQBH+bmhzZTUpzMdyWJkL7WNO73VvuEiFexvTtbAoUI4Ur77cc
-	/PBRg0oEE5y/mpMj8oisjn7N/RMvbsBbExrMPLtNIwsdmdy7tqID9Y8u7Akhrc8g3nxv
-	oPeMO5Ev6jCOeVobEy8BRtyJNDOASIjiJ+XsDfJov6HIN8fCkIb/MFcQ4NA27DcGKOpa
-	Rr18kDPZi2hcCf/8xutwdxxC9JMuf7akPKFv4rftDLtYnx4QoLlBAMPPite34xSdbHAp
-	H08uQD8lpwBKE2NUs8i6KTDIKinwCgFOPHozo5LEhgWeU19/u1mBAT3D68bRVFKHkW9g
-	/BkQ==
+	bh=orqhLH8EqjY7nbABqgv3hmh6sa4vtKORs7h56lW3buw=;
+	b=j8oSH3mHHYF4vowzFS7O2QNOKIhLnVm0znkoewJ8IGbzDA/hqqhbo+EkRbKyzsj6gT
+	dW+EkK3yqdPs2r3w9ZEwuC5SrfVaWlMILlhZocVaDtfhB+HlLpMnAbAXQMEwtLmzFMKe
+	j7z3W9T46XoDhdaHqdmXEAoxv70zWVepEmjQchI2Kou/qAVwpz5uCjZ8cmNvQdQQAM10
+	Wqs9LNVNE3g6dDyDF7cceR4G0EsAoMpLrvIukZDqh0T1hSfDufb0lV2CUvv8D99y4tMW
+	4hjHEg3Ma+yx4X70xpXSZgJrMH3qGFzvPPhO78FCEEkKB6hgM3uegsMfgh/CjLzmcKeX
+	YGFA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=OQZKHjpSuKlGfVQqovE8wS2edijG0R8c4s8LOePn1/8=;
-	b=fC/2/QbCc0+MT4RGnYKD6OVRI9exV1QtkEV8+MToPGydtwwxo91KiXRCHvYg0UlLO/
-	X3cBKm3I7pefQdkGo7xfe6WmWNi/qLIx287j6W3gk9/b+pzSPNMltQ9Lw5QnWdiK950/
-	jk9u09QkNm2P+mf4S3pwAiezSimw6Jrk+blrGUrGWV0BsRQbNH+puVdjUQ3Gd8MkOlju
-	CaLUYcWfJkUIVkAhMP37e7g60MzY/J8D1cEgT6Vodkp1Y5LaNYs9z5IlGXUG6dlne4FD
-	V88/iJTnFVLZhyZPeI4VPsWh9C0D9LqRTJwZ0N8uDpb9ckY1+W02YGQ+/wGR/cwlG/wu
-	kuNQ==
-X-Gm-Message-State: AMke39kPMsJZsY8vQ0lmtjOlqRF38ycxzOS3xUy9+DprIRUIX/rvop7v8A7czwWhvtqD2Q==
-X-Received: by 10.98.198.90 with SMTP id m87mr5974457pfg.153.1487292438625;
-	Thu, 16 Feb 2017 16:47:18 -0800 (PST)
+	bh=orqhLH8EqjY7nbABqgv3hmh6sa4vtKORs7h56lW3buw=;
+	b=uMc/tjr0vWK+9GSxLJsuQv732PJfsbTWw0txErCU6nxuzmscygqGitH3n32/vyCTmu
+	AmZN3psxfzFuXlkLxss1IrrJ5vOsIfxn66OP7AKV7uhan0VPH0xJlDnyFZUff2o+hJQp
+	JdPjJstJsZJtUNIlq7Up2uKL4Oi0WlsjuuzFnRcWMK8ncCiJoOqEmg9celRLa4pVRdfW
+	wcT6eRYtmW+/EDA9N5LEUOllkiO/Kr7zPmsgWJv0BFDiH/E6Z5gveXZUWXzFSAMlO4c2
+	nOg5Xl7gFkBoMosf45En+D5HAIAf4kItZXN5AjmOmCYcU9eXdGp9vO4zADKHVYRGExTq
+	9seg==
+X-Gm-Message-State: AMke39l/zun4TYZD50M8xgofM7My/BtU/Huzuh0LNTEr4WoJuNvqgIVhJ3n7cGIpzpxL4A==
+X-Received: by 10.84.232.129 with SMTP id i1mr7633094plk.129.1487297053781;
+	Thu, 16 Feb 2017 18:04:13 -0800 (PST)
 Received: from localhost.localdomain (c-76-102-32-192.hsd1.ca.comcast.net.
 	[76.102.32.192]) by smtp.gmail.com with ESMTPSA id
-	x81sm15646295pff.69.2017.02.16.16.47.17
+	y21sm15854694pgh.52.2017.02.16.18.04.12
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Thu, 16 Feb 2017 16:47:18 -0800 (PST)
+	Thu, 16 Feb 2017 18:04:12 -0800 (PST)
 From: Khem Raj <raj.khem@gmail.com>
 To: yocto@yoctoproject.org
-Date: Thu, 16 Feb 2017 16:47:08 -0800
-Message-Id: <20170217004708.29335-1-raj.khem@gmail.com>
+Date: Thu, 16 Feb 2017 18:04:05 -0800
+Message-Id: <20170217020405.29044-1-raj.khem@gmail.com>
 X-Mailer: git-send-email 2.11.1
-Subject: [meta-raspberrypi][PATCH] omxplayer: Update to latest and disable on rpi64
+Subject: [meta-raspberrypi][PATCH] linux-firmware: Bring up wifi/ble interface on rpi3
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,155 +71,117 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 17 Feb 2017 00:47:22 -0000
+X-List-Received-Date: Fri, 17 Feb 2017 02:04:17 -0000
 
-Its uses omaxplayer/mmal APIs from firmware which seems
-to not work with 4.9 kernel
+Currently the firmware is installed but kernel fails to load it
+due this .txt file missing in the firmware directory and it ends
+up with wifi/bluetooth i/f not being initialized. The error is
+also in dmesg
+
+[    3.120991] usbcore: registered new interface driver brcmfmac
+[    3.148240] brcmfmac mmc1:0001:1: Direct firmware load for brcm/brcmfmac43430-sdio.txt failed with error -2
+
+After applying this patch now ifconfig -a can list wlan0 interface
+successfully.
 
 Signed-off-by: Khem Raj <raj.khem@gmail.com>
 ---
- ...nd-headers-from-ffmpeg-are-installed-in-u.patch | 27 ++++++++++------------
- ...PEG_EXTRA_CFLAGS-and-FFMPEG_EXTRA_LDFLAGS.patch | 24 +++++++++++--------
- recipes-multimedia/omxplayer/omxplayer_git.bb      | 13 ++++++-----
- 3 files changed, 34 insertions(+), 30 deletions(-)
+ .../linux-firmware/files/brcmfmac43430-sdio.txt    | 66 ++++++++++++++++++++++
+ .../linux-firmware/linux-firmware_%.bbappend       | 12 ++++
+ 2 files changed, 78 insertions(+)
+ create mode 100644 recipes-kernel/linux-firmware/files/brcmfmac43430-sdio.txt
+ create mode 100644 recipes-kernel/linux-firmware/linux-firmware_%.bbappend
 
-diff --git a/recipes-multimedia/omxplayer/omxplayer/0002-Libraries-and-headers-from-ffmpeg-are-installed-in-u.patch b/recipes-multimedia/omxplayer/omxplayer/0002-Libraries-and-headers-from-ffmpeg-are-installed-in-u.patch
-index 75f7254..203f34b 100644
---- a/recipes-multimedia/omxplayer/omxplayer/0002-Libraries-and-headers-from-ffmpeg-are-installed-in-u.patch
-+++ b/recipes-multimedia/omxplayer/omxplayer/0002-Libraries-and-headers-from-ffmpeg-are-installed-in-u.patch
-@@ -14,33 +14,33 @@ Signed-off-by: Jonathan Liu <net147@gmail.com>
-  Makefile.ffmpeg | 2 +-
-  2 files changed, 4 insertions(+), 4 deletions(-)
- 
--diff --git a/Makefile b/Makefile
--index be97c2b..2c120fc 100644
----- a/Makefile
--+++ b/Makefile
-+Index: git/Makefile
-+===================================================================
-+--- git.orig/Makefile
-++++ git/Makefile
- @@ -1,9 +1,9 @@
-  
-  CFLAGS+=-std=c++0x -D__STDC_CONSTANT_MACROS -D__STDC_LIMIT_MACROS -DTARGET_POSIX -DTARGET_LINUX -fPIC -DPIC -D_REENTRANT -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CMAKE_CONFIG -D__VIDEOCORE4__ -U_FORTIFY_SOURCE -Wall -DHAVE_OMXLIB -DUSE_EXTERNAL_FFMPEG  -DHAVE_LIBAVCODEC_AVCODEC_H -DHAVE_LIBAVUTIL_OPT_H -DHAVE_LIBAVUTIL_MEM_H -DHAVE_LIBAVUTIL_AVUTIL_H -DHAVE_LIBAVFORMAT_AVFORMAT_H -DHAVE_LIBAVFILTER_AVFILTER_H -DHAVE_LIBSWRESAMPLE_SWRESAMPLE_H -DOMX -DOMX_SKIP64BIT -ftree-vectorize -DUSE_EXTERNAL_OMX -DTARGET_RASPBERRY_PI -DUSE_EXTERNAL_LIBBCM_HOST
-  
---LDFLAGS+=-L./ -Lffmpeg_compiled/usr/local/lib/ -lc -lWFC -lGLESv2 -lEGL -lbcm_host -lopenmaxil -lfreetype -lz
--+LDFLAGS+=-L./ -Lffmpeg_compiled/usr/lib/ -lc -lWFC -lGLESv2 -lEGL -lbcm_host -lopenmaxil -lfreetype -lz
-+-LDFLAGS+=-L./ -Lffmpeg_compiled/usr/local/lib/ -lc -lWFC -lGLESv2 -lEGL -lbcm_host -lopenmaxil -lfreetype -lz -lasound
-++LDFLAGS+=-L./ -Lffmpeg_compiled/usr/lib/ -lc -lWFC -lGLESv2 -lEGL -lbcm_host -lopenmaxil -lfreetype -lz -lasound
-  
- -INCLUDES+=-I./ -Ilinux -Iffmpeg_compiled/usr/local/include/ -I /usr/include/dbus-1.0 -I /usr/lib/arm-linux-gnueabihf/dbus-1.0/include
--+INCLUDES+=-I./ -Ilinux -Iffmpeg_compiled/usr/include/ -I=/usr/include/dbus-1.0 -I /usr/lib/arm-linux-gnueabihf/dbus-1.0/include
-++INCLUDES+=-I./ -Ilinux -Iffmpeg_compiled/usr/include/ -I=/usr/include/dbus-1.0
-  
-  DIST ?= omxplayer-dist
-  
--@@ -87,5 +87,5 @@ dist: omxplayer.bin omxplayer.1
-+@@ -88,5 +88,5 @@ dist: omxplayer.bin omxplayer.1
-  	cp COPYING $(DIST)/usr/share/doc/omxplayer
-  	cp README.md $(DIST)/usr/share/doc/omxplayer/README
-  	cp omxplayer.1 $(DIST)/usr/share/man/man1
- -	cp -P ffmpeg_compiled/usr/local/lib/*.so* $(DIST)/usr/lib/omxplayer/
- +	cp -P ffmpeg_compiled/usr/lib/*.so* $(DIST)/usr/lib/omxplayer/
-  	cd $(DIST); tar -czf ../$(DIST).tgz *
--diff --git a/Makefile.ffmpeg b/Makefile.ffmpeg
--index 5ccf96f..a7ddd5f 100644
----- a/Makefile.ffmpeg
--+++ b/Makefile.ffmpeg
-+Index: git/Makefile.ffmpeg
-+===================================================================
-+--- git.orig/Makefile.ffmpeg
-++++ git/Makefile.ffmpeg
- @@ -254,5 +254,5 @@ checkout:
-  .PHONY : install
-  install:
-@@ -48,6 +48,3 @@ index 5ccf96f..a7ddd5f 100644
- -	$(HOST)-strip ffmpeg_compiled/usr/local/lib/*.so
- +	$(HOST)-strip ffmpeg_compiled/usr/lib/*.so
-  
---- 
--1.9.3
--
-diff --git a/recipes-multimedia/omxplayer/omxplayer/0004-Add-FFMPEG_EXTRA_CFLAGS-and-FFMPEG_EXTRA_LDFLAGS.patch b/recipes-multimedia/omxplayer/omxplayer/0004-Add-FFMPEG_EXTRA_CFLAGS-and-FFMPEG_EXTRA_LDFLAGS.patch
-index edb388e..ea8530d 100644
---- a/recipes-multimedia/omxplayer/omxplayer/0004-Add-FFMPEG_EXTRA_CFLAGS-and-FFMPEG_EXTRA_LDFLAGS.patch
-+++ b/recipes-multimedia/omxplayer/omxplayer/0004-Add-FFMPEG_EXTRA_CFLAGS-and-FFMPEG_EXTRA_LDFLAGS.patch
-@@ -12,20 +12,26 @@ Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
-  Makefile.ffmpeg | 3 ++-
-  1 file changed, 2 insertions(+), 1 deletion(-)
- 
--diff --git a/Makefile.ffmpeg b/Makefile.ffmpeg
--index abe4b26..c9d42d7 100644
----- a/Makefile.ffmpeg
--+++ b/Makefile.ffmpeg
--@@ -22,7 +22,8 @@ configure:
-+Index: git/Makefile.ffmpeg
-+===================================================================
-+--- git.orig/Makefile.ffmpeg
-++++ git/Makefile.ffmpeg
-+@@ -1,6 +1,8 @@
-+ 
-+ CFLAGS=-D__STDC_CONSTANT_MACROS -D__STDC_LIMIT_MACROS -DTARGET_POSIX -DTARGET_LINUX -fPIC -DPIC -D_REENTRANT -D_HAVE_SBRK -D_LARGEFILE64_SOURCE -DHAVE_CMAKE_CONFIG -DHAVE_VMCS_CONFIG -D_REENTRANT -DUSE_VCHIQ_ARM -DVCHI_BULK_ALIGN=1 -DVCHI_BULK_GRANULARITY=1 -DEGL_SERVER_DISPMANX -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D__VIDEOCORE4__ -DGRAPHICS_X_VG=1 -U_FORTIFY_SOURCE -Wall -DHAVE_OMXLIB -DUSE_EXTERNAL_FFMPEG  -DHAVE_LIBAVCODEC_AVCODEC_H -DHAVE_LIBAVUTIL_MEM_H -DHAVE_LIBAVUTIL_AVUTIL_H -DHAVE_LIBAVFORMAT_AVFORMAT_H -DHAVE_LIBAVFILTER_AVFILTER_H -DOMX -DOMX_SKIP64BIT
-+ 
-++FFMPEG_EXTRA_CFLAGS?=-mfpu=vfp -mfloat-abi=$(FLOAT) -mno-apcs-stack-check -mstructure-size-boundary=32 -mno-sched-prolog
-++
-+ WORK=$(PWD)
-+ 
-+ .PHONY : all
-+@@ -21,7 +23,8 @@ configure:
-  	CFLAGS="$(CFLAGS) ${INCLUDES}" \
-  	LDFLAGS="" \
-    ./configure \
- -			--extra-cflags="-mfpu=vfp -mfloat-abi=$(FLOAT) -mno-apcs-stack-check -mstructure-size-boundary=32 -mno-sched-prolog" \
--+			--extra-cflags="-mfpu=vfp -mfloat-abi=$(FLOAT) -mno-apcs-stack-check -mstructure-size-boundary=32 -mno-sched-prolog $(FFMPEG_EXTRA_CFLAGS)" \
-++			--extra-cflags="$(FFMPEG_EXTRA_CFLAGS)" \
- +			--extra-ldflags="$(FFMPEG_EXTRA_LDFLAGS)" \
-  			--enable-cross-compile \
-  			--enable-shared \
-  			--disable-static \
---- 
--2.1.0
--
-diff --git a/recipes-multimedia/omxplayer/omxplayer_git.bb b/recipes-multimedia/omxplayer/omxplayer_git.bb
-index d9460de..c196fbf 100644
---- a/recipes-multimedia/omxplayer/omxplayer_git.bb
-+++ b/recipes-multimedia/omxplayer/omxplayer_git.bb
-@@ -7,10 +7,10 @@ SECTION = "console/utils"
- LICENSE = "GPLv2"
- LIC_FILES_CHKSUM = "file://COPYING;md5=94d55d512a9ba36caa9b7df079bae19f"
- 
--DEPENDS = "libpcre libav virtual/egl boost freetype dbus openssl samba libssh"
-+DEPENDS = "libpcre libav virtual/egl boost freetype dbus openssl samba libssh libomxil"
- PR = "r4"
- 
--SRCREV = "8466acf65f5f444dfa22631fb83c07ac759c02a5"
-+SRCREV = "62fb580260adb9b01e5694bb4374fb9a5f6f1021"
- SRC_URI = "git://github.com/popcornmix/omxplayer.git;protocol=git;branch=master \
-            file://0001-Remove-Makefile.include-which-includes-hardcoded.patch \
-            file://0002-Libraries-and-headers-from-ffmpeg-are-installed-in-u.patch \
-@@ -21,7 +21,9 @@ SRC_URI = "git://github.com/popcornmix/omxplayer.git;protocol=git;branch=master
-            "
- S = "${WORKDIR}/git"
- 
--COMPATIBLE_MACHINE = "raspberrypi"
-+COMPATIBLE_MACHINE ?= "null"
-+COMPATIBLE_MACHINE_rpi_aarch64 = "null"
-+COMPATIBLE_MACHINE_rpi = "(.*)"
- 
- inherit autotools-brokensep pkgconfig
- 
-@@ -31,9 +33,8 @@ export TEMPDIR = "${S}/tmp"
- # Needed in Makefile.ffmpeg
- export HOST = "${HOST_SYS}"
- export WORK = "${S}"
--export FLOAT = "${@bb.utils.contains("TUNE_FEATURES", "callconvention-hard", "hard", "softfp", d)}"
--export FFMPEG_EXTRA_CFLAGS  = "--sysroot=${STAGING_DIR_TARGET}"
--export FFMPEG_EXTRA_LDFLAGS = "--sysroot=${STAGING_DIR_TARGET}"
-+export FFMPEG_EXTRA_CFLAGS  = "${TUNE_CCARGS} ${TOOLCHAIN_OPTIONS}"
-+export FFMPEG_EXTRA_LDFLAGS  = "${TUNE_CCARGS} ${TOOLCHAIN_OPTIONS}"
- 
- # Needed in top Makefile
- export LDFLAGS = "-L${S}/ffmpeg_compiled/usr/lib \
+diff --git a/recipes-kernel/linux-firmware/files/brcmfmac43430-sdio.txt b/recipes-kernel/linux-firmware/files/brcmfmac43430-sdio.txt
+new file mode 100644
+index 0000000..ea4f648
+--- /dev/null
++++ b/recipes-kernel/linux-firmware/files/brcmfmac43430-sdio.txt
+@@ -0,0 +1,66 @@
++# NVRAM file for BCM943430WLPTH
++# 2.4 GHz, 20 MHz BW mode
++
++# The following parameter values are just placeholders, need to be updated.
++manfid=0x2d0
++prodid=0x0727
++vendid=0x14e4
++devid=0x43e2
++boardtype=0x0727
++boardrev=0x1101
++boardnum=22
++macaddr=00:90:4c:c5:12:38
++sromrev=11
++boardflags=0x00404201
++boardflags3=0x08000000
++xtalfreq=37400
++nocrc=1
++ag0=255
++aa2g=1
++ccode=ALL
++
++pa0itssit=0x20
++extpagain2g=0
++#PA parameters for 2.4GHz, measured at CHIP OUTPUT
++pa2ga0=-168,7161,-820
++AvVmid_c0=0x0,0xc8
++cckpwroffset0=5
++
++# PPR params
++maxp2ga0=84
++txpwrbckof=6
++cckbw202gpo=0
++legofdmbw202gpo=0x66111111
++mcsbw202gpo=0x77711111
++propbw202gpo=0xdd
++
++# OFDM IIR :
++ofdmdigfilttype=18
++ofdmdigfilttypebe=18
++# PAPD mode:
++papdmode=1
++papdvalidtest=1
++pacalidx2g=42
++papdepsoffset=-22
++papdendidx=58
++
++# LTECX flags
++ltecxmux=0
++ltecxpadnum=0x0102
++ltecxfnsel=0x44
++ltecxgcigpio=0x01
++
++il0macaddr=00:90:4c:c5:12:38
++wl0id=0x431b
++
++deadman_to=0xffffffff
++# muxenab: 0x1 for UART enable, 0x2 for GPIOs, 0x8 for JTAG
++muxenab=0x1
++# CLDO PWM voltage settings - 0x4 - 1.1 volt
++#cldo_pwm=0x4
++
++#VCO freq 326.4MHz
++spurconfig=0x3 
++
++edonthd20l=-75
++edoffthd20ul=-80
+diff --git a/recipes-kernel/linux-firmware/linux-firmware_%.bbappend b/recipes-kernel/linux-firmware/linux-firmware_%.bbappend
+new file mode 100644
+index 0000000..252da22
+--- /dev/null
++++ b/recipes-kernel/linux-firmware/linux-firmware_%.bbappend
+@@ -0,0 +1,12 @@
++FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
++
++SRC_URI += "file://brcmfmac43430-sdio.txt"
++
++do_install_append() {
++	install -D -m 0644 ${WORKDIR}/brcmfmac43430-sdio.txt ${D}/lib/firmware/brcm/brcmfmac43430-sdio.txt
++}
++
++FILES_${PN}-bcm43430 += " \
++  /lib/firmware/brcm/brcmfmac43430-sdio.txt \
++"
++
 -- 
 2.11.1
 
