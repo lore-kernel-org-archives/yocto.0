@@ -1,38 +1,67 @@
-Return-Path: <anibal.limon@linux.intel.com>
+Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DF676E006EA; Thu, 16 Feb 2017 14:45:22 -0800 (PST)
+	id 70E82E006EA; Thu, 16 Feb 2017 16:13:05 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.24 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [74.125.83.65 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.83.65 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A5A5CE00510
-	for <yocto@yoctoproject.org>; Thu, 16 Feb 2017 14:45:19 -0800 (PST)
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-	by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	16 Feb 2017 14:45:18 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.35,169,1484035200"; 
-	d="asc'?scan'208";a="66758321"
-Received: from alimonb-mobl1.zpn.intel.com (HELO [10.219.128.120])
-	([10.219.128.120])
-	by fmsmga006.fm.intel.com with ESMTP; 16 Feb 2017 14:45:18 -0800
-To: jose.perez.carranza@linux.intel.com, yocto@yoctoproject.org
-References: <1487284628-8916-1-git-send-email-jose.perez.carranza@linux.intel.com>
-From: =?UTF-8?B?QW7DrWJhbCBMaW3Ds24=?= <anibal.limon@linux.intel.com>
-Message-ID: <58A62C47.8090203@linux.intel.com>
-Date: Thu, 16 Feb 2017 16:48:39 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.3.0
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pg0-f65.google.com (mail-pg0-f65.google.com [74.125.83.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 59E5DE00510
+	for <yocto@yoctoproject.org>; Thu, 16 Feb 2017 16:13:01 -0800 (PST)
+Received: by mail-pg0-f65.google.com with SMTP id y6so2140619pgy.2
+	for <yocto@yoctoproject.org>; Thu, 16 Feb 2017 16:13:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-disposition:in-reply-to:user-agent;
+	bh=UZRb573nQ05+5jg+cp9WhZFqlybd8NsUixyp7exSzrA=;
+	b=Xz51BnBbnNQ0oQjn+Jgp+ii0ccEwf1nG2ZZeVd/dgIKSyCEgfKAvu1Kkt2+6W/Ai9k
+	BinpKB2WHJvnD0/lNyEA5J4Zvv1Da4tUw/rhbvVVe1q7ZZPkkH/KwNv/ZWAIVKAO4Pyt
+	pOj4D2jN1YSF4ChKZBw6CMPEh/AVu357IgDU680QyMWSQH+GVXR0lrkBo+f4DiDtlfxr
+	gmU0urE5jKVI10mA/wqTVgKG6naQ6ZF1dIjZIyyRwhglve9c0nQz5Bc8uxemS0d/5Hc8
+	vX8OEtr7lMbAAHTPRRzpQ8qVJdCEpniEQ01OYAs7V9SyrOQkYR5NfLtumancHRXtace7
+	uMCg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	:mime-version:content-disposition:in-reply-to:user-agent;
+	bh=UZRb573nQ05+5jg+cp9WhZFqlybd8NsUixyp7exSzrA=;
+	b=O+anzaUKNg/nwixUHbodcFY18dLVvAz0ok9smzrS4SUBmjk6mots9kQKXmz6sjn+3X
+	s/1Pg7Jul1FWG/QzBtc3jycBV3FCs5+boXbtJ+1FJwCtsGmar/XqoqOepzQzmVlR0uNS
+	D5qRfy1Pl5EmNOUd8o/UgN7kMsPehYafa2rjlt2f5vBvsPLOJFjEeYKYg0UPiRNn7h7+
+	mMCY/NonR9uBoWNy8rxGGQUiWUcopu+pTXzzoxlY7pRTdzHdJ2lQvZhv6NDNmgk5STDq
+	Y+WxXo5u+B/AylhXj86z+0mypYTisD00PzkobMsGOntit9AwgwHqLziiJAZOFugG+3eF
+	4Qdw==
+X-Gm-Message-State: AMke39lnQKtimSfLKCkkvIu4+gh5JP5/NhpRxDFtcu/T93WFEOKgj/DsZJAmLYlaY3Q4SQ==
+X-Received: by 10.98.35.25 with SMTP id j25mr5887380pfj.35.1487290381594;
+	Thu, 16 Feb 2017 16:13:01 -0800 (PST)
+Received: from carbonA ([2603:3023:807:fbe0:ab77:6fd:9c01:1923])
+	by smtp.gmail.com with ESMTPSA id
+	w123sm15603943pfb.44.2017.02.16.16.13.00
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Thu, 16 Feb 2017 16:13:00 -0800 (PST)
+Date: Thu, 16 Feb 2017 16:12:53 -0800
+From: Andrei Gherzan <andrei@gherzan.ro>
+To: Khem Raj <raj.khem@gmail.com>
+Message-ID: <20170217001253.GA11602@carbonA>
+References: <20170216184645.6258-1-raj.khem@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <1487284628-8916-1-git-send-email-jose.perez.carranza@linux.intel.com>
-Subject: Re: [PATCH] qa-tools: Add suport for current format of templates
+In-Reply-To: <20170216184645.6258-1-raj.khem@gmail.com>
+User-Agent: Mutt/1.7.2 (2016-11-26)
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-raspberrypi][PATCH V4 01/14] Add raspberrypi3-64.conf
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,304 +73,80 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 16 Feb 2017 22:45:23 -0000
-X-Groupsio-MsgNum: 34547
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature";
-	boundary="OPcHfPgGHBn6t0TPnOQFGw0UeE3EBGqkC"
+X-List-Received-Date: Fri, 17 Feb 2017 00:13:05 -0000
+X-Groupsio-MsgNum: 34548
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="h31gzZEtNLTqOjlF"
+Content-Disposition: inline
 
---OPcHfPgGHBn6t0TPnOQFGw0UeE3EBGqkC
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: quoted-printable
+--h31gzZEtNLTqOjlF
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Resend it with [qa-tools] and see comments below,
-
-
-On 02/16/2017 04:37 PM, jose.perez.carranza@linux.intel.com wrote:
-> From: Jose Perez Carranza <jose.perez.carranza@linux.intel.com>
->=20
-> Currently the tempates has a format as below:
->=20
-> TRTEMP_<RELEASE>_<MANUAL/AUTO>_<COMPONENT>_<OPTIONAL>
->=20
-> Hence the logic was adapted to follow above structure and also a
-> commit paramater was added to follow the format of build as follows:
->=20
-> RELEASE MILESTONE_rc#
->=20
-> Signed-off-by: Jose Perez Carranza <jose.perez.carranza@linux.intel.com=
+On Thu, Feb 16, 2017 at 10:46:32AM -0800, Khem Raj wrote:
+> From: Herve Jourdain <herve.jourdain@neuf.fr>
 >
+> Signed-off-by: Herve Jourdain <herve.jourdain@neuf.fr>
+> Signed-off-by: Khem Raj <raj.khem@gmail.com>
 > ---
->  testopia_update.py                  | 30 ++++++++++++++++------------
->  testopia_update/product/__init__.py | 39 +++++++++++++++++++++--------=
---------
->  2 files changed, 40 insertions(+), 29 deletions(-)
->=20
-> diff --git a/testopia_update.py b/testopia_update.py
-> index 249d163..af281c9 100755
-> --- a/testopia_update.py
-> +++ b/testopia_update.py
-> @@ -15,7 +15,7 @@ DEFAULT_STORE_LOCATION =3D "/tmp/testopia_update"
-> =20
->  ACTIONS =3D ('create', 'update')
->  BRANCHES =3D ('master', 'jethro', 'dizzy', 'daisy', 'noexists')
-> -CATEGORIES =3D ('Full pass', 'Weekly')
-> +CATEGORIES =3D ('AUTO', 'MANUAL')
-> =20
->  class Options(object):
->      pass
-> @@ -60,6 +60,9 @@ def get_args():
->      parser.add_argument('--project-date', required=3DFalse,
->          dest=3D"project_date", help=3D'SCM version/revision date of th=
-e project.')
-> =20
-> +    parser.add_argument('--commit', required=3DFalse,
-> +        dest=3D"commit", help=3D'Poky commit')
+>  conf/machine/raspberrypi3-64.conf | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
+>  create mode 100644 conf/machine/raspberrypi3-64.conf
+>
+> diff --git a/conf/machine/raspberrypi3-64.conf b/conf/machine/raspberrypi3-64.conf
+> new file mode 100644
+> index 0000000..5598e50
+> --- /dev/null
+> +++ b/conf/machine/raspberrypi3-64.conf
+> @@ -0,0 +1,15 @@
+> +#@TYPE: Machine
+> +#@NAME: RaspberryPi 3 Development Board
+> +#@DESCRIPTION: Machine configuration for the RaspberryPi 3 in 64 bits mode
 > +
->      parser.add_argument('--results-log', required=3DFalse,
->          dest=3D"results_log", help=3D'Results log.')
-> =20
-> @@ -68,6 +71,7 @@ def get_args():
->      parser.add_argument('--debug', required=3DFalse, action=3D"store_t=
-rue",
->          dest=3D"debug", default=3DFalse, help=3D'Enable debug mode.')
-> =20
+> +MACHINEOVERRIDES = "raspberrypi3:raspberrypi:${MACHINE}"
 > +
->      return parser.parse_args()
-> =20
->  if __name__ =3D=3D '__main__':
-> @@ -86,8 +90,8 @@ if __name__ =3D=3D '__main__':
->      testopia_config =3D ['url', 'username', 'password', 'store_locatio=
-n']
->      testopia_opts =3D testopia_config + ['action', 'product_name', 'ca=
-tegory_name',
->          'project_version', 'project_milestone', 'project_revision',
-> -        'project_date']
-> -=20
-> +        'project_date','commit']
-
-We already have a commit as a name of project-revision if you want to
-change the template name order use this field.
-
+> +MACHINE_EXTRA_RRECOMMENDS += "linux-firmware-bcm43430"
 > +
->      config =3D None
->      if not args.config and os.path.exists(DEFAULT_CONFIG_FILE):
->          args.config =3D DEFAULT_CONFIG_FILE
-> @@ -103,10 +107,10 @@ if __name__ =3D=3D '__main__':
->              arg =3D getattr(args, to)
->              if arg:
->                  setattr(opts, to, arg)
-> -        if not hasattr(opts, to):
-> -            logger.error("%s: Requires testopia %s in arguments or con=
-fig." % \
-> -                (sys.argv[0], to))
-> -            sys.exit(1)
-> +#        if not hasattr(opts, to):
-> +#            logger.error("%s: Requires testopia %s in arguments or co=
-nfig." % \
-> +#                (sys.argv[0], to))
-> +#            sys.exit(1)
-
-Uncomment these lines, there uis a need to make --list-products as an
-option without action but this needs to be made in other commit.
-
-	alimon
-
-> =20
->      if not os.path.exists(opts.store_location):
->          os.makedirs(opts.store_location)
-> @@ -155,11 +159,13 @@ if __name__ =3D=3D '__main__':
->              sys.exit(1)
-> =20
->      build =3D product.get_build(test_plan, args.project_version,
-> -        args.project_milestone, args.project_revision, args.project_da=
-te)
-> +        args.project_milestone, args.project_revision, args.project_da=
-te,
-> +        args.commit)
->      if not build:
->          if args.action =3D=3D "create":
->              build =3D product.create_build(test_plan, args.project_ver=
-sion,
-> -                args.project_milestone, args.project_revision, args.pr=
-oject_date)
-> +                args.project_milestone, args.project_revision, args.pr=
-oject_date,
-> +                args.commit)
->              logger.info("%s: Create build for product %s with: "\
->                  "%s, %s, %s, %s." % (sys.argv[0], args.product_name,
->                  args.project_version, args.project_milestone,
-> @@ -172,8 +178,8 @@ if __name__ =3D=3D '__main__':
->              sys.exit(1)
-> =20
->      if args.action =3D=3D "create":
-> -        template_test_run =3D product.get_template_test_run(test_plan,=
- args.project_version,
-> -                args.category_name, args.optional)
-> +        template_test_run =3D product.get_template_test_run(test_plan,=
-
-> +                args.project_version, args.category_name, args.optiona=
-l)
->          if not template_test_run:
->              logger.error("%s: Product %s can't find test run with: "\
->                  "%s, %s, %s." % (sys.argv[0], args.product_name,
-> @@ -189,7 +195,7 @@ if __name__ =3D=3D '__main__':
->                  args.optional))
->              sys.exit(1)
->          logger.info("%s: Test run was created with Template (%d), Summ=
-ary (%s)"\
-> -                " and ID (%s)." % (sys.argv[0], template_test_run['run=
-_id'],=20
-> +                " and ID (%s)." % (sys.argv[0], template_test_run['run=
-_id'],
->                  test_run['summary'], test_run['run_id']))
->      elif args.action =3D=3D "update":
->          if not args.results_log:
-> diff --git a/testopia_update/product/__init__.py b/testopia_update/prod=
-uct/__init__.py
-> index 04f9dac..02c6447 100644
-> --- a/testopia_update/product/__init__.py
-> +++ b/testopia_update/product/__init__.py
-> @@ -1,5 +1,6 @@
->  import re
-> =20
+> +require conf/machine/include/arm/arch-armv8.inc
+> +include conf/machine/include/rpi-base.inc
 > +
->  class Product(object):
->      def __init__(self, testopia, opts, logger, config):
->          self.testopia =3D testopia
-> @@ -42,13 +43,15 @@ class Product(object):
->          tp_envs =3D self.testopia.product_get_environments(tp['product=
-_id'])
->          return [tp_env['name'] for tp_env in tp_envs]
-> =20
-> -    def _format_build_name(self, project_version, project_revision):
-> -        return "%s: %s" % (project_version, project_revision)
-> +    def _format_build_name(self, project_version, project_revision, pr=
-oject_commit):
-> +        return "%s_%s: %s" % (project_version, project_revision, proje=
-ct_commit)
-> =20
-> -    def get_build(self, tp, project_version, project_milestone,
-> -            project_revision, project_date):
-> +    def get_build(self, tp, project_version, project_milestone, projec=
-t_revision,
-> +                  project_date, project_commit):
->          builds =3D self.testopia.product_get_builds(tp['product_id'])
-> -        build_name =3D self._format_build_name(project_milestone, proj=
-ect_revision)
-> +        build_name =3D self._format_build_name(project_milestone, proj=
-ect_revision,
-> +                                             project_commit)
-> +        exit
->          for b in builds:
->              if build_name =3D=3D b['name'] and project_date =3D=3D b['=
-description'] \
->                      and project_milestone =3D=3D str(b['milestone']):
-> @@ -56,8 +59,9 @@ class Product(object):
->          return None
-> =20
->      def create_build(self, tp, project_version, project_milestone,
-> -            project_revision, project_date):
-> -        build_name =3D self._format_build_name(project_milestone, proj=
-ect_revision)
-> +            project_revision, project_date, project_commit):
-> +        build_name =3D self._format_build_name(project_milestone, proj=
-ect_revision,
-> +                                             project_commit)
-> =20
->          return self.testopia.build_create(build_name, tp['product_id']=
-,
->                  description=3Dproject_date, milestone=3Dproject_milest=
-one,
-> @@ -66,14 +70,14 @@ class Product(object):
->      def _get_test_run_summary_alternatives(self, ttype, project_versio=
-n,
->              category_name, optional):
->          summary_alts =3D []
-> -        summary_alts.append('%s - %s - %s - %s' % (ttype, self.name,
-> -            project_version, category_name))
-> -        summary_alts.append('%s - %s - %s' % (ttype, project_version,
-> +        summary_alts.append('%s_%s_%s_%s' % (ttype, project_version,
-> +            category_name, self.name))
-> +        summary_alts.append('%s_%s_%s' % (ttype, project_version,
->              category_name))
-> -        summary_alts.append('%s - %s' % (ttype, category_name))
-> -        if optional:=20
-> +        summary_alts.append('%s_%s' % (ttype, category_name))
-> +        if optional:
->              for idx, sa in enumerate(summary_alts):
-> -                summary_alts[idx] =3D sa + " - %s" % optional
-> +                summary_alts[idx] =3D sa + "_%s" % optional
->          return summary_alts
-> =20
->      def get_template_test_run(self, tp, project_version, category_name=
-,
-> @@ -85,7 +89,7 @@ class Product(object):
->              first match of summary in test runs.
->          """
-> =20
-> -        summary_alts =3D self._get_test_run_summary_alternatives("TEMP=
-LATE",=20
-> +        summary_alts =3D self._get_test_run_summary_alternatives("TRTE=
-MP",
->              project_version, category_name, optional)
->          tp_test_runs =3D self.testopia.testplan_get_test_runs(tp['plan=
-_id'])
-> =20
-> @@ -100,7 +104,7 @@ class Product(object):
-> =20
->      def get_test_run(self, tp, env, build, project_date, project_versi=
-on,
->              category_name, optional):
-> -        summary_alts =3D self._get_test_run_summary_alternatives(proje=
-ct_date,=20
-> +        summary_alts =3D self._get_test_run_summary_alternatives(proje=
-ct_date,
->              project_version, category_name, optional)
->          tp_test_runs =3D self.testopia.testplan_get_test_runs(tp['plan=
-_id'])
-> =20
-> @@ -133,8 +137,9 @@ class Product(object):
-> =20
->          return project_version
-> =20
-> -    def create_test_run(self, tp, env, build, template_tr, project_ver=
-sion, project_date):
-> -        summary =3D template_tr['summary'].replace('TEMPLATE', project=
-_date)
-> +    def create_test_run(self, tp, env, build, template_tr, project_ver=
-sion,
-> +                        project_date):
-> +        summary =3D template_tr['summary'].replace('TRTEMP', project_d=
-ate)
-> =20
->          test_case_ids =3D self._get_test_case_ids(template_tr)
->          new_test_run =3D self.testopia.testrun_create(build['build_id'=
-],
->=20
+> +SERIAL_CONSOLE = "115200 ttyS0"
+> +VC4_CMA_SIZE ?= "cma-256"
+> +
+> +UBOOT_MACHINE = "rpi_3_config"
+> --
+> 2.11.1
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
+The entire patch set was merged to master. Thanks.
 
---OPcHfPgGHBn6t0TPnOQFGw0UeE3EBGqkC
+--
+Andrei Gherzan
+gpg: rsa4096/D4D94F67AD0E9640 | t: @agherzan
+
+--h31gzZEtNLTqOjlF
 Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
-Version: GnuPG v2
 
-iQIcBAEBAgAGBQJYpixJAAoJEGJqcE9h3glgg4kP/2YhMDE4lYNLKvNnRLS9pLOC
-xgIl2Olht5J3YCQcmIUCaglUMRJp8S4TookjYcxbgN6ecbg9l+4VsPPSwZaf4hx/
-ThvR3q/1Fk0TGHYhTI8YxSpHfSSKCQ1NCYvraRnXWluLk0tJMVhKAGEvX1SP4Mi4
-HMa2gdwMy0kICeZwK4EHqX4PuaHDFels5xMTMHetQHzO9H5Umkx9wx8/2BZlXlDs
-0JmA3ofZQaFoW5JarUONNfQxQi7EgvZ1X1R62AITMasAwlY6ei6y0M2o+NWjNg+k
-tWoRdsk2XGbs8HcsyYESAACjqP6mrwGNFbp/EuR/KMTWyI8efpRkwKVjtGDZxF57
-3lIfkv8iE3A5VUqY5JjahxT9wlyXNNZTxuxP1Wya0IHMg7jo4TVZM892hucxYUbU
-eacHJzQrUoY5Z9JDS/A5o03HKMmZcxugoZhDHfldeMn5xkwOJkTVMoDnAv9yyCaZ
-MkPrCM/ZffoXJyaOyulY4u31UPZpVDSrgNemCvQEHcw2Lz60N4z4IvHwIzpIqBDm
-abYZwMf3iJIEO5r1c3esdDtSWhuWFMQyJZxVOHlwI542TOvnlYpEvYQeD+fzj7at
-u7N1Iz/e6tJUDcR8P70xSywrQHaXtwInOGfrLVLMs5RwxuVlFrtCfRjILlqRuBtD
-y6BE3k9hDwLUZSvTNH9m
-=AIXN
+iQIzBAEBCAAdFiEE90oi/MnVCYFbB1m0Jrqo2vaxFPYFAlimQAQACgkQJrqo2vax
+FPYGdhAAgp+N/vyqV/J1YV9w0tRZS1iDjkmCfIdCUSquaJqcaH8qAYOE2zaC3OU+
+GNVCR92iJZJhNQK1eXKG42y/ljFluZ266442Hf2VWZNIkr6RiamBbNfF7oWQiCJa
+rCWYG56mPR6eETCZBpRdoKgKBf1Ud/dS8gyOa75lobu+u9CQ7neBMoHm6hUcsnOX
+Q6uI8SJC+TQpOt+teUAWm8L2fFlFopQhVDXc6bjL7Uo6NJPoPUQsOTlQk1CwUmji
+0TCGFgMuDJb7bzt6E09zXgU68UQ1QK6u2u6Eobpl7XzLjOQjx1UgUYHyRtsWzbI5
+PP0s3BHnX4RLW7POOxEd0CQL39GMRHsUJHIyJO3mjZb4Yduyj0P9a0hmANOK9Kjg
+C2KG+vAVm1NWj9ytofsvDT6HumyJc0Dw7h5RnayHZzk+qLhsK4EV57kfg+2y5ngu
+uxrY2EToee2U6W/W4kwxtOzrPZxIKNREaGWS19huptU6SSBbPQSY99KqycH4H8zl
+wVUdQSyiGhlqrf90emSZaWspwlr5JQi+EnicsDhMdMIzmq4/KWtVWJ/TyVyQEzKN
+Y952eStZFVDur2VhavWzwnezb61PL2dTAxxyxwhekB6EiVCErijBdj0nmYeR7KaA
+Wh9CZ9gGbogXGLyvfAp8WurroMp5qTJIjZe3M1bo3Y0FNnH4tG4=
+=hpTE
 -----END PGP SIGNATURE-----
 
---OPcHfPgGHBn6t0TPnOQFGw0UeE3EBGqkC--
+--h31gzZEtNLTqOjlF--
