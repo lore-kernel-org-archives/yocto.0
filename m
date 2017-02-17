@@ -1,79 +1,72 @@
-Return-Path: <tmatsuzawa@xevo.com>
+Return-Path: <twoerner@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 21838E00935; Fri, 17 Feb 2017 02:46:05 -0800 (PST)
+	id 2EE8DE0095F; Fri, 17 Feb 2017 02:57:53 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [104.47.36.53 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (twoerner[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.214.67 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com
-	(mail-sn1nam02on0053.outbound.protection.outlook.com [104.47.36.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BC586E00724
-	for <yocto@yoctoproject.org>; Fri, 17 Feb 2017 02:46:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=uievolution.onmicrosoft.com; s=selector1-xevo-com;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
-	bh=DmL1BEiSRgHlkbwSzi412mvuQE2bWhvcdpTSzuJHem0=;
-	b=BiKy1TAzjihzydhj4xp0WkQG0SmzI+FgF8spVenDvEEVBXIInpt5SGxNxTallTL7LiLCI20svShwrXEVb75xiGcHkk/jbn3LRhC+RQcY8vIAElsb2sT9itOBdKylYZ3zNHl+krUa/aGstYunpyKd1ihEHgWBtylF652JdcxszvE=
-Received: from DM5PR0101MB2953.prod.exchangelabs.com (10.174.181.143) by
-	DM5PR0101MB2955.prod.exchangelabs.com (10.174.181.145) with Microsoft
-	SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
-	15.1.888.16; Fri, 17 Feb 2017 10:45:58 +0000
-Received: from DM5PR0101MB2953.prod.exchangelabs.com ([10.174.181.143]) by
-	DM5PR0101MB2953.prod.exchangelabs.com ([10.174.181.143]) with mapi id
-	15.01.0888.034; Fri, 17 Feb 2017 10:45:58 +0000
-From: Takashi Matsuzawa <tmatsuzawa@xevo.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Placing xxxx.pc in nativesdk?
-Thread-Index: AQHSiQervPY2RLmUiEeKFae1+wnx4w==
-Date: Fri, 17 Feb 2017 10:45:58 +0000
-Message-ID: <DM5PR0101MB2953FFB5C9FD866E75454535B65D0@DM5PR0101MB2953.prod.exchangelabs.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=tmatsuzawa@xevo.com; 
-x-originating-ip: [25.171.161.132]
-x-ms-office365-filtering-correlation-id: f6fc3781-0328-4ee9-b7d8-08d457222894
-x-microsoft-antispam: UriScan:; BCL:0; PCL:0; RULEID:(22001);
-	SRVR:DM5PR0101MB2955; 
-x-microsoft-exchange-diagnostics: 1; DM5PR0101MB2955;
-	7:H24ynqT1sCNDBzTT5vGS1k6N+yhnDEo9zNiJQGCdfCvCjvvNu2gRe2xd+qfSHV5EaS8k594NvctFvaIaj3bXH3FhCLVu9Qcxftv0Mkz9HtQHNLi2QI0kJXTN1qq5MQaa99qe68mOCpBgSlzTl4IIxxpU5BR/gA8sEx+jyFbkIHWfEhESb6ExB/9MmNCcXGA4tVlYbCn6nBGI8ocb6DPUgLfFAJ5QmBDdFS/AZYqIvGAdBupkEOkshJy2u+Jng1WygdXC5u3fMiZrG6sY0QZMRYPyD2gV8+dRKi3yfGf6l7FE0t2sNQ8E46I1EIS8rEO11z11lbrYQ9YFwuUb0MoLWQ==
-x-microsoft-antispam-prvs: <DM5PR0101MB2955629C2A1D634A79F0FA6FB65D0@DM5PR0101MB2955.prod.exchangelabs.com>
-x-exchange-antispam-report-test: UriScan:;
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(6040375)(2401047)(8121501046)(5005006)(10201501046)(3002001)(6041248)(20161123558025)(20161123555025)(20161123560025)(20161123564025)(20161123562025)(6072148);
-	SRVR:DM5PR0101MB2955; BCL:0; PCL:0; RULEID:;
-	SRVR:DM5PR0101MB2955; 
-x-forefront-prvs: 02213C82F8
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10009020)(6009001)(7916002)(39450400003)(189002)(199003)(33656002)(5660300001)(50986999)(450100001)(122556002)(81156014)(54896002)(2351001)(54356999)(68736007)(66066001)(53936002)(19627405001)(106356001)(6916009)(6606003)(105586002)(9686003)(7696004)(6506006)(77096006)(106116001)(101416001)(8936002)(3280700002)(25786008)(99286003)(8676002)(86362001)(55016002)(189998001)(81166006)(5640700003)(74316002)(1730700003)(3660700001)(3846002)(92566002)(2501003)(110136004)(2900100001)(97736004)(38730400002)(102836003)(6116002)(2906002)(6436002)(53336002)(3480700004)(7736002);
-	DIR:OUT; SFP:1101; SCL:1; SRVR:DM5PR0101MB2955;
-	H:DM5PR0101MB2953.prod.exchangelabs.com; FPR:; SPF:None;
-	PTR:InfoNoRecords; MX:1; A:1; LANG:en; 
-received-spf: None (protection.outlook.com: xevo.com does not designate
-	permitted sender hosts)
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.214.67 listed in dnsbl.sorbs.net]
+Received: from mail-it0-f67.google.com (mail-it0-f67.google.com
+	[209.85.214.67])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 12D9BE00724
+	for <yocto@yoctoproject.org>; Fri, 17 Feb 2017 02:57:49 -0800 (PST)
+Received: by mail-it0-f67.google.com with SMTP id e137so2152453itc.0
+	for <yocto@yoctoproject.org>; Fri, 17 Feb 2017 02:57:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-disposition:in-reply-to:user-agent;
+	bh=vyQlza1CQZpYzEZdRTqI+TF3//w1oXH8kug7aQL/CLk=;
+	b=VEjHJxoZtYkA0VgMa1/bxJeGxD/BUHOCazmt5R2pP6wPjIjciSmVgr6iEzEnHJJrp3
+	GwxxbGHp/9CeLcRg7wS3iD6cg/zEJ4TYPpJA308TGR0VDoJhzfCC+x4OZ83vG0ySLr08
+	tpPjpBWLjPeP/TKuqAhtEhds7RPzhBJdFoJ/03UJrlKTFPyrwDULhZeyRaaq6IPqOWOH
+	lj770cbKW/yFhDUvQfRbipoKHulzGN18+qjiBs+36yYQYKjNnEhZbUi2txr1y3NFX7mT
+	IEl0mUSdS+et9i7+qPPOpkXgIEBXYmyRymtr5fLciyCBBQopARO+/qTaXcIBcQxtioug
+	Bleg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	:mime-version:content-disposition:in-reply-to:user-agent;
+	bh=vyQlza1CQZpYzEZdRTqI+TF3//w1oXH8kug7aQL/CLk=;
+	b=RHb7s9nhGEg/8LjoR+RtFFkimPHKJOJfDpOnlV9/ZQ5MeG1SfhksTtJNDRSE/rspSk
+	kEjmMzRAM+YwX0LC0CLnKhWbgnYUGoi8UKwxDNLKWn9s7wlqZlpitemowCTYD829eGDT
+	03BV2xPlCie56IZivfv+JADRslJQX1SKCVznoJ6ybT428VXVdhkgStXe8E/dRcUKzngY
+	xUFjsnc0OsuQjdRjvUyHHFxPcr0O8PcHfsjL6hXSvwSEtktIsaeprlL6jmhOpoP3OHiJ
+	C4HuLgkYpsq9nie51+Fa1vXZNFM59XdC7AGK/5kciXAgwnibqrYtc7it2vTvwtIWdqbM
+	9vCw==
+X-Gm-Message-State: AMke39k1jbThk9XQBVJO9OVRwoQZcZxglAvpHGY0smp29UWUNWMsWy/gZTsS0+A/vBqiDw==
+X-Received: by 10.36.200.9 with SMTP id w9mr2885938itf.113.1487329068942;
+	Fri, 17 Feb 2017 02:57:48 -0800 (PST)
+Received: from linux-uys3 (dsl-67-55-28-109.acanac.net. [67.55.28.109])
+	by smtp.gmail.com with ESMTPSA id k66sm405828itg.8.2017.02.17.02.57.47
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Fri, 17 Feb 2017 02:57:47 -0800 (PST)
+Date: Fri, 17 Feb 2017 05:57:45 -0500
+From: Trevor Woerner <twoerner@gmail.com>
+To: Eddie Cai <eddie.cai.linux@gmail.com>
+Message-ID: <20170217105745.GA10517@linux-uys3>
+References: <1487051666-20888-1-git-send-email-eddie.cai.linux@gmail.com>
+	<20170217033349.GA12618@linux-uys3>
+	<CAJrj+DPJ5ZC4bxMsrHYD+kY1ur28hTBnfPSd+RNKd+kpnHZxOQ@mail.gmail.com>
 MIME-Version: 1.0
-X-OriginatorOrg: xevo.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Feb 2017 10:45:58.4810 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: e0a7ca1f-2458-4cd6-a7c7-d733c07495ab
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR0101MB2955
-Subject: Placing xxxx.pc in nativesdk?
+In-Reply-To: <CAJrj+DPJ5ZC4bxMsrHYD+kY1ur28hTBnfPSd+RNKd+kpnHZxOQ@mail.gmail.com>
+User-Agent: Mutt/1.6.0 (2016-04-01)
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-rockchip][morty][PATHV2 0/6] add main line kernel support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -85,156 +78,149 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 17 Feb 2017 10:46:05 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_DM5PR0101MB2953FFB5C9FD866E75454535B65D0DM5PR0101MB2953_"
+X-List-Received-Date: Fri, 17 Feb 2017 10:57:53 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 
---_000_DM5PR0101MB2953FFB5C9FD866E75454535B65D0DM5PR0101MB2953_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Hi Eddie,
 
-Hello, Yocto.
+On Fri 2017-02-17 @ 04:56:28 PM, Eddie Cai wrote:
+> 2017-02-17 11:33 GMT+08:00 Trevor Woerner <twoerner@gmail.com>:
+> > You've put "morty" in the subject lines which to me means you're hoping these
+> > patches will be applied against the morty branch of meta-rockchip. Morty was
+> > released in October of 2016 which, at this point, is almost 5 months ago. At
+> > this point patches should only go against morty to fix critical issues. These
+> > patches look more like they're adding functionality, so I'll apply them to
+> > master instead. The next release is Pyro which is expected around April 2017.
+> I will remove branch next time i send patches.
 
-Maybe a basic question but I am being puzzled.
+You're welcome to add a branch name to any patch you send :-) But ideally a
+patch that adds new functionality would be applied to master and a patch that
+fixes a serious bug, a security issue, or makes a broken build succeed again
+could be branch-specific.
+
+> > On Tue 2017-02-14 @ 01:54:20 PM, Eddie Cai wrote:
+> >> This patch set add main line kernel support for meta-rockchip
+> >>
+> >> Eddie Cai (6):
+> >>   machine: Use cortexa17hf-neon-vfpv4 as default tune for rk3288.inc
+> >
+> > As I've mentioned before, Yocto/OE is a _distribution_ builder, not just an
+> > image builder. As such most people in the community consider DEFAULTTUNES to
+> > be a DISTRO-level policy. In other words, this is not something that should be
+> > set by the BSP. One distro might want to use softfloat, while another wants
+> > hard-float. It will be easier for people who make distributions using Yocto/OE
+> > to use this layer when these types of things are not set at this level. Users
+> > are free to use these distributions (by adding their layers) or they can set a
+> > DEFAULTTUNE in their conf/local.conf file.
+> >
+> > I'll add a note to the README pointing this out so people can be aware of this
+> > configuration tweak, but I won't take this patch into the BSP. I've been able
+> > to build and run images where the DEFAULTTUNE is not set and they run just
+> > fine. Another patch (which I'll be happy to create) will need to look for this
+> > tune in recipes that provide things like mali support.
+> I found there are many meta using hardfloat. see below for example.
+
+I wouldn't say there are many, there are some but that doesn't mean they're
+correct in doing this :-) The Yocto/OE community is very lax; nobody's going
+to take down a layer that doesn't play nicely with other layers, but that
+doesn't mean they're correct :-)
+
+> So
+> i think what meta-xxx(could be rockchip, freescale, allwinner etc)
+> means building optimized distribution for xxx.
+
+I disagree (please see my next response)
+
+> If people come to
+> meta-rockchip.  They must want to build a image/distribuition run on
+> rockchip platform. If not, They should go to meta-debian or other
+> generic meta rather than meta-rockchip.  ie. we won't expect a image
+> built by meta-amd can run on rockchip platform. right?
+
+If you wanted to run debian on your rockchip device then you would include
+meta-debian in your bblayers. But while bitbake is building your debian image
+for your rockchip device it will need to know what kernel to use, what kernel
+configuration to use (device tree, .config, etc) and it will need to know what
+bootloader to use (e.g. maybe u-boot, and if so, which version? and from where
+do you clone the repository? denx? or vendor-specific github?) Who is going
+to answer these questions? Who is going to tell bitbake which bootloader to
+use for your rockchip device? That's what meta-rockchip is for, and that's why
+people add it to their bblayers.
+
+When people add meta-rockchip to their build it's because their build needs to
+know which kernel and bootloader to use (and various other bits).
+
+But the decision whether the user wants to build an image that will run on as
+many boards as possible, or whether they want a build that will run as fast as
+possible on only one board is actually a distro-level decision.
+
+If you download an x86, 64-bit version of Fedora, openSUSE, or debian to
+install on your desktop machine, you won't find different installs that are
+tweaked for i7, Xeon, or AMD processors. You'll find one generic x86-64
+download that works on as many desktop computers as possible. But if you
+want a Linux distribution that is as tweaked out as possible for exactly the
+processor you're running, you would look at Arch or Gentoo. The distribution
+decides whether your code is as generic as possible, or tweaked for exactly
+your hardware.
+
+For many years I too believed exactly the same things you're saying, and I too
+argued exactly the same arguments you're now making. I hope it doesn't take
+you as long as it took me to realize that a BSP layer is for informing the
+build where to find board-specific code (such as vendor kernels and
+bootloaders) and tuning the build is for distro layers to decide ;-)
+
+https://github.com/96boards/meta-rpb/blob/master/conf/distro/include/arm-defaults.inc
+provides an example of the hoops people have to jump through in order to try
+to create a distro based on BSP layers that set tunes however they wish. Also
+https://github.com/Angstrom-distribution/meta-angstrom/blob/master/conf/distro/include/arm-defaults.inc
 
 
-i) Recipe A builds module, and the module expects that xkbcommon.pc is avai=
-lable (checked in autotool by calling pkg-config)
 
-ii) module A build fails, since it cannot find xkbcommon.pc, according to t=
-he config.log.
+> raspberrypi:
+> http://git.yoctoproject.org/cgit/cgit.cgi/meta-raspberrypi/tree/conf/machine/raspberrypi2.conf?h=master
+> freescale:
+> http://git.yoctoproject.org/cgit/cgit.cgi/meta-freescale/tree/conf/machine/include/imx-base.inc
+> amd:
+> http://git.yoctoproject.org/cgit/cgit.cgi/meta-amd/tree/meta-amdfalconx86/conf/machine/include/tune-amdfalconx86.inc
+> allwinner:
+> https://github.com/linux-sunxi/meta-sunxi/blob/master/conf/machine/orange-pi-one.conf
 
+In the case of the meta-sunxi layer, that layer provides 18 machine
+configuration files. Only two of them have a DEFAULTTUNE. I think it would be
+easy to argue that these two files are out of place, rather than to try to
+argue they represent the common way of doing things ;-)
 
-(in TEMPDIR/work)
-./cortexa9hf-neon-poky-linux-gnueabi/libxkbcommon/0.5.0-r0/image/usr/lib/pk=
-gconfig/xkbcommon.pc
-./cortexa9hf-neon-poky-linux-gnueabi/libxkbcommon/0.5.0-r0/sysroot-destdir/=
-usr/lib/pkgconfig/xkbcommon.pc
-./cortexa9hf-neon-poky-linux-gnueabi/libxkbcommon/0.5.0-r0/build/xkbcommon.=
-pc
-./cortexa9hf-neon-poky-linux-gnueabi/libxkbcommon/0.5.0-r0/packages-split/l=
-ibxkbcommon-dev/usr/lib/pkgconfig/xkbcommon.pc
-./cortexa9hf-neon-poky-linux-gnueabi/libxkbcommon/0.5.0-r0/package/usr/lib/=
-pkgconfig/xkbcommon.pc
+If you read through meta-sunxi's README.md file you'll see that it explicitly
+talks about how by default this layer allows for the most flexible build, but
+how if the user wants performance instead, they are welcome to add the
+DEFAULTTUNE to their build's configuration (i.e. local.conf) themselves.
 
-I can find it above, but I do not seem to find it in x86_64-nativesdk-xxxxx=
- tree, so it may be the cause of the problem.
-The recipe A has DEPENDS that include "libxkbcommon"
+It would be easy to create a list of BSP layers that either don't provide a
+DEFAULTTUNE or, if they do, provide a tune that is not hf but essentially the
+same tune you would get by just specifying something like cortexa9 (for
+example).
 
-My question is, in general, what is lacking here that prevent xkbcommon.pc =
-to be found from other recipe / configure?
+meta-altera: sets a tune in conf/machine/include to nios and talks about
+setting hf tunes in its README.
 
-xxxx.pc is in the target image /isr/lib/pkgconfig successfully, so I believ=
-e I need something to make it available in cross SDK?
+meta-cubox: set a generic tune and talks about a hf tune in the README.
 
+meta-efikamx: no default tune
 
+meta-ettus: provides a generic tune and mentions how a user can set more
+specific tunes in conf/local.conf.sample
 
---_000_DM5PR0101MB2953FFB5C9FD866E75454535B65D0DM5PR0101MB2953_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+meta-exynos: no defaulttunes
 
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
-</head>
-<body dir=3D"ltr">
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
--family:Calibri,Arial,Helvetica,sans-serif;" dir=3D"ltr">
-<p>Hello, Yocto.</p>
-<p>Maybe a basic question but I am being puzzled.</p>
-<p><br>
-</p>
-<p>i) Recipe A&nbsp;builds module, and the module expects that xkbcommon.pc=
- is available (checked in autotool by calling pkg-config)</p>
-<p>ii) module A&nbsp;build fails, since&nbsp;it cannot find&nbsp;xkbcommon.=
-pc, according to the config.log.</p>
-<p><br>
-</p>
-<p></p>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot;App=
-le Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot;Seg=
-oe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size: 16p=
-x;">
-(in TEMPDIR/work)</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot;App=
-le Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot;Seg=
-oe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size: 16p=
-x;">
-./cortexa9hf-neon-poky-linux-gnueabi/libxkbcommon/0.5.0-r0/image/usr/lib/pk=
-gconfig/xkbcommon.pc</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot;App=
-le Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot;Seg=
-oe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size: 16p=
-x;">
-./cortexa9hf-neon-poky-linux-gnueabi/libxkbcommon/0.5.0-r0/sysroot-destdir/=
-usr/lib/pkgconfig/xkbcommon.pc</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot;App=
-le Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot;Seg=
-oe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size: 16p=
-x;">
-<span style=3D"font-size: 12pt;">./cortexa9hf-neon-poky-linux-gnueabi/libxk=
-bcommon/0.5.0-r0/build/xkbcommon.pc</span><br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot;App=
-le Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot;Seg=
-oe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size: 16p=
-x;">
-./cortexa9hf-neon-poky-linux-gnueabi/libxkbcommon/0.5.0-r0/packages-split/l=
-ibxkbcommon-dev/usr/lib/pkgconfig/xkbcommon.pc</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot;App=
-le Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot;Seg=
-oe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size: 16p=
-x;">
-./cortexa9hf-neon-poky-linux-gnueabi/libxkbcommon/0.5.0-r0/package/usr/lib/=
-pkgconfig/xkbcommon.pc</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot;App=
-le Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot;Seg=
-oe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size: 16p=
-x;">
-<span style=3D"font-size: 12pt;"><br>
-</span></div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot;App=
-le Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot;Seg=
-oe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size: 16p=
-x;">
-<span style=3D"font-size: 12pt;">I can find it above, but I do not seem to =
-find it in x86_64-nativesdk-xxxxx tree, so it may be the cause of the probl=
-em.</span><br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot;App=
-le Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot;Seg=
-oe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size: 16p=
-x;">
-<span style=3D"font-size: 12pt;">The recipe A has DEPENDS that include &quo=
-t;libxkbcommon&quot;</span></div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot;App=
-le Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot;Seg=
-oe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size: 16p=
-x;">
-<span style=3D"font-size: 12pt;"><br>
-</span></div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif, &quot;App=
-le Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot;Seg=
-oe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size: 16p=
-x;">
-<span style=3D"font-size: 12pt;">My question is, in general, what is lackin=
-g here&nbsp;that prevent xkbcommon.pc to be found from other recipe / confi=
-gure?</span></div>
-<p></p>
-<p>xxxx.pc is in the target image /isr/lib/pkgconfig successfully, so I bel=
-ieve I need something to make it available in cross SDK?</p>
-<p><br>
-</p>
-<p></p>
-<div><br>
-</div>
-<p></p>
-</div>
-</body>
-</html>
+meta-pine64: no defaulttune
 
---_000_DM5PR0101MB2953FFB5C9FD866E75454535B65D0DM5PR0101MB2953_--
+meta-qcom: no defaulttune
+
+meta-udoo: no defaulttune
+
+meta-zync: no defaulttune
+
+Best regards,
+	Trevor
+
