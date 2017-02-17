@@ -1,65 +1,34 @@
-Return-Path: <satya.2891@gmail.com>
+Return-Path: <daniela.plascencia@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 53068E00939; Mon, 20 Feb 2017 09:44:40 -0800 (PST)
+	id 993CCE00726; Fri, 17 Feb 2017 13:54:56 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.215.51 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (satya.2891[at]gmail.com)
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.115 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-lf0-f51.google.com (mail-lf0-f51.google.com
-	[209.85.215.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7D646E003D7
-	for <yocto@yoctoproject.org>; Mon, 20 Feb 2017 09:44:38 -0800 (PST)
-Received: by mail-lf0-f51.google.com with SMTP id z127so52985924lfa.2
-	for <yocto@yoctoproject.org>; Mon, 20 Feb 2017 09:44:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=FrVwUjx4+QkBVskuHkoMevuOMCH+5daKRsjGwnhfYHM=;
-	b=LtfVl4CJRVdz9Q6xzXh9zUk5dU/+rDx5Wht0M2dyBPiuqlqKUek2MH8uR0P7QaGTrh
-	Hz0oe9kY9gAR3NiWs4COc5GKEiWIeq0+bOMbM4NMBjCpzm8hE89+Csn3g7dqi/NeXZQ9
-	ole5Dro6O4Uk2KrKdjXsiP51ahVX9vePJ0jembolxt9hMj29wdHJH45jFzJAPma3bFx3
-	tEFydm+cCaj9fZUXc7+LmfWnXr+OuU00SvyeVYtwfpLS2auWFY9pUEXxZLCxcjD8Ef+0
-	FIGVROUxglh9NTGNJxeeCRlPFFrq9qpFudT+imCC91pG+9mtEvumLzoqETjafuQkxZdj
-	rhbg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=FrVwUjx4+QkBVskuHkoMevuOMCH+5daKRsjGwnhfYHM=;
-	b=nJA25hQp653aM3A12XAsLKM8qhTxDP4DZu/yuOn8ASuJO6Yl+jyfro3dkrfdEbD8Eo
-	bRtRPB9FPhZZdvgFLoLUNzPC77ZAbo3jwj2DwpAp0pK/mQ1JdCBjzqQv3dOI10TGEcqu
-	RvD7hUY2W7skoDpI90li6cd0/Io9o/IcXrU/Eyl0R4lV9UpGh00bySFKvCOM5yRgNgQ6
-	2ghRPhLG7TRjajtp3NMpSP1zgF63EhWQoglCdi/Fa5ZcAogzRcBnfcmVNQCvLvQOF5aN
-	h47yJ/Qp4/BMD5xXMnqDj3h8YX1K4Ri6pEIZpnKLp+urTL7P1x8j2+93AkTXGIxx7VKA
-	2zeg==
-X-Gm-Message-State: AMke39m9mvKToC/AwT9T5Zn9MLc/qTupEpsrerbINEK9LRtdhzvD1ZZk2/2Iz273h/cR9D2U1y6gWci0u+JUlw==
-X-Received: by 10.46.75.26 with SMTP id y26mr6023623lja.27.1487612677717; Mon,
-	20 Feb 2017 09:44:37 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.25.155.8 with HTTP; Mon, 20 Feb 2017 09:44:37 -0800 (PST)
-In-Reply-To: <CAJTo0Lau5AyY33Y+cROUMR38uR_Msr5YSiGQtnd-Nscu-oe0nA@mail.gmail.com>
-References: <CAF1M0z72cFVW61EkLqdSwPrRKO1AptMsntfxxEzo8Qy=ak79oQ@mail.gmail.com>
-	<CAJTo0Lau5AyY33Y+cROUMR38uR_Msr5YSiGQtnd-Nscu-oe0nA@mail.gmail.com>
-From: SatyaNarayana Sampangi <satya.2891@gmail.com>
-Date: Mon, 20 Feb 2017 23:14:37 +0530
-Message-ID: <CAF1M0z4VWhHuzFXhRgpoDYbD00P+1R8W-9qyw_X_V2RrSFa8hA@mail.gmail.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Problem: Installation
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 98130E00566
+	for <yocto@yoctoproject.org>; Fri, 17 Feb 2017 13:54:54 -0800 (PST)
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+	by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	17 Feb 2017 13:54:54 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.35,173,1484035200"; d="scan'208";a="66619475"
+Received: from dplascen-desk.zpn.intel.com ([10.219.4.147])
+	by fmsmga005.fm.intel.com with ESMTP; 17 Feb 2017 13:54:53 -0800
+From: daniela.plascencia@linux.intel.com
+To: yocto@yoctoproject.org
+Date: Fri, 17 Feb 2017 15:52:36 -0600
+Message-Id: <20170217215236.30682-1-daniela.plascencia@linux.intel.com>
+X-Mailer: git-send-email 2.11.0
+X-Mailman-Approved-At: Mon, 20 Feb 2017 09:46:41 -0800
+Cc: Daniela Plascencia <daniela.plascencia@linux.intel.com>
+Subject: [patchtest-oe][PATCH] tests: modifies pylint check in the test suite
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,87 +40,114 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 20 Feb 2017 17:44:40 -0000
-Content-Type: multipart/alternative; boundary=f403045ea2863807a90548f9d1b9
+X-List-Received-Date: Fri, 17 Feb 2017 21:54:56 -0000
 
---f403045ea2863807a90548f9d1b9
-Content-Type: text/plain; charset=UTF-8
+From: Daniela Plascencia <daniela.plascencia@linux.intel.com>
 
-Hi Ross,
+Changes pylint's check current logic using dictionaries and sets for easy
+operations between pretest and test pylint results. The failing message is
+now formatted so it is easier for the user to locate errors encountered
+by the check.
 
-Thanks for your reply, by the way the tgz contains,
+[YOCTO #10789]
 
-hello.c  helloprint.c  helloprint.h, and moreover I could see in the ${S},
-which is suppose to be
-~/yocto/poky/build/tmp/work/cortexa8hf-vfp-neon-poky-linux-gnueabi/hellosatya/1.0-r0/hellosatya-1.0
+Signed-off-by: Daniela Plascencia <daniela.plascencia@linux.intel.com>
+---
+ tests/test_python_pylint.py | 59 +++++++++++++++++++++++----------------------
+ 1 file changed, 30 insertions(+), 29 deletions(-)
 
-tree hellosatya-1.0/
-hellosatya-1.0/
-|-- hello.c
-|-- helloprint.c
-`-- helloprint.h
+diff --git a/tests/test_python_pylint.py b/tests/test_python_pylint.py
+index ea889a6..b61c31d 100644
+--- a/tests/test_python_pylint.py
++++ b/tests/test_python_pylint.py
+@@ -18,56 +18,57 @@
+ # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+ 
+ import base
+-import re
+ import patchtestdata
+ import pylint.epylint as lint
+ 
+ class PyLint(base.Base):
+-    pythonpatches = []
++    pythonpatches  = []
++    pylint_pretest = {}
++    pylint_test    = {}
++    pylint_options = " -E --disable='E0611, E1101, F0401, E0602' --msg-template='L:{line} F:{path} I:{msg}'"
+ 
+     @classmethod
+     def setUpClassLocal(cls):
+         # get just those patches touching python files
++        cls.pythonpatches = []
+         for patch in cls.patchset:
+             if patch.path.endswith('.py'):
+-                cls.pythonpatches.append(patch)
++                if not patch.is_removed_file:
++                    cls.pythonpatches.append(patch)
+ 
+     def setUp(self):
+-        self.skip('Pending for Yocto #10789]')
+-
+         if self.unidiff_parse_error:
+             self.skip([('Python-unidiff parse error', self.unidiff_parse_error)])
+         if not patchtestdata.PatchTestInput.repo.canbemerged:
+-            self.skip('Patch cannot be merged, no reason to execute the test method')
++            self.skipTest('Patch cannot be merged, no reason to execute the test method')
+         if not PyLint.pythonpatches:
+-            self.skip('No python related patches, skipping test')
++            self.skipTest('No python related patches, skipping test')
+ 
+     def pretest_pylint(self):
+-        patchtestdata.PatchTestDataStore['pylint_pretest'] = list()
+         for pythonpatch in self.pythonpatches:
+             if pythonpatch.is_modified_file:
+-                (pylint_stdout, pylint_stderr) = lint.py_run(pythonpatch.path, return_std=True)
+-                patchtestdata.PatchTestDataStore['pylint_pretest'].extend(pylint_stdout.readlines())
++                (pylint_stdout, pylint_stderr) = lint.py_run(command_options = pythonpatch.path + self.pylint_options, return_std=True)
++                for line in pylint_stdout.readlines():
++                    if not '*' in line:
++                        if line.strip():
++                            self.pylint_pretest[line.strip().split(' ',1)[0]] = line.strip().split(' ',1)[1]
+ 
+     def test_pylint(self):
+-        patchtestdata.PatchTestDataStore['pylint_test'] = list()
+         for pythonpatch in self.pythonpatches:
+-            (pylint_stdout, pylint_stderr) = lint.py_run(pythonpatch.path, return_std=True)
+-            patchtestdata.PatchTestDataStore['pylint_test'].extend(pylint_stdout.readlines())
+-
+-        # Removing line numbers of pylint log so system focus just on introduced issues
+-        pylint_pretest = [re.sub(':\d+:', ':', pyline) for pyline in patchtestdata.PatchTestDataStore['pylint_pretest']]
+-        pylint_test    = [re.sub(':\d+:', ':', pyline) for pyline in patchtestdata.PatchTestDataStore['pylint_test']]
+-
+-        while pylint_pretest:
+-            pretest = pylint_pretest.pop(0)
+-            try:
+-                pylint_test.remove(pretest)
+-            except ValueError as ve:
+-                base.logger.warn('Line %s not found on pylint_test lines' % pretest)
+-
+-        if pylint_test:
+-            self.fail('Pylint found issues on your proposed change',
+-                      'Check your modified python lines with pylint, specially those lines introduced by your patch',
+-                      data=[('Output', pylint_test[0].strip()), ('',''.join(pylint_test[1:]))])
++            # a condition checking whether a file is renamed or not
++            # unidiff doesn't support this yet
++            if pythonpatch.target_file is not pythonpatch.path:
++                path = pythonpatch.target_file[2:]
++            else:
++                path = pythonpatch.path
++            (pylint_stdout, pylint_stderr) = lint.py_run(command_options = path + self.pylint_options, return_std=True)
++            for line in pylint_stdout.readlines():
++                    if not '*' in line:
++                        if line.strip():
++                            self.pylint_test[line.strip().split(' ',1)[0]] = line.strip().split(' ',1)[1]
+ 
++        for issue in self.pylint_test:
++             if self.pylint_test[issue] not in self.pylint_pretest.values():
++                 self.fail('Errors in your Python code were encountered',
++                           'Correct the lines introduced by your patch',
++                           data=[('Output', 'Please, fix the listed issues:'), ('', issue + ' ' + self.pylint_test[issue])])
+-- 
+2.11.0
 
-0 directories, 3 files
 
-So, this clearly states that it is unpacked into the WOKDIR.
-
-Any other variables need to be taken care?
-
-Thanks,
-satya
-
-
-
-On Mon, Feb 20, 2017 at 10:03 PM, Burton, Ross <ross.burton@intel.com>
-wrote:
-
->
-> On 20 February 2017 at 16:30, SatyaNarayana Sampangi <satya.2891@gmail.com
-> > wrote:
->
->>  14 SRC_URI = "file://hellosatya-1.0.tgz"
->>  15
->>  16 S = "${WORKDIR}"
->>
->
-> What files are in the tgz, and where do they expand to?  The error says no
-> such file or directory, so presumably it didn't unpack helloprint.c into
-> the work directory.
->
-> Ross
->
-
---f403045ea2863807a90548f9d1b9
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi Ross,<div><br></div><div>Thanks for your reply, by the =
-way the tgz contains,</div><div><br></div><div>hello.c =C2=A0helloprint.c =
-=C2=A0helloprint.h, and moreover I could see in the ${S}, which is suppose =
-to be<br></div><div>~/yocto/poky/build/tmp/work/cortexa8hf-vfp-neon-poky-li=
-nux-gnueabi/hellosatya/1.0-r0/hellosatya-1.0<br></div><div><br></div><div><=
-div>tree hellosatya-1.0/</div><div>hellosatya-1.0/</div><div>|-- hello.c</d=
-iv><div>|-- helloprint.c</div><div>`-- helloprint.h</div><div><br></div><di=
-v>0 directories, 3 files</div></div><div><br></div><div>So, this clearly st=
-ates that it is unpacked into the WOKDIR.</div><div><br></div><div>Any othe=
-r variables need to be taken care?</div><div><br></div><div>Thanks,</div><d=
-iv>satya</div><div><br></div><div><br></div></div><div class=3D"gmail_extra=
-"><br><div class=3D"gmail_quote">On Mon, Feb 20, 2017 at 10:03 PM, Burton, =
-Ross <span dir=3D"ltr">&lt;<a href=3D"mailto:ross.burton@intel.com" target=
-=3D"_blank">ross.burton@intel.com</a>&gt;</span> wrote:<br><blockquote clas=
-s=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;pad=
-ding-left:1ex"><div dir=3D"ltr"><div class=3D"gmail_extra"><span class=3D""=
-><br><div class=3D"gmail_quote">On 20 February 2017 at 16:30, SatyaNarayana=
- Sampangi <span dir=3D"ltr">&lt;<a href=3D"mailto:satya.2891@gmail.com" tar=
-get=3D"_blank">satya.2891@gmail.com</a>&gt;</span> wrote:<br><blockquote cl=
-ass=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;p=
-adding-left:1ex"><div>=C2=A014 SRC_URI =3D &quot;file://hellosatya-1.0.tgz&=
-quot;<br>=C2=A015 <br>=C2=A016 S =3D &quot;${WORKDIR}&quot;</div></blockquo=
-te></div><br></span>What files are in the tgz, and where do they expand to?=
-=C2=A0 The error says no such file or directory, so presumably it didn&#39;=
-t unpack helloprint.c into the work directory.</div><span class=3D"HOEnZb">=
-<font color=3D"#888888"><div class=3D"gmail_extra"><br></div><div class=3D"=
-gmail_extra">Ross</div></font></span></div>
-</blockquote></div><br></div>
-
---f403045ea2863807a90548f9d1b9--
