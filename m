@@ -1,42 +1,69 @@
-Return-Path: <anibal.limon@linux.intel.com>
+Return-Path: <kergoth@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 453FAE0094C; Fri, 17 Feb 2017 13:24:32 -0800 (PST)
+	id E6A2CE0094C; Fri, 17 Feb 2017 14:39:41 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [134.134.136.20 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE, 
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (kergoth[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 55BA8E00995
-	for <yocto@yoctoproject.org>; Fri, 17 Feb 2017 13:24:14 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	17 Feb 2017 13:24:14 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.35,173,1484035200"; 
-	d="asc'?scan'208";a="48716906"
-Received: from alimonb-mobl1.zpn.intel.com (HELO [10.219.128.120])
-	([10.219.128.120])
-	by orsmga002.jf.intel.com with ESMTP; 17 Feb 2017 13:24:14 -0800
-To: Christopher Larson <kergoth@gmail.com>
-References: <1486835474-10096-1-git-send-email-anibal.limon@linux.intel.com>
-	<589F5000.8050402@linux.intel.com>
-	<CABcZANkJC0FVsrRh+Kdd8_h9yRWR=3gpWWO4O0t-gbKbEMOukw@mail.gmail.com>
-	<58A1DE54.9000609@linux.intel.com>
-From: =?UTF-8?B?QW7DrWJhbCBMaW3Ds24=?= <anibal.limon@linux.intel.com>
-Message-ID: <58A76AC7.6060605@linux.intel.com>
-Date: Fri, 17 Feb 2017 15:27:35 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.3.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.218.51 listed in dnsbl.sorbs.net]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.218.51 listed in list.dnswl.org]
+Received: from mail-oi0-f51.google.com (mail-oi0-f51.google.com
+	[209.85.218.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 133E6E00726
+	for <yocto@yoctoproject.org>; Fri, 17 Feb 2017 14:39:38 -0800 (PST)
+Received: by mail-oi0-f51.google.com with SMTP id 62so17658477oih.2
+	for <yocto@yoctoproject.org>; Fri, 17 Feb 2017 14:39:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=ftfhydJOpxzfabsRu8LlfnBp4ZGWH2d7iPz5t4VQ/iE=;
+	b=S6XxkJeCnK3ppokeBkyVeS5IwDumF7tq5RAnXN1F+fu4A8BGNk+35TEOD/Gv3ouIbw
+	7Ng2sSCB70GQDh5cA2loL+yivqXMBBQUPDZbFT9CT4ZV9CLCZtFWNnK0ZUBln4kkxTen
+	pf4GRnC//v1MBUhVVUc5v68Fz5ygPtkZO4xp9FEnGX96y14M4foiAoUjezeXKr2jO4sJ
+	3BAdxoVYjh0jK6P77hS1gfmbpkZobble8VaMyh+JrBZ1zjTb4rO+PfuvAY3NQTisrpnK
+	z/r9VFSNhzRJ5MVT8vTRQMCVjyXaGOgYiQStBcZewwy3hUsvQx4NJmU++XIhH698Swbg
+	DvVQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=ftfhydJOpxzfabsRu8LlfnBp4ZGWH2d7iPz5t4VQ/iE=;
+	b=YvYKTjYq+s8EnlSlo8e5bJRZ5SaajtLl/OP3QgcxeDqyZxEE9dMqqXlcXfWyjUH8j0
+	/FojsQsm5ntge/7vPIzy0lZxXBJsiM94DHy6ZT0Vt2ovVRmSwfoqaGpes1tMGaGqOipc
+	RsZN7Ac6DOx495NqfsmrJlmQS2trNV2cFjRKDhz+fidk2P9wha0B3JaXkAogT54Whz88
+	QY2Nt3wEsu4AbRRZiMU0DwD1x/bodUK9/vxldjzqbDp4AenKjUIeWbRoR2DiQov2Vi1d
+	yFkAiMSnKL3vYWJxIFyuBCGTBAqiaVCCgBaEom0Dev5GTDizEOvvYYx4EqE+NIbj0shX
+	YXmA==
+X-Gm-Message-State: AMke39kTsJPkizYiB8qPcDsmODNj19d2R/Um3/vla0219r5HNC2lDJBdIDSKathKE+2FAjR1dqTfmkz6dXZI6A==
+X-Received: by 10.202.71.137 with SMTP id u131mr5667536oia.111.1487371178010; 
+	Fri, 17 Feb 2017 14:39:38 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <58A1DE54.9000609@linux.intel.com>
-Cc: yocto <yocto@yoctoproject.org>
-Subject: Re: [[RFC][PATCH]] yocto-compat-layer.py: Add script to YP Compatible Layer validation
+Received: by 10.157.5.8 with HTTP; Fri, 17 Feb 2017 14:39:17 -0800 (PST)
+In-Reply-To: <1487366767-28347-1-git-send-email-anibal.limon@linux.intel.com>
+References: <1487366767-28347-1-git-send-email-anibal.limon@linux.intel.com>
+From: Christopher Larson <kergoth@gmail.com>
+Date: Fri, 17 Feb 2017 15:39:17 -0700
+Message-ID: <CABcZANksgFTdb52szMJVWo4EWxDT9ZA6hpnznHAfGH-KB15CnA@mail.gmail.com>
+To: =?UTF-8?B?QW7DrWJhbCBMaW3Ds24=?= <anibal.limon@linux.intel.com>
+Cc: yocto <yocto@yoctoproject.org>,
+	Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>
+Subject: Re: [PATCH] yocto-compat-layer.py: Add script to YP Compatible Layer validation
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,133 +75,68 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 17 Feb 2017 21:24:32 -0000
-X-Groupsio-MsgNum: 34568
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature";
-	boundary="Wd5qjKW9qjxgCmH7jlwjEqTJJmRINqi9L"
+X-List-Received-Date: Fri, 17 Feb 2017 22:39:42 -0000
+Content-Type: multipart/alternative; boundary=001a113e3c68b6f1a20548c19608
 
---Wd5qjKW9qjxgCmH7jlwjEqTJJmRINqi9L
-Content-Type: text/plain; charset=windows-1252
+--001a113e3c68b6f1a20548c19608
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
+On Fri, Feb 17, 2017 at 2:26 PM, An=C3=ADbal Lim=C3=B3n <anibal.limon@linux=
+.intel.com>
+wrote:
 
+> +    parser.add_argument('-l', '--layer', metavar=3D'LAYER_DIR',
+> +            help=3D'Layer to test compatibility with Yocto Project',
+> +            action=3D'store', required=3DTrue)
+>
 
-On 02/13/2017 10:27 AM, An=EDbal Lim=F3n wrote:
->=20
->=20
-> On 02/11/2017 08:04 PM, Christopher Larson wrote:
->> On Sat, Feb 11, 2017 at 10:55 AM, An=EDbal Lim=F3n <anibal.limon@linux=
-=2Eintel.com
->>> wrote:
->>
->>> During the development of this script based on OEQA framework i found=
- a
->>> bug causing don't display stack traces, i sent a fix to the ML [1] al=
-so
->>> is on my branch at [2].
->>>
->>> I attached and example of how a log file looks, the example log resul=
-ts
->>> are based on meta-yocto-bsp.
->>>
->>> Cheers,
->>>         alimon
->>>
->>> [1]
->>> http://lists.openembedded.org/pipermail/openembedded-core/
->>> 2017-February/132494.html
->>> [2]
->>> http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/
->>> log/?h=3Dalimon/yp_compatible
->>>
->>
->> This seems like a good start, but this isn=92t useful:
->>
->>     AssertionError: True is not false : Layer meta-yocto-bsp changed
->> signatures.
->>
->> Presumably this is telling the user it=92s modifying things without us=
-ing the
->> appropriate overrides for machine or distro, but it doesn=92t actually=
- tell
->> them that, and displaying the changed checksums isn=92t of a great dea=
-l of
->> use on its own either, I=92d suggest at least capturing the changed va=
-riables
->> via bitbake-diffsigs or bitbake -S printdiff.
->=20
-> Ok i can add another tests using bitbake -S printdiff.
+The behavior of this argument is quite unintuitive. First, this path isn=E2=
+=80=99t
+actually used as the layer directory, detect_layers searches down from that
+path to *find* layers in that subdirectory, so the argument isn=E2=80=99t w=
+hat it
+says it is. Second, why are you making an option mandatory rather than just
+using arguments?
 
-Hi Christopher,
+That is, why `layer-compat-layer.py -l layerpath` rather than
+`layer-compat-layer.py layerpath`. If you change the call to
+`parser.add_argument(=E2=80=98layer=E2=80=99, =E2=80=A6)` it=E2=80=99d chan=
+ge to the latter behavior.
+--=20
+Christopher Larson
+kergoth at gmail dot com
+Founder - BitBake, OpenEmbedded, OpenZaurus
+Senior Software Engineer, Mentor Graphics
 
-Currently the printdiff is broke, i agree with the idea to show what
-actually changes in the signature but there are some work to be done in
-printdiff.
+--001a113e3c68b6f1a20548c19608
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-	alimon
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On Fri, Feb 17, 2017 at 2:26 PM, An=C3=ADbal Lim=C3=B3n <span dir=3D"ltr">&=
+lt;<a href=3D"mailto:anibal.limon@linux.intel.com" target=3D"_blank">anibal=
+.limon@linux.intel.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_=
+quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1=
+ex"><div id=3D":dp" class=3D"a3s aXjCH m15a4df4b55dec0a4">+=C2=A0 =C2=A0 pa=
+rser.add_argument(&#39;-l&#39;, &#39;--layer&#39;, metavar=3D&#39;LAYER_DIR=
+&#39;,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 help=3D&#39;Layer to test compat=
+ibility with Yocto Project&#39;,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 action=3D&#39;store&#39;, requir=
+ed=3DTrue)</div></blockquote></div><br>The behavior of this argument is qui=
+te unintuitive. First, this path isn=E2=80=99t actually used as the layer d=
+irectory, detect_layers searches down from that path to *find* layers in th=
+at subdirectory, so the argument isn=E2=80=99t what it says it is. Second, =
+why are you making an option mandatory rather than just using arguments?</d=
+iv><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">That is,=
+ why `layer-compat-layer.py -l layerpath` rather than `layer-compat-layer.p=
+y layerpath`. If you change the call to `parser.add_argument(=E2=80=98layer=
+=E2=80=99, =E2=80=A6)` it=E2=80=99d change to the latter behavior.<br>-- <b=
+r><div class=3D"gmail_signature" data-smartmail=3D"gmail_signature"><div di=
+r=3D"ltr"><div><div dir=3D"ltr">Christopher Larson<br>kergoth at gmail dot =
+com<br>Founder - BitBake, OpenEmbedded, OpenZaurus<br>Senior Software Engin=
+eer, Mentor Graphics</div></div></div></div>
+</div></div>
 
->=20
-> I have a question, did you see the changed signatures like the attached=
-
-> results log ones?
->=20
-> Example,
->=20
-> AssertionError: True is not false : Layer meta-yocto-bsp changed signat=
-ures.
-> packagegroup-core-lsb:do_build changed 3a1b91e693c766befca17e00ca69cfe9=
-
-> -> 1153f4c44d409486e10a19449981aef7
-> packagegroup-core-lsb:do_package_write_rpm changed
-> 7fafda279503fb441f957fe88981cbc9 -> 45845055584bad62e1b6d67b12e668bd
-> packagegroup-core-lsb:do_package changed
-> c312cfe0956cecd9af010de2de09dc89 -> 3d00ea36ae703c99c2e8be57ad309a04
-> meta-world-pkgdata:do_build changed d62a25aedc0adc4ed0832ea20141c4b7 ->=
-
-> e8ee6e0e34122c095bc62a26e90be51f
-> packagegroup-core-lsb:do_packagedata changed
-> 9a63506a1764a11a5177c206839ce8ba -> 919b5c641cc779e59bd8df94b50a3d07
-> packagegroup-core-lsb:do_package_qa changed
-> 53a4bafbdea1fc41098ae48aef584b12 -> babec54733e94d0df008e237927552e7
->=20
->=20
-> If not please apply this patch [1]
->=20
-> Best regards,
-> 	alimon
->=20
-> [1]
-> http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/commit/?h=3Dalim=
-on/yp_compatible&id=3Df35f9b2bc068ee4e50acdc163464da4aaadda956
->=20
->>
->=20
->=20
->=20
-
-
---Wd5qjKW9qjxgCmH7jlwjEqTJJmRINqi9L
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2
-
-iQIcBAEBAgAGBQJYp2rJAAoJEGJqcE9h3glgrIMP/1wsguWbI3m9N4Sl1qkWDzUm
-9lhrKMwKE100aox0sjRDd3hsFBUuIAm+gJqAS1EoVcCq89U+SjD+MNlGvkj/1nQi
-24RUo/cLCJjRBEI6U5tKouvb9YDKHVi8DtRzlHXEjasqmxms80Qk5P1ZqSCbXn6r
-OMtf9wdQXZjp37vNO8XCvocmCNlS2lyKRJc3LDmw0FWGc1CqQK72bfnGEn/2/tZG
-IRA/7BqW4k0HlgWXmJzPVVFpLvQIyQs86qcWDb+fCavQYoVhj+hUFzvsGfg3HzDQ
-YGM90mTtO0nrCunC45MRj5/lHrwdnhB3IvvzXBYGFPIbK4h+iKrHjB4f0X9X/aE9
-IRV8sf0+zuiUHBIPsXDm5TrKNkqws8Irt04QympJZHS+5q0KfQBJ5eOsBZlv9OL3
-/cqMKStczsFIlcJlT/TksePBQqiU2R1bXHgIuPIadyeOlvLMbi1OTfJLU9O/j3Yu
-JaeQSNf61e/I6PTH99UwScOAqx0XbPa4KG3VRk/dgmaJNorwKTkZUwWdXy0uxs61
-NnXfF8Va5srf6g/FdOwzcwM4ziq+r284HwPFP+z+pZntZlbmFScZfu8XxufV0jAC
-r60nmmgcUdxCQ+tbpZ/40BGq98iybBnnI9OTdr7/yVM+8mhGd9vlvJoFpCQ8XbYO
-Nep/Mc1IS4fnO6eeQJLv
-=SUPS
------END PGP SIGNATURE-----
-
---Wd5qjKW9qjxgCmH7jlwjEqTJJmRINqi9L--
+--001a113e3c68b6f1a20548c19608--
