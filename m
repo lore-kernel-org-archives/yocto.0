@@ -1,6 +1,6 @@
 Return-Path: <gary@mlbassoc.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 40ABFE00995; Fri, 17 Feb 2017 23:11:20 -0800 (PST)
+	id 414F2E009B8; Fri, 17 Feb 2017 23:12:06 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,26 +10,28 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from mail.analogue-micro.com (mail.analogue-micro.com
 	[217.144.149.242])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C6949E0094C
-	for <yocto@yoctoproject.org>; Fri, 17 Feb 2017 23:11:15 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A6C7EE00995
+	for <yocto@yoctoproject.org>; Fri, 17 Feb 2017 23:12:03 -0800 (PST)
 Received: by mail.analogue-micro.com (Postfix, from userid 999)
-	id 271C168A01C; Sat, 18 Feb 2017 07:11:14 +0000 (GMT)
+	id A6D8C68A01C; Sat, 18 Feb 2017 07:12:02 +0000 (GMT)
 Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
-	by mail.analogue-micro.com (Postfix) with ESMTP id 7B0A068A019;
-	Sat, 18 Feb 2017 07:11:13 +0000 (GMT)
+	by mail.analogue-micro.com (Postfix) with ESMTP id 5A4D968A019;
+	Sat, 18 Feb 2017 07:12:00 +0000 (GMT)
 Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
-	by zeus.mlbassoc.com (Postfix) with ESMTP id 13C1767402C9;
-	Sat, 18 Feb 2017 08:11:13 +0100 (CET)
+	by zeus.mlbassoc.com (Postfix) with ESMTP id 1C32E67402C9;
+	Sat, 18 Feb 2017 08:12:00 +0100 (CET)
 To: yocto@yoctoproject.org
-References: <1487245741-13739-1-git-send-email-schnitzeltony@googlemail.com>
+References: <d75a5d99-f1c8-f106-8264-50d03a5f5e2a@mlbassoc.com>
+	<7b993ea1-ffde-c3a7-b125-63c857808013@mlbassoc.com>
+	<88cac78b-712a-5d79-7f83-4d5d3269d093@gmail.com>
 From: Gary Thomas <gary@mlbassoc.com>
-Message-ID: <a892ec81-599b-90b1-a418-d97e72a3a1fc@mlbassoc.com>
-Date: Sat, 18 Feb 2017 08:11:12 +0100
+Message-ID: <d2d88cc4-c25e-994b-eb2c-9026e1a5fb9e@mlbassoc.com>
+Date: Sat, 18 Feb 2017 08:12:00 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
 	Thunderbird/45.7.0
 MIME-Version: 1.0
-In-Reply-To: <1487245741-13739-1-git-send-email-schnitzeltony@googlemail.com>
-Subject: Re: [meta-raspberrypi][PATCH] xserver-xf86-config: remove evdev configuration
+In-Reply-To: <88cac78b-712a-5d79-7f83-4d5d3269d093@gmail.com>
+Subject: Re: [meta-raspberrypi] WiFi on rpi3?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,116 +43,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 18 Feb 2017 07:11:20 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Sat, 18 Feb 2017 07:12:06 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 2017-02-16 12:49, Andreas Müller wrote:
-> xorg-xserver recommends xf86-input-libinput since oe-core's commit
+On 2017-02-17 03:09, Khem Raj wrote:
 >
-> | commit 2d005faff6341a81a2afae28860101ba9db51ae8
-> | Author: Jussi Kukkonen <jussi.kukkonen@intel.com>
-> | Date:   Wed Oct 26 11:37:38 2016 +0300
-> |
-> |    conf: Use xf86-input-libinput by default
-> | ...
 >
-> As nice side effect warnings for missing evdev in Xorg.0.log are gone.
+> On 1/20/17 3:52 AM, Gary Thomas wrote:
+>> On 2017-01-20 12:30, Gary Thomas wrote:
+>>> Can someone give me pointers to get the onboard WiFi on the
+>>> RaspberryPi3 going?  What kernel settings/hoops I need to do,
+>>> what packages I might need, etc?
+>>>
+>>> Thanks
+>>>
+>>
+>> Actually, I've found that with an older kernel (4.1.21) the WiFi
+>> device is discovered, but with the newer kernels (4.4.x and 4.9.x)
+>> it's not.
+>>
+>> Any clues?
+>>
 >
-> Signed-off-by: Andreas Müller <schnitzeltony@googlemail.com>
+> Please try out the patch I posted to ml
+>
+> https://lists.yoctoproject.org/pipermail/yocto/2017-February/034624.html
+>
+> or from my gh fork.
+>
+> https://github.com/kraj/meta-raspberrypi/commit/6ce6e57782c23fd21ad47286ac8b809ce989ea78
+>
+> and let us know.
 
-Indeed, this lets the X server work again without the need for xf86-input-evdev
-
-Thanks
-
-> ---
->  .../rpi/xorg.conf.d/10-evdev.conf                  | 40 ----------------------
->  .../xorg-xserver/xserver-xf86-config_0.1.bbappend  | 22 ++++++------
->  2 files changed, 10 insertions(+), 52 deletions(-)
->  delete mode 100644 recipes-graphics/xorg-xserver/xserver-xf86-config/rpi/xorg.conf.d/10-evdev.conf
->
-> diff --git a/recipes-graphics/xorg-xserver/xserver-xf86-config/rpi/xorg.conf.d/10-evdev.conf b/recipes-graphics/xorg-xserver/xserver-xf86-config/rpi/xorg.conf.d/10-evdev.conf
-> deleted file mode 100644
-> index cc83ab2..0000000
-> --- a/recipes-graphics/xorg-xserver/xserver-xf86-config/rpi/xorg.conf.d/10-evdev.conf
-> +++ /dev/null
-> @@ -1,40 +0,0 @@
-> -#
-> -# Catch-all evdev loader for udev-based systems
-> -# We don't simply match on any device since that also adds accelerometers
-> -# and other devices that we don't really want to use. The list below
-> -# matches everything but joysticks.
-> -
-> -Section "InputClass"
-> -        Identifier "evdev pointer catchall"
-> -        MatchIsPointer "on"
-> -        MatchDevicePath "/dev/input/event*"
-> -        Driver "evdev"
-> -EndSection
-> -
-> -Section "InputClass"
-> -        Identifier "evdev keyboard catchall"
-> -        MatchIsKeyboard "on"
-> -        MatchDevicePath "/dev/input/event*"
-> -        Driver "evdev"
-> -EndSection
-> -
-> -Section "InputClass"
-> -        Identifier "evdev touchpad catchall"
-> -        MatchIsTouchpad "on"
-> -        MatchDevicePath "/dev/input/event*"
-> -        Driver "evdev"
-> -EndSection
-> -
-> -Section "InputClass"
-> -        Identifier "evdev tablet catchall"
-> -        MatchIsTablet "on"
-> -        MatchDevicePath "/dev/input/event*"
-> -        Driver "evdev"
-> -EndSection
-> -
-> -Section "InputClass"
-> -        Identifier "evdev touchscreen catchall"
-> -        MatchIsTouchscreen "on"
-> -        MatchDevicePath "/dev/input/event*"
-> -        Driver "evdev"
-> -EndSection
-> diff --git a/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend b/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend
-> index 062de2d..b361eef 100644
-> --- a/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend
-> +++ b/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend
-> @@ -1,19 +1,17 @@
->  FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
->
-> -SRC_URI_append_rpi = " file://xorg.conf.d/10-evdev.conf \
-> -                       file://xorg.conf.d/98-pitft.conf \
-> -                       file://xorg.conf.d/99-calibration.conf \
-> -                     "
-> +SRC_URI_append_rpi = " \
-> +    file://xorg.conf.d/98-pitft.conf \
-> +    file://xorg.conf.d/99-calibration.conf \
-> +"
->
->  do_install_append_rpi () {
-> -	install -d ${D}/${sysconfdir}/X11/xorg.conf.d/
-> -	install -m 0644 ${WORKDIR}/xorg.conf.d/10-evdev.conf ${D}/${sysconfdir}/X11/xorg.conf.d/
-> -
-> -	PITFT="${@bb.utils.contains("MACHINE_FEATURES", "pitft", "1", "0", d)}"
-> -	if [ "${PITFT}" = "1" ]; then
-> -		install -m 0644 ${WORKDIR}/xorg.conf.d/98-pitft.conf ${D}/${sysconfdir}/X11/xorg.conf.d/
-> -		install -m 0644 ${WORKDIR}/xorg.conf.d/99-calibration.conf ${D}/${sysconfdir}/X11/xorg.conf.d/
-> -	fi
-> +    PITFT="${@bb.utils.contains("MACHINE_FEATURES", "pitft", "1", "0", d)}"
-> +    if [ "${PITFT}" = "1" ]; then
-> +        install -d ${D}/${sysconfdir}/X11/xorg.conf.d/
-> +        install -m 0644 ${WORKDIR}/xorg.conf.d/98-pitft.conf ${D}/${sysconfdir}/X11/xorg.conf.d/
-> +        install -m 0644 ${WORKDIR}/xorg.conf.d/99-calibration.conf ${D}/${sysconfdir}/X11/xorg.conf.d/
-> +    fi
->  }
->
->  FILES_${PN}_rpi += "${sysconfdir}/X11/xorg.conf ${sysconfdir}/X11/xorg.conf.d/*"
->
-
+This works great on my rpi3, thanks!
 
 -- 
 ------------------------------------------------------------
