@@ -1,68 +1,68 @@
-Return-Path: <eddie.cai.linux@gmail.com>
+Return-Path: <romain.perier@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 115F2E009A7; Sat, 18 Feb 2017 05:42:48 -0800 (PST)
+	id 589ECE009DB; Sat, 18 Feb 2017 09:42:46 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE, 
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (eddie.cai.linux[at]gmail.com)
+	mail provider *      (romain.perier[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.216.193 listed in list.dnswl.org]
+	*      [74.125.82.65 listed in list.dnswl.org]
 	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.216.193 listed in dnsbl.sorbs.net]
+	*      [74.125.82.65 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qt0-f193.google.com (mail-qt0-f193.google.com
-	[209.85.216.193])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A2C0CE00961
-	for <yocto@yoctoproject.org>; Sat, 18 Feb 2017 05:42:46 -0800 (PST)
-Received: by mail-qt0-f193.google.com with SMTP id n13so9198716qtc.0
-	for <yocto@yoctoproject.org>; Sat, 18 Feb 2017 05:42:45 -0800 (PST)
+Received: from mail-wm0-f65.google.com (mail-wm0-f65.google.com [74.125.82.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CCFD5E007AA
+	for <yocto@yoctoproject.org>; Sat, 18 Feb 2017 09:42:43 -0800 (PST)
+Received: by mail-wm0-f65.google.com with SMTP id r18so7599060wmd.3
+	for <yocto@yoctoproject.org>; Sat, 18 Feb 2017 09:42:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=/sZ3sMxwF4WIlibRSujO5slzbbLmPwr3k1fu88uywxM=;
-	b=bo9MNqiaAa+15KZbsoHdpM7Bnp/V1k8/v4iJQmfLfzx/xr8ayqURgK1faI/FM3JOw4
-	NkMGDYc+NNCOYdBplBEV9CznMzd31EUKrZVfgKykdGAw0gZdqaupfoOwj1vR23tOXaw1
-	o5snJiS+hN5hot83omZ3NfujFclKCOO5RPM0DPmgxiCOjMink+PMSbscacRluGI+thsb
-	5eH5V/UdBNhx+NiQOUAVjhzW8pY5QpTmg8p8Bv6lk2ZOGYyuAgLla2DeQ6pWZm4NNNCh
-	GpeBwLOcTiKYTKn5/zdxdDKlZFbpqhANuqiEvm74fDzvH7M9iz8+IAd38Hh3LPQt3Ywx
-	ViLA==
+	:cc; bh=KV5jF2a3zMp+62wwP+MUFx6r9fi+uirbAatSNlcq2Kw=;
+	b=nYPrfZJnb8y2WixHYpEdqWsH4VyK92UEOPIiRC8NE4dghLQSseLeu9l2RYehiBAPhs
+	vv+5OsftAHEdMQxTgk74bwYj6/CcT5RpHEY+J8MlHR5plRukPot93dxdD54dvFSbmHrW
+	o+Wcgche+8l/IzeNAmcmDjchKWw9oanJvarDgk0LsobAGV/hYXEzZDqKOK8LLvhMVFig
+	MvRKBk61Iqa0KPczSYxpTx+cRsjcE9opZiSuhi/xc+LTHRzWjgcaqWfP5slGwELp5mcX
+	xFftcwG+S3DabNzHkmHjEJxN+lBpyNbPvAYjniA0ChIFAWb6bTrUgLLMUo1Y4Sp8rzXc
+	4FdA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=/sZ3sMxwF4WIlibRSujO5slzbbLmPwr3k1fu88uywxM=;
-	b=uQvthkHKkKvWDLH9jv3WkZRRczbyNBrxFht8OM8CO4QIPNvn9gvn3bgcrr+8vZHvZX
-	LRiChTuuJK0Jy7ZDB/Ppt9ojNSNfgKDkuB4tw/M7Ti8Zi/6h6z7m7KC3an1qx3dnY9YU
-	8zIRIEJM93e8WVn5KJPnRWY1GnsSB+Hz/wujZOPxsJ6adTdQsT+U4B0ISxZPr9LE3SlL
-	/BcfxY7OiwIXbHpvhzsZivMVIwxTf3D4mf9tDFVjF1tIQ7yw0Ci1GdkIfC2dBjDLgB9s
-	7RVXBHCB43vvvQQrolwR+F+oYZC6FFENuBSmkppp+LsGzOx1/nDBm+ZgkAJxzF2ZOB2o
-	Uv3A==
-X-Gm-Message-State: AMke39ko8Q7IErfEUg7ph21FmRK4WTt/USlTUjxvyg1QVmVfirT5dlzA1GPfE8xOkwgA+8bI+U0PLSAXIS07Gg==
-X-Received: by 10.200.36.162 with SMTP id s31mr12176780qts.231.1487425365047; 
-	Sat, 18 Feb 2017 05:42:45 -0800 (PST)
+	bh=KV5jF2a3zMp+62wwP+MUFx6r9fi+uirbAatSNlcq2Kw=;
+	b=nyjzT/0GDgOazZPZn2nGWRi2HRrYdGsGHhLg0Yx51VF7deqLre7jmFhd4mGQDr3ml9
+	3vnsHSjfbagvsee4fC6WgxSw//gLR5xPRHsez2NSqjWraNeokMf2Z6PZFunTYf8lgofn
+	dkFxrXKnVnOcLSZIyLs073bI31h4fWWYxcWj55QZqGUky1+cBGLka2VgKMM+Wo3znz1w
+	2FDvLGzLGnhRpkThq5lOutBf+UW4niuNtLgXJbg6FcxHZEWbEaaAnlu/poclNdwm0ZJ5
+	BBHEa0qrBY8LEFCw0FvPMYRgosZE9i1NyiloLyzmFj8iyCoE+TjnYoiJYV+HTR2kTXIV
+	XCTw==
+X-Gm-Message-State: AMke39nfJSJ/CDsvBuziW+Qbdoh0wsUqx4rcaNj+2HUdp4r3VdFCgZQ0VK0IDTMtYujgSbMgF/Y5UakaaV5Qeg==
+X-Received: by 10.28.140.140 with SMTP id o134mr10495172wmd.87.1487439762433; 
+	Sat, 18 Feb 2017 09:42:42 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.237.47.68 with HTTP; Sat, 18 Feb 2017 05:42:44 -0800 (PST)
-In-Reply-To: <20170217105745.GA10517@linux-uys3>
-References: <1487051666-20888-1-git-send-email-eddie.cai.linux@gmail.com>
-	<20170217033349.GA12618@linux-uys3>
-	<CAJrj+DPJ5ZC4bxMsrHYD+kY1ur28hTBnfPSd+RNKd+kpnHZxOQ@mail.gmail.com>
-	<20170217105745.GA10517@linux-uys3>
-From: Eddie Cai <eddie.cai.linux@gmail.com>
-Date: Sat, 18 Feb 2017 21:42:44 +0800
-Message-ID: <CAJrj+DM1nZBqhjXJoNORZi9=jORmAh1nBM8b3+MoU_nfKf=iYw@mail.gmail.com>
+Received: by 10.80.196.2 with HTTP; Sat, 18 Feb 2017 09:42:42 -0800 (PST)
+In-Reply-To: <20170217180748.28796-3-twoerner@gmail.com>
+References: <20170217180748.28796-1-twoerner@gmail.com>
+	<20170217180748.28796-3-twoerner@gmail.com>
+From: Romain Perier <romain.perier@gmail.com>
+Date: Sat, 18 Feb 2017 18:42:42 +0100
+Message-ID: <CABgxDo++_BWPYAWALD3823TxTHku8t09TAuju_jkcnJd9JuUjA@mail.gmail.com>
 To: Trevor Woerner <twoerner@gmail.com>
-Cc: yocto@yoctoproject.org, Jacob Chen <jacob2.chen@rock-chips.com>
-Subject: Re: [meta-rockchip][morty][PATHV2 0/6] add main line kernel support
+Cc: Romain Perier <romain.perier@collabora.com>, yocto@yoctoproject.org,
+	Jacob Chen <jacob-chen@iotwrt.com>
+Subject: Re: [meta-rockchip][PATCH 2/3] u-boot-rockchip: add
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,154 +74,216 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 18 Feb 2017 13:42:48 -0000
+X-List-Received-Date: Sat, 18 Feb 2017 17:42:46 -0000
+Content-Type: multipart/alternative; boundary=001a1145b038aa355e0548d18e95
+
+--001a1145b038aa355e0548d18e95
 Content-Type: text/plain; charset=UTF-8
 
-Hi Trevor
+Hi.
 
-2017-02-17 18:57 GMT+08:00 Trevor Woerner <twoerner@gmail.com>:
-> Hi Eddie,
->
-> On Fri 2017-02-17 @ 04:56:28 PM, Eddie Cai wrote:
->> 2017-02-17 11:33 GMT+08:00 Trevor Woerner <twoerner@gmail.com>:
->> > You've put "morty" in the subject lines which to me means you're hoping these
->> > patches will be applied against the morty branch of meta-rockchip. Morty was
->> > released in October of 2016 which, at this point, is almost 5 months ago. At
->> > this point patches should only go against morty to fix critical issues. These
->> > patches look more like they're adding functionality, so I'll apply them to
->> > master instead. The next release is Pyro which is expected around April 2017.
->> I will remove branch next time i send patches.
->
-> You're welcome to add a branch name to any patch you send :-) But ideally a
-> patch that adds new functionality would be applied to master and a patch that
-> fixes a serious bug, a security issue, or makes a broken build succeed again
-> could be branch-specific.
->
->> > On Tue 2017-02-14 @ 01:54:20 PM, Eddie Cai wrote:
->> >> This patch set add main line kernel support for meta-rockchip
->> >>
->> >> Eddie Cai (6):
->> >>   machine: Use cortexa17hf-neon-vfpv4 as default tune for rk3288.inc
->> >
->> > As I've mentioned before, Yocto/OE is a _distribution_ builder, not just an
->> > image builder. As such most people in the community consider DEFAULTTUNES to
->> > be a DISTRO-level policy. In other words, this is not something that should be
->> > set by the BSP. One distro might want to use softfloat, while another wants
->> > hard-float. It will be easier for people who make distributions using Yocto/OE
->> > to use this layer when these types of things are not set at this level. Users
->> > are free to use these distributions (by adding their layers) or they can set a
->> > DEFAULTTUNE in their conf/local.conf file.
->> >
->> > I'll add a note to the README pointing this out so people can be aware of this
->> > configuration tweak, but I won't take this patch into the BSP. I've been able
->> > to build and run images where the DEFAULTTUNE is not set and they run just
->> > fine. Another patch (which I'll be happy to create) will need to look for this
->> > tune in recipes that provide things like mali support.
->> I found there are many meta using hardfloat. see below for example.
->
-> I wouldn't say there are many, there are some but that doesn't mean they're
-> correct in doing this :-) The Yocto/OE community is very lax; nobody's going
-> to take down a layer that doesn't play nicely with other layers, but that
-> doesn't mean they're correct :-)
->
->> So
->> i think what meta-xxx(could be rockchip, freescale, allwinner etc)
->> means building optimized distribution for xxx.
->
-> I disagree (please see my next response)
->
->> If people come to
->> meta-rockchip.  They must want to build a image/distribuition run on
->> rockchip platform. If not, They should go to meta-debian or other
->> generic meta rather than meta-rockchip.  ie. we won't expect a image
->> built by meta-amd can run on rockchip platform. right?
->
-> If you wanted to run debian on your rockchip device then you would include
-> meta-debian in your bblayers. But while bitbake is building your debian image
-> for your rockchip device it will need to know what kernel to use, what kernel
-> configuration to use (device tree, .config, etc) and it will need to know what
-> bootloader to use (e.g. maybe u-boot, and if so, which version? and from where
-> do you clone the repository? denx? or vendor-specific github?) Who is going
-> to answer these questions? Who is going to tell bitbake which bootloader to
-> use for your rockchip device? That's what meta-rockchip is for, and that's why
-> people add it to their bblayers.
->
-> When people add meta-rockchip to their build it's because their build needs to
-> know which kernel and bootloader to use (and various other bits).
->
-> But the decision whether the user wants to build an image that will run on as
-> many boards as possible, or whether they want a build that will run as fast as
-> possible on only one board is actually a distro-level decision.
->
-> If you download an x86, 64-bit version of Fedora, openSUSE, or debian to
-> install on your desktop machine, you won't find different installs that are
-> tweaked for i7, Xeon, or AMD processors. You'll find one generic x86-64
-> download that works on as many desktop computers as possible. But if you
-> want a Linux distribution that is as tweaked out as possible for exactly the
-> processor you're running, you would look at Arch or Gentoo. The distribution
-> decides whether your code is as generic as possible, or tweaked for exactly
-> your hardware.
->
-> For many years I too believed exactly the same things you're saying, and I too
-> argued exactly the same arguments you're now making. I hope it doesn't take
-> you as long as it took me to realize that a BSP layer is for informing the
-> build where to find board-specific code (such as vendor kernels and
-> bootloaders) and tuning the build is for distro layers to decide ;-)
+Could you:
+- Split this commit into 3 differents commits: one for firefly, one for
+rk3288.inc and another one for the recipe
+- Just call the recipe u-boot-rockchip, even if that's next we don't care.
+That's your version of uboot based on mainline and it's a release branch,
+so "next" is useless.
+- I don't like COMPATIBLE_MACHINE=(rk3288)... only add supported boards
+(that are parts of the meta layer)
 
-OK, So We have to set DEFAULTTUNE in conf/local.conf file when we want
-to get a optimized build.
->
-> https://github.com/96boards/meta-rpb/blob/master/conf/distro/include/arm-defaults.inc
-> provides an example of the hoops people have to jump through in order to try
-> to create a distro based on BSP layers that set tunes however they wish. Also
-> https://github.com/Angstrom-distribution/meta-angstrom/blob/master/conf/distro/include/arm-defaults.inc
->
->
->
->> raspberrypi:
->> http://git.yoctoproject.org/cgit/cgit.cgi/meta-raspberrypi/tree/conf/machine/raspberrypi2.conf?h=master
->> freescale:
->> http://git.yoctoproject.org/cgit/cgit.cgi/meta-freescale/tree/conf/machine/include/imx-base.inc
->> amd:
->> http://git.yoctoproject.org/cgit/cgit.cgi/meta-amd/tree/meta-amdfalconx86/conf/machine/include/tune-amdfalconx86.inc
->> allwinner:
->> https://github.com/linux-sunxi/meta-sunxi/blob/master/conf/machine/orange-pi-one.conf
->
-> In the case of the meta-sunxi layer, that layer provides 18 machine
-> configuration files. Only two of them have a DEFAULTTUNE. I think it would be
-> easy to argue that these two files are out of place, rather than to try to
-> argue they represent the common way of doing things ;-)
->
-> If you read through meta-sunxi's README.md file you'll see that it explicitly
-> talks about how by default this layer allows for the most flexible build, but
-> how if the user wants performance instead, they are welcome to add the
-> DEFAULTTUNE to their build's configuration (i.e. local.conf) themselves.
->
-> It would be easy to create a list of BSP layers that either don't provide a
-> DEFAULTTUNE or, if they do, provide a tune that is not hf but essentially the
-> same tune you would get by just specifying something like cortexa9 (for
-> example).
->
-> meta-altera: sets a tune in conf/machine/include to nios and talks about
-> setting hf tunes in its README.
->
-> meta-cubox: set a generic tune and talks about a hf tune in the README.
->
-> meta-efikamx: no default tune
->
-> meta-ettus: provides a generic tune and mentions how a user can set more
-> specific tunes in conf/local.conf.sample
->
-> meta-exynos: no defaulttunes
->
-> meta-pine64: no defaulttune
->
-> meta-qcom: no defaulttune
->
-> meta-udoo: no defaulttune
->
-> meta-zync: no defaulttune
->
-> Best regards,
->         Trevor
+Thanks!
+Romain
 
+2017-02-17 19:07 GMT+01:00 Trevor Woerner <twoerner@gmail.com>:
+
+> From: Jacob Chen <jacob-chen@iotwrt.com>
+>
+> Rockchip next-dev U-boot is the next generation of rockchip u-boot, will
+> also
+> be an upstream tracking branch At present, this branch is just a rebased
+> upstream u-boot.
+>
+> Reviewed-by: Trevor Woerner <twoerner@gmail.com>
+> Signed-off-by: Jacob Chen <jacob-chen@iotwrt.com>
+> ---
+>  conf/machine/firefly-rk3288.conf           |  1 +
+>  conf/machine/include/rk3288.inc            |  8 +++++++-
+>  recipes-bsp/u-boot/u-boot-rockchip_next.bb | 18 ++++++++++++++++++
+>  3 files changed, 26 insertions(+), 1 deletion(-)
+>  create mode 100644 recipes-bsp/u-boot/u-boot-rockchip_next.bb
+>
+> diff --git a/conf/machine/firefly-rk3288.conf
+> b/conf/machine/firefly-rk3288.conf
+> index 8fa005d..58d752b 100644
+> --- a/conf/machine/firefly-rk3288.conf
+> +++ b/conf/machine/firefly-rk3288.conf
+> @@ -8,3 +8,4 @@
+>
+>  include conf/machine/include/rk3288.inc
+>  KERNEL_DEVICETREE = "rk3288-firefly.dtb"
+> +UBOOT_MACHINE = "firefly-rk3288_defconfig"
+> diff --git a/conf/machine/include/rk3288.inc
+> b/conf/machine/include/rk3288.inc
+> index 86fc567..f067ad5 100644
+> --- a/conf/machine/include/rk3288.inc
+> +++ b/conf/machine/include/rk3288.inc
+> @@ -1,9 +1,15 @@
+>  # Copyright (C) 2015 Romain Perier
+>  # Released under the MIT license (see COPYING.MIT for the terms)
+>
+> +SOC_FAMILY = "rk3288"
+> +
+>  require conf/machine/include/tune-cortexa17.inc
+> +require conf/machine/include/soc-family.inc
+>
+>  PREFERRED_PROVIDER_virtual/kernel = "linux"
+> -SERIAL_CONSOLES = "115200;ttyS2"
+>  KERNEL_IMAGETYPE = "zImage"
+>  KBUILD_DEFCONFIG = "multi_v7_defconfig"
+> +
+> +PREFERRED_PROVIDER_virtual/bootloader = "u-boot-rockchip"
+> +SERIAL_CONSOLES = "115200;ttyS2"
+> +SPL_BINARY = "u-boot-spl-dtb.bin"
+> diff --git a/recipes-bsp/u-boot/u-boot-rockchip_next.bb
+> b/recipes-bsp/u-boot/u-boot-rockchip_next.bb
+> new file mode 100644
+> index 0000000..845f9da
+> --- /dev/null
+> +++ b/recipes-bsp/u-boot/u-boot-rockchip_next.bb
+> @@ -0,0 +1,18 @@
+> +# Copyright (C) 2017 Fuzhou Rockchip Electronics Co., Ltd
+> +# Released under the MIT license (see COPYING.MIT for the terms)
+> +
+> +require recipes-bsp/u-boot/u-boot.inc
+> +
+> +DESCRIPTION = "Rockchip next-dev U-Boot"
+> +LICENSE = "GPLv2+"
+> +LIC_FILES_CHKSUM = "file://Licenses/README;md5=
+> a2c678cfd4a4d97135585cad908541c6"
+> +COMPATIBLE_MACHINE = "(rk3288)"
+> +
+> +SRC_URI = "git://github.com/rockchip-linux/u-boot.git;branch=release;"
+> +SRCREV = "${AUTOREV}"
+> +S = "${WORKDIR}/git"
+> +
+> +do_deploy_prepend () {
+> +       # copy to default search path
+> +       cp ${B}/spl/${SPL_BINARY} ${B}/
+> +}
+> --
+> 2.11.0.258.ge05806d
+>
+>
+
+--001a1145b038aa355e0548d18e95
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><div><div><div><div><div>Hi.<br><br></div>Could you:<=
+br></div>- Split this commit into 3 differents commits: one for firefly, on=
+e for rk3288.inc and another one for the recipe<br></div>- Just call the re=
+cipe u-boot-rockchip, even if that&#39;s next we don&#39;t care. That&#39;s=
+ your version of uboot based on mainline and it&#39;s a release branch, so =
+&quot;next&quot; is useless.<br></div>- I don&#39;t like COMPATIBLE_MACHINE=
+=3D(rk3288)... only add supported boards (that are parts of the meta layer)=
+<br><br></div>Thanks!<br></div>Romain<br></div><div class=3D"gmail_extra"><=
+br><div class=3D"gmail_quote">2017-02-17 19:07 GMT+01:00 Trevor Woerner <sp=
+an dir=3D"ltr">&lt;<a href=3D"mailto:twoerner@gmail.com" target=3D"_blank">=
+twoerner@gmail.com</a>&gt;</span>:<br><blockquote class=3D"gmail_quote" sty=
+le=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">From: =
+Jacob Chen &lt;<a href=3D"mailto:jacob-chen@iotwrt.com">jacob-chen@iotwrt.c=
+om</a>&gt;<br>
+<br>
+Rockchip next-dev U-boot is the next generation of rockchip u-boot, will al=
+so<br>
+be an upstream tracking branch At present, this branch is just a rebased<br=
+>
+upstream u-boot.<br>
+<br>
+Reviewed-by: Trevor Woerner &lt;<a href=3D"mailto:twoerner@gmail.com">twoer=
+ner@gmail.com</a>&gt;<br>
+Signed-off-by: Jacob Chen &lt;<a href=3D"mailto:jacob-chen@iotwrt.com">jaco=
+b-chen@iotwrt.com</a>&gt;<br>
+---<br>
+=C2=A0conf/machine/firefly-rk3288.<wbr>conf=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0|=C2=A0 1 +<br>
+=C2=A0conf/machine/include/rk3288.<wbr>inc=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 |=C2=A0 8 +++++++-<br>
+=C2=A0recipes-bsp/u-boot/<a href=3D"http://u-boot-rockchip_next.bb" rel=3D"=
+noreferrer" target=3D"_blank">u-boot-<wbr>rockchip_next.bb</a> | 18 +++++++=
++++++++++++<br>
+=C2=A03 files changed, 26 insertions(+), 1 deletion(-)<br>
+=C2=A0create mode 100644 recipes-bsp/u-boot/<a href=3D"http://u-boot-rockch=
+ip_next.bb" rel=3D"noreferrer" target=3D"_blank">u-boot-<wbr>rockchip_next.=
+bb</a><br>
+<br>
+diff --git a/conf/machine/firefly-rk3288.<wbr>conf b/conf/machine/firefly-r=
+k3288.<wbr>conf<br>
+index 8fa005d..58d752b 100644<br>
+--- a/conf/machine/firefly-rk3288.<wbr>conf<br>
++++ b/conf/machine/firefly-rk3288.<wbr>conf<br>
+@@ -8,3 +8,4 @@<br>
+<br>
+=C2=A0include conf/machine/include/rk3288.<wbr>inc<br>
+=C2=A0KERNEL_DEVICETREE =3D &quot;rk3288-firefly.dtb&quot;<br>
++UBOOT_MACHINE =3D &quot;firefly-rk3288_defconfig&quot;<br>
+diff --git a/conf/machine/include/rk3288.<wbr>inc b/conf/machine/include/rk=
+3288.<wbr>inc<br>
+index 86fc567..f067ad5 100644<br>
+--- a/conf/machine/include/rk3288.<wbr>inc<br>
++++ b/conf/machine/include/rk3288.<wbr>inc<br>
+@@ -1,9 +1,15 @@<br>
+=C2=A0# Copyright (C) 2015 Romain Perier<br>
+=C2=A0# Released under the MIT license (see COPYING.MIT for the terms)<br>
+<br>
++SOC_FAMILY =3D &quot;rk3288&quot;<br>
++<br>
+=C2=A0require conf/machine/include/tune-<wbr>cortexa17.inc<br>
++require conf/machine/include/soc-<wbr>family.inc<br>
+<br>
+=C2=A0PREFERRED_PROVIDER_virtual/<wbr>kernel =3D &quot;linux&quot;<br>
+-SERIAL_CONSOLES =3D &quot;115200;ttyS2&quot;<br>
+=C2=A0KERNEL_IMAGETYPE =3D &quot;zImage&quot;<br>
+=C2=A0KBUILD_DEFCONFIG =3D &quot;multi_v7_defconfig&quot;<br>
++<br>
++PREFERRED_PROVIDER_virtual/<wbr>bootloader =3D &quot;u-boot-rockchip&quot;=
+<br>
++SERIAL_CONSOLES =3D &quot;115200;ttyS2&quot;<br>
++SPL_BINARY =3D &quot;u-boot-spl-dtb.bin&quot;<br>
+diff --git a/recipes-bsp/u-boot/<a href=3D"http://u-boot-rockchip_next.bb" =
+rel=3D"noreferrer" target=3D"_blank">u-boot-<wbr>rockchip_next.bb</a> b/rec=
+ipes-bsp/u-boot/<a href=3D"http://u-boot-rockchip_next.bb" rel=3D"noreferre=
+r" target=3D"_blank">u-boot-<wbr>rockchip_next.bb</a><br>
+new file mode 100644<br>
+index 0000000..845f9da<br>
+--- /dev/null<br>
++++ b/recipes-bsp/u-boot/<a href=3D"http://u-boot-rockchip_next.bb" rel=3D"=
+noreferrer" target=3D"_blank">u-boot-<wbr>rockchip_next.bb</a><br>
+@@ -0,0 +1,18 @@<br>
++# Copyright (C) 2017 Fuzhou Rockchip Electronics Co., Ltd<br>
++# Released under the MIT license (see COPYING.MIT for the terms)<br>
++<br>
++require recipes-bsp/u-boot/u-boot.inc<br>
++<br>
++DESCRIPTION =3D &quot;Rockchip next-dev U-Boot&quot;<br>
++LICENSE =3D &quot;GPLv2+&quot;<br>
++LIC_FILES_CHKSUM =3D &quot;file://Licenses/README;md5=3D<wbr>a2c678cfd4a4d=
+97135585cad908541<wbr>c6&quot;<br>
++COMPATIBLE_MACHINE =3D &quot;(rk3288)&quot;<br>
++<br>
++SRC_URI =3D &quot;git://<a href=3D"http://github.com/rockchip-linux/u-boot=
+.git;branch=3Drelease" rel=3D"noreferrer" target=3D"_blank">github.com/rock=
+chip-<wbr>linux/u-boot.git;branch=3D<wbr>release</a>;&quot;<br>
++SRCREV =3D &quot;${AUTOREV}&quot;<br>
++S =3D &quot;${WORKDIR}/git&quot;<br>
++<br>
++do_deploy_prepend () {<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0# copy to default search path<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0cp ${B}/spl/${SPL_BINARY} ${B}/<br>
++}<br>
+<span class=3D"HOEnZb"><font color=3D"#888888">--<br>
+2.11.0.258.ge05806d<br>
+<br>
+</font></span></blockquote></div><br></div>
+
+--001a1145b038aa355e0548d18e95--
