@@ -1,64 +1,66 @@
-Return-Path: <andrei@gherzan.ro>
+Return-Path: <eddie.cai.linux@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1212DE00A21; Sat, 18 Feb 2017 20:13:15 -0800 (PST)
+	id F18AEE00A21; Sat, 18 Feb 2017 21:04:04 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [74.125.83.67 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (eddie.cai.linux[at]gmail.com)
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.220.194 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pg0-f67.google.com (mail-pg0-f67.google.com [74.125.83.67])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C57C3E009F8
-	for <yocto@yoctoproject.org>; Sat, 18 Feb 2017 20:13:13 -0800 (PST)
-Received: by mail-pg0-f67.google.com with SMTP id a123so5779465pgc.3
-	for <yocto@yoctoproject.org>; Sat, 18 Feb 2017 20:13:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-disposition:in-reply-to:user-agent;
-	bh=SCCSaCRPvJs/y42pt4NpvSXVH0qXjN6oex/sx/VboPQ=;
-	b=2FzNsP/Wbj8+e/UInrsDFpvOHVbMQEHK8zMXA3NZPc5r50CpAUKoOYw8/LZM3MM0D5
-	Hg6qkbkVTKmk6QOO9KHfJven2OTGA6mayAxYih0VNa5rVBxPM75wRUR5HjhZJCu6Nk7H
-	tmUxQweZKDXzK2OMkBsJZ8BoxSJcxv6YRfc3Gwc8e+ac/aqifGVSjYPIMLCa3BFSD0yc
-	LLcdzQUXgc+adWQqbSyKqESH1sIaPek+wCyN0wIssmcrd6lEDq18PaV5zSEKBG07hlcw
-	3nUCYA7w+NdghF0A7L1AEOEd13/4ONkBw7vts5b4dLxKpgGDb9ydEl7EX3Mf4mw0vXO7
-	/e9w==
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.220.194 listed in list.dnswl.org]
+Received: from mail-qk0-f194.google.com (mail-qk0-f194.google.com
+	[209.85.220.194])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C5621E009F8
+	for <yocto@yoctoproject.org>; Sat, 18 Feb 2017 21:04:00 -0800 (PST)
+Received: by mail-qk0-f194.google.com with SMTP id x71so1506738qkb.0
+	for <yocto@yoctoproject.org>; Sat, 18 Feb 2017 21:04:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=z4jSQmRqmiti5sqmpWqcTkCKGpkLXViUQV3Z9a/Vr9k=;
+	b=ltq2P3zlsVhgT6jo4R4KVldCtb7GjQOxbSiZ7lDOAECtCznLkrG0snW7ZnYgdaR5Ok
+	wC4oHm6tTNkLtwzK1P5FimNtv5bhR8XaYSs5njNTCY+VWMXgqPCs42ypa96ISlhj33XD
+	GqkA9nWHwimDoeVYaMgNKmBd8UtKkvqwqeJCn3/6No1z+C7xC6O+LNP87g3kxl1M/6BD
+	We6mXegBtHF2K0sIQVw2L3Iol3/LHTZ0wgGFKIWFMRl0n3YNCN1i91IqcYfqZkardvHA
+	2KAeJKEQqmXjoT3SJeJOCrk3GnGB69VMcdcHfKByOwe+Z28IkT8FBN3ZVRJ1pdoFG/6P
+	tk+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-	:mime-version:content-disposition:in-reply-to:user-agent;
-	bh=SCCSaCRPvJs/y42pt4NpvSXVH0qXjN6oex/sx/VboPQ=;
-	b=rGtqPV07TK/biEQDUYKE8vkuq/OKiCAEAOVX6PfuPs6qNYPvBCu3PCAGKjZBKSCJXG
-	nZlvSAA3JL+97eMDpxtU1lSPAItuhLb3ZTZJiY9HxptOKm1fsWoJa9/u9eutycZBV0PX
-	7abY/KE4S/U7aIiAhHdOo6oMhFyHiCpwrzdc4B1FGgayjIfR9g8IW5WknHFLt3pZMSHf
-	g4ZOlUngrFuWD/ZZPvk53P3ILweBB8Y2KxwYm8H0mGoqdZTbT1HzsNKkvP49Ipv3zT+M
-	TEX/R8439hgOkCk5AnWkwWKjjSENX4Yt8DqE2ZCYEpPD7cPJTnap4YlOZK2YTSh7feoQ
-	JcBg==
-X-Gm-Message-State: AMke39l2DGHFNlz7gCJAjZg9jw0XiCxvrviChA7l92GFuBgjlPOKdEvwjKKKuue9Glr/uQ==
-X-Received: by 10.99.135.200 with SMTP id i191mr6297831pge.157.1487477593005; 
-	Sat, 18 Feb 2017 20:13:13 -0800 (PST)
-Received: from carbonA ([2601:602:9a00:eabb:6d00:499:970f:8480])
-	by smtp.gmail.com with ESMTPSA id
-	s8sm27541760pfj.30.2017.02.18.20.13.12
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sat, 18 Feb 2017 20:13:12 -0800 (PST)
-Date: Sat, 18 Feb 2017 20:13:07 -0800
-From: Andrei Gherzan <andrei@gherzan.ro>
-To: paul@paulbarker.me.uk
-Message-ID: <20170219041307.GD6680@carbonA>
-References: <20170218193913.28490-1-paul@paulbarker.me.uk>
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=z4jSQmRqmiti5sqmpWqcTkCKGpkLXViUQV3Z9a/Vr9k=;
+	b=O/5nqg6HoK4VUnXThB6ESbe64ff77jeecn98R/MY+c0X7eb2VNIAd2nHU19Z2Ibv+N
+	yP4QB1ecTI50nlcKb2zrogSwDnFejh0kCMQ4hYHMpDveDe24CbSVeqos28tg1cWIxITC
+	N6qHCJPM1cnLiWr2CYgg85VgAiYFvYb0gvDQtEyR+Pqc3i67Q2qkci1OebVVpEqqERIr
+	hh/4fXpvugkco4re44a29Ondbgn7j5rfxT8xREKEm8uGBAW+BCyC1iYS0oq7XTnww6xE
+	9m75iPri2GOv2CtZ6K5Rh4sxXLcRYY9gWBwZr0E3aC8iCgj+YlCRaKdfxtTd2q23+/KU
+	45vg==
+X-Gm-Message-State: AMke39kQ2LHYjKKtZ0Y/1CVaKlLjA63La4kJOs1lC4XXicD1+ECV2UuF6kjtTKhBZmimsJAMl85iaO7NpJj0OA==
+X-Received: by 10.55.89.70 with SMTP id n67mr14090261qkb.292.1487480640295;
+	Sat, 18 Feb 2017 21:04:00 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20170218193913.28490-1-paul@paulbarker.me.uk>
-User-Agent: Mutt/1.7.2 (2016-11-26)
+Received: by 10.237.47.68 with HTTP; Sat, 18 Feb 2017 21:03:59 -0800 (PST)
+In-Reply-To: <20170219024340.23664-4-twoerner@gmail.com>
+References: <20170219024340.23664-1-twoerner@gmail.com>
+	<20170219024340.23664-4-twoerner@gmail.com>
+From: Eddie Cai <eddie.cai.linux@gmail.com>
+Date: Sun, 19 Feb 2017 13:03:59 +0800
+Message-ID: <CAJrj+DNLj8HZikLNS7KKVTgqLG_fvmVpDM=XeCH+PVneHZKZaw@mail.gmail.com>
+To: Trevor Woerner <twoerner@gmail.com>
 Cc: yocto@yoctoproject.org
-Subject: Re: [meta-raspberrypi][PATCH] linux-raspberrypi: Fix uImage build on 4.9.y and later
+Subject: Re: [meta-rockchip][PATCH v2 3/5] machine: firefly-rk3288: specify bootloader
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,76 +72,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 19 Feb 2017 04:13:15 -0000
-X-Groupsio-MsgNum: 34596
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="ieNMXl1Fr3cevapt"
-Content-Disposition: inline
+X-List-Received-Date: Sun, 19 Feb 2017 05:04:05 -0000
+Content-Type: text/plain; charset=UTF-8
 
---ieNMXl1Fr3cevapt
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Hi Trevor
 
-On Sat, Feb 18, 2017 at 07:39:13PM +0000, paul@paulbarker.me.uk wrote:
-> From: Paul Barker <paul@paulbarker.me.uk>
+2017-02-19 10:43 GMT+08:00 Trevor Woerner <twoerner@gmail.com>:
+> Set the default preferred bootloader for firefly-rk3288 to be u-boot-rockchip
+> and set the default name of the SPL binary.
 >
-> Signed-off-by: Paul Barker <paul@paulbarker.me.uk>
+> Signed-off-by: Trevor Woerner <twoerner@gmail.com>
 > ---
->  recipes-kernel/linux/linux-raspberrypi_4.9.bb | 5 +++++
->  recipes-kernel/linux/linux-raspberrypi_dev.bb | 5 +++++
->  2 files changed, 10 insertions(+)
+>  conf/machine/firefly-rk3288.conf | 1 +
+>  conf/machine/include/rk3288.inc  | 3 +++
+>  2 files changed, 4 insertions(+)
+Reviewed-by Eddie Cai <eddie.cai.linux@gmail.com>
 >
-> diff --git a/recipes-kernel/linux/linux-raspberrypi_4.9.bb b/recipes-kernel/linux/linux-raspberrypi_4.9.bb
-> index dcca369..b113674 100644
-> --- a/recipes-kernel/linux/linux-raspberrypi_4.9.bb
-> +++ b/recipes-kernel/linux/linux-raspberrypi_4.9.bb
-> @@ -7,3 +7,8 @@ SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-4.9.y
->             file://0001-build-arm64-Add-rules-for-.dtbo-files-for-dts-overla.patch \
->  "
->  require linux-raspberrypi.inc
+> diff --git a/conf/machine/firefly-rk3288.conf b/conf/machine/firefly-rk3288.conf
+> index 8fa005d..58d752b 100644
+> --- a/conf/machine/firefly-rk3288.conf
+> +++ b/conf/machine/firefly-rk3288.conf
+> @@ -8,3 +8,4 @@
+>
+>  include conf/machine/include/rk3288.inc
+>  KERNEL_DEVICETREE = "rk3288-firefly.dtb"
+> +UBOOT_MACHINE = "firefly-rk3288_defconfig"
+> diff --git a/conf/machine/include/rk3288.inc b/conf/machine/include/rk3288.inc
+> index 769e5c1..4a4201f 100644
+> --- a/conf/machine/include/rk3288.inc
+> +++ b/conf/machine/include/rk3288.inc
+> @@ -10,3 +10,6 @@ PREFERRED_PROVIDER_virtual/kernel = "linux"
+>  SERIAL_CONSOLES = "115200;ttyS2"
+>  KERNEL_IMAGETYPE = "zImage"
+>  KBUILD_DEFCONFIG = "multi_v7_defconfig"
 > +
-> +# A LOADADDR is needed when building a uImage format kernel. This value is not
-> +# set by default in rpi-4.8.y and later branches so we need to provide it
-> +# manually. This value unused if KERNEL_IMAGETYPE is not uImage.
-> +KERNEL_EXTRA_ARGS += "LOADADDR=0x00008000"
-> diff --git a/recipes-kernel/linux/linux-raspberrypi_dev.bb b/recipes-kernel/linux/linux-raspberrypi_dev.bb
-> index bec0d23..e45903b 100644
-> --- a/recipes-kernel/linux/linux-raspberrypi_dev.bb
-> +++ b/recipes-kernel/linux/linux-raspberrypi_dev.bb
-> @@ -7,3 +7,8 @@ SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-4.10.y
->             file://0001-build-arm64-Add-rules-for-.dtbo-files-for-dts-overla.patch \
->  "
->  require linux-raspberrypi.inc
-> +
-> +# A LOADADDR is needed when building a uImage format kernel. This value is not
-> +# set by default in rpi-4.8.y and later branches so we need to provide it
-> +# manually. This value unused if KERNEL_IMAGETYPE is not uImage.
-> +KERNEL_EXTRA_ARGS += "LOADADDR=0x00008000"
+> +PREFERRED_PROVIDER_virtual/bootloader ?= "u-boot-rockchip"
+> +SPL_BINARY ?= "u-boot-spl-dtb.bin"
+> --
+> 2.12.0.rc1.48.g076c053
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-Any reason not to set this in the machine configuration file?
-
---
-Andrei Gherzan
-gpg: rsa4096/D4D94F67AD0E9640 | t: @agherzan
-
---ieNMXl1Fr3cevapt
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEE90oi/MnVCYFbB1m0Jrqo2vaxFPYFAlipG1MACgkQJrqo2vax
-FPa3qA/+JW7ZAqT8v+BLTke++wcVDucd5O1+rlPlhn+JvPkd44VrnF8gJcSOUZMJ
-boyguOznB6Rw6ikoA5EaxiXO6EjTiTY6IBQ5aR+UpHuj+EyHejUJ/7fyAsoVQgrl
-0mJrR1wS2TDwTpzq3BorX5FdEGEwTcAFtd5YIynzGPbYfbGFAqGflblwFYwbfV8T
-2R0bzkmmolNWlnD3EGuMOpkKxKbqKr7EK9vw+7AACSGm0wckygNN7630Pw09eM38
-8FQpWXrYmq2jiDMSMA8YzRyI9uazPiEKvh1EBns5GGd5+Zcj5hAB1qe1wKbC9wV6
-+73HAFoZmLxbg2k6vzlO69WhMupcS4tekguZ+89f4CEclzc4IBMhzinD9KjxtNDr
-RH/RM4QvQMVRkA902h6r29OmFzPja7Fqzy0BkKYLGk5CqEjrzL3IgEvQihYnJUVw
-EvsD1KkwMFOIQo+Y32yk2uRYNARQ/+bCGaCLQlv2mIYYZ0g+bWzcHhsznppN01qZ
-6Y8b4szFvkf46RKyC3JeyRonhskevQF59RGVCAiECkkVGuhCkTGFO37mpKFUYOGt
-JcRkRoueGhogNzxnTl8YjMOoPBdQKEuJCaO/23UvDg8nM7+OHwBIbuENVQm6V+aH
-iRM4qWreI4kSdMGUgKC3j2RAxj/hImgAQs7gT/FKs6QoaaN8k9Q=
-=1JWY
------END PGP SIGNATURE-----
-
---ieNMXl1Fr3cevapt--
