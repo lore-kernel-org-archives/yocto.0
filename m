@@ -1,16 +1,16 @@
 Return-Path: <twoerner@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 36CB6E00A18; Sat, 18 Feb 2017 18:37:37 -0800 (PST)
+	id 4D9C8E00A25; Sat, 18 Feb 2017 18:43:54 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_LOW,
+	RCVD_IN_SORBS_SPAM autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (twoerner[at]gmail.com)
 	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.214.68 listed in dnsbl.sorbs.net]
+	*      [209.85.214.50 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -18,55 +18,48 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.214.68 listed in list.dnswl.org]
-Received: from mail-it0-f68.google.com (mail-it0-f68.google.com
-	[209.85.214.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1DE46E009F6
-	for <yocto@yoctoproject.org>; Sat, 18 Feb 2017 18:37:33 -0800 (PST)
-Received: by mail-it0-f68.google.com with SMTP id e137so7391092itc.0
-	for <yocto@yoctoproject.org>; Sat, 18 Feb 2017 18:37:33 -0800 (PST)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.214.50 listed in list.dnswl.org]
+Received: from mail-it0-f50.google.com (mail-it0-f50.google.com
+	[209.85.214.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B4260E009F6
+	for <yocto@yoctoproject.org>; Sat, 18 Feb 2017 18:43:51 -0800 (PST)
+Received: by mail-it0-f50.google.com with SMTP id x75so37465097itb.0
+	for <yocto@yoctoproject.org>; Sat, 18 Feb 2017 18:43:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-disposition:in-reply-to:user-agent;
-	bh=opu4qzXPqYt/RjctuPJqz5hA66GSwVw9bzlTZgeQmrg=;
-	b=onixvb8qyCLORT/45qN+utHcGVK+rOAQVb/Sg4Vt50JzDuL8ItprDSHnuxBQf1urcL
-	uM8ITY2iVuNYYdqy2ODIoUigmsQdcJQqs8HIP/86bKs8WX0BpRi1rRfI61ZODbQx/c8/
-	6V9wPmyrJOBudbIBGVw1kWX+p2kMZiu7EeQFbH2CcKyjzrOfTIYdIyujwBpMtTOd8nrK
-	pWP/cxFx1ReYx1dCIRwzcxn06sPBqz+vHD1MSvZPvlnwIEF1UEGDUIbG/xjgIuIpt7y2
-	LGPZXDn61nWaYdphIUfOf9hCwKVZmWYIgncVH8eVAjs2ye5M0ayfznDfVwtQHjeYevyN
-	zieg==
+	h=from:to:subject:date:message-id;
+	bh=rDqeUZh5cmrVqlWVe8nZ5r1yqrkdIhTgwaLDoduF/zk=;
+	b=aNN+0z4+HD2OY3O0NAe3fZMhiHXQvnA88sQQ2zSjQLMYCHhsED8d+rWF+CSUuCoIcf
+	EAdUmfgCUk4tGdRO+1K48mRmIvxWyebbBcBndG3AcEDJNGAMm5Wty4GR2zz35ltCb09D
+	vWhhjUxdwDTc11Fpy8MepS0vn3oNNPJ2tijtPWGwp2Wf2v+OKqs8/K4jOIlwFjMghgjA
+	SDD5KHl/7do3rTAxWCX3n+CdZDSHIpD1uLF88EQGaQPZBGGIJxFM0OVkeh0uZrFt7brS
+	9WCkdfnmRLS0IbfWDW+gwuEy4721qQ+QMb8/54yDfY4uwBXUOxcO90nW5RH0Xo/fzXGK
+	PYVA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-	:mime-version:content-disposition:in-reply-to:user-agent;
-	bh=opu4qzXPqYt/RjctuPJqz5hA66GSwVw9bzlTZgeQmrg=;
-	b=TIFTvY7HW+kAICO9qn2ouYCyfXv2OpzSjfoWg0tjyH9lkBhTgqeeyJE5G6uql/nQ6j
-	x9QXRATy1Fj7G23rC5Ms8sFTY6aAKmoC6iOQkdTABPkf+QtKYL6lqlLz37K7ERWZAU4Q
-	LRQGs6S+XQClmp6LwpqZr2no2TqeaGsqI+2GJhtPD2FQdbIrcWPhWRFLZPniZs4QGt2o
-	aojc/CJ3Q/IHoMvl1xnzxXNcFSKrackjpLvmB0y50VrzCpiIcTS530BUfqxBYNh3Pu8M
-	pMgiTO18oA9UF2+VtRpIaRzIvPpORm18rbAfRKwlwWUad04G8NwUkWgd+5LBnktc3wSk
-	SynQ==
-X-Gm-Message-State: AMke39k7ToZy17OvViej6kbbFlTREjUW8xV/sG7/fASlU86BkOGySJsYWS9C1lVn5U+mnw==
-X-Received: by 10.36.53.78 with SMTP id k75mr14222286ita.45.1487471853099;
-	Sat, 18 Feb 2017 18:37:33 -0800 (PST)
-Received: from linux-uys3 ([45.72.225.54])
-	by smtp.gmail.com with ESMTPSA id j4sm3217794ita.29.2017.02.18.18.37.32
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sat, 18 Feb 2017 18:37:32 -0800 (PST)
-Date: Sat, 18 Feb 2017 21:37:30 -0500
+	h=x-gm-message-state:from:to:subject:date:message-id;
+	bh=rDqeUZh5cmrVqlWVe8nZ5r1yqrkdIhTgwaLDoduF/zk=;
+	b=Fc6ktbqIHL4vf1j5I9yHXFOeL4hHOqBRJyTqkitZ6ikcJ1zkB8oohQUOGDh26Yn2p7
+	v7Ufu3vo+jPFT5oqZk23Y1Ig69SL4v0ruK3oN9pRIWp5/lQgO5BIPFR8HhLVmW6hI2Rg
+	ORu84mq8B1krzwUhejvWDxmyCTxCo22TMhB+FUi8Acstg0X5H0HDEsQfu5De2uT30Dmp
+	PZmLJ8wXAPW/zyCoA0vQJiBrUeF2xCQ2XgVInvMXK95f/c5tYs6u7XI1zGpjN2SN21wX
+	7y7OqyuGs6wFn5kgOXXvEaHwIpIpC63b0GLYd8zGwzKS6pwg6eRRHICxtDxtfzmPrHS3
+	9ekw==
+X-Gm-Message-State: AMke39ln4KPxPkIjRTXR5gwajFpZSv7QVx5jTvdMBwWdR9DDDh9IaE40cVyMA/c8r/DXNw==
+X-Received: by 10.36.81.65 with SMTP id s62mr13781753ita.33.1487472230754;
+	Sat, 18 Feb 2017 18:43:50 -0800 (PST)
+Received: from linux-uys3.suse ([45.72.225.54])
+	by smtp.gmail.com with ESMTPSA id
+	a197sm1957754ita.1.2017.02.18.18.43.49 for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Sat, 18 Feb 2017 18:43:50 -0800 (PST)
 From: Trevor Woerner <twoerner@gmail.com>
-To: Romain Perier <romain.perier@gmail.com>
-Message-ID: <20170219023730.GA18681@linux-uys3>
-References: <20170217180748.28796-1-twoerner@gmail.com>
-	<20170217180748.28796-4-twoerner@gmail.com>
-	<CABgxDo+N34NQhr7s+5oU7Kg_=omN49PVAit7PZ_UuoBG8wdHUg@mail.gmail.com>
-MIME-Version: 1.0
-In-Reply-To: <CABgxDo+N34NQhr7s+5oU7Kg_=omN49PVAit7PZ_UuoBG8wdHUg@mail.gmail.com>
-User-Agent: Mutt/1.6.0 (2016-04-01)
-Cc: yocto@yoctoproject.org, Jacob Chen <jacob-chen@iotwrt.com>
-Subject: Re: [meta-rockchip][PATCH 3/3] rockchip-next-img: add image for rockchip next-dev u-boot
+To: yocto@yoctoproject.org
+Date: Sat, 18 Feb 2017 21:43:35 -0500
+Message-Id: <20170219024340.23664-1-twoerner@gmail.com>
+X-Mailer: git-send-email 2.12.0.rc1.48.g076c053
+Subject: [meta-rockchip][PATCH v2 0/5] various updates
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -78,25 +71,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 19 Feb 2017 02:37:37 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+X-List-Received-Date: Sun, 19 Feb 2017 02:43:54 -0000
 
-On Sat 2017-02-18 @ 06:50:05 PM, Romain Perier wrote:
-> 1 patch per feature or per different component. So  I should get a patch
-> for rk3288.inc and another one for the class :)
+Here are a couple v2's of some patches that were submitted to the mailing list
+earlier.
 
-I could argue that this is one patch since the only way to flash (for example)
-the Firefly is to use the image this class generates so now that this bbclass
-exists, rk3288 builds should be using it.
+Changes since v1:
+	- break commits to separate files into separate patches
+	- rename the rk3288 image bbclass
+	- make improvements to the rk3288 image bbclass
+	- improve the commit message for the image bbclass
 
-In any case I've split them up and taken the opportunity to rename and re-work
-the commit.
+Trevor Woerner (5):
+  machine: rk3288: enable SoC-specific assignments
+  u-boot-rockchip: add
+  machine: firefly-rk3288: specify bootloader
+  classes: rockchip-gpt-img: add
+  machine: rk3288: GPT image support
 
-> Suppose I am a user of meta-rockchip. I want to use a class for generating
-> a image. The name "rockchip-img-next" is not clear at all for me.
-> If that's for the sdcard call it rockchip-img-sdmmc if later you plan to
-> add a class for emmc call it rockchip-img-emmc :)
+ classes/rockchip-gpt-img.bbclass          | 132 ++++++++++++++++++++++++++++++
+ conf/machine/firefly-rk3288.conf          |   1 +
+ conf/machine/include/rk3288.inc           |   9 ++
+ recipes-bsp/u-boot/u-boot-rockchip_git.bb |  19 +++++
+ 4 files changed, 161 insertions(+)
+ create mode 100644 classes/rockchip-gpt-img.bbclass
+ create mode 100644 recipes-bsp/u-boot/u-boot-rockchip_git.bb
 
-Agreed, it is too vague. A v2 is on its way! :-)
+-- 
+2.12.0.rc1.48.g076c053
+
 
