@@ -1,45 +1,44 @@
 Return-Path: <paul@paulbarker.me.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6DE73E00A1C; Sun, 19 Feb 2017 01:29:33 -0800 (PST)
+	id 89A1FE00A1C; Sun, 19 Feb 2017 03:18:16 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [217.70.183.198 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net
-	[217.70.183.198])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 24887E009F6
-	for <yocto@yoctoproject.org>; Sun, 19 Feb 2017 01:29:28 -0800 (PST)
-Received: from mfilter17-d.gandi.net (mfilter17-d.gandi.net [217.70.178.145])
-	by relay6-d.mail.gandi.net (Postfix) with ESMTP id EAD08FB883;
-	Sun, 19 Feb 2017 10:29:27 +0100 (CET)
-X-Virus-Scanned: Debian amavisd-new at mfilter17-d.gandi.net
-Received: from relay6-d.mail.gandi.net ([IPv6:::ffff:217.70.183.198])
-	by mfilter17-d.gandi.net (mfilter17-d.gandi.net [::ffff:10.0.15.180])
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [217.70.183.194 listed in list.dnswl.org]
+Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net
+	[217.70.183.194])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 492A0E009F6
+	for <yocto@yoctoproject.org>; Sun, 19 Feb 2017 03:18:12 -0800 (PST)
+Received: from mfilter18-d.gandi.net (mfilter18-d.gandi.net [217.70.178.146])
+	by relay2-d.mail.gandi.net (Postfix) with ESMTP id B74A1C5A44;
+	Sun, 19 Feb 2017 12:18:11 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at mfilter18-d.gandi.net
+Received: from relay2-d.mail.gandi.net ([IPv6:::ffff:217.70.183.194])
+	by mfilter18-d.gandi.net (mfilter18-d.gandi.net [::ffff:10.0.15.180])
 	(amavisd-new, port 10024)
-	with ESMTP id coNheshyE0LQ; Sun, 19 Feb 2017 10:29:26 +0100 (CET)
+	with ESMTP id THkY0gFQ7cOu; Sun, 19 Feb 2017 12:18:10 +0100 (CET)
 X-Originating-IP: 86.24.150.36
 Received: from host0.betafive.co.uk
 	(cpc15-shep11-2-0-cust35.8-3.cable.virginm.net [86.24.150.36])
-	(Authenticated sender: paul@paulbarker.me.uk)
-	by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id D6540FB882;
-	Sun, 19 Feb 2017 10:29:25 +0100 (CET)
-Date: Sun, 19 Feb 2017 09:29:24 +0000
+	(Authenticated sender: noreply@paulbarker.me.uk)
+	by relay2-d.mail.gandi.net (Postfix) with ESMTPSA id 2B870C5A4E;
+	Sun, 19 Feb 2017 12:18:10 +0100 (CET)
+Received: by host0.betafive.co.uk (Postfix, from userid 2525)
+	id 58593402C5A5; Sun, 19 Feb 2017 11:18:09 +0000 (GMT)
 From: Paul Barker <paul@paulbarker.me.uk>
-To: Andrei Gherzan <andrei@gherzan.ro>
-Message-ID: <20170219092924.055a2802@host0.betafive.co.uk>
-In-Reply-To: <20170219041307.GD6680@carbonA>
-References: <20170218193913.28490-1-paul@paulbarker.me.uk>
-	<20170219041307.GD6680@carbonA>
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
-MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-raspberrypi][PATCH] linux-raspberrypi: Fix uImage build on 4.9.y and later
+To: yocto@yoctoproject.org
+Date: Sun, 19 Feb 2017 11:18:03 +0000
+Message-Id: <20170219111804.20566-2-paul@paulbarker.me.uk>
+X-Mailer: git-send-email 2.11.0
+In-Reply-To: <20170219111804.20566-1-paul@paulbarker.me.uk>
+References: <20170219111804.20566-1-paul@paulbarker.me.uk>
+Subject: [meta-raspberrypi][morty][PATCH 1/2] linux-raspberrypi_4.4: Update to 4.4.48
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,62 +50,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 19 Feb 2017 09:29:33 -0000
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sun, 19 Feb 2017 11:18:16 -0000
 
-On Sat, 18 Feb 2017 20:13:07 -0800
-Andrei Gherzan <andrei@gherzan.ro> wrote:
+Signed-off-by: Paul Barker <paul@paulbarker.me.uk>
+---
+ recipes-kernel/linux/linux-raspberrypi_4.4.bb | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-> On Sat, Feb 18, 2017 at 07:39:13PM +0000, paul@paulbarker.me.uk wrote:
-> > From: Paul Barker <paul@paulbarker.me.uk>
-> >
-> > Signed-off-by: Paul Barker <paul@paulbarker.me.uk>
-> > ---
-> >  recipes-kernel/linux/linux-raspberrypi_4.9.bb | 5 +++++
-> >  recipes-kernel/linux/linux-raspberrypi_dev.bb | 5 +++++
-> >  2 files changed, 10 insertions(+)
-> >
-> > diff --git a/recipes-kernel/linux/linux-raspberrypi_4.9.bb b/recipes-kernel/linux/linux-raspberrypi_4.9.bb
-> > index dcca369..b113674 100644
-> > --- a/recipes-kernel/linux/linux-raspberrypi_4.9.bb
-> > +++ b/recipes-kernel/linux/linux-raspberrypi_4.9.bb
-> > @@ -7,3 +7,8 @@ SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-4.9.y
-> >             file://0001-build-arm64-Add-rules-for-.dtbo-files-for-dts-overla.patch \
-> >  "
-> >  require linux-raspberrypi.inc
-> > +
-> > +# A LOADADDR is needed when building a uImage format kernel. This value is not
-> > +# set by default in rpi-4.8.y and later branches so we need to provide it
-> > +# manually. This value unused if KERNEL_IMAGETYPE is not uImage.
-> > +KERNEL_EXTRA_ARGS += "LOADADDR=0x00008000"
-> > diff --git a/recipes-kernel/linux/linux-raspberrypi_dev.bb b/recipes-kernel/linux/linux-raspberrypi_dev.bb
-> > index bec0d23..e45903b 100644
-> > --- a/recipes-kernel/linux/linux-raspberrypi_dev.bb
-> > +++ b/recipes-kernel/linux/linux-raspberrypi_dev.bb
-> > @@ -7,3 +7,8 @@ SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-4.10.y
-> >             file://0001-build-arm64-Add-rules-for-.dtbo-files-for-dts-overla.patch \
-> >  "
-> >  require linux-raspberrypi.inc
-> > +
-> > +# A LOADADDR is needed when building a uImage format kernel. This value is not
-> > +# set by default in rpi-4.8.y and later branches so we need to provide it
-> > +# manually. This value unused if KERNEL_IMAGETYPE is not uImage.
-> > +KERNEL_EXTRA_ARGS += "LOADADDR=0x00008000"  
-> 
-> Any reason not to set this in the machine configuration file?
-> 
+diff --git a/recipes-kernel/linux/linux-raspberrypi_4.4.bb b/recipes-kernel/linux/linux-raspberrypi_4.4.bb
+index 0f78225..b235772 100644
+--- a/recipes-kernel/linux/linux-raspberrypi_4.4.bb
++++ b/recipes-kernel/linux/linux-raspberrypi_4.4.bb
+@@ -1,8 +1,8 @@
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
+ 
+-LINUX_VERSION ?= "4.4.43"
++LINUX_VERSION ?= "4.4.48"
+ 
+-SRCREV = "17ca1c930978a9ea6ddfec61fd0e2043e8ab3b17"
++SRCREV = "7ddf96fbb7d637b79b449c7bd1c8d35f00571e4b"
+ SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-4.4.y \
+            file://0001-fix-dtbo-rules.patch \
+ "
+-- 
+2.11.0
 
-It's not needed for the 4.4.y kernel series and I haven't tested it
-with that.
-
-I've also opened an upstream bug which may lead to futher changes down
-the line: https://github.com/raspberrypi/linux/issues/1850
-
-So I think for now I'd just keep the setting in the affected recipes.
-We can tidy it up in the future if we drop 4.4.y and based on any
-response to the upstream bug.
-
-Thanks,
-Paul
 
