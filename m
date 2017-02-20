@@ -1,64 +1,63 @@
-Return-Path: <andrea.adami@gmail.com>
+Return-Path: <harshadlele1991@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6589BE009A0; Mon, 20 Feb 2017 06:45:23 -0800 (PST)
+	id 85C14E009A0; Mon, 20 Feb 2017 07:28:52 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE, 
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (andrea.adami[at]gmail.com)
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.217.170 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.217.170 listed in dnsbl.sorbs.net]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (harshadlele1991[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.42 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.82.42 listed in dnsbl.sorbs.net]
-Received: from mail-wm0-f42.google.com (mail-wm0-f42.google.com [74.125.82.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A86E4E00867
-	for <yocto@yoctoproject.org>; Mon, 20 Feb 2017 06:45:21 -0800 (PST)
-Received: by mail-wm0-f42.google.com with SMTP id 196so22935003wmm.1
-	for <yocto@yoctoproject.org>; Mon, 20 Feb 2017 06:45:21 -0800 (PST)
+Received: from mail-ua0-f170.google.com (mail-ua0-f170.google.com
+	[209.85.217.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B3513E00867
+	for <yocto@yoctoproject.org>; Mon, 20 Feb 2017 07:28:51 -0800 (PST)
+Received: by mail-ua0-f170.google.com with SMTP id t17so58744093uae.3
+	for <yocto@yoctoproject.org>; Mon, 20 Feb 2017 07:28:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=fE3E7v/+kzqwXULMAHkPd54TiJGYAV07wsU5JtLzNHw=;
-	b=L1j0GotR7IE5AnsbxoUg6/ImRUgnUml/N5wI/bYaIcqUgIhizLzcmmaFIcrJ4P7nAD
-	r1AmCaLZPgyzFPzm5tOMGyOmeCpXvfo7ztRzjwovm3eY0wmyN5zaOa65tBeVdbSsXtE5
-	u18j0/YJ5VmgMMeDdrjVycVieRDUb9Um2nvXPfBUR2T3zoYkr8DpU8ABgTzsGiGkHTnj
-	HDMX23qyFeaGtioeYvs02+aV0ftmSSigb/fioUc6JqoFQw7ifFgs/narQicHycV3IZMM
-	TSxkJKzTLP67rC59pmYt/fK6U3ztLmXr6JvYslV0DBO496M+tshPqSEcGhOiXmCVYyGi
-	am2w==
+	h=mime-version:from:date:message-id:subject:to;
+	bh=SSn92Kx6EgX0jaQ+n9VofIBSNtODlkw87zCafQi1sHU=;
+	b=tU6wp5gnubJpQYcfAmh5rnGSN6+ryoE9VXTWhEXXwkPOiWLLN5Sn5RiLbwFdyOkKDE
+	5HfC7j2TOqae65X9AmHjQxjeh6eXiKI7evKSdBcAMsE7JGZMv4UziCEWxDBP+FjCftDY
+	iHS3d9KNDQ5vEdCuJ5ELz1roWo9Dw8Y42rj8U9CEqWJpyHCHXkeKMPeTUO7fVrNlYHAp
+	BCdY2FMVPBqVtksoooJ5EFzlROwS9rSqtu0aHd0FjDvC3C09BHwzIvgjQhs1TpMxabWJ
+	wPvDvINVSUBCq25hjRrBP8ZWHht47laJMeZ8LpBmM5pM7DEA9UGpDE8SQrEqzuxLmMml
+	44YA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=fE3E7v/+kzqwXULMAHkPd54TiJGYAV07wsU5JtLzNHw=;
-	b=AXfnPQ6TyItGOpEOuduO37D0AeDNVtB66sFAR4xk6RNGxPdYZKK0ge+bRmApVmuqnE
-	GpNheyXqtoOpIdE6yql8KOGHzatQyniusszFkrODbuU6tN5QJBwqQspd+T/xX40g+lwj
-	uEkgA6ZrW+2DX/WUrHXVFbEOLT+OCI6JjUxLnlOUN8PHYkk5NU7vDWuTa2vbNWkaggRs
-	+cVx3ZnEf6OPaQ9O3cwuIj+lLlnh6Z0oLnHUV8fyo4nIUFpvFlZSa1joCiC4JDqmcB6L
-	pxiJucR3AvVqD2WJUGEXtEMzWjgp3JvthLO0R5j+BFvxFGLA77DepI3dilVbYV46jSdS
-	knSQ==
-X-Gm-Message-State: AMke39kx6FzfLakyV+XqcKaFIIwxH0K+6AhbOe27+Y9hhlthz7aG898JN8eeB6RlnjKeOW/CQbS7p7XbbAmJiA==
-X-Received: by 10.28.197.142 with SMTP id v136mr19889523wmf.62.1487601920536; 
-	Mon, 20 Feb 2017 06:45:20 -0800 (PST)
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=SSn92Kx6EgX0jaQ+n9VofIBSNtODlkw87zCafQi1sHU=;
+	b=U/t9J54OM7gYI1ih9dScfw21xc3HJWdjM49XtEDThRJpsv0kLsT2mIMFkkolPTHT+u
+	28kyc869dloxEZEJfz0uaCpnLin36crDpv5Hr1PFgYwF+DIEQVIHrLFmzZAo9i1p39Aj
+	MABPBOieto687+LLZ+h27wLq9AzJ/9bBgs1s2g2xOJ4Enp54ctLV28gJQtI+cpAtd28Q
+	xoiepm/u2Ulj/3/Xnxj6Q8ItLki7hfLXdbcH2pB9fFghU0yYtBGWtLpVka6knjiJEa65
+	B8gL/byL0JZYL+Nly/o9CdgbXwCZPRdULIdf9Yuo3CuFRDDh3ifJ/A+VbE0DWlxLZUd8
+	Qxlg==
+X-Gm-Message-State: AMke39ks/2dz9xgCyMm5VW8dMcWv+yVWN84sN4Vo5jjYAfxUXv7qVIXDEYL1EggrdJZPb2piioS0DTX8K/bMZQ==
+X-Received: by 10.176.24.153 with SMTP id t25mr3020274uag.162.1487604530606;
+	Mon, 20 Feb 2017 07:28:50 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.80.170.139 with HTTP; Mon, 20 Feb 2017 06:45:20 -0800 (PST)
-In-Reply-To: <DA8287CC96892A4EB4FCF4FB3FBDA1AB014389D8@dor-sms-xch01.digi.com>
-References: <DA8287CC96892A4EB4FCF4FB3FBDA1AB014389D8@dor-sms-xch01.digi.com>
-From: Andrea Adami <andrea.adami@gmail.com>
-Date: Mon, 20 Feb 2017 15:45:20 +0100
-Message-ID: <CAAQYJAv+Sj-f7KhTnMPUmvObkw91piX+FUGtFL4Qvt-byzO3Fg@mail.gmail.com>
-To: "Viguera, Javier" <Javier.Viguera@digi.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Dependence from image type to image recipe
+Received: by 10.176.76.235 with HTTP; Mon, 20 Feb 2017 07:28:50 -0800 (PST)
+From: Harshad Lele <harshadlele1991@gmail.com>
+Date: Mon, 20 Feb 2017 10:28:50 -0500
+Message-ID: <CAP-iPXyiHVN5SHSsx1TffvOrBE3A0pdrUUqDXgQQg0xqyMvWQA@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Unable to read file uImage--ccimx6sbc-id129.dtb
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,95 +69,89 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 20 Feb 2017 14:45:23 -0000
+X-List-Received-Date: Mon, 20 Feb 2017 15:28:52 -0000
+Content-Type: multipart/alternative; boundary=f40304379edc9cf8080548f7ebfd
+
+--f40304379edc9cf8080548f7ebfd
 Content-Type: text/plain; charset=UTF-8
 
-On Mon, Feb 20, 2017 at 1:40 PM, Viguera, Javier
-<Javier.Viguera@digi.com> wrote:
-> Hi all,
->
->
->
-> I need a bit of help to add a dependence from an image type to an image
-> recipe that build and initramfs.
->
->
->
-> A bit of background: I have an image type recovery.ubifs that boots using a
-> ramdisk. The ramdisk is generated with a different image recipe
-> (recovery-initramfs).
->
->
->
-> So whenever I configure any image (core-image-minimal, core-image-sato) to
-> generate recovery images, it should build first the ramdisk and add it to
-> the final recovery image.
->
->
->
-> In Jethro this was working file using IMAGE_DEPENDS in my custom
-> image-creation class:
->
->
->
-> IMAGE_DEPENDS_recovery.ubifs = " \
->
->     mtd-utils-native:do_populate_sysroot \
->
->     u-boot:do_deploy \
->
->     virtual/kernel:do_deploy \
->
->     recovery-initramfs:do_rootfs \
->
-> "
->
->
->
-> Now I'm migrating to Morty, and this does not seem to work anymore. When
-> instructed to generate a recovery image, it does not detect the dependence
-> on the recovery-initramfs image, and fails to generate the final image.
->
->
->
-> How should I code such dependence? Remember is not a dependence from any
-> other image recipe, it's a dependence from an image FSTYPE.
->
+Hi All,
 
-Hello,
-I think you have just to adapt to the changes in oe-core [1]
+I am new to Yocto. I am trying to learn it by actually doing it. Thus my
+doubt might be naive.
 
-     -recovery-initramfs:do_rootfs \
-     +recovery-initramfs:do_image_complete \
+I am using Freescale's Connect Core iMX6 Single Board Computer - Version 1
+with board ID - 129.
 
-Cheers
-Andrea
+I have created distribution by doing
 
+bitbake dey-image-qt
 
-[1] http://cgit.openembedded.org/openembedded-core/commit/?id=59a5f596ca29b1eb8283706e3c60fbb39f9c2c23
+with following options in local.conf-
+DISTRO_FEATURES_remove = "X11"
+IMAGE_FEATURES_remove = "dey-qt"
 
+as i don't need X11 support.
 
+However, after successfully updating uboot, kernel and root file system
+using tftp when I do 'boot' -
+the kernel is booting from its legacy image and not with the image that I
+have updated. It give following error -
 
->
->
-> Hope the description is clear enough. Otherwise please say so and I'll try
-> to explain it better.
->
->
->
-> --
->
-> Thanks.
->
->
->
-> Javier Viguera
->
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+=> boot
+reading boot.scr
+2042 bytes read in 19 ms (104.5 KiB/s)
+## Executing script at 12000000
+reading uImage-ccimx6sbc.bin
+5181288 bytes read in 151 ms (32.7 MiB/s)
+reading uImage--ccimx6sbc-id129.dtb
+** Unable to read file uImage--ccimx6sbc-id129.dtb **
+## Booting kernel from Legacy Image at 12000000 ...
+Image Name: Linux-3.14.79-dey+gc4cef43
+Image Type: ARM Linux Kernel Image (uncompressed)
+Data Size: 5181224 Bytes = 4.9 MiB
+Load Address: 10800000
+Entry Point: 10800000
+Verifying Checksum ... OK
+Loading Kernel Image ... OK
+No gpc device node -9, force to ldo-enable.
+1.2G chip, increase VDDARM_IN/VDDSOC_IN
 
+Any help regarding this would be appreciated.
+
+Thanks and regards,
+Harshad Lele.
+
+--f40304379edc9cf8080548f7ebfd
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hi All,</div><div><br></div><div>I am new to Yocto. I=
+ am trying to learn it by actually doing it. Thus my doubt might be naive.=
+=C2=A0</div><div><br></div><div>I am using Freescale&#39;s Connect Core iMX=
+6 Single Board Computer - Version 1 with board ID - 129.</div><div><br></di=
+v><div>I have created distribution by doing=C2=A0</div><div><br></div><div>=
+bitbake dey-image-qt=C2=A0</div><div><br></div><div>with following options =
+in local.conf-=C2=A0</div><div>DISTRO_FEATURES_remove =3D &quot;X11&quot;=
+=C2=A0</div><div>IMAGE_FEATURES_remove =3D &quot;dey-qt&quot;=C2=A0</div><d=
+iv><br></div><div>as i don&#39;t need X11 support.=C2=A0</div><div><br></di=
+v><div>However, after successfully updating uboot, kernel and root file sys=
+tem using tftp when I do &#39;boot&#39; -=C2=A0</div><div>the kernel is boo=
+ting from its legacy image and not with the image that I have updated. It g=
+ive following error -=C2=A0</div><div><br></div><div>=3D&gt; boot=C2=A0</di=
+v><div>reading boot.scr=C2=A0</div><div>2042 bytes read in 19 ms (104.5 KiB=
+/s)=C2=A0</div><div>## Executing script at 12000000=C2=A0</div><div>reading=
+ uImage-ccimx6sbc.bin=C2=A0</div><div>5181288 bytes read in 151 ms (32.7 Mi=
+B/s)=C2=A0</div><div>reading uImage--ccimx6sbc-id129.dtb=C2=A0</div><div>**=
+ Unable to read file uImage--ccimx6sbc-id129.dtb **=C2=A0</div><div>## Boot=
+ing kernel from Legacy Image at 12000000 ...=C2=A0</div><div>Image Name: Li=
+nux-3.14.79-dey+gc4cef43=C2=A0</div><div>Image Type: ARM Linux Kernel Image=
+ (uncompressed)=C2=A0</div><div>Data Size: 5181224 Bytes =3D 4.9 MiB=C2=A0<=
+/div><div>Load Address: 10800000=C2=A0</div><div>Entry Point: 10800000=C2=
+=A0</div><div>Verifying Checksum ... OK=C2=A0</div><div>Loading Kernel Imag=
+e ... OK=C2=A0</div><div>No gpc device node -9, force to ldo-enable.=C2=A0<=
+/div><div>1.2G chip, increase VDDARM_IN/VDDSOC_IN=C2=A0</div><div><br></div=
+><div>Any help regarding this would be appreciated.=C2=A0</div><div><br></d=
+iv><div>Thanks and regards,</div><div>Harshad Lele.</div></div>
+
+--f40304379edc9cf8080548f7ebfd--
