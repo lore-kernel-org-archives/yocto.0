@@ -1,63 +1,43 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <anibal.limon@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 69260E00A6B; Mon, 20 Feb 2017 08:34:03 -0800 (PST)
+	id 29D05E00939; Mon, 20 Feb 2017 09:29:05 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_LOW,
-	RCVD_IN_SORBS_SPAM autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.220.179 listed in list.dnswl.org]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.65 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.220.179 listed in dnsbl.sorbs.net]
-Received: from mail-qk0-f179.google.com (mail-qk0-f179.google.com
-	[209.85.220.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0EE32E00A5C
-	for <yocto@yoctoproject.org>; Mon, 20 Feb 2017 08:34:00 -0800 (PST)
-Received: by mail-qk0-f179.google.com with SMTP id p22so99836823qka.0
-	for <yocto@yoctoproject.org>; Mon, 20 Feb 2017 08:34:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=/jPn8b33Nlr2wRswEo0gnda/1PcwNVcZNNaVqaZKP0Q=;
-	b=w3+b5lATCV6Cha1k6+Ad8DhiN8OvK86BPR48AfHacogUloWusSea+GNJVYNJ0BHkZO
-	Us2++VSRvH8X3Oe/GVOiqQy5fbnnwZdKMoIQ2+9dFonPH4aDGzkxzH5BUXTpSby/fxo7
-	fz1kGYjfblIks5Tajy2+CROjhMzaNAxxDJMB7Sc0z9IchWKNY4owdK4iLPom3W06mBKs
-	4GAa5C2GO+Wz5JC4JSxhenBsoEKy38gnIYFkgmy7KjM8rfBHugnt2nP7aQAsh6a6BAhH
-	hGcdxoN7/x1f+lz1V/dawCaWhLkt2nvm00fH7qX24nrzCCjpDpFmqHqn+ySXTlc9dOsA
-	wxFg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=/jPn8b33Nlr2wRswEo0gnda/1PcwNVcZNNaVqaZKP0Q=;
-	b=Tb80pePG55D6NW71SM2yiBhk1WjlT9t41gxGDy9A5QB3Dyf/j/rny81RyU3kJLibDy
-	dp6H6GzkJs+BLgdWj3fBXuOgJORhbRIvwMPsSzuKNnKT81mcnu6RdtHFV5/i0BxLo1EB
-	x2GuYsjOOIxpubluEI1pxthonjvz+VgTq9CoarVqEh8Ro24UrzG5A64msOA6tkp7/IHX
-	cjtgzs9KHpM6MorbrfKl/HM6b7VjeUHBRXWUvFD2g+GBNY/Odt5RaEWxp2LR1L+z13V3
-	nZVlbVNz4oqBekeuPBxdZsj8anFxxEFW2rLvE0FeBpQJVwLlVb4iz5pcK06BJ+NfkV9V
-	U5iQ==
-X-Gm-Message-State: AMke39l+xeOZavK29Nq/cE9XJUUXJjWu3X5pwlfAbcNHUg0kwer78x2Lnd3r6/AOGAkHr+0Ess3wt5TkRDzp2O6/
-X-Received: by 10.55.183.133 with SMTP id h127mr22739617qkf.121.1487608440027; 
-	Mon, 20 Feb 2017 08:34:00 -0800 (PST)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CB32BE003D7
+	for <yocto@yoctoproject.org>; Mon, 20 Feb 2017 09:29:03 -0800 (PST)
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+	by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	20 Feb 2017 09:29:02 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.35,187,1484035200"; 
+	d="asc'?scan'208";a="936093523"
+Received: from alimonb-mobl1.zpn.intel.com (HELO [10.219.128.120])
+	([10.219.128.120])
+	by orsmga003.jf.intel.com with ESMTP; 20 Feb 2017 09:29:02 -0800
+To: Christopher Larson <kergoth@gmail.com>
+References: <1487366767-28347-1-git-send-email-anibal.limon@linux.intel.com>
+	<CABcZANksgFTdb52szMJVWo4EWxDT9ZA6hpnznHAfGH-KB15CnA@mail.gmail.com>
+	<CABcZANmXhMdui8xP67uE7LzVibJa+kmWC5CaC7zNA6wV84EVbg@mail.gmail.com>
+From: =?UTF-8?B?QW7DrWJhbCBMaW3Ds24=?= <anibal.limon@linux.intel.com>
+Message-ID: <58AB2827.5060400@linux.intel.com>
+Date: Mon, 20 Feb 2017 11:32:23 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+	Thunderbird/38.3.0
 MIME-Version: 1.0
-Received: by 10.140.103.233 with HTTP; Mon, 20 Feb 2017 08:33:39 -0800 (PST)
-In-Reply-To: <CAF1M0z72cFVW61EkLqdSwPrRKO1AptMsntfxxEzo8Qy=ak79oQ@mail.gmail.com>
-References: <CAF1M0z72cFVW61EkLqdSwPrRKO1AptMsntfxxEzo8Qy=ak79oQ@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Mon, 20 Feb 2017 16:33:39 +0000
-Message-ID: <CAJTo0Lau5AyY33Y+cROUMR38uR_Msr5YSiGQtnd-Nscu-oe0nA@mail.gmail.com>
-To: SatyaNarayana Sampangi <satya.2891@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Problem: Installation
+In-Reply-To: <CABcZANmXhMdui8xP67uE7LzVibJa+kmWC5CaC7zNA6wV84EVbg@mail.gmail.com>
+Cc: yocto <yocto@yoctoproject.org>,
+	Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>
+Subject: Re: [PATCH] yocto-compat-layer.py: Add script to YP Compatible Layer validation
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,40 +49,92 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 20 Feb 2017 16:34:03 -0000
-Content-Type: multipart/alternative; boundary=94eb2c060056a21f070548f8d4db
+X-List-Received-Date: Mon, 20 Feb 2017 17:29:05 -0000
+X-Groupsio-MsgNum: 34624
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature";
+	boundary="dUmeE5h5iHRum3VrEATw1vn87eoIdk9Tw"
 
---94eb2c060056a21f070548f8d4db
-Content-Type: text/plain; charset=UTF-8
-
-On 20 February 2017 at 16:30, SatyaNarayana Sampangi <satya.2891@gmail.com>
-wrote:
-
->  14 SRC_URI = "file://hellosatya-1.0.tgz"
->  15
->  16 S = "${WORKDIR}"
->
-
-What files are in the tgz, and where do they expand to?  The error says no
-such file or directory, so presumably it didn't unpack helloprint.c into
-the work directory.
-
-Ross
-
---94eb2c060056a21f070548f8d4db
-Content-Type: text/html; charset=UTF-8
+--dUmeE5h5iHRum3VrEATw1vn87eoIdk9Tw
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 20 February 2017 at 16:30, SatyaNarayana Sampangi <span dir=3D"ltr">&lt;=
-<a href=3D"mailto:satya.2891@gmail.com" target=3D"_blank">satya.2891@gmail.=
-com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"mar=
-gin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div>=C2=A014 S=
-RC_URI =3D &quot;file://hellosatya-1.0.tgz&quot;<br>=C2=A015 <br>=C2=A016 S=
- =3D &quot;${WORKDIR}&quot;</div></blockquote></div><br>What files are in t=
-he tgz, and where do they expand to?=C2=A0 The error says no such file or d=
-irectory, so presumably it didn&#39;t unpack helloprint.c into the work dir=
-ectory.</div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra=
-">Ross</div></div>
 
---94eb2c060056a21f070548f8d4db--
+
+On 02/17/2017 04:41 PM, Christopher Larson wrote:
+> On Fri, Feb 17, 2017 at 3:39 PM, Christopher Larson <kergoth@gmail.com>=
+
+> wrote:
+>=20
+>> On Fri, Feb 17, 2017 at 2:26 PM, An=C3=ADbal Lim=C3=B3n <
+>> anibal.limon@linux.intel.com> wrote:
+>>
+>>> +    parser.add_argument('-l', '--layer', metavar=3D'LAYER_DIR',
+>>> +            help=3D'Layer to test compatibility with Yocto Project',=
+
+>>> +            action=3D'store', required=3DTrue)
+>>>
+>>
+>> The behavior of this argument is quite unintuitive. First, this path i=
+sn=E2=80=99t
+>> actually used as the layer directory, detect_layers searches down from=
+ that
+>> path to *find* layers in that subdirectory, so the argument isn=E2=80=99=
+t what it
+>> says it is. Second, why are you making an option mandatory rather than=
+ just
+>> using arguments?
+>>
+>> That is, why `layer-compat-layer.py -l layerpath` rather than
+>> `layer-compat-layer.py layerpath`. If you change the call to
+>> `parser.add_argument(=E2=80=98layer=E2=80=99, =E2=80=A6)` it=E2=80=99d=
+ change to the latter behavior.
+>>
+>=20
+> Worth noting that you could, and probably should, also use nargs=3D=E2=80=
+=98+=E2=80=99 to let
+> the user specify multiple layers to check, rather than a single path, i=
+f
+> you go the latter route, and if not, you could change it to an append s=
+tyle
+> (for the =E2=80=98action=E2=80=99) argument to accomplish the same.
+
+Yes, it's better to change the -l option to use a positional argument
+with nargs +.
+
+The detect_layers functionality is used because i want to cover cases
+when the user clones a repository that comes with multiple layers like
+meta-openembedded.
+
+
+Best regards,
+	alimon
+
+
+>=20
+
+
+--dUmeE5h5iHRum3VrEATw1vn87eoIdk9Tw
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2
+
+iQIcBAEBAgAGBQJYqygqAAoJEGJqcE9h3glgOBQP/R7oD3jfrLBkaEbAfLY8jjMc
+6Sy5kj8msTcl6tc/5dD6vmqIw9LFdtiPqLq9rjByOXuv3pGLm2i0ByyHHk18OP57
+ZiEvPwhfE01wvaK0yMCofpDKOV40qLR/PsUBkziji2cJeEiJrPxXuxZj0N2NWNv5
+/4CSHU0VpRcJjRCDNgczJZvVS6SU6gfEwxli1jAMVztuNoIuTMdOGqFLM3adFCWq
++BZ55KBseu+wv0eyRsMRLvx4oIOtQUwqqhSK/dE0ezH++DJVu0FvUVhqyi4kbWR2
+spKRO094ZJJDRrKxtGDSd2RBsYNIDnblQF2uDSCkSlNLL/dpzW+RXWFLHyOirF6z
+iUSW6FuEDbJDGSB9F9mexQCH7/bV97q6kZNxddCX53Ovvkyw7r6wGD+MkYmdrr2B
+5A4MG3eyELbcR0QVKiyD3y5wRN5VboVOk3Hk/ZFRIcnKSHxHNPEFWtBfItb7Z19o
+ALbkMAujRTgieukwofaR9b/ASVdrKqJATDf7PYeDouKqpz7fV0taKMTToSFkhvFT
+jLDINGBcfaW/0edZrDuDHSgFkMlLSaz4uRAvW8kBFd3KWM23/jP9RJnYuebiDT8J
+3eJefMuGsgEhmstDVZ6bStKTvuGsyOI+pnjnhDsZj4xyinKa7vVarXPAYk3OlPQ8
+Bpo24g8OzTd5GW+Dnds/
+=nyHL
+-----END PGP SIGNATURE-----
+
+--dUmeE5h5iHRum3VrEATw1vn87eoIdk9Tw--
