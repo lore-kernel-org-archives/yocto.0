@@ -1,51 +1,79 @@
-Return-Path: <jose.perez.carranza@intel.com>
+Return-Path: <peter.spierenburg@nautel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 01481E0049D; Mon, 20 Feb 2017 14:19:19 -0800 (PST)
+	id E09BAE00480; Mon, 20 Feb 2017 15:29:54 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [192.55.52.43 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [104.47.33.108 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8A8A1E003D7
-	for <yocto@yoctoproject.org>; Mon, 20 Feb 2017 14:19:16 -0800 (PST)
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-	by fmsmga105.fm.intel.com with ESMTP; 20 Feb 2017 14:19:16 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.35,187,1484035200"; 
-	d="scan'208,217";a="826523293"
-Received: from fmsmsx105.amr.corp.intel.com ([10.18.124.203])
-	by FMSMGA003.fm.intel.com with ESMTP; 20 Feb 2017 14:19:16 -0800
-Received: from fmsmsx102.amr.corp.intel.com (10.18.124.200) by
-	FMSMSX105.amr.corp.intel.com (10.18.124.203) with Microsoft SMTP Server
-	(TLS) id 14.3.248.2; Mon, 20 Feb 2017 14:19:16 -0800
-Received: from fmsmsx101.amr.corp.intel.com ([169.254.1.65]) by
-	FMSMSX102.amr.corp.intel.com ([169.254.10.201]) with mapi id
-	14.03.0248.002; Mon, 20 Feb 2017 14:19:15 -0800
-From: "Perez Carranza, Jose" <jose.perez.carranza@intel.com>
-To: "'yocto@yoctoproject.org'" <yocto@yoctoproject.org>, "Purdie, Richard"
-	<richard.purdie@intel.com>, "Jolley,
-	Stephen K" <stephen.k.jolley@intel.com>
-Thread-Topic: QA Test Report for Yocto Project  Point Release 2.2.1 rc1
-Thread-Index: AdKLucNVzLiQwTzwQrydnvQAiA2qFw==
-Date: Mon, 20 Feb 2017 22:19:15 +0000
-Message-ID: <0A5D9A624DF90343892F8F3FE7DE525A020AAD0E@fmsmsx101.amr.corp.intel.com>
-Accept-Language: en-US
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+X-Greylist: delayed 3625 seconds by postgrey-1.32 at yocto-www;
+	Mon, 20 Feb 2017 15:29:51 PST
+Received: from NAM01-BN3-obe.outbound.protection.outlook.com
+	(mail-bn3nam01on0108.outbound.protection.outlook.com [104.47.33.108])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7B4B4E003D7
+	for <yocto@yoctoproject.org>; Mon, 20 Feb 2017 15:29:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=nautel.onmicrosoft.com; s=selector1-nautel-com;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
+	bh=aXRqYehj1P4mnAmE5dUH7K6YCNIQtFyC2QN6OidT6u0=;
+	b=an9L5medYOU1KkOnlMmD/4MUuLvavhocQSUl+pjiB9ekhJiNqaJA1IZcd4mKhUJZk5Nlxb00/sgOU+rBH/zXXuwHIdD9ZyvG4WcMRB94AvQub1xBKbASOUWAjWW/gP7yIiXLSnbrXRSFhhkgKLBGXC0xUYBy8AuLlZWFhDyRrvo=
+Received: from BN6PR05MB2851.namprd05.prod.outlook.com (10.168.255.136) by
+	BN6PR05MB2850.namprd05.prod.outlook.com (10.168.255.135) with Microsoft
+	SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
+	15.1.933.7; Mon, 20 Feb 2017 20:54:15 +0000
+Received: from BN6PR05MB2851.namprd05.prod.outlook.com ([10.168.255.136]) by
+	BN6PR05MB2851.namprd05.prod.outlook.com ([10.168.255.136]) with mapi id
+	15.01.0933.010; Mon, 20 Feb 2017 20:54:15 +0000
+From: Peter Spierenburg <peter.spierenburg@nautel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Trying to set up a debian package repository for yocto.
+Thread-Index: AQHSi7mikz266VA7wE+mtYIiL7Fjew==
+Date: Mon, 20 Feb 2017 20:54:15 +0000
+Message-ID: <BN6PR05MB2851112DD499FF32B76977489E5E0@BN6PR05MB2851.namprd05.prod.outlook.com>
+Accept-Language: en-CA, en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-ctpclassification: CTP_IC
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiYmRlZDc4NGYtMzMwMy00NDBjLTliMzQtODBjZjYzNzNhMmFmIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX0lDIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE1LjkuNi42IiwiVHJ1c3RlZExhYmVsSGFzaCI6InlcLzVFTTYyUWN6a20yZngzcCtcL1lqOTRKN2xGbFdwdEJHbjcwdjNFNnJVST0ifQ==
-x-originating-ip: [10.1.200.107]
+authentication-results: spf=none (sender IP is )
+	smtp.mailfrom=peter.spierenburg@nautel.com; 
+x-originating-ip: [25.171.172.4]
+x-ms-office365-filtering-correlation-id: 5fccd508-94bc-4e3f-88e2-08d459d2a182
+x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:(22001);SRVR:BN6PR05MB2850;
+x-microsoft-exchange-diagnostics: 1; BN6PR05MB2850;
+	7:wjdbFxuSP+Yh4UpBGivvmdIih3OWTZGhyPI3CkSv6igmPsewL05QV8u5o6ulAGj8chBI3I3dIrNYFI9VA0Cs5cT6j4ukuup26wU/90DOhib9qdG5+wHoX79jVCR/ccbASNve45vqxbwjLqPKH13b7yvKOBWzjrNY0/APzcF/WpsElgLdwTcD7z5MYiJvRiJCel34my7/DvKHLRx3PcVSDwQSHBoGeTzxQFLocCJV05HlLLHGpc7EyGXDAucf5oCxjW5eN8rLTvI79gicPHrB3c/nJ59tsb+wEdhPVGuvh1KPYjl7rZ9cbtoJ0qRaovzwvmAkZCcfj0VJlNAQaIbqxw==
+x-microsoft-antispam-prvs: <BN6PR05MB28505224D31065E58CAB09F19E5E0@BN6PR05MB2850.namprd05.prod.outlook.com>
+x-exchange-antispam-report-test: UriScan:;
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(6040375)(601004)(2401047)(8121501046)(5005006)(10201501046)(3002001)(6041248)(20161123562025)(20161123555025)(20161123564025)(20161123560025)(20161123558025)(6072148);
+	SRVR:BN6PR05MB2850; BCL:0; PCL:0; RULEID:; SRVR:BN6PR05MB2850; 
+x-forefront-prvs: 02243C58C6
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10019020)(6019001)(7916002)(39450400003)(269900001)(199003)(189002)(189998001)(122556002)(105586002)(106356001)(966004)(1720100001)(81166006)(97736004)(74316002)(86362001)(101416001)(2351001)(81156014)(450100001)(7736002)(19627405001)(1730700003)(8936002)(50986999)(7906003)(68736007)(8676002)(2900100001)(38730400002)(53936002)(110136004)(106116001)(77096006)(54356999)(606005)(6436002)(6606003)(25786008)(3846002)(102836003)(6116002)(5660300001)(2501003)(6916009)(6506006)(236005)(55016002)(5640700003)(99286003)(6306002)(9686003)(54896002)(66066001)(3660700001)(92566002)(33656002)(3280700002)(2906002)(7696004)(10721665003);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:BN6PR05MB2850;
+	H:BN6PR05MB2851.namprd05.prod.outlook.com; FPR:; SPF:None;
+	PTR:InfoNoRecords; A:1; MX:1; LANG:en; 
+received-spf: None (protection.outlook.com: nautel.com does not designate
+	permitted sender hosts)
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-Cc: "Lock, Joshua G" <joshua.g.lock@intel.com>, "Wold,
-	Saul" <saul.wold@intel.com>, "Eggleton, Paul" <paul.eggleton@intel.com>
-Subject: QA Test Report for Yocto Project Point Release 2.2.1 rc1
+X-OriginatorOrg: nautel.com
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Feb 2017 20:54:15.1951 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 656f830c-eb88-49fe-90f1-433363ec7ccf
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR05MB2850
+Subject: Trying to set up a debian package repository for yocto.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -57,541 +85,226 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 20 Feb 2017 22:19:20 -0000
-Content-Language: en-US
+X-List-Received-Date: Mon, 20 Feb 2017 23:29:55 -0000
+Content-Language: en-CA
 Content-Type: multipart/alternative;
-	boundary="_000_0A5D9A624DF90343892F8F3FE7DE525A020AAD0Efmsmsx101amrcor_"
+	boundary="_000_BN6PR05MB2851112DD499FF32B76977489E5E0BN6PR05MB2851namp_"
 
---_000_0A5D9A624DF90343892F8F3FE7DE525A020AAD0Efmsmsx101amrcor_
+--_000_BN6PR05MB2851112DD499FF32B76977489E5E0BN6PR05MB2851namp_
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-Hi
-
-Here is the report for Partial QA Cycle on Point Release 2.2.1 rc1
-
-Full Report :  https://wiki.yoctoproject.org/wiki/WW07_-_2017-02-13_-_Full_=
-Point_Release_Test_Cycle_2.2.1_rc1
-
-Summary
-
-The QA cycle for point release 2.2.1 is complete, 3 new bugs were found non=
-e of them is a big blocker. There were 7 bugs already found (3 M+)  that ar=
-e still applicable for 2.2.1 hence when they are fixed a backport should be=
- applied for 2.2.2 . In regards of performance measurements were increased =
-compared to 2.2 rc6 release but are on the same level for 2.3 M1 hence all =
-the bugs related to this degradation were already addressed.
-
-Bugs
-
-      * New
-
--        11063           Cannot run multiple QEMU machines under UNFS for Y=
-octo 2.2.1 [1]
-
--        11064           [Yocto 2.2.1] kernel version mismatched when using=
- yocto-bsp to create custom qemu bsp [2]
-
--        11054           selftest: Signing packages failing on ubuntu 16.10=
- with gpg (GnuPG) 2.1.15 [3]
-
-      * High / M+ Not New
-
--        10983           [Test Case 810] Avoid cache reload for incremental=
- development using a backgrounded bitbake server [4]
-
--        10456           X can not launch on qemumips64 [5]
-
--        10990           [crosstap] systemtap error on core-image-minimal w=
-ith tools-profile [6]
-
-Full bugs Report : https://wiki.yoctoproject.org/wiki/WW07_-_2017-02-13_-_F=
-ull_Point_Release_Test_Cycle_2.2.1_rc1#Bugs_Found_during_QA_Test
-
-Performance
-Performance measurements were increased compared with 2.2 release but are o=
-n the same level of 2.3 M1, bugs were already addressed, for more informati=
-on regarding this bugs and discussion please refer to the reports for the Q=
-A cycles
-on 2.3 [7]
+I'm trying to construct a debian package repository to deploy packages from=
+.
 
 
-M               2.2        2.2.1             %
-sato       0:59:42   1:02:41     +5.00
-rootfs    2:14        2:43           +21.64
-rmwork 0:59:35   1:01:13     +2.74
-kernel    4:39        5:05           +9.32
-eSDK      3:32        3:28           -1.89
+I took all the packages from poky/build/tmp/deploy/deb and followed the ins=
+tructions at: https://wiki.debian.org/SettingUpSignedAptRepositoryWithRepre=
+pro
 
+SettingUpSignedAptRepositoryWithReprepro - Debian Wiki<https://wiki.debian.=
+org/SettingUpSignedAptRepositoryWithReprepro>
+wiki.debian.org
+Introduction. It can be quite useful to be able to distribute your own Debi=
+an packages using apt, without having to push them to the Debian project it=
+self.
 
-Performance Charts : https://wiki.yoctoproject.org/charts/perf_milestone_GD=
-C/performance_test.html
+I think I've added all the magic to my yocto build including:
 
-Links
+PREFERRED_VERSION_gnupg ?=3D "1.4.7"
+PACKAGE_CLASSES ?=3D "package_deb"
+IMAGE_INSTALL_append =3D " gpgv"
+IMAGE_FEATURES +=3D "package-management"
 
+I've installed my sources.list file which includes
 
-1-     https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D11063
+deb http://192.168.7.1/repos/apt/debian stable main
 
-2-     https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D11064
+and I've installed my public key with:
 
-3-     https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D11054
+$ wget -O - http://192.168.7.1/repos/apt/conf/nautel.gpg.key | apt-key add =
+-
 
-4-     https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D10983
+however, after all that, I still get:
 
-5-     https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D10456
+root@qemuarm:~# apt-get update
+Get:1 http://192.168.7.1 stable InRelease [1417 B]
+Ign http://192.168.7.1 stable InReleaseg installed in /etc/apt/trusted.gpg.=
+d/.
+Ign http://192.168.7.1 stable/main armel Packages/DiffIndex
+Hit http://192.168.7.1 stable/main armel Packages
+Ign http://192.168.7.1 stable/main Translation-en
+Fetched 1417 B in 2s (538 B/s)
+Reading package lists... Done
+W: GPG error: http://192.168.7.1 stable InRelease: Could not execute 'gpgv'=
+ to verify signature (is gpgv installed?)
 
-6-     https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D10990
+but I'm sure that gpgv is installed:
 
-7-     https://wiki.yoctoproject.org/wiki/Yocto_Project_2.3_Release_Test_Pl=
-an#Execution_History
+root@qemuarm:~# which gpgv
+/usr/bin/gpgv
 
-Regards,
-Jos=E9
+When I run it though, it just hangs:
+
+root@qemuarm:~# gpgv -v
+gpgv: directory `/home/root/.gnupg' created
+gpgv: can't open `/usr/share/gnupg/options.skel': No such file or directory
+gpgv: can't allocate lock for `/home/root/.gnupg/trustedkeys.gpg'
+gpgv: keyblock resource `/home/root/.gnupg/trustedkeys.gpg': general error
+
+Has anyone else run up against this?
+
+Peter.
 
 
 
-Regards,
-Jos=E9
-
-
---_000_0A5D9A624DF90343892F8F3FE7DE525A020AAD0Efmsmsx101amrcor_
+--_000_BN6PR05MB2851112DD499FF32B76977489E5E0BN6PR05MB2851namp_
 Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:m=3D"http://schema=
-s.microsoft.com/office/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-html=
-40">
+<html>
 <head>
 <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
 1">
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
-	{mso-style-priority:34;
-	margin-top:0in;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:.5in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
-/* List Definitions */
-@list l0
-	{mso-list-id:157497655;
-	mso-list-type:hybrid;
-	mso-list-template-ids:1549032070 1778392156 67698713 67698715 67698703 676=
-98713 67698715 67698703 67698713 67698715;}
-@list l0:level1
-	{mso-level-text:%1-;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l0:level2
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l0:level3
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	text-indent:-9.0pt;}
-@list l0:level4
-	{mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l0:level5
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l0:level6
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	text-indent:-9.0pt;}
-@list l0:level7
-	{mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l0:level8
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l0:level9
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	text-indent:-9.0pt;}
-@list l1
-	{mso-list-id:818112617;
-	mso-list-type:hybrid;
-	mso-list-template-ids:-114361522 1718405112 67698691 67698693 67698689 676=
-98691 67698693 67698689 67698691 67698693;}
-@list l1:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:-;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:.75in;
-	text-indent:-.25in;
-	mso-ansi-font-size:14.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-font-family:Calibri;
-	mso-bidi-font-family:"Times New Roman";
-	mso-ansi-font-weight:bold;}
-@list l1:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:1.25in;
-	text-indent:-.25in;
-	font-family:"Courier New";}
-@list l1:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:1.75in;
-	text-indent:-.25in;
-	font-family:Wingdings;}
-@list l1:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:2.25in;
-	text-indent:-.25in;
-	font-family:Symbol;}
-@list l1:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:2.75in;
-	text-indent:-.25in;
-	font-family:"Courier New";}
-@list l1:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:3.25in;
-	text-indent:-.25in;
-	font-family:Wingdings;}
-@list l1:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:3.75in;
-	text-indent:-.25in;
-	font-family:Symbol;}
-@list l1:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:4.25in;
-	text-indent:-.25in;
-	font-family:"Courier New";}
-@list l1:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:4.75in;
-	text-indent:-.25in;
-	font-family:Wingdings;}
-@list l2
-	{mso-list-id:2087069369;
-	mso-list-type:hybrid;
-	mso-list-template-ids:-1200991238 104001188 67698713 67698715 67698703 676=
-98713 67698715 67698703 67698713 67698715;}
-@list l2:level1
-	{mso-level-text:%1-;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l2:level2
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l2:level3
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	text-indent:-9.0pt;}
-@list l2:level4
-	{mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l2:level5
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l2:level6
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	text-indent:-9.0pt;}
-@list l2:level7
-	{mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l2:level8
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l2:level9
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	text-indent:-9.0pt;}
-ol
-	{margin-bottom:0in;}
-ul
-	{margin-bottom:0in;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
 </head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Here is the report for Partial QA Cycle on Point Rel=
-ease 2.2.1 rc1
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Full Report :&nbsp; <a href=3D"https://wiki.yoctopro=
-ject.org/wiki/WW07_-_2017-02-13_-_Full_Point_Release_Test_Cycle_2.2.1_rc1">
-https://wiki.yoctoproject.org/wiki/WW07_-_2017-02-13_-_Full_Point_Release_T=
-est_Cycle_2.2.1_rc1</a> &nbsp;<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:14.0pt">Summary <o:p></o=
-:p></span></b></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">The QA cycle for point re=
-lease 2.2.1 is complete, 3 new bugs were found none of them is a big blocke=
-r. There were 7 bugs already found (3 M&#43;) &nbsp;that are still applicab=
-le for 2.2.1 hence when they are fixed a backport
- should be applied for 2.2.2 . In regards of performance measurements were =
-increased compared to 2.2 rc6 release but are on the same level for 2.3 M1 =
-hence all the bugs related to this degradation were already addressed.<o:p>=
-</o:p></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:14.0pt"><o:p>&nbsp;</o:p=
-></span></b></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:14.0pt">Bugs <o:p></o:p>=
-</span></b></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:14.0pt"><o:p>&nbsp;</o:p=
-></span></b></p>
-<p class=3D"MsoNormal"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * New<o:p></o:p></=
-b></p>
-<p class=3D"MsoListParagraph" style=3D"margin-left:.75in;text-indent:-.25in=
-;mso-list:l1 level1 lfo1">
-<![if !supportLists]><span style=3D"font-size:14.0pt"><span style=3D"mso-li=
-st:Ignore">-<span style=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]>11063&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; Cannot run multiple QEMU machines under UNFS for Yoct=
-o 2.2.1 [1]<o:p></o:p></p>
-<p class=3D"MsoListParagraph" style=3D"margin-left:.75in;text-indent:-.25in=
-;mso-list:l1 level1 lfo1">
-<![if !supportLists]><span style=3D"font-size:14.0pt"><span style=3D"mso-li=
-st:Ignore">-<span style=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]>11064&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; [Yocto 2.2.1] kernel version mismatched when using yo=
-cto-bsp to create custom qemu bsp [2]<o:p></o:p></p>
-<p class=3D"MsoListParagraph" style=3D"margin-left:.75in;text-indent:-.25in=
-;mso-list:l1 level1 lfo1">
-<![if !supportLists]><span style=3D"font-size:14.0pt"><span style=3D"mso-li=
-st:Ignore">-<span style=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]>11054&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; selftest: Signing packages failing on ubuntu 16.10 wi=
-th gpg (GnuPG) 2.1.15 [3]<o:p></o:p></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:14.0pt"><o:p>&nbsp;</o:p=
-></span></b></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>* High / M&#43; No=
-t New<o:p></o:p></b></p>
-<p class=3D"MsoListParagraph" style=3D"margin-left:.75in;text-indent:-.25in=
-;mso-list:l1 level1 lfo1">
-<![if !supportLists]><span style=3D"font-size:14.0pt"><span style=3D"mso-li=
-st:Ignore">-<span style=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]>10983&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; [Test Case 810] Avoid cache reload for incremental de=
-velopment using a backgrounded bitbake server [4]<o:p></o:p></p>
-<p class=3D"MsoListParagraph" style=3D"margin-left:.75in;text-indent:-.25in=
-;mso-list:l1 level1 lfo1">
-<![if !supportLists]><span style=3D"font-size:14.0pt"><span style=3D"mso-li=
-st:Ignore">-<span style=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]>10456&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; X can not launch on qemumips64 [5]<o:p></o:p></p>
-<p class=3D"MsoListParagraph" style=3D"margin-left:.75in;text-indent:-.25in=
-;mso-list:l1 level1 lfo1">
-<![if !supportLists]><span style=3D"font-size:14.0pt"><span style=3D"mso-li=
-st:Ignore">-<span style=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]>10990&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; [crosstap] systemtap error on core-image-minimal with=
- tools-profile [6]<o:p></o:p></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:14.0pt"><o:p>&nbsp;</o:p=
-></span></b></p>
-<p class=3D"MsoNormal">Full bugs Report : <a href=3D"https://wiki.yoctoproj=
-ect.org/wiki/WW07_-_2017-02-13_-_Full_Point_Release_Test_Cycle_2.2.1_rc1#Bu=
-gs_Found_during_QA_Test">
-https://wiki.yoctoproject.org/wiki/WW07_-_2017-02-13_-_Full_Point_Release_T=
-est_Cycle_2.2.1_rc1#Bugs_Found_during_QA_Test</a>
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:14.0pt">Performance<o:p>=
-</o:p></span></b></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">Performance measurements =
-were increased compared with 2.2 release but are on the same level of 2.3 M=
-1, bugs were already addressed, for more information regarding this bugs an=
-d discussion please refer to the reports
- for the QA cycles <o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">on 2.3 [7]<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">M&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 2.2 &nbsp;&nbsp;&nb=
-sp; &nbsp;&nbsp;&nbsp;2.2.1&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;%<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">sato&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; 0:59:42&nbsp; &nbsp;1:02:41&nbsp;&nbsp; &nbsp;&nbsp;&#43;5.=
-00<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">rootfs&nbsp;&nbsp;&nbsp; =
-2:14&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;2:43&nbsp;&nbsp;&nbsp; &nbsp=
-;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&#43;21.64<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">rmwork 0:59:35&nbsp; &nbs=
-p;1:01:13&nbsp; &nbsp;&nbsp;&nbsp;&#43;2.74<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">kernel&nbsp;&nbsp;&nbsp; =
-4:39&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;5:05&nbsp;&nbsp;&nbsp; &nbsp=
-;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&#43;9.32<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">eSDK&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp; 3:32&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;3:28&nbsp;&nbsp;&n=
-bsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;-1.89<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:14.0pt">&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <o:p></o:p></span></b></=
-p>
-<p class=3D"MsoNormal">Performance Charts : <a href=3D"https://wiki.yoctopr=
-oject.org/charts/perf_milestone_GDC/performance_test.html">
-https://wiki.yoctoproject.org/charts/perf_milestone_GDC/performance_test.ht=
-ml</a>
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:14.0pt">Links<o:p></o:p>=
-</span></b></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:14.0pt"><o:p>&nbsp;</o:p=
-></span></b></p>
-<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
-1 lfo3"><![if !supportLists]><span style=3D"mso-list:Ignore">1-<span style=
-=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><![endif]><a href=3D"https://bugzilla.yoctoproject.org/show_b=
-ug.cgi?id=3D11063">https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D1106=
-3</a><o:p></o:p></p>
-<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
-1 lfo3"><![if !supportLists]><span style=3D"mso-list:Ignore">2-<span style=
-=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><![endif]><a href=3D"https://bugzilla.yoctoproject.org/show_b=
-ug.cgi?id=3D11064">https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D1106=
-4</a><o:p></o:p></p>
-<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
-1 lfo3"><![if !supportLists]><span style=3D"mso-list:Ignore">3-<span style=
-=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><![endif]><a href=3D"https://bugzilla.yoctoproject.org/show_b=
-ug.cgi?id=3D11054">https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D1105=
-4</a><o:p></o:p></p>
-<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
-1 lfo3"><![if !supportLists]><span style=3D"mso-list:Ignore">4-<span style=
-=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><![endif]><a href=3D"https://bugzilla.yoctoproject.org/show_b=
-ug.cgi?id=3D10983">https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D1098=
-3</a><o:p></o:p></p>
-<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
-1 lfo3"><![if !supportLists]><span style=3D"mso-list:Ignore">5-<span style=
-=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><![endif]><a href=3D"https://bugzilla.yoctoproject.org/show_b=
-ug.cgi?id=3D10456">https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D1045=
-6</a><o:p></o:p></p>
-<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
-1 lfo3"><![if !supportLists]><span style=3D"mso-list:Ignore">6-<span style=
-=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><![endif]><a href=3D"https://bugzilla.yoctoproject.org/show_b=
-ug.cgi?id=3D10990">https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D1099=
-0</a><o:p></o:p></p>
-<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
-1 lfo3"><![if !supportLists]><span style=3D"mso-list:Ignore">7-<span style=
-=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><![endif]><a href=3D"https://wiki.yoctoproject.org/wiki/Yocto=
-_Project_2.3_Release_Test_Plan#Execution_History">https://wiki.yoctoproject=
-.org/wiki/Yocto_Project_2.3_Release_Test_Plan#Execution_History</a>
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Regards,<o:p></o:p></p>
-<p class=3D"MsoNormal"><b>Jos=E9</b><b><span style=3D"font-family:&quot;Ari=
-al&quot;,sans-serif"><o:p></o:p></span></b></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Regards,<o:p></o:p></p>
-<p class=3D"MsoNormal"><b><span lang=3D"ES-MX">Jos=E9</span></b><b><span la=
-ng=3D"ES-MX" style=3D"font-family:&quot;Arial&quot;,sans-serif"><o:p></o:p>=
-</span></b></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Arial,Helvetica,sans-serif;" dir=3D"ltr">
+<p>I'm trying to construct a debian package repository to deploy packages f=
+rom.</p>
+<p><br>
+</p>
+<p>I took all the packages from poky/build/tmp/deploy/deb and followed the =
+instructions at:&nbsp;<a href=3D"https://wiki.debian.org/SettingUpSignedApt=
+RepositoryWithReprepro" class=3D"OWAAutoLink" id=3D"LPlnk79644" previewremo=
+ved=3D"true">https://wiki.debian.org/SettingUpSignedAptRepositoryWithReprep=
+ro</a></p>
+<div id=3D"LPBorder_GT_14876234378290.7589109444848818" style=3D"margin-bot=
+tom: 20px; overflow: auto; width: 100%; text-indent: 0px;">
+<table id=3D"LPContainer_14876234378250.4592026039877919" cellspacing=3D"0"=
+ style=3D"width: 90%; background-color: rgb(255, 255, 255); position: relat=
+ive; overflow: auto; padding-top: 20px; padding-bottom: 20px; margin-top: 2=
+0px; border-top: 1px dotted rgb(200, 200, 200); border-bottom: 1px dotted r=
+gb(200, 200, 200);">
+<tbody>
+<tr valign=3D"top" style=3D"border-spacing: 0px;">
+<td id=3D"TextCell_14876234378260.5254006249992771" colspan=3D"2" style=3D"=
+vertical-align: top; position: relative; padding: 0px; display: table-cell;=
+">
+<div id=3D"LPRemovePreviewContainer_14876234378260.11273002230553852"></div=
+>
+<div id=3D"LPTitle_14876234378260.09788638223875568" style=3D"top: 0px; col=
+or: rgb(0, 120, 215); font-weight: normal; font-size: 21px; font-family: wf=
+_segoe-ui_light, &quot;Segoe UI Light&quot;, &quot;Segoe WP Light&quot;, &q=
+uot;Segoe UI&quot;, &quot;Segoe WP&quot;, Tahoma, Arial, sans-serif; line-h=
+eight: 21px;">
+<a id=3D"LPUrlAnchor_14876234378270.9151571142978989" href=3D"https://wiki.=
+debian.org/SettingUpSignedAptRepositoryWithReprepro" target=3D"_blank" styl=
+e=3D"text-decoration: none;">SettingUpSignedAptRepositoryWithReprepro - Deb=
+ian Wiki</a></div>
+<div id=3D"LPMetadata_14876234378270.8617771925805409" style=3D"margin: 10p=
+x 0px 16px; color: rgb(102, 102, 102); font-weight: normal; font-family: wf=
+_segoe-ui_normal, &quot;Segoe UI&quot;, &quot;Segoe WP&quot;, Tahoma, Arial=
+, sans-serif; font-size: 14px; line-height: 14px;">
+wiki.debian.org</div>
+<div id=3D"LPDescription_14876234378280.08783102645477991" style=3D"display=
+: block; color: rgb(102, 102, 102); font-weight: normal; font-family: wf_se=
+goe-ui_normal, &quot;Segoe UI&quot;, &quot;Segoe WP&quot;, Tahoma, Arial, s=
+ans-serif; font-size: 14px; line-height: 20px; max-height: 100px; overflow:=
+ hidden;">
+Introduction. It can be quite useful to be able to distribute your own Debi=
+an packages using apt, without having to push them to the Debian project it=
+self.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+I think I've added all the magic to my yocto build including:
+<div><br>
+</div>
+<div><span>PREFERRED_VERSION_gnupg ?=3D &quot;1.4.7&quot;</span><br>
+</div>
+<div><span><span>PACKAGE_CLASSES ?=3D &quot;package_deb&quot;</span><br>
+</span></div>
+<div><span><span>
+<div>IMAGE_INSTALL_append =3D &quot; gpgv&quot;</div>
+<div><span style=3D"font-size: 12pt;">IMAGE_FEATURES &#43;=3D &quot;package=
+-management&quot;</span><br>
+</div>
+<div><br>
+</div>
+<div>I've installed my sources.list file which includes</div>
+<div><br>
+</div>
+<div><span style=3D"font-size: 12pt;">deb http://192.168.7.1/repos/apt/debi=
+an stable main</span><br>
+</div>
+<div><span style=3D"font-size: 12pt;"><br>
+</span></div>
+<div><span style=3D"font-size: 12pt;">and I've installed my public key with=
+:</span></div>
+<div><span style=3D"font-size: 12pt;"><br>
+</span></div>
+<div><span style=3D"font-size: 12pt;"><span>$&nbsp;wget -O - http://192.168=
+.7.1/repos/apt/conf/nautel.gpg.key | apt-key add -</span><br>
+</span></div>
+<div><span style=3D"font-size: 12pt;"><span><br>
+</span></span></div>
+<div><span style=3D"font-size: 12pt;"><span>however, after all that, I stil=
+l get:</span></span></div>
+<div><span style=3D"font-size: 12pt;"><span><br>
+</span></span></div>
+<div><span style=3D"font-size: 12pt;"><span>
+<div>root@qemuarm:~# apt-get update</div>
+<div>Get:1 http://192.168.7.1 stable InRelease [1417 B]</div>
+<div>Ign http://192.168.7.1 stable InReleaseg installed in /etc/apt/trusted=
+.gpg.d/.</div>
+<div>Ign http://192.168.7.1 stable/main armel Packages/DiffIndex</div>
+<div>Hit http://192.168.7.1 stable/main armel Packages</div>
+<div>Ign http://192.168.7.1 stable/main Translation-en</div>
+<div>Fetched 1417 B in 2s (538 B/s)</div>
+<div>Reading package lists... Done</div>
+<div>W: GPG error: http://192.168.7.1 stable InRelease: Could not execute '=
+gpgv' to verify signature (is gpgv installed?)</div>
+<div><br>
+</div>
+<div>but I'm sure that gpgv is installed:</div>
+<div><br>
+</div>
+<div>
+<div>root@qemuarm:~# which gpgv</div>
+<div>/usr/bin/gpgv</div>
+<div><br>
+</div>
+When I run it though, it just hangs:</div>
+<div><br>
+</div>
+<div>
+<div>root@qemuarm:~# gpgv -v</div>
+<div>gpgv: directory `/home/root/.gnupg' created</div>
+<div>gpgv: can't open `/usr/share/gnupg/options.skel': No such file or dire=
+ctory</div>
+<div>gpgv: can't allocate lock for `/home/root/.gnupg/trustedkeys.gpg'</div=
+>
+<div>gpgv: keyblock resource `/home/root/.gnupg/trustedkeys.gpg': general e=
+rror</div>
+<div><br>
+</div>
+</div>
+<div>Has anyone else run up against this?</div>
+<div><br>
+</div>
+<div>Peter.</div>
+<div><br>
+</div>
+<br>
+</span></span></div>
+</span></span></div>
 </div>
 </body>
 </html>
 
---_000_0A5D9A624DF90343892F8F3FE7DE525A020AAD0Efmsmsx101amrcor_--
+--_000_BN6PR05MB2851112DD499FF32B76977489E5E0BN6PR05MB2851namp_--
