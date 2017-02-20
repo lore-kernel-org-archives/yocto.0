@@ -1,6 +1,6 @@
 Return-Path: <peter.spierenburg@nautel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E09BAE00480; Mon, 20 Feb 2017 15:29:54 -0800 (PST)
+	id AC2A3E00480; Mon, 20 Feb 2017 15:48:43 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,7 +9,7 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	SPF_HELO_PASS autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [104.47.33.108 listed in list.dnswl.org]
+	*      [104.47.42.123 listed in list.dnswl.org]
 	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
@@ -17,49 +17,51 @@ X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 3625 seconds by postgrey-1.32 at yocto-www;
-	Mon, 20 Feb 2017 15:29:51 PST
-Received: from NAM01-BN3-obe.outbound.protection.outlook.com
-	(mail-bn3nam01on0108.outbound.protection.outlook.com [104.47.33.108])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7B4B4E003D7
-	for <yocto@yoctoproject.org>; Mon, 20 Feb 2017 15:29:51 -0800 (PST)
+X-Greylist: delayed 10459 seconds by postgrey-1.32 at yocto-www;
+	Mon, 20 Feb 2017 15:48:37 PST
+Received: from NAM03-BY2-obe.outbound.protection.outlook.com
+	(mail-by2nam03on0123.outbound.protection.outlook.com [104.47.42.123])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4EABBE003D7
+	for <yocto@yoctoproject.org>; Mon, 20 Feb 2017 15:48:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=nautel.onmicrosoft.com; s=selector1-nautel-com;
 	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
-	bh=aXRqYehj1P4mnAmE5dUH7K6YCNIQtFyC2QN6OidT6u0=;
-	b=an9L5medYOU1KkOnlMmD/4MUuLvavhocQSUl+pjiB9ekhJiNqaJA1IZcd4mKhUJZk5Nlxb00/sgOU+rBH/zXXuwHIdD9ZyvG4WcMRB94AvQub1xBKbASOUWAjWW/gP7yIiXLSnbrXRSFhhkgKLBGXC0xUYBy8AuLlZWFhDyRrvo=
+	bh=59oVY4jEAYewkeNWd6g6jKzDHddmfmbF5066bV9Wja0=;
+	b=eXqyloOyAG/nrgxQiwQEUG2qIWTFJ8owrwcri/E09GpX8rgQTYpGCmt2/Mp0iPCL5PNPcEOQ25rmZY9lPlgNDMSsDepkKQUcFC+2tqxtTTcDkVzlLsfYF5mP4kc4mwko30F3vgoLwz9OjHWluI1mLr29AdgKr0tHQyNMpL9xFOg=
 Received: from BN6PR05MB2851.namprd05.prod.outlook.com (10.168.255.136) by
 	BN6PR05MB2850.namprd05.prod.outlook.com (10.168.255.135) with Microsoft
 	SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
-	15.1.933.7; Mon, 20 Feb 2017 20:54:15 +0000
+	15.1.933.7; Mon, 20 Feb 2017 23:48:35 +0000
 Received: from BN6PR05MB2851.namprd05.prod.outlook.com ([10.168.255.136]) by
 	BN6PR05MB2851.namprd05.prod.outlook.com ([10.168.255.136]) with mapi id
-	15.01.0933.010; Mon, 20 Feb 2017 20:54:15 +0000
+	15.01.0933.010; Mon, 20 Feb 2017 23:48:35 +0000
 From: Peter Spierenburg <peter.spierenburg@nautel.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Thread-Topic: Trying to set up a debian package repository for yocto.
-Thread-Index: AQHSi7mikz266VA7wE+mtYIiL7Fjew==
-Date: Mon, 20 Feb 2017 20:54:15 +0000
-Message-ID: <BN6PR05MB2851112DD499FF32B76977489E5E0@BN6PR05MB2851.namprd05.prod.outlook.com>
+Thread-Index: AQHSi7mikz266VA7wE+mtYIiL7Fje6Fyj5w3
+Date: Mon, 20 Feb 2017 23:48:35 +0000
+Message-ID: <BN6PR05MB28515766A1DA53C619A0E5809E5E0@BN6PR05MB2851.namprd05.prod.outlook.com>
+References: <BN6PR05MB2851112DD499FF32B76977489E5E0@BN6PR05MB2851.namprd05.prod.outlook.com>
+In-Reply-To: <BN6PR05MB2851112DD499FF32B76977489E5E0@BN6PR05MB2851.namprd05.prod.outlook.com>
 Accept-Language: en-CA, en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 authentication-results: spf=none (sender IP is )
 	smtp.mailfrom=peter.spierenburg@nautel.com; 
 x-originating-ip: [25.171.172.4]
-x-ms-office365-filtering-correlation-id: 5fccd508-94bc-4e3f-88e2-08d459d2a182
+x-ms-office365-filtering-correlation-id: 4e0b1f2a-a23d-4809-582b-08d459eafc0f
 x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:(22001);SRVR:BN6PR05MB2850;
 x-microsoft-exchange-diagnostics: 1; BN6PR05MB2850;
-	7:wjdbFxuSP+Yh4UpBGivvmdIih3OWTZGhyPI3CkSv6igmPsewL05QV8u5o6ulAGj8chBI3I3dIrNYFI9VA0Cs5cT6j4ukuup26wU/90DOhib9qdG5+wHoX79jVCR/ccbASNve45vqxbwjLqPKH13b7yvKOBWzjrNY0/APzcF/WpsElgLdwTcD7z5MYiJvRiJCel34my7/DvKHLRx3PcVSDwQSHBoGeTzxQFLocCJV05HlLLHGpc7EyGXDAucf5oCxjW5eN8rLTvI79gicPHrB3c/nJ59tsb+wEdhPVGuvh1KPYjl7rZ9cbtoJ0qRaovzwvmAkZCcfj0VJlNAQaIbqxw==
-x-microsoft-antispam-prvs: <BN6PR05MB28505224D31065E58CAB09F19E5E0@BN6PR05MB2850.namprd05.prod.outlook.com>
+	7:MzJdw0ALcMuEj1RV5oA7IGgm/7uS/ijLdjugQqmQaS/78VWoaoOxZk/V8jubBts/44ZnALniBSbwaGFGAVg0aluypFQKkRmNcBm+0OKTLGsE7Vjr4kDhpYaOTkFOOxNMnYe7nuZrixtN0M5L7dKTFUTJIa37XYu0lR8lohOXZhvX9m+eFtSKL8Qz99/2fq504Rv1wc23r+k8/qTX0PmNHTQOyeJfBltQb945IJHuuXBSHXHrXxxXnzkwprAUCqqA1IAhB4BrO90629D+4PH+fjmJaCARtD1aq8M/rfda74GrmmyBF8yW7cY5nybSzT3PR7tAqTR4FV122eDXeIjoHQ==
+x-microsoft-antispam-prvs: <BN6PR05MB2850F3AD307E723FAA7C46329E5E0@BN6PR05MB2850.namprd05.prod.outlook.com>
 x-exchange-antispam-report-test: UriScan:;
 x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(6040375)(601004)(2401047)(8121501046)(5005006)(10201501046)(3002001)(6041248)(20161123562025)(20161123555025)(20161123564025)(20161123560025)(20161123558025)(6072148);
+	RULEID:(6040375)(601004)(2401047)(8121501046)(5005006)(3002001)(10201501046)(6041248)(20161123560025)(20161123558025)(20161123564025)(20161123562025)(20161123555025)(6072148);
 	SRVR:BN6PR05MB2850; BCL:0; PCL:0; RULEID:; SRVR:BN6PR05MB2850; 
 x-forefront-prvs: 02243C58C6
 x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10019020)(6019001)(7916002)(39450400003)(269900001)(199003)(189002)(189998001)(122556002)(105586002)(106356001)(966004)(1720100001)(81166006)(97736004)(74316002)(86362001)(101416001)(2351001)(81156014)(450100001)(7736002)(19627405001)(1730700003)(8936002)(50986999)(7906003)(68736007)(8676002)(2900100001)(38730400002)(53936002)(110136004)(106116001)(77096006)(54356999)(606005)(6436002)(6606003)(25786008)(3846002)(102836003)(6116002)(5660300001)(2501003)(6916009)(6506006)(236005)(55016002)(5640700003)(99286003)(6306002)(9686003)(54896002)(66066001)(3660700001)(92566002)(33656002)(3280700002)(2906002)(7696004)(10721665003);
+	SFS:(10019020)(6019001)(7916002)(39450400003)(269900001)(199003)(189002)(377454003)(189998001)(105586002)(106356001)(81156014)(966004)(122556002)(1720100001)(97736004)(81166006)(74316002)(86362001)(101416001)(2351001)(7736002)(450100001)(19627405001)(68736007)(8936002)(50986999)(7906003)(8676002)(110136004)(53936002)(2900100001)(38730400002)(106116001)(77096006)(76176999)(1730700003)(6246003)(54356999)(6436002)(606005)(2950100002)(3846002)(25786008)(229853002)(102836003)(6116002)(2501003)(5660300001)(6916009)(6506006)(55016002)(5640700003)(236005)(99286003)(9686003)(6306002)(54896002)(33656002)(92566002)(66066001)(3660700001)(3280700002)(2906002)(7696004)(10721665003);
 	DIR:OUT; SFP:1102; SCL:1; SRVR:BN6PR05MB2850;
 	H:BN6PR05MB2851.namprd05.prod.outlook.com; FPR:; SPF:None;
 	PTR:InfoNoRecords; A:1; MX:1; LANG:en; 
@@ -69,11 +71,11 @@ spamdiagnosticoutput: 1:99
 spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
 X-OriginatorOrg: nautel.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Feb 2017 20:54:15.1951 (UTC)
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Feb 2017 23:48:35.1335 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 656f830c-eb88-49fe-90f1-433363ec7ccf
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR05MB2850
-Subject: Trying to set up a debian package repository for yocto.
+Subject: Re: Trying to set up a debian package repository for yocto.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -85,14 +87,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 20 Feb 2017 23:29:55 -0000
+X-List-Received-Date: Mon, 20 Feb 2017 23:48:43 -0000
 Content-Language: en-CA
 Content-Type: multipart/alternative;
-	boundary="_000_BN6PR05MB2851112DD499FF32B76977489E5E0BN6PR05MB2851namp_"
+	boundary="_000_BN6PR05MB28515766A1DA53C619A0E5809E5E0BN6PR05MB2851namp_"
 
---_000_BN6PR05MB2851112DD499FF32B76977489E5E0BN6PR05MB2851namp_
+--_000_BN6PR05MB28515766A1DA53C619A0E5809E5E0BN6PR05MB2851namp_
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
+
+Answering my own question:
+
+
+Use
+
+
+PREFERRED_VERSION_gnupg ?=3D "2.1.11"
+
+
+and
+
+
+IMAGE_INSTALL_append =3D " gnupg"
+
+
+Apparently, apt-get needs gpgv and apt-key needs gpg, and only gnupg 2.1.11=
+ delivers both.
+
+
+Cheers!
+
+
+Peter.
+
+________________________________
+From: yocto-bounces@yoctoproject.org <yocto-bounces@yoctoproject.org> on be=
+half of Peter Spierenburg <peter.spierenburg@nautel.com>
+Sent: February 20, 2017 4:54:15 PM
+To: yocto@yoctoproject.org
+Subject: [yocto] Trying to set up a debian package repository for yocto.
+
 
 I'm trying to construct a debian package repository to deploy packages from=
 .
@@ -158,7 +192,7 @@ Peter.
 
 
 
---_000_BN6PR05MB2851112DD499FF32B76977489E5E0BN6PR05MB2851namp_
+--_000_BN6PR05MB28515766A1DA53C619A0E5809E5E0BN6PR05MB2851namp_
 Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
@@ -170,6 +204,47 @@ Content-Transfer-Encoding: quoted-printable
 n-bottom:0;} --></style>
 </head>
 <body dir=3D"ltr">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Arial,Helvetica,sans-serif;" dir=3D"ltr">
+<p>Answering my own question:</p>
+<p><br>
+</p>
+<p>Use</p>
+<p><span><br>
+</span></p>
+<p><span>PREFERRED_VERSION_gnupg ?=3D &quot;2.1.11&quot;</span></p>
+<p><span><br>
+</span></p>
+<p><span>and</span></p>
+<p><span><br>
+</span></p>
+<p><span><span>IMAGE_INSTALL_append =3D &quot; gnupg&quot;</span><br>
+</span></p>
+<p><br>
+</p>
+<p>Apparently, apt-get needs gpgv and apt-key needs gpg, and only gnupg&nbs=
+p;2.1.11 delivers both.</p>
+<p><br>
+</p>
+<p>Cheers!</p>
+<p><br>
+</p>
+<p>Peter.</p>
+</div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> yocto-bounces@yoctopr=
+oject.org &lt;yocto-bounces@yoctoproject.org&gt; on behalf of Peter Spieren=
+burg &lt;peter.spierenburg@nautel.com&gt;<br>
+<b>Sent:</b> February 20, 2017 4:54:15 PM<br>
+<b>To:</b> yocto@yoctoproject.org<br>
+<b>Subject:</b> [yocto] Trying to set up a debian package repository for yo=
+cto.</font>
+<div>&nbsp;</div>
+</div>
+<div>
 <div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
 -family:Calibri,Arial,Helvetica,sans-serif;" dir=3D"ltr">
 <p>I'm trying to construct a debian package repository to deploy packages f=
@@ -304,7 +379,8 @@ rror</div>
 </span></span></div>
 </span></span></div>
 </div>
+</div>
 </body>
 </html>
 
---_000_BN6PR05MB2851112DD499FF32B76977489E5E0BN6PR05MB2851namp_--
+--_000_BN6PR05MB28515766A1DA53C619A0E5809E5E0BN6PR05MB2851namp_--
