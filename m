@@ -1,6 +1,6 @@
 Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 34BE8E00867; Sun, 19 Feb 2017 19:50:33 -0800 (PST)
+	id 139D6E00867; Sun, 19 Feb 2017 19:51:36 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,6 +9,9 @@ X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (akuster808[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.83.68 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -16,56 +19,53 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.192.195 listed in list.dnswl.org]
 	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.192.195 listed in dnsbl.sorbs.net]
-Received: from mail-pf0-f195.google.com (mail-pf0-f195.google.com
-	[209.85.192.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9E160E007BA
-	for <yocto@yoctoproject.org>; Sun, 19 Feb 2017 19:50:30 -0800 (PST)
-Received: by mail-pf0-f195.google.com with SMTP id p185so816107pfb.0
-	for <yocto@yoctoproject.org>; Sun, 19 Feb 2017 19:50:30 -0800 (PST)
+	*      [74.125.83.68 listed in dnsbl.sorbs.net]
+Received: from mail-pg0-f68.google.com (mail-pg0-f68.google.com [74.125.83.68])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C5E1AE00867
+	for <yocto@yoctoproject.org>; Sun, 19 Feb 2017 19:51:34 -0800 (PST)
+Received: by mail-pg0-f68.google.com with SMTP id 5so11132418pgj.0
+	for <yocto@yoctoproject.org>; Sun, 19 Feb 2017 19:51:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=subject:to:references:cc:from:message-id:date:user-agent
 	:mime-version:in-reply-to:content-transfer-encoding;
-	bh=dMEYmbIrFfsWL/p9fxWuLPPVMtEwt4YqwpBj8INk0uA=;
-	b=eaGS+9/8Ky9PCWbzStzCdd/rER+ylfLd6vmwQijU4unC31kNP1/DVoibUY4Z/xfJdQ
-	Mmf+BRHYUfTWPOyH0fB9ZitBrL89GyUkxOGkp6Pk0FRHP01aKHmQG9/oKqGsNmyCaSsg
-	vDLx5XkWnYNi2QvlZmk6JJOVjAbk5oKcRQuI6abdodwv6kMbaN1pLXHJwYFyHi6Lgq4d
-	VtCu0YHCANoLQmzkjq78XQvHBn1XqvRjQFPntVZ5fBkzN21I7Smn2uivSZ02USjV4Zab
-	+4JfJWJ+0+yqLEij3PshcEIcjSXbsejgZ3xlyGAz6TWhp8PoHvS1y4nQyojPnFXsV29s
-	CQHQ==
+	bh=GzFmQcKzPlLvoM47WIgSPLggFKYcVKJU/Ra7DBqyRNI=;
+	b=c+tqIl8Dk2phqVBiKmOwWwFFJdOe5FAynd8Qh6C87jq2zl+XuF7pqaW20xSZYqtNoW
+	80ee2F4xnhScYDIO+LENCE7Ud9DgXzhFcBQA1UbhAJg9TDXGC5Br0HIkSFvyNQ59uaL8
+	7Uz8J9Qw9a3VfIpkoTkw1yitopVQTzEY0LhQ5f+K3E9pUa7zwdZt+RC6LeavzHdY3Jxh
+	uTpZ0PZEKLV5g8ewsjXKKrjX4PVmL45eZvFs47iwXxAGVXbgntC/yRzdF0h/Q71dzk+t
+	hbSNQCeGXAOOG3VUPr3DTU4KDUcU9l7oCK6SROnf08DAxs3j4RJd2X4S4zXEr3INwhWG
+	Pezw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:subject:to:references:cc:from:message-id:date
 	:user-agent:mime-version:in-reply-to:content-transfer-encoding;
-	bh=dMEYmbIrFfsWL/p9fxWuLPPVMtEwt4YqwpBj8INk0uA=;
-	b=SjhkvptwBnZaop8M/v00XFW7E1N4ck7CFoUlpTav/HwD4jU5PTdyR/wBQDGc3aqCJ5
-	tRbRIvjNhar1Aryup7Jc3BDq0PHalrDfOlew3urjP2kLBKySUM6n8w1Ro8sbjJRsrfHg
-	8L4cDqmmn+1ey1QoHyifjulTBhY6/9I92Yxync/AUVMjuUHvYFowKClrj9LHcVhtwFN8
-	Lntn3J+JiOXZnvA00BNZ3BudzdoJJTNvDnRWETrktTn58M0yS0tm+wB8TxW2RiEEU1Tf
-	0GkHf+HTZkGvGTG9UwooXI62hGIAacDDw2w3Ap8ORe/yQhxofAvmP0S2ULQWIBnN4tIJ
-	7vAg==
-X-Gm-Message-State: AMke39lLeuZqohJ9FloFKPH+uAf013HyY8hPTEZGJhQNeB+CLGEbBrb8dyD6zEuRxWDjTw==
-X-Received: by 10.84.233.193 with SMTP id m1mr29004974pln.118.1487562629621;
-	Sun, 19 Feb 2017 19:50:29 -0800 (PST)
+	bh=GzFmQcKzPlLvoM47WIgSPLggFKYcVKJU/Ra7DBqyRNI=;
+	b=Rx2OMqR09gMLuq8+iGKABdAc/Zi8RNKKZH1a2JUMupQJckN7OvO6OsdcDDIpY3kDO9
+	y2njV8SEvy8dJstDHKrjt+BNqu4Jn/MRHAUfFindaJQ3exRKZQdLOrxgzY966zUBOSA/
+	Y9iB/fE6+xB47J6NqPy3gCQzlAS3YXcdpkUHPwak8ft4Nd/Tzu7xaunyiEw9qYLjab9q
+	NxXE3ccCfAZuvJeoebyea51Pc57vC1msz1/wzi501TMmYjt0mHx+3I7TapkbDya8/W40
+	H4StuovX0qA6Ip5pzsIM74QceKboKixguSutCeAW3V2j8eMB0H05PMDlnv1xxVzc46UQ
+	eq2Q==
+X-Gm-Message-State: AMke39mUxXdsqDBm3jCsXXfBqPH4rhOEXCHPuF7+9a7L0P5QmDcx4Gb6HVuAfhVMUFbIJQ==
+X-Received: by 10.99.138.195 with SMTP id y186mr13483018pgd.176.1487562694058; 
+	Sun, 19 Feb 2017 19:51:34 -0800 (PST)
 Received: from [10.20.2.159] (ip-64-134-128-59.public.wayport.net.
 	[64.134.128.59]) by smtp.gmail.com with ESMTPSA id
-	n79sm31570778pfj.31.2017.02.19.19.50.28
+	l22sm31761212pgc.43.2017.02.19.19.51.33
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sun, 19 Feb 2017 19:50:29 -0800 (PST)
+	Sun, 19 Feb 2017 19:51:33 -0800 (PST)
 To: yocto@yoctoproject.org
-References: <1486082292-29971-1-git-send-email-akuster808@gmail.com>
+References: <1486082196-29895-1-git-send-email-akuster808@gmail.com>
+	<1486082196-29895-2-git-send-email-akuster808@gmail.com>
 From: akuster808 <akuster808@gmail.com>
-Message-ID: <512f1299-8ac5-9a24-09c5-2cc3a26ee73d@gmail.com>
-Date: Sun, 19 Feb 2017 19:50:28 -0800
+Message-ID: <d760735f-9b53-8afc-1d89-7894c72ea570@gmail.com>
+Date: Sun, 19 Feb 2017 19:51:32 -0800
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
 	Thunderbird/45.7.0
 MIME-Version: 1.0
-In-Reply-To: <1486082292-29971-1-git-send-email-akuster808@gmail.com>
-Subject: Re: [meta-cgl][PATCH 1/3] cgl layer.conf: add layer depends
+In-Reply-To: <1486082196-29895-2-git-send-email-akuster808@gmail.com>
+Subject: Re: [meta-cgl][PATCH 2/3] openais: change SRC_URI http to fix error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -77,33 +77,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 20 Feb 2017 03:50:33 -0000
+X-List-Received-Date: Mon, 20 Feb 2017 03:51:36 -0000
 Content-Type: text/plain; charset=windows-1252; format=flowed
 Content-Transfer-Encoding: 7bit
 
 ping.
 
-is there an issue with this patch?
+is there an issue with this patch ?
 
+- armin
 
-On 02/02/2017 04:38 PM, Armin Kuster wrote:
+On 02/02/2017 04:36 PM, Armin Kuster wrote:
 > From: Armin Kuster <akuster@mvista.com>
+>
+> ERROR: openais-1.1.4-r0 do_fetch: Error executing a python function in exec_python_func() autogenerated:
+>
+> ftp://ftp@ breaks the fetcher and really is not needed.
 >
 > Signed-off-by: Armin Kuster <akuster@mvista.com>
 > ---
->   meta-cgl-common/conf/layer.conf | 2 ++
->   1 file changed, 2 insertions(+)
+>   meta-cgl-common/recipes-cgl/openais/openais_1.1.4.bb | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
 >
-> diff --git a/meta-cgl-common/conf/layer.conf b/meta-cgl-common/conf/layer.conf
-> index 0c19a95..dfd0d1f 100644
-> --- a/meta-cgl-common/conf/layer.conf
-> +++ b/meta-cgl-common/conf/layer.conf
-> @@ -11,4 +11,6 @@ BBFILE_COLLECTIONS += "cgl-common"
->   BBFILE_PATTERN_cgl-common = "^${LAYERDIR}/"
->   BBFILE_PRIORITY_cgl-common = "7"
+> diff --git a/meta-cgl-common/recipes-cgl/openais/openais_1.1.4.bb b/meta-cgl-common/recipes-cgl/openais/openais_1.1.4.bb
+> index 69934a5..e503cec 100644
+> --- a/meta-cgl-common/recipes-cgl/openais/openais_1.1.4.bb
+> +++ b/meta-cgl-common/recipes-cgl/openais/openais_1.1.4.bb
+> @@ -5,7 +5,7 @@ DEPENDS = "cluster-glue corosync"
 >   
-> +LAYERDEPENDS_cgl-common = "core openembedded-layer networking-layer perl-layer filesystems-layer security openclovis selinux"
-> +
->   require conf/distro/include/cgl_common_security_flags.inc
+>   
+>   SRC_URI = " \
+> -    ftp://ftp@tux.rainside.sk/gentoo/distfiles/openais-${PV}.tar.gz \
+> +    http://tux.rainside.sk/gentoo/distfiles/openais-${PV}.tar.gz \
+>       file://fix-lcrso-linkage.patch \
+>       file://build-cleanup-configure-ac.patch \
+>       file://openais-fix-bash.patch \
 
 
