@@ -1,6 +1,6 @@
-Return-Path: <eddie.cai.linux@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6ECDEE00480; Sun, 19 Feb 2017 06:33:53 -0800 (PST)
+	id 7632FE0082A; Sun, 19 Feb 2017 18:04:55 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,7 +9,12 @@ X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	RCVD_IN_DNSWL_NONE, 
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (eddie.cai.linux[at]gmail.com)
+	mail provider *      (raj.khem[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.217.194 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.217.194 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -18,52 +23,43 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.220.194 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.220.194 listed in dnsbl.sorbs.net]
-Received: from mail-qk0-f194.google.com (mail-qk0-f194.google.com
-	[209.85.220.194])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 497FFE003DB
-	for <yocto@yoctoproject.org>; Sun, 19 Feb 2017 06:33:49 -0800 (PST)
-Received: by mail-qk0-f194.google.com with SMTP id n127so395589qkf.2
-	for <yocto@yoctoproject.org>; Sun, 19 Feb 2017 06:33:49 -0800 (PST)
+Received: from mail-ua0-f194.google.com (mail-ua0-f194.google.com
+	[209.85.217.194])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B633BE00480
+	for <yocto@yoctoproject.org>; Sun, 19 Feb 2017 18:04:53 -0800 (PST)
+Received: by mail-ua0-f194.google.com with SMTP id t17so7758330uae.1
+	for <yocto@yoctoproject.org>; Sun, 19 Feb 2017 18:04:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=UYVkd4GE/fyZ+GW/NXAHr4ICHzptxhaHSPHzPfYdhPE=;
-	b=spK0UTorahrclaZrNBN+4UEcv0Oq4JAQD136xewqgNeQ20ENfz/kSJUIb0NCkdh8ok
-	MWF0ifJVsmMuQ7kdTVAruxBpgTVRJxgLuv9obE/kxAOb5kAvBA2psF9Ap/kpYRD8AO0u
-	uTcuh7GAF7vwHd7Zy6vc0emDvcIo1Mi/98mb9Wq6Wt/zWInwjkxFH8CeONRXb5fL5UtM
-	7ZmFrisqHwc5PCwcR9RWhgNLgBmkb86rPDI3NLtDQJJcgfxN9BG2G64M0C1ngxBmbJzb
-	4m65C3KgZtn39W0nmprmAyLPn7rOr0fjRPyz7wTqoMhfbGrmPM1hgSF47VADOMY1fWNR
-	awdw==
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to; 
+	bh=p/lHopFAKUbJMe4UneSXagTE4+syYb/xkR6qxJwEzqE=;
+	b=RfIAi6rq/gy6YSQsj0RPGpMBzRKWE3q+MTHzILfWt343SPo93WxVMNGv2lg68jA5gc
+	9IFxmqSAlDVZeM9v6HAy7EKRSLdf6KyhJ5QF+gY/XoU8870bvwXdz8uQgQoCX+bpZ/zj
+	T5Vj51VK3Dqj/44/h54TeuslfUu0jsIZIczajW3jn6/c4yoOczPYkoU7UG3ucQYTw7Xn
+	eEqXpt1GawA7oU1oNHDCN1A7ON08Lwo4A6+snfw/PWAqvRGj04BUPMo1j4JR3FSv8X5r
+	DMWjFx52jPEdFGO8g00ioxrOEJMkgUVqPq6wu3Kn4h3OSv+ST596XFjWCvuIOIGXaE/j
+	pmrQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=UYVkd4GE/fyZ+GW/NXAHr4ICHzptxhaHSPHzPfYdhPE=;
-	b=ZxmQxB1x8pBZLfgcMiDacTvGq3EtJXUuTW9qiGJ3oNo45HaSwzwQsGrb9TiHaj7Aez
-	ojMyyvAVqlZFsOKl3mvUZ88HA2UIehWL7o3w0U+M4aPan/CdjB5hMH8s5Bg7UqfXaQ1A
-	iUO7UAX0cNK3fhOx5CPAauF2Ssz6FJkvEd+ySFub8b0j+p8f9XmBlbJ8Kh2oLPgY6YIx
-	bg90fLhZezMYDp/HJS+r2jl5yQhzswG0yGGjaXbpwBDUipZvYLo8DTvfPX6SHG7z5mJu
-	DPHhcWFLufyESokG/Y5vhKfRs3lBLb34BITjkqt1foQl7eJLcNJrbVUW6EUSSNKwdxZ5
-	n0JQ==
-X-Gm-Message-State: AMke39nkAH8zFmq+KvTBAtopfydAt9k2hsxVLZ5qHqcA2/UvDLlOyQbCC5v0FkSval0XKt4t3wasfA82X0w8Og==
-X-Received: by 10.55.150.199 with SMTP id y190mr15264508qkd.273.1487514829198; 
-	Sun, 19 Feb 2017 06:33:49 -0800 (PST)
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to;
+	bh=p/lHopFAKUbJMe4UneSXagTE4+syYb/xkR6qxJwEzqE=;
+	b=lUveOQ67OsW0S9eAloZlRcz+/UwDt/Y03GbNEFVkWZy9NdxMpBIA9yrCwjjFz5WEH1
+	G1wAK43uqJ5YWZELyIJn9gJCtp8dp9sRxx4yQkfxAoSqT10+js7p62hwfH1TpJMc8I4D
+	t+IbzY2tIhKJrC2wQTpEZyZN/HSVWpCdXz08jL+HKMpTpv7BDcAAhMMQKmWw0eiyNoJh
+	LdIWwKoZU0tZpfnq1IDQvhwJMWtsixOyh9QkKBK4g1tWlrK+mm88XIpXPczGTJKlYinM
+	IoDswjxxKsFOjOW5nCLAuig8LBfOgEJPqDWB870zPdPPBQBsivgUbymvWDYGzc6s0sz+
+	eIvA==
+X-Gm-Message-State: AMke39mVuulkuOIOTaEu8eDWI+Eb3veeeyf0ZOJC8T+uCU9sA8MLPWpXVJrQ7X2Yerd+KLIkTZUxY7A0gJnl0A==
+X-Received: by 10.176.71.234 with SMTP id w42mr1261522uac.141.1487556292777;
+	Sun, 19 Feb 2017 18:04:52 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.237.47.68 with HTTP; Sun, 19 Feb 2017 06:33:48 -0800 (PST)
-In-Reply-To: <CAFLEztS7U_s2Np48_Kb=+TMjNReDaGAE_uSRB-Gan+yHQRyC7g@mail.gmail.com>
-References: <20170219024340.23664-1-twoerner@gmail.com>
-	<20170219024340.23664-3-twoerner@gmail.com>
-	<CAFLEztS7U_s2Np48_Kb=+TMjNReDaGAE_uSRB-Gan+yHQRyC7g@mail.gmail.com>
-From: Eddie Cai <eddie.cai.linux@gmail.com>
-Date: Sun, 19 Feb 2017 22:33:48 +0800
-Message-ID: <CAJrj+DMdmcBqnFgfJ4B3t+HCScH_ANCCm3wLcvDyDROMBowpYg@mail.gmail.com>
-To: Jacob Chen <jacobchen110@gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-rockchip][PATCH v2 2/5] u-boot-rockchip: add
+References: <20170219111804.20566-1-paul@paulbarker.me.uk>
+In-Reply-To: <20170219111804.20566-1-paul@paulbarker.me.uk>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Mon, 20 Feb 2017 02:04:41 +0000
+Message-ID: <CAMKF1srXgR_uLBujxiy-Lywu4xSE28Nx6PhGDze_C871Nm0TtA@mail.gmail.com>
+To: Paul Barker <paul@paulbarker.me.uk>, yocto@yoctoproject.org
+Subject: Re: [meta-raspberrypi][morty][PATCH 0/2] Stable branch kernel upgrades
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,72 +71,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 19 Feb 2017 14:33:53 -0000
-Content-Type: multipart/alternative; boundary=94eb2c08b8a6fe192b0548e3082e
+X-List-Received-Date: Mon, 20 Feb 2017 02:04:55 -0000
+Content-Type: multipart/alternative; boundary=f40304378a786a1bc40548ecb01e
 
---94eb2c08b8a6fe192b0548e3082e
+--f40304378a786a1bc40548ecb01e
 Content-Type: text/plain; charset=UTF-8
 
-2017-02-19 22:22 GMT+08:00 Jacob Chen <jacobchen110@gmail.com>:
+Kernel upgrades for kernels are probably fine it's just incompatible
+metadata changes that we have to be careful about
 
-> Hi,
->
-> 2017-02-19 10:43 GMT+08:00 Trevor Woerner <twoerner@gmail.com>:
-> > This recipe was taken from the Rockchip team's recipe at
-> > https://github.com/rockchip-linux/meta-rockchip/commit/
-> 6a139d5b7510c7ba36aace82c239b894d5741cac
-> >
-> > It was mostly written by Jacob Chen <jacob-chen@iotwrt.com> and I've
-> made a
-> > couple small modifications.
-> >
-> > Signed-off-by: Trevor Woerner <twoerner@gmail.com>
-> > ---
-> >  recipes-bsp/u-boot/u-boot-rockchip_git.bb | 19 +++++++++++++++++++
-> >  1 file changed, 19 insertions(+)
-> >  create mode 100644 recipes-bsp/u-boot/u-boot-rockchip_git.bb
-> >
-> > diff --git a/recipes-bsp/u-boot/u-boot-rockchip_git.bb
-> b/recipes-bsp/u-boot/u-boot-rockchip_git.bb
-> > new file mode 100644
-> > index 0000000..3b4f109
-> > --- /dev/null
-> > +++ b/recipes-bsp/u-boot/u-boot-rockchip_git.bb
-> > @@ -0,0 +1,19 @@
-> > +# Copyright (C) 2017 Fuzhou Rockchip Electronics Co., Ltd
-> > +# Copyright (C) 2017 Trevor Woerner <twoerner@gmail.com>
-> > +# Released under the MIT license (see COPYING.MIT for the terms)
-> > +
-> > +require recipes-bsp/u-boot/u-boot.inc
-> > +
-> > +DESCRIPTION = "Rockchip next-dev U-Boot"
-> > +LICENSE = "GPLv2+"
-> > +LIC_FILES_CHKSUM = "file://Licenses/README;md5=
-> a2c678cfd4a4d97135585cad908541c6"
-> > +COMPATIBLE_MACHINE = "(firefly-rk3288)"
-> > +
-> > +SRC_URI = "git://github.com/rockchip-linux/u-boot.git;branch=release;"
-> > +SRCREV = "${AUTOREV}"
-> > +S = "${WORKDIR}/git"
-> > +
-> > +do_deploy_prepend () {
-> > +       # copy to default search path
-> > +       cp ${B}/spl/${SPL_BINARY} ${B}/
-> > +}
->
-> I can't pass build if use do_deploy_prepend instead of do_install_prepend.
->
-It works for me. Did you delete build/tmp?
+On Sun, Feb 19, 2017 at 3:20 AM Paul Barker <paul@paulbarker.me.uk> wrote:
 
+> I'm not 100% sure what the current policy is for upgrading the kernel in
+> meta-raspberrypi on a stable branch. I think it's a good idea to pull in
+> upgrades from the stable kernel series when available though so that we can
+> incorporate any upstream bugfixes. I'm also only considering backporting
+> upgrades we've already made on master.
 >
-> > --
-> > 2.12.0.rc1.48.g076c053
-> >
-> > --
-> > _______________________________________________
-> > yocto mailing list
-> > yocto@yoctoproject.org
-> > https://lists.yoctoproject.org/listinfo/yocto
+> I've also picked up the upgrade to the 4.9 kernel recipe as the old git
+> hash
+> no longer exists upstream.
+>
+> I've built & boot tested both 4.4 and 4.9 kernels on a rpi3 using morty
+> plus
+> these patches.
+>
+> Let me know if this is wanted for stable branches or not. If it is wanted,
+> I'll
+> try to do this once a month or so for morty (and pyro when it's released)
+> until
+> the end of the 12-month support period for each release.
+>
+> Khem Raj (1):
+>   linux-raspberrypi_4.9.bb: Upgrade to 4.9.10
+>
+> Paul Barker (1):
+>   linux-raspberrypi_4.4: Update to 4.4.48
+>
+>  ...-Add-rules-for-.dtbo-files-for-dts-overla.patch | 29
+> ++++++++++++++++++++++
+>  recipes-kernel/linux/linux-raspberrypi_4.4.bb      |  4 +--
+>  recipes-kernel/linux/linux-raspberrypi_4.9.bb      |  5 ++--
+>  3 files changed, 34 insertions(+), 4 deletions(-)
+>  create mode 100644
+> recipes-kernel/linux/linux-raspberrypi-4.9/0001-build-arm64-Add-rules-for-.dtbo-files-for-dts-overla.patch
+>
+> --
+> 2.11.0
+>
 > --
 > _______________________________________________
 > yocto mailing list
@@ -148,97 +126,73 @@ It works for me. Did you delete build/tmp?
 > https://lists.yoctoproject.org/listinfo/yocto
 >
 
---94eb2c08b8a6fe192b0548e3082e
+--f40304378a786a1bc40548ecb01e
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><br><div class=3D"gmail_extra"><br><div class=3D"gmail_quo=
-te">2017-02-19 22:22 GMT+08:00 Jacob Chen <span dir=3D"ltr">&lt;<a href=3D"=
-mailto:jacobchen110@gmail.com" target=3D"_blank">jacobchen110@gmail.com</a>=
-&gt;</span>:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8e=
-x;border-left:1px #ccc solid;padding-left:1ex">Hi,<br>
-<span class=3D""><br>
-2017-02-19 10:43 GMT+08:00 Trevor Woerner &lt;<a href=3D"mailto:twoerner@gm=
-ail.com">twoerner@gmail.com</a>&gt;:<br>
-</span><div><div class=3D"h5">&gt; This recipe was taken from the Rockchip =
-team&#39;s recipe at<br>
-&gt; <a href=3D"https://github.com/rockchip-linux/meta-rockchip/commit/6a13=
-9d5b7510c7ba36aace82c239b894d5741cac" rel=3D"noreferrer" target=3D"_blank">=
-https://github.com/rockchip-<wbr>linux/meta-rockchip/commit/<wbr>6a139d5b75=
-10c7ba36aace82c239b8<wbr>94d5741cac</a><br>
-&gt;<br>
-&gt; It was mostly written by Jacob Chen &lt;<a href=3D"mailto:jacob-chen@i=
-otwrt.com">jacob-chen@iotwrt.com</a>&gt; and I&#39;ve made a<br>
-&gt; couple small modifications.<br>
-&gt;<br>
-&gt; Signed-off-by: Trevor Woerner &lt;<a href=3D"mailto:twoerner@gmail.com=
-">twoerner@gmail.com</a>&gt;<br>
-&gt; ---<br>
-&gt;=C2=A0 recipes-bsp/u-boot/<a href=3D"http://u-boot-rockchip_git.bb" rel=
-=3D"noreferrer" target=3D"_blank">u-boot-<wbr>rockchip_git.bb</a> | 19 ++++=
-+++++++++++++++<br>
-&gt;=C2=A0 1 file changed, 19 insertions(+)<br>
-&gt;=C2=A0 create mode 100644 recipes-bsp/u-boot/<a href=3D"http://u-boot-r=
-ockchip_git.bb" rel=3D"noreferrer" target=3D"_blank">u-boot-<wbr>rockchip_g=
-it.bb</a><br>
-&gt;<br>
-&gt; diff --git a/recipes-bsp/u-boot/<a href=3D"http://u-boot-rockchip_git.=
-bb" rel=3D"noreferrer" target=3D"_blank">u-boot-<wbr>rockchip_git.bb</a> b/=
-recipes-bsp/u-boot/<a href=3D"http://u-boot-rockchip_git.bb" rel=3D"norefer=
-rer" target=3D"_blank">u-boot-<wbr>rockchip_git.bb</a><br>
-&gt; new file mode 100644<br>
-&gt; index 0000000..3b4f109<br>
-&gt; --- /dev/null<br>
-&gt; +++ b/recipes-bsp/u-boot/<a href=3D"http://u-boot-rockchip_git.bb" rel=
-=3D"noreferrer" target=3D"_blank">u-boot-<wbr>rockchip_git.bb</a><br>
-&gt; @@ -0,0 +1,19 @@<br>
-&gt; +# Copyright (C) 2017 Fuzhou Rockchip Electronics Co., Ltd<br>
-&gt; +# Copyright (C) 2017 Trevor Woerner &lt;<a href=3D"mailto:twoerner@gm=
-ail.com">twoerner@gmail.com</a>&gt;<br>
-&gt; +# Released under the MIT license (see COPYING.MIT for the terms)<br>
-&gt; +<br>
-&gt; +require recipes-bsp/u-boot/u-boot.inc<br>
-&gt; +<br>
-&gt; +DESCRIPTION =3D &quot;Rockchip next-dev U-Boot&quot;<br>
-&gt; +LICENSE =3D &quot;GPLv2+&quot;<br>
-&gt; +LIC_FILES_CHKSUM =3D &quot;file://Licenses/README;md5=3D<wbr>a2c678cf=
-d4a4d97135585cad908541<wbr>c6&quot;<br>
-&gt; +COMPATIBLE_MACHINE =3D &quot;(firefly-rk3288)&quot;<br>
-&gt; +<br>
-&gt; +SRC_URI =3D &quot;git://<a href=3D"http://github.com/rockchip-linux/u=
--boot.git;branch=3Drelease" rel=3D"noreferrer" target=3D"_blank">github.com=
-/rockchip-<wbr>linux/u-boot.git;branch=3D<wbr>release</a>;&quot;<br>
-&gt; +SRCREV =3D &quot;${AUTOREV}&quot;<br>
-&gt; +S =3D &quot;${WORKDIR}/git&quot;<br>
-&gt; +<br>
-&gt; +do_deploy_prepend () {<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0# copy to default search path<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0cp ${B}/spl/${SPL_BINARY} ${B}/<br>
-&gt; +}<br>
-<br>
-</div></div>I can&#39;t pass build if use do_deploy_prepend instead of do_i=
-nstall_prepend.<br></blockquote><div>It works for me. Did you delete build/=
-tmp?</div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;bord=
-er-left:1px #ccc solid;padding-left:1ex">
-<div class=3D"HOEnZb"><div class=3D"h5"><br>
-&gt; --<br>
-&gt; 2.12.0.rc1.48.g076c053<br>
-&gt;<br>
-&gt; --<br>
-&gt; ______________________________<wbr>_________________<br>
-&gt; yocto mailing list<br>
-&gt; <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><b=
-r>
-&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noref=
-errer" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto=
-</a><br>
---<br>
-______________________________<wbr>_________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<div>Kernel upgrades for kernels are probably fine it&#39;s just incompatib=
+le metadata changes that we have to be careful about</div><div><br><div cla=
+ss=3D"gmail_quote"><div>On Sun, Feb 19, 2017 at 3:20 AM Paul Barker &lt;<a =
+href=3D"mailto:paul@paulbarker.me.uk">paul@paulbarker.me.uk</a>&gt; wrote:<=
+br></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;borde=
+r-left:1px #ccc solid;padding-left:1ex">I&#39;m not 100% sure what the curr=
+ent policy is for upgrading the kernel in<br class=3D"gmail_msg">
+meta-raspberrypi on a stable branch. I think it&#39;s a good idea to pull i=
+n<br class=3D"gmail_msg">
+upgrades from the stable kernel series when available though so that we can=
+<br class=3D"gmail_msg">
+incorporate any upstream bugfixes. I&#39;m also only considering backportin=
+g<br class=3D"gmail_msg">
+upgrades we&#39;ve already made on master.<br class=3D"gmail_msg">
+<br class=3D"gmail_msg">
+I&#39;ve also picked up the upgrade to the 4.9 kernel recipe as the old git=
+ hash<br class=3D"gmail_msg">
+no longer exists upstream.<br class=3D"gmail_msg">
+<br class=3D"gmail_msg">
+I&#39;ve built &amp; boot tested both 4.4 and 4.9 kernels on a rpi3 using m=
+orty plus<br class=3D"gmail_msg">
+these patches.<br class=3D"gmail_msg">
+<br class=3D"gmail_msg">
+Let me know if this is wanted for stable branches or not. If it is wanted, =
+I&#39;ll<br class=3D"gmail_msg">
+try to do this once a month or so for morty (and pyro when it&#39;s release=
+d) until<br class=3D"gmail_msg">
+the end of the 12-month support period for each release.<br class=3D"gmail_=
+msg">
+<br class=3D"gmail_msg">
+Khem Raj (1):<br class=3D"gmail_msg">
+=C2=A0 <a href=3D"http://linux-raspberrypi_4.9.bb" rel=3D"noreferrer" class=
+=3D"gmail_msg" target=3D"_blank">linux-raspberrypi_4.9.bb</a>: Upgrade to 4=
+.9.10<br class=3D"gmail_msg">
+<br class=3D"gmail_msg">
+Paul Barker (1):<br class=3D"gmail_msg">
+=C2=A0 linux-raspberrypi_4.4: Update to 4.4.48<br class=3D"gmail_msg">
+<br class=3D"gmail_msg">
+=C2=A0...-Add-rules-for-.dtbo-files-for-dts-overla.patch | 29 +++++++++++++=
++++++++++<br class=3D"gmail_msg">
+=C2=A0recipes-kernel/linux/<a href=3D"http://linux-raspberrypi_4.4.bb" rel=
+=3D"noreferrer" class=3D"gmail_msg" target=3D"_blank">linux-raspberrypi_4.4=
+.bb</a>=C2=A0 =C2=A0 =C2=A0 |=C2=A0 4 +--<br class=3D"gmail_msg">
+=C2=A0recipes-kernel/linux/<a href=3D"http://linux-raspberrypi_4.9.bb" rel=
+=3D"noreferrer" class=3D"gmail_msg" target=3D"_blank">linux-raspberrypi_4.9=
+.bb</a>=C2=A0 =C2=A0 =C2=A0 |=C2=A0 5 ++--<br class=3D"gmail_msg">
+=C2=A03 files changed, 34 insertions(+), 4 deletions(-)<br class=3D"gmail_m=
+sg">
+=C2=A0create mode 100644 recipes-kernel/linux/linux-raspberrypi-4.9/0001-bu=
+ild-arm64-Add-rules-for-.dtbo-files-for-dts-overla.patch<br class=3D"gmail_=
+msg">
+<br class=3D"gmail_msg">
+--<br class=3D"gmail_msg">
+2.11.0<br class=3D"gmail_msg">
+<br class=3D"gmail_msg">
+--<br class=3D"gmail_msg">
+_______________________________________________<br class=3D"gmail_msg">
+yocto mailing list<br class=3D"gmail_msg">
+<a href=3D"mailto:yocto@yoctoproject.org" class=3D"gmail_msg" target=3D"_bl=
+ank">yocto@yoctoproject.org</a><br class=3D"gmail_msg">
 <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto</a><=
-br>
-</div></div></blockquote></div><br></div></div>
+" class=3D"gmail_msg" target=3D"_blank">https://lists.yoctoproject.org/list=
+info/yocto</a><br class=3D"gmail_msg">
+</blockquote></div></div>
 
---94eb2c08b8a6fe192b0548e3082e--
+--f40304378a786a1bc40548ecb01e--
