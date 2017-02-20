@@ -1,66 +1,34 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <anibal.limon@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2B16EE00480; Mon, 20 Feb 2017 12:36:08 -0800 (PST)
+	id 2424DE00480; Mon, 20 Feb 2017 13:09:31 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.216.169 listed in dnsbl.sorbs.net]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.65 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.216.169 listed in list.dnswl.org]
-Received: from mail-qt0-f169.google.com (mail-qt0-f169.google.com
-	[209.85.216.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D5A01E003D7
-	for <yocto@yoctoproject.org>; Mon, 20 Feb 2017 12:36:04 -0800 (PST)
-Received: by mail-qt0-f169.google.com with SMTP id b16so46739208qte.0
-	for <yocto@yoctoproject.org>; Mon, 20 Feb 2017 12:36:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=o0dgiyG3aBmaUelG5nFLUV/en3W2WQe0URWzBuvsGW4=;
-	b=ubxJhxJRtty49uvCrTxENBs24we3NmUo8T93Z2lujN0AJwgTsYDQSYMXS1CqLfU84c
-	0Y2N4He85W4Uf9c0UwC3x5ZeSm84PbDdGrX+IIvmFt7T/5noFo4buW2P/KyW4MO760C+
-	phPAtRaDdMSy081rvvsSdkvfFZY5xn0elU3kb4sTWUvnlIiU42Mgei6Q6StO50tnsI7j
-	YSATsNcKu5PqznHKzUOVyir6TjPvAsvnFQbSN9O8gZxgaC/ZkWfWh9WHzj9j2v2wbNRB
-	N3Ro5xBnp+iZPpbWJZtUtrVPyjfKCgUsktsmdDVtyh5sKQhSeSnuQIlYgnDiDwsLcy0N
-	dqFA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=o0dgiyG3aBmaUelG5nFLUV/en3W2WQe0URWzBuvsGW4=;
-	b=H4AF5ZFXthRP5D6DkYPvRigIvSNBCBE3rRA9ORXiA6zhcLLa0870D6v+KTTIhgCshV
-	96KC/l7LWrJER9uUfZyYLF69HAAWpGQ8tR01C6GKCDbDBhRBammwCwU0NNg+/BTqJIAi
-	KZmUT00Ak8DksG92Q+woVZg9nhZqFfgbgaGVG6S4StYEzkp/nzeyFOt03GDXL6uM+lhQ
-	ubMnJ4hXeNhTfUr4lm6wBQQuFHTMIghOvT50XgdE78uZlJqSts0Zr3klaDqF/QH5jjm4
-	O2Jht1BuIgYbEiN42Xyj+jj0so6eAyeu4dL6cl0dZLIewrAhy76twGNTkLULr5RwKEQs
-	5lhg==
-X-Gm-Message-State: AMke39nEcqmiTnJv3K0LuWHYcgHyuTi4KLwL2n5VkOzHRU/MIU4wWRocDWCUeru5ISNQX0M/vd6A/1z4GlIYc4vq
-X-Received: by 10.237.62.232 with SMTP id o37mr20570290qtf.188.1487622963691; 
-	Mon, 20 Feb 2017 12:36:03 -0800 (PST)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 629FAE003D7
+	for <yocto@yoctoproject.org>; Mon, 20 Feb 2017 13:09:27 -0800 (PST)
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+	by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	20 Feb 2017 13:09:27 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.35,187,1484035200"; d="scan'208";a="227643507"
+Received: from alimonb-mobl1.zpn.intel.com ([10.219.128.120])
+	by fmsmga004.fm.intel.com with ESMTP; 20 Feb 2017 13:09:26 -0800
+From: =?UTF-8?q?An=C3=ADbal=20Lim=C3=B3n?= <anibal.limon@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Mon, 20 Feb 2017 15:12:49 -0600
+Message-Id: <1487625169-22282-1-git-send-email-anibal.limon@linux.intel.com>
+X-Mailer: git-send-email 2.1.4
 MIME-Version: 1.0
-Received: by 10.140.103.233 with HTTP; Mon, 20 Feb 2017 12:35:43 -0800 (PST)
-In-Reply-To: <CAF1M0z4W54uXfGOKowCpsW6YAeTFqKAB1zT-F=A5Po5wTT1uwQ@mail.gmail.com>
-References: <CAF1M0z72cFVW61EkLqdSwPrRKO1AptMsntfxxEzo8Qy=ak79oQ@mail.gmail.com>
-	<CAJTo0Lau5AyY33Y+cROUMR38uR_Msr5YSiGQtnd-Nscu-oe0nA@mail.gmail.com>
-	<CAF1M0z4VWhHuzFXhRgpoDYbD00P+1R8W-9qyw_X_V2RrSFa8hA@mail.gmail.com>
-	<CAF1M0z4W54uXfGOKowCpsW6YAeTFqKAB1zT-F=A5Po5wTT1uwQ@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Mon, 20 Feb 2017 20:35:43 +0000
-Message-ID: <CAJTo0LabYMokHZ=CrHxj-Am5F3iAjqF=-evNM=76yj7jkqXWFw@mail.gmail.com>
-To: SatyaNarayana Sampangi <satya.2891@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Problem: Installation
+Cc: openembedded-core@lists.openembedded.org
+Subject: [PATCHv2] yocto-compat-layer.py: Add script to YP Compatible Layer validation
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,40 +40,570 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 20 Feb 2017 20:36:08 -0000
-Content-Type: multipart/alternative; boundary=001a11406f0e4f98b60548fc36e5
-
---001a11406f0e4f98b60548fc36e5
+X-List-Received-Date: Mon, 20 Feb 2017 21:09:31 -0000
 Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On 20 February 2017 at 18:09, SatyaNarayana Sampangi <satya.2891@gmail.com>
-wrote:
+The yocto-compat-layer script serves as a tool to validate the alignament
+of a layer with YP Compatible Layers Programme [1], is based on an RFC
+sent to the ML to enable automatic testing of layers [2] that wants to
+be YP Compatible.
 
-> Problem Solved, I did not mention the path properly in the S variable,
->
-> I changed, S = "${WORKDIR}/${PN}-${PV}", which works fine.
->
-> Thanks to Ross, for triggering.
->
+The tool takes an layer (or set of layers) via command line option -l
+and detects what kind of layer is distro, machine or software and then
+executes a  set of tests against the layer in order to validate the
+compatibility.
 
-That's the default value, so you can just delete your assignment.
+The tests currently implemented are:
 
-Ross
+common.test_readme: Test if a README file exists in the layer and isn't
+    empty.
+common.test_parse: Test for execute bitbake -p without errors.
+common.test_show_environment: Test for execute bitbake -e without errors.
+common.test_signatures: Test executed in BSP and DISTRO layers to review
+    doesn't comes with recipes that changes the signatures.
 
---001a11406f0e4f98b60548fc36e5
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+bsp.test_bsp_defines_machines: Test if a BSP layers has machines
+    configurations.
+bsp.test_bsp_no_set_machine: Test the BSP layer to doesn't set
+    machine at adding layer.
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 20 February 2017 at 18:09, SatyaNarayana Sampangi <span dir=3D"ltr">&lt;=
-<a href=3D"mailto:satya.2891@gmail.com" target=3D"_blank">satya.2891@gmail.=
-com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"mar=
-gin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr=
-">Problem Solved, I did not mention the path properly in the S variable,<di=
-v><br></div><div>I changed, S =3D &quot;${WORKDIR}/${PN}-${PV}&quot;, which=
- works fine.</div><div><br></div><div>Thanks to Ross, for triggering.</div>=
-</div></blockquote></div><br>That&#39;s the default value, so you can just =
-delete your assignment.</div><div class=3D"gmail_extra"><br></div><div clas=
-s=3D"gmail_extra">Ross</div></div>
+distro.test_distro_defines_distros: Test if a DISTRO layers has distro
+    configurations.
+distro.test_distro_no_set_distro: Test the DISTRO layer to doesn't set
+    distro at adding layer.
 
---001a11406f0e4f98b60548fc36e5--
+Example of usage:
+
+$ source oe-init-build-env
+$ yocto-compat-layer.py LAYER_DIR
+
+[YOCTO #10596]
+
+[1] https://www.yoctoproject.org/webform/yocto-project-compatible-registration
+[2] https://lists.yoctoproject.org/pipermail/yocto-ab/2016-October/001801.html
+
+Signed-off-by: Aníbal Limón <anibal.limon@linux.intel.com>
+---
+ scripts/lib/compatlayer/__init__.py       | 163 ++++++++++++++++++++++++++++++
+ scripts/lib/compatlayer/case.py           |   7 ++
+ scripts/lib/compatlayer/cases/__init__.py |   0
+ scripts/lib/compatlayer/cases/bsp.py      |  26 +++++
+ scripts/lib/compatlayer/cases/common.py   |  66 ++++++++++++
+ scripts/lib/compatlayer/cases/distro.py   |  26 +++++
+ scripts/lib/compatlayer/context.py        |  14 +++
+ scripts/yocto-compat-layer.py             | 153 ++++++++++++++++++++++++++++
+ 8 files changed, 455 insertions(+)
+ create mode 100644 scripts/lib/compatlayer/__init__.py
+ create mode 100644 scripts/lib/compatlayer/case.py
+ create mode 100644 scripts/lib/compatlayer/cases/__init__.py
+ create mode 100644 scripts/lib/compatlayer/cases/bsp.py
+ create mode 100644 scripts/lib/compatlayer/cases/common.py
+ create mode 100644 scripts/lib/compatlayer/cases/distro.py
+ create mode 100644 scripts/lib/compatlayer/context.py
+ create mode 100755 scripts/yocto-compat-layer.py
+
+diff --git a/scripts/lib/compatlayer/__init__.py b/scripts/lib/compatlayer/__init__.py
+new file mode 100644
+index 0000000..b3a166a
+--- /dev/null
++++ b/scripts/lib/compatlayer/__init__.py
+@@ -0,0 +1,163 @@
++# Yocto Project compatibility layer tool
++#
++# Copyright (C) 2017 Intel Corporation
++# Released under the MIT license (see COPYING.MIT)
++
++import os
++from enum import Enum
++
++class LayerType(Enum):
++    BSP = 0
++    DISTRO = 1
++    SOFTWARE = 2
++    ERROR_NO_LAYER_CONF = 98
++    ERROR_BSP_DISTRO = 99
++
++def _get_configurations(path):
++    configs = []
++
++    for f in os.listdir(path):
++        file_path = os.path.join(path, f)
++        if os.path.isfile(file_path) and f.endswith('.conf'):
++            configs.append(f[:-5]) # strip .conf
++    return configs
++
++def _get_layer_collections(layer_path, lconf=None, data=None):
++    import bb.parse
++    import bb.data
++
++    if lconf is None:
++        lconf = os.path.join(layer_path, 'conf', 'layer.conf')
++
++    if data is None:
++        ldata = bb.data.init()
++        bb.parse.init_parser(ldata)
++    else:
++        ldata = data.createCopy()
++
++    ldata.setVar('LAYERDIR', layer_path)
++    try:
++        ldata = bb.parse.handle(lconf, ldata, include=True)
++    except BaseException as exc:
++        raise LayerError(exc)
++    ldata.expandVarref('LAYERDIR')
++
++    collections = (ldata.getVar('BBFILE_COLLECTIONS', True) or '').split()
++    if not collections:
++        name = os.path.basename(layer_path)
++        collections = [name]
++
++    collections = {c: {} for c in collections}
++    for name in collections:
++        priority = ldata.getVar('BBFILE_PRIORITY_%s' % name, True)
++        pattern = ldata.getVar('BBFILE_PATTERN_%s' % name, True)
++        depends = ldata.getVar('LAYERDEPENDS_%s' % name, True)
++        collections[name]['priority'] = priority
++        collections[name]['pattern'] = pattern
++        collections[name]['depends'] = depends
++
++    return collections
++
++def _detect_layer(layer_path):
++    """
++        Scans layer directory to detect what type of layer
++        is BSP, Distro or Software.
++
++        Returns a dictionary with layer name, type and path.
++    """
++
++    layer = {}
++    layer_name = os.path.basename(layer_path)
++
++    layer['name'] = layer_name
++    layer['path'] = layer_path
++    layer['conf'] = {}
++
++    if not os.path.isfile(os.path.join(layer_path, 'conf', 'layer.conf')):
++        layer['type'] = LayerType.ERROR_NO_LAYER_CONF
++        return layer
++
++    machine_conf = os.path.join(layer_path, 'conf', 'machine')
++    distro_conf = os.path.join(layer_path, 'conf', 'distro')
++
++    is_bsp = False
++    is_distro = False
++
++    if os.path.isdir(machine_conf):
++        machines = _get_configurations(machine_conf)
++        if machines:
++            is_bsp = True
++
++    if os.path.isdir(distro_conf):
++        distros = _get_configurations(distro_conf)
++        if distros:
++            is_distro = True
++
++    if is_bsp and is_distro:
++        layer['type'] = LayerType.ERROR_BSP_DISTRO
++    elif is_bsp:
++        layer['type'] = LayerType.BSP
++        layer['conf']['machines'] = machines
++    elif is_distro:
++        layer['type'] = LayerType.DISTRO
++        layer['conf']['distros'] = distros
++    else:
++        layer['type'] = LayerType.SOFTWARE
++
++    layer['collections'] = _get_layer_collections(layer['path'])
++
++    return layer
++
++def detect_layers(layer_directories):
++    layers = []
++
++    for directory in layer_directories:
++        if directory[-1] == '/':
++            directory = directory[0:-1]
++
++        for root, dirs, files in os.walk(directory):
++            dir_name = os.path.basename(root)
++            conf_dir = os.path.join(root, 'conf')
++            if dir_name.startswith('meta-') and os.path.isdir(conf_dir):
++                layer = _detect_layer(root)
++                if layer:
++                    layers.append(layer)
++
++    return layers
++
++def add_layer(bblayersconf, layer):
++    with open(bblayersconf, 'a+') as f:
++        f.write("\nBBLAYERS += \"%s\"\n" % layer['path'])
++
++def get_signatures(builddir, failsafe=False):
++    import subprocess
++    import re
++
++    sigs = {}
++
++    try:
++        cmd = 'bitbake '
++        if failsafe:
++            cmd += '-k '
++        cmd += '-S none world'
++        output = subprocess.check_output(cmd, shell=True,
++                stderr=subprocess.PIPE)
++    except subprocess.CalledProcessError as e:
++        import traceback
++        exc = traceback.format_exc()
++        msg = '%s\n%s\n' % (exc, e.output.decode('utf-8'))
++        raise RuntimeError(msg)
++    sigs_file = os.path.join(builddir, 'locked-sigs.inc')
++
++    sig_regex = re.compile("^(?P<task>.*:.*):(?P<hash>.*) .$")
++    with open(sigs_file, 'r') as f:
++        for line in f.readlines():
++            line = line.strip()
++            s = sig_regex.match(line)
++            if s:
++                sigs[s.group('task')] = s.group('hash')
++
++    if not sigs:
++        raise RuntimeError('Can\'t load signatures from %s' % sigs_file)
++
++    return sigs
+diff --git a/scripts/lib/compatlayer/case.py b/scripts/lib/compatlayer/case.py
+new file mode 100644
+index 0000000..54ce78a
+--- /dev/null
++++ b/scripts/lib/compatlayer/case.py
+@@ -0,0 +1,7 @@
++# Copyright (C) 2017 Intel Corporation
++# Released under the MIT license (see COPYING.MIT)
++
++from oeqa.core.case import OETestCase
++
++class OECompatLayerTestCase(OETestCase):
++    pass
+diff --git a/scripts/lib/compatlayer/cases/__init__.py b/scripts/lib/compatlayer/cases/__init__.py
+new file mode 100644
+index 0000000..e69de29
+diff --git a/scripts/lib/compatlayer/cases/bsp.py b/scripts/lib/compatlayer/cases/bsp.py
+new file mode 100644
+index 0000000..5d9bf93
+--- /dev/null
++++ b/scripts/lib/compatlayer/cases/bsp.py
+@@ -0,0 +1,26 @@
++# Copyright (C) 2017 Intel Corporation
++# Released under the MIT license (see COPYING.MIT)
++
++import unittest
++
++from compatlayer import LayerType
++from compatlayer.case import OECompatLayerTestCase
++
++class BSPCompatLayer(OECompatLayerTestCase):
++    @classmethod
++    def setUpClass(self):
++        if self.tc.layer['type'] != LayerType.BSP:
++            raise unittest.SkipTest("BSPCompatLayer: Layer %s isn't BSP one." %\
++                self.tc.layer['name'])
++
++    def test_bsp_defines_machines(self):
++        self.assertTrue(self.tc.layer['conf']['machines'], 
++                "Layer is BSP but doesn't defines machines.")
++
++    def test_bsp_no_set_machine(self):
++        from oeqa.utils.commands import get_bb_var
++
++        machine = get_bb_var('MACHINE')
++        self.assertEqual(self.td['bbvars']['MACHINE'], machine,
++                msg="Layer %s modified machine %s -> %s" % \
++                    (self.tc.layer['name'], self.td['bbvars']['MACHINE'], machine))
+diff --git a/scripts/lib/compatlayer/cases/common.py b/scripts/lib/compatlayer/cases/common.py
+new file mode 100644
+index 0000000..4d328ec
+--- /dev/null
++++ b/scripts/lib/compatlayer/cases/common.py
+@@ -0,0 +1,66 @@
++# Copyright (C) 2017 Intel Corporation
++# Released under the MIT license (see COPYING.MIT)
++
++import os
++import subprocess
++import unittest
++from compatlayer import get_signatures, LayerType
++from compatlayer.case import OECompatLayerTestCase
++
++class CommonCompatLayer(OECompatLayerTestCase):
++    def test_readme(self):
++        readme_file = os.path.join(self.tc.layer['path'], 'README')
++        self.assertTrue(os.path.isfile(readme_file),
++                msg="Layer doesn't contains README file.")
++
++        data = ''
++        with open(readme_file, 'r') as f:
++            data = f.read()
++        self.assertTrue(data,
++                msg="Layer contains README file but is empty.")
++
++    def test_parse(self):
++        try:
++            output = subprocess.check_output('bitbake -p', shell=True,
++                    stderr=subprocess.PIPE)
++        except subprocess.CalledProcessError as e:
++            import traceback
++            exc = traceback.format_exc()
++            msg = 'Layer %s failed to parse.\n%s\n%s\n' % (self.tc.layer['name'],
++                    exc, e.output.decode('utf-8'))
++            raise RuntimeError(msg)
++
++    def test_show_environment(self):
++        try:
++            output = subprocess.check_output('bitbake -e', shell=True,
++                    stderr=subprocess.PIPE)
++        except subprocess.CalledProcessError as e:
++            import traceback
++            exc = traceback.format_exc()
++            msg = 'Layer %s failed to show environment.\n%s\n%s\n' % \
++                    (self.tc.layer['name'], exc, e.output.decode('utf-8'))
++            raise RuntimeError(msg)
++
++    def test_signatures(self):
++        if self.tc.layer['type'] == LayerType.SOFTWARE:
++            raise unittest.SkipTest("Layer %s isn't BSP or DISTRO one." \
++                     % self.tc.layer['name'])
++
++        sig_diff = {}
++
++        curr_sigs = get_signatures(self.td['builddir'], failsafe=True)
++        for task in self.td['sigs']:
++            if task not in curr_sigs:
++                continue
++
++            if self.td['sigs'][task] != curr_sigs[task]:
++                sig_diff[task] = '%s -> %s' % \
++                        (self.td['sigs'][task], curr_sigs[task])
++
++        detail = ''
++        if sig_diff:
++            for task in sig_diff:
++                detail += "%s changed %s\n" % (task, sig_diff[task])
++        self.assertFalse(bool(sig_diff), "Layer %s changed signatures.\n%s" % \
++                (self.tc.layer['name'], detail))
++
+diff --git a/scripts/lib/compatlayer/cases/distro.py b/scripts/lib/compatlayer/cases/distro.py
+new file mode 100644
+index 0000000..523acc1
+--- /dev/null
++++ b/scripts/lib/compatlayer/cases/distro.py
+@@ -0,0 +1,26 @@
++# Copyright (C) 2017 Intel Corporation
++# Released under the MIT license (see COPYING.MIT)
++
++import unittest
++
++from compatlayer import LayerType
++from compatlayer.case import OECompatLayerTestCase
++
++class DistroCompatLayer(OECompatLayerTestCase):
++    @classmethod
++    def setUpClass(self):
++        if self.tc.layer['type'] != LayerType.DISTRO:
++            raise unittest.SkipTest("DistroCompatLayer: Layer %s isn't Distro one." %\
++                self.tc.layer['name'])
++
++    def test_distro_defines_distros(self):
++        self.assertTrue(self.tc.layer['conf']['distros'], 
++                "Layer is BSP but doesn't defines machines.")
++
++    def test_distro_no_set_distros(self):
++        from oeqa.utils.commands import get_bb_var
++
++        distro = get_bb_var('DISTRO')
++        self.assertEqual(self.td['bbvars']['DISTRO'], distro,
++                msg="Layer %s modified distro %s -> %s" % \
++                    (self.tc.layer['name'], self.td['bbvars']['DISTRO'], distro))
+diff --git a/scripts/lib/compatlayer/context.py b/scripts/lib/compatlayer/context.py
+new file mode 100644
+index 0000000..4932238
+--- /dev/null
++++ b/scripts/lib/compatlayer/context.py
+@@ -0,0 +1,14 @@
++# Copyright (C) 2017 Intel Corporation
++# Released under the MIT license (see COPYING.MIT)
++
++import os
++import sys
++import glob
++import re
++
++from oeqa.core.context import OETestContext
++
++class CompatLayerTestContext(OETestContext):
++    def __init__(self, td=None, logger=None, layer=None):
++        super(CompatLayerTestContext, self).__init__(td, logger)
++        self.layer = layer
+diff --git a/scripts/yocto-compat-layer.py b/scripts/yocto-compat-layer.py
+new file mode 100755
+index 0000000..09dc5bf
+--- /dev/null
++++ b/scripts/yocto-compat-layer.py
+@@ -0,0 +1,153 @@
++#!/usr/bin/env python3
++
++# Yocto Project compatibility layer tool
++#
++# Copyright (C) 2017 Intel Corporation
++# Released under the MIT license (see COPYING.MIT)
++
++import os
++import sys
++import argparse
++import logging
++import time
++import signal
++import shutil
++import collections
++
++scripts_path = os.path.dirname(os.path.realpath(__file__))
++lib_path = scripts_path + '/lib'
++sys.path = sys.path + [lib_path]
++import scriptutils
++import scriptpath
++scriptpath.add_oe_lib_path()
++scriptpath.add_bitbake_lib_path()
++
++from compatlayer import LayerType, detect_layers, add_layer, get_signatures
++from oeqa.utils.commands import get_bb_vars
++
++PROGNAME = 'yocto-compat-layer'
++DEFAULT_OUTPUT_LOG = '%s-%s.log' % (PROGNAME,
++        time.strftime("%Y%m%d%H%M%S"))
++OUTPUT_LOG_LINK = "%s.log" % PROGNAME
++CASES_PATHS = [os.path.join(os.path.abspath(os.path.dirname(__file__)),
++                'lib', 'compatlayer', 'cases')]
++logger = scriptutils.logger_create(PROGNAME)
++
++def test_layer_compatibility(td, layer):
++    from compatlayer.context import CompatLayerTestContext
++    logger.info("Starting to analyze: %s" % layer['name'])
++    logger.info("----------------------------------------------------------------------")
++
++    tc = CompatLayerTestContext(td=td, logger=logger, layer=layer)
++    tc.loadTests(CASES_PATHS)
++    return tc.runTests()
++
++def main():
++    parser = argparse.ArgumentParser(
++            description="Yocto Project compatibility layer tool",
++            add_help=False)
++    parser.add_argument('layers', metavar='LAYER_DIR', nargs='+',
++            help='Layer to test compatibility with Yocto Project')
++    parser.add_argument('-o', '--output-log',
++            help='Output log default: %s' % DEFAULT_OUTPUT_LOG,
++            action='store', default=DEFAULT_OUTPUT_LOG)
++
++    parser.add_argument('-d', '--debug', help='Enable debug output',
++            action='store_true')
++    parser.add_argument('-q', '--quiet', help='Print only errors',
++            action='store_true')
++
++    parser.add_argument('-h', '--help', action='help',
++            default=argparse.SUPPRESS,
++            help='show this help message and exit')
++
++    args = parser.parse_args()
++
++    fh = logging.FileHandler(args.output_log)
++    fh.setFormatter(logging.Formatter("%(levelname)s: %(message)s"))
++    logger.addHandler(fh)
++    if args.debug:
++        logger.setLevel(logging.DEBUG)
++    elif args.quiet:
++        logger.setLevel(logging.ERROR)
++    if os.path.exists(OUTPUT_LOG_LINK):
++        os.unlink(OUTPUT_LOG_LINK)
++    os.symlink(args.output_log, OUTPUT_LOG_LINK)
++
++    if not 'BUILDDIR' in os.environ:
++        logger.error("You must source the environment before run this script.")
++        logger.error("$ source oe-init-build-env")
++        return 1
++    builddir = os.environ['BUILDDIR']
++    bblayersconf = os.path.join(builddir, 'conf', 'bblayers.conf')
++
++    layers = detect_layers(args.layers)
++    if not layers:
++        logger.error("Fail to detect layers")
++        return 1
++
++    logger.info("Detected layers:")
++    for layer in layers:
++        if layer['type'] == LayerType.ERROR_BSP_DISTRO:
++            logger.error("%s: Can't be DISTRO and BSP type at the same time."\
++                     " The conf/distro and conf/machine folders was found."\
++                     % layer['name'])
++            layers.remove(layer)
++        elif layer['type'] == LayerType.ERROR_NO_LAYER_CONF:
++            logger.error("%s: Don't have conf/layer.conf file."\
++                     % layer['name'])
++            layers.remove(layer)
++        else:
++            logger.info("%s: %s, %s" % (layer['name'], layer['type'],
++                layer['path']))
++    if not layers:
++        return 1
++
++    shutil.copyfile(bblayersconf, bblayersconf + '.backup')
++    def cleanup_bblayers(signum, frame):
++        shutil.copyfile(bblayersconf + '.backup', bblayersconf)
++        os.unlink(bblayersconf + '.backup')
++    signal.signal(signal.SIGTERM, cleanup_bblayers)
++    signal.signal(signal.SIGINT, cleanup_bblayers)
++
++    td = {}
++    results = collections.OrderedDict()
++
++    logger.info('')
++    logger.info('Getting initial bitbake variables ...')
++    td['bbvars'] = get_bb_vars()
++    logger.info('Getting initial signatures ...')
++    td['builddir'] = builddir
++    td['sigs'] = get_signatures(td['builddir'])
++    logger.info('')
++
++    for layer in layers:
++        if layer['type'] == LayerType.ERROR_NO_LAYER_CONF or \
++                layer['type'] == LayerType.ERROR_BSP_DISTRO:
++            continue
++
++        shutil.copyfile(bblayersconf + '.backup', bblayersconf)
++
++        add_layer(bblayersconf, layer)
++        result = test_layer_compatibility(td, layer)
++        results[layer['name']] = result
++
++    logger.info('')
++    logger.info('Summary of results:')
++    logger.info('')
++    for layer_name in results:
++        logger.info('%s ... %s' % (layer_name, 'PASS' if \
++                results[layer_name].wasSuccessful() else 'FAIL'))
++
++    cleanup_bblayers(None, None)
++
++    return 0
++
++if __name__ == '__main__':
++    try:
++        ret =  main()
++    except Exception:
++        ret = 1
++        import traceback
++        traceback.print_exc()
++    sys.exit(ret)
+-- 
+2.1.4
+
+
