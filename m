@@ -1,84 +1,55 @@
-Return-Path: <peter.spierenburg@nautel.com>
+Return-Path: <pp.perez@yahoo.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AC2A3E00480; Mon, 20 Feb 2017 15:48:43 -0800 (PST)
+	id 87DEFE006C6; Mon, 20 Feb 2017 22:35:18 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [104.47.42.123 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
+X-Spam-Status: No, score=-0.1 required=5.0 tests=BAYES_20,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (pp.perez[at]yahoo.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [66.163.187.117 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.0 BAYES_20 BODY: Bayes spam probability is 5 to 20%
+	*      [score: 0.1237]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 10459 seconds by postgrey-1.32 at yocto-www;
-	Mon, 20 Feb 2017 15:48:37 PST
-Received: from NAM03-BY2-obe.outbound.protection.outlook.com
-	(mail-by2nam03on0123.outbound.protection.outlook.com [104.47.42.123])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4EABBE003D7
-	for <yocto@yoctoproject.org>; Mon, 20 Feb 2017 15:48:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=nautel.onmicrosoft.com; s=selector1-nautel-com;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
-	bh=59oVY4jEAYewkeNWd6g6jKzDHddmfmbF5066bV9Wja0=;
-	b=eXqyloOyAG/nrgxQiwQEUG2qIWTFJ8owrwcri/E09GpX8rgQTYpGCmt2/Mp0iPCL5PNPcEOQ25rmZY9lPlgNDMSsDepkKQUcFC+2tqxtTTcDkVzlLsfYF5mP4kc4mwko30F3vgoLwz9OjHWluI1mLr29AdgKr0tHQyNMpL9xFOg=
-Received: from BN6PR05MB2851.namprd05.prod.outlook.com (10.168.255.136) by
-	BN6PR05MB2850.namprd05.prod.outlook.com (10.168.255.135) with Microsoft
-	SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
-	15.1.933.7; Mon, 20 Feb 2017 23:48:35 +0000
-Received: from BN6PR05MB2851.namprd05.prod.outlook.com ([10.168.255.136]) by
-	BN6PR05MB2851.namprd05.prod.outlook.com ([10.168.255.136]) with mapi id
-	15.01.0933.010; Mon, 20 Feb 2017 23:48:35 +0000
-From: Peter Spierenburg <peter.spierenburg@nautel.com>
+Received: from sonic324-55.consmr.mail.ne1.yahoo.com
+	(sonic324-55.consmr.mail.ne1.yahoo.com [66.163.187.117])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DF2F0E0049D
+	for <yocto@yoctoproject.org>; Mon, 20 Feb 2017 22:35:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
+	t=1487658915; bh=rTSfGT6auNZ8v6ZD615vba7Zz8EguU1707GsMIUFyNE=;
+	h=Date:From:Reply-To:To:Subject:References:From:Subject;
+	b=ASiltkzA1YozeOKauwjqJnKMPbAHKWdQQ+HJCpiC6e7c9aR1UcCGUi52Wi3iol6EDLmrGg8oQSFdN+L5CGCwTHCWSU+pG+3QjPRRxM9698s8N+2MD0l8XHWN7TFpwL+jun1TGfAKcMNa7GoUD5IOMxeKiqtcuYA52KdGFJNh1uvgpbXO0FrDRLWZl4hSX9MIAiM0KONHWhdQnKfu3TN2B4C0C2Hh+1PJHZ5SOlnUkJrYwcZTpZtEePIE993Jmzejw2dckIX3VFFiMazhXjKrUaQeqknF2gH9TPfiwLUD26X7xB7J1oyV+D/1/d8ypN6J2Bp8VofwN4VLagb/5otGAQ==
+X-YMail-OSG: UHleTY4VM1mXoZekUI5I0YyxRb1MQH6fMUvUDfVFAs3s.gDPIQNfJonIppotz.D
+	lGNTYHCypBLyfZmGFy0OE4wXMWKvLLw0ZD.pXOhPyKTWu3Rm7UuWyTmSHPiF0peJeF.amI5LZEWU
+	n6eoFZeC6FD6gjbQ6fvu22Sdf3yfRUxeNV7Olx.df7xIM9FJ2FOFls1pilobrkB64L5Awmb1g_gb
+	z2w2vHUFBYKbuRlNjASqOHR7gogqcc8eLRxIck1wWbikn8xz9R9k_Dy1wrr_dwU2c70eNl_V.1kN
+	ps_2y2vQV2Wu4JNs63yBI6DB87CQ34XcRkU4AARJV8G5xPov.4d_UsG2nMQHM2XX59NLXAAKnCi3
+	FkFTYBhH2uaCwEBqnXJqBz1aKiGt_ITExmJCTeU5.anVXenY4c.qtykSTVRbEs3sgP8ymyuKzGnq
+	Iro5RoMhQpk4oYvjEmmlBjgT4XjQ7aRVd60GXjqazpydJCToOWFeR4LKDs.OeJ.mOQvl537ona11
+	.wPRG6umUwQ3a54VA4DFxL58pQ3OX7DaVNMgaIhcbuw--
+Received: from sonic.gate.mail.ne1.yahoo.com by
+	sonic324.consmr.mail.ne1.yahoo.com with HTTP;
+	Tue, 21 Feb 2017 06:35:15 +0000
+Date: Tue, 21 Feb 2017 06:30:50 +0000 (UTC)
+From: Pepe Perez <pp.perez@yahoo.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Trying to set up a debian package repository for yocto.
-Thread-Index: AQHSi7mikz266VA7wE+mtYIiL7Fje6Fyj5w3
-Date: Mon, 20 Feb 2017 23:48:35 +0000
-Message-ID: <BN6PR05MB28515766A1DA53C619A0E5809E5E0@BN6PR05MB2851.namprd05.prod.outlook.com>
-References: <BN6PR05MB2851112DD499FF32B76977489E5E0@BN6PR05MB2851.namprd05.prod.outlook.com>
-In-Reply-To: <BN6PR05MB2851112DD499FF32B76977489E5E0@BN6PR05MB2851.namprd05.prod.outlook.com>
-Accept-Language: en-CA, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=peter.spierenburg@nautel.com; 
-x-originating-ip: [25.171.172.4]
-x-ms-office365-filtering-correlation-id: 4e0b1f2a-a23d-4809-582b-08d459eafc0f
-x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:(22001);SRVR:BN6PR05MB2850;
-x-microsoft-exchange-diagnostics: 1; BN6PR05MB2850;
-	7:MzJdw0ALcMuEj1RV5oA7IGgm/7uS/ijLdjugQqmQaS/78VWoaoOxZk/V8jubBts/44ZnALniBSbwaGFGAVg0aluypFQKkRmNcBm+0OKTLGsE7Vjr4kDhpYaOTkFOOxNMnYe7nuZrixtN0M5L7dKTFUTJIa37XYu0lR8lohOXZhvX9m+eFtSKL8Qz99/2fq504Rv1wc23r+k8/qTX0PmNHTQOyeJfBltQb945IJHuuXBSHXHrXxxXnzkwprAUCqqA1IAhB4BrO90629D+4PH+fjmJaCARtD1aq8M/rfda74GrmmyBF8yW7cY5nybSzT3PR7tAqTR4FV122eDXeIjoHQ==
-x-microsoft-antispam-prvs: <BN6PR05MB2850F3AD307E723FAA7C46329E5E0@BN6PR05MB2850.namprd05.prod.outlook.com>
-x-exchange-antispam-report-test: UriScan:;
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(6040375)(601004)(2401047)(8121501046)(5005006)(3002001)(10201501046)(6041248)(20161123560025)(20161123558025)(20161123564025)(20161123562025)(20161123555025)(6072148);
-	SRVR:BN6PR05MB2850; BCL:0; PCL:0; RULEID:; SRVR:BN6PR05MB2850; 
-x-forefront-prvs: 02243C58C6
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10019020)(6019001)(7916002)(39450400003)(269900001)(199003)(189002)(377454003)(189998001)(105586002)(106356001)(81156014)(966004)(122556002)(1720100001)(97736004)(81166006)(74316002)(86362001)(101416001)(2351001)(7736002)(450100001)(19627405001)(68736007)(8936002)(50986999)(7906003)(8676002)(110136004)(53936002)(2900100001)(38730400002)(106116001)(77096006)(76176999)(1730700003)(6246003)(54356999)(6436002)(606005)(2950100002)(3846002)(25786008)(229853002)(102836003)(6116002)(2501003)(5660300001)(6916009)(6506006)(55016002)(5640700003)(236005)(99286003)(9686003)(6306002)(54896002)(33656002)(92566002)(66066001)(3660700001)(3280700002)(2906002)(7696004)(10721665003);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:BN6PR05MB2850;
-	H:BN6PR05MB2851.namprd05.prod.outlook.com; FPR:; SPF:None;
-	PTR:InfoNoRecords; A:1; MX:1; LANG:en; 
-received-spf: None (protection.outlook.com: nautel.com does not designate
-	permitted sender hosts)
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
+Message-ID: <1595002721.1496048.1487658650023@mail.yahoo.com>
 MIME-Version: 1.0
-X-OriginatorOrg: nautel.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Feb 2017 23:48:35.1335 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 656f830c-eb88-49fe-90f1-433363ec7ccf
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR05MB2850
-Subject: Re: Trying to set up a debian package repository for yocto.
+References: <1595002721.1496048.1487658650023.ref@mail.yahoo.com>
+Subject: task is executed even when sstate-cache md5 matches
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: Pepe Perez <pp.perez@yahoo.com>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -87,300 +58,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 20 Feb 2017 23:48:43 -0000
-Content-Language: en-CA
-Content-Type: multipart/alternative;
-	boundary="_000_BN6PR05MB28515766A1DA53C619A0E5809E5E0BN6PR05MB2851namp_"
+X-List-Received-Date: Tue, 21 Feb 2017 06:35:18 -0000
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_1496047_629900443.1487658650022"
 
---_000_BN6PR05MB28515766A1DA53C619A0E5809E5E0BN6PR05MB2851namp_
-Content-Type: text/plain; charset="iso-8859-1"
+------=_Part_1496047_629900443.1487658650022
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+I have following siginfo packages:
+Generated in my build sstate-cache
+build/sstate-cache/be/sstate:proc-fifo::1.0.3:r1::3:be9c419f0caa05042d43c03d576d2e15_fetch.tgz.siginfo
+Previously existing in my build SSTATE_MIRRORS:
+/central/sstate-cache/be/sstate:proc-fifo::1.0.3:r1::3:be9c419f0caa05042d43c03d576d2e15_fetch.tgz.siginfo
+
+I had many other targets where setscene was successful and no task was executed. Why fetch is executed in the target above, if md5 is a match?
+
+------=_Part_1496047_629900443.1487658650022
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Answering my own question:
+<html><head></head><body><div style=3D"color:#000; background-color:#fff; f=
+ont-family:HelveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, =
+sans-serif;font-size:16px"><div id=3D"yui_3_16_0_ym19_1_1487397639740_61943=
+">I have following siginfo packages:</div><div id=3D"yui_3_16_0_ym19_1_1487=
+397639740_61990"><br></div><div dir=3D"ltr" id=3D"yui_3_16_0_ym19_1_1487397=
+639740_61987">Generated in my build sstate-cache<br></div><div dir=3D"ltr" =
+id=3D"yui_3_16_0_ym19_1_1487397639740_61996">build/sstate-cache/be/sstate:p=
+roc-fifo::1.0.3:r1::3:be9c419f0caa05042d43c03d576d2e15_fetch.tgz.siginfo</d=
+iv><div dir=3D"ltr" id=3D"yui_3_16_0_ym19_1_1487397639740_61999"><br></div>=
+<div dir=3D"ltr" id=3D"yui_3_16_0_ym19_1_1487397639740_62035">Previously ex=
+isting in my build SSTATE_MIRRORS:<br></div><div dir=3D"ltr" id=3D"yui_3_16=
+_0_ym19_1_1487397639740_62036">/central/sstate-cache/be/sstate:proc-fifo::1=
+.0.3:r1::3:be9c419f0caa05042d43c03d576d2e15_fetch.tgz.siginfo<br></div><div=
+ dir=3D"ltr" id=3D"yui_3_16_0_ym19_1_1487397639740_61980"><br></div><div di=
+r=3D"ltr" id=3D"yui_3_16_0_ym19_1_1487397639740_62100">I had many other tar=
+gets where setscene was successful and no task was executed. Why fetch is e=
+xecuted in the target above, if md5 is a match?<br></div></div></body></htm=
+l>
 
-
-Use
-
-
-PREFERRED_VERSION_gnupg ?=3D "2.1.11"
-
-
-and
-
-
-IMAGE_INSTALL_append =3D " gnupg"
-
-
-Apparently, apt-get needs gpgv and apt-key needs gpg, and only gnupg 2.1.11=
- delivers both.
-
-
-Cheers!
-
-
-Peter.
-
-________________________________
-From: yocto-bounces@yoctoproject.org <yocto-bounces@yoctoproject.org> on be=
-half of Peter Spierenburg <peter.spierenburg@nautel.com>
-Sent: February 20, 2017 4:54:15 PM
-To: yocto@yoctoproject.org
-Subject: [yocto] Trying to set up a debian package repository for yocto.
-
-
-I'm trying to construct a debian package repository to deploy packages from=
-.
-
-
-I took all the packages from poky/build/tmp/deploy/deb and followed the ins=
-tructions at: https://wiki.debian.org/SettingUpSignedAptRepositoryWithRepre=
-pro
-
-SettingUpSignedAptRepositoryWithReprepro - Debian Wiki<https://wiki.debian.=
-org/SettingUpSignedAptRepositoryWithReprepro>
-wiki.debian.org
-Introduction. It can be quite useful to be able to distribute your own Debi=
-an packages using apt, without having to push them to the Debian project it=
-self.
-
-I think I've added all the magic to my yocto build including:
-
-PREFERRED_VERSION_gnupg ?=3D "1.4.7"
-PACKAGE_CLASSES ?=3D "package_deb"
-IMAGE_INSTALL_append =3D " gpgv"
-IMAGE_FEATURES +=3D "package-management"
-
-I've installed my sources.list file which includes
-
-deb http://192.168.7.1/repos/apt/debian stable main
-
-and I've installed my public key with:
-
-$ wget -O - http://192.168.7.1/repos/apt/conf/nautel.gpg.key | apt-key add =
--
-
-however, after all that, I still get:
-
-root@qemuarm:~# apt-get update
-Get:1 http://192.168.7.1 stable InRelease [1417 B]
-Ign http://192.168.7.1 stable InReleaseg installed in /etc/apt/trusted.gpg.=
-d/.
-Ign http://192.168.7.1 stable/main armel Packages/DiffIndex
-Hit http://192.168.7.1 stable/main armel Packages
-Ign http://192.168.7.1 stable/main Translation-en
-Fetched 1417 B in 2s (538 B/s)
-Reading package lists... Done
-W: GPG error: http://192.168.7.1 stable InRelease: Could not execute 'gpgv'=
- to verify signature (is gpgv installed?)
-
-but I'm sure that gpgv is installed:
-
-root@qemuarm:~# which gpgv
-/usr/bin/gpgv
-
-When I run it though, it just hangs:
-
-root@qemuarm:~# gpgv -v
-gpgv: directory `/home/root/.gnupg' created
-gpgv: can't open `/usr/share/gnupg/options.skel': No such file or directory
-gpgv: can't allocate lock for `/home/root/.gnupg/trustedkeys.gpg'
-gpgv: keyblock resource `/home/root/.gnupg/trustedkeys.gpg': general error
-
-Has anyone else run up against this?
-
-Peter.
-
-
-
---_000_BN6PR05MB28515766A1DA53C619A0E5809E5E0BN6PR05MB2851namp_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
-</head>
-<body dir=3D"ltr">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
--family:Calibri,Arial,Helvetica,sans-serif;" dir=3D"ltr">
-<p>Answering my own question:</p>
-<p><br>
-</p>
-<p>Use</p>
-<p><span><br>
-</span></p>
-<p><span>PREFERRED_VERSION_gnupg ?=3D &quot;2.1.11&quot;</span></p>
-<p><span><br>
-</span></p>
-<p><span>and</span></p>
-<p><span><br>
-</span></p>
-<p><span><span>IMAGE_INSTALL_append =3D &quot; gnupg&quot;</span><br>
-</span></p>
-<p><br>
-</p>
-<p>Apparently, apt-get needs gpgv and apt-key needs gpg, and only gnupg&nbs=
-p;2.1.11 delivers both.</p>
-<p><br>
-</p>
-<p>Cheers!</p>
-<p><br>
-</p>
-<p>Peter.</p>
-</div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> yocto-bounces@yoctopr=
-oject.org &lt;yocto-bounces@yoctoproject.org&gt; on behalf of Peter Spieren=
-burg &lt;peter.spierenburg@nautel.com&gt;<br>
-<b>Sent:</b> February 20, 2017 4:54:15 PM<br>
-<b>To:</b> yocto@yoctoproject.org<br>
-<b>Subject:</b> [yocto] Trying to set up a debian package repository for yo=
-cto.</font>
-<div>&nbsp;</div>
-</div>
-<div>
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
--family:Calibri,Arial,Helvetica,sans-serif;" dir=3D"ltr">
-<p>I'm trying to construct a debian package repository to deploy packages f=
-rom.</p>
-<p><br>
-</p>
-<p>I took all the packages from poky/build/tmp/deploy/deb and followed the =
-instructions at:&nbsp;<a href=3D"https://wiki.debian.org/SettingUpSignedApt=
-RepositoryWithReprepro" class=3D"OWAAutoLink" id=3D"LPlnk79644" previewremo=
-ved=3D"true">https://wiki.debian.org/SettingUpSignedAptRepositoryWithReprep=
-ro</a></p>
-<div id=3D"LPBorder_GT_14876234378290.7589109444848818" style=3D"margin-bot=
-tom: 20px; overflow: auto; width: 100%; text-indent: 0px;">
-<table id=3D"LPContainer_14876234378250.4592026039877919" cellspacing=3D"0"=
- style=3D"width: 90%; background-color: rgb(255, 255, 255); position: relat=
-ive; overflow: auto; padding-top: 20px; padding-bottom: 20px; margin-top: 2=
-0px; border-top: 1px dotted rgb(200, 200, 200); border-bottom: 1px dotted r=
-gb(200, 200, 200);">
-<tbody>
-<tr valign=3D"top" style=3D"border-spacing: 0px;">
-<td id=3D"TextCell_14876234378260.5254006249992771" colspan=3D"2" style=3D"=
-vertical-align: top; position: relative; padding: 0px; display: table-cell;=
-">
-<div id=3D"LPRemovePreviewContainer_14876234378260.11273002230553852"></div=
->
-<div id=3D"LPTitle_14876234378260.09788638223875568" style=3D"top: 0px; col=
-or: rgb(0, 120, 215); font-weight: normal; font-size: 21px; font-family: wf=
-_segoe-ui_light, &quot;Segoe UI Light&quot;, &quot;Segoe WP Light&quot;, &q=
-uot;Segoe UI&quot;, &quot;Segoe WP&quot;, Tahoma, Arial, sans-serif; line-h=
-eight: 21px;">
-<a id=3D"LPUrlAnchor_14876234378270.9151571142978989" href=3D"https://wiki.=
-debian.org/SettingUpSignedAptRepositoryWithReprepro" target=3D"_blank" styl=
-e=3D"text-decoration: none;">SettingUpSignedAptRepositoryWithReprepro - Deb=
-ian Wiki</a></div>
-<div id=3D"LPMetadata_14876234378270.8617771925805409" style=3D"margin: 10p=
-x 0px 16px; color: rgb(102, 102, 102); font-weight: normal; font-family: wf=
-_segoe-ui_normal, &quot;Segoe UI&quot;, &quot;Segoe WP&quot;, Tahoma, Arial=
-, sans-serif; font-size: 14px; line-height: 14px;">
-wiki.debian.org</div>
-<div id=3D"LPDescription_14876234378280.08783102645477991" style=3D"display=
-: block; color: rgb(102, 102, 102); font-weight: normal; font-family: wf_se=
-goe-ui_normal, &quot;Segoe UI&quot;, &quot;Segoe WP&quot;, Tahoma, Arial, s=
-ans-serif; font-size: 14px; line-height: 20px; max-height: 100px; overflow:=
- hidden;">
-Introduction. It can be quite useful to be able to distribute your own Debi=
-an packages using apt, without having to push them to the Debian project it=
-self.</div>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-I think I've added all the magic to my yocto build including:
-<div><br>
-</div>
-<div><span>PREFERRED_VERSION_gnupg ?=3D &quot;1.4.7&quot;</span><br>
-</div>
-<div><span><span>PACKAGE_CLASSES ?=3D &quot;package_deb&quot;</span><br>
-</span></div>
-<div><span><span>
-<div>IMAGE_INSTALL_append =3D &quot; gpgv&quot;</div>
-<div><span style=3D"font-size: 12pt;">IMAGE_FEATURES &#43;=3D &quot;package=
--management&quot;</span><br>
-</div>
-<div><br>
-</div>
-<div>I've installed my sources.list file which includes</div>
-<div><br>
-</div>
-<div><span style=3D"font-size: 12pt;">deb http://192.168.7.1/repos/apt/debi=
-an stable main</span><br>
-</div>
-<div><span style=3D"font-size: 12pt;"><br>
-</span></div>
-<div><span style=3D"font-size: 12pt;">and I've installed my public key with=
-:</span></div>
-<div><span style=3D"font-size: 12pt;"><br>
-</span></div>
-<div><span style=3D"font-size: 12pt;"><span>$&nbsp;wget -O - http://192.168=
-.7.1/repos/apt/conf/nautel.gpg.key | apt-key add -</span><br>
-</span></div>
-<div><span style=3D"font-size: 12pt;"><span><br>
-</span></span></div>
-<div><span style=3D"font-size: 12pt;"><span>however, after all that, I stil=
-l get:</span></span></div>
-<div><span style=3D"font-size: 12pt;"><span><br>
-</span></span></div>
-<div><span style=3D"font-size: 12pt;"><span>
-<div>root@qemuarm:~# apt-get update</div>
-<div>Get:1 http://192.168.7.1 stable InRelease [1417 B]</div>
-<div>Ign http://192.168.7.1 stable InReleaseg installed in /etc/apt/trusted=
-.gpg.d/.</div>
-<div>Ign http://192.168.7.1 stable/main armel Packages/DiffIndex</div>
-<div>Hit http://192.168.7.1 stable/main armel Packages</div>
-<div>Ign http://192.168.7.1 stable/main Translation-en</div>
-<div>Fetched 1417 B in 2s (538 B/s)</div>
-<div>Reading package lists... Done</div>
-<div>W: GPG error: http://192.168.7.1 stable InRelease: Could not execute '=
-gpgv' to verify signature (is gpgv installed?)</div>
-<div><br>
-</div>
-<div>but I'm sure that gpgv is installed:</div>
-<div><br>
-</div>
-<div>
-<div>root@qemuarm:~# which gpgv</div>
-<div>/usr/bin/gpgv</div>
-<div><br>
-</div>
-When I run it though, it just hangs:</div>
-<div><br>
-</div>
-<div>
-<div>root@qemuarm:~# gpgv -v</div>
-<div>gpgv: directory `/home/root/.gnupg' created</div>
-<div>gpgv: can't open `/usr/share/gnupg/options.skel': No such file or dire=
-ctory</div>
-<div>gpgv: can't allocate lock for `/home/root/.gnupg/trustedkeys.gpg'</div=
->
-<div>gpgv: keyblock resource `/home/root/.gnupg/trustedkeys.gpg': general e=
-rror</div>
-<div><br>
-</div>
-</div>
-<div>Has anyone else run up against this?</div>
-<div><br>
-</div>
-<div>Peter.</div>
-<div><br>
-</div>
-<br>
-</span></span></div>
-</span></span></div>
-</div>
-</div>
-</body>
-</html>
-
---_000_BN6PR05MB28515766A1DA53C619A0E5809E5E0BN6PR05MB2851namp_--
+------=_Part_1496047_629900443.1487658650022--
