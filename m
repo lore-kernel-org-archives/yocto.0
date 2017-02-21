@@ -1,68 +1,34 @@
-Return-Path: <twoerner@gmail.com>
+Return-Path: <michel.dhooge@free.fr>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 423F3E006C6; Mon, 20 Feb 2017 22:52:34 -0800 (PST)
+	id B3015E00566; Tue, 21 Feb 2017 02:24:17 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-0.7 required=5.0 tests=BAYES_40,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (twoerner[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.220.181 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qk0-f181.google.com (mail-qk0-f181.google.com
-	[209.85.220.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1715AE0049D
-	for <yocto@yoctoproject.org>; Mon, 20 Feb 2017 22:52:30 -0800 (PST)
-Received: by mail-qk0-f181.google.com with SMTP id u188so38533584qkc.2
-	for <yocto@yoctoproject.org>; Mon, 20 Feb 2017 22:52:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=CoSSR63kxR/0Yco/ROKS+KhaDULyTNDW9cT1bMyFNYU=;
-	b=YScWM2McDe+nCZnW7HqVFfYT2bw6vxIhCUbigyjrSrZ1/eimzeR0O2DDmxUxTP2cG4
-	v5Jwb5XVNdotebbx6ASHtNmMmyxtRMW0OFmq+keZMfjfJK6zxKLEHN9+3FpoKDVRu5ke
-	s0YJMFA5zXVgFjU3aAG6qB3WflFf0RSKcyniksUJS33L3RihLkygL+GZOuO7gnRCxi0Z
-	GHiLgARF55HU4G82rhDIZUSp1ZV1XMrYGC+R9FjF8YWxPbga3oYBo3QmwADPOsAiO90E
-	nKY3WtO5mIblNT6MwMVwDuOHuUxR/DE5BFTC/IM/qOaOrcnT0DhkiZ9kixm9y6uBk1Gl
-	JosA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=CoSSR63kxR/0Yco/ROKS+KhaDULyTNDW9cT1bMyFNYU=;
-	b=XsWe9V60KKq8J/X3SOGgoncRbIgfoQ3oLjxrMk4xCp/Mc4hNt40x0A6CEB4ea3hL4y
-	aHlXDSi3+Ba49gu3z8oGvc6WlIJ82AuyKGi2Si/n8RxrQD19VAMhWfnhSNMxxxS0n5C4
-	qBp7Y6wpFeY4O7/jAPtx4GI9wQ2cAv5KU7TtIudvruHf/rg1sHMebfC2mzSSGQAEZULG
-	FltjN7mwDx2WZFo77FnxjSymF+/hLaoEibjnKx9dnlpZJ66zbSmpkC8cA794/SpECPTd
-	CCS36LaInZLyJ4g0OQklVeqF95bxw7Jh7pNxCkRPHSRWk7tWBnbwg7CDy2Bgtk/2H35g
-	GKgA==
-X-Gm-Message-State: AMke39kYPxzPZM60ULEAiNJ15fbFZnfCNtC3rCvXw9BcFb77JExNDigLU+CgxkTZTLG7HFRLQpMXJ3/nWaqFrA==
-X-Received: by 10.55.187.67 with SMTP id l64mr25027792qkf.288.1487659949794;
-	Mon, 20 Feb 2017 22:52:29 -0800 (PST)
+	mail provider *      (michel.dhooge[at]free.fr)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [212.27.42.2 listed in list.dnswl.org]
+	* -0.0 BAYES_40 BODY: Bayes spam probability is 20 to 40%
+	*      [score: 0.2681]
+Received: from smtp2-g21.free.fr (smtp2-g21.free.fr [212.27.42.2])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 78692E003D7
+	for <yocto@yoctoproject.org>; Tue, 21 Feb 2017 02:24:13 -0800 (PST)
+Received: from spooler3-g27.priv.proxad.net (unknown [172.20.243.239])
+	by smtp2-g21.free.fr (Postfix) with ESMTP id 874B22003F5
+	for <yocto@yoctoproject.org>; Tue, 21 Feb 2017 11:24:11 +0100 (CET)
+Date: Tue, 21 Feb 2017 11:24:11 +0100 (CET)
+From: Michel D'HOOGE <michel.dhooge@free.fr>
+To: yocto@yoctoproject.org
+Message-ID: <780133902.270390046.1487672651227.JavaMail.root@spooler3-g27.priv.proxad.net>
+In-Reply-To: <BN6PR05MB28515766A1DA53C619A0E5809E5E0@BN6PR05MB2851.namprd05.prod.outlook.com>
 MIME-Version: 1.0
-Received: by 10.200.39.252 with HTTP; Mon, 20 Feb 2017 22:52:29 -0800 (PST)
-In-Reply-To: <CAJrj+DM1nZBqhjXJoNORZi9=jORmAh1nBM8b3+MoU_nfKf=iYw@mail.gmail.com>
-References: <1487051666-20888-1-git-send-email-eddie.cai.linux@gmail.com>
-	<20170217033349.GA12618@linux-uys3>
-	<CAJrj+DPJ5ZC4bxMsrHYD+kY1ur28hTBnfPSd+RNKd+kpnHZxOQ@mail.gmail.com>
-	<20170217105745.GA10517@linux-uys3>
-	<CAJrj+DM1nZBqhjXJoNORZi9=jORmAh1nBM8b3+MoU_nfKf=iYw@mail.gmail.com>
-From: Trevor Woerner <twoerner@gmail.com>
-Date: Tue, 21 Feb 2017 01:52:29 -0500
-Message-ID: <CAHUNapRoG0nrbW3VDXjFsXWncJ9W1RcjFf2bMN5CKqhkjCt6XA@mail.gmail.com>
-To: Eddie Cai <eddie.cai.linux@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Jacob Chen <jacob2.chen@rock-chips.com>
-Subject: Re: [meta-rockchip][morty][PATHV2 0/6] add main line kernel support
+X-Originating-IP: [89.225.253.195]
+X-Mailer: Zimbra 7.2.0-GA2598 (ZimbraWebClient - GC58 (Linux)/7.2.0-GA2598)
+X-Authenticated-User: michel.dhooge@free.fr
+Subject: Re: Trying to set up a debian package repository for yocto.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,14 +40,13 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 21 Feb 2017 06:52:34 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Tue, 21 Feb 2017 10:24:17 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
 
-Hi Eddie,
+Peter,
 
-On Sat, Feb 18, 2017 at 8:42 AM, Eddie Cai <eddie.cai.linux@gmail.com> wrote:
-> OK, So We have to set DEFAULTTUNE in conf/local.conf file when we want
-> to get a optimized build.
+Thanks for sharing, this is something I may also encounter.
 
-Absolutely, there's nothing wrong with having that setting :-)
+M.
 
