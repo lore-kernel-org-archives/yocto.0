@@ -1,71 +1,69 @@
-Return-Path: <pp.perez@yahoo.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D94E4E009AD; Wed, 22 Feb 2017 08:53:21 -0800 (PST)
+	id 19440E009AD; Wed, 22 Feb 2017 09:10:44 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE, RCVD_IN_PSBL autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (pp.perez[at]yahoo.com)
-	*  2.7 RCVD_IN_PSBL RBL: Received via a relay in PSBL
-	*      [98.138.229.51 listed in psbl.surriel.com]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [98.138.229.51 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.220.178 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from nm32-vm3.bullet.mail.ne1.yahoo.com
-	(nm32-vm3.bullet.mail.ne1.yahoo.com [98.138.229.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A4A2EE0098A
-	for <yocto@yoctoproject.org>; Wed, 22 Feb 2017 08:53:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
-	t=1487782395; bh=eGMzX73KfTPsHXyse8tweVB4tLXkIehmX5TOf56Sqg4=;
-	h=Date:From:Reply-To:To:In-Reply-To:References:Subject:From:Subject;
-	b=kgAe1WsR6P+9AjLosBLeA+XYIOyt9bizRAa4+arEUGSGGFQyvA5uKX+LuIggB2u90k6T6R2u63nwyXSkEHtraq9ObLyNweAR71BwrKPEOPKV8IGLTu03KXheGosotUIQbnX8Uw04Rbhqa0OkbcdVG59PEm9tY6YB65JAouFPBxIICK32EVtnhZRstELenG83laEr5Ey+OnK/k1l6HAKObOLTPedygtOPXvidFk6x4Pw9ZjRrd2ARLihH2MIkJxNWKRkQZpEEYsEgXXxPC5iYLJSN7MZ3mdevYznsNPYr3bt1tFS3ii2D4rD6bKMmda2LB5/u+wsoDk3H4RZl2rH6YA==
-Received: from [127.0.0.1] by nm32.bullet.mail.ne1.yahoo.com with NNFMP;
-	22 Feb 2017 16:53:15 -0000
-Received: from [98.138.226.177] by nm32.bullet.mail.ne1.yahoo.com with NNFMP;
-	22 Feb 2017 16:50:19 -0000
-Received: from [98.138.226.164] by tm12.bullet.mail.ne1.yahoo.com with NNFMP;
-	22 Feb 2017 16:50:19 -0000
-Received: from [127.0.0.1] by omp1065.mail.ne1.yahoo.com with NNFMP;
-	22 Feb 2017 16:50:19 -0000
-X-Yahoo-Newman-Property: ymail-4
-X-Yahoo-Newman-Id: 567259.87426.bm@omp1065.mail.ne1.yahoo.com
-X-YMail-OSG: FNhzUrcVM1kdS9kdGG8wwfWkTVKCH51jz6lvuPagv9EeD0DC_iYi8GfHFh3FxwQ
-	_UFW9sloC.RRM4VKm.A3kdgfk3chuuYsNChIjyAFJVUW0tm2mWySntyvenWpsO..V1PWes05eo3p
-	4H7qRzKZpJiIspz3EXQHa8MKnOa6fLVARmluoLSkGx1SgF.U27e99ubcBErxj06_w_Wq61478QFm
-	oAMnl65Ttz_2MOK7K._Wza7oE92o_Wj3eb6rXTK__9GbE70aGIild5mVYPWz.Vwkk6wD7WgJO2DR
-	owY5PQ5OPdhYGXITno552atCGSi4ORXNC2c8veFqZlYAjlQQrZrlSEE_vh0DJVee_NSqRhKg9Wft
-	A1DGBST1dPqlMl4wApVi2Lioq2kAqKVMglDDpFWDWoGUa1zMiudZbqxdK5LaEbCBOibjauSDpoaI
-	zn7Tme8vyCnbXKSDb6wMQeDaGYeb8XysOtU59hBj8MIUxukXw3cs9.JWjwzMnmFUCSJCsm1DgATc
-	eFXlBaxzAJw0AKlJaAOjYThRVVPL3LOmUw2sGDrVXqA--
-Received: from jws200073.mail.ne1.yahoo.com by
-	sendmailws101b.mail.ne1.yahoo.com;
-	Wed, 22 Feb 2017 16:50:19 +0000; 1487782219.154
-Date: Wed, 22 Feb 2017 16:50:16 +0000 (UTC)
-From: Pepe Perez <pp.perez@yahoo.com>
-To: Richard Purdie <richard.purdie@linuxfoundation.org>, 
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Message-ID: <1494286841.2600331.1487782216318@mail.yahoo.com>
-In-Reply-To: <1487777217.29224.2.camel@linuxfoundation.org>
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.220.178 listed in dnsbl.sorbs.net]
+Received: from mail-qk0-f178.google.com (mail-qk0-f178.google.com
+	[209.85.220.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 928DEE0098A
+	for <yocto@yoctoproject.org>; Wed, 22 Feb 2017 09:10:43 -0800 (PST)
+Received: by mail-qk0-f178.google.com with SMTP id x71so8698190qkb.3
+	for <yocto@yoctoproject.org>; Wed, 22 Feb 2017 09:10:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=Pez3/G6xqkVYBQoAi0p3UgYtB/xwA2/I0bbs3Bd3hL0=;
+	b=jVBrFJ9jfawXfKvzMEHUbqSLw4UDhAfPwpG05go5SlYptIGZ3EMd+VVGSjbeFvRrzD
+	NeQAOwlD/Z3I3GP96kIg12R0g9Qd21XsoN1mJ2v1Crp2Btmj13Qb1pNXoi17fw9HPmet
+	GRHUw3iWX4tFaSscuqWQbzaQBGAIw9mqOMpglEURU1JpcdiPIAjeh8BOdXneBbEQARCk
+	apA4DmXEaEPyPWX/oIag2UFII3tmkFOzprMN4htsichavTLfEZvc1TppKe0S+ts4GwU7
+	flV5VBFfbPWnW8DyXV7iDIMqJmrmQcENuwZS/owe4kpV/kmDF7uEKeIsEpNao0Z2Ajt7
+	OjmQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=Pez3/G6xqkVYBQoAi0p3UgYtB/xwA2/I0bbs3Bd3hL0=;
+	b=tzCJZB5geGlHrYQ9mzRMkIeRJ2YdW2TMs0bygJ0jr7IiQ9qUzOwsG1RACmvDrWXOVO
+	wK4hQRXhjz7F4FzgvXcyCTHPYz1rr73CPLR50r79Ih7XQBekjTEWPlkM9M3IQAcOJV+A
+	4M/229jJ5umTd1og/v4BBtiQKhcIvKUnMMsvH6+YciJYrJ7jtK8zqbJho1HORzK9e33d
+	moI6hHDFEUHVZ7slxq2oOqvZcDaMMA3iMPRKMrrUL6KkulI+X4r7gyczfaBEuB/vnmQy
+	dhTXow36HQQyNi8M4COoUcsx0RcNqsDUJ2oINceNFQ10W8Z7tfvvBp7LJ7b3Mgz/63AJ
+	XsSw==
+X-Gm-Message-State: AMke39mg41CS7AuqDsVbxvbAsyywIiIyP7wB8D6vhsZ5fM3b/x/TOMkrvRcv8EQAcGPvpb5SY9nTNIjsSGHCxBJ5
+X-Received: by 10.55.3.18 with SMTP id 18mr29978230qkd.244.1487783442521; Wed,
+	22 Feb 2017 09:10:42 -0800 (PST)
+MIME-Version: 1.0
+Received: by 10.140.103.233 with HTTP; Wed, 22 Feb 2017 09:10:22 -0800 (PST)
+In-Reply-To: <1494286841.2600331.1487782216318@mail.yahoo.com>
 References: <1595002721.1496048.1487658650023.ref@mail.yahoo.com>
 	<1595002721.1496048.1487658650023@mail.yahoo.com>
 	<1487777217.29224.2.camel@linuxfoundation.org>
-MIME-Version: 1.0
+	<1494286841.2600331.1487782216318@mail.yahoo.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 22 Feb 2017 17:10:22 +0000
+Message-ID: <CAJTo0La4e1UQeLcfwuFxXMNFVz7baanC6r5O=HF-97+ryKx8VQ@mail.gmail.com>
+To: Pepe Perez <pp.perez@yahoo.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: task is executed even when sstate-cache md5 matches
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: Pepe Perez <pp.perez@yahoo.com>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -74,103 +72,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 22 Feb 2017 16:53:21 -0000
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_2600330_378743565.1487782216316"
+X-List-Received-Date: Wed, 22 Feb 2017 17:10:44 -0000
+Content-Type: multipart/alternative; boundary=001a114c832898537d054921935d
 
-------=_Part_2600330_378743565.1487782216316
+--001a114c832898537d054921935d
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
 
-I have however other targets in which do_fetch is not executed at all. Why sometimes is executed and why some others not...?Moreover, I did the test with three users: one populates the sstate-cache, a second resolves its build entirely from sstate and a third one in which do_fetch is executed
-This is important for me because I'm working in a project in which do_fetch should not be executed, but always resolved with the sstate
+On 22 February 2017 at 16:50, Pepe Perez <pp.perez@yahoo.com> wrote:
 
-      From: Richard Purdie <richard.purdie@linuxfoundation.org>
- To: Pepe Perez <pp.perez@yahoo.com>; "yocto@yoctoproject.org" <yocto@yoctoproject.org> 
- Sent: Wednesday, February 22, 2017 7:26 AM
- Subject: Re: [yocto] task is executed even when sstate-cache md5 matches
-   
-On Tue, 2017-02-21 at 06:30 +0000, Pepe Perez wrote:
-> I have following siginfo packages:
-> 
-> Generated in my build sstate-cache
-> build/sstate-cache/be/sstate:proc-
-> fifo::1.0.3:r1::3:be9c419f0caa05042d43c03d576d2e15_fetch.tgz.siginfo
-> 
-> Previously existing in my build SSTATE_MIRRORS:
-> /central/sstate-cache/be/sstate:proc-
-> fifo::1.0.3:r1::3:be9c419f0caa05042d43c03d576d2e15_fetch.tgz.siginfo
-> 
-> I had many other targets where setscene was successful and no task
-> was executed. Why fetch is executed in the target above, if md5 is a
-> match?
+> This is important for me because I'm working in a project in which
+> do_fetch should not be executed, but always resolved with the sstate
+>
 
-do_fetch is not an sstate task and there is no ".tgz" file, only a
-siginfo file which is data about how the checksum is constructed and
-for debugging of other sstate checksums. Pulling the downloads from a
-download mirror would likely be just as successful as it would be if
-do_fetch were an sstate task.
+do_fetch can't be resolved by sstate.  If fetch needs to execute, it will
+download it from a source mirror or the SRC_URI.
 
-Cheers,
+Ross
 
-Richard
-
-
-   
-
-------=_Part_2600330_378743565.1487782216316
+--001a114c832898537d054921935d
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<html><head></head><body><div style=3D"color:#000; background-color:#fff; f=
-ont-family:HelveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, =
-sans-serif;font-size:16px"><div id=3D"yui_3_16_0_ym19_1_1487740877975_58828=
-"><span></span></div><div class=3D"qtdSeparateBR" id=3D"yui_3_16_0_ym19_1_1=
-487740877975_58770"><div id=3D"yui_3_16_0_ym19_1_1487740877975_58805">I hav=
-e however other targets in which do_fetch is not executed at all. Why somet=
-imes is executed and why some others not...?</div><div id=3D"yui_3_16_0_ym1=
-9_1_1487740877975_58868">Moreover, I did the test with three users: one pop=
-ulates the sstate-cache, a second resolves its build entirely from sstate a=
-nd a third one in which do_fetch is executed</div><div id=3D"yui_3_16_0_ym1=
-9_1_1487740877975_58902"><br></div><div id=3D"yui_3_16_0_ym19_1_14877408779=
-75_58829">This is important for me because I'm working in a project in whic=
-h do_fetch should not be executed, but always resolved with the sstate<br><=
-/div><br></div><div class=3D"yahoo_quoted" id=3D"yui_3_16_0_ym19_1_14877408=
-77975_58757" style=3D"display: block;">  <div style=3D"font-family: Helveti=
-caNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif; font-s=
-ize: 16px;" id=3D"yui_3_16_0_ym19_1_1487740877975_58756"> <div style=3D"fon=
-t-family: HelveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, s=
-ans-serif; font-size: 16px;" id=3D"yui_3_16_0_ym19_1_1487740877975_58755"> =
-<div dir=3D"ltr" id=3D"yui_3_16_0_ym19_1_1487740877975_58754"> <font id=3D"=
-yui_3_16_0_ym19_1_1487740877975_58753" face=3D"Arial" size=3D"2"> <hr id=3D=
-"yui_3_16_0_ym19_1_1487740877975_58870" size=3D"1"> <b><span style=3D"font-=
-weight:bold;">From:</span></b> Richard Purdie &lt;richard.purdie@linuxfound=
-ation.org&gt;<br> <b><span style=3D"font-weight: bold;">To:</span></b> Pepe=
- Perez &lt;pp.perez@yahoo.com&gt;; "yocto@yoctoproject.org" &lt;yocto@yocto=
-project.org&gt; <br> <b><span style=3D"font-weight: bold;">Sent:</span></b>=
- Wednesday, February 22, 2017 7:26 AM<br> <b><span style=3D"font-weight: bo=
-ld;">Subject:</span></b> Re: [yocto] task is executed even when sstate-cach=
-e md5 matches<br> </font> </div> <div class=3D"y_msg_container" id=3D"yui_3=
-_16_0_ym19_1_1487740877975_58758"><br>On Tue, 2017-02-21 at 06:30 +0000, Pe=
-pe Perez wrote:<div class=3D"yqt4348177508" id=3D"yqtfd25824"><br clear=3D"=
-none">&gt; I have following siginfo packages:<br clear=3D"none">&gt; <br cl=
-ear=3D"none">&gt; Generated in my build sstate-cache<br clear=3D"none">&gt;=
- build/sstate-cache/be/sstate:proc-<br clear=3D"none">&gt; fifo::1.0.3:r1::=
-3:be9c419f0caa05042d43c03d576d2e15_fetch.tgz.siginfo<br clear=3D"none">&gt;=
- <br clear=3D"none">&gt; Previously existing in my build SSTATE_MIRRORS:<br=
- clear=3D"none">&gt; /central/sstate-cache/be/sstate:proc-<br clear=3D"none=
-">&gt; fifo::1.0.3:r1::3:be9c419f0caa05042d43c03d576d2e15_fetch.tgz.siginfo=
-<br clear=3D"none">&gt; <br clear=3D"none">&gt; I had many other targets wh=
-ere setscene was successful and no task<br clear=3D"none">&gt; was executed=
-. Why fetch is executed in the target above, if md5 is a<br clear=3D"none">=
-&gt; match?</div><br clear=3D"none"><br clear=3D"none">do_fetch is not an s=
-state task and there is no ".tgz" file, only a<br clear=3D"none">siginfo fi=
-le which is data about how the checksum is constructed and<br clear=3D"none=
-">for debugging of other sstate checksums. Pulling the downloads from a<br =
-clear=3D"none">download mirror would likely be just as successful as it wou=
-ld be if<br clear=3D"none">do_fetch were an sstate task.<br clear=3D"none">=
-<br clear=3D"none">Cheers,<br clear=3D"none"><br clear=3D"none">Richard<div=
- class=3D"yqt4348177508" id=3D"yqtfd85221"><br clear=3D"none"></div><br><br=
-></div> </div> </div>  </div></div></body></html>
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 22 February 2017 at 16:50, Pepe Perez <span dir=3D"ltr">&lt;<a href=3D"m=
+ailto:pp.perez@yahoo.com" target=3D"_blank">pp.perez@yahoo.com</a>&gt;</spa=
+n> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;b=
+order-left:1px #ccc solid;padding-left:1ex"><div id=3D"m_-88311642932969460=
+3yui_3_16_0_ym19_1_1487740877975_58829">This is important for me because I&=
+#39;m working in a project in which do_fetch should not be executed, but al=
+ways resolved with the sstate<br></div></blockquote></div><br>do_fetch can&=
+#39;t be resolved by sstate.=C2=A0 If fetch needs to execute, it will downl=
+oad it from a source mirror or the SRC_URI.</div><div class=3D"gmail_extra"=
+><br></div><div class=3D"gmail_extra">Ross</div></div>
 
-------=_Part_2600330_378743565.1487782216316--
+--001a114c832898537d054921935d--
