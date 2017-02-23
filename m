@@ -1,31 +1,38 @@
-Return-Path: <Wenzong.Fan@windriver.com>
+Return-Path: <rpjday@crashcourse.ca>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9AD1CE00AA9; Thu, 23 Feb 2017 01:29:14 -0800 (PST)
+	id B9630E00AAA; Thu, 23 Feb 2017 02:33:37 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [208.80.204.86 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 35F42E00A4F
-	for <yocto@yoctoproject.org>; Thu, 23 Feb 2017 01:29:11 -0800 (PST)
-Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
-	[147.11.189.41])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id v1N9T8KG012153
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=OK)
-	for <yocto@yoctoproject.org>; Thu, 23 Feb 2017 01:29:10 -0800
-Received: from pek-lpggp1.wrs.com (128.224.153.74) by ALA-HCB.corp.ad.wrs.com
-	(147.11.189.41) with Microsoft SMTP Server id 14.3.294.0;
-	Thu, 23 Feb 2017 01:29:07 -0800
-From: <wenzong.fan@windriver.com>
-To: <yocto@yoctoproject.org>
-Date: Thu, 23 Feb 2017 04:29:06 -0500
-Message-ID: <1487842146-74243-1-git-send-email-wenzong.fan@windriver.com>
-X-Mailer: git-send-email 2.8.1
+Received: from smtp486.redcondor.net (smtp486.redcondor.net [208.80.204.86])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 725C1E00A73
+	for <yocto@yoctoproject.org>; Thu, 23 Feb 2017 02:33:33 -0800 (PST)
+Received: from astoria.ccjclearline.com ([64.235.106.9])
+	by smtp486.redcondor.net ({6695537a-536a-45f9-a249-877c85428649})
+	via TCP (outbound) with ESMTPS id 20170223103319161_0486;
+	Thu, 23 Feb 2017 10:33:19 +0000
+X-RC-FROM: <rpjday@crashcourse.ca>
+Received: from [216.191.234.70] (port=44209 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1cgqhz-00055y-Fr; Thu, 23 Feb 2017 05:33:11 -0500
+Date: Thu, 23 Feb 2017 05:33:09 -0500 (EST)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@uk63952.mitel.com
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.LFD.2.20.1702230530560.6716@uk63952.mitel.com>
+User-Agent: Alpine 2.20 (LFD 67 2015-01-07)
 MIME-Version: 1.0
-Subject: [meta-selinux][PATCH] selinux-init: start service after local-fs.target
+X-MAG-OUTBOUND: ccj.redcondor.net@64.235.106.9/32
+Cc: Darren Hart <darren.hart@intel.com>
+Subject: [PATCH] yocto-docs: Aesthetic changes to kernel-dev-intro.xml
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,32 +44,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 23 Feb 2017 09:29:14 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 23 Feb 2017 10:33:37 -0000
+Content-Type: text/plain; charset=US-ASCII
 
-From: Wenzong Fan <wenzong.fan@windriver.com>
 
-Fixing labels after local-fs.target to make sure all mounted
-filesystems labeled correctly.
+* "sys" filesystem is technically "sysfs" filesystem
+* "aggregate" already implies together :-)
 
-Signed-off-by: Wenzong Fan <wenzong.fan@windriver.com>
+Signed-off-by: Robert P. J. Day <rpjday@crashcourse.ca>
+
 ---
- recipes-security/selinux/selinux-init/selinux-init.service | 1 +
- 1 file changed, 1 insertion(+)
 
-diff --git a/recipes-security/selinux/selinux-init/selinux-init.service b/recipes-security/selinux/selinux-init/selinux-init.service
-index 93cc6ce..49c6d98 100644
---- a/recipes-security/selinux/selinux-init/selinux-init.service
-+++ b/recipes-security/selinux/selinux-init/selinux-init.service
-@@ -1,6 +1,7 @@
- [Unit]
- Description=SELinux init service loading
- DefaultDependencies=no
-+After=local-fs.target
- Before=sysinit.target
- 
- [Service]
+diff --git a/documentation/kernel-dev/kernel-dev-intro.xml b/documentation/kernel-dev/kernel-dev-intro.xml
+index 263e500..8de1f97 100644
+--- a/documentation/kernel-dev/kernel-dev-intro.xml
++++ b/documentation/kernel-dev/kernel-dev-intro.xml
+@@ -74,17 +74,17 @@
+             visible <filename>CONFIG</filename> options as presented by the Linux
+             kernel <filename>menuconfig</filename> system.
+             Contrast this against a complete Linux kernel
+-            <filename>.config</filename>, which includes all the automatically
++            <filename>.config</filename> file, which includes all the automatically
+             selected <filename>CONFIG</filename> options.
+             This efficiency reduces your maintenance effort and allows you
+             to further separate your configuration in ways that make sense for
+             your project.
+             A common split separates policy and hardware.
+             For example, all your kernels might support
+-            the <filename>proc</filename> and <filename>sys</filename> filesystems,
++            the <filename>proc</filename> and <filename>sysfs</filename> filesystems,
+             but only specific boards require sound, USB, or specific drivers.
+             Specifying these configurations individually allows you to aggregate
+-            them together as needed, but maintains them in only one place.
++            them as needed, but maintains them in only one place.
+             Similar logic applies to separating source changes.
+         </para>
+
+
 -- 
-2.8.1
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
 
