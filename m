@@ -1,46 +1,41 @@
-Return-Path: <darren.hart@intel.com>
+Return-Path: <rpjday@crashcourse.ca>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 087E0E00B3E; Thu, 23 Feb 2017 09:38:03 -0800 (PST)
+	id 26892E00AC0; Thu, 23 Feb 2017 09:39:48 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [208.80.204.86 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
-	*      medium trust
-	*      [192.55.52.43 listed in list.dnswl.org]
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9B2CAE00AC5
-	for <yocto@yoctoproject.org>; Thu, 23 Feb 2017 09:37:54 -0800 (PST)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga105.fm.intel.com with ESMTP; 23 Feb 2017 09:37:54 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.35,198,1484035200"; d="scan'208";a="1114738657"
-Received: from fmsmsx105.amr.corp.intel.com ([10.18.124.203])
-	by fmsmga001.fm.intel.com with ESMTP; 23 Feb 2017 09:37:53 -0800
-Received: from fmsmsx113.amr.corp.intel.com (10.18.116.7) by
-	FMSMSX105.amr.corp.intel.com (10.18.124.203) with Microsoft SMTP Server
-	(TLS) id 14.3.248.2; Thu, 23 Feb 2017 09:37:53 -0800
-Received: from fmsmsx118.amr.corp.intel.com ([169.254.1.242]) by
-	FMSMSX113.amr.corp.intel.com ([169.254.13.119]) with mapi id
-	14.03.0248.002; Thu, 23 Feb 2017 09:37:53 -0800
-From: "Hart, Darren" <darren.hart@intel.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>, Yocto discussion list
-	<yocto@yoctoproject.org>
-Thread-Topic: [PATCH] yocto-docs: Aesthetic changes to kernel-dev-intro.xml
-Thread-Index: AQHSjcBOXl1EEIyxxkauaRZ7uqJKPaF222ng
-Date: Thu, 23 Feb 2017 17:37:52 +0000
-Message-ID: <79661426AB6B40478E52EE7F511CC9051F9C363B@fmsmsx118.amr.corp.intel.com>
-References: <alpine.LFD.2.20.1702230530560.6716@uk63952.mitel.com>
-In-Reply-To: <alpine.LFD.2.20.1702230530560.6716@uk63952.mitel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.1.200.106]
+Received: from smtp486.redcondor.net (smtp486.redcondor.net [208.80.204.86])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C1A23E00924
+	for <yocto@yoctoproject.org>; Thu, 23 Feb 2017 09:39:46 -0800 (PST)
+Received: from astoria.ccjclearline.com ([64.235.106.9])
+	by smtp486.redcondor.net ({6695537a-536a-45f9-a249-877c85428649})
+	via TCP (outbound) with ESMTPS id 20170223173943051_0486;
+	Thu, 23 Feb 2017 17:39:43 +0000
+X-RC-FROM: <rpjday@crashcourse.ca>
+Received: from [216.191.234.70] (port=33695 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1cgxMe-00042c-Dj; Thu, 23 Feb 2017 12:39:36 -0500
+Date: Thu, 23 Feb 2017 12:39:34 -0500 (EST)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@uk63952.mitel.com
+To: "Hart, Darren" <darren.hart@intel.com>
+In-Reply-To: <79661426AB6B40478E52EE7F511CC9051F9C362B@fmsmsx118.amr.corp.intel.com>
+Message-ID: <alpine.LFD.2.20.1702231238380.25959@uk63952.mitel.com>
+References: <alpine.LFD.2.20.1702230604450.7481@uk63952.mitel.com>
+	<79661426AB6B40478E52EE7F511CC9051F9C362B@fmsmsx118.amr.corp.intel.com>
+User-Agent: Alpine 2.20 (LFD 67 2015-01-07)
 MIME-Version: 1.0
-Subject: Re: [PATCH] yocto-docs: Aesthetic changes to kernel-dev-intro.xml
+X-MAG-OUTBOUND: ccj.redcondor.net@64.235.106.9/32
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: [PATCH] yocto-docs: Some aesthetic changes to kernel-dev-common.xml
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,27 +47,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 23 Feb 2017 17:38:03 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 23 Feb 2017 17:39:48 -0000
+Content-Type: text/plain; charset=US-ASCII
 
-> -----Original Message-----
-> From: Robert P. J. Day [mailto:rpjday@crashcourse.ca]
-> Sent: Thursday, February 23, 2017 2:33 AM
-> To: Yocto discussion list <yocto@yoctoproject.org>
-> Cc: Hart, Darren <darren.hart@intel.com>
-> Subject: [PATCH] yocto-docs: Aesthetic changes to kernel-dev-intro.xml
->=20
->=20
-> * "sys" filesystem is technically "sysfs" filesystem
-> * "aggregate" already implies together :-)
->=20
-> Signed-off-by: Robert P. J. Day <rpjday@crashcourse.ca>
->=20
+On Thu, 23 Feb 2017, Hart, Darren wrote:
 
-Thanks for taking the time to correct the docs.
+> > -----Original Message-----
+> > From: Robert P. J. Day [mailto:rpjday@crashcourse.ca]
+> > Sent: Thursday, February 23, 2017 3:08 AM
+> > To: Yocto discussion list <yocto@yoctoproject.org>
+> > Cc: Hart, Darren <darren.hart@intel.com>
+> > Subject: [PATCH] yocto-docs: Some aesthetic changes to kernel-dev-
+> > common.xml
+> >
+> >
+> > Small number of aesthetic/visual changes to kernel-dev-common.xml.
+> >
+>
+> Erm... that's not really what these are :-) These are a mix of
+> grammatical fixes, format preferences, and clarifying commentary,
+> which do amount to some functional changes in terms of what a reader
+> may do or not do as a result of reading them. Please be explicit in
+> your commit log.
+>
+> That said, I have no objections to these changes, the majority of
+> which I consider to be good improvements. Thanks for taking the time
+> to improve the documentation.
 
-Reviewed-by: Darren Hart <dvhart@linux.intel.com>
+  so i should resubmit PATCH v2 with a more detailed commit msg? ok, i
+can do that. stay tuned ...
+
+rday
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
 
