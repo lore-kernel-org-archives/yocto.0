@@ -1,41 +1,63 @@
-Return-Path: <mickael@tansorier.fr>
+Return-Path: <sigsbeeus@mac.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E2997E00A73; Thu, 23 Feb 2017 01:15:55 -0800 (PST)
+	id AE061E00AB3; Thu, 23 Feb 2017 06:25:10 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [91.216.209.19 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-Received: from idris.smile.fr (idris.smile.fr [91.216.209.19])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8579EE00A0A
-	for <yocto@yoctoproject.org>; Thu, 23 Feb 2017 01:15:53 -0800 (PST)
-Received: from localhost (localhost [127.0.0.1])
-	by idris.smile.fr (Postfix) with ESMTP id 129121EE20AE
-	for <yocto@yoctoproject.org>; Thu, 23 Feb 2017 10:07:57 +0100 (CET)
-X-Virus-Scanned: Debian amavisd-new at smile.fr
-Received: from idris.smile.fr ([127.0.0.1])
-	by localhost (bluemind-mta.prod.vitry.intranet [127.0.0.1])
-	(amavisd-new, port 10024)
-	with ESMTP id Ehw-HEGnc76f for <yocto@yoctoproject.org>;
-	Thu, 23 Feb 2017 10:07:56 +0100 (CET)
-Received: from [192.168.0.127] (bgn92-6-88-179-202-174.fbx.proxad.net
-	[88.179.202.174])
-	by idris.smile.fr (Postfix) with ESMTPSA id CF6AB1EE2063
-	for <yocto@yoctoproject.org>; Thu, 23 Feb 2017 10:07:56 +0100 (CET)
+X-Spam-Status: No, score=0.0 required=5.0 tests=BAYES_50,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (sigsbeeus[at]mac.com)
+	*  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
+	*      [score: 0.4148]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [17.142.241.8 listed in list.dnswl.org]
+X-Greylist: delayed 3600 seconds by postgrey-1.32 at yocto-www;
+	Thu, 23 Feb 2017 06:25:05 PST
+Received: from pv33p33im-asmtp001.me.com (pv33p33im-asmtp001.me.com
+	[17.142.241.8])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 92423E00AA9
+	for <yocto@yoctoproject.org>; Thu, 23 Feb 2017 06:25:05 -0800 (PST)
+Received: from process-dkim-sign-daemon.pv33p33im-asmtp001.me.com by
+	pv33p33im-asmtp001.me.com
+	(Oracle Communications Messaging Server 7.0.5.38.0 64bit (built Feb 26
+	2016)) id <0OLT00L00X7GMO00@pv33p33im-asmtp001.me.com> for
+	yocto@yoctoproject.org; Thu, 23 Feb 2017 13:25:00 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mac.com; s=4d515a;
+	t=1487856299; bh=t+p0WmTlUWmfJchHo/OFwzR1AvAFVKlFY7e+6N68irM=;
+	h=From:Content-type:MIME-version:Subject:Message-id:Date:To;
+	b=rt5X47JBQ22LMPLQt7XG+mi4RkYX1Fvh8il7FaPoIvrlvQRcGlifMtqw3dnVdxqft
+	Ns7LEQAtdmFplUpZIWmbsH+qOf0UYleN6j6M9qdYu1/uhidC+HFMhgBN4afM2LeExr
+	HQhYdtpTlAao9hLnH/OMNIw1b1MvSiH9WjycVJOrpQnMwe3nIER08fuCrBDU2XzjQg
+	p5UgxDLwXriP9MYL5MrnSOKsiBWN2dcF9Pb+TV1UmsTgQj4yoT/+sM22rGyp6cA6jc
+	gv1HYIDHHgqkvxNyDsFnIbBVXcEq4xaBQz7zwjPjt84zUwhtQ9xYNeGZgZb728oPph
+	F1kkw0Qpfhezw==
+Received: from icloud.com ([127.0.0.1]) by pv33p33im-asmtp001.me.com
+	(Oracle Communications Messaging Server 7.0.5.38.0 64bit (built Feb 26
+	2016))
+	with ESMTPSA id <0OLT00IJDX9LJU30@pv33p33im-asmtp001.me.com> for
+	yocto@yoctoproject.org; Thu, 23 Feb 2017 13:24:59 +0000 (GMT)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10432:,,
+	definitions=2017-02-23_10:,, signatures=0
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0
+	clxscore=1034 suspectscore=43 malwarescore=0 phishscore=0 adultscore=0
+	bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+	engine=8.0.1-1701120000 definitions=main-1702230128
+From: William McKinney <sigsbeeus@mac.com>
+MIME-version: 1.0 (Mac OS X Mail 10.2 \(3259\))
+Message-id: <73297B9E-30BA-4F4F-9A05-60B4EA688E6E@mac.com>
+Date: Thu, 23 Feb 2017 08:24:56 -0500
 To: yocto@yoctoproject.org
-From: =?UTF-8?Q?Micka=c3=abl_Tansorier?= <mickael@tansorier.fr>
-Message-ID: <76b39576-fa93-33e8-e6e5-e0fffbe8c5ce@tansorier.fr>
-Date: Thu, 23 Feb 2017 10:07:56 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Firefox/45.0 Thunderbird/45.7.1
-MIME-Version: 1.0
+X-Mailer: Apple Mail (2.3259)
 X-Mailman-Approved-At: Fri, 24 Feb 2017 09:11:46 -0800
-Subject: Patch for krogoth vorsion
+Subject: Trying to build yocto-morty on ubuntu-16, machine reboots in the middle of the build
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,64 +69,17 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 23 Feb 2017 09:15:55 -0000
-X-Groupsio-MsgNum: 34680
-Content-Type: multipart/mixed; boundary="------------FE5B40EB41DE39B96AD1056F"
+X-List-Received-Date: Thu, 23 Feb 2017 14:25:10 -0000
+Content-type: text/plain; charset=utf-8
+Content-transfer-encoding: quoted-printable
 
---------------FE5B40EB41DE39B96AD1056F
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+I=E2=80=99m trying to build the yocto-morty release on an ubuntu 16.04.2 =
+LTS box with 16GB of memory and plenty of disk space.  More than once =
+the machine appears to just reboot in the middle of the build.  Has =
+anyone else experienced this?  The krogoth and jethro release build =
+successfully on the same box.
 
-Hello,
-
-I propose a patch for krogoth branch.
-
-It seems that miss a space a the end of line SRC_URI_prepend. This make 
-error when two sources are concatenated.
-
-Thank your.
-
-Regards.
-
--- 
-Tansorier Mickaël
+Thank you,
+=E2=80=94bill
 
 
---------------FE5B40EB41DE39B96AD1056F
-Content-Type: text/x-patch;
- name="0001-qemu-Add-space-to-fix-concatenated-SRC_URI.patch"
-Content-Transfer-Encoding: 8bit
-Content-Disposition: attachment;
- filename="0001-qemu-Add-space-to-fix-concatenated-SRC_URI.patch"
-
-From 4b753ee916ee1a9fa6c82bb7dc2a8070bf14b2ec Mon Sep 17 00:00:00 2001
-From: =?UTF-8?q?Micka=C3=ABl=20Tansorier?= <mickael@tansorier.fr>
-Date: Thu, 23 Feb 2017 09:40:18 +0100
-Subject: [PATCH] qemu: Add space to fix concatenated SRC_URI
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-
-Signed-off-by: Mickaël Tansorier <mickael@tansorier.fr>
----
- meta/recipes-devtools/qemu/qemu_2.5.0.bb | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/meta/recipes-devtools/qemu/qemu_2.5.0.bb b/meta/recipes-devtools/qemu/qemu_2.5.0.bb
-index ed8d911ea6..241dee050c 100644
---- a/meta/recipes-devtools/qemu/qemu_2.5.0.bb
-+++ b/meta/recipes-devtools/qemu/qemu_2.5.0.bb
-@@ -27,7 +27,7 @@ SRC_URI += "file://configure-fix-Darwin-target-detection.patch \
-             file://CVE-2016-4002.patch \
-             file://CVE-2016-5403.patch \
-            "
--SRC_URI_prepend = "http://wiki.qemu-project.org/download/${BP}.tar.bz2"
-+SRC_URI_prepend = "http://wiki.qemu-project.org/download/${BP}.tar.bz2 "
- SRC_URI[md5sum] = "f469f2330bbe76e3e39db10e9ac4f8db"
- SRC_URI[sha256sum] = "3443887401619fe33bfa5d900a4f2d6a79425ae2b7e43d5b8c36eb7a683772d4"
- 
--- 
-2.11.1
-
-
---------------FE5B40EB41DE39B96AD1056F--
