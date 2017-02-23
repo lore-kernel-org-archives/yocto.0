@@ -1,39 +1,43 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
+Return-Path: <mickael@tansorier.fr>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E8CA9E009C3; Fri, 24 Feb 2017 07:26:20 -0800 (PST)
+	id 9AE36E00A4F; Thu, 23 Feb 2017 01:13:32 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 911D4E009A7;
-	Fri, 24 Feb 2017 07:26:19 -0800 (PST)
-Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
-	[147.11.189.41])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id v1OFQGms024719
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=OK);
-	Fri, 24 Feb 2017 07:26:17 -0800
-Received: from server.local (128.224.22.134) by ALA-HCB.corp.ad.wrs.com
-	(147.11.189.41) with Microsoft SMTP Server id 14.3.294.0;
-	Fri, 24 Feb 2017 07:26:16 -0800
-To: Ran Shalit <ranshalit@gmail.com>
-References: <CAJ2oMh+nG5stwE0Ec5DRxKRNLbvXEebxzXw0Rk0rE_-4sZeakQ@mail.gmail.com>
-	<70f42899-aff2-11fe-24a5-5c0010b0c6ab@windriver.com>
-	<CAJ2oMh+ZHw+SXJq+4s7r0kDNVPCsPY0BLcT-UwAMjYrsdV0m4Q@mail.gmail.com>
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-Message-ID: <8ddb8c33-fe1d-f774-ae44-6da0b6c45ac1@windriver.com>
-Date: Fri, 24 Feb 2017 10:26:15 -0500
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:45.0)
-	Gecko/20100101 Thunderbird/45.7.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [91.216.209.19 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0066]
+X-Greylist: delayed 333 seconds by postgrey-1.32 at yocto-www;
+	Thu, 23 Feb 2017 01:13:31 PST
+Received: from idris.smile.fr (idris.smile.fr [91.216.209.19])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 93252E0052B
+	for <yocto@yoctoproject.org>; Thu, 23 Feb 2017 01:13:31 -0800 (PST)
+Received: from localhost (localhost [127.0.0.1])
+	by idris.smile.fr (Postfix) with ESMTP id 78B7A1EE20B4
+	for <yocto@yoctoproject.org>; Thu, 23 Feb 2017 10:13:30 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at smile.fr
+Received: from idris.smile.fr ([127.0.0.1])
+	by localhost (bluemind-mta.prod.vitry.intranet [127.0.0.1])
+	(amavisd-new, port 10024)
+	with ESMTP id mGaoiPPyNiPP for <yocto@yoctoproject.org>;
+	Thu, 23 Feb 2017 10:13:30 +0100 (CET)
+Received: from [192.168.0.127] (bgn92-6-88-179-202-174.fbx.proxad.net
+	[88.179.202.174])
+	by idris.smile.fr (Postfix) with ESMTPSA id 4B7141EE20B1
+	for <yocto@yoctoproject.org>; Thu, 23 Feb 2017 10:13:30 +0100 (CET)
+To: yocto <yocto@yoctoproject.org>
+From: =?UTF-8?Q?Micka=c3=abl_Tansorier?= <mickael@tansorier.fr>
+Message-ID: <ece33007-8274-ef53-915b-513a3ab8a89a@tansorier.fr>
+Date: Thu, 23 Feb 2017 10:13:29 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Firefox/45.0 Thunderbird/45.7.1
 MIME-Version: 1.0
-In-Reply-To: <CAJ2oMh+ZHw+SXJq+4s7r0kDNVPCsPY0BLcT-UwAMjYrsdV0m4Q@mail.gmail.com>
-Cc: meta-intel@yoctoproject.org,
-	Yocto Project Discussion <yocto@yoctoproject.org>,
-	linux-yocto@yoctoproject.org
-Subject: Re: [linux-yocto] update kernel in local.conf
+X-Mailman-Approved-At: Fri, 24 Feb 2017 09:11:46 -0800
+Subject: Patch for krogoth version
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,112 +49,22 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 24 Feb 2017 15:26:21 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 23 Feb 2017 09:13:32 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On 2017-02-24 10:20 AM, Ran Shalit wrote:
-> On Fri, Feb 24, 2017 at 4:12 PM, Bruce Ashfield
-> <bruce.ashfield@windriver.com> wrote:
->> On 2017-02-24 4:02 AM, Ran Shalit wrote:
->>>
->>> Hello,
->>>
->>> I wanted to try update to rt-kernel to I added the following in
->>> local.conf:
->>>
->>> #PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto"
->>> #PREFERRED_VERSION_linux-yocto ?= "4.4%"
->>> PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto-rt"
->>> PREFERRED_VERSION_linux-yocto-rt ?= "4.4%"
->>>
->>> Everything compiled well with
->>> bitbake core-image-sato-sdk
->>>
->>> I then decided to return to the regular linux by doing:
->>> PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto"
->>> PREFERRED_VERSION_linux-yocto ?= "4.4%"
->>> #PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto-rt"
->>> #PREFERRED_VERSION_linux-yocto-rt ?= "4.4%"
->>>
->>> But now I get errors as following:
->>>
->>> NOTE: Preparing RunQueue
->>> WARNING:
->>> /media/sde/yocto/poky/meta/recipes-sato/images/core-image-sato-sdk.bb.do_rootfs
->>> is tainted from a forced run
->>> NOTE: Executing SetScene Tasks
->>> NOTE: Executing RunQueue Tasks
->>> ERROR: core-image-sato-sdk-1.0-r0 do_rootfs: Error executing a python
->>> function in exec_python_func() autogenerated:
->>>
->>> The stack trace of python calls that resulted in this exception/failure
->>> was:
->>> File: 'exec_python_func() autogenerated', lineno: 2, function: <module>
->>>      0001:
->>>  *** 0002:license_create_manifest(d)
->>>      0003:
->>> File: '/media/sde/yocto/poky/meta/classes/license.bbclass', lineno:
->>> 48, function: license_create_manifest
->>>      0044:    pkg_dic = {}
->>>      0045:    for pkg in sorted(image_list_installed_packages(d)):
->>>      0046:        pkg_info = os.path.join(d.getVar('PKGDATA_DIR', True),
->>>      0047:                                'runtime-reverse', pkg)
->>>  *** 0048:        pkg_name = os.path.basename(os.readlink(pkg_info))
->>>      0049:
->>>      0050:        pkg_dic[pkg_name] =
->>> oe.packagedata.read_pkgdatafile(pkg_info)
->>>      0051:        if not "LICENSE" in pkg_dic[pkg_name].keys():
->>>      0052:            pkg_lic_name = "LICENSE_" + pkg_name
->>> Exception: OSError: [Errno 2] No such file or directory:
->>>
->>> '/media/sde/yocto/poky/build/tmp/sysroots/congatec-qa3-64/pkgdata/runtime-reverse/kernel-4.4.26-rt19-yocto-preempt-rt'
->>>
->>> ERROR: core-image-sato-sdk-1.0-r0 do_rootfs: Function failed:
->>> license_create_manifest
->>> ERROR: Logfile of failure stored in:
->>>
->>> /media/sde/yocto/poky/build/tmp/work/congatec_qa3_64-poky-linux/core-image-sato-sdk/1.0-r0/temp/log.do_rootfs.13106
->>> ERROR: Task 9
->>> (/media/sde/yocto/poky/meta/recipes-sato/images/core-image-sato-sdk.bb,
->>> do_rootfs) failed with exit code '1'
->>> NOTE: Tasks Summary: Attempted 7025 tasks of which 7024 didn't need to
->>> be rerun and 1 failed.
->>>
->>> Does anyone have any idea ?
->>
->>
->> I don't have any idea, but I can confirm that I have seen the same thing
->> in the past when switching kernels.
->>
->> If you switch back to the -rt provider, do a cleanall, and then go back
->> to the standard linux-yocto .. it should go away.
->>
->> Something is obviously remaining in the sysroot/manifest after the
->> switch, but figuring out what  is going on here is deeper into bitbake
->> than my expertise can handle :D
->>
->
-> Thanks for the help, Bruce.
->
-> When using rt linux, do you think I need to give:
-> PREFERRED_VERSION_linux-yocto-rt
+Hello,
 
-This is the one (PREFERRED_VERSION_linux-yocto-rt)
+I propose a patch for krogoth branch.
 
-Bruce
+It seems that miss a space a the end of line SRC_URI_prepend. This make 
+error when two sources are concatenated.
 
-> or
-> PREFERRED_VERSION_linux-yocto
->
-> Thanks,
-> Ran
->
->> Bruce
->>
->>
->>> Ran
->>>
->>
+Thank your.
+
+Regards.
+
+-- 
+Tansorier Mickaël
 
 
