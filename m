@@ -1,67 +1,39 @@
-Return-Path: <anton@advancedtelematic.com>
+Return-Path: <Bruce.Ashfield@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 75417E009C2; Fri, 24 Feb 2017 07:25:21 -0800 (PST)
+	id E8CA9E009C3; Fri, 24 Feb 2017 07:26:20 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.128.169 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wr0-f169.google.com (mail-wr0-f169.google.com
-	[209.85.128.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6E2A3E009A7
-	for <yocto@yoctoproject.org>; Fri, 24 Feb 2017 07:25:19 -0800 (PST)
-Received: by mail-wr0-f169.google.com with SMTP id o22so9693259wro.1
-	for <yocto@yoctoproject.org>; Fri, 24 Feb 2017 07:25:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=advancedtelematic.com; s=google;
-	h=subject:to:references:cc:from:message-id:date:user-agent
-	:mime-version:in-reply-to:content-transfer-encoding;
-	bh=B7T6/1oMZMBXmQ1+hkxdEUnrdfs7wqBO7u5RFOdIn6c=;
-	b=KfhTUvfLVv/ymEa/XQZRkOaGL/kK8yTDTCFuNuQtypaYNBOxXbB0iNC9BU1yhRYRoa
-	ATmN8vTp990TkaHep4PicNsxVRoW+DZ5dDgo2o0g4ewlCIjjLupqyxhxrPYnc2Wu5I99
-	+nuUZ5uzMokKRKdcTFWRwK5RlkVptU91Hn3Kw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:references:cc:from:message-id:date
-	:user-agent:mime-version:in-reply-to:content-transfer-encoding;
-	bh=B7T6/1oMZMBXmQ1+hkxdEUnrdfs7wqBO7u5RFOdIn6c=;
-	b=ce7Eyjx74Jt24XXPat3B8oJpEmEPrtRn2e4DE9o0W7SBrbw/PfLLnWwlM5ItjACiUH
-	YXaqAGJVO7cxMJy/ii+2yg4vA0nWqi4gjxeLpcHz46itEwIDn7zJfAVfe/p0De6LeLrh
-	SQSPHF4bLRP9pTLUx2k4mu4ts9rC5opWF/n9sgcgrorhuifmDd7DPNixYAur0SuPzZac
-	HKjQp9FKI53b8ifLPef9GVHH4Phwx3Ylqp0DFDAOtBfz2Lz37PsdneuvrZWkH/8FPEr8
-	dui0q3IXNH15bbbe9VsPTYZwmHKfIMCfWOxhD/DCUb514aIpgY0ky7ifrSSb+C4cdKXS
-	7vSg==
-X-Gm-Message-State: AMke39lkyBjaYr9bGQl3HyG34krzj7PZ2FHyyHDKbC3VY423NOeHc0spMWKb0sOI4BvaqA==
-X-Received: by 10.223.153.208 with SMTP id y74mr2974656wrb.81.1487949917934;
-	Fri, 24 Feb 2017 07:25:17 -0800 (PST)
-Received: from [192.168.1.109] (p57bf9f95.dip0.t-ipconnect.de.
-	[87.191.159.149])
-	by smtp.gmail.com with ESMTPSA id g6sm2711810wmc.30.2017.02.24.07.25.17
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 24 Feb 2017 07:25:17 -0800 (PST)
-To: Seebs <seebs@seebs.net>
-References: <20170224144815.7243-1-anton@advancedtelematic.com>
-	<20170224090515.48425389@seebsdell>
-From: Anton Gerasimov <anton@advancedtelematic.com>
-Message-ID: <f8c08da4-b88a-1c04-238b-e70be65fd59d@advancedtelematic.com>
-Date: Fri, 24 Feb 2017 16:18:38 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.7.1
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 911D4E009A7;
+	Fri, 24 Feb 2017 07:26:19 -0800 (PST)
+Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
+	[147.11.189.41])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id v1OFQGms024719
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=OK);
+	Fri, 24 Feb 2017 07:26:17 -0800
+Received: from server.local (128.224.22.134) by ALA-HCB.corp.ad.wrs.com
+	(147.11.189.41) with Microsoft SMTP Server id 14.3.294.0;
+	Fri, 24 Feb 2017 07:26:16 -0800
+To: Ran Shalit <ranshalit@gmail.com>
+References: <CAJ2oMh+nG5stwE0Ec5DRxKRNLbvXEebxzXw0Rk0rE_-4sZeakQ@mail.gmail.com>
+	<70f42899-aff2-11fe-24a5-5c0010b0c6ab@windriver.com>
+	<CAJ2oMh+ZHw+SXJq+4s7r0kDNVPCsPY0BLcT-UwAMjYrsdV0m4Q@mail.gmail.com>
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+Message-ID: <8ddb8c33-fe1d-f774-ae44-6da0b6c45ac1@windriver.com>
+Date: Fri, 24 Feb 2017 10:26:15 -0500
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:45.0)
+	Gecko/20100101 Thunderbird/45.7.1
 MIME-Version: 1.0
-In-Reply-To: <20170224090515.48425389@seebsdell>
-Cc: yocto@yoctoproject.org
-Subject: Re: [pseudo][PATCH 1/1] Filter out erroneous POSIX ACLs
+In-Reply-To: <CAJ2oMh+ZHw+SXJq+4s7r0kDNVPCsPY0BLcT-UwAMjYrsdV0m4Q@mail.gmail.com>
+Cc: meta-intel@yoctoproject.org,
+	Yocto Project Discussion <yocto@yoctoproject.org>,
+	linux-yocto@yoctoproject.org
+Subject: Re: [linux-yocto] update kernel in local.conf
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,65 +45,112 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 24 Feb 2017 15:25:21 -0000
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 24 Feb 2017 15:26:21 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Peter,
-
-to reproduce the difference, you just need a kernel with POSIX ACL
-enabled for your FS (e.g. CONFIG_FS_POSIX_ACL=3Dy;
-CONFIG_EXT4_FS_POSIX_ACL=3Dy). The problem is that 'cp -a' when copying a=
-
-directory without any ACLs attached will for whatever reason try to
-assign an empty posix_acl_default list to the target directory. Linux
-kernel will always filter it out, but pseudo just creates empty list.
-Later in the build process, when bootable image is created, it will
-instantiate a directory with empty posix_acl_default list on the
-bootable media. When you will try to perform certain operations on such
-directory (e.g. creating another directory inside it), kernel, namely
-ext4_get_acl, if I resemble correctly, will return EINVAL error, so the
-resulting filesystem will be effectively broken in many ways.
-
-There is an issue [1] in Automotive Grade Linux Jira with an example of
-erroneous behaviour. The tricky part of it is that the error itself can
-not be reproduced easily: although I have one kernel config of a machine
-that makes broken images, I couldn't repeat it on later kernel versions.
-But the setfattr/getfattr behaviour difference that causes that error
-can be reproduced quite easily on any kernel with ACLs enabled.
-
-[1] (Starting with Jan-Simon Moeller's comment on 26th of October)
-https://jira.automotivelinux.org/browse/SPEC-254?focusedCommentId=3D11313=
-&page=3Dcom.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#=
-comment-11313
-
-On 02/24/2017 04:05 PM, Seebs wrote:
-> On Fri, 24 Feb 2017 15:48:15 +0100
-> anton@advancedtelematic.com wrote:
+On 2017-02-24 10:20 AM, Ran Shalit wrote:
+> On Fri, Feb 24, 2017 at 4:12 PM, Bruce Ashfield
+> <bruce.ashfield@windriver.com> wrote:
+>> On 2017-02-24 4:02 AM, Ran Shalit wrote:
+>>>
+>>> Hello,
+>>>
+>>> I wanted to try update to rt-kernel to I added the following in
+>>> local.conf:
+>>>
+>>> #PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto"
+>>> #PREFERRED_VERSION_linux-yocto ?= "4.4%"
+>>> PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto-rt"
+>>> PREFERRED_VERSION_linux-yocto-rt ?= "4.4%"
+>>>
+>>> Everything compiled well with
+>>> bitbake core-image-sato-sdk
+>>>
+>>> I then decided to return to the regular linux by doing:
+>>> PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto"
+>>> PREFERRED_VERSION_linux-yocto ?= "4.4%"
+>>> #PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto-rt"
+>>> #PREFERRED_VERSION_linux-yocto-rt ?= "4.4%"
+>>>
+>>> But now I get errors as following:
+>>>
+>>> NOTE: Preparing RunQueue
+>>> WARNING:
+>>> /media/sde/yocto/poky/meta/recipes-sato/images/core-image-sato-sdk.bb.do_rootfs
+>>> is tainted from a forced run
+>>> NOTE: Executing SetScene Tasks
+>>> NOTE: Executing RunQueue Tasks
+>>> ERROR: core-image-sato-sdk-1.0-r0 do_rootfs: Error executing a python
+>>> function in exec_python_func() autogenerated:
+>>>
+>>> The stack trace of python calls that resulted in this exception/failure
+>>> was:
+>>> File: 'exec_python_func() autogenerated', lineno: 2, function: <module>
+>>>      0001:
+>>>  *** 0002:license_create_manifest(d)
+>>>      0003:
+>>> File: '/media/sde/yocto/poky/meta/classes/license.bbclass', lineno:
+>>> 48, function: license_create_manifest
+>>>      0044:    pkg_dic = {}
+>>>      0045:    for pkg in sorted(image_list_installed_packages(d)):
+>>>      0046:        pkg_info = os.path.join(d.getVar('PKGDATA_DIR', True),
+>>>      0047:                                'runtime-reverse', pkg)
+>>>  *** 0048:        pkg_name = os.path.basename(os.readlink(pkg_info))
+>>>      0049:
+>>>      0050:        pkg_dic[pkg_name] =
+>>> oe.packagedata.read_pkgdatafile(pkg_info)
+>>>      0051:        if not "LICENSE" in pkg_dic[pkg_name].keys():
+>>>      0052:            pkg_lic_name = "LICENSE_" + pkg_name
+>>> Exception: OSError: [Errno 2] No such file or directory:
+>>>
+>>> '/media/sde/yocto/poky/build/tmp/sysroots/congatec-qa3-64/pkgdata/runtime-reverse/kernel-4.4.26-rt19-yocto-preempt-rt'
+>>>
+>>> ERROR: core-image-sato-sdk-1.0-r0 do_rootfs: Function failed:
+>>> license_create_manifest
+>>> ERROR: Logfile of failure stored in:
+>>>
+>>> /media/sde/yocto/poky/build/tmp/work/congatec_qa3_64-poky-linux/core-image-sato-sdk/1.0-r0/temp/log.do_rootfs.13106
+>>> ERROR: Task 9
+>>> (/media/sde/yocto/poky/meta/recipes-sato/images/core-image-sato-sdk.bb,
+>>> do_rootfs) failed with exit code '1'
+>>> NOTE: Tasks Summary: Attempted 7025 tasks of which 7024 didn't need to
+>>> be rerun and 1 failed.
+>>>
+>>> Does anyone have any idea ?
+>>
+>>
+>> I don't have any idea, but I can confirm that I have seen the same thing
+>> in the past when switching kernels.
+>>
+>> If you switch back to the -rt provider, do a cleanall, and then go back
+>> to the standard linux-yocto .. it should go away.
+>>
+>> Something is obviously remaining in the sysroot/manifest after the
+>> switch, but figuring out what  is going on here is deeper into bitbake
+>> than my expertise can handle :D
+>>
 >
->> From: Anton Gerasimov <anton@advancedtelematic.com>
->>
->> The difference between what we see in pseudo and what happens without
->> pseudo can be seen by typing:
->>
->>     mkdir setfattr-test
->>     setfattr -n system.posix_acl_default -v 0x02000000 setfattr-test
->>     getfattr -n system.posix_acl_default setfattr-test
->>
->> Under some kernel configurations this difference leads to annoying
->> errors, e.g. directories copied with 'cp -a' get broken in a fancy
->> way.
-> Can you expand on this? What is happening to make the "erroneous" ACLs?=
-
-> What kernel configurations?
+> Thanks for the help, Bruce.
 >
-> -s
+> When using rt linux, do you think I need to give:
+> PREFERRED_VERSION_linux-yocto-rt
 
---=20
-Anton Gerasimov, ATS Advanced Telematic Systems GmbH
-Kantstrasse 162, 10623 Berlin
-Managing Directors: Dirk P=F6schl, Armin G. Schmidt
-Register Court: HRB 151501 B, Amtsgericht Charlottenburg
+This is the one (PREFERRED_VERSION_linux-yocto-rt)
 
+Bruce
+
+> or
+> PREFERRED_VERSION_linux-yocto
+>
+> Thanks,
+> Ran
+>
+>> Bruce
+>>
+>>
+>>> Ran
+>>>
+>>
 
 
