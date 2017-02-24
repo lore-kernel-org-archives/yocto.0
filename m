@@ -1,61 +1,39 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <Bruce.Ashfield@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 905DBE00961; Fri, 24 Feb 2017 05:24:32 -0800 (PST)
+	id 59D2FE0049D; Fri, 24 Feb 2017 06:12:49 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.216.171 listed in list.dnswl.org]
-Received: from mail-qt0-f171.google.com (mail-qt0-f171.google.com
-	[209.85.216.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4EA94E0049D
-	for <yocto@yoctoproject.org>; Fri, 24 Feb 2017 05:24:28 -0800 (PST)
-Received: by mail-qt0-f171.google.com with SMTP id n21so16374879qta.1
-	for <yocto@yoctoproject.org>; Fri, 24 Feb 2017 05:24:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=iUFiQd2bNCzu9JyTHYgjxT3Ud/AqmTxfYY2OdeGuKXw=;
-	b=N2wGEujn1uNG997P3PWxidK50QsRCD++7QhN7J5AVt1pMgzMua1d2xOH36y1+vRQOr
-	BNzjuUOKx1OaeLmrGGMJYkfT9d4ln9Nfhmg9tBdCB/ec4qYcJST555r8Q9JsJGTqtcdW
-	F9vRiVBwD/PzPDlkC5WMK+tItauWD4PDn4k5gHJW4/RvCxe8eOvpvtjOzsvnLQsfWzny
-	ZCORXarueV29IG5MKCXv9DwCrwxUIuRW7UifmChGiCJyisRUMr2pCT5VFcZWo99AMA/C
-	Et861zU7quys/EN7GSd59Co23rzcjn9Wk8qeFrtjg/WjdGzbd6XECMscPtvbcd/+rqCW
-	GaZw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=iUFiQd2bNCzu9JyTHYgjxT3Ud/AqmTxfYY2OdeGuKXw=;
-	b=AH8dIz6e78cR+j5ZzRR57rRLzSKFr+31bU5MK9jsiKLPbzbMDJsGajQDNsNFid0Fmx
-	6j+/CmdeCTmVPw0bnba9JI0gYRtU05aLSNFMQv1hmXEO7fPBRxbqfKas8k/IQ2Fp1Gqk
-	6yfnTxtZCe8cCv4jcTMPIRlPsrcbkKAdX1x2eotZIQ1xfE500VEgcxs9CmfpHGraPpho
-	4BpvrrzxoNO10z1aLS9Zg3x8aiFKFclb2jChe0p2DWOEB4kf3ntTmJu4v9bHnfYD9iLf
-	D4/GP4A/YoYHczX9aEt6YvukKK57lkl2jFHhc8M8pkanU7MlVEC+nS0yffvX1qNOXj14
-	cFcA==
-X-Gm-Message-State: AMke39naAWxPZSXTa/VSmoQ5YkAybIPB1T/JMeTN4s0/qoRCteKpVNUN9AqRv68nqPRfq+7RGxN7Og9EwxSVw2Cv
-X-Received: by 10.237.32.230 with SMTP id 93mr2555981qtb.144.1487942668278;
-	Fri, 24 Feb 2017 05:24:28 -0800 (PST)
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F15FEE0049D;
+	Fri, 24 Feb 2017 06:12:46 -0800 (PST)
+Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
+	[147.11.189.41])
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id v1OECi3a009733
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Fri, 24 Feb 2017 06:12:44 -0800 (PST)
+Received: from server.local (128.224.22.134) by ALA-HCB.corp.ad.wrs.com
+	(147.11.189.41) with Microsoft SMTP Server id 14.3.294.0;
+	Fri, 24 Feb 2017 06:12:44 -0800
+To: Ran Shalit <ranshalit@gmail.com>, <linux-yocto@yoctoproject.org>,
+	<meta-intel@yoctoproject.org>, Yocto Project Discussion
+	<yocto@yoctoproject.org>
+References: <CAJ2oMh+nG5stwE0Ec5DRxKRNLbvXEebxzXw0Rk0rE_-4sZeakQ@mail.gmail.com>
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+Message-ID: <70f42899-aff2-11fe-24a5-5c0010b0c6ab@windriver.com>
+Date: Fri, 24 Feb 2017 09:12:43 -0500
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:45.0)
+	Gecko/20100101 Thunderbird/45.7.1
 MIME-Version: 1.0
-Received: by 10.140.103.233 with HTTP; Fri, 24 Feb 2017 05:24:07 -0800 (PST)
-In-Reply-To: <CAD4b0_JR7jfR9QfADu3j0xAv85otVmeDdwTLqVEJSDF-xnAnCw@mail.gmail.com>
-References: <CACr_9kHaf_Jqogt0BK8LaXXxrb_L6uhq3=z1ZXvo6M8Dvs4Tiw@mail.gmail.com>
-	<CAD4b0_JR7jfR9QfADu3j0xAv85otVmeDdwTLqVEJSDF-xnAnCw@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Fri, 24 Feb 2017 13:24:07 +0000
-Message-ID: <CAJTo0La9ckfcqj9s_NQCQXXFhELjXpJOz+Wnf5QnnH88uyQFng@mail.gmail.com>
-To: =?UTF-8?Q?Maciej_Borz=C4=99cki?= <maciej.borzecki@rndity.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: Python3 partial rootfs installation
+In-Reply-To: <CAJ2oMh+nG5stwE0Ec5DRxKRNLbvXEebxzXw0Rk0rE_-4sZeakQ@mail.gmail.com>
+Subject: Re: [linux-yocto] update kernel in local.conf
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,41 +45,83 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 24 Feb 2017 13:24:32 -0000
-Content-Type: multipart/alternative; boundary=94eb2c0c9b9c309b04054946a667
+X-List-Received-Date: Fri, 24 Feb 2017 14:12:49 -0000
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 7bit
 
---94eb2c0c9b9c309b04054946a667
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-On 24 February 2017 at 09:21, Maciej Borz=C4=99cki <maciej.borzecki@rndity.=
-com>
-wrote:
-
-> > Is there any way to make a full standard python3 install?
+On 2017-02-24 4:02 AM, Ran Shalit wrote:
+> Hello,
 >
-> Installing python3-modules should cover most of your needs.
+> I wanted to try update to rt-kernel to I added the following in local.conf:
+>
+> #PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto"
+> #PREFERRED_VERSION_linux-yocto ?= "4.4%"
+> PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto-rt"
+> PREFERRED_VERSION_linux-yocto-rt ?= "4.4%"
+>
+> Everything compiled well with
+> bitbake core-image-sato-sdk
+>
+> I then decided to return to the regular linux by doing:
+> PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto"
+> PREFERRED_VERSION_linux-yocto ?= "4.4%"
+> #PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto-rt"
+> #PREFERRED_VERSION_linux-yocto-rt ?= "4.4%"
+>
+> But now I get errors as following:
+>
+> NOTE: Preparing RunQueue
+> WARNING: /media/sde/yocto/poky/meta/recipes-sato/images/core-image-sato-sdk.bb.do_rootfs
+> is tainted from a forced run
+> NOTE: Executing SetScene Tasks
+> NOTE: Executing RunQueue Tasks
+> ERROR: core-image-sato-sdk-1.0-r0 do_rootfs: Error executing a python
+> function in exec_python_func() autogenerated:
+>
+> The stack trace of python calls that resulted in this exception/failure was:
+> File: 'exec_python_func() autogenerated', lineno: 2, function: <module>
+>      0001:
+>  *** 0002:license_create_manifest(d)
+>      0003:
+> File: '/media/sde/yocto/poky/meta/classes/license.bbclass', lineno:
+> 48, function: license_create_manifest
+>      0044:    pkg_dic = {}
+>      0045:    for pkg in sorted(image_list_installed_packages(d)):
+>      0046:        pkg_info = os.path.join(d.getVar('PKGDATA_DIR', True),
+>      0047:                                'runtime-reverse', pkg)
+>  *** 0048:        pkg_name = os.path.basename(os.readlink(pkg_info))
+>      0049:
+>      0050:        pkg_dic[pkg_name] = oe.packagedata.read_pkgdatafile(pkg_info)
+>      0051:        if not "LICENSE" in pkg_dic[pkg_name].keys():
+>      0052:            pkg_lic_name = "LICENSE_" + pkg_name
+> Exception: OSError: [Errno 2] No such file or directory:
+> '/media/sde/yocto/poky/build/tmp/sysroots/congatec-qa3-64/pkgdata/runtime-reverse/kernel-4.4.26-rt19-yocto-preempt-rt'
+>
+> ERROR: core-image-sato-sdk-1.0-r0 do_rootfs: Function failed:
+> license_create_manifest
+> ERROR: Logfile of failure stored in:
+> /media/sde/yocto/poky/build/tmp/work/congatec_qa3_64-poky-linux/core-image-sato-sdk/1.0-r0/temp/log.do_rootfs.13106
+> ERROR: Task 9 (/media/sde/yocto/poky/meta/recipes-sato/images/core-image-sato-sdk.bb,
+> do_rootfs) failed with exit code '1'
+> NOTE: Tasks Summary: Attempted 7025 tasks of which 7024 didn't need to
+> be rerun and 1 failed.
+>
+> Does anyone have any idea ?
+
+I don't have any idea, but I can confirm that I have seen the same thing
+in the past when switching kernels.
+
+If you switch back to the -rt provider, do a cleanall, and then go back
+to the standard linux-yocto .. it should go away.
+
+Something is obviously remaining in the sysroot/manifest after the
+switch, but figuring out what  is going on here is deeper into bitbake
+than my expertise can handle :D
+
+Bruce
+
+
+> Ran
 >
 
-python3-modules will pull in the *entire* standard library.
 
-Ross
-
---94eb2c0c9b9c309b04054946a667
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 24 February 2017 at 09:21, Maciej Borz=C4=99cki <span dir=3D"ltr">&lt;<a=
- href=3D"mailto:maciej.borzecki@rndity.com" target=3D"_blank">maciej.borzec=
-ki@rndity.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" st=
-yle=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><span=
- class=3D"">&gt; Is there any way to make a full standard python3 install?<=
-br>
-<br>
-</span>Installing python3-modules should cover most of your needs.<br></blo=
-ckquote></div><br>python3-modules will pull in the *entire* standard librar=
-y.</div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Ros=
-s</div></div>
-
---94eb2c0c9b9c309b04054946a667--
