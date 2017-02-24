@@ -1,39 +1,49 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
+Return-Path: <vincent.arvis@transport.alstom.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 59D2FE0049D; Fri, 24 Feb 2017 06:12:49 -0800 (PST)
+	id 60DC9E00961; Fri, 24 Feb 2017 06:40:47 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [159.245.16.224 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F15FEE0049D;
-	Fri, 24 Feb 2017 06:12:46 -0800 (PST)
-Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
-	[147.11.189.41])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id v1OECi3a009733
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 24 Feb 2017 06:12:44 -0800 (PST)
-Received: from server.local (128.224.22.134) by ALA-HCB.corp.ad.wrs.com
-	(147.11.189.41) with Microsoft SMTP Server id 14.3.294.0;
-	Fri, 24 Feb 2017 06:12:44 -0800
-To: Ran Shalit <ranshalit@gmail.com>, <linux-yocto@yoctoproject.org>,
-	<meta-intel@yoctoproject.org>, Yocto Project Discussion
-	<yocto@yoctoproject.org>
-References: <CAJ2oMh+nG5stwE0Ec5DRxKRNLbvXEebxzXw0Rk0rE_-4sZeakQ@mail.gmail.com>
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-Message-ID: <70f42899-aff2-11fe-24a5-5c0010b0c6ab@windriver.com>
-Date: Fri, 24 Feb 2017 09:12:43 -0500
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:45.0)
-	Gecko/20100101 Thunderbird/45.7.1
+X-Greylist: delayed 621 seconds by postgrey-1.32 at yocto-www;
+	Fri, 24 Feb 2017 06:40:44 PST
+Received: from MCEGSMTP4.alstom.com (mcegsmtp4.alstom.com [159.245.16.224])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B0305E0049D
+	for <yocto@yoctoproject.org>; Fri, 24 Feb 2017 06:40:43 -0800 (PST)
+Received: from 041-smtp-out.Alstom.com (unknown [141.251.120.148]) by
+	MCEGSMTP4.alstom.com with smtp
+	(TLS: TLSv1/SSLv3,256bits,ECDHE-RSA-AES256-SHA384)
+	id 6acf_2a81_10108352_be02_45e5_bdfb_3ac3ec6ec07d;
+	Fri, 24 Feb 2017 15:30:20 +0100
+Received: from AM3PR48MB0099.041d.mgd.msft.net (141.251.119.147) by
+	AM3PR48MB0116.041d.mgd.msft.net (141.251.120.148) with Microsoft SMTP
+	Server
+	(version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
+	15.1.919.13; Fri, 24 Feb 2017 14:30:15 +0000
+Received: from AM3PR48MB0099.041d.mgd.msft.net ([141.251.119.147]) by
+	AM3PR48MB0099.041d.mgd.msft.net ([141.251.119.147]) with mapi id
+	15.01.0919.021; Fri, 24 Feb 2017 14:30:15 +0000
+From: ARVIS Vincent <vincent.arvis@transport.alstom.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Yocto Jetro / ls1046 : SDK with toolchains for both 32 and 64
+	bits
+Thread-Index: AdKOqn9v6PE+48mDSyuOZppQ9pAExA==
+Date: Fri, 24 Feb 2017 14:30:15 +0000
+Message-ID: <0d4a7eca6f724118b6d12b8553dd111e@AM3PR48MB0099.041d.mgd.msft.net>
+Accept-Language: fr-FR, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [141.251.119.68]
+x-ms-office365-filtering-correlation-id: 390e7cb6-c311-49a1-f3dc-08d45cc1a62b
 MIME-Version: 1.0
-In-Reply-To: <CAJ2oMh+nG5stwE0Ec5DRxKRNLbvXEebxzXw0Rk0rE_-4sZeakQ@mail.gmail.com>
-Subject: Re: [linux-yocto] update kernel in local.conf
+Cc: LE-GLOANNEC Cedric <cedric.le-gloannec@transport.alstom.com>
+Subject: Yocto Jetro / ls1046 : SDK with toolchains for both 32 and 64 bits
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,83 +55,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 24 Feb 2017 14:12:49 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 24 Feb 2017 14:40:47 -0000
+Content-Language: fr-FR
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 2017-02-24 4:02 AM, Ran Shalit wrote:
-> Hello,
->
-> I wanted to try update to rt-kernel to I added the following in local.conf:
->
-> #PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto"
-> #PREFERRED_VERSION_linux-yocto ?= "4.4%"
-> PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto-rt"
-> PREFERRED_VERSION_linux-yocto-rt ?= "4.4%"
->
-> Everything compiled well with
-> bitbake core-image-sato-sdk
->
-> I then decided to return to the regular linux by doing:
-> PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto"
-> PREFERRED_VERSION_linux-yocto ?= "4.4%"
-> #PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto-rt"
-> #PREFERRED_VERSION_linux-yocto-rt ?= "4.4%"
->
-> But now I get errors as following:
->
-> NOTE: Preparing RunQueue
-> WARNING: /media/sde/yocto/poky/meta/recipes-sato/images/core-image-sato-sdk.bb.do_rootfs
-> is tainted from a forced run
-> NOTE: Executing SetScene Tasks
-> NOTE: Executing RunQueue Tasks
-> ERROR: core-image-sato-sdk-1.0-r0 do_rootfs: Error executing a python
-> function in exec_python_func() autogenerated:
->
-> The stack trace of python calls that resulted in this exception/failure was:
-> File: 'exec_python_func() autogenerated', lineno: 2, function: <module>
->      0001:
->  *** 0002:license_create_manifest(d)
->      0003:
-> File: '/media/sde/yocto/poky/meta/classes/license.bbclass', lineno:
-> 48, function: license_create_manifest
->      0044:    pkg_dic = {}
->      0045:    for pkg in sorted(image_list_installed_packages(d)):
->      0046:        pkg_info = os.path.join(d.getVar('PKGDATA_DIR', True),
->      0047:                                'runtime-reverse', pkg)
->  *** 0048:        pkg_name = os.path.basename(os.readlink(pkg_info))
->      0049:
->      0050:        pkg_dic[pkg_name] = oe.packagedata.read_pkgdatafile(pkg_info)
->      0051:        if not "LICENSE" in pkg_dic[pkg_name].keys():
->      0052:            pkg_lic_name = "LICENSE_" + pkg_name
-> Exception: OSError: [Errno 2] No such file or directory:
-> '/media/sde/yocto/poky/build/tmp/sysroots/congatec-qa3-64/pkgdata/runtime-reverse/kernel-4.4.26-rt19-yocto-preempt-rt'
->
-> ERROR: core-image-sato-sdk-1.0-r0 do_rootfs: Function failed:
-> license_create_manifest
-> ERROR: Logfile of failure stored in:
-> /media/sde/yocto/poky/build/tmp/work/congatec_qa3_64-poky-linux/core-image-sato-sdk/1.0-r0/temp/log.do_rootfs.13106
-> ERROR: Task 9 (/media/sde/yocto/poky/meta/recipes-sato/images/core-image-sato-sdk.bb,
-> do_rootfs) failed with exit code '1'
-> NOTE: Tasks Summary: Attempted 7025 tasks of which 7024 didn't need to
-> be rerun and 1 failed.
->
-> Does anyone have any idea ?
+Dear All
 
-I don't have any idea, but I can confirm that I have seen the same thing
-in the past when switching kernels.
+I am looking for help around the way to request yocto generating a SDK with=
+ toolchains for ARM processor.
+These toolchains shall provide the capability to compile executables in 64 =
+bits (aarch64) and 32 bits (armv7a architecture).
 
-If you switch back to the -rt provider, do a cleanall, and then go back
-to the standard linux-yocto .. it should go away.
+For X86, this seems very simple : In the local.conf, adding this is enough =
+:
+require conf/multilib.conf
+MULTILIBS =3D "multilib:lib32"
+DEFAULTTUNE_virtclass-multilib-lib32 =3D "i586"
 
-Something is obviously remaining in the sysroot/manifest after the
-switch, but figuring out what  is going on here is deeper into bitbake
-than my expertise can handle :D
+But for ARM (LS1046 from NXP), it is not as evident : in the local.conf, we=
+ add :
+require conf/multilib.conf
+MULTILIBS =3D "multilib:lib32"
+DEFAULTTUNE_virtclass-multilib-lib32 =3D "armv7a"
 
-Bruce
+This correctly add 32 bits libraries both in the image and in the SDK.
+But the SDK only provides the gcc for 64 bits, not for 32 bits.
+Only 64 bits environment file is provided.
+
+Does someone have some experience on this?
+
+Thanks in advance and best regards
+
+--
+Vincent ARVIS
 
 
-> Ran
->
-
+________________________________
+CONFIDENTIALITY : This e-mail and any attachments are confidential and may =
+be privileged. If you are not a named recipient, please notify the sender i=
+mmediately and do not disclose the contents to another person, use it for a=
+ny purpose or store or copy the information in any medium.
 
