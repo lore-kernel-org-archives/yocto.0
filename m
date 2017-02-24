@@ -1,58 +1,94 @@
-Return-Path: <maciej.borzecki@rndity.com>
+Return-Path: <christrobridge@hotmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2F6C1E00724; Fri, 24 Feb 2017 01:21:53 -0800 (PST)
+	id 58D57E007C2; Fri, 24 Feb 2017 04:11:30 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [74.125.82.48 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (christrobridge[at]hotmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [65.55.34.206 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f48.google.com (mail-wm0-f48.google.com [74.125.82.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BBD6DE00405
-	for <yocto@yoctoproject.org>; Fri, 24 Feb 2017 01:21:44 -0800 (PST)
-Received: by mail-wm0-f48.google.com with SMTP id v77so9659654wmv.1
-	for <yocto@yoctoproject.org>; Fri, 24 Feb 2017 01:21:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=rndity-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=yC9N42BVc7dnMnRiQZhShViT4HbNO95tH8Dx1MCQYAQ=;
-	b=Aau1RDEfTHrxCH1jv6bwy9e7bnt1Ghp5qI+AKZaQ5/Gw3HRXcel706sjL5gp4Rm0k9
-	ekDaji7B6y/enHF3EL6xVkZigd+Hfys0OAEuy4Zufh+gEP2pQz5MkmY34IUKWPwaOmJ3
-	xjUN8qdHLjpgIkL/hv/lHL3TqM6YjiVADEJTgZZb14ZwapsYNF7tyVMDj76OIbutQmV1
-	c7UjhtN3SOh3147+k/lU/eW8D32WlfznnfdNLlSJcsEQEOQoR/jdmBSgL6wiDFBIM7Ua
-	lKPlDM1lIl9V7NIaclKkt3XpBVTECNeqL9renArwMXinuZGtxL+vv5Ft8YT5sDlModcC
-	YVQA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=yC9N42BVc7dnMnRiQZhShViT4HbNO95tH8Dx1MCQYAQ=;
-	b=oS2qKFLqNWejtnmdF4mKD/tORhzGkQj/1WdXley/I+bU2zTFFIZE+LIfifk9rGR+jF
-	vLBwoYlNBpXBrP0rq8JrABg+Z+fZ+EYMyKuAdKhXWlZz7Kuf+3XXVmoxUBD3mj7onLmA
-	DeOiJuYvB95w7+ngSP4DsLY98vQRngjmJ7qr6r85tpM5rbIC7MhN66opN4dMw/QRFy+a
-	RzzczMR5tpUecWiI8o/8lk0q2w585/7KA7m0Anb2zOk5VKkgXFF+/LQ/YD9ztITRLADd
-	14xUFi082NpKUlSIa8e58FfPvnH/S4slPmQcCj2Ni5seBsLGQOeu27nPSeaKVIxF8UTm
-	Ec5w==
-X-Gm-Message-State: AMke39lfXk2gwx5AMO+ScP9MHeQxnJmgGwp61eqyh+qeZ+bm1GW/z6rmZ4EGZDbmotVXAUGEtWiuzCTDpeOixA==
-X-Received: by 10.28.20.209 with SMTP id 200mr1792780wmu.64.1487928103482;
-	Fri, 24 Feb 2017 01:21:43 -0800 (PST)
+X-Greylist: delayed 62 seconds by postgrey-1.32 at yocto-www;
+	Fri, 24 Feb 2017 04:11:29 PST
+Received: from COL004-OMC4S4.hotmail.com (col004-omc4s4.hotmail.com
+	[65.55.34.206])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 94882E0049D
+	for <yocto@yoctoproject.org>; Fri, 24 Feb 2017 04:11:29 -0800 (PST)
+Received: from EUR02-HE1-obe.outbound.protection.outlook.com ([65.55.34.200])
+	by COL004-OMC4S4.hotmail.com over TLS secured channel with
+	Microsoft SMTPSVC(7.5.7601.23008); Fri, 24 Feb 2017 04:10:27 -0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+	s=selector1; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
+	bh=8v5xyl2bLk8TEengKDtA9Vj4UxlIfqRrvOVrPamcALU=;
+	b=QEzx5mjJ24kwBdP4t7wsQcPvnZ11q6TMqRMKc5I7VMOQ0MJpSOR4l74OFef4FBXF9gb/VlWLIkjMdjg2uRJ1FzIUkVBaTNmtkv+gaEVLrvcTMD+/mMCnbyjMy879OTAoyv/hZ5dkbTr3rcOklAGJKe14yoBt6Q0QuqSjeCTzGnde0/qBym9Xfe1m08WY7NcemtDtlT2oGO4WWJA116xesUrweqwL/vZ/yWNeeFzh/hI92gMEjV0NmElf+0iR8FhxDIFSP2pZYxerkUKo2aTULqNR8Uav8ugo3zAKVeb1NeWtYY4Ij8/XLFyfj+KJRBJtbhyB0TNryR3WFFQ3S1hDRA==
+Received: from VE1EUR02FT015.eop-EUR02.prod.protection.outlook.com
+	(10.152.12.59) by VE1EUR02HT175.eop-EUR02.prod.protection.outlook.com
+	(10.152.13.111) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.919.10;
+	Fri, 24 Feb 2017 12:10:24 +0000
+Received: from LO1P123MB1412.GBRP123.PROD.OUTLOOK.COM (10.152.12.55) by
+	VE1EUR02FT015.mail.protection.outlook.com (10.152.12.147) with
+	Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
+	15.1.919.10 via Frontend Transport; Fri, 24 Feb 2017 12:10:24 +0000
+Received: from LO1P123MB1412.GBRP123.PROD.OUTLOOK.COM ([10.167.30.18]) by
+	LO1P123MB1412.GBRP123.PROD.OUTLOOK.COM ([10.167.30.18]) with mapi id
+	15.01.0919.018; Fri, 24 Feb 2017 12:10:24 +0000
+From: Chris Trobridge <christrobridge@hotmail.com>
+To: Yocto List <yocto@yoctoproject.org>
+Thread-Topic: Intermittent Kernel Boot Hang 4.8/Intel Z5 Atom
+Thread-Index: AQHSjoZKjWJAYTKLNk+d7Y0iQ23mwg==
+Date: Fri, 24 Feb 2017 12:10:23 +0000
+Message-ID: <LO1P123MB14126B59AF50D68E01D73A26DA520@LO1P123MB1412.GBRP123.PROD.OUTLOOK.COM>
+Accept-Language: en-GB, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: yoctoproject.org; dkim=none (message not signed)
+	header.d=none;yoctoproject.org; dmarc=none action=none
+	header.from=hotmail.com;
+x-incomingtopheadermarker: OriginalChecksum:B3358F835E1DC5EB94EE76BADC83540E169AF900C91C638E699EA5AFF292E5A9;
+	UpperCasedChecksum:9552E3A6A6751C60605E9C8E3D4CBD5BECB5953D6E18D1C13600D45AB94EEBCA;
+	SizeAsReceived:7609; Count:37
+x-ms-exchange-messagesentrepresentingtype: 1
+x-tmn: [o3nRTsEfX4/nym6hDI1Eb29JZp3hA5qe]
+x-incomingheadercount: 37
+x-eopattributedmessage: 0
+x-microsoft-exchange-diagnostics: 1; VE1EUR02HT175;
+	7:0b+9SMlXpPg0vNsuyC+YxvrS/7n4slA1H4NGocUMcYFwtSYol1cLpEwh3fTuTh+NgYYt4GsI53491iG7nP452/1SQzxoX0pL4ppdyS2jKb/+W0xnF9LaXQWgyGai+yeqd90mmwATLszy9CURPttLbSsF4JarzbpwEiUAVpH2TUOv8yBJ39uM20j42QLVrFRuVi0Si6T35BM9ghQRJUFFMeKmW+KLqsjfSMnyQNwxntKYWIwQ7pD7uaXrBv1LsfPQ3Z7Z8P8gE+w6wQuhAa6Lvsu8lFd2nuooZNB++GlDDt4kNQNFcoQnSuLl/KOr2HNzYFXE63mfzWxBLTCxU0mOxQ==
+x-forefront-antispam-report: EFV:NLI; SFV:NSPM; SFS:(10019020)(98900012);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:VE1EUR02HT175;
+	H:LO1P123MB1412.GBRP123.PROD.OUTLOOK.COM; FPR:; SPF:None;
+	LANG:en; 
+x-ms-office365-filtering-correlation-id: 3b76f421-7150-437b-6df8-08d45cae1c9b
+x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
+	RULEID:(22001)(201702061074)(5061506573)(5061507331)(1603103135)(1601125254)(1701031045);
+	SRVR:VE1EUR02HT175; 
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(432015087)(444000031); SRVR:VE1EUR02HT175; BCL:0; PCL:0;
+	RULEID:; SRVR:VE1EUR02HT175; 
+x-forefront-prvs: 0228DDDDD7
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-Received: by 10.28.52.78 with HTTP; Fri, 24 Feb 2017 01:21:23 -0800 (PST)
-In-Reply-To: <CACr_9kHaf_Jqogt0BK8LaXXxrb_L6uhq3=z1ZXvo6M8Dvs4Tiw@mail.gmail.com>
-References: <CACr_9kHaf_Jqogt0BK8LaXXxrb_L6uhq3=z1ZXvo6M8Dvs4Tiw@mail.gmail.com>
-From: =?UTF-8?Q?Maciej_Borz=C4=99cki?= <maciej.borzecki@rndity.com>
-Date: Fri, 24 Feb 2017 10:21:23 +0100
-Message-ID: <CAD4b0_JR7jfR9QfADu3j0xAv85otVmeDdwTLqVEJSDF-xnAnCw@mail.gmail.com>
-To: Jakob Simon-Gaarde <jakobsg@gmail.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: Python3 partial rootfs installation
+X-OriginatorOrg: hotmail.com
+X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Feb 2017 12:10:23.8514 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Internet
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1EUR02HT175
+X-OriginalArrivalTime: 24 Feb 2017 12:10:27.0499 (UTC)
+	FILETIME=[FC38DFB0:01D28E96]
+Subject: Intermittent Kernel Boot Hang 4.8/Intel Z5 Atom
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -64,27 +100,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 24 Feb 2017 09:21:53 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Fri, 24 Feb 2017 12:11:30 -0000
+Content-Language: en-GB
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Feb 24, 2017 at 9:50 AM, Jakob Simon-Gaarde <jakobsg@gmail.com> wrote:
-> Hi.
->
-> I want to use Python3 on yocto 2.2 so I added it as a dependency in my
-> project. Python3.5 was added to the final rootfs
-> but it is partial. Many of the standard libraries that are build during the
-> image creation does not end up in the target rootfs.
->
-> For instance socketserver.py which was the first missing module I
-> encountered.
->
-> Is there any way to make a full standard python3 install?
+Since switching kernel to 4.8 (Morty) I have noticed that sometimes my Inte=
+l Atom hardware (Pokini) doesn't boot Linux.
 
-Installing python3-modules should cover most of your needs.
+Specifically, syslinux runs fine and starts the kernel but this then hangs =
+immediately after displaying "Booting the kernel.", producing no further ou=
+tput.
 
+This is typical output, with one of my attempts to produce more output from=
+ the kernel via serial:
 
-Cheers,
--- 
-Maciej Borzecki
-RnDity
+> /vmlinuz initrd=3D/initrd LABEL=3Dboot root=3D/dev/ram0  video=3Defifb:of=
+f video=3D640x480 console=3DttyS0,115200 verbose
+
+Loading /vmlinuz... ok
+Loading /initrd...ok
+
+The issue seem to occur with some probability after powering the hardware b=
+ut I've not seen it occur after a reboot.
+
+4.1 and 4.4.36 are reliable and do not have any issues booting.
+
+I've been looking through bugs/issue but not found anything relevant.  Does=
+ anyone know of issues that I might not have found that would apply?
+
+I've also been looking at how to get more diagnostics out of the boot.  I'v=
+e tried a few suggested kernel boot parameters but nothing has helped so fa=
+r.   It seems to go wrong too early.  Do I need to re-build the kernel to p=
+roduce more output at the early stage it fails?
+
+Thanks,
+Chris=
 
