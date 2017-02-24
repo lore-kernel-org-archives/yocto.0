@@ -1,64 +1,67 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <ranshalit@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 63334E0052B; Fri, 24 Feb 2017 12:44:06 -0800 (PST)
+	id 1DD63E00839; Fri, 24 Feb 2017 14:01:30 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_LOW,
-	RCVD_IN_SORBS_SPAM autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.216.176 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [74.125.82.67 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (ranshalit[at]gmail.com)
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.82.67 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.216.176 listed in dnsbl.sorbs.net]
-Received: from mail-qt0-f176.google.com (mail-qt0-f176.google.com
-	[209.85.216.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 43492E004D8
-	for <yocto@yoctoproject.org>; Fri, 24 Feb 2017 12:44:02 -0800 (PST)
-Received: by mail-qt0-f176.google.com with SMTP id x35so26352054qtc.2
-	for <yocto@yoctoproject.org>; Fri, 24 Feb 2017 12:44:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
+Received: from mail-wm0-f67.google.com (mail-wm0-f67.google.com [74.125.82.67])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 429BFE0052B;
+	Fri, 24 Feb 2017 14:01:28 -0800 (PST)
+Received: by mail-wm0-f67.google.com with SMTP id r18so4935159wmd.3;
+	Fri, 24 Feb 2017 14:01:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=v1ur7pwMsYHkQLj4d47gJrHjeqlKocNmTo5kVYvSVT4=;
-	b=w+tP4/ZUKu9T8MY6AEl/2uufbbF7i0iAoQ6I061UoUsM1+5G6Onj8hQfublNW6lpTt
-	Ncx7EBIlBqGPwv9aNw2+Ly60kuahrp+vrQpLgzMc8K08m47B02tunI6pVCpJS+lKIZZ4
-	y89yhlyVVtH+9gsBjCh0jD+uPDLJxnhBCZzt8zye8c/U0LgH5uUiYzrbMXpmF5/yIxE8
-	ekjyWdFIZNVu63fQ7/rdIXpX0JGFsUqAhMT+hKcl3olZjCc3XpwRZywSPBapmg+Glu8K
-	AJfANAhESSBHE9/wKtcQ82KtPiu1DliNFnqgBCOKaeiuRqoc1aa+Ejn9870PiD10fyy1
-	+OWA==
+	:cc; bh=KMm+PuEhCBABMsFEZ3K7pkR2hqiMmnXuSOcgB/tqwgc=;
+	b=FR+TblACaq/HrkYMWC5RqGJYKhBipo+xjgeXpZXEkPjao0ZYaT8ajByeyEf5jXIIP/
+	Sql0qCtJ+UpqONYcQ9NUvtw03Qzy2XE09Fok1jNqN8VYjTnbWaJggSlTW2UMzAk8pfLq
+	U4PAsT7bJ4Hh0LdsK/BzI+acMUc4cF3dSUCna2Eb7dot7duPRrdi1G9gHMZPLFwbTnaw
+	K2/6iHbsv5Nyk2dCeth+SEWJVYPxNlxLrJSyGs5XBq0AlSQaNCq+pOqpIbsQ90baT8A2
+	L9tGpwj3rm/c3dxVtsLfHXJ5lS2OCsHgKnX6vIymV+ti2oMSmOIuFipVcEXUsdjONDpw
+	nRCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=v1ur7pwMsYHkQLj4d47gJrHjeqlKocNmTo5kVYvSVT4=;
-	b=IQgw0KMd2lY24CdE4dsQIzT7REw6otcHkOHvDrgEaXv7U9bTxXJ//XltihBwAFtiJd
-	+f5w7ZkwNfKkh71Iy/u+ju9uGU/Rijt634Ps/1WobdhNGh9NXPbUht7CaqLXMNiEZVid
-	MiqsI6t670a0BR6o/3INa/pdX3DG0pGyHJJYcKsrRppjJ7BqbpNp7QyZHpmdQ/wonJWz
-	QfW5ldBcA9cqZNsZMhEQeYfs8/LDouELcmCoQl72iVccsAcexL1oicbXAP649Q5uLoWW
-	JpaK+mPyXOilXodrv5RdqJM0nzid4KtELmfONvrgSJr3hyfWooDYwFwXiFfX8j7MQzn/
-	1qXQ==
-X-Gm-Message-State: AMke39n54bkmecXPzAfWnBdhm/rlsQ4bTjA+RcTnPpNUOT4bDkOowOBLScXv5wdlTd4JW0RyecKOj9ZTOyR74OQV
-X-Received: by 10.237.53.9 with SMTP id a9mr4450514qte.188.1487969042012; Fri,
-	24 Feb 2017 12:44:02 -0800 (PST)
+	bh=KMm+PuEhCBABMsFEZ3K7pkR2hqiMmnXuSOcgB/tqwgc=;
+	b=Z+POjVOVOCZqD7gBSEFfvxudkp95Xi7k3c+wTHJYkec32bdCdcn8rmqi/8dNvGBlsD
+	GpO0CAYcAmYQqHsxLX95vGNtShgf+Oue8tNt/XNvjixybC/nLFVb8gbmQMXN1qIxSOI7
+	1ZevPsDrhFAu0pqFwjzVFqbz6kRVIM9mBWJzMnbCrPXVTR1Ev8wE3iLHi3XflPYBC+z5
+	ScAUqFgWcmOt4Tkc0hRGMRSO8tSJmvCL6D2VLMBoVybo0kefN+VS3cPrfgGdT1hwFc84
+	uDwoKeZSzumoFG6jtMCkzrVBdq/b5hjfmLO42Mbs4ebeh7qBBPndb19FNHKf5+b7XF9U
+	c20Q==
+X-Gm-Message-State: AMke39mk744msYZV34lh8vOy5XquvL/U3LiUl9v61C25VoGCq/YJDkAG7lQpB083GnwzYkcXydLqepykRSEysQ==
+X-Received: by 10.28.150.194 with SMTP id y185mr4544596wmd.47.1487973688050;
+	Fri, 24 Feb 2017 14:01:28 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.140.103.233 with HTTP; Fri, 24 Feb 2017 12:43:41 -0800 (PST)
-In-Reply-To: <CADkTA4Pv1OQ7QmQXnvt_CMKtSHzpqbmU_AB_Q4dTUWXWHxqc6A@mail.gmail.com>
-References: <cover.1485963487.git.bruce.ashfield@windriver.com>
-	<CADkTA4Pv1OQ7QmQXnvt_CMKtSHzpqbmU_AB_Q4dTUWXWHxqc6A@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Fri, 24 Feb 2017 20:43:41 +0000
-Message-ID: <CAJTo0LZqxeXBmge_ZFP4BU=r9K5DJc98=d69J90ZWzorbqiQ9Q@mail.gmail.com>
-To: Bruce Ashfield <bruce.ashfield@gmail.com>
-Cc: Yocto Project Discussion <yocto@yoctoproject.org>
-Subject: Re: [PATCH 0/2] poky/yocto-bsps: introduce 4.9 as the default kernel
+Received: by 10.80.149.23 with HTTP; Fri, 24 Feb 2017 14:01:27 -0800 (PST)
+In-Reply-To: <70f42899-aff2-11fe-24a5-5c0010b0c6ab@windriver.com>
+References: <CAJ2oMh+nG5stwE0Ec5DRxKRNLbvXEebxzXw0Rk0rE_-4sZeakQ@mail.gmail.com>
+	<70f42899-aff2-11fe-24a5-5c0010b0c6ab@windriver.com>
+From: Ran Shalit <ranshalit@gmail.com>
+Date: Sat, 25 Feb 2017 00:01:27 +0200
+Message-ID: <CAJ2oMhLvnAmLxaiOeU4yVsYzTEnXEyrsz1XrTDptKm7SCDS3Hg@mail.gmail.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+Cc: meta-intel@yoctoproject.org,
+	Yocto Project Discussion <yocto@yoctoproject.org>,
+	linux-yocto@yoctoproject.org
+Subject: Re: [linux-yocto] update kernel in local.conf
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,36 +73,105 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 24 Feb 2017 20:44:06 -0000
-Content-Type: multipart/alternative; boundary=001a11c0285e2fc62f05494ccaeb
-
---001a11c0285e2fc62f05494ccaeb
+X-List-Received-Date: Fri, 24 Feb 2017 22:01:30 -0000
 Content-Type: text/plain; charset=UTF-8
 
-On 24 February 2017 at 19:42, Bruce Ashfield <bruce.ashfield@gmail.com>
-wrote:
+On Fri, Feb 24, 2017 at 4:12 PM, Bruce Ashfield
+<bruce.ashfield@windriver.com> wrote:
+> On 2017-02-24 4:02 AM, Ran Shalit wrote:
+>>
+>> Hello,
+>>
+>> I wanted to try update to rt-kernel to I added the following in
+>> local.conf:
+>>
+>> #PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto"
+>> #PREFERRED_VERSION_linux-yocto ?= "4.4%"
+>> PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto-rt"
+>> PREFERRED_VERSION_linux-yocto-rt ?= "4.4%"
+>>
+>> Everything compiled well with
+>> bitbake core-image-sato-sdk
+>>
+>> I then decided to return to the regular linux by doing:
+>> PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto"
+>> PREFERRED_VERSION_linux-yocto ?= "4.4%"
+>> #PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto-rt"
+>> #PREFERRED_VERSION_linux-yocto-rt ?= "4.4%"
+>>
+>> But now I get errors as following:
+>>
+>> NOTE: Preparing RunQueue
+>> WARNING:
+>> /media/sde/yocto/poky/meta/recipes-sato/images/core-image-sato-sdk.bb.do_rootfs
+>> is tainted from a forced run
+>> NOTE: Executing SetScene Tasks
+>> NOTE: Executing RunQueue Tasks
+>> ERROR: core-image-sato-sdk-1.0-r0 do_rootfs: Error executing a python
+>> function in exec_python_func() autogenerated:
+>>
+>> The stack trace of python calls that resulted in this exception/failure
+>> was:
+>> File: 'exec_python_func() autogenerated', lineno: 2, function: <module>
+>>      0001:
+>>  *** 0002:license_create_manifest(d)
+>>      0003:
+>> File: '/media/sde/yocto/poky/meta/classes/license.bbclass', lineno:
+>> 48, function: license_create_manifest
+>>      0044:    pkg_dic = {}
+>>      0045:    for pkg in sorted(image_list_installed_packages(d)):
+>>      0046:        pkg_info = os.path.join(d.getVar('PKGDATA_DIR', True),
+>>      0047:                                'runtime-reverse', pkg)
+>>  *** 0048:        pkg_name = os.path.basename(os.readlink(pkg_info))
+>>      0049:
+>>      0050:        pkg_dic[pkg_name] =
+>> oe.packagedata.read_pkgdatafile(pkg_info)
+>>      0051:        if not "LICENSE" in pkg_dic[pkg_name].keys():
+>>      0052:            pkg_lic_name = "LICENSE_" + pkg_name
+>> Exception: OSError: [Errno 2] No such file or directory:
+>>
+>> '/media/sde/yocto/poky/build/tmp/sysroots/congatec-qa3-64/pkgdata/runtime-reverse/kernel-4.4.26-rt19-yocto-preempt-rt'
+>>
+>> ERROR: core-image-sato-sdk-1.0-r0 do_rootfs: Function failed:
+>> license_create_manifest
+>> ERROR: Logfile of failure stored in:
+>>
+>> /media/sde/yocto/poky/build/tmp/work/congatec_qa3_64-poky-linux/core-image-sato-sdk/1.0-r0/temp/log.do_rootfs.13106
+>> ERROR: Task 9
+>> (/media/sde/yocto/poky/meta/recipes-sato/images/core-image-sato-sdk.bb,
+>> do_rootfs) failed with exit code '1'
+>> NOTE: Tasks Summary: Attempted 7025 tasks of which 7024 didn't need to
+>> be rerun and 1 failed.
+>>
+>> Does anyone have any idea ?
+>
+>
+> I don't have any idea, but I can confirm that I have seen the same thing
+> in the past when switching kernels.
+>
+> If you switch back to the -rt provider, do a cleanall, and then go back
+> to the standard linux-yocto .. it should go away.
+>
+I actually tried to get back to  linux-yocto.
+Not sure what's wrong.
+I think that even if you try yourself the above trials in your host
+you would get the same.
+I am using krogoth meta-intel .
+I delete all paritions and start again, but it doesn't make sense to
+work in such way.
 
-> Is there a bug or other issue lurking that I should look into ?
+Regards,
+Ran
+
+
+> Something is obviously remaining in the sysroot/manifest after the
+> switch, but figuring out what  is going on here is deeper into bitbake
+> than my expertise can handle :D
+>
+> Bruce
+>
+>
+>> Ran
+>>
 >
 
-The autobuilder sanity tests were failing for every MIPS machine.  I can
-run a rebuild now to verify it still happens.
-
-Ross
-
---001a11c0285e2fc62f05494ccaeb
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 24 February 2017 at 19:42, Bruce Ashfield <span dir=3D"ltr">&lt;<a href=
-=3D"mailto:bruce.ashfield@gmail.com" target=3D"_blank">bruce.ashfield@gmail=
-.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"ma=
-rgin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div>Is there =
-a bug or other issue lurking that I should look into ?</div><div></div></bl=
-ockquote></div><br>The autobuilder sanity tests were failing for every MIPS=
- machine.=C2=A0 I can run a rebuild now to verify it still happens.</div><d=
-iv class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Ross</div></d=
-iv>
-
---001a11c0285e2fc62f05494ccaeb--
