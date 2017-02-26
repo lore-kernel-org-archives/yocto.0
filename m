@@ -1,41 +1,74 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C8F61E009A0; Sun, 26 Feb 2017 13:04:04 -0800 (PST)
+	id A402BE00935; Sun, 26 Feb 2017 13:21:25 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
-	RCVD_IN_SORBS_SPAM autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [134.134.136.24 listed in dnsbl.sorbs.net]
+X-Spam-Status: No, score=-0.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, FREEMAIL_REPLY,
+	RCVD_IN_DNSWL_NONE, 
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (akuster808[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.83.65 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.83.65 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [134.134.136.24 listed in list.dnswl.org]
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 28471E00AC0
-	for <yocto@yoctoproject.org>; Sun, 26 Feb 2017 13:04:01 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	26 Feb 2017 13:04:01 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.35,210,1484035200"; d="scan'208";a="1135201250"
-Received: from dkharprx-mobl.gar.corp.intel.com (HELO
-	peggleto-mobl.ger.corp.intel.com) ([10.255.186.172])
-	by fmsmga002.fm.intel.com with ESMTP; 26 Feb 2017 13:03:59 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  1.0 FREEMAIL_REPLY From and body contain different freemails
+Received: from mail-pg0-f65.google.com (mail-pg0-f65.google.com [74.125.83.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 386E6E0033D
+	for <yocto@yoctoproject.org>; Sun, 26 Feb 2017 13:21:24 -0800 (PST)
+Received: by mail-pg0-f65.google.com with SMTP id 25so1743013pgy.3
+	for <yocto@yoctoproject.org>; Sun, 26 Feb 2017 13:21:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=subject:to:references:from:message-id:date:user-agent:mime-version
+	:in-reply-to:content-transfer-encoding;
+	bh=NSML8Cx5pGojLAC2oFNUh+taL1G+w+y8gR7+FOKZ3GM=;
+	b=d4YhnUranuIItLoKV05uILjM5bv6mbs4FcdM6iTSsh7ijj0NYMq6yPD2qHNA6DRlzq
+	DyF2JqS2UxroYqbs/vBRx0HC108aus4o1+bdN1SUlIYlUSMtun5n5CTV46/OiGb9ExvP
+	QeS+24FWAVeU8u4vEBK7i/lhfAyydnS/9lYy7X3ZNDStn6w7TJzaw6cy0eiG6XuRnWqT
+	kiQO8KFXU8WV5Z9hHqwDBxIqz56geRlDaqsjEDTvlvFh/yO9RuVCD7gmF+26S7aDRZVS
+	omMe9kXl5rzHAB/gSqqzNYayz140qjG9paoZh27pPwbbxJlr5nU63Sdy34jW9CcHbdEQ
+	KaSw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:subject:to:references:from:message-id:date
+	:user-agent:mime-version:in-reply-to:content-transfer-encoding;
+	bh=NSML8Cx5pGojLAC2oFNUh+taL1G+w+y8gR7+FOKZ3GM=;
+	b=Cqn23D9vYCzMeCXBf6oN7qnMv1DnqyX39cGwdN0gNv0+Jce8bs509XB9UQiz+jYztt
+	2FF9zFGJHgA0qlDmIleGJAZhk8061kl3c3J2ILCvfraU7qDpwgwntuE0v7BkOmxnPFw6
+	OhvGTZFQjIRRReWpITGeZbwGnFOBVSjQ/Fc3XiRUia1RzOT4TBEMCUULcDsRN+KiC3uW
+	jbv6msORQe5H6KUV3D/HiH+6H/z7FV7ZNmRv2gJnsm1Qa+Y+jO/F2dUpcPP26LZPyl3y
+	AenSGiE1e7iURvxtPNh+a8F1Uenm29jrPaZrxV+zVgCkaB0SmEY9yVYOezAFmweWrfWj
+	E38A==
+X-Gm-Message-State: AMke39njZbEv8YVmsirL5d6Lsxl+lCXDwJl9aCwTAWUMeZuqRQBw6nvGs8HZFjEm8qKFyA==
+X-Received: by 10.84.228.201 with SMTP id y9mr19822162pli.42.1488144084210;
+	Sun, 26 Feb 2017 13:21:24 -0800 (PST)
+Received: from Akusters-laptop.local ([2601:202:4001:9ea0:7d2b:a87c:bacc:b2bd])
+	by smtp.googlemail.com with ESMTPSA id
+	p73sm26203165pfj.47.2017.02.26.13.21.23 for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Sun, 26 Feb 2017 13:21:23 -0800 (PST)
 To: yocto@yoctoproject.org
-Date: Mon, 27 Feb 2017 10:03:57 +1300
-Message-ID: <1522729.epmWXj6IpI@peggleto-mobl.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/5.3.3 (Linux/4.9.10-200.fc25.x86_64; KDE/5.29.0; x86_64; ; )
-In-Reply-To: <CACr_9kGfECT5fq6rbufeHLf_EcqaMMXPp74A7yEBXgUmPbhYKQ@mail.gmail.com>
-References: <CACr_9kHaf_Jqogt0BK8LaXXxrb_L6uhq3=z1ZXvo6M8Dvs4Tiw@mail.gmail.com>
-	<CAD4b0_JR7jfR9QfADu3j0xAv85otVmeDdwTLqVEJSDF-xnAnCw@mail.gmail.com>
-	<CACr_9kGfECT5fq6rbufeHLf_EcqaMMXPp74A7yEBXgUmPbhYKQ@mail.gmail.com>
+References: <73297B9E-30BA-4F4F-9A05-60B4EA688E6E@mac.com>
+	<CAJTo0LbRE+9JOVDd4revWXt_HinV2y6dAa0_54xvCxG45XMhqA@mail.gmail.com>
+	<32e6d90b-8e54-5f3c-a895-8cac6bbfee6f@gmail.com>
+From: akuster808 <akuster808@gmail.com>
+Message-ID: <c0b88240-74f5-f3ad-b2a2-84204f8ddc3b@gmail.com>
+Date: Sun, 26 Feb 2017 13:21:22 -0800
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:45.0)
+	Gecko/20100101 Thunderbird/45.7.1
 MIME-Version: 1.0
-Subject: Re: Python3 partial rootfs installation
+In-Reply-To: <32e6d90b-8e54-5f3c-a895-8cac6bbfee6f@gmail.com>
+Subject: Re: Trying to build yocto-morty on ubuntu-16, machine reboots in the middle of the build
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,27 +80,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 26 Feb 2017 21:04:04 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Sun, 26 Feb 2017 21:21:25 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
 
-On Sunday, 26 February 2017 12:10:24 AM NZDT Jakob Simon-Gaarde wrote:
-> Thanks for the answer. I tried adding it as a dependency but I get this:
-> ERROR: Nothing PROVIDES 'python3-modules'
+On 2/25/17 8:16 AM, Joshua Watt wrote:
+> 
+> On 02/24/2017 11:36 AM, Burton, Ross wrote:
+>>
+>> On 23 February 2017 at 13:24, William McKinney <sigsbeeus@mac.com
+>> <mailto:sigsbeeus@mac.com>> wrote:
+>>
+>>     I’m trying to build the yocto-morty release on an ubuntu 16.04.2
+>>     LTS box with 16GB of memory and plenty of disk space.  More than
+>>     once the machine appears to just reboot in the middle of the
+>>     build.  Has anyone else experienced this?  The krogoth and jethro
+>>     release build successfully on the same box.
+>>
+>>
+>> Sounds like you've got hardware problems - obviously there's nothing
+>> that Yocto can be doing to induce a reboot.
+>>
+>> I'd start with a memcheck and extended SMART tests.
+> FWIW, I was having similar problems and a good blast of compressed air
+> to my CPU heat sink fixed the problem. I ran 'dmesg -w' while building
+> and it was pretty obvious that my CPU was overheating because I got a
+> lot of messages like:
+> 
+> [ 3657.188178] mce: [Hardware Error]: Machine check events logged
+> [ 3957.206279] CPU2: Core temperature above threshold, cpu clock
+> throttled (total events = 1005969)
+> 
+> I wonder if there are some changes in Morty that make it better utilize
+> the CPU compared to the other releases?
 
-Based on your email, this is a runtime situation you are trying to resolve - 
-and python3-modules is a runtime target, but that error suggests you are 
-adding to DEPENDS which is for build-time dependencies.
+It's not just Morty. I have had this issue with other releases and on
+Master. In my cases, the issues tend to be limited to building on
+laptops. I have not seen this on towers or servers.
 
-You probably want to add python3-modules to IMAGE_INSTALL in your image recipe 
-or perhaps to RDEPENDS_${PN} in the recipe for the custom software you're 
-building.
+Try tuning your build to reduce the number for cpus and threads used.
+see  PARALLEL_MAKE and BB_NUMBER_THREADS.
 
-Cheers,
-Paul
+- armin
 
--- 
 
-Paul Eggleton
-Intel Open Source Technology Centre
+
+> 
+> Joshua Watt
+> 
 
