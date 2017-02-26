@@ -1,69 +1,38 @@
-Return-Path: <twoerner@gmail.com>
+Return-Path: <gary@mlbassoc.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 489D2E009BC; Sat, 25 Feb 2017 22:15:50 -0800 (PST)
+	id 9F79BE009BC; Sat, 25 Feb 2017 22:19:19 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (twoerner[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.213.66 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.213.66 listed in dnsbl.sorbs.net]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-vk0-f66.google.com (mail-vk0-f66.google.com
-	[209.85.213.66])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1009FE0095F
-	for <yocto@yoctoproject.org>; Sat, 25 Feb 2017 22:15:46 -0800 (PST)
-Received: by mail-vk0-f66.google.com with SMTP id t8so4012669vke.0
-	for <yocto@yoctoproject.org>; Sat, 25 Feb 2017 22:15:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=XVPwn7JIa7cRyJEk9mmAPrK1jRIPvUWvnKvE4ESjfhU=;
-	b=Ak1qiI9iHs55pIgrjbSlL9TJ2LKC412hcc/p1Ua6mcUulh+RdMM83EM9pJ/Mgk4ZBn
-	9R7axtkgrv32x6Zy9qpP2LKusjGvR0DFwayscB+T6KgQi2NuLeU4nKgMFWPt44jDbDPL
-	jvb/dOa78PJk2WJ542jJruflQZqeWCW33OZmDgL7r4nx2oOzL4hUBdFy43eFNqlnnTck
-	N0DlUOPU2ZdB+aT/NuRTL5cxmYF8odpsR9s4MOxwhqjtPctlxIGRixEs4HxcW6I2yTXo
-	tMF4zW7jSQ93bhNksfxg0eZTYx525i7eC+SwMIAuww9C50F8VUFqXtBqzWVunBwgK3Z4
-	wv6w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=XVPwn7JIa7cRyJEk9mmAPrK1jRIPvUWvnKvE4ESjfhU=;
-	b=sPCHt+EswnJjB5qz60etb2lzCIbavk5r9r/FV/EmL59rAN0ZSq7GPHl+9mjAESc3FA
-	nFkDA0IyiKMeHhhgK7Y93q1ta03cUZkXVeyPzzaLbhQ/uDc5MoNy4pd7Hx0ZioPbfkIB
-	e2X9FZgAT29WR2+rvHUVT2+e9BCKWYJ1xxZzqtjd2ADfX5LegxCHMD2YRhKCkaMK3rZ0
-	xbDFlnarsyCdPulAxE9Y7JaS/hilEUiadDXCTDnnItJ/idk8tOyA1iBx0GoULuHmfu1R
-	INrBGaF4Ybv2StOYwADiRvybtPwIcWR+4Msj8kpg2QTK2dcwG29Fhn8CASV7rPJH42Hv
-	KDdw==
-X-Gm-Message-State: AMke39nNAbwmEn/phJ8PCUoZJlub5bo1z4cMx2hJTSziWWmfAJdeHgb+VuUlTPtj800ucS6YKtIAjJoF3Ocsgg==
-X-Received: by 10.31.171.205 with SMTP id u196mr4335929vke.22.1488089746014;
-	Sat, 25 Feb 2017 22:15:46 -0800 (PST)
+Received: from mail.analogue-micro.com (mail.analogue-micro.com
+	[217.144.149.242])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 60BB9E0095F
+	for <yocto@yoctoproject.org>; Sat, 25 Feb 2017 22:19:17 -0800 (PST)
+Received: by mail.analogue-micro.com (Postfix, from userid 999)
+	id B43F968A01C; Sun, 26 Feb 2017 06:19:15 +0000 (GMT)
+Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
+	by mail.analogue-micro.com (Postfix) with ESMTP id 50D5768A019;
+	Sun, 26 Feb 2017 06:19:13 +0000 (GMT)
+Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
+	by zeus.mlbassoc.com (Postfix) with ESMTP id B660F6740222;
+	Sun, 26 Feb 2017 07:19:12 +0100 (CET)
+From: Gary Thomas <gary@mlbassoc.com>
+To: yocto@yoctoproject.org
+References: <20170225000359.29173-1-raj.khem@gmail.com>
+	<20170225091103.5ebe6324@lap0>
+	<CAMKF1srVyEa8_0BoS750zPoyNuhmVA6VEue4m--11petEqNj9g@mail.gmail.com>
+	<20170226015948.GA9477@carbonA>
+Message-ID: <f2ea7384-8305-73f2-2852-d4f7c3ec0613@mlbassoc.com>
+Date: Sun, 26 Feb 2017 07:19:11 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.7.0
 MIME-Version: 1.0
-Received: by 10.103.43.65 with HTTP; Sat, 25 Feb 2017 22:15:45 -0800 (PST)
-In-Reply-To: <CAJrj+DNTLZ7isU9Ng9PXEeY-AEOvp_6Vc3Dri=AzQjLGLwmfhQ@mail.gmail.com>
-References: <20170219024340.23664-1-twoerner@gmail.com>
-	<20170219024340.23664-2-twoerner@gmail.com>
-	<CAJrj+DP3MxzVcvZkN=APegrjydGYQZeE3J4MBoZ7RPMxQ-fkfQ@mail.gmail.com>
-	<CAHUNapTE=HmydvTCwD5G-zUGcu8FABNertLu3daz_Gdsp=xhSw@mail.gmail.com>
-	<CAJrj+DNTLZ7isU9Ng9PXEeY-AEOvp_6Vc3Dri=AzQjLGLwmfhQ@mail.gmail.com>
-From: Trevor Woerner <twoerner@gmail.com>
-Date: Sun, 26 Feb 2017 01:15:45 -0500
-Message-ID: <CAHUNapRLt0JLdZryoLBPhnAWJKAWZrB0iEr5AcSvi-v-aqgJkQ@mail.gmail.com>
-To: Eddie Cai <eddie.cai.linux@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-rockchip][PATCH v2 1/5] machine: rk3288: enable SoC-specific assignments
+In-Reply-To: <20170226015948.GA9477@carbonA>
+Subject: Re: [meta-raspberrypi][PATCH] linux-raspberrypi_4.9.bb: Update to 4.9.12
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,63 +44,71 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 26 Feb 2017 06:15:50 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Sun, 26 Feb 2017 06:19:19 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
-pushed, thanks!
+On 2017-02-26 03:00, Andrei Gherzan wrote:
+> On Sat, Feb 25, 2017 at 10:16:24AM -0800, Khem Raj wrote:
+>> On Sat, Feb 25, 2017 at 1:11 AM, Paul Barker <paul@paulbarker.me.uk> wrote:
+>>> On Fri, 24 Feb 2017 16:03:59 -0800
+>>> Khem Raj <raj.khem@gmail.com> wrote:
+>>>
+>>>> Signed-off-by: Khem Raj <raj.khem@gmail.com>
+>>>> ---
+>>>>  recipes-kernel/linux/linux-raspberrypi_4.9.bb | 4 ++--
+>>>>  1 file changed, 2 insertions(+), 2 deletions(-)
+>>>>
+>>>> diff --git a/recipes-kernel/linux/linux-raspberrypi_4.9.bb
+>>>> b/recipes-kernel/linux/linux-raspberrypi_4.9.bb index
+>>>> dcca369..b41a8ef 100644 ---
+>>>> a/recipes-kernel/linux/linux-raspberrypi_4.9.bb +++
+>>>> b/recipes-kernel/linux/linux-raspberrypi_4.9.bb @@ -1,8 +1,8 @@
+>>>>  FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
+>>>>
+>>>> -LINUX_VERSION ?= "4.9.10"
+>>>> +LINUX_VERSION ?= "4.9.12"
+>>>>
+>>>> -SRCREV = "095c4480e1f623bdc8a221a171ef13b2223706b1"
+>>>> +SRCREV = "c1271995832a090a94eb3b1c1678cb51b84ef1ca"
+>>>>  SRC_URI =
+>>>> "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-4.9.y
+>>>> \
+>>>> file://0001-build-arm64-Add-rules-for-.dtbo-files-for-dts-overla.patch
+>>>> \ "
+>>>
+>>> rpi-4.9.y is now the default branch upstream and they've started
+>>> merging in new stable releases instead of rebasing. So how soon do we
+>>> want to make 4.9.y the default in meta-raspberrypi?
+>>>
+>>> I've already tested a 4.9 series kernel with u-boot on an rpi and an
+>>> rpi3 so I'm happy that it all looks good.
+>>>
+>>> I'm away this weekend so I can't send the patch right now myself. If
+>>> no-one else jumps on it I'll send a patch towards the end of the week
+>>> to change the default.
+>>
+>> Lets apply this patch so we get away from this rebasing business quickly.
+>> however I would like to wait for us to make it default may be a week or so
+>> I have some issues bringing up wlan0 with 4.9 and would like to see why I get
+>>
+>> ifup wlan0
+>> Successfully initialized wpa_supplicant
+>> rfkill: WLAN soft blocked
+>> Could not set interface wlan0 flags (UP): Operation not possible due to RF-kill
+>
+> That is interesting. I've seen it on old kernel versions too. Everytime
+> disappeared by itself.
 
-On Tue, Feb 21, 2017 at 9:20 PM, Eddie Cai <eddie.cai.linux@gmail.com> wrote:
-> Hi Trevor
->
-> 2017-02-22 6:25 GMT+08:00 Trevor Woerner <twoerner@gmail.com>:
->>
->> Almost. The file you created a patch against had  DEFAULTTUNE which
->> has been removed so I had to create a new patch that would apply.  If
->> you're happy with this patch (which is very similar to yours) I'll add
->> your signed-off-by line to it when I commit?
->
-> Sure, My pleasure.
->>
->>
->> On Sat, Feb 18, 2017 at 10:40 PM, Eddie Cai <eddie.cai.linux@gmail.com>
->> wrote:
->> > Hi Trevor
->> >
->> > Is this the same one i submit before?
->> > https://www.mail-archive.com/yocto@yoctoproject.org/msg33572.html
->> >
->> > 2017-02-19 10:43 GMT+08:00 Trevor Woerner <twoerner@gmail.com>:
->> >> Enable machine overrides for RK3288.
->> >>
->> >> Signed-off-by: Trevor Woerner <twoerner@gmail.com>
->> >> ---
->> >>  conf/machine/include/rk3288.inc | 3 +++
->> >>  1 file changed, 3 insertions(+)
->> >>
->> >> diff --git a/conf/machine/include/rk3288.inc
->> >> b/conf/machine/include/rk3288.inc
->> >> index 86fc567..769e5c1 100644
->> >> --- a/conf/machine/include/rk3288.inc
->> >> +++ b/conf/machine/include/rk3288.inc
->> >> @@ -1,7 +1,10 @@
->> >>  # Copyright (C) 2015 Romain Perier
->> >>  # Released under the MIT license (see COPYING.MIT for the terms)
->> >>
->> >> +SOC_FAMILY = "rk3288"
->> >> +
->> >>  require conf/machine/include/tune-cortexa17.inc
->> >> +require conf/machine/include/soc-family.inc
->> >>
->> >>  PREFERRED_PROVIDER_virtual/kernel = "linux"
->> >>  SERIAL_CONSOLES = "115200;ttyS2"
->> >> --
->> >> 2.12.0.rc1.48.g076c053
->> >>
->> >> --
->> >> _______________________________________________
->> >> yocto mailing list
->> >> yocto@yoctoproject.org
->> >> https://lists.yoctoproject.org/listinfo/yocto
->
->
+Khem,
+
+Exactly which version (kernel rev / SRCREV) do you have this with and which
+RaspberryPi?  I've had my rpi3 running continuously for more than a week with
+no such problems, running 4.9.10/095c4480e1
+
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
