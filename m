@@ -1,67 +1,66 @@
-Return-Path: <jakobsg@gmail.com>
+Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DA3AEE0095F; Sat, 25 Feb 2017 15:10:26 -0800 (PST)
+	id 81CD7E0095F; Sat, 25 Feb 2017 18:00:07 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE, 
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (jakobsg[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.214.66 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.214.66 listed in dnsbl.sorbs.net]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [74.125.83.65 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-it0-f66.google.com (mail-it0-f66.google.com
-	[209.85.214.66])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 96C42E0086E
-	for <yocto@yoctoproject.org>; Sat, 25 Feb 2017 15:10:25 -0800 (PST)
-Received: by mail-it0-f66.google.com with SMTP id e137so7977493itc.0
-	for <yocto@yoctoproject.org>; Sat, 25 Feb 2017 15:10:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to; 
-	bh=6f09dfQKA3+QEPLe/gdVc5+uICs1GYju+uqdtcnt+CA=;
-	b=hjn6gTONJTID4c38lTpovWXWjJAGKHJA6pt6BsO7OQ/qCgEWtSNiszYlk0E8P10IqS
-	EEm4zT3H4sBtLB8516ZO4CVHOWKmjdfwrThU5CIHjqMRySynsStPovkg0bS89zH+cays
-	5JkAaOl8L+/wyw0jKAllWQzOuKwqzHU0o5LTKOWwWCh7bUF6/GCmM0+PyDjbdA3dMx6T
-	kSH6FRYuc3afHVyYkKnEvzZgw7r6Kcpib061TG/VFz1b5gLd8DojeH+MUurvqZU/n70i
-	JNZtCySvBCtTDq9IGzo2GsHlR5dSd0W4hEPlAOL9zeTkatq271VBYIB5XdH5zi7Yi5Ia
-	aOXA==
+Received: from mail-pg0-f65.google.com (mail-pg0-f65.google.com [74.125.83.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 290C5E00804
+	for <yocto@yoctoproject.org>; Sat, 25 Feb 2017 18:00:05 -0800 (PST)
+Received: by mail-pg0-f65.google.com with SMTP id 1so8216762pgz.2
+	for <yocto@yoctoproject.org>; Sat, 25 Feb 2017 18:00:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-disposition:in-reply-to:user-agent;
+	bh=cVpOdJTYqSTOkzbdF0Rza3Z/ukQAO7nSTcYjLN8L4cQ=;
+	b=boGuys2uTtzQu5ASAZmaEUngd7WmYxLJcW1MQhgqgX88fRBFiKctSuVWsco6+2jrTh
+	Bl2AJRMIifmZeNLZ8g8F5DooW6cunf6eYUCB2TrgrOkuzt4IfRdvZsSiPS5/ysNG/TCN
+	KbzgWnwYvBp5AaLtrGtiZ26FXSeA08iBOM5v/C+Z7yGizm17BY1z15sNf3r/g9NqPWYq
+	mdVAsjxG+Ua2Qmq28NxHIgStHIYcdY4lGGonX/qiQB+M0+dHrGh+xKq3jyg0js7vPkYB
+	JE277fW4BV570LiwSTfH3mZPYa0JeZMMqvXz571gPTLIziclLdu5h1eIDTaBlPPDmo6g
+	WQDQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to;
-	bh=6f09dfQKA3+QEPLe/gdVc5+uICs1GYju+uqdtcnt+CA=;
-	b=Cc5DW2WAM9jYYh+/NX4OtnpNN6H5vdpJ9wVuqzWz3Rxtu9+Xte3hAahwtKN4Tvr1Km
-	BtoN4rhQhmSSTV/6maiPSvWTP5wsawKABdqyQTfEWDkPKUD1sR46Gc6hjspM/a/Q2fkW
-	1pPpvPNRnme+9WodLlZS19qYSi9BHtROpYCP5sV+1CgMvIm8ki9sfbpgg7wfzUS2U0YW
-	7UE7JuPs9XHF3Rdzz7UYiTXwRdgpoqCntFQPsZaLZwZ7RupDgidsOT34vL0rptFkZ3Mc
-	y7qb8kSRd9MTTlU/xdNlYXG+lqSjkS2/eiPpbjnAQ2aJW5m/1zK5s+iR9UECqaZaxiES
-	znmQ==
-X-Gm-Message-State: AMke39m0iSnesqLmfdiUr7SgM1xFgB8JQLi0E6kiLi4urFkJxrEcxeRLrP8TSHXz/ktfXd1NbYjSiujt5AGrKA==
-X-Received: by 10.36.51.68 with SMTP id k65mr8230614itk.4.1488064224559; Sat,
-	25 Feb 2017 15:10:24 -0800 (PST)
+	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	:mime-version:content-disposition:in-reply-to:user-agent;
+	bh=cVpOdJTYqSTOkzbdF0Rza3Z/ukQAO7nSTcYjLN8L4cQ=;
+	b=dPrFfiSleWReu0UU8tR61mSbLCQwOMkzIILT2w91PgqhJ+wjSES5GzvYGyzzV810v3
+	XAsOODKpkTmvAvfTv82QfphQ0yGEvGQaFw2MmY2ZI8Ec0sZAxhL9Gtk/T4yJWdkNzFu5
+	r1Qto9fzn4SE4H/axa6KETtA/hzOArpwhYucpwAM0Qz73LsPFU+YskksODZsrsV9RDaM
+	2XVPTtKzfVxjqQVD2xBN5jvLBpBPYWMquuhOQFuICk2aKLhGC3rzeOdzPcC3fkGVJmf5
+	+IZ2AkE4wNuu+5soupY++7GWBh8ISNnjwoBItLPsyvZX+c9E+7mhPK8WghbCdLw5dLqc
+	KUJg==
+X-Gm-Message-State: AMke39nrSDfiHDUN0mYCcmJncZnBc8YmaX6yduWc+crk1aHTOStNvXy31df+S2v0V3EUug==
+X-Received: by 10.99.107.136 with SMTP id g130mr12675577pgc.87.1488074404682; 
+	Sat, 25 Feb 2017 18:00:04 -0800 (PST)
+Received: from carbonA (c-73-109-7-33.hsd1.wa.comcast.net. [73.109.7.33])
+	by smtp.gmail.com with ESMTPSA id
+	b67sm22497161pfj.81.2017.02.25.18.00.03
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Sat, 25 Feb 2017 18:00:03 -0800 (PST)
+Date: Sat, 25 Feb 2017 18:00:00 -0800
+From: Andrei Gherzan <andrei@gherzan.ro>
+To: Khem Raj <raj.khem@gmail.com>
+Message-ID: <20170226015948.GA9477@carbonA>
+References: <20170225000359.29173-1-raj.khem@gmail.com>
+	<20170225091103.5ebe6324@lap0>
+	<CAMKF1srVyEa8_0BoS750zPoyNuhmVA6VEue4m--11petEqNj9g@mail.gmail.com>
 MIME-Version: 1.0
-Received: by 10.79.81.69 with HTTP; Sat, 25 Feb 2017 15:10:24 -0800 (PST)
-In-Reply-To: <CAD4b0_JR7jfR9QfADu3j0xAv85otVmeDdwTLqVEJSDF-xnAnCw@mail.gmail.com>
-References: <CACr_9kHaf_Jqogt0BK8LaXXxrb_L6uhq3=z1ZXvo6M8Dvs4Tiw@mail.gmail.com>
-	<CAD4b0_JR7jfR9QfADu3j0xAv85otVmeDdwTLqVEJSDF-xnAnCw@mail.gmail.com>
-From: Jakob Simon-Gaarde <jakobsg@gmail.com>
-Date: Sun, 26 Feb 2017 00:10:24 +0100
-Message-ID: <CACr_9kGfECT5fq6rbufeHLf_EcqaMMXPp74A7yEBXgUmPbhYKQ@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: Re: Python3 partial rootfs installation
+In-Reply-To: <CAMKF1srVyEa8_0BoS750zPoyNuhmVA6VEue4m--11petEqNj9g@mail.gmail.com>
+User-Agent: Mutt/1.7.2 (2016-11-26)
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi][PATCH] linux-raspberrypi_4.9.bb: Update to 4.9.12
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,86 +72,89 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 25 Feb 2017 23:10:26 -0000
-Content-Type: multipart/alternative; boundary=001a1143cdb0820c7e054962f3c0
+X-List-Received-Date: Sun, 26 Feb 2017 02:00:07 -0000
+X-Groupsio-MsgNum: 34701
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="c3bfwLpm8qysLVxt"
+Content-Disposition: inline
 
---001a1143cdb0820c7e054962f3c0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+--c3bfwLpm8qysLVxt
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Thanks for the answer. I tried adding it as a dependency but I get this:
-ERROR: Nothing PROVIDES 'python3-modules'
-
-On Fri, Feb 24, 2017 at 10:21 AM, Maciej Borz=C4=99cki <
-maciej.borzecki@rndity.com> wrote:
-
-> On Fri, Feb 24, 2017 at 9:50 AM, Jakob Simon-Gaarde <jakobsg@gmail.com>
-> wrote:
-> > Hi.
+On Sat, Feb 25, 2017 at 10:16:24AM -0800, Khem Raj wrote:
+> On Sat, Feb 25, 2017 at 1:11 AM, Paul Barker <paul@paulbarker.me.uk> wrote:
+> > On Fri, 24 Feb 2017 16:03:59 -0800
+> > Khem Raj <raj.khem@gmail.com> wrote:
 > >
-> > I want to use Python3 on yocto 2.2 so I added it as a dependency in my
-> > project. Python3.5 was added to the final rootfs
-> > but it is partial. Many of the standard libraries that are build during
-> the
-> > image creation does not end up in the target rootfs.
+> >> Signed-off-by: Khem Raj <raj.khem@gmail.com>
+> >> ---
+> >>  recipes-kernel/linux/linux-raspberrypi_4.9.bb | 4 ++--
+> >>  1 file changed, 2 insertions(+), 2 deletions(-)
+> >>
+> >> diff --git a/recipes-kernel/linux/linux-raspberrypi_4.9.bb
+> >> b/recipes-kernel/linux/linux-raspberrypi_4.9.bb index
+> >> dcca369..b41a8ef 100644 ---
+> >> a/recipes-kernel/linux/linux-raspberrypi_4.9.bb +++
+> >> b/recipes-kernel/linux/linux-raspberrypi_4.9.bb @@ -1,8 +1,8 @@
+> >>  FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
+> >>
+> >> -LINUX_VERSION ?= "4.9.10"
+> >> +LINUX_VERSION ?= "4.9.12"
+> >>
+> >> -SRCREV = "095c4480e1f623bdc8a221a171ef13b2223706b1"
+> >> +SRCREV = "c1271995832a090a94eb3b1c1678cb51b84ef1ca"
+> >>  SRC_URI =
+> >> "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-4.9.y
+> >> \
+> >> file://0001-build-arm64-Add-rules-for-.dtbo-files-for-dts-overla.patch
+> >> \ "
 > >
-> > For instance socketserver.py which was the first missing module I
-> > encountered.
+> > rpi-4.9.y is now the default branch upstream and they've started
+> > merging in new stable releases instead of rebasing. So how soon do we
+> > want to make 4.9.y the default in meta-raspberrypi?
 > >
-> > Is there any way to make a full standard python3 install?
+> > I've already tested a 4.9 series kernel with u-boot on an rpi and an
+> > rpi3 so I'm happy that it all looks good.
+> >
+> > I'm away this weekend so I can't send the patch right now myself. If
+> > no-one else jumps on it I'll send a patch towards the end of the week
+> > to change the default.
 >
-> Installing python3-modules should cover most of your needs.
+> Lets apply this patch so we get away from this rebasing business quickly.
+> however I would like to wait for us to make it default may be a week or so
+> I have some issues bringing up wlan0 with 4.9 and would like to see why I get
 >
->
-> Cheers,
-> --
-> Maciej Borzecki
-> RnDity
->
+> ifup wlan0
+> Successfully initialized wpa_supplicant
+> rfkill: WLAN soft blocked
+> Could not set interface wlan0 flags (UP): Operation not possible due to RF-kill
 
+That is interesting. I've seen it on old kernel versions too. Everytime
+disappeared by itself.
 
+--
+Andrei Gherzan
+gpg: rsa4096/D4D94F67AD0E9640 | t: @agherzan
 
---=20
-Med venlig hilsen / Best regards
-Jakob Simon-Gaarde
+--c3bfwLpm8qysLVxt
+Content-Type: application/pgp-signature; name="signature.asc"
 
---001a1143cdb0820c7e054962f3c0
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+-----BEGIN PGP SIGNATURE-----
 
-<div dir=3D"ltr">Thanks for the answer. I tried adding it as a dependency b=
-ut I get this:<br>ERROR: Nothing PROVIDES &#39;python3-modules&#39;<br></di=
-v><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On Fri, Feb 24,=
- 2017 at 10:21 AM, Maciej Borz=C4=99cki <span dir=3D"ltr">&lt;<a href=3D"ma=
-ilto:maciej.borzecki@rndity.com" target=3D"_blank">maciej.borzecki@rndity.c=
-om</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"marg=
-in:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><span class=3D""=
->On Fri, Feb 24, 2017 at 9:50 AM, Jakob Simon-Gaarde &lt;<a href=3D"mailto:=
-jakobsg@gmail.com">jakobsg@gmail.com</a>&gt; wrote:<br>
-&gt; Hi.<br>
-&gt;<br>
-&gt; I want to use Python3 on yocto 2.2 so I added it as a dependency in my=
-<br>
-&gt; project. Python3.5 was added to the final rootfs<br>
-&gt; but it is partial. Many of the standard libraries that are build durin=
-g the<br>
-&gt; image creation does not end up in the target rootfs.<br>
-&gt;<br>
-&gt; For instance socketserver.py which was the first missing module I<br>
-&gt; encountered.<br>
-&gt;<br>
-&gt; Is there any way to make a full standard python3 install?<br>
-<br>
-</span>Installing python3-modules should cover most of your needs.<br>
-<br>
-<br>
-Cheers,<br>
-<span class=3D"HOEnZb"><font color=3D"#888888">--<br>
-Maciej Borzecki<br>
-RnDity<br>
-</font></span></blockquote></div><br><br clear=3D"all"><br>-- <br><div clas=
-s=3D"gmail_signature" data-smartmail=3D"gmail_signature">Med venlig hilsen =
-/ Best regards<br>Jakob Simon-Gaarde</div>
-</div>
+iQIzBAEBCAAdFiEE90oi/MnVCYFbB1m0Jrqo2vaxFPYFAliyNqAACgkQJrqo2vax
+FPZ8MA//fELGYisRFJZyHwkiABwCBUgAew5plLuzrVoB3Fh1dAMjIJJdiWrJfoXN
+HGwMH4do0nbnq3TBFJzYh/9aw5+ISCm5sj+0gTiQoXn/6tZsSBYlbDdcjA36F7Os
+M7qA7GENhVErYrBADpeEzofZoKFnsZ18lF/bY/+EtsUYQ6ak84rVBdAyKZjTPWoX
+1M5U946YFlWTklzE6EAtv1qyb+3mz9SYXOo2Pq+8qTGYY9eWz4vIbnKcWY3gOGpe
+B21EL1NexzaR74OKVxUC6A3SBiqq0zFCsfMtZVJjvP4+F6tMcB1tQC11jsYPourM
+YMUcexcy1JxtetSltFaEz0xBJSzx0BCS0Y6+tzrFaXtQiCNScF4Je714nvbQ+/bw
+kadNeI/KyiGw47rphQwq6xh7FAxDynVhUinRwV3A2SMJfiFQjQCA5gQpKRlEry1h
+zv/2Kp9QGHTWZozcs5qClfZ662SrY/pMe47XF8BJPiviE3Ui1mm18JIFaDp56tKw
+5bnSNd2HjuCPIsdEKftgNnKZ/4xw/u9P5ajRHLy9tB6gQ1195DPX513S9ppuhzUM
+/VMKPiaMysRwxdfF2y/F1IU7shKMOVGrzwV5n7P6tLhC2akHmKf8nJ2zsHuh/jAK
+1yw5DRDnCA4lm1spPpy1UsDIyRzRpUAEc1Z5/2LlW18gieMq4Pk=
+=xZ1S
+-----END PGP SIGNATURE-----
 
---001a1143cdb0820c7e054962f3c0--
+--c3bfwLpm8qysLVxt--
