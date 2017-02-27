@@ -1,66 +1,63 @@
 Return-Path: <maciej.borzecki@rndity.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 19E35E009CF; Mon, 27 Feb 2017 03:46:37 -0800 (PST)
+	id 05461E009CF; Mon, 27 Feb 2017 03:46:38 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.215.52 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.215.52 listed in dnsbl.sorbs.net]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.215.54 listed in list.dnswl.org]
-Received: from mail-lf0-f54.google.com (mail-lf0-f54.google.com
-	[209.85.215.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 92B51E00874
-	for <yocto@yoctoproject.org>; Mon, 27 Feb 2017 03:46:30 -0800 (PST)
-Received: by mail-lf0-f54.google.com with SMTP id a6so9303162lfa.0
-	for <yocto@yoctoproject.org>; Mon, 27 Feb 2017 03:46:30 -0800 (PST)
+Received: from mail-lf0-f52.google.com (mail-lf0-f52.google.com
+	[209.85.215.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 64D6BE00970
+	for <yocto@yoctoproject.org>; Mon, 27 Feb 2017 03:46:29 -0800 (PST)
+Received: by mail-lf0-f52.google.com with SMTP id y193so3981712lfd.3
+	for <yocto@yoctoproject.org>; Mon, 27 Feb 2017 03:46:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=rndity-com.20150623.gappssmtp.com; s=20150623;
-	h=from:to:cc:subject:date:message-id:in-reply-to:references
-	:in-reply-to:references;
-	bh=TfTdeqI4/HFMeW3w6oTncJNW7vqkjADESGVCOXIB3uk=;
-	b=BX7HFLeMbMt9fbbGenULZLCqK01FvVkjWAbmodGW6eJ2WeSLRl8aXC6+iYuTtbfz5W
-	cmWzJajaFQYrjRwWK2hfDVOHa1bpTJlCneikiz6wzhjG2mAByahpOf1HJ5PrKJNar2NY
-	y3fAOIhAiWyVK/C77dMFp/chsSZVeVGmgaTN9AywQfjhwpkNty4Jbmc1OUznSMOsO743
-	wN0YNlv8R7ovsWCs1gvjQ5gRQk1XutvBt7AQprH6zyVFm6HZlNOVTV0d+QU14NArd4ME
-	rvoGOg9n/3tGYstFhqozE7xWRzQusZHF/ZlAeQbayUHY5aXpJI329cCvISWzb7MhHB3F
-	S+TQ==
+	h=from:to:cc:subject:date:message-id;
+	bh=O9EJZTTs4/RSrMCVXLZFtUiQBBdYngEcjtRrVwabBag=;
+	b=aR2BtrgLbzd4UrZrvMwOlbworK3aB3nVf/bnZsIf13qarY+SYwuBztbEvpSHa0b7iN
+	JqQREsDNnJWGV68MlrF15W0kfkIYMql5IemvsIv886U9/9kDe+W+UDM+6fRbdjjyALs4
+	m8syz5XSpPQA5YWzPepjZXN/Fs74dVw71BxnVpBcsk8UbYR7RPg+5gY6Ejr6vxOHXG/h
+	ZroIq8D7UxDka/8zewjxAPTyw1ojEM8wvgBU++mX/gQ/b/jQSk5OfHxB7M4JWT7IKT/H
+	bjW9dVSkpcYBNOpSfZEifTraKKXoJczeFsBptyal6NwM7KhPzbu3vfxDg6V7BGUHwhlX
+	lFuw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-	:references:in-reply-to:references;
-	bh=TfTdeqI4/HFMeW3w6oTncJNW7vqkjADESGVCOXIB3uk=;
-	b=Klatfm1TSrRwlmCuddsdnR1URAlPigtIP/3ol/Tx84jA9m65zwGRdQJnTT9NTiF6xB
-	9sSLMrtHDt+Sw/phjjKCjT9zGpL5dpjX9JYxUk1iLyWT0zJOqH2D5YRlTmFrCG4+eoNE
-	VGcAwk1tS+Mc2+io+3NH5j+keoctzvgHMz/GTNwtLOUp73ekvkhoNjGR3G8yRXdVWcJe
-	cbieMIl6nk9YoJ4U7MIJiOY7ndLRvis5uCevmBps/Dnub/ck6haZpPCb6XOjxlJCoBnP
-	PTA6o84LFMvDYgvlihrniiYpWv5ecoXh+T2cedz3DNglVZxX+4uxt/QaOhxYIK1VdLvq
-	973Q==
-X-Gm-Message-State: AMke39muE4WALBj1t+EokgWM08D1RSbS/TEZAwbsA/1sZFF6MvYhPMRoJhs3mRdDsa/cfA==
-X-Received: by 10.25.233.21 with SMTP id g21mr5068164lfh.130.1488195989469;
-	Mon, 27 Feb 2017 03:46:29 -0800 (PST)
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=O9EJZTTs4/RSrMCVXLZFtUiQBBdYngEcjtRrVwabBag=;
+	b=EtAmucCgOaSj1Qh9dWcajExXq3V340yKfX29PO9T8R3Q3C9ohUnsV/h93zCLsvMaOC
+	5BF1aLQGCFTamQTO1ypPaPsrNIzdt6gg8fMyB+dm+uk4anMkxtt0sZQwebg/jqop1WFf
+	zIGtmnT5c9IAHW2lhUflCNAsr8eWbqfCUrSYrV8aTmakXoKf1IRIHSaXnj2c+iuOEoCA
+	FtX70UOI1u1IKxDl4KKeTztqRTKnWU82Xfd51kkNbsRgsgJpXho8lvigrzXdOzfTddu/
+	60c8qqQzxH2H+whIq33xwvRYCB8lJd1GHvLc4uGWCEoXCFlrbhsgZu6hcOgABjakY/r/
+	MwnQ==
+X-Gm-Message-State: AMke39lcTTA7xTmSOWvKT8cPHuR+pFGgG8wNoddKaeZNx9+sbiCEmQKRBQ1VypjcASJ61Q==
+X-Received: by 10.25.21.37 with SMTP id l37mr4561023lfi.146.1488195988279;
+	Mon, 27 Feb 2017 03:46:28 -0800 (PST)
 Received: from comp_016_pc_buildenv.localdomain
 	(staticline-31-182-60-238.toya.net.pl. [31.182.60.238])
-	by smtp.gmail.com with ESMTPSA id q71sm471758lfe.40.2017.02.27.03.46.28
+	by smtp.gmail.com with ESMTPSA id q71sm471758lfe.40.2017.02.27.03.46.27
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Mon, 27 Feb 2017 03:46:28 -0800 (PST)
+	Mon, 27 Feb 2017 03:46:27 -0800 (PST)
 From: Maciej Borzecki <maciej.borzecki@rndity.com>
 To: yocto@yoctoproject.org
-Date: Mon, 27 Feb 2017 12:46:05 +0100
-Message-Id: <4cf874c18dbd8c9d2ea64a7d621389210854067b.1488194279.git.maciej.borzecki@rndity.com>
+Date: Mon, 27 Feb 2017 12:46:04 +0100
+Message-Id: <cover.1488191415.git.maciej.borzecki@rndity.com>
 X-Mailer: git-send-email 2.5.5
-In-Reply-To: <cover.1488191415.git.maciej.borzecki@rndity.com>
-References: <cover.1488191415.git.maciej.borzecki@rndity.com>
-In-Reply-To: <cover.1488194279.git.maciej.borzecki@rndity.com>
-References: <cover.1488194279.git.maciej.borzecki@rndity.com>
 Cc: Maciek Borzecki <maciek.borzecki@gmail.com>
-Subject: [meta-raspberrypi] [PATCH 1/2] wic: move sdimage-raspberrypi to toplevel wic location
+Subject: [meta-raspberrypi] [PATCH 0/2] wic: fixes for wic support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,22 +69,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 27 Feb 2017 11:46:37 -0000
+X-List-Received-Date: Mon, 27 Feb 2017 11:46:38 -0000
 
-Wic supports picking up image files from toplevel LAYERDIR/wic directory. Using
-this location has the benefit that image files are easier to find (compare that
-to previously used scripts/lib/image/canned-wks/ location).
+A small series with 2 patches that enable using wic (once again).
 
-Signed-off-by: Maciej Borzecki <maciej.borzecki@rndity.com>
----
- {scripts/lib/image/canned-wks => wic}/sdimage-raspberrypi.wks | 0
- 1 file changed, 0 insertions(+), 0 deletions(-)
+The first patch moves sdimage-wks to ${LAYERDIR}/wic. This is already
+implemented in meta-yocto-bsp. The goal is to make wks files easier to
+find. Since Yocto is in general dumping custom image building methods in
+favor of wic, one would expect that wic is also usable with
+meta-raspberrypi.
+
+The second patch adds support for KERNEL_DEVICETREE to IMAGE_BOOT_FILES.
+Currently, DTs will be copied over to boot partition when building
+rpi-sdimg. However, when building a wic image, none of this happens and
+once the process comlpetes, one will get an unbootable image. The patch
+adds proper entries to IMAGE_BOOT_FILES also taking care of proper file
+name transformation.
+
+With these 2 patches, a wic image can be built by adding the following
+settings to conf/local.conf:
+
+   IMAGE_FSTYPES_append = " wic"
+   # or with your favourite compression, eg. wic.xz
+   WKS_FILES = "sdimage-raspberrypi.wks"
+
+
+Maciej Borzecki (2):
+  wic: move sdimage-raspberrypi to toplevel wic location
+  rpi-base: wic: generate entries for device tree files
+
+ conf/machine/include/rpi-base.inc                  | 32 +++++++++++++++++++++-
+ .../canned-wks => wic}/sdimage-raspberrypi.wks     |  0
+ 2 files changed, 31 insertions(+), 1 deletion(-)
  rename {scripts/lib/image/canned-wks => wic}/sdimage-raspberrypi.wks (100%)
 
-diff --git a/scripts/lib/image/canned-wks/sdimage-raspberrypi.wks b/wic/sdimage-raspberrypi.wks
-similarity index 100%
-rename from scripts/lib/image/canned-wks/sdimage-raspberrypi.wks
-rename to wic/sdimage-raspberrypi.wks
 -- 
 2.5.5
 
