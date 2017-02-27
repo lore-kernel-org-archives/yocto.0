@@ -1,69 +1,66 @@
 Return-Path: <maciej.borzecki@rndity.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E07EFE009C9; Mon, 27 Feb 2017 03:46:35 -0800 (PST)
+	id 19E35E009CF; Mon, 27 Feb 2017 03:46:37 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.215.47 listed in dnsbl.sorbs.net]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.215.47 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-lf0-f47.google.com (mail-lf0-f47.google.com
-	[209.85.215.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E776AE00939
-	for <yocto@yoctoproject.org>; Mon, 27 Feb 2017 03:46:31 -0800 (PST)
-Received: by mail-lf0-f47.google.com with SMTP id z127so32078460lfa.2
-	for <yocto@yoctoproject.org>; Mon, 27 Feb 2017 03:46:31 -0800 (PST)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.215.54 listed in list.dnswl.org]
+Received: from mail-lf0-f54.google.com (mail-lf0-f54.google.com
+	[209.85.215.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 92B51E00874
+	for <yocto@yoctoproject.org>; Mon, 27 Feb 2017 03:46:30 -0800 (PST)
+Received: by mail-lf0-f54.google.com with SMTP id a6so9303162lfa.0
+	for <yocto@yoctoproject.org>; Mon, 27 Feb 2017 03:46:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=rndity-com.20150623.gappssmtp.com; s=20150623;
 	h=from:to:cc:subject:date:message-id:in-reply-to:references
 	:in-reply-to:references;
-	bh=vT6Lzee/qGSLtwI308kJr1S+8dmo7jPVBir2uENNwtw=;
-	b=RhjLdPaWJ3mm7gz3TGQjGiJEJ02LWnbsOEoU3KTOh4RTDCtaYJf8/Dwr36L9Ps77YN
-	FNHJnwL2A7dXK1qiQ2BvNKa+7BKE/ciQjaGmrCeezpnWghbSDOZcHr+xBtbuWXml83rZ
-	jLSH89C8dNeRwI9XAdKYZ2cXBNh/4Vp55TiiOdxpaWhMnZJlHcenRApwhFo/slotaLA9
-	knWGTMXLRuG4Gvw8FwSknJvG+nJzZzmy1SovHZ8BU0iCz4sQbs7BX0/HAZCRDp4/Wlqh
-	lSXsp/+SoYEgu0sVS7xA6TVRMrvG+DHbGxZxrhZpgG+oOffOGcc05fJhtSooH3R6kVPj
-	hXbQ==
+	bh=TfTdeqI4/HFMeW3w6oTncJNW7vqkjADESGVCOXIB3uk=;
+	b=BX7HFLeMbMt9fbbGenULZLCqK01FvVkjWAbmodGW6eJ2WeSLRl8aXC6+iYuTtbfz5W
+	cmWzJajaFQYrjRwWK2hfDVOHa1bpTJlCneikiz6wzhjG2mAByahpOf1HJ5PrKJNar2NY
+	y3fAOIhAiWyVK/C77dMFp/chsSZVeVGmgaTN9AywQfjhwpkNty4Jbmc1OUznSMOsO743
+	wN0YNlv8R7ovsWCs1gvjQ5gRQk1XutvBt7AQprH6zyVFm6HZlNOVTV0d+QU14NArd4ME
+	rvoGOg9n/3tGYstFhqozE7xWRzQusZHF/ZlAeQbayUHY5aXpJI329cCvISWzb7MhHB3F
+	S+TQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
 	:references:in-reply-to:references;
-	bh=vT6Lzee/qGSLtwI308kJr1S+8dmo7jPVBir2uENNwtw=;
-	b=KqtIhaggJQ6En0AnWaqXw2yejrw5lMJ8n0jgTEuvq6qV+00Rf0qCWf/+a8GC9SdHyv
-	in0SKZ4DxNfEh4d9u+Z1BYCw0/GFacZWvYIpc0/ZuuzBehXgv1PlUsUUzaes2934lnNs
-	td7bCvpCTdvk5brpiNtAbhPxyvrUL/w8sAJKUnyV1FRRjEjpdv30icGG0MBS/ORRQo3s
-	tayY25Jmw3H6v60LtKPu2sqSaSewG7LWm6UFiJatI/kIUtOU+NLP+St80Q6IUHuCRy3L
-	og7uOMHx+U6NuzPhKJwq88e1TyQ6kqUo27lOA+iq+kCGrZFeX4xE+VcLvFZy9+rgPm11
-	3Zsw==
-X-Gm-Message-State: AMke39lY19oXm6OA/9iZo5UYobvtQ35tOpBFk7Z3zcpP+LvDMJsFjsgtVz66WIU+SJBokA==
-X-Received: by 10.46.84.84 with SMTP id y20mr4097519ljd.120.1488195990479;
-	Mon, 27 Feb 2017 03:46:30 -0800 (PST)
+	bh=TfTdeqI4/HFMeW3w6oTncJNW7vqkjADESGVCOXIB3uk=;
+	b=Klatfm1TSrRwlmCuddsdnR1URAlPigtIP/3ol/Tx84jA9m65zwGRdQJnTT9NTiF6xB
+	9sSLMrtHDt+Sw/phjjKCjT9zGpL5dpjX9JYxUk1iLyWT0zJOqH2D5YRlTmFrCG4+eoNE
+	VGcAwk1tS+Mc2+io+3NH5j+keoctzvgHMz/GTNwtLOUp73ekvkhoNjGR3G8yRXdVWcJe
+	cbieMIl6nk9YoJ4U7MIJiOY7ndLRvis5uCevmBps/Dnub/ck6haZpPCb6XOjxlJCoBnP
+	PTA6o84LFMvDYgvlihrniiYpWv5ecoXh+T2cedz3DNglVZxX+4uxt/QaOhxYIK1VdLvq
+	973Q==
+X-Gm-Message-State: AMke39muE4WALBj1t+EokgWM08D1RSbS/TEZAwbsA/1sZFF6MvYhPMRoJhs3mRdDsa/cfA==
+X-Received: by 10.25.233.21 with SMTP id g21mr5068164lfh.130.1488195989469;
+	Mon, 27 Feb 2017 03:46:29 -0800 (PST)
 Received: from comp_016_pc_buildenv.localdomain
 	(staticline-31-182-60-238.toya.net.pl. [31.182.60.238])
-	by smtp.gmail.com with ESMTPSA id q71sm471758lfe.40.2017.02.27.03.46.29
+	by smtp.gmail.com with ESMTPSA id q71sm471758lfe.40.2017.02.27.03.46.28
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Mon, 27 Feb 2017 03:46:29 -0800 (PST)
+	Mon, 27 Feb 2017 03:46:28 -0800 (PST)
 From: Maciej Borzecki <maciej.borzecki@rndity.com>
 To: yocto@yoctoproject.org
-Date: Mon, 27 Feb 2017 12:46:06 +0100
-Message-Id: <4b8f47895119bc099970dadebcb6474458238eb3.1488194279.git.maciej.borzecki@rndity.com>
+Date: Mon, 27 Feb 2017 12:46:05 +0100
+Message-Id: <4cf874c18dbd8c9d2ea64a7d621389210854067b.1488194279.git.maciej.borzecki@rndity.com>
 X-Mailer: git-send-email 2.5.5
 In-Reply-To: <cover.1488191415.git.maciej.borzecki@rndity.com>
 References: <cover.1488191415.git.maciej.borzecki@rndity.com>
 In-Reply-To: <cover.1488194279.git.maciej.borzecki@rndity.com>
 References: <cover.1488194279.git.maciej.borzecki@rndity.com>
 Cc: Maciek Borzecki <maciek.borzecki@gmail.com>
-Subject: [meta-raspberrypi] [PATCH 2/2] rpi-base: wic: generate entries for device tree files
+Subject: [meta-raspberrypi] [PATCH 1/2] wic: move sdimage-raspberrypi to toplevel wic location
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,59 +72,22 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 27 Feb 2017 11:46:36 -0000
+X-List-Received-Date: Mon, 27 Feb 2017 11:46:37 -0000
 
-Augment IMAGE_BOOT_FILES with entries picking up proper dtb[o]s. This allows for
-building usable wic images once again.
+Wic supports picking up image files from toplevel LAYERDIR/wic directory. Using
+this location has the benefit that image files are easier to find (compare that
+to previously used scripts/lib/image/canned-wks/ location).
 
 Signed-off-by: Maciej Borzecki <maciej.borzecki@rndity.com>
 ---
- conf/machine/include/rpi-base.inc | 32 +++++++++++++++++++++++++++++++-
- 1 file changed, 31 insertions(+), 1 deletion(-)
+ {scripts/lib/image/canned-wks => wic}/sdimage-raspberrypi.wks | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ rename {scripts/lib/image/canned-wks => wic}/sdimage-raspberrypi.wks (100%)
 
-diff --git a/conf/machine/include/rpi-base.inc b/conf/machine/include/rpi-base.inc
-index e069e7039f166b4503d6709df7bf770dadc6af5d..092cbeb1f7f2ce51b79acb44951373a600e97573 100644
---- a/conf/machine/include/rpi-base.inc
-+++ b/conf/machine/include/rpi-base.inc
-@@ -51,7 +51,37 @@ MACHINE_EXTRA_RRECOMMENDS += " kernel-modules"
- # Set Raspberrypi splash image
- SPLASH = "psplash-raspberrypi"
- 
--IMAGE_BOOT_FILES ?= "bcm2835-bootfiles/* ${KERNEL_IMAGETYPE};${SDIMG_KERNELIMAGE}"
-+def make_dtb_boot_files(d):
-+    # Generate IMAGE_BOOT_FILES entries for device tree files listed in
-+    # KERNEL_DEVICETREE.
-+    alldtbs = d.getVar('KERNEL_DEVICETREE')
-+    imgtyp = d.getVar('KERNEL_IMAGETYPE')
-+
-+    def transform(dtb):
-+        if dtb.endswith('dtb'):
-+            # eg: bcm2708-rpi-b.dtb has:
-+            #     DEPLOYDIR file: ${KERNEL_IMAGETYPE}-bcm2708-rpi-b.dtb
-+            #     destination: bcm2708-rpi-b.dtb
-+            src = '{}-{}'.format(imgtyp, dtb)
-+            dst = dtb
-+            return '{};{}'.format(src, dst)
-+        elif dtb.endswith('dtbo'):
-+            # overlay dtb:
-+            # eg: overlays/hifiberry-amp.dtbo has:
-+            #     DEPLOYDIR file: ${KERNEL_IMAGETYPE}-hifiberry-amp.dtbp
-+            #     destination: overlays/hifiberry-amp.dtbo
-+            base = os.path.basename(dtb)
-+            src = '{}-{}'.format(imgtyp, base)
-+            dst = dtb
-+            return '{};{}'.format(src, dtb)
-+
-+    return ' '.join([transform(dtb) for dtb in alldtbs.split(' ') if dtb])
-+
-+
-+IMAGE_BOOT_FILES ?= "bcm2835-bootfiles/* \
-+                 ${@make_dtb_boot_files(d)} \
-+                 ${KERNEL_IMAGETYPE};${SDIMG_KERNELIMAGE} \
-+                 "
- 
- # The kernel image is installed into the FAT32 boot partition and does not need
- # to also be installed into the rootfs.
+diff --git a/scripts/lib/image/canned-wks/sdimage-raspberrypi.wks b/wic/sdimage-raspberrypi.wks
+similarity index 100%
+rename from scripts/lib/image/canned-wks/sdimage-raspberrypi.wks
+rename to wic/sdimage-raspberrypi.wks
 -- 
 2.5.5
 
