@@ -1,6 +1,6 @@
 Return-Path: <bruce.ashfield@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6F146E00AC5; Mon, 27 Feb 2017 05:40:35 -0800 (PST)
+	id 5A6B7E00A51; Mon, 27 Feb 2017 05:41:33 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,11 +10,6 @@ X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (bruce.ashfield[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.220.171 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.220.171 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -23,45 +18,50 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qk0-f171.google.com (mail-qk0-f171.google.com
-	[209.85.220.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 23E71E00A4C
-	for <yocto@yoctoproject.org>; Mon, 27 Feb 2017 05:40:30 -0800 (PST)
-Received: by mail-qk0-f171.google.com with SMTP id u188so96713868qkc.2
-	for <yocto@yoctoproject.org>; Mon, 27 Feb 2017 05:40:30 -0800 (PST)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.220.193 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.220.193 listed in dnsbl.sorbs.net]
+Received: from mail-qk0-f193.google.com (mail-qk0-f193.google.com
+	[209.85.220.193])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C0BF0E009CF
+	for <yocto@yoctoproject.org>; Mon, 27 Feb 2017 05:41:21 -0800 (PST)
+Received: by mail-qk0-f193.google.com with SMTP id r90so16938008qki.3
+	for <yocto@yoctoproject.org>; Mon, 27 Feb 2017 05:41:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=+XhnmDeXVhDKgpm2Vm6uhtHjlOn7ZbnTv/QoQEhEoc8=;
-	b=V4dDNXV5aImfqhU+xl6ddUoyF97UtW1NLTY7NM52M74RiEnoOdbaE99OPlZPL4XIvF
-	PxHR0z7V9jeSkKv8pQVIIy5Y4W+Ym4q2yvEQYv2QBTbb3B9OOoUzX56c2TeaL/CncZma
-	giRUN6z7McYcVgIRWNJVQI0kli+PBiB5AzhlgUnPTaT3g9Nqfj+8ZrRl/2R82MqztZMB
-	4Wj6yX6BG+TlWeljFWsMT1vtMbTLN1l0RC4f/I/kXNl7k557ClpU5UkArWkKMCYwI9Km
-	YaJ8UIbIDP1VWL+XT8d4pRFD9XcUv9IuG/52LiQIEUwJl02VUhiOvpHcAJsGrWEmpEIW
-	yMrA==
+	:cc; bh=+7Xw1nBng/0vTKiz+MXunOb+n2Z4D6OQLtL0p251gvg=;
+	b=b90e95oV0W2WU6zooaPVNjxf+ouburyDub2jNPONVtcZLc31jIYQUlQd7WU5MNVDwB
+	n/YEisVWllRqqRDcmpszwPeky0dH6SHsx/oc/B6PEKskyPgCRqM37Jf+9heRKgB3FWC6
+	qWXsa3wvuvMkVNqRjpGLON0DHH/pIlpqWyMST9R0fr2+hIt7FKnJ8Hy4TWcMm+dWRWHJ
+	hp7VEzXQKaMgAFgyGT+hww1FUuWuei9UvNwFd4Xseot4N4R6QyZsJw9t5RADJJmZaaII
+	H+H8xOWFq4qRi5qnbpJ1ZSZBfFdndoMpzpTvVx1DaEQYvfOGxtlOpazJXnMd2fePsost
+	n+Bg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=+XhnmDeXVhDKgpm2Vm6uhtHjlOn7ZbnTv/QoQEhEoc8=;
-	b=ttJfxLmGPXUSwrm+1UK4jXXTFajhbVJ25Dd257OHSGIFYdF62ymTmvedSPyn9FHt5S
-	aOTJgZufLO+tdopv8vUdU4ZcBK/ve/wU9VzigxWrdtcX8xvRLaMieFDG+PBZYXTQCmaG
-	qZY7AkL9Y2d7dOyMjQelkFzV8ei6v1p5k6SIuyw2gFKUihG1NbzEE7Oc17KLViGqygPH
-	o/8IVCOMqKUbvezfnKZ+GgvU+77qVQzjz0Pq8xW+9jebSRDHp2WIShNj9FW6aNSk5IGR
-	TPFzv0JkrBteeJRlz6peq6QRv0jMg4E80n3/rCSOUmLYbrtgL9J5B06lln3vJt1FmXIP
-	u9Ww==
-X-Gm-Message-State: AMke39m+tmk8Atna6ZirExkG3KORCbdwBifeStKgwx6j7/IZbZwx3ZurwD2ggjiaq2Af9KuwaUDtQ5pr+awxtA==
-X-Received: by 10.55.65.70 with SMTP id o67mr14844518qka.254.1488202830086;
-	Mon, 27 Feb 2017 05:40:30 -0800 (PST)
+	bh=+7Xw1nBng/0vTKiz+MXunOb+n2Z4D6OQLtL0p251gvg=;
+	b=cdvl56kfjPFJtniXRxO9FMQwjOi7ErseO/YpB3qf8m2jsqyrA5L6JxU7y5iYGpW5tv
+	/GdJENscqeof1KV8YYpVKdtDNAgRrpkq4jVkXsiIBEcBJzjkvpQVgIKNgPVpq0VxasPS
+	Mxnsaw/RO/nDXyarkTMG04KUZLrNfcTbo/TEizdZP85czJzvr0nlOrAAE6Huj93CEJUO
+	mtxCAzmTbAJT4e7hppyIC4YBGIGZN3O4vA4gSLVq0azO6Z+2TcbozepHKdo36qS7GrCo
+	L6Jajyped/HKM6gzO+e586g8rLWJrQ8BmtonTDThwSg+WG/kF6HsATIVrLNgiBOM5rdf
+	lL1Q==
+X-Gm-Message-State: AMke39knWaHeNxff+opNC2MO7bIE6mQ4cWWPNNsgTJZ3csWRknTQs1ARvDe3XI3BX/16IXl0Te5a6H8Kpa8T4g==
+X-Received: by 10.237.56.68 with SMTP id j62mr16327696qte.185.1488202880486;
+	Mon, 27 Feb 2017 05:41:20 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.12.132.68 with HTTP; Mon, 27 Feb 2017 05:40:29 -0800 (PST)
-In-Reply-To: <alpine.LFD.2.20.1702270526001.30746@uk63952.mitel.com>
-References: <alpine.LFD.2.20.1702270526001.30746@uk63952.mitel.com>
+Received: by 10.12.132.68 with HTTP; Mon, 27 Feb 2017 05:41:20 -0800 (PST)
+In-Reply-To: <alpine.LFD.2.20.1702270504160.5510@uk63952.mitel.com>
+References: <alpine.LFD.2.20.1702270504160.5510@uk63952.mitel.com>
 From: Bruce Ashfield <bruce.ashfield@gmail.com>
-Date: Mon, 27 Feb 2017 08:40:29 -0500
-Message-ID: <CADkTA4Oxtk1PrwG7oJs2AN8MLdMN4YusN7Lj+jLJZKRjYqSOtg@mail.gmail.com>
+Date: Mon, 27 Feb 2017 08:41:20 -0500
+Message-ID: <CADkTA4O2ugLjGtMfd3bo18bR=yKR1V4gzkrNUJq_JVbamB=2NA@mail.gmail.com>
 To: "Robert P. J. Day" <rpjday@crashcourse.ca>
 Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: kernel-dev manual, section 2.6.2, do tags like "systemtap" exist?
+Subject: Re: [PATCH] yocto-docs: kernel-dev, update "3.19" versions to "4.4"
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,31 +73,81 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 27 Feb 2017 13:40:35 -0000
-Content-Type: multipart/alternative; boundary=001a114abc7e0ad2e0054983395b
+X-List-Received-Date: Mon, 27 Feb 2017 13:41:33 -0000
+Content-Type: multipart/alternative; boundary=001a1137ac140bbe820549833c9b
 
---001a114abc7e0ad2e0054983395b
+--001a1137ac140bbe820549833c9b
 Content-Type: text/plain; charset=UTF-8
 
-On Mon, Feb 27, 2017 at 5:27 AM, Robert P. J. Day <rpjday@crashcourse.ca>
+On Mon, Feb 27, 2017 at 5:07 AM, Robert P. J. Day <rpjday@crashcourse.ca>
 wrote:
 
 >
->   section 2.6.2 refers to how to display changes based on a tag, and
-> uses the alleged tag name "systemtap" ... do tags like that even exist
-> anymore? i see no such tag in my current build directories.
+> Update the remaining references to kernel version 3.19 to version 4.4,
+> restricted to the section "kernel-dev-common.xml".
 >
 
 
-Correct. The tagged features were dropped a few years ago. So any section
-that
-references them could be dropped.
+I just sent a patch to drop 4.4 from master. I'd suggest 4.9 as a version
+to use that will persist in master for a bit longer.
 
 Bruce
 
 
 >
-> rday
+> Signed-off-by: Robert P. J. Day <rpjday@crashcourse.ca>
+>
+> ---
+>
+>   if my earlier patch hasn't already been applied, this one can be
+> folded in since it simply adds more "3.19" -> "4.4" updates to the
+> same kernel-dev-common.xml file, which is already part of the commit
+> message for that earlier patch.
+>
+> diff --git a/documentation/kernel-dev/kernel-dev-common.xml
+> b/documentation/kernel-dev/kernel-dev-common.xml
+> index a9aafd3..97e2a0b 100644
+> --- a/documentation/kernel-dev/kernel-dev-common.xml
+> +++ b/documentation/kernel-dev/kernel-dev-common.xml
+> @@ -645,8 +645,8 @@
+>                      recipe to your layer and give it a meaningful name.
+>                      The name should include the version of the Linux
+> kernel you
+>                      are using (e.g.
+> -                    <filename>linux-yocto-myproject_3.19.bb</filename>,
+> -                    where "3.19" is the base version of the Linux kernel
+> +                    <filename>linux-yocto-myproject_4.4.bb</filename>,
+> +                    where "4.4" is the base version of the Linux kernel
+>                      with which you would be working).</para></listitem>
+>                  <listitem><para>In the same directory inside your layer,
+>                      create a matching directory
+> @@ -698,7 +698,7 @@
+>                              </para></listitem>
+>                          <listitem><para><ulink
+> url='&YOCTO_DOCS_REF_URL;#var-LINUX_VERSION'><filename>
+> LINUX_VERSION</filename></ulink>:
+>                              The Linux kernel version you are using (e.g.
+> -                            "3.19").</para></listitem>
+> +                            "4.4").</para></listitem>
+>                          <listitem><para><ulink
+> url='&YOCTO_DOCS_REF_URL;#var-LINUX_VERSION_EXTENSION'><
+> filename>LINUX_VERSION_EXTENSION</filename></ulink>:
+>                              The Linux kernel
+> <filename>CONFIG_LOCALVERSION</filename>
+>                              that is compiled into the resulting kernel
+> and visible
+> @@ -724,7 +724,7 @@
+>                              The combined results are a string with
+>                              the following form:
+>                              <literallayout class='monospaced'>
+> -     3.19.11+git1+68a635bf8dfb64b02263c1ac80c948647cc76d5f_1+
+> 218bd8d2022b9852c60d32f0d770931e3cf343e2
+> +     4.4.11+git1+68a635bf8dfb64b02263c1ac80c948647cc76d5f_1+
+> 218bd8d2022b9852c60d32f0d770931e3cf343e2
+>                              </literallayout>
+>                              While lengthy, the extra verbosity in
+> <filename>PV</filename>
+>                              helps ensure you are using the exact
 >
 > --
 >
@@ -122,27 +172,110 @@ Bruce
 "Thou shalt not follow the NULL pointer, for chaos and madness await thee
 at its end"
 
---001a114abc7e0ad2e0054983395b
+--001a1137ac140bbe820549833c9b
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
 <div dir=3D"ltr"><br><div class=3D"gmail_extra"><br><div class=3D"gmail_quo=
-te">On Mon, Feb 27, 2017 at 5:27 AM, Robert P. J. Day <span dir=3D"ltr">&lt=
+te">On Mon, Feb 27, 2017 at 5:07 AM, Robert P. J. Day <span dir=3D"ltr">&lt=
 ;<a href=3D"mailto:rpjday@crashcourse.ca" target=3D"_blank">rpjday@crashcou=
 rse.ca</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"=
 margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><br>
-=C2=A0 section 2.6.2 refers to how to display changes based on a tag, and<b=
-r>
-uses the alleged tag name &quot;systemtap&quot; ... do tags like that even =
-exist<br>
-anymore? i see no such tag in my current build directories.<br></blockquote=
-><div><br><br></div><div>Correct. The tagged features were dropped a few ye=
-ars ago. So any section that<br></div><div>references them could be dropped=
-.<br><br></div><div>Bruce<br></div><div>=C2=A0</div><blockquote class=3D"gm=
-ail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-le=
-ft:1ex">
+Update the remaining references to kernel version 3.19 to version 4.4,<br>
+restricted to the section &quot;kernel-dev-common.xml&quot;.<br></blockquot=
+e><div><br><br></div><div>I just sent a patch to drop 4.4 from master. I&#3=
+9;d suggest 4.9 as a version to use that will persist in master for a bit l=
+onger.<br><br></div><div>Bruce<br></div><div>=C2=A0</div><blockquote class=
+=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padd=
+ing-left:1ex">
 <br>
-rday<br>
+Signed-off-by: Robert P. J. Day &lt;<a href=3D"mailto:rpjday@crashcourse.ca=
+">rpjday@crashcourse.ca</a>&gt;<br>
+<br>
+---<br>
+<br>
+=C2=A0 if my earlier patch hasn&#39;t already been applied, this one can be=
+<br>
+folded in since it simply adds more &quot;3.19&quot; -&gt; &quot;4.4&quot; =
+updates to the<br>
+same kernel-dev-common.xml file, which is already part of the commit<br>
+message for that earlier patch.<br>
+<br>
+diff --git a/documentation/kernel-dev/<wbr>kernel-dev-common.xml b/document=
+ation/kernel-dev/<wbr>kernel-dev-common.xml<br>
+index a9aafd3..97e2a0b 100644<br>
+--- a/documentation/kernel-dev/<wbr>kernel-dev-common.xml<br>
++++ b/documentation/kernel-dev/<wbr>kernel-dev-common.xml<br>
+@@ -645,8 +645,8 @@<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0recipe to your layer and give it a meaningful name.<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0The name should include the version of the Linux kernel you<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0are using (e.g.<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;=
+filename&gt;<a href=3D"http://linux-yocto-myproject_3.19.bb" rel=3D"norefer=
+rer" target=3D"_blank">linux-yocto-<wbr>myproject_3.19.bb</a>&lt;/filename&=
+gt;,<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 wher=
+e &quot;3.19&quot; is the base version of the Linux kernel<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;=
+filename&gt;<a href=3D"http://linux-yocto-myproject_4.4.bb" rel=3D"noreferr=
+er" target=3D"_blank">linux-yocto-<wbr>myproject_4.4.bb</a>&lt;/filename&gt=
+;,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 wher=
+e &quot;4.4&quot; is the base version of the Linux kernel<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0with which you would be working).&lt;/para&gt;&lt;/listitem&gt;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;listitem&=
+gt;&lt;para&gt;In the same directory inside your layer,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0create a matching directory<br>
+@@ -698,7 +698,7 @@<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;/para&gt;&lt;/listitem&gt;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0&lt;listitem&gt;&lt;para&gt;&lt;ulink url=3D&#39;&amp;YOCT=
+O_DOCS_REF_URL;#var-<wbr>LINUX_VERSION&#39;&gt;&lt;filename&gt;<wbr>LINUX_V=
+ERSION&lt;/filename&gt;&lt;/<wbr>ulink&gt;:<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0The Linux kernel version you are using (e.g.=
+<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 &quot;3.19&quot;).&lt;/para&gt;&lt;/listitem&gt;<b=
+r>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 &quot;4.4&quot;).&lt;/para&gt;&lt;/listitem&gt;<br=
+>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0&lt;listitem&gt;&lt;para&gt;&lt;ulink url=3D&#39;&amp;YOCT=
+O_DOCS_REF_URL;#var-<wbr>LINUX_VERSION_EXTENSION&#39;&gt;&lt;<wbr>filename&=
+gt;LINUX_VERSION_<wbr>EXTENSION&lt;/filename&gt;&lt;/ulink&gt;:<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0The Linux kernel &lt;filename&gt;CONFIG_LOCA=
+LVERSION&lt;<wbr>/filename&gt;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0that is compiled into the resulting kernel a=
+nd visible<br>
+@@ -724,7 +724,7 @@<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0The combined results are a string with<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0the following form:<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;literallayout class=3D&#39;monospaced&#3=
+9;&gt;<br>
+-=C2=A0 =C2=A0 =C2=A03.19.11+git1+<wbr>68a635bf8dfb64b02263c1ac80c948<wbr>6=
+47cc76d5f_1+<wbr>218bd8d2022b9852c60d32f0d77093<wbr>1e3cf343e2<br>
++=C2=A0 =C2=A0 =C2=A04.4.11+git1+<wbr>68a635bf8dfb64b02263c1ac80c948<wbr>64=
+7cc76d5f_1+<wbr>218bd8d2022b9852c60d32f0d77093<wbr>1e3cf343e2<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;/literallayout&gt;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0While lengthy, the extra verbosity in &lt;fi=
+lename&gt;PV&lt;/filename&gt;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0helps ensure you are using the exact<br>
 <span class=3D"HOEnZb"><font color=3D"#888888"><br>
 --<br>
 <br>
@@ -183,4 +316,4 @@ ot follow the NULL pointer, for chaos and madness await thee at its end&quo=
 t;</div>
 </div></div>
 
---001a114abc7e0ad2e0054983395b--
+--001a1137ac140bbe820549833c9b--
