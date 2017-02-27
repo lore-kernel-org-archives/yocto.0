@@ -1,33 +1,39 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <jakob.hasse@smart-home-technology.ch>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EC9D4E00A07; Mon, 27 Feb 2017 06:03:18 -0800 (PST)
+	id 2C740E009CF; Mon, 27 Feb 2017 06:35:05 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [217.26.49.172 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.analogue-micro.com (mail.analogue-micro.com
-	[217.144.149.242])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C0883E00970
-	for <yocto@yoctoproject.org>; Mon, 27 Feb 2017 06:03:17 -0800 (PST)
-Received: by mail.analogue-micro.com (Postfix, from userid 999)
-	id C546368A019; Mon, 27 Feb 2017 14:03:15 +0000 (GMT)
-Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
-	by mail.analogue-micro.com (Postfix) with ESMTP id 5711968A019;
-	Mon, 27 Feb 2017 14:03:15 +0000 (GMT)
-Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
-	by zeus.mlbassoc.com (Postfix) with ESMTP id 000A567401F0;
-	Mon, 27 Feb 2017 15:03:14 +0100 (CET)
-From: Gary Thomas <gary@mlbassoc.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Message-ID: <10426572-3dbf-9403-f73b-ecbcb3a02157@mlbassoc.com>
-Date: Mon, 27 Feb 2017 15:03:14 +0100
+Received: from mxout012.mail.hostpoint.ch (mxout012.mail.hostpoint.ch
+	[217.26.49.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 23074E00970
+	for <yocto@yoctoproject.org>; Mon, 27 Feb 2017 06:35:01 -0800 (PST)
+Received: from [10.0.2.46] (helo=asmtp013.mail.hostpoint.ch)
+	by mxout012.mail.hostpoint.ch with esmtp (Exim 4.88 (FreeBSD))
+	(envelope-from <jakob.hasse@smart-home-technology.ch>)
+	id 1ciMOB-000D0H-VN
+	for yocto@yoctoproject.org; Mon, 27 Feb 2017 15:34:59 +0100
+Received: from [2a02:168:68bd:0:e5dc:ca3d:6657:c554]
+	by asmtp013.mail.hostpoint.ch with esmtpa (Exim 4.88 (FreeBSD))
+	(envelope-from <jakob.hasse@smart-home-technology.ch>)
+	id 1ciMOB-000H2n-Tp
+	for yocto@yoctoproject.org; Mon, 27 Feb 2017 15:34:59 +0100
+X-Authenticated-Sender-Id: jakob.hasse@smart-home-technology.ch
+To: Yocto List <yocto@yoctoproject.org>
+From: Jakob Hasse <jakob.hasse@smart-home-technology.ch>
+Message-ID: <53b791e3-6498-7493-43af-4ae89ec4f0c7@smart-home-technology.ch>
+Date: Mon, 27 Feb 2017 15:34:59 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
 	Thunderbird/45.7.0
 MIME-Version: 1.0
-Subject: Shared library question
+Subject: add users doesn't work
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,62 +45,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 27 Feb 2017 14:03:19 -0000
+X-List-Received-Date: Mon, 27 Feb 2017 14:35:05 -0000
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-I trying to create a package am335x-pru-support which creates a
-shared library used by another package pru-examples.  The library
-files installed with am335x-pru-support are (from <BUILD>/image)
--rwxr-xr-x 4 gthomas gthomas 17074 Feb 27 13:40 usr/lib/libprussdrv.a
-lrwxrwxrwx 1 gthomas gthomas    16 Feb 27 13:40 usr/lib/libprussdrv.so -> libprussdrv.so.1
-lrwxrwxrwx 1 gthomas gthomas    18 Feb 27 13:40 usr/lib/libprussdrv.so.1 -> libprussdrv.so.1.0
--rwxr-xr-x 1 gthomas gthomas 22092 Feb 27 13:40 usr/lib/libprussdrv.so.1.0
--rw-r--r-- 4 gthomas gthomas 8074 Feb 27 13:40 usr/include/pruss/prussdrv.h
--rw-r--r-- 4 gthomas gthomas 4286 Feb 27 13:40 usr/include/pruss/pruss_intc_mapping.h
+Hello,
 
-These files are split by the packager as:
-gthomas@europa:packages-split$ find am335x-pru-support | sort
-am335x-pru-support
-am335x-pru-support/usr
-am335x-pru-support/usr/lib
-am335x-pru-support/usr/lib/libprussdrv.so.1
-am335x-pru-support/usr/lib/libprussdrv.so.1.0
-gthomas@europa:packages-split$ find am335x-pru-support-dev | sort
-am335x-pru-support-dev
-am335x-pru-support-dev/usr
-am335x-pru-support-dev/usr/include
-am335x-pru-support-dev/usr/include/pruss
-am335x-pru-support-dev/usr/include/pruss/prussdrv.h
-am335x-pru-support-dev/usr/include/pruss/pruss_intc_mapping.h
-am335x-pru-support-dev/usr/lib
-am335x-pru-support-dev/usr/lib/libprussdrv.so
+I tried to add a user to my image, like described in the FAQ here:
+https://wiki.yoctoproject.org/wiki/FAQ:How_do_I_set_or_change_the_root_password
 
-These files get staged correctly to pru-examples recipe-specific-sysroot
-and I can build and link against them, using DEPENDS="am335x-pru-support".
-The problem is that when my build (target recipe) uses
-   $(CC) my_target_program.c $(LDFLAGS) -lprussdrv
-it gets satisfied by /usr/lib/libprussdrv.so and not /usr/lib/libprussdrv.so.1
-This in turn appears to keep the pru-examples package from having
-a runtime dependency against the am335x-pru-support package and the
-necessary library file does not end up on my target.
+However, if I added that two lines to my recipe, it doesn't have any 
+effect (still only root user available).
+What else do I need to change to make this work? And is the recipe the 
+right place for this line (FAQ doesn't mention this)?
 
-I've tried to work through this, following many recipes as examples,
-e.g. meta/recipes-multimedia/libogg (pattern for am335x-pru-support)
-and meta/recipes-multimedia/flac (pattern for pru-examples).  The
-libogg/flac combo works correctly, mine does not :-(
-
-Any pointers on what I might be doing wrong?  I'm so close to getting
-this stuff going, it's just the packaging that's going to claim the
-last hairs from my head...
-
-Thanks
-
-n.b. I'm happy to share any of the recipes, I just left them out for brevity.
+Kind Regards,
+Jakob
 
 -- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+Jakob Hasse
+Software Developement
+
+E: jakob.hasse@smart-home-technology.ch
+T: +41 44 552 02 66
+
+Smart Home Technology GmbH
+www.smart-home-technology.ch
+
 
