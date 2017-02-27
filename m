@@ -1,6 +1,6 @@
 Return-Path: <twoerner@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8524BE00970; Sun, 26 Feb 2017 23:29:17 -0800 (PST)
+	id 3A6D7E007BA; Mon, 27 Feb 2017 01:07:53 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,6 +9,11 @@ X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (twoerner[at]gmail.com)
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.223.196 listed in dnsbl.sorbs.net]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.223.196 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -16,61 +21,57 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.223.194 listed in dnsbl.sorbs.net]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.223.194 listed in list.dnswl.org]
-Received: from mail-io0-f194.google.com (mail-io0-f194.google.com
-	[209.85.223.194])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 42AEDE007BA
-	for <yocto@yoctoproject.org>; Sun, 26 Feb 2017 23:29:14 -0800 (PST)
-Received: by mail-io0-f194.google.com with SMTP id n76so3507253ioe.1
-	for <yocto@yoctoproject.org>; Sun, 26 Feb 2017 23:29:14 -0800 (PST)
+Received: from mail-io0-f196.google.com (mail-io0-f196.google.com
+	[209.85.223.196])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DAC00E007BA
+	for <yocto@yoctoproject.org>; Mon, 27 Feb 2017 01:07:50 -0800 (PST)
+Received: by mail-io0-f196.google.com with SMTP id f84so3204116ioj.0
+	for <yocto@yoctoproject.org>; Mon, 27 Feb 2017 01:07:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=date:from:to:cc:subject:message-id:references:mime-version
 	:content-disposition:in-reply-to:user-agent;
-	bh=97pKis5zeRJ8XtAwHrfRCyZTY/HAxuML5snWY29COGs=;
-	b=EUrF0LQVUL/VdpUtgvxmihGzIyTn8m+FT90t63U4zZSpDY7w5GbcQg3AWc231V0kkd
-	2BLPOWWgRezUyInEpPiZtDIQa/jven+gI6aiu1wfgiXweUpgaxrhrU7/TkhQS365i3hL
-	jgFP2qtVMszoCu4IPNI9n3rlMlSj52/p+c7W1O8pFGmU2J0fVRVdgtZlc6a/5814tENH
-	xhavQ17EMuluz+6S/y+lDD7znbWWNCnpd/FdigK+mAwwqN4H5TywIYLolIUNUR6bbpbO
-	xPkYMrOdMJVO0STvW0BvTPVKYs7E8sI7HrIBrXTrmJbDCf4rJ5rY1XIcoU7v2IIe1Cyd
-	DeAQ==
+	bh=UHLkXi4egzIfe2TBfzAsyIvIxBMqCrm8A3UWoUmjjl4=;
+	b=A8jhGdY5Dmtfx9H91wfNnVIIT2RByYfBfwQZllOg1CFVl2vacRSW4thl7n88lCpsyE
+	cbH5edNin/FsKFmREmWzPBK/ehfX+pYpaQDvoZaF4PlPMTEpG+eOIoP3hUrGPCz8sSfU
+	kAmAaHL6XCeQytdvvMGeG5MDu2n3quAqw9X8AKaQQ7fhDV3qzYaUJ9XdWPHjVHILcj0O
+	rtt/osCFAva9cEjSLprT8RfaiJej0dzBsrrFEhcBSt4iFSQZRm+WaeHeRhIK26zWXVlE
+	dwmJBoRHPJv2mTdOZLN1eAEVidv4Q1A5PLxLMdHUrpxpMlRtaLsxHdMgYBT+ZAKLj1l9
+	XLgA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
 	:mime-version:content-disposition:in-reply-to:user-agent;
-	bh=97pKis5zeRJ8XtAwHrfRCyZTY/HAxuML5snWY29COGs=;
-	b=Ajp5c8AMGpJ/Y+Ce/q9gMffvra7II3z9zNA+z3NrtPK0X7q3DPPKv/DQmXggFgl1o9
-	8lUfmg/dt6M1LYZVg8CIQ9f8W8bcXizf+trA8LcMiCv63Ff+xkOe7QwIuB+qWTxgXyw7
-	C9Xd547vePsV3yFplzKnQk5+Z5YhqIEbZEr7RALkzTr5gCCiXSkYJ+39UfZeJzEbgacs
-	fSXTJHoxyCgaah1l6ta3H+k12KXqr9a07TKehDa2WT+ducjU9YwNuI1DsiakFKTlpm39
-	pM1cltYz3TbdZE1/gatP4Ji5oQmpRXMv16ZPMXPGMTOBWXCLSN8eSIuLZ9kpV36vX7AY
-	2H3A==
-X-Gm-Message-State: AMke39mt52qYWIhTAjObxugWimwXlUT0lt8XhrKjBKxVkn0CdLWewk6G30tiY4Bt9rzG+w==
-X-Received: by 10.107.59.147 with SMTP id i141mr15097720ioa.152.1488180553999; 
-	Sun, 26 Feb 2017 23:29:13 -0800 (PST)
-Received: from linux-uys3 (dsl-67-55-28-109.acanac.net. [67.55.28.109])
-	by smtp.gmail.com with ESMTPSA id 20sm4246255iod.0.2017.02.26.23.29.12
+	bh=UHLkXi4egzIfe2TBfzAsyIvIxBMqCrm8A3UWoUmjjl4=;
+	b=Dit0rLKr8XFpaNJjCpf6b+kiPgkyFz+1xLn0fkXD7xOxp+jTijJMNnoeDPeA5LVkjr
+	2qUbWz4sGRwa6On4vSpSRrHAF8Aoa+3qSaTXYkOfVpARPWEAzuuDmnHzL2Q9lGbJpULU
+	2D/HirDuINm2KCUXDn1Pl/Md1Q0G/hrPIpEYxekNcFJg1VBOYbZPfF7HETHHudTu6aHE
+	As9/9uDBWTfSq9Ar4RGpQjk2YQh5L4ilrTAF8/HWs/7qeuKwdRUp5XAEOD+vCI9x8G8p
+	JAV2f9ne7Kp8WsPKnypFLimxqkwoI00uK+MI5Kasv9wJzgPAlghEWvtgeko6h5nMGP7d
+	0tdA==
+X-Gm-Message-State: AMke39m5g2A/PejaUlkcfYpIS4xaZz0TciL2QhN/6a13LyEct06BXI4Cxqd2SvSj3wyR0g==
+X-Received: by 10.107.15.78 with SMTP id x75mr1009857ioi.225.1488186469936;
+	Mon, 27 Feb 2017 01:07:49 -0800 (PST)
+Received: from linux-uys3 ([45.72.250.10])
+	by smtp.gmail.com with ESMTPSA id 78sm4140911ity.7.2017.02.27.01.07.49
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sun, 26 Feb 2017 23:29:12 -0800 (PST)
-Date: Mon, 27 Feb 2017 02:29:10 -0500
+	Mon, 27 Feb 2017 01:07:49 -0800 (PST)
+Date: Mon, 27 Feb 2017 04:07:47 -0500
 From: Trevor Woerner <twoerner@gmail.com>
 To: Eddie Cai <eddie.cai.linux@gmail.com>
-Message-ID: <20170227072910.GA13399@linux-uys3>
+Message-ID: <20170227090747.GA1959@linux-uys3>
 References: <20170219024340.23664-1-twoerner@gmail.com>
-	<20170219024340.23664-5-twoerner@gmail.com>
-	<CAJrj+DMxz0u-Lf=HCXpSLYzF4e7aYsZMtkHK0qUNKyZ6oLt+mA@mail.gmail.com>
-	<f2c046b0-3685-c3c1-0da2-325d90919270@rock-chips.com>
-	<CAJrj+DNXdQ3E0m9njhnc6FHhDhTocb=NA3PTXQPfJPN=DayB0g@mail.gmail.com>
-	<CAHUNapRFYroR8SVZUDZ2Z=h_yURYUv7y8-DevVVvpcX=55G8Vg@mail.gmail.com>
+	<20170219024340.23664-3-twoerner@gmail.com>
+	<CAFLEztS7U_s2Np48_Kb=+TMjNReDaGAE_uSRB-Gan+yHQRyC7g@mail.gmail.com>
+	<CAJrj+DMdmcBqnFgfJ4B3t+HCScH_ANCCm3wLcvDyDROMBowpYg@mail.gmail.com>
+	<CAJrj+DO24Y3Wwx-yoRcY0OrwoudO6y0-qppAi=4tDMm+bJzRgQ@mail.gmail.com>
+	<CAHUNapQM6ABxtp+5xy_0YjHUiy8F6VqVCK_9hcQPcxQaWeQq3A@mail.gmail.com>
+	<CAHUNapSvaH+a2=J09Nx6ff5Kt1LWxf4qtQs6B10YLG+CvOdV6w@mail.gmail.com>
+	<CAJrj+DO3DfJmDzJAkUAVOf3ja8jvmuEH00+o+u64m=k5N537Wg@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <CAHUNapRFYroR8SVZUDZ2Z=h_yURYUv7y8-DevVVvpcX=55G8Vg@mail.gmail.com>
+In-Reply-To: <CAJrj+DO3DfJmDzJAkUAVOf3ja8jvmuEH00+o+u64m=k5N537Wg@mail.gmail.com>
 User-Agent: Mutt/1.6.0 (2016-04-01)
-Cc: Jacob Chen <jacob2.chen@rock-chips.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-rockchip][PATCH v2 4/5] classes: rockchip-gpt-img: add
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-rockchip][PATCH v2 2/5] u-boot-rockchip: add
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -82,15 +83,83 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 27 Feb 2017 07:29:17 -0000
+X-List-Received-Date: Mon, 27 Feb 2017 09:07:53 -0000
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 
-> what about use BOOT_IMG = "boot-${MACHINE}-${DATETIME}.img" instead? That
-> will leave the previous build for debug and avoid trouble.
+On Wed 2017-02-22 @ 10:06:23 PM, Eddie Cai wrote:
+> Build Configuration:
+> BB_VERSION        = "1.32.0"
+> BUILD_SYS         = "x86_64-linux"
+> NATIVELSBSTRING   = "universal"
+> TARGET_SYS        = "arm-poky-linux-gnueabi"
+> MACHINE           = "firefly-rk3288"
+> DISTRO            = "poky"
+> DISTRO_VERSION    = "2.2.1"
+> TUNE_FEATURES     = "arm armv7ve vfp  neon  vfpv4  callconvention-hard
+>  cortexa17"
+> TARGET_FPU        = "hard"
+> meta
+> meta-poky
+> meta-yocto-bsp    = "HEAD:6a1f33cc40bfac33cf030fe41e1a8efd1e5fad6f"
+> meta-rockchip     =
+> "review-uboot-gtpimg-v2:5e181d4e74c50e290b507b1a990b1517eaffcea6"
+> 
+> BBLAYERS ?= " \
+>   ${BSPDIR}/src/poky/meta \
+>   ${BSPDIR}/src/poky/meta-poky \
+>   ${BSPDIR}/src/poky/meta-yocto-bsp \
+>   ${BSPDIR}/src/meta-rockchip \
 
-Using boot-${MACHINE}-${DATETIME}.img doesn't work, it leads to the following
-errors:
+I can't reproduce the issue you're seeing, and your meta-rockchip branch
+sounds suspicious. In a completely fresh location with a fresh shell could you
+please try the following?
 
-	ERROR: When reparsing /z/rockchip/master/layers/openembedded-core/meta/recipes-core/images/core-image-minimal.bb.do_image_rockchip_gpt_img, the basehash value changed from 7150ddd4bffcc76eed6ec85216596f3b to 2c30fda706826e991aaf953180edc3b2. The metadata is not deterministic and this needs to be fixed.
+	$ mkdir -p ~/tmp/rockchip/layers
+	$ cd ~/tmp/rockchip/layers
+	$ git clone git://git.openembedded.org/openembedded-core
+	$ git clone git://git.openembedded.org/bitbake
+	$ git clone git://git.yoctoproject.org/meta-rockchip
+	$ cd meta-rockchip
+	$ git checkout devs/twoerner/feb-updates-2
+	$ cd ~/tmp/rockchip
+	$ . layers/openembedded-core/oe-init-build-env build layers/bitbake
+	$ echo "BBLAYERS += \"$HOME/tmp/rockchip/layers/meta-rockchip\"" >> conf/bblayers.conf
+	set conf/local.conf to:
+		MACHINE ?= "firefly-rk3288"
+		DISTRO ?= "nodistro"
+		DL_DIR = "/opt/Downloads"
+		DEFAULTTUNE_rk3288 = "cortexa17hf-neon-vfpv4"
+		PACKAGE_CLASSES ?= "package_ipk"
+		EXTRA_IMAGE_FEATURES ?= "debug-tweaks"
+		USER_CLASSES ?= "buildstats image-mklibs image-prelink"
+		PATCHRESOLVE = "noop"
+		BB_DISKMON_DIRS = "\
+		    STOPTASKS,${TMPDIR},1G,100K \
+		    STOPTASKS,${DL_DIR},1G,100K \
+		    STOPTASKS,${SSTATE_DIR},1G,100K \
+		    STOPTASKS,/tmp,100M,100K \
+		    ABORT,${TMPDIR},100M,1K \
+		    ABORT,${DL_DIR},100M,1K \
+		    ABORT,${SSTATE_DIR},100M,1K \
+		    ABORT,/tmp,10M,1K"
+		PACKAGECONFIG_append_pn-qemu-native = " sdl"
+		PACKAGECONFIG_append_pn-nativesdk-qemu = " sdl"
+		ASSUME_PROVIDED += "libsdl-native"
+		CONF_VERSION = "1" 
+	$ bitbake virtual/bootloader
+
+The build configuration should look like:
+	Build Configuration:
+	BB_VERSION        = "1.33.1"
+	BUILD_SYS         = "x86_64-linux"
+	NATIVELSBSTRING   = "opensuse-42.2"
+	TARGET_SYS        = "arm-oe-linux-gnueabi"
+	MACHINE           = "firefly-rk3288"
+	DISTRO            = "nodistro"
+	DISTRO_VERSION    = "nodistro.0"
+	TUNE_FEATURES     = "arm armv7ve vfp neon vfpv4 callconvention-hard cortexa17"
+	TARGET_FPU        = "hard"
+	meta              = "master:65cfc8aca3ff7e39453977a0215a350d13cb85ef"
+	meta-rockchip     = "devs/twoerner/feb-updates-2:c252843cf2bf8326ccf2b552b59209f7a2ac3f16"
 
