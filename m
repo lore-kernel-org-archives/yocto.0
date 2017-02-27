@@ -1,6 +1,6 @@
 Return-Path: <bruce.ashfield@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DF55BE009CF; Mon, 27 Feb 2017 05:39:37 -0800 (PST)
+	id 6F146E00AC5; Mon, 27 Feb 2017 05:40:35 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,11 +10,11 @@ X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (bruce.ashfield[at]gmail.com)
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.220.181 listed in dnsbl.sorbs.net]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.220.181 listed in list.dnswl.org]
+	*      [209.85.220.171 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.220.171 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -23,45 +23,45 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qk0-f181.google.com (mail-qk0-f181.google.com
-	[209.85.220.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0E436E00970
-	for <yocto@yoctoproject.org>; Mon, 27 Feb 2017 05:39:36 -0800 (PST)
-Received: by mail-qk0-f181.google.com with SMTP id n127so96815456qkf.0
-	for <yocto@yoctoproject.org>; Mon, 27 Feb 2017 05:39:36 -0800 (PST)
+Received: from mail-qk0-f171.google.com (mail-qk0-f171.google.com
+	[209.85.220.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 23E71E00A4C
+	for <yocto@yoctoproject.org>; Mon, 27 Feb 2017 05:40:30 -0800 (PST)
+Received: by mail-qk0-f171.google.com with SMTP id u188so96713868qkc.2
+	for <yocto@yoctoproject.org>; Mon, 27 Feb 2017 05:40:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=08D5lArukBn4Q2i4pKiYw7S2B7mfLz+TtgO7SMx/8Lg=;
-	b=IBT5Gao1hfajYWyf55Mhy2ZQjkcX79oexFl8K0cHEd03Sm5O+42swqBWpTrOPN+cz8
-	RFBRrjDKhnWOYgqrjOiVOwSMlQI5w9NOSYz4CqT6iWYmwknpjQTiakHBclM6Q8FpJB/0
-	VC9I1RPj9RzJ2LoaMMED6BsOyBdUzOLBopqXUkRM4/mkGVHbw3cQ+UBWmtn7P4RJFfOT
-	Makmemc68bwMpvlap03Pdbt201miflz42ZDQ+3YE56r1DEL9WB9ADtMs+NrM2PpOfRHA
-	j5IUUuafi4RShAs5iAp8l8ZdVZ6rGnLWiHaKz7GKWFxruZgY93Y1Lz6N0lpM994nDugi
-	091w==
+	:cc; bh=+XhnmDeXVhDKgpm2Vm6uhtHjlOn7ZbnTv/QoQEhEoc8=;
+	b=V4dDNXV5aImfqhU+xl6ddUoyF97UtW1NLTY7NM52M74RiEnoOdbaE99OPlZPL4XIvF
+	PxHR0z7V9jeSkKv8pQVIIy5Y4W+Ym4q2yvEQYv2QBTbb3B9OOoUzX56c2TeaL/CncZma
+	giRUN6z7McYcVgIRWNJVQI0kli+PBiB5AzhlgUnPTaT3g9Nqfj+8ZrRl/2R82MqztZMB
+	4Wj6yX6BG+TlWeljFWsMT1vtMbTLN1l0RC4f/I/kXNl7k557ClpU5UkArWkKMCYwI9Km
+	YaJ8UIbIDP1VWL+XT8d4pRFD9XcUv9IuG/52LiQIEUwJl02VUhiOvpHcAJsGrWEmpEIW
+	yMrA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=08D5lArukBn4Q2i4pKiYw7S2B7mfLz+TtgO7SMx/8Lg=;
-	b=edGNEp2i0z+P+qEmQLt5oZnvEPbgXLYXbmN5eI/n7UF2GSshphR/3fHaEeF4Uv/ZTs
-	CgBAelWPGroT+OtpVHAIz8GzR4dvjh+NbEalFqSTb+bL0tZ1kwqg5TGRY/FeitQmGqVg
-	ahOzpX1nqqAdhY61dEKQBO+FXqu47bU5W17HqvLYMIUlM++ahNjTPe6ey3hL95jFmyEO
-	3BUD02YvZ/+ItQSqA48yguxqcnE+ov1fsAQUhxeRvp1TzgtZDl9+Q7Z1fLCL1AJnOc5Y
-	Se7j5DuEvIWmAtBhN9Q/jv98LpZEhQVDIbKX4Vn84wlgbIVs14haZnQiFeO7B03qtXeF
-	aYdA==
-X-Gm-Message-State: AMke39kqfd3Q4Fzn4QyeWgWjq0zR2VKBTpg+v5j8HgMbO6jhpDq0bt0T1sv5wEKH4jtvPxlf4wO7H38IyG4qkw==
-X-Received: by 10.55.139.67 with SMTP id n64mr17364455qkd.157.1488202776085;
-	Mon, 27 Feb 2017 05:39:36 -0800 (PST)
+	bh=+XhnmDeXVhDKgpm2Vm6uhtHjlOn7ZbnTv/QoQEhEoc8=;
+	b=ttJfxLmGPXUSwrm+1UK4jXXTFajhbVJ25Dd257OHSGIFYdF62ymTmvedSPyn9FHt5S
+	aOTJgZufLO+tdopv8vUdU4ZcBK/ve/wU9VzigxWrdtcX8xvRLaMieFDG+PBZYXTQCmaG
+	qZY7AkL9Y2d7dOyMjQelkFzV8ei6v1p5k6SIuyw2gFKUihG1NbzEE7Oc17KLViGqygPH
+	o/8IVCOMqKUbvezfnKZ+GgvU+77qVQzjz0Pq8xW+9jebSRDHp2WIShNj9FW6aNSk5IGR
+	TPFzv0JkrBteeJRlz6peq6QRv0jMg4E80n3/rCSOUmLYbrtgL9J5B06lln3vJt1FmXIP
+	u9Ww==
+X-Gm-Message-State: AMke39m+tmk8Atna6ZirExkG3KORCbdwBifeStKgwx6j7/IZbZwx3ZurwD2ggjiaq2Af9KuwaUDtQ5pr+awxtA==
+X-Received: by 10.55.65.70 with SMTP id o67mr14844518qka.254.1488202830086;
+	Mon, 27 Feb 2017 05:40:30 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.12.132.68 with HTTP; Mon, 27 Feb 2017 05:39:35 -0800 (PST)
-In-Reply-To: <alpine.LFD.2.20.1702270446460.4745@uk63952.mitel.com>
-References: <alpine.LFD.2.20.1702270446460.4745@uk63952.mitel.com>
+Received: by 10.12.132.68 with HTTP; Mon, 27 Feb 2017 05:40:29 -0800 (PST)
+In-Reply-To: <alpine.LFD.2.20.1702270526001.30746@uk63952.mitel.com>
+References: <alpine.LFD.2.20.1702270526001.30746@uk63952.mitel.com>
 From: Bruce Ashfield <bruce.ashfield@gmail.com>
-Date: Mon, 27 Feb 2017 08:39:35 -0500
-Message-ID: <CADkTA4Nu=KaXF+j-+r-dqnBFmBOV_5JJUSEBAoJkP3RO+F7M+w@mail.gmail.com>
+Date: Mon, 27 Feb 2017 08:40:29 -0500
+Message-ID: <CADkTA4Oxtk1PrwG7oJs2AN8MLdMN4YusN7Lj+jLJZKRjYqSOtg@mail.gmail.com>
 To: "Robert P. J. Day" <rpjday@crashcourse.ca>
 Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: couple questions about kernel-dev manual, section 2.6, "emenlow" branch
+Subject: Re: kernel-dev manual, section 2.6.2, do tags like "systemtap" exist?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,60 +73,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 27 Feb 2017 13:39:38 -0000
-Content-Type: multipart/alternative; boundary=001a114f8b88d290e305498335be
+X-List-Received-Date: Mon, 27 Feb 2017 13:40:35 -0000
+Content-Type: multipart/alternative; boundary=001a114abc7e0ad2e0054983395b
 
---001a114f8b88d290e305498335be
+--001a114abc7e0ad2e0054983395b
 Content-Type: text/plain; charset=UTF-8
 
-On Mon, Feb 27, 2017 at 4:54 AM, Robert P. J. Day <rpjday@crashcourse.ca>
+On Mon, Feb 27, 2017 at 5:27 AM, Robert P. J. Day <rpjday@crashcourse.ca>
 wrote:
 
 >
->   still working my way through the kernel-dev manual, and a couple
-> oddities in section 2.6.
->
->   first, the example given uses the (alleged) standard/emenlow branch,
-> which i'm pretty sure doesn't exist anymore, yes? if one is going to
-> use an example, i suggest one base that example on one of the YP
-> reference BSPs that's guaranteed to always exist, such as beagleboard
-> or arm-versatile-926ejs.
+>   section 2.6.2 refers to how to display changes based on a tag, and
+> uses the alleged tag name "systemtap" ... do tags like that even exist
+> anymore? i see no such tag in my current build directories.
 >
 
-I can't say that one will always exist .. but the arm-versatile branch has
-been around for years, and until the qemuarm target changes to use something
-else, it will continue to be around.
 
-
->
->   next, i'm assuming that one would be running those "git whatchanged"
-> commands in the project directory, under
-> tmp/work-shared/<target>/kernel-source, yes? it's just not made clear
-> in that section where a reader would be doing those things.
->
-
-Correct.
-
-
->
->   finally, section 2.6.1 reads:
->
-> "Here is an example that looks at what has changed in the emenlow
-> branch of the linux-yocto-3.19 kernel."
->
->   what does the kernel version of 3.19 have to do with those git
-> commands? how do those commands depend on the particular version of
-> the linux-yocto recipe you're using?
->
-
-At one point I was changing the branching structure, and the kernel meta
-data was in the same repo as the kernel source, so that could change some
-of the commands.
-
-But nothing has changed on that front in quite some time, so the answer
-is "they don't depend on the version you are using" .. so the version
-reference
-could be dropped.
+Correct. The tagged features were dropped a few years ago. So any section
+that
+references them could be dropped.
 
 Bruce
 
@@ -157,58 +122,25 @@ Bruce
 "Thou shalt not follow the NULL pointer, for chaos and madness await thee
 at its end"
 
---001a114f8b88d290e305498335be
+--001a114abc7e0ad2e0054983395b
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
 <div dir=3D"ltr"><br><div class=3D"gmail_extra"><br><div class=3D"gmail_quo=
-te">On Mon, Feb 27, 2017 at 4:54 AM, Robert P. J. Day <span dir=3D"ltr">&lt=
+te">On Mon, Feb 27, 2017 at 5:27 AM, Robert P. J. Day <span dir=3D"ltr">&lt=
 ;<a href=3D"mailto:rpjday@crashcourse.ca" target=3D"_blank">rpjday@crashcou=
 rse.ca</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"=
 margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><br>
-=C2=A0 still working my way through the kernel-dev manual, and a couple<br>
-oddities in section 2.6.<br>
-<br>
-=C2=A0 first, the example given uses the (alleged) standard/emenlow branch,=
-<br>
-which i&#39;m pretty sure doesn&#39;t exist anymore, yes? if one is going t=
-o<br>
-use an example, i suggest one base that example on one of the YP<br>
-reference BSPs that&#39;s guaranteed to always exist, such as beagleboard<b=
+=C2=A0 section 2.6.2 refers to how to display changes based on a tag, and<b=
 r>
-or arm-versatile-926ejs.<br></blockquote><div><br></div><div>I can&#39;t sa=
-y that one will always exist .. but the arm-versatile branch has <br></div>=
-<div>been around for years, and until the qemuarm target changes to use som=
-ething<br></div><div>else, it will continue to be around.<br></div><div>=C2=
-=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;borde=
-r-left:1px #ccc solid;padding-left:1ex">
-<br>
-=C2=A0 next, i&#39;m assuming that one would be running those &quot;git wha=
-tchanged&quot;<br>
-commands in the project directory, under<br>
-tmp/work-shared/&lt;target&gt;/<wbr>kernel-source, yes? it&#39;s just not m=
-ade clear<br>
-in that section where a reader would be doing those things.<br></blockquote=
-><div><br></div><div>Correct.<br></div><div>=C2=A0</div><blockquote class=
-=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padd=
-ing-left:1ex">
-<br>
-=C2=A0 finally, section 2.6.1 reads:<br>
-<br>
-&quot;Here is an example that looks at what has changed in the emenlow<br>
-branch of the linux-yocto-3.19 kernel.&quot;<br>
-<br>
-=C2=A0 what does the kernel version of 3.19 have to do with those git<br>
-commands? how do those commands depend on the particular version of<br>
-the linux-yocto recipe you&#39;re using?<br></blockquote><div><br></div><di=
-v>At one point I was changing the branching structure, and the kernel meta<=
-br></div><div>data was in the same repo as the kernel source, so that could=
- change some<br></div><div>of the commands.<br><br></div><div>But nothing h=
-as changed on that front in quite some time, so the answer <br></div><div>i=
-s &quot;they don&#39;t depend on the version you are using&quot; .. so the =
-version reference<br></div><div>could be dropped.<br><br></div><div>Bruce<b=
-r></div><div>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:=
-0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
+uses the alleged tag name &quot;systemtap&quot; ... do tags like that even =
+exist<br>
+anymore? i see no such tag in my current build directories.<br></blockquote=
+><div><br><br></div><div>Correct. The tagged features were dropped a few ye=
+ars ago. So any section that<br></div><div>references them could be dropped=
+.<br><br></div><div>Bruce<br></div><div>=C2=A0</div><blockquote class=3D"gm=
+ail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-le=
+ft:1ex">
 <br>
 rday<br>
 <span class=3D"HOEnZb"><font color=3D"#888888"><br>
@@ -251,4 +183,4 @@ ot follow the NULL pointer, for chaos and madness await thee at its end&quo=
 t;</div>
 </div></div>
 
---001a114f8b88d290e305498335be--
+--001a114abc7e0ad2e0054983395b--
