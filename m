@@ -1,41 +1,33 @@
-Return-Path: <rpjday@crashcourse.ca>
+Return-Path: <gary@mlbassoc.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5735AE00A07; Mon, 27 Feb 2017 05:56:52 -0800 (PST)
+	id EC9D4E00A07; Mon, 27 Feb 2017 06:03:18 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [208.80.206.84 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from smtp684.redcondor.net (smtp684.redcondor.net [208.80.206.84])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BFBE7E00970
-	for <yocto@yoctoproject.org>; Mon, 27 Feb 2017 05:56:51 -0800 (PST)
-Received: from astoria.ccjclearline.com ([64.235.106.9])
-	by smtp684.redcondor.net ({700db0a8-6fb7-4c8b-9b2a-6812225182d8})
-	via TCP (outbound) with ESMTPS id 20170227135646817_0684;
-	Mon, 27 Feb 2017 13:56:46 +0000
-X-RC-FROM: <rpjday@crashcourse.ca>
-Received: from [216.191.234.70] (port=20389 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1ciLn5-0003IA-PT; Mon, 27 Feb 2017 08:56:39 -0500
-Date: Mon, 27 Feb 2017 08:56:39 -0500 (EST)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@uk63952.mitel.com
-To: Bruce Ashfield <bruce.ashfield@gmail.com>
-In-Reply-To: <CADkTA4O2ugLjGtMfd3bo18bR=yKR1V4gzkrNUJq_JVbamB=2NA@mail.gmail.com>
-Message-ID: <alpine.LFD.2.20.1702270855481.26230@uk63952.mitel.com>
-References: <alpine.LFD.2.20.1702270504160.5510@uk63952.mitel.com>
-	<CADkTA4O2ugLjGtMfd3bo18bR=yKR1V4gzkrNUJq_JVbamB=2NA@mail.gmail.com>
-User-Agent: Alpine 2.20 (LFD 67 2015-01-07)
+Received: from mail.analogue-micro.com (mail.analogue-micro.com
+	[217.144.149.242])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C0883E00970
+	for <yocto@yoctoproject.org>; Mon, 27 Feb 2017 06:03:17 -0800 (PST)
+Received: by mail.analogue-micro.com (Postfix, from userid 999)
+	id C546368A019; Mon, 27 Feb 2017 14:03:15 +0000 (GMT)
+Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
+	by mail.analogue-micro.com (Postfix) with ESMTP id 5711968A019;
+	Mon, 27 Feb 2017 14:03:15 +0000 (GMT)
+Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
+	by zeus.mlbassoc.com (Postfix) with ESMTP id 000A567401F0;
+	Mon, 27 Feb 2017 15:03:14 +0100 (CET)
+From: Gary Thomas <gary@mlbassoc.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Message-ID: <10426572-3dbf-9403-f73b-ecbcb3a02157@mlbassoc.com>
+Date: Mon, 27 Feb 2017 15:03:14 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.7.0
 MIME-Version: 1.0
-X-MAG-OUTBOUND: ccj.redcondor.net@64.235.106.9/32
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: [PATCH] yocto-docs: kernel-dev, update "3.19" versions to "4.4"
+Subject: Shared library question
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,33 +39,62 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 27 Feb 2017 13:56:52 -0000
-Content-Type: text/plain; charset=US-ASCII
+X-List-Received-Date: Mon, 27 Feb 2017 14:03:19 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Mon, 27 Feb 2017, Bruce Ashfield wrote:
+I trying to create a package am335x-pru-support which creates a
+shared library used by another package pru-examples.  The library
+files installed with am335x-pru-support are (from <BUILD>/image)
+-rwxr-xr-x 4 gthomas gthomas 17074 Feb 27 13:40 usr/lib/libprussdrv.a
+lrwxrwxrwx 1 gthomas gthomas    16 Feb 27 13:40 usr/lib/libprussdrv.so -> libprussdrv.so.1
+lrwxrwxrwx 1 gthomas gthomas    18 Feb 27 13:40 usr/lib/libprussdrv.so.1 -> libprussdrv.so.1.0
+-rwxr-xr-x 1 gthomas gthomas 22092 Feb 27 13:40 usr/lib/libprussdrv.so.1.0
+-rw-r--r-- 4 gthomas gthomas 8074 Feb 27 13:40 usr/include/pruss/prussdrv.h
+-rw-r--r-- 4 gthomas gthomas 4286 Feb 27 13:40 usr/include/pruss/pruss_intc_mapping.h
 
-> On Mon, Feb 27, 2017 at 5:07 AM, Robert P. J. Day <rpjday@crashcourse.ca> wrote:
->
->       Update the remaining references to kernel version 3.19 to
->       version 4.4, restricted to the section
->       "kernel-dev-common.xml".
->
-> I just sent a patch to drop 4.4 from master. I'd suggest 4.9 as a
-> version to use that will persist in master for a bit longer.
+These files are split by the packager as:
+gthomas@europa:packages-split$ find am335x-pru-support | sort
+am335x-pru-support
+am335x-pru-support/usr
+am335x-pru-support/usr/lib
+am335x-pru-support/usr/lib/libprussdrv.so.1
+am335x-pru-support/usr/lib/libprussdrv.so.1.0
+gthomas@europa:packages-split$ find am335x-pru-support-dev | sort
+am335x-pru-support-dev
+am335x-pru-support-dev/usr
+am335x-pru-support-dev/usr/include
+am335x-pru-support-dev/usr/include/pruss
+am335x-pru-support-dev/usr/include/pruss/prussdrv.h
+am335x-pru-support-dev/usr/include/pruss/pruss_intc_mapping.h
+am335x-pru-support-dev/usr/lib
+am335x-pru-support-dev/usr/lib/libprussdrv.so
 
-  in that case, one can drop those earlier patches i sent in, and i
-will submit newer ones.
+These files get staged correctly to pru-examples recipe-specific-sysroot
+and I can build and link against them, using DEPENDS="am335x-pru-support".
+The problem is that when my build (target recipe) uses
+   $(CC) my_target_program.c $(LDFLAGS) -lprussdrv
+it gets satisfied by /usr/lib/libprussdrv.so and not /usr/lib/libprussdrv.so.1
+This in turn appears to keep the pru-examples package from having
+a runtime dependency against the am335x-pru-support package and the
+necessary library file does not end up on my target.
 
-rday
+I've tried to work through this, following many recipes as examples,
+e.g. meta/recipes-multimedia/libogg (pattern for am335x-pru-support)
+and meta/recipes-multimedia/flac (pattern for pru-examples).  The
+libogg/flac combo works correctly, mine does not :-(
+
+Any pointers on what I might be doing wrong?  I'm so close to getting
+this stuff going, it's just the packaging that's going to claim the
+last hairs from my head...
+
+Thanks
+
+n.b. I'm happy to share any of the recipes, I just left them out for brevity.
 
 -- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
-
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
