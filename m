@@ -1,67 +1,37 @@
-Return-Path: <eddie.cai.linux@gmail.com>
+Return-Path: <gary@mlbassoc.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 87CD6E00546; Mon, 27 Feb 2017 20:42:05 -0800 (PST)
+	id AA940E00655; Mon, 27 Feb 2017 21:14:15 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (eddie.cai.linux[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.220.178 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qk0-f178.google.com (mail-qk0-f178.google.com
-	[209.85.220.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3546AE00519
-	for <yocto@yoctoproject.org>; Mon, 27 Feb 2017 20:42:01 -0800 (PST)
-Received: by mail-qk0-f178.google.com with SMTP id u188so1754923qkc.2
-	for <yocto@yoctoproject.org>; Mon, 27 Feb 2017 20:42:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=t66VSPAxdQcGZWxDM+8Fp/T2Xva0RMUn9WFedgEy3R8=;
-	b=rihyDl4IjhGU8D+t9kiwqDnNuvuXLlVxJtxCDrl3I1lbFNmFaRro3xuvLNXXalffl7
-	MPwxg34VRS2RhvW+ARGByIZCUwH6AY0HfWbpiSsSRTNaSH3/qNijOaf1kj5b8IJvLmyr
-	JYBW5zvqf/ODQDhMIDahjHcwc4ET0pKqJiYONv3O+KoOBhL+8tGtM6Mpw20mmrA0XetQ
-	p8EbKW/6/FlxcucfxKQqkS2Qe31ez9rLNzKeG92+4XSwBKj6J7Sr4wBgewXXOncMNAWe
-	838ZjimBGm9mgblpOVyS6mgBiw5gO9P5bK9hxyHSl49LvQ+4UX+IXUoL0+LSDoqZ/bpB
-	ptAw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=t66VSPAxdQcGZWxDM+8Fp/T2Xva0RMUn9WFedgEy3R8=;
-	b=ITWC6zSfOaWXeedu/dl9XChRgJF5S7J5TXCVqezl4o3sQvOb/55UeBHOhgrairZ3jz
-	Lcbl1o0B8dOq1JkUdNf9NeNxBK/gcNFnx4xLOMCgDZ6ZX6db3Ot6OdI28VZ2u/HI3W04
-	JlICM0sfVMz0xOTYeog6+PEn8Xe8z3ei47B5mdw1PbMhiNyRG64+CBm9tbvWYMrzvJMa
-	4GIQlGenz5hfbnQ/e+qFTIf0zeSv9KMZNHf6FN8EWLJmaAyg55+Sk8zK3SwAjn2IFIGD
-	pT2d+dwjN5YN71sJAvgNUmSkdQNEKujmGBzE5H012V6EgYP2PhFSa0HbbQKaZ6lgyfd4
-	lMng==
-X-Gm-Message-State: AMke39mQzMPpyShqxyqagnd6ZJXPA5bOTcjXUHRIp0+G3U1jdRBLonWLEj+XhgMNkffQbxGYdAux/S8baMu7sg==
-X-Received: by 10.55.89.70 with SMTP id n67mr416699qkb.292.1488256921470; Mon,
-	27 Feb 2017 20:42:01 -0800 (PST)
+Received: from mail.analogue-micro.com (mail.analogue-micro.com
+	[217.144.149.242])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1726FE0052B
+	for <yocto@yoctoproject.org>; Mon, 27 Feb 2017 21:14:12 -0800 (PST)
+Received: by mail.analogue-micro.com (Postfix, from userid 999)
+	id 5861368A01A; Tue, 28 Feb 2017 05:14:11 +0000 (GMT)
+Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
+	by mail.analogue-micro.com (Postfix) with ESMTP id E5CFB68A019;
+	Tue, 28 Feb 2017 05:14:06 +0000 (GMT)
+Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
+	by zeus.mlbassoc.com (Postfix) with ESMTP id 4564E6740364;
+	Tue, 28 Feb 2017 06:14:05 +0100 (CET)
+To: Max Krummenacher <max.oss.09@gmail.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <10426572-3dbf-9403-f73b-ecbcb3a02157@mlbassoc.com>
+	<1488226281.2083.7.camel@gmail.com>
+From: Gary Thomas <gary@mlbassoc.com>
+Message-ID: <c3895122-3421-6067-6955-abb525e9df48@mlbassoc.com>
+Date: Tue, 28 Feb 2017 06:13:54 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.7.0
 MIME-Version: 1.0
-Received: by 10.237.47.68 with HTTP; Mon, 27 Feb 2017 20:42:00 -0800 (PST)
-In-Reply-To: <20170228030814.GA8559@linux-uys3>
-References: <20170227192056.10830-1-twoerner@gmail.com>
-	<20170227192056.10830-2-twoerner@gmail.com>
-	<CAJrj+DPQFRDxsF=2=T6sfdfhiHvHD6n0KbH6jS0nJfLjA2NxPA@mail.gmail.com>
-	<20170228030814.GA8559@linux-uys3>
-From: Eddie Cai <eddie.cai.linux@gmail.com>
-Date: Tue, 28 Feb 2017 12:42:00 +0800
-Message-ID: <CAJrj+DPvWwj2yO=Ot0581Lt1Y7ztb+BxmbAJCZhwjz5XfgHP9w@mail.gmail.com>
-To: Trevor Woerner <twoerner@gmail.com>
-Cc: yocto@yoctoproject.org, Jacob Chen <jacob-chen@iotwrt.com>
-Subject: Re: [meta-rockchip][PATCH v4] classes: rockchip-gpt-img: add
+In-Reply-To: <1488226281.2083.7.camel@gmail.com>
+Subject: Re: Shared library question
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,133 +43,78 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 Feb 2017 04:42:05 -0000
-Content-Type: multipart/alternative; boundary=001a114e6312238c8b05498fd13d
+X-List-Received-Date: Tue, 28 Feb 2017 05:14:15 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
---001a114e6312238c8b05498fd13d
-Content-Type: text/plain; charset=UTF-8
+On 2017-02-27 21:11, Max Krummenacher wrote:
+> Hi
+>
+> Am Montag, den 27.02.2017, 15:03 +0100 schrieb Gary Thomas:
+>> I trying to create a package am335x-pru-support which creates a
+>> shared library used by another package pru-examples.  The library
+>> files installed with am335x-pru-support are (from <BUILD>/image)
+>> -rwxr-xr-x 4 gthomas gthomas 17074 Feb 27 13:40 usr/lib/libprussdrv.a
+>> lrwxrwxrwx 1 gthomas gthomas    16 Feb 27 13:40 usr/lib/libprussdrv.so -> libprussdrv.so.1
+>> lrwxrwxrwx 1 gthomas gthomas    18 Feb 27 13:40 usr/lib/libprussdrv.so.1 -> libprussdrv.so.1.0
+>> -rwxr-xr-x 1 gthomas gthomas 22092 Feb 27 13:40 usr/lib/libprussdrv.so.1.0
+>> -rw-r--r-- 4 gthomas gthomas 8074 Feb 27 13:40 usr/include/pruss/prussdrv.h
+>> -rw-r--r-- 4 gthomas gthomas 4286 Feb 27 13:40 usr/include/pruss/pruss_intc_mapping.h
+>>
+>> These files are split by the packager as:
+>> gthomas@europa:packages-split$ find am335x-pru-support | sort
+>> am335x-pru-support
+>> am335x-pru-support/usr
+>> am335x-pru-support/usr/lib
+>> am335x-pru-support/usr/lib/libprussdrv.so.1
+>> am335x-pru-support/usr/lib/libprussdrv.so.1.0
+>> gthomas@europa:packages-split$ find am335x-pru-support-dev | sort
+>> am335x-pru-support-dev
+>> am335x-pru-support-dev/usr
+>> am335x-pru-support-dev/usr/include
+>> am335x-pru-support-dev/usr/include/pruss
+>> am335x-pru-support-dev/usr/include/pruss/prussdrv.h
+>> am335x-pru-support-dev/usr/include/pruss/pruss_intc_mapping.h
+>> am335x-pru-support-dev/usr/lib
+>> am335x-pru-support-dev/usr/lib/libprussdrv.so
+>>
+>> These files get staged correctly to pru-examples recipe-specific-sysroot
+>> and I can build and link against them, using DEPENDS="am335x-pru-support".
+>> The problem is that when my build (target recipe) uses
+>>    $(CC) my_target_program.c $(LDFLAGS) -lprussdrv
+>> it gets satisfied by /usr/lib/libprussdrv.so and not /usr/lib/libprussdrv.so.1
+>> This in turn appears to keep the pru-examples package from having
+>> a runtime dependency against the am335x-pru-support package and the
+>> necessary library file does not end up on my target.
+>>
+>> I've tried to work through this, following many recipes as examples,
+>> e.g. meta/recipes-multimedia/libogg (pattern for am335x-pru-support)
+>> and meta/recipes-multimedia/flac (pattern for pru-examples).  The
+>> libogg/flac combo works correctly, mine does not :-(
+>>
+>> Any pointers on what I might be doing wrong?  I'm so close to getting
+>> this stuff going, it's just the packaging that's going to claim the
+>> last hairs from my head...
+>
+> When linking a shared object file you have to pass the linker a soname which adds compatible version
+> information into the share object file.
+> Have a look here:
+> http://git.yoctoproject.org/cgit/cgit.cgi/meta-fsl-arm/commit/recipes-bsp?id=7ff327a4e3e8e19d1e3f848
+> 865b6b27ba9f6250b
+> http://tldp.org/HOWTO/Program-Library-HOWTO/shared-libraries.html
+>
+>
+> Alternatively you can drop the libprussdrv.so.1 and libprussdrv.so.1.0, and force with FILES... the
+> libprussdrv.so into the not -dev package.
+> Probably you would also want to INSANE_SKIP_${PN} = "dev-so".
 
-Hi Trevor
+Perfect, that worked a treat!
 
-2017-02-28 11:08 GMT+08:00 Trevor Woerner <twoerner@gmail.com>:
+Thanks
 
-> Hi Eddie,
->
-> On Tue 2017-02-28 @ 08:48:16 AM, Eddie Cai wrote:
-> > Could you also copy ${BOOT_IMG} to ${DEPLOY_DIR_IMAGE} . That is much
-> > earier for people find boot image. In case they want to flash boot
-> > partition alone.
->
-> All of this work is always done in DEPLOY_DIR_IMAGE.
->
->         $ bitbake core-image-minimal -e | grep "^DEPLOY_DIR_IMAGE="
->         DEPLOY_DIR_IMAGE="/z/rockchip/master/build/tmp-glibc/deploy/
-> images/firefly-rk3288"
->
->         $ bitbake core-image-minimal -e | grep "^BOOT_IMG="
->         BOOT_IMG="boot.img"
->
-> With this class file as submitted in v4, if I build my first image I get:
->         $ ls -lh tmp-glibc/deploy/images/firefly-rk3288/
->         -rw-r--r-- 1 trevor users 137M Feb 27 14:05
-> core-image-minimal-firefly-rk3288-20170227190504.gpt-img
->         lrwxrwxrwx 1 trevor users   56 Feb 27 14:06
-> core-image-minimal-firefly-rk3288.gpt-img -> core-image-minimal-firefly-
-> rk3288-20170227190504.gpt-img
->
-> If I adjust the image then build it again I get:
->         $ ls -lh tmp-glibc/deploy/images/firefly-rk3288/
->         -rw-r--r-- 1 trevor users 137M Feb 27 14:05
-> core-image-minimal-firefly-rk3288-20170227190504.gpt-img
->         -rw-r--r-- 1 trevor users 137M Feb 27 14:06
-> core-image-minimal-firefly-rk3288-20170227190628.gpt-img
->         lrwxrwxrwx 1 trevor users   56 Feb 27 14:06
-> core-image-minimal-firefly-rk3288.gpt-img -> core-image-minimal-firefly-
-> rk3288-20170227190628.gpt-img
->
-> As you can see:
-> - the images appear in DEPLOY_DIR_IMAGE
-> - the first gpt-img is still there
-> - after each build the "core-image-minimal-firefly-rk3288.gpt-img" symlink
->   always points to the latest gpt-img file
->
-> Is this what you were hoping for?
->
-I am not saying gpt image. What i mean is the single boot.img which contain
-kernel zimage, device tree and extlinux file. with this file, i can use
-below command update kernel and device tree. There are many people prefer
-this way.
-upgrade_tool db RK3288UbootLoader_V2.30.06.bin
-upgrade_tool wl 32768 deploy/images/firefly-rk3288/boot.img
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
---001a114e6312238c8b05498fd13d
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi Trevor<div class=3D"gmail_extra"><br><div class=3D"gmai=
-l_quote">2017-02-28 11:08 GMT+08:00 Trevor Woerner <span dir=3D"ltr">&lt;<a=
- href=3D"mailto:twoerner@gmail.com" target=3D"_blank">twoerner@gmail.com</a=
->&gt;</span>:<br><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px =
-0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Hi Eddie=
-,<br>
-<span class=3D"gmail-"><br>
-On Tue 2017-02-28 @ 08:48:16 AM, Eddie Cai wrote:<br>
-&gt; Could you also copy ${BOOT_IMG} to ${DEPLOY_DIR_IMAGE} . That is much<=
-br>
-&gt; earier for people find boot image. In case they want to flash boot<br>
-&gt; partition alone.<br>
-<br>
-</span>All of this work is always done in DEPLOY_DIR_IMAGE.<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 $ bitbake core-image-minimal -e | grep &quot;^D=
-EPLOY_DIR_IMAGE=3D&quot;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 DEPLOY_DIR_IMAGE=3D&quot;/z/rockchip/<wbr>maste=
-r/build/tmp-glibc/deploy/<wbr>images/firefly-rk3288&quot;<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 $ bitbake core-image-minimal -e | grep &quot;^B=
-OOT_IMG=3D&quot;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 BOOT_IMG=3D&quot;boot.img&quot;<br>
-<br>
-With this class file as submitted in v4, if I build my first image I get:<b=
-r>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 $ ls -lh tmp-glibc/deploy/images/<wbr>firefly-r=
-k3288/<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 -rw-r--r-- 1 trevor users 137M Feb 27 14:05 cor=
-e-image-minimal-firefly-<wbr>rk3288-20170227190504.gpt-img<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 lrwxrwxrwx 1 trevor users=C2=A0 =C2=A056 Feb 27=
- 14:06 core-image-minimal-firefly-<wbr>rk3288.gpt-img -&gt; core-image-mini=
-mal-firefly-<wbr>rk3288-20170227190504.gpt-img<br>
-<br>
-If I adjust the image then build it again I get:<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 $ ls -lh tmp-glibc/deploy/images/<wbr>firefly-r=
-k3288/<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 -rw-r--r-- 1 trevor users 137M Feb 27 14:05 cor=
-e-image-minimal-firefly-<wbr>rk3288-20170227190504.gpt-img<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 -rw-r--r-- 1 trevor users 137M Feb 27 14:06 cor=
-e-image-minimal-firefly-<wbr>rk3288-20170227190628.gpt-img<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 lrwxrwxrwx 1 trevor users=C2=A0 =C2=A056 Feb 27=
- 14:06 core-image-minimal-firefly-<wbr>rk3288.gpt-img -&gt; core-image-mini=
-mal-firefly-<wbr>rk3288-20170227190628.gpt-img<br>
-<br>
-As you can see:<br>
-- the images appear in DEPLOY_DIR_IMAGE<br>
-- the first gpt-img is still there<br>
-- after each build the &quot;core-image-minimal-firefly-<wbr>rk3288.gpt-img=
-&quot; symlink<br>
-=C2=A0 always points to the latest gpt-img file<br>
-<br>
-Is this what you were hoping for?<br></blockquote><div>I am not saying gpt =
-image. What i mean is the single boot.img which contain kernel zimage, devi=
-ce tree and extlinux file. with this file, i can use below command update k=
-ernel and device tree. There are many people prefer this way.=C2=A0</div><d=
-iv>upgrade_tool db=C2=A0<span style=3D"background-color:transparent;color:i=
-nherit;font-family:menlo,monaco,consolas,&quot;courier new&quot;,monospace;=
-font-size:inherit;white-space:pre-wrap">RK3288UbootLoader_V2.30.06.bin</spa=
-n></div><div>upgrade_tool wl=C2=A0<span style=3D"color:rgb(51,51,51);font-f=
-amily:&quot;helvetica neue&quot;,helvetica,arial,sans-serif;font-size:14px"=
->32768=C2=A0</span>deploy/images/<wbr>firefly-rk3288/<span style=3D"color:r=
-gb(51,51,51);font-family:&quot;helvetica neue&quot;,helvetica,arial,sans-se=
-rif;font-size:14px">boot.img</span></div><div><br></div></div><br></div></d=
-iv>
-
---001a114e6312238c8b05498fd13d--
