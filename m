@@ -1,98 +1,68 @@
-Return-Path: <christrobridge@hotmail.com>
+Return-Path: <praveen.vatt@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6E04EE0074B; Tue, 28 Feb 2017 03:56:49 -0800 (PST)
+	id E86C1E007BA; Tue, 28 Feb 2017 04:28:02 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE, 
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (christrobridge[at]hotmail.com)
+	mail provider *      (praveen.vatt[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [65.55.90.25 listed in list.dnswl.org]
+	*      [74.125.82.193 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 65 seconds by postgrey-1.32 at yocto-www;
-	Tue, 28 Feb 2017 03:56:46 PST
-Received: from SNT004-OMC1S14.hotmail.com (snt004-omc1s14.hotmail.com
-	[65.55.90.25])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 196DDE0050B
-	for <yocto@yoctoproject.org>; Tue, 28 Feb 2017 03:56:46 -0800 (PST)
-Received: from EUR02-HE1-obe.outbound.protection.outlook.com ([65.55.90.9]) by
-	SNT004-OMC1S14.hotmail.com over TLS secured channel with
-	Microsoft SMTPSVC(7.5.7601.23008); Tue, 28 Feb 2017 03:55:38 -0800
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
-	s=selector1; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
-	bh=PWfazMjQrVgiDl+ix5M99BHaejgLewpXkEnOaVyGDus=;
-	b=D/blrB1PlAtAXBdO1HscUdkF+msGnPhlwC2vdJi2tBeGJ3dQX2JLteW0J4qm7Xp9vtkKovDkMjMbJDev/Cv3Upyq799HsTJXOm3njMUsS5kGoQFZ6rRVwh6ebe27mdDSssTyHgxCOX1jnWVhJv3uD/wouP0SWsXuPbxjK3jm4v8HBl8haKuCfVObaAJz6m10DNHPBcXeGPhxJACxzaX2CC1tv/oIwsS1UPeUKlP3/DCo1NrH+LarQMfEehqXobRjyb8GXv9xn+wVtRTBNuRSH5ISs5Lr0KerwuLAlX4lsOhmFhA7txQ/fEZS7FiMtLjfGy41Bqnnu0KCgD27xnYYlg==
-Received: from HE1EUR02FT048.eop-EUR02.prod.protection.outlook.com
-	(10.152.10.58) by HE1EUR02HT099.eop-EUR02.prod.protection.outlook.com
-	(10.152.11.239) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.919.10;
-	Tue, 28 Feb 2017 11:55:33 +0000
-Received: from LO1P123MB1412.GBRP123.PROD.OUTLOOK.COM (10.152.10.58) by
-	HE1EUR02FT048.mail.protection.outlook.com (10.152.10.243) with
-	Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
-	15.1.933.11 via Frontend Transport; Tue, 28 Feb 2017 11:55:32 +0000
-Received: from LO1P123MB1412.GBRP123.PROD.OUTLOOK.COM ([10.167.30.18]) by
-	LO1P123MB1412.GBRP123.PROD.OUTLOOK.COM ([10.167.30.18]) with mapi id
-	15.01.0933.020; Tue, 28 Feb 2017 11:55:32 +0000
-From: Chris Trobridge <christrobridge@hotmail.com>
-To: Yocto List <yocto@yoctoproject.org>
-Thread-Topic: Intermittent Kernel Boot Hang 4.8/Intel Z5 Atom
-Thread-Index: AQHSjoZKjWJAYTKLNk+d7Y0iQ23mwqF+UMdC
-Date: Tue, 28 Feb 2017 11:55:32 +0000
-Message-ID: <LO1P123MB14126A29E1FE6706120D8B4FDA560@LO1P123MB1412.GBRP123.PROD.OUTLOOK.COM>
-References: <LO1P123MB14126B59AF50D68E01D73A26DA520@LO1P123MB1412.GBRP123.PROD.OUTLOOK.COM>
-In-Reply-To: <LO1P123MB14126B59AF50D68E01D73A26DA520@LO1P123MB1412.GBRP123.PROD.OUTLOOK.COM>
-Accept-Language: en-GB, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: yoctoproject.org; dkim=none (message not signed)
-	header.d=none;yoctoproject.org; dmarc=none action=none
-	header.from=hotmail.com;
-x-incomingtopheadermarker: OriginalChecksum:D19B168D75F8A40F82454012ADD47862097D26F812DAE16ACA3A39FB645C164E;
-	UpperCasedChecksum:123858658EFAE6A65824A28139FCD744286A1E4C175DD128F87135DFDEA61147;
-	SizeAsReceived:7791; Count:39
-x-ms-exchange-messagesentrepresentingtype: 1
-x-tmn: [7IkZS3q1NXasM9EJxti3t9FlIJbNEady]
-x-incomingheadercount: 39
-x-eopattributedmessage: 0
-x-microsoft-exchange-diagnostics: 1; HE1EUR02HT099;
-	5:HRIayku84CGpfoJfQ3TNGtzXK2+/x0HNSs01h3gx3VICTtJo9KzU6I7E/b0Gftooz3o5lEOq6D066ypsjY9rKB2btagCMXhmpbKzN25oJomgj1U4e5qW9t1oUZ5ENrL86cAQm2JGjhr9NvEoeLOWMw==;
-	24:khx+dS9M/6HN9UbTuCeRd7Yt96mjucUqW2eL/hvJilH7ZRKJofEtbSiCLkCd0H0j87M/ItdqS0rlrc2XTc2w0GB3PiKsF/A4GtAK5iLz+Vo=;
-	7:H3CqTfkoRM4kuuVTThesRC1bDBR6qRUQppjoMyGcFteJw5rA74yUo3bbXmUhKtveAL1Wr6GHl96LC/n8FKA5IczQzuCH2DEfs/YaVeBCtOGS7F9X9jRd5V9logLw5gRWwt6igOwo37x12T/6dBnDaXmfMCukTdL4qYlmGidkjeyzaull9byPpBqsQ5EN93OKkm7VvdQ4Xk1QAx2UOpHywntnvHJRspHw/8W6ZfUW6IvDHSxSafjRHMstQHBQ/ArTk4aMlfCglEPlQccJdROKGbqYAP8GuUdtokQEdVGz7JZrCKCQmyWLIAU/hvhmoQvj
-x-forefront-antispam-report: EFV:NLI; SFV:NSPM; SFS:(10019020)(98900012);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:HE1EUR02HT099;
-	H:LO1P123MB1412.GBRP123.PROD.OUTLOOK.COM; FPR:; SPF:None;
-	LANG:en; 
-x-ms-office365-filtering-correlation-id: f0f406b1-eb0d-490c-210e-08d45fd0b2d0
-x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
-	RULEID:(22001)(201702061074)(5061506573)(5061507331)(1603103135)(1601125254)(1603101448)(1701031045);
-	SRVR:HE1EUR02HT099; 
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(432015087)(444000031); SRVR:HE1EUR02HT099; BCL:0; PCL:0;
-	RULEID:; SRVR:HE1EUR02HT099; 
-x-forefront-prvs: 0232B30BBC
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.82.193 listed in dnsbl.sorbs.net]
+Received: from mail-ot0-f193.google.com (mail-ot0-f193.google.com
+	[74.125.82.193])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CE34CE0074B
+	for <yocto@yoctoproject.org>; Tue, 28 Feb 2017 04:27:59 -0800 (PST)
+Received: by mail-ot0-f193.google.com with SMTP id i1so993527ota.3
+	for <yocto@yoctoproject.org>; Tue, 28 Feb 2017 04:27:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=EID4zD4lihAyX10LyVPW4F+4x5AtzXO5/ctHeBkAeAk=;
+	b=eFKcNC08gUQCCJv8F4QXY9zpluW6dI1coExlOODKvsn3WT87JpupWQOgZRoDqNj2ir
+	3V4yEJUJVk+i2kb7NKfgaVx4G28eK7i7SegSrPluCNu3apJU45/zP5KVE6da+FT/q7Az
+	GMANZz7y6rn/N/zurMQKPMS/eCM6lwvmb2zBfgUwwXy0c6H/jpmsG2ycsV7Rueuk6ko9
+	/00rmoEXl9cpC9j14h866PCJ2jwlXeG88zkJ5a3XpwZuPGhbY/vkvbEtIHMqRIsGJ8tf
+	+ewEtz5V/kMeltEIPdXXjUJwJ1ZjZq6TZA544OkstaYAfZ3M/BX/vFc7BWA6mxl5I63c
+	S1ww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=EID4zD4lihAyX10LyVPW4F+4x5AtzXO5/ctHeBkAeAk=;
+	b=lR4MbVchYtKFXBnxDHqYLjFBLOhkM+mKRduuzoBfVVkeskOOkj49JmdOEy2+fIKfoh
+	9YKd1QZESeNwYPXZz99trgAash7mFLYi/7evIk/t0Mfdg5mJBqidKLBV3lvs2HrNfzWe
+	hGL8NHViYSTse1gfNNWIvd/1wgIJZFXemP9JhJY0UrZYn3KQfoih7NO8IbcwfhMPa8M1
+	H+QcIP14JBbpGSPt5+Vp9CWte8D82t8cTaxFguQ3ZBqH5WgZQ8WpZ2juQBhybn7G8UNP
+	6eTwAgXY3TpfdM6qvEcAVUvVGm8FyNWSwJP7UjZn6UQ6BqoR4ax/k/W6Hi2lDb+mUw2t
+	nakw==
+X-Gm-Message-State: AMke39ljoB4mwKwgAoo49R3uFA//SNnOhXr5bjFbn2ewU5dpeKycqKkKZG9jW1Zo6CMox+9IeiCjLbX+mjpt1w==
+X-Received: by 10.157.54.139 with SMTP id h11mr1165463otc.86.1488284878578;
+	Tue, 28 Feb 2017 04:27:58 -0800 (PST)
 MIME-Version: 1.0
-X-OriginatorOrg: hotmail.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Feb 2017 11:55:32.2965 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Internet
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: HE1EUR02HT099
-X-OriginalArrivalTime: 28 Feb 2017 11:55:38.0563 (UTC)
-	FILETIME=[94070130:01D291B9]
-Subject: Re: Intermittent Kernel Boot Hang 4.8/Intel Z5 Atom
+Received: by 10.157.40.228 with HTTP; Tue, 28 Feb 2017 04:27:58 -0800 (PST)
+In-Reply-To: <CAMKF1soDaDOWnROQZ3HgpFKBZGFVg4vDKOSNqx99Xgg1J4_qwg@mail.gmail.com>
+References: <CA+pXca3Whs=QnGPJA8KwOEx=jhJaLf7OTj7=6vbgFvCLf2n3gw@mail.gmail.com>
+	<CAMKF1soDaDOWnROQZ3HgpFKBZGFVg4vDKOSNqx99Xgg1J4_qwg@mail.gmail.com>
+From: praveen vattipalli <praveen.vatt@gmail.com>
+Date: Tue, 28 Feb 2017 17:57:58 +0530
+Message-ID: <CA+pXca3HpKqD9eyJS2MFiFLJTzsY5bQM3Wkk6U9Nu2f1xfNEnw@mail.gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+Cc: yocto <yocto@yoctoproject.org>
+Subject: Re: error while compiling external module in Krogoth branch
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -104,79 +74,213 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 Feb 2017 11:56:49 -0000
-Content-Language: en-GB
-Content-Type: text/plain; charset="iso-8859-1"
+X-List-Received-Date: Tue, 28 Feb 2017 12:28:03 -0000
+Content-Type: multipart/alternative; boundary=001a113ed44c8339630549965392
+
+--001a113ed44c8339630549965392
+Content-Type: text/plain; charset=UTF-8
+
+Hi,
+I am using krogoth branch of meta-altera.
+in meta/classes/kernel-yocto.bbclass file
+SRCTREECOVEREDTASKS += "do_kernel_configme do_validate_branches
+do_kernel_configcheck do_kernel_checkout do_shared_workdir do_fetch
+do_unpack do_patch"
+
+if i remove "do_shared_workdir" . it worked. is this the right way.
+Thanks.
+
+On Tue, Feb 28, 2017 at 12:46 PM, Khem Raj <raj.khem@gmail.com> wrote:
+
+>
+> On Tue, Feb 21, 2017 at 6:31 AM praveen vattipalli <praveen.vatt@gmail.com>
+> wrote:
+>
+>> Hi All,
+>> I am using poky-krogoth source and meta-altera layer. I am building
+>> kernel locally using externalsrc. while building external module i am
+>> getting error.
+>>
+>
+> Which branch of meta-altera are you using
+>
+>>
+>>
+>>
+>> ERROR: Task do_make_scripts in /home/praveenk/source/
+>> platform/build/../meta-skeleton/recipes-kernel/hello-mod/hello-mod_0.1.bb depends
+>> upon non-existent task do_shared_workdir in /home/praveenk/source/
+>> platform/build/../meta-altera/recipes-kernel/linux/linux-
+>> altera-ltsi_4.1.22.bb
+>> ERROR: Command execution failed: 1
+>>
+>> linux.bb contains
+>>
+>> LINUX_VERSION = "4.1.22"
+>> LINUX_VERSION_SUFFIX = "-ltsi"
+>>
+>> include linux-altera.inc
+>>
+>> SRC_URI = "file://${EXTERNALSRC}"
+>>
+>> LIC_FILES_CHKSUM = "file://${S}/COPYING;md5=
+>> d7810fab7487fb0aad327b76f1be7cd7"
+>>
+>> BUILD_DEFCONFIG = "socfpga_defconfig"
+>> EXTERNALSRC = "${TOPDIR}/../meta-altera/recipes-kernel/linux/files"
+>> EXTERNALSRC_BUILD = "${TOPDIR}/../meta-altera/recipes-kernel/linux/files"
+>>
+>> SRCREV_pn-${PN} = "${AUTOREV}"
+>>
+>> S= "${EXTERNALSRC}"
+>>
+>> hello-mod.bb  contains
+>>
+>> SUMMARY = "Example of how to build an external Linux kernel module"
+>> LICENSE = "GPLv2"
+>> LIC_FILES_CHKSUM = "file://COPYING;md5=12f884d2ae1ff87c09e5b7ccc2c4ca7e"
+>>
+>> inherit module
+>>
+>> SRC_URI = "file://Makefile \
+>>            file://hello.c \
+>>            file://COPYING \
+>>           "
+>>
+>>
+>> S = "${WORKDIR}"
+>>
+>> # The inherit of module.bbclass will automatically name module packages
+>> with
+>> # "kernel-module-" prefix as required by the oe-core build environment.
+>> ~
+>>
+>>
+>> Am I missing anything?
+>>
+>> Thanks,
+>> Praveen.
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>>
+>
+
+--001a113ed44c8339630549965392
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Advice on how to proceed with this?
+<div dir=3D"ltr"><div><div><div><div>Hi,<br></div>I am using krogoth branch=
+ of meta-altera.<br></div>in meta/classes/kernel-yocto.bbclass file <br>SRC=
+TREECOVEREDTASKS +=3D &quot;do_kernel_configme do_validate_branches do_kern=
+el_configcheck do_kernel_checkout do_shared_workdir do_fetch do_unpack do_p=
+atch&quot;<br><br></div>if i remove &quot;do_shared_workdir&quot; . it work=
+ed. is this the right way.<br></div>Thanks.<br></div><div class=3D"gmail_ex=
+tra"><br><div class=3D"gmail_quote">On Tue, Feb 28, 2017 at 12:46 PM, Khem =
+Raj <span dir=3D"ltr">&lt;<a href=3D"mailto:raj.khem@gmail.com" target=3D"_=
+blank">raj.khem@gmail.com</a>&gt;</span> wrote:<br><blockquote class=3D"gma=
+il_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-lef=
+t:1ex"><div><br><div class=3D"gmail_quote"><span class=3D""><div>On Tue, Fe=
+b 21, 2017 at 6:31 AM praveen vattipalli &lt;<a href=3D"mailto:praveen.vatt=
+@gmail.com" target=3D"_blank">praveen.vatt@gmail.com</a>&gt; wrote:<br></di=
+v><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:=
+1px #ccc solid;padding-left:1ex"><div class=3D"m_8702066790997206627gmail_m=
+sg"><div class=3D"m_8702066790997206627gmail_msg"><div class=3D"m_870206679=
+0997206627gmail_msg"><div class=3D"m_8702066790997206627gmail_msg"><div cla=
+ss=3D"m_8702066790997206627gmail_msg"><div class=3D"m_8702066790997206627gm=
+ail_msg"><div class=3D"m_8702066790997206627gmail_msg">Hi All,<br class=3D"=
+m_8702066790997206627gmail_msg"></div>I am using poky-krogoth=20
+source and meta-altera layer. I am building kernel locally using=20
+externalsrc. while building external module i am getting error.<br class=3D=
+"m_8702066790997206627gmail_msg"></div></div></div></div></div></div></bloc=
+kquote><div><br></div></span><div>Which branch of meta-altera are you using=
+</div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-l=
+eft:1px #ccc solid;padding-left:1ex"><div><div class=3D"h5"><div class=3D"m=
+_8702066790997206627gmail_msg"><div class=3D"m_8702066790997206627gmail_msg=
+"><div class=3D"m_8702066790997206627gmail_msg"><div class=3D"m_87020667909=
+97206627gmail_msg"><div class=3D"m_8702066790997206627gmail_msg"><div class=
+=3D"m_8702066790997206627gmail_msg"><br class=3D"m_8702066790997206627gmail=
+_msg"><br class=3D"m_8702066790997206627gmail_msg"><br class=3D"m_870206679=
+0997206627gmail_msg"><span style=3D"color:rgb(255,0,0)" class=3D"m_87020667=
+90997206627gmail_msg">ERROR: Task do_make_scripts in</span> /home/praveenk/=
+source/<wbr>platform/build/../meta-<wbr>skeleton/recipes-kernel/hello-<wbr>=
+mod/<a href=3D"http://hello-mod_0.1.bb" class=3D"m_8702066790997206627gmail=
+_msg" target=3D"_blank">hello-mod_0.1.bb</a> <span style=3D"color:rgb(255,0=
+,0)" class=3D"m_8702066790997206627gmail_msg">depends upon non-existent tas=
+k do_shared_workdir in</span> /home/praveenk/source/<wbr>platform/build/../=
+meta-altera/<wbr>recipes-kernel/linux/<a href=3D"http://linux-altera-ltsi_4=
+.1.22.bb" class=3D"m_8702066790997206627gmail_msg" target=3D"_blank">linux-=
+<wbr>altera-ltsi_4.1.22.bb</a><br class=3D"m_8702066790997206627gmail_msg">=
+<span style=3D"color:rgb(255,0,0)" class=3D"m_8702066790997206627gmail_msg"=
+>ERROR: Command execution failed: 1<br class=3D"m_8702066790997206627gmail_=
+msg"></span><br class=3D"m_8702066790997206627gmail_msg"></div><a href=3D"h=
+ttp://linux.bb" class=3D"m_8702066790997206627gmail_msg" target=3D"_blank">=
+linux.bb</a> contains<br class=3D"m_8702066790997206627gmail_msg"><br class=
+=3D"m_8702066790997206627gmail_msg">LINUX_VERSION =3D &quot;4.1.22&quot;<br=
+ class=3D"m_8702066790997206627gmail_msg">LINUX_VERSION_SUFFIX =3D &quot;-l=
+tsi&quot;<br class=3D"m_8702066790997206627gmail_msg"><br class=3D"m_870206=
+6790997206627gmail_msg">include linux-altera.inc<br class=3D"m_870206679099=
+7206627gmail_msg"><br class=3D"m_8702066790997206627gmail_msg">SRC_URI =3D =
+&quot;file://${EXTERNALSRC}&quot;<br class=3D"m_8702066790997206627gmail_ms=
+g"><br class=3D"m_8702066790997206627gmail_msg">LIC_FILES_CHKSUM =3D &quot;=
+file://${S}/COPYING;md5=3D<wbr>d7810fab7487fb0aad327b76f1be7c<wbr>d7&quot;<=
+br class=3D"m_8702066790997206627gmail_msg"><br class=3D"m_8702066790997206=
+627gmail_msg">BUILD_DEFCONFIG =3D &quot;socfpga_defconfig&quot;<br class=3D=
+"m_8702066790997206627gmail_msg">EXTERNALSRC =3D &quot;${TOPDIR}/../meta-al=
+tera/<wbr>recipes-kernel/linux/files&quot;<br class=3D"m_870206679099720662=
+7gmail_msg">EXTERNALSRC_BUILD =3D &quot;${TOPDIR}/../meta-altera/<wbr>recip=
+es-kernel/linux/files&quot;<br class=3D"m_8702066790997206627gmail_msg"><br=
+ class=3D"m_8702066790997206627gmail_msg">SRCREV_pn-${PN} =3D &quot;${AUTOR=
+EV}&quot;<br class=3D"m_8702066790997206627gmail_msg"><br class=3D"m_870206=
+6790997206627gmail_msg">S=3D &quot;${EXTERNALSRC}&quot;<br class=3D"m_87020=
+66790997206627gmail_msg"><br class=3D"m_8702066790997206627gmail_msg"></div=
+><a href=3D"http://hello-mod.bb" class=3D"m_8702066790997206627gmail_msg" t=
+arget=3D"_blank">hello-mod.bb</a>=C2=A0 contains<br class=3D"m_870206679099=
+7206627gmail_msg"><br class=3D"m_8702066790997206627gmail_msg">SUMMARY =3D =
+&quot;Example of how to build an external Linux kernel module&quot;<br clas=
+s=3D"m_8702066790997206627gmail_msg">LICENSE =3D &quot;GPLv2&quot;<br class=
+=3D"m_8702066790997206627gmail_msg">LIC_FILES_CHKSUM =3D &quot;file://COPYI=
+NG;md5=3D<wbr>12f884d2ae1ff87c09e5b7ccc2c4ca<wbr>7e&quot;<br class=3D"m_870=
+2066790997206627gmail_msg"><br class=3D"m_8702066790997206627gmail_msg">inh=
+erit module<br class=3D"m_8702066790997206627gmail_msg"><br class=3D"m_8702=
+066790997206627gmail_msg">SRC_URI =3D &quot;file://Makefile \<br class=3D"m=
+_8702066790997206627gmail_msg">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 file://hello.c \<br class=3D"m_8702066790997206627gmail_=
+msg">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 file://CO=
+PYING \<br class=3D"m_8702066790997206627gmail_msg">=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 &quot;<br class=3D"m_8702066790997206627g=
+mail_msg"><br class=3D"m_8702066790997206627gmail_msg"><br class=3D"m_87020=
+66790997206627gmail_msg">S =3D &quot;${WORKDIR}&quot;<br class=3D"m_8702066=
+790997206627gmail_msg"><br class=3D"m_8702066790997206627gmail_msg"># The i=
+nherit of module.bbclass will automatically name module packages with<br cl=
+ass=3D"m_8702066790997206627gmail_msg"># &quot;kernel-module-&quot; prefix =
+as required by the oe-core build environment.<br class=3D"m_870206679099720=
+6627gmail_msg">~=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<wbr>=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0<wbr>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <br class=3D"m=
+_8702066790997206627gmail_msg"><br class=3D"m_8702066790997206627gmail_msg"=
+></div>Am I missing anything?<br class=3D"m_8702066790997206627gmail_msg"><=
+br class=3D"m_8702066790997206627gmail_msg"></div>Thanks,<br class=3D"m_870=
+2066790997206627gmail_msg"></div>Praveen.</div></div></div><span class=3D"H=
+OEnZb"><font color=3D"#888888">
+--<br class=3D"m_8702066790997206627gmail_msg">
+______________________________<wbr>_________________<br class=3D"m_87020667=
+90997206627gmail_msg">
+yocto mailing list<br class=3D"m_8702066790997206627gmail_msg">
+<a href=3D"mailto:yocto@yoctoproject.org" class=3D"m_8702066790997206627gma=
+il_msg" target=3D"_blank">yocto@yoctoproject.org</a><br class=3D"m_87020667=
+90997206627gmail_msg">
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" class=3D"m_8702066790997206627gmail_msg" target=3D"_blank">https://lists.=
+yoctoproject.<wbr>org/listinfo/yocto</a><br class=3D"m_8702066790997206627g=
+mail_msg">
+</font></span></blockquote></div></div>
+</blockquote></div><br></div>
 
-Current Yocto (morty) kernels include 4.1, 4.4 that work and 4.8 that doesn=
-'t.
-
-Intermittent hang during power-on kernel boots before/without any diagnosti=
-c output.  Can I compile the kernel to output more than boot options allow?
-
-I could fix this BSP to 4.4 (if that will hang around) and this is old hard=
-ware so it won't hang around for more than a few years.
-
-I can't find anything that appears related to this on the web.  Not sure ab=
-out going through intermediate kernel versions with yocto other than going =
-back to older versions of poky for ones that are missing.  I thought about =
-the Linux kernel site but nothing in bugzilla or archives and this may not =
-be of sufficient interest without more information.
-
-Thanks,
-Chris
-
-From: yocto-bounces@yoctoproject.org <yocto-bounces@yoctoproject.org> on be=
-half of Chris Trobridge <christrobridge@hotmail.com>
-Sent: 24 February 2017 12:10
-To: Yocto List
-Subject: [yocto] Intermittent Kernel Boot Hang 4.8/Intel Z5 Atom
-=A0  =20
-Since switching kernel to 4.8 (Morty) I have noticed that sometimes my Inte=
-l Atom hardware (Pokini) doesn't boot Linux.
-
-Specifically, syslinux runs fine and starts the kernel but this then hangs =
-immediately after displaying "Booting the kernel.", producing no further ou=
-tput.
-
-This is typical output, with one of my attempts to produce more output from=
- the kernel via serial:
-
-> /vmlinuz initrd=3D/initrd LABEL=3Dboot root=3D/dev/ram0=A0 video=3Defifb:=
-off video=3D640x480 console=3DttyS0,115200 verbose
-
-Loading /vmlinuz... ok
-Loading /initrd...ok
-
-The issue seem to occur with some probability after powering the hardware b=
-ut I've not seen it occur after a reboot.
-
-4.1 and 4.4.36 are reliable and do not have any issues booting.
-
-I've been looking through bugs/issue but not found anything relevant.=A0 Do=
-es anyone know of issues that I might not have found that would apply?
-
-I've also been looking at how to get more diagnostics out of the boot.=A0 I=
-'ve tried a few suggested kernel boot parameters but nothing has helped so =
-far.=A0=A0 It seems to go wrong too early.=A0 Do I need to re-build the ker=
-nel to produce more output at the early  stage it fails?
-
-Thanks,
-Chris
---=20
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
-
-
-yocto Info Page
-lists.yoctoproject.org
-Discussion of all things about the Yocto Project. Read our Community Guidel=
-ines or learn more about how to participate in other community discussions.
-
-    =
-
+--001a113ed44c8339630549965392--
