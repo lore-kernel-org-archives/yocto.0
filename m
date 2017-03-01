@@ -1,49 +1,49 @@
 Return-Path: <jacobchen110@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 98BD5E0082E; Wed,  1 Mar 2017 02:23:15 -0800 (PST)
+	id 3AFFAE0082E; Wed,  1 Mar 2017 02:30:25 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [74.125.83.67 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.83.67 listed in dnsbl.sorbs.net]
+X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.83.66 listed in dnsbl.sorbs.net]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.83.66 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-pg0-f67.google.com (mail-pg0-f67.google.com [74.125.83.67])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AE7B9E00726
-	for <yocto@yoctoproject.org>; Wed,  1 Mar 2017 02:23:11 -0800 (PST)
-Received: by mail-pg0-f67.google.com with SMTP id 25so5410124pgy.3
-	for <yocto@yoctoproject.org>; Wed, 01 Mar 2017 02:23:11 -0800 (PST)
+Received: from mail-pg0-f66.google.com (mail-pg0-f66.google.com [74.125.83.66])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0FE2FE00826
+	for <yocto@yoctoproject.org>; Wed,  1 Mar 2017 02:30:22 -0800 (PST)
+Received: by mail-pg0-f66.google.com with SMTP id 25so5428645pgy.3
+	for <yocto@yoctoproject.org>; Wed, 01 Mar 2017 02:30:22 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=+yQWHnyjP/WrrZREOoRPngqa3sSahI8B5SkG/SPYepo=;
-	b=X8Kym6dZTiWpESptuCUulC7ZlWBF8z6z+Ec8Bu1Wgwz++B6Sku8hkkU/xqBpK5s5H7
-	66O5zAWubDZ7f8CanF7aaTT+j0KVYupgcTxjSOt2lkglOsDXm99C4fPYf6ZmW8NP1TCE
-	+OLW2y5HyMCSJaYVmh63JaCXay0G7yGs9P1lQjFP2Gx3hkPUXjZnvFpO9RB66Q9S1xlQ
-	feSMolqzuRWAqDja9quFAq5zpbMmm/DeW5Chn9uwwxgaoVacO9DFRaHcJR9R2A2Wn6hC
-	0RIRBtYCbbDPgsuqLDk14G3EhAhgEim/VrLybdxnIOAO5SmEqC5/JXmfQOn6T5mfBoQn
-	hHDA==
-X-Gm-Message-State: AMke39mx9NmPgGcfpVhRJh5+G7SNzLfF0dkvdTCnLHoXedV1j0Goasqd3ecDo3jbZnSQaA==
-X-Received: by 10.84.216.15 with SMTP id m15mr9324004pli.22.1488363790978;
-	Wed, 01 Mar 2017 02:23:10 -0800 (PST)
+	bh=CCHNJj1z133ij6PcezrQ+5e+2449LM8SQGScJp+d4RI=;
+	b=PYxCwJBLdpeC876fttHA04Aax16FpB5pNmi1cwimfdTgySXt7etEwwd25FcLhzDWrn
+	S3Ww/fD+HHYpC5heARMt1uEpB9wu/geNkRKn3AJe2PK182NBdPk7tz1wDr0kOhCNTOIc
+	Sz7rIq8rVnidnk+UzxvmQ7RPOLImqWjufehRl5j4SToxWEjF7o34LiNPWQ2ZAHaqhhut
+	v5T3b8MDsrWiu7nCWTeayOyb0OeS0VIS1Jo6TEaXEX1LMTAzRMvyOIAPEHd2EOQjdjO6
+	EPoIq4P+SbmQbpFRm4PXQXoKuz6++zA+xAzuj1gvd1ByUDhCE0xhPFBFO9bCvx5SzDlG
+	Pw6g==
+X-Gm-Message-State: AMke39nZQKG0iF3YNYO68682h3wdVFfYxN9nKz1T3wGlG4kTB7eYn0t5POKxrRNzCOVb5A==
+X-Received: by 10.84.128.74 with SMTP id 68mr9359082pla.111.1488364221847;
+	Wed, 01 Mar 2017 02:30:21 -0800 (PST)
 Received: from localhost.localdomain ([103.29.142.67])
 	by smtp.gmail.com with ESMTPSA id
-	u129sm9521192pfb.130.2017.03.01.02.23.08
+	s81sm4312513pgs.18.2017.03.01.02.30.18
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Wed, 01 Mar 2017 02:23:10 -0800 (PST)
+	Wed, 01 Mar 2017 02:30:21 -0800 (PST)
 From: Jacob Chen <jacob-chen@iotwrt.com>
 To: yocto@yoctoproject.org, eddie.cai.linux@gmail.com, romain.perier@gmail.com,
 	twoerner@gmail.com
-Date: Wed,  1 Mar 2017 18:23:02 +0800
-Message-Id: <1488363782-15062-1-git-send-email-jacob-chen@iotwrt.com>
+Date: Wed,  1 Mar 2017 18:30:10 +0800
+Message-Id: <1488364210-15435-1-git-send-email-jacob-chen@iotwrt.com>
 X-Mailer: git-send-email 2.7.4
 Cc: Jacob Chen <jacob-chen@iotwrt.com>
-Subject: [PATCH] udev-extraconf: add rockchip specific rules
+Subject: [PATCH] recipes-graphics: Add recipe for libdrm-rk
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,52 +55,70 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 01 Mar 2017 10:23:15 -0000
+X-List-Received-Date: Wed, 01 Mar 2017 10:30:25 -0000
 
-This rules file help to set suitable mode for device node.
+It's rockchip modified libdrm, we can call rga by this libdrm.
 
-vpu-service, vpu_service, rkvdec, hevc-service are different ip.
-mali0 is mali-midgard and mali is mali-utgard.
-
-Signed-off-by: Jacob Chen <jacob-chen@iotwrt.com>
+Our development work in libdrm has not yet completed, so it have not pushed to the upstream.
+We temporarily maintain it by ourself.
 ---
- recipes-core/udev/udev-extraconf/10-rk.rules |  6 ++++++
- recipes-core/udev/udev-extraconf_%.bbappend  | 13 +++++++++++++
- 2 files changed, 19 insertions(+)
- create mode 100644 recipes-core/udev/udev-extraconf/10-rk.rules
- create mode 100644 recipes-core/udev/udev-extraconf_%.bbappend
+ recipes-graphics/libdrm/libdrm_rk.bb | 47 ++++++++++++++++++++++++++++++++++++
+ 1 file changed, 47 insertions(+)
+ create mode 100644 recipes-graphics/libdrm/libdrm_rk.bb
 
-diff --git a/recipes-core/udev/udev-extraconf/10-rk.rules b/recipes-core/udev/udev-extraconf/10-rk.rules
+diff --git a/recipes-graphics/libdrm/libdrm_rk.bb b/recipes-graphics/libdrm/libdrm_rk.bb
 new file mode 100644
-index 0000000..2308c9a
+index 0000000..6af5b6f
 --- /dev/null
-+++ b/recipes-core/udev/udev-extraconf/10-rk.rules
-@@ -0,0 +1,6 @@
-+KERNEL=="hevc-service", MODE="0666", GROUP="video"
-+KERNEL=="rkvdec", MODE="0666", GROUP="video"
-+KERNEL=="mali0", MODE="0666", GROUP="video"
-+KERNEL=="mali", MODE="0666", GROUP="video"
-+KERNEL=="vpu-service", MODE="0666", GROUP="video"
-+KERNEL=="vpu_service", MODE="0666", GROUP="video"
-diff --git a/recipes-core/udev/udev-extraconf_%.bbappend b/recipes-core/udev/udev-extraconf_%.bbappend
-new file mode 100644
-index 0000000..4691a31
---- /dev/null
-+++ b/recipes-core/udev/udev-extraconf_%.bbappend
-@@ -0,0 +1,13 @@
-+# extra configuration udev rules
-+FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
++++ b/recipes-graphics/libdrm/libdrm_rk.bb
+@@ -0,0 +1,47 @@
++# Copyright (C) 2017 Fuzhou Rockchip Electronics Co., Ltd
++# Released under the MIT license (see COPYING.MIT for the terms)
 +
-+SRC_URI_append = " \
-+    file://10-rk.rules \
-+"
++SECTION = "x11/base"
++LICENSE = "MIT"
++LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
++PROVIDES = "drm"
++DEPENDS = "libpthread-stubs udev libpciaccess"
 +
-+do_install_prepend () {
-+	install -d ${D}${sysconfdir}/udev/rules.d
-+	install -m 0644 ${WORKDIR}/*.rules ${D}${sysconfdir}/udev/rules.d
++SRCREV = "${AUTOREV}"
++SRCBRANCH ?= "rockchip-2.4.74"
++SRC_URI = "git://github.com/rockchip-linux/libdrm-rockchip.git;branch=${SRCBRANCH}"
++
++S = "${WORKDIR}/git"
++
++inherit autotools pkgconfig
++
++EXTRA_OECONF += "--disable-cairo-tests \
++                 --enable-omap-experimental-api \
++                 --enable-install-test-programs \
++                 --disable-manpages \
++                 --disable-valgrind \
++				 --enable-rockchip-experimental-api \
++                "
++
++ALLOW_EMPTY_${PN}-drivers = "1"
++PACKAGES =+ "${PN}-tests ${PN}-drivers ${PN}-radeon ${PN}-nouveau ${PN}-omap \
++             ${PN}-intel ${PN}-exynos ${PN}-kms ${PN}-freedreno ${PN}-amdgpu \
++			 ${PN}-rockchip "
++
++RRECOMMENDS_${PN}-drivers = "${PN}-radeon ${PN}-nouveau ${PN}-omap ${PN}-intel \
++                             ${PN}-exynos ${PN}-freedreno ${PN}-amdgpu ${PN}-rockchip"
++
++FILES_${PN}-tests = "${bindir}/*"
++FILES_${PN}-radeon = "${libdir}/libdrm_radeon.so.*"
++FILES_${PN}-nouveau = "${libdir}/libdrm_nouveau.so.*"
++FILES_${PN}-omap = "${libdir}/libdrm_omap.so.*"
++FILES_${PN}-intel = "${libdir}/libdrm_intel.so.*"
++FILES_${PN}-exynos = "${libdir}/libdrm_exynos.so.*"
++FILES_${PN}-kms = "${libdir}/libkms*.so.*"
++FILES_${PN}-freedreno = "${libdir}/libdrm_freedreno.so.*"
++FILES_${PN}-amdgpu = "${libdir}/libdrm_amdgpu.so.*"
++FILES_${PN}-rockchip = "${libdir}/libdrm_rockchip.so.*"
++
++do_configure_prepend() {
++	${S}/autogen.sh ${CONFIGUREOPTS} ${EXTRA_OECONF}
 +}
-+
-+PACKAGE_ARCH = "${MACHINE_ARCH}"
 -- 
 2.7.4
 
