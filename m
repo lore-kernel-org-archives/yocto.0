@@ -1,37 +1,40 @@
-Return-Path: <jose.a.lamego@linux.intel.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 31587E009B9; Tue, 28 Feb 2017 15:07:52 -0800 (PST)
+	id E65FBE008D0; Tue, 28 Feb 2017 20:00:33 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
-	RCVD_IN_SORBS_SPAM autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.24 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [134.134.136.24 listed in dnsbl.sorbs.net]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,KHOP_DYNAMIC
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DDFF4E009AA
-	for <yocto@yoctoproject.org>; Tue, 28 Feb 2017 15:07:51 -0800 (PST)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	28 Feb 2017 15:07:51 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.35,222,1484035200"; 
-	d="scan'208,217";a="1116798731"
-Received: from jalamego-mobl2.zpn.intel.com ([10.219.128.117])
-	by fmsmga001.fm.intel.com with ESMTP; 28 Feb 2017 15:07:51 -0800
-From: Jose Lamego <jose.a.lamego@linux.intel.com>
-To: yocto@yoctoproject.org
-Date: Tue, 28 Feb 2017 17:07:34 -0600
-Message-Id: <1488323254-21800-4-git-send-email-jose.a.lamego@linux.intel.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1488323254-21800-1-git-send-email-jose.a.lamego@linux.intel.com>
-References: <1488323254-21800-1-git-send-email-jose.a.lamego@linux.intel.com>
-Subject: [patchwork][PATCH 3/3] patch-list: call tablecheckbox plugin from patch-list
+	*  0.0 KHOP_DYNAMIC Relay looks like a dynamic address
+Received: from dan.rpsys.net (5751f4a1.skybroadband.com [87.81.244.161])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5A646E007AD
+	for <yocto@yoctoproject.org>; Tue, 28 Feb 2017 20:00:31 -0800 (PST)
+Received: from localhost (localhost [127.0.0.1])
+	by dan.rpsys.net (8.14.4/8.14.4/Debian-4.1ubuntu1) with ESMTP id
+	v2140Mfn017489; Wed, 1 Mar 2017 04:00:22 GMT
+Received: from dan.rpsys.net ([127.0.0.1])
+	by localhost (dan.rpsys.net [127.0.0.1]) (amavisd-new, port 10024)
+	with LMTP id jWU195c43uUh; Wed,  1 Mar 2017 04:00:22 +0000 (GMT)
+Received: from hex ([192.168.3.34]) (authenticated bits=0)
+	by dan.rpsys.net (8.14.4/8.14.4/Debian-4.1ubuntu1) with ESMTP id
+	v2140Goh017484
+	(version=TLSv1/SSLv3 cipher=AES128-GCM-SHA256 bits=128 verify=NOT);
+	Wed, 1 Mar 2017 04:00:18 GMT
+Message-ID: <1488340816.24526.26.camel@linuxfoundation.org>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: Patrick Ohly <patrick.ohly@intel.com>, =?ISO-8859-1?Q?An=EDbal_Lim=F3n?=
+	<anibal.limon@linux.intel.com>
+Date: Wed, 01 Mar 2017 04:00:16 +0000
+In-Reply-To: <1488312568.7785.73.camel@intel.com>
+References: <1487625169-22282-1-git-send-email-anibal.limon@linux.intel.com>
+	<1488312568.7785.73.camel@intel.com>
+X-Mailer: Evolution 3.18.5.2-0ubuntu3.1 
+Mime-Version: 1.0
+Cc: yocto@yoctoproject.org, openembedded-core@lists.openembedded.org
+Subject: Re: [OE-core] [PATCHv2] yocto-compat-layer.py: Add script to YP Compatible Layer validation
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,35 +46,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 Feb 2017 23:07:52 -0000
+X-List-Received-Date: Wed, 01 Mar 2017 04:00:34 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-This change calls the tablecheckbox.js plugin to add functionality
-in a patch-list to allow user to select single / multiple / all
-table row(s) by clicking.
+On Tue, 2017-02-28 at 21:09 +0100, Patrick Ohly wrote:
+> On Mon, 2017-02-20 at 15:12 -0600, Aníbal Limón wrote:
+> > 
+> > common.test_signatures: Test executed in BSP and DISTRO layers to
+> > review
+> >     doesn't comes with recipes that changes the signatures.
+> I have a question about the goal for this test: is it meant to detect
+> layers which incorrectly change the signatures of allarch recipes or
+> recipes which share the same tune flags with other machines?
+> 
+> Let's take MACHINE=edison as an example.
 
-[YOCTO #10819]
+The test is not for these things. Its using the sstate signatures for
+something different compared to those other tests.
 
-Signed-off-by: Jose Lamego <jose.a.lamego@linux.intel.com>
----
- patchwork/templates/patchwork/patch-list.html | 2 ++
- 1 file changed, 2 insertions(+)
+The idea is that if you have a set of layers and generate the
+signatures for world, then you add say a BSP layer but do not select
+that MACHINE, the signatures should remain unchanged.
 
-diff --git a/patchwork/templates/patchwork/patch-list.html b/patchwork/templates/patchwork/patch-list.html
-index ec52231..fe6f99f 100644
---- a/patchwork/templates/patchwork/patch-list.html
-+++ b/patchwork/templates/patchwork/patch-list.html
-@@ -38,8 +38,10 @@
- <script type="text/javascript">
- $(document).ready(function() {
-     $('#patchlist').stickyTableHeaders();
-+    $( '.table' ).tablecheckbox();
- });
- </script>
-+<script type="text/javascript" src="{% static "js/jquery.tablecheckbox.js" %}"></script>
- <form method="post">
- {% csrf_token %}
- <input type="hidden" name="form" value="patchlistform"/>
--- 
-1.9.1
+Cheers,
 
+Richard
 
