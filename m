@@ -1,67 +1,67 @@
-Return-Path: <cswarth@gmail.com>
+Return-Path: <eystein@mender.io>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 51896E008D0; Wed,  1 Mar 2017 14:32:27 -0800 (PST)
+	id 7CBCEE0095F; Wed,  1 Mar 2017 16:35:25 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (cswarth[at]gmail.com)
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.217.182 listed in dnsbl.sorbs.net]
+X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.83.45 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.217.182 listed in list.dnswl.org]
-Received: from mail-ua0-f182.google.com (mail-ua0-f182.google.com
-	[209.85.217.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 16761E00566
-	for <yocto@yoctoproject.org>; Wed,  1 Mar 2017 14:32:23 -0800 (PST)
-Received: by mail-ua0-f182.google.com with SMTP id f54so56727131uaa.1
-	for <yocto@yoctoproject.org>; Wed, 01 Mar 2017 14:32:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=EwZig1iRwBnrRtHrO92WSDZF2h4lSnM7V9kQLbmATcM=;
-	b=e2fy0ufmlUblOZloWNDMdskpYI2JAJwaAqGunrC09TUv+pVmgM87K+dd1g4PU8N0sM
-	hy4+srU1MLG9w7KyKedjEvFb3vddBPXQGE0RDZ37+cWIvOqjF2MVjQ0JZF0IepfE5RmI
-	ZoUCmUphPPLwb2n2gF30RKbHfrLMr+RRwqkDpnkcYWp1pl2i35G4xHNUG2Q5slRB850Z
-	MQIQsC7PyI2bYvWDCwbq2SCA1Jfyn33gbJ4bJ0y5JLX8gLc+ZV+0q4MPzp3AwFkXdR78
-	8Ghd/eW7JVR/McaId8TQLWCm/E35NKXKGAkwf4PGP3DVEqkiHxerKeu+8kEy8Gjvs4wq
-	FRNg==
+	*      [74.125.83.45 listed in list.dnswl.org]
+Received: from mail-pg0-f45.google.com (mail-pg0-f45.google.com [74.125.83.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EF606E00826
+	for <yocto@yoctoproject.org>; Wed,  1 Mar 2017 16:35:23 -0800 (PST)
+Received: by mail-pg0-f45.google.com with SMTP id b129so25669325pgc.2
+	for <yocto@yoctoproject.org>; Wed, 01 Mar 2017 16:35:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=mender-io.20150623.gappssmtp.com; s=20150623;
+	h=from:subject:to:references:message-id:date:user-agent:mime-version
+	:in-reply-to:content-transfer-encoding;
+	bh=5U8cc1WoO2gYRjMNWzH/mUj0ckURY/e5WM2Cy4IpWq0=;
+	b=lQo2V2ncSF9IaFb05i8XrK+qDRkMsBcdTwj7s4Y2z2MSdwM1teh98AKFg4wYOYcO2F
+	dK2kJPNCNNjPqYu2V+H8rwUUHMK6oQfh2M0fXke/RdMP+aNwwxPly8bgVfTbIyxNW7Gv
+	oTeo6xfsT1xN4S5053gywuMM9cAMxS1MajG4TmhwQl+y6qWxwm6eKWIxYUEPg3Np74ok
+	/4FrSDpL22+bRBzz3XpwjZupubPNai2Q12GEZPW2nDAgielkixAdarVwckVRGJLcqIH+
+	TrxX1YG5af/iVqZC0/2LwoEruDSKgHklG3wRR6AzZoIDCL3rQltqFGpH9iPEBsSGKMdq
+	/6yw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=EwZig1iRwBnrRtHrO92WSDZF2h4lSnM7V9kQLbmATcM=;
-	b=imFoCf307uOA8lbHSU5UQfRx9f9IGiqBwid8+Cv/UPFFTMtwNR3ixzV43+3sX0/INy
-	dTgs7gy9bGkSp++TJF7wbMYMQeFemEjg+7r5QPW0FtqZrtZRYU2h60KJk7BbRQRWfpzX
-	JYNvEKKmngBqbGXI1DEgIsjQWYCvrQ3v5nsELbquyuobyv1pzM8FkLZaC8FkdnetqsMF
-	FjmrowyG/ikLwWsaGnlanluPlckESn0ms0UHlIdO8wGoI+fR7TqhlodW+Okq1ixhei/1
-	/QaVaEnSV1Lp+SP916f3uxKP41X7SSh6gqsJQUKuLcYrEMonBx4lJSJCsDRPxe46Q8oq
-	7JDQ==
-X-Gm-Message-State: AMke39nCufBqMLu3KlRm9nrk0ZEZsByRxgzaswxD8CaKcVxPz+XOl/CO+MuIk49BCMggGbP1EtmdzH8eP5sW7w==
-X-Received: by 10.31.63.147 with SMTP id m141mr1780905vka.42.1488407542401;
-	Wed, 01 Mar 2017 14:32:22 -0800 (PST)
+	h=x-gm-message-state:from:subject:to:references:message-id:date
+	:user-agent:mime-version:in-reply-to:content-transfer-encoding;
+	bh=5U8cc1WoO2gYRjMNWzH/mUj0ckURY/e5WM2Cy4IpWq0=;
+	b=HkofmW/lrbacBDfiyp34KfwJwxHFgSq/TFyn2uAXpADBeqH66vcUh4tGLZny2s5zUQ
+	YduEt9UOhMQx+I2TxuqxfRppwgzguvQ+hj1qzV6h91oQ9NTS+dt4xzwY18QZ7R1b4EbT
+	PaPkWFDawKm6QWi3Reld1Sh/iS7B4j3mYO7vqupeDJtl6NZWdD8OcO1J6o0fyh/hIbkA
+	M+JKiXa8ke76l37miA3uWv/GPrSok2STyr+o8DGIC4xPc57/MiCre5cn+PBIuvqhgeQ1
+	mljMvjExs80grb3lz3hNEouRQqgIrHGfmJ42EJlDQMqXIWyHxelEWnJ3MzemOCOMNlQi
+	p/fw==
+X-Gm-Message-State: AMke39mPwy8PfWrpd6I13EvE4E95apS9TGqeP5WKwcykhJndmESEPp/CV1qlWhBm/GxwkA==
+X-Received: by 10.98.99.196 with SMTP id x187mr12351464pfb.168.1488414923010; 
+	Wed, 01 Mar 2017 16:35:23 -0800 (PST)
+Received: from [192.168.1.137] ([173.247.205.174])
+	by smtp.gmail.com with ESMTPSA id
+	q64sm12819164pga.0.2017.03.01.16.35.22 for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Wed, 01 Mar 2017 16:35:22 -0800 (PST)
+From: =?UTF-8?Q?Eystein_M=c3=a5l=c3=b8y_Stenberg?= <eystein@mender.io>
+To: yocto@yoctoproject.org
+References: <7d589da5-ff5b-3cdc-d0e7-fd2289363c98@mender.io>
+Message-ID: <c8f87996-c9e4-97ba-3ba8-be9c9260e094@mender.io>
+Date: Wed, 1 Mar 2017 16:35:21 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.7.0
 MIME-Version: 1.0
-Received: by 10.103.105.208 with HTTP; Wed, 1 Mar 2017 14:31:42 -0800 (PST)
-In-Reply-To: <CAJ86T=VeFuhgGmwFZDpb0o8QRpS15gCokcR8rRg62n_n=kVN3g@mail.gmail.com>
-References: <CAJJmP9DKZQ1uWX3QGnA7aHVBeCJzuVTxo51G+BMDfbzKqcbv8A@mail.gmail.com>
-	<b6c806a0-1196-4e70-9b1f-12fee1c7ef5f@mvista.com>
-	<CAJ86T=VeFuhgGmwFZDpb0o8QRpS15gCokcR8rRg62n_n=kVN3g@mail.gmail.com>
-From: chris warth <cswarth@gmail.com>
-Date: Wed, 1 Mar 2017 14:31:42 -0800
-Message-ID: <CAJJmP9C_AZJBzSs2XQp0enTzLgUaazmcF3FYD_Y6_zTVKkh0XA@mail.gmail.com>
-To: Andre McCurdy <armccurdy@gmail.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: BBMASK not working for me?
+In-Reply-To: <7d589da5-ff5b-3cdc-d0e7-fd2289363c98@mender.io>
+Subject: Re: update mechanisms
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,21 +73,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 01 Mar 2017 22:32:27 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 02 Mar 2017 00:35:25 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Thanks, all.  I wanted to share the solution.
+On Tue, 2016-12-06 at 10:45 +0100, Patrick Ohly wrote:
+> On Tue, 2016-12-06 at 10:01 +0100, Stefano Babic wrote:
+> > Hi Patrick,
+> >
+> > On 30/11/2016 15:59, Patrick Ohly wrote:
+> > > I've started a Wiki page
+> > > https://wiki.yoctoproject.org/wiki/System_Update - rudimentary at the
+> > > moment, but might as well be mentioned already now.
+> >
+> > I have seen Mariano added an entry for SWUpdate, too, thanks  - I would
+> > like to edit for better explanation on some parts. Should I try to edit
+> > directly the page or is it better to discuss it here ?
+>
+> Use your own judgment. If its uncontroversial, the feel free to edit the
+> page directly, otherwise let's discuss it here.
+>
+> If feel that putting information directly into the table is too limiting
+> (it should be brief), then feel free to start a complete section about
+> SWUpdate.
+>
+> I'll do the same for swupd. Editing the sections should be possible
+> without conflicts, we just have to be more careful about editing the
+> table concurrently.
 
-This vendor-supplied version of yocto looks like 2.0, so the space
-separated expressions are not available.
-After putting some print statements in cooker.py I discovered that
-appending to BBMASK in conf/bblayers.conf or conf/local.conf has no
-effect.  It was not until I modified BBMASK_forcevariable in my
-conf/bblayers.conf  that I saw any change in behavior.
+I updated the Mender part of the wiki now that the stable version Mender 
+1.0 is released. These changes should not be controversial, but let me 
+know if you disagree. We are planning to keep the Mender section 
+up-to-date as we release new versions, as I think this is what you expect.
 
-BBMASK_forcevariable = ".*openjre|.*openjdk|.*qemu_qoriq"
+Are there any plans for next steps or is the wiki the "final state" in 
+terms of integrating OTA updates in Yocto/OE?
 
-This inability to modify BBMASK unless using _forcevariable was also
-noted last year.
-https://lists.yoctoproject.org/pipermail/yocto/2016-September/032033.html
+
+-- 
+
+Eystein
 
