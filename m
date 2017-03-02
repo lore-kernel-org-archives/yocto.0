@@ -1,67 +1,39 @@
-Return-Path: <eystein@mender.io>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7CBCEE0095F; Wed,  1 Mar 2017 16:35:25 -0800 (PST)
+	id B9F22E0095F; Wed,  1 Mar 2017 17:03:43 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.83.45 listed in dnsbl.sorbs.net]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.65 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.83.45 listed in list.dnswl.org]
-Received: from mail-pg0-f45.google.com (mail-pg0-f45.google.com [74.125.83.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EF606E00826
-	for <yocto@yoctoproject.org>; Wed,  1 Mar 2017 16:35:23 -0800 (PST)
-Received: by mail-pg0-f45.google.com with SMTP id b129so25669325pgc.2
-	for <yocto@yoctoproject.org>; Wed, 01 Mar 2017 16:35:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=mender-io.20150623.gappssmtp.com; s=20150623;
-	h=from:subject:to:references:message-id:date:user-agent:mime-version
-	:in-reply-to:content-transfer-encoding;
-	bh=5U8cc1WoO2gYRjMNWzH/mUj0ckURY/e5WM2Cy4IpWq0=;
-	b=lQo2V2ncSF9IaFb05i8XrK+qDRkMsBcdTwj7s4Y2z2MSdwM1teh98AKFg4wYOYcO2F
-	dK2kJPNCNNjPqYu2V+H8rwUUHMK6oQfh2M0fXke/RdMP+aNwwxPly8bgVfTbIyxNW7Gv
-	oTeo6xfsT1xN4S5053gywuMM9cAMxS1MajG4TmhwQl+y6qWxwm6eKWIxYUEPg3Np74ok
-	/4FrSDpL22+bRBzz3XpwjZupubPNai2Q12GEZPW2nDAgielkixAdarVwckVRGJLcqIH+
-	TrxX1YG5af/iVqZC0/2LwoEruDSKgHklG3wRR6AzZoIDCL3rQltqFGpH9iPEBsSGKMdq
-	/6yw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:subject:to:references:message-id:date
-	:user-agent:mime-version:in-reply-to:content-transfer-encoding;
-	bh=5U8cc1WoO2gYRjMNWzH/mUj0ckURY/e5WM2Cy4IpWq0=;
-	b=HkofmW/lrbacBDfiyp34KfwJwxHFgSq/TFyn2uAXpADBeqH66vcUh4tGLZny2s5zUQ
-	YduEt9UOhMQx+I2TxuqxfRppwgzguvQ+hj1qzV6h91oQ9NTS+dt4xzwY18QZ7R1b4EbT
-	PaPkWFDawKm6QWi3Reld1Sh/iS7B4j3mYO7vqupeDJtl6NZWdD8OcO1J6o0fyh/hIbkA
-	M+JKiXa8ke76l37miA3uWv/GPrSok2STyr+o8DGIC4xPc57/MiCre5cn+PBIuvqhgeQ1
-	mljMvjExs80grb3lz3hNEouRQqgIrHGfmJ42EJlDQMqXIWyHxelEWnJ3MzemOCOMNlQi
-	p/fw==
-X-Gm-Message-State: AMke39mPwy8PfWrpd6I13EvE4E95apS9TGqeP5WKwcykhJndmESEPp/CV1qlWhBm/GxwkA==
-X-Received: by 10.98.99.196 with SMTP id x187mr12351464pfb.168.1488414923010; 
-	Wed, 01 Mar 2017 16:35:23 -0800 (PST)
-Received: from [192.168.1.137] ([173.247.205.174])
-	by smtp.gmail.com with ESMTPSA id
-	q64sm12819164pga.0.2017.03.01.16.35.22 for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 01 Mar 2017 16:35:22 -0800 (PST)
-From: =?UTF-8?Q?Eystein_M=c3=a5l=c3=b8y_Stenberg?= <eystein@mender.io>
-To: yocto@yoctoproject.org
-References: <7d589da5-ff5b-3cdc-d0e7-fd2289363c98@mender.io>
-Message-ID: <c8f87996-c9e4-97ba-3ba8-be9c9260e094@mender.io>
-Date: Wed, 1 Mar 2017 16:35:21 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.7.0
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 44EAFE00826
+	for <yocto@yoctoproject.org>; Wed,  1 Mar 2017 17:03:42 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	01 Mar 2017 17:03:42 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.35,228,1484035200"; d="scan'208";a="1136766980"
+Received: from yokemooi-mobl2.gar.corp.intel.com (HELO
+	peggleto-mobl.ger.corp.intel.com) ([10.255.134.143])
+	by fmsmga002.fm.intel.com with ESMTP; 01 Mar 2017 17:03:36 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: chris warth <cswarth@gmail.com>
+Date: Thu, 02 Mar 2017 14:03:30 +1300
+Message-ID: <1669316.G5xAQX6A5S@peggleto-mobl.ger.corp.intel.com>
+Organization: Intel Corporation
+In-Reply-To: <CAJJmP9C_AZJBzSs2XQp0enTzLgUaazmcF3FYD_Y6_zTVKkh0XA@mail.gmail.com>
+References: <CAJJmP9DKZQ1uWX3QGnA7aHVBeCJzuVTxo51G+BMDfbzKqcbv8A@mail.gmail.com>
+	<CAJ86T=VeFuhgGmwFZDpb0o8QRpS15gCokcR8rRg62n_n=kVN3g@mail.gmail.com>
+	<CAJJmP9C_AZJBzSs2XQp0enTzLgUaazmcF3FYD_Y6_zTVKkh0XA@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <7d589da5-ff5b-3cdc-d0e7-fd2289363c98@mender.io>
-Subject: Re: update mechanisms
+Cc: yocto@yoctoproject.org
+Subject: Re: BBMASK not working for me?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,44 +45,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 02 Mar 2017 00:35:25 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 02 Mar 2017 01:03:43 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On Tue, 2016-12-06 at 10:45 +0100, Patrick Ohly wrote:
-> On Tue, 2016-12-06 at 10:01 +0100, Stefano Babic wrote:
-> > Hi Patrick,
-> >
-> > On 30/11/2016 15:59, Patrick Ohly wrote:
-> > > I've started a Wiki page
-> > > https://wiki.yoctoproject.org/wiki/System_Update - rudimentary at the
-> > > moment, but might as well be mentioned already now.
-> >
-> > I have seen Mariano added an entry for SWUpdate, too, thanks  - I would
-> > like to edit for better explanation on some parts. Should I try to edit
-> > directly the page or is it better to discuss it here ?
->
-> Use your own judgment. If its uncontroversial, the feel free to edit the
-> page directly, otherwise let's discuss it here.
->
-> If feel that putting information directly into the table is too limiting
-> (it should be brief), then feel free to start a complete section about
-> SWUpdate.
->
-> I'll do the same for swupd. Editing the sections should be possible
-> without conflicts, we just have to be more careful about editing the
-> table concurrently.
+Hi Chris,
 
-I updated the Mender part of the wiki now that the stable version Mender 
-1.0 is released. These changes should not be controversial, but let me 
-know if you disagree. We are planning to keep the Mender section 
-up-to-date as we release new versions, as I think this is what you expect.
+On Thursday, 2 March 2017 11:31:42 AM NZDT chris warth wrote:
+> Thanks, all.  I wanted to share the solution.
+> 
+> This vendor-supplied version of yocto looks like 2.0, so the space
+> separated expressions are not available.
+> After putting some print statements in cooker.py I discovered that
+> appending to BBMASK in conf/bblayers.conf or conf/local.conf has no
+> effect.  It was not until I modified BBMASK_forcevariable in my
+> conf/bblayers.conf  that I saw any change in behavior.
+> 
+> BBMASK_forcevariable = ".*openjre|.*openjdk|.*qemu_qoriq"
+> 
+> This inability to modify BBMASK unless using _forcevariable was also
+> noted last year.
+> https://lists.yoctoproject.org/pipermail/yocto/2016-September/032033.html
 
-Are there any plans for next steps or is the wiki the "final state" in 
-terms of integrating OTA updates in Yocto/OE?
+That sounds strange. Did you use bitbake -e | less to see where your non-
+forcevariable setting was being overridden? More than likely you have a layer 
+or some other configuration you're bringing in and that's simply setting it 
+with = at some point later in parsing than local.conf. The history of the 
+BBMASK variable shown through bitbake -e will tell you exactly where that is.
+
+Cheers,
+Paul
 
 
 -- 
 
-Eystein
+Paul Eggleton
+Intel Open Source Technology Centre
 
