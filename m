@@ -1,61 +1,63 @@
-Return-Path: <sbabic@denx.de>
+Return-Path: <balazovic.peter@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BC17AE00A26; Fri,  3 Mar 2017 07:32:29 -0800 (PST)
+	id CC06AE00AAA; Fri,  3 Mar 2017 08:04:23 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE, 
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (balazovic.peter[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.223.171 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.223.171 listed in dnsbl.sorbs.net]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [212.18.0.9 listed in list.dnswl.org]
-Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3B26DE00867
-	for <yocto@yoctoproject.org>; Fri,  3 Mar 2017 07:32:25 -0800 (PST)
-Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
-	by mail-out.m-online.net (Postfix) with ESMTP id 3vZY8R39ZPz3hjc1;
-	Fri,  3 Mar 2017 16:32:22 +0100 (CET)
-Received: from localhost (dynscan01.mnet-online.de [192.168.6.70])
-	by mail.m-online.net (Postfix) with ESMTP id 3vZY8Q3Fwyzvkrx;
-	Fri,  3 Mar 2017 16:32:22 +0100 (CET)
-X-Virus-Scanned: amavisd-new at mnet-online.de
-Received: from mail.mnet-online.de ([192.168.8.182])
-	by localhost (dynscan01.mail.m-online.net [192.168.6.70]) (amavisd-new,
-	port 10024)
-	with ESMTP id bDOaRVXpKeQ7; Fri,  3 Mar 2017 16:32:20 +0100 (CET)
-Received: from babic.homelinux.org (host-88-217-136-221.customer.m-online.net
-	[88.217.136.221]) by mail.mnet-online.de (Postfix) with ESMTP;
-	Fri,  3 Mar 2017 16:32:20 +0100 (CET)
-Received: from localhost (mail.babic.homelinux.org [127.0.0.1])
-	by babic.homelinux.org (Postfix) with ESMTP id E62844540595;
-	Fri,  3 Mar 2017 16:31:58 +0100 (CET)
-X-Virus-Scanned: Debian amavisd-new at babic.homelinux.org
-Received: from babic.homelinux.org ([127.0.0.1])
-	by localhost (mail.babic.homelinux.org [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id TnFo_hFWrHJB; Fri,  3 Mar 2017 16:31:55 +0100 (CET)
-Received: from [192.168.178.132] (papero.fritz.box [192.168.178.132])
-	by babic.homelinux.org (Postfix) with ESMTP id 90D8A45403A1;
-	Fri,  3 Mar 2017 16:31:54 +0100 (CET)
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>,
-	Andy Pont <andy.pont@sdcsystems.com>
-References: <alpine.LFD.2.20.1703030819430.10734@uk63952.mitel.com>
-	<CAJTo0LaNo5inrbahsW9suovVtP3F2xD28h_Bnbw24sokqOSZ0w@mail.gmail.com>
-	<00b801d29425$cfb126c0$6f137440$@sdcsystems.com>
-	<alpine.LFD.2.20.1703030902230.11821@uk63952.mitel.com>
-	<00cc01d2942a$8eb416f0$ac1c44d0$@sdcsystems.com>
-	<alpine.LFD.2.20.1703030940230.12202@uk63952.mitel.com>
-From: Stefano Babic <sbabic@denx.de>
-Message-ID: <b79f62a3-075d-864d-2afe-67ea67e2eaec@denx.de>
-Date: Fri, 3 Mar 2017 16:32:16 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.7.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-io0-f171.google.com (mail-io0-f171.google.com
+	[209.85.223.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3801AE00953
+	for <yocto@yoctoproject.org>; Fri,  3 Mar 2017 08:04:21 -0800 (PST)
+Received: by mail-io0-f171.google.com with SMTP id f84so76323774ioj.0
+	for <yocto@yoctoproject.org>; Fri, 03 Mar 2017 08:04:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=/IOqnAcaWodXHX4cj+0fCVCReqoJgIej1LUwefxJDoY=;
+	b=ietbxOi/QDOpAM5GgsETn2WfIsbb25l80mGuqX0zyag8W63LIN9VlYI4O8MFsxeMxl
+	68VImQFUPrCC40BSflu/pQn+VCq+D2jJoGXaY29lbdmLE0n3up9Vh6UW6Glho4sKbdqM
+	TUhuq8ECQN+6SDFLJVf/LTTWlzlpgPxI+M1ocinurziQ/Wk0JiVFgJ4YhvpY7rhIcwpO
+	L14CdVsC1KMgW0RxeENL+57xzeL09pMqAUAK/c0iPEQJcGRmnkbISmb02tsu75Wsksdy
+	PgExi53wPY3PuSH7Lxw3ZfNuc14Wv0CowaBI8RtZrfAyrjGvB5FRidOSje0wmkYBEzGE
+	1RvQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=/IOqnAcaWodXHX4cj+0fCVCReqoJgIej1LUwefxJDoY=;
+	b=tdAUL7yekoV+hTu2onRZLQm3xDIw3UA9E1KEO/tPDckCq/4KNv8P972Aq8A9tT8mar
+	hiYzDn2huFSeHlSV0qclEOA/WWaqIki5ufoGB6CdeZs7E1+2qstYE3/vdU6VxOblmk0i
+	7reKnUzoGwcWzEm+DiAiaHQPtDfLgg8ZDgaYGU+/f05sFWun/Em/p7IaNbtzbc1bkYhr
+	eyyxv52xWUfjMOjcTyzIDXcGSKRdYbM4vRyqTN5Hz/FJecSfHdCc4OI1Tp3IB/EZbp5P
+	U3YUgJetC6eaq2zOxDmAjfdzaZwxNZlceQdXeo/CYqpR/E6hFHm2zzZJPSUp0mzzFV7h
+	JEqg==
+X-Gm-Message-State: AMke39kimeajRKt8aFICZGQMAmaYlEKaPlya/LikSj2wMEA6bX2EozHodfCVgSdcxY2zd+AXZRKCyEN/Ng2vFQ==
+X-Received: by 10.107.138.14 with SMTP id m14mr3744291iod.235.1488557061106;
+	Fri, 03 Mar 2017 08:04:21 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <alpine.LFD.2.20.1703030940230.12202@uk63952.mitel.com>
-Cc: 'Yocto discussion list' <yocto@yoctoproject.org>
-Subject: Re: any rumblings about a newer YP powerpc reference board than mpc8315e-rdb?
+Received: by 10.79.158.69 with HTTP; Fri, 3 Mar 2017 08:04:20 -0800 (PST)
+From: Peter Balazovic <balazovic.peter@gmail.com>
+Date: Fri, 3 Mar 2017 17:04:20 +0100
+Message-ID: <CAFq4t4h_PuOC8JDN2z6NWRZGHZMZWRr7aB+XYDCta1cvJV49CA@mail.gmail.com>
+To: Yocto list discussion <yocto@yoctoproject.org>
+Subject: Yocto's framebuffer-vncserver
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,76 +69,79 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 03 Mar 2017 15:32:29 -0000
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Fri, 03 Mar 2017 16:04:23 -0000
+Content-Type: multipart/alternative; boundary=001a113fe8aedb08950549d5b27a
 
-Hi Robert,
+--001a113fe8aedb08950549d5b27a
+Content-Type: text/plain; charset=UTF-8
 
-On 03/03/2017 15:53, Robert P. J. Day wrote:
-> On Fri, 3 Mar 2017, Andy Pont wrote:
-> 
->> Robert wrote...
->>
->>>> I would look at one of the P10xx series QorIQ boards.  Digi-Key list
->>>> the P1021RDB-PC-ND and P1024RDB-PA-ND as being active parts which
->>>> are either single or dual e500 cores.
->>>
->>>   i would start with the machine definition files in the meta-fsl-ppc
->>> layer:
->>>
->>> http://git.yoctoproject.org/cgit/cgit.cgi/meta-fsl-ppc/tree/conf/machine
->>>
->>> and see what looks promising. however, IIRC, one of the properties of
->>> a YP reference board is that it shouldn't be stupid, crazy expensive,
->>> no? so anything climbing above $500 (USD) might not be an option.
->>> people used to spending $60 for a beaglebone black might have a
->>> seizure to suddenly realize they need $500 for a powerpc reference
->>> board.
->>
->> Using Digi-Key UK as my reference, they list the MPC8308-RDB-ND and
->> MPC8313E-RDBC-ND as being available for less than £250 which makes
->> them sub $300 which is probably the best price I have seen for Power
->> Architecture reference boards.
->>
->> Granted, they are still more expensive than a BBB, RPi or something
->> like that but cheap compared to >$2,000 reference boards we used to
->> have to buy in the old days!
-> 
->   in canada, distributors are charging over $400 (CAD) for either of
-> those, which you'd normally think would be outside the bounds for a YP
-> reference board, but it may be that that's what you have to accept for
-> even an inexpensive PPC dev kit.
-> 
->   a better question is, what PPC platform are people working with
-> these days? it seems pointless to select an older technology just
-> because it's cheaper, only to have no one buy it because it's useless.
-> so who out there is working with powerpc, and what PPC platform would
-> have enough general interest that it would be worth making the YP
-> reference board?
-> 
+Hello all,
 
-One more question is regarding the EOL of some of these processors.
-P1010/14 reaches EOL next year, P1021/23 in two years. It should be also
-avoided to take a board that has a very short life time. The MPC8313
-reached EOL last year :-(.
+I have a question to Yocto experts here. I have an OpenGL application which
+runs on embedded Yotco Linux with framebuffer graphical backend.
+I''d like to run and display application remotely on local Desktop. For X11
+graphical backend I use x11vnc and now I am looking for a way to do it
+similarly for framebuffer backend.
 
->   or, perhaps (god forbid) there's no actual point in even *having* a
-> powerpc reference board?
+I found only this https://gist.github.com/gkos/9ed87cad62d72c599761
+framebuffer-vncserver. Is there any other Yocto recipe for vnc server for
+framebuffer backend than this?
 
-IMHO it was always a good point for me to have a reference for e500. I
-mainly had projects with P202x, QorIQ.
+I am not successfull to include it into my image, here is a part of a log
+build:
 
-Best regards,
-Stefano
+| ../git/configure: line 13581: syntax error near unexpected token `GTK,'
+| ../git/configure: line 13581: `PKG_CHECK_MODULES(GTK, gtk+-2.0,,:)'
+| NOTE: The following config.log files may provide further information.
+| WARNING: exit code 1 from a shell command.
+| NOTE:
+/mnt/work/Linux/build-fb/tmp/work/aarch64-poky-linux/libvncserver/git-r1+gitrAUTOINC+5b322f523f/build/config.log
+| ERROR: configure failed
+| ERROR: Function failed: do_configure (log file is located at
+/mnt/work/Linux//build-fb/tmp/work/aarch64-poky-linux/libvncserver/git-r1+gitrAUTOINC+5b322f523f/temp/log.do_configure.11798)
+ERROR: Task 866
+(/mnt/work/Linu//sources/meta-openembedded/meta-oe/recipes-graphics/famebuffer-vnc/
+libvncserver_git.bb, do_configure) failed with exit code '1'
+NOTE: Tasks Summary: Attempted 5407 tasks of which 5406 didn't need to be
+rerun and 1 failed.
 
--- 
-Meet DENX at the Embedded World Trade Show
-14 Mar - 16 Mar 2017, Nuremberg Trade Fair Centre, Hall 4, Booth 581
---
-=====================================================================
-DENX Software Engineering GmbH,      Managing Director: Wolfgang Denk
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: +49-8142-66989-53 Fax: +49-8142-66989-80 Email: sbabic@denx.de
-=====================================================================
+Does anybode have idea where problem might be?
 
+Thank you.
+
+Cheers,
+Peter
+
+--001a113fe8aedb08950549d5b27a
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hello all,<div><br></div><div>I have a question to Yocto e=
+xperts here. I have an OpenGL application which runs on embedded Yotco Linu=
+x with framebuffer graphical backend.=C2=A0</div><div>I&#39;&#39;d like to =
+run and display application remotely on local Desktop. For X11 graphical ba=
+ckend I use x11vnc and now I am looking for a way to do it similarly for fr=
+amebuffer backend.</div><div><br></div><div>I found only this <a href=3D"ht=
+tps://gist.github.com/gkos/9ed87cad62d72c599761">https://gist.github.com/gk=
+os/9ed87cad62d72c599761</a> framebuffer-vncserver. Is there any other Yocto=
+ recipe for vnc server for framebuffer backend than this?</div><div><br></d=
+iv><div>I am not successfull to include it into my image, here is a part of=
+ a log build:</div><div><br></div><div>| ../git/configure: line 13581: synt=
+ax error near unexpected token `GTK,&#39;</div><div>| ../git/configure: lin=
+e 13581: `PKG_CHECK_MODULES(GTK, gtk+-2.0,,:)&#39;</div><div>| NOTE: The fo=
+llowing config.log files may provide further information.</div><div>| WARNI=
+NG: exit code 1 from a shell command.</div><div>| NOTE: /mnt/work/Linux/bui=
+ld-fb/tmp/work/aarch64-poky-linux/libvncserver/git-r1+gitrAUTOINC+5b322f523=
+f/build/config.log</div><div>| ERROR: configure failed</div><div>| ERROR: F=
+unction failed: do_configure (log file is located at /mnt/work/Linux//build=
+-fb/tmp/work/aarch64-poky-linux/libvncserver/git-r1+gitrAUTOINC+5b322f523f/=
+temp/log.do_configure.11798)</div><div>ERROR: Task 866 (/mnt/work/Linu//sou=
+rces/meta-openembedded/meta-oe/recipes-graphics/famebuffer-vnc/<a href=3D"h=
+ttp://libvncserver_git.bb">libvncserver_git.bb</a>, do_configure) failed wi=
+th exit code &#39;1&#39;</div><div>NOTE: Tasks Summary: Attempted 5407 task=
+s of which 5406 didn&#39;t need to be rerun and 1 failed.</div><div><br></d=
+iv><div>Does anybode have idea where problem might be?</div><div><br></div>=
+<div>Thank you.</div><div><br></div><div>Cheers,</div><div>Peter</div><div>=
+<br></div><div>=C2=A0</div></div>
+
+--001a113fe8aedb08950549d5b27a--
