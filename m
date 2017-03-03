@@ -1,68 +1,60 @@
-Return-Path: <twoerner@gmail.com>
+Return-Path: <sona.sarmadi@enea.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 819E4E00A28; Thu,  2 Mar 2017 22:55:14 -0800 (PST)
+	id 485E8E00A16; Thu,  2 Mar 2017 23:45:06 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (twoerner[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.223.194 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [185.38.181.46 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.223.194 listed in dnsbl.sorbs.net]
-Received: from mail-io0-f194.google.com (mail-io0-f194.google.com
-	[209.85.223.194])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CBA01E009C2
-	for <yocto@yoctoproject.org>; Thu,  2 Mar 2017 22:55:10 -0800 (PST)
-Received: by mail-io0-f194.google.com with SMTP id 68so7144674ioh.3
-	for <yocto@yoctoproject.org>; Thu, 02 Mar 2017 22:55:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:cc:subject:date:message-id:in-reply-to:references;
-	bh=oCT04y6JdV/9HEUXvnRHLESnyee9Tmdn7FYa8g0X6Ug=;
-	b=YlmoQsZP4Rny93BpKsdCTHCP1l9jlgb/PXpig1m3yCNlEB0pvevjb99INN7OlA2ZrO
-	YFFaOHQ9kJY+zRdg2i/uIjFPgSbI7eg9e6+CoXgMRz7euqSiwNbYYP8VHb1iuDvxQD8O
-	cPgH17953o3tVob0j1dlrDT2LVAnOfTdurdCYOiNlcGEUmZUVqaf7vtCFvYvG2x5c+g8
-	moZjD+tRfcFd5ynHpcYYU8aiyWVpW6fcW0rZ9J6zXiAivZh+dte99Q84kvsmSXio+wSH
-	kj9C2T/jfmKI25j1ipJ28HUAIdwvjllhnUQly5Q3RXqs1pDnOqB5R16FnECW0U1OwI4J
-	fpGA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-	:references;
-	bh=oCT04y6JdV/9HEUXvnRHLESnyee9Tmdn7FYa8g0X6Ug=;
-	b=RC7Y7gGz/ZFqr7Y0h1VCjQdujUek+3+o7WzZ0la/mT/+erDDapx4vJ6t4PU3zY1XPw
-	K3BnBexqMn7oYS5pQ1IryoNOL+3B1AyBkq6KvHx9GIqBzr/osU62fPv+dy49mEMcPCtt
-	1giKKSgOsm+/6zZaPTZmC7yZtc//SFgHsZWCZipYxA0m8tRImAXqkWB2Bm27bB6zufxg
-	5x0AiYGRW+h02eR6mgcBsbOmzmtIGG4DH0vfpWws6uBicfUWDXKV12b558Ya6wUf3GAR
-	+u4lzxZHy/8QPatsVrVi3q+MWvdsUuHaHvtQPuard2uhQ0zVZ2EDQpYmAldcKRhJjjOf
-	43jQ==
-X-Gm-Message-State: AMke39l7Wm11jKwpN+3Uql8g2/h0quH7rlcgRpcLdnwkpGxKYoOmbk3bUpETeHtTYPf5Mg==
-X-Received: by 10.107.203.7 with SMTP id b7mr1452729iog.115.1488524109635;
-	Thu, 02 Mar 2017 22:55:09 -0800 (PST)
-Received: from linux-uys3.suse ([45.72.250.10])
-	by smtp.gmail.com with ESMTPSA id e79sm586630ite.23.2017.03.02.22.55.08
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Thu, 02 Mar 2017 22:55:09 -0800 (PST)
-From: Trevor Woerner <twoerner@gmail.com>
-To: yocto@yoctoproject.org
-Date: Fri,  3 Mar 2017 01:54:54 -0500
-Message-Id: <20170303065454.27692-2-twoerner@gmail.com>
-X-Mailer: git-send-email 2.12.0.rc1.48.g076c053
-In-Reply-To: <20170303065454.27692-1-twoerner@gmail.com>
-References: <20170303065454.27692-1-twoerner@gmail.com>
-Cc: Jacob Chen <jacob-chen@iotwrt.com>
-Subject: [meta-rockchip][PATCH v5 1/1] classes: rockchip-gpt-img: add
+X-Greylist: delayed 65 seconds by postgrey-1.32 at yocto-www;
+	Thu, 02 Mar 2017 23:45:03 PST
+Received: from smtp-out11.electric.net (smtp-out11.electric.net
+	[185.38.181.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 87A79E0094C
+	for <yocto@yoctoproject.org>; Thu,  2 Mar 2017 23:45:03 -0800 (PST)
+Received: from 1cjhsa-0002Y3-TO by out11a.electric.net with emc1-ok (Exim 4.87)
+	(envelope-from <sona.sarmadi@enea.com>)
+	id 1cjhsa-0002Ze-UN; Thu, 02 Mar 2017 23:43:56 -0800
+Received: by emcmailer; Thu, 02 Mar 2017 23:43:56 -0800
+Received: from [192.36.1.72] (helo=mx-3.enea.com)
+	by out11a.electric.net with esmtps (TLSv1:ECDHE-RSA-AES256-SHA:256)
+	(Exim 4.87) (envelope-from <sona.sarmadi@enea.com>)
+	id 1cjhsa-0002Y3-TO; Thu, 02 Mar 2017 23:43:56 -0800
+Received: from SESTOEX04.enea.se ([fe80::bc2d:9299:d6b2:d0b7]) by
+	SESTOEX08.enea.se ([fe80::1c3:4003:dc47:23c0%11]) with mapi id
+	14.03.0319.002; Fri, 3 Mar 2017 08:43:56 +0100
+From: Sona Sarmadi <sona.sarmadi@enea.com>
+To: "Lei, Maohui" <leimaohui@cn.fujitsu.com>
+Thread-Topic: a new layer that support spdx
+Thread-Index: AdKSVZ7ToFKkqu+SRW+I9gwqtL+b5gBmk4dg
+Date: Fri, 3 Mar 2017 07:43:54 +0000
+Message-ID: <3230301C09DEF9499B442BBE162C5E48AC32B12E@SESTOEX04.enea.se>
+References: <1B56A49860EB2D45ADE3731B15C959FD01275BB282@G08CNEXMBPEKD02.g08.fujitsu.local>
+In-Reply-To: <1B56A49860EB2D45ADE3731B15C959FD01275BB282@G08CNEXMBPEKD02.g08.fujitsu.local>
+Accept-Language: sv-SE, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.16.142.231]
+MIME-Version: 1.0
+X-Outbound-IP: 192.36.1.72
+X-Env-From: sona.sarmadi@enea.com
+X-Proto: esmtps
+X-Revdns: mx-3.enea.com
+X-HELO: mx-3.enea.com
+X-TLS: TLSv1:ECDHE-RSA-AES256-SHA:256
+X-Authenticated_ID: 
+X-PolicySMART: 6551647
+X-Virus-Status: Scanned by VirusSMART (c)
+X-Virus-Status: Scanned by VirusSMART (s)
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"openembedded-devel@lists.openembedded.org"
+	<openembedded-devel@lists.openembedded.org>
+Subject: Re: a new layer that support spdx
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,178 +66,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 03 Mar 2017 06:55:14 -0000
+X-List-Received-Date: Fri, 03 Mar 2017 07:45:06 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-This bbclass was taken from the Rockchip team's work at
-https://github.com/rockchip-linux/meta-rockchip/commit/53d2e2e474a3014e3013d0059fd1da773fb0e2b7
-It was mostly written by Jacob Chen <jacob-chen@iotwrt.com>. I've made some
-small modifications and added it.
+> -----Original Message-----
+> From: yocto-bounces@yoctoproject.org [mailto:yocto-
+> bounces@yoctoproject.org] On Behalf Of Lei, Maohui
+> Sent: den 1 mars 2017 07:37
+> To: yocto@yoctoproject.org; openembedded-
+> devel@lists.openembedded.org
+> Subject: [yocto] a new layer that support spdx
+>=20
+> Hi all
+>=20
+> I have submitted a new layer named meta-spdxscanner that can be used
+> to create spdx files to the OpenEmbedded layer index.
+> Compared to the spdx module in oe-core, this layer has features as
+> following:
+>=20
+>   * Easy to use
+>     Dosocs2-native has been add into this meta, there is no need to insta=
+ll
+> anything in build server.
+>   * Good performance
+>     It has better performance than the spdx module in current oe-core,
+> especially in rebuilding.
 
-Older images used (what Rockchip calls) the "legacy parameter" format. Newer
-images use u-boot and a GPT partitioning scheme. This class allows the build
-to generate a gpt-img file that can either be flashed to eMMC or written to an
-SDcard (the same image is used for both).
 
-This is the new image format used for rk3288 SoCs (e.g. the Firefly board).
+Thanks Lei,
 
-Reviewd-by: Eddie Cai <eddie.cai.linux@gmail.com>
-Signed-off-by: Jacob Chen <jacob-chen@iotwrt.com>
-Signed-off-by: Trevor Woerner <twoerner@gmail.com>
----
- classes/rockchip-gpt-img.bbclass | 143 +++++++++++++++++++++++++++++++++++++++
- 1 file changed, 143 insertions(+)
- create mode 100644 classes/rockchip-gpt-img.bbclass
+Do you know if there is a plan to support this in any upcoming Yocto releas=
+es?=20
 
-diff --git a/classes/rockchip-gpt-img.bbclass b/classes/rockchip-gpt-img.bbclass
-new file mode 100644
-index 0000000..941bae3
---- /dev/null
-+++ b/classes/rockchip-gpt-img.bbclass
-@@ -0,0 +1,143 @@
-+# Copyright (C) 2017 Fuzhou Rockchip Electronics Co., Ltd
-+# Copyright (C) 2017 Trevor Woerner <twoerner@gmail.com>
-+# Released under the MIT license (see COPYING.MIT for the terms)
-+
-+inherit image_types
-+
-+# Use an uncompressed ext4 by default as rootfs
-+IMG_ROOTFS_TYPE = "ext4"
-+IMG_ROOTFS = "${IMGDEPLOYDIR}/${IMAGE_NAME}.rootfs.${IMG_ROOTFS_TYPE}"
-+
-+# This image depends on the rootfs image
-+IMAGE_TYPEDEP_rockchip-gpt-img = "${IMG_ROOTFS_TYPE}"
-+
-+GPTIMG         = "${IMAGE_NAME}-gpt.img"
-+GPTIMG_SYMLK   = "${IMAGE_BASENAME}-${MACHINE}-gpt.img"
-+GPTIMG_SIZE   ?= "4096"
-+BOOT_IMG       = "boot.img"
-+BOOTIMG_SYMLK  = "${IMAGE_BASENAME}-${MACHINE}-${BOOT_IMG}"
-+MINILOADER     = "loader.bin"
-+UBOOT          = "u-boot.out"
-+TRUST          = "trust.out"
-+GPTIMG_APPEND ?= "console=tty1 console=ttyS2,115200n8 rw root=/dev/mmcblk2p7 rootfstype=ext4 init=/sbin/init"
-+
-+# default partitions [in Sectors]
-+# More info at http://rockchip.wikidot.com/partitions
-+LOADER1_SIZE = "8000"
-+RESERVED1_SIZE = "128"
-+RESERVED2_SIZE = "8192"
-+LOADER2_SIZE = "8192"
-+ATF_SIZE = "8192"
-+BOOT_SIZE = "229376"
-+
-+IMAGE_DEPENDS_rockchip-gpt-img = "parted-native \
-+	u-boot-mkimage-native \
-+	mtools-native \
-+	dosfstools-native \
-+	virtual/kernel:do_deploy \
-+	virtual/bootloader:do_deploy"
-+
-+PER_CHIP_IMG_GENERATION_COMMAND_rk3288 = "generate_rk3288_loader1_image"
-+
-+IMAGE_CMD_rockchip-gpt-img () {
-+	# Change to image directory
-+	cd ${DEPLOY_DIR_IMAGE}
-+
-+	# Remove the existing image symlinks
-+	rm -f "${GPTIMG_SYMLK}"
-+	rm -f "${BOOTIMG_SYMLK}"
-+
-+	create_rk_image
-+
-+	${PER_CHIP_IMG_GENERATION_COMMAND}
-+
-+	# create symlink to full GPT image
-+	cd ${DEPLOY_DIR_IMAGE}
-+	ln -s ${GPTIMG} ${GPTIMG_SYMLK}
-+
-+	# create per-build boot.img with symlink
-+	cd ${DEPLOY_DIR_IMAGE}
-+	rm -f ${IMAGE_NAME}-boot.img
-+	if [ -f ${WORKDIR}/${BOOT_IMG} ]; then
-+		cp ${WORKDIR}/${BOOT_IMG} ${IMAGE_NAME}-boot.img
-+	fi
-+	ln -s ${IMAGE_NAME}-boot.img ${BOOTIMG_SYMLK}
-+}
-+
-+create_rk_image () {
-+
-+	# Initialize sdcard image file
-+	dd if=/dev/zero of=${GPTIMG} bs=1M count=0 seek=${GPTIMG_SIZE}
-+
-+	# Create partition table
-+	parted -s ${GPTIMG} mklabel gpt
-+
-+	# Create vendor defined partitions
-+	LOADER1_START=64
-+	RESERVED1_START=`expr ${LOADER1_START}  + ${LOADER1_SIZE}`
-+	RESERVED2_START=`expr ${RESERVED1_START}  + ${RESERVED1_SIZE}`
-+	LOADER2_START=`expr ${RESERVED2_START}  + ${RESERVED2_SIZE}`
-+	ATF_START=`expr ${LOADER2_START}  + ${LOADER2_SIZE}`
-+	BOOT_START=`expr ${ATF_START}  + ${ATF_SIZE}`
-+	ROOTFS_START=`expr ${BOOT_START}  + ${BOOT_SIZE}`
-+
-+	parted -s ${GPTIMG} unit s mkpart loader1 ${LOADER1_START} `expr ${RESERVED1_START} - 1`
-+	parted -s ${GPTIMG} unit s mkpart reserved1 ${RESERVED1_START} `expr ${RESERVED2_START} - 1`
-+	parted -s ${GPTIMG} unit s mkpart reserved2 ${RESERVED2_START} `expr ${LOADER2_START} - 1`
-+	parted -s ${GPTIMG} unit s mkpart loader2 ${LOADER2_START} `expr ${ATF_START} - 1`
-+	parted -s ${GPTIMG} unit s mkpart atf ${ATF_START} `expr ${BOOT_START} - 1`
-+
-+	# Create boot partition and mark it as bootable
-+	parted -s ${GPTIMG} unit s mkpart boot ${BOOT_START} `expr ${ROOTFS_START} - 1`
-+	parted -s ${GPTIMG} set 6 boot on
-+
-+	# Create rootfs partition
-+	parted -s ${GPTIMG} unit s mkpart root ${ROOTFS_START} 100%
-+
-+	parted ${GPTIMG} print
-+
-+	# Delete the boot image to avoid trouble with the build cache
-+	rm -f ${WORKDIR}/${BOOT_IMG}
-+
-+	# Create boot partition image
-+	BOOT_BLOCKS=$(LC_ALL=C parted -s ${GPTIMG} unit b print | awk '/ 6 / { print substr($4, 1, length($4 -1)) / 512 /2 }')
-+	BOOT_BLOCKS=`expr $BOOT_BLOCKS / 63 \* 63`
-+
-+	mkfs.vfat -n "boot" -S 512 -C ${WORKDIR}/${BOOT_IMG} $BOOT_BLOCKS
-+	mcopy -i ${WORKDIR}/${BOOT_IMG} -s ${DEPLOY_DIR_IMAGE}/${KERNEL_IMAGETYPE}-${MACHINE}.bin ::${KERNEL_IMAGETYPE}
-+
-+	DEVICETREE_DEFAULT=""
-+	for DTS_FILE in ${KERNEL_DEVICETREE}; do
-+		[ -n "${DEVICETREE_DEFAULT}"] && DEVICETREE_DEFAULT="${DTS_FILE}"
-+		mcopy -i ${WORKDIR}/${BOOT_IMG} -s ${DEPLOY_DIR_IMAGE}/${KERNEL_IMAGETYPE}-${DTS_FILE} ::${DTS_FILE}
-+	done
-+
-+	# Create extlinux config file
-+	cat > ${WORKDIR}/extlinux.conf <<EOF
-+default yocto
-+
-+label yocto
-+	kernel /${KERNEL_IMAGETYPE}
-+	devicetree /${DEVICETREE_DEFAULT}
-+	append ${GPTIMG_APPEND}
-+EOF
-+
-+	mmd -i ${WORKDIR}/${BOOT_IMG} ::/extlinux
-+	mcopy -i ${WORKDIR}/${BOOT_IMG} -s ${WORKDIR}/extlinux.conf ::/extlinux/
-+
-+	# Burn Boot Partition
-+	dd if=${WORKDIR}/${BOOT_IMG} of=${GPTIMG} conv=notrunc,fsync seek=${BOOT_START}
-+
-+	# Burn Rootfs Partition
-+	dd if=${IMG_ROOTFS} of=${GPTIMG} seek=${ROOTFS_START}
-+
-+}
-+
-+generate_rk3288_loader1_image () {
-+
-+	# Burn bootloader
-+	mkimage -n rk3288 -T rksd -d ${DEPLOY_DIR_IMAGE}/${SPL_BINARY} ${WORKDIR}/${UBOOT}
-+	cat ${DEPLOY_DIR_IMAGE}/u-boot-${MACHINE}.bin >>  ${WORKDIR}/${UBOOT}
-+	dd if=${WORKDIR}/${UBOOT} of=${GPTIMG} conv=notrunc,fsync seek=64
-+
-+}
--- 
-2.12.0.rc1.48.g076c053
+//Sona
+
+P.S. BTW I tested this with oe-core master branch I get circular dependency=
+ chains ERROR :)=20
+Do you if this works in master or AM I doing something wrong?
 
 
