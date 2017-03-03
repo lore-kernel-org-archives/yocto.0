@@ -1,60 +1,61 @@
-Return-Path: <sona.sarmadi@enea.com>
+Return-Path: <edwingate8@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 485E8E00A16; Thu,  2 Mar 2017 23:45:06 -0800 (PST)
+	id B9ADDE00A16; Fri,  3 Mar 2017 00:08:56 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [185.38.181.46 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_LOW,
+	RCVD_IN_SORBS_SPAM autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (edwingate8[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.214.53 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.214.53 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 65 seconds by postgrey-1.32 at yocto-www;
-	Thu, 02 Mar 2017 23:45:03 PST
-Received: from smtp-out11.electric.net (smtp-out11.electric.net
-	[185.38.181.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 87A79E0094C
-	for <yocto@yoctoproject.org>; Thu,  2 Mar 2017 23:45:03 -0800 (PST)
-Received: from 1cjhsa-0002Y3-TO by out11a.electric.net with emc1-ok (Exim 4.87)
-	(envelope-from <sona.sarmadi@enea.com>)
-	id 1cjhsa-0002Ze-UN; Thu, 02 Mar 2017 23:43:56 -0800
-Received: by emcmailer; Thu, 02 Mar 2017 23:43:56 -0800
-Received: from [192.36.1.72] (helo=mx-3.enea.com)
-	by out11a.electric.net with esmtps (TLSv1:ECDHE-RSA-AES256-SHA:256)
-	(Exim 4.87) (envelope-from <sona.sarmadi@enea.com>)
-	id 1cjhsa-0002Y3-TO; Thu, 02 Mar 2017 23:43:56 -0800
-Received: from SESTOEX04.enea.se ([fe80::bc2d:9299:d6b2:d0b7]) by
-	SESTOEX08.enea.se ([fe80::1c3:4003:dc47:23c0%11]) with mapi id
-	14.03.0319.002; Fri, 3 Mar 2017 08:43:56 +0100
-From: Sona Sarmadi <sona.sarmadi@enea.com>
-To: "Lei, Maohui" <leimaohui@cn.fujitsu.com>
-Thread-Topic: a new layer that support spdx
-Thread-Index: AdKSVZ7ToFKkqu+SRW+I9gwqtL+b5gBmk4dg
-Date: Fri, 3 Mar 2017 07:43:54 +0000
-Message-ID: <3230301C09DEF9499B442BBE162C5E48AC32B12E@SESTOEX04.enea.se>
-References: <1B56A49860EB2D45ADE3731B15C959FD01275BB282@G08CNEXMBPEKD02.g08.fujitsu.local>
-In-Reply-To: <1B56A49860EB2D45ADE3731B15C959FD01275BB282@G08CNEXMBPEKD02.g08.fujitsu.local>
-Accept-Language: sv-SE, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.16.142.231]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-it0-f53.google.com (mail-it0-f53.google.com
+	[209.85.214.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 50CA5E0094C
+	for <yocto@yoctoproject.org>; Fri,  3 Mar 2017 00:08:54 -0800 (PST)
+Received: by mail-it0-f53.google.com with SMTP id 68so5984272itg.0
+	for <yocto@yoctoproject.org>; Fri, 03 Mar 2017 00:08:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=juZW13GNKzL/AFaMCwiqrT7mQqT3TQ7bA8q8Xh9dLuU=;
+	b=A04s08uhdnbc3nhevnWpBHtKpeeuubC3teRnVMrYhqumi78zXPAtgoQVZg5uqY4Oaa
+	WUd9/TV0+rYdZIzxZVAW7Q/OnkA4JJpXOKYmYhn8AdLgfFStMdhWV0KGzqEnNtOgOGSO
+	esQVUli3TcR0ij7usPdKoyxq3wt+g0J8YYXNlz+1G6/ZI0oH7VzbQIrC1vSF/BgJMSju
+	24448Y04Kqziv0mSTDchU13UDj56hbtOloLmpKPeAwjS4pup4VB41Sgs5+UsatrFLMSV
+	y7GCB8da5Al3OAOsizhxVU9WCbSGhppdPbnmztlLnIKJCVJXyVrb9jnrh+NmXdLVyIQ5
+	b20A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=juZW13GNKzL/AFaMCwiqrT7mQqT3TQ7bA8q8Xh9dLuU=;
+	b=DCqwBWHREUhW9r7nm9nylsaXfymfLlgPr3im/m+g/A6VR9BsKSwh30D92mR6YdUIkt
+	zwMup6vzepGbuXBTVjLG3cwP8/q7moflqudg6hC+DQJHpMVXrncHcuUr5kagstsYw2Mt
+	07sVQxyE904JqnA+00/YjKe+f9xI7Xzb3ZAw065YDaiUC76QeSeY4sPCixKKW2+dIZyY
+	GFB8wpYgQbmTkluhqzl+rm5Lzd6vL1Jcd4olcacbJNGAWNCodZzPd2zCuIr0j6jcYNRK
+	uObrnPmsyv+Ae6Hwtd8Zc6PPK5pbLKp+S3L/zN4Aab6ezviyNNkm4vFrCRtqS4NKHVX0
+	x2Qg==
+X-Gm-Message-State: AMke39nRWxl2Ls3V2bDwEgVzX5uazg+9nXL24GdpyAEQD/W8SWv4raLgtnwFxFSh9qjotCd7tdT0/F1i1xcudQ==
+X-Received: by 10.36.83.14 with SMTP id n14mr1773647itb.16.1488528534388; Fri,
+	03 Mar 2017 00:08:54 -0800 (PST)
 MIME-Version: 1.0
-X-Outbound-IP: 192.36.1.72
-X-Env-From: sona.sarmadi@enea.com
-X-Proto: esmtps
-X-Revdns: mx-3.enea.com
-X-HELO: mx-3.enea.com
-X-TLS: TLSv1:ECDHE-RSA-AES256-SHA:256
-X-Authenticated_ID: 
-X-PolicySMART: 6551647
-X-Virus-Status: Scanned by VirusSMART (c)
-X-Virus-Status: Scanned by VirusSMART (s)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"openembedded-devel@lists.openembedded.org"
-	<openembedded-devel@lists.openembedded.org>
-Subject: Re: a new layer that support spdx
+Received: by 10.79.14.6 with HTTP; Fri, 3 Mar 2017 00:08:54 -0800 (PST)
+From: Edward Wingate <edwingate8@gmail.com>
+Date: Fri, 3 Mar 2017 00:08:54 -0800
+Message-ID: <CAGMdoF=m8O_QqmeT5rqKdFOeD_j+Pi+5UAQd+rHHEDRWzWR_fw@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Recipes/packages to use for X server and VNC
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,44 +67,11 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 03 Mar 2017 07:45:06 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 03 Mar 2017 08:08:56 -0000
+Content-Type: text/plain; charset=UTF-8
 
-> -----Original Message-----
-> From: yocto-bounces@yoctoproject.org [mailto:yocto-
-> bounces@yoctoproject.org] On Behalf Of Lei, Maohui
-> Sent: den 1 mars 2017 07:37
-> To: yocto@yoctoproject.org; openembedded-
-> devel@lists.openembedded.org
-> Subject: [yocto] a new layer that support spdx
->=20
-> Hi all
->=20
-> I have submitted a new layer named meta-spdxscanner that can be used
-> to create spdx files to the OpenEmbedded layer index.
-> Compared to the spdx module in oe-core, this layer has features as
-> following:
->=20
->   * Easy to use
->     Dosocs2-native has been add into this meta, there is no need to insta=
-ll
-> anything in build server.
->   * Good performance
->     It has better performance than the spdx module in current oe-core,
-> especially in rebuilding.
-
-
-Thanks Lei,
-
-Do you know if there is a plan to support this in any upcoming Yocto releas=
-es?=20
-
-//Sona
-
-P.S. BTW I tested this with oe-core master branch I get circular dependency=
- chains ERROR :)=20
-Do you if this works in master or AM I doing something wrong?
-
+I don't have any video or display hardware on my system, but I want to
+install an X server and window manager in order to VNC in.  Is this
+possible?  Would using the matchbox-* recipes allow me to do this?
+Would I also need any x11 recipes?  Thanks for any suggestions.
 
