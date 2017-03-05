@@ -1,68 +1,62 @@
-Return-Path: <gizero@gmail.com>
+Return-Path: <twoerner@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5C06EE009A5; Sat,  4 Mar 2017 14:19:16 -0800 (PST)
+	id EA84CE0098A; Sun,  5 Mar 2017 07:59:58 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE, 
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (gizero[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.128.169 listed in list.dnswl.org]
+	mail provider *      (twoerner[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.128.169 listed in dnsbl.sorbs.net]
-Received: from mail-wr0-f169.google.com (mail-wr0-f169.google.com
-	[209.85.128.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 02031E009A5
-	for <yocto@yoctoproject.org>; Sat,  4 Mar 2017 14:19:14 -0800 (PST)
-Received: by mail-wr0-f169.google.com with SMTP id g10so94126120wrg.2
-	for <yocto@yoctoproject.org>; Sat, 04 Mar 2017 14:19:14 -0800 (PST)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.213.52 listed in list.dnswl.org]
+Received: from mail-vk0-f52.google.com (mail-vk0-f52.google.com
+	[209.85.213.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 81322E0097C
+	for <yocto@yoctoproject.org>; Sun,  5 Mar 2017 07:59:55 -0800 (PST)
+Received: by mail-vk0-f52.google.com with SMTP id d188so2696678vka.0
+	for <yocto@yoctoproject.org>; Sun, 05 Mar 2017 07:59:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=wzkDZ3FoEJiWl5n0q4of2fuowFoyyadTPm1FQqkjHqM=;
-	b=cPW4OvZjK1Dhblej2SAM9m/VNmvFZrG55MB8Gr2L0MfowR+MXsmU2QxOeby1w64ACp
-	M7iozW2AJUzrYGrmU/66+vRUuIos5cwDwmC4vpi669twPnr4RBczms8j2ZkhXs5CWSKT
-	/3gRiA2kggNCW51+4G7SZpkhi4Qk1dIEUV0ZcXfTonLkbi0/SG2xQOuRZsyy0IWSbQRZ
-	h6x//f2l/Va+hXLVvIHNcmyQil1qXT62jFVP08Uwwd7deoXG8/QBu7YPl3l2neGGw5Iz
-	NGUjAkylOjphpdWlvDxdfDAQvhZCzOlonV0N6+LO+Sz/sanuz34e3zh0ev8DPr7Kcrx6
-	rbcA==
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to; 
+	bh=KxoYazK4pNrqNXLsbKv9uW+h47BqlM3np/uBkfJjDYA=;
+	b=n3J/ll1uiyuzbIkaiObQaMNh+zAPHNAD9J9g1KNv9CDiNhgxmaYEcjdbUYEgMi2eNj
+	WoxoTCcmr9axWkOgZma2G/gM2fKmcjF4Skk2KfSavlLhS39uyPL3AiAFyLFpsV9hQqUy
+	s9ihdHBF7xIsfbgpS9lfKwYNcpxP/HzDydRMZ361y8zuaIvE66llWnE4+igV+PHOtV5m
+	8jo+yIb3V5DFTEltxn9FACETqdl/PU8ycekl7782lofSfyQgdAtmXLhQmOzi3HzkEB4a
+	Ynmk+p1zMRsteWkBvehnhabNfMOxZFbjIK8Eq9BBXICh6pJ1R4DJPPjFat4H5bozFeKx
+	bndg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=wzkDZ3FoEJiWl5n0q4of2fuowFoyyadTPm1FQqkjHqM=;
-	b=AcQQW11CTi6rAO/JuZsh0jWj0O4wTbuFmi5ngLyuX63bHN4rWcm4SXsC7BZzWbIEMG
-	s0m0gu46HFJ2AMzb8H+jm82Zc0mPtXqxsv5IBm0sbhwNDS84FuW04FhdGHdEIKIBXg9k
-	ndDlW1WYTxe5DEi0cuw/kcrQ/jkgJwlZMfBdCxNYeu9L5MdKcvx31/pqoI5oqwNk88uH
-	sUsHFG6gnt3Mz0aLWnbRfLRUw1VGT9uoR/yIn1jlFqyB4h2R0Itv7yoPjdaBICDKPJZ5
-	c3qc87MTIUKtBZnNgb5iQj9CDpLoKBV9OyOAsajnKnbCoG8XKchErjISbWTpKt+wDl0c
-	EAvg==
-X-Gm-Message-State: AMke39k/IY1liFBGxGpg63BfEaL3BAWEusSAOjQ5JAXH410QhxEGpajSzLl0Kay1V4g+WuBPLq8Dik24W9gnnw==
-X-Received: by 10.223.134.229 with SMTP id 34mr4383043wry.104.1488665953814;
-	Sat, 04 Mar 2017 14:19:13 -0800 (PST)
+	:message-id:subject:to;
+	bh=KxoYazK4pNrqNXLsbKv9uW+h47BqlM3np/uBkfJjDYA=;
+	b=QJJm5K7HqNZr/rReccK7xPATws8uNEitQuTgb8rtayPaS5GXRhKiV20qu+txjIGKAh
+	5g8OY94fOzJhxXVXJLGoLBNioduyXAqpgpXfVK2XyHWFiNyo2leqUL0Fw5n6bp7ouXnS
+	IpnaPHJ3on4ysa4ont3cdnXxx5AF6oE6V1djIWpxbiYlM6ZWnM0Miimmi+H1faWfftK8
+	PwRT4kDM22knWraRJF9CmgCPBSO1mDL/XVpwWN67IYWkZx82FE2bapley4PO4R3BmAqs
+	smkKsaXO/XisI2wbcwXn41fKJoaITCXwcZX3F271J5ZuvTG2VF+kHyccqssiWtDNS/7n
+	BU1A==
+X-Gm-Message-State: AMke39lY8/6Z9N8ZUvKQAh33eMuHRfrj+hTiirSWeQyBvsqzmxXCaPH5s2Vjv55xI/61v/PyW8qwUBHXRXFKlg==
+X-Received: by 10.31.114.79 with SMTP id n76mr5023415vkc.53.1488729594921;
+	Sun, 05 Mar 2017 07:59:54 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.28.88.4 with HTTP; Sat, 4 Mar 2017 14:19:13 -0800 (PST)
-In-Reply-To: <CAK7GjbjSrwD7knTjL3fROZkZiaB2C3wdCKUnNKKR-iUuwrQdkg@mail.gmail.com>
-References: <CAC+thW31ggogO8jNoN2p3r11pqnk-wJxDqLeVD1Pb4hWt5_cBw@mail.gmail.com>
-	<CAK7GjbjSrwD7knTjL3fROZkZiaB2C3wdCKUnNKKR-iUuwrQdkg@mail.gmail.com>
-From: Andrea Galbusera <gizero@gmail.com>
-Date: Sat, 4 Mar 2017 23:19:13 +0100
-Message-ID: <CAC+thW3y=wW2vXfKfvHdztjtQ998xeiwo7y-Tw8ue_2YByab+g@mail.gmail.com>
-To: Steve Burt <steve@planet.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Yocto Dev Day at ELC 2017
+Received: by 10.103.43.65 with HTTP; Sun, 5 Mar 2017 07:59:54 -0800 (PST)
+In-Reply-To: <20170303065454.27692-1-twoerner@gmail.com>
+References: <20170303065454.27692-1-twoerner@gmail.com>
+From: Trevor Woerner <twoerner@gmail.com>
+Date: Sun, 5 Mar 2017 10:59:54 -0500
+Message-ID: <CAHUNapSbA-5eq7fEcE3eO=WB0V79rJ8V8bH7Btics9f67aiddg@mail.gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-rockchip][PATCH v5 0/1] classes: rockchip-gpt-img: add
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,76 +68,12 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 04 Mar 2017 22:19:16 -0000
-Content-Type: multipart/alternative; boundary=001a114917345dd0710549ef0d20
-
---001a114917345dd0710549ef0d20
+X-List-Received-Date: Sun, 05 Mar 2017 15:59:59 -0000
 Content-Type: text/plain; charset=UTF-8
 
-On Fri, Mar 3, 2017 at 1:41 AM, Steve Burt <steve@planet.com> wrote:
+On Fri, Mar 3, 2017 at 1:54 AM, Trevor Woerner <twoerner@gmail.com> wrote:
+> Here is my v5 of this patch, based on feedback from earlier reviews.
 
-> The slides are on the wiki:
-> https://wiki.yoctoproject.org/wiki/DevDay_US_2017
->
-> Hope this helps.
->
+I've added this to master as it appears the features which were
+requested have been met.
 
-Thanks for the link, Steve: appreciated!
-
-
->
-> On Thu, Mar 2, 2017 at 2:22 AM, Andrea Galbusera <gizero@gmail.com> wrote:
->
->> Hi,
->>
->> I was expecting to find some material from the Dev Day at ELC at [1] as
->> usual. Was it published somewhere else than the usual page?
->>
->> [1] https://www.yoctoproject.org/tools-resources/presentations
->>
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->>
->>
->
-
---001a114917345dd0710549ef0d20
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_extra"><div class=3D"gmail_quote">On F=
-ri, Mar 3, 2017 at 1:41 AM, Steve Burt <span dir=3D"ltr">&lt;<a href=3D"mai=
-lto:steve@planet.com" target=3D"_blank">steve@planet.com</a>&gt;</span> wro=
-te:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-=
-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr">The slides are on th=
-e wiki:<div><a href=3D"https://wiki.yoctoproject.org/wiki/DevDay_US_2017" t=
-arget=3D"_blank">https://wiki.yoctoproject.org/<wbr>wiki/DevDay_US_2017</a>=
-<br></div><div><br></div><div>Hope this helps.</div></div></blockquote><div=
-><br></div><div>Thanks for the link, Steve: appreciated!</div><div>=C2=A0</=
-div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-lef=
-t:1px #ccc solid;padding-left:1ex"><div class=3D"gmail_extra"><br><div clas=
-s=3D"gmail_quote"><div><div class=3D"h5">On Thu, Mar 2, 2017 at 2:22 AM, An=
-drea Galbusera <span dir=3D"ltr">&lt;<a href=3D"mailto:gizero@gmail.com" ta=
-rget=3D"_blank">gizero@gmail.com</a>&gt;</span> wrote:<br></div></div><bloc=
-kquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #cc=
-c solid;padding-left:1ex"><div><div class=3D"h5"><div dir=3D"ltr">Hi,<div><=
-br></div><div>I was expecting to find some material from the Dev Day at ELC=
- at [1] as usual. Was it published somewhere else than the usual page?</div=
-><div><br></div><div>[1]=C2=A0<a href=3D"https://www.yoctoproject.org/tools=
--resources/presentations" target=3D"_blank">https://www.yoctoproject.o<wbr>=
-rg/tools-resources/presentatio<wbr>ns</a></div></div>
-<br></div></div><span class=3D"HOEnZb"><font color=3D"#888888">--<br>
-______________________________<wbr>_________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.org<wbr>/listinfo/yocto</a><=
-br>
-<br></font></span></blockquote></div><br></div>
-</blockquote></div><br></div></div>
-
---001a114917345dd0710549ef0d20--
