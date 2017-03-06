@@ -1,71 +1,38 @@
-Return-Path: <twoerner@gmail.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D147FE008F2; Mon,  6 Mar 2017 12:18:07 -0800 (PST)
+	id EB774E0083C; Mon,  6 Mar 2017 12:56:09 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (twoerner[at]gmail.com)
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [134.134.136.31 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.217.195 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.217.195 listed in dnsbl.sorbs.net]
-Received: from mail-ua0-f195.google.com (mail-ua0-f195.google.com
-	[209.85.217.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9282AE007AD
-	for <yocto@yoctoproject.org>; Mon,  6 Mar 2017 12:18:04 -0800 (PST)
-Received: by mail-ua0-f195.google.com with SMTP id f54so23404881uaa.0
-	for <yocto@yoctoproject.org>; Mon, 06 Mar 2017 12:18:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=f9QCcQtdLuzsxIEhiCc6zFInEbt4eTZXu+Ubis2/zio=;
-	b=NrchoTspuCH4vN8jrS/Jj1FoDbHp3ovQtourYfbhThWMP+othcfNpqP5cRRF0m+zIH
-	cKORUts9DGQIHhBLceLXEV70lA967CUmbYK2TuMS8r3UlitJ/d+I7lcrYVS0RwYdj+Uv
-	1f8BGdEPzO8n96+XA1M0FNKV6HvOzeaubIzR8Td8SfF/GE3mB96/K+sIQT/NUckvObXz
-	INrEGp7lBTEACoFsdi4Fzj+vockIt37HVOCILrKrrkRRlbimnqp0hESWlgPI2QKWd3AM
-	4iDBHicCShjquBQIBvibQ6DFKSfFDd7Vuxe0XOV1ns2qX9QkwYq2xSFgnfbmhPa2OKoJ
-	Cxyg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=f9QCcQtdLuzsxIEhiCc6zFInEbt4eTZXu+Ubis2/zio=;
-	b=Q6slV6Qx5VGxR5p8ztrQcGdTraIcnZBwz1rp0LfMAc4CCYqFi9Y3OyYs4Tw8bvI+Xz
-	YuH3ifuHeeyFqog2maCHluQ63vC56m+ntCNbsFEtX+MRRwHH2sk/6IvbWELkL6l4fwHq
-	fFdPWwl4Z944f7Siqy0qQI4vKsQZjUB6Ly0QfamJstIQ9HMNDi+hA/dTJaVsLzVU8Go0
-	pbCQIy05/7R0Rn3ug/y7JTJO3Gn2EJOr0MpC06jc7DyYjscDoW5lTCbjVCYHV8zqlo/l
-	WsYA43QJ4HFHe+hlxMObHtre/m6kDVKkTr96w06yjy6pydqd/UNo7L5cZZMhmqu5Ueyd
-	+Rew==
-X-Gm-Message-State: AMke39n6eiGGEdprwC6q5Bx4UJpeyJEWKDDVtT6Nmt/UbhevkmOlQskCu2Z9AmdHtlnqvK9YwBMEcJuVNpWV4A==
-X-Received: by 10.31.114.79 with SMTP id n76mr7658310vkc.53.1488831483375;
-	Mon, 06 Mar 2017 12:18:03 -0800 (PST)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 404B4E007AD
+	for <yocto@yoctoproject.org>; Mon,  6 Mar 2017 12:56:08 -0800 (PST)
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+	by orsmga104.jf.intel.com with ESMTP; 06 Mar 2017 12:56:08 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.35,255,1484035200"; d="scan'208";a="72896571"
+Received: from ngocnhum-mobl11.ccr.corp.intel.com (HELO
+	peggleto-mobl.ger.corp.intel.com) ([10.255.134.221])
+	by fmsmga005.fm.intel.com with ESMTP; 06 Mar 2017 12:56:06 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Gary Thomas <gary@mlbassoc.com>
+Date: Tue, 07 Mar 2017 09:56:03 +1300
+Message-ID: <1603689.QGsDRQ6uvD@peggleto-mobl.ger.corp.intel.com>
+Organization: Intel Corporation
+In-Reply-To: <0156f20f-65fc-9b3e-bc12-a9cca34980f7@mlbassoc.com>
+References: <f0b0b440-ecd9-50df-9af7-8990b1a04c11@mlbassoc.com>
+	<CAJTo0LaCsa=5UVKLYe+Y6OUsjJpHZ9vA_wrcnFT2saoo+92dmA@mail.gmail.com>
+	<0156f20f-65fc-9b3e-bc12-a9cca34980f7@mlbassoc.com>
 MIME-Version: 1.0
-Received: by 10.103.43.65 with HTTP; Mon, 6 Mar 2017 12:18:02 -0800 (PST)
-In-Reply-To: <2aa1072c-b51f-9e04-fd95-64e9a6330f63@rock-chips.com>
-References: <1484834687-15746-1-git-send-email-jacob-chen@iotwrt.com>
-	<1484834687-15746-5-git-send-email-jacob-chen@iotwrt.com>
-	<CABgxDoLt2RbidD-3L93UkjLuaXn_eoB08=HqLaHsD9=8nLpqmQ@mail.gmail.com>
-	<CAHUNapRxFr0kj_ZGv7GW10WySyOgU3g7Zr5B+1UTjULCxtd=cw@mail.gmail.com>
-	<2aa1072c-b51f-9e04-fd95-64e9a6330f63@rock-chips.com>
-From: Trevor Woerner <twoerner@gmail.com>
-Date: Mon, 6 Mar 2017 15:18:02 -0500
-Message-ID: <CAHUNapSjgwHoPoFq+oiRmUUVMaU5s+tAM16JUieJGomstz5fiQ@mail.gmail.com>
-To: Jacob Chen <jacob2.chen@rock-chips.com>
-Cc: Jacob Chen <jacob-chen@iotwrt.com>, Eddie Cai <eddie.cai@rock-chips.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-rockchip][PATCH 4/7] recipes-graphics: Add support for mali-userspace
+Cc: yocto@yoctoproject.org
+Subject: Re: Files missing from SDK
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -77,83 +44,77 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 06 Mar 2017 20:18:07 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 06 Mar 2017 20:56:10 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Hi Jacob,
+On Tuesday, 7 March 2017 2:28:22 AM NZDT Gary Thomas wrote:
+> On 2017-03-06 13:22, Burton, Ross wrote:
+> > On 3 March 2017 at 06:39, Gary Thomas <gary@mlbassoc.com 
+<mailto:gary@mlbassoc.com>> wrote:
+> >     I'm trying to build SDKs for my board, both the native style
+> >     using populate_sdk_ext as well as including the SDK packages
+> >     in my image.  My image includes some extended libraries of
+> >     my own packaging (am335x-pru-support) that I need to get into
+> >     these SDKs.  This package (via debian renaming) turns into
+> >     
+> >       libprussdrv-dbg - 2016-08-30-r0.23 - am335x-pru-support version
+> >       2016-08-30-r0 - Debugging files libprussdrv-dev - 2016-08-30-r0.23
+> >       - am335x-pru-support version 2016-08-30-r0 - Development files
+> >       libprussdrv-staticdev - 2016-08-30-r0.23 - am335x-pru-support
+> >       version 2016-08-30-r0 - Development files (St) libprussdrv1 -
+> >       2016-08-30-r0.23 - am335x-pru-support version 2016-08-30-r0>     
+> >     On my board/image, I can get the files I need but only if I manually
+> >     include libprussdrv-dev>     
+> >       # opkg files libprussdrv-dev | sort
+> >       /usr/bin/pasm
+> >       /usr/include/pruss/
+> >       /usr/include/pruss/pruss_intc_mapping.h
+> >       /usr/include/pruss/prussdrv.h
+> >       /usr/lib/libprussdrv.so
+> >     
+> >     How can I get these automatically added to my SDK images?  To build
+> >     the
+> >     
+> >     board SDK, I'm adding these packages to my image:
+> >       CORE_IMAGE_EXTRA_INSTALL = "packagegroup-core-sdk
+> >       packagegroup-core-standalone-sdk-target">     
+> >     I suppose I could add libprussdrv-dev to that list, but I'd like it a
+> >     bit more automated.>     
+> >     For the native SDK, I tried adding this to local.conf:
+> >       TOOLCHAIN_HOST_TASK_append = " nativesdk-am335x-pru-support"
+> >     
+> >     which only got me the 'pasm' tool in my sysroot, but nothing else.
+> > 
+> > If libprussdrv1 is in your image then the -dev package should be pulled
+> > into your SDK images, assuming that you have IMAGE_FEATURES+=dev-pkgs
+> > already.
+> 
+> Thanks, that did it for the embedded SDK
 
-This is a good first version, but I think there are some things that
-could be added to make it better. For example, it should have a
-COMPATIBLE_MACHINE statement, and it should detect whether the target
-is using hard-float. Also the name "mali-userspace_t76x.bb" isn't a
-good choice, the part after the underscore should indicate the
-version, but t76x indicates the target mali implementation.
+That shouldn't actually be necessary. IMAGE_FEATURES controls what goes into 
+the image, adding dev-pkgs to that is going to include those in the image, not 
+just the SDK. We have a SDKIMAGE_FEATURES and the default value of that 
+includes dev-pkgs. If libprussdrv1 is in the image and SDKIMAGE_FEATURES is at 
+the default (or otherwise includes dev-pkgs) I have to say I'm not sure what 
+would be preventing this from working.
 
-I think the sunxi people have done a good job with their mali recipes:
-https://github.com/linux-sunxi/meta-sunxi/tree/master/recipes-graphics/libg=
-les.
-Would you be interested in creating a v2 modeled after their work?
+> > The same should mean that standalone SDKs (populate_sdk-style) contain the
+> > headers too.  Worse case, TOOLCHAIN_TARGET_TASK_append = "
+> > libprussdrvi-dev".
+> 
+> Sadly, this still doesn't work.  With the TOOLCHAIN* line above, I get:
+>    ERROR: Nothing RPROVIDES 'libprussdrv1-dev'
+> Without it, no changes - the bits are still missing.
 
-Best regards,
-    Trevor
+As with almost all variables, in TOOLCHAIN_TARGET_TASK you want the recipe-
+space name of the package, not the final (post debian-renamed) name.
 
+Cheers,
+Paul
 
-On Thu, Feb 9, 2017 at 2:23 AM, Jacob Chen <jacob2.chen@rock-chips.com> wro=
-te:
-> Hi,
->
->
->
-> Trevor Woerner wrote on 2017=E5=B9=B401=E6=9C=8828=E6=97=A5 09:44:
->>
->> On Fri, Jan 27, 2017 at 9:41 AM, Romain Perier <romain.perier@gmail.com>
->> wrote:
->>>
->>> Hi all,
->>>
->>> Correct me if I am wrong, but these are generic mali userpace binaries =
-?
->>> meta-rockchip is a bsp meta layer, it should only contains files and
->>> recipes
->>> to make rockchip board working or things specific to the rockchip board=
-.
->>> For
->>> me these recipes are completly generic and might be re-used for another
->>> platform with another SoC.
->>>
->>> I don't want this in meta-rockchip. There is no a layer called meta-mal=
-i
->>> or
->>> something ?
->>>
->>> @Trevor: Feel free to comment, the point of view of the second maintain=
-er
->>> is
->>> always welcome
->>
->> :-)
->>
->>
->> I was just about to point out that there is no meta-mali, and that
->> most BSP layers do include their own recipes for mali (meta-sunxi,
->> meta-96boards, meta-xilinx) but, googling around, there is in fact a
->> meta-mali provided my ARM itself:
->> https://github.com/ARM-software/meta-mali . So I guess we could go
->> either way. Although I haven't looked at what's specifically provided
->> in meta-mali to know if it would be useful or not.
->>
->
-> I think GPU is a part of SOC. Other bsp meta layer also contain gpu userp=
-ace
-> binaries.
-> And, mali userpace binaries are not very generic, there are different in
-> hardware versions, software versions and backends.
-> e.g:
->     rk3288's GPU is T76x-r0p0 but rk3288w's GPU is T76x-r1p0, so they hav=
-e
-> to use different binaries.
->
->
->
+-- 
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
