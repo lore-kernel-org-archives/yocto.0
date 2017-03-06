@@ -1,38 +1,47 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <stephen.k.jolley@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EB774E0083C; Mon,  6 Mar 2017 12:56:09 -0800 (PST)
+	id 7DA3CE0083C; Mon,  6 Mar 2017 13:57:05 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
 	http://www.dnswl.org/, *      medium trust
-	*      [134.134.136.31 listed in list.dnswl.org]
+	*      [134.134.136.100 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 404B4E007AD
-	for <yocto@yoctoproject.org>; Mon,  6 Mar 2017 12:56:08 -0800 (PST)
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-	by orsmga104.jf.intel.com with ESMTP; 06 Mar 2017 12:56:08 -0800
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 29754E007AD
+	for <yocto@yoctoproject.org>; Mon,  6 Mar 2017 13:57:02 -0800 (PST)
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+	by orsmga105.jf.intel.com with ESMTP; 06 Mar 2017 13:57:01 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.35,255,1484035200"; d="scan'208";a="72896571"
-Received: from ngocnhum-mobl11.ccr.corp.intel.com (HELO
-	peggleto-mobl.ger.corp.intel.com) ([10.255.134.221])
-	by fmsmga005.fm.intel.com with ESMTP; 06 Mar 2017 12:56:06 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Gary Thomas <gary@mlbassoc.com>
-Date: Tue, 07 Mar 2017 09:56:03 +1300
-Message-ID: <1603689.QGsDRQ6uvD@peggleto-mobl.ger.corp.intel.com>
-Organization: Intel Corporation
-In-Reply-To: <0156f20f-65fc-9b3e-bc12-a9cca34980f7@mlbassoc.com>
-References: <f0b0b440-ecd9-50df-9af7-8990b1a04c11@mlbassoc.com>
-	<CAJTo0LaCsa=5UVKLYe+Y6OUsjJpHZ9vA_wrcnFT2saoo+92dmA@mail.gmail.com>
-	<0156f20f-65fc-9b3e-bc12-a9cca34980f7@mlbassoc.com>
+X-IronPort-AV: E=Sophos;i="5.35,255,1484035200"; d="scan'208,217";a="72318961"
+Received: from fmsmsx108.amr.corp.intel.com ([10.18.124.206])
+	by orsmga005.jf.intel.com with ESMTP; 06 Mar 2017 13:57:01 -0800
+Received: from FMSMSX110.amr.corp.intel.com (10.18.116.10) by
+	FMSMSX108.amr.corp.intel.com (10.18.124.206) with Microsoft SMTP Server
+	(TLS) id 14.3.248.2; Mon, 6 Mar 2017 13:57:01 -0800
+Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.234]) by
+	FMSMSX110.amr.corp.intel.com ([169.254.14.203]) with mapi id
+	14.03.0248.002; Mon, 6 Mar 2017 13:57:01 -0800
+From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Reminder: Yocto Project Technical Team Meeting - Tuesday, Mar.
+	7, 2017 8:00 AM US Pacific Time
+Thread-Index: AdKWxJL3l+oTufugQ/KvZNKdsnL7/Q==
+Date: Mon, 6 Mar 2017 21:57:00 +0000
+Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155E5737BDFA@fmsmsx111.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ctpclassification: CTP_IC
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiM2IwM2VhNTEtZTI4My00ZDQwLWE1ZjMtYjdkMjIwOGQxMjg0IiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX0lDIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE2LjUuOS4zIiwiVHJ1c3RlZExhYmVsSGFzaCI6ImxrNFA4N0VlS1dIRVwvcWN5VzRZK2lYN2VGaTd3OGJFK0RteTUzSmIxMXY0PSJ9
+x-originating-ip: [10.1.200.108]
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: Files missing from SDK
+Subject: Reminder: Yocto Project Technical Team Meeting - Tuesday, Mar. 7, 2017 8:00 AM US Pacific Time
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,77 +53,276 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 06 Mar 2017 20:56:10 -0000
-Content-Transfer-Encoding: 7Bit
+X-List-Received-Date: Mon, 06 Mar 2017 21:57:05 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155E5737BDFAfmsmsx111amrcor_"
+
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E5737BDFAfmsmsx111amrcor_
 Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On Tuesday, 7 March 2017 2:28:22 AM NZDT Gary Thomas wrote:
-> On 2017-03-06 13:22, Burton, Ross wrote:
-> > On 3 March 2017 at 06:39, Gary Thomas <gary@mlbassoc.com 
-<mailto:gary@mlbassoc.com>> wrote:
-> >     I'm trying to build SDKs for my board, both the native style
-> >     using populate_sdk_ext as well as including the SDK packages
-> >     in my image.  My image includes some extended libraries of
-> >     my own packaging (am335x-pru-support) that I need to get into
-> >     these SDKs.  This package (via debian renaming) turns into
-> >     
-> >       libprussdrv-dbg - 2016-08-30-r0.23 - am335x-pru-support version
-> >       2016-08-30-r0 - Debugging files libprussdrv-dev - 2016-08-30-r0.23
-> >       - am335x-pru-support version 2016-08-30-r0 - Development files
-> >       libprussdrv-staticdev - 2016-08-30-r0.23 - am335x-pru-support
-> >       version 2016-08-30-r0 - Development files (St) libprussdrv1 -
-> >       2016-08-30-r0.23 - am335x-pru-support version 2016-08-30-r0>     
-> >     On my board/image, I can get the files I need but only if I manually
-> >     include libprussdrv-dev>     
-> >       # opkg files libprussdrv-dev | sort
-> >       /usr/bin/pasm
-> >       /usr/include/pruss/
-> >       /usr/include/pruss/pruss_intc_mapping.h
-> >       /usr/include/pruss/prussdrv.h
-> >       /usr/lib/libprussdrv.so
-> >     
-> >     How can I get these automatically added to my SDK images?  To build
-> >     the
-> >     
-> >     board SDK, I'm adding these packages to my image:
-> >       CORE_IMAGE_EXTRA_INSTALL = "packagegroup-core-sdk
-> >       packagegroup-core-standalone-sdk-target">     
-> >     I suppose I could add libprussdrv-dev to that list, but I'd like it a
-> >     bit more automated.>     
-> >     For the native SDK, I tried adding this to local.conf:
-> >       TOOLCHAIN_HOST_TASK_append = " nativesdk-am335x-pru-support"
-> >     
-> >     which only got me the 'pasm' tool in my sysroot, but nothing else.
-> > 
-> > If libprussdrv1 is in your image then the -dev package should be pulled
-> > into your SDK images, assuming that you have IMAGE_FEATURES+=dev-pkgs
-> > already.
-> 
-> Thanks, that did it for the embedded SDK
+Tuesday, Mar. 7, 2017 8:00 AM US Pacific Time
 
-That shouldn't actually be necessary. IMAGE_FEATURES controls what goes into 
-the image, adding dev-pkgs to that is going to include those in the image, not 
-just the SDK. We have a SDKIMAGE_FEATURES and the default value of that 
-includes dev-pkgs. If libprussdrv1 is in the image and SDKIMAGE_FEATURES is at 
-the default (or otherwise includes dev-pkgs) I have to say I'm not sure what 
-would be preventing this from working.
 
-> > The same should mean that standalone SDKs (populate_sdk-style) contain the
-> > headers too.  Worse case, TOOLCHAIN_TARGET_TASK_append = "
-> > libprussdrvi-dev".
-> 
-> Sadly, this still doesn't work.  With the TOOLCHAIN* line above, I get:
->    ERROR: Nothing RPROVIDES 'libprussdrv1-dev'
-> Without it, no changes - the bits are still missing.
 
-As with almost all variables, in TOOLCHAIN_TARGET_TASK you want the recipe-
-space name of the package, not the final (post debian-renamed) name.
+Agenda:
 
-Cheers,
-Paul
 
--- 
 
-Paul Eggleton
-Intel Open Source Technology Centre
+* Opens collection - 5 min (Stephen)
 
+* Yocto Project status - 5 min (Stephen/team)
+
+https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.3_Status
+
+https://wiki.yoctoproject.org/wiki/Yocto_2.3_Schedule
+
+https://wiki.yoctoproject.org/wiki/Yocto_2.3_Features
+
+* Opens - 10 min
+
+* Team Sharing - 10 min
+
+
+
+We encourage people attending the meeting to logon the Yocto Project IRC ch=
+ancel during the meeting (optional):
+
+
+
+Yocto IRC: http://webchat.freenode.net/?channels=3D#yocto
+
+IRC Tutorial: http://www.irchelp.org/irchelp/irctutorial.html
+
+
+
+Conference Details:
+
+Company:           WIND RIVER SYS
+
+Ready-Access Number: 8007302996/9139049836
+
+Access Code:     2705751
+
+
+For International numbers see: https://www.yoctoproject.org/tools-resources=
+/community/monthly-technical-call
+
+
+Thanks,
+
+Stephen K. Jolley
+Yocto Project Program Manager
+INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
+*   Work Telephone:        (503) 712-0534
+*    Cell:               (208) 244-4460
+* Email:                            stephen.k.jolley@intel.com<mailto:steph=
+en.k.jolley@intel.com>
+
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E5737BDFAfmsmsx111amrcor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:m=3D"http://schema=
+s.microsoft.com/office/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-html=
+40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";}
+@font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;}
+@font-face
+	{font-family:Verdana;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
+	{mso-style-priority:99;
+	mso-style-link:"Plain Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:10.5pt;
+	font-family:Consolas;
+	mso-fareast-language:EN-US;}
+p
+	{mso-style-priority:99;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;
+	mso-fareast-language:ZH-CN;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.PlainTextChar
+	{mso-style-name:"Plain Text Char";
+	mso-style-priority:99;
+	mso-style-link:"Plain Text";
+	font-family:Consolas;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">Tuesday, Mar. 7, 2017 8:00 AM US Pacific Time<o:p>=
+</o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas"><o:p>&nbsp;</o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">Agenda:<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">&nbsp;<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">* Opens collection - 5 min (Stephen)<o:p></o:p></s=
+pan></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">* Yocto Project status - 5 min (Stephen/team)<o:p>=
+</o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
+o_Project_v2.3_Status">https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.=
+3_Status</a><o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
+o_2.3_Schedule">https://wiki.yoctoproject.org/wiki/Yocto_2.3_Schedule</a><o=
+:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
+o_2.3_Features">https://wiki.yoctoproject.org/wiki/Yocto_2.3_Features</a>
+<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">* Opens - 10 min
+<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">* Team Sharing - 10 min<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoPlainText">We encourage people attending the meeting to logo=
+n the Yocto Project IRC chancel during the meeting (optional):<o:p></o:p></=
+p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText">Yocto IRC: <a href=3D"http://webchat.freenode.net=
+/?channels=3D#yocto">
+http://webchat.freenode.net/?channels=3D#yocto</a><o:p></o:p></p>
+<p class=3D"MsoPlainText">IRC Tutorial: <a href=3D"http://www.irchelp.org/i=
+rchelp/irctutorial.html">
+http://www.irchelp.org/irchelp/irctutorial.html</a> <o:p></o:p></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText">Conference Details:<o:p></o:p></p>
+<p class=3D"MsoPlainText">Company:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp; WIND RIVER SYS<o:p></o:p></p>
+<p class=3D"MsoPlainText">Ready-Access Number: 8007302996/9139049836<o:p></=
+o:p></p>
+<p class=3D"MsoPlainText">Access Code:&nbsp;&nbsp;&nbsp;&nbsp; 2705751<o:p>=
+</o:p></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.5pt;font-family:&quot;=
+Verdana&quot;,sans-serif;color:black"><o:p>&nbsp;</o:p></span></b></p>
+<p class=3D"MsoPlainText">For International numbers see: <a href=3D"https:/=
+/www.yoctoproject.org/tools-resources/community/monthly-technical-call">
+https://www.yoctoproject.org/tools-resources/community/monthly-technical-ca=
+ll</a><o:p></o:p></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
+><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
+ot;,serif;color:purple">Stephen K. Jolley</span></i></b><b><i><span style=
+=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,sans-serif;color:purple=
+"><o:p></o:p></span></i></b></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
+Courier New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></spa=
+n></b></p>
+<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
+><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
+or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
+<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:Wingdings;color:black">(<=
+/span><span style=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">
+</span><span style=3D"font-size:8.0pt;font-family:&quot;MS Sans Serif&quot;=
+;color:teal">&nbsp;&nbsp;</span><b><span style=3D"font-size:8.0pt;font-fami=
+ly:&quot;Comic Sans MS&quot;;color:teal">Work Telephone</span></b><span sty=
+le=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
+">(503) 712-0534</span><span style=3D"font-size:9.0pt;font-family:&quot;MS =
+Sans Serif&quot;"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
+;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
+ans Serif&quot;;color:teal">&nbsp;&nbsp;&nbsp;
+</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
+ot;;color:teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&=
+quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
+">(208) 244-4460<span style=3D"color:black"><o:p></o:p></span></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
+">* </span>
+<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
+MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
+.0pt;font-family:&quot;MS Sans Serif&quot;;color:teal">:</span><span lang=
+=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;">&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;
+<u><span style=3D"color:blue"><a href=3D"mailto:stephen.k.jolley@intel.com"=
+>stephen.k.jolley@intel.com</a></span></u></span><span lang=3D"FR" style=3D=
+"font-size:12.0pt;font-family:&quot;Arial&quot;,sans-serif"><o:p></o:p></sp=
+an></p>
+</div>
+</body>
+</html>
+
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E5737BDFAfmsmsx111amrcor_--
