@@ -1,34 +1,32 @@
-Return-Path: <paul@paulbarker.me.uk>
+Return-Path: <jose.perez.carranza@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 36F2CE0052B; Tue,  7 Mar 2017 04:07:33 -0800 (PST)
+	id BB481E006D8; Tue,  7 Mar 2017 05:58:09 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [217.70.183.196 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net
-	[217.70.183.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DF512E0050B
-	for <yocto@yoctoproject.org>; Tue,  7 Mar 2017 04:07:28 -0800 (PST)
-Received: from lap0 (unknown [IPv6:2a02:8084:983e:6c80:f2d5:bfff:fe15:444c])
-	(Authenticated sender: paul@paulbarker.me.uk)
-	by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id 2CBAB1720A4;
-	Tue,  7 Mar 2017 13:07:25 +0100 (CET)
-Date: Tue, 7 Mar 2017 12:07:24 +0000
-From: Paul Barker <paul@paulbarker.me.uk>
-To: "Maxin B. John" <maxin.john@intel.com>
-Message-ID: <20170307120724.344b8587@lap0>
-In-Reply-To: <1488814083-7886-1-git-send-email-maxin.john@intel.com>
-References: <1488814083-7886-1-git-send-email-maxin.john@intel.com>
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
-MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-raspberrypi][PATCH] gstreamer1.0-omx: remove bbappend for version 1.2.0
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [134.134.136.20 listed in list.dnswl.org]
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 86510E00519
+	for <yocto@yoctoproject.org>; Tue,  7 Mar 2017 05:58:05 -0800 (PST)
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+	by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	07 Mar 2017 05:58:05 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.35,258,1484035200"; d="scan'208";a="73754473"
+Received: from jgperezc-mobl1.zpn.intel.com ([10.219.4.33])
+	by fmsmga006.fm.intel.com with ESMTP; 07 Mar 2017 05:58:04 -0800
+From: jose.perez.carranza@linux.intel.com
+To: yocto@yoctoproject.org
+Date: Tue,  7 Mar 2017 07:58:54 -0600
+Message-Id: <20170307135854.3662-1-jose.perez.carranza@linux.intel.com>
+X-Mailer: git-send-email 2.11.0
+Subject: [qa-tools][PATCH v2] testopia_update: Add option to define test plan
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,50 +38,146 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 07 Mar 2017 12:07:33 -0000
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 07 Mar 2017 13:58:09 -0000
 
-On Mon,  6 Mar 2017 17:28:03 +0200
-"Maxin B. John" <maxin.john@intel.com> wrote:
+From: Jose Perez Carranza <jose.perez.carranza@linux.intel.com>
 
-> OE-Core rev: aa06a18d59eb391d1a7ace9daa0681bdf8daf17f
-> removed gstreamer1.0-omx_1.2.0 recipe.
-> 
-> Signed-off-by: Maxin B. John <maxin.john@intel.com>
-> ---
->  ...o-acquire-buffer-when-src-pad-isn-t-activ.patch |  48 --------
->  .../0001-config-files-path.patch                   | 137
-> --------------------- .../0002-fix-decoder-flushing.patch
-> |  16 --- .../0003-no-timeout-on-get-state.patch             |  16 ---
->  ...erly-handle-drain-requests-while-flushing.patch |  69 -----------
->  ...-gst_omx_video_dec_set_format-if-there-s-.patch |  30 -----
->  ...-unref-allocator-after-getting-it-from-al.patch |  48 --------
->  ...mxvideodec-Use-gstglmemoryegl-for-the-RPi.patch | 115
-> ----------------- .../gstreamer/gstreamer1.0-omx_1.2.0.bbappend
-> |  14 --- 9 files changed, 493 deletions(-)
->  delete mode 100644
-> recipes-multimedia/gstreamer/gstreamer1.0-omx-1.2.0/0001-Don-t-try-to-acquire-buffer-when-src-pad-isn-t-activ.patch
-> delete mode 100644
-> recipes-multimedia/gstreamer/gstreamer1.0-omx-1.2.0/0001-config-files-path.patch
-> delete mode 100644
-> recipes-multimedia/gstreamer/gstreamer1.0-omx-1.2.0/0002-fix-decoder-flushing.patch
-> delete mode 100644
-> recipes-multimedia/gstreamer/gstreamer1.0-omx-1.2.0/0003-no-timeout-on-get-state.patch
-> delete mode 100644
-> recipes-multimedia/gstreamer/gstreamer1.0-omx-1.2.0/0004-Properly-handle-drain-requests-while-flushing.patch
-> delete mode 100644
-> recipes-multimedia/gstreamer/gstreamer1.0-omx-1.2.0/0005-Don-t-abort-gst_omx_video_dec_set_format-if-there-s-.patch
-> delete mode 100644
-> recipes-multimedia/gstreamer/gstreamer1.0-omx-1.2.0/0006-omxvideodec-unref-allocator-after-getting-it-from-al.patch
-> delete mode 100644
-> recipes-multimedia/gstreamer/gstreamer1.0-omx-1.2.0/0007-omxvideodec-Use-gstglmemoryegl-for-the-RPi.patch
-> delete mode 100644
-> recipes-multimedia/gstreamer/gstreamer1.0-omx_1.2.0.bbappend
+There are cases where the test plan and the product name are not equal hence
+an option is added to handle those cases and define the test plan to work on.
 
-I got a parse failure on all my scheduled builds last night. This patch
-fixes the builds for me :)
+Signed-off-by: Jose Perez Carranza <jose.perez.carranza@linux.intel.com>
+---
+ testopia_update.py                  | 13 +++++++++---
+ testopia_update/product/__init__.py | 40 ++++++++++++++++++++-----------------
+ 2 files changed, 32 insertions(+), 21 deletions(-)
 
-Thanks,
-Paul
+diff --git a/testopia_update.py b/testopia_update.py
+index 9b35188..044074a 100755
+--- a/testopia_update.py
++++ b/testopia_update.py
+@@ -70,6 +70,9 @@ def get_args():
+         dest="project_revision", help='SCM Revision of the project.')
+     parser.add_argument('--project-date', required=False,
+         dest="project_date", help='SCM version/revision date of the project.')
++    parser.add_argument('--test-plan', required=False,
++        dest="plan_name", help='Name of the test plan of the product, used when \
++                                test plan name is different from product name.')
+ 
+     parser.add_argument('--results-log', required=False,
+         dest="results_log", help='Results log.')
+@@ -115,8 +118,12 @@ if __name__ == '__main__':
+     if not os.path.exists(opts.store_location):
+         os.makedirs(opts.store_location)
+ 
++    kwargs = {}
++    if args.plan_name:
++        kwargs['plan_name'] = args.plan_name
++
+     testopia = Testopia(opts.username, opts.password, opts.url, sslverify=False)
+-    products = get_products(testopia, opts, logger, config)
++    products = get_products(testopia, opts, logger, config, **kwargs)
+ 
+     if args.list_products:
+         print("List of available products: \n")
+@@ -141,8 +148,8 @@ if __name__ == '__main__':
+ 
+     test_plan = product.get_test_plan(args.branch_name)
+     if not test_plan:
+-        logger.error("%s: Test plan for product %s and branch %s not exists."\
+-             % (sys.argv[0], args.product_name, args.branch_name))
++        logger.error("%s: Test plan %s for product %s and branch %s not exists."\
++             % (sys.argv[0], product.plan ,args.product_name, args.branch_name))
+ 
+         sys.exit(1)
+ 
+diff --git a/testopia_update/product/__init__.py b/testopia_update/product/__init__.py
+index e401824..18b112e 100644
+--- a/testopia_update/product/__init__.py
++++ b/testopia_update/product/__init__.py
+@@ -1,13 +1,17 @@
+ import re
+ 
+-
+ class Product(object):
+-    def __init__(self, testopia, opts, logger, config):
++    def __init__(self, testopia, opts, logger, config, **kwargs):
+         self.testopia = testopia
+         self.opts = opts
+         self.logger = logger
+         self.config = config
+ 
++        if 'plan_name' in kwargs:
++            self.plan = kwargs['plan_name']
++        else:
++            self.plan = self.name
++
+     def support(self, name):
+         if self.name == name:
+             return True
+@@ -16,11 +20,11 @@ class Product(object):
+     def get_test_plan(self, branch_name):
+         tp = None
+ 
+-        tp_name = '%s: %s branch' % (self.name, branch_name)
++        tp_name = '%s: %s branch' % (self.plan, branch_name)
+ 
+         tp = self.testopia.testplan_list(name=tp_name)
+         if not tp:
+-            tp_alt_name = '%s: %s branch' % (self.name, branch_name.lower())
++            tp_alt_name = '%s: %s branch' % (self.plan, branch_name.lower())
+             tp = self.testopia.testplan_list(name=tp_alt_name)
+ 
+         if tp:
+@@ -68,7 +72,7 @@ class Product(object):
+             category_name, optional):
+         summary_alts = []
+         summary_alts.append('%s_%s_%s_%s' % (ttype, project_version,
+-            category_name, self.name))
++            category_name, self.plan))
+         summary_alts.append('%s_%s_%s' % (ttype, project_version,
+             category_name))
+         summary_alts.append('%s_%s' % (ttype, category_name))
+@@ -186,7 +190,7 @@ class Product(object):
+ 
+         return missing
+ 
+-def get_products(testopia, opts, config, logger):
++def get_products(testopia, opts, config, logger, **kwargs):
+ 
+ 
+     from . import bitbake
+@@ -204,18 +208,18 @@ def get_products(testopia, opts, config, logger):
+ 
+     products = []
+ 
+-    products.append(bitbake.BitbakeProduct(testopia, opts, logger, config))
+-    products.append(bsp_qemu.BSPQEMUProduct(testopia, opts, logger, config))
+-    products.append(meta_yocto.MetaYoctoProduct(testopia, opts, logger, config))
+-    products.append(oe_core.OECoreProduct(testopia, opts, logger, config))
+-    products.append(runtime.RuntimeProduct(testopia, opts, logger, config))
+-    products.append(toaster.ToasterProduct(testopia, opts, logger, config))
+-    products.append(adt.ADTProduct(testopia, opts, logger, config))
+-    products.append(crops.CROPSProduct(testopia, opts, logger, config))
+-    products.append(eclipse_plugin.EclipePluginProduct(testopia, opts, logger, config))
+-    products.append(esdk.eSDKProduct(testopia, opts, logger, config))
+-    products.append(kernel.KernelProduct(testopia, opts, logger, config))
+-    products.append(general_runtime.GeneralRuntimeProduct(testopia, opts, logger, config))
++    products.append(bitbake.BitbakeProduct(testopia, opts, logger, config, **kwargs))
++    products.append(bsp_qemu.BSPQEMUProduct(testopia, opts, logger, config, **kwargs))
++    products.append(meta_yocto.MetaYoctoProduct(testopia, opts, logger, config, **kwargs))
++    products.append(oe_core.OECoreProduct(testopia, opts, logger, config, **kwargs))
++    products.append(runtime.RuntimeProduct(testopia, opts, logger, config, **kwargs))
++    products.append(toaster.ToasterProduct(testopia, opts, logger, config, **kwargs))
++    products.append(adt.ADTProduct(testopia, opts, logger, config, **kwargs))
++    products.append(crops.CROPSProduct(testopia, opts, logger, config, **kwargs))
++    products.append(eclipse_plugin.EclipePluginProduct(testopia, opts, logger, config, **kwargs))
++    products.append(esdk.eSDKProduct(testopia, opts, logger, config, **kwargs))
++    products.append(kernel.KernelProduct(testopia, opts, logger, config, **kwargs))
++    products.append(general_runtime.GeneralRuntimeProduct(testopia, opts, logger, config, **kwargs))
+ 
+     return products
+ 
+-- 
+2.11.0
+
 
