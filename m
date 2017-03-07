@@ -1,72 +1,39 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EF765E009B2; Tue,  7 Mar 2017 12:48:11 -0800 (PST)
+	id 18FD1E003C1; Tue,  7 Mar 2017 14:26:16 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (akuster808[at]gmail.com)
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.83.65 listed in dnsbl.sorbs.net]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.24 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.83.65 listed in list.dnswl.org]
-Received: from mail-pg0-f65.google.com (mail-pg0-f65.google.com [74.125.83.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5107FE00924
-	for <yocto@yoctoproject.org>; Tue,  7 Mar 2017 12:48:09 -0800 (PST)
-Received: by mail-pg0-f65.google.com with SMTP id 25so1124659pgy.3
-	for <yocto@yoctoproject.org>; Tue, 07 Mar 2017 12:48:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=subject:to:references:cc:from:message-id:date:user-agent
-	:mime-version:in-reply-to:content-transfer-encoding;
-	bh=/qN04pAOGBtfnunJHuoyU8ESaiaQBLCGNdYCJ8Cp4tg=;
-	b=uH3AXhRVcD7cE6Fmm4giwBaDamAvFcCS4wD4taJ7aEgRyhV8/KxWGN1Np3+MlIba87
-	/Z/l3k3tUFH2dSr/tuxFH7kaeQZEJREw6OsS820ddwxBA6n0eDiw/BYb7MMeRqi6zkAg
-	sDbfgKC4UmsueEVG0dr+xxXLOh5ZfkxF0b/MW2FbxVZDsHR/dg5MvkjYzeImExYDRNlb
-	SIp0dYEaExVXkSqbkRy75FABbJH9EMU35EHzMUDCjvqdGwGQAMSZT0luQd5r1lERguqR
-	q/GIAjhbF1zFmbjOJ7ICrpTC4OTnbAJne1bs2aEprIyzJrR0YvRq3Dz50Vw7qlMik71+
-	wrKA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:references:cc:from:message-id:date
-	:user-agent:mime-version:in-reply-to:content-transfer-encoding;
-	bh=/qN04pAOGBtfnunJHuoyU8ESaiaQBLCGNdYCJ8Cp4tg=;
-	b=HBWkraea8yp9vDYyoACy3RyoebgU4kR1qb47dpOP7d4yuq5voyME1wHlnIhv06ED19
-	gsaqj62lOWNudnQusuqFgakoHW8Ja1/sQ7FT9UnzSlgjoXZmUBHazqUOJNrJbff9yIYF
-	/b5fOUnno+heKWAEceUi5RmN/z/MhcLnQXmU7tvjT2ghiaiN2N9ZDsInuVYJhNSgINLX
-	L9kP4roNWSGnGzbe2OJ5PHtIU4C4mGm2go7YE0bWpD9XWAT7OmCv4xIuhJ6buKNTjCZP
-	Obuq3QGKKu8fPfitDqNlF+FVt5rbRZB7w5yKoN2/+8K+vV7NIBAmVuW3vTown5G8GWhN
-	SYTQ==
-X-Gm-Message-State: AMke39lwEGOrl7Pj5f+RRhM/+g475wNA5+ZF9NSjneTpdjfsaOWvkE39ztwT0Kh4U+45Fg==
-X-Received: by 10.84.211.97 with SMTP id b88mr3196403pli.113.1488919689587;
-	Tue, 07 Mar 2017 12:48:09 -0800 (PST)
-Received: from [10.22.11.190] (50-233-148-156-static.hfc.comcastbusiness.net.
-	[50.233.148.156]) by smtp.gmail.com with ESMTPSA id
-	b195sm1477111pfb.106.2017.03.07.12.48.08
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 07 Mar 2017 12:48:09 -0800 (PST)
-To: Soumya Gupta <soumyag213@gmail.com>
-References: <CAFD+RaYVrFfPXrbW79FMx24wJDSqfxAt2ey3PYKmvL0E5hE7Bw@mail.gmail.com>
-	<1488906492.3261.20.camel@linux.intel.com>
-From: akuster808 <akuster808@gmail.com>
-Message-ID: <abba0f39-4218-2158-61fd-a094d6d7b2b0@gmail.com>
-Date: Tue, 7 Mar 2017 12:48:08 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.7.0
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CC3EFE0030B
+	for <yocto@yoctoproject.org>; Tue,  7 Mar 2017 14:26:13 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	07 Mar 2017 14:26:12 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.36,260,1486454400"; d="scan'208";a="1139228475"
+Received: from unknown (HELO peggleto-mobl.ger.corp.intel.com)
+	([10.255.135.32])
+	by fmsmga002.fm.intel.com with ESMTP; 07 Mar 2017 14:26:09 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Gary Thomas <gary@mlbassoc.com>
+Date: Wed, 08 Mar 2017 11:26:07 +1300
+Message-ID: <1958036.lA1OqxSEfF@peggleto-mobl.ger.corp.intel.com>
+Organization: Intel Corporation
+In-Reply-To: <cbaa3c69-d2fc-0c89-f373-2d27322c564e@mlbassoc.com>
+References: <f0b0b440-ecd9-50df-9af7-8990b1a04c11@mlbassoc.com>
+	<1603689.QGsDRQ6uvD@peggleto-mobl.ger.corp.intel.com>
+	<cbaa3c69-d2fc-0c89-f373-2d27322c564e@mlbassoc.com>
 MIME-Version: 1.0
-In-Reply-To: <1488906492.3261.20.camel@linux.intel.com>
 Cc: yocto@yoctoproject.org
-Subject: Re: Intoducting myself: Applying for Outreachy
+Subject: Re: Files missing from SDK
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -78,63 +45,112 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 07 Mar 2017 20:48:12 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 07 Mar 2017 22:26:16 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Soumya,
+On Tuesday, 7 March 2017 5:44:05 PM NZDT Gary Thomas wrote:
+> On 2017-03-06 21:56, Paul Eggleton wrote:
+> > On Tuesday, 7 March 2017 2:28:22 AM NZDT Gary Thomas wrote:
+> >> On 2017-03-06 13:22, Burton, Ross wrote:
+> >>> On 3 March 2017 at 06:39, Gary Thomas <gary@mlbassoc.com
+> > <mailto:gary@mlbassoc.com>> wrote:
+> >>>     I'm trying to build SDKs for my board, both the native style
+> >>>     using populate_sdk_ext as well as including the SDK packages
+> >>>     in my image.  My image includes some extended libraries of
+> >>>     my own packaging (am335x-pru-support) that I need to get into
+> >>>     these SDKs.  This package (via debian renaming) turns into
+> >>>     
+> >>>       libprussdrv-dbg - 2016-08-30-r0.23 - am335x-pru-support version
+> >>>       2016-08-30-r0 - Debugging files libprussdrv-dev - 2016-08-30-r0.23
+> >>>       - am335x-pru-support version 2016-08-30-r0 - Development files
+> >>>       libprussdrv-staticdev - 2016-08-30-r0.23 - am335x-pru-support
+> >>>       version 2016-08-30-r0 - Development files (St) libprussdrv1 -
+> >>>       2016-08-30-r0.23 - am335x-pru-support version 2016-08-30-r0>
+> >>>     
+> >>>     On my board/image, I can get the files I need but only if I manually
+> >>>     include libprussdrv-dev>
+> >>>     
+> >>>       # opkg files libprussdrv-dev | sort
+> >>>       /usr/bin/pasm
+> >>>       /usr/include/pruss/
+> >>>       /usr/include/pruss/pruss_intc_mapping.h
+> >>>       /usr/include/pruss/prussdrv.h
+> >>>       /usr/lib/libprussdrv.so
+> >>>     
+> >>>     How can I get these automatically added to my SDK images?  To build
+> >>>     the
+> >>>     
+> >>>     board SDK, I'm adding these packages to my image:
+> >>>       CORE_IMAGE_EXTRA_INSTALL = "packagegroup-core-sdk
+> >>>       packagegroup-core-standalone-sdk-target">
+> >>>     
+> >>>     I suppose I could add libprussdrv-dev to that list, but I'd like it
+> >>>     a
+> >>>     bit more automated.>
+> >>>     
+> >>>     For the native SDK, I tried adding this to local.conf:
+> >>>       TOOLCHAIN_HOST_TASK_append = " nativesdk-am335x-pru-support"
+> >>>     
+> >>>     which only got me the 'pasm' tool in my sysroot, but nothing else.
+> >>> 
+> >>> If libprussdrv1 is in your image then the -dev package should be pulled
+> >>> into your SDK images, assuming that you have IMAGE_FEATURES+=dev-pkgs
+> >>> already.
+> >> 
+> >> Thanks, that did it for the embedded SDK
+> > 
+> > That shouldn't actually be necessary. IMAGE_FEATURES controls what goes
+> > into the image, adding dev-pkgs to that is going to include those in the
+> > image, not just the SDK. We have a SDKIMAGE_FEATURES and the default
+> > value of that includes dev-pkgs. If libprussdrv1 is in the image and
+> > SDKIMAGE_FEATURES is at the default (or otherwise includes dev-pkgs) I
+> > have to say I'm not sure what would be preventing this from working.
+> > 
+> >>> The same should mean that standalone SDKs (populate_sdk-style) contain
+> >>> the
+> >>> headers too.  Worse case, TOOLCHAIN_TARGET_TASK_append = "
+> >>> libprussdrvi-dev".
+> >> 
+> >> Sadly, this still doesn't work.  With the TOOLCHAIN* line above, I get:
+> >>    ERROR: Nothing RPROVIDES 'libprussdrv1-dev'
+> >> 
+> >> Without it, no changes - the bits are still missing.
+> > 
+> > As with almost all variables, in TOOLCHAIN_TARGET_TASK you want the
+> > recipe-
+> > space name of the package, not the final (post debian-renamed) name.
+> 
+> I tried that as well, and it got a lot farther along, but failed in
+> the final steps:
+> 
+> ERROR: uninative-tarball-1.0-r0 do_populate_sdk: Unable to install packages.
+> Command
+> '/build/p8701_2016-10-22/tmp/work/x86_64-nativesdk-amltdsdk-linux/uninative
+> -tarball/1.0-r0/recipe-sysroot-native/usr/bin/opkg --volatile-cache -f
+> /build/p8701_2016-10-22/tmp/work/x86_64-nativesdk-amltdsdk-linux/uninative-
+> tarball/1.0-r0/opkg.conf -t
+> /build/p8701_2016-10-22/tmp/work/x86_64-nativesdk-amltdsdk-linux/uninative-
+> tarball/1.0-r0/temp/ipktemp/ -o
+> /build/p8701_2016-10-22/tmp/work/x86_64-nativesdk-amltdsdk-linux/uninative-
+> tarball/1.0-r0/sdk/image/opt/amltd/2.2+snapshot/sysroots/none
+> --force_postinstall --prefer-arch-to-version   install libprussdrv-dev'
+> returned 255: Collected errors:
+>   * opkg_prepare_url_for_install: Couldn't find anything to satisfy
+> 'libprussdrv-dev'.
+> 
+> ERROR: uninative-tarball-1.0-r0 do_populate_sdk: Function failed:
+> do_populate_sdk
 
-Are you trying to apply for the intership? You may want to take a look at
+It sounds like you're setting TOOLCHAIN_TARGET_TASK at the configuration 
+level, thus affecting uninative-tarball as well. Set it in your image recipe 
+(or a class / inc file used from there) and that should work.
 
-https://www.yoctoproject.org/outreachy-internship
+Cheers,
+Paul
 
-Not sure how that differs from the outreach program.
+-- 
 
-Maybe Jefro or Tracy can clarify.
-
-regards,
-
-Armin
-
-
-
-On 03/07/2017 09:08 AM, Leonardo Sandoval wrote:
-> On Tue, 2017-03-07 at 22:18 +0530, Soumya Gupta wrote:
->> Hi all,
->>
->>
->> My name is Soumya, an I am a final year Engineering undergraduate
->> student from New Delhi. I would love to work to contribute to Yocto
->> for the summer.
->>
->>
->> I have been coding in Python for the past year and I am quite at ease
->> with the same. It states on the Outreachy page, that there is a
->> project relating to the building of autobuilders. I want to work on
->> the same.
-> can you point to that page?
->
-> There is an autobuilder repo at git.yoctoproject.org, perhaps you can
-> start looking there.
->
->> Being a newbie, it would be great, if someone could guide me on the
->> right path here
->>
->> Thanks already
->>
->>
->> Best,
->> Soumya Atul Gupta
->> Final Year Undergraduate Student, ECE
->> Netaji Subhas Institute of Technology
->> New Delhi, India
->>
->>
->> -- 
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->
-
+Paul Eggleton
+Intel Open Source Technology Centre
 
