@@ -1,65 +1,60 @@
-Return-Path: <dominig.arfoll@fridu.net>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 05479E00566; Wed,  8 Mar 2017 06:29:28 -0800 (PST)
+	id 028AAE00566; Wed,  8 Mar 2017 06:33:35 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE, MIME_HTML_ONLY,
-	RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.220.178 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.7 MIME_HTML_ONLY BODY: Message only has text/html MIME parts
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.128.178 listed in list.dnswl.org]
-Received: from mail-wr0-f178.google.com (mail-wr0-f178.google.com
-	[209.85.128.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C31E9E003C1
-	for <yocto@yoctoproject.org>; Wed,  8 Mar 2017 06:29:24 -0800 (PST)
-Received: by mail-wr0-f178.google.com with SMTP id u48so24593919wrc.0
-	for <yocto@yoctoproject.org>; Wed, 08 Mar 2017 06:29:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fridu.net; s=google;
-	h=to:from:subject:message-id:date:user-agent:mime-version
-	:content-transfer-encoding;
-	bh=76z1Iq7mlHxL2AyPn7Kp0d4an/Cl47Waz8IP+ypC6do=;
-	b=DhMCN5Egwl+ievLENkb0t1jBYIDp9q77oT1gz1mWmzH9IXzmeZWaijTFO/tuG/Q67a
-	48pDvbbkAMRWY3PbAJoO2QMU+EJF7+UCY85JtQPMBNS+3ZA3ECdIs54Ym/OUvAynK8z7
-	Ocrex3oT1kW007xdFkVbtYWTanavrdIp/ck3w=
+Received: from mail-qk0-f178.google.com (mail-qk0-f178.google.com
+	[209.85.220.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C4D8FE003C1
+	for <yocto@yoctoproject.org>; Wed,  8 Mar 2017 06:33:31 -0800 (PST)
+Received: by mail-qk0-f178.google.com with SMTP id y76so68616208qkb.0
+	for <yocto@yoctoproject.org>; Wed, 08 Mar 2017 06:33:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=Na6cb9InDKPmzW03ts//PvpHVcc8WhrlL7qxk5fehQE=;
+	b=GuqAB42DMBvRPiqV5lKE2I52s8lE0P/whb096UjRUNGpmj7bonvtaBzsUWKFVfCGUn
+	QnxY4MpL2NdBJbuiV1RekpVkqukTM1dz4q3FLcKlRAjMUpl9K8T7f/HJd97xa3d1+Djv
+	vFKoKYDmdtK/RfS3NpiNPGm6fkwxGpCZRB7o4q6MtoKqbjIsCSK/3fafA1Iqt1pysuGy
+	mqWqSBeRIClUu3W90yvaOofJ8LaLBM+J1aMduZhJ+0dviGRmh4L2uyyYAoUHHFL4bay1
+	8x84zyMwGI5rOQTM6YF+qkOlMVDK9MAnLl55QS/dbXVX15W4fRXblrbspc7aqQMqdmoa
+	TP6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:to:from:subject:message-id:date:user-agent
-	:mime-version:content-transfer-encoding;
-	bh=76z1Iq7mlHxL2AyPn7Kp0d4an/Cl47Waz8IP+ypC6do=;
-	b=a9VIGEYcja26hPuyCq8v0bXfjAxLcLTTkGu6d6lG998103nM0iiCTnAkL9azDIZGep
-	7zTBioI2JguTXKG4jamDZ1uciL6o85/Im0hJacRQpj2zci6ASZPvrhVvD5dJyiCvCZdo
-	ALzhZga7YdqLV7ikxlllfpVlIr7VA0OCReTQka9h+SdqyFM7+T0lHRG4/RA+80AS2gci
-	ZY8vBgCyL8YqhQQ05VgKcFBVphO78pR+QGLlBD+iSJSDq9TaJ5nh8BjB4BJGmbJoOVy8
-	aOwVa5It2aJ6wEBOho3BaVq6tGanA2Et0a5xW2KLISMBp3Nut3j/6nPCSERfHuEtjXZO
-	bDkw==
-X-Gm-Message-State: AMke39ldNO8cc+JM7ihKNBTrCS2ItMwSyMv5nnAnq55ZUTNYbHbaNL/Z5tdHWxVyvMlh1A==
-X-Received: by 10.223.128.99 with SMTP id 90mr6030830wrk.157.1488983362836;
-	Wed, 08 Mar 2017 06:29:22 -0800 (PST)
-Received: from [10.10.61.21] (ARennes-650-1-205-71.w2-13.abo.wanadoo.fr.
-	[2.13.232.71]) by smtp.gmail.com with ESMTPSA id
-	j184sm23422319wmd.31.2017.03.08.06.29.21 for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 08 Mar 2017 06:29:21 -0800 (PST)
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-From: "Dominig ar Foll (Intel Open Source)" <dominig.arfoll@fridu.net>
-X-Enigmail-Draft-Status: N1110
-Message-ID: <5b2fcd4d-acd2-bfe3-5d91-1f713054ad92@fridu.net>
-Date: Wed, 8 Mar 2017 15:29:20 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.7.0
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=Na6cb9InDKPmzW03ts//PvpHVcc8WhrlL7qxk5fehQE=;
+	b=MxTZyHcoCtgwOJvRPIkPo2403++FA369mkdCB/oNkVVxPvEpRFcA57P3481kd4IeOI
+	chFP+sX/cVd5KnxouzWpt0bZqOCEK3xTQKw2B6n2eI5AwpWkGd3oDOADfMPDSA7DrMKg
+	LLJQhPba5lmTpzBgEaMJTU76VnrRBUvt86FV33hzVo3E6ojCbRtUQAd2r0l9/HUzAZMS
+	gliOmyNr7iCq8wrptnwxhKGVMJgZ/99jUlxiOaayimSx5ApdnnoF23ziPfY+Xnz94h/A
+	ozq3+oif5ZHiqTs6X33LTUgPQOnJW1hDXRLRemjNYy7evsJrhnRDxoxBN+5YuOPQ26aT
+	NMLA==
+X-Gm-Message-State: AMke39mKrdT73sRFzeYqVI5v/b0SHhXYzY/Te9ONlAMMtMrhspO+wIpM0ZlpQVbKmdxbu30B4Sjk+7+FjMUxoOoY
+X-Received: by 10.237.42.164 with SMTP id t33mr8144143qtd.105.1488983610739;
+	Wed, 08 Mar 2017 06:33:30 -0800 (PST)
 MIME-Version: 1.0
-Subject: gst-plugins-bad- Patch fails 'ensure-valid-sentinels-for-gst_structure_get-etc.patch'
+Received: by 10.140.106.137 with HTTP; Wed, 8 Mar 2017 06:33:09 -0800 (PST)
+In-Reply-To: <5b2fcd4d-acd2-bfe3-5d91-1f713054ad92@fridu.net>
+References: <5b2fcd4d-acd2-bfe3-5d91-1f713054ad92@fridu.net>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 8 Mar 2017 14:33:09 +0000
+Message-ID: <CAJTo0LbfX7tfNxuBB2df3XYvM2zKEDis4zMtpD3KcgEaQtJk3A@mail.gmail.com>
+To: "Dominig ar Foll (Intel Open Source)" <dominig.arfoll@fridu.net>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: gst-plugins-bad- Patch fails 'ensure-valid-sentinels-for-gst_structure_get-etc.patch'
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,49 +66,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Mar 2017 14:29:28 -0000
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 08 Mar 2017 14:33:35 -0000
+Content-Type: multipart/alternative; boundary=94eb2c0cfe22325154054a39038e
 
-<html>
-  <head>
+--94eb2c0cfe22325154054a39038e
+Content-Type: text/plain; charset=UTF-8
 
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <font size="-1">For info.<br>
-      as the target file of this patch
-      (gst-plugins-bad-1.10.2/sys/decklink/gstdecklink.cpp) has changed,
-      the patch now fails when building yocto/maser<br>
-      <br>
-      It was created with gst-plugins-bad-1.10.2 but poky now download
-      1.10.4<br>
-      <br>
-      the patch can be found here :<br>
-poky/meta/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/ensure-valid-sentinels-for-gst_structure_get-etc.patch</font><br>
-    <pre class="moz-signature" cols="72">-- 
-Dominig ar Foll
-Senior Software Architect
-Intel Open Source Technology Centre
+On 8 March 2017 at 14:29, Dominig ar Foll (Intel Open Source) <
+dominig.arfoll@fridu.net> wrote:
 
--------------- error log --------------------------
+> ERROR: Task (/home/dominig/AGL/poky/meta/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_git.bb:do_patch) failed with exit code '1'
+>
+> Are you aware that you're building the _git recipe and not the release?
 
-ERROR: gstreamer1.0-plugins-bad-1.8.2+gitAUTOINC+5e73b5a484-r0 do_patch: Command Error: 'quilt --quiltrc /home/dominig/build/tmp/work/corei7-64-agl-linux/gstreamer1.0-plugins-bad/1.8.2+gitAUTOINC+5e73b5a484-r0/recipe-sysroot-native/etc/quiltrc push' exited with 0  Output:
-Applying patch ensure-valid-sentinels-for-gst_structure_get-etc.patch
-patching file sys/decklink/gstdecklink.cpp
-Hunk #1 FAILED at 476.
-Hunk #2 FAILED at 489.
-2 out of 2 hunks FAILED -- rejects in file sys/decklink/gstdecklink.cpp
-patching file sys/decklink/gstdecklinkaudiosrc.cpp
-Hunk #1 succeeded at 313 (offset -9 lines).
-patching file sys/decklink/gstdecklinkvideosink.cpp
-Hunk #1 succeeded at 158 (offset -5 lines).
-Patch ensure-valid-sentinels-for-gst_structure_get-etc.patch does not apply (enforce with -f)
-ERROR: gstreamer1.0-plugins-bad-1.8.2+gitAUTOINC+5e73b5a484-r0 do_patch: Function failed: patch_do_patch
-ERROR: Logfile of failure stored in: /home/dominig/build/tmp/work/corei7-64-agl-linux/gstreamer1.0-plugins-bad/1.8.2+gitAUTOINC+5e73b5a484-r0/temp/log.do_patch.5672
-ERROR: Task (/home/dominig/AGL/poky/meta/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_git.bb:do_patch) failed with exit code '1'
+Ross
 
-</pre>
-  </body>
-</html>
+--94eb2c0cfe22325154054a39038e
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 8 March 2017 at 14:29, Dominig ar Foll (Intel Open Source) <span dir=3D"=
+ltr">&lt;<a href=3D"mailto:dominig.arfoll@fridu.net" target=3D"_blank">domi=
+nig.arfoll@fridu.net</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_qu=
+ote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex=
+"><pre class=3D"m_-3444064254734171432moz-signature" cols=3D"72">ERROR: Tas=
+k (/home/dominig/AGL/poky/meta/<wbr>recipes-multimedia/gstreamer/<wbr>gstre=
+amer1.0-plugins-bad_git.<wbr>bb:do_patch) failed with exit code &#39;1&#39;
+</pre></blockquote></div>Are you aware that you&#39;re building the _git re=
+cipe and not the release?</div><div class=3D"gmail_extra"><br></div><div cl=
+ass=3D"gmail_extra">Ross</div></div>
+
+--94eb2c0cfe22325154054a39038e--
