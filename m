@@ -1,66 +1,32 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <jose.perez.carranza@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 30488E00804; Wed,  8 Mar 2017 07:44:36 -0800 (PST)
+	id 0AAAFE00804; Wed,  8 Mar 2017 07:56:15 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.220.178 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.220.178 listed in dnsbl.sorbs.net]
-Received: from mail-qk0-f178.google.com (mail-qk0-f178.google.com
-	[209.85.220.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7B380E007AA
-	for <yocto@yoctoproject.org>; Wed,  8 Mar 2017 07:44:29 -0800 (PST)
-Received: by mail-qk0-f178.google.com with SMTP id y76so72143328qkb.0
-	for <yocto@yoctoproject.org>; Wed, 08 Mar 2017 07:44:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=kuR25mHlGkQkPzIrnC08/TKtP2UrxQal0yBu4YmFcvk=;
-	b=pUAe5HgzlQbiNB5tkqAZlzmFJaZCKsdeHVRErZe0Y3C5C+Pz5V6+wa/p+jxLpyAF/F
-	l5Gy5N5NE76xHrUwlDOPGGtaxNQz6H6UqGAm8KNIUf6Vhq0omvGJrZ1/PIqGvB9dUtJb
-	nhpIM/KvoMa+AklAbyqscRTJnD5TG0G8Atz0/enayf5ysvJVn6V260mxKHemmXVK4aEc
-	iFgk11ILiz/jmAig032DMJMVoq+JX9EPjpOy/MJr9Attf25LcrbUwuhrXPuUu+tL9qFw
-	F98DWVj6OAjK9tW0CPHMPqwJXcxDQMlVzjaIPCob4FEG/XgigLPsZmV8expPh24+tYrY
-	g7qg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=kuR25mHlGkQkPzIrnC08/TKtP2UrxQal0yBu4YmFcvk=;
-	b=l1ArUUqhypKfb/Nj2NeHGnw6/RedfcHLhP7EqfiDV64bN58Tpkb9/3UuvmO+bDpPyl
-	whtmvmTDB6yTbEg2cymNTzDH28C5taWd70ouBsve1uJqOHCDPMAD130kKdOHxorWcwRq
-	xMxRjE9CrNJCev6BnqcERWXnXwctmGqOdJJ9ZF/+P5eIpxXzFHtRNEWkRJv6MHIHNxrs
-	aGg1tW+MCrK1xjm4e7losrfiTG9/xo34CdSQT0YSWXuJusOb289dRqgx/zXcuUmFVZtS
-	YirKUrnHn2TiyvEzXhdSiSXagLDbS1RmHLSuFe8D05KgvaKRt2GAdG94JtdxP6CBO2XT
-	Mhuw==
-X-Gm-Message-State: AMke39lZOx4rG2Rbx5ekQihV4GQi+4WTzLJB8PJ5hIx/9RylPKveOjvn3GJV8jrGeYaYFtsLLCZi1KWxctA/Xzns
-X-Received: by 10.237.42.164 with SMTP id t33mr8650294qtd.105.1488987869107;
-	Wed, 08 Mar 2017 07:44:29 -0800 (PST)
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [192.55.52.43 listed in list.dnswl.org]
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B802CE007BA
+	for <yocto@yoctoproject.org>; Wed,  8 Mar 2017 07:56:11 -0800 (PST)
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+	by fmsmga105.fm.intel.com with ESMTP; 08 Mar 2017 07:56:11 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.36,264,1486454400"; d="scan'208";a="73741520"
+Received: from jgperezc-mobl1.zpn.intel.com ([10.219.4.33])
+	by fmsmga005.fm.intel.com with ESMTP; 08 Mar 2017 07:56:10 -0800
+From: jose.perez.carranza@linux.intel.com
+To: yocto@yoctoproject.org
+Date: Wed,  8 Mar 2017 09:56:59 -0600
+Message-Id: <20170308155659.14202-1-jose.perez.carranza@linux.intel.com>
+X-Mailer: git-send-email 2.11.0
 MIME-Version: 1.0
-Received: by 10.140.22.166 with HTTP; Wed, 8 Mar 2017 07:44:08 -0800 (PST)
-In-Reply-To: <CAJTo0LbmYV=_CZU66+iuq9PQn0pXq1U9gZnB_jbsk8s=1Z7H0g@mail.gmail.com>
-References: <5b2fcd4d-acd2-bfe3-5d91-1f713054ad92@fridu.net>
-	<CAJTo0LbfX7tfNxuBB2df3XYvM2zKEDis4zMtpD3KcgEaQtJk3A@mail.gmail.com>
-	<CADG2P4VOkc=f6-F8GwqM91MHY9Trw8A=7XU0skohOnsAxP+zJg@mail.gmail.com>
-	<CAJTo0LbmYV=_CZU66+iuq9PQn0pXq1U9gZnB_jbsk8s=1Z7H0g@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 8 Mar 2017 15:44:08 +0000
-Message-ID: <CAJTo0La9Oc2Yzkv2+vXmXuihgy9kO16COOmfOwqx-=Kvgsh=Eg@mail.gmail.com>
-To: Dominig Ar Foll <dominig.arfoll@fridu.net>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: gst-plugins-bad- Patch fails 'ensure-valid-sentinels-for-gst_structure_get-etc.patch'
+Subject: [qa-tools][PATCH] testopia_update: Improvements on update action functionality
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,38 +38,190 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Mar 2017 15:44:36 -0000
-Content-Type: multipart/alternative; boundary=94eb2c0cfe220388f1054a3a014c
-
---94eb2c0cfe220388f1054a3a014c
+X-List-Received-Date: Wed, 08 Mar 2017 15:56:15 -0000
 Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On 8 March 2017 at 15:38, Burton, Ross <ross.burton@intel.com> wrote:
+From: Jose Perez Carranza <jose.perez.carranza@linux.intel.com>
 
-> When 2.3 is released it won't be using the git gst-plugins-bad recipe by
-> default either.  I'll fix the recipe, but the git recipes are prone to
-> breakage as they're not that tested.
->
+Some improvements were applied when using option
+action=create :
 
-In fact the git recipes are actually older than the default tarball
-releases...
+   - Create a new option to update test runs by ID
+   - Create functions to load results and check missing test cases
+   - Add warning to use –testrun-id
+   - Improvements to update_test_run using exiting data of test run
+   - Create function get test run details by ID
+   - Create Dummy product to use on cases when specific product is not
+     relevant
 
-Ross
+Signed-off-by: Jose Perez Carranza <jose.perez.carranza@linux.intel.com>
+---
+ testopia_update.py                  | 60 +++++++++++++++++++++++++++++--------
+ testopia_update/product/__init__.py | 17 +++++++++--
+ 2 files changed, 61 insertions(+), 16 deletions(-)
 
---94eb2c0cfe220388f1054a3a014c
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+diff --git a/testopia_update.py b/testopia_update.py
+index 044074a..9cd9ad1 100755
+--- a/testopia_update.py
++++ b/testopia_update.py
+@@ -17,6 +17,29 @@ ACTIONS = ('create', 'update')
+ BRANCHES = ('master', 'jethro', 'dizzy', 'daisy', 'noexists')
+ CATEGORIES = ('AUTO', 'MANUAL')
+ 
++
++def check_missing_tc(env, build, test_run, results):
++    missing = product.update_test_run(test_run, results)
++    for tcid in missing:
++        logger.warn("%s: Test run %d, Case %d wasn't updated" %
++                    (sys.argv[0], test_run['run_id'], tcid))
++
++
++def load_results(results_log):
++    if not results_log:
++        logger.error("%s: For action update --results-log needs to be specified"
++                     % (sys.argv[0]))
++        sys.exit(1)
++    if not os.path.exists(args.results_log):
++        logger.error("%s: Results log (%s) doesn't exists."
++                     % (sys.argv[0], results_log))
++        sys.exit(1)
++
++    res = product.parse_results_log(args.results_log)
++
++    return res
++
++
+ def load_opts(args, opts_list, opts):
+     for to in opts_list:
+         if to in vars(args):
+@@ -26,6 +49,9 @@ def load_opts(args, opts_list, opts):
+         if not hasattr(opts, to):
+             logger.error("%s: Requires testopia %s in arguments or config." % \
+                 (sys.argv[0], to))
++            if args.action == "update":
++                logger.warn('for action create you can use only --testrun-id ' +
++                            'and --results-log if test run was already created')
+             sys.exit(1)
+ 
+ class Options(object):
+@@ -73,6 +99,9 @@ def get_args():
+     parser.add_argument('--test-plan', required=False,
+         dest="plan_name", help='Name of the test plan of the product, used when \
+                                 test plan name is different from product name.')
++    parser.add_argument('--testrun-id', required=False,
++        dest="trun_id", help='Number of the test run to be updated, this \
++                              option should be used along with update action.')
+ 
+     parser.add_argument('--results-log', required=False,
+         dest="results_log", help='Results log.')
+@@ -131,6 +160,21 @@ if __name__ == '__main__':
+             print("%s\n" % p.name)
+         sys.exit(0)
+ 
++    if args.action == 'update' and args.trun_id:
++        args.product_name = 'Dummy'
++        product = get_product_class(args.product_name, products)
++        try:
++            tr = product.get_existing_test_run(int(args.trun_id))
++        except Exception as e:
++            logger.error("%s: Problem found with Test Run %s: \n==>%s"
++                         % (sys.argv[0], args.trun_id, e))
++            sys.exit(1)
++
++        results = load_results(args.results_log)
++        check_missing_tc(tr['environment_id'], tr['build_id'], tr, results)
++
++        sys.exit(0)
++
+     load_opts(args, testopia_opts, opts)
+ 
+     params = ['action', 'product_name', 'branch_name', 'env_name']
+@@ -205,16 +249,8 @@ if __name__ == '__main__':
+                 " and ID (%s)." % (sys.argv[0], template_test_run['run_id'],
+                 test_run['summary'], test_run['run_id']))
+     elif args.action == "update":
+-        if not args.results_log:
+-            logger.error("%s: For update --results-log needs to be specified." \
+-                % (sys.argv[0]))
+-            sys.exit(1)
+-        if not os.path.exists(args.results_log):
+-            logger.error("%s: Results log (%s) don't exists." \
+-                % (sys.argv[0], args.results_log))
+-            sys.exit(1)
++        results = load_results(args.results_log)
+ 
+-        results = product.parse_results_log(args.results_log)
+         test_run = product.get_test_run(test_plan, env, build, args.project_date,
+                 args.project_version, args.category_name, args.optional)
+         if not test_run:
+@@ -224,8 +260,6 @@ if __name__ == '__main__':
+                 args.optional))
+             sys.exit(1)
+ 
+-        missing = product.update_test_run(env, build, test_run, results)
+-        for tcid in missing:
+-            logger.warn("%s: Product %s, Test run %d, Case %d wasn't updated" %\
+-                    (sys.argv[0], args.product_name, test_run['run_id'], tcid))
++        check_missing_tc(env, build, test_run, results)
++
+     sys.exit(0)
+diff --git a/testopia_update/product/__init__.py b/testopia_update/product/__init__.py
+index 18b112e..f31190c 100644
+--- a/testopia_update/product/__init__.py
++++ b/testopia_update/product/__init__.py
+@@ -160,6 +160,7 @@ class Product(object):
+         results = {}
+         with open(log_file, "r") as f:
+             for line in f:
++                line = line.strip()
+                 m = regex_comp.search(line)
+                 if m:
+                     results[int(m.group('case_id'))] = m.group('status')
+@@ -174,15 +175,14 @@ class Product(object):
+         else:
+             return 0
+ 
+-    def update_test_run(self, env, build, tr, results):
++    def update_test_run(self, tr, results):
+         missing = []
+-
+         test_case_ids = self._get_test_case_ids(tr)
+         for tcid in test_case_ids:
+             if tcid in results:
+                 status_id = self._get_status_id(results[tcid])
+                 self.testopia.testcaserun_update(tr['run_id'], tcid,
+-                        build['build_id'], env['environment_id'],
++                        tr['build_id'], tr['environment_id'],
+                         case_run_status_id=status_id)
+                 continue
+ 
+@@ -190,6 +190,15 @@ class Product(object):
+ 
+         return missing
+ 
++    def get_existing_test_run(self, testrun_id):
++        tr_id = self.testopia.testrun_get(testrun_id)
++
++        return tr_id
++
++class DummyProduct(Product):
++    #Dummy product to use when specific product is not required
++    name = 'Dummy'
++
+ def get_products(testopia, opts, config, logger, **kwargs):
+ 
+ 
+@@ -220,6 +229,8 @@ def get_products(testopia, opts, config, logger, **kwargs):
+     products.append(esdk.eSDKProduct(testopia, opts, logger, config, **kwargs))
+     products.append(kernel.KernelProduct(testopia, opts, logger, config, **kwargs))
+     products.append(general_runtime.GeneralRuntimeProduct(testopia, opts, logger, config, **kwargs))
++    products.append(DummyProduct(testopia, opts, logger, config, **kwargs))
++
+ 
+     return products
+ 
+-- 
+2.11.0
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 8 March 2017 at 15:38, Burton, Ross <span dir=3D"ltr">&lt;<a href=3D"mai=
-lto:ross.burton@intel.com" target=3D"_blank">ross.burton@intel.com</a>&gt;<=
-/span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8=
-ex;border-left:1px #ccc solid;padding-left:1ex"><div class=3D"gmail_extra">=
-When 2.3 is released it won&#39;t be using the git gst-plugins-bad recipe b=
-y default either.=C2=A0 I&#39;ll fix the recipe, but the git recipes are pr=
-one to breakage as they&#39;re not that tested.</div><div class=3D"gmail_ex=
-tra"></div></blockquote></div><br>In fact the git recipes are actually olde=
-r than the default tarball releases...</div><div class=3D"gmail_extra"><br>=
-</div><div class=3D"gmail_extra">Ross</div></div>
 
---94eb2c0cfe220388f1054a3a014c--
