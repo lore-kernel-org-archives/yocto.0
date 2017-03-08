@@ -1,65 +1,38 @@
-Return-Path: <twoerner@gmail.com>
+Return-Path: <anibal.limon@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1E691E007AA; Wed,  8 Mar 2017 09:32:02 -0800 (PST)
+	id 0167BE00726; Wed,  8 Mar 2017 13:49:43 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (twoerner[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.214.66 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [192.55.52.120 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.214.66 listed in dnsbl.sorbs.net]
-Received: from mail-it0-f66.google.com (mail-it0-f66.google.com
-	[209.85.214.66])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 70393E004D2
-	for <yocto@yoctoproject.org>; Wed,  8 Mar 2017 09:31:59 -0800 (PST)
-Received: by mail-it0-f66.google.com with SMTP id f203so6591078itf.2
-	for <yocto@yoctoproject.org>; Wed, 08 Mar 2017 09:31:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:subject:date:message-id;
-	bh=iq7pwOURXRuR2tb5zlSjKSGUHh33CNx+i8CQLHSAPuE=;
-	b=VpA91Vdw/Jw5fdosxEpS5tnEbreFWso+P1YGJ3r+T2gCPQIBZboNI0icMpijBv4ngD
-	Qp5yx8s5UZ53ZMTTLMypPhyvYkpDzyxcwz2Rwa7KORQoRPmqqiVjSYu2FDlEhleuMXhL
-	hpzqASgN/VDknx+cYyR6MD5rPHoBye8QF9liZzoIC0+D9UJQ4lhFUZjHP2km8Nlh3roW
-	Y9uNi9/JomW7ALPlMj361bdQ2hb/S2zKCB0PgL9xujvhFKBGQ3i5cmOWaMp8BUacwLC/
-	9/7vc0WM34Aw7mRwpsgJllzmJXBQZmD0pah1Jg8uFTcB8htEOF5LDc49Z2r3Ipe8V5RX
-	qRFg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:subject:date:message-id;
-	bh=iq7pwOURXRuR2tb5zlSjKSGUHh33CNx+i8CQLHSAPuE=;
-	b=hRKKrp0kD1hltZp1l/95EUpvYer1NjSKkBNiI6jiQIgIS3ymM9y6oy5sHVxGalTmZu
-	QFiQ73wB/0YI2HR9mXkxGAqpIq7CKoa1IzgFd2at/n5iwk5AepjfSHW83OwPjGiPNrhw
-	wLoFV7Ck1VJF++O5N/VYtiU8eMckX6puGsr4xWtEpKp3WKwxViMmwemh89ogUfjFxpv/
-	EfmfN20U1V1w63/MNcI9cB+qNMnRAO3GHuEl2JdiUmsRrtGp/j13qRoGUZsYfwSBFEqe
-	zq09bq7ckAcbQ/QLJH7uIk0/IWjPEDwW6XHeV9wwBa0cJcELq9tttIn15B1M4Im/DudH
-	rxDg==
-X-Gm-Message-State: AMke39lIJCDNk0w2+YexzAVZg8SOiUQBxB0mWDF3NGMxs0EIngH0IOIVkf1ct6ISCCML6A==
-X-Received: by 10.36.44.12 with SMTP id i12mr7300761iti.92.1488994319237;
-	Wed, 08 Mar 2017 09:31:59 -0800 (PST)
-Received: from linux-uys3.suse (104-247-246-30.cpe.teksavvy.com.
-	[104.247.246.30]) by smtp.gmail.com with ESMTPSA id
-	w75sm1785916itc.21.2017.03.08.09.31.58 for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Wed, 08 Mar 2017 09:31:58 -0800 (PST)
-From: Trevor Woerner <twoerner@gmail.com>
-To: yocto@yoctoproject.org
-Date: Wed,  8 Mar 2017 12:31:47 -0500
-Message-Id: <20170308173147.21841-1-twoerner@gmail.com>
-X-Mailer: git-send-email 2.12.0.rc1.48.g076c053
-Subject: [meta-rockchip][PATCH] u-boot-rockchip: fix for binutils-2.28
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 61A3EE004D2
+	for <yocto@yoctoproject.org>; Wed,  8 Mar 2017 13:49:40 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	08 Mar 2017 13:49:39 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.36,265,1486454400"; 
+	d="asc'?scan'208";a="1139728210"
+Received: from alimonb-mobl1.zpn.intel.com (HELO [10.219.128.139])
+	([10.219.128.139])
+	by fmsmga002.fm.intel.com with ESMTP; 08 Mar 2017 13:49:32 -0800
+To: jose.perez.carranza@linux.intel.com, yocto@yoctoproject.org
+References: <20170308155659.14202-1-jose.perez.carranza@linux.intel.com>
+From: =?UTF-8?B?QW7DrWJhbCBMaW3Ds24=?= <anibal.limon@linux.intel.com>
+Message-ID: <58C07D41.5060102@linux.intel.com>
+Date: Wed, 8 Mar 2017 15:53:05 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+	Thunderbird/38.3.0
+MIME-Version: 1.0
+In-Reply-To: <20170308155659.14202-1-jose.perez.carranza@linux.intel.com>
+Subject: Re: [qa-tools][PATCH] testopia_update: Improvements on update action functionality
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,61 +44,255 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Mar 2017 17:32:02 -0000
+X-List-Received-Date: Wed, 08 Mar 2017 21:49:44 -0000
+X-Groupsio-MsgNum: 34913
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature";
+	boundary="frAPNbVrdCVBqlDoxRNi5CfsMaOUjoEFR"
 
-openembedded-core updated bintuils from 2.27 to 2.28 which causes u-boot to
-fail to compile:
-
-	arm-oe-linux-gnueabi-ld.bfd: u-boot: Not enough room for program headers, try linking with -N
-
-Building with -N does fix the issue, so this patch simply adds that flag to
-the build so it succeeds.
-
-This has been build-tested, as well as run-tested on the firefly.
-
-Signed-off-by: Trevor Woerner <twoerner@gmail.com>
----
- recipes-bsp/u-boot/files/binutils-2.28-ld-fix.patch | 13 +++++++++++++
- recipes-bsp/u-boot/u-boot-rockchip_git.bb           |  5 ++++-
- 2 files changed, 17 insertions(+), 1 deletion(-)
- create mode 100644 recipes-bsp/u-boot/files/binutils-2.28-ld-fix.patch
-
-diff --git a/recipes-bsp/u-boot/files/binutils-2.28-ld-fix.patch b/recipes-bsp/u-boot/files/binutils-2.28-ld-fix.patch
-new file mode 100644
-index 0000000..9dfc463
---- /dev/null
-+++ b/recipes-bsp/u-boot/files/binutils-2.28-ld-fix.patch
-@@ -0,0 +1,13 @@
-+Index: git/arch/arm/config.mk
-+===================================================================
-+--- git.orig/arch/arm/config.mk
-++++ git/arch/arm/config.mk
-+@@ -89,7 +89,7 @@ PLATFORM_LIBS := arch/arm/lib/eabi_compa
-+ endif
-+ 
-+ # needed for relocation
-+-LDFLAGS_u-boot += -pie
-++LDFLAGS_u-boot += -N -pie
-+ 
-+ #
-+ # FIXME: binutils versions < 2.22 have a bug in the assembler where
-diff --git a/recipes-bsp/u-boot/u-boot-rockchip_git.bb b/recipes-bsp/u-boot/u-boot-rockchip_git.bb
-index 3b4f109..4887d5d 100644
---- a/recipes-bsp/u-boot/u-boot-rockchip_git.bb
-+++ b/recipes-bsp/u-boot/u-boot-rockchip_git.bb
-@@ -9,7 +9,10 @@ LICENSE = "GPLv2+"
- LIC_FILES_CHKSUM = "file://Licenses/README;md5=a2c678cfd4a4d97135585cad908541c6"
- COMPATIBLE_MACHINE = "(firefly-rk3288)"
- 
--SRC_URI = "git://github.com/rockchip-linux/u-boot.git;branch=release;"
-+SRC_URI = " \
-+	git://github.com/rockchip-linux/u-boot.git;branch=release; \
-+	file://binutils-2.28-ld-fix.patch \
-+	"
- SRCREV = "${AUTOREV}"
- S = "${WORKDIR}/git"
- 
--- 
-2.12.0.rc1.48.g076c053
+--frAPNbVrdCVBqlDoxRNi5CfsMaOUjoEFR
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
 
+
+On 03/08/2017 09:56 AM, jose.perez.carranza@linux.intel.com wrote:
+> From: Jose Perez Carranza <jose.perez.carranza@linux.intel.com>
+>=20
+> Some improvements were applied when using option
+> action=3Dcreate :
+>=20
+>    - Create a new option to update test runs by ID
+>    - Create functions to load results and check missing test cases
+>    - Add warning to use =E2=80=93testrun-id
+>    - Improvements to update_test_run using exiting data of test run
+>    - Create function get test run details by ID
+>    - Create Dummy product to use on cases when specific product is not
+>      relevant
+>=20
+> Signed-off-by: Jose Perez Carranza <jose.perez.carranza@linux.intel.com=
+>
+> ---
+>  testopia_update.py                  | 60 +++++++++++++++++++++++++++++=
+--------
+>  testopia_update/product/__init__.py | 17 +++++++++--
+>  2 files changed, 61 insertions(+), 16 deletions(-)
+>=20
+> diff --git a/testopia_update.py b/testopia_update.py
+> index 044074a..9cd9ad1 100755
+> --- a/testopia_update.py
+> +++ b/testopia_update.py
+> @@ -17,6 +17,29 @@ ACTIONS =3D ('create', 'update')
+>  BRANCHES =3D ('master', 'jethro', 'dizzy', 'daisy', 'noexists')
+>  CATEGORIES =3D ('AUTO', 'MANUAL')
+> =20
+> +
+> +def check_missing_tc(env, build, test_run, results):
+> +    missing =3D product.update_test_run(test_run, results)
+> +    for tcid in missing:
+> +        logger.warn("%s: Test run %d, Case %d wasn't updated" %
+> +                    (sys.argv[0], test_run['run_id'], tcid))
+
+Only one comment, change the check_missing_tc to something like
+update_test_run because the first time i read the function name, i
+thought that do other thing.
+
+	alimon
+
+> +
+> +
+> +def load_results(results_log):
+> +    if not results_log:
+> +        logger.error("%s: For action update --results-log needs to be =
+specified"
+> +                     % (sys.argv[0]))
+> +        sys.exit(1)
+> +    if not os.path.exists(args.results_log):
+> +        logger.error("%s: Results log (%s) doesn't exists."
+> +                     % (sys.argv[0], results_log))
+> +        sys.exit(1)
+> +
+> +    res =3D product.parse_results_log(args.results_log)
+> +
+> +    return res
+> +
+> +
+>  def load_opts(args, opts_list, opts):
+>      for to in opts_list:
+>          if to in vars(args):
+> @@ -26,6 +49,9 @@ def load_opts(args, opts_list, opts):
+>          if not hasattr(opts, to):
+>              logger.error("%s: Requires testopia %s in arguments or con=
+fig." % \
+>                  (sys.argv[0], to))
+> +            if args.action =3D=3D "update":
+> +                logger.warn('for action create you can use only --test=
+run-id ' +
+> +                            'and --results-log if test run was already=
+ created')
+>              sys.exit(1)
+> =20
+>  class Options(object):
+> @@ -73,6 +99,9 @@ def get_args():
+>      parser.add_argument('--test-plan', required=3DFalse,
+>          dest=3D"plan_name", help=3D'Name of the test plan of the produ=
+ct, used when \
+>                                  test plan name is different from produ=
+ct name.')
+> +    parser.add_argument('--testrun-id', required=3DFalse,
+> +        dest=3D"trun_id", help=3D'Number of the test run to be updated=
+, this \
+> +                              option should be used along with update =
+action.')
+> =20
+>      parser.add_argument('--results-log', required=3DFalse,
+>          dest=3D"results_log", help=3D'Results log.')
+> @@ -131,6 +160,21 @@ if __name__ =3D=3D '__main__':
+>              print("%s\n" % p.name)
+>          sys.exit(0)
+> =20
+> +    if args.action =3D=3D 'update' and args.trun_id:
+> +        args.product_name =3D 'Dummy'
+> +        product =3D get_product_class(args.product_name, products)
+> +        try:
+> +            tr =3D product.get_existing_test_run(int(args.trun_id))
+> +        except Exception as e:
+> +            logger.error("%s: Problem found with Test Run %s: \n=3D=3D=
+>%s"
+> +                         % (sys.argv[0], args.trun_id, e))
+> +            sys.exit(1)
+> +
+> +        results =3D load_results(args.results_log)
+> +        check_missing_tc(tr['environment_id'], tr['build_id'], tr, res=
+ults)
+> +
+> +        sys.exit(0)
+> +
+>      load_opts(args, testopia_opts, opts)
+> =20
+>      params =3D ['action', 'product_name', 'branch_name', 'env_name']
+> @@ -205,16 +249,8 @@ if __name__ =3D=3D '__main__':
+>                  " and ID (%s)." % (sys.argv[0], template_test_run['run=
+_id'],
+>                  test_run['summary'], test_run['run_id']))
+>      elif args.action =3D=3D "update":
+> -        if not args.results_log:
+> -            logger.error("%s: For update --results-log needs to be spe=
+cified." \
+> -                % (sys.argv[0]))
+> -            sys.exit(1)
+> -        if not os.path.exists(args.results_log):
+> -            logger.error("%s: Results log (%s) don't exists." \
+> -                % (sys.argv[0], args.results_log))
+> -            sys.exit(1)
+> +        results =3D load_results(args.results_log)
+> =20
+> -        results =3D product.parse_results_log(args.results_log)
+>          test_run =3D product.get_test_run(test_plan, env, build, args.=
+project_date,
+>                  args.project_version, args.category_name, args.optiona=
+l)
+>          if not test_run:
+> @@ -224,8 +260,6 @@ if __name__ =3D=3D '__main__':
+>                  args.optional))
+>              sys.exit(1)
+> =20
+> -        missing =3D product.update_test_run(env, build, test_run, resu=
+lts)
+> -        for tcid in missing:
+> -            logger.warn("%s: Product %s, Test run %d, Case %d wasn't u=
+pdated" %\
+> -                    (sys.argv[0], args.product_name, test_run['run_id'=
+], tcid))
+> +        check_missing_tc(env, build, test_run, results)
+> +
+>      sys.exit(0)
+> diff --git a/testopia_update/product/__init__.py b/testopia_update/prod=
+uct/__init__.py
+> index 18b112e..f31190c 100644
+> --- a/testopia_update/product/__init__.py
+> +++ b/testopia_update/product/__init__.py
+> @@ -160,6 +160,7 @@ class Product(object):
+>          results =3D {}
+>          with open(log_file, "r") as f:
+>              for line in f:
+> +                line =3D line.strip()
+>                  m =3D regex_comp.search(line)
+>                  if m:
+>                      results[int(m.group('case_id'))] =3D m.group('stat=
+us')
+> @@ -174,15 +175,14 @@ class Product(object):
+>          else:
+>              return 0
+> =20
+> -    def update_test_run(self, env, build, tr, results):
+> +    def update_test_run(self, tr, results):
+>          missing =3D []
+> -
+>          test_case_ids =3D self._get_test_case_ids(tr)
+>          for tcid in test_case_ids:
+>              if tcid in results:
+>                  status_id =3D self._get_status_id(results[tcid])
+>                  self.testopia.testcaserun_update(tr['run_id'], tcid,
+> -                        build['build_id'], env['environment_id'],
+> +                        tr['build_id'], tr['environment_id'],
+>                          case_run_status_id=3Dstatus_id)
+>                  continue
+> =20
+> @@ -190,6 +190,15 @@ class Product(object):
+> =20
+>          return missing
+> =20
+> +    def get_existing_test_run(self, testrun_id):
+> +        tr_id =3D self.testopia.testrun_get(testrun_id)
+> +
+> +        return tr_id
+> +
+> +class DummyProduct(Product):
+> +    #Dummy product to use when specific product is not required
+> +    name =3D 'Dummy'
+> +
+>  def get_products(testopia, opts, config, logger, **kwargs):
+> =20
+> =20
+> @@ -220,6 +229,8 @@ def get_products(testopia, opts, config, logger, **=
+kwargs):
+>      products.append(esdk.eSDKProduct(testopia, opts, logger, config, *=
+*kwargs))
+>      products.append(kernel.KernelProduct(testopia, opts, logger, confi=
+g, **kwargs))
+>      products.append(general_runtime.GeneralRuntimeProduct(testopia, op=
+ts, logger, config, **kwargs))
+> +    products.append(DummyProduct(testopia, opts, logger, config, **kwa=
+rgs))
+> +
+> =20
+>      return products
+> =20
+>=20
+
+
+--frAPNbVrdCVBqlDoxRNi5CfsMaOUjoEFR
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2
+
+iQIcBAEBAgAGBQJYwH1EAAoJEGJqcE9h3glgyDsP/0nPl+heeQd5eLMA16eUF1mD
+sqJEzmrtuYgoKwdzgk7i7g5hfbGY3Z4v3E+Uv/xz+z40BJnuKhIc6B2VXL/4GmNN
+Rn6xU5rogihIPqmy5Bv4eAyu35LKnZPT9cN2qxarnAX+2KvUH1mK/OEBIFvL72Ys
+EaGC5O2TOK/nBOO6X0CSnOKJUEFJ3AKneAXmhcRXW1o2j1+ZTwouu7Kpt7uAebOq
+e8PUGQCMBsfElAGoTxHaR3n8mSPyfs+SX9lU8RLeFlqQa3NzxcBTSKw7SNOQswYb
+Jlr7gBs4d0IR/5A0XTcxEhv7CF6KzvVa31dLPuvcbganug7wP1JvM55CXSw6M0ZI
+oo8FvgBfsdx5qkqmlFoFGWncrxqcFkp3ESwbw+41e58lqP0ecw203xX2MLd7sBlj
+qlctyDUz7/uAHB2E3kGsL7PqrhPwzMyiSD9iv2jfoSW7Y0SelcBfzcSAzsjAMO9Z
+ufHJijn0uUu8krvUWvY4Erv5SsPqWxe0TKhEpFB+LGokhGslqHGrwE8jmG2abgLu
+Q1DcZMzh9Gh/KS0UhUOlUUBp+cSUn4IDABxodDRQxYrdDaNx165TgZ9EVCPhEQaj
+RXhfJgHDsSbDHOFT0KVp0HbyW9XWB/x9gQZE6CEMnOxyyg9k0iv5+wlvAcUNozpY
+mqGGAwetYopC6zW1AHKh
+=TEi5
+-----END PGP SIGNATURE-----
+
+--frAPNbVrdCVBqlDoxRNi5CfsMaOUjoEFR--
