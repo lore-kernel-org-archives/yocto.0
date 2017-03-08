@@ -1,32 +1,68 @@
-Return-Path: <jose.perez.carranza@linux.intel.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C6601E00519; Wed,  8 Mar 2017 08:43:46 -0800 (PST)
+	id 1DBC3E004D2; Wed,  8 Mar 2017 09:17:46 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.24 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 847A3E0030B
-	for <yocto@yoctoproject.org>; Wed,  8 Mar 2017 08:43:43 -0800 (PST)
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-	by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	08 Mar 2017 08:43:42 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.36,264,1486454400"; d="scan'208";a="832402023"
-Received: from jgperezc-mobl1.zpn.intel.com ([10.219.4.33])
-	by FMSMGA003.fm.intel.com with ESMTP; 08 Mar 2017 08:43:41 -0800
-From: jose.perez.carranza@linux.intel.com
-To: yocto@yoctoproject.org
-Date: Wed,  8 Mar 2017 10:44:32 -0600
-Message-Id: <20170308164432.15132-1-jose.perez.carranza@linux.intel.com>
-X-Mailer: git-send-email 2.11.0
-Subject: [qa-tools][PATCH] scripts: Wrapper that helps to create a full test cycle
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.83.44 listed in list.dnswl.org]
+Received: from mail-pg0-f44.google.com (mail-pg0-f44.google.com [74.125.83.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 977CEE0030B
+	for <yocto@yoctoproject.org>; Wed,  8 Mar 2017 09:17:45 -0800 (PST)
+Received: by mail-pg0-f44.google.com with SMTP id 77so15403777pgc.1
+	for <yocto@yoctoproject.org>; Wed, 08 Mar 2017 09:17:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-disposition:in-reply-to:user-agent;
+	bh=lwPK03wUHcUiwbG6AQbPL02yT6y0qmssbtj8Sw46k28=;
+	b=tkqDvx7+15EORwe2ObQNJuQ79nJClqeX5ReIoD6NDQgoq7c1AXcCVHsNwpGLTT6lfo
+	FYXSBAbrFMT7yn6E4fKX6sei8JO7jOuJ6uKr5z3cA2p81jD6fbLEU8Y45PN/csSkWlsc
+	3g5Aq9JpKH5JLtW/SWscq/crGFZBlCd9YsA1pYtqMjZWLo0poEl7R6PVfOkvVFlvAlu7
+	m8vxoGVM5LbOqvj3ZGQlMd8ClCVZ0zhvbJQUcRyDxHI9ntGnz0g/1iGD16SL/OpVwNZs
+	u0D6aD1oYK8OC3d7dP1AJU6Xom0yf7RHL4nSAEqAKGkJI+t1/YD5Ql+Dn+8fkqemY8aN
+	1OiA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	:mime-version:content-disposition:in-reply-to:user-agent;
+	bh=lwPK03wUHcUiwbG6AQbPL02yT6y0qmssbtj8Sw46k28=;
+	b=Mo+OG833sKmUDUrC2IERpWNaqW42NA913JVzAr4OidXMZPlrsJxugBzoKegpx5OiA2
+	GU+Ux5i/W24Qy2Auhv8CoZB4He9Md0RKmKL2Izc9Q+8RW9fL5zriJqGHqRJwvuR4V11C
+	DoXPhEdiSmMtXH6hA3f1rnXSKcF1sCOMYNGAB1W+YqwguPztNreAYD46F0lE1PLnJvU3
+	Jx9c5Wn4sKL728X9yDKB8F3qCJnzh4dqPxwTvOlmdhhKRjIyje63md9zqNrfF5Aik/Dn
+	EZ9PwFKZd7clt8I/GS+RiJf8/8N3nf9dAEsYUfBYXcm7Obc80wXsptBWlaeQnQijywCf
+	pGqA==
+X-Gm-Message-State: AMke39n2U5TmcoFI9HduPSN257uo26io6qTRnNn/qunKLaAvnvqoC60NZ7KzXZHtowZWeA==
+X-Received: by 10.84.171.195 with SMTP id l61mr10122552plb.84.1488993464730;
+	Wed, 08 Mar 2017 09:17:44 -0800 (PST)
+Received: from haswell (c-76-102-32-192.hsd1.ca.comcast.net. [76.102.32.192])
+	by smtp.gmail.com with ESMTPSA id
+	t189sm7353988pfb.81.2017.03.08.09.17.43
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Wed, 08 Mar 2017 09:17:44 -0800 (PST)
+Date: Wed, 8 Mar 2017 09:17:42 -0800
+From: Khem Raj <raj.khem@gmail.com>
+To: Steve Plant <steove@hotmail.com>
+Message-ID: <20170308171742.GC2586@haswell>
+References: <SG2PR0301MB20161B53B6ADAC7B8328ABC6D12E0@SG2PR0301MB2016.apcprd03.prod.outlook.com>
+MIME-Version: 1.0
+In-Reply-To: <SG2PR0301MB20161B53B6ADAC7B8328ABC6D12E0@SG2PR0301MB2016.apcprd03.prod.outlook.com>
+User-Agent: Mutt/1.8.0 (2017-02-23)
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Raspberry Pi2 Fails to boot into LXDE.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,328 +74,64 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Mar 2017 16:43:46 -0000
+X-List-Received-Date: Wed, 08 Mar 2017 17:17:46 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 
-From: Jose Perez Carranza <jose.perez.carranza@linux.intel.com>
+On 17-03-08 12:40:51, Steve Plant wrote:
+> Hi All,
+> 
+> 
+> Very new to all this linux world, and especially Yocto.
+> 
+> 
+> I'm working on a embedded project at the moment using a raspberry pi2 board.
+> 
+> 
+> I have used toaster with Morty 2.2 to compile an image using"rpi-basic-image", to this I have added the following bitbake variables:
+> 
+> Bitbake variables
+> 
+> DISTRO
+> poky
+> DL_DIR
+> /home/steve/poky/downloads
+> IMAGE_FSTYPES
+> ext3 jffs2 tar.bz2 rpi-sdimg
+> IMAGE_INSTALL_append
+> packagegroup-core-x11-base packagegroup-lxde-base connman
+> PACKAGE_CLASSES
+> package_rpm
+> SSTATE_DIR
+> /home/steve/poky/sstate-cache
+> 
+> DISABLE_OVERSCAN
+> 1
+> GPU_MEM_1024
+> 512
+> 
+> I have dd'ed the image to an SD card increased the sdb2 partition to the max size and powered up the rpi. Everything looks fine to start with, as it displays the four raspberrys in the top left, then the white "Yocto Project" splash screen complete with small blue dot to the side appears, the progress bar moves across to 100 percent, then the screen turns black with a white cursor in the middle and it appears to freeze with only a very dim one second flash of the "act" led.
+> 
+> 
+> I have then connected the 7" touchscreen and apart from the added multicolored square at the very beginning I get the exact same boot up problem, hangs on the black screen with white cursor (good to see its all resized correctly for the TfT through!!)
+> 
+> 
+> Before adding the packagegroup-core-x11-base and packagegroup-lxde-base I successfully copied over and ran the rpi-basic-image with no problem, ending up with a usable console.
+> 
+> 
+> Looking for any help here, I'm thinking I've missed adding a package, or some type of local.conf instruction. any suggestions would be appreciated.............
 
-Add a wrapper that  helps to create the required test runs
-for a full cycle on master branch.
+Can you send the content of /var/log/Xorg.log file ?
 
-Signed-off-by: Jose Perez Carranza <jose.perez.carranza@linux.intel.com>
----
- scripts/full-test-cycle-wrapper.sh | 302 +++++++++++++++++++++++++++++++++++++
- 1 file changed, 302 insertions(+)
- create mode 100755 scripts/full-test-cycle-wrapper.sh
+> 
+> 
+> 
+> Regards, Steve.
 
-diff --git a/scripts/full-test-cycle-wrapper.sh b/scripts/full-test-cycle-wrapper.sh
-new file mode 100755
-index 0000000..f52cd96
---- /dev/null
-+++ b/scripts/full-test-cycle-wrapper.sh
-@@ -0,0 +1,302 @@
-+#!/bin/bash
-+#
-+# Full Test Cycle wrapper
-+#
-+# Copyright (c) 2017, Intel Corporation.
-+#
-+# This program is free software; you can redistribute it and/or modify it
-+# under the terms and conditions of the GNU General Public License,
-+# version 2, as published by the Free Software Foundation.
-+#
-+# This program is distributed in the hope it will be useful, but WITHOUT
-+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-+# FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
-+# more details.
-+#
-+#
-+# This script is wrapper to create a set of test runs on testo[pia
-+# for a full QA execution cycle.
-+
-+
-+#Set variables to be used globally
-+export CONFIG_FILE='testopia_update.config'
-+export ACTION='create'
-+export ENVIRONMETS=""
-+export EXECUTION_TYPE=""
-+export OPTIONAL=""
-+export TEST_PLAN=""
-+export IMAGE="core-image-sato-sdk_"
-+
-+#Go to the main directory of qa-tools
-+FILEDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-+QADIR="`echo $FILEDIR | sed 's/scripts//g'`"
-+cd $QADIR
-+
-+
-+display_bars(){
-+   if [ $1 == "START"  ]; then
-+	echo "|########### CREATING TEST RUNS FOR  - $2 - ############|"
-+   elif [ $1 == "END"  ]; then
-+        echo "|----------- TEST RUNS COMPLETED FOR - $2 - -------------"
-+   fi
-+}
-+
-+
-+#Function that creates the Test Runs for specific component
-+create_test_run(){
-+   #Check if optional parameters are given
-+   if [ -z $2  ]; then
-+      OPT=""
-+   else
-+      OPT="-o $2"
-+   fi
-+
-+   #echo "############ CREATING TEST RUNS FOR - $1 - #############"
-+   for ENV in "${ENVIRONMETS[@]}"
-+   do
-+     if [[ $2 == "BSP-MAN"  ]]; then
-+         OPT="-o $IMAGE$ENV"
-+     fi
-+     for EXTP in $EXECUTION_TYPE
-+     do
-+        #call the script that creates Test Runs
-+        ./testopia_update.py --config $CONFIG_FILE -a $ACTION -p "${1}" -c $EXTP -b $BRANCH \
-+        -e "$ENV"  --project-version $VERSION --project-milestone "$VERSION $MILESTONE" \
-+        --project-date $PJDATE --project-revision $RELEASE-$REVISION $OPT $TEST_PLAN --verbose
-+     done
-+   done
-+   #echo "############ TEST RUNS COMPLETED FOR - $1 - #############"
-+   #echo "........................................................."
-+
-+}
-+
-+create_yocto(){
-+   #BSP MANUALS
-+   ENVIRONMETS=("Genericx86_MMAX32" "Genericx86-64_NUC" "Beaglebone-Black" "EdgeRouter" "MPC8315e-rdb")
-+   EXECUTION_TYPE="MANUAL"
-+   create_test_run "${1}" "BSP-MAN"
-+
-+   #QEMUs Manuals
-+   ENVIRONMETS=("qemu-x86" "qemuarm" "qemuarm64" "qemumips" "qemumips64" "qemuppc" "qemux86-64")
-+   EXECUTION_TYPE="MANUAL"
-+   create_test_run "${1}" "core-image-sato-sdk_ANYQEMU"
-+
-+   #QEMUs Autos
-+   EVIRONMETS=("qemu-x86" "qemuarm" "qemuarm64" "qemumips" "qemumips64" "qemuppc" "qemux86-64" "qemux86-lsb" "qemux86_64-lsb")
-+   ECUTION_TYPE="AUTO"
-+   create_test_run "${1}" "core-image-sato-sdk_ANYQEMU"
-+
-+   #QEMUs Autos LSB
-+   ENVIRONMETS=("qemux86-lsb" "qemux86_64-lsb")
-+   EXECUTION_TYPE="AUTO"
-+   create_test_run "${1}" "core-image-lsb-sdk_ANYQEMU"
-+
-+   #BSP Autos
-+   ENVIRONMETS=("genericx86 - on MMAX32bit" "genericx86-64 on MMAX64" "genericx86-64 on NUC" "genericx86-64-WIC on MMAX64" \
-+                "genericx86-64-WIC on NUC" "genericx86-WIC on MMAX32"  "MPC8315e-rdb" "Beaglebone Black" "EdgeRouter")
-+   EXECUTION_TYPE="AUTO"
-+   create_test_run "${1}" "core-image-sato-sdk_ANYBSP"
-+
-+   #BSP Autos
-+   ENVIRONMETS=("genericx86-64-lsb on NUC" "genericx86-64-lsb on MMAX64" "genericx86-lsb on MMAX32bit")
-+   EXECUTION_TYPE="AUTO"
-+   create_test_run "${1}" "core-image-lsb-sdk_ANYBSP"
-+
-+}
-+
-+create_meta-intel(){
-+   #BSP MANUALS
-+   ENVIRONMETS=("core2-32_MMAX32" "corei7-64_NUC")
-+   EXECUTION_TYPE="MANUAL"
-+   create_test_run "${1}" "BSP-MAN"
-+
-+   #BSP Autos
-+   ENVIRONMETS=("core2-32_MMAX32" "corei7-64_NUC" "corei7-64_MMAX64" "corei7-64_Joule" \
-+                "core2-32_WIC_MMAX32" "corei7-64_WIC_NUC" "corei7-64_WIC_MMAX64" "corei7-64_WIC_Joule" \
-+		"intel-quark_Galileo" "intel-quark_WIC_Galileo")
-+
-+   EXECUTION_TYPE="AUTO"
-+   create_test_run "${1}" "core-image-sato-sdk_ANYBSP"
-+
-+   #BSP Autos LSB
-+   ENVIRONMETS=("core2-32_lsb_MMAX32" "corei7-64_lsb_NUC" "corei7-64_lsb_MMAX64" "corei7-64_lsb_Joule")
-+
-+   EXECUTION_TYPE="AUTO"
-+   create_test_run "${1}" "core-image-lsb-sdk_ANYBSP"
-+}
-+
-+
-+#Function that set the environments and execution per component
-+create_test_cycle(){
-+
-+    TEST_PLAN=""
-+    case "$1" in
-+                "ADT")
-+		       ENVIRONMETS=("Fedora 25 i686" "Ubuntu 16.04 x86_64")
-+		       EXECUTION_TYPE="MANUAL AUTO"
-+                       create_test_run "${1}"
-+		       ;;
-+             "BitBake")
-+		       ENVIRONMETS=("Fedora 24 x86_64")
-+		       EXECUTION_TYPE="MANUAL"
-+                       create_test_run "${1}"
-+		       ;;
-+           "BSP/QEMU")
-+		       if [ $TYPE == "YOCTO"  ]; then
-+			  create_yocto $1
-+		       else
-+			  create_meta-intel $1
-+		       fi
-+		       ;;
-+              "CROPS")
-+                       ENVIRONMETS=("Centos 7.1")
-+		       EXECUTION_TYPE="AUTO"
-+		       OPTIONAL="Toaster Poky"
-+		       for OPT in $OPTIONAL
-+		        do
-+			   create_test_run "${1}" $OPT
-+		        done
-+		       ;;
-+     "Eclipse Plugin")
-+	               ENVIRONMETS=("Mars on Fedora 22 x86_64", "Neon on Fedora 22 x86_64")
-+		       EXECUTION_TYPE="MANUAL"
-+		       create_test_run "${1}"
-+	               ;;
-+               "eSDK")
-+                       ENVIRONMETS=("Centos 7.1")
-+		       EXECUTION_TYPE="AUTO"
-+		       OPTIONAL="oeselftest sdkext"
-+		       for OPT in $OPTIONAL
-+		        do
-+			   create_test_run "${1}" $OPT
-+		        done
-+	               ;;
-+     "General Runtime")
-+	               ENVIRONMETS=("VMWare Player on Ubuntu")
-+		       EXECUTION_TYPE="AUTO"
-+		       #This case test plan name is diferent from product name
-+		       TEST_PLAN="--test-plan Runtime"
-+		       create_test_run "${1}"
-+		       ;;
-+             "Kernel")
-+	               ENVIRONMETS=("Centos 7")
-+		       EXECUTION_TYPE="MANUAL"
-+		       create_test_run "${1}"
-+		       ;;
-+         "Meta-yocto")
-+	               ENVIRONMETS=("Ubuntu 14.04 x86_64")
-+		       EXECUTION_TYPE="MANUAL"
-+		       create_test_run "${1}"
-+		       ;;
-+            "OE-Core")
-+	               ENVIRONMETS=("CentOS 7.1 x86_64" "Debian 8 x86_64" "Fedora 25 x86_64" "Fedora 24 x86_64" \
-+			            "OpenSuse 13.2 x86_64" "OpenSuse421 x86_64" "ubuntu 16.04 x86_64" \
-+				    "Ubuntu 16.10 x86-64")
-+		       EXECUTION_TYPE="AUTO"
-+		       create_test_run "${1}"
-+		       ;;
-+            "Runtime")
-+	               ENVIRONMETS=("VMWare Player on Ubuntu")
-+		       EXECUTION_TYPE="MANUAL"
-+		       #This case test plan name is diferen from product name
-+		       TEST_PLAN="--test-plan Build-Appliance"
-+		       create_test_run "${1}"
-+		       ;;
-+            "Toaster")
-+	               ENVIRONMETS=("Debian 4.3.0-0.bpo.1-amd64")
-+		       EXECUTION_TYPE="MANUAL"
-+		       OPTIONAL="UI-managed-mode"
-+		       create_test_run "${1}" $OPTIONAL
-+		       EXECUTION_TYPE="AUTO"
-+		       OPTIONAL="UI"
-+		       create_test_run "${1}" $OPTIONAL
-+		       ;;
-+  esac
-+}
-+
-+
-+usage(){
-+  echo "Usage: ./full-test-cycle-wrapper.sh [-h] || [ [-b] [-p] [-m] [-r] [-l] [-d] ]"
-+  echo "Arguments:"
-+  echo " -h, --help               Show this help message and exit"
-+  echo " -t TYPE OF CYCLE {YOCTO,META-INTEL}"
-+  echo "                          Type of test cycle, could be YOCTO or META-INTEL"
-+  echo " -b BRANCH {master,jethro,dizzy,daisy,noexists}, --branch {master,jethro,dizzy,daisy,noexists}
-+	                  Branch for create or update."
-+  echo " -p PROJECT VERSION  {2.2 2.3 2.4}
-+                          Version of the project."
-+  echo " -m PROJECT MILESTONE {M1 M2 M3 M4}
-+                          Milestone of the project."
-+  echo " -r RELEASE COMMIT {XXXXXX}
-+                          SCM Revision of the project, commit of branch tested."
-+  echo " -c RELEAE CANDIDATE {rc1 rc2 rcX}
-+                          Release candidate to be used"
-+  echo " -d PROJECT DATE {YYY-MM-DD}
-+                          SCM version/revision date of the project."
-+  exit
-+}
-+
-+if [[ ( $# == "--help") ||  $# == "-h" || $# -eq 0 ]] ; then
-+    usage
-+    exit 0
-+elif [  $# -ne 14 ]; then
-+    echo "ERROR: missing arguments"
-+    usage
-+    exit 1
-+fi
-+
-+while getopts ":t:b:p:m:r:c:d:" opt
-+do
-+  case $opt in
-+       t) #Check for specific type of QA cycle
-+          export TYPE=$OPTARG
-+          if [ "$TYPE" != "YOCTO" -a  "$TYPE" != "META-INTEL" ]; then
-+	       echo "ERROR: TYPE (-t) should be YOCTO or META-INTEL"
-+	       exit 1
-+	  fi
-+	  ;;
-+       b) #Creates Test Run for a exection on master
-+          export BRANCH=$OPTARG
-+          ;;
-+       p) #Project version (ie 2.3)
-+	  export VERSION=$OPTARG
-+	  ;;
-+       m) #Milestone under test
-+	  export MILESTONE=$OPTARG
-+	  ;;
-+       r) #Project revision
-+          export REVISION=$OPTARG
-+	  ;;
-+       c) #Project Release
-+          export RELEASE=$OPTARG
-+	  ;;
-+       d) #Project Date YYYY-MM-DD
-+	  export PJDATE=$OPTARG
-+	  ;;
-+      \?)
-+	  echo "ERROR: INAVLID OPTION"
-+          usage
-+          ;;
-+  esac
-+done
-+
-+#Initialize the environment
-+virtualenv venv
-+source venv/bin/activate
-+
-+## Define components by t ype of test cycle
-+if [[ $TYPE == "YOCTO" ]]; then
-+    COMPONENTS=("ADT" "BitBake" "BSP/QEMU" "CROPS" "Eclipse Plugin" "eSDK" "General Runtime" "Kernel" "Meta-yocto" "OE-Core" "Runtime" "Toaster")
-+else
-+    COMPONENTS=("BSP/QEMU")
-+fi
-+
-+#start creting all the test runs for the full release cycle
-+#per available components
-+
-+for component in "${COMPONENTS[@]}"
-+do
-+  display_bars "START" "${component}"
-+  create_test_cycle "${component}"
-+  display_bars "END" "${component}"
-+done
--- 
-2.11.0
+> -- 
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
 
