@@ -1,33 +1,66 @@
-Return-Path: <jose.perez.carranza@linux.intel.com>
+Return-Path: <trini@konsulko.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 39C2DE00726; Wed,  8 Mar 2017 13:58:09 -0800 (PST)
+	id C2501E00726; Wed,  8 Mar 2017 15:28:10 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 49068E004D2
-	for <yocto@yoctoproject.org>; Wed,  8 Mar 2017 13:58:06 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	08 Mar 2017 13:58:06 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.36,265,1486454400"; d="scan'208";a="57836724"
-Received: from jgperezc-mobl1.zpn.intel.com ([10.219.4.33])
-	by orsmga002.jf.intel.com with ESMTP; 08 Mar 2017 13:58:05 -0800
-From: jose.perez.carranza@linux.intel.com
-To: yocto@yoctoproject.org
-Date: Wed,  8 Mar 2017 15:58:58 -0600
-Message-Id: <20170308215858.18384-1-jose.perez.carranza@linux.intel.com>
-X-Mailer: git-send-email 2.11.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.220.176 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.220.176 listed in dnsbl.sorbs.net]
+Received: from mail-qk0-f176.google.com (mail-qk0-f176.google.com
+	[209.85.220.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 62C5FE004D2
+	for <yocto@yoctoproject.org>; Wed,  8 Mar 2017 15:28:06 -0800 (PST)
+Received: by mail-qk0-f176.google.com with SMTP id p64so94473979qke.1
+	for <yocto@yoctoproject.org>; Wed, 08 Mar 2017 15:28:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=konsulko.com; s=google;
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-disposition:in-reply-to:user-agent;
+	bh=lo1BG7l8aqkecv0d5fisGoRU7uqGwgQtgvxZhYnI1UI=;
+	b=Q5JMSoEXWsTbvVUPVP7Zd0+S/VQDlDYrOYwDI+fv6tP2uWuhZTF9CVK9QX+h+q/abc
+	psC4oGGJMJvomwADVRYw7SX4PyV7WVPOqv4YzCvAoogDkEtK3sjo5LJWlQxtuFrpQsks
+	IQGTY+GKzFDg3wSvDVhcIFVdP9Z60RuR3acIo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	:mime-version:content-disposition:in-reply-to:user-agent;
+	bh=lo1BG7l8aqkecv0d5fisGoRU7uqGwgQtgvxZhYnI1UI=;
+	b=F4HelDmka7JVuaPETxDqdnlmumCsKZuDjLQrJrgWWXGALL1T942JDpmnc/RrvDwgJt
+	qnIgs/f7lojnbgRBCNd6x7ydL60LiYCH8HUxFcM+br3+V8NpForA4O8ia9bqVzFSYtHL
+	ZKYoJz9XndScTxTWs+Hs2w8z9J0sKOKJMkL37vGqo5uUCqrL4TsztPZvG5au9kD1tAyI
+	//kIxj6jyjmsW9eWdaEmL4Wif6IdxC6WmD42iy4uLVCzVOXKDG0hqBhuS3+JiolbSYyU
+	43/nrOU0JIJ5TPEn3B12kq4OfC8sEEJwhIWBC+F3qr0qiOvaICPhVXLUzjU8YRC4ZDqE
+	D/3A==
+X-Gm-Message-State: AMke39mu3REmehZ6Eh5M0GdlEIlcjASD9tPedE1/Sbq326Kw2z5Qdl05jIWr3sx/2EHSfA==
+X-Received: by 10.200.49.76 with SMTP id h12mr10971669qtb.44.1489015686351;
+	Wed, 08 Mar 2017 15:28:06 -0800 (PST)
+Received: from bill-the-cat (cpe-75-180-228-133.ec.res.rr.com.
+	[75.180.228.133])
+	by smtp.gmail.com with ESMTPSA id v63sm3139353qkc.5.2017.03.08.15.28.05
+	(version=TLS1_2 cipher=AES128-SHA bits=128/128);
+	Wed, 08 Mar 2017 15:28:05 -0800 (PST)
+Date: Wed, 8 Mar 2017 18:28:21 -0500
+From: Tom Rini <trini@konsulko.com>
+To: Trevor Woerner <twoerner@gmail.com>
+Message-ID: <20170308232821.GH19897@bill-the-cat>
+References: <20170308173147.21841-1-twoerner@gmail.com>
 MIME-Version: 1.0
-Subject: [qa-tools][PATCH v2] testopia_update: Improvements on update action functionality
+In-Reply-To: <20170308173147.21841-1-twoerner@gmail.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-rockchip][PATCH] u-boot-rockchip: fix for binutils-2.28
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,190 +72,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Mar 2017 21:58:09 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Wed, 08 Mar 2017 23:28:10 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-From: Jose Perez Carranza <jose.perez.carranza@linux.intel.com>
+On Wed, Mar 08, 2017 at 12:31:47PM -0500, Trevor Woerner wrote:
 
-Some improvements were applied when using option
-action=create :
+> openembedded-core updated bintuils from 2.27 to 2.28 which causes u-boot to
+> fail to compile:
+> 
+> 	arm-oe-linux-gnueabi-ld.bfd: u-boot: Not enough room for program headers, try linking with -N
+> 
+> Building with -N does fix the issue, so this patch simply adds that flag to
+> the build so it succeeds.
+> 
+> This has been build-tested, as well as run-tested on the firefly.
+> 
+> Signed-off-by: Trevor Woerner <twoerner@gmail.com>
 
-   - Create a new option to update test runs by ID
-   - Create functions to load results and update test run
-   - Add warning to use –testrun-id
-   - Improvements to update_test_run using exiting data of test run
-   - Create function get test run details by ID
-   - Create Dummy product to use on cases when specific product is not
-     relevant
+Unless there's an immediate need I would ask holding off on this for a
+bit, I want to track down why this is happening.
 
-Signed-off-by: Jose Perez Carranza <jose.perez.carranza@linux.intel.com>
----
- testopia_update.py                  | 60 +++++++++++++++++++++++++++++--------
- testopia_update/product/__init__.py | 17 +++++++++--
- 2 files changed, 61 insertions(+), 16 deletions(-)
-
-diff --git a/testopia_update.py b/testopia_update.py
-index 044074a..50c3325 100755
---- a/testopia_update.py
-+++ b/testopia_update.py
-@@ -17,6 +17,29 @@ ACTIONS = ('create', 'update')
- BRANCHES = ('master', 'jethro', 'dizzy', 'daisy', 'noexists')
- CATEGORIES = ('AUTO', 'MANUAL')
- 
-+
-+def update_test_run(env, build, test_run, results):
-+    missing = product.update_test_run(test_run, results)
-+    for tcid in missing:
-+        logger.warn("%s: Test run %d, Case %d wasn't updated" %
-+                    (sys.argv[0], test_run['run_id'], tcid))
-+
-+
-+def load_results(results_log):
-+    if not results_log:
-+        logger.error("%s: For action update --results-log needs to be specified"
-+                     % (sys.argv[0]))
-+        sys.exit(1)
-+    if not os.path.exists(args.results_log):
-+        logger.error("%s: Results log (%s) doesn't exists."
-+                     % (sys.argv[0], results_log))
-+        sys.exit(1)
-+
-+    res = product.parse_results_log(args.results_log)
-+
-+    return res
-+
-+
- def load_opts(args, opts_list, opts):
-     for to in opts_list:
-         if to in vars(args):
-@@ -26,6 +49,9 @@ def load_opts(args, opts_list, opts):
-         if not hasattr(opts, to):
-             logger.error("%s: Requires testopia %s in arguments or config." % \
-                 (sys.argv[0], to))
-+            if args.action == "update":
-+                logger.warn('for action create you can use only --testrun-id ' +
-+                            'and --results-log if test run was already created')
-             sys.exit(1)
- 
- class Options(object):
-@@ -73,6 +99,9 @@ def get_args():
-     parser.add_argument('--test-plan', required=False,
-         dest="plan_name", help='Name of the test plan of the product, used when \
-                                 test plan name is different from product name.')
-+    parser.add_argument('--testrun-id', required=False,
-+        dest="trun_id", help='Number of the test run to be updated, this \
-+                              option should be used along with update action.')
- 
-     parser.add_argument('--results-log', required=False,
-         dest="results_log", help='Results log.')
-@@ -131,6 +160,21 @@ if __name__ == '__main__':
-             print("%s\n" % p.name)
-         sys.exit(0)
- 
-+    if args.action == 'update' and args.trun_id:
-+        args.product_name = 'Dummy'
-+        product = get_product_class(args.product_name, products)
-+        try:
-+            tr = product.get_existing_test_run(int(args.trun_id))
-+        except Exception as e:
-+            logger.error("%s: Problem found with Test Run %s: \n==>%s"
-+                         % (sys.argv[0], args.trun_id, e))
-+            sys.exit(1)
-+
-+        results = load_results(args.results_log)
-+        update_test_run(tr['environment_id'], tr['build_id'], tr, results)
-+
-+        sys.exit(0)
-+
-     load_opts(args, testopia_opts, opts)
- 
-     params = ['action', 'product_name', 'branch_name', 'env_name']
-@@ -205,16 +249,8 @@ if __name__ == '__main__':
-                 " and ID (%s)." % (sys.argv[0], template_test_run['run_id'],
-                 test_run['summary'], test_run['run_id']))
-     elif args.action == "update":
--        if not args.results_log:
--            logger.error("%s: For update --results-log needs to be specified." \
--                % (sys.argv[0]))
--            sys.exit(1)
--        if not os.path.exists(args.results_log):
--            logger.error("%s: Results log (%s) don't exists." \
--                % (sys.argv[0], args.results_log))
--            sys.exit(1)
-+        results = load_results(args.results_log)
- 
--        results = product.parse_results_log(args.results_log)
-         test_run = product.get_test_run(test_plan, env, build, args.project_date,
-                 args.project_version, args.category_name, args.optional)
-         if not test_run:
-@@ -224,8 +260,6 @@ if __name__ == '__main__':
-                 args.optional))
-             sys.exit(1)
- 
--        missing = product.update_test_run(env, build, test_run, results)
--        for tcid in missing:
--            logger.warn("%s: Product %s, Test run %d, Case %d wasn't updated" %\
--                    (sys.argv[0], args.product_name, test_run['run_id'], tcid))
-+        update_test_run(env, build, test_run, results)
-+
-     sys.exit(0)
-diff --git a/testopia_update/product/__init__.py b/testopia_update/product/__init__.py
-index 18b112e..f31190c 100644
---- a/testopia_update/product/__init__.py
-+++ b/testopia_update/product/__init__.py
-@@ -160,6 +160,7 @@ class Product(object):
-         results = {}
-         with open(log_file, "r") as f:
-             for line in f:
-+                line = line.strip()
-                 m = regex_comp.search(line)
-                 if m:
-                     results[int(m.group('case_id'))] = m.group('status')
-@@ -174,15 +175,14 @@ class Product(object):
-         else:
-             return 0
- 
--    def update_test_run(self, env, build, tr, results):
-+    def update_test_run(self, tr, results):
-         missing = []
--
-         test_case_ids = self._get_test_case_ids(tr)
-         for tcid in test_case_ids:
-             if tcid in results:
-                 status_id = self._get_status_id(results[tcid])
-                 self.testopia.testcaserun_update(tr['run_id'], tcid,
--                        build['build_id'], env['environment_id'],
-+                        tr['build_id'], tr['environment_id'],
-                         case_run_status_id=status_id)
-                 continue
- 
-@@ -190,6 +190,15 @@ class Product(object):
- 
-         return missing
- 
-+    def get_existing_test_run(self, testrun_id):
-+        tr_id = self.testopia.testrun_get(testrun_id)
-+
-+        return tr_id
-+
-+class DummyProduct(Product):
-+    #Dummy product to use when specific product is not required
-+    name = 'Dummy'
-+
- def get_products(testopia, opts, config, logger, **kwargs):
- 
- 
-@@ -220,6 +229,8 @@ def get_products(testopia, opts, config, logger, **kwargs):
-     products.append(esdk.eSDKProduct(testopia, opts, logger, config, **kwargs))
-     products.append(kernel.KernelProduct(testopia, opts, logger, config, **kwargs))
-     products.append(general_runtime.GeneralRuntimeProduct(testopia, opts, logger, config, **kwargs))
-+    products.append(DummyProduct(testopia, opts, logger, config, **kwargs))
-+
- 
-     return products
- 
 -- 
-2.11.0
-
+Tom
 
