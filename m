@@ -1,32 +1,69 @@
-Return-Path: <mircea.gliga@vitheia.com>
+Return-Path: <patrick.ohly@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7CB1DE008D0; Wed,  8 Mar 2017 23:59:58 -0800 (PST)
+	id A93ADE008D0; Thu,  9 Mar 2017 01:45:12 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_LOW,
+	RCVD_IN_SORBS_SPAM autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.214.53 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from zeus.integrasoft.ro (zeus.integrasoft.ro [193.231.162.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B2FF4E00726
-	for <yocto@yoctoproject.org>; Wed,  8 Mar 2017 23:59:54 -0800 (PST)
-Received: from [193.231.162.34] (echelon.integrasoft.ro [193.231.162.34])
-	(authenticated bits=0)
-	by zeus.integrasoft.ro (8.14.7/8.14.7) with ESMTP id v297xkqm016625
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES128-SHA bits=128 verify=NO);
-	Thu, 9 Mar 2017 09:59:46 +0200
-To: Patrick Ohly <patrick.ohly@intel.com>
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.214.53 listed in dnsbl.sorbs.net]
+Received: from mail-it0-f53.google.com (mail-it0-f53.google.com
+	[209.85.214.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9F447E004D2
+	for <yocto@yoctoproject.org>; Thu,  9 Mar 2017 01:45:11 -0800 (PST)
+Received: by mail-it0-f53.google.com with SMTP id h10so125515291ith.1
+	for <yocto@yoctoproject.org>; Thu, 09 Mar 2017 01:45:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=message-id:subject:from:to:cc:date:in-reply-to:references
+	:organization:mime-version:content-transfer-encoding;
+	bh=7qB4cR0gmNJhPeXwuTb23rIUKjBRjgrbMV7nZ+cFRCA=;
+	b=skwCKq6qKJdbcYFXNE4wlPXZGR5u/+Sxo1mFbfOn95BD2aAYjwORobyKh7nCoR9xzh
+	Wcsb/F7Gp/3uH3FnrImMC1HjJg3rzY5sSz4iUYOLoTdm4+M4Q1I0lVMxM6HCVHsSOIq5
+	8atUtq8clFRv8K5W+Ce2t6WV+LhADCH5tdyogt1Ik3BBMnyMuy7qgeACZfvFvK0Y0iqc
+	pkYKsQvefR+8DG+5W/0Hp7lJR7GKkHCcfBX8u9UBwPpfFYBH3kqmTfRKg0+zvvJ5PVUL
+	5X9dKPzr4BfRlmLTgh1rE/oQNRcLjFpHJYgLUP0vpjeibUroJuh28PZmtBtBSAicBDXe
+	/I6A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+	:references:organization:mime-version:content-transfer-encoding;
+	bh=7qB4cR0gmNJhPeXwuTb23rIUKjBRjgrbMV7nZ+cFRCA=;
+	b=a43FfLxFijhm9yjKV2etqYm3bHakVOASM84hnJrlRxTWhmaVC49NR5nbCeoZHW+VS3
+	BIKZXeRWMRLqm/TpwDRw5KdcHMkO2jWbWxLmTXc6Hr1hyF68ICI9CW9ttQ0QrfrMGDOp
+	DJDKiuyr8IRQkRZOtzj+MHytaDE6r+16bUUJJTOzHOVfKmgDPXOPNs5Uam1q8SoB6Gig
+	th5QoYpVyY9nbHHaObZlNHbiOJtBdEESAQuWXlrL+JQ4HSOWv6mJ4BF1z3lft6S1nypp
+	XyAlb2ku7k8M+RUWWy7F4iX/CKxB4FEUkqJ0fxIGGdHqhaIsH6FKkuh+pVCocVXJjAaB
+	6TCA==
+X-Gm-Message-State: AMke39lfu/ErTG6O8EcZVX7D2Uccu3NBfA9Lco+kJyll5P38Sq10QPtjojRoNvxJpPnh+WKC
+X-Received: by 10.36.219.10 with SMTP id c10mr10174284itg.1.1489052710390;
+	Thu, 09 Mar 2017 01:45:10 -0800 (PST)
+Received: from pohly-mobl1 (p5DE8D47C.dip0.t-ipconnect.de. [93.232.212.124])
+	by smtp.gmail.com with ESMTPSA id
+	x69sm2290836ite.25.2017.03.09.01.45.08
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Thu, 09 Mar 2017 01:45:09 -0800 (PST)
+Message-ID: <1489052706.7785.342.camel@intel.com>
+From: Patrick Ohly <patrick.ohly@intel.com>
+To: Mircea Gliga <mircea.gliga@vitheia.com>
+Date: Thu, 09 Mar 2017 10:45:06 +0100
+In-Reply-To: <d4287bea-7820-8a90-2deb-3b255a7ec34f@vitheia.com>
 References: <51315601-026c-457c-a99f-4961487e12e3@vitheia.com>
 	<1489044139.7785.341.camel@intel.com>
-From: Mircea Gliga <mircea.gliga@vitheia.com>
-Message-ID: <d4287bea-7820-8a90-2deb-3b255a7ec34f@vitheia.com>
-Date: Thu, 9 Mar 2017 09:59:46 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Icedove/45.6.0
-MIME-Version: 1.0
-In-Reply-To: <1489044139.7785.341.camel@intel.com>
+	<d4287bea-7820-8a90-2deb-3b255a7ec34f@vitheia.com>
+Organization: Intel GmbH, Dornacher Strasse 1, D-85622 Feldkirchen/Munich
+X-Mailer: Evolution 3.12.9-1+b1 
+Mime-Version: 1.0
 Cc: yocto@yoctoproject.org
 Subject: Re: cannot build image using sstate
 X-BeenThere: yocto@yoctoproject.org
@@ -40,138 +77,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 Mar 2017 07:59:58 -0000
-Content-Type: multipart/alternative;
-	boundary="------------331968CC31300B718CB9AD32"
-
---------------331968CC31300B718CB9AD32
-Content-Type: text/plain; charset=utf-8; format=flowed
+X-List-Received-Date: Thu, 09 Mar 2017 09:45:12 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-Thanks! You are right, the do_deploy_append installs the 
-image_signed.fit in the ${DEPLOY_DIR_IMAGE}(I should have kept that line 
-in the previous mail also):
-do_deploy_append() {
-[...]
-          #this line creates the image_signed.fit file
-           mkimage  [...] image_signed.fit
-           install -m 0644  image_signed.fit ${DEPLOY_DIR_IMAGE}/.
-[...]
-}
+On Thu, 2017-03-09 at 09:59 +0200, Mircea Gliga wrote:
+> Thanks! You are right, the do_deploy_append installs the
+> image_signed.fit in the ${DEPLOY_DIR_IMAGE}(I should have kept that
+> line in the previous mail also):
+> do_deploy_append() {
+> [...]
+>          #this line creates the image_signed.fit file
+>           mkimage  [...] image_signed.fit
+>           install -m 0644  image_signed.fit ${DEPLOY_DIR_IMAGE}/.
+> [...]
+> }
+> 
+> The doc mentions in regards to DEPLOYDIR:
+> "Recipes inheriting the deploy class should copy files to be deployed
+> into DEPLOYDIR, and the class will take care of copying them into
+> DEPLOY_DIR_IMAGE afterwards."
+> 
+> So I should just replace ${DEPLOY_DIR_IMAGE} with ${DEPLOYDIR} and I
+> get the same behaviour as before + the benefit of sstate cache ?
 
-The doc mentions in regards to DEPLOYDIR:
-"Recipes inheriting the |deploy| class should copy files to be deployed 
-into |DEPLOYDIR|, and the class will take care of copying them into 
-|DEPLOY_DIR_IMAGE| 
-<http://www.yoctoproject.org/docs/latest/mega-manual/mega-manual.html#var-DEPLOY_DIR_IMAGE> 
-afterwards."
+Yes.
 
-So I should just replace ${DEPLOY_DIR_IMAGE} with ${DEPLOYDIR} and I get 
-the same behaviour as before + the benefit of sstate cache ?
+-- 
+Best Regards, Patrick Ohly
 
-Thanks
-
-
-On 09/03/17 09:22, Patrick Ohly wrote:
-> On Thu, 2017-03-09 at 08:54 +0200, Mircea Gliga wrote:
->> Long story short: I have problems building an image, in a clean build
->> directory, reusing the shared state cache and downloads from a previous
->> build.
->> A file created in the do_deploy_append task is not created(restored)
->> anymore when building using a previous sstate.
->>
->> And now the long description:
->> In my custom layer, in a kernel recipe, linux-stable.bb, I have appended
->> some operations to the `deploy` task, one of them is creating an U-Boot
->> FIT image:
->>
->> linux-stable.bb:
->> do_deploy_append() {
->> [...]
->>           #this line creates the image_signed.fit file
->>            mkimage  [...] image_signed.fit
->>
->> [...]
->> }
-> Are you writing image_signed.fit into the ${DEPLOYDIR} or
-> ${DEPLOY_DIR_IMAGE}? When writing directly into ${DEPLOY_DIR_IMAGE}, you
-> bypass the mechanism which adds files to the sstate cache and then you
-> get exactly the problem you describe.
->
+The content of this message is my personal opinion only and although
+I am an employee of Intel, the statements I make here in no way
+represent Intel's position on the issue, nor am I authorized to speak
+on behalf of Intel on this matter.
 
 
---------------331968CC31300B718CB9AD32
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
 
-<html>
-  <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    Thanks! You are right, the do_deploy_append installs the
-    image_signed.fit in the ${DEPLOY_DIR_IMAGE}(I should have kept that
-    line in the previous mail also):<br>
-    do_deploy_append() {<br>
-    [...]<br>
-             #this line creates the image_signed.fit file<br>
-              mkimage  [...] image_signed.fit<br>
-              install -m 0644  image_signed.fit ${DEPLOY_DIR_IMAGE}/.<br>
-    [...]<br>
-    }<br>
-    <br>
-    The doc mentions in regards to DEPLOYDIR:<br>
-    "Recipes inheriting the <code class="filename">deploy</code> class
-    should copy files to be deployed into <code class="filename">DEPLOYDIR</code>,
-    and the class will take care of copying them into <a class="link"
-href="http://www.yoctoproject.org/docs/latest/mega-manual/mega-manual.html#var-DEPLOY_DIR_IMAGE"
-      title="DEPLOY_DIR_IMAGE"><code class="filename">DEPLOY_DIR_IMAGE</code></a>
-    afterwards."<br>
-    <br>
-    So I should just replace ${DEPLOY_DIR_IMAGE} with ${DEPLOYDIR} and I
-    get the same behaviour as before + the benefit of sstate cache ?<br>
-    <br>
-    Thanks<br>
-    <br>
-    <br>
-    <div class="moz-cite-prefix">On 09/03/17 09:22, Patrick Ohly wrote:<br>
-    </div>
-    <blockquote cite="mid:1489044139.7785.341.camel@intel.com"
-      type="cite">
-      <pre wrap="">On Thu, 2017-03-09 at 08:54 +0200, Mircea Gliga wrote:
-</pre>
-      <blockquote type="cite">
-        <pre wrap="">Long story short: I have problems building an image, in a clean build 
-directory, reusing the shared state cache and downloads from a previous 
-build.
-A file created in the do_deploy_append task is not created(restored) 
-anymore when building using a previous sstate.
 
-And now the long description:
-In my custom layer, in a kernel recipe, linux-stable.bb, I have appended 
-some operations to the `deploy` task, one of them is creating an U-Boot 
-FIT image:
-
-linux-stable.bb:
-do_deploy_append() {
-[...]
-         #this line creates the image_signed.fit file
-          mkimage  [...] image_signed.fit
-
-[...]
-}
-</pre>
-      </blockquote>
-      <pre wrap="">
-Are you writing image_signed.fit into the ${DEPLOYDIR} or
-${DEPLOY_DIR_IMAGE}? When writing directly into ${DEPLOY_DIR_IMAGE}, you
-bypass the mechanism which adds files to the sstate cache and then you
-get exactly the problem you describe.
-
-</pre>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------331968CC31300B718CB9AD32--
