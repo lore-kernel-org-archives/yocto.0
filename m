@@ -1,63 +1,63 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 33696E00A1E; Fri, 10 Mar 2017 08:40:34 -0800 (PST)
+	id 3778DE00A1E; Fri, 10 Mar 2017 10:14:00 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.172 listed in list.dnswl.org]
-Received: from mail-qk0-f172.google.com (mail-qk0-f172.google.com
-	[209.85.220.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D4791E00A0C
-	for <yocto@yoctoproject.org>; Fri, 10 Mar 2017 08:40:30 -0800 (PST)
-Received: by mail-qk0-f172.google.com with SMTP id p64so175948181qke.1
-	for <yocto@yoctoproject.org>; Fri, 10 Mar 2017 08:40:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.217.180 listed in list.dnswl.org]
+Received: from mail-ua0-f180.google.com (mail-ua0-f180.google.com
+	[209.85.217.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DA286E00A0C
+	for <yocto@yoctoproject.org>; Fri, 10 Mar 2017 10:13:56 -0800 (PST)
+Received: by mail-ua0-f180.google.com with SMTP id 72so122016601uaf.3
+	for <yocto@yoctoproject.org>; Fri, 10 Mar 2017 10:13:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=Td+iOCOMnoBKH2kBFXmgHRLpyiYctKhQQ1A2L+ska5U=;
-	b=MAvsMqOU1ZOX7LjLT+zzikdZNTxH7pAHaNAbti1etpnwZ+ZpeK344URHmkwPbqqmN1
-	YbcVrot9X947WvM7bsiXjG7X/9YLxqvgbaKwenC+iATAXR/qutBsSLwUIIzcuT45i/Wk
-	+JbpmHtCNIZSC0V3wGM6JRUjKSl8krjuqLT3l5QdBVBgMgDe970qK/XhIOlnU1S3d0I7
-	q3bJ5AydbE2utvo3UjDEGnSTVOMEzLWjK0+g1Az9ze2y0Zhai4UXhy5QKNdW8+OhaxGl
-	kW+YHNNwhUrfcgpompllmT+IsSYA7GfbbWkIcTZOjNDkxPCXg2eIrAXaSTMOeMVZGTK0
-	NVYg==
+	:cc; bh=LEzzp7qrBg2IqQBiQph8K2I3j3H6uQHM/6OeaixRxiM=;
+	b=dUmvn2U0MAzxcfO3oh0mIZqsulJoY7PLY0qbzJy86ryTMSFZMniZ7fAap6tPk6Xsi9
+	/IjASD1ziNrrkwg5IDpgbNjukTVhk6APRCtUheV5bGNXP5STbOJRCcsPZEZTTPcv1JFG
+	6TQDAxloWKsnwm45mNoRaJlgYJwwOMKg+jxjFL3W/YEfKga7WabcArmAoGToBlpfib9e
+	lWV+LX/DVEezr3W3+ia77tWjU/5AL2KeK+bvdXEbAvjuutGlUO8wqSxj+IAfSrTb98ll
+	ywhdXZTQeyzp/KrOFlxla/PphRAWYQFXJlVn2wsQoxdHW4GZ2yKyGmk29+N15BXM43VU
+	WIqg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=Td+iOCOMnoBKH2kBFXmgHRLpyiYctKhQQ1A2L+ska5U=;
-	b=n/Ax+vBVqAAy+e91xJh8OijIFfH/FKNKPg5chPBJT8CFIRR444oO+fLYstzvtdtvbG
-	tCAZF+QcMBQJsNHF++ImG0R9nKfKx5WudjTIt31JZKYWhOYwE7LHBnsub05995IImzss
-	pIxhSJldzBuBiRG+vlRoD552EQaEfAMCC7iV0KaeKSD4ogPIzP8ptZ08EyodlFwKsOOZ
-	++lx4H6umc4DLcQinxcTKxJ8NsLbMj6WZwOatKlqe/4wecpKqZmkmujlso/u2oB2f5rp
-	HH5i3BgR75jbTmqLD16FT7JY3+m+5QXygBF525sKd2JMLMzVifrdpdIaVO7i9FS9mPEz
-	E/1g==
-X-Gm-Message-State: AFeK/H2kpC6LiNBwXluNGQ1t8krEu8PPxiG9+rvS/nVueT5MUKGJfMHPEtAmyDP9xQafcSbRHH+oXVyMbd6XQV8C
-X-Received: by 10.55.221.1 with SMTP id n1mr19195361qki.221.1489164029640;
-	Fri, 10 Mar 2017 08:40:29 -0800 (PST)
+	bh=LEzzp7qrBg2IqQBiQph8K2I3j3H6uQHM/6OeaixRxiM=;
+	b=pR4AAlyoChmeYYbVLr/SPLHdnzUiTkBDVFKw+Vcco1o+43zFmdszPBrpcfTRpPE1CS
+	BGe3g6irk+1aAhUxk5IlICPoaUtwhoIpSsy4qIi4KQzFf2d27M33ho/mmjwY5rRf/05f
+	kCj+q4eBk7U2SeNb+3Yiwn3LN58/nZ2I8M//+CK9doYxaPMvl604rMsZZbOJVWWEIIKD
+	x0TbZXs2w/4cvqHzduaPHtm4wLNCOasRtt8NRTkf2366+bCUoTQk2nAmwppes7oqR1pa
+	KDHgPpT/q4C+DwY1WJoSs05BrU8/o4IwwttjIofvBdrAcRswbwtzVmnVCbK/HcYU544O
+	cwhw==
+X-Gm-Message-State: AMke39kgbmsLP0e1b8tzZutHUuclCGnISv27QIMuxLruGGx4yqXKXKcZHGC9Hv+VW3pm4x2N5hraTONF1AqOUw==
+X-Received: by 10.31.142.208 with SMTP id q199mr8270915vkd.93.1489169635661;
+	Fri, 10 Mar 2017 10:13:55 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.140.22.166 with HTTP; Fri, 10 Mar 2017 08:40:09 -0800 (PST)
-In-Reply-To: <3585477.Pl9C8lrLdl@rjs-zotac.streifs.net>
-References: <d9a0d51f-222e-0320-2e9d-57451b5a5c42@mlbassoc.com>
-	<CAJTo0LYQ=h1TdU4NBdF_vAVA+ihhNL7nBmYq9244H=4uKB-hrA@mail.gmail.com>
-	<3585477.Pl9C8lrLdl@rjs-zotac.streifs.net>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Fri, 10 Mar 2017 16:40:09 +0000
-Message-ID: <CAJTo0LZQguBf3oQYaGBVG2Rz0PszOy-xNAbRyGkJNnPwVwmbcg@mail.gmail.com>
-To: Rudolf J Streif <rudolf.streif@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Gary Thomas <gary@mlbassoc.com>
-Subject: Re: What happened to 'depexp'?
+Received: by 10.159.39.37 with HTTP; Fri, 10 Mar 2017 10:13:25 -0800 (PST)
+In-Reply-To: <DB5PR0101MB1686CDF4B73864FF6879490492200@DB5PR0101MB1686.eurprd01.prod.exchangelabs.com>
+References: <DB5PR0101MB1686CDF4B73864FF6879490492200@DB5PR0101MB1686.eurprd01.prod.exchangelabs.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Fri, 10 Mar 2017 10:13:25 -0800
+Message-ID: <CAMKF1sohj3PLg2tjUBijrQUb1R7kUdcWPLpdi3G=NaV=_dOjkg@mail.gmail.com>
+To: Karim ATIKI <karim_atiki@hotmail.com>
+Cc: yocto <yocto@yoctoproject.org>
+Subject: Re: [bitbake] Failed to patch "defconfig" for linux kernel
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,53 +69,93 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 10 Mar 2017 16:40:34 -0000
-Content-Type: multipart/alternative; boundary=001a1149d7dcffd84e054a6304e2
-
---001a1149d7dcffd84e054a6304e2
+X-List-Received-Date: Fri, 10 Mar 2017 18:14:00 -0000
 Content-Type: text/plain; charset=UTF-8
 
-On 10 March 2017 at 16:30, Rudolf J Streif <rudolf.streif@gmail.com> wrote:
-
-> While I can concur that it is good to have more functionality, why was it
-> deemed necessary to entirely deprecate 'depexp'? I think now that the Yocto
-> Project is maturing, it would be good to pay more attention to retaining
-> backwards compatibility.
+On Fri, Mar 10, 2017 at 6:50 AM, Karim ATIKI <karim_atiki@hotmail.com> wrote:
+> Hi,
 >
-> I may have missed it, but was there a discussion on the mailing lists about
-> deprecating and replacing 'depexp'?
+>
+> I'm currently trying to patch the linux kernel 3.8.13-r2 of an ARM based
+> board (Hachiko) in order to enable Bluetooth and RFCOMM support.
+>
+>
+> Currently, I select these options with bitbake -c menuconfig virtual/kernel
+>
+> I'd like to use a patch on the defconfig in order to avoid the menuconfig
+> step.
+>
+>
+> I've created a linux_3.8.13.bbappend file to apply the path.
+>
+>
+> Th patch file looks like:
+>
+>
+>
+> --- a defconfig
+> +++ b defconfig
+> @@ -107,3 +107,16 @@
+>  CONFIG_CRYPTO_CBC=y
+>  CONFIG_CRYPTO_MD5=y
+>  CONFIG_CRYPTO_DES=y
+> +#
+> +# FIR device drivers
+> +#
+> +CONFIG_BT=y
+> +CONFIG_BT_RFCOMM=y
+> +CONFIG_BT_RFCOMM_TTY=y
+> +
+> +#
+> +# Bluetooth device drivers
+> +#
+> +CONFIG_BT_HCIBTUSB=y
+> +CONFIG_WIRELESS=y
+>
+>
+> The working directory of the linux is:
+>
+>
+> /home/kai/yocto/build-hachiko/tmp/work/hachiko64-poky-linux-gnueabi/linux/3.8.13-r2/linux-3.8.13
+>
+>
+> But when the linux is fetched and unpacked, the root defconfig file is put
+> in:
+>
+>
+> /home/kai/yocto/build-hachiko/tmp/work/hachiko64-poky-linux-gnueabi/linux/3.8.13-r2
+>
+>
+> therefore, the patch step failed.
+>
+>
+> I tried to modify the patch with  --- a/../defconfig and b/../defconfig
+>
+> but it does not work better.
+>
+>
+> Any idea how to make it work ?
+
+
+You can edit do_configure_prepend() in linux-rpi.inc
+
+kernel_configure_variable CONFIG_BT y
+...
+
+
+
+>
+>
+> Thanks.
+>
+>
+> Karim
+>
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 >
 
-There was a patch on the list.
-
-Fundamentally taskexp is just a more detailed view of the same data,
-without some dependencies missing.
-
-Ross
-
---001a1149d7dcffd84e054a6304e2
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 10 March 2017 at 16:30, Rudolf J Streif <span dir=3D"ltr">&lt;<a href=3D=
-"mailto:rudolf.streif@gmail.com" target=3D"_blank">rudolf.streif@gmail.com<=
-/a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:=
-0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div id=3D":3a5" cl=
-ass=3D"a3s aXjCH m15ab90ee78dc7863">While I can concur that it is good to h=
-ave more functionality, why was it<br>
-deemed necessary to entirely deprecate &#39;depexp&#39;? I think now that t=
-he Yocto<br>
-Project is maturing, it would be good to pay more attention to retaining<br=
->
-backwards compatibility.<br>
-<br>
-I may have missed it, but was there a discussion on the mailing lists about=
-<br>
-deprecating and replacing &#39;depexp&#39;?<br></div></blockquote></div><br=
->There was a patch on the list.</div><div class=3D"gmail_extra"><br></div><=
-div class=3D"gmail_extra">Fundamentally taskexp is just a more detailed vie=
-w of the same data, without some dependencies missing.</div><div class=3D"g=
-mail_extra"><br></div><div class=3D"gmail_extra">Ross</div></div>
-
---001a1149d7dcffd84e054a6304e2--
