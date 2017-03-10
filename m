@@ -1,18 +1,17 @@
-Return-Path: <straka.derek@gmail.com>
+Return-Path: <bounce+03ddee.3a5685-yocto=yoctoproject.org@asterius.io>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9D349E00A0C; Fri, 10 Mar 2017 07:33:14 -0800 (PST)
+	id 6DD2CE00A16; Fri, 10 Mar 2017 07:40:17 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW, 
-	RCVD_IN_SORBS_SPAM autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (straka.derek[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.214.46 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [104.130.122.4 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.223.174 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -21,54 +20,52 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.214.46 listed in dnsbl.sorbs.net]
-Received: from mail-it0-f46.google.com (mail-it0-f46.google.com
-	[209.85.214.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3A440E009AA
-	for <yocto@yoctoproject.org>; Fri, 10 Mar 2017 07:33:11 -0800 (PST)
-Received: by mail-it0-f46.google.com with SMTP id m27so3124471iti.1
-	for <yocto@yoctoproject.org>; Fri, 10 Mar 2017 07:33:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=xxd5fVka2LF2b2mtFC+ePnUk3vBJTHyGxhk7aM+w9Tw=;
-	b=aIr294rlViA53yl+iEaw/KK80luOGHNPYBacW+SCZ7ApQ78PVyjT9w6YQ745BZsG6h
-	TE2Jewr3QrOeo0mQpbbraobdancEvwnDuiuTTmZmF/rBxrDLMRdMwuqfvsNgahJ+DEjN
-	mpczOpdNqsD0Kwgih+Hoo8CE9f3LHuXucg41CgyZa0d9V1wM2pjsaZOy/m5JEM2HMLko
-	1ridPnKZDORs/MUuMQMAnkGmHM408Mk1x34gGf5iUTtesIuPJ/D67YFLneCDXaLLalqs
-	/+82H+ud1SqybbSa5pAOT0KPhpjL7Fe09rR5EST/8N91cqxnCxkI0K5aI1R6IoXucKs0
-	zljw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=xxd5fVka2LF2b2mtFC+ePnUk3vBJTHyGxhk7aM+w9Tw=;
-	b=NcEHLjerwAdx+XKJshEFSxdSkqEbqnof7FF8dGYEeZxwIlnhVmprksBTq1ZgtQbFRP
-	46N70nulyc0fUlvIJvYExMZhSB5rBVkCacPNapKqktm3B88I9+weNblGjhx169C0x7i0
-	07xtKJ/DcyyJ0YBtFOc0LcpJYdSgg2AV6L48oykAuexEjdOTGuRbd+0eq7tMzp38K1AT
-	xwFAegDMtXLYv8V9QRQ7KSLLhE5CgOX3JLDT+PVDP1HXuL27ii6KIuDc51UCfM0mA4ZD
-	yCASNqggbtXsMNIQ7eR2+O511+1AFVWbH5A24hxc2aCtZs4scwhpnXgtO3TcD0whk8z9
-	mEmg==
-X-Gm-Message-State: AFeK/H2dyNDJabK2dA5bI9Wq6bWhG3rfyZhYukk2/c3pSwI2oqsswdb1yGDtQF3yFZV2mnaU6cYxxM9IYWz6DA==
-X-Received: by 10.36.190.78 with SMTP id i75mr2602937itf.73.1489159991200;
-	Fri, 10 Mar 2017 07:33:11 -0800 (PST)
+X-Greylist: delayed 305 seconds by postgrey-1.32 at yocto-www;
+	Fri, 10 Mar 2017 07:40:13 PST
+Received: from mail4.static.mailgun.info (mail4.static.mailgun.info
+	[104.130.122.4])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B5316E009DA
+	for <yocto@yoctoproject.org>; Fri, 10 Mar 2017 07:40:13 -0800 (PST)
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=asterius.io; q=dns/txt;
+	s=mailo; t=1489160412; h=Content-Type: To: Subject: Message-ID: Date:
+	From: References: In-Reply-To: MIME-Version: Sender;
+	bh=PcM1myA+3dAyUcisBaJFFXw7ybLZSkoa+WGIARPxoCE=;
+	b=NxSCX3F2GmvUb1g62HZLiQak5zx7Mzm1i5pMr97f0qmDSlgDww0+o69LgUY1PGRl2pBnXtzK
+	tk46BCWJ/m3Ynd/zqmEilKoEW5RhHfdIBG6KF8Y6Yh0KKijK32WcwZOrqBaIRJGyHo+oHSEh
+	OXiYnwxyBWsOoVgYcIxkvxAqMAE=
+DomainKey-Signature: a=rsa-sha1; c=nofws; d=asterius.io; s=mailo;
+	q=dns; h=Sender: MIME-Version: In-Reply-To: References: From: Date:
+	Message-ID: Subject: To: Content-Type;
+	b=BvppRCmmGtfWX98wT95XELSvqD//+QfGPdiEjSDtAkHIHnHFDPXBJ0LNubOMT+nYoeJlyE
+	XPOenZTKF2vjMmZjrpOi6zTiq5Gtr1h4lLrQ3BYZ7PRwMFITl8YZrYO1C7ydNM2plLkksCi6
+	g/791j8E01f2EBQqoXHL424iOMKQg=
+Sender: derek@asterius.io
+X-Mailgun-Sending-Ip: 104.130.122.4
+X-Mailgun-Sid: WyJhMjkyYSIsICJ5b2N0b0B5b2N0b3Byb2plY3Qub3JnIiwgIjNhNTY4NSJd
+Received: from mail-io0-f174.google.com (mail-io0-f174.google.com
+	[209.85.223.174])
+	by mxa.mailgun.org with ESMTP id 58c2c7a9.7f0cf86c39f0-smtp-out-n01;
+	Fri, 10 Mar 2017 15:35:05 -0000 (UTC)
+Received: by mail-io0-f174.google.com with SMTP id g6so50525698ioj.1
+	for <yocto@yoctoproject.org>; Fri, 10 Mar 2017 07:35:05 -0800 (PST)
+X-Gm-Message-State: AMke39l0VY9icGzwm6nlqwgpGE6JD/P4OQ7E9qx6wWui3j1/Igp4v0gghTAe2f7Iu/2CRcskzN5teNojf4su+Q==
+X-Received: by 10.107.138.14 with SMTP id m14mr18779521iod.235.1489160105150; 
+	Fri, 10 Mar 2017 07:35:05 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.107.20.149 with HTTP; Fri, 10 Mar 2017 07:33:10 -0800 (PST)
+Received: by 10.107.20.149 with HTTP; Fri, 10 Mar 2017 07:35:04 -0800 (PST)
 In-Reply-To: <2ce1386b-e63b-4aea-0685-7abf949de115@linux.intel.com>
 References: <37d4f98c-9102-f4bf-c6cc-f64e1ffbce40@linux.intel.com>
 	<CAP9ODKogXP8vO7CCmxs2c-TiRmZZhOKyN5M=ffZV7U2Qrjw1hQ@mail.gmail.com>
 	<b80a93fd-8fa3-5b27-0ffb-ab9fd8d04c12@linux.intel.com>
 	<CAP9ODKpGer=sF2QF8cCPh68OybqJxMdR5a_x9aXhw=htNWKOiw@mail.gmail.com>
 	<2ce1386b-e63b-4aea-0685-7abf949de115@linux.intel.com>
-From: Derek Straka <straka.derek@gmail.com>
-Date: Fri, 10 Mar 2017 10:33:10 -0500
-Message-ID: <CADNbA1p-BM9NiEmXo8GpbiLLvykaR1crzN7a479D-y=vuuN0HA@mail.gmail.com>
-To: Alexander Kanavin <alexander.kanavin@linux.intel.com>
+From: Derek Straka <derek@asterius.io>
+Date: Fri, 10 Mar 2017 10:35:04 -0500
+X-Gmail-Original-Message-ID: <CADNbA1pXRMX0OWHS+=rqg+eq20NoViUtBa1BrAidDxoU2wXX5g@mail.gmail.com>
+Message-ID: <CADNbA1pXRMX0OWHS+=rqg+eq20NoViUtBa1BrAidDxoU2wXX5g@mail.gmail.com>
+To: Yocto Project <yocto@yoctoproject.org>, openembedded-architecture
+	<openembedded-architecture@lists.openembedded.org>
 X-Mailman-Approved-At: Mon, 13 Mar 2017 07:47:23 -0700
-Cc: Yocto Project <yocto@yoctoproject.org>, openembedded-architecture
-	<openembedded-architecture@lists.openembedded.org>,
-	Doug Goldstein <cardoe@cardoe.com>,
-	Otavio Salvador <otavio.salvador@ossystems.com.br>
 Subject: Re: [Openembedded-architecture] Proposal: dealing with language-specific build tools/dependency management tools
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -81,10 +78,10 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 10 Mar 2017 15:33:14 -0000
-Content-Type: multipart/alternative; boundary=94eb2c19e4264a18c3054a621469
+X-List-Received-Date: Fri, 10 Mar 2017 15:40:17 -0000
+Content-Type: multipart/alternative; boundary=001a113fe8ae14de86054a621ba3
 
---94eb2c19e4264a18c3054a621469
+--001a113fe8ae14de86054a621ba3
 Content-Type: text/plain; charset=UTF-8
 
 On Fri, Mar 10, 2017 at 10:10 AM, Alexander Kanavin <
@@ -159,10 +156,8 @@ it into the set of bitbake fetchers [4][5].
 [6] - https://bugzilla.yoctoproject.org/show_bug.cgi?id=10867
 
 
-Alex
 
-
-
+> Alex
 >
 > _______________________________________________
 > Openembedded-architecture mailing list
@@ -170,17 +165,17 @@ Alex
 > http://lists.openembedded.org/mailman/listinfo/openembedded-architecture
 >
 
---94eb2c19e4264a18c3054a621469
+--001a113fe8ae14de86054a621ba3
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><div class=3D"gmail_quote">On F=
-ri, Mar 10, 2017 at 10:10 AM, Alexander Kanavin <span dir=3D"ltr">&lt;<a hr=
-ef=3D"mailto:alexander.kanavin@linux.intel.com" target=3D"_blank">alexander=
-.kanavin@linux.intel.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmai=
-l_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,20=
-4,204);padding-left:1ex"><span class=3D"gmail-">On 03/10/2017 04:58 PM, Ota=
-vio Salvador wrote:<br>
+<div dir=3D"ltr"><br><div class=3D"gmail_extra"><br><div class=3D"gmail_quo=
+te">On Fri, Mar 10, 2017 at 10:10 AM, Alexander Kanavin <span dir=3D"ltr">&=
+lt;<a href=3D"mailto:alexander.kanavin@linux.intel.com" target=3D"_blank">a=
+lexander.kanavin@linux.intel.com</a>&gt;</span> wrote:<br><blockquote class=
+=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
+b(204,204,204);padding-left:1ex"><span class=3D"gmail-">On 03/10/2017 04:58=
+ PM, Otavio Salvador wrote:<br>
 <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
 left:1px solid rgb(204,204,204);padding-left:1ex"><blockquote class=3D"gmai=
 l_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,20=
@@ -237,36 +232,41 @@ tween apps anyway, so it really doesn&#39;t matter if they&#39;re packaged =
 as separate recipes or not (I didn&#39;t have time to check Rust, but as it=
 &#39;s also using lockdown files, I believe the libraries are not reused ei=
 ther).<br>
-<br></blockquote><div>I can chime in on how we do things in meta-rust.=C2=
-=A0 Right now, each application is statically linked against the crate libr=
-ary versions it calls out.=C2=A0 At this point, the rust ABI is not stable =
-between versions of the compiler, so we made the conscious decision to avoi=
-d dynamic libraries for the time being.=C2=A0 We acknowledge this does incr=
-ease the file system size, but we didn&#39;t want to have to deal with user=
-s trying to perform package updates on individual shared objects.=C2=A0 We =
-have our own cargo module that we maintain that helps users generate their =
-bitbake recipe for a given package [1].=C2=A0 There was a small bit of work=
- done on trying to create so files, but it became an unmanageable version n=
-ightmare isn&#39;t supported moving forward[2].=C2=A0 We also maintain our =
-own custom fetcher for crates [3] and ran into some issues getting it total=
-ly supported without integrating it into the set of bitbake fetchers [4][5]=
-.</div><div><br></div><div>-Derek</div><div><br></div><div>[1] - <a href=3D=
-"https://github.com/meta-rust/meta-rust">https://github.com/meta-rust/meta-=
-rust</a></div><div>[2] - <a href=3D"https://github.com/cardoe/cargo-bitbake=
-">https://github.com/cardoe/cargo-bitbake</a></div><div>[3] - <a href=3D"ht=
-tps://github.com/meta-rust/meta-rust/tree/master/recipes-core">https://gith=
-ub.com/meta-rust/meta-rust/tree/master/recipes-core</a></div><div>[4] -=C2=
-=A0<a href=3D"https://github.com/meta-rust/meta-rust/blob/master/lib/crate.=
-py">https://github.com/meta-rust/meta-rust/blob/master/lib/crate.py</a></di=
-v><div>[5] -=C2=A0<a href=3D"https://github.com/meta-rust/meta-rust/issues/=
-136">https://github.com/meta-rust/meta-rust/issues/136</a></div><div>[6] -=
-=C2=A0<a href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D10867"=
->https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D10867</a></div><div><b=
-r></div><div><br></div><blockquote class=3D"gmail_quote" style=3D"margin:0p=
-x 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-Alex</blockquote><div>=C2=A0</div><blockquote class=3D"gmail_quote" style=
-=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
--left:1ex"><div class=3D"gmail-HOEnZb"><div class=3D"gmail-h5"><br>
+<br></blockquote><div><div style=3D"font-size:12.8px">I can chime in on how=
+ we do things in meta-rust.=C2=A0 Right now, each application is statically=
+ linked against the crate library versions it calls out.=C2=A0 At this poin=
+t, the rust ABI is not stable between versions of the compiler, so we made =
+the conscious decision to avoid dynamic libraries for the time being.=C2=A0=
+ We acknowledge this does increase the file system size, but we didn&#39;t =
+want to have to deal with users trying to perform package updates on indivi=
+dual shared objects.=C2=A0 We have our own cargo module that we maintain th=
+at helps users generate their bitbake recipe for a given package [1].=C2=A0=
+ There was a small bit of work done on trying to create so files, but it be=
+came an unmanageable version nightmare isn&#39;t supported moving forward[2=
+].=C2=A0 We also maintain our own custom fetcher for crates [3] and ran int=
+o some issues getting it totally supported without integrating it into the =
+set of bitbake fetchers [4][5].</div><div style=3D"font-size:12.8px"><br></=
+div><div style=3D"font-size:12.8px">-Derek</div><div style=3D"font-size:12.=
+8px"><br></div><div style=3D"font-size:12.8px">[1] -=C2=A0<a href=3D"https:=
+//github.com/meta-rust/meta-rust" target=3D"_blank">https://github.com/meta=
+-rust/<wbr>meta-rust</a></div><div style=3D"font-size:12.8px">[2] -=C2=A0<a=
+ href=3D"https://github.com/cardoe/cargo-bitbake" target=3D"_blank">https:/=
+/github.com/cardoe/<wbr>cargo-bitbake</a></div><div style=3D"font-size:12.8=
+px">[3] -=C2=A0<a href=3D"https://github.com/meta-rust/meta-rust/tree/maste=
+r/recipes-core" target=3D"_blank">https://github.com/meta-rust/<wbr>meta-ru=
+st/tree/master/recipes-<wbr>core</a></div><div style=3D"font-size:12.8px">[=
+4] -=C2=A0<a href=3D"https://github.com/meta-rust/meta-rust/blob/master/lib=
+/crate.py" target=3D"_blank">https://github.com/meta-<wbr>rust/meta-rust/bl=
+ob/master/<wbr>lib/crate.py</a></div><div style=3D"font-size:12.8px">[5] -=
+=C2=A0<a href=3D"https://github.com/meta-rust/meta-rust/issues/136" target=
+=3D"_blank">https://github.com/meta-<wbr>rust/meta-rust/issues/136</a></div=
+><div style=3D"font-size:12.8px">[6] -=C2=A0<a href=3D"https://bugzilla.yoc=
+toproject.org/show_bug.cgi?id=3D10867" target=3D"_blank">https://bugzilla.<=
+wbr>yoctoproject.org/show_bug.cgi?<wbr>id=3D10867</a></div></div><div style=
+=3D"font-size:12.8px"><br></div><div>=C2=A0</div><blockquote class=3D"gmail=
+_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204=
+,204);padding-left:1ex">
+Alex<div class=3D"gmail-HOEnZb"><div class=3D"gmail-h5"><br>
 ______________________________<wbr>_________________<br>
 Openembedded-architecture mailing list<br>
 <a href=3D"mailto:Openembedded-architecture@lists.openembedded.org" target=
@@ -276,4 +276,4 @@ itecture" rel=3D"noreferrer" target=3D"_blank">http://lists.openembedded.or=
 g/<wbr>mailman/listinfo/openembedded-<wbr>architecture</a><br>
 </div></div></blockquote></div><br></div></div>
 
---94eb2c19e4264a18c3054a621469--
+--001a113fe8ae14de86054a621ba3--
