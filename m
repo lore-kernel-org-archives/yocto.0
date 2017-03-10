@@ -1,72 +1,69 @@
-Return-Path: <Javier.Viguera@digi.com>
+Return-Path: <prvs=12423f3dd4=holzmayr@rsi-elektrotechnik.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 101C0E00A1E; Fri, 10 Mar 2017 11:41:35 -0800 (PST)
+	id 58813E00A16; Fri, 10 Mar 2017 12:41:04 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.0 required=5.0 tests=BAYES_20,HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.0 BAYES_20 BODY: Bayes spam probability is 5 to 20%
-	*      [score: 0.1205]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [216.82.243.198 listed in list.dnswl.org]
-X-Greylist: delayed 370 seconds by postgrey-1.32 at yocto-www;
-	Fri, 10 Mar 2017 11:41:28 PST
-Received: from mail1.bemta8.messagelabs.com (mail1.bemta8.messagelabs.com
-	[216.82.243.198])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B93FAE00A0C
-	for <yocto@yoctoproject.org>; Fri, 10 Mar 2017 11:41:28 -0800 (PST)
-Received: from [216.82.242.35] by server-6.bemta-8.messagelabs.com id
-	FB/E5-29357-5FFF2C85; Fri, 10 Mar 2017 19:35:17 +0000
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprBKsWRWlGSWpSXmKPExsXi5LtOQPfL/0M
-	RBq17zCwmvVzD5sDo0X6ijy2AMYo1My8pvyKBNePBratMBe3mFW/eXGBqYOw06mLk4hASWM0o
-	ceL/FhYIZw2jxOaDb5ghnCWMEst7NrJ2MXJysAkYSkz49IkNxBYRMJV4cewLmC0sYCax5VQrO
-	0TcWmJ6Uz+UrSexbeMLJhCbRUBV4satBmYQm1fAV2LDlX4wm1FAVuJL42owm1lAXOLWk/lg9R
-	ICAhJL9pxnhrBFJV4+/scKYctLTPlwkRHCNpRYNe0AC4QtLfGmZx0bxJw8iS+7vzBB7BKUODn
-	zCViNkICKxIYbv5kmMIrMQrJuFpKWWUhaIOI6Egt2f2KDsLUlli18zQxjnznwmAlZfAEj+ypG
-	jeLUorLUIl1DM72kosz0jJLcxMwcXUMDC73c1OLixPTUnMSkYr3k/NxNjMAYq2dgYNzBOGG3+
-	yFGSQ4mJVFeCaWDEUJ8SfkplRmJxRnxRaU5qcWHGGU4OJQkePWbgHKCRanpqRVpmTnAaIdJS3
-	DwKInwKoKkeYsLEnOLM9MhUqcYFaXEeZc0AiUEQBIZpXlwbbAEc4lRVkqYl5GBgUGIpyC1KDe
-	zBFX+FaM4B6OSMO8LkCk8mXklcNNfAS1mAlo8jQ9scUkiQkqqgVEz+Nqj/4n+neVqFz+2rZzu
-	mVAn3uJQJ5t+KrjrnbZhh+4RlcsuRhZXrl46tbhv/9em1+88e/dYCyds3O1ptPLkIlaVUw6+2
-	ySfx36cwXL5+Oydr56Y7DgS9XbKjA1NvIcq9xkx/z/xZVvaCsFV9lmLen9qHW+50DL/zpupbO
-	W/aviTP26+F7xEiaU4I9FQi7moOBEAVl05CSsDAAA=
-X-Env-Sender: Javier.Viguera@digi.com
-X-Msg-Ref: server-6.tower-75.messagelabs.com!1489174516!42572790!1
-X-Originating-IP: [66.77.174.16]
-X-StarScan-Received: 
-X-StarScan-Version: 9.2.3; banners=-,-,-
-X-VirusChecked: Checked
-Received: (qmail 32453 invoked from network); 10 Mar 2017 19:35:16 -0000
-Received: from owa.digi.com (HELO MCL-VMS-XCH01.digi.com) (66.77.174.16)
-	by server-6.tower-75.messagelabs.com with SMTP;
-	10 Mar 2017 19:35:16 -0000
-Received: from MTK-SMS-XCH02.digi.com (10.10.8.196) by MCL-VMS-XCH01.digi.com
-	(10.5.8.49) with Microsoft SMTP Server (TLS) id 14.3.319.2;
-	Fri, 10 Mar 2017 13:35:13 -0600
-Received: from DOR-VMS-XCH01.digi.com (10.49.8.98) by MTK-SMS-XCH02.digi.com
-	(10.10.8.196) with Microsoft SMTP Server (TLS) id 14.3.319.2;
-	Fri, 10 Mar 2017 13:35:12 -0600
-Received: from DOR-SMS-XCH01.digi.com ([fe80::894b:3bdc:74ae:6efc]) by
-	DOR-VMS-XCH01.digi.com ([::1]) with mapi id 14.03.0319.002;
-	Fri, 10 Mar 2017 20:35:11 +0100
-From: "Viguera, Javier" <Javier.Viguera@digi.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Literal curly braces inside python expression
-Thread-Index: AdKZ1WpN56tmVCM0QAOA70Ie4GvJfA==
-Date: Fri, 10 Mar 2017 19:35:10 +0000
-Message-ID: <DA8287CC96892A4EB4FCF4FB3FBDA1AB01457141@dor-sms-xch01.digi.com>
-Accept-Language: en-GB, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.101.2.55]
-x-kse-antivirus-interceptor-info: scan successful
-x-kse-antivirus-info: Clean
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [81.169.146.216 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+X-Greylist: delayed 184 seconds by postgrey-1.32 at yocto-www;
+	Fri, 10 Mar 2017 12:40:59 PST
+Received: from mo4-p00-ob.smtp.rzone.de (mo4-p00-ob.smtp.rzone.de
+	[81.169.146.216])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CD4E9E009B9
+	for <yocto@yoctoproject.org>; Fri, 10 Mar 2017 12:40:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1489178458;
+	l=3997; s=domk; d=rsi-elektrotechnik.de;
+	h=Content-Transfer-Encoding:Content-Type:In-Reply-To:MIME-Version:
+	Date:From:Cc:References:To:Subject;
+	bh=zlsQB3NWbFPA2lbs3jPhpfmnrVvVU4oif5LYzAhVT5k=;
+	b=oKaj7qSuolbqM4AsSz/bIvoyEl+TDk6SLDU3co2gSEAlmUwugk+wpWsrR5MhnmWuKO
+	lN+ngP1/9jAO3jS3OpG7WQL7EFpKINIlp5r2+oV9tSkZPjB1YitD1YuHacNSrEnXM0YH
+	mFpbMCkkmA8ibdnhOuaYlAuuKwhDcLlqWeyeE=
+X-RZG-AUTH: :fz5RJhWIaexwuXGosGLfiBc0xYyi1Y5bd+wRKqrzPWwJyH/ODuV4n+N24+CqMVTDvFFN0+xNtPaAoGLw2S47Aw5p3DMOqepD6BZ9BTbdag==
+X-RZG-CLASS-ID: mo00
+Received: from mail.rsi-elektrotechnik.de
+	([2001:0:5ef5:79fb:18fe:329c:af6c:cbea])
+	by smtp.strato.de (RZmta 40.1 AUTH) with ESMTPSA id c00a84t2AKbpAod
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (curve secp384r1
+	with 384 ECDH bits, eq. 7680 bits RSA))
+	(Client did not present a certificate);
+	Fri, 10 Mar 2017 21:37:51 +0100 (CET)
+Received: from [x.x.x.x] by mail.rsi-elektrotechnik.de (Cipher
+	TLSv1.2:AES-SHA:256) (MDaemon PRO v16.5.2) 
+	with ESMTPSA id md50000508867.msg; Fri, 10 Mar 2017 21:37:37 +0100
+X-MDRemoteIP: 178.26.151.155
+X-MDArrival-Date: Fri, 10 Mar 2017 21:37:37 +0100
+X-Authenticated-Sender: holzmayr@rsi-elektrotechnik.de
+X-Return-Path: prvs=12423f3dd4=holzmayr@rsi-elektrotechnik.de
+X-Envelope-From: holzmayr@rsi-elektrotechnik.de
+X-CAV-Result: skipped - holzmayr@rsi-elektrotechnik.de is in exclusion list
+To: Otavio Salvador <otavio.salvador@ossystems.com.br>,
+	Alexander Kanavin <alexander.kanavin@linux.intel.com>
+References: <37d4f98c-9102-f4bf-c6cc-f64e1ffbce40@linux.intel.com>
+	<CAP9ODKogXP8vO7CCmxs2c-TiRmZZhOKyN5M=ffZV7U2Qrjw1hQ@mail.gmail.com>
+	<b80a93fd-8fa3-5b27-0ffb-ab9fd8d04c12@linux.intel.com>
+	<CAP9ODKpGer=sF2QF8cCPh68OybqJxMdR5a_x9aXhw=htNWKOiw@mail.gmail.com>
+From: Josef Holzmayr <holzmayr@rsi-elektrotechnik.de>
+Message-ID: <3ea6e62f-ae4a-d7d3-5978-cd5edf2e783f@rsi-elektrotechnik.de>
+Date: Fri, 10 Mar 2017 21:37:28 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.8.0
 MIME-Version: 1.0
-Subject: Literal curly braces inside python expression
+In-Reply-To: <CAP9ODKpGer=sF2QF8cCPh68OybqJxMdR5a_x9aXhw=htNWKOiw@mail.gmail.com>
+Cc: Yocto Project <yocto@yoctoproject.org>, openembedded-architecture
+	<openembedded-architecture@lists.openembedded.org>
+Subject: Re: [Openembedded-architecture] Proposal: dealing with language-specific build tools/dependency management tools
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -78,202 +75,100 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 10 Mar 2017 19:41:35 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_DA8287CC96892A4EB4FCF4FB3FBDA1AB01457141dorsmsxch01digi_"
+X-List-Received-Date: Fri, 10 Mar 2017 20:41:04 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 8bit
 
---_000_DA8287CC96892A4EB4FCF4FB3FBDA1AB01457141dorsmsxch01digi_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Hi Alexander,
 
-Hi all,
+thanks for kicking off the topic, sounds like its kinda overdue. While I 
+have no really good solution (d'oh!), please find below thoughts and 
+bits and pieces about some of the points.
 
-I'm having a hard time trying to put some literal curly braces in a python =
-expression and I need a bit of help to solve this problem.
+*Recipes*
 
-I minimal example to reproduce this. If in my recipe i have:
+My gut feeling say auto-generation of the recipes is a good way to go. 
+Yet I am uncertain which set of functionality such an auto-generated 
+recipe would provide. The obvious possibilities:
 
-VAR1 =3D "1"
-VAR2 =3D "${@base_conditional('VAR1', '1', '{ONE}', '{TWO}', d)}"
+Option 1: Only dependency/license tracking.
+   Pro: provides exactly what it says - known and proven means to keep 
+track of the dependencies and licenses.
+   Contra: this would mean that we have a recipes that only do 
+housekeeping, while the actual workload is taken care of in the main 
+recipe. This seperation sounds like a massive headache
 
-do_install() {
-      echo "${VAR2}"
-}
+Option 2: Full recipes
+   Pro: would fit into the OE workflow.
+   Contra: requires the sub-package managers to at least "play along". 
+Think two applications having the same dependency. It would get 
+installed once (globally/system-wide), and both applications have to use 
+it. My interpretation is that this just is not how it works (looking at npm)
 
-Getting the recipe environment I get:
+Coming from there, one can go further, resulting in
+Option 1.5: Provide recipes for common base functionality. Those would 
+have the all-in-one-locked-down approach, but are meant to be used as 
+global dependencies. Example: the MEAN stack. Like its name says, it 
+consist of 4 main pieces (-> possible recipes) which are needed by the 
+application.
+   Pro: reduces recipe number/bloat and makes dependencies readable. The 
+mindset fits the classis 'library' thinking.
+   Contra: the depending application would have to be packaged with the 
+infrastructure in mind. So while the library recipes could rely on the 
+locked down sub-package manager, the application would have to intently 
+skip it and provide a custom installation. Which is an annyonce if you 
+are application dev and packager in union - and a major pain point if 
+you want to package some upstream application.
 
-# bitbake -e myrecipe | less
+*Lockdown*
 
-do_install() {
-      ...
-      echo "${@base_conditional('VAR1', '1', '{ONE}', '{TWO}', d)}"
-      ...
-}
+To me the approach sounds interesting, yet it comes with a couple of 
+points to think about.
+- Feature set: having such a lockdown system implies/requires all 
+sub-package managers to provide (at least) the functionality to fullfill 
+the needs of the lockdown process/recreation. Is that something we can 
+take for granted?
+- Multilanguage: imagine a package for example having some native go 
+code, then nodejs bindings and then a npdejs application on top. How 
+would that look like? Multiple lockdown files? What are the implications?
 
-So bitbake is not resolving the python expression.
+*Sub-Package managers in general*
 
-If on the other hand I remove the curly braces:
+We've seen the first (perl, php, python...) and second (npm, go, 
+rust...) wave of those by now. A third one certainly will come one day. 
+Taking a step back for a larger perspective, it sounds like what we 
+actually need is some form of nested dependencies. Or scoped 
+dependencies. Whatever we want to call it, because to me thats what it 
+actually is. The dependencies we have now are always global. But 
+especially the second wave things think different. Those sub-package 
+managers do not care about the whole system. They care about their small 
+part of it. So my interpretation is that we need to take that paradigm 
+shift, and decide upon the actual implementation details afterwards.
 
-VAR1 =3D "1"
-VAR2 =3D "${@base_conditional('VAR1', '1', 'ONE', 'TWO', d)}"
+*Conclusion*
 
-then bitbake solves the expression correctly:
+Guess I raised more questions than I offered answers for. Sorry :-(
 
-# bitbake -e myrecipe | less
+Greetz (and try to enjoy the weekend)
+-- 
+Josef Holzmayr
+Software Developer Embedded Systems
 
-do_install() {
-      ...
-      echo "ONE"
-      ...
-}
+Tel: +49 8444 9204-48
+Fax: +49 8444 9204-50
 
-But I do need to put those curly braces. Is there a way?
+R-S-I Elektrotechnik GmbH & Co. KG
+Woelkestrasse 11
+D-85301 Schweitenkirchen
+www.rsi-elektrotechnik.de
+———————————————
+Amtsgericht Ingolstadt – GmbH: HRB 191328 – KG: HRA 170393
+Geschäftsführer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
+Ust-IdNr: DE 128592548
 
-Thanks in advance.
+_____________________________________________________________
+Amtsgericht Ingolstadt - GmbH: HRB 191328 - KG: HRA 170363
+Geschäftsführer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
+USt-IdNr.: DE 128592548
 
---
-Javier Viguera
 
-
-
---_000_DA8287CC96892A4EB4FCF4FB3FBDA1AB01457141dorsmsxch01digi_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Consolas;
-	panose-1:2 11 6 9 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:70.85pt 85.05pt 70.85pt 85.05pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi all,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I'm having a hard time trying to put some literal cu=
-rly braces in a python expression and I need a bit of help to solve this pr=
-oblem.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I minimal example to reproduce this. If in my recipe=
- i have:<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><span lang=3D"ES" style=3D"font-family:Consolas">VAR=
-1 =3D &quot;1&quot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"ES" style=3D"font-family:Consolas">VAR=
-2 =3D &quot;${@base_conditional('VAR1', '1', '{ONE}', '{TWO}', d)}&quot;<o:=
-p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"ES" style=3D"font-family:Consolas"><o:=
-p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Consolas">do_install() {<=
-o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Consolas">&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; echo &quot;${VAR2}&quot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Consolas">}<o:p></o:p></s=
-pan></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Getting the recipe environment I get:<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Consolas"># bitbake -e my=
-recipe | less<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Consolas"><o:p>&nbsp;</o:=
-p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Consolas">do_install() {<=
-o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Consolas">&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; ...<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Consolas">&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; echo &quot;${@base_conditional('VAR1', '1', '{ONE}', '{TWO}=
-', d)}&quot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Consolas">&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; ...<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Consolas">}<o:p></o:p></s=
-pan></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">So bitbake is not resolving the python expression.<o=
-:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">If on the other hand I remove the curly braces:<o:p>=
-</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Consolas">VAR1 =3D &quot;=
-1&quot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Consolas">VAR2 =3D &quot;=
-${@base_conditional('VAR1', '1', 'ONE', 'TWO', d)}&quot;<o:p></o:p></span><=
-/p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">then bitbake solves the expression correctly:<o:p></=
-o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Consolas"># bitbake -e my=
-recipe | less<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Consolas"><o:p>&nbsp;</o:=
-p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Consolas">do_install() {<=
-o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Consolas">&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; ...<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Consolas">&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; echo &quot;ONE&quot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Consolas">&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; ...<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Consolas">}<o:p></o:p></s=
-pan></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">But I do need to put those curly braces. Is there a =
-way?<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks in advance.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">--<o:p></o:p></p>
-<p class=3D"MsoNormal">Javier Viguera<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
-
---_000_DA8287CC96892A4EB4FCF4FB3FBDA1AB01457141dorsmsxch01digi_--
