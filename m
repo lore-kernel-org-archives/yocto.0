@@ -1,44 +1,70 @@
-Return-Path: <mark.hatle@windriver.com>
+Return-Path: <rudolf.streif@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 85A81E00A1E; Fri, 10 Mar 2017 08:23:45 -0800 (PST)
+	id 78EC0E00A1E; Fri, 10 Mar 2017 08:30:18 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (rudolf.streif[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.192.194 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
-	*      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4084CE00A0C
-	for <yocto@yoctoproject.org>; Fri, 10 Mar 2017 08:23:43 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id v2AGNYPX001416
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 10 Mar 2017 08:23:34 -0800 (PST)
-Received: from soho-mhatle-m.local (172.25.36.230) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.294.0;
-	Fri, 10 Mar 2017 08:23:33 -0800
-To: Otavio Salvador <otavio.salvador@ossystems.com.br>, Alexander Kanavin
-	<alexander.kanavin@linux.intel.com>
-References: <37d4f98c-9102-f4bf-c6cc-f64e1ffbce40@linux.intel.com>
-	<CAP9ODKogXP8vO7CCmxs2c-TiRmZZhOKyN5M=ffZV7U2Qrjw1hQ@mail.gmail.com>
-	<b80a93fd-8fa3-5b27-0ffb-ab9fd8d04c12@linux.intel.com>
-	<CAP9ODKpGer=sF2QF8cCPh68OybqJxMdR5a_x9aXhw=htNWKOiw@mail.gmail.com>
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-Message-ID: <cefcebd5-ac53-8142-6e64-05d309832bc4@windriver.com>
-Date: Fri, 10 Mar 2017 10:23:32 -0600
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:45.0)
-	Gecko/20100101 Thunderbird/45.8.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.192.194 listed in dnsbl.sorbs.net]
+Received: from mail-pf0-f194.google.com (mail-pf0-f194.google.com
+	[209.85.192.194])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 33678E00A0C
+	for <yocto@yoctoproject.org>; Fri, 10 Mar 2017 08:30:16 -0800 (PST)
+Received: by mail-pf0-f194.google.com with SMTP id v190so11306833pfb.0
+	for <yocto@yoctoproject.org>; Fri, 10 Mar 2017 08:30:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=from:to:cc:subject:date:message-id:in-reply-to:references
+	:mime-version; bh=4vLGVZVm6k45OS26sxrPDuRr2xGIVC08XYQqW+VAwXE=;
+	b=ZAmTn0sRzIZNW7s25phhJWHN6jk1u7O1sE/tPiBn7BV4ZIYc+t/+m0sgDL1VLELgIK
+	my1NUXLDKnGECOXf/S4yRtYAg5rPJpoIQSer/ZDrbrnlUVwi+Z92nH/x3Rx1QhsCHKGO
+	4ESccGo9iWmKRrGW8XA7itapYNsosJjTeKC0GuOl6CG/cOOLdlC73mTjY3iRQJ8z8cPd
+	ubvynesR/YHf87hi8+L+C+yhqvDmoEbtrPZCFyahWVdNQ8GEBGf48jmQmeYLAgMkq+yF
+	K54bRoFFMEAVUr5ctz5MFsYPMd80xmEb443g5A6QKwMH1l22Sr0chxAOTRdFBeKnh9ip
+	8Leg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+	:references:mime-version;
+	bh=4vLGVZVm6k45OS26sxrPDuRr2xGIVC08XYQqW+VAwXE=;
+	b=YYTMyQAj5RbY3+a1LdSN56nIphVmMQthQr7q4rlZp4EONjiEkkSWalDXmvfeOLOvq8
+	rqSfbBeHdExzG3sJK0p50i8QoBIZtO14pL3/lgdj0dbY+LKTh0TE5NYCNyqpdsKPxSH7
+	JFrzDHc0SCCrMUwoOlZ3bhtmEUKwmPQ0NGZXS4nJa4qAbE8SN/bV6e4kj/HRC6cWnLS3
+	G9yuJcgHc+yooqW2gLnLF8eG9bKdDKCl1u2yDcz2CTPCIaxueQrkcbPI2wfJS9UKHb9k
+	DWk1oVnjzru/JIjhNirpMDcpyXZRglqHuP/8aYLIeh/SngsXFPC2POnk4SWgzq2sVBXY
+	eaIg==
+X-Gm-Message-State: AMke39lkXrvsl+a1RXpkLqtm+7Uvciajr/zNG64YJn/+KB/rIXt5oh/s1norSMHZNgOF1A==
+X-Received: by 10.99.151.18 with SMTP id n18mr20776039pge.183.1489163416392;
+	Fri, 10 Mar 2017 08:30:16 -0800 (PST)
+Received: from rjs-zotac.streifs.net (ip68-7-63-100.sd.sd.cox.net.
+	[68.7.63.100]) by smtp.gmail.com with ESMTPSA id
+	67sm19556247pfd.120.2017.03.10.08.30.14
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Fri, 10 Mar 2017 08:30:15 -0800 (PST)
+From: Rudolf J Streif <rudolf.streif@gmail.com>
+To: yocto@yoctoproject.org
+Date: Fri, 10 Mar 2017 08:30:13 -0800
+Message-ID: <3585477.Pl9C8lrLdl@rjs-zotac.streifs.net>
+In-Reply-To: <CAJTo0LYQ=h1TdU4NBdF_vAVA+ihhNL7nBmYq9244H=4uKB-hrA@mail.gmail.com>
+References: <d9a0d51f-222e-0320-2e9d-57451b5a5c42@mlbassoc.com>
+	<CAJTo0LYQ=h1TdU4NBdF_vAVA+ihhNL7nBmYq9244H=4uKB-hrA@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <CAP9ODKpGer=sF2QF8cCPh68OybqJxMdR5a_x9aXhw=htNWKOiw@mail.gmail.com>
-Cc: Yocto Project <yocto@yoctoproject.org>, openembedded-architecture
-	<openembedded-architecture@lists.openembedded.org>
-Subject: Re: [Openembedded-architecture] Proposal: dealing with language-specific build tools/dependency management tools
+Cc: Gary Thomas <gary@mlbassoc.com>
+Subject: Re: What happened to 'depexp'?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,100 +76,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 10 Mar 2017 16:23:45 -0000
-Content-Type: text/plain; charset="windows-1252"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Fri, 10 Mar 2017 16:30:18 -0000
+X-Groupsio-MsgNum: 34970
+Content-Type: multipart/signed; boundary="nextPart5002950.1niHMRiddN";
+	micalg="pgp-sha256"; protocol="application/pgp-signature"
 
-On 3/10/17 8:58 AM, Otavio Salvador wrote:
-> On Fri, Mar 10, 2017 at 11:48 AM, Alexander Kanavin
-> <alexander.kanavin@linux.intel.com> wrote:
->> On 03/10/2017 04:30 PM, Otavio Salvador wrote:
->>>
->>> When integrating the CHICKEN Scheme support onto the Yocto Project we
->>> dealt it using their installation tool but making the package of
->>> individual packages (eggs, in this specific case) as individual
->>> recipes. We went further and automated the recipe generation and this
->>> made it quite easy to maintain in long term.
->>>
->>> Take a look at:
->>>
->>> https://github.com/OSSystems/meta-chicken
->>
->>
->> Thanks, even though my Scheme-fu isn't great :)
->>
->> I'd like to avoid generating entire separate recipes though, because that
->> implies your custom-written tool would be figuring out where the dependency
->> source came from in the first place, and what are its own dependencies, when
->> creating the recipe, which can be tricky, breakage-prone guesswork.
+--nextPart5002950.1niHMRiddN
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+
+On Friday, March 10, 2017 2:46:55 AM PST Burton, Ross wrote:
+> On 10 March 2017 at 10:45, Gary Thomas <gary@mlbassoc.com> wrote:
+> > What happened to 'depexp'?  Is 'taskexp' supposed to be the replacement?
 > 
-> In fact not; as you generate the recipes for the dependencies, it goes
-> recursively and is always good.
+> Yes.
 > 
->> I want to use existing tools (like 'npm install') for getting the stuff from
->> the network - we don't really need full recipes, we just want to know the
->> licenses of the dependencies, and, if possible, lock them down to a specific
->> version.
+> depexp was great at leaving things out, whereas taskexp shows everything.
 > 
-> Well we initially thought this would suffice but consider a security
-> flaw. As many apps may be using different versions of same package it
-> becomes a nightmare to figure which ones are affected. If using
-> dependencies it is fine, for free.
-> 
+> It's more, but it's not missing bits.
 
-I'm wondering if there may be any way to generate these recipes on the fly (say
-during ConfigParsed -- and then issue a reparse if things have changed?)
+While I can concur that it is good to have more functionality, why was it 
+deemed necessary to entirely deprecate 'depexp'? I think now that the Yocto 
+Project is maturing, it would be good to pay more attention to retaining 
+backwards compatibility.
 
-I've got concerns with this "new model" of development specifically around:
+I may have missed it, but was there a discussion on the mailing lists about 
+deprecating and replacing 'depexp'?
 
-*) Bug fixes
-   -) Security bugs especially
-
-   When something is updated to fix a problem, how do we know we "got
-everything"?  Something needs to flag the system to make it clear that not only
-the items itself, but all of the things it depends on are at the correct
-(revised) versions.
-
-   The other problem is 'certified' devices.  Various certification requirements
-don't allow just 'downloading new content whenever', but they often allow small
-targeted fixes.  So in these cases, the user would likely want to know there was
-an update for a specific reason and then 'backport, and not change the version'
-to address their certification issues.  (And yes, I know of companies that used
-to lock down version numbers of code, and simply upgrade anyway to get around
-this -- it's always possible, but not exactly within the spirit of the
-certification process..  targeted changes are much more reasonable in that
-environment.)
+Cheers,
 
 
-*) License considerations
-   A big problem in all of these new developer centric models is that they are
-designed for back-end service were the license doesn't matter (as much).  For
-embedded devices, we have to have a clear lineage of the license, code and
-source (SRC_URI) to have any chance to "doing the right thing" or at worst
-(defending work during a lawsuit).
 
+-- 
+Rudolf J Streif
 
-*) Export/import control
-    Unlike random open source projects, when you build a physical device there
-may export/import control that has to happen as well.  Without the discrete
-components being clearly visible to the developers -- it is -very- difficult to
-satisfy the constraints of the various export/import requirements around the world.
+--nextPart5002950.1niHMRiddN
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
 
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2
 
-I think auto-generating recipe contents help with these.  Having a good process
-behind the auto-generation can make the license and software "update" procedure
-a lot cleaner and provide the tracking needed for the export/import control.
+iQEcBAABCAAGBQJYwtSVAAoJEIZ1K5Tj0cm6/jcIAJwkZBPk4zXHiDZaoWfJfx5F
+1hqyh2eUVhREgojA8eZcbGp5NoVTC5Jl1UAp16ETcR0xx6mEs8G0uoCVrWHZwcgU
+ihVsIXISuvBRsya3tkzSRz6ihpcS1FhT/p9XCjnw7wlaCrlbT3QLwfoWVhJRJQ5T
+MqkVxB9G4IIArBJB/ZkURQgfgfaEYRfdDpN4/OpPWZw4IZuFL0JjEn6IkmwQEj9P
+j+EGTQgODZnC9vG1yXKpUq6IKewZTVUyVxJ2/MnhTNs+wHNTLvvDIOYzaf1oXs5p
+9Pqj5NhIL96J2PUOmLkZjrZM4j16f4kJPluCZNl72B9C3QeU1rmm/JyjlId6uYA=
+=QwhD
+-----END PGP SIGNATURE-----
 
-I do see we need a better model for these components as we move away from the
-core operating system and 'up the stack'.... better auto-generation and using
-the tooling provided, while yet conforming to the needs we have makes the most
-sense to me.  (The problem of course is most of these seem to need an expert, or
-at least a highly interested developer to have a shot at working or keep working
-over time.... the developer needs to be able to explain for the OE the
-alternative model needed so we can collectively figure out how to do it best.)
-
-I think this is a good start at the discussion, but other then listing concerns,
-unfortunately I don't have any solutions to offer.
-
---Mark
-
+--nextPart5002950.1niHMRiddN--
