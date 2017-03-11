@@ -1,65 +1,91 @@
-Return-Path: <prvs=1243fae5ef=holzmayr@rsi-elektrotechnik.de>
+Return-Path: <steove@hotmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EF2FAE00A0C; Sat, 11 Mar 2017 05:07:48 -0800 (PST)
+	id 68A87E00890; Sat, 11 Mar 2017 16:54:52 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [81.169.146.217 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FORGED_HOTMAIL_RCVD2, FREEMAIL_FROM,
+	HTML_MESSAGE, SPF_HELO_PASS autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (steove[at]hotmail.com)
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*  0.9 FORGED_HOTMAIL_RCVD2 hotmail.com 'From' address,
+	but no 'Received:'
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mo4-p00-ob.smtp.rzone.de (mo4-p00-ob.smtp.rzone.de
-	[81.169.146.217])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6922AE009B9
-	for <yocto@yoctoproject.org>; Sat, 11 Mar 2017 05:07:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1489237661;
-	l=4823; s=domk; d=rsi-elektrotechnik.de;
-	h=Content-Transfer-Encoding:Content-Type:In-Reply-To:MIME-Version:
-	Date:From:Cc:References:To:Subject;
-	bh=mi7Fpmgjf7f2CQCXCh8+PfFe52BXY6NgjMMkDYCgvUg=;
-	b=OPkMbjeUlAR06bjHN1J4sIgssbPRwwfbU+WzpTwGUIOzapGVOKmJvEybgVqLWN+Ro8
-	D1Dhk/cIFj0G6Ng8IOSzeT1ESykKIhGatcR846vfBpqcGJfOYVJxWTA5BpaEKaiCoXO2
-	4B33OcURHfg8oswY/ZI7mGqsnT0eamONBuhBA=
-X-RZG-AUTH: :fz5RJhWIaexwuXGosGLfiBc0xYyi1Y5bd+wRKqrzPWwJyH/ODuV4n+N24+CqMVTDvFFN0+xNtPaAoGLw2S47Aw5p3DMOqepD6BZ9BTbdag==
-X-RZG-CLASS-ID: mo00
-Received: from mail.rsi-elektrotechnik.de
-	([2001:0:5ef5:79fb:18fe:329c:af6c:cbea])
-	by smtp.strato.de (RZmta 40.1 AUTH) with ESMTPSA id z05adbt2BD7dEaz
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (curve secp384r1
-	with 384 ECDH bits, eq. 7680 bits RSA))
-	(Client did not present a certificate);
-	Sat, 11 Mar 2017 14:07:39 +0100 (CET)
-Received: from [x.x.x.x] by mail.rsi-elektrotechnik.de (Cipher
-	TLSv1.2:AES-SHA:256) (MDaemon PRO v16.5.2) 
-	with ESMTPSA id md50000508921.msg; Sat, 11 Mar 2017 14:07:27 +0100
-X-MDRemoteIP: 178.26.151.155
-X-MDArrival-Date: Sat, 11 Mar 2017 14:07:27 +0100
-X-Authenticated-Sender: holzmayr@rsi-elektrotechnik.de
-X-Return-Path: prvs=1243fae5ef=holzmayr@rsi-elektrotechnik.de
-X-Envelope-From: holzmayr@rsi-elektrotechnik.de
-X-CAV-Result: skipped - holzmayr@rsi-elektrotechnik.de is in exclusion list
-To: Trevor Woerner <twoerner@gmail.com>,
-	Alexander Kanavin <alexander.kanavin@linux.intel.com>
-References: <37d4f98c-9102-f4bf-c6cc-f64e1ffbce40@linux.intel.com>
-	<20170310204943.GA32004@linux-uys3>
-From: Josef Holzmayr <holzmayr@rsi-elektrotechnik.de>
-Message-ID: <090ef726-a08d-aa2c-a6b3-55172244c8c9@rsi-elektrotechnik.de>
-Date: Sat, 11 Mar 2017 14:07:18 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.8.0
+X-Greylist: delayed 3659 seconds by postgrey-1.32 at yocto-www;
+	Sat, 11 Mar 2017 16:54:47 PST
+Received: from APC01-HK2-obe.outbound.protection.outlook.com
+	(mail-oln040092255025.outbound.protection.outlook.com [40.92.255.25])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CDB32E0074B
+	for <yocto@yoctoproject.org>; Sat, 11 Mar 2017 16:54:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+	s=selector1; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
+	bh=QpnZqpCVifj++KexxD6gqnFP5acrifWxegPX0x7A9ts=;
+	b=nzleuDNn93y7O7DX41RRdNzljTsYVVwyOuYI34I8Pqfq/c8qH98NF+YodWp1eFdI1U3EL3Qylr09m+qTPSrf2MZTck3PP32FewkbXTVP2CEYEyy7bVUr2YIIqhaqSkslHk9skYqT7wwS7mrZFFbQ8SetAHYv6VT6d1zCZl3yEX4849BYrL/e9c0T6pMHTTS8KbuUQ6t/RqrylkIZtg2oCDmKuajOq3vw07lLyvElRAWGDzP07th2rtLbumNkDsO02OAiqDJfgn+gyqsLjUA7LC4Czw1doX2aiEJBZeN5Fmz5Tt9+X3E5diaJuF7wl7DEMgpUA6G2o52k/mlw8nIklQ==
+Received: from HK2APC01FT037.eop-APC01.prod.protection.outlook.com
+	(10.152.248.59) by HK2APC01HT071.eop-APC01.prod.protection.outlook.com
+	(10.152.248.229) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.947.7;
+	Sat, 11 Mar 2017 13:19:44 +0000
+Received: from SG2PR0301MB2016.apcprd03.prod.outlook.com (10.152.248.51) by
+	HK2APC01FT037.mail.protection.outlook.com (10.152.248.223) with
+	Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.947.7 via
+	Frontend Transport; Sat, 11 Mar 2017 13:19:44 +0000
+Received: from SG2PR0301MB2016.apcprd03.prod.outlook.com ([10.167.80.14]) by
+	SG2PR0301MB2016.apcprd03.prod.outlook.com ([10.167.80.14]) with mapi id
+	15.01.0961.018; Sat, 11 Mar 2017 13:19:43 +0000
+From: Steve Plant <steove@hotmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Raspberry pi build with gstreamer1.0 error - No recipes avalible.
+Thread-Index: AQHSmmojYGvXsxY1tEO1Gyh7ZEU3ig==
+Date: Sat, 11 Mar 2017 13:19:42 +0000
+Message-ID: <SG2PR0301MB20164EBE7DDD10BD3A4BFE69D1230@SG2PR0301MB2016.apcprd03.prod.outlook.com>
+Accept-Language: en-NZ, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: yoctoproject.org; dkim=none (message not signed)
+	header.d=none;yoctoproject.org; dmarc=none action=none
+	header.from=hotmail.com;
+x-incomingtopheadermarker: OriginalChecksum:81D87DF71173FDE25EDF986FECCE51D76E6609EBEB9D140A97F05F6E7A5DA97D;
+	UpperCasedChecksum:BFE7BE5579595EB76E64CB85856031C426FE3A8CA298DD92CEC0542DA7E1F071;
+	SizeAsReceived:7672; Count:37
+x-ms-exchange-messagesentrepresentingtype: 1
+x-tmn: [p7XeFHjG8vRIotkcYZFVc62ooqVl2MZc]
+x-incomingheadercount: 37
+x-eopattributedmessage: 0
+x-microsoft-exchange-diagnostics: 1; HK2APC01HT071;
+	5:wKeT+gCFeWbvGS8vxbHHXS0W/eP6v930si8Q4AaPsR42NAAb4vUTYXc2r+sTdwfAB7YgD3wftKoeyq2y6g3JSL4BcaSV7bPX7dlxxz8Eavznm+Qb31pLKzd+5q0yDpcoIFyXdf02gaSq/aM7KLfY9g==;
+	24:9EFmtuiHXtX0W3KyjyVQfFba+Rol/+0O+cqwehuQQObaQgtVXbnNs1OCloXAswCDAAECM2U6jPuA0WKNrGkT2d40G632kYmGLr61Vix5Om4=;
+	7:GndmRz0v3hixCGB4C+/qq6Gf8mkGgjh8WSqM0Ia80QXaMzrXa2AG7aCBxYObWG0lXTJ/I4H5HB8BNOX8rbJwsh8dgm/YPpXxngFCIW/6Qv/pa5XRA5kGe521X0QCNN7DNIH0edNUcBFDnYM93aWYRcw6pvMKcEO1cQE+lvsujL1dPyhKwdfqNSPru8vtPkDOluCcAK+/XSz+bA6gvy3W+2WCGPGLUnuJ059OvkzdWL4rWfZRYLgxOj7SPspBbTKrCPprViRbMns9t8zZbFC/q0EYccUEC3KjCPHUY8QOU2o7cos09maFuvkty6nMOQZQ
+x-forefront-antispam-report: EFV:NLI; SFV:NSPM; SFS:(7070007)(98900016);
+	DIR:OUT; SFP:1901; SCL:1; SRVR:HK2APC01HT071;
+	H:SG2PR0301MB2016.apcprd03.prod.outlook.com; FPR:; SPF:None;
+	LANG:en; 
+x-ms-office365-filtering-correlation-id: 0b2c790a-6bb8-491d-f962-08d4688147f6
+x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
+	RULEID:(22001)(201702061074)(5061506573)(5061507331)(1603103135)(1603101448)(1601125254)(1701031045);
+	SRVR:HK2APC01HT071; 
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0; RULEID:(444000031);
+	SRVR:HK2APC01HT071; BCL:0; PCL:0; RULEID:; SRVR:HK2APC01HT071; 
+x-forefront-prvs: 0243E5FD68
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-In-Reply-To: <20170310204943.GA32004@linux-uys3>
-Cc: Yocto Project <yocto@yoctoproject.org>,
-	openembedded-architecture@lists.openembedded.org
-Subject: Re: [Openembedded-architecture] Proposal: dealing with language-specific build tools/dependency management tools
+X-OriginatorOrg: hotmail.com
+X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Mar 2017 13:19:42.9277 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Internet
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: HK2APC01HT071
+Subject: Raspberry pi build with gstreamer1.0 error - No recipes avalible.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,110 +97,78 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 11 Mar 2017 13:07:49 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Sun, 12 Mar 2017 00:54:52 -0000
+Content-Language: en-NZ
+Content-Type: multipart/alternative;
+	boundary="_000_SG2PR0301MB20164EBE7DDD10BD3A4BFE69D1230SG2PR0301MB2016_"
 
-Hi Trevor,
+--_000_SG2PR0301MB20164EBE7DDD10BD3A4BFE69D1230SG2PR0301MB2016_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-On 10.03.2017 21:49, Trevor Woerner wrote:
-> Although the trend is to not care about licensing, I believe it is vitally
-> important that we do our best to keep track of all the licensing from every
-> package that is pulled into an image. If we're pulling in >1000 npm packages
-> just for one node app, then that means we should have >1000 item list of each
-> dependency and their respective licenses. Although it makes a recipe look
-> ugly, I wouldn't want to drop this functionality due to aesthetic concerns.
-> Maybe the license list could be moved to another file that is required by the
-> "main" recipe file? Maybe the list could be moved to the bottom of the file?
+Hi all,
 
-Boiling that down, it sounds to me like the approach is the following:
-1) Let the sub-package manager do its work as its meant to be.
-2) If the sub-package manager supports version lockdown/shrinkwrapping. 
-it shall be used.
-3) The OE build process is only meant to take care of licensing.
+Starting a brand new project for the rasberry pi2, on the master branch, us=
+ing toaster to start/monitor the build.
 
-(This could basically be seen as an additional Option 0 to the mail from 
-yesterday: License-only recipes. [1])
+Everything set up for the most basic build, however when I build "rpi-basic=
+-image" it fails with this error:
 
-Sounds like an interesting option indeed. Keeping it in the recipe 
-means, in an abstract manner, that we need support for sub-licensing. 
-Might be a viable route to go .
-
-> In the case of node specifically, I don't think trying to create and maintain
-> separate recipes for each and every dependency one might find in the npm
-> registry would be a sane approach. Currently we embed the version info into
-> the recipe filename. This will simply not scale to millions of npm packages,
-> each with numerous versions.
-
-It will not scale for human inspection. For metadata that is 
-algorithmically generated and used, I personally don't think the sheer 
-number is a killer argument.
-
-> I've been playing with node a fair amount lately as it relates to OE and I
-> have to say I've been quite impressed! These aren't easy things and I think
-> there's a lot of good work happening.
-
-Totally agreed. But implicitly, we tend to see npm as the reference for 
-such sub-package managers. Is this a good way? Alexanders approach was 
-to find a concept that fits all such constructions. Maybe its also 
-worthwhile to think along the opposite lines: Treat each and every of 
-those sub-package managers completely on its own, with all its 
-specialities? (And hope that their number stays low....)
-
-> Other than these (short-term?) issues devtool seems to be on the right
-> track (?) It does, for example, generate a lockdown.json file and an
-> npm-shrinkwrap.json file automatically. All we need is the package.json from
-> the app developer, and that can be auto-generated via npm. I think we have to
-> accept that node developers are going to want to develop on the target device
-> itself, and when they're done they can hand us the package.json file which we
-> can run devtool on which will generate the recipe for us.
-
-I'm not too convinced that this is a good way. Especially when it comes 
-to node modules that contain some native code, this becomes very ugly. 
-My experience is that auto-processing that stuff adds megabytes of 
-clutter, while all that matters in the end is a binary that is a couple 
-if kilobytes. So how would one tackle that? Carve that out as a separate 
-recipe again?
-
-> As a short-term work-around, I've simply been creating an image with node+npm,
-> running it on the device, copying over the package.json file, running npm
-> install against it, then collecting up all the extra stuff that gets added
-> to my image (as a result), and bundling all that into a platform-specific
-> "bin_package" (bbclass). It works, but it's a multi-step process. If I could
-> cut out some of those steps (once things from [1] are fixed), it would be an
-> improvement.
-
-Yeah, thats an option. I am rather providing custom compile and install 
-stages, as the applications I'm working on have similar requisites, but 
-I didn't want to go multi-step/binary.
-
-Greetz
-
-PS: being tired of typing sub-package manager again and again, how shall 
-we call this? SPM? Application Package Managers (APM)?
-
-[1] 
-http://lists.openembedded.org/pipermail/openembedded-architecture/2017-March/000489.html
-
--- 
-Josef Holzmayr
-Software Developer Embedded Systems
-
-Tel: +49 8444 9204-48
-Fax: +49 8444 9204-50
-
-R-S-I Elektrotechnik GmbH & Co. KG
-Woelkestrasse 11
-D-85301 Schweitenkirchen
-www.rsi-elektrotechnik.de
-———————————————
-Amtsgericht Ingolstadt – GmbH: HRB 191328 – KG: HRA 170393
-Geschäftsführer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
-Ust-IdNr: DE 128592548
-
-_____________________________________________________________
-Amtsgericht Ingolstadt - GmbH: HRB 191328 - KG: HRA 170363
-Geschäftsführer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
-USt-IdNr.: DE 128592548
+No recipes available for:
+  /home/steve/Yocto/poky/_toaster_clones/_git___git.yoctoproject.org_meta-r=
+aspberrypi_master/recipes-multimedia/gstreamer/gstreamer1.0-omx_1.2.0.bbapp=
+end
+  /home/steve/Yocto/poky/_toaster_clones/_git___git.yoctoproject.org_meta-r=
+aspberrypi_master/recipes-multimedia/gstreamer/gstreamer1.0-omx_git.bbappen=
+d
 
 
+Looking through some of the recent changes on this mailing list, the gstrea=
+mer1.0 package got a change recently. has anybody else come across this err=
+or?
+
+
+
+Regards, Steve.
+
+--_000_SG2PR0301MB20164EBE7DDD10BD3A4BFE69D1230SG2PR0301MB2016_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+</head>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Arial,Helvetica,sans-serif;" dir=3D"ltr">
+<p></p>
+<pre>Hi all,<br><br>Starting a brand new project for the rasberry pi2, on t=
+he master branch, using toaster to start/monitor the build.<br><br>Everythi=
+ng set up for the most basic build, however when I build &quot;rpi-basic-im=
+age&quot; it fails with this error:<br><br>No recipes available for:=0A=
+  /home/steve/Yocto/poky/_toaster_clones/_git___git.yoctoproject.org_meta-r=
+aspberrypi_master/recipes-multimedia/gstreamer/gstreamer1.0-omx_1.2.0.bbapp=
+end=0A=
+  /home/steve/Yocto/poky/_toaster_clones/_git___git.yoctoproject.org_meta-r=
+aspberrypi_master/recipes-multimedia/gstreamer/gstreamer1.0-omx_git.bbappen=
+d</pre>
+<br>
+<p></p>
+<p>Looking through some of the recent changes on this mailing list, the gst=
+reamer1.0 package got a change recently. has anybody else come across this =
+error?<br>
+</p>
+<p><br>
+</p>
+<p><br>
+</p>
+<div id=3D"Signature">Regards, Steve. </div>
+</div>
+</body>
+</html>
+
+--_000_SG2PR0301MB20164EBE7DDD10BD3A4BFE69D1230SG2PR0301MB2016_--
