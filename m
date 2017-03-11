@@ -1,44 +1,33 @@
-Return-Path: <paul@paulbarker.me.uk>
+Return-Path: <gary@mlbassoc.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id ADA04E00A0C; Sat, 11 Mar 2017 02:01:53 -0800 (PST)
+	id F37D7E00A0A; Sat, 11 Mar 2017 02:13:03 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [217.70.183.196 listed in list.dnswl.org]
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net
-	[217.70.183.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5763AE00A08
-	for <yocto@yoctoproject.org>; Sat, 11 Mar 2017 02:01:49 -0800 (PST)
-Received: from mfilter20-d.gandi.net (mfilter20-d.gandi.net [217.70.178.148])
-	by relay4-d.mail.gandi.net (Postfix) with ESMTP id 2B5BE1720BC;
-	Sat, 11 Mar 2017 11:01:48 +0100 (CET)
-X-Virus-Scanned: Debian amavisd-new at mfilter20-d.gandi.net
-Received: from relay4-d.mail.gandi.net ([IPv6:::ffff:217.70.183.196])
-	by mfilter20-d.gandi.net (mfilter20-d.gandi.net [::ffff:10.0.15.180])
-	(amavisd-new, port 10024)
-	with ESMTP id czWeStR5-VRS; Sat, 11 Mar 2017 11:01:46 +0100 (CET)
-X-Originating-IP: 86.24.150.36
-Received: from lap0 (cpc15-shep11-2-0-cust35.8-3.cable.virginm.net
-	[86.24.150.36]) (Authenticated sender: paul@paulbarker.me.uk)
-	by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id 6DCC81720AF;
-	Sat, 11 Mar 2017 11:01:46 +0100 (CET)
-Date: Sat, 11 Mar 2017 10:01:45 +0000
-From: Paul Barker <paul@paulbarker.me.uk>
-To: Khem Raj <raj.khem@gmail.com>
-Message-ID: <20170311100145.4e5b0f68@lap0>
-In-Reply-To: <fe276ffa-0a4d-82e5-1a90-f9d3147cdfae@gmail.com>
-References: <20170213233243.16688-1-paul@paulbarker.me.uk>
-	<fe276ffa-0a4d-82e5-1a90-f9d3147cdfae@gmail.com>
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
+Received: from mail.analogue-micro.com (mail.analogue-micro.com
+	[217.144.149.242])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B285BE009B9
+	for <yocto@yoctoproject.org>; Sat, 11 Mar 2017 02:13:02 -0800 (PST)
+Received: by mail.analogue-micro.com (Postfix, from userid 999)
+	id BC42768A01C; Sat, 11 Mar 2017 10:13:00 +0000 (GMT)
+Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
+	by mail.analogue-micro.com (Postfix) with ESMTP id 47A8D68A019;
+	Sat, 11 Mar 2017 10:13:00 +0000 (GMT)
+Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
+	by zeus.mlbassoc.com (Postfix) with ESMTP id C93676740301;
+	Sat, 11 Mar 2017 11:12:59 +0100 (CET)
+From: Gary Thomas <gary@mlbassoc.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Message-ID: <057e9971-070d-5610-6aa3-63e4a4e65f47@mlbassoc.com>
+Date: Sat, 11 Mar 2017 11:12:58 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.7.0
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-raspberrypi][PATCH 1/2] linux-raspberrypi_4.4: Update to 4.4.48
+Subject: [meta-raspberrypi] Errors building
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,44 +39,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 11 Mar 2017 10:01:54 -0000
-Content-Type: text/plain; charset=US-ASCII
+X-List-Received-Date: Sat, 11 Mar 2017 10:13:04 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On Fri, 10 Mar 2017 17:55:25 -0800
-Khem Raj <raj.khem@gmail.com> wrote:
+If I build for RaspberryPi-3 with vc4graphics enabled, I get
+this error building omxplayer:
 
-> Hi Paul
-> 
-> On 2/13/17 3:32 PM, paul@paulbarker.me.uk wrote:
-> > From: Paul Barker <paul@paulbarker.me.uk>
-> > 
-> > Signed-off-by: Paul Barker <paul@paulbarker.me.uk>
-> > ---
-> >  recipes-kernel/linux/linux-raspberrypi_4.4.bb | 4 ++--
-> >  1 file changed, 2 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/recipes-kernel/linux/linux-raspberrypi_4.4.bb
-> > b/recipes-kernel/linux/linux-raspberrypi_4.4.bb index
-> > 0f78225..b235772 100644 ---
-> > a/recipes-kernel/linux/linux-raspberrypi_4.4.bb +++
-> > b/recipes-kernel/linux/linux-raspberrypi_4.4.bb @@ -1,8 +1,8 @@
-> >  FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
-> >  
-> > -LINUX_VERSION ?= "4.4.43"
-> > +LINUX_VERSION ?= "4.4.48"
-> >    
-> 
-> There is 4.4.50 with rpi0 support. Can you resent this patchset with
-> the updated rev
-> 
+| In file included from linux/RBP.h:45:0,
+|                  from linux/RBP.cpp:22:
+| ./DllBCM.h:34:22: fatal error: bcm_host.h: No such file or directory
+|  #include <bcm_host.h>
+|                       ^
+| compilation terminated.
+| Makefile:44: recipe for target 'linux/RBP.o' failed
+| make: *** [linux/RBP.o] Error 1
+| make: *** Waiting for unfinished jobs....
+| In file included from OMXCore.h:32:0,
+|                  from OMXClock.h:27,
+|                  from OMXReader.cpp:29:
+| DllOMX.h:36:25: fatal error: IL/OMX_Core.h: No such file or directory
+|  #include <IL/OMX_Core.h>
+|                          ^
+| compilation terminated.
+| Makefile:44: recipe for target 'OMXReader.o' failed
 
-I've got a patch for that ready to send, I just haven't had chance to
-boot test it as I've been away all week. I'm now back home though :)
+If I disable the vc4graphics, I can't build webkitgtk:
 
-I'll rebase my outstanding patches on top of your kraj/master branch,
-give them a quick test and get them sent.
+| 
+/build/rpi3_2016-09-13/tmp/work/cortexa7t2hf-neon-vfpv4-amltd-linux-gnueabi/webkitgtk/2.14.5-r0/webkitgtk-2.14.5/Source/WebCore/platform/graphics/egl/GLContextEGLX11.cpp: 
+In static member function 'static void* WebCore::GLContextEGL::createWindowSurfaceX11(EGLDisplay, EGLConfig, 
+GLNativeWindowType)':
+| 
+/build/rpi3_2016-09-13/tmp/work/cortexa7t2hf-neon-vfpv4-amltd-linux-gnueabi/webkitgtk/2.14.5-r0/webkitgtk-2.14.5/Source/WebCore/platform/graphics/egl/GLContextEGLX11.cpp:42:91: 
+error: invalid static_cast from type 'GLNativeWindowType {aka long long unsigned int}' to type 'EGLNativeWindowType {aka 
+void*}'
+|      return eglCreateWindowSurface(display, config, static_cast<EGLNativeWindowType>(window), nullptr);
 
-Cheers,
-Paul
+Using current master of Poky/Yocto & meta-raspberrypi
+meta              = "master:d454dc2fc17711d3efe6dbe5aca3c734f0ed158b"
+meta-raspberrypi  = "master:c768a3d1aed8d16d08afe12fddb359914e0a203a"
+
+Ideas?  Ideally, I'd like both of these packages in my image for the rpi3.
+
+Thanks
+
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
