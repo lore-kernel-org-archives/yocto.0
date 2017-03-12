@@ -1,38 +1,66 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 554E1E00932; Sat, 11 Mar 2017 20:14:57 -0800 (PST)
+	id 7A9CBE00932; Sun, 12 Mar 2017 03:19:00 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.83.45 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.analogue-micro.com (mail.analogue-micro.com
-	[217.144.149.242])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DC0C9E00890
-	for <yocto@yoctoproject.org>; Sat, 11 Mar 2017 20:14:54 -0800 (PST)
-Received: by mail.analogue-micro.com (Postfix, from userid 999)
-	id 42F9B68A01C; Sun, 12 Mar 2017 04:14:53 +0000 (GMT)
-Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
-	by mail.analogue-micro.com (Postfix) with ESMTP id C1F2C68A019;
-	Sun, 12 Mar 2017 04:14:48 +0000 (GMT)
-Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
-	by zeus.mlbassoc.com (Postfix) with ESMTP id 199746740301;
-	Sun, 12 Mar 2017 05:14:48 +0100 (CET)
-To: yocto@yoctoproject.org
-References: <SG2PR0301MB20161B53B6ADAC7B8328ABC6D12E0@SG2PR0301MB2016.apcprd03.prod.outlook.com>
-	<20170308171742.GC2586@haswell>
-	<SG2PR0301MB20164B4F20AB1A46147436A5D1200@SG2PR0301MB2016.apcprd03.prod.outlook.com>
-	<CAMKF1soATSdGaEDrL8EFG_9jzMB33PvBesVTCvZkTrw7s418nQ@mail.gmail.com>
-From: Gary Thomas <gary@mlbassoc.com>
-Message-ID: <a26dd4b9-87f3-080a-4614-99daeecc20a0@mlbassoc.com>
-Date: Sun, 12 Mar 2017 05:14:47 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.7.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pg0-f45.google.com (mail-pg0-f45.google.com [74.125.83.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F1335E0074B
+	for <yocto@yoctoproject.org>; Sun, 12 Mar 2017 03:18:58 -0700 (PDT)
+Received: by mail-pg0-f45.google.com with SMTP id 25so53789210pgy.0
+	for <yocto@yoctoproject.org>; Sun, 12 Mar 2017 03:18:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=from:to:subject:date:message-id:mime-version
+	:content-transfer-encoding;
+	bh=WlbZxCp4oZowyZ/uv0Pvhicq+WbBJoDiQ+GWn4yNBWQ=;
+	b=YylCqgJIdKitl38izLbj4lp+kq39m4qEDpsTwzN14+V0lkGXgyDAKOiobEt5AopIxK
+	JzA+WaMnETANgk2Bg5FGowmRyFFOhFQpL9QTzt6d3CKGAwlSC3g8XWrWAilLxKBk/JNF
+	ITqdCP20H0goSiyVXybByYZSSFGpKbDvzY54g27gnhqCj71/ckH9yIkCKVTDDn8isAnz
+	Q3VYSYfg1R+ZHENoQnfC18/GXNCqAZNXv5OIWzo7rE3uefrGNA1nLJ4llD+9mF8diTJ7
+	bLIb0Nyo7iStTYB345jP7iuzeo9sjpi3z9OKVet9bVDEljY3Ts8XddvEbmv64mvaJm4z
+	v6CQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+	:content-transfer-encoding;
+	bh=WlbZxCp4oZowyZ/uv0Pvhicq+WbBJoDiQ+GWn4yNBWQ=;
+	b=WaFfPbNwDFLBZ976fqfTuFSBcOeUJM2ljOv8XAuBXO2s6vDUKd0FPgOEZ/sqBvc8ei
+	KIlRLFpBWNSm9Jda2/udIzdhft0e1U9dcPyptS4YZzReiEcidGcoG0jQWsF546fozCWb
+	gqgJhxhkrG4h9+lT61ddCabNZm1gZ/jeMjVm6uPoBaFz9Bqw6EnoEdUCq59k9X2r7FyE
+	6zaIEKZZW/s9sUakmDgpp/MC0WtZkI7xbTyDMUQVSTxfTqWDpR8gQpgjqQaGnXT4oopM
+	5sA8DtcSagtI1jnvBjDTHtLdkqny2mPOqgpl13zo2A2TrOCV++4mh+36H9og56r76UJS
+	WnRA==
+X-Gm-Message-State: AMke39m3e5KPfLlzf7YqizOSIub9xDXWDorgdkCGFzl+Uu/RELtwgGpZrD8ZP2zq8FLy9Q==
+X-Received: by 10.84.149.168 with SMTP id m37mr38424721pla.97.1489313937655;
+	Sun, 12 Mar 2017 03:18:57 -0700 (PDT)
+Received: from localhost.localdomain (c-76-102-32-192.hsd1.ca.comcast.net.
+	[76.102.32.192]) by smtp.gmail.com with ESMTPSA id
+	w29sm27764601pfi.131.2017.03.12.03.18.56
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Sun, 12 Mar 2017 03:18:56 -0700 (PDT)
+From: Khem Raj <raj.khem@gmail.com>
+To: yocto@yoctoproject.org,
+	andrei@gherzan.ro
+Date: Sun, 12 Mar 2017 03:18:45 -0700
+Message-Id: <20170312101845.30663-1-raj.khem@gmail.com>
+X-Mailer: git-send-email 2.12.0
 MIME-Version: 1.0
-In-Reply-To: <CAMKF1soATSdGaEDrL8EFG_9jzMB33PvBesVTCvZkTrw7s418nQ@mail.gmail.com>
-Subject: Re: Raspberry Pi2 Fails to boot into LXDE.
+Subject: [meta-raspberrypi] Consolidated pull
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,222 +72,108 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 12 Mar 2017 04:14:57 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sun, 12 Mar 2017 10:19:00 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On 2017-03-10 16:20, Khem Raj wrote:
-> On Fri, Mar 10, 2017 at 5:25 AM, Steve Plant <steove@hotmail.com> wrote:
->> Hi Khem,
->>
->>
->> I was finally able to SSH into the raspberry pi and found the Xorg.log file,
->> exactly where you said it would be.
->>
->>
->> Looking at it, for some reason Xorg cannot find the module evdev. I have
->> looked for this but cannot find where it is supposed to be located.
->>
->>
->> I did notice that there was a "libevdev" which had not been included into
->> the build, so I added that by updating the Bitbake variables with:
->>
->>
->> IMAGE_INSTALL_append libevdev packagegroup-core-x11-base
->> packagegroup-lxde-base connman
->>
->>
->> Rebuild the "rpi-basic-image" and copied the image to the SD card, booted up
->> the rpi but no change. I have noticed that there is also a "python-evdev"
->> package with is not included in the build, but that is part of the
->> "meta-python" layer which I have not added. Do I need to add this???
->>
->>
->>
->> Here is the Xorg.log file
->>
->>
->> [3087510.347]
->> X.Org X Server 1.18.4
->> Release Date: 2016-07-19
->> [3087510.347] X Protocol Version 11, Revision 0
->> [3087510.347] Build Operating System: Linux 3.16.0-4-amd64 x86_64
->> [3087510.347] Current Operating System: Linux raspberrypi2 4.4.48 #1 SMP Sat
->> Feb 25 00:03:23 AEST 2017 armv7l
->> [3087510.347] Kernel command line: dma.dmachans=0x7f35
->> bcm2708_fb.fbwidth=800 bcm2708_fb.fbheight=480 bcm2709.boardrev=0xa21041
->> bcm2709.serial=0xf9e8fbc6 smsc95xx.macaddr=B8:27:EB:E8:FB:C6
->> bcm2708_fb.fbswap=1 bcm2709.uart_clock=48000000 bcm2709.disk_led_gpio=47
->> bcm2709.disk_led_active_low=0 vc_mem.mem_base=0x3dc00000
->> vc_mem.mem_size=0x3f000000  dwc_otg.lpm_enable=0 console=ttyAMA0,115200
->> root=/dev/mmcblk0p2 rootfstype=ext4 rootwait
->> [3087510.347] Build Date: 07 March 2017  09:16:40PM
->> [3087510.347]
->> [3087510.347] Current version of pixman: 0.34.0
->> [3087510.347]     Before reporting problems, check http://wiki.x.org
->>     to make sure that you have the latest version.
->> [3087510.347] Markers: (--) probed, (**) from config file, (==) default
->> setting,
->>     (++) from command line, (!!) notice, (II) informational,
->>     (WW) warning, (EE) error, (NI) not implemented, (??) unknown.
->> [3087510.348] (==) Log file: "/var/log/Xorg.0.log", Time: Fri Mar 10
->> 11:43:14 2017
->> [3087510.359] (==) Using config file: "/etc/X11/xorg.conf"
->> [3087510.359] (==) Using config directory: "/etc/X11/xorg.conf.d"
->> [3087510.359] (==) Using system config directory
->> "/usr/share/X11/xorg.conf.d"
->> [3087510.372] (==) No Layout section.  Using the first Screen section.
->> [3087510.372] (==) No screen section available. Using defaults.
->> [3087510.372] (**) |-->Screen "Default Screen Section" (0)
->> [3087510.372] (**) |   |-->Monitor "<default monitor>"
->> [3087510.379] (==) No monitor specified for screen "Default Screen Section".
->>     Using a default monitor configuration.
->> [3087510.380] (==) Automatically adding devices
->> [3087510.380] (==) Automatically enabling devices
->> [3087510.380] (==) Automatically adding GPU devices
->> [3087510.380] (==) Max clients allowed: 256, resource mask: 0x1fffff
->> [3087510.383] (WW) The directory "/usr/share/fonts/X11/misc/" does not
->> exist.
->> [3087510.383]     Entry deleted from font path.
->> [3087510.383] (WW) The directory "/usr/share/fonts/X11/TTF/" does not exist.
->> [3087510.383]     Entry deleted from font path.
->> [3087510.383] (WW) The directory "/usr/share/fonts/X11/OTF/" does not exist.
->> [3087510.383]     Entry deleted from font path.
->> [3087510.383] (WW) The directory "/usr/share/fonts/X11/Type1/" does not
->> exist.
->> [3087510.383]     Entry deleted from font path.
->> [3087510.383] (WW) The directory "/usr/share/fonts/X11/100dpi/" does not
->> exist.
->> [3087510.383]     Entry deleted from font path.
->> [3087510.383] (WW) The directory "/usr/share/fonts/X11/75dpi/" does not
->> exist.
->> [3087510.383]     Entry deleted from font path.
->> [3087510.383] (==) FontPath set to:
->>
->> [3087510.383] (==) ModulePath set to "/usr/lib/xorg/modules"
->> [3087510.383] (II) The server relies on udev to provide the list of input
->> devices.
->>     If no devices become available, reconfigure udev or disable
->> AutoAddDevices.
->> [3087510.383] (II) Loader magic: 0x1c3b80
->> [3087510.383] (II) Module ABI versions:
->> [3087510.384]     X.Org ANSI C Emulation: 0.4
->> [3087510.384]     X.Org Video Driver: 20.0
->> [3087510.384]     X.Org XInput driver : 22.1
->> [3087510.384]     X.Org Server Extension : 9.0
->> [3087510.384] (II) no primary bus or device found
->> [3087510.384] (II) LoadModule: "glx"
->> [3087510.393] (WW) Warning, couldn't open module glx
->> [3087510.393] (II) UnloadModule: "glx"
->> [3087510.393] (II) Unloading glx
->> [3087510.393] (EE) Failed to load module "glx" (module does not exist, 0)
->> [3087510.394] (==) Matched modesetting as autoconfigured driver 0
->> [3087510.394] (==) Matched fbdev as autoconfigured driver 1
->> [3087510.394] (==) Assigned the driver to the xf86ConfigLayout
->> [3087510.394] (II) LoadModule: "modesetting"
->> [3087510.394] (WW) Warning, couldn't open module modesetting
->> [3087510.394] (II) UnloadModule: "modesetting"
->> [3087510.394] (II) Unloading modesetting
->> [3087510.394] (EE) Failed to load module "modesetting" (module does not
->> exist, 0)
->> [3087510.394] (II) LoadModule: "fbdev"
->> [3087510.395] (II) Loading /usr/lib/xorg/modules/drivers/fbdev_drv.so
->> [3087510.400] (II) Module fbdev: vendor="X.Org Foundation"
->> [3087510.400]     compiled for 1.18.4, module version = 0.4.4
->> [3087510.400]     Module class: X.Org Video Driver
->> [3087510.400]     ABI class: X.Org Video Driver, version 20.0
->> [3087510.400] (II) FBDEV: driver for framebuffer: fbdev
->> [3087510.400] (--) using VT number 1
->>
->> [3087510.408] (WW) Falling back to old probe method for fbdev
->> [3087510.408] (II) Loading sub module "fbdevhw"
->> [3087510.408] (II) LoadModule: "fbdevhw"
->> [3087510.409] (II) Loading /usr/lib/xorg/modules/libfbdevhw.so
->> [3087510.420] (II) Module fbdevhw: vendor="X.Org Foundation"
->> [3087510.420]     compiled for 1.18.4, module version = 0.0.2
->> [3087510.420]     ABI class: X.Org Video Driver, version 20.0
->> [3087510.421] (II) FBDEV(0): using default device
->> [3087510.421] (WW) VGA arbiter: cannot open kernel arbiter, no multi-card
->> support
->> [3087510.421] (II) FBDEV(0): Creating default Display subsection in Screen
->> section
->>     "Default Screen Section" for depth/fbbpp 24/32
->> [3087510.421] (==) FBDEV(0): Depth 24, (==) framebuffer bpp 32
->> [3087510.421] (==) FBDEV(0): RGB weight 888
->> [3087510.421] (==) FBDEV(0): Default visual is TrueColor
->> [3087510.421] (==) FBDEV(0): Using gamma correction (1.0, 1.0, 1.0)
->> [3087510.421] (II) FBDEV(0): hardware: BCM2708 FB (video memory: 1500kB)
->> [3087510.421] (II) FBDEV(0): checking modes against framebuffer device...
->> [3087510.421] (II) FBDEV(0): checking modes against monitor...
->> [3087510.421] (--) FBDEV(0): Virtual size is 800x480 (pitch 800)
->> [3087510.421] (**) FBDEV(0):  Built-in mode "current"
->> [3087510.421] (==) FBDEV(0): DPI set to (96, 96)
->> [3087510.422] (II) Loading sub module "fb"
->> [3087510.422] (II) LoadModule: "fb"
->> [3087510.422] (II) Loading /usr/lib/xorg/modules/libfb.so
->> [3087510.459] (II) Module fb: vendor="X.Org Foundation"
->> [3087510.459]     compiled for 1.18.4, module version = 1.0.0
->> [3087510.459]     ABI class: X.Org ANSI C Emulation, version 0.4
->> [3087510.459] (**) FBDEV(0): using shadow framebuffer
->> [3087510.459] (II) Loading sub module "shadow"
->> [3087510.459] (II) LoadModule: "shadow"
->> [3087510.459] (II) Loading /usr/lib/xorg/modules/libshadow.so
->> [3087510.482] (II) Module shadow: vendor="X.Org Foundation"
->> [3087510.482]     compiled for 1.18.4, module version = 1.1.0
->> [3087510.482]     ABI class: X.Org ANSI C Emulation, version 0.4
->> [3087510.482] (==) Depth 24 pixmap format is 32 bpp
->> [3087510.505] (==) FBDEV(0): Backing store enabled
->> [3087510.506] (==) FBDEV(0): DPMS enabled
->> [3087510.507] (==) RandR enabled
->> [3087510.831] (II) config/udev: Adding input device SIGMACH1P USB Keykoard
->> (/dev/input/event1)
->> [3087510.831] (**) SIGMACH1P USB Keykoard: Applying InputClass "evdev
->> keyboard catchall"
->> [3087510.831] (II) LoadModule: "evdev"
->> [3087510.832] (WW) Warning, couldn't open module evdev
->> [3087510.832] (II) UnloadModule: "evdev"
->> [3087510.832] (II) Unloading evdev
->> [3087510.832] (EE) Failed to load module "evdev" (module does not exist, 0)
->> [3087510.832] (EE) No input driver matching `evdev'
->> [3087510.835] (II) config/udev: Adding input device SIGMACH1P USB Keykoard
->> (/dev/input/event2)
->> [3087510.835] (**) SIGMACH1P USB Keykoard: Applying InputClass "evdev
->> keyboard catchall"
->> [3087510.835] (II) LoadModule: "evdev"
->> [3087510.835] (WW) Warning, couldn't open module evdev
->> [3087510.836] (II) UnloadModule: "evdev"
->> [3087510.836] (II) Unloading evdev
->> [3087510.836] (EE) Failed to load module "evdev" (module does not exist, 0)
->> [3087510.836] (EE) No input driver matching `evdev'
->> [3087510.837] (II) config/udev: Adding input device FT5406 memory based
->> driver (/dev/input/event0)
->> [3087510.837] (**) FT5406 memory based driver: Applying InputClass "evdev
->> touchscreen catchall"
->> [3087510.837] (II) LoadModule: "evdev"
->> [3087510.838] (WW) Warning, couldn't open module evdev
->> [3087510.838] (II) UnloadModule: "evdev"
->> [3087510.838] (II) Unloading evdev
->> [3087510.838] (EE) Failed to load module "evdev" (module does not exist, 0)
->> [3087510.838] (EE) No input driver matching `evdev'
->> [3087510.839] (II) config/udev: Adding input device FT5406 memory based
->> driver (/dev/input/mouse0)
->> [3087510.839] (II) No input driver specified, ignoring this device.
->> [3087510.839] (II) This device may have been added with another device file.
->>
->>
->
->
-> you have xorg modules missing. evdev, glx and modesetting are reported
-> missing. Do you have x11 and OpenGL enabled in distro features ?
+The following changes since commit c768a3d1aed8d16d08afe12fddb359914e0a203a:
 
-Also, it would help if you started with something simpler - from your original
-email it's not even obvious how you built this LXDE image (what layers/versions,
-what machine/target settings, etc).  Try building a "stock" image such as core-image-sato,
-then we can help you move forward.
+  linux-raspberrypi_dev: Fix build on rpi3 64bit (2017-02-16 20:53:18 +0100)
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+are available in the git repository at:
+
+  https://github.com/kraj/meta-raspberrypi kraj/pu
+
+for you to fetch changes up to 6c8ca9ccf1748f6a40e4f30f5df49e2501259cb0:
+
+  sdcard_image: fix sdcard image generation (2017-03-11 17:38:06 -0800)
+
+----------------------------------------------------------------
+Andreas Müller (1):
+      xserver-xf86-config: remove evdev configuration
+
+Janek Filus (1):
+      sdcard_image: fix sdcard image generation
+
+Khem Raj (7):
+      omxplayer: Update to latest and disable on rpi64
+      linux-firmware: Bring up wifi/ble interface on rpi3
+      firmware: Update to 20170303 release
+      linux-raspberrypi_4.9.bb: Update to 4.9.13
+      linux-raspberrypi: Default to 4.9 kernel
+      userland: Update to latest
+      userland: Do not provide libgl
+
+Maciej Borzecki (2):
+      wic: move sdimage-raspberrypi to toplevel wic location
+      rpi-base: wic: generate entries for device tree files
+
+Maxin B. John (1):
+      gstreamer1.0-omx: remove bbappend for version 1.2.0 and git
+
+Paul Barker (6):
+      linux-raspberrypi: Fix uImage build on 4.9.y and later
+      linux-raspberrypi_dev: Use AUTOREV
+      linux-raspberrypi_dev: Allow branch override
+      linux-raspberrypi_dev: Disable version sanity check
+      linux-raspberrypi_4.4: Update to 4.4.50
+      linux-raspberrypi_dev: Add back arm64 dtbo rules patch
+
+ classes/sdcard_image-rpi.bbclass                   |   4 +-
+ conf/machine/include/rpi-base.inc                  |  32 ++++-
+ conf/machine/include/rpi-default-versions.inc      |   2 +-
+ conf/machine/raspberrypi3-64.conf                  |   2 -
+ recipes-bsp/common/firmware.inc                    |   6 +-
+ ...-applications-to-set-next-resource-handle.patch |   6 +-
+ ...ayland-Add-support-for-the-Wayland-winsys.patch |  14 +--
+ .../0003-wayland-Add-Wayland-example.patch         |   6 +-
+ ...-wayland-egl-Add-bcm_host-to-dependencies.patch |   6 +-
+ ...emove-faulty-assert-to-make-weston-happy-.patch |   6 +-
+ ...6-zero-out-wl-buffers-in-egl_surface_free.patch |   6 +-
+ ...007-initialize-front-back-wayland-buffers.patch |   6 +-
+ .../userland/userland/0008-Remove-RPC_FLUSH.patch  |   6 +-
+ .../userland/0009-fix-cmake-dependency-race.patch  |   8 +-
+ ...Fix-for-framerate-with-nested-composition.patch |   6 +-
+ .../0011-build-shared-library-for-vchostif.patch   |   8 +-
+ ...nt-buffer-wrapping-interface-for-dispmanx.patch |   6 +-
+ ...13-Implement-triple-buffering-for-wayland.patch |  11 +-
+ recipes-graphics/userland/userland_git.bb          |   4 +-
+ .../rpi/xorg.conf.d/10-evdev.conf                  |  40 ------
+ .../xorg-xserver/xserver-xf86-config_0.1.bbappend  |  22 ++--
+ .../linux-firmware/files/brcmfmac43430-sdio.txt    |  66 ++++++++++
+ .../linux-firmware/linux-firmware_%.bbappend       |  12 ++
+ ...-Add-rules-for-.dtbo-files-for-dts-overla.patch |   0
+ recipes-kernel/linux/linux-raspberrypi_4.4.bb      |   5 +-
+ recipes-kernel/linux/linux-raspberrypi_4.9.bb      |  10 +-
+ recipes-kernel/linux/linux-raspberrypi_dev.bb      |  18 ++-
+ ...o-acquire-buffer-when-src-pad-isn-t-activ.patch |  48 --------
+ .../0001-config-files-path.patch                   | 137 ---------------------
+ .../0002-fix-decoder-flushing.patch                |  16 ---
+ .../0003-no-timeout-on-get-state.patch             |  16 ---
+ ...erly-handle-drain-requests-while-flushing.patch |  69 -----------
+ ...-gst_omx_video_dec_set_format-if-there-s-.patch |  30 -----
+ ...-unref-allocator-after-getting-it-from-al.patch |  48 --------
+ ...mxvideodec-Use-gstglmemoryegl-for-the-RPi.patch | 115 -----------------
+ .../gstreamer/gstreamer1.0-omx_1.2.0.bbappend      |  14 ---
+ .../gstreamer/gstreamer1.0-omx_git.bbappend        |  13 --
+ ...nd-headers-from-ffmpeg-are-installed-in-u.patch |  27 ++--
+ ...PEG_EXTRA_CFLAGS-and-FFMPEG_EXTRA_LDFLAGS.patch |  24 ++--
+ recipes-multimedia/omxplayer/omxplayer_git.bb      |  13 +-
+ .../canned-wks => wic}/sdimage-raspberrypi.wks     |   0
+ 41 files changed, 235 insertions(+), 653 deletions(-)
+ delete mode 100644 recipes-graphics/xorg-xserver/xserver-xf86-config/rpi/xorg.conf.d/10-evdev.conf
+ create mode 100644 recipes-kernel/linux-firmware/files/brcmfmac43430-sdio.txt
+ create mode 100644 recipes-kernel/linux-firmware/linux-firmware_%.bbappend
+ rename recipes-kernel/linux/{linux-raspberrypi-4.9 => linux-raspberrypi-dev}/0001-build-arm64-Add-rules-for-.dtbo-files-for-dts-overla.patch (100%)
+ delete mode 100644 recipes-multimedia/gstreamer/gstreamer1.0-omx-1.2.0/0001-Don-t-try-to-acquire-buffer-when-src-pad-isn-t-activ.patch
+ delete mode 100644 recipes-multimedia/gstreamer/gstreamer1.0-omx-1.2.0/0001-config-files-path.patch
+ delete mode 100644 recipes-multimedia/gstreamer/gstreamer1.0-omx-1.2.0/0002-fix-decoder-flushing.patch
+ delete mode 100644 recipes-multimedia/gstreamer/gstreamer1.0-omx-1.2.0/0003-no-timeout-on-get-state.patch
+ delete mode 100644 recipes-multimedia/gstreamer/gstreamer1.0-omx-1.2.0/0004-Properly-handle-drain-requests-while-flushing.patch
+ delete mode 100644 recipes-multimedia/gstreamer/gstreamer1.0-omx-1.2.0/0005-Don-t-abort-gst_omx_video_dec_set_format-if-there-s-.patch
+ delete mode 100644 recipes-multimedia/gstreamer/gstreamer1.0-omx-1.2.0/0006-omxvideodec-unref-allocator-after-getting-it-from-al.patch
+ delete mode 100644 recipes-multimedia/gstreamer/gstreamer1.0-omx-1.2.0/0007-omxvideodec-Use-gstglmemoryegl-for-the-RPi.patch
+ delete mode 100644 recipes-multimedia/gstreamer/gstreamer1.0-omx_1.2.0.bbappend
+ delete mode 100644 recipes-multimedia/gstreamer/gstreamer1.0-omx_git.bbappend
+ rename {scripts/lib/image/canned-wks => wic}/sdimage-raspberrypi.wks (100%)
 
