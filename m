@@ -1,48 +1,52 @@
-Return-Path: <denis@denix.org>
+Return-Path: <henry.bruce@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E2422E00546; Mon, 13 Mar 2017 10:00:00 -0700 (PDT)
+	id 0B995E00546; Mon, 13 Mar 2017 10:51:43 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [134.134.136.100 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 84978E004D2
-	for <yocto@yoctoproject.org>; Mon, 13 Mar 2017 09:59:56 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id AA80F20B94;
-	Mon, 13 Mar 2017 16:59:54 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id 0L6FoFMA1lOr; Mon, 13 Mar 2017 16:59:54 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
-	[100.15.85.143])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 897E1208FB;
-	Mon, 13 Mar 2017 16:59:53 +0000 (UTC)
-Received: by mail.denix.org (Postfix, from userid 1000)
-	id 2863E1623E7; Mon, 13 Mar 2017 12:59:53 -0400 (EDT)
-Date: Mon, 13 Mar 2017 12:59:53 -0400
-From: Denys Dmytriyenko <denis@denix.org>
-To: SatyaNarayana Sampangi <satya.2891@gmail.com>
-Message-ID: <20170313165953.GH15664@denix.org>
-References: <CAF1M0z6zfKC8QZsmfyCrf_zoSdzomeNa9SciPdGgaZpR+X3Tqw@mail.gmail.com>
-	<1488469685.28256.36.camel@linux.intel.com>
-	<CAF1M0z5VQxpnDurb7aW3DynL22-PnXo=MGMrvtaZ7ExsTMjK7g@mail.gmail.com>
-	<CAJTo0LZTwVepmvsQTWNAW0gJiMtsYp9bF8Xa92oEP_gWW4QU2Q@mail.gmail.com>
-	<20170302165637.GO7350@denix.org>
-	<CAF1M0z40DS-FDwhomoP4bLkj29RrNDAHS6oB_Z5zLecfVoPC=Q@mail.gmail.com>
-	<20170302230225.GR7350@denix.org>
-	<CAF1M0z7a9xcTVZgi=UpfiGoEq+3GPKpU+Uh1QvfzTiwFKY78-g@mail.gmail.com>
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D2092E004D2
+	for <yocto@yoctoproject.org>; Mon, 13 Mar 2017 10:51:34 -0700 (PDT)
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+	by orsmga105.jf.intel.com with ESMTP; 13 Mar 2017 10:51:34 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.36,160,1486454400"; d="scan'208";a="943806813"
+Received: from orsmsx106.amr.corp.intel.com ([10.22.225.133])
+	by orsmga003.jf.intel.com with ESMTP; 13 Mar 2017 10:51:34 -0700
+Received: from orsmsx115.amr.corp.intel.com (10.22.240.11) by
+	ORSMSX106.amr.corp.intel.com (10.22.225.133) with Microsoft SMTP Server
+	(TLS) id 14.3.248.2; Mon, 13 Mar 2017 10:51:34 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.118]) by
+	ORSMSX115.amr.corp.intel.com ([169.254.4.108]) with mapi id
+	14.03.0248.002; Mon, 13 Mar 2017 10:51:32 -0700
+From: "Bruce, Henry" <henry.bruce@intel.com>
+To: "openembedded-architecture@lists.openembedded.org"
+	<openembedded-architecture@lists.openembedded.org>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [Openembedded-architecture] Proposal: dealing with
+	language-specific build tools/dependency management tools
+Thread-Index: AQHSmaVAZF4vkDqMvEqCGfz5RS/wiaGOqHeAgAAFKYCAAAKvgIAAA1WAgATTSoA=
+Date: Mon, 13 Mar 2017 17:51:31 +0000
+Message-ID: <1489427487.16742.49.camel@intel.com>
+References: <37d4f98c-9102-f4bf-c6cc-f64e1ffbce40@linux.intel.com>
+	<CAP9ODKogXP8vO7CCmxs2c-TiRmZZhOKyN5M=ffZV7U2Qrjw1hQ@mail.gmail.com>
+	<b80a93fd-8fa3-5b27-0ffb-ab9fd8d04c12@linux.intel.com>
+	<CAP9ODKpGer=sF2QF8cCPh68OybqJxMdR5a_x9aXhw=htNWKOiw@mail.gmail.com>
+	<2ce1386b-e63b-4aea-0685-7abf949de115@linux.intel.com>
+In-Reply-To: <2ce1386b-e63b-4aea-0685-7abf949de115@linux.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.7.198.68]
 MIME-Version: 1.0
-In-Reply-To: <CAF1M0z7a9xcTVZgi=UpfiGoEq+3GPKpU+Uh1QvfzTiwFKY78-g@mail.gmail.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Devtool: Script Not found
+Subject: Re: [Openembedded-architecture] Proposal: dealing with language-specific build tools/dependency management tools
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,86 +58,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 13 Mar 2017 17:00:01 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Mon, 13 Mar 2017 17:51:43 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <B30A040A0AC8BE4DB6218ED37D64C93F@intel.com>
+Content-Transfer-Encoding: base64
 
-On Fri, Mar 03, 2017 at 10:06:21AM +0530, SatyaNarayana Sampangi wrote:
-> Hi Denys,
-> 
-> I am using linux-ti-staging 4.4,
-> 
-> zImage--4.4.41+git0+7c580a51af-r22a-beaglebone-20170302194632.bin
-> 
-> Image: core-image-minimal
-> 
-> Could you pls clarify where i am going wrong?
-
-Numerous people are reporting 4.4 working for them just fine. Not sure what 
-defconfig you are using. Have you tried using am335x-evm machine instead?
-
-
-> On Fri, Mar 3, 2017 at 4:32 AM, Denys Dmytriyenko <denis@denix.org> wrote:
-> 
-> > On Fri, Mar 03, 2017 at 02:31:42AM +0530, SatyaNarayana Sampangi wrote:
-> > > Hi Denys,
-> > >
-> > > I build, system with krogoth and meta-ti with both version same, after
-> > > running on the beaglebone it is showing like below,
-> > >
-> > > anything I need to change.
-> > >
-> > > No lease, forking to background
-> > > done.
-> > > hwclock: can't open '/dev/misc/rtc': No such file or directory
-> > > Starting syslogd/klogd: done
-> > > INIT: Id "O0" respawning too fast: disabled for 5 minutes
-> > > [   92.942038] random: nonblocking pool is initialized
-> > > INIT: Id "O0" respawning too fast: disabled for 5 minutes
-> > >
-> > > Note: This I did not get in Daisy 1.6 and meta-ti with compatible.
-> > >
-> > > Could you help me here.
-> >
-> > Would be nice to understand which kernel and which image you are building
-> > and
-> > using. The console in recent kernels moved from ttyO to ttyS, although our
-> > kernel has fallback mechanism and should still boot with ttyO, hence the
-> > question.
-> >
-> > --
-> > Denys
-> >
-> >
-> > > On Thu, Mar 2, 2017 at 10:26 PM, Denys Dmytriyenko <denis@denix.org>
-> > wrote:
-> > >
-> > > > On Thu, Mar 02, 2017 at 04:19:33PM +0000, Burton, Ross wrote:
-> > > > > On 2 March 2017 at 16:14, SatyaNarayana Sampangi <
-> > satya.2891@gmail.com>
-> > > > > wrote:
-> > > > >
-> > > > > > I am using beagle bone black, for which meta-ti layer and poky
-> > versions
-> > > > > > compatible is daisy 1.6 as mention in the official website of
-> > yocto.
-> > > > If I
-> > > > > > upgrade the poky to the latest version, then compatibity will be
-> > lost.
-> > > > Pls
-> > > > > > help me out here.
-> > > > > >
-> > > > >
-> > > > > http://git.yoctoproject.org/cgit/cgit.cgi/meta-ti/ has branches for
-> > > > krogoth
-> > > > > (2.1) and morty (2.2).  Where did you see that 1.6 is the last
-> > release
-> > > > > supported?
-> > > >
-> > > > ^^^^^^^^^^ This is all that matters! The rest is just fluff...
-> > > >
-> > > > --
-> > > > Denys
-> > > >
-> >
+T24gRnJpLCAyMDE3LTAzLTEwIGF0IDE3OjEwICswMjAwLCBBbGV4YW5kZXIgS2FuYXZpbiB3cm90
+ZToNCg0KVGhhbmtzIGZvciByYWlzaW5nIHRoaXMgdG9waWMuIFRoZSBwcm9ibGVtcyB3ZSBoaXQg
+aW4gYWRkaW5nIG5vZGUuanMNCnN1cHBvcnQgY2xlYXJseSBzaG93cyB3ZSB3b3VsZCBiZW5lZml0
+IGZyb20gYSBjb21tb24gYXBwcm9hY2ggdG8NCnN1cHBvcnRpbmcgbGFuZ3VhZ2VzIHdpdGggdGhl
+aXIgb3duIGFuZCBydW50aW1lIGFuZCBwYWNrYWdpbmcuDQoNCj4gDQo+IG5wbSBmZXRjaGVyIGZv
+ciBpbnN0YW5jZSB3YXMgYSBuaWdodG1hcmUgdG8gd3JpdGUsIGZyb20gd2hhdCBJJ3ZlDQo+IGhl
+YXJkOg0KPiANCj4gaHR0cDovL2dpdC55b2N0b3Byb2plY3Qub3JnL2NnaXQvY2dpdC5jZ2kvcG9r
+eS90cmVlL2JpdGJha2UvbGliL2JiL2ZlDQo+IHRjaDIvbnBtLnB5DQoNCkFsdGhvdWdoIEkgZGlk
+bid0IHdyaXRlIHRoZSBjb2RlIEkgd29ya2VkIHdpdGggUGF1bCBFZ2dsZXRvbiAod2hvIG5vdw0K
+b3ducyBpdCkgb24gaW1wcm92aW5nIGl0LCBhbmQgeWVzIGl0IHdhcyBoYXJkIHRvIHdyaXRlLiBB
+bmQgaXQgaXMNCmJlY29taW5nIGluY3JlYXNpbmdseSBjb21wbGV4IGFzIHdlIGhpdCBjb3JuZXIg
+Y2FzZXMsIGluZGljYXRpbmcgdGhhdA0KdGhlIGN1cnJlbnQgYXJjaGl0ZWN0dXJlIGlzIG5vdCBp
+ZGVhbC4NCg0KPiA+ID4gSSB3YW50IHRvIHVzZSBleGlzdGluZyB0b29scyAobGlrZSAnbnBtIGlu
+c3RhbGwnKSBmb3IgZ2V0dGluZyB0aGUNCj4gPiA+IHN0dWZmIGZyb20gdGhlIG5ldHdvcmsgLSB3
+ZSBkb24ndCByZWFsbHkgbmVlZCBmdWxsIHJlY2lwZXMsIHdlDQo+ID4gPiBqdXN0IHdhbnQgdG8g
+a25vdyB0aGUgbGljZW5zZXMgb2YgdGhlIGRlcGVuZGVuY2llcywgYW5kLCBpZg0KPiA+ID4gcG9z
+c2libGUsIGxvY2sgdGhlbSBkb3duIHRvIGEgc3BlY2lmaWMgdmVyc2lvbi4NCg0KSSBhZ3JlZSB0
+aGF0IGxldmVyYWdpbmcgdGhlIGxpa2VzIG9mICducG0gaW5zdGFsbCcgd2lsbCBtYWtlIGxpZmUN
+CnNpbXBsZXIgYnV0IHRoZSBwcm9ibGVtIHdpdGggdGhlc2Ugb3BlcmF0aW9ucyBpcyB0aGF0IHRo
+ZXkgc3BhbiBhIHJhbmdlDQpvZiBiaXRiYWtlIHRhc2tzLiBUaGUgcmVhc29uIHdlIHdyb3RlIGFu
+IG5wbSBmZXRjaGVyIHdhcyB0byBsaW1pdA0KbmV0d29yayBhY2Nlc3MgdG8gdGhlIGZldGNoIHRh
+c2suIFRoaXMgd29ya3MgaW4gY29uanVuY3Rpb24gd2l0aCBhbiBucG0NCnBhdGNoIHRoYXQgZW5h
+YmxlcyB0aGUgaW5zdGFsbCBjb21tYW5kIHRvIHJ1biBpbiB0aGUgY29tcGlsZSB0YXNrDQp3aXRo
+b3V0IGFjY2Vzc2luZyB0aGUgcmVnaXN0cnkuIEFyZSB5b3UgYXJlIHByb3Bvc2luZyB0aGF0IHdl
+IGFsbG93DQpuZXR3b3JrIGFjY2VzcyBvdXRzaWRlIG9mIHRoZSBmZXRjaCB0YXNrP8KgDQoNCkkg
+bG9vayBmb3J3YXJkIHRvIFBhdWwncyBjb21tZW50cy4NCg0KDQpIZW5yeQ0K
 
