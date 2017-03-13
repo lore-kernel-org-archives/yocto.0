@@ -1,66 +1,26 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <recipe-report@yoctoproject.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7A9CBE00932; Sun, 12 Mar 2017 03:19:00 -0700 (PDT)
+	id 228ADE00A4F; Sun, 12 Mar 2017 21:02:21 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.83.45 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pg0-f45.google.com (mail-pg0-f45.google.com [74.125.83.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F1335E0074B
-	for <yocto@yoctoproject.org>; Sun, 12 Mar 2017 03:18:58 -0700 (PDT)
-Received: by mail-pg0-f45.google.com with SMTP id 25so53789210pgy.0
-	for <yocto@yoctoproject.org>; Sun, 12 Mar 2017 03:18:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:subject:date:message-id:mime-version
-	:content-transfer-encoding;
-	bh=WlbZxCp4oZowyZ/uv0Pvhicq+WbBJoDiQ+GWn4yNBWQ=;
-	b=YylCqgJIdKitl38izLbj4lp+kq39m4qEDpsTwzN14+V0lkGXgyDAKOiobEt5AopIxK
-	JzA+WaMnETANgk2Bg5FGowmRyFFOhFQpL9QTzt6d3CKGAwlSC3g8XWrWAilLxKBk/JNF
-	ITqdCP20H0goSiyVXybByYZSSFGpKbDvzY54g27gnhqCj71/ckH9yIkCKVTDDn8isAnz
-	Q3VYSYfg1R+ZHENoQnfC18/GXNCqAZNXv5OIWzo7rE3uefrGNA1nLJ4llD+9mF8diTJ7
-	bLIb0Nyo7iStTYB345jP7iuzeo9sjpi3z9OKVet9bVDEljY3Ts8XddvEbmv64mvaJm4z
-	v6CQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-	:content-transfer-encoding;
-	bh=WlbZxCp4oZowyZ/uv0Pvhicq+WbBJoDiQ+GWn4yNBWQ=;
-	b=WaFfPbNwDFLBZ976fqfTuFSBcOeUJM2ljOv8XAuBXO2s6vDUKd0FPgOEZ/sqBvc8ei
-	KIlRLFpBWNSm9Jda2/udIzdhft0e1U9dcPyptS4YZzReiEcidGcoG0jQWsF546fozCWb
-	gqgJhxhkrG4h9+lT61ddCabNZm1gZ/jeMjVm6uPoBaFz9Bqw6EnoEdUCq59k9X2r7FyE
-	6zaIEKZZW/s9sUakmDgpp/MC0WtZkI7xbTyDMUQVSTxfTqWDpR8gQpgjqQaGnXT4oopM
-	5sA8DtcSagtI1jnvBjDTHtLdkqny2mPOqgpl13zo2A2TrOCV++4mh+36H9og56r76UJS
-	WnRA==
-X-Gm-Message-State: AMke39m3e5KPfLlzf7YqizOSIub9xDXWDorgdkCGFzl+Uu/RELtwgGpZrD8ZP2zq8FLy9Q==
-X-Received: by 10.84.149.168 with SMTP id m37mr38424721pla.97.1489313937655;
-	Sun, 12 Mar 2017 03:18:57 -0700 (PDT)
-Received: from localhost.localdomain (c-76-102-32-192.hsd1.ca.comcast.net.
-	[76.102.32.192]) by smtp.gmail.com with ESMTPSA id
-	w29sm27764601pfi.131.2017.03.12.03.18.56
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sun, 12 Mar 2017 03:18:56 -0700 (PDT)
-From: Khem Raj <raj.khem@gmail.com>
-To: yocto@yoctoproject.org,
-	andrei@gherzan.ro
-Date: Sun, 12 Mar 2017 03:18:45 -0700
-Message-Id: <20170312101845.30663-1-raj.khem@gmail.com>
-X-Mailer: git-send-email 2.12.0
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from packages.yoctoproject.org (unknown [198.145.29.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 127F1E00A3B
+	for <yocto@yoctoproject.org>; Sun, 12 Mar 2017 21:02:18 -0700 (PDT)
+Received: from packages.yoctoproject.org (localhost [IPv6:::1])
+	by packages.yoctoproject.org (Postfix) with ESMTP id 952EE80A28B4
+	for <yocto@yoctoproject.org>; Mon, 13 Mar 2017 00:02:17 -0400 (EDT)
 MIME-Version: 1.0
-Subject: [meta-raspberrypi] Consolidated pull
+From: recipe-report@yoctoproject.org
+To: yocto@yoctoproject.org
+Date: Mon, 13 Mar 2017 04:02:17 -0000
+Message-ID: <20170313040217.19662.87947@packages.yoctoproject.org>
+Subject: [Recipe reporting system] Upgradable recipe name list
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,108 +32,117 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 12 Mar 2017 10:19:00 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Mon, 13 Mar 2017 04:02:21 -0000
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
-The following changes since commit c768a3d1aed8d16d08afe12fddb359914e0a203a:
+This mail was sent out by Recipe reporting system.
 
-  linux-raspberrypi_dev: Fix build on rpi3 64bit (2017-02-16 20:53:18 +0100)
+This message list those recipes which need to be upgraded. If maintainers
+believe some of them needn't to upgrade at this time, they can fill
+RECIPE_NO_UPDATE_REASON in respective recipe file to ignore this remainder
+until newer upstream version was detected.
 
-are available in the git repository at:
+Example:
+RECIPE_NO_UPDATE_REASON = "Version 2.0 is unstable"
 
-  https://github.com/kraj/meta-raspberrypi kraj/pu
+You can check the detail information at:
 
-for you to fetch changes up to 6c8ca9ccf1748f6a40e4f30f5df49e2501259cb0:
+http://recipes.yoctoproject.org/
 
-  sdcard_image: fix sdcard image generation (2017-03-11 17:38:06 -0800)
+Package               Version      Upstream version      Maintainer           NoUpgradeReason
+--------------------  -----------  --------------------  -------------------  ------------------------------
+python3               3.5.2        3.6.0                 Alejandro Hernandez
+python3-native        3.5.2        3.6.0                 Alejandro Hernandez
+gnutls                3.5.9        3.5.10                Alexander Kanavin
+dtc                   1.4.2        1.4.4                 Alexander Kanavin
+btrfs-tools           4.9.1        4.10                  Alexander Kanavin
+mobile-broadband-...  20151214     20170310              Alexander Kanavin
+openssl               1.0.2k       1.1.0e                Alexander Kanavin
+mpg123                1.23.8       1.24.0                Alexander Kanavin
+vala                  0.34.4       0.34.6                Alexander Kanavin
+libiconv              1.14         1.15                  Alexander Kanavin
+ed                    1.14.1       1.14.2                Alexander Kanavin
+lzo                   2.09         2.10                  Alexander Kanavin
+kconfig-frontends     3.12.0.0     4.7.0.0               Alexander Kanavin
+gperf                 3.0.4        3.1                   Alexander Kanavin
+mkelfimage            4.0+gitX     4.5+gitAUTOINC+0b...  Alexander Kanavin    mkelfimage has been removed...
+libarchive            3.2.2        3.3.1                 Alexander Kanavin
+dpkg                  1.18.10      1.18.23               Aníbal Limón
+pinentry              0.9.2        1.0.0                 Armin Kuster
+linux-libc-headers    4.10         4.10.1                Bruce Ashfield
+libunwind             1.1+gitX     1.2+gitAUTOINC+cc...  Bruce Ashfield
+coreutils             8.26         8.27                  Chen Qi
+systemd-boot          232          233                   Chen Qi
+util-linux            2.29.1       2.29.2                Chen Qi
+pciutils              3.5.2        3.5.4                 Chen Qi
+kmod                  23+gitX      24+gitAUTOINC+ef4...  Chen Qi
+sed                   4.2.2        4.4                   Chen Qi
+sysstat               11.5.4       11.5.5                Chen Qi
+systemd               232          233                   Chen Qi
+curl                  7.53.0       7.53.1                Chen Qi
+busybox               1.25.0+gitX  1.26.2+gitAUTOINC...  Chen Qi
+flex                  2.6.0        2.6.3                 Chen Qi
+dbus-test             1.10.14      1.10.16               Chen Qi
+dbus                  1.10.14      1.10.16               Chen Qi
+grep                  2.27         3.0                   Chen Qi
+byacc                 20161202     20170201              Chen Qi
+kmod-native           23+gitX      24+gitAUTOINC+ef4...  Chen Qi
+build-appliance-i...  15.0.0       16.0.1                Cristian Iorga
+python3-setuptools    32.1.1       34.3.1                Edwin Plauchu
+python-setuptools     32.1.1       34.3.1                Edwin Plauchu
+createrepo            0.4.11       0.10.4                Hongxu Jia           Versions after 0.9.* use YU...
+libgpg-error          1.26         1.27                  Hongxu Jia
+bash                  4.3.30       4.4                   Hongxu Jia
+gnupg                 2.1.18       2.1.19                Hongxu Jia
+python-git            2.1.1        2.1.3                 Jose Lamego
+python3-git           2.1.1        2.1.3                 Jose Lamego
+pango                 1.40.3       1.40.4                Jussi Kukkonen
+libinput              1.6.1        1.6.902               Jussi Kukkonen
+xserver-xorg          1.19.1       1.19.2                Jussi Kukkonen
+gtk-icon-utils-na...  3.22.8       3.22.9                Jussi Kukkonen
+libx11-diet           1.6.4        1.6.5                 Jussi Kukkonen
+libx11                1.6.4        1.6.5                 Jussi Kukkonen
+gtk+3                 3.22.8       3.22.9                Jussi Kukkonen
+libevent              2.0.22       2.1.8                 Jussi Kukkonen
+xf86-input-libinput   0.24.0       0.25.0                Jussi Kukkonen
+libepoxy              1.4.0        1.4.1                 Jussi Kukkonen
+nfs-utils             1.3.4        2.1.1                 Mariano Lopez
+prelink               1.0+gitX     20151030.+gitAUTO...  Mark Hatle
+rpm                   5.4.16       5.4.17                Mark Hatle
+db                    6.0.35       6.2.23                Mark Hatle           latest db does not work wit...
+libpfm4               4.6.0        4.8.0                 Matthew McClintock
+ifupdown              0.8.16       0.8.19                Maxin B. John
+bluez5                5.43         5.44                  Maxin B. John
+libsolv               0.6.24       0.6.26                Maxin B. John
+harfbuzz              1.4.1        1.4.4                 Maxin B. John
+mc                    4.8.18       4.8.19                Maxin B. John
+libpcre2              10.22        10.23                 No maintainer
+linux-yocto-rt        4.10+gitX    4.10.1+gitAUTOINC...  No maintainer
+linux-yocto-tiny      4.10+gitX    4.10.1+gitAUTOINC...  No maintainer
+linux-yocto           4.10+gitX    4.10.1+gitAUTOINC...  No maintainer
+go-native             1.4.3        1.8                   No maintainer
+vulkan                1.0.39.1     20141209              No maintainer
+git                   2.11.1       2.12.0                Robert Yang
+lsbinitscripts        9.68         9.70                  Ross Burton
+base-passwd           3.5.29       3.5.43                Ross Burton          Version 3.5.38 requires cde...
 
-----------------------------------------------------------------
-Andreas Müller (1):
-      xserver-xf86-config: remove evdev configuration
+Upgradable count: 70
+Upgradable total count: 74
 
-Janek Filus (1):
-      sdcard_image: fix sdcard image generation
+The based commit is:
 
-Khem Raj (7):
-      omxplayer: Update to latest and disable on rpi64
-      linux-firmware: Bring up wifi/ble interface on rpi3
-      firmware: Update to 20170303 release
-      linux-raspberrypi_4.9.bb: Update to 4.9.13
-      linux-raspberrypi: Default to 4.9 kernel
-      userland: Update to latest
-      userland: Do not provide libgl
+commit a47e64d985a610535449730806651f5bfd75d9ec
+Author: Alexander Kanavin <alexander.kanavin@linux.intel.com>
+Date:   Fri Mar 10 13:23:51 2017 +0200
 
-Maciej Borzecki (2):
-      wic: move sdimage-raspberrypi to toplevel wic location
-      rpi-base: wic: generate entries for device tree files
+    libcomps: add a recipe
+    
+    libcomps is required by dnf.
+    
+    Signed-off-by: Alexander Kanavin <alexander.kanavin@linux.intel.com>
+    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
 
-Maxin B. John (1):
-      gstreamer1.0-omx: remove bbappend for version 1.2.0 and git
+Any problem, please contact Anibal Limon <anibal.limon@intel.com> 
 
-Paul Barker (6):
-      linux-raspberrypi: Fix uImage build on 4.9.y and later
-      linux-raspberrypi_dev: Use AUTOREV
-      linux-raspberrypi_dev: Allow branch override
-      linux-raspberrypi_dev: Disable version sanity check
-      linux-raspberrypi_4.4: Update to 4.4.50
-      linux-raspberrypi_dev: Add back arm64 dtbo rules patch
-
- classes/sdcard_image-rpi.bbclass                   |   4 +-
- conf/machine/include/rpi-base.inc                  |  32 ++++-
- conf/machine/include/rpi-default-versions.inc      |   2 +-
- conf/machine/raspberrypi3-64.conf                  |   2 -
- recipes-bsp/common/firmware.inc                    |   6 +-
- ...-applications-to-set-next-resource-handle.patch |   6 +-
- ...ayland-Add-support-for-the-Wayland-winsys.patch |  14 +--
- .../0003-wayland-Add-Wayland-example.patch         |   6 +-
- ...-wayland-egl-Add-bcm_host-to-dependencies.patch |   6 +-
- ...emove-faulty-assert-to-make-weston-happy-.patch |   6 +-
- ...6-zero-out-wl-buffers-in-egl_surface_free.patch |   6 +-
- ...007-initialize-front-back-wayland-buffers.patch |   6 +-
- .../userland/userland/0008-Remove-RPC_FLUSH.patch  |   6 +-
- .../userland/0009-fix-cmake-dependency-race.patch  |   8 +-
- ...Fix-for-framerate-with-nested-composition.patch |   6 +-
- .../0011-build-shared-library-for-vchostif.patch   |   8 +-
- ...nt-buffer-wrapping-interface-for-dispmanx.patch |   6 +-
- ...13-Implement-triple-buffering-for-wayland.patch |  11 +-
- recipes-graphics/userland/userland_git.bb          |   4 +-
- .../rpi/xorg.conf.d/10-evdev.conf                  |  40 ------
- .../xorg-xserver/xserver-xf86-config_0.1.bbappend  |  22 ++--
- .../linux-firmware/files/brcmfmac43430-sdio.txt    |  66 ++++++++++
- .../linux-firmware/linux-firmware_%.bbappend       |  12 ++
- ...-Add-rules-for-.dtbo-files-for-dts-overla.patch |   0
- recipes-kernel/linux/linux-raspberrypi_4.4.bb      |   5 +-
- recipes-kernel/linux/linux-raspberrypi_4.9.bb      |  10 +-
- recipes-kernel/linux/linux-raspberrypi_dev.bb      |  18 ++-
- ...o-acquire-buffer-when-src-pad-isn-t-activ.patch |  48 --------
- .../0001-config-files-path.patch                   | 137 ---------------------
- .../0002-fix-decoder-flushing.patch                |  16 ---
- .../0003-no-timeout-on-get-state.patch             |  16 ---
- ...erly-handle-drain-requests-while-flushing.patch |  69 -----------
- ...-gst_omx_video_dec_set_format-if-there-s-.patch |  30 -----
- ...-unref-allocator-after-getting-it-from-al.patch |  48 --------
- ...mxvideodec-Use-gstglmemoryegl-for-the-RPi.patch | 115 -----------------
- .../gstreamer/gstreamer1.0-omx_1.2.0.bbappend      |  14 ---
- .../gstreamer/gstreamer1.0-omx_git.bbappend        |  13 --
- ...nd-headers-from-ffmpeg-are-installed-in-u.patch |  27 ++--
- ...PEG_EXTRA_CFLAGS-and-FFMPEG_EXTRA_LDFLAGS.patch |  24 ++--
- recipes-multimedia/omxplayer/omxplayer_git.bb      |  13 +-
- .../canned-wks => wic}/sdimage-raspberrypi.wks     |   0
- 41 files changed, 235 insertions(+), 653 deletions(-)
- delete mode 100644 recipes-graphics/xorg-xserver/xserver-xf86-config/rpi/xorg.conf.d/10-evdev.conf
- create mode 100644 recipes-kernel/linux-firmware/files/brcmfmac43430-sdio.txt
- create mode 100644 recipes-kernel/linux-firmware/linux-firmware_%.bbappend
- rename recipes-kernel/linux/{linux-raspberrypi-4.9 => linux-raspberrypi-dev}/0001-build-arm64-Add-rules-for-.dtbo-files-for-dts-overla.patch (100%)
- delete mode 100644 recipes-multimedia/gstreamer/gstreamer1.0-omx-1.2.0/0001-Don-t-try-to-acquire-buffer-when-src-pad-isn-t-activ.patch
- delete mode 100644 recipes-multimedia/gstreamer/gstreamer1.0-omx-1.2.0/0001-config-files-path.patch
- delete mode 100644 recipes-multimedia/gstreamer/gstreamer1.0-omx-1.2.0/0002-fix-decoder-flushing.patch
- delete mode 100644 recipes-multimedia/gstreamer/gstreamer1.0-omx-1.2.0/0003-no-timeout-on-get-state.patch
- delete mode 100644 recipes-multimedia/gstreamer/gstreamer1.0-omx-1.2.0/0004-Properly-handle-drain-requests-while-flushing.patch
- delete mode 100644 recipes-multimedia/gstreamer/gstreamer1.0-omx-1.2.0/0005-Don-t-abort-gst_omx_video_dec_set_format-if-there-s-.patch
- delete mode 100644 recipes-multimedia/gstreamer/gstreamer1.0-omx-1.2.0/0006-omxvideodec-unref-allocator-after-getting-it-from-al.patch
- delete mode 100644 recipes-multimedia/gstreamer/gstreamer1.0-omx-1.2.0/0007-omxvideodec-Use-gstglmemoryegl-for-the-RPi.patch
- delete mode 100644 recipes-multimedia/gstreamer/gstreamer1.0-omx_1.2.0.bbappend
- delete mode 100644 recipes-multimedia/gstreamer/gstreamer1.0-omx_git.bbappend
- rename {scripts/lib/image/canned-wks => wic}/sdimage-raspberrypi.wks (100%)
 
