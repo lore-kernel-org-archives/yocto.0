@@ -1,71 +1,43 @@
-Return-Path: <figiel@gmail.com>
+Return-Path: <zhengrq.fnst@cn.fujitsu.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 45338E00A48; Mon, 13 Mar 2017 01:26:00 -0700 (PDT)
+	id DBBA9E00A48; Mon, 13 Mar 2017 02:18:20 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (figiel[at]gmail.com)
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.217.169 listed in dnsbl.sorbs.net]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.217.169 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RDNS_NONE autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ua0-f169.google.com (mail-ua0-f169.google.com
-	[209.85.217.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5E3ABE009A5
-	for <yocto@yoctoproject.org>; Mon, 13 Mar 2017 01:25:59 -0700 (PDT)
-Received: by mail-ua0-f169.google.com with SMTP id q7so132032891uaf.2
-	for <yocto@yoctoproject.org>; Mon, 13 Mar 2017 01:25:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=lWzH3socSx7Qq9h3lp6+UUNLV9+dBXg00xNZaQ+flG0=;
-	b=cGeN2HDYz5faqoBePOIxSbv3TtXclapu3nHYsTd260QLe4DswH3VcZFDqBautqPT+s
-	EJe3W4P6WfBwyHqgC9xiXW/baommWnxC/Kn+mQxeW+HCNknXCNwsfXeJYkuGh/ABxPSR
-	YDWERf9Uekw9s2/L273LOcEXigFKdIwWvBiwnJLfCbgYcloiM2YfYcl+DUfE6Jq9ToLB
-	YQHAmBAm5Oeip/hEArsR8Bkf1vq4/0bwgyYPcH3sTrbLU9tgoOFIrL259bQJDfsmMHe8
-	+pBYjB5y9O5+q/Mj/UQLti4vOCv2L06ndM3u88I8wmVNpz4uNEncytq9pPeO8ILi6kkO
-	5Jwg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=lWzH3socSx7Qq9h3lp6+UUNLV9+dBXg00xNZaQ+flG0=;
-	b=MMdfyN/UxFNI01p9WsvhRtNgueT97DpWr0DIGhuUT2GVlb+giLlbgNjHw2KQZ4Wh3N
-	twhwxg1TBruc1tyZ7nArlYgDuTIUmY+ZyRx9Fuh5qo0FBJ13Etm3LZXPvadVxM5ju/24
-	w/YAehIgfvVpFvrD+y0K1mx0vuZPM3XLXz5gSo12uHT3suQTquN9+leLy5Oype7p63Vl
-	BW5ZRGSunc8vpK+PhdLHD4gJxGk0cGS/V+Go4gmsAOzsQfo8nQoW+bVVjKXsCCKZWMf3
-	4KL8DgtqHdBbCjtlYtppttWmc1TPuKbj9ZZqSp5wl1z6VBm1zp/V3NDHPF6QxIHeeQd9
-	tXmg==
-X-Gm-Message-State: AMke39lCXRDehFOAGQUhcnSD2jJU3B0cCL1WYm/7pZq3QKRhXa6xDrhnNZpB5z+gN46D+zHaoLrOFR3RMoTj2A==
-X-Received: by 10.176.67.97 with SMTP id k88mr15357331uak.125.1489393558382;
-	Mon, 13 Mar 2017 01:25:58 -0700 (PDT)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from heian.cn.fujitsu.com (unknown [59.151.112.132])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A5987E00655
+	for <yocto@yoctoproject.org>; Mon, 13 Mar 2017 02:18:15 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.22,518,1449504000"; d="scan'208,217";a="16501088"
+Received: from unknown (HELO cn.fujitsu.com) ([10.167.33.5])
+	by heian.cn.fujitsu.com with ESMTP; 13 Mar 2017 17:18:05 +0800
+Received: from G08CNEXCHPEKD02.g08.fujitsu.local (unknown [10.167.33.83])
+	by cn.fujitsu.com (Postfix) with ESMTP id 4C77D47D8B96
+	for <yocto@yoctoproject.org>; Mon, 13 Mar 2017 17:18:01 +0800 (CST)
+Received: from G08CNEXMBPEKD01.g08.fujitsu.local ([10.167.33.81]) by
+	G08CNEXCHPEKD02.g08.fujitsu.local ([10.167.33.83]) with mapi id
+	14.03.0319.002; Mon, 13 Mar 2017 17:18:03 +0800
+From: "Zheng, Ruoqin" <zhengrq.fnst@cn.fujitsu.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto] Yocto Jetro / ls1046 : SDK with toolchains for both 32
+	and 	64 bits
+Thread-Index: AdKb2dxJPPlDJWvDSMyceOiXLEccUQ==
+Date: Mon, 13 Mar 2017 09:18:02 +0000
+Message-ID: <33D4DBCAC5F2D74E96B07F6E7632BF73244DC934@G08CNEXMBPEKD01.g08.fujitsu.local>
+Accept-Language: zh-CN, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.167.226.100]
 MIME-Version: 1.0
-Received: by 10.103.19.132 with HTTP; Mon, 13 Mar 2017 01:25:57 -0700 (PDT)
-In-Reply-To: <2ce1386b-e63b-4aea-0685-7abf949de115@linux.intel.com>
-References: <37d4f98c-9102-f4bf-c6cc-f64e1ffbce40@linux.intel.com>
-	<CAP9ODKogXP8vO7CCmxs2c-TiRmZZhOKyN5M=ffZV7U2Qrjw1hQ@mail.gmail.com>
-	<b80a93fd-8fa3-5b27-0ffb-ab9fd8d04c12@linux.intel.com>
-	<CAP9ODKpGer=sF2QF8cCPh68OybqJxMdR5a_x9aXhw=htNWKOiw@mail.gmail.com>
-	<2ce1386b-e63b-4aea-0685-7abf949de115@linux.intel.com>
-From: Piotr Figiel <figiel@gmail.com>
-Date: Mon, 13 Mar 2017 09:25:57 +0100
-Message-ID: <CAL9TtUqKgNJsh-imQVysY8jEvw_=U=y9PreSJvXULj0=CzYksw@mail.gmail.com>
-To: Alexander Kanavin <alexander.kanavin@linux.intel.com>
-Cc: Yocto Project <yocto@yoctoproject.org>, openembedded-architecture
-	<openembedded-architecture@lists.openembedded.org>,
-	Otavio Salvador <otavio.salvador@ossystems.com.br>
-Subject: Re: [Openembedded-architecture] Proposal: dealing with language-specific build tools/dependency management tools
+X-yoursite-MailScanner-ID: 4C77D47D8B96.AA819
+X-yoursite-MailScanner: Found to be clean
+X-yoursite-MailScanner-From: zhengrq.fnst@cn.fujitsu.com
+Subject: Re: Yocto Jetro / ls1046 : SDK with toolchains for both 32 and 64 bits
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -77,43 +49,212 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 13 Mar 2017 08:26:00 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Mon, 13 Mar 2017 09:18:21 -0000
+Content-Language: zh-CN
+Content-Type: multipart/alternative;
+	boundary="_000_33D4DBCAC5F2D74E96B07F6E7632BF73244DC934G08CNEXMBPEKD01_"
 
-Hi Alexander,
- first of all thanks for the efforts. Some comments to add to the mix:
+--_000_33D4DBCAC5F2D74E96B07F6E7632BF73244DC934G08CNEXMBPEKD01_
+Content-Type: text/plain; charset="gb2312"
+Content-Transfer-Encoding: base64
 
-2017-03-10 16:10 GMT+01:00 Alexander Kanavin
-<alexander.kanavin@linux.intel.com>:
+SGkgQVJWSVMuDQpJIGhhdmUgdXNlZCB0aGUgcmVtb3Rlcy9vcmlnaW4vSmV0
+aHJvIGJyYW5jaCB0byBwcm9kdWNlIEFybSBTREsgYW5kIHRlc3QgaXQuDQpJ
+IGRpZG6hr3QgbWVldCB0aGUgc2FtZSBwcm9ibGVtIHdpdGggeW91LCBoZXJl
+IGlzIG15IHN0ZG91dCBsb2c6DQokIC4gL29wdC9wb2t5LzIuMC4zL2Vudmly
+b25tZW50LXNldHVwLWFybXY3YS12ZnAtbmVvbi1wb2t5bWxsaWIzMi1saW51
+eC1nbnVlYWJpDQokICRDQw0KLWJhc2g6IGFybS1wb2t5bWxsaWIzMi1saW51
+eC1nbnVlYWJpLWdjYzogY29tbWFuZCBub3QgZm91bmQNCg0KQW5kIEkgY2Fu
+IGZpbmQgZ2NjIGZvciBhcm0zMiBpbiAvb3B0L3Bva3kvMi4wLjMvc3lzcm9v
+dHMveDg2XzY0LXBva3lzZGstbGludXgvdXNyL2Jpbi9hcm0tcG9reS1saW51
+eC1nbnVlYWJpDQokIGxzDQphcm0tcG9reS1saW51eC1nbnVlYWJpLWFkZHIy
+bGluZSAgIGFybS1wb2t5LWxpbnV4LWdudWVhYmktZ2RiDQphcm0tcG9reS1s
+aW51eC1nbnVlYWJpLWFyICAgICAgICAgIGFybS1wb2t5LWxpbnV4LWdudWVh
+YmktZ3Byb2YNCmFybS1wb2t5LWxpbnV4LWdudWVhYmktYXMgICAgICAgICAg
+YXJtLXBva3ktbGludXgtZ251ZWFiaS1sZA0KYXJtLXBva3ktbGludXgtZ251
+ZWFiaS1jKytmaWx0ICAgICBhcm0tcG9reS1saW51eC1nbnVlYWJpLWxkLmJm
+ZA0KYXJtLXBva3ktbGludXgtZ251ZWFiaS1jcHAgICAgICAgICBhcm0tcG9r
+eS1saW51eC1nbnVlYWJpLWxkLmdvbGQNCmFybS1wb2t5LWxpbnV4LWdudWVh
+YmktZHdwICAgICAgICAgYXJtLXBva3ktbGludXgtZ251ZWFiaS1ubQ0KYXJt
+LXBva3ktbGludXgtZ251ZWFiaS1lbGZlZGl0ICAgICBhcm0tcG9reS1saW51
+eC1nbnVlYWJpLW9iamNvcHkNCmFybS1wb2t5LWxpbnV4LWdudWVhYmktZysr
+ICAgICAgICAgYXJtLXBva3ktbGludXgtZ251ZWFiaS1vYmpkdW1wDQphcm0t
+cG9reS1saW51eC1nbnVlYWJpLWdjYyAgICAgICAgIGFybS1wb2t5LWxpbnV4
+LWdudWVhYmktcmFubGliDQphcm0tcG9reS1saW51eC1nbnVlYWJpLWdjYy1h
+ciAgICAgIGFybS1wb2t5LWxpbnV4LWdudWVhYmktcmVhZGVsZg0KYXJtLXBv
+a3ktbGludXgtZ251ZWFiaS1nY2Mtbm0gICAgICBhcm0tcG9reS1saW51eC1n
+bnVlYWJpLXNpemUNCmFybS1wb2t5LWxpbnV4LWdudWVhYmktZ2NjLXJhbmxp
+YiAgYXJtLXBva3ktbGludXgtZ251ZWFiaS1zdHJpbmdzDQphcm0tcG9reS1s
+aW51eC1nbnVlYWJpLWdjb3YgICAgICAgIGFybS1wb2t5LWxpbnV4LWdudWVh
+Ymktc3RyaXANCmFybS1wb2t5LWxpbnV4LWdudWVhYmktZ2Nvdi10b29sDQok
+IHB3ZA0KL29wdC9wb2t5LzIuMC4zL3N5c3Jvb3RzL3g4Nl82NC1wb2t5c2Rr
+LWxpbnV4L3Vzci9iaW4vYXJtLXBva3ktbGludXgtZ251ZWFiaQ0KDQpTbyBJ
+IHRoaW5rIFNESyBkbyBwcm92aWRlIGdjYyBmb3IgYXJtIDMyYml0LCBidXQg
+aXQgY2Fuoa90IGJlIGZvdW5kIGluIHRoZSBTREsgZW52aXJvbm1lbnQuDQoN
+Ci0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tDQpaaGVuZyBSdW9xaW4NCk5hbmppbmcgRnVqaXRzdSBOYW5kYSBT
+b2Z0d2FyZSBUZWNoLiBDby4sIEx0ZC4oRk5TVCkNCkFERFIuOiBOby42IFdl
+bnpodSBSb2FkLCBTb2Z0d2FyZSBBdmVudWUsDQogICAgICAgTmFuamluZywg
+MjEwMDEyLCBDaGluYQ0KTUFJTCA6IHpoZW5ncnEuZm5zdEBjbi5mdWppc3R1
+LmNvbQ0KDQoKCg==
 
-> The lockdown files would list the versions of the dependencies (if it is
-> possible, which is not always true), so you can inspect those to see if
-> something is vulnerable. In node.js or Go worlds the libraries are not
-> reused between apps anyway, so it really doesn't matter if they're packaged
-> as separate recipes or not (I didn't have time to check Rust, but as it's
-> also using lockdown files, I believe the libraries are not reused either).
+--_000_33D4DBCAC5F2D74E96B07F6E7632BF73244DC934G08CNEXMBPEKD01_
+Content-Type: text/html; charset="gb2312"
+Content-Transfer-Encoding: quoted-printable
 
-I don't know if you've heard of the lately popular idea of
-"microservices" - but basically it comes down to having multiple
-specialized node applications installed. In practice those
-applications often share the dependencies, so it would totally make
-sense to use the packages approach so that the dependencies don't need
-to be installed in multiple copies. Perhaps maybe not with recipe per
-npm package, but maybe with some more advanced bitbake magic or a
-post-rootfs hook to run deduplication.
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dgb2312">
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:=CB=CE=CC=E5;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"\@=CB=CE=CC=E5";
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	font-size:10.5pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+/* Page Definitions */
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"ZH-CN" link=3D"#0563C1" vlink=3D"#954F72" style=3D"text-justi=
+fy-trim:punctuation">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Hi ARVIS.<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-indent:21.0pt"><span lang=3D"EN-US">I =
+have used the remotes/origin/Jethro branch to produce Arm SDK and test it.<=
+o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-indent:21.0pt"><span lang=3D"EN-US">I =
+didn=A1=AFt meet the same problem with you, here is my stdout log:<o:p></o:=
+p></span></p>
+<p class=3D"MsoNormal" style=3D"text-indent:21.0pt"><b><span lang=3D"EN-US"=
+>$ . /opt/poky/2.0.3/environment-setup-armv7a-vfp-neon-pokymllib32-linux-gn=
+ueabi<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal" style=3D"text-indent:21.0pt"><b><span lang=3D"EN-US"=
+>$ $CC<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal" style=3D"text-indent:21.0pt"><b><span lang=3D"EN-US"=
+>-bash: arm-pokymllib32-linux-gnueabi-gcc: command not found<o:p></o:p></sp=
+an></b></p>
+<p class=3D"MsoNormal" style=3D"text-indent:21.0pt"><span lang=3D"EN-US"><o=
+:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-indent:21.0pt"><span lang=3D"EN-US">An=
+d I can find gcc for arm32 in
+<span style=3D"color:red">/opt/poky/2.0.3/sysroots/x86_64-pokysdk-linux/usr=
+/bin/arm-poky-linux-gnueabi</span><o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-indent:21.0pt"><b><span lang=3D"EN-US"=
+>$ ls<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal" style=3D"text-indent:21.0pt"><b><span lang=3D"EN-US"=
+>arm-poky-linux-gnueabi-addr2line&nbsp;&nbsp; arm-poky-linux-gnueabi-gdb<o:=
+p></o:p></span></b></p>
+<p class=3D"MsoNormal" style=3D"text-indent:21.0pt"><b><span lang=3D"EN-US"=
+>arm-poky-linux-gnueabi-ar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp; arm-poky-linux-gnueabi-gprof<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal" style=3D"text-indent:21.0pt"><b><span lang=3D"EN-US"=
+>arm-poky-linux-gnueabi-as&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp; arm-poky-linux-gnueabi-ld<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal" style=3D"text-indent:21.0pt"><b><span lang=3D"EN-US"=
+>arm-poky-linux-gnueabi-c&#43;&#43;filt&nbsp;&nbsp;&nbsp;&nbsp; arm-poky-li=
+nux-gnueabi-ld.bfd<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal" style=3D"text-indent:21.0pt"><b><span lang=3D"EN-US"=
+>arm-poky-linux-gnueabi-cpp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+ arm-poky-linux-gnueabi-ld.gold<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal" style=3D"text-indent:21.0pt"><b><span lang=3D"EN-US"=
+>arm-poky-linux-gnueabi-dwp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+ arm-poky-linux-gnueabi-nm<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal" style=3D"text-indent:21.0pt"><b><span lang=3D"EN-US"=
+>arm-poky-linux-gnueabi-elfedit&nbsp;&nbsp;&nbsp;&nbsp; arm-poky-linux-gnue=
+abi-objcopy<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal" style=3D"text-indent:21.0pt"><b><span lang=3D"EN-US"=
+>arm-poky-linux-gnueabi-g&#43;&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp; arm-poky-linux-gnueabi-objdump<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal" style=3D"text-indent:21.0pt"><b><span lang=3D"EN-US"=
+>arm-poky-linux-gnueabi-gcc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+ arm-poky-linux-gnueabi-ranlib<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal" style=3D"text-indent:21.0pt"><b><span lang=3D"EN-US"=
+>arm-poky-linux-gnueabi-gcc-ar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; arm-poky-linux=
+-gnueabi-readelf<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal" style=3D"text-indent:21.0pt"><b><span lang=3D"EN-US"=
+>arm-poky-linux-gnueabi-gcc-nm&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; arm-poky-linux=
+-gnueabi-size<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal" style=3D"text-indent:21.0pt"><b><span lang=3D"EN-US"=
+>arm-poky-linux-gnueabi-gcc-ranlib&nbsp; arm-poky-linux-gnueabi-strings<o:p=
+></o:p></span></b></p>
+<p class=3D"MsoNormal" style=3D"text-indent:21.0pt"><b><span lang=3D"EN-US"=
+>arm-poky-linux-gnueabi-gcov&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; arm-=
+poky-linux-gnueabi-strip<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal" style=3D"text-indent:21.0pt"><b><span lang=3D"EN-US"=
+>arm-poky-linux-gnueabi-gcov-tool<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal" style=3D"text-indent:21.0pt"><span lang=3D"EN-US">$ =
+pwd<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-indent:21.0pt"><span lang=3D"EN-US">/o=
+pt/poky/2.0.3/sysroots/x86_64-pokysdk-linux/usr/bin/arm-poky-linux-gnueabi<=
+o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-indent:21.0pt"><span lang=3D"EN-US"><o=
+:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-indent:21.0pt"><span lang=3D"EN-US">So=
+ I think SDK do provide gcc for arm 32bit, but it can=A1=AFt be found in th=
+e SDK environment.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal" align=3D"left" style=3D"text-align:left"><span lang=
+=3D"EN-US">--------------------------------------------------<o:p></o:p></s=
+pan></p>
+<p class=3D"MsoNormal" align=3D"left" style=3D"text-align:left"><span lang=
+=3D"EN-US">Zheng Ruoqin<o:p></o:p></span></p>
+<p class=3D"MsoNormal" align=3D"left" style=3D"text-align:left"><span lang=
+=3D"EN-US">Nanjing Fujitsu Nanda Software Tech. Co., Ltd.(FNST)<o:p></o:p><=
+/span></p>
+<p class=3D"MsoNormal" align=3D"left" style=3D"text-align:left"><span lang=
+=3D"EN-US">ADDR.: No.6 Wenzhu Road, Software Avenue,<o:p></o:p></span></p>
+<p class=3D"MsoNormal" align=3D"left" style=3D"text-align:left"><span lang=
+=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Nanjing, 210012, China<o:p>=
+</o:p></span></p>
+<p class=3D"MsoNormal" align=3D"left" style=3D"text-align:left"><span lang=
+=3D"EN-US">MAIL : zhengrq.fnst@cn.fujistu.com<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+</div>
+</body>
+</html>
 
-What works most of the time is using shrinkwrap to freeze the
-dependencies to some local npm mirror, so the concept of lockdown
-would make sense. Just a word of warning that it sometimes doesn't
-work that well - some of the npm packages (in the dependencies chain)
-may have hard-coded URI's to e.g. gitlab and shrinkwrap will keep
-those references instead of npm mirror. Also npm itself doesn't really
-check for consistency it only checks for versions, what can happen is
-that the contents may change but the version string may not. In terms
-of node yarn [1] seems to address some of the npm shortcomings but I'm
-not aware of any progress in regards of yocto integration.
-
-[1] https://yarnpkg.com/
-
-Best regards, Piotr.
-
+--_000_33D4DBCAC5F2D74E96B07F6E7632BF73244DC934G08CNEXMBPEKD01_--
