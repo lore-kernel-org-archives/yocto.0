@@ -1,36 +1,39 @@
 Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B5BD9E007EE; Mon, 13 Mar 2017 13:58:49 -0700 (PDT)
+	id 22A2EE00887; Mon, 13 Mar 2017 19:01:24 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [192.55.52.43 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.88 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F39C9E00655
-	for <yocto@yoctoproject.org>; Mon, 13 Mar 2017 13:58:47 -0700 (PDT)
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-	by fmsmga105.fm.intel.com with ESMTP; 13 Mar 2017 13:58:47 -0700
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E0AE4E00655
+	for <yocto@yoctoproject.org>; Mon, 13 Mar 2017 19:01:19 -0700 (PDT)
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+	by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	13 Mar 2017 19:01:18 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.36,161,1486454400"; d="scan'208";a="75651808"
+X-IronPort-AV: E=Sophos;i="5.36,162,1486454400"; d="scan'208";a="834256319"
 Received: from nuritamo-mobl.gar.corp.intel.com (HELO
 	peggleto-mobl.ger.corp.intel.com) ([10.255.160.31])
-	by fmsmga005.fm.intel.com with ESMTP; 13 Mar 2017 13:58:45 -0700
+	by FMSMGA003.fm.intel.com with ESMTP; 13 Mar 2017 19:01:16 -0700
 From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: openembedded-architecture@lists.openembedded.org
-Date: Tue, 14 Mar 2017 09:58:42 +1300
-Message-ID: <2643497.8STJQaXO5O@peggleto-mobl.ger.corp.intel.com>
+To: Jose Lamego <jose.a.lamego@linux.intel.com>
+Date: Tue, 14 Mar 2017 15:01:14 +1300
+Message-ID: <1547728.gaXEvVxRZb@peggleto-mobl.ger.corp.intel.com>
 Organization: Intel Corporation
-In-Reply-To: <37d4f98c-9102-f4bf-c6cc-f64e1ffbce40@linux.intel.com>
-References: <37d4f98c-9102-f4bf-c6cc-f64e1ffbce40@linux.intel.com>
+In-Reply-To: <af345555-3ff8-e443-cd51-6686a676cb3d@linux.intel.com>
+References: <1484777982-7168-1-git-send-email-jose.a.lamego@linux.intel.com>
+	<1484777982-7168-3-git-send-email-jose.a.lamego@linux.intel.com>
+	<af345555-3ff8-e443-cd51-6686a676cb3d@linux.intel.com>
 MIME-Version: 1.0
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [Openembedded-architecture] Proposal: dealing with language-specific build tools/dependency management tools
+Cc: yocto@yoctoproject.org
+Subject: Re: [layerindex-web][PATCH 2/2] views.py: Consider layer name in recipe search
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,229 +45,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 13 Mar 2017 20:58:49 -0000
+X-List-Received-Date: Tue, 14 Mar 2017 02:01:24 -0000
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
 
-Alex - thanks for kicking off the discussion here, this is something we 
-definitely need to get a better handle on.
+Hi Jose,
 
-My involvement with this is perhaps somewhat accidental - I ended up working 
-on the fetcher that was implemented by someone else because I needed it to 
-work for devtool integration, and got sucked into fixing a number of issues I 
-found in the process. Unfortunately - other than python, naturally - I'm not 
-that familiar with the actual languages or their package managers, I've only 
-come into contact with node.js and npm through the work that I've done with 
-the build system.
+Sorry for the delay in responding to this.
 
-This is a tough problem to solve. Maybe some of the other language package 
-managers are more cooperative, I'm not sure, but npm *really* doesn't want to 
-be used in the manner we're trying to use it - it insists on being able to go 
-out to the registry and things get a bit ugly if you tell it not to. RSS-
-related issues aside (since I kind of have a path to fixing those) the latest 
-pain was in 90cb980a1c49de99a0aec00c0cd5fc1e165490a7 when we shifted from a 
-cp -a to a second invocation of npm install in order to get a more accurate 
-install step - the side-effect has been we broke that step for certain 
-modules, as the certain directives in the package.json file trigger querying 
-the repository, but we've told it not to do that so it errors out.
-
-Another thing that is still a stumbling block for the "one package represents 
-a tree of modules" that I've yet to properly resolve is how to deal with a 
-"partial" tree, where you have one or more modules that you want to actually 
-work on, i.e. you have another recipe to satisfy the dependency possibly under 
-the control of devtool in your workspace. npm doesn't seem to provide any 
-specific mechanism to help with this either. At the moment I'm not sure 
-there's a solution with npm other than hacking the package.json file.
-
-Since it was brought up by Trevor a while back, I still have a todo item to go 
-and look at yarn [1] to see if it really solved some of these issues for 
-node.js in a less nasty way than npm.
-
-One thing I will say - I really want to see the fetchers (or at least, the 
-custom bits) for these language package managers implemented in the metadata 
-rather than in bitbake. This stuff moves fast, there are a growing number of 
-these package managers, and it's awkward to have part of the implementation in 
-one place and a significant portion of the rest of it (class and supporting 
-recipes) in another, without which the fetcher is useless. However, at the 
-same time we want to make sure we don't lose the ability to have mirror 
-tarballs which are implemented on the bitbake side.
-
-With regard to the recipes generated by devtool, they do end up being a bit 
-ugly because we package each underlying npm package individually. The reason I 
-did it that way is to have each source and therefore each license represented 
-in the image manifests. I am open to having a mode where we have it all in one 
-package, though, but it seems to me that LICENSE must include all the licenses 
-at parse time. I'm open to suggestions. Perhaps we could save the package.json 
-file next to the recipe - is that going to be practical? It might be a bit 
-easier to update at least. I agree that in addition to providing the lockdown 
-we do definitely need to make updating these recipes easier, it's a bit 
-awkward right now.
+I'd prefer if this were implemented like the recently added "inherits:" where 
+we have a special prefix e.g. "layer:" in order to search for things in a 
+particular layer. Then it's much clearer as to what's going on.
 
 Cheers,
 Paul
 
-[1] https://yarnpkg.com/
-
-On Saturday, 11 March 2017 2:49:01 AM NZDT Alexander Kanavin wrote:
-> Hello all,
+On Tuesday, 14 March 2017 9:35:34 AM NZDT Jose Lamego wrote:
+> Ping.
 > 
-> *Introduction*
-> 
-> The new generation of programming languages (think node.js, Go, Rust) is
-> a poor fit for the Yocto build model which follows the traditional Unix
-> model. In particular, those new development environments have no problem
-> with 'grabbing random stuff from the Internet' as a part of development
-> and build process. However, Yocto has very strict rules about the build
-> steps and what they can and can not do, and also a strict enforcement of
-> license and version checks for every component that gets built. Those
-> two models clash, and this is a proposal of how they could be reconciled.
-> 
-> I'll also send a separate email that talks specifically about MEAN stack
-> and how it could be supported as Yocto - take it as a specific example
-> for all of the below.
-> 
-> *Background*
-> 
-> The traditional development model on Unix clearly separates installation
-> of dependencies needed to develop a project from the development process
-> itself. Typically, when one wants to build some project, first the
-> project README needs to be inspected, and any required dependencies
-> installed system-wide using the distribution package management's tool.
-> When those dependencies change, usually this manifests itself in a
-> previously unseen build failure which is again manually resolved by
-> figuring out the missing dependency and installing it. This can be
-> awkward, but it's how things have been done for decades, and Yocto's
-> build system (with separate steps for fetching, unpacking, building,
-> packaging etc.) is built around the assumption that most software can be
-> built this way.
-> 
-> Unfortunately, this situation is changing. The new development
-> environments, such as Go, Rust or node.js see this approach as
-> cumbersome and getting-in-the-way for developers. They want projects'
-> setup to be as quick and automatic as possible - and it should also be
-> cross-platform. So each such environment comes with a specialized tool
-> which handles installation of dependencies and bypasses the distribution
-> package management altogether. Typically these dependencies are fetched
-> from the Internet and installed into the project tree. The details are
-> hidden; it's assumed that developers don't want to know or care. In
-> particular, specific versions of dependencies can be only weakly
-> specified or ignored altogether (that is, the latest commit is always
-> fetched), licensing is totally overlooked, a list of what was installed
-> cannot be trivially obtained, and repeating the procedure the next day
-> may result in a different set of code being pulled in, because someone
-> somewhere added a commit to their github repo.
-> 
-> This does not work well in Yocto context. Yocto project prides itself on
-> being specific and exact about what gets build, how it gets built and
-> what license is attached to each component. So we need to somehow
-> enforce that with the new model, and avoid the situation where separate,
-> incompatible, and difficult to grasp solutions are developed for each
-> language environment.
-> 
-> *Design considerations*
-> 
-> 1. I would like recipes to remain short and sweet and clear. In
-> particular, node.js projects can pull in hundreds of dependencies; I
-> want to keep their metadata out of the recipe and somewhere else, for
-> readability, clarity, and maintainability.
-> 
-> 2. I don't want to implement custom fetchers, or otherwise re-implement
-> (poorly) those language-specific build and dependency management tools.
-> Let's use npm, cargo and go as much as we possibly can and let them do
-> their job - yes, that also includes them fetching things from the
-> internet for us.
-> 
-> 3. When things need to be updated to a new version, manual editing of
-> metadata should be avoided: when there are hundreds of dependencies, a
-> tool should modify the metadata, and human should only inspect the changes.
-> 
-> *How do we deal with this?*
-> 
-> By introducing a lockdown file that lives next to the recipe. The
-> concept is already implemented in npm, but needs to be made generic and
-> come with a common API that is using the file to verify the build.
-> 
-> *What is a lockdown file?*
-> 
-> The file captures all of the recipe dependencies that are pulled in by
-> the build tool. For each such dependency the following information is
-> provided (this is really similar to what is in recipes, and that is on
-> purpose:
-> 
-> - name
-> - description (optional)
-> - verification data (this is specific to each language, but can be
-> version, git commit id, a checksum and so on). The only requirement is
-> that it maps to a unique set of code.
-> - license string
-> - license file path
-> - license checksum
-> 
-> *How is the lockdown file used?*
-> 
-> 1. It needs to be generated in the first place when adding a new recipe.
-> For example:
-> 
-> bitbake -c generate_lockdown recipe
-> 
-> would fetch and unpack the recipe code, then run npm/cargo/go to pull in
-> the dependencies, then walk the project tree and generate the lockdown
-> metadata. Sometimes the tools can help here somewhat, but other times
-> they can be used only for fetching, and verification data has to be
-> figured out by inspecting the tree with our custom-written code. This is
-> the hard part that we have to deal with.
-> 
-> 2. It can be used to perform a 'loose' build of the recipe that does not
-> guarantee reproducibility.
-> 
-> We have to accept this: some projects just don't care about it, and
-> offer no support to those who want reproducibility. We should at least
-> provide a way to build such projects in Yocto. The information in
-> lockdown file is not enforced; it's merely compared against the actual
-> build and any differences presented to the user as warnings. This is a
-> recipe setting.
-> 
-> 3. It can also be used to perform a 'strict' build of the recipe that
-> enforces what is in the lockdown file.
-> 
-> The information in the lockdown file is given to the language-specific
-> tool to help it fetch the right things (whenever the tool makes it
-> possible), and then is used to compare to what was fetched, but this
-> time any mismatches stop the build. Exactly how this happens is specific
-> to each language, and again, it is the hard bit that we need to deal with.
-> 
-> 4. When a recipe is updated to a new version, the lockdown file needs to
-> be updated as well.
-> 
-> One possibility is to generate a new lockdown file (as in point 1), and
-> then a human can compare that against the old lockdown file.
-> 
-> bitbake -c update_lockdown recipe
-> 
-> 5. Packaging
-> 
-> Go by default is compiling everything into a static executable, so there
-> are no separate packages. All dependencies' licenses should be rolled
-> into the package: lockdown file tells what they are and where they are
-> in the build tree.
-> 
-> Other environments do install the dependencies somewhere in the system,
-> so those should be packaged separately: lockdown file is used to get a
-> list of them and attach licenses to them. Installation paths (things
-> that FILES_ is set to) should typically be easy to figure out from
-> dependency names.
-> 
-> *Conclusion*
-> 
-> This is only a preliminary idea: I understand that the devil is in the
-> details, and there are plenty of details where things may not work out
-> as planned, or there's something else I didn't think of that should be
-> accounted for. So flame away!
-> 
-> _______________________________________________
-> Openembedded-architecture mailing list
-> Openembedded-architecture@lists.openembedded.org
-> http://lists.openembedded.org/mailman/listinfo/openembedded-architecture
+> On 01/18/2017 04:19 PM, Jose Lamego wrote:
+> > From: Alex Franco <alejandro.franco@linux.intel.com>
+> > 
+> > Recipe search cannot be narrowed to a specific layer, producing
+> > unnecessary results.
+> > 
+> > This change allows including a layers name when searching for recipes to
+> > narrow the yielded results by adding a layer name to the
+> > simplesearch.getquery call in the recipe search view.
+> > 
+> > [YOCTO #6618]
+> > 
+> > Signed-off-by: Jose Lamego <jose.a.lamego@linux.intel.com>
+> > ---
+> > 
+> >  layerindex/views.py | 3 ++-
+> >  1 file changed, 2 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/layerindex/views.py b/layerindex/views.py
+> > index 03fadbb..5db6fbc 100644
+> > --- a/layerindex/views.py
+> > +++ b/layerindex/views.py
+> > 
+> > @@ -406,7 +406,8 @@ class RecipeSearchView(ListView):
+> >              qs0 = init_qs.filter(pn=query_string).order_by(*order_by)
+> >              qs0 = recipes_preferred_count(qs0)
+> > 
+> > -            entry_query = simplesearch.get_query(query_string, ['pn'])
+> > +            entry_query = simplesearch.get_query(
+> > +                query_string, ['pn', 'layerbranch__layer__name'])
+> > 
+> >              qs1 = init_qs.filter(entry_query).order_by(*order_by)
+> >              qs1 = recipes_preferred_count(qs1)
 
 
 -- 
