@@ -1,63 +1,62 @@
-Return-Path: <prvs=1246e5721c=holzmayr@rsi-elektrotechnik.de>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9BD35E00A5C; Tue, 14 Mar 2017 02:54:53 -0700 (PDT)
+	id E351BE00995; Tue, 14 Mar 2017 03:06:14 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [81.169.146.220 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.220.181 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mo4-p00-ob.smtp.rzone.de (mo4-p00-ob.smtp.rzone.de
-	[81.169.146.220])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 92769E0050B
-	for <yocto@yoctoproject.org>; Tue, 14 Mar 2017 02:54:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1489485277;
-	l=1428; s=domk; d=rsi-elektrotechnik.de;
-	h=Content-Transfer-Encoding:Content-Type:In-Reply-To:MIME-Version:
-	Date:From:References:To:Subject;
-	bh=/zvH+YWWDssDwtMhqK5CnTnh3QrnXbEJrIyieZsl/xs=;
-	b=DpHo+sYo0iLEScQIjlquN2G+ccRcNQu0RoFZJ/DkyQVJ8kNaGlgURQwUnI1ArgjqlU
-	IZiEwnxyF3eew2INm+S8PmLL/H9Jq75P+6/EdwwrJiv3VKR8Kz/z6KXFc3bQG6DU+mq1
-	d/MgHDk3NM91rgcJ0XDkj3JZ1zOG+LLINl4uo=
-X-RZG-AUTH: :fz5RJhWIaexwuXGosGLfiBc0xYyi1Y5bd+wRKqrzPWwJyH/ODuV4n+N24+CqMVTDvFFN0+xNtPaAoGLw2S47Aw5p3DMOqepD6BZ9BTbdag==
-X-RZG-CLASS-ID: mo00
-Received: from mail.rsi-elektrotechnik.de
-	([2001:0:5ef5:79fb:18fe:329c:af6c:cbea])
-	by smtp.strato.de (RZmta 40.1 AUTH) with ESMTPSA id k02e3et2E9sbbpI
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (curve secp384r1
-	with 384 ECDH bits, eq. 7680 bits RSA))
-	(Client did not present a certificate);
-	Tue, 14 Mar 2017 10:54:37 +0100 (CET)
-Received: from [x.x.x.x] by mail.rsi-elektrotechnik.de (Cipher
-	TLSv1.2:AES-SHA:256) (MDaemon PRO v16.5.2) 
-	with ESMTPSA id md50000509487.msg; Tue, 14 Mar 2017 10:54:26 +0100
-X-MDRemoteIP: 80.147.52.21
-X-MDArrival-Date: Tue, 14 Mar 2017 10:54:26 +0100
-X-Authenticated-Sender: holzmayr@rsi-elektrotechnik.de
-X-Return-Path: prvs=1246e5721c=holzmayr@rsi-elektrotechnik.de
-X-Envelope-From: holzmayr@rsi-elektrotechnik.de
-X-CAV-Result: skipped - holzmayr@rsi-elektrotechnik.de is in exclusion list
-To: ravikiran j <ravikiran.j@mistralsolutions.com>,
-	Yocto Project <yocto@yoctoproject.org>
-References: <CALDHXteTtgxuKk_6iO4c8GhGqzTo_DVHS7jAB6tGijnY5ivORA@mail.gmail.com>
-	<44dd7195-b6a0-c64b-7c3d-75940ba45f53@rsi-elektrotechnik.de>
-	<CALDHXtdUjvW=r_78=WZR8TjeuLO3w1X-F=1OOVr=8dVJRXTr-w@mail.gmail.com>
-From: Josef Holzmayr <holzmayr@rsi-elektrotechnik.de>
-Message-ID: <36ec1982-a56e-fc0e-ba2a-a65824ce3574@rsi-elektrotechnik.de>
-Date: Tue, 14 Mar 2017 10:54:16 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.8.0
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.220.181 listed in list.dnswl.org]
+Received: from mail-qk0-f181.google.com (mail-qk0-f181.google.com
+	[209.85.220.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1BF2BE00901
+	for <yocto@yoctoproject.org>; Tue, 14 Mar 2017 03:06:13 -0700 (PDT)
+Received: by mail-qk0-f181.google.com with SMTP id y76so243568206qkb.0
+	for <yocto@yoctoproject.org>; Tue, 14 Mar 2017 03:06:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=Dkbl8bO7uaux4N6z7TdFLYnx7nhZunQpg5RgEf4L7zo=;
+	b=ecQNabwqc9gG0gZJoxTmLBPCcNhpouTz77Ydy6AK3pv/RUh/Y4y8RjUWU0fCQjTvkv
+	2gyiaqrTpLU3Ni67toOW8fzDpekTPh+s2e/T2WF+qq+KP1kKZ4Lqp9gEfO4pJMvntHA1
+	7NlP+uDFeVbwfGPHX+RYsmcRLk02Ss5Fz6RIvvkl/qvotRCVz0EIFMvfsk+I8P+On7UO
+	UfltcFZq6hOTfgnwTPTkIDenZ3d9+y6E2meFSUfqovfBV/0qVmtYkwSINd7VnopwiI2f
+	t/lBX0PAVregb7zIcl2/eXnOeLB15fpW7URNFvwCViaJR/RGMPlJid/OBBgvbHO6PISa
+	uCCA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=Dkbl8bO7uaux4N6z7TdFLYnx7nhZunQpg5RgEf4L7zo=;
+	b=FZVQbQgwDdD7WA5TYLXIfgBhK0tA6EE3dj7IwqeZ7pRHLVouN/lisLu6u9Jvn0fb8r
+	cyAEcOHss5Qce17d4+5/6pHSk4t3m6ZAJckwdXtt3E20YDzwC/C2eADokXwNgG4asFMc
+	9f714ZcRdywdhJgT/up20jA0InzSUUzq/lf0l8zK9IbTqpBKsgCyDwglmNpSNWn1LaRE
+	+oWG6c6NGGtMxcpMIcZTNOmGb+Fq9JvgyyOox9pF4iShO+nn/wg91agEmz31Rnp4C+4m
+	dQNiLF4D+TVB1PFFAg/SwghA3iA1TxovUatd7kitIFh80T6ssWYhOeHu8KkVP8+pKDg/
+	Fnjg==
+X-Gm-Message-State: AFeK/H3SniEswwnnWz4Xb7auNaV9j46cBeR5nPEDNLLIjWQx/BkXp/hZfnzOQ2AZoxpESQ7pJW4a1h/0uWjmn89H
+X-Received: by 10.55.175.195 with SMTP id y186mr35496507qke.26.1489485971674; 
+	Tue, 14 Mar 2017 03:06:11 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CALDHXtdUjvW=r_78=WZR8TjeuLO3w1X-F=1OOVr=8dVJRXTr-w@mail.gmail.com>
+Received: by 10.140.22.166 with HTTP; Tue, 14 Mar 2017 03:05:51 -0700 (PDT)
+In-Reply-To: <CALDHXteTtgxuKk_6iO4c8GhGqzTo_DVHS7jAB6tGijnY5ivORA@mail.gmail.com>
+References: <CALDHXteTtgxuKk_6iO4c8GhGqzTo_DVHS7jAB6tGijnY5ivORA@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Tue, 14 Mar 2017 10:05:51 +0000
+Message-ID: <CAJTo0LbwTORRPSw7TkYLDkg0MSw7w8BXCrDZHU=fu_ze2wg++g@mail.gmail.com>
+To: ravikiran j <ravikiran.j@mistralsolutions.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: core-image-minimal-xfce error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -70,53 +69,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 14 Mar 2017 09:54:53 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Tue, 14 Mar 2017 10:06:15 -0000
+Content-Type: multipart/alternative; boundary=94eb2c06093c3d71f7054aadfa90
 
-Keep things on the list, please.
+--94eb2c06093c3d71f7054aadfa90
+Content-Type: text/plain; charset=UTF-8
 
-On 14.03.2017 10:49, ravikiran j wrote:
-> The version of xfce-power-manager in the krogoth branch is 1.4.4, not
-> 1.6.0. Probably you are mixing up the revisions.
->
-> How You are telling that*The version of xfce-power-manager in the
-> krogoth branch is 1.4.4  ?
-
-By looking at:
-http://git.openembedded.org/meta-openembedded/tree/meta-xfce/recipes-xfce/xfce4-power-manager?h=krogoth
+On 14 March 2017 at 09:20, ravikiran j <ravikiran.j@mistralsolutions.com>
+wrote:
 
 >
-> *
-> Fixing a layer revision means i need to change the file
-> xfce4-power-manager.1.6.0.bb <http://xfce4-power-manager.1.6.0.bb>
-> extension from 1.6.0 to 1.4.4 ?
-> *
-
-No, it means that the checkouts of all layers you use (which obviously 
-is at least meta-openembedded) have to match the version of poky that 
-you use. Have a look at the branches.
-
-Greetz
--- 
-Josef Holzmayr
-Software Developer Embedded Systems
-
-Tel: +49 8444 9204-48
-Fax: +49 8444 9204-50
-
-R-S-I Elektrotechnik GmbH & Co. KG
-Woelkestrasse 11
-D-85301 Schweitenkirchen
-www.rsi-elektrotechnik.de
-———————————————
-Amtsgericht Ingolstadt – GmbH: HRB 191328 – KG: HRA 170393
-Geschäftsführer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
-Ust-IdNr: DE 128592548
-
-_____________________________________________________________
-Amtsgericht Ingolstadt - GmbH: HRB 191328 - KG: HRA 170363
-Geschäftsführer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
-USt-IdNr.: DE 128592548
+> *ERROR: ExpansionError during parsing
+> /home/mistral/yocto/poky/meta-openembedded/meta-xfce/recipes-xfce/xfce4-power-manager/xfce4-power-manager_1.6.0.bb
+> <http://xfce4-power-manager_1.6.0.bb>: Failure expanding variable
+> PACKAGECONFIG, expression was ${@bb.utils.filter('DISTRO_FEATURES',
+> 'systemd', d)} which triggered exception AttributeError: 'module' object
+> has no attribute 'filter'*
 
 
+This error message tells me that you're using meta-openembedded master, not
+krogoth.  Checkout the correct branch of meta-openembedded.
+
+Ross
+
+--94eb2c06093c3d71f7054aadfa90
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 14 March 2017 at 09:20, ravikiran j <span dir=3D"ltr">&lt;<a href=3D"mai=
+lto:ravikiran.j@mistralsolutions.com" target=3D"_blank">ravikiran.j@mistral=
+solutions.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" st=
+yle=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><b>ER=
+ROR: ExpansionError during parsing /home/mistral/yocto/poky/meta-<wbr>opene=
+mbedded/meta-xfce/<wbr>recipes-xfce/xfce4-power-<wbr>manager/<a href=3D"htt=
+p://xfce4-power-manager_1.6.0.bb" target=3D"_blank">xfce4-power-manager_1.<=
+wbr>6.0.bb</a>: Failure expanding variable PACKAGECONFIG, expression was ${=
+@bb.utils.filter(&#39;DISTRO_<wbr>FEATURES&#39;, &#39;systemd&#39;, d)} whi=
+ch triggered exception AttributeError: &#39;module&#39; object has no attri=
+bute &#39;filter&#39;<br></b></blockquote></div><br>This error message tell=
+s me that you&#39;re using meta-openembedded master, not krogoth.=C2=A0 Che=
+ckout the correct branch of meta-openembedded.</div><div class=3D"gmail_ext=
+ra"><br></div><div class=3D"gmail_extra">Ross</div></div>
+
+--94eb2c06093c3d71f7054aadfa90--
