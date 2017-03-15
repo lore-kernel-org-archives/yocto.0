@@ -1,13 +1,18 @@
 Return-Path: <ravikiran.j@mistralsolutions.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 83284E00A81; Tue, 14 Mar 2017 22:56:10 -0700 (PDT)
+	id 55C00E00A81; Wed, 15 Mar 2017 00:02:28 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.223.169 listed in dnsbl.sorbs.net]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.223.169 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -15,49 +20,39 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.223.170 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.223.170 listed in dnsbl.sorbs.net]
-Received: from mail-io0-f170.google.com (mail-io0-f170.google.com
-	[209.85.223.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 489E9E00A48
-	for <yocto@yoctoproject.org>; Tue, 14 Mar 2017 22:56:06 -0700 (PDT)
-Received: by mail-io0-f170.google.com with SMTP id b140so13793876iof.1
-	for <yocto@yoctoproject.org>; Tue, 14 Mar 2017 22:56:06 -0700 (PDT)
+Received: from mail-io0-f169.google.com (mail-io0-f169.google.com
+	[209.85.223.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 233A3E00A48
+	for <yocto@yoctoproject.org>; Wed, 15 Mar 2017 00:02:24 -0700 (PDT)
+Received: by mail-io0-f169.google.com with SMTP id b140so14459054iof.1
+	for <yocto@yoctoproject.org>; Wed, 15 Mar 2017 00:02:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=mistralsolutions.com; s=dkim;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to; 
-	bh=LklGeatG+HrLQpmTNp9JGUwh8aVQGrNM8Xt1rVEwUnw=;
-	b=d9rPrbXQzdABLyJfnecdDqdmfSGnsQBJJ5QeD9JIE65YzAi9/1HLDoE1su7E3DJgkx
-	JWoHkfVzH86QaZ1//fjH5dvRzVutXlg5KOYTPLvs63VNC7bvsTUf8zPJ9FF2OAJVM+9N
-	jL60FtkSGedDWvL+7kfqYr/HiHUa694GPNqdU=
+	h=mime-version:from:date:message-id:subject:to;
+	bh=nI/whPzZmFn1c6pqImdZ0VBC8LwA0RvGVA1AXAhn25Y=;
+	b=kL5LyY7J/Fl0UBZto7AFGlXJAeTEkuSoZs/awyzgAoeCyzZ2SVV/2NXBFp/cFMNbZH
+	7O5hEtAZPqenYwcN/wI0tOIlBfEQ8uw7VBuHYjNzNzILakVCvguFFL+m6ipf7lq0ttSS
+	cee3kOS2svwgcJgjIvWrAjDDAi255ZgN8b4kk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to;
-	bh=LklGeatG+HrLQpmTNp9JGUwh8aVQGrNM8Xt1rVEwUnw=;
-	b=E1478cjDw6RQedqZfVAir0r/eVkNBdV21uZu9aTP6yFE/KwsUvY8RjRekFPjKf/P8j
-	MWr3cgtkrtCN4ZQEXimwBQV1YcBuQLh4B4zlofvagjMhbkoPC5NXkAVrI/qD6o/HQyFb
-	YZs/c+OO13nIw9DopIM800wiz0BHPxp0vIzw7AsrMD28cHwtTJ+6V0M1mlnTVsa+hiAK
-	ldmMIvnjw7ZTYxSPGrhpTg2eUh+KYliL6iq34tOvCt6DuS0cXAv90D8TdXf6l2b/cSXu
-	ckfOFPE4xmw7XnFdRI84+y5L+il7Z2eTpGDnWQPAVe767Gz1hRJuD6f7s9w5u96Mt7Jy
-	dzeg==
-X-Gm-Message-State: AFeK/H2CBI4j6yRs4z8zLzquws7XziXt5Vm5Hjmu0YpC0eHuyVC4nsDmnXT3qXvM8XR/IoaWePVyDWG1Fo0K8Q==
-X-Received: by 10.107.154.194 with SMTP id c185mr3377379ioe.109.1489557365795; 
-	Tue, 14 Mar 2017 22:56:05 -0700 (PDT)
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=nI/whPzZmFn1c6pqImdZ0VBC8LwA0RvGVA1AXAhn25Y=;
+	b=eEeq+C2hki+S2Tqvsq+wC1IXkRrbP2Zm+x51+ba1aGEKQ6OYrXnJgMyZFYfQ3bIa4X
+	p8hclTnaGQVGJfvKE4Vo/Hlv5xCPpqGVXVchskwm1WexGh314Bj8w4vMtsjgMAmnASw8
+	TkGkXxQ1WArbeUwDRfclJbO82dxdnzCqApHVH26IrB8HzqaqNgZDLvl4IaxTLJKOd2sP
+	80rtG5SjTKbo077terZhosgvazjz1YHzapRtPpbxP8nP6DQLD2z0VMZJtVUgR9gNBkLw
+	+F13qi3ATGTw0CUNg9x4LvRtirYahyZAWfKc40V+/YORmvY/NwrRlO8Qk9yTjNMiSgA+
+	u/nQ==
+X-Gm-Message-State: AFeK/H03xQ3W+l7kiY36L5hxeYZVCGcEggIqwa27lzCnUwRGSXxyWzNNYLH8f0NOmoprNe2OzjpH31JZpbPplw==
+X-Received: by 10.107.154.194 with SMTP id c185mr3543055ioe.109.1489561343633; 
+	Wed, 15 Mar 2017 00:02:23 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.64.121.197 with HTTP; Tue, 14 Mar 2017 22:56:05 -0700 (PDT)
-In-Reply-To: <CAJTo0LbwTORRPSw7TkYLDkg0MSw7w8BXCrDZHU=fu_ze2wg++g@mail.gmail.com>
-References: <CALDHXteTtgxuKk_6iO4c8GhGqzTo_DVHS7jAB6tGijnY5ivORA@mail.gmail.com>
-	<CAJTo0LbwTORRPSw7TkYLDkg0MSw7w8BXCrDZHU=fu_ze2wg++g@mail.gmail.com>
+Received: by 10.64.121.197 with HTTP; Wed, 15 Mar 2017 00:02:23 -0700 (PDT)
 From: ravikiran j <ravikiran.j@mistralsolutions.com>
-Date: Wed, 15 Mar 2017 11:26:05 +0530
-Message-ID: <CALDHXtcVFgtqtxeSFOBscbQaTW+nYKwe_ip-faLx=Ro3kkjUVA@mail.gmail.com>
-To: yocto@yoctoproject.org, "Burton, Ross" <ross.burton@intel.com>, 
-	Josef Holzmayr <holzmayr@rsi-elektrotechnik.de>
-Subject: Re: core-image-minimal-xfce error
+Date: Wed, 15 Mar 2017 12:32:23 +0530
+Message-ID: <CALDHXtdN0uoeBFwiKy6GgwyhvfEXS+N_SjFORA9A2_r8QqK17A@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: arm-poky-linux-gnueabi-gcc: Command not found
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,69 +64,141 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 15 Mar 2017 05:56:10 -0000
-Content-Type: multipart/alternative; boundary=001a1140f4b6a96821054abe9938
+X-List-Received-Date: Wed, 15 Mar 2017 07:02:28 -0000
+Content-Type: multipart/alternative; boundary=001a1140f4b6c24055054abf86ef
 
---001a1140f4b6a96821054abe9938
+--001a1140f4b6c24055054abf86ef
 Content-Type: text/plain; charset=UTF-8
 
-Thank you for your answers.
-I checked out the correct branch of meta-openembedded.
-Now it is building properly i checked for qemux86 machine, *
-core-image-minimal-xfce* image builded and working fine.
-Now i am trying to build  for odroid-xu3 board.
+I am trying to build the linux kernel for odorid-xu3 board but i am getting
+following errors for
+*bitbake linux-stable*
 
 
-On Tue, Mar 14, 2017 at 3:35 PM, Burton, Ross <ross.burton@intel.com> wrote:
+DEBUG: Executing shell function do_compile
+NOTE: make -j 4 HOSTCC=gcc  HOSTCPP=gcc  -E zImage
+CC=arm-poky-linux-gnueabi-gcc   -fuse-ld=bfd
+LD=arm-poky-linux-gnueabi-ld.bfd
+ERROR: oe_runmake failed
+/home/mistral/yocto1/poky/build-xfce/tmp/work-shared/odroid-xu3/kernel-source/scripts/gcc-version.sh:
+line 25: arm-poky-linux-gnueabi-gcc: command not found
+/home/mistral/yocto1/poky/build-xfce/tmp/work-shared/odroid-xu3/kernel-source/scripts/gcc-version.sh:
+line 26: arm-poky-linux-gnueabi-gcc: command not found
+make[2]: arm-poky-linux-gnueabi-gcc: Command not found
+make[2]: arm-poky-linux-gnueabi-gcc: Command not found
+  GEN     ./Makefile
+scripts/kconfig/conf  --silentoldconfig Kconfig
+/home/mistral/yocto1/poky/build-xfce/tmp/work-shared/odroid-xu3/kernel-source/scripts/gcc-version.sh:
+line 25: arm-poky-linux-gnueabi-gcc: command not found
+/home/mistral/yocto1/poky/build-xfce/tmp/work-shared/odroid-xu3/kernel-source/scripts/gcc-version.sh:
+line 26: arm-poky-linux-gnueabi-gcc: command not found
+make[2]: arm-poky-linux-gnueabi-gcc: Command not found
+make[2]: arm-poky-linux-gnueabi-gcc: Command not found
+  CHK     include/config/kernel.release
+make[2]: arm-poky-linux-gnueabi-gcc: Command not found
+make[2]: arm-poky-linux-gnueabi-gcc: Command not found
+  GEN     ./Makefile
 
->
-> On 14 March 2017 at 09:20, ravikiran j <ravikiran.j@mistralsolutions.com>
-> wrote:
->
->>
->> *ERROR: ExpansionError during parsing
->> /home/mistral/yocto/poky/meta-openembedded/meta-xfce/recipes-xfce/xfce4-power-manager/xfce4-power-manager_1.6.0.bb
->> <http://xfce4-power-manager_1.6.0.bb>: Failure expanding variable
->> PACKAGECONFIG, expression was ${@bb.utils.filter('DISTRO_FEATURES',
->> 'systemd', d)} which triggered exception AttributeError: 'module' object
->> has no attribute 'filter'*
->
->
-> This error message tells me that you're using meta-openembedded master,
-> not krogoth.  Checkout the correct branch of meta-openembedded.
->
-> Ross
->
 
---001a1140f4b6a96821054abe9938
+ Using
+/home/mistral/yocto1/poky/build-xfce/tmp/work-shared/odroid-xu3/kernel-source
+as source for kernel
+make[2]: arm-poky-linux-gnueabi-gcc: Command not found
+make[2]: arm-poky-linux-gnueabi-gcc: Command not found
+  HOSTCC  scripts/pnmtologo
+  HOSTCC  scripts/kallsyms
+  CC      scripts/mod/empty.o
+/bin/sh: 1: arm-poky-linux-gnueabi-gcc: not found
+/home/mistral/yocto1/poky/build-xfce/tmp/work-shared/odroid-xu3/kernel-source/scripts/Makefile.build:293:
+recipe for target 'scripts/mod/empty.o' failed
+make[4]: *** [scripts/mod/empty.o] Error 127
+/home/mistral/yocto1/poky/build-xfce/tmp/work-shared/odroid-xu3/kernel-source/scripts/Makefile.build:544:
+recipe for target 'scripts/mod' failed
+make[3]: *** [scripts/mod] Error 2
+make[3]: *** Waiting for unfinished jobs....
+  HOSTCC  scripts/dtc/dtc.o
+  HOSTCC  scripts/dtc/flattree.o
+  HOSTCC  scripts/dtc/fstree.o
+  HOSTCC  scripts/dtc/data.o
+  HOSTCC  scripts/dtc/livetree.o
+  HOSTCC  scripts/dtc/treesource.o
+  HOSTCC  scripts/dtc/srcpos.o
+  HOSTCC  scripts/dtc/checks.o
+  HOSTCC  scripts/dtc/util.o
+  SHIPPED scripts/dtc/dtc-lexer.lex.c
+  SHIPPED scripts/dtc/dtc-parser.tab.h
+  SHIPPED scripts/dtc/dtc-parser.tab.c
+  HOSTCC  scripts/dtc/dtc-lexer.lex.o
+  HOSTCC  scripts/dtc/dtc-parser.tab.o
+  HOSTLD  scripts/dtc/dtc
+/home/mistral/yocto1/poky/build-xfce/tmp/work-shared/odroid-xu3/kernel-source/Makefile:560:
+recipe for target 'scripts' failed
+make[2]: *** [scripts] Error 2
+Makefile:150: recipe for target 'sub-make' failed
+make[1]: *** [sub-make] Error 2
+Makefile:24: recipe for target '__sub-make' failed
+make: *** [__sub-make] Error 2
+WARNING: exit code 1 from a shell command.
+ERROR: Function failed: do_compile (log file is located at
+/home/mistral/yocto1/poky/build-xfce/tmp/work/odroid_xu3-poky-linux-gnueabi/linux-stable/4.9.13+gitAUTOINC+f3329efb7f-r0/temp/log.do_compile.15577)
+
+what is the problem and how to solve this problem ?
+
+--001a1140f4b6c24055054abf86ef
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div><div>Thank you for your answers.<br></div>I checked o=
-ut the correct branch of meta-openembedded.<br>Now it is building properly =
-i checked for qemux86 machine,=C2=A0<b> core-image-minimal-xfce</b> image b=
-uilded and working fine.<br></div>Now i am trying to build=C2=A0 for odroid=
--xu3 board.<br><div><br></div></div><div class=3D"gmail_extra"><br><div cla=
-ss=3D"gmail_quote">On Tue, Mar 14, 2017 at 3:35 PM, Burton, Ross <span dir=
-=3D"ltr">&lt;<a href=3D"mailto:ross.burton@intel.com" target=3D"_blank">ros=
-s.burton@intel.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quot=
-e" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">=
-<div dir=3D"ltr"><div class=3D"gmail_extra"><span class=3D""><br><div class=
-=3D"gmail_quote">On 14 March 2017 at 09:20, ravikiran j <span dir=3D"ltr">&=
-lt;<a href=3D"mailto:ravikiran.j@mistralsolutions.com" target=3D"_blank">ra=
-vikiran.j@mistralsolutions.<wbr>com</a>&gt;</span> wrote:<br><blockquote cl=
-ass=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;p=
-adding-left:1ex"><b>ERROR: ExpansionError during parsing /home/mistral/yoct=
-o/poky/meta-<wbr>openembedded/meta-xfce/recipes<wbr>-xfce/xfce4-power-manag=
-er/<a href=3D"http://xfce4-power-manager_1.6.0.bb" target=3D"_blank">xfce<w=
-br>4-power-manager_1.6.0.bb</a>: Failure expanding variable PACKAGECONFIG, =
-expression was ${@bb.utils.filter(&#39;DISTRO_FEA<wbr>TURES&#39;, &#39;syst=
-emd&#39;, d)} which triggered exception AttributeError: &#39;module&#39; ob=
-ject has no attribute &#39;filter&#39;<br></b></blockquote></div><br></span=
->This error message tells me that you&#39;re using meta-openembedded master=
-, not krogoth.=C2=A0 Checkout the correct branch of meta-openembedded.</div=
-><span class=3D"HOEnZb"><font color=3D"#888888"><div class=3D"gmail_extra">=
-<br></div><div class=3D"gmail_extra">Ross</div></font></span></div>
-</blockquote></div><br></div>
+<div dir=3D"ltr"><div><div>I am trying to build the linux kernel for odorid=
+-xu3 board but i am getting following errors for<br></div><b>bitbake linux-=
+stable</b><br><br><br>DEBUG: Executing shell function do_compile<br>NOTE: m=
+ake -j 4 HOSTCC=3Dgcc=C2=A0 HOSTCPP=3Dgcc=C2=A0 -E zImage CC=3Darm-poky-lin=
+ux-gnueabi-gcc=C2=A0=C2=A0 -fuse-ld=3Dbfd LD=3Darm-poky-linux-gnueabi-ld.bf=
+d<br>ERROR: oe_runmake failed<br>/home/mistral/yocto1/poky/build-xfce/tmp/w=
+ork-shared/odroid-xu3/kernel-source/scripts/gcc-version.sh: line 25: arm-po=
+ky-linux-gnueabi-gcc: command not found<br>/home/mistral/yocto1/poky/build-=
+xfce/tmp/work-shared/odroid-xu3/kernel-source/scripts/gcc-version.sh: line =
+26: arm-poky-linux-gnueabi-gcc: command not found<br>make[2]: arm-poky-linu=
+x-gnueabi-gcc: Command not found<br>make[2]: arm-poky-linux-gnueabi-gcc: Co=
+mmand not found<br>=C2=A0 GEN=C2=A0=C2=A0=C2=A0=C2=A0 ./Makefile<br>scripts=
+/kconfig/conf=C2=A0 --silentoldconfig Kconfig<br>/home/mistral/yocto1/poky/=
+build-xfce/tmp/work-shared/odroid-xu3/kernel-source/scripts/gcc-version.sh:=
+ line 25: arm-poky-linux-gnueabi-gcc: command not found<br>/home/mistral/yo=
+cto1/poky/build-xfce/tmp/work-shared/odroid-xu3/kernel-source/scripts/gcc-v=
+ersion.sh: line 26: arm-poky-linux-gnueabi-gcc: command not found<br>make[2=
+]: arm-poky-linux-gnueabi-gcc: Command not found<br>make[2]: arm-poky-linux=
+-gnueabi-gcc: Command not found<br>=C2=A0 CHK=C2=A0=C2=A0=C2=A0=C2=A0 inclu=
+de/config/kernel.release<br>make[2]: arm-poky-linux-gnueabi-gcc: Command no=
+t found<br>make[2]: arm-poky-linux-gnueabi-gcc: Command not found<br>=C2=A0=
+ GEN=C2=A0=C2=A0=C2=A0=C2=A0 ./Makefile<br><br><br>=C2=A0Using /home/mistra=
+l/yocto1/poky/build-xfce/tmp/work-shared/odroid-xu3/kernel-source as source=
+ for kernel<br>make[2]: arm-poky-linux-gnueabi-gcc: Command not found<br>ma=
+ke[2]: arm-poky-linux-gnueabi-gcc: Command not found<br>=C2=A0 HOSTCC=C2=A0=
+ scripts/pnmtologo<br>=C2=A0 HOSTCC=C2=A0 scripts/kallsyms<br>=C2=A0 CC=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 scripts/mod/empty.o<br>/bin/sh: 1: arm-poky-lin=
+ux-gnueabi-gcc: not found<br>/home/mistral/yocto1/poky/build-xfce/tmp/work-=
+shared/odroid-xu3/kernel-source/scripts/Makefile.build:293: recipe for targ=
+et &#39;scripts/mod/empty.o&#39; failed<br>make[4]: *** [scripts/mod/empty.=
+o] Error 127<br>/home/mistral/yocto1/poky/build-xfce/tmp/work-shared/odroid=
+-xu3/kernel-source/scripts/Makefile.build:544: recipe for target &#39;scrip=
+ts/mod&#39; failed<br>make[3]: *** [scripts/mod] Error 2<br>make[3]: *** Wa=
+iting for unfinished jobs....<br>=C2=A0 HOSTCC=C2=A0 scripts/dtc/dtc.o<br>=
+=C2=A0 HOSTCC=C2=A0 scripts/dtc/flattree.o<br>=C2=A0 HOSTCC=C2=A0 scripts/d=
+tc/fstree.o<br>=C2=A0 HOSTCC=C2=A0 scripts/dtc/data.o<br>=C2=A0 HOSTCC=C2=
+=A0 scripts/dtc/livetree.o<br>=C2=A0 HOSTCC=C2=A0 scripts/dtc/treesource.o<=
+br>=C2=A0 HOSTCC=C2=A0 scripts/dtc/srcpos.o<br>=C2=A0 HOSTCC=C2=A0 scripts/=
+dtc/checks.o<br>=C2=A0 HOSTCC=C2=A0 scripts/dtc/util.o<br>=C2=A0 SHIPPED sc=
+ripts/dtc/dtc-lexer.lex.c<br>=C2=A0 SHIPPED scripts/dtc/dtc-parser.tab.h<br=
+>=C2=A0 SHIPPED scripts/dtc/dtc-parser.tab.c<br>=C2=A0 HOSTCC=C2=A0 scripts=
+/dtc/dtc-lexer.lex.o<br>=C2=A0 HOSTCC=C2=A0 scripts/dtc/dtc-parser.tab.o<br=
+>=C2=A0 HOSTLD=C2=A0 scripts/dtc/dtc<br>/home/mistral/yocto1/poky/build-xfc=
+e/tmp/work-shared/odroid-xu3/kernel-source/Makefile:560: recipe for target =
+&#39;scripts&#39; failed<br>make[2]: *** [scripts] Error 2<br>Makefile:150:=
+ recipe for target &#39;sub-make&#39; failed<br>make[1]: *** [sub-make] Err=
+or 2<br>Makefile:24: recipe for target &#39;__sub-make&#39; failed<br>make:=
+ *** [__sub-make] Error 2<br>WARNING: exit code 1 from a shell command.<br>=
+ERROR: Function failed: do_compile (log file is located at /home/mistral/yo=
+cto1/poky/build-xfce/tmp/work/odroid_xu3-poky-linux-gnueabi/linux-stable/4.=
+9.13+gitAUTOINC+f3329efb7f-r0/temp/log.do_compile.15577)<br><br></div>what =
+is the problem and how to solve this problem ?<br><div><br><br></div></div>
 
---001a1140f4b6a96821054abe9938--
+--001a1140f4b6c24055054abf86ef--
