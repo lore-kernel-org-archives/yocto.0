@@ -1,6 +1,6 @@
 Return-Path: <prvs=124832981c=holzmayr@rsi-elektrotechnik.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 867CFE0098A; Wed, 15 Mar 2017 23:59:43 -0700 (PDT)
+	id 7F120E00953; Thu, 16 Mar 2017 01:18:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -18,47 +18,46 @@ X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 Received: from mo4-p00-ob.smtp.rzone.de (mo4-p00-ob.smtp.rzone.de
 	[81.169.146.219])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 18C03E0094C
-	for <yocto@yoctoproject.org>; Wed, 15 Mar 2017 23:59:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1489647577;
-	l=1220; s=domk; d=rsi-elektrotechnik.de;
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 06228E00839
+	for <yocto@yoctoproject.org>; Thu, 16 Mar 2017 01:18:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1489652306;
+	l=2058; s=domk; d=rsi-elektrotechnik.de;
 	h=Content-Transfer-Encoding:Content-Type:In-Reply-To:MIME-Version:
 	Date:From:References:To:Subject;
-	bh=WHp0N8w7KzEI3EymegT6dggLZZdthO5o5hC+wesGPOI=;
-	b=jXMqZ6g65s/OrzcjvDLooJLwH9NTaoFp/WO1F4uk9la6+nsVeKIghZuRYExXcwZ72G
-	1+um/pYjtEENfGIc1MMJhxDiGMX2WtqN83chkCh/p5MCKrBOjX1hZjlsM4EWT/2OTKw1
-	lIkMYuc3JOXuaHJGCRYQ7MCudM7YmJsnyx138=
-X-RZG-AUTH: :fz5RJhWIaexwuXGosGLfiBc0xYyi1Y5bd+wRKqrzPWwJyH/ODuV4n+N24+CqMVTDvFFN0+xNtPaAoGLw2S47Aw5p3DMOqepD6BZ9BTbdag==
+	bh=e4BWRDaLrZqkpAhs1R2n0bHOuI7182s4jBJFIzrzsOw=;
+	b=QpBdLmJof5aaXjMESUbExxypMnouTxbNqi5IkR6I/R9oE5aOYA4kYtFkt3YYZvV5/v
+	cyPx5GOprVP/BDVBAuQ8rueI0inc5j6Q+It3hWAchQtrUj8pISVM1qJs/TlRgGsyHoWA
+	PEXe+vmNXyZrC7Rpd/Bo7csBzJh2uUxvTUQIs=
+X-RZG-AUTH: :fz5RJhWIaexwuXGosGLfiBc0xYyi1Y5bd+wRKqrzPWwJyH/ODuV4n+N24+CqMVTDvF1MhuFNtPdyidq1PsMOrsgJUXn/sWrYFv/BbNIsEQ==
 X-RZG-CLASS-ID: mo00
 Received: from mail.rsi-elektrotechnik.de
-	([2001:0:5ef5:79fb:18fe:329c:af6c:cbea])
-	by smtp.strato.de (RZmta 40.1 AUTH) with ESMTPSA id N09d86t2G6xZEmG
+	([2001:0:9d38:78cf:185a:368e:af6c:cbea])
+	by smtp.strato.de (RZmta 40.1 AUTH) with ESMTPSA id Z09424t2G8IOHZ8
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (curve secp384r1
 	with 384 ECDH bits, eq. 7680 bits RSA))
 	(Client did not present a certificate);
-	Thu, 16 Mar 2017 07:59:35 +0100 (CET)
+	Thu, 16 Mar 2017 09:18:24 +0100 (CET)
 Received: from [x.x.x.x] by mail.rsi-elektrotechnik.de (Cipher
 	TLSv1.2:AES-SHA:256) (MDaemon PRO v16.5.2) 
-	with ESMTPSA id md50000510147.msg; Thu, 16 Mar 2017 07:59:18 +0100
+	with ESMTPSA id md50000510185.msg; Thu, 16 Mar 2017 09:18:11 +0100
 X-MDRemoteIP: 80.147.52.21
-X-MDArrival-Date: Thu, 16 Mar 2017 07:59:18 +0100
+X-MDArrival-Date: Thu, 16 Mar 2017 09:18:11 +0100
 X-Authenticated-Sender: holzmayr@rsi-elektrotechnik.de
 X-Return-Path: prvs=124832981c=holzmayr@rsi-elektrotechnik.de
 X-Envelope-From: holzmayr@rsi-elektrotechnik.de
 X-CAV-Result: skipped - holzmayr@rsi-elektrotechnik.de is in exclusion list
-To: ravikiran j <ravikiran.j@mistralsolutions.com>,
+To: Alexander Kanavin <alexander.kanavin@linux.intel.com>,
+	openembedded-architecture@lists.openembedded.org,
 	Yocto Project <yocto@yoctoproject.org>
-References: <CALDHXtcQ6W_b8YtpsQyGNy+zx0ycDXEG9ADNmfu+TxKfVy2E2w@mail.gmail.com>
-	<8b3bb2f6-aa5f-e369-2f6b-f28e8665edf7@rsi-elektrotechnik.de>
-	<CALDHXtd=V3n9sn=Zr3m+2iiM5BQ4TBgQpnpEmnCP+YL=+3Jkrw@mail.gmail.com>
+References: <37d4f98c-9102-f4bf-c6cc-f64e1ffbce40@linux.intel.com>
 From: Josef Holzmayr <holzmayr@rsi-elektrotechnik.de>
-Message-ID: <bcc7e3a0-bbf1-6310-1998-8a487aed6627@rsi-elektrotechnik.de>
-Date: Thu, 16 Mar 2017 07:59:05 +0100
+Message-ID: <83c550f8-9f33-3179-3092-19fad4a37aec@rsi-elektrotechnik.de>
+Date: Thu, 16 Mar 2017 09:17:57 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
 	Thunderbird/45.8.0
 MIME-Version: 1.0
-In-Reply-To: <CALDHXtd=V3n9sn=Zr3m+2iiM5BQ4TBgQpnpEmnCP+YL=+3Jkrw@mail.gmail.com>
-Subject: Re: ERROR: core-image-minimal-xfce-1.0-r0 do_rootfs:
+In-Reply-To: <37d4f98c-9102-f4bf-c6cc-f64e1ffbce40@linux.intel.com>
+Subject: Re: [Openembedded-architecture] Sum up - Proposal: dealing with language-specific build tools/dependency management tools
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,27 +69,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 16 Mar 2017 06:59:43 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
+X-List-Received-Date: Thu, 16 Mar 2017 08:18:32 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
 Content-Transfer-Encoding: 8bit
 
-Again, please keep your responses on the  list!
+I'll give it a shot and try to sum up the current state of affairs in 
+this discussion. In accordance to the "Package managers all the way 
+down"-presentation, I'm gonna use the term LPM (for language package 
+manager) for now on.
 
-On 16.03.2017 07:52, ravikiran j wrote:
->
-> Suppose if i want to install some packages from debian or ubuntu
-> repositories,
-> how can  i achieve that  using rpm or  ipk based distribution  ?
+*Requirements*
+- repeatable and verifyable licensing of all dependencies that a LPM 
+pulls in.
+- locking down specific versions of packages and their dependencies for 
+reproductible builds.
 
-In short, not at all. This is not how things are meant to be. Just 
-because something comes in a package of a specific format, it does not 
-mean that you can use it everywhere the package management uses the same 
-format.
+*Optionals*
+- strict separation of fetch, compile, install stages. If a specifc LPM 
+requires it, those might be intermingled or left out [Mark]
+- opaque packaging: similar to static linking, we should at least have a 
+way to bundle up a complete application into a single package. Maybe it 
+might even be the default (like rust does it at the moment).
+- leverage as much as possible of the functionality the LPMs provide 
+instead of reimplementing it.
 
-The correct way is to write recipes for the things that you want and 
-properly package them up using bitbake.
+*Wish List*
+- separating out the LPM infrastructure into one or more distinct 
+layers, not treating it as OE/bitbake core functionality. [Paul]
+- support for the use of multiple languages/LPMs inside a single recipe, 
+hopefully even package. [myself]
 
-Greetz
+*Proposed Solutions*
+- having lockdown files shipped with the recipes (in whatever form to be 
+defined)
+- leveraging the recipe system to resolve licensing.
+
+If we can boil things down to the common set that we all expect, it will 
+in my opnion serve as a blueprint for the actual implementation to follow.
+
+Greetz,
 -- 
 Josef Holzmayr
 Software Developer Embedded Systems
@@ -102,14 +119,14 @@ R-S-I Elektrotechnik GmbH & Co. KG
 Woelkestrasse 11
 D-85301 Schweitenkirchen
 www.rsi-elektrotechnik.de
-â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”
-Amtsgericht Ingolstadt â€“ GmbH: HRB 191328 â€“ KG: HRA 170393
-GeschÃ¤ftsfÃ¼hrer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
+———————————————
+Amtsgericht Ingolstadt – GmbH: HRB 191328 – KG: HRA 170393
+Geschäftsführer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
 Ust-IdNr: DE 128592548
 
 _____________________________________________________________
 Amtsgericht Ingolstadt - GmbH: HRB 191328 - KG: HRA 170363
-GeschÃ¤ftsfÃ¼hrer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
+Geschäftsführer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
 USt-IdNr.: DE 128592548
 
 
