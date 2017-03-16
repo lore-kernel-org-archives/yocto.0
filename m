@@ -1,62 +1,40 @@
-Return-Path: <pello.heriz@alumni.mondragon.edu>
+Return-Path: <mark.hatle@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 34174E00953; Thu, 16 Mar 2017 01:31:42 -0700 (PDT)
+	id 782EAE003E1; Thu, 16 Mar 2017 08:44:33 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE, HTML_OBFUSCATE_05_10,
-	RCVD_IN_DNSWL_NONE, 
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.82.177 listed in dnsbl.sorbs.net]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.177 listed in list.dnswl.org]
-	* 0.3 HTML_OBFUSCATE_05_10 BODY: Message is 5% to 10% HTML obfuscation
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ot0-f177.google.com (mail-ot0-f177.google.com
-	[74.125.82.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 075BCE00839
-	for <yocto@yoctoproject.org>; Thu, 16 Mar 2017 01:31:38 -0700 (PDT)
-Received: by mail-ot0-f177.google.com with SMTP id x37so47040474ota.2
-	for <yocto@yoctoproject.org>; Thu, 16 Mar 2017 01:31:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=alumni.mondragon.edu; s=google;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=gyAIjPT+Ss+sKV0dMc6vQu9ca4KsBt0hMLQ4QE2DoiM=;
-	b=Dzjiet6PDPVUkpHyLauS/EY7F8vd796nCX4rV2ToMxJ2azTcNFhYgeyGRrRmMFVSod
-	MCQ2cq1qfqcGKqva49m1RUUZbQ2BybFn5PrJDu1ge/fXvb3KuvUizFwzEcKLj1PRzyKA
-	4WntsGwkZZzTMlrF/EOXyr+hs3/f2c0nQecrU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=gyAIjPT+Ss+sKV0dMc6vQu9ca4KsBt0hMLQ4QE2DoiM=;
-	b=DTJUaogMxHLL1abx7S94iT94N3P6QMyNjoVxXcvppiNzKa4qBOZI7i3tU9Q14SetyR
-	di1/yJR5XlyS+lV73Obrx+yi7VL3BB7SSauFbAIziu1F2i7hRIueol/wmRUNkB/9DSmP
-	+xcxfN01xXONN+jwF3IuSndHuIWqOeFpuqM0GkTJRRHA2M41qtJu++r1VaSbJ4yllsRr
-	Gx8bryB04TNhUwFB+15wX04I63RVP8zo762GKB4QUYDH84I4X06C1NpLNmFlhOi/Q6F/
-	tTmfhGgr0y66h4hgaxjZvJxhRgyvUH7npghFCYC7N4Q6KpmWlimgxh6PD2v2TX51UDZj
-	lcOg==
-X-Gm-Message-State: AFeK/H1G9UDKFcciqre5A+HMUJJ2sv3yVVwXwcnXV09hTY41laxUijU+sa5AnByvYzXfOsCrXm/ZZy4l2EV++duX
-X-Received: by 10.157.36.161 with SMTP id z30mr4261478ota.208.1489653097692;
-	Thu, 16 Mar 2017 01:31:37 -0700 (PDT)
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 40488E00349
+	for <yocto@yoctoproject.org>; Thu, 16 Mar 2017 08:44:29 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id v2GFhbfw011377
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=OK);
+	Thu, 16 Mar 2017 08:43:41 -0700
+Received: from soho-mhatle-m.local (172.25.36.230) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.294.0;
+	Thu, 16 Mar 2017 08:43:36 -0700
+To: Paul Barker <pbarker@toganlabs.com>, Josef Holzmayr
+	<holzmayr@rsi-elektrotechnik.de>
+References: <37d4f98c-9102-f4bf-c6cc-f64e1ffbce40@linux.intel.com>
+	<83c550f8-9f33-3179-3092-19fad4a37aec@rsi-elektrotechnik.de>
+	<20170316093021.4901da8c@host0.betafive.co.uk>
+From: Mark Hatle <mark.hatle@windriver.com>
+Organization: Wind River Systems
+Message-ID: <b82e7cc1-9e84-0e41-ec4a-644b175ebd8b@windriver.com>
+Date: Thu, 16 Mar 2017 10:43:35 -0500
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:45.0)
+	Gecko/20100101 Thunderbird/45.8.0
 MIME-Version: 1.0
-Received: by 10.157.4.52 with HTTP; Thu, 16 Mar 2017 01:31:37 -0700 (PDT)
-From: Pello Heriz <pello.heriz@alumni.mondragon.edu>
-Date: Thu, 16 Mar 2017 09:31:37 +0100
-Message-ID: <CAFL6qn5mYjVrqmN7Wow4BVfBob5Bz8rckWOOAOYorA9OXsvEgg@mail.gmail.com>
-To: yocto@yoctoproject.org, joe_macdonald@mentor.com, flihp@twobit.us, 
-	mark.hatle@windriver.com
-X-Mailman-Approved-At: Thu, 16 Mar 2017 08:42:04 -0700
-Subject: Selinux recipes related error when executing bitbake
+In-Reply-To: <20170316093021.4901da8c@host0.betafive.co.uk>
+Cc: Yocto Project <yocto@yoctoproject.org>,
+	openembedded-architecture@lists.openembedded.org
+Subject: Re: [Openembedded-architecture] Sum up - Proposal: dealing with language-specific build tools/dependency management tools
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,57 +46,87 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 16 Mar 2017 08:31:42 -0000
-Content-Type: multipart/alternative; boundary=94eb2c04f89aba18cf054ad4e3e9
+X-List-Received-Date: Thu, 16 Mar 2017 15:44:33 -0000
+Content-Type: text/plain; charset="windows-1252"
+Content-Transfer-Encoding: 7bit
 
---94eb2c04f89aba18cf054ad4e3e9
-Content-Type: text/plain; charset=UTF-8
+On 3/16/17 4:30 AM, Paul Barker wrote:
+> On Thu, 16 Mar 2017 09:17:57 +0100
+> Josef Holzmayr <holzmayr@rsi-elektrotechnik.de> wrote:
+> 
+>> I'll give it a shot and try to sum up the current state of affairs in 
+>> this discussion. In accordance to the "Package managers all the way 
+>> down"-presentation, I'm gonna use the term LPM (for language package 
+>> manager) for now on.
+>>
+>> *Requirements*
+>> - repeatable and verifyable licensing of all dependencies that a LPM 
+>> pulls in.
+>> - locking down specific versions of packages and their dependencies for 
+>> reproductible builds.
+> 
+> Agreed with these.
+> 
+>>
+>> *Optionals*
+>> - strict separation of fetch, compile, install stages. If a specifc LPM 
+>> requires it, those might be intermingled or left out [Mark]
+> 
+> I think what we need is strict separation of fetch (allowed to access
+> network) from the later tasks in a build (not allowed to access
+> networks). We need to continue to support users behind corporate
+> firewalls via mirroring and offline builds.
 
-Hi all,
+I agree here.  The 'network fetch', 'do something with it', 'deploy it'  Are
+really the three logical steps we have.  The network fetch (as other pieces of
+this thread mentioned) could include some specific dependency fetching or
+whatever, but in the end this must be able to be mirrored and disable actual
+network connections.  (network dependency fetching is possibly very tricky as
+dependency scanning in bitbake happens very early, and there is no way to say
+"please re-evaluate the dependencies on this branch".  [Maybe this is something
+that needs to be considered for this type of work?)
 
-I'm using Yocto master branch and I'm not able to compile a xen minimal
-image. I have experimented different errors, the last one is the next one:
+--Mark
 
-pello@pello-VirtualBox:/opt/yocto_GE/yocto_master_v2/poky/build$ bitbake
-xen-image-minimal
-Loading cache: 100% |#############################
-#######################################################| Time: 0:00:01
-Loaded 2751 entries from dependency cache.
-Parsing recipes: 100% |#############################
-#####################################################| Time: 0:00:01
-Parsing of 1986 .bb files complete (1985 cached, 1 parsed). 2752 targets,
-208 skipped, 0 masked, 0 errors.
-ERROR: No recipes available for:
-  /opt/yocto_GE/yocto_master_v2/poky/meta-selinux/recipes-exte
-nded/findutils/findutils_4.2.31.bbappend
+>> - opaque packaging: similar to static linking, we should at least have a 
+>> way to bundle up a complete application into a single package. Maybe it 
+>> might even be the default (like rust does it at the moment).
+>> - leverage as much as possible of the functionality the LPMs provide 
+>> instead of reimplementing it.
+> 
+> We should also aim for automatic generation of recipes from pypi,
+> npmjs, crates.io, etc using devtool. I'm not sure how much of this has
+> already been implemented, I'm not entirely up-to-date on devtool
+> functionality.
+> 
+> Staying with NPM as the example, say we have a tree of 1000
+> dependencies for a top-level application recipe. I understand that
+> generating and then parsing 1000 recipes will bloat things and slow
+> down the build. However, we do need some way to apply patches to those
+> dependencies or fix metadata. For example, what if the license is
+> stated wrong on npmjs? What if the dependency list itself is wrong? What
+> I've always liked about OE is that you can fix this sort of problem in a
+> recipe when you need to.
+> 
+>>
+>> *Wish List*
+>> - separating out the LPM infrastructure into one or more distinct 
+>> layers, not treating it as OE/bitbake core functionality. [Paul]
+>> - support for the use of multiple languages/LPMs inside a single recipe, 
+>> hopefully even package. [myself]
+>>
+>> *Proposed Solutions*
+>> - having lockdown files shipped with the recipes (in whatever form to be 
+>> defined)
+>> - leveraging the recipe system to resolve licensing.
+>>
+>> If we can boil things down to the common set that we all expect, it will 
+>> in my opnion serve as a blueprint for the actual implementation to follow.
+>>
+>> Greetz,
+> 
+> Thanks,
+> Paul
+> 
 
-Can any one help me with this?
-Best regards,
-Pello
 
---94eb2c04f89aba18cf054ad4e3e9
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><span style=3D"color:rgb(80,0,80);font-size:12.8px">Hi all=
-,</span><div style=3D"color:rgb(80,0,80);font-size:12.8px"><br></div><div s=
-tyle=3D"color:rgb(80,0,80);font-size:12.8px">I&#39;m using Yocto master bra=
-nch and I&#39;m not able to compile a xen minimal image. I have experimente=
-d different errors, the last one is the next one:</div><div style=3D"color:=
-rgb(80,0,80);font-size:12.8px"><br></div><div style=3D"color:rgb(80,0,80);f=
-ont-size:12.8px"><div>pello@pello-VirtualBox:/opt/yo<wbr>cto_GE/yocto_maste=
-r_v2/poky/bu<wbr>ild$ bitbake xen-image-minimal</div><div>Loading cache: 10=
-0% |#############################<wbr>##############################<wbr>##=
-#######################| Time: 0:00:01</div><div>Loaded 2751 entries from d=
-ependency cache.</div><div>Parsing recipes: 100% |#########################=
-####<wbr>##############################<wbr>#######################| Time: =
-0:00:01</div><div>Parsing of 1986 .bb files complete (1985 cached, 1 parsed=
-). 2752 targets, 208 skipped, 0 masked, 0 errors.</div><div>ERROR: No recip=
-es available for:</div><div>=C2=A0 /opt/yocto_GE/yocto_master_v2/<wbr>poky/=
-meta-selinux/recipes-exte<wbr>nded/findutils/findutils_4.2.3<wbr>1.bbappend=
-</div><div><br></div><div><div style=3D"color:rgb(34,34,34);font-size:12.8p=
-x">Can any one help me with this?</div><div style=3D"color:rgb(34,34,34);fo=
-nt-size:12.8px">Best regards,</div><div style=3D"color:rgb(34,34,34);font-s=
-ize:12.8px">Pello</div></div></div></div>
-
---94eb2c04f89aba18cf054ad4e3e9--
