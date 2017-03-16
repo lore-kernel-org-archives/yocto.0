@@ -1,6 +1,6 @@
 Return-Path: <pbarker@toganlabs.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9C40EE0098A; Thu, 16 Mar 2017 02:40:46 -0700 (PDT)
+	id BA5C7E009CF; Thu, 16 Mar 2017 03:14:38 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -13,46 +13,44 @@ X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	*      [score: 0.0000]
 Received: from nov-007-i457.relay.mailchannels.net
 	(nov-007-i457.relay.mailchannels.net [46.232.183.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E6B16E0094C
-	for <yocto@yoctoproject.org>; Thu, 16 Mar 2017 02:40:41 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CA5B6E00953
+	for <yocto@yoctoproject.org>; Thu, 16 Mar 2017 03:14:34 -0700 (PDT)
 X-Sender-Id: hostpapa|x-authuser|pbarker@toganlabs.com
 Received: from relay.mailchannels.net (localhost [127.0.0.1])
-	by relay.mailchannels.net (Postfix) with ESMTP id 36CB67C3757;
-	Thu, 16 Mar 2017 09:30:27 +0000 (UTC)
-Received: from hp181.hostpapa.com (unknown [100.96.137.29])
-	by relay.mailchannels.net (Postfix) with ESMTPA id 7FD7B7C30A0;
-	Thu, 16 Mar 2017 09:30:26 +0000 (UTC)
+	by relay.mailchannels.net (Postfix) with ESMTP id ADACA124039;
+	Thu, 16 Mar 2017 10:14:31 +0000 (UTC)
+Received: from hp181.hostpapa.com (unknown [100.96.126.49])
+	by relay.mailchannels.net (Postfix) with ESMTPA id 3DB69121CE6;
+	Thu, 16 Mar 2017 10:14:31 +0000 (UTC)
 X-Sender-Id: hostpapa|x-authuser|pbarker@toganlabs.com
-Received: from hp181.hostpapa.com (hp181.hostpapa.com [172.20.61.168])
+Received: from hp181.hostpapa.com (hp181.hostpapa.com [172.20.55.158])
 	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384)
-	by 0.0.0.0:2500 (trex/5.7.32); Thu, 16 Mar 2017 09:30:27 +0000
+	by 0.0.0.0:2500 (trex/5.7.32); Thu, 16 Mar 2017 10:14:31 +0000
 X-MC-Relay: Neutral
 X-MailChannels-SenderId: hostpapa|x-authuser|pbarker@toganlabs.com
 X-MailChannels-Auth-Id: hostpapa
-X-Madly-Print: 42478db4768598cc_1489656627058_67825973
-X-MC-Loop-Signature: 1489656627058:1849795947
-X-MC-Ingress-Time: 1489656627057
+X-Whistle-Spill: 39832fe603643271_1489659271559_271703161
+X-MC-Loop-Signature: 1489659271559:3525410160
+X-MC-Ingress-Time: 1489659271559
 Received: from cpc116908-shep14-2-0-cust920.8-3.cable.virginm.net
-	([82.34.23.153]:5507 helo=host0.betafive.co.uk)
+	([82.34.23.153]:62337 helo=host0.betafive.co.uk)
 	by hp181.hostpapa.com with esmtpsa
 	(TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.87)
 	(envelope-from <pbarker@toganlabs.com>)
-	id 1coRjk-000DfN-VV; Thu, 16 Mar 2017 10:30:25 +0100
-Date: Thu, 16 Mar 2017 09:30:21 +0000
+	id 1coSQP-000OIC-Ov; Thu, 16 Mar 2017 11:14:30 +0100
+Date: Thu, 16 Mar 2017 10:14:27 +0000
 From: Paul Barker <pbarker@toganlabs.com>
-To: Josef Holzmayr <holzmayr@rsi-elektrotechnik.de>
-Message-ID: <20170316093021.4901da8c@host0.betafive.co.uk>
-In-Reply-To: <83c550f8-9f33-3179-3092-19fad4a37aec@rsi-elektrotechnik.de>
-References: <37d4f98c-9102-f4bf-c6cc-f64e1ffbce40@linux.intel.com>
-	<83c550f8-9f33-3179-3092-19fad4a37aec@rsi-elektrotechnik.de>
+To: Fabien Lahoudere <fabien.lahoudere@collabora.co.uk>
+Message-ID: <20170316101427.2b406e44@host0.betafive.co.uk>
+In-Reply-To: <20170315201844.26804-1-fabien.lahoudere@collabora.co.uk>
+References: <20170315201844.26804-1-fabien.lahoudere@collabora.co.uk>
 Organization: =?UTF-8?B?VG9nw6Fu?= Labs
 X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-X-OutGoing-Spam-Status: No, score=5.0
+X-OutGoing-Spam-Status: No, score=2.0
 X-AuthUser: pbarker@toganlabs.com
-Cc: Yocto Project <yocto@yoctoproject.org>,
-	openembedded-architecture@lists.openembedded.org
-Subject: Re: [Openembedded-architecture] Sum up - Proposal: dealing with language-specific build tools/dependency management tools
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-raspberrypi][PATCH 1/1] Remove orphan bbappend
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -64,72 +62,67 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 16 Mar 2017 09:40:46 -0000
+X-List-Received-Date: Thu, 16 Mar 2017 10:14:38 -0000
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On Thu, 16 Mar 2017 09:17:57 +0100
-Josef Holzmayr <holzmayr@rsi-elektrotechnik.de> wrote:
+On Wed, 15 Mar 2017 21:18:44 +0100
+Fabien Lahoudere <fabien.lahoudere@collabora.co.uk> wrote:
 
-> I'll give it a shot and try to sum up the current state of affairs in 
-> this discussion. In accordance to the "Package managers all the way 
-> down"-presentation, I'm gonna use the term LPM (for language package 
-> manager) for now on.
+> gstreamer1.0-omx_1.2.0.bb and gstreamer1.0-omx_git.bb have been removed
+> from poky on master branch, so related bbappend should be removed.
 > 
-> *Requirements*
-> - repeatable and verifyable licensing of all dependencies that a LPM 
-> pulls in.
-> - locking down specific versions of packages and their dependencies for 
-> reproductible builds.
-
-Agreed with these.
-
+> Signed-off-by: Fabien Lahoudere <fabien.lahoudere@collabora.co.uk>
+> ---
+>  .../gstreamer/gstreamer1.0-omx_1.2.0.bbappend              | 14 --------------
+>  recipes-multimedia/gstreamer/gstreamer1.0-omx_git.bbappend | 13 -------------
+>  2 files changed, 27 deletions(-)
+>  delete mode 100644 recipes-multimedia/gstreamer/gstreamer1.0-omx_1.2.0.bbappend
+>  delete mode 100644 recipes-multimedia/gstreamer/gstreamer1.0-omx_git.bbappend
 > 
-> *Optionals*
-> - strict separation of fetch, compile, install stages. If a specifc LPM 
-> requires it, those might be intermingled or left out [Mark]
+> diff --git a/recipes-multimedia/gstreamer/gstreamer1.0-omx_1.2.0.bbappend b/recipes-multimedia/gstreamer/gstreamer1.0-omx_1.2.0.bbappend
+> deleted file mode 100644
+> index 49ba376..0000000
+> --- a/recipes-multimedia/gstreamer/gstreamer1.0-omx_1.2.0.bbappend
+> +++ /dev/null
+> @@ -1,14 +0,0 @@
+> -#
+> -# Need to make this conditional to gstreamer1
+> -#
+> -SRC_URI_append_rpi = " \
+> -             file://0001-config-files-path.patch \
+> -             file://0001-Don-t-try-to-acquire-buffer-when-src-pad-isn-t-activ.patch \
+> -             file://0002-fix-decoder-flushing.patch \
+> -             file://0003-no-timeout-on-get-state.patch \
+> -             file://0004-Properly-handle-drain-requests-while-flushing.patch \
+> -             file://0005-Don-t-abort-gst_omx_video_dec_set_format-if-there-s-.patch \
+> -             file://0006-omxvideodec-unref-allocator-after-getting-it-from-al.patch \
+> -"
+> -
+> -FILESEXTRAPATHS_prepend := "${THISDIR}/gstreamer1.0-omx-1.2.0:"
+> diff --git a/recipes-multimedia/gstreamer/gstreamer1.0-omx_git.bbappend b/recipes-multimedia/gstreamer/gstreamer1.0-omx_git.bbappend
+> deleted file mode 100644
+> index 9bcc446..0000000
+> --- a/recipes-multimedia/gstreamer/gstreamer1.0-omx_git.bbappend
+> +++ /dev/null
+> @@ -1,13 +0,0 @@
+> -#
+> -# Need to make this conditional to gstreamer1
+> -#
+> -SRC_URI_append_rpi = " \
+> -             file://0001-config-files-path.patch \
+> -             file://0002-Don-t-try-to-acquire-buffer-when-src-pad-isn-t-activ.patch \
+> -             file://0003-fix-decoder-flushing.patch \
+> -             file://0003-no-timeout-on-get-state.patch \
+> -             file://0004-Properly-handle-drain-requests-while-flushing.patch \
+> -             file://0005-Don-t-abort-gst_omx_video_dec_set_format-if-there-s-.patch \
+> -"
+> -
+> -FILESEXTRAPATHS_prepend := "${THISDIR}/gstreamer1.0-omx:"
 
-I think what we need is strict separation of fetch (allowed to access
-network) from the later tasks in a build (not allowed to access
-networks). We need to continue to support users behind corporate
-firewalls via mirroring and offline builds.
-
-> - opaque packaging: similar to static linking, we should at least have a 
-> way to bundle up a complete application into a single package. Maybe it 
-> might even be the default (like rust does it at the moment).
-> - leverage as much as possible of the functionality the LPMs provide 
-> instead of reimplementing it.
-
-We should also aim for automatic generation of recipes from pypi,
-npmjs, crates.io, etc using devtool. I'm not sure how much of this has
-already been implemented, I'm not entirely up-to-date on devtool
-functionality.
-
-Staying with NPM as the example, say we have a tree of 1000
-dependencies for a top-level application recipe. I understand that
-generating and then parsing 1000 recipes will bloat things and slow
-down the build. However, we do need some way to apply patches to those
-dependencies or fix metadata. For example, what if the license is
-stated wrong on npmjs? What if the dependency list itself is wrong? What
-I've always liked about OE is that you can fix this sort of problem in a
-recipe when you need to.
-
-> 
-> *Wish List*
-> - separating out the LPM infrastructure into one or more distinct 
-> layers, not treating it as OE/bitbake core functionality. [Paul]
-> - support for the use of multiple languages/LPMs inside a single recipe, 
-> hopefully even package. [myself]
-> 
-> *Proposed Solutions*
-> - having lockdown files shipped with the recipes (in whatever form to be 
-> defined)
-> - leveraging the recipe system to resolve licensing.
-> 
-> If we can boil things down to the common set that we all expect, it will 
-> in my opnion serve as a blueprint for the actual implementation to follow.
-> 
-> Greetz,
+Khem already has a patch staged for this which also drops the patch
+files themselves:
+https://github.com/kraj/meta-raspberrypi/commit/ff914ff62267336a602c3dc96e959900795f5617
 
 Thanks,
 Paul
