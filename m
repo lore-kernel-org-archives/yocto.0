@@ -1,63 +1,78 @@
-Return-Path: <jussi.kukkonen@intel.com>
+Return-Path: <tmatsuzawa@xevo.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 803E3E0052B; Fri, 17 Mar 2017 01:47:34 -0700 (PDT)
+	id A5705E0052B; Fri, 17 Mar 2017 04:41:01 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.161.176 listed in dnsbl.sorbs.net]
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [104.47.34.45 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.161.176 listed in list.dnswl.org]
-Received: from mail-yw0-f176.google.com (mail-yw0-f176.google.com
-	[209.85.161.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1F270E003C1
-	for <yocto@yoctoproject.org>; Fri, 17 Mar 2017 01:47:31 -0700 (PDT)
-Received: by mail-yw0-f176.google.com with SMTP id o4so48891861ywd.3
-	for <yocto@yoctoproject.org>; Fri, 17 Mar 2017 01:47:31 -0700 (PDT)
+Received: from NAM01-BY2-obe.outbound.protection.outlook.com
+	(mail-by2nam01on0045.outbound.protection.outlook.com [104.47.34.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4ED0BE003C1
+	for <yocto@yoctoproject.org>; Fri, 17 Mar 2017 04:40:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=Pls/Lk0VBpN70cHOAU1tfKp9L1JZOasxSkDDMkxEpp0=;
-	b=y1kXvR4aVVxhmLtu4l4QMco5IEsEiaUJ3W+i0ft4SvwlaXbWJ7/q1El8Xufdn9/Sn3
-	tUiz1txuVC6+4f/ykfbW49AqOc53Pjq8QFATSCd0Nfprp6+DuIuX7ehOxpbM8s1CSqoQ
-	+1q9SAv+4mB5ZbWeUFLnAsy1IFqVjRVlu3DbD+tJY/Pq0WnKV5O1ThHf+Wsd2oBxSJEb
-	9Anj5Fpu0X19dtW09j2ZOXEVJXyo0kLv1eWXJbryNVeES9WWVwjatjVVK198zqdHY5e2
-	Uks8mz99eslaGkLFWujXWuWvXd1LjLQgJD01sARVyBtoGEVzsg92yKLHbUw0XtP5fXa3
-	Aasw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=Pls/Lk0VBpN70cHOAU1tfKp9L1JZOasxSkDDMkxEpp0=;
-	b=c+gZzCrPeV3wQOryHgk2RfZdcHxSgjxymUuaRColT+6eUK/k54ZJ+GgdruFqH5+2cq
-	6vWXhtd/0OKh0XamYKYc93Si2+Avs4Y0L+7zNnwnIxCzpPbPw8Gcn1AxRXzxDA6VN8Z8
-	Vv8SlCVjGQgroNfqSMygpA1gmtSRA+DupAjI9BB5+ffVCLcmt9WyVHLLmaafL0GGT1v+
-	aJx7gvAJ9e5jTxkRp/E5/b68aGPFpM5SaeVihKIR5uKC2evnRfBhNff/1popGJDH85xi
-	B9hZIPfqoUSUwPKlRERaF8tSBcu4+jZyWYg9U9/FdI1lJENhuxbMyNseLXF2e2VD0PEW
-	gLQg==
-X-Gm-Message-State: AFeK/H3giRFSCCaFOSFxUnN9zIJQoCJSbgv+wf90xndsp9+5S9xuGgiDQp+RZGEaRIOm0T4359Mp/WioxREXZwsK
-X-Received: by 10.37.35.205 with SMTP id j196mr743356ybj.3.1489740450717; Fri,
-	17 Mar 2017 01:47:30 -0700 (PDT)
+	d=uievolution.onmicrosoft.com; s=selector1-xevo-com;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
+	bh=GcawQRn4tpgUYkPFejNTyVYpyfAiiCkAXyatLA5uEuk=;
+	b=mSyrbXBV2JrbJon3QKwBgU2Cty9Gi2MMu2yL2wSrKC8SXc5Lj6OIeT5PzrQ6N+PFTkEPsPkfJJYV7hBN10K8P2c9fkFLEeaJ1iMC1/Hn2vDChwNwZjzT8hRmOcc56VZdsKEJ4PKdfk4K/2I9d5dBGi5xa0sVD2XUa4JNpDrTxws=
+Received: from MWHPR0101MB2957.prod.exchangelabs.com (10.174.165.138) by
+	MWHPR0101MB2959.prod.exchangelabs.com (10.174.165.140) with Microsoft
+	SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
+	15.1.947.12; Fri, 17 Mar 2017 10:08:39 +0000
+Received: from MWHPR0101MB2957.prod.exchangelabs.com ([10.174.165.138]) by
+	MWHPR0101MB2957.prod.exchangelabs.com ([10.174.165.138]) with mapi id
+	15.01.0947.022; Fri, 17 Mar 2017 10:08:39 +0000
+From: Takashi Matsuzawa <tmatsuzawa@xevo.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: epiphany for wayland only environemnt?
+Thread-Index: AQHSnwWFGr1M3A16BkuR59gRdd4CEg==
+Date: Fri, 17 Mar 2017 10:08:39 +0000
+Message-ID: <MWHPR0101MB29577CA8CFDD7DD137A0D290B6390@MWHPR0101MB2957.prod.exchangelabs.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: yoctoproject.org; dkim=none (message not signed)
+	header.d=none; yoctoproject.org;
+	dmarc=none action=none header.from=xevo.com; 
+x-originating-ip: [118.238.252.194]
+x-ms-office365-filtering-correlation-id: 3ab98e0d-cdb7-4d7b-a3f5-08d46d1d957f
+x-microsoft-antispam: UriScan:; BCL:0; PCL:0; RULEID:(22001);
+	SRVR:MWHPR0101MB2959; 
+x-microsoft-exchange-diagnostics: 1; MWHPR0101MB2959;
+	7:onl2GLkK1x+YTgrQaY8tSvqaVxEl64z0DqpyeWHlDOlqsi8ujmYTex9XHI4F5KMRstRJgAIHEzBwgsGQEyhyT7hYjxWaueO2Il1NqjgCxLTwTpN0QtS8EoLKInHPOs3c2UzpHdZn89gnSYfRXj1rvE5MqUfRGnk5u64nk0rywCby1Hpi6f6wk7xJ1RILIeHCrAkarmH/dBFt284YHBPiSv2In1rX2r2W55R9oo5EBz3IZys5U3AP216PDfbEphfaFMaw7KmoM9rkLB8qUR6Clw+MLC4u6L55ajKNYx8BXFyIBxUmrRI0ZZyEVYZInkk+yqdwes1tNgqKmf16hkbToA==
+x-microsoft-antispam-prvs: <MWHPR0101MB29594F8BD7FA63EC91A7EC9EB6390@MWHPR0101MB2959.prod.exchangelabs.com>
+x-exchange-antispam-report-test: UriScan:;
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(6040375)(2401047)(8121501046)(5005006)(10201501046)(3002001)(6041248)(20161123558025)(20161123562025)(20161123560025)(20161123564025)(20161123555025)(6072148);
+	SRVR:MWHPR0101MB2959; BCL:0; PCL:0; RULEID:;
+	SRVR:MWHPR0101MB2959; 
+x-forefront-prvs: 0249EFCB0B
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10009020)(6009001)(39450400003)(122556002)(74316002)(54896002)(81166006)(6916009)(19627405001)(3660700001)(50986999)(8936002)(7696004)(2501003)(5660300001)(33656002)(6606003)(54356999)(8676002)(1730700003)(86362001)(66066001)(189998001)(554214002)(53936002)(2900100001)(77096006)(38730400002)(110136004)(6506006)(7736002)(3280700002)(6436002)(9686003)(5640700003)(3846002)(102836003)(25786008)(2906002)(6116002)(99286003)(2351001)(55016002);
+	DIR:OUT; SFP:1101; SCL:1; SRVR:MWHPR0101MB2959;
+	H:MWHPR0101MB2957.prod.exchangelabs.com; FPR:; SPF:None; MLV:sfv;
+	LANG:en; 
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-Received: by 10.129.81.136 with HTTP; Fri, 17 Mar 2017 01:47:00 -0700 (PDT)
-In-Reply-To: <20170316153425.19041-1-jose.perez.carranza@linux.intel.com>
-References: <20170316153425.19041-1-jose.perez.carranza@linux.intel.com>
-From: Jussi Kukkonen <jussi.kukkonen@intel.com>
-Date: Fri, 17 Mar 2017 10:47:00 +0200
-Message-ID: <CAHiDW_GFPTZsfjbRpdP+vDaiE-OEVwD+1xZagL1q-z7pR3NrcQ@mail.gmail.com>
-To: jose.perez.carranza@linux.intel.com
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [qa-tools][PATCH] full-test-cycle-wrapper: Correct qemu-auto variables
+X-OriginatorOrg: xevo.com
+X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Mar 2017 10:08:39.3060 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: e0a7ca1f-2458-4cd6-a7c7-d733c07495ab
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR0101MB2959
+Subject: epiphany for wayland only environemnt?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,90 +84,79 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 17 Mar 2017 08:47:34 -0000
-Content-Type: multipart/alternative; boundary=001a113d45085f7827054ae93ad7
+X-List-Received-Date: Fri, 17 Mar 2017 11:41:01 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_MWHPR0101MB29577CA8CFDD7DD137A0D290B6390MWHPR0101MB2957_"
 
---001a113d45085f7827054ae93ad7
-Content-Type: text/plain; charset=UTF-8
-
-On 16 March 2017 at 17:34, <jose.perez.carranza@linux.intel.com> wrote:
->
-> From: Jose Perez Carranza <jose.perez.carranza@linux.intel.com>
->
-> Update variables for creating test runs for qemu ato component
->
-> Signed-off-by: Jose Perez Carranza <jose.perez.carranza@linux.intel.com>
-> ---
->  scripts/full-test-cycle-wrapper.sh | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/scripts/full-test-cycle-wrapper.sh
-b/scripts/full-test-cycle-wrapper.sh
-> index f52cd96..3a6ba0f 100755
-> --- a/scripts/full-test-cycle-wrapper.sh
-> +++ b/scripts/full-test-cycle-wrapper.sh
-> @@ -82,8 +82,8 @@ create_yocto(){
->     create_test_run "${1}" "core-image-sato-sdk_ANYQEMU"
->
->     #QEMUs Autos
-> -   EVIRONMETS=("qemu-x86" "qemuarm" "qemuarm64" "qemumips" "qemumips64"
-"qemuppc" "qemux86-64" "qemux86-lsb" "qemux86_64-lsb")
-> -   ECUTION_TYPE="AUTO"
-> +   ENVIRONMETS=("qemu-x86" "qemuarm" "qemuarm64" "qemumips" "qemumips64"
-"qemuppc" "qemux86-64")
-
-It seems this is in master already so I'll just mention the typo for
-future: ENVIRONMETS should probably be ENVIRONMENTS in whole file.
-
-  Jussi
-
-> +   EXECUTION_TYPE="AUTO"
->     create_test_run "${1}" "core-image-sato-sdk_ANYQEMU"
->
->     #QEMUs Autos LSB
-> --
-> 2.11.0
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
---001a113d45085f7827054ae93ad7
-Content-Type: text/html; charset=UTF-8
+--_000_MWHPR0101MB29577CA8CFDD7DD137A0D290B6390MWHPR0101MB2957_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><br><br>On 16 March 2017 at 17:34, &lt;<a href=3D"mailto:j=
-ose.perez.carranza@linux.intel.com">jose.perez.carranza@linux.intel.com</a>=
-&gt; wrote:<br>&gt;<br>&gt; From: Jose Perez Carranza &lt;<a href=3D"mailto=
-:jose.perez.carranza@linux.intel.com">jose.perez.carranza@linux.intel.com</=
-a>&gt;<br>&gt;<br>&gt; Update variables for creating test runs for qemu ato=
- component<br>&gt;<br>&gt; Signed-off-by: Jose Perez Carranza &lt;<a href=
-=3D"mailto:jose.perez.carranza@linux.intel.com">jose.perez.carranza@linux.i=
-ntel.com</a>&gt;<br>&gt; ---<br>&gt; =C2=A0scripts/full-test-cycle-wrapper.=
-sh | 4 ++--<br>&gt; =C2=A01 file changed, 2 insertions(+), 2 deletions(-)<b=
-r>&gt;<br>&gt; diff --git a/scripts/full-test-cycle-wrapper.sh b/scripts/fu=
-ll-test-cycle-wrapper.sh<br>&gt; index f52cd96..3a6ba0f 100755<br>&gt; --- =
-a/scripts/full-test-cycle-wrapper.sh<br>&gt; +++ b/scripts/full-test-cycle-=
-wrapper.sh<br>&gt; @@ -82,8 +82,8 @@ create_yocto(){<br>&gt; =C2=A0 =C2=A0 =
-create_test_run &quot;${1}&quot; &quot;core-image-sato-sdk_ANYQEMU&quot;<br=
->&gt;<br>&gt; =C2=A0 =C2=A0 #QEMUs Autos<br>&gt; - =C2=A0 EVIRONMETS=3D(&qu=
-ot;qemu-x86&quot; &quot;qemuarm&quot; &quot;qemuarm64&quot; &quot;qemumips&=
-quot; &quot;qemumips64&quot; &quot;qemuppc&quot; &quot;qemux86-64&quot; &qu=
-ot;qemux86-lsb&quot; &quot;qemux86_64-lsb&quot;)<br>&gt; - =C2=A0 ECUTION_T=
-YPE=3D&quot;AUTO&quot;<br>&gt; + =C2=A0 ENVIRONMETS=3D(&quot;qemu-x86&quot;=
- &quot;qemuarm&quot; &quot;qemuarm64&quot; &quot;qemumips&quot; &quot;qemum=
-ips64&quot; &quot;qemuppc&quot; &quot;qemux86-64&quot;)<div><br></div><div>=
-It seems this is in master already so I&#39;ll just mention the typo for fu=
-ture: ENVIRONMETS should probably be ENVIRONMENTS in whole file.=C2=A0</div=
-><div><br></div><div>=C2=A0 Jussi<br></div><div><br>&gt; + =C2=A0 EXECUTION=
-_TYPE=3D&quot;AUTO&quot;<br>&gt; =C2=A0 =C2=A0 create_test_run &quot;${1}&q=
-uot; &quot;core-image-sato-sdk_ANYQEMU&quot;<br>&gt;<br>&gt; =C2=A0 =C2=A0 =
-#QEMUs Autos LSB<br>&gt; --<br>&gt; 2.11.0<br>&gt;<br>&gt; --<br>&gt; _____=
-__________________________________________<br>&gt; yocto mailing list<br>&g=
-t; <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>=
-&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto">https://list=
-s.yoctoproject.org/listinfo/yocto</a></div></div>
+Hello, Yocto.
 
---001a113d45085f7827054ae93ad7--
+
+I have looked into recipes index, etc. but I so far I could not figure out =
+clear answer, so if you have status on this, I highly appreciate.
+
+
+I am looking for a web browser that can (without much effort) be built and =
+run on Yocto based environment, with wayland-only window system (without x1=
+1 libraries).
+
+
+i.e. if such Yocto recipe already exist, it would be a great help.
+
+I can see midori, epiphay, or other browser 'should run' on wayland environ=
+ment, but it seems they rely graphics libraries that still depends on x11 a=
+nd in Yocto recipes x11 DISTRO_FEATURES is being set as requirement for the=
+m.
+
+
+Is this still the situation on latest master or morty branches.
+
+If there is an attempt for the similar?
+
+
+--_000_MWHPR0101MB29577CA8CFDD7DD137A0D290B6390MWHPR0101MB2957_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+</head>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Arial,Helvetica,sans-serif;" dir=3D"ltr">
+<p>Hello, Yocto.</p>
+<p><br>
+</p>
+<p>I have looked into recipes index, etc. but I so far I could not figure o=
+ut clear answer, so if you have status on this, I highly appreciate.</p>
+<p><br>
+</p>
+<p>I am looking for a web browser that can (without much effort) be built a=
+nd run on Yocto based environment, with wayland-only window system (without=
+ x11 libraries).</p>
+<p><br>
+</p>
+<p>i.e. if such Yocto recipe already exist, it would be a great help.</p>
+<p>I can see midori, epiphay, or other browser 'should run' on wayland envi=
+ronment, but it seems they rely graphics libraries that still depends on x1=
+1 and in Yocto recipes x11 DISTRO_FEATURES is being set as requirement for =
+them.</p>
+<p><br>
+</p>
+<p>Is this still the situation on latest master or morty branches.</p>
+<p>If there is an attempt for the similar?</p>
+<p><br>
+</p>
+</div>
+</body>
+</html>
+
+--_000_MWHPR0101MB29577CA8CFDD7DD137A0D290B6390MWHPR0101MB2957_--
