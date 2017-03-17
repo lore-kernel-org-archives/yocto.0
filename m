@@ -1,64 +1,40 @@
-Return-Path: <prvs=12499e4edc=holzmayr@rsi-elektrotechnik.de>
+Return-Path: <jose.perez.carranza@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 71C80E00724; Fri, 17 Mar 2017 05:14:22 -0700 (PDT)
+	id B2804E00546; Fri, 17 Mar 2017 06:26:31 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [81.169.146.160 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mo4-p00-ob.smtp.rzone.de (mo4-p00-ob.smtp.rzone.de
-	[81.169.146.160])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 07603E0050B
-	for <yocto@yoctoproject.org>; Fri, 17 Mar 2017 05:14:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1489752856;
-	l=1042; s=domk; d=rsi-elektrotechnik.de;
-	h=Content-Transfer-Encoding:Content-Type:In-Reply-To:MIME-Version:
-	Date:From:Cc:References:To:Subject;
-	bh=1rt4O9oFv96KlkitXj+rGK5je4V3Z+vmo+vz3P5T0hc=;
-	b=PQr/kos3knl3xMSF5c4JkUzu1ldVPbeGFcA17aBGyydDakutPTIU0DEoEp+Hjtulua
-	R+5Pw7aQoWzGkIkYLTB2DF4MLL/RGBF8Wvx5YUWlxjGCPb4r57JmMpuwBLvUZtWp1NCi
-	3BxJe4r3xDLYBitKVR4KVRuKS8G7CEevn2xjo=
-X-RZG-AUTH: :fz5RJhWIaexwuXGosGLfiBc0xYyi1Y5bd+wRKqrzPWwJyH/ODuV4n+N24+CqMVTDvF1MhuFNtPdyidq1PsMOrsgJUXn/sWrYFv/BbNIsEQ==
-X-RZG-CLASS-ID: mo00
-Received: from mail.rsi-elektrotechnik.de
-	([2001:0:9d38:78cf:185a:368e:af6c:cbea])
-	by smtp.strato.de (RZmta 40.2 AUTH) with ESMTPSA id 907248t2HCEG0gh
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (curve secp384r1
-	with 384 ECDH bits, eq. 7680 bits RSA))
-	(Client did not present a certificate);
-	Fri, 17 Mar 2017 13:14:16 +0100 (CET)
-Received: from [x.x.x.x] by mail.rsi-elektrotechnik.de (Cipher
-	TLSv1.2:AES-SHA:256) (MDaemon PRO v16.5.2) 
-	with ESMTPSA id md50000510703.msg; Fri, 17 Mar 2017 13:13:56 +0100
-X-MDRemoteIP: 178.26.151.155
-X-MDArrival-Date: Fri, 17 Mar 2017 13:13:56 +0100
-X-Authenticated-Sender: holzmayr@rsi-elektrotechnik.de
-X-Return-Path: prvs=12499e4edc=holzmayr@rsi-elektrotechnik.de
-X-Envelope-From: holzmayr@rsi-elektrotechnik.de
-X-CAV-Result: skipped - holzmayr@rsi-elektrotechnik.de is in exclusion list
-To: ravikiran j <ravikiran.j@mistralsolutions.com>
-References: <CALDHXtf7=HeQV56Yg-9WPL2nu_-OvaF0qNBVcAsks5SAaBhAiA@mail.gmail.com>
-	<b117f9cc-2e4b-9f3c-74ff-87f9afdf1609@rsi-elektrotechnik.de>
-	<CALDHXtdjqTqtYixJ1a3xn1rOF+_ZcJ_ExiT1r1bA1Qw=6xg_Hg@mail.gmail.com>
-From: Josef Holzmayr <holzmayr@rsi-elektrotechnik.de>
-Message-ID: <c5eefd24-f47b-8cf8-3b71-5bc7671587fe@rsi-elektrotechnik.de>
-Date: Fri, 17 Mar 2017 13:13:40 +0100
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [134.134.136.100 listed in list.dnswl.org]
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 563DDE0050B
+	for <yocto@yoctoproject.org>; Fri, 17 Mar 2017 06:26:28 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga105.jf.intel.com with ESMTP; 17 Mar 2017 06:26:28 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.36,176,1486454400"; 
+	d="scan'208,217";a="1109544202"
+Received: from jgperezc-mobl1.zpn.intel.com (HELO [10.219.4.33])
+	([10.219.4.33])
+	by orsmga001.jf.intel.com with ESMTP; 17 Mar 2017 06:26:27 -0700
+To: Jussi Kukkonen <jussi.kukkonen@intel.com>
+References: <20170316153425.19041-1-jose.perez.carranza@linux.intel.com>
+	<CAHiDW_GFPTZsfjbRpdP+vDaiE-OEVwD+1xZagL1q-z7pR3NrcQ@mail.gmail.com>
+From: Jose Perez Carranza <jose.perez.carranza@linux.intel.com>
+Message-ID: <5e7142bc-3d67-1510-892d-3a44b0b641bd@linux.intel.com>
+Date: Fri, 17 Mar 2017 08:27:36 -0500
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.8.0
+	Thunderbird/45.7.0
 MIME-Version: 1.0
-In-Reply-To: <CALDHXtdjqTqtYixJ1a3xn1rOF+_ZcJ_ExiT1r1bA1Qw=6xg_Hg@mail.gmail.com>
+In-Reply-To: <CAHiDW_GFPTZsfjbRpdP+vDaiE-OEVwD+1xZagL1q-z7pR3NrcQ@mail.gmail.com>
 Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: Missing or unbuildable dependency chain
+Subject: Re: [qa-tools][PATCH] full-test-cycle-wrapper: Correct qemu-auto variables
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,42 +46,170 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 17 Mar 2017 12:14:22 -0000
+X-List-Received-Date: Fri, 17 Mar 2017 13:26:31 -0000
+Content-Type: multipart/alternative;
+	boundary="------------532D99D318076AEAF86667EC"
+
+--------------532D99D318076AEAF86667EC
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-Hi.
 
-On 17.03.2017 13:10, ravikiran j wrote:
-> for this error  which layer i needs to be added ?
 
-As I already explicitly linked to the layerindex, here is another 
-example of its usefulness:
-https://layers.openembedded.org/layerindex/recipe/47350/
+On 03/17/2017 03:47 AM, Jussi Kukkonen wrote:
+>
+>
+> On 16 March 2017 at 17:34, <jose.perez.carranza@linux.intel.com 
+> <mailto:jose.perez.carranza@linux.intel.com>> wrote:
+> >
+> > From: Jose Perez Carranza <jose.perez.carranza@linux.intel.com 
+> <mailto:jose.perez.carranza@linux.intel.com>>
+> >
+> > Update variables for creating test runs for qemu ato component
+> >
+> > Signed-off-by: Jose Perez Carranza 
+> <jose.perez.carranza@linux.intel.com 
+> <mailto:jose.perez.carranza@linux.intel.com>>
+> > ---
+> >  scripts/full-test-cycle-wrapper.sh | 4 ++--
+> >  1 file changed, 2 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/scripts/full-test-cycle-wrapper.sh 
+> b/scripts/full-test-cycle-wrapper.sh
+> > index f52cd96..3a6ba0f 100755
+> > --- a/scripts/full-test-cycle-wrapper.sh
+> > +++ b/scripts/full-test-cycle-wrapper.sh
+> > @@ -82,8 +82,8 @@ create_yocto(){
+> >     create_test_run "${1}" "core-image-sato-sdk_ANYQEMU"
+> >
+> >     #QEMUs Autos
+> > -   EVIRONMETS=("qemu-x86" "qemuarm" "qemuarm64" "qemumips" 
+> "qemumips64" "qemuppc" "qemux86-64" "qemux86-lsb" "qemux86_64-lsb")
+> > -   ECUTION_TYPE="AUTO"
+> > +   ENVIRONMETS=("qemu-x86" "qemuarm" "qemuarm64" "qemumips" 
+> "qemumips64" "qemuppc" "qemux86-64")
+>
+> It seems this is in master already so I'll just mention the typo for 
+> future: ENVIRONMETS should probably be ENVIRONMENTS in whole file.
+I'll correct that in the next series of patches. thanks for pointing it 
+out.
 
-Please understand that I probably won't respond another time to things 
-that are trivially solvable through information that I already provided.
+José
+>
+>   Jussi
+>
+> > +   EXECUTION_TYPE="AUTO"
+> >     create_test_run "${1}" "core-image-sato-sdk_ANYQEMU"
+> >
+> >     #QEMUs Autos LSB
+> > --
+> > 2.11.0
+> >
+> > --
+> > _______________________________________________
+> > yocto mailing list
+> > yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
+> > https://lists.yoctoproject.org/listinfo/yocto
 
-Greetz
 -- 
-Josef Holzmayr
-Software Developer Embedded Systems
-
-Tel: +49 8444 9204-48
-Fax: +49 8444 9204-50
-
-R-S-I Elektrotechnik GmbH & Co. KG
-Woelkestrasse 11
-D-85301 Schweitenkirchen
-www.rsi-elektrotechnik.de
-———————————————
-Amtsgericht Ingolstadt – GmbH: HRB 191328 – KG: HRA 170393
-Geschäftsführer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
-Ust-IdNr: DE 128592548
-
-_____________________________________________________________
-Amtsgericht Ingolstadt - GmbH: HRB 191328 - KG: HRA 170363
-Geschäftsführer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
-USt-IdNr.: DE 128592548
+Saludos
+José
 
 
+--------------532D99D318076AEAF86667EC
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <p><br>
+    </p>
+    <br>
+    <div class="moz-cite-prefix">On 03/17/2017 03:47 AM, Jussi Kukkonen
+      wrote:<br>
+    </div>
+    <blockquote
+cite="mid:CAHiDW_GFPTZsfjbRpdP+vDaiE-OEVwD+1xZagL1q-z7pR3NrcQ@mail.gmail.com"
+      type="cite">
+      <div dir="ltr"><br>
+        <br>
+        On 16 March 2017 at 17:34, &lt;<a moz-do-not-send="true"
+          href="mailto:jose.perez.carranza@linux.intel.com">jose.perez.carranza@linux.intel.com</a>&gt;
+        wrote:<br>
+        &gt;<br>
+        &gt; From: Jose Perez Carranza &lt;<a moz-do-not-send="true"
+          href="mailto:jose.perez.carranza@linux.intel.com">jose.perez.carranza@linux.intel.com</a>&gt;<br>
+        &gt;<br>
+        &gt; Update variables for creating test runs for qemu ato
+        component<br>
+        &gt;<br>
+        &gt; Signed-off-by: Jose Perez Carranza &lt;<a
+          moz-do-not-send="true"
+          href="mailto:jose.perez.carranza@linux.intel.com">jose.perez.carranza@linux.intel.com</a>&gt;<br>
+        &gt; ---<br>
+        &gt;  scripts/full-test-cycle-wrapper.sh | 4 ++--<br>
+        &gt;  1 file changed, 2 insertions(+), 2 deletions(-)<br>
+        &gt;<br>
+        &gt; diff --git a/scripts/full-test-cycle-wrapper.sh
+        b/scripts/full-test-cycle-wrapper.sh<br>
+        &gt; index f52cd96..3a6ba0f 100755<br>
+        &gt; --- a/scripts/full-test-cycle-wrapper.sh<br>
+        &gt; +++ b/scripts/full-test-cycle-wrapper.sh<br>
+        &gt; @@ -82,8 +82,8 @@ create_yocto(){<br>
+        &gt;     create_test_run "${1}" "core-image-sato-sdk_ANYQEMU"<br>
+        &gt;<br>
+        &gt;     #QEMUs Autos<br>
+        &gt; -   EVIRONMETS=("qemu-x86" "qemuarm" "qemuarm64" "qemumips"
+        "qemumips64" "qemuppc" "qemux86-64" "qemux86-lsb"
+        "qemux86_64-lsb")<br>
+        &gt; -   ECUTION_TYPE="AUTO"<br>
+        &gt; +   ENVIRONMETS=("qemu-x86" "qemuarm" "qemuarm64"
+        "qemumips" "qemumips64" "qemuppc" "qemux86-64")
+        <div><br>
+        </div>
+        <div>It seems this is in master already so I'll just mention the
+          typo for future: ENVIRONMETS should probably be ENVIRONMENTS
+          in whole file. <br>
+        </div>
+      </div>
+    </blockquote>
+    I'll correct that in the next series of patches. thanks for pointing
+    it out. <br>
+    <br>
+    José<br>
+    <blockquote
+cite="mid:CAHiDW_GFPTZsfjbRpdP+vDaiE-OEVwD+1xZagL1q-z7pR3NrcQ@mail.gmail.com"
+      type="cite">
+      <div dir="ltr">
+        <div><br>
+        </div>
+        <div>  Jussi<br>
+        </div>
+        <div><br>
+          &gt; +   EXECUTION_TYPE="AUTO"<br>
+          &gt;     create_test_run "${1}" "core-image-sato-sdk_ANYQEMU"<br>
+          &gt;<br>
+          &gt;     #QEMUs Autos LSB<br>
+          &gt; --<br>
+          &gt; 2.11.0<br>
+          &gt;<br>
+          &gt; --<br>
+          &gt; _______________________________________________<br>
+          &gt; yocto mailing list<br>
+          &gt; <a moz-do-not-send="true"
+            href="mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+          &gt; <a moz-do-not-send="true"
+            href="https://lists.yoctoproject.org/listinfo/yocto">https://lists.yoctoproject.org/listinfo/yocto</a></div>
+      </div>
+    </blockquote>
+    <br>
+    <pre class="moz-signature" cols="72">-- 
+Saludos 
+José </pre>
+  </body>
+</html>
+
+--------------532D99D318076AEAF86667EC--
