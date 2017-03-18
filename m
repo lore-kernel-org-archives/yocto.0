@@ -1,66 +1,65 @@
-Return-Path: <randy.g.duran@intel.com>
+Return-Path: <twoerner@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 10498E009B9; Fri, 17 Mar 2017 16:19:54 -0700 (PDT)
+	id DBE60E003C1; Fri, 17 Mar 2017 23:58:15 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	HTML_MESSAGE, RCVD_IN_DNSWL_HI,
-	T_DKIM_INVALID autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.24 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (twoerner[at]gmail.com)
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.214.67 listed in dnsbl.sorbs.net]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.214.67 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	*  0.0 T_DKIM_INVALID DKIM-Signature header exists but is not valid
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3A648E009B9;
-	Fri, 17 Mar 2017 16:19:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-	d=intel.com; i=@intel.com; q=dns/txt; s=intel;
-	t=1489792793; x=1521328793;
-	h=from:to:subject:date:message-id:mime-version;
-	bh=T9ru7Cye7vZwQh/hfxPmL2WvgozQU5t5GeNi7xeY2Co=;
-	b=KEMFChTG5talQwkArqAbpVGps7eNHN+F2dtjS2SM5lRuW/u2290TblpX
-	DFeSDh6uYZTl/i5WqlWKNFIGy3khgA==;
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-	by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	17 Mar 2017 16:19:52 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.36,178,1486454400"; 
-	d="scan'208,217";a="237671653"
-Received: from fmsmsx107.amr.corp.intel.com ([10.18.124.205])
-	by fmsmga004.fm.intel.com with ESMTP; 17 Mar 2017 16:19:51 -0700
-Received: from fmsmsx126.amr.corp.intel.com (10.18.125.43) by
-	fmsmsx107.amr.corp.intel.com (10.18.124.205) with Microsoft SMTP Server
-	(TLS) id 14.3.248.2; Fri, 17 Mar 2017 16:19:51 -0700
-Received: from crsmsx101.amr.corp.intel.com (172.18.63.136) by
-	FMSMSX126.amr.corp.intel.com (10.18.125.43) with Microsoft SMTP Server
-	(TLS) id 14.3.248.2; Fri, 17 Mar 2017 16:19:51 -0700
-Received: from crsmsx102.amr.corp.intel.com ([169.254.2.83]) by
-	CRSMSX101.amr.corp.intel.com ([169.254.1.204]) with mapi id
-	14.03.0248.002; Fri, 17 Mar 2017 17:19:30 -0600
-From: "Duran, Randy G" <randy.g.duran@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"meta-intel-bounces@yoctoproject.org"
-	<meta-intel-bounces@yoctoproject.org>, 
-	"meta-intel@yoctoproject.org" <meta-intel@yoctoproject.org>
-Thread-Topic: Installing a Yocto image to emmc
-Thread-Index: AdKfQZoWwtQIQZutRFKG1UwFXxwOTgAMxdYA
-Date: Fri, 17 Mar 2017 23:19:30 +0000
-Message-ID: <ECD1212B70630641AD7EB42F3F5E771E36ACE7D3@CRSMSX102.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiNjQ4Y2M4YjctNDc2Ni00MWFiLTlmNmEtNGIwYTRkMjNiOTdiIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX0lDIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE1LjkuNi42IiwiVHJ1c3RlZExhYmVsSGFzaCI6IktldGFKXC9ZTU81N1d2Y0NUc09QckhUUmJIbjB2TndPTzFZZ1N0ZzRDM2lVPSJ9
-x-ctpclassification: CTP_IC
-x-originating-ip: [172.18.205.10]
-MIME-Version: 1.0
-X-Mailman-Approved-At: Fri, 17 Mar 2017 19:51:10 -0700
-Subject: Installing a Yocto image to emmc
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-it0-f67.google.com (mail-it0-f67.google.com
+	[209.85.214.67])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6AF9FE0030B
+	for <yocto@yoctoproject.org>; Fri, 17 Mar 2017 23:58:14 -0700 (PDT)
+Received: by mail-it0-f67.google.com with SMTP id r141so7907172ita.1
+	for <yocto@yoctoproject.org>; Fri, 17 Mar 2017 23:58:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=from:to:subject:date:message-id;
+	bh=gvs64FYgjP61XlkYzniMymhrtzPDmz/DFaffROxWLS8=;
+	b=cgziPTiL88UEAMing+ygEMjbv/3NTTFiOvMEmi4B5ZfavIfJD80V4ItjqQCyXIdHhs
+	PxSG+yko23pQ6pbTRRaY7p5taS8ms9XxZSmQc3lTJVoa5Cg6U/qn25FvIms9c0P8zYMI
+	kAGvg5cE4yp4/J6qhYpv6jYiuPfjIM7NZuXKPYuAUCrpMv+8Fh4OhuchTT1RfKqCUa+q
+	D/cBpJRNK0WKmzzfZ4Wc2LUyOD6pETd8u1Q1UIdXqvjkRuuO942PKjffJbpj1uZM3eNG
+	Xb7tkMhy6swgxI6odxRMA5/NKqoc3VPm64H9cLrsVPNjq/avSHfh8e7zQOPdnGgfKJt0
+	wz2w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:to:subject:date:message-id;
+	bh=gvs64FYgjP61XlkYzniMymhrtzPDmz/DFaffROxWLS8=;
+	b=OdVWRrHD5YRXhBjMDgBQ8I25bKwp6aNB4Ie53U6Uj2m2erJsNdPYxhObMorHCBBOXz
+	98TRPRSwmGu/6T72DjOI0EOg+XFaNwCahTl1ObwlqDGWtBuS1ZqneVGYnba+t8JGpnzr
+	VIi1lxzBUnlArZACF3vJGtZhFS6C97LIoUS0zlOWBbXVE7tqCcZdqBraYFWNN1o7yTcU
+	TtKbZ4uyq1mthcInv5LRFZBVNvl8w/XVZptWwMG9LV28IBMRFaHsEuWS/2vNS8AyayER
+	sGqFJh5alOJEosWDigYLjbYdpf0t2rRfJVqG+apRaDOhFJJ/osipOTpk6HA8/t2U4r/2
+	oQsA==
+X-Gm-Message-State: AFeK/H3Zi9vE/QsnadhgEfsdyR3kXrDKur9sOmJWIDY8+6tYanilGKvWpfQb/hWb/PmG9Q==
+X-Received: by 10.36.181.23 with SMTP id v23mr1836859ite.100.1489820293949;
+	Fri, 17 Mar 2017 23:58:13 -0700 (PDT)
+Received: from linux-uys3.suse (104-247-246-30.cpe.teksavvy.com.
+	[104.247.246.30]) by smtp.gmail.com with ESMTPSA id
+	p191sm2165394itc.4.2017.03.17.23.58.12 for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Fri, 17 Mar 2017 23:58:12 -0700 (PDT)
+From: Trevor Woerner <twoerner@gmail.com>
+To: yocto@yoctoproject.org
+Date: Sat, 18 Mar 2017 02:58:04 -0400
+Message-Id: <20170318065804.27967-1-twoerner@gmail.com>
+X-Mailer: git-send-email 2.12.0.rc1.48.g076c053
+Subject: [meta-rockchip][PATCH] machine: rk3288: don't hard-code kernel choice
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,100 +71,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 17 Mar 2017 23:19:54 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_ECD1212B70630641AD7EB42F3F5E771E36ACE7D3CRSMSX102amrcor_"
+X-List-Received-Date: Sat, 18 Mar 2017 06:58:16 -0000
 
---_000_ECD1212B70630641AD7EB42F3F5E771E36ACE7D3CRSMSX102amrcor_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Allow the user to ultimately choose the kernel. Make 'linux' the _preferred_,
+not the _required_.
 
-Hello, I am trying to get information on software or procedure to flash a Y=
-octo image on to a Joule's emmc not using normal steps such using a bootlab=
-le USB nor sdcard. I am attempting to automate flashing an image on to devi=
-ce without any human interventions. I am looking for something like Platfor=
-m/Phone flash tool software equivalent for android devices. Any information=
- is appreciated.
+Signed-off-by: Trevor Woerner <twoerner@gmail.com>
+---
+ conf/machine/include/rk3288.inc | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Thanks,
+diff --git a/conf/machine/include/rk3288.inc b/conf/machine/include/rk3288.inc
+index 964d8b0..88acbbf 100644
+--- a/conf/machine/include/rk3288.inc
++++ b/conf/machine/include/rk3288.inc
+@@ -6,7 +6,7 @@ SOC_FAMILY = "rk3288"
+ require conf/machine/include/tune-cortexa17.inc
+ require conf/machine/include/soc-family.inc
+ 
+-PREFERRED_PROVIDER_virtual/kernel = "linux"
++PREFERRED_PROVIDER_virtual/kernel ?= "linux"
+ SERIAL_CONSOLES = "115200;ttyS2"
+ KERNEL_IMAGETYPE = "zImage"
+ KBUILD_DEFCONFIG = "multi_v7_defconfig"
+-- 
+2.12.0.rc1.48.g076c053
 
--Randy
 
-
---_000_ECD1212B70630641AD7EB42F3F5E771E36ACE7D3CRSMSX102amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-span.EmailStyle18
-	{mso-style-type:personal-reply;
-	font-family:"Calibri",sans-serif;
-	color:#1F497D;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hello, I am trying to get information on software or=
- procedure to flash a Yocto image on to a Joule&#8217;s emmc not using norm=
-al steps such using a bootlable USB nor sdcard. I am attempting to automate=
- flashing an image on to device without
- any human interventions. I am looking for something like Platform/Phone fl=
-ash tool software equivalent for android devices. Any information is apprec=
-iated.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">-Randy<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
-
---_000_ECD1212B70630641AD7EB42F3F5E771E36ACE7D3CRSMSX102amrcor_--
