@@ -1,6 +1,6 @@
 Return-Path: <twoerner@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DBE60E003C1; Fri, 17 Mar 2017 23:58:15 -0700 (PDT)
+	id 1985FE007AD; Sat, 18 Mar 2017 01:07:17 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,10 +10,7 @@ X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (twoerner[at]gmail.com)
 	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.214.67 listed in dnsbl.sorbs.net]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.214.67 listed in list.dnswl.org]
+	*      [209.85.214.44 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -21,45 +18,50 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-it0-f67.google.com (mail-it0-f67.google.com
-	[209.85.214.67])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6AF9FE0030B
-	for <yocto@yoctoproject.org>; Fri, 17 Mar 2017 23:58:14 -0700 (PDT)
-Received: by mail-it0-f67.google.com with SMTP id r141so7907172ita.1
-	for <yocto@yoctoproject.org>; Fri, 17 Mar 2017 23:58:14 -0700 (PDT)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.214.44 listed in list.dnswl.org]
+Received: from mail-it0-f44.google.com (mail-it0-f44.google.com
+	[209.85.214.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 03FDCE00349
+	for <yocto@yoctoproject.org>; Sat, 18 Mar 2017 01:07:09 -0700 (PDT)
+Received: by mail-it0-f44.google.com with SMTP id m27so51296360iti.1
+	for <yocto@yoctoproject.org>; Sat, 18 Mar 2017 01:07:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:subject:date:message-id;
-	bh=gvs64FYgjP61XlkYzniMymhrtzPDmz/DFaffROxWLS8=;
-	b=cgziPTiL88UEAMing+ygEMjbv/3NTTFiOvMEmi4B5ZfavIfJD80V4ItjqQCyXIdHhs
-	PxSG+yko23pQ6pbTRRaY7p5taS8ms9XxZSmQc3lTJVoa5Cg6U/qn25FvIms9c0P8zYMI
-	kAGvg5cE4yp4/J6qhYpv6jYiuPfjIM7NZuXKPYuAUCrpMv+8Fh4OhuchTT1RfKqCUa+q
-	D/cBpJRNK0WKmzzfZ4Wc2LUyOD6pETd8u1Q1UIdXqvjkRuuO942PKjffJbpj1uZM3eNG
-	Xb7tkMhy6swgxI6odxRMA5/NKqoc3VPm64H9cLrsVPNjq/avSHfh8e7zQOPdnGgfKJt0
-	wz2w==
+	h=date:from:to:subject:message-id:mime-version:content-disposition
+	:user-agent; bh=wPM1c7EMX6x0F3tACzd5I9qccgVW7n3umbUKxZQqNfI=;
+	b=H9SO0v1ZsqyEGRukFiFxVe3NMGkIJc4TebD09Ylt51E8JQLjYMA8ozJ9nYDd9a3lCX
+	x6+SM+qp08912b6vn3caQ+vPB37lUOpi/Wgees+ldSu+G74FGdM2HvYGDkHwVO2okqLW
+	QfztlW6kUHIA3Su9+8Q5OqLFqw9jkdKozu0LiI8B8+FocfYcSH44mdxluQgAR8KbUIGb
+	fFB3TT+untbC1cb+WXR9BJAMJJHXTUyOCKajRNR4qBGNQS5ZUu1vPo6vhJqgfSbkwYo9
+	80AiWZhsBM9Jq9uzwPqu260tfN6ZOUsMuU/m8N+qWThafhldGpc2y/l/64WEcgAA/f/m
+	dEeg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:subject:date:message-id;
-	bh=gvs64FYgjP61XlkYzniMymhrtzPDmz/DFaffROxWLS8=;
-	b=OdVWRrHD5YRXhBjMDgBQ8I25bKwp6aNB4Ie53U6Uj2m2erJsNdPYxhObMorHCBBOXz
-	98TRPRSwmGu/6T72DjOI0EOg+XFaNwCahTl1ObwlqDGWtBuS1ZqneVGYnba+t8JGpnzr
-	VIi1lxzBUnlArZACF3vJGtZhFS6C97LIoUS0zlOWBbXVE7tqCcZdqBraYFWNN1o7yTcU
-	TtKbZ4uyq1mthcInv5LRFZBVNvl8w/XVZptWwMG9LV28IBMRFaHsEuWS/2vNS8AyayER
-	sGqFJh5alOJEosWDigYLjbYdpf0t2rRfJVqG+apRaDOhFJJ/osipOTpk6HA8/t2U4r/2
-	oQsA==
-X-Gm-Message-State: AFeK/H3Zi9vE/QsnadhgEfsdyR3kXrDKur9sOmJWIDY8+6tYanilGKvWpfQb/hWb/PmG9Q==
-X-Received: by 10.36.181.23 with SMTP id v23mr1836859ite.100.1489820293949;
-	Fri, 17 Mar 2017 23:58:13 -0700 (PDT)
-Received: from linux-uys3.suse (104-247-246-30.cpe.teksavvy.com.
-	[104.247.246.30]) by smtp.gmail.com with ESMTPSA id
-	p191sm2165394itc.4.2017.03.17.23.58.12 for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Fri, 17 Mar 2017 23:58:12 -0700 (PDT)
+	h=x-gm-message-state:date:from:to:subject:message-id:mime-version
+	:content-disposition:user-agent;
+	bh=wPM1c7EMX6x0F3tACzd5I9qccgVW7n3umbUKxZQqNfI=;
+	b=mXpV0EEnonq51nPExxxI3kLlB9sczDx5W1Kqc1ilY+8Q3XN2ts4xlBAqg6ACZElPWE
+	XwfXqpzedHWeqG4uAQkRTRJQlygBRNxqzSSFUvOl5VHD/H5iwHLFi3yC0XLQfAdM1Pb+
+	QnyCj0W+qAKqfizWkON5u4sytuBRY76VnqtUpQsFUrhZxxBFrX7em/CrOl845Vb1ZQ1X
+	hk/cAax5bXC4XcDViXkXp3+4G5ZZ11TgFfA3zDI7SH84lQ61dWg4gDbBIYBM/U9drCMq
+	U6SU0PBmtjj0hJNvLYVk5Cia8OHesYC6vC1vUADOgpB+2lQJizRPTWTvzacdwfzvud4q
+	o5Ww==
+X-Gm-Message-State: AFeK/H0Pq+HNnwNq2HecMrn5Jfff1e0dKI3c7xrig2LTUF5jo55T4nbjAdARl52SMEGIkQ==
+X-Received: by 10.36.110.10 with SMTP id w10mr1765611itc.88.1489824428426;
+	Sat, 18 Mar 2017 01:07:08 -0700 (PDT)
+Received: from linux-uys3 (dsl-67-55-28-109.acanac.net. [67.55.28.109])
+	by smtp.gmail.com with ESMTPSA id
+	j85sm5558278iod.27.2017.03.18.01.07.07 for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Sat, 18 Mar 2017 01:07:07 -0700 (PDT)
+Date: Sat, 18 Mar 2017 04:07:05 -0400
 From: Trevor Woerner <twoerner@gmail.com>
 To: yocto@yoctoproject.org
-Date: Sat, 18 Mar 2017 02:58:04 -0400
-Message-Id: <20170318065804.27967-1-twoerner@gmail.com>
-X-Mailer: git-send-email 2.12.0.rc1.48.g076c053
-Subject: [meta-rockchip][PATCH] machine: rk3288: don't hard-code kernel choice
+Message-ID: <20170318080705.GA11330@linux-uys3>
+MIME-Version: 1.0
+User-Agent: Mutt/1.6.0 (2016-04-01)
+Subject: auto kernel version
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,30 +73,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 18 Mar 2017 06:58:16 -0000
+X-List-Received-Date: Sat, 18 Mar 2017 08:07:17 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 
-Allow the user to ultimately choose the kernel. Make 'linux' the _preferred_,
-not the _required_.
+Hi,
 
-Signed-off-by: Trevor Woerner <twoerner@gmail.com>
----
- conf/machine/include/rk3288.inc | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Let's say I wanted to create a recipe to follow Linus' mainline or a recipe
+to follow GregKH's staging-next. In those cases I wouldn't want to nail them
+down with a version, I'd want to do AUTOREV. So I wouldn't put a version in
+the recipe filename (linus-mainline.bb or gregkh-staging-next_git.bb).
+But I can't seem to get away with not having some sort of version string
+(LINUX_VERSION, PV) in the recipe itself. Is it not possible to extract a PV
+or LINUX_VERSION automatically? Otherwise I'll need to update the recipe and
+commit with every release (which isn't the end of the world, but adds to the
+maintenance).
 
-diff --git a/conf/machine/include/rk3288.inc b/conf/machine/include/rk3288.inc
-index 964d8b0..88acbbf 100644
---- a/conf/machine/include/rk3288.inc
-+++ b/conf/machine/include/rk3288.inc
-@@ -6,7 +6,7 @@ SOC_FAMILY = "rk3288"
- require conf/machine/include/tune-cortexa17.inc
- require conf/machine/include/soc-family.inc
- 
--PREFERRED_PROVIDER_virtual/kernel = "linux"
-+PREFERRED_PROVIDER_virtual/kernel ?= "linux"
- SERIAL_CONSOLES = "115200;ttyS2"
- KERNEL_IMAGETYPE = "zImage"
- KBUILD_DEFCONFIG = "multi_v7_defconfig"
--- 
-2.12.0.rc1.48.g076c053
+	SUMMARY = "GregKH's Staging-Next"
+	SECTION = "kernel"
+	LICENSE = "GPLv2"
 
+	inherit kernel
+	require recipes-kernel/linux/linux-dtb.inc
+
+	LIC_FILES_CHKSUM = "file://COPYING;md5=d7810fab7487fb0aad327b76f1be7cd7"
+
+	SRC_URI = "git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/staging.git;branch=staging-next"
+	SRC_URI_append_rk3288 = " file://defconfig"
+	SRC_URI_append_intel-corei7-64 = " file://defconfig"
+	SRCREV = "${AUTOREV}"
+
+	LINUX_VERSION = "4.11"
+	PV = "${LINUX_VERSION}+git${SRCPV}"
+	S = "${WORKDIR}/git"
+
+	DEPENDS += "xz-native bc-native coreutils-native"
 
