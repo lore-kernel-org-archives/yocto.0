@@ -1,6 +1,6 @@
 Return-Path: <ayaka@soulik.info>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A16AAE00AB3; Sun, 19 Mar 2017 10:54:41 -0700 (PDT)
+	id 804D8E00ABE; Sun, 19 Mar 2017 10:54:42 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,22 +9,22 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from kozue.soulik.info (kozue.soulik.info [108.61.200.231])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 73CDCE00AAA
-	for <yocto@yoctoproject.org>; Sun, 19 Mar 2017 10:54:40 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 68234E00A81
+	for <yocto@yoctoproject.org>; Sun, 19 Mar 2017 10:54:39 -0700 (PDT)
 Received: from misaki.sumomo.pri (unknown
 	[IPv6:2001:470:b30d:2:3fe5:5e2:ef97:4abb])
-	by kozue.soulik.info (Postfix) with ESMTPA id EB4CB102264;
-	Mon, 20 Mar 2017 02:55:24 +0900 (JST)
+	by kozue.soulik.info (Postfix) with ESMTPA id E6F1D102262;
+	Mon, 20 Mar 2017 02:55:23 +0900 (JST)
 From: ayaka <ayaka@soulik.info>
 To: yocto@yoctoproject.org
-Date: Mon, 20 Mar 2017 01:54:25 +0800
-Message-Id: <1489946065-28272-4-git-send-email-ayaka@soulik.info>
+Date: Mon, 20 Mar 2017 01:54:24 +0800
+Message-Id: <1489946065-28272-3-git-send-email-ayaka@soulik.info>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1489946065-28272-1-git-send-email-ayaka@soulik.info>
 References: <1489946065-28272-1-git-send-email-ayaka@soulik.info>
 X-Mailman-Approved-At: Mon, 20 Mar 2017 10:57:32 -0700
-Cc: ayaka <ayaka@soulik.info>
-Subject: [PATCH 3/3] recipes-multimedia: add gstreamer rockchip support
+Cc: Jacob Chen <jacob-chen@iotwrt.com>, ayaka <ayaka@soulik.info>
+Subject: [PATCH 2/3] recipes-multimedia: gstreamer: update to 1.10.4
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,98 +36,63 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 19 Mar 2017 17:54:41 -0000
+X-List-Received-Date: Sun, 19 Mar 2017 17:54:42 -0000
 
-This Gstreamer plugin provides a encoder and decoder plugin
-for Gstreamer through the Rockchip MPP library.
+I need a various of features from the new version.
 
+Signed-off-by: Jacob Chen <jacob-chen@iotwrt.com>
 Signed-off-by: ayaka <ayaka@soulik.info>
 ---
- .../gstreamer/gstreamer1.0-rockchip.inc            | 33 ++++++++++++++++++++++
- .../gstreamer/gstreamer1.0-rockchip_20170319.bb    | 11 ++++++++
- .../gstreamer/gstreamer1.0-rockchip_git.bb         | 15 ++++++++++
- 3 files changed, 59 insertions(+)
- create mode 100644 recipes-multimedia/gstreamer/gstreamer1.0-rockchip.inc
- create mode 100644 recipes-multimedia/gstreamer/gstreamer1.0-rockchip_20170319.bb
- create mode 100644 recipes-multimedia/gstreamer/gstreamer1.0-rockchip_git.bb
+ recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_%.bbappend  | 4 ++++
+ recipes-multimedia/gstreamer/gstreamer1.0-plugins-base_%.bbappend | 4 ++++
+ recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_%.bbappend | 4 ++++
+ recipes-multimedia/gstreamer/gstreamer1.0_%.bbappend              | 4 ++++
+ 4 files changed, 16 insertions(+)
+ create mode 100644 recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_%.bbappend
+ create mode 100644 recipes-multimedia/gstreamer/gstreamer1.0-plugins-base_%.bbappend
+ create mode 100644 recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_%.bbappend
+ create mode 100644 recipes-multimedia/gstreamer/gstreamer1.0_%.bbappend
 
-diff --git a/recipes-multimedia/gstreamer/gstreamer1.0-rockchip.inc b/recipes-multimedia/gstreamer/gstreamer1.0-rockchip.inc
+diff --git a/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_%.bbappend b/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_%.bbappend
 new file mode 100644
-index 0000000..2666edf
+index 0000000..5f2255f
 --- /dev/null
-+++ b/recipes-multimedia/gstreamer/gstreamer1.0-rockchip.inc
-@@ -0,0 +1,33 @@
-+# Copyright (C) 2016 - 2017 Randy Li <ayaka@soulik.info>
-+# Released under the GNU GENERAL PUBLIC LICENSE Version 2
-+# (see COPYING.GPLv2 for the terms)
++++ b/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_%.bbappend
+@@ -0,0 +1,4 @@
++PV="1.10.4"
 +
-+require recipes-multimedia/gstreamer/gstreamer1.0-plugins.inc
-+
-+DESCRIPTION = "GStreamer 1.0 plugins for Rockchip platforms"
-+
-+LICENSE = "GPLv2"
-+LIC_FILES_CHKSUM = "file://COPYING;md5=6d1e4aa87f6192354d3de840cf774d93"
-+DEPENDS += "gstreamer1.0-plugins-base rockchip-mpp"
-+
-+SRC_URI_remove = " \
-+    file://0001-introspection.m4-prefix-pkgconfig-paths-with-PKG_CON.patch \
-+"
-+inherit gettext autotools pkgconfig
-+
-+PACKAGECONFIG ??= " \
-+    mpp             \
-+"
-+PACKAGECONFIG[mpp]       = "--enable-rockchipmpp,--disable-rockchipmpp"
-+PACKAGECONFIG[vpudec]    = "--enable-vpudec,--disable-vpudec"
-+
-+EXTRA_OECONF += "    \
-+    --disable-kms    \
-+"
-+
-+do_configure[prefuncs] = " delete_pkg_m4_file"
-+
-+do_configure() {
-+    NOCONFIGURE=true ${S}/autogen.sh
-+    oe_runconf
-+}
-diff --git a/recipes-multimedia/gstreamer/gstreamer1.0-rockchip_20170319.bb b/recipes-multimedia/gstreamer/gstreamer1.0-rockchip_20170319.bb
++SRC_URI[md5sum] = "2757103e57a096a1a05b3ab85b8381af"
++SRC_URI[sha256sum] = "23ddae506b3a223b94869a0d3eea3e9a12e847f94d2d0e0b97102ce13ecd6966"
+diff --git a/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base_%.bbappend b/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base_%.bbappend
 new file mode 100644
-index 0000000..3fe07d6
+index 0000000..0bc9c6e
 --- /dev/null
-+++ b/recipes-multimedia/gstreamer/gstreamer1.0-rockchip_20170319.bb
-@@ -0,0 +1,11 @@
-+# Copyright (C) 2016 - 2017 Randy Li <ayaka@soulik.info>
-+# Released under the GNU GENERAL PUBLIC LICENSE Version 2
-+# (see COPYING.GPLv2 for the terms)
-+include gstreamer1.0-rockchip.inc
++++ b/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base_%.bbappend
+@@ -0,0 +1,4 @@
++PV="1.10.4"
 +
-+TAG = "release_20170319"
-+SRC_URI = "git://github.com/rockchip-linux/gstreamer-rockchip.git;tag=${TAG};nobranch=1"
-+
-+PV = "1.10.5++${TAG}"
-+
-+S = "${WORKDIR}/git"
-diff --git a/recipes-multimedia/gstreamer/gstreamer1.0-rockchip_git.bb b/recipes-multimedia/gstreamer/gstreamer1.0-rockchip_git.bb
++SRC_URI[md5sum] = "f6b46f8fac01eb773d556e3efc369e86"
++SRC_URI[sha256sum] = "f6d245b6b3d4cb733f81ebb021074c525ece83db0c10e932794b339b8d935eb7"
+diff --git a/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_%.bbappend b/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_%.bbappend
 new file mode 100644
-index 0000000..26795a6
+index 0000000..5176458
 --- /dev/null
-+++ b/recipes-multimedia/gstreamer/gstreamer1.0-rockchip_git.bb
-@@ -0,0 +1,15 @@
-+# Copyright (C) 2016 - 2017 Randy Li <ayaka@soulik.info>
-+# Released under the GNU GENERAL PUBLIC LICENSE Version 2
-+# (see COPYING.GPLv2 for the terms)
++++ b/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_%.bbappend
+@@ -0,0 +1,4 @@
++PV="1.10.4"
 +
-+DEFAULT_PREFERENCE = "-1"
++SRC_URI[md5sum] = "cc0cc13cdb07d4237600b6886b81f31d"
++SRC_URI[sha256sum] = "8a86c61434a8c44665365bd0b3557a040937d1f44bf69caee4e9ea816ce74d7e"
+diff --git a/recipes-multimedia/gstreamer/gstreamer1.0_%.bbappend b/recipes-multimedia/gstreamer/gstreamer1.0_%.bbappend
+new file mode 100644
+index 0000000..83c4c1d
+--- /dev/null
++++ b/recipes-multimedia/gstreamer/gstreamer1.0_%.bbappend
+@@ -0,0 +1,4 @@
++PV="1.10.4"
 +
-+include gstreamer1.0-rockchip.inc
-+
-+SRCBRANCH ?= "develop"
-+SRCREV = "${AUTOREV}"
-+SRC_URI = "git://github.com/rockchip-linux/gstreamer-rockchip.git;branch=develop"
-+
-+PV = "develop++git${SRCPV}"
-+
-+S = "${WORKDIR}/git"
++SRC_URI[md5sum] = "7c91a97e4a2dc81eafd59d0a2f8b0d6e"
++SRC_URI[sha256sum] = "50c2f5af50a6cc6c0a3f3ed43bdd8b5e2bff00bacfb766d4be139ec06d8b5218"
 -- 
 2.7.4
 
