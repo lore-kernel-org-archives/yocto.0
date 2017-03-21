@@ -1,63 +1,49 @@
-Return-Path: <andrei@gherzan.ro>
+Return-Path: <leonardo.sandoval.gonzalez@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id ABE77E00A0A; Tue, 21 Mar 2017 09:18:18 -0700 (PDT)
+	id 25B9CE00A0A; Tue, 21 Mar 2017 09:29:43 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.128.196 listed in dnsbl.sorbs.net]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.128.196 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	RCVD_IN_DNSWL_HI,T_DKIM_INVALID autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wr0-f196.google.com (mail-wr0-f196.google.com
-	[209.85.128.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 50063E00992
-	for <yocto@yoctoproject.org>; Tue, 21 Mar 2017 09:18:14 -0700 (PDT)
-Received: by mail-wr0-f196.google.com with SMTP id g10so23181887wrg.0
-	for <yocto@yoctoproject.org>; Tue, 21 Mar 2017 09:18:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
-	h=from:to:cc:subject:date:message-id;
-	bh=ovOlcBuXdajBqcRcm9HRt87CV9f/n0MfYpm5Dll54Js=;
-	b=wOZ+/uAD/4AWL++qwJbQy9B55H0XPJm166IYO1ABX/6zqwm/7cPX58yb3fMLuGMZ18
-	Ey7AcxRyuZyOvPq52mwJsYt2cSHvejQAZgHBFtN9DLKgCQ0HrBsABUlN7GmtMmNMJuC2
-	2Y12c1iEl1tedvFoQWpJYBK0DbGaBDThQkDsKOcB+f172ohCnkDX9QDZGMjyWaecF3g9
-	VUDudMNtkHExpXPHf5k+Tpx4nHskSPUVwWOsVYYL7vektSvG/JY8mNJh+w80Kqfy5MDR
-	H+Thj5zOkIuLNfbW4sLRZtqBzkVKieXghliMup8teLmdTVIzLx8Q2hDltRmIPVuFyvUD
-	0wVQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=ovOlcBuXdajBqcRcm9HRt87CV9f/n0MfYpm5Dll54Js=;
-	b=JgqYPovUzri1fII7PqOEeQfIZkmjNr2uW0t9HHqEjAApAkgX3V/2twiKciXSYRMntU
-	zvBKBNFhTp//Hs9GUvwKZhOqsG+9JoDhx2QIxOCTzYapVXhn/UKa30QzOxjj+fP4zMSQ
-	+FLfcrJF1bkU2TWnj6w0SKc7LFVaub4qZtZIoEvE6iltcf5bigoioTBjjjyr/frZhdEW
-	B2i5gGqx93CQy4SgJNaHS4gZy7/YxcbK5NkWBEheRJN/TVFbUK6e9QVREnc7PqZtzgqw
-	t8c4Q0+Smbz6QkeFCkti7NEki/33ledMPcToDl7pooY6ANoKn9OR+BeJEo2TUKh2kO+q
-	+0Wg==
-X-Gm-Message-State: AFeK/H0H7nntuW3SY9Om0bhEBeGAorkCc5mQrST46yC8SOFNQ60tHU8q2VVT1259frd7cQ==
-X-Received: by 10.223.128.202 with SMTP id 68mr32068214wrl.108.1490113093348; 
-	Tue, 21 Mar 2017 09:18:13 -0700 (PDT)
-Received: from localhost.localdomain
-	(cpc96910-walt25-2-0-cust629.13-2.cable.virginm.net. [82.22.166.118])
-	by smtp.gmail.com with ESMTPSA id
-	w10sm2251477wmw.14.2017.03.21.09.18.12
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 21 Mar 2017 09:18:12 -0700 (PDT)
-From: Andrei Gherzan <andrei@gherzan.ro>
-To: yocto@yoctoproject.org
-Date: Tue, 21 Mar 2017 16:18:04 +0000
-Message-Id: <20170321161804.21347-1-andrei@gherzan.ro>
-X-Mailer: git-send-email 2.12.0
-Subject: [meta-raspberrypi][PATCH 1/1] omxplayer: Add dependency on coreutils-native
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [134.134.136.65 listed in list.dnswl.org]
+	*  0.0 T_DKIM_INVALID DKIM-Signature header exists but is not valid
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EAB67E009B2
+	for <yocto@yoctoproject.org>; Tue, 21 Mar 2017 09:29:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+	d=intel.com; i=@intel.com; q=dns/txt; s=intel;
+	t=1490113779; x=1521649779;
+	h=message-id:subject:from:to:cc:date:in-reply-to:
+	references:mime-version:content-transfer-encoding;
+	bh=QlCzWMz+3qM7reVgMbjKUD4NTlr7z5DkWDuqhAHYQ70=;
+	b=iIW74mfDi4ZvhEzx025YWO03cI8wtnFqAKUrjpKPxlldUT+3PW7rkIkG
+	a8AsYgtksBKCNdDVhvDEE6L4y8j09w==;
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+	by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	21 Mar 2017 09:29:30 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.36,200,1486454400"; d="scan'208";a="79474772"
+Received: from lsandov1-mobl2.zpn.intel.com ([10.219.128.141])
+	by fmsmga006.fm.intel.com with ESMTP; 21 Mar 2017 09:29:29 -0700
+Message-ID: <1490114241.3261.173.camel@linux.intel.com>
+From: Leonardo Sandoval <leonardo.sandoval.gonzalez@linux.intel.com>
+To: Matthew Stanger <matthew_stanger@trimble.com>
+Date: Tue, 21 Mar 2017 10:37:21 -0600
+In-Reply-To: <CANr77M3w1YZVVaMgm_gQWG0YG3fBEQvT22xg5Lf_upCtyxb7pQ@mail.gmail.com>
+References: <CANr77M3+k7=+wux_zbMZ6juG-ppTpCgfqJ13fQ1L+XYB=9ubjg@mail.gmail.com>
+	<4fe5a241-b774-aef8-da55-6fae5d4285fb@mlbassoc.com>
+	<CANr77M3w1YZVVaMgm_gQWG0YG3fBEQvT22xg5Lf_upCtyxb7pQ@mail.gmail.com>
+X-Mailer: Evolution 3.12.9-1+b1 
+Mime-Version: 1.0
+Cc: yocto@yoctoproject.org, Gary Thomas <gary@mlbassoc.com>
+Subject: Re: Bumping all packages versions
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,30 +55,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 21 Mar 2017 16:18:18 -0000
+X-List-Received-Date: Tue, 21 Mar 2017 16:29:43 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Internal ffmpeg configure uses pr which is provided by coreutils-native:
-| ./configure: line 471: pr: command not found
+have you tried the 'bitbake-layes show-recipes' script? that scripts
+list the recipes, layer it belongs and the recipe's PV, unfortunately
+not in a single line, but data is there.
 
-Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
----
- recipes-multimedia/omxplayer/omxplayer_git.bb | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/recipes-multimedia/omxplayer/omxplayer_git.bb b/recipes-multimedia/omxplayer/omxplayer_git.bb
-index c196fbf..72297d0 100644
---- a/recipes-multimedia/omxplayer/omxplayer_git.bb
-+++ b/recipes-multimedia/omxplayer/omxplayer_git.bb
-@@ -7,7 +7,7 @@ SECTION = "console/utils"
- LICENSE = "GPLv2"
- LIC_FILES_CHKSUM = "file://COPYING;md5=94d55d512a9ba36caa9b7df079bae19f"
- 
--DEPENDS = "libpcre libav virtual/egl boost freetype dbus openssl samba libssh libomxil"
-+DEPENDS = "libpcre libav virtual/egl boost freetype dbus openssl samba libssh libomxil coreutils-native"
- PR = "r4"
- 
- SRCREV = "62fb580260adb9b01e5694bb4374fb9a5f6f1021"
--- 
-2.12.0
+Leo
+
+On Mon, 2017-03-20 at 11:35 -0600, Matthew Stanger wrote:
+> No.... Thanks I'm a rookie :)
+> 
+> On Mon, Mar 20, 2017 at 11:22 AM, Gary Thomas <gary@mlbassoc.com>
+> wrote:
+>         On 2017-03-20 16:52, Matthew Stanger wrote:
+>                 Hi,
+>                 
+>                 I'm running Yocto 1.7.1 and was wondering if there was
+>                 a simple way to roll/bump all package versions. For
+>                 example in
+>                 every .bb I want to bump PV = $version higher. I'm
+>                 trying to do this as we've designed our headless
+>                 system to update
+>                 using opkg but now we are struggling to find a simple
+>                 way to update package versions, we're trying to stay
+>                 away from
+>                 manually doing it as there is a lot of room for error
+>                 when touching so many packages. First, is there a way
+>                 to brute
+>                 force bump all package versions and 2nd is there a way
+>                 to only bump packages that have changed code (like
+>                 auto git hash
+>                 diff or something) without manually bumping the PV
+>                 version in the .bb? What is the proper way to handle
+>                 you distro's
+>                 versioning at the package level?
+>         
+>         Are you using the PR server?  That's pretty much what it's
+>         for.
+>         
+>         -- 
+>         ------------------------------------------------------------
+>         Gary Thomas                 |  Consulting for the
+>         MLB Associates              |    Embedded world
+>         ------------------------------------------------------------
+>         -- 
+>         _______________________________________________
+>         yocto mailing list
+>         yocto@yoctoproject.org
+>         https://lists.yoctoproject.org/listinfo/yocto
+> 
+> 
 
 
