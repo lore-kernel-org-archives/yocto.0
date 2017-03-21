@@ -1,65 +1,69 @@
 Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 60DE3E009B2; Tue, 21 Mar 2017 09:41:35 -0700 (PDT)
+	id 830F4E00A16; Tue, 21 Mar 2017 09:43:47 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [209.85.128.182 listed in list.dnswl.org]
+	*      [74.125.82.47 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wr0-f182.google.com (mail-wr0-f182.google.com
-	[209.85.128.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 83684E00961
-	for <yocto@yoctoproject.org>; Tue, 21 Mar 2017 09:41:32 -0700 (PDT)
-Received: by mail-wr0-f182.google.com with SMTP id l37so115720930wrc.1
-	for <yocto@yoctoproject.org>; Tue, 21 Mar 2017 09:41:32 -0700 (PDT)
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.82.47 listed in dnsbl.sorbs.net]
+Received: from mail-wm0-f47.google.com (mail-wm0-f47.google.com [74.125.82.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 04FA4E00992
+	for <yocto@yoctoproject.org>; Tue, 21 Mar 2017 09:43:46 -0700 (PDT)
+Received: by mail-wm0-f47.google.com with SMTP id n11so16441367wma.1
+	for <yocto@yoctoproject.org>; Tue, 21 Mar 2017 09:43:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
 	h=date:from:to:cc:subject:message-id:references:mime-version
 	:content-disposition:in-reply-to:user-agent;
-	bh=KtUdRLgU79DCRC0xbnQ9eU1+m7atbuRwjmy7PcqpATM=;
-	b=Cb84jyghNk6DZ+lEJaxuTA1CXzdjwQBHUpqh4ecmv3/pUEhv0CjLrHL9QhXHCD+Hkk
-	M+9G5HmWrI4uSZ6bux5XIOR84Yt/uFLYLTLlLKCYDuL2SZHZaZLksNGMmwFIGqF497Jc
-	sQuiriV7pwoKUPas1ZqDwjuawIBcCFP+MOoCnIqWmIJDg/ZMtqZklI5OQ/hUwCNKiuv0
-	xsnFtLS2TiGehDMmSiesN4laJj+kN+5DZ9/hDHUTDMYlCLMPJEwC2OmzadjskRXpSXLD
-	qHG5ExDT1xhBgkWU/E1Z6mYRFaO2K7u2JbyC5eUoOJeIFeG9wjzGKvyZ4kbgaiIGzHXi
-	kC6A==
+	bh=oZT5loYvSJTLJKNrirHUa3hyBQSZkUmdrY+/Wc7do08=;
+	b=e15VChkuPLALYdznXLmxIYxmvzTuWeOhptQXo2kZD1RfFoqhd0Dr0C5Ln17UYgfXUf
+	7983gd6ytCpgqlTauMifczIb+nZ0tXL5oqjBOlXbFnBha1eeLO84HhQeLxHL6F2uQ8WS
+	71s9VBqMiovtCzpevMv2XsX7Q4g5NFR2jrvgZw8laOGjT3NqAMgnZf5juX1kwb0EtWWN
+	aeR1dEZfr89IkhmyGzAHMlyhs8IbAG5KoXiJ/Ggm/h241xX+Jb77RNYrZOVsQuLCmpzb
+	jhfxH8kbkYam1WRnoo/1X1YsJlzY3WWDGGul9wcM67Efx/hgJ2+VqHFDLdxRatlqcSC9
+	A/7A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
 	:mime-version:content-disposition:in-reply-to:user-agent;
-	bh=KtUdRLgU79DCRC0xbnQ9eU1+m7atbuRwjmy7PcqpATM=;
-	b=SR13DKKQf1XoRhCQqE824SEURbEHGXp0HwSDwigmyxmD4MR1sYrROxplvuVy1xq6U+
-	EUcUk4PkVi6CsuoQpBGnDkE4wxdejQZ1wZPSxwbj6Q/vgbmITeRB34XxRBTiP1GXKl37
-	b3I6e7lWXtU2b12g/N4SIwtYwRghJbI3SKfRrs+lRaAJTtPhCr08f7MuvxUd+ol5Vwx0
-	R9sstvtQIiMzQDLN9yPVB8rW0/PnEN5rpAETrCPyCYsXrLqNtS2oBkAhu76k1hUBop1x
-	Y7waCjKMP6oUX/HcKVeuvIPbaJzEcpWiowWH+58NYrAygxcKNYhsrmUql64CIo42EHEh
-	fydA==
-X-Gm-Message-State: AFeK/H1osCrJjmelIXysfkTE4XqDjpLwXeQ77x+kLYhpYnzO95S6NtaONZrN23x9GZZJHg==
-X-Received: by 10.223.172.137 with SMTP id o9mr33978363wrc.66.1490114491741;
-	Tue, 21 Mar 2017 09:41:31 -0700 (PDT)
+	bh=oZT5loYvSJTLJKNrirHUa3hyBQSZkUmdrY+/Wc7do08=;
+	b=nRpaKLbZ6Qse3mPdOF+u65Miqn+VYhiL4D8ux353XQcdNj7DDllP4P6o8GtWxI0Bq3
+	Qb1XIHwJjBjuzy3LKUgh7n+6u4ERf412nVYjy2XUb5Eq4RJcc9APEyNbrMPpEI40cfXV
+	YmrbXGRUvwAx2wdMMIsYuYa70u2T7O0tOuumdTnF7kcYpXslYhkj5Wt1BpOIh6v/XdyQ
+	bOy8oQbXjcJNFOJcZ+G7mx68ZlcYTUncikU7ML5hHoE1+JqG8DFygOwa/ApceHOZSDPN
+	6W5CwmjInOlTGqqHWfDqWZzm7G2bgKvTxT1SzODGEX4CIFoLVc6zcbKCPPxWks227FSU
+	GsiQ==
+X-Gm-Message-State: AFeK/H3rufEK7wnuEhUADz0QenJjrcg+/n7QvX0tIP+pBkHD1VmLMDReXwggi+GBjxZ4cA==
+X-Received: by 10.28.148.143 with SMTP id w137mr3666176wmd.72.1490114625538;
+	Tue, 21 Mar 2017 09:43:45 -0700 (PDT)
 Received: from carbonA (cpc96910-walt25-2-0-cust629.13-2.cable.virginm.net.
 	[82.22.166.118]) by smtp.gmail.com with ESMTPSA id
-	o26sm14024174wmi.18.2017.03.21.09.41.30
+	32sm25586247wrr.64.2017.03.21.09.43.44
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 21 Mar 2017 09:41:31 -0700 (PDT)
-Date: Tue, 21 Mar 2017 16:41:29 +0000
+	Tue, 21 Mar 2017 09:43:45 -0700 (PDT)
+Date: Tue, 21 Mar 2017 16:43:43 +0000
 From: Andrei Gherzan <andrei@gherzan.ro>
-To: Andreas =?iso-8859-1?Q?M=FCller?= <schnitzeltony@googlemail.com>
-Message-ID: <20170321164129.GD21801@carbonA>
-References: <1487245741-13739-1-git-send-email-schnitzeltony@googlemail.com>
+To: Khem Raj <raj.khem@gmail.com>
+Message-ID: <20170321164343.GE21801@carbonA>
+References: <1488814083-7886-1-git-send-email-maxin.john@intel.com>
+	<20170307120724.344b8587@lap0>
+	<c82ee003-af8a-9538-fe57-dd9e143b255d@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <1487245741-13739-1-git-send-email-schnitzeltony@googlemail.com>
+In-Reply-To: <c82ee003-af8a-9538-fe57-dd9e143b255d@gmail.com>
 User-Agent: Mutt/1.8.0 (2017-02-23)
 Cc: yocto@yoctoproject.org
-Subject: Re: [meta-raspberrypi][PATCH] xserver-xf86-config: remove evdev configuration
+Subject: Re: [meta-raspberrypi][PATCH] gstreamer1.0-omx: remove bbappend for version 1.2.0
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,54 +75,86 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 21 Mar 2017 16:41:35 -0000
-X-Groupsio-MsgNum: 35152
+X-List-Received-Date: Tue, 21 Mar 2017 16:43:47 -0000
+X-Groupsio-MsgNum: 35153
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="M38YqGLZlgb6RLPS"
+	protocol="application/pgp-signature"; boundary="bi5JUZtvcfApsciF"
 Content-Disposition: inline
 
---M38YqGLZlgb6RLPS
-Content-Type: text/plain; charset=iso-8859-1
+--bi5JUZtvcfApsciF
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Thu, Feb 16, 2017 at 12:49:01PM +0100, Andreas M=FCller wrote:
-> xorg-xserver recommends xf86-input-libinput since oe-core's commit
+On Fri, Mar 10, 2017 at 05:36:19PM -0800, Khem Raj wrote:
 >
-> | commit 2d005faff6341a81a2afae28860101ba9db51ae8
-> | Author: Jussi Kukkonen <jussi.kukkonen@intel.com>
-> | Date:   Wed Oct 26 11:37:38 2016 +0300
-> |
-> |    conf: Use xf86-input-libinput by default
-> | ...
 >
-> As nice side effect warnings for missing evdev in Xorg.0.log are gone.
+> On 3/7/17 4:07 AM, Paul Barker wrote:
+> > On Mon,  6 Mar 2017 17:28:03 +0200
+> > "Maxin B. John" <maxin.john@intel.com> wrote:
+> >
+> >> OE-Core rev: aa06a18d59eb391d1a7ace9daa0681bdf8daf17f
+> >> removed gstreamer1.0-omx_1.2.0 recipe.
+> >>
+> >> Signed-off-by: Maxin B. John <maxin.john@intel.com>
+> >> ---
+> >>  ...o-acquire-buffer-when-src-pad-isn-t-activ.patch |  48 --------
+> >>  .../0001-config-files-path.patch                   | 137
+> >> --------------------- .../0002-fix-decoder-flushing.patch
+> >> |  16 --- .../0003-no-timeout-on-get-state.patch             |  16 ---
+> >>  ...erly-handle-drain-requests-while-flushing.patch |  69 -----------
+> >>  ...-gst_omx_video_dec_set_format-if-there-s-.patch |  30 -----
+> >>  ...-unref-allocator-after-getting-it-from-al.patch |  48 --------
+> >>  ...mxvideodec-Use-gstglmemoryegl-for-the-RPi.patch | 115
+> >> ----------------- .../gstreamer/gstreamer1.0-omx_1.2.0.bbappend
+> >> |  14 --- 9 files changed, 493 deletions(-)
+> >>  delete mode 100644
+> >> recipes-multimedia/gstreamer/gstreamer1.0-omx-1.2.0/0001-Don-t-try-to-acquire-buffer-when-src-pad-isn-t-activ.patch
+> >> delete mode 100644
+> >> recipes-multimedia/gstreamer/gstreamer1.0-omx-1.2.0/0001-config-files-path.patch
+> >> delete mode 100644
+> >> recipes-multimedia/gstreamer/gstreamer1.0-omx-1.2.0/0002-fix-decoder-flushing.patch
+> >> delete mode 100644
+> >> recipes-multimedia/gstreamer/gstreamer1.0-omx-1.2.0/0003-no-timeout-on-get-state.patch
+> >> delete mode 100644
+> >> recipes-multimedia/gstreamer/gstreamer1.0-omx-1.2.0/0004-Properly-handle-drain-requests-while-flushing.patch
+> >> delete mode 100644
+> >> recipes-multimedia/gstreamer/gstreamer1.0-omx-1.2.0/0005-Don-t-abort-gst_omx_video_dec_set_format-if-there-s-.patch
+> >> delete mode 100644
+> >> recipes-multimedia/gstreamer/gstreamer1.0-omx-1.2.0/0006-omxvideodec-unref-allocator-after-getting-it-from-al.patch
+> >> delete mode 100644
+> >> recipes-multimedia/gstreamer/gstreamer1.0-omx-1.2.0/0007-omxvideodec-Use-gstglmemoryegl-for-the-RPi.patch
+> >> delete mode 100644
+> >> recipes-multimedia/gstreamer/gstreamer1.0-omx_1.2.0.bbappend
+> >
+> > I got a parse failure on all my scheduled builds last night. This patch
+> > fixes the builds for me :)
 >
-> Signed-off-by: Andreas M=FCller <schnitzeltony@googlemail.com>
+> These are now staged in kraj/master on my github with few other changes.
 
-Merged to master as part if Khem's PR.
+... which made it to master.
+
 --
 Andrei Gherzan
 gpg: rsa4096/D4D94F67AD0E9640 | t: @agherzan
 
---M38YqGLZlgb6RLPS
+--bi5JUZtvcfApsciF
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAEBCAAdFiEE90oi/MnVCYFbB1m0Jrqo2vaxFPYFAljRV7kACgkQJrqo2vax
-FPbzuA/+J393XMxJYOMUGOVad9VCZ2oujcsNvewmo1e3FkjLLNeKLhQva1/oGsOg
-+xasAFXXZvEQM24NTIMJIcS1hOfczIT9kg/Kg12D+GW1Ud61HpvylDoT0SEo6GQY
-PfhNsKQb6sSuhhP7HbjQA8JdnQ5cjIc7Y/0JJ6qF/7lI6qS2vPEScCOzlIPR6dLj
-kAsEBR2giqw+k9sJwUHPafIL6q8+VVu3vaG6aIAXAc3EoZudds9BxNViW32GjNdT
-txK5TooBSFKudWMFo05XY31yzIKqd2GkILFrMOx4tNdV6GeliSvr9+I7Jb6bRoZG
-Wu4BLPoPgwR1MWa0slW200RBpZw+geJP7QK34AzCFVz0q+W6E4/t3L1Ut3Nap0z7
-smg2y8dd818Bn/fOnlyxrM3xj9k5ASMhBA8fe69zeZEtlSZCthVJrFsoV1gBDvfm
-K8tauRykkrSVZHlwHgOxA9slK5ztOAk1hhQPg+kh5gAUx9JIi7zE+VVN6xl8HxZn
-HsK+1dlAlLrPLmZYrwFuEHI3kBz36k9WJmCt8UzLlyYyLcNbjUHle8TcmY0NhQJh
-ukdP4rQBbcjI/IzdpywfJIJGYt6Gbl1Xw0EDGdgrPbQTFqHiDpGJzlBDv6A8adcu
-6R/k4njxtGuNkq2EBO8nQxfyRDIXwPxEJ/r7RZo2JJG5hw+9wdY=
-=Joxk
+iQIzBAEBCAAdFiEE90oi/MnVCYFbB1m0Jrqo2vaxFPYFAljRWD4ACgkQJrqo2vax
+FPa16w//R1ru5keDP7NomIKibfQK1ZCYREUXLj7Vs//1J6Qwj5YPtCQTsXY8Azc1
+1TeX9H9qdjVAJkPiDRA6VD/b4/ie9q1bZ8JzXUFjiirN0APF+EzaSxAjJ9v1oyZv
+wrS0R9JPC/d94AgqDKx7SUJoRc8G2mWGHttSGv/icLqkFnbIxy6eV1jZDx8nKKKF
+dYn+CGMR2cBq+f29XldJqbJYhAnbAHAWE6JSzRQLD3xySgz6UuHkhGO3LOAN2/Yg
+BQHM90ju6lOTWJK+DF+SXn6eZwf18x2qX6tFhoUa0gePPuzvELnq4sdknHPYAlka
+j0ceidjspFTjtuZGpcmXUhazY+p7/nKj/txYvRUT7Cj5v2T7e20h15+fbhMVpRlu
+pasbGWrqLjH1mXr/A2lqPszDmJv9LYRMyBvuA26BTpGbZre20zwALADXZnMJ8vCn
+2fff4Dqp/fDD0pBY7T1ZNkJiNb3XwWZz8TXDGp0586VYHq0bsWCn6e5BVcdrHLGy
+cvyrxWI5YFdgYAOiTCyCj52aG5NoO1bo2VXKHv8vL2jw2GbuK0kwB8cjIeOQZEFp
+j3sREbtsXOLHJC0EQmb4Br8GkugsuwJClfi056cIc/fZKP6QydCXfxheRKzFAWdD
+MJ0q1F1msXXvTtDIjxqXIm1YQbdCcgI8mFmZoNNZC7PCtGwIVoA=
+=DMaG
 -----END PGP SIGNATURE-----
 
---M38YqGLZlgb6RLPS--
+--bi5JUZtvcfApsciF--
