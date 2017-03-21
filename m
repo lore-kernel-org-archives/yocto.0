@@ -1,69 +1,57 @@
-Return-Path: <andrei@gherzan.ro>
+Return-Path: <GWilson@sakuraus.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6692DE00524; Tue, 21 Mar 2017 09:58:10 -0700 (PDT)
+	id 1E46AE00655; Tue, 21 Mar 2017 16:44:40 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [74.125.82.68 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.82.68 listed in dnsbl.sorbs.net]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [64.235.150.234 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f68.google.com (mail-wm0-f68.google.com [74.125.82.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C17EBE0030B
-	for <yocto@yoctoproject.org>; Tue, 21 Mar 2017 09:58:08 -0700 (PDT)
-Received: by mail-wm0-f68.google.com with SMTP id n11so4132540wma.0
-	for <yocto@yoctoproject.org>; Tue, 21 Mar 2017 09:58:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-disposition:in-reply-to:user-agent;
-	bh=ht9WPuMOjQUMSUURls4Idxy9fmKkqdKOHAl6XksaStU=;
-	b=RGERADhRwR+eFVFpSlAnkNDd0xT4RgpHBWG0dm5PqukIti7Xzgvgm5sP0TsU6n/RXu
-	sZe5+M80oZxhMpiDcMfxfzOJbq4m9e4qERKE0TVc7I5Gv6b1ZTbt43Tcps5PsXlOpZ2m
-	Ag0GW/VBbHd23cReryQhoyEoRuFP+pa/+oNCrPWI7ooDcZDJSyiMzNTSxuCaVJERD3DM
-	8ewiHjM4IyU2/SVe6G8pOvURtzvDpM/4mE6FpHM4Fsr6wA3H0VdT3Z8LZ0FldygNMQ/l
-	z6q2GH1GdmFpWPfQKCs+JXRK/hlj9ZeKeQRKmpITWsoTlKcKtXeoPTZ1iZdzvsLHXkXi
-	0G4g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-	:mime-version:content-disposition:in-reply-to:user-agent;
-	bh=ht9WPuMOjQUMSUURls4Idxy9fmKkqdKOHAl6XksaStU=;
-	b=LHkDHw6wfuze683yuhRMZL9ir5ExX8viL8llVTyB+pOIBKZS1uPnxvTCILfj6M0jGV
-	Kood0qu1wF3IjIBNJ6sOS+8VqS7MJHl0RLsVU2qAH5nMw+JVJJhBLWKUmZnsV9NmcwzQ
-	vDavcOgydfITU5Pnblw2V0YkP3xqDy7CUNvD7+/siJLXSahI69GJaXG8OUkgsgA09Hvw
-	Zn8BDkshPJlOhYEjCamdDJ3hX5vcfGnXGUjnLvnJ/76HPUfGlNXANmnuaDetV3cXeJAP
-	bvkCKYJ4lGqHhjY2Mj8I2K9UWSY2SJEp/GgS716z5gb+YE+R4+Z42/5ZYFwIiImtU5ER
-	XGeA==
-X-Gm-Message-State: AFeK/H3Td3S56nN8sotiBxHjoLbLE7l3MW+gD1qong33L8X1INkcKou0l/429VNoii41Qg==
-X-Received: by 10.28.96.65 with SMTP id u62mr3527948wmb.88.1490115487705;
-	Tue, 21 Mar 2017 09:58:07 -0700 (PDT)
-Received: from carbonA (cpc96910-walt25-2-0-cust629.13-2.cable.virginm.net.
-	[82.22.166.118]) by smtp.gmail.com with ESMTPSA id
-	e72sm18370107wma.5.2017.03.21.09.58.06
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 21 Mar 2017 09:58:07 -0700 (PDT)
-Date: Tue, 21 Mar 2017 16:58:05 +0000
-From: Andrei Gherzan <andrei@gherzan.ro>
-To: Khem Raj <raj.khem@gmail.com>
-Message-ID: <20170321165805.GG21801@carbonA>
-References: <d75a5d99-f1c8-f106-8264-50d03a5f5e2a@mlbassoc.com>
-	<7b993ea1-ffde-c3a7-b125-63c857808013@mlbassoc.com>
-	<88cac78b-712a-5d79-7f83-4d5d3269d093@gmail.com>
+X-Greylist: delayed 912 seconds by postgrey-1.32 at yocto-www;
+	Tue, 21 Mar 2017 16:44:37 PDT
+Received: from 14pmail.ess.barracuda.com (14pmail.ess.barracuda.com
+	[64.235.150.234])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9E364E003E1
+	for <yocto@yoctoproject.org>; Tue, 21 Mar 2017 16:44:37 -0700 (PDT)
+Received: from SFAMAIL.SAKURAUS.LOCAL (mail.sakuraus.com [12.26.104.5]) by
+	mx2.ess.sfj.cudaops.com (version=TLSv1.2 cipher=AES256-SHA256
+	bits=256 verify=NO); Tue, 21 Mar 2017 23:44:30 +0000
+Received: from SFA-EX01.SAKURAUS.LOCAL (10.16.3.165) by SFAMAIL.SAKURAUS.LOCAL
+	(10.16.3.8) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.669.32;
+	Tue, 21 Mar 2017 16:29:09 -0700
+Received: from SFA-EX01.SAKURAUS.LOCAL ([fe80::a49b:4710:711c:e005]) by
+	SFA-EX01.SAKURAUS.LOCAL ([fe80::a49b:4710:711c:e005%12]) with mapi id
+	15.00.1263.000; Tue, 21 Mar 2017 16:29:09 -0700
+From: Greg Wilson-Lindberg <GWilson@sakuraus.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Morty 2.2.1 build failure
+Thread-Index: AdKimbo38zQByDKER0OdNn457GOFxg==
+Date: Tue, 21 Mar 2017 23:29:09 +0000
+Message-ID: <461862bc22e146c4839c12eafc7dd9f2@SFA-EX01.SAKURAUS.LOCAL>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.16.5.198]
 MIME-Version: 1.0
-In-Reply-To: <88cac78b-712a-5d79-7f83-4d5d3269d093@gmail.com>
-User-Agent: Mutt/1.8.0 (2017-02-23)
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-raspberrypi] WiFi on rpi3?
+X-BESS-ID: 1490139868-298553-28360-4325-4
+X-BESS-VER: 2017.3-r1703091851
+X-BESS-Apparent-Source-IP: 12.26.104.5
+X-BESS-Outbound-Spam-Score: 0.00
+X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.179431
+	Rule breakdown below
+	pts rule name              description
+	---- ---------------------- --------------------------------
+	0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
+X-BESS-Outbound-Spam-Status: SCORE=0.00 using account:ESS29408 scores of
+	KILL_LEVEL=7.0 tests=BSF_BESS_OUTBOUND
+X-BESS-BRTS-Status: 1
+Subject: Morty 2.2.1 build failure
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,77 +63,131 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 21 Mar 2017 16:58:10 -0000
-X-Groupsio-MsgNum: 35156
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="fCcDWlUEdh43YKr8"
-Content-Disposition: inline
+X-List-Received-Date: Tue, 21 Mar 2017 23:44:40 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
---fCcDWlUEdh43YKr8
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Hello List,
 
-On Thu, Feb 16, 2017 at 06:09:02PM -0800, Khem Raj wrote:
->
->
-> On 1/20/17 3:52 AM, Gary Thomas wrote:
-> > On 2017-01-20 12:30, Gary Thomas wrote:
-> >> Can someone give me pointers to get the onboard WiFi on the
-> >> RaspberryPi3 going?  What kernel settings/hoops I need to do,
-> >> what packages I might need, etc?
-> >>
-> >> Thanks
-> >>
-> >
-> > Actually, I've found that with an older kernel (4.1.21) the WiFi
-> > device is discovered, but with the newer kernels (4.4.x and 4.9.x)
-> > it's not.
-> >
-> > Any clues?
-> >
->
-> Please try out the patch I posted to ml
->
-> https://lists.yoctoproject.org/pipermail/yocto/2017-February/034624.html
->
-> or from my gh fork.
->
-> https://github.com/kraj/meta-raspberrypi/commit/6ce6e57782c23fd21ad47286ac8b809ce989ea78
->
-> and let us know.
->
-> Cheers
-> -Khem
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+I got a copy of the book "Embedded Linux Systems with the Yocto Project" at=
+ the SCALE 15x conference and this prompted me to try building the Yocto Po=
+ky build before getting the Boot to Qt Yocto build environment.
 
-Available now in master too.
+I tried building on 2 x86 systems, a 64 bit system at work and a 32 bit sys=
+tem at my home, both failed in the same way:
 
---
-Andrei Gherzan
-gpg: rsa4096/D4D94F67AD0E9640 | t: @agherzan
+gwilson 11:06:54:~/yocto/poky-morty-16.0.1$ source ./oe-init-build-env
+You had no conf/local.conf file. This configuration file has therefore been
+created for you with some default values. You may wish to edit it to, for
+example, select a different MACHINE (target hardware). See conf/local.conf
+for more information as common configuration options are commented.
 
---fCcDWlUEdh43YKr8
-Content-Type: application/pgp-signature; name="signature.asc"
+You had no conf/bblayers.conf file. This configuration file has therefore b=
+een
+created for you with some default values. To add additional metadata layers
+into your configuration please add entries to conf/bblayers.conf.
 
------BEGIN PGP SIGNATURE-----
+The Yocto Project has extensive documentation about OE including a referenc=
+e
+manual which can be found at:
+    http://yoctoproject.org/documentation
 
-iQIzBAEBCAAdFiEE90oi/MnVCYFbB1m0Jrqo2vaxFPYFAljRW5wACgkQJrqo2vax
-FPaZ1g/8CEQddgEndEqD23gBtciVpi45sPrTGZelmJnGa3OW1qAqgcAnJ6mdveuO
-mQcd1P3FjM5XRUMn+5+xCFWYhEvLx4Fuoo34c48c3FGT3FkupygOWUvu9JXluf3z
-efRbM1RAx5DrPqaVhP//Qs8k/m9kXdqTmHxowh8LMMq4IiQcb9RLy+UHntMzoVgN
-ltz1GCJatsuF0ax0xPRL4qo89YkkjAxt/EPxnL03TTUflP6JTEw7ffRCJf9H8Ia/
-4ZdMwTLToo0ASIRljRrHYXKbnd5xcJjmR49yW/kVx3FXhv0HO6lBmeR4b0XAgVoz
-iIrmOlFL2SWDy1j8L2T2oUw2od80ouRuLguPkUJST4xS9cds1P8gmFmAg26iW6ql
-r9aBzns5/MDcA6hw+zqr/qFev6BocsAIRZRKU6jIyo62mZ5tDM0sCvPCWiZNfMDq
-emmVKvyOXxbmLf7oLa326dxYqVxVkymBOnqPvDBzXYdjwiwhH6i5tULJBDsr0UnU
-UGujiVPUDUVPqzXPUcczHL+ojzUQhQu5D+bN54tTQ+kGTMj2ixnv6WpZ9U535WF4
-220EN65QgyfeJCPXwguRay1qI1gphpNQPi1NzYYCHmICd+BCBoMb8HBy2tlvEEf2
-QgW37deWCFBQBcvcrrKxuGEUaRC9YT6/ymAijx2wXyD6EI/X2fQ=
-=svPo
------END PGP SIGNATURE-----
+For more information about OpenEmbedded see their website:
+    http://www.openembedded.org/
 
---fCcDWlUEdh43YKr8--
+
+### Shell environment set up for builds. ###
+
+You can now run 'bitbake <target>'
+
+Common targets are:
+    core-image-minimal
+    core-image-sato
+    meta-toolchain
+    meta-ide-support
+
+You can also run generated qemu images with a command like 'runqemu qemux86=
+'
+gwilson 11:07:08:~/yocto/poky-morty-16.0.1/build$
+gwilson 11:07:10:~/yocto/poky-morty-16.0.1/build$
+gwilson 11:07:11:~/yocto/poky-morty-16.0.1/build$ bitbake core-image-sato
+Parsing recipes: 100% |####################################################=
+########################################| Time: 0:00:29
+Parsing of 864 .bb files complete (0 cached, 864 parsed). 1318 targets, 50 =
+skipped, 0 masked, 0 errors.
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION        =3D "1.32.0"
+BUILD_SYS         =3D "x86_64-linux"
+NATIVELSBSTRING   =3D "Ubuntu-14.04"
+TARGET_SYS        =3D "i586-poky-linux"
+MACHINE           =3D "qemux86"
+DISTRO            =3D "poky"
+DISTRO_VERSION    =3D "2.2.1"
+TUNE_FEATURES     =3D "m32 i586"
+TARGET_FPU        =3D ""
+meta
+meta-poky
+meta-yocto-bsp    =3D "<unknown>:<unknown>"
+
+NOTE: Fetching uninative binary shim from http://downloads.yoctoproject.org=
+/releases/uninative/1.4/x86_64-nativesdk-libc.tar.bz2;sha256sum=3D101ff8f25=
+80c193488db9e76f9646fb6ed38b65fb76f403acb0e2178ce7127ca
+--2017-03-20 11:07:57--  http://downloads.yoctoproject.org/releases/uninati=
+ve/1.4/x86_64-nativesdk-libc.tar.bz2
+Resolving downloads.yoctoproject.org (downloads.yoctoproject.org)... 198.14=
+5.20.127
+Connecting to downloads.yoctoproject.org (downloads.yoctoproject.org)|198.1=
+45.20.127|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 2473216 (2.4M) [application/octet-stream]
+Saving to: '/home/gwilson/yocto/poky-morty-16.0.1/build/downloads/uninative=
+/101ff8f2580c193488db9e76f9646fb6ed38b65fb76f403acb0e2178ce7127ca/x86_64-na=
+tivesdk-libc.tar.bz2'
+
+
+2017-03-20 11:07:58 (6.62 MB/s) - '/home/gwilson/yocto/poky-morty-16.0.1/bu=
+ild/downloads/uninative/101ff8f2580c193488db9e76f9646fb6ed38b65fb76f403acb0=
+e2178ce7127ca/x86_64-nativesdk-libc.tar.bz2' saved [2473216/2473216]
+
+Initialising tasks: 100% |#################################################=
+########################################| Time: 0:00:15
+NOTE: Executing SetScene Tasks
+NOTE: Executing RunQueue Tasks
+WARNING: flex-native-2.6.0-r0 do_fetch: Failed to fetch URL http://download=
+s.sourceforge.net/flex/flex-2.6.0.tar.bz2, attempting MIRRORS if available
+WARNING: file-native-5.28-r0 do_fetch: Failed to fetch URL git://github.com=
+/file/file.git, attempting MIRRORS if available
+ERROR: file-native-5.28-r0 do_fetch: Fetcher failure: Unable to find revisi=
+on 3c521817322a6bf5160cfeb09b9145ccde587b2a in branch master even from upst=
+ream
+ERROR: file-native-5.28-r0 do_fetch: Fetcher failure for URL: 'git://github=
+.com/file/file.git'. Unable to fetch URL from any source.
+ERROR: file-native-5.28-r0 do_fetch: Function failed: base_do_fetch
+ERROR: Logfile of failure stored in: /home/gwilson/yocto/poky-morty-16.0.1/=
+build/tmp/work/x86_64-linux/file-native/5.28-r0/temp/log.do_fetch.23747
+ERROR: Task (virtual:native:/home/gwilson/yocto/poky-morty-16.0.1/meta/reci=
+pes-devtools/file/file_5.28.bb:do_fetch) failed with exit code '1'
+NOTE: Tasks Summary: Attempted 203 tasks of which 0 didn't need to be rerun=
+ and 1 failed.
+
+Summary: 1 task failed:
+  virtual:native:/home/gwilson/yocto/poky-morty-16.0.1/meta/recipes-devtool=
+s/file/file_5.28.bb:do_fetch
+Summary: There were 2 WARNING messages shown.
+Summary: There were 3 ERROR messages shown, returning a non-zero exit code.
+gwilson 11:13:14:~/yocto/poky-morty-16.0.1/build$
+
+I get 1 file that needs to go to a mirror and a second file that can't be f=
+ound at all.
+
+Are these known bugs? Do I need to just back up and use Morty 2.2?
+
+Regards,
+
+Greg Wilson-Lindberg
+Sakura Finetek
+310-783-5075
+
