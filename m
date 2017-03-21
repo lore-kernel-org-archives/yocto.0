@@ -1,67 +1,35 @@
-Return-Path: <bruce.ashfield@gmail.com>
+Return-Path: <gary@mlbassoc.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7F4A9E00726; Tue, 21 Mar 2017 05:33:13 -0700 (PDT)
+	id ED6D3E00867; Tue, 21 Mar 2017 06:08:46 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE, 
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (bruce.ashfield[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.220.173 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.220.173 listed in dnsbl.sorbs.net]
-Received: from mail-qk0-f173.google.com (mail-qk0-f173.google.com
-	[209.85.220.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2C5CDE00726
-	for <yocto@yoctoproject.org>; Tue, 21 Mar 2017 05:33:10 -0700 (PDT)
-Received: by mail-qk0-f173.google.com with SMTP id v127so133435085qkb.2
-	for <yocto@yoctoproject.org>; Tue, 21 Mar 2017 05:33:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=rZj1jvXWjyPvzOM9zh9ZQ22CyQinLbNmcbWaBJOfxPQ=;
-	b=EMgr+m92fpYlZwUMGHO68SDVUw4qhcGcIKaO6txsEAxUX37pikWjjcJ1+SfTzukbey
-	Rt5qZQwOQE1MBuojAFZBOzW2OvZF7mlclDBunNoqp4DZXTV9aHwN9iQcbb74Cx5tCHsY
-	fyg0/xMBhkqhrpN35UpJNWXLoUlvrxy9Dq7xWFVEllD6aSqbit/4zna8sKeB4evw25dG
-	Q4ijEd0H/LAsrKOg0qptMK3I9qSpqzyHyMoVVtKmGO8jOI6cUTRYRFcGXJ8PtQU7Jh5Z
-	e8fQKInTHkP81ITYJWSrGN0sbuQtIfSAw+EQECE9fCJE4shqk4NNUhNlbf4GiY9gHCpG
-	0lEg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=rZj1jvXWjyPvzOM9zh9ZQ22CyQinLbNmcbWaBJOfxPQ=;
-	b=O4cP9ckH/nxfsrTEJGvUjkU/tLz+XSyYBlE0iFTG4VYhkNcktNGD9Ni7z8pIDjy4AZ
-	jeQTVLxiGmU6AAYuZ3V2QqVQs3rnG8BBqEETBKUd3vfCdIqkG+o1nvMCa4qpxV2/mMpK
-	ZQMYK5xdId5iPj6JTrwhmRmuW/adVgRZyQH4cP7Ht1mqj6h7khS+EHTHp7AC0O84OUiG
-	fvp54uDKptAMvWyJnWIDfgVm14LimMsVUfTl7uATrN5kqAFBcocu28HW+4cdN8O/d1p7
-	8cGHUeWQljwVnzOLwpSkehF4NXlyOvvrbsIyrwkipoC6sqbmXOAdLT0fgEL6ztZd1Fjs
-	uIVQ==
-X-Gm-Message-State: AFeK/H20RMiP7vDCEvahavJiDnrzKCMDH5Pa7l9FWVGtkBmtRHWp6LIKHVDdZUbAfq+lmaZ6pLKg9WLzYQ3Aaw==
-X-Received: by 10.55.121.194 with SMTP id u185mr29762327qkc.56.1490099589917; 
-	Tue, 21 Mar 2017 05:33:09 -0700 (PDT)
+Received: from mail.analogue-micro.com (mail.analogue-micro.com
+	[217.144.149.242])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 75FDBE007AA
+	for <yocto@yoctoproject.org>; Tue, 21 Mar 2017 06:08:42 -0700 (PDT)
+Received: by mail.analogue-micro.com (Postfix, from userid 999)
+	id 0E83468A01C; Tue, 21 Mar 2017 13:08:42 +0000 (GMT)
+Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
+	by mail.analogue-micro.com (Postfix) with ESMTP id 6C00168A019;
+	Tue, 21 Mar 2017 13:08:41 +0000 (GMT)
+Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
+	by zeus.mlbassoc.com (Postfix) with ESMTP id D0B73674029B;
+	Tue, 21 Mar 2017 14:08:39 +0100 (CET)
+From: Gary Thomas <gary@mlbassoc.com>
+To: yocto@yoctoproject.org
+References: <46d7a45a-16b7-fb3d-12bf-97f54a9c5de6@mlbassoc.com>
+Message-ID: <5373a919-586d-540e-12d9-1671e5db0183@mlbassoc.com>
+Date: Tue, 21 Mar 2017 14:08:39 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.7.0
 MIME-Version: 1.0
-Received: by 10.12.163.69 with HTTP; Tue, 21 Mar 2017 05:33:09 -0700 (PDT)
-In-Reply-To: <CY4PR12MB1880C1DA0123AF0A0A2211B2A53D0@CY4PR12MB1880.namprd12.prod.outlook.com>
-References: <CY4PR12MB1880C1DA0123AF0A0A2211B2A53D0@CY4PR12MB1880.namprd12.prod.outlook.com>
-From: Bruce Ashfield <bruce.ashfield@gmail.com>
-Date: Tue, 21 Mar 2017 08:33:09 -0400
-Message-ID: <CADkTA4Pb_b9rXe9eD6kzsY+WCbh7MQNTkwjb5oLjEJnK+O8-Zw@mail.gmail.com>
-To: Richard Zhang <richard.zhang@pica8.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: How to use *.bb file to select different kernel config/feature?
+In-Reply-To: <46d7a45a-16b7-fb3d-12bf-97f54a9c5de6@mlbassoc.com>
+Subject: Re: Random failure
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,155 +41,87 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 21 Mar 2017 12:33:13 -0000
-Content-Type: multipart/alternative; boundary=94eb2c05a196bcb712054b3cd8c8
+X-List-Received-Date: Tue, 21 Mar 2017 13:08:47 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
---94eb2c05a196bcb712054b3cd8c8
-Content-Type: text/plain; charset=UTF-8
+On 2017-03-16 13:08, Gary Thomas wrote:
+> I've been running the same sequence many times today - basically
+> updating a source file for a recipe, then rebuilding it.  Out of
+> the 40+ times I've run it, I get these intermittent errors about
+> 1 in 10 times.  Nothing changed except for one of the source files
+> included in my recipe.  Here's the output:
+>
+> ===================================================================
+> $ MACHINE=teton-p7621 bitbake production-tests && MACHINE=teton-p7621 bitbake package-index
+> NOTE: Started PRServer with DBfile: /build/p7619_2016-02-23/cache/prserv.sqlite3, IP: 127.0.0.1, PORT: 44600, PID: 7064
+> Loading cache: 100% |#############################################################################################|
+> Time: 0:00:00
+> Loaded 1717 entries from dependency cache.
+> Parsing recipes: 100% |###########################################################################################|
+> Time: 0:00:00
+> Parsing of 1219 .bb files complete (1218 cached, 1 parsed). 1717 targets, 335 skipped, 0 masked, 0 errors.
+> NOTE: Resolving any missing task queue dependencies
+>
+> Build Configuration:
+> BB_VERSION        = "1.33.2"
+> BUILD_SYS         = "x86_64-linux"
+> NATIVELSBSTRING   = "universal"
+> TARGET_SYS        = "arm-amltd-linux-gnueabi"
+> MACHINE           = "teton-p7621"
+> DISTRO            = "amltd"
+> DISTRO_VERSION    = "2.2+snapshot-20170316"
+> TUNE_FEATURES     = "arm armv7ve vfp thumb neon callconvention-hard cortexa7"
+> TARGET_FPU        = "hard"
+> meta              = "master:b1f09df0f664052e39d939b759a63b05d767b8ec"
+> meta-amltd        = "master:a57fa8ec07224f1d1d87e0357158bcbe7a4bc010"
+> meta-teton-imx6-p761x = "master:a0b1a6c5e1f76ca74d93b26018eb0753a2306a29"
+>
+> Initialising tasks: 100% |########################################################################################|
+> Time: 0:00:00
+> Checking sstate mirror object availability: 100% |################################################################|
+> Time: 0:00:00
+> NOTE: Executing SetScene Tasks
+> NOTE: Executing RunQueue Tasks
+> ERROR: production-tests-1.0-r0 do_configure: Function failed: do_configure (log file is located at
+> /build/p7619_2016-02-23/tmp/work/teton_p7621-amltd-linux-gnueabi/production-tests/1.0-r0/temp/log.do_configure.7131)
+> ERROR: Logfile of failure stored in:
+> /build/p7619_2016-02-23/tmp/work/teton_p7621-amltd-linux-gnueabi/production-tests/1.0-r0/temp/log.do_configure.7131
+> Log data follows:
+> | DEBUG: Executing python function sysroot_cleansstate
+> | DEBUG: Removing manifest:
+> /build/p7619_2016-02-23/tmp/sysroots-components/teton_p7621/production-tests/sysroot-providers/production-tests
+> | DEBUG: Removing manifest: /build/p7619_2016-02-23/tmp/sysroots-components/teton_p7621/production-tests/sysroot-providers/
+> | DEBUG: Python function sysroot_cleansstate finished
+> | DEBUG: Executing shell function do_configure
+> | find: ‘/build/p7619_2016-02-23/tmp/work/teton_p7621-amltd-linux-gnueabi/production-tests/1.0-r0/license-destdir’: No
+> such file or directory
+> | WARNING: exit code 1 from a shell command.
+> | ERROR: Function failed: do_configure (log file is located at
+> /build/p7619_2016-02-23/tmp/work/teton_p7621-amltd-linux-gnueabi/production-tests/1.0-r0/temp/log.do_configure.7131)
+> ERROR: Task (/local/poky-cutting-edge/meta-teton-imx6-p761x/packages/misc/production-tests_1.0.bb:do_configure) failed
+> with exit code '1'
+> NOTE: Tasks Summary: Attempted 454 tasks of which 448 didn't need to be rerun and 1 failed.
+>
+> ===================================================================
+>
+> If I immediately rerun the same sequence, the error goes away.
+>
+> Any ideas what might be causing this?  It's more of an annoyance than
+> anything else, but it also might point to a deeper problem?
 
-On Tue, Mar 21, 2017 at 3:15 AM, Richard Zhang <richard.zhang@pica8.com>
-wrote:
+I'm still seeing these failures a lot and it seems to be related to how
+busy my system is doing other things.  For example, every day the 'locate'
+database is rebuilt and while that happens, this error seems to be much
+more likely.  It's also obvious that this is a timing related issue given
+that it occurs randomly and non-repeatably.
 
-> Hi all
->
->
-> I want   to use one linux-kernel-myown.bb file to select different config
-> for several boxes.
->
-> I think when I give MACHINE to box1\box2\box3, the kernel config and
-> features select can be done.
->
->
-> Is it correct :
->
->
-> when use MACHINE=box1\box2\box3 and so on:
->
->
-> KERNEL_FEATURES_append_box1=" cfg/box1.scc"
->
-
-These are variables like any other in bitbake. They can take a variety of
-overrides, one of which is the machine
-name. So yes, you could append a kernel feature only for your $MACHINE with
-the line above.
-
-But you must be using a kernel recipe that inherits kernel-yocto for the
-feature to be processed.
-
-> KERNEL_CONFIG_box1=" cfg/box1_defconfig.cfg"
->
-
-Assuming KERNEL_CONFIG is a valid variable in your layers, this would also
-work. But if you are using
-configuration fragments and kernel-yocto, that isn't a variable that is
-used.
-
-Bruce
-
-
->
->
-> this instruction could work?or any suggestion.
->
->
->
-> Regards
->
-> Richard
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
->
-
+It's a bit frustrating to have it happen so much but if there are any clues
+I can gather, I'm happy to provide more information if it helps.
 
 -- 
-"Thou shalt not follow the NULL pointer, for chaos and madness await thee
-at its end"
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
---94eb2c05a196bcb712054b3cd8c8
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><br><div class=3D"gmail_extra"><br><div class=3D"gmail_quo=
-te">On Tue, Mar 21, 2017 at 3:15 AM, Richard Zhang <span dir=3D"ltr">&lt;<a=
- href=3D"mailto:richard.zhang@pica8.com" target=3D"_blank">richard.zhang@pi=
-ca8.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D=
-"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
-
-
-
-
-<div dir=3D"ltr">
-<div id=3D"m_-7963218019750877656divtagdefaultwrapper" style=3D"font-size:1=
-2pt;color:#000000;font-family:Calibri,Arial,Helvetica,sans-serif" dir=3D"lt=
-r">
-<p>Hi all</p>
-<p><br>
-</p>
-<p>I want =C2=A0 to use one <a href=3D"http://linux-kernel-myown.bb" target=
-=3D"_blank">linux-kernel-myown.bb</a> file to select different config for s=
-everal boxes.</p>
-<p>I think when I give MACHINE to=C2=A0<span>box1\box2\box3</span>, the ker=
-nel config and features select can be done.<br>
-</p>
-<p><br>
-</p>
-<p>Is it correct :</p>
-<p><br>
-</p>
-<p>when use MACHINE=3Dbox1\box2\box3 and so on:</p>
-<p><br>
-</p>
-<p><span>KERNEL_FEATURES_append_box1=3D&quot; cfg/box1.scc&quot;</span></p>=
-</div></div></blockquote><div><br></div><div>These are variables like any o=
-ther in bitbake. They can take a variety of overrides, one of which is the =
-machine<br></div><div>name. So yes, you could append a kernel feature only =
-for your $MACHINE with the line above.</div><div><br></div><div>But you mus=
-t be using a kernel recipe that inherits kernel-yocto for the feature to be=
- processed.</div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8=
-ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr"><div id=3D=
-"m_-7963218019750877656divtagdefaultwrapper" style=3D"font-size:12pt;color:=
-#000000;font-family:Calibri,Arial,Helvetica,sans-serif" dir=3D"ltr">
-<p><span><span>KERNEL_CONFIG_box1=3D&quot; cfg/box1_defconfig.cfg&quot;</sp=
-an></span></p></div></div></blockquote><div><br></div><div>Assuming KERNEL_=
-CONFIG is a valid variable in your layers, this would also work. But if you=
- are using</div><div>configuration fragments and kernel-yocto, that isn&#39=
-;t a variable that is used.</div><div><br></div><div>Bruce</div><div>=C2=A0=
-</div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-l=
-eft:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr"><div id=3D"m_-7963218=
-019750877656divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;fon=
-t-family:Calibri,Arial,Helvetica,sans-serif" dir=3D"ltr"><p><br>
-</p>
-<p><br>
-</p>
-<p>this instruction could work?or any suggestion.<br>
-</p>
-<p><br>
-</p>
-<p><br>
-</p>
-<p>Regards</p><span class=3D"HOEnZb"><font color=3D"#888888">
-<p>Richard<br>
-</p>
-</font></span></div>
-</div>
-
-<br>--<br>
-______________________________<wbr>_________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto</a><=
-br>
-<br></blockquote></div><br><br clear=3D"all"><div><br></div>-- <br><div cla=
-ss=3D"gmail_signature" data-smartmail=3D"gmail_signature">&quot;Thou shalt =
-not follow the NULL pointer, for chaos and madness await thee at its end&qu=
-ot;</div>
-</div></div>
-
---94eb2c05a196bcb712054b3cd8c8--
