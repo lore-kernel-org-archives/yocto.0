@@ -1,83 +1,71 @@
-Return-Path: <richard.zhang@pica8.com>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 93984E0093F; Tue, 21 Mar 2017 18:09:30 -0700 (PDT)
+	id 45FB7E00961; Tue, 21 Mar 2017 19:06:45 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [104.47.32.101 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (akuster808[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 1944 seconds by postgrey-1.32 at yocto-www;
-	Tue, 21 Mar 2017 18:09:26 PDT
-Received: from NAM01-SN1-obe.outbound.protection.outlook.com
-	(mail-sn1nam01on0101.outbound.protection.outlook.com [104.47.32.101])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 32D79E00655
-	for <yocto@yoctoproject.org>; Tue, 21 Mar 2017 18:09:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=pica8com.onmicrosoft.com; s=selector1-pica8-com;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
-	bh=6q815yU9yEWuGt/WVkK/KBU8C66SSeq2hHAqC2wKoO0=;
-	b=h6NyNmzvQ6BDfErm1AOEZBPi5Zcdp7edXmNBoM6jEzkR4H+UQuTbruyi0rQN2xWpY+52e3J1nYHrpd5xzvdB/3s0twjc9PIUuCDJjQ7GGInqm1jeU242itlHf58akQCdSr5iRlXnsvmsLiWlzJF0dmoXgxoQ+6KdL/5c8FJnYQ0=
-Received: from CY4PR12MB1880.namprd12.prod.outlook.com (10.175.81.23) by
-	CY4PR12MB1877.namprd12.prod.outlook.com (10.175.63.23) with Microsoft
-	SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
-	15.1.961.17; Wed, 22 Mar 2017 00:37:00 +0000
-Received: from CY4PR12MB1880.namprd12.prod.outlook.com ([10.175.81.23]) by
-	CY4PR12MB1880.namprd12.prod.outlook.com ([10.175.81.23]) with mapi id
-	15.01.0947.020; Wed, 22 Mar 2017 00:37:00 +0000
-From: Richard Zhang <richard.zhang@pica8.com>
-To: Bruce Ashfield <bruce.ashfield@gmail.com>
-Thread-Topic: [yocto] How to use *.bb file to select different kernel
-	config/feature?
-Thread-Index: AQHSohF8n9HjvPSKZEaoEOwM846FJqGfOnWAgADJ/qU=
-Date: Wed, 22 Mar 2017 00:36:59 +0000
-Message-ID: <CY4PR12MB1880466C283C441D5BCBE9A6A53C0@CY4PR12MB1880.namprd12.prod.outlook.com>
-References: <CY4PR12MB1880C1DA0123AF0A0A2211B2A53D0@CY4PR12MB1880.namprd12.prod.outlook.com>,
-	<CADkTA4Pb_b9rXe9eD6kzsY+WCbh7MQNTkwjb5oLjEJnK+O8-Zw@mail.gmail.com>
-In-Reply-To: <CADkTA4Pb_b9rXe9eD6kzsY+WCbh7MQNTkwjb5oLjEJnK+O8-Zw@mail.gmail.com>
-Accept-Language: en-US, zh-CN
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: gmail.com; dkim=none (message not signed)
-	header.d=none; gmail.com; dmarc=none action=none header.from=pica8.com; 
-x-originating-ip: [116.216.128.235]
-x-ms-office365-filtering-correlation-id: 86f7b23e-d9fb-48a9-b89c-08d470bb8d6f
-x-microsoft-antispam: UriScan:; BCL:0; PCL:0; RULEID:(22001)(2017030254075);
-	SRVR:CY4PR12MB1877; 
-x-microsoft-exchange-diagnostics: 1; CY4PR12MB1877;
-	7:S7/Ltg/DVeJgHIDO7mrODECLF+My6QyLkTXv4znLYO1LNAr2LAbpGLUfcAV9Y1PJ5Cjdzf4A9CGN3U8yjIQuN0oMUuatTxhuVogadED9AyN3BPmTc84hKSqdsQchJktLQUdKCuCxuUOevCIEIMA6EryezPE/1lB5gA9mGHDaSxnxZl7dS9e4Q2S9oLz9WAa+lTSNgGB/0Q0cS6j0rB7N8HmP6SQLD/3n1/Kf23oqKjHtoFFRJN+Rf9YD/aEYUaOoywi1/LkmltrCJrWjHW6gGGmfPC9LoSbcSuSRPoII48XDdsy/KQuKFDA/zEw1z2aS5EFkZmL+BIPT0RRznd3R2Q==
-x-microsoft-antispam-prvs: <CY4PR12MB1877E321082F15CD5A511E1EA53C0@CY4PR12MB1877.namprd12.prod.outlook.com>
-x-exchange-antispam-report-test: UriScan:;
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(6040375)(601004)(2401047)(8121501046)(5005006)(3002001)(10201501046)(6041248)(20161123558025)(20161123562025)(20161123564025)(20161123560025)(20161123555025)(6072148);
-	SRVR:CY4PR12MB1877; BCL:0; PCL:0; RULEID:; SRVR:CY4PR12MB1877; 
-x-forefront-prvs: 02543CD7CD
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10019020)(39450400003)(377454003)(24454002)(53754006)(74316002)(606005)(81166006)(229853002)(7696004)(86362001)(2950100002)(3280700002)(7906003)(7736002)(19627405001)(6506006)(6116002)(53546009)(3660700001)(102836003)(54356999)(122556002)(4326008)(6246003)(6436002)(39060400002)(3846002)(38730400002)(53386004)(110136004)(55016002)(50986999)(77096006)(99286003)(2900100001)(6916009)(189998001)(33656002)(76176999)(236005)(5660300001)(6306002)(54896002)(2906002)(66066001)(8676002)(9686003)(25786009)(8936002)(53936002);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:CY4PR12MB1877;
-	H:CY4PR12MB1880.namprd12.prod.outlook.com; FPR:; SPF:None;
-	MLV:ovrnspm; PTR:InfoNoRecords; LANG:en; 
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.83.53 listed in dnsbl.sorbs.net]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.83.53 listed in list.dnswl.org]
+Received: from mail-pg0-f53.google.com (mail-pg0-f53.google.com [74.125.83.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 329AAE00939
+	for <yocto@yoctoproject.org>; Tue, 21 Mar 2017 19:06:41 -0700 (PDT)
+Received: by mail-pg0-f53.google.com with SMTP id 21so68653227pgg.1
+	for <yocto@yoctoproject.org>; Tue, 21 Mar 2017 19:06:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=subject:to:references:from:message-id:date:user-agent:mime-version
+	:in-reply-to:content-transfer-encoding;
+	bh=D+p+rmx0Kg2cMInBfBnELqLkMOy3/SQFFZXcwLTz38E=;
+	b=SXtLqkio3O0xNPl8EkFZI7y0JnU7lCMDFj/+oLd7Hu/1uE6zl35p+0QDqf2ZbL26Sp
+	OdyJuJOROYG5iHKhydI29ffwYdafNar0/NlPi/6V96KW6CwsGvYE+PfSbZcWobbySRGi
+	COv/ufNqctuXLVPSMKygN3U3pxqDmUCwhInUTSPJzAK5gQXeFG1Uz1TkWNPw/QQUm8fB
+	pP68s6VkecYxXYpVC3r0T5AFFRVj8H90RGmtinAV5KADxYybXpRTrZVmnMLNr/eyzSlK
+	Shhd0SXEy3DNJf0VuOXj/vI6kZ+ahVB7oXe3Vr8/MaogVTd8aYSAree+pp1GDePP/ZlH
+	buNA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:subject:to:references:from:message-id:date
+	:user-agent:mime-version:in-reply-to:content-transfer-encoding;
+	bh=D+p+rmx0Kg2cMInBfBnELqLkMOy3/SQFFZXcwLTz38E=;
+	b=QwPnTs3Chd4DnCQQr3MpxxP34+PdXVL0YQesxagKWHOwAuj06G8aAYsO2atSNK2tkW
+	8XAWUbBjJdwaTT7fWikvnvOc7BwkLxwR7Pb2inL7PCRODB6Q/uLc+DjdPqkEci75w/We
+	fyk/YbsSqDtEG122XL20E0Q3QESF1ZkQbbFih72lcB6V9IyNYLzMYkvjlh6IoxQB2O11
+	7/FfN1EFUcZB2zLofgLwvt/gZlTKFZV9oEkNzB4UX0gF/cNYg2a5u/TNb0Bp53cqJ06/
+	J1uUGqRRKPSItjx/geg6U6HGjALehuzK0MA1GvKoTfTdz5CHPTmPG3/h5drF09wDpvDu
+	48wA==
+X-Gm-Message-State: AFeK/H2dDi1eCVxVdqMxAP7UIS5x9kYqq6E/zI/pnKVl8lqFV8a0VaCOc6mR2UJoSog+RQ==
+X-Received: by 10.84.239.8 with SMTP id w8mr52022798plk.73.1490148401131;
+	Tue, 21 Mar 2017 19:06:41 -0700 (PDT)
+Received: from ?IPv6:2601:202:4001:9ea0:e3df:bf0a:9f90:498e?
+	([2601:202:4001:9ea0:e3df:bf0a:9f90:498e])
+	by smtp.gmail.com with ESMTPSA id
+	n85sm6126419pfi.101.2017.03.21.19.06.40 for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Tue, 21 Mar 2017 19:06:40 -0700 (PDT)
+To: yocto@yoctoproject.org
+References: <461862bc22e146c4839c12eafc7dd9f2@SFA-EX01.SAKURAUS.LOCAL>
+From: akuster808 <akuster808@gmail.com>
+Message-ID: <0943f9a9-703b-d947-e2da-271bb22594be@gmail.com>
+Date: Tue, 21 Mar 2017 19:06:39 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.7.0
 MIME-Version: 1.0
-X-OriginatorOrg: pica8.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Mar 2017 00:36:59.7684 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 1649697f-e494-4b71-8227-3f383d0979ad
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR12MB1877
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: How to use *.bb file to select different kernel config/feature?
+In-Reply-To: <461862bc22e146c4839c12eafc7dd9f2@SFA-EX01.SAKURAUS.LOCAL>
+Subject: Re: Morty 2.2.1 build failure
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -89,240 +77,117 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 22 Mar 2017 01:09:30 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_CY4PR12MB1880466C283C441D5BCBE9A6A53C0CY4PR12MB1880namp_"
-
---_000_CY4PR12MB1880466C283C441D5BCBE9A6A53C0CY4PR12MB1880namp_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-So, maybe I should take a KERNEL_CONFIG into my own kernel recipe.
+X-List-Received-Date: Wed, 22 Mar 2017 02:06:45 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
 
-Thanks
+Greg,
 
-
-Richard
-
-________________________________
-From: Bruce Ashfield <bruce.ashfield@gmail.com>
-Sent: Tuesday, March 21, 2017 8:33:09 PM
-To: Richard Zhang
-Cc: yocto@yoctoproject.org
-Subject: Re: [yocto] How to use *.bb file to select different kernel config=
-/feature?
-
-
-
-On Tue, Mar 21, 2017 at 3:15 AM, Richard Zhang <richard.zhang@pica8.com<mai=
-lto:richard.zhang@pica8.com>> wrote:
-
-Hi all
-
-
-I want   to use one linux-kernel-myown.bb<http://linux-kernel-myown.bb> fil=
-e to select different config for several boxes.
-
-I think when I give MACHINE to box1\box2\box3, the kernel config and featur=
-es select can be done.
-
-
-Is it correct :
-
-
-when use MACHINE=3Dbox1\box2\box3 and so on:
-
-
-KERNEL_FEATURES_append_box1=3D" cfg/box1.scc"
-
-These are variables like any other in bitbake. They can take a variety of o=
-verrides, one of which is the machine
-name. So yes, you could append a kernel feature only for your $MACHINE with=
- the line above.
-
-But you must be using a kernel recipe that inherits kernel-yocto for the fe=
-ature to be processed.
-
-KERNEL_CONFIG_box1=3D" cfg/box1_defconfig.cfg"
-
-Assuming KERNEL_CONFIG is a valid variable in your layers, this would also =
-work. But if you are using
-configuration fragments and kernel-yocto, that isn't a variable that is use=
-d.
-
-Bruce
-
-
-
-
-this instruction could work?or any suggestion.
-
-
-
-Regards
-
-Richard
-
---
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org<mailto:yocto@yoctoproject.org>
-https://lists.yoctoproject.org/listinfo/yocto
-
-
-
-
---
-"Thou shalt not follow the NULL pointer, for chaos and madness await thee a=
-t its end"
-
---_000_CY4PR12MB1880466C283C441D5BCBE9A6A53C0CY4PR12MB1880namp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+On 03/21/2017 04:29 PM, Greg Wilson-Lindberg wrote:
+> Hello List,
 >
-</head>
-<body>
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
--family:Calibri,Arial,Helvetica,sans-serif;" dir=3D"ltr">
-<p>So, maybe I should take a KERNEL_CONFIG into my own kernel recipe.</p>
-<p><br>
-</p>
-<p>Thanks</p>
-<p><br>
-</p>
-<p>Richard<br>
-</p>
-</div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Bruce Ashfield &lt;br=
-uce.ashfield@gmail.com&gt;<br>
-<b>Sent:</b> Tuesday, March 21, 2017 8:33:09 PM<br>
-<b>To:</b> Richard Zhang<br>
-<b>Cc:</b> yocto@yoctoproject.org<br>
-<b>Subject:</b> Re: [yocto] How to use *.bb file to select different kernel=
- config/feature?</font>
-<div>&nbsp;</div>
-</div>
-<div>
-<div dir=3D"ltr"><br>
-<div class=3D"gmail_extra"><br>
-<div class=3D"gmail_quote">On Tue, Mar 21, 2017 at 3:15 AM, Richard Zhang <=
-span dir=3D"ltr">
-&lt;<a href=3D"mailto:richard.zhang@pica8.com" target=3D"_blank">richard.zh=
-ang@pica8.com</a>&gt;</span> wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">
-<div dir=3D"ltr">
-<div id=3D"m_-7963218019750877656divtagdefaultwrapper" style=3D"font-size:1=
-2pt;color:#000000;font-family:Calibri,Arial,Helvetica,sans-serif" dir=3D"lt=
-r">
-<p>Hi all</p>
-<p><br>
-</p>
-<p>I want &nbsp; to use one <a href=3D"http://linux-kernel-myown.bb" target=
-=3D"_blank">linux-kernel-myown.bb</a> file to select different config for s=
-everal boxes.</p>
-<p>I think when I give MACHINE to&nbsp;<span>box1\box2\box3</span>, the ker=
-nel config and features select can be done.<br>
-</p>
-<p><br>
-</p>
-<p>Is it correct :</p>
-<p><br>
-</p>
-<p>when use MACHINE=3Dbox1\box2\box3 and so on:</p>
-<p><br>
-</p>
-<p><span>KERNEL_FEATURES_append_box1=3D&quot; cfg/box1.scc&quot;</span></p>
-</div>
-</div>
-</blockquote>
-<div><br>
-</div>
-<div>These are variables like any other in bitbake. They can take a variety=
- of overrides, one of which is the machine<br>
-</div>
-<div>name. So yes, you could append a kernel feature only for your $MACHINE=
- with the line above.</div>
-<div><br>
-</div>
-<div>But you must be using a kernel recipe that inherits kernel-yocto for t=
-he feature to be processed.</div>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">
-<div dir=3D"ltr">
-<div id=3D"m_-7963218019750877656divtagdefaultwrapper" style=3D"font-size:1=
-2pt;color:#000000;font-family:Calibri,Arial,Helvetica,sans-serif" dir=3D"lt=
-r">
-<p><span><span>KERNEL_CONFIG_box1=3D&quot; cfg/box1_defconfig.cfg&quot;</sp=
-an></span></p>
-</div>
-</div>
-</blockquote>
-<div><br>
-</div>
-<div>Assuming KERNEL_CONFIG is a valid variable in your layers, this would =
-also work. But if you are using</div>
-<div>configuration fragments and kernel-yocto, that isn't a variable that i=
-s used.</div>
-<div><br>
-</div>
-<div>Bruce</div>
-<div>&nbsp;</div>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">
-<div dir=3D"ltr">
-<div id=3D"m_-7963218019750877656divtagdefaultwrapper" style=3D"font-size:1=
-2pt;color:#000000;font-family:Calibri,Arial,Helvetica,sans-serif" dir=3D"lt=
-r">
-<p><br>
-</p>
-<p><br>
-</p>
-<p>this instruction could work?or any suggestion.<br>
-</p>
-<p><br>
-</p>
-<p><br>
-</p>
-<p>Regards</p>
-<span class=3D"HOEnZb"><font color=3D"#888888">
-<p>Richard<br>
-</p>
-</font></span></div>
-</div>
-<br>
---<br>
-______________________________<wbr>_________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto</a><=
-br>
-<br>
-</blockquote>
-</div>
-<br>
-<br clear=3D"all">
-<div><br>
-</div>
--- <br>
-<div class=3D"gmail_signature" data-smartmail=3D"gmail_signature">&quot;Tho=
-u shalt not follow the NULL pointer, for chaos and madness await thee at it=
-s end&quot;</div>
-</div>
-</div>
-</div>
-</body>
-</html>
+> I got a copy of the book "Embedded Linux Systems with the Yocto Project" at the SCALE 15x conference and this prompted me to try building the Yocto Poky build before getting the Boot to Qt Yocto build environment.
+>
+> I tried building on 2 x86 systems, a 64 bit system at work and a 32 bit system at my home, both failed in the same way:
+>
+> gwilson 11:06:54:~/yocto/poky-morty-16.0.1$ source ./oe-init-build-env
+> You had no conf/local.conf file. This configuration file has therefore been
+> created for you with some default values. You may wish to edit it to, for
+> example, select a different MACHINE (target hardware). See conf/local.conf
+> for more information as common configuration options are commented.
+>
+> You had no conf/bblayers.conf file. This configuration file has therefore been
+> created for you with some default values. To add additional metadata layers
+> into your configuration please add entries to conf/bblayers.conf.
+>
+> The Yocto Project has extensive documentation about OE including a reference
+> manual which can be found at:
+>      http://yoctoproject.org/documentation
+>
+> For more information about OpenEmbedded see their website:
+>      http://www.openembedded.org/
+>
+>
+> ### Shell environment set up for builds. ###
+>
+> You can now run 'bitbake <target>'
+>
+> Common targets are:
+>      core-image-minimal
+>      core-image-sato
+>      meta-toolchain
+>      meta-ide-support
+>
+> You can also run generated qemu images with a command like 'runqemu qemux86'
+> gwilson 11:07:08:~/yocto/poky-morty-16.0.1/build$
+> gwilson 11:07:10:~/yocto/poky-morty-16.0.1/build$
+> gwilson 11:07:11:~/yocto/poky-morty-16.0.1/build$ bitbake core-image-sato
+> Parsing recipes: 100% |############################################################################################| Time: 0:00:29
+> Parsing of 864 .bb files complete (0 cached, 864 parsed). 1318 targets, 50 skipped, 0 masked, 0 errors.
+> NOTE: Resolving any missing task queue dependencies
+>
+> Build Configuration:
+> BB_VERSION        = "1.32.0"
+> BUILD_SYS         = "x86_64-linux"
+> NATIVELSBSTRING   = "Ubuntu-14.04"
+> TARGET_SYS        = "i586-poky-linux"
+> MACHINE           = "qemux86"
+> DISTRO            = "poky"
+> DISTRO_VERSION    = "2.2.1"
+> TUNE_FEATURES     = "m32 i586"
+> TARGET_FPU        = ""
+> meta
+> meta-poky
+> meta-yocto-bsp    = "<unknown>:<unknown>"
+>
+> NOTE: Fetching uninative binary shim from http://downloads.yoctoproject.org/releases/uninative/1.4/x86_64-nativesdk-libc.tar.bz2;sha256sum=101ff8f2580c193488db9e76f9646fb6ed38b65fb76f403acb0e2178ce7127ca
+> --2017-03-20 11:07:57--  http://downloads.yoctoproject.org/releases/uninative/1.4/x86_64-nativesdk-libc.tar.bz2
+> Resolving downloads.yoctoproject.org (downloads.yoctoproject.org)... 198.145.20.127
+> Connecting to downloads.yoctoproject.org (downloads.yoctoproject.org)|198.145.20.127|:80... connected.
+> HTTP request sent, awaiting response... 200 OK
+> Length: 2473216 (2.4M) [application/octet-stream]
+> Saving to: '/home/gwilson/yocto/poky-morty-16.0.1/build/downloads/uninative/101ff8f2580c193488db9e76f9646fb6ed38b65fb76f403acb0e2178ce7127ca/x86_64-nativesdk-libc.tar.bz2'
+>
+>
+> 2017-03-20 11:07:58 (6.62 MB/s) - '/home/gwilson/yocto/poky-morty-16.0.1/build/downloads/uninative/101ff8f2580c193488db9e76f9646fb6ed38b65fb76f403acb0e2178ce7127ca/x86_64-nativesdk-libc.tar.bz2' saved [2473216/2473216]
+>
+> Initialising tasks: 100% |#########################################################################################| Time: 0:00:15
+> NOTE: Executing SetScene Tasks
+> NOTE: Executing RunQueue Tasks
+> WARNING: flex-native-2.6.0-r0 do_fetch: Failed to fetch URL http://downloads.sourceforge.net/flex/flex-2.6.0.tar.bz2, attempting MIRRORS if available
+> WARNING: file-native-5.28-r0 do_fetch: Failed to fetch URL git://github.com/file/file.git, attempting MIRRORS if available
+> ERROR: file-native-5.28-r0 do_fetch: Fetcher failure: Unable to find revision 3c521817322a6bf5160cfeb09b9145ccde587b2a in branch master even from upstream
+> ERROR: file-native-5.28-r0 do_fetch: Fetcher failure for URL: 'git://github.com/file/file.git'. Unable to fetch URL from any source.
 
---_000_CY4PR12MB1880466C283C441D5BCBE9A6A53C0CY4PR12MB1880namp_--
+this is a known issue and should be fixed now (again). The upstream repo 
+had issues which caused the hashes to not match. I heard the repo got 
+corrected.
+
+> ERROR: file-native-5.28-r0 do_fetch: Function failed: base_do_fetch
+> ERROR: Logfile of failure stored in: /home/gwilson/yocto/poky-morty-16.0.1/build/tmp/work/x86_64-linux/file-native/5.28-r0/temp/log.do_fetch.23747
+> ERROR: Task (virtual:native:/home/gwilson/yocto/poky-morty-16.0.1/meta/recipes-devtools/file/file_5.28.bb:do_fetch) failed with exit code '1'
+> NOTE: Tasks Summary: Attempted 203 tasks of which 0 didn't need to be rerun and 1 failed.
+>
+> Summary: 1 task failed:
+>    virtual:native:/home/gwilson/yocto/poky-morty-16.0.1/meta/recipes-devtools/file/file_5.28.bb:do_fetch
+> Summary: There were 2 WARNING messages shown.
+> Summary: There were 3 ERROR messages shown, returning a non-zero exit code.
+> gwilson 11:13:14:~/yocto/poky-morty-16.0.1/build$
+>
+> I get 1 file that needs to go to a mirror and a second file that can't be found at all.
+Please try again.
+>
+> Are these known bugs? Do I need to just back up and use Morty 2.2?
+This affected 2.1, 2.2 and master.
+
+regards,
+Armin
+>
+> Regards,
+>
+> Greg Wilson-Lindberg
+> Sakura Finetek
+> 310-783-5075
+
+
