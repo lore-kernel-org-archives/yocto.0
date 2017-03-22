@@ -1,66 +1,62 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <satya.2891@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3E901E0098A; Wed, 22 Mar 2017 07:37:02 -0700 (PDT)
+	id 2C0B5E003E1; Wed, 22 Mar 2017 08:36:34 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE, 
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.128.196 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.128.196 listed in dnsbl.sorbs.net]
+	mail provider *      (satya.2891[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wr0-f196.google.com (mail-wr0-f196.google.com
-	[209.85.128.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B40FAE0098A
-	for <yocto@yoctoproject.org>; Wed, 22 Mar 2017 07:37:00 -0700 (PDT)
-Received: by mail-wr0-f196.google.com with SMTP id u108so27051802wrb.2
-	for <yocto@yoctoproject.org>; Wed, 22 Mar 2017 07:36:59 -0700 (PDT)
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.83.49 listed in dnsbl.sorbs.net]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.83.49 listed in list.dnswl.org]
+Received: from mail-pg0-f49.google.com (mail-pg0-f49.google.com [74.125.83.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1A21DE0030B
+	for <yocto@yoctoproject.org>; Wed, 22 Mar 2017 08:36:30 -0700 (PDT)
+Received: by mail-pg0-f49.google.com with SMTP id g2so109267738pge.3
+	for <yocto@yoctoproject.org>; Wed, 22 Mar 2017 08:36:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=2AtrIVMeWdcIIqVVldWdQzDFKuYkY2r8/GeMTa6sEmM=;
-	b=QHDZ8BRgLmhxHvUwrbwwuu1lO8FAxFqQipspBp61iiggNI1tk/rsTBQ0zHM3eMVndS
-	vBNdbLB/ynNDvKPfBCgbytSpFZ2U4TlmEcNgOzCPThAhwnpGZvJI0bv1cTSrMd8gylmY
-	v45OD4yYcJUDLmcngOC3c2h3i6HW70cYhkIrBQOMbbcuYxEqib8/cO3O7HxIgpD5Mg+h
-	3uPxwvtd/h+VnJmIMbKAF+hX68TcV2Tkzve5JrtcHoJE0HVpZcL6wnixuY/Q+/k+zMo1
-	T3zT48KuIZCs57XfGO1SVHVHg0cjcrM8VUd0WTJ4oXGosi9qyoZ/7S8I9mvZKzfKxAzn
-	vqxQ==
+	h=mime-version:from:date:message-id:subject:to;
+	bh=jmz5LwTImpA1uc52c7OjrAOs5lv/njb5vq6F3LTDEMo=;
+	b=S94C6YftWh16jRVP0pThhfyplARfBSYqFfC1eqwysAlX2GhsFCb+HKDdpp+Hq2ff3N
+	t80GKk7L/cOkEzVdTNxpQ5QuesO9SWWiGLGznjui60tvYqpeuKVi8xApG/Ej6G+26qQa
+	hovC1WF7Tm5iKyJQ0wU0ttzJhVfsH4q+OSxqEDKIzVQXts9wAmMH6Iin9fRBQZuYFRWo
+	HGUpirxW7B/4zjkG2Pb8NoAiufexrw/ERcFGemBOHLfR0Z7rcBfk1FB2RgYRG2burKzc
+	05Qa0WabktSa0dMBBlo2kp3WKwK2B1dSQXhvQVPKcndomGivkRk+RmnE6shesxkpSF7g
+	Vy1g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=2AtrIVMeWdcIIqVVldWdQzDFKuYkY2r8/GeMTa6sEmM=;
-	b=c2dTcpjvFvdV6uqS6rw6I4n4Ofl4WwWjdCQZzB/M+I9PHiHJv0caqvx42pZI2GYwbx
-	6qROKudYeqOAt123NReXVHvEKbt8llcXGR+avbmil0ZaP9JCDU88kLIDzNBLyGPKCu05
-	ucb22V2S54fwUAazeTii+6hX/3kDn+6XI9+caGAesNfojKjDEnb3pqAy1SM74DAfVthQ
-	p2mklZJJb2tcLTRxDFgj+9iVtfSqoIqLRc4OcyJfMdoGNLmN0Cl5FrZCb53bGI7vHtrV
-	V4dWuVD4jKxBg5DHnv+RH4XLM7wTgfYrsfh3C3sT5bI9DYJJpw+wHBU6ChlX0S0ScPwS
-	BMqw==
-X-Gm-Message-State: AFeK/H0WQaebzp2YcuakQAH5C08DrkqK4WKdxlv5afQOmuIL5Pzksg4gvHJEaN5DPZGpVRSDIxhrLxhx64HjbA==
-X-Received: by 10.223.134.44 with SMTP id 41mr36076108wrv.26.1490193419193;
-	Wed, 22 Mar 2017 07:36:59 -0700 (PDT)
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=jmz5LwTImpA1uc52c7OjrAOs5lv/njb5vq6F3LTDEMo=;
+	b=cjuFwnuVdM+/wpa/ykOgRrph8IYb8w7iiP2cnR0d3nPlicJB4fzIVkUIECgai1Y9hM
+	B1gpC59y9HlED/vmS3PpY3HDUBntiUXw2FDf76HfG2h7tjAH2Q0Qarw4jWcOzRTLqM4q
+	0S2oIDdSyK0dgJ5gbovOM81mkR4lwA0DsH4Kygb3wNNE/UtbkdKh8fAOYN2sm4KBbxrZ
+	Ygt/6AJJLyLk7uQ/RdUGdKMx2nxbPPNOgvcBNRTg0ieaU05IFLbiUl74KMyADbkIZ20z
+	5IPhaxOY4VNn8ANPbyDeogC3MxkE+gwzx6pGVV5nRbQEE3E7/R6xUB0xrZpVY9Fm0y9e
+	oq6Q==
+X-Gm-Message-State: AFeK/H3UAn89MoI2yeA8BX8Y6f6HPDZrvGRQC+KqZtAS/2HIC4t4sIieetU5XUTr6IYRN4LobSPNq8ach4dX+Q==
+X-Received: by 10.84.169.36 with SMTP id g33mr55842147plb.36.1490196989975;
+	Wed, 22 Mar 2017 08:36:29 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.80.180.162 with HTTP; Wed, 22 Mar 2017 07:36:28 -0700 (PDT)
-In-Reply-To: <1490186804-22928-4-git-send-email-akuster808@gmail.com>
-References: <1490186804-22928-1-git-send-email-akuster808@gmail.com>
-	<1490186804-22928-4-git-send-email-akuster808@gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Wed, 22 Mar 2017 07:36:28 -0700
-Message-ID: <CAMKF1spntA0vq1y5CHr4mDX08a-HNwS7PoYV9SmFG2XEVdCcKw@mail.gmail.com>
-To: Armin Kuster <akuster808@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-security][PATCH 4/6] samhain: fix build issues when using musl
+Received: by 10.100.161.45 with HTTP; Wed, 22 Mar 2017 08:36:29 -0700 (PDT)
+From: SatyaNarayana Sampangi <satya.2891@gmail.com>
+Date: Wed, 22 Mar 2017 21:06:29 +0530
+Message-ID: <CAF1M0z59wXTT=_79TQYZv0cso9-qnxy=Sgsrmn5qR_XtCppMcg@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Yocto with Embedded Android
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,86 +68,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 22 Mar 2017 14:37:02 -0000
+X-List-Received-Date: Wed, 22 Mar 2017 15:36:34 -0000
+Content-Type: multipart/alternative; boundary=94eb2c13e2623ba67e054b538607
+
+--94eb2c13e2623ba67e054b538607
 Content-Type: text/plain; charset=UTF-8
 
-On Wed, Mar 22, 2017 at 5:46 AM, Armin Kuster <akuster808@gmail.com> wrote:
-> musl does not supply malloc.
+Dear All,
 
-it does provide malloc but it does not provide mallinfo() which is
-glibc specific
+Is it possible in yocto project to bitbake the android files say android.mk
+files?
 
-> also c99 fix
->
-> x_dnmalloc.c:563:26: error: return type is an incomplete type
-> | #define public_mALLINFo mallinfo
-> | ^
-> | x_dnmalloc.c:1689:17: note: in expansion of macro 'public_mALLINFo'
-> | struct mallinfo public_mALLINFo() {
->
-> and
-> _dnmalloc.c:5527:17: error: unknown type name 'u_int'
-> | u_int rnd[(128 - 2*sizeof(struct timeval)) / sizeof(u_int)];
-> | ^~~~~
->
-> Signed-off-by: Armin Kuster <akuster808@gmail.com>
-> ---
->  recipes-security/samhain/files/c99_dnmalloc.patch | 27 +++++++++++++++++++++++
->  recipes-security/samhain/samhain.inc              |  1 +
->  2 files changed, 28 insertions(+)
->  create mode 100644 recipes-security/samhain/files/c99_dnmalloc.patch
->
-> diff --git a/recipes-security/samhain/files/c99_dnmalloc.patch b/recipes-security/samhain/files/c99_dnmalloc.patch
-> new file mode 100644
-> index 0000000..397a1f1
-> --- /dev/null
-> +++ b/recipes-security/samhain/files/c99_dnmalloc.patch
-> @@ -0,0 +1,27 @@
-> +samhain: musl build fix
-> +
-> +Upstream-Status: Submitted
-> +Signed-off-by: Armin Kuster <akuster@mvista.com>
-> +
-> +Index: samhain-4.2.0/src/dnmalloc.c
-> +===================================================================
-> +--- samhain-4.2.0.orig/src/dnmalloc.c
-> ++++ samhain-4.2.0/src/dnmalloc.c
-> +@@ -821,7 +821,7 @@ extern Void_t*     sbrk();
-> + /* On *BSD, malloc.h is deprecated, and on some *BSD including
-> +  * it may actually raise an error.
-> +  */
-> +-#if defined(HAVE_MALLOC_H) && !defined(__OpenBSD__) && !defined(__FreeBSD__) && !defined(__NetBSD__)
-> ++#if defined(HAVE_MALLOC_H) && !defined(__OpenBSD__) && !defined(__FreeBSD__) && !defined(__NetBSD__) && defined(__GLIBC__)
-> + #include <malloc.h>
-> + #else
-> +
-> +@@ -5524,7 +5524,7 @@ arc4_stir(void)
-> +         struct {
-> +                 struct timeval tv1;
-> +                 struct timeval tv2;
-> +-                u_int rnd[(128 - 2*sizeof(struct timeval)) / sizeof(u_int)];
-> ++                unsigned char rnd[(128 - 2*sizeof(struct timeval)) / sizeof(unsigned char)];
-> +         } rdat;
-> + #if !defined(__FreeBSD__) && !defined(__OpenBSD__) && !defined(__NetBSD__)
-> +         ssize_t sz = 0;
-> diff --git a/recipes-security/samhain/samhain.inc b/recipes-security/samhain/samhain.inc
-> index 789150b..e69bb35 100644
-> --- a/recipes-security/samhain/samhain.inc
-> +++ b/recipes-security/samhain/samhain.inc
-> @@ -7,6 +7,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=8ca43cbc842c2336e835926c2166c28b"
->  SRC_URI = "http://la-samhna.de/archive/samhain_signed-${PV}.tar.gz \
->            file://${INITSCRIPT_NAME}.init \
->            file://${INITSCRIPT_NAME}.default \
-> +           file://c99_dnmalloc.patch \
->           "
->
->  SRC_URI[md5sum] = "d98a55646b14f9419fcedde909d1bf02"
-> --
-> 2.7.4
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+If not any specific technical reasons?
 
+If yes, any reference materials would be helpful.
+
+Thanks,
+satya
+
+--94eb2c13e2623ba67e054b538607
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Dear All,<div><br></div><div>Is it possible in yocto proje=
+ct to bitbake the android files say <a href=3D"http://android.mk">android.m=
+k</a> files?</div><div><br></div><div>If not any specific technical reasons=
+?</div><div><br></div><div>If yes, any reference materials would be helpful=
+.</div><div><br></div><div>Thanks,</div><div>satya</div></div>
+
+--94eb2c13e2623ba67e054b538607--
