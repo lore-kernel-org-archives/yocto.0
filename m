@@ -1,54 +1,59 @@
-Return-Path: <ulf.hofemeier@intel.com>
+Return-Path: <cody@arrc.ou.edu>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 766CDE0093F; Tue, 28 Mar 2017 09:16:57 -0700 (PDT)
+	id 82B8FE009A0; Thu, 23 Mar 2017 15:28:17 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.7 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED,RCVD_IN_SORBS_SPAM autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [134.134.136.31 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [134.134.136.31 listed in dnsbl.sorbs.net]
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.82.170 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E24EBE00839
-	for <yocto@yoctoproject.org>; Tue, 28 Mar 2017 09:16:55 -0700 (PDT)
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-	by orsmga104.jf.intel.com with ESMTP; 28 Mar 2017 09:16:54 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.36,237,1486454400"; 
-	d="scan'208,217";a="839348718"
-Received: from orsmsx101.amr.corp.intel.com ([10.22.225.128])
-	by FMSMGA003.fm.intel.com with ESMTP; 28 Mar 2017 09:16:54 -0700
-Received: from orsmsx116.amr.corp.intel.com (10.22.240.14) by
-	ORSMSX101.amr.corp.intel.com (10.22.225.128) with Microsoft SMTP Server
-	(TLS) id 14.3.319.2; Tue, 28 Mar 2017 09:16:53 -0700
-Received: from orsmsx115.amr.corp.intel.com ([169.254.4.44]) by
-	ORSMSX116.amr.corp.intel.com ([10.22.240.14]) with mapi id
-	14.03.0319.002; Tue, 28 Mar 2017 09:16:53 -0700
-From: "Hofemeier, Ulf" <ulf.hofemeier@intel.com>
-To: Arun Maha <2233arunkumar@gmail.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] Questions
-Thread-Index: AQHSp6PNAGxe7gIDFEqgOGw4OyqlfaGqbiSA
-Date: Tue, 28 Mar 2017 16:16:53 +0000
-Message-ID: <F234DCBC-BBB4-438A-9866-ECD27CC5838F@intel.com>
-References: <CALHF=T2fyuX=m5bfNG097VxioZKWQ=c0Zj3FwtO7P5+coYx6hQ@mail.gmail.com>
-	<CALHF=T3V=3stmsJmp0KCEiEycJKrScQF_y+UcsuLEAk=EGA3dA@mail.gmail.com>
-	<CALHF=T0JT4iBQVeXq_p-JGOwppr7K1pPGHV3+70P2Xbwnu99rQ@mail.gmail.com>
-	<CALHF=T3rs8-vYKXjCbZZscgn1EfhXvui5TKJumA9ijCSt-FANg@mail.gmail.com>
-In-Reply-To: <CALHF=T3rs8-vYKXjCbZZscgn1EfhXvui5TKJumA9ijCSt-FANg@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Microsoft-MacOutlook/f.20.0.170309
-x-originating-ip: [10.241.224.212]
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.82.170 listed in list.dnswl.org]
+Received: from mail-ot0-f170.google.com (mail-ot0-f170.google.com
+	[74.125.82.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 51DB9E00546
+	for <yocto@yoctoproject.org>; Thu, 23 Mar 2017 15:28:12 -0700 (PDT)
+Received: by mail-ot0-f170.google.com with SMTP id y88so41759900ota.2
+	for <yocto@yoctoproject.org>; Thu, 23 Mar 2017 15:28:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=arrc-ou-edu.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=BnOCf/AptdbbP1pZj5/wk/kIMzGGjTfRQax9Qe71ZG4=;
+	b=IsDbDu4Lgy3cqVbA2Q3bC22RNyk9c0wfM+o4FJHPEeEeLLOw3RT8Y0Y3DYQyxDFHGu
+	yXT9ELOJ1368gedGmwvzNvjqiP7K74mEtBHKzMXUQGZ5o9L48j1iQ7mGQ4Fmu0vC2LWO
+	K0ep2X52Ja7+x7nLnGaBhC0bWWoorsmIBrYNmij8UXRlJxp3J3aOaQCDHeA7p1hoaZ8T
+	axilWTMdSvna+YtpO4rDDlzvxwvM+FsBSsLeMKDbH97tC0uITT5YBzvIO+AmyM1lICnM
+	jP9JNm9SVPF2jhX8YQKQhAX3oWFY6wcn6xfmpCRKOVjUyr/GVeYlkboTb4/p6IPRRPPd
+	G2Jw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=BnOCf/AptdbbP1pZj5/wk/kIMzGGjTfRQax9Qe71ZG4=;
+	b=da1zKeIwBH6eiEYLzvqGTq2iDMvbhGWXEcOup1fxYLRKuQKmSBszQv31ZW96GCh7+W
+	Cq80/xGz0uTC2qr6JsSDKb7AG5VZNW3N5MeGJj824uIohzopzIIKxw5IVmzzBNbppK8s
+	4A9ixySdg76KlZexEA3+Cb9Cu7Ddyu3fhE3AoED/KbPSQNOgLK71yogXIBVT7gNBUzbR
+	RQkDx63+vqr5GtSOphQ00dJvu22Mtd1wbq5qOA7FnRn+B1AlUypfMTqk3UHSxaXAIZ8J
+	BNlVK2WohitenQx3b3nIan+axIAsAYUpYRXuIEyz1E1mFeiAmOstBGsG1B2W1bDQmfHa
+	hwBA==
+X-Gm-Message-State: AFeK/H0nyBRulduoeJTRn8RNEcfM2ceaQUKYxaKVxUVxlCl6M1q8o19l/NKJIMzV6qKikyvPw6F0TXgHh6aDvmLo
+X-Received: by 10.157.7.230 with SMTP id 93mr2498870oto.223.1490308091459;
+	Thu, 23 Mar 2017 15:28:11 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Re: Questions
+Received: by 10.157.4.203 with HTTP; Thu, 23 Mar 2017 15:28:11 -0700 (PDT)
+From: Cody Piersall <cody@arrc.ou.edu>
+Date: Thu, 23 Mar 2017 17:28:11 -0500
+Message-ID: <CAKEinFwC58g5q9wmvwhTfn5Au3n3Qrx8xRkSy7yUpehyedLiog@mail.gmail.com>
+To: yocto@yoctoproject.org
+X-Mailman-Approved-At: Tue, 28 Mar 2017 09:26:41 -0700
+Subject: Remove a recipe's do_install_append() function in an append file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -60,105 +65,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 Mar 2017 16:16:57 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_F234DCBCBBB4438A9866ECD27CC5838Fintelcom_"
+X-List-Received-Date: Thu, 23 Mar 2017 22:28:17 -0000
+Content-Type: text/plain; charset=UTF-8
 
---_000_F234DCBCBBB4438A9866ECD27CC5838Fintelcom_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Hello,
 
-SGkgQXJ1biwNCg0KWW91IG5lZWQgdG8gYWRkIHBva3kgbWFuYWdlciBzdXBwb3J0IHRvIFBva3kg
-YW5kIGluc3RhbGwgaXQgYnkgYWRkaW5nIHRoZSBmb2xsb3dpbmcgbGluZSB0byB5b3VyIGJ1aWxk
-L2NvbmYvbG9jYWwuY29uZiBmaWxlLg0KDQpodHRwczovL3dpa2kueW9jdG9wcm9qZWN0Lm9yZy93
-aWtpL0hvd19kb19JDQoNCkZvciB0aGUgY29uZi9sb2NhbC5jb25mIGVudHJ5IHBsZWFzZSBhZGQg
-dGhpczogSU1BR0VfSU5TVEFMTF9hcHBlbmQgPSAiIHBhY2thZ2UiDQoNCkFmdGVyIHRoYXQgeW91
-IGhhdmUgdG8gYml0YmFrZSBhIG5ldyBpbWFnZSB0aGF0IGNvbnRhaW5zIHlvdXIgcGFja2FnZS4N
-Cg0KVGhhbmtzLA0KVWxmDQoNCkZyb206IDx5b2N0by1ib3VuY2VzQHlvY3RvcHJvamVjdC5vcmc+
-IG9uIGJlaGFsZiBvZiBBcnVuIE1haGEgPDIyMzNhcnVua3VtYXJAZ21haWwuY29tPg0KRGF0ZTog
-VHVlc2RheSwgTWFyY2ggMjgsIDIwMTcgYXQgMjoxNCBBTQ0KVG86ICJ5b2N0b0B5b2N0b3Byb2pl
-Y3Qub3JnIiA8eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZz4NClN1YmplY3Q6IFt5b2N0b10gUXVlc3Rp
-b25zDQoNCkhpLA0KSG93IHRvIGluc3RhbGwgYSBjb21tYW5kIChwbW91bnQpIGluIHBva3kgZGlz
-dHJpYnV0aW9uLiBXaGF0IGFyZSB0aGUgc3RlcHMgdG8gZm9sbG93Pw0KDQpUaGFua3MsDQpBUlVO
-S1VNQVIgSw0K
+I am building zsh from meta-oe layer, and it has a do_install_append()
+function defined like this:
 
---_000_F234DCBCBBB4438A9866ECD27CC5838Fintelcom_
-Content-Type: text/html; charset="utf-8"
-Content-ID: <067FFC812ACAC244AA2331BB08AA553C@intel.com>
-Content-Transfer-Encoding: base64
+do_install_append () {
+    rm -fr ${D}/usr/share
+}
 
-PGh0bWwgeG1sbnM6bz0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6b2ZmaWNlIiB4
-bWxuczp3PSJ1cm46c2NoZW1hcy1taWNyb3NvZnQtY29tOm9mZmljZTp3b3JkIiB4bWxuczptPSJo
-dHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL29mZmljZS8yMDA0LzEyL29tbWwiIHhtbG5zPSJo
-dHRwOi8vd3d3LnczLm9yZy9UUi9SRUMtaHRtbDQwIj4NCjxoZWFkPg0KPG1ldGEgaHR0cC1lcXVp
-dj0iQ29udGVudC1UeXBlIiBjb250ZW50PSJ0ZXh0L2h0bWw7IGNoYXJzZXQ9dXRmLTgiPg0KPG1l
-dGEgbmFtZT0iVGl0bGUiIGNvbnRlbnQ9IiI+DQo8bWV0YSBuYW1lPSJLZXl3b3JkcyIgY29udGVu
-dD0iIj4NCjxtZXRhIG5hbWU9IkdlbmVyYXRvciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUg
-KGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxlPjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8N
-CkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0
-IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJ
-cGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAyIDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8N
-CnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWwsIGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsN
-CgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJZm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWls
-eToiVGltZXMgTmV3IFJvbWFuIjt9DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1z
-dHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjojMDU2M0MxOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRl
-cmxpbmU7fQ0KYTp2aXNpdGVkLCBzcGFuLk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHls
-ZS1wcmlvcml0eTo5OTsNCgljb2xvcjojOTU0RjcyOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxp
-bmU7fQ0Kc3Bhbi5FbWFpbFN0eWxlMTcNCgl7bXNvLXN0eWxlLXR5cGU6cGVyc29uYWwtcmVwbHk7
-DQoJZm9udC1mYW1pbHk6Q2FsaWJyaTsNCgljb2xvcjp3aW5kb3d0ZXh0O30NCnNwYW4ubXNvSW5z
-DQoJe21zby1zdHlsZS10eXBlOmV4cG9ydC1vbmx5Ow0KCW1zby1zdHlsZS1uYW1lOiIiOw0KCXRl
-eHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7DQoJY29sb3I6dGVhbDt9DQouTXNvQ2hwRGVmYXVsdA0K
-CXttc28tc3R5bGUtdHlwZTpleHBvcnQtb25seTsNCglmb250LXNpemU6MTAuMHB0O30NCkBwYWdl
-IFdvcmRTZWN0aW9uMQ0KCXtzaXplOjguNWluIDExLjBpbjsNCgltYXJnaW46MS4waW4gMS4waW4g
-MS4waW4gMS4waW47fQ0KZGl2LldvcmRTZWN0aW9uMQ0KCXtwYWdlOldvcmRTZWN0aW9uMTt9DQot
-LT48L3N0eWxlPg0KPC9oZWFkPg0KPGJvZHkgYmdjb2xvcj0id2hpdGUiIGxhbmc9IkVOLVVTIiBs
-aW5rPSIjMDU2M0MxIiB2bGluaz0iIzk1NEY3MiI+DQo8ZGl2IGNsYXNzPSJXb3JkU2VjdGlvbjEi
-Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9u
-dC1mYW1pbHk6Q2FsaWJyaSI+SGkgQXJ1biw8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFz
-cz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTpD
-YWxpYnJpIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTpDYWxpYnJpIj5Zb3Ug
-bmVlZCB0byBhZGQgcG9reSBtYW5hZ2VyIHN1cHBvcnQgdG8gUG9reSBhbmQgaW5zdGFsbCBpdCBi
-eSBhZGRpbmcgdGhlIGZvbGxvd2luZyBsaW5lIHRvIHlvdXIgYnVpbGQvY29uZi9sb2NhbC5jb25m
-IGZpbGUuPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4g
-c3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6Q2FsaWJyaSI+PG86cD4mbmJzcDs8
-L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQt
-c2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6Q2FsaWJyaSI+PGEgaHJlZj0iaHR0cHM6Ly93aWtpLnlv
-Y3RvcHJvamVjdC5vcmcvd2lraS9Ib3dfZG9fSSI+aHR0cHM6Ly93aWtpLnlvY3RvcHJvamVjdC5v
-cmcvd2lraS9Ib3dfZG9fSTwvYT48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTpDYWxpYnJp
-Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3Bh
-biBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTpDYWxpYnJpIj5Gb3IgdGhlIGNv
-bmYvbG9jYWwuY29uZiBlbnRyeSBwbGVhc2UgYWRkIHRoaXM6IElNQUdFX0lOU1RBTExfYXBwZW5k
-ID0gJnF1b3Q7Jm5ic3A7PGk+cGFja2FnZTwvaT4mcXVvdDs8bzpwPjwvbzpwPjwvc3Bhbj48L3A+
-DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250
-LWZhbWlseTpDYWxpYnJpIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0i
-TXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTpDYWxp
-YnJpIj5BZnRlciB0aGF0IHlvdSBoYXZlIHRvIGJpdGJha2UgYSBuZXcgaW1hZ2UgdGhhdCBjb250
-YWlucyB5b3VyIHBhY2thZ2UuPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
-cm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6Q2FsaWJyaSI+
-PGJyPg0KVGhhbmtzLDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
-PjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OkNhbGlicmkiPlVsZjxv
-OnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJm
-b250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OkNhbGlicmkiPjxvOnA+Jm5ic3A7PC9vOnA+PC9z
-cGFuPjwvcD4NCjxkaXYgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci10b3A6c29saWQgI0I1QzRE
-RiAxLjBwdDtwYWRkaW5nOjMuMHB0IDBpbiAwaW4gMGluIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
-PjxiPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTpDYWxpYnJpO2NvbG9yOmJsYWNrIj5Gcm9tOiA8
-L3NwYW4+DQo8L2I+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OkNhbGlicmk7Y29sb3I6YmxhY2si
-PiZsdDt5b2N0by1ib3VuY2VzQHlvY3RvcHJvamVjdC5vcmcmZ3Q7IG9uIGJlaGFsZiBvZiBBcnVu
-IE1haGEgJmx0OzIyMzNhcnVua3VtYXJAZ21haWwuY29tJmd0Ozxicj4NCjxiPkRhdGU6IDwvYj5U
-dWVzZGF5LCBNYXJjaCAyOCwgMjAxNyBhdCAyOjE0IEFNPGJyPg0KPGI+VG86IDwvYj4mcXVvdDt5
-b2N0b0B5b2N0b3Byb2plY3Qub3JnJnF1b3Q7ICZsdDt5b2N0b0B5b2N0b3Byb2plY3Qub3JnJmd0
-Ozxicj4NCjxiPlN1YmplY3Q6IDwvYj5beW9jdG9dIFF1ZXN0aW9uczxvOnA+PC9vOnA+PC9zcGFu
-PjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9v
-OnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SGksIDxvOnA+PC9v
-OnA+PC9wPg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkhvdyB0byBpbnN0YWxsIGEgY29t
-bWFuZCAocG1vdW50KSBpbiBwb2t5IGRpc3RyaWJ1dGlvbi4gV2hhdCBhcmUgdGhlIHN0ZXBzIHRv
-IGZvbGxvdz88bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3Jt
-YWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05v
-cm1hbCI+VGhhbmtzLDxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1z
-b05vcm1hbCI+QVJVTktVTUFSIEs8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rp
-dj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
+which gets rid of lots lots of useful functionality, like
+context-aware autocompletion.  Can a bbappend file get rid of that
+function, or do I need to edit the actual recipe? I've attempted
+defining an empty do_install_append() { : } but it didn't work.
 
---_000_F234DCBCBBB4438A9866ECD27CC5838Fintelcom_--
+Thanks,
+Cody
+
