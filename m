@@ -1,31 +1,57 @@
-Return-Path: <romain.perier@collabora.com>
+Return-Path: <alain.achkar@triacta.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9DAB3E00AAB; Thu, 23 Mar 2017 07:52:32 -0700 (PDT)
+	id 09F65E00AAA; Thu, 23 Mar 2017 08:30:55 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
-	SPF_HELO_PASS,UNPARSEABLE_RELAY autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [46.235.227.227 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.218.48 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 UNPARSEABLE_RELAY Informational: message has unparseable relay
-	lines
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 33407E00777
-	for <yocto@yoctoproject.org>; Thu, 23 Mar 2017 07:52:28 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-	(Authenticated sender: rperier) with ESMTPSA id 82EE82660AD
-From: Romain Perier <romain.perier@collabora.com>
-To: liezhi.yang@windriver.com
-Date: Thu, 23 Mar 2017 15:52:20 +0100
-Message-Id: <20170323145220.1287-1-romain.perier@collabora.com>
-X-Mailer: git-send-email 2.9.3
-Cc: yocto@yoctoproject.org, openembedded-core@lists.openembedded.org
-Subject: [PATCH RESEND] logrotate: Add systemd support
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.218.48 listed in list.dnswl.org]
+Received: from mail-oi0-f48.google.com (mail-oi0-f48.google.com
+	[209.85.218.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AD78BE00AA2
+	for <yocto@yoctoproject.org>; Thu, 23 Mar 2017 08:30:51 -0700 (PDT)
+Received: by mail-oi0-f48.google.com with SMTP id r203so62075243oib.3
+	for <yocto@yoctoproject.org>; Thu, 23 Mar 2017 08:30:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=triacta.com; s=google;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=AR2FnYsXxpmEgMTtdZTxVVfkuk6Xmt+xRf51DUjSl2s=;
+	b=qMTYNi4EgX7XxV/tzX9S+4P8I2hFIy2mvrlQdkIAsrB3SkFzEtB9jy07ytBdx02CCf
+	M9OTmBGiqj/R1uGs5UZbqXqExply8GH8Qp1oumxZGwN1xn4ledeYMfBrMJHKjEzIs7Qr
+	TyEot6dyUuiXvL7XEVDJBhZa8eWchvSryypcE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=AR2FnYsXxpmEgMTtdZTxVVfkuk6Xmt+xRf51DUjSl2s=;
+	b=GNtdkV4M4/KuLlNx/h1rmd2p70SWz4NPZRfw0o3xrMG1DiGS8eIVDK0fw25vAAwv/z
+	TY3jDukp8ScMYVemwjwKz89FfWPAwCyQovoDPRtUlNNCbFB5W68HaxOCdilaBdj58cvX
+	XXvNSPuDhlReb0kng/STr9i5qZHo1bLl5z+w+cpkfO6BHp/4s78Ovq2mhL7J/5QAyF2U
+	WvbgJhY59sC/wrlqA98d96mcqCGMCAXyWII9G3UoAeupTBKG4IrvG+n104bacP8QB05N
+	/7EcT8jfgxgAIfgmWmMutu4y0M5tpcGU8RUi0DGUQeEXPP+DG/trnUFZrxGUzBkzgpf5
+	5ryQ==
+X-Gm-Message-State: AFeK/H0dqmvY83HAlJadPBsKi2nvNuS1LOtQBfUClrB87jOVKX5NYD0RI0FdRdzNR/QaLYvbhY6RJ6tM4RxNCG1F
+X-Received: by 10.202.87.81 with SMTP id l78mr1767769oib.1.1490283050568; Thu,
+	23 Mar 2017 08:30:50 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.157.4.21 with HTTP; Thu, 23 Mar 2017 08:30:10 -0700 (PDT)
+From: Alain Achkar <alain.achkar@triacta.com>
+Date: Thu, 23 Mar 2017 11:30:10 -0400
+Message-ID: <CAGkf0HBCPSm51-q8VhY0GmFnWrh2ZEDcfhxMZBgbpnweMuyy8A@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Is there a searchable, complete archive of the Yocto mailing lists?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,103 +63,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 23 Mar 2017 14:52:32 -0000
+X-List-Received-Date: Thu, 23 Mar 2017 15:30:55 -0000
+Content-Type: multipart/alternative; boundary=001a1147ce8cd9241a054b678f6c
 
-Currently, this recipe only supports daily scheduling via a cron job.
-This commit adds support for systemd, including systemd service and
-systemd timer. When the corresponding distro feature is enabled the
-systemd timer will be used instead of the cron job.
+--001a1147ce8cd9241a054b678f6c
+Content-Type: text/plain; charset=UTF-8
 
-Signed-off-by: Romain Perier <romain.perier@collabora.com>
----
+I know I can subscribe to the mailing lists and I know I can download
+month-by-month archives from here:
+https://lists.yoctoproject.org/pipermail/yocto/ but these methods seem a
+bit cumbersome.
 
-Note: I was not registered on the yocto and oe ML, I subscribed. So
-I resend for this reason (my bad).
+So, does anyone know if there is a way to search online through *all*
+postings to *one* mailing list, or through *all* postings to *all* mailing
+lists?
 
- .../logrotate/logrotate/logrotate.service          |  9 +++++++++
- .../logrotate/logrotate/logrotate.timer            |  7 +++++++
- meta/recipes-extended/logrotate/logrotate_3.9.1.bb | 22 ++++++++++++++++++++--
- 3 files changed, 36 insertions(+), 2 deletions(-)
- create mode 100644 meta/recipes-extended/logrotate/logrotate/logrotate.service
- create mode 100644 meta/recipes-extended/logrotate/logrotate/logrotate.timer
+If not, are there any archives per year, instead of per month?
 
-diff --git a/meta/recipes-extended/logrotate/logrotate/logrotate.service b/meta/recipes-extended/logrotate/logrotate/logrotate.service
-new file mode 100644
-index 0000000..3edb8ef
---- /dev/null
-+++ b/meta/recipes-extended/logrotate/logrotate/logrotate.service
-@@ -0,0 +1,9 @@
-+[Unit]
-+Description=Rotate log files
-+
-+[Service]
-+Type=oneshot
-+ExecStart=/usr/sbin/logrotate /etc/logrotate.conf
-+Nice=19
-+IOSchedulingClass=best-effort
-+IOSchedulingPriority=7
-diff --git a/meta/recipes-extended/logrotate/logrotate/logrotate.timer b/meta/recipes-extended/logrotate/logrotate/logrotate.timer
-new file mode 100644
-index 0000000..a92ba1e
---- /dev/null
-+++ b/meta/recipes-extended/logrotate/logrotate/logrotate.timer
-@@ -0,0 +1,7 @@
-+[Unit]
-+Description=Daily rotation of log files
-+
-+[Timer]
-+OnCalendar=daily
-+AccuracySec=12h
-+Persistent=true
-diff --git a/meta/recipes-extended/logrotate/logrotate_3.9.1.bb b/meta/recipes-extended/logrotate/logrotate_3.9.1.bb
-index 5f1a601..734d661 100644
---- a/meta/recipes-extended/logrotate/logrotate_3.9.1.bb
-+++ b/meta/recipes-extended/logrotate/logrotate_3.9.1.bb
-@@ -14,6 +14,8 @@ SRC_URI = "https://fedorahosted.org/releases/l/o/logrotate/logrotate-${PV}.tar.g
-            file://act-as-mv-when-rotate.patch \
-            file://update-the-manual.patch \
-            file://disable-check-different-filesystems.patch \
-+           ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'file://logrotate.service', '', d)} \
-+           ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'file://logrotate.timer', '', d)} \
-             "
- 
- SRC_URI[md5sum] = "4492b145b6d542e4a2f41e77fa199ab0"
-@@ -47,6 +49,14 @@ EXTRA_OEMAKE = "\
- # INSTALL=install and BASEDIR=/usr.
- OS_NAME = "Linux"
- 
-+inherit systemd
-+
-+SYSTEMD_AUTO_ENABLE = "disable"
-+SYSTEMD_SERVICE_${PN} = "\
-+    ${PN}.service \
-+    ${PN}.timer \
-+"
-+
- do_compile_prepend() {
-     # Make sure the recompile is OK
-     rm -f ${B}/.depend
-@@ -55,9 +65,17 @@ do_compile_prepend() {
- do_install(){
-     oe_runmake install DESTDIR=${D} PREFIX=${D} MANDIR=${mandir}
-     mkdir -p ${D}${sysconfdir}/logrotate.d
--    mkdir -p ${D}${sysconfdir}/cron.daily
-     mkdir -p ${D}${localstatedir}/lib
-     install -p -m 644 examples/logrotate-default ${D}${sysconfdir}/logrotate.conf
--    install -p -m 755 examples/logrotate.cron ${D}${sysconfdir}/cron.daily/logrotate
-     touch ${D}${localstatedir}/lib/logrotate.status
-+
-+    # Install systemd unit files
-+    if [ "${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'systemd', '', d)}" = "systemd" ]; then
-+        install -d ${D}/${systemd_system_unitdir}
-+        install -m 0644 ${WORKDIR}/logrotate.service ${D}/${systemd_system_unitdir}/logrotate.service
-+        install -m 0644 ${WORKDIR}/logrotate.timer ${D}/${systemd_system_unitdir}/logrotate.timer
-+    else
-+        mkdir -p ${D}${sysconfdir}/cron.daily
-+        install -p -m 0755 examples/logrotate.cron ${D}${sysconfdir}/cron.daily/logrotate
-+    fi
- }
--- 
-1.8.3.1
+--001a1147ce8cd9241a054b678f6c
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr">I know I can subscribe to the mailing lists and I know I c=
+an download month-by-month archives from here:=C2=A0<a href=3D"https://list=
+s.yoctoproject.org/pipermail/yocto/">https://lists.yoctoproject.org/piperma=
+il/yocto/</a> but these methods seem a bit cumbersome.<div><br></div><div>S=
+o, does anyone know if there is a way to search online through *all* postin=
+gs to *one* mailing list, or through *all* postings to *all* mailing lists?=
+</div><div><br></div><div>If not, are there any archives per year, instead =
+of per month?</div><div><br></div><br>
+</div>
 
+--001a1147ce8cd9241a054b678f6c--
