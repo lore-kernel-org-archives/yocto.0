@@ -1,64 +1,34 @@
-Return-Path: <GWilson@sakuraus.com>
+Return-Path: <romain.perier@collabora.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A72C4E00AAA; Thu, 23 Mar 2017 09:58:31 -0700 (PDT)
+	id 8B45BE00777; Thu, 23 Mar 2017 07:09:28 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
+	SPF_HELO_PASS,UNPARSEABLE_RELAY autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [46.235.227.227 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
-	*      medium trust
-	*      [64.235.154.221 listed in list.dnswl.org]
-X-Greylist: delayed 74097 seconds by postgrey-1.32 at yocto-www;
-	Thu, 23 Mar 2017 09:58:29 PDT
-Received: from 14pmail.ess.barracuda.com (14pmail.ess.barracuda.com
-	[64.235.154.221])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6A9B6E00777
-	for <yocto@yoctoproject.org>; Thu, 23 Mar 2017 09:58:29 -0700 (PDT)
-Received: from SFA-EX01.SAKURAUS.LOCAL (mail.sakuraus.com [12.26.104.3]) by
-	mx1401.ess.rzc.cudaops.com (version=TLSv1.2 cipher=AES256-SHA
-	bits=256 verify=NO); Thu, 23 Mar 2017 16:58:26 +0000
-Received: from SFA-EX01.SAKURAUS.LOCAL (10.16.3.165) by
-	SFA-EX01.SAKURAUS.LOCAL (10.16.3.165) with Microsoft SMTP Server (TLS)
-	id 15.0.1263.5; Thu, 23 Mar 2017 09:58:24 -0700
-Received: from SFA-EX01.SAKURAUS.LOCAL ([fe80::a49b:4710:711c:e005]) by
-	SFA-EX01.SAKURAUS.LOCAL ([fe80::a49b:4710:711c:e005%12]) with mapi id
-	15.00.1263.000; Thu, 23 Mar 2017 09:58:24 -0700
-From: Greg Wilson-Lindberg <GWilson@sakuraus.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Thread-Topic: [yocto] Morty 2.2.1 build failure
-Thread-Index: AdKimbo38zQByDKER0OdNn457GOFxgAUeM+AABdky8AAKw4UgAAAN44w
-Date: Thu, 23 Mar 2017 16:58:24 +0000
-Message-ID: <6a6dd70f430b4a7c8f7c925d18814be8@SFA-EX01.SAKURAUS.LOCAL>
-References: <461862bc22e146c4839c12eafc7dd9f2@SFA-EX01.SAKURAUS.LOCAL>
-	<0943f9a9-703b-d947-e2da-271bb22594be@gmail.com>
-	<83d60adbd65a46faaaaef40bd2667cb3@SFA-EX01.SAKURAUS.LOCAL>
-	<1800387.CklkhI1oXO@peggleto-mobl.ger.corp.intel.com>
-In-Reply-To: <1800387.CklkhI1oXO@peggleto-mobl.ger.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.16.5.198]
-MIME-Version: 1.0
-X-BESS-ID: 1490288302-321457-26629-7325-14
-X-BESS-VER: 2017.3-r1703091851
-X-BESS-Apparent-Source-IP: 12.26.104.3
-X-BESS-Outbound-Spam-Score: 0.00
-X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.179487
-	Rule breakdown below
-	pts rule name              description
-	---- ---------------------- --------------------------------
-	0.00 MAILTO_TO_SPAM_ADDR    META: Includes a link 
-	to a likely spammer email 
-	0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
-X-BESS-Outbound-Spam-Status: SCORE=0.00 using account:ESS29408 scores of
-	KILL_LEVEL=7.0 tests=MAILTO_TO_SPAM_ADDR, BSF_BESS_OUTBOUND
-X-BESS-BRTS-Status: 1
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Morty 2.2.1 build failure
+	* 0.0 UNPARSEABLE_RELAY Informational: message has unparseable relay
+	lines
+X-Greylist: delayed 356 seconds by postgrey-1.32 at yocto-www;
+	Thu, 23 Mar 2017 07:09:25 PDT
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2555FE00546
+	for <yocto@yoctoproject.org>; Thu, 23 Mar 2017 07:09:25 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	(Authenticated sender: rperier) with ESMTPSA id 4E8112660A8
+From: Romain Perier <romain.perier@collabora.com>
+To: liezhi.yang@windriver.com
+Date: Thu, 23 Mar 2017 15:03:22 +0100
+Message-Id: <20170323140322.21993-1-romain.perier@collabora.com>
+X-Mailer: git-send-email 2.9.3
+X-Mailman-Approved-At: Thu, 23 Mar 2017 11:55:10 -0700
+Cc: yocto@yoctoproject.org, openembedded-core@lists.openembedded.org
+Subject: [PATCH] logrotate: Add systemd support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,43 +40,99 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 23 Mar 2017 16:58:31 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 23 Mar 2017 14:09:28 -0000
 
-Hi Paul,
+Currently, this recipe only supports daily scheduling via a cron job.
+This commit adds support for systemd, including systemd service and
+systemd timer. When the corresponding distro feature is enabled the
+systemd timer will be used instead of the cron job.
 
-I looked in the logs from the failure yesterday and couldn't find anything,=
- so I restarted the build and it ran for about another 1000 steps before cr=
-ashing again. I still can't find anything in any of the logs, syslog, kern.=
-log, auth.log, etc.
+Signed-off-by: Romain Perier <romain.perier@collabora.com>
+---
+ .../logrotate/logrotate/logrotate.service          |  9 +++++++++
+ .../logrotate/logrotate/logrotate.timer            |  7 +++++++
+ meta/recipes-extended/logrotate/logrotate_3.9.1.bb | 22 ++++++++++++++++++++--
+ 3 files changed, 36 insertions(+), 2 deletions(-)
+ create mode 100644 meta/recipes-extended/logrotate/logrotate/logrotate.service
+ create mode 100644 meta/recipes-extended/logrotate/logrotate/logrotate.timer
 
-Cheers,
-Greg
+diff --git a/meta/recipes-extended/logrotate/logrotate/logrotate.service b/meta/recipes-extended/logrotate/logrotate/logrotate.service
+new file mode 100644
+index 0000000..3edb8ef
+--- /dev/null
++++ b/meta/recipes-extended/logrotate/logrotate/logrotate.service
+@@ -0,0 +1,9 @@
++[Unit]
++Description=Rotate log files
++
++[Service]
++Type=oneshot
++ExecStart=/usr/sbin/logrotate /etc/logrotate.conf
++Nice=19
++IOSchedulingClass=best-effort
++IOSchedulingPriority=7
+diff --git a/meta/recipes-extended/logrotate/logrotate/logrotate.timer b/meta/recipes-extended/logrotate/logrotate/logrotate.timer
+new file mode 100644
+index 0000000..a92ba1e
+--- /dev/null
++++ b/meta/recipes-extended/logrotate/logrotate/logrotate.timer
+@@ -0,0 +1,7 @@
++[Unit]
++Description=Daily rotation of log files
++
++[Timer]
++OnCalendar=daily
++AccuracySec=12h
++Persistent=true
+diff --git a/meta/recipes-extended/logrotate/logrotate_3.9.1.bb b/meta/recipes-extended/logrotate/logrotate_3.9.1.bb
+index 5f1a601..734d661 100644
+--- a/meta/recipes-extended/logrotate/logrotate_3.9.1.bb
++++ b/meta/recipes-extended/logrotate/logrotate_3.9.1.bb
+@@ -14,6 +14,8 @@ SRC_URI = "https://fedorahosted.org/releases/l/o/logrotate/logrotate-${PV}.tar.g
+            file://act-as-mv-when-rotate.patch \
+            file://update-the-manual.patch \
+            file://disable-check-different-filesystems.patch \
++           ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'file://logrotate.service', '', d)} \
++           ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'file://logrotate.timer', '', d)} \
+             "
+ 
+ SRC_URI[md5sum] = "4492b145b6d542e4a2f41e77fa199ab0"
+@@ -47,6 +49,14 @@ EXTRA_OEMAKE = "\
+ # INSTALL=install and BASEDIR=/usr.
+ OS_NAME = "Linux"
+ 
++inherit systemd
++
++SYSTEMD_AUTO_ENABLE = "disable"
++SYSTEMD_SERVICE_${PN} = "\
++    ${PN}.service \
++    ${PN}.timer \
++"
++
+ do_compile_prepend() {
+     # Make sure the recompile is OK
+     rm -f ${B}/.depend
+@@ -55,9 +65,17 @@ do_compile_prepend() {
+ do_install(){
+     oe_runmake install DESTDIR=${D} PREFIX=${D} MANDIR=${mandir}
+     mkdir -p ${D}${sysconfdir}/logrotate.d
+-    mkdir -p ${D}${sysconfdir}/cron.daily
+     mkdir -p ${D}${localstatedir}/lib
+     install -p -m 644 examples/logrotate-default ${D}${sysconfdir}/logrotate.conf
+-    install -p -m 755 examples/logrotate.cron ${D}${sysconfdir}/cron.daily/logrotate
+     touch ${D}${localstatedir}/lib/logrotate.status
++
++    # Install systemd unit files
++    if [ "${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'systemd', '', d)}" = "systemd" ]; then
++        install -d ${D}/${systemd_system_unitdir}
++        install -m 0644 ${WORKDIR}/logrotate.service ${D}/${systemd_system_unitdir}/logrotate.service
++        install -m 0644 ${WORKDIR}/logrotate.timer ${D}/${systemd_system_unitdir}/logrotate.timer
++    else
++        mkdir -p ${D}${sysconfdir}/cron.daily
++        install -p -m 0755 examples/logrotate.cron ${D}${sysconfdir}/cron.daily/logrotate
++    fi
+ }
+-- 
+1.8.3.1
 
-> -----Original Message-----
-> From: Paul Eggleton [mailto:paul.eggleton@linux.intel.com]
-> Sent: Thursday, March 23, 2017 2:49 AM
-> To: Greg Wilson-Lindberg <GWilson@sakuraus.com>
-> Cc: yocto@yoctoproject.org; akuster808 <akuster808@gmail.com>
-> Subject: Re: [yocto] Morty 2.2.1 build failure
->=20
-> On Thursday, 23 March 2017 9:23:24 AM NZDT Greg Wilson-Lindberg wrote:
-> > I tried it again this morning and it did get past the file not found er=
-ror.
-> > But when it gets above step 4000 somewhere it gets an error that kills
-> > not just the yocto build but the full login session. I'm left staring
-> > at the Linux Login screen.
->=20
-> Your machine isn't running out of RAM by any chance, triggering the OOM
-> killer? Anything indicative in your system logs?
->=20
-> Cheers,
-> Paul
->=20
-> --
->=20
-> Paul Eggleton
-> Intel Open Source Technology Centre
 
