@@ -1,38 +1,39 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <rpjday@crashcourse.ca>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F312CE00A76; Thu, 23 Mar 2017 02:49:26 -0700 (PDT)
+	id 338A5E00A76; Thu, 23 Mar 2017 03:35:29 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
-	*      medium trust
-	*      [134.134.136.31 listed in list.dnswl.org]
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CA7A6E009A0
-	for <yocto@yoctoproject.org>; Thu, 23 Mar 2017 02:49:23 -0700 (PDT)
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-	by orsmga104.jf.intel.com with ESMTP; 23 Mar 2017 02:49:22 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.36,209,1486454400"; d="scan'208";a="239465788"
-Received: from ksompon-mobl.gar.corp.intel.com (HELO
-	peggleto-mobl.ger.corp.intel.com) ([10.255.132.128])
-	by fmsmga004.fm.intel.com with ESMTP; 23 Mar 2017 02:49:20 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Greg Wilson-Lindberg <GWilson@sakuraus.com>
-Date: Thu, 23 Mar 2017 22:49:17 +1300
-Message-ID: <1800387.CklkhI1oXO@peggleto-mobl.ger.corp.intel.com>
-Organization: Intel Corporation
-In-Reply-To: <83d60adbd65a46faaaaef40bd2667cb3@SFA-EX01.SAKURAUS.LOCAL>
-References: <461862bc22e146c4839c12eafc7dd9f2@SFA-EX01.SAKURAUS.LOCAL>
-	<0943f9a9-703b-d947-e2da-271bb22594be@gmail.com>
-	<83d60adbd65a46faaaaef40bd2667cb3@SFA-EX01.SAKURAUS.LOCAL>
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [208.80.206.84 listed in list.dnswl.org]
+Received: from smtp684.redcondor.net (smtp684.redcondor.net [208.80.206.84])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A78DFE009A0
+	for <yocto@yoctoproject.org>; Thu, 23 Mar 2017 03:35:25 -0700 (PDT)
+Received: from astoria.ccjclearline.com ([64.235.106.9])
+	by smtp684.redcondor.net ({700db0a8-6fb7-4c8b-9b2a-6812225182d8})
+	via TCP (outbound) with ESMTPS id 20170323103523091_0684
+	for <yocto@yoctoproject.org>; Thu, 23 Mar 2017 10:35:23 +0000
+X-RC-FROM: <rpjday@crashcourse.ca>
+X-RC-RCPT: <yocto@yoctoproject.org>
+Received: from [216.191.234.70] (port=51375 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1cr05N-0006ks-Rq
+	for yocto@yoctoproject.org; Thu, 23 Mar 2017 06:35:17 -0400
+Date: Thu, 23 Mar 2017 06:35:13 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@uk63952.mitel.com
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.LFD.2.20.1703230632160.636@uk63952.mitel.com>
+User-Agent: Alpine 2.20 (LFD 67 2015-01-07)
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: Morty 2.2.1 build failure
+X-MAG-OUTBOUND: ccj.redcondor.net@64.235.106.9/32
+Subject: should a BSP layer *really* ever need additional layers to be functional?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,24 +45,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 23 Mar 2017 09:49:27 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Thu, 23 Mar 2017 10:35:29 -0000
+Content-Type: text/plain; charset=US-ASCII
 
-On Thursday, 23 March 2017 9:23:24 AM NZDT Greg Wilson-Lindberg wrote:
-> I tried it again this morning and it did get past the file not found error.
-> But when it gets above step 4000 somewhere it gets an error that kills not
-> just the yocto build but the full login session. I'm left staring at the
-> Linux Login screen.
 
-Your machine isn't running out of RAM by any chance, triggering the OOM 
-killer? Anything indicative in your system logs?
+  perusing current BSP Guide:
 
-Cheers,
-Paul
+"Some BSPs require additional layers on top of the BSP's root layer in
+order to be functional. For these cases, you also need to add those
+layers to the BBLAYERS variable in order to build the BSP."
+
+  really? should a properly-designed BSP layer need additional layers
+to simply boot a simple image (say, core-image-minimal) to the command
+line?
+
+  i always thought that using nothing more than a BSP layer (plus, of
+course, the underlying OE layers) should allow you to get to the
+command line. is that not true?
+
+rday
 
 -- 
 
-Paul Eggleton
-Intel Open Source Technology Centre
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
+
 
