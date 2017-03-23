@@ -1,65 +1,48 @@
-Return-Path: <GWilson@sakuraus.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 319F5E00546; Thu, 23 Mar 2017 13:11:50 -0700 (PDT)
+	id B6018E009A0; Thu, 23 Mar 2017 13:52:19 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	RCVD_IN_DNSWL_HI,T_DKIM_INVALID autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.24 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
-	*      medium trust
-	*      [64.235.150.234 listed in list.dnswl.org]
-Received: from 14pmail.ess.barracuda.com (14pmail.ess.barracuda.com
-	[64.235.150.234])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 01845E003E1
-	for <yocto@yoctoproject.org>; Thu, 23 Mar 2017 13:11:44 -0700 (PDT)
-Received: from SFAMAIL.SAKURAUS.LOCAL (mail.sakuraus.com [12.26.104.5]) by
-	mx4.ess.sfj.cudaops.com (version=TLSv1.2 cipher=AES256-SHA256
-	bits=256 verify=NO); Thu, 23 Mar 2017 20:11:41 +0000
-Received: from SFA-EX01.SAKURAUS.LOCAL (10.16.3.165) by SFAMAIL.SAKURAUS.LOCAL
-	(10.16.3.8) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.669.32;
-	Thu, 23 Mar 2017 13:11:39 -0700
-Received: from SFA-EX01.SAKURAUS.LOCAL ([fe80::a49b:4710:711c:e005]) by
-	SFA-EX01.SAKURAUS.LOCAL ([fe80::a49b:4710:711c:e005%12]) with mapi id
-	15.00.1263.000; Thu, 23 Mar 2017 13:11:40 -0700
-From: Greg Wilson-Lindberg <GWilson@sakuraus.com>
-To: akuster <akuster@mvista.com>
-Thread-Topic: [yocto] Morty 2.2.1 build failure
-Thread-Index: AdKimbo38zQByDKER0OdNn457GOFxgAUeM+AABdky8AAKw4UgAAAN44wABPnLoAAAEbugAAOMczw
-Date: Thu, 23 Mar 2017 20:11:40 +0000
-Message-ID: <377dbeeeb1774e2883147b2b12a05e6d@SFA-EX01.SAKURAUS.LOCAL>
-References: <461862bc22e146c4839c12eafc7dd9f2@SFA-EX01.SAKURAUS.LOCAL>
-	<1800387.CklkhI1oXO@peggleto-mobl.ger.corp.intel.com>
-	<6a6dd70f430b4a7c8f7c925d18814be8@SFA-EX01.SAKURAUS.LOCAL>
-	<13191224.qIYrFqvWFr@peggleto-mobl.ger.corp.intel.com>
-	<6ffd54ff-01dd-c263-5e44-ca26be3cb9c0@mvista.com>
-In-Reply-To: <6ffd54ff-01dd-c263-5e44-ca26be3cb9c0@mvista.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.16.5.198]
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	*  0.0 T_DKIM_INVALID DKIM-Signature header exists but is not valid
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4BEF3E00546
+	for <yocto@yoctoproject.org>; Thu, 23 Mar 2017 13:52:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+	d=intel.com; i=@intel.com; q=dns/txt; s=intel;
+	t=1490302338; x=1521838338;
+	h=from:to:cc:subject:date:message-id:in-reply-to:
+	references:mime-version:content-transfer-encoding;
+	bh=WojpkHBHPEpR/fWT48JzeqsPQF2npLfj2OpQ3j8IFF8=;
+	b=LwehVxIouOqwuX2dfnkygiapgOmbSBnjSEPXcQG86jEJ6meLNsgkEDog
+	tiF3xFGmewDxP1BLdfuuSU0QIC66nw==;
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+	by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	23 Mar 2017 13:52:17 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.36,211,1486454400"; d="scan'208";a="70120726"
+Received: from amilman1-mobl1.ger.corp.intel.com (HELO
+	peggleto-mobl.ger.corp.intel.com) ([10.255.171.177])
+	by orsmga004.jf.intel.com with ESMTP; 23 Mar 2017 13:52:14 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Alain Achkar <alain.achkar@triacta.com>
+Date: Fri, 24 Mar 2017 09:52:12 +1300
+Message-ID: <3249600.c7qDm493qG@peggleto-mobl.ger.corp.intel.com>
+Organization: Intel Corporation
+In-Reply-To: <CAGkf0HDQYKbKYYH=eQdrnBkcrPDXm0LsaQpC_3XWN1HSbnikWQ@mail.gmail.com>
+References: <CAGkf0HDQYKbKYYH=eQdrnBkcrPDXm0LsaQpC_3XWN1HSbnikWQ@mail.gmail.com>
 MIME-Version: 1.0
-X-BESS-ID: 1490299901-298555-24473-87185-1
-X-BESS-VER: 2017.3-r1703091851
-X-BESS-Apparent-Source-IP: 12.26.104.5
-X-BESS-Outbound-Spam-Score: 0.00
-X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.179494
-	Rule breakdown below
-	pts rule name              description
-	---- ---------------------- --------------------------------
-	0.00 MAILTO_TO_SPAM_ADDR    META: Includes a link 
-	to a likely spammer email 
-	0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
-X-BESS-Outbound-Spam-Status: SCORE=0.00 using account:ESS29408 scores of
-	KILL_LEVEL=7.0 tests=MAILTO_TO_SPAM_ADDR, BSF_BESS_OUTBOUND
-X-BESS-BRTS-Status: 1
-Cc: Paul Eggleton <paul.eggleton@linux.intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Morty 2.2.1 build failure
+Cc: yocto@yoctoproject.org, Anibal Limon <anibal.limon@intel.com>
+Subject: Re: How to interpret the "Recipes reporting system" (e.g. for Python3 3.4, 3.5, 3.6)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,88 +54,79 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 23 Mar 2017 20:11:50 -0000
-Content-Language: en-US
+X-List-Received-Date: Thu, 23 Mar 2017 20:52:19 -0000
+Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
 
-Hi Armin & Paul,
+Hi Alain,
 
-First there is nothing in the X log files.
-I'm building on a desktop machine with 12GB of memory and an 8 core process=
-or running Kubuntu 14.04.
-I added the PARALLEL_MAKE parameter set to 4, no effect, still built with 8=
- threads, crashed.
-Set BB_NUMBER_THREADS to 4, built with 4 threads, still crashed.
+On Friday, 24 March 2017 4:50:39 AM NZDT Alain Achkar wrote:
+> Is there any brief README or documentation about the "Recipe reporting
+> system" ?
+> 
+> For example: http://recipes.yoctoproject.org/rrs/recipedetail/297/
+> 
+> Is it automatically generated or manually maintained? (If you look at the
+> field Source URI, it points to Python-3.4.3.tar.xz but the Recipe file
+> points to python3_3.5.3.bb which contains:
+> 
+> SRC_URI = "http://www.python.org/ftp/python/${PV}/Python-${PV}.tar.xz \
 
-Regards,
-Greg
+Something is wrong there - the SRC_URI field must not be being updated. For 
+the most part the RRS is automatically populated. Anibal, any ideas?
 
-> -----Original Message-----
-> From: akuster [mailto:akuster@mvista.com]
-> Sent: Thursday, March 23, 2017 12:33 PM
-> To: Greg Wilson-Lindberg <GWilson@sakuraus.com>
-> Cc: Paul Eggleton <paul.eggleton@linux.intel.com>; yocto@yoctoproject.org
-> Subject: Re: [yocto] Morty 2.2.1 build failure
->=20
->=20
->=20
-> On 03/23/2017 12:25 PM, Paul Eggleton wrote:
-> > That's really bizarre. There shouldn't be anything in a bitbake build
-> > that could cause anything like this (other than possibly how intensive
-> > it is, which might trigger out-of-memory or an underlying
-> hardware/software failure).
->=20
-> I usually get my builds to reboot my system when I build on a loptop. I h=
-ave
-> not seen this on a tower style work station. You may want to play with th=
-e
-> BB_NUMBER_THREADS=3D# and PARALLEL_MAKE =3D "-j #" settings in your
-> local.conf.
->=20
-> - armin
-> >
-> > Assuming the X session is ending is there anything in your
-> > ~/.xsession-errors or /var/log/Xorg.*.log?
-> >
-> > Cheers,
-> > Paul
-> >
-> > On Friday, 24 March 2017 5:58:24 AM NZDT Greg Wilson-Lindberg wrote:
-> >> Hi Paul,
-> >>
-> >> I looked in the logs from the failure yesterday and couldn't find
-> >> anything, so I restarted the build and it ran for about another 1000
-> >> steps before crashing again. I still can't find anything in any of
-> >> the logs, syslog, kern.log, auth.log, etc.
-> >>
-> >> Cheers,
-> >> Greg
-> >>
-> >>> -----Original Message-----
-> >>> From: Paul Eggleton [mailto:paul.eggleton@linux.intel.com]
-> >>> Sent: Thursday, March 23, 2017 2:49 AM
-> >>> To: Greg Wilson-Lindberg <GWilson@sakuraus.com>
-> >>> Cc: yocto@yoctoproject.org; akuster808 <akuster808@gmail.com>
-> >>> Subject: Re: [yocto] Morty 2.2.1 build failure
-> >>>
-> >>> On Thursday, 23 March 2017 9:23:24 AM NZDT Greg Wilson-Lindberg
-> wrote:
-> >>>> I tried it again this morning and it did get past the file not
-> >>>> found error.
-> >>>> But when it gets above step 4000 somewhere it gets an error that
-> >>>> kills not just the yocto build but the full login session. I'm left
-> >>>> staring at the Linux Login screen.
-> >>> Your machine isn't running out of RAM by any chance, triggering the
-> >>> OOM killer? Anything indicative in your system logs?
-> >>>
-> >>> Cheers,
-> >>> Paul
-> >>>
-> >>> --
-> >>>
-> >>> Paul Eggleton
-> >>> Intel Open Source Technology Centre
-> >
+> I am trying to understand how/if I can use it. For example, if I am using
+> Jethro and I want Python 3.5 or 3.6, how can I use the "Recipe reporting
+> system" to achieve this? (I don't want to upgrade to Krogoth or Morty)
+> 
+> In Jethro, I have:
+> 
+> 
+> *poky/meta/recipes-devtools/python/python3_3.4.3.bb
+> <http://python3_3.4.3.bb>*
+> 
+> which of course builds Python 3.4
+> 
+> I know that if I download Morty, I get:
+> 
+> *poky/meta/recipes-devtools/python/python3_3.5.2.bb
+> <http://python3_3.5.2.bb>*
+> 
+> so, I tried copying this recipe into my Jethro source tree (at the same
+> location) but I got too many errors (I think there are several patches that
+> are needed).
 
+Backporting will require changes, definitely. You'll have to work through them 
+- you may be able to use the migration information in the reference manual (in 
+reverse, of course) to provide hints - the 2.2 (morty) and 2.1 (krogoth) 
+sections would be appropriate for your situation:
+
+http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html#migration
+
+You may also find the git history for the recipes in question to be 
+instructive in terms of what changes were made to bring them to their current 
+state in master.
+
+> So, is it possible to use the "Recipe reporting system" to see changes in
+> another branch and bring them in to my branch?
+
+You'd do that by checking out the branch in git and copying the entire 
+directory, the RRS is just a reporting tool.
+
+> Moreover, if Python 3.6 is not available in Morty, how can I make a recipe
+> for it?
+
+Since 3.6 isn't in master, there aren't any shortcuts I'm afraid, you would 
+have to try manually updating it - probably the safest thing to do would be to 
+copy the existing directory into your own custom layer and modify it there. I 
+suspect starting at 3.5.2 is going to be fastest, but of course you'll need to 
+backport that to jethro first.
+
+Cheers,
+Paul
+
+-- 
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
