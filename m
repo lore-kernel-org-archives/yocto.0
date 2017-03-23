@@ -1,57 +1,63 @@
-Return-Path: <alain.achkar@triacta.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 09F65E00AAA; Thu, 23 Mar 2017 08:30:55 -0700 (PDT)
+	id 455CDE00AAA; Thu, 23 Mar 2017 08:43:45 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.218.48 listed in dnsbl.sorbs.net]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.218.48 listed in list.dnswl.org]
-Received: from mail-oi0-f48.google.com (mail-oi0-f48.google.com
-	[209.85.218.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AD78BE00AA2
-	for <yocto@yoctoproject.org>; Thu, 23 Mar 2017 08:30:51 -0700 (PDT)
-Received: by mail-oi0-f48.google.com with SMTP id r203so62075243oib.3
-	for <yocto@yoctoproject.org>; Thu, 23 Mar 2017 08:30:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=triacta.com; s=google;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=AR2FnYsXxpmEgMTtdZTxVVfkuk6Xmt+xRf51DUjSl2s=;
-	b=qMTYNi4EgX7XxV/tzX9S+4P8I2hFIy2mvrlQdkIAsrB3SkFzEtB9jy07ytBdx02CCf
-	M9OTmBGiqj/R1uGs5UZbqXqExply8GH8Qp1oumxZGwN1xn4ledeYMfBrMJHKjEzIs7Qr
-	TyEot6dyUuiXvL7XEVDJBhZa8eWchvSryypcE=
+	*      [209.85.216.177 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.216.177 listed in dnsbl.sorbs.net]
+Received: from mail-qt0-f177.google.com (mail-qt0-f177.google.com
+	[209.85.216.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C72D2E00777
+	for <yocto@yoctoproject.org>; Thu, 23 Mar 2017 08:43:43 -0700 (PDT)
+Received: by mail-qt0-f177.google.com with SMTP id x35so178548601qtc.2
+	for <yocto@yoctoproject.org>; Thu, 23 Mar 2017 08:43:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=VEqjKYcNJxJvvk3yoVqS0NdrIHy5TZNTXWlazPiVk0E=;
+	b=HMesAmpxBi9MgQjLEtfk/tzATnszxELvHuf58gH5NsceO4riCWnZZ53E/koqid8bmm
+	Ajulvq8X6iTLrh6UxeB6CRv2BXMqqMi+GtrFta4yBshopkmiEJr8tYwZXF+Bs9fYz8Bg
+	3p1kF3ujxUidwz4ihhf+ShOud7v2TKfxRIS74DaoIhXa+Wj1UZP9u1aNpkVPhVIGlI92
+	MtES3aa8Y689xC8Z7cL5q4BXsKrDiSEL4nIDFlWhZpn03mcf4EAh3AzCs9k7NcZElnvc
+	oUjIiY40ug0+DFOuzLQozFuTyIZ5zH4z69LXLQzGReWGYgkkTbdrFf3bvpxqRCf4RGdZ
+	zUGw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=AR2FnYsXxpmEgMTtdZTxVVfkuk6Xmt+xRf51DUjSl2s=;
-	b=GNtdkV4M4/KuLlNx/h1rmd2p70SWz4NPZRfw0o3xrMG1DiGS8eIVDK0fw25vAAwv/z
-	TY3jDukp8ScMYVemwjwKz89FfWPAwCyQovoDPRtUlNNCbFB5W68HaxOCdilaBdj58cvX
-	XXvNSPuDhlReb0kng/STr9i5qZHo1bLl5z+w+cpkfO6BHp/4s78Ovq2mhL7J/5QAyF2U
-	WvbgJhY59sC/wrlqA98d96mcqCGMCAXyWII9G3UoAeupTBKG4IrvG+n104bacP8QB05N
-	/7EcT8jfgxgAIfgmWmMutu4y0M5tpcGU8RUi0DGUQeEXPP+DG/trnUFZrxGUzBkzgpf5
-	5ryQ==
-X-Gm-Message-State: AFeK/H0dqmvY83HAlJadPBsKi2nvNuS1LOtQBfUClrB87jOVKX5NYD0RI0FdRdzNR/QaLYvbhY6RJ6tM4RxNCG1F
-X-Received: by 10.202.87.81 with SMTP id l78mr1767769oib.1.1490283050568; Thu,
-	23 Mar 2017 08:30:50 -0700 (PDT)
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=VEqjKYcNJxJvvk3yoVqS0NdrIHy5TZNTXWlazPiVk0E=;
+	b=FJGxaEfpiwrx8aBwsapbJ/myND3X4bd1SVAgZSy4hGp8vZSVl9lZMT0pxbVXTczJXc
+	VPZRw3w7MeUNx+l91pnYgeEtYLP3hnMbo7F5YxCACa1nvhdaMs3SciOvjkvK4r8QqKVV
+	rQPdw23BxxTIIZCNcq5X+EavnXtaTGSZPKC60vovLg4CNc/If7LOlQpodLmNP95vRpNX
+	6FcIujPE9z5V/VYiVAczfeH9WYiXYgSs5Ysx2kaTz6O+KREyLWu59ggHSszITPMZ5hqS
+	QgepGuI3RvUQFJPGVq/tBBN87DrlFaMceJsYOs38zqBL402Gbc9Ro4cOQ1MpqXC+Ajvq
+	DylA==
+X-Gm-Message-State: AFeK/H1x3yRgVMjdP3g/kmceti0OrLtz/8oM56rxJgLtS1IUNpTu9DuViGX2QOqD1l0naOl6LgjJ2pMme/C7WJyN
+X-Received: by 10.237.53.9 with SMTP id a9mr2864126qte.188.1490283822529; Thu,
+	23 Mar 2017 08:43:42 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.157.4.21 with HTTP; Thu, 23 Mar 2017 08:30:10 -0700 (PDT)
-From: Alain Achkar <alain.achkar@triacta.com>
-Date: Thu, 23 Mar 2017 11:30:10 -0400
-Message-ID: <CAGkf0HBCPSm51-q8VhY0GmFnWrh2ZEDcfhxMZBgbpnweMuyy8A@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: Is there a searchable, complete archive of the Yocto mailing lists?
+Received: by 10.140.22.166 with HTTP; Thu, 23 Mar 2017 08:43:22 -0700 (PDT)
+In-Reply-To: <CAGkf0HBCPSm51-q8VhY0GmFnWrh2ZEDcfhxMZBgbpnweMuyy8A@mail.gmail.com>
+References: <CAGkf0HBCPSm51-q8VhY0GmFnWrh2ZEDcfhxMZBgbpnweMuyy8A@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Thu, 23 Mar 2017 15:43:22 +0000
+Message-ID: <CAJTo0LYre-dNxC+D0m4ofMLbs1Axa3scA2ewcteCGUz8Ka6VMg@mail.gmail.com>
+To: Alain Achkar <alain.achkar@triacta.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Is there a searchable, complete archive of the Yocto mailing lists?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -63,35 +69,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 23 Mar 2017 15:30:55 -0000
-Content-Type: multipart/alternative; boundary=001a1147ce8cd9241a054b678f6c
+X-List-Received-Date: Thu, 23 Mar 2017 15:43:45 -0000
+Content-Type: multipart/alternative; boundary=001a11c0285edb5ba0054b67bd0b
 
---001a1147ce8cd9241a054b678f6c
+--001a11c0285edb5ba0054b67bd0b
 Content-Type: text/plain; charset=UTF-8
 
-I know I can subscribe to the mailing lists and I know I can download
-month-by-month archives from here:
-https://lists.yoctoproject.org/pipermail/yocto/ but these methods seem a
-bit cumbersome.
+On 23 March 2017 at 15:30, Alain Achkar <alain.achkar@triacta.com> wrote:
 
-So, does anyone know if there is a way to search online through *all*
-postings to *one* mailing list, or through *all* postings to *all* mailing
-lists?
+> So, does anyone know if there is a way to search online through *all*
+> postings to *one* mailing list, or through *all* postings to *all* mailing
+> lists?
+>
 
-If not, are there any archives per year, instead of per month?
+You can use the site: operator on google to search them.
 
---001a1147ce8cd9241a054b678f6c
+Ross
+
+--001a11c0285edb5ba0054b67bd0b
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">I know I can subscribe to the mailing lists and I know I c=
-an download month-by-month archives from here:=C2=A0<a href=3D"https://list=
-s.yoctoproject.org/pipermail/yocto/">https://lists.yoctoproject.org/piperma=
-il/yocto/</a> but these methods seem a bit cumbersome.<div><br></div><div>S=
-o, does anyone know if there is a way to search online through *all* postin=
-gs to *one* mailing list, or through *all* postings to *all* mailing lists?=
-</div><div><br></div><div>If not, are there any archives per year, instead =
-of per month?</div><div><br></div><br>
-</div>
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 23 March 2017 at 15:30, Alain Achkar <span dir=3D"ltr">&lt;<a href=3D"ma=
+ilto:alain.achkar@triacta.com" target=3D"_blank">alain.achkar@triacta.com</=
+a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0=
+ 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div>So, does anyone=
+ know if there is a way to search online through *all* postings to *one* ma=
+iling list, or through *all* postings to *all* mailing lists?</div><div></d=
+iv></blockquote></div><br>You can use the site: operator on google to searc=
+h them.</div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra=
+">Ross</div></div>
 
---001a1147ce8cd9241a054b678f6c--
+--001a11c0285edb5ba0054b67bd0b--
