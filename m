@@ -1,6 +1,6 @@
 Return-Path: <patrick.ohly@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8DCC8E009C2; Fri, 24 Mar 2017 02:12:37 -0700 (PDT)
+	id 7DCB6E00A0A; Fri, 24 Mar 2017 02:28:44 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,7 +8,7 @@ X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, RCVD_IN_DNSWL_NONE,
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.223.180 listed in dnsbl.sorbs.net]
+	*      [209.85.214.47 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
@@ -16,48 +16,53 @@ X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.223.180 listed in list.dnswl.org]
-Received: from mail-io0-f180.google.com (mail-io0-f180.google.com
-	[209.85.223.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3ED59E00724
-	for <yocto@yoctoproject.org>; Fri, 24 Mar 2017 02:12:34 -0700 (PDT)
-Received: by mail-io0-f180.google.com with SMTP id z13so13095341iof.2
-	for <yocto@yoctoproject.org>; Fri, 24 Mar 2017 02:12:34 -0700 (PDT)
+	*      [209.85.214.47 listed in list.dnswl.org]
+Received: from mail-it0-f47.google.com (mail-it0-f47.google.com
+	[209.85.214.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DB864E009B9
+	for <yocto@yoctoproject.org>; Fri, 24 Mar 2017 02:28:41 -0700 (PDT)
+Received: by mail-it0-f47.google.com with SMTP id w124so6057666itb.1
+	for <yocto@yoctoproject.org>; Fri, 24 Mar 2017 02:28:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=from:to:cc:subject:date:message-id;
-	bh=stAG+elHAxj8PUimfE//zdipeuvZSSn/42uPuUGNYu8=;
-	b=r8fGSlCWzoHiPOW4rwhdBUwlDRhOqgZG+P95EOoZxfzf6CXBJShuJfE43mPRIKYs5R
-	OHn1gYkpUDRlQtQMGqgQY0pOF8wS9/ysPKT1yNu/249AWkhwAEnyu3okBfwBuFmVF4qu
-	FIY8O/WsOudY+0JDECdx43965c/sz2J88J3qr1zPmkBoiyM004gP7AdhjFux7iFWbY2s
-	LWpphlslMOum1j8wutlaQiKdNgtW4Bef7Q7mlNvYj6FUxkyCithXXKSBIMhQ7SYvvXF8
-	SpAJ4NUo2+JUSIkdpiOKys7C9Kx/gND/qiT2+gU7CcD5Q4X9EFr27crpsXFuAFsjOQSr
-	OuCw==
+	h=message-id:subject:from:to:cc:date:in-reply-to:references
+	:organization:mime-version:content-transfer-encoding;
+	bh=cBHcQrDH8WDibGz7e+l9HgYK4desyiYA5q4I1BD0h2M=;
+	b=MlfyqterFWmFIOwSho9NYZsZEP2imU2bX0+j1o8UVe1vePmq5nLJhQUUboQDphXDOf
+	PDJ8VoW15vkO01o1r3KJicTe49YUNDusog+H47jZTpzUeWY6RKwW2YAJhBlje41cxFgy
+	Myy+iUbf2feS8CDcwvUCf54VgGLU9PUnvRI/CK+31K3kTOdyYGkOox7HLFGs/KdtHTeb
+	GKfnYAnhwlPypsQ2NpMa/ny0m3ettkWgBU+tP+3YMqXPJlEk+X1TJFr06bRhso7oG3j2
+	z21kUcBljio0FDOHwJrR6J/h/JujDrYkh7NVNaWBaKAoXr9rjchwagVTkbdT1UVCpoHS
+	PQOA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=stAG+elHAxj8PUimfE//zdipeuvZSSn/42uPuUGNYu8=;
-	b=T6O8jY90MWB/+ek0YW+YhvlKYjeuOukAcVOwPmHK9Hx/qRC8Z25RLgDd/w3hbD4B6c
-	725gmlSghKd1BLxrHgIZ6AugPe0UJ8Cdxx5hwFWmjsVABZUOf3gf0xEu401ynIivxn8O
-	OexqFN9GiU3cPv7dOJbHIZQe2s37wzxvOnunH2ATeScK76kjgF6FBtHquDa6XMtNrmHh
-	mklRB+dPPTKh7Wv2cgg2NlgPF5oDvVY0QMph3eaQ8QjP9S2VxsS9ZiXbvwxuBBEg0ca1
-	PP+Zf7tU81vLiTRK0Gx/iuLD89/VocuT6ZAEUSoiLTDwIrK0R01Pi7g3vRMcR1wlhsra
-	h9Qg==
-X-Gm-Message-State: AFeK/H0JfC6NVO7fYrHUOpnZp+haICg/my2Kwn6nl01JqCVTL3YptIMj79Q285JvaVKvXhFU
-X-Received: by 10.107.6.212 with SMTP id f81mr6915697ioi.132.1490346754444;
-	Fri, 24 Mar 2017 02:12:34 -0700 (PDT)
-Received: from pohly-desktop.fritz.box (p5DE8E2F9.dip0.t-ipconnect.de.
-	[93.232.226.249])
-	by smtp.gmail.com with ESMTPSA id p191sm715449itc.4.2017.03.24.02.12.32
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Fri, 24 Mar 2017 02:12:33 -0700 (PDT)
+	h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+	:references:organization:mime-version:content-transfer-encoding;
+	bh=cBHcQrDH8WDibGz7e+l9HgYK4desyiYA5q4I1BD0h2M=;
+	b=rfHjDQReAqJt8//mo2RLeDS0EOHIBdfKFMk8PiuSTgQfXUsTbXLINKrYzF8/L4hRHc
+	TO9hXq6ztrNFV8LTeTEODRbbaPxtIcdCTHcfMcM7Uj49lpZO25WHsB7+00ANISApOkdS
+	9PBns/reZgmt4TNivdySdnNO+WyAGe3QRYbOxrFUdbw9kPLiSDHxmALnVEPxT1tUR6oj
+	hpzUDX4kzDBCxNYr2GKRPwkElOoc5OkJwoETN9/VtT+qEhHYa9zuTTVDJkDphSOE+RzW
+	Q8ZXLHHTitCsPqPgUw+Ef7ZRyrfVdBTKPeMMOvDFYmPN39sltJP7aq4dV2idHo9IuZzl
+	iN2w==
+X-Gm-Message-State: AFeK/H0T135HQkX0igOBY9qNaVDEtPf565u/t+XQysfe135X11ZQiCP+Srn5m86NhboRo2WC
+X-Received: by 10.36.26.4 with SMTP id 4mr1981358iti.58.1490347720738;
+	Fri, 24 Mar 2017 02:28:40 -0700 (PDT)
+Received: from pohly-mobl1 (p5DE8E2F9.dip0.t-ipconnect.de. [93.232.226.249])
+	by smtp.gmail.com with ESMTPSA id 78sm729492ity.7.2017.03.24.02.28.38
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Fri, 24 Mar 2017 02:28:39 -0700 (PDT)
+Message-ID: <1490347717.6396.266.camel@intel.com>
 From: Patrick Ohly <patrick.ohly@intel.com>
-To: akuster808@gmail.com
-Date: Fri, 24 Mar 2017 10:12:22 +0100
-Message-Id: <b51ad3ae08300fd3f37c597cbc3b7903388d3f8a.1490346453.git-series.patrick.ohly@intel.com>
-X-Mailer: git-send-email 2.11.0
+To: Benjamin Gaignard <benjamin.gaignard@linaro.org>
+Date: Fri, 24 Mar 2017 10:28:37 +0100
+In-Reply-To: <1490279171-25737-1-git-send-email-benjamin.gaignard@linaro.org>
+References: <1490279171-25737-1-git-send-email-benjamin.gaignard@linaro.org>
+Organization: Intel GmbH, Dornacher Strasse 1, D-85622 Feldkirchen/Munich
+X-Mailer: Evolution 3.12.9-1+b1 
+Mime-Version: 1.0
 Cc: yocto@yoctoproject.org
-Subject: [meta-security][PATCH] swtpm-wrappers: wrap more commands
+Subject: Re: [meta-security][PATCH] tpm2.0-tss: install resourcemgr service
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,71 +74,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 24 Mar 2017 09:12:37 -0000
+X-List-Received-Date: Fri, 24 Mar 2017 09:28:44 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Soon it might be possible to let qemu start swtpm directly, without
-requiring root privileges as for swtpm_cuse. For that to work
-we also need to wrap the swtpm binary. Just in case we now also
-do it for everything.
+On Thu, 2017-03-23 at 15:26 +0100, Benjamin Gaignard wrote:
+> +diff --git a/contrib/resourcemgr.service b/contrib/resourcemgr.service
+> +index 7f23739..e5b0900 100644
+> +--- a/contrib/resourcemgr.service
+> ++++ b/contrib/resourcemgr.service
+> +@@ -3,7 +3,7 @@ Description=TPM2 resource manager & access broker
+> + Documentation=http://www.github.com/01org/TPM2.0-TSS
+> + 
+> + [Service]
+> +-ExecStart=/usr/local/sbin/resourcemgr
+> ++ExecStart=/usr/sbin/resourcemgr
+> + StandardOutput=null
+> + User=tss
+> + Group=tss
+> +-- 
+> +1.9.1
 
-Signed-off-by: Patrick Ohly <patrick.ohly@intel.com>
----
- recipes-tpm/swtpm/swtpm-wrappers.bb | 26 +++++++++++++++++++-------
- 1 file changed, 19 insertions(+), 7 deletions(-)
+I think it would be better to patch the actual ${sbindir} into the
+resourcemgr.service file, instead of assuming that ${sbindir}
+= /usr/sbin and using a static patch.
 
-diff --git a/recipes-tpm/swtpm/swtpm-wrappers.bb b/recipes-tpm/swtpm/swtpm-wrappers.bb
-index 676c35e..0af1db6 100644
---- a/recipes-tpm/swtpm/swtpm-wrappers.bb
-+++ b/recipes-tpm/swtpm/swtpm-wrappers.bb
-@@ -9,7 +9,13 @@ inherit native
- RM_WORK_EXCLUDE += "${PN}"
- 
- do_create_wrapper () {
--    cat >${WORKDIR}/swtpm_setup_oe.sh <<EOF
-+    # Wrap (almost) all swtpm binaries. Some get special wrappers and some
-+    # are not needed.
-+    for i in `find ${bindir} ${base_bindir} ${sbindir} ${base_sbindir} -name 'swtpm*' -perm /+x -type f`; do
-+        exe=`basename $i`
-+        case $exe in
-+            swtpm_setup.sh)
-+                cat >${WORKDIR}/swtpm_setup_oe.sh <<EOF
- #! /bin/sh
- #
- # Wrapper around swtpm_setup.sh which adds parameters required to
-@@ -21,19 +27,25 @@ export PATH
- # tcsd only allows to be run as root or tss. Pretend to be root...
- exec env ${FAKEROOTENV} ${FAKEROOTCMD} swtpm_setup.sh --config ${STAGING_DIR_NATIVE}/etc/swtpm_setup.conf "\$@"
- EOF
--
--    cat >${WORKDIR}/swtpm_cuse_oe.sh <<EOF
-+                ;;
-+            swtpm_setup)
-+                true
-+                ;;
-+            *)
-+                cat >${WORKDIR}/${exe}_oe.sh <<EOF
- #! /bin/sh
- #
--# Wrapper around swtpm_cuse which makes it easier to invoke
--# the right binary. Has to be run as root with TPM_PATH set
--# to a directory initialized as virtual TPM by swtpm_setup_oe.sh.
-+# Wrapper around $exe which makes it easier to invoke
-+# the right binary.
- 
- PATH="${bindir}:${base_bindir}:${sbindir}:${base_sbindir}:\$PATH"
- export PATH
- 
--exec swtpm_cuse "\$@"
-+exec ${exe} "\$@"
- EOF
-+                ;;
-+        esac
-+    done
- 
-     chmod a+rx ${WORKDIR}/*.sh
- }
+Something like this:
 
-base-commit: 8b38c93f2387793fb03d082e47723002cf667ae9
+do_patch[postfuncs] += "fix_systemd_unit"
+fix_systemd_unit () {
+    sed -i -e 's;^ExecStart=.*/resourcemgr;ExecStart=${sbindir}/resourcemgr;' ${S}/contrib/resourcemgr.service
+}
+
+Just my 2 cents.
+
 -- 
-git-series 0.9.1
+Best Regards, Patrick Ohly
+
+The content of this message is my personal opinion only and although
+I am an employee of Intel, the statements I make here in no way
+represent Intel's position on the issue, nor am I authorized to speak
+on behalf of Intel on this matter.
+
+
+
 
