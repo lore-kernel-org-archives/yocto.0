@@ -1,78 +1,79 @@
-Return-Path: <tmatsuzawa@xevo.com>
+Return-Path: <1baldgeek@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E17CCE00AB6; Fri, 24 Mar 2017 05:23:56 -0700 (PDT)
+	id 430D6E00AB6; Fri, 24 Mar 2017 06:08:59 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [104.47.41.59 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE, 
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (1baldgeek[at]gmail.com)
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.214.65 listed in dnsbl.sorbs.net]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.214.65 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from NAM03-DM3-obe.outbound.protection.outlook.com
-	(mail-dm3nam03on0059.outbound.protection.outlook.com [104.47.41.59])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9DCBEE009C2
-	for <yocto@yoctoproject.org>; Fri, 24 Mar 2017 05:23:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=uievolution.onmicrosoft.com; s=selector1-xevo-com;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
-	bh=qcJzgb1Qene6dHKNE2QShsUHqYizrrhb85tfLQMp6Rw=;
-	b=oPeg3ALK+970A77JLt+p735Wzw1zbc+/D+d1LiqdX7V4FGdIoVlSzPTXL8EXdrzwHh9pz+7RYCOrzpSahGIhymznVwoTu4DyKg3CqXbpqYLOxGQd7F/gSvFgfxCKUemZxeCqCob6bsRFFvH8oOWrots/+Tn15PZaMk1/JsOP9as=
-Received: from DM5PR0101MB2953.prod.exchangelabs.com (10.174.181.143) by
-	DM5PR0101MB2953.prod.exchangelabs.com (10.174.181.143) with Microsoft
-	SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
-	15.1.961.17; Fri, 24 Mar 2017 12:08:47 +0000
-Received: from DM5PR0101MB2953.prod.exchangelabs.com ([10.174.181.143]) by
-	DM5PR0101MB2953.prod.exchangelabs.com ([10.174.181.143]) with mapi id
-	15.01.0961.020; Fri, 24 Mar 2017 12:08:47 +0000
-From: Takashi Matsuzawa <tmatsuzawa@xevo.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: quoted string in a recipe variable?
-Thread-Index: AQHSpJdjr2UIpt+gVUe0QTXrCP0ztw==
-Date: Fri, 24 Mar 2017 12:08:47 +0000
-Message-ID: <DM5PR0101MB2953685EA03459A962AA8A69B63E0@DM5PR0101MB2953.prod.exchangelabs.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: yoctoproject.org; dkim=none (message not signed)
-	header.d=none; yoctoproject.org;
-	dmarc=none action=none header.from=xevo.com; 
-x-originating-ip: [25.174.180.132]
-x-microsoft-exchange-diagnostics: 1; DM5PR0101MB2953;
-	7:APYSCTPvxal2MDtk9djAbI5WnrDzl6rV3mi32WDrmmVZmu2NbGjJv7YI4H4KTJweJuXv7hsavOa8bZA+LoiOA3Nj9dROCgaE7Vyei1kDOjuY24nsiY734LVOUbhmEVLjH/LKawc1m13ibWt0BT8AZDDhVvZbgSBaaCxpnYDxtbufXuDhWFQcsP6JJ88Ef24boblHaFLfj0qd+8NLZvgKZWzD8DKTjvIZ23YbyuIoy6LRZHkyzzhT718vJetmduCQkr7v2TiXfC7oTOye3O6nhjzMQzmlPXwGx4DBc4HUwHpF4pOfhyw7wJP4/hL99lLBKfUmum8h3Cutlx5qevWXWg==
-x-ms-office365-filtering-correlation-id: b1160a03-0b3d-4431-797c-08d472ae86a4
-x-microsoft-antispam: UriScan:; BCL:0; PCL:0; RULEID:(22001)(2017030254075);
-	SRVR:DM5PR0101MB2953; 
-x-microsoft-antispam-prvs: <DM5PR0101MB295388E7B6BACCB47A2BE637B63E0@DM5PR0101MB2953.prod.exchangelabs.com>
-x-exchange-antispam-report-test: UriScan:;
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(6040375)(2401047)(5005006)(8121501046)(10201501046)(3002001)(6041248)(20161123555025)(20161123558025)(20161123560025)(20161123564025)(20161123562025)(6072148);
-	SRVR:DM5PR0101MB2953; BCL:0; PCL:0; RULEID:;
-	SRVR:DM5PR0101MB2953; 
-x-forefront-prvs: 0256C18696
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10009020)(6009001)(39450400003)(54896002)(99286003)(33656002)(74316002)(81166006)(77096006)(66066001)(7696004)(6506006)(5640700003)(3660700001)(86362001)(2351001)(6606003)(5660300001)(55016002)(19627405001)(50986999)(110136004)(6116002)(102836003)(2501003)(54356999)(38730400002)(3846002)(53936002)(9686003)(8936002)(2900100001)(2906002)(1730700003)(8676002)(6436002)(7736002)(3280700002)(189998001)(122556002)(6916009)(25786009);
-	DIR:OUT; SFP:1101; SCL:1; SRVR:DM5PR0101MB2953;
-	H:DM5PR0101MB2953.prod.exchangelabs.com; FPR:; SPF:None; MLV:sfv;
-	LANG:en; 
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
-MIME-Version: 1.0
-X-OriginatorOrg: xevo.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Mar 2017 12:08:47.3213 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: e0a7ca1f-2458-4cd6-a7c7-d733c07495ab
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR0101MB2953
-Subject: quoted string in a recipe variable?
+Received: from mail-it0-f65.google.com (mail-it0-f65.google.com
+	[209.85.214.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 112C0E009C2
+	for <yocto@yoctoproject.org>; Fri, 24 Mar 2017 06:08:55 -0700 (PDT)
+Received: by mail-it0-f65.google.com with SMTP id z70so222954itb.1
+	for <yocto@yoctoproject.org>; Fri, 24 Mar 2017 06:08:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=from:message-id:mime-version:subject:date:in-reply-to:cc:to
+	:references; bh=MGzZMfEGEQhizhk3ja8wMHmuyGIijgN2oelDex4o8Qo=;
+	b=KLklxPvfwoOsKS9qfaYljRURt2mb3z+zV+fk5CD6Ujnp5ID8wUeXBsZ1yPtxdfc2hW
+	BgS0yo/9agSjb9Ed4NmBvzKdvAyJZvRpph1r967Fnf4QHIThB2kxmuV2wPqrvTo2Yl0b
+	8GyW21ONQVDn3kHY21Hja7UchJqyzrLcjHSV8Kk2ya28Cfd5IJfi7cPw/hB3IAZaWvxn
+	+JdRXV9zQEP4Eo1YP8Ot2DEtVVYbGq7a6gmHJGnCHGWplbQSFwtQ9n0NMaypuiyxCDbu
+	a8MImf4rd387qKFtfbK+/CZYYdZKn7wG0SoCAPdIxqr3k+UuEfnXl1B+r3x4vgqW9qly
+	V/PA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:message-id:mime-version:subject:date
+	:in-reply-to:cc:to:references;
+	bh=MGzZMfEGEQhizhk3ja8wMHmuyGIijgN2oelDex4o8Qo=;
+	b=NyC+pIAlBP8t+Az5CeYbFBMna0GylcebP82jJ3WYO7JG2jPEKM18Dt6PBg/+4f6Pmb
+	4tUXmN9yI/t0L84YLDulxhAWGJRIPyos6mZ7/2ghDOyILyGKOHi4PFMtiutJ7KyN2yUp
+	zN8kJvhSLFGDeGnhqWpaprHEK1VmUdflh0EbkrsiFJSUVRq/5QxLf1fnE0pwH48QTBAA
+	hVazryWaBhajxBNSlJlfNYmkGqjAhcNp3uaw/05K5PQDhiwPQsjT38KE7LTqcXQccLe4
+	dromwo1DLBp4ZZVNI1bqQz0CFH9K+27hAEKZZbx/5sfsACZggek3u3HzEfS3U+p0CAkj
+	ugRw==
+X-Gm-Message-State: AFeK/H3Y1cbWLYL0fyZSeu4VU+ZpPNKr2ShNioKpWq+rMQ/SArphEA8ov9cmYNmfyg2cEg==
+X-Received: by 10.36.41.7 with SMTP id p7mr2871503itp.92.1490360934731;
+	Fri, 24 Mar 2017 06:08:54 -0700 (PDT)
+Received: from [192.168.1.82] (cpe-98-30-171-138.columbus.res.rr.com.
+	[98.30.171.138])
+	by smtp.gmail.com with ESMTPSA id 188sm957737itm.3.2017.03.24.06.08.52
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Fri, 24 Mar 2017 06:08:53 -0700 (PDT)
+From: Dan Riegsecker <1baldgeek@gmail.com>
+Message-Id: <88C598EA-E8B2-43DB-8B5D-6DD6DCC2E4C4@gmail.com>
+Mime-Version: 1.0 (Mac OS X Mail 10.2 \(3259\))
+Date: Fri, 24 Mar 2017 09:08:51 -0400
+In-Reply-To: <CAHiDW_HONGM4RjSXSn3SYT4cRG+9mbj5giPhrYVe4cSgup=Yxw@mail.gmail.com>
+To: Jussi Kukkonen <jussi.kukkonen@intel.com>
+References: <461862bc22e146c4839c12eafc7dd9f2@SFA-EX01.SAKURAUS.LOCAL>
+	<1800387.CklkhI1oXO@peggleto-mobl.ger.corp.intel.com>
+	<6a6dd70f430b4a7c8f7c925d18814be8@SFA-EX01.SAKURAUS.LOCAL>
+	<13191224.qIYrFqvWFr@peggleto-mobl.ger.corp.intel.com>
+	<6ffd54ff-01dd-c263-5e44-ca26be3cb9c0@mvista.com>
+	<377dbeeeb1774e2883147b2b12a05e6d@SFA-EX01.SAKURAUS.LOCAL>
+	<CAHiDW_HONGM4RjSXSn3SYT4cRG+9mbj5giPhrYVe4cSgup=Yxw@mail.gmail.com>
+X-Mailer: Apple Mail (2.3259)
+Cc: Paul Eggleton <paul.eggleton@linux.intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Morty 2.2.1 build failure
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -84,75 +85,332 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 24 Mar 2017 12:23:57 -0000
-Content-Language: en-US
+X-List-Received-Date: Fri, 24 Mar 2017 13:08:59 -0000
 Content-Type: multipart/alternative;
-	boundary="_000_DM5PR0101MB2953685EA03459A962AA8A69B63E0DM5PR0101MB2953_"
+	boundary="Apple-Mail=_BDD51DF6-D9EA-4875-8323-05C00DE9531B"
 
---_000_DM5PR0101MB2953685EA03459A962AA8A69B63E0DM5PR0101MB2953_
-Content-Type: text/plain; charset="iso-8859-1"
+--Apple-Mail=_BDD51DF6-D9EA-4875-8323-05C00DE9531B
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=utf-8
 
-Hello, Yocto.
-I am a bit confused with recipe syntax for variable assignment.
+For whatever it is worth, I am experiencing the same issue. I=E2=80=99m =
+running a Lenovo ThinkStation P910 with two Intel Xeon E5-2630 v4 CPUs =
+and 64 GB of RAM. I=E2=80=99m running Ubuntu 16.04. I also have been =
+unable to find much useful information in the logs, but when running =
+bitbake, lightdm just restarts and I end up at a log in screen with all =
+running programs halted.
 
-I wanto embed double-quoted string within a variable.
-And I tried below and looks like the whole part of the string (A to B) is s=
-uccessfully assigned to EXTRA_OECMAKE variable.
+Thanks,
+Dan
+> On Mar 24, 2017, at 4:17 AM, Jussi Kukkonen <jussi.kukkonen@intel.com> =
+wrote:
+>=20
+> On 23 March 2017 at 22:11, Greg Wilson-Lindberg <GWilson@sakuraus.com =
+<mailto:GWilson@sakuraus.com>> wrote:
+> Hi Armin & Paul,
+>=20
+> First there is nothing in the X log files.
+> I'm building on a desktop machine with 12GB of memory and an 8 core =
+processor running Kubuntu 14.04.
+> I added the PARALLEL_MAKE parameter set to 4, no effect, still built =
+with 8 threads, crashed.
+> Set BB_NUMBER_THREADS to 4, built with 4 threads, still crashed.
+>=20
+> Getting thrown out of your desktop environment probably indicates the =
+core problem is outside of Yocto -- this is still a fine place to =
+discuss the issue, just pointing it out. You could keep an eye on 'top' =
+sorted by %MEM while doing a build: my theory here is that something =
+(like the monstrous amount of IO) that the build does could trigger a =
+desktop component to do something stupid that cascades into your desktop =
+shell exiting/crashing. This could show up as something using more and =
+more memory at some point during the build.
+>=20
+> Hope this helps, sorry for lack of definitive answers,
+>   Jussi
+>=20
+> =20
+>=20
+> Regards,
+> Greg
+>=20
+> > -----Original Message-----
+> > From: akuster [mailto:akuster@mvista.com =
+<mailto:akuster@mvista.com>]
+> > Sent: Thursday, March 23, 2017 12:33 PM
+> > To: Greg Wilson-Lindberg <GWilson@sakuraus.com =
+<mailto:GWilson@sakuraus.com>>
+> > Cc: Paul Eggleton <paul.eggleton@linux.intel.com =
+<mailto:paul.eggleton@linux.intel.com>>; yocto@yoctoproject.org =
+<mailto:yocto@yoctoproject.org>
+> > Subject: Re: [yocto] Morty 2.2.1 build failure
+> >
+> >
+> >
+> > On 03/23/2017 12:25 PM, Paul Eggleton wrote:
+> > > That's really bizarre. There shouldn't be anything in a bitbake =
+build
+> > > that could cause anything like this (other than possibly how =
+intensive
+> > > it is, which might trigger out-of-memory or an underlying
+> > hardware/software failure).
+> >
+> > I usually get my builds to reboot my system when I build on a =
+loptop. I have
+> > not seen this on a tower style work station. You may want to play =
+with the
+> > BB_NUMBER_THREADS=3D# and PARALLEL_MAKE =3D "-j #" settings in your
+> > local.conf.
+> >
+> > - armin
+> > >
+> > > Assuming the X session is ending is there anything in your
+> > > ~/.xsession-errors or /var/log/Xorg.*.log?
+> > >
+> > > Cheers,
+> > > Paul
+> > >
+> > > On Friday, 24 March 2017 5:58:24 AM NZDT Greg Wilson-Lindberg =
+wrote:
+> > >> Hi Paul,
+> > >>
+> > >> I looked in the logs from the failure yesterday and couldn't find
+> > >> anything, so I restarted the build and it ran for about another =
+1000
+> > >> steps before crashing again. I still can't find anything in any =
+of
+> > >> the logs, syslog, kern.log, auth.log, etc.
+> > >>
+> > >> Cheers,
+> > >> Greg
+> > >>
+> > >>> -----Original Message-----
+> > >>> From: Paul Eggleton [mailto:paul.eggleton@linux.intel.com =
+<mailto:paul.eggleton@linux.intel.com>]
+> > >>> Sent: Thursday, March 23, 2017 2:49 AM
+> > >>> To: Greg Wilson-Lindberg <GWilson@sakuraus.com =
+<mailto:GWilson@sakuraus.com>>
+> > >>> Cc: yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>; =
+akuster808 <akuster808@gmail.com <mailto:akuster808@gmail.com>>
+> > >>> Subject: Re: [yocto] Morty 2.2.1 build failure
+> > >>>
+> > >>> On Thursday, 23 March 2017 9:23:24 AM NZDT Greg Wilson-Lindberg
+> > wrote:
+> > >>>> I tried it again this morning and it did get past the file not
+> > >>>> found error.
+> > >>>> But when it gets above step 4000 somewhere it gets an error =
+that
+> > >>>> kills not just the yocto build but the full login session. I'm =
+left
+> > >>>> staring at the Linux Login screen.
+> > >>> Your machine isn't running out of RAM by any chance, triggering =
+the
+> > >>> OOM killer? Anything indicative in your system logs?
+> > >>>
+> > >>> Cheers,
+> > >>> Paul
+> > >>>
+> > >>> --
+> > >>>
+> > >>> Paul Eggleton
+> > >>> Intel Open Source Technology Centre
+> > >
+>=20
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
+> https://lists.yoctoproject.org/listinfo/yocto =
+<https://lists.yoctoproject.org/listinfo/yocto>
+>=20
+> --=20
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
+> https://lists.yoctoproject.org/listinfo/yocto =
+<https://lists.yoctoproject.org/listinfo/yocto>
 
-EXTRA_OECMAKE =3D " \ <-- A
-  "-D CMAKE_XXXX=3Dxxxx \
-  ...
-  ...
-  -D CMAKE_YYYY=3Dyyyy" \
-" <-- B
-
-My question is, if this is a valid way of doing it?
-Why bitbake parser is not confused?
-
-
-
---_000_DM5PR0101MB2953685EA03459A962AA8A69B63E0DM5PR0101MB2953_
-Content-Type: text/html; charset="iso-8859-1"
+--Apple-Mail=_BDD51DF6-D9EA-4875-8323-05C00DE9531B
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=utf-8
 
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
-</head>
-<body dir=3D"ltr">
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
--family:Calibri,Arial,Helvetica,sans-serif;" dir=3D"ltr">
-<p></p>
-<div><span style=3D"font-size: 12pt;">Hello, Yocto.</span><br>
-</div>
-<div>I am a bit confused with recipe syntax for variable assignment.</div>
-<div><br>
-</div>
-<div>I wanto embed double-quoted string within a variable.</div>
-<div>And I tried below and looks like the whole part of the string (A to B)=
- is successfully assigned to EXTRA_OECMAKE variable.</div>
-<div><br>
-</div>
-<div>EXTRA_OECMAKE =3D &quot; \ &lt;-- A</div>
-<div>&nbsp; &quot;-D CMAKE_XXXX=3Dxxxx \</div>
-<div>&nbsp; ...</div>
-<div>&nbsp; ...</div>
-<div>&nbsp; -D CMAKE_YYYY=3Dyyyy&quot; \</div>
-<div>&quot; &lt;-- B</div>
-<div><br>
-</div>
-<div>My question is, if this is a valid way of doing it?</div>
-<div>Why bitbake parser is not confused?</div>
-<div><br>
-</div>
-<br>
-<p></p>
-</div>
-</body>
-</html>
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
+charset=3Dutf-8"></head><body style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
+class=3D"">For whatever it is worth, I am experiencing the same issue. =
+I=E2=80=99m running a Lenovo ThinkStation P910 with two Intel Xeon =
+E5-2630 v4 CPUs and 64 GB of RAM. I=E2=80=99m running Ubuntu 16.04. I =
+also have been unable to find much useful information in the logs, but =
+when running bitbake, lightdm just restarts and I end up at a log in =
+screen with all running programs halted.<div class=3D""><br =
+class=3D""></div><div class=3D"">Thanks,</div><div class=3D"">Dan<br =
+class=3D""><div><blockquote type=3D"cite" class=3D""><div class=3D"">On =
+Mar 24, 2017, at 4:17 AM, Jussi Kukkonen &lt;<a =
+href=3D"mailto:jussi.kukkonen@intel.com" =
+class=3D"">jussi.kukkonen@intel.com</a>&gt; wrote:</div><br =
+class=3D"Apple-interchange-newline"><div class=3D""><div dir=3D"ltr" =
+style=3D"font-family: Helvetica; font-size: 12px; font-style: normal; =
+font-variant-caps: normal; font-weight: normal; letter-spacing: normal; =
+orphans: auto; text-align: start; text-indent: 0px; text-transform: =
+none; white-space: normal; widows: auto; word-spacing: 0px; =
+-webkit-text-stroke-width: 0px;" class=3D""><div =
+class=3D"gmail_extra"><div class=3D"gmail_quote">On 23 March 2017 at =
+22:11, Greg Wilson-Lindberg<span =
+class=3D"Apple-converted-space">&nbsp;</span><span dir=3D"ltr" =
+class=3D"">&lt;<a href=3D"mailto:GWilson@sakuraus.com" target=3D"_blank" =
+class=3D"">GWilson@sakuraus.com</a>&gt;</span><span =
+class=3D"Apple-converted-space">&nbsp;</span>wrote:<br =
+class=3D""><blockquote class=3D"gmail_quote" style=3D"margin: 0px 0px =
+0px 0.8ex; border-left-width: 1px; border-left-color: rgb(204, 204, =
+204); border-left-style: solid; padding-left: 1ex;">Hi Armin &amp; =
+Paul,<br class=3D""><br class=3D"">First there is nothing in the X log =
+files.<br class=3D"">I'm building on a desktop machine with 12GB of =
+memory and an 8 core processor running Kubuntu 14.04.<br class=3D"">I =
+added the PARALLEL_MAKE parameter set to 4, no effect, still built with =
+8 threads, crashed.<br class=3D"">Set BB_NUMBER_THREADS to 4, built with =
+4 threads, still crashed.<br class=3D""></blockquote><div class=3D""><br =
+class=3D""></div><div class=3D"">Getting thrown out of your desktop =
+environment probably indicates the core problem is outside of Yocto -- =
+this is still a fine place to discuss the issue, just pointing it out. =
+You could keep an eye on 'top' sorted by %MEM while doing a build: my =
+theory here is that something (like the monstrous amount of IO) that the =
+build does could trigger a desktop component to do something stupid that =
+cascades into your desktop shell exiting/crashing. This could show up as =
+something using more and more memory at some point during the =
+build.</div><div class=3D""><br class=3D""></div><div class=3D"">Hope =
+this helps, sorry for lack of definitive answers,</div><div =
+class=3D"">&nbsp; Jussi</div><div class=3D""><br class=3D""></div><div =
+class=3D"">&nbsp;</div><blockquote class=3D"gmail_quote" style=3D"margin: =
+0px 0px 0px 0.8ex; border-left-width: 1px; border-left-color: rgb(204, =
+204, 204); border-left-style: solid; padding-left: 1ex;"><br =
+class=3D"">Regards,<br class=3D"">Greg<br class=3D""><span class=3D"im =
+HOEnZb"><br class=3D"">&gt; -----Original Message-----<br class=3D"">&gt; =
+From: akuster [mailto:<a href=3D"mailto:akuster@mvista.com" =
+class=3D"">akuster@mvista.com</a>]<br class=3D"">&gt; Sent: Thursday, =
+March 23, 2017 12:33 PM<br class=3D"">&gt; To: Greg Wilson-Lindberg =
+&lt;<a href=3D"mailto:GWilson@sakuraus.com" =
+class=3D"">GWilson@sakuraus.com</a>&gt;<br class=3D""></span><div =
+class=3D"HOEnZb"><div class=3D"h5">&gt; Cc: Paul Eggleton &lt;<a =
+href=3D"mailto:paul.eggleton@linux.intel.com" =
+class=3D"">paul.eggleton@linux.intel.com</a><wbr class=3D"">&gt;;<span =
+class=3D"Apple-converted-space">&nbsp;</span><a =
+href=3D"mailto:yocto@yoctoproject.org" =
+class=3D"">yocto@yoctoproject.org</a><br class=3D"">&gt; Subject: Re: =
+[yocto] Morty 2.2.1 build failure<br class=3D"">&gt;<br class=3D"">&gt;<br=
+ class=3D"">&gt;<br class=3D"">&gt; On 03/23/2017 12:25 PM, Paul =
+Eggleton wrote:<br class=3D"">&gt; &gt; That's really bizarre. There =
+shouldn't be anything in a bitbake build<br class=3D"">&gt; &gt; that =
+could cause anything like this (other than possibly how intensive<br =
+class=3D"">&gt; &gt; it is, which might trigger out-of-memory or an =
+underlying<br class=3D"">&gt; hardware/software failure).<br =
+class=3D"">&gt;<br class=3D"">&gt; I usually get my builds to reboot my =
+system when I build on a loptop. I have<br class=3D"">&gt; not seen this =
+on a tower style work station. You may want to play with the<br =
+class=3D"">&gt; BB_NUMBER_THREADS=3D# and PARALLEL_MAKE =3D "-j #" =
+settings in your<br class=3D"">&gt; local.conf.<br class=3D"">&gt;<br =
+class=3D"">&gt; - armin<br class=3D"">&gt; &gt;<br class=3D"">&gt; &gt; =
+Assuming the X session is ending is there anything in your<br =
+class=3D"">&gt; &gt; ~/.xsession-errors or /var/log/Xorg.*.log?<br =
+class=3D"">&gt; &gt;<br class=3D"">&gt; &gt; Cheers,<br class=3D"">&gt; =
+&gt; Paul<br class=3D"">&gt; &gt;<br class=3D"">&gt; &gt; On Friday, 24 =
+March 2017 5:58:24 AM NZDT Greg Wilson-Lindberg wrote:<br class=3D"">&gt; =
+&gt;&gt; Hi Paul,<br class=3D"">&gt; &gt;&gt;<br class=3D"">&gt; =
+&gt;&gt; I looked in the logs from the failure yesterday and couldn't =
+find<br class=3D"">&gt; &gt;&gt; anything, so I restarted the build and =
+it ran for about another 1000<br class=3D"">&gt; &gt;&gt; steps before =
+crashing again. I still can't find anything in any of<br class=3D"">&gt; =
+&gt;&gt; the logs, syslog, kern.log, auth.log, etc.<br class=3D"">&gt; =
+&gt;&gt;<br class=3D"">&gt; &gt;&gt; Cheers,<br class=3D"">&gt; &gt;&gt; =
+Greg<br class=3D"">&gt; &gt;&gt;<br class=3D"">&gt; &gt;&gt;&gt; =
+-----Original Message-----<br class=3D"">&gt; &gt;&gt;&gt; From: Paul =
+Eggleton [mailto:<a href=3D"mailto:paul.eggleton@linux.intel.com" =
+class=3D"">paul.eggleton@linux.<wbr class=3D"">intel.com</a>]<br =
+class=3D"">&gt; &gt;&gt;&gt; Sent: Thursday, March 23, 2017 2:49 AM<br =
+class=3D"">&gt; &gt;&gt;&gt; To: Greg Wilson-Lindberg &lt;<a =
+href=3D"mailto:GWilson@sakuraus.com" =
+class=3D"">GWilson@sakuraus.com</a>&gt;<br class=3D"">&gt; &gt;&gt;&gt; =
+Cc:<span class=3D"Apple-converted-space">&nbsp;</span><a =
+href=3D"mailto:yocto@yoctoproject.org" =
+class=3D"">yocto@yoctoproject.org</a>; akuster808 &lt;<a =
+href=3D"mailto:akuster808@gmail.com" =
+class=3D"">akuster808@gmail.com</a>&gt;<br class=3D"">&gt; &gt;&gt;&gt; =
+Subject: Re: [yocto] Morty 2.2.1 build failure<br class=3D"">&gt; =
+&gt;&gt;&gt;<br class=3D"">&gt; &gt;&gt;&gt; On Thursday, 23 March 2017 =
+9:23:24 AM NZDT Greg Wilson-Lindberg<br class=3D"">&gt; wrote:<br =
+class=3D"">&gt; &gt;&gt;&gt;&gt; I tried it again this morning and it =
+did get past the file not<br class=3D"">&gt; &gt;&gt;&gt;&gt; found =
+error.<br class=3D"">&gt; &gt;&gt;&gt;&gt; But when it gets above step =
+4000 somewhere it gets an error that<br class=3D"">&gt; &gt;&gt;&gt;&gt; =
+kills not just the yocto build but the full login session. I'm left<br =
+class=3D"">&gt; &gt;&gt;&gt;&gt; staring at the Linux Login screen.<br =
+class=3D"">&gt; &gt;&gt;&gt; Your machine isn't running out of RAM by =
+any chance, triggering the<br class=3D"">&gt; &gt;&gt;&gt; OOM killer? =
+Anything indicative in your system logs?<br class=3D"">&gt; =
+&gt;&gt;&gt;<br class=3D"">&gt; &gt;&gt;&gt; Cheers,<br class=3D"">&gt; =
+&gt;&gt;&gt; Paul<br class=3D"">&gt; &gt;&gt;&gt;<br class=3D"">&gt; =
+&gt;&gt;&gt; --<br class=3D"">&gt; &gt;&gt;&gt;<br class=3D"">&gt; =
+&gt;&gt;&gt; Paul Eggleton<br class=3D"">&gt; &gt;&gt;&gt; Intel Open =
+Source Technology Centre<br class=3D"">&gt; &gt;<br class=3D""><br =
+class=3D"">--<br class=3D"">______________________________<wbr =
+class=3D"">_________________<br class=3D"">yocto mailing list<br =
+class=3D""><a href=3D"mailto:yocto@yoctoproject.org" =
+class=3D"">yocto@yoctoproject.org</a><br class=3D""><a =
+href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer" =
+target=3D"_blank" class=3D"">https://lists.yoctoproject.<wbr =
+class=3D"">org/listinfo/yocto</a><br =
+class=3D""></div></div></blockquote></div><br class=3D""></div></div><span=
+ style=3D"font-family: Helvetica; font-size: 12px; font-style: normal; =
+font-variant-caps: normal; font-weight: normal; letter-spacing: normal; =
+orphans: auto; text-align: start; text-indent: 0px; text-transform: =
+none; white-space: normal; widows: auto; word-spacing: 0px; =
+-webkit-text-stroke-width: 0px; float: none; display: inline =
+!important;" class=3D"">--<span =
+class=3D"Apple-converted-space">&nbsp;</span></span><br =
+style=3D"font-family: Helvetica; font-size: 12px; font-style: normal; =
+font-variant-caps: normal; font-weight: normal; letter-spacing: normal; =
+orphans: auto; text-align: start; text-indent: 0px; text-transform: =
+none; white-space: normal; widows: auto; word-spacing: 0px; =
+-webkit-text-stroke-width: 0px;" class=3D""><span style=3D"font-family: =
+Helvetica; font-size: 12px; font-style: normal; font-variant-caps: =
+normal; font-weight: normal; letter-spacing: normal; orphans: auto; =
+text-align: start; text-indent: 0px; text-transform: none; white-space: =
+normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
+float: none; display: inline !important;" =
+class=3D"">_______________________________________________</span><br =
+style=3D"font-family: Helvetica; font-size: 12px; font-style: normal; =
+font-variant-caps: normal; font-weight: normal; letter-spacing: normal; =
+orphans: auto; text-align: start; text-indent: 0px; text-transform: =
+none; white-space: normal; widows: auto; word-spacing: 0px; =
+-webkit-text-stroke-width: 0px;" class=3D""><span style=3D"font-family: =
+Helvetica; font-size: 12px; font-style: normal; font-variant-caps: =
+normal; font-weight: normal; letter-spacing: normal; orphans: auto; =
+text-align: start; text-indent: 0px; text-transform: none; white-space: =
+normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
+float: none; display: inline !important;" class=3D"">yocto mailing =
+list</span><br style=3D"font-family: Helvetica; font-size: 12px; =
+font-style: normal; font-variant-caps: normal; font-weight: normal; =
+letter-spacing: normal; orphans: auto; text-align: start; text-indent: =
+0px; text-transform: none; white-space: normal; widows: auto; =
+word-spacing: 0px; -webkit-text-stroke-width: 0px;" class=3D""><a =
+href=3D"mailto:yocto@yoctoproject.org" style=3D"font-family: Helvetica; =
+font-size: 12px; font-style: normal; font-variant-caps: normal; =
+font-weight: normal; letter-spacing: normal; orphans: auto; text-align: =
+start; text-indent: 0px; text-transform: none; white-space: normal; =
+widows: auto; word-spacing: 0px; -webkit-text-size-adjust: auto; =
+-webkit-text-stroke-width: 0px;" class=3D"">yocto@yoctoproject.org</a><br =
+style=3D"font-family: Helvetica; font-size: 12px; font-style: normal; =
+font-variant-caps: normal; font-weight: normal; letter-spacing: normal; =
+orphans: auto; text-align: start; text-indent: 0px; text-transform: =
+none; white-space: normal; widows: auto; word-spacing: 0px; =
+-webkit-text-stroke-width: 0px;" class=3D""><a =
+href=3D"https://lists.yoctoproject.org/listinfo/yocto" =
+style=3D"font-family: Helvetica; font-size: 12px; font-style: normal; =
+font-variant-caps: normal; font-weight: normal; letter-spacing: normal; =
+orphans: auto; text-align: start; text-indent: 0px; text-transform: =
+none; white-space: normal; widows: auto; word-spacing: 0px; =
+-webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px;" =
+class=3D"">https://lists.yoctoproject.org/listinfo/yocto</a></div></blockq=
+uote></div><br class=3D""></div></body></html>=
 
---_000_DM5PR0101MB2953685EA03459A962AA8A69B63E0DM5PR0101MB2953_--
+--Apple-Mail=_BDD51DF6-D9EA-4875-8323-05C00DE9531B--
