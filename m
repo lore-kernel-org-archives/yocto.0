@@ -1,66 +1,31 @@
-Return-Path: <patrick.ohly@intel.com>
+Return-Path: <romain.perier@collabora.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1F86EE009C2; Fri, 24 Mar 2017 01:44:26 -0700 (PDT)
+	id BA05EE00A5C; Fri, 24 Mar 2017 01:46:15 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.223.179 listed in dnsbl.sorbs.net]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
+	SPF_HELO_PASS,UNPARSEABLE_RELAY autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.223.179 listed in list.dnswl.org]
-Received: from mail-io0-f179.google.com (mail-io0-f179.google.com
-	[209.85.223.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EA784E00724
-	for <yocto@yoctoproject.org>; Fri, 24 Mar 2017 01:44:23 -0700 (PDT)
-Received: by mail-io0-f179.google.com with SMTP id f84so12748500ioj.0
-	for <yocto@yoctoproject.org>; Fri, 24 Mar 2017 01:44:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=message-id:subject:from:to:cc:date:organization:mime-version
-	:content-transfer-encoding;
-	bh=bDwMEGJxiSCsZfQKyAEREMq3ulVG/73nWhPE4+MGjBA=;
-	b=Ya0ekQxkQBqlp7ON5UdUNh7rhcJLMtRMkkpBxWBuffOLVmy9ffaeAZ0LKuZ+6JasTC
-	PHlTzTwYcZhfCe+vMyNDiWCC0oUTU8BOlYcapmLvCIDR5oKSm6CIMJR0blD698JYQ1bk
-	H324XU69vY7Cgdd9rSZJwDFfcAYBwC/TxFSCyZHKYI5+8Vly2NwYDA+Jod6lviI+KebS
-	MLAaWNEq6Mf6ng9YY2TmNhNtcHfXgRJyDj5jaz6KC7Q8sU4Z0UYRsvK0A0BlkuhfWiGI
-	YYdobyrl/TAYME05qbCviOhP7Q8+/9WUMxR1F5nY2ZPhBNbqJAn4OWYcW3WtbVhTZktR
-	hioA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:message-id:subject:from:to:cc:date:organization
-	:mime-version:content-transfer-encoding;
-	bh=bDwMEGJxiSCsZfQKyAEREMq3ulVG/73nWhPE4+MGjBA=;
-	b=ENybcJm3wm4Q5sx72GgwGZNZqS0Tva1wnWN2azdroo1068sAXAp30XU3wMU2L+9DRg
-	EVq9fMFQjC4sbkq6lxWrQ2TYrIMZilX8LoEHJ26UrWTmiBopjYDwrdx/xEicju0htJi4
-	OWPPvzZFTzB9Sd7bnd38DZduvRtBZPWp522seSPFY7BPvfClRsro3/spfvTH3IFSkg8t
-	icm9a89ZpREXcAIwuobPwDT7T9hkD6BMy1XQ9HcHgWfNYxn+ZmpN7wVY5sBzfeUq7FzA
-	9y6v4WyuAJeUld0hVysphRR3hkzcrgA/bVhh1GBhcJLOAX1DL8OlLdOUbRPOhwJLaxHM
-	i6pA==
-X-Gm-Message-State: AFeK/H0QBsMe0gNFLnMqIpIrDxRu468uWkLoS/A9HDjULBUCl54dERXjFWoUodsHZrTQv2e0
-X-Received: by 10.107.55.137 with SMTP id e131mr6879266ioa.105.1490345062615; 
-	Fri, 24 Mar 2017 01:44:22 -0700 (PDT)
-Received: from pohly-mobl1 (p5DE8E2F9.dip0.t-ipconnect.de. [93.232.226.249])
-	by smtp.gmail.com with ESMTPSA id r203sm692067itc.5.2017.03.24.01.44.20
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 24 Mar 2017 01:44:21 -0700 (PDT)
-Message-ID: <1490345058.6396.258.camel@intel.com>
-From: Patrick Ohly <patrick.ohly@intel.com>
-To: Armin Kuster <akuster808@gmail.com>
-Date: Fri, 24 Mar 2017 09:44:18 +0100
-Organization: Intel GmbH, Dornacher Strasse 1, D-85622 Feldkirchen/Munich
-X-Mailer: Evolution 3.12.9-1+b1 
-Mime-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: [meta-security] master-next rebased?
+	*      [46.235.227.227 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	* 0.0 UNPARSEABLE_RELAY Informational: message has unparseable relay
+	lines
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 00069E00724
+	for <yocto@yoctoproject.org>; Fri, 24 Mar 2017 01:46:12 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	(Authenticated sender: rperier) with ESMTPSA id ED52F265AAC
+From: Romain Perier <romain.perier@collabora.com>
+To: liezhi.yang@windriver.com
+Date: Fri, 24 Mar 2017 09:46:04 +0100
+Message-Id: <20170324084604.10391-1-romain.perier@collabora.com>
+X-Mailer: git-send-email 2.9.3
+Cc: yocto@yoctoproject.org, openembedded-core@lists.openembedded.org
+Subject: [PATCH v2] logrotate: Add systemd support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,36 +37,109 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 24 Mar 2017 08:44:26 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 24 Mar 2017 08:46:15 -0000
 
-Hello Armin!
+Currently, this recipe only supports daily scheduling via a cron job.
+This commit adds support for systemd, including systemd service and
+systemd timer. When the corresponding distro feature is enabled the
+systemd variant will be used. The timer granularity and its accuracy
+are also configurable.
 
-Did you accidentally rebase all of master-next?
+Signed-off-by: Romain Perier <romain.perier@collabora.com>
+---
 
-The current master-next tip (3b9dd3688b6c725aa0146c91ee1a58c26095e48d)
-isn't rooted in the current master
-(8b38c93f2387793fb03d082e47723002cf667ae9) anymore:
+Changes in v2:
+- Make the systemd timer configurable (as this is distribution or target specific)
 
-$ git branch -r --contains origin/master-next 
-  origin/master-next
-$ git log --oneline origin/master..origin/master-next  | wc -l
-179
-$ git log --oneline origin/master  | wc -l
-211
+ .../logrotate/logrotate/logrotate.service          |  9 ++++++++
+ .../logrotate/logrotate/logrotate.timer            |  7 ++++++
+ meta/recipes-extended/logrotate/logrotate_3.9.1.bb | 27 ++++++++++++++++++++--
+ 3 files changed, 41 insertions(+), 2 deletions(-)
+ create mode 100644 meta/recipes-extended/logrotate/logrotate/logrotate.service
+ create mode 100644 meta/recipes-extended/logrotate/logrotate/logrotate.timer
 
-Looking at the content, it seems that only the last two commits in
-master-next are actually new ;-}
-
+diff --git a/meta/recipes-extended/logrotate/logrotate/logrotate.service b/meta/recipes-extended/logrotate/logrotate/logrotate.service
+new file mode 100644
+index 0000000..3edb8ef
+--- /dev/null
++++ b/meta/recipes-extended/logrotate/logrotate/logrotate.service
+@@ -0,0 +1,9 @@
++[Unit]
++Description=Rotate log files
++
++[Service]
++Type=oneshot
++ExecStart=/usr/sbin/logrotate /etc/logrotate.conf
++Nice=19
++IOSchedulingClass=best-effort
++IOSchedulingPriority=7
+diff --git a/meta/recipes-extended/logrotate/logrotate/logrotate.timer b/meta/recipes-extended/logrotate/logrotate/logrotate.timer
+new file mode 100644
+index 0000000..c616b43
+--- /dev/null
++++ b/meta/recipes-extended/logrotate/logrotate/logrotate.timer
+@@ -0,0 +1,7 @@
++[Unit]
++Description=Daily rotation of log files
++
++[Timer]
++OnCalendar=@TIMER_BASIS@
++AccuracySec=@TIMER_ACCURACY@
++Persistent=true
+diff --git a/meta/recipes-extended/logrotate/logrotate_3.9.1.bb b/meta/recipes-extended/logrotate/logrotate_3.9.1.bb
+index 5f1a601..6953996 100644
+--- a/meta/recipes-extended/logrotate/logrotate_3.9.1.bb
++++ b/meta/recipes-extended/logrotate/logrotate_3.9.1.bb
+@@ -14,6 +14,8 @@ SRC_URI = "https://fedorahosted.org/releases/l/o/logrotate/logrotate-${PV}.tar.g
+            file://act-as-mv-when-rotate.patch \
+            file://update-the-manual.patch \
+            file://disable-check-different-filesystems.patch \
++           ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'file://logrotate.service', '', d)} \
++           ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'file://logrotate.timer', '', d)} \
+             "
+ 
+ SRC_URI[md5sum] = "4492b145b6d542e4a2f41e77fa199ab0"
+@@ -47,6 +49,17 @@ EXTRA_OEMAKE = "\
+ # INSTALL=install and BASEDIR=/usr.
+ OS_NAME = "Linux"
+ 
++inherit systemd
++
++SYSTEMD_AUTO_ENABLE = "disable"
++SYSTEMD_SERVICE_${PN} = "\
++    ${PN}.service \
++    ${PN}.timer \
++"
++
++LOGROTATE_SYSTEMD_TIMER_BASIS ?= "daily"
++LOGROTATE_SYSTEMD_TIMER_ACCURACY ?= "12h"
++
+ do_compile_prepend() {
+     # Make sure the recompile is OK
+     rm -f ${B}/.depend
+@@ -55,9 +68,19 @@ do_compile_prepend() {
+ do_install(){
+     oe_runmake install DESTDIR=${D} PREFIX=${D} MANDIR=${mandir}
+     mkdir -p ${D}${sysconfdir}/logrotate.d
+-    mkdir -p ${D}${sysconfdir}/cron.daily
+     mkdir -p ${D}${localstatedir}/lib
+     install -p -m 644 examples/logrotate-default ${D}${sysconfdir}/logrotate.conf
+-    install -p -m 755 examples/logrotate.cron ${D}${sysconfdir}/cron.daily/logrotate
+     touch ${D}${localstatedir}/lib/logrotate.status
++
++    # Install systemd unit files
++    if [ "${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'systemd', '', d)}" = "systemd" ]; then
++        install -d ${D}/${systemd_system_unitdir}
++        install -m 0644 ${WORKDIR}/logrotate.service ${D}/${systemd_system_unitdir}/logrotate.service
++        install -m 0644 ${WORKDIR}/logrotate.timer ${D}/${systemd_system_unitdir}/logrotate.timer
++        sed -i -e 's,@TIMER_BASIS@,${LOGROTATE_SYSTEMD_TIMER_BASIS},g' ${D}${systemd_system_unitdir}/logrotate.timer
++        sed -i -e 's,@TIMER_ACCURACY@,${LOGROTATE_SYSTEMD_TIMER_ACCURACY},g' ${D}${systemd_system_unitdir}/logrotate.timer
++    else
++        mkdir -p ${D}${sysconfdir}/cron.daily
++        install -p -m 0755 examples/logrotate.cron ${D}${sysconfdir}/cron.daily/logrotate
++    fi
+ }
 -- 
-Best Regards, Patrick Ohly
-
-The content of this message is my personal opinion only and although
-I am an employee of Intel, the statements I make here in no way
-represent Intel's position on the issue, nor am I authorized to speak
-on behalf of Intel on this matter.
-
-
+1.8.3.1
 
 
