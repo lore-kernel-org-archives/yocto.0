@@ -1,6 +1,6 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <jussi.kukkonen@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 34C81E007AD; Fri, 24 Mar 2017 06:57:02 -0700 (PDT)
+	id 7C3BDE007AD; Fri, 24 Mar 2017 06:57:44 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,55 +9,55 @@ X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [209.85.220.174 listed in list.dnswl.org]
+	*      [209.85.161.170 listed in list.dnswl.org]
 	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.220.174 listed in dnsbl.sorbs.net]
+	*      [209.85.161.170 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qk0-f174.google.com (mail-qk0-f174.google.com
-	[209.85.220.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C1496E003C1
-	for <yocto@yoctoproject.org>; Fri, 24 Mar 2017 06:57:01 -0700 (PDT)
-Received: by mail-qk0-f174.google.com with SMTP id p64so2855740qke.1
-	for <yocto@yoctoproject.org>; Fri, 24 Mar 2017 06:57:01 -0700 (PDT)
+Received: from mail-yw0-f170.google.com (mail-yw0-f170.google.com
+	[209.85.161.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CC590E003C1
+	for <yocto@yoctoproject.org>; Fri, 24 Mar 2017 06:57:43 -0700 (PDT)
+Received: by mail-yw0-f170.google.com with SMTP id d191so2346920ywe.2
+	for <yocto@yoctoproject.org>; Fri, 24 Mar 2017 06:57:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=intel-com.20150623.gappssmtp.com; s=20150623;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=DoMzGFu599efsBrVxditcanpwa5PNeDSsz9OOsd7eLM=;
-	b=gfnN6JZihCXgvJZAlNb3fN8wLtO0xMT0YD/UKDJkIKNbn2Jg8Hnl5A/AYsiPlg5EJI
-	vgbDbtFz44pCMpHpM4o1s5eR1yLFNxaNnp5b5ldHvfNwFUcxaCfuWjNCVKKGMOEUHOW5
-	H6cytc5vWKehIZ/LsgmZE3NdKESVNw/bfV5sMLl/SOHFtp1mdce6HpCU7pT91wAjp+m0
-	HiClfS2Yr96f+pwHeQMabWCFaWFLmFCcEWJybhdx6FjXUTZfq6AeFH7Z0JW/9EfVallm
-	GF173PxD4rZWpogRHnk2vhuc5cbB3dr2TNSCo7k20BU6myuUSJURtcSrijV06mZGUmUd
-	jyoQ==
+	:cc; bh=fWP4V12qJ1h/nBlDRDdCvTluv4pIdBesV0vIrXRk9i8=;
+	b=ixg1ZKMuF/1ervmaLkR9AOTXOjUqe5PjJ1duwEiMJJOA/+80bQmr13ZFHWzDA7wVnT
+	PGF9Jv7QIwB8Bv4GpdpLFQLB26QeTLBFGGJYmGGoqSJB+kLeJepWqCgI+bcBP/6F/rCQ
+	FU+1i3xbdknnIiASTdZcNLIqeWQvUfmSKNemMkBbbAhMC1fGw4CFO4b78eqCk9aqlHFi
+	Tm9YC7FLAJMj6N/E7WCIWNHPHhAF25aiaOB/AagcidibKVX7FYgLEJMfY16TiSEZPsL9
+	9vWYAWmyVZ06qjN0kLqE1caeM4z22zbOtzURpCKTlVoastTfv6l81J8AFiRLNis4cmv7
+	Xg+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=DoMzGFu599efsBrVxditcanpwa5PNeDSsz9OOsd7eLM=;
-	b=Af/LoK4ogP5Yu8vQvNt1Ro9atAK+wjByqZ9VKlW+SJrOPAY/3yNCruWZyYchu6f+dE
-	+uf5Ulggrw2V5+A5dTvwDizGJfcE9Sv6+Li/MFIbzKf5FXMH0T757jX9oNP673LYPnLZ
-	tubUKKZj6JoiA2jlrQknhA9SntdvBLw5SLTrGZl4sXbD0wLUL0FLbL88UcrKOT49oXTm
-	RFovRPYdyAtaP1cSReB6b1m9akN4Pubb0ZsvbkftI0oRGTZMhe0j2ySbcs66vC4IJ3IA
-	QffKxNHV3QHVbfDIW3iX2R8JJPTolU5za31NFd4QTvWW4hJa9IDwwLNWHwiI/n4AQr01
-	R17w==
-X-Gm-Message-State: AFeK/H15MPKe0D4OfQH9Wu+iQs7Y1K2Pe0Q2lUd3QztB2twTTZXhJHuWBJTfFCpT0UFUkV9yZYkrKgnxRO91SbxW
-X-Received: by 10.55.47.4 with SMTP id v4mr7607326qkh.77.1490363819537; Fri,
-	24 Mar 2017 06:56:59 -0700 (PDT)
+	bh=fWP4V12qJ1h/nBlDRDdCvTluv4pIdBesV0vIrXRk9i8=;
+	b=ovka8vP7hXijlL63uaHzIY/HYYSTWzolvrMc1zt5W+XAsHByHVDq2wgmxZyc9fbmX8
+	UuAprNp8f5SNS227aunltAJQ6pb/MgkHVrQjq8GjKvYgQuI2TUxSftWJmYzHr6XMc/I9
+	amqNbFRdTxWm89dIJ9ldy4Pagp+62+MJW97tBqw0xlpWsEkPbm6IOG36qH0QBYD9Cj5V
+	xrB5cqV2o5cD5YFncKRs0oI1QjP7HzpdY6g2JtGv9OGmfr65mDUsOl0LCdRHdvFKaUDf
+	waNz8PfwfDkFi+IAVI6fceqsfQ4RxWQZMAeCEmpALpa4GqN8hj8nd3aDWP5oSR7REthx
+	ip6w==
+X-Gm-Message-State: AFeK/H05UsX5ASAr9l73JXTSP/pzEfbg+3Po0GIDTq0j1pn3Y5Qmj9oEKSqzoYSQZKBWKUqlAkGzinJO24uEy8gO
+X-Received: by 10.129.197.74 with SMTP id o10mr5878210ywj.183.1490363862437;
+	Fri, 24 Mar 2017 06:57:42 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.140.22.166 with HTTP; Fri, 24 Mar 2017 06:56:39 -0700 (PDT)
-In-Reply-To: <CAKEinFzZ-8poavqXnmDPXg47N6OQ7un4X1nLpwofUKRrY8gW1w@mail.gmail.com>
-References: <CAKEinFzZ-8poavqXnmDPXg47N6OQ7un4X1nLpwofUKRrY8gW1w@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Fri, 24 Mar 2017 13:56:39 +0000
-Message-ID: <CAJTo0LbqLfAP3kPwhXYW_6UAMQRnPRUw20G582R2dmGkJjASRA@mail.gmail.com>
-To: Cody Piersall <cody@arrc.ou.edu>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Remove a recipe's do_install_append() function in an append file
+Received: by 10.129.81.136 with HTTP; Fri, 24 Mar 2017 06:57:12 -0700 (PDT)
+In-Reply-To: <4ef15c52-0e08-05da-ef3b-2772c6999bae@kiversal.com>
+References: <4ef15c52-0e08-05da-ef3b-2772c6999bae@kiversal.com>
+From: Jussi Kukkonen <jussi.kukkonen@intel.com>
+Date: Fri, 24 Mar 2017 15:57:12 +0200
+Message-ID: <CAHiDW_HqE0w0h-W5ZY+eqkc3==LgpJuvagE3Z6UxBk-GD2KBOw@mail.gmail.com>
+To: =?UTF-8?Q?Stefano_Zu=C3=ADn?= <szuin@kiversal.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: PHP5 Recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,61 +69,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 24 Mar 2017 13:57:02 -0000
-Content-Type: multipart/alternative; boundary=001a114f41080d1376054b7a5ec0
+X-List-Received-Date: Fri, 24 Mar 2017 13:57:44 -0000
+Content-Type: multipart/alternative; boundary=94eb2c1a54fa9b691d054b7a60ba
 
---001a114f41080d1376054b7a5ec0
+--94eb2c1a54fa9b691d054b7a60ba
 Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On 24 March 2017 at 13:49, Cody Piersall <cody@arrc.ou.edu> wrote:
-
-> I am building zsh from meta-oe layer, and it has a do_install_append()
-> function defined like this:
+On 24 March 2017 at 12:57, Stefano Zu=C3=ADn <szuin@kiversal.com> wrote:
 >
-> do_install_append () {
->     rm -fr ${D}/usr/share
-> }
+> Good Morning,
 >
-> which gets rid of lots lots of useful functionality, like
-> context-aware autocompletion.  Can a bbappend file get rid of that
-> function, or do I need to edit the actual recipe? I've attempted
-> defining an empty do_install_append() { : } but it didn't work.
+> I am trying to use php in a simple poky kernel in a core-image-minimal
+image. But I have some problems to get it working. I have also tried using
+core-image-full-cmdline image having the same result explained after this.
 >
+> When I cook the recipe everything is OK. I can find inside the
+/build/tmp/work/armv5e-poky-linux-gnueabi/php/5.6.23-r0/image/ directory
+all the necessary files to have php running. but unfortunately, when I run
+the emulator with my image I can't find all these files. Just in
+/usr/lib/php5/php/ are Structures and XML directories. I have also added in
+my conf/local.conf file IMAGE_INSTALL_append=3D" php".
 
-Fixing the zsh recipe to have either separate packages or PACKAGECONFIGs
-for the useful stuff would be the proper solution, but a really nasty hack
-that might work is:
 
-do_install_remove = "rm -rf ${D}/usr/share"
+Hi,
 
-Ross
+It'll help if you are more specific: which files did you expect to see but
+did not?
 
---001a114f41080d1376054b7a5ec0
+Alternatively, you can look at the FILES_* variables in the recipe (or
+$WORKDIR/packages-split/ directories): It's likely that the files you want
+are not in "php" but another package like php-cli or php-cgi.
+
+ - Jussi
+
+--94eb2c1a54fa9b691d054b7a60ba
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 24 March 2017 at 13:49, Cody Piersall <span dir=3D"ltr">&lt;<a href=3D"m=
-ailto:cody@arrc.ou.edu" target=3D"_blank">cody@arrc.ou.edu</a>&gt;</span> w=
-rote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;borde=
-r-left:1px #ccc solid;padding-left:1ex"><div id=3D":2dw" class=3D"a3s aXjCH=
- m15b0095213ac41e1">I am building zsh from meta-oe layer, and it has a do_i=
-nstall_append()<br>
-function defined like this:<br>
-<br>
-do_install_append () {<br>
-=C2=A0 =C2=A0 rm -fr ${D}/usr/share<br>
-}<br>
-<br>
-which gets rid of lots lots of useful functionality, like<br>
-context-aware autocompletion.=C2=A0 Can a bbappend file get rid of that<br>
-function, or do I need to edit the actual recipe? I&#39;ve attempted<br>
-defining an empty do_install_append() { : } but it didn&#39;t work.</div></=
-blockquote></div><br>Fixing the zsh recipe to have either separate packages=
- or PACKAGECONFIGs for the useful stuff would be the proper solution, but a=
- really nasty hack that might work is:</div><div class=3D"gmail_extra"><br>=
-</div><div class=3D"gmail_extra">do_install_remove =3D &quot;rm -rf ${D}/us=
-r/share&quot;</div><div class=3D"gmail_extra"><br></div><div class=3D"gmail=
-_extra">Ross</div></div>
+<div dir=3D"ltr">On 24 March 2017 at 12:57, Stefano Zu=C3=ADn &lt;<a href=
+=3D"mailto:szuin@kiversal.com">szuin@kiversal.com</a>&gt; wrote:<br>&gt;<br=
+>&gt; Good Morning,<br>&gt;<br>&gt; I am trying to use php in a simple poky=
+ kernel in a core-image-minimal image. But I have some problems to get it w=
+orking. I have also tried using core-image-full-cmdline image having the sa=
+me result explained after this.<br>&gt;<br>&gt; When I cook the recipe ever=
+ything is OK. I can find inside the /build/tmp/work/armv5e-poky-linux-gnuea=
+bi/php/5.6.23-r0/image/ directory all the necessary files to have php runni=
+ng. but unfortunately, when I run the emulator with my image I can&#39;t fi=
+nd all these files. Just in /usr/lib/php5/php/ are Structures and XML direc=
+tories. I have also added in my conf/local.conf file IMAGE_INSTALL_append=
+=3D&quot; php&quot;.<br><br><br>Hi,<br><br>It&#39;ll help if you are more s=
+pecific: which files did you expect to see but did not?<br><br>Alternativel=
+y, you can look at the FILES_* variables in the recipe (or $WORKDIR/package=
+s-split/ directories): It&#39;s likely that the files you want are not in &=
+quot;php&quot; but another package like php-cli or php-cgi.<br><br>=C2=A0- =
+Jussi</div>
 
---001a114f41080d1376054b7a5ec0--
+--94eb2c1a54fa9b691d054b7a60ba--
