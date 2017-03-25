@@ -1,78 +1,63 @@
-Return-Path: <tmatsuzawa@xevo.com>
+Return-Path: <munagala.nareshbabu@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 36EDDE00A64; Sat, 25 Mar 2017 04:04:44 -0700 (PDT)
+	id 1D373E00AB7; Sat, 25 Mar 2017 09:12:51 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [104.47.36.55 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE, 
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (munagala.nareshbabu[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.214.49 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com
-	(mail-sn1nam02on0055.outbound.protection.outlook.com [104.47.36.55])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 904E1E00874
-	for <yocto@yoctoproject.org>; Sat, 25 Mar 2017 04:04:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=uievolution.onmicrosoft.com; s=selector1-xevo-com;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
-	bh=rDl9zJCTTSm0a0Ahh9TL0rOvbqUSnmANNuz00dGAsuM=;
-	b=IP88IFTBqSL9g47JZcsO3A24jRzn77D7uGmUhNCiQqYj74WfeOgr61r4aBaExd07/H/y4CgdUq0DIoTe0ecPrcVq6NO+4r6xk1SN0ASmdiwGhk4HCX5mUSm03prOYc+nEnIYp5AJBnGBnz4JuiGvTe70ZBKqSXBdBr/r+xe1EKI=
-Received: from DM5PR0101MB2953.prod.exchangelabs.com (10.174.181.143) by
-	DM5PR0101MB2953.prod.exchangelabs.com (10.174.181.143) with Microsoft
-	SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
-	15.1.961.17; Sat, 25 Mar 2017 09:30:52 +0000
-Received: from DM5PR0101MB2953.prod.exchangelabs.com ([10.174.181.143]) by
-	DM5PR0101MB2953.prod.exchangelabs.com ([10.174.181.143]) with mapi id
-	15.01.0961.020; Sat, 25 Mar 2017 09:30:52 +0000
-From: Takashi Matsuzawa <tmatsuzawa@xevo.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: a cmake recipe with subdirectories?
-Thread-Index: AQHSpUp+j5Ww1//BTk2bUGpZ9cNgBQ==
-Date: Sat, 25 Mar 2017 09:30:52 +0000
-Message-ID: <DM5PR0101MB295343520E0A2F13415210F8B6310@DM5PR0101MB2953.prod.exchangelabs.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: yoctoproject.org; dkim=none (message not signed)
-	header.d=none; yoctoproject.org;
-	dmarc=none action=none header.from=xevo.com; 
-x-originating-ip: [118.238.252.194]
-x-microsoft-exchange-diagnostics: 1; DM5PR0101MB2953;
-	7:Dlnii7LyS6Q4nKUDTJSIuyZsn0tn25jQlXG+jhGdzTaF2Y0gL1mEUZidYBkWeGWftDl9SgqCFlhniqgBfQgEmOQLvGpvGLD9/pi5kq99AvvsluflIfqIFKqO9qEk4r5yHs/ssoKsA+zeiF2BIlWJ8xrHhcr1YP6xtoBtrefVPnYa+HhntOtK2pVjOlfJtGQ2cbVFhhqGM6MF4MFpcLQpL9EfN6c9m1PHCp/Z4vynk+r+uThBaygxT17jOCE9+JHfUYayVz3ON2mDXZrzapLKV7y3WaiySVTpcmgE51JZpBUU2tu9XyMKYPwIYbwaMipMd/JTgIEdcO7v+Py9ugGdJg==
-x-ms-office365-filtering-correlation-id: a9f3503c-1692-4ad0-41e1-08d47361a16c
-x-microsoft-antispam: UriScan:; BCL:0; PCL:0; RULEID:(22001)(2017030254075);
-	SRVR:DM5PR0101MB2953; 
-x-microsoft-antispam-prvs: <DM5PR0101MB29531E54721DE97D6E6EF1A4B6310@DM5PR0101MB2953.prod.exchangelabs.com>
-x-exchange-antispam-report-test: UriScan:;
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(6040375)(2401047)(8121501046)(5005006)(3002001)(10201501046)(6041248)(20161123558025)(20161123562025)(20161123564025)(20161123555025)(20161123560025)(6072148);
-	SRVR:DM5PR0101MB2953; BCL:0; PCL:0; RULEID:;
-	SRVR:DM5PR0101MB2953; 
-x-forefront-prvs: 025796F161
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10009020)(6009001)(39450400003)(54896002)(33656002)(99286003)(5640700003)(66066001)(7696004)(74316002)(81166006)(6506006)(2351001)(86362001)(5660300001)(38730400002)(3846002)(6606003)(55016002)(110136004)(102836003)(3660700001)(6116002)(2501003)(54356999)(50986999)(19627405001)(8936002)(77096006)(1730700003)(2906002)(2900100001)(9686003)(53936002)(7736002)(6436002)(8676002)(3280700002)(189998001)(122556002)(25786009);
-	DIR:OUT; SFP:1101; SCL:1; SRVR:DM5PR0101MB2953;
-	H:DM5PR0101MB2953.prod.exchangelabs.com; FPR:; SPF:None; MLV:sfv;
-	LANG:en; 
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.214.49 listed in dnsbl.sorbs.net]
+Received: from mail-it0-f49.google.com (mail-it0-f49.google.com
+	[209.85.214.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C9212E006CD
+	for <yocto@yoctoproject.org>; Sat, 25 Mar 2017 09:12:49 -0700 (PDT)
+Received: by mail-it0-f49.google.com with SMTP id y18so36192789itc.0
+	for <yocto@yoctoproject.org>; Sat, 25 Mar 2017 09:12:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=aElZo1Z/4cdR+khJA24GSEQr0YWyWFlcMCuMF0mpXD8=;
+	b=r1HnT1VMt0MDOkfMwagP5sZyMEz4hjnZ1SmZRKjruliAeJ5pWrk0eozs9Rou34Sa/S
+	OL7sQ0jhu8CukByLUCKR8PaR5uxxOkd6Njh/WmoQSoPsT/EnNB74ITCXKFg6cd9Msolt
+	tEwUEmBpvvyrDSX34jFqG1qXPKdort5pS5S06/+gchOe4kucwxExmuouxaUBThhi34G0
+	f6cdNOGkfduc4Ccj1ExuD3lcSQ9MIyUzU2ZhQMm10tyAlyOjObrIBRl6S4yoi0cSZX6l
+	wFfKk6ZDcG0BKFPtkDcx36RIfvR4JfPMR8dNniZ+5dYrDs60MuIC38atWuRpmRBga5Jn
+	rRYw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=aElZo1Z/4cdR+khJA24GSEQr0YWyWFlcMCuMF0mpXD8=;
+	b=Ywb5lFxH9y3c6TGFczb/loiVjUZGbk2V6aKWDpqjaYnUkcCCCNKeXKk0jXDS+Au7el
+	7TaLCrFtbkq5jNm+So20X1oFqtO6V/SvbUxH4A53sFfDIFuwez0zVG7/ZJNnNAHo9+8c
+	JE10FcyTrb8VZU9Wjpu79AZQlCLS1REatUK76uilgOlviqINDiPJPhzS2WeCnbnCo1PT
+	Gi58TnxRcPiiKgYejT/HqJKoyV6GX09Ye58D4BIjBe6Y0rV8CsMcXa8LGfWPhQw5S/Sx
+	lREYCT1ru2RZ0FOyEc5msrtGXP0CPDbhoNCDmTz0w0yVmKSP3q63dw9nw/WOfLVgHUFX
+	rwrw==
+X-Gm-Message-State: AFeK/H0iFBWuvJu4gTMgeILQ0WRLr7U0Y/jHsU+FkioRD8lnEVYo+p89lsZs60ODFeXXo81SuH7mvpkF0MidaQ==
+X-Received: by 10.36.22.85 with SMTP id a82mr2453034ita.83.1490458368577; Sat,
+	25 Mar 2017 09:12:48 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: xevo.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Mar 2017 09:30:52.0839 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: e0a7ca1f-2458-4cd6-a7c7-d733c07495ab
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR0101MB2953
-Subject: a cmake recipe with subdirectories?
+Received: by 10.107.159.212 with HTTP; Sat, 25 Mar 2017 09:12:48 -0700 (PDT)
+From: Munagala Naresh <munagala.nareshbabu@gmail.com>
+Date: Sat, 25 Mar 2017 21:42:48 +0530
+Message-ID: <CACfW1NpQWCVS+KrF6-mH7ELj=nKrmnvv0-1dagw260qbDQ_YsQ@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: CPU profiling at thread level
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -84,104 +69,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 25 Mar 2017 11:04:44 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_DM5PR0101MB295343520E0A2F13415210F8B6310DM5PR0101MB2953_"
+X-List-Received-Date: Sat, 25 Mar 2017 16:12:51 -0000
+Content-Type: multipart/alternative; boundary=001a11452daa9cbc3f054b90616d
 
---_000_DM5PR0101MB295343520E0A2F13415210F8B6310DM5PR0101MB2953_
-Content-Type: text/plain; charset="iso-8859-1"
+--001a11452daa9cbc3f054b90616d
+Content-Type: text/plain; charset=UTF-8
+
+Hi Team,
+
+To analyzes the CPU load consumption of a particular process, we need to
+find the thread level consumption. Default *top *and *ps *utils are not
+supporting all the parameters that are available in Linux/Android.
+
+
+Could you please suggest some alternatives which works in openembeded
+platform?
+
+-- 
+Regards
+Naresh Babu
+
+--001a11452daa9cbc3f054b90616d
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Hello, Yocto.
-I wonder which is the common / recommended way of preparing a recipe for th=
-e following project?
+<div dir=3D"ltr"><span style=3D"color:rgb(31,73,125)">Hi Team,</span><br><b=
+r><span style=3D"font-size:11pt;font-family:&quot;calibri&quot;,sans-serif;=
+color:rgb(31,73,125)">
 
-I have a source tree with 2 subdirectories A, B.
-Both A and B are cmake based source trees - each has CMakeLists.txt file of=
- its own.
-Then, when I build I would:
+</span><p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">To analy=
+zes the CPU load consumption of a particular process, we need to find the t=
+hread level consumption. Default <b>top </b>and <b>ps </b>utils are not sup=
+porting all the parameters that are available in Linux/Android. <br></span>=
+</p><p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)"><br></span>=
+</p>
 
-- checkout sync source for A and B
-- build A (cd A; cmake; make)
-- build B (cd ../B; cmake; make)
+<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">Could you pleas=
+e suggest some
+alternatives which works in openembeded platform?</span></p>
 
-Where, build A produces headers and libraries to be used when building B.
+<div><br>-- <br><div class=3D"gmail_signature">Regards<br>Naresh Babu=C2=A0=
+<br><br><div><br><div><br></div></div><div style=3D"padding:0px;margin-left=
+:0px;margin-top:0px;overflow:hidden;color:black;font-size:10px;text-align:l=
+eft;line-height:130%"></div><div style=3D"padding:0px;margin-left:0px;margi=
+n-top:0px;overflow:hidden;color:black;font-size:10px;text-align:left;line-h=
+eight:130%"></div></div>
+</div></div>
 
-Since this is rather a single software package, I want to make one Yhocto r=
-ecipe that do the above A build and B build.
-
-But looking into what cmake.bbclass does, it just configure against one CMa=
-keList.txt and build tree?
-
-I think writing two recipes for A and B, I can build them individually, but=
- if I can I want to avoid it since it involves unpacking the same source tr=
-ee twice, in two recipes.
-(though, it will be somehow cached in bitbake procedure and it is not a com=
-plete duplicate..)
-
-Any suggestion / coment is highly appreciated.
-
-
-
---_000_DM5PR0101MB295343520E0A2F13415210F8B6310DM5PR0101MB2953_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
-</head>
-<body dir=3D"ltr">
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
--family:Calibri,Arial,Helvetica,sans-serif;" dir=3D"ltr">
-<p></p>
-<div><span style=3D"font-size: 12pt;">Hello, Yocto.</span><br>
-</div>
-<div>I wonder which is the common / recommended way of preparing a recipe f=
-or the following project?</div>
-<div><br>
-</div>
-<div>I have a source tree with 2 subdirectories A, B.</div>
-<div>Both A and B are cmake based source trees - each has CMakeLists.txt fi=
-le of its own.</div>
-<div>Then, when I build I would:</div>
-<div><br>
-</div>
-<div>- checkout sync source for A and B</div>
-<div>- build A (cd A; cmake; make)</div>
-<div>- build B (cd ../B; cmake; make)</div>
-<div><br>
-</div>
-<div>Where, build A produces headers and libraries to be used when building=
- B.</div>
-<div><br>
-</div>
-<div>Since this is rather a single software package, I want to make one Yho=
-cto recipe that do the above A build and B build.</div>
-<div><br>
-</div>
-<div>But looking into what cmake.bbclass does, it just configure against on=
-e CMakeList.txt and build tree?</div>
-<div><br>
-</div>
-<div>I think writing two recipes for A and B, I can build them individually=
-, but if I can I want to avoid it since it involves unpacking the same sour=
-ce tree twice, in two recipes.</div>
-<div>(though, it will be somehow cached in bitbake procedure and it is not =
-a complete duplicate..)</div>
-<div><br>
-</div>
-<div>Any suggestion / coment is highly appreciated.</div>
-<div><br>
-</div>
-<br>
-<p></p>
-</div>
-</body>
-</html>
-
---_000_DM5PR0101MB295343520E0A2F13415210F8B6310DM5PR0101MB2953_--
+--001a11452daa9cbc3f054b90616d--
