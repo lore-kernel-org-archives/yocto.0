@@ -1,65 +1,44 @@
-Return-Path: <sebastien@iot.bzh>
+Return-Path: <yv@iseg-hv.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8BE87E00A9A; Mon, 27 Mar 2017 03:00:16 -0700 (PDT)
+	id F008DE00AE0; Mon, 27 Mar 2017 06:29:16 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW,SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [213.174.32.96 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.128.179 listed in list.dnswl.org]
-Received: from mail-wr0-f179.google.com (mail-wr0-f179.google.com
-	[209.85.128.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1A9B9E00524
-	for <yocto@yoctoproject.org>; Mon, 27 Mar 2017 03:00:13 -0700 (PDT)
-Received: by mail-wr0-f179.google.com with SMTP id u1so48340829wra.2
-	for <yocto@yoctoproject.org>; Mon, 27 Mar 2017 03:00:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=iot-bzh.20150623.gappssmtp.com; s=20150623;
-	h=to:from:subject:organization:message-id:date:user-agent
-	:mime-version:content-transfer-encoding;
-	bh=rT02HaL1zeE49iFNi37M1oBpEuLJ6e090KK4DH9wQbU=;
-	b=tdVzvaE25W8+2hN/VlcLNB8IzxGwhjOAfz8FvSb0JCgx0woz9/Jfuu6VapQk8GxgeW
-	elZmhtLNUbCqIlXuGw9M0wt9s73WqJa+7VJyZLmR5MGUEiH6P/J/gzro9nVmbLunTSgg
-	6eoWllPQOxWW+XfVMRvLl7nCBBcXVBiSgnIjSRKEdhNn17JsNrE3FUfgUymabyHAkUPn
-	hgRE7QMuF25/LHJ1KpfaTmnSTAVV5KU+vXT2PZs1gOtXgVemaVJWeLdiZErLpAO/BPKY
-	V4ObtSEcAclAWma6PYs5dJ9j3wid4xEgBRysTjSDyiuyTWMUesqJJVosh1xYPZLmSaLK
-	fqeA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:to:from:subject:organization:message-id:date
-	:user-agent:mime-version:content-transfer-encoding;
-	bh=rT02HaL1zeE49iFNi37M1oBpEuLJ6e090KK4DH9wQbU=;
-	b=GaRg1OR82UBbpqsakxvNG5TiQUtJnpHfkChXTVvJnqkFlGtMPIXm0JsjbKohVL0KSp
-	chr9ui/lOgaTExZ28Fxl1ro9oDEsSO7I6tBBaD0aYn2CDCigGY8x9K8jS5MbOGerMit0
-	S2NkxwfYv0fyRXNJd8c3oQBxfV7GWTNyW6DKceOd5FjWL4S+ilkE35sRdMcoOPJmdNtu
-	0QEBoDL1LjCAAaSpnL0n9E0j1yDG1B7zTpBy0CdmFlPvl1XgwKz1MoxOlbabuRXbI30f
-	DFXG9Hmmd5Nh7q81oAcMRl2lK8pdznMjcSSWtC1OsJ3k/3aSDJeV6xoIlIGCJjh6a+k2
-	Y++A==
-X-Gm-Message-State: AFeK/H1PV5NrR/NDqm8Z5tamEMGXtTPz6x4D/lSXgbHGuMcvCybIr1UL45lHpuuRNQ3JsQ==
-X-Received: by 10.28.198.134 with SMTP id w128mr8752514wmf.80.1490608812568;
-	Mon, 27 Mar 2017 03:00:12 -0700 (PDT)
-Received: from [192.168.1.17] (ARennes-651-1-208-148.w90-32.abo.wanadoo.fr.
-	[90.32.15.148])
-	by smtp.gmail.com with ESMTPSA id 186sm207311wml.2.2017.03.27.03.00.11
-	for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Mon, 27 Mar 2017 03:00:11 -0700 (PDT)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+X-Greylist: delayed 1195 seconds by postgrey-1.32 at yocto-www;
+	Mon, 27 Mar 2017 06:29:14 PDT
+Received: from mailout01.ims-firmen.de (mailout01.ims-firmen.de
+	[213.174.32.96])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 47A9EE00A38
+	for <yocto@yoctoproject.org>; Mon, 27 Mar 2017 06:29:14 -0700 (PDT)
+Received: from mailin03.ims-firmen.de ([192.168.1.143])
+	by mailout01.ims-firmen.de with esmtp (envelope-from <yv@iseg-hv.de>)
+	id 1csUOb-0001UI-hc
+	for yocto@yoctoproject.org; Mon, 27 Mar 2017 15:09:17 +0200
+Received: from [87.138.179.153] (helo=post.iseg.site)
+	by mailin03.ims-firmen.de with esmtpsa
+	(UNKNOWN:ADH-AES256-GCM-SHA384:256) (envelope-from <yv@iseg-hv.de>)
+	id 1csUOb-0003Cj-7t
+	for yocto@yoctoproject.org; Mon, 27 Mar 2017 15:09:17 +0200
+Received: from [192.168.25.170] (unknown [192.168.25.170])
+	by post.iseg.site (Postfix) with ESMTP id ED89A50DE74
+	for <yocto@yoctoproject.org>; Mon, 27 Mar 2017 15:09:16 +0200 (CEST)
 To: yocto@yoctoproject.org
-From: Sebastien D <sebastien@iot.bzh>
-Organization: IoT.bzh
-Message-ID: <9f434631-d18d-5582-dd86-13d9f5187af8@iot.bzh>
-Date: Mon, 27 Mar 2017 12:00:11 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.7.0
+From: Yuvarajesh Valleru <yv@iseg-hv.de>
+Message-ID: <579ec200-a223-5f6b-83d6-a6e7f26b66e1@iseg-hv.de>
+Date: Mon, 27 Mar 2017 15:07:57 +0200
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:45.0) Gecko/20100101
+	Thunderbird/45.8.0
 MIME-Version: 1.0
-Subject: Is CROPS the right option for Automotive Grade Linux SDK ?
+Subject: Could not inherit qt5 in to custom linux image.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,33 +50,219 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 27 Mar 2017 10:00:16 -0000
+X-List-Received-Date: Mon, 27 Mar 2017 13:29:17 -0000
+Content-Type: multipart/alternative;
+	boundary="------------6AB406ED1A70D4C82D36D010"
+
+--------------6AB406ED1A70D4C82D36D010
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-  Hi,
+Hi,
 
-I'm working on Automotive Grade Linux (AGL) project [1] that is based on 
-Yocto and OpenEmbedded and I'm wondering if CROPS [2] is the right tool 
-to cross-build an AGL application ?
-I'm looking for a framework which allows developers to easily 
-cross-compile application whatever is the host architecture (Windows, 
-Linux, Mac).
+I am building a linux image using yocto project. I have an apalis imx6 
+module in which i already deployed an image with toradex console image 
+(image from toradex). Now i have an own custom image meta-ball in which 
+i have copied the recipes-qt from console-trdx-image. And i am trying to 
+build my image in the same way like toradex image but could not build.
 
-So Crops project seems to match my needs but this project is no longer 
-active. At least the communication mechanism seems to be superseded by 
-an eclipse plugin [3] that communicates directly with the containers.
-But this solution (from my point of view) is too restrictive compared to 
-the initial one.
+one examle how my own recipe contains.
 
-Any comments are appreciated.
+SUMMARY = "ball include to get access to the devices"
+HOMEPAGE = "http://www.google.com <http://www.google.com/>"
+License = "CLOSED"
+
+inherit = qmake5
+inherit = systemd
+SYSTEMD_SERVICE_${PN} = "vrl.service vrl.socket"
+
+SRC_URI = " \git://.............
+"
+S = "${WORKDIR}/git"
+
+DEPENDS += " "
+PROVIDES += " "
+
+QMAKE_PROFILES = "${S}/vrl.pro
+"
+EXTRA_QMAKEVARS_PRE = "
+CONFIG+=SYSTEMD_SOCKET_ACTIVATION
+"
+do_install () {
+install -d ${D}${libdir}
+#use here cp instead of install because of symlinks
+cp -pr ${S}libvrl* ${D}${libdir}
+..........................................................................................
+.......................................................................................
+
+previously this vrl.inc file contains inherit qt4e in place of qmake5
+now for updating to qt5 i have an error : install cannot stat 
+'/home/src/oe-core/build/tmp-glibc/work/armv7at2hf-neon-angstrom-linux-gnueabi/vrl/1.0.-r0/git/vrl' 
+: no such file or directory.
+
 
 Regards,
-Sebastien.
+
+yv
 
 
-[1] : https://www.automotivelinux.org/
-[2] : https://github.com/crops/crops
-[3] : https://github.com/crops/eclipse-crops
+--------------6AB406ED1A70D4C82D36D010
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
 
+<html>
+  <head>
 
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <p style="box-sizing: border-box; margin: 0px 0px 10px; color:
+      rgb(51, 51, 51); font-family: &quot;Titillium Web&quot;;
+      font-size: 14px; font-style: normal; font-variant-ligatures:
+      normal; font-variant-caps: normal; font-weight: normal;
+      letter-spacing: normal; orphans: 2; text-align: left; text-indent:
+      0px; text-transform: none; white-space: normal; widows: 2;
+      word-spacing: 0px; -webkit-text-stroke-width: 0px;
+      background-color: rgb(255, 255, 255);"><span
+        class="Apple-converted-space">Hi, <br>
+      </span></p>
+    <p style="box-sizing: border-box; margin: 0px 0px 10px; color:
+      rgb(51, 51, 51); font-family: &quot;Titillium Web&quot;;
+      font-size: 14px; font-style: normal; font-variant-ligatures:
+      normal; font-variant-caps: normal; font-weight: normal;
+      letter-spacing: normal; orphans: 2; text-align: left; text-indent:
+      0px; text-transform: none; white-space: normal; widows: 2;
+      word-spacing: 0px; -webkit-text-stroke-width: 0px;
+      background-color: rgb(255, 255, 255);"><span
+        class="Apple-converted-space"></span>I am building a linux image
+      using yocto project. I have an apalis imx6 module in which i
+      already deployed an image with toradex console image (image from
+      toradex). Now i have an own custom image meta-ball in which i have
+      copied the recipes-qt from console-trdx-image. And i am trying to
+      build my image in the same way like toradex image but could not
+      build.</p>
+    <p style="box-sizing: border-box; margin: 0px 0px 10px; color:
+      rgb(51, 51, 51); font-family: &quot;Titillium Web&quot;;
+      font-size: 14px; font-style: normal; font-variant-ligatures:
+      normal; font-variant-caps: normal; font-weight: normal;
+      letter-spacing: normal; orphans: 2; text-align: left; text-indent:
+      0px; text-transform: none; white-space: normal; widows: 2;
+      word-spacing: 0px; -webkit-text-stroke-width: 0px;
+      background-color: rgb(255, 255, 255);">one examle how my own
+      recipe contains.</p>
+    <p style="box-sizing: border-box; margin: 0px 0px 10px; color:
+      rgb(51, 51, 51); font-family: &quot;Titillium Web&quot;;
+      font-size: 14px; font-style: normal; font-variant-ligatures:
+      normal; font-variant-caps: normal; font-weight: normal;
+      letter-spacing: normal; orphans: 2; text-align: left; text-indent:
+      0px; text-transform: none; white-space: normal; widows: 2;
+      word-spacing: 0px; -webkit-text-stroke-width: 0px;
+      background-color: rgb(255, 255, 255);">SUMMARY = "ball include to
+      get access to the devices"<br style="box-sizing: border-box;">
+      HOMEPAGE = "<a href="http://www.google.com/" rel="nofollow"
+        style="box-sizing: border-box; background-color: transparent;
+        color: rgb(51, 122, 183); text-decoration: none;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">http://www.google.com</a>"<br
+        style="box-sizing: border-box;">
+      License = "CLOSED"</p>
+    <p style="box-sizing: border-box; margin: 0px 0px 10px; color:
+      rgb(51, 51, 51); font-family: &quot;Titillium Web&quot;;
+      font-size: 14px; font-style: normal; font-variant-ligatures:
+      normal; font-variant-caps: normal; font-weight: normal;
+      letter-spacing: normal; orphans: 2; text-align: left; text-indent:
+      0px; text-transform: none; white-space: normal; widows: 2;
+      word-spacing: 0px; -webkit-text-stroke-width: 0px;
+      background-color: rgb(255, 255, 255);">inherit = qmake5<br
+        style="box-sizing: border-box;">
+      inherit = systemd<br style="box-sizing: border-box;">
+      SYSTEMD_SERVICE_${PN} = "vrl.service vrl.socket"</p>
+    <p style="box-sizing: border-box; margin: 0px 0px 10px; color:
+      rgb(51, 51, 51); font-family: &quot;Titillium Web&quot;;
+      font-size: 14px; font-style: normal; font-variant-ligatures:
+      normal; font-variant-caps: normal; font-weight: normal;
+      letter-spacing: normal; orphans: 2; text-align: left; text-indent:
+      0px; text-transform: none; white-space: normal; widows: 2;
+      word-spacing: 0px; -webkit-text-stroke-width: 0px;
+      background-color: rgb(255, 255, 255);">SRC_URI = "
+      \git://.............<br style="box-sizing: border-box;">
+      "<br style="box-sizing: border-box;">
+      S = "${WORKDIR}/git"</p>
+    <p style="box-sizing: border-box; margin: 0px 0px 10px; color:
+      rgb(51, 51, 51); font-family: &quot;Titillium Web&quot;;
+      font-size: 14px; font-style: normal; font-variant-ligatures:
+      normal; font-variant-caps: normal; font-weight: normal;
+      letter-spacing: normal; orphans: 2; text-align: left; text-indent:
+      0px; text-transform: none; white-space: normal; widows: 2;
+      word-spacing: 0px; -webkit-text-stroke-width: 0px;
+      background-color: rgb(255, 255, 255);">DEPENDS += " "<br
+        style="box-sizing: border-box;">
+      PROVIDES += " "</p>
+    <p style="box-sizing: border-box; margin: 0px 0px 10px; color:
+      rgb(51, 51, 51); font-family: &quot;Titillium Web&quot;;
+      font-size: 14px; font-style: normal; font-variant-ligatures:
+      normal; font-variant-caps: normal; font-weight: normal;
+      letter-spacing: normal; orphans: 2; text-align: left; text-indent:
+      0px; text-transform: none; white-space: normal; widows: 2;
+      word-spacing: 0px; -webkit-text-stroke-width: 0px;
+      background-color: rgb(255, 255, 255);">QMAKE_PROFILES =
+      "${S}/vrl.pro<span class="Apple-converted-space"> </span><br
+        style="box-sizing: border-box;">
+      "<br style="box-sizing: border-box;">
+      EXTRA_QMAKEVARS_PRE = "<span class="Apple-converted-space"> </span><br
+        style="box-sizing: border-box;">
+      CONFIG+=SYSTEMD_SOCKET_ACTIVATION<span
+        class="Apple-converted-space"> </span><br style="box-sizing:
+        border-box;">
+      "<br style="box-sizing: border-box;">
+      do_install () {<br style="box-sizing: border-box;">
+      install -d ${D}${libdir}<br style="box-sizing: border-box;">
+      #use here cp instead of install because of symlinks<br
+        style="box-sizing: border-box;">
+      cp -pr ${S}libvrl* ${D}${libdir}<br style="box-sizing:
+        border-box;">
+..........................................................................................<br
+        style="box-sizing: border-box;">
+.......................................................................................</p>
+    <p style="box-sizing: border-box; margin: 0px 0px 10px; color:
+      rgb(51, 51, 51); font-family: &quot;Titillium Web&quot;;
+      font-size: 14px; font-style: normal; font-variant-ligatures:
+      normal; font-variant-caps: normal; font-weight: normal;
+      letter-spacing: normal; orphans: 2; text-align: left; text-indent:
+      0px; text-transform: none; white-space: normal; widows: 2;
+      word-spacing: 0px; -webkit-text-stroke-width: 0px;
+      background-color: rgb(255, 255, 255);">previously this vrl.inc
+      file contains inherit qt4e in place of qmake5<br
+        style="box-sizing: border-box;">
+      now for updating to qt5 i have an error : install cannot stat
+'/home/src/oe-core/build/tmp-glibc/work/armv7at2hf-neon-angstrom-linux-gnueabi/vrl/1.0.-r0/git/vrl'
+      : no such file or directory.</p>
+    <p style="box-sizing: border-box; margin: 0px 0px 10px; color:
+      rgb(51, 51, 51); font-family: &quot;Titillium Web&quot;;
+      font-size: 14px; font-style: normal; font-variant-ligatures:
+      normal; font-variant-caps: normal; font-weight: normal;
+      letter-spacing: normal; orphans: 2; text-align: left; text-indent:
+      0px; text-transform: none; white-space: normal; widows: 2;
+      word-spacing: 0px; -webkit-text-stroke-width: 0px;
+      background-color: rgb(255, 255, 255);"><br>
+    </p>
+    <p style="box-sizing: border-box; margin: 0px 0px 10px; color:
+      rgb(51, 51, 51); font-family: &quot;Titillium Web&quot;;
+      font-size: 14px; font-style: normal; font-variant-ligatures:
+      normal; font-variant-caps: normal; font-weight: normal;
+      letter-spacing: normal; orphans: 2; text-align: left; text-indent:
+      0px; text-transform: none; white-space: normal; widows: 2;
+      word-spacing: 0px; -webkit-text-stroke-width: 0px;
+      background-color: rgb(255, 255, 255);">Regards,</p>
+    <p style="box-sizing: border-box; margin: 0px 0px 10px; color:
+      rgb(51, 51, 51); font-family: &quot;Titillium Web&quot;;
+      font-size: 14px; font-style: normal; font-variant-ligatures:
+      normal; font-variant-caps: normal; font-weight: normal;
+      letter-spacing: normal; orphans: 2; text-align: left; text-indent:
+      0px; text-transform: none; white-space: normal; widows: 2;
+      word-spacing: 0px; -webkit-text-stroke-width: 0px;
+      background-color: rgb(255, 255, 255);">yv<br>
+    </p>
+  </body>
+</html>
+
+--------------6AB406ED1A70D4C82D36D010--
