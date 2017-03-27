@@ -1,65 +1,58 @@
-Return-Path: <valentin.lebescond@gmail.com>
+Return-Path: <stephen.k.jolley@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9231CE00867; Mon, 27 Mar 2017 07:01:44 -0700 (PDT)
+	id 63DDFE00867; Mon, 27 Mar 2017 07:42:05 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE, 
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (valentin.lebescond[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.220.174 listed in list.dnswl.org]
+X-Spam-Status: No, score=-6.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	HTML_MESSAGE, RCVD_IN_DNSWL_HI,
+	T_DKIM_INVALID autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.24 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.220.174 listed in dnsbl.sorbs.net]
-Received: from mail-qk0-f174.google.com (mail-qk0-f174.google.com
-	[209.85.220.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1B679E007AA
-	for <yocto@yoctoproject.org>; Mon, 27 Mar 2017 07:01:41 -0700 (PDT)
-Received: by mail-qk0-f174.google.com with SMTP id r142so9998835qke.2
-	for <yocto@yoctoproject.org>; Mon, 27 Mar 2017 07:01:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to; 
-	bh=KCxZeU3kP22HToHTYppcpwBmcrwxBEGuThRyyiNfyPQ=;
-	b=uzipl0NE4emS/ja20aXbGkc4iP8UqMLIDw1FFSVTYtoAUOMyNAI3ryg1JUFpljHP+K
-	5mpInA+Y6ZuvRQCGGl3UQ7agFdzGBnwLlgE13Xge91J/DY+ndm3wp8m6VSb93uCYh7UG
-	r1+WTsiS0u5ZDk+/8dESCO5ceNhjkMLVxpsr5BbgJfyxgfxo6d84DRmLD33Ei+Es3y3J
-	xH9RkKPxHScfp/VfhRgas3fDNW7hjyea4wrTn89T9RaeiVAL+Aa3lvMaqgdRo1bxdWIp
-	NOmx/BEUFjktmeDC09ILVkaCwA4k0LxIlsbrzGbGiXxXwMi07V5gix20JRsEduW+7Bx8
-	O9sA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to;
-	bh=KCxZeU3kP22HToHTYppcpwBmcrwxBEGuThRyyiNfyPQ=;
-	b=EAn42UR7qulSqyFUuxBwnuTtv7fU4yqEuTXI6BvrmnBkCbY2zJ7nwc6ws+HlAkMk2m
-	shyNX7VXeuQuYTIMLnzAoYcxQpL52sxIqXiigcHyan0l4kviZFr7Vsz4UbSv5bPTjRHo
-	e+Lxo0poSFo6a6CPzVee9CdZ63Sz1nhJZrAN9anQ+QOpA4F/eA0GvG1Y0zhylArirLwi
-	NdzG30xP6xJUSZQdHNjcgJoDYnQCpKs5UsKcG7USLvetT8u8Td6OGvkQ0dzjuK9Akunu
-	eSou3rqHIUOQ26KMfoNFBQZwTWZdI/2JEbgd/6foDxNRTmgJrpZS6iSWcBX9NYiVmNZ2
-	5vkg==
-X-Gm-Message-State: AFeK/H2ggN2RcIJ1n2vtm1knRUV1YuKIW+qgxnuEGal2S/uRZSpKj+is7cyBMRS9QqlUcf1PJgpi/cyo1UETIw==
-X-Received: by 10.55.41.74 with SMTP id p71mr21290913qkh.246.1490623301031;
-	Mon, 27 Mar 2017 07:01:41 -0700 (PDT)
+	*  0.0 T_DKIM_INVALID DKIM-Signature header exists but is not valid
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 79D12E007AA
+	for <yocto@yoctoproject.org>; Mon, 27 Mar 2017 07:42:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+	d=intel.com; i=@intel.com; q=dns/txt; s=intel;
+	t=1490625724; x=1522161724;
+	h=from:to:subject:date:message-id:mime-version;
+	bh=S6ZujU2GEIh2lNVkDzKcjU+gUQSwzKmvUSx6l6XlHp4=;
+	b=sE9M7iOcHQdy3UfioAQRVh0fbfISdDpAKmuyi1dGInnIc4M23inWSlFh
+	NqLsIe9CtEh4KruPdApO+0S5LNLyqA==;
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+	by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	27 Mar 2017 07:42:03 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.36,231,1486454400"; d="scan'208,217";a="70958297"
+Received: from fmsmsx103.amr.corp.intel.com ([10.18.124.201])
+	by orsmga004.jf.intel.com with ESMTP; 27 Mar 2017 07:42:03 -0700
+Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.19]) by
+	FMSMSX103.amr.corp.intel.com ([10.18.124.201]) with mapi id
+	14.03.0319.002; Mon, 27 Mar 2017 07:42:02 -0700
+From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"openembedded-core@lists.openembedded.org"
+	<openembedded-core@lists.openembedded.org>
+Thread-Topic: =?Windows-1252?Q?Yocto_Project_Status_WW13=9217?=
+Thread-Index: AdKnBujerip4vnnbRrGEymfobNRuIg==
+Date: Mon, 27 Mar 2017 14:42:02 +0000
+Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155E8EDA9F2D@fmsmsx111.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-Auto-Response-Suppress: DR, OOF, AutoReply
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.1.200.107]
+x-ctpclassification: CTP_IC
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiZjkwYmE0ZGMtMDE0MS00NjZiLWIzNzUtNDczYTY2ODIyY2U2IiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX0lDIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE2LjUuOS4zIiwiVHJ1c3RlZExhYmVsSGFzaCI6Ik5WWWVkc1RrQzBmd1ZjSlN3R0xTZzlVXC8xNTNNcjZwbVwvcVcra2ZcLzluQ2c9In0=
 MIME-Version: 1.0
-References: <579ec200-a223-5f6b-83d6-a6e7f26b66e1@iseg-hv.de>
-In-Reply-To: <579ec200-a223-5f6b-83d6-a6e7f26b66e1@iseg-hv.de>
-From: Valentin Le bescond <valentin.lebescond@gmail.com>
-Date: Mon, 27 Mar 2017 14:01:30 +0000
-Message-ID: <CAP2S6e562AJn8rDgScBoAZfyqcTvgbPcZMboTwDBx20bmFdMgQ@mail.gmail.com>
-To: Yuvarajesh Valleru <yv@iseg-hv.de>, yocto@yoctoproject.org
-Subject: Re: Could not inherit qt5 in to custom linux image.
+Subject: =?UTF-8?B?WW9jdG8gUHJvamVjdCBTdGF0dXMgV1cxM+KAmTE3?=
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,260 +64,515 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 27 Mar 2017 14:01:44 -0000
-Content-Type: multipart/alternative; boundary=001a1147acdc5a2214054bb6c832
+X-List-Received-Date: Mon, 27 Mar 2017 14:42:05 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155E8EDA9F2Dfmsmsx111amrcor_"
 
---001a1147acdc5a2214054bb6c832
-Content-Type: text/plain; charset=UTF-8
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E8EDA9F2Dfmsmsx111amrcor_
+Content-Type: text/plain; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Current Dev Position: YP 2.3 M4
 
-I'm also interested in this question. I am planning to write a qt5 app
-recipe in the next few days.
+Next Deadline: YP 2.3 M4 Cutoff is April 10, 2017
 
-I might be totally wrong but I looked a bit at the meta-qt5 examples (
-https://github.com/meta-qt5/meta-qt5/blob/master/recipes-qt/examples/quitba=
-ttery_1.0.0.bb)
-and it seems you should replace "inherit qt4e" with "require
-recipes-qt/qt5/qt5.inc".
 
-qt5.inc containing "inherit qmake5" but also many more stuff.
-https://github.com/meta-qt5/meta-qt5/blob/master/recipes-qt/qt5/qt5.inc
+*** FEATURE FREEZE for 2.3 is now in effect. ***
 
-Can you try with that ?
 
-Regards,
+SWAT team rotation: Jussi -> Stephano on Mar. 24, 2017.
 
-Le lun. 27 mars 2017 =C3=A0 15:30, Yuvarajesh Valleru <yv@iseg-hv.de> a =C3=
-=A9crit :
+SWAT team rotation: Stephano -> Maxin on Mar. 31, 2017.
 
-> Hi,
->
-> I am building a linux image using yocto project. I have an apalis imx6
-> module in which i already deployed an image with toradex console image
-> (image from toradex). Now i have an own custom image meta-ball in which i
-> have copied the recipes-qt from console-trdx-image. And i am trying to
-> build my image in the same way like toradex image but could not build.
->
-> one examle how my own recipe contains.
->
-> SUMMARY =3D "ball include to get access to the devices"
-> HOMEPAGE =3D "http://www.google.com"
-> License =3D "CLOSED"
->
-> inherit =3D qmake5
-> inherit =3D systemd
-> SYSTEMD_SERVICE_${PN} =3D "vrl.service vrl.socket"
->
-> SRC_URI =3D " \git://.............
-> "
-> S =3D "${WORKDIR}/git"
->
-> DEPENDS +=3D " "
-> PROVIDES +=3D " "
->
-> QMAKE_PROFILES =3D "${S}/vrl.pro
-> "
-> EXTRA_QMAKEVARS_PRE =3D "
-> CONFIG+=3DSYSTEMD_SOCKET_ACTIVATION
-> "
-> do_install () {
-> install -d ${D}${libdir}
-> #use here cp instead of install because of symlinks
-> cp -pr ${S}libvrl* ${D}${libdir}
->
-> .........................................................................=
-.................
->
-> .........................................................................=
-..............
->
-> previously this vrl.inc file contains inherit qt4e in place of qmake5
-> now for updating to qt5 i have an error : install cannot stat
-> '/home/src/oe-core/build/tmp-glibc/work/armv7at2hf-neon-angstrom-linux-gn=
-ueabi/vrl/1.0.-r0/git/vrl'
-> : no such file or directory.
->
->
-> Regards,
->
-> yv
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team
 
---001a1147acdc5a2214054bb6c832
-Content-Type: text/html; charset=UTF-8
+
+Key Status/Updates:
+
+=B7        We=92ve decided to take M3 to an rc2 build due to the shear amou=
+nt of changes and issues found in rc1. The rc2 build is imminent but there =
+have been a number of significant good patches hitting the mailing list and=
+ it makes sense to pull many of these in.
+
+=B7        We have identified a number of issues which were slowing down oe=
+-selftest and the autobuilder, Joshua=92s help with these has been much app=
+reciated and going forward, build times should be better and builds will be=
+ more stable. We have been able to use sstate to accelerate selftest now (w=
+hich highlighted some other problems). We do continue to have performance/r=
+ace issues (which as some gpg issue which resulted in a 30 hour selftest) b=
+ut things are looking better.
+
+=B7        Since we=92re into the stabilization phase of 2.3, planning for =
+2.4 has begun and we=92re entering 2.4 ideas and enhancements in to bugzill=
+a. If you have suggestions for 2.4, please ensure they are in bugzilla.
+
+
+Proposed upcoming dot releases:
+
+YP 2.1.3 Cut off May 15, 2017
+
+YP 2.1.3 Release by May 26, 2017
+
+YP 2.2.2 Cut off May 29, 2017
+
+YP 2.2.2 Release by June 9, 2017
+
+
+Key YP 2.3 Dates:
+
+YP 2.3 M3 Release is Mar. 10, 2017 (Will be a few weeks late.)
+
+YP 2.3 M4 Cutoff is April 10, 2017
+
+YP 2.3 M4 Release is May 5, 2017
+
+
+Tracking Metrics:
+
+            WDD 2832 (last week 2751)
+
+(https://wiki.yoctoproject.org/charts/combo.html)
+
+
+Key Status Links for YP:
+
+https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.3_Status
+
+https://wiki.yoctoproject.org/wiki/Yocto_2.3_Schedule
+
+https://wiki.yoctoproject.org/wiki/Yocto_2.3_Features
+
+[If anyone has suggestions for other information you=92d like to see on thi=
+s weekly status update, let us know!]
+
+Thanks,
+
+Stephen K. Jolley
+Yocto Project Program Manager
+INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
+=95   Work Telephone:        (503) 712-0534
+=95    Cell:               (208) 244-4460
+=95 Email:                            stephen.k.jolley@intel.com
+
+
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E8EDA9F2Dfmsmsx111amrcor_
+Content-Type: text/html; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div><div><div><div><div>Hi,<br><br></div>I&#39;m also int=
-erested in this question. I am planning to write a qt5 app recipe in the ne=
-xt few days.<br><br> </div>I might be totally wrong but I looked a bit at t=
-he meta-qt5 examples (<a href=3D"https://github.com/meta-qt5/meta-qt5/blob/=
-master/recipes-qt/examples/quitbattery_1.0.0.bb">https://github.com/meta-qt=
-5/meta-qt5/blob/master/recipes-qt/examples/quitbattery_1.0.0.bb</a>) and it=
- seems you should replace &quot;inherit qt4e&quot; with &quot;require recip=
-es-qt/qt5/qt5.inc&quot;.<br><br></div>qt5.inc containing &quot;inherit qmak=
-e5&quot; but also many more stuff. <br><a href=3D"https://github.com/meta-q=
-t5/meta-qt5/blob/master/recipes-qt/qt5/qt5.inc">https://github.com/meta-qt5=
-/meta-qt5/blob/master/recipes-qt/qt5/qt5.inc</a><br></div></div><div><br></=
-div><div>Can you try with that ?<br></div><div><br></div>Regards,<br></div>=
-<br><div class=3D"gmail_quote"><div dir=3D"ltr">Le=C2=A0lun. 27 mars 2017 =
-=C3=A0=C2=A015:30, Yuvarajesh Valleru &lt;<a href=3D"mailto:yv@iseg-hv.de">=
-yv@iseg-hv.de</a>&gt; a =C3=A9crit=C2=A0:<br></div><blockquote class=3D"gma=
-il_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-lef=
-t:1ex">
- =20
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
+252">
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p
+	{mso-style-priority:99;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+span.EmailStyle18
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.apple-tab-span
+	{mso-style-name:apple-tab-span;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:422844675;
+	mso-list-template-ids:1691501246;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l0:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l0:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1
+	{mso-list-id:959994883;
+	mso-list-template-ids:1860085082;}
+@list l1:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l1:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l1:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Current Dev Positi=
+on: YP 2.3 M4
+</span><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Next Deadline: YP =
+2.3 M4 Cutoff is April 10, 2017</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">*** FEATURE FREEZE=
+ for 2.3 is now in effect. ***</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">SWAT team rotation=
+: Jussi -&gt; Stephano on Mar. 24, 2017.</span><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">SWAT team rotation=
+: Stephano -&gt; Maxin on Mar. 31, 2017.</span><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
+project.org/wiki/Yocto_Build_Failure_Swat_Team"><span style=3D"font-size:11=
+.0pt;font-family:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki=
+/Yocto_Build_Failure_Swat_Team</span></a><o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Key Status/Updates=
+:</span><o:p></o:p></p>
+<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
+n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l1 level1 lfo=
+3;vertical-align:baseline">
+<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
+or:black"><span style=3D"mso-list:Ignore">=B7<span style=3D"font:7.0pt &quo=
+t;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
+&quot;Arial&quot;,sans-serif;color:black">We=92ve decided to take M3 to an =
+rc2 build due to the shear amount of changes and issues found in rc1. The r=
+c2 build is imminent but there have been a number
+ of significant good patches hitting the mailing list and it makes sense to=
+ pull many of these in.<o:p></o:p></span></p>
+<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
+n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l1 level1 lfo=
+3;vertical-align:baseline">
+<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
+or:black"><span style=3D"mso-list:Ignore">=B7<span style=3D"font:7.0pt &quo=
+t;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
+&quot;Arial&quot;,sans-serif;color:black">We have identified a number of is=
+sues which were slowing down oe-selftest and the autobuilder, Joshua=92s he=
+lp with these has been much appreciated and going
+ forward, build times should be better and builds will be more stable. We h=
+ave been able to use sstate to accelerate selftest now (which highlighted s=
+ome other problems). We do continue to have performance/race issues (which =
+as some gpg issue which resulted
+ in a 30 hour selftest) but things are looking better.<o:p></o:p></span></p=
+>
+<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
+n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l1 level1 lfo=
+3;vertical-align:baseline">
+<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
+or:black"><span style=3D"mso-list:Ignore">=B7<span style=3D"font:7.0pt &quo=
+t;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
+&quot;Arial&quot;,sans-serif;color:black">Since we=92re into the stabilizat=
+ion phase of 2.3, planning for 2.4 has begun and we=92re entering 2.4 ideas=
+ and enhancements in to bugzilla. If you have suggestions
+ for 2.4, please ensure they are in bugzilla.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
+mes New Roman&quot;,serif"><o:p>&nbsp;</o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Proposed upcoming =
+dot releases:</span><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">YP 2.1.3 Cut off M=
+ay 15, 2017</span><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">YP 2.1.3 Release b=
+y May 26, 2017</span><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">YP 2.2.2 Cut off M=
+ay 29, 2017</span><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">YP 2.2.2 Release b=
+y June 9, 2017</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Key YP 2.3 Dates:<=
+/span><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">YP 2.3 M3 Release =
+is Mar. 10, 2017 (Will be a few weeks late.)</span><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">YP 2.3 M4 Cutoff i=
+s April 10, 2017</span><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">YP 2.3 M4 Release =
+is May 5, 2017</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Tracking Metrics:<=
+/span><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span class=3D"apple-tab-span=
+"><span style=3D"font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;=
+color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;
+</span></span><span style=3D"font-size:11.0pt;font-family:&quot;Arial&quot;=
+,sans-serif;color:black">WDD 2832 (last week 2751)</span><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt;text-indent:.5in"><span style=
+=3D"font-size:11.0pt;font-family:Consolas;color:black">(</span><a href=3D"h=
+ttps://wiki.yoctoproject.org/charts/combo.html"><span style=3D"font-size:11=
+.0pt;font-family:&quot;Arial&quot;,sans-serif;color:#1155CC">https://wiki.y=
+octoproject.org/charts/combo.html</span></a><span style=3D"font-size:11.0pt=
+;font-family:Consolas;color:black">)</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Key Status Links f=
+or YP:</span><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
+project.org/wiki/Yocto_Project_v2.3_Status"><span style=3D"font-size:11.0pt=
+;font-family:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yoc=
+to_Project_v2.3_Status</span></a><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
+project.org/wiki/Yocto_2.3_Schedule"><span style=3D"font-size:11.0pt;font-f=
+amily:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_2.3_=
+Schedule</span></a><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
+project.org/wiki/Yocto_2.3_Features"><span style=3D"font-size:11.0pt;font-f=
+amily:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_2.3_=
+Features</span></a><o:p></o:p></p>
+<p class=3D"MsoNormal"><br>
+<span style=3D"font-family:&quot;Arial&quot;,sans-serif;color:black">[If an=
+yone has suggestions for other information you=92d like to see on this week=
+ly status update, let us know!]<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,sans-se=
+rif;color:black"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,sans-se=
+rif;color:black">Thanks,</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
+><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
+ot;,serif;color:purple">Stephen K. Jolley</span></i></b><b><i><span style=
+=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,sans-serif;color:purple=
+"><o:p></o:p></span></i></b></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
+Courier New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></spa=
+n></b></p>
+<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
+><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
+or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
+<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:Wingdings;color:black">(<=
+/span><span style=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">
+</span><span style=3D"font-size:8.0pt;font-family:&quot;MS Sans Serif&quot;=
+;color:teal">&nbsp;&nbsp;</span><b><span style=3D"font-size:8.0pt;font-fami=
+ly:&quot;Comic Sans MS&quot;;color:teal">Work Telephone</span></b><span sty=
+le=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
+">(503) 712-0534<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
+;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
+ans Serif&quot;;color:teal">&nbsp;&nbsp;&nbsp;
+</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
+ot;;color:teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&=
+quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
+">(208) 244-4460<span style=3D"color:black"><o:p></o:p></span></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
+">* </span>
+<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
+MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
+.0pt;font-family:&quot;MS Sans Serif&quot;;color:teal">:</span><span lang=
+=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;">&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;
+<u><span style=3D"color:blue">stephen.k.jolley@intel.com</span></u></span><=
+span lang=3D"FR" style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,sa=
+ns-serif"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
 
-   =20
- =20
-  <div bgcolor=3D"#FFFFFF" text=3D"#000000" class=3D"gmail_msg">
-    <p style=3D"box-sizing:border-box;margin:0px 0px 10px;color:rgb(51,51,5=
-1);font-family:&quot;Titillium Web&quot;;font-size:14px;font-style:normal;f=
-ont-variant-ligatures:normal;font-variant-caps:normal;font-weight:normal;le=
-tter-spacing:normal;text-align:left;text-indent:0px;text-transform:none;whi=
-te-space:normal;word-spacing:0px;background-color:rgb(255,255,255)" class=
-=3D"gmail_msg"><span class=3D"m_8497770895668845428Apple-converted-space gm=
-ail_msg">Hi, <br class=3D"gmail_msg">
-      </span></p>
-    <p style=3D"box-sizing:border-box;margin:0px 0px 10px;color:rgb(51,51,5=
-1);font-family:&quot;Titillium Web&quot;;font-size:14px;font-style:normal;f=
-ont-variant-ligatures:normal;font-variant-caps:normal;font-weight:normal;le=
-tter-spacing:normal;text-align:left;text-indent:0px;text-transform:none;whi=
-te-space:normal;word-spacing:0px;background-color:rgb(255,255,255)" class=
-=3D"gmail_msg"><span class=3D"m_8497770895668845428Apple-converted-space gm=
-ail_msg"></span>I am building a linux image
-      using yocto project. I have an apalis imx6 module in which i
-      already deployed an image with toradex console image (image from
-      toradex). Now i have an own custom image meta-ball in which i have
-      copied the recipes-qt from console-trdx-image. And i am trying to
-      build my image in the same way like toradex image but could not
-      build.</p>
-    <p style=3D"box-sizing:border-box;margin:0px 0px 10px;color:rgb(51,51,5=
-1);font-family:&quot;Titillium Web&quot;;font-size:14px;font-style:normal;f=
-ont-variant-ligatures:normal;font-variant-caps:normal;font-weight:normal;le=
-tter-spacing:normal;text-align:left;text-indent:0px;text-transform:none;whi=
-te-space:normal;word-spacing:0px;background-color:rgb(255,255,255)" class=
-=3D"gmail_msg">one examle how my own
-      recipe contains.</p>
-    <p style=3D"box-sizing:border-box;margin:0px 0px 10px;color:rgb(51,51,5=
-1);font-family:&quot;Titillium Web&quot;;font-size:14px;font-style:normal;f=
-ont-variant-ligatures:normal;font-variant-caps:normal;font-weight:normal;le=
-tter-spacing:normal;text-align:left;text-indent:0px;text-transform:none;whi=
-te-space:normal;word-spacing:0px;background-color:rgb(255,255,255)" class=
-=3D"gmail_msg">SUMMARY =3D &quot;ball include to
-      get access to the devices&quot;<br style=3D"box-sizing:border-box" cl=
-ass=3D"gmail_msg">
-      HOMEPAGE =3D &quot;<a href=3D"http://www.google.com/" rel=3D"nofollow=
-" style=3D"box-sizing:border-box;background-color:transparent;color:rgb(51,=
-122,183);text-decoration:none" class=3D"gmail_msg" target=3D"_blank">http:/=
-/www.google.com</a>&quot;<br style=3D"box-sizing:border-box" class=3D"gmail=
-_msg">
-      License =3D &quot;CLOSED&quot;</p>
-    <p style=3D"box-sizing:border-box;margin:0px 0px 10px;color:rgb(51,51,5=
-1);font-family:&quot;Titillium Web&quot;;font-size:14px;font-style:normal;f=
-ont-variant-ligatures:normal;font-variant-caps:normal;font-weight:normal;le=
-tter-spacing:normal;text-align:left;text-indent:0px;text-transform:none;whi=
-te-space:normal;word-spacing:0px;background-color:rgb(255,255,255)" class=
-=3D"gmail_msg">inherit =3D qmake5<br style=3D"box-sizing:border-box" class=
-=3D"gmail_msg">
-      inherit =3D systemd<br style=3D"box-sizing:border-box" class=3D"gmail=
-_msg">
-      SYSTEMD_SERVICE_${PN} =3D &quot;vrl.service vrl.socket&quot;</p>
-    <p style=3D"box-sizing:border-box;margin:0px 0px 10px;color:rgb(51,51,5=
-1);font-family:&quot;Titillium Web&quot;;font-size:14px;font-style:normal;f=
-ont-variant-ligatures:normal;font-variant-caps:normal;font-weight:normal;le=
-tter-spacing:normal;text-align:left;text-indent:0px;text-transform:none;whi=
-te-space:normal;word-spacing:0px;background-color:rgb(255,255,255)" class=
-=3D"gmail_msg">SRC_URI =3D &quot;
-      \git://.............<br style=3D"box-sizing:border-box" class=3D"gmai=
-l_msg">
-      &quot;<br style=3D"box-sizing:border-box" class=3D"gmail_msg">
-      S =3D &quot;${WORKDIR}/git&quot;</p>
-    <p style=3D"box-sizing:border-box;margin:0px 0px 10px;color:rgb(51,51,5=
-1);font-family:&quot;Titillium Web&quot;;font-size:14px;font-style:normal;f=
-ont-variant-ligatures:normal;font-variant-caps:normal;font-weight:normal;le=
-tter-spacing:normal;text-align:left;text-indent:0px;text-transform:none;whi=
-te-space:normal;word-spacing:0px;background-color:rgb(255,255,255)" class=
-=3D"gmail_msg">DEPENDS +=3D &quot; &quot;<br style=3D"box-sizing:border-box=
-" class=3D"gmail_msg">
-      PROVIDES +=3D &quot; &quot;</p>
-    <p style=3D"box-sizing:border-box;margin:0px 0px 10px;color:rgb(51,51,5=
-1);font-family:&quot;Titillium Web&quot;;font-size:14px;font-style:normal;f=
-ont-variant-ligatures:normal;font-variant-caps:normal;font-weight:normal;le=
-tter-spacing:normal;text-align:left;text-indent:0px;text-transform:none;whi=
-te-space:normal;word-spacing:0px;background-color:rgb(255,255,255)" class=
-=3D"gmail_msg">QMAKE_PROFILES =3D
-      &quot;${S}/<a href=3D"http://vrl.pro" class=3D"gmail_msg" target=3D"_=
-blank">vrl.pro</a><span class=3D"m_8497770895668845428Apple-converted-space=
- gmail_msg">=C2=A0</span><br style=3D"box-sizing:border-box" class=3D"gmail=
-_msg">
-      &quot;<br style=3D"box-sizing:border-box" class=3D"gmail_msg">
-      EXTRA_QMAKEVARS_PRE =3D &quot;<span class=3D"m_8497770895668845428App=
-le-converted-space gmail_msg">=C2=A0</span><br style=3D"box-sizing:border-b=
-ox" class=3D"gmail_msg">
-      CONFIG+=3DSYSTEMD_SOCKET_ACTIVATION<span class=3D"m_84977708956688454=
-28Apple-converted-space gmail_msg">=C2=A0</span><br style=3D"box-sizing:bor=
-der-box" class=3D"gmail_msg">
-      &quot;<br style=3D"box-sizing:border-box" class=3D"gmail_msg">
-      do_install () {<br style=3D"box-sizing:border-box" class=3D"gmail_msg=
-">
-      install -d ${D}${libdir}<br style=3D"box-sizing:border-box" class=3D"=
-gmail_msg">
-      #use here cp instead of install because of symlinks<br style=3D"box-s=
-izing:border-box" class=3D"gmail_msg">
-      cp -pr ${S}libvrl* ${D}${libdir}<br style=3D"box-sizing:border-box" c=
-lass=3D"gmail_msg">
-...........................................................................=
-...............<br style=3D"box-sizing:border-box" class=3D"gmail_msg">
-...........................................................................=
-............</p>
-    <p style=3D"box-sizing:border-box;margin:0px 0px 10px;color:rgb(51,51,5=
-1);font-family:&quot;Titillium Web&quot;;font-size:14px;font-style:normal;f=
-ont-variant-ligatures:normal;font-variant-caps:normal;font-weight:normal;le=
-tter-spacing:normal;text-align:left;text-indent:0px;text-transform:none;whi=
-te-space:normal;word-spacing:0px;background-color:rgb(255,255,255)" class=
-=3D"gmail_msg">previously this vrl.inc
-      file contains inherit qt4e in place of qmake5<br style=3D"box-sizing:=
-border-box" class=3D"gmail_msg">
-      now for updating to qt5 i have an error : install cannot stat
-&#39;/home/src/oe-core/build/tmp-glibc/work/armv7at2hf-neon-angstrom-linux-=
-gnueabi/vrl/1.0.-r0/git/vrl&#39;
-      : no such file or directory.</p>
-    <p style=3D"box-sizing:border-box;margin:0px 0px 10px;color:rgb(51,51,5=
-1);font-family:&quot;Titillium Web&quot;;font-size:14px;font-style:normal;f=
-ont-variant-ligatures:normal;font-variant-caps:normal;font-weight:normal;le=
-tter-spacing:normal;text-align:left;text-indent:0px;text-transform:none;whi=
-te-space:normal;word-spacing:0px;background-color:rgb(255,255,255)" class=
-=3D"gmail_msg"><br class=3D"gmail_msg">
-    </p>
-    <p style=3D"box-sizing:border-box;margin:0px 0px 10px;color:rgb(51,51,5=
-1);font-family:&quot;Titillium Web&quot;;font-size:14px;font-style:normal;f=
-ont-variant-ligatures:normal;font-variant-caps:normal;font-weight:normal;le=
-tter-spacing:normal;text-align:left;text-indent:0px;text-transform:none;whi=
-te-space:normal;word-spacing:0px;background-color:rgb(255,255,255)" class=
-=3D"gmail_msg">Regards,</p>
-    <p style=3D"box-sizing:border-box;margin:0px 0px 10px;color:rgb(51,51,5=
-1);font-family:&quot;Titillium Web&quot;;font-size:14px;font-style:normal;f=
-ont-variant-ligatures:normal;font-variant-caps:normal;font-weight:normal;le=
-tter-spacing:normal;text-align:left;text-indent:0px;text-transform:none;whi=
-te-space:normal;word-spacing:0px;background-color:rgb(255,255,255)" class=
-=3D"gmail_msg">yv<br class=3D"gmail_msg">
-    </p>
-  </div>
-
---<br class=3D"gmail_msg">
-_______________________________________________<br class=3D"gmail_msg">
-yocto mailing list<br class=3D"gmail_msg">
-<a href=3D"mailto:yocto@yoctoproject.org" class=3D"gmail_msg" target=3D"_bl=
-ank">yocto@yoctoproject.org</a><br class=3D"gmail_msg">
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" class=3D"gmail_msg" target=3D"_blank">https://lists.yoctoproject.org/list=
-info/yocto</a><br class=3D"gmail_msg">
-</blockquote></div>
-
---001a1147acdc5a2214054bb6c832--
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E8EDA9F2Dfmsmsx111amrcor_--
