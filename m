@@ -1,26 +1,78 @@
-Return-Path: <recipe-report@yoctoproject.org>
+Return-Path: <teemu.keskinarkaus@crosscontrol.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DEA51E009AA; Sun, 26 Mar 2017 21:00:27 -0700 (PDT)
+	id 2341EE00AFD; Sun, 26 Mar 2017 23:29:09 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [104.47.34.47 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from packages.yoctoproject.org (unknown [198.145.29.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CD63DE00985
-	for <yocto@yoctoproject.org>; Sun, 26 Mar 2017 21:00:24 -0700 (PDT)
-Received: from packages.yoctoproject.org (localhost [IPv6:::1])
-	by packages.yoctoproject.org (Postfix) with ESMTP id 3762784ABE39
-	for <yocto@yoctoproject.org>; Mon, 27 Mar 2017 00:00:24 -0400 (EDT)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from NAM01-BY2-obe.outbound.protection.outlook.com
+	(mail-by2nam01on0047.outbound.protection.outlook.com [104.47.34.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B11EDE00A9A
+	for <yocto@yoctoproject.org>; Sun, 26 Mar 2017 23:29:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=actuant.onmicrosoft.com; s=selector1-actuant-onmicrosoft-com;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
+	bh=xvYxCJkErpfACmXHSnpATB0f8hC4HpxLztX8TnM6RBE=;
+	b=1Y3trLAfg/gW8fyFGtjekkhj1sl4fF7yJzGPEzf7hBZTpu1ACA33A1V86V/QgHiwDhOkkmNJHmudypfZ94z+IBVqfF57Y6r1keTkDsfoPLGO5RHuK83SFbVAJncTVxbAGsi2dhCzjK1wQ7obzw8YKAhNHmM7gdii9VrvBeYTlTo=
+Received: from CY4PR18MB1605.namprd18.prod.outlook.com (10.173.63.145) by
+	CY4PR18MB1607.namprd18.prod.outlook.com (10.173.63.147) with Microsoft
+	SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+	15.1.991.14; Mon, 27 Mar 2017 03:53:57 +0000
+Received: from CY4PR18MB1605.namprd18.prod.outlook.com ([10.173.63.145]) by
+	CY4PR18MB1605.namprd18.prod.outlook.com ([10.173.63.145]) with mapi id
+	15.01.0991.020; Mon, 27 Mar 2017 03:53:56 +0000
+From: "Keskinarkaus, Teemu" <teemu.keskinarkaus@crosscontrol.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Taskhash mismatch when using WIC-tool
+Thread-Index: AdKmrUduuujGCloUTXSLqvEdt0NIOw==
+Date: Mon, 27 Mar 2017 03:53:56 +0000
+Message-ID: <CY4PR18MB16050411C42ECD1FCA33AF04E0330@CY4PR18MB1605.namprd18.prod.outlook.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: yoctoproject.org; dkim=none (message not signed)
+	header.d=none;yoctoproject.org; dmarc=none action=none
+	header.from=crosscontrol.com;
+x-originating-ip: [81.19.113.90]
+x-microsoft-exchange-diagnostics: 1; CY4PR18MB1607;
+	7:paKtYKYnpIbZP59BYprjlYk4k7UGzuxC9sMGaBWzllI7uPc4EBTGJIDGjmjVJiGizo+/Zn0c16uEF0ZbRovjCvmaLjUefe8rEuiA3G3cmup0eusGIpHjTGOItX/F8TL3RvkktG+0JYsbZzeI2OQmI+tWNGmFWkfN5G+VbIaBTAv4sy7aQ+2CAteUw+KBhdo5oY4oicMUs1pauol61ryWieV5L3QES+GqJijahdw1KyszEomvsBiuMKb3PUMUNsQXmdcHsH5PETEge8kvUuo+0LLCPgv85l0lXhNeSz5Tm6tX3JK61AaN+drHt8qAV+IAt7MiEe7NwvTAWWBYaEKGBg==;
+	20:8Xz1F4MTtumHi+0/9G0GB5kgFR9+hG/GYb8q0AVEy+PpPwPgqswtWpmVlFEDMk/RwhF1fNsQsLR0iagvR1SMfG+C7vh5yO2qk1ElfnlrlsvdvMLix5d8BRkkOSGh+EiptOOjsj7oWYv5LPRvLgf3FE+i67xZD9tXVNI8hlc8rqc=
+x-ms-office365-filtering-correlation-id: 3233b4cb-cd46-4424-8c76-08d474c4e4e6
+x-microsoft-antispam: UriScan:; BCL:0; PCL:0; RULEID:(22001)(2017030254075);
+	SRVR:CY4PR18MB1607; 
+x-microsoft-antispam-prvs: <CY4PR18MB1607970D20D014FB77683CD7E0330@CY4PR18MB1607.namprd18.prod.outlook.com>
+x-exchange-antispam-report-test: UriScan:(21748063052155);
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(6040413)(601004)(2401047)(5005006)(8121501046)(3002001)(10201501046)(6041248)(20161123560025)(20161123564025)(20161123562025)(201703131423038)(201702281528038)(201703061421038)(201703061406038)(20161123558025)(20161123555025)(6072148);
+	SRVR:CY4PR18MB1607; BCL:0; PCL:0; RULEID:; SRVR:CY4PR18MB1607; 
+x-forefront-prvs: 02596AB7DA
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10009020)(6009001)(39400400002)(39450400003)(39850400002)(39410400002)(39840400002)(8676002)(81166006)(1730700003)(2900100001)(77096006)(66066001)(38730400002)(2906002)(110136004)(74316002)(102836003)(3846002)(8936002)(6116002)(790700001)(3660700001)(7736002)(122556002)(3280700002)(55016002)(99286003)(2351001)(54356999)(5640700003)(6436002)(53936002)(50986999)(33656002)(5660300001)(7696004)(5630700001)(2501003)(6916009)(25786009)(86362001)(189998001)(54896002)(6306002)(9686003)(6506006);
+	DIR:OUT; SFP:1101; SCL:1; SRVR:CY4PR18MB1607;
+	H:CY4PR18MB1605.namprd18.prod.outlook.com; FPR:; SPF:None;
+	MLV:ovrnspm; PTR:InfoNoRecords; LANG:en; 
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-From: recipe-report@yoctoproject.org
-To: yocto@yoctoproject.org
-Date: Mon, 27 Mar 2017 04:00:24 -0000
-Message-ID: <20170327040024.7373.74404@packages.yoctoproject.org>
-Subject: [Recipe reporting system] Upgradable recipe name list
+X-OriginatorOrg: crosscontrol.com
+X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Mar 2017 03:53:56.5840 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 1602ae82-0266-40d6-910b-11680fe0f6a5
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR18MB1607
+Subject: Taskhash mismatch when using WIC-tool
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,122 +84,148 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 27 Mar 2017 04:00:27 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 27 Mar 2017 06:29:09 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_CY4PR18MB16050411C42ECD1FCA33AF04E0330CY4PR18MB1605namp_"
 
-This mail was sent out by Recipe reporting system.
+--_000_CY4PR18MB16050411C42ECD1FCA33AF04E0330CY4PR18MB1605namp_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-This message list those recipes which need to be upgraded. If maintainers
-believe some of them needn't to upgrade at this time, they can fill
-RECIPE_NO_UPDATE_REASON in respective recipe file to ignore this remainder
-until newer upstream version was detected.
+Hi,
 
-Example:
-RECIPE_NO_UPDATE_REASON = "Version 2.0 is unstable"
+I recently started using WIC-tool to create the final image instead and fro=
+m day one I seem to be having taskhash mismatch errors when first time crea=
+ting the image. If I run the same command second time it goes through witho=
+ut any problems.
 
-You can check the detail information at:
+I'm using Yocto 2.1.
 
-http://recipes.yoctoproject.org/
+Here is the error I'm talking about:
 
-Package               Version      Upstream version      Maintainer           NoUpgradeReason
---------------------  -----------  --------------------  -------------------  ------------------------------
-python3               3.5.2        3.6.0                 Alejandro Hernandez
-python3-native        3.5.2        3.6.0                 Alejandro Hernandez
-gnutls                3.5.9        3.5.10                Alexander Kanavin
-dtc                   1.4.2        1.4.4                 Alexander Kanavin
-btrfs-tools           4.9.1        4.10                  Alexander Kanavin
-mobile-broadband-...  20151214     20170310              Alexander Kanavin
-openssl               1.0.2k       1.1.0e                Alexander Kanavin
-mpg123                1.23.8       1.24.0                Alexander Kanavin
-vala                  0.34.4       0.34.6                Alexander Kanavin
-libiconv              1.14         1.15                  Alexander Kanavin
-ed                    1.14.1       1.14.2                Alexander Kanavin
-lzo                   2.09         2.10                  Alexander Kanavin
-kconfig-frontends     3.12.0.0     4.7.0.0               Alexander Kanavin
-gperf                 3.0.4        3.1                   Alexander Kanavin
-mkelfimage            4.0+gitX     4.5+gitAUTOINC+0b...  Alexander Kanavin    mkelfimage has been removed...
-libarchive            3.2.2        3.3.1                 Alexander Kanavin
-dpkg                  1.18.10      1.18.23               Aníbal Limón
-pinentry              0.9.2        1.0.0                 Armin Kuster
-libpcre2              10.22        10.23                 Armin Kuster
-linux-libc-headers    4.10         4.10.1                Bruce Ashfield
-libunwind             1.1+gitX     1.2+gitAUTOINC+cc...  Bruce Ashfield
-linux-yocto-rt        4.10+gitX    4.10.1+gitAUTOINC...  Bruce Ashfield
-linux-yocto-tiny      4.10+gitX    4.10.1+gitAUTOINC...  Bruce Ashfield
-linux-yocto           4.10+gitX    4.10.1+gitAUTOINC...  Bruce Ashfield
-coreutils             8.26         8.27                  Chen Qi
-systemd-boot          232          233                   Chen Qi
-util-linux            2.29.1       2.29.2                Chen Qi
-pciutils              3.5.2        3.5.4                 Chen Qi
-kmod                  23+gitX      24+gitAUTOINC+ef4...  Chen Qi
-sed                   4.2.2        4.4                   Chen Qi
-sysstat               11.5.4       11.5.5                Chen Qi
-systemd               232          233                   Chen Qi
-curl                  7.53.0       7.53.1                Chen Qi
-busybox               1.25.0+gitX  1.26.2+gitAUTOINC...  Chen Qi
-flex                  2.6.0        2.6.3                 Chen Qi
-dbus-test             1.10.14      1.10.16               Chen Qi
-dbus                  1.10.14      1.10.16               Chen Qi
-grep                  2.27         3.0                   Chen Qi
-byacc                 20161202     20170201              Chen Qi
-kmod-native           23+gitX      24+gitAUTOINC+ef4...  Chen Qi
-build-appliance-i...  15.0.0       16.0.1                Cristian Iorga
-python3-setuptools    32.1.1       34.3.1                Edwin Plauchu
-python-setuptools     32.1.1       34.3.1                Edwin Plauchu
-createrepo            0.4.11       0.10.4                Hongxu Jia           Versions after 0.9.* use YU...
-libgpg-error          1.26         1.27                  Hongxu Jia
-bash                  4.3.30       4.4                   Hongxu Jia
-gnupg                 2.1.18       2.1.19                Hongxu Jia
-python-git            2.1.1        2.1.3                 Jose Lamego
-python3-git           2.1.1        2.1.3                 Jose Lamego
-pango                 1.40.3       1.40.4                Jussi Kukkonen
-libinput              1.6.1        1.6.902               Jussi Kukkonen
-xserver-xorg          1.19.1       1.19.2                Jussi Kukkonen
-gtk-icon-utils-na...  3.22.8       3.22.9                Jussi Kukkonen
-libx11-diet           1.6.4        1.6.5                 Jussi Kukkonen
-libx11                1.6.4        1.6.5                 Jussi Kukkonen
-gtk+3                 3.22.8       3.22.9                Jussi Kukkonen
-libevent              2.0.22       2.1.8                 Jussi Kukkonen
-xf86-input-libinput   0.24.0       0.25.0                Jussi Kukkonen
-libepoxy              1.4.0        1.4.1                 Jussi Kukkonen
-nfs-utils             1.3.4        2.1.1                 Mariano Lopez
-prelink               1.0+gitX     20151030.+gitAUTO...  Mark Hatle
-rpm                   5.4.16       5.4.17                Mark Hatle
-db                    6.0.35       6.2.23                Mark Hatle           latest db does not work wit...
-libpfm4               4.6.0        4.8.0                 Matthew McClintock
-ifupdown              0.8.16       0.8.19                Maxin B. John
-bluez5                5.43         5.44                  Maxin B. John
-libsolv               0.6.24       0.6.26                Maxin B. John
-harfbuzz              1.4.1        1.4.4                 Maxin B. John
-mc                    4.8.18       4.8.19                Maxin B. John
-go-native             1.4.3        1.8                   No maintainer
-vulkan                1.0.39.1     20141209              No maintainer
-git                   2.11.1       2.12.0                Robert Yang
-lsbinitscripts        9.68         9.70                  Ross Burton
-base-passwd           3.5.29       3.5.43                Ross Burton          Version 3.5.38 requires cde...
+ERROR: release-image-1.0-r0 do_rootfs_wicenv: Taskhash mismatch da155888bd9=
+c40e3ca6c8584a4d86cf5 verses 8307d09291312e835bb5254c93af3e05 for /<path to=
+ image recipe>/release-image.bb.do_rootfs_wicenv
 
-Upgradable count: 70
-Upgradable total count: 74
+Is this known issue or what am I doing wrong?
 
-The based commit is:
+-TeemuK
 
-commit 552bd782d9ffe275b8fc7d7cb0b9aaceb51888c3
-Author: Ed Bartosh <ed.bartosh@linux.intel.com>
-Date:   Fri Mar 24 14:29:52 2017 +0200
+________________________________
 
-    wic: use kernel_dir to find systemd-efi bootloader
-    
-    Fixed test failure caused by using bootimg_dir path
-    instead of kernel_dir to find systemd-efi bootloader:
-    FAIL: test_systemd_bootdisk (oeqa.selftest.wic.Wic)
-    ...
-    FileNotFoundError: [Errno 2] No such file or directory:
-    'tmp/work/qemux86_64-poky-linux/core-image-minimal/1.0-r0/recipe-sysroot/usr/share'
-    
-    Signed-off-by: Ed Bartosh <ed.bartosh@linux.intel.com>
-    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+Actuant Corporation Email Notice
 
-Any problem, please contact Anibal Limon <anibal.limon@intel.com> 
+This message is intended only for the use of the Addressee and may contain =
+information that is PRIVILEGED and/or CONFIDENTIAL.
+This email is intended only for the personal and confidential use of the re=
+cipient(s) named above. If the reader of this email is not an intended reci=
+pient, you have received this email in error and any review, dissemination,=
+ distribution or copying is strictly prohibited.
+If you have received this email in error, please notify the sender immediat=
+ely by return mail and permanently delete the copy you received.
 
+Thank you.
 
+--_000_CY4PR18MB16050411C42ECD1FCA33AF04E0330CY4PR18MB1605namp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 2.0cm 70.85pt 2.0cm;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"FI" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Hi,<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">I recently started using WIC-to=
+ol to create the final image instead and from day one I seem to be having t=
+askhash mismatch errors when first time creating the image. If I run the sa=
+me command second time it goes through
+ without any problems.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">I&#8217;m using Yocto 2.1.<o:p>=
+</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Here is the error I&#8217;m tal=
+king about:<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">ERROR: release-image-1.0-r0 do_=
+rootfs_wicenv: Taskhash mismatch da155888bd9c40e3ca6c8584a4d86cf5 verses 83=
+07d09291312e835bb5254c93af3e05 for /&lt;path to image recipe&gt;/release-im=
+age.bb.do_rootfs_wicenv<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Is this known issue or what am =
+I doing wrong?<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">-TeemuK<o:p></o:p></span></p>
+</div>
+<br>
+<hr>
+<font face=3D"Arial" color=3D"Black" size=3D"1"><br>
+Actuant Corporation Email Notice<br>
+<br>
+This message is intended only for the use of the Addressee and may contain =
+information that is PRIVILEGED and/or CONFIDENTIAL.<br>
+This email is intended only for the personal and confidential use of the re=
+cipient(s) named above. If the reader of this email is not an intended reci=
+pient, you have received this email in error and any review, dissemination,=
+ distribution or copying is strictly
+ prohibited.<br>
+If you have received this email in error, please notify the sender immediat=
+ely by return mail and permanently delete the copy you received.<br>
+<br>
+Thank you.<br>
+</font>
+</body>
+</html>
+
+--_000_CY4PR18MB16050411C42ECD1FCA33AF04E0330CY4PR18MB1605namp_--
