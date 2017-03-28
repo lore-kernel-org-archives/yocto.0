@@ -1,68 +1,50 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7422AE004E5; Tue, 28 Mar 2017 13:35:16 -0700 (PDT)
+	id 9C2D6E0050B; Tue, 28 Mar 2017 14:35:34 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [74.125.83.51 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (raj.khem[at]gmail.com)
+X-Spam-Status: No, score=-6.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	RCVD_IN_DNSWL_HI, RCVD_IN_SORBS_SPAM,
+	T_DKIM_INVALID autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.88 listed in list.dnswl.org]
 	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.83.51 listed in dnsbl.sorbs.net]
+	*      [192.55.52.88 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pg0-f51.google.com (mail-pg0-f51.google.com [74.125.83.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E72D6E003C1
-	for <yocto@yoctoproject.org>; Tue, 28 Mar 2017 13:35:14 -0700 (PDT)
-Received: by mail-pg0-f51.google.com with SMTP id 21so83202896pgg.1
-	for <yocto@yoctoproject.org>; Tue, 28 Mar 2017 13:35:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=subject:to:references:from:message-id:date:user-agent:mime-version
-	:in-reply-to; bh=vbACdN84gfeCw09vnHjBjD9197WeR+m/yrz9r4DaiC8=;
-	b=VtJXYhRBcm8UFk6Mo3o8bQ9mLhA5a7vJEqULche5BcfAQbtrl+hfeeSrHgs7Oq5kE7
-	gy3uDDlxlVdeCyLvt1lMDzd7V+lyHSCytSaOb3Zyy3t3Zg4MKrd9Ps6NBRzLnJEBl0F0
-	dR/39OLaKrN6beFqXvx28psG8Vqp7FT6AN9sS9LfwYPTMd0s/lXONYX8XinFtcZKemDN
-	LwVa7aZRlw2oGQQJr2YJCrFTlHJ38JFxWDGgJ4DkPM5FEVPc2d8CSmGQpdF2ZoJQLpMS
-	n9HZ/ybLC0hMQH8UPoUEeLZ5cVj7deqGp71gnVD9trBIdkB9rFgvMH5T7l+xj7FPbzWT
-	t2VA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:references:from:message-id:date
-	:user-agent:mime-version:in-reply-to;
-	bh=vbACdN84gfeCw09vnHjBjD9197WeR+m/yrz9r4DaiC8=;
-	b=cj/+UB5qOXBswjkHRlUb/RqVSY71jOj9/l/MUUpMLtG4mbhbvjalIEyrYe7NH4ZJH1
-	uWLb0yN55985eB6jt/dHZtFkxU0ygIYw9ryYSEpp4keFL/tEvSGEihc7IT0sq8Pplv9F
-	W6/HzfMuKGNkFWcfH81zt87NJTQnp2gh3E7nuVYVpq2BVyYA1t31Gd8OH/dPs2JTCBGk
-	ERf6WNmj5LnUy9itvtWmFPx3JslOeBsPYt8j4vaRhEsSZ443zQFN3efDIfzl2CDig66x
-	MHNwFaN15Q9PFDfPDTFy/jTzUy/WIdH813MGFR7jc1Hc3SU7yhMFDt3Mk4FzOt/KyOg+
-	9owA==
-X-Gm-Message-State: AFeK/H0X4FdnJft+hnP+oI9uMtw2s9UDEbwpZ6yhn2h9CZCXMVSZmb/77BGseA8WYr5ycQ==
-X-Received: by 10.98.30.3 with SMTP id e3mr4172883pfe.48.1490733314106;
-	Tue, 28 Mar 2017 13:35:14 -0700 (PDT)
-Received: from CACSVMO-14452.local ([2601:647:4c00:23ec:1153:8bec:b665:1636])
-	by smtp.gmail.com with ESMTPSA id
-	c19sm9082907pfd.85.2017.03.28.13.35.12
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 28 Mar 2017 13:35:12 -0700 (PDT)
-To: Ian Welch <ian_welch@trimble.com>, yocto@yoctoproject.org
-References: <CACgq_DoCsbs2-a9UbeKj_EhsKwJDTNBNT8qNYmA=5ZFm7oT83w@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Message-ID: <74fdd551-c061-94ba-7179-e02130a80fd9@gmail.com>
-Date: Tue, 28 Mar 2017 13:35:04 -0700
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:45.0)
-	Gecko/20100101 Thunderbird/45.8.0
-MIME-Version: 1.0
+	*  0.0 T_DKIM_INVALID DKIM-Signature header exists but is not valid
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 00764E003E1
+	for <yocto@yoctoproject.org>; Tue, 28 Mar 2017 14:35:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+	d=intel.com; i=@intel.com; q=dns/txt; s=intel;
+	t=1490736933; x=1522272933;
+	h=from:to:cc:subject:date:message-id:in-reply-to:
+	references:mime-version:content-transfer-encoding;
+	bh=O6wkbJcTwrEVxsANuAOFRWCm8wJgaPYs988fG+IEE8g=;
+	b=E/kDx+jokP707eieqINDZoVqskvCv3+0Vw49k82jk371HP4MPMZdg/p0
+	EnjWGHlrHLywuKPVX81pMd9rpOmQRA==;
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+	by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	28 Mar 2017 14:35:33 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.36,238,1486454400"; d="scan'208";a="839441851"
+Received: from dalin-mobl1.gar.corp.intel.com (HELO
+	peggleto-mobl.ger.corp.intel.com) ([10.255.138.23])
+	by FMSMGA003.fm.intel.com with ESMTP; 28 Mar 2017 14:35:31 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Ian Welch <ian_welch@trimble.com>
+Date: Wed, 29 Mar 2017 10:35:28 +1300
+Message-ID: <2831743.0r9HdKAZTp@peggleto-mobl.ger.corp.intel.com>
+Organization: Intel Corporation
 In-Reply-To: <CACgq_DoCsbs2-a9UbeKj_EhsKwJDTNBNT8qNYmA=5ZFm7oT83w@mail.gmail.com>
+References: <CACgq_DoCsbs2-a9UbeKj_EhsKwJDTNBNT8qNYmA=5ZFm7oT83w@mail.gmail.com>
+MIME-Version: 1.0
+Cc: yocto@yoctoproject.org
 Subject: Re: Using ${SRCVP} in PR of BB file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -75,103 +57,66 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 Mar 2017 20:35:16 -0000
-X-Groupsio-MsgNum: 35280
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature";
-	boundary="1fEqJAttWQfhP8Wh7hBhNFfJj3ilboFt8"
+X-List-Received-Date: Tue, 28 Mar 2017 21:35:34 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
---1fEqJAttWQfhP8Wh7hBhNFfJj3ilboFt8
-Content-Type: multipart/mixed; boundary="MwgKpDCLAkEbtcbUhgL0Q0BL937fCNrIo";
- protected-headers="v1"
-From: Khem Raj <raj.khem@gmail.com>
-To: Ian Welch <ian_welch@trimble.com>, yocto@yoctoproject.org
-Message-ID: <74fdd551-c061-94ba-7179-e02130a80fd9@gmail.com>
-Subject: Re: [yocto] Using ${SRCVP} in PR of BB file
-References: <CACgq_DoCsbs2-a9UbeKj_EhsKwJDTNBNT8qNYmA=5ZFm7oT83w@mail.gmail.com>
-In-Reply-To: <CACgq_DoCsbs2-a9UbeKj_EhsKwJDTNBNT8qNYmA=5ZFm7oT83w@mail.gmail.com>
+Hi Ian,
 
---MwgKpDCLAkEbtcbUhgL0Q0BL937fCNrIo
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: quoted-printable
-
-
-
-On 3/28/17 1:27 PM, Ian Welch wrote:
-> Hello,
->       We are preparing to move to PRservice in Yocto to handle auto
-> rolling our revisions on every build. As an interim step we are doing
-> some reordering or our current PR and PV parameters in our bitbake
-> files. Our current syntax is as follows and works as expected
->=20
+On Wednesday, 29 March 2017 9:27:01 AM NZDT Ian Welch wrote:
+>       We are preparing to move to PRservice in Yocto to handle auto rolling
+> our revisions on every build. As an interim step we are doing some
+> reordering or our current PR and PV parameters in our bitbake files. Our
+> current syntax is as follows and works as expected
+> 
 > ----BB File----
-> SRC_URI =3D
-> "git://myrepo.git;branch=3Dmybranch;subpath=3DLinux/bcastforwd;destsuff=
-ix=3DLinux/bcastforwd;protocol=3Dssh"
-> SRCREV =3D "${AUTOREV}"
-> PV =3D "1.1"
-> PR =3D "r0"
-> PV_append =3D "+git${SRCPV}"
->=20
+> SRC_URI =
+> "git://myrepo.git;branch=mybranch;subpath=Linux/bcastforwd;destsuffix=Linux/
+> bcastforwd;protocol=ssh" SRCREV = "${AUTOREV}"
+> PV = "1.1"
+> PR = "r0"
+> PV_append = "+git${SRCPV}"
+> 
 > ----Output from build----
->=20
+> 
 > bcastforwd_1.0-r0git0+afc68d4a00_arm926ejste.ipk
->=20
->=20
->=20
-> When we change git${SRCPV} to append to the PR we get "AUTOINC" in plac=
-e
-> of the revision number
->=20
+> 
+> 
+> 
+> When we change git${SRCPV} to append to the PR we get "AUTOINC" in place of
+> the revision number
+> 
 > ----BB File----
-> "git://myrepo.git;branch=3Dmybranch;subpath=3DLinux/bcastforwd;destsuff=
-ix=3DLinux/bcastforwd;protocol=3Dssh"
-> SRCREV =3D "${AUTOREV}"
-> PV =3D "1.1"
-> PR =3D "r0"
-> PR_append =3D "+git${SRCPV}"
->=20
+> "git://myrepo.git;branch=mybranch;subpath=Linux/bcastforwd;destsuffix=Linux/
+> bcastforwd;protocol=ssh" SRCREV = "${AUTOREV}"
+> PV = "1.1"
+> PR = "r0"
+> PR_append = "+git${SRCPV}"
+> 
 > ----ipk Output from build----
->=20
+> 
 > bcastforwd_1.0-r0gitAUTOINC+afc68d4a00_arm926ejste.ipk
->=20
->=20
-> I took a look at the package.bbclass file which appears to be the magic=
- sauce for searching and replacing the "AUTOINC" string but nothing jumpe=
-d out at me as to why this would work for PV but not PR.
->=20
->=20
+> 
+> 
+> I took a look at the package.bbclass file which appears to be the
+> magic sauce for searching and replacing the "AUTOINC" string but
+> nothing jumped out at me as to why this would work for PV but not PR.
+
+It's doing the replacement on PKGV, which is the equivalent of PV at the 
+packaging end of things. We don't apply the replacement to PKGR, which is the 
+equivalent to PR.
+ 
 > Is it possible to support AUTOREV on PR?
 
-git0 and gitAUTOINC is the difference you are seeing however when PR is
-bumped r0 would change to r0.0 or something which is preceding the
-AUTOINC difference and you should be able to upgrade. Although I would
-discourage you from using AUTOREVs in release environment. Use locked
-SHA values, it will also help you with reproducible builds.
+The code isn't designed to handle that - the convention is to put it into PV 
+and have the AUTOINC value ensure that the version increments properly. Aside 
+from the preceding "r", PR is typically just a number.
 
->=20
->=20
->=20
-> Thanks,
->      Ian Welch
->      Trimble Inc.=20
->=20
->=20
+Cheers,
+Paul
 
+-- 
 
---MwgKpDCLAkEbtcbUhgL0Q0BL937fCNrIo--
+Paul Eggleton
+Intel Open Source Technology Centre
 
---1fEqJAttWQfhP8Wh7hBhNFfJj3ilboFt8
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-Comment: GPGTools - https://gpgtools.org
-
-iEYEARECAAYFAljayP8ACgkQuwUzVZGdMxSUoACfXw/d1Y6Yt8JFA9bNhQSWuBiP
-AQsAn0cB2RJ3SJ1Mv8KNmLM2EjQQZJ6+
-=8cTy
------END PGP SIGNATURE-----
-
---1fEqJAttWQfhP8Wh7hBhNFfJj3ilboFt8--
