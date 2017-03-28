@@ -1,70 +1,47 @@
-Return-Path: <maxpowel@gmail.com>
+Return-Path: <jose.a.lamego@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E4A3EE00524; Tue, 28 Mar 2017 16:20:55 -0700 (PDT)
+	id AF427E00524; Tue, 28 Mar 2017 16:59:53 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE, 
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (maxpowel[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.216.173 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	RCVD_IN_DNSWL_HI, RCVD_IN_SORBS_SPAM, TVD_APPROVED,
+	T_DKIM_INVALID autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [192.55.52.88 listed in dnsbl.sorbs.net]
+	* 2.1 TVD_APPROVED BODY: Body states that the recipient has been
+	approved
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [192.55.52.88 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.216.173 listed in dnsbl.sorbs.net]
-Received: from mail-qt0-f173.google.com (mail-qt0-f173.google.com
-	[209.85.216.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6A8E8E004E5
-	for <yocto@yoctoproject.org>; Tue, 28 Mar 2017 16:20:51 -0700 (PDT)
-Received: by mail-qt0-f173.google.com with SMTP id n21so77718444qta.1
-	for <yocto@yoctoproject.org>; Tue, 28 Mar 2017 16:20:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=rkImlYbS5SZGEIB6LuXdd59oK1okEOTqGM68ZFyFSJU=;
-	b=H4DIybrCwwKm483XPfND4U6n9e3WqZBafleD9sVf8iah86OvDnW6eyNGbxFnUlktUk
-	fUKhLa/KCtsAGCEQJovlobsEISuDnugL2xAZQkPk2mWr6Wa2ydiedweC5w9pUnWGqSTd
-	96IFgpGJBZfAMXCEFaRL+cxPFNoYoaAgTb3YuJxBD2Q+VLEBza8rlli+c2CTsCO5Z18v
-	pP66XncGxV+GNksMR1l94/aT4BhCFd8ltM6i6hRtPG019vC2UU60C8KnRycpeSuo8/Jl
-	WozdnU69B9eHh4G/sPBMOLZ+PJOC7mYWb7+ekppJbP2BlC7bRBUdmM1anfOrmciG6iPj
-	Xbuw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=rkImlYbS5SZGEIB6LuXdd59oK1okEOTqGM68ZFyFSJU=;
-	b=qt+LKcyFpBRJb50eNSi0l0yCIt8q52AhBfQUgkBefgK7trmTAXmrevQaLbI1KgC0fs
-	koji8KPOsvWdxUdjG2qrRwUsDaf+bv2Y+m7uqLFBfTsSgsf763PiTIadTPLMjz6DBvas
-	0Xk2LnABwPouzmONuLJgMzFQgG9d67LqXc6IWqpASljd3eMEAClJ+R86JdkkyJffcNT+
-	7LkHSTf8nVHb6b5cJSKDy8plFkyWu5d5fTT4Pdz0TmWu8EKtEb1VoDu9cIXvcWH0kLIR
-	Mkc2bpzm5+eZ7Tc9ayB/wV/iTvY11+ACjM9ttIrc2Ri5Kk5HIxLz45NKDmflUQjG7Wz5
-	MuqA==
-X-Gm-Message-State: AFeK/H2sx0+JfXVknUTD6HdbdBKCnOAfyy00FpXZ6VYp9k+Ubzc0PddqBxtNYV4uW+i59F2JfQzWztYrxjE5jw==
-X-Received: by 10.200.48.59 with SMTP id f56mr31633646qte.7.1490743250462;
-	Tue, 28 Mar 2017 16:20:50 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.200.37.5 with HTTP; Tue, 28 Mar 2017 16:20:50 -0700 (PDT)
-In-Reply-To: <CAJTo0LZyXuVLLpeEQsgqn0pswfFO0m9HBLfg81MLH24+0oFxJw@mail.gmail.com>
-References: <CAOsmwBR47gfDH-mQ5ej7vzn9xJSeB=OM=pv9X06-smxgKkKX6A@mail.gmail.com>
-	<CAJTo0LZFhn+df6_x+AnMaU7CT3s38cPfweV2K+M18AiLjy0z9Q@mail.gmail.com>
-	<CAOsmwBQnbywO8SNhtHviL5=DxkCKHr4MoANx7JPR0abPaMHYKQ@mail.gmail.com>
-	<CAJTo0LZyXuVLLpeEQsgqn0pswfFO0m9HBLfg81MLH24+0oFxJw@mail.gmail.com>
-From: Alvaro Garcia <maxpowel@gmail.com>
-Date: Wed, 29 Mar 2017 01:20:50 +0200
-Message-ID: <CAOsmwBS46rZ4qKLJuBHbY5jWpLiA-+SF=vE74wED-WgGykq4yQ@mail.gmail.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: NVIDIA Drivers
+	*  0.0 T_DKIM_INVALID DKIM-Signature header exists but is not valid
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 649C1E004E5
+	for <yocto@yoctoproject.org>; Tue, 28 Mar 2017 16:59:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+	d=intel.com; i=@intel.com; q=dns/txt; s=intel;
+	t=1490745590; x=1522281590;
+	h=from:to:cc:subject:date:message-id;
+	bh=TtxKgDQ/fYeb4P6WxXM06e6VO5tRtCrrzEZjYUn2SV8=;
+	b=u2C6BVdcQaq9+k8CaYp2Lms8i8tJcFKuasDT0Lwc03wQ75yUw6NxqcX/
+	xHnuU1YKVbtCZLgEKKQ2orMsLleOlg==;
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	28 Mar 2017 16:59:49 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.36,238,1486454400"; d="scan'208";a="66214076"
+Received: from jalamego-mobl2.zpn.intel.com ([10.219.128.123])
+	by orsmga002.jf.intel.com with ESMTP; 28 Mar 2017 16:59:48 -0700
+From: Jose Lamego <jose.a.lamego@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Tue, 28 Mar 2017 17:59:34 -0600
+Message-Id: <1490745574-15358-1-git-send-email-jose.a.lamego@linux.intel.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [patchwork][PATCH] parsemail.py: Improve status-change-through-email
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,54 +53,111 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 Mar 2017 23:20:56 -0000
-Content-Type: multipart/alternative; boundary=001a1145ac70e5328b054bd2b5b6
+X-List-Received-Date: Tue, 28 Mar 2017 23:59:53 -0000
 
---001a1145ac70e5328b054bd2b5b6
-Content-Type: text/plain; charset=UTF-8
+Patch status can be edited through email by project maintainers only
+without any feedback if this is attempted by any other user,
+providing a poor user experience.
 
-I used rpm and deb, you mean dpkg (for deb) when you say package manager?
+This change extends the patch-status-through-email functionality
+to be performed by the series submitter also, and provides a
+system-generated message if an attempt was made through a message
+using an email address not recognized neither as project maintainer or
+series submitter in patchwork.
 
-2017-03-29 0:43 GMT+02:00 Burton, Ross <ross.burton@intel.com>:
+[YOCTO #11027]
 
->
-> On 28 March 2017 at 23:41, Alvaro Garcia <maxpowel@gmail.com> wrote:
->
->> Then I installed the image into my device. Everything worked as expected
->> but the nouveau driver. Is this correct or I forgot some step?
->>
->
-> I'd check that the package actually exists in your rootfs - use the
-> package manager to verify this.  It should be there but I've never used
-> nouveux.  Beyond that the driver is installed so maybe you need to adjust
-> xorg.conf.
->
-> Ross
->
->
+Signed-off-by: Jose Lamego <jose.a.lamego@linux.intel.com>
+---
+ patchwork/bin/parsemail.py | 73 +++++++++++++++++++++++++++++++---------------
+ 1 file changed, 49 insertions(+), 24 deletions(-)
 
---001a1145ac70e5328b054bd2b5b6
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+diff --git a/patchwork/bin/parsemail.py b/patchwork/bin/parsemail.py
+index ebfa849..61c18b2 100755
+--- a/patchwork/bin/parsemail.py
++++ b/patchwork/bin/parsemail.py
+@@ -838,31 +838,56 @@ def parse_mail(mail):
+         comment.msgid = msgid
+         comment.save()
+         LOGGER.debug('Comment saved')
+-
+-        # if comment's author has project-maintainer permissions,
+-        # parse comment content and process the status-change command
+-        # if it is found
+-        if author.user and project in \
+-                (author.user).profile.maintainer_projects.all():
+-            cmd = None
+-            comment_re = re.compile('^\[Patchwork-Status:\s*(Under Review|\
+-Rejected|RFC|Not Applicable|Changes Requested|Awaiting Upstream|Superseded|\
+-Deferred)\]$', re.M | re.I)
+-            # if multiple valid status-change commands are found, use last one
+-            for match in comment_re.finditer(comment.content):
+-                cmd = re.sub(r'(\[Patchwork-Status:\s*)(.*)(\])', r'\2',
+-                             "{}".format(match.group(0)))
+-            if cmd is not None:
+-                new_state = State.objects.get(name=cmd.title())
+-                mod_patch = Patch.objects.get(pk=comment.patch.pk)
+-                if new_state and mod_patch.state != new_state:
+-                    mod_patch.state = new_state
+-                    mod_patch.save()
+-                    cmd_message = 'This is a system generated Comment: Patch \
+-%s status was updated to "%s" due to request in comment.' % (
+-                                  comment.patch.pk, cmd)
++        # look for a status-change command string in the comment
++        cmd = None
++        comment_re = re.compile('^(?:\n|\r\n?)\[Patchwork-Status:\s*\
++(Under Review|Rejected|RFC|Not Applicable|Changes Requested|Awaiting \
++Upstream|Superseded|Deferred)\](?:\n|\r\n?)$', re.M | re.I)
++        # if multiple valid status-change commands are found, use last one
++        for match in comment_re.finditer(comment.content):
++            cmd = re.sub(
++                r'((?:\n|\r\n?)\[Patchwork-Status:\s*)(.*)(\](?:\n|\r\n?))',
++                r'\2', "{}".format(match.group(0)))
++        # if a status-change command string is found, see if comment's author
++        # has either project-maintainer permissions or is the series submitter
++        # and process the command if true.
++        if cmd is not None:
++            refs = build_references_list(mail)
++            if not refs == []:
++                if not series:
++                    series = SeriesRevision.objects.filter(
++                        series__project=project,
++                        root_msgid=refs[-1]).reverse()[0].series
++                if (author.user and project in
++                    (author.user).profile.maintainer_projects.all()) or (
++                        author and author == series.submitter):
++                    new_state = State.objects.get(name=cmd.title())
++                    mod_patch = Patch.objects.get(pk=comment.patch.pk)
++                    if new_state and mod_patch.state != new_state:
++                        mod_patch.state = new_state
++                        mod_patch.save()
++                        cmd_message = 'This is a system generated Comment: \
++Patch %s status was updated to "%s"\ndue to request in comment body.' % (
++                            comment.patch.pk, cmd)
++                        cmd_msgid = "%s: System generated by comment %s" % (
++                            datetime.datetime.now().strftime("\
++%d%b%Y.%H:%M:%S.%f"), comment.pk)
++                        new_comment = Comment(pk=None, patch=comment.patch,
++                                              content=cmd_message,
++                                              date=datetime.datetime.now(),
++                                              submitter=comment.submitter,
++                                              msgid=cmd_msgid)
++                        new_comment.save()
++                else:
++                    # notify that a patch-status change was attempted without
++                    #  apropriate submitter/maintainer permissions
++                    cmd_message = 'This is a system generated Comment: \
++A command to change a patch-status through\nemail was detected in comment, \
++but the sender email does not belong either to\na project maintainer or to \
++the series submitter, the only approved users for\nthis function. \
++Ensure you are using an approved email address when submitting.'
+                     cmd_msgid = "%s: System generated by comment %s" % (
+-                                datetime.datetime.now().strftime("\
++                        datetime.datetime.now().strftime("\
+ %d%b%Y.%H:%M:%S.%f"), comment.pk)
+                     new_comment = Comment(pk=None, patch=comment.patch,
+                                           content=cmd_message,
+-- 
+2.7.4
 
-<div dir=3D"ltr">I used rpm and deb, you mean dpkg (for deb) when you say p=
-ackage manager?<br></div><div class=3D"gmail_extra"><br><div class=3D"gmail=
-_quote">2017-03-29 0:43 GMT+02:00 Burton, Ross <span dir=3D"ltr">&lt;<a hre=
-f=3D"mailto:ross.burton@intel.com" target=3D"_blank">ross.burton@intel.com<=
-/a>&gt;</span>:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 =
-.8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr"><div cla=
-ss=3D"gmail_extra"><br><div class=3D"gmail_quote"><span class=3D"">On 28 Ma=
-rch 2017 at 23:41, Alvaro Garcia <span dir=3D"ltr">&lt;<a href=3D"mailto:ma=
-xpowel@gmail.com" target=3D"_blank">maxpowel@gmail.com</a>&gt;</span> wrote=
-:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-le=
-ft:1px #ccc solid;padding-left:1ex">Then I installed the image into my devi=
-ce. Everything worked as expected but the nouveau driver. Is this correct o=
-r I forgot some step?<br></blockquote><div><br></div></span><div>I&#39;d ch=
-eck that the package actually exists in your rootfs - use the package manag=
-er to verify this.=C2=A0 It should be there but I&#39;ve never used nouveux=
-.=C2=A0 Beyond that the driver is installed so maybe you need to adjust xor=
-g.conf.</div><span class=3D"HOEnZb"><font color=3D"#888888"><div><br></div>=
-<div>Ross=C2=A0</div></font></span></div><br></div></div>
-</blockquote></div><br></div>
 
---001a1145ac70e5328b054bd2b5b6--
