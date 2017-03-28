@@ -1,59 +1,69 @@
-Return-Path: <ian_welch@trimble.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A573EE004E5; Tue, 28 Mar 2017 13:27:27 -0700 (PDT)
+	id 7422AE004E5; Tue, 28 Mar 2017 13:35:16 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.220.170 listed in dnsbl.sorbs.net]
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [74.125.83.51 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (raj.khem[at]gmail.com)
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.83.51 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.220.170 listed in list.dnswl.org]
-Received: from mail-qk0-f170.google.com (mail-qk0-f170.google.com
-	[209.85.220.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 841E5E003C1
-	for <yocto@yoctoproject.org>; Tue, 28 Mar 2017 13:27:23 -0700 (PDT)
-Received: by mail-qk0-f170.google.com with SMTP id d10so70399149qke.1
-	for <yocto@yoctoproject.org>; Tue, 28 Mar 2017 13:27:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=trimble-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=bd4ZM5MhRjSSl+L12/q+WcElQIWGFnvIxBe7O6yhOXU=;
-	b=PMKLTP9RT/Tkj6O6pkIzlXmbgMYrNrpnSN3wIIWwZMFUvFb9mXv8zwJUgD4+IUVdvr
-	tDxL2s5iztzpbCq8BC6qhUlBfzEcidKbc6ygwvgQLtqWPun5ctd9l6/7R4g2WgwuA/fk
-	FjIOJ5Bv85WBmH+6Lp/uPqRJ7egYK/odduCPsPnnEJ1pEbWKpDL0i7Apcbq2UA7k7M+h
-	v4jiof/6paf4BSwNuQ9Td6OCDfNuJQ8znk86bjpMMQBjrnYyUFA5yV+9Vu7AclTB5vno
-	d9fqVEiyj+KWmyZl/GCVc2qxCTrGakQvbDQqVDiuwu9OUwR9oL6/8hYKKjbiliXfjZja
-	CLXQ==
+Received: from mail-pg0-f51.google.com (mail-pg0-f51.google.com [74.125.83.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E72D6E003C1
+	for <yocto@yoctoproject.org>; Tue, 28 Mar 2017 13:35:14 -0700 (PDT)
+Received: by mail-pg0-f51.google.com with SMTP id 21so83202896pgg.1
+	for <yocto@yoctoproject.org>; Tue, 28 Mar 2017 13:35:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=subject:to:references:from:message-id:date:user-agent:mime-version
+	:in-reply-to; bh=vbACdN84gfeCw09vnHjBjD9197WeR+m/yrz9r4DaiC8=;
+	b=VtJXYhRBcm8UFk6Mo3o8bQ9mLhA5a7vJEqULche5BcfAQbtrl+hfeeSrHgs7Oq5kE7
+	gy3uDDlxlVdeCyLvt1lMDzd7V+lyHSCytSaOb3Zyy3t3Zg4MKrd9Ps6NBRzLnJEBl0F0
+	dR/39OLaKrN6beFqXvx28psG8Vqp7FT6AN9sS9LfwYPTMd0s/lXONYX8XinFtcZKemDN
+	LwVa7aZRlw2oGQQJr2YJCrFTlHJ38JFxWDGgJ4DkPM5FEVPc2d8CSmGQpdF2ZoJQLpMS
+	n9HZ/ybLC0hMQH8UPoUEeLZ5cVj7deqGp71gnVD9trBIdkB9rFgvMH5T7l+xj7FPbzWT
+	t2VA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=bd4ZM5MhRjSSl+L12/q+WcElQIWGFnvIxBe7O6yhOXU=;
-	b=t9sGAjjzIu35aJiuYmwoKCIR7N1VOYT27Oexw29cxLgiTnueEUSDmUowxAcCG91OQT
-	gXPEVX7AJgnKKaKJdgALnfchNEvR8a36dh5ueOq+OhqXxHDTYB0YC0fNYHjOiB23bGXu
-	3/zfX8SsiX7ElOXa3sANCT8aH3pHycuHwezPJbWMZaBmN2Ioqspds3gjPvmzorWrfpUT
-	yTn8QXQjrnbj8ojKFBno4FVWHY2PY6hcmhjSGO5y6KkzkSQMtzPA0zAHewsF2CO/ChTK
-	8eeXrURb0GIqo+q0FU0PPourOVwPKukKPTXlP6TXZZO3+OebO6eWa9Tt+GH8dVj96QOw
-	xFCw==
-X-Gm-Message-State: AFeK/H0J54EMlW7tCRbPJkCzFiJrR4c9LbY71sjh+DHEkIZaJA6LXI2oequfiUQarUzvsZkCgIe1Z3LOvQVDj0nm
-X-Received: by 10.55.180.70 with SMTP id d67mr28799687qkf.280.1490732842288;
-	Tue, 28 Mar 2017 13:27:22 -0700 (PDT)
+	h=x-gm-message-state:subject:to:references:from:message-id:date
+	:user-agent:mime-version:in-reply-to;
+	bh=vbACdN84gfeCw09vnHjBjD9197WeR+m/yrz9r4DaiC8=;
+	b=cj/+UB5qOXBswjkHRlUb/RqVSY71jOj9/l/MUUpMLtG4mbhbvjalIEyrYe7NH4ZJH1
+	uWLb0yN55985eB6jt/dHZtFkxU0ygIYw9ryYSEpp4keFL/tEvSGEihc7IT0sq8Pplv9F
+	W6/HzfMuKGNkFWcfH81zt87NJTQnp2gh3E7nuVYVpq2BVyYA1t31Gd8OH/dPs2JTCBGk
+	ERf6WNmj5LnUy9itvtWmFPx3JslOeBsPYt8j4vaRhEsSZ443zQFN3efDIfzl2CDig66x
+	MHNwFaN15Q9PFDfPDTFy/jTzUy/WIdH813MGFR7jc1Hc3SU7yhMFDt3Mk4FzOt/KyOg+
+	9owA==
+X-Gm-Message-State: AFeK/H0X4FdnJft+hnP+oI9uMtw2s9UDEbwpZ6yhn2h9CZCXMVSZmb/77BGseA8WYr5ycQ==
+X-Received: by 10.98.30.3 with SMTP id e3mr4172883pfe.48.1490733314106;
+	Tue, 28 Mar 2017 13:35:14 -0700 (PDT)
+Received: from CACSVMO-14452.local ([2601:647:4c00:23ec:1153:8bec:b665:1636])
+	by smtp.gmail.com with ESMTPSA id
+	c19sm9082907pfd.85.2017.03.28.13.35.12
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Tue, 28 Mar 2017 13:35:12 -0700 (PDT)
+To: Ian Welch <ian_welch@trimble.com>, yocto@yoctoproject.org
+References: <CACgq_DoCsbs2-a9UbeKj_EhsKwJDTNBNT8qNYmA=5ZFm7oT83w@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Message-ID: <74fdd551-c061-94ba-7179-e02130a80fd9@gmail.com>
+Date: Tue, 28 Mar 2017 13:35:04 -0700
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:45.0)
+	Gecko/20100101 Thunderbird/45.8.0
 MIME-Version: 1.0
-Received: by 10.12.143.10 with HTTP; Tue, 28 Mar 2017 13:27:01 -0700 (PDT)
-From: Ian Welch <ian_welch@trimble.com>
-Date: Tue, 28 Mar 2017 14:27:01 -0600
-Message-ID: <CACgq_DoCsbs2-a9UbeKj_EhsKwJDTNBNT8qNYmA=5ZFm7oT83w@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: Using ${SRCVP} in PR of BB file
+In-Reply-To: <CACgq_DoCsbs2-a9UbeKj_EhsKwJDTNBNT8qNYmA=5ZFm7oT83w@mail.gmail.com>
+Subject: Re: Using ${SRCVP} in PR of BB file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -65,103 +75,103 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 Mar 2017 20:27:27 -0000
-Content-Type: multipart/alternative; boundary=94eb2c0608d485a160054bd049b5
+X-List-Received-Date: Tue, 28 Mar 2017 20:35:16 -0000
+X-Groupsio-MsgNum: 35280
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature";
+	boundary="1fEqJAttWQfhP8Wh7hBhNFfJj3ilboFt8"
 
---94eb2c0608d485a160054bd049b5
-Content-Type: text/plain; charset=UTF-8
+--1fEqJAttWQfhP8Wh7hBhNFfJj3ilboFt8
+Content-Type: multipart/mixed; boundary="MwgKpDCLAkEbtcbUhgL0Q0BL937fCNrIo";
+ protected-headers="v1"
+From: Khem Raj <raj.khem@gmail.com>
+To: Ian Welch <ian_welch@trimble.com>, yocto@yoctoproject.org
+Message-ID: <74fdd551-c061-94ba-7179-e02130a80fd9@gmail.com>
+Subject: Re: [yocto] Using ${SRCVP} in PR of BB file
+References: <CACgq_DoCsbs2-a9UbeKj_EhsKwJDTNBNT8qNYmA=5ZFm7oT83w@mail.gmail.com>
+In-Reply-To: <CACgq_DoCsbs2-a9UbeKj_EhsKwJDTNBNT8qNYmA=5ZFm7oT83w@mail.gmail.com>
 
-Hello,
-      We are preparing to move to PRservice in Yocto to handle auto rolling
-our revisions on every build. As an interim step we are doing some
-reordering or our current PR and PV parameters in our bitbake files. Our
-current syntax is as follows and works as expected
-
-----BB File----
-SRC_URI =
-"git://myrepo.git;branch=mybranch;subpath=Linux/bcastforwd;destsuffix=Linux/bcastforwd;protocol=ssh"
-SRCREV = "${AUTOREV}"
-PV = "1.1"
-PR = "r0"
-PV_append = "+git${SRCPV}"
-
-----Output from build----
-
-bcastforwd_1.0-r0git0+afc68d4a00_arm926ejste.ipk
-
-
-
-When we change git${SRCPV} to append to the PR we get "AUTOINC" in place of
-the revision number
-
-----BB File----
-"git://myrepo.git;branch=mybranch;subpath=Linux/bcastforwd;destsuffix=Linux/bcastforwd;protocol=ssh"
-SRCREV = "${AUTOREV}"
-PV = "1.1"
-PR = "r0"
-PR_append = "+git${SRCPV}"
-
-----ipk Output from build----
-
-bcastforwd_1.0-r0gitAUTOINC+afc68d4a00_arm926ejste.ipk
-
-
-I took a look at the package.bbclass file which appears to be the
-magic sauce for searching and replacing the "AUTOINC" string but
-nothing jumped out at me as to why this would work for PV but not PR.
-
-
-Is it possible to support AUTOREV on PR?
-
-
-
-Thanks,
-     Ian Welch
-     Trimble Inc.
-
---94eb2c0608d485a160054bd049b5
-Content-Type: text/html; charset=UTF-8
+--MwgKpDCLAkEbtcbUhgL0Q0BL937fCNrIo
+Content-Type: text/plain; charset=windows-1252
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hello,<div>=C2=A0 =C2=A0 =C2=A0 We are preparing to move t=
-o PRservice in Yocto to handle auto rolling our revisions on every build. A=
-s an interim step we are doing some reordering or our current PR and PV par=
-ameters in our bitbake files. Our current syntax is as follows and works as=
- expected</div><div><br></div><div>----BB File----</div><div>SRC_URI =3D &q=
-uot;git://myrepo.git;branch=3Dmybranch;subpath=3DLinux/bcastforwd;destsuffi=
-x=3DLinux/bcastforwd;protocol=3Dssh&quot;<br></div><div><div>SRCREV =3D &qu=
-ot;${AUTOREV}&quot;</div><div>PV =3D &quot;1.1&quot;</div><div>PR =3D &quot=
-;r0&quot;</div><div>PV_append =3D &quot;+git${SRCPV}&quot;</div><div><br></=
-div><div>----Output from build----<br></div><div><pre class=3D"gmail-consol=
-e-output" style=3D"box-sizing:border-box;white-space:pre-wrap;word-wrap:bre=
-ak-word;margin-top:0px;margin-bottom:0px;color:rgb(51,51,51);font-size:15px=
-">bcastforwd_1.0-r0git0+afc68d4a00_arm926ejste.ipk</pre></div><div><br></di=
-v><div><br></div><div>When we change git${SRCPV} to append to the PR we get=
- &quot;AUTOINC&quot; in place of the revision number</div><div><br></div><d=
-iv><div>----BB File----</div><div><div><div>&quot;git://myrepo.git;branch=
-=3Dmybranch;subpath=3DLinux/bcastforwd;destsuffix=3DLinux/bcastforwd;protoc=
-ol=3Dssh&quot;<br></div><div></div></div><div>SRCREV =3D &quot;${AUTOREV}&q=
-uot;</div><div>PV =3D &quot;1.1&quot;</div><div>PR =3D &quot;r0&quot;</div>=
-<div>PR_append =3D &quot;+git${SRCPV}&quot;</div><div><br></div><div>----ip=
-k Output from build----</div></div></div><div><pre class=3D"gmail-console-o=
-utput" style=3D"box-sizing:border-box;white-space:pre-wrap;word-wrap:break-=
-word;margin-top:0px;margin-bottom:0px;color:rgb(51,51,51);font-size:15px">b=
-castforwd_1.0-r0gitAUTOINC+afc68d4a00_arm926ejste.ipk</pre><pre class=3D"gm=
-ail-console-output" style=3D"box-sizing:border-box;white-space:pre-wrap;wor=
-d-wrap:break-word;margin-top:0px;margin-bottom:0px;color:rgb(51,51,51);font=
--size:15px"><br></pre><pre class=3D"gmail-console-output" style=3D"box-sizi=
-ng:border-box;white-space:pre-wrap;word-wrap:break-word;margin-top:0px;marg=
-in-bottom:0px;color:rgb(51,51,51);font-size:15px">I took a look at the pack=
-age.bbclass file which appears to be the magic sauce for searching and repl=
-acing the &quot;AUTOINC&quot; string but nothing jumped out at me as to why=
- this would work for PV but not PR.</pre><pre class=3D"gmail-console-output=
-" style=3D"box-sizing:border-box;white-space:pre-wrap;word-wrap:break-word;=
-margin-top:0px;margin-bottom:0px;color:rgb(51,51,51);font-size:15px"><br></=
-pre><pre class=3D"gmail-console-output" style=3D"box-sizing:border-box;whit=
-e-space:pre-wrap;word-wrap:break-word;margin-top:0px;margin-bottom:0px;colo=
-r:rgb(51,51,51);font-size:15px">Is it possible to support AUTOREV on PR?</p=
-re></div><div><br></div><div><br></div><div>Thanks,</div><div>=C2=A0 =C2=A0=
- =C2=A0Ian Welch</div><div>=C2=A0 =C2=A0 =C2=A0Trimble Inc.=C2=A0</div>
-</div></div>
 
---94eb2c0608d485a160054bd049b5--
+
+On 3/28/17 1:27 PM, Ian Welch wrote:
+> Hello,
+>       We are preparing to move to PRservice in Yocto to handle auto
+> rolling our revisions on every build. As an interim step we are doing
+> some reordering or our current PR and PV parameters in our bitbake
+> files. Our current syntax is as follows and works as expected
+>=20
+> ----BB File----
+> SRC_URI =3D
+> "git://myrepo.git;branch=3Dmybranch;subpath=3DLinux/bcastforwd;destsuff=
+ix=3DLinux/bcastforwd;protocol=3Dssh"
+> SRCREV =3D "${AUTOREV}"
+> PV =3D "1.1"
+> PR =3D "r0"
+> PV_append =3D "+git${SRCPV}"
+>=20
+> ----Output from build----
+>=20
+> bcastforwd_1.0-r0git0+afc68d4a00_arm926ejste.ipk
+>=20
+>=20
+>=20
+> When we change git${SRCPV} to append to the PR we get "AUTOINC" in plac=
+e
+> of the revision number
+>=20
+> ----BB File----
+> "git://myrepo.git;branch=3Dmybranch;subpath=3DLinux/bcastforwd;destsuff=
+ix=3DLinux/bcastforwd;protocol=3Dssh"
+> SRCREV =3D "${AUTOREV}"
+> PV =3D "1.1"
+> PR =3D "r0"
+> PR_append =3D "+git${SRCPV}"
+>=20
+> ----ipk Output from build----
+>=20
+> bcastforwd_1.0-r0gitAUTOINC+afc68d4a00_arm926ejste.ipk
+>=20
+>=20
+> I took a look at the package.bbclass file which appears to be the magic=
+ sauce for searching and replacing the "AUTOINC" string but nothing jumpe=
+d out at me as to why this would work for PV but not PR.
+>=20
+>=20
+> Is it possible to support AUTOREV on PR?
+
+git0 and gitAUTOINC is the difference you are seeing however when PR is
+bumped r0 would change to r0.0 or something which is preceding the
+AUTOINC difference and you should be able to upgrade. Although I would
+discourage you from using AUTOREVs in release environment. Use locked
+SHA values, it will also help you with reproducible builds.
+
+>=20
+>=20
+>=20
+> Thanks,
+>      Ian Welch
+>      Trimble Inc.=20
+>=20
+>=20
+
+
+--MwgKpDCLAkEbtcbUhgL0Q0BL937fCNrIo--
+
+--1fEqJAttWQfhP8Wh7hBhNFfJj3ilboFt8
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+Comment: GPGTools - https://gpgtools.org
+
+iEYEARECAAYFAljayP8ACgkQuwUzVZGdMxSUoACfXw/d1Y6Yt8JFA9bNhQSWuBiP
+AQsAn0cB2RJ3SJ1Mv8KNmLM2EjQQZJ6+
+=8cTy
+-----END PGP SIGNATURE-----
+
+--1fEqJAttWQfhP8Wh7hBhNFfJj3ilboFt8--
