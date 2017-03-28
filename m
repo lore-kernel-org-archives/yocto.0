@@ -1,6 +1,6 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A5F99E00724; Tue, 28 Mar 2017 11:20:05 -0700 (PDT)
+	id 849D9E003E1; Tue, 28 Mar 2017 11:25:48 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,9 +9,6 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (raj.khem[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.83.46 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,49 +16,56 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pg0-f46.google.com (mail-pg0-f46.google.com [74.125.83.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ECD4DE006CD
-	for <yocto@yoctoproject.org>; Tue, 28 Mar 2017 11:19:51 -0700 (PDT)
-Received: by mail-pg0-f46.google.com with SMTP id g2so79422504pge.3
-	for <yocto@yoctoproject.org>; Tue, 28 Mar 2017 11:19:51 -0700 (PDT)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.83.68 listed in list.dnswl.org]
+Received: from mail-pg0-f68.google.com (mail-pg0-f68.google.com [74.125.83.68])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5DD53E00349
+	for <yocto@yoctoproject.org>; Tue, 28 Mar 2017 11:25:39 -0700 (PDT)
+Received: by mail-pg0-f68.google.com with SMTP id g2so23110290pge.2
+	for <yocto@yoctoproject.org>; Tue, 28 Mar 2017 11:25:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=subject:to:references:from:message-id:date:user-agent:mime-version
-	:in-reply-to; bh=04U5q/zxrFboto/pFz66/olILpSov1AoaiX4vRN4FBw=;
-	b=mzsUdnwxm9yN8Jcr/ok0wq4HoWgq5AKqfNvQUuHu7EpOnE90zaCYkEf3UeoJIQzCXZ
-	TXfkuHTCHSttn8S/sIobPZSqzcy8UExFYDt7JqYCdN+IgDCxDi0YHWpBt8n3kVsMh1br
-	YMIyaY0QWdQNpuxXQBXJh8rM8uZ4oSo11A1TdplrYwu7kENtsaqndEvLS1PZeOOfT5i/
-	4lYeImKkkkoNH9zLjQSnwx+s9z+H93L8er+9WySVmVcz2eLQ03krMOMqOlPv5w3mzV+9
-	H1sE+ZkCbQwyGtTeSMnv4fXEZ2c5SduRyJDAqDAevc1J4IIysmD0yjZjNT30G+ngjC5K
-	p5Sw==
+	h=subject:to:references:cc:from:message-id:date:user-agent
+	:mime-version:in-reply-to;
+	bh=VC8PVBO11wQaBlVHgCMTf4H9qnBNfSFjKnzhex4bulg=;
+	b=G+faqRloYd9LjClXXx3bJCOuwwNuaYYB6KyEHsyq/DzYi7PwfuxzwLe8lfxphscI91
+	14g2q+7vkCTN1k4QWT6O3MqpQxvHyoX2ZvwHtNPp+hSKYScc9mJDUlb2Szv8oryGWny9
+	oaqFb3YvIoN0tSzRt5UU1e+9M9D6VaI54aOCQmFilGhQsIbx9sE29ps715CKJ3WcnwyB
+	tnc8+b0nh3idITx3100Pa1w253oOScoyOR6xpr/bwrY1g/vSPe5VA3mVSGZXBaasiMQZ
+	KyfTU5sQSnTTLixY+EB1+D2fidTwglUD8QxgKHh947q9byHTZuTog6eaxAIMsHT32B4f
+	ICDg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:references:from:message-id:date
+	h=x-gm-message-state:subject:to:references:cc:from:message-id:date
 	:user-agent:mime-version:in-reply-to;
-	bh=04U5q/zxrFboto/pFz66/olILpSov1AoaiX4vRN4FBw=;
-	b=OiXXrENL62xgL4ACjutOUUig6dvUUgTQqfeROLbJfAEKRAJI988iAmcG1a2UhKYIdp
-	41m8eCqDXqbHBUZbFnaoYRaxvQskYcAj/7c8xAddN7sv0B56ZMaCtLpUgXa87QeyCQF/
-	IkBigfa+VvN89AkGwlS4WZgADwPRy5ZSZiQHwmBtf4/gaG1e+2NZxaEcIU1p+/vXxTdh
-	FE9App7r1iytMAanHXZD1sBtbVu1v+ySvMIKGPjTbGrM5P+gYhLITmWFCpSPuaVT+dWT
-	DdcDtIYvJbn0kdhpy3lbsW24frDuaJ1G9l7b6Rtsw7dYSEupZcbnk9ima0aW/sLQMvMa
-	+cYQ==
-X-Gm-Message-State: AFeK/H3ipeC/aH/UTve6QgX+HcWbYbKqcpTUkgHbgRS7c5HNm/es90njENy0a9IR/Z0sig==
-X-Received: by 10.84.192.129 with SMTP id c1mr37933227pld.181.1490725190930;
-	Tue, 28 Mar 2017 11:19:50 -0700 (PDT)
+	bh=VC8PVBO11wQaBlVHgCMTf4H9qnBNfSFjKnzhex4bulg=;
+	b=mqfavlNBE8v3wWbN+s2p0Z3dPI2S/JA1Xsu2TkXkuMFXMsFxBV1kB8g6exujEVY7CG
+	VQ3tjs1QyOQJMYmEBsNca5NSYSpbfOHGq842khoKRRfMJg66Ks9fR1EpGPDt8I9lgczb
+	OPivL+EiprS+iYpKVLS0xRDRolznUYOChLKzRMzb/cxaxoiFjQdRVCwaFktmQD7vHiaO
+	38RNmkNHRobBnFdfz3Vv69Rx9obj/4+Grd6tVkDW4/OtnfTkjKsej7K9Vt+H186mcudZ
+	1U0tBvwA0BjHXJ4VK2bQjgRBfMymwaLHVBAKB3fLWuEGtQprIobK3zPay4hi1JORkWnR
+	iO8g==
+X-Gm-Message-State: AFeK/H0pEC+jt9L88buiF355SvlPhB0aI9iqV5aRERT8RAgm7umJ22gerRkDSlEjYpN00Q==
+X-Received: by 10.99.39.194 with SMTP id n185mr31257095pgn.24.1490725536495;
+	Tue, 28 Mar 2017 11:25:36 -0700 (PDT)
 Received: from CACSVMO-14452.local ([2601:647:4c00:23ec:1153:8bec:b665:1636])
 	by smtp.gmail.com with ESMTPSA id
-	l29sm8755754pfb.118.2017.03.28.11.19.48 for <yocto@yoctoproject.org>
+	s21sm8725634pgg.65.2017.03.28.11.25.34
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 28 Mar 2017 11:19:48 -0700 (PDT)
-To: yocto@yoctoproject.org
-References: <CAJ2oMh+=JeNZMXDV_rGjxYU5nBVKSPo9gwAP0wVEKBNrLGgcpw@mail.gmail.com>
+	Tue, 28 Mar 2017 11:25:35 -0700 (PDT)
+To: Lennart Sorensen <lsorense@csclub.uwaterloo.ca>
+References: <CAKEinFwC58g5q9wmvwhTfn5Au3n3Qrx8xRkSy7yUpehyedLiog@mail.gmail.com>
+	<CAMKF1soTiRbge8yY3TJc8+EPgeQpmAPOe1q4=SN=9duSyEix5A@mail.gmail.com>
+	<20170328181927.GA11222@csclub.uwaterloo.ca>
 From: Khem Raj <raj.khem@gmail.com>
-Message-ID: <b85fc531-02e2-c132-2b63-30966e6b3022@gmail.com>
-Date: Tue, 28 Mar 2017 11:19:47 -0700
+Message-ID: <db313b8c-6426-45da-fe3f-0c7a98b53852@gmail.com>
+Date: Tue, 28 Mar 2017 11:25:26 -0700
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:45.0)
 	Gecko/20100101 Thunderbird/45.8.0
 MIME-Version: 1.0
-In-Reply-To: <CAJ2oMh+=JeNZMXDV_rGjxYU5nBVKSPo9gwAP0wVEKBNrLGgcpw@mail.gmail.com>
-Subject: Re: host sysroot
+In-Reply-To: <20170328181927.GA11222@csclub.uwaterloo.ca>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Remove a recipe's do_install_append() function in an append file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,50 +77,77 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 Mar 2017 18:20:05 -0000
-X-Groupsio-MsgNum: 35277
+X-List-Received-Date: Tue, 28 Mar 2017 18:25:48 -0000
+X-Groupsio-MsgNum: 35278
 Content-Type: multipart/signed; micalg=pgp-sha1;
 	protocol="application/pgp-signature";
-	boundary="ojESpu5f9ngaxtmC8JCawlUDdE08Ppjd2"
+	boundary="lR4UX92FbUOXDSgp5m77aEBsaoiphmHJK"
 
---ojESpu5f9ngaxtmC8JCawlUDdE08Ppjd2
-Content-Type: multipart/mixed; boundary="ab8rxHAnwr0tJ0q4hkQR9fBRJq1JN5SPK";
+--lR4UX92FbUOXDSgp5m77aEBsaoiphmHJK
+Content-Type: multipart/mixed; boundary="UQq70Dk0TBqm5mrlE0EPB4UWfvDbUg98r";
  protected-headers="v1"
 From: Khem Raj <raj.khem@gmail.com>
-To: yocto@yoctoproject.org
-Message-ID: <b85fc531-02e2-c132-2b63-30966e6b3022@gmail.com>
-Subject: Re: [yocto] host sysroot
-References: <CAJ2oMh+=JeNZMXDV_rGjxYU5nBVKSPo9gwAP0wVEKBNrLGgcpw@mail.gmail.com>
-In-Reply-To: <CAJ2oMh+=JeNZMXDV_rGjxYU5nBVKSPo9gwAP0wVEKBNrLGgcpw@mail.gmail.com>
+To: Lennart Sorensen <lsorense@csclub.uwaterloo.ca>
+Cc: Cody Piersall <cody@arrc.ou.edu>,
+ "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Message-ID: <db313b8c-6426-45da-fe3f-0c7a98b53852@gmail.com>
+Subject: Re: [yocto] Remove a recipe's do_install_append() function in an
+ append file
+References: <CAKEinFwC58g5q9wmvwhTfn5Au3n3Qrx8xRkSy7yUpehyedLiog@mail.gmail.com>
+ <CAMKF1soTiRbge8yY3TJc8+EPgeQpmAPOe1q4=SN=9duSyEix5A@mail.gmail.com>
+ <20170328181927.GA11222@csclub.uwaterloo.ca>
+In-Reply-To: <20170328181927.GA11222@csclub.uwaterloo.ca>
 
---ab8rxHAnwr0tJ0q4hkQR9fBRJq1JN5SPK
+--UQq70Dk0TBqm5mrlE0EPB4UWfvDbUg98r
 Content-Type: text/plain; charset=windows-1252
 Content-Transfer-Encoding: quoted-printable
 
 
 
-On 3/28/17 4:18 AM, Ran Shalit wrote:
-> Hello,
+On 3/28/17 11:19 AM, Lennart Sorensen wrote:
+> On Tue, Mar 28, 2017 at 10:27:15AM -0700, Khem Raj wrote:
+>> On Thu, Mar 23, 2017 at 3:28 PM, Cody Piersall <cody@arrc.ou.edu> wrot=
+e:
+>>> Hello,
+>>>
+>>> I am building zsh from meta-oe layer, and it has a do_install_append(=
+)
+>>> function defined like this:
+>>>
+>>> do_install_append () {
+>>>     rm -fr ${D}/usr/share
+>>> }
+>>>
+>>> which gets rid of lots lots of useful functionality, like
+>>> context-aware autocompletion.  Can a bbappend file get rid of that
+>>> function, or do I need to edit the actual recipe? I've attempted
+>>> defining an empty do_install_append() { : } but it didn't work.
+>>>
+>>
+>> if its in a bbappend, there is not much you can do about undoing it ex=
+cept
+>> to not apply the bbappend or modify it directly.
+>>
+>> So you can send a patch to meta-oe to convince that its a good idea to=
+ keep
+>> /usr/share for zsh, or you can carry a local patch to meta-oe where yo=
+u undo it
 >=20
-> I am trying to understand what's the purpose of host sysroot (in
-> /build/tmp/sysroots/) ?
-> I see it contains a set of libraries too. But for cross compiling an
-> application in host isn't all we need is toolchain and target sysroot
-> ? If so, than what's the purpose of host sysroot ?
+> Perhaps instead of deleting it, it should be put in another package tha=
+t
+> people can choose to install if they want it.  Deleting it certainly
+> does seem rather unfortunate if someone actulally wanted it.
 >=20
 
-there is more to it than just cross toolchains. Build system is building
-some components for the build host itself and does not rely on the host
-to provide them, they are also hosted in the host sysroot.
-
-> Thank you,
-> Ran
->=20
+We put common stuff in commonly used layers. Secondly, a patch to
+package the content of /usr/share into a package of its own something
+like zsh-misc might be OK and we don't have to delete it and keep both
+camps happy.
 
 
---ab8rxHAnwr0tJ0q4hkQR9fBRJq1JN5SPK--
+--UQq70Dk0TBqm5mrlE0EPB4UWfvDbUg98r--
 
---ojESpu5f9ngaxtmC8JCawlUDdE08Ppjd2
+--lR4UX92FbUOXDSgp5m77aEBsaoiphmHJK
 Content-Type: application/pgp-signature; name="signature.asc"
 Content-Description: OpenPGP digital signature
 Content-Disposition: attachment; filename="signature.asc"
@@ -124,9 +155,9 @@ Content-Disposition: attachment; filename="signature.asc"
 -----BEGIN PGP SIGNATURE-----
 Comment: GPGTools - https://gpgtools.org
 
-iEYEARECAAYFAljaqUMACgkQuwUzVZGdMxTQtwCbB12N5hVau2idlyr76TaQ7uK+
-6twAn0WkF4e6y9Jhe/m5JX3pHbAtGBai
-=yGO8
+iEYEARECAAYFAljaqp4ACgkQuwUzVZGdMxSCUgCfVy4fbg31RmrUfRfcxCixcg7B
+AM0An0zHxNQ1JkHVHOeIW5dFRPMTfUsx
+=07rs
 -----END PGP SIGNATURE-----
 
---ojESpu5f9ngaxtmC8JCawlUDdE08Ppjd2--
+--lR4UX92FbUOXDSgp5m77aEBsaoiphmHJK--
