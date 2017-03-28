@@ -1,63 +1,66 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <prvs=0260a732b4=mike.looijmans@topicproducts.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4AB45E00B01; Tue, 28 Mar 2017 05:19:06 -0700 (PDT)
+	id 91FB4E00939; Tue, 28 Mar 2017 07:37:50 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.220.170 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [95.211.112.140 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.220.170 listed in dnsbl.sorbs.net]
-Received: from mail-qk0-f170.google.com (mail-qk0-f170.google.com
-	[209.85.220.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2B90AE00A51
-	for <yocto@yoctoproject.org>; Tue, 28 Mar 2017 05:19:02 -0700 (PDT)
-Received: by mail-qk0-f170.google.com with SMTP id r142so34463021qke.2
-	for <yocto@yoctoproject.org>; Tue, 28 Mar 2017 05:19:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=FpYk/NEV/h17jUOKj9Wug7HSHpqmBnAZuVOYPRo1zD8=;
-	b=FtIUvRMDpVPpT4/fBwL7n5CamHzVg21uB/JeX8ajwc8Unr7YPCLuOTehO+bzsoeGtW
-	3qJRaFR11URizCi3zbg70grfijwiMxsdYGCV585uY+9poTmf6gtEF2rIUjDZQtlFI+ea
-	K2qjTQ4+PY4D9KXOTkaZVsJl1JNpDVvwYpW41NzNqGHv9zzBDRUgYmNthxnIjYWf1yhf
-	86w1Vr/JVSaaYAfde1VzDibGYjqeXpuVvtGnlHUpoG7HjGCvSOXm31Pc6W+PvBT2W01U
-	N2f+oJARldlrjusihLqTB0vifN1b6n/wnXmnHdx3xJJZgtfowi5kgldsM5bWoo6SJ3GI
-	Rm7A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=FpYk/NEV/h17jUOKj9Wug7HSHpqmBnAZuVOYPRo1zD8=;
-	b=f1nmoS2KA23RPjnQ4aTY2vmo9ujRp7DG44wArjYxkAlI4ey6OozXQerN4E+PDuA7QH
-	QqaUMHbLphTFP07lYLaCB9E/l3y3TiOwakBW2mitBA4VbCwj67wF/Ls3fRlm8imfYiZ2
-	j7zkQT76tkUoRx/Op7gKzoaGo6f1ocV3PXkiHeyrIFkKefINicstBIpdTYCl81+SAGKR
-	y60Qofb9C6/DQ9qvWOkOTLF6FJ6iwIsXluoO60oAiRNVID2e6pzROA93UjsI4M3t05aM
-	1I4HSTaBvSW6bD/e5oS+XO4+cnzGEaBI3bWkldoIQivIL1n8GdhyTV4OMTJUEkZx3upi
-	4cjQ==
-X-Gm-Message-State: AFeK/H1vWFvzMJHYLK3tMlqVO1CQx+ONWs78a34IiSeg2rrRtq+7xpa0pvp+65zVXgH6/85jOdENcvQC/BRBrUsq
-X-Received: by 10.55.162.203 with SMTP id l194mr23048943qke.221.1490703542406; 
-	Tue, 28 Mar 2017 05:19:02 -0700 (PDT)
+X-Greylist: delayed 2554 seconds by postgrey-1.32 at yocto-www;
+	Tue, 28 Mar 2017 07:37:45 PDT
+Received: from mx5-04.smtp.antispamcloud.com (mx5-04.smtp.antispamcloud.com
+	[95.211.112.140])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 24578E00655
+	for <yocto@yoctoproject.org>; Tue, 28 Mar 2017 07:37:45 -0700 (PDT)
+Received: from [37.74.225.130] (helo=TOP-EX01.TOPIC.LOCAL)
+	by mx5.antispamcloud.com with esmtps (TLSv1:ECDHE-RSA-AES128-SHA:128)
+	(Exim 4.86) (envelope-from <mike.looijmans@topicproducts.com>)
+	id 1csraW-0005jz-Gb
+	for yocto@yoctoproject.org; Tue, 28 Mar 2017 15:55:09 +0200
+Received: from [192.168.80.121] (192.168.80.121) by webmail.topic.nl
+	(192.168.10.102) with Microsoft SMTP Server id 14.3.224.2;
+	Tue, 28 Mar 2017 15:55:07 +0200
+To: <yocto@yoctoproject.org>
+References: <1e0b01d2a79a$18c68030$4a538090$@ln-systems.com>
+	<CAJTo0LajEvXnv+_L-udEejKu6c56xOrKwekoNRNzn29R_ihqZg@mail.gmail.com>
+From: Mike Looijmans <mike.looijmans@topic.nl>
+Organization: TOPIC
+Message-ID: <26c1ad6f-052e-3260-ae06-4f5185522e88@topic.nl>
+Date: Tue, 28 Mar 2017 15:55:07 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.7.0
 MIME-Version: 1.0
-Received: by 10.140.22.166 with HTTP; Tue, 28 Mar 2017 05:18:41 -0700 (PDT)
-In-Reply-To: <58DA42CE.4040809@easyarm.com>
-References: <58DA42CE.4040809@easyarm.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Tue, 28 Mar 2017 13:18:41 +0100
-Message-ID: <CAJTo0LaL0xkgTB=K6vaP3wvU1LvUJ7XS8y1WXYHzt2Kr=MzxtQ@mail.gmail.com>
-To: Surya <surya.n@easyarm.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Copying Static library to libdir of YOCTO
+In-Reply-To: <CAJTo0LajEvXnv+_L-udEejKu6c56xOrKwekoNRNzn29R_ihqZg@mail.gmail.com>
+X-Originating-IP: [192.168.80.121]
+X-EXCLAIMER-MD-CONFIG: 9833cda7-5b21-4d34-9a38-8d025ddc3664
+X-EXCLAIMER-MD-BIFURCATION-INSTANCE: 0
+X-Originating-IP: 37.74.225.130
+X-SpamExperts-Domain: topic.nl
+X-SpamExperts-Username: 37.74.225.128/28
+Authentication-Results: antispamcloud.com;
+	auth=pass smtp.auth=37.74.225.128/28@topic.nl
+X-SpamExperts-Outgoing-Class: unsure
+X-SpamExperts-Outgoing-Evidence: Combined (0.18)
+X-Recommended-Action: accept
+X-Filter-ID: s0sct1PQhAABKnZB5plbIbbvfIHzQjPVmPLZeVYSu3xU9luQrU+8/8qthi+0Jd/W/95+6ZE6dI+d
+	FNTaLLKrTD4PkK8WOoKuw32u9iEtZmisSr42qUwvK7U11fJ5smF5bE7GwnNXTE7JFCR1ojdwNHcQ
+	HarJ3TdMf4aSj8IylsE8KY/Sh1vzbtueiKYvDFupize2KZj1QMUvQPa5R89adWbjO41FyBEqIaDu
+	dcVplPGNaieKxw/vh63RdlaW2Zj1hcQD6Dxo9kokFZNwiacNPxeTCKssqlJePCDBHWfCYUvWOATT
+	vnG+QUCcfrSs6FZc7tZ3vKwSN7Mv0HNteAusUZ8BuYwGqmI8Tx/Ism0pnCcmlWACu0WC7nIKSPYV
+	aBAANeo6Hr4UJMIZEVOGlXeApA3I626B4k1VCg2pmPRu/tsJdUfg0BBA/jDPAolgiEjQNrdm88ZO
+	hP1sHXP6wEwxP73upx1n/FUf/NwbTI+uRoXlWvXEyVXmV1DcCGMoc6ig/SVaKi0jvtxxX4zA29pu
+	2ONYQFX+rhdRbxagFZk9QeU7sEKSfUWHty4XO0JvVoTKUz0sPgnpAk2KA2vJwMd1uVp/3TgIM4oj
+	TBFr687rGjvg8i1EWhZgcWEg+htcON1+aIfVaCHpEB6cFH6WJxE4Zs5mbpFFk0cqJJSclmrLqtls
+	116aTDs833MeJV30f/JZPGg8GyebUcHHoTZkyAmXZhFMyLWU2atJ3T6oYWHm47FfucNbjTxIOR91
+	bxck2vvLx45W6h2ctW+V1+EyMGTLxVItpNmHURF6jYEBDsakSw8HHCZJTZ9IJG3AwYPF1NUzlG39
+	CuxUtSxaDJJ6TChcLUH9asyhHPHrk1fOl/Hbtww=
+X-Report-Abuse-To: spam@quarantine2.antispamcloud.com
+Subject: Re: Current situation with gobject introspection? (off-topic)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,39 +72,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 Mar 2017 12:19:06 -0000
-Content-Type: multipart/alternative; boundary=001a114d7fb01c7042054bc9774d
-
---001a114d7fb01c7042054bc9774d
-Content-Type: text/plain; charset=UTF-8
-
-On 28 March 2017 at 12:02, Surya <surya.n@easyarm.com> wrote:
-
-> I can see those libraries in the  "usr/lib" directory of that particular
-> package which is generated in "tmp/work" folder . But somehow these
-> libraries are not copied to rootfs "/usr/lib" directory.
->
-
-Static libraries are part of the ${PN}-staticdev package, so won't be
-installed if you just install the ${PN}-dev package.
-
-Ross
-
---001a114d7fb01c7042054bc9774d
-Content-Type: text/html; charset=UTF-8
+X-List-Received-Date: Tue, 28 Mar 2017 14:37:50 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 28 March 2017 at 12:02, Surya <span dir=3D"ltr">&lt;<a href=3D"mailto:su=
-rya.n@easyarm.com" target=3D"_blank">surya.n@easyarm.com</a>&gt;</span> wro=
-te:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-=
-left:1px #ccc solid;padding-left:1ex"><div id=3D":3mc" class=3D"a3s aXjCH m=
-15b14d7f288b3630">I can see those libraries in the=C2=A0 &quot;usr/lib&quot=
-; directory of that particular package which is generated in &quot;tmp/work=
-&quot; folder . But somehow these libraries are not copied to rootfs &quot;=
-/usr/lib&quot; directory.<br></div></blockquote></div><br>Static libraries =
-are part of the ${PN}-staticdev package, so won&#39;t be installed if you j=
-ust install the ${PN}-dev package.</div><div class=3D"gmail_extra"><br></di=
-v><div class=3D"gmail_extra">Ross</div></div>
+=EF=BB=BFOn 28-03-17 10:39, Burton, Ross wrote:
 
---001a114d7fb01c7042054bc9774d--
+> Krogoth (2.1) isn't the latest, that's Morty (2.2) released in October 20=
+16
+> and next month Pyro (2.3) is being released.
+
+So what happened to the missing two walker bots?
+
+:-)
+
+
+
+Kind regards,
+
+Mike Looijmans
+System Expert
+
+TOPIC Products
+Materiaalweg 4, NL-5681 RJ Best
+Postbus 440, NL-5680 AK Best
+Telefoon: +31 (0) 499 33 69 79
+E-mail: mike.looijmans@topicproducts.com
+Website: www.topicproducts.com
+
+Please consider the environment before printing this e-mail
+
+
+
+
+
+
