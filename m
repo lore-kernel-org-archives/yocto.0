@@ -1,69 +1,62 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B4BB8E003C1; Tue, 28 Mar 2017 09:34:20 -0700 (PDT)
+	id 31739E003E1; Tue, 28 Mar 2017 10:27:51 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_LOW,
-	RCVD_IN_SORBS_SPAM autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.216.181 listed in dnsbl.sorbs.net]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.216.181 listed in list.dnswl.org]
-Received: from mail-qt0-f181.google.com (mail-qt0-f181.google.com
-	[209.85.216.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6E3D8E0030B
-	for <yocto@yoctoproject.org>; Tue, 28 Mar 2017 09:34:16 -0700 (PDT)
-Received: by mail-qt0-f181.google.com with SMTP id x35so68772640qtc.2
-	for <yocto@yoctoproject.org>; Tue, 28 Mar 2017 09:34:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.82.50 listed in list.dnswl.org]
+Received: from mail-wm0-f50.google.com (mail-wm0-f50.google.com [74.125.82.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B3A75E00349
+	for <yocto@yoctoproject.org>; Tue, 28 Mar 2017 10:27:47 -0700 (PDT)
+Received: by mail-wm0-f50.google.com with SMTP id o81so4280154wmb.1
+	for <yocto@yoctoproject.org>; Tue, 28 Mar 2017 10:27:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=9EBunyl/A6w43p58Oe+On1fNeblNQSo9JBVwUCSySY4=;
-	b=eJj2DBA+TEj+sI4bnxb7rJbKQMQukJVHMIa/u3DMJxeIxs7Q4f3D6E+o+/8QcbgQHl
-	3eB1C0J8LhCXcEGvZtLNHOw+CceustU+Ts4iPT7SuyBON0qmkOL67D+nkDY3fiWezOlE
-	QCqf4CXjdHUwRaP6O1mNr/omeyL3BozqJ0UaXQSzWiU3onVmEtQALzuC5MbIEtBsRpDv
-	SVW4R+jZUzVbSTqJJGgZmcgnAaWtgjLFjMsMNKzo3Dcg6PVby3V8eLxX68dyYr6yf1Ws
-	yi5S7P0soMc+zpVKt3aO6fBI5gUvWpFWPNUpl3nTNQUmcdEy2Ad4ovmzSBSueFwpGbrG
-	Vl6A==
+	:cc; bh=TAVnFwK9yeYaTQKbysHrOiA8QKeMHJIdjweykyvssz4=;
+	b=j0rfmh7ahq/ZrsUIsfUluPpNPCCUqrWQp6lK7vmJaINfJAx9qXJBYdMuMBbdg83YRw
+	hkiONR42LTWLgmOYwQ/h4vbyWvSaXBw62zjiCS/aS9L7Ne8bk/PqAv1EddXcinaHk5Oe
+	BTvYQ6ZkcTmaFb4RVpVPW5V5omNxw2timHVFGq7+rHq8/vNejZYNRM5C5lqNzMVSaXC1
+	UmClprdncjMTI3ZZE7cjw+0CYIpGWzpM2OGugth5b/GeEkVfWXi0i+muuOR28qW2vu7a
+	0BspdKGaGyF9wSzEdySCkThigSIM7Wll5KjrNCXM6OnEOFdfwFUOyTwmIXFIEKyNAYXp
+	owEA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=9EBunyl/A6w43p58Oe+On1fNeblNQSo9JBVwUCSySY4=;
-	b=Nw2WArvo0j3rLtOuDTGkidbkgFTc+etZcKBDsSSwxspkj0h591lJtIE+RBEtvaezhe
-	X3508FxczJRf1C42x20JNQ4FvKRdR9Me9+KEDaP3Vo/+9T3ua156E/JqEz8AMzwWPfg2
-	MbgGj9bC+7D2FElJTl9BZ/etm21xD3BgYN1huoUHzNAzvMmQFEwW03u4YmFjcDFBZD5B
-	bNWNWtuG0sTWG8cNj60SjsdQ+k2Okcy209e+Qa/yrI+Fy1gq785B7UEMcv88DRPgCxzI
-	j5GFk6r/zpJiBQL6sNejjC4EkjfZ04e0lE5BNxLGa3hu0XPedXPsjRMrwSFvWxDwfCbK
-	hZQg==
-X-Gm-Message-State: AFeK/H202vb8dIxUNM6DKsSnIfskB5SeawGZ/ndQ5o4uJZrQnEd5WAJPSyGvXjlm1nn7OkpMKjLuWhdopREQiHAV
-X-Received: by 10.237.34.250 with SMTP id q55mr27639509qtc.144.1490718856348; 
-	Tue, 28 Mar 2017 09:34:16 -0700 (PDT)
+	bh=TAVnFwK9yeYaTQKbysHrOiA8QKeMHJIdjweykyvssz4=;
+	b=SvT6G/cNXw/IvTpzzKV69dJ3vpVbx3CpP7Karj2Ju+CBokhFALccupusM41AAC/6JS
+	uNF3FOuqI+/0AjGhMgQZgL4Kr2d3xDLvEmAkUko507FgdrBvK1OunH/azoisvuqtyxte
+	+a17zwjU+Fi37YTQQUH3oSk/aRqHNjJLRJ/4hhXls/dz+3j/6Sr/u2oBi6P7XYh6BuVF
+	rhy00T8ckr/K2DPnrhjEtD6FtxWWUs+gxEZZA/NZoeTB7JlsYB9ILsgJsAloRKhXEJNt
+	klrPbR6dYJ/Y0faVyzJ6RzJDBPjICD0/VYI1CNlSlif4CDbhNLT2o2HekA8IBQi3Qm7k
+	lH/w==
+X-Gm-Message-State: AFeK/H0X7UZiBdUa3DqkF5op0z81qrL4Va+JmtUSF9fzpwIWQJZ7uiwyhJxl0SzWJ0/9HQIAZMqx7k8G2mZ5kg==
+X-Received: by 10.28.165.145 with SMTP id o139mr15866070wme.13.1490722066303; 
+	Tue, 28 Mar 2017 10:27:46 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.140.22.166 with HTTP; Tue, 28 Mar 2017 09:33:55 -0700 (PDT)
-In-Reply-To: <CA+S4H=Rt-2=gPhvZdu-oKsV7eyASvku4m+0whF8sm1fuJM3+iw@mail.gmail.com>
-References: <CA+S4H=RD_i3vLVHBm0dQvVBJsqexvhuL6J8D3NDF0V45awCHow@mail.gmail.com>
-	<CAMKF1sq--WQCrPpaJ_h9c9KENxtb6o=73X5YETsgn4tQNAMdiQ@mail.gmail.com>
-	<CA+S4H=THx-EsuJ=GU=CHLsY-GEmvsMTj69ysNnHSVa+mrf83Og@mail.gmail.com>
-	<CAMKF1srq5_2=9=DWd0H0RA201qcDJ+Hf4+etRmyB4-a6jjZZ6A@mail.gmail.com>
-	<CA+S4H=QH2+iBuzcE9Bfnx0PZSbqj=LGpbZPQq4Op05FpEKWXHA@mail.gmail.com>
-	<CA+S4H=QAE1Skn3wORV20atroWNa-FzOmrGvGo-ZffB3EtLa-Kg@mail.gmail.com>
-	<CA+S4H=Rt-2=gPhvZdu-oKsV7eyASvku4m+0whF8sm1fuJM3+iw@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Tue, 28 Mar 2017 17:33:55 +0100
-Message-ID: <CAJTo0Lbwtbc_grYBEuE=m32LfSYTN7NVYNSfj7nfJ83Wc0_R5g@mail.gmail.com>
-To: Vadalasetti Sivanageswararao <vsivanagulu@gmail.com>
+Received: by 10.80.180.162 with HTTP; Tue, 28 Mar 2017 10:27:15 -0700 (PDT)
+In-Reply-To: <CAKEinFwC58g5q9wmvwhTfn5Au3n3Qrx8xRkSy7yUpehyedLiog@mail.gmail.com>
+References: <CAKEinFwC58g5q9wmvwhTfn5Au3n3Qrx8xRkSy7yUpehyedLiog@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Tue, 28 Mar 2017 10:27:15 -0700
+Message-ID: <CAMKF1soTiRbge8yY3TJc8+EPgeQpmAPOe1q4=SN=9duSyEix5A@mail.gmail.com>
+To: Cody Piersall <cody@arrc.ou.edu>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: how to enable c++11 support in yocto
+Subject: Re: Remove a recipe's do_install_append() function in an append file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,37 +68,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 Mar 2017 16:34:20 -0000
-Content-Type: multipart/alternative; boundary=001a113eea5ae50c60054bcd07f8
-
---001a113eea5ae50c60054bcd07f8
+X-List-Received-Date: Tue, 28 Mar 2017 17:27:51 -0000
 Content-Type: text/plain; charset=UTF-8
 
-On 27 March 2017 at 05:58, Vadalasetti Sivanageswararao <
-vsivanagulu@gmail.com> wrote:
-
-> cc1plus: warning: include location "/usr/local/include" is unsafe for
-> cross-compilation [-Wpoison-system-directories]
+On Thu, Mar 23, 2017 at 3:28 PM, Cody Piersall <cody@arrc.ou.edu> wrote:
+> Hello,
+>
+> I am building zsh from meta-oe layer, and it has a do_install_append()
+> function defined like this:
+>
+> do_install_append () {
+>     rm -fr ${D}/usr/share
+> }
+>
+> which gets rid of lots lots of useful functionality, like
+> context-aware autocompletion.  Can a bbappend file get rid of that
+> function, or do I need to edit the actual recipe? I've attempted
+> defining an empty do_install_append() { : } but it didn't work.
 >
 
-Your build is referring to host files so this is likely the problem.  This
-is a bug in your sources, or recipe.
+if its in a bbappend, there is not much you can do about undoing it except
+to not apply the bbappend or modify it directly.
 
-Ross
+So you can send a patch to meta-oe to convince that its a good idea to keep
+/usr/share for zsh, or you can carry a local patch to meta-oe where you undo it
 
---001a113eea5ae50c60054bcd07f8
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 27 March 2017 at 05:58, Vadalasetti Sivanageswararao <span dir=3D"ltr">&=
-lt;<a href=3D"mailto:vsivanagulu@gmail.com" target=3D"_blank">vsivanagulu@g=
-mail.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=
-=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div>cc1=
-plus: warning: include location &quot;/usr/local/include&quot; is unsafe fo=
-r cross-compilation [-Wpoison-system-directories]</div><div></div></blockqu=
-ote></div><br>Your build is referring to host files so this is likely the p=
-roblem.=C2=A0 This is a bug in your sources, or recipe.</div><div class=3D"=
-gmail_extra"><br></div><div class=3D"gmail_extra">Ross</div></div>
+> Thanks,
+> Cody
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
---001a113eea5ae50c60054bcd07f8--
