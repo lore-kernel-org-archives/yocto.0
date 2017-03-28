@@ -1,60 +1,64 @@
-Return-Path: <colin.helliwell@ln-systems.com>
+Return-Path: <ranshalit@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7F254E00B01; Tue, 28 Mar 2017 01:54:52 -0700 (PDT)
+	id 3D31EE00B01; Tue, 28 Mar 2017 02:10:02 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [212.227.126.187 listed in dnsbl.sorbs.net]
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (ranshalit[at]gmail.com)
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.128.173 listed in dnsbl.sorbs.net]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [212.227.126.187 listed in list.dnswl.org]
+	*      [209.85.128.173 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 303 seconds by postgrey-1.32 at yocto-www;
-	Tue, 28 Mar 2017 01:54:48 PDT
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.187])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1EA96E00A51
-	for <yocto@yoctoproject.org>; Tue, 28 Mar 2017 01:54:48 -0700 (PDT)
-Received: from oxbsltgw11.schlund.de ([172.19.249.28]) by
-	mrelayeu.kundenserver.de (mreue003 [212.227.15.163]) with ESMTPSA
-	(Nemesis) id 0Lgc4H-1cPUCw2b0n-00nwM2 for <yocto@yoctoproject.org>;
-	Tue, 28 Mar 2017 10:49:43 +0200
-Date: Tue, 28 Mar 2017 09:49:43 +0100 (BST)
-From: Colin Helliwell <colin.helliwell@ln-systems.com>
-To: yocto@yoctoproject.org
-Message-ID: <1037607058.234848.1490690983542@email.1and1.co.uk>
-In-Reply-To: <CAJTo0LajEvXnv+_L-udEejKu6c56xOrKwekoNRNzn29R_ihqZg@mail.gmail.com>
-References: <1e0b01d2a79a$18c68030$4a538090$@ln-systems.com>
-	<CAJTo0LajEvXnv+_L-udEejKu6c56xOrKwekoNRNzn29R_ihqZg@mail.gmail.com>
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wr0-f173.google.com (mail-wr0-f173.google.com
+	[209.85.128.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C0042E00A51
+	for <yocto@yoctoproject.org>; Tue, 28 Mar 2017 02:09:59 -0700 (PDT)
+Received: by mail-wr0-f173.google.com with SMTP id w11so77934522wrc.3
+	for <yocto@yoctoproject.org>; Tue, 28 Mar 2017 02:09:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=lXKo33qmBt7lUFcBDyD+v8UGPCDDILzjMne1KB90KW0=;
+	b=nZz8VJzddIQ5wc+qHVeHn25tZ2bhPjmNpKgI4crbH3Cmqt3+hnclFWZ5APg8rwr5D1
+	PqWOMXAf5WVUvdABGcebO8FZjjrgLMSzikmdP7C2tY5OjQTUyFbdui5cFyG8qT/KD6mw
+	Jk0c1VK34q0nc/8rDhnBCY2n9HQB0v8/SSADGyHcQ8IFc92f7COlufOleiGJ7XXOuYhJ
+	/Uf2uNzUcGbvcP6iXZisJrZQ8ABBGzt2v915q8bH98Cm4TKSDKxIt5aL/akP7NUmARS5
+	+7QFcSQkKkQwlq0pT2lax77vFYcPgiLg03lx3JtRpBrsNtzO38c4chV+SWvsenENPch6
+	VWfQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=lXKo33qmBt7lUFcBDyD+v8UGPCDDILzjMne1KB90KW0=;
+	b=DkbS32h/91M4+yUZApYHtu5CmJwlQQFM5Ic2kTDT1gQZf6PVIsvkiz17NYj2xGjjeg
+	F4ykof8qFdqU8pUQC0uDRWlMF4Ap+yKbMi0h0FGtTgrhHBE6r7AY2DCn8E2+2NMNSUEf
+	iWoMj1KoGOxdfdItVIDoeansEMcWkPKEqkMPCJBsv/3GqBPKY+T8gqdY1JF0is5CWTs1
+	m9cRMMbOJJ72Eg0G3Ki+nz0EhJKk+oste9aeE60xpEQE7KeUo8gt/37m5h5orKJQq4NY
+	nnfn6o/soeNDLnjLYjLJngFZEmoL2kkkZsSFi3T24538f1tuxM85ILISDDlDC0oBOwMw
+	fJrA==
+X-Gm-Message-State: AFeK/H1NTDOKLswpigIv8oS00oypxVQlafgDbsPcnu+TXmRGX5zvn1qOadmWAsfCusxRyUzHwwsAEUgqDKJdeg==
+X-Received: by 10.28.130.81 with SMTP id e78mr13745681wmd.47.1490692197598;
+	Tue, 28 Mar 2017 02:09:57 -0700 (PDT)
 MIME-Version: 1.0
-X-Priority: 3
-Importance: Medium
-X-Mailer: Open-Xchange Mailer v7.8.1-Rev32
-X-Originating-Client: open-xchange-appsuite
-X-Provags-ID: V03:K0:Azrh0mfvcgBbvEnnCFYqo36ixHt5pq0lsyKeDDNaJ+rfBDstGSG
-	4T6+151gKkK4CQ9KmByzAQX+tq9xnAVZTv2bwb0ra0LefwtHklbFJuEfCEANiIhlqUuwIRY
-	eWAbqCOsM5xmWSu5BbIf017VdCqhoonoMg8CjVZbtKGNkaCgd0bSQQh1LdT/ITWMf+0dEXJ
-	E90vW3RRZ1IuLzCndg2FA==
-X-UI-Out-Filterresults: notjunk:1;V01:K0:naAA3loJx5M=:43eqjYv8nE7vVVS2otGy5D
-	AKuq+b3Yr6UmVY+zC/9sDqFgLpYrrdVwiMR+hqIYCGWMXDskwlO6UTx8zKXlkEJpiLcnwoS7V
-	v9WEtrCoOxA91M3jbuO21BvJRTCoVaOSJ2gB63OwCpfHNg1nm12GmnRunoMa/BrmKasJW7CVi
-	FXPLfRL5gMtt7vKMJEXezaEySdLLcoqjUPjrbee1bhd/3w91PzhN/A+MtKXz/ha/k9MJz5P7J
-	ZLRxjICwMc5sFBbX1fwh30bF+EPjTocvJrLN1/WyRxHiR47CC8zNwY7LkqDTQU94fxP/ZiXhq
-	c/lq9lSFnJ13XdNAxKIsMo4QMxAv6f9NrWd7rpPbNq4GJ2g6fToNxy4xe3leL/IZKYsJ4xAQw
-	yTimapyWa1s3vAKHuvoyLCh9c3mrdhR7xrdX9vXDJaD60xgqQe2uK5OdKmamIHnWBnEyBg9hc
-	YmBWm0jRcqsjHX1vsOWTP9KBFTNr+PtPz67GGbVMIexh58ca0wXtLjJk+V5VtMo5ICPnh3r1f
-	gljwD26W9omxNKxH+6S953OXzZz6zmDIIRYo2ht5IK/gysR6V0iIk9tiPbzJd9mHZ63N8UEOE
-	AzdV3nTYxL+mDE8f3AxmdcYsiNoFFD7tT2PECDqisvqRORSgDRTwJyFanFoZh46OjefU5EVq/
-	PmqcbkZq4aO5LcQy516NNkvPdszul6Gs0f/fpoBRLHw9cQd73maRaQ220vrLKr6uJQ90NYYn0
-	r8SiLeyW85iOUTqQ
-Subject: Re: Current situation with gobject introspection?
+Received: by 10.80.163.6 with HTTP; Tue, 28 Mar 2017 02:09:57 -0700 (PDT)
+From: Ran Shalit <ranshalit@gmail.com>
+Date: Tue, 28 Mar 2017 12:09:57 +0300
+Message-ID: <CAJ2oMh+Dj3SZ5Tf8aF3VRhpsboah-4qevGC3v+5q=vpOdQ2V0g@mail.gmail.com>
+To: Yocto Project Discussion <yocto@yoctoproject.org>
+Subject: package managers
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: Colin Helliwell <colin.helliwell@ln-systems.com>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -63,31 +67,14 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 Mar 2017 08:54:52 -0000
+X-List-Received-Date: Tue, 28 Mar 2017 09:10:02 -0000
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
 
-> On 28 March 2017 at 09:39 "Burton, Ross" <ross.burton@intel.com> wrote:
->=20
-> On 28 March 2017 at 09:05, <colin.helliwell@ln-systems.com> wrote:
->=20
-> > So I wondered what the latest [krogoth] situation is =E2=80=93 am I lik=
-ely to be able to get this package to build, and where/how might I get star=
-ted?
->=20
-> Krogoth (2.1) isn't the latest, that's Morty (2.2) released in October 20=
-16 and next month Pyro (2.3) is being released.
->
+Hello,
 
-Yeah, sorry - I meant 'the latest situation w.r.t Krogoth', rather than Kro=
-goth being the latest version :)
+Is it possible to configure more than one package manager in yocto ?
+Does it mean it will create install package for both ?
 
-> Krogoth has support for gobject-introspection, and is covered in the docu=
-mentation:
->=20
-> http://www.yoctoproject.org/docs/2.2.1/dev-manual/dev-manual.html#enablin=
-g-gobject-introspection-support
->=20
-
-Thanks guys, I'll get moved over to Krogoth and take it from there.
+Thank you,
+Ran
 
