@@ -1,67 +1,60 @@
-Return-Path: <jussi.kukkonen@intel.com>
+Return-Path: <colin.helliwell@ln-systems.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1D92EE00B01; Tue, 28 Mar 2017 01:40:29 -0700 (PDT)
+	id 7F254E00B01; Tue, 28 Mar 2017 01:54:52 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.161.175 listed in list.dnswl.org]
+X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [212.227.126.187 listed in dnsbl.sorbs.net]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [212.227.126.187 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.161.175 listed in dnsbl.sorbs.net]
-Received: from mail-yw0-f175.google.com (mail-yw0-f175.google.com
-	[209.85.161.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BE756E00A51
-	for <yocto@yoctoproject.org>; Tue, 28 Mar 2017 01:40:27 -0700 (PDT)
-Received: by mail-yw0-f175.google.com with SMTP id v76so48568472ywg.0
-	for <yocto@yoctoproject.org>; Tue, 28 Mar 2017 01:40:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=R+t4Uop9L59V8MPTp/yQTsEcrNewcwCtSwhVRBdFHYg=;
-	b=gcpTLNzmm+sM7bTKqoCudgkGRj08q91Yw+k5/ByCCNtnl/wcpW/qWt9bppI5ijoLn2
-	d/FvSo3Vb67S9xq0xCl4Vl65deI7NeG986v07pUvtuN4BMn2ajKEWyLh/nqe/kVuP5LX
-	HkEghYGKTGWh9edjlOLDue8BvzO0K0K6D4WqOTaEmCpKcCb4W7dGKy8UGFIQRJAKcytO
-	m73SHE0mpC33ClgAnqu/N19H3m66TJWFK3EeyYU0tUQMvdZOBJqMDRigj7NY8V4e4t1J
-	TDSFPG7u1aQ1k+YUPklxrLjt8u4F58/GJMqm2CTYCe0qCTpyk5qJgVxHbjzJLe8cPBi5
-	jlSQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=R+t4Uop9L59V8MPTp/yQTsEcrNewcwCtSwhVRBdFHYg=;
-	b=VfQtlPPzX6F2DDZS7oGQfYCrXPBmuAxTIv2FzdMv9KUrrwvCnjCamdHCyY+o7C4Cfr
-	47rGl5Jr/yMPtf4lc4OtGVmNfYcXSPHViXhi+1MVo5rO6ICrYXbUUXsZLkbdXoEyR67c
-	Xy8YEbxr3SGQNpR5a4sQST4Y4OBmXxG+A8Y1b4/9P91IaqU0ZlsneCVm5KgbPW+/hLH3
-	52bFPjKAVzB0kvq8exFR+LqwsQNjhHmf+Gub0AH0oPJDpCabDFzMzaHNxI6Yx1vIX1Nm
-	ptppTfF7aBV0qJuownFyzyJhbK5JRU5bqp8Z6P2bN+sjXWVuZ9wUJZCPEXb+1X7FHfq0
-	MJqg==
-X-Gm-Message-State: AFeK/H2ia2ih8oaKZc32P12DinPoqKPSIB4zA3XujJ9jftvS/2gSIH2I1/deuHMyk7+ZPWBOm/7LyXlI52tVIKEJ
-X-Received: by 10.129.198.2 with SMTP id l2mr5302995ywi.260.1490690426768;
-	Tue, 28 Mar 2017 01:40:26 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.129.81.136 with HTTP; Tue, 28 Mar 2017 01:39:56 -0700 (PDT)
-In-Reply-To: <1e0b01d2a79a$18c68030$4a538090$@ln-systems.com>
+X-Greylist: delayed 303 seconds by postgrey-1.32 at yocto-www;
+	Tue, 28 Mar 2017 01:54:48 PDT
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.187])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1EA96E00A51
+	for <yocto@yoctoproject.org>; Tue, 28 Mar 2017 01:54:48 -0700 (PDT)
+Received: from oxbsltgw11.schlund.de ([172.19.249.28]) by
+	mrelayeu.kundenserver.de (mreue003 [212.227.15.163]) with ESMTPSA
+	(Nemesis) id 0Lgc4H-1cPUCw2b0n-00nwM2 for <yocto@yoctoproject.org>;
+	Tue, 28 Mar 2017 10:49:43 +0200
+Date: Tue, 28 Mar 2017 09:49:43 +0100 (BST)
+From: Colin Helliwell <colin.helliwell@ln-systems.com>
+To: yocto@yoctoproject.org
+Message-ID: <1037607058.234848.1490690983542@email.1and1.co.uk>
+In-Reply-To: <CAJTo0LajEvXnv+_L-udEejKu6c56xOrKwekoNRNzn29R_ihqZg@mail.gmail.com>
 References: <1e0b01d2a79a$18c68030$4a538090$@ln-systems.com>
-From: Jussi Kukkonen <jussi.kukkonen@intel.com>
-Date: Tue, 28 Mar 2017 11:39:56 +0300
-Message-ID: <CAHiDW_FQLNbsWsErAhtk5gxcTRyvPQ4Qse+2AsX5PX71WQc-OQ@mail.gmail.com>
-To: colin.helliwell@ln-systems.com
-Cc: Yocto Project <yocto@yoctoproject.org>, "Kanavin,
-	Alexander" <alexander.kanavin@intel.com>
+	<CAJTo0LajEvXnv+_L-udEejKu6c56xOrKwekoNRNzn29R_ihqZg@mail.gmail.com>
+MIME-Version: 1.0
+X-Priority: 3
+Importance: Medium
+X-Mailer: Open-Xchange Mailer v7.8.1-Rev32
+X-Originating-Client: open-xchange-appsuite
+X-Provags-ID: V03:K0:Azrh0mfvcgBbvEnnCFYqo36ixHt5pq0lsyKeDDNaJ+rfBDstGSG
+	4T6+151gKkK4CQ9KmByzAQX+tq9xnAVZTv2bwb0ra0LefwtHklbFJuEfCEANiIhlqUuwIRY
+	eWAbqCOsM5xmWSu5BbIf017VdCqhoonoMg8CjVZbtKGNkaCgd0bSQQh1LdT/ITWMf+0dEXJ
+	E90vW3RRZ1IuLzCndg2FA==
+X-UI-Out-Filterresults: notjunk:1;V01:K0:naAA3loJx5M=:43eqjYv8nE7vVVS2otGy5D
+	AKuq+b3Yr6UmVY+zC/9sDqFgLpYrrdVwiMR+hqIYCGWMXDskwlO6UTx8zKXlkEJpiLcnwoS7V
+	v9WEtrCoOxA91M3jbuO21BvJRTCoVaOSJ2gB63OwCpfHNg1nm12GmnRunoMa/BrmKasJW7CVi
+	FXPLfRL5gMtt7vKMJEXezaEySdLLcoqjUPjrbee1bhd/3w91PzhN/A+MtKXz/ha/k9MJz5P7J
+	ZLRxjICwMc5sFBbX1fwh30bF+EPjTocvJrLN1/WyRxHiR47CC8zNwY7LkqDTQU94fxP/ZiXhq
+	c/lq9lSFnJ13XdNAxKIsMo4QMxAv6f9NrWd7rpPbNq4GJ2g6fToNxy4xe3leL/IZKYsJ4xAQw
+	yTimapyWa1s3vAKHuvoyLCh9c3mrdhR7xrdX9vXDJaD60xgqQe2uK5OdKmamIHnWBnEyBg9hc
+	YmBWm0jRcqsjHX1vsOWTP9KBFTNr+PtPz67GGbVMIexh58ca0wXtLjJk+V5VtMo5ICPnh3r1f
+	gljwD26W9omxNKxH+6S953OXzZz6zmDIIRYo2ht5IK/gysR6V0iIk9tiPbzJd9mHZ63N8UEOE
+	AzdV3nTYxL+mDE8f3AxmdcYsiNoFFD7tT2PECDqisvqRORSgDRTwJyFanFoZh46OjefU5EVq/
+	PmqcbkZq4aO5LcQy516NNkvPdszul6Gs0f/fpoBRLHw9cQd73maRaQ220vrLKr6uJQ90NYYn0
+	r8SiLeyW85iOUTqQ
 Subject: Re: Current situation with gobject introspection?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: Colin Helliwell <colin.helliwell@ln-systems.com>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -70,67 +63,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 Mar 2017 08:40:29 -0000
-Content-Type: multipart/alternative; boundary=94eb2c1a2d6c5bc756054bc669bc
-
---94eb2c1a2d6c5bc756054bc669bc
+X-List-Received-Date: Tue, 28 Mar 2017 08:54:52 -0000
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-On 28 March 2017 at 11:05, <colin.helliwell@ln-systems.com> wrote:
->
-> I=E2=80=99m currently using Jethro (though about to move to Krogoth), and=
- have an
-external package which need gobject introspection. I=E2=80=99m building on =
-64-bit
-x86, for ARM iMX6 target.
->
-> I=E2=80=99ve been searching around to work out if this is possible under =
-Yocto,
-but not sure which of the info I=E2=80=99ve found is up-to-date.
->
-> So I wondered what the latest [krogoth] situation is =E2=80=93 am I likel=
-y to be
-able to get this package to build, and where/how might I get started?
->
-> Thanks
-
-Hi Colin,
-
-Alexander can give you the gory details if needed but the summary is:
-Krogoth has full gobject-introspection support (for architectures that qemu
-supports), jethro does not.
-
-There is a distro feature but it is backfilled by default so no action
-should be needed. For many libraries you only need to inherit the class,
-but do read the fine manual just in case:
-http://www.yoctoproject.org/docs/2.1/dev-manual/dev-manual.html#enabling-go=
-bject-introspection-support
-
-Jussi
-
---94eb2c1a2d6c5bc756054bc669bc
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">On 28 March 2017 at 11:05, &lt;<a href=3D"mailto:colin.hel=
-liwell@ln-systems.com">colin.helliwell@ln-systems.com</a>&gt; wrote:<br>&gt=
-;<br>&gt; I=E2=80=99m currently using Jethro (though about to move to Krogo=
-th), and have an external package which need gobject introspection. I=E2=80=
-=99m building on 64-bit x86, for ARM iMX6 target.<br>&gt;<br>&gt; I=E2=80=
-=99ve been searching around to work out if this is possible under Yocto, bu=
-t not sure which of the info I=E2=80=99ve found is up-to-date.<br>&gt;<br>&=
-gt; So I wondered what the latest [krogoth] situation is =E2=80=93 am I lik=
+> On 28 March 2017 at 09:39 "Burton, Ross" <ross.burton@intel.com> wrote:
+>=20
+> On 28 March 2017 at 09:05, <colin.helliwell@ln-systems.com> wrote:
+>=20
+> > So I wondered what the latest [krogoth] situation is =E2=80=93 am I lik=
 ely to be able to get this package to build, and where/how might I get star=
-ted?<br>&gt;<br>&gt; Thanks<br><br><div>Hi Colin,<br><br><div>Alexander can=
- give you the gory details if needed but the summary is: Krogoth has full g=
-object-introspection support (for architectures that qemu supports), jethro=
- does not.<br><br>There is a distro feature but it is backfilled by default=
- so no action should be needed. For many libraries you only need to inherit=
- the class, but do read the fine manual just in case: <a href=3D"http://www=
-.yoctoproject.org/docs/2.1/dev-manual/dev-manual.html#enabling-gobject-intr=
-ospection-support">http://www.yoctoproject.org/docs/2.1/dev-manual/dev-manu=
-al.html#enabling-gobject-introspection-support</a><br>=C2=A0<div>Jussi<br><=
-br></div></div></div></div>
+ted?
+>=20
+> Krogoth (2.1) isn't the latest, that's Morty (2.2) released in October 20=
+16 and next month Pyro (2.3) is being released.
+>
 
---94eb2c1a2d6c5bc756054bc669bc--
+Yeah, sorry - I meant 'the latest situation w.r.t Krogoth', rather than Kro=
+goth being the latest version :)
+
+> Krogoth has support for gobject-introspection, and is covered in the docu=
+mentation:
+>=20
+> http://www.yoctoproject.org/docs/2.2.1/dev-manual/dev-manual.html#enablin=
+g-gobject-introspection-support
+>=20
+
+Thanks guys, I'll get moved over to Krogoth and take it from there.
+
