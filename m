@@ -1,51 +1,63 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <maxpowel@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9C2D6E0050B; Tue, 28 Mar 2017 14:35:34 -0700 (PDT)
+	id BABC6E0050B; Tue, 28 Mar 2017 14:47:28 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	RCVD_IN_DNSWL_HI, RCVD_IN_SORBS_SPAM,
-	T_DKIM_INVALID autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE, 
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (maxpowel[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.220.176 listed in list.dnswl.org]
 	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [192.55.52.88 listed in dnsbl.sorbs.net]
+	*      [209.85.220.176 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	*  0.0 T_DKIM_INVALID DKIM-Signature header exists but is not valid
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 00764E003E1
-	for <yocto@yoctoproject.org>; Tue, 28 Mar 2017 14:35:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-	d=intel.com; i=@intel.com; q=dns/txt; s=intel;
-	t=1490736933; x=1522272933;
-	h=from:to:cc:subject:date:message-id:in-reply-to:
-	references:mime-version:content-transfer-encoding;
-	bh=O6wkbJcTwrEVxsANuAOFRWCm8wJgaPYs988fG+IEE8g=;
-	b=E/kDx+jokP707eieqINDZoVqskvCv3+0Vw49k82jk371HP4MPMZdg/p0
-	EnjWGHlrHLywuKPVX81pMd9rpOmQRA==;
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-	by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	28 Mar 2017 14:35:33 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.36,238,1486454400"; d="scan'208";a="839441851"
-Received: from dalin-mobl1.gar.corp.intel.com (HELO
-	peggleto-mobl.ger.corp.intel.com) ([10.255.138.23])
-	by FMSMGA003.fm.intel.com with ESMTP; 28 Mar 2017 14:35:31 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Ian Welch <ian_welch@trimble.com>
-Date: Wed, 29 Mar 2017 10:35:28 +1300
-Message-ID: <2831743.0r9HdKAZTp@peggleto-mobl.ger.corp.intel.com>
-Organization: Intel Corporation
-In-Reply-To: <CACgq_DoCsbs2-a9UbeKj_EhsKwJDTNBNT8qNYmA=5ZFm7oT83w@mail.gmail.com>
-References: <CACgq_DoCsbs2-a9UbeKj_EhsKwJDTNBNT8qNYmA=5ZFm7oT83w@mail.gmail.com>
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-qk0-f176.google.com (mail-qk0-f176.google.com
+	[209.85.220.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 20F35E003E1
+	for <yocto@yoctoproject.org>; Tue, 28 Mar 2017 14:47:27 -0700 (PDT)
+Received: by mail-qk0-f176.google.com with SMTP id r142so49061415qke.2
+	for <yocto@yoctoproject.org>; Tue, 28 Mar 2017 14:47:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=GQ9bhlu2hG/4vtMu0dhOJJBoX/xgbmrXvnbl/4aMVz4=;
+	b=QPvs3WGl3v835DlPjwvj/th80Ji3cR+FjrEgAJLKo4hI9dKGaIc/SpNgoVrk+RgpRY
+	mgkZ+MO09LNzyjPVbcSd5Y2HKA/GJEOFI2a9OZOomEz/OOYI4yv3+x7HAal8dSpgUVzo
+	ocV/4a+gPBki07z/Ge73MPajo9Bk8UQDKGPtK9lzYAUvOkawblYa9562I5lUznHPLib7
+	W0m4siuO9nnf1+BECP86nyfjQl4xOBv1XLGi52fTVeXw8zfT3AdMF3g8J1x9Wr6KExNZ
+	D986edMyR3PdRNd+MrL4mPYHIlQp/tnAo/OQYUPk1jusZKaEOZqUxFxx8P3jUXj9FBin
+	xDqg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=GQ9bhlu2hG/4vtMu0dhOJJBoX/xgbmrXvnbl/4aMVz4=;
+	b=Gucuihprvj1mHIyNK6mvIqF6Vf+M5vXsl0Drm360hLRJU6V9VcXMwA+zoIUO2cVaYG
+	ITaDNNh0bMZpm1sEVOJo4ZG/ExjDnNvk9qdJZYBF6E3JbTY7dbob0kshZcMVVLu8fqlO
+	F3DQyD9g9veZxDvPBuRhDV7jKfa0p7hKQWnr+dhHkosE5yvsDv1Te0jsBOFU0Z7K8dES
+	Xs1eBhJYE8elX4oTf2mama/RcgTcEaz8hd2Dn5bYChDCafZdhOxDd/07Zdxw+4j5xjnB
+	RUSdxj/3rsrpsXCY/ONzo6b1GfAGckNqzmk4k2ncpzWZJ1MOeSa5xiyZRmPCmDHqEOpC
+	ezCA==
+X-Gm-Message-State: AFeK/H1ewQNcmfqb/x2WOXYk0x8UZrwwJtZHOmHCkXi7mi5KsRzJmgE+meqwZ0UMhvHr4gNl3d3oj5fuMLWgvg==
+X-Received: by 10.55.142.69 with SMTP id q66mr26423886qkd.13.1490737647139;
+	Tue, 28 Mar 2017 14:47:27 -0700 (PDT)
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: Using ${SRCVP} in PR of BB file
+Received: by 10.200.37.5 with HTTP; Tue, 28 Mar 2017 14:47:26 -0700 (PDT)
+From: Alvaro Garcia <maxpowel@gmail.com>
+Date: Tue, 28 Mar 2017 23:47:26 +0200
+Message-ID: <CAOsmwBR47gfDH-mQ5ej7vzn9xJSeB=OM=pv9X06-smxgKkKX6A@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: NVIDIA Drivers
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -57,66 +69,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 Mar 2017 21:35:34 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 28 Mar 2017 21:47:28 -0000
+Content-Type: multipart/alternative; boundary=94eb2c083c7ae9621d054bd167ff
 
-Hi Ian,
+--94eb2c083c7ae9621d054bd167ff
+Content-Type: text/plain; charset=UTF-8
 
-On Wednesday, 29 March 2017 9:27:01 AM NZDT Ian Welch wrote:
->       We are preparing to move to PRservice in Yocto to handle auto rolling
-> our revisions on every build. As an interim step we are doing some
-> reordering or our current PR and PV parameters in our bitbake files. Our
-> current syntax is as follows and works as expected
-> 
-> ----BB File----
-> SRC_URI =
-> "git://myrepo.git;branch=mybranch;subpath=Linux/bcastforwd;destsuffix=Linux/
-> bcastforwd;protocol=ssh" SRCREV = "${AUTOREV}"
-> PV = "1.1"
-> PR = "r0"
-> PV_append = "+git${SRCPV}"
-> 
-> ----Output from build----
-> 
-> bcastforwd_1.0-r0git0+afc68d4a00_arm926ejste.ipk
-> 
-> 
-> 
-> When we change git${SRCPV} to append to the PR we get "AUTOINC" in place of
-> the revision number
-> 
-> ----BB File----
-> "git://myrepo.git;branch=mybranch;subpath=Linux/bcastforwd;destsuffix=Linux/
-> bcastforwd;protocol=ssh" SRCREV = "${AUTOREV}"
-> PV = "1.1"
-> PR = "r0"
-> PR_append = "+git${SRCPV}"
-> 
-> ----ipk Output from build----
-> 
-> bcastforwd_1.0-r0gitAUTOINC+afc68d4a00_arm926ejste.ipk
-> 
-> 
-> I took a look at the package.bbclass file which appears to be the
-> magic sauce for searching and replacing the "AUTOINC" string but
-> nothing jumped out at me as to why this would work for PV but not PR.
+Hi, I have built an image based on poky core-image-x11. Everything went
+fine but the graphic card drivers. I want more resolution than the provided
+by vesa (800x600) so I really need this drivers.
 
-It's doing the replacement on PKGV, which is the equivalent of PV at the 
-packaging end of things. We don't apply the replacement to PKGR, which is the 
-equivalent to PR.
- 
-> Is it possible to support AUTOREV on PR?
+I tried this guacamayo recipe
+https://layers.openembedded.org/layerindex/recipe/3272/ but can't compile
+(too old, maybe unmaintained?). Also tried the recipe xf86-video-nouveau
+(it is blacklisted but in krogoth it compiles right) but when I boot the
+image, the nouveau driver is not used. My knowledges are very low to even
+try to cross compile the nvidia propietary drivers (and can't find any
+reference) so now I'm stucked. My machine is a zotac zbox, it came with
+angstrom but now I want to build my own image.
 
-The code isn't designed to handle that - the convention is to put it into PV 
-and have the AUTOINC value ensure that the version increments properly. Aside 
-from the preceding "r", PR is typically just a number.
+I came from ubuntu world where the drivers are installed automatically so
+at this point I'm totally lost. Can you bring me some light?
 
-Cheers,
-Paul
+Thank you
 
--- 
+--94eb2c083c7ae9621d054bd167ff
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Paul Eggleton
-Intel Open Source Technology Centre
+<div dir=3D"ltr"><div><div>Hi, I have built an image based on poky core-ima=
+ge-x11. Everything went fine but the graphic card drivers. I want more reso=
+lution than the provided by vesa (800x600) so I really need this drivers. <=
+br><br></div>I tried this guacamayo recipe <a href=3D"https://layers.openem=
+bedded.org/layerindex/recipe/3272/">https://layers.openembedded.org/layerin=
+dex/recipe/3272/</a> but can&#39;t compile (too old, maybe unmaintained?). =
+Also tried the recipe xf86-video-nouveau (it is blacklisted but in krogoth =
+it compiles right) but when I boot the image, the nouveau driver is not use=
+d. My knowledges are very low to even try to cross compile the nvidia propi=
+etary drivers (and can&#39;t find any reference) so now I&#39;m stucked. My=
+ machine is a zotac zbox, it came with angstrom but now I want to build my =
+own image.<br><br></div><div>I came from ubuntu world where the drivers are=
+ installed automatically so at this point I&#39;m totally lost. Can you bri=
+ng me some light?<br><br></div><div>Thank you<br></div></div>
 
+--94eb2c083c7ae9621d054bd167ff--
