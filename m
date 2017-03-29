@@ -1,47 +1,44 @@
-Return-Path: <jaap.dejong@nedap.com>
+Return-Path: <prvs=254edae20=Richard.Leitner@skidata.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 29633E00887; Wed, 29 Mar 2017 00:04:47 -0700 (PDT)
+	id 43B51E006CD; Wed, 29 Mar 2017 00:46:50 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [213.160.213.85 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from smtp4.nedap.com (smtp4.nedap.com [213.160.213.85])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2BC20E00839
-	for <yocto@yoctoproject.org>; Wed, 29 Mar 2017 00:04:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=nedap.com; i=@nedap.com; q=dns/txt; s=20161201;
-	t=1490771084; x=1522307084;
-	h=subject:references:to:from:message-id:date:mime-version:
-	in-reply-to:content-transfer-encoding;
-	bh=W4kAkzfAVOF8kA3ChNN8snDJQwxgRYZpXRnIPieAYvU=;
-	b=sjSZZ7VApVOwf3DTn4FBsDABzZGpnd0ugJ7u5PLMDGup9kTxaGzMS9fB
-	0VBefbDNVgNCGwt+hYfX1XB1Fqxcn+z8yM0nXCxwZBHowaLwqyXNdUEB8
-	wc4RIDZYGt3f71LqNxzT/IX3u2Mh6SfQG7Kc07K7WKMY9bYQYOMeeVVYg U=;
-Received: from nvc2354.nedap.local (HELO [10.2.16.82]) ([10.2.16.82])
-	by smtp4.nedap.com with ESMTP; 29 Mar 2017 09:03:42 +0200
-References: <1490732744-25547-6-git-send-email-jaap.dejong@nedap.com>
-To: yocto@yoctoproject.org
-From: Jaap de Jong <jaap.dejong@nedap.com>
-X-Forwarded-Message-Id: <1490732744-25547-6-git-send-email-jaap.dejong@nedap.com>
-Message-ID: <6ded1927-2ac5-0849-2c29-9fc4c347d9d6@nedap.com>
-Date: Wed, 29 Mar 2017 09:03:41 +0200
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [91.230.2.99 listed in list.dnswl.org]
+Received: from mail1.skidata.com (mail1.skidata.com [91.230.2.99])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CAAD3E00546
+	for <yocto@yoctoproject.org>; Wed, 29 Mar 2017 00:46:44 -0700 (PDT)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2H8AgDQZdtY/0oKEKxdGwEBAQMBAQEJA?=
+	=?us-ascii?q?QEBhDaBEo1skTEfEJF1g0mCDiqBb4QJAoNuGAECAQEBAQEBAQOBEIN/WzwBBYE?=
+	=?us-ascii?q?JCw0LLlcGDQgCihSvbiYCiiUBAQEBBgIhBQkBhkSCBQiCYoUghHofBZYQhlCCB?=
+	=?us-ascii?q?4R2li0XhkKKS4kfH4E9EhIRBR+HMIkcgQ0BAQE?=
+X-IPAS-Result: =?us-ascii?q?A2H8AgDQZdtY/0oKEKxdGwEBAQMBAQEJAQEBhDaBEo1skTE?=
+	=?us-ascii?q?fEJF1g0mCDiqBb4QJAoNuGAECAQEBAQEBAQOBEIN/WzwBBYEJCw0LLlcGDQgCi?=
+	=?us-ascii?q?hSvbiYCiiUBAQEBBgIhBQkBhkSCBQiCYoUghHofBZYQhlCCB4R2li0XhkKKS4k?=
+	=?us-ascii?q?fH4E9EhIRBR+HMIkcgQ0BAQE?=
+X-IronPort-AV: E=Sophos;i="5.36,240,1486422000"; 
+   d="scan'208";a="3212026"
+To: <yocto@yoctoproject.org>
+References: <1eb192a1-60ee-fefc-dd5c-540e48791a46@skidata.com>
+	<83afbf1a-33c2-c1d5-6fae-a2bec388c986@gmail.com>
+From: Richard Leitner <richard.leitner@skidata.com>
+Message-ID: <d461da83-b2f0-5478-1410-14e5097dd109@skidata.com>
+Date: Wed, 29 Mar 2017 09:46:41 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.8.0
+	Icedove/45.6.0
 MIME-Version: 1.0
-In-Reply-To: <1490732744-25547-6-git-send-email-jaap.dejong@nedap.com>
-Subject: [meta-oracle-java][PATCH 6/6] oracle-jse: Add sources package
+In-Reply-To: <83afbf1a-33c2-c1d5-6fae-a2bec388c986@gmail.com>
+X-Originating-IP: [172.16.60.30]
+X-ClientProxiedBy: sdex1srv.skidata.net (172.16.10.92) To sdex1srv.skidata.net
+	(172.16.10.92)
+Subject: Re: multiple, different kernel images in one rootfs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,32 +50,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 29 Mar 2017 07:04:47 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
+X-List-Received-Date: Wed, 29 Mar 2017 07:46:50 -0000
+Content-Type: text/plain; charset="windows-1252"
 Content-Transfer-Encoding: 7bit
 
----
+On 03/28/2017 08:17 PM, Khem Raj wrote:
+> On 3/28/17 2:53 AM, Richard Leitner wrote:
+>> Hi,
+>> I'm currently using Jethro and like to include multiple, different
+>> kernel (fit)images (with different source branches/versions) in one
+>> RootFS. When booting such a system the bootloader (U-Boot) will decide
+>> which kernel to load.
+>>
+> 
+> There is/was a way to build multiple kernels see something like this
+> 
+> https://git.digitalstrom.org/dss-oe/dss-oe/commit
+> /1e0c2307a910e8fc7e2482a757c52277c4f4e01e
+> 
+> might help you
 
-  recipes-devtools/oracle-java/oracle-jse.inc | 5 ++++-
-  1 file changed, 4 insertions(+), 1 deletion(-)
+Thank you for your response.
 
-diff --git a/recipes-devtools/oracle-java/oracle-jse.inc b/recipes-devtools/oracle-java/oracle-jse.inc
-index 37685cd..18ef411 100644
---- a/recipes-devtools/oracle-java/oracle-jse.inc
-+++ b/recipes-devtools/oracle-java/oracle-jse.inc
-@@ -31,7 +31,10 @@ INSANE_SKIP_${PN} = "${ERROR_QA} ${WARN_QA}"
-  # Inhibit warnings about files being stripped, we can't do anything about it.
-  INHIBIT_PACKAGE_DEBUG_SPLIT = "1"
-  
--FILES_${PN} = "/usr/"
-+PACKAGES = "${PN}-sources ${PN}"
-+FILES_${PN}-sources = "${JDK_HOME}/src.zip"
-+FILES_${PN} = "${JDK_HOME}"
-+
-  RPROVIDES_${PN} = "java2-runtime java2-vm"
-  PROVIDES += "virtual/java"
-  
--- 
-2.7.4
+So it seems they copied and renamed the kernel classes from poky.git and
+let the second kernel image use the newly added class?
+Am I understanding this correctly?
 
+Is this the "preferred" way?
 
