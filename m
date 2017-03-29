@@ -1,6 +1,6 @@
 Return-Path: <jaap.dejong@nedap.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D6574E007B5; Wed, 29 Mar 2017 00:04:34 -0700 (PDT)
+	id D86FFE007BA; Wed, 29 Mar 2017 00:04:39 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -18,30 +18,30 @@ X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 Received: from smtp4.nedap.com (smtp4.nedap.com [213.160.213.85])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 26E3CE00777
-	for <yocto@yoctoproject.org>; Wed, 29 Mar 2017 00:04:33 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 295CCE0077F
+	for <yocto@yoctoproject.org>; Wed, 29 Mar 2017 00:04:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=nedap.com; i=@nedap.com; q=dns/txt; s=20161201;
-	t=1490771074; x=1522307074;
+	t=1490771079; x=1522307079;
 	h=subject:references:to:from:message-id:date:mime-version:
 	in-reply-to:content-transfer-encoding;
-	bh=RhQasErOG3waI/a5CfcTU/3Mo7kz4J+rNKlGOnFGvAw=;
-	b=LRI7JHBfcS21uEz+7oOD4BL+tTGfF2wU6jCvX6zmHn655h4w2mHtQHT2
-	59el6reta47oYFp9vExNHcna47pGstsqfC5yL74+QxL5cAVp05Z5pBE9r
-	OwrO4mS+IrUN9bwEhCj37AGgjqJaTRqrYPAy1XE0aSqBw0WjmYLbSgJGF c=;
+	bh=KuC4doG93fJgZv+IUHvs9d1pAXrdbWkDgjBWMtfPzNc=;
+	b=BnCnwV3vCMfs7ZesOSprEvGzAwEKc3KxImDpnRT6wdwy5DcuAq6buWru
+	tH2BzETc2CjSt6TPZznOJvUHPQNYqcUq+sADtacHMjcQModd5lIYGd1xD
+	yPd9n5L3UWzGjEUOwOnE/Sh9l/H75HvRMcuXKbiRfWKHzjrKrUfAsxeXi w=;
 Received: from nvc2354.nedap.local (HELO [10.2.16.82]) ([10.2.16.82])
-	by smtp4.nedap.com with ESMTP; 29 Mar 2017 09:03:32 +0200
-References: <1490732744-25547-4-git-send-email-jaap.dejong@nedap.com>
+	by smtp4.nedap.com with ESMTP; 29 Mar 2017 09:03:37 +0200
+References: <1490732744-25547-5-git-send-email-jaap.dejong@nedap.com>
 To: yocto@yoctoproject.org
 From: Jaap de Jong <jaap.dejong@nedap.com>
-X-Forwarded-Message-Id: <1490732744-25547-4-git-send-email-jaap.dejong@nedap.com>
-Message-ID: <0522ccc5-b8dc-3c69-dc1b-ec4460e49402@nedap.com>
-Date: Wed, 29 Mar 2017 09:03:31 +0200
+X-Forwarded-Message-Id: <1490732744-25547-5-git-send-email-jaap.dejong@nedap.com>
+Message-ID: <2a708728-d51f-7514-934f-9dbaa8fcaf70@nedap.com>
+Date: Wed, 29 Mar 2017 09:03:36 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
 	Thunderbird/45.8.0
 MIME-Version: 1.0
-In-Reply-To: <1490732744-25547-4-git-send-email-jaap.dejong@nedap.com>
-Subject: [meta-oracle-java][PATCH 4/6] Use 'standarized' install path
+In-Reply-To: <1490732744-25547-5-git-send-email-jaap.dejong@nedap.com>
+Subject: [meta-oracle-java][PATCH 5/6] Use update-alternatives
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,67 +53,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 29 Mar 2017 07:04:34 -0000
+X-List-Received-Date: Wed, 29 Mar 2017 07:04:39 -0000
 Content-Type: text/plain; charset=windows-1252; format=flowed
 Content-Transfer-Encoding: 7bit
 
 ---
 
-  recipes-devtools/oracle-java/oracle-jse-jdk.inc | 15 ++++++---------
-  recipes-devtools/oracle-java/oracle-jse.inc     | 12 ++++++++----
-  2 files changed, 14 insertions(+), 13 deletions(-)
+  recipes-devtools/oracle-java/oracle-jse-jdk.inc | 14 ++++++++++++++
+  recipes-devtools/oracle-java/oracle-jse.inc     | 12 ++++++++++--
+  2 files changed, 24 insertions(+), 2 deletions(-)
 
 diff --git a/recipes-devtools/oracle-java/oracle-jse-jdk.inc b/recipes-devtools/oracle-java/oracle-jse-jdk.inc
-index 6f13125..291a75d 100644
+index 291a75d..9fd76e1 100644
 --- a/recipes-devtools/oracle-java/oracle-jse-jdk.inc
 +++ b/recipes-devtools/oracle-java/oracle-jse-jdk.inc
-@@ -12,16 +12,13 @@ JDK_JRE = "jdk"
-  require oracle-jse.inc
+@@ -25,3 +25,17 @@ BBCLASSEXTEND = "native"
   
-  do_install_class-native() {
--    install -d -m 0755 ${D}${libdir}
--    install -d -m 0755 ${D}${bindir}
--    cp -a ${S}/${JDK_JRE}${PV}_${PV_UPDATE} ${D}${libdir}/
--    for prog in java javac; do
--	( cd ${D}${bindir} && ln -sf ${libdir}/${JDK_JRE}${PV}_${PV_UPDATE}/bin/$prog )
--    done
-+	install -d -m 0755			${D}${libdir_jvm}
-+	cp -a ${S}/${JDK_JRE}${PV}_${PV_UPDATE}	${D}${JDK_HOME}
-  
--    ( cd ${D}${libdir}/${JDK_JRE}${PV}_${PV_UPDATE}/bin ; \
--      ln -sf javah gjavah ; \
--      ln -sf jar fastjar )
-+	ln -sf ${JDK_HOME}/bin/java		${D}${bindir}
-+	ln -sf ${JDK_HOME}/bin/javac		${D}${bindir}
-+	ln -sf javah				${D}${JDK_HOME}/bin/gjavah
-+	ln -sf jar				${D}${JDK_HOME}/bin/fastjar
-  }
-  
-  BBCLASSEXTEND = "native"
+  RPROVIDES_${PN} += "java2-development"
+  PROVIDES += "virtual/javac virtual/java-initial"
++
++pkg_postinst_${PN} () {
++	update-alternatives --install ${bindir}/jar   jar   ${JDK_HOME}/bin/jar 100
++	update-alternatives --install ${bindir}/java  java  ${JDK_HOME}/jre/bin/java 100
++	update-alternatives --install ${bindir}/javac javac ${JDK_HOME}/jre/bin/javac 100
++	update-alternatives --install ${bindir}/javah javah ${JDK_HOME}/bin/javah 100
++}
++
++pkg_prerm_${PN} () {
++	update-alternatives --remove jar   ${JDK_HOME}/jre/bin/jar
++	update-alternatives --remove java  ${JDK_HOME}/jre/bin/java
++	update-alternatives --remove javac ${JDK_HOME}/jre/bin/javac
++	update-alternatives --remove javah ${JDK_HOME}/jre/bin/javah
++}
 diff --git a/recipes-devtools/oracle-java/oracle-jse.inc b/recipes-devtools/oracle-java/oracle-jse.inc
-index a3701a2..7e508bf 100644
+index 7e508bf..37685cd 100644
 --- a/recipes-devtools/oracle-java/oracle-jse.inc
 +++ b/recipes-devtools/oracle-java/oracle-jse.inc
-@@ -14,11 +14,15 @@ RDEPENDS_${PN} += " libasound atk cairo gdk-pixbuf mesa gtk+ libxtst libxi"
-  PR =. "u${PV_UPDATE}"
-  S = "${WORKDIR}"
-  
-+libdir_jvm ?= "${libdir}/jvm"
-+JDK_DIR = "java-8-oracle"
-+JDK_HOME = "${libdir_jvm}/${JDK_DIR}"
-+
+@@ -21,8 +21,6 @@ JDK_HOME = "${libdir_jvm}/${JDK_DIR}"
   do_install () {
--	install -d -m 0755					${D}${datadir}/${JDK_JRE}${PV}_${PV_UPDATE}
--	cp -a ${S}/${JDK_JRE}${PV}_${PV_UPDATE}			${D}${datadir}/
--	install -d -m 0755					${D}${bindir}
--	ln -sf ${datadir}/${JDK_JRE}${PV}_${PV_UPDATE}/bin/java ${D}${bindir}/java
-+	install -d -m 0755			${D}${libdir_jvm}
-+	cp -a ${S}/${JDK_JRE}${PV}_${PV_UPDATE}	${D}${JDK_HOME}
-+	install -d -m 0755			${D}${bindir}
-+	ln -sf ${JDK_HOME}/bin/java		${D}${bindir}/java
+  	install -d -m 0755			${D}${libdir_jvm}
+  	cp -a ${S}/${JDK_JRE}${PV}_${PV_UPDATE}	${D}${JDK_HOME}
+-	install -d -m 0755			${D}${bindir}
+-	ln -sf ${JDK_HOME}/bin/java		${D}${bindir}/java
   }
   
   # All the files are provided in a binaray package, and keeping all the
+@@ -36,3 +34,13 @@ INHIBIT_PACKAGE_DEBUG_SPLIT = "1"
+  FILES_${PN} = "/usr/"
+  RPROVIDES_${PN} = "java2-runtime java2-vm"
+  PROVIDES += "virtual/java"
++
++inherit update-alternatives
++
++pkg_postinst_${PN} () {
++	update-alternatives --install ${bindir}/java java ${JDK_HOME}/jre/bin/java 75
++}
++
++pkg_prerm_${PN} () {
++	update-alternatives --remove java ${JDK_HOME}/jre/bin/java
++}
 -- 
 2.7.4
 
