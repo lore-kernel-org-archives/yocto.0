@@ -1,6 +1,6 @@
 Return-Path: <jaap.dejong@nedap.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 06ED1E00777; Wed, 29 Mar 2017 00:04:31 -0700 (PDT)
+	id D6574E007B5; Wed, 29 Mar 2017 00:04:34 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -18,30 +18,30 @@ X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 Received: from smtp4.nedap.com (smtp4.nedap.com [213.160.213.85])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2672FE00777
-	for <yocto@yoctoproject.org>; Wed, 29 Mar 2017 00:04:28 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 26E3CE00777
+	for <yocto@yoctoproject.org>; Wed, 29 Mar 2017 00:04:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=nedap.com; i=@nedap.com; q=dns/txt; s=20161201;
-	t=1490771069; x=1522307069;
+	t=1490771074; x=1522307074;
 	h=subject:references:to:from:message-id:date:mime-version:
 	in-reply-to:content-transfer-encoding;
-	bh=e2fIFrwVP6p3aXd4p4iPWJBmyU3pBQWVFfECxzlnLfY=;
-	b=FtlKRwsUPOLiq6MyRwo1PKv6hRSA3D5isML0XiXHGsVwVgACp0hTweHE
-	CpKsNCRd62SZTzrKyQ8f2y3wiHXkcWR7xoHlaLJBSY8LbnxIDmvKACYdh
-	gbfYesdwg+IXeTBg+9B1igHoeeq+RO3vNHlFrQTuj5Y6L2PDvba+ciNaZ s=;
+	bh=RhQasErOG3waI/a5CfcTU/3Mo7kz4J+rNKlGOnFGvAw=;
+	b=LRI7JHBfcS21uEz+7oOD4BL+tTGfF2wU6jCvX6zmHn655h4w2mHtQHT2
+	59el6reta47oYFp9vExNHcna47pGstsqfC5yL74+QxL5cAVp05Z5pBE9r
+	OwrO4mS+IrUN9bwEhCj37AGgjqJaTRqrYPAy1XE0aSqBw0WjmYLbSgJGF c=;
 Received: from nvc2354.nedap.local (HELO [10.2.16.82]) ([10.2.16.82])
-	by smtp4.nedap.com with ESMTP; 29 Mar 2017 09:03:27 +0200
-References: <1490732744-25547-3-git-send-email-jaap.dejong@nedap.com>
+	by smtp4.nedap.com with ESMTP; 29 Mar 2017 09:03:32 +0200
+References: <1490732744-25547-4-git-send-email-jaap.dejong@nedap.com>
 To: yocto@yoctoproject.org
 From: Jaap de Jong <jaap.dejong@nedap.com>
-X-Forwarded-Message-Id: <1490732744-25547-3-git-send-email-jaap.dejong@nedap.com>
-Message-ID: <ef20f394-3eba-8c88-c166-d670ade15ee2@nedap.com>
-Date: Wed, 29 Mar 2017 09:03:26 +0200
+X-Forwarded-Message-Id: <1490732744-25547-4-git-send-email-jaap.dejong@nedap.com>
+Message-ID: <0522ccc5-b8dc-3c69-dc1b-ec4460e49402@nedap.com>
+Date: Wed, 29 Mar 2017 09:03:31 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
 	Thunderbird/45.8.0
 MIME-Version: 1.0
-In-Reply-To: <1490732744-25547-3-git-send-email-jaap.dejong@nedap.com>
-Subject: [meta-oracle-java][PATCH 3/6] oracle-jse-ejre: Add recipe for arm softfloat jvm
+In-Reply-To: <1490732744-25547-4-git-send-email-jaap.dejong@nedap.com>
+Subject: [meta-oracle-java][PATCH 4/6] Use 'standarized' install path
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,68 +53,67 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 29 Mar 2017 07:04:31 -0000
+X-List-Received-Date: Wed, 29 Mar 2017 07:04:34 -0000
 Content-Type: text/plain; charset=windows-1252; format=flowed
 Content-Transfer-Encoding: 7bit
 
 ---
 
-  .../oracle-jse-ejre-arm-sflt-client-headless.inc   | 10 +++++++++
-  .../oracle-java/oracle-jse-jre_1.8.0.bb            | 24 +++++++++++++---------
-  2 files changed, 24 insertions(+), 10 deletions(-)
-  create mode 100644 recipes-devtools/oracle-java/oracle-jse-ejre-arm-sflt-client-headless.inc
+  recipes-devtools/oracle-java/oracle-jse-jdk.inc | 15 ++++++---------
+  recipes-devtools/oracle-java/oracle-jse.inc     | 12 ++++++++----
+  2 files changed, 14 insertions(+), 13 deletions(-)
 
-diff --git a/recipes-devtools/oracle-java/oracle-jse-ejre-arm-sflt-client-headless.inc b/recipes-devtools/oracle-java/oracle-jse-ejre-arm-sflt-client-headless.inc
-new file mode 100644
-index 0000000..321afee
---- /dev/null
-+++ b/recipes-devtools/oracle-java/oracle-jse-ejre-arm-sflt-client-headless.inc
-@@ -0,0 +1,10 @@
-+PV_UPDATE = "121"
-+BUILD_NUMBER = "13"
-+LICENSE_DIR = "ejdk${PV}_${PV_UPDATE}/linux_arm_sflt/jre"
-+
-+require oracle-jse-ejre.inc
-+
-+SRC_URI = "http://download.oracle.com/otn/java/ejdk/8u${PV_UPDATE}-b${BUILD_NUMBER}/e9e7ea248e2c4826b92b3f075a80e441/ejdk-8u${PV_UPDATE}-linux-arm-sflt.tar.gz"
-+
-+SRC_URI[md5sum] = "11041e7eedd897d70cabe54f29d10587"
-+SRC_URI[sha256sum] = "9ad72839dba09e336954c7653778a2517e6d0e56a9524f4c11ff008ad3eb4637"
-diff --git a/recipes-devtools/oracle-java/oracle-jse-jre_1.8.0.bb b/recipes-devtools/oracle-java/oracle-jse-jre_1.8.0.bb
-index 7c8e351..ebf0265 100644
---- a/recipes-devtools/oracle-java/oracle-jse-jre_1.8.0.bb
-+++ b/recipes-devtools/oracle-java/oracle-jse-jre_1.8.0.bb
-@@ -1,16 +1,20 @@
-  # Automatically choose java package based on target architecture
-  def get_java_pkg(d):
--       TA = d.getVar('TARGET_ARCH', True)
--       if TA == "arm":
--               javaPkg = "oracle-jse-ejre-arm-vfp-hflt-client-headless"
--       elif TA == "i586":
--               javaPkg = "oracle-jse-jre-i586"
--       elif TA == "x86_64":
--               javaPkg = "oracle-jse-jre-x86-64"
--       else:
--               raise bb.parse.SkipPackage("Target architecture '%s' is not supported by the meta-oracle-java layer" %TA)
-+	TA = d.getVar('TARGET_ARCH', True)
-+	if TA == "arm":
-+		FPU = d.getVar('TARGET_FPU', True)
-+		if FPU == "soft":
-+			javaPkg = "oracle-jse-ejre-arm-sflt-client-headless"
-+		else:
-+			javaPkg = "oracle-jse-ejre-arm-vfp-hflt-client-headless"
-+	elif TA == "i586":
-+		javaPkg = "oracle-jse-jre-i586"
-+	elif TA == "x86_64":
-+		javaPkg = "oracle-jse-jre-x86-64"
-+	else:
-+		raise bb.parse.SkipPackage("Target architecture '%s' is not supported by the meta-oracle-java layer" %TA)
+diff --git a/recipes-devtools/oracle-java/oracle-jse-jdk.inc b/recipes-devtools/oracle-java/oracle-jse-jdk.inc
+index 6f13125..291a75d 100644
+--- a/recipes-devtools/oracle-java/oracle-jse-jdk.inc
++++ b/recipes-devtools/oracle-java/oracle-jse-jdk.inc
+@@ -12,16 +12,13 @@ JDK_JRE = "jdk"
+  require oracle-jse.inc
   
--       return javaPkg
-+	return javaPkg
+  do_install_class-native() {
+-    install -d -m 0755 ${D}${libdir}
+-    install -d -m 0755 ${D}${bindir}
+-    cp -a ${S}/${JDK_JRE}${PV}_${PV_UPDATE} ${D}${libdir}/
+-    for prog in java javac; do
+-	( cd ${D}${bindir} && ln -sf ${libdir}/${JDK_JRE}${PV}_${PV_UPDATE}/bin/$prog )
+-    done
++	install -d -m 0755			${D}${libdir_jvm}
++	cp -a ${S}/${JDK_JRE}${PV}_${PV_UPDATE}	${D}${JDK_HOME}
   
-  JAVA_PKG = "${@get_java_pkg(d)}"
+-    ( cd ${D}${libdir}/${JDK_JRE}${PV}_${PV_UPDATE}/bin ; \
+-      ln -sf javah gjavah ; \
+-      ln -sf jar fastjar )
++	ln -sf ${JDK_HOME}/bin/java		${D}${bindir}
++	ln -sf ${JDK_HOME}/bin/javac		${D}${bindir}
++	ln -sf javah				${D}${JDK_HOME}/bin/gjavah
++	ln -sf jar				${D}${JDK_HOME}/bin/fastjar
+  }
   
+  BBCLASSEXTEND = "native"
+diff --git a/recipes-devtools/oracle-java/oracle-jse.inc b/recipes-devtools/oracle-java/oracle-jse.inc
+index a3701a2..7e508bf 100644
+--- a/recipes-devtools/oracle-java/oracle-jse.inc
++++ b/recipes-devtools/oracle-java/oracle-jse.inc
+@@ -14,11 +14,15 @@ RDEPENDS_${PN} += " libasound atk cairo gdk-pixbuf mesa gtk+ libxtst libxi"
+  PR =. "u${PV_UPDATE}"
+  S = "${WORKDIR}"
+  
++libdir_jvm ?= "${libdir}/jvm"
++JDK_DIR = "java-8-oracle"
++JDK_HOME = "${libdir_jvm}/${JDK_DIR}"
++
+  do_install () {
+-	install -d -m 0755					${D}${datadir}/${JDK_JRE}${PV}_${PV_UPDATE}
+-	cp -a ${S}/${JDK_JRE}${PV}_${PV_UPDATE}			${D}${datadir}/
+-	install -d -m 0755					${D}${bindir}
+-	ln -sf ${datadir}/${JDK_JRE}${PV}_${PV_UPDATE}/bin/java ${D}${bindir}/java
++	install -d -m 0755			${D}${libdir_jvm}
++	cp -a ${S}/${JDK_JRE}${PV}_${PV_UPDATE}	${D}${JDK_HOME}
++	install -d -m 0755			${D}${bindir}
++	ln -sf ${JDK_HOME}/bin/java		${D}${bindir}/java
+  }
+  
+  # All the files are provided in a binaray package, and keeping all the
 -- 
 2.7.4
 
