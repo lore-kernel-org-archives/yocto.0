@@ -1,63 +1,48 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <maxin.john@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 52451E00970; Thu, 30 Mar 2017 01:57:09 -0700 (PDT)
+	id 85D86E00985; Thu, 30 Mar 2017 01:57:17 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.220.171 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.220.171 listed in dnsbl.sorbs.net]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	RCVD_IN_DNSWL_HI,T_DKIM_INVALID autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qk0-f171.google.com (mail-qk0-f171.google.com
-	[209.85.220.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AF3D6E00839
-	for <yocto@yoctoproject.org>; Thu, 30 Mar 2017 01:57:07 -0700 (PDT)
-Received: by mail-qk0-f171.google.com with SMTP id d201so4166682qkc.0
-	for <yocto@yoctoproject.org>; Thu, 30 Mar 2017 01:57:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=OdJOjOcGqkrKHOUbcDxQ53rlRwNuWYDuoeczocIkx0c=;
-	b=r7f9eSqRJkWLjOkKPdjDd4q1ozXPGFjsaqXs+mzlJNb2cVGkIWXps3U3X3fnuxyAB0
-	uysnSkAXtm1bPHAG4hGPb5aitRp81dauq9hPOv6D84Yk34EJPXSOVJXWkq+x5MnbyKwZ
-	SBz+uXjCvwcyObaQPY63+Ei6rk+SLMX/j0s2w+J3dH1bQZmvor42+4UXS94EoZP3NRCA
-	5k6fUQQm/9Giv2MULO5fYjptdhez2RmsFMWPIfSbfPWQIzI2OpLOD3ILbPUcmMWMK0Me
-	w6KnaNlcBoVGr+7DmctKZsZ1+iEkdhGZAol2qasda8e5Nx8pYF1puyVq802+2k2sBifh
-	VKRA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=OdJOjOcGqkrKHOUbcDxQ53rlRwNuWYDuoeczocIkx0c=;
-	b=F4hu43OYBB7gg9EzmnI9bWjVVxSrlkvZaCw0QREGfGMx5VkLZGqWPR+T4aH6335YAh
-	dW2yiI6rjf1bPolef3smRAZMdWBPoLxkIcswJxv0+ClyFsgLCvrJPfcg41APF5DGiclP
-	ELuBKXzx2CEHbwTLi5lEeU/5rsPAau145qkaEfMcr4ie5pFQNHLGohXbLGOja86aJklm
-	YaVDs+1Stn99bt7U4iPztzynnH1Yv3bmA6PR5nI0aCWVG8bMupgyhh+ogi7zEh6BeY/j
-	a7q5dby7Xbwf2xJ/FJ+uptonEWEzPGI30aNk7D5VJgpmyiXCz9BU59JopZir0OG6yC2f
-	2SYA==
-X-Gm-Message-State: AFeK/H0TgqLer13L7U3um1+JLi4P1RUrTdGbkUO48EpRUjAJHPzfFbnxC1e6NQe8A+9SvY9S03jFE8a5jxRyEgTq
-X-Received: by 10.55.107.196 with SMTP id g187mr2150519qkc.77.1490864226498;
-	Thu, 30 Mar 2017 01:57:06 -0700 (PDT)
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [134.134.136.24 listed in list.dnswl.org]
+	*  0.0 T_DKIM_INVALID DKIM-Signature header exists but is not valid
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1A1F6E00953
+	for <yocto@yoctoproject.org>; Thu, 30 Mar 2017 01:57:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+	d=intel.com; i=@intel.com; q=dns/txt; s=intel;
+	t=1490864236; x=1522400236;
+	h=date:from:to:cc:subject:message-id:references:
+	mime-version:in-reply-to;
+	bh=ES4wUm4LDsStp/xasSjrwNlnrUxGEONzYDrQQNZyRv8=;
+	b=dsauCKAv/jIRcLHFfBoTx9VdF4hD8lkxxt5CSueRL4atrTh1N36AdQUz
+	lqTZsSqwyBlwFP7B/3AGW8lnqAh7Vg==;
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+	by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	30 Mar 2017 01:57:15 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.36,246,1486454400"; d="scan'208";a="241962517"
+Received: from mbabyjoh-desk.fi.intel.com (HELO
+	mbabyjoh-desk.ger.corp.intel.com) ([10.237.72.71])
+	by fmsmga004.fm.intel.com with ESMTP; 30 Mar 2017 01:57:13 -0700
+Date: Thu, 30 Mar 2017 11:57:28 +0300
+From: "Maxin B. John" <maxin.john@intel.com>
+To: Jaap de Jong <jaap.dejong@nedap.com>
+Message-ID: <20170330085728.GA528@mbabyjoh-desk.ger.corp.intel.com>
+References: <98e3cae0-9d39-e146-9dad-af0c6c37ab55@nedap.com>
 MIME-Version: 1.0
-Received: by 10.140.22.166 with HTTP; Thu, 30 Mar 2017 01:56:46 -0700 (PDT)
-In-Reply-To: <766b24f4-b6e1-3260-8a4e-611853698497@iseg-hv.de>
-References: <766b24f4-b6e1-3260-8a4e-611853698497@iseg-hv.de>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Thu, 30 Mar 2017 09:56:46 +0100
-Message-ID: <CAJTo0La_b8=kBTKCQSe3LGFY=9EwSiqbzzEJQqdegt9RJ8bqzw@mail.gmail.com>
-To: Yuvarajesh Valleru <yv@iseg-hv.de>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Parse error: unable to parse line
+In-Reply-To: <98e3cae0-9d39-e146-9dad-af0c6c37ab55@nedap.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-oracle-java][PATCH 1/6] oracle-jse.inc: Fix unattended downloading source
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,81 +54,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 30 Mar 2017 08:57:09 -0000
-Content-Type: multipart/alternative; boundary=001a114fe396a12ee8054beee0a8
+X-List-Received-Date: Thu, 30 Mar 2017 08:57:17 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
---001a114fe396a12ee8054beee0a8
-Content-Type: text/plain; charset=UTF-8
+Hi,
 
-On 30 March 2017 at 09:14, Yuvarajesh Valleru <yv@iseg-hv.de> wrote:
+Thank you very much for these updates. Merged to master-next.
 
-> SUMMARY = "hello world program"
-> HOMEPAGE = "http://www.yoctoproject.org/"
-> SECTION = "network"
-> LICENSE = "CLOSED"
-> inherit qt4e
->
-> SRC_URI = " \
->     file://helloworld.pro \
->     file://helloworld.cpp \
->     "
->
-> S = "${WORKDIR}"
->
-> QMAKE_PROFILES = "${WORKDIR}/helloworld.pro \
->     "
->
-> do_compile() {
->         ${CC} helloworld.cpp -o helloworld
-> }
->
-> do_install() {
->         install -d ${D}${bindir} ${D}${docdir}/helloworld
->         install -m 0644 helloworld
->
+Note: from now on, please send the patches using "git send-email"
+as mentioned in the README file. 
 
-Did you leave out the trailing } here in the real file?
+On Thu, Mar 30, 2017 at 08:28:09AM +0200, Jaap de Jong wrote:
+> 
 
-Ross
+> From d20c60ce51a399541329bd5360e5489f537d630b Mon Sep 17 00:00:00 2001
+> From: Jaap de Jong <jaap.dejong@nedap.com>
+> Date: Tue, 28 Mar 2017 14:07:19 +0200
+> Subject: [PATCH 1/6] oracle-jse.inc: Fix unattended downloading source
+> 
+> ---
+>  recipes-devtools/oracle-java/oracle-jse.inc | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/recipes-devtools/oracle-java/oracle-jse.inc b/recipes-devtools/oracle-java/oracle-jse.inc
+> index 8cb0953..488bce2 100644
+> --- a/recipes-devtools/oracle-java/oracle-jse.inc
+> +++ b/recipes-devtools/oracle-java/oracle-jse.inc
+> @@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "\
+>  	file://${JDK_JRE}${PV}_${PV_UPDATE}/THIRDPARTYLICENSEREADME.txt;md5=745d6db5fc58c63f74ce6a7d4db7e695 \
+>  	"
+>  
+> -FETCHCMD_wget_append = " --header=Cookie:oraclelicense=a "
+> +FETCHCMD_wget_append = " --no-check-certificate --no-cookies --header 'Cookie: oraclelicense=accept-securebackup-cookie' "
+>  
+>  RDEPENDS_${PN} += " libasound atk cairo gdk-pixbuf mesa gtk+ libxtst libxi"
+>  # get the java update version in the resulting package
+> -- 
+> 2.7.4
 
---001a114fe396a12ee8054beee0a8
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Best Regards,
+Maxin
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 30 March 2017 at 09:14, Yuvarajesh Valleru <span dir=3D"ltr">&lt;<a href=
-=3D"mailto:yv@iseg-hv.de" target=3D"_blank">yv@iseg-hv.de</a>&gt;</span> wr=
-ote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border=
--left:1px #ccc solid;padding-left:1ex"><div id=3D":2vm" class=3D"a3s aXjCH =
-m15b1e4a4c14492a6">SUMMARY =3D &quot;hello world program&quot;<br>
-HOMEPAGE =3D &quot;<a href=3D"http://www.yoctoproject.org/" rel=3D"noreferr=
-er" target=3D"_blank">http://www.yoctoproject.org/</a>&quot;<br>
-SECTION =3D &quot;network&quot;<br>
-LICENSE =3D &quot;CLOSED&quot;<br>
-inherit qt4e<br>
-<br>
-SRC_URI =3D &quot; \<br>
-=C2=A0 =C2=A0 file://<a href=3D"http://helloworld.pro" rel=3D"noreferrer" t=
-arget=3D"_blank">helloworld.pro</a> \<br>
-=C2=A0 =C2=A0 file://helloworld.cpp \<br>
-=C2=A0 =C2=A0 &quot;<br>
-<br>
-S =3D &quot;${WORKDIR}&quot;<br>
-<br>
-QMAKE_PROFILES =3D &quot;${WORKDIR}/<a href=3D"http://helloworld.pro" rel=
-=3D"noreferrer" target=3D"_blank">helloworld.pro</a> \<br>
-=C2=A0 =C2=A0 &quot;<br>
-<br>
-do_compile() {<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 ${CC} helloworld.cpp -o helloworld<br>
-}<br>
-<br>
-do_install() {<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 install -d ${D}${bindir} ${D}${docdir}/hellowor=
-ld<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 install -m 0644 helloworld<br></div></blockquot=
-e></div><br>Did you leave out the trailing } here in the real file?</div><d=
-iv class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Ross</div></d=
-iv>
-
---001a114fe396a12ee8054beee0a8--
