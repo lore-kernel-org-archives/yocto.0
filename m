@@ -1,37 +1,43 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
+Return-Path: <jaap.dejong@nedap.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EC5B6E007B5; Wed, 29 Mar 2017 11:23:37 -0700 (PDT)
+	id 7B129E00985; Wed, 29 Mar 2017 23:28:16 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [213.160.213.85 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1EE92E004E5
-	for <yocto@yoctoproject.org>; Wed, 29 Mar 2017 11:23:35 -0700 (PDT)
-Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
-	[147.11.189.41])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id v2TINXYm020682
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 29 Mar 2017 11:23:33 -0700 (PDT)
-Received: from server.local (128.224.23.221) by ALA-HCB.corp.ad.wrs.com
-	(147.11.189.41) with Microsoft SMTP Server id 14.3.294.0;
-	Wed, 29 Mar 2017 11:23:33 -0700
-To: Alvaro Garcia <maxpowel@gmail.com>, <yocto@yoctoproject.org>
-References: <CAOsmwBQhqjnnek3enUrXRzVnRRJANcibQ43hPX9jViN+ZhZyyw@mail.gmail.com>
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-Message-ID: <eb569801-2090-491e-3beb-006cf6f9d1f4@windriver.com>
-Date: Wed, 29 Mar 2017 14:23:32 -0400
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:45.0)
-	Gecko/20100101 Thunderbird/45.8.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from smtp4.nedap.com (smtp4.nedap.com [213.160.213.85])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 69A25E00839
+	for <yocto@yoctoproject.org>; Wed, 29 Mar 2017 23:28:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=nedap.com; i=@nedap.com; q=dns/txt; s=20161201;
+	t=1490855294; x=1522391294;
+	h=from:subject:to:message-id:date:mime-version;
+	bh=9sjQVEBYFdABd3OGF1aURw8GN4H/RSjcFV0PsBKqSzc=;
+	b=QpN+lTftk7Tbar9W7L2Dwu+9ShMw+ahZD02mCXPal/Z8oRbixU9TdHR9
+	ZiVatrz7TQK8w6emwB3C0ntk5GHPLqi36qym75yv9O0BpyWdxON1lKSrK
+	7vJQPc1EFaMiYU9gTs88f0DFhUSk3qRJsH3iBTIS39qwCaueDCIc59M6D 4=;
+Received: from nvc2354.nedap.local (HELO [10.2.16.82]) ([10.2.16.82])
+	by smtp4.nedap.com with ESMTP; 30 Mar 2017 08:28:11 +0200
+From: Jaap de Jong <jaap.dejong@nedap.com>
+To: yocto@yoctoproject.org
+Message-ID: <98e3cae0-9d39-e146-9dad-af0c6c37ab55@nedap.com>
+Date: Thu, 30 Mar 2017 08:28:09 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.8.0
 MIME-Version: 1.0
-In-Reply-To: <CAOsmwBQhqjnnek3enUrXRzVnRRJANcibQ43hPX9jViN+ZhZyyw@mail.gmail.com>
-Subject: Re: Compiling custom kernel
+Subject: [meta-oracle-java][PATCH 1/6] oracle-jse.inc: Fix unattended downloading source
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,64 +49,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 29 Mar 2017 18:23:38 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
+X-List-Received-Date: Thu, 30 Mar 2017 06:28:16 -0000
+X-Groupsio-MsgNum: 35309
+Content-Type: multipart/mixed; boundary="------------A8D950E4D5FD1C1C56079BDF"
+
+--------------A8D950E4D5FD1C1C56079BDF
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 2017-03-29 1:11 PM, Alvaro Garcia wrote:
-> Hi, I'm trying to compile a custom kernel (just custom config).
-> I created a recipe called linux-yocto in my layer:
-> meta-test
-> -recipes-test
-> --linux-yocto
-> ---linux-yocto.bbapend
-> ---files
-> ----enable_various_options.cfg
->
-> The content of the linux-yocto.bbapend is:
->
-> FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-> SRC_URI += "file://enable_various_options.cfg"
->
-> And the content of enable_various_options.cfg is:
-> CONFIG_DRM_NOUVEAU=y
-
-Assuming that you do have your bbappend created properly
-(i.e. with the version number suggestion that was sent) a
-configuration option cannot always be blanket enabled. If there
-are missing dependencies for that option, it won't make it into
-the final .config.
-
-So it is worth checking that all dependencies are also included
-in that same .cfg.
-
-Bruce
-
->
-> The way I generated enable_various_options.cfg was
-> bitbake -c menuconfig virtual/kernel
-> Select my configuration
-> bitbake -c devshell virtual/kernel
-> diff of the original .config and the new one.
-> I just followed the instructions here
-> https://lists.yoctoproject.org/pipermail/yocto/2014-June/020174.html
-> and here
-> https://software.intel.com/sites/default/files/m/4/d/8/5/8/42868-11__Developing_Kernel_Module_on_Yocto.pdf
->
-> Then I run bitbake core-image-x11
-> I got this warning:
-> WARNING:
-> /home/amacho/poky/meta/recipes-kernel/linux/linux-yocto_4.4.bb.do_kernel_configme
-> is tainted from a forced run
-> but the kernel is not compiled with the new config (I do md5 to vmlinuz
-> and was exactly the same).
->
-> Can you help me to find the way I can compile this kernel?
->
-> Thank you
->
->
->
->
 
 
+--------------A8D950E4D5FD1C1C56079BDF
+Content-Type: text/plain; charset=UTF-8;
+ name="0001-oracle-jse.inc-Fix-unattended-downloading-source.patch.txt"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment;
+ filename*0="0001-oracle-jse.inc-Fix-unattended-downloading-source.patch.";
+ filename*1="txt"
+
+RnJvbSBkMjBjNjBjZTUxYTM5OTU0MTMyOWJkNTM2MGU1NDg5ZjUzN2Q2MzBiIE1vbiBTZXAgMTcg
+MDA6MDA6MDAgMjAwMQpGcm9tOiBKYWFwIGRlIEpvbmcgPGphYXAuZGVqb25nQG5lZGFwLmNvbT4K
+RGF0ZTogVHVlLCAyOCBNYXIgMjAxNyAxNDowNzoxOSArMDIwMApTdWJqZWN0OiBbUEFUQ0ggMS82
+XSBvcmFjbGUtanNlLmluYzogRml4IHVuYXR0ZW5kZWQgZG93bmxvYWRpbmcgc291cmNlCgotLS0K
+IHJlY2lwZXMtZGV2dG9vbHMvb3JhY2xlLWphdmEvb3JhY2xlLWpzZS5pbmMgfCAyICstCiAxIGZp
+bGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDEgZGVsZXRpb24oLSkKCmRpZmYgLS1naXQgYS9y
+ZWNpcGVzLWRldnRvb2xzL29yYWNsZS1qYXZhL29yYWNsZS1qc2UuaW5jIGIvcmVjaXBlcy1kZXZ0
+b29scy9vcmFjbGUtamF2YS9vcmFjbGUtanNlLmluYwppbmRleCA4Y2IwOTUzLi40ODhiY2UyIDEw
+MDY0NAotLS0gYS9yZWNpcGVzLWRldnRvb2xzL29yYWNsZS1qYXZhL29yYWNsZS1qc2UuaW5jCisr
+KyBiL3JlY2lwZXMtZGV2dG9vbHMvb3JhY2xlLWphdmEvb3JhY2xlLWpzZS5pbmMKQEAgLTYsNyAr
+Niw3IEBAIExJQ19GSUxFU19DSEtTVU0gPSAiXAogCWZpbGU6Ly8ke0pES19KUkV9JHtQVn1fJHtQ
+Vl9VUERBVEV9L1RISVJEUEFSVFlMSUNFTlNFUkVBRE1FLnR4dDttZDU9NzQ1ZDZkYjVmYzU4YzYz
+Zjc0Y2U2YTdkNGRiN2U2OTUgXAogCSIKIAotRkVUQ0hDTURfd2dldF9hcHBlbmQgPSAiIC0taGVh
+ZGVyPUNvb2tpZTpvcmFjbGVsaWNlbnNlPWEgIgorRkVUQ0hDTURfd2dldF9hcHBlbmQgPSAiIC0t
+bm8tY2hlY2stY2VydGlmaWNhdGUgLS1uby1jb29raWVzIC0taGVhZGVyICdDb29raWU6IG9yYWNs
+ZWxpY2Vuc2U9YWNjZXB0LXNlY3VyZWJhY2t1cC1jb29raWUnICIKIAogUkRFUEVORFNfJHtQTn0g
+Kz0gIiBsaWJhc291bmQgYXRrIGNhaXJvIGdkay1waXhidWYgbWVzYSBndGsrIGxpYnh0c3QgbGli
+eGkiCiAjIGdldCB0aGUgamF2YSB1cGRhdGUgdmVyc2lvbiBpbiB0aGUgcmVzdWx0aW5nIHBhY2th
+Z2UKLS0gCjIuNy40Cgo=
+
+--------------A8D950E4D5FD1C1C56079BDF--
