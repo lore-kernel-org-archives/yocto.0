@@ -1,38 +1,38 @@
-Return-Path: <fabien.lahoudere@collabora.co.uk>
+Return-Path: <maxin.john@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 87821E00970; Thu, 30 Mar 2017 03:30:44 -0700 (PDT)
+	id 77D27E00970; Thu, 30 Mar 2017 03:37:30 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
-	SPF_HELO_PASS,UNPARSEABLE_RELAY autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [46.235.227.227 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 UNPARSEABLE_RELAY Informational: message has unparseable relay
-	lines
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0D3B6E00839
-	for <yocto@yoctoproject.org>; Thu, 30 Mar 2017 03:30:41 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-	(Authenticated sender: aragua) with ESMTPSA id 5FBD4260F91
-Message-ID: <1490869837.11772.22.camel@collabora.co.uk>
-From: Fabien Lahoudere <fabien.lahoudere@collabora.co.uk>
-To: Yuvarajesh Valleru <yv@iseg-hv.de>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Date: Thu, 30 Mar 2017 12:30:37 +0200
-In-Reply-To: <682ba285-da42-c79a-6cbf-aa5f5b09d3df@iseg-hv.de>
-References: <766b24f4-b6e1-3260-8a4e-611853698497@iseg-hv.de>
-	<CAJTo0La_b8=kBTKCQSe3LGFY=9EwSiqbzzEJQqdegt9RJ8bqzw@mail.gmail.com>
-	<13bc9cc1-e108-db9c-c78a-58b08023acdd@iseg-hv.de>
-	<1490865053.11772.20.camel@collabora.co.uk>
-	<682ba285-da42-c79a-6cbf-aa5f5b09d3df@iseg-hv.de>
-X-Mailer: Evolution 3.22.5-1 
-Mime-Version: 1.0
-Subject: Re: Parse error: unable to parse line and new error arm-linux-gnueabi-gcc : helloworld.cpp 'no such file or directory'
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [134.134.136.100 listed in list.dnswl.org]
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E9DC1E00839
+	for <yocto@yoctoproject.org>; Thu, 30 Mar 2017 03:37:29 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga105.jf.intel.com with ESMTP; 30 Mar 2017 03:37:28 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.36,246,1486454400"; d="scan'208";a="1113603670"
+Received: from mbabyjoh-desk.fi.intel.com (HELO
+	mbabyjoh-desk.ger.corp.intel.com) ([10.237.72.71])
+	by orsmga001.jf.intel.com with ESMTP; 30 Mar 2017 03:37:27 -0700
+Date: Thu, 30 Mar 2017 13:37:42 +0300
+From: "Maxin B. John" <maxin.john@intel.com>
+To: Jaap de Jong <jaap.dejong@nedap.com>
+Message-ID: <20170330103741.GA24237@mbabyjoh-desk.ger.corp.intel.com>
+References: <98e3cae0-9d39-e146-9dad-af0c6c37ab55@nedap.com>
+	<20170330085728.GA528@mbabyjoh-desk.ger.corp.intel.com>
+	<c172cf32-0e7c-f1c1-d3ef-8ca8ad95743c@nedap.com>
+MIME-Version: 1.0
+In-Reply-To: <c172cf32-0e7c-f1c1-d3ef-8ca8ad95743c@nedap.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-oracle-java][PATCH 1/6] oracle-jse.inc: Fix unattended downloading source
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,120 +44,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 30 Mar 2017 10:30:44 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Thu, 30 Mar 2017 10:37:30 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-I think you should post a new mail.
+Hi,
 
-Add tree /home/cc/src/oe-core/build/../layers/meta-layer/recipes-hi/helloworld/ to your new mail.
+On Thu, Mar 30, 2017 at 11:02:48AM +0200, Jaap de Jong wrote:
+> 
+> On 30-03-17 10:57, Maxin B. John wrote:
+> >Hi,
+> >
+> >Thank you very much for these updates. Merged to master-next.
+> >
+> >Note: from now on, please send the patches using "git send-email"
+> >as mentioned in the README file.
+> >
+> That was my intention (of course) but I'm having some issues with
+> Thunderbird icw "git send-mail"...
 
+Got it. Let us not worry about the tools for now :)
 
-On Thu, 2017-03-30 at 12:11 +0200, Yuvarajesh Valleru wrote:
-> Thank you. By typing the code again the eroor solved. but an another error.
-> 
-> Should i post in new mail or here is ok.
-> 
-> error:
-> 
-> ERROR: helloworld-1.0-r0 do_compile: Function failed: do_compile (log 
-> file is located at 
-> /home/cc/src/oe-core/build/tmp-glibc/work/armv7at2hf-neon-angstrom-linux-gnueabi/helloworld/1.0-
-> r0/temp/log.do_compile.23742)
-> ERROR: Logfile of failure stored in: 
-> /home/cc/src/oe-core/build/tmp-glibc/work/armv7at2hf-neon-angstrom-linux-gnueabi/helloworld/1.0-
-> r0/temp/log.do_compile.23742
-> Log data follows:
-> > DEBUG: Executing shell function do_compile
-> > arm-angstrom-linux-gnueabi-gcc: error: helloworld.cpp: No such file or 
-> 
-> directory
-> > arm-angstrom-linux-gnueabi-gcc: fatal error: no input files
-> > compilation terminated.
-> > WARNING: exit code 1 from a shell command.
-> > ERROR: Function failed: do_compile (log file is located at 
-> 
-> /home/cc/src/oe-core/build/tmp-glibc/work/armv7at2hf-neon-angstrom-linux-gnueabi/helloworld/1.0-
-> r0/temp/log.do_compile.23742)
-> ERROR: Task 
-> (/home/cc/src/oe-core/build/../layers/meta-layer/recipes-
-> hi/helloworld/helloworld_1.0.bb:do_compile) 
-> failed with exit code '1'
-> NOTE: Tasks Summary: Attempted 591 tasks of which 584 didn't need to be 
-> rerun and 1 failed.
-> NOTE: Writing buildhistory
-> 
-> Summary: 1 task failed:
-> /home/cc/src/oe-core/build/../layers/meta-layer/recipes-hi/helloworld/helloworld_1.0.bb:do_compile
-> Summary: There was 1 WARNING message shown.
-> Summary: There was 1 ERROR message shown, returning a non-zero exit code.
-> 
-> 
-> Am 30.03.2017 um 11:10 schrieb Fabien Lahoudere:
-> > The line is parsed here.
-> > Did you copy paste the quote from a tutorial on internet?
-> > Sometime encoding lead to such issues.
-> > 
-> > On Thu, 2017-03-30 at 11:00 +0200, Yuvarajesh Valleru wrote:
-> > > No,
-> > > Sorry. I haven't left it. The please find the file below:
-> > > SUMMARY = "hello world program"
-> > > HOMEPAGE = "http://www.yoctoproject.org/"
-> > > SECTION = "network"
-> > > LICENSE = "CLOSED"
-> > > inherit qt4e
-> > > 
-> > > SRC_URI = " \
-> > >      file://helloworld.pro \
-> > >      file://helloworld.cpp \
-> > >      "
-> > > 
-> > > S = "${WORKDIR}"
-> > > 
-> > > QMAKE_PROFILES = "${WORKDIR}/helloworld.pro \
-> > >      "
-> > > 
-> > > do_compile() {
-> > >          ${CC} helloworld.cpp -o helloworld
-> > > }
-> > > 
-> > > do_install() {
-> > >          install -d ${D}${bindir} ${D}${docdir}/helloworld
-> > >          install -m 0644 helloworld ${D}${bindir}
-> > > }
-> > > 
-> > > Am 30.03.2017 um 10:56 schrieb Burton, Ross:
-> > > > On 30 March 2017 at 09:14, Yuvarajesh Valleru <yv@iseg-hv.de> wrote:
-> > > > > SUMMARY = "hello world program"
-> > > > > HOMEPAGE = "http://www.yoctoproject.org/"
-> > > > > SECTION = "network"
-> > > > > LICENSE = "CLOSED"
-> > > > > inherit qt4e
-> > > > > 
-> > > > > SRC_URI = " \
-> > > > >      file://helloworld.pro \
-> > > > >      file://helloworld.cpp \
-> > > > >      "
-> > > > > 
-> > > > > S = "${WORKDIR}"
-> > > > > 
-> > > > > QMAKE_PROFILES = "${WORKDIR}/helloworld.pro \
-> > > > >      "
-> > > > > 
-> > > > > do_compile() {
-> > > > >          ${CC} helloworld.cpp -o helloworld
-> > > > > }
-> > > > > 
-> > > > > do_install() {
-> > > > >          install -d ${D}${bindir} ${D}${docdir}/helloworld
-> > > > >          install -m 0644 helloworld
-> > > > > 
-> > > > 
-> > > > Did you leave out the trailing } here in the real file?
-> > > > 
-> > > > Ross
-> > > 
-> > >   
-> 
-> 
+Warm Regards,
+Maxin
 
