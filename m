@@ -1,55 +1,45 @@
-Return-Path: <pbarker@toganlabs.com>
+Return-Path: <yv@iseg-hv.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 75CACE00985; Thu, 30 Mar 2017 00:05:42 -0700 (PDT)
+	id A7878E00970; Thu, 30 Mar 2017 01:16:02 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [46.232.183.11 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+	RCVD_IN_SORBS_SPAM, SPF_HELO_PASS,
+	TO_NO_BRKTS_PCNT autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [213.174.32.96 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [213.174.32.96 listed in dnsbl.sorbs.net]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from nov-007-i457.relay.mailchannels.net
-	(nov-007-i457.relay.mailchannels.net [46.232.183.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 013A2E00970
-	for <yocto@yoctoproject.org>; Thu, 30 Mar 2017 00:05:37 -0700 (PDT)
-X-Sender-Id: hostpapa|x-authuser|pbarker@toganlabs.com
-Received: from relay.mailchannels.net (localhost [127.0.0.1])
-	by relay.mailchannels.net (Postfix) with ESMTP id 3803F7C12AE;
-	Thu, 30 Mar 2017 06:47:13 +0000 (UTC)
-Received: from hp181.hostpapa.com (unknown [100.96.128.154])
-	by relay.mailchannels.net (Postfix) with ESMTPA id 6C5447C281D;
-	Thu, 30 Mar 2017 06:47:12 +0000 (UTC)
-X-Sender-Id: hostpapa|x-authuser|pbarker@toganlabs.com
-Received: from hp181.hostpapa.com (hp181.hostpapa.com [172.20.120.92])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384)
-	by 0.0.0.0:2500 (trex/5.7.39); Thu, 30 Mar 2017 06:47:13 +0000
-X-MC-Relay: Neutral
-X-MailChannels-SenderId: hostpapa|x-authuser|pbarker@toganlabs.com
-X-MailChannels-Auth-Id: hostpapa
-X-Blushing-Celery: 203f8200352c0d7f_1490856433105_1770235872
-X-MC-Loop-Signature: 1490856433105:447595519
-X-MC-Ingress-Time: 1490856433105
-Received: from cpc116908-shep14-2-0-cust920.8-3.cable.virginm.net
-	([82.34.23.153]:53636 helo=host0.betafive.co.uk)
-	by hp181.hostpapa.com with esmtpsa
-	(TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.87)
-	(envelope-from <pbarker@toganlabs.com>)
-	id 1ctTrS-000IAH-ER; Thu, 30 Mar 2017 08:47:11 +0200
-Date: Thu, 30 Mar 2017 07:47:07 +0100
-From: Paul Barker <pbarker@toganlabs.com>
-To: yocto@yoctoproject.org, Andrei Gherzan <andrei@gherzan.ro>
-Message-ID: <20170330074707.73ed5ace@host0.betafive.co.uk>
-In-Reply-To: <20170314103237.9533-1-pbarker@toganlabs.com>
-References: <20170314103237.9533-1-pbarker@toganlabs.com>
-Organization: =?UTF-8?B?VG9nw6Fu?= Labs
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
+	*  0.0 TO_NO_BRKTS_PCNT To: lacks brackets + percentage
+Received: from mailout01.ims-firmen.de (mailout01.ims-firmen.de
+	[213.174.32.96])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F2FBCE00839
+	for <yocto@yoctoproject.org>; Thu, 30 Mar 2017 01:16:00 -0700 (PDT)
+Received: from mailin01.ims-firmen.de ([192.168.1.141])
+	by mailout01.ims-firmen.de with esmtp (envelope-from <yv@iseg-hv.de>)
+	id 1ctVFO-0003W7-ix
+	for yocto@yoctoproject.org; Thu, 30 Mar 2017 10:15:58 +0200
+Received: from [87.138.179.153] (helo=post.iseg.site)
+	by mailin01.ims-firmen.de with esmtpsa
+	(TLSv1.2:ADH-AES256-GCM-SHA384:256) (envelope-from <yv@iseg-hv.de>)
+	id 1ctVFO-0001Bj-2U
+	for yocto@yoctoproject.org; Thu, 30 Mar 2017 10:15:58 +0200
+Received: from [192.168.25.170] (unknown [192.168.25.170])
+	by post.iseg.site (Postfix) with ESMTP id 4284B50E673
+	for <yocto@yoctoproject.org>; Thu, 30 Mar 2017 10:15:58 +0200 (CEST)
+To: yocto@yoctoproject.org
+From: Yuvarajesh Valleru <yv@iseg-hv.de>
+Message-ID: <766b24f4-b6e1-3260-8a4e-611853698497@iseg-hv.de>
+Date: Thu, 30 Mar 2017 10:14:38 +0200
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:45.0) Gecko/20100101
+	Thunderbird/45.8.0
 MIME-Version: 1.0
-X-OutGoing-Spam-Status: No, score=5.0
-X-AuthUser: pbarker@toganlabs.com
-Subject: Re: [meta-raspberrypi][morty][PATCH 0/3] Stable branch kernel updates
+Subject: Parse error: unable to parse line
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -61,30 +51,91 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 30 Mar 2017 07:05:42 -0000
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 30 Mar 2017 08:16:02 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Tue, 14 Mar 2017 10:32:34 +0000
-Paul Barker <pbarker@toganlabs.com> wrote:
+Hi,
 
-> This series contains backports of patches from Khem's latest combined pull
-> request. I've boot tested a raspberrypi3 (4.4.y and 4.9.y kernels) and a
-> raspberrypi (4.9.y kernel) using these patches and all looks good.
-> 
-> Khem Raj (1):
->   linux-raspberrypi_4.9.bb: Update to 4.9.13
-> 
-> Paul Barker (2):
->   linux-raspberrypi: Fix uImage build on 4.9.y and later
->   linux-raspberrypi_4.4: Update to 4.4.50
-> 
->  ...-Add-rules-for-.dtbo-files-for-dts-overla.patch | 29 ----------------------
->  recipes-kernel/linux/linux-raspberrypi_4.4.bb      |  5 ++--
->  recipes-kernel/linux/linux-raspberrypi_4.9.bb      | 10 +++++---
->  3 files changed, 10 insertions(+), 34 deletions(-)
->  delete mode 100644 recipes-kernel/linux/linux-raspberrypi-4.9/0001-build-arm64-Add-rules-for-.dtbo-files-for-dts-overla.patch
-> 
+I am new to yocto. I was building an example recipe 'helloworld' and 
+have a parse error. but could not find the solution
 
-Ping on these.
+here is the error:
+
+cc@cc:~/src/oe-core/build$ bitbake helloworld
+Loading cache: 100% |############################################| Time: 
+0:00:01
+Loaded 3468 entries from dependency cache.
+ERROR: ParseError at 
+/home/cc/src/oe-core/build/../layers/meta-iseg/recipes-ics/helloworld/helloworld_1.0.bb:1: 
+unparsed line: '﻿SUMMARY = "hello world program"'
+
+Summary: There was 1 ERROR message shown, returning a non-zero exit code.
+
+
+what would be the mistake in the recipe. please find the recipe, source 
+and pro files below
+
+helloworld_1.0.bb recipe:
+
+SUMMARY = "hello world program"
+HOMEPAGE = "http://www.yoctoproject.org/"
+SECTION = "network"
+LICENSE = "CLOSED"
+inherit qt4e
+
+SRC_URI = " \
+     file://helloworld.pro \
+     file://helloworld.cpp \
+     "
+
+S = "${WORKDIR}"
+
+QMAKE_PROFILES = "${WORKDIR}/helloworld.pro \
+     "
+
+do_compile() {
+         ${CC} helloworld.cpp -o helloworld
+}
+
+do_install() {
+         install -d ${D}${bindir} ${D}${docdir}/helloworld
+         install -m 0644 helloworld
+
+helloworld.cpp file:
+
+#include <QTextStream>
+
+int main(int argc, char *argv[])
+{
+     Q_UNUSED(argc);
+     Q_UNUSED(argv);
+
+     QTextStream cout(stdout);
+
+     cout << "Hello World" << endl;
+     return 0;
+}
+
+helloworld.pro file:
+
+QT += core
+QT += gui
+QT += widgets
+TARGET = helloworld
+CONFIG += console
+
+TEMPLATE = app
+
+SOURCES += helloworld.cpp
+
+Could you plese help me with the solution.
+
+Thank you,
+
+Yuvi
+
+
+
+
 
