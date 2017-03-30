@@ -1,6 +1,6 @@
 Return-Path: <maxpowel@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 67032E00970; Thu, 30 Mar 2017 05:13:33 -0700 (PDT)
+	id 2A411E00985; Thu, 30 Mar 2017 05:15:07 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -11,7 +11,7 @@ X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (maxpowel[at]gmail.com)
 	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.220.169 listed in dnsbl.sorbs.net]
+	*      [209.85.220.179 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -22,45 +22,45 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.220.169 listed in list.dnswl.org]
-Received: from mail-qk0-f169.google.com (mail-qk0-f169.google.com
-	[209.85.220.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 497CCE00839
-	for <yocto@yoctoproject.org>; Thu, 30 Mar 2017 05:13:29 -0700 (PDT)
-Received: by mail-qk0-f169.google.com with SMTP id r142so37643735qke.2
-	for <yocto@yoctoproject.org>; Thu, 30 Mar 2017 05:13:29 -0700 (PDT)
+	*      [209.85.220.179 listed in list.dnswl.org]
+Received: from mail-qk0-f179.google.com (mail-qk0-f179.google.com
+	[209.85.220.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C3385E00970
+	for <yocto@yoctoproject.org>; Thu, 30 Mar 2017 05:15:05 -0700 (PDT)
+Received: by mail-qk0-f179.google.com with SMTP id r142so37681013qke.2
+	for <yocto@yoctoproject.org>; Thu, 30 Mar 2017 05:15:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=8ITRVO24672gPBNfq6qIjKanPTe/Fpxz+2baW0Zxjxg=;
-	b=gxEB2Jn1FJ69So0YAJ3VqXzRB8ZVEKelnz1twtTpneNzzVdOvbBVdarRx9VlA/XAuY
-	M+OJMhxikPSZPkNlXHilN0zoGzuDlr5+i57tXUGL6BFBKC9ItspCHaMoioxjfsEe8UN1
-	80hnXqEywuP64UElGfKjcvXi8/yNT7eFTxRw02Mc7p6bLcWmk/nH1MgmKZH4wElNi/GT
-	tnCfRkRYcw6on9YR0BOf3N2j9hVodZLqf9Rlzo4P0v0PsGWeyoE0sBeNRiDNn8R5v7HW
-	zOdZrPZgfmbZizLsEINROrG5dg8bYdb2REbKN84Wx3IR17k2PWEtzCZ/E4+9Wchp1Dbm
-	KWYw==
+	:cc; bh=d90M0VvwfhHAC9HdeETtCuaD13Ww3kwHkq2gjYnWqr4=;
+	b=R2FPy9Ale6oUeHxxWGuMtS2tYxyO9hxJTahF2CRlf1HOmYFFxDOhAqk/7CfK90jPt2
+	GbBmKk1iwTHyeV4rrlYO7W0xemHkai4uS+8eWUWYI+joJyRW3wjkQ1NTrFYUfsDw01G+
+	caQS1/w10ORQOJ58rnJZtLgfnst5B8EiNJK3MddF/HR6ItPd8zgqZRqgnPIR77kvDrIh
+	eQAmRHBVwKrKeZZZYKUZBj1q2CpJl9B8JhEuJ1wZPnCYfgshPur886L7sgRThxJOohWk
+	hJoUbOrcHAirKHYdq7aUTdMX8iX4I1lXrbUXJjoQZkrz78N7W94qiiRYD3mDv4oYinCg
+	VwAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=8ITRVO24672gPBNfq6qIjKanPTe/Fpxz+2baW0Zxjxg=;
-	b=a7sooP9mCmGLsoppBMAUvcIx2ML+qn8UwoE2NXF97E/9To2J3swZZFzwIQOeMd+CF/
-	FuEEzF3ofnnDSIx+S6eB08FwhxRfdFjSegJctlzfBmxmNIhHqtQ8V2woaVRljhm8Lln4
-	dkha2zJOT1Yb6+FdwN4RGGCfP2pKXPOFEaRI6pxKORmcWlMmAYV7uCmRdf6Yw6oDPBtL
-	k4vc2vLvoUa2GwM4Jx6vfR45DaOFarLSEJS5vR6odB5BzRqnMYFTQvklW168Ex3dQKjq
-	M+fVaO7FNIPCdN9ALAbBOnHJCM6a6UXLdvZyylwMfr5drZM2m2FeqRXmzSNcJVXv0VRF
-	PhZw==
-X-Gm-Message-State: AFeK/H0hAlyFeSvdK7mtn8c7mw3r+4O+xaOwZDuFnTihtUUrTA+4n4GSwMJPuuJPFhp4jO8niX5/jplol4ljVQ==
-X-Received: by 10.55.144.199 with SMTP id s190mr5161309qkd.199.1490876008869; 
-	Thu, 30 Mar 2017 05:13:28 -0700 (PDT)
+	bh=d90M0VvwfhHAC9HdeETtCuaD13Ww3kwHkq2gjYnWqr4=;
+	b=OusHlZBUATpr+RWKJD0jd9X9ZqOiId4DZmPBrP3uLHE2UycbLXH8mNbPxKn6cs/xU/
+	6nKl26M9KRGTAw7JUFoSg9aF1zWaRd0RX+lTpeSu2RwJwhAl9VKWTF3z6GYjCETg5fTj
+	SiM2dFCMts0BMo3Dl6eqwKgNPwhHRcSXuzePWnaoim/SiVcV5XmpWWQMXVsfMG7vzwZ6
+	H8X1clDyVgXCfm0ic84cvHqWmL9yZpDyeIQdGdVtlby77QH1HL8b7IJKy1qPmrE04SCW
+	ovSkrDh4W01vuGj/3560dh4/St6Q1K9t7OomyHhEwpFa8qA6mKUbMPaLEO5Z9nlCfKmC
+	Zneg==
+X-Gm-Message-State: AFeK/H1lyF9bm88KQLmVqp4m3nQtv0H1+zHqK4mIbfXMNNyb2a4NgyliII87lZtIir8lVaw1I9Hl3fWR41OYkQ==
+X-Received: by 10.55.184.65 with SMTP id i62mr5943229qkf.234.1490876105042;
+	Thu, 30 Mar 2017 05:15:05 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.200.37.5 with HTTP; Thu, 30 Mar 2017 05:13:28 -0700 (PDT)
-In-Reply-To: <1490808757.17259.40.camel@linux.intel.com>
+Received: by 10.200.37.5 with HTTP; Thu, 30 Mar 2017 05:15:04 -0700 (PDT)
+In-Reply-To: <eb569801-2090-491e-3beb-006cf6f9d1f4@windriver.com>
 References: <CAOsmwBQhqjnnek3enUrXRzVnRRJANcibQ43hPX9jViN+ZhZyyw@mail.gmail.com>
-	<1490808757.17259.40.camel@linux.intel.com>
+	<eb569801-2090-491e-3beb-006cf6f9d1f4@windriver.com>
 From: Alvaro Garcia <maxpowel@gmail.com>
-Date: Thu, 30 Mar 2017 14:13:28 +0200
-Message-ID: <CAOsmwBT_MD-f4+d6cB9hLjDRhFCXQ9ZpgN_JqYti2M_fTMqt2Q@mail.gmail.com>
-To: Leonardo Sandoval <leonardo.sandoval.gonzalez@linux.intel.com>
+Date: Thu, 30 Mar 2017 14:15:04 +0200
+Message-ID: <CAOsmwBQ0d_wzmv+ffo8kcmHu+iwsHC6F92FiuY=9p4Wg9AFW0Q@mail.gmail.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
 Cc: yocto@yoctoproject.org
 Subject: Re: Compiling custom kernel
 X-BeenThere: yocto@yoctoproject.org
@@ -74,148 +74,159 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 30 Mar 2017 12:13:33 -0000
-Content-Type: multipart/alternative; boundary=001a114ddc02e9bcab054bf19e0e
+X-List-Received-Date: Thu, 30 Mar 2017 12:15:07 -0000
+Content-Type: multipart/alternative; boundary=94eb2c076ed0a5386f054bf1a4b6
 
---001a114ddc02e9bcab054bf19e0e
+--94eb2c076ed0a5386f054bf1a4b6
 Content-Type: text/plain; charset=UTF-8
 
-Hi, that was exactly my problem. Finally the kernel was compiled with my
-config. I'm so happy now, thank you!
+Hi, thank you for your answer. Looks like I got no missing dependencies and
+it compiled without problems.
 
-2017-03-29 19:32 GMT+02:00 Leonardo Sandoval <
-leonardo.sandoval.gonzalez@linux.intel.com>:
+2017-03-29 20:23 GMT+02:00 Bruce Ashfield <bruce.ashfield@windriver.com>:
 
-> On Wed, 2017-03-29 at 19:11 +0200, Alvaro Garcia wrote:
-> > Hi, I'm trying to compile a custom kernel (just custom config).
-> > I created a recipe called linux-yocto in my layer:
-> > meta-test
-> > -recipes-test
-> > --linux-yocto
-> > ---linux-yocto.bbapend
+> On 2017-03-29 1:11 PM, Alvaro Garcia wrote:
 >
-> you may need to include the kernel version to  your bbappend
-> (linux-yocto_4.4.bappend)
+>> Hi, I'm trying to compile a custom kernel (just custom config).
+>> I created a recipe called linux-yocto in my layer:
+>> meta-test
+>> -recipes-test
+>> --linux-yocto
+>> ---linux-yocto.bbapend
+>> ---files
+>> ----enable_various_options.cfg
+>>
+>> The content of the linux-yocto.bbapend is:
+>>
+>> FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+>> SRC_URI += "file://enable_various_options.cfg"
+>>
+>> And the content of enable_various_options.cfg is:
+>> CONFIG_DRM_NOUVEAU=y
+>>
 >
+> Assuming that you do have your bbappend created properly
+> (i.e. with the version number suggestion that was sent) a
+> configuration option cannot always be blanket enabled. If there
+> are missing dependencies for that option, it won't make it into
+> the final .config.
 >
-> > ---files
-> > ----enable_various_options.cfg
-> >
-> > The content of the linux-yocto.bbapend is:
-> >
-> > FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-> > SRC_URI += "file://enable_various_options.cfg"
-> >
-> > And the content of enable_various_options.cfg is:
-> > CONFIG_DRM_NOUVEAU=y
-> >
-> > The way I generated enable_various_options.cfg was
-> > bitbake -c menuconfig virtual/kernel
-> > Select my configuration
-> > bitbake -c devshell virtual/kernel
-> > diff of the original .config and the new one.
-> > I just followed the instructions here
-> > https://lists.yoctoproject.org/pipermail/yocto/2014-June/020174.html
-> > and here
-> > https://software.intel.com/sites/default/files/m/4/d/8/5/
-> 8/42868-11__Developing_Kernel_Module_on_Yocto.pdf
-> >
-> > Then I run bitbake core-image-x11
-> > I got this warning:
-> > WARNING: /home/amacho/poky/meta/recipes-kernel/linux/linux-
-> yocto_4.4.bb.do_kernel_configme is tainted from a forced run
-> > but the kernel is not compiled with the new config (I do md5 to
-> > vmlinuz and was exactly the same).
-> >
-> > Can you help me to find the way I can compile this kernel?
-> >
-> > Thank you
-> >
-> >
-> >
-> > --
-> > _______________________________________________
-> > yocto mailing list
-> > yocto@yoctoproject.org
-> > https://lists.yoctoproject.org/listinfo/yocto
+> So it is worth checking that all dependencies are also included
+> in that same .cfg.
+>
+> Bruce
 >
 >
+>
+>> The way I generated enable_various_options.cfg was
+>> bitbake -c menuconfig virtual/kernel
+>> Select my configuration
+>> bitbake -c devshell virtual/kernel
+>> diff of the original .config and the new one.
+>> I just followed the instructions here
+>> https://lists.yoctoproject.org/pipermail/yocto/2014-June/020174.html
+>> and here
+>> https://software.intel.com/sites/default/files/m/4/d/8/5/8/
+>> 42868-11__Developing_Kernel_Module_on_Yocto.pdf
+>>
+>> Then I run bitbake core-image-x11
+>> I got this warning:
+>> WARNING:
+>> /home/amacho/poky/meta/recipes-kernel/linux/linux-yocto_4.4.
+>> bb.do_kernel_configme
+>> is tainted from a forced run
+>> but the kernel is not compiled with the new config (I do md5 to vmlinuz
+>> and was exactly the same).
+>>
+>> Can you help me to find the way I can compile this kernel?
+>>
+>> Thank you
+>>
+>>
+>>
+>>
+>>
 >
 
---001a114ddc02e9bcab054bf19e0e
+--94eb2c076ed0a5386f054bf1a4b6
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi, that was exactly my problem. Finally the kernel was co=
-mpiled with my config. I&#39;m so happy now, thank you!</div><div class=3D"=
-gmail_extra"><br><div class=3D"gmail_quote">2017-03-29 19:32 GMT+02:00 Leon=
-ardo Sandoval <span dir=3D"ltr">&lt;<a href=3D"mailto:leonardo.sandoval.gon=
-zalez@linux.intel.com" target=3D"_blank">leonardo.sandoval.gonzalez@linux.i=
-ntel.com</a>&gt;</span>:<br><blockquote class=3D"gmail_quote" style=3D"marg=
-in:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><span class=3D""=
->On Wed, 2017-03-29 at 19:11 +0200, Alvaro Garcia wrote:<br>
-&gt; Hi, I&#39;m trying to compile a custom kernel (just custom config).<br=
->
-&gt; I created a recipe called linux-yocto in my layer:<br>
-&gt; meta-test<br>
-&gt; -recipes-test<br>
-&gt; --linux-yocto<br>
-&gt; ---linux-yocto.bbapend<br>
+<div dir=3D"ltr">Hi, thank you for your answer. Looks like I got no missing=
+ dependencies and it compiled without problems.</div><div class=3D"gmail_ex=
+tra"><br><div class=3D"gmail_quote">2017-03-29 20:23 GMT+02:00 Bruce Ashfie=
+ld <span dir=3D"ltr">&lt;<a href=3D"mailto:bruce.ashfield@windriver.com" ta=
+rget=3D"_blank">bruce.ashfield@windriver.com</a>&gt;</span>:<br><blockquote=
+ class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc soli=
+d;padding-left:1ex"><span class=3D"">On 2017-03-29 1:11 PM, Alvaro Garcia w=
+rote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
+Hi, I&#39;m trying to compile a custom kernel (just custom config).<br>
+I created a recipe called linux-yocto in my layer:<br>
+meta-test<br>
+-recipes-test<br>
+--linux-yocto<br>
+---linux-yocto.bbapend<br>
+---files<br>
+----enable_various_options.cfg<br>
 <br>
-</span>you may need to include the kernel version to=C2=A0 your bbappend<br=
->
-(linux-yocto_4.4.bappend)<br>
-<div class=3D"HOEnZb"><div class=3D"h5"><br>
+The content of the linux-yocto.bbapend is:<br>
 <br>
-&gt; ---files<br>
-&gt; ----enable_various_options.cfg<br>
-&gt;<br>
-&gt; The content of the linux-yocto.bbapend is:<br>
-&gt;<br>
-&gt; FILESEXTRAPATHS_prepend :=3D &quot;${THISDIR}/${PN}:&quot;<br>
-&gt; SRC_URI +=3D &quot;file://enable_various_<wbr>options.cfg&quot;<br>
-&gt;<br>
-&gt; And the content of enable_various_options.cfg is:<br>
-&gt; CONFIG_DRM_NOUVEAU=3Dy<br>
-&gt;<br>
-&gt; The way I generated enable_various_options.cfg was<br>
-&gt; bitbake -c menuconfig virtual/kernel<br>
-&gt; Select my configuration<br>
-&gt; bitbake -c devshell virtual/kernel<br>
-&gt; diff of the original .config and the new one.<br>
-&gt; I just followed the instructions here<br>
-&gt; <a href=3D"https://lists.yoctoproject.org/pipermail/yocto/2014-June/02=
-0174.html" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.=
-<wbr>org/pipermail/yocto/2014-June/<wbr>020174.html</a><br>
-&gt; and here<br>
-&gt; <a href=3D"https://software.intel.com/sites/default/files/m/4/d/8/5/8/=
-42868-11__Developing_Kernel_Module_on_Yocto.pdf" rel=3D"noreferrer" target=
-=3D"_blank">https://software.intel.com/<wbr>sites/default/files/m/4/d/8/5/<=
-wbr>8/42868-11__Developing_Kernel_<wbr>Module_on_Yocto.pdf</a><br>
-&gt;<br>
-&gt; Then I run bitbake core-image-x11<br>
-&gt; I got this warning:<br>
-&gt; WARNING: /home/amacho/poky/meta/<wbr>recipes-kernel/linux/linux-<wbr>y=
-octo_4.4.bb.do_kernel_<wbr>configme is tainted from a forced run<br>
-&gt; but the kernel is not compiled with the new config (I do md5 to<br>
-&gt; vmlinuz and was exactly the same).<br>
-&gt;<br>
-&gt; Can you help me to find the way I can compile this kernel?<br>
-&gt;<br>
-&gt; Thank you<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-</div></div><span class=3D"HOEnZb"><font color=3D"#888888">&gt; --<br>
-&gt; ______________________________<wbr>_________________<br>
-&gt; yocto mailing list<br>
-&gt; <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><b=
-r>
-&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noref=
-errer" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto=
-</a><br>
+FILESEXTRAPATHS_prepend :=3D &quot;${THISDIR}/${PN}:&quot;<br>
+SRC_URI +=3D &quot;file://enable_various_options<wbr>.cfg&quot;<br>
+<br>
+And the content of enable_various_options.cfg is:<br>
+CONFIG_DRM_NOUVEAU=3Dy<br>
+</blockquote>
+<br></span>
+Assuming that you do have your bbappend created properly<br>
+(i.e. with the version number suggestion that was sent) a<br>
+configuration option cannot always be blanket enabled. If there<br>
+are missing dependencies for that option, it won&#39;t make it into<br>
+the final .config.<br>
+<br>
+So it is worth checking that all dependencies are also included<br>
+in that same .cfg.<span class=3D"HOEnZb"><font color=3D"#888888"><br>
+<br>
+Bruce</font></span><div class=3D"HOEnZb"><div class=3D"h5"><br>
+<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
+<br>
+The way I generated enable_various_options.cfg was<br>
+bitbake -c menuconfig virtual/kernel<br>
+Select my configuration<br>
+bitbake -c devshell virtual/kernel<br>
+diff of the original .config and the new one.<br>
+I just followed the instructions here<br>
+<a href=3D"https://lists.yoctoproject.org/pipermail/yocto/2014-June/020174.=
+html" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org<w=
+br>/pipermail/yocto/2014-June/020<wbr>174.html</a><br>
+and here<br>
+<a href=3D"https://software.intel.com/sites/default/files/m/4/d/8/5/8/42868=
+-11__Developing_Kernel_Module_on_Yocto.pdf" rel=3D"noreferrer" target=3D"_b=
+lank">https://software.intel.com/sit<wbr>es/default/files/m/4/d/8/5/8/<wbr>=
+42868-11__Developing_Kernel_Mo<wbr>dule_on_Yocto.pdf</a><br>
+<br>
+Then I run bitbake core-image-x11<br>
+I got this warning:<br>
+WARNING:<br>
+/home/amacho/poky/meta/recipes<wbr>-kernel/linux/linux-yocto_4.4.<wbr>bb.do=
+_kernel_configme<br>
+is tainted from a forced run<br>
+but the kernel is not compiled with the new config (I do md5 to vmlinuz<br>
+and was exactly the same).<br>
+<br>
+Can you help me to find the way I can compile this kernel?<br>
+<br>
+Thank you<br>
 <br>
 <br>
-</font></span></blockquote></div><br></div>
+<br>
+<br>
+</blockquote>
+<br>
+</div></div></blockquote></div><br></div>
 
---001a114ddc02e9bcab054bf19e0e--
+--94eb2c076ed0a5386f054bf1a4b6--
