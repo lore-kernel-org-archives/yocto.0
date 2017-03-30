@@ -1,57 +1,48 @@
-Return-Path: <alain.achkar@triacta.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 73D73E009B2; Thu, 30 Mar 2017 11:45:06 -0700 (PDT)
+	id 515C3E009B9; Thu, 30 Mar 2017 12:53:14 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.218.41 listed in dnsbl.sorbs.net]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.218.41 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	RCVD_IN_DNSWL_MED,T_DKIM_INVALID autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [134.134.136.20 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-oi0-f41.google.com (mail-oi0-f41.google.com
-	[209.85.218.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1ACB8E00961
-	for <yocto@yoctoproject.org>; Thu, 30 Mar 2017 11:45:04 -0700 (PDT)
-Received: by mail-oi0-f41.google.com with SMTP id r203so39947863oib.3
-	for <yocto@yoctoproject.org>; Thu, 30 Mar 2017 11:45:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=triacta.com; s=google;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=zsPXhTGtfv82FDgWUNeKGLnC/2tKp9CmDLbWAWgK5LQ=;
-	b=YuWiEwzOQNlbeVzsY4+zgx8Wu19Z41mcWh4XQhWdWXKGPzqalsbJSx1znOHMONR9Cx
-	78X8rgMqDPnBMb8yDogsPq87iMeWNBDCq8PxrN2QJbTns/G8F6n7Q7kfMRLSYzDQwHKE
-	0V584cclhtNlRUchr/lLR1U9CXsFoyW4eBows=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=zsPXhTGtfv82FDgWUNeKGLnC/2tKp9CmDLbWAWgK5LQ=;
-	b=N4p6R1pMBGyZ/CHxTc8rfidSZePHHLA1rgg9c2VdEsUmpPxxhyv4HJ9zJDyycos7ln
-	tJwjSx+QkOEe8a780ijta19WwlLLwqDiH4MZMzcFKM61A55ED6t0SQnJE7pX/uCO8P6T
-	ER4o70vh38a5JMjhASDnT3RD9oYQ+aVXsJ4PmLquxE+58B8P59+XpWoOKebtQsy+roi4
-	Se8afOU31cgohk1So386Qj1Ak5nfiXe4cOBeRskIFsXcFWc3J7OtsB5/WL49DcIgzScc
-	v3M2re7zl0MfvAjuwpv4vWfmqICiOsLX7G/Z7LCW1aHKhfQhLBGLV/OoVshz67XlaT8d
-	1KgA==
-X-Gm-Message-State: AFeK/H15/KOdM7ywwIX+hzSzFnrDWnEC7u5Jc9p2pzM7/WCCtYV18k3TNgKevO2C26EndZNWWVQTMbfu7V+vvGp0
-X-Received: by 10.202.212.196 with SMTP id l187mr785397oig.65.1490899503206;
-	Thu, 30 Mar 2017 11:45:03 -0700 (PDT)
+	*  0.0 T_DKIM_INVALID DKIM-Signature header exists but is not valid
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 26FDDE00992
+	for <yocto@yoctoproject.org>; Thu, 30 Mar 2017 12:53:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+	d=intel.com; i=@intel.com; q=dns/txt; s=intel;
+	t=1490903592; x=1522439592;
+	h=from:to:cc:subject:date:message-id:in-reply-to:
+	references:mime-version:content-transfer-encoding;
+	bh=tojRtokaGmizEgpeBqn5MhBvJ0Y3SqKkYZR2riSpeGI=;
+	b=JuUjWyrhghJGfVeoETfD/Dfxbt2a5eudXvuVJxWiJCKufEkKpzIGvNrG
+	A5LQ8OOEcTgHT19DxYAX0j+oJJWWgQ==;
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	30 Mar 2017 12:53:10 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.36,248,1486454400"; d="scan'208";a="1129050804"
+Received: from sjayara-mobl.gar.corp.intel.com (HELO
+	peggleto-mobl.ger.corp.intel.com) ([10.255.175.26])
+	by fmsmga001.fm.intel.com with ESMTP; 30 Mar 2017 12:53:09 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Alain Achkar <alain.achkar@triacta.com>
+Date: Fri, 31 Mar 2017 08:53:06 +1300
+Message-ID: <106496051.h0JeANXGLY@peggleto-mobl.ger.corp.intel.com>
+Organization: Intel Corporation
+In-Reply-To: <CAGkf0HCuR9oSm-nv3aZs1KkHztJrDBRQBnwTA71FwO8NMRD2AQ@mail.gmail.com>
+References: <CAGkf0HCuR9oSm-nv3aZs1KkHztJrDBRQBnwTA71FwO8NMRD2AQ@mail.gmail.com>
 MIME-Version: 1.0
-Received: by 10.157.4.12 with HTTP; Thu, 30 Mar 2017 11:44:22 -0700 (PDT)
-From: Alain Achkar <alain.achkar@triacta.com>
-Date: Thu, 30 Mar 2017 14:44:22 -0400
-Message-ID: <CAGkf0HCuR9oSm-nv3aZs1KkHztJrDBRQBnwTA71FwO8NMRD2AQ@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: Meaning of 'Support Level' column in https://wiki.yoctoproject.org/wiki/Releases
+Cc: yocto@yoctoproject.org
+Subject: Re: Meaning of 'Support Level' column in https://wiki.yoctoproject.org/wiki/Releases
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -63,32 +54,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 30 Mar 2017 18:45:06 -0000
-Content-Type: multipart/alternative; boundary=001a113ad7ea48dea1054bf7174e
+X-List-Received-Date: Thu, 30 Mar 2017 19:53:14 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
---001a113ad7ea48dea1054bf7174e
-Content-Type: text/plain; charset=UTF-8
+Hi Alain,
 
-Hello!
+On Friday, 31 March 2017 7:44:22 AM NZDT Alain Achkar wrote:
+> We are currently on Jethro and planning to upgrade to Krogoth (can't use
+> Morty yet, since Freescale/NXP hasn't released Morty yet).
+> 
+> Just wondering what the meaning of the 'Support Level' column is, or if you
+> can point me to documentation about it.
 
-We are currently on Jethro and planning to upgrade to Krogoth (can't use
-Morty yet, since Freescale/NXP hasn't released Morty yet).
+"Development" means that the release is currently being worked on.
 
-Just wondering what the meaning of the 'Support Level' column is, or if you
-can point me to documentation about it.
+"Stable" means that the release is a stable release and will receive backports 
+of important security / bug fixes (but not features).
 
-Thanks!
+"Community" means that maintenance is left up to the community - in reality 
+that means that it is no longer officially maintained, but well-tested patches 
+may still be accepted.
 
---001a113ad7ea48dea1054bf7174e
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+There's another page with policy information that may be helpful:
 
-<div dir=3D"ltr">Hello!<div><br></div><div>We are currently on Jethro and p=
-lanning to upgrade to Krogoth (can&#39;t use Morty yet, since Freescale/NXP=
- hasn&#39;t released Morty yet).</div><div><br></div><div>Just wondering wh=
-at the meaning of the &#39;Support Level&#39; column is, or if you can poin=
-t me to documentation about it.</div><div><br></div><div>Thanks!</div><div>=
-<br clear=3D"all"><div><br></div>
-</div></div>
+  https://wiki.yoctoproject.org/wiki/Stable_branch_maintenance
 
---001a113ad7ea48dea1054bf7174e--
+Cheers,
+Paul
+
+-- 
+
+Paul Eggleton
+Intel Open Source Technology Centre
+
