@@ -1,48 +1,33 @@
-Return-Path: <maxin.john@intel.com>
+Return-Path: <fabien.lahoudere@collabora.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 85D86E00985; Thu, 30 Mar 2017 01:57:17 -0700 (PDT)
+	id 4BDC2E00B51; Thu, 30 Mar 2017 01:58:03 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	RCVD_IN_DNSWL_HI,T_DKIM_INVALID autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
+	SPF_HELO_PASS,UNPARSEABLE_RELAY autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [46.235.227.227 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [134.134.136.24 listed in list.dnswl.org]
-	*  0.0 T_DKIM_INVALID DKIM-Signature header exists but is not valid
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1A1F6E00953
-	for <yocto@yoctoproject.org>; Thu, 30 Mar 2017 01:57:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-	d=intel.com; i=@intel.com; q=dns/txt; s=intel;
-	t=1490864236; x=1522400236;
-	h=date:from:to:cc:subject:message-id:references:
-	mime-version:in-reply-to;
-	bh=ES4wUm4LDsStp/xasSjrwNlnrUxGEONzYDrQQNZyRv8=;
-	b=dsauCKAv/jIRcLHFfBoTx9VdF4hD8lkxxt5CSueRL4atrTh1N36AdQUz
-	lqTZsSqwyBlwFP7B/3AGW8lnqAh7Vg==;
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-	by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	30 Mar 2017 01:57:15 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.36,246,1486454400"; d="scan'208";a="241962517"
-Received: from mbabyjoh-desk.fi.intel.com (HELO
-	mbabyjoh-desk.ger.corp.intel.com) ([10.237.72.71])
-	by fmsmga004.fm.intel.com with ESMTP; 30 Mar 2017 01:57:13 -0700
-Date: Thu, 30 Mar 2017 11:57:28 +0300
-From: "Maxin B. John" <maxin.john@intel.com>
-To: Jaap de Jong <jaap.dejong@nedap.com>
-Message-ID: <20170330085728.GA528@mbabyjoh-desk.ger.corp.intel.com>
-References: <98e3cae0-9d39-e146-9dad-af0c6c37ab55@nedap.com>
-MIME-Version: 1.0
-In-Reply-To: <98e3cae0-9d39-e146-9dad-af0c6c37ab55@nedap.com>
-User-Agent: Mutt/1.5.23 (2014-03-12)
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-oracle-java][PATCH 1/6] oracle-jse.inc: Fix unattended downloading source
+	* 0.0 UNPARSEABLE_RELAY Informational: message has unparseable relay
+	lines
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3497CE009A5
+	for <yocto@yoctoproject.org>; Thu, 30 Mar 2017 01:57:56 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	(Authenticated sender: aragua) with ESMTPSA id 2284F260F91
+Message-ID: <1490864272.11772.18.camel@collabora.co.uk>
+From: Fabien Lahoudere <fabien.lahoudere@collabora.co.uk>
+To: Yuvarajesh Valleru <yv@iseg-hv.de>, yocto@yoctoproject.org
+Date: Thu, 30 Mar 2017 10:57:52 +0200
+In-Reply-To: <766b24f4-b6e1-3260-8a4e-611853698497@iseg-hv.de>
+References: <766b24f4-b6e1-3260-8a4e-611853698497@iseg-hv.de>
+X-Mailer: Evolution 3.22.5-1 
+Mime-Version: 1.0
+Subject: Re: Parse error: unable to parse line
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,45 +39,95 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 30 Mar 2017 08:57:17 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Thu, 30 Mar 2017 08:58:03 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-Hi,
-
-Thank you very much for these updates. Merged to master-next.
-
-Note: from now on, please send the patches using "git send-email"
-as mentioned in the README file. 
-
-On Thu, Mar 30, 2017 at 08:28:09AM +0200, Jaap de Jong wrote:
+On Thu, 2017-03-30 at 10:14 +0200, Yuvarajesh Valleru wrote:
+> Hi,
+> 
+> I am new to yocto. I was building an example recipe 'helloworld' and 
+> have a parse error. but could not find the solution
+> 
+> here is the error:
+> 
+> cc@cc:~/src/oe-core/build$ bitbake helloworld
+> Loading cache: 100% |############################################| Time: 
+> 0:00:01
+> Loaded 3468 entries from dependency cache.
+> ERROR: ParseError at 
+> /home/cc/src/oe-core/build/../layers/meta-iseg/recipes-ics/helloworld/helloworld_1.0.bb:1: 
+> unparsed line: '﻿SUMMARY = "hello world program"'
+> 
+> Summary: There was 1 ERROR message shown, returning a non-zero exit code.
+> 
+> 
+> what would be the mistake in the recipe. please find the recipe, source 
+> and pro files below
+> 
+> helloworld_1.0.bb recipe:
+> 
+> SUMMARY = "hello world program"
+> HOMEPAGE = "http://www.yoctoproject.org/"
+> SECTION = "network"
+> LICENSE = "CLOSED"
+> inherit qt4e
+> 
+> SRC_URI = " \
+>      file://helloworld.pro \
+>      file://helloworld.cpp \
+>      "
+> 
+> S = "${WORKDIR}"
+> 
+> QMAKE_PROFILES = "${WORKDIR}/helloworld.pro \
+>      "
+> 
+> do_compile() {
+>          ${CC} helloworld.cpp -o helloworld
+> }
+> 
+> do_install() {
+>          install -d ${D}${bindir} ${D}${docdir}/helloworld
+>          install -m 0644 helloworld
 > 
 
-> From d20c60ce51a399541329bd5360e5489f537d630b Mon Sep 17 00:00:00 2001
-> From: Jaap de Jong <jaap.dejong@nedap.com>
-> Date: Tue, 28 Mar 2017 14:07:19 +0200
-> Subject: [PATCH 1/6] oracle-jse.inc: Fix unattended downloading source
-> 
-> ---
->  recipes-devtools/oracle-java/oracle-jse.inc | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/recipes-devtools/oracle-java/oracle-jse.inc b/recipes-devtools/oracle-java/oracle-jse.inc
-> index 8cb0953..488bce2 100644
-> --- a/recipes-devtools/oracle-java/oracle-jse.inc
-> +++ b/recipes-devtools/oracle-java/oracle-jse.inc
-> @@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "\
->  	file://${JDK_JRE}${PV}_${PV_UPDATE}/THIRDPARTYLICENSEREADME.txt;md5=745d6db5fc58c63f74ce6a7d4db7e695 \
->  	"
->  
-> -FETCHCMD_wget_append = " --header=Cookie:oraclelicense=a "
-> +FETCHCMD_wget_append = " --no-check-certificate --no-cookies --header 'Cookie: oraclelicense=accept-securebackup-cookie' "
->  
->  RDEPENDS_${PN} += " libasound atk cairo gdk-pixbuf mesa gtk+ libxtst libxi"
->  # get the java update version in the resulting package
-> -- 
-> 2.7.4
+braces is missing here.
 
-Best Regards,
-Maxin
+> helloworld.cpp file:
+> 
+> #include <QTextStream>
+> 
+> int main(int argc, char *argv[])
+> {
+>      Q_UNUSED(argc);
+>      Q_UNUSED(argv);
+> 
+>      QTextStream cout(stdout);
+> 
+>      cout << "Hello World" << endl;
+>      return 0;
+> }
+> 
+> helloworld.pro file:
+> 
+> QT += core
+> QT += gui
+> QT += widgets
+> TARGET = helloworld
+> CONFIG += console
+> 
+> TEMPLATE = app
+> 
+> SOURCES += helloworld.cpp
+> 
+> Could you plese help me with the solution.
+> 
+> Thank you,
+> 
+> Yuvi
+> 
+> 
+> 
+> 
 
