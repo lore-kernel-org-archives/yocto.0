@@ -1,6 +1,6 @@
 Return-Path: <jaap.dejong@nedap.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F0261E009B9; Wed, 29 Mar 2017 23:28:22 -0700 (PDT)
+	id 6773AE00A16; Wed, 29 Mar 2017 23:28:25 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -18,26 +18,26 @@ X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 Received: from smtp4.nedap.com (smtp4.nedap.com [213.160.213.85])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2F842E009A0
-	for <yocto@yoctoproject.org>; Wed, 29 Mar 2017 23:28:22 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9D0E7E009A5
+	for <yocto@yoctoproject.org>; Wed, 29 Mar 2017 23:28:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=nedap.com; i=@nedap.com; q=dns/txt; s=20161201;
-	t=1490855302; x=1522391302;
+	t=1490855305; x=1522391305;
 	h=from:subject:to:message-id:date:mime-version;
-	bh=L8dxFy7lI5K9K6CiA5xgknjtPBIcUuvfubOQrz8mCLQ=;
-	b=aG5ToR2CZF6STRhXWDx8TnMvNPY5wuXyh4eXWJQ/uArUQMkuKAOrJSeQ
-	jCGCNRarYB5I+TWf9kJb3w0Jb/ZB5sm7P0iO2/EfkLcrl2IzOu55MyWlz
-	NOGLwa5/Rz0Q8SVvNSdsFH20QgbLEDYx8gGavpK4XPdPryc+qosCnnRQ9 c=;
+	bh=oqYimosQ5e+vCXrfFlsngvOXsxIroAyUHvd0O0Q9gDg=;
+	b=NwozZLV6rRV/KeGkdRxnpCuOdLd2iHgZdX9vXfEFVmDt/4JL81TqntzY
+	qnP8IKPCmOjj6sNPKT1V77YRQSBYwbIMXvJXqrlNlgWkuWxDuqvB6ZBWA
+	GxXm9qu8gFY/JU4UcZVeTW6mjOqMJwwQzwDNGa1hlr9+oiWnpbbU5BsIs U=;
 Received: from nvc2354.nedap.local (HELO [10.2.16.82]) ([10.2.16.82])
-	by smtp4.nedap.com with ESMTP; 30 Mar 2017 08:28:22 +0200
+	by smtp4.nedap.com with ESMTP; 30 Mar 2017 08:28:24 +0200
 From: Jaap de Jong <jaap.dejong@nedap.com>
 To: yocto@yoctoproject.org
-Message-ID: <06457d72-9958-dbff-c9b1-09a1a5e134ba@nedap.com>
-Date: Thu, 30 Mar 2017 08:28:20 +0200
+Message-ID: <b3e55f14-217e-c6bf-fbe1-0acdae5299d7@nedap.com>
+Date: Thu, 30 Mar 2017 08:28:22 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
 	Thunderbird/45.8.0
 MIME-Version: 1.0
-Subject: [meta-oracle-java][PATCH 5/6] Use update-alternatives
+Subject: [meta-oracle-java][PATCH 6/6] oracle-jse: Add sources package
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,64 +49,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 30 Mar 2017 06:28:23 -0000
-X-Groupsio-MsgNum: 35313
-Content-Type: multipart/mixed; boundary="------------1857C6B39E437E4A1EFE86FE"
+X-List-Received-Date: Thu, 30 Mar 2017 06:28:25 -0000
+X-Groupsio-MsgNum: 35314
+Content-Type: multipart/mixed; boundary="------------335C6CACF4CB7F24E611FFB5"
 
---------------1857C6B39E437E4A1EFE86FE
+--------------335C6CACF4CB7F24E611FFB5
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
 
 
---------------1857C6B39E437E4A1EFE86FE
+--------------335C6CACF4CB7F24E611FFB5
 Content-Type: text/plain; charset=UTF-8;
- name="0005-Use-update-alternatives.patch.txt"
+ name="0006-oracle-jse-Add-sources-package.patch.txt"
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment;
- filename="0005-Use-update-alternatives.patch.txt"
+ filename="0006-oracle-jse-Add-sources-package.patch.txt"
 
-RnJvbSA3Y2ZlMmNhOTE3MzM1M2IyZWE3ZGQ4ZTNmYWJlYzllMjgzZGFmZjg1IE1vbiBTZXAgMTcg
+RnJvbSBhY2Y4MWE3OGM4NzA4Yjc1YzY3NWU5Y2YwZDEzMzJjMTk4MGY2NGE0IE1vbiBTZXAgMTcg
 MDA6MDA6MDAgMjAwMQpGcm9tOiBKYWFwIGRlIEpvbmcgPGphYXAuZGVqb25nQG5lZGFwLmNvbT4K
-RGF0ZTogVHVlLCAyOCBNYXIgMjAxNyAxNDoyNjo1MiArMDIwMApTdWJqZWN0OiBbUEFUQ0ggNS82
-XSBVc2UgdXBkYXRlLWFsdGVybmF0aXZlcwoKLS0tCiByZWNpcGVzLWRldnRvb2xzL29yYWNsZS1q
-YXZhL29yYWNsZS1qc2UtamRrLmluYyB8IDE0ICsrKysrKysrKysrKysrCiByZWNpcGVzLWRldnRv
-b2xzL29yYWNsZS1qYXZhL29yYWNsZS1qc2UuaW5jICAgICB8IDEyICsrKysrKysrKystLQogMiBm
-aWxlcyBjaGFuZ2VkLCAyNCBpbnNlcnRpb25zKCspLCAyIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdp
-dCBhL3JlY2lwZXMtZGV2dG9vbHMvb3JhY2xlLWphdmEvb3JhY2xlLWpzZS1qZGsuaW5jIGIvcmVj
-aXBlcy1kZXZ0b29scy9vcmFjbGUtamF2YS9vcmFjbGUtanNlLWpkay5pbmMKaW5kZXggMjkxYTc1
-ZC4uOWZkNzZlMSAxMDA2NDQKLS0tIGEvcmVjaXBlcy1kZXZ0b29scy9vcmFjbGUtamF2YS9vcmFj
-bGUtanNlLWpkay5pbmMKKysrIGIvcmVjaXBlcy1kZXZ0b29scy9vcmFjbGUtamF2YS9vcmFjbGUt
-anNlLWpkay5pbmMKQEAgLTI1LDMgKzI1LDE3IEBAIEJCQ0xBU1NFWFRFTkQgPSAibmF0aXZlIgog
-CiBSUFJPVklERVNfJHtQTn0gKz0gImphdmEyLWRldmVsb3BtZW50IgogUFJPVklERVMgKz0gInZp
-cnR1YWwvamF2YWMgdmlydHVhbC9qYXZhLWluaXRpYWwiCisKK3BrZ19wb3N0aW5zdF8ke1BOfSAo
-KSB7CisJdXBkYXRlLWFsdGVybmF0aXZlcyAtLWluc3RhbGwgJHtiaW5kaXJ9L2phciAgIGphciAg
-ICR7SkRLX0hPTUV9L2Jpbi9qYXIgMTAwCisJdXBkYXRlLWFsdGVybmF0aXZlcyAtLWluc3RhbGwg
-JHtiaW5kaXJ9L2phdmEgIGphdmEgICR7SkRLX0hPTUV9L2pyZS9iaW4vamF2YSAxMDAKKwl1cGRh
-dGUtYWx0ZXJuYXRpdmVzIC0taW5zdGFsbCAke2JpbmRpcn0vamF2YWMgamF2YWMgJHtKREtfSE9N
-RX0vanJlL2Jpbi9qYXZhYyAxMDAKKwl1cGRhdGUtYWx0ZXJuYXRpdmVzIC0taW5zdGFsbCAke2Jp
-bmRpcn0vamF2YWggamF2YWggJHtKREtfSE9NRX0vYmluL2phdmFoIDEwMAorfQorCitwa2dfcHJl
-cm1fJHtQTn0gKCkgeworCXVwZGF0ZS1hbHRlcm5hdGl2ZXMgLS1yZW1vdmUgamFyICAgJHtKREtf
-SE9NRX0vanJlL2Jpbi9qYXIKKwl1cGRhdGUtYWx0ZXJuYXRpdmVzIC0tcmVtb3ZlIGphdmEgICR7
-SkRLX0hPTUV9L2pyZS9iaW4vamF2YQorCXVwZGF0ZS1hbHRlcm5hdGl2ZXMgLS1yZW1vdmUgamF2
-YWMgJHtKREtfSE9NRX0vanJlL2Jpbi9qYXZhYworCXVwZGF0ZS1hbHRlcm5hdGl2ZXMgLS1yZW1v
-dmUgamF2YWggJHtKREtfSE9NRX0vanJlL2Jpbi9qYXZhaAorfQpkaWZmIC0tZ2l0IGEvcmVjaXBl
-cy1kZXZ0b29scy9vcmFjbGUtamF2YS9vcmFjbGUtanNlLmluYyBiL3JlY2lwZXMtZGV2dG9vbHMv
-b3JhY2xlLWphdmEvb3JhY2xlLWpzZS5pbmMKaW5kZXggN2U1MDhiZi4uMzc2ODVjZCAxMDA2NDQK
-LS0tIGEvcmVjaXBlcy1kZXZ0b29scy9vcmFjbGUtamF2YS9vcmFjbGUtanNlLmluYworKysgYi9y
-ZWNpcGVzLWRldnRvb2xzL29yYWNsZS1qYXZhL29yYWNsZS1qc2UuaW5jCkBAIC0yMSw4ICsyMSw2
-IEBAIEpES19IT01FID0gIiR7bGliZGlyX2p2bX0vJHtKREtfRElSfSIKIGRvX2luc3RhbGwgKCkg
-ewogCWluc3RhbGwgLWQgLW0gMDc1NQkJCSR7RH0ke2xpYmRpcl9qdm19CiAJY3AgLWEgJHtTfS8k
-e0pES19KUkV9JHtQVn1fJHtQVl9VUERBVEV9CSR7RH0ke0pES19IT01FfQotCWluc3RhbGwgLWQg
-LW0gMDc1NQkJCSR7RH0ke2JpbmRpcn0KLQlsbiAtc2YgJHtKREtfSE9NRX0vYmluL2phdmEJCSR7
-RH0ke2JpbmRpcn0vamF2YQogfQogCiAjIEFsbCB0aGUgZmlsZXMgYXJlIHByb3ZpZGVkIGluIGEg
-YmluYXJheSBwYWNrYWdlLCBhbmQga2VlcGluZyBhbGwgdGhlCkBAIC0zNiwzICszNCwxMyBAQCBJ
-TkhJQklUX1BBQ0tBR0VfREVCVUdfU1BMSVQgPSAiMSIKIEZJTEVTXyR7UE59ID0gIi91c3IvIgog
-UlBST1ZJREVTXyR7UE59ID0gImphdmEyLXJ1bnRpbWUgamF2YTItdm0iCiBQUk9WSURFUyArPSAi
-dmlydHVhbC9qYXZhIgorCitpbmhlcml0IHVwZGF0ZS1hbHRlcm5hdGl2ZXMKKworcGtnX3Bvc3Rp
-bnN0XyR7UE59ICgpIHsKKwl1cGRhdGUtYWx0ZXJuYXRpdmVzIC0taW5zdGFsbCAke2JpbmRpcn0v
-amF2YSBqYXZhICR7SkRLX0hPTUV9L2pyZS9iaW4vamF2YSA3NQorfQorCitwa2dfcHJlcm1fJHtQ
-Tn0gKCkgeworCXVwZGF0ZS1hbHRlcm5hdGl2ZXMgLS1yZW1vdmUgamF2YSAke0pES19IT01FfS9q
-cmUvYmluL2phdmEKK30KLS0gCjIuNy40Cgo=
+RGF0ZTogVHVlLCAyOCBNYXIgMjAxNyAxNDoyODoxOCArMDIwMApTdWJqZWN0OiBbUEFUQ0ggNi82
+XSBvcmFjbGUtanNlOiBBZGQgc291cmNlcyBwYWNrYWdlCgotLS0KIHJlY2lwZXMtZGV2dG9vbHMv
+b3JhY2xlLWphdmEvb3JhY2xlLWpzZS5pbmMgfCA1ICsrKystCiAxIGZpbGUgY2hhbmdlZCwgNCBp
+bnNlcnRpb25zKCspLCAxIGRlbGV0aW9uKC0pCgpkaWZmIC0tZ2l0IGEvcmVjaXBlcy1kZXZ0b29s
+cy9vcmFjbGUtamF2YS9vcmFjbGUtanNlLmluYyBiL3JlY2lwZXMtZGV2dG9vbHMvb3JhY2xlLWph
+dmEvb3JhY2xlLWpzZS5pbmMKaW5kZXggMzc2ODVjZC4uMThlZjQxMSAxMDA2NDQKLS0tIGEvcmVj
+aXBlcy1kZXZ0b29scy9vcmFjbGUtamF2YS9vcmFjbGUtanNlLmluYworKysgYi9yZWNpcGVzLWRl
+dnRvb2xzL29yYWNsZS1qYXZhL29yYWNsZS1qc2UuaW5jCkBAIC0zMSw3ICszMSwxMCBAQCBJTlNB
+TkVfU0tJUF8ke1BOfSA9ICIke0VSUk9SX1FBfSAke1dBUk5fUUF9IgogIyBJbmhpYml0IHdhcm5p
+bmdzIGFib3V0IGZpbGVzIGJlaW5nIHN0cmlwcGVkLCB3ZSBjYW4ndCBkbyBhbnl0aGluZyBhYm91
+dCBpdC4KIElOSElCSVRfUEFDS0FHRV9ERUJVR19TUExJVCA9ICIxIgogCi1GSUxFU18ke1BOfSA9
+ICIvdXNyLyIKK1BBQ0tBR0VTID0gIiR7UE59LXNvdXJjZXMgJHtQTn0iCitGSUxFU18ke1BOfS1z
+b3VyY2VzID0gIiR7SkRLX0hPTUV9L3NyYy56aXAiCitGSUxFU18ke1BOfSA9ICIke0pES19IT01F
+fSIKKwogUlBST1ZJREVTXyR7UE59ID0gImphdmEyLXJ1bnRpbWUgamF2YTItdm0iCiBQUk9WSURF
+UyArPSAidmlydHVhbC9qYXZhIgogCi0tIAoyLjcuNAoK
 
---------------1857C6B39E437E4A1EFE86FE--
+--------------335C6CACF4CB7F24E611FFB5--
