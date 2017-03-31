@@ -1,69 +1,44 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <jose.a.lamego@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EF267E00A71; Fri, 31 Mar 2017 10:22:34 -0700 (PDT)
+	id 0EECFE00A71; Fri, 31 Mar 2017 10:25:16 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.83.67 listed in list.dnswl.org]
+X-Spam-Status: No, score=-6.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	RCVD_IN_DNSWL_HI,T_DKIM_INVALID autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.93 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pg0-f67.google.com (mail-pg0-f67.google.com [74.125.83.67])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 61AB6E00A5C
-	for <yocto@yoctoproject.org>; Fri, 31 Mar 2017 10:22:33 -0700 (PDT)
-Received: by mail-pg0-f67.google.com with SMTP id 79so18785755pgf.0
-	for <yocto@yoctoproject.org>; Fri, 31 Mar 2017 10:22:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=subject:to:references:from:message-id:date:user-agent:mime-version
-	:in-reply-to; bh=0taxM3Vqb+gYln35gcB7TNB/tY/jtfqKA8t9v6oVEYo=;
-	b=Ew7c3OHgwV9phDw8b/Hny3h6xWp0TRehW0GQV//DSDy+wTfJBE2RZdAtmiUF6okMKZ
-	/V4ItPjShS70gRT49unSa4lUb6uor8fLzVgjzNZ/mTqxeVrWUqnHCdpcA3aegsxKGcrC
-	/pAJpfUoo3jsNn2EPDTqxmDQEO/9GY2zhIRILjA/679kXEy9SdIkRlUStmITVY8+/n05
-	bhlQNILncoDWmDufQYg3eb45Nnn5NYUBurj6n2mfb+IkMVpRwLQoM/IROFESN7f8wXcN
-	/UBWPIaijDhHZ7+oTiE5wX0pyUg4un4lDyZByyo/kZwp9xUO0FKf3BunmSTEGpQ7Fh4G
-	Pzhw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:references:from:message-id:date
-	:user-agent:mime-version:in-reply-to;
-	bh=0taxM3Vqb+gYln35gcB7TNB/tY/jtfqKA8t9v6oVEYo=;
-	b=B7WaY07UNTL1wOLnsYPZua1nt159+w17lGv7+3l810t2+ptgnkXFSqglYDaKw9ewHH
-	mXTm9NBVpwOmQ+lOKUVNNYAagqt1yZN2YVzTFGTCiWW9yK/ZwBZNTKxu6gEn9j39fphM
-	xSU08g6I/y7oeuEpH/CGTLqX5ZaCb7esniNfi1E/AaMXMlzdokMSMvdmE4RYIk4me715
-	NE2eX5Toeu91DcpzQI2TUb4o1ijd/HspDWQjg3nZqemxUKYdil5isqrVXZDD4Z3WsHP9
-	2dFnpJm1mDLPBhj0EWQB3QfmXa+v7EncJO4E4cc7XtZlj+xZ6VGn/CYrjCbI85z+KNjC
-	YyFA==
-X-Gm-Message-State: AFeK/H13CxHZUQOSZxz7jIHu9NjUveL6QqZdYzC0OfA3slegkIZtnPKgsE7CRND+vBORVw==
-X-Received: by 10.84.218.69 with SMTP id f5mr4664690plm.114.1490980952890;
-	Fri, 31 Mar 2017 10:22:32 -0700 (PDT)
-Received: from CACSVMO-14452.local ([2601:646:8882:b8c:dd64:9ebc:182c:f6cf])
-	by smtp.gmail.com with ESMTPSA id
-	e13sm11733076pgf.48.2017.03.31.10.22.31
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 31 Mar 2017 10:22:31 -0700 (PDT)
-To: Gary Thomas <gary@mlbassoc.com>, yocto@yoctoproject.org
-References: <b1ac4315-7369-b67a-ae61-f85bb2e82155@mlbassoc.com>
-	<d423b70c-4f4b-9012-0d2a-c99bcc9093be@gmail.com>
-	<65b7858a-1e8b-c5fd-ae6f-3f5c4f711da0@mlbassoc.com>
-From: Khem Raj <raj.khem@gmail.com>
-Message-ID: <54d1ae93-eb93-d3e5-9e82-8c71ccb0af96@gmail.com>
-Date: Fri, 31 Mar 2017 10:22:25 -0700
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:45.0)
-	Gecko/20100101 Thunderbird/45.8.0
-MIME-Version: 1.0
-In-Reply-To: <65b7858a-1e8b-c5fd-ae6f-3f5c4f711da0@mlbassoc.com>
-Subject: Re: GCC on ARM
+	*  0.0 T_DKIM_INVALID DKIM-Signature header exists but is not valid
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5A84FE00A5C
+	for <yocto@yoctoproject.org>; Fri, 31 Mar 2017 10:25:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+	d=intel.com; i=@intel.com; q=dns/txt; s=intel;
+	t=1490981115; x=1522517115;
+	h=from:to:cc:subject:date:message-id:in-reply-to: references;
+	bh=EV2j81b054+MZpYbHhE5/5Yb3MzxPdPqs23D6JX7yQY=;
+	b=x/JS7bdSqLjW/B3URRmgoXYkJ7DfQ8TbjUJKdOYJPEJK+oyxw6+XdRF4
+	rILM7b6xQWAIL1YgPdqkUQUulD/yGA==;
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+	by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	31 Mar 2017 10:25:14 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.36,252,1486454400"; d="scan'208";a="950272383"
+Received: from unknown (HELO jalamego-MOBL2.zpn.intel.com) ([10.219.128.123])
+	by orsmga003.jf.intel.com with ESMTP; 31 Mar 2017 10:25:13 -0700
+From: Jose Lamego <jose.a.lamego@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Fri, 31 Mar 2017 11:24:57 -0600
+Message-Id: <1490981097-7153-1-git-send-email-jose.a.lamego@linux.intel.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1490906422-13984-1-git-send-email-jose.a.lamego@linux.intel.com>
+References: <1490906422-13984-1-git-send-email-jose.a.lamego@linux.intel.com>
+Subject: [patchwork][PATCH v3] parsemail.py: Improve find_series_for_mail
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,92 +50,81 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 31 Mar 2017 17:22:35 -0000
-X-Groupsio-MsgNum: 35355
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature";
-	boundary="OP3QK5n0bBCvqjwIGPGqrr39tGFivXPeW"
+X-List-Received-Date: Fri, 31 Mar 2017 17:25:16 -0000
 
---OP3QK5n0bBCvqjwIGPGqrr39tGFivXPeW
-Content-Type: multipart/mixed; boundary="avHqqPwubuqmFaFc9Ki6Jk59jkePqgUkC";
- protected-headers="v1"
-From: Khem Raj <raj.khem@gmail.com>
-To: Gary Thomas <gary@mlbassoc.com>, yocto@yoctoproject.org
-Message-ID: <54d1ae93-eb93-d3e5-9e82-8c71ccb0af96@gmail.com>
-Subject: Re: [yocto] GCC on ARM
-References: <b1ac4315-7369-b67a-ae61-f85bb2e82155@mlbassoc.com>
- <d423b70c-4f4b-9012-0d2a-c99bcc9093be@gmail.com>
- <65b7858a-1e8b-c5fd-ae6f-3f5c4f711da0@mlbassoc.com>
-In-Reply-To: <65b7858a-1e8b-c5fd-ae6f-3f5c4f711da0@mlbassoc.com>
+Patch Series that are sent as replies to other Series with
+different patch quantity are not appropriately detected as
+such, breaking the thread and causing missing revisions.
 
---avHqqPwubuqmFaFc9Ki6Jk59jkePqgUkC
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: quoted-printable
+This change improves the find_series_for_mail function to
+appropriately detect when a message is part of a thread
+by performing an additional patch-query and detecting cover
+letters that are replies to cover letters.
+
+[YOCTO #10959]
+
+Signed-off-by: Jose Lamego <jose.a.lamego@linux.intel.com>
+---
+
+Notes:
+    changes in v3: a couple of typos fixed
+
+ patchwork/bin/parsemail.py | 20 +++++++++++++++++---
+ 1 file changed, 17 insertions(+), 3 deletions(-)
+
+diff --git a/patchwork/bin/parsemail.py b/patchwork/bin/parsemail.py
+index 61c18b2..3c3046d 100755
+--- a/patchwork/bin/parsemail.py
++++ b/patchwork/bin/parsemail.py
+@@ -399,7 +399,7 @@ def find_content(project, mail):
+     (x, n) = parse_series_marker(prefixes)
+     refs = build_references_list(mail)
+     is_root = refs == []
+-    is_cover_letter = is_root and x == 0
++    is_cover_letter = x == 0
+     patch_prefix = re.match('(\s*\[[^]]*\]\s*)*\[\s*PATCH',
+                             mail.get('Subject'))
+     is_patch = patchbuf is not None and patch_prefix
+@@ -441,7 +441,7 @@ def find_content(project, mail):
+ 
+         (ret.series, ret.revision, ret.patch_order, n) = \
+             find_series_for_mail(project, series_name, msgid, is_patch,
+-                                 ret.patch_order, n, refs)
++                                 ret.patch_order, n, refs, is_cover_letter)
+         ret.revision.n_patches = n or 1
+ 
+         date = mail_date(mail)
+@@ -535,7 +535,7 @@ def find_patch_order(revisions, previous_patch, order, n_patches):
+ #   - we need to create new revisions when the mail is actually a new version
+ #     of a previous patch
+ def find_series_for_mail(project, name, msgid, is_patch, order, n_patches,
+-                         refs):
++                         refs, is_cover_letter):
+     if refs == []:
+         root_msgid = msgid
+     else:
+@@ -560,6 +560,20 @@ def find_series_for_mail(project, name, msgid, is_patch, order, n_patches,
+                 revision = revision.duplicate(exclude_patches=(order,))
+                 # series has been updated, grab the new instance
+                 series = revision.series
++            else:
++                try:
++                    prev_patch = SeriesRevisionPatch.objects.get(
++                        revision=revision, order=order).patch
++                    if prev_patch and not prev_patch.msgid == msgid:
++                        # this is a new patch in the thread
++                        revision = revision.duplicate(exclude_patches=(order,))
++                        series = revision.series
++                except SeriesRevisionPatch.DoesNotExist:
++                    pass
++        elif is_cover_letter and not refs == []:
++            revision = revision.duplicate(
++                exclude_patches=range(1, revision.n_patches+1),)
++            series = revision.series
+     except IndexError:
+         if not name:
+             name = SERIES_DEFAULT_NAME
+-- 
+2.7.4
 
 
-
-On 3/30/17 10:33 PM, Gary Thomas wrote:
-> On 2017-03-31 07:07, Khem Raj wrote:
->>
->>
->> On 3/30/17 9:07 PM, Gary Thomas wrote:
->>> [slightly off-topic]
->>>
->>> I work with a number of embedded ARM devices, all with different
->>> processors, hence somewhat different tuning and build directories:
->>>   Raspberry-Pi (1,2,3 - mostly 3):
->>>     TUNE_FEATURES     =3D "arm armv7ve vfp thumb neon vfpv4
->>> callconvention-hard cortexa7"
->>>     build dirs:
->>>       tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi
->>>   BeagleBoneBlack:
->>>     TUNE_FEATURES     =3D "arm armv7a vfp thumb neon callconvention-h=
-ard"
->>>     build dirs:
->>>       tmp/work/armv7ahf-neon-poky-linux-gnueabi
->>>   i.MX6:
->>>     TUNE_FEATURES     =3D "arm armv7a vfp thumb neon callconvention-h=
-ard
->>> cortexa9"
->>>     build dirs:
->>>       tmp/work/cortexa9hf-neon-poky-linux-gnueabi
->>>       tmp/work/cortexa9hf-neon-mx6qdl-poky-linux-gnueabi
->>>       tmp/work/cortexa9t2hf-neon-mx6qdl-poky-linux-gnueabi
->>>
->>> What I'm wondering is, except for the obvious programs that use SoC
->>> specific
->>> functions like the IPU/GPU on the i.MX6, how different are these
->>> really?  So
->>> much so that they have to all have unique binaries?  Surely I could
->>> build
->>> busybox or python and run the same binary on all three?
->>>
->>
->> You can chose a least common denominator and use that as DEFAULTTUNE f=
-or
->> all your machines. May be like armv7at2-neon
->=20
-> That's good to know, thanks.
->=20
-> What would I be giving up?  Anything of substance/importance?
->=20
-
-I doubt anything. Optimizations are oversell.
-
-
---avHqqPwubuqmFaFc9Ki6Jk59jkePqgUkC--
-
---OP3QK5n0bBCvqjwIGPGqrr39tGFivXPeW
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-Comment: GPGTools - https://gpgtools.org
-
-iEYEARECAAYFAljekFYACgkQuwUzVZGdMxSUUACfcn9ai3yT7/sJA9saCt5WlWw6
-es0An21ex7W/uDEdBAaT+JHniE84YIrf
-=5Q+F
------END PGP SIGNATURE-----
-
---OP3QK5n0bBCvqjwIGPGqrr39tGFivXPeW--
