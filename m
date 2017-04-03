@@ -1,6 +1,6 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8262EE00AA2; Fri, 31 Mar 2017 12:02:57 -0700 (PDT)
+	id C5C3BE00AD5; Sun,  2 Apr 2017 19:20:15 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,12 +8,7 @@ X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.83.66 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.83.66 listed in dnsbl.sorbs.net]
+	mail provider *      (akuster808[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -21,50 +16,51 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.83.66 listed in dnsbl.sorbs.net]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.83.66 listed in list.dnswl.org]
 Received: from mail-pg0-f66.google.com (mail-pg0-f66.google.com [74.125.83.66])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 39E0FE00A5C
-	for <yocto@yoctoproject.org>; Fri, 31 Mar 2017 12:02:55 -0700 (PDT)
-Received: by mail-pg0-f66.google.com with SMTP id o123so19267782pga.1
-	for <yocto@yoctoproject.org>; Fri, 31 Mar 2017 12:02:55 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 864C0E00A76
+	for <yocto@yoctoproject.org>; Sun,  2 Apr 2017 19:20:12 -0700 (PDT)
+Received: by mail-pg0-f66.google.com with SMTP id 79so26449170pgf.0
+	for <yocto@yoctoproject.org>; Sun, 02 Apr 2017 19:20:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=subject:to:references:from:message-id:date:user-agent:mime-version
-	:in-reply-to; bh=Ya0WIG2my1M1DCvcF4UiRjlZWmZst8yFK+7U30jig0w=;
-	b=hs8Ha4dbvHwPD1JahhtLfol6Smju5k8/5bfDEsY4/3Hxf6zWQ2xsjEKjx6A1cNWAXr
-	F6/iM+4Y3ZKYcaqn5egmk0Okgh6a0KOzEanlIpOcWMzRkSId5Ewlr81Rb4DqnNLyl13x
-	9QBMQrxO1D+XNzB9wIIw89bvmBHRCJyId2aYvaTOqKgZomv8E5p/m4jeKIWVr8awrlAA
-	hIsMSYhTzKFkQXhrL0HfxeOZ7r4vdEWKdZZT3XyhsKH3CBllkBdLBSJ7GeWm7w59eAs1
-	a2CXusD99X3N+5y2yYO2FWQZj3dJBC0m2HBK8wlXZPFvuHUorK9VN8IA8MKM2bWZu9WN
-	Y+tw==
+	h=from:to:subject:date:message-id;
+	bh=goeLv0p/9ChADAxZypHJ5BlZVOZIKUVSgFspPIngVgg=;
+	b=GJ1muFZgyaB9UTFQMglfj2/sE9eOCKws0zkO3XnBtICux1j1y7r02fUP89v74VJ7FG
+	UWorLp9qcK09M7z/Of6SVhvRv1S/hsiqPittx4t89Y73TpQSbaIkOYO/0M+pwpcuKjdd
+	sUVPpcmvGrQxYuEyG8PaiicpFnGRtodnzcEfEhfCRRZqEN8c6dbkf5fljCZOAYMh5dUk
+	dwih7qXn45yhfQjVTjhP9QwvOVtrlXCuKfq3fVFMNhiaEsWUpx/qtxcZKV1RHZL1N2tE
+	tf4odxtTLNg3BfBL81l2fOh2YYgNs7SjNL03pH66hMQtj57Tjh6/5mF1l7UvD7hLjK76
+	XqFg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:references:from:message-id:date
-	:user-agent:mime-version:in-reply-to;
-	bh=Ya0WIG2my1M1DCvcF4UiRjlZWmZst8yFK+7U30jig0w=;
-	b=DTvKDG15WlE8IBFn0upKXKHUNih3TfQqQCl5lwQYs2NzSR8YMfe4agUjlmH96lQcyx
-	cDhEd30jHpc9L20Lhs+RWa5AV2NWy7eZfuzUhhiM9mDXG/B+oNA/SvGfdhzPz1eWsLrB
-	X0wSBpVrxl7nNa3ZMHus9261SiZfDlav9hHfjNYj3u/xraSklqBo8KnXa/OzOCnUy/ZD
-	SN25u061XxqRVJhYZrP6+r00bCo2jo/+3fcKJtLSDTm+QQU31tRX4gG1cPv1le1jgxil
-	dbL9bZUEvv4qFXYC2g17YO4nllBDPyWijQUjt/eUZCaI7e3muiLNxTSJyfoJ+tLcGSm9
-	BXHw==
-X-Gm-Message-State: AFeK/H0aQ6BnrNN62V88Y+Ynpu+ozuy7qizPT3ilqMEqcZqoCQdwwSCa0DZmyClpUe1+NQ==
-X-Received: by 10.98.18.66 with SMTP id a63mr4095370pfj.188.1490986975169;
-	Fri, 31 Mar 2017 12:02:55 -0700 (PDT)
-Received: from CACSVMO-14452.local ([2601:646:8882:b8c:dd64:9ebc:182c:f6cf])
+	h=x-gm-message-state:from:to:subject:date:message-id;
+	bh=goeLv0p/9ChADAxZypHJ5BlZVOZIKUVSgFspPIngVgg=;
+	b=A7k1oQpJHgPMVjIWC4X2mb1TKCk6o5SBUtT+lp+V4RivE2LSmf7ok4mx/6KG8HshGc
+	R+CbrLMCtL3ioZ/AV6Z2xsVt8rn1fwykZEZQjdMOpyzjhf+56iHGSwTLZHzD9gHp38jd
+	ZSW4eNdXr07u3/AgYWsXVJMknhvP32ky1OkVzeqVSsk46lZz9pN+rd38f0b7JhQVKsXF
+	a+rtJ1Sf4po4LF11IlEmReF01t9d/VYYNemj+lfHvbm7FXx3L2LJ0N76b55DW9EpQoIo
+	XADrkpZPel2E53OhO6c9cEhbDLdYPfhLw73gFbYvxz/5rqRAXLNKf/tizWY3vdMFKkud
+	pQow==
+X-Gm-Message-State: AFeK/H3I5erG9nsIJD9jkUPUumkgNJ+ZxI7C21lu7uEhaRx5RWnxTGGfkN2M29oyazeT6Q==
+X-Received: by 10.99.99.135 with SMTP id x129mr15287789pgb.121.1491186012436; 
+	Sun, 02 Apr 2017 19:20:12 -0700 (PDT)
+Received: from akuster-ThinkPad-X240.hsd1.ca.comcast.net
+	([2601:202:4001:9ea0:e3df:bf0a:9f90:498e])
 	by smtp.gmail.com with ESMTPSA id
-	s17sm12024545pgo.27.2017.03.31.12.02.51
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 31 Mar 2017 12:02:54 -0700 (PDT)
-To: Rob Woolley <rob.woolley@windriver.com>, yocto@yoctoproject.org,
-	andrei@gherzan.ro
-References: <20170331181926.8976-1-rob.woolley@windriver.com>
-From: Khem Raj <raj.khem@gmail.com>
-Message-ID: <c8b3c79c-8dbc-904a-c72a-07dbe09f9260@gmail.com>
-Date: Fri, 31 Mar 2017 12:02:46 -0700
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:45.0)
-	Gecko/20100101 Thunderbird/45.8.0
-MIME-Version: 1.0
-In-Reply-To: <20170331181926.8976-1-rob.woolley@windriver.com>
-Subject: Re: [meta-raspberrypi][PATCH 1/1] pitft: Add support for pitft35r
+	a77sm22109468pfl.91.2017.04.02.19.20.11
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Sun, 02 Apr 2017 19:20:11 -0700 (PDT)
+From: Armin Kuster <akuster808@gmail.com>
+To: akuster@mvista.com,
+	yocto@yoctoproject.org
+Date: Sun,  2 Apr 2017 19:20:08 -0700
+Message-Id: <1491186010-5930-1-git-send-email-akuster808@gmail.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [meta-security][PATCH 1/3] libseccomp: update to 2.3.2
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,136 +72,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 31 Mar 2017 19:02:57 -0000
-X-Groupsio-MsgNum: 35359
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature";
-	boundary="5OJNQ3Km5sf3wp0rMlptnuobRvFhJEckS"
+X-List-Received-Date: Mon, 03 Apr 2017 02:20:15 -0000
 
---5OJNQ3Km5sf3wp0rMlptnuobRvFhJEckS
-Content-Type: multipart/mixed; boundary="OMJcMWjrpCHucaXXlcdqDSUFP60mVW8hU";
- protected-headers="v1"
-From: Khem Raj <raj.khem@gmail.com>
-To: Rob Woolley <rob.woolley@windriver.com>, yocto@yoctoproject.org,
- andrei@gherzan.ro
-Message-ID: <c8b3c79c-8dbc-904a-c72a-07dbe09f9260@gmail.com>
-Subject: Re: [yocto] [meta-raspberrypi][PATCH 1/1] pitft: Add support for
- pitft35r
-References: <20170331181926.8976-1-rob.woolley@windriver.com>
-In-Reply-To: <20170331181926.8976-1-rob.woolley@windriver.com>
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ recipes-security/libseccomp/libseccomp.bb | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
---OMJcMWjrpCHucaXXlcdqDSUFP60mVW8hU
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: quoted-printable
-
-
-
-On 3/31/17 11:19 AM, Rob Woolley wrote:
-> The support for the PiTFT 3.5 inch resistive touchscreen is optional.
-> It may be enabled by adding the following line in local.conf:
->=20
-> MACHINE_FEATURES +=3D "pitft pitft35r"
->=20
-
-Looks ok, I have staged it.
-
-> Signed-off-by: Rob Woolley <rob.woolley@windriver.com>
-> ---
->  README                                  | 1 +
->  conf/machine/include/rpi-base.inc       | 1 +
->  conf/machine/raspberrypi3-64.conf       | 1 +
->  recipes-bsp/bootfiles/rpi-config_git.bb | 6 ++++++
->  4 files changed, 9 insertions(+)
->=20
-> diff --git a/README b/README
-> index 65a1e5f..a5c3d38 100644
-> --- a/README
-> +++ b/README
-> @@ -240,6 +240,7 @@ the modelname should be added as a MACHINE_FEATURES=
- in local.conf like below:
->  List of currently supported models:
->      - pitft22
->      - pitft28r
-> +    - pitft35r
-> =20
->  3.O. Enable UART
->  =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> diff --git a/conf/machine/include/rpi-base.inc b/conf/machine/include/r=
-pi-base.inc
-> index 092cbeb..9bcb91d 100644
-> --- a/conf/machine/include/rpi-base.inc
-> +++ b/conf/machine/include/rpi-base.inc
-> @@ -31,6 +31,7 @@ KERNEL_DEVICETREE ?=3D " \
->      overlays/lirc-rpi.dtbo \
->      overlays/pitft22.dtbo \
->      overlays/pitft28-resistive.dtbo \
-> +    overlays/pitft35-resistive.dtbo \
->      overlays/pps-gpio.dtbo \
->      overlays/rpi-ft5406.dtbo \
->      overlays/w1-gpio.dtbo \
-> diff --git a/conf/machine/raspberrypi3-64.conf b/conf/machine/raspberry=
-pi3-64.conf
-> index ca10ed9..0efe3ff 100644
-> --- a/conf/machine/raspberrypi3-64.conf
-> +++ b/conf/machine/raspberrypi3-64.conf
-> @@ -23,6 +23,7 @@ KERNEL_DEVICETREE =3D " \
->      overlays/lirc-rpi.dtbo \
->      overlays/pitft22.dtbo \
->      overlays/pitft28-resistive.dtbo \
-> +    overlays/pitft35-resistive.dtbo \
->      overlays/pps-gpio.dtbo \
->      overlays/rpi-ft5406.dtbo \
->      overlays/w1-gpio.dtbo \
-> diff --git a/recipes-bsp/bootfiles/rpi-config_git.bb b/recipes-bsp/boot=
-files/rpi-config_git.bb
-> index 20ec343..0fd9cea 100644
-> --- a/recipes-bsp/bootfiles/rpi-config_git.bb
-> +++ b/recipes-bsp/bootfiles/rpi-config_git.bb
-> @@ -18,6 +18,7 @@ PR =3D "r5"
->  PITFT=3D"${@bb.utils.contains("MACHINE_FEATURES", "pitft", "1", "0", d=
-)}"
->  PITFT22=3D"${@bb.utils.contains("MACHINE_FEATURES", "pitft22", "1", "0=
-", d)}"
->  PITFT28r=3D"${@bb.utils.contains("MACHINE_FEATURES", "pitft28r", "1", =
-"0", d)}"
-> +PITFT35r=3D"${@bb.utils.contains("MACHINE_FEATURES", "pitft35r", "1", =
-"0", d)}"
-> =20
->  VC4GRAPHICS=3D"${@bb.utils.contains("MACHINE_FEATURES", "vc4graphics",=
- "1", "0", d)}"
-> =20
-> @@ -99,6 +100,11 @@ do_deploy() {
->          echo "dtoverlay=3Dpitft28-resistive,rotate=3D90,speed=3D320000=
-00,txbuflen=3D32768" >>${DEPLOYDIR}/bcm2835-bootfiles/config.txt
->      fi
-> =20
-> +    if [ "${PITFT35r}" =3D "1" ]; then
-> +        echo "# Enable PITFT35r display" >>${DEPLOYDIR}/bcm2835-bootfi=
-les/config.txt
-> +        echo "dtoverlay=3Dpitft35-resistive,rotate=3D90,speed=3D420000=
-00,fps=3D20" >>${DEPLOYDIR}/bcm2835-bootfiles/config.txt
-> +    fi
-> +
->      # UART support
->      if [ "${ENABLE_UART}" =3D "1" ]; then
->          echo "# Enable UART" >>${DEPLOYDIR}/bcm2835-bootfiles/config.t=
-xt
->=20
+diff --git a/recipes-security/libseccomp/libseccomp.bb b/recipes-security/libseccomp/libseccomp.bb
+index 97283d4..7b9e0e5 100644
+--- a/recipes-security/libseccomp/libseccomp.bb
++++ b/recipes-security/libseccomp/libseccomp.bb
+@@ -4,11 +4,11 @@ SECTION = "security"
+ LICENSE = "LGPL-2.1"
+ LIC_FILES_CHKSUM = "file://LICENSE;beginline=0;endline=1;md5=8eac08d22113880357ceb8e7c37f989f"
+ 
+-SRCREV = "ce5aea6a4ae7523b57ec13e2e6150aa5d83c1b4e"
++SRCREV = "2331d104bc0cbde5f6c54e504a038e52bfe8e12d"
+ 
+-PV = "2.3.1+git${SRCPV}"
++PV = "2.3.2+git${SRCPV}"
+ 
+-SRC_URI = "git://github.com/seccomp/libseccomp.git \
++SRC_URI = "git://github.com/seccomp/libseccomp.git;branch=release-2.3 \
+            file://run-ptest \
+ "
+ 
+-- 
+2.7.4
 
 
---OMJcMWjrpCHucaXXlcdqDSUFP60mVW8hU--
-
---5OJNQ3Km5sf3wp0rMlptnuobRvFhJEckS
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-Comment: GPGTools - https://gpgtools.org
-
-iEYEARECAAYFAljep9oACgkQuwUzVZGdMxRQ1QCbBijqUYMIlCdBOjezfp74T05B
-T6UAn3hzhkd7PjsSIXux8WhV5fNQKpt1
-=gAgP
------END PGP SIGNATURE-----
-
---5OJNQ3Km5sf3wp0rMlptnuobRvFhJEckS--
