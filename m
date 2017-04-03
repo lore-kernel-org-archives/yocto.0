@@ -1,69 +1,65 @@
 Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CBD5CE00BB7; Mon,  3 Apr 2017 06:32:13 -0700 (PDT)
+	id 39952E00A81; Mon,  3 Apr 2017 06:36:42 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [209.85.128.194 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.128.194 listed in dnsbl.sorbs.net]
+	*      [209.85.128.196 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wr0-f194.google.com (mail-wr0-f194.google.com
-	[209.85.128.194])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 77D9BE00AD5
-	for <yocto@yoctoproject.org>; Mon,  3 Apr 2017 06:32:11 -0700 (PDT)
-Received: by mail-wr0-f194.google.com with SMTP id k6so32340110wre.3
-	for <yocto@yoctoproject.org>; Mon, 03 Apr 2017 06:32:11 -0700 (PDT)
+Received: from mail-wr0-f196.google.com (mail-wr0-f196.google.com
+	[209.85.128.196])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C28E3E00A51
+	for <yocto@yoctoproject.org>; Mon,  3 Apr 2017 06:36:38 -0700 (PDT)
+Received: by mail-wr0-f196.google.com with SMTP id p52so33748899wrc.2
+	for <yocto@yoctoproject.org>; Mon, 03 Apr 2017 06:36:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
 	h=date:from:to:cc:subject:message-id:references:mime-version
 	:content-disposition:in-reply-to:user-agent;
-	bh=zRL+WYS9EMNxpO8W4T0pNToNJW7QcruNAnm7aqneP0U=;
-	b=IdoQkXVHjJ7d2V9DPHHS6ayap68mQCShSRStEBQDUp/RvSd5UgGmnG4oCG6IiF5tlQ
-	Cr9B3EPN5eQ2j1Wb2mrncKN63aZKiyvCquSuLA4KM/YcM7WSXxewnmRi9OMDU7PBxaxj
-	2v9DGYl4FEgQL7vicmDhlAGMsZGW+eXNxgkVmaVwjgLF68Jvc+OD6JLHIt2SRZyMiEOI
-	RRyW621ivyGp+g9X/+NUdzy3c/EiVH5ioL0jxmxYP7FP+ZLo5YrCSFcfYrzWxUXKx7VW
-	wyGuKQ0T7sjGxKKZbDnqhHKLdz/m9uOJ/QbhJlcnLN90zDO8Uz7ZjGYn2p2ZcwcHZCLz
-	yVLQ==
+	bh=oL756Qyu5A9YyeSo9llIu21fkU7Ea2UBtW/RPuqIx5g=;
+	b=qdNGqKK+bgu4/KVXSuBO0H+mqureVETzaowVEtkwY3L0anQKMeP2ysLwoAteK4J9Rn
+	yM8XcXwYQVWWnCgAFR7RADBDx4Ig3hWKGUs6ajLSWM8YI4OnDEah8qreM9vBuIyvOX1L
+	Ww7hP9oLOZiTupVeKDO/38VfqmnoRtiFiNjJtlsCEZABBqx3RCKSGL0FdPm1XycYvXXA
+	lnAMezVCVU3auTwtOv7yFlE7QTR++DcTTg4U9eVKrd6GhYNX0wDXLnpYXKdhJe/HAy45
+	aKsdzegyazrziX/4/Uz153HUfJ037maX37A2Nhd/JOShwusuHbnLAxi/NqM/1w8cjEhP
+	RvVA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
 	:mime-version:content-disposition:in-reply-to:user-agent;
-	bh=zRL+WYS9EMNxpO8W4T0pNToNJW7QcruNAnm7aqneP0U=;
-	b=OZJpgdxGE+yt3Jkhiq3ml+izlH2prp/aHyDC9xI056DhLF9crRr2Cg2G0DLv9tSmJa
-	vDOwxRAuDOMmuPMqmZar+HBZGaA+LH6OEri3THDv1EJ1zXJUhRrDyGyukSQoOp2BxE2o
-	2HUNsWkqZ2zHThWGC2OAAFuJleL59lC3q3j3qxW6sUHH6ZdwAOhSaAOyW292/jINwzeW
-	pTMgqWsmNR9kU5tPU9Anw+/dj3qET/CPHP4r47BCWrxuKFAE1DxytkdpKGxzueE/RpBl
-	FewyNlwkI2g4qXCyW1wM1YicGaUmZwBknPDeuCru2ZHoJrwwJV2uAyOsUIzlbsV/IOTi
-	gmxg==
-X-Gm-Message-State: AFeK/H38cCH5Cl5hbyM6TEQtsiuz+1tGwn9E/U8NtWyFvYBYRFsw1nli
-	fFhjUZ2OkzGGXJSDKMc=
-X-Received: by 10.28.125.214 with SMTP id y205mr4265062wmc.60.1491226330812;
-	Mon, 03 Apr 2017 06:32:10 -0700 (PDT)
+	bh=oL756Qyu5A9YyeSo9llIu21fkU7Ea2UBtW/RPuqIx5g=;
+	b=HS5DaolIQGgpxNRSFEEOlFLtnIZ5pJcthqf7TOirjzBK7VBGFqpfOIYzYPXnyrd0h6
+	WQNKbZovLCzli0ANNBIzw3jeJWFrHMZXmsIR7kxdSQQ6+FySA/XryayseIzxptQAN7Sx
+	EoB9frf0LKX5GEPnyrTBbvD4vk50Kc57MiGZmh6BMHViKP1GGynGwVrP0mqPnBYyEgGR
+	6zebXFtPxmpGxxz/ivGBUUXNYw7uh+psvfUNeIRwZ5g9UfCxJieMtlTGggNPS2Qo8Xli
+	cYGQVJ8hY11QvaFJtretTCicaCF0SAKxF/m5b5tFBjduxqnPuxu5hizMd9Xh4BYvNn6X
+	RAXw==
+X-Gm-Message-State: AFeK/H2woWQhOEPKeLTXcrtR8bE+dqJLxm9r2C9Vyfmhr173bXfDvOldOpDkyg3yyjJX4w==
+X-Received: by 10.223.167.66 with SMTP id e2mr15086258wrd.48.1491226597080;
+	Mon, 03 Apr 2017 06:36:37 -0700 (PDT)
 Received: from carbonA (cpc96910-walt25-2-0-cust629.13-2.cable.virginm.net.
 	[82.22.166.118]) by smtp.gmail.com with ESMTPSA id
-	w10sm14346869wmw.14.2017.04.03.06.32.09
+	u63sm14329428wmu.22.2017.04.03.06.36.36
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Mon, 03 Apr 2017 06:32:09 -0700 (PDT)
-Date: Mon, 3 Apr 2017 14:32:00 +0100
+	Mon, 03 Apr 2017 06:36:36 -0700 (PDT)
+Date: Mon, 3 Apr 2017 14:36:34 +0100
 From: Andrei Gherzan <andrei@gherzan.ro>
-To: Rob Woolley <rob.woolley@windriver.com>
-Message-ID: <20170403133200.GA27299@carbonA>
-References: <20170331181926.8976-1-rob.woolley@windriver.com>
+To: Paul Barker <pbarker@toganlabs.com>
+Message-ID: <20170403133634.GB27299@carbonA>
+References: <20170314103237.9533-1-pbarker@toganlabs.com>
 MIME-Version: 1.0
-In-Reply-To: <20170331181926.8976-1-rob.woolley@windriver.com>
+In-Reply-To: <20170314103237.9533-1-pbarker@toganlabs.com>
 User-Agent: Mutt/1.8.0 (2017-02-23)
 Cc: yocto@yoctoproject.org
-Subject: Re: [meta-raspberrypi][PATCH 1/1] pitft: Add support for pitft35r
+Subject: Re: [meta-raspberrypi][morty][PATCH 0/3] Stable branch kernel updates
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,123 +71,67 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 03 Apr 2017 13:32:13 -0000
-X-Groupsio-MsgNum: 35370
+X-List-Received-Date: Mon, 03 Apr 2017 13:36:42 -0000
+X-Groupsio-MsgNum: 35371
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="0OAP2g/MAC+5xKAE"
+	protocol="application/pgp-signature"; boundary="JP+T4n/bALQSJXh8"
 Content-Disposition: inline
 
---0OAP2g/MAC+5xKAE
+--JP+T4n/bALQSJXh8
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
-On Fri, Mar 31, 2017 at 11:19:26AM -0700, Rob Woolley wrote:
-> The support for the PiTFT 3.5 inch resistive touchscreen is optional.
-> It may be enabled by adding the following line in local.conf:
+On Tue, Mar 14, 2017 at 10:32:34AM +0000, Paul Barker wrote:
+> This series contains backports of patches from Khem's latest combined pull
+> request. I've boot tested a raspberrypi3 (4.4.y and 4.9.y kernels) and a
+> raspberrypi (4.9.y kernel) using these patches and all looks good.
 >
-> MACHINE_FEATURES += "pitft pitft35r"
+> Khem Raj (1):
+>   linux-raspberrypi_4.9.bb: Update to 4.9.13
 >
-> Signed-off-by: Rob Woolley <rob.woolley@windriver.com>
-> ---
->  README                                  | 1 +
->  conf/machine/include/rpi-base.inc       | 1 +
->  conf/machine/raspberrypi3-64.conf       | 1 +
->  recipes-bsp/bootfiles/rpi-config_git.bb | 6 ++++++
->  4 files changed, 9 insertions(+)
+> Paul Barker (2):
+>   linux-raspberrypi: Fix uImage build on 4.9.y and later
+>   linux-raspberrypi_4.4: Update to 4.4.50
 >
-> diff --git a/README b/README
-> index 65a1e5f..a5c3d38 100644
-> --- a/README
-> +++ b/README
-> @@ -240,6 +240,7 @@ the modelname should be added as a MACHINE_FEATURES in local.conf like below:
->  List of currently supported models:
->      - pitft22
->      - pitft28r
-> +    - pitft35r
+>  ...-Add-rules-for-.dtbo-files-for-dts-overla.patch | 29 ----------------------
+>  recipes-kernel/linux/linux-raspberrypi_4.4.bb      |  5 ++--
+>  recipes-kernel/linux/linux-raspberrypi_4.9.bb      | 10 +++++---
+>  3 files changed, 10 insertions(+), 34 deletions(-)
+>  delete mode 100644 recipes-kernel/linux/linux-raspberrypi-4.9/0001-build-arm64-Add-rules-for-.dtbo-files-for-dts-overla.patch
 >
->  3.O. Enable UART
->  ===============
-> diff --git a/conf/machine/include/rpi-base.inc b/conf/machine/include/rpi-base.inc
-> index 092cbeb..9bcb91d 100644
-> --- a/conf/machine/include/rpi-base.inc
-> +++ b/conf/machine/include/rpi-base.inc
-> @@ -31,6 +31,7 @@ KERNEL_DEVICETREE ?= " \
->      overlays/lirc-rpi.dtbo \
->      overlays/pitft22.dtbo \
->      overlays/pitft28-resistive.dtbo \
-> +    overlays/pitft35-resistive.dtbo \
->      overlays/pps-gpio.dtbo \
->      overlays/rpi-ft5406.dtbo \
->      overlays/w1-gpio.dtbo \
-> diff --git a/conf/machine/raspberrypi3-64.conf b/conf/machine/raspberrypi3-64.conf
-> index ca10ed9..0efe3ff 100644
-> --- a/conf/machine/raspberrypi3-64.conf
-> +++ b/conf/machine/raspberrypi3-64.conf
-> @@ -23,6 +23,7 @@ KERNEL_DEVICETREE = " \
->      overlays/lirc-rpi.dtbo \
->      overlays/pitft22.dtbo \
->      overlays/pitft28-resistive.dtbo \
-> +    overlays/pitft35-resistive.dtbo \
->      overlays/pps-gpio.dtbo \
->      overlays/rpi-ft5406.dtbo \
->      overlays/w1-gpio.dtbo \
-> diff --git a/recipes-bsp/bootfiles/rpi-config_git.bb b/recipes-bsp/bootfiles/rpi-config_git.bb
-> index 20ec343..0fd9cea 100644
-> --- a/recipes-bsp/bootfiles/rpi-config_git.bb
-> +++ b/recipes-bsp/bootfiles/rpi-config_git.bb
-> @@ -18,6 +18,7 @@ PR = "r5"
->  PITFT="${@bb.utils.contains("MACHINE_FEATURES", "pitft", "1", "0", d)}"
->  PITFT22="${@bb.utils.contains("MACHINE_FEATURES", "pitft22", "1", "0", d)}"
->  PITFT28r="${@bb.utils.contains("MACHINE_FEATURES", "pitft28r", "1", "0", d)}"
-> +PITFT35r="${@bb.utils.contains("MACHINE_FEATURES", "pitft35r", "1", "0", d)}"
->
->  VC4GRAPHICS="${@bb.utils.contains("MACHINE_FEATURES", "vc4graphics", "1", "0", d)}"
->
-> @@ -99,6 +100,11 @@ do_deploy() {
->          echo "dtoverlay=pitft28-resistive,rotate=90,speed=32000000,txbuflen=32768" >>${DEPLOYDIR}/bcm2835-bootfiles/config.txt
->      fi
->
-> +    if [ "${PITFT35r}" = "1" ]; then
-> +        echo "# Enable PITFT35r display" >>${DEPLOYDIR}/bcm2835-bootfiles/config.txt
-> +        echo "dtoverlay=pitft35-resistive,rotate=90,speed=42000000,fps=20" >>${DEPLOYDIR}/bcm2835-bootfiles/config.txt
-> +    fi
-> +
->      # UART support
->      if [ "${ENABLE_UART}" = "1" ]; then
->          echo "# Enable UART" >>${DEPLOYDIR}/bcm2835-bootfiles/config.txt
 > --
 > 2.11.0
 >
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-This commit looks fine but I would prefer having separate commits:
-1. Documentation commit
-2. dtbo inclusion
-3. and rpi-config changes
-
-Could you resend this commit please?
+Merged to morty branch. Thanks.
 
 --
 Andrei Gherzan
 gpg: rsa4096/D4D94F67AD0E9640 | t: @agherzan
 
---0OAP2g/MAC+5xKAE
+--JP+T4n/bALQSJXh8
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAEBCAAdFiEE90oi/MnVCYFbB1m0Jrqo2vaxFPYFAljiTtAACgkQJrqo2vax
-FPbfNhAAhEdykqIWdMwsKVMpHCVAzHVF6DJW7nrgd5qVaiiYuHdW/oOvgJ7U8cE3
-pXT5l8xF/+HP0XJLT4SA4TwVDOQ4x7j5lbKJFsSrPZMvgaQS6we4YK7oJ3FxDqOp
-7HZYMzEGcVyvXZg1bdQG9Anf1oHmitJ55qbDtTRDDUTSAaYtVK7y+xxED6BmBARa
-rkFbUJXHjO0R6mFAbjKEXVOuGOUOLgd/MEZ+/F9oJdPM1i9IM1CqOh8hChJ62Uaq
-L+xn9ZfAzf2ia0RR58RP28VMXaA3tt+p4Kds7yl+RwjXouAlPYj9QSLpJmBEiWUg
-soyaX7yJR69AayI60Wp6EbrV90PaL7fpmerAf82Z61n1aVF/bUQ8y9WTbLkbAPDS
-/7d5LueVC6kfcFGhO74q6MgRJC0KAXR8/tVy1UQjNPVrao4SmXC0zdUcttT/8Zvw
-WY+M7Br1D8x9uE1Wspdt/xirNrBU8+bOc3D9HaMC+R5oebqRmuWaO+fTRyJ5tM70
-oAf0han11CSFZhEjTCz6UlaSxCv55wia2WOkcrXjecBeJ0/+1t2nIyhrRAG/aaNA
-QQWqLzndrh3Xdku45ocZrrBnxaaopZeI2QZrHEFUqSevqLA2O9+96gAuz1rWWEQV
-4ZR6lasLdShEZGezclAu1E3Sv6yhNDmmSB8ZerG3hyH3e6Ly4J8=
-=1nTQ
+iQIzBAEBCAAdFiEE90oi/MnVCYFbB1m0Jrqo2vaxFPYFAljiT+IACgkQJrqo2vax
+FPYk2RAAj1D2l31mAN3bXI5iniOV+lM56GF6a6KA0/6WXCsmOu1ubb5cna4v3FYP
+Vq4SzWay169JmEFndtGuU3B7yUqZQdjkP34h/deAt4yhp9OaZTvB5NyXSHY/TCxw
++aGOZ0DlE/Qma2HtLbOOz2zPqFzoikErCqtWc9PC9mFQ+DCjAVPvu7igE3onky3H
+6Tfwmk1wJMN7r67RBGGljfeYLRTHCP4mm1FF3e8DteSvSOkEhfaczz90j0L5Cm5c
+9AXgI4vfKzaI+qzNT6puZn4RTWFv/V/zLv0jSQQKi96ukRxd3mVf6qLV6Rdwf4iJ
+DFxE+1VZ9N39v+HAB8l0GpMYs9JnD6XeVdxZE4KYuMDJukbJbJ1A01P2nla0UNlA
+l0NJCs8vwq1A2lGORQHBv++U7nWlCblafCzNbeSk6X0uC4JvLWzO06p7qmpSDXXi
+Wes7eRZOoXlIX1hKxRdUJjvarY32iw8Fd+sozZB3HtQeJmfrujVsPAHjfgLvGLU9
+9anAIilIOds9B1HNwO1gFnqiRm8Gc/Bl783URCpXi37e2TNxdEZJoq/0z+bydkBi
+0Nn9XTivPhSBnfpRLErEFdE5cD/ZFl8ujbwx2kGnWGa0iIj5ed8VDvInF6hYWJjy
+dXO//0ms0cwGCula++ljqTUPyjj7SlIF+qvRRjYxo+PkYUUXjSA=
+=HX4i
 -----END PGP SIGNATURE-----
 
---0OAP2g/MAC+5xKAE--
+--JP+T4n/bALQSJXh8--
