@@ -1,111 +1,109 @@
-Return-Path: <mkelly@xevo.com>
+Return-Path: <natalia_th92@hotmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B4B2DE00546; Tue,  4 Apr 2017 17:19:51 -0700 (PDT)
+	id C8EC3E006CD; Tue,  4 Apr 2017 21:48:47 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [104.47.41.85 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FORGED_HOTMAIL_RCVD2, FREEMAIL_FROM,
+	HTML_MESSAGE, 
+	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (natalia_th92[at]hotmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [40.92.66.15 listed in list.dnswl.org]
 	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*  0.9 FORGED_HOTMAIL_RCVD2 hotmail.com 'From' address,
+	but no 'Received:'
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 5595 seconds by postgrey-1.32 at yocto-www;
-	Tue, 04 Apr 2017 17:19:47 PDT
-Received: from NAM03-DM3-obe.outbound.protection.outlook.com
-	(mail-dm3nam03on0085.outbound.protection.outlook.com [104.47.41.85])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4A26AE00349
-	for <yocto@yoctoproject.org>; Tue,  4 Apr 2017 17:19:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=uievolution.onmicrosoft.com; s=selector1-xevo-com;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
-	bh=VbFUMysPWYHEcCp8KDLV52iwgsNtDlgA1mn2jmMdJLU=;
-	b=o8MBTNABxOEWGVt2HFV4rBfbFPjYZxoAVG/x5dXlhuMXOd8REWLE3gHBPSK2oJbnNqDuE+6Rm0YYFtw/dbSPIwkmmZ0hLXUMYx1Uy/kKkGT8t4j4ohvD7mHlP+omAddWgiiz9/VYrTSGEjvDNV7vlICwc3gNRxVBA9+K2kg6uBY=
-Authentication-Results: yoctoproject.org; dkim=none (message not signed)
-	header.d=none; yoctoproject.org;
-	dmarc=none action=none header.from=xevo.com; 
-Received: from [192.168.1.2] (67.171.33.217) by
-	MWHPR01MB2687.prod.exchangelabs.com (10.172.165.13) with Microsoft SMTP
-	Server (version=TLS1_2,
+X-Greylist: delayed 39253 seconds by postgrey-1.32 at yocto-www;
+	Tue, 04 Apr 2017 21:48:44 PDT
+Received: from EUR01-VE1-obe.outbound.protection.outlook.com
+	(mail-oln040092066015.outbound.protection.outlook.com [40.92.66.15])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F3ECDE00546
+	for <yocto@yoctoproject.org>; Tue,  4 Apr 2017 21:48:44 -0700 (PDT)
+Received: from HE1EUR01HT075.eop-EUR01.prod.protection.outlook.com
+	(10.152.1.46) by VE1EUR01HT076.eop-EUR01.prod.protection.outlook.com
+	(10.152.3.119) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.1005.5;
+	Wed, 5 Apr 2017 02:17:39 +0000
+Received: from DB5EUR01HT078.eop-EUR01.prod.protection.outlook.com
+	(10.152.5.51) by HE1EUR01HT075.eop-EUR01.prod.protection.outlook.com
+	(10.152.1.46) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.977.7;
+	Tue, 4 Apr 2017 05:21:39 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+	s=selector1; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
+	bh=lxmQpSf2aD9Pk3NYrDhuAwmVWIAww5na7AdciwdyKWQ=;
+	b=V3P79Dn4Qq3Y3Zc6mG3F/zkO+26oVODYRrSj9MLfeTlEXHSqP1+VMNMMH7SZe/3wbgFs2fbOXIRt+1MCop0yqDIb4WI2Bmd7oA29xMJTu1HdSW9KPUdL6egVshObCzkD/3BGqOgjf7eIhE4xIQLDJuH8sxjVafHPyw+SP69CnAD6q/yLmfVWpB+l8odQH7J3JwEfftTN9WcUgavUo6w8Iay0W1WH3ls5ZRqmvHaoOqPCENTiIQPsq3m1MuRRmhp4UPAwM5ZI9gB4qlYdUKMFQsSlv8hWCoSN4fc/y33/IbY7XT+ZHAPfPAUhLxdYBVlLmteOt6zlNkvm6Fjj34t7HQ==
+Received: from DB5EUR01FT059.eop-EUR01.prod.protection.outlook.com
+	(10.152.4.60) by DB5EUR01HT078.eop-EUR01.prod.protection.outlook.com
+	(10.152.5.51) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.977.7;
+	Mon, 3 Apr 2017 17:10:33 +0000
+Received: from VI1PR05MB3376.eurprd05.prod.outlook.com (10.152.4.53) by
+	DB5EUR01FT059.mail.protection.outlook.com (10.152.4.164) with Microsoft
+	SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
-	15.1.1005.10; Tue, 4 Apr 2017 22:46:30 +0000
+	15.1.1005.5 via Frontend Transport; Mon, 3 Apr 2017 17:10:32 +0000
+Received: from VI1PR05MB3376.eurprd05.prod.outlook.com ([10.170.238.153]) by
+	VI1PR05MB3376.eurprd05.prod.outlook.com ([10.170.238.153]) with mapi id
+	15.01.1005.017; Mon, 3 Apr 2017 17:10:32 +0000
+From: Natalia Theologou <natalia_th92@hotmail.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-From: Martin Kelly <mkelly@xevo.com>
-Message-ID: <be363dd0-156f-4e7a-2513-325b644b3325@xevo.com>
-Date: Tue, 4 Apr 2017 15:41:02 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Icedove/45.6.0
+Thread-Topic: IoTivity on Yocto project
+Thread-Index: AQHSrJywCQv1M+1egEC+hDdsDbBmuA==
+Date: Mon, 3 Apr 2017 17:10:32 +0000
+Message-ID: <VI1PR05MB33768D6A8AB4303963AD7074F9080@VI1PR05MB3376.eurprd05.prod.outlook.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: yoctoproject.org; dkim=none (message not signed)
+	header.d=none;yoctoproject.org; dmarc=none action=none
+	header.from=hotmail.com;
+x-incomingtopheadermarker: OriginalChecksum:5BD20AC9EA11EC5C2F60B1FC6560512A84F64FEA414B0C61EED747C74332720D;
+	UpperCasedChecksum:F58736E562E8AE0F16009D73B21FA67E641BA814EE3373F667C12638EA0E8F8C;
+	SizeAsReceived:7916; Count:40
+x-ms-exchange-messagesentrepresentingtype: 1
+x-tmn: [7vOytctJHLpSs+fTF9nwnPtu4aEBP6wG]
+x-microsoft-exchange-diagnostics: 1; DB5EUR01HT078;
+	5:LjkIeZ32jYH76WdzO3dkBuZxcs8WRvcU//G0IwSN5KDEhCsO7xGGwI7yOqtHyrkozA52xhYiEJZt4dx6uy/lNCwRs92gAYLn4ENxqht2B0/FlACyTPg3dk7FFJdYZFsqZzrrdnN9r/boANbVrtyQCA==;
+	24:w5goiP3KF8zj0+0iOUHfb4d8EyBjQgIzpjY7WvmZXRKiL+S0Utnusv1B4Ljz9FGvNsXAA1jlocs+Izr7gI9l+fKB8PlVnz+bosykwMYtdvU=;
+	7:GfkkzwYUhvNKc7SrO1vkUy4zJziCWl0C4mya/WWqOnFsszQfLavwunDmfx0mtoCHyLZC5KWEy5bO2suF/Yn+fdKqCeC8y8mrR7wKp6L8d4f6fxn7lL+reAP+M9WNlzcb04Jak0Ktgb9X+zGJqZkkwi++PZLqYTwFx3nA5YLRzgak2iwjly9snk1bPSIct+aj2wmY0rakAXTGNSD/a5XtvLTK0kmYHa5Hw/afYrfDwx9cSDPE/uuzpMErSOED1YtwAa4HvJeBub4uOHti//tnnmZVOgxm52mDijs7MW/UbXMe+sD1A6mAX4kfJKbB/pSs
+x-incomingheadercount: 40
+x-eopattributedmessage: 0
+x-forefront-antispam-report: EFV:NLI; SFV:NSPM; SFS:(7070007)(98901004);
+	DIR:OUT; SFP:1901; SCL:1; SRVR:DB5EUR01HT078;
+	H:VI1PR05MB3376.eurprd05.prod.outlook.com; FPR:; SPF:None;
+	LANG:en; 
+x-ms-office365-filtering-correlation-id: 866fdd01-c287-44ad-b4d1-08d47ab45620
+x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
+	RULEID:(22001)(201702061074)(5061506573)(5061507331)(1603103135)(2017031320274)(2017031322274)(2017031324274)(2017031323274)(1601125374)(1603101448)(1701031045);
+	SRVR:DB5EUR01HT078; 
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0; RULEID:(444000031);
+	SRVR:DB5EUR01HT078; BCL:0; PCL:0; RULEID:; SRVR:DB5EUR01HT078; 
+x-forefront-prvs: 0266491E90
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-X-Originating-IP: [67.171.33.217]
-X-ClientProxiedBy: BN6PR21CA0009.namprd21.prod.outlook.com (10.173.197.19) To
-	MWHPR01MB2687.prod.exchangelabs.com (10.172.165.13)
-X-MS-Office365-Filtering-Correlation-Id: 36571b2e-df5c-484d-e5fc-08d47bac7012
-X-Microsoft-Antispam: UriScan:; BCL:0; PCL:0;
-	RULEID:(22001)(201703131423075)(201703031133081);
-	SRVR:MWHPR01MB2687; 
-X-Microsoft-Exchange-Diagnostics: 1; MWHPR01MB2687;
-	3:gk7eMPxxdS/6YQN2BrT++jK+qjqpsJj8U6mxYBrauDYAyHbD/jabXkrvtES4VzfaPjnTP8TJE64t1HSTgZbrs7mjdohQ2i7h/icLzXD81LlEAhevFQZjw/MHDVRYb2/ONQmHd7raMcBLFNEsT0hbzS8KveRcv0DUFpw+jJW+0S9K35D13AjbqG5zik0B6BqPSKprLQA+NLFGGdd5zZGLGKHUrQPUP8WpPhHweMG69ULvfvzdxDPLeXefdPmD0/a5kWSSLMY89JDjpzictjcSNsO6N1bL7aVOX0CVw6TsoCvDsMi1x0nedCIqoSXO82g+FzGskaRzMfjOyZZFGhN2LQ==;
-	25:HjAfyYzIKLzMJBAesQ9oo4cPz2PHL5aMSQKGXaU/DM2efmy/a770IIFO7jMHAFZ61k9Ry+JTa/yubKMqMCh6z7QMjYyOf5D8ZcSRFdAhthKXVMam5/rXzVu25MlVS9aq8iRkm7RXQ+G+7eA8kDyT4rFVHCJwL81GbksOgn495EOfMKl8cgJ/TTUos0rDNqFzn9jcqEq+QAWusQ+7bUxwU77ylzQP/n+TF027reW3WCoekrOlNUFuf62b6C2qRRvCz5OLoameZPJHT5qIdfyS+q2U23sg5vTOyaCu4xdYqxuDFyfYZsUE0N1vdDTqVls93y4hnuQ/Hpx7Jwy5k0mpRnGRw7wyuRLIGL5+Ij2YKz0tku6Rs7p1LkBJt//jKPFDo6Tx0WoG9v6RxY8ugcDcTYag3BOSpOCwjd1n8/l4QQXdchbk3dEIBzHDI1Gydmw3odLPxOC3hVlRDDxPZ3PAGA==
-X-Microsoft-Exchange-Diagnostics: 1; MWHPR01MB2687;
-	31:fPzcyg2RpBYjRVbi0cakaYRvH8SmQDrVef3+G9Xoti6fYTC3Sberq8ruVwWBL4VjUet6WAxqBkeSY/u4u57ry/o3EnYjUbU8pU42E6g8ClLfvZ8N2Cz7mnC4ggb6xItyonygz/u7Tbbme4ICMkQS7SwQ1EnaJOETJsVJPar3srW++1litlrDhlcCJ59ff6Q1gIde8nycLsROWrJ02eX+rUXBrHHYnAp9Zf4KzWYKBdgkacGGgMt3WfOlneFBiKyurT8+zQehgU0oH1Dnvxma8Q==;
-	20:D/m7TxZyXI8ZRW0eZOmbaC+Kuo7qfY7l41WH5v5GjO7em9Ci4dm2DWxNsoFWjUqjYCZTNsMSlcxjCS7DaymeOMU3ctUM/8niKErsWGqYjz14DZrFsMk02lc1xp021434xdhPGycLvxUogHKvel7wG2Y+horZIgI/lr6+ohw5W3jeEpRxNS5tK2lj8NizqWRYYuoFgVw/G8glA5QEmB2lovgqpIf3PSxWbqqw5c71y0Uxbk90a9HVj/0iIXHyXXnbUNqcq9CvhZiX6lsl+ho/usRg1IIfQqnkpG/O3eCg70ix9H3Ppgzo6T12QJPlTopyrG2M0lpcFBmBXDcbUPaf7g==
-X-Microsoft-Antispam-PRVS: <MWHPR01MB26879880E39908578E34D696AB0B0@MWHPR01MB2687.prod.exchangelabs.com>
-X-Exchange-Antispam-Report-Test: UriScan:;
-X-Exchange-Antispam-Report-CFA-Test: BCL:0; PCL:0;
-	RULEID:(6040450)(2401047)(8121501046)(5005006)(3002001)(10201501046)(93006095)(93001095)(6041248)(20161123555025)(20161123560025)(20161123562025)(201703131423075)(201702281528075)(201703061421075)(20161123564025)(6072148);
-	SRVR:MWHPR01MB2687; BCL:0; PCL:0; RULEID:; SRVR:MWHPR01MB2687; 
-X-Microsoft-Exchange-Diagnostics: 1; MWHPR01MB2687;
-	4:dqEIJxay70eP3Xe/IWlKDojCzk2WqLwWlulQ8dNgma/FwZv42mtAYaAuPc8m6RLmWM6jHBwlyGvEcLGuWiBmNRHmwWk/XYCQlD5OXOFMk0XHYsj+fDSUmfFjpRAXyD3Gx22mKWiemgChCPjZ/qu/RMERZJlC3/boit//6XY/OHRUWLyvGarE26wKXnYA5dTe6/4ZLazBg9fQ8ezKwFZdpktfCsrP9zdTDGvDqL/wW/0r1J7r+N7laIim2XBQNvKKhNKua3ae2+Lb406kjYlgcfAUgO5kcoYoDbeTeV0k2+VnxsMzo/bNduGlxFREqXQ2KVBUWAXHk9IYFzItgRbbX3GhnXuHA9kIqn1B1HTjn2HIKnT5PP/7A5DwVKGOUViivaVlZaEZH0s6xDFahut1gERVNyJnZR965OttkSLItxQbZ1tH1NVmIeJPnfw4hkpgrzBD0K9Ii/h1hMyGs70JxjEDgR5KjKFtgYqUTa53Ta90LPAP4+0HxZ75TU0sS7v2QghqZw95YOa88GprJpAbHlYR1fYx+/UWQH4R2VmYUYszPCAwnEZkCi/1YJ2Aid5dv4Aj7ZyKGdd3xQKxMsIFwoqY0QxPmgeJoOP8YCfIcDiH6aSrgrWNt/OTVE9QZIk8n5oNq+2juHeYXdZlv84KXWOfl6vGVfPt66pmtNapuPacwM3BRnb+BCNETyoJHneCsX3VhBbw2LN3IPfz/XL5QA==
-X-Forefront-PRVS: 0267E514F9
-X-Forefront-Antispam-Report: SFV:NSPM;
-	SFS:(10009020)(4630300001)(6049001)(6009001)(39410400002)(39830400002)(39400400002)(39450400003)(230700001)(83506001)(2906002)(25786009)(50986999)(81166006)(66066001)(38730400002)(110136004)(36756003)(2351001)(86362001)(6666003)(33646002)(305945005)(5640700003)(31696002)(6486002)(117156002)(23676002)(6916009)(7736002)(77096006)(47776003)(1730700003)(8676002)(189998001)(64126003)(5660300001)(6306002)(6116002)(53936002)(3846002)(54356999)(50466002)(42186005)(4001350100001)(2501003)(31686004);
-	DIR:OUT; SFP:1101; SCL:1; SRVR:MWHPR01MB2687; H:[192.168.1.2];
-	FPR:; SPF:None; MLV:sfv; LANG:en; 
-X-Microsoft-Exchange-Diagnostics: =?utf-8?B?MTtNV0hQUjAxTUIyNjg3OzIzOitBbVFKSlA1ZnZ0OWVaVThHbDJBSFRUNWFn?=
-	=?utf-8?B?RGhTNjI5aWRleDE4Ym9JS3Bzd3dOcWhPQUpMaW1NeTc4L2YwbXo0NjVOcnAr?=
-	=?utf-8?B?a1h0QVd5ZERYdlJ0c3hPdmZuOE0yek10V0xNMDdKRXpaaXFEVGFiZXFwVStl?=
-	=?utf-8?B?dU1hUFZzc3dmRTdtSmRLL3pTdkN5NkEwRGlXTE1vdEM1emFtMGpRRk9hK2Nr?=
-	=?utf-8?B?a1RTS2hRVFYzQ0x4cGdTRHI1U0YwTXRvMlZic3RsRjZwNEljOC8yeUExU01S?=
-	=?utf-8?B?N1AyQmdKQ3dnVFQ1eVZ3UWZ5ei9kUkVxZjF5ZHJuMC9rdWxHTVhWWU5KNDNE?=
-	=?utf-8?B?WE5BY2kxSVczWkc1VVU0VFM5Smh4ZzNjemhPMHA4N3hiR2ZxN2hIYmtocWtn?=
-	=?utf-8?B?S1ZVc0QwNXNMdUxDaWloaUxJS3FaYU14V3NyNTJzbHIyMzNQbzRKOFh4eGoy?=
-	=?utf-8?B?TWtYTDFkY2F1dEFjdU0xb3pyQW9NOXNDdVF3eEgza0xIdE1uZjVCdXlKWnJz?=
-	=?utf-8?B?VXMrRDdFOUlyL1VybkFueXZxNXRIMHJGOXV5ajN2SHV5YXBOL1g3RXpvQmpk?=
-	=?utf-8?B?aUxwMWVxY2FyWHNuVHQvRzkralFvd0tVbWlkK05uVUZZb0YyNld6Vkt2OThU?=
-	=?utf-8?B?OUNBNnArY0pMM0RHZlY0Z1N5UHJsVm5SWkthVGhwQWZtd2hGZlFZT05IRWpD?=
-	=?utf-8?B?TEZBOFoyek9oNnhnZE93MDEzdmhNcUlPMGcxT2tXMzNTc1pJRWhCV240aDlT?=
-	=?utf-8?B?OWQvcS8veWtiS05ybkVVVUs2QUZsUkhpaks5cGlQZlF0U2lKV1U2L21nUUhx?=
-	=?utf-8?B?UG1vTXBwTVpCMldXc1gzVllMWHppZVlWektRT0ZhdkppdTEvU3VpQVRlYmZo?=
-	=?utf-8?B?UHp0VFBIOThIb1BpUXF5S3NFeVRZendZN1Q3MnY2ZHljV2FmRHlVdlFOTEkr?=
-	=?utf-8?B?eWQvMmQ2SVQ3bk5yenk1aWJHU3lsM2NuQ3hSelFRUHA4aGRaOC9VdlNZWU9X?=
-	=?utf-8?B?V0lhdExKRTRDMCtnak51UW9hMmNaMVZhcHo5U0E5MEZhK2dKRVVldnpXYm5U?=
-	=?utf-8?B?YlBRTEtZdC9yMFBxVmIrU2FKY3ZkZUlLTzlaMk9NYjI0TlVIM1FtT0V5Qnpo?=
-	=?utf-8?B?ZzkxaVBCNEZLbmlRc1g1eWJpRS8raFdrT1RqNDZwTEpmMENCS1kwbU5yOWF2?=
-	=?utf-8?B?dUFVM09USTl5V3pLb1RoNW92dmR4alFuZ0ZkV3Y3Q0RpQWZqOFhRQ1NMVmtU?=
-	=?utf-8?B?cVhma0ZacWEybTlDTHpIRnQ3NE9Pc2EyejRGVVZlTzlhOG5CaUU3KzZyZ1Fv?=
-	=?utf-8?B?NGJUSDZxSkpXVlBQWTFXbWZkd0dtMnAzYUg0SmhlR1MzOHZieThwb0p6Rlc1?=
-	=?utf-8?B?NWZKbXN6Ni9HSUNMc1UzbWJFTEc2bTIrMlZiUDRxWCtYekxadDk4Ky81c1pT?=
-	=?utf-8?B?UVdxM3BBWG5wYklya3B4dE02dGYzcm1YMkNZZjhDTktIUmpnUWhjN3dXK3Jx?=
-	=?utf-8?Q?8maC3aXzt2WFAidtoZdGc/wG37hpmtZUce72KVqiIAo4jP?=
-X-Microsoft-Exchange-Diagnostics: 1; MWHPR01MB2687;
-	6:sOFJ6eG/SkrgYtRylOg5KCFfV4ruC8EPPIhOaI87sggSuO/5H9/0OMZslnqLR/FuvFTLc0CU6y07vrDzV5uyMimriZxRZ2ucgp07ZL5AQ80dz1R6F0pBdhgZt8DPfv5RJ6ypWCma/cdt6XCkyOFPz0YuG9Xk+A+i9vuUhIWO69t3JPzDz3Sthi7sOYPpRqFJGNr2EdSrRiYT3rHVSUATKYUYqWVfZfZLHDvNpBkc9VA7HTqK3UyK0R6zgygkhIkY2IzDhL4Kjh4QhY6BN8ej4w4bATQ6WQ2c0QISzH/HKFVv7WVK6txBMJomqihbnHZue3pCxLsGxfjGVKDqhEpxQK+nFaiFx83q59vTw7v4WVRFuvH1xxBRKjn3C4qtARUrCnHAqusfu9gwPk8CNw0+AA==;
-	5:nz9saocB7KqT6BwDdG9LJnmnpw0NJglkuougCexN+kdupH5iRQ+oGhxr7lQOaeczOwDi4DEDExvajgj5cctMfy5QVwditBaGAXTRoraUg4fRnR37lTJESbEDUCR4S+EsQiCmyzHkWl22XUMaXK8cGQ==;
-	24:sFCCQ8eP2/WPVTNSkBUZhIQkxfdjdCJzV1xCa6pJIIXPSMCjjt6vTu/hZ8m4SPusV0q/4pr9v4r7fXWWttqgV6YZnPrTbHeD1P79uMJbLYo=
-SpamDiagnosticOutput: 1:99
-SpamDiagnosticMetadata: NSPM
-X-Microsoft-Exchange-Diagnostics: 1; MWHPR01MB2687;
-	7:2+CYOQHqCaqgbi1jR0QPmciny6Kcl0+enhkAg/YOLC3VhNLk3whVr52vvk94zElnODSxp9YqiHL9fdbW5xn4wkAaSSulNPFfS2Z9MNo/dto+cRAfYDwgAD47nPTViN7jqlFuxv6slBUoPVT4xFoZtJPhzut1SmrxiAxXCYxw5mTpeqxzYa3BybnZ7nPkrBUxMTy0Ytm16+fVzuMJ58jvaT78Hmf7BXRRBMJTm2ehoDcBe8M1/BbAcYilUlXRslaWOkatWVm8h5AeSNGjX2Tff/2ydikVScVSY4fEZ+ZWjT6Jd4pqp5Sarz8/myehigWupp6hHCwhHhfmUMAmEm7zJA==
-X-OriginatorOrg: xevo.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Apr 2017 22:46:30.5566 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR01MB2687
-Subject: runqemu - "Could not initialize SDL(No available video device) - exiting"
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Apr 2017 17:10:32.3299 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Internet
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB5EUR01HT078
+X-Microsoft-Exchange-Diagnostics: 1; HE1EUR01HT075;
+	23:om4/gzBld+G5ibDnmzYrw8Vcgx4Tj5FPecCiZCawFwgHWBpPsd7jkieZ177hSw/JRabMPHp6SaOxktGH448jfRClYEHUkGj1qQ/Lnt1zmPYLwY2k/2CF4S1LRUprXbT6OS6Hi9XH7r95cein8fLiiA==
+X-Microsoft-Exchange-Diagnostics: 1; VE1EUR01HT076;
+	23:OY8UPh7cTyTjGbCf5ZpXt5duGaVgv+wL3b8n9JrQZW2gnBnpdnWztojsH2T0PmZzee9PJwLDEOFiK063HhirTXI1IeAc5ssr6zMDxv7pVltAo2jwmd3/8J8/t2WJJtBbZHhlj1Vp83YhexnPQlEbPQ==
+X-OriginatorOrg: hotmail.com
+Subject: IoTivity on Yocto project
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -117,38 +115,63 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Apr 2017 00:19:51 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 05 Apr 2017 04:48:48 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_VI1PR05MB33768D6A8AB4303963AD7074F9080VI1PR05MB3376eurp_"
 
-Hi,
+--_000_VI1PR05MB33768D6A8AB4303963AD7074F9080VI1PR05MB3376eurp_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-I'm hitting an error on runqemu when I try to build an SDK and image on 
-one machine and run it on another, even when the build machine and 
-qemu-running machine match very closely (both running Debian Jessie on 
-Intel 64-bit hardware). Specifically, I get this error:
+Hello,
 
-Could not initialize SDL(No available video device) - exiting
 
-Interestingly, I don't get this when I do runqemu on the same machine 
-that built the image and SDK (in fact, it works on either machine, as 
-long as the image/SDK never leave the machine). Now, if I manually copy 
-and paste the runqemu command, but just use the Debian-provided qemu 
-instead of the one from the SDK, then again everything works fine. Note 
-also that libSDL-1.2.so.0 is installed on both systems. At this point 
-I'm pretty stumped.
+I need a help here.
 
-Google says that, in the past, this occurred because of X11 ABI issues:
+Is it possible to add to an existing image created with Yocto project the I=
+oTivity? Maybe bitbake the IoTivity layer to rpm?
 
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=5040
+Is it necessary to make an image including IoTivity?
 
-However, the x11-native version I'm building through 1.6.3, and Debian 
-Jessie provides 1.6.2, so I would guess the ABI is OK between those two 
-versions. In addition, the fact that it works on the same machine that 
-built the SDK and image is strange.
 
-Any ideas what might be wrong?
+Please if anyone knows I would like a help.
 
-Thanks,
-Martin
+Thanks in advance.
 
+
+Natalia
+
+--_000_VI1PR05MB33768D6A8AB4303963AD7074F9080VI1PR05MB3376eurp_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+</head>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Arial,Helvetica,sans-serif;" dir=3D"ltr">
+<p>Hello,</p>
+<p><br>
+</p>
+<p>I need a help here.</p>
+<p>Is it possible to add to an existing image created with Yocto project th=
+e IoTivity? Maybe bitbake the IoTivity layer to rpm?</p>
+<p>Is it necessary to make an image including IoTivity?</p>
+<p><br>
+</p>
+<p>Please if anyone knows I would like a help.</p>
+<p>Thanks in advance.</p>
+<p><br>
+</p>
+<p>Natalia</p>
+</div>
+</body>
+</html>
+
+--_000_VI1PR05MB33768D6A8AB4303963AD7074F9080VI1PR05MB3376eurp_--
