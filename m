@@ -1,26 +1,31 @@
-Return-Path: <recipe-report@yoctoproject.org>
+Return-Path: <romain.perier@collabora.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 60931E00AA5; Sun,  2 Apr 2017 21:01:03 -0700 (PDT)
+	id 2B75FE00AD0; Mon,  3 Apr 2017 00:13:57 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
+	SPF_HELO_PASS,UNPARSEABLE_RELAY autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [46.235.227.227 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from packages.yoctoproject.org (unknown [198.145.29.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0F038E00A76
-	for <yocto@yoctoproject.org>; Sun,  2 Apr 2017 21:01:01 -0700 (PDT)
-Received: from packages.yoctoproject.org (localhost [IPv6:::1])
-	by packages.yoctoproject.org (Postfix) with ESMTP id 6730084AE128
-	for <yocto@yoctoproject.org>; Mon,  3 Apr 2017 00:01:00 -0400 (EDT)
-MIME-Version: 1.0
-From: recipe-report@yoctoproject.org
-To: yocto@yoctoproject.org
-Date: Mon, 03 Apr 2017 04:01:00 -0000
-Message-ID: <20170403040100.24380.68383@packages.yoctoproject.org>
-Subject: [Recipe reporting system] Upgradable recipe name list
+	* 0.0 UNPARSEABLE_RELAY Informational: message has unparseable relay
+	lines
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BBB67E00A9A
+	for <yocto@yoctoproject.org>; Mon,  3 Apr 2017 00:13:52 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	(Authenticated sender: rperier) with ESMTPSA id D7C63260FD4
+From: Romain Perier <romain.perier@collabora.com>
+To: Qi.Chen@windriver.com
+Date: Mon,  3 Apr 2017 09:13:46 +0200
+Message-Id: <20170403071346.9980-1-romain.perier@collabora.com>
+X-Mailer: git-send-email 2.9.3
+Cc: yocto@yoctoproject.org, openembedded-core@lists.openembedded.org
+Subject: [PATCH v2] busybox: make SYSLOGD optionnal
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,177 +37,127 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 03 Apr 2017 04:01:03 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 03 Apr 2017 07:13:57 -0000
 
-This mail was sent out by Recipe reporting system.
+Some distros might choose another syslogd provider like rsyslogd.
+update-alternative will update the link from syslogd to the right
+provider. However the syslogd feature is still present and enabled
+in busybox.
 
-This message list those recipes which need to be upgraded. If maintainers
-believe some of them needn't to upgrade at this time, they can fill
-RECIPE_NO_UPDATE_REASON in respective recipe file to ignore this remainder
-until newer upstream version was detected.
+This commit adds a new configuration fragment to make syslogd
+optionnal in busybox.
 
-Example:
-RECIPE_NO_UPDATE_REASON = "Version 2.0 is unstable"
+Signed-off-by: Romain Perier <romain.perier@collabora.com>
+---
 
-You can check the detail information at:
+Changes in v2:
+- Rebased onto master branch (thanks to patchwork)
 
-http://recipes.yoctoproject.org/
+ meta/recipes-core/busybox/busybox.inc        |  6 +++---
+ meta/recipes-core/busybox/busybox/defconfig  | 20 +++++++++-----------
+ meta/recipes-core/busybox/busybox/syslog.cfg | 11 +++++++++++
+ meta/recipes-core/busybox/busybox_1.24.1.bb  |  1 +
+ meta/recipes-core/busybox/busybox_git.bb     |  1 +
+ 5 files changed, 25 insertions(+), 14 deletions(-)
+ create mode 100644 meta/recipes-core/busybox/busybox/syslog.cfg
 
-Package               Version      Upstream version      Maintainer           NoUpgradeReason
---------------------  -----------  --------------------  -------------------  ------------------------------
-python3               3.5.2        3.6.1                 Alejandro Hernandez
-python3-native        3.5.2        3.6.1                 Alejandro Hernandez
-gobject-introspec...  1.50.0       1.52.0                Alexander Kanavin
-mobile-broadband-...  20151214     20170310              Alexander Kanavin
-webkitgtk             2.14.5       2.16.0                Alexander Kanavin
-openssl               1.0.2k       1.1.0e                Alexander Kanavin
-gdbm                  1.12         1.13                  Alexander Kanavin
-libpthread-stubs      0.3          0.4                   Alexander Kanavin
-vala                  0.34.4       0.36.0                Alexander Kanavin
-lzo                   2.09         2.10                  Alexander Kanavin
-libiconv              1.14         1.15                  Alexander Kanavin
-gnome-desktop3        3.22.2       3.24.0                Alexander Kanavin
-ed                    1.14.1       1.14.2                Alexander Kanavin
-nspr                  4.13.1       4.14                  Alexander Kanavin
-gperf                 3.0.4        3.1                   Alexander Kanavin
-libarchive            3.2.2        3.3.1                 Alexander Kanavin
-gnutls                3.5.9        3.5.10                Alexander Kanavin
-dtc                   1.4.2        1.4.4                 Alexander Kanavin
-btrfs-tools           4.9.1        4.10.2                Alexander Kanavin
-epiphany              3.22.6       3.24.0                Alexander Kanavin
-sysprof               3.22.3       3.24.0                Alexander Kanavin
-mpg123                1.23.8       1.24.0                Alexander Kanavin
-kconfig-frontends     3.12.0.0     4.7.0.0               Alexander Kanavin
-mkelfimage            4.0+gitX     4.5+gitAUTOINC+0b...  Alexander Kanavin    mkelfimage has been removed...
-qemu                  2.8.0        2.8.1                 Aníbal Limón
-libxml-namespaces...  1.11         1.12                  Aníbal Limón
-dpkg                  1.18.10      1.18.23               Aníbal Limón
-pinentry              0.9.2        1.0.0                 Armin Kuster
-libpcre2              10.22        10.23                 Armin Kuster
-linux-libc-headers    4.10         4.10.8                Bruce Ashfield
-libunwind             1.1+gitX     1.2+gitAUTOINC+cc...  Bruce Ashfield
-linux-yocto-tiny      4.10+gitX    4.10.5+gitAUTOINC...  Bruce Ashfield
-linux-yocto-rt        4.10+gitX    4.10.5+gitAUTOINC...  Bruce Ashfield
-linux-yocto           4.10+gitX    4.10.5+gitAUTOINC...  Bruce Ashfield
-pciutils              3.5.2        3.5.4                 Chen Qi
-kmod-native           23+gitX      24+gitAUTOINC+ef4...  Chen Qi
-busybox               1.25.0+gitX  1.26.2+gitAUTOINC...  Chen Qi
-dbus                  1.10.14      1.10.16               Chen Qi
-byacc                 20161202     20170201              Chen Qi
-cups                  2.2.2        2.2.3                 Chen Qi
-systemd               232          233                   Chen Qi
-util-linux            2.29.1       2.29.2                Chen Qi
-kmod                  23+gitX      24+gitAUTOINC+ef4...  Chen Qi
-dbus-test             1.10.14      1.10.16               Chen Qi
-sed                   4.2.2        4.4                   Chen Qi
-sysstat               11.5.4       11.5.5                Chen Qi
-systemd-boot          232          233                   Chen Qi
-flex                  2.6.0        2.6.3                 Chen Qi
-coreutils             8.26         8.27                  Chen Qi
-build-appliance-i...  15.0.0       16.0.1                Cristian Iorga
-openssh               7.4p1        7.5p1                 Dengke Du
-json-glib             1.2.2        1.2.8                 Dengke Du
-u-boot-fw-utils       2017.01      2017.03               Denys Dmytriyenko
-u-boot-mkimage        2017.01      2017.03               Denys Dmytriyenko
-u-boot                2017.01      2017.03               Denys Dmytriyenko
-python3-pygobject     3.22.0       3.24.0                Edwin Plauchu
-python3-setuptools    32.1.1       34.3.3                Edwin Plauchu
-python-setuptools     32.1.1       34.3.3                Edwin Plauchu
-gpgme                 1.8.0        1.9.0                 Hongxu Jia
-libgpg-error          1.26         1.27                  Hongxu Jia
-bash                  4.3.30       4.4                   Hongxu Jia
-ghostscript           9.20         9.21                  Hongxu Jia
-libnewt-python        0.52.19      0.52.20               Hongxu Jia
-man-pages             4.09         4.10                  Hongxu Jia
-libnewt               0.52.19      0.52.20               Hongxu Jia
-gnupg                 2.1.18       2.1.19                Hongxu Jia
-python-git            2.1.1        2.1.3                 Jose Lamego
-python3-git           2.1.1        2.1.3                 Jose Lamego
-pango                 1.40.3       1.40.4                Jussi Kukkonen
-libinput              1.6.1        1.7.0                 Jussi Kukkonen
-gtk-icon-utils-na...  3.22.8       3.22.11               Jussi Kukkonen
-at-spi2-core          2.22.0       2.24.0                Jussi Kukkonen
-atk                   2.22.0       2.24.0                Jussi Kukkonen
-libx11-diet           1.6.4        1.6.5                 Jussi Kukkonen
-libx11                1.6.4        1.6.5                 Jussi Kukkonen
-glib-2.0              2.50.3       2.52.0                Jussi Kukkonen
-xf86-input-libinput   0.24.0       0.25.0                Jussi Kukkonen
-gsettings-desktop...  3.22.0       3.24.0                Jussi Kukkonen
-gnome-themes-stan...  3.22.2       3.22.3                Jussi Kukkonen
-vte                   0.46.1       0.48.1                Jussi Kukkonen
-vulkan                1.0.39.1     20141209              Jussi Kukkonen
-libepoxy              1.4.0        1.4.1                 Jussi Kukkonen
-xserver-xorg          1.19.1       1.19.3                Jussi Kukkonen
-clutter-gst-3.0       3.0.22       3.0.24                Jussi Kukkonen
-gdk-pixbuf            2.36.5       2.36.6                Jussi Kukkonen
-gtk+3                 3.22.8       3.22.11               Jussi Kukkonen
-adwaita-icon-theme    3.22.0       3.24.0                Jussi Kukkonen
-libdrm                2.4.75       2.4.76                Jussi Kukkonen
-libevent              2.0.22       2.1.8                 Jussi Kukkonen
-at-spi2-atk           2.22.0       2.24.0                Jussi Kukkonen
-ruby                  2.4.0        2.4.1                 Leonardo Sandoval
-nfs-utils             1.3.4        2.1.1                 Mariano Lopez
-prelink               1.0+gitX     20151030.+gitAUTO...  Mark Hatle
-libpfm4               4.6.0        4.8.0                 Matthew McClintock
-bluez5                5.43         5.44                  Maxin B. John
-ifupdown              0.8.16       0.8.19                Maxin B. John
-ethtool               4.8          4.10                  Maxin B. John
-sqlite3               3.17.0       3.18.0                Maxin B. John
-mc                    4.8.18       4.8.19                Maxin B. John
-libpng                1.6.28       1.6.29                Maxin B. John
-harfbuzz              1.4.1        1.4.5                 Maxin B. John
-pkgconfig             0.29.1+gitX  0.29.2+gitAUTOINC...  Maxin B. John
-git                   2.11.1       2.12.2                Robert Yang
-guile                 2.0.14       2.2.0                 Robert Yang
-base-passwd           3.5.29       3.5.43                Ross Burton          Version 3.5.38 requires cde...
-lsbinitscripts        9.68         9.70                  Ross Burton
-
-Upgradable count: 104
-Upgradable total count: 106
-
-The based commit is:
-
-commit 3b7111b30dbd9a4cdd141b594164da18c15ae970
-Author: Serhii Popovych <spopovyc@cisco.com>
-Date:   Fri Mar 31 11:46:58 2017 +0000
-
-    automake: Adjust shebang lines to remove interpreter path hardcode
-    
-    If build host perl (and other tools) is old and we use some kind
-    of toolchain to provide recent perl/python/etc to the OE build
-    we still locked to use build host perl due to hardcoded shebang
-    lines in automake scripts.
-    
-    Behaviour was observed with Enterprise Linux 6 and devtoolset
-    toolchain from SCL (Software Collections) used to provide recent
-    version of perl (not provided with default buildtools-tarball).
-    
-    Pass /usr/bin/env perl in ac_cv_path_PERL configuration variables
-    for class-native and class-nativesdk. Use patch to automake to replace
-    -w option in shebang line with modern way to enable warnings on perl
-    (i.e. "use warnings").
-    
-    Also add nativesdk-autoconf to RDEPENDS to bring runtime dependencies
-    inline with other targets.
-    
-    Note that ac_cv_path_PERL must be valid perl interpreter path
-    since configure will check perl version and Flock implementation.
-    It is not possible currently to use nativeperl from native
-    sysroot because automake does not DEPENDS on perl-native (and
-    doing so fails due to circular dependencies). Only possible
-    solution is to overwrite shebangs with nativeperl somewhere at
-    do_install() and update RDEPENDS for class-native. Or add perl
-    symlinks to nativeperl in sysroot.
-    
-    For now it seems good to use perl found by /usr/bin/env from
-    automake-native.
-    
-    Cc: XE-Linux <xe-linux-external@cisco.com>
-    Signed-off-by: Serhii Popovych <spopovyc@cisco.com>
-    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
-
-Any problem, please contact Anibal Limon <anibal.limon@intel.com> 
+diff --git a/meta/recipes-core/busybox/busybox.inc b/meta/recipes-core/busybox/busybox.inc
+index 6246c95..4c5c98a 100644
+--- a/meta/recipes-core/busybox/busybox.inc
++++ b/meta/recipes-core/busybox/busybox.inc
+@@ -40,7 +40,7 @@ INITSCRIPT_NAME_${PN}-syslog = "syslog"
+ INITSCRIPT_NAME_${PN}-udhcpd = "busybox-udhcpd"
+ 
+ SYSTEMD_PACKAGES = "${PN}-syslog"
+-SYSTEMD_SERVICE_${PN}-syslog = "busybox-syslog.service"
++SYSTEMD_SERVICE_${PN}-syslog = "${@bb.utils.contains('SRC_URI', 'file://syslog.cfg', 'busybox-syslog.service', '', d)}"
+ 
+ CONFFILES_${PN}-syslog = "${sysconfdir}/syslog-startup.conf.${BPN}"
+ CONFFILES_${PN}-mdev = "${sysconfdir}/mdev.conf"
+@@ -330,8 +330,8 @@ inherit update-alternatives
+ 
+ ALTERNATIVE_PRIORITY = "50"
+ 
+-ALTERNATIVE_${PN}-syslog += "syslog-conf"
+-ALTERNATIVE_LINK_NAME[syslog-conf] = "${sysconfdir}/syslog.conf"
++ALTERNATIVE_${PN}-syslog += "${@bb.utils.contains('SRC_URI', 'file://syslog.cfg', 'syslog-conf', '', d)}"
++ALTERNATIVE_LINK_NAME[syslog-conf] = "${@bb.utils.contains('SRC_URI', 'file://syslog.cfg', "${sysconfdir}/syslog.conf", '', d)}"
+ 
+ python () {
+     if bb.utils.contains('DISTRO_FEATURES', 'sysvinit', True, False, d):
+diff --git a/meta/recipes-core/busybox/busybox/defconfig b/meta/recipes-core/busybox/busybox/defconfig
+index f649738..75bf146 100644
+--- a/meta/recipes-core/busybox/busybox/defconfig
++++ b/meta/recipes-core/busybox/busybox/defconfig
+@@ -1053,17 +1053,15 @@ CONFIG_FEATURE_SH_HISTFILESIZE=y
+ #
+ # System Logging Utilities
+ #
+-CONFIG_SYSLOGD=y
+-CONFIG_FEATURE_ROTATE_LOGFILE=y
+-CONFIG_FEATURE_REMOTE_LOG=y
+-CONFIG_FEATURE_SYSLOGD_DUP=y
+-CONFIG_FEATURE_SYSLOGD_CFG=y
+-CONFIG_FEATURE_SYSLOGD_READ_BUFFER_SIZE=256
+-CONFIG_FEATURE_IPC_SYSLOG=y
+-CONFIG_FEATURE_IPC_SYSLOG_BUFFER_SIZE=64
+-CONFIG_LOGREAD=y
+-CONFIG_FEATURE_LOGREAD_REDUCED_LOCKING=y
+-CONFIG_FEATURE_KMSG_SYSLOG=y
++# CONFIG_SYSLOGD is not set
++# CONFIG_FEATURE_ROTATE_LOGFILE is not set
++# CONFIG_FEATURE_REMOTE_LOG is not set
++# CONFIG_FEATURE_SYSLOGD_DUP is not set
++# CONFIG_FEATURE_SYSLOGD_CFG is not set
++# CONFIG_FEATURE_IPC_SYSLOG is not set
++# CONFIG_LOGREAD is not set
++# CONFIG_FEATURE_LOGREAD_REDUCED_LOCKING is not set
++# CONFIG_FEATURE_KMSG_SYSLOG is not set
+ CONFIG_KLOGD=y
+ 
+ #
+diff --git a/meta/recipes-core/busybox/busybox/syslog.cfg b/meta/recipes-core/busybox/busybox/syslog.cfg
+new file mode 100644
+index 0000000..e2425ed
+--- /dev/null
++++ b/meta/recipes-core/busybox/busybox/syslog.cfg
+@@ -0,0 +1,11 @@
++CONFIG_SYSLOGD=y
++CONFIG_FEATURE_ROTATE_LOGFILE=y
++CONFIG_FEATURE_REMOTE_LOG=y
++CONFIG_FEATURE_SYSLOGD_DUP=y
++CONFIG_FEATURE_SYSLOGD_CFG=y
++CONFIG_FEATURE_SYSLOGD_READ_BUFFER_SIZE=256
++CONFIG_FEATURE_IPC_SYSLOG=y
++CONFIG_FEATURE_IPC_SYSLOG_BUFFER_SIZE=64
++CONFIG_LOGREAD=y
++CONFIG_FEATURE_LOGREAD_REDUCED_LOCKING=y
++CONFIG_FEATURE_KMSG_SYSLOG=y
+diff --git a/meta/recipes-core/busybox/busybox_1.24.1.bb b/meta/recipes-core/busybox/busybox_1.24.1.bb
+index 41fc641..2e3a041 100644
+--- a/meta/recipes-core/busybox/busybox_1.24.1.bb
++++ b/meta/recipes-core/busybox/busybox_1.24.1.bb
+@@ -40,6 +40,7 @@ SRC_URI = "http://www.busybox.net/downloads/busybox-${PV}.tar.bz2;name=tarball \
+            file://resize.cfg \
+            ${@["", "file://init.cfg"][(d.getVar('VIRTUAL-RUNTIME_init_manager') == 'busybox')]} \
+            ${@["", "file://mdev.cfg"][(d.getVar('VIRTUAL-RUNTIME_dev_manager') == 'busybox-mdev')]} \
++           file://syslog.cfg \
+            file://inittab \
+            file://rcS \
+            file://rcK \
+diff --git a/meta/recipes-core/busybox/busybox_git.bb b/meta/recipes-core/busybox/busybox_git.bb
+index c2ee3e6..50c4c9d 100644
+--- a/meta/recipes-core/busybox/busybox_git.bb
++++ b/meta/recipes-core/busybox/busybox_git.bb
+@@ -42,6 +42,7 @@ SRC_URI = "git://busybox.net/busybox.git \
+            file://resize.cfg \
+            ${@["", "file://init.cfg"][(d.getVar('VIRTUAL-RUNTIME_init_manager') == 'busybox')]} \
+            ${@["", "file://mdev.cfg"][(d.getVar('VIRTUAL-RUNTIME_dev_manager') == 'busybox-mdev')]} \
++           file://syslog.cfg \
+            file://inittab \
+            file://rcS \
+            file://rcK \
+-- 
+2.9.3
 
 
