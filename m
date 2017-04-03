@@ -1,69 +1,26 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <recipe-report@yoctoproject.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0A1E5E00AD0; Sun,  2 Apr 2017 19:20:17 -0700 (PDT)
+	id 60931E00AA5; Sun,  2 Apr 2017 21:01:03 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [74.125.83.66 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.83.66 listed in dnsbl.sorbs.net]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (akuster808[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pg0-f66.google.com (mail-pg0-f66.google.com [74.125.83.66])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7D0BBE00AA5
-	for <yocto@yoctoproject.org>; Sun,  2 Apr 2017 19:20:14 -0700 (PDT)
-Received: by mail-pg0-f66.google.com with SMTP id o123so26401384pga.1
-	for <yocto@yoctoproject.org>; Sun, 02 Apr 2017 19:20:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:subject:date:message-id:in-reply-to:references;
-	bh=cyW4OiCLwMaJEOBcz/CcMfCzBsa+cahv5kfQ/MhbJpo=;
-	b=te1QdLVCdKciYR1+dXhln371+B837QEViZCpuYlT2HMccURiOjq1aIxnPzYBTfIz4w
-	rFE2kv1q4c6xiui0PcExsY9qgk7xwf9W341Hi7j8smfmeN9uTWq8kNPFkLyq8bE1ynzV
-	f3f+2oS/5naQfvL1TiANbb4v3rCHQ+XABWVjlyMZtoahFZswb4oyKe54lXsOrLNHDLtP
-	3/SYkvdPldiNJLf2DXeauYl73USHcU1CdL1esGqwBcnVpTohGf5nM5TnHkVQxTJlY/V7
-	t/yqmiFbEyoWnCozzbmzCxOEPBe4EwdvK4+i6fRNrVT/NgpdLvK6MAQJS9CVazyPmK75
-	8jSg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-	:references;
-	bh=cyW4OiCLwMaJEOBcz/CcMfCzBsa+cahv5kfQ/MhbJpo=;
-	b=rz+Q+4lybpIs1XURdNJ5XzsMCx1d7/LGMifd2oaug9aE8ILEvEUt2R9OxV6YdkFZJw
-	9Ijy/c5I/yZre78j6dzV4oBStize/2hQUVd4EjjFexkNmqLLFFBo6iiXHLJamSif+e/G
-	M7T5P5qkjkWUXmkakXzkocTimGdSDmNOKXdxARq0wCu8V1pgaC6D4ewaIChh1IiFhIhI
-	3rR1Vkj36BfT3nO5E1BpD60je1ER2IitYyhi6C6E5I1//5UK8NJ4RBhZhtWk1o+CXS9G
-	NOvpIXy9FFzXQw9zp0WiXpR1xGbq3mAIbKotdZ10rq1v84iKwQTuaSxo2l/WJ8bEg2YS
-	/L1A==
-X-Gm-Message-State: AFeK/H0+EbziP3VIT/W4XE2tZG+crMBA+XJLXxDzEJD3hdjwOqTT9DhYGIUUWEMiMtFjXg==
-X-Received: by 10.84.141.36 with SMTP id 33mr18708771plu.81.1491186014185;
-	Sun, 02 Apr 2017 19:20:14 -0700 (PDT)
-Received: from akuster-ThinkPad-X240.hsd1.ca.comcast.net
-	([2601:202:4001:9ea0:e3df:bf0a:9f90:498e])
-	by smtp.gmail.com with ESMTPSA id
-	a77sm22109468pfl.91.2017.04.02.19.20.13
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Sun, 02 Apr 2017 19:20:13 -0700 (PDT)
-From: Armin Kuster <akuster808@gmail.com>
-To: akuster@mvista.com,
-	yocto@yoctoproject.org
-Date: Sun,  2 Apr 2017 19:20:10 -0700
-Message-Id: <1491186010-5930-3-git-send-email-akuster808@gmail.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1491186010-5930-1-git-send-email-akuster808@gmail.com>
-References: <1491186010-5930-1-git-send-email-akuster808@gmail.com>
-Subject: [meta-security][PATCH 3/3] apparmor: update to 2.11.0 plus ptest
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from packages.yoctoproject.org (unknown [198.145.29.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0F038E00A76
+	for <yocto@yoctoproject.org>; Sun,  2 Apr 2017 21:01:01 -0700 (PDT)
+Received: from packages.yoctoproject.org (localhost [IPv6:::1])
+	by packages.yoctoproject.org (Postfix) with ESMTP id 6730084AE128
+	for <yocto@yoctoproject.org>; Mon,  3 Apr 2017 00:01:00 -0400 (EDT)
+MIME-Version: 1.0
+From: recipe-report@yoctoproject.org
+To: yocto@yoctoproject.org
+Date: Mon, 03 Apr 2017 04:01:00 -0000
+Message-ID: <20170403040100.24380.68383@packages.yoctoproject.org>
+Subject: [Recipe reporting system] Upgradable recipe name list
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,284 +32,177 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 03 Apr 2017 02:20:17 -0000
+X-List-Received-Date: Mon, 03 Apr 2017 04:01:03 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- recipes-security/AppArmor/apparmor_2.10.95.bb | 116 -----------------------
- recipes-security/AppArmor/apparmor_2.11.0.bb  | 127 ++++++++++++++++++++++++++
- recipes-security/AppArmor/files/run-ptest     |   4 +
- 3 files changed, 131 insertions(+), 116 deletions(-)
- delete mode 100644 recipes-security/AppArmor/apparmor_2.10.95.bb
- create mode 100644 recipes-security/AppArmor/apparmor_2.11.0.bb
- create mode 100644 recipes-security/AppArmor/files/run-ptest
+This mail was sent out by Recipe reporting system.
 
-diff --git a/recipes-security/AppArmor/apparmor_2.10.95.bb b/recipes-security/AppArmor/apparmor_2.10.95.bb
-deleted file mode 100644
-index de09e29..0000000
---- a/recipes-security/AppArmor/apparmor_2.10.95.bb
-+++ /dev/null
-@@ -1,116 +0,0 @@
--SUMMARY = "AppArmor another MAC control system"
--DESCRIPTION = "user-space parser utility for AppArmor \
-- This provides the system initialization scripts needed to use the \
-- AppArmor Mandatory Access Control system, including the AppArmor Parser \
-- which is required to convert AppArmor text profiles into machine-readable \
-- policies that are loaded into the kernel for use with the AppArmor Linux \
-- Security Module."
--HOMEAPAGE = "http://apparmor.net/"
--SECTION = "admin"
--
--LICENSE = "GPLv2 & GPLv2+ & BSD-3-Clause & LGPLv2.1+"
--LIC_FILES_CHKSUM = "file://${S}/LICENSE;md5=fd57a4b0bc782d7b80fd431f10bbf9d0"
--
--DEPENDS = "bison-native apr apache2"
--
--SRC_URI = " \
--	http://archive.ubuntu.com/ubuntu/pool/main/a/${BPN}/${BPN}_${PV}.orig.tar.gz \
--	file://disable_pdf.patch \
--	file://apparmor.rc \
--	file://functions \
--	file://apparmor \
--	file://apparmor.service \
--	"
--
--SRC_URI[md5sum] = "71a13b9d6ae0bca4f5375984df1a51e7"
--SRC_URI[sha256sum] = "3f659a599718f4a5e2a33140916715f574a5cb3634a6b9ed6d29f7b0617e4d1a"
--
--PARALLEL_MAKE = ""
--
--inherit pkgconfig autotools-brokensep update-rc.d python-dir ${@bb.utils.contains('VIRTUAL-RUNTIME_init_manager','systemd','systemd','', d)}
--
--S = "${WORKDIR}/apparmor-${PV}"
--
--PACKAGECONFIG ?="man"
--PACKAGECONFIG[man] = "--enable-man-pages, --disable-man-pages"
--
--PAMLIB="${@bb.utils.contains('DISTRO_FEATURES', 'pam', '1', '0', d)}"
--
--do_configure() {
--	cd ${S}/libraries/libapparmor
--	autoconf --force
--	libtoolize --automake -c
--	automake -ac
--	./configure ${CONFIGUREOPTS} ${EXTRA_OECONF}
--	sed -i -e 's#^YACC.*#YACC := bison#' ${S}/parser/Makefile
--	sed -i -e 's#^LEX.*#LEX := flex#' ${S}/parser/Makefile
--}
--
--do_compile () {
--	cd ${S}/libraries/libapparmor
--	oe_runmake
--        cd ${S}/binutils
--        oe_runmake
--        cd ${S}/utils
--        oe_runmake
--	cd ${S}/parser
--        oe_runmake
--	cd ${S}/profiles
--        oe_runmake
--
-- 	cd ${S}/changehat/mod_apparmor
--        oe_runmake
--
--	if test -z "${PAMLIB}" ; then
--		cd ${S}/changehat/pam_apparmor
--        	oe_runmake
--	fi
--}
--
--do_install () {
--	install -d ${D}/${INIT_D_DIR}
--	install -d ${D}/lib/apparmor
--		
--	cd ${S}/libraries/libapparmor
--	oe_runmake DESTDIR="${D}" install
--
--        cd ${S}/binutils
--	oe_runmake DESTDIR="${D}" install
--
--        cd ${S}/utils
--	oe_runmake DESTDIR="${D}" install
--
--	cd ${S}/parser
--	oe_runmake DESTDIR="${D}" install
--
--	cd ${S}/profiles
--	oe_runmake DESTDIR="${D}" install
--
-- 	cd ${S}/changehat/mod_apparmor
--	oe_runmake DESTDIR="${D}" install
--
--	if test -z "${PAMLIB}" ; then
--		cd ${S}/changehat/pam_apparmor
--		oe_runmake DESTDIR="${D}" install
--	fi
--
--	install ${WORKDIR}/apparmor ${D}/${INIT_D_DIR}/apparmor
--
--	install ${WORKDIR}/functions ${D}/lib/apparmor
--}
--
--INITSCRIPT_PACKAGES = "${PN}"
--INITSCRIPT_NAME = "apparmor"
--INITSCRIPT_PARAMS = "start 16 2 3 4 5 . stop 35 0 1 6 ."
--
--SYSTEMD_PACKAGES = "${PN}"
--SYSTEMD_SERVICE_${PN} = "apparmor.service"
--SYSTEMD_AUTO_ENABLE = "disable"
--
--PACKAGES += "python-${PN} mod-${PN}"
--
--FILES_${PN} += "/lib/apparmor/ ${sysconfdir}/apparmor"
--FILES_mod-${PN} = "${libdir}/apache2/modules/*"
--FILES_python-${PN} = "${PYTHON_SITEPACKAGES_DIR}"
--
--RDEPENDS_${PN} += "bash perl"
-diff --git a/recipes-security/AppArmor/apparmor_2.11.0.bb b/recipes-security/AppArmor/apparmor_2.11.0.bb
-new file mode 100644
-index 0000000..0e6b920
---- /dev/null
-+++ b/recipes-security/AppArmor/apparmor_2.11.0.bb
-@@ -0,0 +1,127 @@
-+SUMMARY = "AppArmor another MAC control system"
-+DESCRIPTION = "user-space parser utility for AppArmor \
-+ This provides the system initialization scripts needed to use the \
-+ AppArmor Mandatory Access Control system, including the AppArmor Parser \
-+ which is required to convert AppArmor text profiles into machine-readable \
-+ policies that are loaded into the kernel for use with the AppArmor Linux \
-+ Security Module."
-+HOMEAPAGE = "http://apparmor.net/"
-+SECTION = "admin"
-+
-+LICENSE = "GPLv2 & GPLv2+ & BSD-3-Clause & LGPLv2.1+"
-+LIC_FILES_CHKSUM = "file://${S}/LICENSE;md5=fd57a4b0bc782d7b80fd431f10bbf9d0"
-+
-+DEPENDS = "bison-native apr apache2 gettext-native coreutils-native"
-+
-+SRC_URI = " \
-+	http://archive.ubuntu.com/ubuntu/pool/main/a/${BPN}/${BPN}_${PV}.orig.tar.gz \
-+	file://apparmor.rc \
-+	file://functions \
-+	file://apparmor \
-+	file://apparmor.service \
-+        file://ptest_install.patch \
-+        file://run-ptest \
-+	"
-+
-+SRC_URI[md5sum] = "899fd834dc5c8ebf2d52b97e4a174af7"
-+SRC_URI[sha256sum] = "b1c489ea11e7771b8e6b181532cafbf9ebe6603e3cb00e2558f21b7a5bdd739a"
-+
-+PARALLEL_MAKE = ""
-+
-+inherit pkgconfig autotools-brokensep update-rc.d python3-dir perlnative ptest
-+inherit ${@bb.utils.contains('VIRTUAL-RUNTIME_init_manager','systemd','systemd','', d)}
-+
-+S = "${WORKDIR}/apparmor-${PV}"
-+
-+PACKAGECONFIG ?="man"
-+PACKAGECONFIG[man] = "--enable-man-pages, --disable-man-pages"
-+PACKAGECONFIG[python3] = "--with-python, --without-python, python3 swig-native"
-+PACKAGECONFIG[perl] = "--with-perl, --without-perl, perl perl-native"
-+
-+PAMLIB="${@bb.utils.contains('DISTRO_FEATURES', 'pam', '1', '0', d)}"
-+
-+do_configure() {
-+	cd ${S}/libraries/libapparmor
-+	autoconf --force
-+	libtoolize --automake -c
-+	automake -ac
-+	./configure ${CONFIGUREOPTS} ${EXTRA_OECONF}
-+	sed -i -e 's#^YACC.*#YACC := bison#' ${S}/parser/Makefile
-+	sed -i -e 's#^LEX.*#LEX := flex#' ${S}/parser/Makefile
-+}
-+
-+do_compile () {
-+	oe_runmake -C ${B}/libraries/libapparmor
-+        oe_runmake -C ${B}/binutils
-+        oe_runmake -C ${B}/utils
-+        oe_runmake -C ${B}/parser
-+        oe_runmake -C ${B}/profiles
-+        oe_runmake -C ${B}/changehat/mod_apparmor
-+
-+	if test -z "${PAMLIB}" ; then
-+        	oe_runmake -C ${B}/changehat/pam_apparmor
-+	fi
-+}
-+
-+do_install () {
-+	install -d ${D}/${INIT_D_DIR}
-+	install -d ${D}/lib/apparmor
-+		
-+	oe_runmake -C ${B}/libraries/libapparmor DESTDIR="${D}" install
-+	oe_runmake -C ${B}/binutils DESTDIR="${D}" install
-+	oe_runmake -C ${B}/utils DESTDIR="${D}" install
-+	oe_runmake -C ${B}/parser DESTDIR="${D}" install
-+	oe_runmake -C ${B}/profiles DESTDIR="${D}" install
-+	oe_runmake -C ${B}/changehat/mod_apparmor DESTDIR="${D}" install
-+
-+	if test -z "${PAMLIB}" ; then
-+		oe_runmake -C ${B}/changehat/pam_apparmor DESTDIR="${D}" install
-+	fi
-+
-+	install ${WORKDIR}/apparmor ${D}/${INIT_D_DIR}/apparmor
-+	install ${WORKDIR}/functions ${D}/lib/apparmor
-+}
-+
-+do_compile_ptest () {
-+        oe_runmake -C ${B}/tests/regression/apparmor
-+        oe_runmake -C ${B}/parser/tst
-+        oe_runmake -C ${B}/libraries/libapparmor
-+}
-+
-+do_install_ptest () {
-+	t=${D}/${PTEST_PATH}/testsuite
-+	install -d ${t}
-+	install -d ${t}/tests/regression/apparmor
-+	cp -rf ${B}/tests/regression/apparmor ${t}/tests/regression
-+
-+	install -d ${t}/parser/tst
-+	cp -rf ${B}/parser/tst ${t}/parser
-+	cp ${B}/parser/apparmor_parser ${t}/parser
-+	cp ${B}/parser/frob_slack_rc ${t}/parser
-+
-+	install -d ${t}/libraries/libapparmor
-+	cp -rf ${B}/libraries/libapparmor ${t}/libraries
-+
-+	install -d ${t}/common
-+	cp -rf ${B}/common ${t}
-+
-+	install -d ${t}/binutils
-+	cp -rf ${B}/binutils ${t}
-+}
-+
-+INITSCRIPT_PACKAGES = "${PN}"
-+INITSCRIPT_NAME = "apparmor"
-+INITSCRIPT_PARAMS = "start 16 2 3 4 5 . stop 35 0 1 6 ."
-+
-+SYSTEMD_PACKAGES = "${PN}"
-+SYSTEMD_SERVICE_${PN} = "apparmor.service"
-+SYSTEMD_AUTO_ENABLE = "disable"
-+
-+PACKAGES += "python-${PN} mod-${PN}"
-+
-+FILES_${PN} += "/lib/apparmor/ ${sysconfdir}/apparmor"
-+FILES_mod-${PN} = "${libdir}/apache2/modules/*"
-+FILES_python-${PN} = "${PYTHON_SITEPACKAGES_DIR}"
-+
-+RDEPENDS_${PN} += "bash lsb"
-+RDEPENDS_${PN}-ptest += "coreutils dbus-lib"
-diff --git a/recipes-security/AppArmor/files/run-ptest b/recipes-security/AppArmor/files/run-ptest
-new file mode 100644
-index 0000000..3b8e427
---- /dev/null
-+++ b/recipes-security/AppArmor/files/run-ptest
-@@ -0,0 +1,4 @@
-+#! /bin/sh
-+cd testsuite
-+
-+make -C  tests/regression/apparmor tests
--- 
-2.7.4
+This message list those recipes which need to be upgraded. If maintainers
+believe some of them needn't to upgrade at this time, they can fill
+RECIPE_NO_UPDATE_REASON in respective recipe file to ignore this remainder
+until newer upstream version was detected.
+
+Example:
+RECIPE_NO_UPDATE_REASON = "Version 2.0 is unstable"
+
+You can check the detail information at:
+
+http://recipes.yoctoproject.org/
+
+Package               Version      Upstream version      Maintainer           NoUpgradeReason
+--------------------  -----------  --------------------  -------------------  ------------------------------
+python3               3.5.2        3.6.1                 Alejandro Hernandez
+python3-native        3.5.2        3.6.1                 Alejandro Hernandez
+gobject-introspec...  1.50.0       1.52.0                Alexander Kanavin
+mobile-broadband-...  20151214     20170310              Alexander Kanavin
+webkitgtk             2.14.5       2.16.0                Alexander Kanavin
+openssl               1.0.2k       1.1.0e                Alexander Kanavin
+gdbm                  1.12         1.13                  Alexander Kanavin
+libpthread-stubs      0.3          0.4                   Alexander Kanavin
+vala                  0.34.4       0.36.0                Alexander Kanavin
+lzo                   2.09         2.10                  Alexander Kanavin
+libiconv              1.14         1.15                  Alexander Kanavin
+gnome-desktop3        3.22.2       3.24.0                Alexander Kanavin
+ed                    1.14.1       1.14.2                Alexander Kanavin
+nspr                  4.13.1       4.14                  Alexander Kanavin
+gperf                 3.0.4        3.1                   Alexander Kanavin
+libarchive            3.2.2        3.3.1                 Alexander Kanavin
+gnutls                3.5.9        3.5.10                Alexander Kanavin
+dtc                   1.4.2        1.4.4                 Alexander Kanavin
+btrfs-tools           4.9.1        4.10.2                Alexander Kanavin
+epiphany              3.22.6       3.24.0                Alexander Kanavin
+sysprof               3.22.3       3.24.0                Alexander Kanavin
+mpg123                1.23.8       1.24.0                Alexander Kanavin
+kconfig-frontends     3.12.0.0     4.7.0.0               Alexander Kanavin
+mkelfimage            4.0+gitX     4.5+gitAUTOINC+0b...  Alexander Kanavin    mkelfimage has been removed...
+qemu                  2.8.0        2.8.1                 Aníbal Limón
+libxml-namespaces...  1.11         1.12                  Aníbal Limón
+dpkg                  1.18.10      1.18.23               Aníbal Limón
+pinentry              0.9.2        1.0.0                 Armin Kuster
+libpcre2              10.22        10.23                 Armin Kuster
+linux-libc-headers    4.10         4.10.8                Bruce Ashfield
+libunwind             1.1+gitX     1.2+gitAUTOINC+cc...  Bruce Ashfield
+linux-yocto-tiny      4.10+gitX    4.10.5+gitAUTOINC...  Bruce Ashfield
+linux-yocto-rt        4.10+gitX    4.10.5+gitAUTOINC...  Bruce Ashfield
+linux-yocto           4.10+gitX    4.10.5+gitAUTOINC...  Bruce Ashfield
+pciutils              3.5.2        3.5.4                 Chen Qi
+kmod-native           23+gitX      24+gitAUTOINC+ef4...  Chen Qi
+busybox               1.25.0+gitX  1.26.2+gitAUTOINC...  Chen Qi
+dbus                  1.10.14      1.10.16               Chen Qi
+byacc                 20161202     20170201              Chen Qi
+cups                  2.2.2        2.2.3                 Chen Qi
+systemd               232          233                   Chen Qi
+util-linux            2.29.1       2.29.2                Chen Qi
+kmod                  23+gitX      24+gitAUTOINC+ef4...  Chen Qi
+dbus-test             1.10.14      1.10.16               Chen Qi
+sed                   4.2.2        4.4                   Chen Qi
+sysstat               11.5.4       11.5.5                Chen Qi
+systemd-boot          232          233                   Chen Qi
+flex                  2.6.0        2.6.3                 Chen Qi
+coreutils             8.26         8.27                  Chen Qi
+build-appliance-i...  15.0.0       16.0.1                Cristian Iorga
+openssh               7.4p1        7.5p1                 Dengke Du
+json-glib             1.2.2        1.2.8                 Dengke Du
+u-boot-fw-utils       2017.01      2017.03               Denys Dmytriyenko
+u-boot-mkimage        2017.01      2017.03               Denys Dmytriyenko
+u-boot                2017.01      2017.03               Denys Dmytriyenko
+python3-pygobject     3.22.0       3.24.0                Edwin Plauchu
+python3-setuptools    32.1.1       34.3.3                Edwin Plauchu
+python-setuptools     32.1.1       34.3.3                Edwin Plauchu
+gpgme                 1.8.0        1.9.0                 Hongxu Jia
+libgpg-error          1.26         1.27                  Hongxu Jia
+bash                  4.3.30       4.4                   Hongxu Jia
+ghostscript           9.20         9.21                  Hongxu Jia
+libnewt-python        0.52.19      0.52.20               Hongxu Jia
+man-pages             4.09         4.10                  Hongxu Jia
+libnewt               0.52.19      0.52.20               Hongxu Jia
+gnupg                 2.1.18       2.1.19                Hongxu Jia
+python-git            2.1.1        2.1.3                 Jose Lamego
+python3-git           2.1.1        2.1.3                 Jose Lamego
+pango                 1.40.3       1.40.4                Jussi Kukkonen
+libinput              1.6.1        1.7.0                 Jussi Kukkonen
+gtk-icon-utils-na...  3.22.8       3.22.11               Jussi Kukkonen
+at-spi2-core          2.22.0       2.24.0                Jussi Kukkonen
+atk                   2.22.0       2.24.0                Jussi Kukkonen
+libx11-diet           1.6.4        1.6.5                 Jussi Kukkonen
+libx11                1.6.4        1.6.5                 Jussi Kukkonen
+glib-2.0              2.50.3       2.52.0                Jussi Kukkonen
+xf86-input-libinput   0.24.0       0.25.0                Jussi Kukkonen
+gsettings-desktop...  3.22.0       3.24.0                Jussi Kukkonen
+gnome-themes-stan...  3.22.2       3.22.3                Jussi Kukkonen
+vte                   0.46.1       0.48.1                Jussi Kukkonen
+vulkan                1.0.39.1     20141209              Jussi Kukkonen
+libepoxy              1.4.0        1.4.1                 Jussi Kukkonen
+xserver-xorg          1.19.1       1.19.3                Jussi Kukkonen
+clutter-gst-3.0       3.0.22       3.0.24                Jussi Kukkonen
+gdk-pixbuf            2.36.5       2.36.6                Jussi Kukkonen
+gtk+3                 3.22.8       3.22.11               Jussi Kukkonen
+adwaita-icon-theme    3.22.0       3.24.0                Jussi Kukkonen
+libdrm                2.4.75       2.4.76                Jussi Kukkonen
+libevent              2.0.22       2.1.8                 Jussi Kukkonen
+at-spi2-atk           2.22.0       2.24.0                Jussi Kukkonen
+ruby                  2.4.0        2.4.1                 Leonardo Sandoval
+nfs-utils             1.3.4        2.1.1                 Mariano Lopez
+prelink               1.0+gitX     20151030.+gitAUTO...  Mark Hatle
+libpfm4               4.6.0        4.8.0                 Matthew McClintock
+bluez5                5.43         5.44                  Maxin B. John
+ifupdown              0.8.16       0.8.19                Maxin B. John
+ethtool               4.8          4.10                  Maxin B. John
+sqlite3               3.17.0       3.18.0                Maxin B. John
+mc                    4.8.18       4.8.19                Maxin B. John
+libpng                1.6.28       1.6.29                Maxin B. John
+harfbuzz              1.4.1        1.4.5                 Maxin B. John
+pkgconfig             0.29.1+gitX  0.29.2+gitAUTOINC...  Maxin B. John
+git                   2.11.1       2.12.2                Robert Yang
+guile                 2.0.14       2.2.0                 Robert Yang
+base-passwd           3.5.29       3.5.43                Ross Burton          Version 3.5.38 requires cde...
+lsbinitscripts        9.68         9.70                  Ross Burton
+
+Upgradable count: 104
+Upgradable total count: 106
+
+The based commit is:
+
+commit 3b7111b30dbd9a4cdd141b594164da18c15ae970
+Author: Serhii Popovych <spopovyc@cisco.com>
+Date:   Fri Mar 31 11:46:58 2017 +0000
+
+    automake: Adjust shebang lines to remove interpreter path hardcode
+    
+    If build host perl (and other tools) is old and we use some kind
+    of toolchain to provide recent perl/python/etc to the OE build
+    we still locked to use build host perl due to hardcoded shebang
+    lines in automake scripts.
+    
+    Behaviour was observed with Enterprise Linux 6 and devtoolset
+    toolchain from SCL (Software Collections) used to provide recent
+    version of perl (not provided with default buildtools-tarball).
+    
+    Pass /usr/bin/env perl in ac_cv_path_PERL configuration variables
+    for class-native and class-nativesdk. Use patch to automake to replace
+    -w option in shebang line with modern way to enable warnings on perl
+    (i.e. "use warnings").
+    
+    Also add nativesdk-autoconf to RDEPENDS to bring runtime dependencies
+    inline with other targets.
+    
+    Note that ac_cv_path_PERL must be valid perl interpreter path
+    since configure will check perl version and Flock implementation.
+    It is not possible currently to use nativeperl from native
+    sysroot because automake does not DEPENDS on perl-native (and
+    doing so fails due to circular dependencies). Only possible
+    solution is to overwrite shebangs with nativeperl somewhere at
+    do_install() and update RDEPENDS for class-native. Or add perl
+    symlinks to nativeperl in sysroot.
+    
+    For now it seems good to use perl found by /usr/bin/env from
+    automake-native.
+    
+    Cc: XE-Linux <xe-linux-external@cisco.com>
+    Signed-off-by: Serhii Popovych <spopovyc@cisco.com>
+    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+
+Any problem, please contact Anibal Limon <anibal.limon@intel.com> 
 
 
