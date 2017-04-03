@@ -1,34 +1,58 @@
-Return-Path: <romain.perier@collabora.com>
+Return-Path: <colin.helliwell@ln-systems.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2B75FE00AD0; Mon,  3 Apr 2017 00:13:57 -0700 (PDT)
+	id 207F0E00AA5; Mon,  3 Apr 2017 01:39:55 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
-	SPF_HELO_PASS,UNPARSEABLE_RELAY autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [46.235.227.227 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*      [212.227.17.10 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [212.227.17.10 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 UNPARSEABLE_RELAY Informational: message has unparseable relay
-	lines
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BBB67E00A9A
-	for <yocto@yoctoproject.org>; Mon,  3 Apr 2017 00:13:52 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-	(Authenticated sender: rperier) with ESMTPSA id D7C63260FD4
-From: Romain Perier <romain.perier@collabora.com>
-To: Qi.Chen@windriver.com
-Date: Mon,  3 Apr 2017 09:13:46 +0200
-Message-Id: <20170403071346.9980-1-romain.perier@collabora.com>
-X-Mailer: git-send-email 2.9.3
-Cc: yocto@yoctoproject.org, openembedded-core@lists.openembedded.org
-Subject: [PATCH v2] busybox: make SYSLOGD optionnal
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.10])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3B1FBE00A4C
+	for <yocto@yoctoproject.org>; Mon,  3 Apr 2017 01:39:53 -0700 (PDT)
+Received: from oxbsltgw13.schlund.de ([172.19.249.30]) by
+	mrelayeu.kundenserver.de (mreue103 [212.227.15.179]) with ESMTPSA
+	(Nemesis) id 0MHMsV-1cqKpX0Mmx-00E8Rz for <yocto@yoctoproject.org>;
+	Mon, 03 Apr 2017 10:39:52 +0200
+Date: Mon, 3 Apr 2017 09:39:51 +0100 (BST)
+From: Colin Helliwell <colin.helliwell@ln-systems.com>
+To: yocto@yoctoproject.org
+Message-ID: <342963357.375508.1491208791976@email.1and1.co.uk>
+In-Reply-To: <1490968606.11772.32.camel@collabora.co.uk>
+References: <07e901d2aa24$9e0ea470$da2bed50$@ln-systems.com>
+	<1490968606.11772.32.camel@collabora.co.uk>
+MIME-Version: 1.0
+X-Priority: 3
+Importance: Medium
+X-Mailer: Open-Xchange Mailer v7.8.1-Rev32
+X-Originating-Client: open-xchange-appsuite
+X-Provags-ID: V03:K0:RUipML7gqi6feE8lYVZv/JwP+3ViHxSluzzOFYeUs7DjcugDuO1
+	h/9yCDGdIyIDXnuQYr5knZbC+AO9clDra6AU19TpWhF04Y7dAkUlXj49V6G6DzXXoftflYG
+	3yOVSQ7bGObAb0q4QgrJq7K45hiv3uwhwgYC5b1OXZGcFWCxRnPcOg16zIMKwAIZ1IhKsja
+	ofgeEuk93EGYTYVRtyrTg==
+X-UI-Out-Filterresults: notjunk:1;V01:K0:I7RNNRqXF88=:QSdCdl/4Lf2ZzrDWyriyW7
+	JpsF35eSaVgGRlP/gIBS7N3nIQup+9tie8ocJkXLWPaNdFzQDle2cNH3F1XHYe6VT5Ryf8U9u
+	wzcYIWoBR21IRPz0hO29iaBEqX7LGXe19WePzIERzlKJFQz8LzhPTasG/PttAeYZhUzMDJYtb
+	zW3obw4QEmAS+cF5ncBXOP0zNuMqwGcV37VUIU0HoZ5Y86iVmuJvuGdGZd5bV6Cnkl+pS3whI
+	QvP6t91BOEOjRH48hM3DSaVa0JnN0SE9FabWx9i9wGg+RFVWfAtODbXxErpc14OmGPwuZpjOq
+	hgPZSOX3fY8V2lEq7YSWL2bbAuEqmNDK51kHWWKaGI3QKtWUrumktn1nh7/HpfDjBn8kMaBfU
+	VKG24ho3UbPbKnFRc6FlSu2SmosMKs1RfQE5dphZR9n/se3c3EY3UP1Q6cw0FRtHw7kcDAM8Z
+	6ekDiYhnGpWrYNd6jeh8aj86yUEZUWsAUpWHe+K+eL28ABJM0mKNw8+Umq+udoHAQxeFMrzQc
+	BEsnNhSCYkFHmteipl+naMopYd3kYnO0E0ypxbNKOZz6BDO5yL1XmHjalR6yGeoKNkbyHLVLY
+	LFCEkmd5e1djanF4isv3VBuj9qXSdSPUJw5cOb81tUQC1vZtu7T9Iq7k7P9E/2Wol4lBhrU8h
+	GG5qfKz+11qrt00/YJzE1sr7FVn0C2ZArNtmmQOwJOJo/RZqjNrqwAN3jtqDsXDbVAw6vDfvY
+	lMCj0pKYXREM1SZN
+Subject: Re: Missing dependencies on driver header
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: Colin Helliwell <colin.helliwell@ln-systems.com>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -37,127 +61,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 03 Apr 2017 07:13:57 -0000
+X-List-Received-Date: Mon, 03 Apr 2017 08:39:55 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Some distros might choose another syslogd provider like rsyslogd.
-update-alternative will update the link from syslogd to the right
-provider. However the syslogd feature is still present and enabled
-in busybox.
 
-This commit adds a new configuration fragment to make syslogd
-optionnal in busybox.
+> On 31 March 2017 at 14:56 Fabien Lahoudere <fabien.lahoudere@collabora.co.uk> wrote:
+> 
+> On Fri, 2017-03-31 at 14:42 +0100, colin.helliwell@ln-systems.com wrote:
+> 
+> > I have a niggly problem I keep running into, especially with fresh image
+> > builds.
+> > I have a custom driver, and a user-space library for controlling it;
+> > therefore the library includes one of the driver's header files (IOCTL defs
+> > etc).
+> > However I can't get the dependencies correct in the library recipe so as to
+> > get the driver's header installed and available to the library build step.
+> > In other words 'bitbake MyDriverLib' gives a "MyDriver.h: no such file or
+> > directory "
+> > The lib's recipe includes
+> >  inherit autotools lib_package binconfig-disabled pkgconfig
+> >  DEPENDS_${PN} = "MyDriver"
+> 
+> Usually I use "DEPENDS" and not "DEPENDS_${PN}".
+> 
 
-Signed-off-by: Romain Perier <romain.perier@collabora.com>
----
 
-Changes in v2:
-- Rebased onto master branch (thanks to patchwork)
+Ah, thanks - That seems to have fixed it!
 
- meta/recipes-core/busybox/busybox.inc        |  6 +++---
- meta/recipes-core/busybox/busybox/defconfig  | 20 +++++++++-----------
- meta/recipes-core/busybox/busybox/syslog.cfg | 11 +++++++++++
- meta/recipes-core/busybox/busybox_1.24.1.bb  |  1 +
- meta/recipes-core/busybox/busybox_git.bb     |  1 +
- 5 files changed, 25 insertions(+), 14 deletions(-)
- create mode 100644 meta/recipes-core/busybox/busybox/syslog.cfg
 
-diff --git a/meta/recipes-core/busybox/busybox.inc b/meta/recipes-core/busybox/busybox.inc
-index 6246c95..4c5c98a 100644
---- a/meta/recipes-core/busybox/busybox.inc
-+++ b/meta/recipes-core/busybox/busybox.inc
-@@ -40,7 +40,7 @@ INITSCRIPT_NAME_${PN}-syslog = "syslog"
- INITSCRIPT_NAME_${PN}-udhcpd = "busybox-udhcpd"
- 
- SYSTEMD_PACKAGES = "${PN}-syslog"
--SYSTEMD_SERVICE_${PN}-syslog = "busybox-syslog.service"
-+SYSTEMD_SERVICE_${PN}-syslog = "${@bb.utils.contains('SRC_URI', 'file://syslog.cfg', 'busybox-syslog.service', '', d)}"
- 
- CONFFILES_${PN}-syslog = "${sysconfdir}/syslog-startup.conf.${BPN}"
- CONFFILES_${PN}-mdev = "${sysconfdir}/mdev.conf"
-@@ -330,8 +330,8 @@ inherit update-alternatives
- 
- ALTERNATIVE_PRIORITY = "50"
- 
--ALTERNATIVE_${PN}-syslog += "syslog-conf"
--ALTERNATIVE_LINK_NAME[syslog-conf] = "${sysconfdir}/syslog.conf"
-+ALTERNATIVE_${PN}-syslog += "${@bb.utils.contains('SRC_URI', 'file://syslog.cfg', 'syslog-conf', '', d)}"
-+ALTERNATIVE_LINK_NAME[syslog-conf] = "${@bb.utils.contains('SRC_URI', 'file://syslog.cfg', "${sysconfdir}/syslog.conf", '', d)}"
- 
- python () {
-     if bb.utils.contains('DISTRO_FEATURES', 'sysvinit', True, False, d):
-diff --git a/meta/recipes-core/busybox/busybox/defconfig b/meta/recipes-core/busybox/busybox/defconfig
-index f649738..75bf146 100644
---- a/meta/recipes-core/busybox/busybox/defconfig
-+++ b/meta/recipes-core/busybox/busybox/defconfig
-@@ -1053,17 +1053,15 @@ CONFIG_FEATURE_SH_HISTFILESIZE=y
- #
- # System Logging Utilities
- #
--CONFIG_SYSLOGD=y
--CONFIG_FEATURE_ROTATE_LOGFILE=y
--CONFIG_FEATURE_REMOTE_LOG=y
--CONFIG_FEATURE_SYSLOGD_DUP=y
--CONFIG_FEATURE_SYSLOGD_CFG=y
--CONFIG_FEATURE_SYSLOGD_READ_BUFFER_SIZE=256
--CONFIG_FEATURE_IPC_SYSLOG=y
--CONFIG_FEATURE_IPC_SYSLOG_BUFFER_SIZE=64
--CONFIG_LOGREAD=y
--CONFIG_FEATURE_LOGREAD_REDUCED_LOCKING=y
--CONFIG_FEATURE_KMSG_SYSLOG=y
-+# CONFIG_SYSLOGD is not set
-+# CONFIG_FEATURE_ROTATE_LOGFILE is not set
-+# CONFIG_FEATURE_REMOTE_LOG is not set
-+# CONFIG_FEATURE_SYSLOGD_DUP is not set
-+# CONFIG_FEATURE_SYSLOGD_CFG is not set
-+# CONFIG_FEATURE_IPC_SYSLOG is not set
-+# CONFIG_LOGREAD is not set
-+# CONFIG_FEATURE_LOGREAD_REDUCED_LOCKING is not set
-+# CONFIG_FEATURE_KMSG_SYSLOG is not set
- CONFIG_KLOGD=y
- 
- #
-diff --git a/meta/recipes-core/busybox/busybox/syslog.cfg b/meta/recipes-core/busybox/busybox/syslog.cfg
-new file mode 100644
-index 0000000..e2425ed
---- /dev/null
-+++ b/meta/recipes-core/busybox/busybox/syslog.cfg
-@@ -0,0 +1,11 @@
-+CONFIG_SYSLOGD=y
-+CONFIG_FEATURE_ROTATE_LOGFILE=y
-+CONFIG_FEATURE_REMOTE_LOG=y
-+CONFIG_FEATURE_SYSLOGD_DUP=y
-+CONFIG_FEATURE_SYSLOGD_CFG=y
-+CONFIG_FEATURE_SYSLOGD_READ_BUFFER_SIZE=256
-+CONFIG_FEATURE_IPC_SYSLOG=y
-+CONFIG_FEATURE_IPC_SYSLOG_BUFFER_SIZE=64
-+CONFIG_LOGREAD=y
-+CONFIG_FEATURE_LOGREAD_REDUCED_LOCKING=y
-+CONFIG_FEATURE_KMSG_SYSLOG=y
-diff --git a/meta/recipes-core/busybox/busybox_1.24.1.bb b/meta/recipes-core/busybox/busybox_1.24.1.bb
-index 41fc641..2e3a041 100644
---- a/meta/recipes-core/busybox/busybox_1.24.1.bb
-+++ b/meta/recipes-core/busybox/busybox_1.24.1.bb
-@@ -40,6 +40,7 @@ SRC_URI = "http://www.busybox.net/downloads/busybox-${PV}.tar.bz2;name=tarball \
-            file://resize.cfg \
-            ${@["", "file://init.cfg"][(d.getVar('VIRTUAL-RUNTIME_init_manager') == 'busybox')]} \
-            ${@["", "file://mdev.cfg"][(d.getVar('VIRTUAL-RUNTIME_dev_manager') == 'busybox-mdev')]} \
-+           file://syslog.cfg \
-            file://inittab \
-            file://rcS \
-            file://rcK \
-diff --git a/meta/recipes-core/busybox/busybox_git.bb b/meta/recipes-core/busybox/busybox_git.bb
-index c2ee3e6..50c4c9d 100644
---- a/meta/recipes-core/busybox/busybox_git.bb
-+++ b/meta/recipes-core/busybox/busybox_git.bb
-@@ -42,6 +42,7 @@ SRC_URI = "git://busybox.net/busybox.git \
-            file://resize.cfg \
-            ${@["", "file://init.cfg"][(d.getVar('VIRTUAL-RUNTIME_init_manager') == 'busybox')]} \
-            ${@["", "file://mdev.cfg"][(d.getVar('VIRTUAL-RUNTIME_dev_manager') == 'busybox-mdev')]} \
-+           file://syslog.cfg \
-            file://inittab \
-            file://rcS \
-            file://rcK \
--- 
-2.9.3
-
+> Else does your kernel module recipe populate sysroot with the header?
+> 
+> > RDEPENDS_${PN} = "MyDriver"
+> > 
+> > At 'some point later', the lib *will* build ok: I've done each MyDriver
+> > step one by one, and it seems that once the 'install' has been done then
+> > MyDriverLib will then compile. ('-c compile MyDriver' isn't sufficient). But
+> > shouldn't the RDEPENDS above trigger the MyDriver install?
+> > I'm obviously missing a dependency hook somewhere?
+> > 
+> > --
+> > 
+> > _______________________________________________
+> > yocto mailing list
+> > yocto@yoctoproject.org
+> > https://lists.yoctoproject.org/listinfo/yocto
 
