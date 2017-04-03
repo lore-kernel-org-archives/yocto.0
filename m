@@ -1,58 +1,42 @@
-Return-Path: <matthew_stanger@trimble.com>
+Return-Path: <jose.a.lamego@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9D752E00B67; Mon,  3 Apr 2017 12:16:42 -0700 (PDT)
+	id 7F732E00B8D; Mon,  3 Apr 2017 12:31:45 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.220.169 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.220.169 listed in dnsbl.sorbs.net]
+X-Spam-Status: No, score=-6.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	RCVD_IN_DNSWL_HI,T_DKIM_INVALID autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.88 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qk0-f169.google.com (mail-qk0-f169.google.com
-	[209.85.220.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8088CE00B62
-	for <yocto@yoctoproject.org>; Mon,  3 Apr 2017 12:16:39 -0700 (PDT)
-Received: by mail-qk0-f169.google.com with SMTP id g195so51387594qke.2
-	for <yocto@yoctoproject.org>; Mon, 03 Apr 2017 12:16:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=trimble-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=8HXonvRSTRzqELkNzLUDf5VaBw+WP7IJRooWx4wjNcY=;
-	b=MLzpdQSW/eBbqSTlgYJQ7QLs6xU69RVo/mW8x+X1P2MsyBlrQCjX0sA8nPLP8HE9Zq
-	NwJbU2RZiNl94GC/G04310pLeNI4mSAz2Le+pObo9N45AaCcAH2ZCd8ZQIIf3PetkPjS
-	OXCahwfZ8378fBpLufui13tbZP1WIDu90Z8wMIsV0cSgZq34y50O5UKrYTgIOoKWhmWB
-	rjBGIOC3JEQtPzEirxxdY5ErC/6J6Bqa4cEkF8abCNew6DXZbG662BCduDj9fkVQvdTC
-	TxckKjUdiVEZTy/Js1fpJwVlepYSHK1NiVXarr9Sy2fOqP6TrHhTm/kugjXiEdRQOW17
-	Yttg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=8HXonvRSTRzqELkNzLUDf5VaBw+WP7IJRooWx4wjNcY=;
-	b=G0GKOMF1llnAlQXXw1IZLdZVEVrET2yeaE2fFSXZeh/J3lLQvNlkf0oCD8GiPR7PnP
-	CRf6TDAL8PbpmmEkaHbYz9hhgAzQNNinV641R+vohryYbbEIwaLIdhrHm+k7maryjrDw
-	jC506FeDg0SSRHUpm63ZTs97Wj0NM71ecmL+7uO8ZV/108J3dYP93JkLyb569BA10tJI
-	oo5ODjNunwieH2VUsNRyudurBR4gEpSARuXPdNjkqhLghctfijVGokSKH2IP0zjI5bni
-	UAxXeuOJnP+Mqf6iNtXs9EHLx851DzZgRKrlUG7N7dO190zULC1teIhdoulr8/tO7uSw
-	wJJg==
-X-Gm-Message-State: AFeK/H2Vkk+5ETjrUMtCrCZ7SWErOeHGFBbjROW+fIXUxG5o0qCa9AXnvAfG/6vRTkoT3hl/dox7s4nr5h2qVReN
-X-Received: by 10.55.167.72 with SMTP id q69mr19011569qke.320.1491246998377;
-	Mon, 03 Apr 2017 12:16:38 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.237.44.196 with HTTP; Mon, 3 Apr 2017 12:16:38 -0700 (PDT)
-From: Matthew Stanger <matthew_stanger@trimble.com>
-Date: Mon, 3 Apr 2017 13:16:38 -0600
-Message-ID: <CANr77M2QfB-3CtwnscF+epvmyhS74D6dje2gnDG_wy+3SpOD9Q@mail.gmail.com>
+	*  0.0 T_DKIM_INVALID DKIM-Signature header exists but is not valid
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F13C8E00B87
+	for <yocto@yoctoproject.org>; Mon,  3 Apr 2017 12:31:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+	d=intel.com; i=@intel.com; q=dns/txt; s=intel;
+	t=1491247904; x=1522783904;
+	h=from:to:cc:subject:date:message-id;
+	bh=nPMtMsDaZGCMF2fOp1GFDrTT1283HJESBLU8YrRPRfI=;
+	b=vcS6ozLHX9WBVgrbtRZDiQii2ECcTCiCWugmIDRoddkedRlwzCGzmdh0
+	k9NGpWr10e1iHQCPMTB4bHtJhDjjvQ==;
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+	by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	03 Apr 2017 12:31:43 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.36,271,1486454400"; d="scan'208";a="84185662"
+Received: from jalamego-mobl2.zpn.intel.com ([10.219.128.121])
+	by fmsmga006.fm.intel.com with ESMTP; 03 Apr 2017 12:31:43 -0700
+From: Jose Lamego <jose.a.lamego@linux.intel.com>
 To: yocto@yoctoproject.org
-Subject: Still? Bug in cooker - networked PR_SERV
+Date: Mon,  3 Apr 2017 14:31:29 -0500
+Message-Id: <1491247889-13977-1-git-send-email-jose.a.lamego@linux.intel.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [layerindex-web][PATCH] views: support querying by layer name
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -64,35 +48,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 03 Apr 2017 19:16:42 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Mon, 03 Apr 2017 19:31:45 -0000
 
-Hi,
+This change supports querying recipes that belong to a specific layer
+by using the prefix "layer:" + the desired layer name, for example:
+"layer: openembedded-core" and this string can be used by itself or
+combined with other supported options.
 
-I'm seeing the exact same bug as outlined here. It only happens when
-the build server is unreachable:
-http://lists.openembedded.org/pipermail/bitbake-devel/2015-April/005696.html
+[YOCTO #6618]
 
-It crashes with the exact same error (self.state = 6) and bitbake
-continues running in the background at 100% until you kill -9 it. Not
-sure if this is still a bug but it's quite inconvenient to our CI
-build system as if by chance the build server is unreachable it
-requires the builder to have to be manually cleaned up. If it's not
-being tracked currently & is still an issue I'd be glad to attempt a
-patch if someone can point me in the correct direction getting
-started. My setup info:
+Signed-off-by: Jose Lamego <jose.a.lamego@linux.intel.com>
+---
+ layerindex/views.py | 13 ++++++++++++-
+ 1 file changed, 12 insertions(+), 1 deletion(-)
 
-Build Configuration:
-BB_VERSION        = "1.24.0"
-BUILD_SYS         = "x86_64-linux"
-NATIVELSBSTRING   = "LinuxMint-17.3"
-TARGET_SYS        = "arm-poky-linux-gnueabi"
-MACHINE           = "renew"
-DISTRO            = "poky"
-DISTRO_VERSION    = "1.7.1"
-TUNE_FEATURES     = "arm armv5 thumb dsp arm926ejs"
-TARGET_FPU        = "soft"
+diff --git a/layerindex/views.py b/layerindex/views.py
+index 65a536a..5b66892 100644
+--- a/layerindex/views.py
++++ b/layerindex/views.py
+@@ -383,13 +383,16 @@ class RecipeSearchView(ListView):
+         query_string = self.request.GET.get('q', '')
+         init_qs = Recipe.objects.filter(layerbranch__branch__name=self.kwargs['branch'])
+ 
+-        # Support slightly crude search on inherits field
++        # Support slightly crude search on inherits/layer fields
+         query_items = query_string.split()
+         inherits = []
++        layers = []
+         query_terms = []
+         for item in query_items:
+             if item.startswith('inherits:'):
+                 inherits.append(item.split(':')[1])
++            elif item.startswith('layer:'):
++                layers.append(item.split(':')[1])
+             else:
+                 query_terms.append(item)
+         if inherits:
+@@ -397,6 +400,14 @@ class RecipeSearchView(ListView):
+             for inherit in inherits:
+                 init_qs = init_qs.filter(Q(inherits=inherit) | Q(inherits__startswith=inherit + ' ') | Q(inherits__endswith=' ' + inherit) | Q(inherits__contains=' %s ' % inherit))
+             query_string = ' '.join(query_terms)
++        if layers:
++            for layer in layers:
++                init_qs = init_qs.filter(
++                    Q(layerbranch__layer__name=layer) |
++                    Q(layerbranch__layer__name__startswith=layer + ' ') |
++                    Q(layerbranch__layer__name__endswith=' ' + layer) |
++                    Q(layerbranch__layer__name__contains=' %s ' % layer))
++            query_string = ' '.join(query_terms)
+ 
+         if query_string.strip():
+             order_by = ('pn', 'layerbranch__layer')
+-- 
+2.7.4
 
-Cheers,
-Matt
 
