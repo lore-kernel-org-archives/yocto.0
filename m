@@ -1,17 +1,19 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <gizero@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 65E05E00B47; Tue,  4 Apr 2017 05:51:12 -0700 (PDT)
+	id A5AE1E00B23; Tue,  4 Apr 2017 07:19:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (akuster808[at]gmail.com)
+	mail provider *      (gizero[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [74.125.83.41 listed in list.dnswl.org]
+	*      [209.85.128.193 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.128.193 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,46 +21,46 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pg0-f41.google.com (mail-pg0-f41.google.com [74.125.83.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EC575E00B43
-	for <yocto@yoctoproject.org>; Tue,  4 Apr 2017 05:51:09 -0700 (PDT)
-Received: by mail-pg0-f41.google.com with SMTP id 81so151738339pgh.2
-	for <yocto@yoctoproject.org>; Tue, 04 Apr 2017 05:51:09 -0700 (PDT)
+Received: from mail-wr0-f193.google.com (mail-wr0-f193.google.com
+	[209.85.128.193])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 24047E00AF4
+	for <yocto@yoctoproject.org>; Tue,  4 Apr 2017 07:19:30 -0700 (PDT)
+Received: by mail-wr0-f193.google.com with SMTP id k6so41157817wre.3
+	for <yocto@yoctoproject.org>; Tue, 04 Apr 2017 07:19:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:subject:date:message-id;
-	bh=Evv5cIrNY/m9SNF8Pdlahgs1qjm7bep7mAs5MXE1EBI=;
-	b=rdiIrWC33DO687JSPQzUvO0BzjxyZOMbs6Sp9Gog3wKM2he/2cDRX7uDd2fFZ4RELr
-	RMiH9YNm/J4UIjQy42qdPEdrN1qZk1oKdNkF7dGzi1KkV9JDQ1ZKPJdgeIYth+02U851
-	nYT16WEIfamZ0V5z+Df2wIUmeC6c/zvz4lBKTYtS0TLhd8wIH5i7NEdJen9XLL0cKtKM
-	6Rs94jC8NTT3fZkz6aKBtKL4TA8brxgkn79iAqd3hUz0wb6qoh9HYI/dUZQoHvE3C0bE
-	wx/39nqPEyux+icBSkFxe7Tj9o+OT6BIaRsoBiJkc7CrSkbsYnpyWqokA5Nm6iZu5IMd
-	PjKw==
+	h=from:to:cc:subject:date:message-id;
+	bh=N2knGyEu2hiEdTnLAAo8ewAKm8PNnh6gzXiKzHMha58=;
+	b=Tx/SfsgSWI1Wl9gW2HLjD7SYDvIwNSSEUV8YlpRqHXSpT5/EFk5g69AfLtmUa5L44e
+	rfc7TLohDfwjg0whtm39IEj4Sz+CHmuLyhA1ff0ZcDSo2Ym0LpsafTTlQRIvT7qheO14
+	KWGQl2kAF1/2OFQKyT1ZvM+pYN676Un/G9mamKUuIQO5hiPvRLHArGwR/FxJATz56j7n
+	qOCI0xKfXBiRBbU82PoVOoKiusL3VrqiV3nV2oqozYrj9RMhWcMBigkrzej4Vbiv3XEp
+	LtPJN24KDojBJ8ZZsB8Uoo3+QuGWLgWbKdkzVVbPtGhOM3G2Svr1B2yyf1AvQFw1n7Oi
+	+VIQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:subject:date:message-id;
-	bh=Evv5cIrNY/m9SNF8Pdlahgs1qjm7bep7mAs5MXE1EBI=;
-	b=YMX9eCxybd+E8faaZGhOAAHPHJwEed/Kqs+T/B8KKajkj6f6jyS/ETJMFy0WUPMVgb
-	Bs+Biyt7uteptAqbdnI0IGhEHeN5HmB24EsLWTb8ua3CRmY3G+p8+BAUKA8p3GgAUe8d
-	xyoM9B9tFSFuHkcvAv+2B13dmz3rJyG80j3vf7TLXUk979G16PhL4xfK9m2tAtDPaO1x
-	2KH+TQ1ybj32lmWu5FaT2sg2yC3j718DEZv++gETFwsVP1kIqPIbGXSR43LZqywVsMSF
-	GWTP8S+jxy6cYx+PYEh+oUdCYkdBolA8Andfo+GJpD292WQu7ldgDQieIoFQu+MMymM8
-	YJXg==
-X-Gm-Message-State: AFeK/H27JZgPhLKj39IFrP/lY6Y95C3phcGz7NgEPg+kzcVsLt+KwgXX3cngqUzQPWVOtg==
-X-Received: by 10.99.175.7 with SMTP id w7mr23500989pge.170.1491310269079;
-	Tue, 04 Apr 2017 05:51:09 -0700 (PDT)
-Received: from akuster-ThinkPad-X240.mvista.com
-	([2601:202:4001:9ea0:e3df:bf0a:9f90:498e])
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=N2knGyEu2hiEdTnLAAo8ewAKm8PNnh6gzXiKzHMha58=;
+	b=de0nbNtNQ4hHvZMxIhrUrZPqLhkqFHpmKkP2Y9ez+T6S6mw5HgoVVF8SKLJ8czV+S7
+	aQ+2aAhFxV4ATlC7v44hdROTM1X444rFLwyshl0CBoY+bOCFepM8sXABL2zk/qD7Za71
+	i97ehISQjiOFH2EPPFJzxKQogwCN/oMU0NjyqfflfDcIIvpXz5Oo5bMWeMkDjV/3llai
+	db2V9Ljs3bsfTNTm+KtFymuhgwYtxmLuLr/W5/dLohXWUpESEJNyxONAw8X3bMMMarX3
+	TI/gFsDAvAONejsC50Jst/jl6QHnQ62aKp64eoDhzax17ioCm/yXXQutcRXtWO92OuJP
+	4Mqg==
+X-Gm-Message-State: AFeK/H33yQNnbRAkvkbORu/mm368FNkm0brXZa10HWcYRdCS+RAqD+S4/XbzPqf8WJiCHQ==
+X-Received: by 10.223.162.198 with SMTP id t6mr21889380wra.155.1491315569952; 
+	Tue, 04 Apr 2017 07:19:29 -0700 (PDT)
+Received: from gizero-desktop.tw.it
+	(host168-65-static.12-87-b.business.telecomitalia.it. [87.12.65.168])
 	by smtp.gmail.com with ESMTPSA id
-	y7sm31843552pfk.93.2017.04.04.05.51.07
+	t68sm22559009wrc.55.2017.04.04.07.19.29
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Tue, 04 Apr 2017 05:51:08 -0700 (PDT)
-From: Armin Kuster <akuster808@gmail.com>
-To: akuster@mvista.com,
-	yocto@yoctoproject.org
-Date: Tue,  4 Apr 2017 05:51:07 -0700
-Message-Id: <1491310267-11938-1-git-send-email-akuster808@gmail.com>
+	Tue, 04 Apr 2017 07:19:29 -0700 (PDT)
+From: Andrea Galbusera <gizero@gmail.com>
+To: yocto@yoctoproject.org
+Date: Tue,  4 Apr 2017 16:18:03 +0200
+Message-Id: <1491315483-24345-1-git-send-email-gizero@gmail.com>
 X-Mailer: git-send-email 2.7.4
-Subject: [meta-security][V2][PATCH] apparmor: update to 2.11.0 plus ptest
+Subject: [meta-raspberrypi][PATCH] rpi-config: fix invalid shell variable name
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,287 +72,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Apr 2017 12:51:12 -0000
+X-List-Received-Date: Tue, 04 Apr 2017 14:19:32 -0000
 
-update to 2.11
-Add basic ptest support
+Commit da32aac introduced an invalid shell variable name in do_deploy():
+according to bash manpage variable names cannot contain dots. Replace
+dot with underscore to fix it.
 
-v2: remove none existent file
-
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
+Signed-off-by: Andrea Galbusera <gizero@gmail.com>
 ---
- recipes-security/AppArmor/apparmor_2.10.95.bb | 116 ------------------------
- recipes-security/AppArmor/apparmor_2.11.0.bb  | 126 ++++++++++++++++++++++++++
- recipes-security/AppArmor/files/run-ptest     |   4 +
- 3 files changed, 130 insertions(+), 116 deletions(-)
- delete mode 100644 recipes-security/AppArmor/apparmor_2.10.95.bb
- create mode 100644 recipes-security/AppArmor/apparmor_2.11.0.bb
- create mode 100644 recipes-security/AppArmor/files/run-ptest
+ recipes-bsp/bootfiles/rpi-config_git.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/recipes-security/AppArmor/apparmor_2.10.95.bb b/recipes-security/AppArmor/apparmor_2.10.95.bb
-deleted file mode 100644
-index de09e29..0000000
---- a/recipes-security/AppArmor/apparmor_2.10.95.bb
-+++ /dev/null
-@@ -1,116 +0,0 @@
--SUMMARY = "AppArmor another MAC control system"
--DESCRIPTION = "user-space parser utility for AppArmor \
-- This provides the system initialization scripts needed to use the \
-- AppArmor Mandatory Access Control system, including the AppArmor Parser \
-- which is required to convert AppArmor text profiles into machine-readable \
-- policies that are loaded into the kernel for use with the AppArmor Linux \
-- Security Module."
--HOMEAPAGE = "http://apparmor.net/"
--SECTION = "admin"
--
--LICENSE = "GPLv2 & GPLv2+ & BSD-3-Clause & LGPLv2.1+"
--LIC_FILES_CHKSUM = "file://${S}/LICENSE;md5=fd57a4b0bc782d7b80fd431f10bbf9d0"
--
--DEPENDS = "bison-native apr apache2"
--
--SRC_URI = " \
--	http://archive.ubuntu.com/ubuntu/pool/main/a/${BPN}/${BPN}_${PV}.orig.tar.gz \
--	file://disable_pdf.patch \
--	file://apparmor.rc \
--	file://functions \
--	file://apparmor \
--	file://apparmor.service \
--	"
--
--SRC_URI[md5sum] = "71a13b9d6ae0bca4f5375984df1a51e7"
--SRC_URI[sha256sum] = "3f659a599718f4a5e2a33140916715f574a5cb3634a6b9ed6d29f7b0617e4d1a"
--
--PARALLEL_MAKE = ""
--
--inherit pkgconfig autotools-brokensep update-rc.d python-dir ${@bb.utils.contains('VIRTUAL-RUNTIME_init_manager','systemd','systemd','', d)}
--
--S = "${WORKDIR}/apparmor-${PV}"
--
--PACKAGECONFIG ?="man"
--PACKAGECONFIG[man] = "--enable-man-pages, --disable-man-pages"
--
--PAMLIB="${@bb.utils.contains('DISTRO_FEATURES', 'pam', '1', '0', d)}"
--
--do_configure() {
--	cd ${S}/libraries/libapparmor
--	autoconf --force
--	libtoolize --automake -c
--	automake -ac
--	./configure ${CONFIGUREOPTS} ${EXTRA_OECONF}
--	sed -i -e 's#^YACC.*#YACC := bison#' ${S}/parser/Makefile
--	sed -i -e 's#^LEX.*#LEX := flex#' ${S}/parser/Makefile
--}
--
--do_compile () {
--	cd ${S}/libraries/libapparmor
--	oe_runmake
--        cd ${S}/binutils
--        oe_runmake
--        cd ${S}/utils
--        oe_runmake
--	cd ${S}/parser
--        oe_runmake
--	cd ${S}/profiles
--        oe_runmake
--
-- 	cd ${S}/changehat/mod_apparmor
--        oe_runmake
--
--	if test -z "${PAMLIB}" ; then
--		cd ${S}/changehat/pam_apparmor
--        	oe_runmake
--	fi
--}
--
--do_install () {
--	install -d ${D}/${INIT_D_DIR}
--	install -d ${D}/lib/apparmor
--		
--	cd ${S}/libraries/libapparmor
--	oe_runmake DESTDIR="${D}" install
--
--        cd ${S}/binutils
--	oe_runmake DESTDIR="${D}" install
--
--        cd ${S}/utils
--	oe_runmake DESTDIR="${D}" install
--
--	cd ${S}/parser
--	oe_runmake DESTDIR="${D}" install
--
--	cd ${S}/profiles
--	oe_runmake DESTDIR="${D}" install
--
-- 	cd ${S}/changehat/mod_apparmor
--	oe_runmake DESTDIR="${D}" install
--
--	if test -z "${PAMLIB}" ; then
--		cd ${S}/changehat/pam_apparmor
--		oe_runmake DESTDIR="${D}" install
--	fi
--
--	install ${WORKDIR}/apparmor ${D}/${INIT_D_DIR}/apparmor
--
--	install ${WORKDIR}/functions ${D}/lib/apparmor
--}
--
--INITSCRIPT_PACKAGES = "${PN}"
--INITSCRIPT_NAME = "apparmor"
--INITSCRIPT_PARAMS = "start 16 2 3 4 5 . stop 35 0 1 6 ."
--
--SYSTEMD_PACKAGES = "${PN}"
--SYSTEMD_SERVICE_${PN} = "apparmor.service"
--SYSTEMD_AUTO_ENABLE = "disable"
--
--PACKAGES += "python-${PN} mod-${PN}"
--
--FILES_${PN} += "/lib/apparmor/ ${sysconfdir}/apparmor"
--FILES_mod-${PN} = "${libdir}/apache2/modules/*"
--FILES_python-${PN} = "${PYTHON_SITEPACKAGES_DIR}"
--
--RDEPENDS_${PN} += "bash perl"
-diff --git a/recipes-security/AppArmor/apparmor_2.11.0.bb b/recipes-security/AppArmor/apparmor_2.11.0.bb
-new file mode 100644
-index 0000000..8ad2d25
---- /dev/null
-+++ b/recipes-security/AppArmor/apparmor_2.11.0.bb
-@@ -0,0 +1,126 @@
-+SUMMARY = "AppArmor another MAC control system"
-+DESCRIPTION = "user-space parser utility for AppArmor \
-+ This provides the system initialization scripts needed to use the \
-+ AppArmor Mandatory Access Control system, including the AppArmor Parser \
-+ which is required to convert AppArmor text profiles into machine-readable \
-+ policies that are loaded into the kernel for use with the AppArmor Linux \
-+ Security Module."
-+HOMEAPAGE = "http://apparmor.net/"
-+SECTION = "admin"
-+
-+LICENSE = "GPLv2 & GPLv2+ & BSD-3-Clause & LGPLv2.1+"
-+LIC_FILES_CHKSUM = "file://${S}/LICENSE;md5=fd57a4b0bc782d7b80fd431f10bbf9d0"
-+
-+DEPENDS = "bison-native apr apache2 gettext-native coreutils-native"
-+
-+SRC_URI = " \
-+	http://archive.ubuntu.com/ubuntu/pool/main/a/${BPN}/${BPN}_${PV}.orig.tar.gz \
-+	file://apparmor.rc \
-+	file://functions \
-+	file://apparmor \
-+	file://apparmor.service \
-+        file://run-ptest \
-+	"
-+
-+SRC_URI[md5sum] = "899fd834dc5c8ebf2d52b97e4a174af7"
-+SRC_URI[sha256sum] = "b1c489ea11e7771b8e6b181532cafbf9ebe6603e3cb00e2558f21b7a5bdd739a"
-+
-+PARALLEL_MAKE = ""
-+
-+inherit pkgconfig autotools-brokensep update-rc.d python3-dir perlnative ptest
-+inherit ${@bb.utils.contains('VIRTUAL-RUNTIME_init_manager','systemd','systemd','', d)}
-+
-+S = "${WORKDIR}/apparmor-${PV}"
-+
-+PACKAGECONFIG ?="man"
-+PACKAGECONFIG[man] = "--enable-man-pages, --disable-man-pages"
-+PACKAGECONFIG[python3] = "--with-python, --without-python, python3 swig-native"
-+PACKAGECONFIG[perl] = "--with-perl, --without-perl, perl perl-native"
-+
-+PAMLIB="${@bb.utils.contains('DISTRO_FEATURES', 'pam', '1', '0', d)}"
-+
-+do_configure() {
-+	cd ${S}/libraries/libapparmor
-+	autoconf --force
-+	libtoolize --automake -c
-+	automake -ac
-+	./configure ${CONFIGUREOPTS} ${EXTRA_OECONF}
-+	sed -i -e 's#^YACC.*#YACC := bison#' ${S}/parser/Makefile
-+	sed -i -e 's#^LEX.*#LEX := flex#' ${S}/parser/Makefile
-+}
-+
-+do_compile () {
-+	oe_runmake -C ${B}/libraries/libapparmor
-+        oe_runmake -C ${B}/binutils
-+        oe_runmake -C ${B}/utils
-+        oe_runmake -C ${B}/parser
-+        oe_runmake -C ${B}/profiles
-+        oe_runmake -C ${B}/changehat/mod_apparmor
-+
-+	if test -z "${PAMLIB}" ; then
-+        	oe_runmake -C ${B}/changehat/pam_apparmor
-+	fi
-+}
-+
-+do_install () {
-+	install -d ${D}/${INIT_D_DIR}
-+	install -d ${D}/lib/apparmor
-+		
-+	oe_runmake -C ${B}/libraries/libapparmor DESTDIR="${D}" install
-+	oe_runmake -C ${B}/binutils DESTDIR="${D}" install
-+	oe_runmake -C ${B}/utils DESTDIR="${D}" install
-+	oe_runmake -C ${B}/parser DESTDIR="${D}" install
-+	oe_runmake -C ${B}/profiles DESTDIR="${D}" install
-+	oe_runmake -C ${B}/changehat/mod_apparmor DESTDIR="${D}" install
-+
-+	if test -z "${PAMLIB}" ; then
-+		oe_runmake -C ${B}/changehat/pam_apparmor DESTDIR="${D}" install
-+	fi
-+
-+	install ${WORKDIR}/apparmor ${D}/${INIT_D_DIR}/apparmor
-+	install ${WORKDIR}/functions ${D}/lib/apparmor
-+}
-+
-+do_compile_ptest () {
-+        oe_runmake -C ${B}/tests/regression/apparmor
-+        oe_runmake -C ${B}/parser/tst
-+        oe_runmake -C ${B}/libraries/libapparmor
-+}
-+
-+do_install_ptest () {
-+	t=${D}/${PTEST_PATH}/testsuite
-+	install -d ${t}
-+	install -d ${t}/tests/regression/apparmor
-+	cp -rf ${B}/tests/regression/apparmor ${t}/tests/regression
-+
-+	install -d ${t}/parser/tst
-+	cp -rf ${B}/parser/tst ${t}/parser
-+	cp ${B}/parser/apparmor_parser ${t}/parser
-+	cp ${B}/parser/frob_slack_rc ${t}/parser
-+
-+	install -d ${t}/libraries/libapparmor
-+	cp -rf ${B}/libraries/libapparmor ${t}/libraries
-+
-+	install -d ${t}/common
-+	cp -rf ${B}/common ${t}
-+
-+	install -d ${t}/binutils
-+	cp -rf ${B}/binutils ${t}
-+}
-+
-+INITSCRIPT_PACKAGES = "${PN}"
-+INITSCRIPT_NAME = "apparmor"
-+INITSCRIPT_PARAMS = "start 16 2 3 4 5 . stop 35 0 1 6 ."
-+
-+SYSTEMD_PACKAGES = "${PN}"
-+SYSTEMD_SERVICE_${PN} = "apparmor.service"
-+SYSTEMD_AUTO_ENABLE = "disable"
-+
-+PACKAGES += "python-${PN} mod-${PN}"
-+
-+FILES_${PN} += "/lib/apparmor/ ${sysconfdir}/apparmor"
-+FILES_mod-${PN} = "${libdir}/apache2/modules/*"
-+FILES_python-${PN} = "${PYTHON_SITEPACKAGES_DIR}"
-+
-+RDEPENDS_${PN} += "bash lsb"
-+RDEPENDS_${PN}-ptest += "coreutils dbus-lib"
-diff --git a/recipes-security/AppArmor/files/run-ptest b/recipes-security/AppArmor/files/run-ptest
-new file mode 100644
-index 0000000..3b8e427
---- /dev/null
-+++ b/recipes-security/AppArmor/files/run-ptest
-@@ -0,0 +1,4 @@
-+#! /bin/sh
-+cd testsuite
-+
-+make -C  tests/regression/apparmor tests
+diff --git a/recipes-bsp/bootfiles/rpi-config_git.bb b/recipes-bsp/bootfiles/rpi-config_git.bb
+index 8adc938..af55983 100644
+--- a/recipes-bsp/bootfiles/rpi-config_git.bb
++++ b/recipes-bsp/bootfiles/rpi-config_git.bb
+@@ -112,7 +112,7 @@ do_deploy() {
+     fi
+ 
+     # Waveshare "C" 1024x600 7" Rev2.1 IPS capacitive touch (http://www.waveshare.com/7inch-HDMI-LCD-C.htm)
+-    if [ "${WAVESHARE_1024X600_C_2.1}" = "1" ]; then
++    if [ "${WAVESHARE_1024X600_C_2_1}" = "1" ]; then
+         echo "# Waveshare \"C\" 1024x600 7\" Rev2.1 IPS capacitive touch screen" >> ${DEPLOYDIR}/bcm2835-bootfiles/config.txt
+         echo "max_usb_current=1" >> ${DEPLOYDIR}/bcm2835-bootfiles/config.txt
+         echo "hdmi_group=2" >> ${DEPLOYDIR}/bcm2835-bootfiles/config.txt
 -- 
 2.7.4
 
