@@ -1,56 +1,69 @@
-Return-Path: <pbarker@toganlabs.com>
+Return-Path: <gizero@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 032F9E006CD; Tue,  4 Apr 2017 10:20:58 -0700 (PDT)
+	id 46D03E006CD; Tue,  4 Apr 2017 10:36:07 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [23.83.222.33 listed in list.dnswl.org]
+	*      [209.85.128.193 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (gizero[at]gmail.com)
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.128.193 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from chameleon.ash.relay.mailchannels.net
-	(chameleon.ash.relay.mailchannels.net [23.83.222.33])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A90FDE00546
-	for <yocto@yoctoproject.org>; Tue,  4 Apr 2017 10:20:45 -0700 (PDT)
-X-Sender-Id: hostpapa|x-authuser|pbarker@toganlabs.com
-Received: from relay.mailchannels.net (localhost [127.0.0.1])
-	by relay.mailchannels.net (Postfix) with ESMTP id 38D45364A3B;
-	Tue,  4 Apr 2017 17:14:10 +0000 (UTC)
-Received: from hp181.hostpapa.com (unknown [100.96.135.247])
-	by relay.mailchannels.net (Postfix) with ESMTPA id AE8C73647FA;
-	Tue,  4 Apr 2017 17:14:09 +0000 (UTC)
-X-Sender-Id: hostpapa|x-authuser|pbarker@toganlabs.com
-Received: from hp181.hostpapa.com (hp181.hostpapa.com [172.20.108.37])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384)
-	by 0.0.0.0:2500 (trex/5.7.37); Tue, 04 Apr 2017 17:14:10 +0000
-X-MC-Relay: Neutral
-X-MailChannels-SenderId: hostpapa|x-authuser|pbarker@toganlabs.com
-X-MailChannels-Auth-Id: hostpapa
-X-Unite-Eyes: 5af64e3f70c6641b_1491326050092_2853899404
-X-MC-Loop-Signature: 1491326050092:3776933248
-X-MC-Ingress-Time: 1491326050091
-Received: from cpc116908-shep14-2-0-cust920.8-3.cable.virginm.net
-	([82.34.23.153]:51668 helo=host0.betafive.co.uk)
-	by hp181.hostpapa.com with esmtpsa
-	(TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.87)
-	(envelope-from <pbarker@toganlabs.com>)
-	id 1cvS1u-003S2s-Dl; Tue, 04 Apr 2017 19:14:10 +0200
-Date: Tue, 4 Apr 2017 18:14:02 +0100
-From: Paul Barker <pbarker@toganlabs.com>
-To: Andrea Galbusera <gizero@gmail.com>
-Message-ID: <20170404181402.7e0cc385@host0.betafive.co.uk>
-In-Reply-To: <1491315483-24345-1-git-send-email-gizero@gmail.com>
-References: <1491315483-24345-1-git-send-email-gizero@gmail.com>
-Organization: =?UTF-8?B?VG9nw6Fu?= Labs
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wr0-f193.google.com (mail-wr0-f193.google.com
+	[209.85.128.193])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E09CDE00546
+	for <yocto@yoctoproject.org>; Tue,  4 Apr 2017 10:36:01 -0700 (PDT)
+Received: by mail-wr0-f193.google.com with SMTP id k6so41808206wre.3
+	for <yocto@yoctoproject.org>; Tue, 04 Apr 2017 10:36:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding;
+	bh=W4uyUQNFgaVTX0Wr4R5hQkKFar0DByENa/aiUEvqihs=;
+	b=RXG6BViGtA+c10cS6tHb35WGA8fGDhtACcgyM5V6YFnQmVEiE4kfWWWurAVZP1fQ0M
+	B7oQ2AFkRXZ+A77GLlLkQzVL1m74qjnsyzyTm8EVxte821i5O2iiKi4/wfZ+OBa+Gzxb
+	eLnfuqyeKQDfg0YB5gftczrAsjjEhTT+GWZKF9GziPT0S7lXFLHCFoZhJZpRPeGwPuha
+	MMJEqvCN+3yGiYh1d5RR9zim8P9kOoPjnj+qX8C8ADfcEUZePbkUGvQMe/Bmdos94QAa
+	ED40EfWvLc95RZM4vobYpouH9ldT3idX2iuqlYP7HOngpkNT2ELSV+CIfmyL2L1MPDYB
+	S4hg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding;
+	bh=W4uyUQNFgaVTX0Wr4R5hQkKFar0DByENa/aiUEvqihs=;
+	b=aQ8u8VvAKqgMQrAJKY05pYaHZKrSyaXVY4ecI7alEHdlKrIobdZV13Flz0xPX7d5XB
+	KmrDHumoGgSB76FFewDegQgad60MIFi6JOvFocTeEXbWj0VBRU8/xDFvPj38/3fT7Rai
+	9HHsSkruuwUMCJA/X/yl7V2PamVJw2XbdsoWyg36TcZY7CrE5XmixO9BNwEyuXdyMaU1
+	eCoPszyDmEAx8GNpYenhvVyO0ewch7cnVteZ6FEDwuMVAmVHAxvZnegIj/iZMquQDqn1
+	fGlUR2CVYIKMt3BqqbF72rxtAqyfk7l/hbdWN08WiuN5/jgS4uTmDUOx91ozWtBw101n
+	zdOA==
+X-Gm-Message-State: AFeK/H3jWPN/Z/LjBk3w5llBLZwlFjxAQvoFIUdZO1YhplC4LJjxH7SJ7zUUgmK8og4nGA==
+X-Received: by 10.223.169.70 with SMTP id u64mr20511888wrc.187.1491327360660; 
+	Tue, 04 Apr 2017 10:36:00 -0700 (PDT)
+Received: from gizero-desktop.tw.it
+	(host168-65-static.12-87-b.business.telecomitalia.it. [87.12.65.168])
+	by smtp.gmail.com with ESMTPSA id
+	o22sm8252993wro.45.2017.04.04.10.35.59
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Tue, 04 Apr 2017 10:35:59 -0700 (PDT)
+From: Andrea Galbusera <gizero@gmail.com>
+To: yocto@yoctoproject.org
+Date: Tue,  4 Apr 2017 19:35:50 +0200
+Message-Id: <1491327350-31629-1-git-send-email-gizero@gmail.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-X-OutGoing-Spam-Status: No, score=5.0
-X-AuthUser: pbarker@toganlabs.com
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-raspberrypi][PATCH] rpi-config: fix invalid shell variable name
+Subject: [meta-raspberrypi][PATCH v2] rpi-config: fix invalid shell variable name
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -62,36 +75,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Apr 2017 17:20:58 -0000
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 04 Apr 2017 17:36:07 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Tue,  4 Apr 2017 16:18:03 +0200
-Andrea Galbusera <gizero@gmail.com> wrote:
+Commit da32aac introduced an invalid shell variable name in do_deploy():
+according to bash manpage variable names cannot contain dots. Replace
+dot with underscore to fix it.
 
-> Commit da32aac introduced an invalid shell variable name in do_deploy():
-> according to bash manpage variable names cannot contain dots. Replace
-> dot with underscore to fix it.
-> 
-> Signed-off-by: Andrea Galbusera <gizero@gmail.com>
-> ---
->  recipes-bsp/bootfiles/rpi-config_git.bb | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/recipes-bsp/bootfiles/rpi-config_git.bb b/recipes-bsp/bootfiles/rpi-config_git.bb
-> index 8adc938..af55983 100644
-> --- a/recipes-bsp/bootfiles/rpi-config_git.bb
-> +++ b/recipes-bsp/bootfiles/rpi-config_git.bb
-> @@ -112,7 +112,7 @@ do_deploy() {
->      fi
->  
->      # Waveshare "C" 1024x600 7" Rev2.1 IPS capacitive touch (http://www.waveshare.com/7inch-HDMI-LCD-C.htm)
-> -    if [ "${WAVESHARE_1024X600_C_2.1}" = "1" ]; then
-> +    if [ "${WAVESHARE_1024X600_C_2_1}" = "1" ]; then
->          echo "# Waveshare \"C\" 1024x600 7\" Rev2.1 IPS capacitive touch screen" >> ${DEPLOYDIR}/bcm2835-bootfiles/config.txt
->          echo "max_usb_current=1" >> ${DEPLOYDIR}/bcm2835-bootfiles/config.txt
->          echo "hdmi_group=2" >> ${DEPLOYDIR}/bcm2835-bootfiles/config.txt
+Signed-off-by: Andrea Galbusera <gizero@gmail.com>
+---
 
-Commit da32aac also added a note to the readme file which needs
-changing to match the new name, otherwise looks good.
+v2: also update README accordingly
+Signed-off-by: Andrea Galbusera <gizero@gmail.com>
+---
+ README                                  | 2 +-
+ recipes-bsp/bootfiles/rpi-config_git.bb | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/README b/README
+index c58bc99..9fdd5eb 100644
+--- a/README
++++ b/README
+@@ -247,7 +247,7 @@ List of currently supported models:
+ If you would like to use the Waveshare "C" 1024×600, 7 inch Capacitive Touch
+ Screen LCD, HDMI interface (http://www.waveshare.com/7inch-HDMI-LCD-C.htm)
+ Rev 2.1, please set the following in your local.conf
+-WAVESHARE_1024X600_C_2.1 = "1"
++WAVESHARE_1024X600_C_2_1 = "1"
+ 
+ 3.P. Enable UART
+ ===============
+diff --git a/recipes-bsp/bootfiles/rpi-config_git.bb b/recipes-bsp/bootfiles/rpi-config_git.bb
+index 8adc938..af55983 100644
+--- a/recipes-bsp/bootfiles/rpi-config_git.bb
++++ b/recipes-bsp/bootfiles/rpi-config_git.bb
+@@ -112,7 +112,7 @@ do_deploy() {
+     fi
+ 
+     # Waveshare "C" 1024x600 7" Rev2.1 IPS capacitive touch (http://www.waveshare.com/7inch-HDMI-LCD-C.htm)
+-    if [ "${WAVESHARE_1024X600_C_2.1}" = "1" ]; then
++    if [ "${WAVESHARE_1024X600_C_2_1}" = "1" ]; then
+         echo "# Waveshare \"C\" 1024x600 7\" Rev2.1 IPS capacitive touch screen" >> ${DEPLOYDIR}/bcm2835-bootfiles/config.txt
+         echo "max_usb_current=1" >> ${DEPLOYDIR}/bcm2835-bootfiles/config.txt
+         echo "hdmi_group=2" >> ${DEPLOYDIR}/bcm2835-bootfiles/config.txt
+-- 
+2.7.4
+
 
