@@ -1,45 +1,56 @@
-Return-Path: <anibal.limon@linux.intel.com>
+Return-Path: <pbarker@toganlabs.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A92F9E006CD; Tue,  4 Apr 2017 10:14:04 -0700 (PDT)
+	id 032F9E006CD; Tue,  4 Apr 2017 10:20:58 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	RCVD_IN_DNSWL_HI,T_DKIM_INVALID autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [23.83.222.33 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	*  0.0 T_DKIM_INVALID DKIM-Signature header exists but is not valid
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7E444E00546
-	for <yocto@yoctoproject.org>; Tue,  4 Apr 2017 10:14:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-	d=intel.com; i=@intel.com; q=dns/txt; s=intel;
-	t=1491326041; x=1522862041;
-	h=from:to:cc:subject:date:message-id:mime-version:
-	content-transfer-encoding;
-	bh=Uc+Xvr5Ozo90vtfugrqnJcQENAtRZFGmyp3BaAKmAwY=;
-	b=n6PyMra3bhoXdE66uJjduO5wu5cUlAyRHzCId6uWB1KGDAI62yC9gQd8
-	O4+Hhf3sVOOad7Y3cOc79GZfU4B+XQ==;
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	04 Apr 2017 10:14:00 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.36,275,1486454400"; d="scan'208";a="69128093"
-Received: from alimonb-mobl1.zpn.intel.com ([10.219.128.124])
-	by orsmga002.jf.intel.com with ESMTP; 04 Apr 2017 10:13:59 -0700
-From: =?UTF-8?q?An=C3=ADbal=20Lim=C3=B3n?= <anibal.limon@linux.intel.com>
-To: yocto@yoctoproject.org
-Date: Tue,  4 Apr 2017 12:18:04 -0500
-Message-Id: <1491326284-11764-1-git-send-email-anibal.limon@linux.intel.com>
-X-Mailer: git-send-email 2.1.4
+Received: from chameleon.ash.relay.mailchannels.net
+	(chameleon.ash.relay.mailchannels.net [23.83.222.33])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A90FDE00546
+	for <yocto@yoctoproject.org>; Tue,  4 Apr 2017 10:20:45 -0700 (PDT)
+X-Sender-Id: hostpapa|x-authuser|pbarker@toganlabs.com
+Received: from relay.mailchannels.net (localhost [127.0.0.1])
+	by relay.mailchannels.net (Postfix) with ESMTP id 38D45364A3B;
+	Tue,  4 Apr 2017 17:14:10 +0000 (UTC)
+Received: from hp181.hostpapa.com (unknown [100.96.135.247])
+	by relay.mailchannels.net (Postfix) with ESMTPA id AE8C73647FA;
+	Tue,  4 Apr 2017 17:14:09 +0000 (UTC)
+X-Sender-Id: hostpapa|x-authuser|pbarker@toganlabs.com
+Received: from hp181.hostpapa.com (hp181.hostpapa.com [172.20.108.37])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384)
+	by 0.0.0.0:2500 (trex/5.7.37); Tue, 04 Apr 2017 17:14:10 +0000
+X-MC-Relay: Neutral
+X-MailChannels-SenderId: hostpapa|x-authuser|pbarker@toganlabs.com
+X-MailChannels-Auth-Id: hostpapa
+X-Unite-Eyes: 5af64e3f70c6641b_1491326050092_2853899404
+X-MC-Loop-Signature: 1491326050092:3776933248
+X-MC-Ingress-Time: 1491326050091
+Received: from cpc116908-shep14-2-0-cust920.8-3.cable.virginm.net
+	([82.34.23.153]:51668 helo=host0.betafive.co.uk)
+	by hp181.hostpapa.com with esmtpsa
+	(TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.87)
+	(envelope-from <pbarker@toganlabs.com>)
+	id 1cvS1u-003S2s-Dl; Tue, 04 Apr 2017 19:14:10 +0200
+Date: Tue, 4 Apr 2017 18:14:02 +0100
+From: Paul Barker <pbarker@toganlabs.com>
+To: Andrea Galbusera <gizero@gmail.com>
+Message-ID: <20170404181402.7e0cc385@host0.betafive.co.uk>
+In-Reply-To: <1491315483-24345-1-git-send-email-gizero@gmail.com>
+References: <1491315483-24345-1-git-send-email-gizero@gmail.com>
+Organization: =?UTF-8?B?VG9nw6Fu?= Labs
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Cc: joshua.g.lock@intel.com
-Subject: [[PATCH][yocto-autobuilder]] nightly-oe-selftest.conf: Remove set of SANITY_TESTED_DISTROS
+X-OutGoing-Spam-Status: No, score=5.0
+X-AuthUser: pbarker@toganlabs.com
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-raspberrypi][PATCH] rpi-config: fix invalid shell variable name
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,33 +62,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Apr 2017 17:14:04 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Tue, 04 Apr 2017 17:20:58 -0000
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-The sanity testing was disabled for all builds into CreateAutoConf
-buildstep so atextappend isn't need now. [1]
+On Tue,  4 Apr 2017 16:18:03 +0200
+Andrea Galbusera <gizero@gmail.com> wrote:
 
-[1] http://git.yoctoproject.org/cgit/cgit.cgi/yocto-autobuilder/commit/?id=87b10595e9a1d36081ec60d3069f4a98798f27eb
+> Commit da32aac introduced an invalid shell variable name in do_deploy():
+> according to bash manpage variable names cannot contain dots. Replace
+> dot with underscore to fix it.
+> 
+> Signed-off-by: Andrea Galbusera <gizero@gmail.com>
+> ---
+>  recipes-bsp/bootfiles/rpi-config_git.bb | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/recipes-bsp/bootfiles/rpi-config_git.bb b/recipes-bsp/bootfiles/rpi-config_git.bb
+> index 8adc938..af55983 100644
+> --- a/recipes-bsp/bootfiles/rpi-config_git.bb
+> +++ b/recipes-bsp/bootfiles/rpi-config_git.bb
+> @@ -112,7 +112,7 @@ do_deploy() {
+>      fi
+>  
+>      # Waveshare "C" 1024x600 7" Rev2.1 IPS capacitive touch (http://www.waveshare.com/7inch-HDMI-LCD-C.htm)
+> -    if [ "${WAVESHARE_1024X600_C_2.1}" = "1" ]; then
+> +    if [ "${WAVESHARE_1024X600_C_2_1}" = "1" ]; then
+>          echo "# Waveshare \"C\" 1024x600 7\" Rev2.1 IPS capacitive touch screen" >> ${DEPLOYDIR}/bcm2835-bootfiles/config.txt
+>          echo "max_usb_current=1" >> ${DEPLOYDIR}/bcm2835-bootfiles/config.txt
+>          echo "hdmi_group=2" >> ${DEPLOYDIR}/bcm2835-bootfiles/config.txt
 
-Signed-off-by: Aníbal Limón <anibal.limon@linux.intel.com>
----
- buildset-config.controller/nightly-oe-selftest.conf | 1 -
- 1 file changed, 1 deletion(-)
-
-diff --git a/buildset-config.controller/nightly-oe-selftest.conf b/buildset-config.controller/nightly-oe-selftest.conf
-index a267516..fb401de 100644
---- a/buildset-config.controller/nightly-oe-selftest.conf
-+++ b/buildset-config.controller/nightly-oe-selftest.conf
-@@ -11,7 +11,6 @@ steps: [{'SetDest':{}},
-         {'CreateAutoConf': {'machine': 'qemux86-64', 'SDKMACHINE' : 'x86_64',
-                             'distro': 'poky', 'nosstate': True,
-                             'packages': 'rpm', 'buildhistory' : False,
--                            'atextappend': '\nSANITY_TESTED_DISTROS=""',
-                             'prserv': False}},
-         {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
-         {'BuildImages': {'images': 'core-image-minimal'}},
--- 
-2.1.4
-
+Commit da32aac also added a note to the readme file which needs
+changing to match the new name, otherwise looks good.
 
