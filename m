@@ -1,68 +1,65 @@
-Return-Path: <gizero@gmail.com>
+Return-Path: <alain.achkar@triacta.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 34CE7E00B87; Mon,  3 Apr 2017 13:07:41 -0700 (PDT)
+	id 696FCE00BAB; Mon,  3 Apr 2017 18:44:07 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (gizero[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.128.170 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.218.44 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wr0-f170.google.com (mail-wr0-f170.google.com
-	[209.85.128.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0ED2EE00B62
-	for <yocto@yoctoproject.org>; Mon,  3 Apr 2017 13:07:38 -0700 (PDT)
-Received: by mail-wr0-f170.google.com with SMTP id w43so184578033wrb.0
-	for <yocto@yoctoproject.org>; Mon, 03 Apr 2017 13:07:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:cc:subject:date:message-id:mime-version
-	:content-transfer-encoding;
-	bh=ymkkaBklB2AgqgWp63VshODSijTN6pG1mC9HK21Dx80=;
-	b=KF2jLba0upWgv4oTU3cg0mfI6bW/q5F4sjXDZMC01uT0QTUtO9K9rSJ3lwgol12Bys
-	qYHdA8QAN6i/tQZkORLF/qxsgAdwcVL/pEJj8U77n1L0N6j9ulOALneryLuy0VdhZGzJ
-	nuznOrsT67FrUn1CdbydyMDaFOi5lVGWLr1VX7Wur70Anzvnp1j4PvCSQ9Ssn96FqKyD
-	m7SLp6eNUUe2aSQAZX5fv7RdeLdnmMRxioB6tBBZchjRIeeTzjQ9FcSKfegIJQPtE6dz
-	FbrNDW2ECqBfkrMyV1wQHT75BWCUpAjMtbWokDCLFu7lfCMGc/1rv1dHRyV+w+EqseSb
-	sa3w==
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.218.44 listed in dnsbl.sorbs.net]
+Received: from mail-oi0-f44.google.com (mail-oi0-f44.google.com
+	[209.85.218.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 36BCDE00B76
+	for <yocto@yoctoproject.org>; Mon,  3 Apr 2017 18:44:03 -0700 (PDT)
+Received: by mail-oi0-f44.google.com with SMTP id r203so147280775oib.3
+	for <yocto@yoctoproject.org>; Mon, 03 Apr 2017 18:44:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=triacta.com; s=google;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to; 
+	bh=uUTUTQnJ8zS/l8ngwn+DfuEJ00h+2i8IJUIfe7xxADg=;
+	b=NwXsh9hV7st5c+EL9n9H4wloBCc3VICfjx7mVnaAihxb5/itGzREKQ0OIrcH1UxxES
+	Oej37Y4Q0vISqiA1lIte1ikHzRs9aRxIIvpmox4XlUMc09kkG1/OBJU0arkHXZkj2vlR
+	i95TVbqSTRE5JZiU5UoyF9ZWq3J/Ts5x4/KJs=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-	:content-transfer-encoding;
-	bh=ymkkaBklB2AgqgWp63VshODSijTN6pG1mC9HK21Dx80=;
-	b=hYu8wUDMdoZ2PRuKz6xo6sQzxBI2bGcOoAYNtuERa0ah+W+b6wg5H0b1IU8+ClfVYS
-	IMPdnkBxaNy2pPTOWp0FPYEUoOjsxhBTPTvGmAo++D6XVIUY9fo7m9nrjyii4/QuvjXu
-	n8pi7GmZo8pCKJT2kVmq4RFy7EiCXdJ3ze6HNRRNfSk4ykBqnga2WC/hWR8cRFMiTENs
-	hbaTq/RfDjFLi6VbjqOqGvmv2cT81vYpzX1HQYsKpBSCuny2AIfhIr/05knY+wRSFsi+
-	LtduUZbHqRucMdqmkigYVSebX9HToYduGSZxPlTm+vVSjBSxrcQkwNEDrxTQBhvAOp7x
-	cMmw==
-X-Gm-Message-State: AFeK/H2bBLYbt4wLnjWNjbixmCdnfds4IiiQedCcrep6uOHaWTi6Xf/j
-	8FVa257KFVMdBHKh
-X-Received: by 10.28.74.18 with SMTP id x18mr5689583wma.64.1491250057414;
-	Mon, 03 Apr 2017 13:07:37 -0700 (PDT)
-Received: from gizero-desktop.tw.it
-	(host168-65-static.12-87-b.business.telecomitalia.it. [87.12.65.168])
-	by smtp.gmail.com with ESMTPSA id
-	t68sm19499691wrc.55.2017.04.03.13.07.36
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Mon, 03 Apr 2017 13:07:36 -0700 (PDT)
-From: Andrea Galbusera <gizero@gmail.com>
-To: yocto@yoctoproject.org
-Date: Mon,  3 Apr 2017 22:07:27 +0200
-Message-Id: <1491250047-3989-1-git-send-email-gizero@gmail.com>
-X-Mailer: git-send-email 2.7.4
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to;
+	bh=uUTUTQnJ8zS/l8ngwn+DfuEJ00h+2i8IJUIfe7xxADg=;
+	b=nyOaA5qfsaf4o+brDJxAwU60xARZmjf3yh4t5i+8tkg9QU4+4u0rfYZB/6eOjIUVB8
+	cPgAlHw/kIMpq5wH1b9cGJ2mQhaISGPwiGemBU/863F8OX84TiLvLHYEgXF2rFolQvPf
+	0XcbUGFdSRvcDTK+JGUMrpVVeEwbU2bADUWxXvnXDQ83M3Pc3YRZRIkvfDLKp8Z95KFn
+	xswfO3UC1TAaeZULxRQqLny2e1WCdB/Y/EdHjQWP2eoKSslyPyZGWkoerOjkhPHLxyFi
+	W7CNjyNvJ8SLzVHAcbExBvOlDw+VXrF8assEzUMC3Vw8Fv7DQrOCyPk2h2X/2VMajzTk
+	oMiA==
+X-Gm-Message-State: AFeK/H06i/7BbCPgymJTR8R69vViSztqim3sheUIeQI4gFPk9TB09aflVIx7KPxdN5nHzjFRetdsE4MSwjWVZiYM
+X-Received: by 10.202.79.13 with SMTP id d13mr10672045oib.1.1491270242536;
+	Mon, 03 Apr 2017 18:44:02 -0700 (PDT)
 MIME-Version: 1.0
-Subject: [meta-raspberrypi][PATCH] wiringpi: uprev to 2.44
+Received: by 10.157.4.45 with HTTP; Mon, 3 Apr 2017 18:43:22 -0700 (PDT)
+In-Reply-To: <CAGkf0HCOzd-_wPbCR9MREADq29vKFWK0jynqLYO5qMezi+txYw@mail.gmail.com>
+References: <CAGkf0HCnrCpufRV9U_pz7LYDkCvhK7of_1=0zgS425GeGYSUPQ@mail.gmail.com>
+	<1478889473.18810.3.camel@toganlabs.com>
+	<CA+n--H8UjNN_PuMaTzDf7S92NqdQber7UW7DOapYvrhDivs1FQ@mail.gmail.com>
+	<CAGkf0HDBfdSNXO08PBRvV1+D=wYzWpBi==FnuNocLD3Ee9A7zw@mail.gmail.com>
+	<CABcw_OkUq_YX939GrV+SXFAcuKb4c+aHzKOK4Y5pOK+LTOMLWg@mail.gmail.com>
+	<CAGkf0HCOzd-_wPbCR9MREADq29vKFWK0jynqLYO5qMezi+txYw@mail.gmail.com>
+From: Alain Achkar <alain.achkar@triacta.com>
+Date: Mon, 3 Apr 2017 21:43:22 -0400
+Message-ID: <CAGkf0HCjCxFcaNqqsnnTrnQ5kjtCzTc8p4h4T=bbbpFL0JRqeQ@mail.gmail.com>
+To: Chris Whittenburg <whittenburg@gmail.com>, yocto@yoctoproject.org
+Subject: Re: Buildbot / Autobuilder / custom?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,374 +71,423 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 03 Apr 2017 20:07:41 -0000
+X-List-Received-Date: Tue, 04 Apr 2017 01:44:07 -0000
+Content-Type: multipart/alternative; boundary=001a113d809812241f054c4d699f
+
+--001a113d809812241f054c4d699f
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
 
-This upgrade is required to solve the following runtime hardware detection
-issue when calling wiringPiSetup() on the Pi3:
+Hi Chris!
 
-  Unable to determine hardware version. I see: Hardware   : BCM2835
-  ,
-  - expecting BCM2708 or BCM2709.
+I had to put this task on hold and I am re-visiting it now. I followed the
+instructions here:  http://git.yoctoproject.org/cgit.cgi/
+yocto-autobuilder/tree/README-QUICKSTART and managed to force one of the
+builds that comes with Yocto. I got errors but I'm not interested in the
+Yocto-provided nightly builds anyway. (The errors are related to
+buildhistory - it seems that some builds set Buildhistory=3DTrue but I
+haven't set up a git repo for build history)
 
-This was triggered by the recent kernel upgrade to 4.9 that introduced
-"BCM2835" as the hardware signature in /proc/cpuinfo.
+Now, I am still confused how to build the Variscite image for the i.MX6UL.
+We are still at Jethro but don't mind upgrading to Krogoth.
 
-Patches reworked as follow:
-* 0001-Add-initial-cross-compile-support.patch: rebase to current upstream
-* 0001-include-asm-ioctl.h-directly-for-_IOC_SIZEBITS.patch: drop since is now
-upstream
+I would appreciate some general guidelines on how to take the instructions
+in here:
+http://variwiki.com/index.php?title=3DDART-6UL_Yocto_Jethro_R1_build
+and transform them to the config format that Autobuilder understands.
 
-Signed-off-by: Andrea Galbusera <gizero@gmail.com>
----
- .../0001-Add-initial-cross-compile-support.patch   | 96 +++++++++++-----------
- ...de-asm-ioctl.h-directly-for-_IOC_SIZEBITS.patch | 58 -------------
- recipes-devtools/wiringPi/wiringpi_git.bb          |  5 +-
- 3 files changed, 51 insertions(+), 108 deletions(-)
- delete mode 100644 recipes-devtools/wiringPi/wiringpi/0001-include-asm-ioctl.h-directly-for-_IOC_SIZEBITS.patch
+Mainly, I understand that I have to:
 
-diff --git a/recipes-devtools/wiringPi/files/0001-Add-initial-cross-compile-support.patch b/recipes-devtools/wiringPi/files/0001-Add-initial-cross-compile-support.patch
-index 603422c..a081b8d 100644
---- a/recipes-devtools/wiringPi/files/0001-Add-initial-cross-compile-support.patch
-+++ b/recipes-devtools/wiringPi/files/0001-Add-initial-cross-compile-support.patch
-@@ -1,21 +1,26 @@
--From 6d85e6cc3ab97c3f060e5e0a8e3f1945a14c86ba Mon Sep 17 00:00:00 2001
--From: Gianfranco Costamagna <gianfranco.costamagna@abinsula.com>
--Date: Mon, 12 Oct 2015 12:15:51 +0200
--Subject: [PATCH] Add initial cross compile support (rebase from Petter Mabäcker <petter@technux.se> version)
-+From 4ed727aa9e528f130fdc8798df771037a1f22fc9 Mon Sep 17 00:00:00 2001
-+From: Andrea Galbusera <gizero@gmail.com>
-+Date: Mon, 3 Apr 2017 14:48:14 +0200
-+Subject: [PATCH] =?UTF-8?q?Add=20initial=20cross=20compile=20support=20(re?=
-+ =?UTF-8?q?base=20from=20Petter=20Mab=C3=A4cker=20<petter@technux.se>=20ve?=
-+ =?UTF-8?q?rsion)?=
-+MIME-Version: 1.0
-+Content-Type: text/plain; charset=UTF-8
-+Content-Transfer-Encoding: 8bit
- 
- ---
-- devLib/Makefile             |   54 ++++++++++++++++++++++++-------------------
-- examples/Gertboard/Makefile |   22 +++++++++++-------
-- examples/Makefile           |   22 +++++++++++-------
-- examples/PiFace/Makefile    |   22 +++++++++++-------
-- examples/PiGlow/Makefile    |    4 ++--
-- examples/q2w/Makefile       |    4 ++--
-- gpio/Makefile               |   29 ++++++++++++-----------
-- wiringPi/Makefile           |   50 +++++++++++++++++++++------------------
-- 8 files changed, 119 insertions(+), 88 deletions(-)
-+ devLib/Makefile             | 54 +++++++++++++++++++++++++--------------------
-+ examples/Gertboard/Makefile | 20 +++++++++++------
-+ examples/Makefile           | 20 +++++++++++------
-+ examples/PiFace/Makefile    | 20 +++++++++++------
-+ examples/PiGlow/Makefile    |  4 ++--
-+ examples/q2w/Makefile       |  4 ++--
-+ gpio/Makefile               | 29 ++++++++++++------------
-+ wiringPi/Makefile           | 50 +++++++++++++++++++++++------------------
-+ 8 files changed, 116 insertions(+), 85 deletions(-)
- 
- diff --git a/devLib/Makefile b/devLib/Makefile
--index 0fb0033..cbea759 100644
-+index cf665d6..040c03a 100644
- --- a/devLib/Makefile
- +++ b/devLib/Makefile
- @@ -31,15 +31,19 @@ ifneq ($V,1)
-@@ -46,7 +51,7 @@ index 0fb0033..cbea759 100644
-  
-  LIBS    =
-  
--@@ -66,16 +70,16 @@ $(STATIC):	$(OBJ)
-+@@ -68,16 +72,16 @@ $(STATIC):	$(OBJ)
-  
-  $(DYNAMIC):	$(OBJ)
-  	$Q echo "[Link (Dynamic)]"
-@@ -66,7 +71,7 @@ index 0fb0033..cbea759 100644
-  
-  .PHONY:	tags
-  tags:	$(SRC)
--@@ -86,22 +90,22 @@ tags:	$(SRC)
-+@@ -88,22 +92,22 @@ tags:	$(SRC)
-  .PHONY:	install
-  install:	$(DYNAMIC)
-  	$Q echo "[Install Headers]"
-@@ -99,7 +104,7 @@ index 0fb0033..cbea759 100644
-  
-  .PHONY:	install-deb
-  install-deb:	$(DYNAMIC)
--@@ -116,9 +120,11 @@ install-deb:	$(DYNAMIC)
-+@@ -118,9 +122,11 @@ install-deb:	$(DYNAMIC)
-  .PHONY:	uninstall
-  uninstall:
-  	$Q echo "[UnInstall]"
-@@ -127,12 +132,11 @@ index 1939ad6..98d1415 100644
- -CC	= gcc
- -INCLUDE	= -I/usr/local/include
- -CFLAGS	= $(DEBUG) -Wall $(INCLUDE) -Winline -pipe
---
---LDFLAGS	= -L/usr/local/lib
---LDLIBS    = -lwiringPi -lwiringPiDev -lpthread -lm
- +DESTDIR?=/usr
- +PREFIX?=/local
--+
-+ 
-+-LDFLAGS	= -L/usr/local/lib
-+-LDLIBS    = -lwiringPi -lwiringPiDev -lpthread -lm
- +INCLUDE_DIR?=$(DESTDIR)$(PREFIX)/include
- +LIB_DIR?=$(DESTDIR)$(PREFIX)/lib
- +
-@@ -148,7 +152,7 @@ index 1939ad6..98d1415 100644
-  # Should not alter anything below this line
-  ###############################################################################
- diff --git a/examples/Makefile b/examples/Makefile
--index e6b9b71..931b167 100644
-+index 6d87885..8623816 100644
- --- a/examples/Makefile
- +++ b/examples/Makefile
- @@ -26,14 +26,20 @@ ifneq ($V,1)
-@@ -160,12 +164,11 @@ index e6b9b71..931b167 100644
- -CC	= gcc
- -INCLUDE	= -I/usr/local/include
- -CFLAGS	= $(DEBUG) -Wall $(INCLUDE) -Winline -pipe
---
---LDFLAGS	= -L/usr/local/lib
---LDLIBS    = -lwiringPi -lwiringPiDev -lpthread -lm
- +DESTDIR?=/usr
- +PREFIX?=/local
--+
-+ 
-+-LDFLAGS	= -L/usr/local/lib
-+-LDLIBS    = -lwiringPi -lwiringPiDev -lpthread -lm -lcrypt -lrt
- +INCLUDE_DIR?=$(DESTDIR)$(PREFIX)/include
- +LIB_DIR?=$(DESTDIR)$(PREFIX)/lib
- +
-@@ -176,12 +179,12 @@ index e6b9b71..931b167 100644
- +CFLAGS	?= $(DEBUG) -Wall $(INCLUDE) -Winline -pipe
- +
- +LDFLAGS	?= -L$(LIB_DIR)
--+LDLIBS    ?= -lwiringPi -lwiringPiDev -lpthread -lm
-++LDLIBS    ?= -lwiringPi -lwiringPiDev -lpthread -lm -lcrypt -lrt
-  
-  # Should not alter anything below this line
-  ###############################################################################
- diff --git a/examples/PiFace/Makefile b/examples/PiFace/Makefile
--index 4685adc..cfaf902 100644
-+index f937c14..ad030b3 100644
- --- a/examples/PiFace/Makefile
- +++ b/examples/PiFace/Makefile
- @@ -26,14 +26,20 @@ ifneq ($V,1)
-@@ -193,12 +196,11 @@ index 4685adc..cfaf902 100644
- -CC	= gcc
- -INCLUDE	= -I/usr/local/include
- -CFLAGS	= $(DEBUG) -Wall $(INCLUDE) -Winline -pipe
---
---LDFLAGS	= -L/usr/local/lib
---LDLIBS    = -lwiringPi -lwiringPiDev -lpthread -lm
- +DESTDIR?=/usr
- +PREFIX?=/local
--+
-+ 
-+-LDFLAGS	= -L/usr/local/lib
-+-LDLIBS    = -lwiringPi -lwiringPiDev -lpthread -lm
- +INCLUDE_DIR?=$(DESTDIR)$(PREFIX)/include
- +LIB_DIR?=$(DESTDIR)$(PREFIX)/lib
- +
-@@ -214,7 +216,7 @@ index 4685adc..cfaf902 100644
-  # Should not alter anything below this line
-  ###############################################################################
- diff --git a/examples/PiGlow/Makefile b/examples/PiGlow/Makefile
--index acd4818..dabd64e 100644
-+index f182db7..d1ea74f 100644
- --- a/examples/PiGlow/Makefile
- +++ b/examples/PiGlow/Makefile
- @@ -29,10 +29,10 @@ endif
-@@ -231,7 +233,7 @@ index acd4818..dabd64e 100644
-  
-  # Should not alter anything below this line
- diff --git a/examples/q2w/Makefile b/examples/q2w/Makefile
--index 6f50fa0..c5e9f6e 100644
-+index 8f773bf..14aa6e4 100644
- --- a/examples/q2w/Makefile
- +++ b/examples/q2w/Makefile
- @@ -29,10 +29,10 @@ endif
-@@ -248,7 +250,7 @@ index 6f50fa0..c5e9f6e 100644
-  
-  ###############################################################################
- diff --git a/gpio/Makefile b/gpio/Makefile
--index 7dcd090..83ec454 100644
-+index f41a005..22753ee 100644
- --- a/gpio/Makefile
- +++ b/gpio/Makefile
- @@ -30,13 +30,17 @@ ifneq ($V,1)
-@@ -259,7 +261,7 @@ index 7dcd090..83ec454 100644
- -DEBUG	= -O2
- -CC	= gcc
- -INCLUDE	= -I$(DESTDIR)$(PREFIX)/include
---CFLAGS	= $(DEBUG) -Wall $(INCLUDE) -Winline -pipe
-+-CFLAGS	= $(DEBUG) -Wall -Wextra $(INCLUDE) -Winline -pipe
- +INCLUDE_DIR?=$(DESTDIR)$(PREFIX)/include
- +LIB_DIR?=$(DESTDIR)$(PREFIX)/lib
- +BIN_DIR?=$(DESTDIR)$(PREFIX)/bin
-@@ -269,10 +271,10 @@ index 7dcd090..83ec454 100644
- +DEBUG	?= -O2
- +CC	?= gcc
- +INCLUDE	?= -I$(INCLUDE_DIR)
--+CFLAGS	?= $(DEBUG) -Wall $(INCLUDE) -Winline -pipe
-++CFLAGS	?= $(DEBUG) -Wall -Wextra $(INCLUDE) -Winline -pipe
- +
- +LDFLAGS	?= -L$(LIB_DIR)
-- LIBS    = -lwiringPi -lwiringPiDev -lpthread
-+ LIBS    = -lwiringPi -lwiringPiDev -lpthread -lrt -lm -lcrypt
-  
-  # May not need to  alter anything below this line
- @@ -72,13 +76,10 @@ tags:	$(SRC)
-@@ -293,7 +295,7 @@ index 7dcd090..83ec454 100644
-  
-  .PHONY:	install-deb
-  install-deb:	gpio
--@@ -89,7 +90,7 @@ install-deb:	gpio
-+@@ -91,7 +92,7 @@ install-deb:	gpio
-  .PHONY:	uninstall
-  uninstall:
-  	$Q echo "[UnInstall]"
-@@ -303,7 +305,7 @@ index 7dcd090..83ec454 100644
-  
-  .PHONY:	depend
- diff --git a/wiringPi/Makefile b/wiringPi/Makefile
--index 6bbcc5d..5355b74 100644
-+index e1868b9..e39f75a 100644
- --- a/wiringPi/Makefile
- +++ b/wiringPi/Makefile
- @@ -25,19 +25,23 @@ VERSION=$(shell cat ../VERSION)
-@@ -334,14 +336,14 @@ index 6bbcc5d..5355b74 100644
- +CC	?= gcc
- +INCLUDE	?= -I.
-  DEFS	= -D_GNU_SOURCE
-- CFLAGS	= $(DEBUG) $(DEFS) -Wformat=2 -Wall -Winline $(INCLUDE) -pipe -fPIC
-+ CFLAGS	= $(DEBUG) $(DEFS) -Wformat=2 -Wall -Wextra -Winline $(INCLUDE) -pipe -fPIC
-  
--@@ -89,17 +93,17 @@ $(STATIC):	$(OBJ)
-+@@ -78,17 +82,17 @@ $(STATIC):	$(OBJ)
-  
-  $(DYNAMIC):	$(OBJ)
-  	$Q echo "[Link (Dynamic)]"
---	$Q $(CC) -shared -Wl,-soname,libwiringPi.so$(WIRINGPI_SONAME_SUFFIX) -o libwiringPi.so.$(VERSION) -lpthread $(OBJ)
--+	$Q $(CC) $(LDFLAGS) -shared -Wl,-soname,$(BASE_NAME).so.$(DYN_VERS_MAJ) -o $(BASE_NAME).so -lpthread $(OBJ)
-+-	$Q $(CC) -shared -Wl,-soname,libwiringPi.so$(WIRINGPI_SONAME_SUFFIX) -o libwiringPi.so.$(VERSION) $(LIBS) $(OBJ)
-++	$Q $(CC) $(LDFLAGS) -shared -Wl,-soname,$(BASE_NAME).so.$(DYN_VERS_MAJ) -o $(BASE_NAME).so $(LIBS) $(OBJ)
-  
-  .c.o:
-  	$Q echo [Compile] $<
-@@ -357,7 +359,7 @@ index 6bbcc5d..5355b74 100644
-  
-  .PHONY:	tags
-  tags:	$(SRC)
--@@ -110,22 +114,22 @@ tags:	$(SRC)
-+@@ -99,22 +103,22 @@ tags:	$(SRC)
-  .PHONY:	install
-  install:	$(DYNAMIC)
-  	$Q echo "[Install Headers]"
-@@ -390,7 +392,7 @@ index 6bbcc5d..5355b74 100644
-  
-  .PHONY:	install-deb
-  install-deb:	$(DYNAMIC)
--@@ -140,9 +144,11 @@ install-deb:	$(DYNAMIC)
-+@@ -129,9 +133,11 @@ install-deb:	$(DYNAMIC)
-  .PHONY:	uninstall
-  uninstall:
-  	$Q echo "[UnInstall]"
-@@ -406,5 +408,5 @@ index 6bbcc5d..5355b74 100644
-  
-  .PHONY:	depend
- -- 
--2.1.4
-+2.7.4
- 
-diff --git a/recipes-devtools/wiringPi/wiringpi/0001-include-asm-ioctl.h-directly-for-_IOC_SIZEBITS.patch b/recipes-devtools/wiringPi/wiringpi/0001-include-asm-ioctl.h-directly-for-_IOC_SIZEBITS.patch
-deleted file mode 100644
-index 5de5853..0000000
---- a/recipes-devtools/wiringPi/wiringpi/0001-include-asm-ioctl.h-directly-for-_IOC_SIZEBITS.patch
-+++ /dev/null
-@@ -1,58 +0,0 @@
--From 7f65eb37a82a6d9b095d9c8f262ad9dd205acd03 Mon Sep 17 00:00:00 2001
--From: Khem Raj <raj.khem@gmail.com>
--Date: Sat, 30 Jan 2016 16:57:38 -0800
--Subject: [PATCH] include <asm/ioctl.h> directly for _IOC_SIZEBITS
--
--Fixes errors like
--| wiringPiSPI.c: In function 'wiringPiSPIDataRW':
--| wiringPiSPI.c:89:35: error: '_IOC_SIZEBITS' undeclared (first use in
--this function)
--
--Signed-off-by: Khem Raj <raj.khem@gmail.com>
-----
--Upstream-Status: Submitted
--
-- wiringPi/wiringPi.c    | 1 +
-- wiringPi/wiringPiI2C.c | 1 +
-- wiringPi/wiringPiSPI.c | 1 +
-- 3 files changed, 3 insertions(+)
--
--diff --git a/wiringPi/wiringPi.c b/wiringPi/wiringPi.c
--index 32e5100..cb5db9d 100644
----- a/wiringPi/wiringPi.c
--+++ b/wiringPi/wiringPi.c
--@@ -64,6 +64,7 @@
-- #include <time.h>
-- #include <fcntl.h>
-- #include <pthread.h>
--+#include <asm/ioctl.h>
-- #include <sys/time.h>
-- #include <sys/mman.h>
-- #include <sys/stat.h>
--diff --git a/wiringPi/wiringPiI2C.c b/wiringPi/wiringPiI2C.c
--index c787bce..efdf53c 100644
----- a/wiringPi/wiringPiI2C.c
--+++ b/wiringPi/wiringPiI2C.c
--@@ -52,6 +52,7 @@
-- #include <string.h>
-- #include <fcntl.h>
-- #include <sys/ioctl.h>
--+#include <asm/ioctl.h>
-- 
-- #include "wiringPi.h"
-- #include "wiringPiI2C.h"
--diff --git a/wiringPi/wiringPiSPI.c b/wiringPi/wiringPiSPI.c
--index 453df31..ae3c7d9 100644
----- a/wiringPi/wiringPiSPI.c
--+++ b/wiringPi/wiringPiSPI.c
--@@ -27,6 +27,7 @@
-- #include <fcntl.h>
-- #include <errno.h>
-- #include <string.h>
--+#include <asm/ioctl.h>
-- #include <sys/ioctl.h>
-- #include <linux/spi/spidev.h>
-- 
---- 
--2.7.0
--
-diff --git a/recipes-devtools/wiringPi/wiringpi_git.bb b/recipes-devtools/wiringPi/wiringpi_git.bb
-index c337b19..7953a55 100644
---- a/recipes-devtools/wiringPi/wiringpi_git.bb
-+++ b/recipes-devtools/wiringPi/wiringpi_git.bb
-@@ -4,14 +4,13 @@ SECTION = "devel/libs"
- LICENSE = "LGPLv3+"
- LIC_FILES_CHKSUM = "file://COPYING.LESSER;md5=e6a600fd5e1d9cbde2d983680233ad02"
- 
--# tag 2.32
--SRCREV = "b0a60c3302973ca1878d149d61f2f612c8f27fac"
-+# tag 2.44
-+SRCREV = "96344ff7125182989f98d3be8d111952a8f74e15"
- 
- S = "${WORKDIR}/git"
- 
- SRC_URI = "git://git.drogon.net/wiringPi \
-            file://0001-Add-initial-cross-compile-support.patch \
--           file://0001-include-asm-ioctl.h-directly-for-_IOC_SIZEBITS.patch \
-            "
- 
- COMPATIBLE_MACHINE = "raspberrypi"
--- 
-2.7.4
+1) checkout the source code
+
+$ mkdir ~/var-mx6ul-mx7-yocto-jethro
+$ cd ~/var-mx6ul-mx7-yocto-jethro
+$ repo init -u git://git.freescale.com/imx/fsl-arm-yocto-bsp.git -b
+imx-4.1.15-1.0.0_ga
+$ repo sync
+
+$ cd ~/var-mx6ul-mx7-yocto-jethro/sources
+$ git clone https://github.com/varigit/meta-variscite-mx6ul-mx7.git -b
+imx_4.1.15_ga-var01
 
 
+2) copy and patch
+
+$ cp meta-variscite-mx6ul-mx7/scripts/var-setup-release.sh ../
+$ patch -p1 < meta-variscite-mx6ul-mx7/patch/Fix-FSL-multi-patch-append-bug=
+s.patch
+
+
+3) setup a download directory
+
+$ sudo mkdir /opt/yocto_downloads
+$ sudo chmod 777 /opt/yocto_downloads/
+$ sed -i 's/DL_DIR ?=3D "${BSPDIR}\/downloads/DL_DIR =3D
+"\/opt\/yocto_downloads/g' conf/local.conf
+
+
+4) setup the environment
+
+$ cd ~/var-mx6ul-mx7-yocto-jethro
+$ MACHINE=3Dimx6ul-var-dart DISTRO=3Dfsl-imx-x11 source
+var-setup-release.sh -b build_x11
+
+
+5) build
+
+$ bitbake fsl-image-gui
+
+
+I looked at some nightly-*.conf files, for example nightly-x86-64.conf to
+try to guess what to do.
+
+I know I have to create a file like nightly-var-mx6ul.conf but given that
+Variscite is not using the 'repo' command that Freescale is using (they do
+a git clone) and given step (2) of copying their own setup script and
+patching the whole freescale meta- layers, I am not sure about what to put
+instead of the line:
+
+        {'CheckOutLayers': {}},
+
+
+I also can't figure out how the info in Variscite's build-x11/local.conf
+can be translated to the Autobuilder format, i.e. where to specify all
+these config parameters.
+
+Any help would be greatly appreciated.
+
+
+On Mon, Nov 14, 2016 at 12:35 PM, Alain Achkar <alain.achkar@triacta.com>
+wrote:
+
+> Thanks Chris!
+>
+> This is the answer I was looking for.
+>
+> On Mon, Nov 14, 2016 at 11:58 AM, Chris Whittenburg <whittenburg@gmail.co=
+m
+> > wrote:
+>
+>>
+>> Hi Alain,
+>>
+>> We use the same module-- Variscite DART MX6, and I was able to hack the
+>> yocto autobuilder to build our image nightly.  I host it all on a single
+>> machine.
+>>
+>> -chris
+>>
+>>
+>> On Mon, Nov 14, 2016 at 10:13 AM, Alain Achkar <alain.achkar@triacta.com=
+>
+>> wrote:
+>>
+>>> Thanks for your answers! From reading these links, it is still not clea=
+r
+>>> to me if this might be overkill for my requirements. AB Cluster Setup t=
+alks
+>>> about "*the worker requires 2+ TB to hold all the build temp files and
+>>> git repos. If build artifacts and a local sstate mirror are included,
+>>> additional worker space is required.*"
+>>>
+>>> Currently, my build only takes 35GB, so I think what these links are
+>>> talking about is how to replicate what the Autobuilder project
+>>> https://autobuilder.yoctoproject.org/ already does.
+>>>
+>>> To clarify, I am not interested in running builds and tests for
+>>> everything that Yocto already builds and tests (i.e. all the processor
+>>> architectures, all the machine types, etc.).  I am interested in runnin=
+g
+>>> one build for one machine type (the Variscite DART-6UL i.MX6UL arm-base=
+d
+>>> processor, for which NXP/Freescale and Variscite have provided recipes =
+and
+>>> layers for).
+>>>
+>>> I know that autobuilder includes BuildBot (this is why I specified it i=
+n
+>>> parentheses) but my question remains: do I only install BuildBot and tr=
+y to
+>>> build my machine type with it, or do I install Autobuilder?
+>>>
+>>> On Mon, Nov 14, 2016 at 10:10 AM, Bill Randle <bill.randle@gmail.com>
+>>> wrote:
+>>>
+>>>> Also, be sure to check the Yocto Project wiki pages:
+>>>>     https://wiki.yoctoproject.org/wiki/The_Yocto_Autobuilder
+>>>> in particular, the AB cluster setup and AB maintenance links. Even
+>>>> though the one link refers to setting up an entire cluster, I've used
+>>>> that procedure to setup a single autobuilder, as well.
+>>>>
+>>>>     -Bill
+>>>>
+>>>> On Fri, Nov 11, 2016 at 10:37 AM, Beth 'pidge' Flanagan
+>>>> <pidge@toganlabs.com> wrote:
+>>>> > On Fri, 2016-11-11 at 12:35 -0500, Alain Achkar wrote:
+>>>> >> Hello Joshua!
+>>>> >>
+>>>> >> We are using Yocto to build for the Variscite DART-6UL SoM which is
+>>>> >> based on Freescale/NXP i.MX6UL (http://variwiki.com/index.php
+>>>> ?title=3DD
+>>>> >> ART-6UL_Yocto_Jethro_R1_build).
+>>>> >>
+>>>> >> Currently, developers run builds manually on their desktops. We are
+>>>> >> considering using a continuous integration server. I found out that
+>>>> >> The Yocto Project uses Autobuilder which in turn uses BuildBot. I
+>>>> >> read most of the introductory documentation.
+>>>> >>
+>>>> >> Would you recommend that we install only BuildBot and configure it =
+to
+>>>> >> build what we need?
+>>>> >>
+>>>> >> OR
+>>>> >>
+>>>> >> Would you recommend that we install Autobuilder (and BuildBot) and
+>>>> >> configure it to build what we need?
+>>>> >
+>>>> > Actually, the yocto-autobuilder already contains buildbot so no need
+>>>> > for both.
+>>>> >
+>>>> > If you read:
+>>>> >
+>>>> > http://git.yoctoproject.org/cgit.cgi/yocto-autobuilder/tree/
+>>>> README-QUIC
+>>>> > KSTART
+>>>> >
+>>>> > and probably some of the other READMEs and the documentation in the
+>>>> > docs directory of the yocto-autobuilder directory, it should get you
+>>>> > started in the right direction.
+>>>> >
+>>>> > Feel free to ask questions if you need help.
+>>>> >
+>>>> > -b
+>>>> >
+>>>> > Elizabeth 'pidge' Flanagan
+>>>> > Founder/CTO Tog=C3=A1n Labs
+>>>> > www.toganlabs.com
+>>>> >
+>>>> >>
+>>>> >> What is the faster path to get up and running?
+>>>> >>
+>>>> >> Thanks!
+>>>> >> Alain.
+>>>> >>
+>>>>
+>>>
+>>>
+
+--001a113d809812241f054c4d699f
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi Chris!<div><br></div><div>I had to put this task on hol=
+d and I am re-visiting it now. I followed the instructions here:=C2=A0<span=
+ style=3D"font-size:12.8px">=C2=A0</span><a href=3D"http://git.yoctoproject=
+.org/cgit.cgi/yocto-autobuilder/tree/README-QUICKSTART" target=3D"_blank" s=
+tyle=3D"font-size:12.8px">http://git.<wbr>yoctoproject.org/cgit.cgi/<wbr>yo=
+cto-autobuilder/tree/README-<wbr>QUICKSTART</a>=C2=A0and managed to force o=
+ne of the builds that comes with Yocto. I got errors but I&#39;m not intere=
+sted in the Yocto-provided nightly builds anyway. (The errors are related t=
+o buildhistory - it seems that some builds set Buildhistory=3DTrue but I ha=
+ven&#39;t set up a git repo for build history)</div><div><br></div><div>Now=
+, I am still confused how to build the Variscite image for the i.MX6UL. We =
+are still at Jethro but don&#39;t mind upgrading to Krogoth.</div><div><br>=
+</div><div>I would appreciate some general guidelines on how to take the in=
+structions in here:</div><div><a href=3D"http://variwiki.com/index.php?titl=
+e=3DDART-6UL_Yocto_Jethro_R1_build">http://variwiki.com/index.php?title=3DD=
+ART-6UL_Yocto_Jethro_R1_build</a><br></div><div>and transform them to the c=
+onfig format that Autobuilder understands.</div><div><br></div><div>Mainly,=
+ I understand that I have to:</div><div><br></div><div>1) checkout the sour=
+ce code</div><div><div><pre style=3D"font-size:12.6667px;overflow-x:auto;ov=
+erflow-y:hidden;font-family:menlo,monaco,&quot;courier new&quot;,&quot;nimb=
+us mono l&quot;,monospace,sans-serif;border:1px dashed rgb(47,111,171);colo=
+r:rgb(0,0,0);background-color:rgb(249,249,249);line-height:1.1em;padding:15=
+px 20px;border-radius:6px">$ mkdir ~/var-mx6ul-mx7-yocto-jethro
+$ cd ~/var-mx6ul-mx7-yocto-jethro
+$ repo init -u git://<a href=3D"http://git.freescale.com/imx/fsl-arm-yocto-=
+bsp.git">git.freescale.com/imx/fsl-arm-yocto-bsp.git</a> -b imx-4.1.15-1.0.=
+0_ga
+$ repo sync</pre></div><div><pre style=3D"font-size:12.6667px;overflow-x:au=
+to;overflow-y:hidden;font-family:menlo,monaco,&quot;courier new&quot;,&quot=
+;nimbus mono l&quot;,monospace,sans-serif;border:1px dashed rgb(47,111,171)=
+;color:rgb(0,0,0);background-color:rgb(249,249,249);line-height:1.1em;paddi=
+ng:15px 20px;border-radius:6px">$ cd ~/var-mx6ul-mx7-yocto-jethro/sources
+$ git clone <a href=3D"https://github.com/varigit/meta-variscite-mx6ul-mx7.=
+git">https://github.com/varigit/meta-variscite-mx6ul-mx7.git</a> -b imx_4.1=
+.15_ga-var01<br></pre></div></div><div><br></div><div>2) copy and patch</di=
+v><div><div><pre style=3D"font-size:12.6667px;overflow-x:auto;overflow-y:hi=
+dden;font-family:menlo,monaco,&quot;courier new&quot;,&quot;nimbus mono l&q=
+uot;,monospace,sans-serif;border:1px dashed rgb(47,111,171);color:rgb(0,0,0=
+);background-color:rgb(249,249,249);line-height:1.1em;padding:15px 20px;bor=
+der-radius:6px">$ cp meta-variscite-mx6ul-mx7/scripts/var-setup-release.sh =
+../
+$ patch -p1 &lt; meta-variscite-mx6ul-mx7/patch/Fix-FSL-multi-patch-append-=
+bugs.patch
+</pre></div><div></div></div><div><br></div><div>3) setup a download direct=
+ory</div><div><pre style=3D"font-size:12.6667px;overflow-x:auto;overflow-y:=
+hidden;font-family:menlo,monaco,&quot;courier new&quot;,&quot;nimbus mono l=
+&quot;,monospace,sans-serif;border:1px dashed rgb(47,111,171);color:rgb(0,0=
+,0);background-color:rgb(249,249,249);line-height:1.1em;padding:15px 20px;b=
+order-radius:6px">$ sudo mkdir /opt/yocto_downloads
+$ sudo chmod 777 /opt/yocto_downloads/
+$ sed -i &#39;s/DL_DIR=C2=A0?=3D &quot;${BSPDIR}\/downloads/DL_DIR =3D &quo=
+t;\/opt\/yocto_downloads/g&#39; conf/local.conf</pre></div><div><br></div><=
+div>4) setup the environment</div><div><pre style=3D"font-size:12.6667px;ov=
+erflow-x:auto;overflow-y:hidden;font-family:menlo,monaco,&quot;courier new&=
+quot;,&quot;nimbus mono l&quot;,monospace,sans-serif;border:1px dashed rgb(=
+47,111,171);color:rgb(0,0,0);background-color:rgb(249,249,249);line-height:=
+1.1em;padding:15px 20px;border-radius:6px">$ cd ~/var-mx6ul-mx7-yocto-jethr=
+o
+$ MACHINE=3Dimx6ul-var-dart DISTRO=3Dfsl-imx-x11 source var-setup-release.s=
+h -b build_x11</pre></div><div><br></div><div>5) build</div><div><div><pre =
+style=3D"font-size:12.6667px;overflow-x:auto;overflow-y:hidden;font-family:=
+menlo,monaco,&quot;courier new&quot;,&quot;nimbus mono l&quot;,monospace,sa=
+ns-serif;border:1px dashed rgb(47,111,171);color:rgb(0,0,0);background-colo=
+r:rgb(249,249,249);line-height:1.1em;padding:15px 20px;border-radius:6px">$=
+ bitbake fsl-image-gui</pre></div></div><div><br></div><div>I looked at som=
+e nightly-*.conf files, for example nightly-x86-64.conf to try to guess wha=
+t to do.</div><div><br></div><div>I know I have to create a file like night=
+ly-var-mx6ul.conf but given that Variscite is not using the &#39;repo&#39; =
+command that Freescale is using (they do a git clone) and given step (2) of=
+ copying their own setup script and patching the whole freescale meta- laye=
+rs, I am not sure about what to put instead of the line:</div><div><br></di=
+v><div><font face=3D"monospace, monospace">=C2=A0 =C2=A0 =C2=A0 =C2=A0 {&#3=
+9;CheckOutLayers&#39;: {}},</font></div><div>=C2=A0</div><div><br></div><di=
+v>I also can&#39;t figure out how the info in Variscite&#39;s build-x11/loc=
+al.conf can be translated to the Autobuilder format, i.e. where to specify =
+all these config parameters.</div><div><br></div><div>Any help would be gre=
+atly appreciated.</div><div><br></div><div class=3D"gmail_extra"><br><div c=
+lass=3D"gmail_quote">On Mon, Nov 14, 2016 at 12:35 PM, Alain Achkar <span d=
+ir=3D"ltr">&lt;<a href=3D"mailto:alain.achkar@triacta.com" target=3D"_blank=
+">alain.achkar@triacta.com</a>&gt;</span> wrote:<br><blockquote class=3D"gm=
+ail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,=
+204,204);padding-left:1ex"><div dir=3D"ltr">Thanks Chris!<div><br></div><di=
+v>This is the answer I was looking for.</div></div><div class=3D"gmail-HOEn=
+Zb"><div class=3D"gmail-h5"><div class=3D"gmail_extra"><br><div class=3D"gm=
+ail_quote">On Mon, Nov 14, 2016 at 11:58 AM, Chris Whittenburg <span dir=3D=
+"ltr">&lt;<a href=3D"mailto:whittenburg@gmail.com" target=3D"_blank">whitte=
+nburg@gmail.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" =
+style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);pa=
+dding-left:1ex"><div dir=3D"ltr"><br><div>Hi Alain,</div><div><br></div><di=
+v>We use the same module-- Variscite DART MX6, and I was able to hack the y=
+octo autobuilder to build our image nightly.=C2=A0 I host it all on a singl=
+e machine.</div><span class=3D"gmail-m_-8681460998205357319HOEnZb"><font co=
+lor=3D"#888888"><div><br></div><div>-chris</div><div><br></div></font></spa=
+n></div><div class=3D"gmail-m_-8681460998205357319HOEnZb"><div class=3D"gma=
+il-m_-8681460998205357319h5"><div class=3D"gmail_extra"><br><div class=3D"g=
+mail_quote">On Mon, Nov 14, 2016 at 10:13 AM, Alain Achkar <span dir=3D"ltr=
+">&lt;<a href=3D"mailto:alain.achkar@triacta.com" target=3D"_blank">alain.a=
+chkar@triacta.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote=
+" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);=
+padding-left:1ex"><div dir=3D"ltr">Thanks for your answers! From reading th=
+ese links, it is still not clear to me if this might be overkill for my req=
+uirements. AB Cluster Setup talks about &quot;<span style=3D"color:rgb(0,0,=
+0);font-family:sans-serif;font-size:12.7px"><i>the worker requires 2+ TB to=
+ hold all the build temp files and git repos. If build artifacts and a loca=
+l sstate mirror are included, additional worker space is required.</i>&quot=
+;</span><div><span style=3D"color:rgb(0,0,0);font-family:sans-serif;font-si=
+ze:12.7px"><br></span></div><div><span style=3D"color:rgb(0,0,0);font-famil=
+y:sans-serif;font-size:12.7px">Currently, my build only takes 35GB, so I th=
+ink what these links are talking about is how to replicate what the Autobui=
+lder project=C2=A0</span><font color=3D"#000000" face=3D"sans-serif"><span =
+style=3D"font-size:12.7px"><a href=3D"https://autobuilder.yoctoproject.org/=
+" target=3D"_blank">https://autobuilder.yo<wbr>ctoproject.org/</a> already =
+does.</span></font></div><div><span style=3D"color:rgb(0,0,0);font-family:s=
+ans-serif;font-size:12.7px"><br></span></div><div><span style=3D"color:rgb(=
+0,0,0);font-family:sans-serif;font-size:12.7px">To clarify, I am not intere=
+sted in running builds and tests for everything that Yocto already builds a=
+nd tests (i.e. all the processor architectures, all the machine types, etc.=
+).=C2=A0 I am interested in running one build for one machine type (the Var=
+iscite DART-6UL i.MX6UL arm-based processor, for which NXP/Freescale and Va=
+riscite have provided recipes and layers for).</span></div><div><span style=
+=3D"color:rgb(0,0,0);font-family:sans-serif;font-size:12.7px"><br></span></=
+div><div><span style=3D"color:rgb(0,0,0);font-family:sans-serif;font-size:1=
+2.7px">I know that autobuilder includes BuildBot (this is why I specified i=
+t in parentheses) but my question remains: do I only install BuildBot and t=
+ry to build my machine type with it, or do I install Autobuilder?</span></d=
+iv></div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On Mon, =
+Nov 14, 2016 at 10:10 AM, Bill Randle <span dir=3D"ltr">&lt;<a href=3D"mail=
+to:bill.randle@gmail.com" target=3D"_blank">bill.randle@gmail.com</a>&gt;</=
+span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
+px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Also, be =
+sure to check the Yocto Project wiki pages:<br>
+=C2=A0 =C2=A0 <a href=3D"https://wiki.yoctoproject.org/wiki/The_Yocto_Autob=
+uilder" rel=3D"noreferrer" target=3D"_blank">https://wiki.yoctoproject.org/=
+<wbr>wiki/The_Yocto_Autobuilder</a><br>
+in particular, the AB cluster setup and AB maintenance links. Even<br>
+though the one link refers to setting up an entire cluster, I&#39;ve used<b=
+r>
+that procedure to setup a single autobuilder, as well.<br>
+<br>
+=C2=A0 =C2=A0 -Bill<br>
+<div class=3D"gmail-m_-8681460998205357319m_-4908994207652072141m_-54637757=
+3499831380HOEnZb"><div class=3D"gmail-m_-8681460998205357319m_-490899420765=
+2072141m_-546377573499831380h5"><br>
+On Fri, Nov 11, 2016 at 10:37 AM, Beth &#39;pidge&#39; Flanagan<br>
+&lt;<a href=3D"mailto:pidge@toganlabs.com" target=3D"_blank">pidge@toganlab=
+s.com</a>&gt; wrote:<span><br>
+&gt; On Fri, 2016-11-11 at 12:35 -0500, Alain Achkar wrote:<br>
+&gt;&gt; Hello Joshua!<br>
+&gt;&gt;<br>
+&gt;&gt; We are using Yocto to build for the Variscite DART-6UL SoM which i=
+s<br>
+&gt;&gt; based on Freescale/NXP i.MX6UL (<a href=3D"http://variwiki.com/ind=
+ex.php?title=3DD" rel=3D"noreferrer" target=3D"_blank">http://variwiki.com/=
+index.php<wbr>?title=3DD</a><br>
+&gt;&gt; ART-6UL_Yocto_Jethro_R1_build)<wbr>.<br>
+&gt;&gt;<br>
+&gt;&gt; Currently, developers run builds manually on their desktops. We ar=
+e<br>
+&gt;&gt; considering using a continuous integration server. I found out tha=
+t<br>
+&gt;&gt; The Yocto Project uses Autobuilder which in turn uses BuildBot. I<=
+br>
+&gt;&gt; read most of the introductory documentation.<br>
+&gt;&gt;<br>
+&gt;&gt; Would you recommend that we install only BuildBot and configure it=
+ to<br>
+&gt;&gt; build what we need?<br>
+&gt;&gt;<br>
+&gt;&gt; OR<br>
+&gt;&gt;<br>
+&gt;&gt; Would you recommend that we install Autobuilder (and BuildBot) and=
+<br>
+&gt;&gt; configure it to build what we need?<br>
+&gt;<br></span>
+&gt; Actually, the yocto-autobuilder already contains buildbot so no need<b=
+r>
+&gt; for both.<br>
+&gt;<br>
+&gt; If you read:<br>
+&gt;<br>
+&gt; <a href=3D"http://git.yoctoproject.org/cgit.cgi/yocto-autobuilder/tree=
+/README-QUIC" rel=3D"noreferrer" target=3D"_blank">http://git.yoctoproject.=
+org/cg<wbr>it.cgi/yocto-autobuilder/tree/<wbr>README-QUIC</a><br>
+&gt; KSTART<br>
+&gt;<br>
+&gt; and probably some of the other READMEs and the documentation in the<br=
+>
+&gt; docs directory of the yocto-autobuilder directory, it should get you<b=
+r>
+&gt; started in the right direction.<br>
+&gt;<br>
+&gt; Feel free to ask questions if you need help.<br>
+&gt;<br>
+&gt; -b<br>
+&gt;<br>
+&gt; Elizabeth &#39;pidge&#39; Flanagan<br>
+&gt; Founder/CTO Tog=C3=A1n Labs<br>
+&gt; <a href=3D"http://www.toganlabs.com" rel=3D"noreferrer" target=3D"_bla=
+nk">www.toganlabs.com</a><span><br>
+&gt;<br>
+&gt;&gt;<br>
+&gt;&gt; What is the faster path to get up and running?<br>
+&gt;&gt;<br>
+&gt;&gt; Thanks!<br>
+&gt;&gt; Alain.<br>
+&gt;&gt;<br></span></div></div></blockquote></div><span><div><br></div></sp=
+an></div></blockquote></div></div></div></div></blockquote></div></div></di=
+v></div></blockquote></div>
+</div></div>
+
+--001a113d809812241f054c4d699f--
