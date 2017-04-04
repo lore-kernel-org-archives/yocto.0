@@ -1,42 +1,63 @@
-Return-Path: <jose.perez.carranza@linux.intel.com>
+Return-Path: <matt.hoosier@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BA4BAE006CD; Tue,  4 Apr 2017 12:48:02 -0700 (PDT)
+	id 002BCE006CD; Tue,  4 Apr 2017 13:27:18 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	RCVD_IN_DNSWL_MED,T_DKIM_INVALID autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [192.55.52.120 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE, 
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (matt.hoosier[at]gmail.com)
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.213.48 listed in dnsbl.sorbs.net]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.213.48 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	*  0.0 T_DKIM_INVALID DKIM-Signature header exists but is not valid
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C7DADE003C1
-	for <yocto@yoctoproject.org>; Tue,  4 Apr 2017 12:48:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-	d=intel.com; i=@intel.com; q=dns/txt; s=intel;
-	t=1491335281; x=1522871281;
-	h=from:to:cc:subject:date:message-id;
-	bh=5sy9s7M65R/g31U7A5aTfsaUtkjn+gbm5leelaW89Zg=;
-	b=ntsdb+M1hVI7IbYJcLcxdd/ka+kU+h/rCAA2xlXB4cv/knUy5eW72dME
-	i5PWTGwFN5vtIR8bHHlVliWEoJbUQg==;
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-	by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	04 Apr 2017 12:48:01 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.36,275,1486454400"; d="scan'208";a="84316426"
-Received: from jgperezc-mobl1.zpn.intel.com ([10.219.4.33])
-	by fmsmga005.fm.intel.com with ESMTP; 04 Apr 2017 12:48:00 -0700
-From: jose.perez.carranza@linux.intel.com
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-vk0-f48.google.com (mail-vk0-f48.google.com
+	[209.85.213.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5D19EE0052B
+	for <yocto@yoctoproject.org>; Tue,  4 Apr 2017 13:27:15 -0700 (PDT)
+Received: by mail-vk0-f48.google.com with SMTP id r69so189667114vke.2
+	for <yocto@yoctoproject.org>; Tue, 04 Apr 2017 13:27:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=yijmI6mn/vshAIVtbxhrKEZFTxFkkk5MiuOdR6mykFc=;
+	b=tJ9wNmzgZ8UemJkYpsCRhulxrcfSAoqKL81BxNUp5mbSquLaettHIksY8E+QtrRV3a
+	h435KdS/CTAFiW/XOe6siZUIs0oXQKC2xjVMlr5z4h8jgTc3cnifgJt964Z0yycW4TTE
+	79vgD9ux6XlbyOJ7IP2OYr8j4ffVH7XQmg9An556nNY/dnzsXl1niudHVS1Uwvjb52CK
+	oUF+sD1qQJiAD9Yp+dpHJnk61Jr8+T/WynEnPWiqodqkbUKWUaOKfpvh3+Gt2lqFYxfD
+	4VlKXp5u5j0fb+S7eP6hNZ8+/FY4sHVjdqeQySzT723DpUbDyxYDKyNjwyZwJ9KtuaZi
+	88bg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=yijmI6mn/vshAIVtbxhrKEZFTxFkkk5MiuOdR6mykFc=;
+	b=X5Ar5fG9t0wmhghqnV1yLkNR8SYSmRJbTf99ScX9joVeODIlLROG4En1b3FO12cfc8
+	jW+tO0wEn6CWmN0ltfEzbvXxTSGJO+WqFpPKij9jDMZMtZjin4oKtt3UNYaro9xKBNvR
+	UDhqtgY18mxLEDP+H+uoaAnPBZ882Bf1p50E6500iYi2jrCaML1OT82A0AZ2VJaWT5sz
+	oF3+nxCvkYmfyr8r5y1T8sEiBbA/AI2+3LNupyZaHGPB13l8azPuaeJK5mlSeF3Mwv5D
+	roSbYT7u0f7WUqMQQLDSRJ4sPSlxEkqgOOsHHsaRHJ5dWRB6rvhKGnhfKwZHkFWhqrW2
+	viSA==
+X-Gm-Message-State: AFeK/H1Tof1QNNmwxc2oKbxM+JbG/5y+6HgVcDCG/4C83SRtu2s3o815BtyBPqiiCYfgEbqZGg7UMc8Zi1ciXw==
+X-Received: by 10.176.92.36 with SMTP id q36mr11366961uaf.93.1491337634608;
+	Tue, 04 Apr 2017 13:27:14 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.159.41.194 with HTTP; Tue, 4 Apr 2017 13:26:34 -0700 (PDT)
+From: Matt Hoosier <matt.hoosier@gmail.com>
+Date: Tue, 4 Apr 2017 15:26:34 -0500
+Message-ID: <CAJgxT39zyBNb5VBaOQN6tZt73YiSAJ5qbimj+yaPV9za52qpBw@mail.gmail.com>
 To: yocto@yoctoproject.org
-Date: Tue,  4 Apr 2017 14:49:37 -0500
-Message-Id: <20170404194937.18800-1-jose.perez.carranza@linux.intel.com>
-X-Mailer: git-send-email 2.11.0
-Subject: [qa-tools][PATCH] full-test-cycle-wrapper: Correct typos
+Subject: Enforcing version constraints on dependencies at build-time
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,189 +69,62 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Apr 2017 19:48:02 -0000
+X-List-Received-Date: Tue, 04 Apr 2017 20:27:19 -0000
+Content-Type: multipart/alternative; boundary=f403043621d6f37fa0054c5d190a
 
-From: Jose Perez Carranza <jose.perez.carranza@linux.intel.com>
+--f403043621d6f37fa0054c5d190a
+Content-Type: text/plain; charset=UTF-8
 
-Update name of ENVIRONMETS to ENVIRONMENTS and update the
-ENVIRONMENTS value for runtime component
+The RDEPENDS variable supports giving numeric version bounds. For example:
 
-Signed-off-by: Jose Perez Carranza <jose.perez.carranza@linux.intel.com>
----
- scripts/full-test-cycle-wrapper.sh | 44 +++++++++++++++++++-------------------
- 1 file changed, 22 insertions(+), 22 deletions(-)
+  RDEPENDS_${PN} = "foo (>= 1.3)"
 
-diff --git a/scripts/full-test-cycle-wrapper.sh b/scripts/full-test-cycle-wrapper.sh
-index 3a6ba0f..7d0ceb1 100755
---- a/scripts/full-test-cycle-wrapper.sh
-+++ b/scripts/full-test-cycle-wrapper.sh
-@@ -21,7 +21,7 @@
- #Set variables to be used globally
- export CONFIG_FILE='testopia_update.config'
- export ACTION='create'
--export ENVIRONMETS=""
-+export ENVIRONMENTS=""
- export EXECUTION_TYPE=""
- export OPTIONAL=""
- export TEST_PLAN=""
-@@ -52,7 +52,7 @@ create_test_run(){
-    fi
- 
-    #echo "############ CREATING TEST RUNS FOR - $1 - #############"
--   for ENV in "${ENVIRONMETS[@]}"
-+   for ENV in "${ENVIRONMENTS[@]}"
-    do
-      if [[ $2 == "BSP-MAN"  ]]; then
-          OPT="-o $IMAGE$ENV"
-@@ -72,33 +72,33 @@ create_test_run(){
- 
- create_yocto(){
-    #BSP MANUALS
--   ENVIRONMETS=("Genericx86_MMAX32" "Genericx86-64_NUC" "Beaglebone-Black" "EdgeRouter" "MPC8315e-rdb")
-+   ENVIRONMENTS=("Genericx86_MMAX32" "Genericx86-64_NUC" "Beaglebone-Black" "EdgeRouter" "MPC8315e-rdb")
-    EXECUTION_TYPE="MANUAL"
-    create_test_run "${1}" "BSP-MAN"
- 
-    #QEMUs Manuals
--   ENVIRONMETS=("qemu-x86" "qemuarm" "qemuarm64" "qemumips" "qemumips64" "qemuppc" "qemux86-64")
-+   ENVIRONMENTS=("qemu-x86" "qemuarm" "qemuarm64" "qemumips" "qemumips64" "qemuppc" "qemux86-64")
-    EXECUTION_TYPE="MANUAL"
-    create_test_run "${1}" "core-image-sato-sdk_ANYQEMU"
- 
-    #QEMUs Autos
--   ENVIRONMETS=("qemu-x86" "qemuarm" "qemuarm64" "qemumips" "qemumips64" "qemuppc" "qemux86-64")
-+   ENVIRONMENTS=("qemu-x86" "qemuarm" "qemuarm64" "qemumips" "qemumips64" "qemuppc" "qemux86-64")
-    EXECUTION_TYPE="AUTO"
-    create_test_run "${1}" "core-image-sato-sdk_ANYQEMU"
- 
-    #QEMUs Autos LSB
--   ENVIRONMETS=("qemux86-lsb" "qemux86_64-lsb")
-+   ENVIRONMENTS=("qemux86-lsb" "qemux86_64-lsb")
-    EXECUTION_TYPE="AUTO"
-    create_test_run "${1}" "core-image-lsb-sdk_ANYQEMU"
- 
-    #BSP Autos
--   ENVIRONMETS=("genericx86 - on MMAX32bit" "genericx86-64 on MMAX64" "genericx86-64 on NUC" "genericx86-64-WIC on MMAX64" \
-+   ENVIRONMENTS=("genericx86 - on MMAX32bit" "genericx86-64 on MMAX64" "genericx86-64 on NUC" "genericx86-64-WIC on MMAX64" \
-                 "genericx86-64-WIC on NUC" "genericx86-WIC on MMAX32"  "MPC8315e-rdb" "Beaglebone Black" "EdgeRouter")
-    EXECUTION_TYPE="AUTO"
-    create_test_run "${1}" "core-image-sato-sdk_ANYBSP"
- 
-    #BSP Autos
--   ENVIRONMETS=("genericx86-64-lsb on NUC" "genericx86-64-lsb on MMAX64" "genericx86-lsb on MMAX32bit")
-+   ENVIRONMENTS=("genericx86-64-lsb on NUC" "genericx86-64-lsb on MMAX64" "genericx86-lsb on MMAX32bit")
-    EXECUTION_TYPE="AUTO"
-    create_test_run "${1}" "core-image-lsb-sdk_ANYBSP"
- 
-@@ -106,12 +106,12 @@ create_yocto(){
- 
- create_meta-intel(){
-    #BSP MANUALS
--   ENVIRONMETS=("core2-32_MMAX32" "corei7-64_NUC")
-+   ENVIRONMENTS=("core2-32_MMAX32" "corei7-64_NUC")
-    EXECUTION_TYPE="MANUAL"
-    create_test_run "${1}" "BSP-MAN"
- 
-    #BSP Autos
--   ENVIRONMETS=("core2-32_MMAX32" "corei7-64_NUC" "corei7-64_MMAX64" "corei7-64_Joule" \
-+   ENVIRONMENTS=("core2-32_MMAX32" "corei7-64_NUC" "corei7-64_MMAX64" "corei7-64_Joule" \
-                 "core2-32_WIC_MMAX32" "corei7-64_WIC_NUC" "corei7-64_WIC_MMAX64" "corei7-64_WIC_Joule" \
- 		"intel-quark_Galileo" "intel-quark_WIC_Galileo")
- 
-@@ -119,7 +119,7 @@ create_meta-intel(){
-    create_test_run "${1}" "core-image-sato-sdk_ANYBSP"
- 
-    #BSP Autos LSB
--   ENVIRONMETS=("core2-32_lsb_MMAX32" "corei7-64_lsb_NUC" "corei7-64_lsb_MMAX64" "corei7-64_lsb_Joule")
-+   ENVIRONMENTS=("core2-32_lsb_MMAX32" "corei7-64_lsb_NUC" "corei7-64_lsb_MMAX64" "corei7-64_lsb_Joule")
- 
-    EXECUTION_TYPE="AUTO"
-    create_test_run "${1}" "core-image-lsb-sdk_ANYBSP"
-@@ -132,12 +132,12 @@ create_test_cycle(){
-     TEST_PLAN=""
-     case "$1" in
-                 "ADT")
--		       ENVIRONMETS=("Fedora 25 i686" "Ubuntu 16.04 x86_64")
-+		       ENVIRONMENTS=("Fedora 25 i686" "Ubuntu 16.04 x86_64")
- 		       EXECUTION_TYPE="MANUAL AUTO"
-                        create_test_run "${1}"
- 		       ;;
-              "BitBake")
--		       ENVIRONMETS=("Fedora 24 x86_64")
-+		       ENVIRONMENTS=("Fedora 24 x86_64")
- 		       EXECUTION_TYPE="MANUAL"
-                        create_test_run "${1}"
- 		       ;;
-@@ -149,7 +149,7 @@ create_test_cycle(){
- 		       fi
- 		       ;;
-               "CROPS")
--                       ENVIRONMETS=("Centos 7.1")
-+                       ENVIRONMENTS=("Centos 7.1")
- 		       EXECUTION_TYPE="AUTO"
- 		       OPTIONAL="Toaster Poky"
- 		       for OPT in $OPTIONAL
-@@ -158,12 +158,12 @@ create_test_cycle(){
- 		        done
- 		       ;;
-      "Eclipse Plugin")
--	               ENVIRONMETS=("Mars on Fedora 22 x86_64", "Neon on Fedora 22 x86_64")
-+	               ENVIRONMENTS=("Mars on Fedora 22 x86_64", "Neon on Fedora 22 x86_64")
- 		       EXECUTION_TYPE="MANUAL"
- 		       create_test_run "${1}"
- 	               ;;
-                "eSDK")
--                       ENVIRONMETS=("Centos 7.1")
-+                       ENVIRONMENTS=("Centos 7.1")
- 		       EXECUTION_TYPE="AUTO"
- 		       OPTIONAL="oeselftest sdkext"
- 		       for OPT in $OPTIONAL
-@@ -172,38 +172,38 @@ create_test_cycle(){
- 		        done
- 	               ;;
-      "General Runtime")
--	               ENVIRONMETS=("VMWare Player on Ubuntu")
-+	               ENVIRONMENTS=("VMWare Player on Ubuntu")
- 		       EXECUTION_TYPE="AUTO"
- 		       #This case test plan name is diferent from product name
- 		       TEST_PLAN="--test-plan Runtime"
- 		       create_test_run "${1}"
- 		       ;;
-              "Kernel")
--	               ENVIRONMETS=("Centos 7")
-+	               ENVIRONMENTS=("Centos 7")
- 		       EXECUTION_TYPE="MANUAL"
- 		       create_test_run "${1}"
- 		       ;;
-          "Meta-yocto")
--	               ENVIRONMETS=("Ubuntu 14.04 x86_64")
-+	               ENVIRONMENTS=("Ubuntu 14.04 x86_64")
- 		       EXECUTION_TYPE="MANUAL"
- 		       create_test_run "${1}"
- 		       ;;
-             "OE-Core")
--	               ENVIRONMETS=("CentOS 7.1 x86_64" "Debian 8 x86_64" "Fedora 25 x86_64" "Fedora 24 x86_64" \
-+	               ENVIRONMENTS=("CentOS 7.1 x86_64" "Debian 8 x86_64" "Fedora 25 x86_64" "Fedora 24 x86_64" \
- 			            "OpenSuse 13.2 x86_64" "OpenSuse421 x86_64" "ubuntu 16.04 x86_64" \
- 				    "Ubuntu 16.10 x86-64")
- 		       EXECUTION_TYPE="AUTO"
- 		       create_test_run "${1}"
- 		       ;;
-             "Runtime")
--	               ENVIRONMETS=("VMWare Player on Ubuntu")
-+	               ENVIRONMENTS=("user-preference")
- 		       EXECUTION_TYPE="MANUAL"
- 		       #This case test plan name is diferen from product name
- 		       TEST_PLAN="--test-plan Build-Appliance"
- 		       create_test_run "${1}"
- 		       ;;
-             "Toaster")
--	               ENVIRONMETS=("Debian 4.3.0-0.bpo.1-amd64")
-+	               ENVIRONMENTS=("Debian 4.3.0-0.bpo.1-amd64")
- 		       EXECUTION_TYPE="MANUAL"
- 		       OPTIONAL="UI-managed-mode"
- 		       create_test_run "${1}" $OPTIONAL
--- 
-2.11.0
+That works well for getting version dependencies respected at rootfs time.
+But DEPENDS (used at build-time) silently ignores any similar constraint
+arguments. For example:
 
+  DEPENDS = "foo (>= 1.3)"
 
+will not cause a recipe to be skipped if foo is present only at some
+version less than 1.3.
+
+I've tried a couple of workarounds in functions like so:
+
+  python () {
+    # Pseudocode. Version-number parsing would have to be done.
+    if d.getVar('PV_pn-foo', True) < '1.3':
+      raise bb.parse.SkipException('...')
+  }
+
+but ${PV_pn-foo} always just evaluates to None. I think this is because of
+the well-defined boundaries between instantiations of variables in one
+recipe and the next.
+
+Is there any way to escape that isolation and express version boundaries?
+
+-Matt
+
+--f403043621d6f37fa0054c5d190a
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">The RDEPENDS variable supports giving numeric version boun=
+ds. For example:<div><br></div><div>=C2=A0 RDEPENDS_${PN} =3D &quot;foo (&g=
+t;=3D 1.3)&quot;</div><div><br></div><div>That works well for getting versi=
+on dependencies respected at rootfs time. But DEPENDS (used at build-time) =
+silently ignores any similar constraint arguments. For example:</div><div><=
+br></div><div>=C2=A0 DEPENDS =3D &quot;foo (&gt;=3D 1.3)&quot;</div><div><b=
+r></div><div>will not cause a recipe to be skipped if foo is present only a=
+t some version less than 1.3.</div><div><br></div><div>I&#39;ve tried a cou=
+ple of workarounds in functions like so:</div><div><br></div><div>=C2=A0 py=
+thon () {</div><div>=C2=A0 =C2=A0 # Pseudocode. Version-number parsing woul=
+d have to be done.</div><div>=C2=A0 =C2=A0 if d.getVar(&#39;PV_pn-foo&#39;,=
+ True) &lt; &#39;1.3&#39;:</div><div>=C2=A0 =C2=A0 =C2=A0 raise bb.parse.Sk=
+ipException(&#39;...&#39;)</div><div>=C2=A0 }</div><div><br></div><div>but =
+${PV_pn-foo} always just evaluates to None. I think this is because of the =
+well-defined boundaries between instantiations of variables in one recipe a=
+nd the next.</div><div><br></div><div>Is there any way to escape that isola=
+tion and express version boundaries?</div><div><br></div><div>-Matt</div></=
+div>
+
+--f403043621d6f37fa0054c5d190a--
