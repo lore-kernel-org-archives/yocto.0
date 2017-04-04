@@ -1,31 +1,45 @@
-Return-Path: <jose.a.lamego@linux.intel.com>
+Return-Path: <anibal.limon@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AD050E00839; Tue,  4 Apr 2017 10:09:18 -0700 (PDT)
+	id A92F9E006CD; Tue,  4 Apr 2017 10:14:04 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [134.134.136.31 listed in list.dnswl.org]
+X-Spam-Status: No, score=-6.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	RCVD_IN_DNSWL_HI,T_DKIM_INVALID autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.88 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4684AE00655
-	for <yocto@yoctoproject.org>; Tue,  4 Apr 2017 10:09:15 -0700 (PDT)
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-	by orsmga104.jf.intel.com with ESMTP; 04 Apr 2017 10:09:15 -0700
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	*  0.0 T_DKIM_INVALID DKIM-Signature header exists but is not valid
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7E444E00546
+	for <yocto@yoctoproject.org>; Tue,  4 Apr 2017 10:14:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+	d=intel.com; i=@intel.com; q=dns/txt; s=intel;
+	t=1491326041; x=1522862041;
+	h=from:to:cc:subject:date:message-id:mime-version:
+	content-transfer-encoding;
+	bh=Uc+Xvr5Ozo90vtfugrqnJcQENAtRZFGmyp3BaAKmAwY=;
+	b=n6PyMra3bhoXdE66uJjduO5wu5cUlAyRHzCId6uWB1KGDAI62yC9gQd8
+	O4+Hhf3sVOOad7Y3cOc79GZfU4B+XQ==;
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	04 Apr 2017 10:14:00 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.36,275,1486454400"; d="scan'208";a="82880158"
-Received: from jalamego-mobl2.zpn.intel.com ([10.219.128.121])
-	by orsmga005.jf.intel.com with ESMTP; 04 Apr 2017 10:09:14 -0700
-From: Jose Lamego <jose.a.lamego@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="5.36,275,1486454400"; d="scan'208";a="69128093"
+Received: from alimonb-mobl1.zpn.intel.com ([10.219.128.124])
+	by orsmga002.jf.intel.com with ESMTP; 04 Apr 2017 10:13:59 -0700
+From: =?UTF-8?q?An=C3=ADbal=20Lim=C3=B3n?= <anibal.limon@linux.intel.com>
 To: yocto@yoctoproject.org
-Date: Tue,  4 Apr 2017 12:09:11 -0500
-Message-Id: <1491325751-11146-1-git-send-email-jose.a.lamego@linux.intel.com>
-X-Mailer: git-send-email 2.7.4
-Subject: [patchwork][PATCH] parsemail.py: Improve clean_subject function
+Date: Tue,  4 Apr 2017 12:18:04 -0500
+Message-Id: <1491326284-11764-1-git-send-email-anibal.limon@linux.intel.com>
+X-Mailer: git-send-email 2.1.4
+MIME-Version: 1.0
+Cc: joshua.g.lock@intel.com
+Subject: [[PATCH][yocto-autobuilder]] nightly-oe-selftest.conf: Remove set of SANITY_TESTED_DISTROS
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,39 +51,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Apr 2017 17:09:18 -0000
+X-List-Received-Date: Tue, 04 Apr 2017 17:14:04 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-PATCH prefix is not appropriately identified as such if it is not
-sepparated from following word in an email Subject line. This leads to
-wrong patch naming.
+The sanity testing was disabled for all builds into CreateAutoConf
+buildstep so atextappend isn't need now. [1]
 
-This change allows for appropriate patch naming by checking during
-clean_subject function if "PATCH" prefix in Subject line is not
-sepparated from following word and adding a space between them.
+[1] http://git.yoctoproject.org/cgit/cgit.cgi/yocto-autobuilder/commit/?id=87b10595e9a1d36081ec60d3069f4a98798f27eb
 
-Signed-off-by: Jose Lamego <jose.a.lamego@linux.intel.com>
+Signed-off-by: Aníbal Limón <anibal.limon@linux.intel.com>
 ---
- patchwork/bin/parsemail.py | 6 ++++++
- 1 file changed, 6 insertions(+)
+ buildset-config.controller/nightly-oe-selftest.conf | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/patchwork/bin/parsemail.py b/patchwork/bin/parsemail.py
-index 3c3046d..2f5aecb 100755
---- a/patchwork/bin/parsemail.py
-+++ b/patchwork/bin/parsemail.py
-@@ -633,6 +633,12 @@ def clean_subject(subject, drop_prefixes=None):
-     in the subject. If drop_prefixes is provided, remove those too,
-     comparing case-insensitively."""
- 
-+    # Check if PATCH prefix is followed by anoter word without a sepparation
-+    # space. Add missing space to allow appropriate parsing
-+    if patch_pref.match(subject):
-+        index = subject.find(patch_pref.match(subject).group(1))
-+        subject = subject[:index + 5] + ' ' + subject[index + 5:]
-+
-     subject = clean_header(subject)
- 
-     if drop_prefixes is None:
+diff --git a/buildset-config.controller/nightly-oe-selftest.conf b/buildset-config.controller/nightly-oe-selftest.conf
+index a267516..fb401de 100644
+--- a/buildset-config.controller/nightly-oe-selftest.conf
++++ b/buildset-config.controller/nightly-oe-selftest.conf
+@@ -11,7 +11,6 @@ steps: [{'SetDest':{}},
+         {'CreateAutoConf': {'machine': 'qemux86-64', 'SDKMACHINE' : 'x86_64',
+                             'distro': 'poky', 'nosstate': True,
+                             'packages': 'rpm', 'buildhistory' : False,
+-                            'atextappend': '\nSANITY_TESTED_DISTROS=""',
+                             'prserv': False}},
+         {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
+         {'BuildImages': {'images': 'core-image-minimal'}},
 -- 
-2.7.4
+2.1.4
 
 
