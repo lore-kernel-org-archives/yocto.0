@@ -1,39 +1,60 @@
-Return-Path: <romain.perier@collabora.com>
+Return-Path: <balazovic.peter@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C8340E00867; Wed,  5 Apr 2017 05:40:18 -0700 (PDT)
+	id AF57FE00867; Wed,  5 Apr 2017 05:46:02 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
-	SPF_HELO_PASS,UNPARSEABLE_RELAY autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [46.235.227.227 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (balazovic.peter[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.218.46 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 UNPARSEABLE_RELAY Informational: message has unparseable relay
-	lines
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2AFF9E00655
-	for <yocto@yoctoproject.org>; Wed,  5 Apr 2017 05:40:17 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-	(Authenticated sender: rperier) with ESMTPSA id E9F732656A7
-To: openembedded-core@lists.openembedded.org
-References: <20170324084604.10391-1-romain.perier@collabora.com>
-	<04e6341e-ae56-b867-5a6a-7b89cda539d6@collabora.com>
-	<5f4c4daa-3745-d5e7-9581-e8b7179b6dfd@linux.intel.com>
-	<acf909bb-42c8-337d-1f41-463680ce2626@collabora.com>
-	<0cb24550-5cd8-78a0-951f-5a3589511fc0@collabora.com>
-From: Romain Perier <romain.perier@collabora.com>
-Message-ID: <9670c5a6-1947-f238-197d-6a43f268740c@collabora.com>
-Date: Wed, 5 Apr 2017 14:40:13 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.8.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-oi0-f46.google.com (mail-oi0-f46.google.com
+	[209.85.218.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6CEE6E006CD
+	for <yocto@yoctoproject.org>; Wed,  5 Apr 2017 05:45:59 -0700 (PDT)
+Received: by mail-oi0-f46.google.com with SMTP id r203so13410270oib.3
+	for <yocto@yoctoproject.org>; Wed, 05 Apr 2017 05:45:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=ov09vTHbd+8NlnYNjm09/Ad1/ODTt3BR19CGtPBUqoI=;
+	b=cw/Thpcc8RraL7MUQmvwupRNVKAYLeSflg5h2OuEA5tvSYXYe1VIHeY8v4Di9kln7l
+	/WBRqXUGw8yVQpjDQENxxGdoFfzXZo5bVsRocnkPnu66qDm4kaspTM+Ra5BQs/IM38PV
+	NhNrfGCQEwrEOZ1yi4hjXKXnu268Vx2gbSULdz7zcOygt3bYVxlTsgc/09RykcZBUzeU
+	Tq2wmBxitNahmycgY70nEb+EUy3QTtTx32ZAVT47CTJJKMjyA/7mVn8ngVFw1wMZHE9F
+	U/CgeY8aJrthJ3fAsKnS8xyDMtcrErQfBN3V6pk8RcggJ2dhk1O1zGxdHepR9SQeZ59d
+	88rw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=ov09vTHbd+8NlnYNjm09/Ad1/ODTt3BR19CGtPBUqoI=;
+	b=J9OBl4VisDGrB3sIuLVP+c8x4ou+4XYo/qG10rALQ5rPpbcUGJEy0tf1N+hFJDnTXO
+	ocafXbMEjBeAtJIYy1l6v8yTvVAS5RRXAijobVGXTLnMXyKBebWrnOGq1ay/thOrna5P
+	RixvvciOpDYWuMgKMs1oSlbRNvkpu+0UabUz7cte6dFZDSHYgn75EXVOXQddoeVJ+34f
+	Aw66xc8RYaZodiRnSKWk3vaZhnd5A8RZxxfzn8McPOWoaaiKXznFvOrWIq+HlyrE060Y
+	+J1qb2qMg4rUT6vuDjm8Mp7/ODQ3apvRksfvjDtUaHRPW9FGzR/A1H66GACtgEqh1ZS5
+	XCpA==
+X-Gm-Message-State: AFeK/H2yIUaPDaJqoRwQ+EbTQTSnrh+1K/LNOnRXE01ecRUx+BHC7vNzSggYgOGUyBnto6/xKtm7ifMOTJYR5w==
+X-Received: by 10.157.36.226 with SMTP id z89mr16097691ota.173.1491396358136; 
+	Wed, 05 Apr 2017 05:45:58 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <0cb24550-5cd8-78a0-951f-5a3589511fc0@collabora.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: [OE-core] [PATCH v2] logrotate: Add systemd support
+Received: by 10.182.219.109 with HTTP; Wed, 5 Apr 2017 05:45:57 -0700 (PDT)
+From: Peter Balazovic <balazovic.peter@gmail.com>
+Date: Wed, 5 Apr 2017 14:45:57 +0200
+Message-ID: <CAFq4t4gV3N8Z0epsq7K5dprhsBHu+Yk-UnNAQL4QF68AxceVjQ@mail.gmail.com>
+To: Yocto list discussion <yocto@yoctoproject.org>
+Subject: GNU/Octave
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,47 +66,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Apr 2017 12:40:18 -0000
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Wed, 05 Apr 2017 12:46:02 -0000
+Content-Type: multipart/alternative; boundary=94eb2c04ffa425a73f054c6ac6c7
 
-I have just realized, systemd service and timer is already present and
-supported on upstream (like cron, in examples/). At least in 3.11.0 and
-master.
+--94eb2c04ffa425a73f054c6ac6c7
+Content-Type: text/plain; charset=UTF-8
 
-I will propose an update of this recipe to 3.11.0 (the last release) and
-then add support for systemd.
+Dears,
 
+do you know is there recipe for GNU/Octave "
+https://www.gnu.org/software/octave/"?
+Is it possible to get it running on Yocto/Linux machine?
 
-Regards,
+Thanks.
 
-Romain
+--94eb2c04ffa425a73f054c6ac6c7
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr">Dears,<div><br></div><div>do you know is there recipe for =
+GNU/Octave=C2=A0&quot;<a href=3D"https://www.gnu.org/software/octave/">http=
+s://www.gnu.org/software/octave/</a>&quot;?</div><div>Is it possible to get=
+ it running on Yocto/Linux machine?</div><div><br></div><div>Thanks.</div><=
+div><br></div></div>
 
-Le 05/04/2017 à 11:41, Romain Perier a écrit :
-> Add yocto and Alexander to Cc: (sorry)
->
-> Romain
->
->
-> Le 05/04/2017 à 11:30, Romain Perier a écrit :
->> Hello,
->>
->>
->> Le 05/04/2017 à 10:25, Alexander Kanavin a écrit :
->>> On 04/05/2017 10:58 AM, Romain Perier wrote:
->>>> ping
->>>>
->>> Is this available in newer upstream versions of logrotate? Should you
->>> send it there first?
->>>
->>> Alex
->>>
->> No, not yet.
->> Mhhh, we have variables specific to the recipe in the .service and
->> .timer, but I think that I can still send a generic version of these
->> files on upstream and use sed anyway from the recipe...
->>
->> Romain
-
-
+--94eb2c04ffa425a73f054c6ac6c7--
