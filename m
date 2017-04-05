@@ -1,44 +1,49 @@
-Return-Path: <jose.a.lamego@linux.intel.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D654DE0095F; Wed,  5 Apr 2017 12:29:53 -0700 (PDT)
+	id 3A3A8E0095F; Wed,  5 Apr 2017 13:20:34 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-6.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	RCVD_IN_DNSWL_HI,T_DKIM_INVALID autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.65 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [134.134.136.24 listed in list.dnswl.org]
 	*  0.0 T_DKIM_INVALID DKIM-Signature header exists but is not valid
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 713F1E00826
-	for <yocto@yoctoproject.org>; Wed,  5 Apr 2017 12:29:50 -0700 (PDT)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C8354E00826
+	for <yocto@yoctoproject.org>; Wed,  5 Apr 2017 13:20:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
 	d=intel.com; i=@intel.com; q=dns/txt; s=intel;
-	t=1491420591; x=1522956591;
-	h=from:to:cc:subject:date:message-id:in-reply-to: references;
-	bh=r7preJzy2+F/tgqaf8hKd6rb1FpQeuovcszn1GBdEnQ=;
-	b=O4w7SWgE4X6ak07ZSiXE3NGLtPqrap4ILRkh0lUD36eXO2pKUZutKeka
-	8m+2iCh1M7UJePSubnLyCSoyq6ztCg==;
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-	by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	05 Apr 2017 12:29:50 -0700
+	t=1491423631; x=1522959631;
+	h=from:to:cc:subject:date:message-id:in-reply-to:
+	references:mime-version:content-transfer-encoding;
+	bh=2Z+HPeQZwaYldtexATReOA+F/MMs44SCY9qBUJj63gI=;
+	b=dtZA3UaTHIzBuv7p+/YXi30lo4BbXcIh+GOunpPcpQCrfcpsqDE+QxYN
+	TEd/A1QkBQcGaoBUOfKrpeMWNA0lNQ==;
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+	by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	05 Apr 2017 13:20:30 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.37,280,1488873600"; d="scan'208";a="952294273"
-Received: from jalamego-mobl2.zpn.intel.com ([10.219.128.121])
-	by orsmga003.jf.intel.com with ESMTP; 05 Apr 2017 12:29:50 -0700
-From: Jose Lamego <jose.a.lamego@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="5.37,280,1488873600"; d="scan'208";a="842375232"
+Received: from mpragasa-mobl1.gar.corp.intel.com (HELO
+	peggleto-mobl.ger.corp.intel.com) ([10.255.138.225])
+	by FMSMGA003.fm.intel.com with ESMTP; 05 Apr 2017 13:20:27 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
 To: yocto@yoctoproject.org
-Date: Wed,  5 Apr 2017 14:29:24 -0500
-Message-Id: <1491420564-12167-1-git-send-email-jose.a.lamego@linux.intel.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1491342309-16373-1-git-send-email-jose.a.lamego@linux.intel.com>
-References: <1491342309-16373-1-git-send-email-jose.a.lamego@linux.intel.com>
-Subject: [patchwork][PATCH v2] create-pull-request: add "-t in-reply-to" option
+Date: Thu, 06 Apr 2017 08:20:25 +1200
+Message-ID: <4044659.t5cTYARgG6@peggleto-mobl.ger.corp.intel.com>
+Organization: Intel Corporation
+In-Reply-To: <c5e7440f-39d3-75ed-568a-029a224da6f9@ossystems.com.br>
+References: <CAFq4t4gV3N8Z0epsq7K5dprhsBHu+Yk-UnNAQL4QF68AxceVjQ@mail.gmail.com>
+	<CAHUNapSu=Cg2cDH2Y1MWOAzLvf3FkVnYuPvX8bN0GJeMrvnpCg@mail.gmail.com>
+	<c5e7440f-39d3-75ed-568a-029a224da6f9@ossystems.com.br>
+MIME-Version: 1.0
+Subject: Re: GNU/Octave
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,87 +55,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Apr 2017 19:29:53 -0000
+X-List-Received-Date: Wed, 05 Apr 2017 20:20:34 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-The create-pull-request script creates patches as replies to a cover
-letter, in the form of an email thread. If further revisions are sent to
-the mailing list without referencing to the first revision, these new
-revisions are not identified at the mailing list as part of the original
-thread, but as a new thread instead.
+FYI here's a guide I have been keeping mostly up-to-date about what you need 
+to do to migrate a recipe from OE-Classic:
 
-This change adds the "[-t in_reply_to]" option, where "in_reply_to" is
-the original cover letter's Message-Id, so this reference is added
-to the new cover letter to ensure the thread continuity.
+http://www.openembedded.org/wiki/Migrating_metadata_to_OE-Core
 
-[YOCTO #11294]
+Cheers,
+Paul
 
-Signed-off-by: Jose Lamego <jose.a.lamego@linux.intel.com>
----
- scripts/create-pull-request | 17 +++++++++++++----
- 1 file changed, 13 insertions(+), 4 deletions(-)
+On Thursday, 6 April 2017 1:48:08 AM NZST Fabio Berton wrote:
+> You can write a new recipe using
+> https://github.com/openembedded/openembedded/tree/master/recipes/octave
+> as a start point, and also see gentoo ebuild to check runtime depends or
+> get some inspiration :)
+> https://gitweb.gentoo.org/repo/gentoo.git/tree/sci-mathematics/octave/octave
+> -4.2.1.ebuild
+> On 04/05/2017 10:38 AM, Trevor Woerner wrote:
+> > On Wed, Apr 5, 2017 at 9:22 AM, Fabien Lahoudere
+> > 
+> > <fabien.lahoudere@collabora.co.uk> wrote:
+> >> On Wed, 2017-04-05 at 14:45 +0200, Peter Balazovic wrote:
+> >>> do you know is there recipe for GNU/Octave
+> >>> "https://www.gnu.org/software/octave/"? Is it possible to get it
+> >>> running on Yocto/Linux machine?
+> > 
+> > In general, when looking for a recipe a good place to start is the layer
+> > index: https://layers.openembedded.org
+> > 
+> > After that, google is the next place to try :-)
+> > 
+> >> A quick google search return this :
+> >> https://github.com/openembedded/openembedded/tree/master/recipes/octave
+> > 
+> > That recipe comes for the "openembedded *classic*" repository, which
+> > was abandoned years ago. So it might work, or it might needs lots of
+> > tweaking to get it to work, or it might need to be rewritten.
 
-diff --git a/scripts/create-pull-request b/scripts/create-pull-request
-index e82858b..8f0be99 100755
---- a/scripts/create-pull-request
-+++ b/scripts/create-pull-request
-@@ -34,7 +34,7 @@ RFC=0
- usage() {
- CMD=$(basename $0)
- cat <<EOM
--Usage: $CMD [-h] [-o output_dir] [-m msg_body_file] [-s subject] [-r relative_to] [-i commit_id] [-d relative_dir] -u remote [-b branch]
-+Usage: $CMD [-h] [-o output_dir] [-m msg_body_file] [-s subject] [-r relative_to] [-i commit_id] [-d relative_dir] -u remote [-b branch] [-t in_reply_to]
-   -b branch           Branch name in the specified remote (default: current branch)
-   -l local branch     Local branch name (default: HEAD)
-   -c                  Create an RFC (Request for Comment) patch series
-@@ -49,6 +49,7 @@ Usage: $CMD [-h] [-o output_dir] [-m msg_body_file] [-s subject] [-r relative_to
-   -s subject          The subject to be inserted into the summary email
-   -u remote           The git remote where the branch is located, or set CPR_CONTRIB_REMOTE in env
-   -d relative_dir     Generate patches relative to directory
-+  -t in_reply_to      Make mails appear as replies to the given Message-Id, to continue patch/series threads
- 
-  Examples:
-    $CMD -u contrib -b nitin/basic
-@@ -57,12 +58,13 @@ Usage: $CMD [-h] [-o output_dir] [-m msg_body_file] [-s subject] [-r relative_to
-    $CMD -u contrib -r master -i misc -b nitin/misc -o pull-misc
-    $CMD -u contrib -p "RFC PATCH" -b nitin/experimental
-    $CMD -u contrib -i misc -b nitin/misc -d ./bitbake
-+   $CMD -u contrib -p "OE-core][PATCH v2" -t "<cover.11146.git.john.doe@example.com>"
- EOM
- }
- 
- REMOTE="$CPR_CONTRIB_REMOTE"
- # Parse and validate arguments
--while getopts "b:acd:hi:m:o:p:r:s:u:l:" OPT; do
-+while getopts "b:acd:hi:m:o:p:r:s:u:l:t:" OPT; do
- 	case $OPT in
- 	b)
- 		BRANCH="$OPTARG"
-@@ -108,7 +110,10 @@ while getopts "b:acd:hi:m:o:p:r:s:u:l:" OPT; do
- 	a)
- 		CPR_CONTRIB_AUTO_PUSH="1"
- 		;;
--	esac
-+        t)
-+                IN_REPLY_TO="$OPTARG"
-+                ;;
-+        esac
- done
- 
- if [ -z "$REMOTE" ]; then
-@@ -205,7 +210,11 @@ if [ -n "$RELDIR" ]; then
- fi
- 
- # Generate the patches and cover letter
--git format-patch $extraopts -M40 --subject-prefix="$PREFIX" -n -o $ODIR --thread=shallow --cover-letter $RELATIVE_TO..$COMMIT_ID > /dev/null
-+if [ -n "$IN_REPLY_TO" ]; then
-+    git format-patch $extraopts -M40 --subject-prefix="$PREFIX" -n -o $ODIR --thread=shallow --in-reply-to="$IN_REPLY_TO" --cover-letter $RELATIVE_TO..$COMMIT_ID > /dev/null
-+else
-+    git format-patch $extraopts -M40 --subject-prefix="$PREFIX" -n -o $ODIR --thread=shallow --cover-letter $RELATIVE_TO..$COMMIT_ID > /dev/null
-+fi
- 
- if [ -z "$(ls -A $ODIR 2> /dev/null)" ]; then
-     echo "ERROR: $ODIR is empty, no cover letter and patches was generated!"
+
 -- 
-2.7.4
 
+Paul Eggleton
+Intel Open Source Technology Centre
 
