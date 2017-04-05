@@ -1,56 +1,35 @@
-Return-Path: <pbarker@toganlabs.com>
+Return-Path: <romain.perier@collabora.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 45C7BE006CD; Tue,  4 Apr 2017 23:59:09 -0700 (PDT)
+	id 0D603E00655; Wed,  5 Apr 2017 00:58:18 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [23.83.222.28 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
+	SPF_HELO_PASS,UNPARSEABLE_RELAY autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from cadetblue.ash.relay.mailchannels.net
-	(cadetblue.ash.relay.mailchannels.net [23.83.222.28])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 37119E00546
-	for <yocto@yoctoproject.org>; Tue,  4 Apr 2017 23:59:04 -0700 (PDT)
-X-Sender-Id: hostpapa|x-authuser|pbarker@toganlabs.com
-Received: from relay.mailchannels.net (localhost [127.0.0.1])
-	by relay.mailchannels.net (Postfix) with ESMTP id 02003103B22;
-	Wed,  5 Apr 2017 06:52:36 +0000 (UTC)
-Received: from hp181.hostpapa.com (unknown [100.96.135.247])
-	by relay.mailchannels.net (Postfix) with ESMTPA id 3291C10342C;
-	Wed,  5 Apr 2017 06:52:35 +0000 (UTC)
-X-Sender-Id: hostpapa|x-authuser|pbarker@toganlabs.com
-Received: from hp181.hostpapa.com (hp181.hostpapa.com [172.20.82.168])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384)
-	by 0.0.0.0:2500 (trex/5.7.37); Wed, 05 Apr 2017 06:52:35 +0000
-X-MC-Relay: Neutral
-X-MailChannels-SenderId: hostpapa|x-authuser|pbarker@toganlabs.com
-X-MailChannels-Auth-Id: hostpapa
-X-Wide-Eyed-Shoe: 604446977c886439_1491375155768_918872150
-X-MC-Loop-Signature: 1491375155768:480376717
-X-MC-Ingress-Time: 1491375155768
-Received: from cpc116908-shep14-2-0-cust920.8-3.cable.virginm.net
-	([82.34.23.153]:35745 helo=host0.betafive.co.uk)
-	by hp181.hostpapa.com with esmtpsa
-	(TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.87)
-	(envelope-from <pbarker@toganlabs.com>)
-	id 1cvenv-001XBb-6X; Wed, 05 Apr 2017 08:52:34 +0200
-Date: Wed, 5 Apr 2017 07:52:28 +0100
-From: Paul Barker <pbarker@toganlabs.com>
-To: Andrea Galbusera <gizero@gmail.com>
-Message-ID: <20170405075228.4912cbd4@host0.betafive.co.uk>
-In-Reply-To: <1491327350-31629-1-git-send-email-gizero@gmail.com>
-References: <1491327350-31629-1-git-send-email-gizero@gmail.com>
-Organization: =?UTF-8?B?VG9nw6Fu?= Labs
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [46.235.227.227 listed in list.dnswl.org]
+	* 0.0 UNPARSEABLE_RELAY Informational: message has unparseable relay
+	lines
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BFA96E00349
+	for <yocto@yoctoproject.org>; Wed,  5 Apr 2017 00:58:16 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	(Authenticated sender: rperier) with ESMTPSA id 09B0F265675
+To: liezhi.yang@windriver.com
+References: <20170324084604.10391-1-romain.perier@collabora.com>
+From: Romain Perier <romain.perier@collabora.com>
+Message-ID: <04e6341e-ae56-b867-5a6a-7b89cda539d6@collabora.com>
+Date: Wed, 5 Apr 2017 09:58:12 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.8.0
 MIME-Version: 1.0
-X-OutGoing-Spam-Status: No, score=5.0
-X-AuthUser: pbarker@toganlabs.com
-Cc: yocto@yoctoproject.org, Andrei Gherzan <andrei@gherzan.com>
-Subject: Re: [meta-raspberrypi][PATCH v2] rpi-config: fix invalid shell variable name
+In-Reply-To: <20170324084604.10391-1-romain.perier@collabora.com>
+Cc: yocto@yoctoproject.org, openembedded-core@lists.openembedded.org
+Subject: Re: [PATCH v2] logrotate: Add systemd support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -62,60 +41,113 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Apr 2017 06:59:09 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 05 Apr 2017 07:58:18 -0000
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: 8bit
 
-On Tue,  4 Apr 2017 19:35:50 +0200
-Andrea Galbusera <gizero@gmail.com> wrote:
+ping
 
-> Commit da32aac introduced an invalid shell variable name in do_deploy():
-> according to bash manpage variable names cannot contain dots. Replace
-> dot with underscore to fix it.
->=20
-> Signed-off-by: Andrea Galbusera <gizero@gmail.com>
+
+Le 24/03/2017 à 09:46, Romain Perier a écrit :
+> Currently, this recipe only supports daily scheduling via a cron job.
+> This commit adds support for systemd, including systemd service and
+> systemd timer. When the corresponding distro feature is enabled the
+> systemd variant will be used. The timer granularity and its accuracy
+> are also configurable.
+>
+> Signed-off-by: Romain Perier <romain.perier@collabora.com>
 > ---
->=20
-> v2: also update README accordingly
-> Signed-off-by: Andrea Galbusera <gizero@gmail.com>
-> ---
->  README                                  | 2 +-
->  recipes-bsp/bootfiles/rpi-config_git.bb | 2 +-
->  2 files changed, 2 insertions(+), 2 deletions(-)
->=20
-> diff --git a/README b/README
-> index c58bc99..9fdd5eb 100644
-> --- a/README
-> +++ b/README
-> @@ -247,7 +247,7 @@ List of currently supported models:
->  If you would like to use the Waveshare "C" 1024=C3=97600, 7 inch Capacit=
-ive Touch
->  Screen LCD, HDMI interface (http://www.waveshare.com/7inch-HDMI-LCD-C.ht=
-m)
->  Rev 2.1, please set the following in your local.conf
-> -WAVESHARE_1024X600_C_2.1 =3D "1"
-> +WAVESHARE_1024X600_C_2_1 =3D "1"
-> =20
->  3.P. Enable UART
->  =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> diff --git a/recipes-bsp/bootfiles/rpi-config_git.bb b/recipes-bsp/bootfi=
-les/rpi-config_git.bb
-> index 8adc938..af55983 100644
-> --- a/recipes-bsp/bootfiles/rpi-config_git.bb
-> +++ b/recipes-bsp/bootfiles/rpi-config_git.bb
-> @@ -112,7 +112,7 @@ do_deploy() {
->      fi
-> =20
->      # Waveshare "C" 1024x600 7" Rev2.1 IPS capacitive touch (http://www.=
-waveshare.com/7inch-HDMI-LCD-C.htm)
-> -    if [ "${WAVESHARE_1024X600_C_2.1}" =3D "1" ]; then
-> +    if [ "${WAVESHARE_1024X600_C_2_1}" =3D "1" ]; then
->          echo "# Waveshare \"C\" 1024x600 7\" Rev2.1 IPS capacitive touch=
- screen" >> ${DEPLOYDIR}/bcm2835-bootfiles/config.txt
->          echo "max_usb_current=3D1" >> ${DEPLOYDIR}/bcm2835-bootfiles/con=
-fig.txt
->          echo "hdmi_group=3D2" >> ${DEPLOYDIR}/bcm2835-bootfiles/config.t=
-xt
+>
+> Changes in v2:
+> - Make the systemd timer configurable (as this is distribution or target specific)
+>
+>  .../logrotate/logrotate/logrotate.service          |  9 ++++++++
+>  .../logrotate/logrotate/logrotate.timer            |  7 ++++++
+>  meta/recipes-extended/logrotate/logrotate_3.9.1.bb | 27 ++++++++++++++++++++--
+>  3 files changed, 41 insertions(+), 2 deletions(-)
+>  create mode 100644 meta/recipes-extended/logrotate/logrotate/logrotate.service
+>  create mode 100644 meta/recipes-extended/logrotate/logrotate/logrotate.timer
+>
+> diff --git a/meta/recipes-extended/logrotate/logrotate/logrotate.service b/meta/recipes-extended/logrotate/logrotate/logrotate.service
+> new file mode 100644
+> index 0000000..3edb8ef
+> --- /dev/null
+> +++ b/meta/recipes-extended/logrotate/logrotate/logrotate.service
+> @@ -0,0 +1,9 @@
+> +[Unit]
+> +Description=Rotate log files
+> +
+> +[Service]
+> +Type=oneshot
+> +ExecStart=/usr/sbin/logrotate /etc/logrotate.conf
+> +Nice=19
+> +IOSchedulingClass=best-effort
+> +IOSchedulingPriority=7
+> diff --git a/meta/recipes-extended/logrotate/logrotate/logrotate.timer b/meta/recipes-extended/logrotate/logrotate/logrotate.timer
+> new file mode 100644
+> index 0000000..c616b43
+> --- /dev/null
+> +++ b/meta/recipes-extended/logrotate/logrotate/logrotate.timer
+> @@ -0,0 +1,7 @@
+> +[Unit]
+> +Description=Daily rotation of log files
+> +
+> +[Timer]
+> +OnCalendar=@TIMER_BASIS@
+> +AccuracySec=@TIMER_ACCURACY@
+> +Persistent=true
+> diff --git a/meta/recipes-extended/logrotate/logrotate_3.9.1.bb b/meta/recipes-extended/logrotate/logrotate_3.9.1.bb
+> index 5f1a601..6953996 100644
+> --- a/meta/recipes-extended/logrotate/logrotate_3.9.1.bb
+> +++ b/meta/recipes-extended/logrotate/logrotate_3.9.1.bb
+> @@ -14,6 +14,8 @@ SRC_URI = "https://fedorahosted.org/releases/l/o/logrotate/logrotate-${PV}.tar.g
+>             file://act-as-mv-when-rotate.patch \
+>             file://update-the-manual.patch \
+>             file://disable-check-different-filesystems.patch \
+> +           ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'file://logrotate.service', '', d)} \
+> +           ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'file://logrotate.timer', '', d)} \
+>              "
+>  
+>  SRC_URI[md5sum] = "4492b145b6d542e4a2f41e77fa199ab0"
+> @@ -47,6 +49,17 @@ EXTRA_OEMAKE = "\
+>  # INSTALL=install and BASEDIR=/usr.
+>  OS_NAME = "Linux"
+>  
+> +inherit systemd
+> +
+> +SYSTEMD_AUTO_ENABLE = "disable"
+> +SYSTEMD_SERVICE_${PN} = "\
+> +    ${PN}.service \
+> +    ${PN}.timer \
+> +"
+> +
+> +LOGROTATE_SYSTEMD_TIMER_BASIS ?= "daily"
+> +LOGROTATE_SYSTEMD_TIMER_ACCURACY ?= "12h"
+> +
+>  do_compile_prepend() {
+>      # Make sure the recompile is OK
+>      rm -f ${B}/.depend
+> @@ -55,9 +68,19 @@ do_compile_prepend() {
+>  do_install(){
+>      oe_runmake install DESTDIR=${D} PREFIX=${D} MANDIR=${mandir}
+>      mkdir -p ${D}${sysconfdir}/logrotate.d
+> -    mkdir -p ${D}${sysconfdir}/cron.daily
+>      mkdir -p ${D}${localstatedir}/lib
+>      install -p -m 644 examples/logrotate-default ${D}${sysconfdir}/logrotate.conf
+> -    install -p -m 755 examples/logrotate.cron ${D}${sysconfdir}/cron.daily/logrotate
+>      touch ${D}${localstatedir}/lib/logrotate.status
+> +
+> +    # Install systemd unit files
+> +    if [ "${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'systemd', '', d)}" = "systemd" ]; then
+> +        install -d ${D}/${systemd_system_unitdir}
+> +        install -m 0644 ${WORKDIR}/logrotate.service ${D}/${systemd_system_unitdir}/logrotate.service
+> +        install -m 0644 ${WORKDIR}/logrotate.timer ${D}/${systemd_system_unitdir}/logrotate.timer
+> +        sed -i -e 's,@TIMER_BASIS@,${LOGROTATE_SYSTEMD_TIMER_BASIS},g' ${D}${systemd_system_unitdir}/logrotate.timer
+> +        sed -i -e 's,@TIMER_ACCURACY@,${LOGROTATE_SYSTEMD_TIMER_ACCURACY},g' ${D}${systemd_system_unitdir}/logrotate.timer
+> +    else
+> +        mkdir -p ${D}${sysconfdir}/cron.daily
+> +        install -p -m 0755 examples/logrotate.cron ${D}${sysconfdir}/cron.daily/logrotate
+> +    fi
+>  }
 
-This fixes the build for me and looks good :)
 
