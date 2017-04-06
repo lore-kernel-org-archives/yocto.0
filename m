@@ -1,34 +1,35 @@
-Return-Path: <fabien.lahoudere@collabora.co.uk>
+Return-Path: <leonardo.sandoval.gonzalez@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E9C2AE00887; Thu,  6 Apr 2017 07:13:49 -0700 (PDT)
+	id A8D40E00887; Thu,  6 Apr 2017 07:22:12 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
-	SPF_HELO_PASS,UNPARSEABLE_RELAY autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [46.235.227.227 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 UNPARSEABLE_RELAY Informational: message has unparseable relay
-	lines
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5C11FE007BA
-	for <yocto@yoctoproject.org>; Thu,  6 Apr 2017 07:13:47 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-	(Authenticated sender: aragua) with ESMTPSA id AABF52656D7
-Message-ID: <1491488022.25991.55.camel@collabora.co.uk>
-From: Fabien Lahoudere <fabien.lahoudere@collabora.co.uk>
-To: yocto@yoctoproject.org
-Date: Thu, 06 Apr 2017 16:13:42 +0200
-In-Reply-To: <VI1PR05MB337622D59EAB12A6C3D0C045F90A0@VI1PR05MB3376.eurprd05.prod.outlook.com>
-References: <VI1PR05MB33768D6A8AB4303963AD7074F9080@VI1PR05MB3376.eurprd05.prod.outlook.com>
-	<VI1PR05MB337622D59EAB12A6C3D0C045F90A0@VI1PR05MB3376.eurprd05.prod.outlook.com>
-X-Mailer: Evolution 3.22.5-1 
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [134.134.136.100 listed in list.dnswl.org]
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 04231E007BA
+	for <yocto@yoctoproject.org>; Thu,  6 Apr 2017 07:22:09 -0700 (PDT)
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+	by orsmga105.jf.intel.com with ESMTP; 06 Apr 2017 07:22:08 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.37,160,1488873600"; d="scan'208";a="85728600"
+Received: from lsandov1-mobl2.zpn.intel.com ([10.219.128.141])
+	by fmsmga006.fm.intel.com with ESMTP; 06 Apr 2017 07:22:08 -0700
+Message-ID: <1491489030.31049.11.camel@linux.intel.com>
+From: Leonardo Sandoval <leonardo.sandoval.gonzalez@linux.intel.com>
+To: Matthew Phillips <matthew1phillips@gmail.com>
+Date: Thu, 06 Apr 2017 09:30:30 -0500
+In-Reply-To: <CAHrosF_fjd8v_L8iKSR3kt3OEBnUy_h-pArG4LvQ8dPkpUWpdQ@mail.gmail.com>
+References: <CAHrosF_fjd8v_L8iKSR3kt3OEBnUy_h-pArG4LvQ8dPkpUWpdQ@mail.gmail.com>
+X-Mailer: Evolution 3.12.9-1+b1 
 Mime-Version: 1.0
-Subject: Re: Returning non-zero exit code
+Cc: yocto@yoctoproject.org
+Subject: Re: Local repo no network help request
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,29 +41,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Apr 2017 14:13:50 -0000
+X-List-Received-Date: Thu, 06 Apr 2017 14:22:12 -0000
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On Wed, 2017-04-05 at 15:05 +0000, Natalia Theologou wrote:
-> Hello, 
+On Wed, 2017-04-05 at 19:57 -0700, Matthew Phillips wrote:
+> Hi all,
 > 
-> While I am trying to bitbake fsl-image-x11 I am having this error:
+> I am trying to do the following:
 > 
-> ERROR: Task 1570 (virtual:native:~/sources/poky/meta/recipes-support/gmp/gmp_5.1.1.bb, do_compile)
-> failed with exit code '1'
-> NOTE: Tasks Summary: Attempted 78 tasks of which 74 didn't need to be rerun and 2 failed.
-> Waiting for 0 running tasks to finish:
+> I have a local git repo, pulled manually from a remote repo (via a script).
+> I have a .bb file set up referencing this repo. This .bb file includes
+> (among other things):
 > 
-> Summary: 2 tasks failed:
->   virtual:native:~/sources/poky/meta/recipes-core/ncurses/ncurses_5.9.bb, do_compile
->   virtual:native:~/sources/poky/meta/recipes-support/gmp/gmp_5.1.1.bb, do_compile
+> >> SRC_URI = "git://${TOPDIR}/../sources/my-repo;protocol=file;branch=master"
+> >> SRCREV = "${AUTOREV}"
 > 
-> Does anyone know how to solve it?
 
-Can you give logs of do_compile for both recipe?
+did you get the same result if you hard-coded the pathname? 
 
+
+
+
+> I do not want to use the network (so BB_NO_NETWORK is 1).
 > 
-> Thank you in advance, 
-> Natalia Theologou
+> Although the SRC_URI is pointing to the correct path, the yocto build
+> fails because it tries to access the network.
+> 
+> How should I be doing this instead?
+> 
+> I can run a script (preferably bash atm) before the build if doing
+> something pre-build will help simplify anything.
+> 
+> Thank you,
+> M
+
+
 
