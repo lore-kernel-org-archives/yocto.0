@@ -1,6 +1,6 @@
 Return-Path: <fabien.lahoudere@collabora.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EB76DE00985; Thu,  6 Apr 2017 02:51:07 -0700 (PDT)
+	id 2C3E0E00985; Thu,  6 Apr 2017 03:10:52 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -15,20 +15,20 @@ X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	* 0.0 UNPARSEABLE_RELAY Informational: message has unparseable relay
 	lines
 Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 75DA4E0095F
-	for <yocto@yoctoproject.org>; Thu,  6 Apr 2017 02:51:04 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E8CA0E0095F
+	for <yocto@yoctoproject.org>; Thu,  6 Apr 2017 03:10:50 -0700 (PDT)
 Received: from [127.0.0.1] (localhost [127.0.0.1])
-	(Authenticated sender: aragua) with ESMTPSA id 263C1265710
-Message-ID: <1491472260.25991.41.camel@collabora.co.uk>
+	(Authenticated sender: aragua) with ESMTPSA id C569A265710
+Message-ID: <1491473447.25991.43.camel@collabora.co.uk>
 From: Fabien Lahoudere <fabien.lahoudere@collabora.co.uk>
-To: chandrasekhar c <chandrasekhar@evolute-sys.com>
-Date: Thu, 06 Apr 2017 11:51:00 +0200
-In-Reply-To: <1491469744.S.10166.2428.pro-237-142.1491470210.30755@webmail.rediffmail.com>
-References: <1491469744.S.10166.2428.pro-237-142.1491470210.30755@webmail.rediffmail.com>
+To: yocto@yoctoproject.org
+Date: Thu, 06 Apr 2017 12:10:47 +0200
+In-Reply-To: <a84d3714-2329-914c-8e16-5fad1edca7e8@kiversal.com>
+References: <fa8e9123-8ed8-ff2f-b3a1-54467af4457f@kiversal.com>
+	<a84d3714-2329-914c-8e16-5fad1edca7e8@kiversal.com>
 X-Mailer: Evolution 3.22.5-1 
 Mime-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: unable to create softlink for precompilied libraries
+Subject: Re: iMX6UL - QtQuick - QtQuick2DRenderer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,70 +40,121 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Apr 2017 09:51:08 -0000
+X-List-Received-Date: Thu, 06 Apr 2017 10:10:52 -0000
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
 
-Can you check that the file is installed in image folder and in package in the WORKDIR of your
-recipe?
+On Thu, 2017-04-06 at 10:35 +0200, Stefano Zuín wrote:
+> 
+> 
+> 
+> -------- Mensaje reenviado --------
+> Asunto:	[yocto] iMX6UL - QtQuick - QtQuick2DRenderer
+> Fecha:	Wed, 5 Apr 2017 13:29:13 +0200
+> De:	Stefano Zuín <szuin@kiversal.com>
+> Para:	yocto@yoctoproject.org
+> 
+> Hi all,
+> 
+> I'm trying to run a graphical Qt application based in QtQuick2 and QML 
+> (example calqtr) in my iMX6UL (Variscite's Dart6UL). As this device 
+> doesn't have GPU, I have to use QtQuick2DRenderer to substitute openGL. 
+> I'm using Ubuntu 14.04 64bits and Krogoth 2.1.2
+> 
+> I have the enterprise license, followed the Qt's instructions 
+> (http://doc.qt.io/QtQuick2DRenderer/qtquick2drenderer-installation-guide.html) 
+> and use the qmake built with meta-toolchain-qt5. So QtQuick2DRenderer is 
+> correctly installed.
+> 
+> Then, before run the app, I declared export 
+> QMLSCENE_DEVICE=softwarecontext before running the application. 
+> Unfortunately, I get the next message when try to run a demo example:
+> 
+> ./calqlatr --platform linuxfb
+> QML debugging is enabled. Only use this in a safe environment.
+> This plugin does not support createPlatformOpenGLContext!
+> Failed to create OpenGL context for format QSurfaceFormat(version 2.0, 
+> options QFlags(), depthBufferSize 24, redBufferSize -1, greenBufferSize 
+> -1, blueBufferSize -1, alphaBufferSize -1, stencilBufferSize 8, samples 
+> -1, swapBehavior 2, swapInterval 1, profile  0)
+> Aborted (core dumped)
 
-On Thu, 2017-04-06 at 09:16 +0000, chandrasekhar c wrote:
-> Hi,
-> I have added this FILES_${PN} += " ${libdir}/libMSOComm.so " line in my recipe still the issue is
-> present
+Did you try to look at the core dumped. maybe the backtrace can help.
+
 > 
-> Thanks 
-> Chandra
+> I did the SDK using meta-toolchain-qt5 and the image with fsl-image-qt5. 
+> When I run a console app or a graphical which uses QtQuick 1, it works 
+> correctly.
 > 
-> From: chandrasekhar c <chandrasekhar@evolute-sys.com>
-> Sent: Thu, 6 Apr 2017 14:39:04 GMT+0530
-> To: "Fabien Lahoudere " <fabien.lahoudere@collabora.co.uk>
-> Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-> Subject: Re: [yocto] unable to create softlink for precompilied libraries
+> This is my conf/local.conf file:
 > 
-> Hi ,
-> No, I will do the changes and let you know the result.
+> MACHINE ??= 'imx6ul-var-dart'
+> DISTRO ?= 'fsl-imx-fb'
+> PACKAGE_CLASSES ?= "package_rpm"
+> EXTRA_IMAGE_FEATURES ?= "debug-tweaks"
+> USER_CLASSES ?= "buildstats image-mklibs"
+> PATCHRESOLVE = "noop"
+> BB_DISKMON_DIRS = "\
+>      STOPTASKS,${TMPDIR},1G,100K \
+>      STOPTASKS,${DL_DIR},1G,100K \
+>      STOPTASKS,${SSTATE_DIR},1G,100K \
+>      STOPTASKS,/tmp,100M,100K \
+>      ABORT,${TMPDIR},100M,1K \
+>      ABORT,${DL_DIR},100M,1K \
+>      ABORT,${SSTATE_DIR},100M,1K \
+>      ABORT,/tmp,10M,1K"
+> PACKAGECONFIG_append_pn-qemu-native = " sdl"
+> PACKAGECONFIG_append_pn-nativesdk-qemu = " sdl"
+> CONF_VERSION = "1"
 > 
-> Regards,
-> Chandrasekhar
+> DL_DIR ?= "${BSPDIR}/downloads/"
+> ACCEPT_FSL_EULA = "1"
 > 
-> From: Fabien Lahoudere <fabien.lahoudere@collabora.co.uk>
-> Sent: Thu, 6 Apr 2017 14:10:30 GMT+0530
-> To: yocto@yoctoproject.org
-> Subject: Re: [yocto] unable to create softlink for precompilied libraries
+> # Add Eclipse debug and Qt creator support to your images
+> EXTRA_IMAGE_FEATURES = " \
+>      debug-tweaks \
+>      tools-debug \
+>      eclipse-debug \
+> "
 > 
-> On Thu, 2017-04-06 at 08:08 +0000, chandrasekhar c wrote:
-> > Hi,  
-> > I have a third party precompilied libraries. I erota a recipe to copy to rootfs and create  
-> soft
-> > links for the same. After doing bitbake it didnt throw any errors, but when I check th rootfs it
-> > didn't create any link file.
-> > Below is my recipe
-> >  
-> > do_install_append() {
-> >                   install -d ${D}${libdir}/
-> >                 install -m 0777 ${S}/libMSO.so.1.2 ${D}${libdir}/libMSO.so.1.2
-> >                 ln -sf libMSO.so.1.2 ${D}${libdir}/libMSO.so
-> >                 install -m 0777 ${S}/libMSOComm.so.1.2 ${D}${libdir}/libMSOComm.so.1.2 //This is
-> success
-> >                 ln -sf libMSOComm.so.1.2 ${D}${libdir}/libMSOComm.so.1 //This is success
-> >                 ln -sf libMSOComm.so.1  ${D}${libdir}/libMSOComm.so //This is not happening
-> > }
-> > Can any one tell me a solution for this.
+> IMAGE_INSTALL_append = " \
+>      tcf-agent \
+>      openssh-sftp-server \
+>         qtbase-fonts \
+>          qtbase-plugins \
+>          qtbase-tools \
+>          qtbase-examples \
+>          qtdeclarative \
+>          qtdeclarative-plugins \
+>          qtdeclarative-tools \
+>          qtdeclarative-examples \
+>          qtdeclarative-qmlplugins \
+>          qtquickcontrols-qmlplugins \
+> "
 > 
-> Did you ship it with FILES_${PN} += " ${libdir}/libMSOComm.so " ?
+> # Use systemd instead of SysV init
+> DISTRO_FEATURES_append = " systemd"
+> VIRTUAL-RUNTIME_init_manager = "systemd"
+> DISTRO_FEATURES_BACKFILL_CONSIDERED = "sysvinit"
+> VIRTUAL-RUNTIME_initscripts = ""
+> IMX_DEFAULT_DISTRO_FEATURES_append = " systemd"
 > 
 > 
-> >  
-> > Thanks and Regards,
-> > Chandrasekhar
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+> I think, that problem could be in configuring -opengl es2 in qtbase 
+> recipe. But when I set it manually I get errors doing bitbake 
+> fsl-image-qt5....
+> 
+> 
+> 
+> Este correo electrónico y sus documentos adjuntos contienen información privilegiada, personal y
+> estrictamente confidencial, y está prohibida la copia, reenvío o utilización de la información.
+> Si usted no es la persona destinataria del presente mensaje, no está autorizada a leerlo,
+> retenerlo o difundirlo.
+> 
+> This e-mail and its attachments are privileged, confidential and contain private information, and
+> any sending, using or copy of its information is prohibited.
+> Any person other than its intended recipient is not authorised to read, retain or distribute this
+> information.
+> 
+> 
 
