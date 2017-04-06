@@ -1,12 +1,12 @@
 Return-Path: <chandrasekhar@evolute-sys.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BCBB0E00985; Thu,  6 Apr 2017 02:08:09 -0700 (PDT)
+	id 24EA3E00985; Thu,  6 Apr 2017 02:23:37 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,SPF_HELO_PASS,UNPARSEABLE_RELAY autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RDNS_NONE,SPF_HELO_PASS,UNPARSEABLE_RELAY
+	autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
@@ -14,34 +14,34 @@ X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
 	* 0.0 UNPARSEABLE_RELAY Informational: message has unparseable relay
 	lines
-X-Greylist: delayed 398 seconds by postgrey-1.32 at yocto-www;
-	Thu, 06 Apr 2017 02:08:05 PDT
-Received: from rediffmail.com (pro236-194.mxout.rediffmailpro.com
-	[202.137.236.194])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CD68CE0095F
-	for <yocto@yoctoproject.org>; Thu,  6 Apr 2017 02:08:04 -0700 (PDT)
+X-Greylist: delayed 399 seconds by postgrey-1.32 at yocto-www;
+	Thu, 06 Apr 2017 02:23:33 PDT
+Received: from rediffmail.com (unknown [202.137.236.73])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7D532E0095F
+	for <yocto@yoctoproject.org>; Thu,  6 Apr 2017 02:23:33 -0700 (PDT)
 X-REDIFF-Delivered-Remotely-To: yocto@yoctoproject.org
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rediffmailpro.com;
-	s=epro; t=1491469277;
-	bh=TajnyQ6G77ulOosoHqlYABAReiF52wdw+sPusTOI1qA=;
+	s=epro; t=1491470210;
+	bh=VrNqs4C005FxOt6153DLz/N3kGiyktQOszvHZX6x/Ck=;
 	h=MIME-Version:From:Date:Message-ID:Subject:To;
-	b=DuQOqqceibU7hsxvPCS5nR6OpWe0I0nWTaCpq2/NEdioxvooTfI7DdqaiwYSt2ria
-	Oji5RLoT98Zb8Duc+2gbLyaMvi4Vxr/mLnfAqxGVc7d+3Xl7CZvIqDa8Wkyq2VIGBQ
-	tn9SOtEISKPgHRW8koSQb5k5w+fXIvcOVYdwcv1E=
-Received: (qmail 21294 invoked by uid 510); 6 Apr 2017 09:01:17 -0000
+	b=Vri0Q5/5LC5ioRsZ4JRDYeGDFElFkK88yPbIet6ylk93Y6kWz86MEQoqQao8xcpqK
+	vLC/7+6TlKaa+n7jleJW8l+cHnz9W16uHZHvYupNEV0G89trVlWOgapvIUPR+Gq1NJ
+	H6wOPkPj5l3UlDFMKS/KBAD7NeV119WcikCzucSI=
+Received: (qmail 30811 invoked by uid 510); 6 Apr 2017 09:16:50 -0000
 x-m-msg: asd54ad564ad7aa6sd5as6d5; a6da7d6asas6dasd77; 5dad65ad5sd;
 X-OUT-VDRT-SpamState: 0\LEGIT
-X-OUT-VDRT-SpamScore: -60
-X-OUT-VDRT-SpamCause: gggruggvucftvghtrhhoucdtuddrfeeliedrtdeggdduudcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenhfhorhhgvgguucfjvffvrffuucdlgedtmdenucfjughrpeffggfvkfgjshfuhfgtsegrtderredttdejnecuhfhrohhmpedftghhrghnughrrghsvghkhhgrrhcutgdfuceotghhrghnughrrghsvghkhhgrrhesvghvohhluhhtvgdqshihshdrtghomheqnecuffhomhgrihhnpehlihgsmhhsohgtohhmmhdrshhopdhlihgsmhhsohdrshhopdihohgtthhophhrohhjvggtthdrohhrghenucfkphepuddvvddrudeiiedrvdeffedruddunecurfgrrhgrmhepmhhouggvpehsmhhtphhouhht
-Date: 6 Apr 2017 09:01:17 -0000
+X-OUT-VDRT-SpamScore: -45
+X-OUT-VDRT-SpamCause: gggruggvucftvghtrhhoucdtuddrfeeliedrtdeggddugecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenogetfedtuddqtdduucdludehmdenhfhorhhgvgguucfjvffvrffuucdlgedtmdenucfjughrpeffggfvkfgjshfuhfgtsegrtderredttdejnecuhfhrohhmpedftghhrghnughrrghsvghkhhgrrhcutgdfuceotghhrghnughrrghsvghkhhgrrhesvghvohhluhhtvgdqshihshdrtghomheqnecuffhomhgrihhnpehlihgsmhhsohgtohhmmhdrshhopdhlihgsmhhsohdrshhopdihohgtthhophhrohhjvggtthdrohhrghenucfkphepuddvvddrudeiiedrvdeffedruddunecurfgrrhgrmhepmhhouggvpehsmhhtphhouhht
+Date: 6 Apr 2017 09:16:50 -0000
 MIME-Version: 1.0
-To: "Fabien Lahoudere " <fabien.lahoudere@collabora.co.uk>
+To: "chandrasekhar c " <chandrasekhar@evolute-sys.com>
 Received: from unknown 122.166.233.11 by rediffmailpro.com via HTTP;
-	06 Apr 2017 09:01:17 -0000
-Message-ID: <1491468030.S.5129.28462.pro-236-197.1491469277.21186@webmail.rediffmail.com>
-In-Reply-To: <1491467848.25991.32.camel@collabora.co.uk>
+	06 Apr 2017 09:16:50 -0000
+Message-ID: <1491469744.S.10166.2428.pro-237-142.1491470210.30755@webmail.rediffmail.com>
+In-Reply-To: <1491468030.S.5129.28462.pro-236-197.1491469277.21186@webmail.rediffmail.com>
 Sender: chandrasekhar@evolute-sys.com
 From: "chandrasekhar c" <chandrasekhar@evolute-sys.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
@@ -57,53 +57,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Apr 2017 09:08:09 -0000
+X-List-Received-Date: Thu, 06 Apr 2017 09:23:37 -0000
 Content-Type: multipart/alternative;
-	boundary="=_e1ae2c66d4f6581b1bfc9d29dc9a8f23"
+	boundary="=_aa66e23b3fb5f2634bee4f53055017a0"
 
---=_e1ae2c66d4f6581b1bfc9d29dc9a8f23
+--=_aa66e23b3fb5f2634bee4f53055017a0
 Content-Transfer-Encoding: 7bit
 Content-Type: text/plain; charset="UTF-8"
 
-Hi ,No, I will do the changes and let you know the result.Regards,ChandrasekharFrom: Fabien Lahoudere &lt;fabien.lahoudere@collabora.co.uk&gt;Sent: Thu, 6 Apr 2017 14:10:30 GMT+0530To: yocto@yoctoproject.orgSubject: Re: [yocto] unable to create softlink for precompilied librariesOn Thu, 2017-04-06 at 08:08 +0000, chandrasekhar c wrote:&gt; Hi, &nbsp;&gt; I have a third party precompilied libraries. I erota a recipe to copy to rootfs and create &nbsp; soft&gt; links for the same. After doing bitbake it didnt throw any errors, but when I check th rootfs it&gt; didn&#39;t create any link file.&gt; Below is my recipe&gt; &nbsp;&gt; do_install_append() {&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; install -d ${D}${libdir}/&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; install -m 0777 ${S}/libMSO.so.1.2 ${D}${libdir}/libMSO.so.1.2&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ln -sf libMSO.so.1.2 ${D}${libdir}/libMSO.so&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; install -m 0777 ${S}/libMSOComm.so.1.2 ${D}${libdir}/libMSOComm.so.1.2 //This is success&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ln -sf libMSOComm.so.1.2 ${D}${libdir}/libMSOComm.so.1 //This is success&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ln -sf libMSOComm.so.1 &nbsp;${D}${libdir}/libMSOComm.so //This is not happening&gt; }&gt; Can any one tell me a solution for this.Did you ship it with FILES_${PN} += &quot; ${libdir}/libMSOComm.so &quot; ?&gt; &nbsp;&gt; Thanks and Regards,&gt; Chandrasekhar--_______________________________________________yocto mailing listyocto@yoctoproject.orghttps://lists.yoctoproject.org/listinfo/yocto
+Hi,I have added this&nbsp;FILES_${PN} += &quot; ${libdir}/libMSOComm.so&nbsp;&quot; line in my recipe still the issue is presentThanks&nbsp;ChandraFrom: chandrasekhar c &lt;chandrasekhar@evolute-sys.com&gt;Sent: Thu, 6 Apr 2017 14:39:04 GMT+0530To: &quot;Fabien Lahoudere &quot; &lt;fabien.lahoudere@collabora.co.uk&gt;Cc: &quot;yocto@yoctoproject.org&quot; &lt;yocto@yoctoproject.org&gt;Subject: Re: [yocto] unable to create softlink for precompilied librariesHi ,No, I will do the changes and let you know the result.Regards,ChandrasekharFrom: Fabien Lahoudere &lt;fabien.lahoudere@collabora.co.uk&gt;Sent: Thu, 6 Apr 2017 14:10:30 GMT+0530To: yocto@yoctoproject.orgSubject: Re: [yocto] unable to create softlink for precompilied librariesOn Thu, 2017-04-06 at 08:08 +0000, chandrasekhar c wrote:&gt; Hi, &nbsp;&gt; I have a third party precompilied libraries. I erota a recipe to copy to rootfs and create &nbsp; soft&gt; links for the same. After doing bitbake it didnt throw any errors, but when I check th rootfs it&gt; didn&#39;t create any link file.&gt; Below is my recipe&gt; &nbsp;&gt; do_install_append() {&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; install -d ${D}${libdir}/&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; install -m 0777 ${S}/libMSO.so.1.2 ${D}${libdir}/libMSO.so.1.2&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ln -sf libMSO.so.1.2 ${D}${libdir}/libMSO.so&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; install -m 0777 ${S}/libMSOComm.so.1.2 ${D}${libdir}/libMSOComm.so.1.2 //This is success&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ln -sf libMSOComm.so.1.2 ${D}${libdir}/libMSOComm.so.1 //This is success&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ln -sf libMSOComm.so.1 &nbsp;${D}${libdir}/libMSOComm.so //This is not happening&gt; }&gt; Can any one tell me a solution for this.Did you ship it with FILES_${PN} += &quot; ${libdir}/libMSOComm.so &quot; ?&gt; &nbsp;&gt; Thanks and Regards,&gt; Chandrasekhar--_______________________________________________yocto mailing listyocto@yoctoproject.orghttps://lists.yoctoproject.org/listinfo/yocto --_______________________________________________yocto mailing listyocto@yoctoproject.orghttps://lists.yoctoproject.org/listinfo/yocto
 
---=_e1ae2c66d4f6581b1bfc9d29dc9a8f23
+--=_aa66e23b3fb5f2634bee4f53055017a0
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/html; charset="UTF-8"
 
-Hi ,<br />No, I will do the changes and let you know the result.<br /><br /=
->Regards,<br />Chandrasekhar<br /><br />From: Fabien Lahoudere &lt;fabien.l=
-ahoudere@collabora.co.uk&gt;<br />Sent: Thu, 6 Apr 2017 14:10:30 GMT+0530<b=
-r />To: yocto@yoctoproject.org<br />Subject: Re: [yocto] unable to create s=
-oftlink for precompilied libraries<br /><br />On Thu, 2017-04-06 at 08:08 +=
-0000, chandrasekhar c wrote:<br />&gt; Hi, &nbsp;<br />&gt; I have a third =
-party precompilied libraries. I erota a recipe to copy to rootfs and create=
- &nbsp; soft<br />&gt; links for the same. After doing bitbake it didnt thr=
-ow any errors, but when I check th rootfs it<br />&gt; didn&#39;t create an=
-y link file.<br />&gt; Below is my recipe<br />&gt; &nbsp;<br />&gt; do_ins=
-tall_append() {<br />&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
-&nbsp; &nbsp; install -d ${D}${libdir}/<br />&gt; &nbsp; &nbsp; &nbsp; &nbs=
-p; &nbsp; &nbsp; &nbsp; &nbsp; install -m 0777 ${S}/<a href=3D'http://libMS=
-O.so'>libMSO.so</a>.1.2 ${D}${libdir}/<a href=3D'http://libMSO.so'>libMSO.s=
-o</a>.1.2<br />&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
- ln -sf <a href=3D'http://libMSO.so'>libMSO.so</a>.1.2 ${D}${libdir}/<a hre=
-f=3D'http://libMSO.so'>libMSO.so</a><br />&gt; &nbsp; &nbsp; &nbsp; &nbsp; =
-&nbsp; &nbsp; &nbsp; &nbsp; install -m 0777 ${S}/<a href=3D'http://libMSOCo=
-mm.so'>libMSOComm.so</a>.1.2 ${D}${libdir}/<a href=3D'http://libMSOComm.so'=
->libMSOComm.so</a>.1.2 //This is success<br />&gt; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; &nbsp; ln -sf <a href=3D'http://libMSOComm.so'>lib=
-MSOComm.so</a>.1.2 ${D}${libdir}/<a href=3D'http://libMSOComm.so'>libMSOCom=
-m.so</a>.1 //This is success<br />&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
-nbsp; &nbsp; &nbsp; ln -sf <a href=3D'http://libMSOComm.so'>libMSOComm.so</=
-a>.1 &nbsp;${D}${libdir}/<a href=3D'http://libMSOComm.so'>libMSOComm.so</a>=
- //This is not happening<br />&gt; }<br />&gt; Can any one tell me a soluti=
-on for this.<br /><br />Did you ship it with FILES_${PN} +=3D &quot; ${libd=
-ir}/<a href=3D'http://libMSOComm.so'>libMSOComm.so</a> &quot; ?<br /><br />=
-<br />&gt; &nbsp;<br />&gt; Thanks and Regards,<br />&gt; Chandrasekhar<br =
-/>--<br />_______________________________________________<br />yocto mailin=
-g list<br />yocto@yoctoproject.org<br /><a href=3D"//prolinks.rediffmailpro=
-.com/cgi-bin/prored.cgi?red=3Dhttps%3A%2F%2Flists%2Eyoctoproject%2Eorg%2Fli=
-stinfo%2Fyocto&amp;rediffng=3D0" rel=3D"external" target=3D"_blank">https:/=
-/lists.yoctoproject.org/listinfo/yocto</a>
+Hi,<br />I have added this&nbsp;FILES_${PN} +=3D &quot; ${libdir}/<a href=
+=3D'http://libMSOComm.so'>libMSOComm.so</a>&nbsp;&quot; line in my recipe s=
+till the issue is present<br /><br />Thanks&nbsp;<br />Chandra<br /><br />F=
+rom: chandrasekhar c &lt;chandrasekhar@evolute-sys.com&gt;<br />Sent: Thu, =
+6 Apr 2017 14:39:04 GMT+0530<br />To: &quot;Fabien Lahoudere &quot; &lt;fab=
+ien.lahoudere@collabora.co.uk&gt;<br />Cc: &quot;yocto@yoctoproject.org&quo=
+t; &lt;yocto@yoctoproject.org&gt;<br />Subject: Re: [yocto] unable to creat=
+e softlink for precompilied libraries<br /><br />Hi ,<br />No, I will do th=
+e changes and let you know the result.<br /><br />Regards,<br />Chandrasekh=
+ar<br /><br />From: Fabien Lahoudere &lt;fabien.lahoudere@collabora.co.uk&g=
+t;<br />Sent: Thu, 6 Apr 2017 14:10:30 GMT+0530<br />To: yocto@yoctoproject=
+.org<br />Subject: Re: [yocto] unable to create softlink for precompilied l=
+ibraries<br /><br />On Thu, 2017-04-06 at 08:08 +0000, chandrasekhar c wrot=
+e:<br />&gt; Hi, &nbsp;<br />&gt; I have a third party precompilied librari=
+es. I erota a recipe to copy to rootfs and create &nbsp; soft<br />&gt; lin=
+ks for the same. After doing bitbake it didnt throw any errors, but when I =
+check th rootfs it<br />&gt; didn&#39;t create any link file.<br />&gt; Bel=
+ow is my recipe<br />&gt; &nbsp;<br />&gt; do_install_append() {<br />&gt; =
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; install -d $=
+{D}${libdir}/<br />&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &n=
+bsp; install -m 0777 ${S}/<a href=3D'http://libMSO.so'>libMSO.so</a>.1.2 ${=
+D}${libdir}/<a href=3D'http://libMSO.so'>libMSO.so</a>.1.2<br />&gt; &nbsp;=
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ln -sf <a href=3D'http://=
+libMSO.so'>libMSO.so</a>.1.2 ${D}${libdir}/<a href=3D'http://libMSO.so'>lib=
+MSO.so</a><br />&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
+; install -m 0777 ${S}/<a href=3D'http://libMSOComm.so'>libMSOComm.so</a>.1=
+.2 ${D}${libdir}/<a href=3D'http://libMSOComm.so'>libMSOComm.so</a>.1.2 //T=
+his is success<br />&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
+nbsp; ln -sf <a href=3D'http://libMSOComm.so'>libMSOComm.so</a>.1.2 ${D}${l=
+ibdir}/<a href=3D'http://libMSOComm.so'>libMSOComm.so</a>.1 //This is succe=
+ss<br />&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ln -sf=
+ <a href=3D'http://libMSOComm.so'>libMSOComm.so</a>.1 &nbsp;${D}${libdir}/<=
+a href=3D'http://libMSOComm.so'>libMSOComm.so</a> //This is not happening<b=
+r />&gt; }<br />&gt; Can any one tell me a solution for this.<br /><br />Di=
+d you ship it with FILES_${PN} +=3D &quot; ${libdir}/<a href=3D'http://libM=
+SOComm.so'>libMSOComm.so</a> &quot; ?<br /><br /><br />&gt; &nbsp;<br />&gt=
+; Thanks and Regards,<br />&gt; Chandrasekhar<br />--<br />________________=
+_______________________________<br />yocto mailing list<br />yocto@yoctopro=
+ject.org<br /><a href=3D'//prolinks.rediffmailpro.com/cgi-bin/prored.cgi?re=
+d=3Dhttps%3A%2F%2Flists%2Eyoctoproject%2Eorg%2Flistinfo%2Fyocto&amp;rediffn=
+g=3D0'>https://lists.yoctoproject.org/listinfo/yocto</a> --<br />__________=
+_____________________________________<br />yocto mailing list<br />yocto@yo=
+ctoproject.org<br /><a href=3D"//prolinks.rediffmailpro.com/cgi-bin/prored.=
+cgi?red=3Dhttps%3A%2F%2Flists%2Eyoctoproject%2Eorg%2Flistinfo%2Fyocto&amp;r=
+ediffng=3D0" rel=3D"external" target=3D"_blank">https://lists.yoctoproject.=
+org/listinfo/yocto</a>
 
---=_e1ae2c66d4f6581b1bfc9d29dc9a8f23--
+--=_aa66e23b3fb5f2634bee4f53055017a0--
