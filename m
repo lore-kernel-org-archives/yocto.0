@@ -1,58 +1,95 @@
-Return-Path: <maxin.john@intel.com>
+Return-Path: <christrobridge@hotmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9A3DCE00777; Sat,  8 Apr 2017 01:07:34 -0700 (PDT)
+	id 9334CE00655; Sat,  8 Apr 2017 04:46:41 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	RCVD_IN_DNSWL_MED,T_DKIM_INVALID autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FORGED_HOTMAIL_RCVD2,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (christrobridge[at]hotmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [40.92.67.103 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*  0.9 FORGED_HOTMAIL_RCVD2 hotmail.com 'From' address,
+	but no 'Received:'
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
-	*      medium trust
-	*      [192.55.52.120 listed in list.dnswl.org]
-	*  0.0 T_DKIM_INVALID DKIM-Signature header exists but is not valid
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3F465E00546
-	for <yocto@yoctoproject.org>; Sat,  8 Apr 2017 01:07:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-	d=intel.com; i=@intel.com; q=dns/txt; s=intel;
-	t=1491638852; x=1523174852;
-	h=from:to:subject:date:message-id:references:in-reply-to:
-	content-transfer-encoding:mime-version;
-	bh=WTW3uTkEWvJ0u6aIiVQX6+uNmUSL/2AHOGdMVKFNyBw=;
-	b=JUykMqY5GyV7KdmEDSavF3SaLSIK2umWhzzylTh78Gr1lL0lESxK0JUc
-	7EXZ8t68fVfsPSQhBsH7APxstk07Uw==;
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-	by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	08 Apr 2017 01:07:31 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.37,170,1488873600"; d="scan'208";a="843542898"
-Received: from irsmsx102.ger.corp.intel.com ([163.33.3.155])
-	by FMSMGA003.fm.intel.com with ESMTP; 08 Apr 2017 01:07:30 -0700
-Received: from irsmsx103.ger.corp.intel.com ([169.254.3.241]) by
-	IRSMSX102.ger.corp.intel.com ([169.254.2.153]) with mapi id
-	14.03.0319.002; Sat, 8 Apr 2017 09:07:30 +0100
-From: "John, Maxin" <maxin.john@intel.com>
-To: Jaap de Jong <jpdjong@gmail.com>, "yocto@yoctoproject.org"
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+X-Greylist: delayed 87509 seconds by postgrey-1.32 at yocto-www;
+	Sat, 08 Apr 2017 04:46:39 PDT
+Received: from EUR02-AM5-obe.outbound.protection.outlook.com
+	(mail-oln040092067103.outbound.protection.outlook.com [40.92.67.103])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 10C5FE00349
+	for <yocto@yoctoproject.org>; Sat,  8 Apr 2017 04:46:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+	s=selector1; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
+	bh=oafRM6gPZLF34eMqUSifTayLKcY1BU7O39twKJthQ0Y=;
+	b=rk0+V7elEO///VjOq3R4fiibdj9P5AUvAS37KQ5BfCG9aqdhTxtNCg44HhLlMplw+cKNHffgynQjdki8BeN90h9E9FTOj8+BLB89Y6BDLRfxely+PycmEMcEvNwGUKpK74RqsYhkfplafktQErWmHc2rWn0SVG0xgkVoi2PYCImc6+GBl4mH4jTBWho7M7tA/nnd/L22nQC4Iqd2d3G8p1X49CcvoW6MZV0RC3qcDPkDb+ZNmhRoLcfBz3eXwTrQsQm1gp05RnDGhBZ+q7isfjLdE8//q4iBW9tEEBhDUhcu3iD4lMiDVBxJmWtyXq7ltbmx4/PFsqKKKKSWVpFY7A==
+Received: from AM5EUR02FT024.eop-EUR02.prod.protection.outlook.com
+	(10.152.8.59) by AM5EUR02HT137.eop-EUR02.prod.protection.outlook.com
+	(10.152.9.206) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.1005.5;
+	Fri, 7 Apr 2017 11:12:58 +0000
+Received: from LO1P123MB1412.GBRP123.PROD.OUTLOOK.COM (10.152.8.54) by
+	AM5EUR02FT024.mail.protection.outlook.com (10.152.8.126) with Microsoft
+	SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+	15.1.1005.5 via Frontend Transport; Fri, 7 Apr 2017 11:12:58 +0000
+Received: from LO1P123MB1412.GBRP123.PROD.OUTLOOK.COM ([10.167.30.18]) by
+	LO1P123MB1412.GBRP123.PROD.OUTLOOK.COM ([10.167.30.18]) with mapi id
+	15.01.1019.019; Fri, 7 Apr 2017 11:12:58 +0000
+From: Chris Trobridge <christrobridge@hotmail.com>
+To: Alvaro Garcia <maxpowel@gmail.com>, "yocto@yoctoproject.org"
 	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] [meta-oracle-java][PATCH] oracle-jse-ejre: Fix jre path
-Thread-Index: AQHSr/gfHKyCla+OV0i0JV5BlZGABKG7HjgQ
-Date: Sat, 8 Apr 2017 08:07:29 +0000
-Message-ID: <61C0517EAD808B429A1DE2DD9164D40030F8579E@IRSMSX103.ger.corp.intel.com>
-References: <1491591843-6407-1-git-send-email-jaap.dejong@nedap.com>
-In-Reply-To: <1491591843-6407-1-git-send-email-jaap.dejong@nedap.com>
-Accept-Language: fi-FI, en-US
+Thread-Topic: [yocto] Customize live grub entries
+Thread-Index: AQHSr44sFsi3nw/f20WVXPaNIaMI96G5v9oU
+Date: Fri, 7 Apr 2017 11:12:58 +0000
+Message-ID: <LO1P123MB141266C0313CFF6E3EACAB9DDA0C0@LO1P123MB1412.GBRP123.PROD.OUTLOOK.COM>
+References: <CAOsmwBRkb8duSiy2eZ6N87_mSXbmKhqNS1pD-JL9ZtB4o9jkvA@mail.gmail.com>
+In-Reply-To: <CAOsmwBRkb8duSiy2eZ6N87_mSXbmKhqNS1pD-JL9ZtB4o9jkvA@mail.gmail.com>
+Accept-Language: en-GB, en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 10.0.102.7
-dlp-reaction: no-action
-x-originating-ip: [163.33.239.182]
+authentication-results: gmail.com; dkim=none (message not signed)
+	header.d=none; gmail.com; dmarc=none action=none header.from=hotmail.com;
+x-incomingtopheadermarker: OriginalChecksum:B79A92437DF2D3C5D823E37E8912F2E78187F133801FB623008057ED40430073;
+	UpperCasedChecksum:492A6D2416235442E33A0410C0D94CBA16E53D4716B4DCC4E064B8B62A304EAD;
+	SizeAsReceived:8062; Count:42
+x-ms-exchange-messagesentrepresentingtype: 1
+x-tmn: [14KfPzmRXH9icgn2baBIao9p8luUtXWa]
+x-microsoft-exchange-diagnostics: 1; AM5EUR02HT137;
+	5:3frFNW9SuRldqd5Lh3XpbI3vSmIwk0nG1L++Ytu6NcBt4vTQV1naW5WCg6EzEhFg+O9XI+1wvZFyIl11P+z85VeKyjHrdA9FqgTRHg6JbKm6iVccNmdvkYrAFej7ioBSMDaKxr9EapykRz6M9cOPPA==;
+	24:cnmprd9BUrR+FiCIEBW5Fkkb9qViWwsRf+1Ahs5VZ0ZafDBB4HEZkxNpJm98Yo2nvJgtbbDa2DwpsUqiGYk6VJauA2o+p7GfxXfzEB3DE+w=;
+	7:m0kPVV6mEc2EOJ+0a1bRsKYQoJX6fKMtfbcA0Fh7cM9YbeV3EOJ1+12FSbBiI6DTISnlNjR1gqZeuVmz1SvVDjXCeMrwA4Z1U3++2nOsErg6IYyd5fcJfg9APxdR12jyfA7TSEY1ot6egqDN0iynbdsvPvwylQY6T06Loa9NUQKd+dL9jvBO+y9ByAtyWbeNzHvz7p/VuMrRDOqxAmhZbiFH/vvenjkF4s23R8rrquiTStV/qxaZC6iXS2p00QJujjzqslbmj6Pjd16I5d0fLIDB6bbH9EHtoxMXlfmqpA0h39ZAwFxiu1izHW3si8kH
+x-incomingheadercount: 42
+x-eopattributedmessage: 0
+x-forefront-antispam-report: EFV:NLI; SFV:NSPM; SFS:(7070007)(98901004);
+	DIR:OUT; SFP:1901; SCL:1; SRVR:AM5EUR02HT137;
+	H:LO1P123MB1412.GBRP123.PROD.OUTLOOK.COM; FPR:; SPF:None;
+	LANG:en; 
+x-ms-office365-filtering-correlation-id: 5dc078a0-f69d-493e-e9f4-08d47da70c3e
+x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
+	RULEID:(22001)(201702061074)(5061506573)(5061507331)(1603103135)(2017031320274)(2017031322274)(1603101448)(1601125374)(1701031045);
+	SRVR:AM5EUR02HT137; 
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0; RULEID:(444000031);
+	SRVR:AM5EUR02HT137; BCL:0; PCL:0; RULEID:; SRVR:AM5EUR02HT137; 
+x-forefront-prvs: 0270ED2845
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-Subject: Re: [meta-oracle-java][PATCH] oracle-jse-ejre: Fix jre path
+X-OriginatorOrg: hotmail.com
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Apr 2017 11:12:58.2042 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Internet
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM5EUR02HT137
+Subject: Re: Customize live grub entries
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -64,42 +101,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 08 Apr 2017 08:07:34 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Sat, 08 Apr 2017 11:46:41 -0000
+Content-Language: en-GB
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-Merged to master-next. Thanks!
+> From: yocto-bounces@yoctoproject.org <yocto-bounces@yoctoproject.org> on =
+behalf of Alvaro Garcia > <maxpowel@gmail.com>
+> Sent: 07 April 2017 11:59
+> To: yocto@yoctoproject.org
+> Subject: [yocto] Customize live grub entries
+=A0=20
 
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Jaap de Jong
-Sent: Friday, April 7, 2017 10:04 PM
-To: yocto@yoctoproject.org
-Subject: [yocto] [meta-oracle-java][PATCH] oracle-jse-ejre: Fix jre path
+> Hi, I want an unattended installation (just boot from USB, install, and r=
+emove USB). I am able to remove all questions during install but I cant cus=
+tomize the grub entries of the live boot. By default is market the option "=
+boot" but I need the  "install" option.
 
-Signed-off-by: Jaap de Jong <jaap.dejong@nedap.com>
----
- recipes-devtools/oracle-java/oracle-jse-ejre.inc | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> In the file poky/plain/meta/classes/grub-efi.bbclass I found that the var=
+iable GRUB_CFG_LIVE =3D "${S}/grub_live.cfg" contains the file with this co=
+nfiguration but I cannot find this file. Where the image is built (inside t=
+mp directory) this file exists. I tried  to override the variables "LABELS_=
+LIVE" without success (if I remove the boot option, it also disappears from=
+ the installation and cannot boot later).
 
-diff --git a/recipes-devtools/oracle-java/oracle-jse-ejre.inc b/recipes-dev=
-tools/oracle-java/oracle-jse-ejre.inc
-index bea4a03..0af0b6b 100644
---- a/recipes-devtools/oracle-java/oracle-jse-ejre.inc
-+++ b/recipes-devtools/oracle-java/oracle-jse-ejre.inc
-@@ -19,7 +19,7 @@ LIC_FILES_CHKSUM =3D "\
- 	"
-=20
- do_compile() {
--	DEST=3D${S}/ejre${PV}_${PV_UPDATE}
-+	DEST=3D${S}/ejre${PV}_${PV_UPDATE}/jre
- 	rm -rf ${DEST}
- 	JAVA_HOME=3D${STAGING_DIR_NATIVE}/${JDK_HOME} ejdk${PV}_${PV_UPDATE}/bin/=
-jrecreate.sh --dest ${DEST}  }
---
-2.7.4
+> Once the image is flashed to an USB memory, the file syslinux_live.cfg ex=
+ists in the boot partition and if I edit it it works as I want. But this is=
+ the bad way, would be great if I can edit it inside yocto build process.
 
-Best Regards,
-Maxin
+> Anyone knows what recipe should override?
+
+> Thank you
+   =20
+I use:
+LABELS_LIVE =3D "install"
+
+Just before I inherit core-image in my custom image recipe.
+
+Regards,
+Chris
 
