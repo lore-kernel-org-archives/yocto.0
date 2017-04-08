@@ -1,67 +1,58 @@
-Return-Path: <jpdjong@gmail.com>
+Return-Path: <maxin.john@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 45E2EE00AF8; Fri,  7 Apr 2017 12:04:14 -0700 (PDT)
+	id 9A3DCE00777; Sat,  8 Apr 2017 01:07:34 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (jpdjong[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.128.196 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	RCVD_IN_DNSWL_MED,T_DKIM_INVALID autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.128.196 listed in dnsbl.sorbs.net]
-Received: from mail-wr0-f196.google.com (mail-wr0-f196.google.com
-	[209.85.128.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D9DE5E00A96
-	for <yocto@yoctoproject.org>; Fri,  7 Apr 2017 12:04:12 -0700 (PDT)
-Received: by mail-wr0-f196.google.com with SMTP id t20so21432284wra.2
-	for <yocto@yoctoproject.org>; Fri, 07 Apr 2017 12:04:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:cc:subject:date:message-id;
-	bh=lmFUKVCQHRPj2MhFL4j6Iqpbg4q3uxdF4ZRPFfdh7fE=;
-	b=FcUIM1KvO1LZ+Wseh5atJ6byYzRh+hY3A01xP3/LRMx+G5RJOXGboM6oSOpAPwf7ck
-	vVZ9poNTw9BT57Z+6cQc3zVAHAZpqDnOUv2RXhYer75v+04p3uJtYrapLNtZPoSqY+Sh
-	ZvaIEo6L0dQieOsy5BBFV593EEreZ5054E1okLP3tWW0T5YLgVeNMHU44VHGAwWEpySi
-	661FBJJvhB8D0IxTIjmLi1VzjBB7vWKz8QEHpprBixTy20EpRadZ0bVOQ0lIwf7d+JUw
-	cyefh8gujgw+kMTuK7uVvgUGrUrJOcoGp9p7JEjkj/j/2qgT/t+mbyewVYhNjx2PAGAk
-	av2w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=lmFUKVCQHRPj2MhFL4j6Iqpbg4q3uxdF4ZRPFfdh7fE=;
-	b=DQ9owix5KhYbWDOLCO5YUtcbd7Qk35BYXgnqx1gcR6ZCLNzdOehIek6qdj1bcjY/m7
-	gka4CTa/0QcfT+K+9pi1/UudCbPDAh2VGyiJr7jzqfkS+15sXdr88Ie19PVNA2vMCt7P
-	IZMDPrYQClKJtjFt3xmGpwW9eXSgY9Bbt7Z/x80SLhwZyE0avTBBQepxZpbrQdqXCrF6
-	EsZqZRC984EXEOZQeY0WxgADDQjJARkZ/JRMTcNmOHIkWN1VYD3QGPj3BJI1Up/9jEW4
-	haXgBdeJkdjItF7AQIzm0kHs3mLqlUmkr7T/VOptHg2bqIVGTPi6N63eXGEHEZETk9R7
-	aEVA==
-X-Gm-Message-State: AFeK/H0sK9a7rZ6qeAEUVctWi0GlxcJYaefg7Jrh5OeQUmA3iTgz1hvwvAVcjsXDMwAZ3w==
-X-Received: by 10.223.150.19 with SMTP id b19mr16762533wra.98.1491591851470;
-	Fri, 07 Apr 2017 12:04:11 -0700 (PDT)
-Received: from localhost.localdomain (6d482eb6.ftth.concepts.nl.
-	[109.72.46.182]) by smtp.gmail.com with ESMTPSA id
-	b66sm7049430wrd.29.2017.04.07.12.04.10
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Fri, 07 Apr 2017 12:04:10 -0700 (PDT)
-From: Jaap de Jong <jpdjong@gmail.com>
-X-Google-Original-From: Jaap de Jong <jaap.dejong@nedap.com>
-To: yocto@yoctoproject.org
-Date: Fri,  7 Apr 2017 21:04:03 +0200
-Message-Id: <1491591843-6407-1-git-send-email-jaap.dejong@nedap.com>
-X-Mailer: git-send-email 2.7.4
-X-Mailman-Approved-At: Fri, 07 Apr 2017 16:38:15 -0700
-Subject: [meta-oracle-java][PATCH] oracle-jse-ejre: Fix jre path
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [192.55.52.120 listed in list.dnswl.org]
+	*  0.0 T_DKIM_INVALID DKIM-Signature header exists but is not valid
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3F465E00546
+	for <yocto@yoctoproject.org>; Sat,  8 Apr 2017 01:07:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+	d=intel.com; i=@intel.com; q=dns/txt; s=intel;
+	t=1491638852; x=1523174852;
+	h=from:to:subject:date:message-id:references:in-reply-to:
+	content-transfer-encoding:mime-version;
+	bh=WTW3uTkEWvJ0u6aIiVQX6+uNmUSL/2AHOGdMVKFNyBw=;
+	b=JUykMqY5GyV7KdmEDSavF3SaLSIK2umWhzzylTh78Gr1lL0lESxK0JUc
+	7EXZ8t68fVfsPSQhBsH7APxstk07Uw==;
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+	by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	08 Apr 2017 01:07:31 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.37,170,1488873600"; d="scan'208";a="843542898"
+Received: from irsmsx102.ger.corp.intel.com ([163.33.3.155])
+	by FMSMGA003.fm.intel.com with ESMTP; 08 Apr 2017 01:07:30 -0700
+Received: from irsmsx103.ger.corp.intel.com ([169.254.3.241]) by
+	IRSMSX102.ger.corp.intel.com ([169.254.2.153]) with mapi id
+	14.03.0319.002; Sat, 8 Apr 2017 09:07:30 +0100
+From: "John, Maxin" <maxin.john@intel.com>
+To: Jaap de Jong <jpdjong@gmail.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] [meta-oracle-java][PATCH] oracle-jse-ejre: Fix jre path
+Thread-Index: AQHSr/gfHKyCla+OV0i0JV5BlZGABKG7HjgQ
+Date: Sat, 8 Apr 2017 08:07:29 +0000
+Message-ID: <61C0517EAD808B429A1DE2DD9164D40030F8579E@IRSMSX103.ger.corp.intel.com>
+References: <1491591843-6407-1-git-send-email-jaap.dejong@nedap.com>
+In-Reply-To: <1491591843-6407-1-git-send-email-jaap.dejong@nedap.com>
+Accept-Language: fi-FI, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-version: 10.0.102.7
+dlp-reaction: no-action
+x-originating-ip: [163.33.239.182]
+MIME-Version: 1.0
+Subject: Re: [meta-oracle-java][PATCH] oracle-jse-ejre: Fix jre path
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,27 +64,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 07 Apr 2017 19:04:14 -0000
+X-List-Received-Date: Sat, 08 Apr 2017 08:07:34 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Merged to master-next. Thanks!
+
+-----Original Message-----
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Jaap de Jong
+Sent: Friday, April 7, 2017 10:04 PM
+To: yocto@yoctoproject.org
+Subject: [yocto] [meta-oracle-java][PATCH] oracle-jse-ejre: Fix jre path
 
 Signed-off-by: Jaap de Jong <jaap.dejong@nedap.com>
 ---
  recipes-devtools/oracle-java/oracle-jse-ejre.inc | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/recipes-devtools/oracle-java/oracle-jse-ejre.inc b/recipes-devtools/oracle-java/oracle-jse-ejre.inc
+diff --git a/recipes-devtools/oracle-java/oracle-jse-ejre.inc b/recipes-dev=
+tools/oracle-java/oracle-jse-ejre.inc
 index bea4a03..0af0b6b 100644
 --- a/recipes-devtools/oracle-java/oracle-jse-ejre.inc
 +++ b/recipes-devtools/oracle-java/oracle-jse-ejre.inc
-@@ -19,7 +19,7 @@ LIC_FILES_CHKSUM = "\
+@@ -19,7 +19,7 @@ LIC_FILES_CHKSUM =3D "\
  	"
- 
+=20
  do_compile() {
--	DEST=${S}/ejre${PV}_${PV_UPDATE}
-+	DEST=${S}/ejre${PV}_${PV_UPDATE}/jre
+-	DEST=3D${S}/ejre${PV}_${PV_UPDATE}
++	DEST=3D${S}/ejre${PV}_${PV_UPDATE}/jre
  	rm -rf ${DEST}
- 	JAVA_HOME=${STAGING_DIR_NATIVE}/${JDK_HOME} ejdk${PV}_${PV_UPDATE}/bin/jrecreate.sh --dest ${DEST}
- }
--- 
+ 	JAVA_HOME=3D${STAGING_DIR_NATIVE}/${JDK_HOME} ejdk${PV}_${PV_UPDATE}/bin/=
+jrecreate.sh --dest ${DEST}  }
+--
 2.7.4
 
+Best Regards,
+Maxin
 
