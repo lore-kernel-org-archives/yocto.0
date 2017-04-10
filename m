@@ -1,95 +1,26 @@
-Return-Path: <christrobridge@hotmail.com>
+Return-Path: <recipe-report@yoctoproject.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9334CE00655; Sat,  8 Apr 2017 04:46:41 -0700 (PDT)
+	id 6A30DE00A31; Sun,  9 Apr 2017 21:00:30 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FORGED_HOTMAIL_RCVD2,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (christrobridge[at]hotmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [40.92.67.103 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	*  0.9 FORGED_HOTMAIL_RCVD2 hotmail.com 'From' address,
-	but no 'Received:'
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 87509 seconds by postgrey-1.32 at yocto-www;
-	Sat, 08 Apr 2017 04:46:39 PDT
-Received: from EUR02-AM5-obe.outbound.protection.outlook.com
-	(mail-oln040092067103.outbound.protection.outlook.com [40.92.67.103])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 10C5FE00349
-	for <yocto@yoctoproject.org>; Sat,  8 Apr 2017 04:46:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
-	s=selector1; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
-	bh=oafRM6gPZLF34eMqUSifTayLKcY1BU7O39twKJthQ0Y=;
-	b=rk0+V7elEO///VjOq3R4fiibdj9P5AUvAS37KQ5BfCG9aqdhTxtNCg44HhLlMplw+cKNHffgynQjdki8BeN90h9E9FTOj8+BLB89Y6BDLRfxely+PycmEMcEvNwGUKpK74RqsYhkfplafktQErWmHc2rWn0SVG0xgkVoi2PYCImc6+GBl4mH4jTBWho7M7tA/nnd/L22nQC4Iqd2d3G8p1X49CcvoW6MZV0RC3qcDPkDb+ZNmhRoLcfBz3eXwTrQsQm1gp05RnDGhBZ+q7isfjLdE8//q4iBW9tEEBhDUhcu3iD4lMiDVBxJmWtyXq7ltbmx4/PFsqKKKKSWVpFY7A==
-Received: from AM5EUR02FT024.eop-EUR02.prod.protection.outlook.com
-	(10.152.8.59) by AM5EUR02HT137.eop-EUR02.prod.protection.outlook.com
-	(10.152.9.206) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.1005.5;
-	Fri, 7 Apr 2017 11:12:58 +0000
-Received: from LO1P123MB1412.GBRP123.PROD.OUTLOOK.COM (10.152.8.54) by
-	AM5EUR02FT024.mail.protection.outlook.com (10.152.8.126) with Microsoft
-	SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
-	15.1.1005.5 via Frontend Transport; Fri, 7 Apr 2017 11:12:58 +0000
-Received: from LO1P123MB1412.GBRP123.PROD.OUTLOOK.COM ([10.167.30.18]) by
-	LO1P123MB1412.GBRP123.PROD.OUTLOOK.COM ([10.167.30.18]) with mapi id
-	15.01.1019.019; Fri, 7 Apr 2017 11:12:58 +0000
-From: Chris Trobridge <christrobridge@hotmail.com>
-To: Alvaro Garcia <maxpowel@gmail.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] Customize live grub entries
-Thread-Index: AQHSr44sFsi3nw/f20WVXPaNIaMI96G5v9oU
-Date: Fri, 7 Apr 2017 11:12:58 +0000
-Message-ID: <LO1P123MB141266C0313CFF6E3EACAB9DDA0C0@LO1P123MB1412.GBRP123.PROD.OUTLOOK.COM>
-References: <CAOsmwBRkb8duSiy2eZ6N87_mSXbmKhqNS1pD-JL9ZtB4o9jkvA@mail.gmail.com>
-In-Reply-To: <CAOsmwBRkb8duSiy2eZ6N87_mSXbmKhqNS1pD-JL9ZtB4o9jkvA@mail.gmail.com>
-Accept-Language: en-GB, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: gmail.com; dkim=none (message not signed)
-	header.d=none; gmail.com; dmarc=none action=none header.from=hotmail.com;
-x-incomingtopheadermarker: OriginalChecksum:B79A92437DF2D3C5D823E37E8912F2E78187F133801FB623008057ED40430073;
-	UpperCasedChecksum:492A6D2416235442E33A0410C0D94CBA16E53D4716B4DCC4E064B8B62A304EAD;
-	SizeAsReceived:8062; Count:42
-x-ms-exchange-messagesentrepresentingtype: 1
-x-tmn: [14KfPzmRXH9icgn2baBIao9p8luUtXWa]
-x-microsoft-exchange-diagnostics: 1; AM5EUR02HT137;
-	5:3frFNW9SuRldqd5Lh3XpbI3vSmIwk0nG1L++Ytu6NcBt4vTQV1naW5WCg6EzEhFg+O9XI+1wvZFyIl11P+z85VeKyjHrdA9FqgTRHg6JbKm6iVccNmdvkYrAFej7ioBSMDaKxr9EapykRz6M9cOPPA==;
-	24:cnmprd9BUrR+FiCIEBW5Fkkb9qViWwsRf+1Ahs5VZ0ZafDBB4HEZkxNpJm98Yo2nvJgtbbDa2DwpsUqiGYk6VJauA2o+p7GfxXfzEB3DE+w=;
-	7:m0kPVV6mEc2EOJ+0a1bRsKYQoJX6fKMtfbcA0Fh7cM9YbeV3EOJ1+12FSbBiI6DTISnlNjR1gqZeuVmz1SvVDjXCeMrwA4Z1U3++2nOsErg6IYyd5fcJfg9APxdR12jyfA7TSEY1ot6egqDN0iynbdsvPvwylQY6T06Loa9NUQKd+dL9jvBO+y9ByAtyWbeNzHvz7p/VuMrRDOqxAmhZbiFH/vvenjkF4s23R8rrquiTStV/qxaZC6iXS2p00QJujjzqslbmj6Pjd16I5d0fLIDB6bbH9EHtoxMXlfmqpA0h39ZAwFxiu1izHW3si8kH
-x-incomingheadercount: 42
-x-eopattributedmessage: 0
-x-forefront-antispam-report: EFV:NLI; SFV:NSPM; SFS:(7070007)(98901004);
-	DIR:OUT; SFP:1901; SCL:1; SRVR:AM5EUR02HT137;
-	H:LO1P123MB1412.GBRP123.PROD.OUTLOOK.COM; FPR:; SPF:None;
-	LANG:en; 
-x-ms-office365-filtering-correlation-id: 5dc078a0-f69d-493e-e9f4-08d47da70c3e
-x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
-	RULEID:(22001)(201702061074)(5061506573)(5061507331)(1603103135)(2017031320274)(2017031322274)(1603101448)(1601125374)(1701031045);
-	SRVR:AM5EUR02HT137; 
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0; RULEID:(444000031);
-	SRVR:AM5EUR02HT137; BCL:0; PCL:0; RULEID:; SRVR:AM5EUR02HT137; 
-x-forefront-prvs: 0270ED2845
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from packages.yoctoproject.org (unknown [198.145.29.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3B5AFE00726
+	for <yocto@yoctoproject.org>; Sun,  9 Apr 2017 21:00:28 -0700 (PDT)
+Received: from packages.yoctoproject.org (localhost [IPv6:::1])
+	by packages.yoctoproject.org (Postfix) with ESMTP id A720284AD8D4
+	for <yocto@yoctoproject.org>; Mon, 10 Apr 2017 00:00:27 -0400 (EDT)
 MIME-Version: 1.0
-X-OriginatorOrg: hotmail.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Apr 2017 11:12:58.2042 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Internet
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM5EUR02HT137
-Subject: Re: Customize live grub entries
+From: recipe-report@yoctoproject.org
+To: yocto@yoctoproject.org
+Date: Mon, 10 Apr 2017 04:00:27 -0000
+Message-ID: <20170410040027.22453.881@packages.yoctoproject.org>
+Subject: [Recipe reporting system] Upgradable recipe name list
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -101,43 +32,157 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 08 Apr 2017 11:46:41 -0000
-Content-Language: en-GB
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 10 Apr 2017 04:00:30 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-> From: yocto-bounces@yoctoproject.org <yocto-bounces@yoctoproject.org> on =
-behalf of Alvaro Garcia > <maxpowel@gmail.com>
-> Sent: 07 April 2017 11:59
-> To: yocto@yoctoproject.org
-> Subject: [yocto] Customize live grub entries
-=A0=20
+This mail was sent out by Recipe reporting system.
 
-> Hi, I want an unattended installation (just boot from USB, install, and r=
-emove USB). I am able to remove all questions during install but I cant cus=
-tomize the grub entries of the live boot. By default is market the option "=
-boot" but I need the  "install" option.
+This message list those recipes which need to be upgraded. If maintainers
+believe some of them needn't to upgrade at this time, they can fill
+RECIPE_NO_UPDATE_REASON in respective recipe file to ignore this remainder
+until newer upstream version was detected.
 
-> In the file poky/plain/meta/classes/grub-efi.bbclass I found that the var=
-iable GRUB_CFG_LIVE =3D "${S}/grub_live.cfg" contains the file with this co=
-nfiguration but I cannot find this file. Where the image is built (inside t=
-mp directory) this file exists. I tried  to override the variables "LABELS_=
-LIVE" without success (if I remove the boot option, it also disappears from=
- the installation and cannot boot later).
+Example:
+RECIPE_NO_UPDATE_REASON = "Version 2.0 is unstable"
 
-> Once the image is flashed to an USB memory, the file syslinux_live.cfg ex=
-ists in the boot partition and if I edit it it works as I want. But this is=
- the bad way, would be great if I can edit it inside yocto build process.
+You can check the detail information at:
 
-> Anyone knows what recipe should override?
+http://recipes.yoctoproject.org/
 
-> Thank you
-   =20
-I use:
-LABELS_LIVE =3D "install"
+Package               Version      Upstream version      Maintainer           NoUpgradeReason
+--------------------  -----------  --------------------  -------------------  ------------------------------
+python3               3.5.2        3.6.1                 Alejandro Hernandez
+python3-native        3.5.2        3.6.1                 Alejandro Hernandez
+gobject-introspec...  1.50.0       1.52.0                Alexander Kanavin
+mobile-broadband-...  20151214     20170310              Alexander Kanavin
+webkitgtk             2.14.5       2.16.0                Alexander Kanavin
+openssl               1.0.2k       1.1.0e                Alexander Kanavin
+gdbm                  1.12         1.13                  Alexander Kanavin
+libpthread-stubs      0.3          0.4                   Alexander Kanavin
+vala                  0.34.4       0.36.1                Alexander Kanavin
+lzo                   2.09         2.10                  Alexander Kanavin
+libiconv              1.14         1.15                  Alexander Kanavin
+gnome-desktop3        3.22.2       3.24.0                Alexander Kanavin
+ed                    1.14.1       1.14.2                Alexander Kanavin
+nspr                  4.13.1       4.14                  Alexander Kanavin
+gperf                 3.0.4        3.1                   Alexander Kanavin
+libarchive            3.2.2        3.3.1                 Alexander Kanavin
+gnutls                3.5.9        3.5.10                Alexander Kanavin
+dtc                   1.4.2        1.4.4                 Alexander Kanavin
+btrfs-tools           4.9.1        4.10.2                Alexander Kanavin
+mkelfimage            4.0+gitX     4.5+gitAUTOINC+0b...  Alexander Kanavin    mkelfimage has been removed...
+sysprof               3.22.3       3.24.0                Alexander Kanavin
+mpg123                1.23.8       1.24.0                Alexander Kanavin
+kconfig-frontends     3.12.0.0     4.7.0.0               Alexander Kanavin
+epiphany              3.22.6       3.24.0                Alexander Kanavin
+qemu                  2.8.0        2.8.1                 Aníbal Limón
+apt                   1.2.12       1.4                   Aníbal Limón
+libxml-namespaces...  1.11         1.12                  Aníbal Limón
+libxml-sax-base-perl  1.08         1.09                  Aníbal Limón
+apt-native            1.2.12       1.4                   Aníbal Limón
+dpkg                  1.18.10      1.18.23               Aníbal Limón
+pinentry              0.9.2        1.0.0                 Armin Kuster
+libpcre2              10.22        10.23                 Armin Kuster
+linux-libc-headers    4.10         4.10.8                Bruce Ashfield
+libunwind             1.1+gitX     1.2+gitAUTOINC+cc...  Bruce Ashfield
+pciutils              3.5.2        3.5.4                 Chen Qi
+kmod-native           23+gitX      24+gitAUTOINC+ef4...  Chen Qi
+busybox               1.25.0+gitX  1.26.2+gitAUTOINC...  Chen Qi
+dbus                  1.10.14      1.10.16               Chen Qi
+byacc                 20161202     20170201              Chen Qi
+cups                  2.2.2        2.2.3                 Chen Qi
+systemd               232          233                   Chen Qi
+util-linux            2.29.1       2.29.2                Chen Qi
+kmod                  23+gitX      24+gitAUTOINC+ef4...  Chen Qi
+dbus-test             1.10.14      1.10.16               Chen Qi
+sed                   4.2.2        4.4                   Chen Qi
+sysstat               11.5.4       11.5.5                Chen Qi
+systemd-boot          232          233                   Chen Qi
+flex                  2.6.0        2.6.3                 Chen Qi
+coreutils             8.26         8.27                  Chen Qi
+build-appliance-i...  15.0.0       16.0.1                Cristian Iorga
+openssh               7.4p1        7.5p1                 Dengke Du
+json-glib             1.2.2        1.2.8                 Dengke Du
+u-boot-fw-utils       2017.01      2017.03               Denys Dmytriyenko
+u-boot-mkimage        2017.01      2017.03               Denys Dmytriyenko
+u-boot                2017.01      2017.03               Denys Dmytriyenko
+python3-pygobject     3.22.0       3.24.0                Edwin Plauchu
+python3-setuptools    32.1.1       34.3.3                Edwin Plauchu
+python-setuptools     32.1.1       34.3.3                Edwin Plauchu
+gpgme                 1.8.0        1.9.0                 Hongxu Jia
+bash                  4.3.30       4.4                   Hongxu Jia
+ghostscript           9.20         9.21                  Hongxu Jia
+libnewt-python        0.52.19      0.52.20               Hongxu Jia
+man-pages             4.09         4.10                  Hongxu Jia
+libnewt               0.52.19      0.52.20               Hongxu Jia
+libgpg-error          1.26         1.27                  Hongxu Jia
+gnupg                 2.1.18       2.1.20                Hongxu Jia
+python-git            2.1.1        2.1.3                 Jose Lamego
+python3-git           2.1.1        2.1.3                 Jose Lamego
+bc                    1.06         1.07                  Jose Lamego
+pango                 1.40.3       1.40.4                Jussi Kukkonen
+libinput              1.6.1        1.7.0                 Jussi Kukkonen
+gtk-icon-utils-na...  3.22.8       3.90.0                Jussi Kukkonen
+at-spi2-core          2.22.0       2.24.0                Jussi Kukkonen
+atk                   2.22.0       2.24.0                Jussi Kukkonen
+libx11-diet           1.6.4        1.6.5                 Jussi Kukkonen
+libx11                1.6.4        1.6.5                 Jussi Kukkonen
+glib-2.0              2.50.3       2.52.0                Jussi Kukkonen
+xf86-input-libinput   0.24.0       0.25.0                Jussi Kukkonen
+gsettings-desktop...  3.22.0       3.24.0                Jussi Kukkonen
+gnome-themes-stan...  3.22.2       3.22.3                Jussi Kukkonen
+vte                   0.46.1       0.48.1                Jussi Kukkonen
+vulkan                1.0.39.1     20141209              Jussi Kukkonen
+libepoxy              1.4.0        1.4.1                 Jussi Kukkonen
+xserver-xorg          1.19.1       1.19.3                Jussi Kukkonen
+clutter-gst-3.0       3.0.22       3.0.24                Jussi Kukkonen
+gdk-pixbuf            2.36.5       2.36.6                Jussi Kukkonen
+gtk+3                 3.22.8       3.90.0                Jussi Kukkonen
+adwaita-icon-theme    3.22.0       3.24.0                Jussi Kukkonen
+libdrm                2.4.75       2.4.76                Jussi Kukkonen
+libevent              2.0.22       2.1.8                 Jussi Kukkonen
+mesa-gl               17.0.2       17.0.3                Jussi Kukkonen
+at-spi2-atk           2.22.0       2.24.0                Jussi Kukkonen
+ruby                  2.4.0        2.4.1                 Leonardo Sandoval
+nfs-utils             1.3.4        2.1.1                 Mariano Lopez
+prelink               1.0+gitX     20151030.+gitAUTO...  Mark Hatle
+libpfm4               4.6.0        4.8.0                 Matthew McClintock
+ifupdown              0.8.16       0.8.19                Maxin B. John
+ethtool               4.8          4.10                  Maxin B. John
+sqlite3               3.17.0       3.18.0                Maxin B. John
+mc                    4.8.18       4.8.19                Maxin B. John
+libpng                1.6.28       1.6.29                Maxin B. John
+harfbuzz              1.4.1        1.4.5                 Maxin B. John
+pkgconfig             0.29.1+gitX  0.29.2+gitAUTOINC...  Maxin B. John
+dnf                   2.0.0+gitX   7+gitAUTOINC+f9ec...  No maintainer
+go-bootstrap-native   1.4.3        1.8                   No maintainer
+mesa                  17.0.2       17.0.3                No maintainer
+libdnf                0.2.3+gitX   0.8.1+gitAUTOINC+...  No maintainer
+debianutils           4.8.1        4.8.1.1               Robert Yang
+git                   2.11.1       2.12.2                Robert Yang
+guile                 2.0.14       2.2.0                 Robert Yang
+base-passwd           3.5.29       3.5.43                Ross Burton          Version 3.5.38 requires cde...
+lsbinitscripts        9.68         9.70                  Ross Burton
+libsndfile1           1.0.27       1.0.28                Tanu Kaskinen
 
-Just before I inherit core-image in my custom image recipe.
+Upgradable count: 111
+Upgradable total count: 113
 
-Regards,
-Chris
+The based commit is:
+
+commit 901659a51cd53625a93f57a9c5865e90a07ec09d
+Author: Joshua Lock <joshua.g.lock@intel.com>
+Date:   Wed Apr 5 13:10:55 2017 +0100
+
+    oeqa/runtime/utils/targetbuildproject: use parent classes defaults tmpdir
+    
+    Rather than hard-coding the tmpdir for TargetBuildProject to /tmp allow the
+    parent's default handling to define an appropriate tmpdir.
+    
+    Signed-off-by: Joshua Lock <joshua.g.lock@intel.com>
+    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+
+Any problem, please contact Anibal Limon <anibal.limon@intel.com> 
+
 
