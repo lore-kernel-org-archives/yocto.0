@@ -1,61 +1,33 @@
-Return-Path: <prvs=127462cf9a=holzmayr@rsi-elektrotechnik.de>
+Return-Path: <gary@mlbassoc.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 528B3E00AF0; Tue, 11 Apr 2017 05:56:07 -0700 (PDT)
+	id 019B5E00AF0; Tue, 11 Apr 2017 06:03:36 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [81.169.146.163 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mo4-p00-ob.smtp.rzone.de (mo4-p00-ob.smtp.rzone.de
-	[81.169.146.163])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CA6A0E00AD5
-	for <yocto@yoctoproject.org>; Tue, 11 Apr 2017 05:56:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1491915361;
-	l=1029; s=domk; d=rsi-elektrotechnik.de;
-	h=Content-Transfer-Encoding:Content-Language:Content-Type:In-Reply-To:
-	MIME-Version:Date:From:References:To:Subject;
-	bh=89x4tQO8PiZp8G/TmXAQx8yFWLFUdIe0+EaNZbzOqLI=;
-	b=tqPbGkcE53y1lYoIeUX4Tbe5q77Fs7o0UwFkkdcgGth6Tg673R7BFYeg5gnw34VFL9
-	+d2DfaEOkQxy9VkDc6FIIKE6s7RFOc6+8bsLZKrYsEL0bJDEs6/nAfC1Y6N3GWyGoB9n
-	E5TRdWEXRtsmX7rdFDeLV38P2l2DBleVVewkw=
-X-RZG-AUTH: :fz5RJhWIaexwuXGosGLfiBc0xYyi1Y5bd+wRKqrzPWwJyH/ODuV4n+N26eC0MVrEDIlpLg0lWA==
-X-RZG-CLASS-ID: mo00
-Received: from mail.rsi-elektrotechnik.de (p50933415.dip0.t-ipconnect.de
-	[80.147.52.21]) by smtp.strato.de (RZmta 40.4 AUTH)
-	with ESMTPSA id 305800t3BCu0BI4
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (curve secp384r1
-	with 384 ECDH bits, eq. 7680 bits RSA))
-	(Client did not present a certificate);
-	Tue, 11 Apr 2017 14:56:00 +0200 (CEST)
-Received: by mail.rsi-elektrotechnik.de (MDaemon PRO v17.0.0) with ESMTPSA id
-	md50000517608.msg; Tue, 11 Apr 2017 14:55:28 +0200
-X-MDRemoteIP: 80.147.52.21
-X-MDArrival-Date: Tue, 11 Apr 2017 14:55:28 +0200
-X-Authenticated-Sender: holzmayr@rsi-elektrotechnik.de
-X-Return-Path: prvs=127462cf9a=holzmayr@rsi-elektrotechnik.de
-X-Envelope-From: holzmayr@rsi-elektrotechnik.de
-X-CAV-Result: skipped - holzmayr@rsi-elektrotechnik.de is in exclusion list
-To: "Maier, Chris" <C.Maier@geze.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-References: <2AA7D088591C49498E92D6491C58159334CCF142@gcxdb1.corp.geze.com>
-From: Josef Holzmayr <holzmayr@rsi-elektrotechnik.de>
-Message-ID: <d1b547b8-70a1-bfe4-4aa0-dbb62a6af122@rsi-elektrotechnik.de>
-Date: Tue, 11 Apr 2017 14:55:00 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.0
+Received: from mail.analogue-micro.com (mail.analogue-micro.com
+	[217.144.149.242])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 99CB8E00AD5
+	for <yocto@yoctoproject.org>; Tue, 11 Apr 2017 06:03:33 -0700 (PDT)
+Received: by mail.analogue-micro.com (Postfix, from userid 999)
+	id 61EBE68A01A; Tue, 11 Apr 2017 14:03:31 +0100 (BST)
+Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
+	by mail.analogue-micro.com (Postfix) with ESMTP id CE25F68A01B;
+	Tue, 11 Apr 2017 14:03:30 +0100 (BST)
+Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
+	by zeus.mlbassoc.com (Postfix) with ESMTP id 7EEF36740580;
+	Tue, 11 Apr 2017 15:03:30 +0200 (CEST)
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+From: Gary Thomas <gary@mlbassoc.com>
+Message-ID: <3ecd28da-465c-37e4-d40e-2cebb5587295@mlbassoc.com>
+Date: Tue, 11 Apr 2017 15:03:30 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.8.0
 MIME-Version: 1.0
-In-Reply-To: <2AA7D088591C49498E92D6491C58159334CCF142@gcxdb1.corp.geze.com>
-Subject: Re: Install rootfs.tar.bz2 to ${D}/home/root/
+Subject: opkg behavior
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,45 +39,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Apr 2017 12:56:07 -0000
+X-List-Received-Date: Tue, 11 Apr 2017 13:03:36 -0000
 Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: de-DE
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 11.04.2017 08:48, Maier, Chris wrote:
- > Hi,
- > <snip> The usual question </snip>
- >
- > Chris
- >
+I'm using opkg (IPK) packaging with my Yocto builds (using recent
+master 633ad6c9f).  For the most part, this seems to work well,
+but occasionally I'll rebuild a recipe along with the packaging
+indexes on my build machine only to find that opkg doesn't want
+to upgrade to the changes.  Here's an example:
 
-*sigh*
+* Update the package databases on the target board
+   root@teton-p7621:~# opkg update
+   Downloading http://192.168.1.12/teton-p7621-feeds/all/Packages.gz.
+   Updated source 'poky_am-all'.
+   Downloading http://192.168.1.12/teton-p7621-feeds/cortexa7hf-neon/Packages.gz.
+   Updated source 'poky_am-cortexa7hf-neon'.
+   Downloading http://192.168.1.12/teton-p7621-feeds/teton_p7621/Packages.gz.
+   Updated source 'poky_am-teton_p7621'.
 
-I've tried to get in touch via non-list email (as for overly aggressive 
-mail servers), and even called the company but you didn't pick up the 
-phone. So Chris - if you ever read this: I really tried. Obviously 
-there's no other choice than bluntly ignoring this topic.
+* Try to update the package I just rebuilt.  Normally, this does the right thing
+   root@teton-p7621:~# opkg install production-tests
+   No packages installed or removed.
 
-Greetz,
+* Odd, check the packaging
+   root@teton-p7621:~# opkg list-installed | grep prod
+   production-tests - 1.0-r0.74
+
+* Force the install by removing the existing package, etc
+   root@teton-p7621:~# opkg remove production-tests
+   Removing production-tests (1.0) from root...
+   root@teton-p7621:~# opkg install production-tests
+   Installing production-tests (1.0) on root
+   Downloading http://192.168.1.12/teton-p7621-feeds/teton_p7621/production-tests_1.0-r0.76_teton_p7621.ipk.
+   Configuring production-tests.
+
+So from this you can see that the package has been rebuilt (using
+the PR server) and that I can indeed install the new version.  That
+said, why did opkg not "upgrade" as expected.  Note: I often use
+the 'opkg upgrade' command but I recently updated my Poky/Yocto
+repository which caused nearly every package to be rebuilt and I
+didn't want to have to download everything (none of which affected
+my current program which is just a python script), so I chose the
+'opkg install ...' method instead, which does seem to work sometimes.
+
+Any ideas what I can look at or tweak to get this to work the way
+I expect?
+
+Thanks
+
 -- 
-Josef Holzmayr
-Software Developer Embedded Systems
-
-Tel: +49 8444 9204-48
-Fax: +49 8444 9204-50
-
-R-S-I Elektrotechnik GmbH & Co. KG
-Woelkestrasse 11
-D-85301 Schweitenkirchen
-www.rsi-elektrotechnik.de
-———————————————
-Amtsgericht Ingolstadt – GmbH: HRB 191328 – KG: HRA 170393
-Geschäftsführer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
-Ust-IdNr: DE 128592548
-
-_____________________________________________________________
-Amtsgericht Ingolstadt - GmbH: HRB 191328 - KG: HRA 170363
-Geschäftsführer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
-USt-IdNr.: DE 128592548
-
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
