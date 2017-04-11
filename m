@@ -1,60 +1,68 @@
-Return-Path: <mtl1nuxd3v@gmail.com>
+Return-Path: <patrick.ohly@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A35DEE00AF0; Tue, 11 Apr 2017 03:56:36 -0700 (PDT)
+	id D8DE8E00AF4; Tue, 11 Apr 2017 04:12:23 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.213.173 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (mtl1nuxd3v[at]gmail.com)
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.223.169 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-yb0-f173.google.com (mail-yb0-f173.google.com
-	[209.85.213.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3A49DE00AD5
-	for <yocto@yoctoproject.org>; Tue, 11 Apr 2017 03:56:35 -0700 (PDT)
-Received: by mail-yb0-f173.google.com with SMTP id l201so42731365ybf.0
-	for <yocto@yoctoproject.org>; Tue, 11 Apr 2017 03:56:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=ZHkMJ9vj9KqODnsYOPJ3jUMJStlJ3A1Rd6P8L8k2NRk=;
-	b=YF3497ztwq0L2nSFkrxhoyy62IatS2M5gEZ8w7kW5NEEyBFtXLEb8vEkow97gDrk+M
-	2iSf51xJT0GNa1ssfUtwG/tz2w4foi4XTSUej/TVaszbbcyy0b6F4BPn+IDmFioLetOT
-	4/0AEjduO64LZAYUthpETkRFAPxWJD0IToNzEQyr+XIhdL+iNEyPTWnsPGtMgX1qbM/g
-	+2PDgWAzaP3fM9TT5DoMqvQ2/abauNuk/0G8HiIHTaJZ4aVMDyH3Q4f1O+UF4pTmXSTh
-	hl7SqB/eLsyGIob2qyVL77NbuFh7fc4oYorvT2mzkm4euIz0N379zuoYvemmF53Rnrqk
-	5G0Q==
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.223.169 listed in list.dnswl.org]
+Received: from mail-io0-f169.google.com (mail-io0-f169.google.com
+	[209.85.223.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A5170E00AE4
+	for <yocto@yoctoproject.org>; Tue, 11 Apr 2017 04:12:19 -0700 (PDT)
+Received: by mail-io0-f169.google.com with SMTP id a103so66314021ioj.1
+	for <yocto@yoctoproject.org>; Tue, 11 Apr 2017 04:12:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=message-id:subject:from:to:cc:date:in-reply-to:references
+	:organization:mime-version:content-transfer-encoding;
+	bh=ACRE6IQ0WsWHEVBjSfEiiU9NRdDOg7RE2fmT/LKYs+w=;
+	b=YEGQlw21sSG+3PZEmAi0YoY4KJz+L8qhouJ+Gr7FDJQhMLDYSplPRvSpcfVxlH88HI
+	HrAjHzTWzLu3GR/IjA2FEftn71WWQYtoZRVhVhR+KgIJ3k59tloIAM/dB1VDG/wUUDFA
+	pox+Qo9eMosU7xJRE/UoXhA6s2TMSYAU5WqkoJVIv+biP5Eam1CBNITggXd/0oPR1T79
+	UjK7giUTXiBQi/hz/psO9h/6hfoTnkubw1SRlRQ7N5DOdPmWKjKJZ5NZo/30OvalWAIX
+	Qqm0eVOv/Huzl/IWj+WS4puc+dY8MeLsBY5w49m5f1OyPwcKWfN22QD3kSWfVPsex6Jy
+	mr4w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=ZHkMJ9vj9KqODnsYOPJ3jUMJStlJ3A1Rd6P8L8k2NRk=;
-	b=IL36GoJpFhy4LffAaTlNxIl+MBQd7RDDrziu5cG0N054aLwpC2s4EE7IXQY6vnsmco
-	Q7hr+KomVv6YF8dfwEy9ue0QVGIIrnSKd6RmePli52B/vZFDT6FwGAZp/oacxukzGlkU
-	+mmFJqQIbeHuJer/atR1rPNLEg0JHliUbcwWchtt46iyT90abk80iLtMJtQkcFD9HZR8
-	ajHz9PzHIiHFfGdOXslNmWR9M9J9OUFE5FCyGRxpemdH9pWrdUoCbCkDyqSqy0ZrZXoO
-	t+a+vmvIRNQIlS2CGSRywT+UBRza/gDDvrm+YViBslCE6IIwgZnpu1FmSo84l7xYInq+
-	96pg==
-X-Gm-Message-State: AFeK/H3+qIc43Umz6cZnL0v6qFAeGIJGAz+JLAqFkyK/48IGBB8lXzXBHANU/sTEfz5a8AormkrWxJvAfwpn/g==
-X-Received: by 10.37.17.68 with SMTP id 65mr38603944ybr.62.1491908195262; Tue,
-	11 Apr 2017 03:56:35 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.37.36.130 with HTTP; Tue, 11 Apr 2017 03:56:35 -0700 (PDT)
-From: Mark T <mtl1nuxd3v@gmail.com>
-Date: Tue, 11 Apr 2017 11:56:35 +0100
-Message-ID: <CALf_N3b9D302khkTwnOjN25w1Q2=1DR5UZ6fvf2UzF8t892N9A@mail.gmail.com>
-To: yocto <yocto@yoctoproject.org>
-Subject: Getting recipe variables into config.m4 files
+	h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+	:references:organization:mime-version:content-transfer-encoding;
+	bh=ACRE6IQ0WsWHEVBjSfEiiU9NRdDOg7RE2fmT/LKYs+w=;
+	b=RFGEFqB4dC15rQPeIlDlceQjUvn/8y6kL+mr51D2v8UdlJm280l3PDNFgX/zE04h0e
+	hg7QknflJdvbVem8eE0dJMxo+Q87FAqjqvvBiUFj2Bvv77QoqMF4ZiU/ela+x8uvwOL1
+	rZOwtSl6zEX7fnfRyk5FL+n6DwWrCYZvboBXGuiRIKoa5wDhw7SpuZSfnnNPtsBK40w7
+	qoKQsIbS7Y5BsU+ATh9U/nZ1UaLFWcUbkK4Pbz/p0pwLAI7DpdR0hsXFspKME8IKDK6X
+	w1PUNYnsdidPsBAEeapY1PO6zIuB26KcfuUDTsTshLsdjz9cFW683n5w08lKOQbTwpyX
+	6fCw==
+X-Gm-Message-State: AFeK/H0hybWqxlit1xC2frVAkeYXNkW1nZwJEhFHx2g3A7q/DBsLCoQhxLDlAQ2eczS3wbH3
+X-Received: by 10.107.172.134 with SMTP id v128mr62188952ioe.49.1491909139074; 
+	Tue, 11 Apr 2017 04:12:19 -0700 (PDT)
+Received: from pohly-mobl1 (p5DE8D3A2.dip0.t-ipconnect.de. [93.232.211.162])
+	by smtp.gmail.com with ESMTPSA id s40sm739912ite.18.2017.04.11.04.12.17
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Tue, 11 Apr 2017 04:12:18 -0700 (PDT)
+Message-ID: <1491909135.10884.180.camel@intel.com>
+From: Patrick Ohly <patrick.ohly@intel.com>
+To: Mark T <mtl1nuxd3v@gmail.com>
+Date: Tue, 11 Apr 2017 13:12:15 +0200
+In-Reply-To: <CALf_N3ZPpeyL7Z1VSDGhC0aJgH4_we0C9dOszhnaK+tTNPC0pQ@mail.gmail.com>
+References: <CALf_N3ZPpeyL7Z1VSDGhC0aJgH4_we0C9dOszhnaK+tTNPC0pQ@mail.gmail.com>
+Organization: Intel GmbH, Dornacher Strasse 1, D-85622 Feldkirchen/Munich
+X-Mailer: Evolution 3.12.9-1+b1 
+Mime-Version: 1.0
+Cc: yocto <yocto@yoctoproject.org>
+Subject: Re: Modifying CFLAGS in .bbappend
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,48 +74,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Apr 2017 10:56:36 -0000
-Content-Type: multipart/alternative; boundary=001a113e7df804340f054ce1f28e
+X-List-Received-Date: Tue, 11 Apr 2017 11:12:23 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
---001a113e7df804340f054ce1f28e
-Content-Type: text/plain; charset=UTF-8
+On Tue, 2017-04-11 at 11:45 +0100, Mark T wrote:
 
-Hi,
+> If I add an include path to CFLAGS in a .bbappend  is it only applied
+> for that recipe or is it present in CFLAGS for all recipes built after
+> that ?
 
-I'm building a PHP extension.  In the config.m4 file for the extension I
-can add include and library paths as follows -
+Just for that recipe. You can check that with "bitbake -e <recipe
+name>".
 
-  PHP_ADD_INCLUDE(../../../../../../../sources/inc)  - works
-  PHP_ADD_INCLUDE($PROJ_ROOT/sources/inc)  ** does not work
-  PHP_ADD_INCLUDE(${PROJ_ROOT}/sources/inc)  ** does not work
-  PHP_ADD_LIBRARY(stdc++, 1, MY_TEST_SHARED_LIBADD)
 
-where $PROJ_ROOT is define in my .bbappend.  for the php recipe.
+-- 
+Best Regards, Patrick Ohly
 
-Its the include path that is not working with the variable - I just get
-"-I/sources/inc" in the compile line. The relative path works but I'd like
-to be able to tie the path to a variable I have control over.
+The content of this message is my personal opinion only and although
+I am an employee of Intel, the statements I make here in no way
+represent Intel's position on the issue, nor am I authorized to speak
+on behalf of Intel on this matter.
 
-Any ideas on how to achieve this ?
 
-Cheers,
-Mark
 
---001a113e7df804340f054ce1f28e
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div><div><div><div><div>Hi,<br><br></div>I&#39;m building=
- a PHP extension.=C2=A0 In the config.m4 file for the extension I can add i=
-nclude and library paths as follows - <br><br>=C2=A0 PHP_ADD_INCLUDE(../../=
-../../../../../sources/inc)=C2=A0 - works<br>=C2=A0 PHP_ADD_INCLUDE($PROJ_R=
-OOT/sources/inc)=C2=A0 ** does not work <br>=C2=A0 PHP_ADD_INCLUDE(${PROJ_R=
-OOT}/sources/inc)=C2=A0 ** does not work<br>=C2=A0 PHP_ADD_LIBRARY(stdc++, =
-1, MY_TEST_SHARED_LIBADD)<br><br></div>where $PROJ_ROOT is define in my .bb=
-append.=C2=A0 for the php recipe.<br><br></div>Its the include path that is=
- not working with the variable - I just get &quot;-I/sources/inc&quot; in t=
-he compile line. The relative path works but I&#39;d like to be able to tie=
- the path to a variable I have control over.<br><br></div><div>Any ideas on=
- how to achieve this ?<br><br></div>Cheers,<br></div>Mark<br></div>
-
---001a113e7df804340f054ce1f28e--
