@@ -1,66 +1,55 @@
-Return-Path: <armccurdy@gmail.com>
+Return-Path: <chandrasekhar@evolute-sys.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A9A31E00AF0; Mon, 10 Apr 2017 19:30:37 -0700 (PDT)
+	id 47D3AE00B20; Mon, 10 Apr 2017 22:12:05 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (armccurdy[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.128.181 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.128.181 listed in dnsbl.sorbs.net]
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,HTML_OBFUSCATE_05_10,MSGID_FROM_MTA_HEADER,
+	RCVD_IN_DNSWL_NONE, SPF_HELO_PASS,
+	UNPARSEABLE_RELAY autolearn=unavailable version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [202.137.236.178 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* 0.3 HTML_OBFUSCATE_05_10 BODY: Message is 5% to 10% HTML obfuscation
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wr0-f181.google.com (mail-wr0-f181.google.com
-	[209.85.128.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 038FCE00A9B
-	for <yocto@yoctoproject.org>; Mon, 10 Apr 2017 19:30:35 -0700 (PDT)
-Received: by mail-wr0-f181.google.com with SMTP id l28so30313825wre.0
-	for <yocto@yoctoproject.org>; Mon, 10 Apr 2017 19:30:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=f0B4iP2H7k35bAv4i4eXTsHJ3/kNZUwHIfTwrENJtdM=;
-	b=oNaOFiMvlFuD9TQQ3ruGogEh7JguP6gUDApQh2lxDFcJglaphqp2ELHMXXy8yOoMRt
-	o+wXX4qKXWszxg7MlZo/9pvu8eJy07A7ZXdi1zBppOzHwuv9e4zf1EjLYpF8YGmEd8Jl
-	VGIy46n2EzTM4ig3/HzYn8TVA3sHXaNYZiNQtTR8VnZwMCrt0lrObBIMByQYjC61o4PL
-	vmfnDHraZ/9+TtRPMkUYQkuBlaxYzv8IT+Pcj9KG3ThfBeFycsCBlD/uf49OLdlmeEeQ
-	o4/1vY6sg0aqYM9EWGQkER6Rxv8iNmZjUJE9H3Qx3Mkc//Xb1CzximrK7dbcCvn05y4/
-	LHFA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=f0B4iP2H7k35bAv4i4eXTsHJ3/kNZUwHIfTwrENJtdM=;
-	b=OMGz6bkoPkU5Mx9w123lF+xaRQbsJepzJrPdyDJ37eJzDHl4sbV+860Ue6uopFx8D2
-	B9sB0kmal3cpd0lv+85E8X2z8sUrWFYYg2Kr6AgZN9S3E7aVIrLcelYcCzqWHahtJiCS
-	z9rt8q9dsvttkN2dB1lk18ufXZELQYoicPXvCllVDWcwZnBRKnKeju2BL5+fjZi8qjup
-	nUlnKLaffa+PYYUiOdbYkVz8bNSewm86TrWsdLbv+IHHluC/ohPi7xwv5We7ZU6MnJTI
-	3Sw3u2c0JgeUqhchjcQZW+yVFJj0bU/613KQSWvs3aEsOdMG+hMy3Vp1yGZjLDT8Rp0A
-	Rs0A==
-X-Gm-Message-State: AN3rC/6qOoBPYXUcgbxmU1grcRLsdc64RX6+tHSgUDxh7R93jwUlDQFPo512zsKIKVO9dLCWzs1e9Swh8bpuUg==
-X-Received: by 10.223.166.170 with SMTP id t39mr10418448wrc.72.1491877834742; 
-	Mon, 10 Apr 2017 19:30:34 -0700 (PDT)
+	*  0.0 MSGID_FROM_MTA_HEADER Message-Id was added by a relay
+	* 0.0 UNPARSEABLE_RELAY Informational: message has unparseable relay
+	lines
+X-Greylist: delayed 402 seconds by postgrey-1.32 at yocto-www;
+	Mon, 10 Apr 2017 22:12:03 PDT
+Received: from rediffmail.com (pro236-178.mxout.rediffmailpro.com
+	[202.137.236.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6F712E00AF4
+	for <yocto@yoctoproject.org>; Mon, 10 Apr 2017 22:12:02 -0700 (PDT)
+X-REDIFF-Delivered-Remotely-To: yocto@yoctoproject.org
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rediffmailpro.com;
+	s=epro; t=1491887117;
+	bh=ftCHFzJqesX4LjzYtcVSEtW/3/apL9clCLsIHLwsY8g=;
+	h=MIME-Version:From:Date:Message-ID:Subject:To;
+	b=djQCJCO+ugk2lE8jLbmpAguu9AwNy2o3jkxUhTdyl8x5uZYkVzdS6jhRe7xdhtT9b
+	CxtRKKIr0ZnYnPXgwMlvz0JJpDThFtRINXu78AqGLVJuh244ojvXh04JXs9CKc1tay
+	ZpAOt+byBSvtTOVFi5uIjJmY4+JmGeFYJYGKrNrs=
+Received: (qmail 23009 invoked by uid 510); 11 Apr 2017 05:05:17 -0000
+x-m-msg: asd54ad564ad7aa6sd5as6d5; a6da7d6asas6dasd77; 5dad65ad5sd;
+X-OUT-VDRT-SpamState: 0\LEGIT
+X-OUT-VDRT-SpamScore: 0
+X-OUT-VDRT-SpamCause: gggruggvucftvghtrhhoucdtuddrfeeliedrudefgdelgecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddtnecunecujfgurhepfffkggfvshfuhfgtsegrtddvredttdejnecuhfhrohhmpedftghhrghnughrrghsvghkhhgrrhcutgdfuceotghhrghnughrrghsvghkhhgrrhesvghvohhluhhtvgdqshihshdrtghomheqnecukfhppeduvddvrdduieeirddvfeefrdduudenucfrrghrrghmpehmohguvgepshhmthhpohhuth
+Date: 11 Apr 2017 05:05:17 -0000
+Message-ID: <20170411050517.23004.qmail@pro236-178.mxout.rediffmailpro.com>
 MIME-Version: 1.0
-Received: by 10.223.153.248 with HTTP; Mon, 10 Apr 2017 19:30:34 -0700 (PDT)
-In-Reply-To: <2AA7D088591C49498E92D6491C58159334CCEFDD@gcxdb1.corp.geze.com>
-References: <2AA7D088591C49498E92D6491C58159334CCEFDD@gcxdb1.corp.geze.com>
-From: Andre McCurdy <armccurdy@gmail.com>
-Date: Mon, 10 Apr 2017 19:30:34 -0700
-Message-ID: <CAJ86T=WxgyhsdEiH84KgE5Vr7qdC9KCko08RNCLRugcWLiDzUg@mail.gmail.com>
-To: "Maier, Chris" <C.Maier@geze.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Install rootfs.tar.bz2 to ${D}/home/root/
+To: <meta-freescale@yoctoproject.org>, <yocto@yoctoproject.org>
+Received: from unknown 122.166.233.11 by rediffmailpro.com via HTTP;
+	11 Apr 2017 05:05:16 -0000
+Sender: chandrasekhar@evolute-sys.com
+From: "chandrasekhar c" <chandrasekhar@evolute-sys.com>
+Subject: [meta-freescale] Kernel module vermagic error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,51 +61,73 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Apr 2017 02:30:37 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Tue, 11 Apr 2017 05:12:05 -0000
+Content-Type: multipart/alternative;
+	boundary="=_5490fe80996951aeb26efbedeb9575dc"
+
+--=_5490fe80996951aeb26efbedeb9575dc
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="UTF-8"
+
+Hi,I am trying to load a kernel module through modprobe. I am using bitbake to build the kernel. When I try to load the kernel in my Custom hardware I am getting following errors.
+modprobe g_serial
+    configfs: version magic &#39;3.14.38-6UL_ga+ge4944a5 SMP preempt mod_unload modversions ARMv7 p2v8 &#39; should be &#39;3.14.38-6UL_ga+ge4944a5 SMP preempt mod_unload ARMv7 p2v8 &#39;
+    modprobe: can&#39;t load module configfs (kernel/fs/configfs/configfs.ko): invalid module formatbelow is the dmesg log
+configfs: version magic &#39;3.14.38-6UL_ga+ge4944a5 SMP preempt mod_unload modversions ARMv7 p2v8 &#39; should be &#39;3.14.38-6UL_ga+ge4944a5 SMP preempt mod_unload ARMv6 p2v8 &#39;and uname -a output is&nbsp;Linux imx6ulevk 3.14.38-6UL_ga+ge4944a5 #11 PREEMPT Fri Apr 7 12:35:50 IST 2017 armv7l GNU/Linuxwhat is the wrong with the module.Thanks and Regards,Chandrasekhar
+
+--=_5490fe80996951aeb26efbedeb9575dc
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset="UTF-8"
 
-On Mon, Apr 10, 2017 at 4:28 AM, Maier, Chris <C.Maier@geze.com> wrote:
-> Hi,
->
-> I want to create a deployable SD card image. My board (beaglebone based) =
-boots from SD card and runs a script which copies the rootfs.tar.bz2 to the=
- flash memory.
-> So how can I deploy a copy of the whole rootfs to ${D}/home/root?
-> A rootfs in the rootfs, does that make sense?
+<span style=3D"color: rgb(36, 39, 41); font-family: Arial, 'Helvetica Neue'=
+, Helvetica, sans-serif; font-size: 15px; line-height: 19.5px;">Hi,<br />I =
+am trying to load a kernel module through modprobe. I am using bitbake to b=
+uild the kernel. When I try to load the kernel in my Custom hardware I am g=
+etting following errors.</span>
+<pre style=3D"margin-top: 0px; margin-bottom: 0px; padding: 5px; border: 0p=
+x; font-size: 13px; width: auto; max-height: 600px; overflow: auto; font-fa=
+mily: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu=
+ Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace, sans-ser=
+if; background-color: rgb(239, 240, 241); word-wrap: normal; color: rgb(36,=
+ 39, 41);"><code style=3D"margin: 0px; padding: 0px; border: 0px; font-fami=
+ly: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu S=
+ans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace, sans-serif=
+; white-space: inherit;">modprobe g_serial
+    configfs: version magic &#39;3.14.38-6UL_ga+ge4944a5 SMP preempt mod_un=
+load modversions ARMv7 p2v8 &#39; should be &#39;3.14.38-6UL_ga+ge4944a5 SM=
+P preempt mod_unload ARMv7 p2v8 &#39;
+    modprobe: can&#39;t load module configfs (kernel/fs/configfs/configfs.k=
+o): invalid module format</code></pre><span style=3D"color: rgb(36, 39, 41)=
+; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; font-size: 1=
+5px; line-height: 19.5px;">below is the dmesg log</span>
+<pre style=3D"margin-top: 0px; margin-bottom: 0px; padding: 5px; border: 0p=
+x; font-size: 13px; width: auto; max-height: 600px; overflow: auto; font-fa=
+mily: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu=
+ Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace, sans-ser=
+if; background-color: rgb(239, 240, 241); word-wrap: normal; color: rgb(36,=
+ 39, 41);"><code style=3D"margin: 0px; padding: 0px; border: 0px; font-fami=
+ly: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu S=
+ans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace, sans-serif=
+; white-space: inherit;">configfs: version magic &#39;3.14.38-6UL_ga+ge4944=
+a5 SMP preempt mod_unload modversions ARMv7 p2v8 &#39; should be &#39;3.14.=
+38-6UL_ga+ge4944a5 SMP preempt mod_unload ARMv6 p2v8 &#39;</code></pre><spa=
+n style=3D"color: rgb(36, 39, 41); font-family: Arial, 'Helvetica Neue', He=
+lvetica, sans-serif; font-size: 15px; line-height: 19.5px;">and uname -a ou=
+tput is&nbsp;</span><br style=3D"color: rgb(0, 0, 0); font-family: Helvetic=
+a, sans-serif;" /><span style=3D"color: rgb(0, 0, 0); font-family: Helvetic=
+a, sans-serif;"><span style=3D"font-family: 'Helvetica Neue', Helvetica, Ar=
+ial, 'Lucida Grande', sans-serif; font-size: 15px; line-height: 25.95000076=
+2939453px;">Linux imx6ulevk 3.14.38-6UL_ga+ge4944a5 #11 PREEMPT Fri Apr 7 1=
+2:35:50 IS</span></span><span style=3D"color: rgb(0, 0, 0); font-family: 'H=
+elvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; font-size: 1=
+5px; line-height: 25.950000762939453px;">T 2017 armv7l GNU/Lin</span><span =
+style=3D"color: rgb(0, 0, 0); font-family: 'Helvetica Neue', Helvetica, Ari=
+al, 'Lucida Grande', sans-serif; font-size: 15px; line-height: 25.950000762=
+939453px;">ux</span><br style=3D"color: rgb(0, 0, 0); font-family: Helvetic=
+a, sans-serif;" /><br style=3D"color: rgb(0, 0, 0); font-family: Helvetica,=
+ sans-serif;" /><span style=3D"color: rgb(36, 39, 41); font-family: Arial, =
+'Helvetica Neue', Helvetica, sans-serif; font-size: 15px; line-height: 19.5=
+px;">what is the wrong with the module.<br /><br />Thanks and Regards,<br /=
+>Chandrasekhar</span>
 
-Assuming you have two image recipes (inner-image.bb and
-outer-image.bb), add something like the following to the
-outer-image.bb recipe:
-
-  do_rootfs[depends] +=3D "inner-image:do_image_complete"
-  ROOTFS_POSTPROCESS_COMMAND +=3D "copy_inner_image; "
-  copy_inner_image () {
-    install -d ${IMAGE_ROOTFS}/home/root
-    install -m644 ${DEPLOY_DIR_IMAGE}/inner-image-${MACHINE}.tar.bz2
-${IMAGE_ROOTFS}/home/root/rootfs.tar.bz2
-  }
-
-Also ensure that either the machine config or inner-image.bb includes:
-
-  IMAGE_FSTYPES +=3D "tar.bz2"
-
-> Any help is appreciated.
->
-> Chris Maier
->
-> Gesch=C3=A4ftsf=C3=BChrung: Brigitte V=C3=B6ster-Alber (Vorsitzende), And=
-rea Alexandra Alber, Marc Alber, Florian Birkenmayer
-> Vorsitzender des Aufsichtsrates: Prof. Dr. Dr. Ulli Arnold, Amtsgericht S=
-tuttgart HRB 250329, Tel: +49 7152 203 0
-> GEZE GmbH, Reinhold-V=C3=B6ster-Stra=C3=9Fe 21-29, 71229 Leonberg, German=
-y
->
->
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
+--=_5490fe80996951aeb26efbedeb9575dc--
