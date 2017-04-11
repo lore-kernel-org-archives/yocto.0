@@ -1,36 +1,58 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <colin.helliwell@ln-systems.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 019B5E00AF0; Tue, 11 Apr 2017 06:03:36 -0700 (PDT)
+	id 26FE5E00AF0; Tue, 11 Apr 2017 06:30:13 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [212.227.126.133 listed in dnsbl.sorbs.net]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [212.227.126.133 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.analogue-micro.com (mail.analogue-micro.com
-	[217.144.149.242])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 99CB8E00AD5
-	for <yocto@yoctoproject.org>; Tue, 11 Apr 2017 06:03:33 -0700 (PDT)
-Received: by mail.analogue-micro.com (Postfix, from userid 999)
-	id 61EBE68A01A; Tue, 11 Apr 2017 14:03:31 +0100 (BST)
-Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
-	by mail.analogue-micro.com (Postfix) with ESMTP id CE25F68A01B;
-	Tue, 11 Apr 2017 14:03:30 +0100 (BST)
-Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
-	by zeus.mlbassoc.com (Postfix) with ESMTP id 7EEF36740580;
-	Tue, 11 Apr 2017 15:03:30 +0200 (CEST)
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-From: Gary Thomas <gary@mlbassoc.com>
-Message-ID: <3ecd28da-465c-37e4-d40e-2cebb5587295@mlbassoc.com>
-Date: Tue, 11 Apr 2017 15:03:30 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.8.0
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.133])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5B683E00AD5
+	for <yocto@yoctoproject.org>; Tue, 11 Apr 2017 06:30:10 -0700 (PDT)
+Received: from oxbaltgw12.schlund.de ([172.19.246.18]) by
+	mrelayeu.kundenserver.de (mreue001 [212.227.15.163]) with ESMTPSA
+	(Nemesis) id 0MVV8g-1cZ7r449Z0-00YmFM for <yocto@yoctoproject.org>;
+	Tue, 11 Apr 2017 15:30:09 +0200
+Date: Tue, 11 Apr 2017 14:30:08 +0100 (BST)
+From: Colin Helliwell <colin.helliwell@ln-systems.com>
+To: yocto@yoctoproject.org
+Message-ID: <1299191699.201729.1491917408902@email.1and1.co.uk>
+In-Reply-To: <14a7f797-fc4f-772a-27de-a8c6d2f3980c@linux.intel.com>
+References: <015601d2af95$84d316a0$8e7943e0$@ln-systems.com>
+	<14a7f797-fc4f-772a-27de-a8c6d2f3980c@linux.intel.com>
 MIME-Version: 1.0
-Subject: opkg behavior
+X-Priority: 3
+Importance: Medium
+X-Mailer: Open-Xchange Mailer v7.8.1-Rev32
+X-Originating-Client: open-xchange-appsuite
+X-Provags-ID: V03:K0:fbFCc55FdUmynU37Tjc3Fj3q5jBH0NjcHFFTJjPFi5qaeBg3ZSz
+	HlSENhhiyVDDvqrt0aFXTrMBOiIGTNFolkVI7RiuHJuYsTCl1GFPc7Mfdl3EPLoi+6VDU8a
+	OvlO9nVwSjfZ7RGdFxWWrxqdQnvzsU6Kw/kBZuQx5GNucNWHcg0gTdJdEL2wVOn8ckH8wYD
+	dF1t6+JbdnHl8lUv8hiYw==
+X-UI-Out-Filterresults: notjunk:1;V01:K0:p2rYAOebUqA=:4RTfeng9EXD8SburqIQrNv
+	a6GhSgyhBEC0e962CBHMx+s+Br8G875Zwy4yGqU9DhBbquKPKulw5RyRteFO6GjaXnab6xuXf
+	BhXMOD+YwSdmrPMg4JzzXlneSmzYEKkAndQ8deA82n9vzN+suboWmjoWbcQ0cE2rHjsOTKVWR
+	oqc24RYnJ+8JcbO/YV6Bi95Bdj3XyQB62SP2D9b8aYdCftWfjIIs/xer0ATGAJGtHIvwDf7om
+	8teh4ahH3dhOlUzLP62UIBvJv5Nn0q52mp7IzxcLMXtk3ZczMfojXuLUQfgSJ3I785v/Ddqio
+	YJTRs1yFznWQmQRRqOBTvvoXT6j8bx4Am972iQBDr/Nc+P44DLR2vpmPNxdTTJv1pkRLY6wD/
+	N+++aXobhFtmJOn4eTrUnhioRBFrwbQeXSE5IstEKviZJ0rFgeChy2+IBIcpgEPEUvSsCeZ33
+	6ACz74G0+uwaybX3K14xv41ueSgbtjv9wiV+aBp/byM+hYzWakwLhFJMOtMErtY0nWRaUUr2W
+	GfZkByxrZS1HiR5qA7PuqfEI6v8TXtTVsSPFMsKlET57yffgGhJNVuKRT899rw95HYX0zConk
+	DUh5FFW8MSGHXAhutdNVRf5fcZuKdf4kRjXRtiJLvLc8LPegDrqs/6zob/5RreSQKMvjmBDKK
+	lYdsKGlIB1Yl6CPAhEVMOxpcMH7xPhdIaqJcvaP7eTlee1h+wfMB6VndJAwDo/Cp2jr7HCP8V
+	74AE0TxUBkSspmOZ
+Subject: Re: Remove/prevent a package's installed files if another package present
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: Colin Helliwell <colin.helliwell@ln-systems.com>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -39,58 +61,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Apr 2017 13:03:36 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
+X-List-Received-Date: Tue, 11 Apr 2017 13:30:13 -0000
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-I'm using opkg (IPK) packaging with my Yocto builds (using recent
-master 633ad6c9f).  For the most part, this seems to work well,
-but occasionally I'll rebuild a recipe along with the packaging
-indexes on my build machine only to find that opkg doesn't want
-to upgrade to the changes.  Here's an example:
 
-* Update the package databases on the target board
-   root@teton-p7621:~# opkg update
-   Downloading http://192.168.1.12/teton-p7621-feeds/all/Packages.gz.
-   Updated source 'poky_am-all'.
-   Downloading http://192.168.1.12/teton-p7621-feeds/cortexa7hf-neon/Packages.gz.
-   Updated source 'poky_am-cortexa7hf-neon'.
-   Downloading http://192.168.1.12/teton-p7621-feeds/teton_p7621/Packages.gz.
-   Updated source 'poky_am-teton_p7621'.
+> On 07 April 2017 at 12:57 Alexander Kanavin <alexander.kanavin@linux.intel.com> wrote:
+> 
+> On 04/07/2017 02:53 PM, colin.helliwell@ln-systems.com wrote:
+> 
+> > I'd like to do a mod to my ppp recipe such that ip-up & ip-down aren't
+> > installed if another package is in the image recipe i.e. set in
+> > CORE_IMAGE_EXTRA_INSTALL.
+> > 
+> > I guess I could do a do_install_append() or a pkg_postinst_(), but is there
+> > a way to detect the other package within the recipe? E.g. along the lines of
+> > what PACKAGE_CONF can do for configuration.
+> > 
+> > Oh, and it needs to work after an update (e.g. rpm/deb) - don't want the
+> > files (re)installed by the update. (So I don't believe
+> > ROOTFS_POSTPROCESS_COMMAND is an option)
+> 
+> Maybe you should do this at runtime, and modify ip-up/down themselves
+> (or the thing that utilizes them) so that they do the right thing in
+> both scenarios.
+> 
 
-* Try to update the package I just rebuilt.  Normally, this does the right thing
-   root@teton-p7621:~# opkg install production-tests
-   No packages installed or removed.
-
-* Odd, check the packaging
-   root@teton-p7621:~# opkg list-installed | grep prod
-   production-tests - 1.0-r0.74
-
-* Force the install by removing the existing package, etc
-   root@teton-p7621:~# opkg remove production-tests
-   Removing production-tests (1.0) from root...
-   root@teton-p7621:~# opkg install production-tests
-   Installing production-tests (1.0) on root
-   Downloading http://192.168.1.12/teton-p7621-feeds/teton_p7621/production-tests_1.0-r0.76_teton_p7621.ipk.
-   Configuring production-tests.
-
-So from this you can see that the package has been rebuilt (using
-the PR server) and that I can indeed install the new version.  That
-said, why did opkg not "upgrade" as expected.  Note: I often use
-the 'opkg upgrade' command but I recently updated my Poky/Yocto
-repository which caused nearly every package to be rebuilt and I
-didn't want to have to download everything (none of which affected
-my current program which is just a python script), so I chose the
-'opkg install ...' method instead, which does seem to work sometimes.
-
-Any ideas what I can look at or tweak to get this to work the way
-I expect?
-
-Thanks
-
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+Worried about complexities of runtime mods (esp. across two other packages). What seems may be a 'simple' (if not weakness-less) method is to add my own DISTRO_FEATURE, and switch on that in my ppp_.bbappend.
 
