@@ -1,6 +1,6 @@
 Return-Path: <Vinothkumar.Eswaran@de.bosch.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 76FF2E00AF0; Mon, 10 Apr 2017 23:20:42 -0700 (PDT)
+	id 434BAE00AF0; Mon, 10 Apr 2017 23:25:03 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,7 +9,7 @@ X-Spam-Status: No, score=-7.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	version=3.3.1
 X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	http://www.dnswl.org/, high *      trust
-	*      [139.15.243.226 listed in list.dnswl.org]
+	*      [139.15.237.11 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -18,38 +18,37 @@ X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from imta21.fe.bosch.de (imta21.fe.bosch.de [139.15.243.226])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4BA96E00A9B
-	for <yocto@yoctoproject.org>; Mon, 10 Apr 2017 23:20:38 -0700 (PDT)
-Received: from smtp6-v.fe.bosch.de (imta24.fe.bosch.de [139.15.243.27])
-	by imta21.fe.bosch.de (Postfix) with ESMTP id D53C9C0312
-	for <yocto@yoctoproject.org>; Tue, 11 Apr 2017 08:20:37 +0200 (CEST)
-Received: from vsmta14.fe.internet.bosch.com (unknown [10.4.98.54])
-	by imta24.fe.bosch.de (Postfix) with ESMTP id 07DEAD80204
-	for <yocto@yoctoproject.org>; Tue, 11 Apr 2017 08:20:36 +0200 (CEST)
+X-Greylist: delayed 264 seconds by postgrey-1.32 at yocto-www;
+	Mon, 10 Apr 2017 23:25:01 PDT
+Received: from smtp6-v.fe.bosch.de (smtp6-v.fe.bosch.de [139.15.237.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9D0B3E00A9B
+	for <yocto@yoctoproject.org>; Mon, 10 Apr 2017 23:25:01 -0700 (PDT)
+Received: from vsmta11.fe.internet.bosch.com (unknown [10.4.98.51])
+	by imta23.fe.bosch.de (Postfix) with ESMTP id 93D6615801A6
+	for <yocto@yoctoproject.org>; Tue, 11 Apr 2017 08:25:00 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=de.bosch.com;
-	s=2015-01-21; t=1491891636;
-	bh=jFkiOn1psi53d+aLR0ox9WgNY4nuMWh/7/8FcmAw2WA=; l=10;
+	s=2015-01-21; t=1491891900;
+	bh=XHzXgTbb4B84ComE9fCgOJMHqpHQG4oa+MTB9rqXCqk=; l=10;
 	h=From:From:Reply-To:Sender;
-	b=Clxl21r3KWgzJHt9qrxvB17YqZR4zpu1afMJwbUzNSX9dt/CmianFXZ/3D3pzs7dR
-	P4YxHUzhIl1G7Sg8PPVqzT+mDUpQSmTyvi1HnnMeJKc7NJ911Pf0TyhV1ecJxrFGrB
-	Dof+fTwHayXiu25qZi7PqOZvGaaNt2SgWq1BUaoI=
-Received: from FE-MBX1014.de.bosch.com (vsgw22.fe.internet.bosch.com
+	b=gqrc0R08fsEMBu8vV2VAhm2xiRMJQhcJWO02jbVJFrCKPH0ED2wLKYHx05FqRXzPz
+	AHpkpaouLLo3gzlGCU3f1WNTwuP/V3Xtlu6Y4mC8R++GabFoCiGm/vkmDgLQT1Yw5a
+	3RmvWari0RBIM4ox5StNoXya12aZLbg+SKF+cqCk=
+Received: from SI-MBX1013.de.bosch.com (vsgw22.fe.internet.bosch.com
 	[10.4.98.11])
-	by vsmta14.fe.internet.bosch.com (Postfix) with ESMTP id EF0A0A40290
-	for <yocto@yoctoproject.org>; Tue, 11 Apr 2017 08:20:35 +0200 (CEST)
+	by vsmta11.fe.internet.bosch.com (Postfix) with ESMTP id 8AFF2238026F
+	for <yocto@yoctoproject.org>; Tue, 11 Apr 2017 08:25:00 +0200 (CEST)
 Received: from FE-MBX1014.de.bosch.com (10.3.230.72) by
-	FE-MBX1014.de.bosch.com (10.3.230.72) with Microsoft SMTP Server (TLS)
-	id 15.0.1236.3; Tue, 11 Apr 2017 08:20:35 +0200
+	SI-MBX1013.de.bosch.com (10.3.230.50) with Microsoft SMTP Server (TLS)
+	id 15.0.1236.3; Tue, 11 Apr 2017 08:25:00 +0200
 Received: from FE-MBX1014.de.bosch.com ([fe80::f960:d6c4:9c04:b471]) by
 	FE-MBX1014.de.bosch.com ([fe80::f960:d6c4:9c04:b471%16]) with mapi id
-	15.00.1236.000; Tue, 11 Apr 2017 08:20:35 +0200
+	15.00.1236.000; Tue, 11 Apr 2017 08:25:00 +0200
 From: "Eswaran Vinothkumar (BEG/PJ-IOT-EL)" <Vinothkumar.Eswaran@de.bosch.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Porting a middleware to Yocto
-Thread-Index: AdKyiv6iXweoaH6VSPK7TxcglHpraQ==
-Date: Tue, 11 Apr 2017 06:20:34 +0000
-Message-ID: <6b8d75eafe704438b03324c35d2ce6ef@FE-MBX1014.de.bosch.com>
+Thread-Topic: Sub-directories from Git in SRC-URI
+Thread-Index: AdKyi+6CZGeMF7dnRvSNMfKHmDj6Bg==
+Date: Tue, 11 Apr 2017 06:24:59 +0000
+Message-ID: <83bd670ecdbc4d1885b66d8ba8ed8b0c@FE-MBX1014.de.bosch.com>
 Accept-Language: de-DE, en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
@@ -58,15 +57,12 @@ x-originating-ip: [10.42.245.153]
 MIME-Version: 1.0
 X-TM-AS-MML: disable
 X-TM-AS-Product-Ver: IMSS-7.1.0.1679-8.1.0.1062-22996.006
-X-TMASE-MatchedRID: ryCR11Tsb8ZNfAuy6MOHAbiMC5wdwKqd0r/qCu/cY534JyR+b5tvoF/0
-	BWiHnGnTpF/PcR0cUol+t+UbhGIIIHHVdX7/QM0wBEfU2vugRF0TbU1KYGoQp9Q7R95qD2m5JI6
-	as8E5MWl8hW63yzPNuLYkV2Ealq/rjhd/b3VVTRaUa50su1E7WxZO94uK1VSBhQMJZ8yMdZizMh
-	qIZZH9FxIlB9DMJuXQSaVfaxxV94/trubt8TkL4cG0UNgaZpYqGsvgUMYAn4WW+zaNLK605OygQ
-	WdkAVMs0Nt5/j+aSDEUI4s17Ql301mKiy1F9pgLQesjq8XPMbt3Bf9JIqsoeEbaqUVvLFsi2s92
-	sh0zjZvZfQx3B5aMuJJTzjwz+GzorhAB5C8gZ6o00dkxYNMRt/8JYSFP1dhVsstO9qYbwEmjxYy
-	RBa/qJeBPbNdhr3+dRKnDswi/jzvMBgIwCvEUsHzWoanToyuJXqumg5DW3MUe0gO9q9CzhId3a5
-	LQ9aYBVOFnGikW9tk=
-Subject: Porting a middleware to Yocto
+X-TMASE-MatchedRID: IgH/cWfDc8/UbgNMppOAcxkuPL3W/szl1uSq5RBVCm50PA/ki2kI7BxJ
+	EX0k/k7OLiNvWfV40DfniZuiwpS5h8IrF13eYpRriguiJuCNURf4bPjfm0hIQeKYpwtG+wHV8Fh
+	GjTp5WPfy/MPf/RmXSoVtgQyPvRbMNJyAyqAmcb8SDAzxRL+lMX17zx+CiSWzDC/Vm90If4WY8y
+	8WI7jQsI8vWR6sDTLkunMonJePr4wn4I4vtUU3Tp4CIKY/Hg3AaZGo0EeYG94JrPsDvSXvNvoLR
+	4+zsDTtiuuVOWrUWflDUCnKly/hBhwd19spoGNs9OGUhcn4NHvUW2CJWTW4Rg==
+Subject: Sub-directories from Git in SRC-URI
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -78,38 +74,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Apr 2017 06:20:42 -0000
+X-List-Received-Date: Tue, 11 Apr 2017 06:25:03 -0000
 Content-Language: de-DE
 Content-Type: multipart/alternative;
-	boundary="_000_6b8d75eafe704438b03324c35d2ce6efFEMBX1014deboschcom_"
+	boundary="_000_83bd670ecdbc4d1885b66d8ba8ed8b0cFEMBX1014deboschcom_"
 
---_000_6b8d75eafe704438b03324c35d2ce6efFEMBX1014deboschcom_
+--_000_83bd670ecdbc4d1885b66d8ba8ed8b0cFEMBX1014deboschcom_
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
 Hallo,
 
-For our new project we are planning to use Yocto as a build system to build=
- customized Linux distribution. I have already created a BSP for our custom=
-ized hardware with Linux kernel, U-boot and UBIFS rootfs image.
+May I now is it possible to include a sub-directory from git repo in the SR=
+C_URI of bitbake recipe.
 
-We are internally using a middleware which acts as an abstraction to underl=
-ying operating system and provides APIs to application layers. Now the task=
- is to port the middleware to Yocto. The middleware contains lot of make fi=
-les and folders which are interdependent and I am at lost on how to start.
-I have some 20 directories which contains makefiles and autotool configure.=
-ac files to generate lib files.
+Also in SRC_URI is it possible to include a directory instead of a single f=
+ile?
 
-As of now I have planned to create a new Yocto layer called meta-middleware=
- and a recipe file for individual folders. I then create a package group wh=
-ich will include all these recipes and can include this package group as de=
-pendency in the recipes of meta-application layer. I am facing a problem li=
-ke I have to include headers from other recipes. In this case to include th=
-e headers , is it enough to add "DEPENDS =3D recipename" ?
-I know my question is relatively vague, but anybody who ported middleware f=
-rom another build systems like ptxdist would have faced similar issues. Any=
- input on how you planned to port these source files to Yocto would be help=
-ful.
+I know I could create a tar file of a directory and include it , but I woul=
+d like to know is it possible to include directory as a SRC_URI.
 
 
 Mit freundlichen Gr=FC=DFen / Best regards
@@ -118,7 +101,8 @@ Vinothkumar Eswaran
 BEG-PT/PJ-IOT1
 
 
---_000_6b8d75eafe704438b03324c35d2ce6efFEMBX1014deboschcom_
+
+--_000_83bd670ecdbc4d1885b66d8ba8ed8b0cFEMBX1014deboschcom_
 Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
@@ -175,44 +159,24 @@ div.WordSection1
 </head>
 <body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
 <div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span lang=3D"DE" style=3D"font-size:10.0pt;font-fam=
+ily:&quot;Arial&quot;,sans-serif">Hallo,<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"DE" style=3D"font-size:10.0pt;font-fam=
+ily:&quot;Arial&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
-ial&quot;,sans-serif">Hallo,<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
-ial&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
-ial&quot;,sans-serif">For our new project we are planning to use Yocto as a=
- build system to build customized Linux distribution. I have already create=
-d a BSP for our customized hardware with Linux
- kernel, U-boot and UBIFS rootfs image.<o:p></o:p></span></p>
+ial&quot;,sans-serif">May I now is it possible to include a sub-directory f=
+rom git repo in the SRC_URI of bitbake recipe.<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
 ial&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
-ial&quot;,sans-serif">We are internally using a middleware which acts as an=
- abstraction to underlying operating system and provides APIs to applicatio=
-n layers. Now the task is to port the middleware
- to Yocto. The middleware contains lot of make files and folders which are =
-interdependent and I am at lost on how to start.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
-ial&quot;,sans-serif">I have some 20 directories which contains makefiles a=
-nd autotool configure.ac files to generate lib files.<o:p></o:p></span></p>
+ial&quot;,sans-serif">Also in SRC_URI is it possible to include a directory=
+ instead of a single file?<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
 ial&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
-ial&quot;,sans-serif">As of now I have planned to create a new Yocto layer =
-called meta-middleware and a recipe file for individual folders. I then cre=
-ate a package group which will include all these
- recipes and can include this package group as dependency in the recipes of=
- meta-application layer. I am facing a problem like I have to include heade=
-rs from other recipes. In this case to include the headers , is it enough t=
-o add &#8220;DEPENDS =3D recipename&#8221; ?<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
-ial&quot;,sans-serif"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
-ial&quot;,sans-serif">I know my question is relatively vague, but anybody w=
-ho ported middleware from another build systems like ptxdist would have fac=
-ed similar issues. Any input on how you planned
- to port these source files to Yocto would be helpful.<o:p></o:p></span></p=
->
+ial&quot;,sans-serif">I know I could create a tar file of a directory and i=
+nclude it , but I would like to know is it possible to include directory as=
+ a SRC_URI.<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
 ial&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
@@ -223,12 +187,13 @@ ily:&quot;Arial&quot;,sans-serif;color:black">Mit freundlichen Gr=FC=DFen /=
 <br>
 <br>
 <b>Vinothkumar Eswaran<br>
-BEG-PT/PJ-IOT1</b></span><span lang=3D"DE" style=3D"font-size:8.0pt;font-fa=
-mily:&quot;Arial&quot;,sans-serif;color:black"><br>
+BEG-PT/PJ-IOT1</b><br>
+</span><span lang=3D"DE" style=3D"font-size:8.0pt;font-family:&quot;Arial&q=
+uot;,sans-serif;color:black"><br>
 <br>
 </span><span lang=3D"DE"><o:p></o:p></span></p>
 </div>
 </body>
 </html>
 
---_000_6b8d75eafe704438b03324c35d2ce6efFEMBX1014deboschcom_--
+--_000_83bd670ecdbc4d1885b66d8ba8ed8b0cFEMBX1014deboschcom_--
