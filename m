@@ -1,14 +1,14 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <ptsneves@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8CCACE00B27; Tue, 11 Apr 2017 20:54:33 -0700 (PDT)
+	id 23C79E00AF8; Tue, 11 Apr 2017 23:38:03 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (akuster808[at]gmail.com)
+	mail provider *      (ptsneves[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -16,55 +16,44 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.192.193 listed in dnsbl.sorbs.net]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.192.193 listed in list.dnswl.org]
-Received: from mail-pf0-f193.google.com (mail-pf0-f193.google.com
-	[209.85.192.193])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6C257E00ADD
-	for <yocto@yoctoproject.org>; Tue, 11 Apr 2017 20:54:30 -0700 (PDT)
-Received: by mail-pf0-f193.google.com with SMTP id c198so2718280pfc.0
-	for <yocto@yoctoproject.org>; Tue, 11 Apr 2017 20:54:30 -0700 (PDT)
+	*      [209.85.213.54 listed in list.dnswl.org]
+Received: from mail-vk0-f54.google.com (mail-vk0-f54.google.com
+	[209.85.213.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DC2E8E00AD5
+	for <yocto@yoctoproject.org>; Tue, 11 Apr 2017 23:37:59 -0700 (PDT)
+Received: by mail-vk0-f54.google.com with SMTP id s68so9107148vke.3
+	for <yocto@yoctoproject.org>; Tue, 11 Apr 2017 23:37:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:subject:date:message-id:in-reply-to:references;
-	bh=Z0FCcf7+sE/Qq5x3XOt3dOPM2RQ//J6K/m89TbM/4lA=;
-	b=Gljx9JKlFYwNWBb8N9HQDnG0osDIOdToN0XtSm5023gBzxhqIyoyPQkidmXQj2sjCQ
-	XwpM3PgSsE9X7utrXyElP5KLuRvqQi6esVJSDRcVjq7XzqPQpKp9vabXKtMSHTFPiHfq
-	1Worve9YoL3TtMAh54i3pIQmnCuQ1PAjOCqAT0ljzy+BEyH7iJ+a6w6YNAxlQmh7SqcZ
-	H7E51/LI+LzqzW7X9oQxQQkvapuoM4bk325tTWuv2/u3JQTf7HYNLpY6hHKgR7slBBlQ
-	JOCC8XKuCcalZAG9SxSvdajKCZp+KZciGZY8O20gGWO/tTek3c51SsFnH/2MVqab5bZz
-	1TOg==
+	h=mime-version:from:date:message-id:subject:to;
+	bh=KivpLVXH+eReE6TG7cEKB/2yw3LZbAf4CazMQWiy128=;
+	b=eqNreXlgBJqOQQpcPSSffPuWeQPI6+lGh8bHAzA6500KW0DzLu87Ri/aTr8Gs56v7n
+	ssAoeccCFLhoC2YS3xFXFzPABtngjrwel21GdfPV3OHKtMODM/N7EAwU1d3OCUuY/ALL
+	TK41iO6oawPqBNCQFSBfVW7t5IaJfJdH5Te2ER/sWQIVneYY/Y88iZz9tvaJOaYyFAya
+	/rQ1PE8rp7QUWoLIUaokqfRIs3Mi0TXmNrLpQE8MdZAmE9M6wyBrZJyjWsGK+FjvyVsv
+	7qbm65Az9yC84n8fATEAE/+RygPdNw9t8sK9S47Qcq//8AOf13/N1LA8Ac7TKUKWPzRm
+	t7rA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-	:references;
-	bh=Z0FCcf7+sE/Qq5x3XOt3dOPM2RQ//J6K/m89TbM/4lA=;
-	b=kBhCa80WtoGkYi7kq67xMVXkd1JJckpudDHUz3DfqsdMido9LA7eJ34ogQVdc1r8aq
-	sQgDDtKJvKMwhrv486MI5ayDdgiMHCk70r7Az1R+GPh7m+B9D7SSC67QORmF1OuNuxjD
-	vexbEE408Nm5eQS1G37RywxPejaLF7+AC+yrzlzMR9LgNp+vQFrUU48MQ6p7ygjPsdXc
-	jtevtPd9p5sV4znSVZq8vIqC8L31JA6oLKMoWych4lZCrbJ826zOnCw1hu93Yti9PVwt
-	v+U2YvzaMoAVVSMVwcZfLO1X5JUos7FjNP5mfUCTiSHgTV7ZhTstbHbvJho0uuXkoB7l
-	R3hw==
-X-Gm-Message-State: AFeK/H2z2DsgjFLhyw4BD2NbrZA0w8x4Ou+OQQ66rtefgE6Om6RCIX2n9Lg9ld+xT13UPQ==
-X-Received: by 10.99.3.216 with SMTP id 207mr65457164pgd.237.1491969270438;
-	Tue, 11 Apr 2017 20:54:30 -0700 (PDT)
-Received: from akuster-ThinkPad-X240.mvista.com
-	([2601:202:4001:9ea0:e3df:bf0a:9f90:498e])
-	by smtp.gmail.com with ESMTPSA id
-	v17sm33224500pgc.20.2017.04.11.20.54.29
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Tue, 11 Apr 2017 20:54:30 -0700 (PDT)
-From: Armin Kuster <akuster808@gmail.com>
-To: akuster@mvista.com,
-	yocto@yoctoproject.org
-Date: Tue, 11 Apr 2017 20:54:28 -0700
-Message-Id: <1491969268-15138-2-git-send-email-akuster808@gmail.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1491969268-15138-1-git-send-email-akuster808@gmail.com>
-References: <1491969268-15138-1-git-send-email-akuster808@gmail.com>
-Subject: [meta-security][PATCH 2/2] tpm2.0-tss: update to tip.
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=KivpLVXH+eReE6TG7cEKB/2yw3LZbAf4CazMQWiy128=;
+	b=j8pMmZD1jdGLy9ZDInyCMdr6jzXVHSEm20jSM7sJMs+cfO3RUtVrHfU5475/2j/yn1
+	uRzXijTLf4FXNRJGXYdCD3YKXPFmyz6thOXGU3zI5+dQo5JvioHjBdN5J7J1WXhUDKxK
+	E0vV4MzFvPL9urPqXBPbOAOPVf9FL8ek+4c5ozuHubVOWEhORdEhIXs7/4maNBRYmxck
+	lr+GeQKEWpKLvtPJD+lrL0DQVQPCV3Sk3wSKdkytSnVrHrIAwC1VjxATO3oWEofHh1pI
+	bMQ+zmCNJ0u2mfmilfyAgbxee1nu873ZtVYN6XEyjYsDTrVPoc3V1RaL0ptIr93jIKwh
+	m95g==
+X-Gm-Message-State: AN3rC/7s4dfIfr5uw5ZJid/tuQaAdCvg2Ul4UO341ZBLo67kz9Xa9px/YTMHyYgH7q9PXY5hSj89+BcFym5ucg==
+X-Received: by 10.31.209.71 with SMTP id i68mr653968vkg.125.1491979078767;
+	Tue, 11 Apr 2017 23:37:58 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.159.38.134 with HTTP; Tue, 11 Apr 2017 23:37:58 -0700 (PDT)
+From: Paulo Neves <ptsneves@gmail.com>
+Date: Wed, 12 Apr 2017 08:37:58 +0200
+Message-ID: <CAJO0J4gwVgC_m9bnzunsfKVsL=nuf-qKZuehhzjwiTq4n4Fe6Q@mail.gmail.com>
+To: Yocto list discussion <yocto@yoctoproject.org>
+Subject: Bug 11307 - sstate.bbclass tries to modify mirror files
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,69 +65,64 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Apr 2017 03:54:33 -0000
+X-List-Received-Date: Wed, 12 Apr 2017 06:38:03 -0000
+Content-Type: text/plain; charset=UTF-8
 
-remove merged patch now in tip
+Commit 51edde653707e7a3cd2186082458f01f32cd1996 makes a wrong
+assumption that SSTATE_MIRRORS have write permissions.
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
+A mirror is by definition outside of it's user control. In my use case
+it happens I does not have permissions to update the access time of
+the dereferenced symbolic-link file.
+
+If we had the possibility to modify the sstate-mirror we would have
+set SSTATE_DIR instead. There are 3 possible fixes:
+
+* Revert this patch. It seems tailored to a very special use case
+which breaks the definition of mirror.
+* Only touch the file if the file access time is writeable.
+* Set (yet) another option to touch SSTATE_MIRROR files.
+
+I also can imagine this raising sever performance issues if the mirror
+is used by several users at the same time. The server will need to
+update the file meta data every time
+
+This patch fixes the bug with minimal impact on the original
+functionality. Option 2
+
+
+Related to (https://bugzilla.yoctoproject.org/show_bug.cgi?id=10857)
+
+From aa8cab9660744c8d5277f8e82f10a844884aff78 Mon Sep 17 00:00:00 2001
+From: Paulo Neves <paulo.de_sousa_neves@nokia.com>
+Date: Tue, 11 Apr 2017 10:57:47 +0300
+Subject: [PATCH] Added test for write ability of sstate-mirror .siginfo
+
 ---
- .../tpm2.0-tss/tpm2.0-tss/musl_header_fix.patch    | 27 ----------------------
- recipes-tpm/tpm2.0-tss/tpm2.0-tss_git.bb           |  3 +--
- 2 files changed, 1 insertion(+), 29 deletions(-)
- delete mode 100644 recipes-tpm/tpm2.0-tss/tpm2.0-tss/musl_header_fix.patch
+ meta/classes/sstate.bbclass | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/recipes-tpm/tpm2.0-tss/tpm2.0-tss/musl_header_fix.patch b/recipes-tpm/tpm2.0-tss/tpm2.0-tss/musl_header_fix.patch
-deleted file mode 100644
-index b1e0aaa..0000000
---- a/recipes-tpm/tpm2.0-tss/tpm2.0-tss/musl_header_fix.patch
-+++ /dev/null
-@@ -1,27 +0,0 @@
--Add missing header to avoid:
--
--../TPM2.0-TSS/tcti/tcti_socket.c: In function 'SocketReceiveTpmResponse':
--| ../TPM2.0-TSS/tcti/tcti_socket.c:286:5: error: unknown type name 'fd_set'
--|      fd_set readFds;
--|      ^~~~~~
--| ../TPM2.0-TSS/tcti/tcti_socket.c:287:20: error: storage size of 'tv' isn't known
--|      struct timeval tv, *tvPtr;
--|                     ^~
--
--Upstream-Status: Submitted
--tcti_socket: fix musl build issue do to missing header #393 
--
--Signed-off-by: Armin Kuster <akuster@mvista.com>
--
--Index: TPM2.0-TSS/tcti/tcti_socket.c
--===================================================================
----- TPM2.0-TSS.orig/tcti/tcti_socket.c
--+++ TPM2.0-TSS/tcti/tcti_socket.c
--@@ -27,6 +27,7 @@
-- 
-- #include <stdio.h>
-- #include <stdlib.h>   // Needed for _wtoi
--+#include <sys/time.h>
-- 
-- #include "sapi/tpm20.h"
-- #include "sapi/marshal.h"
-diff --git a/recipes-tpm/tpm2.0-tss/tpm2.0-tss_git.bb b/recipes-tpm/tpm2.0-tss/tpm2.0-tss_git.bb
-index 6f9ce67..14ec0ab 100644
---- a/recipes-tpm/tpm2.0-tss/tpm2.0-tss_git.bb
-+++ b/recipes-tpm/tpm2.0-tss/tpm2.0-tss_git.bb
-@@ -6,12 +6,11 @@ SECTION = "tpm"
- 
- DEPENDS = "autoconf-archive pkgconfig"
- 
--SRCREV = "d1bd1fe175d233c7c5adbe1b9f3d256c41721001"
-+SRCREV = "30794affab01598bbacfe1f167be7c068a0c0476"
- 
- SRC_URI = " \
-     git://github.com/01org/TPM2.0-TSS.git;protocol=git;branch=master;name=TPM2.0-TSS;destsuffix=TPM2.0-TSS \
-     file://ax_pthread.m4 \
--    file://musl_header_fix.patch \
- "
- 
- inherit autotools pkgconfig systemd
+diff --git a/meta/classes/sstate.bbclass b/meta/classes/sstate.bbclass
+index af588548c2ef85d966787df7ae1432e1744bdba6..36cbbd151aa1c93f4ca377b3a23c011a527389d8
+100644
+--- a/meta/classes/sstate.bbclass
++++ b/meta/classes/sstate.bbclass
+@@ -753,7 +753,7 @@ python sstate_sign_package () {
+ sstate_unpack_package () {
+  tar -xvzf ${SSTATE_PKG}
+  # update .siginfo atime on local/NFS mirror
+- [ -h ${SSTATE_PKG}.siginfo ] && touch -a ${SSTATE_PKG}.siginfo
++ [ -w ${SSTATE_PKG}.siginfo ] && [ -h ${SSTATE_PKG}.siginfo ] &&
+touch -a ${SSTATE_PKG}.siginfo
+  # Use "! -w ||" to return true for read only files
+  [ ! -w ${SSTATE_PKG} ] || touch --no-dereference ${SSTATE_PKG}
+  [ ! -w ${SSTATE_PKG}.sig ] || [ ! -e ${SSTATE_PKG}.sig ] || touch
+--no-dereference ${SSTATE_PKG}.sig
 -- 
-2.7.4
+2.6.2
 
+
+
+Best regards
+Paulo Neves
 
