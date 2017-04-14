@@ -1,12 +1,12 @@
 Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4BE3FE00A48; Fri, 14 Apr 2017 13:13:27 -0700 (PDT)
+	id 5469BE00A30; Fri, 14 Apr 2017 13:13:27 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+	DKIM_VALID, RCVD_IN_DNSWL_NONE, RCVD_IN_SORBS_SPAM,
+	TVD_SPACE_RATIO autolearn=no version=3.3.1
 X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
 	*      [209.85.128.196 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
@@ -17,51 +17,52 @@ X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
 	*      [209.85.128.196 listed in list.dnswl.org]
+	*  0.0 TVD_SPACE_RATIO TVD_SPACE_RATIO
 Received: from mail-wr0-f196.google.com (mail-wr0-f196.google.com
 	[209.85.128.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 61CD8E009B2
-	for <yocto@yoctoproject.org>; Fri, 14 Apr 2017 13:13:26 -0700 (PDT)
-Received: by mail-wr0-f196.google.com with SMTP id l44so13528665wrc.2
-	for <yocto@yoctoproject.org>; Fri, 14 Apr 2017 13:13:26 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 44FFCE00939
+	for <yocto@yoctoproject.org>; Fri, 14 Apr 2017 13:13:25 -0700 (PDT)
+Received: by mail-wr0-f196.google.com with SMTP id o21so13563807wrb.3
+	for <yocto@yoctoproject.org>; Fri, 14 Apr 2017 13:13:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
 	h=from:to:cc:subject:date:message-id:in-reply-to:references;
-	bh=OA1DGX8TPPiJCYpCmlxsPIFVxjwBVQumAQkzQb8HNJk=;
-	b=TjVgc6OnJrbGOjVGVBUYsBunYbwAv/4FsjZEOE6kBlR9lcZCFpFCtildg8BTEMzHID
-	y0streEKbG+j1br5B9AHCgmHGqrqYXTxTU2zJ/Zw/k+pa0U/ElaDCpGmaF8wHWvWZO9P
-	RJogDnUDgVyFfr74bgkfutHsyUl2gzZ0lndKCASusPQUOS2ZJEqYo0txguEH2XMLaWM+
-	TIjDsOJgWJH9pwnsZ7UDOBTdyqgYyvsvRghGtElciFVeFyzWMSGRj8nntZ738YZdQ+qz
-	CW/t00mNM7vvr2aFXwyPkeFkUJ1Y5h4xJODLMxKDZOPxhMPMuHJYe9OHBxIcqi+v7Be8
-	KQCQ==
+	bh=8+AuTQIsVv9ku8X6148UBfzXyzcqxSyh1OWqNuFKhOM=;
+	b=DmPEDL6+5cfYINQUJiZOnz0X1L2OgWf5tdNy6Z628ewuU8WVLJPnockNp5Mh3S5GJF
+	ArcugdclmKlgmWq2YvYvfNExIRFDXJWNQ8YyMiDKKIfFZCA1X+10DcURCeaC50UiScJ1
+	SxD4N/+PDz+4C4RbPtYIHTZXcvTCE3U6OhiBwc7G9DqqYg65IkmBtNCfoKMcfzzuBR5Q
+	po/Kh+qyvGtHfnEe5vxPTCdtEEHKsO4tpYGR7JdRqPOablF34s8PYYVjwAs8m1z/OnYi
+	pyv6s/3NgNBMbKp233brsqVcfsAKM1qcUnM7Rc0DRDk8lO8wNlJHZCKSUtFE25m5yoV7
+	WUOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
 	:references;
-	bh=OA1DGX8TPPiJCYpCmlxsPIFVxjwBVQumAQkzQb8HNJk=;
-	b=NGjOcLziSmWS+rrFqNEykSiYtncnOmprOtBPp1e/ddV+ObErWv2PAU/VhgWx8KFgvA
-	0k6D9wVg+S1qreznsW8GPwj0bD4kmfOEzIG4b8A5Iyy7J7JcN5jXZTSQVv4wnXWMQxRd
-	lWsL0sfkotnAz0rO2GlzHP49yE88U2GC8YtnyDofbrCN5DCwmwW/MhZU6ch/LpPQv9Rj
-	3XeL+RwiUcD5CLAJUiLuzh6dKgP85+JtKcIN0klNZrW3B/Ub9W7xrVlgiRaUMgJOLKaD
-	hwI90T5M+mpmhinvUt6HdllcXh2bkD8jVZmcOzncNBcIhGl1f104jLu5mLuRCRbV7VZL
-	3IjA==
-X-Gm-Message-State: AN3rC/7tjA464jOCzppYbKGbg1/V3BZYLZeYgf+++IQ2BcrPNAwcKmWW
-	EnVz9l8IZox0NA==
-X-Received: by 10.223.145.199 with SMTP id 65mr8172210wri.182.1492200805642;
-	Fri, 14 Apr 2017 13:13:25 -0700 (PDT)
+	bh=8+AuTQIsVv9ku8X6148UBfzXyzcqxSyh1OWqNuFKhOM=;
+	b=Vz9BGjHNFZIk8LAlXdWUz0x5LyI3ArZdMRiu5snGWD7pNbMxbNjLyELU34QZjK/VDf
+	tHy7maRCTKqeWcKmDn3EXssFjjzr8iYIcnvtKhp0WpbihKq3NPcqrn1Cc6sosF1W34Ap
+	/MI98Njo3+F5/VyuOv4TRIIoQBAVmdts0d/eMFV1frc65LkRUkuscHhL8SS50k3YxrFg
+	vcdxREsUfcJOzDVfm3YT7GoflxwtAlbGK64cApe/1I+DgwiOhpRq1qgH2dopXx2euooQ
+	PWQAJOga8166SR1Jt2KDNXpyJRlA7bkTEtinOjZg8osVT82AaDwEFqvqLPIOeW+HfdnM
+	pAdg==
+X-Gm-Message-State: AN3rC/7cYb2GJ2Ko7ej401riShYrny6zXbT6i+PpZQpx96Yf05NXU0W/
+	4JV890KlT8iR5EvZFFQ=
+X-Received: by 10.223.142.23 with SMTP id n23mr8769783wrb.188.1492200804714;
+	Fri, 14 Apr 2017 13:13:24 -0700 (PDT)
 Received: from localhost.localdomain
 	(host86-170-80-134.range86-170.btcentralplus.com. [86.170.80.134])
 	by smtp.gmail.com with ESMTPSA id
-	i144sm3983021wmf.13.2017.04.14.13.13.24
+	i144sm3983021wmf.13.2017.04.14.13.13.23
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 14 Apr 2017 13:13:25 -0700 (PDT)
+	Fri, 14 Apr 2017 13:13:24 -0700 (PDT)
 From: Andrei Gherzan <andrei@gherzan.ro>
 To: yocto@yoctoproject.org
-Date: Fri, 14 Apr 2017 21:13:13 +0100
-Message-Id: <20170414201313.3138-7-andrei@gherzan.ro>
+Date: Fri, 14 Apr 2017 21:13:12 +0100
+Message-Id: <20170414201313.3138-6-andrei@gherzan.ro>
 X-Mailer: git-send-email 2.12.1
 In-Reply-To: <20170414201313.3138-1-andrei@gherzan.ro>
 References: <20170414201313.3138-1-andrei@gherzan.ro>
-Subject: [meta-raspberrypi][PATCH 7/7] README: Add info about raspberrypi0-wifi
+Subject: [meta-raspberrypi][PATCH 6/7] raspberrypi0-wifi.conf: Add machine configuration file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -77,35 +78,27 @@ X-List-Received-Date: Fri, 14 Apr 2017 20:13:27 -0000
 
 Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
 ---
- README | 7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
+ conf/machine/raspberrypi0-wifi.conf | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
+ create mode 100644 conf/machine/raspberrypi0-wifi.conf
 
-diff --git a/README b/README
-index 9fdd5eb..58a8ded 100644
---- a/README
-+++ b/README
-@@ -78,6 +78,7 @@ b. Add needed layer to bblayers.conf:
- c. Set MACHINE in local.conf to one of the supported boards:
-     - raspberrypi
-     - raspberrypi0
-+    - raspberrypi0-wifi
-     - raspberrypi2
-     - raspberrypi3
-     - raspberrypi-cm (dummy alias for raspberrypi)
-@@ -251,10 +252,10 @@ WAVESHARE_1024X600_C_2_1 = "1"
- 
- 3.P. Enable UART
- ===============
--RaspberryPi 1, 2 and CM will have UART console enabled by default.
-+RaspberryPi 0, 1, 2 and CM will have UART console enabled by default.
- 
--RaspberryPi 3 does not have the UART enabled by default because this needs a
--fixed core frequency and enable_uart wil set it to the minimum. Certain
-+RaspberryPi 0 WiFi and 3 does not have the UART enabled by default because this
-+needs a fixed core frequency and enable_uart wil set it to the minimum. Certain
- operations - 60fps h264 decode, high quality deinterlace - which aren't
- performed on the ARM may be affected, and we wouldn't want to do that to users
- who don't want to use the serial port. Users who want serial console support on
+diff --git a/conf/machine/raspberrypi0-wifi.conf b/conf/machine/raspberrypi0-wifi.conf
+new file mode 100644
+index 0000000..2b7cea4
+--- /dev/null
++++ b/conf/machine/raspberrypi0-wifi.conf
+@@ -0,0 +1,11 @@
++#@TYPE: Machine
++#@NAME: RaspberryPi Zero WiFi Development Board
++#@DESCRIPTION: Machine configuration for the RaspberryPi Zero  WiFi board (https://www.raspberrypi.org/blog/raspberry-pi-zero-w-joins-family/)
++
++MACHINEOVERRIDES = "raspberrypi:${MACHINE}"
++include conf/machine/raspberrypi.conf
++
++MACHINE_EXTRA_RRECOMMENDS += "linux-firmware-bcm43430"
++
++SERIAL_CONSOLE = "115200 ttyS0"
++VC4_CMA_SIZE ?= "cma-128"
 -- 
 2.12.1
 
