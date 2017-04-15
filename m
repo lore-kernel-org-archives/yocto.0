@@ -1,6 +1,6 @@
 Return-Path: <sadlife1990@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 83EA3E00A51; Sat, 15 Apr 2017 07:24:10 -0700 (PDT)
+	id 5CD3CE00B45; Sat, 15 Apr 2017 07:30:20 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -18,43 +18,43 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.217.172 listed in list.dnswl.org]
-Received: from mail-ua0-f172.google.com (mail-ua0-f172.google.com
-	[209.85.217.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5667AE0092B
-	for <yocto@yoctoproject.org>; Sat, 15 Apr 2017 07:24:06 -0700 (PDT)
-Received: by mail-ua0-f172.google.com with SMTP id f10so36419035uaa.2
-	for <yocto@yoctoproject.org>; Sat, 15 Apr 2017 07:24:06 -0700 (PDT)
+	*      [209.85.213.47 listed in list.dnswl.org]
+Received: from mail-vk0-f47.google.com (mail-vk0-f47.google.com
+	[209.85.213.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0EBE0E0092B;
+	Sat, 15 Apr 2017 07:30:16 -0700 (PDT)
+Received: by mail-vk0-f47.google.com with SMTP id r69so47382047vke.2;
+	Sat, 15 Apr 2017 07:30:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:from:date:message-id:subject:to;
-	bh=8D7BjNr/F86U1kAy94xsdYA+L1jDVz/4V+aMKHzak+s=;
-	b=UebAm6lqdcVBIhxAFnYyg5GOfuJe5DMIDX3bE1r/oX4sbrscLUXafpesMF0+zOlnvw
-	J0P7CbB86c9qxpeOtxbzgG/NUIzymEjGxfOxFij2gFh4/CTvm0j7TNJ5DCkRi2REvmPw
-	PIcw7h4fvSAh+B0f+JWRXoCn9m2m/oIHPMICOjlk68I/xKmfYKxdd/YdzR4yNQF9+T41
-	JI9KwENzirEoUZupLQtcNIhI12R9OMV86p7fG+H+sduhJ6T+DoHqA5ULhuRHhXWAdYWN
-	hp+i+0UDvsVa2g49epiAmSPHJemc8mPvSfaa6+hmUGoRsC8sEv3fEEE09LWQRjlQ1wHk
-	cdgA==
+	bh=Xo9eZog1vMo70aWLCnYFyT5b0DTiAZ7H5kDzhLhfpXI=;
+	b=WCE0WyOrncyEo70SSwpgRIqZRqV04Pjz+zgf4D9eUtJTo9zseKgBzJXXiFkyuZsVN7
+	JxnwGfHAbVe2B8yrJIm1CmHeuq81X7C8Rgr/iaH4+jtUSVC/d6yaY5pWUhUZeOP6jIlv
+	dIzgyQLDq48ZQl6LDAY65Ln/9n4I9/SzsyAIbuFnbdjVZ+olCwpoQvl887C08fl8tJPz
+	J4la4oTlkj1xT3kB8fucxiN6ugFOFNp7eRo2ksAxxjQO1sRnfUcXhmex9IrynGFYqOA+
+	nJZrz6hCGSEBic7pKfNQuq02ndvLQz9F1O/Lkgrjp7P/gwtft+R4Dj6JvVbos49s5mmr
+	uiqg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=8D7BjNr/F86U1kAy94xsdYA+L1jDVz/4V+aMKHzak+s=;
-	b=EDTZtyYX5Rcyc2/1TsEm4o8yfLQLqdh+8AmkiY4XRAz7ILsN8o+RFH+j1T3Dg6AkzL
-	KBEVZQLjyr8zhh4WRSXNKRJhJfY7kdGr1oxPcKtBUwAu/YNHfpsWWZ4wwq9qQOX7Tykv
-	G9eOS2yS4wxMksRsM8nNbYdQhRS6t4b2KznQpltnF/lvZSy5Wv+nRmu0R17ox+mz7KhV
-	a5P82o2FmUIhvPFpC3QbWq26ev9AJicZq3PFNSIrWy3n67e5R4qVm7FD0+bEubP2na/T
-	bdTJNAl+mLrDLIxgzF0DjF2KLkwyKmXleAS5ALXLDBpsIRZNzY7gQDA4oAQsNL4lvhGi
-	2Qag==
-X-Gm-Message-State: AN3rC/7tB7kVIEUVa8hk5RaQJpB+8tm5qVLAQsNCANx0vmAALb14Y+4w
-	JbAz8c7igKllME9UaImghi6hItO4ISnG
-X-Received: by 10.176.67.97 with SMTP id k88mr6243599uak.5.1492266246088; Sat,
-	15 Apr 2017 07:24:06 -0700 (PDT)
+	bh=Xo9eZog1vMo70aWLCnYFyT5b0DTiAZ7H5kDzhLhfpXI=;
+	b=C2IIEbT5YjmFz+1v/CjnBcIbVucKYreF1eRAEWKkYoalM1FHUGSTEV9RwLUb+KAX3j
+	eqPr8Q+EM922+lvZ2w2joNQHFJCdl8B2zNBu2FmaA8CohO+xKi2mYUO1JT3a1LTWQ4fS
+	ApLz90aKt7Z0dtn4jO748QMCTB3dRA4sLjsO8ZKQE4Fqp9lKDIH1K4Cuogi4DMIWGfWn
+	flsxkS9Utb5YZrcNbcNX4w/2TBKJ2ab36PP5PS1vhDjaLww7H+DLBv6MGkRA7U5IRo97
+	pKk5ggIRql7GsTeaOrejV1KYehQO0OQKERRX7523bXMxoZwHvTWifOOiqAusU41WLyKU
+	wp+g==
+X-Gm-Message-State: AN3rC/7IY+3XySs1O9Zh4w37CyUehDSo+Tn85J0AkpKv14uRwA+rHLHY
+	e0SjvaMdDMXavPdMkf7OMgRw7RveFzhn
+X-Received: by 10.31.124.138 with SMTP id x132mr4404387vkc.120.1492266615797; 
+	Sat, 15 Apr 2017 07:30:15 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.159.32.105 with HTTP; Sat, 15 Apr 2017 07:24:05 -0700 (PDT)
+Received: by 10.159.32.105 with HTTP; Sat, 15 Apr 2017 07:30:15 -0700 (PDT)
 From: Life Life <sadlife1990@gmail.com>
-Date: Sat, 15 Apr 2017 17:24:05 +0300
-Message-ID: <CAAHuHfxQbRCgC6fRJo1R=oM11duYh+zzWTZ=J-NTUQ7W_yhCzg@mail.gmail.com>
-To: yocto@yoctoproject.org, openembedded-devel@lists.openembedded.org
-Subject: Static Lib build.
+Date: Sat, 15 Apr 2017 17:30:15 +0300
+Message-ID: <CAAHuHfzNTY8yC0FJyU6SN1sEmgEsU1XMEJLEBvmaJQTYXvBUXA@mail.gmail.com>
+To: yocto-owner@yoctoproject.org, yocto@yoctoproject.org
+Subject: yocto mail list send.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,23 +66,13 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 15 Apr 2017 14:24:10 -0000
+X-List-Received-Date: Sat, 15 Apr 2017 14:30:20 -0000
 Content-Type: text/plain; charset=UTF-8
 
-Hello,
+Hi Sir,
 
-I'm try to build static library for SDK.
-
-Update the build/local.conf file with the following information
-
-SDKIMAGE_FEATURES = "staticdev-pkgs dev-pkgs"
-
-INHERIT += "buildhistory"
-BUILDHISTORY_COMMIT = "0"
- BUILDHISTORY_FEATURES = "sdk"
-
-But cannot create static library for SDK.
-
+I can not send mail "yocto@yoctoproject.org" though I have a valid
+membership. Please check and help me.
 
 Thanks.
 
