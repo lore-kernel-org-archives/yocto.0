@@ -1,17 +1,16 @@
-Return-Path: <sadlife1990@gmail.com>
+Return-Path: <twoerner@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BDFBDE00A30; Sat, 15 Apr 2017 04:54:33 -0700 (PDT)
+	id 3311FE00A03; Sat, 15 Apr 2017 06:39:34 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (sadlife1990[at]gmail.com)
+	mail provider *      (twoerner[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
@@ -19,46 +18,51 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.217.174 listed in list.dnswl.org]
-Received: from mail-ua0-f174.google.com (mail-ua0-f174.google.com
-	[209.85.217.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 429BDE00A30
-	for <yocto@yoctoproject.org>; Sat, 15 Apr 2017 04:54:32 -0700 (PDT)
-Received: by mail-ua0-f174.google.com with SMTP id h2so29165071uaa.1
-	for <yocto@yoctoproject.org>; Sat, 15 Apr 2017 04:54:32 -0700 (PDT)
+	*      [209.85.223.174 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.223.174 listed in dnsbl.sorbs.net]
+Received: from mail-io0-f174.google.com (mail-io0-f174.google.com
+	[209.85.223.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0620FE0053A
+	for <yocto@yoctoproject.org>; Sat, 15 Apr 2017 06:39:31 -0700 (PDT)
+Received: by mail-io0-f174.google.com with SMTP id o22so2926052iod.3
+	for <yocto@yoctoproject.org>; Sat, 15 Apr 2017 06:39:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=QGQ5RrmKfzTYv62DzFd4W00v8x2KTO13eew29dmxrH0=;
-	b=oWd2hUDUd64UtUN39lmtNNy2y7ASKrJC1ZG16dlQtNlAzZxsM9MSi8uFVt1dWQIUuc
-	bk2sUON+0l9GPDzNI6UPORQThL8gyeqFSA1ehH1YLpSLgQb/pnWd/Qs+3r5UtaHfGAg8
-	jZW455uFiEtjhcfSCO5nNXQOA+WEkw5htHx7dCTZbQ2JZ4EOiyCRfEFTHlDD3EqX3N2+
-	Kqs+AgUmxvPgLicbmVD3P3V9uB11y5E0uafHkLybzHH/H0fKP4oVf7V93kN/0MUbAUrW
-	Pj5DKdSXTi6TGemjyCGKYEcDlj0PL4QbVxeN/Et8ECqNh8Z9dZ6gEd8kLZgrNLlgrl03
-	CRgg==
+	h=date:from:to:subject:message-id:mime-version:content-disposition
+	:user-agent; bh=BNkDLDhPIeq3fvNsvlBMvOPU6CEMj7u+XA2NoZlHgWc=;
+	b=PcERmscdEml8iud3P5sDUwku6VbMCupV7lwgjfYlf+yfhxqXXMGLXII2zkPQ6Qft89
+	Dt87LJZy8HZ7Njj56IS3tRywrYvqfzprZuXNfCM5TsBqA+/v5Zok+DOZZk/lgGGB8LTR
+	ONjxpBDq9P9JM9FYKxzxwNfEzKBqNPvM3BqfQAs2s2YCsMr8XkwgUN2hYcAUHUs2XLpn
+	LbV/t03JfhCLfwkYyIT7JXqZORUum+9UPgFdDdbZtKtvxnByWZ+HvVF8qO221f74++9P
+	P2bMVw4gPlitFGM94HSQ0e2hjPengPpjYvfanSn8u3i892hgF4EkEKlkVKw8GMff2aIF
+	Qz+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=QGQ5RrmKfzTYv62DzFd4W00v8x2KTO13eew29dmxrH0=;
-	b=PC26Re3Q0wT7vtijNsTplH4JpiyuK0hqUbxUbD3WzmG1JNjqMO8SzLPJTCui0L56Ed
-	1wTMmxjsp5gnE0xQGZdKZjX4Bv5Ei2JyPK3o3DED0S+NyKj1NqZ7GEPvp4T83sOa5PcZ
-	XQPJc1MvPsqotCI87cLlqRpkbWYtkf/617SeRBnm3XzLBzAGnvzGh8aKrc1y502vxHgO
-	EXJl3lBXPQH+CydphlmFOH8PTeuH5HWmI20yq41kHe1i2IdPS33tteIT1OcBE8yglVYA
-	h3VwbWaxKuZtNT5IR+1dirbLZf43iYIrjRai2qBte7ORJ2587ANCBwYEMkfyyrz/m4h6
-	H5Dw==
-X-Gm-Message-State: AN3rC/7Z4eJafUbARf9PxHs63aJWc6f1j4F1mJsSDSbxIORvHHdi5uRB
-	bf4IbY5OmGcxLm95lYLajk3RjTG3vw==
-X-Received: by 10.176.78.29 with SMTP id g29mr282176uah.55.1492257272318; Sat,
-	15 Apr 2017 04:54:32 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.159.32.105 with HTTP; Sat, 15 Apr 2017 04:54:32 -0700 (PDT)
-In-Reply-To: <CAAHuHfxiGoOOK3o17TZS+pC0-G+7ZebS5_oYW8Xvv-wpsPu4OQ@mail.gmail.com>
-References: <CAAHuHfxiGoOOK3o17TZS+pC0-G+7ZebS5_oYW8Xvv-wpsPu4OQ@mail.gmail.com>
-From: Life Life <sadlife1990@gmail.com>
-Date: Sat, 15 Apr 2017 14:54:32 +0300
-Message-ID: <CAAHuHfywSpMg0LhUFgWWLGi=zaq0BKeO9-OYzivn+wnYcbkWEA@mail.gmail.com>
+	h=x-gm-message-state:date:from:to:subject:message-id:mime-version
+	:content-disposition:user-agent;
+	bh=BNkDLDhPIeq3fvNsvlBMvOPU6CEMj7u+XA2NoZlHgWc=;
+	b=GKb+ixn1/JaWIif67cpGGExj+w9pYtHL0WpJS4L4brfjtHTKYxUIuRf4NiWgCDzvMD
+	PvGnxfjNZPb7sMXD6TNQcBDSg4TbeGd9GUQ7RXo40Kez3Y3tnTpMYZB2oE6zqhzwrp7X
+	w/x1QTfA4yZj64WJaoDvtuyQcyu3z9Q5+rQ5etSHT0DyZAaCR5rIXzxsdCZsi0nnnqXA
+	c+GDI49Vg8/1jQ843uLEs49bN4ljClRIdzzJPhH4ed5nywtaBRZ3pCXrDKAJ4YkF9mf4
+	BZ53x7zpzCZHFdvzxpuQu7IxPRzIN/Tb/yzL4a83xavWiAJRdxIffu76Xq3ZPhJ/1rzD
+	ezxQ==
+X-Gm-Message-State: AN3rC/4tw9lnph9m9mcoHRKu9xSZa2/JMJoGesPLbmVhd2EpcG4z3Gje
+	aWg7BuREZIeVRWfcyLE=
+X-Received: by 10.107.46.24 with SMTP id i24mr2370330ioo.84.1492263571058;
+	Sat, 15 Apr 2017 06:39:31 -0700 (PDT)
+Received: from linux-uys3 (69-165-142-50.dsl.teksavvy.com. [69.165.142.50])
+	by smtp.gmail.com with ESMTPSA id 204sm837513itz.29.2017.04.15.06.39.29
+	for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Sat, 15 Apr 2017 06:39:30 -0700 (PDT)
+Date: Sat, 15 Apr 2017 09:39:28 -0400
+From: Trevor Woerner <twoerner@gmail.com>
 To: yocto@yoctoproject.org
-Subject: cups 2.2.2 Backend filter not include serial port support.
+Message-ID: <20170415133928.GA29433@linux-uys3>
+MIME-Version: 1.0
+User-Agent: Mutt/1.6.0 (2016-04-01)
+Subject: [meta-raspberrypi] gles2 on raspi3
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,22 +74,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 15 Apr 2017 11:54:33 -0000
-Content-Type: multipart/alternative; boundary=f40304378a6ca14e10054d3338d4
+X-List-Received-Date: Sat, 15 Apr 2017 13:39:34 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 
---f40304378a6ca14e10054d3338d4
-Content-Type: text/plain; charset=UTF-8
+Hi,
 
-Hello,
+I seem to have all the pieces in place, but can't get gles2 to work on the
+raspberry pi. Specifically I'm using the raspberry pi 3, but the 32-bit armv7
+build.
 
-I'm try to build cups 2.2.2. It is not included serial backend support.
-How to enable serial port backend support ?
+gles2 is provided by userland, and I've compiled up a couple gles2 programs.
+Compiling succeeds without issue, but running is another case.
 
-Thanks.
+E.g.
 
---f40304378a6ca14e10054d3338d4
-Content-Type: text/html; charset=UTF-8
+	# es2_info
+	Error: eglGetDisplay() failed
 
-<div dir="ltr"><br><br><br>Hello,<br><br>I&#39;m try to build cups 2.2.2. It is not included serial backend support.<br>How to enable serial port backend support ?<br><br>Thanks.<br></div>
+	# glmark2-es2
+	Error: eglGetDisplay() failed with error: 0x3000
+	Error: eglGetDisplay() failed with error: 0x3000
+	Error: main: Could not initialize canvas
 
---f40304378a6ca14e10054d3338d4--
+	# google-chrome --use-gl=egl
+	[3487:3487:0415/133334:ERROR:gl_surface_egl.cc(605)] EGL display query failed with error EGL_SUCCESS
+	[3487:3487:0415/133334:ERROR:gl_surface_egl.cc(612)] eglInitialize Default failed with error EGL_BAD_DISPLAY
+	[3487:3487:0415/133334:ERROR:gl_initializer_x11.cc(142)] GLSurfaceEGL::InitializeOneOff failed.
+	[3487:3487:0415/133334:ERROR:sandbox_linux.cc(343)] InitializeSandbox() called with multiple threads in process gpu-process. 
+	[3487:3487:0415/133334:ERROR:gpu_child_thread.cc(348)] Exiting GPU process due to errors during initialization
+
+Thoughts?
+
+Does anyone have any of these (or something else?) working?
+
+Thanks and best regards,
+	Trevor
+
