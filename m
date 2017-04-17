@@ -1,65 +1,65 @@
-Return-Path: <andrei@gherzan.ro>
+Return-Path: <sadlife1990@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B5C54E00546; Mon, 17 Apr 2017 05:37:21 -0700 (PDT)
+	id 4C75CE0083C; Mon, 17 Apr 2017 08:11:01 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [74.125.82.68 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (sadlife1990[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.82.68 listed in dnsbl.sorbs.net]
-Received: from mail-wm0-f68.google.com (mail-wm0-f68.google.com [74.125.82.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1E53FE003E1
-	for <yocto@yoctoproject.org>; Mon, 17 Apr 2017 05:37:20 -0700 (PDT)
-Received: by mail-wm0-f68.google.com with SMTP id o81so8678665wmb.0
-	for <yocto@yoctoproject.org>; Mon, 17 Apr 2017 05:37:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
-	h=from:to:cc:subject:date:message-id:in-reply-to:references;
-	bh=fFaJWBiPSQkhbxDZdLPgV84MUJ7Rj8WQmtRWyKBhZ/g=;
-	b=lpGIa/cqtpuJJTfLtm/i/K+a566ag2ZISpBWpxbJ6N9pEw8ktCr4QI1v2cv4Atotrw
-	qBeEDWPz0zOFwWFKZftDtgpn9pOCFwChWzCJfFF6yWZQHvQ95eyIrLRcl/zLTCUGm9d7
-	1OnHT6AsH3a9t+E49KAVnseMqBHJlcVHa/JQLbAExVfz5KWgMcbM1b2LaX/RC/unlogn
-	m3ZlbNlFyRNR6Oqr2Wn7CtlE1ThC1S9QH3UqXt86ZHQmcFe8JYKBDhV5SxaUy5TGFTTr
-	F5TDSjcc/HIz9rXiUYxdSUPYOguHnxMI+hlITEIqissDft2atsD8glKNRlkcRCusm7VQ
-	gIAg==
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.217.179 listed in list.dnswl.org]
+Received: from mail-ua0-f179.google.com (mail-ua0-f179.google.com
+	[209.85.217.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CB2F8E00826
+	for <yocto@yoctoproject.org>; Mon, 17 Apr 2017 08:10:58 -0700 (PDT)
+Received: by mail-ua0-f179.google.com with SMTP id h2so47702945uaa.1
+	for <yocto@yoctoproject.org>; Mon, 17 Apr 2017 08:10:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=Y00WY+ICD0sFrLus0HkZYok2bDEJtLbjVc1RGnaggzk=;
+	b=SuiNEoai36r8PjC4Y08RcKBXa/1uszReVZw9kxAr3/b0vwy6NLtzOUVN/pI9fljBOL
+	HdhnoMw8ftCznrqqmG8Hlxoqd/AXCPL4igme6foqdKy49KZbYGx88iGrZMvxbuK1vJuA
+	67UJYpowiPR54OcY4x9Ic7G5At8lj5APNWr/HLL4/kzlWgbHUOf33UJtea3RFPNOt0nE
+	Idn6ac/WCT299zqKhFh9tTZoARlh7+C9/TA7r5V5RrhkzKPY07IJfVD4B0Fy9ZEoyd+g
+	DEur0ernY2WexJkY5GjbQbay/osNHLaNF0JVY786zeBjarvMDChsfGrajv6I0ZtUbXqK
+	pCtA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-	:references;
-	bh=fFaJWBiPSQkhbxDZdLPgV84MUJ7Rj8WQmtRWyKBhZ/g=;
-	b=gEtFyng+LXEOIMk66/TMfDCZtu82cs2y7VXt4HVDZJQfsNTKo9MBQXeVKAwq+IRBwC
-	AbfQFATl0nQ/76zQ8XvVFhdZR5oKzOwQm/xZqMB9Sp87HR/iSw0+i98tSVfOLBmtimUS
-	ngLMjEhZWd+UXhQ8hcyEvIEJPWCKYXuPDfSaTaUB2iFcf5ZtjJJ2uVGzZwHu6o3+j6Wp
-	Z/HG1g7021gqfPLcYSvra2GhZkwB4BxD1EFs/kuo30qp95NGpbmR+gpHaxRT875k3T+S
-	gjjNMWagR8HoIUw/qU8DVEyUZDanCPCDHDiF19MrnsrC6urGVDZHScnH3B/3Gj45r9lb
-	wOzQ==
-X-Gm-Message-State: AN3rC/4+nrhFikxHGgwar/xy7g2qWy0pzW8JZjnNv8CfcFxeFmKqhZMp
-	E52sk3lDyBCuB0YsH1s=
-X-Received: by 10.28.168.130 with SMTP id r124mr8914967wme.134.1492432639064; 
-	Mon, 17 Apr 2017 05:37:19 -0700 (PDT)
-Received: from localhost.localdomain
-	(host86-158-8-191.range86-158.btcentralplus.com. [86.158.8.191])
-	by smtp.gmail.com with ESMTPSA id d23sm8194524wra.6.2017.04.17.05.37.18
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Mon, 17 Apr 2017 05:37:18 -0700 (PDT)
-From: Andrei Gherzan <andrei@gherzan.ro>
-To: yocto@yoctoproject.org
-Date: Mon, 17 Apr 2017 13:37:10 +0100
-Message-Id: <20170417123710.6374-7-andrei@gherzan.ro>
-X-Mailer: git-send-email 2.12.2
-In-Reply-To: <20170417123710.6374-1-andrei@gherzan.ro>
-References: <20170417123710.6374-1-andrei@gherzan.ro>
-Subject: [meta-raspberrypi][morty][PATCH 7/7] README: Add info about raspberrypi0-wifi
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=Y00WY+ICD0sFrLus0HkZYok2bDEJtLbjVc1RGnaggzk=;
+	b=hJl1N7SpTzmy0VrIMhqzAUSzsBw//WMm0kyb23+8kR/LWQc8KYliKuC55ehYZ8Sgt6
+	KPIdlxdpz4kPSVuX9Za1fDV7c7JflMIVQaLtF2PPOyWqrCo68Ww9cGUHVYQtmhjwtD1x
+	VisrAj2XMBharQ7JuZaRfnCmYMepVCsNyJ+9bAib9YJ3gGS92X3WZec4aFWOwD3dCuOs
+	iQG7vH44K4Fs9ETBg5DCXwmEooWe773fGg59t9uIKAV+2EqdgyrftDTiRad5fhfCzNi8
+	mtGIGASZvIKLnbxjBiydw96xfkuxxjs3dWp3Kh107TUGrmJyEwY9XAdhucb3JctvD5y0
+	50xw==
+X-Gm-Message-State: AN3rC/6zz8GkmXVw7KXqMoyHdEsdrrEEiGaevhevuCC+PYv+rU5flrjg
+	6MCIafmJbG0MNKDdy/EkxR/UoO0r4Q==
+X-Received: by 10.176.67.97 with SMTP id k88mr10110732uak.5.1492441857440;
+	Mon, 17 Apr 2017 08:10:57 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.159.32.105 with HTTP; Mon, 17 Apr 2017 08:10:57 -0700 (PDT)
+In-Reply-To: <1492411200.15749.3.camel@collabora.co.uk>
+References: <CAAHuHfxQbRCgC6fRJo1R=oM11duYh+zzWTZ=J-NTUQ7W_yhCzg@mail.gmail.com>
+	<1492411200.15749.3.camel@collabora.co.uk>
+From: Weng Josn <sadlife1990@gmail.com>
+Date: Mon, 17 Apr 2017 16:10:57 +0100
+Message-ID: <CAAHuHfzzUoF8+LZPs4jL5vgDSxxRGRPc=KJ=Fee71rKcDSaaYg@mail.gmail.com>
+To: Fabien Lahoudere <fabien.lahoudere@collabora.co.uk>
+Cc: yocto@yoctoproject.org
+Subject: Re: Static Lib build.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,41 +71,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 17 Apr 2017 12:37:21 -0000
+X-List-Received-Date: Mon, 17 Apr 2017 15:11:01 -0000
+Content-Type: text/plain; charset=UTF-8
 
-Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
----
- README | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+Hi
 
-diff --git a/README b/README
-index 65a1e5f..17f8273 100644
---- a/README
-+++ b/README
-@@ -77,6 +77,7 @@ b. Add needed layer to bblayers.conf:
- c. Set MACHINE in local.conf to one of the supported boards:
-     - raspberrypi
-     - raspberrypi0
-+    - raspberrypi0-wifi
-     - raspberrypi2
-     - raspberrypi3
-     - raspberrypi-cm (dummy alias for raspberrypi)
-@@ -243,11 +244,10 @@ List of currently supported models:
- 
- 3.O. Enable UART
- ===============
-+RaspberryPi 0, 1, 2 and CM will have UART console enabled by default.
- 
--RaspberryPi 1, 2 and CM will have UART console enabled by default.
--
--RaspberryPi 3 does not have the UART enabled by default because this needs a
--fixed core frequency and enable_uart wil set it to the minimum. Certain
-+RaspberryPi 0 WiFi and 3 does not have the UART enabled by default because this
-+needs a fixed core frequency and enable_uart wil set it to the minimum. Certain
- operations - 60fps h264 decode, high quality deinterlace - which aren't
- performed on the ARM may be affected, and we wouldn't want to do that to users
- who don't want to use the serial port. Users who want serial console support on
--- 
-2.12.2
+Yes I can provide and logs. What type logs do you need ?
 
+Thanks.
+
+2017-04-17 7:40 GMT+01:00 Fabien Lahoudere <fabien.lahoudere@collabora.co.uk>:
+> On Sat, 2017-04-15 at 17:24 +0300, Life Life wrote:
+>> Hello,
+>>
+>> I'm try to build static library for SDK.
+>>
+>> Update the build/local.conf file with the following information
+>>
+>> SDKIMAGE_FEATURES = "staticdev-pkgs dev-pkgs"
+>>
+>> INHERIT += "buildhistory"
+>> BUILDHISTORY_COMMIT = "0"
+>>  BUILDHISTORY_FEATURES = "sdk"
+>>
+>> But cannot create static library for SDK.
+>
+> Can you provide command and logs?
+>
+>>
+>>
+>> Thanks.
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
