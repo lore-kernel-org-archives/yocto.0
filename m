@@ -1,64 +1,63 @@
-Return-Path: <giuseppe.diguglielmo@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A9FF6E0094C; Mon, 17 Apr 2017 14:19:50 -0700 (PDT)
+	id D2D2BE0094C; Mon, 17 Apr 2017 15:12:06 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE, 
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (giuseppe.diguglielmo[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.223.169 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.223.169 listed in dnsbl.sorbs.net]
+	mail provider *      (raj.khem[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-io0-f169.google.com (mail-io0-f169.google.com
-	[209.85.223.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4560CE00826
-	for <yocto@yoctoproject.org>; Mon, 17 Apr 2017 14:19:49 -0700 (PDT)
-Received: by mail-io0-f169.google.com with SMTP id a103so169051043ioj.1
-	for <yocto@yoctoproject.org>; Mon, 17 Apr 2017 14:19:49 -0700 (PDT)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.82.52 listed in list.dnswl.org]
+Received: from mail-wm0-f52.google.com (mail-wm0-f52.google.com [74.125.82.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0721AE00826
+	for <yocto@yoctoproject.org>; Mon, 17 Apr 2017 15:12:04 -0700 (PDT)
+Received: by mail-wm0-f52.google.com with SMTP id w64so42920978wma.0
+	for <yocto@yoctoproject.org>; Mon, 17 Apr 2017 15:12:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=ZJHQOdisA8uf3oTtzGFzTV6MrdFz/i/FoV9SKO8BchE=;
-	b=E0IGDLQsNJQdx/x2sN+uz7YF8a64gWQGmz6B1ILastj03db9dcY56yZ4w/1rxNJkGE
-	hWX4U7eYBB3gXLHJU2+yur7KEKvSIlDqtmlXaxP12gkD+/fGTT26ygxnQBMEcaOscnSd
-	ob5JrmR9ibp/JhvnJC1Cb+bHDA0Ob6WexOx5Eoe3lYhw1XccOaIEOLLOP+Fd71oxEyHU
-	rIM81ikEVZ9YB+yRcbJVWogjsMKWWotYQ2XvwBul7IO3BET9W9pL9crPuwa8aOlJrSeJ
-	kCs7lyoJf/BF+Sg9oXgB3wLzBA97pmuq96t1rmUmSwdNNxJS6ij20r6OtqNdf5HygoyF
-	z4/A==
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=bXC2RNXuaneZz/yM9DehD0On6kWkmxTM/POnDRqR1No=;
+	b=vMJbg0MJQhMbMXiRaxm3EPBmLca5KHwSMZXxqi1UGTB+X6Dz0Yuq0H5/Csk1Mb6ynR
+	CJRri6pdc4uW9mL+jiM2BD1katKdNDN3dSxEhJ6jckkrqfZAIqIbHDsDbmHfxdA0G99O
+	Xb+VJvMBkFdSOAfuoqUr7VlftQScaxSCrb1qsAJOCUCV9ddqa9jPtbSVKHyWRN2ItzX0
+	yiICWtNpaMEWNMOUbMjoWl9CjGrCQrU4XEsqXQeG8a1uRyoOYBvTs/m/cCB6xtB+H+5N
+	RneU8fPh91TdtVSLlYl97eZBFbTSvVD2KLQ9RxYfujKOblFSJT9Zfu+VaSqwgkEsJtPS
+	mhNQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=ZJHQOdisA8uf3oTtzGFzTV6MrdFz/i/FoV9SKO8BchE=;
-	b=ToWIl92Y20o5WzvzFVljJ/n2E1ZfsoWeRbl6ii8K40XymUctEUCQU6++d9+kRyO9/I
-	AzRBHh8eBzfbQxZ67Kpet82tWkaEPsg5VSsnrG9oQouuJTA9gr6B3D4QcSFFXAy86gXX
-	EF9+PTnGf3QlWnKpOYcRER5gcbo+kYqdlNVI7Iz//UZHgZbGjMnzQ7ngtipXuPBu/JHt
-	YinVvpSMHkNDBT9nkKNB7JgrNS16WnqPxOvhtOld4pedXbgRIj+4uE6p8fA1ATAIrLdU
-	r8Ai4u96ivYtLYcZh/RGxeDDsdG2+xO/foubpIgsCRlA59Ej5y5ula9ZjhugmkQl5rpb
-	bssA==
-X-Gm-Message-State: AN3rC/4utPNiEd7HmZea8mhCHXO1j1W8BYUTmUEUV/7g2COoKRqSGqI9
-	9cSZ2kuRzmQENRVscv/zU8oyA5xXnw==
-X-Received: by 10.36.156.2 with SMTP id b2mr10515549ite.4.1492463989355; Mon,
-	17 Apr 2017 14:19:49 -0700 (PDT)
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=bXC2RNXuaneZz/yM9DehD0On6kWkmxTM/POnDRqR1No=;
+	b=EKpK9O7ihtFKQZ2YdiznGBUGKG2D5A1kFRgvxgVZNaRK3SWLavriWwyTjSKjKQLVtS
+	mjFn43Vzd8VZ0VbsDoFixKVR5YQrD70yilwaKfIehMOaLKGNziQ+vVmB95oR3C7ffwB9
+	9E2Iirzo2rbqQO3j/Uc9JBU+WB/W9UbyMvjBPVd70/swJ38/t9189qettS8O9wOSHOyr
+	OgC1eylQ+LBSLKY6LUwH/NPAuQDK0ves/IdEBHty5PCGda/rG2gpZX9WMWscylpp4Xz9
+	xL0tuq1vqgGkVrWgbJEDqdaFt2FiaT5pl5wrm55ViuSCXMEorglZcAAGx0Fo7pa3r+g+
+	bHXA==
+X-Gm-Message-State: AN3rC/5hPQDkVUNdXD5LjP5wvKi8cFopR9EmImp/Pqc76jr0ATd+nrJl
+	tArXg/qIupi4XH4NKjGwu7hpBOSyKg==
+X-Received: by 10.28.87.70 with SMTP id l67mr9752035wmb.37.1492467123815; Mon,
+	17 Apr 2017 15:12:03 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.79.32.142 with HTTP; Mon, 17 Apr 2017 14:19:48 -0700 (PDT)
-From: Giuseppe Di Guglielmo <giuseppe.diguglielmo@gmail.com>
-Date: Mon, 17 Apr 2017 17:19:48 -0400
-Message-ID: <CAOiuDAXJJq5zRUEZOOLiyp2WMXBr0EPh1oAthKL_LWhkCBGYAQ@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: meta-tensorflow
+Received: by 10.80.180.141 with HTTP; Mon, 17 Apr 2017 15:11:33 -0700 (PDT)
+In-Reply-To: <CAOiuDAXJJq5zRUEZOOLiyp2WMXBr0EPh1oAthKL_LWhkCBGYAQ@mail.gmail.com>
+References: <CAOiuDAXJJq5zRUEZOOLiyp2WMXBr0EPh1oAthKL_LWhkCBGYAQ@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Mon, 17 Apr 2017 15:11:33 -0700
+Message-ID: <CAMKF1sob9a5Z2xHw1jkzc1rviYa-pJoTPXVMW_Bp5rGM12P8Nw@mail.gmail.com>
+To: Giuseppe Di Guglielmo <giuseppe.diguglielmo@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: meta-tensorflow
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,24 +69,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 17 Apr 2017 21:19:50 -0000
-Content-Type: multipart/alternative; boundary=94eb2c08cd92ed410a054d6359c4
-
---94eb2c08cd92ed410a054d6359c4
+X-List-Received-Date: Mon, 17 Apr 2017 22:12:06 -0000
 Content-Type: text/plain; charset=UTF-8
 
-Hi,
-is there any of the meta- layers supporting the installation of Google
-TensorFlow? Does a package-specific layer make sense in Yocto?
+On Mon, Apr 17, 2017 at 2:19 PM, Giuseppe Di Guglielmo
+<giuseppe.diguglielmo@gmail.com> wrote:
+> Hi,
+> is there any of the meta- layers supporting the installation of Google
+> TensorFlow? Does a package-specific layer make sense in Yocto?
+>
 
-GDG
+Don't think so. There is tensor rt recipe in tegra bsp layer
 
---94eb2c08cd92ed410a054d6359c4
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+https://github.com/madisongh/meta-tegra/tree/master/recipes-devtools/gie
 
-<div dir=3D"ltr">Hi,<div>is there any of the meta- layers supporting the in=
-stallation of Google TensorFlow? Does a package-specific layer make sense i=
-n Yocto?</div><div><br></div><div>GDG=C2=A0<br></div></div>
+but it would be interesting to have a tensor flow layer if its going
+to involve multiple packages.
 
---94eb2c08cd92ed410a054d6359c4--
+> GDG
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+
