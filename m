@@ -1,62 +1,70 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 847C6E0053A; Sun, 16 Apr 2017 19:02:08 -0700 (PDT)
+	id 5A899E00546; Sun, 16 Apr 2017 19:09:28 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [74.125.82.68 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.82.68 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.47 listed in list.dnswl.org]
-Received: from mail-wm0-f47.google.com (mail-wm0-f47.google.com [74.125.82.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0EF8CE003E1
-	for <yocto@yoctoproject.org>; Sun, 16 Apr 2017 19:02:05 -0700 (PDT)
-Received: by mail-wm0-f47.google.com with SMTP id w64so25904162wma.0
-	for <yocto@yoctoproject.org>; Sun, 16 Apr 2017 19:02:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to; 
-	bh=jvMV8PD+PqJ52dV+DB/6iO0A9l2o2YaG25ZjpqIBryo=;
-	b=d4z5TE4W5E/+2GY1ZWNYep4z3unz1v5K8CIJG0N/DCoJ+vyEcrHbHuvUEM9/ncCoN8
-	JH2VI/bseAztddbk/kNzEJen6V3Ml31vEYGNzLhxWY1zfn8+mgmu/Sh7ANh/O6/Qqxoj
-	L4h61OsuRke+RySFlntP7vV2lAEVM0/T4MV9QmYl61x1hLrIgddqaPIa0h27o0Wh6j0q
-	H9KdwCHesVBu6f/K4jVXFwge2pTfdWTdYteIifQlEYhPDbGnn4oz81gYJVnHSsJc6Wqz
-	4i6P5oFsLfnwqGS1GR/vXNPhCXS9F3F8ib7k0ZXGfTb58M91ViJPnJXFw3ylj8wZ5chE
-	zfNg==
+Received: from mail-wm0-f68.google.com (mail-wm0-f68.google.com [74.125.82.68])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C16A0E003E1
+	for <yocto@yoctoproject.org>; Sun, 16 Apr 2017 19:09:24 -0700 (PDT)
+Received: by mail-wm0-f68.google.com with SMTP id z129so4253809wmb.1
+	for <yocto@yoctoproject.org>; Sun, 16 Apr 2017 19:09:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-disposition:in-reply-to:user-agent;
+	bh=0EvD7bmHfuHJVF5hya/GfNSI8D19p8YZlFP68JWSzE4=;
+	b=bdllSMzyiPkJk3i26KdFI42xKU++tFndvPowoV1JJg64gLBGmvzeHQfgyH1hUHLQPf
+	Aj85i9qVQiPapNWrouiv7dXmc4cj6vV7IjTsCTQBWl1ka7bDbWXhVmNNZrFtEAuvW7a6
+	tDQHgQJYmCYGpZ131n5NH3a3DzlUZuHSbw7y8/RXuFcOAbBX9nVLbvuG7FY5XHJ+kYg6
+	AvwtwULd23jrs4eSWc5TmF/avSGad6aZWmVlAo6izHMcdMFQdOaZq4I0n4PC4F6/NQYC
+	5gyzzlKZ2HDz+CqyfSmYlnqnuKNVtx7fcwfmdgf8WcWw0a27ZeNys/L4wEyjW1UYNtg9
+	xbEQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to;
-	bh=jvMV8PD+PqJ52dV+DB/6iO0A9l2o2YaG25ZjpqIBryo=;
-	b=XLpZ3RO0W/sY25lzY0zokblgIorGI/+1SCCCbLmA3vgGF1KGHJ4gn3Vh2AC90M66j1
-	Fc7mOWpA6HuLBcc41Z5kTkKkSJKM9RIucyoicxtQILPgTy9gGF1KVt8yIWgrcE5Pp8a+
-	kUpwpWPJJLjK2KsuSjtNEaEhphSV9HmhmH2O7NVNgmhclTzz9ww5zgfgKLMyMNc9Iknf
-	Fn4YXXI3FX5hW3ol+mOWeclIOL5wdPsl6Hjo6bMKA1BPF0M/rXXw4jTB86qKOhWTHFDe
-	XXQx3WsyBzzeRWJzIQvGfNSb9PBUfgW3Ef1X1fzkL+TF6qAX8SAsI5LcMbfGptW6x4Lk
-	zJbA==
-X-Gm-Message-State: AN3rC/4O+w/6h6xWLdQz0OofCvDomFKeRiitGqHzbs3vbNSKZtarf3Qz
-	umcuQxj/G82bVCOP8f5eXPUEJuHoOw==
-X-Received: by 10.28.206.195 with SMTP id e186mr6510232wmg.37.1492394524885;
-	Sun, 16 Apr 2017 19:02:04 -0700 (PDT)
+	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	:mime-version:content-disposition:in-reply-to:user-agent;
+	bh=0EvD7bmHfuHJVF5hya/GfNSI8D19p8YZlFP68JWSzE4=;
+	b=Vo9pDsBHqRqGVLl9tf5t4erm/ARD5GcWaEaT5zTf1srbwfuo562Sl/KC7Tc+Rp2FVi
+	9d+uhaBKUHQC3a74himC6tdp7NLXspqwGb276FBGddTF2P6AEqOklDKC/S/dpsrX8LiK
+	srkwdp6D6eNuvhUA1jID3O1YS/FHzol0kNXw5QKOsTHZz9wz93fteneZp0DtKGRLGlga
+	tO7vPScHRCbRWOxlEQ5neJUjMaAB8gtdA0zBUbvR/pW3ZvVZdbsxCa5m+nSeOwHgIuJs
+	L4Y2XiQgVUOLTJ+WtQOU4rw3yHHThRl0xJTK/4gyXUbd+H3igo4RbktYUouSXZgTvUKy
+	JLdg==
+X-Gm-Message-State: AN3rC/5q/hXw5ZWOC7XJvR1KQdYZLu9FJAJLaausCV2T5joQ7XObbsip
+	PyMTzFe6GYDlQw==
+X-Received: by 10.28.197.135 with SMTP id v129mr7357556wmf.55.1492394963536;
+	Sun, 16 Apr 2017 19:09:23 -0700 (PDT)
+Received: from carbonA (host86-158-8-191.range86-158.btcentralplus.com.
+	[86.158.8.191]) by smtp.gmail.com with ESMTPSA id
+	e12sm4559647wrc.43.2017.04.16.19.09.22
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Sun, 16 Apr 2017 19:09:22 -0700 (PDT)
+Date: Mon, 17 Apr 2017 03:09:20 +0100
+From: Andrei Gherzan <andrei@gherzan.ro>
+To: Khem Raj <raj.khem@gmail.com>
+Message-ID: <20170417020920.GL16624@carbonA>
+References: <20170417011206.29137-1-andrei@resin.io>
+	<20170417011206.29137-2-andrei@resin.io>
+	<CAMKF1srqpcaGHKCgZW=Dqx+obGvFdc5qmke04x6sOynGRb6PsQ@mail.gmail.com>
 MIME-Version: 1.0
-References: <B92317128F384E2BAC28643061FC76E1@PAULD>
-In-Reply-To: <B92317128F384E2BAC28643061FC76E1@PAULD>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Mon, 17 Apr 2017 02:01:54 +0000
-Message-ID: <CAMKF1sqOhQNDbbfnNuPyoe3xRJT-NyjVaCcowsoYpuLpvVKZ8g@mail.gmail.com>
-To: "Paul D. DeRocco" <pderocco@ix.netcom.com>, yocto@yoctoproject.org
-Subject: Re: Patch failures
+In-Reply-To: <CAMKF1srqpcaGHKCgZW=Dqx+obGvFdc5qmke04x6sOynGRb6PsQ@mail.gmail.com>
+User-Agent: Mutt/1.8.0 (2017-02-23)
+Cc: yocto@yoctoproject.org, Andrei Gherzan <andrei@resin.io>
+Subject: Re: [meta-raspberrypi][PATCH 2/2] x264: Fix build for armv6 RaspberryPi boards
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,203 +76,62 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 17 Apr 2017 02:02:08 -0000
-Content-Type: multipart/alternative; boundary=94eb2c193df2854a3e054d532d9c
+X-List-Received-Date: Mon, 17 Apr 2017 02:09:28 -0000
+X-Groupsio-MsgNum: 35603
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="37cJpJlYZwAfNbm5"
+Content-Disposition: inline
 
---94eb2c193df2854a3e054d532d9c
-Content-Type: text/plain; charset=UTF-8
+--37cJpJlYZwAfNbm5
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-What's your build OS
-
-On Sun, Apr 16, 2017 at 6:09 PM Paul D. DeRocco <pderocco@ix.netcom.com>
-wrote:
-
-> I'm trying to migrate an Atom-based build from Fido to Morty, and also
-> switch from 32-bit mode to x32. On a clean build, it gets about half way
-> through, and then suddenly coughs up a patch error. I've put blank lines
-> between the log lines so that the email word wrap won't be as confusing:
+On Mon, Apr 17, 2017 at 02:00:20AM +0000, Khem Raj wrote:
+> On Sun, Apr 16, 2017 at 6:14 PM Andrei Gherzan <andrei@resin.io> wrote:
 >
-> --
+> > quant-a.S uses rbit thumb instruction unconditionally even though only
+> > from ARMV6T2 this is available (which is not the case for RPI1, RPI0
+> > etc). Avoid this by disabling asm.
 >
-> DEBUG: Executing shell function do_patch
 >
-> (1/660) ARM-LPAE-Invalidate-the-TLB-for-module-addresses-dur.patch
->
-> [INFO]: check of
-> .kernel-meta//patches//arch/arm/v7-A15/ARM-LPAE-Invalidate-the-TLB-for-mod
-> ule-addresses-dur.patch with "git am" did not pass, trying reduced
-> context.
->
-> [INFO]: Context reduced git-am of
-> .kernel-meta//patches//arch/arm/v7-A15/ARM-LPAE-Invalidate-the-TLB-for-mod
-> ule-addresses-dur.patch with "git am" did not work, trying "apply".
->
-> error: patch failed: arch/arm/mm/fault.c:448
->
-> error: arch/arm/mm/fault.c: patch does not apply
->
-> [ERROR]: Application of
-> .kernel-meta//patches//arch/arm/v7-A15/ARM-LPAE-Invalidate-
-> the-TLB-for-module-addresses-dur.patch failed.
->
->          Patch needs to be refreshed. Sample resolution script:
->
->              .git/rebase-apply/resolve_rejects
->
-> WARNING:
-> /home/pauld/yocto-morty/build/tmp/work/chroma_bsp-poky-linux-gnux32/linux-
-> yocto-rt/4.8.12+gitAUTOINC+926c93ae07_3bafd55e39-r0/temp/run.do_patch.3069
-> 0:1 exit 1 from 'kgit-s2q --gen -v --patches .kernel-meta/'
->
-> ERROR: Function failed: do_patch (log file is located at
-> /home/pauld/yocto-morty/build/tmp/work/chroma_bsp-poky-linux-gnux32/linux-
-> yocto-rt/4.8.12+gitAUTOINC+926c93ae07_3bafd55e39-r0/temp/log.do_patch.3069
-> 0)
->
-> --
->
-> If I start bitbake again, it detects a "fence", and proceeds a little
-> further. I can do it over and over again, and it keeps building more and
-> more, but this can't be right, can it? The strange thing is that the
-> patches are all about ARM, PowerPC, etc., which have nothing to do with my
-> system. Could this be some fundamental misconfiguration having to do with
-> my MACHINE? At the beginning of my local.conf, I have:
->
->         MACHINE ?= "chroma-bsp"
->         DEFAULTTUNE = "core2-64-x32"
->         baselib = "libx32"
->
-> where chroma-bsp is defined in my own layer. My chroma-bsp.conf file
-> contains (among other things):
->
->         PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto-rt"
->         PREFERRED_VERSION_linux-yocto-rt ?= "4.8%"
->         require conf/machine/include/tune-atom.inc
->         require conf/machine/include/x86-base.inc
->
-> I'm not really good at this. Does anyone see anything wrong?
->
-> --
->
-> Ciao,               Paul D. DeRocco
-> Paul                mailto:pderocco@ix.netcom.com
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+> It would be bette to control it in component's own build system how much do
+> we lose in performance if any do you know
 >
 
---94eb2c193df2854a3e054d532d9c
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+I haven't tested myself but I know people who did and reported a 10%
+performance hit.
 
-<div>What&#39;s your build OS</div><div><br><div class=3D"gmail_quote"><div=
->On Sun, Apr 16, 2017 at 6:09 PM Paul D. DeRocco &lt;<a href=3D"mailto:pder=
-occo@ix.netcom.com">pderocco@ix.netcom.com</a>&gt; wrote:<br></div><blockqu=
-ote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc s=
-olid;padding-left:1ex">I&#39;m trying to migrate an Atom-based build from F=
-ido to Morty, and also<br>
-switch from 32-bit mode to x32. On a clean build, it gets about half way<br=
->
-through, and then suddenly coughs up a patch error. I&#39;ve put blank line=
-s<br>
-between the log lines so that the email word wrap won&#39;t be as confusing=
-:<br>
-<br>
---<br>
-<br>
-DEBUG: Executing shell function do_patch<br>
-<br>
-(1/660) ARM-LPAE-Invalidate-the-TLB-for-module-addresses-dur.patch<br>
-<br>
-[INFO]: check of<br>
-.kernel-meta//patches//arch/arm/v7-A15/ARM-LPAE-Invalidate-the-TLB-for-mod<=
-br>
-ule-addresses-dur.patch with &quot;git am&quot; did not pass, trying reduce=
-d<br>
-context.<br>
-<br>
-[INFO]: Context reduced git-am of<br>
-.kernel-meta//patches//arch/arm/v7-A15/ARM-LPAE-Invalidate-the-TLB-for-mod<=
-br>
-ule-addresses-dur.patch with &quot;git am&quot; did not work, trying &quot;=
-apply&quot;.<br>
-<br>
-error: patch failed: arch/arm/mm/fault.c:448<br>
-<br>
-error: arch/arm/mm/fault.c: patch does not apply<br>
-<br>
-[ERROR]: Application of<br>
-.kernel-meta//patches//arch/arm/v7-A15/ARM-LPAE-Invalidate-<br>
-the-TLB-for-module-addresses-dur.patch failed.<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Patch needs to be refreshed. Sample resol=
-ution script:<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0.git/rebase-apply/resolve_r=
-ejects<br>
-<br>
-WARNING:<br>
-/home/pauld/yocto-morty/build/tmp/work/chroma_bsp-poky-linux-gnux32/linux-<=
-br>
-yocto-rt/4.8.12+gitAUTOINC+926c93ae07_3bafd55e39-r0/temp/run.do_patch.3069<=
-br>
-0:1 exit 1 from &#39;kgit-s2q --gen -v --patches .kernel-meta/&#39;<br>
-<br>
-ERROR: Function failed: do_patch (log file is located at<br>
-/home/pauld/yocto-morty/build/tmp/work/chroma_bsp-poky-linux-gnux32/linux-<=
-br>
-yocto-rt/4.8.12+gitAUTOINC+926c93ae07_3bafd55e39-r0/temp/log.do_patch.3069<=
-br>
-0)<br>
-<br>
---<br>
-<br>
-If I start bitbake again, it detects a &quot;fence&quot;, and proceeds a li=
-ttle<br>
-further. I can do it over and over again, and it keeps building more and<br=
->
-more, but this can&#39;t be right, can it? The strange thing is that the<br=
->
-patches are all about ARM, PowerPC, etc., which have nothing to do with my<=
-br>
-system. Could this be some fundamental misconfiguration having to do with<b=
-r>
-my MACHINE? At the beginning of my local.conf, I have:<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 MACHINE ?=3D &quot;chroma-bsp&quot;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 DEFAULTTUNE =3D &quot;core2-64-x32&quot;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 baselib =3D &quot;libx32&quot;<br>
-<br>
-where chroma-bsp is defined in my own layer. My chroma-bsp.conf file<br>
-contains (among other things):<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 PREFERRED_PROVIDER_virtual/kernel ?=3D &quot;li=
-nux-yocto-rt&quot;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 PREFERRED_VERSION_linux-yocto-rt ?=3D &quot;4.8=
-%&quot;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 require conf/machine/include/tune-atom.inc<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 require conf/machine/include/x86-base.inc<br>
-<br>
-I&#39;m not really good at this. Does anyone see anything wrong?<br>
-<br>
---<br>
-<br>
-Ciao,=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Paul D. DeRocco=
-<br>
-Paul=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 mailto:<a href=
-=3D"mailto:pderocco@ix.netcom.com" target=3D"_blank">pderocco@ix.netcom.com=
-</a><br>
-<br>
---<br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-</blockquote></div></div>
+Now I see two more options - other than this one:
+1. Deactivate in configure ASM if not HAVE_ARMV6T2 - don't see any
+fuctional difference
+2. emulate rbit if not HAVE_ARMV6T2 - do you have any ideas on how to do
+this? I'd like this solution as rbit is the only instruction failing so
+we could take advantage of the other optimisations.
 
---94eb2c193df2854a3e054d532d9c--
+PS: in the meanwhile i merged it to unblock the builds.
+
+--
+Andrei Gherzan
+gpg: rsa4096/D4D94F67AD0E9640 | t: @agherzan
+
+--37cJpJlYZwAfNbm5
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEE90oi/MnVCYFbB1m0Jrqo2vaxFPYFAlj0I9AACgkQJrqo2vax
+FPb0kQ/9EQ6GaEOnejteiaudjnqS3eZOqQRbyPYDv/lCgE0Hlj30JLr0e+6DkbXK
+CCIJAItZpHO1U+uXTS1F1bZIgTRDqpPjkCgMWoeifzow7DaqI0g0zOcJKOBX/frq
+bMERR4YPB3xi2eswzpvHQdQb8R6AajrwFC9lN8HZOb5WqOAf2AP+Tu+uDbx7rPY9
+NZnPeKRjhjBvIQwgqyF3PXyNObHdtFMg1u5pe1KCFlFajDbzF5Qqi+YZV80Y7zOn
+gx74aDNUILxy45lZu/AST3WsHhbPDv2s/nCfVr4kE8rV+3Pt7deNdI3eei7X+REJ
+y4do4Kxb06V5iJPYzxe1s993zCR+R2369UFVkByj/07f4w0Iixr1P/Hfh+LoTe/E
+olQcXuPrIEWqGMFBh54yKnaIZjeEEgDY2koRL4+1dC/yTiU7nNEhZLzzT9Av4KPf
+l7/lWj9Zyc0asnvWYtIiMaSb7u2y0K+MIi8ixkAmTA8P62lSLU40DzhvMiI4LSkb
+HQxYmZ2Tfzwh2NayCvovZ2AzK8ZuU6ARg9A6pJwc4MlxWWH3lJuhoMgmxAhH8SqU
+VRRyryInjcWCTzH7nhbwfM4Q5lwO2Xr8nkJcYHHFHjGjsg+j4nQGWVf+kEtQYXbH
+kC6yUVmGHfXMz4Y5aNpsicOCx5iv8DoI1FzUIh9sZlLrhYWtfHs=
+=hINq
+-----END PGP SIGNATURE-----
+
+--37cJpJlYZwAfNbm5--
