@@ -1,6 +1,6 @@
-Return-Path: <twoerner@gmail.com>
+Return-Path: <schnitzeltony@googlemail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2E51FE00524; Sun, 16 Apr 2017 17:45:18 -0700 (PDT)
+	id 9C587E0053A; Sun, 16 Apr 2017 17:49:45 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,9 +8,7 @@ X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (twoerner[at]gmail.com)
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.223.176 listed in dnsbl.sorbs.net]
+	mail provider *      (schnitzeltony[at]googlemail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -20,57 +18,55 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.223.176 listed in list.dnswl.org]
-Received: from mail-io0-f176.google.com (mail-io0-f176.google.com
-	[209.85.223.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 03B4FE00349
-	for <yocto@yoctoproject.org>; Sun, 16 Apr 2017 17:45:14 -0700 (PDT)
-Received: by mail-io0-f176.google.com with SMTP id r16so135481688ioi.2
-	for <yocto@yoctoproject.org>; Sun, 16 Apr 2017 17:45:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-disposition:content-transfer-encoding:in-reply-to
-	:user-agent; bh=4KJZWubX4g5YWFAQ7jzQwzDUxkR4dwtdh3ducSzHnls=;
-	b=W4tVVLQRgPkfzZHEQrz+Mk21TecfvOeCMWgtkWumtYflnVyWM5HZHnrpMawS+uy7Yy
-	+rQVTIDolIiKBaLzYas/et12QOOTlD3q2qpmWkn3zHNZv5x+4tZaUhUJKrHHT6ySIlbZ
-	1KArNhXbqd10RjtkHRHJc/FBJJhNe31gW+sATODmc7reJPzj60sgfZEZKcELZCYgSkfx
-	r6j5hNX3prRSPsf17Dcg81Z99WqWOkpCU5557cCiy9qE+h66wOVwHFh4h2JQZHNRkytV
-	JszWcFdQ6YxOjKJm3aKdZ6U7hqTdklyFl2xuC03nEXaE/e5wG5XZzFJ+Mc/6Kd97F9GS
-	QtHw==
+	*      [209.85.213.68 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.213.68 listed in dnsbl.sorbs.net]
+Received: from mail-vk0-f68.google.com (mail-vk0-f68.google.com
+	[209.85.213.68])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 38D61E00349
+	for <yocto@yoctoproject.org>; Sun, 16 Apr 2017 17:49:41 -0700 (PDT)
+Received: by mail-vk0-f68.google.com with SMTP id q78so3778052vke.3
+	for <yocto@yoctoproject.org>; Sun, 16 Apr 2017 17:49:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=googlemail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-transfer-encoding;
+	bh=IO30G3y1UJitNWCjBInZPUfHVeSsxJa182rEaQ7DxAE=;
+	b=TC1PgjM29djatT2ulJkClMqB7HYj1q6KNufAozBoOxq/IVfJw7EPkqKUffd0qWMR7c
+	yXYRCJZDl6UibZmMsBDq1Q1F3HeVttZQUTlftR9lK8Om0DP7q/DjupQaLv5EsoNPSxF3
+	u+khu3JYAexZ+LEFzzuZwKavUt4WKlOVLyqNn3YmlcZIlF9kz5s46B/4Z6NEq9ubkMgW
+	ISwCwwXqzPbKfHec5k2jwnXqvYdO6UNZ8P34nIBMzf5WpbbuTB0yciLOZhy1Bm6KYkyv
+	VIuZpikSN4SEAHOoy9U67VhsdgLXnst6WYTq5DhPuEEudq8Ni0Y66P0NOftKO+LGvi3i
+	JFTw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-	:mime-version:content-disposition:content-transfer-encoding
-	:in-reply-to:user-agent;
-	bh=4KJZWubX4g5YWFAQ7jzQwzDUxkR4dwtdh3ducSzHnls=;
-	b=AQVjZo4CCSzssLkfKkF/vFF7+vfIi0Mp94H4n15kAmQkQWmt7IR9PbWzuEpRgIfQSn
-	3cIKvxPNCB48FCBuP/5ql4QnotlI7KgzeVQTMxuKDLYUptd1fpzVfqJpzrpFwOGPc2vx
-	wLeXe2vQIbnsdpTkYFAnKoxrvw8certh6qhWHiL4i1rhhSc9BOTt/3ajb8ohm8bGaxNc
-	tKDsLDGGomva0lOAPnAOEmFoqVhkFeDM0nrz4sx9HyuCgkiKJA7nSkkjnBGKSqMzITZk
-	pBves5DnAU2cR9NPZPatxMMzhtCM4DMLza35E+ywC7m0tsfOoxNVfE/kszm1TZaUKgJK
-	qO3w==
-X-Gm-Message-State: AN3rC/7M9AIFbdM6lPE8hzZbSHzA0kDZNDGHZkFK/W52XeKpHtrfOAMJ
-	dY8XBk3Tbyw2JyH+nPE=
-X-Received: by 10.36.78.76 with SMTP id r73mr7716333ita.48.1492389913635;
-	Sun, 16 Apr 2017 17:45:13 -0700 (PDT)
-Received: from linux-uys3 (76-10-137-103.dsl.teksavvy.com. [76.10.137.103])
-	by smtp.gmail.com with ESMTPSA id
-	m83sm4289178ioi.32.2017.04.16.17.45.12
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sun, 16 Apr 2017 17:45:12 -0700 (PDT)
-Date: Sun, 16 Apr 2017 20:45:10 -0400
-From: Trevor Woerner <twoerner@gmail.com>
-To: Andreas =?utf-8?Q?M=C3=BCller?= <schnitzeltony@googlemail.com>
-Message-ID: <20170417004510.GC5766@linux-uys3>
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=IO30G3y1UJitNWCjBInZPUfHVeSsxJa182rEaQ7DxAE=;
+	b=LWO9qpd0kthXqaJSSPUMx6YaoDn9JNgheySEHzaRff5Kv3QZxnXCZaSeWA4Rm7sxUF
+	eE+XPfOYcrgL1QfUq2+w+SlXf41inWTCjxyMeIXLtTv6pGLchT7hC9juAix1wbz3dVt/
+	3TF/cTtPyrridLQV352UyMkIMiLyMs53bwWaPrd/mkHsAilp2zPFvs76+iZGTS8xKpEB
+	kKDlKElTJSzCaHmempXMybCbO2Ex6K9yvGXlVjj+8UaSJ7TSdc6rF+hA5jKi1gWwUBgA
+	egnFbfG53CunDoKUZ1irPBVzyK13m/q0iohShDkOYlzHObXbH1InpsVlS1Hs1xoQLGuf
+	Pmag==
+X-Gm-Message-State: AN3rC/5CkFXN8yLYRfUAYJO7CCmML40xxa6J1JLRM+quvh89TvGDIbG1
+	M4wr8IGvDsxdxh13sptWQJ85vp+2oA==
+X-Received: by 10.31.3.9 with SMTP id 9mr6157066vkd.64.1492390181333; Sun, 16
+	Apr 2017 17:49:41 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.176.81.5 with HTTP; Sun, 16 Apr 2017 17:49:40 -0700 (PDT)
+In-Reply-To: <20170417003029.GB5766@linux-uys3>
 References: <20170415133928.GA29433@linux-uys3>
 	<CALbNGRQy1Lf1=hV47Lf+u7rQUgubXjdiQWhjNJN4a3sDwr419A@mail.gmail.com>
 	<20170415163537.GA23175@linux-uys3>
 	<CALbNGRRDv1d3GHBNMwXHajgyx8iee4pSfNkEcKxMDiraagC50g@mail.gmail.com>
 	<20170415231603.GA20857@linux-uys3>
 	<CALbNGRRgHasv5rdG1SyPCogY8Az6ZowvoZc59XV=Jpmi4TMwvQ@mail.gmail.com>
-MIME-Version: 1.0
-In-Reply-To: <CALbNGRRgHasv5rdG1SyPCogY8Az6ZowvoZc59XV=Jpmi4TMwvQ@mail.gmail.com>
-User-Agent: Mutt/1.6.0 (2016-04-01)
+	<20170417003029.GB5766@linux-uys3>
+From: =?UTF-8?Q?Andreas_M=C3=BCller?= <schnitzeltony@googlemail.com>
+Date: Mon, 17 Apr 2017 02:49:40 +0200
+Message-ID: <CALbNGRRXw1j0HFF4n9a_dBurROnY15Yv=L+wO4YBm3MbWAo7nw@mail.gmail.com>
+To: Trevor Woerner <twoerner@gmail.com>
 Cc: Yocto Project <yocto@yoctoproject.org>
 Subject: Re: [meta-raspberrypi] gles2 on raspi3
 X-BeenThere: yocto@yoctoproject.org
@@ -84,50 +80,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 17 Apr 2017 00:45:18 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 17 Apr 2017 00:49:45 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On Mon 2017-04-17 @ 01:23:25 AM, Andreas Müller wrote:
-> > I got chromium building with it (it was a simple DEPENDS) and on the image I
-> > just built sound is already working!
-> * You have chromium building (and running?). This is on my endless
-> TODO-list (have firefox on my image but that crashes more or less
-> immediately - wonder what other people do with it)
+On Mon, Apr 17, 2017 at 2:30 AM, Trevor Woerner <twoerner@gmail.com> wrote:
+> On Mon 2017-04-17 @ 01:23:25 AM, Andreas M=C3=BCller wrote:
+>> > Thank you very much for your explanations, they really cleared up a lo=
+t of
+>> > stuff in my head. Already I'm 10x smarter on this stuff (which doesn't=
+ say
+>> > much about where I started!) ;-) It was probably a good thing I spent =
+the last
+>> > couple days grinding away, your explanations were perfect for where I'=
+m at.
+>> Some very good document explaining FOSS graphics stack is [1] - take
+>> the time and some coffee :)
+>
+> link? :-)
+Sure..
 
-There's been a nice surge in interest/help with chromium lately (not to
-mention getting people to push upstream!) The recipes in OE are still building
-a rather old version (54.0.2810.2) but it builds and works for x11 on x86
-(qemux86), x86-64 (minnow), armv7 (bbb, raspi3-32), and armv8 (dragon 410c);
-it builds for a couple more (firefly and raspi3-64) but I can't get xorg
-working so I can't test it running.
-
-You'll probably want to set the following PACKAGECONFIGs:
-
-	PACKAGECONFIG_pn-chromium = "disable-api-keys-info-bar ignore-lost-context impl-side-painting"
-
-And (as I've mentioned) you'll need to add "mesa" to the DEPENDS (although I'm
-not sure why it's now needed nor how to make that change in a "nice" way since
-the non-accelerated version doesn't need it).
-
-I'm not fully up-to-date on the wayland side, but I believe it builds and
-works on wayland for roughly the same list plus beagleX15 and hikey. The
-wayland version is slightly older at 53.0.2785.143.
-
-There are people working on newer versions up to 59, but so far nobody's
-pushing upstream. I'm hoping to take a look and getting something working. The
-way chromium is built changed around the late 53 early 54 timeframe so a new
-procedure is needed.
-
-I've been running and testing with vc4 on my raspi3 for the last two hours
-or so. I've seen one crash once when I tried to full-screen youtube, but
-subsequent attempts have succeeded, so I'm not sure if those two events are
-related. I've been doodling around in youtobe for all this time and it's been
-mostly working except for that one instance.
-
-> * I have not tested that (I need low latency and plugs for playing music)
-
-The sound came though the HDMI for me. It's the first time I've heard a board
-make noise :-)
+http://blog.mecheye.net/2012/06/the-linux-graphics-stack/
 
