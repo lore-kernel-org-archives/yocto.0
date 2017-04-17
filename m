@@ -1,6 +1,6 @@
 Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 02090E007B5; Mon, 17 Apr 2017 05:37:20 -0700 (PDT)
+	id 38ED5E007B5; Mon, 17 Apr 2017 05:37:20 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -15,48 +15,48 @@ X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 Received: from mail-wm0-f68.google.com (mail-wm0-f68.google.com [74.125.82.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 80F32E003E1
-	for <yocto@yoctoproject.org>; Mon, 17 Apr 2017 05:37:16 -0700 (PDT)
-Received: by mail-wm0-f68.google.com with SMTP id z129so6060208wmb.1
-	for <yocto@yoctoproject.org>; Mon, 17 Apr 2017 05:37:16 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0DF3AE00524
+	for <yocto@yoctoproject.org>; Mon, 17 Apr 2017 05:37:18 -0700 (PDT)
+Received: by mail-wm0-f68.google.com with SMTP id d79so8692716wmi.2
+	for <yocto@yoctoproject.org>; Mon, 17 Apr 2017 05:37:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
 	h=from:to:cc:subject:date:message-id:in-reply-to:references;
-	bh=G+AjU03/f1TUlGhpsUoHkqUHSZA4kdRXkZ0jUXnnVGM=;
-	b=oFFWLn2RQGKiGXMGqJCVBfSdTcTuseI3gRcQ8BDX/PgwF0VhIqL7z/E4Dloq/+Gqgq
-	Fv9tCcjRiWuOH9NlLXxbd1T9uZoev3/U/tudQw0dQdDeOc1xJAz/8qYO9joDQ7BXyzLt
-	x71bW7Ar9r60/NH401zdg6EHALcvF1WYma7hB1MfHHI9rleGQMPB3NG689HHB+Xvcho8
-	nyrt6Cg/DGnYcIC/HrAMF0+o0SObCVjY2x66xM8cNvWDoBa1P/fnR3dlr/qq0RbDs7ol
-	I4L43eRl8kFuF1/2XFqpTeYxr+TqPSU/NjLLEYdgnpK90ah0HSm5PPdGYICZOQChDc3M
-	/dqQ==
+	bh=CwCgBY0qxbjJf1ISkzxp4HFtvpqW/vKLlE2DBmrQHkc=;
+	b=D6zCq7swIHsaTj5a4e9hvvzNAZhYs5yb981fXGZjmAiKNqHmx7XcPWTT14wQSmg25l
+	1vUkVMz6byrZvz5x8nyAhQG8GLrTyt0KY6Nv0wWFGPU6xJcp24X+OBJEV2t2HGVHK8LX
+	x5M8QO4YpywgyC3FxXUJgaVcNDEuxGHr4LicWIjVNCVMyMHqyeQqnEdnbKKaZD8PkIBd
+	gVGp5LiR7ZwF0NLjrQAxeEeIWEwZtZZPbld6XrKnYu/Jj705//TCvoqW2Bouu7Kz0Hig
+	nKhSTOQSCQpUNZyQwZzXJr4UmlE2AjpMzXQf5gtY6EsWkFDcuzJKlstSa6GFwOxngkgU
+	EPrw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
 	:references;
-	bh=G+AjU03/f1TUlGhpsUoHkqUHSZA4kdRXkZ0jUXnnVGM=;
-	b=YtZK4Rar7L8BNQloPsyIJ+Hrj3msvUmSA8jxTdJqyijmylxmVJkxNM48eyfm9MxYee
-	lqoc63Ax7bxCSPcMwcLFMr+sm034Vznew5wW/8tFMzOhEwwlmc7/BXPXosXahV5KYBNq
-	h++/zZBRX88Oxf1bMpzHbQQw8TBOeaFwb3+3TwZizxI/F1MHD/AUqJ1k4TvmCffcJAhs
-	6QYl+Wr8QWe4+6hp5qeOdt2MuymXa7HzTLZ8S3mCLcsOoSBAPz5qXYlTXTUys4Mp8rIT
-	SW+VvmzYz8svMji7EbbCFx0GiY9SyOadeIJlxw/rs0kVXjHmRJQaGeFKcalIUTkOkL2F
-	UWdw==
-X-Gm-Message-State: AN3rC/4HL8bzuY9z4zbHQ/YDYIy5gPW1FOQWB4nP6ovJrHJV4XvkFZxK
-	bcV6HQ674IGEtg==
-X-Received: by 10.28.191.145 with SMTP id o17mr9386760wmi.20.1492432635577;
-	Mon, 17 Apr 2017 05:37:15 -0700 (PDT)
+	bh=CwCgBY0qxbjJf1ISkzxp4HFtvpqW/vKLlE2DBmrQHkc=;
+	b=IMfOhqOO2/YivAAjbOIuC9muLJuTGClGQAL0SBsssZGdJMxP8+vRrBNR4WYJ5+IEV4
+	m0pZRMFAa2FwKVx1id9E6TsG+uLIr57OjRebBe8Wa81mh2ru66r8p7Z5kEtaSOeI5640
+	RGDsHiNP5XBdAP5rcwEI26Sl01b0bxT+UbVdWADmjg9nmlQywyGlK7URKuO61tBowHKp
+	OPewikFENocRC065RrGupP3YLHwSawhXzmG3OgVJMNoTjyofuBm9mTAKPsNH6W6P/W9L
+	+QMev30i3wZc6BTdNOc49z3mzMmDYcQrenjxgYMR76Gya7RvzYse338QiyNN5MkhkDvB
+	Mjqw==
+X-Gm-Message-State: AN3rC/4A9iScewyp10uJLCxiWIYE7pZ0bxuq6oAHbU2LMTjLIwddgsVp
+	PShKGatwvp+L7w==
+X-Received: by 10.28.47.205 with SMTP id v196mr9340373wmv.20.1492432637364;
+	Mon, 17 Apr 2017 05:37:17 -0700 (PDT)
 Received: from localhost.localdomain
 	(host86-158-8-191.range86-158.btcentralplus.com. [86.158.8.191])
-	by smtp.gmail.com with ESMTPSA id d23sm8194524wra.6.2017.04.17.05.37.14
+	by smtp.gmail.com with ESMTPSA id d23sm8194524wra.6.2017.04.17.05.37.16
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Mon, 17 Apr 2017 05:37:14 -0700 (PDT)
+	Mon, 17 Apr 2017 05:37:16 -0700 (PDT)
 From: Andrei Gherzan <andrei@gherzan.ro>
 To: yocto@yoctoproject.org
-Date: Mon, 17 Apr 2017 13:37:06 +0100
-Message-Id: <20170417123710.6374-3-andrei@gherzan.ro>
+Date: Mon, 17 Apr 2017 13:37:08 +0100
+Message-Id: <20170417123710.6374-5-andrei@gherzan.ro>
 X-Mailer: git-send-email 2.12.2
 In-Reply-To: <20170417123710.6374-1-andrei@gherzan.ro>
 References: <20170417123710.6374-1-andrei@gherzan.ro>
-Subject: [meta-raspberrypi][morty][PATCH 3/7] firmware: Update to 20170303 release
+Subject: [meta-raspberrypi][morty][PATCH 5/7] rpi-base.inc: Include dtb for RPI0 WiFi
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,34 +70,23 @@ List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Mon, 17 Apr 2017 12:37:20 -0000
 
-From: Khem Raj <raj.khem@gmail.com>
-
-Uses 4.9.13 and has rpi0w support
-
-Signed-off-by: Khem Raj <raj.khem@gmail.com>
 Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
 ---
- recipes-bsp/common/firmware.inc | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ conf/machine/include/rpi-base.inc | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/recipes-bsp/common/firmware.inc b/recipes-bsp/common/firmware.inc
-index 8aea628..53c469e 100644
---- a/recipes-bsp/common/firmware.inc
-+++ b/recipes-bsp/common/firmware.inc
-@@ -1,10 +1,10 @@
--RPIFW_DATE ?= "20161215"
-+RPIFW_DATE ?= "20170303"
- RPIFW_SRC_URI ?= "https://github.com/raspberrypi/firmware/archive/1.${RPIFW_DATE}.tar.gz"
- RPIFW_S ?= "${WORKDIR}/firmware-1.${RPIFW_DATE}"
+diff --git a/conf/machine/include/rpi-base.inc b/conf/machine/include/rpi-base.inc
+index e069e70..dc98099 100644
+--- a/conf/machine/include/rpi-base.inc
++++ b/conf/machine/include/rpi-base.inc
+@@ -14,6 +14,7 @@ XSERVER = " \
+     "
  
- SRC_URI = "${RPIFW_SRC_URI}"
--SRC_URI[md5sum] = "ddd7645988360d7ef267b48c32293ad7"
--SRC_URI[sha256sum] = "bda18f2affb50053940fd88c3f3bec5af9a4b4ced753d01107a2b106cfb02d13"
-+SRC_URI[md5sum] = "c87bc1bffbb8f254fc739e34baa03b02"
-+SRC_URI[sha256sum] = "ee8758d7e63c8fea7c8b7b476ff1c09f9591c74349b7751036a78ae5b88eca36"
- 
- PV = "${RPIFW_DATE}"
- 
+ KERNEL_DEVICETREE ?= " \
++    bcm2708-rpi-0-w.dtb \
+     bcm2708-rpi-b.dtb \
+     bcm2708-rpi-b-plus.dtb \
+     bcm2709-rpi-2-b.dtb \
 -- 
 2.12.2
 
