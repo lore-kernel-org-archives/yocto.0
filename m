@@ -1,6 +1,6 @@
 Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 43624E00B7D; Sun, 16 Apr 2017 18:31:45 -0700 (PDT)
+	id 33F52E00AB9; Sun, 16 Apr 2017 18:34:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,61 +9,60 @@ X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [209.85.128.194 listed in list.dnswl.org]
+	*      [74.125.82.67 listed in list.dnswl.org]
 	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.128.194 listed in dnsbl.sorbs.net]
+	*      [74.125.82.67 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wr0-f194.google.com (mail-wr0-f194.google.com
-	[209.85.128.194])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ECB59E00BAA
-	for <yocto@yoctoproject.org>; Sun, 16 Apr 2017 18:31:34 -0700 (PDT)
-Received: by mail-wr0-f194.google.com with SMTP id l44so18706233wrc.2
-	for <yocto@yoctoproject.org>; Sun, 16 Apr 2017 18:31:34 -0700 (PDT)
+Received: from mail-wm0-f67.google.com (mail-wm0-f67.google.com [74.125.82.67])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F2BC5E00839
+	for <yocto@yoctoproject.org>; Sun, 16 Apr 2017 18:34:21 -0700 (PDT)
+Received: by mail-wm0-f67.google.com with SMTP id o81so6812401wmb.0
+	for <yocto@yoctoproject.org>; Sun, 16 Apr 2017 18:34:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
 	h=date:from:to:cc:subject:message-id:references:mime-version
 	:content-disposition:in-reply-to:user-agent;
-	bh=m94TdXM4l35XfTevlI/ksmd+o1UfhPKWWO0xJykTIkU=;
-	b=JpXASCPcHtnWN2l3/fy7dIvFjUvUF7xnK7+yakMOBwQEuRmT0xt03bYTP1oxVGC7ra
-	N622OoIl2xCWmtwxeb5mdg+YKT+OADHs8vKCdyOXR0e0QunRf3Wa2v+FrhueSeJnbFgP
-	mx/YVS+VYFq/vRDtf3TI2excDYEs2AD7u7XOwuEalxEij9/6zqp12t8LpKQWcA1yDc/9
-	SMVr6oD9rlrzbel7u3z3AUx7F9F8hznkut3VVfns7WHS9PCuf57ijsdoJgNsKC6VNoQg
-	j27WW8QWF1D0qXPcwYOdXaX9/xWPw5/qhSJApUwGwbIVFNfjlUL4NhAcptOVhnzrwVvj
-	JlsQ==
+	bh=sTY4ESRas7Ms5uERbsLqlWYvvJqxydeCIbmgKTC5vtQ=;
+	b=L0oMehsuAV5o8b8VUCvLNMMGtJ10qHrfHZQhTeZ4/wt/sM8ZTaz01XeZylCnzB1vPa
+	JWroNxSYdnLTxh0cqxfJuKIoVo++h/zDpVMNe2UlbSjzVjEr4czQAggwB7BLtGsjkmVY
+	ssB29G3CcxE6RMwz0RuT1A6J5RzC2JWRi+C2tj0BFVNUQhGDdRcnslS4ZuoF4lO301kt
+	zaBd/zCfBBvgq93kemmFpR2GAg8aReG2WsWSK3UegC/T9zaMAY4Q+idahqjHDX5Uic3b
+	UBOF0Lbo6vwtSB1jywwfDSWFQ9Zr5rZW3x47JrZaGWmgqnaSpNbgIIIDdiTgp+e0Z1hl
+	2e+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
 	:mime-version:content-disposition:in-reply-to:user-agent;
-	bh=m94TdXM4l35XfTevlI/ksmd+o1UfhPKWWO0xJykTIkU=;
-	b=cz0UVrg4BlohkmqjQ8t+7SVBts8B3SYsz4342uWHtxTk8PA/q91hNDX70o+RSRkwC7
-	WoxoJJ4tdok1MUOo4OGrsgTyn197nM2Vq8AHc3mMY2JwSROKFh9a/4HG8BIB8unYwsb8
-	qhCZ86zrHI2Bub9ywzmv4CrKy4yVPWi0zABJvLNqp3NNYofCGsYhBUw1LDXypwoaTCmI
-	6dqJBc6CTm58TtAvU5dq9OYgcn2p/yFyj6wWxmhKimEnijJ9BNiMBPY5a6MUMx30E5IM
-	fvP68iU9XO2G9+/IPBTwsl8oVVzyrQ3Y6vXac6a23LKJZr1k1YJHYZS6EiQgjLxvHzmM
-	rBJw==
-X-Gm-Message-State: AN3rC/6V/qJaNBzUc5vSjITFzEFL7V8i061dM2sKx5ipF3XDptd5SJb+
-	DWyVvOqV2uig3Q==
-X-Received: by 10.223.177.157 with SMTP id q29mr16248382wra.67.1492392693788; 
-	Sun, 16 Apr 2017 18:31:33 -0700 (PDT)
+	bh=sTY4ESRas7Ms5uERbsLqlWYvvJqxydeCIbmgKTC5vtQ=;
+	b=iiazX2XYzBjjNyrBPfp/wd0++/K0/H/bBM9frBiF7em7X5W9XTM8HxNGOTpwxeFkU+
+	PtrmX50upQNJNv3cWOTRKtzJHE2VPaM38coidVIZ0VMuFBrsbiDc0NUaVgH6xSRND5pn
+	6SOOQbqgvthe91/84TVjlkd+/DbPgwY7qinLSd0FnShzwl1RfjBz7wliURvYeLy0KzWV
+	MIxZEF6LTeLzCU72PNrELi5cI4YRJ54RafDYfZ3e9DlWeTGAyjsaOTvoD3pl8e3+cS32
+	Oh5jxXs/oZ6d2prsMF3N7QeUFdqpl/nBPS9Zy7TdfU9N26Iz1tWL9ZPsrQdQa3aqcYCm
+	erfw==
+X-Gm-Message-State: AN3rC/6HzVW4d1u6GYTxjxpNQb2gpDvFEnaP3hOQtMqIGN2qua6QPZpk
+	wWa5cjeDffDCHw==
+X-Received: by 10.28.93.65 with SMTP id r62mr6527497wmb.77.1492392860821;
+	Sun, 16 Apr 2017 18:34:20 -0700 (PDT)
 Received: from carbonA (host86-158-8-191.range86-158.btcentralplus.com.
 	[86.158.8.191]) by smtp.gmail.com with ESMTPSA id
-	m201sm8459787wmd.15.2017.04.16.18.31.32
+	b42sm12310495wra.10.2017.04.16.18.34.19
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sun, 16 Apr 2017 18:31:33 -0700 (PDT)
-Date: Mon, 17 Apr 2017 02:31:31 +0100
+	Sun, 16 Apr 2017 18:34:20 -0700 (PDT)
+Date: Mon, 17 Apr 2017 02:34:18 +0100
 From: Andrei Gherzan <andrei@gherzan.ro>
-To: Khem Raj <raj.khem@gmail.com>
-Message-ID: <20170417013131.GJ16624@carbonA>
-References: <20170414182133.2051-1-raj.khem@gmail.com>
+To: Paul Gortmaker <paul.gortmaker@windriver.com>
+Message-ID: <20170417013418.GK16624@carbonA>
+References: <1491591562-14385-1-git-send-email-paul.gortmaker@windriver.com>
 MIME-Version: 1.0
-In-Reply-To: <20170414182133.2051-1-raj.khem@gmail.com>
+In-Reply-To: <1491591562-14385-1-git-send-email-paul.gortmaker@windriver.com>
 User-Agent: Mutt/1.8.0 (2017-02-23)
 Cc: yocto@yoctoproject.org
-Subject: Re: [meta-raspberrypi][PATCH 6/6] psplash: Let distro override the default splash image if it provides
+Subject: Re: [meta-raspberrypi][PATCH] README: document 64 bit r-pi3 variant for MACHINE
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,38 +74,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 17 Apr 2017 01:31:45 -0000
-X-Groupsio-MsgNum: 35599
+X-List-Received-Date: Mon, 17 Apr 2017 01:34:32 -0000
+X-Groupsio-MsgNum: 35600
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="7AwgMNpd3VkAVXjS"
+	protocol="application/pgp-signature"; boundary="KaGhPsiNaI6/sRd6"
 Content-Disposition: inline
 
---7AwgMNpd3VkAVXjS
+--KaGhPsiNaI6/sRd6
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
-On Fri, Apr 14, 2017 at 11:21:33AM -0700, Khem Raj wrote:
-> BSPs should not be overriding the distro splash images, here we
-> reduce the priority of psplash-raspberrypi below 100 so the defaults
-> from distros can kick in.
->
-> Signed-off-by: Khem Raj <raj.khem@gmail.com>
+On Fri, Apr 07, 2017 at 02:59:22PM -0400, Paul Gortmaker wrote:
+> Signed-off-by: Paul Gortmaker <paul.gortmaker@windriver.com>
 > ---
->  recipes-core/psplash/psplash_git.bbappend | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
+>  README | 1 +
+>  1 file changed, 1 insertion(+)
 >
-> diff --git a/recipes-core/psplash/psplash_git.bbappend b/recipes-core/psplash/psplash_git.bbappend
-> index 65dc30f..698564b 100644
-> --- a/recipes-core/psplash/psplash_git.bbappend
-> +++ b/recipes-core/psplash/psplash_git.bbappend
-> @@ -1,2 +1,4 @@
->  FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
-> -SPLASH_IMAGES += "file://psplash-raspberrypi-img.h;outsuffix=raspberrypi"
-> +SPLASH_IMAGES_append_rpi = " file://psplash-raspberrypi-img.h;outsuffix=raspberrypi"
-> +ALTERNATIVE_PRIORITY_psplash-raspberrypi[psplash] = "10"
-> +
+> diff --git a/README b/README
+> index 9fdd5eb523df..19c38c3a085a 100644
+> --- a/README
+> +++ b/README
+> @@ -80,6 +80,7 @@ c. Set MACHINE in local.conf to one of the supported boards:
+>      - raspberrypi0
+>      - raspberrypi2
+>      - raspberrypi3
+> +    - raspberrypi3-64 (64 bit kernel & userspace)
+>      - raspberrypi-cm (dummy alias for raspberrypi)
+>      - raspberrypi-cm3 (dummy alias for raspberrypi2)
+>  d. bitbake rpi-hwup-image
 > --
-> 2.12.2
+> 2.7.4
 >
 > --
 > _______________________________________________
@@ -114,30 +111,30 @@ On Fri, Apr 14, 2017 at 11:21:33AM -0700, Khem Raj wrote:
 > yocto@yoctoproject.org
 > https://lists.yoctoproject.org/listinfo/yocto
 
-Merged to master. Thanks!
+Merged to master. Thanks Paul.
 
 --
 Andrei Gherzan
 gpg: rsa4096/D4D94F67AD0E9640 | t: @agherzan
 
---7AwgMNpd3VkAVXjS
+--KaGhPsiNaI6/sRd6
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAEBCAAdFiEE90oi/MnVCYFbB1m0Jrqo2vaxFPYFAlj0GvMACgkQJrqo2vax
-FPb4Sg//VogU7/rf8XJFHTqic5SJk/hlpaJk3/Y9/Xo0nva1C+fNIw+FrPPCGnhJ
-ApZR11+tc2UKj5vLtO9C6fdjen04Z2IOMMZsPlIoeMWZHG2QEXJFfUg0KCGfVi6p
-kEwKUff62kSF1WtRS/VsJ99drFEFeiUD8wy4bMA/yOznijFnm4788Z701rz+6h2U
-WZDYatwkTLxwTl+yHs5OrmYmLJTo7Vg/1pMvSK8dBNpdCQXlr1guuRlOYv3c0wF5
-1wI6BimR08TIiBrhL/KUoVlWXk7ueLYFY93fmMI/NdJRByt5mlRUfZqIg4cJoz1Q
-Acnolda53o8EK0E3AK0dp6ChXCixXNnaCswyQFzaCMg4Ro95av5JLioqRJ21i1oK
-K1x121dtDrb5SIFFz4+imXxNMvt1kUotbGtySR/LchmT4zaVMjEewaqTWhnTxCiw
-w+N5VNIXrDK4apQobZNqlpdZXJ1z3n+rVyS4xqvAWxmD6SE9iXLLO+LX0sgym7JD
-xbzwaHFYr2qADmgxnWSdzSugHJiqqFad3VNZtAYugunTP1rwXlKK6FvVDiYwOXBw
-cW40omgkEUgDP2TNCriPHgqAC8YI9y/AkkPd+Ytuc4S7rnQ2WSgcsHbpTOSnYv7V
-vIBXn2gWYimU6L2x5RDpClyW05LsgndINanHnr8RTgeKkFYewps=
-=oebM
+iQIzBAEBCAAdFiEE90oi/MnVCYFbB1m0Jrqo2vaxFPYFAlj0G5oACgkQJrqo2vax
+FPZ0xA//RJJhUiofs8K7kr8Qvi3+gmCBdR8HFJVkTC6bsCqL+5THwVeGs1niLiOP
+DVuYJqgriur5oj+1Td/893rVISmzUMDn/T3rHFob1hj46XEaOVaKxdrcEIp62BCA
+LhvD1+xw65LZgZLwl7N3EzQA9ZUQ2pZKDSJrEpzecEjygGlUABmFZ7RdAjGVQqZO
+fT5HgRaapxGOddib17L4JpEmz78vPbwJs+zEtv721w7rp5yDtiwcLE4sD8KUJC9Q
+FZRjh3U0gawnPRYRAPVhTkhGbHmuPiLJRjxURIe50marovl3FlnV1W+SuY9ryDZr
+Zcih3ZSgGLzNQEpjw3uhsd84kfLlE7h08ZJOlz5X6WWhNkd0TSKrP58BFooonWe0
+lP0APsgHL/Vl7ZfbjhckXL34zdt6/+9rJA+yNgxIiUUk7JRx81NNPQ/D3stFhOiV
+chxSQttUlvY+emDS9Umu3KKayvad7Bbbb2dQ3GKXWW0NTEoR/CsBnf589Fy8pnsi
+qZr9rtf8P4x4Ti+TeLFWraQtzvrd5i8vTLC2lKOV0kgIgXQi0Uc2fRnS/eJBR3Wh
+HrTIjvBAJmbUD1EI+1z+b05lUbnu/8uP6bRT176c6eNvpzyHIcNQcGRtTVQX0vyF
+FNAdBk3sSEc2ijq6J2dcDBsK3HhnXGUz45h2ijomGchNINJ5qTM=
+=0a7A
 -----END PGP SIGNATURE-----
 
---7AwgMNpd3VkAVXjS--
+--KaGhPsiNaI6/sRd6--
