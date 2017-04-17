@@ -1,35 +1,63 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 34C4EE00524; Mon, 17 Apr 2017 04:59:59 -0700 (PDT)
+	id A22A7E007B5; Mon, 17 Apr 2017 05:37:19 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.128.196 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.analogue-micro.com (mail.analogue-micro.com
-	[217.144.149.242])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6B822E00349
-	for <yocto@yoctoproject.org>; Mon, 17 Apr 2017 04:59:46 -0700 (PDT)
-Received: by mail.analogue-micro.com (Postfix, from userid 999)
-	id 8724968A019; Mon, 17 Apr 2017 12:59:44 +0100 (BST)
-Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
-	by mail.analogue-micro.com (Postfix) with ESMTP id 10BCE68A019;
-	Mon, 17 Apr 2017 12:59:41 +0100 (BST)
-Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
-	by zeus.mlbassoc.com (Postfix) with ESMTP id 23D29674024D;
-	Mon, 17 Apr 2017 13:59:41 +0200 (CEST)
-From: Gary Thomas <gary@mlbassoc.com>
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wr0-f196.google.com (mail-wr0-f196.google.com
+	[209.85.128.196])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 29CF6E00349
+	for <yocto@yoctoproject.org>; Mon, 17 Apr 2017 05:37:15 -0700 (PDT)
+Received: by mail-wr0-f196.google.com with SMTP id l28so20173072wre.0
+	for <yocto@yoctoproject.org>; Mon, 17 Apr 2017 05:37:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
+	h=from:to:cc:subject:date:message-id:in-reply-to:references;
+	bh=ZhgOzOEWymFJGim2QVarGFjkFiTZAXsfrNw0I4JAl+8=;
+	b=HWigs258Mi6SLojNJGgPCMJ9olo0HzRx2oaHASn5cCsH9zNBLZjamH0u48LUbZ+4aS
+	+umHaiwkaEB+1GZHkge2n2duu2tp/2yvFfb3ACwyBEeHj7q0ic/NNZ0XxoKMwPerd+nD
+	gvg4NZpBS5CEOX54zR8KtmUlKIDcQxATbfa6X2rSZAN3ZBQkcJmViiYVK8Mhyig7DXvr
+	c0/Ko/VWJaHR3JamBLY9b8PUrPO/JDjry8pMVfTNT52tK8wFQvFKwmg5ph/YVtLAUPdb
+	KfhlZA/ScBNxxCL7msSEFO+8VCohFzBbdowFpm2rguYfJcwI2kZxqaRyKjbwDQ2//NxY
+	w01w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+	:references;
+	bh=ZhgOzOEWymFJGim2QVarGFjkFiTZAXsfrNw0I4JAl+8=;
+	b=CBK5dWo3aYMvMfD9nNGabR/KDK+kcgDT/uDNGbbBU3QHdqM0QIiXN3JCZpnIIabL8M
+	9BjZnIW1nXZ/PGti5qe3MaajGIok32wAXfodMw+GgR+zHgRyBTMxTO9wKOBjoWQZpEXK
+	bzcEWPSRDtqua2HHkjVvZQPsUFAiitwsRFVpREveosokkjPECM9a3kk74TThHhWGz4fu
+	V9KFEyu0mDAmqrQeLZ0TWWW/1wrNxaPGnx0sa6Ap0AP+t7P8ucpz2Ay8WF4RNkB5hCqg
+	AXRixJKQANtnOhc0CKbA76v80LKlC5hEXIeTT4LRbgtOTOzpUQOgKk7wU9IfaAcOz+B0
+	tgnw==
+X-Gm-Message-State: AN3rC/4xdA7z4l9U22mNzUyVzzagDgiWFPLnmFc1QXkvcwzV3wCTKWtX
+	YFPV73whSAXGIA==
+X-Received: by 10.223.130.150 with SMTP id 22mr18299754wrc.89.1492432634480;
+	Mon, 17 Apr 2017 05:37:14 -0700 (PDT)
+Received: from localhost.localdomain
+	(host86-158-8-191.range86-158.btcentralplus.com. [86.158.8.191])
+	by smtp.gmail.com with ESMTPSA id d23sm8194524wra.6.2017.04.17.05.37.13
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Mon, 17 Apr 2017 05:37:13 -0700 (PDT)
+From: Andrei Gherzan <andrei@gherzan.ro>
 To: yocto@yoctoproject.org
-References: <AM4PR1001MB13476AAC4A2CE5DA1A056C1FD7070@AM4PR1001MB1347.EURPRD10.PROD.OUTLOOK.COM>
-Message-ID: <7e3d29c7-b0af-3f5f-09e2-900c140360ab@mlbassoc.com>
-Date: Mon, 17 Apr 2017 13:59:40 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.8.0
-MIME-Version: 1.0
-In-Reply-To: <AM4PR1001MB13476AAC4A2CE5DA1A056C1FD7070@AM4PR1001MB1347.EURPRD10.PROD.OUTLOOK.COM>
-Subject: Re: Noobie questions
+Date: Mon, 17 Apr 2017 13:37:05 +0100
+Message-Id: <20170417123710.6374-2-andrei@gherzan.ro>
+X-Mailer: git-send-email 2.12.2
+In-Reply-To: <20170417123710.6374-1-andrei@gherzan.ro>
+References: <20170417123710.6374-1-andrei@gherzan.ro>
+Subject: [meta-raspberrypi][morty][PATCH 2/7] firmware: Update to 20161215 release
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,68 +69,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 17 Apr 2017 11:59:59 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 17 Apr 2017 12:37:19 -0000
 
-On 2017-04-16 20:23, bahjat khan wrote:
-> Hi Guys,
->
->
-> I'm extremely new to the yocto project, i've done quite a bit of reading on it but i'm still very confused.
->
-> I've set my self a simple task of changing the kernel for a Yocto image that i build, the commands i use to build this
-> yocto image are:
+From: Khem Raj <raj.khem@gmail.com>
 
-<text would have been a better choice than an image>
-  $ git clone http://git.yoctoproject.org/git/poky
-  $ cd poky
-  $ git checkout -b fido origin/fido
-  $ source oe-init-build-env
-  $bitbake core-image-minimal
-  $runqemu qemux86
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
+Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
+---
+ recipes-bsp/common/firmware.inc | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-Check out a newer revision - fido is VERY OLD.  Probably best to use morty which is the upcoming 2.3 release
-
->
-> |$ git clone http://git.yoctoproject.org/git/poky $ cd poky $ git checkout -b fido origin/fido $ source oe-init-build-env
-> $bitbake core-image-minimal $runqemu qemux86|
->
-> I understand that i need to make changes to the poky.conf file to specify what kernel i want to use (i have a standard
-> choice between 3.14 and 3.19).
-
-No, make such changes in your local.conf
-
->
-> However if i want to use a different kernel such as 4.4, i do this by making the changes in the poky.conf file, copying
-> linux-yocto_3.19.bb file and renaming it to linux-yocto_4.4.bb. I also change the SRC_URI to
-> "git://git.yoctoproject.org/linux-yocto-4.4.git;barcelone=1;branch=${KRBRANCH},${KMETA};name=machine,meta"
->
-> It doesn't seem to find the place where it needs to download 4.4 from even though it's on the yocto website. I can
-> download it by simply typing "git clone xxxx"
->
-> Also i haven't changed the SRCREV_machine_qemuarm ?= "xxxxxxxxxxxx" numbers, because i don't know what they are or what
-> the variable SRCREV_machine_qemuarm is.
-
-You should never need to mess with these settings.
-
->
-> With these warnings, it reverts back to 3.19 kernel.
->
-> I hope i've explained my problem well, but if you are still confused please let me know.
->
->
-> Kind Regards,
->
-> Bahjat Murrad
->
->
->
-
-
+diff --git a/recipes-bsp/common/firmware.inc b/recipes-bsp/common/firmware.inc
+index 1961b48..8aea628 100644
+--- a/recipes-bsp/common/firmware.inc
++++ b/recipes-bsp/common/firmware.inc
+@@ -1,10 +1,10 @@
+-RPIFW_DATE ?= "20161125"
++RPIFW_DATE ?= "20161215"
+ RPIFW_SRC_URI ?= "https://github.com/raspberrypi/firmware/archive/1.${RPIFW_DATE}.tar.gz"
+ RPIFW_S ?= "${WORKDIR}/firmware-1.${RPIFW_DATE}"
+ 
+ SRC_URI = "${RPIFW_SRC_URI}"
+-SRC_URI[md5sum] = "a9281d2869e2d7673a83d41bacfa66c2"
+-SRC_URI[sha256sum] = "744e050630621c70991c91e0ee8663dc2f579e743583ca762b13b00bc75859bc"
++SRC_URI[md5sum] = "ddd7645988360d7ef267b48c32293ad7"
++SRC_URI[sha256sum] = "bda18f2affb50053940fd88c3f3bec5af9a4b4ced753d01107a2b106cfb02d13"
+ 
+ PV = "${RPIFW_DATE}"
+ 
 -- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+2.12.2
+
 
