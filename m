@@ -1,34 +1,26 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
+Return-Path: <recipe-report@yoctoproject.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 65C2CE0053A; Sun, 16 Apr 2017 20:08:37 -0700 (PDT)
+	id 7185FE0053A; Sun, 16 Apr 2017 21:00:38 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
+	autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1C458E003E1
-	for <yocto@yoctoproject.org>; Sun, 16 Apr 2017 20:08:34 -0700 (PDT)
-Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
-	[147.11.189.41])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id v3H38UM4013869
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=OK);
-	Sun, 16 Apr 2017 20:08:31 -0700
-Received: from server.local (128.224.20.185) by ALA-HCB.corp.ad.wrs.com
-	(147.11.189.41) with Microsoft SMTP Server id 14.3.294.0;
-	Sun, 16 Apr 2017 20:08:30 -0700
-To: "Paul D. DeRocco" <pderocco@ix.netcom.com>, <yocto@yoctoproject.org>
-References: <B92317128F384E2BAC28643061FC76E1@PAULD>
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-Message-ID: <a41596d9-1ef6-90f2-3c92-79755935f443@windriver.com>
-Date: Sun, 16 Apr 2017 23:08:29 -0400
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:45.0)
-	Gecko/20100101 Thunderbird/45.8.0
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from packages.yoctoproject.org (unknown [198.145.29.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5EA1CE003E1
+	for <yocto@yoctoproject.org>; Sun, 16 Apr 2017 21:00:35 -0700 (PDT)
+Received: from packages.yoctoproject.org (localhost [IPv6:::1])
+	by packages.yoctoproject.org (Postfix) with ESMTP id C902B84C9106
+	for <yocto@yoctoproject.org>; Mon, 17 Apr 2017 00:00:34 -0400 (EDT)
 MIME-Version: 1.0
-In-Reply-To: <B92317128F384E2BAC28643061FC76E1@PAULD>
-Subject: Re: Patch failures
+From: recipe-report@yoctoproject.org
+To: yocto@yoctoproject.org
+Date: Mon, 17 Apr 2017 04:00:34 -0000
+Message-ID: <20170417040034.21183.2301@packages.yoctoproject.org>
+Subject: [Recipe reporting system] Upgradable recipe name list
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,97 +32,164 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 17 Apr 2017 03:08:37 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 17 Apr 2017 04:00:38 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-On 2017-04-16 7:43 PM, Paul D. DeRocco wrote:
-> I'm trying to migrate an Atom-based build from Fido to Morty, and also
-> switch from 32-bit mode to x32. On a clean build, it gets about half way
-> through, and then suddenly coughs up a patch error. I've put blank lines
-> between the log lines so that the email word wrap won't be as confusing:
->
-> --
->
-> DEBUG: Executing shell function do_patch
->
-> (1/660) ARM-LPAE-Invalidate-the-TLB-for-module-addresses-dur.patch
->
-> [INFO]: check of
-> .kernel-meta//patches//arch/arm/v7-A15/ARM-LPAE-Invalidate-the-TLB-for-mod
-> ule-addresses-dur.patch with "git am" did not pass, trying reduced
-> context.
->
-> [INFO]: Context reduced git-am of
-> .kernel-meta//patches//arch/arm/v7-A15/ARM-LPAE-Invalidate-the-TLB-for-mod
-> ule-addresses-dur.patch with "git am" did not work, trying "apply".
->
-> error: patch failed: arch/arm/mm/fault.c:448
->
-> error: arch/arm/mm/fault.c: patch does not apply
->
-> [ERROR]: Application of
-> .kernel-meta//patches//arch/arm/v7-A15/ARM-LPAE-Invalidate-
-> the-TLB-for-module-addresses-dur.patch failed.
->
->          Patch needs to be refreshed. Sample resolution script:
->
->              .git/rebase-apply/resolve_rejects
->
-> WARNING:
-> /home/pauld/yocto-morty/build/tmp/work/chroma_bsp-poky-linux-gnux32/linux-
-> yocto-rt/4.8.12+gitAUTOINC+926c93ae07_3bafd55e39-r0/temp/run.do_patch.3069
-> 0:1 exit 1 from 'kgit-s2q --gen -v --patches .kernel-meta/'
->
-> ERROR: Function failed: do_patch (log file is located at
-> /home/pauld/yocto-morty/build/tmp/work/chroma_bsp-poky-linux-gnux32/linux-
-> yocto-rt/4.8.12+gitAUTOINC+926c93ae07_3bafd55e39-r0/temp/log.do_patch.3069
-> 0)
->
-> --
->
-> If I start bitbake again, it detects a "fence", and proceeds a little
-> further. I can do it over and over again, and it keeps building more and
-> more, but this can't be right, can it? The strange thing is that the
-> patches are all about ARM, PowerPC, etc., which have nothing to do with my
-> system. Could this be some fundamental misconfiguration having to do with
-> my MACHINE? At the beginning of my local.conf, I have:
+This mail was sent out by Recipe reporting system.
 
-The content of the patches isn't relative. All the patches are applied
-all the time. Doing arch specific patches in a large patch queue turns
-into a dependency soup ... hence the entire linux-yocto queue is
-checked against the build branch on each build, and if something is
-missing, patches are pushed.
+This message list those recipes which need to be upgraded. If maintainers
+believe some of them needn't to upgrade at this time, they can fill
+RECIPE_NO_UPDATE_REASON in respective recipe file to ignore this remainder
+until newer upstream version was detected.
 
-What that sounds like is that your BSP doesn't have a proper definition
-and hence entry point to the patching process. As such, whatever branch
-is being built doesn't have the patches applied .. and hence the patches
-are pushed and fail to apply in your context.
+Example:
+RECIPE_NO_UPDATE_REASON = "Version 2.0 is unstable"
 
-I can't say from what you've provided why the BSP description isn't
-valid, but if the kernel recipe and layers are something I can look at,
-I can debug more.
+You can check the detail information at:
 
-There were some changes between those releases that tweaked the kernel
-meta-data processing .. and that could be the issue, but again, I can't
-say without seeing all the details.
+http://recipes.yoctoproject.org/
 
-Bruce
+Package               Version      Upstream version      Maintainer           NoUpgradeReason
+--------------------  -----------  --------------------  -------------------  ------------------------------
+python3               3.5.2        3.6.1                 Alejandro Hernandez
+python3-native        3.5.2        3.6.1                 Alejandro Hernandez
+gobject-introspec...  1.50.0       1.52.0                Alexander Kanavin
+mobile-broadband-...  20151214     20170310              Alexander Kanavin
+webkitgtk             2.14.5       2.16.0                Alexander Kanavin
+openssl               1.0.2k       1.1.0e                Alexander Kanavin
+gdbm                  1.12         1.13                  Alexander Kanavin
+libpthread-stubs      0.3          0.4                   Alexander Kanavin
+vala                  0.34.4       0.36.1                Alexander Kanavin
+lzo                   2.09         2.10                  Alexander Kanavin
+libiconv              1.14         1.15                  Alexander Kanavin
+gnome-desktop3        3.22.2       3.24.0                Alexander Kanavin
+ed                    1.14.1       1.14.2                Alexander Kanavin
+nspr                  4.13.1       4.14                  Alexander Kanavin
+gperf                 3.0.4        3.1                   Alexander Kanavin
+libarchive            3.2.2        3.3.1                 Alexander Kanavin
+gnutls                3.5.9        3.5.10                Alexander Kanavin
+dtc                   1.4.2        1.4.4                 Alexander Kanavin
+btrfs-tools           4.9.1        4.10.2                Alexander Kanavin
+mkelfimage            4.0+gitX     4.5+gitAUTOINC+0b...  Alexander Kanavin    mkelfimage has been removed...
+sysprof               3.22.3       3.24.0                Alexander Kanavin
+mpg123                1.23.8       1.24.0                Alexander Kanavin
+kconfig-frontends     3.12.0.0     4.7.0.0               Alexander Kanavin
+epiphany              3.22.6       3.24.0                Alexander Kanavin
+qemu                  2.8.0        2.8.1                 Aníbal Limón
+apt                   1.2.12       1.4                   Aníbal Limón
+libxml-namespaces...  1.11         1.12                  Aníbal Limón
+libxml-sax-base-perl  1.08         1.09                  Aníbal Limón
+apt-native            1.2.12       1.4                   Aníbal Limón
+dpkg                  1.18.10      1.18.23               Aníbal Limón
+pinentry              0.9.2        1.0.0                 Armin Kuster
+libpcre2              10.22        10.23                 Armin Kuster
+linux-libc-headers    4.10         4.10.8                Bruce Ashfield
+libunwind             1.1+gitX     1.2+gitAUTOINC+cc...  Bruce Ashfield
+pciutils              3.5.2        3.5.4                 Chen Qi
+kmod-native           23+gitX      24+gitAUTOINC+ef4...  Chen Qi
+busybox               1.25.0+gitX  1.26.2+gitAUTOINC...  Chen Qi
+dbus                  1.10.14      1.10.16               Chen Qi
+byacc                 20161202     20170201              Chen Qi
+cups                  2.2.2        2.2.3                 Chen Qi
+systemd               232          233                   Chen Qi
+util-linux            2.29.1       2.29.2                Chen Qi
+kmod                  23+gitX      24+gitAUTOINC+ef4...  Chen Qi
+dbus-test             1.10.14      1.10.16               Chen Qi
+sed                   4.2.2        4.4                   Chen Qi
+sysstat               11.5.4       11.5.5                Chen Qi
+systemd-boot          232          233                   Chen Qi
+flex                  2.6.0        2.6.3                 Chen Qi
+coreutils             8.26         8.27                  Chen Qi
+build-appliance-i...  15.0.0       16.0.1                Cristian Iorga
+openssh               7.4p1        7.5p1                 Dengke Du
+json-glib             1.2.2        1.2.8                 Dengke Du
+u-boot-fw-utils       2017.01      2017.03               Denys Dmytriyenko
+u-boot-mkimage        2017.01      2017.03               Denys Dmytriyenko
+u-boot                2017.01      2017.03               Denys Dmytriyenko
+python3-pygobject     3.22.0       3.24.0                Edwin Plauchu
+python3-setuptools    32.1.1       34.3.3                Edwin Plauchu
+python-setuptools     32.1.1       34.3.3                Edwin Plauchu
+gpgme                 1.8.0        1.9.0                 Hongxu Jia
+bash                  4.3.30       4.4                   Hongxu Jia
+ghostscript           9.20         9.21                  Hongxu Jia
+libnewt-python        0.52.19      0.52.20               Hongxu Jia
+man-pages             4.09         4.10                  Hongxu Jia
+libnewt               0.52.19      0.52.20               Hongxu Jia
+libgpg-error          1.26         1.27                  Hongxu Jia
+gnupg                 2.1.18       2.1.20                Hongxu Jia
+python-git            2.1.1        2.1.3                 Jose Lamego
+python3-git           2.1.1        2.1.3                 Jose Lamego
+bc                    1.06         1.07                  Jose Lamego
+pango                 1.40.3       1.40.4                Jussi Kukkonen
+libinput              1.6.1        1.7.0                 Jussi Kukkonen
+gtk-icon-utils-na...  3.22.8       3.90.0                Jussi Kukkonen
+at-spi2-core          2.22.0       2.24.0                Jussi Kukkonen
+atk                   2.22.0       2.24.0                Jussi Kukkonen
+libx11-diet           1.6.4        1.6.5                 Jussi Kukkonen
+libx11                1.6.4        1.6.5                 Jussi Kukkonen
+glib-2.0              2.50.3       2.52.0                Jussi Kukkonen
+xf86-input-libinput   0.24.0       0.25.0                Jussi Kukkonen
+gsettings-desktop...  3.22.0       3.24.0                Jussi Kukkonen
+gnome-themes-stan...  3.22.2       3.22.3                Jussi Kukkonen
+mesa                  17.0.2       17.0.3                Jussi Kukkonen
+vte                   0.46.1       0.48.1                Jussi Kukkonen
+vulkan                1.0.39.1     20141209              Jussi Kukkonen
+libepoxy              1.4.0        1.4.1                 Jussi Kukkonen
+xserver-xorg          1.19.1       1.19.3                Jussi Kukkonen
+clutter-gst-3.0       3.0.22       3.0.24                Jussi Kukkonen
+gdk-pixbuf            2.36.5       2.36.6                Jussi Kukkonen
+gtk+3                 3.22.8       3.90.0                Jussi Kukkonen
+adwaita-icon-theme    3.22.0       3.24.0                Jussi Kukkonen
+libdrm                2.4.75       2.4.76                Jussi Kukkonen
+libevent              2.0.22       2.1.8                 Jussi Kukkonen
+mesa-gl               17.0.2       17.0.3                Jussi Kukkonen
+at-spi2-atk           2.22.0       2.24.0                Jussi Kukkonen
+ruby                  2.4.0        2.4.1                 Leonardo Sandoval
+nfs-utils             1.3.4        2.1.1                 Leonardo Sandoval
+prelink               1.0+gitX     20151030.+gitAUTO...  Mark Hatle
+libpfm4               4.6.0        4.8.0                 Matthew McClintock
+ifupdown              0.8.16       0.8.19                Maxin B. John
+ethtool               4.8          4.10                  Maxin B. John
+sqlite3               3.17.0       3.18.0                Maxin B. John
+mc                    4.8.18       4.8.19                Maxin B. John
+libpng                1.6.28       1.6.29                Maxin B. John
+harfbuzz              1.4.1        1.4.5                 Maxin B. John
+pkgconfig             0.29.1+gitX  0.29.2+gitAUTOINC...  Maxin B. John
+dnf                   2.0.0+gitX   7+gitAUTOINC+f9ec...  No maintainer
+go-bootstrap-native   1.4.3        1.8                   No maintainer
+libdnf                0.2.3+gitX   0.8.1+gitAUTOINC+...  No maintainer
+debianutils           4.8.1        4.8.1.1               Robert Yang
+git                   2.11.1       2.12.2                Robert Yang
+guile                 2.0.14       2.2.0                 Robert Yang
+base-passwd           3.5.29       3.5.43                Ross Burton          Version 3.5.38 requires cde...
+lsbinitscripts        9.68         9.70                  Ross Burton
+libsndfile1           1.0.27       1.0.28                Tanu Kaskinen
 
->
-> 	MACHINE ?= "chroma-bsp"
-> 	DEFAULTTUNE = "core2-64-x32"
-> 	baselib = "libx32"
->
-> where chroma-bsp is defined in my own layer. My chroma-bsp.conf file
-> contains (among other things):
->
-> 	PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto-rt"
-> 	PREFERRED_VERSION_linux-yocto-rt ?= "4.8%"
-> 	require conf/machine/include/tune-atom.inc
-> 	require conf/machine/include/x86-base.inc
->
-> I'm not really good at this. Does anyone see anything wrong?
->
+Upgradable count: 111
+Upgradable total count: 113
+
+The based commit is:
+
+commit ba2884f6ad3a4e746fc80cbd707f83fa8abd4210
+Author: Robert Yang <liezhi.yang@windriver.com>
+Date:   Fri Apr 14 02:22:25 2017 -0700
+
+    oe-run-native: print more error messages
+    
+    Fixed:
+    $ bitbake bmap-tools-native -ccleansstate && bitbake bmap-tools-native && oe-run-native bmap-tools-native bmaptool --help
+    [snip]
+    Error: Unable to find '' in <PATH>
+    [snip]
+    
+    Note the blank '' word, it was because "tools" was overrided, now fix it.
+    
+    And also check whether the recipe is a native one or not.
+    
+    Signed-off-by: Robert Yang <liezhi.yang@windriver.com>
+    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+
+Any problem, please contact Anibal Limon <anibal.limon@intel.com> 
 
 
