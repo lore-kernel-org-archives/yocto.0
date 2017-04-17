@@ -1,63 +1,65 @@
 Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EDDBAE00839; Mon, 17 Apr 2017 05:37:20 -0700 (PDT)
+	id 8AED9E00839; Mon, 17 Apr 2017 05:37:21 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, RCVD_IN_DNSWL_NONE,
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.128.193 listed in list.dnswl.org]
+X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.82.67 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.128.193 listed in dnsbl.sorbs.net]
-Received: from mail-wr0-f193.google.com (mail-wr0-f193.google.com
-	[209.85.128.193])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 274BBE0053A
-	for <yocto@yoctoproject.org>; Mon, 17 Apr 2017 05:37:14 -0700 (PDT)
-Received: by mail-wr0-f193.google.com with SMTP id l28so20173048wre.0
-	for <yocto@yoctoproject.org>; Mon, 17 Apr 2017 05:37:14 -0700 (PDT)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.82.67 listed in list.dnswl.org]
+Received: from mail-wm0-f67.google.com (mail-wm0-f67.google.com [74.125.82.67])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C5B1DE00349
+	for <yocto@yoctoproject.org>; Mon, 17 Apr 2017 05:37:17 -0700 (PDT)
+Received: by mail-wm0-f67.google.com with SMTP id o81so8678507wmb.0
+	for <yocto@yoctoproject.org>; Mon, 17 Apr 2017 05:37:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
-	h=from:to:cc:subject:date:message-id;
-	bh=Y5bnMyOXeuQeXzSb99KXXA7iLWVmvplH6VMMB0FZB/k=;
-	b=Qc3FmlAlFjC1kgE62NMFY0nbPl4HyY1rE/kO5tPR4Pcp5Zjm1fKUdqVdDwHx9jUFFP
-	dBnotiK/432yNqejXRaVVZodUCcFe3Gsuf3CP1V+7rUg4kzKsGEvjTKaEpik6CHeqADb
-	Yd6jeT3oH9XIwpl9r6B1XSA5/geuSWdGYOIoN+XKGfFLpM+7UxAMjjnnfqEIeToZmlMx
-	g6XmgfoTFcsIDo1nv2VJ7yTHFIbF5sZ/0nWG7uhNNwpIODL1VA6YfjBopkXUNG9z/V25
-	08StU/wosiy5o0UQfLVUIeNIyQVdOf2EEAqoK79k4rDW9yOKsCJlzsLLL3XZDUJusqs6
-	YemA==
+	h=from:to:cc:subject:date:message-id:in-reply-to:references;
+	bh=/hYygy8BBsK1/VB/IDxUiw96rlAhtIZq00GQoklsxtk=;
+	b=2Bk0ktSjMzl1ocVai3dlVzzGymLqTOewfSWrnp0KPWmbIFpLB9Jg28QPcvRdM3CwZf
+	TVSbcOqoh6NGstZlFwTaOTMgj4Avt7yj/qAWyIZNnsr3g0KUV/i0JCUGGZVA+4s2kkhf
+	lAKAFi6+0YFohp22+7zB5JZ3uSYKfpmjMW7r1BxAojLNt9kqs8/7ZIs9GRGhh2sxWiPf
+	XnL4Ihu57MRJKkdA53suGL5sRD4pDL0Cf2YKSjauLyWU3JdNwgLPk6sIV7cwv8kLE+rP
+	4tJoUvQ31pbBooFAZXC8Uq2/z3fBWwZAM98IG2ot7bcu1LcLJtzq88KnkSrbTP8MuMBO
+	Jy1g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=Y5bnMyOXeuQeXzSb99KXXA7iLWVmvplH6VMMB0FZB/k=;
-	b=Nk+SHAeDHfOmZr0Gut8chqzedaiKEdnALqzyr1ysW4nCg8gKdlqE58f9sSrAZoBIgp
-	o4kzsFpqgvFNn9VYmD/ixxfMoppfu09GFc7zLR74nDi8QqOOsZtBWUNNZHIGP9KEp/4l
-	TL/bNHG79bjw8Wzr1n8k72T4e0DRXEYXGvKOTXzuwAE3hK+gP+6nVYPUw+cLTrzEVSat
-	kL03er1p1GzKAKqNkzFQPfMTpzktG6k2IKKl526yGbBjnylzO+VTOY5P9BG6RxSGs3rX
-	lNbADBSlWMYJAfF19iZdjfKFo1MrH9h6Yim0S+xP4T9YbVHMlm/wQ3fqg5TZ/fkbpFA/
-	CnQQ==
-X-Gm-Message-State: AN3rC/7or1iHSg7GQ2pmqQ95rG7O0szT0cPDQWHa1i+DGrs87+Uhl85X
-	yWpZV+rpvgbHYg==
-X-Received: by 10.223.180.81 with SMTP id v17mr9843330wrd.101.1492432633584;
-	Mon, 17 Apr 2017 05:37:13 -0700 (PDT)
+	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+	:references;
+	bh=/hYygy8BBsK1/VB/IDxUiw96rlAhtIZq00GQoklsxtk=;
+	b=naPMxGUomomrVC5Qf8T8E5G8/hJb/IL8vAFXO+yPGa/gaHharGRNN/rt5ZfmwaBGfd
+	TTbW/rKmi7qFl+JlG/IfBvn/WmVPiPTxO/ZUSNFKj6IbV43un6W3mZKEkTQMlUpMvXaz
+	kEDzI4TZM3pnHeD/5IoyaiLjjsI9T7jf+Q4zLE/a27RTgDyAJyt0SwPTd7Tf03N8jBRO
+	ZSxEytptFYrWGuwn61Ofo/N417gDx66Jq9tjpbtDoqDwC4AUJJ3yP6URKKBO43qI+CjB
+	tt4qBUw8uIgZoRkMrSgREmZTvoxvGnoxHiwFSnCRhexyMAjnXPg6e9f2S/XsclbCj9Q/
+	Xdww==
+X-Gm-Message-State: AN3rC/6QFDJX7gm91xAvypnyiORY5T7KVGxAcqvGD8zqVhqH5b/1NWYB
+	Z+OhuClwpgS1NxyU4J0=
+X-Received: by 10.28.156.140 with SMTP id f134mr8336366wme.40.1492432636477;
+	Mon, 17 Apr 2017 05:37:16 -0700 (PDT)
 Received: from localhost.localdomain
 	(host86-158-8-191.range86-158.btcentralplus.com. [86.158.8.191])
-	by smtp.gmail.com with ESMTPSA id d23sm8194524wra.6.2017.04.17.05.37.12
+	by smtp.gmail.com with ESMTPSA id d23sm8194524wra.6.2017.04.17.05.37.15
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Mon, 17 Apr 2017 05:37:12 -0700 (PDT)
+	Mon, 17 Apr 2017 05:37:15 -0700 (PDT)
 From: Andrei Gherzan <andrei@gherzan.ro>
 To: yocto@yoctoproject.org
-Date: Mon, 17 Apr 2017 13:37:04 +0100
-Message-Id: <20170417123710.6374-1-andrei@gherzan.ro>
+Date: Mon, 17 Apr 2017 13:37:07 +0100
+Message-Id: <20170417123710.6374-4-andrei@gherzan.ro>
 X-Mailer: git-send-email 2.12.2
-Subject: [meta-raspberrypi][morty][PATCH 1/7] linux-firmware: Bring up wifi/ble interface on rpi3
+In-Reply-To: <20170417123710.6374-1-andrei@gherzan.ro>
+References: <20170417123710.6374-1-andrei@gherzan.ro>
+Subject: [meta-raspberrypi][morty][PATCH 4/7] firmware.inc: Bump to 20170405
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,118 +73,29 @@ List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Mon, 17 Apr 2017 12:37:21 -0000
 
-From: Khem Raj <raj.khem@gmail.com>
-
-Currently the firmware is installed but kernel fails to load it
-due this .txt file missing in the firmware directory and it ends
-up with wifi/bluetooth i/f not being initialized. The error is
-also in dmesg
-
-[    3.120991] usbcore: registered new interface driver brcmfmac
-[    3.148240] brcmfmac mmc1:0001:1: Direct firmware load for brcm/brcmfmac43430-sdio.txt failed with error -2
-
-After applying this patch now ifconfig -a can list wlan0 interface
-successfully.
-
-Signed-off-by: Khem Raj <raj.khem@gmail.com>
 Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
 ---
- .../linux-firmware/files/brcmfmac43430-sdio.txt    | 66 ++++++++++++++++++++++
- .../linux-firmware/linux-firmware_%.bbappend       | 12 ++++
- 2 files changed, 78 insertions(+)
- create mode 100644 recipes-kernel/linux-firmware/files/brcmfmac43430-sdio.txt
- create mode 100644 recipes-kernel/linux-firmware/linux-firmware_%.bbappend
+ recipes-bsp/common/firmware.inc | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/recipes-kernel/linux-firmware/files/brcmfmac43430-sdio.txt b/recipes-kernel/linux-firmware/files/brcmfmac43430-sdio.txt
-new file mode 100644
-index 0000000..ea4f648
---- /dev/null
-+++ b/recipes-kernel/linux-firmware/files/brcmfmac43430-sdio.txt
-@@ -0,0 +1,66 @@
-+# NVRAM file for BCM943430WLPTH
-+# 2.4 GHz, 20 MHz BW mode
-+
-+# The following parameter values are just placeholders, need to be updated.
-+manfid=0x2d0
-+prodid=0x0727
-+vendid=0x14e4
-+devid=0x43e2
-+boardtype=0x0727
-+boardrev=0x1101
-+boardnum=22
-+macaddr=00:90:4c:c5:12:38
-+sromrev=11
-+boardflags=0x00404201
-+boardflags3=0x08000000
-+xtalfreq=37400
-+nocrc=1
-+ag0=255
-+aa2g=1
-+ccode=ALL
-+
-+pa0itssit=0x20
-+extpagain2g=0
-+#PA parameters for 2.4GHz, measured at CHIP OUTPUT
-+pa2ga0=-168,7161,-820
-+AvVmid_c0=0x0,0xc8
-+cckpwroffset0=5
-+
-+# PPR params
-+maxp2ga0=84
-+txpwrbckof=6
-+cckbw202gpo=0
-+legofdmbw202gpo=0x66111111
-+mcsbw202gpo=0x77711111
-+propbw202gpo=0xdd
-+
-+# OFDM IIR :
-+ofdmdigfilttype=18
-+ofdmdigfilttypebe=18
-+# PAPD mode:
-+papdmode=1
-+papdvalidtest=1
-+pacalidx2g=42
-+papdepsoffset=-22
-+papdendidx=58
-+
-+# LTECX flags
-+ltecxmux=0
-+ltecxpadnum=0x0102
-+ltecxfnsel=0x44
-+ltecxgcigpio=0x01
-+
-+il0macaddr=00:90:4c:c5:12:38
-+wl0id=0x431b
-+
-+deadman_to=0xffffffff
-+# muxenab: 0x1 for UART enable, 0x2 for GPIOs, 0x8 for JTAG
-+muxenab=0x1
-+# CLDO PWM voltage settings - 0x4 - 1.1 volt
-+#cldo_pwm=0x4
-+
-+#VCO freq 326.4MHz
-+spurconfig=0x3 
-+
-+edonthd20l=-75
-+edoffthd20ul=-80
-diff --git a/recipes-kernel/linux-firmware/linux-firmware_%.bbappend b/recipes-kernel/linux-firmware/linux-firmware_%.bbappend
-new file mode 100644
-index 0000000..252da22
---- /dev/null
-+++ b/recipes-kernel/linux-firmware/linux-firmware_%.bbappend
-@@ -0,0 +1,12 @@
-+FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
-+
-+SRC_URI += "file://brcmfmac43430-sdio.txt"
-+
-+do_install_append() {
-+	install -D -m 0644 ${WORKDIR}/brcmfmac43430-sdio.txt ${D}/lib/firmware/brcm/brcmfmac43430-sdio.txt
-+}
-+
-+FILES_${PN}-bcm43430 += " \
-+  /lib/firmware/brcm/brcmfmac43430-sdio.txt \
-+"
-+
+diff --git a/recipes-bsp/common/firmware.inc b/recipes-bsp/common/firmware.inc
+index 53c469e..1c3a911 100644
+--- a/recipes-bsp/common/firmware.inc
++++ b/recipes-bsp/common/firmware.inc
+@@ -1,10 +1,10 @@
+-RPIFW_DATE ?= "20170303"
++RPIFW_DATE ?= "20170405"
+ RPIFW_SRC_URI ?= "https://github.com/raspberrypi/firmware/archive/1.${RPIFW_DATE}.tar.gz"
+ RPIFW_S ?= "${WORKDIR}/firmware-1.${RPIFW_DATE}"
+ 
+ SRC_URI = "${RPIFW_SRC_URI}"
+-SRC_URI[md5sum] = "c87bc1bffbb8f254fc739e34baa03b02"
+-SRC_URI[sha256sum] = "ee8758d7e63c8fea7c8b7b476ff1c09f9591c74349b7751036a78ae5b88eca36"
++SRC_URI[md5sum] = "ea82d14a7cd8cfae9b78e00d4e56bc71"
++SRC_URI[sha256sum] = "2f4e5bddbac1372590db203002c35cbba3fb9d6172a93c314ee27bf05ae13bff"
+ 
+ PV = "${RPIFW_DATE}"
+ 
 -- 
 2.12.2
 
