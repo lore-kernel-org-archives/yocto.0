@@ -1,11 +1,12 @@
 Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 38ED5E007B5; Mon, 17 Apr 2017 05:37:20 -0700 (PDT)
+	id 86E69E0083C; Mon, 17 Apr 2017 05:37:20 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	TVD_SPACE_RATIO autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
 	*      [74.125.82.68 listed in list.dnswl.org]
@@ -14,49 +15,50 @@ X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.0 TVD_SPACE_RATIO TVD_SPACE_RATIO
 Received: from mail-wm0-f68.google.com (mail-wm0-f68.google.com [74.125.82.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0DF3AE00524
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F1608E00546
 	for <yocto@yoctoproject.org>; Mon, 17 Apr 2017 05:37:18 -0700 (PDT)
-Received: by mail-wm0-f68.google.com with SMTP id d79so8692716wmi.2
-	for <yocto@yoctoproject.org>; Mon, 17 Apr 2017 05:37:17 -0700 (PDT)
+Received: by mail-wm0-f68.google.com with SMTP id q125so8661270wmd.3
+	for <yocto@yoctoproject.org>; Mon, 17 Apr 2017 05:37:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
 	h=from:to:cc:subject:date:message-id:in-reply-to:references;
-	bh=CwCgBY0qxbjJf1ISkzxp4HFtvpqW/vKLlE2DBmrQHkc=;
-	b=D6zCq7swIHsaTj5a4e9hvvzNAZhYs5yb981fXGZjmAiKNqHmx7XcPWTT14wQSmg25l
-	1vUkVMz6byrZvz5x8nyAhQG8GLrTyt0KY6Nv0wWFGPU6xJcp24X+OBJEV2t2HGVHK8LX
-	x5M8QO4YpywgyC3FxXUJgaVcNDEuxGHr4LicWIjVNCVMyMHqyeQqnEdnbKKaZD8PkIBd
-	gVGp5LiR7ZwF0NLjrQAxeEeIWEwZtZZPbld6XrKnYu/Jj705//TCvoqW2Bouu7Kz0Hig
-	nKhSTOQSCQpUNZyQwZzXJr4UmlE2AjpMzXQf5gtY6EsWkFDcuzJKlstSa6GFwOxngkgU
-	EPrw==
+	bh=AvhwIiz0bACekUXZmLNmXHjVplW2Neq+DHOsFHcSHl0=;
+	b=qNU/XMp5BsB0K/AKjxIJVzE+5BNqTBnlOn32oA35lKOcvwdYayb6Smh8PzV82XlAGa
+	vyctWrypLEVdmB+jaWkb5K4nICaKMiYv9cRHDjjP2kH2N4SZYH7rRzNogujeRRjE+sE5
+	/lddI1/ccaBVOCaoghmDfaC2mL1hMvh4Ju2pBXVrx57XKUnmZWpiNs56WUQwHXkm9sy2
+	WfHVg9zXMyJBwnFlhMOY0JHdyfHim3Q2k6JzkjN+13TJEb4D3LP6SyqciJWSgo95yE/v
+	NnOwTdMNGCX4JGstOtPE7aXQ+OR/lfey5/hZ68JIAVwyrlo5iSu1NKzUV+WTP3Wwg/fI
+	0DjQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
 	:references;
-	bh=CwCgBY0qxbjJf1ISkzxp4HFtvpqW/vKLlE2DBmrQHkc=;
-	b=IMfOhqOO2/YivAAjbOIuC9muLJuTGClGQAL0SBsssZGdJMxP8+vRrBNR4WYJ5+IEV4
-	m0pZRMFAa2FwKVx1id9E6TsG+uLIr57OjRebBe8Wa81mh2ru66r8p7Z5kEtaSOeI5640
-	RGDsHiNP5XBdAP5rcwEI26Sl01b0bxT+UbVdWADmjg9nmlQywyGlK7URKuO61tBowHKp
-	OPewikFENocRC065RrGupP3YLHwSawhXzmG3OgVJMNoTjyofuBm9mTAKPsNH6W6P/W9L
-	+QMev30i3wZc6BTdNOc49z3mzMmDYcQrenjxgYMR76Gya7RvzYse338QiyNN5MkhkDvB
-	Mjqw==
-X-Gm-Message-State: AN3rC/4A9iScewyp10uJLCxiWIYE7pZ0bxuq6oAHbU2LMTjLIwddgsVp
-	PShKGatwvp+L7w==
-X-Received: by 10.28.47.205 with SMTP id v196mr9340373wmv.20.1492432637364;
-	Mon, 17 Apr 2017 05:37:17 -0700 (PDT)
+	bh=AvhwIiz0bACekUXZmLNmXHjVplW2Neq+DHOsFHcSHl0=;
+	b=K+1rxzaDIEJAL4xhJ+JWND2KILBNQ/8u7mrU4foLvrdn3JJ+PQQmbgAPiIEVFhX7Ww
+	E5gfkaFHYV+Honh4xMBYUQ0Ie+GtEckOyON41f9SKQ2WZ9E8QfcoS4riEOlHK0Grle2t
+	ARH/Yqesn4VfjV9wC59IHfcpIWCIDfGWtZBz5WbJuNsLq4z3ofg0aJEsL1ifVEfHO7hT
+	ZzsuL3MMOUpwMRhk78Jp3GJzaNK4IaIT2zkOsekaZWDt8qUAGwscoYzbKp2fktewMRbu
+	dDO0pETlm6jJ/GCaUZFAGxj9RY/VPHO3Ut4qUHNCbu2GvKXa0lksDNbKdHmz8A9wlUqK
+	AgNQ==
+X-Gm-Message-State: AN3rC/4TM1Ai1Pf2K57JMGA4po0hs+h8mRiJ1+7zrUXDzLrWvf/TigQd
+	yjBTKf4YzWh01A==
+X-Received: by 10.28.17.147 with SMTP id 141mr8658316wmr.4.1492432638277;
+	Mon, 17 Apr 2017 05:37:18 -0700 (PDT)
 Received: from localhost.localdomain
 	(host86-158-8-191.range86-158.btcentralplus.com. [86.158.8.191])
-	by smtp.gmail.com with ESMTPSA id d23sm8194524wra.6.2017.04.17.05.37.16
+	by smtp.gmail.com with ESMTPSA id d23sm8194524wra.6.2017.04.17.05.37.17
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Mon, 17 Apr 2017 05:37:16 -0700 (PDT)
+	Mon, 17 Apr 2017 05:37:17 -0700 (PDT)
 From: Andrei Gherzan <andrei@gherzan.ro>
 To: yocto@yoctoproject.org
-Date: Mon, 17 Apr 2017 13:37:08 +0100
-Message-Id: <20170417123710.6374-5-andrei@gherzan.ro>
+Date: Mon, 17 Apr 2017 13:37:09 +0100
+Message-Id: <20170417123710.6374-6-andrei@gherzan.ro>
 X-Mailer: git-send-email 2.12.2
 In-Reply-To: <20170417123710.6374-1-andrei@gherzan.ro>
 References: <20170417123710.6374-1-andrei@gherzan.ro>
-Subject: [meta-raspberrypi][morty][PATCH 5/7] rpi-base.inc: Include dtb for RPI0 WiFi
+Subject: [meta-raspberrypi][morty][PATCH 6/7] raspberrypi0-wifi.conf: Add machine configuration file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,21 +74,27 @@ X-List-Received-Date: Mon, 17 Apr 2017 12:37:20 -0000
 
 Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
 ---
- conf/machine/include/rpi-base.inc | 1 +
- 1 file changed, 1 insertion(+)
+ conf/machine/raspberrypi0-wifi.conf | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
+ create mode 100644 conf/machine/raspberrypi0-wifi.conf
 
-diff --git a/conf/machine/include/rpi-base.inc b/conf/machine/include/rpi-base.inc
-index e069e70..dc98099 100644
---- a/conf/machine/include/rpi-base.inc
-+++ b/conf/machine/include/rpi-base.inc
-@@ -14,6 +14,7 @@ XSERVER = " \
-     "
- 
- KERNEL_DEVICETREE ?= " \
-+    bcm2708-rpi-0-w.dtb \
-     bcm2708-rpi-b.dtb \
-     bcm2708-rpi-b-plus.dtb \
-     bcm2709-rpi-2-b.dtb \
+diff --git a/conf/machine/raspberrypi0-wifi.conf b/conf/machine/raspberrypi0-wifi.conf
+new file mode 100644
+index 0000000..2b7cea4
+--- /dev/null
++++ b/conf/machine/raspberrypi0-wifi.conf
+@@ -0,0 +1,11 @@
++#@TYPE: Machine
++#@NAME: RaspberryPi Zero WiFi Development Board
++#@DESCRIPTION: Machine configuration for the RaspberryPi Zero  WiFi board (https://www.raspberrypi.org/blog/raspberry-pi-zero-w-joins-family/)
++
++MACHINEOVERRIDES = "raspberrypi:${MACHINE}"
++include conf/machine/raspberrypi.conf
++
++MACHINE_EXTRA_RRECOMMENDS += "linux-firmware-bcm43430"
++
++SERIAL_CONSOLE = "115200 ttyS0"
++VC4_CMA_SIZE ?= "cma-128"
 -- 
 2.12.2
 
