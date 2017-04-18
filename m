@@ -1,66 +1,65 @@
-Return-Path: <andrei@gherzan.ro>
+Return-Path: <pbarker@toganlabs.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 72ECBE00A80; Tue, 18 Apr 2017 11:07:50 -0700 (PDT)
+	id BD0CDE00A81; Tue, 18 Apr 2017 11:11:43 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.223.195 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.223.195 listed in dnsbl.sorbs.net]
-Received: from mail-io0-f195.google.com (mail-io0-f195.google.com
-	[209.85.223.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 07362E00A31
-	for <yocto@yoctoproject.org>; Tue, 18 Apr 2017 11:07:47 -0700 (PDT)
-Received: by mail-io0-f195.google.com with SMTP id d203so1000881iof.2
-	for <yocto@yoctoproject.org>; Tue, 18 Apr 2017 11:07:47 -0700 (PDT)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.216.193 listed in list.dnswl.org]
+Received: from mail-qt0-f193.google.com (mail-qt0-f193.google.com
+	[209.85.216.193])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7187EE00A31
+	for <yocto@yoctoproject.org>; Tue, 18 Apr 2017 11:11:38 -0700 (PDT)
+Received: by mail-qt0-f193.google.com with SMTP id c45so127788qtb.0
+	for <yocto@yoctoproject.org>; Tue, 18 Apr 2017 11:11:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
+	d=toganlabs-com.20150623.gappssmtp.com; s=20150623;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=65OEyNee5a0mu34xBMCgoTdKhECty1BPgEvR34FrPf0=;
-	b=uK79DhTIzxBLm7gVSb/mxjZsBjFyIK+W8bpXa9uImJuV1FKVEDYf7aAIoGBN+SvIWm
-	gFLt7b2eTUWdRLfjlQFgGieaILuVsOzPD0n0iNhKOvnKieqOAlDuqsCeONyz82MZnJuE
-	WqmHYRAUvHgdvBZP5ss9AyBRueao4dPtE/i6J+v1x0pGZp6GUhikCnNKCTkPOQ8+ajpq
-	boAVlpNCSh8Amij4CNZF8pve+z54U7FQzoa7VZVhWBm9vX5r+r+h3sH+yrZxjmJeQYIs
-	d0/IJPlyVDtd6loCdey6DaEoKKSbRuP+GtXcAzjjqrQ7EiwIl6tO7Vpz7kkTS8CaqnuM
-	xjXA==
+	:cc:content-transfer-encoding;
+	bh=0y5WeNljSnsnOmP8JjLgBfWAlaSMfq93CXgIRIRBBPw=;
+	b=xhgTaO+S8t2vpd5gnNaCS869CZGkKnn2Bb7zn3wdbP93jUnMjJcNrqzht5Qg/74sEk
+	k4FlfqvpDuozzrT/ENG8iux7YNz1d+jPiW0VNHCBHAgBM+ouXDt43u72xqOGk3hnnK9r
+	Hd3o3xiOJwV9mREPfx4acKH9kHSgpjiKekBEjmDOgGAXcPOnV/SITCmbrbuye+YfXZ91
+	cGAvwppH3OBgw5R/zjO6qvPyubtufnyDseqK20cg0x4seJeJt3j8bGsJMkdyzd62TmYP
+	8IiKh3ivi4RFkkfy4A/H/hE9//tWtuxTdL5sZUvA7Z1yWee9qy2Y6u3R+3TcUMyCIsgA
+	o1gg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=65OEyNee5a0mu34xBMCgoTdKhECty1BPgEvR34FrPf0=;
-	b=VRRTZo1ye/x1eBmqG0xc/i4QW5ozcQAdQwp3dmVORA3V0mWF1Gfcr0FQdAYxRrsacB
-	A+RF75iXYHKFPJ/5IPI25MY7vWSRLl5qNu69FyDiestb4PdxiwMoRWsk4iATWZrG6cdx
-	OjpR2nj4Vk31LUaT6iGWV58cLdHP99XkgQwmCXaYPwIY1oy5zfInMfe9fausVhVtMw3s
-	7+llQBcfX1Ci306KOEwmRNgEDFTNETf8L8hYce5X+FwNCqQKepU71LwjeCFsNPvY4BWr
-	M5cagUfj0mjMvuc68xERO5fK/W2yuATliXo8YCvpEA/Smp9ZmOVLqEkKaPs+fcW7GYiX
-	2Shg==
-X-Gm-Message-State: AN3rC/62d+OtEoIDjZQJfA1KvEMFN2yLoU8OZHJDmYumB/hBJnUqYgxe
-	SOQFm/k8+mJc49DJgRQFcu1T9uuGnMWt
-X-Received: by 10.36.61.204 with SMTP id n195mr16037284itn.76.1492538866840;
-	Tue, 18 Apr 2017 11:07:46 -0700 (PDT)
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=0y5WeNljSnsnOmP8JjLgBfWAlaSMfq93CXgIRIRBBPw=;
+	b=IrYY3GHDKPqOpHTDHPU4f8UhpKhcMyRj/goz5Dtd/BapxWvoEVBi/yd837aGk3pfrO
+	2OV9yT/4Emford+v1cqnqQHahtVbE6m3MnSzMHN7juh6jyNKPVa8BO3dKzi5B07XDjPN
+	0yH9HF4fRYs6nFrcM42+KzdfonP6vd0bqzXplVJ6evBCHgsa+mw1qJLkHpYGrUhdxuSH
+	ytEHpTIUCeXXP/I0C4uNkZalrDd/wz7LVcjCjSo1a7R8DpBe9GASB/HsNG0jLEmR/nwp
+	pOAM5VB6w/mQcNEpSNtcfIChTYeXC0WRtG9i3E89Suhxm4FejG8kfn7CruEu+CsiF4v6
+	zsLg==
+X-Gm-Message-State: AN3rC/7RU0PXkT3STX78NAjYhh9+NONIUL+7ZxsEBvEll+4LPzXlvovk
+	sOKPM3xjabOvZAMBlVeDu6wLrobiow==
+X-Received: by 10.200.35.73 with SMTP id b9mr14833613qtb.268.1492539098208;
+	Tue, 18 Apr 2017 11:11:38 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.79.27.207 with HTTP; Tue, 18 Apr 2017 11:07:06 -0700 (PDT)
-X-Originating-IP: [82.22.166.118]
-In-Reply-To: <CAPyrkgycU=hMySnqGi7aPGdJeqmh2zqwfJOisOyk1J2uaRcYNw@mail.gmail.com>
+Received: by 10.140.44.116 with HTTP; Tue, 18 Apr 2017 11:11:37 -0700 (PDT)
+X-Originating-IP: [82.34.23.153]
+In-Reply-To: <CAK18fxH1NRGuUBp+4cbKCjFK1SdXvC69mOq9ftwy3nY5qev2AA@mail.gmail.com>
 References: <20170414201313.3138-1-andrei@gherzan.ro>
 	<20170414201313.3138-4-andrei@gherzan.ro>
 	<CAPyrkgx4stTPY-kEV5rMtJYyXwPkag47bP8N8KaRLCnAf3wWeA@mail.gmail.com>
 	<20170418125837.GA2724@carbonA>
 	<CAPyrkgycU=hMySnqGi7aPGdJeqmh2zqwfJOisOyk1J2uaRcYNw@mail.gmail.com>
-From: Andrei Gherzan <andrei@gherzan.ro>
-Date: Tue, 18 Apr 2017 19:07:06 +0100
-Message-ID: <CAK18fxH1NRGuUBp+4cbKCjFK1SdXvC69mOq9ftwy3nY5qev2AA@mail.gmail.com>
-To: Paul Barker <pbarker@toganlabs.com>
+	<CAK18fxH1NRGuUBp+4cbKCjFK1SdXvC69mOq9ftwy3nY5qev2AA@mail.gmail.com>
+From: Paul Barker <pbarker@toganlabs.com>
+Date: Tue, 18 Apr 2017 19:11:37 +0100
+Message-ID: <CAPyrkgzTVwYwZ5C_RdNDoosHnP6BiHH4wwUh_tttF8UeNq3C+Q@mail.gmail.com>
+To: Andrei Gherzan <andrei@gherzan.ro>
 Cc: yocto@yoctoproject.org
 Subject: Re: [meta-raspberrypi][PATCH 4/7] linux-raspberrypi_4.9: Bump to 4.9.21
 X-BeenThere: yocto@yoctoproject.org
@@ -74,38 +73,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 18 Apr 2017 18:07:50 -0000
+X-List-Received-Date: Tue, 18 Apr 2017 18:11:43 -0000
 Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Apr 18, 2017 at 6:23 PM, Paul Barker <pbarker@toganlabs.com> wrote:
-> On Tue, Apr 18, 2017 at 1:58 PM, Andrei Gherzan <andrei@gherzan.ro> wrote:
->> On Tue, Apr 18, 2017 at 12:10:47PM +0100, Paul Barker wrote:
->>> On Fri, Apr 14, 2017 at 9:13 PM, Andrei Gherzan <andrei@gherzan.ro> wrote:
->>> >
->>> > -LINUX_VERSION ?= "4.9.13"
->>> > +LINUX_VERSION ?= "4.9.21"
->>> >
->>> >
->>>
->>> I'm going to backport this to morty and test this week. Any other
->>> patches worth testing for morty at the same time?
->>>
+On Tue, Apr 18, 2017 at 7:07 PM, Andrei Gherzan <andrei@gherzan.ro> wrote:
+> On Tue, Apr 18, 2017 at 6:23 PM, Paul Barker <pbarker@toganlabs.com> wrot=
+e:
 >>
->> I would probably want to have 64b rpi3 too in morty. And yes, 4.9
->> defaulted for kernel?
->>
+>> I'll have a go at backporting the addition of the extra machines. I
+>> can test raspberrypi3-64 on hardware myself but I don't have a
+>> raspberrypi0-wifi to test on.
 >
-> I'd support adding extra machines if we can (raspberrypi0-wifi and
-> raspberrypi3-64) and having those use Linux 4.9. However, I'd be
-> reticent to change the default kernel version for existing machines on
-> a stable branch.
+> I already pushed a PR for rpi0 wifi for morty and I'm testing it now.
 
-I agree.
+I must have missed that. Still getting used to switching email systems!
 
->
-> I'll have a go at backporting the addition of the extra machines. I
-> can test raspberrypi3-64 on hardware myself but I don't have a
-> raspberrypi0-wifi to test on.
+It looks like you've got rpi0 wifi and firmware upgrades. I'll send
+patches for the kernel upgrade and rpi3 64 once I've given them a
+spin. Probably late tonight or early tomorrow.
 
-I already pushed a PR for rpi0 wifi for morty and I'm testing it now.
+Cheers,
+
+--=20
+Paul Barker
+Co-Founder & Principal Engineer
+Tog=C3=A1n Labs Ltd
 
