@@ -1,63 +1,37 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <gary@mlbassoc.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D2D2BE0094C; Mon, 17 Apr 2017 15:12:06 -0700 (PDT)
+	id BC525E0094C; Mon, 17 Apr 2017 19:42:22 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.52 listed in list.dnswl.org]
-Received: from mail-wm0-f52.google.com (mail-wm0-f52.google.com [74.125.82.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0721AE00826
-	for <yocto@yoctoproject.org>; Mon, 17 Apr 2017 15:12:04 -0700 (PDT)
-Received: by mail-wm0-f52.google.com with SMTP id w64so42920978wma.0
-	for <yocto@yoctoproject.org>; Mon, 17 Apr 2017 15:12:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=bXC2RNXuaneZz/yM9DehD0On6kWkmxTM/POnDRqR1No=;
-	b=vMJbg0MJQhMbMXiRaxm3EPBmLca5KHwSMZXxqi1UGTB+X6Dz0Yuq0H5/Csk1Mb6ynR
-	CJRri6pdc4uW9mL+jiM2BD1katKdNDN3dSxEhJ6jckkrqfZAIqIbHDsDbmHfxdA0G99O
-	Xb+VJvMBkFdSOAfuoqUr7VlftQScaxSCrb1qsAJOCUCV9ddqa9jPtbSVKHyWRN2ItzX0
-	yiICWtNpaMEWNMOUbMjoWl9CjGrCQrU4XEsqXQeG8a1uRyoOYBvTs/m/cCB6xtB+H+5N
-	RneU8fPh91TdtVSLlYl97eZBFbTSvVD2KLQ9RxYfujKOblFSJT9Zfu+VaSqwgkEsJtPS
-	mhNQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=bXC2RNXuaneZz/yM9DehD0On6kWkmxTM/POnDRqR1No=;
-	b=EKpK9O7ihtFKQZ2YdiznGBUGKG2D5A1kFRgvxgVZNaRK3SWLavriWwyTjSKjKQLVtS
-	mjFn43Vzd8VZ0VbsDoFixKVR5YQrD70yilwaKfIehMOaLKGNziQ+vVmB95oR3C7ffwB9
-	9E2Iirzo2rbqQO3j/Uc9JBU+WB/W9UbyMvjBPVd70/swJ38/t9189qettS8O9wOSHOyr
-	OgC1eylQ+LBSLKY6LUwH/NPAuQDK0ves/IdEBHty5PCGda/rG2gpZX9WMWscylpp4Xz9
-	xL0tuq1vqgGkVrWgbJEDqdaFt2FiaT5pl5wrm55ViuSCXMEorglZcAAGx0Fo7pa3r+g+
-	bHXA==
-X-Gm-Message-State: AN3rC/5hPQDkVUNdXD5LjP5wvKi8cFopR9EmImp/Pqc76jr0ATd+nrJl
-	tArXg/qIupi4XH4NKjGwu7hpBOSyKg==
-X-Received: by 10.28.87.70 with SMTP id l67mr9752035wmb.37.1492467123815; Mon,
-	17 Apr 2017 15:12:03 -0700 (PDT)
+Received: from mail.analogue-micro.com (mail.analogue-micro.com
+	[217.144.149.242])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 19847E00839
+	for <yocto@yoctoproject.org>; Mon, 17 Apr 2017 19:42:18 -0700 (PDT)
+Received: by mail.analogue-micro.com (Postfix, from userid 999)
+	id 5CFB368A01A; Tue, 18 Apr 2017 03:42:17 +0100 (BST)
+Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
+	by mail.analogue-micro.com (Postfix) with ESMTP id D21DB68A019;
+	Tue, 18 Apr 2017 03:42:14 +0100 (BST)
+Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
+	by zeus.mlbassoc.com (Postfix) with ESMTP id 6F7E66740398;
+	Tue, 18 Apr 2017 04:42:14 +0200 (CEST)
+From: Gary Thomas <gary@mlbassoc.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <AM4PR1001MB13476AAC4A2CE5DA1A056C1FD7070@AM4PR1001MB1347.EURPRD10.PROD.OUTLOOK.COM>
+	<7e3d29c7-b0af-3f5f-09e2-900c140360ab@mlbassoc.com>
+	<AM4PR1001MB134724084AC231376955BBE6D7060@AM4PR1001MB1347.EURPRD10.PROD.OUTLOOK.COM>
+Message-ID: <2aad79c6-3e75-539d-6136-a4da4849e888@mlbassoc.com>
+Date: Tue, 18 Apr 2017 04:42:14 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.8.0
 MIME-Version: 1.0
-Received: by 10.80.180.141 with HTTP; Mon, 17 Apr 2017 15:11:33 -0700 (PDT)
-In-Reply-To: <CAOiuDAXJJq5zRUEZOOLiyp2WMXBr0EPh1oAthKL_LWhkCBGYAQ@mail.gmail.com>
-References: <CAOiuDAXJJq5zRUEZOOLiyp2WMXBr0EPh1oAthKL_LWhkCBGYAQ@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Mon, 17 Apr 2017 15:11:33 -0700
-Message-ID: <CAMKF1sob9a5Z2xHw1jkzc1rviYa-pJoTPXVMW_Bp5rGM12P8Nw@mail.gmail.com>
-To: Giuseppe Di Guglielmo <giuseppe.diguglielmo@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: meta-tensorflow
+In-Reply-To: <AM4PR1001MB134724084AC231376955BBE6D7060@AM4PR1001MB1347.EURPRD10.PROD.OUTLOOK.COM>
+Subject: Re: Noobie questions
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,29 +43,83 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 17 Apr 2017 22:12:06 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Tue, 18 Apr 2017 02:42:22 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Mon, Apr 17, 2017 at 2:19 PM, Giuseppe Di Guglielmo
-<giuseppe.diguglielmo@gmail.com> wrote:
-> Hi,
-> is there any of the meta- layers supporting the installation of Google
-> TensorFlow? Does a package-specific layer make sense in Yocto?
+On 2017-04-17 16:27, bahjat khan wrote:
+> Hi Gary,
+
+n.b. it's polite to keep responses on the mailing list so that everyone benefits!
+
 >
-
-Don't think so. There is tensor rt recipe in tegra bsp layer
-
-https://github.com/madisongh/meta-tegra/tree/master/recipes-devtools/gie
-
-but it would be interesting to have a tensor flow layer if its going
-to involve multiple packages.
-
-> GDG
 >
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+> Thanks for the response!
 >
+>
+> How will i know what to change in the local.conf file?
+> Is there a Yocto article that tells me what the different variables in .bb and .conf files mean?
+
+The Yocto (OpenEmbedded) documentation is quite thorough.
+   https://www.yoctoproject.org/documentation
+
+> ------------------------------------------------------------------------------------------------------------------------
+> *From:* yocto-bounces@yoctoproject.org <yocto-bounces@yoctoproject.org> on behalf of Gary Thomas <gary@mlbassoc.com>
+> *Sent:* 17 April 2017 12:59
+> *To:* yocto@yoctoproject.org
+> *Subject:* Re: [yocto] Noobie questions
+>
+> On 2017-04-16 20:23, bahjat khan wrote:
+>> Hi Guys,
+>>
+>>
+>> I'm extremely new to the yocto project, i've done quite a bit of reading on it but i'm still very confused.
+>>
+>> I've set my self a simple task of changing the kernel for a Yocto image that i build, the commands i use to build this
+>> yocto image are:
+>
+> <text would have been a better choice than an image>
+>   $ git clone http://git.yoctoproject.org/git/poky
+>   $ cd poky
+>   $ git checkout -b fido origin/fido
+>   $ source oe-init-build-env
+>   $bitbake core-image-minimal
+>   $runqemu qemux86
+>
+> Check out a newer revision - fido is VERY OLD.  Probably best to use morty which is the upcoming 2.3 release
+>
+>>
+>> |$ git clone http://git.yoctoproject.org/git/poky $ cd poky $ git checkout -b fido origin/fido $ source oe-init-build-env
+>> $bitbake core-image-minimal $runqemu qemux86|
+>>
+>> I understand that i need to make changes to the poky.conf file to specify what kernel i want to use (i have a standard
+>> choice between 3.14 and 3.19).
+>
+> No, make such changes in your local.conf
+>
+>>
+>> However if i want to use a different kernel such as 4.4, i do this by making the changes in the poky.conf file, copying
+>> linux-yocto_3.19.bb file and renaming it to linux-yocto_4.4.bb. I also change the SRC_URI to
+>> "git://git.yoctoproject.org/linux-yocto-4.4.git;barcelone=1;branch=${KRBRANCH},${KMETA};name=machine,meta"
+>>
+>> It doesn't seem to find the place where it needs to download 4.4 from even though it's on the yocto website. I can
+>> download it by simply typing "git clone xxxx"
+>>
+>> Also i haven't changed the SRCREV_machine_qemuarm ?= "xxxxxxxxxxxx" numbers, because i don't know what they are or what
+>> the variable SRCREV_machine_qemuarm is.
+>
+> You should never need to mess with these settings.
+>
+>>
+>> With these warnings, it reverts back to 3.19 kernel.
+>>
+>> I hope i've explained my problem well, but if you are still confused please let me know.
+>>
+
+
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
