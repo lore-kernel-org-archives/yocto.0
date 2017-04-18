@@ -1,6 +1,6 @@
 Return-Path: <pbarker@toganlabs.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6BC54E00AA7; Tue, 18 Apr 2017 13:59:26 -0700 (PDT)
+	id 7A426E00A9A; Tue, 18 Apr 2017 13:59:26 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,36 +12,40 @@ X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from slow1-d.mail.gandi.net (slow1-d.mail.gandi.net [217.70.178.86])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9056BE00A9A
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8F236E00A81
 	for <yocto@yoctoproject.org>; Tue, 18 Apr 2017 13:59:21 -0700 (PDT)
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net
-	[217.70.183.196])
-	by slow1-d.mail.gandi.net (Postfix) with ESMTP id 1123147F0E8
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net
+	[217.70.183.200])
+	by slow1-d.mail.gandi.net (Postfix) with ESMTP id BCB9747F0E0
 	for <yocto@yoctoproject.org>; Tue, 18 Apr 2017 22:51:24 +0200 (CEST)
-Received: from mfilter22-d.gandi.net (mfilter22-d.gandi.net [217.70.178.150])
-	by relay4-d.mail.gandi.net (Postfix) with ESMTP id 7B105172094;
-	Tue, 18 Apr 2017 22:51:23 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at mfilter22-d.gandi.net
-Received: from relay4-d.mail.gandi.net ([IPv6:::ffff:217.70.183.196])
-	by mfilter22-d.gandi.net (mfilter22-d.gandi.net [::ffff:10.0.15.180])
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net
+	[217.70.183.195])
+	by relay7-d.mail.gandi.net (Postfix) with ESMTPS id 3D894D32
+	for <yocto@yoctoproject.org>; Tue, 18 Apr 2017 22:51:22 +0200 (CEST)
+Received: from mfilter6-d.gandi.net (mfilter6-d.gandi.net [217.70.178.135])
+	by relay3-d.mail.gandi.net (Postfix) with ESMTP id 03236A80CB;
+	Tue, 18 Apr 2017 22:51:22 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at mfilter6-d.gandi.net
+Received: from relay3-d.mail.gandi.net ([IPv6:::ffff:217.70.183.195])
+	by mfilter6-d.gandi.net (mfilter6-d.gandi.net [::ffff:10.0.15.180])
 	(amavisd-new, port 10024)
-	with ESMTP id C-Dkw-bG-otk; Tue, 18 Apr 2017 22:51:22 +0200 (CEST)
+	with ESMTP id njPBhvw1rm31; Tue, 18 Apr 2017 22:51:20 +0200 (CEST)
 X-Originating-IP: 82.34.23.153
 Received: from host0.betafive.co.uk
 	(cpc116908-shep14-2-0-cust920.8-3.cable.virginm.net [82.34.23.153])
 	(Authenticated sender: noreply@paulbarker.me.uk)
-	by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id E2C14172093;
-	Tue, 18 Apr 2017 22:51:21 +0200 (CEST)
+	by relay3-d.mail.gandi.net (Postfix) with ESMTPSA id 74F81A80D3;
+	Tue, 18 Apr 2017 22:51:20 +0200 (CEST)
 Received: by host0.betafive.co.uk (Postfix, from userid 2525)
-	id 9688C4045D7E; Tue, 18 Apr 2017 21:51:19 +0100 (BST)
+	id 824B94045D5F; Tue, 18 Apr 2017 21:51:19 +0100 (BST)
 From: Paul Barker <pbarker@toganlabs.com>
 To: yocto@yoctoproject.org
-Date: Tue, 18 Apr 2017 21:51:08 +0100
-Message-Id: <20170418205108.14629-9-pbarker@toganlabs.com>
+Date: Tue, 18 Apr 2017 21:51:02 +0100
+Message-Id: <20170418205108.14629-3-pbarker@toganlabs.com>
 X-Mailer: git-send-email 2.11.0
 In-Reply-To: <20170418205108.14629-1-pbarker@toganlabs.com>
 References: <20170418205108.14629-1-pbarker@toganlabs.com>
-Subject: [meta-raspberrypi][morty][PATCH 8/8] rpi-config: Specify bcm2710-rpi-3-b dtb for 64bit rpi3
+Subject: [meta-raspberrypi][morty][PATCH 2/8] linux-raspberrypi: Add defconfig for raspberrypi3-64
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -57,30 +61,23 @@ X-List-Received-Date: Tue, 18 Apr 2017 20:59:26 -0000
 
 From: Khem Raj <raj.khem@gmail.com>
 
-Let config.txt explicitly specify it
-
 Signed-off-by: Khem Raj <raj.khem@gmail.com>
 ---
- recipes-bsp/bootfiles/rpi-config_git.bb | 6 ++++++
- 1 file changed, 6 insertions(+)
+ recipes-kernel/linux/linux-raspberrypi.inc | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/recipes-bsp/bootfiles/rpi-config_git.bb b/recipes-bsp/bootfiles/rpi-config_git.bb
-index f610718..20ec343 100644
---- a/recipes-bsp/bootfiles/rpi-config_git.bb
-+++ b/recipes-bsp/bootfiles/rpi-config_git.bb
-@@ -112,6 +112,12 @@ do_deploy() {
-     fi
- }
+diff --git a/recipes-kernel/linux/linux-raspberrypi.inc b/recipes-kernel/linux/linux-raspberrypi.inc
+index 98229d9..d196d8e 100644
+--- a/recipes-kernel/linux/linux-raspberrypi.inc
++++ b/recipes-kernel/linux/linux-raspberrypi.inc
+@@ -18,6 +18,7 @@ PV = "${LINUX_VERSION}+git${SRCPV}"
+ # NOTE: For now we pull in the default config from the RPi kernel GIT tree.
+ KERNEL_DEFCONFIG_raspberrypi ?= "bcmrpi_defconfig"
+ KERNEL_DEFCONFIG_raspberrypi2 ?= "bcm2709_defconfig"
++KERNEL_DEFCONFIG_raspberrypi3-64 ?= "bcmrpi3_defconfig"
  
-+do_deploy_append_raspberrypi3-64() {
-+    # Device Tree support
-+    echo "# Load correct Device Tree for Aarch64" >>${DEPLOYDIR}/bcm2835-bootfiles/config.txt
-+    echo "device_tree=bcm2710-rpi-3-b.dtb" >>${DEPLOYDIR}/bcm2835-bootfiles/config.txt
-+}
-+
- addtask deploy before do_package after do_install
- do_deploy[dirs] += "${DEPLOYDIR}/bcm2835-bootfiles"
- 
+ # CMDLINE for raspberrypi
+ CMDLINE = "dwc_otg.lpm_enable=0 console=serial0,115200 root=/dev/mmcblk0p2 rootfstype=ext4 rootwait"
 -- 
 2.11.0
 
