@@ -1,70 +1,49 @@
-Return-Path: <andrei@gherzan.ro>
+Return-Path: <ulf.hofemeier@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 89CDEE00867; Tue, 18 Apr 2017 05:58:49 -0700 (PDT)
+	id DE5BEE00A53; Tue, 18 Apr 2017 08:17:33 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [74.125.82.65 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.82.65 listed in dnsbl.sorbs.net]
-Received: from mail-wm0-f65.google.com (mail-wm0-f65.google.com [74.125.82.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 05911E00826
-	for <yocto@yoctoproject.org>; Tue, 18 Apr 2017 05:58:47 -0700 (PDT)
-Received: by mail-wm0-f65.google.com with SMTP id o81so14531631wmb.0
-	for <yocto@yoctoproject.org>; Tue, 18 Apr 2017 05:58:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-disposition:in-reply-to:user-agent;
-	bh=Xg+TkceRxK/0SusmGieWxC7DyDwI4dfDQDsokOJ3aJM=;
-	b=zqNWPZgvIvEIsoxSBCgBGSMAzq7uTNzo5dR6GRzjFpEsLJQoRJ9XzfgiftKcUbqEW3
-	3kys+iyqB2cj8OgRaA6MxT1lX1v3m7GOWhVShGpZi+lz2oD8EyIbDRuuu7iXa2LrOyYR
-	dm3wbHOYYRi7JZd4kN4rWLpjIVRyYag/l6P9/zxOcKnF/GChJ73hywtEPvaFbv6gtz2V
-	cIf1EY53aPsM5Syb3DgI7pLc3yydZCXK8d63XXNghfxudrUCYroEB/x2l46SxisVog30
-	qn5a+AlA3GKNKFeCXcYZDh8bCLs2ltxMKLzLN9TRYMKg+fnlDv8H/uKq3+Vve52m6ECL
-	5lyA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-	:mime-version:content-disposition:in-reply-to:user-agent;
-	bh=Xg+TkceRxK/0SusmGieWxC7DyDwI4dfDQDsokOJ3aJM=;
-	b=F7iZn5Jt1EYU7FTZwcdTHBK9JYYoxeTwIOZuYR8omdae8g5FKJd3gCgOaYq7y+MmId
-	8ExYwSc9tXqMIy5OLq2XcP0/Fz9rjezI87JaTeaI4oIMzPb9cnhLzRyy1tyvOI8ALrQo
-	F2QbK06OaJpmZGY350BGYwD5+9PUGvosHp1rHzbvnDoaYnWYq5zG7IYje38ejTOV6x5M
-	gltu/ty9GlnekypoXVHCLZAKYfpBpS7jHd+Qqyp6cYh45806ayHU2QQxOL7uYKXFOGvD
-	iX9iCVLc8rJnAGQlBNtsMhK1Ey1K3WcZRRAo9YVftnXLo/QqZG/gzvXojyWWOD4luXbL
-	fHHw==
-X-Gm-Message-State: AN3rC/7B/mo8K2pvo6i0no4aunhqCCWdwgr2pCK5JiVIzURk2G2jNUB/
-	K5V0NQwGW5wZBko+Qhw=
-X-Received: by 10.28.63.148 with SMTP id m142mr6349732wma.98.1492520326297;
-	Tue, 18 Apr 2017 05:58:46 -0700 (PDT)
-Received: from carbonA (cpc96910-walt25-2-0-cust629.13-2.cable.virginm.net.
-	[82.22.166.118]) by smtp.gmail.com with ESMTPSA id
-	p26sm14890281wmi.18.2017.04.18.05.58.45
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 18 Apr 2017 05:58:45 -0700 (PDT)
-Date: Tue, 18 Apr 2017 13:58:37 +0100
-From: Andrei Gherzan <andrei@gherzan.ro>
-To: Paul Barker <pbarker@toganlabs.com>
-Message-ID: <20170418125837.GA2724@carbonA>
-References: <20170414201313.3138-1-andrei@gherzan.ro>
-	<20170414201313.3138-4-andrei@gherzan.ro>
-	<CAPyrkgx4stTPY-kEV5rMtJYyXwPkag47bP8N8KaRLCnAf3wWeA@mail.gmail.com>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [134.134.136.65 listed in list.dnswl.org]
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5334DE00A16
+	for <yocto@yoctoproject.org>; Tue, 18 Apr 2017 08:17:30 -0700 (PDT)
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+	by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	18 Apr 2017 08:17:29 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.37,219,1488873600"; d="scan'208,217";a="90892001"
+Received: from orsmsx109.amr.corp.intel.com ([10.22.240.7])
+	by fmsmga005.fm.intel.com with ESMTP; 18 Apr 2017 08:17:29 -0700
+Received: from orsmsx156.amr.corp.intel.com (10.22.240.22) by
+	ORSMSX109.amr.corp.intel.com (10.22.240.7) with Microsoft SMTP Server
+	(TLS) id 14.3.319.2; Tue, 18 Apr 2017 08:17:28 -0700
+Received: from orsmsx115.amr.corp.intel.com ([169.254.4.44]) by
+	ORSMSX156.amr.corp.intel.com ([169.254.8.229]) with mapi id
+	14.03.0319.002; Tue, 18 Apr 2017 08:17:28 -0700
+From: "Hofemeier, Ulf" <ulf.hofemeier@intel.com>
+To: Abhishekh Awanti <abhishekh@relysys.co.in>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] OPKG package management issue
+Thread-Index: AQHSuDUzU5qWj5jKKkyCWP7w34SQGqHLPVYA
+Date: Tue, 18 Apr 2017 15:17:27 +0000
+Message-ID: <A05CC4E6-5172-4433-867E-48CFAFCB4210@intel.com>
+References: <CANPqCWL6y3EqV+M7rPQPOEgv+6DyZLx+itHghixJC4AsSiFXfw@mail.gmail.com>
+In-Reply-To: <CANPqCWL6y3EqV+M7rPQPOEgv+6DyZLx+itHghixJC4AsSiFXfw@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Microsoft-MacOutlook/f.21.0.170409
+x-originating-ip: [10.24.8.88]
 MIME-Version: 1.0
-In-Reply-To: <CAPyrkgx4stTPY-kEV5rMtJYyXwPkag47bP8N8KaRLCnAf3wWeA@mail.gmail.com>
-User-Agent: Mutt/1.8.0 (2017-02-23)
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-raspberrypi][PATCH 4/7] linux-raspberrypi_4.9: Bump to 4.9.21
+Subject: Re: OPKG package management issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,73 +55,126 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 18 Apr 2017 12:58:49 -0000
-X-Groupsio-MsgNum: 35635
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="TB36FDmn/VVEgNH/"
-Content-Disposition: inline
+X-List-Received-Date: Tue, 18 Apr 2017 15:17:33 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_A05CC4E651724433867E48CFAFCB4210intelcom_"
 
---TB36FDmn/VVEgNH/
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+--_000_A05CC4E651724433867E48CFAFCB4210intelcom_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On Tue, Apr 18, 2017 at 12:10:47PM +0100, Paul Barker wrote:
-> On Fri, Apr 14, 2017 at 9:13 PM, Andrei Gherzan <andrei@gherzan.ro> wrote:
-> > Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
-> > ---
-> >  recipes-kernel/linux/linux-raspberrypi_4.9.bb | 4 ++--
-> >  1 file changed, 2 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/recipes-kernel/linux/linux-raspberrypi_4.9.bb b/recipes-kernel/linux/linux-raspberrypi_4.9.bb
-> > index 3aba67b..c0e8b83 100644
-> > --- a/recipes-kernel/linux/linux-raspberrypi_4.9.bb
-> > +++ b/recipes-kernel/linux/linux-raspberrypi_4.9.bb
-> > @@ -1,8 +1,8 @@
-> >  FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
-> >
-> > -LINUX_VERSION ?= "4.9.13"
-> > +LINUX_VERSION ?= "4.9.21"
-> >
-> > -SRCREV = "28ea32b9afb5d813986c4ab940c26fe298d80ed2"
-> > +SRCREV = "5e4ee836560d4c0371e109bf469e1ad808ae7a44"
-> >  SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-4.9.y \
-> >  "
-> >  require linux-raspberrypi.inc
-> > --
-> > 2.12.1
-> >
->
-> I'm going to backport this to morty and test this week. Any other
-> patches worth testing for morty at the same time?
->
-> Cheers,
-> Paul
+SGkgQWJoaXNoZWssDQoNCkNhbiB5b3UgcGxlYXNlIGNyZWF0ZSB0aGlzIGRpcmVjdG9yeSBhbmQg
+c2VlIGlmIG9wa2cgd2lsbCB3b3JrIGFmdGVyIHRoYXQ/DQoNClRoYW5rcywNClVsZg0KDQoNCkZy
+b206IDx5b2N0by1ib3VuY2VzQHlvY3RvcHJvamVjdC5vcmc+IG9uIGJlaGFsZiBvZiBBYmhpc2hl
+a2ggQXdhbnRpIDxhYmhpc2hla2hAcmVseXN5cy5jby5pbj4NCkRhdGU6IFR1ZXNkYXksIEFwcmls
+IDE4LCAyMDE3IGF0IDQ6MTUgQU0NClRvOiAieW9jdG9AeW9jdG9wcm9qZWN0Lm9yZyIgPHlvY3Rv
+QHlvY3RvcHJvamVjdC5vcmc+DQpTdWJqZWN0OiBbeW9jdG9dIE9QS0cgcGFja2FnZSBtYW5hZ2Vt
+ZW50IGlzc3VlDQoNCkhpLA0KDQpJIGFtIHRyeWluZyB0byBpbnN0YWxsIC5pcGsgd2l0aCBvcGtn
+IGluIHlvY3RvLg0KDQogSWYgaSBydW4gYmVsb3cgY29tbWFuZA0KDQogICAgb3BrZyBpbnN0YWxs
+ICouaXBrDQoNCiBJIGFtIGdldHRpbmcgdGhlIGJlbG93IGVycm9yOi0NCg0KIENvbGxlY3RlZCBl
+cnJvcnM6DQogKiBvcGtnX2NvbmZfbG9hZDogQ291bGQgbm90IGNyZWF0ZSBsb2NrIGZpbGUgL3Zh
+ci9saWIvb3BrZy9sb2NrOiBObyBzdWNoIGZpbGUgb3IgZGlyZWN0b3J5Lg0KDQpJIGRpZCBzb21l
+IHJlc2VhcmNoIGFuZCBmb2xsb3dlZCB0aGlzIGxpbmsNCg0KaHR0cDovL3dpa2kuaGlvcHJvamVj
+dC5vcmcvaW5kZXgucGhwP3RpdGxlPVlvY3RvOl9PcGtnX1BhY2thZ2VfTWFuYWdlbWVudF9TeXN0
+ZW1fU2V0X1VwDQoNCkkgY2FtZSB0byBrbm93IHRoYXQgb25lIHNob3VsZCBhZGQgaW4gdGhlIGNv
+bmYvbG9jYWwuY29uZg0KRVhUUkFfSU1BR0VfRkVBVFVSRVMgPSAicGFja2FnZS1tYW5hZ2VtZW50
+Ig0KDQpJTUFHRV9JTlNUQUxMX2FwcGVuZCA9ICIgb3BrZyAiDQoNClBBQ0tBR0VfQ0xBU1NFUyA9
+ICJwYWNrYWdlX2lwayINCg0KRXZlbiB0aG91Z2ggaSBhbSBnZXR0aW5nIHRoZSBzYW1lIGVycm9y
+Lg0KDQoiL3Zhci9saWIvb3BrZy8iICBpcyBleGlzdGVkIGluIG15IGltYWdlIGJ1aWxkIGRpcmVj
+dG9yeSwgYnV0IGFmdGVyIGluc3RhbGxpbmcgdGhlIGltYWdlIHRvIHRoZSB0YXJnZXQgZGV2aWNl
+IHRoZSAiL3Zhci9saWIvb3BrZy8iIGlzIG5vdCBhcHBlYXJpbmcuDQoNCkkgYW0gZ3Vlc3Npbmcg
+dGhhdCwgdGhlIGRpc2FwcGVhcmFuY2Ugb2YgdGhlIC92YXIvbGliL29wa2cgZm9sZGVyIG1heSBi
+ZSBjYXVzaW5nIHRoZSBvcGtnIGVycm9yLg0KDQpDYW4gYW55Ym9keSBwbGVhc2UgaGVscCBtZSBv
+biB0aGlzIHByb2JsZW0uDQoNClRoYW5rIHlvdSwNCkFiaGlzaGVrDQoNCg0KDQo=
 
-I would probably want to have 64b rpi3 too in morty. And yes, 4.9
-defaulted for kernel?
+--_000_A05CC4E651724433867E48CFAFCB4210intelcom_
+Content-Type: text/html; charset="utf-8"
+Content-ID: <F1AF9976A8880B4594B92BB68F060086@intel.com>
+Content-Transfer-Encoding: base64
 
---
-Andrei Gherzan
-gpg: rsa4096/D4D94F67AD0E9640 | t: @agherzan
+PGh0bWwgeG1sbnM6bz0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6b2ZmaWNlIiB4
+bWxuczp3PSJ1cm46c2NoZW1hcy1taWNyb3NvZnQtY29tOm9mZmljZTp3b3JkIiB4bWxuczptPSJo
+dHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL29mZmljZS8yMDA0LzEyL29tbWwiIHhtbG5zPSJo
+dHRwOi8vd3d3LnczLm9yZy9UUi9SRUMtaHRtbDQwIj4NCjxoZWFkPg0KPG1ldGEgaHR0cC1lcXVp
+dj0iQ29udGVudC1UeXBlIiBjb250ZW50PSJ0ZXh0L2h0bWw7IGNoYXJzZXQ9dXRmLTgiPg0KPG1l
+dGEgbmFtZT0iVGl0bGUiIGNvbnRlbnQ9IiI+DQo8bWV0YSBuYW1lPSJLZXl3b3JkcyIgY29udGVu
+dD0iIj4NCjxtZXRhIG5hbWU9IkdlbmVyYXRvciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUg
+KGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxlPjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8N
+CkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0
+IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJ
+cGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAyIDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8N
+CnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWwsIGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsN
+CgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJZm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWls
+eToiVGltZXMgTmV3IFJvbWFuIjt9DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1z
+dHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjpibHVlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxp
+bmU7fQ0KYTp2aXNpdGVkLCBzcGFuLk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHlsZS1w
+cmlvcml0eTo5OTsNCgljb2xvcjpwdXJwbGU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9
+DQpzcGFuLkVtYWlsU3R5bGUxNw0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25hbC1yZXBseTsNCglm
+b250LWZhbWlseTpDYWxpYnJpOw0KCWNvbG9yOndpbmRvd3RleHQ7fQ0Kc3Bhbi5tc29JbnMNCgl7
+bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9ubHk7DQoJbXNvLXN0eWxlLW5hbWU6IiI7DQoJdGV4dC1k
+ZWNvcmF0aW9uOnVuZGVybGluZTsNCgljb2xvcjp0ZWFsO30NCi5Nc29DaHBEZWZhdWx0DQoJe21z
+by1zdHlsZS10eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQtc2l6ZToxMC4wcHQ7fQ0KQHBhZ2UgV29y
+ZFNlY3Rpb24xDQoJe3NpemU6OC41aW4gMTEuMGluOw0KCW1hcmdpbjoxLjBpbiAxLjBpbiAxLjBp
+biAxLjBpbjt9DQpkaXYuV29yZFNlY3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rpb24xO30NCi0tPjwv
+c3R5bGU+DQo8L2hlYWQ+DQo8Ym9keSBiZ2NvbG9yPSJ3aGl0ZSIgbGFuZz0iRU4tVVMiIGxpbms9
+ImJsdWUiIHZsaW5rPSJwdXJwbGUiPg0KPGRpdiBjbGFzcz0iV29yZFNlY3Rpb24xIj4NCjxwIGNs
+YXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5
+OkNhbGlicmkiPkhpIEFiaGlzaGVrLDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OkNhbGli
+cmkiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxz
+cGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OkNhbGlicmkiPkNhbiB5b3Ug
+cGxlYXNlIGNyZWF0ZSB0aGlzIGRpcmVjdG9yeSBhbmQgc2VlIGlmIG9wa2cgd2lsbCB3b3JrIGFm
+dGVyIHRoYXQ/PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNw
+YW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6Q2FsaWJyaSI+PGJyPg0KVGhh
+bmtzLDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0
+eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OkNhbGlicmkiPlVsZjxvOnA+PC9vOnA+
+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6
+MTEuMHB0O2ZvbnQtZmFtaWx5OkNhbGlicmkiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4N
+CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQt
+ZmFtaWx5OkNhbGlicmkiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxkaXYgc3R5bGU9
+ImJvcmRlcjpub25lO2JvcmRlci10b3A6c29saWQgI0I1QzRERiAxLjBwdDtwYWRkaW5nOjMuMHB0
+IDBpbiAwaW4gMGluIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxiPjxzcGFuIHN0eWxlPSJmb250
+LWZhbWlseTpDYWxpYnJpO2NvbG9yOmJsYWNrIj5Gcm9tOiA8L3NwYW4+DQo8L2I+PHNwYW4gc3R5
+bGU9ImZvbnQtZmFtaWx5OkNhbGlicmk7Y29sb3I6YmxhY2siPiZsdDt5b2N0by1ib3VuY2VzQHlv
+Y3RvcHJvamVjdC5vcmcmZ3Q7IG9uIGJlaGFsZiBvZiBBYmhpc2hla2ggQXdhbnRpICZsdDthYmhp
+c2hla2hAcmVseXN5cy5jby5pbiZndDs8YnI+DQo8Yj5EYXRlOiA8L2I+VHVlc2RheSwgQXByaWwg
+MTgsIDIwMTcgYXQgNDoxNSBBTTxicj4NCjxiPlRvOiA8L2I+JnF1b3Q7eW9jdG9AeW9jdG9wcm9q
+ZWN0Lm9yZyZxdW90OyAmbHQ7eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZyZndDs8YnI+DQo8Yj5TdWJq
+ZWN0OiA8L2I+W3lvY3RvXSBPUEtHIHBhY2thZ2UgbWFuYWdlbWVudCBpc3N1ZTxvOnA+PC9vOnA+
+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5i
+c3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
+IHN0eWxlPSJtYXJnaW4tYm90dG9tOjEyLjBwdCI+SGksPGJyPg0KPGJyPg0KSSBhbSB0cnlpbmcg
+dG8gaW5zdGFsbCA8Yj4uaXBrPC9iPiB3aXRoIDxiPm9wa2c8L2I+IGluIHlvY3RvLjxicj4NCiZu
+YnNwOzxicj4NCiZuYnNwO0lmIGkgcnVuIGJlbG93IGNvbW1hbmQ8YnI+DQombmJzcDs8YnI+DQom
+bmJzcDsmbmJzcDsmbmJzcDsgPGI+b3BrZyBpbnN0YWxsICouaXBrPC9iPjxicj4NCiZuYnNwOzxi
+cj4NCiZuYnNwO0kgYW0gZ2V0dGluZyB0aGUgYmVsb3cgZXJyb3I6LTxicj4NCiZuYnNwOzxicj4N
+CjxiPiZuYnNwO0NvbGxlY3RlZCBlcnJvcnM6PGJyPg0KJm5ic3A7KiBvcGtnX2NvbmZfbG9hZDog
+Q291bGQgbm90IGNyZWF0ZSBsb2NrIGZpbGUgL3Zhci9saWIvb3BrZy9sb2NrOiBObyBzdWNoIGZp
+bGUgb3IgZGlyZWN0b3J5LjwvYj48YnI+DQo8YnI+DQpJIGRpZCBzb21lIHJlc2VhcmNoIGFuZCBm
+b2xsb3dlZCB0aGlzIGxpbms8YnI+DQo8YnI+DQo8YSBocmVmPSJodHRwOi8vd2lraS5oaW9wcm9q
+ZWN0Lm9yZy9pbmRleC5waHA/dGl0bGU9WW9jdG86X09wa2dfUGFja2FnZV9NYW5hZ2VtZW50X1N5
+c3RlbV9TZXRfVXAiPmh0dHA6Ly93aWtpLmhpb3Byb2plY3Qub3JnL2luZGV4LnBocD90aXRsZT1Z
+b2N0bzpfT3BrZ19QYWNrYWdlX01hbmFnZW1lbnRfU3lzdGVtX1NldF9VcDwvYT48YnI+DQo8YnI+
+DQpJIGNhbWUgdG8ga25vdyB0aGF0IG9uZSBzaG91bGQgYWRkIGluIHRoZSA8Yj5jb25mL2xvY2Fs
+LmNvbmY8L2I+PG86cD48L286cD48L3A+DQo8YmxvY2txdW90ZSBzdHlsZT0iYm9yZGVyOm5vbmU7
+Ym9yZGVyLWxlZnQ6c29saWQgI0NDQ0NDQyAxLjBwdDtwYWRkaW5nOjBpbiAwaW4gMGluIDYuMHB0
+O21hcmdpbi1sZWZ0OjQuOHB0O21hcmdpbi1yaWdodDowaW4iPg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCI+PGI+RVhUUkFfSU1BR0VfRkVBVFVSRVMgPSAmcXVvdDtwYWNrYWdlLW1hbmFnZW1lbnQmcXVv
+dDs8L2I+PGJyPg0KPGJyPg0KPGI+SU1BR0VfSU5TVEFMTF9hcHBlbmQgPSAmcXVvdDsgb3BrZyAm
+cXVvdDs8L2I+PGJyPg0KPGJyPg0KPGI+UEFDS0FHRV9DTEFTU0VTID0gJnF1b3Q7cGFja2FnZV9p
+cGsmcXVvdDs8L2I+PG86cD48L286cD48L3A+DQo8L2Jsb2NrcXVvdGU+DQo8cCBjbGFzcz0iTXNv
+Tm9ybWFsIj48YnI+DQpFdmVuIHRob3VnaCBpIGFtIGdldHRpbmcgdGhlIHNhbWUgZXJyb3IuPGJy
+Pg0KPGJyPg0KPGI+JnF1b3Q7L3Zhci9saWIvb3BrZy8mcXVvdDs8L2I+Jm5ic3A7IGlzIGV4aXN0
+ZWQgaW4gbXkgaW1hZ2UgYnVpbGQgZGlyZWN0b3J5LCBidXQgYWZ0ZXIgaW5zdGFsbGluZyB0aGUg
+aW1hZ2UgdG8gdGhlIHRhcmdldCBkZXZpY2UgdGhlDQo8Yj4mcXVvdDsvdmFyL2xpYi9vcGtnLyZx
+dW90OzwvYj4gaXMgbm90IGFwcGVhcmluZy48YnI+DQo8YnI+DQpJIGFtIGd1ZXNzaW5nIHRoYXQs
+IHRoZSBkaXNhcHBlYXJhbmNlIG9mIHRoZSA8Yj4vdmFyL2xpYi9vcGtnPC9iPiBmb2xkZXIgbWF5
+IGJlIGNhdXNpbmcgdGhlIG9wa2cgZXJyb3IuPGJyPg0KPGJyPg0KQ2FuIGFueWJvZHkgcGxlYXNl
+IGhlbHAgbWUgb24gdGhpcyBwcm9ibGVtLjxicj4NCjxicj4NClRoYW5rIHlvdSw8bzpwPjwvbzpw
+PjwvcD4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+QWJoaXNoZWs8bzpwPjwvbzpwPjwv
+cD4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48YnI+DQombmJzcDs8YnI+DQombmJzcDs8
+bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4N
+Cg==
 
---TB36FDmn/VVEgNH/
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEE90oi/MnVCYFbB1m0Jrqo2vaxFPYFAlj2DXkACgkQJrqo2vax
-FPa8MQ//aspLpiPVBLrsWWgZ/xDHiDu2got57w31x4MB5kgmMy7vufr+p8yiG1p7
-8Zyd0MiyeEVwPYXd8fYFH/Uk+vwVD2g6bHgWzX4mYmggERYXpPe3aE3DSHyJzXZy
-8cJbRzsajPZ+1UyB2wWCAo1fTBxWbgk3tg6um8U8y9YA8rP54YMRihafJNRYsTO1
-FebNNp+E2CQ4nQvnoPTPMQG5mxWpXoX0LW0WDdNvHz26ApbzlIM2YB6aAcF68ff2
-Jx9P1oGydGUp6uEBeNIjbZkLpStEFGJnA9WkE2YSjIBTI4MSEmVh4bJzCr1WgoQe
-YbLiJZ0eEg0OmH4HIQswZRy1+rQhu+QwDIz4GFNfj2rZVpVz5QsVTZCCvLbPB36S
-5nYPnOzG3XnZ6wWf1lGazPjkIyVvIU1KJuToCbcOE6HzZ9+ws2oDsipiii+2Vpds
-izJ4dLBNk6eEd3LFTVtSOgiD+CMRU/q7x1t9fg79ZKTyCvs6AnVrVyX0rnjFmM2y
-JNGRSd0f5pdTWGIogsD16biLZH4XzBExvNr66pa+j8hgmDzsu6QvlSkjCqlB+eao
-elsvODl87CkRPRpfl8KSJUYKBxSnpSQInGYWY/fn/pyetqYV9/iF4vI8OsS7A9gx
-TExmGuwvWn0IOvrPHUOj5eongS6v+G+2Djf7Elj8uQnugRs2JDM=
-=i1me
------END PGP SIGNATURE-----
-
---TB36FDmn/VVEgNH/--
+--_000_A05CC4E651724433867E48CFAFCB4210intelcom_--
