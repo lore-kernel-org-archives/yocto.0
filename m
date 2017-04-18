@@ -1,6 +1,6 @@
 Return-Path: <pbarker@toganlabs.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 10E33E00ACE; Tue, 18 Apr 2017 13:59:24 -0700 (PDT)
+	id 30A22E00A38; Tue, 18 Apr 2017 13:59:24 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,40 +12,38 @@ X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from slow1-d.mail.gandi.net (slow1-d.mail.gandi.net [217.70.178.86])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8AF06E00A31
-	for <yocto@yoctoproject.org>; Tue, 18 Apr 2017 13:59:21 -0700 (PDT)
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net
-	[217.70.183.201])
-	by slow1-d.mail.gandi.net (Postfix) with ESMTP id B555247F0DD
-	for <yocto@yoctoproject.org>; Tue, 18 Apr 2017 22:51:24 +0200 (CEST)
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net
-	[217.70.183.197])
-	by relay8-d.mail.gandi.net (Postfix) with ESMTPS id DA70D406BF;
-	Tue, 18 Apr 2017 22:51:22 +0200 (CEST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8CB0BE00A38
+	for <yocto@yoctoproject.org>; Tue, 18 Apr 2017 13:59:22 -0700 (PDT)
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net
+	[217.70.183.200])
+	by slow1-d.mail.gandi.net (Postfix) with ESMTP id C9CE647EFC1
+	for <yocto@yoctoproject.org>; Tue, 18 Apr 2017 22:51:52 +0200 (CEST)
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net
+	[217.70.183.195])
+	by relay7-d.mail.gandi.net (Postfix) with ESMTPS id A56522923;
+	Tue, 18 Apr 2017 22:51:51 +0200 (CEST)
 Received: from mfilter11-d.gandi.net (mfilter11-d.gandi.net [217.70.178.131])
-	by relay5-d.mail.gandi.net (Postfix) with ESMTP id B377341C086;
-	Tue, 18 Apr 2017 22:51:22 +0200 (CEST)
+	by relay3-d.mail.gandi.net (Postfix) with ESMTP id 93BF0A80C2;
+	Tue, 18 Apr 2017 22:51:51 +0200 (CEST)
 X-Virus-Scanned: Debian amavisd-new at mfilter11-d.gandi.net
-Received: from relay5-d.mail.gandi.net ([IPv6:::ffff:217.70.183.197])
+Received: from relay3-d.mail.gandi.net ([IPv6:::ffff:217.70.183.195])
 	by mfilter11-d.gandi.net (mfilter11-d.gandi.net [::ffff:10.0.15.180])
 	(amavisd-new, port 10024)
-	with ESMTP id I9I974SKVRy8; Tue, 18 Apr 2017 22:51:21 +0200 (CEST)
+	with ESMTP id Mw_qS4RL4Gxf; Tue, 18 Apr 2017 22:51:50 +0200 (CEST)
 X-Originating-IP: 82.34.23.153
 Received: from host0.betafive.co.uk
 	(cpc116908-shep14-2-0-cust920.8-3.cable.virginm.net [82.34.23.153])
 	(Authenticated sender: noreply@paulbarker.me.uk)
-	by relay5-d.mail.gandi.net (Postfix) with ESMTPSA id 2AA6641C090;
-	Tue, 18 Apr 2017 22:51:20 +0200 (CEST)
+	by relay3-d.mail.gandi.net (Postfix) with ESMTPSA id 23AEEA80CD;
+	Tue, 18 Apr 2017 22:51:50 +0200 (CEST)
 Received: by host0.betafive.co.uk (Postfix, from userid 2525)
-	id 90B564045D7C; Tue, 18 Apr 2017 21:51:19 +0100 (BST)
+	id 7C9A440004CA; Tue, 18 Apr 2017 21:51:19 +0100 (BST)
 From: Paul Barker <pbarker@toganlabs.com>
 To: yocto@yoctoproject.org
-Date: Tue, 18 Apr 2017 21:51:06 +0100
-Message-Id: <20170418205108.14629-7-pbarker@toganlabs.com>
+Date: Tue, 18 Apr 2017 21:51:00 +0100
+Message-Id: <20170418205108.14629-1-pbarker@toganlabs.com>
 X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20170418205108.14629-1-pbarker@toganlabs.com>
-References: <20170418205108.14629-1-pbarker@toganlabs.com>
-Subject: [meta-raspberrypi][morty][PATCH 6/8] raspberrypi3-64: Override rpi-default-versions.inc
+Subject: [meta-raspberrypi][morty][PATCH 0/8] Stable branch backports
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,31 +57,41 @@ List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Tue, 18 Apr 2017 20:59:24 -0000
 
-Signed-off-by: Paul Barker <pbarker@toganlabs.com>
----
- conf/machine/raspberrypi3-64.conf | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+* Upgrade linux-raspberrypi 4.9 recipe
 
-diff --git a/conf/machine/raspberrypi3-64.conf b/conf/machine/raspberrypi3-64.conf
-index e7d9af2..7e99da1 100644
---- a/conf/machine/raspberrypi3-64.conf
-+++ b/conf/machine/raspberrypi3-64.conf
-@@ -6,6 +6,9 @@ MACHINEOVERRIDES = "raspberrypi3:raspberrypi:${MACHINE}"
- 
- MACHINE_EXTRA_RRECOMMENDS += "linux-firmware-bcm43430"
- 
-+# Set this early so it overrides rpi-default-versions.inc
-+PREFERRED_VERSION_linux-raspberrypi ?= "4.9.%"
-+
- require conf/machine/include/arm/arch-armv8.inc
- include conf/machine/include/rpi-base.inc
- 
-@@ -36,5 +39,3 @@ SERIAL_CONSOLE = "115200 ttyS0"
- VC4_CMA_SIZE ?= "cma-256"
- 
- UBOOT_MACHINE = "rpi_3_config"
--
--PREFERRED_VERSION_linux-raspberrypi ?= "4.9.%"
+* Add support for raspberrypi3-64 MACHINE
+
+Boot tested on raspberrypi, raspberrypi3 and raspberrypi3-64 using the 4.9
+series kernel.
+
+These patches were tested on top of Andrei's latest series of backports. The
+exact series tested can be found at:
+    https://gitlab.com/oryx/meta-raspberrypi/commits/pbarker/morty-next-2017-04-18
+
+Andrei Gherzan (1):
+  linux-raspberrypi_4.9: Bump to 4.9.21
+
+Herve Jourdain (1):
+  Add raspberrypi3-64.conf
+
+Khem Raj (5):
+  linux-raspberrypi: Add defconfig for raspberrypi3-64
+  raspberrypi3-64.conf: Use 4.9 as default kernel
+  raspberrypi3-64.conf: Specifiy rpi3-64bit dtbs
+  sdcard: Use kernel8.img for 64bit kernel image name
+  rpi-config: Specify bcm2710-rpi-3-b dtb for 64bit rpi3
+
+Paul Barker (1):
+  raspberrypi3-64: Override rpi-default-versions.inc
+
+ classes/sdcard_image-rpi.bbclass              |  1 +
+ conf/machine/raspberrypi3-64.conf             | 41 +++++++++++++++++++++++++++
+ recipes-bsp/bootfiles/rpi-config_git.bb       |  6 ++++
+ recipes-kernel/linux/linux-raspberrypi.inc    |  1 +
+ recipes-kernel/linux/linux-raspberrypi_4.9.bb |  4 +--
+ 5 files changed, 51 insertions(+), 2 deletions(-)
+ create mode 100644 conf/machine/raspberrypi3-64.conf
+
 -- 
 2.11.0
 
