@@ -1,35 +1,51 @@
-Return-Path: <gley-yocto@m.gmane.org>
+Return-Path: <pbarker@toganlabs.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D55F1E00A80; Tue, 18 Apr 2017 13:28:00 -0700 (PDT)
+	id 10E33E00ACE; Tue, 18 Apr 2017 13:59:24 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [217.70.178.86 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-X-Greylist: delayed 901 seconds by postgrey-1.32 at yocto-www;
-	Tue, 18 Apr 2017 13:27:59 PDT
-Received: from blaine.gmane.org (unknown [195.159.176.226])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 472E7E00A31
-	for <yocto@yoctoproject.org>; Tue, 18 Apr 2017 13:27:59 -0700 (PDT)
-Received: from list by blaine.gmane.org with local (Exim 4.84_2)
-	(envelope-from <gley-yocto@m.gmane.org>) id 1d0ZUX-0003HG-38
-	for yocto@yoctoproject.org; Tue, 18 Apr 2017 22:12:49 +0200
-X-Injected-Via-Gmane: http://gmane.org/
+Received: from slow1-d.mail.gandi.net (slow1-d.mail.gandi.net [217.70.178.86])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8AF06E00A31
+	for <yocto@yoctoproject.org>; Tue, 18 Apr 2017 13:59:21 -0700 (PDT)
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net
+	[217.70.183.201])
+	by slow1-d.mail.gandi.net (Postfix) with ESMTP id B555247F0DD
+	for <yocto@yoctoproject.org>; Tue, 18 Apr 2017 22:51:24 +0200 (CEST)
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net
+	[217.70.183.197])
+	by relay8-d.mail.gandi.net (Postfix) with ESMTPS id DA70D406BF;
+	Tue, 18 Apr 2017 22:51:22 +0200 (CEST)
+Received: from mfilter11-d.gandi.net (mfilter11-d.gandi.net [217.70.178.131])
+	by relay5-d.mail.gandi.net (Postfix) with ESMTP id B377341C086;
+	Tue, 18 Apr 2017 22:51:22 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at mfilter11-d.gandi.net
+Received: from relay5-d.mail.gandi.net ([IPv6:::ffff:217.70.183.197])
+	by mfilter11-d.gandi.net (mfilter11-d.gandi.net [::ffff:10.0.15.180])
+	(amavisd-new, port 10024)
+	with ESMTP id I9I974SKVRy8; Tue, 18 Apr 2017 22:51:21 +0200 (CEST)
+X-Originating-IP: 82.34.23.153
+Received: from host0.betafive.co.uk
+	(cpc116908-shep14-2-0-cust920.8-3.cable.virginm.net [82.34.23.153])
+	(Authenticated sender: noreply@paulbarker.me.uk)
+	by relay5-d.mail.gandi.net (Postfix) with ESMTPSA id 2AA6641C090;
+	Tue, 18 Apr 2017 22:51:20 +0200 (CEST)
+Received: by host0.betafive.co.uk (Postfix, from userid 2525)
+	id 90B564045D7C; Tue, 18 Apr 2017 21:51:19 +0100 (BST)
+From: Paul Barker <pbarker@toganlabs.com>
 To: yocto@yoctoproject.org
-From: "robert.berger@gmane" <gmane@reliableembeddedsystems.com>
-Date: Tue, 18 Apr 2017 22:12:48 +0200
-Message-ID: <b8415d43-c665-55c0-7b97-4a7b1b82bbbd@reliableembeddedsystems.com>
-References: <335001a8-d384-37ff-8e77-b741186b1207@mlbassoc.com>
-	<697428d2-25df-411c-c926-aacb2715b2f4@mlbassoc.com>
-Mime-Version: 1.0
-X-Complaints-To: usenet@blaine.gmane.org
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.8.0
-In-Reply-To: <697428d2-25df-411c-c926-aacb2715b2f4@mlbassoc.com>
-Subject: Re: Task dependencies
+Date: Tue, 18 Apr 2017 21:51:06 +0100
+Message-Id: <20170418205108.14629-7-pbarker@toganlabs.com>
+X-Mailer: git-send-email 2.11.0
+In-Reply-To: <20170418205108.14629-1-pbarker@toganlabs.com>
+References: <20170418205108.14629-1-pbarker@toganlabs.com>
+Subject: [meta-raspberrypi][morty][PATCH 6/8] raspberrypi3-64: Override rpi-default-versions.inc
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,39 +57,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 18 Apr 2017 20:28:00 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 18 Apr 2017 20:59:24 -0000
 
-Hi,
+Signed-off-by: Paul Barker <pbarker@toganlabs.com>
+---
+ conf/machine/raspberrypi3-64.conf | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-On 2017-04-13 11:24, Gary Thomas wrote:
-> On 2017-04-13 09:34, Gary Thomas wrote:
->> I'm trying to understand why 'perl' is being built for my target
->> even though I don't mention it in any of the package recipes used
->> to build that target.  When I used 'taskexp', I found that
->> 'perl:do_build'
->> only has a single dependent task, namely 'my-image:do_build'
->> note: no perl packages end up in my image.
->>
->> This is just one example where it seems bitbake is doing a lot of
->> unnecessary (certainly un-asked-for) work.
->>
->> How can I unravel this mystery?
->>
->> Thanks for any pointers
-
-Did you have a look at the dependency explorer?
-
-bitbake -g -u depexp core-image-sato-sdk
-
-There you see also reverse dependencies (who depends e.g. on perl)
-
-Regards,
-
-Robert
-
-
-
+diff --git a/conf/machine/raspberrypi3-64.conf b/conf/machine/raspberrypi3-64.conf
+index e7d9af2..7e99da1 100644
+--- a/conf/machine/raspberrypi3-64.conf
++++ b/conf/machine/raspberrypi3-64.conf
+@@ -6,6 +6,9 @@ MACHINEOVERRIDES = "raspberrypi3:raspberrypi:${MACHINE}"
+ 
+ MACHINE_EXTRA_RRECOMMENDS += "linux-firmware-bcm43430"
+ 
++# Set this early so it overrides rpi-default-versions.inc
++PREFERRED_VERSION_linux-raspberrypi ?= "4.9.%"
++
+ require conf/machine/include/arm/arch-armv8.inc
+ include conf/machine/include/rpi-base.inc
+ 
+@@ -36,5 +39,3 @@ SERIAL_CONSOLE = "115200 ttyS0"
+ VC4_CMA_SIZE ?= "cma-256"
+ 
+ UBOOT_MACHINE = "rpi_3_config"
+-
+-PREFERRED_VERSION_linux-raspberrypi ?= "4.9.%"
+-- 
+2.11.0
 
 
