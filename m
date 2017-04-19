@@ -1,6 +1,6 @@
 Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7CE77E00AC8; Wed, 19 Apr 2017 09:51:39 -0700 (PDT)
+	id CDE06E00B77; Wed, 19 Apr 2017 09:52:30 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,59 +9,59 @@ X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [74.125.82.66 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.82.66 listed in dnsbl.sorbs.net]
+	*      [74.125.82.65 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f66.google.com (mail-wm0-f66.google.com [74.125.82.66])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1DEFDE00995
-	for <yocto@yoctoproject.org>; Wed, 19 Apr 2017 09:51:33 -0700 (PDT)
-Received: by mail-wm0-f66.google.com with SMTP id o81so5983751wmb.0
-	for <yocto@yoctoproject.org>; Wed, 19 Apr 2017 09:51:33 -0700 (PDT)
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.82.65 listed in dnsbl.sorbs.net]
+Received: from mail-wm0-f65.google.com (mail-wm0-f65.google.com [74.125.82.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9BFEEE00AE6
+	for <yocto@yoctoproject.org>; Wed, 19 Apr 2017 09:52:17 -0700 (PDT)
+Received: by mail-wm0-f65.google.com with SMTP id z129so5999379wmb.1
+	for <yocto@yoctoproject.org>; Wed, 19 Apr 2017 09:52:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
-	h=date:from:to:cc:subject:message-id:references:mime-version
+	h=date:from:to:subject:message-id:references:mime-version
 	:content-disposition:in-reply-to:user-agent;
-	bh=6xTHJoifu+UUNkyZCdY4mmoQeDoLOdm7V48DgxMEJsY=;
-	b=cAymsdpPsi5yehFoux4Jjnsot6vBpmOy6C6sq+amH1zsR//5vy78zCF5nVrUxmvxBH
-	Vy9qmhLf6LTDAVLjB2e6juOdY7TgkOLWbSZUXO1aNdZb4XBvZ/MuLrGWpPBQW6qF5v5I
-	TQFSp25ncVNW+7Z6xoumrCPRo2y+Lbp2BI/F8sZ/WXIHr+SyKm7XPHR26lMQ3VCTbI4p
-	CN3LY7rUpSibqlm9JvXtc5c5WDn5Ekke/4T59eKherCT55pukxuQPkv97xxFzbCCY1Ao
-	oHQcOZpssgOGp678HeTLkPzAr+jpjcwcT7T80s1fbrRSRqvauWVlzMI+qOQKgdp21IXK
-	yrQg==
+	bh=55GMzcLzJxAN10aURv/mHLDMS4A4UxYzkUISpw3g07I=;
+	b=lZGWaXihWwsWVw9zDTrllHo0Sa71JQANDSzTo5Ba1d4ioRLyaag6Oe+QkxsNNkf+/Y
+	+VLhYkdeDYE5anNSPHm6AyZshimmyCDfXKCzP84FnuG8mQwHIK0NqbhS5RksRANn6Iin
+	fTP+ROCrdrn3ZMJ67R8NzEEauZvY4X5ha6hMjDSQerw9YoAYjpE1P/AYBqs5RWx0Scpr
+	z6+09iBoqRE7UYpFcmOkFOsKZ8SMvpXFq9vRt7RuBfxNk60KEBeVE1ZWaXqZCpLLpaX1
+	6duDtOfNOEHsCfHSm3hLVARELj2DqcbmeOQjPiHKl3LPAM3/YQwyfWq/+EnRztYk/pRB
+	nSmg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	h=x-gm-message-state:date:from:to:subject:message-id:references
 	:mime-version:content-disposition:in-reply-to:user-agent;
-	bh=6xTHJoifu+UUNkyZCdY4mmoQeDoLOdm7V48DgxMEJsY=;
-	b=sV5bQBR+reZSJj1G9T8PAyGcs6axcIw9g8mwJ3To4BjUdROM9HSpnI9hW7J+5t1vav
-	X7jea1HDGGvUJry6t946LzZtIpQ7s0A67hkDFr/tHHJ2Qx24Rf0BGI4cUNZQK20AAzRK
-	vEiyhptUWwpAbseER1CNyJhI0pGJIBChS7SLLof+5+2KtKD3WqWfKoVuYISPjiupVm9l
-	095mGTLwxt98vPT/oneJ3Vj8hOtkjmWjcASxSJjJ7FRw0Nu1tbkpHlMoMPcSJAxTCICj
-	V3osLKEETWl74ctPAbJmI4y+OzVQFG7XO0MgAqlABi7IF/si8r/5zxLil40xhFuZQTaC
-	G7RA==
-X-Gm-Message-State: AN3rC/5jmULoJZxRthK8jhv+PSVeWt4xh/LM921KPaVCN5n7lksTScy/
-	lclUrfgvTk7LkQ==
-X-Received: by 10.28.206.195 with SMTP id e186mr3635762wmg.37.1492620692537;
-	Wed, 19 Apr 2017 09:51:32 -0700 (PDT)
+	bh=55GMzcLzJxAN10aURv/mHLDMS4A4UxYzkUISpw3g07I=;
+	b=HI4ylJOnaffm8IhM5JMdzFyHpllZXsTpKAet+p36YHDxN+U2NhFjsd66uljdScIGFn
+	nBsoIM0N4Rl8cenkLwqzGyRWQGBjcI5BpwzDbNW/Wh+lJh77NDvlEppLUBGbWNefLZxT
+	f2fx9BPJOApQDCNMJX9LP2hODP/FseZVnCnwFixquAQwU6RCSe8VOVtQ985X3nIJ6dB3
+	NAeX5O6yeflHY5Hl9AO0hIiDt6nm6z1YkZIYhM1HkjwY7lpBhjABToXG08UNls9tW6/k
+	dA4NWMYC7iK7HY5mY61eel8gb3+VxMY4BGD7CNq7T7bupeZyo+7dffSItO06XiHRN97q
+	eL0Q==
+X-Gm-Message-State: AN3rC/77DqSCG2QBnWhgSyST35Q+1CdyBnBoAaczb2mci1hV2jEJgOGi
+	5sh1VFQKQraWWgJlwLY=
+X-Received: by 10.28.67.68 with SMTP id q65mr13244506wma.142.1492620736059;
+	Wed, 19 Apr 2017 09:52:16 -0700 (PDT)
 Received: from carbonA (host86-158-8-191.range86-158.btcentralplus.com.
 	[86.158.8.191]) by smtp.gmail.com with ESMTPSA id
-	198sm20116281wmn.30.2017.04.19.09.51.31
+	d17sm4473375wmi.21.2017.04.19.09.52.14 for <yocto@yoctoproject.org>
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 19 Apr 2017 09:51:31 -0700 (PDT)
-Date: Wed, 19 Apr 2017 17:51:27 +0100
+	Wed, 19 Apr 2017 09:52:14 -0700 (PDT)
+Date: Wed, 19 Apr 2017 17:52:10 +0100
 From: Andrei Gherzan <andrei@gherzan.ro>
 To: yocto@yoctoproject.org
-Message-ID: <20170419165127.GB19325@carbonA>
-References: <20170417123710.6374-1-andrei@gherzan.ro>
+Message-ID: <20170419165210.GC19325@carbonA>
+References: <20170418181334.14839-1-andrei@gherzan.ro>
 MIME-Version: 1.0
-In-Reply-To: <20170417123710.6374-1-andrei@gherzan.ro>
+In-Reply-To: <20170418181334.14839-1-andrei@gherzan.ro>
 User-Agent: Mutt/1.8.0 (2017-02-23)
-Subject: Re: [meta-raspberrypi][morty][PATCH 1/7] linux-firmware: Bring up wifi/ble interface on rpi3
+Subject: Re: [meta-raspberrypi][morty][PATCH 1/3] udev: Create rules file to generate serial0/1
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,157 +73,98 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 Apr 2017 16:51:39 -0000
-X-Groupsio-MsgNum: 35675
+X-List-Received-Date: Wed, 19 Apr 2017 16:52:30 -0000
+X-Groupsio-MsgNum: 35676
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="s2ZSL+KKDSLx8OML"
+	protocol="application/pgp-signature"; boundary="kVXhAStRUZ/+rrGn"
 Content-Disposition: inline
 
---s2ZSL+KKDSLx8OML
+--kVXhAStRUZ/+rrGn
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
-On Mon, Apr 17, 2017 at 01:37:04PM +0100, Andrei Gherzan wrote:
-> From: Khem Raj <raj.khem@gmail.com>
->
-> Currently the firmware is installed but kernel fails to load it
-> due this .txt file missing in the firmware directory and it ends
-> up with wifi/bluetooth i/f not being initialized. The error is
-> also in dmesg
->
-> [    3.120991] usbcore: registered new interface driver brcmfmac
-> [    3.148240] brcmfmac mmc1:0001:1: Direct firmware load for brcm/brcmfmac43430-sdio.txt failed with error -2
->
-> After applying this patch now ifconfig -a can list wlan0 interface
-> successfully.
->
-> Signed-off-by: Khem Raj <raj.khem@gmail.com>
+On Tue, Apr 18, 2017 at 07:13:32PM +0100, Andrei Gherzan wrote:
 > Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
 > ---
->  .../linux-firmware/files/brcmfmac43430-sdio.txt    | 66 ++++++++++++++++++++++
->  .../linux-firmware/linux-firmware_%.bbappend       | 12 ++++
->  2 files changed, 78 insertions(+)
->  create mode 100644 recipes-kernel/linux-firmware/files/brcmfmac43430-sdio.txt
->  create mode 100644 recipes-kernel/linux-firmware/linux-firmware_%.bbappend
+>  recipes-core/udev/udev-rules-rpi.bb           | 12 ++++++++++++
+>  recipes-core/udev/udev-rules-rpi/99-com.rules | 21 +++++++++++++++++++++
+>  2 files changed, 33 insertions(+)
+>  create mode 100644 recipes-core/udev/udev-rules-rpi.bb
+>  create mode 100644 recipes-core/udev/udev-rules-rpi/99-com.rules
 >
-> diff --git a/recipes-kernel/linux-firmware/files/brcmfmac43430-sdio.txt b/recipes-kernel/linux-firmware/files/brcmfmac43430-sdio.txt
+> diff --git a/recipes-core/udev/udev-rules-rpi.bb b/recipes-core/udev/udev-rules-rpi.bb
 > new file mode 100644
-> index 0000000..ea4f648
+> index 0000000..20443d3
 > --- /dev/null
-> +++ b/recipes-kernel/linux-firmware/files/brcmfmac43430-sdio.txt
-> @@ -0,0 +1,66 @@
-> +# NVRAM file for BCM943430WLPTH
-> +# 2.4 GHz, 20 MHz BW mode
-> +
-> +# The following parameter values are just placeholders, need to be updated.
-> +manfid=0x2d0
-> +prodid=0x0727
-> +vendid=0x14e4
-> +devid=0x43e2
-> +boardtype=0x0727
-> +boardrev=0x1101
-> +boardnum=22
-> +macaddr=00:90:4c:c5:12:38
-> +sromrev=11
-> +boardflags=0x00404201
-> +boardflags3=0x08000000
-> +xtalfreq=37400
-> +nocrc=1
-> +ag0=255
-> +aa2g=1
-> +ccode=ALL
-> +
-> +pa0itssit=0x20
-> +extpagain2g=0
-> +#PA parameters for 2.4GHz, measured at CHIP OUTPUT
-> +pa2ga0=-168,7161,-820
-> +AvVmid_c0=0x0,0xc8
-> +cckpwroffset0=5
-> +
-> +# PPR params
-> +maxp2ga0=84
-> +txpwrbckof=6
-> +cckbw202gpo=0
-> +legofdmbw202gpo=0x66111111
-> +mcsbw202gpo=0x77711111
-> +propbw202gpo=0xdd
-> +
-> +# OFDM IIR :
-> +ofdmdigfilttype=18
-> +ofdmdigfilttypebe=18
-> +# PAPD mode:
-> +papdmode=1
-> +papdvalidtest=1
-> +pacalidx2g=42
-> +papdepsoffset=-22
-> +papdendidx=58
-> +
-> +# LTECX flags
-> +ltecxmux=0
-> +ltecxpadnum=0x0102
-> +ltecxfnsel=0x44
-> +ltecxgcigpio=0x01
-> +
-> +il0macaddr=00:90:4c:c5:12:38
-> +wl0id=0x431b
-> +
-> +deadman_to=0xffffffff
-> +# muxenab: 0x1 for UART enable, 0x2 for GPIOs, 0x8 for JTAG
-> +muxenab=0x1
-> +# CLDO PWM voltage settings - 0x4 - 1.1 volt
-> +#cldo_pwm=0x4
-> +
-> +#VCO freq 326.4MHz
-> +spurconfig=0x3
-> +
-> +edonthd20l=-75
-> +edoffthd20ul=-80
-> diff --git a/recipes-kernel/linux-firmware/linux-firmware_%.bbappend b/recipes-kernel/linux-firmware/linux-firmware_%.bbappend
-> new file mode 100644
-> index 0000000..252da22
-> --- /dev/null
-> +++ b/recipes-kernel/linux-firmware/linux-firmware_%.bbappend
+> +++ b/recipes-core/udev/udev-rules-rpi.bb
 > @@ -0,0 +1,12 @@
-> +FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+> +DESCRIPTION = "udev rules for Raspberry Pi Boards"
+> +LICENSE = "MIT"
+> +LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
 > +
-> +SRC_URI += "file://brcmfmac43430-sdio.txt"
+> +SRC_URI = " file://99-com.rules"
 > +
-> +do_install_append() {
-> +	install -D -m 0644 ${WORKDIR}/brcmfmac43430-sdio.txt ${D}/lib/firmware/brcm/brcmfmac43430-sdio.txt
+> +S = "${WORKDIR}"
+> +
+> +do_install () {
+> +    install -d ${D}${sysconfdir}/udev/rules.d
+> +    install -m 0644 ${WORKDIR}/99-com.rules ${D}${sysconfdir}/udev/rules.d/
 > +}
+> diff --git a/recipes-core/udev/udev-rules-rpi/99-com.rules b/recipes-core/udev/udev-rules-rpi/99-com.rules
+> new file mode 100644
+> index 0000000..6bf019b
+> --- /dev/null
+> +++ b/recipes-core/udev/udev-rules-rpi/99-com.rules
+> @@ -0,0 +1,21 @@
+> +KERNEL=="ttyAMA[01]", PROGRAM="/bin/sh -c '\
+> +	ALIASES=/proc/device-tree/aliases; \
+> +	if cmp -s $ALIASES/uart0 $ALIASES/serial0; then \
+> +		echo 0;\
+> +	elif cmp -s $ALIASES/uart0 $ALIASES/serial1; then \
+> +		echo 1; \
+> +	else \
+> +		exit 1; \
+> +	fi\
+> +'", SYMLINK+="serial%c"
 > +
-> +FILES_${PN}-bcm43430 += " \
-> +  /lib/firmware/brcm/brcmfmac43430-sdio.txt \
-> +"
-> +
+> +KERNEL=="ttyS0", PROGRAM="/bin/sh -c '\
+> +	ALIASES=/proc/device-tree/aliases; \
+> +	if cmp -s $ALIASES/uart1 $ALIASES/serial0; then \
+> +		echo 0; \
+> +	elif cmp -s $ALIASES/uart1 $ALIASES/serial1; then \
+> +		echo 1; \
+> +	else \
+> +		exit 1; \
+> +	fi \
+> +'", SYMLINK+="serial%c"
 > --
 > 2.12.2
 >
 
-Merged series to morty.
+Merged only this patch to morty as the other two need additional work.
 
 --
 Andrei Gherzan
 gpg: rsa4096/D4D94F67AD0E9640 | t: @agherzan
 
---s2ZSL+KKDSLx8OML
+--kVXhAStRUZ/+rrGn
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAEBCAAdFiEE90oi/MnVCYFbB1m0Jrqo2vaxFPYFAlj3lY8ACgkQJrqo2vax
-FPaioBAAnbNBU66N7k7VXkg/MDliv2pZkNkbisE2KuhPAGl+oEiucPhlQxm2ACBH
-MfcZJcXR/lPkxV5hq5ZVazR/RCMLmN9DxUo5IoZfgrqDofniIAjrXXhChpv5C1YW
-/fUaXa+T+MfHo0feJ1ojDzwzknq47HcD1IO9C3B6oa/BqNmX+HHpgssoD7RnVl9W
-K0xv9qQIbCYHseew8V1817C8Df7KkDhNgghv9fxgYxlt1lKY/O4oL+CSIXnaDd+y
-OdBMbXOYYEWSeCEVwWriIW8q2kY8H9ZB9PNvLbrrSi8Y3gv9vur74xr9A5PdT5Xr
-w6tOqOfC6Spte7Zc82Rw3CGGgjipXYkrPxfI0Dhcc2PXZ7dtvxO9MamuFLnsTsuW
-cXcvVUZ83VFiU9SKdDGAsASPg6huIksHoT+17TfAjEOPX7ORwC7Q0Hj28J1PEiX6
-Xdn+zskeZVxO03QOIS1dkMNWGYsDkSOrnrSD1iRU62KKn48bnDcYDXxxIy4I4sl0
-TwZtF6t0L2jh+kEJQWlmef1tDhzHVhj8dwbCs2rxEuG+GK69qAUTf+hRog0T+3fC
-5Eh24IRQHVrPhA9Jl+92h7z3gm91cZ3NNytGxQFPGb2S+8cDqD+3GU2OxFl2wWiA
-xJIH6Eg2x4RvdTFsaHQECT4bSlXj8PJtwtT310Jlsd2U46Rjm6E=
-=rsVT
+iQIzBAEBCAAdFiEE90oi/MnVCYFbB1m0Jrqo2vaxFPYFAlj3lboACgkQJrqo2vax
+FPbH3g//bDYtiz6to4VBK2qtpSsrXpKz3wh7sZR9k+KHGAWdFFlC2xIcLCKXav7r
+AcBppESWNp8diUPwCLO4XEWT8wOTNX+u5EaTapOO3l6lDGzc+uNgZjry8whyqNJK
+HQhVOaCHF7nDsszigLNfUH41U78w/LzJ2stBnIoBMmyDtDuLvCecWqSub69cMoiH
+EeQlzfjbvd33+nPa9YYUJQMZGZ9s3ptqnIgUJvZMajzxULHkg88gaDIkxCRqZD2L
+4Va+IjVLrW8MmrYg21hyNiPv5vMRauFnEIrc4+wEoK5SobKfmuOdxdeFzC83MCMW
+1Wrjl1zszD665VfA4CWp12PmHJkTUlirmP3fG2BDhksbYw1moJp7rVQlaDhFVQN2
+Yv1npC6xb0FQ8FFoteFeesH7SEw0jsg/yRnEePaqyttipKVf0MM5PFcvQxMfKWdC
+fUxjMulaBltPMXugzsjnFUmnWxRcWpadjINthPUoC0/f1LhWpHefx1cQull+ZlSE
+l7xXftScZ4poRm4u39K+wQlbIpUWuwDWA1pdZjpIRxnhlvQLTB5m3ABe8lH6enHI
+o07ovbcOeizBaMX/bLPs/LwtjjlBqfjGxY2K7dycCY6nzY20EKEYfb4lJTacV+Lm
+SCPYDrXbbf58jr4JKW++bBcEjDutbXCWl956bjylvZg0iCP5zNg=
+=/CbR
 -----END PGP SIGNATURE-----
 
---s2ZSL+KKDSLx8OML--
+--kVXhAStRUZ/+rrGn--
