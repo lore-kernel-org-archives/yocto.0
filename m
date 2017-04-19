@@ -1,66 +1,64 @@
-Return-Path: <twoerner@gmail.com>
+Return-Path: <maxpowel@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8B967E00AB6; Wed, 19 Apr 2017 05:53:47 -0700 (PDT)
+	id 508ABE00ACE; Wed, 19 Apr 2017 07:57:57 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW, 
+	RCVD_IN_SORBS_SPAM autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (twoerner[at]gmail.com)
+	mail provider *      (maxpowel[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.216.180 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.217.176 listed in list.dnswl.org]
-Received: from mail-ua0-f176.google.com (mail-ua0-f176.google.com
-	[209.85.217.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 39369E00A38
-	for <yocto@yoctoproject.org>; Wed, 19 Apr 2017 05:53:43 -0700 (PDT)
-Received: by mail-ua0-f176.google.com with SMTP id a1so15097624uaf.3
-	for <yocto@yoctoproject.org>; Wed, 19 Apr 2017 05:53:43 -0700 (PDT)
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.216.180 listed in dnsbl.sorbs.net]
+Received: from mail-qt0-f180.google.com (mail-qt0-f180.google.com
+	[209.85.216.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ED087E00995
+	for <yocto@yoctoproject.org>; Wed, 19 Apr 2017 07:57:55 -0700 (PDT)
+Received: by mail-qt0-f180.google.com with SMTP id g60so21141743qtd.3
+	for <yocto@yoctoproject.org>; Wed, 19 Apr 2017 07:57:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to; 
-	bh=2QHcqh4F6+v+xPG4VA67ZCjaMf+S9vQETSLL0pSrvxA=;
-	b=cP8eY7jPCsoTIWh3gcvpNbfoiJobARPmb7d3dNCPTqTD3M9RtGCZwgtYHlaFWRAa6f
-	+yZDSD2QFahXJyu1xlVgevxpwPAuRRnj5fHyW9K+Ky0FsizDQ+HdPRERN6cy40kNNkrC
-	nxp83aXpJgKa99Y/hr2QIafydlpuwH93IaBH9+DlbbwGXAJucsA038dguSyUYrQftn2l
-	RXhgOk8Kg8OGPZyHX6HDfB5IzF+JjfJB/ju6FqiblEeP/cy9Bqfel8upP4gUFuFNj0tb
-	Ybi4uToD+WGu0pfCvI2nvrjqPLJYpb7zCXiy7PY3fsdjdseNVZGd6JEWDJBWIp7lum1e
-	N55Q==
+	h=mime-version:from:date:message-id:subject:to;
+	bh=mdwx8M0ymIfbXTXypAVoesDaAowKfjvmZjT99hIB7bA=;
+	b=CObkwlsCU75jCUK/LyzVaYwBK1VC250U9MoxN26KPZ5os2jrIjsYfaWBKVE7j16jdG
+	5dby3Umxt3LTgw6KBOnA5rkBZw+s2p4uvUp+qfQmQqvyoZENs+F4nwyf5eAQxMJhryto
+	byan/tpyjTVIHH8dKtVPOlU3quSJxYOqx1Rwhq9MBaIwl88fqFhDrZ8YcUZHGT7JoVic
+	5Yu/Kt+yroMZX4fEyGZI+jpnuASxxUQMI0Vu4Ta6gnVYjAfauMrieB9nlXSAmkc1QplN
+	DbHPgnhM4V3Jcsa3r1rSokovXH+fvt5aNhODZ1uv5K7dWUfMOTky3vVxUFnDi8OP9f35
+	VMWw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to;
-	bh=2QHcqh4F6+v+xPG4VA67ZCjaMf+S9vQETSLL0pSrvxA=;
-	b=eQmcj2BV+B12zwA17YByn/9aDc7iab6Spwcnp2arFcNI9blRStkA81sv4HV+RD3xaV
-	jcuyDhNUkhIrFfBqiHpULQ320SvxfZMxiVV0b8REj/B+tl5jzF99cyFOkDBE7y9Jp2eL
-	t64UjZZJbBQTUhyoY0CEgN0diTHOcyW4aLbqlWzPwigwQhw2YZl+0+cWw6DKsxHblIDc
-	oazKCp7gPPaL/4BWYRtrME4x6dQR0R57/eMx1yrflI5YOLaNQzxX94hERLvUTQiAaLks
-	M0JdbQlJbM2bmF/L9nVo4JBBOZrGbb+HWKiP0+2K4JODEfwn10g1SrWd5ZOim6VxxdBi
-	RUBg==
-X-Gm-Message-State: AN3rC/46CcTRRHBJBqtUfr1FxJpkHDwkuMrQxE8PqfDQzyuNr6AREEvg
-	rjMRj/s+UDd81n+K4NKdd+fLx+WMMwN1
-X-Received: by 10.176.82.238 with SMTP id w43mr1321357uaw.171.1492606422914;
-	Wed, 19 Apr 2017 05:53:42 -0700 (PDT)
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=mdwx8M0ymIfbXTXypAVoesDaAowKfjvmZjT99hIB7bA=;
+	b=iuUjW2nJ7dYvN4lfnRBlTRsNuUtugQBa2P5wIL1WElvR5p5YGCo+6PGf4gAd/5cD/q
+	WW0S35oeEwptXVp2IuucAinrC5KdusJlzOuDIPd8ycT64QdmEelA44/qv/gUpN8j5UX2
+	hdRL9+BE6NdM7KOC9rlEIrSS7C+8SdvvOW8D10JZXScTS8FnYdW41NBwX+aIkclmyy/L
+	VtJwX1698N5yjpof+Ey+vseupwKYHsLdiIFE3n59K3aA51/dEtiFkutGsf2OkemJLwf3
+	H1mkGAubjjh2zXx4xWr7mkFILZw8PGsdtWLpVcMuuqYeVCsoGLXyB1XaQHdmNu4AmoAQ
+	+e6w==
+X-Gm-Message-State: AN3rC/5cuc63ymGhnymIcSwwZsMsSYZGZhZcOBPH5lChIrgKEwCpmr/U
+	nleFG38/0JgqZhDoImjol1Fjm3DXOZtIV/c=
+X-Received: by 10.237.60.135 with SMTP id d7mr3232816qtf.7.1492613874803; Wed,
+	19 Apr 2017 07:57:54 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.103.30.70 with HTTP; Wed, 19 Apr 2017 05:53:42 -0700 (PDT)
-In-Reply-To: <CAHUNapTkUb2YuY+cnhdo2ra4+t81sQxNc-D35qEYjh6Nvwe-NA@mail.gmail.com>
-References: <CAK18fxEy4Gnns4q+MrXJj==hr0CRSJK3xB=sh-yCFRUsaG7PeQ@mail.gmail.com>
-	<CALbNGRR-AGWLmGiZGbYi4RqqMTUnDz=YJgoeak6qVX8FTzR6wA@mail.gmail.com>
-	<CAK18fxGOjHtj1gEQAd2+snrp6tM=h1Rg7CTwwdEja_bAVZ3EFw@mail.gmail.com>
-	<CAHUNapTkUb2YuY+cnhdo2ra4+t81sQxNc-D35qEYjh6Nvwe-NA@mail.gmail.com>
-From: Trevor Woerner <twoerner@gmail.com>
-Date: Wed, 19 Apr 2017 08:53:42 -0400
-Message-ID: <CAHUNapSmP8BOAo3ecc0AEB3JqLdAAse==R+aSVWRwZU=BpO5RQ@mail.gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: [meta-raspberrypi] Unified serial console device option
+Received: by 10.237.48.73 with HTTP; Wed, 19 Apr 2017 07:57:54 -0700 (PDT)
+From: Alvaro Garcia <maxpowel@gmail.com>
+Date: Wed, 19 Apr 2017 16:57:54 +0200
+Message-ID: <CAOsmwBTkthOX6Zd9JFxEhoxMMvwNvcWJ9C-_1Xzu13UpYO_kEA@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Share recipes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,37 +70,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 Apr 2017 12:53:47 -0000
+X-List-Received-Date: Wed, 19 Apr 2017 14:57:57 -0000
+Content-Type: multipart/alternative; boundary=001a1140109ecb6b4b054d863f16
+
+--001a1140109ecb6b4b054d863f16
 Content-Type: text/plain; charset=UTF-8
 
-oops, forgot "reply all"
+Hi! I have built some recipes (ddcutil, unclutter, supervisor,
+nvidia-propietary-driver...) and I would like to share it. Should I push to
+openembedded meta or create my own layer?
 
+--001a1140109ecb6b4b054d863f16
+Content-Type: text/html; charset=UTF-8
 
----------- Forwarded message ----------
-From: Trevor Woerner <twoerner@gmail.com>
-Date: Wed, Apr 19, 2017 at 8:53 AM
-Subject: Re: [yocto] [meta-raspberrypi] Unified serial console device option
-To: Andrei Gherzan <andrei@gherzan.ro>
+<div dir="ltr">Hi! I have built some recipes (ddcutil, unclutter, supervisor, nvidia-propietary-driver...) and I would like to share it. Should I push to openembedded meta or create my own layer?<br></div>
 
-
-On Wed, Apr 19, 2017 at 7:28 AM, Andrei Gherzan <andrei@gherzan.ro> wrote:
-> I've seen people requesting it and this approach would unblock them.
-
-It sounds like what they want is a DISTRO. They want everything to
-look the same when the user logs in, regardless of the hardware on
-which they're running. That's a DISTRO's job, not a hardware issue.
-
-I'm not really in favour of the current situation where raspi3
-includes raspi2... Machine configuration files are pretty short as
-they are, I'd rather have independent files even if 2-3 lines are
-duplicated.
-
-It's a pretty fundamental fact that new hardware comes along to
-replace older hardware. I don't think attempting to "contain/restrict"
-these changes in machine files is the right solution.
-
-<troll>
-if they want hardware that never changes, introduce them to the
-beagleboard or the iMX6 line...
-</troll>
-
+--001a1140109ecb6b4b054d863f16--
