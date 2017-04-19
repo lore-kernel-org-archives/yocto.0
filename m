@@ -1,66 +1,40 @@
-Return-Path: <andrei@gherzan.ro>
+Return-Path: <Bruce.Ashfield@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DC726E00AD0; Wed, 19 Apr 2017 10:49:34 -0700 (PDT)
+	id 480E2E00AD0; Wed, 19 Apr 2017 11:02:39 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.223.196 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.223.196 listed in dnsbl.sorbs.net]
-Received: from mail-io0-f196.google.com (mail-io0-f196.google.com
-	[209.85.223.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 794ACE009A5
-	for <yocto@yoctoproject.org>; Wed, 19 Apr 2017 10:49:32 -0700 (PDT)
-Received: by mail-io0-f196.google.com with SMTP id k87so5608265ioi.0
-	for <yocto@yoctoproject.org>; Wed, 19 Apr 2017 10:49:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=yY2SVvQMxYYxAqKv/UWCELjsCh+S511Zo7EMBXz9JNA=;
-	b=T+JLoASMgqYfu8HonZwFCDKLjUayYRBy4VU8ARJ8qHjTi7cNU9DpmBlvlauoh+1XMT
-	1ae0BFnydU7Qzd9y0TlL3173i4qceuj89xAPr3JzMyHDIeseHG0EqOgDTOjOCa3DWV14
-	OroBE0xOIomUMw4C++RiuiB0CiuFr2bzIobI/j/KXsLtJuceIJzLpl3/fQdMWLYcy05I
-	7mqxhEch6b/i7IuCWdpHrkJiOxGbwpcBYI5Ou0TsoCHf/tNLaP83ef4oId+CPFwfA0wr
-	E7DMRZpSJEo6cQjz+kcuWcDwJ1F3tGdiXaTNO20LCydbKhIIUV3KDOuxMyJXaUPJv7Wz
-	O2mA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=yY2SVvQMxYYxAqKv/UWCELjsCh+S511Zo7EMBXz9JNA=;
-	b=lCIqXzuM05XruM4KdOnx7Y6Ckb+Yw0wRT4WnQwAIWgUeEQ7xIKgDmh/V87QvpibTuT
-	3kGSU+fQzcKpEowJrqGeQFYU+NTNw3PuLM5Bx3ey6V+9LiOV8LUGaPhfcumwDSfTmZ+e
-	JFWfC2SEZTj6a37HiGncBqZrgRjrLkRGCcKTXxZVq8Xmb7QhqDs6uPgUHIMD50PO7J7m
-	1HfJS6JioCu/LVW1RRLEdN/iWhyRYBSgogks3CFoVZOjvuhP5n5fuTfyUU7tddrJ5+r5
-	jOBYND5vnmricjzpD/1L0yGDRUjex/77PmKQFSaZeuxbiHpzp/+fxiNRpDlSwBUxXFZN
-	ke1g==
-X-Gm-Message-State: AN3rC/5OujP7jZ7gRrmOK2ZRpbqZQ8xQC2WBvP33ZcRKuSPrR7vbysA+
-	cA01xoLiW1j3eSxxwU7y2+gIfiOEc/Qe
-X-Received: by 10.36.178.83 with SMTP id h19mr4799617iti.95.1492624172340;
-	Wed, 19 Apr 2017 10:49:32 -0700 (PDT)
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D8B86E00AC8
+	for <yocto@yoctoproject.org>; Wed, 19 Apr 2017 11:02:36 -0700 (PDT)
+Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
+	[147.11.189.41])
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id v3JI2Sqr018074
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Wed, 19 Apr 2017 11:02:29 -0700 (PDT)
+Received: from server.local (128.224.20.183) by ALA-HCB.corp.ad.wrs.com
+	(147.11.189.41) with Microsoft SMTP Server id 14.3.294.0;
+	Wed, 19 Apr 2017 11:02:27 -0700
+To: "Paul D. DeRocco" <pderocco@ix.netcom.com>, <yocto@yoctoproject.org>
+References: <B92317128F384E2BAC28643061FC76E1@PAULD>
+	<a41596d9-1ef6-90f2-3c92-79755935f443@windriver.com>
+	<AA060EB406534625A8A91548091402B9@PAULD>
+	<5f9b7995-771a-d9e2-3ceb-329569ee6e92@windriver.com>
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+Message-ID: <0eefa8a6-2bdb-f582-cbe5-40c67719513e@windriver.com>
+Date: Wed, 19 Apr 2017 14:02:27 -0400
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:45.0)
+	Gecko/20100101 Thunderbird/45.8.0
 MIME-Version: 1.0
-Received: by 10.79.27.207 with HTTP; Wed, 19 Apr 2017 10:48:51 -0700 (PDT)
-X-Originating-IP: [86.158.8.191]
-In-Reply-To: <CAPyrkgw=jAv6g8p+787EbwoRAN6u5q7J_gXifNZOgoUuL8apsQ@mail.gmail.com>
-References: <20170418205108.14629-1-pbarker@toganlabs.com>
-	<20170419165321.GD19325@carbonA>
-	<CAPyrkgw=jAv6g8p+787EbwoRAN6u5q7J_gXifNZOgoUuL8apsQ@mail.gmail.com>
-From: Andrei Gherzan <andrei@gherzan.ro>
-Date: Wed, 19 Apr 2017 18:48:51 +0100
-Message-ID: <CAK18fxGMxFq0d3-4DunTwf_RPySEo8xsif2KCpaokx5S53wZMw@mail.gmail.com>
-To: Paul Barker <pbarker@toganlabs.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-raspberrypi][morty][PATCH 0/8] Stable branch backports
+In-Reply-To: <5f9b7995-771a-d9e2-3ceb-329569ee6e92@windriver.com>
+Subject: Re: Patch failures
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,62 +46,88 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 Apr 2017 17:49:34 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 19 Apr 2017 18:02:39 -0000
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wed, Apr 19, 2017 at 5:54 PM, Paul Barker <pbarker@toganlabs.com> wrote:
-> On Wed, Apr 19, 2017 at 5:53 PM, Andrei Gherzan <andrei@gherzan.ro> wrote:
->> On Tue, Apr 18, 2017 at 09:51:00PM +0100, Paul Barker wrote:
->>> * Upgrade linux-raspberrypi 4.9 recipe
+On 2017-04-19 12:24 PM, Bruce Ashfield wrote:
+> On 2017-04-17 2:18 AM, Paul D. DeRocco wrote:
+>>> From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]
 >>>
->>> * Add support for raspberrypi3-64 MACHINE
+>>> I can't say from what you've provided why the BSP description isn't
+>>> valid, but if the kernel recipe and layers are something I
+>>> can look at,
+>>> I can debug more.
 >>>
->>> Boot tested on raspberrypi, raspberrypi3 and raspberrypi3-64 using the 4.9
->>> series kernel.
->>>
->>> These patches were tested on top of Andrei's latest series of backports. The
->>> exact series tested can be found at:
->>>     https://gitlab.com/oryx/meta-raspberrypi/commits/pbarker/morty-next-2017-04-18
->>>
->>> Andrei Gherzan (1):
->>>   linux-raspberrypi_4.9: Bump to 4.9.21
->>>
->>> Herve Jourdain (1):
->>>   Add raspberrypi3-64.conf
->>>
->>> Khem Raj (5):
->>>   linux-raspberrypi: Add defconfig for raspberrypi3-64
->>>   raspberrypi3-64.conf: Use 4.9 as default kernel
->>>   raspberrypi3-64.conf: Specifiy rpi3-64bit dtbs
->>>   sdcard: Use kernel8.img for 64bit kernel image name
->>>   rpi-config: Specify bcm2710-rpi-3-b dtb for 64bit rpi3
->>>
->>> Paul Barker (1):
->>>   raspberrypi3-64: Override rpi-default-versions.inc
->>>
->>>  classes/sdcard_image-rpi.bbclass              |  1 +
->>>  conf/machine/raspberrypi3-64.conf             | 41 +++++++++++++++++++++++++++
->>>  recipes-bsp/bootfiles/rpi-config_git.bb       |  6 ++++
->>>  recipes-kernel/linux/linux-raspberrypi.inc    |  1 +
->>>  recipes-kernel/linux/linux-raspberrypi_4.9.bb |  4 +--
->>>  5 files changed, 51 insertions(+), 2 deletions(-)
->>>  create mode 100644 conf/machine/raspberrypi3-64.conf
->>>
->>> --
->>> 2.11.0
->>>
->>> --
->>> _______________________________________________
->>> yocto mailing list
->>> yocto@yoctoproject.org
->>> https://lists.yoctoproject.org/listinfo/yocto
+>>> There were some changes between those releases that tweaked the kernel
+>>> meta-data processing .. and that could be the issue, but
+>>> again, I can't
+>>> say without seeing all the details.
 >>
->> Paul, how is testing looking with these patches?
+>> I've attached a zip containing the stuff I've added. It also includes the
+>> log file showing the patch errors. It also shows a log of a few thousand
+>> identical errors from grub-efi, having to do with a 32 vs 64 mismatch. In
+>> the past, my system has always booted via Syslinux, not Grub, so I don't
+>> know what changed between Fido and Morty, or if Syslinux doesn't support
+>> 64-bit booting. So there's another unrelated question.
 >>
 >
-> All boot tested, ran a few commands by hand at the console and
-> everything looks good. I don't have a very complex software stack on
-> morty at the minute though.
+> I finally got a chance to look at the layers, and I can see that the
+> processing code would in fact pick/generate a generic board description
+> and that could lead you into the failures you are seeing.
+>
+> I assume you are building for MACHINE="chroma-bsp" and the linux-yocto-rt
+> kernel recipe ?
+>
+> If you can confirm the details, and anything else, I can mock up a
+> recipe space BSP description that should work.
 
-Sounds good Paul. Thanks.
+I take that back. After debugging, I see that you did have a recipe
+space BSP definition, and it is in fact being picked up.
+
+What you are seeing is an optimization and simplification in the way
+that patches are processed (that I introduced in morty). That
+simplication is:
+
+   - if a patch is listed on the SRC_URI or in a .scc on the SRC_URI
+     it is always applied.
+
+Sounds simple, since it is. And that replaced the logic that was capable
+of looking into a patch queue, comparing it to the branch being built
+and would determine if anything needed to be pushed by walking the
+commits. That process was slow, and error prone, since similarly named
+commits could trigger an early start to patching and hence a patch
+failure that wasn't easy to catch.
+
+Since your BSP definition is on the SRC_URI, and is including the
+preempt-rt kernel type, the rule I stated above applies and it tries
+to (re)push all the patches.
+
+The fix is simple, change the line to this:
+
+   include ktypes/preempt-rt/preempt-rt.scc nopatch
+
+And you'll inherit the preempt-rt branch + configurations, but not
+the patches.
+
+Honestly, I can't say if that was documented, so I'll go dig around
+and see if it was.
+
+Cheers,
+
+Bruce
+
+>
+> Bruce
+>
+>> The history is this: I originally developed this as a 32-bit OS under
+>> Danny, then updated it with no problems to Fido. I wanted to try the x32
+>> ABI, since the extra registers could be very useful (lots of SSE SIMD in
+>> the application). Perhaps I should have first tried updating to Morty
+>> without x32. I had to change some version numbers (the kernel, systemd,
+>> Samba), and of course add the x32 tune. For Samba, I added a few layers
+>> from OE.
+>>
+>
+
 
