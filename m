@@ -1,12 +1,12 @@
 Return-Path: <schnitzeltony@googlemail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BEFF3E00A9B; Wed, 19 Apr 2017 04:18:53 -0700 (PDT)
+	id ED590E00AB6; Wed, 19 Apr 2017 04:26:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (schnitzeltony[at]googlemail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
@@ -18,52 +18,48 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.217.171 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.217.171 listed in dnsbl.sorbs.net]
-Received: from mail-ua0-f171.google.com (mail-ua0-f171.google.com
-	[209.85.217.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 68EEAE00A38
-	for <yocto@yoctoproject.org>; Wed, 19 Apr 2017 04:18:51 -0700 (PDT)
-Received: by mail-ua0-f171.google.com with SMTP id f10so12533030uaa.2
-	for <yocto@yoctoproject.org>; Wed, 19 Apr 2017 04:18:51 -0700 (PDT)
+	*      [209.85.217.174 listed in list.dnswl.org]
+Received: from mail-ua0-f174.google.com (mail-ua0-f174.google.com
+	[209.85.217.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BD275E00A4C
+	for <yocto@yoctoproject.org>; Wed, 19 Apr 2017 04:26:23 -0700 (PDT)
+Received: by mail-ua0-f174.google.com with SMTP id f10so12705595uaa.2
+	for <yocto@yoctoproject.org>; Wed, 19 Apr 2017 04:26:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=googlemail.com; s=20161025;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=/2CnCKcoNRYIi8Xn7ho6je6HOxTcaeu122GXd8bpt8M=;
-	b=Ck2ODRwovkeE1oVUW6TzpmrrNNiVh5YICRGigK1sTikCpl9Sfg1OoIOqk7tZQIBSF0
-	bL93GVBVbiukg0PNP8cM8BEUe0pwLMZW2BZ+ZfdkNlZkkGucf2dJcxOTV+H7VeKWvP4G
-	DI6oLkUojOmKv/D0570CKAAULInoOSBnyHoQWG8JihE/Ya29F+4G5MajqvL6lolEYsK4
-	r1G+NvA67YHvwaKMtgujVQWNw0YS69rmMBSj4/2XkRAVOXi2Or1e4Pnumn7sGtbjqxYX
-	JArYRuo8VO20mNkC9fLYuwFBxbW/ET2XTuUeHjIMZnCtll30LcadIIH4EPqBv0w6dyxA
-	JDhg==
+	:cc; bh=uamlNG+gu4Bl9HAAHLv8oaelVMxFXtuV+r6RGLSlnoM=;
+	b=vduGtbEQlLFksTx+nAYJUX7l73Kwh2VWbT7Wgt4+CG4Ow06u67M4f0Yk4szoj+J7ob
+	DXtKABnuwlTyKUoQVHvK67kexML/iatcUp+JndIiDgl7PoSFbKPnKhNFHbRHKkpmSjaC
+	goLcuYAaPi6Fc+1I0Nnz+yV2OxeHP8XIl/lznOkrWgMRH9foS9yRUb/murRBa5fJawjf
+	yu+YN16YeHiPMUg1PIHZkvp23EJzPaTeGz9m2vV2KuZmxdM3R1wUeHcccxOpOiq9J9dM
+	WARMKWodpTBhvVigwEp+guw5/3hd0MKJfFaVDh4HGPF/RdRJS98hLv9lpKzgdAEjwJgJ
+	li8w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=/2CnCKcoNRYIi8Xn7ho6je6HOxTcaeu122GXd8bpt8M=;
-	b=bP/IfdJPp9sYhnbUkoU/g0h1eoa1k62P4TS8Sx0CmL1+EWfEOF6scKlFhb95KhwMj7
-	Z7c7hxMoNVOnZ8YJSBz86MVx22yFNEfK/qRukC66OPHyy9Vo0D3GFH80O7PAdHVIg6Jf
-	RCOKTUj5xdGu3Q1w05w5tRVqbeGbbgnkAhHAXFeVH0ipwmDgreSViBzwLNH5btMz/OXz
-	zApMh3N6ZJyMfU5yBYkYXaHB4jcErOh2jH1yDA9lBUFY443t1XZetawkytThrdajy9Zo
-	cYjrEmKOeV4u+yMzHzhH/fwQrwuaQVsCER6VX/Inh2lLNkvXiFCR51aZ5TXeEL39CPYy
-	AYDA==
-X-Gm-Message-State: AN3rC/47gpUWaLFP3kOTfIWvBqMcI2Y9ug7kOkXJhxUbvG1g17UMLm0T
-	2MgvjJImMRqb/xdGudB1QTL81rD1JQ==
-X-Received: by 10.31.37.14 with SMTP id l14mr939185vkl.111.1492600731226; Wed,
-	19 Apr 2017 04:18:51 -0700 (PDT)
+	bh=uamlNG+gu4Bl9HAAHLv8oaelVMxFXtuV+r6RGLSlnoM=;
+	b=MDn57uFxbZoPKKRzQwwjp8burxZSxr+LlDADiWVJxQOauh86ZDETeWymUTAgagXqW+
+	lV4vbFzzgahSmVfI+AYVJUpES9/LWL7B7Vf7Bx1/OIcsaZVCxofNP81x7nHjGRx+x3bg
+	wFMaLjJHv/yL7AMwjO4xYQAoT19MZYpHUBZRnQs5DIYtylernn+FD2FauQ3Ef10/YU5x
+	7CIThUNbKp+VNh+dDb2Ad9lg9g9oY9nWoq5cMbMFU3WZ0Oe05BoNV8KzVYKwsxgbLBZl
+	mgcMWYeBC7VWVDMnl0SDX3V215UX8bvjJaPsujKaWSaoWrhv8AGXyT3bMRM4sL4q8xkj
+	mneA==
+X-Gm-Message-State: AN3rC/6G6ALfKaaWJfQfwVZ9Mhyy4Q1+IZg2xdbadLAf9VZlcgQIYoB2
+	pXcRx54KjRvzb7HrJPJNPYEUP6KR5HHb
+X-Received: by 10.176.90.200 with SMTP id x8mr1040124uae.44.1492601182233;
+	Wed, 19 Apr 2017 04:26:22 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.176.81.5 with HTTP; Wed, 19 Apr 2017 04:18:50 -0700 (PDT)
-In-Reply-To: <CAK18fxFkstfxS4RQMRQGLbTOMrifePF0sR6jYwCznaPFv+frNw@mail.gmail.com>
-References: <20170418181322.14588-1-andrei@gherzan.ro>
-	<CAMKF1sq1UcUOny3pj+USAf8TUWoccV_zHz+EF2Tu99tdbLm+yQ@mail.gmail.com>
-	<CAK18fxFkstfxS4RQMRQGLbTOMrifePF0sR6jYwCznaPFv+frNw@mail.gmail.com>
+Received: by 10.176.81.5 with HTTP; Wed, 19 Apr 2017 04:26:21 -0700 (PDT)
+In-Reply-To: <CAK18fxEy4Gnns4q+MrXJj==hr0CRSJK3xB=sh-yCFRUsaG7PeQ@mail.gmail.com>
+References: <CAK18fxEy4Gnns4q+MrXJj==hr0CRSJK3xB=sh-yCFRUsaG7PeQ@mail.gmail.com>
 From: =?UTF-8?Q?Andreas_M=C3=BCller?= <schnitzeltony@googlemail.com>
-Date: Wed, 19 Apr 2017 13:18:50 +0200
-Message-ID: <CALbNGRRAfeguULdtd6qqNE4pDp0Z-s3cnYtBeLAm0dHdfoBW+w@mail.gmail.com>
+Date: Wed, 19 Apr 2017 13:26:21 +0200
+Message-ID: <CALbNGRR-AGWLmGiZGbYi4RqqMTUnDz=YJgoeak6qVX8FTzR6wA@mail.gmail.com>
 To: Andrei Gherzan <andrei@gherzan.ro>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi][PATCH 1/3] udev: Create rules file to generate serial0/1
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi] Unified serial console device option
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,19 +71,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 Apr 2017 11:18:53 -0000
+X-List-Received-Date: Wed, 19 Apr 2017 11:26:33 -0000
 Content-Type: text/plain; charset=UTF-8
 
-On Wed, Apr 19, 2017 at 12:41 PM, Andrei Gherzan <andrei@gherzan.ro> wrote:
+On Wed, Apr 19, 2017 at 1:00 PM, Andrei Gherzan <andrei@gherzan.ro> wrote:
+> Hello all,
 >
-> I was thinking about that but extraconf brings additional
-> functionality (ex automount) that might not be of interest. I
-> personally don't want that. What do you think?
+> I'm trying to have the ability for user to use serial0 as serial port
+> on the header and serial1 (when available) for Bluetooth. In this way
+> rpi2 and rpi3 (32b) will have the same configuration. The story goes
+> identical for rpi0 and rpi0-wifi.
 >
-Ooops previous mail went out too early.
-
-Agreed: Don't mix things which are unrelated and udev-extraconf breaks
-at least gvfs automount used by thunar and other file managers.
+> Now, what I was planning to do is:
+> 1. create udev rules to generate the the symlinks accordingly to dt aliases.
+> 2. add the above package (with the rules) as a machine recommends
+> (MACHINE_ESSENTIAL_*).
+> 3. and then change all the SERIAL_CONSOLE = 'serial0 115200'
+>
+> This works great with one exception: system parses the console
+> argument in cmdline and spawns through a generator a new getty
+> instance on that device. Adding systemd-serialgetty package will make
+> system have two getty services on the same device (serial0 and for
+> example AMA0) which is obviously unusable and wrong. Sysvinit works
+> ok.
+>
+> Then I thought to make this completely optional:
+> 1. create udev rules to generate the the symlinks accordingly to dt aliases.
+> 2. make SERIAL_CONSOLE configurable (default assignments)
+> 3. a user wanting to take advantage of the udev rules will have to add
+> the rpi udev rules to the image and modify in his/her local.conf
+> SERIAL_CONSOLE
+>
+> Currently we have a cascade setup for our machine configuration: ex
+> rpi3 includes rpi2 and tweaks some things. We do this to avoid some
+> duplication (even though the gain is really minimal - 2-3 lines).
+> Anyway it is something after all.
+>
+> This again looks fine but because we have machine which include other
+> machine conf, I endded up having a problem when I want to overwrite
+> both definitions: see rpi3 which includes rpi2 (defines a
+> SERIAL_CONSOLE) than overwrites SERIAL_CONSOLE.
+>
+> What do you guys think as a way forward? One way would be to make the
+> boards definitions be stand alone and use default assignments which I
+> think it would fix everything and make the mechanism completely
+> optional.
+>
+> BTW: This would unlock the ability to create a raspberrypi-all machine
+> that would work on any raspberry board (armv6 + wifi firmware + etc).
+>
+I would prefer standalone configurations as I found the including
+approach confusing several times and I am not interested in
+raspberrypi-all personally (quite the oposite: different Pi machines
+is a yocto test case for me)
 
 Andreas
 
