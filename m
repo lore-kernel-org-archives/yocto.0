@@ -1,67 +1,39 @@
-Return-Path: <twoerner@gmail.com>
+Return-Path: <Bruce.Ashfield@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0A383E00AC8; Wed, 19 Apr 2017 09:17:38 -0700 (PDT)
+	id 33917E00AC8; Wed, 19 Apr 2017 09:24:26 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.217.179 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (twoerner[at]gmail.com)
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.217.179 listed in dnsbl.sorbs.net]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.146.13 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ua0-f179.google.com (mail-ua0-f179.google.com
-	[209.85.217.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B4124E00995
-	for <yocto@yoctoproject.org>; Wed, 19 Apr 2017 09:17:37 -0700 (PDT)
-Received: by mail-ua0-f179.google.com with SMTP id h2so22331752uaa.1
-	for <yocto@yoctoproject.org>; Wed, 19 Apr 2017 09:17:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=eDlKILLC6IhlBQE43uOosMWwswJ3tohVTEENbaEgE7E=;
-	b=kRmxmfBIJmXDm6HHnaxTH/IWod84nN3UymlCQ579vAzgA+lfzkdn9Gk4WBIw7m8G7P
-	sG0/QqzKzgGagJBo0+qej2yQ6/s+N44lU1ciXKV69z6SrGOpziAkP8M78CDVW/pVvZOH
-	Tr1qyAStuBR2CZXUanqMj1vQ4k5YB1lFPJSj0i/Hq4yhJcvL2Ao+qfL7babN5OPaKVS1
-	kaG/3IJCWMU9I2VnFCniAa8P7ghVuiYvgI4U/g66tsmWA4k8YjNr9Vq0LU8UbMi24FNh
-	S09r7+GYJuB6ZJ5+j9ta54eshRsel6eroKwOEg+bXoW/X1+jjwlFaF6tUHA5C3Oh2muA
-	mfYw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=eDlKILLC6IhlBQE43uOosMWwswJ3tohVTEENbaEgE7E=;
-	b=in1g4BNfyn4te4u7z5Y+hXj7v+uQPOM11T21nIcCRySC5coWhzKAcPWoetmJ6BxtUo
-	46bBQL6CjX9s955TMCCDvUJh+OAIyrDg5ku3GBw6Pj+wz4SbHI9PswSAqsns7fUaZfac
-	C4vUnYGEDfN0cwocwZFL1N9UoeyPDFdTrHvgB4x5ePtrFQWv78McRS/zMMDCtHqR4Z2X
-	YcWF6sw5CR640+e9c2w02vmPkeSecVyQec2h/1/Q3UqBNM7ZgRI2UjbNfWghvBA+KCqR
-	fR+uXtPkOT+huFoznx8UbDYPCf+6H5kKMGBFZhWvDKsY22IuhJtxdCH1/iNbgkE6eRpA
-	gJFg==
-X-Gm-Message-State: AN3rC/6gseRBwdtgK3541YU8D2BpKVdlfQeQcr6JB6L6VsMYTYIy+CDS
-	+Fsk0jwhDQch1eOCDy2wvAKDD35nyQ==
-X-Received: by 10.159.48.209 with SMTP id k17mr1796069uab.6.1492618656735;
-	Wed, 19 Apr 2017 09:17:36 -0700 (PDT)
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E58DEE00995
+	for <yocto@yoctoproject.org>; Wed, 19 Apr 2017 09:24:23 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id v3JGOCOr010995
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Wed, 19 Apr 2017 09:24:12 -0700 (PDT)
+Received: from server.local (128.224.20.183) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.40) with Microsoft SMTP Server id 14.3.294.0;
+	Wed, 19 Apr 2017 09:24:12 -0700
+To: "Paul D. DeRocco" <pderocco@ix.netcom.com>, <yocto@yoctoproject.org>
+References: <B92317128F384E2BAC28643061FC76E1@PAULD>
+	<a41596d9-1ef6-90f2-3c92-79755935f443@windriver.com>
+	<AA060EB406534625A8A91548091402B9@PAULD>
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+Message-ID: <5f9b7995-771a-d9e2-3ceb-329569ee6e92@windriver.com>
+Date: Wed, 19 Apr 2017 12:24:11 -0400
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:45.0)
+	Gecko/20100101 Thunderbird/45.8.0
 MIME-Version: 1.0
-Received: by 10.103.30.70 with HTTP; Wed, 19 Apr 2017 09:17:36 -0700 (PDT)
-In-Reply-To: <CAJTo0LZcB7++s9CZLSdnYe-UsrGd1gnHh_emaX4AZ-QtnJfozw@mail.gmail.com>
-References: <CAOsmwBTkthOX6Zd9JFxEhoxMMvwNvcWJ9C-_1Xzu13UpYO_kEA@mail.gmail.com>
-	<CAJTo0LZcB7++s9CZLSdnYe-UsrGd1gnHh_emaX4AZ-QtnJfozw@mail.gmail.com>
-From: Trevor Woerner <twoerner@gmail.com>
-Date: Wed, 19 Apr 2017 12:17:36 -0400
-Message-ID: <CAHUNapQdc2a_uGDAsDdtBfkw+tg=q4rvJ9K0BFvaa58dzL+uAg@mail.gmail.com>
-To: Alvaro Garcia <maxpowel@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Share recipes
+In-Reply-To: <AA060EB406534625A8A91548091402B9@PAULD>
+Subject: Re: Patch failures
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,12 +45,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 Apr 2017 16:17:38 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 19 Apr 2017 16:24:26 -0000
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-> On 19 April 2017 at 15:57, Alvaro Garcia <maxpowel@gmail.com> wrote:
->> nvidia-propietary-driver
+On 2017-04-17 2:18 AM, Paul D. DeRocco wrote:
+>> From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]
+>>
+>> I can't say from what you've provided why the BSP description isn't
+>> valid, but if the kernel recipe and layers are something I
+>> can look at,
+>> I can debug more.
+>>
+>> There were some changes between those releases that tweaked the kernel
+>> meta-data processing .. and that could be the issue, but
+>> again, I can't
+>> say without seeing all the details.
+>
+> I've attached a zip containing the stuff I've added. It also includes the
+> log file showing the patch errors. It also shows a log of a few thousand
+> identical errors from grub-efi, having to do with a 32 vs 64 mismatch. In
+> the past, my system has always booted via Syslinux, not Grub, so I don't
+> know what changed between Fido and Morty, or if Syslinux doesn't support
+> 64-bit booting. So there's another unrelated question.
+>
 
-prop*r*ietary?
-proprietary
+I finally got a chance to look at the layers, and I can see that the
+processing code would in fact pick/generate a generic board description
+and that could lead you into the failures you are seeing.
+
+I assume you are building for MACHINE="chroma-bsp" and the linux-yocto-rt
+kernel recipe ?
+
+If you can confirm the details, and anything else, I can mock up a
+recipe space BSP description that should work.
+
+Bruce
+
+> The history is this: I originally developed this as a 32-bit OS under
+> Danny, then updated it with no problems to Fido. I wanted to try the x32
+> ABI, since the extra registers could be very useful (lots of SSE SIMD in
+> the application). Perhaps I should have first tried updating to Morty
+> without x32. I had to change some version numbers (the kernel, systemd,
+> Samba), and of course add the x32 tune. For Samba, I added a few layers
+> from OE.
+>
+
 
