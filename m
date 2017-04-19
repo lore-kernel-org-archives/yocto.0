@@ -1,49 +1,65 @@
-Return-Path: <maxin.john@intel.com>
+Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7648EE00A9B; Wed, 19 Apr 2017 02:18:36 -0700 (PDT)
+	id E993FE00A9B; Wed, 19 Apr 2017 03:42:11 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [134.134.136.100 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.214.65 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.214.65 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3FA9CE00A38
-	for <yocto@yoctoproject.org>; Wed, 19 Apr 2017 02:18:32 -0700 (PDT)
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-	by orsmga105.jf.intel.com with ESMTP; 19 Apr 2017 02:18:32 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.37,220,1488873600"; d="scan'208,217";a="78779914"
-Received: from irsmsx151.ger.corp.intel.com ([163.33.192.59])
-	by orsmga004.jf.intel.com with ESMTP; 19 Apr 2017 02:18:31 -0700
-Received: from irsmsx103.ger.corp.intel.com ([169.254.3.241]) by
-	IRSMSX151.ger.corp.intel.com ([169.254.4.123]) with mapi id
-	14.03.0319.002; Wed, 19 Apr 2017 10:18:30 +0100
-From: "John, Maxin" <maxin.john@intel.com>
-To: Weng Josn <sadlife1990@gmail.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>, "openembedded-devel@lists.openembedded.org"
-	<openembedded-devel@lists.openembedded.org>, "Patches and discussions about
-	the oe-core layer" <openembedded-core@lists.openembedded.org>
-Thread-Topic: [OE-core] Yocto cups serial port support
-Thread-Index: AQHSuD7R/0vR0n3jPkKiVLBWFpevBqHMagjw
-Date: Wed, 19 Apr 2017 09:18:29 +0000
-Message-ID: <61C0517EAD808B429A1DE2DD9164D40030F88502@IRSMSX103.ger.corp.intel.com>
-References: <CAAHuHfyWegZ3OYy97i_+r1DXQ0v_YsozhV7VLeqwepiUWnZ1kg@mail.gmail.com>
-In-Reply-To: <CAAHuHfyWegZ3OYy97i_+r1DXQ0v_YsozhV7VLeqwepiUWnZ1kg@mail.gmail.com>
-Accept-Language: fi-FI, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 10.0.102.7
-dlp-reaction: no-action
-x-originating-ip: [163.33.239.180]
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-it0-f65.google.com (mail-it0-f65.google.com
+	[209.85.214.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B68ABE00A38
+	for <yocto@yoctoproject.org>; Wed, 19 Apr 2017 03:42:06 -0700 (PDT)
+Received: by mail-it0-f65.google.com with SMTP id z67so1893639itb.0
+	for <yocto@yoctoproject.org>; Wed, 19 Apr 2017 03:42:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=odNaXgW3ECPvoqVSODhUljjIJXOP7UnH27XkmYrZEWg=;
+	b=aiL3yj1fTdMedsgzg/+Khzi3Bh43G0IOvVgoVsc/09gR/frOXselvT6I54B4x4eRqI
+	HwjsJhFccevNvxT29mp3gRH804daijx3lSVau+8QZhHmcBFXDS9CZFNpjWg+MyCHlsQk
+	cnkK697Mulx2VQJ/p/s1csDVrzbFTa6ZemDRohxOcNylj79q1JFlKi7kVYfJEh3IaFSN
+	vjovjxm/Ssx0UmiXn/FqzThwKjwxVnuPjNuJy9AjqLOc78TqpaY4ofr6DPsU8Qg2dumU
+	1ST2L0VCG3xarIhS1KYuBFXQgOFWK434p52ewOox3rLJUvToW/55cwuRfGBsodfn4KmE
+	uxww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=odNaXgW3ECPvoqVSODhUljjIJXOP7UnH27XkmYrZEWg=;
+	b=Fc+cRSHQAGtV7YIk6ZoTh0rTqiS9W//4PfSgrPjjxUn5zjg3yx2DqvYT1lh1fctjdg
+	3P4K0p+h96wUoMR1o2tWYgFYO5DK1XwEqfULaXC4lSMr7eCWUlAaULIm6Kqch7tvWGB7
+	JpgU773aBmdjl0d6ldsvkk0h8xh4T2Nq98USdbregKtSBtvFRFxEjWe8UgjvnYoF+bS3
+	se9gXGatjGLVh7DV51BL1a1lj8qdJz0W5X0XOmvNd/xqpPQSqfYHQP3+dE3Xevzm8NX3
+	wBJ0n2zkV39FiGYp9h705U9yBVvAqxoMh5NudSOrBKJa6wp47572xv+ukOAPBT20Kqf7
+	KjLA==
+X-Gm-Message-State: AN3rC/43urI7mbCFmXbwdbr4JM6VEI3ZWAZ1pwNM/1WLPBr5ScBDi3Vo
+	ghC7hRgmycSJHXos/c5XQckmAjLEgw==
+X-Received: by 10.36.87.15 with SMTP id u15mr2259678ita.58.1492598526094; Wed,
+	19 Apr 2017 03:42:06 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Re: [OE-core] Yocto cups serial port support
+Received: by 10.79.27.207 with HTTP; Wed, 19 Apr 2017 03:41:25 -0700 (PDT)
+X-Originating-IP: [86.158.8.191]
+In-Reply-To: <CAMKF1sq1UcUOny3pj+USAf8TUWoccV_zHz+EF2Tu99tdbLm+yQ@mail.gmail.com>
+References: <20170418181322.14588-1-andrei@gherzan.ro>
+	<CAMKF1sq1UcUOny3pj+USAf8TUWoccV_zHz+EF2Tu99tdbLm+yQ@mail.gmail.com>
+From: Andrei Gherzan <andrei@gherzan.ro>
+Date: Wed, 19 Apr 2017 11:41:25 +0100
+Message-ID: <CAK18fxFkstfxS4RQMRQGLbTOMrifePF0sR6jYwCznaPFv+frNw@mail.gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi][PATCH 1/3] udev: Create rules file to generate serial0/1
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,108 +71,76 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 Apr 2017 09:18:36 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_61C0517EAD808B429A1DE2DD9164D40030F88502IRSMSX103gercor_"
+X-List-Received-Date: Wed, 19 Apr 2017 10:42:12 -0000
+Content-Type: text/plain; charset=UTF-8
 
---_000_61C0517EAD808B429A1DE2DD9164D40030F88502IRSMSX103gercor_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+On Tue, Apr 18, 2017 at 7:55 PM, Khem Raj <raj.khem@gmail.com> wrote:
+> On Tue, Apr 18, 2017 at 11:13 AM, Andrei Gherzan <andrei@gherzan.ro> wrote:
+>> Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
+>> ---
+>>  recipes-core/udev/udev-rules-rpi.bb           | 12 ++++++++++++
+>>  recipes-core/udev/udev-rules-rpi/99-com.rules | 21
+>
+> perhaps a bbappend to udev-extraconf recipe is better ?
+>
+> +++++++++++++++++++++
+>>  2 files changed, 33 insertions(+)
+>>  create mode 100644 recipes-core/udev/udev-rules-rpi.bb
+>>  create mode 100644 recipes-core/udev/udev-rules-rpi/99-com.rules
+>>
+>> diff --git a/recipes-core/udev/udev-rules-rpi.bb b/recipes-core/udev/udev-rules-rpi.bb
+>> new file mode 100644
+>> index 0000000..20443d3
+>> --- /dev/null
+>> +++ b/recipes-core/udev/udev-rules-rpi.bb
+>> @@ -0,0 +1,12 @@
+>> +DESCRIPTION = "udev rules for Raspberry Pi Boards"
+>> +LICENSE = "MIT"
+>> +LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
+>> +
+>> +SRC_URI = " file://99-com.rules"
+>> +
+>> +S = "${WORKDIR}"
+>> +
+>> +do_install () {
+>> +    install -d ${D}${sysconfdir}/udev/rules.d
+>> +    install -m 0644 ${WORKDIR}/99-com.rules ${D}${sysconfdir}/udev/rules.d/
+>> +}
+>> diff --git a/recipes-core/udev/udev-rules-rpi/99-com.rules b/recipes-core/udev/udev-rules-rpi/99-com.rules
+>> new file mode 100644
+>> index 0000000..6bf019b
+>> --- /dev/null
+>> +++ b/recipes-core/udev/udev-rules-rpi/99-com.rules
+>> @@ -0,0 +1,21 @@
+>> +KERNEL=="ttyAMA[01]", PROGRAM="/bin/sh -c '\
+>> +       ALIASES=/proc/device-tree/aliases; \
+>> +       if cmp -s $ALIASES/uart0 $ALIASES/serial0; then \
+>> +               echo 0;\
+>> +       elif cmp -s $ALIASES/uart0 $ALIASES/serial1; then \
+>> +               echo 1; \
+>> +       else \
+>> +               exit 1; \
+>> +       fi\
+>> +'", SYMLINK+="serial%c"
+>> +
+>> +KERNEL=="ttyS0", PROGRAM="/bin/sh -c '\
+>> +       ALIASES=/proc/device-tree/aliases; \
+>> +       if cmp -s $ALIASES/uart1 $ALIASES/serial0; then \
+>> +               echo 0; \
+>> +       elif cmp -s $ALIASES/uart1 $ALIASES/serial1; then \
+>> +               echo 1; \
+>> +       else \
+>> +               exit 1; \
+>> +       fi \
+>> +'", SYMLINK+="serial%c"
+>> --
+>> 2.12.2
+>>
 
-SGksDQoNCkdlbmVyYWxseSwgY3VwcyBzZXJpYWwgYmFja2VuZCBpcyBzdXBwb3J0ZWQgYnkg4oCc
-Y3Vwcy1maWx0ZXLigJ0gcGFja2FnZS4gWW91IGNhbiBmaW5kIHRoYXQgcGFja2FnZSBpbiB0aGUg
-4oCcbWV0YS1wcmludGluZ+KAnSBsYXllcjoNCmh0dHBzOi8vZ2l0aHViLmNvbS9yb3NzYnVydG9u
-L21ldGEtcHJpbnRpbmcNCg0KSG9wZSB0aGlzIGhlbHBzLA0KTWF4aW4NCg0KDQpGcm9tOiBvcGVu
-ZW1iZWRkZWQtY29yZS1ib3VuY2VzQGxpc3RzLm9wZW5lbWJlZGRlZC5vcmcgW21haWx0bzpvcGVu
-ZW1iZWRkZWQtY29yZS1ib3VuY2VzQGxpc3RzLm9wZW5lbWJlZGRlZC5vcmddIE9uIEJlaGFsZiBP
-ZiBXZW5nIEpvc24NClNlbnQ6IFR1ZXNkYXksIEFwcmlsIDE4LCAyMDE3IDM6MjUgUE0NClRvOiB5
-b2N0b0B5b2N0b3Byb2plY3Qub3JnOyBvcGVuZW1iZWRkZWQtZGV2ZWxAbGlzdHMub3BlbmVtYmVk
-ZGVkLm9yZzsgUGF0Y2hlcyBhbmQgZGlzY3Vzc2lvbnMgYWJvdXQgdGhlIG9lLWNvcmUgbGF5ZXIg
-PG9wZW5lbWJlZGRlZC1jb3JlQGxpc3RzLm9wZW5lbWJlZGRlZC5vcmc+DQpTdWJqZWN0OiBbT0Ut
-Y29yZV0gWW9jdG8gY3VwcyBzZXJpYWwgcG9ydCBzdXBwb3J0DQoNCkhlbGxvLA0KDQoNCkkgY2hl
-Y2tlZCAvdXNyL2xpYi9jdXBzL2JhY2tlbmQgbm90IGluY2x1ZWQgInNlcmlhbCIgYmFja2VuZC4N
-CkhvdyBjYW4gZW5hYmxlIGN1cHMgc2VyaWFsIHBvcnQgPw0KDQoNCg0KVGhhbmtzLg0K
+I was thinking about that but extraconf brings additional
+functionality (ex automount) that might not be of interest. I
+personally don't want that. What do you think?
 
---_000_61C0517EAD808B429A1DE2DD9164D40030F88502IRSMSX103gercor_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+--
+Andrei Gherzan
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
-YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
-IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
-IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBjbTsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJ
-Zm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJvbWFuIixzZXJpZjt9
-DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCglj
-b2xvcjojMDU2M0MxOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KYTp2aXNpdGVkLCBz
-cGFuLk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xv
-cjojOTU0RjcyOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0Kc3Bhbi5FbWFpbFN0eWxl
-MTcNCgl7bXNvLXN0eWxlLXR5cGU6cGVyc29uYWwtcmVwbHk7DQoJZm9udC1mYW1pbHk6IkNhbGli
-cmkiLHNhbnMtc2VyaWY7DQoJY29sb3I6IzFGNDk3RDt9DQouTXNvQ2hwRGVmYXVsdA0KCXttc28t
-c3R5bGUtdHlwZTpleHBvcnQtb25seTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJp
-Zjt9DQpAcGFnZSBXb3JkU2VjdGlvbjENCgl7c2l6ZTo2MTIuMHB0IDc5Mi4wcHQ7DQoJbWFyZ2lu
-OjcyLjBwdCA3Mi4wcHQgNzIuMHB0IDcyLjBwdDt9DQpkaXYuV29yZFNlY3Rpb24xDQoJe3BhZ2U6
-V29yZFNlY3Rpb24xO30NCi0tPjwvc3R5bGU+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpz
-aGFwZWRlZmF1bHRzIHY6ZXh0PSJlZGl0IiBzcGlkbWF4PSIxMDI2IiAvPg0KPC94bWw+PCFbZW5k
-aWZdLS0+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWxheW91dCB2OmV4dD0iZWRp
-dCI+DQo8bzppZG1hcCB2OmV4dD0iZWRpdCIgZGF0YT0iMSIgLz4NCjwvbzpzaGFwZWxheW91dD48
-L3htbD48IVtlbmRpZl0tLT4NCjwvaGVhZD4NCjxib2R5IGxhbmc9IkVOLVVTIiBsaW5rPSIjMDU2
-M0MxIiB2bGluaz0iIzk1NEY3MiI+DQo8ZGl2IGNsYXNzPSJXb3JkU2VjdGlvbjEiPg0KPHAgY2xh
-c3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6
-JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPkhpLDxvOnA+PC9v
-OnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNp
-emU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xv
-cjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
-bWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxp
-YnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+R2VuZXJhbGx5LCBjdXBzIHNlcmlh
-bCBiYWNrZW5kIGlzIHN1cHBvcnRlZCBieSDigJxjdXBzLWZpbHRlcuKAnSBwYWNrYWdlLiBZb3Ug
-Y2FuIGZpbmQgdGhhdCBwYWNrYWdlIGluIHRoZSDigJxtZXRhLXByaW50aW5n4oCdIGxheWVyOjxv
-OnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJm
-b250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJp
-Zjtjb2xvcjojMUY0OTdEIj48YSBocmVmPSJodHRwczovL2dpdGh1Yi5jb20vcm9zc2J1cnRvbi9t
-ZXRhLXByaW50aW5nIj5odHRwczovL2dpdGh1Yi5jb20vcm9zc2J1cnRvbi9tZXRhLXByaW50aW5n
-PC9hPjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0
-eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fu
-cy1zZXJpZjtjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBj
-bGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWls
-eTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+SG9wZSB0aGlz
-IGhlbHBzLDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFu
-IHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDss
-c2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj5NYXhpbjxicj4NCjxicj4NCjxvOnA+PC9vOnA+PC9z
-cGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxhIG5hbWU9Il9NYWlsRW5kQ29tcG9zZSI+
-PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZx
-dW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwv
-YT48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEx
-LjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWYiPkZyb206PC9z
-cGFuPjwvYj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtD
-YWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWYiPiBvcGVuZW1iZWRkZWQtY29yZS1ib3VuY2VzQGxpc3Rz
-Lm9wZW5lbWJlZGRlZC5vcmcgW21haWx0bzpvcGVuZW1iZWRkZWQtY29yZS1ib3VuY2VzQGxpc3Rz
-Lm9wZW5lbWJlZGRlZC5vcmddDQo8Yj5PbiBCZWhhbGYgT2YgPC9iPldlbmcgSm9zbjxicj4NCjxi
-PlNlbnQ6PC9iPiBUdWVzZGF5LCBBcHJpbCAxOCwgMjAxNyAzOjI1IFBNPGJyPg0KPGI+VG86PC9i
-PiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnOyBvcGVuZW1iZWRkZWQtZGV2ZWxAbGlzdHMub3BlbmVt
-YmVkZGVkLm9yZzsgUGF0Y2hlcyBhbmQgZGlzY3Vzc2lvbnMgYWJvdXQgdGhlIG9lLWNvcmUgbGF5
-ZXIgJmx0O29wZW5lbWJlZGRlZC1jb3JlQGxpc3RzLm9wZW5lbWJlZGRlZC5vcmcmZ3Q7PGJyPg0K
-PGI+U3ViamVjdDo8L2I+IFtPRS1jb3JlXSBZb2N0byBjdXBzIHNlcmlhbCBwb3J0IHN1cHBvcnQ8
-bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwv
-bzpwPjwvcD4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5IZWxsbyw8bzpwPjwvbzpwPjwv
-cD4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwv
-ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0K
-PC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SSBjaGVja2VkJm5ic3A7L3Vzci9s
-aWIvY3Vwcy9iYWNrZW5kIG5vdCBpbmNsdWVkICZxdW90O3NlcmlhbCZxdW90OyBiYWNrZW5kLjxv
-OnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SG93IGNh
-biBlbmFibGUgY3VwcyBzZXJpYWwgcG9ydCA/PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+
-DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRp
-dj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8
-ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4N
-CjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5UaGFua3MuPG86cD48L286cD48L3A+DQo8L2Rp
-dj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
-
---_000_61C0517EAD808B429A1DE2DD9164D40030F88502IRSMSX103gercor_--
