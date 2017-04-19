@@ -1,39 +1,63 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 33917E00AC8; Wed, 19 Apr 2017 09:24:26 -0700 (PDT)
+	id 0B213E00AC8; Wed, 19 Apr 2017 09:32:17 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.82.53 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E58DEE00995
-	for <yocto@yoctoproject.org>; Wed, 19 Apr 2017 09:24:23 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id v3JGOCOr010995
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 19 Apr 2017 09:24:12 -0700 (PDT)
-Received: from server.local (128.224.20.183) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.40) with Microsoft SMTP Server id 14.3.294.0;
-	Wed, 19 Apr 2017 09:24:12 -0700
-To: "Paul D. DeRocco" <pderocco@ix.netcom.com>, <yocto@yoctoproject.org>
-References: <B92317128F384E2BAC28643061FC76E1@PAULD>
-	<a41596d9-1ef6-90f2-3c92-79755935f443@windriver.com>
-	<AA060EB406534625A8A91548091402B9@PAULD>
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-Message-ID: <5f9b7995-771a-d9e2-3ceb-329569ee6e92@windriver.com>
-Date: Wed, 19 Apr 2017 12:24:11 -0400
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:45.0)
-	Gecko/20100101 Thunderbird/45.8.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wm0-f53.google.com (mail-wm0-f53.google.com [74.125.82.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5AD2FE00995
+	for <yocto@yoctoproject.org>; Wed, 19 Apr 2017 09:32:14 -0700 (PDT)
+Received: by mail-wm0-f53.google.com with SMTP id w64so84797339wma.0
+	for <yocto@yoctoproject.org>; Wed, 19 Apr 2017 09:32:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=svrAGb3H13iyGPJ9x7+mUIM+QTZoUIzYer4Pmkc6jak=;
+	b=VafXbURkpJIkHV3T73OE2V6DTh9s0UkasAeCAqCvHiftWcRCTpdbNHnCmptiOx2+oy
+	46b5n+yonS/Zzll8nBX5zqoc1umJ17XsjkQsIGX1nQ1xO+CKhg8OzBL/keroaQoRe2oM
+	iQcQ8g6E+TsZ42NmgNMBxGobztnmxEWmYWqXos/SGiIMPcrdPZ61rDpYupxvEOnRrL7m
+	+cY2BZgmk/JJmDcryvAnnRZp64uswIvKJ6p6MBSnNVeolmCDa7s3gVjf6iOoRuEcQhhy
+	aQlOeIeFGA2N/Av1/kbghg+tgsRHiHuRxhMWM68e5XasyEWxoTEC1w37m+uMxfe3vu77
+	4axg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=svrAGb3H13iyGPJ9x7+mUIM+QTZoUIzYer4Pmkc6jak=;
+	b=C42oVoqD+8+uXOAeuVlg4nYU1/+nCKfKoVDoX5YBO9YmdGh5glo2ZFHc92lRjWtCdz
+	JkO0y5toH8/6f/lurXfhesG/ZVaoy0Vetp9KN0V49BgU9uxXmfF+l/Cbnh6hh3tOzFBA
+	m+rzQGsvXuup9K/q/+6appjONU8+Hm5qWXi1oJArhFxpOZY155vVPazXvAdUcJNFECJF
+	DKh+GjaktT/CvRGWMCr6+rzsAw71b6/Ch1kzwuovzsiREEuuCkNngUECPLe/ulEycBGf
+	ilNgaNFW6AwHhgbYi2ltSXdiqoPeXrZiUiMlsttTS/IkKrtsV7/nO//YdRnmH9Ha47+T
+	Ba1w==
+X-Gm-Message-State: AN3rC/4aNbJHc4nfNQJbogx1A6qVuM4lIm7juKPvIyXyXxehd+t/ULYr
+	ACKoirVFm1vGPqO50nyVTs9zmgDMQg==
+X-Received: by 10.28.221.212 with SMTP id u203mr3737295wmg.101.1492619533817; 
+	Wed, 19 Apr 2017 09:32:13 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <AA060EB406534625A8A91548091402B9@PAULD>
-Subject: Re: Patch failures
+Received: by 10.80.180.141 with HTTP; Wed, 19 Apr 2017 09:31:43 -0700 (PDT)
+In-Reply-To: <CAK18fxEy4Gnns4q+MrXJj==hr0CRSJK3xB=sh-yCFRUsaG7PeQ@mail.gmail.com>
+References: <CAK18fxEy4Gnns4q+MrXJj==hr0CRSJK3xB=sh-yCFRUsaG7PeQ@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Wed, 19 Apr 2017 09:31:43 -0700
+Message-ID: <CAMKF1sqo1XY_OX-m46JxU4foym3tg2SgW-SfU0_Yj62ehHiHQg@mail.gmail.com>
+To: Andrei Gherzan <andrei@gherzan.ro>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi] Unified serial console device option
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,50 +69,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 Apr 2017 16:24:26 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 19 Apr 2017 16:32:17 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On 2017-04-17 2:18 AM, Paul D. DeRocco wrote:
->> From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]
->>
->> I can't say from what you've provided why the BSP description isn't
->> valid, but if the kernel recipe and layers are something I
->> can look at,
->> I can debug more.
->>
->> There were some changes between those releases that tweaked the kernel
->> meta-data processing .. and that could be the issue, but
->> again, I can't
->> say without seeing all the details.
+On Wed, Apr 19, 2017 at 4:00 AM, Andrei Gherzan <andrei@gherzan.ro> wrote:
+> Hello all,
 >
-> I've attached a zip containing the stuff I've added. It also includes the
-> log file showing the patch errors. It also shows a log of a few thousand
-> identical errors from grub-efi, having to do with a 32 vs 64 mismatch. In
-> the past, my system has always booted via Syslinux, not Grub, so I don't
-> know what changed between Fido and Morty, or if Syslinux doesn't support
-> 64-bit booting. So there's another unrelated question.
+> I'm trying to have the ability for user to use serial0 as serial port
+> on the header and serial1 (when available) for Bluetooth. In this way
+> rpi2 and rpi3 (32b) will have the same configuration. The story goes
+> identical for rpi0 and rpi0-wifi.
+>
+> Now, what I was planning to do is:
+> 1. create udev rules to generate the the symlinks accordingly to dt aliases.
+> 2. add the above package (with the rules) as a machine recommends
+> (MACHINE_ESSENTIAL_*).
+> 3. and then change all the SERIAL_CONSOLE = 'serial0 115200'
+>
+> This works great with one exception: system parses the console
+> argument in cmdline and spawns through a generator a new getty
+> instance on that device. Adding systemd-serialgetty package will make
+> system have two getty services on the same device (serial0 and for
+> example AMA0) which is obviously unusable and wrong. Sysvinit works
+> ok.
+>
+> Then I thought to make this completely optional:
+> 1. create udev rules to generate the the symlinks accordingly to dt aliases.
+> 2. make SERIAL_CONSOLE configurable (default assignments)
+> 3. a user wanting to take advantage of the udev rules will have to add
+> the rpi udev rules to the image and modify in his/her local.conf
+> SERIAL_CONSOLE
+>
+> Currently we have a cascade setup for our machine configuration: ex
+> rpi3 includes rpi2 and tweaks some things. We do this to avoid some
+> duplication (even though the gain is really minimal - 2-3 lines).
+> Anyway it is something after all.
+>
+> This again looks fine but because we have machine which include other
+> machine conf, I endded up having a problem when I want to overwrite
+> both definitions: see rpi3 which includes rpi2 (defines a
+> SERIAL_CONSOLE) than overwrites SERIAL_CONSOLE.
+>
+> What do you guys think as a way forward? One way would be to make the
+> boards definitions be stand alone and use default assignments which I
+> think it would fix everything and make the mechanism completely
+> optional.
+>
+> BTW: This would unlock the ability to create a raspberrypi-all machine
+> that would work on any raspberry board (armv6 + wifi firmware + etc).
 >
 
-I finally got a chance to look at the layers, and I can see that the
-processing code would in fact pick/generate a generic board description
-and that could lead you into the failures you are seeing.
+I think as a BSP layer, we only need it to expose knobs for serial
+consoles such that all consoles are accounted for on a given machine.
+Then I am fine if you want to treat the machine configs as references
+meaning that someone can inherit the machine conf and override serial
+console. Beyond that its
+a distribution option to unify machine or consoles etc. I would leave it to that
+and ensure that if some distros wanted such a set up and anything was
+missing from machine perspective that should be added.
 
-I assume you are building for MACHINE="chroma-bsp" and the linux-yocto-rt
-kernel recipe ?
-
-If you can confirm the details, and anything else, I can mock up a
-recipe space BSP description that should work.
-
-Bruce
-
-> The history is this: I originally developed this as a 32-bit OS under
-> Danny, then updated it with no problems to Fido. I wanted to try the x32
-> ABI, since the extra registers could be very useful (lots of SSE SIMD in
-> the application). Perhaps I should have first tried updating to Morty
-> without x32. I had to change some version numbers (the kernel, systemd,
-> Samba), and of course add the x32 tune. For Samba, I added a few layers
-> from OE.
->
-
+> --
+> Andrei Gherzan
 
