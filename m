@@ -1,48 +1,35 @@
-Return-Path: <herve.jourdain@neuf.fr>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0EF01E00AE6; Wed, 19 Apr 2017 20:51:38 -0700 (PDT)
+	id 29C8EE00AF0; Wed, 19 Apr 2017 21:20:20 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [93.17.128.1 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 584 seconds by postgrey-1.32 at yocto-www;
-	Wed, 19 Apr 2017 20:51:35 PDT
-Received: from smtp26.services.sfr.fr (smtp26.services.sfr.fr [93.17.128.1])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 378B0E00AE0
-	for <yocto@yoctoproject.org>; Wed, 19 Apr 2017 20:51:35 -0700 (PDT)
-Received: from nbhjo (203-69-87-74.HINET-IP.hinet.net [203.69.87.74])
-	by msfrf2616.sfr.fr (SMTP Server) with ESMTP id 4BEFE1C000416;
-	Thu, 20 Apr 2017 05:41:50 +0200 (CEST)
-Received: from nbhjo (203-69-87-74.HINET-IP.hinet.net [203.69.87.74])	(using
-	TLSv1.2
-	with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))	(No client
-	certificate requested)	(Authenticated sender: herve.jourdain@neuf.fr)
-	by msfrf2616.sfr.fr (SMTP Server) with ESMTPSA;
-	Thu, 20 Apr 2017 05:41:48 +0200 (CEST)
-Authentication-Results: sfr.fr; auth=pass (LOGIN)
-	smtp.auth=herve.jourdain@neuf.fr
-From: Herve Jourdain <herve.jourdain@neuf.fr>
-To: 'Andreas =?iso-8859-1?q?M=FCller=27?= <schnitzeltony@googlemail.com>,
-	'Trevor Woerner' <twoerner@gmail.com>
-References: <20170415133928.GA29433@linux-uys3>
-	<CALbNGRQy1Lf1=hV47Lf+u7rQUgubXjdiQWhjNJN4a3sDwr419A@mail.gmail.com>
-	<20170415163537.GA23175@linux-uys3>
-	<CALbNGRRDv1d3GHBNMwXHajgyx8iee4pSfNkEcKxMDiraagC50g@mail.gmail.com>
-In-Reply-To: <CALbNGRRDv1d3GHBNMwXHajgyx8iee4pSfNkEcKxMDiraagC50g@mail.gmail.com>
-Date: Thu, 20 Apr 2017 05:41:44 +0200
-Message-ID: <005c01d2b988$0b2c9e50$2185daf0$@neuf.fr>
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [134.134.136.31 listed in list.dnswl.org]
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 638AEE00AE0
+	for <yocto@yoctoproject.org>; Wed, 19 Apr 2017 21:20:18 -0700 (PDT)
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+	by orsmga104.jf.intel.com with ESMTP; 19 Apr 2017 21:20:18 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.37,223,1488873600"; d="scan'208";a="959003360"
+Received: from sitinura-mobl.gar.corp.intel.com (HELO
+	peggleto-mobl.ger.corp.intel.com) ([10.255.137.15])
+	by orsmga003.jf.intel.com with ESMTP; 19 Apr 2017 21:20:16 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Thu, 20 Apr 2017 16:20:14 +1200
+Message-ID: <2716874.smAeZZESSB@peggleto-mobl.ger.corp.intel.com>
+Organization: Intel Corporation
+In-Reply-To: <20170419225019.GA20421@natasha2.familycom.org>
+References: <20170419225019.GA20421@natasha2.familycom.org>
 MIME-Version: 1.0
-X-Mailer: Microsoft Outlook 15.0
-Thread-Index: AQI7YjmaY5b73bo5adVPjN/uNfcVfwJYbQZ/AUYAPzUCNRP7baDNro7w
-X-sfr-mailing: LEGIT
-Cc: 'Yocto Project' <yocto@yoctoproject.org>
-Subject: Re: ***SPAM*** Re: [meta-raspberrypi] gles2 on raspi3
+Subject: Re: devtool and adding specific tag from repo
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,104 +41,74 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Apr 2017 03:51:38 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Content-Language: fr
+X-List-Received-Date: Thu, 20 Apr 2017 04:20:20 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Hi Andreas,
+On Thursday, 20 April 2017 10:50:19 AM NZST Brian Kurle wrote:
+> I'm trying to get up to speed on devtool.
+> 
+> I've created a generic eSDK (poky and meta-openembedded) and installed it.
+> 
+> From there, I'm trying to create a new recipe, but I apparently am not
+> executing it correctly to pull the desired tag.
+> 
+> If I execute:
+> 
+> devtool add --version 2.4.2 mbedtls git@github.com:ARMmbed/mbedtls.git
+> 
+> or
+> 
+> devtool add --version 2.4.2 mbedtls
+> git@github.com:ARMmbed/mbedtls.git;tag=mbedtls-2.4.2
+> 
+> or
+> 
+> devtool add --version mbedtls-2.4.2 mbedtls
+> git@github.com:ARMmbed/mbedtls.git
+> 
+> It still manages to get the wrong hash (not even the right branch).
+> 
+> Is this a limitation of devtool, or is a better way to do this?
+> (E.g., just go to the sources directory, check it out and manually update
+> the recipe?)
+> 
+> My goal is to set up a stock recipe off of the mbedtls-2.4.2 tag,
+> where I'll then create a bbappend to add additional patches and
+> configuration specific for our platform.  I could do it manually, but it
+> would be nice to know how to do it "the right way" for the documentation
+> I'll pass to others on my team.
+> 
+> Guidance and correction would be most appreciated.
 
-Yes, VC4 indeed works for both 32bits and 64bits. It was first =
-introduced for 32bits, actually.
-Regarding why still using userland: at this point in time, we have =
-accelerated HW codec (H.264, MPEG2, some audio) only if using userland.
-If one doesn't need that, then VC4 is, in my opinion, the way to go. =
-Otherwise, userland still needs to be used.
+For everyone's benefit, FYI Brian and I have talked offline, but there
+are several bugs and opportunities for improvement here as it turns out.
+I have filed the following bugs:
+
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=11389
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=11390
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=11391
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=11393
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=11392
+
+The current workaround for this particular example is to use this:
+
+devtool add --version 2.4.2 mbedtls "git://github.com/ARMmbed/mbedtls;branch=mbedtls-2.4;rev=mbedtls-2.4.2"
+
+By using the default git protocol rather than ssh, we avoid having to use
+git@ which avoids triggering 11390 or 11391. Also worth noting is that
+you must use quotes around the URL if you're specifying a revision
+and/or branch because of the ; character, otherwise your shell will eat
+that part and because something=value is a valid shell command you
+won't get an error. It could be that we need to provide additional explicit
+command-line options for specifying the branch/tag/revision to avoid that,
+I'm not sure if there's another practical way - suggestions welcome.
 
 Cheers,
-Herve
+Paul
 
------Original Message-----
-From: yocto-bounces@yoctoproject.org =
-[mailto:yocto-bounces@yoctoproject.org] On Behalf Of Andreas M=C3=BCller
-Sent: samedi 15 avril 2017 20:09
-To: Trevor Woerner <twoerner@gmail.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: ***SPAM*** Re: [yocto] [meta-raspberrypi] gles2 on raspi3
+-- 
 
-On Sat, Apr 15, 2017 at 6:35 PM, Trevor Woerner <twoerner@gmail.com> =
-wrote:
-> On Sat 2017-04-15 @ 04:46:14 PM, Andreas M=C3=BCller wrote:
->> > Does anyone have any of these (or something else?) working?
->> >
->> Ehm userland gles2 on X11? I would not expect that to work. Experts=20
->> correct me but userland acceleration works for fullscreen apps only.
->
-> I have made this work before (which, as you'll see later in this=20
-> email, doesn't imply that's how it's supposed to work!):
-> https://twoerner.blogspot.ca/2015/09/oe-build-of-glmark2-running-on.ht
-> ml
->
-> Oh, and I did try both with and without "--fullscreen".
->
->> Why not using FOSS VC4+mesa?
->
-> Now's probably a good time to point out I only have a vague idea of=20
-> what I'm doing ;-)
->
-> I didn't try vc4 because the raspi recipes implied (to me) it was for=20
-> aarch64 only. The "vc4graphics" MACHINE_FEATURES is only added for =
-raspberrypi3-64.
-> I'll give this a try though.
-Oh yes you are right - it is long time ago - maybe this was one of the =
-reasons for my vc4-only fork. I thought it is an option set in =
-local.conf.
->
-> Here's another question that only shows my inexperience in this=20
-> area... does using mesa always imply software-only rendering? mali=20
-> (for example) would be hardware rendering (though through a binary=20
-> blob) and mesa is the software fallback?
-I am also no expert here but Mesa is the open source userspace part for =
-accelerated graphics. Mesa-SW rendering driver is a fallback in case no =
-driver is supported/implemented. This is what you have seen for glmark2. =
-Since the VC4-Mesa was implemented, for me RaspberryPi turned into the =
-reference hardware regarding graphics. You can have accelerated X11 + =
-wayland in one image without any trouble with proper working modesetting =
-(and HDMI sound is on it's way). I've never had this before on other =
-machines where closed source blobs do graphics acceleration. Either you =
-have fb only (no X11/wayland) or you have to decide either X11 or =
-wayland - and worst: With every new version of xserver you have to =
-expect trouble.
->
-> By the way, with my current setup I have been able to run openGL apps =
-(e.g.
-> glmark2 by itself) albeit most definitely non-accelerated!
-mesa-gl builds swrast - mentioned above
->
-> A lot of google searches talk about setting environment variables. Are =
-
-> there any that might apply?
->
-For the first shot I would add vc4graphics to MACHINE_FEATURES in =
-raspberrypi3.conf. The required settings should happen (see recipe =
-rpi-config).
-
-In the long run I would start a discussion:
-
-* Mesa/VC4 is not a machine feature only available on 64Bit Pi3 only:
-It is common to all version of RaspberryPi. Using mesa should be a =
-decision easily selected by a setting somewhere. The only reason 64Bit
-Pi3 gets VC4 by default is that userland is not working for 64Bit - see =
-commit 9d418db5ed2962821987ac90c07c3a61e40c0814)
-* Why still use userland? Dropping it would make things MUCH easier:
-All the decisions based vc4graphics in MACHINE_FEATURES could be removed =
-(that's what my fork does)
-
-Andreas
---
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
-
+Paul Eggleton
+Intel Open Source Technology Centre
 
