@@ -1,6 +1,6 @@
 Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0FDF6E00A0A; Thu, 20 Apr 2017 10:18:27 -0700 (PDT)
+	id 56592E0095F; Thu, 20 Apr 2017 10:18:27 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -18,46 +18,49 @@ X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 Received: from mail-wm0-f66.google.com (mail-wm0-f66.google.com [74.125.82.66])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2CBC5E0083D
-	for <yocto@yoctoproject.org>; Thu, 20 Apr 2017 10:18:23 -0700 (PDT)
-Received: by mail-wm0-f66.google.com with SMTP id o81so12049913wmb.0
-	for <yocto@yoctoproject.org>; Thu, 20 Apr 2017 10:18:23 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 33B08E0092B
+	for <yocto@yoctoproject.org>; Thu, 20 Apr 2017 10:18:25 -0700 (PDT)
+Received: by mail-wm0-f66.google.com with SMTP id o81so12050110wmb.0
+	for <yocto@yoctoproject.org>; Thu, 20 Apr 2017 10:18:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
-	h=from:to:cc:subject:date:message-id;
-	bh=mxoIBo2vSf6v50/1wdB1PglobQ+ofIZ6jmrz5lqjBYM=;
-	b=L1z+vV5EWxdunZgjPKhv2a5eHIL2QCjVzs2n9QZvkODbe6nLVewH6++WymOOEPUF5l
-	SrKLYVlLrLezQYdF42hcakDVhkIl5ZI1NBZ40dVBioXT/Zt2wQrN9A9jAB/lfs23T8Qd
-	Fu7jhDfE0QvDD5krdouPyKErJHipP2OjAwaH45Eo6ytQ2/k7NYt6/TVTFe2PoCI3peI2
-	JNUlIOHLO/ks+38gYK5jTRxPS0qHSWPlNdHjqi5AhA5NguaLPcb3MvWlzpdnih8Beuna
-	/QrlZXItQeLv81d6bEJ6f1hWdBEw5SoGDtGkCOeNjHIlCauipAZo4VbcjAed1SWz8kZD
-	Wv+A==
+	h=from:to:cc:subject:date:message-id:in-reply-to:references;
+	bh=1+W7dTAjABq4+jz8CpSFLa0EPUVFslMSyy8SBManhbg=;
+	b=n9dtjgcYjFPPc1NpGtqhJYPWGrZ4zOT7s8hTCEgU3ycKt4HcslFjd3XzLRqFUZ0Zfl
+	MURMCGjUzaUPbQBLPjAbIR/p6FZaIxuD/2EDRDyV/wjHTudv32fhLtc/IPZo9idCD6n2
+	YnvpppYx36eojBf2Kl+QxQ0eKN59/zFzRL3KysWUoPqbfGfVvPnLhO931PnxmKuP0YBl
+	hWZ3dWnpEkPZOkbm9mKR5P6uDAcE1o4R/4aKTnpXpYtw6IBhFrXi5fwERksDMp4U9rw+
+	ACaHxjykgX6IJVxKTRbrn5WWe2zFoFTpVMKzBgF8TlXyHL++cyGY1cVBASvzbwYHApTK
+	t6lA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=mxoIBo2vSf6v50/1wdB1PglobQ+ofIZ6jmrz5lqjBYM=;
-	b=pVDY/5SIdst8iaJZILAQXuQTaKw0uTuq9qpq/Byuu1m2fxKchcEVOTZNVaWBlCOjVV
-	/WjrKKkGmInzvAQUYLAuuS/vC8t9pzj5H5d/hFATe1QuJd7iuNnWFjHnvH3XTsWoPwft
-	nTupvF3KgAwShxYj9EoBs3jDektcBqaX2QI0bB9tJ/7/fVN184mqL7dcj3f/hQN4hI2X
-	uQ1KLkUTuf61hOE4QXJ6/kCjhKsutWw1I0XXDO95WjWJdgFSwLEFvRrQMIl+jrP5uNAK
-	EynVr/T/ViyYEYjCnTU4P9za37twJ8+yFM2/xZWkyCdc5ufG1U3Wh8+smj20xzwmkFaB
-	8M3A==
-X-Gm-Message-State: AN3rC/5MbIR+nXgVYQADDG8W9Up38TPlFZ/9snJlzslwjVc0rjrtachI
-	UxcwRQLgudN+MXF7csU=
-X-Received: by 10.28.40.198 with SMTP id o189mr4473779wmo.108.1492708702908;
-	Thu, 20 Apr 2017 10:18:22 -0700 (PDT)
+	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+	:references;
+	bh=1+W7dTAjABq4+jz8CpSFLa0EPUVFslMSyy8SBManhbg=;
+	b=TLgsNoUdtPyenCvjokqtRDpDG4gAqJe4zRaAj14nxuOTTiTj+4xl1HtlW0QPVKlaEs
+	NoS2pILMUGIVMklSc4b8BIb2RQnsqG9kIlpvccKXlNMMcG4Gfeq4Fydf5MgsrIIy+rBb
+	160rxAcLQWNzzekgnT5cxtq6GrJuyCEZ9MNfJiTuCvZH+W86w7ryPtaAVF5tB0v3pfPU
+	Kp7sPkMp9izCXu/28JIvXXT+M/X8GdohKAjb9S1GQLkCQ74iMaZSe+y+E5ewBtEBjp/k
+	mdZvlMgJxzRSlRedzbNF7EUUU46HXBwOERn8Gq4JC4+zjMHu2YeMVfPcG0MNZ/qg411d
+	ty3w==
+X-Gm-Message-State: AN3rC/4vEJodbG0zREr6xKJQpSwVQeCUtHFJd49VPVGYac6fgvW1QO5O
+	ZmxGRtNkJowljg==
+X-Received: by 10.28.92.65 with SMTP id q62mr4491908wmb.139.1492708704944;
+	Thu, 20 Apr 2017 10:18:24 -0700 (PDT)
 Received: from localhost.localdomain
 	(host86-158-8-191.range86-158.btcentralplus.com. [86.158.8.191])
 	by smtp.gmail.com with ESMTPSA id
-	y126sm7395309wmg.29.2017.04.20.10.18.21
+	y126sm7395309wmg.29.2017.04.20.10.18.24
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Thu, 20 Apr 2017 10:18:22 -0700 (PDT)
+	Thu, 20 Apr 2017 10:18:24 -0700 (PDT)
 From: Andrei Gherzan <andrei@gherzan.ro>
 To: yocto@yoctoproject.org
-Date: Thu, 20 Apr 2017 18:18:14 +0100
-Message-Id: <20170420171816.23407-1-andrei@gherzan.ro>
+Date: Thu, 20 Apr 2017 18:18:16 +0100
+Message-Id: <20170420171816.23407-3-andrei@gherzan.ro>
 X-Mailer: git-send-email 2.12.2
-Subject: [meta-raspberrypi][PATCH 1/3] raspberrypi2.conf: Make SERIAL_CONSOLE overwritable
+In-Reply-To: <20170420171816.23407-1-andrei@gherzan.ro>
+References: <20170420171816.23407-1-andrei@gherzan.ro>
+Subject: [meta-raspberrypi][PATCH 3/3] raspberrypi3.conf: Use a stand alone machine configuration
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,23 +74,35 @@ List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Thu, 20 Apr 2017 17:18:27 -0000
 
+As well make all the variables assigned in a way that they can be
+overwritten so we can give maximum flexibility to distros.
+
 Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
 ---
- conf/machine/raspberrypi2.conf | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ conf/machine/raspberrypi3.conf | 10 +++++++---
+ 1 file changed, 7 insertions(+), 3 deletions(-)
 
-diff --git a/conf/machine/raspberrypi2.conf b/conf/machine/raspberrypi2.conf
-index 9b4c02a..a17289c 100644
---- a/conf/machine/raspberrypi2.conf
-+++ b/conf/machine/raspberrypi2.conf
-@@ -7,7 +7,7 @@ DEFAULTTUNE ?= "cortexa7thf-neon-vfpv4"
- require conf/machine/include/tune-cortexa7.inc
- include conf/machine/include/rpi-base.inc
+diff --git a/conf/machine/raspberrypi3.conf b/conf/machine/raspberrypi3.conf
+index 1ac5928..884d875 100644
+--- a/conf/machine/raspberrypi3.conf
++++ b/conf/machine/raspberrypi3.conf
+@@ -2,10 +2,14 @@
+ #@NAME: RaspberryPi 3 Development Board
+ #@DESCRIPTION: Machine configuration for the RaspberryPi 3
  
--SERIAL_CONSOLE = "115200 ttyAMA0"
-+SERIAL_CONSOLE ?= "115200 ttyAMA0"
+-MACHINEOVERRIDES = "raspberrypi2:${MACHINE}"
+-include conf/machine/raspberrypi2.conf
++DEFAULTTUNE ?= "cortexa7thf-neon-vfpv4"
++require conf/machine/include/tune-cortexa7.inc
++include conf/machine/include/rpi-base.inc
  
- UBOOT_MACHINE = "rpi_2_config"
+ MACHINE_EXTRA_RRECOMMENDS += "linux-firmware-bcm43430"
+ 
+-SERIAL_CONSOLE = "115200 ttyS0"
++SDIMG_KERNELIMAGE ?= "kernel7.img"
++KERNEL_DEFCONFIG ?= "bcm2709_defconfig"
++UBOOT_MACHINE ?= "rpi_2_config"
++SERIAL_CONSOLE ?= "115200 ttyS0"
  VC4_CMA_SIZE ?= "cma-256"
 -- 
 2.12.2
