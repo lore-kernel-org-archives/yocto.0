@@ -1,6 +1,6 @@
 Return-Path: <twoerner@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 46D92E00AF0; Thu, 20 Apr 2017 00:26:52 -0700 (PDT)
+	id 2F73AE00AF6; Thu, 20 Apr 2017 00:30:33 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,6 +9,9 @@ X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (twoerner[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.223.179 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -17,51 +20,51 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.223.172 listed in dnsbl.sorbs.net]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.223.172 listed in list.dnswl.org]
-Received: from mail-io0-f172.google.com (mail-io0-f172.google.com
-	[209.85.223.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 31DA4E00AE0
-	for <yocto@yoctoproject.org>; Thu, 20 Apr 2017 00:26:48 -0700 (PDT)
-Received: by mail-io0-f172.google.com with SMTP id a103so59321492ioj.1
-	for <yocto@yoctoproject.org>; Thu, 20 Apr 2017 00:26:48 -0700 (PDT)
+	*      [209.85.223.179 listed in dnsbl.sorbs.net]
+Received: from mail-io0-f179.google.com (mail-io0-f179.google.com
+	[209.85.223.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1A602E00AE0
+	for <yocto@yoctoproject.org>; Thu, 20 Apr 2017 00:30:29 -0700 (PDT)
+Received: by mail-io0-f179.google.com with SMTP id k87so58812745ioi.0
+	for <yocto@yoctoproject.org>; Thu, 20 Apr 2017 00:30:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=date:from:to:subject:message-id:mime-version:content-disposition
-	:user-agent; bh=Yzry7LeD4tkg80OLJzD2o00wRcHshrQrNNyz+YOY/3s=;
-	b=HUAJFoKm75gAnZFDkWUacFSqwYnyp2whINcRgaK8h8UWJaZX9ZEiE6CbyFYjmv8MNU
-	CQE624zN97UkxSy6PyVUA0+Q0HogTahPybNeKP1+bYpVKH2DOR13DQDbJM2q/Y/z3EN8
-	uvFXOJY2HaiZ1thSTP5Kblnfx2+XaEJB1bed4W0D917lCoiyyX6eMJZLSXGfFO2rejy5
-	/nZGQ3VApzQgIVxcIIzoDJ/JsGXGj5wUqhv+Da4X9ctZml1UpvR8tHvlBD9sfb4J+mew
-	ZfjYg+Cz22bFh101zPuHo/5gdiJRcH15JW54qCQxKVSvhOjZ+PcG2pU1mRSPOc5813lX
-	+6Ag==
+	h=date:from:to:subject:message-id:references:mime-version
+	:content-disposition:in-reply-to:user-agent;
+	bh=PUbTJrvbjDSSF+HLsUoAxilwfd8vpCCoS9CINNaN02U=;
+	b=VyeCquzLJRIB1pcPEHXa+7nGt5XEgQJ13FWjH4f4/ErWGNvZbpV4D5n9vVVRIDICx3
+	RqoW2M9ntqJIahU07TZXJtxEaH4y9WyXRPG4KMZqi+8oHBJ4CkW4E5gt8JSbPRPf54OW
+	f8ur7/Gzx5RTdkj90AUEOWcCICffJRf9ji+L5S0xXDdGHGlCnzH5KJxP9LqWfg/gcQNj
+	JpnhLbs1CjAm4q08H3WlCtpoAh5wRN7I4cbkczJRJnF6cP7efGaPIOyeYoQGW1IK61Xk
+	A5Wsnot1+ItqyxACqNTaUlqe6sR9I4UJiz3z4dWNSMJ+BUkQYcUYy/3P3DjjPBEEL2M8
+	fysQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:date:from:to:subject:message-id:mime-version
-	:content-disposition:user-agent;
-	bh=Yzry7LeD4tkg80OLJzD2o00wRcHshrQrNNyz+YOY/3s=;
-	b=eiw6iuSWBFCfhuwKVqk3Pa1er0eVj0zH5tVY8kMvZnzmszCeAAPB3uPQ6vNQcGpswj
-	74N5axNZH5YVqiJ8Vq68PSDrW2x/fZdQQ4jv7M5lGhqph76r4e5IELYHbBWndMxiHyXC
-	OGpWhz2i5YHkQAJQGUqOCWvQC2MmO8QCy8wfAegXFv/jYQCmy9LUoLXryAVxUmcQoxr6
-	CmlXq/P+4+KlvPtv4a/QZVA7K0xanG0SIDz5bhYiQbjT3oAzlO3ms5le1I8Wq2jfHsUZ
-	KpDTGf1Y8X106NntDT0qD2ox4B3HJR2QQ0aNrLxOvY0VgNynD8NQM/T2UJuYfXPSxU1o
-	AlQA==
-X-Gm-Message-State: AN3rC/6LSodgKQF5mDRuGa0gss2Vn2hTbAebvlKrO7TKoDrd8k19JZYn
-	xwIZW1MdaAUu0DMv+xI=
-X-Received: by 10.36.90.77 with SMTP id v74mr2151324ita.101.1492673172270;
-	Thu, 20 Apr 2017 00:26:12 -0700 (PDT)
+	h=x-gm-message-state:date:from:to:subject:message-id:references
+	:mime-version:content-disposition:in-reply-to:user-agent;
+	bh=PUbTJrvbjDSSF+HLsUoAxilwfd8vpCCoS9CINNaN02U=;
+	b=UdncDSXRpHPlFDeIjJ+5Fy7zfI9Pru7Zb0GAsz+xm5vMdhpSYy8gYJNBIAn8WWDxsW
+	xBgfvtSqsICJ/wt+rwGgx0ZlRw2WW7ke+snFTtk33GhINqZJlW7DX+GvUok90cKCn36Q
+	xjNCtGj5pGzXJJi3dqGoNGoFZ2oYKzYJJw8kd9z6jn5+WQ9AE8nt4V6xhObQFzAAaPg7
+	0lULzO/z9IeAwLH3UMc+vqIZAJv3/sAV4MEWYrXhzjvQbRpjK7+NfAPYo33UwqvECNHG
+	9Jk5WIVMrZ8Ve6fP7MtBpeFMtyEK9ETo37mp0B2cbm8N582r8C07iet3pS61Xc7SRpKN
+	P/JA==
+X-Gm-Message-State: AN3rC/5hhmcIKDZg7brc0oAEuXDJTK8Ht5IWZAxTTQssEZDSzTWOYhy2
+	KcaunO/uaoJb1W9uhAk=
+X-Received: by 10.36.94.138 with SMTP id h132mr2255088itb.104.1492673405762;
+	Thu, 20 Apr 2017 00:30:05 -0700 (PDT)
 Received: from linux-uys3 ([108.161.123.115]) by smtp.gmail.com with ESMTPSA id
-	d139sm7496672itd.6.2017.04.20.00.26.11 for <yocto@yoctoproject.org>
+	j130sm2440719ioj.19.2017.04.20.00.30.04 for <yocto@yoctoproject.org>
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Thu, 20 Apr 2017 00:26:11 -0700 (PDT)
-Date: Thu, 20 Apr 2017 03:26:09 -0400
+	Thu, 20 Apr 2017 00:30:04 -0700 (PDT)
+Date: Thu, 20 Apr 2017 03:30:03 -0400
 From: Trevor Woerner <twoerner@gmail.com>
 To: yocto@yoctoproject.org
-Message-ID: <20170420072609.GB25443@linux-uys3>
+Message-ID: <20170420073003.GC25443@linux-uys3>
+References: <20170420072609.GB25443@linux-uys3>
 MIME-Version: 1.0
+In-Reply-To: <20170420072609.GB25443@linux-uys3>
 User-Agent: Mutt/1.6.0 (2016-04-01)
-Subject: overzealous packagedata
+Subject: Re: overzealous packagedata
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,42 +76,12 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Apr 2017 07:26:52 -0000
+X-List-Received-Date: Thu, 20 Apr 2017 07:30:33 -0000
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 
-I'm trying to build a certain combination of software for a given SoC. mesa
-(meta-gl, specifically) provides a libgbm, but if you don't want to use mesa's
-libgbm you can disable it with a PACKAGECONFIG. I.e.
+...or let me ask this question another way...
 
-	PACKAGECONFIG_remove_pn-mesa-gl = "gbm"
-
-It works, and looking at the packages-split I can verify that nothing gets
-installed for either mesa's libgbm nor libgbm-dev.
-
-This particular SoC's BSP, however, provides an SoC-specific libgbm that
-should be used in place of mesa's. This is easy, set the PREFERRED_PROVIDER,
-tell mesa you don't want its gbm and everything is good, right?
-
-:-(
-
-The build fails because the *packagedata* from both mesa-gl and this SoC's
-specific libgbm collide. The packagedata, I guess, states what *might* be
-installed. So since both packages might install /usr/lib/libgbm, the build
-freaks out:
-
-	ERROR: mesa-gl-2_17.0.2-r0 do_packagedata_setscene: The recipe mesa-gl is trying to install files into a shared area when those files already exist. Those files and their manifest location are:
-	  /z/build-master/bbb/build/tmp-glibc/pkgdata/beaglebone/runtime/libgbm-dev
-	    (matched in manifest-beaglebone-libgbm.packagedata)
-	  /z/build-master/bbb/build/tmp-glibc/pkgdata/beaglebone/runtime/libgbm
-	    (matched in manifest-beaglebone-libgbm.packagedata)
-	Please verify which recipe should provide the above files.
-
-This is very annoying because, even if hell froze over and somehow both libgbm
-and mesa-gl installed both of their libgbm packages, there would actually only
-be one provider since mesa-gl's libgbm package is, in fact, empty.
-
-Is there a way to get this to work? I can't not build mesa-gl, because I need
-some of its parts (virtual/mesa, virtual/libgl) and I can't not use the SoC's
-libgbm because (I'm guessing) that's what I'm supposed to use.
+Does anyone have accelerated graphics working on the beagleboard with x11
+(ti-sgx-ddk-um?) and if so, what did you do to get it to build (and run)?
 
