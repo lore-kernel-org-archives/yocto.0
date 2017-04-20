@@ -1,68 +1,63 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 47FA3E0095F; Thu, 20 Apr 2017 09:56:22 -0700 (PDT)
+	id 0FDF6E00A0A; Thu, 20 Apr 2017 10:18:27 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [74.125.82.66 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.82.66 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.67 listed in list.dnswl.org]
-Received: from mail-wm0-f67.google.com (mail-wm0-f67.google.com [74.125.82.67])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CCE7BE0083C
-	for <yocto@yoctoproject.org>; Thu, 20 Apr 2017 09:56:18 -0700 (PDT)
-Received: by mail-wm0-f67.google.com with SMTP id d79so11981132wmi.2
-	for <yocto@yoctoproject.org>; Thu, 20 Apr 2017 09:56:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=r3AL6/QBzQjPnXp+iQvhOI29sLLdEbLIbh3ts1XdxBs=;
-	b=KpEsmO0ezw9LqmmuTe8c3zfzmxEn6dcg7u3tcQO3XBD38wi+uBZ3dGBX0+9kerpIK0
-	ju52V79ciYHfCVNQwKYAUblEiYpQe7WDHpmR8zORYqF9rUDIvpN6bEy8h8XUZ16n0LUy
-	7+xbG5Y6NGL764/Or5OAqC6hmHWUHL5fkKKMBnmz1QSLqXKVOGExIp9+8EQE37ABxmgT
-	HHXXSIyH4jqZZJgPkFZIdTF5n5N5WvCRoNDf4dKiiMBOLdhDMoKPLX5aRyVKDBr6iSxA
-	jpjs06m1DIBS25hVTlRdqK+KXKlqTgO+YTpr5eLbitN+TxIddfhF9NdYuktb6vZY4cWv
-	Igcw==
+Received: from mail-wm0-f66.google.com (mail-wm0-f66.google.com [74.125.82.66])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2CBC5E0083D
+	for <yocto@yoctoproject.org>; Thu, 20 Apr 2017 10:18:23 -0700 (PDT)
+Received: by mail-wm0-f66.google.com with SMTP id o81so12049913wmb.0
+	for <yocto@yoctoproject.org>; Thu, 20 Apr 2017 10:18:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
+	h=from:to:cc:subject:date:message-id;
+	bh=mxoIBo2vSf6v50/1wdB1PglobQ+ofIZ6jmrz5lqjBYM=;
+	b=L1z+vV5EWxdunZgjPKhv2a5eHIL2QCjVzs2n9QZvkODbe6nLVewH6++WymOOEPUF5l
+	SrKLYVlLrLezQYdF42hcakDVhkIl5ZI1NBZ40dVBioXT/Zt2wQrN9A9jAB/lfs23T8Qd
+	Fu7jhDfE0QvDD5krdouPyKErJHipP2OjAwaH45Eo6ytQ2/k7NYt6/TVTFe2PoCI3peI2
+	JNUlIOHLO/ks+38gYK5jTRxPS0qHSWPlNdHjqi5AhA5NguaLPcb3MvWlzpdnih8Beuna
+	/QrlZXItQeLv81d6bEJ6f1hWdBEw5SoGDtGkCOeNjHIlCauipAZo4VbcjAed1SWz8kZD
+	Wv+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=r3AL6/QBzQjPnXp+iQvhOI29sLLdEbLIbh3ts1XdxBs=;
-	b=pw5+vEncRqF2DnrLnTSSgeJmNUZ9dw8dAih7gkcpUjndOgFvJyiq3x3Aj4U6tKKnSs
-	AeJl1QzPvkwkUjonmvyB+CwnuxzEv1jA6TGx9+8QXlZB6cXktUACKhNKLwo2zeDiIrM6
-	mXfLUe24SqL3bmNJjONwdNVK0gTy1Cz9R17eqjwr0sy5QUcQG5fxGWEihALkj/A+zwxI
-	AqwakKZu1ZGGFlx9H5J5yDBDu/MnaPxCpA077SpfaA1SY+CRdEvAkNVPTnAlOo+488tV
-	wH31LT/+4Vd3jQg6/NNWYf4FKuavGBe1toy9pt3Akrr2qiUQwdtlf8lhWQxC6G+PjjTZ
-	eu8w==
-X-Gm-Message-State: AN3rC/46DBlJQ5Ao1Dm/XIIalIhb2cAGVasn//lGMBQ5AbMVdzL4EJQJ
-	QfWTSVwYUhmGZvgfGJu34rWKg72lkw==
-X-Received: by 10.28.87.70 with SMTP id l67mr3981349wmb.37.1492707377561; Thu,
-	20 Apr 2017 09:56:17 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.80.180.141 with HTTP; Thu, 20 Apr 2017 09:55:46 -0700 (PDT)
-In-Reply-To: <20170420071321.GA25443@linux-uys3>
-References: <20170415133928.GA29433@linux-uys3>
-	<CALbNGRQy1Lf1=hV47Lf+u7rQUgubXjdiQWhjNJN4a3sDwr419A@mail.gmail.com>
-	<20170415163537.GA23175@linux-uys3>
-	<CALbNGRRDv1d3GHBNMwXHajgyx8iee4pSfNkEcKxMDiraagC50g@mail.gmail.com>
-	<005c01d2b988$0b2c9e50$2185daf0$@neuf.fr>
-	<20170420071321.GA25443@linux-uys3>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Thu, 20 Apr 2017 09:55:46 -0700
-Message-ID: <CAMKF1so-rjEmDH54fw4+tv=uECXWu=yH52EecPs0EG6ab+8moQ@mail.gmail.com>
-To: Trevor Woerner <twoerner@gmail.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi] gles2 on raspi3
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=mxoIBo2vSf6v50/1wdB1PglobQ+ofIZ6jmrz5lqjBYM=;
+	b=pVDY/5SIdst8iaJZILAQXuQTaKw0uTuq9qpq/Byuu1m2fxKchcEVOTZNVaWBlCOjVV
+	/WjrKKkGmInzvAQUYLAuuS/vC8t9pzj5H5d/hFATe1QuJd7iuNnWFjHnvH3XTsWoPwft
+	nTupvF3KgAwShxYj9EoBs3jDektcBqaX2QI0bB9tJ/7/fVN184mqL7dcj3f/hQN4hI2X
+	uQ1KLkUTuf61hOE4QXJ6/kCjhKsutWw1I0XXDO95WjWJdgFSwLEFvRrQMIl+jrP5uNAK
+	EynVr/T/ViyYEYjCnTU4P9za37twJ8+yFM2/xZWkyCdc5ufG1U3Wh8+smj20xzwmkFaB
+	8M3A==
+X-Gm-Message-State: AN3rC/5MbIR+nXgVYQADDG8W9Up38TPlFZ/9snJlzslwjVc0rjrtachI
+	UxcwRQLgudN+MXF7csU=
+X-Received: by 10.28.40.198 with SMTP id o189mr4473779wmo.108.1492708702908;
+	Thu, 20 Apr 2017 10:18:22 -0700 (PDT)
+Received: from localhost.localdomain
+	(host86-158-8-191.range86-158.btcentralplus.com. [86.158.8.191])
+	by smtp.gmail.com with ESMTPSA id
+	y126sm7395309wmg.29.2017.04.20.10.18.21
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Thu, 20 Apr 2017 10:18:22 -0700 (PDT)
+From: Andrei Gherzan <andrei@gherzan.ro>
+To: yocto@yoctoproject.org
+Date: Thu, 20 Apr 2017 18:18:14 +0100
+Message-Id: <20170420171816.23407-1-andrei@gherzan.ro>
+X-Mailer: git-send-email 2.12.2
+Subject: [meta-raspberrypi][PATCH 1/3] raspberrypi2.conf: Make SERIAL_CONSOLE overwritable
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,39 +69,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Apr 2017 16:56:22 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 20 Apr 2017 17:18:27 -0000
 
-On Thu, Apr 20, 2017 at 12:13 AM, Trevor Woerner <twoerner@gmail.com> wrote:
-> On Thu 2017-04-20 @ 05:41:44 AM, Herve Jourdain wrote:
->> Yes, VC4 indeed works for both 32bits and 64bits. It was first introduced  .
->> for 32bits, actually Regarding why still using userland: at this point in  .
->> time, we have accelerated HW codec (H.264, MPEG2, some audio) only if using.
->> userland If one doesn't need that, then VC4 is, in my opinion, the way to  .
->> go. Otherwise, userland still needs to be used                             .
->
-> What decoder is needed to play youtube videos?
->
-> Using Andreas' meta-raspi-light (which removes userland and only uses vc4)
-> I've spent the last hour or so watching youtube videos from my raspberrypi3
-> (32-bit build) in chromium, accelerated, with sound (both via the HDMI and the
-> jack), both on the big monitor and the 7" waveshare touchscreen. Not to
-> mention I can now run openGL and GLESx apps accelerated.
->
+Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
+---
+ conf/machine/raspberrypi2.conf | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-try to play 1080p video and you will see the difference. I use my pi3
-as media center using kodi, I am waiting for vc4 driver to get
-feature/performance parity with userland until then we have to keep
-using it atleast for media centric usecases.
+diff --git a/conf/machine/raspberrypi2.conf b/conf/machine/raspberrypi2.conf
+index 9b4c02a..a17289c 100644
+--- a/conf/machine/raspberrypi2.conf
++++ b/conf/machine/raspberrypi2.conf
+@@ -7,7 +7,7 @@ DEFAULTTUNE ?= "cortexa7thf-neon-vfpv4"
+ require conf/machine/include/tune-cortexa7.inc
+ include conf/machine/include/rpi-base.inc
+ 
+-SERIAL_CONSOLE = "115200 ttyAMA0"
++SERIAL_CONSOLE ?= "115200 ttyAMA0"
+ 
+ UBOOT_MACHINE = "rpi_2_config"
+ VC4_CMA_SIZE ?= "cma-256"
+-- 
+2.12.2
 
-> I wasn't able to do that with userland. In fact, it was quite a struggle just
-> to get it to build!
->
-> Maybe I did something wrong with userland, but vc4 is successful, and
-> certainly easier to work with.
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
 
