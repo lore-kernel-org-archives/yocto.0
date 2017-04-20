@@ -1,6 +1,6 @@
 Return-Path: <twoerner@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B9AA8E00AE6; Thu, 20 Apr 2017 00:13:26 -0700 (PDT)
+	id 46D92E00AF0; Thu, 20 Apr 2017 00:26:52 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,11 +9,6 @@ X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (twoerner[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.223.195 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.223.195 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -21,55 +16,52 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-io0-f195.google.com (mail-io0-f195.google.com
-	[209.85.223.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3FE55E00AE0
-	for <yocto@yoctoproject.org>; Thu, 20 Apr 2017 00:13:25 -0700 (PDT)
-Received: by mail-io0-f195.google.com with SMTP id x86so13062619ioe.3
-	for <yocto@yoctoproject.org>; Thu, 20 Apr 2017 00:13:25 -0700 (PDT)
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.223.172 listed in dnsbl.sorbs.net]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.223.172 listed in list.dnswl.org]
+Received: from mail-io0-f172.google.com (mail-io0-f172.google.com
+	[209.85.223.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 31DA4E00AE0
+	for <yocto@yoctoproject.org>; Thu, 20 Apr 2017 00:26:48 -0700 (PDT)
+Received: by mail-io0-f172.google.com with SMTP id a103so59321492ioj.1
+	for <yocto@yoctoproject.org>; Thu, 20 Apr 2017 00:26:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-disposition:in-reply-to:user-agent;
-	bh=gKGMDRFR68w/ehbXIW5XEGXtGkEP7AKY4nIPWwte4lY=;
-	b=OdRlSJuOf8g9qcDo7045QsU/Fw/mJdHpyBbn9ptwAuSl3Bkt5K2/BUmDA+CCGBDdKA
-	WMdWjBVVMG8sjgZjDljE357bju8TlIktuWQF+37Zuc0A0m9rlcvaZn1neU0cXi2AokPl
-	NusLYpDr/cb1eG+VQS+o576+7L0sVfvqahmXxAorcA6K7d39FnaYaWaIV0O/CH/4wJ0W
-	cdumUqJCl4m/tVgWwQypRiC4SRgsFW1m8jgOdBz+Swgsps9y/RX6HHS6C8QCd/dPP7VP
-	SiSCyzIwV2HjVpYcRo1GPr4B19Y2hjCuvOSZq8+IfUGzGC2qOrJVZw4X7RGv5sUtu386
-	hD7A==
+	h=date:from:to:subject:message-id:mime-version:content-disposition
+	:user-agent; bh=Yzry7LeD4tkg80OLJzD2o00wRcHshrQrNNyz+YOY/3s=;
+	b=HUAJFoKm75gAnZFDkWUacFSqwYnyp2whINcRgaK8h8UWJaZX9ZEiE6CbyFYjmv8MNU
+	CQE624zN97UkxSy6PyVUA0+Q0HogTahPybNeKP1+bYpVKH2DOR13DQDbJM2q/Y/z3EN8
+	uvFXOJY2HaiZ1thSTP5Kblnfx2+XaEJB1bed4W0D917lCoiyyX6eMJZLSXGfFO2rejy5
+	/nZGQ3VApzQgIVxcIIzoDJ/JsGXGj5wUqhv+Da4X9ctZml1UpvR8tHvlBD9sfb4J+mew
+	ZfjYg+Cz22bFh101zPuHo/5gdiJRcH15JW54qCQxKVSvhOjZ+PcG2pU1mRSPOc5813lX
+	+6Ag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-	:mime-version:content-disposition:in-reply-to:user-agent;
-	bh=gKGMDRFR68w/ehbXIW5XEGXtGkEP7AKY4nIPWwte4lY=;
-	b=XmmEJlDkEOiGAveaWi9dq0BAJxDpWW0UGy8RyD91cNHu6dEPNFSIvrF7dbmmnxWuw6
-	BgCKiwLBD/JSGXPgZ0chzSV3g9HDFjftIdBuRVgOKAlwzoTslD02Zw35hiVEO+2wCn2v
-	LiKbZxLsCIETTWhcwsKXNSnjJ4mMpgw5g/GsqVQeuxMQcXjZTFMkHtBTKwCp4OD9JDLB
-	0h+WsctobcJ/mV8uk936nRMVVNo6WBT4uGmCGrbPHHy29gVlp08r3jZlshvVJK03tevb
-	RMSCDPylOc0J5avvMSbS443BVi50GkFgoVZYBlTXAGMaVUG+twx5h5ZDkNVZmHHlp+g0
-	qnCg==
-X-Gm-Message-State: AN3rC/4Rkft/asMH/s42t3G881wZt+ytwVPhOFoJb7mL68s0rNxCwOWj
-	Q8av8YXWp3JEbw==
-X-Received: by 10.107.146.194 with SMTP id u185mr7244936iod.217.1492672405478; 
-	Thu, 20 Apr 2017 00:13:25 -0700 (PDT)
-Received: from linux-uys3 ([108.161.123.115])
-	by smtp.gmail.com with ESMTPSA id 9sm2421630iol.36.2017.04.20.00.13.23
+	h=x-gm-message-state:date:from:to:subject:message-id:mime-version
+	:content-disposition:user-agent;
+	bh=Yzry7LeD4tkg80OLJzD2o00wRcHshrQrNNyz+YOY/3s=;
+	b=eiw6iuSWBFCfhuwKVqk3Pa1er0eVj0zH5tVY8kMvZnzmszCeAAPB3uPQ6vNQcGpswj
+	74N5axNZH5YVqiJ8Vq68PSDrW2x/fZdQQ4jv7M5lGhqph76r4e5IELYHbBWndMxiHyXC
+	OGpWhz2i5YHkQAJQGUqOCWvQC2MmO8QCy8wfAegXFv/jYQCmy9LUoLXryAVxUmcQoxr6
+	CmlXq/P+4+KlvPtv4a/QZVA7K0xanG0SIDz5bhYiQbjT3oAzlO3ms5le1I8Wq2jfHsUZ
+	KpDTGf1Y8X106NntDT0qD2ox4B3HJR2QQ0aNrLxOvY0VgNynD8NQM/T2UJuYfXPSxU1o
+	AlQA==
+X-Gm-Message-State: AN3rC/6LSodgKQF5mDRuGa0gss2Vn2hTbAebvlKrO7TKoDrd8k19JZYn
+	xwIZW1MdaAUu0DMv+xI=
+X-Received: by 10.36.90.77 with SMTP id v74mr2151324ita.101.1492673172270;
+	Thu, 20 Apr 2017 00:26:12 -0700 (PDT)
+Received: from linux-uys3 ([108.161.123.115]) by smtp.gmail.com with ESMTPSA id
+	d139sm7496672itd.6.2017.04.20.00.26.11 for <yocto@yoctoproject.org>
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Thu, 20 Apr 2017 00:13:24 -0700 (PDT)
-Date: Thu, 20 Apr 2017 03:13:21 -0400
+	Thu, 20 Apr 2017 00:26:11 -0700 (PDT)
+Date: Thu, 20 Apr 2017 03:26:09 -0400
 From: Trevor Woerner <twoerner@gmail.com>
-To: Herve Jourdain <herve.jourdain@neuf.fr>
-Message-ID: <20170420071321.GA25443@linux-uys3>
-References: <20170415133928.GA29433@linux-uys3>
-	<CALbNGRQy1Lf1=hV47Lf+u7rQUgubXjdiQWhjNJN4a3sDwr419A@mail.gmail.com>
-	<20170415163537.GA23175@linux-uys3>
-	<CALbNGRRDv1d3GHBNMwXHajgyx8iee4pSfNkEcKxMDiraagC50g@mail.gmail.com>
-	<005c01d2b988$0b2c9e50$2185daf0$@neuf.fr>
+To: yocto@yoctoproject.org
+Message-ID: <20170420072609.GB25443@linux-uys3>
 MIME-Version: 1.0
-In-Reply-To: <005c01d2b988$0b2c9e50$2185daf0$@neuf.fr>
 User-Agent: Mutt/1.6.0 (2016-04-01)
-Cc: 'Yocto Project' <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi] gles2 on raspi3
+Subject: overzealous packagedata
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -81,28 +73,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Apr 2017 07:13:26 -0000
+X-List-Received-Date: Thu, 20 Apr 2017 07:26:52 -0000
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 
-On Thu 2017-04-20 @ 05:41:44 AM, Herve Jourdain wrote:
-> Yes, VC4 indeed works for both 32bits and 64bits. It was first introduced  .
-> for 32bits, actually Regarding why still using userland: at this point in  .
-> time, we have accelerated HW codec (H.264, MPEG2, some audio) only if using.
-> userland If one doesn't need that, then VC4 is, in my opinion, the way to  .
-> go. Otherwise, userland still needs to be used                             .
+I'm trying to build a certain combination of software for a given SoC. mesa
+(meta-gl, specifically) provides a libgbm, but if you don't want to use mesa's
+libgbm you can disable it with a PACKAGECONFIG. I.e.
 
-What decoder is needed to play youtube videos?
+	PACKAGECONFIG_remove_pn-mesa-gl = "gbm"
 
-Using Andreas' meta-raspi-light (which removes userland and only uses vc4)
-I've spent the last hour or so watching youtube videos from my raspberrypi3
-(32-bit build) in chromium, accelerated, with sound (both via the HDMI and the
-jack), both on the big monitor and the 7" waveshare touchscreen. Not to
-mention I can now run openGL and GLESx apps accelerated.
+It works, and looking at the packages-split I can verify that nothing gets
+installed for either mesa's libgbm nor libgbm-dev.
 
-I wasn't able to do that with userland. In fact, it was quite a struggle just
-to get it to build!
+This particular SoC's BSP, however, provides an SoC-specific libgbm that
+should be used in place of mesa's. This is easy, set the PREFERRED_PROVIDER,
+tell mesa you don't want its gbm and everything is good, right?
 
-Maybe I did something wrong with userland, but vc4 is successful, and
-certainly easier to work with.
+:-(
+
+The build fails because the *packagedata* from both mesa-gl and this SoC's
+specific libgbm collide. The packagedata, I guess, states what *might* be
+installed. So since both packages might install /usr/lib/libgbm, the build
+freaks out:
+
+	ERROR: mesa-gl-2_17.0.2-r0 do_packagedata_setscene: The recipe mesa-gl is trying to install files into a shared area when those files already exist. Those files and their manifest location are:
+	  /z/build-master/bbb/build/tmp-glibc/pkgdata/beaglebone/runtime/libgbm-dev
+	    (matched in manifest-beaglebone-libgbm.packagedata)
+	  /z/build-master/bbb/build/tmp-glibc/pkgdata/beaglebone/runtime/libgbm
+	    (matched in manifest-beaglebone-libgbm.packagedata)
+	Please verify which recipe should provide the above files.
+
+This is very annoying because, even if hell froze over and somehow both libgbm
+and mesa-gl installed both of their libgbm packages, there would actually only
+be one provider since mesa-gl's libgbm package is, in fact, empty.
+
+Is there a way to get this to work? I can't not build mesa-gl, because I need
+some of its parts (virtual/mesa, virtual/libgl) and I can't not use the SoC's
+libgbm because (I'm guessing) that's what I'm supposed to use.
 
