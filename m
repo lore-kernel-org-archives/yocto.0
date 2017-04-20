@@ -1,66 +1,47 @@
-Return-Path: <pbarker@toganlabs.com>
+Return-Path: <herve.jourdain@neuf.fr>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 52B35E00AE4; Thu, 20 Apr 2017 04:35:03 -0700 (PDT)
+	id 22E21E00ADD; Thu, 20 Apr 2017 04:56:42 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [93.17.128.10 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.216.193 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.216.193 listed in dnsbl.sorbs.net]
-Received: from mail-qt0-f193.google.com (mail-qt0-f193.google.com
-	[209.85.216.193])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2FB91E00ADD
-	for <yocto@yoctoproject.org>; Thu, 20 Apr 2017 04:34:59 -0700 (PDT)
-Received: by mail-qt0-f193.google.com with SMTP id c45so7049455qtb.0
-	for <yocto@yoctoproject.org>; Thu, 20 Apr 2017 04:34:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=toganlabs-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=lGROfTnTaNTB44nigbZUwOan5WzLUR4Gm9PbGQ0esPU=;
-	b=rbdgrKrjo0PcuMQSajRw3UrueXrHvhgqQp/IycglvhVwLStORlCVRFT9Lw5Y8gWx/B
-	gwuEOzk7IqPS0JDEgA5aAUORyPfqDqtdY5VPRDpJEyVv6Ww38We7WG81CuEINP0wWOIN
-	MyiJa4pgIy7wqJYcvo0ebgynFX6dkO9EP439erfvKQwDg2ox4A5qyT5ZVdo3roEdy88P
-	Yp8Xm1stASw9sicgLl8EkfJSuWHZFIphE/KaMt1DTiaqe8BMi0GkqKmB9kxL5byh57j2
-	y7W8ccSdLRELePqUulS9/VFvPW7BABzbVjH2ESY8K21col+jfXVJudFvtcyFk/6m6Elj
-	fXQg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=lGROfTnTaNTB44nigbZUwOan5WzLUR4Gm9PbGQ0esPU=;
-	b=KDwJTdIWA0Udy/r7i9qN6HLheBolKudJW5C81T8DqDRkm6Mo48zWzFf1FiMAbuWhNX
-	1vQEHU/+25JGlwAXS5P2zrI2HRTiC/qMZeFfMsIVhXyScMQPLUm3ZTL7/t2wE5xWbf/8
-	bbUZ3RUaQ9n3Wu3LNu6xetwurU/ebo/VVc54FKIlDGCgWKpzadZ28AkJmka6AKpVmpr6
-	D1gP+uF82vcbkBf7eduTibQCJV0mjhGCj88GSPMdQkhxQq1NU2oPupAcy8Kx9DqvoG7E
-	BXqMi4wyl16q1At+qBkKapR7j8jTdSj6+hbxsb2399iZ25WlGNwreGzqvVdJY1WuHhI3
-	ygvA==
-X-Gm-Message-State: AN3rC/7s3tDHKYse3jdLueX1OyiNBzCu+Q2bOfWmjkBRNdWrk9rC+OwD
-	zt7dCxh3CrhFqQqdvhKUtwGlZnansw==
-X-Received: by 10.200.43.17 with SMTP id 17mr6823434qtu.199.1492688099291;
-	Thu, 20 Apr 2017 04:34:59 -0700 (PDT)
+Received: from smtp26.services.sfr.fr (smtp26.services.sfr.fr [93.17.128.10])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C30E8E00A31
+	for <yocto@yoctoproject.org>; Thu, 20 Apr 2017 04:56:35 -0700 (PDT)
+Received: from nbhjo (203-69-87-74.HINET-IP.hinet.net [203.69.87.74])
+	by msfrf2622.sfr.fr (SMTP Server) with ESMTP id 2635B1C003228;
+	Thu, 20 Apr 2017 13:56:33 +0200 (CEST)
+Received: from nbhjo (203-69-87-74.HINET-IP.hinet.net [203.69.87.74])	(using
+	TLSv1.2
+	with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))	(No client
+	certificate requested)	(Authenticated sender: herve.jourdain@neuf.fr)
+	by msfrf2622.sfr.fr (SMTP Server) with ESMTPSA;
+	Thu, 20 Apr 2017 13:56:31 +0200 (CEST)
+Authentication-Results: sfr.fr; auth=pass (LOGIN)
+	smtp.auth=herve.jourdain@neuf.fr
+From: Herve Jourdain <herve.jourdain@neuf.fr>
+To: 'Trevor Woerner' <twoerner@gmail.com>
+References: <20170415133928.GA29433@linux-uys3>
+	<CALbNGRQy1Lf1=hV47Lf+u7rQUgubXjdiQWhjNJN4a3sDwr419A@mail.gmail.com>
+	<20170415163537.GA23175@linux-uys3>
+	<CALbNGRRDv1d3GHBNMwXHajgyx8iee4pSfNkEcKxMDiraagC50g@mail.gmail.com>
+	<005c01d2b988$0b2c9e50$2185daf0$@neuf.fr>
+	<20170420071321.GA25443@linux-uys3>
+In-Reply-To: <20170420071321.GA25443@linux-uys3>
+Date: Thu, 20 Apr 2017 13:56:27 +0200
+Message-ID: <007c01d2b9cd$27706fc0$76514f40$@neuf.fr>
 MIME-Version: 1.0
-Received: by 10.140.44.116 with HTTP; Thu, 20 Apr 2017 04:34:58 -0700 (PDT)
-X-Originating-IP: [82.34.23.153]
-In-Reply-To: <20170420105921.GG19325@carbonA>
-References: <20170420084022.14927-1-raj.khem@gmail.com>
-	<20170420105921.GG19325@carbonA>
-From: Paul Barker <pbarker@toganlabs.com>
-Date: Thu, 20 Apr 2017 12:34:58 +0100
-Message-ID: <CAPyrkgzHtFgMHh+YczTwagAPWoqvsu01m6HnsOogMwvH8tJc+w@mail.gmail.com>
-To: Andrei Gherzan <andrei@gherzan.ro>
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-raspberrypi][PATCH] linux-raspberrypi_4.9.bb: Update to 4.9.23
+X-Mailer: Microsoft Outlook 15.0
+Thread-Index: AQI7YjmaY5b73bo5adVPjN/uNfcVfwJYbQZ/AUYAPzUCNRP7bQJ0tFt4AZMGhJGgrfmV4A==
+X-sfr-mailing: LEGIT
+Cc: 'Yocto Project' <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi] gles2 on raspi3
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,53 +53,63 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Apr 2017 11:35:03 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 20 Apr 2017 11:56:42 -0000
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
+Content-Language: fr
 
-On Thu, Apr 20, 2017 at 11:59 AM, Andrei Gherzan <andrei@gherzan.ro> wrote:
-> On Thu, Apr 20, 2017 at 01:40:22AM -0700, Khem Raj wrote:
->> bring CMA > 256M changes
->>
->> Signed-off-by: Khem Raj <raj.khem@gmail.com>
->> ---
->>  recipes-kernel/linux/linux-raspberrypi_4.9.bb | 4 ++--
->>  1 file changed, 2 insertions(+), 2 deletions(-)
->>
->> diff --git a/recipes-kernel/linux/linux-raspberrypi_4.9.bb b/recipes-ker=
-nel/linux/linux-raspberrypi_4.9.bb
->> index c0e8b83..70b16a6 100644
->> --- a/recipes-kernel/linux/linux-raspberrypi_4.9.bb
->> +++ b/recipes-kernel/linux/linux-raspberrypi_4.9.bb
->> @@ -1,8 +1,8 @@
->>  FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}-${PV}:"
->>
->> -LINUX_VERSION ?=3D "4.9.21"
->> +LINUX_VERSION ?=3D "4.9.23"
->>
->> -SRCREV =3D "5e4ee836560d4c0371e109bf469e1ad808ae7a44"
->> +SRCREV =3D "53460a0a50f3dd5e60266e945d0ac794ce0eca77"
->>  SRC_URI =3D "git://github.com/raspberrypi/linux.git;protocol=3Dgit;bran=
-ch=3Drpi-4.9.y \
->>  "
->>  require linux-raspberrypi.inc
->> --
->> 2.12.2
->>
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->
-> Merged to master. Thanks.
->
+Hi Trevor,
 
-I'll add this to my queue for backporting to morty, may be about a
-week before I get to it though.
+I agree with you that VC4 is easier to work with - and can be patched if =
+there are issues.
+But normally you lose the H.264 and MPEG2 HW decoders, and a bunch of =
+audio codecs, provided by the userland/omx.
+Depending on what you're doing, you may or may not notice the =
+difference. But I'm not sure how well you can handle 1080p30 or 1080p60 =
+in H.264 using only ffmpeg - if you're using chromium, that's what you =
+should be using I guess.
+My personal preference would be to use VC4, and that's what I do most of =
+the time, but there is still a limitation for the moment, that I just =
+wanted to point out.
+And that's why I think we can't do only VC4, and probably have to keep =
+userland a while longer.
 
---=20
-Paul Barker
-Co-Founder & Principal Engineer
-Tog=C3=A1n Labs Ltd
+Cheers,
+Herve
+
+-----Original Message-----
+From: Trevor Woerner [mailto:twoerner@gmail.com]=20
+Sent: jeudi 20 avril 2017 09:13
+To: Herve Jourdain <herve.jourdain@neuf.fr>
+Cc: 'Andreas M=C3=BCller' <schnitzeltony@googlemail.com>; 'Yocto =
+Project' <yocto@yoctoproject.org>
+Subject: Re: [yocto] [meta-raspberrypi] gles2 on raspi3
+
+On Thu 2017-04-20 @ 05:41:44 AM, Herve Jourdain wrote:
+> Yes, VC4 indeed works for both 32bits and 64bits. It was first =
+introduced  .
+> for 32bits, actually Regarding why still using userland: at this point =
+in  .
+> time, we have accelerated HW codec (H.264, MPEG2, some audio) only if =
+using.
+> userland If one doesn't need that, then VC4 is, in my opinion, the way =
+to  .
+> go. Otherwise, userland still needs to be used                         =
+    .
+
+What decoder is needed to play youtube videos?
+
+Using Andreas' meta-raspi-light (which removes userland and only uses =
+vc4) I've spent the last hour or so watching youtube videos from my =
+raspberrypi3 (32-bit build) in chromium, accelerated, with sound (both =
+via the HDMI and the jack), both on the big monitor and the 7" waveshare =
+touchscreen. Not to mention I can now run openGL and GLESx apps =
+accelerated.
+
+I wasn't able to do that with userland. In fact, it was quite a struggle =
+just to get it to build!
+
+Maybe I did something wrong with userland, but vc4 is successful, and =
+certainly easier to work with.
+
 
