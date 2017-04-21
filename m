@@ -1,16 +1,14 @@
-Return-Path: <gizero@gmail.com>
+Return-Path: <sadlife1990@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BFD67E00AA2; Fri, 21 Apr 2017 01:38:13 -0700 (PDT)
+	id 68041E00AB9; Fri, 21 Apr 2017 05:35:52 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.82.65 listed in dnsbl.sorbs.net]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (gizero[at]gmail.com)
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (sadlife1990[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -20,47 +18,53 @@ X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [74.125.82.65 listed in list.dnswl.org]
-Received: from mail-wm0-f65.google.com (mail-wm0-f65.google.com [74.125.82.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9BE87E0095F
-	for <yocto@yoctoproject.org>; Fri, 21 Apr 2017 01:38:12 -0700 (PDT)
-Received: by mail-wm0-f65.google.com with SMTP id d79so3514906wmi.2
-	for <yocto@yoctoproject.org>; Fri, 21 Apr 2017 01:38:12 -0700 (PDT)
+	*      [209.85.213.46 listed in list.dnswl.org]
+Received: from mail-vk0-f46.google.com (mail-vk0-f46.google.com
+	[209.85.213.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 12F14E00A93
+	for <yocto@yoctoproject.org>; Fri, 21 Apr 2017 05:35:48 -0700 (PDT)
+Received: by mail-vk0-f46.google.com with SMTP id q78so10341655vke.3
+	for <yocto@yoctoproject.org>; Fri, 21 Apr 2017 05:35:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:cc:subject:date:message-id;
-	bh=ECEU3dixwuPvh0SF7hqmfziUxP+eoYuWcy/T5LPEOhw=;
-	b=M8MXOw5OngyW6ewXKLm/EM8Ud3bmCF4ZMxZ6JM6QGLOQawBwehrH6yn2O09elp1lla
-	QQzpq8Op1j/4RkE7Jz1CyLUFBauB8E+0ubR7CKOshpbm+FfRroexkYXEZnPRYhW9QF8H
-	SSZkNwr/99MMfVILnj7CHSs3xVyelFeDdURjHgPg83yoljU0ex6Zr4H0MZV9O/WeRANL
-	ymiXP2EYJTFzE7Uqxvi1SxVOhVf0L8t/YpOrfE/9eIkMrxMAnUe00hpsNCnmme4hpHtt
-	vNxJE6R+X4cubDlgl0UQteTkhxUssbtOCzZxassy45eAQzfSkgPjZoR9hMjcMb+23FWw
-	MwWA==
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-transfer-encoding;
+	bh=TQ7U/WJH3/37Q3kBaQWZtN6ROKkLyXTkpOTpWMeItis=;
+	b=QRSAG+jmJw8AciUqIBhGrLajYo+NeQMudNQV1DPsVHzop3B/jbG+6n3aIKtIp0E0R/
+	8q96cDfV9F37sNFlyykNMqBXgu2wSN1Vp9/GpmUSZw3An8zEb871f/VsvbZ75lKxb6II
+	7O8OuFChyevTCYpifdU5CVH9OQ3+seHnJZ+0fOSR9u+2XWUDAumD1rNOltAuGfJynz6W
+	SpzjROjbNd6+AY/PQ5iKIdZFpAQDBD6y06GKYaGhcnWRR4KkhDIrVuwBqk5WHzDbwzhw
+	8HyY/He+BVaIYTd+zTi3+gv/yZlNdGZN/cQ/ODADWCrJtm+Wj4NvazIQnvuyC7GlLzUk
+	oQ4g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=ECEU3dixwuPvh0SF7hqmfziUxP+eoYuWcy/T5LPEOhw=;
-	b=gfVOiC4oztedLec30FxyM2HKrSjmOZnil17tUSdK7WEFyOvNOElSijTSIVVF4vI05x
-	8FguN5xDbR/vczWEwTfk69DYoEbWHlZnuyyInF2r3AqEqICMOC9Bj6uZjrwj8uQqqXJv
-	mMYXaNu2gXgq6Vu+tArSnFtj8Bz06bWSDruq/QgXBfLl5PNbQeBom7JJdhGsvZ0Z5t68
-	F91TNotVw1mVbZWRMAGVOxnDxopC2TFFOPX2qO5nob5Rh1atKnOqppWFEVrAaeKMC6Zk
-	xliNqtDs/2Mus/AN9/uZVPz7fulOhLqAJhWFB4av++aWurTfT95ExGwBEy3n0NsG3/3d
-	xvAA==
-X-Gm-Message-State: AN3rC/5Vq0p0Cv6QEy/HBS8wy3oWAYKARiQcsWTqvq21KdpSs6hf7E4B
-	pHVwYqoab93P7Q==
-X-Received: by 10.28.188.85 with SMTP id m82mr6881864wmf.79.1492763890162;
-	Fri, 21 Apr 2017 01:38:10 -0700 (PDT)
-Received: from gizero-desktop.tw.it
-	(host168-65-static.12-87-b.business.telecomitalia.it. [87.12.65.168])
-	by smtp.gmail.com with ESMTPSA id
-	g132sm1421546wmd.33.2017.04.21.01.38.09
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Fri, 21 Apr 2017 01:38:09 -0700 (PDT)
-From: Andrea Galbusera <gizero@gmail.com>
-To: yocto@yoctoproject.org
-Date: Fri, 21 Apr 2017 10:37:52 +0200
-Message-Id: <1492763872-21212-1-git-send-email-gizero@gmail.com>
-X-Mailer: git-send-email 2.7.4
-Subject: [meta-raspberrypi][PATCH] rpi-base: fix make_dtb_boot_files() for raspberrypi3-64
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=TQ7U/WJH3/37Q3kBaQWZtN6ROKkLyXTkpOTpWMeItis=;
+	b=GJAeaa+XLadlChJiL+7xNyKvqhAwc9/ZInS2u9nFbdKL6MbJVktIyfj+wc4JW07Jwv
+	UpYZjsctwhfZeu0U5bbA9JQaStuOaR9ezQHMQqVu6EtcV/6kXCQ16XovCkMMfgwVwUjX
+	ChsOvAqSmZdkJJw9bY4umfWhIG/+/o8i03YLt2oL6MAZURuRd39eCHMqdxxzBVYWw64a
+	y7LRpSlYPNuIm13ss67eRknCVCxI6XH6xs3RF9coG2fzlYBI/PLvVMw00/LzQ8DUeaNe
+	RVHsB642Dv/mLcmRfJ83srRLRIAXm3oxQEHZZVeYGccFKH1OS9LGqKsvhsRzLZfyFJ6g
+	bwTA==
+X-Gm-Message-State: AN3rC/7X9wkfiPmxbR8q1xq+eyYf+zFbx4s2pKuz7zvL/0BI4feMlm/C
+	YH4HMEvsJiIVlOb4uQMSxK4V8JUVPg==
+X-Received: by 10.31.8.144 with SMTP id 138mr4794045vki.144.1492778147897;
+	Fri, 21 Apr 2017 05:35:47 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.159.32.105 with HTTP; Fri, 21 Apr 2017 05:35:47 -0700 (PDT)
+In-Reply-To: <61C0517EAD808B429A1DE2DD9164D40030F88502@IRSMSX103.ger.corp.intel.com>
+References: <CAAHuHfyWegZ3OYy97i_+r1DXQ0v_YsozhV7VLeqwepiUWnZ1kg@mail.gmail.com>
+	<61C0517EAD808B429A1DE2DD9164D40030F88502@IRSMSX103.ger.corp.intel.com>
+From: Weng Josn <sadlife1990@gmail.com>
+Date: Fri, 21 Apr 2017 13:35:47 +0100
+Message-ID: <CAAHuHfyMfe0UG6s4PW5udhz4zG05+e9FoJKn685wpsYKY+csjQ@mail.gmail.com>
+To: "John, Maxin" <maxin.john@intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"openembedded-devel@lists.openembedded.org"
+	<openembedded-devel@lists.openembedded.org>,
+	Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>
+Subject: Re: [OE-core] Yocto cups serial port support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,48 +76,62 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 21 Apr 2017 08:38:13 -0000
+X-List-Received-Date: Fri, 21 Apr 2017 12:35:52 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Building the stock wic image for raspberrypi3-64 failed to find dtbs listed in
-IMAGE_BOOT_FILES. This patch updates the make_dtb_boot_files() function to
-account for dtbs listed in KERNEL_DEVICETREE that do include a path prefix:
-this is the case for things like broadcom/bcm2710-rpi-3-b.dtb (the dts dir
-layout in the kernel sources is different for arm64). Use the same approach
-already used for overlays/ dir. While at it also fix a typo in dtb overlay
-code path comments.
+Hello,
 
-Signed-off-by: Andrea Galbusera <gizero@gmail.com>
----
- conf/machine/include/rpi-base.inc | 9 +++++----
- 1 file changed, 5 insertions(+), 4 deletions(-)
+Thank you.
 
-diff --git a/conf/machine/include/rpi-base.inc b/conf/machine/include/rpi-base.inc
-index 517d5ba..4a0ea2a 100644
---- a/conf/machine/include/rpi-base.inc
-+++ b/conf/machine/include/rpi-base.inc
-@@ -61,16 +61,17 @@ def make_dtb_boot_files(d):
- 
-     def transform(dtb):
-         if dtb.endswith('dtb'):
--            # eg: bcm2708-rpi-b.dtb has:
-+            # eg: whatever/bcm2708-rpi-b.dtb has:
-             #     DEPLOYDIR file: ${KERNEL_IMAGETYPE}-bcm2708-rpi-b.dtb
-             #     destination: bcm2708-rpi-b.dtb
--            src = '{}-{}'.format(imgtyp, dtb)
--            dst = dtb
-+            base = os.path.basename(dtb)
-+            src = '{}-{}'.format(imgtyp, base)
-+            dst = base
-             return '{};{}'.format(src, dst)
-         elif dtb.endswith('dtbo'):
-             # overlay dtb:
-             # eg: overlays/hifiberry-amp.dtbo has:
--            #     DEPLOYDIR file: ${KERNEL_IMAGETYPE}-hifiberry-amp.dtbp
-+            #     DEPLOYDIR file: ${KERNEL_IMAGETYPE}-hifiberry-amp.dtbo
-             #     destination: overlays/hifiberry-amp.dtbo
-             base = os.path.basename(dtb)
-             src = '{}-{}'.format(imgtyp, base)
--- 
-2.7.4
+Best Regards.
 
+2017-04-19 10:18 GMT+01:00 John, Maxin <maxin.john@intel.com>:
+> Hi,
+>
+>
+>
+> Generally, cups serial backend is supported by =E2=80=9Ccups-filter=E2=80=
+=9D package. You
+> can find that package in the =E2=80=9Cmeta-printing=E2=80=9D layer:
+>
+> https://github.com/rossburton/meta-printing
+>
+>
+>
+> Hope this helps,
+>
+> Maxin
+>
+>
+>
+> From: openembedded-core-bounces@lists.openembedded.org
+> [mailto:openembedded-core-bounces@lists.openembedded.org] On Behalf Of We=
+ng
+> Josn
+> Sent: Tuesday, April 18, 2017 3:25 PM
+> To: yocto@yoctoproject.org; openembedded-devel@lists.openembedded.org;
+> Patches and discussions about the oe-core layer
+> <openembedded-core@lists.openembedded.org>
+> Subject: [OE-core] Yocto cups serial port support
+>
+>
+>
+> Hello,
+>
+>
+>
+>
+>
+> I checked /usr/lib/cups/backend not inclued "serial" backend.
+>
+> How can enable cups serial port ?
+>
+>
+>
+>
+>
+>
+>
+> Thanks.
 
