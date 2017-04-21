@@ -1,60 +1,68 @@
-Return-Path: <dbensoussan@synapticon.com>
+Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3A623E00A93; Fri, 21 Apr 2017 04:37:58 -0700 (PDT)
+	id 86ED8E00A0A; Fri, 21 Apr 2017 09:03:18 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [209.85.213.179 listed in list.dnswl.org]
+	*      [209.85.128.195 listed in list.dnswl.org]
 	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.213.179 listed in dnsbl.sorbs.net]
+	*      [209.85.128.195 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-yb0-f179.google.com (mail-yb0-f179.google.com
-	[209.85.213.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BB6A4E0095F
-	for <yocto@yoctoproject.org>; Fri, 21 Apr 2017 04:37:55 -0700 (PDT)
-Received: by mail-yb0-f179.google.com with SMTP id 11so37930862ybw.1
-	for <yocto@yoctoproject.org>; Fri, 21 Apr 2017 04:37:55 -0700 (PDT)
+Received: from mail-wr0-f195.google.com (mail-wr0-f195.google.com
+	[209.85.128.195])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1637CE0074B
+	for <yocto@yoctoproject.org>; Fri, 21 Apr 2017 09:03:14 -0700 (PDT)
+Received: by mail-wr0-f195.google.com with SMTP id 6so8527137wra.1
+	for <yocto@yoctoproject.org>; Fri, 21 Apr 2017 09:03:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=synapticon-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=HDkfTBR0/VLsYoY2nJmHJaNOyw7SQCTwW4j8FbvHvQU=;
-	b=fYorVB0LKxS4ZHJGIW6EA1TwcNKJNzU0SxjrYCwu9fQGtAM1F5c3rWKaN2nFthTSkq
-	6jok3OGQL6cAEx+xTbjW+DkVz/o/pYBDkRGnj3wtLNkW3Qu2fYwOM3oItP+1ykfEkzyP
-	eocdym6QDLUe8gXm3/uD2OnrB6XMGKfLwE5A0xHOMaJO9Q5l5WQZ/ysbe3e8Jd7yRNBl
-	KMyamgCts3OgJGtVfBilyE3zmAMldmWDbrjYnInU06CZxGSSAI2DPPenuHQhtI0TGbwB
-	7tO/emKDZ4ThlLP2y6zLkKujyRDI/ybyGAb5ow7rPrMiSMo/ALue4aS0g96O9H5aK+o1
-	XSKg==
+	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
+	h=date:from:to:subject:message-id:references:mime-version
+	:content-disposition:in-reply-to:user-agent;
+	bh=VHnL4xURylXxFyyXLvToygl8Oh3kzZMQuzzS/HAKAaw=;
+	b=nnPDUEIkYgE5AOqAUGSiy6o9oBI/FTyxL0Wu96EsgK0ZquXN7YyBKvV5PXeCMW6ppz
+	qwEwK701blbP2/ot47o/qrktKn4cDuTcw1CufWsUKy8wTWVQVadPW5s7S4FLv1A8yM4B
+	bn5PnqDSoJWRaAjSsYKj4/mlxhkyAEVRfEqIAZ04pCbSZlcHUC/M4vEujrKfoYIUa95Q
+	QIU2rWrNWTl0haWg22Eb7UFoHF0SP+ZzJuI+510dKHt0e4gSgg+eOmu+fywJ+Iwfu329
+	gA1Sij9UUtuizoZ0GfWYmJxGDmg+wrrbjmr+UxyRdzBawVFNe0vcgRPnv5jFD+p+n7ig
+	bKYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=HDkfTBR0/VLsYoY2nJmHJaNOyw7SQCTwW4j8FbvHvQU=;
-	b=d+nW56fenm7Il1CY9q1stmNv3uA7MS07p/aTehS7i8qEHvNch9pvCwQzM+sMqzdwcX
-	0h6QHZQt7gn9b6Uo7Hmn4Rpy7948lnfxIqJzp/jJEp6W7RegbOgcjpJGZT/w3+77EH01
-	A+ODKGmAwIpdHBD0T6VKxAI8XWxenzW7vJEI6qTh9NS8+qCluRpeVgYjd3je3YFiEFbn
-	CJz0tUCkG1JZNjBk8vOvchlGZAgKpIXpySbn8GWBUzG2MlH4U8/CCJE2Q1xmQJWDJ6Pf
-	twkDM7vzwCh6r2ZjTKNBRPLLL0m+FM5vpBVrZBwdnbdhg9hiUjSFHvdTi+ywIzix4UKo
-	N8Ww==
-X-Gm-Message-State: AN3rC/5bAJzOVmtpR4pHzk3p/YmByPfwba2RdIGKYhN/8aHGpgGoclxi
-	q3MtFWKsu0jYrD0cjY9hmTmYjyVGV1IK
-X-Received: by 10.37.215.15 with SMTP id o15mr8856513ybg.119.1492774674539;
-	Fri, 21 Apr 2017 04:37:54 -0700 (PDT)
-MIME-Version: 1.0
-From: David Bensoussan <dbensoussan@synapticon.com>
-Date: Fri, 21 Apr 2017 11:37:44 +0000
-Message-ID: <CACDGP4GBGn6KNH8m+UHhbWajbKTMppPW4g8ePKqfhm9fdpXE2g@mail.gmail.com>
+	h=x-gm-message-state:date:from:to:subject:message-id:references
+	:mime-version:content-disposition:in-reply-to:user-agent;
+	bh=VHnL4xURylXxFyyXLvToygl8Oh3kzZMQuzzS/HAKAaw=;
+	b=KbqsrZaMYxTUNvCEAISHuBSQo8PfYPfdzvSKk0Zv0fNhiZEfHJqKJLnocSjfwwrW2y
+	D64QGkmSewvbyN5micKfVrEbsfOVh5iwhkXPA5Nlj+Oi77QGWNNlSlKsyXJ5HHWPhaSd
+	V5CtVg2sL6SuTzgnCZMXjXpTbiz1EL5+rRxETaZwS1sAIZKtpUu2eXiTHI7hUVJ10+ef
+	LR55cOxkOYRzh11u0vm5tJVxgvh67D3Oc2mxQgzH1b1L8pGQe23SuPleRQyfbqbiBzB3
+	obb1m3n1iSaXJC1/HyqCcK/TVfRuaDbPENjZkVLi5JUDT1TCf4/UKptHyndRakAsTU8C
+	GEcw==
+X-Gm-Message-State: AN3rC/6JwB2k8vrT/QA2zIfBwyvwlRap7thPvwff/Cq9baanE7pCs4Ft
+	WWPA2yV5DfEwpE598bU=
+X-Received: by 10.223.132.225 with SMTP id 88mr14558719wrg.114.1492790593604; 
+	Fri, 21 Apr 2017 09:03:13 -0700 (PDT)
+Received: from carbonA (host86-158-8-191.range86-158.btcentralplus.com.
+	[86.158.8.191]) by smtp.gmail.com with ESMTPSA id
+	w126sm2780547wmb.25.2017.04.21.09.03.12 for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Fri, 21 Apr 2017 09:03:12 -0700 (PDT)
+Date: Fri, 21 Apr 2017 17:03:08 +0100
+From: Andrei Gherzan <andrei@gherzan.ro>
 To: yocto@yoctoproject.org
-X-Mailman-Approved-At: Fri, 21 Apr 2017 08:52:36 -0700
-Subject: bitbake core-image-base -c do_populate_sdk fails with glibc (unmet dependencies)
+Message-ID: <20170421160308.GA32138@carbonA>
+References: <20170420171816.23407-1-andrei@gherzan.ro>
+MIME-Version: 1.0
+In-Reply-To: <20170420171816.23407-1-andrei@gherzan.ro>
+User-Agent: Mutt/1.8.0 (2017-02-23)
+Subject: Re: [meta-raspberrypi][PATCH 1/3] raspberrypi2.conf: Make SERIAL_CONSOLE overwritable
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,174 +74,63 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 21 Apr 2017 11:37:58 -0000
-Content-Type: multipart/alternative; boundary=94eb2c09dc3634bb16054dabb0d4
+X-List-Received-Date: Fri, 21 Apr 2017 16:03:18 -0000
+X-Groupsio-MsgNum: 35720
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="7AUc2qLy4jB3hD7Z"
+Content-Disposition: inline
 
---94eb2c09dc3634bb16054dabb0d4
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+--7AUc2qLy4jB3hD7Z
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Hello,
+On Thu, Apr 20, 2017 at 06:18:14PM +0100, Andrei Gherzan wrote:
+> Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
+> ---
+>  conf/machine/raspberrypi2.conf | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/conf/machine/raspberrypi2.conf b/conf/machine/raspberrypi2.conf
+> index 9b4c02a..a17289c 100644
+> --- a/conf/machine/raspberrypi2.conf
+> +++ b/conf/machine/raspberrypi2.conf
+> @@ -7,7 +7,7 @@ DEFAULTTUNE ?= "cortexa7thf-neon-vfpv4"
+>  require conf/machine/include/tune-cortexa7.inc
+>  include conf/machine/include/rpi-base.inc
+>
+> -SERIAL_CONSOLE = "115200 ttyAMA0"
+> +SERIAL_CONSOLE ?= "115200 ttyAMA0"
+>
+>  UBOOT_MACHINE = "rpi_2_config"
+>  VC4_CMA_SIZE ?= "cma-256"
+> --
+> 2.12.2
+>
 
-I tried to solve the issue by myself, read on the documentation and check
-the mailing list, but I couldn't find the information I was looking for.
-The documentation was of a great help as a guideline but I now don't know
-how to proceed.
+Entire patch set merged to master and morty.
 
-I wanted to generate an sdk and met these errors while executing:
-$ bitbake core-image-base -c do_populate_sdk
+--
+Andrei Gherzan
+gpg: rsa4096/D4D94F67AD0E9640 | t: @agherzan
 
-Building dependency tree...
-Reading state information...
-Some packages could not be installed. This may mean that you have
-requested an impossible situation or if you are using the unstable
-distribution that some required packages have not yet been created
-or been moved out of Incoming.
-The following information may help to resolve the situation:
+--7AUc2qLy4jB3hD7Z
+Content-Type: application/pgp-signature; name="signature.asc"
 
-The following packages have unmet dependencies:
- packagegroup-core-standalone-sdk-target : Depends: glibc-gconv-cp1252 but
-it is not installable
-                                           Depends: glibc-gconv-ibm850 but
-it is not installable
-                                           Depends: glibc-gconv-iso8859-1
-but it is not installable
-                                           Depends: glibc-gconv-iso8859-15
-but it is not installable
-                                           Depends: glibc-localedata-i18n
-but it is not installable
-E: Unable to correct problems, you have held broken packages.
+-----BEGIN PGP SIGNATURE-----
 
-A long time ago, I generated one was using the adt-installer but it has
-changed since.
-I also tried to add in local.conf:
-EXTRA_IMAGE_FEATURES =3D "tools-sdk"
-DISTRO_FEATURES_LIBC =3D "libc-locales libc-locale-code"
+iQIzBAEBCAAdFiEE90oi/MnVCYFbB1m0Jrqo2vaxFPYFAlj6LTgACgkQJrqo2vax
+FPbY/Q//d8zdALArAia/ulStejt7tAeSF6+Bcr8JQPV04yMCzXXHZC3HrJyGF/Eh
+HK64sJZtyh6+309375xOLraQyIp3ZFiRY84Mpk6RvDF25sNJXO7B5EhaHO5yu9R+
+RDKwJnYRRP24su0X43PQYtK4qzMA1s4x/23OYimsuDhHqkblpHSy9MecfFI7nmXR
+tLnW5NBCN6dQLXLWgmVhN01AiNWL7fWsxYILs3/rHzIFC723sGT2SRMMnWQi/Vo2
+yEA1oBiiV228NBmPcBDTAYaO5U0wWYeD1GZ07M7X7y7LA3htMOmX1rMzWZLYJxHQ
+F4nj0ZqxOKaxLF6eTLdFc5u/aX9x50CyaGGbAIo85LQdJj7vJWvv9YrnNmQ1258s
+OAiVx/ZaUrhtCumauRUj158LijAf8R1dD+C9YuzPdvO9jMaPrC+WKSziWyJ8UiVY
+x+iiipNq6hHs3TbrXZEA71ndDgQ98wzjyPESrRU3srV4Ybv4XfmpXyR32a5wnAVG
+2Gs7wSHdwXVz5XbmXUodiANMK1SEUCxyMxhegA1vQN1yPsp1G6sg+6NHObLW5kTZ
+XeZVWoz5DWx8JWTIsg2DfLIgwrv7Xauw35JZicFmxNvgpYE50+bsDt5BjUcxVdBi
+dSa/WO3qdjR9n2Wa5BHN/0KYvr9LiMzu822gb7TLvtxO5X3KBBg=
+=XIdH
+-----END PGP SIGNATURE-----
 
-But nothing worked. I am working with RPI3 machine under Jethro branch. My
-first test was to try the same setup with qemuarm64 machine, it failed
-exactly the same way. It seems there are conflicts in packages, but I don't
-understand how to track the error at this point.
-
-It raised multiple questions:
-Am I doing it wrong? Did I miss a flag? What does this error exactly mean?
-
-Thank you for your time
-
-Regards,
---=20
-
-*David bensoussan*
-Roboticist / Embedded Software Engineer
-------------------------------
-
-*Synapticon* | Robotic Control Systems
-Mobile: 015779804515
-Fax: +49 7031 / 30 478 -99
-
-*synapticon.com* <https://www.synapticon.com/> | Twitter
-<https://twitter.com/#!/synapticon_co> | Facebook
-<https://fb.com/Synapticon>
-
-Synapticon GmbH | Daimlerstra=C3=9Fe 26 | 71101 Sch=C3=B6naich, Germany
-Secretary +49 7031 / 30 478 -0 | Managing Director: Nikolai Ensslen
-Amtsgericht Stuttgart HRB 756076 | USt-ID DE271647127
-
-This message and any files transmitted with it are confidential and
-intended solely for the use of the individual or entity to whom they are
-addressed. Please notify the sender immediately if you have received this
-e-mail by mistake and delete it from your system.
-
---94eb2c09dc3634bb16054dabb0d4
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Hello,<br><br>I tried to solve the issue by myself, r=
-ead on the documentation and check the mailing list, but I couldn&#39;t fin=
-d the information I was looking for. The documentation was of a great help =
-as a guideline but I now don&#39;t know how to proceed.<br><br>I wanted to =
-generate an sdk and met these errors while executing:<br>$ bitbake core-ima=
-ge-base -c do_populate_sdk<br><br>Building dependency tree...</div><div>Rea=
-ding state information...</div><div>Some packages could not be installed. T=
-his may mean that you have</div><div>requested an impossible situation or i=
-f you are using the unstable</div><div>distribution that some required pack=
-ages have not yet been created</div><div>or been moved out of Incoming.</di=
-v><div>The following information may help to resolve the situation:</div><d=
-iv><br></div><div>The following packages have unmet dependencies:</div><div=
->=C2=A0packagegroup-core-standalone-sdk-target : Depends: glibc-gconv-cp125=
-2 but it is not installable</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Depends: glibc-gconv-ibm850 bu=
-t it is not installable</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Depends: glibc-gconv-iso8859-1 but it=
- is not installable</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Depends: glibc-gconv-iso8859-15 but it is=
- not installable</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Depends: glibc-localedata-i18n but it is not=
- installable</div><div>E: Unable to correct problems, you have held broken =
-packages.</div><div><br>A long time ago, I generated one was using the adt-=
-installer but it has changed since.<br>I also tried to add in local.conf:</=
-div><div>EXTRA_IMAGE_FEATURES =3D &quot;tools-sdk&quot;<br>DISTRO_FEATURES_=
-LIBC =3D &quot;libc-locales libc-locale-code&quot;<br><br>But nothing worke=
-d. I am working with RPI3 machine under Jethro branch. My first test was to=
- try the same setup with qemuarm64 machine, it failed exactly the same way.=
- It seems there are conflicts in packages, but I don&#39;t understand how t=
-o track the error at this point.<br><br>It raised multiple questions:<br>Am=
- I doing it wrong? Did I miss a flag? What does this error exactly mean?<br=
-><br>Thank you for your time<br><br>Regards,<br></div></div><div dir=3D"ltr=
-">-- <br></div><div data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><p =
-id=3D"inbox-inbox-person-name" style=3D"box-sizing:border-box;font-family:a=
-rial,helvetica,sans-serif;font-size:13.3333px;color:rgb(0,0,0);padding:0px;=
-margin:1em 0px"><strong style=3D"box-sizing:border-box">David bensoussan</s=
-trong><br style=3D"box-sizing:border-box">Roboticist / Embedded Software En=
-gineer</p><hr style=3D"box-sizing:border-box;margin:0px;padding:0px;height:=
-1px;background-image:initial;background-position:initial;background-size:in=
-itial;background-repeat:initial;background-origin:initial;background-clip:i=
-nitial;background-color:rgb(229,27,65);border:none;color:rgb(17,17,17);font=
--family:arial,helvetica,sans-serif;font-size:13.3333px"><p id=3D"inbox-inbo=
-x-tag-line" style=3D"box-sizing:border-box;font-family:arial,helvetica,sans=
--serif;font-size:12pt;color:rgb(0,0,0);padding:0px;margin:1em 0px"><strong =
-style=3D"box-sizing:border-box">Synapticon</strong><span class=3D"inbox-inb=
-ox-Apple-converted-space">=C2=A0</span>| Robotic Control Systems</p><table =
-cellpadding=3D"0" cellspacing=3D"0" style=3D"box-sizing:border-box;font-fam=
-ily:arial,helvetica,sans-serif;font-size:13.3333px;color:rgb(17,17,17);padd=
-ing:0px"><tbody style=3D"box-sizing:border-box"><tr style=3D"box-sizing:bor=
-der-box"><td style=3D"box-sizing:border-box;color:rgb(0,0,0);padding:0px 15=
-px 3px 0px">Mobile:</td><td style=3D"box-sizing:border-box;color:rgb(0,0,0)=
-;padding:0px 15px 3px 0px">015779804515</td></tr><tr style=3D"box-sizing:bo=
-rder-box"><td style=3D"box-sizing:border-box;color:rgb(0,0,0);padding:0px 1=
-5px 3px 0px">Fax:</td><td style=3D"box-sizing:border-box;color:rgb(0,0,0);p=
-adding:0px 15px 3px 0px">+49 7031 / 30 478 -99</td></tr></tbody></table><p =
-style=3D"box-sizing:border-box;font-family:arial,helvetica,sans-serif;font-=
-size:13.3333px;color:rgb(0,0,0);padding:0px;margin:1em 0px"><a href=3D"http=
-s://www.synapticon.com/" style=3D"box-sizing:border-box;color:rgb(1,81,154)=
-"><strong style=3D"box-sizing:border-box">synapticon.com</strong></a><span =
-class=3D"inbox-inbox-Apple-converted-space">=C2=A0</span>|<span class=3D"in=
-box-inbox-Apple-converted-space">=C2=A0</span><a href=3D"https://twitter.co=
-m/#!/synapticon_co" style=3D"box-sizing:border-box;color:rgb(1,81,154)">Twi=
-tter</a><span class=3D"inbox-inbox-Apple-converted-space">=C2=A0</span>|<sp=
-an class=3D"inbox-inbox-Apple-converted-space">=C2=A0</span><a href=3D"http=
-s://fb.com/Synapticon" style=3D"box-sizing:border-box;color:rgb(1,81,154)">=
-Facebook</a></p><p id=3D"inbox-inbox-address" style=3D"box-sizing:border-bo=
-x;font-family:arial,helvetica,sans-serif;font-size:13.3333px;color:rgb(153,=
-153,153);padding:0px;margin:1em 0px">Synapticon GmbH | Daimlerstra=C3=9Fe 2=
-6 | 71101 Sch=C3=B6naich, Germany<span class=3D"inbox-inbox-Apple-converted=
--space">=C2=A0</span><br style=3D"box-sizing:border-box">Secretary +49 7031=
- / 30 478 -0 | Managing Director: Nikolai Ensslen<span class=3D"inbox-inbox=
--Apple-converted-space">=C2=A0</span><br style=3D"box-sizing:border-box">Am=
-tsgericht Stuttgart HRB 756076 | USt-ID DE271647127<span class=3D"inbox-inb=
-ox-Apple-converted-space">=C2=A0</span><br style=3D"box-sizing:border-box">=
-</p><p style=3D"box-sizing:border-box;font-family:arial,helvetica,sans-seri=
-f;font-size:13.3333px;color:rgb(0,0,0);padding:0px;margin:1em 0px"></p><p i=
-d=3D"inbox-inbox-confidentiality" style=3D"box-sizing:border-box;font-famil=
-y:arial,helvetica,sans-serif;font-size:7.5pt;color:rgb(153,153,153);padding=
-:0px;margin:1em 0px;width:450px">This message and any files transmitted wit=
-h it are confidential and intended solely for the use of the individual or =
-entity to whom they are addressed. Please notify the sender immediately if =
-you have received this e-mail by mistake and delete it from your system.</p=
-></div></div>
-
---94eb2c09dc3634bb16054dabb0d4--
+--7AUc2qLy4jB3hD7Z--
