@@ -1,62 +1,65 @@
-Return-Path: <ayoub.zaki@googlemail.com>
+Return-Path: <dbensoussan@synapticon.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 61112E00AC8; Sat, 22 Apr 2017 13:44:44 -0700 (PDT)
+	id E7DEDE00AD0; Sun, 23 Apr 2017 01:40:40 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (ayoub.zaki[at]googlemail.com)
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.213.171 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.213.171 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.128.176 listed in list.dnswl.org]
-Received: from mail-wr0-f176.google.com (mail-wr0-f176.google.com
-	[209.85.128.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0D6FBE00872
-	for <yocto@yoctoproject.org>; Sat, 22 Apr 2017 13:44:40 -0700 (PDT)
-Received: by mail-wr0-f176.google.com with SMTP id w50so48036693wrc.0
-	for <yocto@yoctoproject.org>; Sat, 22 Apr 2017 13:44:40 -0700 (PDT)
+Received: from mail-yb0-f171.google.com (mail-yb0-f171.google.com
+	[209.85.213.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ABC8FE00AC0
+	for <yocto@yoctoproject.org>; Sun, 23 Apr 2017 01:40:36 -0700 (PDT)
+Received: by mail-yb0-f171.google.com with SMTP id 81so54346471ybp.0
+	for <yocto@yoctoproject.org>; Sun, 23 Apr 2017 01:40:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=googlemail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=ZP+h18WBYZzoubM9mGcveXr+rrBbm9tQEY16rEDcZmA=;
-	b=pXWr2qg7iCVb4TdBeU4f1wnUybMWZTVw5F5mlTIc54zb/HP015yUbERbHy47YAhETE
-	E4NbF2y8+Ulb+IMWhAOiADzkNuLilWkOMsvYdjTjBs3Q7eBvc/xTmV8s6eGnbf63Jpz4
-	MsR1yQjuU62pzoTC97DDTe8hVYlFcuaGpo+SXKbthknH+W9tnXJrnarnWuaaJtwsjd+G
-	ePr1710ms6nm13wWYmWqpU9Rf2RNcPAj8QVQOC/L3b8xyoTNUSnpL+9wOMYZajyFJVdM
-	RfMZyZtBZQ7pjRmh/3K6CVPnSzgsF2WTJDmmYeEdDVz0winrM2r57GsxNzdEMU5V7L7H
-	sh+w==
+	d=synapticon-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=LH8PsCW7Oa6e96ynb9OjLy5VyJSdkAQlnLrCOP7eRXc=;
+	b=QxNn0fv8aCUtsZ6b+OHZ1ic7CcCugxB0UF+5KfDSMorN1Gr5X++ZWAlVy7Gjci6gUi
+	mmX3Yura88PHoTjMrakLx1qr7X10v8mdEunwfyemUlrCbjWtg6yaq9jgqNyxVOP25Kaz
+	9hmVcnXVBSDB3UAb+lyGLISYwWW9hyTTydzwAleVt/KSlCRdKzfEDPGcVUd949aTveY3
+	Z9x2lobaEg04ysD2eAClGbbtSOiqcB2tBxChrVRVrYi/xmEyr2YxiCRIgXbdgkJAYO5U
+	CREb1OZDkgZf5RnrWqFlutsleKMcyW1LunigCGFEYW2YLxW0ILLcfWmBnaigIBg441AE
+	jsfA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=ZP+h18WBYZzoubM9mGcveXr+rrBbm9tQEY16rEDcZmA=;
-	b=Pdlcf9fbZcEjilfrbWxsT9MZxlt/iCAnNmXkau6/8k/Af6ZZXiuCiBicAXVkNXpoqv
-	ZY6d6LyV84+OpY5jZpwwhETRtqqym++qIr7aBDzRrpo8Gkqd6xI0S3CprVxRx1/uT1L+
-	F6p7QO08z1p7FCrT6tnyd/Pd8dDPBeZBe7p9hyOfqtg+tYBkTi967yIO1fg2t5/tiKb4
-	uCHR9JOM7nD3OmLnNF7D+bvAEIyDhVcGZ8DdWPnhUI2+Takcv+IFK488TBkIJxrHi0eH
-	y4rCROH1B8J+ZkAZd6dI6n0wnVnfyDZ+pIhleM3bAiAv0xcLXLtxjv5aUm0Il5EiOcT9
-	Ffnw==
-X-Gm-Message-State: AN3rC/5nuauH6WNvTaZxm18TKJCuHpu8cn0txn+dHVIBCeNEKsZdsIiF
-	cf067c7tbhs/97h0iMV9bH+Q9Ktd1DbF
-X-Received: by 10.223.134.219 with SMTP id 27mr2550907wry.33.1492893878698;
-	Sat, 22 Apr 2017 13:44:38 -0700 (PDT)
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=LH8PsCW7Oa6e96ynb9OjLy5VyJSdkAQlnLrCOP7eRXc=;
+	b=qf1aTZvi723xKtcyUrsfefOnaZe/FNgmniE09XTJFyJ6+eJfYw05QD8fB0/mgAK0H+
+	ln0FvBI1pvKCnAsLZlrSXsqFmnqUxKnVhnZ+MhjmzeblsWYjU3p7HgliQiivHMyfyk3t
+	nI9CtM5Jq2xO7uSievgwm5PNljQ0r812i7cN8CXgvAn12MJJ6Eae5wGgNfGdmdV+e41W
+	o5UyhBaTx6EAsGmcz20H8A7xczLSQLWjPmnsAOi3zpUsX9OLuozoK2rFukJMRITWmx9X
+	ETXqs+dh4XVcKA7BJP3y26eYw1KrdvAnnmhkRMUDpax4SVgBjfiioi9XWqkdu9D/BABF
+	3MMQ==
+X-Gm-Message-State: AN3rC/7cLrWde0KH/w8UMnaaX4Wtdzbx6p7zX5BEDToZELO/UJQRXYPi
+	Embc1yXZ6pCogH9/MPyaJ517z+vnDg==
+X-Received: by 10.37.66.3 with SMTP id p3mr660103yba.132.1492936836120; Sun,
+	23 Apr 2017 01:40:36 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.28.14.78 with HTTP; Sat, 22 Apr 2017 13:44:38 -0700 (PDT)
-From: Ayoub Zaki <ayoub.zaki@googlemail.com>
-Date: Sat, 22 Apr 2017 22:44:38 +0200
-Message-ID: <CA+-BmJYbLDshQ9pemmKy2JT4OkpLRsZCjdYW53yHvHsY=5Q_yQ@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: Prelinking not working
+References: <CACDGP4GBGn6KNH8m+UHhbWajbKTMppPW4g8ePKqfhm9fdpXE2g@mail.gmail.com>
+	<20170421185026.GA8444@linux-uys3>
+	<CACDGP4F4jTRdLuZD0e98qe9H5qcQEL2Yo+n2wKPePUrOtTUi+g@mail.gmail.com>
+In-Reply-To: <CACDGP4F4jTRdLuZD0e98qe9H5qcQEL2Yo+n2wKPePUrOtTUi+g@mail.gmail.com>
+From: David Bensoussan <dbensoussan@synapticon.com>
+Date: Sun, 23 Apr 2017 08:40:25 +0000
+Message-ID: <CACDGP4F3DJA5JRX5tek3_qZ5eSv2WT+o820JvP3xicj3LUYgnw@mail.gmail.com>
+To: Trevor Woerner <twoerner@gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: bitbake core-image-base -c do_populate_sdk fails with glibc (unmet dependencies)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,199 +71,308 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 22 Apr 2017 20:44:44 -0000
-Content-Type: multipart/alternative; boundary=001a11491f7653c714054dc771f1
+X-List-Received-Date: Sun, 23 Apr 2017 08:40:41 -0000
+Content-Type: multipart/alternative; boundary=001a11c04eb4ca2276054dd17153
 
---001a11491f7653c714054dc771f1
+--001a11c04eb4ca2276054dd17153
 Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Hello all,
+I managed to track down how to create the SDK. Sorry for the long answer
+but it might help people googling it.
 
-I'm trying to build an image with prelinked binaries to have better
-start-up performance.
-my target is a beaglebone-black default configured with hard-float-point
-and a morty branch.
+DISTRO_FEATURES ?=3D "${DISTRO_FEATURES_DEFAULT} ${DISTRO_FEATURES_LIBC}
+${POKY_DEFAULT_DISTRO_FEATURES}" in *meta-poky/conf/distro/poky.conf*
+DISTRO_FEATURES_LIBC is defined as DISTRO_FEATURES_LIBC_DEFAULT in
+*meta/conf/distro/include/default-distrovars.inc*
+DISTRO_FEATURES_LIBC_DEFAULT ?=3D "ipv4 ipv6 libc-backtrace libc-big-macros
+libc-bsd libc-cxx-tests libc-catgets libc-charsets libc-crypt \
+libc-crypt-ufc libc-db-aliases libc-envz libc-fcvt libc-fmtmsg libc-fstab
+libc-ftraverse \
+libc-getlogin libc-idn libc-inet-anl libc-libm libc-locales
+libc-locale-code \
+libc-memusage libc-nis libc-nsswitch libc-rcmd libc-rtld-debug libc-spawn
+libc-streams libc-sunrpc \
+libc-utmp libc-utmpx libc-wordexp libc-posix-clang-wchar libc-posix-regexp
+libc-posix-regexp-glibc \
+libc-posix-wchar-io" i*n the same file*
 
-here are the steps I followed from the manual :
+And finally:
 
-http://www.yoctoproject.org/docs/latest/mega-manual/mega-manual.html#ref-classes-image-prelink
+LIBC_DEPENDENCIES =3D "libsegfault \
+    glibc \
+    glibc-dbg \
+    glibc-dev \
+    glibc-utils \
+    glibc-thread-db \
+    ${@get_libc_locales_dependencies(d)}"
 
-1) in my image recipe included image prelink bbclass:
+LIBC_LOCALE_DEPENDENCIES =3D "\
+glibc-localedata-i18n \
+glibc-gconv-ibm850 \
+glibc-gconv-cp1252 \
+glibc-gconv-iso8859-1 \
+glibc-gconv-iso8859-15"
 
-  inherit image-prelink
+def get_libc_locales_dependencies(d):
+    if 'libc-locales' in (d.getVar('DISTRO_FEATURES', True) or '').split() =
+:
+        return d.getVar('LIBC_LOCALE_DEPENDENCIES', True) or ''
+    else:
+        return ''
 
-2) Added in my local.conf :
 
-USER_CLASSES ?= "buildstats image-mklibs image-prelink"
+*in ../meta/conf/distro/include/tclibc-glibc.inc*
 
-3) Built my image !
+This is how they are enabled. To make it work, I added in my local.conf:
+LIBC_DEPENDENCIES_remove +=3D "glibc-gconv-cp1252 glibc-gconv-ibm850
+glibc-gconv-iso8859-1 glibc-gconv-iso8859-15 glibc-localedata-i18n"
 
-wheninspecting a binary for example busybox there is no prelink section !
+Now, I simply wonder why is there a "compatibility issue" having them in
+the DISTRO_FEATURES.
 
-arm-poky-linux-readelf -S busybox
-There are 28 section headers, starting at offset 0x84870:
 
-Section Headers:
-  [Nr] Name              Type            Addr     Off    Size   ES Flg Lk
-Inf Al
-  [ 0]                   NULL            00000000 000000 000000 00      0
-0  0
-  [ 1] .interp           PROGBITS        00010134 000134 000019 00   A  0
-0  1
-  [ 2] .note.ABI-tag     NOTE            00010150 000150 000020 00   A  0
-0  4
-  [ 3] .note.gnu.build-i NOTE            00010170 000170 000024 00   A  0
-0  4
-  [ 4] .gnu.hash         GNU_HASH        00010194 000194 000f04 04   A  5
-0  4
-  [ 5] .dynsym           DYNSYM          00011098 001098 001400 10   A  6
-1  4
-  [ 6] .dynstr           STRTAB          00012498 002498 000a27 00   A  0
-0  1
-  [ 7] .gnu.version      VERSYM          00012ec0 002ec0 000280 02   A  5
-0  2
-  [ 8] .gnu.version_r    VERNEED         00013140 003140 000040 00   A  6
-2  4
-  [ 9] .rel.dyn          REL             00013180 003180 000048 08   A  5
-0  4
-  [10] .rel.plt          REL             000131c8 0031c8 000990 08  AI  5
- 22  4
-  [11] .init             PROGBITS        00013b58 003b58 00000c 00  AX  0
-0  4
-  [12] .plt              PROGBITS        00013b64 003b64 000e6c 04  AX  0
-0  4
-  [13] .text             PROGBITS        000149d0 0049d0 0703d4 00  AX  0
-0  8
-  [14] .fini             PROGBITS        00084da4 074da4 000008 00  AX  0
-0  4
-  [15] .rodata           PROGBITS        00084db0 074db0 00f201 00   A  0
-0  8
-  [16] .ARM.exidx        ARM_EXIDX       00093fb4 083fb4 000008 00  AL 13
-0  4
-  [17] .eh_frame         PROGBITS        00093fbc 083fbc 000004 00   A  0
-0  4
-  [18] .init_array       INIT_ARRAY      000a4000 084000 000004 04  WA  0
-0  4
-  [19] .fini_array       FINI_ARRAY      000a4004 084004 000004 04  WA  0
-0  4
-  [20] .jcr              PROGBITS        000a4008 084008 000004 00  WA  0
-0  4
-  [21] .dynamic          DYNAMIC         000a400c 08400c 0000f0 08  WA  6
-0  4
-  [22] .got              PROGBITS        000a40fc 0840fc 0004dc 04  WA  0
-0  4
-  [23] .data             PROGBITS        000a45d8 0845d8 000145 00  WA  0
-0  4
-  [24] .bss              NOBITS          000a4720 08471d 002250 00  WA  0
-0  8
-  [25] .ARM.attributes   ARM_ATTRIBUTES  00000000 08471d 00003d 00      0
-0  1
-  [26] .gnu_debuglink    PROGBITS        00000000 08475a 000014 00      0
-0  1
-  [27] .shstrtab         STRTAB          00000000 08476e 000100 00      0
-0  1
-Key to Flags:
-  W (write), A (alloc), X (execute), M (merge), S (strings), I (info),
-  L (link order), O (extra OS processing required), G (group), T (TLS),
-  C (compressed), x (unknown), o (OS specific), E (exclude),
+On Sat, 22 Apr 2017 at 09:49 David Bensoussan <dbensoussan@synapticon.com>
+wrote:
 
-Any hints on how prelinking works in yocto ?
+> It was a typo, sorry, I typed it without the "do_"
+>
+> On Fri, 21 Apr 2017 at 20:50 Trevor Woerner <twoerner@gmail.com> wrote:
+>
+>> On Fri 2017-04-21 @ 11:37:44 AM, David Bensoussan wrote:
+>> > I wanted to generate an sdk and met these errors while executing:
+>> > $ bitbake core-image-base -c do_populate_sdk
+>>
+>> Does adding the "do_" work? Is there any difference if you type:
+>>
+>>         $ bitbake core-image-base -c populate_sdk
+>>
+>> ?
+>>
+> --
+>
+> *David bensoussan*
+> Roboticist / Embedded Software Engineer
+> ------------------------------
+>
+> *Synapticon* | Robotic Control Systems
+> Mobile: 015779804515
+> Fax: +49 7031 / 30 478 -99 <+49%207031%203047899>
+>
+> *synapticon.com* <https://www.synapticon.com/> | Twitter
+> <https://twitter.com/#!/synapticon_co> | Facebook
+> <https://fb.com/Synapticon>
+>
+> Synapticon GmbH | Daimlerstra=C3=9Fe 26 | 71101 Sch=C3=B6naich, Germany
+> Secretary +49 7031 / 30 478 -0 | Managing Director: Nikolai Ensslen
+> Amtsgericht Stuttgart HRB 756076 | USt-ID DE271647127
+>
+> This message and any files transmitted with it are confidential and
+> intended solely for the use of the individual or entity to whom they are
+> addressed. Please notify the sender immediately if you have received this
+> e-mail by mistake and delete it from your system.
+>
+--=20
 
-thank you !
+*David bensoussan*
+Roboticist / Embedded Software Engineer
+------------------------------
 
-best regards
+*Synapticon* | Robotic Control Systems
+Mobile: 015779804515
+Fax: +49 7031 / 30 478 -99
 
-Ayoub Zaki
+*synapticon.com* <https://www.synapticon.com/> | Twitter
+<https://twitter.com/#!/synapticon_co> | Facebook
+<https://fb.com/Synapticon>
 
---001a11491f7653c714054dc771f1
+Synapticon GmbH | Daimlerstra=C3=9Fe 26 | 71101 Sch=C3=B6naich, Germany
+Secretary +49 7031 / 30 478 -0 | Managing Director: Nikolai Ensslen
+Amtsgericht Stuttgart HRB 756076 | USt-ID DE271647127
+
+This message and any files transmitted with it are confidential and
+intended solely for the use of the individual or entity to whom they are
+addressed. Please notify the sender immediately if you have received this
+e-mail by mistake and delete it from your system.
+
+--001a11c04eb4ca2276054dd17153
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hello all,<div><br></div><div>I&#39;m trying to build an i=
-mage with prelinked binaries to have better start-up performance.</div><div=
->my target is a beaglebone-black default configured with hard-float-point a=
-nd a morty branch.</div><div><br></div><div>here are the steps I followed f=
-rom the manual :</div><div><br></div><div><a href=3D"http://www.yoctoprojec=
-t.org/docs/latest/mega-manual/mega-manual.html#ref-classes-image-prelink">h=
-ttp://www.yoctoproject.org/docs/latest/mega-manual/mega-manual.html#ref-cla=
-sses-image-prelink</a><br></div><div><br></div><div>1) in my image recipe i=
-ncluded image prelink bbclass:</div><div><br></div><div>=C2=A0 inherit imag=
-e-prelink</div><div><br></div><div>2) Added in my local.conf :</div><div><b=
-r></div><div>USER_CLASSES ?=3D &quot;buildstats image-mklibs image-prelink&=
-quot;<br></div><div><br></div><div>3) Built my image !</div><div><br></div>=
-<div>wheninspecting a binary for example busybox there is no prelink sectio=
-n !</div><div><br></div><div><div>arm-poky-linux-readelf -S busybox=C2=A0</=
-div><div>There are 28 section headers, starting at offset 0x84870:</div><di=
-v><br></div><div>Section Headers:</div><div>=C2=A0 [Nr] Name =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Type =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0Addr =C2=A0 =C2=A0 Off =C2=A0 =C2=A0Size =C2=A0 ES Flg Lk Inf Al</div=
-><div>=C2=A0 [ 0] =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 NULL =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A000000000 000000 000000=
- 00 =C2=A0 =C2=A0 =C2=A00 =C2=A0 0 =C2=A00</div><div>=C2=A0 [ 1] .interp =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 PROGBITS =C2=A0 =C2=A0 =C2=A0 =C2=A00001=
-0134 000134 000019 00 =C2=A0 A =C2=A00 =C2=A0 0 =C2=A01</div><div>=C2=A0 [ =
-2] .note.ABI-tag =C2=A0 =C2=A0 NOTE =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A000010150 000150 000020 00 =C2=A0 A =C2=A00 =C2=A0 0 =C2=A04</div><div>=
-=C2=A0 [ 3] .note.gnu.build-i NOTE =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A000010170 000170 000024 00 =C2=A0 A =C2=A00 =C2=A0 0 =C2=A04</div><div>=
-=C2=A0 [ 4] .gnu.hash =C2=A0 =C2=A0 =C2=A0 =C2=A0 GNU_HASH =C2=A0 =C2=A0 =
-=C2=A0 =C2=A000010194 000194 000f04 04 =C2=A0 A =C2=A05 =C2=A0 0 =C2=A04</d=
-iv><div>=C2=A0 [ 5] .dynsym =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 DYNSYM =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A000011098 001098 001400 10 =C2=A0 A =C2=A06 =
-=C2=A0 1 =C2=A04</div><div>=C2=A0 [ 6] .dynstr =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 STRTAB =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A000012498 002498 000a27 00 =
-=C2=A0 A =C2=A00 =C2=A0 0 =C2=A01</div><div>=C2=A0 [ 7] .gnu.version =C2=A0=
- =C2=A0 =C2=A0VERSYM =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A000012ec0 002ec0 0002=
-80 02 =C2=A0 A =C2=A05 =C2=A0 0 =C2=A02</div><div>=C2=A0 [ 8] .gnu.version_=
-r =C2=A0 =C2=A0VERNEED =C2=A0 =C2=A0 =C2=A0 =C2=A0 00013140 003140 000040 0=
-0 =C2=A0 A =C2=A06 =C2=A0 2 =C2=A04</div><div>=C2=A0 [ 9] .rel.dyn =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0REL =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 00=
-013180 003180 000048 08 =C2=A0 A =C2=A05 =C2=A0 0 =C2=A04</div><div>=C2=A0 =
-[10] .rel.plt =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0REL =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 000131c8 0031c8 000990 08 =C2=A0AI =C2=A05 =C2=A022 =
-=C2=A04</div><div>=C2=A0 [11] .init =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 PROGBITS =C2=A0 =C2=A0 =C2=A0 =C2=A000013b58 003b58 00000c 00 =C2=A0AX =
-=C2=A00 =C2=A0 0 =C2=A04</div><div>=C2=A0 [12] .plt =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0PROGBITS =C2=A0 =C2=A0 =C2=A0 =C2=A000013b64 003=
-b64 000e6c 04 =C2=A0AX =C2=A00 =C2=A0 0 =C2=A04</div><div>=C2=A0 [13] .text=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 PROGBITS =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0000149d0 0049d0 0703d4 00 =C2=A0AX =C2=A00 =C2=A0 0 =C2=A08</div><div=
->=C2=A0 [14] .fini =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 PROGBITS =C2=
-=A0 =C2=A0 =C2=A0 =C2=A000084da4 074da4 000008 00 =C2=A0AX =C2=A00 =C2=A0 0=
- =C2=A04</div><div>=C2=A0 [15] .rodata =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 P=
-ROGBITS =C2=A0 =C2=A0 =C2=A0 =C2=A000084db0 074db0 00f201 00 =C2=A0 A =C2=
-=A00 =C2=A0 0 =C2=A08</div><div>=C2=A0 [16] .ARM.exidx =C2=A0 =C2=A0 =C2=A0=
- =C2=A0ARM_EXIDX =C2=A0 =C2=A0 =C2=A0 00093fb4 083fb4 000008 00 =C2=A0AL 13=
- =C2=A0 0 =C2=A04</div><div>=C2=A0 [17] .eh_frame =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 PROGBITS =C2=A0 =C2=A0 =C2=A0 =C2=A000093fbc 083fbc 000004 00 =C2=A0 A =
-=C2=A00 =C2=A0 0 =C2=A04</div><div>=C2=A0 [18] .init_array =C2=A0 =C2=A0 =
-=C2=A0 INIT_ARRAY =C2=A0 =C2=A0 =C2=A0000a4000 084000 000004 04 =C2=A0WA =
-=C2=A00 =C2=A0 0 =C2=A04</div><div>=C2=A0 [19] .fini_array =C2=A0 =C2=A0 =
-=C2=A0 FINI_ARRAY =C2=A0 =C2=A0 =C2=A0000a4004 084004 000004 04 =C2=A0WA =
-=C2=A00 =C2=A0 0 =C2=A04</div><div>=C2=A0 [20] .jcr =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0PROGBITS =C2=A0 =C2=A0 =C2=A0 =C2=A0000a4008 084=
-008 000004 00 =C2=A0WA =C2=A00 =C2=A0 0 =C2=A04</div><div>=C2=A0 [21] .dyna=
-mic =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0DYNAMIC =C2=A0 =C2=A0 =C2=A0 =C2=A0 0=
-00a400c 08400c 0000f0 08 =C2=A0WA =C2=A06 =C2=A0 0 =C2=A04</div><div>=C2=A0=
- [22] .got =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0PROGBITS =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0000a40fc 0840fc 0004dc 04 =C2=A0WA =C2=A00 =C2=A0 0 =C2=
-=A04</div><div>=C2=A0 [23] .data =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-PROGBITS =C2=A0 =C2=A0 =C2=A0 =C2=A0000a45d8 0845d8 000145 00 =C2=A0WA =C2=
-=A00 =C2=A0 0 =C2=A04</div><div>=C2=A0 [24] .bss =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0NOBITS =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0000a4720 0=
-8471d 002250 00 =C2=A0WA =C2=A00 =C2=A0 0 =C2=A08</div><div>=C2=A0 [25] .AR=
-M.attributes =C2=A0 ARM_ATTRIBUTES =C2=A000000000 08471d 00003d 00 =C2=A0 =
-=C2=A0 =C2=A00 =C2=A0 0 =C2=A01</div><div>=C2=A0 [26] .gnu_debuglink =C2=A0=
- =C2=A0PROGBITS =C2=A0 =C2=A0 =C2=A0 =C2=A000000000 08475a 000014 00 =C2=A0=
- =C2=A0 =C2=A00 =C2=A0 0 =C2=A01</div><div>=C2=A0 [27] .shstrtab =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 STRTAB =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A000000000 08476e =
-000100 00 =C2=A0 =C2=A0 =C2=A00 =C2=A0 0 =C2=A01</div><div>Key to Flags:</d=
-iv><div>=C2=A0 W (write), A (alloc), X (execute), M (merge), S (strings), I=
- (info),</div><div>=C2=A0 L (link order), O (extra OS processing required),=
- G (group), T (TLS),</div><div>=C2=A0 C (compressed), x (unknown), o (OS sp=
-ecific), E (exclude),</div></div><div><br></div><div>Any hints on how preli=
-nking works in yocto ?</div><div><br></div><div>thank you !</div><div><br><=
-/div><div>best regards</div><div><br></div><div>Ayoub Zaki</div><div><br></=
-div><div><br></div><div><br></div></div>
+<div dir=3D"ltr">I managed to track down how to create the SDK. Sorry for t=
+he long answer but it might help people googling it.<br><div><br></div><div=
+>DISTRO_FEATURES ?=3D &quot;${DISTRO_FEATURES_DEFAULT} ${DISTRO_FEATURES_LI=
+BC} ${POKY_DEFAULT_DISTRO_FEATURES}&quot; in <b>meta-poky/conf/distro/poky.=
+conf</b></div><div>DISTRO_FEATURES_LIBC is defined as DISTRO_FEATURES_LIBC_=
+DEFAULT in=C2=A0<b>meta/conf/distro/include/default-distrovars.inc</b><br><=
+/div><div><div>DISTRO_FEATURES_LIBC_DEFAULT ?=3D &quot;ipv4 ipv6 libc-backt=
+race libc-big-macros libc-bsd libc-cxx-tests libc-catgets libc-charsets lib=
+c-crypt \</div><div><span class=3D"Apple-tab-span" style=3D"white-space:pre=
+">					</span>libc-crypt-ufc libc-db-aliases libc-envz libc-fcvt libc-fmtms=
+g libc-fstab libc-ftraverse \</div><div><span class=3D"Apple-tab-span" styl=
+e=3D"white-space:pre">					</span>libc-getlogin libc-idn libc-inet-anl libc=
+-libm libc-locales libc-locale-code \</div><div><span class=3D"Apple-tab-sp=
+an" style=3D"white-space:pre">					</span>libc-memusage libc-nis libc-nsswi=
+tch libc-rcmd libc-rtld-debug libc-spawn libc-streams libc-sunrpc \</div><d=
+iv><span class=3D"Apple-tab-span" style=3D"white-space:pre">					</span>lib=
+c-utmp libc-utmpx libc-wordexp libc-posix-clang-wchar libc-posix-regexp lib=
+c-posix-regexp-glibc \</div><div><span class=3D"Apple-tab-span" style=3D"wh=
+ite-space:pre">					</span>libc-posix-wchar-io&quot; i<b>n the same file</b=
+></div></div><div><b><br></b></div><div>And finally:</div><div><br></div><d=
+iv><div>LIBC_DEPENDENCIES =3D &quot;libsegfault \</div><div><span class=3D"=
+Apple-tab-span" style=3D"white-space:pre">		</span> =C2=A0 =C2=A0 glibc \</=
+div><div><span class=3D"Apple-tab-span" style=3D"white-space:pre">		</span>=
+ =C2=A0 =C2=A0 glibc-dbg \</div><div><span class=3D"Apple-tab-span" style=
+=3D"white-space:pre">		</span> =C2=A0 =C2=A0 glibc-dev \</div><div><span cl=
+ass=3D"Apple-tab-span" style=3D"white-space:pre">		</span> =C2=A0 =C2=A0 gl=
+ibc-utils \</div><div><span class=3D"Apple-tab-span" style=3D"white-space:p=
+re">		</span> =C2=A0 =C2=A0 glibc-thread-db \</div><div><span class=3D"Appl=
+e-tab-span" style=3D"white-space:pre">		</span> =C2=A0 =C2=A0 ${@get_libc_l=
+ocales_dependencies(d)}&quot;</div><div><br></div><div>LIBC_LOCALE_DEPENDEN=
+CIES =3D &quot;\</div><div><span class=3D"Apple-tab-span" style=3D"white-sp=
+ace:pre">	</span>glibc-localedata-i18n \</div><div><span class=3D"Apple-tab=
+-span" style=3D"white-space:pre">	</span>glibc-gconv-ibm850 \</div><div><sp=
+an class=3D"Apple-tab-span" style=3D"white-space:pre">	</span>glibc-gconv-c=
+p1252 \</div><div><span class=3D"Apple-tab-span" style=3D"white-space:pre">=
+	</span>glibc-gconv-iso8859-1 \</div><div><span class=3D"Apple-tab-span" st=
+yle=3D"white-space:pre">	</span>glibc-gconv-iso8859-15&quot;</div><div><br>=
+</div><div>def get_libc_locales_dependencies(d):</div><div>=C2=A0 =C2=A0 if=
+ &#39;libc-locales&#39; in (d.getVar(&#39;DISTRO_FEATURES&#39;, True) or &#=
+39;&#39;).split() :</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 return d.getVar(&=
+#39;LIBC_LOCALE_DEPENDENCIES&#39;, True) or &#39;&#39;</div><div>=C2=A0 =C2=
+=A0 else:</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 return &#39;&#39;</div><div=
+ style=3D"font-weight:bold"><br></div></div><div><b>in ../meta/conf/distro/=
+include/tclibc-glibc.inc<br></b></div><div><b><br></b></div><div>This is ho=
+w they are enabled. To make it work, I added in my local.conf:<br><div>LIBC=
+_DEPENDENCIES_remove +=3D &quot;glibc-gconv-cp1252 glibc-gconv-ibm850 glibc=
+-gconv-iso8859-1 glibc-gconv-iso8859-15 glibc-localedata-i18n&quot;</div></=
+div><div><br>Now, I simply wonder why is there a &quot;compatibility issue&=
+quot; having them in the DISTRO_FEATURES.=C2=A0</div><br></div><br><div cla=
+ss=3D"gmail_quote"><div dir=3D"ltr">On Sat, 22 Apr 2017 at 09:49 David Bens=
+oussan &lt;<a href=3D"mailto:dbensoussan@synapticon.com">dbensoussan@synapt=
+icon.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D=
+"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D=
+"ltr">It was a typo, sorry, I typed it without the &quot;do_&quot;</div><br=
+><div class=3D"gmail_quote"><div dir=3D"ltr">On Fri, 21 Apr 2017 at 20:50 T=
+revor Woerner &lt;<a href=3D"mailto:twoerner@gmail.com" target=3D"_blank">t=
+woerner@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote"=
+ style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">On=
+ Fri 2017-04-21 @ 11:37:44 AM, David Bensoussan wrote:<br>
+&gt; I wanted to generate an sdk and met these errors while executing:<br>
+&gt; $ bitbake core-image-base -c do_populate_sdk<br>
+<br>
+Does adding the &quot;do_&quot; work? Is there any difference if you type:<=
+br>
+<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 $ bitbake core-image-base -c populate_sdk<br>
+<br>
+?<br>
+</blockquote></div><div dir=3D"ltr">-- <br></div><div data-smartmail=3D"gma=
+il_signature"><div dir=3D"ltr"><p id=3D"m_1602349764644549906inbox-inbox-pe=
+rson-name" style=3D"box-sizing:border-box;font-family:arial,helvetica,sans-=
+serif;font-size:13.3333px;color:rgb(0,0,0);padding:0px;margin:1em 0px"><str=
+ong style=3D"box-sizing:border-box">David bensoussan</strong><br style=3D"b=
+ox-sizing:border-box">Roboticist / Embedded Software Engineer</p><hr style=
+=3D"box-sizing:border-box;margin:0px;padding:0px;height:1px;background-imag=
+e:initial;background-position:initial;background-size:initial;background-re=
+peat:initial;background-origin:initial;background-clip:initial;background-c=
+olor:rgb(229,27,65);border:none;color:rgb(17,17,17);font-family:arial,helve=
+tica,sans-serif;font-size:13.3333px"><p id=3D"m_1602349764644549906inbox-in=
+box-tag-line" style=3D"box-sizing:border-box;font-family:arial,helvetica,sa=
+ns-serif;font-size:12pt;color:rgb(0,0,0);padding:0px;margin:1em 0px"><stron=
+g style=3D"box-sizing:border-box">Synapticon</strong><span class=3D"m_16023=
+49764644549906inbox-inbox-Apple-converted-space">=C2=A0</span>| Robotic Con=
+trol Systems</p><table cellpadding=3D"0" cellspacing=3D"0" style=3D"box-siz=
+ing:border-box;font-family:arial,helvetica,sans-serif;font-size:13.3333px;c=
+olor:rgb(17,17,17);padding:0px"><tbody style=3D"box-sizing:border-box"><tr =
+style=3D"box-sizing:border-box"><td style=3D"box-sizing:border-box;color:rg=
+b(0,0,0);padding:0px 15px 3px 0px">Mobile:</td><td style=3D"box-sizing:bord=
+er-box;color:rgb(0,0,0);padding:0px 15px 3px 0px">015779804515</td></tr><tr=
+ style=3D"box-sizing:border-box"><td style=3D"box-sizing:border-box;color:r=
+gb(0,0,0);padding:0px 15px 3px 0px">Fax:</td><td style=3D"box-sizing:border=
+-box;color:rgb(0,0,0);padding:0px 15px 3px 0px"><a href=3D"tel:+49%207031%2=
+03047899" value=3D"+4970313047899" target=3D"_blank">+49 7031 / 30 478 -99<=
+/a></td></tr></tbody></table><p style=3D"box-sizing:border-box;font-family:=
+arial,helvetica,sans-serif;font-size:13.3333px;color:rgb(0,0,0);padding:0px=
+;margin:1em 0px"><a href=3D"https://www.synapticon.com/" style=3D"box-sizin=
+g:border-box;color:rgb(1,81,154)" target=3D"_blank"><strong style=3D"box-si=
+zing:border-box">synapticon.com</strong></a><span class=3D"m_16023497646445=
+49906inbox-inbox-Apple-converted-space">=C2=A0</span>|<span class=3D"m_1602=
+349764644549906inbox-inbox-Apple-converted-space">=C2=A0</span><a href=3D"h=
+ttps://twitter.com/#!/synapticon_co" style=3D"box-sizing:border-box;color:r=
+gb(1,81,154)" target=3D"_blank">Twitter</a><span class=3D"m_160234976464454=
+9906inbox-inbox-Apple-converted-space">=C2=A0</span>|<span class=3D"m_16023=
+49764644549906inbox-inbox-Apple-converted-space">=C2=A0</span><a href=3D"ht=
+tps://fb.com/Synapticon" style=3D"box-sizing:border-box;color:rgb(1,81,154)=
+" target=3D"_blank">Facebook</a></p><p id=3D"m_1602349764644549906inbox-inb=
+ox-address" style=3D"box-sizing:border-box;font-family:arial,helvetica,sans=
+-serif;font-size:13.3333px;color:rgb(153,153,153);padding:0px;margin:1em 0p=
+x">Synapticon GmbH | Daimlerstra=C3=9Fe 26 | 71101 Sch=C3=B6naich, Germany<=
+span class=3D"m_1602349764644549906inbox-inbox-Apple-converted-space">=C2=
+=A0</span><br style=3D"box-sizing:border-box">Secretary +49 7031 / 30 478 -=
+0 | Managing Director: Nikolai Ensslen<span class=3D"m_1602349764644549906i=
+nbox-inbox-Apple-converted-space">=C2=A0</span><br style=3D"box-sizing:bord=
+er-box">Amtsgericht Stuttgart HRB 756076 | USt-ID DE271647127<span class=3D=
+"m_1602349764644549906inbox-inbox-Apple-converted-space">=C2=A0</span><br s=
+tyle=3D"box-sizing:border-box"></p><p style=3D"box-sizing:border-box;font-f=
+amily:arial,helvetica,sans-serif;font-size:13.3333px;color:rgb(0,0,0);paddi=
+ng:0px;margin:1em 0px"></p><p id=3D"m_1602349764644549906inbox-inbox-confid=
+entiality" style=3D"box-sizing:border-box;font-family:arial,helvetica,sans-=
+serif;font-size:7.5pt;color:rgb(153,153,153);padding:0px;margin:1em 0px;wid=
+th:450px">This message and any files transmitted with it are confidential a=
+nd intended solely for the use of the individual or entity to whom they are=
+ addressed. Please notify the sender immediately if you have received this =
+e-mail by mistake and delete it from your system.</p></div></div></blockquo=
+te></div><div dir=3D"ltr">-- <br></div><div data-smartmail=3D"gmail_signatu=
+re"><div dir=3D"ltr"><p id=3D"inbox-inbox-person-name" style=3D"box-sizing:=
+border-box;font-family:arial,helvetica,sans-serif;font-size:13.3333px;color=
+:rgb(0,0,0);padding:0px;margin:1em 0px"><strong style=3D"box-sizing:border-=
+box">David bensoussan</strong><br style=3D"box-sizing:border-box">Roboticis=
+t / Embedded Software Engineer</p><hr style=3D"box-sizing:border-box;margin=
+:0px;padding:0px;height:1px;background-image:initial;background-position:in=
+itial;background-size:initial;background-repeat:initial;background-origin:i=
+nitial;background-clip:initial;background-color:rgb(229,27,65);border:none;=
+color:rgb(17,17,17);font-family:arial,helvetica,sans-serif;font-size:13.333=
+3px"><p id=3D"inbox-inbox-tag-line" style=3D"box-sizing:border-box;font-fam=
+ily:arial,helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0);padding:0px;=
+margin:1em 0px"><strong style=3D"box-sizing:border-box">Synapticon</strong>=
+<span class=3D"inbox-inbox-Apple-converted-space">=C2=A0</span>| Robotic Co=
+ntrol Systems</p><table cellpadding=3D"0" cellspacing=3D"0" style=3D"box-si=
+zing:border-box;font-family:arial,helvetica,sans-serif;font-size:13.3333px;=
+color:rgb(17,17,17);padding:0px"><tbody style=3D"box-sizing:border-box"><tr=
+ style=3D"box-sizing:border-box"><td style=3D"box-sizing:border-box;color:r=
+gb(0,0,0);padding:0px 15px 3px 0px">Mobile:</td><td style=3D"box-sizing:bor=
+der-box;color:rgb(0,0,0);padding:0px 15px 3px 0px">015779804515</td></tr><t=
+r style=3D"box-sizing:border-box"><td style=3D"box-sizing:border-box;color:=
+rgb(0,0,0);padding:0px 15px 3px 0px">Fax:</td><td style=3D"box-sizing:borde=
+r-box;color:rgb(0,0,0);padding:0px 15px 3px 0px">+49 7031 / 30 478 -99</td>=
+</tr></tbody></table><p style=3D"box-sizing:border-box;font-family:arial,he=
+lvetica,sans-serif;font-size:13.3333px;color:rgb(0,0,0);padding:0px;margin:=
+1em 0px"><a href=3D"https://www.synapticon.com/" style=3D"box-sizing:border=
+-box;color:rgb(1,81,154)"><strong style=3D"box-sizing:border-box">synaptico=
+n.com</strong></a><span class=3D"inbox-inbox-Apple-converted-space">=C2=A0<=
+/span>|<span class=3D"inbox-inbox-Apple-converted-space">=C2=A0</span><a hr=
+ef=3D"https://twitter.com/#!/synapticon_co" style=3D"box-sizing:border-box;=
+color:rgb(1,81,154)">Twitter</a><span class=3D"inbox-inbox-Apple-converted-=
+space">=C2=A0</span>|<span class=3D"inbox-inbox-Apple-converted-space">=C2=
+=A0</span><a href=3D"https://fb.com/Synapticon" style=3D"box-sizing:border-=
+box;color:rgb(1,81,154)">Facebook</a></p><p id=3D"inbox-inbox-address" styl=
+e=3D"box-sizing:border-box;font-family:arial,helvetica,sans-serif;font-size=
+:13.3333px;color:rgb(153,153,153);padding:0px;margin:1em 0px">Synapticon Gm=
+bH | Daimlerstra=C3=9Fe 26 | 71101 Sch=C3=B6naich, Germany<span class=3D"in=
+box-inbox-Apple-converted-space">=C2=A0</span><br style=3D"box-sizing:borde=
+r-box">Secretary +49 7031 / 30 478 -0 | Managing Director: Nikolai Ensslen<=
+span class=3D"inbox-inbox-Apple-converted-space">=C2=A0</span><br style=3D"=
+box-sizing:border-box">Amtsgericht Stuttgart HRB 756076 | USt-ID DE27164712=
+7<span class=3D"inbox-inbox-Apple-converted-space">=C2=A0</span><br style=
+=3D"box-sizing:border-box"></p><p style=3D"box-sizing:border-box;font-famil=
+y:arial,helvetica,sans-serif;font-size:13.3333px;color:rgb(0,0,0);padding:0=
+px;margin:1em 0px"></p><p id=3D"inbox-inbox-confidentiality" style=3D"box-s=
+izing:border-box;font-family:arial,helvetica,sans-serif;font-size:7.5pt;col=
+or:rgb(153,153,153);padding:0px;margin:1em 0px;width:450px">This message an=
+d any files transmitted with it are confidential and intended solely for th=
+e use of the individual or entity to whom they are addressed. Please notify=
+ the sender immediately if you have received this e-mail by mistake and del=
+ete it from your system.</p></div></div>
 
---001a11491f7653c714054dc771f1--
+--001a11c04eb4ca2276054dd17153--
