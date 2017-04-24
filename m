@@ -1,70 +1,71 @@
 Return-Path: <martin.jansa@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E0C9FE00867; Mon, 24 Apr 2017 07:28:42 -0700 (PDT)
+	id A58A4E00AB9; Mon, 24 Apr 2017 07:29:44 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE, 
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (martin.jansa[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.67 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.128.195 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.82.67 listed in dnsbl.sorbs.net]
-Received: from mail-wm0-f67.google.com (mail-wm0-f67.google.com [74.125.82.67])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 722BBE00826
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.128.195 listed in list.dnswl.org]
+Received: from mail-wr0-f195.google.com (mail-wr0-f195.google.com
+	[209.85.128.195])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2FEA0E00839
 	for <yocto@lists.yoctoproject.org>;
-	Mon, 24 Apr 2017 07:28:40 -0700 (PDT)
-Received: by mail-wm0-f67.google.com with SMTP id y10so6648712wmh.0
+	Mon, 24 Apr 2017 07:29:42 -0700 (PDT)
+Received: by mail-wr0-f195.google.com with SMTP id g12so2922700wrg.2
 	for <yocto@lists.yoctoproject.org>;
-	Mon, 24 Apr 2017 07:28:40 -0700 (PDT)
+	Mon, 24 Apr 2017 07:29:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=0VXhTKJBn/MYcM4sNarGrZqaTkIfQxadYpSh9MSoUqE=;
-	b=hrVoY5mbDlq+i0dYU4mB3kz38U1GMoOLnLJZO7n8osEi49PUwRjkauRJ4oBZmNOW+a
-	vH6gp52f20ZjNdiEVqoQQdckxxTwFWkujO9JZWUas1vaWFF6RymG6Vdr6k/x9KjzZ4fa
-	t8voy5SC6Y1ZvnLmA/I3rdzW2rZtQQAtwktEs4v9si6rT3I/E6+EvcQP9e+PR9IlX//H
-	/5bv+qC5OV4RYeWURiAmfc7RhIamk0CSIjx2erDZAi6769prY9tAm/ysPl7Q3qpyUr/6
-	YPJG3GpGnfpE9jYieDUKtBfGhQbMnG9o9rbBTdyeFLXDkgZQ7r5wkrWp60iKG56/GjrW
-	Y6ZA==
+	h=from:to:cc:subject:date:message-id:in-reply-to:references;
+	bh=Ih4XrYbPouzHTb7b0OusrOa6f5krMCdZ4NcfRgNxsL8=;
+	b=AvY7wWCZYm7d8OKFTgg+LpOGPLmHjssErm3ByHY6dtiV2Qj2k3QOzkXv4IvouxXLya
+	UdAAWZjG15GjmL3Yz0Mg1WIb/FRpKEUCtRyeNlp0qzUgk58lDkV5AfcqC0FkhqmYkRC3
+	irL89gbg4YRTqJnhbSuLctzmTlKxnYeQuNYAgpYXi2IcjtUQjaIrOCcg9aqLmLbKBDKE
+	X8hHvigQ08UDNOy1CT05latRnT7HJBj0HFDBUhJ43Fir9kABMrHNhCNmMCMuH3U3k8WL
+	X+C1wxMxiudx/f3OnZ6UFeVfBD1S6e1hVV45wa/mixZ7fWAPvRf6BTyjgBFVePZcOHLP
+	aplw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=0VXhTKJBn/MYcM4sNarGrZqaTkIfQxadYpSh9MSoUqE=;
-	b=aAb4XJ45dtDDy9kieJ72Q20dWaB6Mpho4DGCjsVhsS+H+VG1rG0uOEAENyNc++gWoh
-	eFLERsDrYkrIELbsI3ys1bxrCfVVAvlC5K7rWQiD0ifovd37xUgEQzcsgu9HampVb34y
-	uSj655Jcm16EJVEsdsFyQ5da6sk6K8ZiYQifSoNiyEik7BRGIXiU+xTNclq7ZTJPvb42
-	mVKnquF6gWsByO4G0WU4ULw7t5N0xEPAqkS98TzfnUh9NP/oYczGMcipA99bcOt4hFNu
-	YmA2NzqNHQolGPXglMoOfSourHwRY8Hu7HYIa+0TYjDZvHBMRXWderJG2Wki3cUpqY11
-	ux0Q==
-X-Gm-Message-State: AN3rC/7846cOMVYjMe2SXtjzea+EeJuCdFgzvVJ+TJA16+pfu5HNN2Yr
-	hGkKEh4VMN7bbhY07HeveScKtmuzJQ==
-X-Received: by 10.80.163.196 with SMTP id t4mr1322775edb.158.1493044119954;
-	Mon, 24 Apr 2017 07:28:39 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.80.148.54 with HTTP; Mon, 24 Apr 2017 07:28:39 -0700 (PDT)
-In-Reply-To: <CAJ86T=VXNdXhGn17Nu5Sexy0+JXj0A3B_PFVPoPu6bRsUc4e6Q@mail.gmail.com>
-References: <20170421205911.GC3024@jama>
-	<CAJ86T=VXNdXhGn17Nu5Sexy0+JXj0A3B_PFVPoPu6bRsUc4e6Q@mail.gmail.com>
+	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+	:references;
+	bh=Ih4XrYbPouzHTb7b0OusrOa6f5krMCdZ4NcfRgNxsL8=;
+	b=ZRh0Y/KSWrv/BONY8jVD93qxsJqS2yF3DZKAAMR2ozkBDzcukA1CuBr9cLWSH7rsFy
+	/S7VUd4ve5s3K0s0vBuHt7jZ0qPytqGxj1zOGgxT+aV8wpVjnlmv5snCzUVuWF/6kq2w
+	qwO1Ro3BnGd1s87X5Sfxd+ihLQ7X1oQpGvfon1cMi7ZImwIaaqCMvKRoH5tqzxsjEmGk
+	c8NsGIhn7K3Zjv2VPTgVYKM/ATPLa2/sSeFwAaJ8WjqXePkXTnKiANaWKFSS1T6NK4rz
+	Q1ysv/snryKCbsdjzpCOlfy3GSMkNPw1KV8/K3/NtJXrefymb+B8kEQjdCZmbnkVuGMR
+	/8TA==
+X-Gm-Message-State: AN3rC/4ndsq33QuCrQtqw1vaS/RiFBISILwySh2wWiY+T4WYlhwSj2xf
+	UqTIubkvaUc5lMqD
+X-Received: by 10.223.162.147 with SMTP id s19mr5997303wra.142.1493044181872; 
+	Mon, 24 Apr 2017 07:29:41 -0700 (PDT)
+Received: from localhost ([217.30.68.212]) by smtp.gmail.com with ESMTPSA id
+	g132sm673142wmd.33.2017.04.24.07.29.40
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Mon, 24 Apr 2017 07:29:40 -0700 (PDT)
 From: Martin Jansa <martin.jansa@gmail.com>
-Date: Mon, 24 Apr 2017 16:28:39 +0200
-Message-ID: <CA+chaQfbx2h-dXFgAHVoY=iTg=Ptnephc0k+BdmXSeriHzgWOw@mail.gmail.com>
-To: Andre McCurdy <armccurdy@gmail.com>
-Cc: yocto@lists.yoctoproject.org
-Subject: Re: [RFC][meta-gplv2] layer priority and worth creating branch compatible with morty?
+X-Google-Original-From: Martin Jansa <Martin.Jansa@gmail.com>
+To: yocto@lists.yoctoproject.org
+Date: Mon, 24 Apr 2017 16:29:54 +0200
+Message-Id: <20170424142954.21979-1-Martin.Jansa@gmail.com>
+X-Mailer: git-send-email 2.12.2
+In-Reply-To: <20170420162022.20237-1-Martin.Jansa@gmail.com>
+References: <20170420162022.20237-1-Martin.Jansa@gmail.com>
+Subject: [PATCHv2][meta-gplv2] gnutls: add older gnutls compatible with nettle
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,204 +77,91 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 24 Apr 2017 14:28:42 -0000
-Content-Type: multipart/alternative; boundary=f403045c1a80676ce8054dea6c65
+X-List-Received-Date: Mon, 24 Apr 2017 14:29:44 -0000
 
---f403045c1a80676ce8054dea6c65
-Content-Type: text/plain; charset=UTF-8
+* gnutls depends on nettle-3.1* since 3.4.0:
+  The requirement for nettle was bumped from 3.0 to 3.1 in gnutls_3_4_0
+  https://gitlab.com/gnutls/gnutls/commit/c84129af91b21d33ffe086e507632771b0e76498
+  and from 2.7 to 3.0 a bit earlier also in gnutls_3_4_0
+  https://gitlab.com/gnutls/gnutls/commit/3fa80cf68919f07b3351b2722278ba463d6e731c
+* add recipe for last release in 3.3 branch which is compatible
+  with nettle 2.7.1 used in meta-gplv2
 
-You're right, after fixing our tooling to correctly override
-BBFILE_PRIORITY based on priorities in layer list I'm seeing such
-issue.e.g. gstreamer failing with:
+Signed-off-by: Martin Jansa <Martin.Jansa@gmail.com>
+---
+ .../gnutls/configure.ac-fix-sed-command.patch      | 31 ++++++++++++++++++++++
+ recipes-support/gnutls/gnutls_3.3.27.bb            | 23 ++++++++++++++++
+ 2 files changed, 54 insertions(+)
+ create mode 100644 recipes-support/gnutls/gnutls/configure.ac-fix-sed-command.patch
+ create mode 100644 recipes-support/gnutls/gnutls_3.3.27.bb
 
-| autopoint: *** The AM_GNU_GETTEXT_VERSION declaration in your configure.ac
-              file requires the infrastructure from gettext-0.17 but this
-version               is older. Please upgrade to gettext-0.17 or newer.
-| autopoint: *** Stop.
-|
-| autopoint failed
-| WARNING: exit code 1 from a shell command.
+diff --git a/recipes-support/gnutls/gnutls/configure.ac-fix-sed-command.patch b/recipes-support/gnutls/gnutls/configure.ac-fix-sed-command.patch
+new file mode 100644
+index 0000000..44a9934
+--- /dev/null
++++ b/recipes-support/gnutls/gnutls/configure.ac-fix-sed-command.patch
+@@ -0,0 +1,31 @@
++From eb93aa7b986c84da60a3db40afb29d1a70c50223 Mon Sep 17 00:00:00 2001
++From: Robert Yang <liezhi.yang@windriver.com>
++Date: Sat, 17 Jan 2015 17:02:15 +0000
++Subject: [PATCH] configure.ac: fix sed command
++
++The "sed 's/.bak//g'" matchs "bitbake", which would cause strange errors
++when the S contains "bitbake", fix to "sed 's/\.bak$//'`"
++
++Upstream-Status: Pending
++
++Signed-off-by: Robert Yang <liezhi.yang@windriver.com>
++---
++ configure.ac | 2 +-
++ 1 file changed, 1 insertion(+), 1 deletion(-)
++
++diff --git a/configure.ac b/configure.ac
++index c6818a0..1c4582d 100644
++--- a/configure.ac
+++++ b/configure.ac
++@@ -466,7 +466,7 @@ if test "$NEED_LIBOPTS_DIR" = "true";then
++ 	dnl replace libopts-generated files with distributed backups, if present
++ 	missing_baks=
++ 	for i in ${srcdir}/src/*-args.c.bak ${srcdir}/src/*-args.h.bak; do
++-		nam=`echo $i|sed 's/.bak//g'`
+++		nam=`echo $i|sed 's/\.bak$//'`
++ 		if test -f $i;then
++ 			cp -f $i $nam
++ 		else
++-- 
++2.0.1
++
+diff --git a/recipes-support/gnutls/gnutls_3.3.27.bb b/recipes-support/gnutls/gnutls_3.3.27.bb
+new file mode 100644
+index 0000000..c98da34
+--- /dev/null
++++ b/recipes-support/gnutls/gnutls_3.3.27.bb
+@@ -0,0 +1,23 @@
++require recipes-support/gnutls/gnutls.inc
++
++LIC_FILES_CHKSUM = "file://COPYING;md5=d32239bcb673463ab874e80d47fae504 \
++                    file://COPYING.LESSER;md5=a6f89e2100d9b6cdffcea4f398e37343"
++
++FILESEXTRAPATHS_prepend = "${COREBASE}/meta/recipes-support/${BPN}/${BPN}:"
++
++SRC_URI += " \
++    file://correct_rpl_gettimeofday_signature.patch \
++    file://configure.ac-fix-sed-command.patch \
++    file://use-pkg-config-to-locate-zlib.patch \
++"
++SRC_URI[md5sum] = "8ee8cebd7f7575b11f232766a21c31d3"
++SRC_URI[sha256sum] = "8dfda16c158ef5c134010d51d1a91d02aa5d43b8cb711b1572650a7ffb56b17f"
++
++# This version doesn't support this option added in newer gnutls
++# ERROR: gnutls-3.3.27-r0 do_configure: QA Issue: gnutls: configure was passed unrecognised options: --with-idn [unknown-configure-option]
++PACKAGECONFIG[libidn] = ""
++# but it still has the libidn dependency, without this option
++EXTRA_OECONF += "--disable-crywrap"
++
++# This version doesn't support this option added in newer gnutls
++EXTRA_OECONF_remove = "--without-libunistring-prefix"
+-- 
+2.12.2
 
-and similar issues in apt, grub, netcf, rrdtool.
 
-There is quite a few native BBCLASSEXTENDs in meta-gplv2:
-OE @ ~/meta-gplv2 $ git grep BBCLASSEXTEND
-recipes-core/gettext/gettext_0.16.1.bb:BBCLASSEXTEND = "native nativesdk"
-recipes-core/readline/readline_5.2.bb:BBCLASSEXTEND = "native nativesdk"
-recipes-devtools/elfutils/elfutils_0.148.bb:BBCLASSEXTEND = "native
-nativesdk"
-recipes-devtools/m4/m4_1.4.9.bb:BBCLASSEXTEND = "nativesdk"
-recipes-devtools/mtools/mtools_3.9.9.bb:BBCLASSEXTEND = "native nativesdk"
-recipes-extended/cpio/cpio_v2.inc:BBCLASSEXTEND = "native"
-recipes-extended/findutils/findutils.inc:BBCLASSEXTEND = "native nativesdk"
-recipes-extended/gperf/gperf.inc:BBCLASSEXTEND = "native"
-recipes-extended/libidn/libidn_0.6.14.bb:BBCLASSEXTEND = "native nativesdk"
-recipes-extended/tar/tar.inc:BBCLASSEXTEND = "native nativesdk"
-recipes-extended/texinfo/texinfo_4.8.bb:BBCLASSEXTEND = "native"
-recipes-support/gdbm/gdbm_1.8.3.bb:BBCLASSEXTEND = "native nativesdk"
-recipes-support/nettle/nettle.inc:BBCLASSEXTEND = "native nativesdk"
-
-
-
-
-
-On Fri, Apr 21, 2017 at 11:19 PM, Andre McCurdy <armccurdy@gmail.com> wrote:
-
-> On Fri, Apr 21, 2017 at 1:59 PM, Martin Jansa <martin.jansa@gmail.com>
-> wrote:
-> > 1) layer priority, currently it has:
-> >        BBFILE_PRIORITY_gplv2 = "1"
-> >    which is lower than oe-core with:
-> >        BBFILE_PRIORITY_core = "5"
-> >    so in order to use recipes from meta-gplv2 layer, user has to add
-> >    couple PREFERRED_VERSIONS. Was this intended use for meta-gplv2?
->
-> I guess the intention is that if you blacklist GPLv3 etc then only the
-> recipes in meta-gplv2 will be considered.
->
-> >    I can see some advantages of this (that the layer can be included
-> >    without immediate side effects), but on the other hand why would
-> >    anyone include this layer if he isn't deeply scared from (L)GPLv3
-> >    versions sneaking into the build?
-> >    In our local builds I'm bumping the priority to 6 to resolve this.
->
-> If any of the recipes in meta-gplv2 still contain BBCLASSEXTEND =
-> "native" then that could cause problems (generally you only want to
-> use the older recipes for the target, not for -native).
->
-> >    Alternatively we can add some conf/distro/gplv2-versions.inc file
-> >    in meta-gplv2 so that people who want to use all available recipes
-> >    in gplv2 compatible version can include it in their DISTRO.
-> >
-> > 2) branch for morty, currently the recipes aren't compatible with morty
-> >    but with e.g. gnutls version added there it might be better option
-> >    to share the gplv2 work there even when oe-core/morty contains most
-> >    of these recipes as well.
-> >    The recipes I had to modify to be compatible with morty are:
-> >    https://github.com/shr-project/meta-gplv2/commits/jansa/morty
-> >    88d1052 coreutils: make it compatible with Yocto 2.2 Morty
-> >    5e08ac2 rsync: make it compatible with Yocto 2.2 Morty
-> >    b33037f libiconv: make it compatible with Yocto 2.2 Morty
-> >
-> > --
-> > Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
-> >
-> > --
-> > _______________________________________________
-> > yocto mailing list
-> > yocto@yoctoproject.org
-> > https://lists.yoctoproject.org/listinfo/yocto
-> >
->
-
---f403045c1a80676ce8054dea6c65
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">You&#39;re right, after fixing our tooling to correctly ov=
-erride BBFILE_PRIORITY based on priorities in layer list I&#39;m seeing suc=
-h issue.e.g. gstreamer failing with:<div><br></div><div><div>| autopoint: *=
-** The AM_GNU_GETTEXT_VERSION declaration in your <a href=3D"http://configu=
-re.ac">configure.ac</a> =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 fi=
-le requires the infrastructure from gettext-0.17 but this version =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 is older. Please upgrade to gette=
-xt-0.17 or newer.</div><div>| autopoint: *** Stop.</div><div>|=C2=A0</div><=
-div>| autopoint failed</div><div>| WARNING: exit code 1 from a shell comman=
-d.</div></div><div><br></div><div>and similar issues in apt, grub, netcf, r=
-rdtool.</div><div><br></div><div>There is quite a few native BBCLASSEXTENDs=
- in meta-gplv2:</div><div><div>OE @ ~/meta-gplv2 $ git grep BBCLASSEXTEND</=
-div><div>recipes-core/gettext/gettext_0.16.1.bb:BBCLASSEXTEND =3D &quot;nat=
-ive nativesdk&quot;</div><div>recipes-core/readline/readline_5.2.bb:BBCLASS=
-EXTEND =3D &quot;native nativesdk&quot;</div><div>recipes-devtools/elfutils=
-/elfutils_0.148.bb:BBCLASSEXTEND =3D &quot;native nativesdk&quot;</div><div=
->recipes-devtools/m4/m4_1.4.9.bb:BBCLASSEXTEND =3D &quot;nativesdk&quot;</d=
-iv><div>recipes-devtools/mtools/mtools_3.9.9.bb:BBCLASSEXTEND =3D &quot;nat=
-ive nativesdk&quot;</div><div>recipes-extended/cpio/cpio_v2.inc:BBCLASSEXTE=
-ND =3D &quot;native&quot;</div><div>recipes-extended/findutils/findutils.in=
-c:BBCLASSEXTEND =3D &quot;native nativesdk&quot;</div><div>recipes-extended=
-/gperf/gperf.inc:BBCLASSEXTEND =3D &quot;native&quot;</div><div>recipes-ext=
-ended/libidn/libidn_0.6.14.bb:BBCLASSEXTEND =3D &quot;native nativesdk&quot=
-;</div><div>recipes-extended/tar/tar.inc:BBCLASSEXTEND =3D &quot;native nat=
-ivesdk&quot;</div><div>recipes-extended/texinfo/texinfo_4.8.bb:BBCLASSEXTEN=
-D =3D &quot;native&quot;</div><div>recipes-support/gdbm/gdbm_1.8.3.bb:BBCLA=
-SSEXTEND =3D &quot;native nativesdk&quot;</div><div>recipes-support/nettle/=
-nettle.inc:BBCLASSEXTEND =3D &quot;native nativesdk&quot;</div></div><div><=
-br></div><div><br></div><div><br></div><div><br></div></div><div class=3D"g=
-mail_extra"><br><div class=3D"gmail_quote">On Fri, Apr 21, 2017 at 11:19 PM=
-, Andre McCurdy <span dir=3D"ltr">&lt;<a href=3D"mailto:armccurdy@gmail.com=
-" target=3D"_blank">armccurdy@gmail.com</a>&gt;</span> wrote:<br><blockquot=
-e class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc sol=
-id;padding-left:1ex"><span class=3D"">On Fri, Apr 21, 2017 at 1:59 PM, Mart=
-in Jansa &lt;<a href=3D"mailto:martin.jansa@gmail.com">martin.jansa@gmail.c=
-om</a>&gt; wrote:<br>
-&gt; 1) layer priority, currently it has:<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 BBFILE_PRIORITY_gplv2 =3D &quot;1&quot;<br>
-&gt;=C2=A0 =C2=A0 which is lower than oe-core with:<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 BBFILE_PRIORITY_core =3D &quot;5&quot;<br>
-&gt;=C2=A0 =C2=A0 so in order to use recipes from meta-gplv2 layer, user ha=
-s to add<br>
-&gt;=C2=A0 =C2=A0 couple PREFERRED_VERSIONS. Was this intended use for meta=
--gplv2?<br>
-<br>
-</span>I guess the intention is that if you blacklist GPLv3 etc then only t=
-he<br>
-recipes in meta-gplv2 will be considered.<br>
-<span class=3D""><br>
-&gt;=C2=A0 =C2=A0 I can see some advantages of this (that the layer can be =
-included<br>
-&gt;=C2=A0 =C2=A0 without immediate side effects), but on the other hand wh=
-y would<br>
-&gt;=C2=A0 =C2=A0 anyone include this layer if he isn&#39;t deeply scared f=
-rom (L)GPLv3<br>
-&gt;=C2=A0 =C2=A0 versions sneaking into the build?<br>
-&gt;=C2=A0 =C2=A0 In our local builds I&#39;m bumping the priority to 6 to =
-resolve this.<br>
-<br>
-</span>If any of the recipes in meta-gplv2 still contain BBCLASSEXTEND =3D<=
-br>
-&quot;native&quot; then that could cause problems (generally you only want =
-to<br>
-use the older recipes for the target, not for -native).<br>
-<div class=3D"HOEnZb"><div class=3D"h5"><br>
-&gt;=C2=A0 =C2=A0 Alternatively we can add some conf/distro/gplv2-versions.=
-inc file<br>
-&gt;=C2=A0 =C2=A0 in meta-gplv2 so that people who want to use all availabl=
-e recipes<br>
-&gt;=C2=A0 =C2=A0 in gplv2 compatible version can include it in their DISTR=
-O.<br>
-&gt;<br>
-&gt; 2) branch for morty, currently the recipes aren&#39;t compatible with =
-morty<br>
-&gt;=C2=A0 =C2=A0 but with e.g. gnutls version added there it might be bett=
-er option<br>
-&gt;=C2=A0 =C2=A0 to share the gplv2 work there even when oe-core/morty con=
-tains most<br>
-&gt;=C2=A0 =C2=A0 of these recipes as well.<br>
-&gt;=C2=A0 =C2=A0 The recipes I had to modify to be compatible with morty a=
-re:<br>
-&gt;=C2=A0 =C2=A0 <a href=3D"https://github.com/shr-project/meta-gplv2/comm=
-its/jansa/morty" rel=3D"noreferrer" target=3D"_blank">https://github.com/sh=
-r-<wbr>project/meta-gplv2/commits/<wbr>jansa/morty</a><br>
-&gt;=C2=A0 =C2=A0 88d1052 coreutils: make it compatible with Yocto 2.2 Mort=
-y<br>
-&gt;=C2=A0 =C2=A0 5e08ac2 rsync: make it compatible with Yocto 2.2 Morty<br=
->
-&gt;=C2=A0 =C2=A0 b33037f libiconv: make it compatible with Yocto 2.2 Morty=
-<br>
-&gt;<br>
-&gt; --<br>
-&gt; Martin &#39;JaMa&#39; Jansa=C2=A0 =C2=A0 =C2=A0jabber: <a href=3D"mail=
-to:Martin.Jansa@gmail.com">Martin.Jansa@gmail.com</a><br>
-&gt;<br>
-</div></div><span class=3D"HOEnZb"><font color=3D"#888888">&gt; --<br>
-&gt; ______________________________<wbr>_________________<br>
-&gt; yocto mailing list<br>
-&gt; <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><b=
-r>
-&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noref=
-errer" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto=
-</a><br>
-&gt;<br>
-</font></span></blockquote></div><br></div>
-
---f403045c1a80676ce8054dea6c65--
