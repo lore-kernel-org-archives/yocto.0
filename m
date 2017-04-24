@@ -1,40 +1,67 @@
-Return-Path: <philippe.coval@osg.samsung.com>
+Return-Path: <alexis.lothore@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2999DE00A9B; Mon, 24 Apr 2017 10:38:55 -0700 (PDT)
+	id 3F028E0094C; Mon, 24 Apr 2017 11:25:36 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,RDNS_DYNAMIC,
-	SPF_HELO_PASS autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (alexis.lothore[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.82.48 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  1.0 RDNS_DYNAMIC Delivered to internal network by host with
-	*      dynamic-looking rDNS
-X-Greylist: delayed 493 seconds by postgrey-1.32 at yocto-www;
-	Mon, 24 Apr 2017 10:38:53 PDT
-Received: from osg.samsung.com
-	(ec2-52-27-115-49.us-west-2.compute.amazonaws.com [52.27.115.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9AE2AE00867
-	for <yocto@yoctoproject.org>; Mon, 24 Apr 2017 10:38:53 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by osg.samsung.com (Postfix) with ESMTP id 9BA43A05ED;
-	Mon, 24 Apr 2017 17:31:05 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at osg.samsung.com
-Received: from osg.samsung.com ([127.0.0.1])
-	by localhost (s-opensource.com [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id gblGNjS5iiWD; Mon, 24 Apr 2017 17:31:05 +0000 (UTC)
-Received: from WSF-1127.8.8.8.8 (unknown [82.236.136.171])
-	by osg.samsung.com (Postfix) with ESMTPSA id C0178A05EB;
-	Mon, 24 Apr 2017 17:31:03 +0000 (UTC)
-From: Philippe Coval <philippe.coval@osg.samsung.com>
-To: kishen.maloor@intel.com
-Date: Mon, 24 Apr 2017 19:30:32 +0200
-Message-Id: <1493055032-26551-1-git-send-email-philippe.coval@osg.samsung.com>
-X-Mailer: git-send-email 1.9.1
-Cc: iotivity-dev@lists.iotivity.org, yocto@yoctoproject.org,
-	Philippe Coval <philippe.coval@osg.samsung.com>
-Subject: [meta-oic][PATCH] iotivity: Sanitize URIs to support older yocto versions
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wm0-f48.google.com (mail-wm0-f48.google.com [74.125.82.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7A73BE00777
+	for <yocto@yoctoproject.org>; Mon, 24 Apr 2017 11:25:34 -0700 (PDT)
+Received: by mail-wm0-f48.google.com with SMTP id w64so4114388wma.0
+	for <yocto@yoctoproject.org>; Mon, 24 Apr 2017 11:25:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=from:date:to:subject:message-id:user-agent:mime-version;
+	bh=LtUYDNPvi/AAtiJszHSprDXgXqgojXbeXRkue0gstvs=;
+	b=diP4y3VqCwEj8q1wuMi9MiDyYKIXquAFf4MjNJc4D0YQzAJTlq7sdftnKpIiA5Mpi0
+	KpY0anr1dICB0Zp5Tdc4tQod8dZpqQ+9E93aT3Kh3Dt0Tfj/uOOm2rM9axLSaZK/Jm4i
+	GT4j+FZ3qFjeydTHrWRfTxAUXME/MEafDnDKwPEsJSgZO7MtKjOzETHRndftRu1KGU5a
+	y3/XzYGy7+ETQl72cOODYl8jgz5pBCZVnhyVjvkMlcywMJQSwWPJ9zgYsYtd0rWgHyIt
+	Z5QAdhfhb1HPoRGDMZKPYqyHA0r4hXEDHRd/2Q3he9OToka5a6MvTGJ8GM3N+GFzOFAR
+	AxJQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:date:to:subject:message-id:user-agent
+	:mime-version;
+	bh=LtUYDNPvi/AAtiJszHSprDXgXqgojXbeXRkue0gstvs=;
+	b=KM4pB5lQQJmuBCgXzAkAzhAIKDIOXChfkBMCSuScBg2gMDILK36aVTpTnVtWXOYEKy
+	eKPrrAsLRb0k3sgiBWgORVDQd/18iHHkL3rE0aJjv99nVQ1dTqXMh7KryCy54FZE2IlW
+	LEBD2G/6WfXNKWwIgJ+zVoIss+4xdEINaJc8+qeEap6K2a/vjYgOR/oRMdjxI5st5Q4b
+	fKu3ZHS0ZFZWXxaZGFWVodBSGdK9F/9qYmNc3YR5i5pCol0BooZ+b4F2EsPTyAm5CPOn
+	t2V+jpu924aTDHTnfveQkTSJkP9si3vTOzexnfN2y6rmjIkLxKUHu3lGZiFYcPWyRT4q
+	aulA==
+X-Gm-Message-State: AN3rC/6zIY2M2xwSkIDk8sG9c8J+aW7VIh9eJc0abiZliFUZ7ouAziQ8
+	zlCaIkOerpO4OpvR
+X-Received: by 10.28.143.194 with SMTP id r185mr9514856wmd.139.1493058333129; 
+	Mon, 24 Apr 2017 11:25:33 -0700 (PDT)
+Received: from [192.168.0.10] (6.167.141.77.rev.sfr.net. [77.141.167.6])
+	by smtp.gmail.com with ESMTPSA id
+	y60sm17247480wrb.39.2017.04.24.11.25.32 for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Mon, 24 Apr 2017 11:25:32 -0700 (PDT)
+From: alexis.lothore@gmail.com
+X-Google-Original-From: alexis@gmail.com
+Date: Mon, 24 Apr 2017 20:25:35 +0200 (CEST)
+X-X-Sender: alexis@debian
+To: yocto@yoctoproject.org
+Message-ID: <alpine.DEB.2.21.1.1704242008400.4869@debian>
+User-Agent: Alpine 2.21.1 (DEB 209 2017-03-23)
+MIME-Version: 1.0
+Subject: Raspberry Pi 3 build issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,65 +73,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 24 Apr 2017 17:38:55 -0000
+X-List-Received-Date: Mon, 24 Apr 2017 18:25:36 -0000
+Content-Type: multipart/mixed; boundary="8323329-1843380201-1493058336=:4869"
 
-Removing trailing separator solved issues observed
-on older version of yocto (daisy at least):
+--8323329-1843380201-1493058336=:4869
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 
-  Parsing recipes..ERROR: ExpansionError during parsing
-  /recipes-core/iotivity/iotivity_1.2.0.bb:
-  Failure expanding variable do_fetch[file-checksums],
-  expression was ${@bb.fetch.get_checksum_file_list(d)}
-  which triggered exception ValueError:
-  need more than 1 value to unpack
+Hello, 
+I am currently encountering an issue with meta-raspberry and more 
+specifically Raspberry Pi 3 build. Since I was not sure the problem was 
+not my fault, I cloned a fresh copy of poky and meta-raspberrypi (both 
+checked out on morty, and meta dependencies on morty too), but the problem 
+is still appearing, trying to build the image rpi-hwup-image with BDISTRO 
+poky for MACHINE 
+raspberrypi3 :
 
-Signed-off-by: Philippe Coval <philippe.coval@osg.samsung.com>
----
- recipes-core/iotivity/iotivity_1.1.1.bb | 2 +-
- recipes-core/iotivity/iotivity_1.2.0.bb | 2 +-
- recipes-core/iotivity/iotivity_1.2.1.bb | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
+➜ build git:(morty) bitbake rpi-hwup-image
+Loading cache: 100% 
+|#########################################################################################################################################################################################################| 
+Time: 0:00:00
+Loaded 2 entries from dependency cache.
+WARNING: 
+/home/alexis/Projets/poky/meta-raspberrypi/recipes-kernel/linux/linux-raspberrypi_4.9.bb: 
+Exception during build_dependencies for PKG_kernel-image | ETA: --:--:--
+WARNING: 
+/home/alexis/Projets/poky/meta-raspberrypi/recipes-kernel/linux/linux-raspberrypi_4.9.bb: 
+Error during finalise of 
+/home/alexis/Projets/poky/meta-raspberrypi/recipes-kernel/linux/linux-raspberrypi_4.9.bb
+WARNING: 
+/home/alexis/Projets/poky/meta-raspberrypi/recipes-kernel/linux/linux-raspberrypi_4.4.bb: 
+Exception during build_dependencies for PKG_kernel-image
+WARNING: 
+/home/alexis/Projets/poky/meta-raspberrypi/recipes-kernel/linux/linux-raspberrypi_4.4.bb: 
+Error during finalise of 
+/home/alexis/Projets/poky/meta-raspberrypi/recipes-kernel/linux/linux-raspberrypi_4.4.bb
+ERROR: ExpansionError during parsing 
+/home/alexis/Projets/poky/meta-raspberrypi/recipes-kernel/linux/linux-raspberrypi_4.9.bb
+Traceback (most recent call last):
+bb.data_smart.ExpansionError: Failure expanding variable PKG_kernel-image, 
+expression was 
+kernel-image-${@legitimize_package_name('${@get_kernelversion_headers('/home/alexis/Projets/poky/build/tmp/work/raspberrypi3-poky-linux-gnueabi/linux-raspberrypi/1_4.9.21+git${SRCPV}-r0/linux-raspberrypi3-standard-build')}')} 
+which triggered exception SyntaxError: invalid syntax (PKG_kernel-image, 
+line 1)
+Summary: There were 4 WARNING messages shown.
+Summary: There was 1 ERROR message shown, returning a non-zero exit code.
 
-diff --git a/recipes-core/iotivity/iotivity_1.1.1.bb b/recipes-core/iotivity/iotivity_1.1.1.bb
-index 5666750..2d8e69c 100644
---- a/recipes-core/iotivity/iotivity_1.1.1.bb
-+++ b/recipes-core/iotivity/iotivity_1.1.1.bb
-@@ -10,7 +10,7 @@ LIC_FILES_CHKSUM = "file://resource/include/OCApi.h;beginline=1;endline=19;md5=f
- 
- branch_iotivity = "1.1-rel"
- SRCREV = "781570fcd897e2c7fd11c4c76d10723eef35f27a"
--SRC_URI = "git://github.com/iotivity/iotivity.git;destsuffix=${S};branch=${branch_iotivity};protocol=http;"
-+SRC_URI = "git://github.com/iotivity/iotivity.git;destsuffix=${S};branch=${branch_iotivity};protocol=http"
- 
- url_tinycbor = "git://github.com/01org/tinycbor.git"
- SRCREV_tinycbor = "358a7e42ab1ed421a68e699d8d8359340bcfacbd"
-diff --git a/recipes-core/iotivity/iotivity_1.2.0.bb b/recipes-core/iotivity/iotivity_1.2.0.bb
-index 363894e..d46b7dd 100644
---- a/recipes-core/iotivity/iotivity_1.2.0.bb
-+++ b/recipes-core/iotivity/iotivity_1.2.0.bb
-@@ -10,7 +10,7 @@ LIC_FILES_CHKSUM = "file://LICENSE.md;md5=22bf216f3077c279aed7b36b1fa9e6d1"
- 
- branch_iotivity = "1.2-rel"
- SRCREV = "1a2e71f9c470c7cc17157f83deb4488ee83050a4"
--SRC_URI = "git://github.com/iotivity/iotivity.git;destsuffix=${S};branch=${branch_iotivity};protocol=http;"
-+SRC_URI = "git://github.com/iotivity/iotivity.git;destsuffix=${S};branch=${branch_iotivity};protocol=http"
- SRC_URI += "file://0081-yocto-Add-aarch64-for-DragonBoard-410c.patch"
- SRC_URI += "file://0364-yocto-Use-tools-from-sysroot-before-system-PATH-agai.patch"
- 
-diff --git a/recipes-core/iotivity/iotivity_1.2.1.bb b/recipes-core/iotivity/iotivity_1.2.1.bb
-index 344db21..c34e975 100644
---- a/recipes-core/iotivity/iotivity_1.2.1.bb
-+++ b/recipes-core/iotivity/iotivity_1.2.1.bb
-@@ -10,7 +10,7 @@ LIC_FILES_CHKSUM = "file://LICENSE.md;md5=22bf216f3077c279aed7b36b1fa9e6d1"
- 
- branch_iotivity = "1.2-rel"
- SRCREV = "0c90ca6ffcbb6a2c56c977ec11bebb7b1d14053b"
--SRC_URI = "git://github.com/iotivity/iotivity.git;destsuffix=${S};branch=${branch_iotivity};protocol=http;"
-+SRC_URI = "git://github.com/iotivity/iotivity.git;destsuffix=${S};branch=${branch_iotivity};protocol=http"
- SRC_URI += "file://0364-yocto-Use-tools-from-sysroot-before-system-PATH-agai.patch"
- 
- url_tinycbor = "git://github.com/01org/tinycbor.git"
--- 
-1.9.1
+I am executing the build on an x86 machine with Debian 8.
 
+Unfortunately, since the problem seems to appear right at parsing, I 
+cannot get the exact variable expansion with bitbake -e. Apparently my 
+Yocto setup does not encounter the issue if I try the build for another 
+RPI target, like raspberrypi0. Any advice on how to troubleshoot this 
+issue ?
 
+--8323329-1843380201-1493058336=:4869--
