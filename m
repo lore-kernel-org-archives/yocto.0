@@ -1,45 +1,70 @@
-Return-Path: <Nathan_Lynch@mentor.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B97A8E00A9B; Mon, 24 Apr 2017 15:00:16 -0700 (PDT)
+	id 6231FE00A9B; Mon, 24 Apr 2017 15:36:54 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [192.94.38.131 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from relay1.mentorg.com (relay1.mentorg.com [192.94.38.131])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9A301E00867
-	for <yocto@yoctoproject.org>; Mon, 24 Apr 2017 15:00:13 -0700 (PDT)
-Received: from svr-orw-mbx-02.mgc.mentorg.com ([147.34.90.202])
-	by relay1.mentorg.com with esmtp 
-	id 1d2m1k-0002ll-NC from Nathan_Lynch@mentor.com ;
-	Mon, 24 Apr 2017 15:00:12 -0700
-Received: from localhost (147.34.91.1) by svr-orw-mbx-02.mgc.mentorg.com
-	(147.34.90.202) with Microsoft SMTP Server (TLS) id 15.0.1210.3;
-	Mon, 24 Apr 2017 15:00:10 -0700
-From: Nathan Lynch <nathan_lynch@mentor.com>
-To: "Burton, Ross" <ross.burton@intel.com>, Khem Raj <raj.khem@gmail.com>,
-	Bruce Ashfield <bruce.ashfield@gmail.com>
-In-Reply-To: <CAJTo0La+bGDBuJ42yVy79hW2iN3ZhpeyjXrhUApLn-PAi6PYBw@mail.gmail.com>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.216.175 listed in dnsbl.sorbs.net]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.216.175 listed in list.dnswl.org]
+Received: from mail-qt0-f175.google.com (mail-qt0-f175.google.com
+	[209.85.216.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 70FACE00867
+	for <yocto@yoctoproject.org>; Mon, 24 Apr 2017 15:36:52 -0700 (PDT)
+Received: by mail-qt0-f175.google.com with SMTP id c45so126509630qtb.1
+	for <yocto@yoctoproject.org>; Mon, 24 Apr 2017 15:36:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=+chfm1R7UihTPayRWunW6rTaW5XiurJX/TirfOMecW4=;
+	b=nQEnSmXoh/SITzFYcRdSAc1/HFY42xZKQu45ICsBfCu7UFEguLYpjJ15FLFyFIq9Ip
+	vLh7R9omcwBNrcAtB20NyPcTjmeeXZVz8LzxZ4pZp7WScycGt6zLHGHdOoZTLYDAOClL
+	7EHUYsCmxQgif+EXOlyxU/TBfVsiL23Khx/1gjLo/EwFMz4oUXQ6/wuiJhUrWOSbEWOr
+	T4l8B8Uym1r2qtU5aP1jEsG00ig8Xps66rZqxZX44IpUqBCO6wHsJcCdQiFYd1fCF7L3
+	unfi3io9tsLBmIFfF0BIp64uJuQ/YmJtm814IgYXPmdPOEFFuEaoSyrnlQjCJ7wPPqK5
+	p2BQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=+chfm1R7UihTPayRWunW6rTaW5XiurJX/TirfOMecW4=;
+	b=lETic6EATyzOQJKEBSkPqKZDAfkKmZGgtny/Qex3Nf8rMTNjJ9In8HukaswzuURe4d
+	6XKQZwWngNY14EITlceqAjODciw+TklJRa0zZ84jzC7oY65Sqwhvo05cJXR2MLebQtg9
+	4n28KPDMXGK4kqD9kwBcnZdckiduSfAeAJu0AVMvqu5KlTxnbjGWiVdE60U/c5ibtsOZ
+	ZC8/8ZnTAK60855i87zw9iSxRNjVTVJvXZkVgBXC5Nm4bVOmQ+TWBHXI667pTr5I0EEV
+	h3IwZgJZ9HXQvsIte7Ujbyxv9DbU6yAOITucEcSph9X8uOVJFwmeBIEU7FxMDemGllVE
+	uAmA==
+X-Gm-Message-State: AN3rC/4C9hE02on5nvz0cXXKbmLaoh7UXxA0M8bYLDIyFZmUTQneNUJh
+	5GDzPQL/BiHeUw4FpaTeC70vwCnSZQyO
+X-Received: by 10.200.41.108 with SMTP id z41mr27050102qtz.68.1493073412423;
+	Mon, 24 Apr 2017 15:36:52 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.140.22.166 with HTTP; Mon, 24 Apr 2017 15:36:31 -0700 (PDT)
+In-Reply-To: <CADkTA4OgpwhRtmR4+4kurnhBUQoap3E3kKoRTe4fNMBFOEp8hw@mail.gmail.com>
 References: <CAMKF1spGM+kugUDOB4kF7NAgSCt9vCw8GFT0nLKFRd2tHei=pw@mail.gmail.com>
 	<CAJTo0La0mtVGyLysCnqi9EQmT+4L1eYRxgE-TV=3Va45jnt=Xg@mail.gmail.com>
-	<CAMKF1sqfvtQPWN5Yuz3RPYkXpneS+XWcYmit_=bcvKGo3_hx8w@mail.gmail.com>
-	<CAJTo0LakaSZhJodT2KQx6u0TEaBL5Ruig3oOdfrtCzQUf1cxXg@mail.gmail.com>
-	<CAJTo0La+bGDBuJ42yVy79hW2iN3ZhpeyjXrhUApLn-PAi6PYBw@mail.gmail.com>
-Date: Mon, 24 Apr 2017 17:00:07 -0500
-Message-ID: <87a875qxeg.fsf@largeson.i-did-not-set--mail-host-address--so-tickle-me>
-MIME-Version: 1.0
-X-ClientProxiedBy: svr-orw-mbx-02.mgc.mentorg.com (147.34.90.202) To
-	svr-orw-mbx-02.mgc.mentorg.com (147.34.90.202)
+	<CADkTA4MjffrJ13GxaEAQusEU10jj0dUcUsyea36Y2gCy7HCVmA@mail.gmail.com>
+	<CADkTA4OgpwhRtmR4+4kurnhBUQoap3E3kKoRTe4fNMBFOEp8hw@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Mon, 24 Apr 2017 23:36:31 +0100
+Message-ID: <CAJTo0LYc-Ken=sp55QB1sz78s30gpVYjOzuL8w-J5oZ4DjM0Pw@mail.gmail.com>
+To: Bruce Ashfield <bruce.ashfield@gmail.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	openembeded-devel <Openembedded-devel@lists.openembedded.org>,
 	Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>
-Subject: Re: [OE-core] [RFT] gcc7 and glibc-2.26 recipes
+	<openembedded-core@lists.openembedded.org>,
+	openembeded-devel <Openembedded-devel@lists.openembedded.org>
+Subject: Re: [oe] [OE-core] [RFT] gcc7 and glibc-2.26 recipes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,58 +76,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 24 Apr 2017 22:00:16 -0000
-Content-Type: text/plain
+X-List-Received-Date: Mon, 24 Apr 2017 22:36:54 -0000
+Content-Type: multipart/alternative; boundary=001a11405e8a5f17a5054df13e6c
 
-"Burton, Ross" <ross.burton@intel.com> writes:
+--001a11405e8a5f17a5054df13e6c
+Content-Type: text/plain; charset=UTF-8
 
-> On 24 April 2017 at 10:09, Burton, Ross <ross.burton@intel.com> wrote:
+On 24 April 2017 at 01:31, Bruce Ashfield <bruce.ashfield@gmail.com> wrote:
+
+> I see that it was the 4.1 kernel, which is expected to fail. I haven't
+> looked into backporting gcc7 fixes
+> that far, but if there's demand, it is something we can consider/look into.
 >
->> All merged, I'll fire in a moment.
->>
->
-> lttng-modules fails:
->
-> In function 'lib_ring_buffer_align',
->     inlined from 'lib_ring_buffer_try_reserve' at
-> TOPDIR/tmp/work/qemumips-poky-linux/lttng-modules/2.9.1-r0/lttng-modules-2.9.1/lib/ringbuffer/frontend_api.h:118:3,
->     inlined from 'lib_ring_buffer_reserve' at
-> TOPDIR/tmp/work/qemumips-poky-linux/lttng-modules/2.9.1-r0/lttng-modules-2.9.1/lib/ringbuffer/frontend_api.h:179:6,
->     inlined from 'lttng_event_reserve' at
-> TOPDIR/tmp/work/qemumips-poky-linux/lttng-modules/2.9.1-r0/lttng-modules-2.9.1/lttng-ring-buffer-metadata-client.h:317:6:
-> TOPDIR/tmp/work-shared/qemumips/kernel-source/include/linux/compiler.h:518:38:
-> error: call to '__compiletime_assert_269' declared with attribute error:
-> BUILD_BUG_ON failed: (size_of_type) == 0 || ((size_of_type) &
-> ((size_of_type) - 1))
->   _compiletime_assert(condition, msg, __compiletime_assert_, __LINE__)
->                                       ^
->
-> Suggestions welcome :)
 
+There's demand in that the gcc7 merge is blocking on either kernel 4.1
+being fixed or removed.  Your choice. :)
 
-Does adding this patch to lttng-modules work around it?
+Ross
 
+--001a11405e8a5f17a5054df13e6c
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/lib/align.h b/lib/align.h
-index 5b91ae87410b..5e134cd485fe 100644
---- a/lib/align.h
-+++ b/lib/align.h
-@@ -48,7 +48,7 @@
-  */
- #define offset_align(align_drift, alignment)				       \
- 	({								       \
--		BUILD_RUNTIME_BUG_ON((alignment) == 0			       \
-+		BUG_ON((alignment) == 0					       \
- 				   || ((alignment) & ((alignment) - 1)));      \
- 		(((alignment) - (align_drift)) & ((alignment) - 1));	       \
- 	})
-@@ -63,7 +63,7 @@
-  */
- #define offset_align_floor(align_drift, alignment)			       \
- 	({								       \
--		BUILD_RUNTIME_BUG_ON((alignment) == 0			       \
-+		BUG_ON((alignment) == 0					       \
- 				   || ((alignment) & ((alignment) - 1)));      \
- 		(((align_drift) - (alignment)) & ((alignment) - 1));	       \
- 	})
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 24 April 2017 at 01:31, Bruce Ashfield <span dir=3D"ltr">&lt;<a href=3D"=
+mailto:bruce.ashfield@gmail.com" target=3D"_blank">bruce.ashfield@gmail.com=
+</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin=
+:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div>I see that it=
+ was the 4.1 kernel, which is expected to fail. I haven&#39;t looked into b=
+ackporting <span class=3D"il">gcc7</span> fixes</div><div>that far, but if =
+there&#39;s demand, it is something we can consider/look into.</div></block=
+quote><div><br></div><div>There&#39;s demand in that the gcc7 merge is bloc=
+king on either kernel 4.1 being fixed or removed.=C2=A0 Your choice. :)</di=
+v><div><br></div><div>Ross=C2=A0</div></div><br></div></div>
 
+--001a11405e8a5f17a5054df13e6c--
