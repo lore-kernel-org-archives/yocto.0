@@ -1,70 +1,26 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <recipe-report@yoctoproject.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1BBD8E007BA; Sun, 23 Apr 2017 19:52:41 -0700 (PDT)
+	id D00DFE007BA; Sun, 23 Apr 2017 21:00:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.128.182 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wr0-f182.google.com (mail-wr0-f182.google.com
-	[209.85.128.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9E684E0074B
-	for <yocto@yoctoproject.org>; Sun, 23 Apr 2017 19:52:37 -0700 (PDT)
-Received: by mail-wr0-f182.google.com with SMTP id w50so60044516wrc.0
-	for <yocto@yoctoproject.org>; Sun, 23 Apr 2017 19:52:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=s67uu77a0t16WgqUDQmX20U0LEfcYsxoqeA1J6G2dSI=;
-	b=Yr6J1rJumD8bt5yPJ9sbHCbHGUnhn75WfySI1Cau3ypKJFmuYTTDvcN5shQikjyYZD
-	06wuRuzkj4UPCSV50bPClpCbA6E9db3SXRw2F/ZlcDsTAFvlSB+kWqQEhRC7VtkDzeQN
-	hYdAJ58Lu7gDqqQzhfz3cxH9VyuhTa1KovvhMMMkCqUKvo1rsHiAMfW+mKUSdw9/KksW
-	9+YnJx4ArEu1CemXunFUmIx51IPWCTQDi7ATWOVmKSHlZbtnuVTN+muKgFyopULd1TkB
-	eBp3jnR/k7vmHCGyhBmb7+rcYNGLCeEqcd/1lqGGJMf3m7tCj0m9J9wjy0ZNlrRrysrM
-	MgfQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=s67uu77a0t16WgqUDQmX20U0LEfcYsxoqeA1J6G2dSI=;
-	b=JAExZCKioN2VN+cTcqh0y/MTizhcrrj2DNn9qygfv8r8SeCxGZY8W5zU2XNOT0vXc2
-	2QR6Wp+8n918wADbsR24BQIqx7ayVNyYBWzcpL7XQjZ0Lzjk7bRbkKJJQxRwNq3PNr/C
-	dMN4iS0A9/NH3vKB3xqL5GVg5LWamfDpjbW8rIORC3aYpsKRgUl26n9XpducecyNVvDP
-	u0co7i3B0OHBawSh669uFwMrsR4RSbBlu2OA1i455IVO+A2nPzDF1IvSZaH10QrAHaih
-	Zum4oaLpeTr2F+fZkKVLiR20Ogw/7/aoGLFNGMzv4CFRKabtEi1jenYhBO1HDPiw+yPN
-	my4Q==
-X-Gm-Message-State: AN3rC/6rH12thycDCjoLPL9GE6LvS7auFXxPynE8sY4tjejCgJi19aLi
-	ORAISPWj+crIq0eo5bLQMkcTnYpjeQ==
-X-Received: by 10.223.139.146 with SMTP id o18mr3646891wra.175.1493002356349; 
-	Sun, 23 Apr 2017 19:52:36 -0700 (PDT)
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from packages.yoctoproject.org (unknown [198.145.29.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 926D0E0074B
+	for <yocto@yoctoproject.org>; Sun, 23 Apr 2017 21:00:30 -0700 (PDT)
+Received: from packages.yoctoproject.org (localhost [IPv6:::1])
+	by packages.yoctoproject.org (Postfix) with ESMTP id 0675084C3F59
+	for <yocto@yoctoproject.org>; Mon, 24 Apr 2017 00:00:30 -0400 (EDT)
 MIME-Version: 1.0
-Received: by 10.80.180.141 with HTTP; Sun, 23 Apr 2017 19:52:05 -0700 (PDT)
-In-Reply-To: <CADkTA4OgpwhRtmR4+4kurnhBUQoap3E3kKoRTe4fNMBFOEp8hw@mail.gmail.com>
-References: <CAMKF1spGM+kugUDOB4kF7NAgSCt9vCw8GFT0nLKFRd2tHei=pw@mail.gmail.com>
-	<CAJTo0La0mtVGyLysCnqi9EQmT+4L1eYRxgE-TV=3Va45jnt=Xg@mail.gmail.com>
-	<CADkTA4MjffrJ13GxaEAQusEU10jj0dUcUsyea36Y2gCy7HCVmA@mail.gmail.com>
-	<CADkTA4OgpwhRtmR4+4kurnhBUQoap3E3kKoRTe4fNMBFOEp8hw@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Sun, 23 Apr 2017 19:52:05 -0700
-Message-ID: <CAMKF1spOfQgu0qish5uwBfFeX7t1b=11DvfiKBfrYEG2zvJxsw@mail.gmail.com>
-To: Bruce Ashfield <bruce.ashfield@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>,
-	openembeded-devel <Openembedded-devel@lists.openembedded.org>
-Subject: Re: [oe] [OE-core] [RFT] gcc7 and glibc-2.26 recipes
+From: recipe-report@yoctoproject.org
+To: yocto@yoctoproject.org
+Date: Mon, 24 Apr 2017 04:00:29 -0000
+Message-ID: <20170424040029.11307.75976@packages.yoctoproject.org>
+Subject: [Recipe reporting system] Upgradable recipe name list
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,49 +32,153 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 24 Apr 2017 02:52:41 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Mon, 24 Apr 2017 04:00:32 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-On Sun, Apr 23, 2017 at 5:31 PM, Bruce Ashfield
-<bruce.ashfield@gmail.com> wrote:
->
->
-> On Sun, Apr 23, 2017 at 8:30 PM, Bruce Ashfield <bruce.ashfield@gmail.com>
-> wrote:
->>
->>
->>
->> On Sun, Apr 23, 2017 at 6:04 PM, Burton, Ross <ross.burton@intel.com>
->> wrote:
->>>
->>> On 16 April 2017 at 16:50, Khem Raj <raj.khem@gmail.com> wrote:
->>>
->>> > I have put together recipes for upcoming gcc-7 major release as well
->>> > as glibc 2.26 release, which we would target for next release ( 2.4 )
->>> >
->>>
->>> I threw these at the autobuilder and the errors are starting to appear:
->>>
->>> http://errors.yoctoproject.org/Errors/Latest/?filter=
->>> eddf6362e17899113f10cf53ed0db8a4b13ff3fc&type=commit
->>>
->>> Repeated diffutils and rpcbind failures, but linux-yocto and grub too (I
->>> have your grub fix already).
->>
->>
->> I wasn't able to bring up the linux-yocto one .. but the 4.10 linux Yocto
->> should be at a high enough stable
->> release to build with gcc7. So if there's a direct link to that error, I
->> can take a closer look.
->
->
-> And sure enough, after I sent that the error page with linux-yocto finally
-> wheezed in.
->
-> I see that it was the 4.1 kernel, which is expected to fail. I haven't
-> looked into backporting gcc7 fixes
-> that far, but if there's demand, it is something we can consider/look into.
->
+This mail was sent out by Recipe reporting system.
 
-I think we will need them on 4.1 too but lets wait for gkh to apply them first.
+This message list those recipes which need to be upgraded. If maintainers
+believe some of them needn't to upgrade at this time, they can fill
+RECIPE_NO_UPDATE_REASON in respective recipe file to ignore this remainder
+until newer upstream version was detected.
+
+Example:
+RECIPE_NO_UPDATE_REASON = "Version 2.0 is unstable"
+
+You can check the detail information at:
+
+http://recipes.yoctoproject.org/
+
+Package               Version      Upstream version      Maintainer           NoUpgradeReason
+--------------------  -----------  --------------------  -------------------  ------------------------------
+python3               3.5.2        3.6.1                 Alejandro Hernandez
+python3-native        3.5.2        3.6.1                 Alejandro Hernandez
+gobject-introspec...  1.50.0       1.52.0                Alexander Kanavin
+mobile-broadband-...  20151214     20170310              Alexander Kanavin
+webkitgtk             2.14.5       2.16.0                Alexander Kanavin
+openssl               1.0.2k       1.1.0e                Alexander Kanavin
+gdbm                  1.12         1.13                  Alexander Kanavin
+libpthread-stubs      0.3          0.4                   Alexander Kanavin
+vala                  0.34.4       0.36.1                Alexander Kanavin
+libiconv              1.14         1.15                  Alexander Kanavin
+gnome-desktop3        3.22.2       3.24.0                Alexander Kanavin
+ed                    1.14.1       1.14.2                Alexander Kanavin
+gperf                 3.0.4        3.1                   Alexander Kanavin
+dtc                   1.4.2        1.4.4                 Alexander Kanavin
+btrfs-tools           4.9.1        4.10.2                Alexander Kanavin
+mkelfimage            4.0+gitX     4.5+gitAUTOINC+0b...  Alexander Kanavin    mkelfimage has been removed...
+sysprof               3.22.3       3.24.0                Alexander Kanavin
+mpg123                1.23.8       1.24.0                Alexander Kanavin
+kconfig-frontends     3.12.0.0     4.7.0.0               Alexander Kanavin
+epiphany              3.22.6       3.24.0                Alexander Kanavin
+qemu                  2.8.0        2.8.1                 Aníbal Limón
+apt                   1.2.12       1.4                   Aníbal Limón
+libxml-namespaces...  1.11         1.12                  Aníbal Limón
+libxml-sax-base-perl  1.08         1.09                  Aníbal Limón
+apt-native            1.2.12       1.4                   Aníbal Limón
+dpkg                  1.18.10      1.18.23               Aníbal Limón
+openssh               7.4p1        7.5p1                 Armin Kuster
+busybox               1.25.0+gitX  1.26.2+gitAUTOINC...  Armin Kuster
+lzo                   2.09         2.10                  Armin Kuster
+nspr                  4.13.1       4.14                  Armin Kuster
+libpcre2              10.22        10.23                 Armin Kuster
+gnutls                3.5.9        3.5.10                Armin Kuster
+pinentry              0.9.2        1.0.0                 Armin Kuster
+linux-libc-headers    4.10         4.10.8                Bruce Ashfield
+libunwind             1.1+gitX     1.2+gitAUTOINC+cc...  Bruce Ashfield
+pciutils              3.5.2        3.5.4                 Chen Qi
+kmod-native           23+gitX      24+gitAUTOINC+ef4...  Chen Qi
+dbus                  1.10.14      1.10.16               Chen Qi
+byacc                 20161202     20170201              Chen Qi
+cups                  2.2.2        2.2.3                 Chen Qi
+systemd               232          233                   Chen Qi
+util-linux            2.29.1       2.29.2                Chen Qi
+kmod                  23+gitX      24+gitAUTOINC+ef4...  Chen Qi
+dbus-test             1.10.14      1.10.16               Chen Qi
+sed                   4.2.2        4.4                   Chen Qi
+sysstat               11.5.4       11.5.5                Chen Qi
+systemd-boot          232          233                   Chen Qi
+flex                  2.6.0        2.6.3                 Chen Qi
+coreutils             8.26         8.27                  Chen Qi
+build-appliance-i...  15.0.0       16.0.1                Cristian Iorga
+json-glib             1.2.2        1.2.8                 Dengke Du
+python3-pygobject     3.22.0       3.24.0                Edwin Plauchu
+python3-setuptools    32.1.1       34.3.3                Edwin Plauchu
+python-setuptools     32.1.1       34.3.3                Edwin Plauchu
+gpgme                 1.8.0        1.9.0                 Hongxu Jia
+bash                  4.3.30       4.4                   Hongxu Jia
+ghostscript           9.20         9.21                  Hongxu Jia
+libnewt-python        0.52.19      0.52.20               Hongxu Jia
+man-pages             4.09         4.10                  Hongxu Jia
+libnewt               0.52.19      0.52.20               Hongxu Jia
+libgpg-error          1.26         1.27                  Hongxu Jia
+gnupg                 2.1.18       2.1.20                Hongxu Jia
+python-git            2.1.1        2.1.3                 Jose Lamego
+python3-git           2.1.1        2.1.3                 Jose Lamego
+bc                    1.06         1.07                  Jose Lamego
+pango                 1.40.3       1.40.4                Jussi Kukkonen
+libinput              1.6.1        1.7.0                 Jussi Kukkonen
+gtk-icon-utils-na...  3.22.8       3.90.0                Jussi Kukkonen
+at-spi2-core          2.22.0       2.24.0                Jussi Kukkonen
+atk                   2.22.0       2.24.0                Jussi Kukkonen
+libx11-diet           1.6.4        1.6.5                 Jussi Kukkonen
+libx11                1.6.4        1.6.5                 Jussi Kukkonen
+glib-2.0              2.50.3       2.52.0                Jussi Kukkonen
+xf86-input-libinput   0.24.0       0.25.0                Jussi Kukkonen
+gsettings-desktop...  3.22.0       3.24.0                Jussi Kukkonen
+gnome-themes-stan...  3.22.2       3.22.3                Jussi Kukkonen
+vte                   0.46.1       0.48.1                Jussi Kukkonen
+vulkan                1.0.39.1     20141209              Jussi Kukkonen
+libepoxy              1.4.0        1.4.1                 Jussi Kukkonen
+xserver-xorg          1.19.1       1.19.3                Jussi Kukkonen
+clutter-gst-3.0       3.0.22       3.0.24                Jussi Kukkonen
+gdk-pixbuf            2.36.5       2.36.6                Jussi Kukkonen
+gtk+3                 3.22.8       3.90.0                Jussi Kukkonen
+adwaita-icon-theme    3.22.0       3.24.0                Jussi Kukkonen
+libevent              2.0.22       2.1.8                 Jussi Kukkonen
+at-spi2-atk           2.22.0       2.24.0                Jussi Kukkonen
+ruby                  2.4.0        2.4.1                 Leonardo Sandoval
+nfs-utils             1.3.4        2.1.1                 Leonardo Sandoval
+u-boot-fw-utils       2017.01      2017.03               Marek Vasut
+u-boot-mkimage        2017.01      2017.03               Marek Vasut
+u-boot                2017.01      2017.03               Marek Vasut
+prelink               1.0+gitX     20151030.+gitAUTO...  Mark Hatle
+libpfm4               4.6.0        4.8.0                 Matthew McClintock
+ifupdown              0.8.16       0.8.19                Maxin B. John
+ethtool               4.8          4.10                  Maxin B. John
+sqlite3               3.17.0       3.18.0                Maxin B. John
+mc                    4.8.18       4.8.19                Maxin B. John
+libpng                1.6.28       1.6.29                Maxin B. John
+harfbuzz              1.4.1        1.4.5                 Maxin B. John
+pkgconfig             0.29.1+gitX  0.29.2+gitAUTOINC...  Maxin B. John
+dnf                   2.0.0+gitX   7+gitAUTOINC+f9ec...  No maintainer
+go-bootstrap-native   1.4.3        1.8                   No maintainer
+libdnf                0.2.3+gitX   0.8.1+gitAUTOINC+...  No maintainer
+mesa                  17.0.2       17.0.3                Otavio Salvador
+libarchive            3.2.2        3.3.1                 Otavio Salvador
+libdrm                2.4.75       2.4.76                Otavio Salvador
+mesa-gl               17.0.2       17.0.3                Otavio Salvador
+debianutils           4.8.1        4.8.1.1               Robert Yang
+git                   2.11.1       2.12.2                Robert Yang
+guile                 2.0.14       2.2.0                 Robert Yang
+base-passwd           3.5.29       3.5.43                Ross Burton          Version 3.5.38 requires cde...
+lsbinitscripts        9.68         9.70                  Ross Burton
+libsndfile1           1.0.27       1.0.28                Tanu Kaskinen
+
+Upgradable count: 111
+Upgradable total count: 113
+
+The based commit is:
+
+commit e584be78f92ee6f08f570c239698d56ac78d05f9
+Author: Richard Purdie <richard.purdie@linuxfoundation.org>
+Date:   Fri Apr 21 08:22:14 2017 +0100
+
+    build-appliance-image: Update to master head revision
+    
+    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+
+Any problem, please contact Anibal Limon <anibal.limon@intel.com> 
+
 
