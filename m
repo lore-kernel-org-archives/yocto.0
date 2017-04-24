@@ -1,67 +1,70 @@
-Return-Path: <alexis.lothore@gmail.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3F028E0094C; Mon, 24 Apr 2017 11:25:36 -0700 (PDT)
+	id 32B26E00A9B; Mon, 24 Apr 2017 12:13:43 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (alexis.lothore[at]gmail.com)
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.216.174 listed in dnsbl.sorbs.net]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [74.125.82.48 listed in list.dnswl.org]
+	*      [209.85.216.174 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f48.google.com (mail-wm0-f48.google.com [74.125.82.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7A73BE00777
-	for <yocto@yoctoproject.org>; Mon, 24 Apr 2017 11:25:34 -0700 (PDT)
-Received: by mail-wm0-f48.google.com with SMTP id w64so4114388wma.0
-	for <yocto@yoctoproject.org>; Mon, 24 Apr 2017 11:25:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:date:to:subject:message-id:user-agent:mime-version;
-	bh=LtUYDNPvi/AAtiJszHSprDXgXqgojXbeXRkue0gstvs=;
-	b=diP4y3VqCwEj8q1wuMi9MiDyYKIXquAFf4MjNJc4D0YQzAJTlq7sdftnKpIiA5Mpi0
-	KpY0anr1dICB0Zp5Tdc4tQod8dZpqQ+9E93aT3Kh3Dt0Tfj/uOOm2rM9axLSaZK/Jm4i
-	GT4j+FZ3qFjeydTHrWRfTxAUXME/MEafDnDKwPEsJSgZO7MtKjOzETHRndftRu1KGU5a
-	y3/XzYGy7+ETQl72cOODYl8jgz5pBCZVnhyVjvkMlcywMJQSwWPJ9zgYsYtd0rWgHyIt
-	Z5QAdhfhb1HPoRGDMZKPYqyHA0r4hXEDHRd/2Q3he9OToka5a6MvTGJ8GM3N+GFzOFAR
-	AxJQ==
+Received: from mail-qt0-f174.google.com (mail-qt0-f174.google.com
+	[209.85.216.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 768B2E00867
+	for <yocto@yoctoproject.org>; Mon, 24 Apr 2017 12:13:41 -0700 (PDT)
+Received: by mail-qt0-f174.google.com with SMTP id g60so122698973qtd.3
+	for <yocto@yoctoproject.org>; Mon, 24 Apr 2017 12:13:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=Y6icM+6XYgYxNBu1hn9z5l9MbZxOCAe+0o7E4Yf2XG4=;
+	b=AXu7Ue3nUsjvVIRxonCIHD0D8wwnA5HeBtmi6Y6JvB4Kucv/SUrPjcf5NrY+Z/eiyN
+	782ENf3YuBnhg4Rbn+md57sJRs6AsU0d1vycArUDJNHdKFVNxPJTKDJ/Pp8w91ievMHY
+	0K2YbwirnfJA+1mUkNImDGBDBCZNAP3vd1mT5xwSdqR1HsiryNEPmYV5lARKL1KXKi7Y
+	uSNtEERqDpV206nAB178SNzGYJwPFIQkEbJKIpxZsB7OdPajqrVILo2E26ShFtuDH99z
+	9w4llQHhUilq9/joFO/gvp5yAc+iHs4iEHf2WvRW0mV9dZU3mWwr2/WiOHAoFsuzTOPm
+	YQTA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:date:to:subject:message-id:user-agent
-	:mime-version;
-	bh=LtUYDNPvi/AAtiJszHSprDXgXqgojXbeXRkue0gstvs=;
-	b=KM4pB5lQQJmuBCgXzAkAzhAIKDIOXChfkBMCSuScBg2gMDILK36aVTpTnVtWXOYEKy
-	eKPrrAsLRb0k3sgiBWgORVDQd/18iHHkL3rE0aJjv99nVQ1dTqXMh7KryCy54FZE2IlW
-	LEBD2G/6WfXNKWwIgJ+zVoIss+4xdEINaJc8+qeEap6K2a/vjYgOR/oRMdjxI5st5Q4b
-	fKu3ZHS0ZFZWXxaZGFWVodBSGdK9F/9qYmNc3YR5i5pCol0BooZ+b4F2EsPTyAm5CPOn
-	t2V+jpu924aTDHTnfveQkTSJkP9si3vTOzexnfN2y6rmjIkLxKUHu3lGZiFYcPWyRT4q
-	aulA==
-X-Gm-Message-State: AN3rC/6zIY2M2xwSkIDk8sG9c8J+aW7VIh9eJc0abiZliFUZ7ouAziQ8
-	zlCaIkOerpO4OpvR
-X-Received: by 10.28.143.194 with SMTP id r185mr9514856wmd.139.1493058333129; 
-	Mon, 24 Apr 2017 11:25:33 -0700 (PDT)
-Received: from [192.168.0.10] (6.167.141.77.rev.sfr.net. [77.141.167.6])
-	by smtp.gmail.com with ESMTPSA id
-	y60sm17247480wrb.39.2017.04.24.11.25.32 for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Mon, 24 Apr 2017 11:25:32 -0700 (PDT)
-From: alexis.lothore@gmail.com
-X-Google-Original-From: alexis@gmail.com
-Date: Mon, 24 Apr 2017 20:25:35 +0200 (CEST)
-X-X-Sender: alexis@debian
-To: yocto@yoctoproject.org
-Message-ID: <alpine.DEB.2.21.1.1704242008400.4869@debian>
-User-Agent: Alpine 2.21.1 (DEB 209 2017-03-23)
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=Y6icM+6XYgYxNBu1hn9z5l9MbZxOCAe+0o7E4Yf2XG4=;
+	b=rEDwsOn5D2T4bvOXtIw5QLF/LXuWH9m33V7wPKsrKUc2sQm2o1bEc9/m2OavEkHHK1
+	X248lIi6AO4Kx5AjeMIs1/Dn5ADkRYaMFmDMQVZrF47mEM86T6qt2kZ/zZdHIDNu3ViD
+	JTHpSDae9yaT/AjX78/ChMjDyP5duy4PYvvO1ldd+fDGTUsMYLqNN8d12EwtP/sOanMx
+	e8NIF7I8lEWPdd4QE5QG0a+olAiREbKr2vyl75HvPhjBxxQiUUp21Gg2TBn+Z5orZ5Cz
+	Rd+p0Ox7BsDOfIOCQJVsAOWqAwh/W+QSGcxogfUoYYicA4It3n0Ap6c3qyXcXfMh0YRH
+	3UkQ==
+X-Gm-Message-State: AN3rC/7oIWKzyZtedhIgq4Dcme/YaGu768RDjfb8+LzpKjPPtm7lgWHD
+	dDcX1vf2Sx1QNgSzeHexJNkwTXHip5LL
+X-Received: by 10.200.3.105 with SMTP id w41mr26145901qtg.188.1493061221376;
+	Mon, 24 Apr 2017 12:13:41 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Raspberry Pi 3 build issue
+Received: by 10.140.22.166 with HTTP; Mon, 24 Apr 2017 12:13:20 -0700 (PDT)
+In-Reply-To: <CAJTo0LakaSZhJodT2KQx6u0TEaBL5Ruig3oOdfrtCzQUf1cxXg@mail.gmail.com>
+References: <CAMKF1spGM+kugUDOB4kF7NAgSCt9vCw8GFT0nLKFRd2tHei=pw@mail.gmail.com>
+	<CAJTo0La0mtVGyLysCnqi9EQmT+4L1eYRxgE-TV=3Va45jnt=Xg@mail.gmail.com>
+	<CAMKF1sqfvtQPWN5Yuz3RPYkXpneS+XWcYmit_=bcvKGo3_hx8w@mail.gmail.com>
+	<CAJTo0LakaSZhJodT2KQx6u0TEaBL5Ruig3oOdfrtCzQUf1cxXg@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Mon, 24 Apr 2017 20:13:20 +0100
+Message-ID: <CAJTo0La+bGDBuJ42yVy79hW2iN3ZhpeyjXrhUApLn-PAi6PYBw@mail.gmail.com>
+To: Khem Raj <raj.khem@gmail.com>, Bruce Ashfield <bruce.ashfield@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	openembeded-devel <Openembedded-devel@lists.openembedded.org>,
+	Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>
+Subject: Re: [OE-core] [RFT] gcc7 and glibc-2.26 recipes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,58 +76,64 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 24 Apr 2017 18:25:36 -0000
-Content-Type: multipart/mixed; boundary="8323329-1843380201-1493058336=:4869"
+X-List-Received-Date: Mon, 24 Apr 2017 19:13:43 -0000
+Content-Type: multipart/alternative; boundary=f4030435cf58ba79cd054dee673d
 
---8323329-1843380201-1493058336=:4869
+--f4030435cf58ba79cd054dee673d
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
 
-Hello, 
-I am currently encountering an issue with meta-raspberry and more 
-specifically Raspberry Pi 3 build. Since I was not sure the problem was 
-not my fault, I cloned a fresh copy of poky and meta-raspberrypi (both 
-checked out on morty, and meta dependencies on morty too), but the problem 
-is still appearing, trying to build the image rpi-hwup-image with BDISTRO 
-poky for MACHINE 
-raspberrypi3 :
+On 24 April 2017 at 10:09, Burton, Ross <ross.burton@intel.com> wrote:
 
-➜ build git:(morty) bitbake rpi-hwup-image
-Loading cache: 100% 
-|#########################################################################################################################################################################################################| 
-Time: 0:00:00
-Loaded 2 entries from dependency cache.
-WARNING: 
-/home/alexis/Projets/poky/meta-raspberrypi/recipes-kernel/linux/linux-raspberrypi_4.9.bb: 
-Exception during build_dependencies for PKG_kernel-image | ETA: --:--:--
-WARNING: 
-/home/alexis/Projets/poky/meta-raspberrypi/recipes-kernel/linux/linux-raspberrypi_4.9.bb: 
-Error during finalise of 
-/home/alexis/Projets/poky/meta-raspberrypi/recipes-kernel/linux/linux-raspberrypi_4.9.bb
-WARNING: 
-/home/alexis/Projets/poky/meta-raspberrypi/recipes-kernel/linux/linux-raspberrypi_4.4.bb: 
-Exception during build_dependencies for PKG_kernel-image
-WARNING: 
-/home/alexis/Projets/poky/meta-raspberrypi/recipes-kernel/linux/linux-raspberrypi_4.4.bb: 
-Error during finalise of 
-/home/alexis/Projets/poky/meta-raspberrypi/recipes-kernel/linux/linux-raspberrypi_4.4.bb
-ERROR: ExpansionError during parsing 
-/home/alexis/Projets/poky/meta-raspberrypi/recipes-kernel/linux/linux-raspberrypi_4.9.bb
-Traceback (most recent call last):
-bb.data_smart.ExpansionError: Failure expanding variable PKG_kernel-image, 
-expression was 
-kernel-image-${@legitimize_package_name('${@get_kernelversion_headers('/home/alexis/Projets/poky/build/tmp/work/raspberrypi3-poky-linux-gnueabi/linux-raspberrypi/1_4.9.21+git${SRCPV}-r0/linux-raspberrypi3-standard-build')}')} 
-which triggered exception SyntaxError: invalid syntax (PKG_kernel-image, 
-line 1)
-Summary: There were 4 WARNING messages shown.
-Summary: There was 1 ERROR message shown, returning a non-zero exit code.
+> All merged, I'll fire in a moment.
+>
 
-I am executing the build on an x86 machine with Debian 8.
+lttng-modules fails:
 
-Unfortunately, since the problem seems to appear right at parsing, I 
-cannot get the exact variable expansion with bitbake -e. Apparently my 
-Yocto setup does not encounter the issue if I try the build for another 
-RPI target, like raspberrypi0. Any advice on how to troubleshoot this 
-issue ?
+In function 'lib_ring_buffer_align',
+    inlined from 'lib_ring_buffer_try_reserve' at
+TOPDIR/tmp/work/qemumips-poky-linux/lttng-modules/2.9.1-r0/lttng-modules-2.9.1/lib/ringbuffer/frontend_api.h:118:3,
+    inlined from 'lib_ring_buffer_reserve' at
+TOPDIR/tmp/work/qemumips-poky-linux/lttng-modules/2.9.1-r0/lttng-modules-2.9.1/lib/ringbuffer/frontend_api.h:179:6,
+    inlined from 'lttng_event_reserve' at
+TOPDIR/tmp/work/qemumips-poky-linux/lttng-modules/2.9.1-r0/lttng-modules-2.9.1/lttng-ring-buffer-metadata-client.h:317:6:
+TOPDIR/tmp/work-shared/qemumips/kernel-source/include/linux/compiler.h:518:38:
+error: call to '__compiletime_assert_269' declared with attribute error:
+BUILD_BUG_ON failed: (size_of_type) == 0 || ((size_of_type) &
+((size_of_type) - 1))
+  _compiletime_assert(condition, msg, __compiletime_assert_, __LINE__)
+                                      ^
 
---8323329-1843380201-1493058336=:4869--
+Suggestions welcome :)
+
+Ross
+
+--f4030435cf58ba79cd054dee673d
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 24 April 2017 at 10:09, Burton, Ross <span dir=3D"ltr">&lt;<a href=3D"ma=
+ilto:ross.burton@intel.com" target=3D"_blank">ross.burton@intel.com</a>&gt;=
+</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px=
+ 0px 0.8ex;border-left-width:1px;border-left-style:solid;border-left-color:=
+rgb(204,204,204);padding-left:1ex"><div class=3D"gmail_extra">All merged, I=
+&#39;ll fire in a moment.</div><div class=3D"gmail_extra"></div></blockquot=
+e></div><div class=3D"gmail_extra"><br></div>lttng-modules fails:</div><br>=
+In function &#39;lib_ring_buffer_align&#39;,<br>=C2=A0 =C2=A0 inlined from =
+&#39;lib_ring_buffer_try_reserve&#39; at TOPDIR/tmp/work/qemumips-poky-linu=
+x/lttng-modules/2.9.1-r0/lttng-modules-2.9.1/lib/ringbuffer/frontend_api.h:=
+118:3,<br>=C2=A0 =C2=A0 inlined from &#39;lib_ring_buffer_reserve&#39; at T=
+OPDIR/tmp/work/qemumips-poky-linux/lttng-modules/2.9.1-r0/lttng-modules-2.9=
+.1/lib/ringbuffer/frontend_api.h:179:6,<br>=C2=A0 =C2=A0 inlined from &#39;=
+lttng_event_reserve&#39; at TOPDIR/tmp/work/qemumips-poky-linux/lttng-modul=
+es/2.9.1-r0/lttng-modules-2.9.1/lttng-ring-buffer-metadata-client.h:317:6:<=
+br>TOPDIR/tmp/work-shared/qemumips/kernel-source/include/linux/compiler.h:5=
+18:38: error: call to &#39;__compiletime_assert_269&#39; declared with attr=
+ibute error: BUILD_BUG_ON failed: (size_of_type) =3D=3D 0 || ((size_of_type=
+) &amp; ((size_of_type) - 1))<br>=C2=A0 _compiletime_assert(condition, msg,=
+ __compiletime_assert_, __LINE__)<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 ^<div><br></div><div>Suggestions welcome :)</div><div>=
+<br></div><div>Ross</div></div>
+
+--f4030435cf58ba79cd054dee673d--
