@@ -1,66 +1,66 @@
-Return-Path: <martin.marcantoine@gmail.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7C8D8E0083D; Mon, 24 Apr 2017 02:02:45 -0700 (PDT)
+	id A6FBEE007BA; Mon, 24 Apr 2017 02:10:13 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (martin.marcantoine[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.128.174 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wr0-f174.google.com (mail-wr0-f174.google.com
-	[209.85.128.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C95FFE00349
-	for <yocto@yoctoproject.org>; Mon, 24 Apr 2017 02:02:43 -0700 (PDT)
-Received: by mail-wr0-f174.google.com with SMTP id z52so46137275wrc.2
-	for <yocto@yoctoproject.org>; Mon, 24 Apr 2017 02:02:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.216.177 listed in list.dnswl.org]
+Received: from mail-qt0-f177.google.com (mail-qt0-f177.google.com
+	[209.85.216.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7741EE00349
+	for <yocto@yoctoproject.org>; Mon, 24 Apr 2017 02:10:09 -0700 (PDT)
+Received: by mail-qt0-f177.google.com with SMTP id g60so108275813qtd.3
+	for <yocto@yoctoproject.org>; Mon, 24 Apr 2017 02:10:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=fAJ8BOV/LXnILLn3kRjYP5rHPeedORMzUg9Tc76sW8A=;
-	b=lvdHJXbM2Y+BQhopIjjnjfuB0zfU+rGXKlnCBV1oakgDjQOwP4FoHYYNYmpULo7dZa
-	tAtszXfJ/xH3Jq7dxzPMurBXSMl+OSBRRLtbZa7WR2IJGz81741pLAdNLbZspZt14Y6Q
-	b9qn1LgyJ19rUeAbToWpLzJjgJ8BWC7E10C6as5StbApsgcw7URtUMhXMTje5R8xv4wJ
-	OPPMhEQEmFIdhbpbPn3iKdZa2zpTnwW5b6QiFpN/ypi3NITYr8s9viGuwlEOH32tOhzf
-	yy8nkBQ0/qUdpu12gPsKl7Y4rSlsGb02Fwzf/wiEwzRVmYbNBIImL45Q0JYdHOqpvjAS
-	Ij9A==
+	:cc; bh=H4+PUM7njEgtRmTiHD2PYpmZdk5vWWwfhXxAYGycgdI=;
+	b=MhCmd7NSQ2Fi9vIgqeuB8V7w2WjOrOxHhlR/hu9M5QXXtx2yxIT/lAS4aiy1XjSjVl
+	qxqdFIDK5CXWQbkncEkYmJNR18aPazAC3onoOGtAJpzEHeA4+sfAq0nVYoRkfkSCva9o
+	v6SQNZamjFSSE12+9QnWJyamdGxjOycHR8wjwFBBIpYDTFI1edp4luWdLaap1IxuFLRl
+	hW9b8FdCxY55ysVUzGX6cO4HPxOMTq8b9Dr/RzKOSlSRJksAoOt4yD6xkqQY5vaY7CTd
+	UrZOORk1jxJ3+qdH3H3HCRFbWId+WCYKKELzfORsIGQSzW6ijeLdcDHRnYNY9v5/htKr
+	oxTA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=fAJ8BOV/LXnILLn3kRjYP5rHPeedORMzUg9Tc76sW8A=;
-	b=qynJFxMnaZKusiy+yJGoryw0AwU+ayzv8J1nFoN9CNcI0yCOgHODlm3dT2rjHg4wTx
-	rY0w9yRBYKV1weYgmNPvWrlUvIT8D82y+aa2Fx8VFG5JFM0sbRd9199NB1El+uyiLqKU
-	F8ufmMaHe2Ny3g1xmRkhRoOX26x6Iv52MFijHkMpWehasFAFz6bwmhD6t/ouOtX2R94f
-	jmTB2tT0Nq+I1dUzYbfoTSn40udl6fZZ5fI04ashiuah3qv/ZDDUNFfXHyWAvDIBHRvx
-	m/Fbt2gZT9sKHlD29+hlpKjs4l7GzGTBQ3YJ+jD7JXb0heERQ5OaVjDNbus5tUPOjYy/
-	Wglg==
-X-Gm-Message-State: AN3rC/6J5yKCmyWqmGk2hBvEP/RHVOMd7GHZxHgzvzHS5uwUT5YNGfuJ
-	TcVr3rsOUFzKGmPD59HX4JX6uZkaGgCw
-X-Received: by 10.223.164.148 with SMTP id g20mr5211449wrb.89.1493024562397;
-	Mon, 24 Apr 2017 02:02:42 -0700 (PDT)
+	:message-id:subject:to:cc;
+	bh=H4+PUM7njEgtRmTiHD2PYpmZdk5vWWwfhXxAYGycgdI=;
+	b=uMUnHYrM6fxBQBuFleVE8Bv/6wof+CSKsEJGPXIjYwECSXY8vdbLf9WH58ZZxtGU6K
+	9tgFEY4IVEQTDf16JSTAqjLfpTwVsJuvOes8jH+OeAOgY2uGiuo6JTLMMdA3PnrIFIzI
+	+iyNvF9+tJzMPc/9794rGyusfONryytFnMNCsTNS99IJtGHfvYsUui2q5VP+VOZmVLCg
+	jde5OaefXdDRxSDP5F1V3B1VimiV1BoIcsJ0dg41ZMxP0sjPzBzEE51YMrUivtXZm+dV
+	ApT28PIB4pKeVp/yKvSPFJzbQoO6ZcODvupOQpj95RdHspp3VHYAqL9UD4HDCzPM3tvJ
+	cP4A==
+X-Gm-Message-State: AN3rC/4IQm/asz6q2Z25ZXf3O81kxtPIdSVMzywllIYjqzhE9o+virzv
+	uayNbsUbFGRRfE4wxo08wzV301bx5C8t
+X-Received: by 10.200.46.26 with SMTP id r26mr26701948qta.197.1493025009433;
+	Mon, 24 Apr 2017 02:10:09 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.28.66.148 with HTTP; Mon, 24 Apr 2017 02:02:22 -0700 (PDT)
-In-Reply-To: <CAJTo0Lb0r7BK=Duhn4KXjq5ynVdvHEeA+jaqDAgu6_rf-JmF8w@mail.gmail.com>
-References: <CAMafisYkjYi-Z4iYFKX365Si1hwxwN7e+SrkypfYhPxmaBO5bw@mail.gmail.com>
-	<CAJTo0Lb0r7BK=Duhn4KXjq5ynVdvHEeA+jaqDAgu6_rf-JmF8w@mail.gmail.com>
-From: Marc-Antoine Martin <martin.marcantoine@gmail.com>
-Date: Mon, 24 Apr 2017 11:02:22 +0200
-Message-ID: <CAMafisZxn7eV7zzkMTWMtb5QAypqw1rS9pbkSbhBNZrD3P8N5A@mail.gmail.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Installing shared libraries ncurses for custom application
+Received: by 10.140.22.166 with HTTP; Mon, 24 Apr 2017 02:09:49 -0700 (PDT)
+In-Reply-To: <CAMKF1sqfvtQPWN5Yuz3RPYkXpneS+XWcYmit_=bcvKGo3_hx8w@mail.gmail.com>
+References: <CAMKF1spGM+kugUDOB4kF7NAgSCt9vCw8GFT0nLKFRd2tHei=pw@mail.gmail.com>
+	<CAJTo0La0mtVGyLysCnqi9EQmT+4L1eYRxgE-TV=3Va45jnt=Xg@mail.gmail.com>
+	<CAMKF1sqfvtQPWN5Yuz3RPYkXpneS+XWcYmit_=bcvKGo3_hx8w@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Mon, 24 Apr 2017 10:09:49 +0100
+Message-ID: <CAJTo0LakaSZhJodT2KQx6u0TEaBL5Ruig3oOdfrtCzQUf1cxXg@mail.gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	openembeded-devel <Openembedded-devel@lists.openembedded.org>,
+	Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>
+Subject: Re: [OE-core] [RFT] gcc7 and glibc-2.26 recipes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,79 +72,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 24 Apr 2017 09:02:45 -0000
+X-List-Received-Date: Mon, 24 Apr 2017 09:10:13 -0000
+Content-Type: multipart/alternative; boundary=001a114708cc5417c1054de5f97b
+
+--001a114708cc5417c1054de5f97b
 Content-Type: text/plain; charset=UTF-8
+
+On 24 April 2017 at 06:45, Khem Raj <raj.khem@gmail.com> wrote:
+
+> There are few other fixes that needs to be in there. glibc and gcc recipes
+> also needed some fixes. I have pushed the whole series to kraj/master
+> branch on contrib repo
+>
+> http://git.openembedded.org/openembedded-core-contrib/log/?h=kraj/master
+>
+> give it a whirl again.
+>
+
+All merged, I'll fire in a moment.
+
+Thanks Khem!
+
+Ross
+
+--001a114708cc5417c1054de5f97b
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Hi Ross,
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 24 April 2017 at 06:45, Khem Raj <span dir=3D"ltr">&lt;<a href=3D"mailto=
+:raj.khem@gmail.com" target=3D"_blank">raj.khem@gmail.com</a>&gt;</span> wr=
+ote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border=
+-left:1px #ccc solid;padding-left:1ex"><div id=3D":2e" class=3D"a3s aXjCH m=
+15b9e7edf85c6650">There are few other fixes that needs to be in there. glib=
+c and <span class=3D"il">gcc</span> recipes<br>
+also needed some fixes. I have pushed the whole series to kraj/master<br>
+branch on contrib repo<br>
+<br>
+<a href=3D"http://git.openembedded.org/openembedded-core-contrib/log/?h=3Dk=
+raj/master" rel=3D"noreferrer" target=3D"_blank">http://git.openembedded.or=
+g/<wbr>openembedded-core-contrib/log/<wbr>?h=3Dkraj/master</a><br>
+<br>
+give it a whirl again.<br></div></blockquote></div><br>All merged, I&#39;ll=
+ fire in a moment.</div><div class=3D"gmail_extra"><br></div><div class=3D"=
+gmail_extra">Thanks Khem!</div><div class=3D"gmail_extra"><br></div><div cl=
+ass=3D"gmail_extra">Ross</div></div>
 
-Thank you for your personalized reply.
-I've changed my receipe with your recommandations and clean the
-receipe with "bitbake -c cleanall myapp"
-
-But I still have an issue when compiling with "bitbake myapp":
-
-WARNING: myapp-0.1.1-r0 do_package_qa: QA Issue: /usr/bin/myApp
-contained in package myapp requires
-libtinfo.so.5(NCURSES_TINFO_5.0.19991023), but no providers found in
-RDEPENDS_myapp? [file-rdeps]
-
-Sometimes I also have the same issue with libncurses.so lib. I assume
-the problem is common for both ncurses libs.
-
-Hereafter is my receipe header:
-
-SUMMARY =3D "myApp"
-SECTION =3D "console/utils"
-
-DEPENDS =3D "ncurses"
-
-SRC_URI =3D ".../myApp/${PN}/${PV}/${PN}-${PV}.tar.gz"
-
-do_compile () {
-        oe_runmake
-}
-
-do_install () {
-       install -d ${D}${bindir}
-       install -m 0755 ${WORKDIR}/${PN}-${PV}/myApp ${D}${bindir}/
-}
-
-LICENSE =3D "GPLv2"
-LIC_FILES_CHKSUM =3D "file://gpl.txt;md5=3D393a5ca445f6965873eca0259a17f833=
-"
-
-SRC_URI[md5sum] =3D "97b2c3fb082241ab5c56ab728522622b"
-
-FYI: I use the branch morty of Yocto Project. And I didn't add any
-layer other than default ones. I juste want to add this app to the
-qemu core minimal image for tests purpose.
-
-Thank you for your assistance.
-Sincerely.
-Cordialement,
-Marc-Antoine Martin
-Ing=C3=A9nieur - Thales Services
-Thales Services - Machine Software Engineer
-tel: +33 7 77 38 18 65
-
-Fiche contact / eCard contact:
-
-
-2017-04-21 18:46 GMT+02:00 Burton, Ross <ross.burton@intel.com>:
->
-> On 19 April 2017 at 17:55, Marc-Antoine Martin
-> <martin.marcantoine@gmail.com> wrote:
->>
->> DEPENDS =3D "ncurses glibc"
->> RDEPENDS_${PN} =3D "ncurses-libform"
->
->
-> glibc is a default dependency so you can remove that.  You can remove the
-> explicit RDEPENDS as bitbake will automatically add library runtime
-> dependencies for you.  Just have DEPENDS=3Dncurses, and see if that does =
-the
-> right thing.
->
-> Ross
-
+--001a114708cc5417c1054de5f97b--
