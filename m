@@ -1,6 +1,6 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <alexis.lothore@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4400FE00AE4; Tue, 25 Apr 2017 11:23:56 -0700 (PDT)
+	id 2AB3AE00AF6; Tue, 25 Apr 2017 12:01:46 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,12 +8,7 @@ X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.53 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.82.53 listed in dnsbl.sorbs.net]
+	mail provider *      (alexis.lothore[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -21,47 +16,59 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f53.google.com (mail-wm0-f53.google.com [74.125.82.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B3A39E00A31
-	for <yocto@yoctoproject.org>; Tue, 25 Apr 2017 11:23:55 -0700 (PDT)
-Received: by mail-wm0-f53.google.com with SMTP id r190so104455000wme.1
-	for <yocto@yoctoproject.org>; Tue, 25 Apr 2017 11:23:55 -0700 (PDT)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.82.65 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.82.65 listed in dnsbl.sorbs.net]
+Received: from mail-wm0-f65.google.com (mail-wm0-f65.google.com [74.125.82.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 98C53E00B21
+	for <yocto@yoctoproject.org>; Tue, 25 Apr 2017 12:01:40 -0700 (PDT)
+Received: by mail-wm0-f65.google.com with SMTP id y10so16483599wmh.0
+	for <yocto@yoctoproject.org>; Tue, 25 Apr 2017 12:01:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=b9+x1pknOWplVlv2X9/ZEhnrDrCdFrnjivWTINtz5Fk=;
-	b=M40GZ31hRptoR5Iirx1jvpX3XCA+V+RitDowvregJMnvZNbp6mn34M3T54O8cDPizi
-	EQgekwvPlMcxtUoGTAXmYRCbY44lk2o959FX+3cFRVxM6SNNOCqPNNHz+LiZEyeUzqyr
-	nx6Du5nl0K0QqtsoTZ0aS5Kjsllp+slInHWtR1I/q821jzEIRzZIUsCONMOPNdNCbB/t
-	qUSxGLnCPhTYa7mr+GNCRxSMhmCe+GJ533yOH2va54h05Tit2J3CHvVx/2qx9/O1vCOd
-	H/6jufQy5jl0yhtstmEBqmL5VSbNONcHtUCxFXQipTZw6V53UOohuD2CVnT+QjKJX42m
-	2ZIw==
+	h=from:date:to:cc:subject:in-reply-to:message-id:references
+	:user-agent:mime-version;
+	bh=8Yw52Y0EJzw9tbUUA286nmwxqEF9iTz0yOyw4dmnh/0=;
+	b=jnrUFs+ZRSKHXMTUaW2JFmHCPqQtlFsbyXYlPOJ+mcJPQOV6XWuIv2VWNVe5tkZLCH
+	s7TMTzGyi9XYjBW/gsPM/ruvaMwoSBcDJTZB/flb5iUVcx8OJ1RNKnpj6DmM5I6UTZLT
+	j5zgamP5JNe5nj5f5I47oh7u320Os72icFDU+/ceqjVPmtwkmMfV/iJrVCnb/WAnhvVA
+	MFyRueYzcs+9zsWUZxhlxp4osn8FnxqWp0iVzqaM8sA4UipyuXIuUir6eneNjd4zB54k
+	po0j8p7upeQQ0GFIA7F8Y0c8qDRLi7O2lZgjABQ1umpjnZLlJhMCYWfroifnvuQafuNT
+	8wIA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=b9+x1pknOWplVlv2X9/ZEhnrDrCdFrnjivWTINtz5Fk=;
-	b=MMtPRrAShVRqVS4SvPoSzAVwpQFRqb5uJjf5HJaizFW8vlbbMjhNmOQWq4qn5BHPO1
-	8s+wZDH4xsB4yzUNblbm5hn/nmkcAuKFzXCuOozWyfBAis7WKXfQMddgcgkHXGF20J4y
-	ocdHHvcVTfNOub4JScTT+RMVVHfOW3V9/ncIIRKhfrxqTftqcDqG/aotZP/vX7uDhyXW
-	Zst0YrUb/cazU9UtTl2/GIrLUYBx0zH8DNasQQxIv0oL4FbmRuZobZiTPZwmU5NNj9py
-	RXFbpK2M5C+k1eRGeQkNQPp6I1zCYtwLFlrRFKGUMehKkqgQ99Da1ceNja81gWTaVJ9Z
-	LUKg==
-X-Gm-Message-State: AN3rC/7ufqqR0y4gK2hKvIEm6L3nEciWf05r3p8RFa/xLKdwdoKTUXLQ
-	3RnaDrgFgtvGDIh3gmO+DiUZ7EZpFA==
-X-Received: by 10.80.153.194 with SMTP id n2mr6473543edb.42.1493144634246;
-	Tue, 25 Apr 2017 11:23:54 -0700 (PDT)
+	h=x-gm-message-state:from:date:to:cc:subject:in-reply-to:message-id
+	:references:user-agent:mime-version;
+	bh=8Yw52Y0EJzw9tbUUA286nmwxqEF9iTz0yOyw4dmnh/0=;
+	b=gCcd8OnKrAF6uWV4XOAj48yzDgQvnv+1MBg9DKQOmm3LNiAUHgfW70nPjM+sUBs4xe
+	9saYULYSrEFKGKzaaILjgdfO9lq3+hWji6H+Bz+wlvawFB4dFt7uPQUXoBOcbwi59yb/
+	qGRw0c9hpkA7+kt+cZu5Vw8PazePbWo2nKdgKYOm3qhbAt0N3zUnnbNcXxWbFms/5gTH
+	kFOxHzFTKRWstR/wqWw0eRk87fHWo1cm9Mq4Xb9//BMkjpJbXJ+SaCmx36NI4SHBc70I
+	gzTDJcHmt72oBxMdyXMAC3Qo2d5NWenCPsBQ96QGFrBuMAvE9bnXY2qkrrY+UAN3nvFH
+	cBYA==
+X-Gm-Message-State: AN3rC/7uyN/bE3p4NzpT+W8EroEbwPLe1FzDe9y5YykTZxh41cqWqE+j
+	ojxF/XSfNrv1KQ==
+X-Received: by 10.28.46.5 with SMTP id u5mr3266230wmu.83.1493146897369;
+	Tue, 25 Apr 2017 12:01:37 -0700 (PDT)
+Received: from [192.168.0.10] (6.167.141.77.rev.sfr.net. [77.141.167.6])
+	by smtp.gmail.com with ESMTPSA id
+	184sm5218383wmr.30.2017.04.25.12.01.36
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Tue, 25 Apr 2017 12:01:36 -0700 (PDT)
+From: alexis.lothore@gmail.com
+X-Google-Original-From: alexis@gmail.com
+Date: Tue, 25 Apr 2017 21:01:37 +0200 (CEST)
+X-X-Sender: alexis@debian
+To: Paul Barker <pbarker@toganlabs.com>
+In-Reply-To: <CAPyrkgxrdCVB8pFSJ-AYoXqxwuHiPHUBo98izvCKMM-5h_5mVw@mail.gmail.com>
+Message-ID: <alpine.DEB.2.21.1.1704252058100.16188@debian>
+References: <alpine.DEB.2.21.1.1704242008400.4869@debian>
+	<CAPyrkgxrdCVB8pFSJ-AYoXqxwuHiPHUBo98izvCKMM-5h_5mVw@mail.gmail.com>
+User-Agent: Alpine 2.21.1 (DEB 209 2017-03-23)
 MIME-Version: 1.0
-Received: by 10.80.180.141 with HTTP; Tue, 25 Apr 2017 11:23:23 -0700 (PDT)
-In-Reply-To: <CAOsmwBSu_Z+B0w_=-MgTC0D_7djXJqau+Yn=cf5XYDvqqT-T7g@mail.gmail.com>
-References: <CAOsmwBS1n4eayjhZZZZ4-RpotTSryiDOEA-xRJK59aR-ypbxEw@mail.gmail.com>
-	<CAMKF1sp4_2eLn=xx3=C5VRquVhZe4hz_dovxsbJp0PDtVFtYiw@mail.gmail.com>
-	<CAOsmwBSu_Z+B0w_=-MgTC0D_7djXJqau+Yn=cf5XYDvqqT-T7g@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Tue, 25 Apr 2017 11:23:23 -0700
-Message-ID: <CAMKF1soGz9QK-y4G2Ghw5oDojVdAPHR3VWPW5A_xsNobDVH_Cw@mail.gmail.com>
-To: Alvaro Garcia <maxpowel@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Problem with mesa and nvidia
+Cc: yocto@yoctoproject.org
+Subject: Re: Raspberry Pi 3 build issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,62 +80,93 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 25 Apr 2017 18:23:56 -0000
+X-List-Received-Date: Tue, 25 Apr 2017 19:01:46 -0000
+Content-Type: multipart/mixed; boundary="8323329-594847644-1493146900=:16188"
+
+--8323329-594847644-1493146900=:16188
 Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 
-On Tue, Apr 25, 2017 at 11:15 AM, Alvaro Garcia <maxpowel@gmail.com> wrote:
-> Hi! This worked perfectly!
->
-> But now I have the following problem:
-> If I set prefered virtual/libgl as my nvidia recipe, then mesa is not
-> installed and when xorg-xserver is compiling the library libepoxy cannot
-> compile because of: No package 'egl' found (because this is provided by mesa
-> I guess)
-> If I set prefered virtual/libgl as default (mesa) some files are in conflict
-> (The recipe nvidia-proprietary is trying to install files into a shared area
-> when those files already exist) because they are provided by mesa and my
-> nvidia recipe. Files for example: libEGL.so.1, libGL.so or
-> xorg/modules/extensions/libglx.so
+Hello Paul,
+thanks for the try. It should means that there is a detail on my setup 
+which prevents the build from being done. I encounter the error on the 
+commits id your provided too. I also tried being on last tag on poky 
+project for morty branch, without success. I also suspected my python 
+configuration/version so I resintalled it completely, but It made no 
+change to the error.
 
-there is mesa-gl recipe too use something liek
-PREFERRED_PROVIDER_virtual/libgl = "mesa-gl"
+On Tue, 25 Apr 2017, Paul Barker wrote:
 
->
-> The only thing I saw relative to this problem is for example in mesa.inc
-> FILES_libegl-mesa = "${libdir}/libEGL.so.*"
->
-> Im stucked again, its being hard to finish this recipe. At this moment I'm
-> overwritting these files in the installation script (when the roofs are
-> copied). This solution works and altought its not the right one, at least I
-> know that overwritting these files is the last step (got hardware
-> acceleration, playing video by hardware and full hd resolution).
->
-> Thank you for your help!
->
->
-> 2017-04-23 17:11 GMT+02:00 Khem Raj <raj.khem@gmail.com>:
->>
->> On Sun, Apr 23, 2017 at 7:35 AM, Alvaro Garcia <maxpowel@gmail.com> wrote:
->> > mesa-driver-i915
->>
->> if you are building for x86 based machines and including
->> conf/machine/include/x86-base.inc in your machine config then you are
->> getting it. You need to define XSERVER variable that fits your
->> machine.
->> you can start by just removing stuff from the preset value for it
->>
->> this is current value
->>
->> XSERVER ?= "${XSERVER_X86_BASE} \
->>             ${XSERVER_X86_EXT} \
->>             ${XSERVER_X86_I915} \
->>             ${XSERVER_X86_I965} \
->>             ${XSERVER_X86_FBDEV} \
->>             ${XSERVER_X86_VESA} \
->>             ${XSERVER_X86_MODESETTING} \
->>            "
->>
->> remove whatever you dont need by overriding it in your machine conf file.
->
->
+> On Mon, Apr 24, 2017 at 7:25 PM,  <alexis.lothore@gmail.com> wrote:
+> > Hello,
+> > I am currently encountering an issue with meta-raspberry and more
+> > specifically Raspberry Pi 3 build. Since I was not sure the problem was
+> > not my fault, I cloned a fresh copy of poky and meta-raspberrypi (both
+> > checked out on morty, and meta dependencies on morty too), but the problem
+> > is still appearing, trying to build the image rpi-hwup-image with BDISTRO
+> > poky for MACHINE
+> > raspberrypi3 :
+> >
+> > ➜ build git:(morty) bitbake rpi-hwup-image
+> > Loading cache: 100%
+> > |#########################################################################################################################################################################################################|
+> > Time: 0:00:00
+> > Loaded 2 entries from dependency cache.
+> > WARNING:
+> > /home/alexis/Projets/poky/meta-raspberrypi/recipes-kernel/linux/linux-raspberrypi_4.9.bb:
+> > Exception during build_dependencies for PKG_kernel-image | ETA: --:--:--
+> > WARNING:
+> > /home/alexis/Projets/poky/meta-raspberrypi/recipes-kernel/linux/linux-raspberrypi_4.9.bb:
+> > Error during finalise of
+> > /home/alexis/Projets/poky/meta-raspberrypi/recipes-kernel/linux/linux-raspberrypi_4.9.bb
+> > WARNING:
+> > /home/alexis/Projets/poky/meta-raspberrypi/recipes-kernel/linux/linux-raspberrypi_4.4.bb:
+> > Exception during build_dependencies for PKG_kernel-image
+> > WARNING:
+> > /home/alexis/Projets/poky/meta-raspberrypi/recipes-kernel/linux/linux-raspberrypi_4.4.bb:
+> > Error during finalise of
+> > /home/alexis/Projets/poky/meta-raspberrypi/recipes-kernel/linux/linux-raspberrypi_4.4.bb
+> > ERROR: ExpansionError during parsing
+> > /home/alexis/Projets/poky/meta-raspberrypi/recipes-kernel/linux/linux-raspberrypi_4.9.bb
+> > Traceback (most recent call last):
+> > bb.data_smart.ExpansionError: Failure expanding variable PKG_kernel-image,
+> > expression was
+> > kernel-image-${@legitimize_package_name('${@get_kernelversion_headers('/home/alexis/Projets/poky/build/tmp/work/raspberrypi3-poky-linux-gnueabi/linux-raspberrypi/1_4.9.21+git${SRCPV}-r0/linux-raspberrypi3-standard-build')}')}
+> > which triggered exception SyntaxError: invalid syntax (PKG_kernel-image,
+> > line 1)
+> > Summary: There were 4 WARNING messages shown.
+> > Summary: There was 1 ERROR message shown, returning a non-zero exit code.
+> >
+> > I am executing the build on an x86 machine with Debian 8.
+> >
+> > Unfortunately, since the problem seems to appear right at parsing, I
+> > cannot get the exact variable expansion with bitbake -e. Apparently my
+> > Yocto setup does not encounter the issue if I try the build for another
+> > RPI target, like raspberrypi0. Any advice on how to troubleshoot this
+> > issue ?
+> > --
+> 
+> I've just tried to reproduce this using a fresh clone of poky and
+> meta-raspberrypi on the morty branch. I edited bblayers.conf to add
+> the meta-raspberrypi layer and then edited local.conf to set MACHINE =
+> "raspberrypi3", those were my only changes. I then ran "bitbake
+> rpi-hwup-image" and it's correctly parsed all the recipes and started
+> the build.
+> 
+> Which exact commits of poky and meta-raspberrypi are you using? I have
+> the following:
+> 
+> meta
+> meta-poky
+> meta-yocto-bsp    = "morty:924e576b8930fd2268d85f0b151e5f68a3c2afce"
+> meta-raspberrypi  = "morty:28d4404f89eb59d406b4976c0e3f5ca19137ba74"
+> 
+> Thanks,
+> 
+> -- 
+> Paul Barker
+> Co-Founder & Principal Engineer
+> Togán Labs Ltd
+> 
 
+--8323329-594847644-1493146900=:16188--
