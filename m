@@ -1,69 +1,64 @@
-Return-Path: <olivier.sobrie@gmail.com>
+Return-Path: <thieldev@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D9D62E00AE4; Tue, 25 Apr 2017 04:58:44 -0700 (PDT)
+	id 3D100E007B5; Tue, 25 Apr 2017 07:41:34 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE, 
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.82.67 listed in dnsbl.sorbs.net]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.67 listed in list.dnswl.org]
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (thieldev[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f67.google.com (mail-wm0-f67.google.com [74.125.82.67])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EDBB0E00A9B
-	for <yocto@yoctoproject.org>; Tue, 25 Apr 2017 04:58:43 -0700 (PDT)
-Received: by mail-wm0-f67.google.com with SMTP id d79so24451905wmi.2
-	for <yocto@yoctoproject.org>; Tue, 25 Apr 2017 04:58:43 -0700 (PDT)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.215.41 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.215.41 listed in dnsbl.sorbs.net]
+Received: from mail-lf0-f41.google.com (mail-lf0-f41.google.com
+	[209.85.215.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0648BE00546
+	for <yocto@yoctoproject.org>; Tue, 25 Apr 2017 07:41:29 -0700 (PDT)
+Received: by mail-lf0-f41.google.com with SMTP id 75so91952170lfs.2
+	for <yocto@yoctoproject.org>; Tue, 25 Apr 2017 07:41:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=sender:date:from:to:cc:subject:message-id:references:mime-version
-	:content-disposition:in-reply-to:user-agent;
-	bh=2AjCQFuhyuEuWaT2m7onYCL6DXt3XlQH2nXpX627rJk=;
-	b=rXXXwTa0jeY4Q3ZbOJxGm4H4iA3THD6H08sJBL/hGTgexp3FvTrgh/uACpv0c0pFIW
-	K44LjicJRNBO1fwefep33szeV62dwvcnacW8uOEmhssWE3WnmUWChCwRGMzjPnqc1K2P
-	1VVD3E3Q33P2XpnXMiPvK+8264OCc5Skag75VhrvsY2nnwEjtHF5JCEXAJRAgn7R6dmS
-	v9wkeVPzucTOKl7yzLhae2+UtzHlA5yvQUpH+S589hgncuqUMVbEOR2Ncj3onNXTMd0L
-	kPVeuPn6ycPXRUXTP0Jc3uwh9EpaYA6GQV3uktZcKjlKLqyj59Qo9E5I+1VWsKX6dEEE
-	79gA==
+	h=mime-version:from:date:message-id:subject:to;
+	bh=zbqHzB9MHLtMQcUtYwaLDCoWPAkhiWopvAa4vYYA390=;
+	b=hQTK6YgRR2/cPFlfDLpiFouVBRiMeKFQvnsXNLj7O145hkFD1peWrujP2aFqduZMBi
+	Il0DrOXzsFPCDrRgXD/L1cgo/qO2tbdMFJ0kjE5zDJjsKFTdFcHOfPLBYPNj5tUrQp+I
+	QwAtuWpL57zGHD+ma7M551Jr+RQt3fE4m0Tanzc2PxPWjBGbyysBNCN1Lk9n/q1H1IRD
+	cA145JEYAsuhBizx5UZQBJVgv82Pmh5Wdh3B8EaGml9D9kKWuDXrUfgahYfJKyI/MrDp
+	LKqZg7LBD/jb/yJdyFf4hLa2XUajALOHffGJIVus490DFw4nuFIq/9KMfB89+aFlUDLS
+	DTZg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-	:references:mime-version:content-disposition:in-reply-to:user-agent;
-	bh=2AjCQFuhyuEuWaT2m7onYCL6DXt3XlQH2nXpX627rJk=;
-	b=NOv/4EI37BFK27wOKNa8lTLeeyKByvA4OhJxphQafZSGrMe7BnnB302kmkv/VMzAVE
-	NidUG7TzPrxqIXaffGONFL8FJnIzEcr2edKECq+mSvConULfq3lq/b60bSRnv82ai7hD
-	5NfhLLUT+kEFuDdfrQn7oZ5XPdM3YEY8049cjcnIN/bGAslTCJafo/+eXLtUP5PDDbPe
-	OW2Ni6Pyo4/loMyTKQKx1DLh5pF0xxSFCl/nlm/zy5S6Mg+avgVmqJPoRXPqd49RZCh+
-	/6/nzs9PsQ93hg2EHJT91HXyuaRjxK/81JFoj9KBPlsoMfKQ1MRV0RZ7+m9sHp1Wexab
-	cKBQ==
-X-Gm-Message-State: AN3rC/5tqmGIsZATPo3xiX6oiq+51Zxlp+rp864ffrYnA9Juw4cyQ6U6
-	u5A/BcQLwn2+xA==
-X-Received: by 10.28.92.84 with SMTP id q81mr5457798wmb.11.1493121522815;
-	Tue, 25 Apr 2017 04:58:42 -0700 (PDT)
-Received: from localhost ([2a02:a03f:308a:7800:fcda:183d:f9b7:b5e])
-	by smtp.gmail.com with ESMTPSA id
-	92sm26005269wra.18.2017.04.25.04.58.41
-	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-	Tue, 25 Apr 2017 04:58:41 -0700 (PDT)
-Sender: Olivier Sobrie <olivier.sobrie@gmail.com>
-Date: Tue, 25 Apr 2017 13:58:43 +0200
-From: Olivier Sobrie <olivier@sobrie.be>
-To: Alexander Kanavin <alexander.kanavin@linux.intel.com>
-Message-ID: <20170425115843.GA11697@ultraoso.localdomain>
-References: <20170425090958.11054-1-olivier@sobrie.be>
-	<f1202f15-5734-cca6-fd84-5244efe0cbee@linux.intel.com>
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=zbqHzB9MHLtMQcUtYwaLDCoWPAkhiWopvAa4vYYA390=;
+	b=KRBg+crpkPI2s6lgL5YKOS8ucvpSPsb/dr51pAbcFl8ytV1+MqhU8Az0uKD6HbVwGG
+	so3izvBzFNRGVgVqRjLZS5TN09/90Nr0RRhn7mEVingDS++mFg2YgQkkMvo4k+pGtJhN
+	lIPBTIZNNBJ7Wy7/eQ2BmMVjH6C5ukqy+IYRDD4YVg+UmlfaEoXQrYPTALPnSJQAzxCi
+	sk9KJwmd6cTgbNq1XePYgBlmsBKiSBvqgmEElus0t6zX7Rd8m3TaSQwsp/DjaaXFlUQD
+	U9uoHGcq/da96MIlMMo4fcg0c2kgmK+JczYx3KMw0qbeYISW6rsSkRUx4DDRhT90FiiL
+	X8rQ==
+X-Gm-Message-State: AN3rC/4uKxNdFRQtFQHO2pJHkjMbJxA6l8P+TY8olLi09YO/X9TNoIf0
+	otaIuzHQu89hHp9CX6LFntig7+UC1ezIfbs=
+X-Received: by 10.25.157.210 with SMTP id g201mr9002404lfe.13.1493131288135;
+	Tue, 25 Apr 2017 07:41:28 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <f1202f15-5734-cca6-fd84-5244efe0cbee@linux.intel.com>
-User-Agent: Mutt/1.8.2 (2017-04-18)
-Cc: paul.eggleton@linux.intel.com, yocto@yoctoproject.org
-Subject: Re: [PATCH] nativesdk-qt4-tools: fix build issues with libQtDBus and libQt3Support
+Received: by 10.25.234.92 with HTTP; Tue, 25 Apr 2017 07:41:27 -0700 (PDT)
+From: Malte Thiel <thieldev@gmail.com>
+Date: Tue, 25 Apr 2017 16:41:27 +0200
+Message-ID: <CAJ5fcV3r3TrPsGsjYN0RpR8VJ6FnpRMFZ+hptzU8Ua1Aae3NkQ@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Qt 5.8: do_rootfs: File 'qtdeclarative-plugins' not found
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,21 +70,64 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 25 Apr 2017 11:58:44 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Tue, 25 Apr 2017 14:41:34 -0000
+Content-Type: multipart/alternative; boundary=001a11403990085022054dfeb8bc
 
-On Tue, Apr 25, 2017 at 01:58:25PM +0300, Alexander Kanavin wrote:
-> On 04/25/2017 12:09 PM, Olivier Sobrie wrote:
-> 
-> > This patch ensures that libQtXml is build before libQtDBus and that
-> > both libQtGui and libQtNetwork are built before libQt3Support.
-> 
-> Applied, thanks. Please add a [meta-qt4] to the subject, so that it's easier
-> to see which layer the patch is intended for.
+--001a11403990085022054dfeb8bc
+Content-Type: text/plain; charset=UTF-8
 
-OK, noted!
-Thanks,
+Hello,
 
-Olivier
+I am trying to compile a Qt 5.8 application using the master branch
+of meta-qt5/recipes-qt/qt5/ (For 5.8 support).
 
+Within my recipe I have:
+
+RDEPENDS_${PN} = "libgcc glibc qtbase [...] qtdeclarative"
+
+My recipe (and therefore the application) compiles fine. However, in
+do_rootfs I get the following error:
+
+------------------------------------------------------------
+ERROR: my-image-1.0-r0 do_rootfs: Error executing a python function in
+exec_python_func() autogenerated:
+
+[...]
+
+Exception: FileNotFoundError: [Errno 2] No such file or directory:
+'/home/sec/sdk/build/0101301/tmp/sysroots/sm2-imx6/pkgdata/runtime-reverse/qtdeclarative-plugins'
+
+ERROR: my-image-1.0-r0 do_rootfs: Function failed: license_create_manifest
+------------------------------------------------------------
+
+It's true, there is no file 'qtdeclarative-plugins'. However, qtdeclarative
+RPROVIDES qtdeclarative-plugins, so I expect that this file should be
+generated somehow?
+
+Any help is appreciated
+
+--001a11403990085022054dfeb8bc
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hello,</div><div><br></div><div>I am trying to compil=
+e a Qt 5.8 application using the master branch of=C2=A0meta-qt5/recipes-qt/=
+qt5/ (For 5.8 support).</div><div><br></div><div>Within my recipe I have:</=
+div><div><br></div><div>RDEPENDS_${PN} =3D &quot;libgcc glibc qtbase [...] =
+qtdeclarative&quot;<br></div><div><br></div><div>My recipe (and therefore t=
+he application) compiles fine. However, in do_rootfs I get the following er=
+ror:</div><div><br></div><div>---------------------------------------------=
+---------------</div><div><div>ERROR: my-image-1.0-r0 do_rootfs: Error exec=
+uting a python function in exec_python_func() autogenerated:</div><div><br>=
+</div><div>[...]</div><div><br></div><div>Exception: FileNotFoundError: [Er=
+rno 2] No such file or directory: &#39;/home/sec/sdk/build/0101301/tmp/sysr=
+oots/sm2-imx6/pkgdata/runtime-reverse/qtdeclarative-plugins&#39;</div><div>=
+<br></div><div>ERROR: my-image-1.0-r0 do_rootfs: Function failed: license_c=
+reate_manifest</div><div>--------------------------------------------------=
+----------<br></div></div><div><br></div><div>It&#39;s true, there is no fi=
+le &#39;qtdeclarative-plugins&#39;. However,=C2=A0qtdeclarative RPROVIDES q=
+tdeclarative-plugins, so I expect that this file should be generated someho=
+w?</div><div><br></div><div>Any help is appreciated</div><div><br></div></d=
+iv>
+
+--001a11403990085022054dfeb8bc--
