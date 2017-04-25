@@ -1,61 +1,62 @@
-Return-Path: <krevsbech@gmail.com>
+Return-Path: <pbarker@toganlabs.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 020C6E00AE6; Tue, 25 Apr 2017 01:30:23 -0700 (PDT)
+	id 6731CE00AE4; Tue, 25 Apr 2017 02:06:08 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (krevsbech[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.217.174 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.220.170 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ua0-f174.google.com (mail-ua0-f174.google.com
-	[209.85.217.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F2309E00A9B
-	for <yocto@yoctoproject.org>; Tue, 25 Apr 2017 01:30:21 -0700 (PDT)
-Received: by mail-ua0-f174.google.com with SMTP id h2so127468533uaa.1
-	for <yocto@yoctoproject.org>; Tue, 25 Apr 2017 01:30:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=RjBY/5q/dNRTMIXL1zpQ9nhngP6wyrE/lnkUZtEx8qY=;
-	b=ZNnYbfkGym/7ZOYhfRhhAhC27vN+jqn/R0iwLwiQjA570anS6x8moWJn8dr18RCGzv
-	hupwe4M2bNymuH7MMaV01DC2yDNswCxYvcZMIpArTCjDEtCOJhvwPbKgx/gW9ciiiM88
-	z5H9Kx7n9tbVVqBZWUqViUDbiQ5/o3AJFNxUP6FRbHjrEbLtm+b+NDYDGp+bvmjPlrbs
-	1JgUYmoFztk9O9HuWj6PTzDou8H1AeIMhy6PPULxp4DcfBwUM3wRDiDsNj6RAX0J/OwH
-	kkhSM2vTZRqhowmtzuwsq4E9qyiomxaTpIJa47Ui7BmdgORwaCFsUFfaJ1j7z2RU8nyO
-	9W3w==
+Received: from mail-qk0-f170.google.com (mail-qk0-f170.google.com
+	[209.85.220.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 13C49E00A9B
+	for <yocto@yoctoproject.org>; Tue, 25 Apr 2017 02:06:04 -0700 (PDT)
+Received: by mail-qk0-f170.google.com with SMTP id u75so41619502qka.3
+	for <yocto@yoctoproject.org>; Tue, 25 Apr 2017 02:06:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=toganlabs-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-transfer-encoding;
+	bh=J1PHSx7cnNmJP7kpxPytgQG/yUSa1MPDkDVYQpBIe/U=;
+	b=My5LvTrJGaPwc3bXYmzXeCK+RNntm2Q/gRllNEKxT7HDM6ljPCr5JGOIdzJsjBBqXC
+	EoQQetgPmBVMgYcmwSZwkKBa5C8oA23MT4RDlGQZZPzD5HsGxRi98Z4TzS8QvxFof4GQ
+	7+Qtk/jc4Maaf7QN0PrgQFE/x7GG6elivdIivcGbcfwD7laa7s9y5nARtfcisY5oeo5J
+	vd2ONyoF3n5ZP9vOObtL3AbSUw/2SJAqF+nRxyi9J5yDIvhBgAFoUd4qFjVOR7ivdzBs
+	W/2h3b3ZhWS4SU3UwejUsi40s5vDb9tNdkV6H6JoGUtBMrxzbchpCDDHA/oN5ZKwJYAG
+	DW8w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=RjBY/5q/dNRTMIXL1zpQ9nhngP6wyrE/lnkUZtEx8qY=;
-	b=NFekzWLvrc76wGLUwaPnsTOmIFvnJbZJM9/WRF5oFV03TQHoHOUT5KQiqHYRei+5+4
-	jlf97iB52E72E7eCb2yyNfntq2qFYc7ycI8e7CSEfesfEtDaeid6yaT/x9lb+FyzlaAa
-	45SX84bsIOZpRtB41GYwA3AecY8/hwfFhMJwstgSGWcUEsmrP7u4qWtH5ZFQK0BsDnik
-	Y8upID0ysgkLpi4uiZ9iGhOVv4hMu3mHcJ4KR/hSoHFc6dPMDopjDohgpvzfSmuXKFBE
-	SrfrHEkpiIVW/2W2fN5rv+JkgjgDQDhoHdd8gvTVMBeaZv+bJG6fbrL5phCQmSgDnkcd
-	XvsQ==
-X-Gm-Message-State: AN3rC/6ORiA9WS+MuT6nTZyd9Y1WS5p2pQu5oVeC7i3dxHuobTXxp87v
-	ays1R8eSpZznqhKW/eZqjj67H/TyzTOJdsY=
-X-Received: by 10.159.57.90 with SMTP id i26mr16278761uag.117.1493109020689;
-	Tue, 25 Apr 2017 01:30:20 -0700 (PDT)
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=J1PHSx7cnNmJP7kpxPytgQG/yUSa1MPDkDVYQpBIe/U=;
+	b=RDsFKqATd5+kNNMs8kBGn2OeVtnOMUIOfgLkORkhAYrfPaMlHZHfqBFSwVpVpufi9A
+	WyK0JLeZP/+PrQldxOvpO87HnkCqb40mNDyNIJpD4Al8GMYXEO9G3jO7D36u2pQSteAr
+	nWM1DAy8f3fyAEfj2Y2JPo5u7m3aeZ8ICQQXb9tgSqg9xaDsnj46S8XyhHH5fCQ1C/9q
+	NGLznQS/kOxhf6h2kU+J/TX6R0YKx+yOI/S3W+cp++jTNxchWXESXxOrn7VtAZDcz0vQ
+	ZZha0qgAvMoFsy2Ji0pj12VJKvTgWkGnkHKo/Ak+XqTBtRrjUEm4U+WOx7OcnaXpHjhf
+	0L1A==
+X-Gm-Message-State: AN3rC/4gmUMsUyhgeFwxk1nwIc+WnbEO9yAf9ENUuONnZvz82OZeglT6
+	CRNcYP9j8d7HQbBAVSxFvYIn+r/w1dcr
+X-Received: by 10.55.197.92 with SMTP id p89mr27277340qki.34.1493111163884;
+	Tue, 25 Apr 2017 02:06:03 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.103.45.195 with HTTP; Tue, 25 Apr 2017 01:30:20 -0700 (PDT)
-From: Kasper Revsbech <krevsbech@gmail.com>
-Date: Tue, 25 Apr 2017 10:30:20 +0200
-Message-ID: <CAKeNHOt29PATMW30qntKh-C45PB6U3bLOw0HYPs-VZkLYUPrJw@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: CMake module integration
+Received: by 10.140.44.116 with HTTP; Tue, 25 Apr 2017 02:06:03 -0700 (PDT)
+X-Originating-IP: [82.34.23.153]
+In-Reply-To: <alpine.DEB.2.21.1.1704242008400.4869@debian>
+References: <alpine.DEB.2.21.1.1704242008400.4869@debian>
+From: Paul Barker <pbarker@toganlabs.com>
+Date: Tue, 25 Apr 2017 10:06:03 +0100
+Message-ID: <CAPyrkgxrdCVB8pFSJ-AYoXqxwuHiPHUBo98izvCKMM-5h_5mVw@mail.gmail.com>
+To: alexis.lothore@gmail.com
+Cc: yocto@yoctoproject.org
+Subject: Re: Raspberry Pi 3 build issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,86 +68,92 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 25 Apr 2017 08:30:23 -0000
-Content-Type: multipart/alternative; boundary=f403043eed0cca0cc7054df98869
-
---f403043eed0cca0cc7054df98869
+X-List-Received-Date: Tue, 25 Apr 2017 09:06:08 -0000
 Content-Type: text/plain; charset=UTF-8
-
-Hi
-I am trying to include CPPCheck into Yocto to be used by CMake as a Cmake
-Module.
-Hence when building my application recipes that are based on using CMake
-build as build system, CPPCheck is performed.
-
-What I currently did, was:
-Making a recipe for CPPCheck to be used in the toolchain by:
-BBCLASSEXTEND = "native"
-This recipe is
-1) providing CPPCheck in the native toolchain,
-2) deploying a custom CMake module to allow the use of CPPCheck from CMake.
-These modules are placed in the native sysroot:
-sysroots/x86_64-linux/usr/share/cmake/Modules
-
-When reading the  cmake.bbclass (TAG: morty) i see that the module path is
-set to:
---
-# Use native cmake modules
-
-list(APPEND CMAKE_MODULE_PATH "${STAGING_DATADIR}/cmake/Modules/")
---
-However, when running CMake on a recipe the ${STAGING_DATADIR} is the
-target sysroot not the native sysroot.
-
-So the question is, if I am doing it wrong and should provide my
-CMakeModules in another way, and if yes how?
-Or if this is a bug and the STAGING_DATADIR should be the native sysroot
-and not the target sysroot?, hence:
-list(APPEND CMAKE_MODULE_PATH "${STAGING_DATADIR_NATIVE}/cmake/Modules/"
-
-Br
-Kasper Revsbech
-
---f403043eed0cca0cc7054df98869
-Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><span style=3D"font-size:12.8px">Hi</span><div style=3D"fo=
-nt-size:12.8px">I am trying to include CPPCheck into Yocto to be used by CM=
-ake as a Cmake Module.=C2=A0</div><div style=3D"font-size:12.8px">Hence whe=
-n building my application recipes that are based on using CMake build as bu=
-ild system, CPPCheck is performed.</div><div style=3D"font-size:12.8px"><br=
-></div><div style=3D"font-size:12.8px">What I currently did, was:</div><div=
- style=3D"font-size:12.8px">Making a recipe for CPPCheck to be used in the =
-toolchain by:=C2=A0</div><div style=3D"font-size:12.8px">BBCLASSEXTEND =3D =
-&quot;native&quot;<br></div><div style=3D"font-size:12.8px">This recipe is=
-=C2=A0</div><div style=3D"font-size:12.8px">1) providing CPPCheck in the na=
-tive toolchain,=C2=A0</div><div style=3D"font-size:12.8px">2) deploying a c=
-ustom CMake module to allow the use of CPPCheck from CMake. These modules a=
-re placed in the native sysroot:</div><div style=3D"font-size:12.8px">sysro=
-ots/x86_64-linux/usr/<wbr>share/cmake/Modules</div><div style=3D"font-size:=
-12.8px"><br></div><div style=3D"font-size:12.8px">When reading the =C2=A0cm=
-ake.bbclass (TAG: morty) i see that the module path is set to:</div><div st=
-yle=3D"font-size:12.8px">--</div><div style=3D"font-size:12.8px"># Use nati=
-ve cmake modules =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0=C2=A0<br></div><div style=3D"font-size:12.8px">list(APPEND CM=
-AKE_MODULE_PATH &quot;${STAGING_DATADIR}/cmake/<wbr>Modules/&quot;)=C2=A0</=
-div><div style=3D"font-size:12.8px">--</div><div style=3D"font-size:12.8px"=
->However, when running CMake on a recipe the ${STAGING_DATADIR} is the targ=
-et sysroot not the native sysroot.</div><div style=3D"font-size:12.8px"><br=
-></div><div style=3D"font-size:12.8px">So the question is, if I am doing it=
- wrong and should provide my CMakeModules in another way, and if yes how?</=
-div><div style=3D"font-size:12.8px">Or if this is a bug and the STAGING_DAT=
-ADIR should be the native sysroot and not the target sysroot?, hence:=C2=A0=
-</div><div><span style=3D"font-size:12.8px">list(APPEND CMAKE_MODULE_PATH &=
-quot;${STAGING_DATADIR_NATIVE}/cmake/Modules/&quot;</span></div><div style=
-=3D"font-size:12.8px"><br></div><div style=3D"font-size:12.8px">Br=C2=A0</d=
-iv><div style=3D"font-size:12.8px">Kasper Revsbech</div><div class=3D"gmail=
--yj6qo gmail-ajU" style=3D"margin:2px 0px 0px;font-size:12.8px"></div></div=
+On Mon, Apr 24, 2017 at 7:25 PM,  <alexis.lothore@gmail.com> wrote:
+> Hello,
+> I am currently encountering an issue with meta-raspberry and more
+> specifically Raspberry Pi 3 build. Since I was not sure the problem was
+> not my fault, I cloned a fresh copy of poky and meta-raspberrypi (both
+> checked out on morty, and meta dependencies on morty too), but the proble=
+m
+> is still appearing, trying to build the image rpi-hwup-image with BDISTRO
+> poky for MACHINE
+> raspberrypi3 :
 >
+> =E2=9E=9C build git:(morty) bitbake rpi-hwup-image
+> Loading cache: 100%
+> |########################################################################=
+###########################################################################=
+######################################################|
+> Time: 0:00:00
+> Loaded 2 entries from dependency cache.
+> WARNING:
+> /home/alexis/Projets/poky/meta-raspberrypi/recipes-kernel/linux/linux-ras=
+pberrypi_4.9.bb:
+> Exception during build_dependencies for PKG_kernel-image | ETA: --:--:--
+> WARNING:
+> /home/alexis/Projets/poky/meta-raspberrypi/recipes-kernel/linux/linux-ras=
+pberrypi_4.9.bb:
+> Error during finalise of
+> /home/alexis/Projets/poky/meta-raspberrypi/recipes-kernel/linux/linux-ras=
+pberrypi_4.9.bb
+> WARNING:
+> /home/alexis/Projets/poky/meta-raspberrypi/recipes-kernel/linux/linux-ras=
+pberrypi_4.4.bb:
+> Exception during build_dependencies for PKG_kernel-image
+> WARNING:
+> /home/alexis/Projets/poky/meta-raspberrypi/recipes-kernel/linux/linux-ras=
+pberrypi_4.4.bb:
+> Error during finalise of
+> /home/alexis/Projets/poky/meta-raspberrypi/recipes-kernel/linux/linux-ras=
+pberrypi_4.4.bb
+> ERROR: ExpansionError during parsing
+> /home/alexis/Projets/poky/meta-raspberrypi/recipes-kernel/linux/linux-ras=
+pberrypi_4.9.bb
+> Traceback (most recent call last):
+> bb.data_smart.ExpansionError: Failure expanding variable PKG_kernel-image=
+,
+> expression was
+> kernel-image-${@legitimize_package_name('${@get_kernelversion_headers('/h=
+ome/alexis/Projets/poky/build/tmp/work/raspberrypi3-poky-linux-gnueabi/linu=
+x-raspberrypi/1_4.9.21+git${SRCPV}-r0/linux-raspberrypi3-standard-build')}'=
+)}
+> which triggered exception SyntaxError: invalid syntax (PKG_kernel-image,
+> line 1)
+> Summary: There were 4 WARNING messages shown.
+> Summary: There was 1 ERROR message shown, returning a non-zero exit code.
+>
+> I am executing the build on an x86 machine with Debian 8.
+>
+> Unfortunately, since the problem seems to appear right at parsing, I
+> cannot get the exact variable expansion with bitbake -e. Apparently my
+> Yocto setup does not encounter the issue if I try the build for another
+> RPI target, like raspberrypi0. Any advice on how to troubleshoot this
+> issue ?
+> --
 
---f403043eed0cca0cc7054df98869--
+I've just tried to reproduce this using a fresh clone of poky and
+meta-raspberrypi on the morty branch. I edited bblayers.conf to add
+the meta-raspberrypi layer and then edited local.conf to set MACHINE =3D
+"raspberrypi3", those were my only changes. I then ran "bitbake
+rpi-hwup-image" and it's correctly parsed all the recipes and started
+the build.
+
+Which exact commits of poky and meta-raspberrypi are you using? I have
+the following:
+
+meta
+meta-poky
+meta-yocto-bsp    =3D "morty:924e576b8930fd2268d85f0b151e5f68a3c2afce"
+meta-raspberrypi  =3D "morty:28d4404f89eb59d406b4976c0e3f5ca19137ba74"
+
+Thanks,
+
+--=20
+Paul Barker
+Co-Founder & Principal Engineer
+Tog=C3=A1n Labs Ltd
+
