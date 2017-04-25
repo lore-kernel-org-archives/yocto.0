@@ -1,69 +1,61 @@
-Return-Path: <armccurdy@gmail.com>
+Return-Path: <krevsbech@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2C556E00AF0; Tue, 25 Apr 2017 00:45:19 -0700 (PDT)
+	id 020C6E00AE6; Tue, 25 Apr 2017 01:30:23 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (armccurdy[at]gmail.com)
+	mail provider *      (krevsbech[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [74.125.82.66 listed in list.dnswl.org]
+	*      [209.85.217.174 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.82.66 listed in dnsbl.sorbs.net]
-Received: from mail-wm0-f66.google.com (mail-wm0-f66.google.com [74.125.82.66])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4491EE00AE4
-	for <yocto@lists.yoctoproject.org>;
-	Tue, 25 Apr 2017 00:45:16 -0700 (PDT)
-Received: by mail-wm0-f66.google.com with SMTP id y10so11814661wmh.0
-	for <yocto@lists.yoctoproject.org>;
-	Tue, 25 Apr 2017 00:45:16 -0700 (PDT)
+Received: from mail-ua0-f174.google.com (mail-ua0-f174.google.com
+	[209.85.217.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F2309E00A9B
+	for <yocto@yoctoproject.org>; Tue, 25 Apr 2017 01:30:21 -0700 (PDT)
+Received: by mail-ua0-f174.google.com with SMTP id h2so127468533uaa.1
+	for <yocto@yoctoproject.org>; Tue, 25 Apr 2017 01:30:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=jIzVy4RMK1AQSgEnkLHTE3/pI4bS4sOx4DrH61Mmcss=;
-	b=Pzx2B1wqOIYokV5ygFmErOcvCIwOAqvqnSvpjiKazjyZPFk2/KKlp8rZExx6RVa5MU
-	eiOYt5oaNjIqwHkSrUjic8+WAEIS1rxwFG8KjlhCVo7dLaA0qmidqiwdMurYpycJIYlB
-	stWgXH5p0GRj0eT/6USlfnuFk5Wl7sqApz1Wxr1R39nZvSaNWdjjQGcuxQJHhn3RpTGe
-	wQ6nyVlplLbBCpqzKoINzfUetogKq6xUjeLmxKM+IFzKnD50uopzNIWailbtj3lzC46I
-	xDBRyiaOcumOMFGULuifuU+ix6eWYyLJFEGj4NleTfolz4GVDfbsQD5tVK2sDyalkDgv
-	05Sg==
+	h=mime-version:from:date:message-id:subject:to;
+	bh=RjBY/5q/dNRTMIXL1zpQ9nhngP6wyrE/lnkUZtEx8qY=;
+	b=ZNnYbfkGym/7ZOYhfRhhAhC27vN+jqn/R0iwLwiQjA570anS6x8moWJn8dr18RCGzv
+	hupwe4M2bNymuH7MMaV01DC2yDNswCxYvcZMIpArTCjDEtCOJhvwPbKgx/gW9ciiiM88
+	z5H9Kx7n9tbVVqBZWUqViUDbiQ5/o3AJFNxUP6FRbHjrEbLtm+b+NDYDGp+bvmjPlrbs
+	1JgUYmoFztk9O9HuWj6PTzDou8H1AeIMhy6PPULxp4DcfBwUM3wRDiDsNj6RAX0J/OwH
+	kkhSM2vTZRqhowmtzuwsq4E9qyiomxaTpIJa47Ui7BmdgORwaCFsUFfaJ1j7z2RU8nyO
+	9W3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=jIzVy4RMK1AQSgEnkLHTE3/pI4bS4sOx4DrH61Mmcss=;
-	b=JdU+K+jBobNDsEAiFDD15dZLbWYvjx5eTG++OOhPBKZLh06HNFTDnmLiu8QAzdMnPw
-	nYAAlCz29nnRb+dkjDbrY09fhtupaGkKxf9cik8YPRucOtfUU77o/j/SSTem4AW945DG
-	bNOmKK8nAWQMGOFrt8KUaIQh0WtSmd8brrXWWbnkQl9x7dTBfHRmNY1o+BMKfrEFqHZK
-	Q+ziDQdJ08ZylFID+7aghUaUkCkYPRBJEefOZG41VulXPyJfKddizm+LyHmaBy51uIIb
-	stC5yOJUwrZzpb2tXBSuPDnVRNq/yZuixQz5ej5q/5Dt5dNeOs0qtGBcTRDpgEkKDw03
-	qtMg==
-X-Gm-Message-State: AN3rC/7eKfdn/2dso88wqz2fEICd9RaS92avHCz6291IG+upRpyG77y0
-	OP2Tp7CM1prkVCbVwck3RxY0NtCBTA==
-X-Received: by 10.28.70.129 with SMTP id t123mr12203450wma.98.1493106316061;
-	Tue, 25 Apr 2017 00:45:16 -0700 (PDT)
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=RjBY/5q/dNRTMIXL1zpQ9nhngP6wyrE/lnkUZtEx8qY=;
+	b=NFekzWLvrc76wGLUwaPnsTOmIFvnJbZJM9/WRF5oFV03TQHoHOUT5KQiqHYRei+5+4
+	jlf97iB52E72E7eCb2yyNfntq2qFYc7ycI8e7CSEfesfEtDaeid6yaT/x9lb+FyzlaAa
+	45SX84bsIOZpRtB41GYwA3AecY8/hwfFhMJwstgSGWcUEsmrP7u4qWtH5ZFQK0BsDnik
+	Y8upID0ysgkLpi4uiZ9iGhOVv4hMu3mHcJ4KR/hSoHFc6dPMDopjDohgpvzfSmuXKFBE
+	SrfrHEkpiIVW/2W2fN5rv+JkgjgDQDhoHdd8gvTVMBeaZv+bJG6fbrL5phCQmSgDnkcd
+	XvsQ==
+X-Gm-Message-State: AN3rC/6ORiA9WS+MuT6nTZyd9Y1WS5p2pQu5oVeC7i3dxHuobTXxp87v
+	ays1R8eSpZznqhKW/eZqjj67H/TyzTOJdsY=
+X-Received: by 10.159.57.90 with SMTP id i26mr16278761uag.117.1493109020689;
+	Tue, 25 Apr 2017 01:30:20 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.223.172.100 with HTTP; Tue, 25 Apr 2017 00:45:15 -0700 (PDT)
-In-Reply-To: <4e2320d2-3683-e53a-a743-fca98ab2b23a@topic.nl>
-References: <20170420162022.20237-1-Martin.Jansa@gmail.com>
-	<20170424142954.21979-1-Martin.Jansa@gmail.com>
-	<4e2320d2-3683-e53a-a743-fca98ab2b23a@topic.nl>
-From: Andre McCurdy <armccurdy@gmail.com>
-Date: Tue, 25 Apr 2017 00:45:15 -0700
-Message-ID: <CAJ86T=XbwjCd0v=35kxxMhfJdtq5wxqJY70z5p=Z+KkXCuaTYw@mail.gmail.com>
-To: Mike Looijmans <mike.looijmans@topic.nl>
-Cc: yocto@lists.yoctoproject.org
-Subject: Re: [PATCHv2][meta-gplv2] gnutls: add older gnutls compatible with nettle
+Received: by 10.103.45.195 with HTTP; Tue, 25 Apr 2017 01:30:20 -0700 (PDT)
+From: Kasper Revsbech <krevsbech@gmail.com>
+Date: Tue, 25 Apr 2017 10:30:20 +0200
+Message-ID: <CAKeNHOt29PATMW30qntKh-C45PB6U3bLOw0HYPs-VZkLYUPrJw@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: CMake module integration
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,141 +67,86 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 25 Apr 2017 07:45:19 -0000
+X-List-Received-Date: Tue, 25 Apr 2017 08:30:23 -0000
+Content-Type: multipart/alternative; boundary=f403043eed0cca0cc7054df98869
+
+--f403043eed0cca0cc7054df98869
 Content-Type: text/plain; charset=UTF-8
 
-On Mon, Apr 24, 2017 at 10:20 PM, Mike Looijmans
-<mike.looijmans@topic.nl> wrote:
-> On 24-04-17 16:29, Martin Jansa wrote:
->>
->> * gnutls depends on nettle-3.1* since 3.4.0:
->>   The requirement for nettle was bumped from 3.0 to 3.1 in gnutls_3_4_0
->>
->> https://gitlab.com/gnutls/gnutls/commit/c84129af91b21d33ffe086e507632771b0e76498
->>   and from 2.7 to 3.0 a bit earlier also in gnutls_3_4_0
->>
->> https://gitlab.com/gnutls/gnutls/commit/3fa80cf68919f07b3351b2722278ba463d6e731c
->> * add recipe for last release in 3.3 branch which is compatible
->>   with nettle 2.7.1 used in meta-gplv2
->>
->> Signed-off-by: Martin Jansa <Martin.Jansa@gmail.com>
->> ---
->>  .../gnutls/configure.ac-fix-sed-command.patch      | 31
->> ++++++++++++++++++++++
->>  recipes-support/gnutls/gnutls_3.3.27.bb            | 23 ++++++++++++++++
->>  2 files changed, 54 insertions(+)
->>  create mode 100644
->> recipes-support/gnutls/gnutls/configure.ac-fix-sed-command.patch
->>  create mode 100644 recipes-support/gnutls/gnutls_3.3.27.bb
->>
->> diff --git
->> a/recipes-support/gnutls/gnutls/configure.ac-fix-sed-command.patch
->> b/recipes-support/gnutls/gnutls/configure.ac-fix-sed-command.patch
->> new file mode 100644
->> index 0000000..44a9934
->> --- /dev/null
->> +++ b/recipes-support/gnutls/gnutls/configure.ac-fix-sed-command.patch
->> @@ -0,0 +1,31 @@
->> +From eb93aa7b986c84da60a3db40afb29d1a70c50223 Mon Sep 17 00:00:00 2001
->> +From: Robert Yang <liezhi.yang@windriver.com>
->> +Date: Sat, 17 Jan 2015 17:02:15 +0000
->> +Subject: [PATCH] configure.ac: fix sed command
->> +
->> +The "sed 's/.bak//g'" matchs "bitbake", which would cause strange errors
->> +when the S contains "bitbake", fix to "sed 's/\.bak$//'`"
->> +
->> +Upstream-Status: Pending
->> +
->> +Signed-off-by: Robert Yang <liezhi.yang@windriver.com>
->> +---
->> + configure.ac | 2 +-
->> + 1 file changed, 1 insertion(+), 1 deletion(-)
->> +
->> +diff --git a/configure.ac b/configure.ac
->> +index c6818a0..1c4582d 100644
->> +--- a/configure.ac
->> ++++ b/configure.ac
->> +@@ -466,7 +466,7 @@ if test "$NEED_LIBOPTS_DIR" = "true";then
->> +       dnl replace libopts-generated files with distributed backups, if
->> present
->> +       missing_baks=
->> +       for i in ${srcdir}/src/*-args.c.bak ${srcdir}/src/*-args.h.bak; do
->> +-              nam=`echo $i|sed 's/.bak//g'`
->> ++              nam=`echo $i|sed 's/\.bak$//'`
->
-> How about:
->  nam=`basename $i .bak`
+Hi
+I am trying to include CPPCheck into Yocto to be used by CMake as a Cmake
+Module.
+Hence when building my application recipes that are based on using CMake
+build as build system, CPPCheck is performed.
 
-This patch is a rebased version of the one in oe-core, so the oe-core
-version should probably be the first candidate for any such
-improvements.
+What I currently did, was:
+Making a recipe for CPPCheck to be used in the toolchain by:
+BBCLASSEXTEND = "native"
+This recipe is
+1) providing CPPCheck in the native toolchain,
+2) deploying a custom CMake module to allow the use of CPPCheck from CMake.
+These modules are placed in the native sysroot:
+sysroots/x86_64-linux/usr/share/cmake/Modules
 
->> +               if test -f $i;then
->> +                       cp -f $i $nam
->> +               else
->> +--
->> +2.0.1
->> +
->> diff --git a/recipes-support/gnutls/gnutls_3.3.27.bb
->> b/recipes-support/gnutls/gnutls_3.3.27.bb
->> new file mode 100644
->> index 0000000..c98da34
->> --- /dev/null
->> +++ b/recipes-support/gnutls/gnutls_3.3.27.bb
->> @@ -0,0 +1,23 @@
->> +require recipes-support/gnutls/gnutls.inc
->> +
->> +LIC_FILES_CHKSUM = "file://COPYING;md5=d32239bcb673463ab874e80d47fae504 \
->> +
->> file://COPYING.LESSER;md5=a6f89e2100d9b6cdffcea4f398e37343"
->> +
->> +FILESEXTRAPATHS_prepend =
->> "${COREBASE}/meta/recipes-support/${BPN}/${BPN}:"
->> +
->> +SRC_URI += " \
->> +    file://correct_rpl_gettimeofday_signature.patch \
->> +    file://configure.ac-fix-sed-command.patch \
->> +    file://use-pkg-config-to-locate-zlib.patch \
->> +"
->> +SRC_URI[md5sum] = "8ee8cebd7f7575b11f232766a21c31d3"
->> +SRC_URI[sha256sum] =
->> "8dfda16c158ef5c134010d51d1a91d02aa5d43b8cb711b1572650a7ffb56b17f"
->> +
->> +# This version doesn't support this option added in newer gnutls
->> +# ERROR: gnutls-3.3.27-r0 do_configure: QA Issue: gnutls: configure was
->> passed unrecognised options: --with-idn [unknown-configure-option]
->> +PACKAGECONFIG[libidn] = ""
->> +# but it still has the libidn dependency, without this option
->> +EXTRA_OECONF += "--disable-crywrap"
->> +
->> +# This version doesn't support this option added in newer gnutls
->> +EXTRA_OECONF_remove = "--without-libunistring-prefix"
->>
->
->
->
-> Kind regards,
->
-> Mike Looijmans
-> System Expert
->
-> TOPIC Products
-> Materiaalweg 4, NL-5681 RJ Best
-> Postbus 440, NL-5680 AK Best
-> Telefoon: +31 (0) 499 33 69 79
-> E-mail: mike.looijmans@topicproducts.com
-> Website: www.topicproducts.com
->
-> Please consider the environment before printing this e-mail
->
->
->
->
->
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+When reading the  cmake.bbclass (TAG: morty) i see that the module path is
+set to:
+--
+# Use native cmake modules
 
+list(APPEND CMAKE_MODULE_PATH "${STAGING_DATADIR}/cmake/Modules/")
+--
+However, when running CMake on a recipe the ${STAGING_DATADIR} is the
+target sysroot not the native sysroot.
+
+So the question is, if I am doing it wrong and should provide my
+CMakeModules in another way, and if yes how?
+Or if this is a bug and the STAGING_DATADIR should be the native sysroot
+and not the target sysroot?, hence:
+list(APPEND CMAKE_MODULE_PATH "${STAGING_DATADIR_NATIVE}/cmake/Modules/"
+
+Br
+Kasper Revsbech
+
+--f403043eed0cca0cc7054df98869
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><span style=3D"font-size:12.8px">Hi</span><div style=3D"fo=
+nt-size:12.8px">I am trying to include CPPCheck into Yocto to be used by CM=
+ake as a Cmake Module.=C2=A0</div><div style=3D"font-size:12.8px">Hence whe=
+n building my application recipes that are based on using CMake build as bu=
+ild system, CPPCheck is performed.</div><div style=3D"font-size:12.8px"><br=
+></div><div style=3D"font-size:12.8px">What I currently did, was:</div><div=
+ style=3D"font-size:12.8px">Making a recipe for CPPCheck to be used in the =
+toolchain by:=C2=A0</div><div style=3D"font-size:12.8px">BBCLASSEXTEND =3D =
+&quot;native&quot;<br></div><div style=3D"font-size:12.8px">This recipe is=
+=C2=A0</div><div style=3D"font-size:12.8px">1) providing CPPCheck in the na=
+tive toolchain,=C2=A0</div><div style=3D"font-size:12.8px">2) deploying a c=
+ustom CMake module to allow the use of CPPCheck from CMake. These modules a=
+re placed in the native sysroot:</div><div style=3D"font-size:12.8px">sysro=
+ots/x86_64-linux/usr/<wbr>share/cmake/Modules</div><div style=3D"font-size:=
+12.8px"><br></div><div style=3D"font-size:12.8px">When reading the =C2=A0cm=
+ake.bbclass (TAG: morty) i see that the module path is set to:</div><div st=
+yle=3D"font-size:12.8px">--</div><div style=3D"font-size:12.8px"># Use nati=
+ve cmake modules =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0=C2=A0<br></div><div style=3D"font-size:12.8px">list(APPEND CM=
+AKE_MODULE_PATH &quot;${STAGING_DATADIR}/cmake/<wbr>Modules/&quot;)=C2=A0</=
+div><div style=3D"font-size:12.8px">--</div><div style=3D"font-size:12.8px"=
+>However, when running CMake on a recipe the ${STAGING_DATADIR} is the targ=
+et sysroot not the native sysroot.</div><div style=3D"font-size:12.8px"><br=
+></div><div style=3D"font-size:12.8px">So the question is, if I am doing it=
+ wrong and should provide my CMakeModules in another way, and if yes how?</=
+div><div style=3D"font-size:12.8px">Or if this is a bug and the STAGING_DAT=
+ADIR should be the native sysroot and not the target sysroot?, hence:=C2=A0=
+</div><div><span style=3D"font-size:12.8px">list(APPEND CMAKE_MODULE_PATH &=
+quot;${STAGING_DATADIR_NATIVE}/cmake/Modules/&quot;</span></div><div style=
+=3D"font-size:12.8px"><br></div><div style=3D"font-size:12.8px">Br=C2=A0</d=
+iv><div style=3D"font-size:12.8px">Kasper Revsbech</div><div class=3D"gmail=
+-yj6qo gmail-ajU" style=3D"margin:2px 0px 0px;font-size:12.8px"></div></div=
+>
+
+--f403043eed0cca0cc7054df98869--
