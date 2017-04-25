@@ -1,64 +1,67 @@
-Return-Path: <thieldev@gmail.com>
+Return-Path: <prvs=02881bdfd6=mike.looijmans@topicproducts.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 00BCEE00AF4; Mon, 24 Apr 2017 22:53:22 -0700 (PDT)
+	id CD60CE00AF4; Mon, 24 Apr 2017 23:34:56 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE, 
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (thieldev[at]gmail.com)
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.215.53 listed in dnsbl.sorbs.net]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [95.211.112.140 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.215.53 listed in list.dnswl.org]
-Received: from mail-lf0-f53.google.com (mail-lf0-f53.google.com
-	[209.85.215.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8A1F1E00AE6
-	for <yocto@yoctoproject.org>; Mon, 24 Apr 2017 22:53:19 -0700 (PDT)
-Received: by mail-lf0-f53.google.com with SMTP id 75so84767630lfs.2
-	for <yocto@yoctoproject.org>; Mon, 24 Apr 2017 22:53:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=bvgGB00ZKbiw/j+uW07o6rdRMrowX1uP731gGoY0oBY=;
-	b=p2iNwYlfNU25+o8+Dn8KJhGDCMsreGTrmMP4NNNA5n6+qQH+pX8i9REaZV99JtD/Re
-	pMAOYaMvxIZj1bXA3Mwus0wayaY982aXrRMyn9qhmEPTp3lCaKc7Nm48T8Z8Vsdfili2
-	Vk7AbiFJh+kDFGLIX9hmLVARwql2S1JZeoHVNFqNSc1z1Dcub70f8G1o06cqRsy42cbG
-	47FM7SpUaBOhZIs47k2SCrPBqjLGXJMHGxTDwHIQI17bwmM8QBg1DFiY5jBgtltJTMbL
-	4135A2TGFlP28fFkylkfjclRfH4GwfXOQAsLyb5FmJKTBfPcRWGWlh2ggokIRnJ8ob2c
-	Q6zQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=bvgGB00ZKbiw/j+uW07o6rdRMrowX1uP731gGoY0oBY=;
-	b=YIMrrsWKl9aZGHZruA+quQ4xk1LhgzdXjs801JsQHfW4g6ePlEMpyfMDySby3RoZMh
-	3DBZZoRJJofa+QKSU0XTAUjnn31isWUcCySRWAXJgzDPTr/eBFsLnNaSTgF+0NgEJU76
-	/0EX9Hz4KkjEGRO2DDisxLy+Dxib/OBO9OAd1jfN/Px8pv5WDALm3UoX/B80KLVxEC7D
-	mNZSL03+5P+y0zTnF0nxPg7sXXnoJbKITMgP4bvbrxhFoUbDjox7yznqdEiFYn4hFIni
-	XDbMD8mRLvMakvcKY9W42hB+CXfvsTynmGp1hLMpdrqqbjLflqKhIMyTTZjvjkPb3k0T
-	9LRA==
-X-Gm-Message-State: AN3rC/5rjKS2JUooaRsq1luhBaMfqoTAueNbR//Dp/t5M8pJBi24tYsv
-	7vISptFnIZ/glsjyeijXJWZU2qj0wQXkMdc=
-X-Received: by 10.46.22.17 with SMTP id w17mr8971910ljd.86.1493099598051; Mon,
-	24 Apr 2017 22:53:18 -0700 (PDT)
+X-Greylist: delayed 4450 seconds by postgrey-1.32 at yocto-www;
+	Mon, 24 Apr 2017 23:34:53 PDT
+Received: from mx5-04.smtp.antispamcloud.com (mx5-04.smtp.antispamcloud.com
+	[95.211.112.140])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BE0FEE00AE6
+	for <yocto@lists.yoctoproject.org>;
+	Mon, 24 Apr 2017 23:34:53 -0700 (PDT)
+Received: from [37.74.225.130] (helo=TOP-EX01.TOPIC.LOCAL)
+	by mx5.antispamcloud.com with esmtps (TLSv1:ECDHE-RSA-AES128-SHA:128)
+	(Exim 4.86) (envelope-from <mike.looijmans@topicproducts.com>)
+	id 1d2stv-0003BR-RJ; Tue, 25 Apr 2017 07:20:36 +0200
+Received: from [192.168.80.121] (192.168.80.121) by webmail.topic.nl
+	(192.168.10.102) with Microsoft SMTP Server id 14.3.224.2;
+	Tue, 25 Apr 2017 07:20:34 +0200
+To: Martin Jansa <martin.jansa@gmail.com>, <yocto@lists.yoctoproject.org>
+References: <20170420162022.20237-1-Martin.Jansa@gmail.com>
+	<20170424142954.21979-1-Martin.Jansa@gmail.com>
+From: Mike Looijmans <mike.looijmans@topic.nl>
+Organization: TOPIC
+Message-ID: <4e2320d2-3683-e53a-a743-fca98ab2b23a@topic.nl>
+Date: Tue, 25 Apr 2017 07:20:35 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.7.0
 MIME-Version: 1.0
-Received: by 10.25.234.92 with HTTP; Mon, 24 Apr 2017 22:53:17 -0700 (PDT)
-From: Malte Thiel <thieldev@gmail.com>
-Date: Tue, 25 Apr 2017 07:53:17 +0200
-Message-ID: <CAJ5fcV09oAowofNxyneK6QuetLDt3a9MxSuvRT7R-WUMhrLp_g@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: Add own dts file to arch/arm/boot/dts
+In-Reply-To: <20170424142954.21979-1-Martin.Jansa@gmail.com>
+X-Originating-IP: [192.168.80.121]
+X-EXCLAIMER-MD-CONFIG: 9833cda7-5b21-4d34-9a38-8d025ddc3664
+X-EXCLAIMER-MD-BIFURCATION-INSTANCE: 0
+X-Originating-IP: 37.74.225.130
+X-SpamExperts-Domain: topic.nl
+X-SpamExperts-Username: 37.74.225.128/28
+Authentication-Results: antispamcloud.com;
+	auth=pass smtp.auth=37.74.225.128/28@topic.nl
+X-SpamExperts-Outgoing-Class: ham
+X-SpamExperts-Outgoing-Evidence: SB/global_tokens (0.00373463603078)
+X-Recommended-Action: accept
+X-Filter-ID: s0sct1PQhAABKnZB5plbIbbvfIHzQjPVmPLZeVYSu3xU9luQrU+8/8qthi+0Jd/W/95+6ZE6dI+d
+	FNTaLLKrTD4PkK8WOoKuw32u9iEtZmisSr42qUwvK7U11fJ5smF5bE7GwnNXTE7JFCR1ojdwNNWh
+	Akiqthr2GPQrLGksqFAmq4pa+ISQPcjh5m8F8r10v6jaRShsLzQjYzqmB8yx3mbjO41FyBEqIaDu
+	dcVplPGNaieKxw/vh63RdlaW2Zj1hcQD6Dxo9kokFZNwiacNPxeTCKssqlJePCDBHWfCYUvWOATT
+	vnG+QUCcfrSs6FZc7tZ3vKwSN7Mv0HNteAusUZ8BuYwGqmI8Tx/Ism0pnCcmlWACu0WC7nIKSPYV
+	aBAANeo6Hr4UJMIZEVOGlXeApA3I626B4k1VCg2pmPRu/tvWqbHjoSsKzb0xSHmdZggDL7YMdryk
+	AcR9VxnZfbxQ1r3upx1n/FUf/NwbTI+uRoXlWvXEyVXmV1DcCGMoc6ig/SVaKi0jvtxxX4zA29pu
+	2ONYQFX+rhdRbxagFZk9QeU7sEKSfUWHty4XO0JvVoTKUz0sPgnpAk2KA2vJwMd1uVp/3TgIM4oj
+	TBFr687rGjvGLWY+MgHYxfRtKtuAsj1l++DuIQUs/5JJj4C/n4CILo0QSzGNvD+RngRrZomAbi+I
+	zFFbdmFRdTAoG6SY1sg8WZMQHZerjzK9EzjaFAkBJjQB58XtL2OmUgcwtsJrsd9thWJcDArBQLlQ
+	+zm4f1mvd1VPQgOyF0VU5Apg2BGZWUHvm3Pq/TMVhLiLVSlbDnJRp6u8pvhScfA/A8cvIbAoat8L
+	S2e4SlwewFA6IsrEu+8FlMDlS0F+Xe5yN1w7xOM+N/va7eJfVmRiUj5eV7t2WXisEhouQOnJvApe
+	rtAfTgwUMLkhMj+HvXPzRQ5NOto=
+X-Report-Abuse-To: spam@quarantine2.antispamcloud.com
+Subject: Re: [PATCHv2][meta-gplv2] gnutls: add older gnutls compatible with nettle
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,46 +73,130 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 25 Apr 2017 05:53:23 -0000
-Content-Type: multipart/alternative; boundary=94eb2c1b413a2801cf054df7572b
-
---94eb2c1b413a2801cf054df7572b
-Content-Type: text/plain; charset=UTF-8
-
-Good day,
-
-How can I add my own dts file to the arch/arm/boot/dts folder? Within my
-yocto installation the whole path for the dts files is:
-
-tmp/work/sm2_imx6-poky-linux-gnueabi/linux-yocto-custom/4.1.15-2/git/arch/arm/boot/dts
-
-As you can see it lies within the "tmp" folder. Hence, I do not want to
-copy it manually into this branch. I tried playing around with
-"appendsrcfiles" while creating an extra recipe "add-screen-dts":
-
-
-recipetool appendsrcfiles --destdir arch/arm/boot/dts
-../../sources/meta-own add-screen-dts
-../../sources/meta-own/recipes-own/images/sm2-imx6-133-1280x800-single-lvds-SCX1001255GGU17.dts
-
-However, I do not have any success here. Thanks for helping me out!
-
---94eb2c1b413a2801cf054df7572b
-Content-Type: text/html; charset=UTF-8
+X-List-Received-Date: Tue, 25 Apr 2017 06:34:56 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Good day,<div><br></div><div>How can I add my own dts file=
- to the=C2=A0arch/arm/boot/dts folder? Within my yocto installation the who=
-le path for the dts files is:</div><div><br></div><div>tmp/work/sm2_imx6-po=
-ky-linux-gnueabi/linux-yocto-custom/4.1.15-2/git/arch/arm/boot/dts<br></div=
-><div><br></div><div>As you can see it lies within the &quot;tmp&quot; fold=
-er. Hence, I do not want to copy it manually into this branch. I tried play=
-ing around with &quot;appendsrcfiles&quot; while creating an extra recipe &=
-quot;add-screen-dts&quot;:</div><div><br></div><div><br></div><div>recipeto=
-ol appendsrcfiles --destdir arch/arm/boot/dts =C2=A0 ../../sources/meta-own=
- add-screen-dts ../../sources/meta-own/recipes-own/images/sm2-imx6-133-1280=
-x800-single-lvds-SCX1001255GGU17.dts<br></div><div><br></div><div>However, =
-I do not have any success here. Thanks for helping me out!</div><div><br></=
-div></div>
+=EF=BB=BFOn 24-04-17 16:29, Martin Jansa wrote:
+> * gnutls depends on nettle-3.1* since 3.4.0:
+>   The requirement for nettle was bumped from 3.0 to 3.1 in gnutls_3_4_0
+>   https://gitlab.com/gnutls/gnutls/commit/c84129af91b21d33ffe086e50763277=
+1b0e76498
+>   and from 2.7 to 3.0 a bit earlier also in gnutls_3_4_0
+>   https://gitlab.com/gnutls/gnutls/commit/3fa80cf68919f07b3351b2722278ba4=
+63d6e731c
+> * add recipe for last release in 3.3 branch which is compatible
+>   with nettle 2.7.1 used in meta-gplv2
+>
+> Signed-off-by: Martin Jansa <Martin.Jansa@gmail.com>
+> ---
+>  .../gnutls/configure.ac-fix-sed-command.patch      | 31 ++++++++++++++++=
+++++++
+>  recipes-support/gnutls/gnutls_3.3.27.bb            | 23 ++++++++++++++++
+>  2 files changed, 54 insertions(+)
+>  create mode 100644 recipes-support/gnutls/gnutls/configure.ac-fix-sed-co=
+mmand.patch
+>  create mode 100644 recipes-support/gnutls/gnutls_3.3.27.bb
+>
+> diff --git a/recipes-support/gnutls/gnutls/configure.ac-fix-sed-command.p=
+atch b/recipes-support/gnutls/gnutls/configure.ac-fix-sed-command.patch
+> new file mode 100644
+> index 0000000..44a9934
+> --- /dev/null
+> +++ b/recipes-support/gnutls/gnutls/configure.ac-fix-sed-command.patch
+> @@ -0,0 +1,31 @@
+> +From eb93aa7b986c84da60a3db40afb29d1a70c50223 Mon Sep 17 00:00:00 2001
+> +From: Robert Yang <liezhi.yang@windriver.com>
+> +Date: Sat, 17 Jan 2015 17:02:15 +0000
+> +Subject: [PATCH] configure.ac: fix sed command
+> +
+> +The "sed 's/.bak//g'" matchs "bitbake", which would cause strange errors
+> +when the S contains "bitbake", fix to "sed 's/\.bak$//'`"
+> +
+> +Upstream-Status: Pending
+> +
+> +Signed-off-by: Robert Yang <liezhi.yang@windriver.com>
+> +---
+> + configure.ac | 2 +-
+> + 1 file changed, 1 insertion(+), 1 deletion(-)
+> +
+> +diff --git a/configure.ac b/configure.ac
+> +index c6818a0..1c4582d 100644
+> +--- a/configure.ac
+> ++++ b/configure.ac
+> +@@ -466,7 +466,7 @@ if test "$NEED_LIBOPTS_DIR" =3D "true";then
+> + 	dnl replace libopts-generated files with distributed backups, if prese=
+nt
+> + 	missing_baks=3D
+> + 	for i in ${srcdir}/src/*-args.c.bak ${srcdir}/src/*-args.h.bak; do
+> +-		nam=3D`echo $i|sed 's/.bak//g'`
+> ++		nam=3D`echo $i|sed 's/\.bak$//'`
 
---94eb2c1b413a2801cf054df7572b--
+How about:
+  nam=3D`basename $i .bak`
+
+
+> + 		if test -f $i;then
+> + 			cp -f $i $nam
+> + 		else
+> +--
+> +2.0.1
+> +
+> diff --git a/recipes-support/gnutls/gnutls_3.3.27.bb b/recipes-support/gn=
+utls/gnutls_3.3.27.bb
+> new file mode 100644
+> index 0000000..c98da34
+> --- /dev/null
+> +++ b/recipes-support/gnutls/gnutls_3.3.27.bb
+> @@ -0,0 +1,23 @@
+> +require recipes-support/gnutls/gnutls.inc
+> +
+> +LIC_FILES_CHKSUM =3D "file://COPYING;md5=3Dd32239bcb673463ab874e80d47fae=
+504 \
+> +                    file://COPYING.LESSER;md5=3Da6f89e2100d9b6cdffcea4f3=
+98e37343"
+> +
+> +FILESEXTRAPATHS_prepend =3D "${COREBASE}/meta/recipes-support/${BPN}/${B=
+PN}:"
+> +
+> +SRC_URI +=3D " \
+> +    file://correct_rpl_gettimeofday_signature.patch \
+> +    file://configure.ac-fix-sed-command.patch \
+> +    file://use-pkg-config-to-locate-zlib.patch \
+> +"
+> +SRC_URI[md5sum] =3D "8ee8cebd7f7575b11f232766a21c31d3"
+> +SRC_URI[sha256sum] =3D "8dfda16c158ef5c134010d51d1a91d02aa5d43b8cb711b15=
+72650a7ffb56b17f"
+> +
+> +# This version doesn't support this option added in newer gnutls
+> +# ERROR: gnutls-3.3.27-r0 do_configure: QA Issue: gnutls: configure was =
+passed unrecognised options: --with-idn [unknown-configure-option]
+> +PACKAGECONFIG[libidn] =3D ""
+> +# but it still has the libidn dependency, without this option
+> +EXTRA_OECONF +=3D "--disable-crywrap"
+> +
+> +# This version doesn't support this option added in newer gnutls
+> +EXTRA_OECONF_remove =3D "--without-libunistring-prefix"
+>
+
+
+
+Kind regards,
+
+Mike Looijmans
+System Expert
+
+TOPIC Products
+Materiaalweg 4, NL-5681 RJ Best
+Postbus 440, NL-5680 AK Best
+Telefoon: +31 (0) 499 33 69 79
+E-mail: mike.looijmans@topicproducts.com
+Website: www.topicproducts.com
+
+Please consider the environment before printing this e-mail
+
+
+
+
+
+
