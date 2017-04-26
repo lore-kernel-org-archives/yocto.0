@@ -1,68 +1,74 @@
-Return-Path: <thieldev@gmail.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 07385E00B03; Wed, 26 Apr 2017 01:56:11 -0700 (PDT)
+	id C9A39E00B72; Wed, 26 Apr 2017 02:45:00 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (thieldev[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.215.41 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.220.176 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-lf0-f41.google.com (mail-lf0-f41.google.com
-	[209.85.215.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9C985E00867
-	for <yocto@yoctoproject.org>; Wed, 26 Apr 2017 01:56:07 -0700 (PDT)
-Received: by mail-lf0-f41.google.com with SMTP id c80so103935027lfh.3
-	for <yocto@yoctoproject.org>; Wed, 26 Apr 2017 01:56:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.220.176 listed in list.dnswl.org]
+Received: from mail-qk0-f176.google.com (mail-qk0-f176.google.com
+	[209.85.220.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5F977E00B01
+	for <yocto@yoctoproject.org>; Wed, 26 Apr 2017 02:44:48 -0700 (PDT)
+Received: by mail-qk0-f176.google.com with SMTP id u75so69879259qka.3
+	for <yocto@yoctoproject.org>; Wed, 26 Apr 2017 02:44:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=0v/F0JENFKw7/9tmmzi9y7t4jVbDEGQQiPTbpElfwYo=;
-	b=YnzNmiZTsxzf78F4CdVterEWPDKxG7wDZZ/u1WflnXjhkVxGYC8pAWDhBfJsVALyXd
-	y3Sb/y52qJQcnu8dVKdoac3oy2ACcyA0QNKnCncXlCpzqSZQTLLp1FO/joYVvlNbZON5
-	xbCvtrNbVpzRmis4kcon4qmXVQSpHv6FLLWonVxmK7KqOgbjpSr4N4P9EKf3mecv4yT1
-	JJf33O07b/Z76LDg2yKhl8BZMMaDEjUm8wxaWaT5/nuT0AqgYPjEjG9qzDvLphSNxkRy
-	jPGDjocGwZBdmpBRTo7Nt7rPSQ5yFWhFmVFr8kg/PSgcV9nJFY/J94mcvMp0Q3JRiulH
-	vS6w==
+	:cc; bh=CfMxsqaV9qEOqfZ+h5ZF8I8DruD1SPrYRcg0hHwClvc=;
+	b=1C3uRmV3Q75XH6N0LafUZD1VIxRmmj+sSkbuwEusLgIkASLUWpOsDaZq6tX09KmzMa
+	q/2w78/3toWpz6h+2jtTFZfL67kfef1fnfqOjy3yziLU2psB3JRRYxkbTKz94mm43z6x
+	xyC0AwxMvKnVM1M4phWwFB2iOmSgb7kB3/NdslxTjcQ457IfCwKr3TX37rA+Uq2sgyOt
+	SPbk6lEqAmUQ6eRffSPztuxpITnjmSkqtvkrUobgNAwRXiw143tEMiacKjb1WrwSeLMJ
+	T38ZO7aCRr5Yi+bofOVk9CkZmjYQQ4M1ZqtjaDNydLms0Jw/iL9t9j8hNWOhJtBgVOeC
+	S5yw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=0v/F0JENFKw7/9tmmzi9y7t4jVbDEGQQiPTbpElfwYo=;
-	b=e+HpsMvr+XbKC1Vqeq80syeU9+vQCXJjnyUZKw+WKVzH6HaXJ2lG3E6/g0Y6ALjeJF
-	OSR2hOKG52bAWUus37c34Avaj1vBpK0Kt64YM5LCnONT4iunMy3CtXAnGlsiqpGqB4Lk
-	tPhR/9T8VB+7+q5nwriOBfVOOXHaQ6NpNiYawVkS4TC0zKpQ4MolwHyJf+6RQutDS0ud
-	X8rvc44gZY3MGO+1TbLHFeHkIKUMHFFBKzklCFlQiI2sJeqM0CqWhvyIRnnxSQTFQx3F
-	sjXcfRaat/B03cJlT9YSX4G2kczsJ2eZhnGby8eUMXNF2Km3rh0I51/YY2vIh8N1kkj2
-	6xCw==
-X-Gm-Message-State: AN3rC/7whXzlcBrqWN6rAB3RxbrEKn/iEAX1hpkSApQE4CFN6KwaurJm
-	znm6bTll+6f8cbAE963M6DqRzaXHIg==
-X-Received: by 10.25.157.210 with SMTP id g201mr10136473lfe.13.1493196966255; 
-	Wed, 26 Apr 2017 01:56:06 -0700 (PDT)
+	bh=CfMxsqaV9qEOqfZ+h5ZF8I8DruD1SPrYRcg0hHwClvc=;
+	b=R3XCMeJGiF3J1Q4Q4T6ItAFCkfEveIqejipP/mbwxDg0F9iUGqMIpLJMlP5yyWE8Sl
+	GEtQXYGX1sQLK9MQDDmflC+jSU81FfJhOUQsjAGqS7eo4B9KgsO3I+3eWQyJansDKIpd
+	8K1K8H5qqKOA1N+ZPmOuIa4HSLowRNX2qOAP2tZ8874H8RWrEZC9TEicVCh96gb9a8Kl
+	bV/nn30DRBOG4pTeF0QtTd+CFc022lT04magkwJZ/pp1IF0JQ2kHSWSotBBVTmpRP8oy
+	5aSb1u5hTjSf1qPTepEetSyKGjcelEgSTglWT3sq2ExrMiidRXJ2REyPKGD1QBbLKVAU
+	PzRQ==
+X-Gm-Message-State: AN3rC/6NCNqfYw8AcPSHbbXJ7Oc9PJ01+4wOtOSQDxrqKD9LeJbth8Vk
+	qbhMDwBzbSN9J0824djh+MbN85JL+TE0
+X-Received: by 10.55.17.224 with SMTP id 93mr32046749qkr.244.1493199887516;
+	Wed, 26 Apr 2017 02:44:47 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.25.234.92 with HTTP; Wed, 26 Apr 2017 01:56:05 -0700 (PDT)
-In-Reply-To: <CA+chaQcA5sMZqmA6q_P=ZPZgzLR=H+16twTSp8bi1zgsYP-HuA@mail.gmail.com>
-References: <CAJ5fcV3r3TrPsGsjYN0RpR8VJ6FnpRMFZ+hptzU8Ua1Aae3NkQ@mail.gmail.com>
-	<f67e44c8-51ab-5812-c924-5e431085f09e@xevo.com>
-	<CAJ5fcV19Om5Z6Yf9uyqXjeRG=M3yDRCGWKpsTZLPpB3P0ScXhQ@mail.gmail.com>
-	<CA+chaQcA5sMZqmA6q_P=ZPZgzLR=H+16twTSp8bi1zgsYP-HuA@mail.gmail.com>
-From: Malte Thiel <thieldev@gmail.com>
-Date: Wed, 26 Apr 2017 10:56:05 +0200
-Message-ID: <CAJ5fcV1nO3G61uwYxuzC7g3BpQmiafMAB4QkFp=m61RPWfpwyg@mail.gmail.com>
-To: Martin Jansa <martin.jansa@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Qt 5.8: do_rootfs: File 'qtdeclarative-plugins' not found
+Received: by 10.140.22.166 with HTTP; Wed, 26 Apr 2017 02:44:27 -0700 (PDT)
+In-Reply-To: <87fugwyv28.fsf@largeson.i-did-not-set--mail-host-address--so-tickle-me>
+References: <CAMKF1spGM+kugUDOB4kF7NAgSCt9vCw8GFT0nLKFRd2tHei=pw@mail.gmail.com>
+	<CAJTo0La0mtVGyLysCnqi9EQmT+4L1eYRxgE-TV=3Va45jnt=Xg@mail.gmail.com>
+	<CAMKF1sqfvtQPWN5Yuz3RPYkXpneS+XWcYmit_=bcvKGo3_hx8w@mail.gmail.com>
+	<CAJTo0LakaSZhJodT2KQx6u0TEaBL5Ruig3oOdfrtCzQUf1cxXg@mail.gmail.com>
+	<CAJTo0La+bGDBuJ42yVy79hW2iN3ZhpeyjXrhUApLn-PAi6PYBw@mail.gmail.com>
+	<87a875qxeg.fsf@largeson.i-did-not-set--mail-host-address--so-tickle-me>
+	<CAJTo0LaLOhPcz8DYQ4wGzVXrP7Qs_Fa7jgrx76wCDAuR8eoWfQ@mail.gmail.com>
+	<87fugwyv28.fsf@largeson.i-did-not-set--mail-host-address--so-tickle-me>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 26 Apr 2017 10:44:27 +0100
+Message-ID: <CAJTo0LY=s+q9oC6ep=aD8W29U6L4kdnQQchg3OKbM6EhH7tniQ@mail.gmail.com>
+To: Nathan Lynch <nathan_lynch@mentor.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>,
+	openembeded-devel <Openembedded-devel@lists.openembedded.org>
+Subject: Re: [OE-core] [RFT] gcc7 and glibc-2.26 recipes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,192 +80,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 26 Apr 2017 08:56:11 -0000
-Content-Type: multipart/alternative; boundary=001a11403990c0e109054e0e026d
+X-List-Received-Date: Wed, 26 Apr 2017 09:45:00 -0000
+Content-Type: multipart/alternative; boundary=001a1135cbccdfe1f9054e0eb0f7
 
---001a11403990c0e109054e0e026d
+--001a1135cbccdfe1f9054e0eb0f7
 Content-Type: text/plain; charset=UTF-8
 
-I am willed to do it the right way. Would you provide a bit more
-information about how to do PACKAGECONFIG properly?
+On 25 April 2017 at 23:35, Nathan Lynch <nathan_lynch@mentor.com> wrote:
 
-On Wed, Apr 26, 2017 at 8:51 AM, Martin Jansa <martin.jansa@gmail.com>
-wrote:
-
-> No, this won't be added to meta-qt5 layer, because it's not the right fix.
->
-> If you're happy with empty packages, then you don't need meta-qt5 at all.
->
-> Empty packages are useless and bitbake is right not to create them.
->
-> My guess is that you don't have all necessary PACKAGECONFIGs enabled for
-> qtbase.
->
-> On Wed, Apr 26, 2017 at 8:27 AM, Malte Thiel <thieldev@gmail.com> wrote:
->
->> Hey,
->>
->> thanks, that solved my problem! Should probably added to the qt5 layer?
->>
->> Best
->>
->>
->> On Tue, Apr 25, 2017 at 9:51 PM, Martin Kelly <mkelly@xevo.com> wrote:
->>
->>> On 04/25/2017 07:41 AM, Malte Thiel wrote:
->>>
->>>> Hello,
->>>>
->>>> I am trying to compile a Qt 5.8 application using the master branch
->>>> of meta-qt5/recipes-qt/qt5/ (For 5.8 support).
->>>>
->>>> Within my recipe I have:
->>>>
->>>> RDEPENDS_${PN} = "libgcc glibc qtbase [...] qtdeclarative"
->>>>
->>>> My recipe (and therefore the application) compiles fine. However, in
->>>> do_rootfs I get the following error:
->>>>
->>>> ------------------------------------------------------------
->>>> ERROR: my-image-1.0-r0 do_rootfs: Error executing a python function in
->>>> exec_python_func() autogenerated:
->>>>
->>>> [...]
->>>>
->>>> Exception: FileNotFoundError: [Errno 2] No such file or directory:
->>>> '/home/sec/sdk/build/0101301/tmp/sysroots/sm2-imx6/pkgdata/r
->>>> untime-reverse/qtdeclarative-plugins'
->>>>
->>>> ERROR: my-image-1.0-r0 do_rootfs: Function failed:
->>>> license_create_manifest
->>>> ------------------------------------------------------------
->>>>
->>>> It's true, there is no file 'qtdeclarative-plugins'.
->>>> However, qtdeclarative RPROVIDES qtdeclarative-plugins, so I expect that
->>>> this file should be generated somehow?
->>>>
->>>> Any help is appreciated
->>>>
->>>>
->>>>
->>>>
->>> Hi,
->>>
->>> I actually hit this issue as well. I discovered that
->>> qtdeclarative-plugins wasn't being generated because it was empty, and by
->>> default, bitbake won't generate an empty package. You can fix it by adding:
->>>
->>> ALLOW_EMPTY_${PN}-plugins = "1"
->>>
->>> to the qtdeclarative_git.bb file. That said, I'm not sure if this is
->>> the right fix, or if there is some other reason why qtdeclarative-plugins
->>> is not being generated.
->>>
->>
->>
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->>
->>
+> Done:
+> http://lists.openembedded.org/pipermail/openembedded-core/
+> 2017-April/136086.html
 >
 
---001a11403990c0e109054e0e026d
+Thanks!
+
+Ross
+
+--001a1135cbccdfe1f9054e0eb0f7
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">I am willed to do it the right way. Would you provide a bi=
-t more information about how to do PACKAGECONFIG properly?</div><div class=
-=3D"gmail_extra"><br><div class=3D"gmail_quote">On Wed, Apr 26, 2017 at 8:5=
-1 AM, Martin Jansa <span dir=3D"ltr">&lt;<a href=3D"mailto:martin.jansa@gma=
-il.com" target=3D"_blank">martin.jansa@gmail.com</a>&gt;</span> wrote:<br><=
-blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px=
- #ccc solid;padding-left:1ex"><div dir=3D"ltr">No, this won&#39;t be added =
-to meta-qt5 layer, because it&#39;s not the right fix.<div><br></div><div>I=
-f you&#39;re happy with empty packages, then you don&#39;t need meta-qt5 at=
- all.</div><div><br></div><div>Empty packages are useless and bitbake is ri=
-ght not to create them.</div><div><br></div><div>My guess is that you don&#=
-39;t have all necessary PACKAGECONFIGs enabled for qtbase.</div></div><div =
-class=3D"gmail_extra"><br><div class=3D"gmail_quote"><div><div class=3D"h5"=
->On Wed, Apr 26, 2017 at 8:27 AM, Malte Thiel <span dir=3D"ltr">&lt;<a href=
-=3D"mailto:thieldev@gmail.com" target=3D"_blank">thieldev@gmail.com</a>&gt;=
-</span> wrote:<br></div></div><blockquote class=3D"gmail_quote" style=3D"ma=
-rgin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div><div clas=
-s=3D"h5"><div dir=3D"ltr">Hey,<div><br></div><div>thanks, that solved my pr=
-oblem! Should probably added to the qt5 layer?</div><div><br></div><div>Bes=
-t</div><div><br></div></div><div class=3D"m_-3995178705096735849HOEnZb"><di=
-v class=3D"m_-3995178705096735849h5"><div class=3D"gmail_extra"><br><div cl=
-ass=3D"gmail_quote">On Tue, Apr 25, 2017 at 9:51 PM, Martin Kelly <span dir=
-=3D"ltr">&lt;<a href=3D"mailto:mkelly@xevo.com" target=3D"_blank">mkelly@xe=
-vo.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"=
-margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div class=
-=3D"m_-3995178705096735849m_-5508835913971346922HOEnZb"><div class=3D"m_-39=
-95178705096735849m_-5508835913971346922h5">On 04/25/2017 07:41 AM, Malte Th=
-iel wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">
-Hello,<br>
-<br>
-I am trying to compile a Qt 5.8 application using the master branch<br>
-of meta-qt5/recipes-qt/qt5/ (For 5.8 support).<br>
-<br>
-Within my recipe I have:<br>
-<br>
-RDEPENDS_${PN} =3D &quot;libgcc glibc qtbase [...] qtdeclarative&quot;<br>
-<br>
-My recipe (and therefore the application) compiles fine. However, in<br>
-do_rootfs I get the following error:<br>
-<br>
-------------------------------<wbr>------------------------------<br>
-ERROR: my-image-1.0-r0 do_rootfs: Error executing a python function in<br>
-exec_python_func() autogenerated:<br>
-<br>
-[...]<br>
-<br>
-Exception: FileNotFoundError: [Errno 2] No such file or directory:<br>
-&#39;/home/sec/sdk/build/0101301/t<wbr>mp/sysroots/sm2-imx6/pkgdata/r<wbr>u=
-ntime-reverse/qtdeclarative-p<wbr>lugins&#39;<br>
-<br>
-ERROR: my-image-1.0-r0 do_rootfs: Function failed: license_create_manifest<=
-br>
-------------------------------<wbr>------------------------------<br>
-<br>
-It&#39;s true, there is no file &#39;qtdeclarative-plugins&#39;.<br>
-However, qtdeclarative RPROVIDES qtdeclarative-plugins, so I expect that<br=
->
-this file should be generated somehow?<br>
-<br>
-Any help is appreciated<br>
-<br>
-<br>
-<br>
-</blockquote>
-<br></div></div>
-Hi,<br>
-<br>
-I actually hit this issue as well. I discovered that qtdeclarative-plugins =
-wasn&#39;t being generated because it was empty, and by default, bitbake wo=
-n&#39;t generate an empty package. You can fix it by adding:<br>
-<br>
-ALLOW_EMPTY_${PN}-plugins =3D &quot;1&quot;<br>
-<br>
-to the <a href=3D"http://qtdeclarative_git.bb" rel=3D"noreferrer" target=3D=
-"_blank">qtdeclarative_git.bb</a> file. That said, I&#39;m not sure if this=
- is the right fix, or if there is some other reason why qtdeclarative-plugi=
-ns is not being generated.<br>
-</blockquote></div><br></div>
-</div></div><br></div></div><span class=3D"HOEnZb"><font color=3D"#888888">=
---<br>
-______________________________<wbr>_________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.org<wbr>/listinfo/yocto</a><=
-br>
-<br></font></span></blockquote></div><br></div>
-</blockquote></div><br></div>
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 25 April 2017 at 23:35, Nathan Lynch <span dir=3D"ltr">&lt;<a href=3D"ma=
+ilto:nathan_lynch@mentor.com" target=3D"_blank">nathan_lynch@mentor.com</a>=
+&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0=
+ 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div id=3D":485" class=
+=3D"a3s aXjCH m15ba741bfe161812">Done:<br>
+<a href=3D"http://lists.openembedded.org/pipermail/openembedded-core/2017-A=
+pril/136086.html" rel=3D"noreferrer" target=3D"_blank">http://lists.openemb=
+edded.org/<wbr>pipermail/openembedded-core/<wbr>2017-April/136086.html</a><=
+/div></blockquote></div><br>Thanks!</div><div class=3D"gmail_extra"><br></d=
+iv><div class=3D"gmail_extra">Ross</div></div>
 
---001a11403990c0e109054e0e026d--
+--001a1135cbccdfe1f9054e0eb0f7--
